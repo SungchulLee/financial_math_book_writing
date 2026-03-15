@@ -1,938 +1,497 @@
 # Moment Analysis of SDEs
 
+In many stochastic differential equations the full probability distribution of the solution is difficult or impossible to obtain explicitly. Moment analysis provides an alternative: instead of solving for the entire distribution, we track a small set of summary statistics — expectations, variances, and correlations — that already capture many economically and physically relevant properties such as growth rates, volatility, persistence, and equilibrium behavior.
 
+For Gaussian processes such as Brownian motion and the Ornstein–Uhlenbeck process, the distribution is fully determined by the first two moments. For nonlinear diffusion models such as geometric Brownian motion and the CIR process, higher moments reveal how multiplicative or state-dependent noise affects skewness, tail behavior, and long-run variability.
 
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+The models in this section illustrate three fundamental types of stochastic behavior: **pure diffusion** (Brownian motion), **multiplicative noise** (geometric Brownian motion), and **mean reversion** (Vasicek and CIR). For each model we develop moment formulas using three main techniques: direct computation from explicit solutions, Itô's lemma applied to powers, and moment ODEs derived from the infinitesimal generator.
 
-This section presents **rigorous analytical derivations** of moments for fundamental stochastic differential equations. Understanding moments is essential for:
+!!! abstract "Learning Goals"
+    After completing this section you should be able to:
 
-- Characterizing distributions of stochastic processes
-- Pricing derivatives and computing risk measures
-- Calibrating models to market data
-- Deriving approximate solutions and asymptotic behavior
-
-We develop complete derivations using stochastic calculus tools including **Itô's lemma**, **Itô isometry**, **integrating factors**, and **moment ODEs**.
+    - compute expectations, variances, and higher moments for Gaussian and log-normal SDE models
+    - use Itô isometry to evaluate variances of stochastic integrals
+    - derive moment ODEs using Itô's lemma applied to powers of the process
+    - understand how mean reversion produces stationary distributions
+    - recognize the effect of state-dependent volatility on variance formulas
 
 ---
 
-## Standard Brownian Motion
+## 1. Brownian Motion
 
+## SDE
 
-### 1. Definition
-
-
-The **standard Brownian motion** (Wiener process) $B_t$ satisfies:
+The standard Brownian motion $B_t$ satisfies
 
 $$
 dB_t = dW_t, \quad B_0 = 0
 $$
 
-### 2. Basic Moments
+## Moments
 
-
-Since $B_t \sim \mathcal{N}(0, t)$ by construction:
-
-$$
-\boxed{
-\mathbb{E}[B_t] = 0, \quad \text{Var}(B_t) = t
-}
-$$
-
-### 3. Higher Moments
-
-
-For a Gaussian random variable $X \sim \mathcal{N}(0, \sigma^2)$:
-
-**Odd moments:**
+By definition of standard Brownian motion, $B_t$ has distribution $\mathcal{N}(0, t)$:
 
 $$
-\mathbb{E}[X^{2k+1}] = 0 \quad \text{for all } k \geq 0
+\mathbb{E}[B_t] = 0, \quad \operatorname{Var}(B_t) = t
 $$
 
-**Even moments:**
+## Higher Moments
+
+For a centered Gaussian random variable $X \sim \mathcal{N}(0, \sigma^2)$, all odd moments vanish by symmetry. The even moments are
 
 $$
-\mathbb{E}[X^{2k}] = \sigma^{2k} \cdot (2k-1)!! = \sigma^{2k} \cdot \frac{(2k)!}{2^k k!}
+\mathbb{E}[X^{2k}] = \sigma^{2k} (2k-1)!! = \sigma^{2k} \cdot \frac{(2k)!}{2^k k!}
 $$
 
-where $(2k-1)!! = 1 \cdot 3 \cdot 5 \cdots (2k-1)$.
+where $(2k-1)!! = 1 \cdot 3 \cdot 5 \cdots (2k-1)$ is the double factorial.
 
-**For Brownian motion:**
+For Brownian motion ($\sigma^2 = t$):
 
 $$
-\boxed{
-\mathbb{E}[B_t^{2k}] = t^k \cdot (2k-1)!!
-}
+\mathbb{E}[B_t^{2k}] = t^k (2k-1)!!
 $$
 
-**Examples:**
-- $\mathbb{E}[B_t^2] = t$
-- $\mathbb{E}[B_t^4] = 3t^2$
-- $\mathbb{E}[B_t^6] = 15t^3$
-- $\mathbb{E}[B_t^8] = 105t^4$
+| $k$ | $\mathbb{E}[B_t^{2k}]$ |
+| --- | ----------------------- |
+| 1   | $t$                     |
+| 2   | $3t^2$                  |
+| 3   | $15t^3$                 |
+| 4   | $105t^4$                |
 
-### 4. Moment Generating Function
-
+## Moment Generating Function
 
 $$
 M_B(u, t) = \mathbb{E}[e^{uB_t}] = e^{u^2 t/2}
 $$
 
-**Derivation:** Since $B_t \sim \mathcal{N}(0, t)$:
+This follows directly from the Gaussian integral:
 
 $$
-\mathbb{E}[e^{uB_t}] = \int_{-\infty}^\infty e^{ux} \frac{1}{\sqrt{2\pi t}} e^{-x^2/(2t)} dx = e^{u^2 t/2}
+\mathbb{E}[e^{uB_t}] = \int_{-\infty}^\infty e^{ux} \frac{1}{\sqrt{2\pi t}} e^{-x^2/(2t)}\,dx = e^{u^2 t/2}
 $$
+
+An equivalent and widely used form is the **exponential martingale identity**:
+
+$$
+\mathbb{E}\!\left[e^{uW_t - \frac{1}{2}u^2 t}\right] = 1
+$$
+
+This identity connects moment computations to the martingale techniques used in mathematical finance.
+
+## Interpretation
+
+Brownian motion has zero mean at all times, so there is no systematic drift. The variance grows linearly in time, reflecting the diffusive spreading of paths. Because $B_t$ is Gaussian, its distribution is completely determined by the first two moments — all higher moments follow from the variance alone.
 
 ---
 
-## Brownian Motion with Drift and Volatility
+## 2. Brownian Motion with Drift
 
-
-### 1. SDE
-
-
-Let $X_t$ satisfy:
+## SDE and Solution
 
 $$
 dX_t = \mu\,dt + \sigma\,dW_t, \quad X_0 \in \mathbb{R}
 $$
 
-### 2. Solution
-
-
-This is a linear SDE. Integrating:
+Integrating directly:
 
 $$
-X_t = X_0 + \mu t + \sigma B_t
+X_t = X_0 + \mu t + \sigma W_t
 $$
 
-### 3. First Two Moments
+## First Two Moments
 
-
-Since $B_t \sim \mathcal{N}(0, t)$:
-
-$$
-\boxed{
-\mathbb{E}[X_t] = X_0 + \mu t, \quad \text{Var}(X_t) = \sigma^2 t
-}
-$$
-
-**Distribution:** $X_t \sim \mathcal{N}(X_0 + \mu t, \sigma^2 t)$
-
-### 4. Higher Moments
-
-
-Since $X_t$ is Gaussian:
+Since $W_t \sim \mathcal{N}(0, t)$:
 
 $$
-\mathbb{E}[(X_t - \mathbb{E}[X_t])^n] = \begin{cases}
-0 & \text{if } n \text{ odd} \\
-\sigma^n t^{n/2} (n-1)!! & \text{if } n \text{ even}
-\end{cases}
+\mathbb{E}[X_t] = X_0 + \mu t, \quad \operatorname{Var}(X_t) = \sigma^2 t
 $$
 
-### 5. Moment Generating Function
+**Distribution:** $X_t \sim \mathcal{N}(X_0 + \mu t,\; \sigma^2 t)$
 
+## Higher Moments and MGF
 
-$$
-M_X(u, t) = \mathbb{E}[e^{uX_t}] = \exp\left[u(X_0 + \mu t) + \frac{u^2 \sigma^2 t}{2}\right]
-$$
-
-### 6. Conditional Moments
-
-
-For $s < t$:
+The central moments follow the Gaussian formula:
 
 $$
-\mathbb{E}[X_t | X_s] = X_s + \mu(t - s)
+\mathbb{E}[(X_t - \mathbb{E}[X_t])^n] = \begin{cases} 0 & \text{if } n \text{ odd} \\ \sigma^n t^{n/2} (n-1)!! & \text{if } n \text{ even} \end{cases}
 $$
 
+The moment generating function is
+
 $$
-\text{Var}(X_t | X_s) = \sigma^2(t - s)
+\mathbb{E}[e^{uX_t}] = \exp\!\left[u(X_0 + \mu t) + \frac{u^2 \sigma^2 t}{2}\right]
 $$
+
+## Conditional Moments
+
+For $s < t$, the increment
+
+$$
+X_t - X_s = \mu(t - s) + \sigma(W_t - W_s)
+$$
+
+is independent of $\mathcal{F}_s$ because Brownian motion has independent increments. Therefore:
+
+$$
+\mathbb{E}[X_t \mid X_s] = X_s + \mu(t - s), \quad \operatorname{Var}(X_t \mid X_s) = \sigma^2(t - s)
+$$
+
+## Interpretation
+
+The drift $\mu$ shifts the mean linearly in time, while the variance grows at rate $\sigma^2$ regardless of $\mu$. The process has no memory of its past beyond the current value, a direct consequence of independent increments.
 
 ---
 
-## Geometric Brownian Motion
+## 3. Geometric Brownian Motion
 
-
-### 1. SDE
-
-
-The GBM process satisfies:
+## SDE and Solution
 
 $$
 dS_t = \mu S_t\,dt + \sigma S_t\,dW_t, \quad S_0 > 0
 $$
 
-### 2. Solution
-
-
-Define $Y_t = \log S_t$ and apply **Itô's lemma**:
+Applying Itô's lemma to $\log S_t$:
 
 $$
-f(S) = \log S, \quad f'(S) = \frac{1}{S}, \quad f''(S) = -\frac{1}{S^2}
+S_t = S_0 \exp\!\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
 $$
 
-$$
-\begin{align}
-dY_t &= \frac{1}{S_t}dS_t + \frac{1}{2}\left(-\frac{1}{S_t^2}\right)(dS_t)^2 \\
-&= \frac{1}{S_t}(\mu S_t dt + \sigma S_t dW_t) - \frac{1}{2S_t^2} \cdot \sigma^2 S_t^2 dt \\
-&= \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma dW_t
-\end{align}
-$$
+Since $\log S_t \sim \mathcal{N}\!\left(\log S_0 + (\mu - \sigma^2/2)t,\; \sigma^2 t\right)$, the process $S_t$ follows a **log-normal distribution**.
 
-Integrating:
+## First Two Moments
 
-$$
-\log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t
-$$
-
-$$
-\boxed{
-S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t\right]
-}
-$$
-
-### 3. First Two Moments
-
-
-Let $Z = \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t \sim \mathcal{N}\left(\left(\mu - \frac{\sigma^2}{2}\right)t, \sigma^2 t\right)$.
-
-For a Gaussian $Z \sim \mathcal{N}(m, v^2)$:
-
-$$
-\mathbb{E}[e^Z] = e^{m + v^2/2}
-$$
+For a log-normal variable, if $Z \sim \mathcal{N}(m, v^2)$ then $\mathbb{E}[e^Z] = e^{m + v^2/2}$.
 
 **Expectation:**
 
 $$
-\begin{align}
-\mathbb{E}[S_t] &= S_0 \mathbb{E}[e^Z] \\
-&= S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \frac{\sigma^2 t}{2}\right] \\
-&= S_0 e^{\mu t}
-\end{align}
+\mathbb{E}[S_t] = S_0\,e^{(\mu - \sigma^2/2)t}\,\mathbb{E}[e^{\sigma W_t}] = S_0\,e^{(\mu - \sigma^2/2)t}\,e^{\sigma^2 t/2} = S_0\,e^{\mu t}
 $$
+
+The Itô correction $-\sigma^2/2$ in the exponent is exactly cancelled by the factor $\mathbb{E}[e^{\sigma W_t}] = e^{\sigma^2 t/2}$.
 
 **Second moment:**
 
 $$
-\mathbb{E}[S_t^2] = S_0^2 \mathbb{E}[e^{2Z}]
-$$
-
-For $2Z \sim \mathcal{N}(2(\mu - \sigma^2/2)t, 4\sigma^2 t)$:
-
-$$
-\mathbb{E}[e^{2Z}] = \exp\left[2\left(\mu - \frac{\sigma^2}{2}\right)t + \frac{4\sigma^2 t}{2}\right] = e^{2\mu t + \sigma^2 t}
-$$
-
-Therefore:
-
-$$
-\mathbb{E}[S_t^2] = S_0^2 e^{2\mu t + \sigma^2 t}
+\mathbb{E}[S_t^2] = S_0^2\,\mathbb{E}[e^{2(\mu - \sigma^2/2)t + 2\sigma W_t}] = S_0^2\,e^{2\mu t + \sigma^2 t}
 $$
 
 **Variance:**
 
 $$
-\begin{align}
-\text{Var}(S_t) &= \mathbb{E}[S_t^2] - (\mathbb{E}[S_t])^2 \\
-&= S_0^2 e^{2\mu t + \sigma^2 t} - S_0^2 e^{2\mu t} \\
-&= S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)
-\end{align}
+\operatorname{Var}(S_t) = \mathbb{E}[S_t^2] - (\mathbb{E}[S_t])^2 = S_0^2\,e^{2\mu t}(e^{\sigma^2 t} - 1)
+$$
+
+## General Power Moments
+
+For any real $n$, the same log-normal technique gives
+
+$$
+\mathbb{E}[S_t^n] = S_0^n \exp\!\left[n\mu t + \frac{n(n-1)}{2}\sigma^2 t\right]
+$$
+
+This is the $n$-th **power moment**, not the moment generating function. The ordinary MGF $\mathbb{E}[e^{uS_t}]$ of a log-normal random variable does not admit a closed-form expression for $u > 0$.
+
+**Verification:** Setting $n = 1$ gives $S_0 e^{\mu t}$ and $n = 2$ gives $S_0^2 e^{2\mu t + \sigma^2 t}$, consistent with the first two moments above.
+
+## Conditional Moments
+
+For $s < t$, using $S_t = S_s \exp[(\mu - \sigma^2/2)(t-s) + \sigma(W_t - W_s)]$ and the independence of the increment $W_t - W_s$ from $\mathcal{F}_s$:
+
+$$
+\mathbb{E}[S_t \mid S_s] = S_s\,e^{\mu(t-s)}, \quad \operatorname{Var}(S_t \mid S_s) = S_s^2\,e^{2\mu(t-s)}(e^{\sigma^2(t-s)} - 1)
+$$
+
+## Skewness and Kurtosis
+
+The log-normal distribution is **right-skewed** and **heavy-tailed**:
+
+$$
+\operatorname{Skew}(S_t) = (e^{\sigma^2 t} + 2)\sqrt{e^{\sigma^2 t} - 1}
 $$
 
 $$
-\boxed{
-\mathbb{E}[S_t] = S_0 e^{\mu t}, \quad \text{Var}(S_t) = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)
-}
+\operatorname{Kurt}_{\text{excess}}(S_t) = e^{4\sigma^2 t} + 2e^{3\sigma^2 t} + 3e^{2\sigma^2 t} - 6
 $$
 
-### 4. Higher Moments
+Both increase **exponentially** with $\sigma^2 t$: as time grows or volatility rises, the variance explosion drives increasingly heavy tails and extreme right skewness. This is a direct consequence of the multiplicative noise structure.
 
+## Interpretation
 
-**General $n$-th moment:**
-
-$$
-\mathbb{E}[S_t^n] = S_0^n \mathbb{E}[e^{nZ}]
-$$
-
-For $nZ \sim \mathcal{N}(n(\mu - \sigma^2/2)t, n^2\sigma^2 t)$:
-
-$$
-\boxed{
-\mathbb{E}[S_t^n] = S_0^n \exp\left[n\mu t + \frac{n(n-1)}{2}\sigma^2 t\right]
-}
-$$
-
-**Verification for $n=1, 2$:**
-- $n=1$: $\mathbb{E}[S_t] = S_0 e^{\mu t}$ ✓
-- $n=2$: $\mathbb{E}[S_t^2] = S_0^2 e^{2\mu t + \sigma^2 t}$ ✓
-
-### 5. Moment Generating Function
-
-
-$$
-\boxed{
-M_S(u, t) = \mathbb{E}[e^{uS_t}] = \begin{cases}
-\text{No closed form} & \text{(log-normal distribution)} \\
-\text{Use } \mathbb{E}[S_t^n] \text{ instead} & 
-\end{cases}
-}
-$$
-
-**Alternative: Log moment generating function**
-
-For $\log S_t \sim \mathcal{N}(m, v^2)$ with $m = \log S_0 + (\mu - \sigma^2/2)t$ and $v^2 = \sigma^2 t$:
-
-$$
-\mathbb{E}[e^{u \log S_t}] = \mathbb{E}[S_t^u] = S_0^u e^{u\mu t + u(u-1)\sigma^2 t/2}
-$$
-
-### 6. Conditional Moments
-
-
-For $s < t$:
-
-$$
-\mathbb{E}[S_t | S_s] = S_s e^{\mu(t-s)}
-$$
-
-$$
-\text{Var}(S_t | S_s) = S_s^2 e^{2\mu(t-s)}(e^{\sigma^2(t-s)} - 1)
-$$
-
-**Derivation:** Since $S_t = S_s \exp[(drifts) + \sigma(B_t - B_s)]$, conditioning on $S_s$ gives independent increments.
-
-### 7. Skewness and Kurtosis
-
-
-The log-normal distribution is **right-skewed** and **heavy-tailed**.
-
-**Skewness:**
-
-$$
-\text{Skew}(S_t) = (e^{\sigma^2 t} + 2)\sqrt{e^{\sigma^2 t} - 1}
-$$
-
-**Excess kurtosis:**
-
-$$
-\text{Kurt}(S_t) = e^{4\sigma^2 t} + 2e^{3\sigma^2 t} + 3e^{2\sigma^2 t} - 6
-$$
-
-Both increase with $\sigma^2 t$, showing heavier tails for higher volatility or longer time.
+GBM has the property that the expected value grows exponentially at rate $\mu$, independent of $\sigma$. However, the variance also grows exponentially, and the distribution becomes increasingly right-skewed over time. This means that while the average outcome grows, the median outcome $S_0 e^{(\mu - \sigma^2/2)t}$ grows more slowly — a direct consequence of the Itô correction. The gap between mean and median reflects the fact that mean growth is driven by rare large outcomes in the right tail of the log-normal distribution.
 
 ---
 
-## Vasicek Model
+## 4. Vasicek Model (Ornstein–Uhlenbeck)
 
-
-### 1. SDE
-
-
-The Vasicek model is defined by:
+## SDE and Solution
 
 $$
-dr_t = a(b - r_t)\,dt + \sigma\,dW_t, \quad r_0 = r(0)
+dr_t = a(b - r_t)\,dt + \sigma\,dW_t, \quad r_0 \in \mathbb{R}
 $$
 
-where:
-- $a > 0$ is the mean reversion speed
-- $b$ is the long-term mean
-- $\sigma$ is the volatility
+where $a > 0$ is the mean reversion speed, $b$ is the long-term mean, and $\sigma > 0$ is the volatility.
 
-### 2. Solution via Integrating Factor
-
-
-Rewrite as:
+Using the integrating factor $e^{at}$:
 
 $$
-dr_t + ar_t\,dt = ab\,dt + \sigma\,dW_t
+r_t = r_0\,e^{-at} + b(1 - e^{-at}) + \sigma\int_0^t e^{-a(t-s)}\,dW_s
 $$
 
-Multiply both sides by the integrating factor $e^{at}$:
+## Expectation
+
+The stochastic integral has zero expectation, giving
 
 $$
-e^{at}dr_t + ae^{at}r_t\,dt = abe^{at}\,dt + \sigma e^{at}\,dW_t
+\mathbb{E}[r_t] = r_0\,e^{-at} + b(1 - e^{-at})
 $$
 
-The left side is $d(r_t e^{at})$:
+As $t \to \infty$, $\mathbb{E}[r_t] \to b$: the process mean-reverts to the long-term level.
+
+## Variance via Itô Isometry
+
+The variance comes entirely from the stochastic integral term $I_t = \sigma\int_0^t e^{-a(t-s)}\,dW_s$.
+
+By **Itô isometry**, $\mathbb{E}\!\left[\left(\int_0^t f(s)\,dW_s\right)^2\right] = \int_0^t f(s)^2\,ds$:
 
 $$
-d(r_t e^{at}) = abe^{at}\,dt + \sigma e^{at}\,dW_t
+\operatorname{Var}(r_t) = \sigma^2 e^{-2at} \int_0^t e^{2as}\,ds = \sigma^2 e^{-2at} \cdot \frac{e^{2at} - 1}{2a} = \frac{\sigma^2}{2a}(1 - e^{-2at})
 $$
 
-Integrate from $0$ to $t$:
+As $t \to \infty$, $\operatorname{Var}(r_t) \to \frac{\sigma^2}{2a}$.
+
+**Stationary distribution:** $r_\infty \sim \mathcal{N}\!\left(b,\; \frac{\sigma^2}{2a}\right)$
+
+## Conditional Moments
+
+For $s < t$, restarting the process at time $s$:
 
 $$
-r_t e^{at} - r_0 = ab\int_0^t e^{as}\,ds + \sigma\int_0^t e^{as}\,dW_s
-$$
-
-$$
-r_t e^{at} = r_0 + ab\frac{e^{at} - 1}{a} + \sigma\int_0^t e^{as}\,dW_s
-$$
-
-$$
-\boxed{
-r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma e^{-at}\int_0^t e^{as}\,dW_s
-}
-$$
-
-### 3. Expectation
-
-
-Using linearity of expectation and $\mathbb{E}[\int e^{as}\,dW_s] = 0$:
-
-$$
-\boxed{
-\mathbb{E}[r_t] = r_0 e^{-at} + b(1 - e^{-at})
-}
-$$
-
-**Long-term behavior:**
-
-$$
-\lim_{t \to \infty} \mathbb{E}[r_t] = b
-$$
-
-The process **mean-reverts** to $b$ with speed $a$.
-
-### 4. Variance
-
-
-The only stochastic term is:
-
-$$
-I_t = \sigma e^{-at}\int_0^t e^{as}\,dW_s
-$$
-
-Use **Itô isometry**:
-
-$$
-\mathbb{E}[I_t^2] = \sigma^2 e^{-2at} \mathbb{E}\left[\left(\int_0^t e^{as}\,dW_s\right)^2\right] = \sigma^2 e^{-2at} \int_0^t e^{2as}\,ds
+\mathbb{E}[r_t \mid r_s] = r_s\,e^{-a(t-s)} + b(1 - e^{-a(t-s)})
 $$
 
 $$
-= \sigma^2 e^{-2at} \cdot \frac{e^{2at} - 1}{2a} = \frac{\sigma^2}{2a}(1 - e^{-2at})
+\operatorname{Var}(r_t \mid r_s) = \frac{\sigma^2}{2a}(1 - e^{-2a(t-s)})
 $$
 
-Since $\mathbb{E}[I_t] = 0$:
-
-$$
-\boxed{
-\text{Var}(r_t) = \frac{\sigma^2}{2a}(1 - e^{-2at})
-}
-$$
-
-**Long-term variance:**
-
-$$
-\lim_{t \to \infty} \text{Var}(r_t) = \frac{\sigma^2}{2a}
-$$
-
-**Stationary distribution:** $r_\infty \sim \mathcal{N}\left(b, \frac{\sigma^2}{2a}\right)$
-
-### 5. Complete Moment Summary
-
-
-$$
-\boxed{
-\begin{align}
-\mathbb{E}[r_t] &= r_0 e^{-at} + b(1 - e^{-at}) \\
-\text{Var}(r_t) &= \frac{\sigma^2}{2a}(1 - e^{-2at})
-\end{align}
-}
-$$
-
-### 6. Conditional Moments
-
-
-For $s < t$, the increment $r_t - r_s$ depends on $r_s$.
-
-From the solution form:
-
-$$
-r_t = r_s e^{-a(t-s)} + b(1 - e^{-a(t-s)}) + \sigma e^{-a(t-s)}\int_s^t e^{a u}\,dW_u
-$$
-
-Therefore:
-
-$$
-\mathbb{E}[r_t | r_s] = r_s e^{-a(t-s)} + b(1 - e^{-a(t-s)})
-$$
-
-$$
-\text{Var}(r_t | r_s) = \frac{\sigma^2}{2a}(1 - e^{-2a(t-s)})
-$$
-
-### 7. Covariance Function
-
+## Covariance and Correlation
 
 For $s < t$:
 
 $$
-\text{Cov}(r_s, r_t) = \text{Var}(r_s) \cdot e^{-a(t-s)}
+\operatorname{Cov}(r_s, r_t) = \operatorname{Var}(r_s) \cdot e^{-a(t-s)} = \frac{\sigma^2}{2a}(1 - e^{-2as}) \cdot e^{-a(t-s)}
 $$
 
-**Proof:** Use tower property:
+This follows from the tower property: $\operatorname{Cov}(r_s, r_t) = \operatorname{Cov}(r_s, \mathbb{E}[r_t \mid r_s]) = e^{-a(t-s)} \operatorname{Var}(r_s)$, since $\mathbb{E}[r_t \mid r_s]$ is an affine function of $r_s$.
+
+The correlation is
 
 $$
-\text{Cov}(r_s, r_t) = \mathbb{E}[r_s r_t] - \mathbb{E}[r_s]\mathbb{E}[r_t]
+\rho(s, t) = \frac{\operatorname{Cov}(r_s, r_t)}{\sqrt{\operatorname{Var}(r_s)\,\operatorname{Var}(r_t)}}
 $$
 
-After algebra (using $\mathbb{E}[r_t | r_s] = \alpha + \beta r_s$):
-
-$$
-\text{Cov}(r_s, r_t) = \frac{\sigma^2}{2a}(1 - e^{-2as}) \cdot e^{-a(t-s)}
-$$
-
-**Correlation:**
+Because the variance of $r_t$ depends on time during the transient phase, the correlation generally depends on both $s$ and $t$ individually. When the process has reached its **stationary regime** so that $\operatorname{Var}(r_t) = \sigma^2/(2a)$ for all relevant times, the correlation simplifies to
 
 $$
 \rho(s, t) = e^{-a|t-s|}
 $$
 
-This is an **exponentially decaying autocorrelation**, characteristic of OU processes.
+This exponentially decaying autocorrelation — depending only on the time difference $|t - s|$ — is a hallmark of second-order stationarity and is characteristic of Ornstein–Uhlenbeck processes.
+
+!!! tip "Centered Ornstein–Uhlenbeck Process"
+    Setting $b = 0$ gives the centered OU process $dX_t = -aX_t\,dt + \sigma\,dW_t$ with $\mathbb{E}[X_t] = x_0\,e^{-at}$ and $\operatorname{Var}(X_t) = \frac{\sigma^2}{2a}(1 - e^{-2at})$. All formulas above apply with $b = 0$.
+
+## Interpretation
+
+Mean reversion creates a fundamental tension between the deterministic pull toward $b$ and the random shocks that push the process away. The stationary variance $\sigma^2/(2a)$ reflects this balance: stronger mean reversion (larger $a$) reduces the equilibrium spread, while higher volatility increases it. The exponential memory decay means that the process effectively forgets its past on a timescale of $1/a$.
+
+!!! note "Structural Insight: Mean Reversion vs Diffusion"
+    Brownian motion and geometric Brownian motion have variances that grow without bound over time. The OU/Vasicek process behaves differently: mean reversion counteracts the accumulation of random shocks, so the variance converges to a finite limit $\sigma^2/(2a)$, producing a stationary distribution. This balance between deterministic pull ($a$) and stochastic forcing ($\sigma$) is a central theme in many stochastic models, including the CIR and Heston models used in finance.
 
 ---
 
-## Cox-Ingersoll-Ross (CIR) Model
+## 5. CIR Model
 
-
-### 1. SDE
-
-
-The CIR model is defined by:
+## SDE
 
 $$
 dr_t = a(b - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t, \quad r_0 > 0
 $$
 
-where:
-- $a > 0$ is the mean reversion speed
-- $b > 0$ is the long-term mean
-- $\sigma > 0$ is the volatility parameter
-- **Feller condition:** $2ab \geq \sigma^2$ ensures $r_t > 0$ for all $t$
+where $a, b, \sigma > 0$. The **Feller condition** $2ab \geq \sigma^2$ ensures that the boundary at zero is unattainable, so $r_t > 0$ for all $t > 0$. Without this condition, the process may reach zero but remains nonnegative.
 
-### 2. Expectation
+The CIR model shares the mean-reverting drift of the Vasicek model, but its diffusion coefficient $\sigma\sqrt{r_t}$ depends on the state. This state dependence prevents the process from becoming negative and makes the moment analysis more involved.
 
+## Expectation via Moment ODE
 
-Let $m(t) = \mathbb{E}[r_t]$. Taking expectations of both sides:
+To derive $\mathbb{E}[r_t]$, we take expectations of both sides of the integral form of the SDE:
 
 $$
-\mathbb{E}[dr_t] = a(b - \mathbb{E}[r_t])\,dt + \sigma \mathbb{E}[\sqrt{r_t}]\,dW_t
+\mathbb{E}[r_t] = r_0 + \int_0^t a(b - \mathbb{E}[r_s])\,ds
 $$
 
-The stochastic integral has zero expectation, giving:
+The stochastic integral $\int_0^t \sigma\sqrt{r_s}\,dW_s$ is a martingale with zero expectation, provided the integrand is square-integrable. For the CIR process, $\mathbb{E}\!\left[\int_0^t r_s\,ds\right] < \infty$, so this condition is satisfied.
+
+Differentiating with respect to $t$ gives the ODE
 
 $$
-\frac{dm}{dt} = a(b - m(t))
+\frac{d}{dt}\mathbb{E}[r_t] = a(b - \mathbb{E}[r_t])
 $$
 
-This is a linear ODE with solution:
+This is a linear first-order ODE with solution
 
 $$
-\boxed{
-\mathbb{E}[r_t] = r_0 e^{-at} + b(1 - e^{-at})
-}
+\mathbb{E}[r_t] = r_0\,e^{-at} + b(1 - e^{-at})
 $$
 
-**Note:** Same as Vasicek! The state-dependent volatility doesn't affect the mean.
+The expectation is identical to the Vasicek model: the state-dependent volatility does not affect the mean because the diffusion term contributes zero expected drift.
 
-### 3. Variance via Second Moment
+## Variance via Second Moment ODE
 
+To find the variance, we first derive an ODE for $\mathbb{E}[r_t^2]$.
 
-To find variance, we need $\mathbb{E}[r_t^2]$.
-
-**Apply Itô's lemma** to $f(r) = r^2$:
-
-$$
-f'(r) = 2r, \quad f''(r) = 2
-$$
+Apply Itô's lemma to $f(r) = r^2$ with $f'(r) = 2r$ and $f''(r) = 2$:
 
 $$
-\begin{align}
-d(r_t^2) &= 2r_t\,dr_t + \frac{1}{2} \cdot 2 \cdot (dr_t)^2 \\
-&= 2r_t[a(b - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t] + \sigma^2 r_t\,dt \\
-&= [2ab r_t - 2ar_t^2 + \sigma^2 r_t]\,dt + 2\sigma r_t^{3/2}\,dW_t \\
-&= [(2ab + \sigma^2)r_t - 2ar_t^2]\,dt + 2\sigma r_t^{3/2}\,dW_t
-\end{align}
+d(r_t^2) = [2ab\,r_t - 2a\,r_t^2 + \sigma^2 r_t]\,dt + 2\sigma r_t^{3/2}\,dW_t
 $$
 
-**Take expectation:**
+Taking expectations (the stochastic integral term vanishes):
 
 $$
-\frac{d}{dt}\mathbb{E}[r_t^2] = (2ab + \sigma^2)\mathbb{E}[r_t] - 2a\mathbb{E}[r_t^2]
+\frac{d}{dt}\mathbb{E}[r_t^2] = (2ab + \sigma^2)\,\mathbb{E}[r_t] - 2a\,\mathbb{E}[r_t^2]
 $$
 
-Let $m_2(t) = \mathbb{E}[r_t^2]$ and $m(t) = \mathbb{E}[r_t]$. This is a **linear first-order ODE**:
+This is a linear first-order ODE for $m_2(t) = \mathbb{E}[r_t^2]$ with known forcing from $m(t) = \mathbb{E}[r_t]$. Using the integrating factor $e^{2at}$:
 
 $$
-\frac{dm_2}{dt} + 2am_2 = (2ab + \sigma^2)m(t)
+\frac{d}{dt}[e^{2at} m_2(t)] = (2ab + \sigma^2)\,e^{2at}\,m(t)
 $$
 
-### 4. Solving the Second Moment ODE
-
-
-**Integrating factor:** $\mu(t) = e^{2at}$
-
-Multiply both sides:
+Substituting $m(s) = r_0\,e^{-as} + b(1 - e^{-as})$ and integrating:
 
 $$
-e^{2at}\frac{dm_2}{dt} + 2ae^{2at}m_2 = (2ab + \sigma^2)e^{2at}m(t)
+e^{2at} m_2(t) - r_0^2 = (2ab + \sigma^2)\!\left[r_0 \cdot \frac{e^{at} - 1}{a} + b\!\left(\frac{e^{2at} - 1}{2a} - \frac{e^{at} - 1}{a}\right)\right]
 $$
 
-$$
-\frac{d}{dt}[e^{2at}m_2] = (2ab + \sigma^2)e^{2at}m(t)
-$$
-
-Integrate from $0$ to $t$:
+Computing $\operatorname{Var}(r_t) = m_2(t) - m(t)^2$ and simplifying:
 
 $$
-e^{2at}m_2(t) - m_2(0) = (2ab + \sigma^2)\int_0^t e^{2as}m(s)\,ds
+\operatorname{Var}(r_t) = \frac{\sigma^2}{a}\!\left[r_0\,e^{-at}(1 - e^{-at}) + \frac{b}{2}(1 - e^{-at})^2\right]
 $$
 
-Substitute $m(s) = r_0 e^{-as} + b(1 - e^{-as})$:
+The first term captures the contribution of the initial condition (which decays over time), while the second term captures the contribution of the equilibrium level $b$.
+
+## Long-Term Behavior
 
 $$
-\begin{align}
-\int_0^t e^{2as}m(s)\,ds &= \int_0^t e^{2as}[r_0 e^{-as} + b(1 - e^{-as})]\,ds \\
-&= r_0 \int_0^t e^{as}\,ds + b\int_0^t [e^{2as} - e^{as}]\,ds \\
-&= r_0 \frac{e^{at} - 1}{a} + b\left[\frac{e^{2at} - 1}{2a} - \frac{e^{at} - 1}{a}\right]
-\end{align}
+\lim_{t \to \infty} \operatorname{Var}(r_t) = \frac{b\sigma^2}{2a}
 $$
 
-After substitution and simplification:
+Compare with the Vasicek long-term variance $\sigma^2/(2a)$: the CIR variance has an extra factor of $b$ because the diffusion magnitude $\sigma\sqrt{r_t}$ grows with the level of the process, so higher equilibrium levels produce larger fluctuations.
 
-$$
-m_2(t) = r_0^2 e^{-2at} + \frac{\sigma^2}{a}r_0 e^{-at}(1 - e^{-at}) + b^2(1 - e^{-at})^2 + \frac{\sigma^2 b}{2a}(1 - e^{-at})^2
-$$
+The **stationary distribution** of the CIR process is a **Gamma distribution** with mean $b$ and variance $b\sigma^2/(2a)$. The **transition distribution** (the conditional distribution of $r_t$ given $r_0$ at finite times) follows a scaled noncentral chi-square distribution.
 
-### 5. Variance Formula
-
-
-$$
-\text{Var}(r_t) = m_2(t) - m(t)^2
-$$
-
-After considerable algebra:
-
-$$
-\boxed{
-\text{Var}(r_t) = \frac{\sigma^2}{a}\left[r_0 e^{-at}(1 - e^{-at}) + \frac{b}{2}(1 - e^{-at})^2\right]
-}
-$$
-
-**Alternative form:**
-
-$$
-\text{Var}(r_t) = r_0\frac{\sigma^2}{a}(e^{-at} - e^{-2at}) + \frac{b\sigma^2}{2a}(1 - e^{-at})^2
-$$
-
-### 6. Long-Term Variance
-
-
-$$
-\lim_{t \to \infty} \text{Var}(r_t) = \frac{b\sigma^2}{2a}
-$$
-
-**Stationary distribution:** $r_\infty$ follows a scaled non-central chi-squared distribution with mean $b$ and variance $\frac{b\sigma^2}{2a}$.
-
-### 7. Conditional Moments
-
+## Conditional Moments
 
 For $s < t$:
 
 $$
-\mathbb{E}[r_t | r_s] = r_s e^{-a(t-s)} + b(1 - e^{-a(t-s)})
+\mathbb{E}[r_t \mid r_s] = r_s\,e^{-a(t-s)} + b(1 - e^{-a(t-s)})
 $$
 
 $$
-\text{Var}(r_t | r_s) = r_s \frac{\sigma^2}{a}(e^{-a(t-s)} - e^{-2a(t-s)}) + \frac{b\sigma^2}{2a}(1 - e^{-a(t-s)})^2
+\operatorname{Var}(r_t \mid r_s) = r_s \frac{\sigma^2}{a}(e^{-a(t-s)} - e^{-2a(t-s)}) + \frac{b\sigma^2}{2a}(1 - e^{-a(t-s)})^2
 $$
+
+The conditional variance depends on the current level $r_s$, which is a direct consequence of state-dependent volatility. Higher rates produce larger fluctuations.
+
+## Interpretation
+
+The CIR model demonstrates why state-dependent volatility matters. The expectation follows the same formula as Vasicek, but the variance has a fundamentally different structure: it depends on the initial condition $r_0$ in a way that reflects the $\sqrt{r_t}$ diffusion. Near zero, the volatility vanishes, which (together with the Feller condition) prevents the process from becoming negative. This makes CIR suitable for modeling interest rates and other inherently non-negative quantities.
 
 ---
 
-## Ornstein-Uhlenbeck Process (General Form)
+## 6. General Techniques for Moment Computation
 
+Four main techniques are used to compute moments of SDE solutions.
 
-### 1. SDE
+## Method 1 — Direct Computation from Explicit Solutions
 
+When an explicit solution exists, moments can be computed directly using known distributions. This approach gives the most transparent formulas but only works for a limited class of models.
 
-$$
-dX_t = -\gamma X_t\,dt + \sigma\,dW_t, \quad X_0 = x
-$$
+**Examples in this chapter:**
 
-This is a **centered** version of Vasicek with $b = 0$.
+- Brownian motion and BM with drift: Gaussian moments
+- GBM: log-normal power moments
+- Vasicek: Gaussian stochastic integral representation
 
-### 2. Moments
-
-
-$$
-\mathbb{E}[X_t] = x e^{-\gamma t}
-$$
-
-$$
-\text{Var}(X_t) = \frac{\sigma^2}{2\gamma}(1 - e^{-2\gamma t})
-$$
-
-### 3. Stationary Distribution
-
-
-For $t \to \infty$ starting from the stationary distribution:
-
-$$
-X_t \sim \mathcal{N}\left(0, \frac{\sigma^2}{2\gamma}\right)
-$$
-
----
-
-## General Techniques for Moment Computation
-
-
-### 1. Method 1: Direct from Solution
-
-
-If an **explicit solution** exists, compute moments directly using properties of Gaussian or log-normal distributions.
-
-**Example:** GBM, Vasicek, OU
-
-### 2. Method 2: Itô's Lemma for Powers
-
+## Method 2 — Itô's Lemma Applied to Powers
 
 To find $\mathbb{E}[X_t^n]$, apply Itô's lemma to $f(x) = x^n$:
 
 $$
-d(X_t^n) = nx^{n-1}\,dX_t + \frac{n(n-1)}{2}X_t^{n-2}(dX_t)^2
+d(X_t^n) = nX_t^{n-1}\,dX_t + \frac{n(n-1)}{2}X_t^{n-2}(dX_t)^2
 $$
 
-Take expectations to get an ODE for $m_n(t) = \mathbb{E}[X_t^n]$.
+Taking expectations eliminates the stochastic integral and yields an ODE for the $n$-th moment. This technique works even when explicit solutions are unavailable.
 
-**Example:** CIR second moment
+**Example in this chapter:** In the CIR model, applying Itô's lemma to $r_t^2$ produced the second-moment ODE used to derive the variance.
 
-### 3. Method 3: Moment ODEs from Generator
+## Method 3 — Moment ODEs from the Infinitesimal Generator
 
-
-For SDE $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$, the generator is:
+For an SDE $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$, the infinitesimal generator is
 
 $$
 \mathcal{L} = b(x)\frac{\partial}{\partial x} + \frac{\sigma^2(x)}{2}\frac{\partial^2}{\partial x^2}
 $$
 
-Then:
+The evolution of expectations is governed by
 
 $$
 \frac{d}{dt}\mathbb{E}[f(X_t)] = \mathbb{E}[\mathcal{L}f(X_t)]
 $$
 
-For $f(x) = x^n$:
+Setting $f(x) = x^n$ produces moment ODEs. For processes with polynomial drift and diffusion coefficients (such as OU and CIR), this generates a **closed hierarchy** where each moment ODE depends only on lower moments.
+
+## Method 4 — Characteristic Functions
+
+The characteristic function $\phi(u, t) = \mathbb{E}[e^{iuX_t}]$ encodes all moments via
 
 $$
-\frac{dm_n}{dt} = \mathbb{E}[b(X_t) \cdot nx^{n-1}] + \mathbb{E}[\frac{\sigma^2(X_t)}{2} \cdot n(n-1)x^{n-2}]
+\mathbb{E}[X_t^n] = \frac{1}{i^n}\frac{\partial^n \phi}{\partial u^n}\bigg|_{u=0}
 $$
 
-This gives a **hierarchy of moment ODEs**.
-
-### 4. Method 4: Characteristic Functions
-
-
-The **characteristic function** is:
-
-$$
-\phi(u, t) = \mathbb{E}[e^{iuX_t}]
-$$
-
-Moments can be recovered via:
-
-$$
-\mathbb{E}[X_t^n] = \frac{1}{i^n}\frac{\partial^n \phi}{\partial u^n}\Big|_{u=0}
-$$
-
-For affine processes (Vasicek, CIR, Heston), $\phi$ satisfies a Riccati ODE.
+Vasicek and CIR are **affine diffusions**, meaning their characteristic functions have exponential-affine form and satisfy systems of Riccati ODEs. This structure extends to the Heston stochastic volatility model and affine term-structure models, making the characteristic function approach the most powerful method when direct moment computation becomes intractable.
 
 ---
 
-## Comparison Table
+## 7. Comparison Table
 
+| Model | $\mathbb{E}[X_t]$ | $\operatorname{Var}(X_t)$ | Distribution | Volatility |
+| ----- | ------------------ | ------------------------- | ------------ | ---------- |
+| **BM** | $0$ | $t$ | Gaussian | constant |
+| **BM with drift** | $X_0 + \mu t$ | $\sigma^2 t$ | Gaussian | constant |
+| **GBM** | $S_0 e^{\mu t}$ | $S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)$ | log-normal | multiplicative |
+| **Vasicek** | $r_0 e^{-at} + b(1-e^{-at})$ | $\frac{\sigma^2}{2a}(1-e^{-2at})$ | Gaussian | constant |
+| **CIR** | $r_0 e^{-at} + b(1-e^{-at})$ | $\frac{\sigma^2}{a}[r_0 e^{-at}(1-e^{-at}) + \frac{b}{2}(1-e^{-at})^2]$ | noncentral $\chi^2$ / Gamma | state-dependent |
 
-| Model | $\mathbb{E}[X_t]$ | $\text{Var}(X_t)$ | Distribution |
-|-------|-------------------|-------------------|--------------|
-| **Brownian Motion** | $0$ | $t$ | $\mathcal{N}(0, t)$ |
-| **BM with Drift** | $X_0 + \mu t$ | $\sigma^2 t$ | $\mathcal{N}(X_0 + \mu t, \sigma^2 t)$ |
-| **GBM** | $S_0 e^{\mu t}$ | $S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)$ | Log-normal |
-| **Vasicek** | $r_0 e^{-at} + b(1-e^{-at})$ | $\frac{\sigma^2}{2a}(1-e^{-2at})$ | $\mathcal{N}(\cdot, \cdot)$ |
-| **CIR** | $r_0 e^{-at} + b(1-e^{-at})$ | $\frac{\sigma^2}{a}[r_0 e^{-at}(1-e^{-at}) + \frac{b}{2}(1-e^{-at})^2]$ | Scaled $\chi^2$ |
+Key observations:
 
----
-
-## Verification via Simulation
-
-
-### 1. Python Implementation
-
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-def verify_CIR_moments(a, b, sigma, r0, T, N, num_paths=10000):
-    """
-    Verify CIR moments via Monte Carlo simulation.
-    """
-    dt = T / N
-    t_grid = np.linspace(0, T, N+1)
-    
-    # Simulate paths
-    r = np.zeros((num_paths, N+1))
-    r[:, 0] = r0
-    
-    for path in range(num_paths):
-        for n in range(N):
-            dW = np.sqrt(dt) * np.random.randn()
-            r_n = max(r[path, n], 0)  # Ensure positivity
-            r[path, n+1] = r[path, n] + a*(b - r_n)*dt + sigma*np.sqrt(r_n)*dW
-    
-    # Theoretical moments
-    def theoretical_mean(t):
-        return r0 * np.exp(-a*t) + b*(1 - np.exp(-a*t))
-    
-    def theoretical_var(t):
-        return (sigma**2/a) * (r0*np.exp(-a*t)*(1-np.exp(-a*t)) + 
-                               (b/2)*(1-np.exp(-a*t))**2)
-    
-    # Compare
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
-    
-    # Mean
-    simulated_mean = np.mean(r, axis=0)
-    theoretical_mean_values = theoretical_mean(t_grid)
-    
-    ax1.plot(t_grid, simulated_mean, label='Simulated', linewidth=2)
-    ax1.plot(t_grid, theoretical_mean_values, '--', label='Theoretical', linewidth=2)
-    ax1.set_xlabel('Time t')
-    ax1.set_ylabel('Mean $\\mathbb{E}[r_t]$')
-    ax1.set_title('CIR Process: Mean')
-    ax1.legend()
-    ax1.grid(True, alpha=0.3)
-    
-    # Variance
-    simulated_var = np.var(r, axis=0)
-    theoretical_var_values = theoretical_var(t_grid)
-    
-    ax2.plot(t_grid, simulated_var, label='Simulated', linewidth=2)
-    ax2.plot(t_grid, theoretical_var_values, '--', label='Theoretical', linewidth=2)
-    ax2.set_xlabel('Time t')
-    ax2.set_ylabel('Variance $\\text{Var}(r_t)$')
-    ax2.set_title('CIR Process: Variance')
-    ax2.legend()
-    ax2.grid(True, alpha=0.3)
-    
-    plt.tight_layout()
-    plt.show()
-    
-    # Print final values
-    print(f"At t={T}:")
-    print(f"Mean:     Simulated = {simulated_mean[-1]:.6f}, "
-          f"Theoretical = {theoretical_mean_values[-1]:.6f}")
-    print(f"Variance: Simulated = {simulated_var[-1]:.6f}, "
-          f"Theoretical = {theoretical_var_values[-1]:.6f}")
-
-# Example usage
-verify_CIR_moments(a=2.0, b=0.05, sigma=0.1, r0=0.03, T=2.0, N=1000)
-```
-
-### 2. Verification for GBM
-
-
-```python
-def verify_GBM_moments(mu, sigma, S0, T, N, num_paths=10000):
-    """Verify GBM moments."""
-    dt = T / N
-    t_grid = np.linspace(0, T, N+1)
-    
-    # Exact simulation
-    S = np.zeros((num_paths, N+1))
-    S[:, 0] = S0
-    
-    for path in range(num_paths):
-        W = np.cumsum(np.concatenate([[0], np.sqrt(dt)*np.random.randn(N)]))
-        S[path, :] = S0 * np.exp((mu - 0.5*sigma**2)*t_grid + sigma*W)
-    
-    # Theoretical
-    theoretical_mean = S0 * np.exp(mu * t_grid)
-    theoretical_var = S0**2 * np.exp(2*mu*t_grid) * (np.exp(sigma**2*t_grid) - 1)
-    
-    # Compare
-    simulated_mean = np.mean(S, axis=0)
-    simulated_var = np.var(S, axis=0)
-    
-    print(f"Mean error: {np.max(np.abs(simulated_mean - theoretical_mean)):.6f}")
-    print(f"Var error:  {np.max(np.abs(simulated_var - theoretical_var)):.6f}")
-```
+- The **mean** of CIR and Vasicek is identical — state-dependent volatility does not affect the expected value
+- **Variance grows linearly** for BM models but **converges to a finite limit** for mean-reverting models
+- **GBM variance grows exponentially**, reflecting the compounding effect of multiplicative noise
 
 ---
 
-## Applications
+## 8. Computational Strategy
 
+When computing moments for a new SDE:
 
-### 1. Option Pricing
+1. **Check for an explicit solution.** If one exists, use the distribution directly.
+2. **Apply Itô's lemma to powers** of the process. This produces moment ODEs.
+3. **Solve the ODE hierarchy.** For many models, the first and second moment ODEs are linear and solvable in closed form.
+4. **Verify via simulation** for models where analytical results are complex. For processes with state-dependent diffusion (such as CIR), standard Euler schemes can introduce discretization bias, particularly near boundaries — exact simulation or higher-order methods may be needed for reliable verification.
 
-
-**Black-Scholes formula** uses $\mathbb{E}[S_T]$ under risk-neutral measure.
-
-### 2. Risk Management
-
-
-**Value-at-Risk (VaR)** depends on distribution quantiles, which are determined by moments.
-
-### 3. Model Calibration
-
-
-Match theoretical moments to market-implied moments (e.g., from option prices).
-
-### 4. Parameter Estimation
-
-
-**Method of moments:** Equate sample moments to theoretical moments and solve for parameters.
-
-**Example for OU process:**
-
-$$
-\hat{\gamma} = -\frac{1}{\Delta t}\log\left(\frac{\text{Cov}(X_{t+\Delta t}, X_t)}{\text{Var}(X_t)}\right)
-$$
-
----
-
-## Summary
-
-
-### 1. Key Takeaways
-
-
-1. **Gaussian processes** (BM, Vasicek, OU) have simple moment formulas
-2. **Log-normal processes** (GBM) require MGF techniques
-3. **State-dependent volatility** (CIR) requires moment ODEs
-4. **Mean reversion** leads to stationary distributions
-5. **Itô isometry** is essential for computing variances of stochastic integrals
-
-### 2. Computational Strategy
-
-
-1. **Try explicit solution first** (works for linear SDEs)
-2. **Use Itô's lemma** for powers to get moment ODEs
-3. **Solve ODE hierarchy** for higher moments
-4. **Verify via simulation** for complex models
-
-### 3. Connection to Other Topics
-
-
-- **Feynman-Kac:** Moments relate to PDE solutions
-- **Characteristic functions:** Fourier transform of distribution
-- **Filtering theory:** Conditional moments for state estimation
-- **Asymptotic analysis:** Long-term behavior and stationary distributions
-
-Understanding moments provides both analytical insight and practical tools for working with stochastic processes in quantitative finance.
+!!! summary "Key Takeaway"
+    Moment analysis extracts quantitative information from SDEs without solving for the full distribution. Gaussian processes (Brownian motion, Vasicek) have moments determined entirely by the mean and variance. Log-normal processes (GBM) require power-moment techniques. State-dependent volatility (CIR) couples the moment hierarchy, requiring ODE methods. In all cases, Itô isometry and Itô's lemma are the essential computational tools.

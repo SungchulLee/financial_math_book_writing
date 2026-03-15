@@ -5,6 +5,7 @@ theme:
 
 markdown_extensions:
     - admonition
+    - pymdownx.details
     - toc:
         permalink: true
     - pymdownx.superfences:
@@ -98,26 +99,8 @@ nav:
                 - Martingale Convergence: ch02/filtration_and_martingales/martingale_convergence.md
                 - Doob–Meyer Decomposition: ch02/filtration_and_martingales/doob_meyer_decomposition.md
                 - Uniform Integrability: ch02/filtration_and_martingales/uniform_integrability.md
-            - 2.4 Python Examples:
-                - Brownian Motion Beginner Tutorial: ch02/codes/brownian_motion_beginner_tutorial.py
-                - Brownian Motion Simulation: ch02/codes/brownian_motion_simulation.py
-                - Cumulative Sum of dB²: ch02/codes/brownian_motion_cumsum_db_sq.py
-                - High School Integral: ch02/codes/brownian_motion_high_school_integral.py
-                - Itô Integral: ch02/codes/brownian_motion_ito_integral.py
-                - Itô vs Stratonovich Integral: ch02/codes/brownian_motion_ito_stratonovich.py
-                - Reflection Principle (Maximum): ch02/codes/brownian_motion_reflection_max.py
-                - 'Reflection Principle (Max & Endpoint)': ch02/codes/brownian_motion_reflection_max_endpoint.py
-                - Simple Random Walk (Fair Coin): ch02/codes/simple_random_walk_fair_coin.py
-                - Simple Random Walk (Normal Coin): ch02/codes/simple_random_walk_normal_coin.py
-                - Coin Flip Paths (One Path): ch02/codes/coin_flip_one_path.py
-                - Coin Flip Paths (Two Paths): ch02/codes/coin_flip_two_paths.py
-                - Integrated Brownian Motion (Grzelak): ch02/codes/grzelak_integrated_brownian_motion.py
-                - Geometric Brownian Motion (qfn): ch02/codes/qfn_geometric_brownian_motion.py
-                - Brownian Motion Simulation: ch02/codes/brownian_motion/brownian_motion_simulation.py
-                - Coin Flip Simulation: ch02/codes/coin_flip/coin_flip_simulation.py
-                - Simple Random Walk Simulation: ch02/codes/simple_random_walk/simple_random_walk_simulation.py
 
-        - 3 Stochastic Differential Equations:
+        - 3 SDE:
             - Chapter Overview: ch03/index.md
             - 3.1 Empirical Motivation:
                 - Real Stock Returns: ch03/empirical_motivation/stock_data_and_returns.md
@@ -126,7 +109,7 @@ nav:
                 - Bridge to Stochastic Differential Equations: ch03/empirical_motivation/bridge_to_sdes.md
             - 3.2 Itô Integration:
                 - Quadratic Variation: ch03/ito_integral/quadratic_variation.md
-                - Lebesgue Integral (Intuitive): ch03/ito_integral/lebesgue_integration_intuitive.md
+                - High School Integral (Intuitive): ch03/ito_integral/high_school_integration_intuitive.md
                 - Itô Integral (Intuitive): ch03/ito_integral/ito_integration_intuitive.md
                 - Construction of Itô Integral: ch03/ito_integral/ito_integral_construction.md
                 - Itô Isometry: ch03/ito_integral/ito_isometry.md
@@ -144,13 +127,13 @@ nav:
                 - Integration by Parts: ch03/ito_lemma/ito_integration_by_parts.md
                 - Itô Quotient Rule: ch03/ito_lemma/ito_quotient_rule.md
                 - Applications and Examples: ch03/ito_lemma/ito_calculus_applications.md
-            - 3.4 Stochastic Differential Equations:
-                - Stochastic Differential Equations: ch03/sde/stochastic_differential_equations.md
-                - Examples of Stochastic Differential Equations: ch03/sde/sde_examples.md
-                - Solving Stochastic Differential Equations: ch03/sde/solving_sde.md
-                - Verifying Stochastic Differential Equation Solutions: ch03/sde/verifying_sde_solutions.md
-                - Moment Analysis of Stochastic Differential Equations: ch03/sde/sde_moment_analysis.md
-                - Stochastic Differential Equation Simulation Methods: ch03/sde/sde_simulation.md
+            - 3.4 SDE:
+                - SDE: ch03/sde/sde.md
+                - Understanding SDE: ch03/sde/understanding_sde_solutions.md
+                - Verifying SDE Solutions: ch03/sde/verifying_sde_solutions.md
+                - Solving SDE: ch03/sde/solving_sde.md
+                - Moment Analysis of SDE: ch03/sde/sde_moment_analysis.md
+                - SDE Simulation Methods: ch03/sde/sde_simulation.md
             - 3.5 Existence and Uniqueness:
                 - Lipschitz Conditions and Linear Growth: ch03/existence_uniqueness/lipschitz_conditions.md
                 - Picard Iteration: ch03/existence_uniqueness/picard_iteration.md
@@ -167,72 +150,6 @@ nav:
                 - Dynkin's Formula: ch03/infinitesimal_generator/dynkin_formula.md
                 - Generator and Martingales: ch03/infinitesimal_generator/generator_and_martingales.md
                 - Applications of Dynkin's Formula: ch03/infinitesimal_generator/applications_of_dynkin.md
-            - 3.8 Python Examples:
-                - Taylor Expansion:
-                    - Linear (1 Variable): ch03/codes/approx_1var_linear.py
-                    - Quadratic (1 Variable): ch03/codes/approx_1var_quadratic.py
-                    - Linear (2 Variables): ch03/codes/approx_2var_linear.py
-                    - Quadratic (2 Variables): ch03/codes/approx_2var_quadratic.py
-                - Single Stock Analysis:
-                    - AAPL Single Stock: ch03/codes/stock_analysis_single_aapl.py
-                    - AAPL Daily Return Distribution: ch03/codes/stock_analysis_daily_return_aapl.py
-                    - WMT Comprehensive: ch03/codes/stock_analysis_comprehensive_wmt.py
-                    - WMT Basic Statistics: ch03/codes/stock_analysis_basic_stats_wmt.py
-                    - WMT Histogram: ch03/codes/stock_analysis_histogram_wmt.py
-                    - WMT Candlestick: ch03/codes/stock_analysis_candlestick_wmt.py
-                    - WMT Continuous vs Discrete Return: ch03/codes/stock_analysis_cont_vs_disc_wmt.py
-                    - Daily vs Log Return: ch03/codes/stock_analysis_daily_vs_log_return.py
-                    - MSFT Financial Data: ch03/codes/stock_analysis_sp500_msft.py
-                - Multi-Stock Comparison:
-                    - FAANG Comparison: ch03/codes/stock_analysis_faang_compare.py
-                    - FAANG Comprehensive: ch03/codes/stock_analysis_faang_comprehensive.py
-                    - FAANG Manual: ch03/codes/stock_analysis_faang_manual.py
-                    - FAANG Rolling Volatility: ch03/codes/stock_analysis_rolling_vol_faang.py
-                    - FAANG Correlation Heatmap: ch03/codes/stock_analysis_corr_heatmap_faang.py
-                    - Crypto Comparison: ch03/codes/stock_analysis_crypto_compare.py
-                    - VIX: ch03/codes/stock_analysis_vix_compare.py
-                - Sector and Regional:
-                    - Korea Defense: ch03/codes/stock_analysis_korea_defence.py
-                    - Korea Shipbuilding: ch03/codes/stock_analysis_korea_shipbuilding.py
-                    - Korea Semiconductors: ch03/codes/stock_analysis_korea_semiconductors.py
-                    - Japan Stocks: ch03/codes/stock_analysis_japan_stocks.py
-                    - Sector Rotation: ch03/codes/stock_analysis_sector_rotation.py
-                - 'S&P 500 and Index':
-                    - Basic Download: ch03/codes/stock_analysis_sp500_basic.py
-                    - Download: ch03/codes/stock_analysis_sp500_download.py
-                    - Download and Save: ch03/codes/stock_analysis_sp500_save.py
-                    - Load and Display: ch03/codes/stock_analysis_sp500_load.py
-                    - 'S&P 500 Correlation': ch03/codes/stock_analysis_sp500_corr.py
-                    - SPY Options: ch03/codes/stock_analysis_spy_options.py
-                    - ETF Tracking Error: ch03/codes/stock_analysis_etf_tracking.py
-                - Portfolio and Strategy:
-                    - 'Historical S&P 500 Portfolio': ch03/codes/stock_analysis_sp500_portfolio.py
-                    - Portfolio Compliance Validation: ch03/codes/stock_analysis_sp500_compliance.py
-                    - Momentum Study: ch03/codes/stock_analysis_momentum_study.py
-                    - Crisis Exposure: ch03/codes/stock_analysis_crisis_exposure.py
-                    - Defensive Strategy: ch03/codes/stock_analysis_defensive_strategy.py
-                    - Market Entry Timing: ch03/codes/stock_analysis_market_entry.py
-                    - Survivorship Bias Study: ch03/codes/stock_analysis_survivorship_bias.py
-                    - Backtest Without Bias: ch03/codes/stock_analysis_backtest_no_bias.py
-                - Financial History and Data:
-                    - Financial History Lesson: ch03/codes/stock_analysis_financial_history.py
-                    - Create Financial History: ch03/codes/stock_analysis_create_history.py
-                    - Journalism Fact Check: ch03/codes/stock_analysis_journalism_check.py
-                    - Geometric Brownian Motion Paths and Strikes (Grzelak): ch03/codes/grzelak_gbm_paths_and_strikes.py
-                - Statistical Analysis:
-                    - Normality Tests on Log-Returns: ch03/codes/stock_analysis_normality_tests.py
-                    - Returns: ch03/codes/stock_analysis/analysis/returns.py
-                    - Statistics: ch03/codes/stock_analysis/analysis/statistics.py
-                    - Base: ch03/codes/stock_analysis/base.py
-                    - Fetchers: ch03/codes/stock_analysis/data/fetchers.py
-                    - Analysis: ch03/codes/stock_analysis/sp500/analysis.py
-                    - Composition: ch03/codes/stock_analysis/sp500/composition.py
-                    - Data Downloader: ch03/codes/stock_analysis/sp500/data_downloader.py
-                    - Historical Data: ch03/codes/stock_analysis/sp500/historical_data.py
-                    - Stocks: ch03/codes/stock_analysis/stocks.py
-                    - Basic Plots: ch03/codes/stock_analysis/visualization/basic_plots.py
-                    - Candlestick: ch03/codes/stock_analysis/visualization/candlestick.py
-                    - Return Plots: ch03/codes/stock_analysis/visualization/return_plots.py
 
         - 4 Measure Change:
             - Chapter Overview: ch04/index.md
@@ -268,7 +185,7 @@ nav:
                 - Measure Change for Geometric Brownian Motion: ch04/codes/measure_change_gbm.py
                 - Martingale Verification (Grzelak): ch04/codes/grzelak_martingale_verification.py
 
-        - 5 Partial Differential Equations in Finance:
+        - 5 PDE in Finance:
             - Chapter Overview: ch05/index.md
             - 5.1 Overview:
                 - The Stochastic and Partial Differential Equation Bridge: ch05/overview/sde_pde_bridge.md

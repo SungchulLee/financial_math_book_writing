@@ -1,1026 +1,495 @@
-# Solving Stochastic Differential Equations
+# Techniques for Solving Stochastic Differential Equations
 
+In the previous chapter we discussed what it means to solve an SDE and why explicit solutions are rare. We now examine the main techniques used to solve the classes of SDEs that do admit tractable analytical representations.
 
+!!! abstract "Learning Goals"
+    After completing this chapter you should be able to:
 
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
-This section develops analytical solution methods through a carefully structured learning path, where each technique is motivated by concrete examples before systematic generalization.
-
-**Reference:** For additional perspectives, see [Korean lecture series](https://www.youtube.com/watch?v=G61MAT5OgTM&list=PLXziV1DL41og-CJN6Q1tLiU4DreSZmi_P&index=9)
-
----
-
-## Introduction
-
-
-### 1. General Form of an SDE
-
-
-An Itô stochastic differential equation takes the form:
-
-$$
-dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t
-$$
-
-where:
-- $X_t$ is the stochastic process (unknown function)
-- $\mu(X_t, t)$ is the **drift term** (deterministic trend)
-- $\sigma(X_t, t)$ is the **diffusion term** (random fluctuation intensity)
-- $W_t$ is standard **Brownian motion**
-
-### 2. What Does "Solving" Mean?
-
-
-We seek an **explicit formula** for $X_t$ as a function of $W_t$ and $t$:
-
-$$
-X_t = f(W_t, t, X_0)
-$$
-
-This allows us to:
-- Compute exact distributions
-- Calculate moments analytically
-- Price derivatives in closed form
-- Benchmark numerical schemes
-
-### 3. Key Observation
-
-
-**Most SDEs do not have closed-form solutions.** The techniques in this section work for special classes of SDEs with particular structures.
-
-When analytical solutions don't exist, we use:
-- Numerical simulation (see SDE Simulation section)
-- Moment analysis (see Moment Analysis section)
-- PDE methods
-- Asymptotic approximations
+    - solve additive-noise SDEs by direct integration
+    - use Itô transformations to simplify multiplicative-noise equations
+    - solve linear SDEs with integrating factors
+    - understand how the Lamperti transform simplifies diffusion terms
+    - recognize when to stop searching for closed forms and switch to other methods
 
 ---
 
-## Three Core Examples
+## 1. Direct Integration
 
-
-We begin with three fundamental SDEs that motivate our solution methods. Understanding these deeply provides the foundation for all subsequent techniques.
-
-### 1. Example 1: Brownian Motion with Drift
-
-
-**SDE:**
-
-$$
-dX_t = \mu\,dt + \sigma\,dW_t, \quad X_0 \in \mathbb{R}
-$$
-
-**Physical interpretation:**
-- Particle subject to constant force ($\mu$)
-- Plus random thermal fluctuations ($\sigma dW_t$)
-
-**Solution:**
-
-This is the simplest non-trivial SDE. Direct integration yields:
-
-$$
-\begin{align}
-X_t &= X_0 + \int_0^t \mu\,ds + \int_0^t \sigma\,dW_s \\
-&= X_0 + \mu t + \sigma B_t
-\end{align}
-$$
-
-where $B_t = \int_0^t dW_s$ is Brownian motion.
-
-**Distribution:**
-
-$$
-\boxed{
-X_t \sim \mathcal{N}(X_0 + \mu t, \sigma^2 t)
-}
-$$
-
-**Properties:**
-- **Gaussian process** with linear mean growth
-- Stationary and independent increments
-- Fundamental building block in stochastic processes
-- Arises as solution to **Langevin equation** in statistical mechanics
-
-**Why this matters:** This example motivates **Method 1: Direct Integration**.
-
-### 2. Example 2: Geometric Brownian Motion
-
-
-**SDE:**
-
-$$
-dS_t = \mu S_t\,dt + \sigma S_t\,dW_t, \quad S_0 > 0
-$$
-
-**Financial interpretation:**
-- Stock price with expected return $\mu$
-- Volatility proportional to price level ($\sigma S_t$)
-- Foundation of Black-Scholes-Merton theory
-
-**Motivation: Comparison with Deterministic Case**
-
-If there were **no random term**, we would solve via separation of variables:
-
-$$
-\frac{dS_t}{S_t} = \mu\,dt \quad \Rightarrow \quad \int_0^T \frac{dS_t}{S_t} = \mu T \quad \Rightarrow \quad \log S_T - \log S_0 = \mu T
-$$
-
-$$
-S_T = S_0 e^{\mu T}
-$$
-
-**Attempt 1: Direct integration?**
-
-$$
-S_t \stackrel{?}{=} S_0 + \int_0^t \mu S_s\,ds + \int_0^t \sigma S_s\,dW_s
-$$
-
-This doesn't help because $S_s$ appears inside the integrals!
-
-**Key insight:** The **multiplicative** structure suggests a **logarithmic transformation**.
-
-**Solution via Itô's Lemma:**
-
-Define $Y_t = \log S_t$. Compute partial derivatives:
-
-$$
-\frac{\partial}{\partial S}(\log S) = \frac{1}{S}, \quad \frac{\partial^2}{\partial S^2}(\log S) = -\frac{1}{S^2}
-$$
-
-Apply Itô's lemma:
-
-$$
-d(\log S_t) = \frac{1}{S_t}\,dS_t - \frac{1}{2}\frac{1}{S_t^2}(dS_t)^2
-$$
-
-Substitute $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$:
-
-$$
-d(\log S_t) = \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) - \frac{1}{2S_t^2} \cdot (\sigma S_t)^2\,dt
-$$
-
-$$
-= \mu\,dt + \sigma\,dW_t - \frac{\sigma^2}{2}\,dt
-$$
-
-$$
-= \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
-$$
-
-This is now **linear** like Example 1! Use **Method 1: Direct Integration**:
-
-$$
-\log S_t - \log S_0 = \int_0^t \left(\mu - \frac{\sigma^2}{2}\right)ds + \int_0^t \sigma\,dW_s
-$$
-
-$$
-\log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t
-$$
-
-Exponentiate to solve for $S_t$:
-
-$$
-\boxed{
-S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
-}
-$$
-
-**Distribution Analysis:**
-
-Since $W_t \sim \mathcal{N}(0, t)$, we have:
-
-$$
-\sigma W_t \sim \mathcal{N}(0, \sigma^2 t)
-$$
-
-Therefore:
-
-$$
-\log S_t \sim \mathcal{N}\left(\log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t, \sigma^2 t\right)
-$$
-
-So $S_t$ is **log-normally distributed** with PDF:
-
-$$
-f_{S_t}(x) = \frac{1}{x\sqrt{2\pi\sigma^2 t}}\exp\left(-\frac{(\log x - \log S_0 - (\mu - \sigma^2/2)t)^2}{2\sigma^2 t}\right)
-$$
-
-**The Itô Correction Term:**
-
-The crucial term $-\frac{\sigma^2}{2}$ is not a typo—it emerges from the quadratic variation:
-
-$$
-(dS_t)^2 = (\sigma S_t\,dW_t)^2 = \sigma^2 S_t^2\,(dW_t)^2 = \sigma^2 S_t^2\,dt
-$$
-
-By Itô's lemma, this contributes:
-
-$$
--\frac{1}{2}\frac{1}{S_t^2} \cdot \sigma^2 S_t^2\,dt = -\frac{\sigma^2}{2}\,dt
-$$
-
-This is **unique to stochastic calculus** and does not appear in ordinary deterministic calculus.
-
-**Properties of the Solution:**
-
-- **Mean:** $\mathbb{E}[S_t] = S_0 e^{\mu t}$ (exponential growth at rate $\mu$)
-- **Variance:** $\text{Var}[S_t] = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)$ (grows exponentially)
-- **Moments:** All positive integer moments are finite
-- **Non-negativity:** $S_t > 0$ almost surely for all $t > 0$
-
-**Why this matters:** This example motivates **Method 2: Itô's Lemma (Change of Variables)**. It shows how transformations can convert multiplicative SDEs into additive ones, enabling analytical solutions.
-
-### 3. Example 3: Vasicek Model (Mean-Reverting Process)
-
-
-**SDE:**
-
-$$
-dr_t = a(b - r_t)\,dt + \sigma\,dW_t, \quad a > 0, \quad b \in \mathbb{R}
-$$
-
-**Financial interpretation:**
-- Interest rate $r_t$ pulled toward long-run level $b$
-- Speed of mean reversion: $a$
-- Constant volatility: $\sigma$
-
-**Rewrite:**
-
-$$
-dr_t + ar_t\,dt = ab\,dt + \sigma\,dW_t
-$$
-
-This looks like an ODE plus noise! Recall from ODEs: for $\frac{dy}{dt} + ay = f(t)$, we use integrating factor $e^{at}$.
-
-**Solution via integrating factor:**
-
-Multiply both sides by $e^{at}$:
-
-$$
-e^{at}dr_t + ae^{at}r_t\,dt = abe^{at}\,dt + \sigma e^{at}\,dW_t
-$$
-
-The left side is exactly $d(e^{at}r_t)$ because:
-
-$$
-d(e^{at}r_t) = e^{at}dr_t + ae^{at}r_t\,dt
-$$
-
-(No Itô correction: $e^{at}$ is non-random!)
-
-Therefore:
-
-$$
-d(e^{at}r_t) = abe^{at}\,dt + \sigma e^{at}\,dW_t
-$$
-
-Integrate from $0$ to $t$:
-
-$$
-e^{at}r_t - r_0 = ab\int_0^t e^{as}\,ds + \sigma\int_0^t e^{as}\,dW_s
-$$
-
-$$
-e^{at}r_t = r_0 + ab\frac{e^{at} - 1}{a} + \sigma\int_0^t e^{as}\,dW_s
-$$
-
-**Solution:**
-
-$$
-\boxed{
-r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma e^{-at}\int_0^t e^{as}\,dW_s
-}
-$$
-
-**Alternative form:**
-
-$$
-r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma\int_0^t e^{-a(t-s)}\,dW_s
-$$
-
-**Long-term behavior:**
-
-$$
-\lim_{t \to \infty} \mathbb{E}[r_t] = b, \quad \lim_{t \to \infty} \text{Var}(r_t) = \frac{\sigma^2}{2a}
-$$
-
-The process is **Gaussian** and **mean-reverting**.
-
-**Limitation:** May become negative (problematic for interest rates).
-
-**Why this matters:** This example motivates **Method 3: Integrating Factor**.
-
----
-
-## Method 1: Direct Integration
-
-
-### 1. When It Works
-
-
-**Class of SDEs:** Additive noise with simple drift.
+For SDEs where the coefficients depend only on time,
 
 $$
 dX_t = b(t)\,dt + \sigma(t)\,dW_t
 $$
 
-where $b(t)$ and $\sigma(t)$ are known functions of time only (not of $X_t$).
-
-### 2. General Solution
-
+the solution is obtained by direct integration:
 
 $$
-\boxed{
 X_t = X_0 + \int_0^t b(s)\,ds + \int_0^t \sigma(s)\,dW_s
-}
 $$
 
-- First integral: ordinary Riemann integral
-- Second integral: Itô stochastic integral
-
-### 3. Special Cases
-
-
-**Constant coefficients** (Example 1):
-
-$$
-dX_t = \mu\,dt + \sigma\,dW_t \quad \Rightarrow \quad X_t = X_0 + \mu t + \sigma W_t
-$$
-
-**Time-dependent drift:**
-
-$$
-dX_t = \sin(t)\,dt + \sigma\,dW_t \quad \Rightarrow \quad X_t = X_0 + (1 - \cos(t)) + \sigma W_t
-$$
-
-**Time-dependent volatility:**
-
-$$
-dX_t = 0\,dt + e^{-t}\,dW_t \quad \Rightarrow \quad X_t = X_0 + \int_0^t e^{-s}\,dW_s
-$$
-
-### 4. Computing Moments
-
-
-For $X_t = X_0 + \int_0^t b(s)\,ds + \int_0^t \sigma(s)\,dW_s$:
-
-**Mean:**
-
-$$
-\mathbb{E}[X_t] = X_0 + \int_0^t b(s)\,ds
-$$
-
-**Variance (using Itô isometry):**
-
-$$
-\text{Var}(X_t) = \mathbb{E}\left[\left(\int_0^t \sigma(s)\,dW_s\right)^2\right] = \int_0^t \sigma^2(s)\,ds
-$$
-
-### 5. Limitations
-
-
-**Does NOT work for:**
-- Multiplicative noise: $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$
-- State-dependent coefficients: $dr_t = a(b - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t$
-
-For these, we need more sophisticated methods.
+This is the stochastic analogue of integrating an ordinary differential equation, except that the random forcing enters through the Itô integral.
 
 ---
 
-## Method 2: Itô's Lemma (Change of Variables)
+## 2. Itô Transformations
 
-
-### 1. The Fundamental Tool
-
-
-**Itô's Lemma** is the chain rule for stochastic calculus. For $Y_t = f(X_t)$ where $X_t$ satisfies:
+A central idea in solving SDEs is to choose a transformed variable
 
 $$
-dX_t = b(X_t, t)\,dt + \sigma(X_t, t)\,dW_t
+Y_t = f(X_t)
 $$
 
-we have:
+so that the new SDE becomes simpler.
+
+The governing rule is **Itô's lemma**:
 
 $$
-\boxed{
-dY_t = \left(\frac{\partial f}{\partial t} + b\frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 f}{\partial x^2}\right)dt + \sigma\frac{\partial f}{\partial x}\,dW_t
-}
+dY_t = \left(f_t + b\,f_x + \frac{1}{2}\sigma^2 f_{xx}\right)dt + \sigma\,f_x\,dW_t
 $$
 
-**Key difference from ordinary calculus:** The second derivative term $\frac{1}{2}\sigma^2 f_{xx}$.
-
-### 2. Strategy for Solving SDEs
-
-
-**Goal:** Find transformation $Y_t = f(X_t)$ such that:
-
-$$
-dY_t = \text{simple SDE (e.g., constant coefficients)}
-$$
-
-Then:
-1. Solve for $Y_t$ using direct integration
-2. Invert: $X_t = f^{-1}(Y_t)$
-
-### 3. The GBM Example Revisited (Example 2)
-
-
-**SDE:**
-
-$$
-dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
-$$
-
-**Transformation:** $Y_t = \log S_t$
-
-$$
-\frac{\partial f}{\partial S} = \frac{1}{S}, \quad \frac{\partial^2 f}{\partial S^2} = -\frac{1}{S^2}
-$$
-
-**Apply Itô's lemma:**
-
-$$
-\begin{align}
-d(\log S_t) &= \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) + \frac{1}{2}\left(-\frac{1}{S_t^2}\right)(\sigma S_t)^2\,dt \\
-&= \mu\,dt + \sigma\,dW_t - \frac{\sigma^2}{2}\,dt \\
-&= \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
-\end{align}
-$$
-
-Now use Method 1 (direct integration):
-
-$$
-\log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t
-$$
-
-Invert:
-
-$$
-S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
-$$
-
-### 4. General Power Transformations
-
-
-**SDE:**
-
-$$
-dX_t = bX_t\,dt + \sigma X_t^\beta\,dW_t
-$$
-
-**Try transformation:** $Y_t = X_t^{1-\beta}$ for $\beta \neq 1$.
-
-After applying Itô's lemma, we get:
-
-$$
-dY_t = (1-\beta)bY_t\,dt - \frac{(1-\beta)\beta\sigma^2}{2}Y_t^{(2\beta-1)/(1-\beta)}\,dt + (1-\beta)\sigma\,dW_t
-$$
-
-This is simpler only for special $\beta$ values.
-
-**Special case:** $\beta = 1/2$ gives a nearly linear SDE.
-
-### 5. Choosing the Right Transformation
-
-
-**Guidelines:**
-
-| SDE Form | Try Transformation |
-|----------|-------------------|
-| $dX = \mu X\,dt + \sigma X\,dW$ | $\log X$ |
-| $dX = bX^2\,dt + \sigma X\,dW$ | $1/X$ |
-| $dX = bX\,dt + \sigma X^\beta\,dW$ | $X^{1-\beta}$ |
-| $dX = b(X)\,dt + \sigma\sqrt{X}\,dW$ | $\sqrt{X}$ (Lamperti) |
+The extra second-derivative term is what distinguishes stochastic calculus from ordinary calculus.
 
 ---
 
-## Method 3: Integrating Factor (Linear SDEs)
+## 3. Integrating Factors for Linear SDEs
 
-
-### 1. When It Works
-
-
-**Class of SDEs:** Linear in $X_t$ with deterministic coefficients.
+Consider the linear SDE
 
 $$
-dX_t = [a(t) + b(t)X_t]\,dt + [c(t) + d(t)X_t]\,dW_t
+dX_t = [a(t) + b(t)X_t]dt + c(t)dW_t
 $$
 
-### 2. The Vasicek Example Revisited (Example 3)
-
-
-**SDE:**
+Define the integrating factor
 
 $$
-dr_t = a(b - r_t)\,dt + \sigma\,dW_t
+M(t) = \exp\left(-\int_0^t b(s)\,ds\right)
 $$
 
-**Rewrite in standard form:**
+Then
 
 $$
-dr_t + ar_t\,dt = ab\,dt + \sigma\,dW_t
+d(M(t)X_t) = M(t)a(t)\,dt + M(t)c(t)\,dW_t
 $$
 
-**Integrating factor:** $\mu(t) = e^{at}$
-
-**Key insight:** Multiplying by $e^{at}$ makes the left side a perfect differential:
+and therefore
 
 $$
-d(e^{at}r_t) = e^{at}dr_t + ae^{at}r_t\,dt
+X_t = e^{\int_0^t b(u)\,du}\left[
+X_0
++ \int_0^t e^{-\int_0^s b(u)\,du}a(s)\,ds
++ \int_0^t e^{-\int_0^s b(u)\,du}c(s)\,dW_s
+\right]
 $$
 
-**Why no Itô correction?** Because $e^{at}$ is deterministic (no $dW$ term).
-
-**General solution:**
-
-$$
-r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma e^{-at}\int_0^t e^{as}\,dW_s
-$$
-
-### 3. General Linear SDE Solution
-
-
-For:
-
-$$
-dX_t = [a(t) + b(t)X_t]\,dt + c(t)\,dW_t
-$$
-
-**Integrating factor:** $\mu(t) = \exp\left(\int_0^t b(s)\,ds\right)$
-
-**Solution:**
-
-$$
-X_t = \frac{1}{\mu(t)}\left[X_0 + \int_0^t \mu(s)a(s)\,ds + \int_0^t \mu(s)c(s)\,dW_s\right]
-$$
-
-### 4. When There's Diffusion in X_t
-
-
-For:
-
-$$
-dX_t = b(t)X_t\,dt + d(t)X_t\,dW_t
-$$
-
-The integrating factor must account for **both** drift and diffusion:
-
-$$
-Y_t = X_t \exp\left(-\int_0^t b(s)\,ds + \frac{1}{2}\int_0^t d^2(s)\,ds - \int_0^t d(s)\,dW_s\right)
-$$
-
-Then $Y_t$ is a **martingale**.
+!!! tip "Connection to Ordinary Calculus"
+    This is the stochastic analogue of the integrating factor method for linear ODEs.
 
 ---
 
-## More Core Examples
+## 4. Lamperti Transform
 
+The Lamperti transform converts state-dependent diffusion into constant diffusion, making the equation easier to analyze.
 
-### 1. Standard Brownian Motion
-
-
-**SDE:**
-
-$$
-dB_t = dW_t, \quad B_0 = 0
-$$
-
-**Solution:**
-
-This **defines** Brownian motion itself:
-
-$$
-B_t = \int_0^t dW_s = B_t
-$$
-
-**Properties:**
-- $B_t \sim \mathcal{N}(0, t)$
-- Continuous paths
-- Independent increments
-- Markov property
-- Martingale property
-
-**Why this matters:** Brownian motion is the building block of all Itô processes.
-
-### 2. Cox-Ingersoll-Ross (CIR) Model
-
-
-**SDE:**
-
-$$
-dr_t = a(b - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t
-$$
-
-**Why it's different:**
-
-- **State-dependent diffusion** $\sigma\sqrt{r_t}$ (unlike Vasicek)
-- Ensures **non-negativity** if $2ab \geq \sigma^2$ (Feller condition)
-- **No closed-form path solution**
-
-**What we CAN find:**
-
-1. **Distribution:** Scaled non-central chi-squared
-
-$$
-r_t \sim \frac{\sigma^2(1-e^{-at})}{4a}\chi_{\nu}^2\left(\frac{4ae^{-at}}{\sigma^2(1-e^{-at})}r_0\right)
-$$
-
-where $\nu = \frac{4ab}{\sigma^2}$.
-
-2. **Moments:** (see Moment Analysis section)
-
-$$
-\mathbb{E}[r_t] = r_0 e^{-at} + b(1 - e^{-at})
-$$
-
-3. **Characteristic function:** Satisfies Riccati ODE
-
-**Solution approach:**
-
-- **Lamperti transform** to unit diffusion (see Method 5)
-- **Exact simulation** via non-central chi-squared
-- **Numerical methods** with positivity preservation
-
-**Why this matters:** Motivates **Method 5: Separation of Variables (Lamperti Transform)**.
-
----
-
-## Method 4: Martingale Representation
-
-
-### 1. Principle
-
-
-If $M_t = g(X_t, t)$ is a **martingale**, then:
-
-$$
-\mathbb{E}[M_t | \mathcal{F}_s] = M_s
-$$
-
-This constrains the distribution of $X_t$.
-
-### 2. Finding Martingales via Itô's Lemma
-
-
-For $M_t$ to be a martingale, its drift must vanish:
-
-$$
-\frac{\partial g}{\partial t} + b(x)\frac{\partial g}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2 g}{\partial x^2} = 0
-$$
-
-This is the **backward Kolmogorov equation**.
-
-### 3. Example: Exponential Martingale
-
-
-For $dX_t = \mu\,dt + \sigma\,dW_t$, consider:
-
-$$
-M_t = \exp\left[\lambda X_t - \left(\lambda\mu + \frac{\lambda^2\sigma^2}{2}\right)t\right]
-$$
-
-**Verification:** Apply Itô's lemma to check $dM_t$ has no $dt$ term.
-
-**Applications:**
-- Change of measure (Girsanov)
-- Large deviations theory
-- Moment generating functions
-
----
-
-## Method 5: Separation of Variables (Lamperti Transform)
-
-
-### 1. Goal
-
-
-Transform SDE with state-dependent diffusion to **unit diffusion**:
-
-$$
-dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t \quad \Rightarrow \quad dY_t = \tilde{b}(Y_t)\,dt + dW_t
-$$
-
-### 2. Lamperti Transform
-
-
-**Transformation:**
-
-$$
-Y_t = h(X_t) = \int_{X_0}^{X_t} \frac{du}{\sigma(u)}
-$$
-
-**Result:** The transformed SDE has unit diffusion coefficient.
-
-### 3. Example: CIR Model
-
-
-**SDE:**
-
-$$
-dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t
-$$
-
-**Lamperti transform:**
-
-$$
-Y_t = \int_{r_0}^{r_t} \frac{du}{\sigma\sqrt{u}} = \frac{2}{\sigma}(\sqrt{r_t} - \sqrt{r_0})
-$$
-
-**Inverted:** $r_t = \left(\frac{\sigma}{2}Y_t + \sqrt{r_0}\right)^2$
-
-The transformed SDE relates to **squared Bessel processes**.
-
----
-
-## Method 6: Variation of Constants
-
-
-### 1. For Non-Homogeneous Linear SDEs
-
-
-**SDE:**
-
-$$
-dX_t = [\alpha(t) - \beta(t)X_t]\,dt + \sigma(t)\,dW_t
-$$
-
-**Strategy:**
-1. Solve homogeneous part: $dY_t = -\beta(t)Y_t\,dt$
-2. Use solution as integrating factor
-3. Add particular solution
-
-**Solution:**
-
-$$
-X_t = \frac{1}{\mu(t)}\left[X_0 + \int_0^t \mu(s)\alpha(s)\,ds + \int_0^t \mu(s)\sigma(s)\,dW_s\right]
-$$
-
-where $\mu(t) = \exp\left(\int_0^t \beta(s)\,ds\right)$.
-
-### 2. Application: Time-Dependent Mean Reversion
-
-
-Generalizes Vasicek to time-dependent parameters (useful for fitting yield curves).
-
----
-
-## Method 7: Feynman-Kac (SDE ↔ PDE Connection)
-
-
-### 1. The Bridge
-
-
-Given SDE:
+For an SDE of the form
 
 $$
 dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t
 $$
 
-Define:
+define
 
 $$
-u(t, x) = \mathbb{E}[\phi(X_T) | X_t = x]
+Y_t = h(X_t), \qquad h'(x) = \frac{1}{\sigma(x)}
 $$
 
-Then $u$ satisfies the **backward Kolmogorov PDE**:
-
-$$
-\frac{\partial u}{\partial t} + b(x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2 u}{\partial x^2} = 0
-$$
-
-### 2. Black-Scholes as Feynman-Kac
-
-
-For GBM under risk-neutral measure:
-
-$$
-dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
-$$
-
-The call option price:
-
-$$
-C(t, S_t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ | S_t]
-$$
-
-satisfies the Black-Scholes PDE.
+The transformed process has **constant diffusion coefficient**. This does not always produce a fully explicit elementary solution, but it often reduces the equation to a more analyzable form.
 
 ---
 
-## Method 8: Girsanov's Theorem (Change of Measure)
+## 5. Core Solvable Examples
 
+We now illustrate the main methods on classical models.
 
-### 1. Changing the Drift
+---
 
+## Example 1: Brownian Motion with Drift
 
-**Girsanov's Theorem:** We can change the drift by changing probability measure.
+### SDE
 
-Under $\mathbb{P}$:
+$$
+dX_t = \mu\,dt + \sigma\,dW_t
+$$
+
+with $X_0 \in \mathbb{R}$.
+
+### Solution
+
+Integrating from $0$ to $t$ gives
+
+$$
+X_t = X_0 + \int_0^t \mu\,ds + \int_0^t \sigma\,dW_s
+$$
+
+so
+
+$$
+X_t = X_0 + \mu t + \sigma W_t
+$$
+
+### Distribution
+
+$$
+X_t \sim \mathcal{N}(X_0 + \mu t,\; \sigma^2 t)
+$$
+
+### Interpretation
+
+This model represents a particle subject to
+
+- constant drift $\mu$
+- random shocks $\sigma\,dW_t$
+
+!!! tip "Technique Used"
+    **Direct integration** works because the noise term does not depend on the state.
+
+---
+
+## Example 2: Geometric Brownian Motion
+
+### SDE
 
 $$
 dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
 $$
 
-Under $\mathbb{Q}$ (with market price of risk $\theta = \frac{\mu - r}{\sigma}$):
+with $S_0 > 0$.
+
+This model describes stock prices in the Black–Scholes framework.
+
+### Key Idea
+
+The equation contains **multiplicative noise**, so naive direct integration is not sufficient.
+
+Instead we apply the transformation
 
 $$
-dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
+Y_t = \log S_t
 $$
 
-where $W_t^{\mathbb{Q}} = W_t + \theta t$.
+### Apply Itô's Lemma
 
-### 2. Application: Risk-Neutral Pricing
-
-
-Now $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale, enabling:
+For $f(S)=\log S$,
 
 $$
-\text{Option Price} = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\text{Payoff} | \mathcal{F}_t]
+f'(S) = \frac{1}{S}, \qquad f''(S) = -\frac{1}{S^2}
 $$
+
+Itô's lemma gives
+
+$$
+d(\log S_t) = \frac{1}{S_t}dS_t - \frac{1}{2}\frac{1}{S_t^2}(dS_t)^2
+$$
+
+Substituting $dS_t$ yields
+
+$$
+d(\log S_t) = \mu\,dt + \sigma\,dW_t - \frac{\sigma^2}{2}\,dt
+$$
+
+so
+
+$$
+d(\log S_t) = \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
+$$
+
+This is Brownian motion with drift.
+
+### Solution
+
+$$
+\log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t
+$$
+
+Exponentiating,
+
+$$
+S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
+$$
+
+### Distribution
+
+$$
+\log S_t \sim \mathcal{N}\left(\log S_0 + \left(\mu - \tfrac{1}{2}\sigma^2\right)t,\; \sigma^2 t\right)
+$$
+
+!!! success "Result"
+    $S_t$ follows a **log-normal distribution**.
+
+### Why the Itô Correction Appears
+
+In stochastic calculus,
+
+$$
+(dW_t)^2 = dt
+$$
+
+so squaring the diffusion term produces
+
+$$
+(\sigma S_t\,dW_t)^2 = \sigma^2 S_t^2\,dt
+$$
+
+This generates the additional drift correction
+
+$$
+-\frac{1}{2}\sigma^2\,dt
+$$
+
+in the logarithmic equation.
 
 ---
 
-## Method 9: Similarity Solutions
+## Example 3: Vasicek Model (Ornstein–Uhlenbeck)
 
-
-### 1. Scale-Invariant SDEs
-
-
-For SDEs with homogeneity properties, seek solutions:
+### SDE
 
 $$
-X_t = t^\alpha f(W_t/t^\beta)
+dr_t = a(b - r_t)\,dt + \sigma\,dW_t
 $$
 
-### 2. Example: Quadratic SDE
+Parameters:
 
+- $b$ : long-run mean
+- $a$ : speed of mean reversion
+- $\sigma$ : volatility
+
+### Integrating Factor Method
+
+Rewrite the equation as
 
 $$
-dX_t = X_t^2\,dt + dW_t
+dr_t + a r_t\,dt = ab\,dt + \sigma\,dW_t
 $$
 
-May exhibit **finite-time explosion**. Similarity methods help characterize blow-up behavior.
+Multiply by $e^{at}$. Since $e^{at}$ has finite variation, no extra Itô correction term appears:
+
+$$
+d(e^{at}r_t) = ab\,e^{at}\,dt + \sigma e^{at}\,dW_t
+$$
+
+### Solution
+
+$$
+r_t = r_0 e^{-at} + b(1-e^{-at}) + \sigma \int_0^t e^{-a(t-s)}\,dW_s
+$$
+
+### Interpretation
+
+The solution contains three components:
+
+- decay of the initial condition $r_0 e^{-at}$
+- pull toward the long-run mean $b$
+- accumulated stochastic shocks
+
+The exponential kernel $e^{-a(t-s)}$ ensures that shocks **fade over time**, which creates the mean-reverting behavior.
 
 ---
 
-## Summary: Matching Methods to SDEs
+## 6. Example Atlas
 
+| Model                      | SDE                                           | Method                              |
+| -------------------------- | --------------------------------------------- | ----------------------------------- |
+| Brownian motion with drift | $dX = \mu\,dt + \sigma\,dW$                | direct integration                  |
+| GBM                        | $dS = \mu S\,dt + \sigma S\,dW$            | log transform                       |
+| Vasicek / OU               | $dr = a(b-r)\,dt + \sigma\,dW$              | integrating factor                  |
+| CIR                        | $dr = \kappa(\theta-r)\,dt + \sigma\sqrt{r}\,dW$ | Lamperti transform; Bessel-type analysis |
 
-| SDE Structure | Best Method | Example |
-|--------------|-------------|---------|
-| Additive noise: $dX = b(t)\,dt + \sigma(t)\,dW$ | **Direct Integration** | BM with drift |
-| Multiplicative: $dS = \mu S\,dt + \sigma S\,dW$ | **Itô's Lemma** (log transform) | GBM |
-| Linear: $dr = a(b-r)\,dt + \sigma\,dW$ | **Integrating Factor** | Vasicek |
-| State-dependent diffusion: $dr = a(b-r)\,dt + \sigma\sqrt{r}\,dW$ | **Lamperti Transform** | CIR |
-| Time-dependent linear | **Variation of Constants** | Hull-White |
-| Need distributions | **Feynman-Kac** | Option pricing |
-| Change of drift | **Girsanov** | Risk-neutral measure |
+```mermaid
+flowchart TD
 
----
+A[Start with SDE]
 
-## When No Closed-Form Solution Exists
+A --> B{Additive noise?}
+B -->|Yes| C[Direct integration]
 
+B -->|No| D{Multiplicative noise?}
+D -->|Yes| E[Log transform / Itô lemma]
 
-### 1. The Reality
+D -->|No| F{Linear equation?}
+F -->|Yes| G[Integrating factor]
 
+F -->|No| H{State-dependent diffusion?}
+H -->|Yes| I[Lamperti transform]
 
-**Most SDEs lack analytical solutions**, including:
-- Heston model (stochastic volatility)
-- SABR model (with $\beta \neq 0, 1$)
-- Multi-factor models
-- Jump-diffusions
-- General non-linear SDEs
-
-### 2. Alternative Approaches
-
-
-1. **Numerical Simulation**
-   - Euler-Maruyama (see SDE Simulation section)
-   - Milstein scheme
-   - Higher-order methods
-
-2. **Moment Analysis**
-   - Compute $\mathbb{E}[X_t^n]$ via ODEs
-   - See Moment Analysis section
-
-3. **Characteristic Functions**
-   - For affine models (Heston, CIR)
-   - Semi-analytical option pricing
-
-4. **PDE Methods**
-   - Finite differences
-   - Finite elements
-
-5. **Asymptotic Expansions**
-   - Small parameter approximations
-   - Singular perturbation theory
+H -->|No| J[Use numerical or transform methods]
+```
 
 ---
 
-## Worked Example: Custom SDE
+## 7. Mental Checklist for Solving an SDE
 
+When encountering a new stochastic differential equation, the most important step is to **recognize its structure**.
 
-**Problem:** Solve
+## Step 1 — Identify the Structure
 
-$$
-dX_t = (1 - X_t)\,dt + \sqrt{X_t}\,dW_t, \quad X_0 = 1
-$$
-
-**Step 1: Recognize structure**
-
-This is CIR-type with $\kappa = 1$, $\theta = 1$, $\sigma = 1$.
-
-**Step 2: Check Feller condition**
+Start from the general form
 
 $$
-2\kappa\theta = 2(1)(1) = 2 \geq \sigma^2 = 1 \quad \checkmark
+dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t
 $$
 
-Therefore $X_t > 0$ for all $t > 0$.
+Ask the following questions:
 
-**Step 3: No closed-form path solution**
+| Question                                      | If Yes                    | Technique           |
+| --------------------------------------------- | ------------------------- | ------------------- |
+| Does the noise term depend only on time?      | additive noise            | direct integration  |
+| Is the diffusion proportional to the state?   | multiplicative noise      | log / Itô transform |
+| Is the drift linear in $X_t$?                 | linear SDE                | integrating factor  |
+| Does the diffusion depend on $X_t$?           | state-dependent diffusion | Lamperti transform  |
 
-But we can find:
+## Step 2 — Try a Transformation
 
-**Moments:**
+Typical transformations include
+
+| Transformation       | Purpose                         |
+| -------------------- | ------------------------------- |
+| $Y = \log X$         | remove multiplicative noise     |
+| $Y = X^{1-\beta}$    | simplify power diffusion        |
+| integrating factor   | eliminate linear drift          |
+| Lamperti transform   | normalize diffusion coefficient |
+
+Goal:
 
 $$
-\mathbb{E}[X_t] = 1 \quad \text{(constant!)}
+\text{complicated SDE}
+\;\rightarrow\;
+\text{simpler SDE}
 $$
 
+## Step 3 — Solve the Transformed Equation
+
+After transformation, check if the new equation reduces to a standard form such as
+
 $$
-\text{Var}[X_t] = e^{-t}(1 - e^{-t}) + \frac{1}{2}(1 - e^{-t})^2
+dY_t = a(t)\,dt + b(t)\,dW_t
 $$
 
-**Distribution:** Scaled non-central $\chi^2$ with $\nu = 4$.
+Then solve by direct integration.
 
-**Simulation:** Use exact CIR simulation or Euler-Maruyama with positivity preservation.
+## Step 4 — Interpret or Invert the Transformation
 
----
+Example:
 
-## The Art of Solving SDEs
+$$
+Y_t = \log S_t
+\quad \Rightarrow \quad
+S_t = e^{Y_t}
+$$
 
+## Step 5 — Verify the Solution
 
-### 1. Recognition is Key
+Always check the result by applying **Itô's lemma**.
 
+If the original SDE is recovered, the solution is correct.
 
-Success requires **pattern recognition**:
+## Step 6 — If No Closed Form Exists
 
-1. **Identify structure** (linear, multiplicative, separable)
-2. **Choose method** based on structure
-3. **Apply technique** systematically
-4. **Verify solution** (see Verifying Solutions section)
-
-### 2. When to Stop Looking
-
-
-If after trying:
-- Direct integration
-- Standard transformations (log, power, Lamperti)
-- Integrating factor
-
-you still don't have a solution, the SDE likely has **no closed form**.
+If the equation does not simplify after standard transformations, analytical closed forms are unlikely.
 
 Switch to:
-- Numerical methods
-- Moment analysis
-- Asymptotic approximations
 
-### 3. Value of Analytical Solutions
-
-
-Even when numerical methods are needed, analytical solutions provide:
-
-1. **Intuition** for long-term behavior
-2. **Benchmarks** for numerical schemes
-3. **Special cases** for testing
-4. **Parameter bounds** from limiting cases
-5. **Connections** to PDEs and probability
-
-### 4. The Complete Toolkit
-
-
-Solving SDEs requires combining:
-- **Stochastic calculus** (Itô's lemma)
-- **ODE techniques** (integrating factors)
-- **PDE methods** (Feynman-Kac)
-- **Probability theory** (martingales, measures)
-- **Numerical analysis** (when all else fails)
-
-Mastering these connections is the essence of modern quantitative finance.
+- Euler–Maruyama simulation
+- Milstein scheme
+- PDE methods
+- characteristic-function approaches
 
 ---
 
-## Cross-References
+## 8. Common Mistakes When Solving SDEs
 
+## Mistake 1 — Forgetting the Itô Correction Term
 
-For related topics, see:
+When applying Itô's lemma, the second-derivative term must be included:
 
-- **SDE Examples**: Detailed properties of standard models
-- **Verifying Solutions**: How to check if your solution is correct
-- **SDE Simulation**: Numerical methods when analytical solutions don't exist
-- **Moment Analysis**: Computing statistical properties
-- **Diffusion Processes**: Generator theory and PDEs
+$$
+dY_t = \left(f_t + b f_x + \frac{1}{2}\sigma^2 f_{xx}\right)dt + \sigma f_x dW_t
+$$
 
-Understanding how to solve SDEs is central to all of quantitative finance and computational stochastic calculus.
+Students often incorrectly use the ordinary chain rule and omit
+
+$$
+\frac{1}{2}\sigma^2 f_{xx}
+$$
+
+!!! warning "Key Difference from Ordinary Calculus"
+    In stochastic calculus $(dW_t)^2 = dt$, which produces the additional second-derivative term.
+
+## Mistake 2 — Treating Brownian Motion Like an Ordinary Function
+
+Brownian motion is **not differentiable**.
+
+Expressions like
+
+$$
+\frac{dW_t}{dt}
+$$
+
+do not exist in the classical sense. The correct object is the stochastic differential $dW_t$.
+
+## Mistake 3 — Confusing Additive and Multiplicative Noise
+
+Compare
+
+$$
+dX_t = \mu\,dt + \sigma\,dW_t
+$$
+
+with
+
+$$
+dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
+$$
+
+The second equation contains **multiplicative noise**, which naturally suggests a transformation such as $Y_t = \log S_t$.
+
+## Mistake 4 — Ignoring State-Dependent Diffusion
+
+Some SDEs contain diffusion terms like $\sigma\sqrt{X_t}$.
+
+These usually cannot be solved by direct integration. One instead looks for transformations such as the **Lamperti transform** or for known structural representations.
+
+Example:
+
+$$
+dr_t = \kappa(\theta-r_t)\,dt + \sigma\sqrt{r_t}\,dW_t
+$$
+
+## Mistake 5 — Forgetting to Verify the Solution
+
+After solving an SDE, the result should always be checked by applying Itô's lemma.
+
+## Mistake 6 — Assuming Closed-Form Solutions Always Exist
+
+Most SDEs do not admit elementary explicit pathwise solutions.
+
+When standard transformations fail, appropriate alternatives include
+
+- numerical simulation
+- PDE methods
+- moment analysis
+- characteristic-function techniques
+
+---
+
+## 9. Final Perspective
+
+Solving SDEs is rarely about brute-force calculation.
+
+The essential skill is to
+
+1. recognize the structure of the equation
+2. choose the right transformation or technique
+3. verify the result carefully
+4. know when to stop and switch to other analytical or numerical tools
+
+That combination of structural recognition and technical fluency is the heart of solving stochastic differential equations.
