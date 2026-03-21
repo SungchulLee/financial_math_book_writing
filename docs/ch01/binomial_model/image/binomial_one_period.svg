@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 440" font-family="'Latin Modern Roman', 'Computer Modern', Georgia, serif">
+  <defs>
+    <marker id="arrowhead" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#3a3a3a"/>
+    </marker>
+    <style>
+      .prob-label { font-size: 16px; fill: #2a5fa0; font-style: italic; }
+      .node-label { font-size: 17px; fill: #222; font-style: italic; }
+      .section-label { font-size: 16px; fill: #222; font-weight: bold; }
+      .caption { font-size: 14px; fill: #333; text-anchor: middle; font-weight: bold; }
+    </style>
+  </defs>
+
+  <!-- ===== STOCK SECTION ===== -->
+  <text x="52" y="105" class="section-label">Stock</text>
+
+  <!-- S₀ dot -->
+  <circle cx="180" cy="100" r="5" fill="#333"/>
+  <text x="155" y="96" class="node-label">S₀</text>
+
+  <!-- Arrow to uS₀ -->
+  <line x1="185" y1="95" x2="348" y2="38" stroke="#3a3a3a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="248" y="52" class="prob-label">p</text>
+
+  <!-- uS₀ dot and label -->
+  <circle cx="358" cy="35" r="5" fill="#333"/>
+  <text x="375" y="40" class="node-label">uS₀</text>
+
+  <!-- Arrow to dS₀ -->
+  <line x1="185" y1="105" x2="348" y2="162" stroke="#3a3a3a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="240" y="148" class="prob-label">1 − p</text>
+
+  <!-- dS₀ dot and label -->
+  <circle cx="358" cy="165" r="5" fill="#333"/>
+  <text x="375" y="170" class="node-label">dS₀</text>
+
+  <!-- ===== BANK ACCOUNT SECTION ===== -->
+  <text x="22" y="270" class="section-label">Bank Account</text>
+
+  <!-- 1 dot -->
+  <circle cx="180" cy="265" r="5" fill="#333"/>
+  <text x="163" y="261" class="node-label">1</text>
+
+  <!-- Arrow to e^{rΔt} (deterministic, single arrow) -->
+  <line x1="185" y1="265" x2="348" y2="265" stroke="#3a3a3a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="265" y="255" class="prob-label">1</text>
+
+  <!-- e^{rΔt} dot and label -->
+  <circle cx="358" cy="265" r="5" fill="#333"/>
+  <text x="375" y="258" class="node-label">e</text>
+  <text x="386" y="252" font-size="12" fill="#222" font-style="italic">rΔt</text>
+
+  <!-- ===== BOTTOM CAPTIONS ===== -->
+  <text x="168" y="370" class="caption">current state</text>
+  <text x="168" y="390" class="caption">at t = 0</text>
+
+  <text x="290" y="370" class="caption">transition</text>
+  <text x="290" y="390" class="caption">probability</text>
+
+  <text x="420" y="370" class="caption">states</text>
+  <text x="420" y="390" class="caption">at t = Δt</text>
+</svg>

@@ -1,0 +1,20 @@
+      # ---- ADD AFTER 5.10 American Options ----
+
+      - 5.11 Exotic Options:
+          - Overview: ch05/exotic_options/exotic_options_overview.md
+          - Barrier Options: ch05/exotic_options/barrier_options.md
+          - Asian Options: ch05/exotic_options/asian_options.md
+          - Lookback Options: ch05/exotic_options/lookback_options.md
+          - Other Exotic Options: ch05/exotic_options/other_exotic_options.md
+          - Pricing with Binomial Trees: ch05/exotic_options/pricing_binomial_trees.md
+          - Pricing with Monte Carlo: ch05/exotic_options/pricing_monte_carlo.md
+          - Graduate-Level Insights: ch05/exotic_options/graduate_level_insights.md
+
+
+  # ---- ADD TO Appendix Python Codes, under "5 BS Model:" ----
+
+      - 5.11 Exotic Options:
+          - Barrier Call (Binomial Tree): python_codes/exotic_options_BARRIER_CALL_BINOMIAL.py
+          - Asian Call (Monte Carlo): python_codes/exotic_options_ASIAN_CALL_MONTE_CARLO.py
+          - Asian Call (Antithetic Variates): python_codes/exotic_options_ASIAN_CALL_ANTITHETIC.py
+          - Asian Call (Control Variates): python_codes/exotic_options_ASIAN_CALL_CONTROL_VARIATE.py
