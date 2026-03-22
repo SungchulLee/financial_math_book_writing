@@ -1,21 +1,304 @@
 # Interpolation and Smoothing
 
-This section explores the principles and methods underlying interpolation and smoothing, which form a critical component of modern financial mathematics.
-
-## Key Concepts
-
-The fundamental concepts in this area include:
-
-- Theoretical foundations and mathematical framework
-- Key definitions and notation
-- Important theorems and results
-- Connections to other areas of financial mathematics
+Dupire's formula requires the partial derivatives $\partial C / \partial T$, $\partial C / \partial K$, and $\partial^2 C / \partial K^2$ of the call price surface. In practice, European option prices are observed at a discrete, irregular grid of strikes and maturities, and these observations contain noise from bid-ask spreads, staleness, and microstructure effects. Computing second derivatives of noisy discrete data amplifies the noise dramatically, producing a local volatility surface riddled with oscillations and even negative values. This section develops the interpolation and smoothing techniques needed to transform raw market data into a smooth, arbitrage-free call price surface suitable for differentiation.
 
 !!! abstract "Learning Objectives"
-    After completing this section, you should understand:
-    
-    - The core mathematical principles and their financial interpretations
-    - How these concepts connect to practical applications
-    - The relationship between theory and numerical implementation
+    After completing this section, you should be able to:
 
----
+    - Explain why smoothing is essential before applying Dupire's formula
+    - Apply cubic spline interpolation to implied volatility data with arbitrage-free constraints
+    - State and enforce the three no-arbitrage conditions: monotonicity, convexity, and calendar spread
+    - Describe the SVI and SSVI parametrizations and their arbitrage-free properties
+    - Identify the tradeoffs between overfitting (capturing noise) and underfitting (losing smile structure)
+
+## The Smoothing Problem
+
+### Why Raw Data Fails
+
+Consider a discrete set of market call prices $\{C_{\text{mkt}}(K_i, T_j)\}$ observed at strikes $K_1 < K_2 < \cdots < K_m$ and maturities $T_1 < T_2 < \cdots < T_p$. Applying Dupire's formula directly via finite differences:
+
+$$
+\sigma_{\text{loc}}^2(K_i, T_j) = \frac{\frac{C(K_i, T_{j+1}) - C(K_i, T_{j-1})}{T_{j+1} - T_{j-1}} + (r - q)K_i \frac{C(K_{i+1}, T_j) - C(K_{i-1}, T_j)}{K_{i+1} - K_{i-1}} + qC(K_i, T_j)}{\frac{1}{2}K_i^2 \frac{C(K_{i+1}, T_j) - 2C(K_i, T_j) + C(K_{i-1}, T_j)}{(\Delta K)^2}}
+$$
+
+The denominator involves a second difference of noisy data. If the noise in each price is $\epsilon$, the noise in $C_{KK} \approx \partial^2 C / \partial K^2$ scales as $\epsilon / (\Delta K)^2$, which can be enormous when $\Delta K$ is small or $\epsilon$ is not negligible relative to the butterfly spread price.
+
+**Example:** With $\Delta K = 5$ and price noise $\epsilon = \$0.05$:
+
+$$
+\text{noise in } C_{KK} \approx \frac{0.05}{25} = 0.002
+$$
+
+Since $C_{KK} = e^{-rT} q(K)$ (the discounted density), typical values are $10^{-3}$ to $10^{-2}$. The noise is comparable to the signal, rendering the raw finite difference useless.
+
+### Interpolation vs Smoothing
+
+- **Interpolation** passes through every data point exactly: $f(K_i) = C_i$. This preserves noise.
+- **Smoothing** finds a function close to the data but not necessarily passing through each point. This filters noise at the cost of some approximation error.
+
+For local volatility construction, **smoothing** is essential. The goal is to find a function $\hat{C}(K, T)$ that:
+
+1. Approximates the market prices: $|\hat{C}(K_i, T_j) - C_{\text{mkt}}(K_i, T_j)| \leq \epsilon_{ij}$
+2. Is sufficiently smooth for differentiation: $\hat{C} \in C^2$ in $K$ and $C^1$ in $T$
+3. Satisfies no-arbitrage constraints
+
+## No-Arbitrage Constraints
+
+### The Three Conditions
+
+Any arbitrage-free call price surface must satisfy:
+
+**Condition 1: Strike monotonicity.** Call prices are decreasing in strike:
+
+$$
+\frac{\partial C}{\partial K} \leq 0
+$$
+
+Violation produces a trivial arbitrage: sell the cheaper high-strike call and buy the more expensive low-strike call.
+
+**Condition 2: Strike convexity (butterfly constraint).** Call prices are convex in strike:
+
+$$
+\frac{\partial^2 C}{\partial K^2} \geq 0
+$$
+
+By Breeden-Litzenberger, this is equivalent to non-negativity of the risk-neutral density. Violation means negative probabilities — a butterfly spread with negative cost.
+
+**Condition 3: Calendar monotonicity.** Total implied variance is non-decreasing in maturity:
+
+$$
+\frac{\partial C}{\partial T} \geq 0 \quad \text{(at each strike)}
+$$
+
+Equivalently, $\sigma_{\text{IV}}^2(K, T) \cdot T$ is non-decreasing in $T$. Violation produces a calendar spread arbitrage.
+
+!!! warning "Consequence for Local Volatility"
+    If any of these conditions is violated, Dupire's formula produces:
+
+    - **Negative $C_{KK}$:** Division by a negative number gives $\sigma_{\text{loc}}^2 < 0$, which is physically meaningless
+    - **Negative $C_T$:** Negative numerator gives $\sigma_{\text{loc}}^2 < 0$
+    - **$C_{KK} \approx 0$:** Division by near-zero produces $\sigma_{\text{loc}} \to \infty$, destabilizing any PDE or Monte Carlo solver
+
+    Enforcing no-arbitrage constraints is therefore a prerequisite for constructing a usable local volatility surface.
+
+### Implications in Total Variance Space
+
+Working in total variance $w(y, T) = \sigma_{\text{IV}}^2(y, T) \cdot T$ with log-moneyness $y = \ln(K / F)$, the conditions become:
+
+1. **Butterfly:** $g(y, T) = \left(1 - \frac{yw_y}{2w}\right)^2 - \frac{w_y^2}{4}\left(\frac{1}{w} + \frac{1}{4}\right) + \frac{w_{yy}}{2} \geq 0$
+2. **Calendar:** $\frac{\partial w}{\partial T} \geq 0$
+
+These conditions, due to Durrleman, are jointly necessary and sufficient for an arbitrage-free surface.
+
+## Interpolation in Strike
+
+### Cubic Spline in Implied Volatility
+
+The most common approach interpolates in **implied volatility** rather than in prices, because the IV surface is smoother and better conditioned.
+
+For each fixed maturity $T_j$, fit a cubic spline $\hat{\sigma}(K; T_j)$ to the observed implied volatilities $\{\sigma_{\text{IV}}(K_i, T_j)\}_{i=1}^m$.
+
+A natural cubic spline minimizes the curvature integral:
+
+$$
+\min_{\hat{\sigma}} \int_{K_1}^{K_m} \left(\hat{\sigma}''(K)\right)^2 dK \quad \text{subject to} \quad \hat{\sigma}(K_i) = \sigma_i
+$$
+
+The spline is $C^2$ continuous, enabling computation of $C_{KK}$ via the chain rule:
+
+$$
+\frac{\partial^2 C}{\partial K^2} = \frac{\partial}{\partial K}\left(\frac{\partial C}{\partial \sigma}\frac{\partial \sigma}{\partial K} + \frac{\partial C}{\partial K}\bigg|_\sigma\right)
+$$
+
+where $\partial C / \partial \sigma$ is the Black-Scholes vega and $\partial C / \partial K|_\sigma$ is the Black-Scholes strike derivative at fixed $\sigma$.
+
+### Constrained Splines
+
+To enforce arbitrage-free conditions, the spline must satisfy additional constraints:
+
+**Monotonicity in price:** Since $\partial C / \partial K = -e^{-rT}\Phi(d_2)$, we need $-1 \leq e^{rT}\partial C/\partial K \leq 0$. This does not directly constrain the IV spline but can be checked after converting to prices.
+
+**Convexity in price:** $\partial^2 C / \partial K^2 \geq 0$ translates to a nonlinear constraint on the IV spline. A sufficient condition is that the IV smile not be too concave:
+
+$$
+\frac{\partial^2 \sigma}{\partial K^2} \geq -\frac{d_1 \sqrt{T}}{K^2 \sigma T}\left(\frac{\partial \sigma}{\partial K}\right)^2 - \frac{1}{K\sigma\sqrt{T}}\phi(d_2)
+$$
+
+In practice, this is enforced iteratively or via constrained optimization.
+
+### Smoothing Splines
+
+A **smoothing spline** relaxes exact interpolation in favor of smoothness:
+
+$$
+\min_{\hat{\sigma}} \left\{\sum_{i=1}^m w_i \left(\hat{\sigma}(K_i) - \sigma_i\right)^2 + \lambda \int_{K_1}^{K_m} \left(\hat{\sigma}''(K)\right)^2 dK\right\}
+$$
+
+The parameter $\lambda > 0$ controls the smoothness-fit tradeoff:
+
+- $\lambda \to 0$: Interpolation (passes through all points)
+- $\lambda \to \infty$: Linear regression (maximum smoothness)
+
+The weights $w_i$ can encode bid-ask spread information: wider spreads imply less confidence, so smaller weights.
+
+!!! tip "Choosing the Smoothing Parameter"
+    Cross-validation provides a data-driven choice of $\lambda$. Leave-one-out cross-validation minimizes:
+
+    $$
+    \text{CV}(\lambda) = \frac{1}{m}\sum_{i=1}^m \left(\frac{\hat{\sigma}(K_i) - \sigma_i}{1 - h_{ii}(\lambda)}\right)^2
+    $$
+
+    where $h_{ii}$ is the $i$-th diagonal element of the hat matrix. This balances fidelity to data against overfitting without requiring external information about noise levels.
+
+## Interpolation in Maturity
+
+### Total Variance Interpolation
+
+For each fixed strike $K$, interpolate total variance $w(T) = \sigma_{\text{IV}}^2(K, T) \cdot T$ across maturities. Using total variance (rather than IV itself) is preferred because:
+
+1. Total variance must be non-decreasing in $T$ (calendar constraint)
+2. Linear interpolation in $w$ preserves this monotonicity
+3. The variance swap decomposes additively over time intervals
+
+**Linear interpolation in total variance:**
+
+$$
+w(T) = w(T_j) + \frac{T - T_j}{T_{j+1} - T_j}\left(w(T_{j+1}) - w(T_j)\right) \quad \text{for } T \in [T_j, T_{j+1}]
+$$
+
+Since $w(T_{j+1}) \geq w(T_j)$ (no-arbitrage), the interpolant is automatically non-decreasing.
+
+The implied volatility is then:
+
+$$
+\sigma_{\text{IV}}(K, T) = \sqrt{\frac{w(T)}{T}}
+$$
+
+!!! note "Forward Variance"
+    The **forward variance** between maturities $T_j$ and $T_{j+1}$ is:
+
+    $$
+    \sigma_{\text{fwd}}^2(T_j, T_{j+1}) = \frac{w(T_{j+1}) - w(T_j)}{T_{j+1} - T_j}
+    $$
+
+    Linear interpolation in total variance produces piecewise-constant forward variance, which is consistent with a piecewise-constant local volatility term structure.
+
+### Higher-Order Interpolation
+
+For smoother $\partial C / \partial T$ (needed in Dupire's numerator), quadratic or cubic interpolation in total variance can be used:
+
+$$
+w(T) = \alpha_0 + \alpha_1 T + \alpha_2 T^2 + \cdots
+$$
+
+subject to the constraint $w'(T) \geq 0$ for all $T$ in the domain. This is a constrained polynomial fitting problem, solvable by quadratic programming.
+
+## Parametric Smile Models
+
+### SVI Parametrization
+
+The **Stochastic Volatility Inspired (SVI)** parametrization of Gatheral models total variance as:
+
+$$
+w(y) = a + b\left(\rho(y - m) + \sqrt{(y - m)^2 + \sigma^2}\right)
+$$
+
+where $y = \ln(K/F)$ is log-moneyness and the five parameters are:
+
+- $a$: overall variance level
+- $b > 0$: slope of the wings
+- $\rho \in [-1, 1]$: rotation (controls skew)
+- $m$: translation (shifts center)
+- $\sigma > 0$: curvature (controls ATM smoothness)
+
+**Properties:**
+
+- **Wing behavior:** For $|y| \to \infty$, $w(y) \approx b(1 \pm \rho)|y|$, giving linear wings with slope $b(1 + \rho)$ on the right and $b(1 - \rho)$ on the left
+- **Lee's moment formula:** Constrains $b(1 + |\rho|) \leq 2$
+- **Minimum variance:** The minimum of $w(y)$ occurs near $y = m$ with value $a + b(\sigma\sqrt{1 - \rho^2})$
+
+### SSVI Parametrization
+
+The **Surface SVI (SSVI)** of Gatheral and Jacquier extends SVI to the full $(y, T)$ surface:
+
+$$
+w(y, T) = \frac{\theta_T}{2}\left(1 + \rho \varphi(\theta_T) y + \sqrt{(\varphi(\theta_T) y + \rho)^2 + (1 - \rho^2)}\right)
+$$
+
+where $\theta_T = \sigma_{\text{ATM}}^2(T) \cdot T$ is the ATM total variance at maturity $T$, and $\varphi(\theta)$ is a function controlling the wing behavior.
+
+**Theorem 13.5.2** (SSVI Arbitrage-Free Conditions)
+The SSVI parametrization is free of butterfly arbitrage if and only if:
+
+$$
+\varphi(\theta)\theta(1 + |\rho|) \leq 4
+$$
+
+and free of calendar spread arbitrage if $\partial_T \theta_T \geq 0$ and $\varphi$ satisfies certain monotonicity conditions.
+
+The SSVI surface requires only three global parameters ($\rho$, and two parameters defining $\varphi$) plus the ATM variance term structure $\theta_T$, making it parsimonious and easy to calibrate.
+
+### Calibration
+
+SVI and SSVI parameters are fitted by minimizing the sum of squared differences between model and market implied volatilities:
+
+$$
+\min_{\text{params}} \sum_{i} w_i \left(\sigma_{\text{model}}(K_i, T_j) - \sigma_{\text{mkt}}(K_i, T_j)\right)^2
+$$
+
+subject to arbitrage-free constraints. The optimization is typically non-convex, so multiple starting points or global optimization algorithms (e.g., differential evolution) are used.
+
+## Extrapolation
+
+### Wing Extrapolation
+
+Market data covers a finite range of strikes. Beyond the last observed strike, extrapolation is needed. Common approaches:
+
+**Flat extrapolation:** Set $\sigma_{\text{IV}}(K, T) = \sigma_{\text{IV}}(K_{\text{last}}, T)$ for $K$ beyond the grid. This is simple but produces a kink in the second derivative, causing a discontinuity in the local volatility.
+
+**Linear extrapolation in total variance:** Continue the linear wing behavior $w(y) \approx c_0 + c_1 |y|$ for large $|y|$. This is consistent with Lee's moment formula and SVI wing behavior.
+
+**Power-law tail:** Set $\sigma_{\text{IV}}(K) \propto K^{-\beta}$ for small $K$ and $\sigma_{\text{IV}}(K) \propto K^{\alpha}$ for large $K$, with $\alpha, \beta$ chosen to match Lee's bounds.
+
+!!! warning "Extrapolation Risk"
+    The local volatility surface is particularly sensitive to extrapolation in the wings because Dupire's formula divides by $C_{KK}$, which becomes very small far from ATM. Small changes in wing extrapolation can cause large changes in the local volatility at extreme strikes. For robust results, ensure that extrapolation preserves convexity and produces bounded local volatility.
+
+## Practical Workflow
+
+### Step-by-Step Procedure
+
+The complete smoothing pipeline from market data to a differentiable call price surface is:
+
+**Step 1: Data cleaning.** Remove stale quotes, filter by bid-ask spread (exclude options with spreads exceeding a threshold), and use mid-prices.
+
+**Step 2: Convert to implied volatility.** Invert the Black-Scholes formula for each market price to obtain $\sigma_{\text{IV}}(K_i, T_j)$.
+
+**Step 3: Interpolate in strike.** For each maturity $T_j$, fit an SVI curve or smoothing spline to the IV data across strikes, enforcing butterfly constraints.
+
+**Step 4: Interpolate in maturity.** For each strike $K_i$, interpolate total variance $w(T) = \sigma_{\text{IV}}^2 T$ across maturities, enforcing calendar constraints.
+
+**Step 5: Extrapolate wings.** Extend the surface to cover the full domain needed for Dupire's formula, using linear-in-total-variance or parametric tail models.
+
+**Step 6: Convert to call prices.** Apply the Black-Scholes formula with the smoothed $\sigma_{\text{IV}}(K, T)$ to obtain $\hat{C}(K, T)$.
+
+**Step 7: Validate.** Check that $\hat{C}_{KK} > 0$, $\hat{C}_T > 0$, and $-1 < e^{rT}\hat{C}_K < 0$ at all grid points. If violations occur, tighten the smoothing constraints and refit.
+
+### Quality Metrics
+
+Assess the quality of the smoothed surface by:
+
+1. **Pricing error:** $\text{RMSE} = \sqrt{\frac{1}{n}\sum_i (\hat{C}(K_i, T_j) - C_{\text{mkt}}(K_i, T_j))^2}$
+2. **Arbitrage violations:** Count of grid points where $C_{KK} < 0$ or $C_T < 0$
+3. **Local volatility bounds:** Range of $\sigma_{\text{loc}}$ — values outside $[1\%, 200\%]$ suggest surface problems
+4. **Smoothness:** $\int |\sigma_{\text{loc}}''(K)|^2 \, dK$ — large values indicate remaining noise
+
+## Summary
+
+Interpolation and smoothing form the critical preprocessing step for local volatility construction:
+
+1. **Raw market data** is too noisy for direct differentiation — smoothing is not optional but essential
+2. **No-arbitrage constraints** (monotonicity, convexity, calendar) must be enforced to ensure $\sigma_{\text{loc}}^2 > 0$
+3. **Cubic splines** in implied volatility with smoothing parameters provide flexible, differentiable fits
+4. **SVI/SSVI parametrizations** offer parsimonious, arbitrage-free representations of the smile surface
+5. **Total variance interpolation** in maturity naturally preserves calendar monotonicity
+6. **Wing extrapolation** requires care, as Dupire's formula amplifies errors at extreme strikes
