@@ -1,21 +1,273 @@
 # Portfolio Hedging and Cross-Greeks
 
-This section explores the principles and methods underlying portfolio hedging and cross-greeks, which form a critical component of modern financial mathematics.
-
-## Key Concepts
-
-The fundamental concepts in this area include:
-
-- Theoretical foundations and mathematical framework
-- Key definitions and notation
-- Important theorems and results
-- Connections to other areas of financial mathematics
-
-!!! abstract "Learning Objectives"
-    After completing this section, you should understand:
-    
-    - The core mathematical principles and their financial interpretations
-    - How these concepts connect to practical applications
-    - The relationship between theory and numerical implementation
+When a trading book contains options on multiple underlyings, the risk management problem becomes genuinely multi-dimensional. **Cross-Greeks** --- sensitivities involving more than one underlying --- capture correlation-driven risks that are invisible to single-asset analysis. This section develops the framework for portfolio-level hedging with emphasis on the **cross-gamma** matrix and its implications for hedging error.
 
 ---
+
+## Multi-Asset Sensitivity Framework
+
+### Portfolio Value and First-Order Sensitivities
+
+Consider a portfolio of options depending on $d$ underlying assets with prices $S = (S_1, \ldots, S_d)^T$. The portfolio value $\Pi(t, S)$ admits a Taylor expansion:
+
+$$
+\delta\Pi \approx \sum_{i=1}^d \Delta_i\,\delta S_i + \Theta\,\delta t + \frac{1}{2}\sum_{i=1}^d \sum_{j=1}^d \Gamma_{ij}\,\delta S_i\,\delta S_j + \sum_{i=1}^d \mathcal{V}_i\,\delta\sigma_i
+$$
+
+where the sensitivities are:
+
+| Greek | Definition | Interpretation |
+|:---|:---|:---|
+| $\Delta_i = \frac{\partial \Pi}{\partial S_i}$ | Delta vector | Directional exposure to asset $i$ |
+| $\Gamma_{ij} = \frac{\partial^2 \Pi}{\partial S_i \partial S_j}$ | Gamma matrix | Second-order (cross-)sensitivity |
+| $\Theta = \frac{\partial \Pi}{\partial t}$ | Theta | Time decay |
+| $\mathcal{V}_i = \frac{\partial \Pi}{\partial \sigma_i}$ | Vega vector | Volatility exposure to asset $i$ |
+
+### Vector and Matrix Notation
+
+The delta vector and gamma matrix in compact form:
+
+$$
+\boldsymbol{\Delta} = \nabla_S \Pi \in \mathbb{R}^d, \qquad \boldsymbol{\Gamma} = \nabla_S^2 \Pi \in \mathbb{R}^{d \times d}
+$$
+
+The second-order Taylor expansion becomes:
+
+$$
+\boxed{\delta\Pi \approx \boldsymbol{\Delta}^T \delta\mathbf{S} + \Theta\,\delta t + \frac{1}{2}\,\delta\mathbf{S}^T \boldsymbol{\Gamma}\,\delta\mathbf{S}}
+$$
+
+---
+
+## Cross-Gamma: Definition and Structure
+
+### Definition
+
+The **cross-gamma** between assets $i$ and $j$ is:
+
+$$
+\Gamma_{ij} = \frac{\partial^2 \Pi}{\partial S_i \partial S_j}, \quad i \neq j
+$$
+
+The diagonal entries $\Gamma_{ii}$ are the standard single-asset gammas. The full gamma matrix $\boldsymbol{\Gamma}$ is symmetric: $\Gamma_{ij} = \Gamma_{ji}$.
+
+### When Cross-Gamma Arises
+
+Cross-gamma is nonzero when the portfolio contains instruments that depend on multiple underlyings simultaneously:
+
+- **Basket options**: Options on $\sum_i w_i S_i$ have cross-gammas proportional to $w_i w_j$.
+- **Spread options**: Options on $S_1 - S_2$ have $\Gamma_{12} < 0$.
+- **Quanto options**: Currency-adjusted options create cross-gamma between the asset and the exchange rate.
+- **Correlation-dependent structures**: Worst-of, best-of, and rainbow options.
+
+!!! info "Single-Asset Options"
+    A portfolio containing only single-asset options (each depending on only one $S_i$) has $\Gamma_{ij} = 0$ for $i \neq j$. The gamma matrix is diagonal, and the multi-asset hedging problem decouples into $d$ independent single-asset problems.
+
+### Cross-Gamma for a Two-Asset Basket
+
+Consider a call on the basket $B = w_1 S_1 + w_2 S_2$ with strike $K$. The payoff is $(B - K)^+$. By the chain rule:
+
+$$
+\Delta_i = w_i \frac{\partial C}{\partial B}, \qquad \Gamma_{ij} = w_i w_j \frac{\partial^2 C}{\partial B^2}
+$$
+
+where $C(B)$ is the call price as a function of the basket level. Since $\frac{\partial^2 C}{\partial B^2} > 0$ (the call has positive gamma in $B$), the cross-gamma $\Gamma_{12} = w_1 w_2 \frac{\partial^2 C}{\partial B^2} > 0$ for positive weights.
+
+---
+
+## Portfolio-Level Delta Hedging
+
+### The Multi-Asset Delta Hedge
+
+To delta-hedge the portfolio, hold $-\Delta_i$ shares of asset $i$ for each $i = 1, \ldots, d$. The hedged portfolio is:
+
+$$
+\Pi_{\text{hedged}} = \Pi - \sum_{i=1}^d \Delta_i S_i
+$$
+
+The residual P&L after delta hedging is:
+
+$$
+\delta\Pi_{\text{hedged}} \approx \Theta\,\delta t + \frac{1}{2}\,\delta\mathbf{S}^T \boldsymbol{\Gamma}\,\delta\mathbf{S}
+$$
+
+### Hedged P&L in Terms of Correlations
+
+Under geometric Brownian motion for each asset ($dS_i = \mu_i S_i\,dt + \sigma_i S_i\,dW_i$ with $\operatorname{Corr}(dW_i, dW_j) = \rho_{ij}$), the expected delta-hedged P&L over $\delta t$ is:
+
+$$
+\mathbb{E}[\delta\Pi_{\text{hedged}}] = \left(\Theta + \frac{1}{2}\sum_{i,j} \Gamma_{ij} \rho_{ij} \sigma_i \sigma_j S_i S_j\right)\delta t
+$$
+
+The cross-gamma terms $\Gamma_{ij}\rho_{ij}\sigma_i\sigma_j S_i S_j$ contribute to the expected P&L through the **correlation structure**. If correlations change, these terms produce unexpected gains or losses.
+
+---
+
+## Gamma Hedging in Multiple Dimensions
+
+### The Hedging System
+
+To neutralize the entire gamma matrix, we need hedging instruments with their own gamma matrices. Let $H^{(l)}$ be the $l$-th hedging instrument with gamma matrix $\boldsymbol{\Gamma}^{(l)}$. To achieve $\boldsymbol{\Gamma}_{\text{portfolio}} = \mathbf{0}$, solve:
+
+$$
+\sum_{l=1}^L n_l\,\boldsymbol{\Gamma}^{(l)} = -\boldsymbol{\Gamma}_{\text{existing}}
+$$
+
+Since $\boldsymbol{\Gamma}$ is a $d \times d$ symmetric matrix with $d(d+1)/2$ independent entries, we need at least $L = d(d+1)/2$ hedging instruments to fully neutralize the gamma matrix.
+
+!!! warning "Dimensionality Curse"
+    For $d = 2$ assets: need at least 3 instruments ($\Gamma_{11}, \Gamma_{12}, \Gamma_{22}$).
+
+    For $d = 5$ assets: need at least 15 instruments.
+
+    For $d = 10$ assets: need at least 55 instruments.
+
+    Full gamma neutralization becomes impractical for large $d$. In practice, traders focus on the most significant gamma exposures.
+
+### Partial Gamma Hedging
+
+When full neutralization is infeasible, prioritize:
+
+1. **Diagonal gammas** $\Gamma_{ii}$: Hedge single-asset gammas first using single-asset options.
+2. **Largest cross-gammas**: Hedge the $\Gamma_{ij}$ entries with the greatest dollar exposure $|\Gamma_{ij} \rho_{ij} \sigma_i \sigma_j S_i S_j|$.
+3. **Accept residual**: Leave smaller cross-gamma exposures unhedged and monitor.
+
+---
+
+## Cross-Gamma Effects on Hedging Error
+
+### Variance of Delta-Hedged P&L
+
+The variance of the delta-hedged P&L over one step $\delta t$ involves the fourth moments of the joint returns:
+
+$$
+\operatorname{Var}(\delta\Pi_{\text{hedged}}) \approx \frac{1}{2}\sum_{i,j,k,l} \Gamma_{ij}\Gamma_{kl}\,C_{ijkl}\,(\delta t)^2
+$$
+
+where $C_{ijkl} = \operatorname{Cov}(\delta S_i\,\delta S_j,\; \delta S_k\,\delta S_l)$ is the fourth-order covariance tensor. For jointly normal returns:
+
+$$
+C_{ijkl} = (\rho_{ik}\rho_{jl} + \rho_{il}\rho_{jk})\sigma_i\sigma_j\sigma_k\sigma_l S_i S_j S_k S_l\,(\delta t)^2
+$$
+
+### Two-Asset Special Case
+
+For $d = 2$, the hedged P&L variance simplifies to:
+
+$$
+\operatorname{Var}(\delta\Pi_{\text{hedged}}) \approx \left[\frac{1}{2}(\Gamma_{11} S_1^2 \sigma_1^2)^2 + 2\rho_{12}^2 \Gamma_{11}\Gamma_{22}S_1^2 S_2^2 \sigma_1^2\sigma_2^2 + \frac{1}{2}(\Gamma_{22}S_2^2\sigma_2^2)^2 + 2(\Gamma_{12}S_1 S_2 \sigma_1\sigma_2)^2(1 + \rho_{12}^2)\right](\delta t)^2
+$$
+
+The cross-gamma $\Gamma_{12}$ contributes an additional variance term that depends on $(1 + \rho_{12}^2)$, which is always positive and amplified by high correlation.
+
+---
+
+## Correlation Risk
+
+### Sensitivity to Correlation
+
+The portfolio vega with respect to correlation $\rho_{ij}$ is:
+
+$$
+\frac{\partial \Pi}{\partial \rho_{ij}} = \text{``correlation vega'' or ``cega''}
+$$
+
+This sensitivity is particularly important for:
+
+- Basket options (highly sensitive to pairwise correlations)
+- Worst-of options (increase in correlation increases value)
+- Spread options (increase in correlation decreases value)
+
+### Correlation and Cross-Gamma
+
+The delta-hedged P&L depends on correlations through the cross-gamma terms. If the true correlation differs from the model correlation:
+
+$$
+\delta\Pi_{\text{hedged}} \approx \frac{1}{2}\sum_{i \neq j} \Gamma_{ij} S_i S_j \sigma_i \sigma_j (\rho_{ij}^{\text{realized}} - \rho_{ij}^{\text{model}})\,\delta t + \cdots
+$$
+
+This is the **correlation P&L** --- a source of model risk that is difficult to hedge because correlation derivatives are illiquid.
+
+---
+
+## Worked Example: Two-Asset Portfolio
+
+A trader holds the following positions:
+
+- **Long 100 calls** on asset 1 ($S_1 = 100$, $K_1 = 100$, $\sigma_1 = 25\%$)
+- **Short 50 puts** on asset 2 ($S_2 = 80$, $K_2 = 85$, $\sigma_2 = 30\%$)
+- **Long 20 basket calls** on $0.6 S_1 + 0.4 S_2$ ($K = 95$)
+
+Per-option Greeks (illustrative values):
+
+| | Call on $S_1$ | Put on $S_2$ | Basket call |
+|:---|:---|:---|:---|
+| $\Delta_1$ | 0.55 | 0 | 0.36 |
+| $\Delta_2$ | 0 | $-0.45$ | 0.24 |
+| $\Gamma_{11}$ | 0.032 | 0 | 0.012 |
+| $\Gamma_{22}$ | 0 | 0.028 | 0.005 |
+| $\Gamma_{12}$ | 0 | 0 | 0.008 |
+
+**Portfolio-level Greeks:**
+
+$$
+\boldsymbol{\Delta} = \begin{pmatrix} 100(0.55) + 20(0.36) \\ -50(-0.45) + 20(0.24) \end{pmatrix} = \begin{pmatrix} 62.2 \\ 27.3 \end{pmatrix}
+$$
+
+$$
+\boldsymbol{\Gamma} = \begin{pmatrix} 100(0.032) + 20(0.012) & 20(0.008) \\ 20(0.008) & -50(0.028) + 20(0.005) \end{pmatrix} = \begin{pmatrix} 3.44 & 0.16 \\ 0.16 & -1.30 \end{pmatrix}
+$$
+
+**Delta hedge:** Short 62.2 shares of asset 1 and 27.3 shares of asset 2.
+
+**Gamma analysis:** The portfolio is long $\Gamma_{11}$ (benefits from moves in $S_1$) and short $\Gamma_{22}$ (exposed to moves in $S_2$). The cross-gamma $\Gamma_{12} = 0.16$ means correlated moves in both assets create additional P&L.
+
+To fully gamma-hedge, the trader would need at least 3 additional instruments with independent gamma structures to neutralize $\Gamma_{11}$, $\Gamma_{22}$, and $\Gamma_{12}$ simultaneously.
+
+---
+
+## Practical Portfolio Risk Management
+
+### Bucketed Sensitivities
+
+Large trading books aggregate Greeks into **buckets**:
+
+- **By underlying**: Total delta, gamma per asset
+- **By maturity**: Short-dated vs. long-dated gamma
+- **By strike**: ATM vs. wing gamma
+- **By correlation pair**: Cross-gamma for each asset pair
+
+### Risk Limits
+
+Portfolio risk limits are typically expressed as:
+
+| Metric | Definition | Typical limit |
+|:---|:---|:---|
+| Net delta per asset | $|\Delta_i|$ in shares | Asset-dependent |
+| Dollar gamma per asset | $\frac{1}{2}\Gamma_{ii}S_i^2$ | \$X per 1% move |
+| Cross-gamma | $\Gamma_{ij}S_iS_j$ | \$Y per 1% correlated move |
+| Vega per asset | $\mathcal{V}_i$ | \$Z per 1 vol point |
+
+### Hedging Priority
+
+In practice, the hedging priority for a multi-asset book is:
+
+1. **Delta**: Neutralize directional risk using the underlyings.
+2. **Largest gammas**: Hedge dominant diagonal gammas using ATM options.
+3. **Vega**: Manage volatility exposure using options at various strikes and maturities.
+4. **Cross-gamma**: Address if material, using multi-asset derivatives or proxy hedges.
+5. **Higher-order**: Speed, charm, vanna --- monitor but rarely hedge directly.
+
+---
+
+## Summary
+
+| Concept | Key point |
+|:---|:---|
+| Delta vector | $\boldsymbol{\Delta} \in \mathbb{R}^d$ captures directional exposure to each asset |
+| Gamma matrix | $\boldsymbol{\Gamma} \in \mathbb{R}^{d \times d}$ (symmetric); diagonal = single-asset, off-diagonal = cross |
+| Cross-gamma | Arises from multi-asset instruments; drives correlation-dependent P&L |
+| Full gamma hedge | Requires $d(d+1)/2$ instruments --- impractical for large $d$ |
+| Correlation risk | Cross-gamma terms couple the P&L to realized correlations |
+| Hedged P&L | $\delta\Pi_{\text{hedged}} \approx \frac{1}{2}\delta\mathbf{S}^T\boldsymbol{\Gamma}\,\delta\mathbf{S} + \Theta\,\delta t$ |
+| Practical approach | Prioritize diagonal gamma, hedge largest cross-gammas selectively |
