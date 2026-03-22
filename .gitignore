@@ -8,7 +8,8 @@ agents/
 
 # Agent working files — local only
 docs/**/review.md
-docs/**/*_v*.md
+docs/**/*_v[0-9]*.md
 docs/**/*_review.md
+!docs/ch15/definition_and_setup/markov_processes_review.md
 docs/**/*_score.md
 reviews/
