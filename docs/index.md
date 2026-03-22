@@ -1,8 +1,5 @@
 # Quantitative Finance with Python
 
-!!! warning "Incomplete page"
-    This is the book landing page and does not follow the five-section structure.
-
 Welcome! This book is written in Markdown and published using **MkDocs** with the **Material for MkDocs** theme.
 
 Much of the foundational material in this book was developed through conversations with AI assistants, based on my lecture notes and additional resources, particularly GitHub. While I have reviewed and revised parts of the content, time constraints have prevented a complete line-by-line verification. I sincerely welcome contributions -- especially corrections and suggestions -- via GitHub pull requests or email.
