@@ -1,34 +1,139 @@
 # Simulation of Bond Prices
 
-*This section covers simulation of bond prices in the context of Simulation Of Bond Prices in Chapter 20.*
+In the Hull-White model, the zero-coupon bond price $P(t,T)$ is available in closed form as an exponential-affine function of the short rate $r_t$. This means that once we simulate a short rate path $\{r_{t_0}, r_{t_1}, \ldots, r_{t_N}\}$, we can compute the corresponding bond prices at every time step without additional simulation or discretization error. This section develops the machinery for computing $P(t_i, T)$ along simulated paths and shows how to use these path-wise bond prices for portfolio valuation and derivative pricing.
 
-!!! abstract "Learning Objectives"
-    By the end of this section, you will be able to:
-    
-    1. Understand the key concepts of simulation of bond prices
-    2. Apply the mathematical framework presented
-    3. Connect this topic to related areas in quantitative finance
+## Bond Price Along a Simulated Path
 
----
+Recall from the bond pricing section that in the one-factor Hull-White model, the zero-coupon bond price takes the affine form
 
-## Overview
+$$
+P(t,T) = \exp\!\bigl(A(t,T) + B(t,T)\,r_t\bigr)
+$$
 
-This section introduces the fundamental concepts of simulation of bond prices. We will explore its theoretical foundations and practical applications in quantitative finance.
+where
 
----
+$$
+B(t,T) = \frac{e^{-\lambda(T-t)} - 1}{\lambda}
+$$
 
-## Key Concepts
+and the function $A(t,T)$ is determined by the no-arbitrage condition to fit the initial market curve $P^M(0,T)$.
 
-*Content under development.*
+Given a simulated short rate value $r_{t_i}$ at time $t_i$, the bond price for any maturity $T > t_i$ is computed directly from this formula. There is no approximation involved: the affine structure gives the exact bond price conditional on $r_{t_i}$.
 
----
+!!! tip "Key Advantage of Affine Models"
+    Unlike general HJM models where bond prices require simulating the entire forward curve, affine short rate models such as Hull-White reduce bond price computation to evaluating a deterministic function of a single state variable $r_t$. This makes Monte Carlo simulation significantly more efficient.
 
-## Mathematical Framework
+## Path-Wise Bond Price Computation
 
-*Content under development.*
+Consider a time grid $0 = t_0 < t_1 < \cdots < t_N = T_{\max}$ and a set of maturities $T_1, T_2, \ldots, T_M$ at which we need bond prices. Along each simulated path $\omega$, the short rate trajectory $\{r_{t_0}(\omega), r_{t_1}(\omega), \ldots, r_{t_N}(\omega)\}$ is generated using exact simulation:
 
----
+$$
+r_{t_{i+1}} = r_{t_i}\,e^{-\lambda \Delta t} + \lambda \int_{t_i}^{t_{i+1}} \theta(s)\,e^{-\lambda(t_{i+1}-s)}\,ds + \sigma \int_{t_i}^{t_{i+1}} e^{-\lambda(t_{i+1}-s)}\,dW_s
+$$
+
+Since the stochastic integral is Gaussian with mean zero and variance $\frac{\sigma^2}{2\lambda}(1 - e^{-2\lambda \Delta t})$, the transition is sampled exactly as
+
+$$
+r_{t_{i+1}} = \mu(t_i, t_{i+1}) + \sigma_r(t_i, t_{i+1})\,Z_{i+1}
+$$
+
+where $Z_{i+1} \sim N(0,1)$, $\mu(t_i, t_{i+1}) = r_{t_i}\,e^{-\lambda \Delta t} + \lambda \int_{t_i}^{t_{i+1}} \theta(s)\,e^{-\lambda(t_{i+1}-s)}\,ds$, and $\sigma_r^2(t_i, t_{i+1}) = \frac{\sigma^2}{2\lambda}(1 - e^{-2\lambda \Delta t})$.
+
+At each time step $t_i$ and for each required maturity $T_j > t_i$, the bond price is
+
+$$
+P(t_i, T_j) = \exp\!\bigl(A(t_i, T_j) + B(t_i, T_j)\,r_{t_i}\bigr)
+$$
+
+The functions $A(t_i, T_j)$ and $B(t_i, T_j)$ depend only on model parameters and the initial curve, so they can be precomputed before the simulation begins.
+
+## Money Market Account
+
+The discretely-compounded money market account along a simulated path is
+
+$$
+M(t_n) = \exp\!\left(\sum_{i=0}^{n-1} r_{t_i}\,\Delta t_i\right)
+$$
+
+where $\Delta t_i = t_{i+1} - t_i$. The discount factor from time $t_n$ back to time $0$ is $1/M(t_n)$.
+
+For pricing a derivative with payoff $g$ at time $T$, the Monte Carlo estimator is
+
+$$
+\hat{V}_0 = \frac{1}{N_{\text{paths}}} \sum_{k=1}^{N_{\text{paths}}} \frac{g\bigl(r_T^{(k)}\bigr)}{M^{(k)}(T)}
+$$
+
+where the superscript $(k)$ indexes the simulated path.
+
+## Yield Curve Simulation
+
+A powerful application of path-wise bond price computation is simulating future yield curves. At a future time $t$, the yield for maturity $\tau$ is
+
+$$
+y(t, t+\tau) = -\frac{\ln P(t, t+\tau)}{\tau} = -\frac{A(t, t+\tau) + B(t, t+\tau)\,r_t}{\tau}
+$$
+
+Since all yields are affine functions of $r_t$, each simulated value of $r_t$ determines an entire yield curve. This produces parallel-shift-like movements: yield curves across different paths differ only through the realized value of $r_t$, a well-known limitation of one-factor models.
+
+???+ example "Simulating Future Yield Curves"
+    For each simulated path at time $t = 10$:
+
+    1. Generate $r_{10}^{(k)}$ using the exact simulation scheme
+    2. For each tenor $\tau \in \{0.25, 0.5, 1, 2, 5, 10, 20, 30\}$, compute $y^{(k)}(10, 10+\tau) = -[A(10, 10+\tau) + B(10, 10+\tau)\,r_{10}^{(k)}]/\tau$
+    3. Plot the resulting yield curves to visualize the distribution of future term structures
+
+## Consistency Check via Monte Carlo
+
+The simulated bond prices must be consistent with the initial market curve. The Monte Carlo estimate of $P(0, T)$ using the money market account is
+
+$$
+\hat{P}(0, T) = \frac{1}{N_{\text{paths}}} \sum_{k=1}^{N_{\text{paths}}} \frac{1}{M^{(k)}(T)}
+$$
+
+By the risk-neutral pricing formula, $\hat{P}(0,T) \to P^M(0,T)$ as $N_{\text{paths}} \to \infty$. This provides a sanity check for the simulation implementation.
+
+???+ example "Monte Carlo Bond Price vs Analytic Formula"
+    ```python
+    def main():
+        hw = HullWhite(sigma=0.01, lambd=0.01, P=P_market)
+        t, R, M = hw.generate_sample_paths(
+            num_paths=20_000, num_steps=100, T=30, seed=42
+        )
+
+        dt = t[1] - t[0]
+        T_grid = [1, 2, 5, 10, 20, 30]
+
+        for T_i in T_grid:
+            idx = int(T_i / dt)
+            P_mc = np.mean(1.0 / M[:, idx])
+            P_market_val = P_market(T_i)
+            print(f"T={T_i:2d}: MC={P_mc:.6f}, Market={P_market_val:.6f}")
+    ```
+
+## Forward Bond Price Simulation
+
+The forward bond price $F(t; T, S) = P(t, S) / P(t, T)$ for $t \leq T \leq S$ represents the price at time $T$ of a bond maturing at $S$, as seen from time $t$. Under the $T$-forward measure, $F(t; T, S)$ is a martingale.
+
+Along a simulated path, the forward bond price is computed as
+
+$$
+F(t_i; T, S) = \frac{P(t_i, S)}{P(t_i, T)} = \exp\!\bigl([A(t_i, S) - A(t_i, T)] + [B(t_i, S) - B(t_i, T)]\,r_{t_i}\bigr)
+$$
+
+This quantity is useful for pricing forward-starting derivatives and for computing forward rates along paths.
+
+## Two-Factor Bond Price Simulation
+
+In the two-factor Hull-White model with $r_t = x_t + y_t + \varphi(t)$, the bond price depends on both state variables:
+
+$$
+P(t, T) = \exp\!\bigl(A^{(2)}(t,T) + B_x(t,T)\,x_t + B_y(t,T)\,y_t\bigr)
+$$
+
+where $B_x(t,T) = (e^{-\lambda_1(T-t)} - 1)/\lambda_1$ and $B_y(t,T) = (e^{-\lambda_2(T-t)} - 1)/\lambda_2$. Path-wise computation requires simulating both factors $(x_{t_i}, y_{t_i})$ at each time step, then evaluating the two-factor affine formula.
+
+The two-factor model produces richer yield curve dynamics: different paths can exhibit not only parallel shifts but also twist and butterfly movements, since the two factors decay at different rates $\lambda_1$ and $\lambda_2$.
 
 ## Summary
 
-This section presented the fundamental concepts of simulation of bond prices. The material connects to subsequent sections in this chapter.
+Bond price simulation in the Hull-White model exploits the affine structure to compute exact bond prices at each simulated time step. The short rate path is generated using exact Gaussian transitions, and bond prices follow from the closed-form affine formula $P(t,T) = \exp(A(t,T) + B(t,T)\,r_t)$. Key applications include yield curve simulation, consistency verification against the initial market curve, and path-wise valuation of interest rate portfolios. The two-factor extension enriches the dynamics by introducing a second state variable while preserving the exponential-affine bond price structure.
