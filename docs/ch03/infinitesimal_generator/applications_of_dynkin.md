@@ -231,3 +231,55 @@ $$
 - [Generator and Martingales](generator_and_martingales.md) — martingale characterization
 - [Feynman–Kac Formula](../../ch05/feynman_kac/feynman_kac_formula.md) — discounted expectations, killing
 - [Kolmogorov Backward Equation](../../ch05/kolmogorov_equations/kolmogorov_backward.md) — PDE for transition probabilities
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $dX_t = \mu\,dt + \sigma\,dW_t$ (Brownian motion with constant drift $\mu$ and volatility $\sigma$) on the interval $(a, b)$. Set up and solve the Poisson equation $\mathcal{L}u = -1$ with $u(a) = u(b) = 0$ to find the expected exit time $\mathbb{E}_x[\tau]$. Verify that your answer reduces to $(x - a)(b - x)$ when $\mu = 0$ and $\sigma = 1$.
+
+---
+
+**Exercise 2.** For the Ornstein--Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$ on the interval $(-a, a)$ with $a > 0$, write down the Poisson equation $\mathcal{L}u = -1$ with $u(-a) = u(a) = 0$ for the expected exit time. You do not need to solve the ODE explicitly, but:
+
+(a) Explain why $u(x)$ must be an even function of $x$ (use the symmetry of the problem).
+
+(b) Show that $u(0) > u(x)$ for all $x \neq 0$ in $(-a, a)$, i.e., the expected exit time is maximized at the origin.
+
+---
+
+**Exercise 3.** A stock price follows $dS_t = rS_t\,dt + \sigma S_t\,dW_t$ under the risk-neutral measure. A trader enters a position at price $S_0 = s$ and will exit when $S_t$ first hits either $L$ (stop-loss) or $U$ (take-profit), where $0 < L < s < U$. Using the exit probability formula for BM with drift, compute the probability $\mathbb{P}_s(S_\tau = U)$ that the trader hits the take-profit level before the stop-loss. (Hint: apply the change of variable $Y_t = \ln S_t$ to reduce to BM with drift on $(\ln L, \ln U)$.)
+
+---
+
+**Exercise 4.** Consider the Dirichlet problem for BM on the unit disk $D = \{(x,y) : x^2 + y^2 < 1\}$ in $\mathbb{R}^2$ with boundary data $g(\theta) = \cos(\theta)$ where $\theta$ is the angle on $\partial D$. The generator is $\mathcal{L} = \frac{1}{2}\Delta$.
+
+(a) Write down the probabilistic (Kakutani) representation of the solution.
+
+(b) Verify that $f(x, y) = x$ solves $\Delta f = 0$ in $D$ and satisfies $f = \cos\theta$ on $\partial D$.
+
+---
+
+**Exercise 5.** For standard Brownian motion starting at $x \in (0, b)$, use the Poisson problem framework to find $f(x) = \mathbb{E}_x\left[\int_0^\tau X_s\,ds\right]$ where $\tau$ is the exit time from $(0, b)$. That is, solve
+
+$$
+\frac{1}{2}f''(x) = -x, \qquad f(0) = 0, \quad f(b) = 0
+$$
+
+and verify that $f(x) \geq 0$ on $[0, b]$.
+
+---
+
+**Exercise 6.** In the gambler's ruin problem with drift: a gambler starts with $\$x$ and plays a game with a slight edge, modeled by $dX_t = \mu\,dt + dW_t$ with $\mu > 0$. The game ends at $\$0$ (ruin) or $\$b$ (target).
+
+(a) Using the exit probability formula for BM with drift (with $\sigma = 1$), compute the probability of ruin as a function of $x$, $b$, and $\mu$.
+
+(b) Fix $x = 50$ and $b = 100$. Compare the ruin probability for $\mu = 0$ (fair game), $\mu = 0.01$ (small edge), and $\mu = 0.1$ (large edge). What happens as $\mu \to \infty$?
+
+---
+
+**Exercise 7.** The Laplace transform of the hitting time $\tau_0$ for BM starting at $x > 0$ hitting level $0$ was shown to be $\mathbb{E}_x[e^{-\lambda \tau_0}] = e^{-\sqrt{2\lambda}\,x}$.
+
+(a) Differentiate with respect to $\lambda$ at $\lambda = 0$ to recover $\mathbb{E}_x[\tau_0]$. What do you find, and is it consistent with $\mathbb{E}_x[\tau_0] = \infty$?
+
+(b) For BM on $(0, b)$ hitting either boundary, the Laplace transform satisfies $\frac{1}{2}v'' = \lambda v$ with $v(0) = v(b) = 1$. Solve this ODE and verify the boundary conditions. Use your solution to show that $\mathbb{E}_x[e^{-\lambda\tau}] \to 1$ as $\lambda \to 0$, consistent with $\tau < \infty$ a.s.

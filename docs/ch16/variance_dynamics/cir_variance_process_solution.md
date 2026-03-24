@@ -234,3 +234,27 @@ The CIR variance process has an explicit transition density given by a scaled no
 The [next section](variance_process_moments.md) derives explicit formulas for the conditional and unconditional moments of the variance process.
 
 ---
+
+## Exercises
+
+**Exercise 1.** For CIR parameters $\kappa = 2$, $\theta = 0.04$, $\sigma_v = 0.3$, $v_0 = 0.06$, and $\tau = 1$, compute the non-central chi-squared parameters: scale $c$, degrees of freedom $\delta = 4\kappa\theta/\sigma_v^2$, and non-centrality $\lambda = 4\kappa v_0 e^{-\kappa\tau}/(\sigma_v^2(1 - e^{-\kappa\tau}))$.
+
+---
+
+**Exercise 2.** Using the parameters from Exercise 1, compute $\mathbb{E}[v_T \mid v_0]$ using both the direct formula $\theta + (v_0 - \theta)e^{-\kappa\tau}$ and the non-central chi-squared mean formula $c(\delta + \lambda)$. Verify they agree.
+
+---
+
+**Exercise 3.** The Laplace transform of the CIR transition density is $\mathbb{E}[e^{-uv_T} \mid v_t] = \exp(\tilde{\phi}(\tau, -u) + \tilde{\psi}(\tau, -u)v_t)$. For bond pricing ($u = 1$, $v = r$), relate this to the zero-coupon bond price formula.
+
+---
+
+**Exercise 4.** Describe the Broadie-Kaya exact simulation algorithm for the CIR process. What is the key step that requires sampling from a non-central chi-squared distribution, and why does this produce unbiased samples?
+
+---
+
+**Exercise 5.** As $\tau \to \infty$, the CIR process converges to a Gamma stationary distribution. Compute the shape parameter $\alpha = 2\kappa\theta/\sigma_v^2$ and rate parameter $\beta = 2\kappa/\sigma_v^2$ for the parameters in Exercise 1. What is the stationary mean and variance?
+
+---
+
+**Exercise 6.** When the Feller condition is violated ($\delta < 2$), the non-central chi-squared distribution has a point mass at zero. For $\kappa = 1$, $\theta = 0.02$, $\sigma_v = 0.5$, compute $\delta$ and explain why $\mathbb{P}(v_T = 0 \mid v_0) > 0$ for sufficiently large $T$.

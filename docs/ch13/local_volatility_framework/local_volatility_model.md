@@ -278,3 +278,45 @@ The local volatility model extends Black-Scholes by allowing volatility to be a 
 3. **Connection to density**: The denominator of Dupire's formula is the risk-neutral density (Breeden-Litzenberger), so local volatility measures the rate of probability diffusion per unit density.
 4. **Completeness**: The model has one source of randomness, so every European claim can be replicated, yielding unique arbitrage-free prices.
 5. **Uniqueness**: Given an arbitrage-free call surface, the local volatility function is unique.
+
+---
+
+## Exercises
+
+**Exercise 1.** The local volatility model SDE is $dS_t = (r-q)S_t\,dt + \sigma_{\text{loc}}(S_t, t)S_t\,dW_t^{\mathbb{Q}}$. (a) Show that if $\sigma_{\text{loc}}(S,t) = \sigma_0$ (constant), this reduces to the Black-Scholes geometric Brownian motion. (b) Write down the corresponding backward Kolmogorov PDE for a European call price $V(S,t)$ in the general local volatility case. (c) Explain why this PDE requires specifying $\sigma_{\text{loc}}(S,t)$ on the entire domain $(0,\infty)\times[0,T]$, not just at the current spot $S_0$.
+
+---
+
+**Exercise 2.** The existence and uniqueness theorem (Theorem 13.1.1) requires a local Lipschitz condition on the diffusion coefficient $\sigma_{\text{loc}}(S,t)S$. (a) Verify that $\sigma_{\text{loc}}(S,t)S = \sigma_0 S$ satisfies the local Lipschitz condition with constant $L_K = \sigma_0$. (b) Give an example of a function $\sigma_{\text{loc}}(S,t)$ that violates the local Lipschitz condition. (c) Why does the linear growth condition $|\sigma_{\text{loc}}(S,t)S| \leq C(1+S)$ prevent the solution from exploding in finite time?
+
+---
+
+**Exercise 3.** The Breeden-Litzenberger formula states $\partial^2 C / \partial K^2 = e^{-rT}p(K,T)$. (a) Verify this by differentiating $C(K,T) = e^{-rT}\int_K^\infty (S-K)p(S,T)\,dS$ twice with respect to $K$. (b) The denominator of the Dupire formula is $\frac{1}{2}K^2 \partial_{KK}C$. Express this in terms of the risk-neutral density $p(K,T)$. (c) What happens to the Dupire formula when $p(K,T) \to 0$ (deep out-of-the-money)? Discuss the numerical challenges this creates.
+
+---
+
+**Exercise 4.** The local volatility surface is typically steeper than the implied volatility surface. Consider the approximation near ATM:
+
+$$
+\sigma_{\text{loc}}(K, T) \approx \sigma_{\text{imp}}(K, T) + (K - S_0)\frac{\partial \sigma_{\text{imp}}}{\partial K}
+$$
+
+If the implied volatility skew at ATM is $\partial \sigma_{\text{imp}}/\partial K = -0.001$ per strike unit, with $\sigma_{\text{imp}}(100, 0.5) = 0.20$ and $S_0 = 100$, compute $\sigma_{\text{loc}}(90, 0.5)$ and $\sigma_{\text{loc}}(110, 0.5)$ using this approximation. Compare with the implied volatility values at these strikes.
+
+---
+
+**Exercise 5.** Market completeness under the local volatility model follows from the existence of a single Brownian driver. (a) State the martingale representation theorem and explain how it guarantees replication. (b) For a European call with payoff $(S_T - K)^+$, the hedge ratio is $\Delta_t = \partial V / \partial S$. In the local volatility model, $\Delta_t$ depends on $\sigma_{\text{loc}}(S,t)$. Explain why the hedge ratio is different from the Black-Scholes delta even when both models are calibrated to the same ATM volatility. (c) Under stochastic volatility, why does market completeness fail?
+
+---
+
+**Exercise 6.** The Dupire formula in the presence of dividends is
+
+$$
+\sigma_{\text{loc}}^2(K,T) = \frac{\partial_T C + (r-q)K\,\partial_K C + qC}{\frac{1}{2}K^2\,\partial_{KK}C}
+$$
+
+(a) Show that the $qC$ term in the numerator arises from the dividend-adjusted forward drift $(r-q)S_t$. (b) For an asset with $q > r$, is it possible for the numerator to be negative? If so, what economic interpretation would this have? (c) Verify that setting $q = 0$ recovers the standard Dupire formula.
+
+---
+
+**Exercise 7.** Two models are calibrated to the same arbitrage-free call price surface $C(K,T)$: a local volatility model and a Heston stochastic volatility model. (a) By Theorem 13.1.3, the local volatility surface is unique. How is this consistent with the Heston model also matching $C(K,T)$? (b) State Gyongy's theorem relating the Heston instantaneous variance to the local volatility function. (c) Give an example of a derivative whose price differs between the two models despite identical vanilla calibration.

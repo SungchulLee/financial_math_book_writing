@@ -286,3 +286,40 @@ u(x, t) = \int_{-\infty}^{\infty} u(x_0, 0) \cdot G(x, t; x_0) dx_0
 $$
 
 The fundamental solution is the Gaussian kernel - the transition density of diffusion processes. This connects the PDE theory to probability: the solution represents how an initial distribution $u(x, 0)$ spreads according to Brownian motion.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Write the one-dimensional heat equation $\partial_t u = \frac{1}{2}\partial_{xx}u$ and verify that $u(x, t) = e^{-\alpha^2 t/2}\sin(\alpha x)$ is a solution for any constant $\alpha$. What initial condition does this correspond to?
+
+---
+
+**Exercise 2.**
+Use the superposition formula $u(x, t) = \int_{-\infty}^{\infty}u(x_0, 0)\,G(x, t; x_0)\,dx_0$ to solve the heat equation with initial condition $u(x, 0) = e^{-x^2}$. Express your answer in closed form.
+
+---
+
+**Exercise 3.**
+The heat equation describes the diffusion of heat. In one dimension, if heat is initially concentrated at $x = 0$, describe qualitatively how the temperature profile evolves over time. Relate this to the spreading Gaussian kernel.
+
+---
+
+**Exercise 4.**
+Classify the heat equation $\partial_t u = D\,\partial_{xx}u$ in terms of the PDE classification (parabolic, elliptic, hyperbolic). Explain why the parabolic type is associated with diffusion rather than wave propagation.
+
+---
+
+**Exercise 5.**
+Consider the heat equation on a finite interval $[0, L]$ with $u(0, t) = u(L, t) = 0$. Using separation of variables $u(x, t) = X(x)T(t)$, find the general solution as a Fourier sine series. What happens to the solution as $t \to \infty$?
+
+---
+
+**Exercise 6.**
+The diffusion coefficient $D = \sigma^2/2$ determines the rate of spreading. For $D = 0.045$ (corresponding to $\sigma = 0.30$), compute the standard deviation of the Gaussian kernel after $t = 1$ year and $t = 4$ years. Verify that the standard deviation grows as $\sqrt{t}$.
+
+---
+
+**Exercise 7.**
+Explain why the heat equation is a good model for option pricing through the Black-Scholes PDE. After the change of variables that transforms the Black-Scholes PDE into the heat equation, what do the spatial variable, time variable, and initial condition represent in financial terms?

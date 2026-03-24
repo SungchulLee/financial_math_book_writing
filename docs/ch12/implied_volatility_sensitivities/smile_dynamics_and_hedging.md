@@ -666,3 +666,33 @@ Effective volatility hedging requires understanding and managing all these dimen
 - Gatheral, J. *The Volatility Surface*. Empirical smile behavior and model comparison.
 - Rebonato, R. *Volatility and Correlation*. Practical hedging under uncertain dynamics.
 - Cont, R. and Kokholm, T. *A Consistent Pricing Model for Index Options and Volatility Derivatives*. Joint modeling of smile and VIX.
+
+---
+
+## Exercises
+
+**Exercise 1.** A delta-hedged option portfolio has $\Gamma = 0.05$, $\mathcal{V} = 15.0$, $\text{Vanna} = -0.12$, $\text{Volga} = 2.5$, and $\Theta = -0.08$. The spot moves $\Delta S = -3$ and implied volatility moves $\Delta\sigma = +0.015$ over one day ($\Delta t = 1/252$). Compute the full second-order P&L decomposition and identify which term contributes the most.
+
+---
+
+**Exercise 2.** Explain the difference between a static smile and a dynamic smile. In the context of the Heston model, describe how each of the parameters $\rho$, $\xi$, and $\kappa$ affects the dynamics of the smile when the spot price decreases by 5%.
+
+---
+
+**Exercise 3.** The "true" delta under smile dynamics is $\Delta_{\text{true}} = \Delta_{\text{BS}} + \mathcal{V} \cdot \Sigma_S$, where $\Sigma_S = \partial \sigma_{\text{IV}}(K)/\partial S$. For an ATM call with $\Delta_{\text{BS}} = 0.55$, $\mathcal{V} = 20$, and $\Sigma_S = -0.003$ (implied by leverage effect), compute $\Delta_{\text{true}}$. How many additional shares should the hedger hold compared to the Black-Scholes delta?
+
+---
+
+**Exercise 4.** Compare the forward smile behavior of local volatility models versus stochastic volatility models. (a) Why does the local volatility model produce a forward smile that flattens over time? (b) Why is this inconsistent with empirical observations? (c) How do stochastic volatility models improve upon this?
+
+---
+
+**Exercise 5.** A portfolio is long a 1-year ATM call (vega = \$25.5 at ATM, zero at 25-delta) and short a 6-month 25-delta put (vega = \$0 at ATM, \$12.3 at 25-delta). Construct a hedge using a 6-month ATM straddle and a 6-month 25-delta risk reversal. Set up the linear system to solve for the hedge ratios that neutralize both ATM vega and 25-delta vega exposures.
+
+---
+
+**Exercise 6.** Define dynamic consistency for a volatility model. Explain why local volatility models fail the dynamic consistency test in practice. What diagnostic tool (involving the forward smile) can be used to detect dynamic inconsistency?
+
+---
+
+**Exercise 7.** Using the empirical data for SPX (vol-spot beta $\approx -2.0$ and skew-spot beta $\approx -0.4$), estimate the change in ATM implied volatility and skew when the SPX drops by 3%. If a trader holds a portfolio that is vega-neutral but has positive skew exposure, will the portfolio gain or lose money? Explain.

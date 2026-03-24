@@ -227,3 +227,29 @@ This is a **convex optimization problem** (unlike VaR constraints), making it tr
 - Fissler, T. & Ziegel, J. (2016), "Higher order elicitability and Osband's principle"
 - Basel Committee on Banking Supervision, "Fundamental Review of the Trading Book"
 - McNeil, A., Frey, R., & Embrechts, P., *Quantitative Risk Management*
+
+---
+
+## Exercises
+
+**Exercise 1.** For a portfolio loss $X \sim N(\mu, \sigma^2)$ with $\mu = 0$ and $\sigma = \$10\text{M}$, compute the 97.5% VaR and 97.5% ES using the formulas $\text{VaR}_\alpha = \sigma\,\Phi^{-1}(\alpha)$ and $\text{ES}_\alpha = \sigma\,\frac{\phi(\Phi^{-1}(\alpha))}{1 - \alpha}$.
+
+---
+
+**Exercise 2.** ES can be expressed as $\text{ES}_\alpha(X) = \frac{1}{1-\alpha}\int_\alpha^1 \text{VaR}_u(X)\,du$, the average of VaR levels above $\alpha$. Verify this formula for a uniform distribution $X \sim U(0,1)$ with $\alpha = 0.95$.
+
+---
+
+**Exercise 3.** Explain why ES is a coherent risk measure while VaR is not. Specifically, construct an example where two portfolios have $\text{VaR}_{0.95}(X_1 + X_2) > \text{VaR}_{0.95}(X_1) + \text{VaR}_{0.95}(X_2)$, but $\text{ES}_{0.95}(X_1 + X_2) \le \text{ES}_{0.95}(X_1) + \text{ES}_{0.95}(X_2)$.
+
+---
+
+**Exercise 4.** A portfolio has daily P&L observations: $\{-15, -12, -8, -5, -3, 1, 2, 4, 7, 10\}$ (in millions). Compute the empirical 80% VaR and 80% ES from this sample.
+
+---
+
+**Exercise 5.** ES is not "elicitable" (there is no scoring function that ES uniquely minimizes), which makes backtesting more challenging than for VaR. Explain what elicitability means and why it matters for model validation. Describe the joint backtesting approach using VaR and ES together.
+
+---
+
+**Exercise 6.** Under Basel III's FRTB, regulatory capital is based on ES at the 97.5% confidence level over a 10-day holding period. If the 1-day ES at 97.5% is \$50M, estimate the 10-day ES using the square-root-of-time scaling $\text{ES}_{10} \approx \sqrt{10} \times \text{ES}_1$. Discuss when this scaling is appropriate and when it fails.

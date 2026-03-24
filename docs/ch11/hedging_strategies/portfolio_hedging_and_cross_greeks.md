@@ -271,3 +271,29 @@ In practice, the hedging priority for a multi-asset book is:
 | Correlation risk | Cross-gamma terms couple the P&L to realized correlations |
 | Hedged P&L | $\delta\Pi_{\text{hedged}} \approx \frac{1}{2}\delta\mathbf{S}^T\boldsymbol{\Gamma}\,\delta\mathbf{S} + \Theta\,\delta t$ |
 | Practical approach | Prioritize diagonal gamma, hedge largest cross-gammas selectively |
+
+---
+
+## Exercises
+
+**Exercise 1.** For a portfolio with delta vector $\boldsymbol{\Delta} = (30, -20)^T$ and gamma matrix $\boldsymbol{\Gamma} = \begin{pmatrix} 2.0 & 0.5 \\ 0.5 & 1.5 \end{pmatrix}$, compute the delta-hedged P&L from a simultaneous move $\delta S_1 = +3$, $\delta S_2 = -2$. Decompose the P&L into contributions from $\Gamma_{11}$, $\Gamma_{22}$, and $\Gamma_{12}$.
+
+---
+
+**Exercise 2.** A basket call on $B = 0.6S_1 + 0.4S_2$ has gamma $\frac{\partial^2 C}{\partial B^2} = 0.03$. Compute the cross-gamma $\Gamma_{12} = w_1 w_2 \frac{\partial^2 C}{\partial B^2}$ and the diagonal gammas $\Gamma_{11}$ and $\Gamma_{22}$. Verify that the gamma matrix is positive semidefinite.
+
+---
+
+**Exercise 3.** Full gamma neutralization for $d = 3$ assets requires $d(d+1)/2 = 6$ hedging instruments. If only 3 single-asset options are available (one per underlying), which gamma matrix entries can be neutralized and which remain unhedged? Describe the residual risk.
+
+---
+
+**Exercise 4.** The correlation P&L is $\frac{1}{2}\sum_{i \neq j}\Gamma_{ij}S_iS_j\sigma_i\sigma_j(\rho_{ij}^{\text{realized}} - \rho_{ij}^{\text{model}})\,\delta t$. For a two-asset portfolio with $\Gamma_{12} = 0.5$, $S_1 = S_2 = 100$, $\sigma_1 = \sigma_2 = 0.20$, compute the daily P&L impact if the realized correlation is $\rho^{\text{real}} = 0.8$ while the model assumes $\rho^{\text{model}} = 0.6$.
+
+---
+
+**Exercise 5.** Using the worked example portfolio ($\boldsymbol{\Gamma} = \begin{pmatrix} 3.44 & 0.16 \\ 0.16 & -1.30 \end{pmatrix}$), compute the variance of the delta-hedged P&L over one day assuming $\sigma_1 = 0.25$, $\sigma_2 = 0.30$, $\rho_{12} = 0.5$, $S_1 = 100$, $S_2 = 80$. Which term dominates: the diagonal gammas or the cross-gamma?
+
+---
+
+**Exercise 6.** A risk manager sets limits of $|\Gamma_{ii}S_i^2/2| \leq \$500$ per asset and $|\Gamma_{ij}S_iS_j| \leq \$200$ per pair. For the worked example portfolio, check which limits are satisfied and which are breached. Propose a partial hedging plan that brings all exposures within limits using the fewest instruments.

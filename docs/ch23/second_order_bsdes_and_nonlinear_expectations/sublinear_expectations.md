@@ -434,3 +434,29 @@ $$
 6. **Financial applications**: G-expectation provides the rigorous mathematical underpinning for uncertain volatility pricing, coherent dynamic risk measures, and robust derivative valuation
 
 7. **Dynamic consistency**: The conditional G-expectation satisfies the tower property, ensuring time-consistent evaluation --- a crucial property for dynamic hedging and risk management
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify the four axioms of a sublinear expectation for $\hat{\mathbb{E}}[X] = \sup_{P \in \mathcal{P}} \mathbb{E}_P[X]$ where $\mathcal{P}$ is a convex set of probability measures. Specifically, check: (a) monotonicity, (b) constant preservation $\hat{\mathbb{E}}[c] = c$, (c) sub-additivity $\hat{\mathbb{E}}[X + Y] \leq \hat{\mathbb{E}}[X] + \hat{\mathbb{E}}[Y]$, and (d) positive homogeneity $\hat{\mathbb{E}}[\lambda X] = \lambda \hat{\mathbb{E}}[X]$ for $\lambda > 0$.
+
+---
+
+**Exercise 2.** The G-normal distribution $X \sim \mathcal{N}(0, [\underline{\sigma}^2, \overline{\sigma}^2])$ satisfies $\hat{\mathbb{E}}[\varphi(X)] = u(1, 0)$ where $u$ solves the G-heat equation $\partial_t u = G(\partial_{xx} u)$ with $G(a) = \frac{1}{2}(\overline{\sigma}^2 a^+ - \underline{\sigma}^2 a^-)$. For $\varphi(x) = x^2$, compute $\hat{\mathbb{E}}[X^2]$ and $\hat{\mathbb{E}}[-X^2]$. Verify that $\hat{\mathbb{E}}[X^2] = \overline{\sigma}^2$ and $\hat{\mathbb{E}}[-X^2] = -\underline{\sigma}^2$.
+
+---
+
+**Exercise 3.** Prove the representation theorem for sublinear expectations: if $\hat{\mathbb{E}}$ is a sublinear expectation on a finite state space $\Omega = \{\omega_1, \ldots, \omega_n\}$, then there exists a compact convex set $\mathcal{P}$ of probability measures such that $\hat{\mathbb{E}}[X] = \max_{P \in \mathcal{P}} \mathbb{E}_P[X]$. Hint: use the supporting hyperplane theorem.
+
+---
+
+**Exercise 4.** State the G-Central Limit Theorem: if $X_1, X_2, \ldots$ are i.i.d. under a sublinear expectation with $\hat{\mathbb{E}}[X_i] = \overline{\mu}$, $\hat{\mathbb{E}}[-X_i] = -\underline{\mu}$, then $\frac{1}{\sqrt{n}}\sum_{i=1}^n (X_i - \mu_n)$ converges to a G-normal distribution. Explain how this differs from the classical CLT and why the limit is an interval rather than a point.
+
+---
+
+**Exercise 5.** For the G-Brownian motion $(B_t)_{t \geq 0}$ with $\hat{\mathbb{E}}[B_t^2] = \overline{\sigma}^2 t$ and $\hat{\mathbb{E}}[-B_t^2] = -\underline{\sigma}^2 t$, compute the G-expectation of the payoff $\varphi(B_T) = (B_T - K)^+$ for $K = 0$ and $T = 1$. Show that $\hat{\mathbb{E}}[(B_1)^+] = \overline{\sigma}/\sqrt{2\pi}$ and interpret this as the worst-case call price under uncertain volatility.
+
+---
+
+**Exercise 6.** The G-Ito formula states that for $f \in C^2(\mathbb{R})$ and G-Brownian motion $B_t$: $f(B_t) = f(0) + \int_0^t f'(B_s) \, dB_s + \frac{1}{2}\int_0^t f''(B_s) \, d\langle B \rangle_s$. Apply this to $f(x) = e^x$ and explain why the quadratic variation process $\langle B \rangle_t$ takes values in $[\underline{\sigma}^2 t, \overline{\sigma}^2 t]$ rather than being deterministic. What does this imply for hedging under volatility uncertainty?

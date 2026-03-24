@@ -265,3 +265,33 @@ For the actor-critic with compatible function approximation (the critic's featur
 - Schulman, Moritz, Levine, Jordan & Abbeel (2016), "High-Dimensional Continuous Control Using GAE"
 - Schulman, Wolski, Dhariwal, Radford & Klimov (2017), "Proximal Policy Optimization Algorithms"
 - Silver, Lever, Heess et al. (2014), "Deterministic Policy Gradient Algorithms"
+
+---
+
+## Exercises
+
+**Exercise 1.** For a Gaussian policy $\pi_\theta(a|s) = \mathcal{N}(a; \mu_\theta(s), \sigma^2)$ with fixed variance $\sigma^2$, compute the score function $\nabla_\theta \log \pi_\theta(a|s) = \frac{a - \mu_\theta(s)}{\sigma^2} \nabla_\theta \mu_\theta(s)$. (a) If $\mu_\theta(s) = \theta^\top s$ is linear with $s = (1, S_t/K, (T-t)/T)^\top \in \mathbb{R}^3$ and $\theta \in \mathbb{R}^3$, compute $\nabla_\theta \log \pi_\theta(a|s)$ explicitly. (b) For a single trajectory with $s_0 = (1, 1.05, 0.9)$, $a_0 = 0.6$ (hedge ratio), $G_0 = -0.03$ (P&L), and $\sigma = 0.1$, compute the REINFORCE gradient estimate. (c) Explain why the gradient pushes $\mu_\theta$ toward $a_0$ when $G_0 > 0$ and away when $G_0 < 0$.
+
+---
+
+**Exercise 2.** The baseline invariance theorem states that subtracting any state-dependent baseline $b(s)$ from the return does not introduce bias: $\mathbb{E}_{a \sim \pi_\theta}[\nabla_\theta \log \pi_\theta(a|s) \cdot b(s)] = 0$. (a) Prove this by showing that $\sum_a \nabla_\theta \pi_\theta(a|s) = \nabla_\theta 1 = 0$. (b) The optimal baseline is $b^*(s) = \frac{\mathbb{E}[(\nabla_\theta \log \pi)^2 G]}{\mathbb{E}[(\nabla_\theta \log \pi)^2]}$. Explain why this is approximately $V^\pi(s)$. (c) In a hedging application, the value function baseline reduces gradient variance dramatically. Numerically, if REINFORCE without baseline has gradient variance 100 and with baseline it has variance 5, how many more trajectories would be needed without the baseline to achieve the same estimation accuracy?
+
+---
+
+**Exercise 3.** Generalized Advantage Estimation (GAE) with parameter $\lambda$ computes $\hat{A}_t^{\text{GAE}} = \sum_{k=0}^\infty (\gamma\lambda)^k \delta_{t+k}$ where $\delta_t = r_t + \gamma \hat{V}(s_{t+1}) - \hat{V}(s_t)$. Consider a 3-step hedging episode with $r_0 = -0.01$, $r_1 = 0.02$, $r_2 = -0.03$, $\hat{V}(s_0) = 0.05$, $\hat{V}(s_1) = 0.04$, $\hat{V}(s_2) = 0.06$, $\hat{V}(s_3) = 0$ (terminal), $\gamma = 1$. (a) Compute $\delta_0, \delta_1, \delta_2$. (b) Compute $\hat{A}_0^{\text{GAE}}$ for $\lambda = 0$ (one-step TD) and $\lambda = 1$ (Monte Carlo). (c) For $\lambda = 0.95$, compute $\hat{A}_0^{\text{GAE}}$ and explain why this intermediate value balances bias and variance.
+
+---
+
+**Exercise 4.** The PPO clipped objective is $\mathcal{L}^{\text{CLIP}} = \mathbb{E}_t[\min(r_t(\theta)\hat{A}_t, \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)\hat{A}_t)]$ where $r_t(\theta) = \pi_\theta(a_t|s_t) / \pi_{\theta_{\text{old}}}(a_t|s_t)$. (a) If $\hat{A}_t > 0$ (the action was better than average), show that the objective encourages increasing $\pi_\theta(a_t|s_t)$ but clips the increase at $r_t = 1 + \epsilon$. (b) If $\hat{A}_t < 0$, show that the objective encourages decreasing $\pi_\theta(a_t|s_t)$ but clips at $r_t = 1 - \epsilon$. (c) For $\epsilon = 0.2$, the probability ratio is constrained to $[0.8, 1.2]$. Explain why this prevents catastrophic policy updates that are particularly dangerous in financial applications.
+
+---
+
+**Exercise 5.** A portfolio allocation agent uses a softmax policy: $a_i = e^{z_i(\theta, s)} / \sum_j e^{z_j(\theta, s)}$ for $d = 5$ assets, where $z(\theta, s)$ is a neural network output. (a) Verify that $\sum_i a_i = 1$ and $a_i > 0$, satisfying the simplex constraint for long-only portfolios. (b) Compute $\partial a_i / \partial z_j = a_i(\mathbf{1}_{i=j} - a_j)$ (the softmax Jacobian). (c) If the risk-sensitive objective is $J = \mathbb{E}[R_p] - \frac{\lambda}{2}\text{Var}[R_p]$ where $R_p = \sum_i a_i R_i$, describe how the policy gradient $\nabla_\theta J$ involves both the mean and variance of the portfolio return. (d) Discuss why the softmax parameterization prevents short-selling, and how you would modify it to allow short positions.
+
+---
+
+**Exercise 6.** The deterministic policy gradient theorem states $\nabla_\theta J = \mathbb{E}_s[\nabla_\theta \mu_\theta(s) \nabla_a Q^{\mu_\theta}(s,a)|_{a=\mu_\theta(s)}]$. (a) Explain why this requires a differentiable Q-function (the critic) but not a stochastic policy. (b) In DDPG for optimal execution, the actor outputs the trade size $a = \mu_\theta(s)$ and the critic estimates $Q_w(s,a)$. The actor is updated by backpropagating through the critic: $\nabla_\theta J \approx \nabla_\theta \mu_\theta \cdot \nabla_a Q_w$. Explain this chain rule. (c) Discuss the advantage of deterministic policies for financial applications: they produce the same action in the same state, which is important for reproducibility and risk management.
+
+---
+
+**Exercise 7.** Policy gradient methods converge to local optima, not global ones. (a) For a portfolio optimization problem with 10 assets, the policy landscape may have many local optima. Propose strategies to find good solutions: multiple random restarts, curriculum learning (start with simpler problems), warm-starting from known heuristics (e.g., initialize near the minimum-variance portfolio). (b) Discuss validation: how do you assess whether the learned policy is close to the global optimum? Compare with known analytical solutions when available (e.g., Merton portfolio for simple cases). (c) In practice, a policy that achieves 90% of the theoretically optimal Sharpe ratio may be acceptable if it is robust and stable. Argue that robustness (small policy changes $\to$ small performance changes) is more important than optimality in financial deployment.

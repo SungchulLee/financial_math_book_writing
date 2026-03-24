@@ -199,3 +199,29 @@ The Duffie-Filipovic-Schachermayer admissibility conditions are the algebraic co
 - Duffie, D., Filipovic, D., and Schachermayer, W. (2003). "Affine Processes and Applications in Finance." *Annals of Applied Probability*, 13(3), 984--1053.
 - Filipovic, D. (2009). *Term-Structure Models: A Graduate Course*. Springer, Chapter 10.
 - Keller-Ressel, M. (2011). "Moment Explosions and Long-Term Behavior of Affine Stochastic Volatility Models." *Mathematical Finance*, 21(1), 73--98.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Heston model on $D = \mathbb{R}_+ \times \mathbb{R}$ (variance $V_t$ and log-price $X_t$), verify all four admissibility conditions (A1)--(A4). Pay particular attention to condition (A2): identify which entries of the diffusion matrices $a_0$ and $\alpha_1$ must be zero for the variance component.
+
+---
+
+**Exercise 2.** Construct a two-dimensional affine process on $D = \mathbb{R}_+^2$ (two CIR components) that violates condition (A1) for the second component. Explain what goes wrong: why does the process leave the state space?
+
+---
+
+**Exercise 3.** Consider a proposed model on $\mathbb{R}_+$ with drift $b(x) = -\alpha$ (constant, $\alpha > 0$) and diffusion $a(x) = \xi^2 x$. Check condition (A1): is $b_0 = -\alpha \geq 0$ satisfied? What happens to the process when it reaches $x = 0$?
+
+---
+
+**Exercise 4.** The admissibility condition (A3) requires that jumps preserve the state space: $m_i$ is supported on $D - e_i$. For a one-dimensional CIR-type process on $\mathbb{R}_+$, what does this imply about the support of the jump size distribution? Can jumps be negative?
+
+---
+
+**Exercise 5.** For a three-factor model on $D = \mathbb{R}_+^2 \times \mathbb{R}$ with a correlated diffusion between the first CIR component and the Gaussian component, write down the diffusion matrix $a(x) = a_0 + \alpha_1 x_1 + \alpha_2 x_2$ and identify which cross-terms are permitted by condition (A2). Can the two CIR components have correlated Brownian motions?
+
+---
+
+**Exercise 6.** Prove that condition (A1) is necessary for state space invariance. That is, if $(b_0)_i < 0$ for some CIR-type component $i$, construct a scenario (starting state near the boundary $x_i = 0$) where the drift pushes $x_i$ negative, violating $x_i \geq 0$.

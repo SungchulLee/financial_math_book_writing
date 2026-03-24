@@ -336,3 +336,29 @@ require joint equity-credit modeling with consistent dynamics.
 - Huang, J.-Z., & Huang, M. (2012). How much of the corporate-treasury yield spread is due to credit risk? *Review of Asset Pricing Studies*, 2(2), 153–202.
 - Cremers, M., Driessen, J., & Maenhout, P. (2008). Explaining the level of credit spreads: Option-implied jump risk premia in a firm value model. *Review of Financial Studies*, 21(5), 2209–2242.
 - Bielecki, T. R., & Rutkowski, M. (2004). *Credit Risk: Modeling, Valuation and Hedging*. Springer, Chapter 3.
+
+---
+
+## Exercises
+
+**Exercise 1.** In the Merton model, equity is a call option on firm value: $E = V_0\,N(d_1) - De^{-rT}\,N(d_2)$. A firm has equity value $E_0 = 40$, debt face value $D = 60$, risk-free rate $r = 4\%$, maturity $T = 5$, and equity volatility $\sigma_E = 40\%$. Set up the system of two equations (equity pricing and volatility matching) needed to solve for $V_0$ and $\sigma_V$. Describe how you would solve this system numerically.
+
+---
+
+**Exercise 2.** Explain why, in the Merton framework, equity and credit are negatively correlated: when firm value $V_t$ decreases, equity value falls and credit spreads widen. Derive the sensitivity of the credit spread to changes in $V_t$ using the structural model.
+
+---
+
+**Exercise 3.** A firm's equity price drops by 30% in one month. Using the equity-credit connection from the Merton model, describe qualitatively how the firm's CDS spread, distance to default, and credit rating would be affected. Why are these changes correlated?
+
+---
+
+**Exercise 4.** The "capital structure arbitrage" strategy exploits mispricings between equity and credit markets. Describe a trade where a CDS is overpriced relative to the model-implied spread from equity data. What risks does this strategy face (e.g., model risk, convergence risk, liquidity risk)?
+
+---
+
+**Exercise 5.** Using the Merton model relationship $\sigma_E = \sigma_V \cdot (V_0/E_0) \cdot N(d_1)$, explain why equity volatility is always higher than asset volatility for leveraged firms. If $V_0 = 100$, $E_0 = 30$, $\sigma_V = 20\%$, and $N(d_1) = 0.85$, compute $\sigma_E$.
+
+---
+
+**Exercise 6.** Discuss the empirical puzzle that equity-implied credit spreads (from structural models) are often lower than market-observed CDS spreads for investment-grade firms. What factors (liquidity premium, jump risk, model misspecification) might explain this gap?

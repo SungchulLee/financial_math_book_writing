@@ -177,3 +177,41 @@ ATM call price: \$7.82.
 ## Summary
 
 The minimal entropy martingale measure selects the equivalent martingale measure closest to the physical measure $\mathbb{P}$ in relative entropy. For the Heston model with $\lambda_v = \lambda\sqrt{v_t}$, the entropy $H(\mathbb{Q}_\lambda|\mathbb{P})$ is a function of $\lambda$ through its effect on the expected variance path $\bar{v}_\lambda(t)$. The optimal $\lambda^*$ balances the cost of distorting the variance dynamics (penalized by $\lambda^2 v$) against the benefit of reducing the equity risk premium term $(\mu-r)^2/v$. In many parameter regimes, $\lambda^* \approx 0$, making the MEMM close to the physical measure. While theoretically elegant, the MEMM typically does not match market-implied option prices, which embed a positive variance risk premium. The MEMM is best viewed as a theoretical benchmark and a principled default in the absence of market data.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Relative entropy satisfies $H(\mathbb{Q}|\mathbb{P}) \geq 0$ with equality if and only if $\mathbb{Q} = \mathbb{P}$. Explain why $H(\mathbb{Q}|\mathbb{P}) = 0$ is impossible for any equivalent martingale measure when $\mu \neq r$. What does this say about the minimum achievable entropy in the Heston model?
+
+---
+
+**Exercise 2.**
+The entropy formula for the Heston model is $H(\mathbb{Q}_\lambda | \mathbb{P}) = \frac{1}{2}\int_0^T[(\mu - r)^2/\bar{v}_\lambda(t) + \lambda^2 \bar{v}_\lambda(t)]\,dt$. For the stationary case $v_0 = \theta^{\mathbb{P}}$, where $\bar{v}_\lambda(t) = \theta^{\mathbb{P}}$ for all $t$, show that the entropy simplifies to
+
+$$
+H(\mathbb{Q}_\lambda | \mathbb{P}) = \frac{T}{2}\left[\frac{(\mu - r)^2}{\theta^{\mathbb{P}}} + \lambda^2 \theta^{\mathbb{P}}\right]
+$$
+
+Minimize this over $\lambda$ to confirm that $\lambda^* = 0$ in the stationary case. Compute the entropy value at $\lambda^* = 0$ for the numerical example parameters.
+
+---
+
+**Exercise 3.**
+The market-calibrated measure uses $\lambda = 1.0$, giving $\kappa^{\mathbb{Q}} = 1.8$ and $\theta^{\mathbb{Q}} = 0.0333$. The MEMM uses $\lambda^* = 0$, giving $\kappa^{\mathbb{Q}^*} = 1.5$ and $\theta^{\mathbb{Q}^*} = 0.04$. Compute the ATM call price difference between these two measures and express it as a percentage of the MEMM price. Interpret this difference in terms of the implied volatility level.
+
+---
+
+**Exercise 4.**
+The entropy comparison table shows that $H(\mathbb{Q}_0|\mathbb{P}) = 0.045$ while $H(\mathbb{Q}_{1.0}|\mathbb{P}) = 0.082$. The market-calibrated measure is nearly twice as far from $\mathbb{P}$ as the MEMM. Explain economically why the market chooses a high-entropy measure: what risk aversion behavior does a positive $\lambda$ reflect that the MEMM ignores?
+
+---
+
+**Exercise 5.**
+Consider the non-stationary case $v_0 = 0.09 > \theta^{\mathbb{P}} = 0.04$ (elevated volatility). Show that $\bar{v}_\lambda(t)$ now depends on $\lambda$ through $\kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \xi\lambda$ and $\theta^{\mathbb{Q}}$. Argue qualitatively that $\lambda^* < 0$ in this regime: a negative variance risk premium lowers $\kappa^{\mathbb{Q}}$, slowing mean reversion and keeping $\bar{v}$ closer to the elevated physical level $v_0$, thereby reducing the entropy cost from the $(\mu - r)^2/\bar{v}$ term.
+
+---
+
+**Exercise 6.**
+The MEMM, minimal variance martingale measure, and Esscher transform all select different EMMs. For the Heston model with the numerical example parameters, the MEMM gives $\lambda^* \approx 0$, while market calibration gives $\lambda \approx 1.0$. Discuss whether any of the three theoretical criteria can reproduce the empirically observed positive variance risk premium. What additional economic ingredient (e.g., risk aversion, hedging demand) is needed to explain market prices?

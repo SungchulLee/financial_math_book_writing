@@ -1644,3 +1644,57 @@ flowchart TD
 
 !!! summary "Key Takeaway"
     Euler-Maruyama is the workhorse of SDE simulation: simple, robust, and applicable to any SDE. Milstein improves pathwise accuracy when the diffusion derivative is tractable. For GBM, the Log-Euler scheme preserves positivity and achieves strong order 1. Exact simulation eliminates time discretization error when closed-form transition distributions are available (GBM, OU, CIR). Multilevel Monte Carlo reduces the cost of computing expectations substantially compared to standard Monte Carlo. The total simulation error combines discretization error (controlled by step size) and Monte Carlo error (controlled by path count), and balancing these two sources is essential for efficient computation.
+
+---
+
+## Exercises
+
+**Exercise 1.** Implement the Euler–Maruyama scheme for the SDE $dX_t = \sin(X_t)\,dt + 0.5\,dW_t$ with $X_0 = 0$, $T = 5$, and $N = 1000$. Plot 20 sample paths. Does the process appear to have a stationary distribution?
+
+---
+
+**Exercise 2.** For GBM with $\mu = 0.05$, $\sigma = 0.3$, $S_0 = 100$, and $T = 1$:
+
+(a) Simulate $M = 10{,}000$ terminal values using Euler–Maruyama with $N = 10$, $N = 100$, and $N = 1000$ steps.
+
+(b) Simulate $M = 10{,}000$ terminal values using exact simulation.
+
+(c) Compare the sample mean and standard deviation across all four cases. How does the Euler–Maruyama bias change as $N$ increases?
+
+---
+
+**Exercise 3.** Derive the Milstein correction term for the CIR process $dr_t = a(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t$. That is, compute $\sigma(r)\,\sigma'(r)$ where $\sigma(r) = \sigma\sqrt{r}$, and write down the full Milstein update step.
+
+---
+
+**Exercise 4.** Implement exact simulation for the OU process with parameters $\kappa = 1$, $\theta = 0$, $\sigma = 1$, and $X_0 = 5$.
+
+(a) Simulate $10{,}000$ paths to time $T = 10$ and plot a histogram of $X_T$.
+
+(b) Overlay the theoretical stationary density $\mathcal{N}(\theta, \sigma^2/(2\kappa))$ on the histogram.
+
+(c) Compute the sample mean and variance and compare with the theoretical values.
+
+---
+
+**Exercise 5.** Implement antithetic variates for estimating $\mathbb{E}[e^{-rT}\max(S_T - K, 0)]$ (a European call option price) under GBM with $r = 0.05$, $\sigma = 0.2$, $S_0 = 100$, $K = 100$, and $T = 1$.
+
+(a) Estimate the price using $M = 10{,}000$ standard Monte Carlo paths.
+
+(b) Estimate the price using $M/2 = 5{,}000$ antithetic pairs (same total number of paths).
+
+(c) Compare the standard errors of the two estimators.
+
+---
+
+**Exercise 6.** Explain why the Euler–Maruyama scheme applied directly to GBM can produce negative stock prices. For what combination of $\mu$, $\sigma$, and $\Delta t$ is this most likely to occur? Show that the Log-Euler scheme avoids this problem by construction.
+
+---
+
+**Exercise 7.** Consider the stability of the Euler–Maruyama scheme for the OU process $dX_t = a(\theta - X_t)\,dt + \sigma\,dW_t$.
+
+(a) Simulate with $a = 50$, $\theta = 1$, $\sigma = 0.1$, $X_0 = 1$, $T = 2$, and $N = 100$. Does the scheme remain stable? What is $a\,\Delta t$?
+
+(b) Increase $N$ until the scheme stabilizes. What is the critical value of $a\,\Delta t$ for stability?
+
+(c) Compare with exact OU simulation using the same parameters. Why is exact simulation immune to this stability issue?

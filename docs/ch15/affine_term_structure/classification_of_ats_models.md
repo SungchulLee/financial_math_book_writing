@@ -222,3 +222,39 @@ The Dai-Singleton $A_m(d)$ classification organizes the entire family of $d$-dim
 - Duffie, D. and Kan, R. (1996). "A Yield-Factor Model of Interest Rates." *Mathematical Finance*, 6(4), 379--406.
 - Collin-Dufresne, P., Goldstein, R., and Jones, C. (2008). "Identification of Maximal Affine Term Structure Models." *Journal of Finance*, 63(2), 743--795.
 - Filipovic, D. (2009). *Term-Structure Models: A Graduate Course*. Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** Classify each of the following models in the $A_m(d)$ framework:
+(a) A three-factor model where all three state variables have constant diffusion coefficients.
+(b) A two-factor model where both state variables have diffusion proportional to $\sqrt{X_t^{(i)}}$.
+(c) A three-factor model with one CIR-type component and two Gaussian components.
+
+---
+
+**Exercise 2.** For the maximal $A_2(3)$ model, count the total number of parameters in the matrices $K_0$, $K_1$, $H_0$, $H_1$, $H_2$, $\rho_0$, $\rho_1$ (accounting for symmetry of the $H$ matrices and the admissibility constraints). Then compute the number of free parameters in the essential model after removing the $d^2 + d = 12$ normalization degrees of freedom.
+
+---
+
+**Exercise 3.** State the admissibility conditions on $K_0$ and $K_1$ for the canonical $A_1(2)$ model with state space $\mathbb{R}_+ \times \mathbb{R}$. In particular, explain why $(K_0)_1 \geq 0$ is required but there is no sign restriction on $(K_0)_2$.
+
+---
+
+**Exercise 4.** Consider an $A_0(2)$ model (two-factor Vasicek). The covariance matrix $\Sigma \Sigma^\top = H_0$ is constant. Show that the Riccati ODE for $B(\tau) \in \mathbb{R}^2$ is linear, and solve it explicitly when $K_1 = \operatorname{diag}(-\kappa_1, -\kappa_2)$ with $\kappa_1 \neq \kappa_2$.
+
+---
+
+**Exercise 5.** Explain why the Heston stochastic volatility model, when formulated as a term structure model on the state $(r_t, v_t)$, belongs to the class $A_1(2)$ and not $A_2(2)$. Which of the two state variables enters the conditional covariance with a nonzero coefficient?
+
+---
+
+**Exercise 6.** Let $X_t$ be an $A_1(1)$ process (CIR) and define $\tilde{X}_t = cX_t + d$ for constants $c > 0$ and $d \in \mathbb{R}$. Show that $\tilde{X}_t$ is still an affine process by computing its drift and diffusion. Is $\tilde{X}_t$ still in the $A_1(1)$ class? What constraints on $c$ and $d$ preserve the state space $\mathbb{R}_+$?
+
+---
+
+**Exercise 7.** A practitioner argues that an $A_3(3)$ model is always preferable to an $A_1(3)$ model because it has more stochastic volatility factors. Critique this argument by discussing:
+(a) the admissibility constraints on the correlation structure in $A_3(3)$,
+(b) the econometric challenges of estimating a larger parameter space, and
+(c) scenarios where the $A_1(3)$ model might actually provide a better fit.

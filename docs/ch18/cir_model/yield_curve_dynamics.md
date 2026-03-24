@@ -198,3 +198,33 @@ With the same parameters but $r_0 = 8\%$, the curve starts at 8% and decreases t
 ## Summary
 
 The CIR yield curve is an affine function of the current short rate, with coefficients $a(\tau)$ and $b(\tau)$ derived from the closed-form bond price formula. The yield starts at $r_t$ for short maturities and converges to the long-run level $R_\infty = 2\kappa\theta/(\gamma + \kappa)$, which is always positive and independent of $r_t$. The curve can be normal, inverted, or humped depending on the position of $r_t$ relative to $R_\infty$ and the magnitude of the volatility-induced convexity effect. The mean-reversion speed $\kappa$ controls convergence rate, $\theta$ controls the level, and $\sigma$ introduces a convexity depression that lowers long yields. These properties make the CIR yield curve flexible enough to capture the main empirical features of term structures while maintaining the constraint of non-negative rates.
+
+---
+
+## Exercises
+
+**Exercise 1.** For CIR parameters $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.10$, compute the long-run yield $R_\infty = 2\kappa\theta/(\gamma + \kappa)$. If $r_0 = 0.03$, is the yield curve normal or inverted? If $r_0 = 0.08$?
+
+---
+
+**Exercise 2.** Verify the short-maturity limit by expanding $R(t,T) = a(\tau) + b(\tau)r_t$ for small $\tau$. Use $B(\tau) \approx \tau - \frac{1}{2}\kappa\tau^2$ and $\ln A(\tau) \approx -\frac{1}{2}\kappa\theta\tau^2$ (to leading order). Show that $R(t,T) \to r_t$ as $\tau \to 0$.
+
+---
+
+**Exercise 3.** The initial slope of the yield curve is $\left.\frac{\partial R}{\partial \tau}\right|_{\tau=0} = \frac{1}{2}\left[\kappa(\theta - r_t) - \frac{1}{2}\sigma^2 r_t\right]/r_t$. For $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.10$, find the value of $r_t$ at which the initial slope is zero. For $r_t$ above this value, the yield curve initially decreases. Is this the same as $R_\infty$?
+
+---
+
+**Exercise 4.** Compute the CIR yield curve $R(0, \tau)$ for $\tau \in \{0.5, 1, 2, 5, 10, 20, 30\}$ with $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.10$, and $r_0 = 0.04$. Then recompute with $\sigma = 0.25$ (all other parameters the same). How does the higher volatility affect the long-run yield and the overall shape of the curve?
+
+---
+
+**Exercise 5.** Show that the CIR long-run yield $R_\infty = 2\kappa\theta/(\gamma + \kappa)$ is always less than $\theta$. (Hint: show $\gamma > \kappa$ and therefore $\gamma + \kappa > 2\kappa$, so $2\kappa\theta/(\gamma + \kappa) < \theta$.) Interpret this inequality: why is the long-run yield always below the long-run mean of the short rate?
+
+---
+
+**Exercise 6.** The yield $R(t,T) = a(\tau) + b(\tau)r_t$ is affine in $r_t$. Compute the duration $\partial P/\partial r_t$ for a CIR zero-coupon bond and express it in terms of $B(\tau)$ and $P(t,T)$. If $B(10) = 1.909$ and $P(0,10) = 0.839$, what is the rate sensitivity (DV01) per basis point?
+
+---
+
+**Exercise 7.** A humped yield curve can arise when $r_t$ is moderately above $R_\infty$. For $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.15$, compute $R_\infty$. Then find a value of $r_0$ such that the initial slope is positive but $r_0 > R_\infty$, which would indicate a humped curve. Verify by computing the yield at several maturities and identifying the peak.

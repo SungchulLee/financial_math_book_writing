@@ -136,3 +136,37 @@ plt.show()
 - Grid convergence analysis validates both **accuracy** and **implementation correctness**.
 - Finite difference methods like **Crank-Nicolson** exhibit second-order convergence in both time and space.
 - Always pair convergence studies with **visual plots** and **error metrics** to verify performance.
+
+---
+
+## Exercises
+
+**Exercise 1.** A Crank-Nicolson solver produces the following maximum errors for a European call as the spatial grid is refined:
+
+| $M$ | Max Error |
+|-----|-----------|
+| 50  | 0.0400    |
+| 100 | 0.0100    |
+| 200 | 0.0025    |
+
+Compute the error ratios and confirm second-order convergence. Estimate the error for $M = 400$.
+
+---
+
+**Exercise 2.** Explain the difference between the maximum absolute error $\max_i |V_{\text{FD}}(S_i) - V_{\text{BS}}(S_i)|$ and the root mean square error $\sqrt{\frac{1}{M}\sum_i (V_{\text{FD}}(S_i) - V_{\text{BS}}(S_i))^2}$. Under what circumstances might the two give different impressions of the solution quality?
+
+---
+
+**Exercise 3.** A convergence study shows the following behavior on a log-log plot of error vs $\Delta S$: the slope is approximately 2 for $S$ far from the strike, but drops to approximately 1 near $S = K$. Explain this observation in terms of the non-smoothness of the payoff $(S - K)^+$ and the effect on the local truncation error.
+
+---
+
+**Exercise 4.** Using Richardson extrapolation with two Crank-Nicolson solutions at $M = 100$ (price $V_1 = 10.430$) and $M = 200$ (price $V_2 = 10.445$), compute the extrapolated estimate $V_{\text{ext}} = (4V_2 - V_1)/3$. If the exact price is $V^* = 10.4506$, what is the extrapolation error and how does it compare to $|V_2 - V^*|$?
+
+---
+
+**Exercise 5.** A solver produces identical results at $M = 200$ and $M = 400$ to 6 decimal places. What are two possible explanations for this plateau in the convergence study? How would you distinguish between "the solver has reached machine precision" and "the solver has a bug that produces an incorrect but converged answer"?
+
+---
+
+**Exercise 6.** Design a convergence study that independently tests temporal and spatial convergence. Describe how you would fix $N$ (time steps) while varying $M$ (spatial points) to isolate the spatial error, and vice versa. Why is it important to ensure one error component is much smaller than the other in such a study?

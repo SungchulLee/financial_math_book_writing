@@ -494,3 +494,45 @@ European option prices under Black-Scholes satisfy rigorous mathematical propert
 4. **Greeks relationships**: Properties constrain sensitivities
 
 These properties are more fundamental than the specific Black-Scholes formula—they follow from no-arbitrage alone and apply to any option pricing model.
+
+---
+
+## Exercises
+
+**Exercise 1.** A European call is quoted at $C = 12$ with $S = 100$, $K = 95$, $r = 4\%$, and $T = 0.5$ years. Verify that the call price satisfies both the upper bound $C \leq S$ and the lower bound $C \geq \max(S - Ke^{-rT}, 0)$. What is the time value of the option?
+
+---
+
+**Exercise 2.** Prove the butterfly spread inequality: for strikes $K_1 < K_2 < K_3$ with $K_2 = \frac{K_1 + K_3}{2}$, show that
+
+$$
+C(K_2) \leq \frac{C(K_1) + C(K_3)}{2}
+$$
+
+by constructing a butterfly spread portfolio and arguing that its payoff is non-negative in all states.
+
+---
+
+**Exercise 3.** Compute the delta $\Delta = \mathcal{N}(d_1)$, gamma $\Gamma = \frac{\mathcal{N}'(d_1)}{S\sigma\sqrt{T}}$, and vega $\nu = S\sqrt{T}\,\mathcal{N}'(d_1)$ for a call with $S = 50$, $K = 50$, $r = 3\%$, $\sigma = 20\%$, $T = 1$. Verify that $\Delta \in (0, 1)$, $\Gamma > 0$, and $\nu > 0$.
+
+---
+
+**Exercise 4.** Show that gamma is the same for a European call and put with the same strike and maturity. Start from put-call parity $P = C - S + Ke^{-rT}$ and differentiate twice with respect to $S$.
+
+---
+
+**Exercise 5.** A market maker observes the following call prices for three strikes with the same maturity: $C(90) = 15.20$, $C(100) = 9.50$, $C(110) = 5.80$. Check whether the convexity condition $C(100) \leq \frac{C(90) + C(110)}{2}$ holds. If violated, describe the arbitrage strategy.
+
+---
+
+**Exercise 6.** Explain why an American call on a non-dividend-paying stock is never exercised early. Use the lower bound $C \geq S - Ke^{-r(T-t)} > S - K$ (for $r > 0$ and $T - t > 0$) to argue that the option is always worth more alive than dead.
+
+---
+
+**Exercise 7.** The Black-Scholes theta for a call is
+
+$$
+\Theta = -\frac{S\mathcal{N}'(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\mathcal{N}(d_2)
+$$
+
+Show that both terms are negative, so $\Theta < 0$ in general. Under what limiting conditions (deep ITM, near expiration) might the interest rate term dominate the volatility term? Can theta ever be positive for a European call on a non-dividend-paying stock?

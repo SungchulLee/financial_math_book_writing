@@ -203,3 +203,33 @@ The following logic summarizes the model selection process:
 ## Summary
 
 Model selection in short rate modeling is driven by the specific application rather than by inherent model superiority. Hull-White is the default for vanilla derivative pricing due to its exact curve fit and analytical tractability. CIR is preferred when rate positivity and level-dependent volatility are essential. Vasicek serves as the pedagogical foundation and is adequate for risk management scenario generation. Black-Karasinski fills the niche where log-normal dynamics and smile calibration outweigh the cost of numerical pricing. The decision framework above provides a structured approach, but practitioners should validate any model choice against the specific products, market conditions, and computational constraints of their application.
+
+---
+
+## Exercises
+
+**Exercise 1.** A bank needs to price a portfolio of European caps on 3-month SOFR for maturities 1Y through 10Y. The portfolio is ATM and must be priced within 1 second for real-time risk. Using the decision flowchart, justify why Hull-White is the recommended model. What would change if the caps were deep OTM?
+
+---
+
+**Exercise 2.** An insurance company models long-term real interest rates for liability valuation. Rates must be positive (negative real rates are considered unrealistic for this application). The company needs to simulate rate paths over 30-year horizons. Apply the decision framework to recommend a model. Which dimension of the framework is most important here?
+
+---
+
+**Exercise 3.** A quant researcher is building a prototype to study the effect of mean reversion on bond option prices. She needs closed-form formulas for rapid experimentation. Why is Vasicek the best choice despite its inability to fit the market curve? Under what conditions would she need to switch to a more complex model?
+
+---
+
+**Exercise 4.** Consider Pitfall 2 (negative rates in Hull-White). For Hull-White parameters $a = 0.05$, $\sigma = 0.01$, and current rate $r_0 = 0.5\%$, estimate the probability $\mathbb{P}(r_1 < 0)$ using the Gaussian transition density. Is this probability material? What remedy would you suggest?
+
+---
+
+**Exercise 5.** A desk prices callable range accrual notes in JPY (where rates are near zero) and needs to calibrate to the cap volatility smile. Apply the flowchart: is exact curve fit needed? Are negative rates acceptable? Is the smile important? What model do you recommend, and what computational method would be used?
+
+---
+
+**Exercise 6.** Pitfall 3 warns about over-parameterizing $\sigma(t)$ in Hull-White. Suppose calibrating to 10 cap maturities gives $\sigma(t)$ values $\{2.5, 1.8, 1.2, 0.9, 0.7, 0.6, 0.55, 0.5, 0.48, 0.45\}$ (in %). The next day, with slightly different market data, the values shift to $\{2.3, 2.0, 1.0, 0.85, 0.75, 0.58, 0.52, 0.51, 0.49, 0.44\}$. Compute the day-over-day percentage change for each bucket. Which buckets are most unstable, and how does this affect forward-starting swaption prices?
+
+---
+
+**Exercise 7.** Pitfall 4 distinguishes physical and risk-neutral calibration. A risk manager estimates CIR parameters from 5 years of daily rate data and obtains $\kappa^{\mathbb{P}} = 0.15$, $\theta^{\mathbb{P}} = 0.04$. A trader calibrates to the swaption market and obtains $\kappa^{\mathbb{Q}} = 0.50$, $\theta^{\mathbb{Q}} = 0.06$. Compute the implied market price of risk $\lambda$. Why would using the physical parameters for derivative pricing lead to systematic mispricing?

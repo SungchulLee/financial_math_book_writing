@@ -219,3 +219,31 @@ For multi-factor models, alternative approaches include Monte Carlo simulation w
 The Vasicek model delivers closed-form European bond option prices through two key ingredients. First, the Gaussian distribution of $r_T$ under the $T$-forward measure makes ZCB forward prices log-normal, producing Black-Scholes-type call and put formulas with bond option volatility $\sigma_P = B(S-T)\,\sigma\sqrt{(1-e^{-2\kappa\tau})/(2\kappa)}$. Second, Jamshidian's trick exploits the monotonicity of bond prices in the short rate to decompose coupon bond options into portfolios of ZCB options, each priced by the same formula with individual strikes determined by a single critical rate $r^*$.
 
 ---
+
+## Exercises
+
+**Exercise 1.** For Vasicek parameters $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.015$, compute the bond option volatility $\sigma_P$ for a European call with expiry $T = 3$ on a zero-coupon bond maturing at $S = 5$. Compute $B(S-T) = B(2)$ and the variance factor $(1 - e^{-2\kappa \cdot 3})/(2\kappa)$.
+
+---
+
+**Exercise 2.** Using the numerical example ($r_0 = 0.04$, $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.015$), verify that the critical rate $r^* \approx 0.0453$ satisfies $4P(3,4;r^*) + 104P(3,5;r^*) = 100$. Compute each bond price at $r^*$ using the Vasicek formula.
+
+---
+
+**Exercise 3.** Explain why Jamshidian's decomposition requires monotonicity of bond prices in $r$. Show that $\partial P(T,S)/\partial r_T = -B(S-T)P(T,S) < 0$ in the Vasicek model, confirming monotonicity.
+
+---
+
+**Exercise 4.** Derive put-call parity for zero-coupon bond options: $C(t) - P_{\text{put}}(t) = P(t,S) - KP(t,T)$. Use this to price a European put on a 5-year ZCB with expiry $T = 3$ and strike $K = 0.92$ given the call price.
+
+---
+
+**Exercise 5.** In Jamshidian's decomposition, the individual strikes $K_i = P(T, S_i; r^*)$ are all evaluated at the same critical rate $r^*$. Explain why the swaption is in the money if and only if $r_T < r^*$, and why all bond options in the decomposition share the same exercise region.
+
+---
+
+**Exercise 6.** A 2-year European call on a 10-year zero-coupon bond has strike $K = 0.70$. Vasicek parameters: $\kappa = 0.2$, $\theta = 0.06$, $\sigma = 0.02$, $r_0 = 0.05$. Compute $\sigma_P$, $d_1$, $d_2$, and the call price using the Vasicek ZCB option formula.
+
+---
+
+**Exercise 7.** Explain why Jamshidian's trick fails for multi-factor short-rate models. Specifically, in a two-factor model $r_t = x_t + y_t$, show that $P(T, S)$ depends on both $x_T$ and $y_T$, and the exercise region $\{P(T,S) > K\}$ is a half-plane in $(x_T, y_T)$ rather than a half-line in $r_T$. Why does this prevent decomposition into a portfolio of univariate options?

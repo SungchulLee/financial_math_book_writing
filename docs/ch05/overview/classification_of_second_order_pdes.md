@@ -223,3 +223,52 @@ $$
 - [Boundary Value Problems](boundary_value_problems.md) -- appropriate conditions for each PDE type
 - [The SDE-PDE Bridge](sde_pde_bridge.md) -- how diffusion generators produce parabolic PDEs
 - [Maximum Principle](../heat_equation/maximum_principle.md) -- the key property of parabolic equations
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Classify each of the following PDEs as elliptic, parabolic, or hyperbolic by computing the discriminant $\Delta = B^2 - AC$:
+
+(a) $u_{xx} + 2u_{xy} + u_{yy} = 0$
+
+(b) $u_{xx} - 4u_{yy} = 0$
+
+(c) $3u_{xx} + 2u_{xy} + u_{yy} = 0$
+
+---
+
+**Exercise 2.**
+The Black-Scholes PDE is $\partial_t V + rS\partial_S V + \frac{1}{2}\sigma^2 S^2 \partial_{SS} V - rV = 0$. Identify the highest-order coefficients $A$, $B$, $C$ (treating $(t, S)$ as the two independent variables) and verify that the discriminant gives $\Delta = 0$, confirming that the equation is parabolic.
+
+---
+
+**Exercise 3.**
+The heat equation has the smoothing property: solutions become $C^\infty$ for $t > 0$ even if the initial data is discontinuous. The wave equation does not have this property. Explain this difference in terms of the PDE classification and the nature of characteristic curves for parabolic versus hyperbolic equations.
+
+---
+
+**Exercise 4.**
+For the Heston model, the diffusion matrix is
+
+$$
+a = \begin{pmatrix} vS^2 & \rho\xi v S \\ \rho\xi v S & \xi^2 v \end{pmatrix}
+$$
+
+Compute the determinant and eigenvalues of $a$. Under what conditions on $v$, $S$, $\rho$, and $\xi$ is the pricing PDE non-degenerate parabolic? What happens at $v = 0$ or $S = 0$?
+
+---
+
+**Exercise 5.**
+Explain why the Black-Scholes PDE degenerates at $S = 0$ (the coefficient of $\partial_{SS}$ vanishes). What does this degeneracy imply about the nature of the boundary at $S = 0$ for geometric Brownian motion? Why is no boundary condition required there, unlike at a finite barrier?
+
+---
+
+**Exercise 6.**
+For an Ito diffusion $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$, the generator $\mathcal{L} = \mu\partial_x + \frac{1}{2}\sigma^2\partial_{xx}$ is a second-order operator with no mixed $\partial_{tx}$ term. Explain why this structure always produces a parabolic PDE $\partial_t u + \mathcal{L}u = 0$, regardless of the choice of $\mu$ and $\sigma$ (provided $\sigma \neq 0$).
+
+---
+
+**Exercise 7.**
+The call payoff $g(S) = (S - K)^+$ has a kink (discontinuous first derivative) at $S = K$. Yet for any $t < T$, the Black-Scholes price $V(t, S)$ is a smooth function of $S$. This is the parabolic smoothing property. Give an intuitive explanation using the probabilistic interpretation: $V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ \mid S_t = S]$ is an average over many possible terminal values, which smooths out the kink.

@@ -179,3 +179,39 @@ The standard deviation of $\ln(r_t/r_s)$ is $\sigma\sqrt{(1-e^{-2a(t-s)})/(2a)}$
 ## Summary
 
 Hull-White and Black-Karasinski represent the two poles of one-factor short-rate modeling: analytical tractability with normal rates (Hull-White) versus numerical pricing with positive log-normal rates (Black-Karasinski). Both fit the initial term structure exactly through time-dependent drifts, but Hull-White extracts its drift analytically while BK requires iterative tree calibration. The choice between them depends on the application: Hull-White dominates for speed-sensitive vanilla pricing, while BK is preferred when rate positivity and log-normal volatility structure are essential. In practice, many desks maintain implementations of both models and select based on the product and market environment.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the Hull-White SDE $dr_t = [\theta^{HW}(t) - ar_t]\,dt + \sigma\,dW_t$ and the Black-Karasinski SDE $d(\ln r_t) = [\theta^{BK}(t) - a\ln r_t]\,dt + \sigma\,dW_t$, apply Ito's lemma to derive the SDE for $r_t$ under the Black-Karasinski model. Show explicitly that the instantaneous volatility of $r_t$ is $\sigma r_t$ (proportional to the rate level), contrasting with the constant volatility $\sigma$ in Hull-White.
+
+---
+
+**Exercise 2.** In the Hull-White model, the conditional distribution of $r_t$ given $r_s$ is Gaussian. Derive an expression for the probability $\mathbb{P}(r_t < 0 \mid r_s)$ in terms of the model parameters $a$, $\sigma$, $\theta^{HW}$, and the current rate $r_s$. For parameter values $a = 0.05$, $\sigma = 0.01$, $r_s = 0.5\%$, and a 10-year horizon, compute this probability numerically. Explain why this issue does not arise in the Black-Karasinski model.
+
+---
+
+**Exercise 3.** The Hull-White drift function is given analytically by
+
+$$
+\theta^{HW}(t) = f_t(0,t) + a\,f(0,t) + \frac{\sigma^2}{2a}(1 - e^{-2at})
+$$
+
+Suppose $a = 0.03$, $\sigma = 0.008$, and the market instantaneous forward rate is $f(0,t) = 0.02 + 0.005t$. Compute $\theta^{HW}(5)$. Explain why no analogous closed-form expression exists for $\theta^{BK}(t)$.
+
+---
+
+**Exercise 4.** A desk needs to price 500 European swaptions for a CVA calculation, and each pricing is repeated under 1,000 Monte Carlo scenarios. Compare the computational cost of using Hull-White versus Black-Karasinski for this task, assuming that a single Hull-White swaption takes $10^{-4}$ seconds (analytical Jamshidian) and a single BK swaption takes $10^{-1}$ seconds (trinomial tree). What is the total time for each model?
+
+---
+
+**Exercise 5.** Explain why the Hull-White model produces a flat implied volatility smile in normal (basis-point) terms while the Black-Karasinski model produces a flat smile in log-normal (percentage) terms. If the current short rate is $r_0 = 5\%$ and the BK model implies a log-normal volatility of $20\%$ per annum, what is the approximate corresponding normal (absolute) volatility in basis points?
+
+---
+
+**Exercise 6.** During the period 2014--2022, several European government bond yields were negative. Discuss how a risk management system using Black-Karasinski would need to be modified to handle this environment. What is the "shifted BK" approach, and what parameter does it introduce? Compare this to the Hull-White model's natural handling of negative rates.
+
+---
+
+**Exercise 7.** A portfolio contains both vanilla caps (valued daily for P&L) and Bermudan swaptions (valued weekly for risk reporting). Using the strengths-and-weaknesses summary in this section, argue for a modeling strategy that uses both Hull-White and Black-Karasinski. What challenges arise from using two different models for related products, particularly regarding hedging consistency?

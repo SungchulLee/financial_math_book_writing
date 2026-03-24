@@ -289,3 +289,40 @@ $$
 - [Spectral Decomposition](spectral_decomposition.md) -- eigenfunction expansion of the Green's function
 - [Free vs Bounded Domains](free_vs_bounded_domains.md) -- how boundaries modify the Green's function
 - [Kolmogorov Forward Equation](../kolmogorov_equations/kolmogorov_forward.md) -- the PDE that the Green's function satisfies
+
+---
+
+## Exercises
+
+**Exercise 1.**
+For the heat equation $\partial_t u = \frac{1}{2}\partial_{xx}u$ on $\mathbb{R}$, verify that the Green's function $G(t,x;0,y) = (2\pi t)^{-1/2}\exp(-(x-y)^2/(2t))$ satisfies the delta function initial condition: show that $\lim_{t \to 0^+} \int_{-\infty}^{\infty} G(t,x;0,y)f(y)\,dy = f(x)$ for continuous $f$.
+
+---
+
+**Exercise 2.**
+The superposition principle states $u(t,x) = \int G(t,x;0,y)\,f(y)\,dy$. For $f(y) = e^{-y^2}$ and the free-space heat kernel, evaluate this integral explicitly using the convolution of Gaussians.
+
+---
+
+**Exercise 3.**
+Explain why the Green's function $G(t,x;s,y)$ for a parabolic PDE satisfies the **semigroup property** $G(t,x;s,y) = \int G(t,x;r,z)\,G(r,z;s,y)\,dz$ for $s < r < t$. What is the probabilistic interpretation via the Chapman-Kolmogorov equation?
+
+---
+
+**Exercise 4.**
+For the operator $\mathcal{L} = \mu(x)\partial_x + \frac{1}{2}\sigma^2(x)\partial_{xx}$, the Green's function satisfies $\partial_t G = \mathcal{L}_x G$ as a function of $(t,x)$ and $\partial_s G = -\mathcal{L}_y^* G$ as a function of $(s,y)$. Identify the adjoint operator $\mathcal{L}^*$ and explain why it involves the forward (Fokker-Planck) equation.
+
+---
+
+**Exercise 5.**
+For geometric Brownian motion $dS_t = rS_t\,dt + \sigma S_t\,dW_t$, the log-transformation $X_t = \ln S_t$ gives $dX_t = (r - \sigma^2/2)\,dt + \sigma\,dW_t$. Write the Green's function for $X_t$ and explain how it is related to the lognormal transition density of $S_t$.
+
+---
+
+**Exercise 6.**
+Explain the role of Green's functions in option pricing: the price of a European derivative with payoff $g(S_T)$ can be written as $V(t,S) = e^{-r(T-t)}\int G(T,y;t,\ln S)\,g(e^y)\,dy$. What is the financial interpretation of the Green's function as a "state price density"?
+
+---
+
+**Exercise 7.**
+Consider the generator $\mathcal{L} = \frac{1}{2}\partial_{xx} - \frac{1}{2}\partial_x$ (Brownian motion with drift $-1/2$). Compute the Green's function by completing the square in the exponent, starting from the Gaussian kernel and incorporating the drift shift.

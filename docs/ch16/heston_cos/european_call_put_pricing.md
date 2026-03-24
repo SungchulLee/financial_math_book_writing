@@ -271,3 +271,40 @@ The COS method is typically 10--50 times faster than adaptive Gil-Pelaez quadrat
 ## Summary
 
 The COS method prices European calls and puts under the Heston model by separating the computation into density coefficients $A_k$ (from the characteristic function) and payoff coefficients $V_k$ (from the chi and psi auxiliary functions). The call coefficients are $V_k^{\text{call}} = \chi_k(\log K, b) - K\psi_k(\log K, b)$, and the put coefficients are $V_k^{\text{put}} = K\psi_k(a, \log K) - \chi_k(a, \log K)$. The truncation range $[a, b]$ is selected using cumulants of the log-return distribution. With $N = 64$ to 128 terms, the method achieves six to nine significant digits of accuracy, making it one of the fastest and most accurate pricing methods for vanilla European options under stochastic volatility.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The density coefficients are $A_k = \frac{2}{b-a}\,\text{Re}[\varphi(u_k)e^{-iu_k a}]$ with $u_k = k\pi/(b-a)$. Show that the COS price formula $C = e^{-r\tau}\sum_{k=0}^{N-1}{}' A_k V_k$ can be written as a single real-valued summation involving $\text{Re}[\varphi(u_k)e^{-iu_k a} \cdot V_k]$. Why does this formulation avoid complex arithmetic in the inner loop?
+
+---
+
+**Exercise 2.**
+For $k = 0$, the psi function reduces to $\psi_0(c, d) = d - c$. Using the chi function formula, compute $\chi_0(\ell, b) = \frac{1}{1+0}[e^b - e^\ell] = e^b - e^\ell$. Verify that the $k = 0$ call payoff coefficient is $V_0^{\text{call}} = e^b - e^\ell - K(b - \ell)$. For the numerical example ($S_0 = 100$, $K = 100$, $a = 2.6352$, $b = 6.6352$), compute this value explicitly.
+
+---
+
+**Exercise 3.**
+The truncation bounds use $\bar{v} = \theta + (v_0 - \theta)(1 - e^{-\kappa\tau})/(\kappa\tau)$ as the average expected variance. For $v_0 = 0.04$, $\kappa = 1.5$, $\theta = 0.04$, $\tau = 1$, show that $\bar{v} = \theta = 0.04$ (since $v_0 = \theta$). Now consider $v_0 = 0.09$ (elevated vol) and recompute $\bar{v}$, $a$, and $b$. How much wider is the truncation interval compared to the $v_0 = 0.04$ case?
+
+---
+
+**Exercise 4.**
+Verify put-call parity at the COS coefficient level: show that $V_k^{\text{call}} + V_k^{\text{put}} = \chi_k(a, b) - K\psi_k(a, b)$, which are the payoff coefficients for the forward contract $v(y) = e^y - K$. Using the numerical example prices ($N = 128$, $K = 100$), check that the COS call and put prices satisfy $C - P = S_0 e^{-q\tau} - K e^{-r\tau}$ to at least 8 decimal places.
+
+---
+
+**Exercise 5.**
+The COS method evaluates the characteristic function at $N$ equally spaced frequency points $u_k = k\pi/(b-a)$, while the Gil-Pelaez formula evaluates it on a continuous grid determined by adaptive quadrature. Explain why the COS method needs far fewer CF evaluations (64--128 vs 500--1000) to achieve comparable accuracy. How does the exponential decay of $|A_k|$ relate to the number of terms needed?
+
+---
+
+**Exercise 6.**
+For deep OTM options (e.g., $K = 150$ with $S_0 = 100$), the option value comes entirely from the right tail of the density. Explain why setting $L$ too small (e.g., $L = 5$) causes a systematic underpricing bias that does not improve as $N$ increases. Compute the truncation bounds for $L = 5$ and $L = 10$ with the standard parameters, and determine whether $\log K = \log 150 \approx 5.01$ falls inside $[a, b]$ in each case.
+
+---
+
+**Exercise 7.**
+The COS method shares the density coefficients $A_k$ across all strikes but recomputes the payoff coefficients $V_k$ for each strike. If pricing 50 strikes with $N = 128$, estimate the total number of CF evaluations and compare with the Gil-Pelaez approach (assume 500 CF evaluations per strike). At what number of strikes does the FFT method (which prices all strikes simultaneously with $2^{12}$ CF evaluations) become more efficient than COS?

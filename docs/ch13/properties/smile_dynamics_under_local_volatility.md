@@ -238,3 +238,33 @@ The smile dynamics under local volatility have a distinctive and empirically tes
 4. **Perfect spot-vol correlation**: Local volatility implies $\rho_{S,\sigma} = -1$, overstating the empirical correlation.
 5. **Hedging implications**: Using the local volatility delta when the true dynamics are closer to sticky delta produces systematic P&L leakage proportional to vega times the dynamics mismatch.
 6. **The backbone**: The ATM vol-vs-spot function under local volatility is steeper than empirically observed, reflecting the model's overstatement of the spot-vol link.
+
+---
+
+## Exercises
+
+**Exercise 1.** Define sticky strike and sticky delta smile dynamics. For each regime, state what happens to the implied volatility of a fixed-strike call option when the spot price increases by \$1. Which regime does the local volatility model produce, and why?
+
+---
+
+**Exercise 2.** Under sticky strike dynamics, the ATM implied volatility changes by approximately $2(\partial_K \sigma_{\text{imp}}) \cdot \Delta S$ when spot moves by $\Delta S$. For an equity index with implied volatility skew $\partial_K \sigma_{\text{imp}} = -0.0008$ per unit of $K$ and a spot move of $\Delta S = +5$, compute the change in ATM implied volatility. Is this increase or decrease consistent with the empirical "leverage effect"?
+
+---
+
+**Exercise 3.** Compute the local volatility delta for a European call with the following data: $S_0 = 100$, $K = 105$ (5% OTM), $T = 1.0$, $\sigma_{\text{imp}} = 0.18$, $\partial_K \sigma_{\text{imp}} = -0.0010$, Black-Scholes delta $\Delta_{\text{BS}} = 0.42$, and Black-Scholes vega $\text{Vega}_{\text{BS}} = 35.2$. How much does the smile adjustment change the delta relative to Black-Scholes?
+
+---
+
+**Exercise 4.** The local volatility model implies a spot-volatility correlation of $\rho_{S, \sigma}^{\text{LV}} = -1$ for equity indices. Empirical values are typically $-0.5$ to $-0.8$. Explain why the local volatility model produces $|\rho| = 1$, and discuss the practical hedging consequences when the true correlation is only $-0.7$.
+
+---
+
+**Exercise 5.** The backbone of the implied volatility surface is $\Sigma(S) = \sigma_{\text{imp}}(K = S, T; S)$. Under local volatility, the backbone slope is approximately $d\Sigma/dS \approx 2 \partial_K \sigma_{\text{imp}}|_{K=S_0}$. If the implied volatility skew at $K = S_0$ is $-0.0012$ per unit, compute the backbone slope and interpret it: by how many volatility points does ATM implied volatility change for a \$10 move in the spot?
+
+---
+
+**Exercise 6.** A hedger uses the local volatility delta $\Delta_{\text{LV}} = \Delta_{\text{BS}} + \text{Vega} \cdot \partial_K \sigma_{\text{imp}}$ but the true market dynamics are sticky delta (so the correct delta is $\Delta_{\text{BS}}$). The position has $\text{Vega} = 50$ and $\partial_K \sigma_{\text{imp}} = -0.001$. Compute the daily P&L leakage from the delta mismatch if the stock moves by $\Delta S = \pm 2$ each day.
+
+---
+
+**Exercise 7.** Compare the smile dynamics predictions of local volatility, the Heston stochastic volatility model, and SABR. For each model, state: (a) the smile regime (sticky strike, sticky delta, or intermediate), (b) the implied spot-vol correlation, and (c) the qualitative behavior of the forward smile.

@@ -142,3 +142,39 @@ The ability to extract local volatility surfaces is crucial for:
 - Risk management and sensitivity analysis
 - Model calibration and validation
 
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the definitions $y = \log(K / S_0 e^{rT})$ and $w = \sigma_{\text{imp}}^2 T$, verify that $y_T = -r$, $y_K = K^{-1}$, and $y_{KK} = -K^{-2}$. Then confirm that $w_K = 0$ only when implied volatility does not depend on strike. What changes in the derivation if $\sigma_{\text{imp}}$ depends on $K$?
+
+---
+
+**Exercise 2.** The simplified Dupire formula in $(y, w)$ coordinates is
+
+$$
+\sigma^2(K,T) = \frac{\sigma_{\text{imp}}^2 \, C_w}{\frac{1}{2}(C_{yy} - C_y)}
+$$
+
+For the Black-Scholes model with constant volatility $\sigma_0$, compute $C_w$ and $C_{yy} - C_y$ explicitly using the Black-Scholes formula. Verify that the formula returns $\sigma^2(K,T) = \sigma_0^2$ for all $(K,T)$.
+
+---
+
+**Exercise 3.** The change of variables treats $w = \sigma_{\text{imp}}^2 T$ as independent of $K$, which is valid for the Black-Scholes formula itself but not when $\sigma_{\text{imp}}$ varies across strikes. (a) Explain why the simplified formula $w_K = 0$ still leads to the correct Dupire result. (b) Where does the strike-dependence of implied volatility enter the full Dupire formula?
+
+---
+
+**Exercise 4.** From the Black-Scholes call price $C = S_0 N(d_1) - Ke^{-rT}N(d_2)$, derive the expressions $C_K = -e^{-rT}N(d_2)$ and $C_{KK} = e^{-rT}n(d_2)/(K\sigma_{\text{imp}}\sqrt{T})$ where $n(\cdot)$ is the standard normal density. Use these to show that the denominator of the Dupire formula is proportional to the risk-neutral density at $S_T = K$.
+
+---
+
+**Exercise 5.** Consider a flat implied volatility surface $\sigma_{\text{imp}}(K,T) = 0.25$ for all $K$ and $T$. (a) Compute the local volatility $\sigma(K,T)$ from the Dupire formula. (b) Now consider $\sigma_{\text{imp}}(K,T) = 0.25 - 0.001(K - S_0)$, a linear skew. Describe qualitatively how the local volatility surface differs from constant. (c) Which surface has more curvature in $K$: the implied volatility surface or the local volatility surface?
+
+---
+
+**Exercise 6.** The Dupire formula requires computing $C_T$, $C_K$, and $C_{KK}$ from market data. In practice, these derivatives must be estimated numerically. (a) Write finite-difference approximations for each derivative. (b) If option prices have bid-ask spreads of 0.5%, estimate the relative error in the local volatility computed from finite differences with strike spacing $\Delta K = 5$ and maturity spacing $\Delta T = 0.25$. (c) Which derivative is most sensitive to noise?
+
+---
+
+**Exercise 7.** The one-to-one correspondence between the call price surface $\{C(K,T)\}$ and the local volatility surface $\{\sigma(K,T)\}$ holds under certain regularity conditions. (a) State the conditions on $C(K,T)$ that are required (smoothness, no-arbitrage). (b) Give an example of a call price surface that violates these conditions. (c) Explain how violations of calendar spread arbitrage ($C_T < 0$) or butterfly arbitrage ($C_{KK} < 0$) would cause the Dupire formula to break down.
+

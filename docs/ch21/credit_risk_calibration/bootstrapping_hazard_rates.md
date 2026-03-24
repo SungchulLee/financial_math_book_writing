@@ -334,3 +334,45 @@ Use spline interpolation to create smooth $\lambda(t)$ from bootstrapped nodes.
 - Brigo, D., & Mercurio, F. (2006). *Interest Rate Models: Theory and Practice*. Springer, Chapter 21.
 - Hull, J. C., & White, A. (2000). Valuing credit default swaps I. *Journal of Derivatives*, 8(1), 29–40.
 - ISDA (2009). *ISDA Standard CDS Converter Specification*.
+
+---
+
+## Exercises
+
+**Exercise 1.** Given CDS spreads of 60 bp (1Y) and 100 bp (3Y) with $R = 40\%$ and a flat risk-free rate $r = 2\%$, bootstrap the piecewise-constant hazard rates $\lambda_1$ (for $[0,1]$) and $\lambda_2$ (for $(1,3]$). Use the approximation $\lambda \approx s/(1-R)$ as an initial guess and verify by computing the survival probabilities $S(0,1)$ and $S(0,3)$.
+
+---
+
+**Exercise 2.** Suppose a bootstrapping procedure yields a negative hazard rate $\lambda_3 < 0$ for the period $(3\text{Y}, 5\text{Y}]$. Explain the economic interpretation of this result. Under what CDS spread term structure would this occur? Propose two remedies to handle this in practice.
+
+---
+
+**Exercise 3.** Starting from the par spread condition
+
+$$
+s_i \times \text{RPV01}(T_i) = (1 - R) \times \text{PV}_{\text{prot}}(T_i)
+$$
+
+show that under a single-period CDS with maturity $T_1$ and continuous premium payment, the hazard rate satisfies $\lambda_1 = s_1 / (1 - R)$ exactly, regardless of the risk-free rate $r$.
+
+---
+
+**Exercise 4.** A hazard rate curve bootstrapped from CDS spreads with $R = 40\%$ produces $\lambda(0\text{--}5\text{Y}) = 150$ bp. If the recovery assumption is revised to $R = 30\%$, estimate the new hazard rate. Compute the percentage change and explain why recovery rate uncertainty is a major source of calibration risk.
+
+---
+
+**Exercise 5.** Describe the analogy between CDS bootstrapping and interest rate yield curve construction. For each of the following concepts in the interest rate world, identify its credit risk counterpart: (a) swap rate, (b) discount factor, (c) forward rate, (d) par instrument.
+
+---
+
+**Exercise 6.** Consider the global fitting alternative where all hazard rates are determined simultaneously by minimizing
+
+$$
+\sum_{i=1}^{n}\left(s_i^{\text{model}}(\lambda_1, \ldots, \lambda_n) - s_i^{\text{market}}\right)^2
+$$
+
+Discuss the advantages and disadvantages of global fitting compared to sequential bootstrapping. Under what conditions would you prefer one method over the other?
+
+---
+
+**Exercise 7.** A firm's CDS curve has liquid quotes at 1Y, 3Y, 5Y, 7Y, and 10Y. You need to price a 6Y CDS but do not have a direct 6Y quote. Describe how you would interpolate the hazard rate curve between the 5Y and 7Y nodes. Compare piecewise-constant and piecewise-linear interpolation in terms of smoothness and ease of implementation.

@@ -355,3 +355,29 @@ where $\mathbf{F}_t$ is the funding mix.
 - Duffie, D. (2010), "Asset Price Dynamics with Slow-Moving Capital"
 - Basel Committee, "Basel III: The Liquidity Coverage Ratio and Liquidity Risk Monitoring Tools"
 - Andersen, L., Duffie, D., & Song, Y. (2019), "Funding Value Adjustments"
+
+---
+
+## Exercises
+
+**Exercise 1.** A bank can borrow at SOFR + 80 bp while its client can borrow at SOFR + 200 bp. The bank enters an uncollateralized derivative with positive expected value \$10M over 5 years. Estimate the bank's funding benefit and the client's funding cost. Should the bank charge an FVA?
+
+---
+
+**Exercise 2.** Explain the Liquidity Coverage Ratio (LCR) requirement under Basel III. How do funding constraints imposed by LCR affect a bank's willingness to hold illiquid derivative positions?
+
+---
+
+**Exercise 3.** During a credit crisis, a bank's funding cost rises from SOFR + 50 bp to SOFR + 300 bp. Explain how this funding shock affects the mark-to-market of its uncollateralized derivative portfolio through FVA. Why can funding constraints create a feedback loop during stress periods?
+
+---
+
+**Exercise 4.** Compare the pricing of a fully collateralized derivative versus an uncollateralized one. How do funding constraints manifest in the pricing difference? Derive the relationship between the collateralized price and the uncollateralized price through the funding spread.
+
+---
+
+**Exercise 5.** A hedge fund faces margin constraints: it can post at most \$100M in collateral. Explain how this limit constrains the fund's derivative trading strategy. What is the cost of the constraint in terms of foregone trading opportunities?
+
+---
+
+**Exercise 6.** Discuss whether FVA should be considered a "real" valuation adjustment or an internal cost allocation. Summarize the arguments for and against including FVA in derivative prices from the perspectives of (a) the bank's trading desk, (b) the bank's treasury, and (c) economic theory.

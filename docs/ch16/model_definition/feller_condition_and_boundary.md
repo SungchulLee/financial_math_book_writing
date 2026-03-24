@@ -206,3 +206,27 @@ The Feller condition $2\kappa\theta \geq \sigma_v^2$ is the threshold that deter
 The [next section](moment_explosions_and_constraints.md) examines a different type of parameter constraint: the conditions under which moments of the asset price $\mathbb{E}[S_T^p]$ are finite.
 
 ---
+
+## Exercises
+
+**Exercise 1.** For $\kappa = 1.5$, $\theta = 0.04$, $\sigma_v = 0.4$, check whether the Feller condition $2\kappa\theta \geq \sigma_v^2$ is satisfied. Repeat for $\sigma_v = 0.3$. In each case, describe the qualitative behavior of $V_t$ near zero.
+
+---
+
+**Exercise 2.** The dimension parameter of the CIR non-central chi-squared transition density is $\nu = 4\kappa\theta/\sigma_v^2$. Show that $\nu \geq 2$ is equivalent to the Feller condition. For $\nu < 2$, the density has a mass at $V_T = 0$; compute $\nu$ for $\kappa = 2$, $\theta = 0.02$, $\sigma_v = 0.5$.
+
+---
+
+**Exercise 3.** Explain why calibrated Heston parameters frequently violate the Feller condition. Give a typical set of calibrated parameters from equity markets and compute $2\kappa\theta$ vs $\sigma_v^2$.
+
+---
+
+**Exercise 4.** In Euler discretization of the CIR process, the update $\hat{V}_{n+1} = \hat{V}_n + \kappa(\theta - \hat{V}_n)\Delta t + \sigma_v\sqrt{\hat{V}_n}\sqrt{\Delta t}\,Z$ can produce negative values. Describe three remedies: full truncation, reflection, and the Higham-Mao scheme. Which preserves the correct mean?
+
+---
+
+**Exercise 5.** For the PDE pricing approach, the Heston PDE degenerates at $v = 0$ (the second-order term in $v$ vanishes). Explain why no boundary condition should be imposed at $v = 0$; instead, the PDE itself becomes a first-order equation. What boundary condition is appropriate at $v = v_{\max}$ (large $v$)?
+
+---
+
+**Exercise 6.** Show that even when the Feller condition is violated, the CIR process is well-defined as a weak solution of the SDE and the characteristic function formula remains valid. Why does this mean that the Feller condition is a regularity condition for simulation, not a requirement for pricing?

@@ -237,3 +237,45 @@ The log-affine expectation property states that $\log \mathbb{E}[e^{\langle u, X
 - Duffie, D., Filipovic, D., & Schachermayer, W. (2003). "Affine Processes and Applications in Finance." *Annals of Applied Probability*, 13(3), 984-1053.
 - Duffie, D., Pan, J., & Singleton, K. (2000). "Transform Analysis and Asset Pricing for Affine Jump-Diffusions." *Econometrica*, 68(6), 1343-1376.
 - Filipovic, D. *Term-Structure Models: A Graduate Course*. Springer, 2009, Chapter 10.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the CIR process $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$, identify the functions $F(u)$ and $R(u)$ in the generalized Riccati framework. Write down the ODE for $\psi(\tau)$ with initial condition $\psi(0) = u$ and verify that it is a scalar Riccati equation. Under what condition on $u$ does the moment generating function $\mathbb{E}[e^{uX_T} \mid X_0 = x]$ remain finite for all $T > 0$?
+
+---
+
+**Exercise 2.** Starting from the backward Kolmogorov equation for the two-dimensional process $(X_t^{(1)}, X_t^{(2)})$ with independent Ornstein-Uhlenbeck components $dX_t^{(i)} = -\kappa_i X_t^{(i)}\,dt + \sigma_i\,dW_t^{(i)}$, verify the affine ansatz
+
+$$
+g(\tau, x_1, x_2) = \exp(\phi(\tau) + \psi_1(\tau)x_1 + \psi_2(\tau)x_2)
+$$
+
+by substituting into the PDE and showing that the system separates into three ODEs: one for $\phi$, one for $\psi_1$, and one for $\psi_2$.
+
+---
+
+**Exercise 3.** Prove that the characteristic function $\Phi_X(\tau, v, x) = \mathbb{E}[e^{iv X_T} \mid X_t = x]$ of any affine process satisfies $|\Phi_X(\tau, v, x)| \leq 1$ for all real $v$, and explain why the moment generating function $M_X(\tau, u, x) = \mathbb{E}[e^{uX_T} \mid X_t = x]$ for real $u > 0$ does not share this boundedness property.
+
+---
+
+**Exercise 4.** Using the semiflow property $\psi(t+s, u) = \psi(t, \psi(s, u))$, show that if $\psi(\tau, u) = ue^{-\kappa\tau}$ (as in the Ornstein-Uhlenbeck case), then the semiflow equation is automatically satisfied. Then verify the companion equation $\phi(t+s, u) = \phi(t, \psi(s, u)) + \phi(s, u)$ using the explicit formula
+
+$$
+\phi(\tau, u) = \frac{\sigma^2 u^2}{4\kappa}(1 - e^{-2\kappa\tau})
+$$
+
+---
+
+**Exercise 5.** Consider a process with drift $b(x) = \alpha x$ and diffusion $a(x) = \beta x^2$ for constants $\alpha, \beta > 0$. Attempt the affine ansatz $g(\tau, x) = \exp(\phi(\tau) + \psi(\tau)x)$ in the backward Kolmogorov equation and show explicitly where the separation into constant and linear terms in $x$ fails. What does this tell you about whether geometric Brownian motion (in the price variable $S_t$, not the log-price) is an affine process?
+
+---
+
+**Exercise 6.** For a $d$-dimensional affine process with no jumps ($m_i = 0$ for all $i$), the functions $F$ and $R$ reduce to
+
+$$
+F(u) = \langle b_0, u \rangle + \tfrac{1}{2}\langle u, a_0 u \rangle, \qquad R_i(u) = \langle b_i, u \rangle + \tfrac{1}{2}\langle u, a_i u \rangle
+$$
+
+Show that if all diffusion matrices $a_i = 0$ (pure Gaussian case with no state-dependent volatility), then the Riccati system for $\psi$ becomes a linear ODE system $\psi'(\tau) = B\psi(\tau)$ for an appropriate matrix $B$. Express $B$ in terms of the drift parameters $b_1, \ldots, b_d$.

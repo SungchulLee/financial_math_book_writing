@@ -275,3 +275,29 @@ $$
 | **Off-grid** | Use bump-and-revalue with interpolation |
 
 Delta and gamma are the workhorses of delta-hedging. The finite difference grid provides them as a free byproduct of the pricing computation, making FDM an attractive framework for simultaneous pricing and hedging.
+
+---
+
+## Exercises
+
+**Exercise 1.** Using the Taylor expansion of $V(S \pm \Delta S)$ around $S_j$, derive the central difference formula for delta and show that the truncation error is $\frac{1}{6}V_{SSS}(\Delta S)^2 + O((\Delta S)^4)$. Similarly derive the truncation error for the gamma formula.
+
+---
+
+**Exercise 2.** Given FDM option values $V_{j-1} = 7.20$, $V_j = 9.85$, $V_{j+1} = 12.80$ with $\Delta S = 2$, compute central difference estimates for delta and gamma. Then compute the fourth-order delta estimate if additionally $V_{j-2} = 4.90$ and $V_{j+2} = 16.00$.
+
+---
+
+**Exercise 3.** The bump-and-revalue method for delta requires solving the PDE at $S + \delta S$ and $S - \delta S$. If each PDE solve costs $C$ operations, what is the cost of computing central-difference delta and gamma via bumping? Compare this to the zero additional cost of direct grid extraction.
+
+---
+
+**Exercise 4.** Verify the Black-Scholes PDE consistency relation $\Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2\Gamma = rV$ using the following numerical values: $V = 10.45$, $\Delta = 0.56$, $\Gamma = 0.038$, $S = 100$, $r = 0.05$, $\sigma = 0.25$. First compute $\Theta$ from the PDE, then check whether the residual is close to zero.
+
+---
+
+**Exercise 5.** A convergence study at $S = K$ (at the strike) without Rannacher smoothing shows gamma converging at rate $O((\Delta S)^{1/2})$. After applying 4 implicit Rannacher steps, the rate improves to $O((\Delta S)^2)$. Explain the mechanism by which the implicit steps restore the convergence order.
+
+---
+
+**Exercise 6.** On a non-uniform grid with $S_{j-1} = 96$, $S_j = 100$, $S_{j+1} = 106$ (so $h_- = 4$, $h_+ = 6$), apply the non-uniform central difference formulas for delta and gamma. If $V_{j-1} = 6.50$, $V_j = 9.85$, $V_{j+1} = 14.10$, compute both Greeks and compare to what the uniform-grid formulas would give using $\Delta S = 5$ (the average spacing).

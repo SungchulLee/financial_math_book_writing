@@ -372,3 +372,29 @@ $$
 - Longstaff, F. A., & Schwartz, E. S. (1995). A simple approach to valuing risky fixed and floating rate debt. *Journal of Finance*, 50(3), 789–819.
 - Leland, H. E. (1994). Corporate debt value, bond covenants, and optimal capital structure. *Journal of Finance*, 49(4), 1213–1252.
 - Leland, H. E., & Toft, K. B. (1996). Optimal capital structure, endogenous bankruptcy, and the term structure of credit spreads. *Journal of Finance*, 51(3), 987–1019.
+
+---
+
+## Exercises
+
+**Exercise 1.** For geometric Brownian motion $dV_t = rV_t\,dt + \sigma_V V_t\,dW_t$ with $V_0 = 100$ and a constant barrier $B = 60$, the first-passage time $\tau = \inf\{t : V_t \le B\}$ has a known distribution. Compute the probability $\mathbb{Q}(\tau \le 5)$ using $\sigma_V = 25\%$ and $r = 4\%$. Compare with the Merton probability $\mathbb{Q}(V_5 \le D)$ for $D = 60$.
+
+---
+
+**Exercise 2.** Explain why first-passage models produce positive credit spreads at arbitrarily short maturities while the Merton model does not. What property of the hitting time distribution of Brownian motion is responsible?
+
+---
+
+**Exercise 3.** In the Leland (1994) model, the default barrier is chosen endogenously by equity holders to maximize equity value. Explain why equity holders choose a barrier below the face value of debt. What trade-off between tax benefits of debt and bankruptcy costs determines the optimal barrier?
+
+---
+
+**Exercise 4.** A first-passage model with constant barrier $B$ produces a credit spread curve. Describe qualitatively the curve shape for (a) $V_0/B = 3$ (low leverage), (b) $V_0/B = 1.5$ (moderate leverage), and (c) $V_0/B = 1.05$ (near-default). Which case produces a humped curve?
+
+---
+
+**Exercise 5.** The Longstaff-Schwartz model allows for stochastic interest rates in addition to stochastic firm value. Explain why the correlation between interest rates and firm value affects credit spreads. If rates and firm value are negatively correlated, what happens to credit spreads during a rate increase?
+
+---
+
+**Exercise 6.** Compare the first-passage model with the reduced-form intensity model in terms of: (a) mathematical tractability, (b) calibration to CDS spreads, (c) short-maturity spread behavior, and (d) economic interpretability. Under what circumstances would you prefer one framework over the other?

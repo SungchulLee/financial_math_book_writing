@@ -241,3 +241,40 @@ $$
 ## Summary
 
 The stock-price numeraire measure $\mathbb{Q}^S$ is obtained from the risk-neutral measure $\mathbb{Q}$ by the Radon-Nikodym derivative $d\mathbb{Q}^S/d\mathbb{Q} = S_T / (S_0 e^{(r-q)\tau})$. Under $\mathbb{Q}^S$, the Heston variance process has modified mean-reversion parameters $\kappa^* = \kappa - \rho\xi$ and $\theta^* = \kappa\theta/\kappa^*$, while $\xi$ and $\rho$ are unchanged. The characteristic function under $\mathbb{Q}^S$ is obtained either by solving the Riccati system with modified parameters or by the shift formula $\varphi_1(u) = \varphi(u-i)/(S_0 e^{(r-q)\tau})$. The probability $P_1 = \mathbb{Q}^S(S_T > K)$ is the delta of the call (when $q = 0$) and prices asset-or-nothing digital options. The $\mathbb{Q}^S$ framework completes the two-probability decomposition of the Heston call price.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The Radon-Nikodym derivative is $d\mathbb{Q}^S/d\mathbb{Q} = S_T/(S_0 e^{(r-q)\tau})$. Verify that $\mathbb{E}^{\mathbb{Q}}[d\mathbb{Q}^S/d\mathbb{Q}] = 1$ by using the fact that $\mathbb{E}^{\mathbb{Q}}[S_T] = S_0 e^{(r-q)\tau}$ (the discounted stock is a $\mathbb{Q}$-martingale). Why is this expectation-one property necessary for $\mathbb{Q}^S$ to be a valid probability measure?
+
+---
+
+**Exercise 2.**
+Under $\mathbb{Q}^S$, the variance parameters change to $\kappa^* = \kappa - \rho\xi$ and $\theta^* = \kappa\theta/\kappa^*$. For $\rho = -0.7$, $\xi = 0.3$, $\kappa = 1.5$, $\theta = 0.04$, verify the numerical example values $\kappa^* = 1.71$ and $\theta^* = 0.0351$. Now consider $\rho = +0.5$ (positive correlation). Compute $\kappa^*$ and $\theta^*$ and explain why the mean-reversion speed decreases and the long-run variance increases in this case.
+
+---
+
+**Exercise 3.**
+The shift formula states $\varphi_1(u) = \varphi(u - i)/(S_0 e^{(r-q)\tau})$, which requires evaluating the Heston CF at $u - i$ (a complex argument with imaginary part $-1$). Show that this evaluation is well-defined provided $\mathbb{E}^{\mathbb{Q}}[S_T] < \infty$, which is equivalent to the first moment condition. What happens if you try to compute $\varphi(u - 2i)$, corresponding to $\mathbb{E}^{\mathbb{Q}}[S_T^2]$? Under what Heston parameter condition does this second moment exist?
+
+---
+
+**Exercise 4.**
+For a European put, $\Delta_{\text{put}} = e^{-q\tau}(P_1 - 1)$ where $P_1 = \mathbb{Q}^S(S_T > K)$. Using the numerical example ($P_1 = 0.5748$, $q = 0$), compute $\Delta_{\text{put}}$ and verify that $\Delta_{\text{call}} - \Delta_{\text{put}} = e^{-q\tau}$ (put-call parity for deltas).
+
+---
+
+**Exercise 5.**
+The $\mathbb{Q}^S$ measure weights high-stock-price outcomes more heavily, so $P_1 > P_2$ when $r > q$. Show this rigorously: $P_1 - P_2 = \mathbb{E}^{\mathbb{Q}}[(S_T/(S_0 e^{(r-q)\tau}) - 1)\mathbf{1}_{S_T > K}] > 0$. Why is the inequality strict? What happens to $P_1 - P_2$ as the strike $K \to \infty$ (deep OTM call)?
+
+---
+
+**Exercise 6.**
+Consider an asset-or-nothing put, which pays $S_T$ if $S_T < K$. Show that its price is $S_0 e^{-q\tau}(1 - P_1)$ and verify this against the numerical example: $\text{AoN put} = 100(1 - 0.5748) = 42.52$. Use the decomposition $S_0 e^{-q\tau} = \text{AoN call} + \text{AoN put}$ to confirm consistency.
+
+---
+
+**Exercise 7.**
+The Feller condition under $\mathbb{Q}^S$ requires $2\kappa^*\theta^* \geq \xi^2$. Since $\kappa^*\theta^* = \kappa\theta$ (verify this), the Feller condition under $\mathbb{Q}^S$ is identical to that under $\mathbb{Q}$. Prove this algebraically and discuss why measure changes within the affine family preserve the Feller condition.

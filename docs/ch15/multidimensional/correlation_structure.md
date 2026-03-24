@@ -203,3 +203,29 @@ The correlation structure of multidimensional affine processes is encoded in the
 - Dai, Q. and Singleton, K. (2000). "Specification Analysis of Affine Term Structure Models." *Journal of Finance*, 55(5), 1943--1978.
 - Gourieroux, C. and Sufana, R. (2003). "Wishart Quadratic Term Structure Models." Working Paper, CREST.
 - Filipovic, D. (2009). *Term-Structure Models: A Graduate Course*. Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Heston model with covariance matrix $a(V) = V \begin{pmatrix} 1 & \rho\xi \\ \rho\xi & \xi^2 \end{pmatrix}$, compute the instantaneous correlation $\operatorname{Corr}(d\log S_t, dV_t) = \rho\xi\sqrt{V}/(\sqrt{V}\cdot\xi\sqrt{V}) = \rho$. Verify that the correlation is state-independent and equals $\rho$.
+
+---
+
+**Exercise 2.** For a two-factor CIR model on $\mathbb{R}_+^2$ with independent components (no off-diagonal terms in $\alpha_1$ or $\alpha_2$), show that the instantaneous correlation between $X_t^{(1)}$ and $X_t^{(2)}$ is zero. Can a two-factor CIR model ever produce nonzero instantaneous correlation while maintaining admissibility?
+
+---
+
+**Exercise 3.** Consider a three-factor model on $\mathbb{R}_+ \times \mathbb{R}^2$ where the CIR component $V_t$ drives the diffusion of both Gaussian factors. Write the diffusion matrix $a(x) = a_0 + \alpha_1 V$ and compute the instantaneous correlation between the two Gaussian factors as a function of $V_t$. Is this correlation time-varying?
+
+---
+
+**Exercise 4.** Explain the leverage effect in the context of the Heston model: why does $\rho < 0$ imply that stock price declines are associated with volatility increases? Derive the covariance $\operatorname{Cov}(d\log S_t, dV_t) = \rho\xi V_t\,dt$ and interpret the state-dependence on $V_t$.
+
+---
+
+**Exercise 5.** For the Dai-Singleton $A_1(3)$ model with one CIR factor and two Gaussian factors, what is the maximum number of free correlation parameters? Compare this to the three independent correlations in a general $3 \times 3$ correlation matrix, and explain why affine models have restricted correlation flexibility.
+
+---
+
+**Exercise 6.** In calibrating the Heston model to equity options, the correlation parameter $\rho$ primarily controls the skew of the implied volatility smile. Describe qualitatively how the implied volatility smile changes as $\rho$ varies from $-0.9$ to $0$. Why can't the affine structure generate a purely symmetric smile with $\rho = 0$ and still match observed market skews?

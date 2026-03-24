@@ -262,3 +262,39 @@ $$
 $$
 
 **Finite differences convert the PDE into a structured linear algebra problem amenable to efficient numerical solution.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the Black-Scholes PDE in the time-to-maturity formulation, derive the explicit scheme coefficients $a_j$, $b_j$, $c_j$ by substituting central difference approximations for $\partial u/\partial S$ and $\partial^2 u/\partial S^2$, and a forward difference for $\partial u/\partial\tau$. Verify that $a_j + (1 + b_j) + c_j = 1$ and interpret this condition.
+
+---
+
+**Exercise 2.** Consider the log-price transformation $x = \ln S$. Starting from the Black-Scholes PDE in the original $(t, S)$ variables, carry out the change of variables to derive the transformed PDE
+
+$$
+\frac{\partial u}{\partial \tau} = \frac{\sigma^2}{2}\frac{\partial^2 u}{\partial x^2} + \left(r - \frac{\sigma^2}{2}\right)\frac{\partial u}{\partial x} - ru
+$$
+
+Explain why the constant coefficients in this PDE are an advantage for numerical computation.
+
+---
+
+**Exercise 3.** For a European put option with $K = 100$, $r = 0.05$, and $T = 1$, write down the boundary conditions at $S = 0$ and $S = S_{\max} = 300$ in both Dirichlet and Neumann forms. Discuss when each type is appropriate.
+
+---
+
+**Exercise 4.** Set up the tridiagonal matrix $A$ for the explicit scheme with $M = 4$ interior grid points ($j = 1, 2, 3, 4$) on $[0, S_{\max}]$ with $S_{\max} = 200$, $\sigma = 0.2$, $r = 0.05$, and $\Delta\tau = 0.001$. Compute the numerical values of the coefficients $a_j$, $b_j$, $c_j$ for each interior node. Are all coefficients non-negative?
+
+---
+
+**Exercise 5.** A grid for pricing a European call uses $S_{\max} = 3K$. Argue qualitatively why this choice of $S_{\max}$ is appropriate for vanilla options. What happens to the truncation error if $S_{\max}$ is too small? What happens to the stability condition if $S_{\max}$ is too large?
+
+---
+
+**Exercise 6.** The coordinate stretching formula $S_j = K\sinh((j - M/2)\alpha/(M/2))/\sinh(\alpha) + K$ concentrates grid points near the strike. For $K = 100$, $M = 100$, and $\alpha = 3$, compute $S_{45}$, $S_{50}$, and $S_{55}$, and compare the local spacing near $K$ to the uniform spacing $\Delta S = S_{\max}/M$ that would be needed for the same number of grid points on $[0, 300]$.
+
+---
+
+**Exercise 7.** The payoff $(S - K)^+$ has a kink at $S = K$. Explain why placing a grid point exactly at $S = K$ improves accuracy. If $\Delta S = 1.5$ and $K = 100$, does the uniform grid $S_j = j\Delta S$ place a node at the strike? If not, suggest a modified grid spacing that does.

@@ -337,3 +337,33 @@ The standardized innovation $e_t / \sqrt{S_t}$ is approximately $\mathcal{N}(0,1
 - Doucet, de Freitas & Gordon (2001), *Sequential Monte Carlo Methods in Practice*
 - Harvey (1989), *Forecasting, Structural Time Series Models and the Kalman Filter*
 - Javaheri, Lautier & Galli (2003), "Filtering in Finance"
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a scalar Kalman filter with state equation $x_t = x_{t-1} + u_t$, $u_t \sim \mathcal{N}(0, Q)$ and observation equation $y_t = x_t + v_t$, $v_t \sim \mathcal{N}(0, R)$. Initialize with $\hat{x}_{0|0} = 0$ and $P_{0|0} = 1$. For $Q = 0.01$ and $R = 0.25$: (a) Compute the prediction $\hat{x}_{1|0}$, $P_{1|0}$, and the Kalman gain $K_1$ when the first observation is $y_1 = 0.5$. (b) Compute the updated estimate $\hat{x}_{1|1}$ and $P_{1|1}$. (c) Show that the steady-state Kalman gain satisfies $K_\infty = (-R + \sqrt{R^2 + 4QR}) / (2R)$ and compute its numerical value.
+
+---
+
+**Exercise 2.** In a pairs trading application, the state-space model is $\beta_t = \beta_{t-1} + w_t$ with $w_t \sim \mathcal{N}(0, Q)$ and $p_t^A = \beta_t p_t^B + v_t$ with $v_t \sim \mathcal{N}(0, R)$. Suppose $Q = 10^{-5}$, $R = 0.01$, and $p_t^B = 50$. (a) Write the observation equation in standard form $y_t = C_t x_t + v_t$ identifying $C_t$, $y_t$, and $x_t$. (b) If the current Kalman gain is $K_t = 0.02$, the current estimate is $\hat{\beta}_{t-1|t-1} = 1.05$, and we observe $p_t^A = 53.5$, compute the innovation $e_t$ and the updated estimate $\hat{\beta}_{t|t}$. (c) The standardized innovation $e_t / \sqrt{S_t}$ is used as a trading signal. Explain why a large positive value suggests the spread is too wide (go short spread) and a large negative value suggests it is too narrow (go long spread).
+
+---
+
+**Exercise 3.** The Extended Kalman Filter linearizes nonlinear dynamics around the current estimate. For the stochastic volatility model $h_t = \mu + \phi(h_{t-1} - \mu) + \sigma_\eta \eta_t$ and $r_t = \exp(h_t / 2) \varepsilon_t$: (a) Identify the state equation $f(x) = \mu + \phi(x - \mu)$ and observation function $h(x) = \exp(x/2) \varepsilon$. (b) Compute the Jacobians $F_t = \partial f / \partial x = \phi$ and $H_t = \partial h / \partial x|_{x = \hat{h}_{t|t-1}}$. (c) Explain why the EKF is unreliable for this model: the observation equation $r_t = e^{h_t/2}\varepsilon_t$ is highly nonlinear and the linearization error can be large when volatility changes rapidly.
+
+---
+
+**Exercise 4.** A bootstrap particle filter for the stochastic volatility model uses $N = 1000$ particles. At time $t$, after propagation and weighting, the effective sample size is $N_{\text{eff}} = 1/\sum_i (w_t^{(i)})^2 = 150$. (a) Since $N_{\text{eff}} < N/2 = 500$, resampling is triggered. Describe the systematic resampling algorithm and explain why it has lower variance than multinomial resampling. (b) After resampling, all weights are reset to $1/N$. Explain the particle degeneracy problem: after many resampling steps, most particles may descend from the same ancestor. (c) Propose a resample-move step using an MCMC kernel to rejuvenate diversity. What is the target distribution for the MCMC step?
+
+---
+
+**Exercise 5.** Compare the Kalman filter and particle filter for a dynamic factor model with two latent factors and 10 observed asset returns. (a) For the linear-Gaussian factor model, the Kalman filter gives exact posterior inference. What are the computational costs per time step in terms of the state dimension $n_x = 2$ and observation dimension $n_y = 10$? (b) A particle filter with $N = 500$ particles is applied to the same model. Compute the cost per time step and compare with the Kalman filter. (c) When would you prefer the particle filter despite its higher cost? Describe a modification to the factor model (e.g., regime-switching factor dynamics, Student-$t$ errors) that requires particle methods.
+
+---
+
+**Exercise 6.** The Unscented Kalman Filter propagates $2n_x + 1$ sigma points through the nonlinear functions. For a 3-dimensional state ($n_x = 3$): (a) How many sigma points are needed? (b) Describe how the sigma points are constructed from the mean $\hat{x}$ and covariance $P$ of the current estimate. (c) After propagation through $f$, the predicted mean and covariance are computed as weighted averages of the propagated sigma points. Explain why this captures the mean and covariance to third-order accuracy for Gaussian inputs, while the EKF linearization is only first-order accurate. (d) For the stochastic volatility model, would the UKF perform significantly better than the EKF?
+
+---
+
+**Exercise 7.** A risk manager uses a particle filter to track the latent volatility of an asset. The posterior at time $t$ is represented by 1000 weighted particles $\{(\sigma_t^{2,(i)}, w_t^{(i)})\}$. (a) Compute the posterior mean $\hat{\sigma}_t^2 = \sum_i w_t^{(i)} \sigma_t^{2,(i)}$ and a 95% credible interval for $\sigma_t^2$. (b) Compare this with a GARCH(1,1) model that provides only a point estimate. Why is the full posterior distribution valuable for risk management? (c) Use the posterior distribution of $\sigma_t^2$ to compute a model-uncertainty-adjusted VaR: $\text{VaR}_\alpha = \mathbb{E}_{\sigma^2 \sim p(\sigma_t^2 | y_{1:t})}[\Phi^{-1}(\alpha) \cdot \sigma]$. Explain why this is wider than the VaR computed using only the point estimate $\hat{\sigma}_t^2$.

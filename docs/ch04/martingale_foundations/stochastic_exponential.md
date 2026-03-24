@@ -399,3 +399,40 @@ $$
 
 !!! summary "Key Takeaway"
     The stochastic exponential is the "correct" way to exponentiate stochastic processes, accounting for the Itô correction term $-\frac{1}{2}\langle X \rangle_t$. This correction removes the drift that would otherwise arise, making $\mathcal{E}(X)$ a local martingale. The stochastic exponential is essential for all measure-change arguments in mathematical finance.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Compute the stochastic exponential $\mathcal{E}(\sigma W)_t$ explicitly for $\sigma = 2$. Verify that $\mathbb{E}[\mathcal{E}(2W)_t] = 1$ using the moment generating function of the normal distribution. What is $\mathrm{Var}(\mathcal{E}(2W)_t)$?
+
+---
+
+**Exercise 2.**
+Let $X_t = \int_0^t \sigma_s\,dW_s$ with $\sigma_s = s$. Write the explicit formula for $\mathcal{E}(X)_t$ and compute its quadratic variation $\langle \mathcal{E}(X) \rangle_t$. Verify Novikov's condition for finite $T$ and conclude that $\mathcal{E}(X)$ is a true martingale on $[0, T]$.
+
+---
+
+**Exercise 3.**
+Apply Ito's lemma to $Z_t = e^{W_t}$ (without the correction) and show that $dZ_t = Z_t\,dW_t + \frac{1}{2}Z_t\,dt$. Then apply Ito's lemma to $\mathcal{E}(W)_t = e^{W_t - t/2}$ and show that the $dt$ term vanishes. Explain why the Ito correction $-\frac{1}{2}\langle W \rangle_t = -t/2$ is exactly what is needed to remove the drift.
+
+---
+
+**Exercise 4.**
+Prove the multiplication rule $\mathcal{E}(X)_t \cdot \mathcal{E}(Y)_t = \mathcal{E}(X + Y + \langle X, Y \rangle)_t$ by applying the Ito product rule to $Z_t = \mathcal{E}(X)_t$ and $U_t = \mathcal{E}(Y)_t$. Identify where the covariation term $\langle X, Y \rangle$ enters.
+
+---
+
+**Exercise 5.**
+In the Black-Scholes model, the stock price is $S_t = S_0 e^{(\mu - \sigma^2/2)t + \sigma W_t} = S_0 e^{\mu t} \mathcal{E}(\sigma W)_t$. Show that the discounted price $e^{-rt}S_t$ can be written as $S_0 e^{(\mu - r)t}\mathcal{E}(\sigma W)_t$ and explain why this is a martingale under $\mathbb{Q}$ but not under $\mathbb{P}$ (unless $\mu = r$).
+
+---
+
+**Exercise 6.**
+For the Radon-Nikodym derivative $Z_t = \mathcal{E}(-\int_0^{\cdot}\theta_s\,dW_s)_t$, show that $1/Z_t$ is not equal to $\mathcal{E}(\int_0^{\cdot}\theta_s\,dW_s)_t$ in general. Compute the ratio explicitly and identify the extra multiplicative factor involving $\langle M \rangle_t$ where $M_t = \int_0^t \theta_s\,dW_s$.
+
+---
+
+**Exercise 7.**
+Consider two independent Brownian motions $W_t^1$ and $W_t^2$ and define $X_t = \sigma_1 W_t^1 + \sigma_2 W_t^2$. Compute $\langle X \rangle_t$ and write $\mathcal{E}(X)_t$ explicitly. Then verify using the multiplication rule that $\mathcal{E}(\sigma_1 W^1)_t \cdot \mathcal{E}(\sigma_2 W^2)_t = \mathcal{E}(\sigma_1 W^1 + \sigma_2 W^2)_t$ (since $\langle W^1, W^2 \rangle = 0$).

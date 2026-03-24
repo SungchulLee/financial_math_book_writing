@@ -230,3 +230,29 @@ $$
 $$
 
 **Local volatility provides a complete market model that fits the smile exactly, but its unrealistic dynamics limit its use for hedging and exotic pricing.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the Black-Scholes PDE with $\sigma$ replaced by $\sigma_{\text{loc}}(t, S)$, derive the Dupire forward equation $\frac{\partial C}{\partial T} = \frac{1}{2}\sigma_{\text{loc}}^2(T,K)K^2 \frac{\partial^2 C}{\partial K^2} - rK\frac{\partial C}{\partial K}$. Explain why this is called a "forward" equation and how it differs from the standard "backward" Black-Scholes PDE.
+
+---
+
+**Exercise 2.** Dupire's inversion formula is $\sigma_{\text{loc}}^2(T,K) = \frac{\partial_T C + rK \partial_K C}{\frac{1}{2}K^2 \partial_{KK} C}$. (a) Verify that the denominator $\frac{1}{2}K^2 \partial_{KK} C$ is always positive for arbitrage-free call prices (relate $\partial_{KK} C$ to the risk-neutral density). (b) Under what conditions on the call price surface could the numerator be negative, and what would this imply?
+
+---
+
+**Exercise 3.** In the CEV model $\sigma_{\text{loc}}(S) = \sigma_0 S^{\beta - 1}$, the parameter $\beta$ controls the leverage effect. (a) Show that for $\beta < 1$, volatility increases as the stock price decreases. (b) For $\beta = 0.5$, $\sigma_0 = 2$, and $S = 100$, compute $\sigma_{\text{loc}}$. (c) Explain why $\beta = 1$ recovers the Black-Scholes model.
+
+---
+
+**Exercise 4.** The local volatility surface is computed from market data via numerical differentiation. Explain why this procedure is ill-posed (sensitive to small data perturbations). Describe the Tikhonov regularization approach $\min \sum_{ij} (C^{\text{model}}_{ij} - C^{\text{market}}_{ij})^2 + \lambda \int |\nabla \sigma_{\text{loc}}|^2 \, dT \, dK$ and the role of the penalty parameter $\lambda$.
+
+---
+
+**Exercise 5.** Local volatility models predict that the implied volatility smile "flattens" as time progresses (sticky strike behavior), while market data shows the smile persists (closer to sticky delta behavior). Explain this difference. Why does this make local volatility unreliable for pricing forward-starting options and cliquets?
+
+---
+
+**Exercise 6.** Describe the full calibration procedure for a local volatility model: (a) interpolation of the implied volatility surface from market quotes, (b) application of Dupire's formula, and (c) pricing of an exotic option. At each step, identify the main numerical challenges and potential sources of error.

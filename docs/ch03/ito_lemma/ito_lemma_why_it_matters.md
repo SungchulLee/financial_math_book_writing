@@ -224,3 +224,39 @@ $$
 | $\int_0^1 B_s^2\,dB_s$ | $f = \frac13 b^3$ | Itô's lemma | $\frac13 B_1^3 - \int_0^1 B_s\,ds$ |
 
 Just as the classical Fundamental Theorem of Calculus turns Riemann sums into antiderivative evaluations, Itô's lemma turns stochastic integral computations into systematic applications of a chain rule — functioning as a **Fundamental Theorem of Stochastic Calculus**. The formal statement appears in [Itô's Lemma](ito_lemma.md).
+
+---
+
+## Exercises
+
+**Exercise 1.** Compute $\int_0^t B_s^3\,dB_s$ by choosing an appropriate antiderivative $f(x)$ such that $f'(x) = x^3$, applying Itô's lemma, and solving for the stochastic integral.
+
+---
+
+**Exercise 2.** Evaluate $\int_0^1 B_s\,dB_s$ directly from the Riemann-sum definition (as in Example A of this page), but this time on the interval $[0, T]$ for general $T > 0$. Show that the result is $\frac{1}{2}(B_T^2 - T)$.
+
+---
+
+**Exercise 3.** Choose the antiderivative $f(t, b) = \frac{1}{3}t b^3$ and apply Itô's lemma to compute $d\!\left(\frac{1}{3}t B_t^3\right)$. Use the result to express $\int_0^t s B_s^2\,dB_s$ in terms of $B_t$, $t$, and ordinary integrals.
+
+---
+
+**Exercise 4.** Consider $\int_0^t \cos(B_s)\,dB_s$.
+
+(a) Identify an antiderivative $f(x)$ such that $f'(x) = \cos(x)$.
+
+(b) Compute $f''(x)$ and apply Itô's lemma.
+
+(c) Express $\int_0^t \cos(B_s)\,dB_s$ in terms of $\sin(B_t)$ and an ordinary integral.
+
+---
+
+**Exercise 5.** Explain why the direct Riemann-sum approach to computing $\int_0^1 B_s^2\,dB_s$ would require Abel summation and careful limit arguments, while the antiderivative method (choosing $f(x) = \frac{1}{3}x^3$) yields the answer in three lines. What is the role of the Itô correction $\frac{1}{2}f''(B_s)\,ds$ in making the shortcut work?
+
+---
+
+**Exercise 6.** Let $f(b) = e^{-b}$. Use the Itô lemma antiderivative method to evaluate $\int_0^t e^{-B_s}\,dB_s$. Write the result in terms of $e^{-B_t}$ and an ordinary integral involving $e^{-B_s}$.
+
+---
+
+**Exercise 7.** The general strategy states: choose $f(t, x)$ with $f_x = g$, apply Itô's lemma, and rearrange. Show that this strategy can fail to produce a closed-form answer by attempting to compute $\int_0^t e^{B_s^2}\,dB_s$. Specifically, find $f(x)$ with $f'(x) = e^{x^2}$, compute $f''(x)$, and explain why the resulting correction integral $\frac{1}{2}\int_0^t f''(B_s)\,ds$ does not simplify the problem.

@@ -424,4 +424,30 @@ The Black-Scholes model represents the transition from discrete to continuous ti
 - Real markets deviate (volatility smiles, transaction costs, crises)
 - Extensions needed for practical applications
 
-Understanding the Black-Scholes model—its derivation, assumptions, and limitations—is essential for anyone working in quantitative finance, as it provides both powerful tools and cautionary lessons about the gap between theory and practice.
+Understanding the Black-Scholes model---its derivation, assumptions, and limitations---is essential for anyone working in quantitative finance, as it provides both powerful tools and cautionary lessons about the gap between theory and practice.
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify that $V(S,t) = S$ and $V(S,t) = e^{r(t-T)}$ both satisfy the Black-Scholes PDE. Then show that the linear combination $V(S,t) = aS + be^{r(t-T)}$ also satisfies the PDE for any constants $a$ and $b$. What financial instrument does this represent?
+
+---
+
+**Exercise 2.** In the binomial model, the risk-neutral probability is $p = \frac{e^{r\Delta t} - d}{u - d}$. Using the CRR parameterization $u = e^{\sigma\sqrt{\Delta t}}$ and $d = e^{-\sigma\sqrt{\Delta t}}$, show that as $\Delta t \to 0$, the binomial model converges to the Black-Scholes model by verifying that the binomial stock price distribution converges to a log-normal distribution.
+
+---
+
+**Exercise 3.** Explain why the Black-Scholes option price does not depend on the expected return $\mu$ of the stock. Construct a simple argument using two investors who agree on $\sigma$ but disagree on $\mu$ to show that they must nonetheless agree on the option price, provided no arbitrage exists.
+
+---
+
+**Exercise 4.** The Black-Scholes PDE is $\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0$. Identify the type of this PDE (elliptic, parabolic, or hyperbolic) by examining its principal part. What is the financial significance of this classification?
+
+---
+
+**Exercise 5.** Consider two options on the same underlying stock ($S_0 = 100$, $\sigma = 30\%$, $r = 5\%$): a European call with $K = 100$ and $T = 0.5$, and a European call with $K = 100$ and $T = 2$. Without computing exact prices, use the properties described in this section to determine which option has a higher price and explain why.
+
+---
+
+**Exercise 6.** List three derivative instruments that the standard Black-Scholes model cannot price directly and explain what feature of each instrument violates the Black-Scholes framework. For each, name a specific model extension or numerical method that can handle it.

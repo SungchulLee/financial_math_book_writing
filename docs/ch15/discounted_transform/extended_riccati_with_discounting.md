@@ -237,3 +237,35 @@ The extended Riccati system with discounting modifies the standard system by sub
 - Duffie, D. & Kan, R. (1996). "A Yield-Factor Model of Interest Rates." *Mathematical Finance*, 6(4), 379-406.
 - Cox, J. C., Ingersoll, J. E., & Ross, S. A. (1985). "A Theory of the Term Structure of Interest Rates." *Econometrica*, 53(2), 385-407.
 - Filipovic, D. *Term-Structure Models: A Graduate Course*. Springer, 2009, Chapter 5.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Vasicek model with short rate $r_t = X_t$, write the extended Riccati system $\tilde{\phi}' = F(\tilde{\psi}) - \rho_0$ and $\tilde{\psi}' = R(\tilde{\psi}) - \rho_1$ with $\rho_0 = 0$ and $\rho_1 = 1$. Solve for the bond pricing functions $A(\tau)$ and $B(\tau)$ with initial conditions $A(0) = 0$, $B(0) = 0$ and verify the well-known Vasicek bond price formula.
+
+---
+
+**Exercise 2.** For the CIR model, the bond pricing Riccati equation is $B'(\tau) = -1 - \kappa B + \frac{\xi^2}{2}B^2$. Define $\gamma = \sqrt{\kappa^2 + 2\xi^2}$ and verify by direct substitution that
+
+$$
+B(\tau) = \frac{2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}
+$$
+
+satisfies this ODE with $B(0) = 0$.
+
+---
+
+**Exercise 3.** Show that the yield $y(t, T) = -\frac{A(\tau)}{\tau} - \frac{B(\tau)}{\tau}x$ for the CIR model converges to a finite limit as $\tau \to \infty$. Compute this long-run yield $y_\infty$ in terms of $\kappa$, $\theta$, $\xi$, and $\gamma$.
+
+---
+
+**Exercise 4.** Verify that the instantaneous forward rate $f(t, T) = -A'(\tau) - B'(\tau)x$ recovers the short rate at $\tau = 0$: $f(t, t) = -A'(0) - B'(0)x = \rho_0 + \rho_1 x = r(x)$.
+
+---
+
+**Exercise 5.** Consider a two-factor model where $r_t = X_t^{(1)} + X_t^{(2)}$ with independent Vasicek factors. Write down the extended Riccati system for the bond price $P(t, T) = e^{A(\tau) + B_1(\tau)x_1 + B_2(\tau)x_2}$ and show that $B_1$ and $B_2$ satisfy independent linear ODEs. Derive the two-factor bond price formula.
+
+---
+
+**Exercise 6.** For the discounted characteristic function ($u = iv \neq 0$), the extended Riccati system must be solved with complex initial data $\tilde{\psi}(0) = iv$. Taking the CIR model, write down the discriminant for the $\tilde{\psi}$-equation with discounting and compare it to the discriminant $\gamma = \sqrt{\kappa^2 - 2\xi^2 iv}$ from the undiscounted case. How does the discounting term $\rho_1 = 1$ modify the discriminant?

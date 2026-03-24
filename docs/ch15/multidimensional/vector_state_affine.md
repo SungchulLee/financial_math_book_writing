@@ -217,3 +217,29 @@ The vector affine process on $D = \mathbb{R}_+^m \times \mathbb{R}^{d-m}$ extend
 - Duffie, D., Filipovic, D., and Schachermayer, W. (2003). "Affine Processes and Applications in Finance." *Annals of Applied Probability*, 13(3), 984--1053.
 - Duffie, D., Pan, J., and Singleton, K. (2000). "Transform Analysis and Asset Pricing for Affine Jump-Diffusions." *Econometrica*, 68(6), 1343--1376.
 - Filipovic, D. (2009). *Term-Structure Models: A Graduate Course*. Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a $d = 3$ dimensional affine process on $D = \mathbb{R}_+^2 \times \mathbb{R}$ with state vector $X_t = (V_t^{(1)}, V_t^{(2)}, r_t)^T$, write down the most general affine drift $b(x) = b_0 + Bx$ specifying the dimensions of $b_0 \in \mathbb{R}^3$ and $B \in \mathbb{R}^{3 \times 3}$. Which entries of $b_0$ must be non-negative for admissibility?
+
+---
+
+**Exercise 2.** For the Heston model as a two-dimensional affine process with $X_t = (\log S_t, V_t) \in \mathbb{R} \times \mathbb{R}_+$, write out the drift vector $b(x) = b_0 + Bx$ and diffusion matrix $a(x) = a_0 + \alpha_1 x_1 + \alpha_2 x_2$ explicitly, accounting for the correlation $\rho$ between the two Brownian motions.
+
+---
+
+**Exercise 3.** The vector Riccati system for a $d$-dimensional model has the form $\psi_j'(\tau) = R_j(\psi(\tau))$ for $j = 1, \ldots, d$. Explain why this system is generally coupled (the equation for $\psi_j$ depends on all components of $\psi$) and identify under what structural conditions on the diffusion matrices $\alpha_i$ the system decouples into independent scalar equations.
+
+---
+
+**Exercise 4.** For a two-factor model with one CIR and one Gaussian component, and no cross-diffusion, verify that the Riccati system decouples: $\psi_1$ satisfies a linear ODE and $\psi_2$ satisfies a scalar Riccati equation. Solve both explicitly.
+
+---
+
+**Exercise 5.** Consider extending the Heston model to three factors by adding a second variance process: $dV_t^{(2)} = \kappa_2(\theta_2 - V_t^{(2)})\,dt + \xi_2\sqrt{V_t^{(2)}}\,dW_t^{(3)}$, with the total variance being $V_t^{(1)} + V_t^{(2)}$. Write the state space, identify $m$ and $d$, and describe how the Riccati system changes compared to the standard Heston model.
+
+---
+
+**Exercise 6.** For a $d$-dimensional affine process, the computational cost of solving the Riccati system numerically is $O(d^2)$ per time step per frequency point. Compare this to the cost of solving the backward Kolmogorov PDE on a grid with $N$ points per dimension, which is $O(N^d)$. For $d = 3$ and $N = 100$, compute both costs and explain why the Riccati approach is vastly superior for multi-factor models.

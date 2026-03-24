@@ -298,3 +298,37 @@ $$
 | Construct martingales | Verify that \(dt\) coefficient vanishes; check integrability | 6 |
 | Solve SDEs | Apply a simplifying transformation; integrate | 7 |
 | Process transformations | Apply Itô's lemma directly; correction term produces non-zero drift from curvature even without explicit time dependence | 8 |
+
+---
+
+## Exercises
+
+**Exercise 1.** Evaluate $\int_0^t B_s^3\,dB_s$ by choosing an appropriate function $f(x)$ with $f'(x) = x^3$ and applying Itô's lemma. Express your answer in terms of $B_t$ and an ordinary integral.
+
+---
+
+**Exercise 2.** For $\theta \in \mathbb{R}$, define $M_t = \cos(\theta B_t)\,e^{\theta^2 t/2}$. Apply Itô's lemma to show that $dM_t$ has no $dt$ term, and conclude that $M_t$ is a local martingale. Write the SDE satisfied by $M_t$.
+
+---
+
+**Exercise 3.** The Ornstein--Uhlenbeck process satisfies $dX_t = -\theta X_t\,dt + \sigma\,dB_t$ with $X_0 = x_0$. Apply Itô's lemma to $f(t, x) = e^{\theta t}x$ to derive the explicit solution for $X_t$. (Hint: the product-rule approach in Example 7 of the Itô Rules page uses the same idea.)
+
+---
+
+**Exercise 4.** Let $dS_t = \mu S_t\,dt + \sigma S_t\,dB_t$ be geometric Brownian motion. Apply Itô's lemma to $f(x) = x^p$ for a constant $p \in \mathbb{R}$ to compute $d(S_t^p)$. Show that
+
+$$
+S_t^p = S_0^p \exp\!\left[\left(p\mu + \frac{1}{2}p(p-1)\sigma^2\right)t + p\sigma B_t\right]
+$$
+
+---
+
+**Exercise 5.** Evaluate $\int_0^t (1 + B_s^2)\,dB_s$ by splitting the integral and applying Itô's lemma to appropriate antiderivatives for each term. Express the result using $B_t$ and ordinary integrals.
+
+---
+
+**Exercise 6.** Apply Itô's lemma to $f(x) = \log(x^2) = 2\log(x)$ for $x > 0$ with $dX_t = \mu X_t\,dt + \sigma X_t\,dB_t$. Verify that you obtain twice the result from the $\log(x)$ computation in Example 7. Explain why this must be the case.
+
+---
+
+**Exercise 7.** Let $B_0 = b > 0$ and define $Y_t = B_t^2$ for $t < \tau_0 = \inf\{t : B_t = 0\}$. Use Itô's lemma to compute $dY_t$. Then apply Itô's lemma again to $g(y) = \sqrt{y}$ to recover $dB_t$ from $dY_t$, and verify consistency. What regularity condition on $g$ fails at $y = 0$, and why does this matter?

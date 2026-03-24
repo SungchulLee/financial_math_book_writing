@@ -117,3 +117,45 @@ In practice, calibration stability over time is often the most relevant criterio
 - Tikhonov & Arsenin, *Solutions of Ill-Posed Problems*.
 - Engl, Hanke & Neubauer, *Regularization of Inverse Problems*.
 - Tarantola, *Inverse Problem Theory*.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the linear forward map $F(\theta) = A\theta$, derive the Tikhonov-regularized solution
+
+$$
+\hat{\theta}_\lambda = (A^\top W A + \lambda I)^{-1}(A^\top W y + \lambda \theta_0)
+$$
+
+by setting the gradient of $\frac{1}{2}\|A\theta - y\|_W^2 + \frac{\lambda}{2}\|\theta - \theta_0\|^2$ to zero. Show that as $\lambda \to 0$, $\hat{\theta}_\lambda$ approaches the ordinary least-squares solution, and as $\lambda \to \infty$, $\hat{\theta}_\lambda \to \theta_0$.
+
+---
+
+**Exercise 2.** Let $A$ have singular value decomposition $A = U\Sigma V^\top$ with singular values $\sigma_1 \ge \cdots \ge \sigma_d > 0$. Show that the Tikhonov solution with $L = I$ and $\theta_0 = 0$ can be written in the SVD basis as
+
+$$
+\hat{\theta}_\lambda = \sum_{i=1}^d \frac{\sigma_i^2}{\sigma_i^2 + \lambda} \frac{u_i^\top y}{\sigma_i} v_i
+$$
+
+Interpret the filter factors $\sigma_i^2/(\sigma_i^2 + \lambda)$ and explain how they suppress components with small singular values.
+
+---
+
+**Exercise 3.** Derive the Bayesian interpretation of Tikhonov regularization. Starting from the prior $\theta \sim \mathcal{N}(\theta_0, (\lambda L^\top L)^{-1})$ and likelihood $y|\theta \sim \mathcal{N}(A\theta, W^{-1})$, show that the MAP estimator coincides with the Tikhonov solution. What does the regularization parameter $\lambda$ correspond to in Bayesian terms?
+
+---
+
+**Exercise 4.** The L-curve method plots $\log\|F(\hat{\theta}_\lambda) - y\|$ versus $\log\|L(\hat{\theta}_\lambda - \theta_0)\|$ for varying $\lambda$. The optimal $\lambda$ is chosen at the "corner" of the L-shaped curve. Explain geometrically why the corner represents the best compromise between fit and regularity. What happens if the L-curve has no clear corner?
+
+---
+
+**Exercise 5.** The discrepancy principle selects $\lambda$ such that $\|F(\hat{\theta}_\lambda) - y\| \approx \delta$, where $\delta$ is the estimated noise level. If market quotes have bid-ask half-widths $\sigma_i$, propose how to estimate $\delta$ from these half-widths. What are the limitations of this approach when the model is misspecified (so that the residual has a systematic component in addition to noise)?
+
+---
+
+**Exercise 6.** A Heston model is calibrated to 30 option prices using Tikhonov regularization with $\theta_0$ equal to yesterday's parameters. The regularization parameter is $\lambda = 0.1$. Today, a sudden market crash occurs, and the unregularized calibration yields $v_0 = 0.12$ (compared to yesterday's $v_0 = 0.04$). Compute the regularized estimate. Is the regularization appropriate in this scenario? How would you design an adaptive $\lambda$ that allows large parameter changes during genuine market events?
+
+---
+
+**Exercise 7.** Compare zero-order Tikhonov ($L = I$) with first-order Tikhonov ($L = D_1$, the first-difference operator) for calibrating a piecewise-constant local volatility surface on a grid of 10 maturities. What structural property does each penalty enforce? Which is more appropriate for this problem and why?

@@ -438,3 +438,29 @@ The change of numeraire technique provides an elegant alternative to standard ri
 6. **Limitation**: Requires understanding of measure theory; not always simpler than PDE methods
 
 This completes the toolkit of analytical approaches to option pricing, complementing PDE-based methods with measure-theoretic perspectives.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $N_t = e^{rt}$ be the money market account and $\mathbb{Q}$ the associated risk-neutral measure. Verify the Radon-Nikodym derivative formula by showing that $\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\big|_{\mathcal{F}_T} = \frac{S_T e^{-rT}}{S_0}$ has expectation 1 under $\mathbb{Q}$.
+
+---
+
+**Exercise 2.** Under the stock measure $\mathbb{Q}^S$, the discounted bond price $B_t / S_t = e^{rt}/S_t$ is a martingale. Verify this explicitly by computing $d(e^{rt}/S_t)$ using Ito's lemma and the stock dynamics under $\mathbb{Q}^S$, and confirming that the drift vanishes.
+
+---
+
+**Exercise 3.** Derive the Garman-Kohlhagen formula for a European call on a foreign exchange rate. Starting from the FX dynamics $dX_t = (r_d - r_f)X_t \, dt + \sigma X_t \, dW_t^{\mathbb{Q}^d}$, use the change of numeraire to the foreign money market and show that the call price is $C_0 = X_0 e^{-r_f T}\mathcal{N}(d_1) - Ke^{-r_d T}\mathcal{N}(d_2)$, where $d_1 = \frac{\ln(X_0/K) + (r_d - r_f + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}$.
+
+---
+
+**Exercise 4.** Consider the exchange option (Margrabe's formula) with payoff $(S_T^{(1)} - S_T^{(2)})^+$ where both assets follow GBM with correlation $\rho$. Using $S_t^{(2)}$ as numeraire, show that the option price is $V_0 = S_0^{(1)}\mathcal{N}(d_1) - S_0^{(2)}\mathcal{N}(d_2)$ and determine the effective volatility $\hat{\sigma}$ that appears in $d_1$ and $d_2$.
+
+---
+
+**Exercise 5.** Explain why the term $\mathcal{N}(d_1)$ in the Black-Scholes call formula is both the delta of the option and the probability of exercise under the stock measure. Is this a coincidence, or does the change-of-numeraire framework make this relationship transparent? Justify your answer.
+
+---
+
+**Exercise 6.** A zero-coupon bond maturing at time $T$ with price $P(t,T) = e^{-r(T-t)}$ can serve as a numeraire, giving rise to the $T$-forward measure $\mathbb{Q}^T$. Show that under $\mathbb{Q}^T$, the forward price $F(t,T) = S_t / P(t,T)$ is a martingale. Use this to re-derive the Black-Scholes call price starting from $C_0 = P(0,T)\mathbb{E}^{\mathbb{Q}^T}[(F(T,T) - K)^+]$.

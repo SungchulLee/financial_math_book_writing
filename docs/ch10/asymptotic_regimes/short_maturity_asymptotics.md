@@ -158,3 +158,29 @@ where \(\sigma_{\text{local}}(S)\) is the local volatility at spot. This is the 
 - Far OTM prices decay as \(\exp(-x^2/(2\sigma^2\tau))\) with rate function \(I = x^2/(2\sigma^2)\).
 - Gamma and theta blow up like \(\tau^{-1/2}\) near ATM.
 - Short-maturity implied vol converges to local vol.
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify the ATM call price formula $C_{\text{ATM}} \approx \frac{S\sigma\sqrt{\tau}}{\sqrt{2\pi}}$ by expanding $N(d_1)$ and $N(d_2)$ for $S = K$ and small $\tau$. Compute the ATM price for $S = 100$, $\sigma = 0.30$, $\tau = 5/252$ using both the exact Black--Scholes formula and the asymptotic approximation. What is the relative error?
+
+---
+
+**Exercise 2.** For an OTM call with $K = 110$ and $S = 100$, compute the rate function $I(S,K) = (\ln(K/S))^2/(2\sigma^2)$ for $\sigma = 0.20$. Then estimate the call price using the far-OTM formula for $\tau = 5/252$ and compare with the exact Black--Scholes price.
+
+---
+
+**Exercise 3.** The Greeks table shows that ATM gamma scales as $\tau^{-1/2}$ while vega scales as $\tau^{1/2}$ near expiry. Compute the ratio $\nu / \Gamma = \sigma S^2 \tau$ for $S = 100$, $\sigma = 0.20$ at $\tau = 1$ day, $1$ week, and $1$ month. What does this ratio tell you about the relative importance of gamma versus vega hedging near expiry?
+
+---
+
+**Exercise 4.** For an ITM call with $S = 110$, $K = 100$, the time value decays as $C - (S-K)^+ \approx \frac{S\sigma\sqrt{\tau}}{\sqrt{2\pi}}e^{-x^2/(2\sigma^2\tau)}$ where $x = \ln(K/S)$. Compute this time value for $\sigma = 0.20$ and $\tau = 1/252$. Is the time value material or negligible?
+
+---
+
+**Exercise 5.** The connection between short-maturity implied volatility and local volatility states $\Sigma(K,\tau) \to \sigma_{\text{local}}(S)$ as $\tau \to 0$. Explain intuitively why the short-maturity smile "sees" only the local volatility at the current spot. What information about the volatility surface is lost in this limit?
+
+---
+
+**Exercise 6.** Consider a portfolio of options with maturities $\tau_1 = 1$ day and $\tau_2 = 1$ year, both ATM. Using the scaling laws, compare the gamma, theta, and vega of each position. If both positions have the same notional, which contributes more to (a) daily P&L volatility and (b) sensitivity to implied vol changes?

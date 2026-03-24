@@ -266,3 +266,40 @@ Two approaches are common:
 | [Barrier Options (Semi-Analytical)](barrier_options_semi_analytical.md) | Fourier methods for other exotics |
 | [VIX Options Under Heston](vix_options_under_heston.md) | Another affine pricing application |
 | [Double Heston Model](../extensions/double_heston_model.md) | Richer forward smile with two factors |
+
+---
+
+## Exercises
+
+**Exercise 1.**
+A forward-start ATM call ($\alpha = 1$) has payoff $(S_T - S_{T_1})^+$ with $T_1 = 0.5$ and $T = 1.0$. Under Black-Scholes with constant volatility $\sigma = 20\%$, the price depends only on $T - T_1 = 0.5$ and the moneyness ratio $\alpha = 1$. Compute this price for $r = 3\%$ and $q = 1\%$. Now explain why under Heston, the price depends on the full maturity structure $(T_1, T)$ and not just $T - T_1$.
+
+---
+
+**Exercise 2.**
+The normalized forward return is $R = S_T / S_{T_1}$. Show that the forward-start call price can be written as $V_0 = S_0 e^{-qT} \mathbb{E}^{\mathbb{Q}^S}[(R - \alpha)^+]$ where $\mathbb{Q}^S$ is the stock-price measure. Explain why factoring out $S_{T_1}$ is essential for pricing and why the resulting expectation depends on the distribution of $v_{T_1}$.
+
+---
+
+**Exercise 3.**
+Under Heston, the conditional characteristic function of $\ln(S_T/S_{T_1})$ given $v_{T_1}$ is the standard Heston CF with $v_0$ replaced by $v_{T_1}$ and maturity $\tau = T - T_1$. To compute the unconditional price, we must integrate over the distribution of $v_{T_1}$. Describe this iterated expectation: $V_0 = e^{-rT}\mathbb{E}_{v_{T_1}}[\mathbb{E}[(S_T - \alpha S_{T_1})^+ \mid v_{T_1}]]$. How would you numerically evaluate the outer expectation over $v_{T_1}$?
+
+---
+
+**Exercise 4.**
+The **forward implied volatility smile** describes the implied volatility of the forward-start option as a function of $\alpha$. Under Black-Scholes, this smile is flat (constant at $\sigma$). Under Heston, it is not flat because $v_{T_1}$ is random. Explain why the forward smile is generally flatter than the spot smile for long $T_1$: the randomness of $v_{T_1}$ averages over different instantaneous smiles, smoothing the overall shape.
+
+---
+
+**Exercise 5.**
+A cliquet contract with annual resets and 5-year maturity consists of 5 consecutive forward-start options. The payoff of each leg $k$ is $\min(\max(R_k - 1, f), c)$ where $R_k = S_{t_k}/S_{t_{k-1}}$, $f = 0$ is the floor, and $c = 10\%$ is the cap. Explain why the total cliquet price is not simply 5 times the single-period forward-start price, even though the legs have the same structure. Hint: the variance state connects consecutive periods.
+
+---
+
+**Exercise 6.**
+Compare the forward-start call price under Heston for different values of $\rho$. With $\alpha = 1.1$ (10% OTM), $T_1 = 0.5$, $T = 1.0$, and all other parameters equal, explain why a more negative $\rho$ increases the forward-start call price. Consider the conditional smile: given a low $v_{T_1}$ (which is more likely after a positive stock return due to negative $\rho$), the forward smile is steeper, making the OTM forward-start option more expensive.
+
+---
+
+**Exercise 7.**
+Monte Carlo pricing of forward-start options is straightforward: simulate paths, record $S_{T_1}$ and $S_T$, and compute the discounted payoff. However, variance reduction is less effective than for vanilla options because the European call (the standard control variate) is less correlated with the forward-start payoff. Propose a better control variate for forward-start options and justify your choice. Hint: consider using a Black-Scholes forward-start option with $\sigma = \sqrt{v_0}$ as the control.

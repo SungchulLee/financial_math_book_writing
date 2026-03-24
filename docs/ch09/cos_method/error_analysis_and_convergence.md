@@ -213,3 +213,29 @@ The COS method's error structure is clean and well-understood:
 | Total error | $\varepsilon_1 + \varepsilon_2$ | Dominated by $\varepsilon_2$ | Target via choice of $N$ |
 
 **For models with analytic characteristic functions and smooth densities, the COS method achieves exponential convergence in $N$, with the convergence rate determined by the width of the analyticity strip of the density relative to the truncation interval length.**
+
+---
+
+## Exercises
+
+**Exercise 1.** The total COS error satisfies $|V - V_{\text{COS}}| \leq \varepsilon_1 + \varepsilon_2$, where $\varepsilon_1$ is the truncation error and $\varepsilon_2$ is the series truncation error. For the Heston model with $L = 10$ and $N = 128$, the text states $\varepsilon_1 < 10^{-15}$ and $\varepsilon_2 \approx 10^{-11}$. Verify that the total error is dominated by $\varepsilon_2$ and determine how large $N$ must be to make $\varepsilon_2 < 10^{-15}$.
+
+---
+
+**Exercise 2.** The series truncation error bound uses the Cauchy-Schwarz inequality: $\varepsilon_2 \leq e^{-rT}(\sum_{k=N}^{\infty}A_k^2)^{1/2}(\sum_{k=N}^{\infty}V_k^2)^{1/2}$. For a call payoff, the payoff coefficients decay as $V_k = O(1/k^2)$. If the density coefficients decay as $|A_k| \leq Ce^{-\beta k\pi/(b-a)}$, show that the dominant factor in the error bound is the density coefficient tail sum, and derive an explicit bound on $\varepsilon_2$.
+
+---
+
+**Exercise 3.** For the Black-Scholes model, the density is Gaussian (entire function) and the coefficients decay as $|A_k| \sim e^{-ck^2}$ (super-exponential). Using the convergence data in the example ($N = 8$: error $\approx 10^{-3}$; $N = 16$: error $\approx 10^{-6}$; $N = 32$: error $\approx 10^{-11}$), estimate the parameter $c$ in the decay rate and predict the error for $N = 48$.
+
+---
+
+**Exercise 4.** Explain why narrower truncation intervals (smaller $b - a$) improve the COS convergence rate. If the analyticity strip width is $\beta$ and the interval length is $b - a$, the exponential convergence rate is $e^{-\beta N\pi/(b-a)}$. For the Heston model with $\beta = 0.5$ and two truncation choices $b - a = 5$ and $b - a = 10$, compare the values of $N$ needed to achieve $\varepsilon_2 < 10^{-8}$.
+
+---
+
+**Exercise 5.** The convergence study for the Heston model shows each doubling of $N$ adds approximately 3-4 digits of accuracy. Verify this is consistent with exponential convergence $\varepsilon_2 \sim e^{-cN}$ by computing $c$ from the data ($N = 32$: error $\approx 10^{-4}$; $N = 64$: error $\approx 10^{-7}$). What convergence rate would you expect for algebraic convergence $\varepsilon_2 \sim N^{-p}$ with $p = 4$?
+
+---
+
+**Exercise 6.** The practical convergence diagnostic suggests computing $V_N$ and $V_{2N}$ and checking if $|V_{2N} - V_N| < \varepsilon$. Explain why this Richardson-type estimate works for exponentially convergent methods. For algebraic convergence $\varepsilon_2 = O(N^{-p})$, derive the relationship between $|V_{2N} - V_N|$ and the true error $|V_{2N} - V_{\text{exact}}|$.

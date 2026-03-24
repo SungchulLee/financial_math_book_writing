@@ -160,3 +160,29 @@ where \(p(s)\) concentrates near \(Se^{r\tau}\). For OTM options, the integral i
 - These asymptotics connect to large deviations and Laplace principles.
 - Delta becomes step-like; gamma diverges as \(\sigma \to 0\) for ATM options.
 - Heat kernel small-time expansion provides the mathematical framework.
+
+---
+
+## Exercises
+
+**Exercise 1.** For an OTM call with $K = 110$, $S = 100$, $r = 0.03$, $\tau = 1$ year, compute the rate function $c = (\ln(K/S) - r\tau)^2/\tau$ and the exponential decay factor $\exp(-c/(2\sigma^2))$ for $\sigma = 0.10$ and $\sigma = 0.05$. By how many orders of magnitude does the price decrease when volatility halves?
+
+---
+
+**Exercise 2.** For the ATM forward strike $K = Se^{r\tau}$, verify that $d_1 = \sigma\sqrt{\tau}/2$ and $d_2 = -\sigma\sqrt{\tau}/2$. Show that $C_{\text{ATM}} \approx \frac{S\sigma\sqrt{\tau}}{\sqrt{2\pi}}$ to leading order in $\sigma$, confirming linearity in $\sigma$.
+
+---
+
+**Exercise 3.** As $\sigma \to 0$, delta becomes the step function $\Delta \to \mathbf{1}_{S > Ke^{-r\tau}}$. For $K = 100$, $r = 0.05$, $\tau = 0.5$, compute the critical spot level $S^* = Ke^{-r\tau}$ where the step occurs. Plot (or sketch) delta as a function of $S$ for $\sigma = 0.30$, $0.10$, and $0.01$ to illustrate the convergence to a step function.
+
+---
+
+**Exercise 4.** The gamma formula $\Gamma = N'(d_1)/(S\sigma\sqrt{\tau})$ diverges as $\sigma \to 0$ for ATM options. Show that $\Gamma \to \infty$ at rate $1/\sigma$ when $S = Ke^{-r\tau}$. What physical interpretation does this have --- why is the option's convexity infinite in the zero-volatility limit?
+
+---
+
+**Exercise 5.** The large deviations rate function $I(s) = \frac{1}{2\tau}(\ln(s/S) - r\tau)^2$ describes the cost of the diffusion reaching level $s$ from $S$. Compute $I(s)$ for $S = 100$, $r = 0.03$, $\tau = 1$, at $s = 80, 100, 120, 150$. Which of these levels is "cheapest" to reach?
+
+---
+
+**Exercise 6.** The heat kernel expansion $p(x,y;t) \sim \frac{1}{\sqrt{2\pi t}}\exp(-\frac{(y-x)^2}{2t}) \sum_{n=0}^\infty a_n(x,y)t^n$ provides systematic corrections to the leading-order Gaussian. In the Black--Scholes log-coordinate, what is the leading correction $a_1(x,y)$, and how does it relate to the drift term $(r - \frac{1}{2}\sigma^2)$?

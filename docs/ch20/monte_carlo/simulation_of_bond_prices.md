@@ -137,3 +137,33 @@ The two-factor model produces richer yield curve dynamics: different paths can e
 ## Summary
 
 Bond price simulation in the Hull-White model exploits the affine structure to compute exact bond prices at each simulated time step. The short rate path is generated using exact Gaussian transitions, and bond prices follow from the closed-form affine formula $P(t,T) = \exp(A(t,T) + B(t,T)\,r_t)$. Key applications include yield curve simulation, consistency verification against the initial market curve, and path-wise valuation of interest rate portfolios. The two-factor extension enriches the dynamics by introducing a second state variable while preserving the exponential-affine bond price structure.
+
+---
+
+## Exercises
+
+**Exercise 1.** Given a simulated short rate value $r_{10} = 0.045$ at time $t = 10$, compute the bond price $P(10, 15)$ using the affine formula. Use $\lambda = 0.05$, $\sigma = 0.01$, and a flat market curve $P^M(0,T) = e^{-0.03T}$. Compute $B(10,15)$ and $A(10,15)$ explicitly.
+
+---
+
+**Exercise 2.** The yield $y(t,T) = -[A(t,T) + B(t,T)r_t]/(T-t)$ is affine in $r_t$. Show that the yield curve at time $t$ is fully determined by $r_t$ in the one-factor model. Why does this imply that all yield curve movements are parallel shifts? How is this different from the two-factor model?
+
+---
+
+**Exercise 3.** The Monte Carlo bond price estimator $\hat{P}(0,T) = \frac{1}{N_{\text{paths}}}\sum_{k=1}^{N_{\text{paths}}} 1/M^{(k)}(T)$ should equal $P^M(0,T)$. Explain why this is a necessary consistency check for the simulation. What are the most common implementation bugs that would cause this check to fail?
+
+---
+
+**Exercise 4.** The forward bond price $F(t;T,S) = P(t,S)/P(t,T) = \exp([A(t,S) - A(t,T)] + [B(t,S) - B(t,T)]r_t)$ is a martingale under the $T$-forward measure. Verify this property numerically by simulating paths and checking that $\mathbb{E}^{Q^T}[F(t;T,S)] = F(0;T,S)$ for several values of $t$.
+
+---
+
+**Exercise 5.** The money market account is computed as $M(t_n) = \exp(\sum_{i=0}^{n-1} r_{t_i}\Delta t_i)$. This uses a left-Riemann sum for $\int_0^{t_n} r(s)ds$. Compare this with the trapezoidal rule approximation. For a typical time step $\Delta t = 0.1$ years, estimate the order of the quadrature error.
+
+---
+
+**Exercise 6.** In the two-factor model, the bond price depends on two state variables: $P(t,T) = \exp(A^{(2)}(t,T) + B_x(t,T)x_t + B_y(t,T)y_t)$. Explain why this produces richer yield curve dynamics than the one-factor model. Describe the types of yield curve movements (parallel shift, twist, butterfly) that the two-factor model can generate.
+
+---
+
+**Exercise 7.** Precomputing $A(t_i, T_j)$ and $B(t_i, T_j)$ for all time steps $t_i$ and maturities $T_j$ before the simulation improves efficiency. For a simulation with $N = 100$ time steps and $M = 10$ maturities, how many values must be precomputed? Describe the memory and computational trade-offs.

@@ -399,3 +399,35 @@ The vast majority of the CDS spread is risk premium, not expected loss.
 - Huang, J.-Z., & Huang, M. (2012). How much of the corporate-treasury yield spread is due to credit risk? *Review of Asset Pricing Studies*, 2(2), 153--202.
 - Driessen, J. (2005). Is default event risk priced in corporate bonds? *Review of Financial Studies*, 18(1), 165--195.
 - Duffie, D., & Singleton, K. J. (2003). *Credit Risk: Pricing, Measurement, and Management*. Princeton University Press, Chapter 4.
+
+---
+
+## Exercises
+
+**Exercise 1.** A BBB-rated issuer has a 5-year historical default probability of 2.0% and a 5-year CDS spread of 140 bp with $R = 40\%$. Compute the physical intensity $\lambda^{\mathbb{P}}$, the risk-neutral intensity $\lambda^{\mathbb{Q}}$, and the credit risk premium ratio $\eta = \lambda^{\mathbb{Q}} / \lambda^{\mathbb{P}}$. Decompose the 140 bp spread into expected loss and risk premium components.
+
+---
+
+**Exercise 2.** In the Merton model, the physical and risk-neutral distances to default differ by
+
+$$
+DD^{\mathbb{P}} - DD^{\mathbb{Q}} = \frac{(\mu - r)\sqrt{T}}{\sigma_V}
+$$
+
+For a firm with asset drift $\mu = 10\%$, risk-free rate $r = 3\%$, asset volatility $\sigma_V = 25\%$, and horizon $T = 5$ years, compute this gap. Explain why higher equity risk premia widen the gap between physical and risk-neutral default probabilities.
+
+---
+
+**Exercise 3.** Explain why using risk-neutral default probabilities for economic capital calculations leads to overstatement of losses. Conversely, explain why using physical default probabilities for CDS pricing leads to systematic underpricing of protection. Provide a numerical example for each case.
+
+---
+
+**Exercise 4.** The credit risk premium ratio $\eta$ is empirically observed to be larger for investment-grade issuers (e.g., $\eta \approx 6$ for BBB) than for speculative-grade issuers (e.g., $\eta \approx 1.5$ for B). Provide an economic explanation for this pattern, referencing the relative importance of expected loss versus systematic risk compensation at different credit qualities.
+
+---
+
+**Exercise 5.** A risk manager estimates physical default probabilities from Moody's historical data and risk-neutral probabilities from CDS spreads. During a recession, the risk premium ratio $\eta$ increases from 5 to 8. Describe how this procyclicality affects (a) CDS pricing, (b) regulatory capital calculations, and (c) relative value strategies that exploit the $\mathbb{P}$--$\mathbb{Q}$ gap.
+
+---
+
+**Exercise 6.** Using the data in the table of typical $\lambda^{\mathbb{P}}$ and $\lambda^{\mathbb{Q}}$ values provided in the text, compute the 5-year risk-neutral and physical survival probabilities for an A-rated and a BB-rated issuer. For each rating, compute the expected loss component and risk premium component of the credit spread (assuming $R = 40\%$). Which rating has a larger fraction of its spread attributable to expected loss?

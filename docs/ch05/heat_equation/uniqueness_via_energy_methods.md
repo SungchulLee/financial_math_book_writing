@@ -280,3 +280,40 @@ $$
 - [Fundamental Solution](fundamental_solution.md) -- explicit solution showing decay
 - [Spectral Decomposition](../greens_functions/spectral_decomposition.md) -- eigenfunction expansion and decay rates
 - [Scaling and Invariance](scaling_and_invariance.md) -- self-similar structure of the heat equation
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Define the energy functional $E(t) = \frac{1}{2}\int_a^b u(x, t)^2\,dx$ for a solution $u$ of the heat equation with homogeneous Dirichlet conditions on $[a, b]$. Compute $E'(t)$ and show that $E'(t) \leq 0$, proving that energy is non-increasing.
+
+---
+
+**Exercise 2.**
+Using the energy method, prove uniqueness: if $u$ and $v$ both solve the heat equation with the same initial and boundary data, define $w = u - v$ and show $E_w(t) = 0$ for all $t \geq 0$, hence $w = 0$.
+
+---
+
+**Exercise 3.**
+The Poincare inequality states $\int_a^b u^2\,dx \leq C\int_a^b (u')^2\,dx$ for functions vanishing at the endpoints, with $C = (b-a)^2/\pi^2$. Use this together with the energy decay $E'(t) = -\int (u')^2\,dx$ to show $E'(t) \leq -\frac{\pi^2}{(b-a)^2}E(t)$, giving exponential decay $E(t) \leq E(0)e^{-\pi^2 t/(b-a)^2}$.
+
+---
+
+**Exercise 4.**
+For Neumann conditions $u_x(a, t) = u_x(b, t) = 0$, the energy $E(t) = \frac{1}{2}\int u^2\,dx$ still decreases, but does it decay to zero? Explain why the Poincare inequality must be modified (applied to $u - \bar{u}$ where $\bar{u}$ is the spatial average) and what the equilibrium solution is.
+
+---
+
+**Exercise 5.**
+Explain the financial interpretation of energy decay for barrier option pricing on a bounded domain $[B_l, B_u]$. As $T - t \to \infty$, the option price decays exponentially. Relate the decay rate to the smallest eigenvalue $\lambda_1 = \pi^2 / (2(B_u - B_l)^2)$.
+
+---
+
+**Exercise 6.**
+The energy method requires only integration by parts and does not need the explicit form of the solution. Explain why this is an advantage over the maximum principle approach for proving uniqueness, especially for more complex PDEs with variable coefficients.
+
+---
+
+**Exercise 7.**
+For the heat equation with a source term $\partial_t u = \frac{1}{2}\partial_{xx}u + f(x, t)$, the energy is no longer monotonically decreasing. Compute $E'(t)$ in this case and identify the additional term. Under what condition on $f$ does the energy still remain bounded?

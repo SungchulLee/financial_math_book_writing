@@ -677,3 +677,33 @@ $$
 - **Empirical:** Hybrid, closer to sticky-delta
 
 The smile is not a static feature but encodes rich information about market beliefs, risk premia, and the dynamics of the underlying asset.
+
+---
+
+## Exercises
+
+**Exercise 1.** Given a smile parametrized by $\sigma(y, T) = \sigma_{\text{ATM}} + \mathcal{S} \cdot y + \frac{1}{2}\mathcal{C} \cdot y^2$ with $\sigma_{\text{ATM}} = 0.20$, $\mathcal{S} = -0.15$, and $\mathcal{C} = 0.80$, compute the implied volatility at log-moneyness $y = -0.10$ (OTM put region) and $y = +0.10$ (OTM call region). Verify that the smile exhibits downward skew with positive curvature.
+
+---
+
+**Exercise 2.** The risk reversal and butterfly are defined as $\text{RR}_{25} = \sigma_{25\Delta C} - \sigma_{25\Delta P}$ and $\text{BF}_{25} = \frac{1}{2}(\sigma_{25\Delta C} + \sigma_{25\Delta P}) - \sigma_{\text{ATM}}$. If $\sigma_{25\Delta P} = 25\%$, $\sigma_{\text{ATM}} = 18\%$, and $\sigma_{25\Delta C} = 17\%$, compute $\text{RR}_{25}$ and $\text{BF}_{25}$. Interpret the signs in terms of the skew direction and tail behavior of the risk-neutral distribution.
+
+---
+
+**Exercise 3.** Explain the relationship between the smile skew parameter $\mathcal{S}$ and the third moment (skewness) of the risk-neutral distribution, and between the curvature $\mathcal{C}$ and the fourth moment (kurtosis). For an equity index with skewness $-1.5$ and kurtosis $6.0$, predict the qualitative shape of the smile.
+
+---
+
+**Exercise 4.** The SVI parametrization is $w(y) = a + b(\rho(y - m) + \sqrt{(y-m)^2 + \sigma^2})$. For parameters $a = 0.04$, $b = 0.10$, $\rho = -0.5$, $m = 0$, $\sigma = 0.2$, and $T = 1$: (a) compute the total variance $w(y)$ at $y = -0.2, 0, 0.2$; (b) convert to implied volatility via $\sigma_{\text{IV}} = \sqrt{w/T}$; (c) verify that the no-arbitrage condition $b(1 + |\rho|) < 4a$ is satisfied.
+
+---
+
+**Exercise 5.** Compare the smile shapes across three asset classes: equity indices, major FX pairs, and commodities. For each, describe (a) the typical sign of $\mathcal{S}$ (skew), (b) the typical sign of $\mathcal{C}$ (curvature), (c) the dominant economic driver (leverage effect, jump risk, supply/demand, etc.).
+
+---
+
+**Exercise 6.** In a jump-diffusion model $dS = \mu S \, dt + \sigma S \, dW + S \, dJ$ where the jump size has mean $m_J < 0$ (negative jumps), explain how this produces (a) negative skew in the implied volatility smile and (b) positive curvature (excess kurtosis). What happens to the smile shape if jumps are symmetric ($m_J = 0$)?
+
+---
+
+**Exercise 7.** An options trader observes the following 3-month SPX implied volatilities: 90% strike = 26%, 95% strike = 22%, 100% (ATM) = 18%, 105% strike = 17%, 110% strike = 16.5%. (a) Compute the smile skew $\mathcal{S}$ as the slope between 95% and 105% strikes in log-moneyness. (b) Compute the smile curvature using the 90%, 100%, and 110% strikes. (c) Is this smile more consistent with equity skew (smirk) or FX smile (symmetric)?

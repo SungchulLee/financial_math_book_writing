@@ -102,3 +102,47 @@ Alternatively, Dupire can be written directly in terms of implied vol or total v
 - Dupire (1994), “Pricing with a Smile”.
 - Gatheral, *The Volatility Surface* (local vol and implied vol geometry).
 - Fengler, *Semiparametric Modeling of Implied Volatility* (surface construction).
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from Dupire's forward PDE
+
+$$
+\partial_T C = \frac{1}{2}\sigma_{\text{loc}}^2(T,K)\,K^2\,\partial_{KK}C - (r-q)K\,\partial_K C + qC
+$$
+
+derive the inversion formula for $\sigma_{\text{loc}}^2(T,K)$ by solving algebraically for the local variance. State explicitly which quantity appears in the denominator and explain why its sign is guaranteed under no-arbitrage conditions.
+
+---
+
+**Exercise 2.** Consider a flat implied volatility surface $\sigma_{\text{impl}}(K,T) = \sigma_0$ for all $K, T$. Compute $\partial_T C$ and $\partial_{KK} C$ from the Black--Scholes formula, and show that the Dupire formula recovers $\sigma_{\text{loc}}(T,K) = \sigma_0$ everywhere.
+
+---
+
+**Exercise 3.** Suppose observed call prices are contaminated by additive noise: $\hat{C}(K_i, T_j) = C(K_i, T_j) + \varepsilon_{ij}$ where $\varepsilon_{ij} \sim N(0, \delta^2)$. Using a finite-difference approximation for $\partial_{KK}C$ with strike spacing $\Delta K$, show that the variance of the estimated second derivative scales as
+
+$$
+\operatorname{Var}\!\left(\widehat{\partial_{KK}C}\right) \sim \frac{\delta^2}{(\Delta K)^4}
+$$
+
+Explain why this makes the Dupire inversion ill-posed and discuss the trade-off between bias and variance as $\Delta K$ varies.
+
+---
+
+**Exercise 4.** A trader observes European call prices at strikes $K \in \{80, 90, 100, 110, 120\}$ and maturities $T \in \{0.25, 0.50\}$ with $S_0 = 100$, $r = 0.03$, $q = 0$. Using finite differences, write down explicit formulas for approximating $\partial_T C(K, T)$ and $\partial_{KK} C(K, T)$ at the grid point $(K=100, T=0.25)$. Identify which market quotes are needed.
+
+---
+
+**Exercise 5.** The butterfly spread condition requires $\partial_{KK}C \ge 0$ for absence of arbitrage. Show that if this condition is violated at some point $(K_0, T_0)$ in the interpolated surface, the Dupire formula yields a negative local variance $\sigma_{\text{loc}}^2(T_0, K_0) < 0$. Propose a practical remedy using arbitrage filtering before applying the Dupire inversion.
+
+---
+
+**Exercise 6.** Let the total implied variance be defined as $w(K,T) = \sigma_{\text{impl}}^2(K,T)\cdot T$. Show that Dupire's formula can be rewritten in terms of $w$ as
+
+$$
+\sigma_{\text{loc}}^2 = \frac{\partial_T w}{1 - \frac{y}{w}\partial_y w + \frac{1}{4}\left(-\frac{1}{4} - \frac{1}{w} + \frac{y^2}{w^2}\right)(\partial_y w)^2 + \frac{1}{2}\partial_{yy}w}
+$$
+
+where $y = \ln(K/F_T)$ is the log-moneyness. Discuss why working in the $(y, T)$ coordinate system can improve numerical stability compared to working directly with $(K, T)$.

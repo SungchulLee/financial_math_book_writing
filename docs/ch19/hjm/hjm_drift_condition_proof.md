@@ -129,3 +129,55 @@ Each factor contributes additively to the drift.
   - Björk, *Arbitrage Theory in Continuous Time*, Chapter 25
   - Filipović, *Term-Structure Models*, Chapter 7
   - Brigo & Mercurio, *Interest Rate Models - Theory and Practice*, Part III
+
+---
+
+## Exercises
+
+**Exercise 1.** Reproduce the martingale-based derivation of the HJM drift condition by carrying out the following steps explicitly. Start from $Z(t, T) = -\int_t^T f(t, u)\,du$, compute $dZ(t, T)$ using Leibniz's rule, apply Ito's lemma to $P(t, T) = e^{Z(t,T)}$, form the discounted bond price $P(t,T)/B_t$, set the drift to zero, and differentiate in $T$ to obtain $\alpha(t, T) = \sigma(t, T)\int_t^T \sigma(t, u)\,du$.
+
+---
+
+**Exercise 2.** Verify the HJM drift condition for the Ho--Lee model, where $\sigma(t, T) = \sigma$ is constant. Compute the drift $\alpha(t, T)$, the bond volatility $\Sigma(t, T) = \int_t^T \sigma\,du$, and show that the resulting forward rate dynamics integrate to
+
+$$
+f(t, T) = f(0, T) + \sigma^2 t(T - t/2) + \sigma W_t
+$$
+
+---
+
+**Exercise 3.** For the Hull--White (extended Vasicek) volatility $\sigma(t, T) = \sigma e^{-\kappa(T-t)}$, compute the drift
+
+$$
+\alpha(t, T) = \frac{\sigma^2}{\kappa}\,e^{-\kappa(T-t)}\bigl(1 - e^{-\kappa(T-t)}\bigr)
+$$
+
+and verify that setting $T = t$ gives $\alpha(t, t) = 0$. Explain why the drift at the short end of the curve vanishes.
+
+---
+
+**Exercise 4.** Consider a two-factor HJM model with $\sigma_1(t, T) = \sigma_1$ and $\sigma_2(t, T) = \sigma_2\,e^{-\kappa(T-t)}$. Write down the multi-factor drift condition
+
+$$
+\alpha(t, T) = \sum_{i=1}^{2}\sigma_i(t, T)\int_t^T \sigma_i(t, u)\,du
+$$
+
+and compute $\alpha(t, T)$ explicitly. Show that it reduces to the single-factor cases when either $\sigma_1 = 0$ or $\sigma_2 = 0$.
+
+---
+
+**Exercise 5.** In the alternative ZCB dynamics proof, the key step is computing $d\sigma_P^2(t, T)/dT$ where $\sigma_P(t, T) = -\int_t^T \sigma(t, u)\,du$. Carry out this computation for a general volatility $\sigma(t, T)$ and verify that
+
+$$
+\frac{d\sigma_P^2(t, T)}{dT} = 2\sigma(t, T)\int_t^T \sigma(t, u)\,du
+$$
+
+Explain why the factor of 2 appears and how it leads to the drift condition after dividing by 2.
+
+---
+
+**Exercise 6.** The HJM drift condition states that drift is uniquely determined by volatility. Does this mean that two different volatility specifications can never produce the same bond price dynamics? Construct a counterexample or prove that the mapping from $\sigma(t, T)$ to bond price dynamics is injective.
+
+---
+
+**Exercise 7.** Under the physical measure $\mathbb{P}$, forward rates have drift $\alpha^{\mathbb{P}}(t, T)$ and the market price of risk is $\lambda(t)$, so that $\alpha(t, T) = \alpha^{\mathbb{P}}(t, T) - \lambda(t)\,\sigma(t, T)$. If $\lambda(t) = \lambda_0 + \lambda_1 r_t$ (affine in the short rate), discuss what constraints the HJM no-arbitrage condition imposes on the relationship between $\alpha^{\mathbb{P}}(t, T)$ and $\sigma(t, T)$. Is $\alpha^{\mathbb{P}}(t, T)$ still uniquely determined by $\sigma(t, T)$ alone?

@@ -289,3 +289,54 @@ When $\rho < 0$:
 - Bouchaud, J.-P., Matacz, A., & Potters, M. (2001). *Leverage effect in financial markets*. Physical Review Letters.
 - Gatheral, J. (2006). *The Volatility Surface: A Practitioner's Guide*. Wiley.
 - Carr, P. & Wu, L. (2007). *Stochastic skew in currency options*. Journal of Financial Economics.
+
+---
+
+## Exercises
+
+**Exercise 1.** Given correlated Brownian motions with $\langle W^S, W^V\rangle_t = \rho t$, use the decomposition $W_t^V = \rho W_t^S + \sqrt{1-\rho^2}\,W_t^{\perp}$ to compute $\text{Var}[W_t^V]$ and $\text{Cov}[W_t^S, W_t^V]$ directly from this representation, confirming that the decomposition correctly reproduces the correlation structure.
+
+---
+
+**Exercise 2.** In the Heston model with parameters $\sigma_{\text{ATM}} = 20\%$, $\xi = 0.35$, and $\rho = -0.65$, use the first-order skew approximation
+
+$$
+\text{Skew} \approx \frac{\rho\xi}{2\sigma_{\text{ATM}}}
+$$
+
+to estimate the implied volatility skew per unit log-moneyness. If the 90% strike corresponds to $k = \log(0.90) \approx -0.105$, estimate the implied volatility at the 90% strike. Compare with the case $\rho = 0$ and comment on the magnitude of the leverage effect.
+
+---
+
+**Exercise 3.** The balance-sheet leverage explanation predicts that if a firm's assets drop by 10% and debt is fixed at $D$, the new leverage ratio $D/(E - 0.10 A)$ increases. For a firm with $A = 100$, $D = 60$, $E = 40$, compute the percentage increase in the leverage ratio when assets drop by 5%, 10%, and 20%. Explain why this mechanism implies a nonlinear (convex) relationship between returns and volatility changes.
+
+---
+
+**Exercise 4.** The following calibrated correlation values are obtained from equity index options:
+
+| Index | $\rho$ |
+|-------|--------|
+| S&P 500 | $-0.72$ |
+| FTSE 100 | $-0.68$ |
+| Nikkei 225 | $-0.55$ |
+| DAX | $-0.65$ |
+
+For each index, predict the sign and relative steepness of the implied volatility skew. Which index would you expect to have the steepest skew, and why? Why might the Nikkei 225 have a less negative $\rho$ than the S&P 500?
+
+---
+
+**Exercise 5.** The stochastic-volatility delta is given by
+
+$$
+\Delta^{\text{SV}} = \frac{\partial C}{\partial S} + \rho\frac{\xi}{\sigma}\frac{\partial C}{\partial V}
+$$
+
+For an ATM call with Black–Scholes delta $\partial C/\partial S = 0.52$, vega sensitivity $\partial C/\partial V = 15$, $\rho = -0.7$, $\xi = 0.3$, and $\sigma = 0.20$, compute the stochastic-volatility delta. Is it larger or smaller than the Black–Scholes delta? Interpret the sign of the correction term.
+
+---
+
+**Exercise 6.** Explain why the leverage effect is observed at daily and weekly frequencies but weakens at annual frequencies. Consider a mean-reverting volatility process $dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V$ with $\kappa = 3.0$. Compute the half-life $t_{1/2} = \ln(2)/\kappa$ of volatility shocks. How does this half-life relate to the time-scale dependence of the leverage effect?
+
+---
+
+**Exercise 7.** Consider an FX market (e.g., EUR/USD) where the empirical price-volatility correlation is $\rho \approx 0$. Using the skew formula $\text{Skew} \approx \rho\xi/(2\sigma_{\text{ATM}})$, what implied volatility pattern would you predict? How does this differ from equity markets? Explain why FX markets tend to show a more symmetric smile rather than a skew, and relate this to the absence of a "leverage effect" in currency markets.

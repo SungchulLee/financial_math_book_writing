@@ -236,3 +236,33 @@ Calibrate to a subset of instruments; test fit on held-out instruments. Overfitt
 - Andersen & Piterbarg, *Interest Rate Modeling* (calibration stability discussions).
 - Cont, "Model Uncertainty and Its Impact on Pricing" (model risk from recalibration).
 - Guyon & Henry-Labordère, *Nonlinear Option Pricing* (dynamic calibration issues).
+
+---
+
+## Exercises
+
+**Exercise 1.** A Heston model is calibrated on day $t$ with $\hat{v}_0 = 0.04$ and $\kappa = 2.0$, $\bar{v} = 0.04$, $\sigma_v = 0.3$. Using the exact conditional expectation $\mathbb{E}[v_{t+\Delta t}] = \bar{v} + (v_0 - \bar{v})e^{-\kappa \Delta t}$ with $\Delta t = 1/252$, compute the model-predicted variance for day $t+1$. If recalibration on day $t+1$ yields $\hat{v}_0^{\text{new}} = 0.052$, compute the discrepancy and discuss whether this is consistent with model dynamics.
+
+---
+
+**Exercise 2.** Define the parameter volatility metric $\text{Vol}_T(\theta_i) = \sqrt{\frac{1}{T}\sum_{t=1}^T (\theta_{i,t} - \bar{\theta}_i)^2}$. Suppose that over 60 trading days, the calibrated $\rho$ values for a Heston model have mean $\bar{\rho} = -0.72$ and standard deviation $0.09$, while the S&P 500 realized volatility changed by less than 1%. Argue that this level of $\rho$ variation is more indicative of calibration noise than genuine parameter drift.
+
+---
+
+**Exercise 3.** Write down the P&L decomposition for a delta- and vega-hedged portfolio of exotic options. Identify the term that corresponds to recalibration-induced P&L. For a book with vega exposure of \$50,000 per vol point, estimate the unexplained P&L if recalibration shifts the ATM implied volatility by 0.3 vol points without any actual market move.
+
+---
+
+**Exercise 4.** Consider exponential smoothing $\theta_t^{\text{smooth}} = \lambda\hat{\theta}_t + (1-\lambda)\theta_{t-1}^{\text{smooth}}$ with $\lambda = 0.3$. Starting from $\theta_0^{\text{smooth}} = 0.04$, compute $\theta_t^{\text{smooth}}$ for $t = 1, 2, 3, 4$ given raw calibrated values $\hat{\theta}_1 = 0.05$, $\hat{\theta}_2 = 0.038$, $\hat{\theta}_3 = 0.055$, $\hat{\theta}_4 = 0.041$. Compare the smoothed path to the raw path and discuss the lag introduced by smoothing.
+
+---
+
+**Exercise 5.** In Tikhonov-regularized recalibration, $\min_\theta \mathcal{L}(\theta) + \lambda\|\theta - \hat{\theta}_{t-1}\|^2$, derive the first-order optimality condition. Show that the solution is a weighted average between the unconstrained minimizer $\hat{\theta}_t^{\text{MLE}}$ and the prior $\hat{\theta}_{t-1}$. Express the weights in terms of $\lambda$ and the Hessian of $\mathcal{L}$ at the optimum.
+
+---
+
+**Exercise 6.** A practitioner freezes $(\kappa, \bar{v}, \sigma_v)$ for one month while recalibrating $(v_0, \rho)$ daily. After one month, the frozen parameters are re-estimated. Discuss the advantages and risks of this hierarchical calibration approach. Under what market conditions might this strategy fail badly? Propose a criterion for triggering early re-estimation of the frozen parameters.
+
+---
+
+**Exercise 7.** Design a diagnostic dashboard for monitoring recalibration stability. List at least five metrics or plots that should be included, explain what each one measures, and describe the warning signal that would trigger further investigation. For one of these metrics, propose a specific quantitative threshold above which the calibration should be flagged as unstable.

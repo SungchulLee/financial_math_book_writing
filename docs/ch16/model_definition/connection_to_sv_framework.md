@@ -180,3 +180,27 @@ The Heston model is a special case of the general one-factor stochastic volatili
 The [next section](affine_structure_and_riccati.md) develops the affine structure in full detail, deriving the Riccati system that underlies all Heston pricing.
 
 ---
+
+## Exercises
+
+**Exercise 1.** Write the general one-factor SV model $dS_t = rS_t\,dt + \sigma(V_t)S_t\,dW_t^S$ and $dV_t = \mu(V_t)\,dt + \eta(V_t)\,dW_t^V$ with $\operatorname{Corr}(dW^S, dW^V) = \rho\,dt$. Show that the Heston model is the special case $\sigma(V) = \sqrt{V}$, $\mu(V) = \kappa(\theta - V)$, and $\eta(V) = \sigma_v\sqrt{V}$.
+
+---
+
+**Exercise 2.** For the Hull-White SV model where the variance follows a GBM $dV_t = \mu V_t\,dt + \sigma_v V_t\,dW_t^V$, explain why the diffusion coefficient $\sigma_v V_t$ is not affine in $V_t$ (it is linear, but the squared diffusion $\sigma_v^2 V_t^2$ is quadratic). Why does this prevent a closed-form characteristic function?
+
+---
+
+**Exercise 3.** The SABR model has dynamics $dF_t = \sigma_t F_t^\beta\,dW_t^F$. For $\beta = 1$ (log-normal SABR), the forward price is a GBM with stochastic volatility. Compare this to the Heston model and explain why SABR lacks a closed-form characteristic function for general $\beta$.
+
+---
+
+**Exercise 4.** The 3/2 model uses $dV_t = \kappa V_t(\theta - V_t)\,dt + \sigma_v V_t^{3/2}\,dW_t^V$. Show that the substitution $Y_t = 1/V_t$ transforms this into a CIR process for $Y_t$. What does this tell you about the tractability of the 3/2 model?
+
+---
+
+**Exercise 5.** List the key properties that make the Heston model the standard choice for Fourier-based pricing: (i) affine structure, (ii) closed-form CF, (iii) mean-reverting variance, (iv) non-negative variance. Which of these properties does the Stein-Stein model (Gaussian variance) fail to satisfy?
+
+---
+
+**Exercise 6.** For calibration to a panel of option prices across strikes and maturities, explain why having a closed-form characteristic function (as in Heston) is a decisive computational advantage over models requiring numerical PDE solutions for each parameter evaluation (as in SABR with general $\beta$).

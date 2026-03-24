@@ -232,3 +232,40 @@ The condition is satisfied.
 ## Summary
 
 The passage from the physical measure $\mathbb{P}$ to the risk-neutral measure $\mathbb{Q}$ in the Heston model is achieved via Girsanov's theorem with two market prices of risk: $\lambda_S = (\mu - r)/\sqrt{v_t}$ (uniquely determined by no-arbitrage) and $\lambda_v = \lambda\sqrt{v_t}$ (free parameter reflecting market incompleteness). The standard specification $\lambda_v \propto \sqrt{v_t}$ preserves the affine structure, transforming $\kappa^{\mathbb{P}} \to \kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \xi\lambda$ and $\theta^{\mathbb{P}} \to \theta^{\mathbb{Q}} = \kappa^{\mathbb{P}}\theta^{\mathbb{P}}/\kappa^{\mathbb{Q}}$ while leaving $\xi$, $\rho$, and the Feller condition unchanged. The freedom in choosing $\lambda$ reflects the market's pricing of unhedgeable variance risk and is resolved in practice through calibration to observed option prices.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The stock market price of risk is $\lambda_S(t) = (\mu - r)/\sqrt{v_t}$. Explain why this diverges as $v_t \to 0$. Under the Feller condition ($2\kappa\theta \geq \xi^2$), the variance stays strictly positive, so $\lambda_S$ remains finite. What happens to the Novikov condition when the Feller condition is violated and $v_t$ can reach zero?
+
+---
+
+**Exercise 2.**
+The measure change transforms $\kappa^{\mathbb{P}} \to \kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \xi\lambda$ and $\theta^{\mathbb{P}} \to \theta^{\mathbb{Q}} = \kappa^{\mathbb{P}}\theta^{\mathbb{P}}/\kappa^{\mathbb{Q}}$. Verify that $\kappa^{\mathbb{Q}}\theta^{\mathbb{Q}} = \kappa^{\mathbb{P}}\theta^{\mathbb{P}}$ for any value of $\lambda$. Explain why this product is invariant under the measure change and connect it to the Feller condition being preserved.
+
+---
+
+**Exercise 3.**
+Consider the alternative specification $\lambda_v(t) = \lambda_0$ (constant, not proportional to $\sqrt{v_t}$). Substitute this into the variance SDE under $\mathbb{Q}$ and show that the resulting drift is $\kappa(\theta - v_t) - \xi\lambda_0\sqrt{v_t}$. Explain why this breaks the CIR (affine) structure: the drift is no longer a linear function of $v_t$. What computational consequence does this have for pricing?
+
+---
+
+**Exercise 4.**
+Using the numerical example ($\kappa^{\mathbb{P}} = 3.0$, $\theta^{\mathbb{P}} = 0.04$, $\xi = 0.3$, $\lambda = 1.0$), compute the risk-neutral parameters and verify the Feller condition under both $\mathbb{P}$ and $\mathbb{Q}$. Now increase $\lambda$ to 5.0. What are the new $\kappa^{\mathbb{Q}}$ and $\theta^{\mathbb{Q}}$? Is the Feller condition still satisfied? At what value of $\lambda$ does $\theta^{\mathbb{Q}}$ become unreasonably small (say, less than $0.01$)?
+
+---
+
+**Exercise 5.**
+The Heston model has two sources of randomness but only two traded assets (stock and bond). Explain precisely which component of the variance risk is unhedgeable. Decompose $W^{(2)} = \rho W^{(1)} + \sqrt{1 - \rho^2} W^{\perp}$ and argue that the $W^{(1)}$ component of variance risk can be partially hedged via delta hedging, while the $W^{\perp}$ component is entirely unhedgeable.
+
+---
+
+**Exercise 6.**
+The parameter transformation table shows that $\xi$ and $\rho$ are unchanged by the measure change. Prove this directly from the Girsanov construction: the variance SDE under $\mathbb{Q}$ retains $\xi\sqrt{v_t}\,dW_t^{(2),\mathbb{Q}}$ as the diffusion term, and the correlation $\text{Corr}(dW^{(1),\mathbb{Q}}, dW^{(2),\mathbb{Q}}) = \rho$ is preserved because the Girsanov shifts are deterministic (conditional on $\mathcal{F}_t$).
+
+---
+
+**Exercise 7.**
+If the Heston model were augmented with a traded variance swap, the market would become complete and $\lambda$ would be uniquely determined. Explain this using the fundamental theorem of asset pricing: with three traded assets (stock, bond, variance swap) and two Brownian motions, the equivalent martingale measure is unique. How would you determine $\lambda$ from the observed variance swap rate?

@@ -996,10 +996,28 @@ The art is knowing which representation to use for each problem.
 
 ---
 
-Would you like me to explore:
-- Detailed eigenvalue computation for specific barrier configurations
-- Multi-dimensional separation with correlation
-- Connection to spherical harmonics for multi-asset options
-- WKB methods for time-dependent coefficients
-- Spectral methods for numerical solution
-- The relationship between separation and method of images in detail?
+---
+
+## Exercises
+
+**Exercise 1.** For the heat equation $\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2 \frac{\partial^2 F}{\partial x^2}$ on the domain $x \in (a, b)$ with $F(a, \tau) = F(b, \tau) = 0$ (a double-barrier knock-out option), apply separation of variables to show that the eigenvalues are $\lambda_n = -\frac{1}{2}\sigma^2 \left(\frac{n\pi}{b-a}\right)^2$ for $n = 1, 2, \ldots$ and the eigenfunctions are $\sin\left(\frac{n\pi(x-a)}{b-a}\right)$.
+
+---
+
+**Exercise 2.** Using the eigenvalue decomposition from Exercise 1, write the solution for a European call option knocked out at barriers $S = B_l$ and $S = B_u$ (with $B_l < K < B_u$) as a Fourier sine series. Discuss the convergence rate of this series for smooth vs. non-smooth initial conditions.
+
+---
+
+**Exercise 3.** Explain why separation of variables with a discrete spectrum arises naturally for barrier options (bounded domain) but not for vanilla European options (unbounded domain). What replaces the discrete eigenvalue sum in the unbounded case?
+
+---
+
+**Exercise 4.** Consider the Black-Scholes PDE after the change of variables to the heat equation. Substitute $F(x,\tau) = X(x)T(\tau)$ and derive the two ODEs. Solve each ODE explicitly, identifying the separation constant $\lambda$.
+
+---
+
+**Exercise 5.** The four equivalent representations of the solution operator -- eigenfunction expansion, Fourier integral, Green's function, and probabilistic expectation -- are all listed in the summary. For a European call on the domain $x \in (-\infty, \infty)$, verify that the Green's function representation (convolution with Gaussian) and the Fourier transform representation yield the same answer.
+
+---
+
+**Exercise 6.** For a down-and-out call with barrier at $S = B$ (where $B < K$), describe how the method of images can be used instead of separation of variables to satisfy the boundary condition $V(B, t) = 0$. What is the "image" solution, and how does the final formula relate to the standard Black-Scholes price?

@@ -106,3 +106,35 @@ This gives the large deviation principle $\mathbb{P}(S_n/n \approx x) \approx e^
 - Durrett, R. (2019). *Probability: Theory and Examples*, 5th ed. Cambridge University Press.
 - Feller, W. (1968). *An Introduction to Probability Theory and Its Applications*, Vol. 2, 3rd ed. Wiley.
 - Dembo, A., & Zeitouni, O. (2010). *Large Deviations Techniques and Applications*, 2nd ed. Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the asymmetric random walk with $\mathbb{P}(\xi_i = +1) = p$ and $\mathbb{P}(\xi_i = -1) = 1-p$, show that the MGF is $\mathbb{E}[e^{\lambda S_n}] = (pe^\lambda + (1-p)e^{-\lambda})^n$. Verify that this reduces to $(\cosh \lambda)^n$ when $p = 1/2$.
+
+---
+
+**Exercise 2.** Using the MGF $M_{S_n}(\lambda) = (\cosh \lambda)^n$ and the formula $\mathbb{E}[S_n^k] = M_{S_n}^{(k)}(0)$, compute $\mathbb{E}[S_n^6]$ for the symmetric random walk. Express your answer as a polynomial in $n$.
+
+---
+
+**Exercise 3.** In the CLT proof, we used the approximation $\left(1 + \frac{\theta^2}{2n} + O(n^{-2})\right)^n \to e^{\theta^2/2}$. Prove this limit rigorously by taking logarithms and using $\log(1+x) = x - x^2/2 + O(x^3)$ for small $x$.
+
+---
+
+**Exercise 4.** The large deviation rate function for the symmetric random walk is $I(x) = \frac{1+x}{2}\log(1+x) + \frac{1-x}{2}\log(1-x)$ for $|x| \leq 1$. Show that $I(x) \geq 0$ with equality only at $x = 0$. Then verify that $I''(0) = 1$, so that near $x = 0$ the rate function is approximately $I(x) \approx x^2/2$, which is consistent with the CLT (Gaussian tail with variance $1/n$).
+
+---
+
+**Exercise 5.** Use Markov's inequality with the MGF to derive a Chernoff bound for the symmetric random walk: show that for $a > 0$,
+
+$$
+\mathbb{P}(S_n \geq an) \leq \inf_{\lambda > 0} e^{-\lambda an} (\cosh \lambda)^n = e^{-nI(a)}
+$$
+
+Compute this bound numerically for $n = 100$ and $a = 0.3$. Compare with the normal approximation $\mathbb{P}(S_{100} \geq 30)$.
+
+---
+
+**Exercise 6.** The cumulant generating function is $\Lambda(\lambda) = n\log\cosh\lambda$. Show that all odd cumulants of $S_n$ are zero. Compute the first three nonzero cumulants ($\kappa_2$, $\kappa_4$, $\kappa_6$) and verify that the **excess kurtosis** $\kappa_4 / \kappa_2^2 = -2/n$ vanishes as $n \to \infty$, consistent with the CLT (the Gaussian has zero excess kurtosis).

@@ -229,3 +229,33 @@ This is far more efficient than the full $n$-dimensional Cholesky decomposition.
 - Brigo & Mercurio (2006), *Interest Rate Models: Theory and Practice*, Chapter 7
 - Andersen & Piterbarg (2010), *Interest Rate Modeling*, Volume II, Chapter 15
 - Schoenmakers & Coffey (2003), "Systematic Generation of Parametric Correlation Structures"
+
+---
+
+## Exercises
+
+**Exercise 1.** For four forward rates with annual spacing ($T_i = i$ for $i = 1, \ldots, 4$), construct the $4 \times 4$ correlation matrix using the exponential decay parameterization $\rho_{ij} = e^{-\beta|T_i - T_j|}$ with $\beta = 0.15$. Verify that the matrix is symmetric and positive definite by computing its eigenvalues.
+
+---
+
+**Exercise 2.** The two-parameter correlation model $\rho_{ij} = \rho_\infty + (1 - \rho_\infty)e^{-\beta|T_i - T_j|}$ introduces a floor correlation $\rho_\infty$. For $\rho_\infty = 0.3$ and $\beta = 0.20$, compute the correlation between the 1-year and 10-year forward rates, and between the 1-year and 30-year forward rates. Compare with the one-parameter model ($\rho_\infty = 0$).
+
+---
+
+**Exercise 3.** Explain why a correlation matrix estimated from historical data may not be positive definite. If you estimate the $10 \times 10$ correlation matrix from 60 monthly observations, what rank deficiency issues can arise? Describe the eigenvalue repair procedure: set negative eigenvalues to a small positive value $\epsilon$, reconstruct the matrix, and rescale to unit diagonal.
+
+---
+
+**Exercise 4.** In Rebonato's angle-based parameterization, $\rho_{ij} = \cos(\theta_i - \theta_j)$ with $\theta_i = a + bT_i + ce^{-dT_i}$. For $a = 0.1$, $b = 0.05$, $c = 0.3$, $d = 0.2$, compute the angles $\theta_1, \theta_5, \theta_{10}$ for maturities 1, 5, and 10 years. Then compute $\rho_{1,5}$, $\rho_{1,10}$, and $\rho_{5,10}$. Verify that the resulting matrix is positive semi-definite by construction.
+
+---
+
+**Exercise 5.** A CMS spread option pays $\max(S_{10Y} - S_{2Y} - K, 0)$. Explain qualitatively why this product is short correlation: higher correlation between the 10Y and 2Y swap rates reduces the volatility of the spread and hence the option value. Using Rebonato's swaption volatility formula, describe how the correlation parameters would be calibrated to CMS spread option prices.
+
+---
+
+**Exercise 6.** Rank reduction approximates the $n \times n$ correlation matrix $\rho$ by a rank-$d$ matrix $\hat{\rho} = BB^\top$ where $B \in \mathbb{R}^{n \times d}$. For $n = 10$ and $d = 3$, how many free parameters does $B$ have (before imposing unit diagonal)? Describe the optimization problem for finding the best rank-3 approximation and discuss when $d = 3$ is sufficient in practice.
+
+---
+
+**Exercise 7.** Shrinkage estimation combines the sample correlation matrix $\hat{\rho}_{\text{sample}}$ with a parametric target $\hat{\rho}_{\text{target}}$: $\hat{\rho} = (1-\alpha)\hat{\rho}_{\text{sample}} + \alpha\,\hat{\rho}_{\text{target}}$. For $\alpha \in [0, 1]$, explain how this ensures positive definiteness (assuming the target is positive definite). Discuss the trade-off: what happens at $\alpha = 0$ (pure sample) versus $\alpha = 1$ (pure target)?

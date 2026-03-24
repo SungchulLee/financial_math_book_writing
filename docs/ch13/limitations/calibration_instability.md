@@ -50,3 +50,33 @@ Quantify stability through:
     - Hedge ratios (Greeks) are sensitive to which local minimum is selected
     - P&L attributed to calibration drift (not data/market moves) can be significant
     - Validate models out-of-sample before deploying in production
+
+---
+
+## Exercises
+
+**Exercise 1.** Explain why the local volatility calibration problem is ill-posed. Specifically, why can high-frequency oscillations in $\sigma_{\text{loc}}(S, t)$ produce call prices that are nearly identical to those of a smooth local volatility surface?
+
+---
+
+**Exercise 2.** A Tikhonov regularization penalty adds a term $\lambda \int |\nabla \sigma_{\text{loc}}|^2 \, dS \, dt$ to the calibration objective. (a) What is the effect of increasing $\lambda$? (b) What happens if $\lambda = 0$? (c) How should $\lambda$ be chosen in practice?
+
+---
+
+**Exercise 3.** Two calibrations of a local volatility model on consecutive days produce very different surfaces even though option prices changed by less than 0.5%. Identify three possible sources of this instability and propose a mitigation strategy for each.
+
+---
+
+**Exercise 4.** In the Heston model, the parameters $\xi$ (vol-of-vol) and $\rho$ (correlation) are highly correlated in the sense that increasing $\xi$ while adjusting $\rho$ can produce nearly the same implied volatility surface. Explain why this parameter degeneracy causes calibration instability. How can the calibration be made more robust?
+
+---
+
+**Exercise 5.** A calibration procedure uses 50 option prices spanning 5 maturities and 10 strikes. The local volatility surface is represented on a 100 x 50 grid. Why does the dimensionality mismatch (5000 unknowns vs. 50 constraints) lead to non-uniqueness? How does regularization address this?
+
+---
+
+**Exercise 6.** Compare the calibration stability of local volatility, Heston, and SABR models. For each, identify the main source of instability (ill-posedness, parameter coupling, or optimization landscape) and describe how practitioners typically handle it.
+
+---
+
+**Exercise 7.** A desk recalibrates its local volatility model daily and observes that hedging P&L has a component that correlates with calibration changes rather than market moves. This is called "calibration noise." (a) Explain the mechanism. (b) How does this affect the realized P&L distribution? (c) Propose a filtering approach to reduce calibration noise.

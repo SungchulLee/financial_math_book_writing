@@ -142,3 +142,51 @@ If \(J\) has small singular values, small perturbations in data (e.g., bid/ask n
 
 - Inverse problems and regularization: Tikhonov & Arsenin; Engl, Hanke & Neubauer.
 - Calibration in quantitative finance: Gatheral (*The Volatility Surface*); Cont & Tankov (*Financial Modelling with Jump Processes*).
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a model with parameter vector $\theta = (\sigma, \rho) \in \mathbb{R}^2$ and three traded instruments whose model prices are given by
+
+$$
+P_1(\theta) = \sigma^2, \quad P_2(\theta) = \sigma \rho, \quad P_3(\theta) = \rho^2
+$$
+
+Write down the forward pricing map $F:\Theta \to \mathbb{R}^3$. Compute the Jacobian $J(\theta)$ and determine for which values of $\theta$ the Jacobian fails to have full column rank. What does this imply about the invertibility of $F$ near those points?
+
+---
+
+**Exercise 2.** Suppose we calibrate to $m = 5$ implied volatilities using a model with $d = 3$ parameters. The singular values of the Jacobian at the calibrated point are $\sigma_1 = 12.4$, $\sigma_2 = 3.1$, $\sigma_3 = 0.002$. Compute the condition number $\kappa$ of $J$. Suppose the market data are perturbed by $\|\varepsilon\| = 0.5$ vol points. Provide an upper bound on $\|\Delta\theta\|$ using the linearized sensitivity relation and comment on the practical implication.
+
+---
+
+**Exercise 3.** A practitioner calibrates to option prices and obtains $\hat\theta_{\text{price}}$. She then re-calibrates using implied volatilities as the data representation and obtains $\hat\theta_{\text{vol}}$. Explain why $\hat\theta_{\text{price}}$ and $\hat\theta_{\text{vol}}$ may differ even though the underlying market data are the same. Which representation is more natural for out-of-the-money options and why?
+
+---
+
+**Exercise 4.** Let the forward map be $F(\theta) = A\theta + b$ for a matrix $A \in \mathbb{R}^{m \times d}$ and vector $b \in \mathbb{R}^m$. Show that the weighted least-squares calibration problem
+
+$$
+\min_\theta \frac{1}{2}(A\theta + b - y)^\top W (A\theta + b - y)
+$$
+
+has a unique solution if and only if $A^\top W A$ is invertible, and derive the closed-form expression for $\hat\theta$.
+
+---
+
+**Exercise 5.** Consider two loss functions for calibration: (i) least squares on prices, and (ii) least squares on implied volatilities. Let $\text{Vega}_j = \partial P_j / \partial \sigma_j^{\text{impl}}$ denote the Black-Scholes vega of the $j$-th option. Show that, to first order, calibrating on prices with equal weights $w_j = 1$ is equivalent to calibrating on implied volatilities with weights proportional to $\text{Vega}_j^2$.
+
+---
+
+**Exercise 6.** In the typical static calibration workflow, step 5 involves validation on out-of-sample instruments. Design a concrete validation procedure for a Heston model calibrated to S&P 500 options: specify what instruments you would hold out, what metrics you would evaluate, and what thresholds would indicate an acceptable calibration.
+
+---
+
+**Exercise 7.** Suppose the forward map satisfies $F(\theta_1) = F(\theta_2)$ for $\theta_1 \neq \theta_2$. Prove that the unregularized least-squares problem
+
+$$
+\min_\theta \|F(\theta) - y\|^2
+$$
+
+cannot have a unique global minimizer for any $y \in \mathrm{Range}(F)$. How does adding a Tikhonov penalty $\lambda \|\theta - \theta_{\text{prior}}\|^2$ resolve this issue?

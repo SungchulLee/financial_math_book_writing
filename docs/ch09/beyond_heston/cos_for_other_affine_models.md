@@ -217,3 +217,29 @@ The COS method extends to any model with a known characteristic function:
 | Implementation | Only $\phi(u)$ and cumulants are model-specific |
 
 **The COS method's model-agnostic architecture---requiring only the characteristic function as input---makes it a universal pricing engine for the entire family of affine and Levy models, with exponential convergence guaranteed whenever the risk-neutral density is smooth.**
+
+---
+
+## Exercises
+
+**Exercise 1.** The Bates characteristic function is $\phi_{\text{Bates}}(u) = \phi_{\text{Heston}}(u)\cdot\exp(\lambda T[e^{i\mu_J u - \sigma_J^2 u^2/2} - 1 - i\bar{\mu}u])$. For $\lambda = 0.5$, $\mu_J = -0.1$, $\sigma_J = 0.15$, and $T = 1$, compute the jump compensator $\bar{\mu} = e^{\mu_J + \sigma_J^2/2} - 1$ and evaluate the jump factor at $u = 0$, $u = 1$, and $u = 10$. Verify that $\phi_{\text{Bates}}(0) = 1$.
+
+---
+
+**Exercise 2.** For the Variance Gamma model, compute the four cumulants using the formulas given in the text with parameters $\sigma = 0.12$, $\theta = -0.14$, $\nu = 0.2$, $r = 0.05$, $T = 1$. Compare $c_2$ and $c_4$ to those of a Gaussian with the same variance. How much wider is the cumulant-based truncation interval for VG compared to Black-Scholes?
+
+---
+
+**Exercise 3.** The CGMY characteristic function involves the complex power $(M - iu)^Y$. For $M = 10$ and $Y = 0.5$, evaluate $(M - iu)^Y$ at $u = 0, 5, 20$ using the principal branch $z^Y = \exp(Y\ln|z| + iY\arg(z))$. Explain why careful branch selection is important and what error arises from using the wrong branch.
+
+---
+
+**Exercise 4.** The convergence rate of the COS method for CGMY depends on the parameter $Y$. Explain why $Y < 1$ (finite variation) gives exponential convergence while $Y \geq 1$ (infinite variation) can produce slower convergence. Relate this to the smoothness of the CGMY density and the decay rate of $|\phi_{\text{CGMY}}(u)|$ for large $|u|$.
+
+---
+
+**Exercise 5.** The NIG characteristic function involves $\sqrt{\alpha^2 - (\beta + iu)^2}$. For $\alpha = 15$, $\beta = -5$, compute this square root at $u = 0$ and $u = 10$. Verify that the Feller condition $\alpha > |\beta|$ ensures the square root is real at $u = 0$, and explain what happens when $u$ is large enough that $\alpha^2 - (\beta + iu)^2$ has negative real part.
+
+---
+
+**Exercise 6.** Design a software architecture for a generic COS pricer. The pricer should accept as input: (a) a callable $\phi(u)$ that evaluates the characteristic function, (b) a callable that returns cumulants $c_1, \ldots, c_4$, (c) the payoff type (call/put), (d) the option parameters ($K$, $r$, $T$). Describe the steps of the algorithm and explain which parts are model-specific and which are model-independent. How would you add a new model (e.g., NIG) to this framework?

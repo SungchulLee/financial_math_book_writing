@@ -255,3 +255,27 @@ The Heston model is an affine diffusion because both the drift and the instantan
 The derivation of the closed-form solutions for $C(\tau, u)$ and $D(\tau, u)$ is carried out in the [Riccati ODE System](../heston_cf/riccati_ode_system.md) and [Closed-Form Characteristic Function](../heston_cf/closed_form_characteristic_function.md) sections.
 
 ---
+
+## Exercises
+
+**Exercise 1.** Write the Heston state vector $X_t = (x_t, v_t)^T$ and express both the drift $\mu(X_t)$ and diffusion matrix $a(X_t) = \sigma(X_t)\sigma(X_t)^T$ as affine functions of $v_t$. Verify that $a(X_t) = a_0 + \alpha_1 v_t$ for appropriate constant matrices $a_0$ and $\alpha_1$.
+
+---
+
+**Exercise 2.** Substitute the exponential-affine ansatz $\phi = \exp(C(\tau,u) + D(\tau,u)v + iux)$ into the Heston pricing PDE and derive the Riccati ODEs for $C$ and $D$. Verify that the $D$-equation is $D' = \frac{1}{2}\sigma_v^2 D^2 + (\rho\sigma_v iu - \kappa)D + \frac{1}{2}(iu - u^2)$.
+
+---
+
+**Exercise 3.** At $\tau = 0$, verify $D(0, u) = 0$ and $C(0, u) = 0$. Compute $D'(0, u) = \frac{1}{2}(iu - u^2)$ and use it to approximate $D(\tau, u) \approx \frac{1}{2}(iu - u^2)\tau$ for small $\tau$. What does this approximation give for the characteristic function at short maturities?
+
+---
+
+**Exercise 4.** Explain why the $D$-equation is autonomous (it does not depend on $C$) while the $C$-equation depends on $D$. How does this hierarchical structure reduce the computational effort?
+
+---
+
+**Exercise 5.** For the special case $\rho = 0$ and $u = -i$ (used for computing the forward price), substitute into the $D$-equation and show that $D(\tau, -i) = 0$ for all $\tau$. Interpret this result: why should the forward price be independent of the current variance?
+
+---
+
+**Exercise 6.** The European call pricing formula involves the integral $\int_0^\infty \operatorname{Re}[\cdots]\,du$. Explain why this is a one-dimensional integral despite the model having two state variables $(x, v)$. What role does the affine structure play in achieving this dimensional reduction?

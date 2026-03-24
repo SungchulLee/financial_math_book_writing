@@ -378,3 +378,45 @@ A good calibration should be **stable across time**: small changes in market dat
 - Rebonato (2002), *Modern Pricing of Interest-Rate Derivatives*, Chapters 8--10
 - Andersen & Piterbarg (2010), *Interest Rate Modeling*, Volumes II--III
 - Hagan et al. (2002), "Managing Smile Risk" (SABR calibration)
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a market that quotes ATM cap flat volatilities of 22.0% for the 1Y cap (containing 3 quarterly caplets) and 24.5% for the 2Y cap (containing 7 quarterly caplets). Assume a flat forward curve at $F = 5.0\%$ and discount factors $P(0, T_i) = e^{-0.045 T_i}$. Describe in detail the bootstrap procedure to extract the marginal caplet volatility for the 1Y--2Y region. Explain under what conditions the residual price $R_k$ can become negative, and what this implies about the input data.
+
+---
+
+**Exercise 2.** In the caplet bootstrap, the stripped caplet volatility $\sigma_{k-1}$ satisfies $\text{Caplet}_{k-1}(\sigma_{k-1}) = R_k$. Show that this equation has a unique solution for $\sigma_{k-1} > 0$ provided $R_k > 0$, by arguing that the Black caplet price is a strictly increasing, continuous function of volatility mapping $(0, \infty) \to (0, \text{intrinsic value})$.
+
+---
+
+**Exercise 3.** Suppose the swaption volatility cube reports $\sigma_{\text{swpn}}(2Y, 5Y, K_{\text{ATM}}) = 18.5\%$ and $\sigma_{\text{swpn}}(5Y, 5Y, K_{\text{ATM}}) = 16.0\%$. Explain why the ATM volatility typically decreases as the expiry lengthens for a fixed tenor. Relate your answer to the **humped term structure** of forward rate volatilities and the diversification effect across forward rates.
+
+---
+
+**Exercise 4.** In a global calibration, the objective function is
+
+$$
+\min_{\theta} \sum_{i} w_i^c (\sigma_i^{\text{model}} - \sigma_i^{\text{mkt}})^2 + \sum_{j} w_j^s (\sigma_j^{\text{model}} - \sigma_j^{\text{mkt}})^2
+$$
+
+Derive the form of vega-weighted weights $w_i = 1/\mathcal{V}_i^2$ and explain why this choice ensures each instrument contributes equally in terms of **price error** rather than volatility error. What is the potential drawback of uniform weighting?
+
+---
+
+**Exercise 5.** In the Hull--White one-factor model with piecewise-constant volatility $\sigma(t)$, explain why calibration to the full swaption matrix is fundamentally limited. In particular, show that all zero-coupon bond prices $P(t, T)$ can be written as functions of a single state variable $r(t)$, and argue why this implies that swaption correlations are perfectly correlated in this model.
+
+---
+
+**Exercise 6.** Using Rebonato's approximate swaption volatility formula
+
+$$
+\sigma_S^2 T_\alpha = \sum_{i,j} \frac{w_i w_j L_i(0) L_j(0)}{S(0)^2} \rho_{ij} \int_0^{T_\alpha} \sigma_i(t) \sigma_j(t) \, dt
+$$
+
+consider 3 forward rates with $L_1(0) = L_2(0) = L_3(0) = 4\%$, equal weights $w_i = 1/3$, constant volatilities $\sigma_i = 20\%$, and exponential correlation $\rho_{ij} = e^{-\beta|i-j|}$. Compute the model swaption volatility $\sigma_S$ for $\beta = 0$ (perfect correlation) and $\beta = 0.3$. Verify that decorrelation reduces the swaption volatility.
+
+---
+
+**Exercise 7.** A practitioner calibrates the LMM to caps on Monday and obtains caplet volatilities $\sigma_1 = 22\%$, $\sigma_2 = 25\%$, $\sigma_3 = 24\%$. On Tuesday, a single cap quote shifts by 0.5 bps. After re-calibration, $\sigma_2$ changes by 3\%. Discuss whether this behavior indicates a stable or unstable calibration. What regularization techniques could improve stability? How does the sequential two-step approach (strip caps, then fit correlations) help isolate the source of instability?

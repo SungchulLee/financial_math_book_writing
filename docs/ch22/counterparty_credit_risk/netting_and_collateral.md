@@ -321,3 +321,29 @@ The CCP pools all trades into a single netting set, reducing exposure through br
 - ISDA, *ISDA Master Agreement* and *Credit Support Annex*
 - BCBS-IOSCO (2020), "Margin Requirements for Non-Centrally Cleared Derivatives"
 - Pykhtin, M. (2009), "Modeling Credit Exposure for Collateralized Counterparties"
+
+---
+
+## Exercises
+
+**Exercise 1.** A bank has three derivatives with the same counterparty: values of +\$10M, -\$7M, and +\$3M. Compute the gross positive exposure and the net exposure under a bilateral netting agreement. By what percentage does netting reduce exposure?
+
+---
+
+**Exercise 2.** Explain the difference between close-out netting and payment netting. Why is close-out netting critical for reducing counterparty credit exposure in the event of default? What legal documentation governs netting (e.g., ISDA Master Agreement)?
+
+---
+
+**Exercise 3.** A Credit Support Annex (CSA) specifies: threshold = \$5M, minimum transfer amount = \$500K, independent amount = \$2M. If the bank's net exposure to a counterparty is \$8M, compute the collateral call. What exposure remains after collateral is posted?
+
+---
+
+**Exercise 4.** The Margin Period of Risk (MPR) is the time between the last collateral exchange and the closeout of positions after default. Explain why even fully collateralized portfolios have residual exposure. If the MPR is 10 business days and the portfolio's daily volatility of mark-to-market changes is \$2M, estimate the residual exposure at the 99% confidence level.
+
+---
+
+**Exercise 5.** Bilateral margin requirements for non-centrally cleared derivatives require both initial margin (IM) and variation margin (VM). Explain the economic purpose of each. Why does initial margin provide protection beyond variation margin?
+
+---
+
+**Exercise 6.** Compare the exposure reduction benefits of netting versus collateral for a portfolio of 100 interest rate swaps. Under what portfolio composition (e.g., highly correlated vs diversified trades) does netting provide the greatest benefit? When is collateral more effective?

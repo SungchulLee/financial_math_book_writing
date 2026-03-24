@@ -198,3 +198,58 @@ The joint fit is 15--25 basis points worse at individual maturities, with the la
 ## Summary
 
 Joint calibration across maturities is essential for producing a self-consistent Heston model. Short maturities identify $v_0$ and $\rho$; long maturities identify $\theta$; medium maturities separate $\kappa$ from $\theta$ by constraining the transition time scale. Maturity weighting schemes---equal weight per maturity, inverse-variance weighting, or ATM-focused weighting---prevent dense strike sets from dominating the objective. Systematic residual patterns across maturities signal structural model limitations (non-monotone ATM term structure, over-steep skew decay) that no amount of parameter tuning can fix, motivating extensions such as the double Heston model or time-dependent parameters.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Consider the expected average variance formula:
+
+$$
+\bar{v}(T) = \theta + (v_0 - \theta)\frac{1 - e^{-\kappa T}}{\kappa T}
+$$
+
+For a Heston model with $v_0 = 0.0262$, $\kappa = 2.45$, and $\theta = 0.0425$, compute $\bar{v}(T)$ and the corresponding ATM implied volatility $\sigma_{\text{ATM}} \approx \sqrt{\bar{v}(T)}$ for $T = 1/12, 1/4, 1/2, 1, 2$. Verify that the resulting term structure is monotonically increasing and explain why.
+
+---
+
+**Exercise 2.**
+Using the short-maturity skew approximation:
+
+$$
+\left. \frac{\partial \sigma_{\text{imp}}}{\partial \ln K} \right|_{K = S_0 e^{rT}} \approx \frac{\rho \xi}{4 \sqrt{v_0}}
+$$
+
+compute the ATM skew for $v_0 = 0.04$, $\xi = 0.5$, and $\rho = -0.7$. If the market skew at $T = 1$ month is $-2.8$ per unit log-strike, estimate $\rho$ assuming $v_0$ and $\xi$ are known. Discuss why $\rho$ is well-identified from short-maturity skew data.
+
+---
+
+**Exercise 3.**
+A calibration uses five maturities with strike counts $N_1 = 40$, $N_2 = 35$, $N_3 = 25$, $N_4 = 20$, $N_5 = 15$ for a total of $M = 135$ options. Compare the effective per-maturity weight under: (a) uniform weights $w_{jk} = 1/M$, and (b) equal-weight-per-maturity $w_{jk} = 1/(N_T \cdot N_j)$. Show that under uniform weights, the 1M maturity receives $40/135 \approx 29.6\%$ of the total weight, while under equal-weight-per-maturity each receives exactly 20%.
+
+---
+
+**Exercise 4.**
+The sequential calibration in the worked example yields parameter sets that vary across maturities. Compute the product $\kappa\theta$ for each maturity and verify that it is more stable than $\kappa$ or $\theta$ individually. Explain the $\kappa$-$\theta$ degeneracy: why does short-maturity data constrain $\kappa\theta$ but not $\kappa$ and $\theta$ separately? Hint: consider the expansion of $\bar{v}(T)$ for $\kappa T \ll 1$.
+
+---
+
+**Exercise 5.**
+The Heston model predicts skew decay as:
+
+$$
+\text{skew}(T) \sim \frac{\rho \xi}{2\sqrt{\theta}} \cdot \frac{1}{\sqrt{T}} \qquad \text{as } T \to \infty
+$$
+
+Given $\rho = -0.71$, $\xi = 0.36$, and $\theta = 0.0425$, compute the predicted skew at $T = 0.25, 0.5, 1, 2, 5$ years. If the market skew at $T = 5$ years is $-0.35$ (per unit log-strike), but the model predicts $-0.28$, discuss whether this discrepancy can be eliminated by adjusting $\rho$, $\xi$, or $\theta$ without degrading the fit at shorter maturities.
+
+---
+
+**Exercise 6.**
+Define the model risk metric as the difference between sequential and joint IVRMSE at each maturity. Using the worked example data, compute this metric for all five maturities. Which maturity shows the largest model risk? Propose a weighting scheme that would reduce the joint IVRMSE at the worst-fitting maturity at the expense of the best-fitting ones. Write the modified objective function explicitly.
+
+---
+
+**Exercise 7.**
+Consider designing an ATM-focused weighting scheme with parameter $\alpha = 0.4$. Given $N_T = 5$ maturities, $M = 135$ total options, and one ATM option per maturity, compute the weight $w_{jk}$ assigned to each ATM option and each non-ATM option. If the ATM bid-ask spread is typically 20 bps and the OTM wing bid-ask spread is 80 bps, argue that the ATM-focused scheme is consistent with inverse-variance weighting in spirit. Discuss when you might prefer $\alpha = 0.5$ over $\alpha = 0.3$.

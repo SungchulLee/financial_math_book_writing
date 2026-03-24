@@ -221,3 +221,33 @@ Every derivative in this table ultimately reduces to the CIR zero-coupon bond op
 ## Summary
 
 Caplets are equivalent to put options on zero-coupon bonds through a model-independent payoff identity, with bond strike $\tilde{K} = 1/(1+K\delta)$. Swaptions decompose into portfolios of zero-coupon bond options via Jamshidian's trick, which exploits the monotonicity of bond prices in the short rate. Under the CIR model, all building-block bond options have closed-form prices in terms of the non-central chi-squared distribution, making caps and swaptions analytically tractable. This analytical pricing chain --- from swaption to bond option portfolio to chi-squared CDF evaluation --- is a major advantage of the CIR model over non-affine alternatives that require numerical methods at every stage.
+
+---
+
+## Exercises
+
+**Exercise 1.** A caplet has strike $K = 4\%$, reset date $T_i = 2$ years, payment date $T_{i+1} = 2.5$ years, and notional $N = \$1{,}000{,}000$. Compute the day count fraction $\delta_i$ and the equivalent bond put strike $\tilde{K}_i = 1/(1 + K\delta_i)$. How many units of the bond put does the caplet correspond to?
+
+---
+
+**Exercise 2.** Derive the caplet-put equivalence step by step. Starting from the caplet payoff $N\delta_i(L(T_i, T_{i+1}) - K)^+$, substitute $L(T_i, T_{i+1}) = \frac{1}{\delta_i}(1/P(T_i, T_{i+1}) - 1)$ and algebraically manipulate to arrive at $N(1 + K\delta_i)(\tilde{K}_i - P(T_i, T_{i+1}))^+$. Identify which step uses the fact that $(ax - b)^+ = a(x - b/a)^+$ for $a > 0$.
+
+---
+
+**Exercise 3.** Explain why cap-floor parity $\text{Cap}(t) - \text{Floor}(t) = \text{Swap}(t)$ holds model-independently. Start from the identity $(x - K)^+ - (K - x)^+ = x - K$ applied to $x = L(T_i, T_{i+1})$ for each caplet-floorlet pair, and show that the resulting sum equals the swap value.
+
+---
+
+**Exercise 4.** For a payer swaption with expiry $T_0 = 1$ year into a 3-year annual swap with fixed rate $K = 5\%$, write out the coupon bond that appears in the swaption payoff. Identify the cash flows $c_1$, $c_2$, $c_3$ and the corresponding maturities $T_1$, $T_2$, $T_3$. Explain why the swaption is exercised when this coupon bond is worth less than par.
+
+---
+
+**Exercise 5.** In Jamshidian's decomposition, the critical rate $r^*$ solves $\sum_{i=1}^n c_i A_i e^{-B_i r^*} = 1$. For a 2-year annual swap with $K = 5\%$ (so $c_1 = 0.05$ and $c_2 = 1.05$), and CIR functions $A_1 = 0.99$, $B_1 = 0.95$, $A_2 = 0.97$, $B_2 = 1.85$, set up the equation for $r^*$ and describe how Newton's method would be applied. What is the derivative of the left-hand side with respect to $r^*$?
+
+---
+
+**Exercise 6.** After finding $r^*$ in Jamshidian's decomposition, the individual bond strikes are $K_i = A_i e^{-B_i r^*}$. Verify that $\sum c_i K_i = 1$ by construction. Then prove the key identity: when $r_{T_0} > r^*$, we have $P(T_0, T_i) < K_i$ for all $i$ simultaneously, and when $r_{T_0} < r^*$, we have $P(T_0, T_i) > K_i$ for all $i$. Why does this simultaneous crossing property depend on the model being one-factor?
+
+---
+
+**Exercise 7.** Consider pricing a 1Y-into-5Y payer swaption under CIR with semi-annual payment dates. How many zero-coupon bond put options appear in the Jamshidian decomposition? If each CIR bond put evaluation requires two non-central chi-squared CDF evaluations, how many $\chi^2$ CDF calls are needed in total? Compare this computational cost to a non-affine model (e.g., Black-Karasinski) where each bond option requires a full tree backward induction.

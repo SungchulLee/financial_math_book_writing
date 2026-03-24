@@ -338,3 +338,33 @@ For comparison, the market discount factor is $P^M(0,12)/P^M(0,2) = e^{-0.30} \a
 ## Summary
 
 The PDE derivation of the Hull-White bond price proceeds by applying the Feynman-Kac theorem to obtain the backward pricing equation, substituting the exponential-affine ansatz $P = e^{A + Br}$, and separating the resulting equation into a linear ODE for $B(\tau)$ with solution $B(\tau) = -(1 - e^{-a\tau})/a$ and a quadrature for $A(t,T)$ that reduces to $A(t,T) = \ln(P^M(0,T)/P^M(0,t)) + B(t,T)f^M(0,t) + \frac{\sigma^2}{4a}B(t,T)^2(1-e^{-2at})$ when $\theta(t)$ is eliminated via the market curve. The result is identical to the expectation-based derivation, confirming the internal consistency of the Hull-White framework.
+
+---
+
+## Exercises
+
+**Exercise 1.** State the Feynman-Kac theorem precisely. Identify the functions $\mu(t,x)$, $\sigma(t,x)$, $c(t,x)$, and $g(x)$ that correspond to the Hull-White zero-coupon bond pricing problem.
+
+---
+
+**Exercise 2.** The ODE for $B(\tau)$ is $\tilde{B}' + a\tilde{B} = -1$ with $\tilde{B}(0) = 0$. Solve this ODE using the method of variation of parameters instead of the integrating factor. Verify you obtain the same solution $B(\tau) = -(1 - e^{-a\tau})/a$.
+
+---
+
+**Exercise 3.** Show that $B(\tau) \approx -\tau + \frac{a\tau^2}{2}$ for small $a\tau$ by Taylor expanding $e^{-a\tau}$. Use this to estimate the error in approximating $B(\tau) \approx -\tau$ (the Ho-Lee limit) when $a = 0.05$ and $\tau = 10$.
+
+---
+
+**Exercise 4.** Explain why the $A$-equation is a quadrature rather than a genuine ODE. What structural property of the Hull-White model makes this simplification possible, and how would the situation change for a model with state-dependent volatility (e.g., CIR)?
+
+---
+
+**Exercise 5.** Using the numerical example with $a = 0.05$, $\sigma = 0.01$, $f^M(0,t) = 0.03$, and $r(2) = 0.035$, compute $P(2, 12)$ step by step. Then recompute for $r(2) = 0.025$ and comment on the sensitivity of the bond price to the current short rate.
+
+---
+
+**Exercise 6.** Verify the consistency check at $t = 0$: show that $P(0,T) = P^M(0,T)$ by substituting $t = 0$ into the complete bond price formula. Which terms simplify or vanish, and why?
+
+---
+
+**Exercise 7.** Compare the PDE and expectation derivations from a computational perspective. For a model where closed-form solutions are not available, which approach (numerical PDE vs. Monte Carlo) would you prefer for computing bond prices? Discuss the trade-offs in terms of accuracy, computational cost, and dimensionality.

@@ -231,3 +231,47 @@ dW^T(t)-\left(\int_t^T\sigma(t,T')dT'\right)dt
 &=&\displaystyle
 \sigma(t,T)dW^T(t)
 \end{array}$$
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $P(0, 1) = 0.96$ and $P(0, 3) = 0.88$. A forward rate agreement (FRA) pays $L(1, 3) - K$ at time $T = 3$, where $L(1, 3)$ is the simply-compounded rate for the period $[1, 3]$. Using the $T$-forward measure with $T = 3$, show that the fair FRA rate equals the forward rate $F(0; 1, 3) = \frac{1}{2}\left(\frac{P(0,1)}{P(0,3)} - 1\right)$. Compute its numerical value.
+
+---
+
+**Exercise 2.** Under the risk-neutral measure $\mathbb{Q}$, the instantaneous forward rate satisfies
+
+$$
+df(t, T) = \sigma(t, T)\int_t^T \sigma(t, T')\,dT'\,dt + \sigma(t, T)\,dW^{\mathbb{Q}}(t)
+$$
+
+Show that under the $T$-forward measure $\mathbb{Q}^T$, the drift vanishes and $f(t, T)$ satisfies $df(t, T) = \sigma(t, T)\,dW^T(t)$. Identify the Girsanov kernel used in the change of measure.
+
+---
+
+**Exercise 3.** In the Hull--White model, $dr_t = (theta(t) - ar_t)\,dt + \sigma\,dW_t^{\mathbb{Q}}$, and the bond price volatility is $\Sigma(t, T) = -\frac{\sigma}{a}(1 - e^{-a(T-t)})$. Write down the Radon--Nikodym derivative $d\mathbb{Q}^T/d\mathbb{Q}|_{\mathcal{F}_t}$ in terms of $\Sigma(t, T)$ and the risk-neutral Brownian motion. Then derive the dynamics of $r_t$ under $\mathbb{Q}^T$ and identify the new drift.
+
+---
+
+**Exercise 4.** Explain why the $T$-forward measure is particularly well-suited for pricing a European option with payoff $g(r_T)$ at time $T$, where $g$ is an arbitrary function of the short rate. Specifically, show that the option price simplifies to
+
+$$
+V_0 = P(0, T)\,\mathbb{E}^{\mathbb{Q}^T}[g(r_T)]
+$$
+
+and that no stochastic discounting appears. Why would the same computation under $\mathbb{Q}$ require knowledge of the joint distribution of $\int_0^T r_s\,ds$ and $r_T$?
+
+---
+
+**Exercise 5.** Consider two forward measures $\mathbb{Q}^{T_1}$ and $\mathbb{Q}^{T_2}$ with $T_1 < T_2$. Write down the Radon--Nikodym derivative for changing from $\mathbb{Q}^{T_2}$ to $\mathbb{Q}^{T_1}$ and the corresponding Girsanov drift adjustment. A forward LIBOR rate $L(t; T_1, T_2)$ is a martingale under $\mathbb{Q}^{T_2}$. What drift does it acquire under $\mathbb{Q}^{T_1}$?
+
+---
+
+**Exercise 6.** Under the $T_f$-forward measure (where $T_f \neq T$), the instantaneous forward rate has dynamics
+
+$$
+df(t, T) = -\sigma(t, T)\int_T^{T_f}\sigma(t, T')\,dT'\,dt + \sigma(t, T)\,dW^{T_f}(t)
+$$
+
+Verify that when $T_f = T$, the drift vanishes (recovering the result under the own $T$-forward measure). When $T_f > T$, determine the sign of the drift and provide a financial interpretation.

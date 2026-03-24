@@ -137,3 +137,33 @@ When the two-parameter model's joint fit is inadequate, several extensions can h
 ## Summary
 
 Joint calibration to caps and swaptions minimizes a combined objective $\alpha\,\text{cap error} + (1-\alpha)\,\text{swaption error}$ with the mixing parameter $\alpha$ controlling the trade-off. The two-parameter model is overconstrained, and the Pareto frontier reveals the achievable trade-offs. Cap calibration primarily constrains $\sigma$, while swaption calibration constrains $\lambda$ through tenor-dependent bond volatility. Application-driven weighting (e.g., co-terminal swaptions for Bermudan pricing) focuses the fit on the most relevant instruments. When the joint fit is inadequate, piecewise constant volatility or the two-factor extension provides additional flexibility.
+
+---
+
+## Exercises
+
+**Exercise 1.** The joint objective uses a mixing parameter $\alpha \in [0,1]$. If the cap market quotes 8 caplet volatilities and the swaption market quotes 6 swaption volatilities, what value of $\alpha$ gives each individual instrument equal weight? Show that $\alpha = n_{\text{cap}}/(n_{\text{cap}} + n_{\text{swap}})$ achieves this.
+
+---
+
+**Exercise 2.** The Pareto frontier traces the achievable trade-offs between cap error and swaption error as $\alpha$ varies. Describe how to compute this frontier numerically. If the frontier has a sharp elbow, what does this indicate about the model's ability to fit both markets?
+
+---
+
+**Exercise 3.** Explain the proposition that swaption errors have steeper dependence on $\lambda$ than cap errors. Why does this mean the joint-calibrated $\lambda$ is more strongly influenced by the swaption component, even when $\alpha = 0.5$?
+
+---
+
+**Exercise 4.** For application-driven weighting targeting a Bermudan swaption, describe how you would choose $\alpha$ and the individual instrument weights. Would you include all available cap maturities and swaption expiry-tenor pairs, or focus on a subset? Justify your answer.
+
+---
+
+**Exercise 5.** The text lists three extensions for improving the joint fit: piecewise constant $\sigma(t)$, two-factor model, and time-dependent $\lambda(t)$. For each, explain which dimension of the calibration it improves (expiry, tenor, or both) and what the trade-off is in terms of model complexity and interpretability.
+
+---
+
+**Exercise 6.** Describe relative error weighting $e_k^{\text{rel}} = (\sigma_k^{\text{HW}} - \sigma_k^{\text{market}})/\sigma_k^{\text{market}}$ versus absolute error weighting. When would relative weighting be preferable? Give an example where absolute weighting could lead to a poor calibration outcome.
+
+---
+
+**Exercise 7.** Compute the Jacobian $J$ of the residual vector $\mathbf{e}(\lambda, \sigma)$ with respect to $(\lambda, \sigma)$ for a simplified setup with two instruments: one 2-year caplet and one $2 \times 5$ swaption. Describe how the condition number of $J^{\top}J$ relates to parameter identifiability.

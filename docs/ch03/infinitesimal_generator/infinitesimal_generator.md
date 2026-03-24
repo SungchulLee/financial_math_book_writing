@@ -327,3 +327,59 @@ $$
 - [Kolmogorov Backward Equation](../../ch05/kolmogorov_equations/kolmogorov_backward.md) — backward equation using $\mathcal{L}$
 - [Feynman–Kac Formula](../../ch05/feynman_kac/feynman_kac_formula.md) — discounted expectations
 - [Martingale Problem](../diffusion_process/martingale_problem_stroock_varadhan.md) — characterization via generator
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $dX_t = 3X_t\,dt + 2X_t\,dW_t$ (geometric Brownian motion with $\mu = 3$, $\sigma = 2$). Write down the infinitesimal generator $\mathcal{L}$ and compute $\mathcal{L}f$ for $f(x) = x^2$.
+
+---
+
+**Exercise 2.** For the Ornstein--Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, compute $\mathcal{L}f$ for $f(x) = e^{\alpha x}$ where $\alpha$ is a constant. Use the result to find an ODE for $m(t) = \mathbb{E}_x[e^{\alpha X_t}]$ by applying the generator to the moment generating function.
+
+---
+
+**Exercise 3.** Consider the two-dimensional diffusion $(X_t, Y_t)$ driven by independent Brownian motions $W_t^1, W_t^2$:
+
+$$
+dX_t = Y_t\,dt + dW_t^1, \qquad dY_t = -X_t\,dt + dW_t^2
+$$
+
+Write down the multidimensional generator $\mathcal{L}$ and compute $\mathcal{L}f$ for $f(x,y) = x^2 + y^2$.
+
+---
+
+**Exercise 4.** Prove that the maximum principle fails for jump processes. Specifically, let $X_t$ be a compound Poisson process with generator
+
+$$
+(\mathcal{L}f)(x) = \lambda \int_{\mathbb{R}} [f(x+y) - f(x)]\,\nu(dy)
+$$
+
+where $\nu$ is a probability measure on $\mathbb{R}$. Find a function $f$ that attains a maximum at $x^*$ yet $(\mathcal{L}f)(x^*) > 0$. (Hint: try $f(x) = -x^2$ and a suitable $\nu$.)
+
+---
+
+**Exercise 5.** For standard Brownian motion ($\mathcal{L} = \frac{1}{2}\frac{d^2}{dx^2}$), determine which of the following functions belong to the domain of the generator by computing $\mathcal{L}f$ and checking whether the result is well-defined:
+
+(a) $f(x) = |x|$
+
+(b) $f(x) = x^3$
+
+(c) $f(x) = \sin(x)$
+
+(d) $f(x) = (x - 1)^+$
+
+---
+
+**Exercise 6.** Consider the extended generator $\tilde{\mathcal{L}} = \partial_t + \mathcal{L}_t$ for a diffusion $dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t$. Show that if $V(x,t)$ satisfies the Black--Scholes PDE
+
+$$
+\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV = 0
+$$
+
+then $\tilde{\mathcal{L}}V - rV = 0$, where $\mathcal{L}$ is the generator of geometric Brownian motion under the risk-neutral measure ($\mu = r$). Explain why this means $e^{-rt}V(S_t, t)$ is a martingale.
+
+---
+
+**Exercise 7.** Let $dX_t = \sigma(X_t)\,dW_t$ (a driftless diffusion with state-dependent volatility). Write down the generator $\mathcal{L}$ and show that every affine function $f(x) = ax + b$ satisfies $\mathcal{L}f = 0$. What does this imply about $f(X_t)$ as a stochastic process?

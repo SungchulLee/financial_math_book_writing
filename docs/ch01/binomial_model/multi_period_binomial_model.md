@@ -504,3 +504,39 @@ Return V[0]
 |---------|-------|
 | [Binomial to Black–Scholes](binomial_to_black_scholes_limit.md) | Continuous-time limit |
 | [FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md) | General theory of arbitrage-free pricing |
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a 2-period binomial model with $S_0 = 50$, $u = 1.2$, $d = 0.85$, $r = 3\%$, and $\Delta t = 0.5$. Construct the full stock price tree (all nodes), compute the risk-neutral probability $q$, and price a European put with strike $K = 50$ using backward induction.
+
+---
+
+**Exercise 2.** Using the 3-period tree from the text ($S_0 = 100$, $\sigma = 20\%$, $r = 5\%$, $T = 1$, $N = 3$), compute the delta $\Delta_{n,j}$ and the cash position $B_{n,j}$ at every interior node. Verify the self-financing property by showing that the portfolio value after rebalancing at node $(1,1)$ equals $V_{1,1}$.
+
+---
+
+**Exercise 3.** Prove that in a recombining binomial tree with $ud = 1$, the stock price at node $(n, j)$ depends only on the number of up moves $j$ and not on the order in which up and down moves occur. How many distinct stock prices exist at time step $n$? Compare this to a non-recombining tree.
+
+---
+
+**Exercise 4.** Price a European call with strike $K = 100$ on the 3-period tree from the text using the **direct formula**:
+
+$$
+V_0 = e^{-rT} \sum_{j=0}^{N} \binom{N}{j} q^j (1-q)^{N-j} (S_0 u^j d^{N-j} - K)^+
+$$
+
+and verify that the result matches the backward induction price $V_{0,0} = 11.04$.
+
+---
+
+**Exercise 5.** In the 3-period tree from the text, price an American put with strike $K = 100$ and identify all nodes where early exercise is optimal. Compute the early exercise premium by comparing with the corresponding European put price. Explain intuitively why early exercise is optimal at those nodes.
+
+---
+
+**Exercise 6.** The memory-efficient backward induction algorithm uses a single array of size $N+1$ instead of the full $(N+1) \times (N+1)$ grid. Write pseudocode for the memory-efficient algorithm that also tracks the delta at each node (in addition to the option value). What is the time and space complexity of your algorithm?
+
+---
+
+**Exercise 7.** Consider a European **butterfly spread** with payoff $H(S_T) = (S_T - K_1)^+ - 2(S_T - K_2)^+ + (S_T - K_3)^+$ where $K_1 = 90$, $K_2 = 100$, $K_3 = 110$. Using the 3-period tree from the text, price this spread by backward induction. Verify your answer by pricing each call component separately and combining via linearity.

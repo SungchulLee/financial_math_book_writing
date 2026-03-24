@@ -184,3 +184,33 @@ This relationship shows that $\alpha(t)$ plays the role of the expected short ra
 ## Summary
 
 The Hull-White model achieves exact consistency with the market zero-coupon bond curve through the time-dependent function $\theta^{\mathbb{Q}}(t)$. This function is uniquely determined by the market instantaneous forward rate $f^M(0,t)$, its derivative, and a convexity correction proportional to $\sigma^2$. At $t = 0$, the bond price formula reduces to $P(0,T) = P^M(0,T)$ for all maturities, ensuring that the model can be used for derivative pricing without introducing spurious arbitrage against observed bond prices.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a market with forward rate $f^M(0,t) = 0.03 + 0.002t$ and Hull-White parameters $\lambda = 0.08$, $\sigma = 0.012$. Compute $\theta^{\mathbb{Q}}(t)$ at $t = 0$, $t = 5$, and $t = 20$. Verify that $\theta^{\mathbb{Q}}(0) = f^M(0,0) = 0.03$.
+
+---
+
+**Exercise 2.** Explain why the Vasicek model (constant $b$ instead of $\theta^{\mathbb{Q}}(t)$) generically fails to match the observed term structure. Give a specific numerical example where the Vasicek bond price at $t = 0$ differs from the market price.
+
+---
+
+**Exercise 3.** Show that the convexity correction term $\frac{\sigma^2}{2\lambda^2}(1 - e^{-2\lambda t})$ is monotonically increasing in $t$ and converges to $\frac{\sigma^2}{2\lambda^2}$ as $t \to \infty$. For $\lambda = 0.1$ and $\sigma = 0.015$, compute this asymptotic value and express it in basis points.
+
+---
+
+**Exercise 4.** Starting from $\lambda\theta^{\mathbb{Q}}(t) = \alpha'(t) + \lambda\alpha(t)$ and the definition $\alpha(t) = f^M(0,t) + \frac{\sigma^2}{2\lambda^2}(1 - e^{-\lambda t})^2$, derive the formula for $\theta^{\mathbb{Q}}(t)$ by computing $\alpha'(t)$ explicitly.
+
+---
+
+**Exercise 5.** Consider a flat forward rate $f^M(0,t) = r_0$. Show that the slope correction term $\frac{1}{\lambda}\frac{\partial f^M(0,t)}{\partial t}$ vanishes, so that $\theta^{\mathbb{Q}}(t) = r_0 + \frac{\sigma^2}{2\lambda^2}(1 - e^{-2\lambda t})$. Interpret why the mean reversion target exceeds the flat forward rate.
+
+---
+
+**Exercise 6.** Prove that the consistency condition $P(0,T) = P^M(0,T)$ holds for all $T$ by directly substituting $t = 0$ into $P(t,T) = A(t,T)e^{-B(t,T)r(t)}$ and using $r(0) = f^M(0,0)$.
+
+---
+
+**Exercise 7.** Suppose you are given a discrete set of market zero-coupon bond prices $P^M(0, T_i)$ for $T_i = 1, 2, \ldots, 30$. Describe how you would construct $\theta^{\mathbb{Q}}(t)$ in practice. What interpolation or smoothing challenges arise when computing $\frac{\partial f^M(0,t)}{\partial t}$ from discrete data?

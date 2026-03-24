@@ -344,3 +344,55 @@ def sabr_implied_vol(F, K, T, alpha, beta, rho, nu):
 - Antonov, A., Konikov, M., & Spector, M. (2015). *SABR spreads its wings*. Risk Magazine.
 - Rebonato, R. (2004). *Volatility and Correlation*, 2nd ed. Wiley.
 - West, G. (2005). *Calibration of the SABR model in illiquid markets*. Applied Mathematical Finance.
+
+---
+
+## Exercises
+
+**Exercise 1.** Using the ATM Hagan formula for $\beta = 1$:
+
+$$
+\sigma_{\text{ATM}} = \alpha\left[1 + \frac{2-3\rho^2}{24}\nu^2 T\right]
+$$
+
+compute $\sigma_{\text{ATM}}$ for $\alpha = 0.20$, $\rho = -0.6$, $\nu = 0.4$, $T = 0.5$. Then solve inversely: given a market ATM implied vol of $22\%$ with the same $\rho$, $\nu$, and $T$, recover $\alpha$.
+
+---
+
+**Exercise 2.** The SABR skew formula at ATM is approximately
+
+$$
+\frac{\partial\sigma_{\text{impl}}}{\partial k}\bigg|_{k=0} \approx \frac{\rho\nu}{2\sigma_{\text{ATM}}} - \frac{(1-\beta)}{2F}
+$$
+
+For $F = 100$, $\beta = 1$, $\rho = -0.65$, $\nu = 0.45$, and $\sigma_{\text{ATM}} = 0.20$, compute the ATM skew. Then repeat with $\beta = 0.5$ and explain how the CEV exponent contributes additional skew even when $\rho = 0$.
+
+---
+
+**Exercise 3.** Compare the SABR and Heston models by filling in the following table with qualitative assessments:
+
+| Feature | SABR advantage | Heston advantage |
+|---------|---------------|-----------------|
+| Short-maturity smile | ? | ? |
+| Long-maturity term structure | ? | ? |
+| Calibration speed | ? | ? |
+| Dynamic consistency | ? | ? |
+| Negative rates handling | ? | ? |
+
+Justify each entry with a brief explanation.
+
+---
+
+**Exercise 4.** In the shifted SABR model, the forward dynamics are $dF_t = \sigma_t(F_t + s)^\beta\,dW_t^F$. For a market where the forward rate is $F = -0.3\%$ and the shift is $s = 3\%$, compute the shifted forward $\tilde{F} = F + s$. Using $\beta = 0.5$, $\alpha = 0.005$, $\nu = 0.4$, $\rho = 0.1$, compute the ATM implied volatility using the Hagan formula applied to $\tilde{F}$. Convert from lognormal to normal (Bachelier) volatility using $\sigma_N \approx \sigma_{\text{LN}} \cdot \tilde{F}$.
+
+---
+
+**Exercise 5.** Explain why the Hagan formula can produce negative probability densities for extreme parameters. Specifically, the implied density is $f(K) = e^{rT}\partial^2 C/\partial K^2$. If $\sigma_{\text{impl}}(K)$ is not a valid smile (e.g., it becomes negative at extreme strikes), $f(K) < 0$. For $\alpha = 0.30$, $\beta = 1$, $\rho = -0.9$, $\nu = 1.0$, $F = 100$, $T = 5$, explain which combination of parameter extremes is most likely to trigger this issue.
+
+---
+
+**Exercise 6.** A rates trader fixes $\beta = 0$ (normal SABR) and calibrates $(\alpha, \rho, \nu)$ to a 1-year swaption smile. She obtains $\alpha = 80$ bps, $\rho = 0.15$, $\nu = 0.50$. The next day, the forward rate moves from 3.5% to 3.0% but the smile shape remains similar. Will she need to recalibrate $\alpha$, or does the normal SABR model automatically adjust? Compare with $\beta = 1$ (lognormal SABR) where $\sigma_{\text{ATM}} \propto 1/F$.
+
+---
+
+**Exercise 7.** The SABR model has no mean reversion in the volatility process ($d\sigma_t = \nu\sigma_t\,dW_t^\sigma$). Explain why this causes problems for long-dated options. Specifically, compute the expected value and variance of $\sigma_T$ under this GBM dynamics for $\sigma_0 = 0.2$, $\nu = 0.4$, $T = 10$. What is the probability that $\sigma_T > 1$ (100% vol)? Is this economically realistic?

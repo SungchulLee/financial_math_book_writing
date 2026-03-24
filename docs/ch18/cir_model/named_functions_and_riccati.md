@@ -248,3 +248,31 @@ CIR bond prices are slightly higher (yields lower) than Vasicek for the same par
 The CIR named functions $A(\tau)$ and $B(\tau)$ are derived from the same affine ansatz as Vasicek, but the state-dependent diffusion $\sigma^2 r$ produces a Riccati (quadratic) ODE for $B$ instead of a linear one. The solution involves the auxiliary parameter $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$, which reflects the interaction between mean reversion and volatility. The CIR $B$ function saturates at $(\gamma - \kappa)/\sigma^2 < 1/\kappa$, producing smaller long-maturity sensitivities than Vasicek. Despite the more complex formulas, the affine structure is preserved, ensuring closed-form bond prices and a tractable framework for yield curve modeling and derivative pricing.
 
 ---
+
+## Exercises
+
+**Exercise 1.** For CIR parameters $\kappa = 0.5$, $\theta = 0.04$, $\sigma = 0.1$, compute $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$. Then evaluate $B(\tau)$ for $\tau = 1, 5, 10$ years and compare with the Vasicek $B(\tau) = (1 - e^{-\kappa\tau})/\kappa$ using the same $\kappa$. Verify that $B^{\text{CIR}} < B^{\text{Vas}}$ for all $\tau > 0$.
+
+---
+
+**Exercise 2.** Verify that $B(0) = 0$ by direct substitution into the CIR formula. Then compute $\dot{B}(0)$ by differentiating the formula (or using the Riccati ODE at $\tau = 0$) and show that $\dot{B}(0) = 1$, which matches the Vasicek small-$\tau$ behavior $B(\tau) \approx \tau$.
+
+---
+
+**Exercise 3.** The Riccati ODE has equilibria at $B_{\pm} = (-\kappa \pm \gamma)/\sigma^2$. Compute $B_+$ and $B_-$ for $\kappa = 0.5$, $\sigma = 0.1$. Verify that $B_+ > 0$ and $B_- < 0$. Show that $B(\tau) \to B_+$ as $\tau \to \infty$ and explain why $B_-$ is not relevant for the bond pricing problem.
+
+---
+
+**Exercise 4.** Derive the ODE for $A(\tau)$ from the bond pricing PDE. Starting from $\frac{d}{d\tau}\ln A = \kappa\theta B(\tau)$, explain why $A(\tau) \leq 1$ for all $\tau \geq 0$ given that $B(\tau) > 0$ and $\kappa\theta > 0$. (Careful: check the sign of $\frac{d}{d\tau}\ln A$.)
+
+---
+
+**Exercise 5.** Compute the CIR long-run yield $R_\infty = 2\kappa\theta/(\gamma + \kappa)$ for $\kappa = 0.5$, $\theta = 0.04$, $\sigma = 0.1$ and compare with the Vasicek long-run yield $R_\infty^{\text{Vas}} = \theta - \sigma^2/(2\kappa^2)$ using the same parameters. Which model predicts a higher long-run yield, and why?
+
+---
+
+**Exercise 6.** Expand $B^{\text{CIR}}(\tau)$ to third order in $\tau$ and show that $B^{\text{CIR}}(\tau) = \tau - \frac{1}{2}\kappa\tau^2 + \frac{1}{6}(\kappa^2 - \sigma^2)\tau^3 + O(\tau^4)$, while $B^{\text{Vas}}(\tau) = \tau - \frac{1}{2}\kappa\tau^2 + \frac{1}{6}\kappa^2\tau^3 + O(\tau^4)$. Identify the term where the two diverge and relate it to the quadratic Riccati contribution.
+
+---
+
+**Exercise 7.** Using the complete CIR bond pricing formula, compute $P(0, T)$ for $T = 1, 5, 10, 30$ years with $\kappa = 0.5$, $\theta = 0.04$, $\sigma = 0.1$, $r_0 = 0.03$. Then compute the corresponding zero rates $R(0, T) = -\ln P(0, T)/T$. Plot or tabulate $R(0, T)$ and describe the shape of the CIR yield curve. Is it upward-sloping, humped, or inverted?

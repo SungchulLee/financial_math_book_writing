@@ -276,3 +276,40 @@ $$
 - [Kolmogorov Backward Equation](../kolmogorov_equations/kolmogorov_backward.md) -- the backward PDE for expectations
 - [Transition Densities for Standard SDEs](../kolmogorov_equations/transition_densities_standard_sdes.md) -- explicit formulas
 - [Feynman-Kac Formula](../feynman_kac/feynman_kac_formula.md) -- the extension with discounting
+
+---
+
+## Exercises
+
+**Exercise 1.**
+For the SDE $dX_t = \mu\,dt + \sigma\,dW_t$ (Brownian motion with drift), write the transition density $p(t, x | s, y)$ explicitly. Verify it satisfies the forward (Fokker-Planck) equation $\partial_t p = -\mu\partial_x p + \frac{1}{2}\sigma^2\partial_{xx}p$ by direct differentiation.
+
+---
+
+**Exercise 2.**
+Explain the identification $p(t, x | s, y) = G(t, x; s, y)$ in words: the probability density of the diffusion at $(t, x)$ starting from $(s, y)$ equals the PDE response at $(t, x)$ to a unit impulse at $(s, y)$. Why does the delta-function initial condition of the Green's function correspond to a point-mass initial distribution for the diffusion?
+
+---
+
+**Exercise 3.**
+The transition density satisfies the backward equation $\partial_s p + \mu(y)\partial_y p + \frac{1}{2}\sigma^2(y)\partial_{yy}p = 0$ as a function of $(s, y)$. Explain the financial significance: the backward equation tells how the option price depends on the current state, while the forward equation describes the evolution of the probability distribution.
+
+---
+
+**Exercise 4.**
+For geometric Brownian motion $dS_t = rS_t\,dt + \sigma S_t\,dW_t$, the transition density of $S_T | S_t = S$ is lognormal. Write this density explicitly and verify that $\mathbb{E}[e^{-r(T-t)}g(S_T) | S_t = S] = \int e^{-r(T-t)}g(y)p(T, y | t, S)\,dy$ recovers the risk-neutral pricing formula.
+
+---
+
+**Exercise 5.**
+The Chapman-Kolmogorov equation $p(t, x | s, y) = \int p(t, x | r, z)\,p(r, z | s, y)\,dz$ expresses the semigroup property of transition densities. Verify this for the Gaussian transition density of standard Brownian motion by computing the convolution of two Gaussians.
+
+---
+
+**Exercise 6.**
+For a killed diffusion (absorbing boundary at $B$), the transition density becomes $p_B(t, x | s, y) < p(t, x | s, y)$ because paths that hit $B$ are removed. Explain why $\int p_B(t, x | s, y)\,dx < 1$ and relate the "missing mass" to the first-passage probability $\mathbb{P}(\tau_B \leq t | X_s = y)$.
+
+---
+
+**Exercise 7.**
+Show that the option pricing formula $V(t, S) = e^{-r(T-t)}\int g(y)\,p(T, y | t, S)\,dy$ is a special case of the Feynman-Kac formula with $r$ constant and $f = 0$. Identify the Green's function in this representation and explain why it encodes all the information needed for European option pricing.

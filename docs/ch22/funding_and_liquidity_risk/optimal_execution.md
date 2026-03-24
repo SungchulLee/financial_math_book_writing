@@ -346,3 +346,29 @@ representing about 13 bps of the \$5M position value.
 - Gatheral, J., Schied, A., & Slynko, A. (2012), "Transient Linear Price Impact and Fredholm Integral Equations"
 - Cartea, A., Jaimungal, S., & Penalva, J. (2015), *Algorithmic and High-Frequency Trading*
 - Bouchaud, J.-P., Farmer, J.D., & Lillo, F. (2009), "How Markets Slowly Digest Changes in Supply and Demand"
+
+---
+
+## Exercises
+
+**Exercise 1.** In the Almgren-Chriss model, the trader minimizes $\mathbb{E}[\text{Cost}] + \lambda\,\text{Var}[\text{Cost}]$ over execution trajectories. Explain the trade-off: increasing the execution speed reduces timing risk (variance) but increases market impact (expected cost). What does the risk aversion parameter $\lambda$ control?
+
+---
+
+**Exercise 2.** A trader must sell $X_0 = 100{,}000$ shares over $T = 5$ days. Under the linear impact model with permanent impact $\gamma = 0.0002$ \$/share and temporary impact $\eta = 0.001$ \$/share, and risk aversion $\lambda = 10^{-6}$, describe the shape of the optimal trading trajectory. Is it front-loaded (aggressive) or back-loaded (passive)?
+
+---
+
+**Exercise 3.** Show that in the risk-neutral case ($\lambda = 0$), the Almgren-Chriss optimal trajectory is a TWAP (Time-Weighted Average Price) strategy that trades at a constant rate. Derive this result from the first-order optimality conditions.
+
+---
+
+**Exercise 4.** In the presence of only temporary impact (no permanent impact, $\gamma = 0$), the total execution cost depends on the sum of squared trading rates $\sum v_k^2$. Show that the minimum-cost strategy is uniform trading (TWAP). How does adding permanent impact change the optimal strategy?
+
+---
+
+**Exercise 5.** A VWAP (Volume-Weighted Average Price) strategy trades proportionally to historical volume patterns. Compare VWAP with the Almgren-Chriss optimal trajectory. Under what market conditions does VWAP perform well? When does it perform poorly?
+
+---
+
+**Exercise 6.** The Almgren-Chriss model assumes that the stock price follows arithmetic Brownian motion with constant volatility. Discuss the limitations of this assumption. How would mean-reverting prices, time-varying volatility, or non-linear impact functions change the optimal execution strategy?

@@ -258,3 +258,33 @@ Since $\alpha(0) = f(0,0) = r_0$, this simplifies to $\mathbb{E}[r_t \mid r_0] =
 ## Summary
 
 The Hull-White drift function $\theta(t) = f'(0,t) + af(0,t) + \frac{\sigma^2}{2a}(1-e^{-2at})$ is determined analytically by requiring that model bond prices match the market at time zero. The formula involves the forward rate $f(0,t)$, its time derivative $f'(0,t)$, and a convexity correction that grows from zero to $\sigma^2/(2a)$. Numerical implementation requires a smooth forward curve (parametric fitting is recommended) and careful treatment of the derivative $f'(0,t)$. The exact fit property $P^{\text{HW}}(0,T) = P^M(0,T)$ is the key practical advantage over the Vasicek model and is essential for consistent derivative pricing.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a flat forward curve $f(0,t) = 0.04$ with $a = 0.10$ and $\sigma = 0.015$, compute $\theta(t)$ at $t = 0, 1, 5, 20$. Verify that $\theta(0) = a \times 0.04 = 0.004$ and identify the asymptotic value $\theta(\infty)$.
+
+---
+
+**Exercise 2.** Explain why the convexity correction $\frac{\sigma^2}{2a}(1 - e^{-2at})$ is needed in the formula for $\theta(t)$. Relate it to Jensen's inequality and the difference between $\mathbb{E}[e^{-X}]$ and $e^{-\mathbb{E}[X]}$ for a Gaussian $X$.
+
+---
+
+**Exercise 3.** Consider a Nelson-Siegel forward curve with $\beta_0 = 0.05$, $\beta_1 = -0.02$, $\beta_2 = 0.03$, and $\lambda_{\text{NS}} = 0.5$. Compute $\theta(t)$ for the Hull-White model with $a = 0.05$ and $\sigma = 0.01$ at $t = 2$ and $t = 10$.
+
+---
+
+**Exercise 4.** Suppose the forward curve is given at discrete points $f(0, t_i)$ for $i = 0, 1, \ldots, 30$ (annual spacing). Describe two methods for computing $f'(0, t_i)$: (i) central finite differences, (ii) fitting a smooth curve first. Discuss the advantages of each approach.
+
+---
+
+**Exercise 5.** Show that in the Ho-Lee limit ($a \to 0$), the formula reduces to $\theta(t) = f'(0,t) + \sigma^2 t$. Verify that this is consistent with the Ho-Lee model $dr_t = \theta(t)\,dt + \sigma\,dW_t$.
+
+---
+
+**Exercise 6.** Verify the exact fit by substituting $\theta(t)$ into $P(0,T) = \exp(A(0,T) - \hat{B}(0,T)r_0)$ and showing that $P(0,T) = P^M(0,T)$. Which terms cancel and why?
+
+---
+
+**Exercise 7.** Discuss the practical challenges of computing $\theta(t)$ from real market data. What happens when the bootstrapped forward curve has kinks or discontinuities? How do these affect the stability of the short rate simulation?

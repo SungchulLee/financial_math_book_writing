@@ -179,3 +179,25 @@ $$
 | Required methods | Formula evaluation | Numerical: trees, FD, Monte Carlo |
 
 **The early-exercise feature transforms the pricing problem from a solvable boundary-value problem into a free-boundary problem that, except for perpetual options, requires numerical methods.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Explain why the Black-Scholes formula cannot be applied directly to American options. Specifically, identify which step in the Black-Scholes derivation (construction of the hedged portfolio, Ito's lemma, no-arbitrage condition, or solving the PDE) breaks down when early exercise is possible.
+
+---
+
+**Exercise 2.** For the perpetual American put ($T = \infty$), the PDE becomes time-independent: $\frac{1}{2}\sigma^2 S^2 V'' + rSV' - rV = 0$ for $S > S^*$. Solve this ODE with boundary conditions $V(S^*) = K - S^*$, $V'(S^*) = -1$ (smooth pasting), and $V(\infty) = 0$. Find $S^*$ and the perpetual put price.
+
+---
+
+**Exercise 3.** The free boundary $S^*(t)$ for an American put satisfies $S^*(T) = K$ at maturity. As $t$ decreases from $T$, does $S^*$ increase or decrease? Provide an economic argument for the direction of $S^*(t)$ and sketch the free boundary qualitatively.
+
+---
+
+**Exercise 4.** Compare the domains of the PDE for a European put (the entire half-plane $S > 0$, $t < T$) and an American put (the continuation region $S > S^*(t)$, $t < T$). Explain why the unknown boundary $S^*(t)$ makes the American problem fundamentally harder.
+
+---
+
+**Exercise 5.** Barone-Adesi and Whaley (1987) proposed an analytical approximation for the American put. The key idea is to decompose $V_{\text{Am}} = V_{\text{Eu}} + \epsilon(S,t)$ and approximate $\epsilon$. Describe the advantage of this decomposition approach over solving the free-boundary problem directly, and discuss its accuracy limitations for long-dated options.

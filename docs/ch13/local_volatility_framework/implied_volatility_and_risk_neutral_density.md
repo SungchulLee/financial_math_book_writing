@@ -624,3 +624,50 @@ $$
 4. **Complementarity:** B-L + Dupire + IV together fully characterize arbitrage-free surface
 
 The IV surface is not merely a quoting convention—it is a rich source of distributional information, encoding the market's view of future price dynamics under the risk-neutral measure.
+
+---
+
+## Exercises
+
+**Exercise 1.** The ATM skew slope is defined as $\mathcal{S} = \partial \sigma_{\text{IV}} / \partial K |_{K=F}$. Using the asymptotic relation
+
+$$
+\text{Skew}^{\mathbb{Q}} \approx -\frac{6 F \mathcal{S} \sqrt{T}}{\sigma_{\text{ATM}}}
+$$
+
+compute the risk-neutral skewness implied by a 1-year ATM volatility of 20% and a skew slope of $\mathcal{S} = -0.0015$ per unit strike, with $F = 100$. Is the implied distribution left-skewed or right-skewed?
+
+---
+
+**Exercise 2.** The Carr-Madan formula for risk-neutral variance is
+
+$$
+\text{Var}^{\mathbb{Q}}(S_T) = 2 e^{rT} \left( \int_0^F \frac{P(K)}{K^2} dK + \int_F^\infty \frac{C(K)}{K^2} dK \right)
+$$
+
+(a) Explain why the integrand weights options by $1/K^2$. (b) If the implied volatility surface is flat at $\sigma_0 = 0.25$ with $F = 100$, $r = 0.03$, and $T = 1$, compute the risk-neutral variance analytically. (c) Compare this to $F^2(e^{\sigma_0^2 T} - 1)$, the exact lognormal variance.
+
+---
+
+**Exercise 3.** The Breeden-Litzenberger formula gives the risk-neutral CDF as $\mathbb{Q}(S_T < K) = 1 + e^{rT} \partial C / \partial K$. (a) Derive this result from $C(K,T) = e^{-rT}\int_K^\infty (S - K)q(S)\,dS$. (b) Evaluate $\mathbb{Q}(S_T < F)$ when the smile has zero skew (symmetric about ATM). (c) For the S&P 500 with typical negative skew, is $\mathbb{Q}(S_T < F)$ greater or less than 0.5? Explain.
+
+---
+
+**Exercise 4.** A flat implied volatility surface ($\sigma_{\text{IV}} = \sigma_0$ for all $K$) implies a lognormal risk-neutral density. (a) Verify that the skewness is zero and the kurtosis equals 3 for a lognormal distribution. (b) Now suppose $\sigma_{\text{IV}}(K) = \sigma_0 + a(K - F)^2$ for some $a > 0$ (a symmetric smile). What sign does the excess kurtosis have? (c) Explain why the curvature $\mathcal{C} = \partial^2 \sigma_{\text{IV}} / \partial K^2 |_{K=F} = 2a$ determines the excess kurtosis through $\text{Kurt}^{\mathbb{Q}} - 3 \approx 12 F^2 \mathcal{C} T$.
+
+---
+
+**Exercise 5.** Consider two markets with the same ATM implied volatility $\sigma_{\text{ATM}} = 0.20$ and maturity $T = 0.5$:
+
+- Market A (equity index): $\sigma_{\text{IV}}(90) = 0.28$, $\sigma_{\text{IV}}(110) = 0.18$
+- Market B (FX): $\sigma_{\text{IV}}(90) = 0.25$, $\sigma_{\text{IV}}(110) = 0.25$
+
+where strikes are expressed as percentages of the forward. For each market, describe the shape of the implied density (skewness, tail behavior) and identify which smile pattern (skew, smile, or smirk) is present.
+
+---
+
+**Exercise 6.** The practical workflow for extracting the risk-neutral density involves interpolating option prices across strikes before applying Breeden-Litzenberger. (a) Why is direct numerical differentiation of raw market quotes problematic? (b) If you use cubic spline interpolation on call prices, what condition must the spline satisfy to ensure $q(K) = e^{rT} C_{KK} \geq 0$? (c) Describe how a parametric model such as SVI can be used instead of splines, and state one advantage and one disadvantage of each approach.
+
+---
+
+**Exercise 7.** The implied volatility surface encodes marginal densities $q(S_T)$ for each maturity $T$ but does not uniquely determine the joint distribution $q(S_{T_1}, S_{T_2})$. (a) Give two different models (e.g., local volatility and Heston) that produce the same marginal densities but different joint distributions. (b) Name a derivative product whose price depends on the joint distribution. (c) Explain why the statement "the implied volatility surface contains all the information needed to price any option" is false.

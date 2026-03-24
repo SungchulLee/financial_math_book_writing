@@ -838,3 +838,35 @@ All converge to Black–Scholes but with different convergence rates and oscilla
     6. **Practical value**: Binomial remains essential for American options and exotic features
 
 The binomial-to-Black–Scholes limit demonstrates the **unity of option pricing theory**: the same no-arbitrage principles govern both discrete and continuous time, and sophisticated continuous models emerge naturally from simple discrete foundations.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the CRR parameterization with $\sigma = 0.25$ and $\Delta t = 0.01$, compute $u$, $d$, and $q$ (with $r = 0.03$). Verify that $q \to \frac{1}{2}$ as $\Delta t \to 0$ by also computing $q$ for $\Delta t = 0.001$ and $\Delta t = 0.0001$.
+
+---
+
+**Exercise 2.** Derive the Ito correction term from the discrete model. Starting from the one-step log-return $\ln R_i = \pm \sigma\sqrt{\Delta t}$ with risk-neutral probabilities, show that:
+
+$$
+\mathbb{E}^{\mathbb{Q}}[\ln R_i] = \left(r - \frac{1}{2}\sigma^2\right)\Delta t + O(\Delta t^{3/2})
+$$
+
+by carefully expanding $q$ to second order in $\sqrt{\Delta t}$. Identify at which step Jensen's inequality plays a role.
+
+---
+
+**Exercise 3.** Using the Black-Scholes formula, compute the European call price for $S_0 = 100$, $K = 100$, $r = 0.05$, $\sigma = 0.20$, and $T = 1$. Then compute the CRR binomial price for $n = 10, 50, 100, 500$. Verify empirically that the error $|C_n - C_{BS}|$ decreases as $O(1/n)$.
+
+---
+
+**Exercise 4.** Show that the Jarrow-Rudd parameterization $u = e^{(r - \sigma^2/2)\Delta t + \sigma\sqrt{\Delta t}}$, $d = e^{(r - \sigma^2/2)\Delta t - \sigma\sqrt{\Delta t}}$ yields $q = \frac{1}{2}$ exactly (not just in the limit). Verify that this parameterization also satisfies $\text{Var}(\ln(S_{i+1}/S_i)) = \sigma^2 \Delta t + O(\Delta t^2)$.
+
+---
+
+**Exercise 5.** In the Taylor expansion approach to deriving the Black-Scholes PDE, the key step involves computing $q(uS - S)^2 + (1-q)(dS - S)^2$. Show explicitly that this equals $S^2 \sigma^2 \Delta t + O(\Delta t^{3/2})$. Why is the $\Delta t$ (not $(\Delta t)^2$) scaling of this second-order term crucial for the emergence of the diffusion term $\frac{1}{2}\sigma^2 S^2 V_{SS}$ in the PDE?
+
+---
+
+**Exercise 6.** A common interview question: explain intuitively why the drift of the log-price under the risk-neutral measure is $r - \frac{1}{2}\sigma^2$ rather than $r$. Your answer should reference (a) the concavity of the logarithm, (b) Jensen's inequality, and (c) the distinction between arithmetic and geometric means. Illustrate with a numerical example where $r = 0$ and $\sigma = 0.5$.

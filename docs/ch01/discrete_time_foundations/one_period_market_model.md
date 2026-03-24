@@ -260,3 +260,29 @@ With the one-period model in place, we are ready to build the machinery of asset
 The one-period market model provides the minimal mathematical setting in which the fundamental questions of asset pricing --- fair valuation, replication, and arbitrage --- can be posed and answered with full rigor.
 
 ---
+
+## Exercises
+
+**Exercise 1.** Consider a one-period market with $S = 3$ states $\Omega = \{\omega_1, \omega_2, \omega_3\}$ and $N = 2$ assets: a risk-free bond with $r_f = 0.03$ and a stock with price $P_2 = 40$. The stock payoffs are $X_{21} = 55$, $X_{22} = 42$, $X_{23} = 30$. Write down the price vector $\mathbf{P}$, the payoff matrix $\mathbf{X}$, and the discount factor $\beta$.
+
+---
+
+**Exercise 2.** In the Boom-Recession example from this section, suppose the stock payoff in the Boom state changes to $\$70$ while everything else remains the same. Compute the new expected stock payoff under $\mathbb{P}$ and the new expected gross return. Is the risk premium larger or smaller than in the original example?
+
+---
+
+**Exercise 3.** Prove that if the risk-free rate satisfies $r_f > 0$, then the discount factor satisfies $0 < \beta < 1$. What happens when $r_f = 0$? What happens when $-1 < r_f < 0$?
+
+---
+
+**Exercise 4.** Consider a one-period model with $S = 4$ states and $N = 3$ assets (one risk-free bond and two risky stocks). Determine the maximum possible rank of the payoff matrix $\mathbf{X} \in \mathbb{R}^{3 \times 4}$. Under what condition on the rank is the market complete?
+
+---
+
+**Exercise 5.** In a one-period model with $S$ states and $N$ assets, suppose one of the risky assets has a payoff that is identical in every state: $X_{j1} = X_{j2} = \cdots = X_{jS} = c$ for some constant $c > 0$. Show that if $c \neq (1 + r_f) P_j$, then an arbitrage opportunity exists.
+
+---
+
+**Exercise 6.** A one-period market has $\Omega = \{\omega_1, \omega_2\}$ with $p_1 = 0.7$, $p_2 = 0.3$, and $r_f = 0.10$. The market contains a bond and a stock with $P_2 = 20$, $X_{21} = 28$, $X_{22} = 16$. Write the complete model specification $(\Omega, \mathbb{P}, N, \mathbf{P}, \mathbf{X}, r_f)$. Compute the expected return on the stock and the risk premium over the risk-free rate.
+
+---

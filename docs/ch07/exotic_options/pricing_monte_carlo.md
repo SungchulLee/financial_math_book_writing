@@ -296,3 +296,35 @@ $$
 | Main limitation | Slow convergence without variance reduction; difficult for early exercise |
 
 **Monte Carlo simulation is the dominant pricing method for exotic options due to its flexibility with path-dependent, multi-asset, and complex payoff structures, with variance reduction techniques providing the efficiency needed for practical applications.**
+
+---
+
+## Exercises
+
+**Exercise 1.** For antithetic variates, show that $\text{Var}(\hat{\Phi}_{\text{anti}}) < \text{Var}(\hat{\Phi})$ whenever $\text{Cov}(\Phi(Z), \Phi(-Z)) < 0$. Under what conditions on the payoff function $\Phi$ is this covariance guaranteed to be negative? Give an example of a payoff where antithetic variates provide no variance reduction.
+
+---
+
+**Exercise 2.** Implement a Monte Carlo pricer for an arithmetic average Asian call with $S_0 = 100$, $K = 100$, $T = 1$, $r = 5\%$, $\sigma = 20\%$, $M = 50$ time steps, and $N = 10{,}000$ paths. (a) Compute the price and 95% confidence interval without variance reduction. (b) Repeat with antithetic variates. (c) Repeat with a European call control variate. Compare the standard errors across the three methods.
+
+---
+
+**Exercise 3.** The Monte Carlo convergence rate is $O(1/\sqrt{N})$. If you need to reduce the standard error by a factor of 10, how many additional paths are required? If a control variate reduces the effective variance by a factor of 50, how does this change your answer? Explain why variance reduction techniques are essential for practical Monte Carlo pricing.
+
+---
+
+**Exercise 4.** For multi-asset Monte Carlo pricing of a rainbow option on $d = 3$ correlated assets, describe the Cholesky decomposition procedure. Given the correlation matrix
+
+$$
+\Sigma = \begin{pmatrix} 1 & 0.5 & 0.3 \\ 0.5 & 1 & 0.4 \\ 0.3 & 0.4 & 1 \end{pmatrix}
+$$
+
+compute the lower triangular Cholesky factor $L$ (at least the first row and column). Explain why the computational cost scales linearly in $d$ for Monte Carlo but exponentially for tree methods.
+
+---
+
+**Exercise 5.** When pricing a barrier option via Monte Carlo, discrete path monitoring introduces a systematic bias. (a) Explain why the bias causes overestimation of knock-out option prices. (b) Describe the Brownian bridge correction: given simulated values $S_{t_k}$ and $S_{t_{k+1}}$, how do you compute the probability that the continuous path crossed barrier $H$ between these times? (c) How is this probability incorporated into the payoff calculation?
+
+---
+
+**Exercise 6.** The geometric average Asian option price is known analytically and can serve as a control variate for the arithmetic average Asian price. Write the control variate estimator $\hat{V}_{\text{arith,CV}} = \hat{V}_{\text{arith,MC}} + (V_{\text{geom,exact}} - \hat{V}_{\text{geom,MC}})$. Explain why the geometric average is a better control variate than the vanilla European call, relating your answer to the correlation between the two estimators.

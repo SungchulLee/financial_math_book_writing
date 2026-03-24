@@ -160,3 +160,35 @@ The COS method converges **exponentially** fast, making it one of the most effic
 ## Summary
 
 The COS method represents a significant advancement in computational finance, combining the analytical power of Fourier analysis with the practical efficiency of series summation. For European options under the Heston model, it typically achieves 5-8 significant digits of accuracy with only 32-64 terms, making it the preferred choice in many production systems. The exponentially fast convergence and closed-form payoff coefficients make it an exemplary application of Fourier methods in quantitative finance.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The COS method approximates the density by $f(y) \approx \frac{2}{b-a}\sum_{k=0}^{N-1}{}' A_k \cos(k\pi\frac{y-a}{b-a})$. Explain why this is a cosine expansion on $[a, b]$ rather than a full Fourier series. What symmetry assumption about the density does this expansion implicitly make?
+
+---
+
+**Exercise 2.**
+The density coefficients are $A_k = \operatorname{Re}[\varphi(k\pi/(b-a))\exp(-ik\pi a/(b-a))]$. Show that $A_0 = \operatorname{Re}[\varphi(0)] = 1$ (since $\varphi(0) = 1$ for any characteristic function). What does this coefficient represent in terms of the density?
+
+---
+
+**Exercise 3.**
+For a European call with payoff $(e^y - 1)^+$ (in log-moneyness), the payoff coefficients $V_k$ involve the chi and psi auxiliary functions. Verify that $V_0^{\text{call}} = \chi_0(0, b) - \psi_0(0, b)$ where $\chi_0$ and $\psi_0$ have simple closed-form expressions.
+
+---
+
+**Exercise 4.**
+The COS method evaluates the CF at frequencies $u_k = k\pi/(b-a)$. For a truncation range $b - a = 10$ and $N = 64$, the maximum frequency is $u_{63} = 63\pi/10 \approx 19.8$. Is this sufficient for the Heston CF to have decayed to negligible levels? Estimate $|\varphi(19.8)|$ for $v_0 = 0.04$ and $\tau = 0.5$.
+
+---
+
+**Exercise 5.**
+The prime notation $\sum'$ means the $k = 0$ term is halved. Show that this is equivalent to using the trapezoidal rule for the inverse cosine transform. What accuracy improvement does this provide compared to simply summing all terms with equal weight?
+
+---
+
+**Exercise 6.**
+Implement the COS method for a European put under Heston. The put payoff coefficients use the integration range $[a, 0]$ instead of $[0, b]$. Verify put-call parity by computing both the COS call and COS put prices and checking $C - P = S_0 e^{-qT} - Ke^{-rT}$.

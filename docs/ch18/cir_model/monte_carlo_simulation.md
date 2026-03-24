@@ -160,3 +160,33 @@ The exact price falls within all three confidence intervals, and the SE decrease
 ## Summary
 
 Monte Carlo simulation for the CIR model combines path generation (preferably exact via non-central chi-squared sampling) with discounted payoff averaging. The method converges at rate $O(1/\sqrt{M})$, with standard errors quantifying the statistical uncertainty. Antithetic variates provide 30--60% variance reduction, while control variates using the known CIR moments achieve 80--95% reduction. For path-dependent derivatives --- range accruals, barrier products, callable bonds --- Monte Carlo is the only feasible pricing approach. Verification against closed-form bond and option prices should always precede application to exotic products.
+
+---
+
+## Exercises
+
+**Exercise 1.** For CIR parameters $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.10$, and $r_0 = 0.04$, compute the exact 5-year zero-coupon bond price $P^{\text{exact}}(0,5)$ using the CIR formula. If a Monte Carlo estimate gives $\hat{P} = 0.7703$ with standard error $\text{SE} = 0.0009$ using $M = 10{,}000$ paths, construct the 95% confidence interval. Does $P^{\text{exact}}$ fall within this interval?
+
+---
+
+**Exercise 2.** Explain why the trapezoidal rule for approximating $\int_0^T r_s\,ds$ provides higher accuracy than the left-point Riemann sum. For a smooth path where $r_t$ has bounded second derivative $|r''(t)| \leq C$, what is the error bound for each method with $N$ equal steps over $[0, T]$?
+
+---
+
+**Exercise 3.** In the antithetic variate method, each path uses innovations $Z_1, \ldots, Z_N$ and the antithetic path uses $-Z_1, \ldots, -Z_N$. For exact CIR simulation, where each step draws from a non-central chi-squared distribution, describe how antithetic variates would be implemented. (Hint: the non-central chi-squared draw uses Gaussian inputs internally.)
+
+---
+
+**Exercise 4.** The control variate uses $\bar{r}^{(m)} = \frac{1}{N}\sum_k r_{t_k}^{(m)}$ with known mean $\mathbb{E}[\bar{r}] = \frac{1}{N}\sum_k \mathbb{E}[r_{t_k}]$. Using the CIR conditional mean formula $\mathbb{E}[r_s | r_0] = r_0 e^{-\kappa s} + \theta(1 - e^{-\kappa s})$, compute $\mathbb{E}[\bar{r}]$ for $r_0 = 0.04$, $\kappa = 0.5$, $\theta = 0.06$, $T = 5$ years, and $N = 250$ equally spaced steps.
+
+---
+
+**Exercise 5.** You run $M = 1{,}000$ Monte Carlo paths and obtain $\hat{P}(0,5) = 0.7685$ with $\text{SE} = 0.0028$. How many paths $M'$ are needed to achieve $\text{SE} = 0.0003$? If applying control variates reduces variance by 90%, how many paths are needed with the control variate to achieve the same $\text{SE} = 0.0003$?
+
+---
+
+**Exercise 6.** A range accrual note has notional \$1,000,000, annual coupon 5%, and pays based on the fraction of quarterly observation dates where $r_t \in [3\%, 7\%]$ over a 3-year period. Write out the Monte Carlo pricing formula explicitly, specifying the discount factor, the indicator sum, and the number of observation dates. How would you estimate the standard error of this price?
+
+---
+
+**Exercise 7.** Explain the convergence verification protocol: why is it important to check that the closed-form price falls within the Monte Carlo confidence interval before pricing exotic products? If the closed-form price consistently falls outside the 95% CI, what are the possible causes (enumerate at least three)?

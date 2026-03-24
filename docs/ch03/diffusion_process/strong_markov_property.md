@@ -119,3 +119,39 @@ by the ordinary Markov property at the deterministic time $k/2^n$.
 - For Brownian motion: $(W_{\tau+t} - W_\tau)_{t \ge 0}$ is a fresh BM independent of $\mathcal{F}_\tau$.
 - For diffusions: strong Markov follows from the Feller property (not directly from Lipschitz conditions).
 - The canonical application is the **restart argument** at first exit times, connecting SDEs to boundary value PDEs.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $(W_t)_{t \ge 0}$ be a standard Brownian motion and define $\tau_a = \inf\{t \ge 0 : W_t = a\}$ for $a > 0$. Using the strong Markov property, show that $B_t := W_{\tau_a + t} - a$ is a standard Brownian motion independent of $\mathcal{F}_{\tau_a}$. Explain why the ordinary Markov property at a fixed time is insufficient for this conclusion.
+
+---
+
+**Exercise 2.** Let $D = (-1, 1) \subset \mathbb{R}$ and let $W_t$ be a standard Brownian motion started at $x \in D$. Define the exit time $\tau_D = \inf\{t \ge 0 : W_t \notin D\}$. Using the strong Markov property and the fact that $f(x) = x$ is harmonic, compute $\mathbb{E}^x[W_{\tau_D}]$. Then use $g(x) = x^2 - t$ (which satisfies $\mathcal{L}g = 0$ for BM) to find $\mathbb{E}^x[\tau_D]$.
+
+---
+
+**Exercise 3.** Let $\tau$ be a stopping time with $\mathbb{P}(\tau < \infty) = 1$. Define the discrete approximation $\tau_n = \lceil 2^n \tau \rceil / 2^n$. Show that $\tau_n$ is a stopping time, $\tau_n \ge \tau$, and $\tau_n \downarrow \tau$ as $n \to \infty$. Explain why right-continuity of the filtration $(\mathcal{F}_t)$ is needed in Step 3 of the proof to conclude $\bigcap_n \mathcal{F}_{\tau_n} = \mathcal{F}_\tau$.
+
+---
+
+**Exercise 4.** Give an example of a Markov process that satisfies the ordinary Markov property at all fixed times but fails the strong Markov property at some stopping time. (Hint: consider a process whose transition mechanism depends on the time parameter in a discontinuous way.)
+
+---
+
+**Exercise 5.** Using the reflection principle (which follows from the strong Markov property), compute
+
+$$
+\mathbb{P}\!\left(\max_{0 \le s \le t} W_s \ge a,\; W_t \le b\right)
+$$
+
+for $a > 0$ and $b < a$, where $W$ is a standard Brownian motion. Express your answer in terms of the standard normal CDF $\Phi$.
+
+---
+
+**Exercise 6.** Let $X_t$ solve $\mathrm{d}X_t = -\theta X_t\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ with $\theta > 0$ (Ornstein–Uhlenbeck process). Let $\tau = \inf\{t \ge 0 : X_t = c\}$ for some level $c$. Explain why the strong Markov property guarantees that the post-$\tau$ process $(X_{\tau + t})_{t \ge 0}$, conditioned on $\mathcal{F}_\tau$, behaves like an OU process started from $c$. What property of the OU semigroup (related to Feller continuity) is needed?
+
+---
+
+**Exercise 7.** Explain the distinction between the strong Markov property and the optional sampling theorem. Construct a scenario involving a submartingale $Y_t$ and a stopping time $\tau$ where the optional sampling theorem applies but the strong Markov property is not relevant, and vice versa.

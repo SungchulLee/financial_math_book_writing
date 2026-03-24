@@ -263,3 +263,29 @@ Basel III's shift from VaR to ES reflects growing acceptance of coherence as a g
 - Kusuoka, S. (2001), "On Law Invariant Coherent Risk Measures"
 - Acerbi, C. (2002), "Spectral Measures of Risk"
 - Frittelli, M. & Rosazza Gianin, E. (2002), "Putting Order in Risk Measures"
+
+---
+
+## Exercises
+
+**Exercise 1.** State the four axioms of a coherent risk measure (monotonicity, subadditivity, positive homogeneity, translation invariance). Verify that Expected Shortfall $\text{ES}_\alpha$ satisfies all four axioms. Which axiom does VaR fail?
+
+---
+
+**Exercise 2.** The subadditivity axiom states $\rho(X+Y) \le \rho(X) + \rho(Y)$. Explain its economic significance in terms of diversification. Construct a numerical example with two Bernoulli loss variables where VaR at the 95% level violates subadditivity.
+
+---
+
+**Exercise 3.** The dual representation theorem states that a coherent risk measure can be written as $\rho(X) = \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^{\mathbb{Q}}[-X]$. Explain the economic interpretation: $\rho$ evaluates the worst-case expected loss over a set of "stress" probability measures $\mathcal{Q}$. What determines the set $\mathcal{Q}$ for Expected Shortfall?
+
+---
+
+**Exercise 4.** Positive homogeneity requires $\rho(\lambda X) = \lambda\,\rho(X)$ for $\lambda > 0$. Explain why this axiom implies that doubling a position doubles the risk. Is this always economically reasonable? When might a convex (but not positively homogeneous) risk measure be more appropriate?
+
+---
+
+**Exercise 5.** A portfolio has two positions: $X_1$ with $\text{ES}_{0.95}(X_1) = 10$ and $X_2$ with $\text{ES}_{0.95}(X_2) = 15$. Using the subadditivity property, what can you conclude about $\text{ES}_{0.95}(X_1 + X_2)$? Compute the exact $\text{ES}_{0.95}(X_1 + X_2)$ if $X_1$ and $X_2$ are independent standard normals.
+
+---
+
+**Exercise 6.** The Basel Committee replaced VaR with Expected Shortfall in its Fundamental Review of the Trading Book (FRTB). Explain the regulatory motivation for this change. What practical challenges arise from using ES instead of VaR (e.g., backtesting difficulty, elicitability)?

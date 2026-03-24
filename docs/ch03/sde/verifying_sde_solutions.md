@@ -391,3 +391,49 @@ K --> L
 | square-root diffusion  | $Y_t = \sqrt{X_t}$                      | makes diffusion constant    | CIR          |
 
 Recognizing which transformation applies is the key step. Verification then confirms the result mechanically.
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify that $X_t = X_0 + \mu t + \sigma W_t$ solves the SDE $dX_t = \mu\,dt + \sigma\,dW_t$ by applying Itô's lemma to $f(x, t) = X_0 + \mu t + \sigma x$ with $X_t = W_t$.
+
+---
+
+**Exercise 2.** A student claims that $S_t = S_0 \exp(\mu t + \sigma W_t)$ solves the GBM equation $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$. Apply Itô's lemma to check this claim. What drift do you actually obtain? Identify the missing correction term and write the correct solution.
+
+---
+
+**Exercise 3.** Consider the SDE
+
+$$
+dX_t = -\alpha X_t\,dt + \sigma\,dW_t, \qquad X_0 = x_0
+$$
+
+A proposed solution is $X_t = x_0\,e^{-\alpha t} + \sigma \int_0^t e^{-\alpha(t-s)}\,dW_s$.
+
+(a) Define $Y_t = e^{\alpha t} X_t$ and compute $dY_t$ using the Itô product rule.
+
+(b) Verify that the drift terms cancel and $dY_t = \sigma e^{\alpha t}\,dW_t$.
+
+(c) Integrate to recover the proposed solution and confirm the initial condition.
+
+---
+
+**Exercise 4.** Consider the SDE $dX_t = X_t\,dt + X_t\,dW_t$ with $X_0 = 1$. A candidate solution is $X_t = \exp\!\left(\frac{1}{2}t + W_t\right)$.
+
+(a) Apply Itô's lemma to verify or refute this candidate.
+
+(b) Find the correct solution.
+
+---
+
+**Exercise 5.** For the CIR-type SDE $dr_t = (2 - r_t)\,dt + \sqrt{r_t}\,dW_t$, apply Itô's lemma to the transformation $Y_t = \sqrt{r_t}$ and derive the SDE satisfied by $Y_t$. Verify that the diffusion coefficient of $Y_t$ is constant.
+
+---
+
+**Exercise 6.** Suppose $X_t$ satisfies $dX_t = \frac{1}{2}\sigma^2 X_t\,dt + \sigma X_t\,dW_t$ with $X_0 > 0$. Show that $X_t = X_0\,e^{\sigma W_t}$ is a solution by computing $d(X_0\,e^{\sigma W_t})$ using Itô's lemma.
+
+---
+
+**Exercise 7.** A student verifies a solution by applying the ordinary chain rule (without the Itô correction) and obtains a drift of $(\mu - \sigma^2/2) S_t$ instead of $\mu S_t$ for GBM. Explain precisely where the error occurs and why the correction $\frac{1}{2}\sigma^2 f_{xx}$ is not negligible in stochastic calculus.

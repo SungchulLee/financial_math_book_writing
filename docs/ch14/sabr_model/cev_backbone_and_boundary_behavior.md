@@ -241,3 +241,29 @@ The CEV backbone, defined by the relationship $\sigma_{\text{ATM}} \approx \alph
 - Schroder, M. (1989). *Computing the constant elasticity of variance option pricing formula*. Journal of Finance, 44(1), 211--219.
 - Hagan, P. et al. (2002). *Managing smile risk*. Wilmott Magazine, 1, 84--108.
 - Andersen, L. & Piterbarg, V. (2010). *Interest Rate Modeling*, Volume I. Atlantic Financial Press.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the CEV process $dF_t = \alpha F_t^\beta\,dW_t$ with $\beta = 0.5$, $\alpha = 0.04$, and $F_0 = 0.03$, compute the local volatility $\sigma_{\text{loc}}(F) = \alpha F^{0.5}$ at $F = 0.01, 0.03, 0.05$. Verify that the elasticity of the instantaneous variance with respect to $F$ is the constant $2\beta = 1$.
+
+---
+
+**Exercise 2.** The backbone formula $\sigma_{\text{ATM}} \approx \alpha/F^{1-\beta}$ predicts how ATM implied volatility changes with the forward. For $\alpha = 0.04$, plot (or compute) $\sigma_{\text{ATM}}$ as a function of $F \in [0.01, 0.05]$ for $\beta = 0, 0.5, 1.0$. Which $\beta$ produces the steepest response? Explain why the backbone contributes to the skew even when $\rho = 0$.
+
+---
+
+**Exercise 3.** Using Feller's boundary classification, the boundary at $F = 0$ is absorbing for $\beta < 1$ and unattainable for $\beta \geq 1$. Explain intuitively why: as $F \to 0$, the diffusion coefficient $\alpha F^\beta$ vanishes, but the drift is zero. For $\beta = 0.5$, is the "pull" from the diffusion toward zero strong enough to reach it? Compare with $\beta = 0$ (normal model) where $F = 0$ is attained with positive probability.
+
+---
+
+**Exercise 4.** The probability of absorption at zero for the CEV process has important pricing implications: if $\mathbb{P}(F_T = 0) = p > 0$, then $\mathbb{E}[F_T] = F_0(1-p) < F_0$ (mass leakage). For a European put with strike $K$, the put price includes a contribution $Ke^{-rT}\mathbb{P}(F_T = 0)$ from the absorbed mass. Explain why ignoring absorption leads to systematic underpricing of deep OTM puts.
+
+---
+
+**Exercise 5.** Compare the CEV model ($\nu = 0$) with the full SABR model ($\nu > 0$). The CEV model produces skew through the backbone but no smile curvature. Show that for $\beta = 0.5$, $\alpha = 0.04$, $F = 0.03$, the CEV implied volatility is a monotonically decreasing function of strike $K$ when $\beta < 1$. Explain why adding stochastic volatility ($\nu > 0$) is necessary to produce curvature (both wings lifting).
+
+---
+
+**Exercise 6.** The scaling property of SABR states that if $(F_t, \sigma_t)$ is a solution with forward $F_0$ and initial vol $\alpha$, then $(\lambda F_t, \lambda^{1-\beta}\sigma_t)$ is a solution with forward $\lambda F_0$ and vol $\lambda^{1-\beta}\alpha$. Verify this by substituting into the SDE. What does this imply about the implied volatility smile as a function of log-moneyness $\ln(K/F)$?

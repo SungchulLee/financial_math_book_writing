@@ -250,3 +250,29 @@ The PSOR algorithm applies with $L = I + \frac{\Delta\tau}{2}A$ and $\mathbf{q} 
 | Free boundary | Determined by the active set at convergence |
 | Strengths | Simple, reliable, well-understood convergence theory |
 | Limitation | Linear convergence; not optimal for very large systems |
+
+---
+
+## Exercises
+
+**Exercise 1.** For the SOR iteration with $\omega = 1$ (Gauss-Seidel), write out one full sweep of the PSOR algorithm for the worked example with $L$, $\mathbf{q}$, and $\boldsymbol{\Phi}$ as given. Start from $\mathbf{u}^{(0)} = \boldsymbol{\Phi}$ and compute $\mathbf{u}^{(1)}$.
+
+---
+
+**Exercise 2.** The optimal relaxation parameter satisfies $\omega^* = 2/(1 + \sqrt{1 - \rho(G_1)^2})$. If the spectral radius of the Gauss-Seidel iteration matrix is $\rho(G_1) = 0.98$, compute $\omega^*$. How many iterations per time step would you expect with Gauss-Seidel versus optimal SOR?
+
+---
+
+**Exercise 3.** Explain why the projection step $u_j^{(k+1)} = \max(\tilde{u}_j^{(k+1)}, \Phi_j)$ ensures the complementarity condition at convergence. Specifically, show that at a converged solution, each grid point satisfies either $u_j = \Phi_j$ (exercise) or $(L\mathbf{u})_j = q_j$ (PDE satisfied), but not both with strict inequality simultaneously.
+
+---
+
+**Exercise 4.** The stopping criterion $\|\mathbf{u}^{(k+1)} - \mathbf{u}^{(k)}\|_\infty < \varepsilon$ measures the change between iterations. An alternative is the LCP residual $\max_j \min((L\mathbf{u} - \mathbf{q})_j, u_j - \Phi_j)$. Explain why the residual criterion is more reliable and give an example where the change criterion might stop too early.
+
+---
+
+**Exercise 5.** For the Crank-Nicolson variant of PSOR, the matrix becomes $L = I + \frac{\Delta\tau}{2}A$ and $\mathbf{q} = (I - \frac{\Delta\tau}{2}A)\mathbf{u}^n$. Verify that $L$ is still an M-matrix, ensuring PSOR convergence. What care must be taken with the right-hand side computation?
+
+---
+
+**Exercise 6.** Compare the computational cost of PSOR with $K_{\text{iter}} = 10$ iterations per time step against a single tridiagonal solve (as in the penalty method). For $m = 200$ interior points and $N = 100$ time steps, compute the total operation count for each method. Under what conditions does the penalty method become more efficient?

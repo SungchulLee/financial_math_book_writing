@@ -293,3 +293,33 @@ Two-factor models (e.g., Longstaff--Schwartz, Fong--Vasicek) embed in two-factor
 - Björk (2009), *Arbitrage Theory in Continuous Time*, Chapters 23--25
 - Brigo & Mercurio (2006), *Interest Rate Models: Theory and Practice*, Chapter 5
 - Ritchken & Sankarasubramanian (1995), "Volatility Structures of Forward Rates and the Dynamics of the Term Structure"
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Vasicek model with $dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t$, the bond price takes the form $P(t, T) = A(T-t)\,e^{-B(T-t)\,r_t}$ where $B(\tau) = (1 - e^{-\kappa\tau})/\kappa$. Derive the HJM forward rate volatility $\sigma_f(t, T) = \sigma\,e^{-\kappa(T-t)}$ by computing $f(t, T) = -\partial_T \ln P(t, T)$ and identifying the diffusion coefficient.
+
+---
+
+**Exercise 2.** For the Ho--Lee model with constant HJM volatility $\sigma(t, T) = \sigma$, verify the drift condition $\alpha(t, T) = \sigma^2(T - t)$ and show that the short rate $r_t = f(t, t)$ follows $dr_t = \theta(t)\,dt + \sigma\,dW_t$ with no mean reversion. What is the limitation of this model for long-dated derivatives?
+
+---
+
+**Exercise 3.** In the CIR model, $dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t$, the forward rate volatility is state-dependent: $\sigma_f(t, T) = B'(T-t)\,\sigma\sqrt{r_t}$. Explain why this means the CIR model does not fit into the standard (deterministic volatility) HJM framework but does fit into the extended HJM framework with state-dependent volatilities. What are the consequences for analytical tractability?
+
+---
+
+**Exercise 4.** The Hull--White model $dr_t = (\theta(t) - \kappa r_t)\,dt + \sigma\,dW_t$ generalizes Vasicek by allowing a time-dependent drift. Show that the HJM volatility is still $\sigma_f(t, T) = \sigma e^{-\kappa(T-t)}$, independent of $\theta(t)$. Explain why the function $\theta(t)$ affects only the drift in the HJM representation and is determined by fitting the initial yield curve.
+
+---
+
+**Exercise 5.** A short-rate model generates bond prices of the affine form $P(t, T) = e^{A(T-t) - B(T-t)\,r_t}$. Show that this implies the forward rate $f(t, T) = -A'(T-t) + B'(T-t)\,r_t$ is affine in the short rate. Verify that the Markov property of $r_t$ is preserved and that the forward rate curve at any time $t$ is fully determined by the single state variable $r_t$.
+
+---
+
+**Exercise 6.** The Ritchken--Sankarasubramanian condition for a finite-dimensional Markov representation of an HJM model requires $\sigma(t, T) = h(t)\,g(T-t)$ for some functions $h$ and $g$ with $g(0) = 1$. Verify that the Hull--White volatility $\sigma e^{-\kappa(T-t)}$ satisfies this condition (with $h(t) = \sigma$ and $g(\tau) = e^{-\kappa\tau}$). Construct a volatility function that violates this condition and explain why the resulting HJM model would require an infinite number of state variables.
+
+---
+
+**Exercise 7.** Compare the Hull--White and Ho--Lee models as HJM special cases by computing: (a) the bond volatility $\Sigma(t, T) = \int_t^T \sigma_f(t, u)\,du$, (b) the HJM drift $\alpha(t, T) = \sigma_f(t, T)\,\Sigma(t, T)$, and (c) the variance of the $T$-maturity forward rate at time $t$, for both models. Which model produces more realistic dynamics for long-maturity forward rates and why?

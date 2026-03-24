@@ -253,3 +253,41 @@ When immersion fails:
 - Brémaud, P., & Yor, M. (1978). Changes of filtrations and of probability measures. *Zeitschrift für Wahrscheinlichkeitstheorie*, 45, 269–295.
 - Elliott, R. J., Jeanblanc, M., & Yor, M. (2000). On models of default risk. *Mathematical Finance*, 10(2), 179–195.
 - Bielecki, T. R., & Rutkowski, M. (2004). *Credit Risk: Modeling, Valuation and Hedging*. Springer, Chapter 6.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $M_t$ be an $(\mathcal{F}_t, \mathbb{Q})$-martingale and let $\tau$ be a default time constructed via the Cox process with $\mathcal{F}_t$-adapted intensity $\lambda_t$ and an independent exponential trigger $E$. Verify the immersion property by showing $\mathbb{E}[M_T \mid \mathcal{G}_t] = M_t$ on the event $\{\tau > t\}$, using the independence of $E$ from $\mathcal{F}_\infty$.
+
+---
+
+**Exercise 2.** In a structural model where default occurs when firm value $V_t$ hits a barrier $B$, explain why immersion typically fails. Specifically, construct an $\mathcal{F}$-martingale $M_t$ (e.g., a function of $V_t$) and show that observing the event $\{\tau \le t\}$ changes the conditional expectation $\mathbb{E}[M_T \mid \mathcal{G}_t] \neq M_t$.
+
+---
+
+**Exercise 3.** Under immersion, the price of a zero-recovery defaultable bond paying 1 at $T$ if no default is
+
+$$
+P^d(t,T) = \mathbf{1}_{\{\tau > t\}} \cdot P(t,T) \cdot S(t,T)
+$$
+
+where $S(t,T) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T \lambda_s\,ds} \mid \mathcal{F}_t]$. Derive this formula starting from the general pricing expression $P^d(t,T) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r_s\,ds}\,\mathbf{1}_{\{\tau > T\}} \mid \mathcal{G}_t]$. Clearly indicate where the immersion property is used.
+
+---
+
+**Exercise 4.** When immersion fails, an $\mathcal{F}$-martingale $M_t$ decomposes in the enlarged filtration $\mathcal{G}_t$ as
+
+$$
+M_t = \tilde{M}_t + \int_0^{t \wedge \tau} \frac{d\langle M, G\rangle_s}{G_{s-}}
+$$
+
+Explain the economic meaning of the drift correction term $\int_0^{t \wedge \tau} d\langle M, G\rangle_s / G_{s-}$. Why does this term vanish under the Cox construction?
+
+---
+
+**Exercise 5.** Suppose a credit model has two possible default intensities: $\lambda_t = 1\%$ (normal regime) and $\lambda_t = 5\%$ (stress regime), and the regime is correlated with equity returns. Does the immersion property hold? Justify your answer by examining whether default reveals information about the regime, and hence about future equity price dynamics.
+
+---
+
+**Exercise 6.** List three sufficient conditions for the immersion property to hold. For each condition, provide a concrete credit risk model where it is naturally satisfied and explain why.

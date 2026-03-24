@@ -189,3 +189,45 @@ The stochastic integral term is a local martingale; the remaining term is finite
 - The drift $b$ and diffusion matrix $\sigma$ fully specify the dynamics; $a = \sigma\sigma^\top$ is the effective covariance.
 - The generator $\mathcal{L}$ encodes the infinitesimal mean behaviour and connects SDEs to PDEs (Kolmogorov equations).
 - The SDE defines the process pathwise; the martingale problem defines it in law via $\mathcal{L}$ alone.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $X_t$ be a one-dimensional Itô diffusion with drift $b(x) = -\alpha x$ and diffusion coefficient $\sigma(x) = \beta$, where $\alpha, \beta > 0$ are constants. Write down the covariance matrix $a(x)$ and the infinitesimal generator $\mathcal{L}$. Apply $\mathcal{L}$ to the test function $f(x) = x^2$ and interpret the result.
+
+---
+
+**Exercise 2.** Consider the two-dimensional diffusion $(X_t^1, X_t^2)$ satisfying
+
+$$
+\mathrm{d}X_t^1 = X_t^2\,\mathrm{d}t + \mathrm{d}W_t^1, \qquad \mathrm{d}X_t^2 = -X_t^1\,\mathrm{d}t + \mathrm{d}W_t^2.
+$$
+
+Compute the covariance matrix $a^{ij}$ and the quadratic covariation $\langle X^1, X^2 \rangle_t$. Is $a$ degenerate or non-degenerate?
+
+---
+
+**Exercise 3.** Verify the semimartingale decomposition for the geometric Brownian motion $\mathrm{d}S_t = \mu S_t\,\mathrm{d}t + \sigma S_t\,\mathrm{d}W_t$. Identify the drift field $b(s)$, the diffusion coefficient $\sigma(s)$, and the covariance matrix $a(s)$. Write down the infinitesimal generator $\mathcal{L}$ and compute $\mathcal{L}f$ for $f(s) = \log s$.
+
+---
+
+**Exercise 4.** Let $X_t$ be an Itô diffusion in $\mathbb{R}^d$ with generator $\mathcal{L}$. Using Itô's formula, show that for $f \in C^2(\mathbb{R}^d)$, the process
+
+$$
+M_t^f := f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,\mathrm{d}s
+$$
+
+is a local martingale. Under what additional condition on $f$ and $\sigma$ does $M_t^f$ become a true martingale?
+
+---
+
+**Exercise 5.** For the gradient diffusion $\mathrm{d}X_t = -\nabla V(X_t)\,\mathrm{d}t + \sqrt{2}\,\mathrm{d}W_t$ with $V(x) = \frac{1}{2}k|x|^2$ in $\mathbb{R}^d$ (where $k > 0$), identify the drift, diffusion matrix, and generator. Verify that $\pi(x) \propto e^{-V(x)}$ is a Gaussian density and compute its mean and covariance.
+
+---
+
+**Exercise 6.** Consider a one-dimensional diffusion with $b(x) = 0$ and $\sigma(x) = \sqrt{1 + x^2}$. Compute the covariance function $a(x)$ and write down the generator $\mathcal{L}$. Does this diffusion satisfy the standard Lipschitz condition? Does the linear growth condition hold?
+
+---
+
+**Exercise 7.** Let $X_t$ be a $d$-dimensional Itô diffusion with constant drift $b \in \mathbb{R}^d$ and constant diffusion matrix $\sigma \in \mathbb{R}^{d \times m}$. Show that $X_t$ is a Gaussian process and compute $\mathbb{E}[X_t]$ and $\mathrm{Cov}(X_s, X_t)$ for $s \le t$ in terms of $b$, $a = \sigma\sigma^\top$, and the initial condition $X_0 = x_0$.

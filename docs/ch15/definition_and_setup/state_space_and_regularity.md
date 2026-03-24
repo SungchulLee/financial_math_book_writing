@@ -272,3 +272,39 @@ The state space $D = \mathbb{R}^m_+ \times \mathbb{R}^{d-m}$ partitions the stat
 - Duffie, D., Filipovic, D., & Schachermayer, W. (2003). "Affine Processes and Applications in Finance." *Annals of Applied Probability*, 13(3), 984-1053.
 - Filipovic, D. *Term-Structure Models: A Graduate Course*. Springer, 2009, Chapter 10.
 - Keller-Ressel, M. (2011). "Moment Explosions and Long-Term Behavior of Affine Stochastic Volatility Models." *Mathematical Finance*, 21(1), 73-98.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a three-factor affine model with state space $D = \mathbb{R}^2_+ \times \mathbb{R}$. The first two components are CIR-type and the third is Gaussian. Write down the most general admissible drift vector $b(x) = b_0 + b_1 x_1 + b_2 x_2 + b_3 x_3$ specifying which entries of $b_0$ must be non-negative according to condition (A1).
+
+---
+
+**Exercise 2.** For the Heston model on $D = \mathbb{R}_+ \times \mathbb{R}$ (variance $V_t$ and log-price $\log S_t$), write down the diffusion matrix $a(x) = a_0 + a_1 x_1$ explicitly. Verify that condition (A2) is satisfied: the $(1,1)$ entry of $a_0$ is zero and the only nonzero contribution to the $(1,1)$ entry comes from $a_1$.
+
+---
+
+**Exercise 3.** Let $(X_t)_{t \geq 0}$ be a compound Poisson process with jump intensity $\lambda$ and jump sizes distributed as $Z \sim \text{Exp}(1)$ on $\mathbb{R}_+$. Show that $X_t$ is stochastically continuous by computing $\mathbb{P}(\|X_t - X_0\| > \varepsilon)$ and verifying it tends to zero as $t \to 0$. Is this process path-continuous?
+
+---
+
+**Exercise 4.** Prove directly from the semiflow equations
+
+$$
+\phi(t+s, u) = \phi(t, \psi(s, u)) + \phi(s, u), \qquad \psi(t+s, u) = \psi(t, \psi(s, u))
+$$
+
+that the initial conditions $\phi(0, u) = 0$ and $\psi(0, u) = u$ are the only ones consistent with the semigroup property $P_0 = \text{Id}$.
+
+---
+
+**Exercise 5.** Consider a candidate affine process on $D = \mathbb{R}_+$ with drift $b(x) = -\alpha$ (constant, $\alpha > 0$) and diffusion $a(x) = \sigma^2 x$. Does this specification satisfy the admissibility conditions? If not, identify which condition fails and explain the financial consequence (what happens to the process at the boundary $x = 0$?).
+
+---
+
+**Exercise 6.** For the two-factor CIR model on $D = \mathbb{R}^2_+$ with independent components $dX_t^{(i)} = \kappa_i(\theta_i - X_t^{(i)})\,dt + \xi_i\sqrt{X_t^{(i)}}\,dW_t^{(i)}$, write down the $2 \times 2$ diffusion matrix $a(x) = a_0 + a_1 x_1 + a_2 x_2$ and verify all four admissibility conditions. Under what parameter constraints does the Feller condition $2\kappa_i\theta_i \geq \xi_i^2$ hold for each component?
+
+---
+
+**Exercise 7.** The regularity theorem states that $F(u) = \langle b_0, u \rangle + \frac{1}{2}\langle u, a_0 u \rangle + \int_{D \setminus \{0\}} (e^{\langle u, z \rangle} - 1)\,m_0(dz)$. For a one-dimensional affine process on $\mathbb{R}_+$ with no diffusion ($a_0 = a_1 = 0$) but with a Poisson jump component $m_0(dz) = \lambda \cdot \mu e^{-\mu z}\,dz$ (exponential jumps), compute $F(u)$ explicitly and determine the domain of $u$ for which $F(u)$ is well-defined.

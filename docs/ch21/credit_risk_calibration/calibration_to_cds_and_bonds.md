@@ -67,3 +67,35 @@ This reflects real-market frictions.
 
 - Duffie & Singleton, CDS vs bond spreads.
 - O'Kane, practical credit calibration.
+
+---
+
+## Exercises
+
+**Exercise 1.** A corporate issuer has a 5-year CDS spread of 120 bp and a 5-year bond trading at a spread of 150 bp over the risk-free rate. Assuming $R = 40\%$, compute the hazard rate implied by each instrument. Explain why the two estimates differ and which source of default risk information is considered more reliable for calibration purposes.
+
+---
+
+**Exercise 2.** Describe three specific frictions that prevent perfect consistency between CDS-implied and bond-implied hazard rates. For each friction, state whether it causes the bond spread to overstate or understate the pure credit component relative to the CDS spread.
+
+---
+
+**Exercise 3.** A practitioner calibrates a hazard rate curve to CDS spreads and then computes model bond prices. The model underprices a 7-year bond by 80 cents on the dollar relative to the market. Propose two adjustments the practitioner might introduce to reconcile the bond price without disturbing the CDS calibration.
+
+---
+
+**Exercise 4.** Explain why CDS contracts are preferred over bonds as the primary calibration instrument for reduced-form credit models. In your answer, discuss the roles of funding risk, coupon effects, and liquidity.
+
+---
+
+**Exercise 5.** In a joint calibration, a modeler minimizes
+
+$$
+w_{\text{CDS}} \sum_{i} \left(s_i^{\text{model}} - s_i^{\text{market}}\right)^2 + w_{\text{bond}} \sum_{j} \left(P_j^{\text{model}} - P_j^{\text{market}}\right)^2
+$$
+
+Discuss how the choice of weights $w_{\text{CDS}}$ and $w_{\text{bond}}$ affects the calibrated hazard rates. What economic rationale would justify setting $w_{\text{CDS}} \gg w_{\text{bond}}$?
+
+---
+
+**Exercise 6.** During a credit crisis, CDS spreads widen sharply but bond prices remain relatively stable due to illiquidity in the bond market. Describe the challenge this presents for joint calibration. How might a practitioner handle conflicting signals from the two markets?

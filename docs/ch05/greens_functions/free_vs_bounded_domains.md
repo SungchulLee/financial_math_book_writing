@@ -235,3 +235,40 @@ $$
 - [Spectral Decomposition](spectral_decomposition.md) -- eigenfunction expansion on bounded domains
 - [Boundary Value Problems](../overview/boundary_value_problems.md) -- types of boundary conditions
 - [Fundamental Solution](../heat_equation/fundamental_solution.md) -- the free-space heat kernel
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Write the free-space Green's function $G_{\text{free}}(t, x; 0, y)$ for the heat equation $\partial_t u = \frac{1}{2}\partial_{xx}u$. Verify that $\int_{-\infty}^{\infty}G_{\text{free}}\,dx = 1$ for all $t > 0$ by recognizing the integrand as a Gaussian density.
+
+---
+
+**Exercise 2.**
+For the bounded domain $[0, L]$ with absorbing (Dirichlet) boundary conditions, the Green's function can be constructed via the method of images. Write the first image correction to the free-space kernel and explain geometrically why image sources are placed at $y' = -y$ and $y' = 2L - y$.
+
+---
+
+**Exercise 3.**
+A down-and-out barrier option on a log-price process $X_t = \ln S_t$ corresponds to solving the heat equation on $[B, \infty)$ with absorbing condition at $X = B$. Explain why the Green's function on this half-line is $G_{\text{free}}(t, x; 0, y) - G_{\text{free}}(t, x; 0, 2B - y)$. What is the financial interpretation of the subtracted term?
+
+---
+
+**Exercise 4.**
+Compare the long-time behavior of the free-space Green's function (pointwise decay to zero, conservation of total mass) with the bounded-domain Dirichlet Green's function (exponential decay in total mass). Explain the probabilistic reason for this difference in terms of absorption at the boundary.
+
+---
+
+**Exercise 5.**
+On $[0, L]$ with Dirichlet conditions, the spectral expansion of the Green's function involves eigenvalues $\lambda_n = n^2\pi^2/(2L^2)$. Explain why the smallest eigenvalue $\lambda_1$ dominates for large times and compute the decay rate of $G$ for $L = 1$.
+
+---
+
+**Exercise 6.**
+For Neumann boundary conditions $\partial_x u(t, 0) = \partial_x u(t, L) = 0$, the Green's function conserves total mass. Explain why, in financial terms, this corresponds to a reflecting barrier. Give an example of a financial model where reflecting barriers are appropriate.
+
+---
+
+**Exercise 7.**
+Consider a double-barrier option with $B_l = 80$ and $B_u = 120$ on a stock with $S_0 = 100$. In log-space, this corresponds to a bounded domain $[\ln 80, \ln 120]$. Explain qualitatively how the spectral decomposition of the Green's function on this interval determines the option price, and why shorter-maturity options are more sensitive to higher-order eigenmodes.

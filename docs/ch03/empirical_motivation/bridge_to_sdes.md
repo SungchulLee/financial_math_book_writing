@@ -341,3 +341,49 @@ construction rigorous, and learning to compute with it, is the goal of
 Chapter 2.
 
 **Next:** Section 2.1 — Itô Integration. $\square$
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the discrete model $\log S_{n+1} - \log S_n = \mu\,\Delta t + \sigma\sqrt{\Delta t}\cdot Z_n$ with $Z_n \sim \mathcal{N}(0,1)$ i.i.d., derive the mean and variance of the log-price $\log S_N$ after $N$ steps. Show that $\operatorname{Var}(\log S_N) = \sigma^2 N\Delta t = \sigma^2 T$ where $T = N\Delta t$, confirming that variance scales linearly with total time regardless of the step size $\Delta t$.
+
+---
+
+**Exercise 2.** Donsker's theorem states that the rescaled random walk $W^{(\Delta t)}(t) = \sqrt{\Delta t}\sum_{i=1}^{\lfloor t/\Delta t\rfloor} Z_i$ converges in distribution to Brownian motion. Suppose the $Z_i$ are i.i.d. with $\mathbb{E}[Z_i] = 0$, $\operatorname{Var}(Z_i) = 1$, but $Z_i$ follows a Rademacher distribution ($P(Z_i = +1) = P(Z_i = -1) = 1/2$) rather than a Gaussian. Does Donsker's theorem still apply? What is the limiting process? Explain why this universality result is important for the use of Brownian motion in finance.
+
+---
+
+**Exercise 3.** For standard Brownian motion $W_t$, verify from the defining properties that:
+
+(a) $\mathbb{E}[W_t] = 0$ for all $t \geq 0$,
+
+(b) $\operatorname{Var}(W_t) = t$,
+
+(c) $\operatorname{Cov}(W_s, W_t) = \min(s, t)$ for $s, t \geq 0$.
+
+For part (c), use the decomposition $W_t = (W_t - W_s) + W_s$ and the independent-increments property.
+
+---
+
+**Exercise 4.** Consider the general SDE $dX_t = \mu(X_t,t)\,dt + \sigma(X_t,t)\,dW_t$. For each of the following models, identify the drift function $\mu(x,t)$ and diffusion function $\sigma(x,t)$, and state whether the diffusion is additive or multiplicative:
+
+(a) Geometric Brownian Motion: $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$
+
+(b) Ornstein–Uhlenbeck: $dX_t = \kappa(\theta - X_t)\,dt + \sigma\,dW_t$
+
+(c) Cox–Ingersoll–Ross: $dr_t = \kappa(\theta - r_t)\,dt + \xi\sqrt{r_t}\,dW_t$
+
+---
+
+**Exercise 5.** The Itô integral uses left-endpoint evaluation: $\sum_i \sigma(X_{t_i}, t_i)(W_{t_{i+1}} - W_{t_i})$. Explain why using right-endpoint evaluation $\sigma(X_{t_{i+1}}, t_{i+1})$ instead would violate the non-anticipativity requirement. What practical consequence does this have for the martingale property of the Itô integral? Specifically, show that $\mathbb{E}\!\left[\sigma(X_{t_i}, t_i)(W_{t_{i+1}} - W_{t_i}) \mid \mathcal{F}_{t_i}\right] = 0$ when $\sigma(X_{t_i}, t_i)$ is $\mathcal{F}_{t_i}$-measurable, and explain why this fails if $\sigma(X_{t_{i+1}}, t_{i+1})$ is used.
+
+---
+
+**Exercise 6.** The heuristic first-order expansion of the discrete model gives
+
+$$
+S(t+\Delta t) - S(t) \approx \mu\,S(t)\,\Delta t + \sigma\,S(t)\,\sqrt{\Delta t}\cdot Z
+$$
+
+The second-order expansion includes the additional term $\frac{1}{2}\sigma^2 S(t)\,\Delta t$. Show that this extra term is $O(\Delta t)$ and therefore the same order as the drift $\mu\,S(t)\,\Delta t$. Explain why ignoring it changes the drift coefficient of the limiting SDE, and identify the resulting $-\sigma^2/2$ correction in the GBM solution $S_t = S_0\exp[(\mu - \sigma^2/2)t + \sigma W_t]$.

@@ -322,3 +322,29 @@ where $\hat{\gamma}_3$ and $\hat{\gamma}_4$ are sample skewness and kurtosis. A 
 - Hansen, P.R. (2005), "A Test for Superior Predictive Ability," *Journal of Business & Economic Statistics*, 23(4), 365--380
 - Bailey, D., Borwein, J., Lopez de Prado, M. & Zhu, Q. (2014), "Pseudomathematics and Financial Charlatanism," *Notices of the AMS*, 61(5), 458--471
 - Holm, S. (1979), "A Simple Sequentially Rejective Multiple Test Procedure," *Scandinavian Journal of Statistics*, 6(2), 65--70
+
+---
+
+## Exercises
+
+**Exercise 1.** A quant fund tests $m = 50$ trading signals and obtains $p$-values $\{p_1, \ldots, p_{50}\}$ sorted in increasing order. Apply the Bonferroni correction at level $\alpha = 0.05$: what threshold must each $p$-value meet? If $p_{(1)} = 0.0005$, $p_{(2)} = 0.002$, and $p_{(3)} = 0.015$, which signals survive the Bonferroni correction?
+
+---
+
+**Exercise 2.** Apply the Benjamini-Hochberg (BH) procedure to the same 50 $p$-values from Exercise 1. The BH procedure rejects $H_{(i)}$ for all $i \leq k^*$ where $k^* = \max\{i : p_{(i)} \leq i \cdot \alpha / m\}$. Show that BH rejects more hypotheses than Bonferroni while controlling the false discovery rate at $\alpha = 0.05$.
+
+---
+
+**Exercise 3.** Harvey, Liu, and Zhu (2016) recommend a minimum $t$-statistic of 3.0 for new factor discoveries. If a researcher claims a new factor with $t = 2.5$ based on 20 years of monthly data, compute the corresponding $p$-value and explain why this evidence is insufficient given the multiple testing problem across decades of factor research. Estimate how many factors have been tested in the finance literature (hint: HLZ estimate over 300).
+
+---
+
+**Exercise 4.** The deflated Sharpe ratio adjusts a backtested Sharpe ratio for the number of trials. If the observed Sharpe ratio is $\hat{SR} = 1.8$ from the best of $N = 100$ strategies, and the strategies are independent, compute the expected maximum Sharpe ratio under the null hypothesis of zero true Sharpe ratios: $\mathbb{E}[\max_i SR_i] \approx \sqrt{2 \log N}$. What is the deflated Sharpe ratio?
+
+---
+
+**Exercise 5.** White's Reality Check tests whether the best strategy in a set significantly outperforms a benchmark. Describe the bootstrap implementation: (a) generate $B = 1000$ bootstrap samples of the strategy returns, (b) compute the test statistic under the null, and (c) compute the $p$-value. How does Hansen's SPA (Superior Predictive Ability) test improve upon White's Reality Check?
+
+---
+
+**Exercise 6.** A machine learning pipeline evaluates 1000 feature combinations, 5 model architectures, and 10 hyperparameter settings, yielding $m = 50{,}000$ configurations. The best configuration has a validation Sharpe ratio of 2.0. Is this likely to be a genuine discovery? Compute the expected maximum Sharpe under the null and propose a practical workflow that combines multiple testing correction with out-of-sample validation to guard against false discovery.

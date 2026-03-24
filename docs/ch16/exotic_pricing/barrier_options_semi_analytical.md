@@ -275,3 +275,40 @@ Compared to a Black--Scholes model with the same ATM volatility ($\sigma = 0.20$
 | [Asian Options (Monte Carlo)](asian_options_monte_carlo.md) | MC pricing of path-dependent options under Heston |
 | [Variance Swaps (Closed-Form)](variance_swaps_closed_form.md) | Analytical pricing of variance derivatives |
 | [Forward-Start Options](forward_start_options.md) | Pricing via conditional characteristic functions |
+
+---
+
+## Exercises
+
+**Exercise 1.**
+State the in-out parity for barrier options: $V_{\text{in}} + V_{\text{out}} = V_{\text{vanilla}}$. A European vanilla call with $K = 100$ is worth \$8.50 under Heston. A down-and-out call with barrier $B = 85$ is priced at \$7.20. Compute the down-and-in call price. Explain why the DOC is cheaper than the vanilla: what scenarios does the barrier eliminate?
+
+---
+
+**Exercise 2.**
+Under Black-Scholes, the reflection principle yields a closed-form for continuously monitored barrier options because the log-price $\ln S_t$ is a Brownian motion with drift. Explain why the reflection principle fails under Heston. Specifically, consider a down-and-out call with barrier $B < S_0$: the reflected path at $\ln B$ does not have the same law as the original process because the variance state $v_t$ at the hitting time is random and affects the post-reflection dynamics.
+
+---
+
+**Exercise 3.**
+A discretely monitored down-and-out call checks the barrier only at dates $t_1, \ldots, t_m$. The Broadie-Glasserman-Kou continuity correction shifts the barrier to $B e^{-\beta\sigma\sqrt{\Delta t}}$ where $\beta = \zeta(1/2)/\sqrt{2\pi} \approx 0.5826$ and $\sigma$ is the effective volatility. For $B = 90$, $\sigma = 20\%$, and daily monitoring ($\Delta t = 1/252$), compute the adjusted barrier. By how many dollars does the correction shift the barrier?
+
+---
+
+**Exercise 4.**
+An up-and-out call with $K = 100$, $B = 130$, $T = 1$ is priced under Heston. If $\rho = -0.7$ (strong negative correlation), explain qualitatively why the UOC is less likely to be knocked out compared to the case $\rho = 0$. Hint: negative $\rho$ means large upward moves in $S$ tend to coincide with decreasing variance, which limits the magnitude of subsequent upward moves.
+
+---
+
+**Exercise 5.**
+Monte Carlo pricing of barrier options suffers from **barrier bias**: the simulated path may cross the barrier between monitoring dates without being detected. For a continuously monitored barrier, the Brownian bridge correction estimates the probability of crossing the barrier between two consecutive simulated points. Describe the correction: given $S_n$ and $S_{n+1}$ both above the barrier $B$, the probability of the minimum of the Brownian bridge falling below $B$ is approximately $\exp(-2\ln(S_n/B)\ln(S_{n+1}/B) / (v_n \Delta t))$. Explain why this correction is only approximate under Heston.
+
+---
+
+**Exercise 6.**
+Compare the sensitivity of a down-and-out call to the Heston parameter $\xi$ (vol-of-vol) versus the vanilla call. The DOC has additional sensitivity because $\xi$ affects the probability of hitting the barrier. For $B = 85$, $K = 100$, $S_0 = 100$, $v_0 = 0.04$, argue that increasing $\xi$ increases the probability of large variance excursions, which increases the probability of $S_t$ dropping below $B$, thereby decreasing the DOC price.
+
+---
+
+**Exercise 7.**
+The semi-analytical approach prices continuously monitored barriers using the characteristic function of the "killed" process (the process stopped at the barrier). This requires computing $\mathbb{E}[e^{iu\ln S_T} \mathbf{1}\{\tau_B > T\}]$ where $\tau_B$ is the first hitting time of the barrier. Explain conceptually how this differs from the standard Heston CF $\mathbb{E}[e^{iu\ln S_T}]$. Why is the killed CF not available in the same closed form as the standard Heston CF?

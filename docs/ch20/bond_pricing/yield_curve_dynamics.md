@@ -163,3 +163,33 @@ def main():
 ## Summary
 
 In the Hull-White model, the yield curve at time $t$ is an affine function of the short rate $r(t)$ through the relation $R(t,T) = a(\tau,t) + b(\tau)\,r(t)$. The loading function $b(\tau) = (1 - e^{-\lambda\tau})/(\lambda\tau)$ decays from 1 to 0 as maturity increases, producing approximate parallel shifts at the short end and vanishing sensitivity at the long end. This single-factor structure explains the dominant level mode of yield curve movements but cannot independently generate steepening or curvature changes.
+
+---
+
+## Exercises
+
+**Exercise 1.** Compute the loading function $b(\tau)$ for $\tau = 1, 5, 10, 20, 30$ with $\lambda = 0.03$ and compare with the values in the text (which use $\lambda = 0.05$). How does a smaller mean reversion speed affect the yield curve's sensitivity to short rate changes?
+
+---
+
+**Exercise 2.** Prove that $b(\tau) = \frac{1 - e^{-\lambda\tau}}{\lambda\tau}$ is strictly decreasing for $\tau > 0$. (Hint: show that $b'(\tau) < 0$ by differentiating and analyzing the sign.)
+
+---
+
+**Exercise 3.** The yield volatility at maturity $\tau$ is $\text{vol}(R(t,T)) = b(\tau)\sigma$. For $\lambda = 0.05$ and $\sigma = 0.01$, compute the yield volatility at $\tau = 2$ and $\tau = 20$. Express the ratio $\text{vol}(R_{20})/\text{vol}(R_2)$ and explain why long-term yields are less volatile than short-term yields.
+
+---
+
+**Exercise 4.** In principal component analysis of yield curve movements, the first component (level) typically explains 80-90% of total variance. Explain why a single-factor Hull-White model can capture this component. What types of yield curve movements (steepening, butterfly) can it not produce?
+
+---
+
+**Exercise 5.** Show that the long yield $\lim_{\tau \to \infty} R(t,T)$ is deterministic (independent of $r(t)$) in the Hull-White model. Why is this a potential limitation for pricing very long-dated derivatives?
+
+---
+
+**Exercise 6.** Consider two yield curves simulated at time $t = 5$ from initial short rates $r_1(5) = 0.03$ and $r_2(5) = 0.06$. Using $\lambda = 0.05$, compute the yield difference $R_1(5, 5+\tau) - R_2(5, 5+\tau)$ at $\tau = 1$ and $\tau = 30$. Verify that the difference is proportional to $b(\tau) \times (r_1 - r_2)$.
+
+---
+
+**Exercise 7.** The two-factor Hull-White extension introduces a second stochastic factor to generate steepening movements. Describe qualitatively how a second factor with fast mean reversion could produce yield curve curvature changes that the single-factor model cannot.

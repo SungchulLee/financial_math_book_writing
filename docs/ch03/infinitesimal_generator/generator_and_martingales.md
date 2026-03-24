@@ -228,3 +228,49 @@ This gives a probabilistic characterization of diffusions without requiring path
 - [Dynkin's Formula](dynkin_formula.md)
 - [Applications of Dynkin](applications_of_dynkin.md)
 - [Martingale Problem](../diffusion_process/martingale_problem_stroock_varadhan.md)
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Ornstein--Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, write down the Dynkin martingale $M_t^f$ for $f(x) = x^2$. Express it explicitly as an Ito integral and verify that $\mathbb{E}[M_t^f] = 0$.
+
+---
+
+**Exercise 2.** Consider geometric Brownian motion $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ on $(0, \infty)$. In Example 4, it was shown that $f(s) = s^{\alpha}$ with $\alpha = 1 - 2\mu/\sigma^2$ is $\mathcal{L}$-harmonic.
+
+(a) Verify directly that $\mathcal{L}(s^{\alpha}) = 0$ for this value of $\alpha$.
+
+(b) What does this imply about the process $S_t^{\alpha}$? Is it a true martingale or only a local martingale? (Hint: consider whether $\mathbb{E}[S_t^{\alpha}]$ remains constant.)
+
+---
+
+**Exercise 3.** Let $W_t$ be standard Brownian motion and define $f(x, t) = e^{\theta x - \theta^2 t/2}$ for a constant $\theta$. Show that $\tilde{\mathcal{L}}f = 0$ where $\tilde{\mathcal{L}} = \partial_t + \frac{1}{2}\partial_{xx}$ is the extended generator. Conclude that $f(W_t, t)$ is a martingale (the exponential martingale).
+
+---
+
+**Exercise 4.** Let $X_t$ be a continuous martingale with finite variation (i.e., $X_t$ has paths of bounded variation on every $[0, T]$). Prove that $X_t = X_0$ a.s. for all $t$. (Hint: use the fact that the quadratic variation $[X]_t = 0$ for finite-variation processes, and for a continuous local martingale, $[X]_t = 0$ implies $X_t$ is constant.) Explain why this result is crucial for the converse direction: martingale $\Rightarrow$ harmonic.
+
+---
+
+**Exercise 5.** For standard Brownian motion in $\mathbb{R}^2$ with generator $\mathcal{L} = \frac{1}{2}\Delta = \frac{1}{2}(\partial_{xx} + \partial_{yy})$, verify that the following functions are $\mathcal{L}$-harmonic:
+
+(a) $f(x, y) = x^2 - y^2$
+
+(b) $f(x, y) = e^x \cos(y)$
+
+(c) $f(x, y) = \ln(x^2 + y^2)$ for $(x, y) \neq (0, 0)$
+
+For each, state what the harmonic property implies about $f(W_t^1, W_t^2)$ where $(W_t^1, W_t^2)$ is 2D Brownian motion.
+
+---
+
+**Exercise 6.** Consider a diffusion $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$ where $\sigma(x) = 0$ for $x \in [1, 2]$ but $\sigma(x) > 0$ elsewhere. Explain why the equivalence $\mathcal{L}f = 0 \Leftrightarrow f(X_t)$ is a local martingale may fail in this setting. Which specific condition (non-degeneracy or irreducibility) is violated, and what is the consequence for the converse direction?
+
+---
+
+**Exercise 7.** In the Stroock--Varadhan martingale problem, one requires $M_t^f = f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,ds$ to be a martingale for all $f \in C_c^\infty$.
+
+(a) Why is it sufficient to test only functions in $C_c^\infty$ (smooth with compact support) rather than all $C^2$ functions?
+
+(b) Give an intuitive explanation for why the martingale problem characterization uniquely determines the law of $X_t$ under non-degeneracy conditions.

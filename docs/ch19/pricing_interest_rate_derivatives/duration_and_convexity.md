@@ -418,3 +418,33 @@ Callable bonds, MBS have negative convexity when rates fall.
 - Fabozzi, *Fixed Income Analysis*, Chapters on Duration
 - Tuckman & Serrat, *Fixed Income Securities*, Chapters 4-6
 - Hull, *Options, Futures, and Other Derivatives*, Chapter 4
+
+---
+
+## Exercises
+
+**Exercise 1.** A 5-year bond pays a 6\% annual coupon on a face value of \$100 and is priced to yield 5\% (continuously compounded). Compute the Macaulay duration, modified duration, and convexity. Using the second-order approximation, estimate the percentage price change for a 100 bp increase in yield. Compare with the exact repriced value.
+
+---
+
+**Exercise 2.** Prove that for a zero-coupon bond with maturity $T$ and continuously compounded yield $y$, the Macaulay duration equals $T$, the modified duration equals $T$, and the convexity equals $T^2$. Explain intuitively why a zero-coupon bond has the highest duration among all bonds with the same maturity.
+
+---
+
+**Exercise 3.** A portfolio consists of two bonds: Bond A with market value \$5M and modified duration 3.2, and Bond B with market value \$8M and modified duration 7.5. Compute the portfolio's modified duration and DV01. A trader wants to reduce the portfolio duration to 4.0 by selling Bond B and reinvesting in a money market fund (duration $\approx 0$). How much of Bond B must be sold?
+
+---
+
+**Exercise 4.** Consider two portfolios with the same modified duration of 6 years: a "bullet" portfolio consisting of a single 6-year zero-coupon bond, and a "barbell" portfolio consisting of equal market-value positions in 2-year and 10-year zero-coupon bonds. Compute the convexity of each portfolio. Which portfolio benefits more from a large rate move, and why?
+
+---
+
+**Exercise 5.** A \$50M bond portfolio has modified duration 5.5 and convexity 42. Treasury bond futures have a modified duration of 6.8, priced at \$98,000 per contract. (a) How many futures contracts are needed to duration-hedge the portfolio? (b) If yields subsequently move by $-75$ bps, compute the portfolio P\&L using both the linear (duration-only) and quadratic (duration + convexity) approximations.
+
+---
+
+**Exercise 6.** A callable bond has an effective duration of 3.2 at a yield of 5\%, computed via the numerical formula with $\Delta y = 25$ bps. If the bond price is \$102.50 at 5\%, \$103.80 at 4.75\%, and \$101.35 at 5.25\%, verify the effective duration calculation. Compute the effective convexity. Is the convexity positive or negative, and what does this imply about the callable bond's price behavior?
+
+---
+
+**Exercise 7.** The tracking error of a portfolio relative to a benchmark is approximately $|D_{\text{port}} - D_{\text{bench}}| \times \sigma_y$. If the benchmark has a duration of 6.0 years and annual yield volatility is 80 bps, what portfolio duration range keeps the annualized tracking error below 50 bps? Discuss why duration matching alone is insufficient for managing risk against a benchmark with a different convexity profile.

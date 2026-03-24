@@ -227,3 +227,51 @@ For Case 1, the theoretical value is $\mathbb{E}[\int_0^T t^2 B_t^2\, dt] = \int
 * The identity gives stochastic integration a **Hilbert space structure**: it is an isometry $\mathcal{L}^2([0,T]) \to L^2(\Omega)$.
 * This structure enables the $L^2$-extension of the integral from simple processes to all adapted square-integrable processes.
 * Nearly every structural result about Itô integrals—existence, uniqueness, continuity, the martingale property—traces back to this theorem.
+
+---
+
+## Exercises
+
+**Exercise 1.** Compute the variance of the Ito integral $\int_0^2 (3t + 1)\, dW_t$ using the Ito isometry.
+
+---
+
+**Exercise 2.** Let $\beta(t) = e^{-\alpha t}$ for $\alpha > 0$. Compute
+
+$$
+\mathbb{E}\!\left[\left(\int_0^T e^{-\alpha t}\, dW_t\right)^2\right]
+$$
+
+and find the limit as $T \to \infty$.
+
+---
+
+**Exercise 3.** In the proof of the Ito isometry for simple processes, the cross terms $\mathbb{E}[\beta_i \beta_j \Delta W_i \Delta W_j] = 0$ for $i < j$. Explain why this argument relies on the left-endpoint evaluation. What would happen if we used right-endpoint evaluation instead?
+
+---
+
+**Exercise 4.** Let $\beta(t) = W_t^2$. Use the Ito isometry to compute
+
+$$
+\operatorname{Var}\!\left(\int_0^T W_t^2\, dW_t\right)
+$$
+
+*Hint*: You will need $\mathbb{E}[W_t^4] = 3t^2$.
+
+---
+
+**Exercise 5.** The Ito isometry extends to the polarized form: $\mathbb{E}[\int_0^T H\, dW \cdot \int_0^T K\, dW] = \mathbb{E}[\int_0^T HK\, dt]$. Use this to compute the covariance $\operatorname{Cov}(\int_0^1 t\, dW_t,\; \int_0^1 t^2\, dW_t)$.
+
+---
+
+**Exercise 6.** Consider two simple processes $H^{(n)}$ and $H^{(m)}$ that approximate the same integrand $H \in \mathcal{L}^2([0,T])$. Using the Ito isometry, show that
+
+$$
+\mathbb{E}\!\left[\left(\int_0^T H_s^{(n)}\, dW_s - \int_0^T H_s^{(m)}\, dW_s\right)^2\right] \to 0
+$$
+
+as $n, m \to \infty$. Explain why this makes the sequence of integrals a Cauchy sequence in $L^2(\Omega)$.
+
+---
+
+**Exercise 7.** The analogy between the Ito isometry and Parseval's identity states that stochastic integration preserves $L^2$ norms. In Fourier analysis, Parseval's identity says $\sum_n |c_n|^2 = \frac{1}{2\pi}\int |f|^2\, dx$. Write a brief comparison: what plays the role of the Fourier coefficients $c_n$ in the stochastic setting, and what plays the role of the $L^2$ norm of $f$?

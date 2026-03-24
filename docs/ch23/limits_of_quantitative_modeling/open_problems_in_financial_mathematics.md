@@ -425,3 +425,29 @@ where $\bar{p}_i$ is clearing payment, $\pi_{ij}$ is liability fraction.
 5. **Model-free methods**: Extend to practical settings with frictions
 
 Financial mathematics remains a vibrant field with fundamental open questions that have both intellectual depth and practical significance. Progress on these problems will shape the future of quantitative finance.
+
+---
+
+## Exercises
+
+**Exercise 1.** The joint calibration of SPX and VIX options remains an open problem. Explain why a model that perfectly fits the SPX implied volatility surface may fail to reproduce VIX option prices. What structural feature of the volatility dynamics (e.g., the forward variance curve) creates this tension, and why do standard stochastic volatility models struggle with it?
+
+---
+
+**Exercise 2.** Rough volatility models use fractional Brownian motion with Hurst parameter $H \approx 0.1$ to capture the observed power-law behavior of implied volatility at-the-money skew. Discuss the mathematical challenges of pricing and hedging in rough volatility models: why are standard PDE methods inapplicable, and what numerical approaches (e.g., Volterra integral equations, Monte Carlo with Cholesky) are used instead?
+
+---
+
+**Exercise 3.** The optimal execution problem asks for a trading strategy that minimizes execution cost including market impact. Formulate the Almgren-Chriss framework as a stochastic control problem and explain why the optimal strategy involves a trade-off between urgency (execution risk) and patience (market impact). What extensions are needed to handle non-linear or transient market impact?
+
+---
+
+**Exercise 4.** Systemic risk modeling seeks to capture contagion effects through interbank networks. Describe the Eisenberg-Noe clearing model for a network of financial institutions and explain why the clearing vector is a fixed point. What makes computing the worst-case network topology an open problem?
+
+---
+
+**Exercise 5.** Deep hedging uses neural networks to learn hedging strategies directly from data. Discuss the theoretical challenges: (a) what function class does the neural network approximate, (b) how is the training loss related to a risk measure, and (c) why is explainability of the learned strategy a fundamental concern for regulators?
+
+---
+
+**Exercise 6.** Climate finance requires pricing assets over horizons of 30-100 years under deep uncertainty about climate scenarios. Explain why standard discounted cash flow models are inadequate and discuss the role of ambiguity-averse preferences (e.g., maxmin expected utility) in pricing climate risk. What is the "fat tail" problem in climate risk modeling, and how does it relate to Knightian uncertainty?

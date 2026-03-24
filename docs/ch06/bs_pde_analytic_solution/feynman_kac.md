@@ -936,4 +936,34 @@ $$
 - $\mathcal{N}(d_2)$ = Risk-neutral probability of exercise
 - $\mathcal{N}(d_1)$ = Delta = Stock-measure probability of exercise
 
-The Feynman-Kac approach reveals that option pricing is fundamentally about computing expectations under the appropriate probability measure—a perspective that generalizes far beyond the simple Black-Scholes model to the entire landscape of derivative pricing.
+The Feynman-Kac approach reveals that option pricing is fundamentally about computing expectations under the appropriate probability measure---a perspective that generalizes far beyond the simple Black-Scholes model to the entire landscape of derivative pricing.
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify the Feynman-Kac formula for the trivial case $\Phi(S) = S$ (the stock itself). Show that $V(S,t) = S$ satisfies both the Black-Scholes PDE and the expectation $e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[S_T \mid S_t = S]$.
+
+---
+
+**Exercise 2.** Carry out the "completing the square" step in the evaluation of $I_1$ in full detail. Starting from the combined exponent $y - \frac{(y-m)^2}{2v^2}$, show every algebraic step leading to the factorization into $e^{m + v^2/2}$ times a Gaussian integral with shifted mean $m + v^2$.
+
+---
+
+**Exercise 3.** Use the Feynman-Kac representation to derive the price of a **power option** with payoff $\Phi(S_T) = S_T^2$ at maturity. Compute $e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[S_T^2 \mid S_t = S]$ using the log-normal distribution of $S_T$.
+
+---
+
+**Exercise 4.** The Kolmogorov backward equation for Black-Scholes governs $V(S,t)$, while the forward equation governs the transition density $p(S_T, T \mid S, t)$. Starting from the Black-Scholes backward equation, write down the corresponding forward (Fokker-Planck) equation and verify that the log-normal density $p(S_T, T \mid S, t)$ satisfies it.
+
+---
+
+**Exercise 5.** Using the Feynman-Kac formula with time-dependent volatility $\sigma(t)$, show that the Black-Scholes call price takes the same functional form as the constant-volatility case, but with $\sigma^2 T$ replaced by $\int_t^T \sigma^2(s) \, ds$. Define the effective volatility $\bar{\sigma}$ and express $d_1$ and $d_2$ in terms of $\bar{\sigma}$.
+
+---
+
+**Exercise 6.** Consider a European option with payoff $\Phi(S_T) = \ln(S_T)$ (a log contract). Use the Feynman-Kac representation to compute its price $V(S,t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[\ln S_T \mid S_t = S]$. Show that the result is $V = e^{-r\tau}[\ln S + (r - \frac{1}{2}\sigma^2)\tau]$, and verify that this satisfies the Black-Scholes PDE.
+
+---
+
+**Exercise 7.** The discounted option value $e^{-rt}V(S_t, t)$ is a martingale under $\mathbb{Q}$. Use Ito's lemma to compute $d(e^{-rt}V)$ and show that the drift vanishes if and only if $V$ satisfies the Black-Scholes PDE. This provides an alternative proof of the Feynman-Kac connection.

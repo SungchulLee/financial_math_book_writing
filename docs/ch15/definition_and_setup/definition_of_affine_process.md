@@ -184,3 +184,45 @@ This structure guarantees that the characteristic function (and hence bond price
 - Duffie, D., Pan, J., & Singleton, K. (2000). "Transform Analysis and Asset Pricing for Affine Jump-Diffusions." *Econometrica*, 68(6), 1343-1376.
 - Filipović, D. *Term-Structure Models: A Graduate Course*. Springer, 2009.
 - Brigo, D., & Mercurio, F. *Interest Rate Models - Theory and Practice*. Springer, 2007.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a one-dimensional process $X_t$ with dynamics $dX_t = (\alpha + \beta X_t)\,dt + \sqrt{\gamma + \delta X_t}\,dW_t$. Identify the affine parameters $a_0, a_1, c_0, c_1$ and state the conditions on $\alpha, \beta, \gamma, \delta$ that ensure the process is well-defined on $\mathbb{R}_{\geq 0}$.
+
+---
+
+**Exercise 2.** Starting from the Riccati system
+
+$$
+\frac{dA}{d\tau} = -r_0 + B\,a_0 + \tfrac{1}{2}B^2\,c_0, \qquad \frac{dB}{d\tau} = -r_1 + a_1 B + \tfrac{1}{2}c_1 B^2
+$$
+
+with terminal conditions $A(0) = 0$ and $B(0) = 0$, solve explicitly for $A(\tau)$ and $B(\tau)$ in the Vasicek model where $a_0 = \kappa\theta$, $a_1 = -\kappa$, $c_0 = \sigma^2$, $c_1 = 0$, $r_0 = 0$, $r_1 = 1$.
+
+---
+
+**Exercise 3.** Verify that the zero-coupon bond price $P(t,T) = e^{A(\tau) + B(\tau)\,r_t}$ in the Vasicek model satisfies the fundamental PDE
+
+$$
+\frac{\partial P}{\partial t} + \kappa(\theta - r)\frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2\frac{\partial^2 P}{\partial r^2} - rP = 0
+$$
+
+by computing the partial derivatives and substituting.
+
+---
+
+**Exercise 4.** Let $\mathbf{X}_t = (X_t^{(1)}, X_t^{(2)})^T$ be a two-factor affine process with independent components, each following a Vasicek process with parameters $(\kappa_i, \theta_i, \sigma_i)$ for $i=1,2$. Suppose the short rate is $r_t = X_t^{(1)} + X_t^{(2)}$. Write down the matrices $a_0, a_1, c_0, c_1$ and vectors $r_0, r_1$ for this model, and explain why the Riccati system decouples into two independent scalar ODEs.
+
+---
+
+**Exercise 5.** Explain why a geometric Brownian motion $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ is not itself an affine process, but the log-price $X_t = \log S_t$ is. Write down the affine parameters for $X_t$ and compute the characteristic function $\mathbb{E}[e^{iuX_T} \mid X_t]$ in closed form.
+
+---
+
+**Exercise 6.** Consider the CIR process $dX_t = \kappa(\theta - X_t)\,dt + \sigma\sqrt{X_t}\,dW_t$. Identify the affine parameters and write down the Riccati ODE for $B(\tau)$. Show that the ODE for $B$ is a scalar Riccati equation and determine the discriminant $\Delta = \kappa^2 + 2\sigma^2$ that governs the solution structure.
+
+---
+
+**Exercise 7.** Suppose you observe zero-coupon bond prices $P(0, T_i)$ for maturities $T_1, T_2, \ldots, T_m$ and wish to calibrate a one-factor affine model. Describe how the exponential-affine form $P(0, T_i) = e^{A(T_i) + B(T_i) X_0}$ can be used to set up a nonlinear least-squares problem. What parameters need to be estimated, and what is the role of the Riccati equations in this procedure?

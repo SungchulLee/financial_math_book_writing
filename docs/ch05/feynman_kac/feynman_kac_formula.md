@@ -484,3 +484,40 @@ The Feynman-Kac formula shows that **solving the PDE is equivalent to computing 
 2. **Probabilistic:** Simulate the SDE and average payoffs (Monte Carlo)
 
 Each approach has advantages depending on dimensionality and problem structure.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+State the Feynman-Kac formula for the special case $r = 0$, $f = 0$. Write the PDE and its probabilistic representation. For the SDE $dX_s = \sigma\,dW_s$ with $g(x) = x^4$, compute $u(t, x) = \mathbb{E}[X_T^4 | X_t = x]$ and verify your answer satisfies the PDE.
+
+---
+
+**Exercise 2.**
+In the proof of the Feynman-Kac formula, the process $Y_s = e^{-\int_t^s r\,d\tau}u(s, X_s)$ is shown to be a martingale when $f = 0$. Explain which step in the proof ensures the $ds$ term vanishes, and why the Ito correction from the exponential and from $u(s, X_s)$ must both be accounted for.
+
+---
+
+**Exercise 3.**
+For the expected exit time problem with $\mathcal{L} = \frac{1}{2}\frac{d^2}{dx^2}$, $a = 0$, $b = 1$, verify that $u(x) = x(1-x)$ satisfies $\frac{1}{2}u''(x) = -1$ with $u(0) = u(1) = 0$. What is the maximum expected exit time and where is it achieved?
+
+---
+
+**Exercise 4.**
+Consider the converse Feynman-Kac theorem: define $u(t,x) = \mathbb{E}[e^{-r(T-t)}g(X_T) | X_t = x]$ where $dX_s = \mu X_s\,ds + \sigma X_s\,dW_s$ (geometric Brownian motion) and $g(x) = (x - K)^+$. Write the PDE that $u$ satisfies without solving it explicitly. This is the Black-Scholes PDE.
+
+---
+
+**Exercise 5.**
+For the multidimensional Feynman-Kac formula with two assets $X_t = (S_t^1, S_t^2)$, write the generator $\mathcal{L}$ in terms of the drift vector $(\mu^1, \mu^2)$, the diffusion matrix $a^{ij} = \sum_\alpha \sigma^{i\alpha}\sigma^{j\alpha}$, and partial derivatives. Identify the cross-derivative term $a^{12}\partial^2 u / \partial x^1 \partial x^2$ and explain its financial significance.
+
+---
+
+**Exercise 6.**
+Compare Monte Carlo and finite difference methods for computing the Feynman-Kac solution. For a European call option in the Black-Scholes model ($d = 1$), explain why finite differences are efficient. For a basket option on $d = 10$ stocks, explain why Monte Carlo is preferred. What is the "curse of dimensionality"?
+
+---
+
+**Exercise 7.**
+The Feynman-Kac formula requires regularity conditions including uniform ellipticity ($\sigma^2(t,x) > 0$). Explain what goes wrong at $x = 0$ for the CEV model $dX_t = \sigma X_t^{\beta}\,dW_t$ with $\beta \in (0, 1)$, where $\sigma^2(t,x) = \sigma^2 x^{2\beta}$ vanishes at the origin. What type of solution (classical or viscosity) can still be obtained?

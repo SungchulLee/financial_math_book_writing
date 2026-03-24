@@ -677,3 +677,69 @@ to account for model uncertainty in loss distributions.
 4. **Computational Cost**: Can be expensive in high dimensions
 
 Entropy penalization provides an elegant and tractable framework for robust decision-making that balances the need for model robustness against excessive conservatism, with deep connections to information theory, statistical mechanics, and risk management.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $P$ and $Q$ be two Gaussian measures on $\mathbb{R}$ with $P = N(\mu_1, \sigma_1^2)$ and $Q = N(\mu_2, \sigma_2^2)$. Derive the closed-form expression for the Kullback-Leibler divergence $D_{\text{KL}}(P \| Q)$. Verify that $D_{\text{KL}}(P \| Q) = 0$ if and only if $\mu_1 = \mu_2$ and $\sigma_1 = \sigma_2$.
+
+---
+
+**Exercise 2.** Consider the multiplier preference value function
+
+$$
+V(f) = -\theta \log \mathbb{E}_{P_0}[e^{-u(f)/\theta}]
+$$
+
+with $u(x) = x$ (linear utility) and $f \sim N(\mu, \sigma^2)$ under $P_0$. Compute $V(f)$ explicitly and show that it equals $\mu - \sigma^2/(2\theta)$. Interpret the correction term as a penalty for uncertainty.
+
+---
+
+**Exercise 3.** Prove the variational formula: for any random variable $X$ and $\theta > 0$,
+
+$$
+\log \mathbb{E}_Q[e^{\theta X}] = \sup_{P \ll Q} \left\{ \theta \mathbb{E}_P[X] - D_{\text{KL}}(P \| Q) \right\}
+$$
+
+Hint: use the exponentially tilted measure $dP^*/dQ = e^{\theta X}/\mathbb{E}_Q[e^{\theta X}]$ and verify it achieves the supremum.
+
+---
+
+**Exercise 4.** In the robust portfolio choice problem with Gaussian returns $R \sim N(\mu, \Sigma)$ under $P_0$, the optimal portfolio is
+
+$$
+w^* = \frac{1}{\lambda + \kappa(\eta)} \Sigma^{-1} \mu
+$$
+
+Suppose there are $n = 2$ assets with $\mu = (0.08, 0.12)^\top$, $\Sigma = \begin{pmatrix} 0.04 & 0.01 \\ 0.01 & 0.09 \end{pmatrix}$, and $\lambda = 3$. Compute the standard mean-variance optimal portfolio ($\kappa = 0$) and the robust portfolio with $\kappa(\eta) = 2$. Compare leverage and diversification in the two portfolios.
+
+---
+
+**Exercise 5.** Show that the entropic risk measure $\rho_\beta(X) = \frac{1}{\beta}\log \mathbb{E}[e^{\beta X}]$ satisfies convexity, i.e.,
+
+$$
+\rho_\beta(\lambda X + (1-\lambda)Y) \leq \lambda \rho_\beta(X) + (1-\lambda) \rho_\beta(Y)
+$$
+
+for all $\lambda \in [0,1]$. Then give an explicit counterexample showing that positive homogeneity fails, i.e., find $\alpha > 0$ and $X$ such that $\rho_\beta(\alpha X) \neq \alpha \rho_\beta(X)$.
+
+---
+
+**Exercise 6.** Consider the continuous-time robust HJB equation
+
+$$
+V_t + \sup_u \left\{ \mathcal{L}^u V + \ell(x, u) - \frac{\|\sigma^\top \nabla V\|^2}{2\theta} \right\} = 0
+$$
+
+For the one-dimensional case with $dX_t = (aX_t + bu_t)dt + \sigma dW_t$, running cost $\ell(x,u) = qx^2 + ru^2$, and a candidate quadratic value function $V(t,x) = \alpha(t)x^2 + \beta(t)$, derive the Riccati ODE that $\alpha(t)$ must satisfy. How does the robustness parameter $\theta$ modify the standard LQR Riccati equation?
+
+---
+
+**Exercise 7.** An insurer sets premiums using the worst-case expected loss:
+
+$$
+\text{Premium} = \sup_{P: D_{\text{KL}}(P \| P_0) \leq \eta} \mathbb{E}_P[\text{Loss}]
+$$
+
+Suppose losses follow an exponential distribution with rate $\lambda = 0.01$ under the reference model $P_0$, so $\mathbb{E}_{P_0}[\text{Loss}] = 100$. Using the dual representation, show that the robust premium equals $-\theta \log \mathbb{E}_{P_0}[e^{-\text{Loss}/\theta}]$ for an appropriate $\theta$ related to $\eta$. Compute the robust premium numerically for $\theta = 50$ and compare it to the actuarially fair premium of $100$.

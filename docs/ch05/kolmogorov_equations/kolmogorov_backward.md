@@ -472,3 +472,44 @@ $$\boxed{\frac{\partial u}{\partial t} = \mathcal{L}_x u = \mu(x)\frac{\partial 
 - [Dynkin's Formula](../../ch03/infinitesimal_generator/dynkin_formula.md) — integral form
 - [Feynman–Kac Formula](../feynman_kac/feynman_kac_formula.md) — extension with potential/discounting
 - [Heat Equation](../heat_equation/heat_equation_overview.md) — backward equation for Brownian motion
+
+---
+
+## Exercises
+
+**Exercise 1.**
+For the Ornstein-Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, write down the Kolmogorov backward equation. Verify that $u(t, x) = xe^{-\kappa t}$ solves the backward equation with initial condition $g(x) = x$. What is the probabilistic interpretation of this solution?
+
+---
+
+**Exercise 2.**
+For Brownian motion $dX_t = dW_t$, the backward equation is the heat equation $\partial_t u = \frac{1}{2}\partial_{xx} u$. Starting from the initial condition $g(x) = e^{\alpha x}$ for a constant $\alpha$, find the solution $u(t, x) = \mathbb{E}_x[e^{\alpha X_t}]$ by guessing $u(t, x) = e^{\alpha x + \beta t}$ and determining $\beta$.
+
+---
+
+**Exercise 3.**
+The backward equation has two forms: the initial value problem $\partial_t u = \mathcal{L}u$ with $u(0, x) = g(x)$ and the terminal value problem $\partial_t v + \mathcal{L}v = 0$ with $v(T, x) = g(x)$. Show that these are related by the substitution $v(t, x) = u(T - t, x)$. Why is the terminal value form more natural for option pricing?
+
+---
+
+**Exercise 4.**
+For geometric Brownian motion $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$, write the backward equation in the variable $S$. Show that under the risk-neutral measure (replacing $\mu$ with $r$) and adding discounting $-rV$, you recover the Black-Scholes PDE:
+
+$$
+\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0
+$$
+
+---
+
+**Exercise 5.**
+Verify the backward equation using Ito's lemma: if $v(t, x)$ solves $\partial_t v + \mathcal{L}v = 0$, apply Ito's lemma to $v(t, X_t)$ to show that $v(t, X_t)$ is a local martingale. Taking expectations, conclude that $v(0, x) = \mathbb{E}_x[g(X_T)]$.
+
+---
+
+**Exercise 6.**
+Dynkin's formula states $\mathbb{E}_x[g(X_t)] = g(x) + \mathbb{E}_x\left[\int_0^t (\mathcal{L}g)(X_s)\,ds\right]$. Differentiate both sides with respect to $t$ at $t = 0$ to recover the backward equation at $t = 0$. Why does the Markov property allow you to extend this to all $t > 0$?
+
+---
+
+**Exercise 7.**
+Consider the first exit time $\tau = \inf\{t \geq 0 : X_t \notin (a, b)\}$ for a Brownian motion with drift $dX_t = \mu\,dt + \sigma\,dW_t$. The expected exit time $u(x) = \mathbb{E}_x[\tau]$ satisfies the boundary value problem $\mathcal{L}u = -1$ in $(a, b)$ with $u(a) = u(b) = 0$. Solve this ODE explicitly and verify that $u(x) > 0$ for $x \in (a, b)$.

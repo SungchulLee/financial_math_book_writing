@@ -243,3 +243,33 @@ The calibration proceeds:
 - Brigo & Mercurio (2006), *Interest Rate Models: Theory and Practice*, Chapter 7.4
 - Andersen & Piterbarg (2010), *Interest Rate Modeling*, Volume II, Chapter 14
 - Hull & White (2000), "Forward Rate Volatilities, Swap Rate Volatilities, and the Implementation of the LIBOR Market Model"
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a 1-year into 2-year swaption in an LMM with two annual forward rates $L_0$ and $L_1$. The initial rates are $L_0(0) = 3.5\%$ and $L_1(0) = 3.8\%$, with constant volatilities $\sigma_0 = 22\%$ and $\sigma_1 = 24\%$, and correlation $\rho_{01} = 0.80$. The annuity weights are $w_0 = 0.51$ and $w_1 = 0.49$, and the forward swap rate is $S(0) = 3.65\%$. Using Rebonato's formula, compute the approximate Black swaption implied volatility.
+
+---
+
+**Exercise 2.** Rebonato's formula uses "frozen weights" evaluated at time 0. Explain what this approximation means and why it is necessary. For a 10-year into 10-year swaption, discuss qualitatively whether the frozen-weight approximation is more or less accurate than for a 1-year into 2-year swaption.
+
+---
+
+**Exercise 3.** Show that in the special case of a single forward rate ($n = 1$), Rebonato's formula reduces exactly to the Black caplet volatility: $\sigma_S = \sigma_0$. Verify this by substituting $w_0 = 1$ and $L_0(0) = S(0)$ into the formula.
+
+---
+
+**Exercise 4.** Using the parameters from Exercise 1, compute the swaption implied volatility for two extreme correlations: $\rho_{01} = 1.0$ (perfect correlation) and $\rho_{01} = 0.0$ (zero correlation). Show that $\sigma_S$ is higher for $\rho_{01} = 1$ and lower for $\rho_{01} = 0$, and interpret this diversification effect.
+
+---
+
+**Exercise 5.** The Hull--White improvement to Rebonato's formula accounts for the drift of forward rates under the annuity measure. Qualitatively, explain why the frozen approximation underestimates the swaption volatility when the drift corrections are systematically positive. In what market conditions would the drift correction be most significant?
+
+---
+
+**Exercise 6.** A co-terminal swaption set consists of swaptions sharing the same final maturity $T_n$. Explain why the LMM can be calibrated exactly to a co-terminal set (one swaption at a time, working backward from the longest expiry). After exact co-terminal calibration, non-co-terminal swaptions are priced approximately. What information about the model do the residual errors on non-co-terminal swaptions reveal?
+
+---
+
+**Exercise 7.** Compare the following two approaches to pricing a 5-year into 5-year swaption in the LMM: (a) Rebonato's analytical approximation and (b) Monte Carlo simulation with 100,000 paths. For each approach, discuss the sources of error (approximation error vs. sampling error), the computational cost, and the applicability to OTM swaptions. When would you prefer one approach over the other?

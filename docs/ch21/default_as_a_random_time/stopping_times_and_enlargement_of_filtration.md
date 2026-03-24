@@ -176,3 +176,35 @@ This construction is the workhorse of intensity-based credit models.
 - Bielecki, T. R., & Rutkowski, M. (2004). *Credit Risk: Modeling, Valuation and Hedging*. Springer.
 - Protter, P. (2005). *Stochastic Integration and Differential Equations*. Springer.
 - Jeulin, T. (1980). *Semi-martingales et grossissement d'une filtration*. Lecture Notes in Mathematics 833.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $\tau$ be a stopping time with respect to $(\mathcal{G}_t)$ and let $H_t = \mathbf{1}_{\{\tau \le t\}}$. Prove that $H_t$ is a submartingale. Compute $\mathbb{E}[H_t]$ when $\tau \sim \text{Exp}(\lambda)$.
+
+---
+
+**Exercise 2.** Consider the Cox process construction with constant intensity $\lambda = 2\%$ and $E \sim \text{Exp}(1)$ independent of $\mathcal{F}_\infty$. Compute the Azema supermartingale $G_t = \mathbb{P}(\tau > t \mid \mathcal{F}_t)$ and verify that it equals $e^{-\lambda t}$. What is $G_5$ and what is its interpretation?
+
+---
+
+**Exercise 3.** Explain the difference between a predictable stopping time and a totally inaccessible stopping time. Give an example of each in the context of credit risk models: (a) a predictable default time arising from a structural model, and (b) a totally inaccessible default time arising from a reduced-form model.
+
+---
+
+**Exercise 4.** The minimal enlargement of filtration is $\mathcal{G}_t = \mathcal{F}_t \vee \mathcal{H}_t$, where $\mathcal{H}_t = \sigma(H_s : s \le t)$. Show that every $\mathcal{G}_t$-measurable random variable can be written as $X = X_0\,\mathbf{1}_{\{\tau > t\}} + X_1(\tau)\,\mathbf{1}_{\{\tau \le t\}}$. Explain why $X_0$ must be $\mathcal{F}_t$-measurable and why $X_1$ may depend on the realized value of $\tau$.
+
+---
+
+**Exercise 5.** For a defaultable zero-coupon bond with face value 1, recovery $R$ at default, constant risk-free rate $r$, and constant intensity $\lambda$, write the price $V_t$ as a $\mathcal{G}_t$-adapted process using the pre-default/post-default decomposition:
+
+$$
+V_t = V_t^{\text{pre}}\,\mathbf{1}_{\{\tau > t\}} + V_t^{\text{post}}\,\mathbf{1}_{\{\tau \le t\}}
+$$
+
+Derive explicit expressions for $V_t^{\text{pre}}$ and $V_t^{\text{post}}$.
+
+---
+
+**Exercise 6.** Under the Cox process construction, explain why $\tau$ is totally inaccessible as a $\mathcal{G}_t$-stopping time, even though the cumulative intensity $\Lambda_t = \int_0^t \lambda_s\,ds$ is $\mathcal{F}_t$-predictable. Why does knowing $\Lambda_t$ not allow prediction of $\tau$?

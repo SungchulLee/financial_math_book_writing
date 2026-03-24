@@ -173,3 +173,29 @@ Higher gamma (larger \(c_1\)) calls for more frequent rebalancing; higher costs 
 - No-trade bands scale as \(\lambda^{1/3}\)
 - These expansions connect asymptotics to practical P&L attribution
 - Jump risk dominates diffusive hedging error in discontinuous models
+
+---
+
+## Exercises
+
+**Exercise 1.** For the leading-order coefficient $c_1 = \sqrt{\frac{1}{2}\int_0^T \Gamma^2 S^4 \sigma^4 \, dt}$, compute $c_1$ for a constant-gamma approximation with $\Gamma = 0.04$, $S = 100$, $\sigma = 0.20$, $T = 0.25$. What is the hedging error standard deviation for daily rebalancing?
+
+---
+
+**Exercise 2.** The Whalley-Wilmott no-trade bandwidth is $h \sim (3\lambda/(2\Gamma S^2 \sigma^2))^{1/3}$. Compute $h$ for $\lambda = 0.001$, $\Gamma = 0.04$, $S = 100$, $\sigma = 0.20$. Express $h$ in delta units. How does the bandwidth change if $\lambda$ doubles?
+
+---
+
+**Exercise 3.** The utility loss from transaction costs scales as $\lambda^{2/3}$, not linearly in $\lambda$. Explain why this fractional power arises from the interplay between hedging error ($\sim h^2$) and trading cost ($\sim 1/h$). If transaction costs decrease by a factor of 10, by what factor does the utility loss decrease?
+
+---
+
+**Exercise 4.** Leland's adjusted volatility is $\sigma_{\text{eff}}^2 = \sigma^2(1 + \sqrt{8\lambda/(\pi\sigma\sqrt{\Delta t})}\,\text{sign}(\Gamma))$. For $\sigma = 0.20$, $\lambda = 0.002$, $\Delta t = 1/252$, compute $\sigma_{\text{eff}}$ for a long gamma position. By how much does the adjusted volatility exceed the true volatility?
+
+---
+
+**Exercise 5.** The P&L attribution formula decomposes the hedged P&L into theta, gamma, and vega components. For a delta-hedged position over one day with $\Theta = -0.05$, $\Gamma = 0.04$, $\nu = 12$, $\Delta S = 2$, and $\Delta\sigma = -0.005$, compute each component and the total P&L. Identify the dominant contributor.
+
+---
+
+**Exercise 6.** The numerical verification table shows theoretical and Monte Carlo hedging error standard deviations. Design a simulation to verify the $\sqrt{\Delta t}$ scaling: use the `bs_greeks` function to simulate delta-hedging with $N = 10{,}000$ paths for $\Delta t = 1/252$, $1/52$, and $1/12$. Report the standard deviation at each frequency and plot $\text{Std}(\text{HE})$ versus $\sqrt{\Delta t}$ to check linearity.

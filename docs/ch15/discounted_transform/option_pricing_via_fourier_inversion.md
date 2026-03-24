@@ -178,3 +178,35 @@ Fourier inversion methods---the Carr-Madan FFT and the COS method---transform th
 - Fang, F. & Oosterlee, C. W. (2008). "A Novel Pricing Method for European Options Based on Fourier-Cosine Series Expansions." *SIAM Journal on Scientific Computing*, 31(2), 826-848.
 - Heston, S. L. (1993). "A Closed-Form Solution for Options with Stochastic Volatility." *Review of Financial Studies*, 6(2), 327-343.
 - Lord, R. & Kahl, C. (2007). "Optimal Fourier Inversion in Semi-Analytical Option Pricing." *Journal of Computational Finance*, 10(4), 1-30.
+
+---
+
+## Exercises
+
+**Exercise 1.** Derive the Fourier representation of the European call price starting from $C = e^{-r\tau}\int_{-\infty}^\infty (e^x - K)^+ f(x)\,dx$ where $f(x)$ is the risk-neutral density of $\log S_T$. Show that the price can be written as a single integral involving the characteristic function $\Phi(v)$.
+
+---
+
+**Exercise 2.** The Carr-Madan method introduces a damping factor $e^{\alpha k}$ (where $k = \log K$) to make the Fourier transform of the call price integrable. Explain why $\alpha > 0$ is needed and derive the condition on $\alpha$ that ensures integrability in terms of the moment condition $\mathbb{E}[S_T^{\alpha+1}] < \infty$.
+
+---
+
+**Exercise 3.** In the COS method, the option price is approximated by
+
+$$
+C \approx e^{-r\tau}\sum_{k=0}^{N-1}{}' \operatorname{Re}\!\left[\Phi\!\left(\frac{k\pi}{b-a}\right)e^{-ik\pi\frac{a}{b-a}}\right] V_k
+$$
+
+where $V_k$ are the cosine series coefficients of the payoff. For a call option, compute $V_k$ analytically by integrating $(e^x - K)^+\cos(k\pi\frac{x-a}{b-a})$ over $[a, b]$.
+
+---
+
+**Exercise 4.** The truncation range $[a, b]$ in the COS method is typically set using cumulants of the log-price distribution. If $c_1$, $c_2$, $c_4$ are the first, second, and fourth cumulants, write down the standard choice $a = c_1 - L\sqrt{c_2 + \sqrt{c_4}}$ and $b = c_1 + L\sqrt{c_2 + \sqrt{c_4}}$ with $L = 10$. For the Black-Scholes model, compute $c_1$ and $c_2$ and verify the resulting range.
+
+---
+
+**Exercise 5.** Compare the computational complexity of the Carr-Madan FFT and the COS method. If $N$ is the number of strike points and the characteristic function evaluation costs $O(1)$ (closed-form Riccati solution), what is the total cost of pricing at $N$ strikes for each method? Which method has the advantage for calibration where prices at many strikes are needed simultaneously?
+
+---
+
+**Exercise 6.** Describe the calibration workflow for fitting a Heston model to a panel of European option prices across multiple strikes and maturities. What is the objective function, how is the characteristic function used as a subroutine, and what optimizer is typically employed? Discuss the role of the Feller condition as a parameter constraint.

@@ -139,3 +139,39 @@ Despite losing analytical tractability, the BK model offers:
 ## Summary
 
 The Black-Karasinski model is non-affine because both its drift (containing $r\ln r$) and its squared diffusion (proportional to $r^2$) violate the affine conditions required for exponential-affine bond prices. The failure is visible in the bond pricing PDE, where the discounting term $e^x g$ (with $x = \ln r$) prevents the separation of variables that underlies all affine model solutions. As a consequence, no closed-form formulas exist for bonds, bond options, caps, or swaptions; all must be computed numerically. The BK model compensates for this loss with guaranteed positive rates, exact term structure calibration, and a log-normal rate distribution that better matches empirical behavior in certain market environments.
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify that the Vasicek model satisfies the affine conditions. Write the Vasicek SDE $dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t$ in the form $\mu(t,r) = \alpha_0 + \alpha_1 r$ and $\sigma^2(t,r) = \beta_0 + \beta_1 r$, and identify the four coefficients $\alpha_0, \alpha_1, \beta_0, \beta_1$.
+
+---
+
+**Exercise 2.** For the BK drift $\mu(t,r) = r[\theta(t) - a\ln r + \frac{1}{2}\sigma^2]$, show that no constants $\alpha_0(t)$ and $\alpha_1(t)$ exist such that $\mu(t,r) = \alpha_0(t) + \alpha_1(t)\,r$ for all $r > 0$. (Hint: evaluate $\mu(t,r)$ at three distinct values of $r$ and derive a contradiction.)
+
+---
+
+**Exercise 3.** Substitute the affine ansatz $f(t,r) = A(\tau)\,e^{-B(\tau)\,r}$ into the BK bond pricing PDE
+
+$$
+f_t + r\!\left[\theta(t) - a\ln r + \tfrac{1}{2}\sigma^2\right]f_r + \tfrac{1}{2}\sigma^2 r^2\,f_{rr} - r\,f = 0
+$$
+
+and explicitly collect terms by their dependence on $r$. Show that you obtain terms proportional to $r\ln r$ and $r^2$ that cannot be eliminated, confirming the failure of the ansatz.
+
+---
+
+**Exercise 4.** In the log-rate PDE formulation, the discounting term is $e^x g$ rather than $x\,g$. Consider a hypothetical model where the short rate is $r = x$ (the identity map, as in Vasicek). Write the corresponding bond pricing PDE and show that the exponential-affine ansatz $g(t,x) = A(\tau)\,e^{-B(\tau)\,x}$ succeeds by deriving the Riccati ODEs for $A(\tau)$ and $B(\tau)$.
+
+---
+
+**Exercise 5.** Explain why Jamshidian's decomposition of a coupon bond option into a portfolio of zero-coupon bond options remains valid in the BK model. What property of the function $P(t,T;r_t)$ as a function of $r_t$ is required, and why does BK satisfy it despite lacking closed-form bond prices?
+
+---
+
+**Exercise 6.** The CIR model has drift $\kappa(\theta - r)$ and squared diffusion $\sigma^2 r$. A practitioner proposes modifying CIR to $\sigma^2 r^2$ (keeping the CIR drift). Would the resulting model be affine? Justify your answer by checking both the drift and diffusion affine conditions. What key distributional property would change?
+
+---
+
+**Exercise 7.** Consider the practical tradeoff between affine and non-affine models. A trading desk prices 10,000 swaptions daily for risk management. Each BK tree-based swaption price takes 5 ms and each Hull-White analytical swaption price takes 0.005 ms. Compute the daily pricing time for each model. If the desk also needs to calibrate the model once per day using 200 swaption prices with 150 optimizer iterations, compute the total calibration time for each model. Under what circumstances might the BK model still be preferred despite this cost?

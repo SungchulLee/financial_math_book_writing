@@ -126,3 +126,29 @@ The **American put value is always above** the European counterpart due to the e
 - The solution must satisfy the **early exercise constraint** at all times.
 - Simple projection methods are effective when combined with Crank-Nicolson or implicit schemes.
 - The **difference between American and European values** represents the **early exercise premium**.
+
+---
+
+## Exercises
+
+**Exercise 1.** In the Crank-Nicolson with projection algorithm, the projection step $V_i^{n+1} = \max(V_i^{n+1}, \Phi(S_i))$ is applied after solving the linear system. Explain why this sequential approach (solve then project) can introduce a splitting error near the free boundary. How does the LCP formulation avoid this issue?
+
+---
+
+**Exercise 2.** For an American put with $K = 100$, $r = 0.05$, $\sigma = 0.20$, $T = 1$, set up the payoff vector $\Phi$ on the grid $S = (0, 50, 100, 150, 200)$. What are the appropriate boundary conditions at $S = 0$ and $S = S_{\max} = 200$?
+
+---
+
+**Exercise 3.** The boundary condition at $S = 0$ for an American put is $V(0, t) = Ke^{-r(T-t)}$. Derive this by arguing that at $S = 0$, immediate exercise yields $K$, but the present value of the exercise proceeds at a future time $T$ is $Ke^{-r(T-t)}$. Under what circumstances might immediate exercise at $S = 0$ be more valuable?
+
+---
+
+**Exercise 4.** Explain why the American put value is always greater than or equal to the European put value. Sketch both as functions of $S$ on the same axes and identify the region where the two coincide.
+
+---
+
+**Exercise 5.** Consider implementing the early exercise projection in log-price coordinates $x = \ln S$. Rewrite the put payoff $\Phi(S) = (K - S)^+$ in terms of $x$. At which value of $x$ does the payoff kink occur?
+
+---
+
+**Exercise 6.** A simple convergence test for American option pricing is to refine the grid and check that the price changes decrease. If the American put price is $\$6.10$ with $M = 100$, $\$6.06$ with $M = 200$, and $\$6.05$ with $M = 400$, estimate the convergence order using the Richardson ratio. Is the observed order consistent with the expected first-order convergence near the free boundary?

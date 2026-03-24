@@ -161,3 +161,29 @@ Volga is positive for OTM/ITM options (\(d_1 d_2 > 0\)) and negative for ATM opt
 - In Black–Scholes, vega is proportional to gamma via \(\nu = \sigma S^2 \tau \Gamma\).
 - In smile models, vega is multi-dimensional (surface risk), requiring bucket vegas or model-parameter sensitivities.
 - Volga (vega convexity) matters for large vol moves and smile pricing adjustments.
+
+---
+
+## Exercises
+
+**Exercise 1.** For an ATM call with $S = K = 100$, $\sigma = 0.20$, compute vega at $\tau = 1$ year, $\tau = 3$ months, and $\tau = 1$ week. Verify that the ratio of vegas approximately follows the $\sqrt{\tau}$ scaling.
+
+---
+
+**Exercise 2.** Using the formula $\text{Volga} = \nu \cdot d_1 d_2 / \sigma$, determine the sign of volga for: (a) an ATM option with $d_1 > 0$, $d_2 < 0$; (b) a deep ITM option with $d_1 \gg 0$, $d_2 \gg 0$; (c) a deep OTM option with $d_1 \ll 0$, $d_2 \ll 0$. Which options benefit most from volatility-of-volatility?
+
+---
+
+**Exercise 3.** The identity $\nu = \sigma S^2 \tau \Gamma$ links vega and gamma in Black--Scholes. Verify this identity numerically for a call with $S = 100$, $K = 110$, $\sigma = 0.25$, $r = 0.03$, $\tau = 0.5$. Why does this relationship break down in stochastic volatility models?
+
+---
+
+**Exercise 4.** A trader holds a portfolio with vega $\nu = 500$ and volga $= 2000$. If implied volatility increases from $20\%$ to $23\%$, estimate the portfolio P&L using both the first-order approximation ($\nu \cdot \Delta\sigma$) and the second-order approximation ($\nu \cdot \Delta\sigma + \frac{1}{2}\text{Volga}\cdot(\Delta\sigma)^2$). How significant is the volga correction?
+
+---
+
+**Exercise 5.** Explain why bucket vega is more informative than scalar vega for a portfolio containing options at multiple maturities. If a portfolio has positive vega for 1-month options and negative vega for 1-year options, is the portfolio "long vega" or "short vega"? How could implied volatility move to cause a loss?
+
+---
+
+**Exercise 6.** For a far OTM option with $|x| = |\ln(S/K)| = 0.20$ and $\sigma\sqrt{\tau} = 0.10$, compute the vega decay factor $\exp(-x^2/(2\sigma^2\tau))$. How does this compare to the ATM vega? What implications does this have for hedging the vega of a portfolio with many OTM options?

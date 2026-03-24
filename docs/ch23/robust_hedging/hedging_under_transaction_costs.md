@@ -398,3 +398,39 @@ This interval grows as the rebalancing frequency decreases ($\delta t$ increases
 6. **Model uncertainty connection**: Transaction costs create an effective volatility uncertainty band, linking hedging under costs to the uncertain volatility framework and robust control theory
 
 7. **Practical relevance**: The transaction cost reserve $\hat{C} - C_{\text{BS}}$ quantifies the true cost of hedging and is essential for accurate P&L attribution and risk management
+
+---
+
+## Exercises
+
+**Exercise 1.** For a European call with $S_0 = K = 100$, $\sigma = 0.20$, $T = 1$, $r = 0$, and proportional transaction cost $\varepsilon = 0.5\%$, compute the Leland adjusted volatility $\hat{\sigma} = \sigma\sqrt{1 + \varepsilon\sqrt{8/(\pi \delta t)}}$ for daily rebalancing ($\delta t = 1/252$). Compare the Leland-adjusted call price with the frictionless Black-Scholes price and interpret the difference as a transaction cost reserve.
+
+---
+
+**Exercise 2.** Prove that the super-replication price of a European call under proportional transaction costs $\varepsilon > 0$ equals the stock price $S_0$. Hint: show that the only portfolio that dominates $(S_T - K)^+$ for all $S_T \geq 0$ under transaction costs is to hold one share of stock. Explain why this result motivates the search for approximate rather than exact hedging strategies.
+
+---
+
+**Exercise 3.** The Whalley-Wilmott no-trade band has half-width $H = \left(\frac{3\varepsilon \Gamma^2 S^2 \sigma^2}{2r}\right)^{1/3}$. For the call option in Exercise 1, compute the no-trade band at $S = 100$ and $t = 0.5$. How does the band width depend on $\varepsilon$, and why does it scale as $\varepsilon^{1/3}$ rather than $\varepsilon$?
+
+---
+
+**Exercise 4.** Explain the concept of a consistent price system (CPS) in a market with proportional transaction costs. For a one-period model with $S_0 = 100$, $S_1 \in \{80, 120\}$, and $\varepsilon = 5\%$, characterize the set of all consistent price systems. How does this set relate to the set of equivalent martingale measures in the frictionless case?
+
+---
+
+**Exercise 5.** Compare the total hedging cost (transaction cost reserve plus expected hedging error) for three rebalancing frequencies: daily ($N = 252$), weekly ($N = 52$), and monthly ($N = 12$), with $\varepsilon = 0.1\%$. The expected transaction cost scales as $\varepsilon \sigma S_0 \sqrt{N/T}$ and the expected hedging error scales as $\sigma^2 S_0^2 \Gamma / (2N)$. Find the optimal rebalancing frequency that minimizes total cost.
+
+---
+
+**Exercise 6.** In the Leland framework, show that the effective volatility band induced by transaction costs is $[\sigma_{\text{eff}}^-, \sigma_{\text{eff}}^+]$ where
+
+$$
+\sigma_{\text{eff}}^\pm = \sigma \sqrt{1 \pm \varepsilon\sqrt{\frac{8}{\pi \delta t}}}
+$$
+
+Explain how this connects hedging under transaction costs to the uncertain volatility framework. For what values of $\varepsilon$ and $\delta t$ does the lower bound $\sigma_{\text{eff}}^-$ become zero or negative, and what does this mean financially?
+
+---
+
+**Exercise 7.** A trader considers two hedging strategies for a short call position: (a) delta hedging with Leland adjustment, rebalanced daily, and (b) semi-static hedging using a put-call parity relationship plus monthly rebalancing. Given $\varepsilon = 0.2\%$, $\sigma = 0.25$, and $T = 0.5$, analyze which strategy produces lower total cost. Include both the expected hedging error and the expected transaction costs in your comparison.

@@ -152,3 +152,39 @@ implicitly determines $\theta(t)$. Unlike the Hull-White model where $\theta(t)$
 ## Summary
 
 The Black-Karasinski model specifies the log short rate $x_t = \ln r_t$ as a mean-reverting process $dx_t = [\theta(t) - ax_t]\,dt + \sigma\,dW_t$, making $r_t = e^{x_t}$ strictly positive and log-normally distributed. Ito's lemma reveals that the short rate dynamics $dr_t = r_t[\theta(t) - a\ln r_t + \frac{1}{2}\sigma^2]\,dt + \sigma r_t\,dW_t$ have a nonlinear drift ($\ln r$ term), which destroys the affine structure and prevents closed-form bond pricing. The time-dependent drift $\theta(t)$ enables exact calibration to the initial term structure, compensating for the loss of analytical tractability. The conditional log-normal distribution of $r_t$ guarantees non-negative rates, making the BK model particularly suitable for environments where negative rates are economically unreasonable.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the BK log-rate SDE $dx_t = [\theta(t) - ax_t]\,dt + \sigma\,dW_t$ and the transformation $r_t = e^{x_t}$, apply Ito's lemma step-by-step to derive the short rate dynamics
+
+$$
+dr_t = r_t\left[\theta(t) - a\ln r_t + \tfrac{1}{2}\sigma^2\right]dt + \sigma\,r_t\,dW_t
+$$
+
+Identify each term in the Ito expansion and explain why the $\frac{1}{2}\sigma^2$ correction appears.
+
+---
+
+**Exercise 2.** Suppose the BK model has constant parameters $a = 0.10$, $\sigma = 0.20$, and the current log rate is $x_0 = \ln(0.05)$. Assume $\theta(t) = \theta = -0.25$ (constant for simplicity). Compute the conditional mean $\mu(0,5)$ and variance $\nu^2(0,5)$ of $x_5 = \ln r_5$. Then find the expected short rate $\mathbb{E}[r_5]$ and the probability $\mathbb{P}(r_5 > 0.10)$.
+
+---
+
+**Exercise 3.** Using the long-run distribution formula, show that the long-run mean rate $\mathbb{E}[r_\infty]$ is strictly greater than $e^{\theta/a}$ when $\sigma > 0$. Interpret this gap in terms of Jensen's inequality applied to the convex function $e^x$. For $\theta/a = \ln(0.05)$ and $\sigma^2/(2a) = 0.04$, compute both $e^{\theta/a}$ and $\mathbb{E}[r_\infty]$.
+
+---
+
+**Exercise 4.** In the comparison table, the CIR model has diffusion $\sigma\sqrt{r}$ while the BK model has effective diffusion $\sigma r$ for the short rate. For a given rate level $r_0 = 5\%$, $\sigma_{CIR} = 0.05$, and $\sigma_{BK} = 0.20$, compute the instantaneous standard deviation of rate changes $dW$ for each model. At what rate level $r^*$ do the two models produce the same instantaneous volatility?
+
+---
+
+**Exercise 5.** Explain why the nonlinearity $\ln r_t$ in the drift of the BK short-rate SDE destroys the affine structure. Recall that a model is affine if the zero-coupon bond price takes the form $P(t,T) = \exp(A(t,T) + B(t,T)\,r_t)$. Substitute the BK dynamics into the PDE for $P(t,T)$ and show that the resulting equation cannot be separated into functions of $r$ and $t$ alone.
+
+---
+
+**Exercise 6.** The conditional variance of the log rate is $\nu^2(s,t) = \frac{\sigma^2}{2a}(1 - e^{-2a(t-s)})$. Analyze the behavior of $\nu^2$ in two limits: (i) $a \to 0$ (no mean reversion) and (ii) $a \to \infty$ (very strong mean reversion). Interpret each limit economically in terms of rate uncertainty over long horizons.
+
+---
+
+**Exercise 7.** The time-dependent drift $\theta(t)$ is determined implicitly by the condition $P^{\text{mkt}}(0,T) = \mathbb{E}^{\mathbb{Q}}[\exp(-\int_0^T r_s\,ds)]$. Explain why, unlike in the Hull-White model, this equation cannot be solved for $\theta(t)$ in closed form. What specific mathematical property of the expectation $\mathbb{E}^{\mathbb{Q}}[\exp(-\int_0^T e^{x_s}\,ds)]$ prevents analytical inversion?

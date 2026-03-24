@@ -117,3 +117,29 @@ These PDEs are useful for:
 - Delta satisfies a modified Black–Scholes PDE with an extra drift term.
 - Gamma satisfies its own PDE with terminal condition given by \(\Phi''\).
 - For stable computation, combine PDE identities with transformations or expectation formulas.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the Black--Scholes PDE $\partial_t V + \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S - rV = 0$, differentiate with respect to $S$ and verify that the delta PDE contains the extra terms $\sigma^2 S \Gamma$ compared to the original PDE.
+
+---
+
+**Exercise 2.** The gamma PDE has terminal condition $\Gamma(T,S) = \Phi''(S)$. For a vanilla call $\Phi(S) = (S-K)^+$, explain why $\Phi''(S) = \delta(S-K)$ is distributional. How does the parabolic PDE "regularize" this Dirac delta into a smooth function for $t < T$?
+
+---
+
+**Exercise 3.** Use the delta PDE to determine the far-field behavior of delta: show that $\Delta(t,S) \to 1$ as $S \to \infty$ and $\Delta(t,S) \to 0$ as $S \to 0$ for a European call, consistent with boundary conditions.
+
+---
+
+**Exercise 4.** Differentiate the Black--Scholes PDE with respect to $r$ to derive the PDE for rho. Verify that the source term is $V - S V_S$ and the terminal condition is $\rho(T,S) = 0$.
+
+---
+
+**Exercise 5.** Consider designing a finite-difference scheme to solve the gamma PDE numerically. Why is this more challenging than solving the original Black--Scholes PDE? Discuss the role of the distributional terminal condition and propose a regularization approach.
+
+---
+
+**Exercise 6.** The delta PDE can be written as $\partial_t \Delta + \mathcal{L}\Delta + \sigma^2 S\Gamma = 0$ where $\mathcal{L}$ is the Black--Scholes operator. Show that substituting the Black--Scholes delta $\Delta = N(d_1)$ and gamma $\Gamma = N'(d_1)/(S\sigma\sqrt{\tau})$ into this PDE yields an identity. (Hint: use the known time derivatives of $d_1$.)

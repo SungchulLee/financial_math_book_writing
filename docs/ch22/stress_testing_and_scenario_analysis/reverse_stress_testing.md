@@ -313,3 +313,39 @@ Train surrogate models for $L(\mathbf{x})$ to enable fast scenario evaluation.
 - Glasserman, P. & Xu, X. (2014), "Robust Risk Measurement and Model Risk"
 - Breuer, T., Jandačka, M., Rheinberger, K., & Summer, M. (2009), "How to Find Plausible, Severe, and Useful Stress Scenarios"
 - McNeil, A. & Smith, A. (2012), "Multivariate Stress Scenarios and Solvency"
+
+---
+
+## Exercises
+
+**Exercise 1.** A bank has CET1 capital of \$20 billion, RWA of \$250 billion, and a regulatory minimum CET1 ratio of 4.5%. Compute the failure loss threshold $L^*$ (the amount of loss that would bring the CET1 ratio exactly to the minimum). If expected PPNR over the stress horizon is \$6 billion, what is the net failure loss from credit, market, and operational risks?
+
+---
+
+**Exercise 2.** For a linear portfolio with loss function $L(\mathbf{x}) = -\boldsymbol{\delta}^\top (\mathbf{x} - \mathbf{x}_0)$ and Mahalanobis distance as the plausibility measure, the most plausible failure scenario is
+
+$$
+\mathbf{x}^* = \mathbf{x}_0 + \frac{L^*}{\boldsymbol{\delta}^\top \boldsymbol{\Sigma} \boldsymbol{\delta}} \boldsymbol{\Sigma} \boldsymbol{\delta}
+$$
+
+Suppose $\boldsymbol{\delta} = (5, 3)^\top$ (in billions per unit factor move) and $\boldsymbol{\Sigma} = \begin{pmatrix} 1 & 0.5 \\ 0.5 & 2 \end{pmatrix}$. For a failure threshold of $L^* = 10$ billion, compute $\mathbf{x}^*$ and its Mahalanobis distance. Interpret the direction of the most plausible failure scenario.
+
+---
+
+**Exercise 3.** Explain why the first-order condition $\nabla D(\mathbf{x}) = \lambda \nabla L(\mathbf{x})$ implies that the most plausible failure scenario lies at a point where the iso-plausibility contour is tangent to the loss contour $L(\mathbf{x}) = L^*$. Draw a sketch in two dimensions illustrating the failure region $\mathcal{F}$, the Mahalanobis distance contours, and the optimal scenario $\mathbf{x}^*$.
+
+---
+
+**Exercise 4.** A portfolio has three main risk exposures: equity (delta = \$200M per 1%), interest rates (delta = \$150M per 100 bps), and credit spreads (delta = \$100M per 100 bps). The failure threshold requires a loss of \$5 billion. Construct three distinct reverse stress scenarios along the failure boundary $L(\mathbf{x}) = L^*$ that correspond to (a) a pure equity crash, (b) a combined equity and credit event, and (c) a rates-driven scenario. For each, specify the required factor moves and briefly assess plausibility relative to historical episodes.
+
+---
+
+**Exercise 5.** Discuss the relationship between reverse stress testing and recovery planning. If a reverse stress test identifies a scenario in which the bank's CET1 ratio falls to 3.0% (below the 4.5% minimum), describe at least four specific recovery actions the bank could take to restore capital adequacy. For each action, estimate the capital benefit and the time required, and discuss potential constraints or side effects.
+
+---
+
+**Exercise 6.** A risk analyst uses importance sampling to search for failure scenarios. The sampling distribution is tilted as $f^{\text{tilted}}(\mathbf{x}) \propto f(\mathbf{x}) \cdot \exp(\theta \cdot L(\mathbf{x}))$ where $\theta > 0$ is the tilt parameter. Explain how increasing $\theta$ concentrates samples in the failure region. What is the tradeoff in choosing $\theta$? How does the analyst recover unbiased probability estimates from the tilted samples (i.e., what is the importance weight)?
+
+---
+
+**Exercise 7.** Consider a bank with exposures to both market risk and credit risk. Argue that the failure region $\mathcal{F} = \{\mathbf{x} : L(\mathbf{x}) \ge L^*\}$ may be non-convex when the portfolio contains options or other nonlinear instruments. Provide a specific example of a portfolio where two distinct scenarios $\mathbf{x}_1, \mathbf{x}_2 \in \mathcal{F}$ exist but their midpoint $(\mathbf{x}_1 + \mathbf{x}_2)/2 \notin \mathcal{F}$. What challenges does non-convexity pose for algorithmic scenario search?

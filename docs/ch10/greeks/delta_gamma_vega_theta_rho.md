@@ -121,3 +121,35 @@ This is the conceptual basis for “Greek-based” risk decomposition and hedgin
 **Black–Scholes model**, where the Greeks can be computed explicitly in
 closed form.
 
+---
+
+## Exercises
+
+**Exercise 1.** A European call option has price $V = 12.50$, with $\Delta = 0.62$, $\Gamma = 0.035$, and $\nu = 18.5$. If the underlying moves from $S = 100$ to $S = 103$ while volatility increases from $\sigma = 0.20$ to $\sigma = 0.22$, estimate the new option price using the second-order Taylor expansion.
+
+---
+
+**Exercise 2.** Explain why gamma is the same for a European call and a European put with the same strike and maturity, while delta and rho differ. Use put-call parity to justify your answer.
+
+---
+
+**Exercise 3.** Consider a portfolio consisting of $n_1$ calls and $n_2$ puts on the same underlying, all with the same strike and maturity. Write the portfolio Greeks $\Delta_\pi$, $\Gamma_\pi$, $\nu_\pi$, $\Theta_\pi$, $\rho_\pi$ in terms of $n_1$, $n_2$, and the individual option Greeks. Under what conditions is the portfolio delta-neutral?
+
+---
+
+**Exercise 4.** Show that the second-order Taylor expansion for the option price can be written in vector-matrix form as
+
+$$
+\delta V \approx \mathbf{g}^T \delta \mathbf{x} + \frac{1}{2} \delta \mathbf{x}^T \mathbf{H} \, \delta \mathbf{x}
+$$
+
+where $\mathbf{g}$ is the gradient vector of first-order Greeks and $\mathbf{H}$ is the Hessian of second-order Greeks. Identify the entries of $\mathbf{g}$ and $\mathbf{H}$ for variables $(S, \sigma, r)$.
+
+---
+
+**Exercise 5.** Why does theta have ambiguous sign conventions in the literature? If one defines $\Theta_1 = \partial V / \partial t$ and $\Theta_2 = -\partial V / \partial t$, explain which is negative for a long call position and why. How does the convention affect the P&L decomposition formula?
+
+---
+
+**Exercise 6.** Suppose a trader holds a delta-neutral portfolio with $\Gamma = 0.04$ and $\nu = 15$. She observes a simultaneous move $\delta S = +2$ and $\delta \sigma = -0.01$. Compute the approximate change in portfolio value. Which effect dominates, and under what conditions would the other dominate instead?
+

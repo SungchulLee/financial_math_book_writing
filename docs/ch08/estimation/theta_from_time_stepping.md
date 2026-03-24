@@ -238,3 +238,29 @@ $$
 $$
 
 The PDE-based approach is generally superior because it avoids time-differencing error and uses the more accurate spatial Greeks. Direct time-step theta serves as a useful consistency check. Near expiry, where theta diverges for at-the-money options, fine time resolution or the PDE-based formula is essential for reliable estimates.
+
+---
+
+## Exercises
+
+**Exercise 1.** Given two consecutive time levels from a Crank-Nicolson solver: $u_j^{N} = 3.934$ and $u_j^{N-1} = 3.962$ with $\Delta\tau = 0.0025$, compute the backward difference estimate of theta. Express the result in annualized terms (multiply by the number of trading periods per year if needed, or simply report per year).
+
+---
+
+**Exercise 2.** Using the PDE-based formula $\Theta = rV - rS\Delta - \frac{1}{2}\sigma^2 S^2\Gamma$ with $V = 3.934$, $\Delta = 0.5594$, $\Gamma = 0.0393$, $S = 100$, $r = 0.05$, $\sigma = 0.2$, compute theta. Compare this to the exact Black-Scholes value $\Theta = -11.35$ (annualized).
+
+---
+
+**Exercise 3.** The central difference estimate of theta uses three time levels: $\Theta_j \approx -(u_j^N - u_j^{N-2})/(2\Delta\tau)$. Explain why this is second-order accurate in $\Delta\tau$, while the backward difference is only first-order. What is the practical cost of the central difference (in terms of storage)?
+
+---
+
+**Exercise 4.** For an at-the-money European call near expiry, theta diverges as $\Theta_{\text{ATM}} \approx -\sigma S/(2\sqrt{2\pi\tau})$. With $\sigma = 0.3$, $S = 100$, compute $|\Theta|$ at $\tau = 1$ day ($1/252$), $\tau = 1$ week ($5/252$), and $\tau = 1$ month ($21/252$). How does this rapid growth affect the numerical estimation of theta near expiry?
+
+---
+
+**Exercise 5.** A deep in-the-money European put can have positive theta ($\Theta > 0$). Using the put theta formula $\Theta_{\text{put}} = -\frac{\sigma S\phi(d_1)}{2\sqrt{T}} + rKe^{-rT}\Phi(-d_2)$, explain the economic intuition: why does a deep ITM put gain value as time passes?
+
+---
+
+**Exercise 6.** The Greek theta ($\Theta = \partial V/\partial t$) and the scheme parameter theta ($\theta$ in the theta-scheme) are unrelated. A colleague asks: "If I use the theta-scheme with $\theta = 0.5$ (Crank-Nicolson), does that give me the Greek theta?" Explain the difference clearly.

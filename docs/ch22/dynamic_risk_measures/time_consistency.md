@@ -241,3 +241,29 @@ Risk limits that are time-consistent prevent gaming through dynamic trading.
 - Cheridito, P., Delbaen, F., & Kupper, M. (2006), "Dynamic Monetary Risk Measures for Bounded Discrete-Time Processes"
 - Riedel, F. (2004), "Dynamic Coherent Risk Measures"
 - Detlefsen, K. & Scandolo, G. (2005), "Conditional and Dynamic Convex Risk Measures"
+
+---
+
+## Exercises
+
+**Exercise 1.** State the time-consistency property for a dynamic risk measure $\{\rho_t\}_{t=0}^T$: if $\rho_s(X) \le \rho_s(Y)$ for some $s > t$, then $\rho_t(X) \le \rho_t(Y)$. Explain why this property is economically desirable: a risk assessment that is worse at a future time should also be worse when evaluated today.
+
+---
+
+**Exercise 2.** Show that the dynamic VaR $\{\text{VaR}_\alpha^t\}$ is not time-consistent by constructing a two-period counterexample. Use two positions $X$ and $Y$ where $\text{VaR}_\alpha^1(X) \le \text{VaR}_\alpha^1(Y)$ in every state at $t=1$, but $\text{VaR}_\alpha^0(X) > \text{VaR}_\alpha^0(Y)$ at $t=0$.
+
+---
+
+**Exercise 3.** Dynamic Expected Shortfall defined via backward recursion $\rho_t(X) = \text{ES}_\alpha(\rho_{t+1}(X) \mid \mathcal{F}_t)$ with terminal condition $\rho_T(X) = -X$ is time-consistent. Explain why the recursive composition guarantees time-consistency. What happens if we use $\rho_t(X) = \text{ES}_\alpha(X \mid \mathcal{F}_t)$ directly (without recursion)?
+
+---
+
+**Exercise 4.** Time-consistency is equivalent to the "tower property" or "recursiveness": $\rho_t = \rho_t \circ \rho_s$ for $t \le s$. Explain this equivalence. Compare with the tower property of conditional expectations $\mathbb{E}[\cdot \mid \mathcal{F}_t] = \mathbb{E}[\mathbb{E}[\cdot \mid \mathcal{F}_s] \mid \mathcal{F}_t]$.
+
+---
+
+**Exercise 5.** In a three-period model, a risk manager evaluates position $X$ at times $t = 0, 1, 2$. At $t = 1$, in state $\omega_1$, $\rho_1(X) = 5$; in state $\omega_2$, $\rho_1(X) = 3$. A time-consistent risk measure at $t=0$ must give $\rho_0(X) \ge 3$ (since the position is risky in at least one state). Compute $\rho_0(X)$ if the $t=0$ measure is $\text{ES}_{0.5}$ of $\rho_1(X)$ where both states are equally likely.
+
+---
+
+**Exercise 6.** Discuss the practical implications of time-consistency for multi-period portfolio optimization. Why does a time-inconsistent risk measure lead to dynamically inconsistent investment decisions (i.e., the optimal plan at $t=0$ is no longer optimal at $t=1$)? How does this relate to the concept of "dynamic programming principle"?

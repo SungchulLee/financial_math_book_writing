@@ -177,3 +177,29 @@ IFRS 13 and ASC 820 require fair value hierarchy accounting for liquidity.
 - Amihud, Y. & Mendelson, H. (1986), "Asset Pricing and the Bid-Ask Spread"
 - Acharya, V.V. & Pedersen, L.H. (2005), "Asset Pricing with Liquidity Risk"
 - Brunnermeier, M.K. & Pedersen, L.H. (2009), "Market Liquidity and Funding Liquidity"
+
+---
+
+## Exercises
+
+**Exercise 1.** Two bonds from the same issuer have identical credit risk but different maturities and liquidity. Bond A (on-the-run) has a yield of 4.5% and Bond B (off-the-run) yields 4.8%. Estimate the liquidity premium. What fraction of Bond B's credit spread (over Treasuries) is attributable to illiquidity?
+
+---
+
+**Exercise 2.** The Amihud illiquidity measure is $\text{ILLIQ} = \frac{1}{D}\sum_{d=1}^D \frac{|r_d|}{\text{Volume}_d}$, where $r_d$ is the daily return and $\text{Volume}_d$ is the daily trading volume. Explain the intuition behind this measure. Why does a higher value indicate greater illiquidity?
+
+---
+
+**Exercise 3.** During the 2008 crisis, the liquidity premium on corporate bonds widened from approximately 20 bp to over 200 bp. Explain the economic mechanism: why does liquidity dry up precisely when investors most need it? How does the Brunnermeier-Pedersen "liquidity spiral" model capture this phenomenon?
+
+---
+
+**Exercise 4.** An investor holds a portfolio of illiquid corporate bonds and marks them to model rather than to market. Explain the risks of this approach. How should the investor adjust the model price to account for the liquidity premium?
+
+---
+
+**Exercise 5.** Compare the liquidity premium in corporate bond markets with the liquidity premium in CDS markets. Which market is typically more liquid, and why? How does the CDS-bond basis reflect differences in liquidity premia?
+
+---
+
+**Exercise 6.** Describe how liquidity risk enters a risk management framework. Should the risk manager use a standard VaR/ES measure, or does liquidity risk require a separate treatment (e.g., Liquidity-adjusted VaR)? Explain the adjustments needed to account for the time required to liquidate positions.

@@ -257,3 +257,69 @@ These patterns vary with market conditions but the qualitative features persist.
 - Carr, P. & Wu, L. (2009). *Variance risk premiums*. Review of Financial Studies.
 - Bates, D. (2000). *Post-'87 crash fears in the S&P 500 futures options market*. Journal of Econometrics.
 - Cont, R. & da Fonseca, J. (2002). *Dynamics of implied volatility surfaces*. Quantitative Finance.
+
+---
+
+## Exercises
+
+**Exercise 1.** The following ATM implied volatilities are observed for S&P 500 options:
+
+| Maturity | Implied Vol |
+|----------|-------------|
+| 1 month  | 22%         |
+| 3 months | 19%         |
+| 6 months | 17%         |
+| 1 year   | 16%         |
+
+Is the term structure in contango or backwardation? What does this shape suggest about the current volatility regime relative to the long-run level? Estimate the long-run volatility $\bar{\sigma}$ implied by the data.
+
+---
+
+**Exercise 2.** Under a mean-reverting volatility process, the ATM implied variance satisfies approximately
+
+$$
+\sigma_{\text{impl}}^2(T) \approx V_0 \cdot \frac{1 - e^{-\kappa T}}{\kappa T} + \bar{\sigma}^2 \cdot \left(1 - \frac{1 - e^{-\kappa T}}{\kappa T}\right)
+$$
+
+Given $V_0 = (25\%)^2$, $\bar{\sigma}^2 = (18\%)^2$, and $\kappa = 2.0$, compute $\sigma_{\text{impl}}(T)$ for $T = 0.25, 0.5, 1.0, 2.0$ years. Verify that the term structure interpolates between $\sqrt{V_0}$ and $\bar{\sigma}$.
+
+---
+
+**Exercise 3.** For equity index options, the implied volatility skew is often measured as
+
+$$
+\text{Skew} = \sigma_{\text{impl}}(90\%) - \sigma_{\text{impl}}(100\%)
+$$
+
+where percentages refer to strike as a fraction of spot. Suppose the 1-month skew is 7% and the 1-year skew is 2.5%. Verify that this is roughly consistent with the scaling relationship $\text{Skew}(T) \propto 1/\sqrt{T}$. What mechanism in stochastic volatility models generates this decay?
+
+---
+
+**Exercise 4.** Using the Breeden–Litzenberger formula, the risk-neutral density is
+
+$$
+f^{\mathbb{Q}}(S_T = K) = e^{rT} \frac{\partial^2 C}{\partial K^2}\bigg|_{K}
+$$
+
+Suppose the call price function is $C(K) = e^{-rT}[\mu - K + \frac{1}{2}\sigma^2 K^{-1}]$ for a hypothetical model. Compute $\partial^2 C / \partial K^2$ and interpret the shape of the implied risk-neutral density. How would this density differ from a lognormal?
+
+---
+
+**Exercise 5.** Explain the difference between "sticky strike" and "sticky delta" smile dynamics. A trader observes that when the S&P 500 drops by 2%, the implied volatility of a fixed-strike 4000 put increases by 1.5 vol points, while the 25-delta put implied vol remains roughly unchanged. Which smile model is more consistent with this observation? What are the hedging implications of using the wrong model?
+
+---
+
+**Exercise 6.** The variance risk premium is defined as $VRP = \mathbb{E}^{\mathbb{Q}}[\sigma^2] - \mathbb{E}^{\mathbb{P}}[\sigma^2]$. Given a 3-month variance swap rate of $(17\%)^2$ and an expected realized variance of $(14\%)^2$, compute the annualized $VRP$. A trader sells the variance swap at the swap rate and realizes the actual variance. What is the expected profit in variance points? Why is this premium typically positive for equity indices?
+
+---
+
+**Exercise 7.** A stochastic volatility model must jointly explain the smile, skew, and term structure. Fill in the following mapping and give a brief justification for each entry:
+
+| Surface feature         | Model parameter        |
+|------------------------|------------------------|
+| Negative equity skew    | ?                      |
+| Smile curvature (wings) | ?                      |
+| Term structure shape    | ?                      |
+| ATM level              | ?                      |
+
+Using the Heston model parameters ($\kappa$, $\theta$, $\xi$, $\rho$, $V_0$), identify which parameter primarily controls each feature.

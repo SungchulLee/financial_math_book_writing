@@ -1126,10 +1126,28 @@ This unifies **all transform methods**!
 
 ---
 
-Would you like me to explore:
-- Detailed FFT implementation algorithms
-- COS method for berrier options
-- Specific Lévy models (VG, NIG, CGMY)
-- Advanced numerical inversion techniques (Talbot, Gaver-Stehfest)
-- Saddle-point approximations for fast pricing
-- Application to American options via Laplace transforms?
+---
+
+## Exercises
+
+**Exercise 1.** Compute the Mellin transform of the European put payoff $(K - S)^+$ and determine its strip of analyticity. Compare with the Mellin transform of the call payoff and relate the two via put-call parity in transform space.
+
+---
+
+**Exercise 2.** The Mellin transform converts the Black-Scholes PDE (which has $S$-dependent coefficients $S^2$ and $S$) into an ODE with constant coefficients. Verify this by applying the Mellin transform to the term $\frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}$ and showing it becomes a polynomial in the transform variable $s$.
+
+---
+
+**Exercise 3.** For the Fourier transform approach, explain the role of the damping parameter $\alpha$ in the Carr-Madan method. What happens if $\alpha$ is chosen too small or too large? Describe a practical procedure for selecting an optimal $\alpha$.
+
+---
+
+**Exercise 4.** The Laplace transform in the time variable $\tau$ converts the parabolic PDE into an elliptic ODE. For the resulting ODE, find the Green's function and express the option price as a Bromwich contour integral. Describe the singularity structure of the integrand.
+
+---
+
+**Exercise 5.** Compare the Fourier, Mellin, and Laplace transform approaches for pricing a European call under the Black-Scholes model. For each method, identify: (a) the transform variable and its domain, (b) the type of equation obtained after transformation, (c) the inversion formula, and (d) the main computational challenge in the inversion step.
+
+---
+
+**Exercise 6.** The unified contour integral representation $V(S,t) = \frac{1}{2\pi i}\int_\mathcal{C} \hat{V}(\omega) \exp[\Psi(\omega,S,t)] d\omega$ encompasses all three transform methods. For the Black-Scholes model, write $\Psi(\omega, S, t)$ explicitly for the Fourier case ($x = \ln S$, transform in $x$) and verify that the saddle-point approximation of this integral recovers the leading-order behavior of the Black-Scholes formula for deep in-the-money options.

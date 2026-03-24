@@ -553,3 +553,47 @@ The discrete early exercise boundary $\{S_n^*\}$ from the binomial tree approxim
 | [Trinomial Model](trinomial_model.md) | Three-state extension with finer resolution |
 | [Binomial to Black–Scholes](binomial_to_black_scholes_limit.md) | Continuous-time limit of the binomial model |
 | [American Put on Binomial Tree](../codes/binomial_american_put.py) | Python implementation of the algorithm |
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a 2-period binomial model with $S_0 = 40$, $u = 1.2$, $d = 0.9$, $r = 4\%$, and $\Delta t = 0.5$. Price an American put with strike $K = 42$ using backward induction. At each node, clearly state whether the holder should exercise or continue. Compute the early exercise premium by comparing with the European put price.
+
+---
+
+**Exercise 2.** Prove that for an American call on a non-dividend-paying stock, the continuation value at any pre-terminal node $(n,j)$ satisfies:
+
+$$
+C_{n,j} \geq S_{n,j} - Ke^{-r(N-n)\Delta t} > S_{n,j} - K
+$$
+
+Deduce that early exercise is never optimal. Where does the proof break down for an American put?
+
+---
+
+**Exercise 3.** Using the 3-period tree from the worked example in the text ($S_0 = 100$, $\sigma = 30\%$, $r = 5\%$, $T = 1$, $N = 3$, $K = 100$), verify the supermartingale property of the discounted American put price process. Specifically, check at each node $(n,j)$ that:
+
+$$
+e^{-rn\Delta t} V_{n,j} \geq e^{-r(n+1)\Delta t}\left[q\,V_{n+1,j+1} + (1-q)\,V_{n+1,j}\right]
+$$
+
+Identify the node(s) where equality fails (strict supermartingale), and explain why.
+
+---
+
+**Exercise 4.** Consider the same 3-period tree as in Exercise 3. The Snell envelope is the smallest supermartingale dominating the intrinsic value process. At node $(2,0)$, the intrinsic value $h_{2,0} = 29.17$ exceeds the continuation value $27.51$. Suppose you mistakenly used the European recursion (no exercise check). Show that the resulting discounted price process would violate the domination condition $U_n \geq h_n$ at node $(2,0)$.
+
+---
+
+**Exercise 5.** Now consider a **dividend-paying** stock. Suppose the stock pays a continuous dividend yield $\delta = 3\%$. In the binomial model, the risk-neutral probability becomes $q = \frac{e^{(r-\delta)\Delta t} - d}{u - d}$. Using $S_0 = 100$, $K = 100$, $\sigma = 30\%$, $r = 5\%$, $\delta = 3\%$, $T = 1$, and $N = 3$, price both an American call and a European call. Is early exercise optimal for the American call at any node? Explain why dividends change the early exercise analysis for calls.
+
+---
+
+**Exercise 6.** The smooth-pasting condition states that at the free boundary $S^*(t)$ in continuous time, $\frac{\partial P}{\partial S}(S^*(t), t) = -1$. On the 3-period tree from the text, approximate the "discrete smooth-pasting" at time step $n = 2$ by computing the finite difference:
+
+$$
+\frac{V_{2,1} - V_{2,0}}{S_{2,1} - S_{2,0}}
+$$
+
+Compare this to $-1$ and explain why perfect smooth-pasting only holds in the continuous-time limit.

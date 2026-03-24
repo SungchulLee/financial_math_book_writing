@@ -374,3 +374,41 @@ Self-financing portfolios formalize the idea that dynamic hedging strategies fun
 **6. Admissibility**: Bounded-credit conditions prevent pathological doubling strategies and ensure the pricing framework is consistent.
 
 These results establish the mathematical infrastructure for the Black-Scholes PDE derivation in the next section, where the specific self-financing strategy that replicates a European option is constructed explicitly.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $\phi_t = 1$ (hold one share of stock) and $X_0 = S_0 + B$ for some constant $B > 0$. Determine the bond position $\psi_t$ and verify directly that the strategy is self-financing by checking that $S_t \, d\phi_t + B_t \, d\psi_t = 0$.
+
+---
+
+**Exercise 2.** Consider a self-financing portfolio with wealth dynamics $dX_t = rX_t \, dt + \phi_t(dS_t - rS_t \, dt)$. Suppose the trader invests a constant fraction $\pi$ of wealth in the stock, so $\phi_t S_t = \pi X_t$. Show that the wealth process satisfies
+
+$$
+dX_t = X_t\left[(r + \pi(\mu - r))\,dt + \pi\sigma\,dW_t\right]
+$$
+
+and solve this SDE explicitly for $X_t$.
+
+---
+
+**Exercise 3.** Prove that if two self-financing portfolios $X_t$ and $Y_t$ satisfy $X_T = Y_T$ almost surely, then $X_t = Y_t$ for all $t \in [0,T]$ almost surely. Use the martingale property of the discounted wealth under $\mathbb{Q}$. Explain why this result is essential for the uniqueness of derivative prices.
+
+---
+
+**Exercise 4.** Define the doubling strategy informally and explain how it appears to generate arbitrage in continuous time. Then explain precisely how the admissibility condition $X_t \geq -a$ prevents this strategy from being used.
+
+---
+
+**Exercise 5.** For a European call with Black-Scholes price $V(S_t, t) = S_t \mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)$, write down the replicating portfolio $(\phi_t, \psi_t)$ explicitly. Verify that at $t = 0$ the portfolio value equals $V(S_0, 0)$, and at $t = T$ the portfolio value equals $(S_T - K)^+$.
+
+---
+
+**Exercise 6.** Show that the discounted stock price $\tilde{S}_t = e^{-rt}S_t$ satisfies
+
+$$
+d\tilde{S}_t = (\mu - r)\tilde{S}_t \, dt + \sigma \tilde{S}_t \, dW_t
+$$
+
+under the physical measure $\mathbb{P}$. Explain why $\tilde{S}_t$ is not a martingale under $\mathbb{P}$ (assuming $\mu \neq r$) and identify the Girsanov change of measure that makes it a martingale.

@@ -225,3 +225,33 @@ The forward smile is a powerful **model discriminator**:
 - Bergomi, L. *Smile Dynamics* series of papers
 - Gatheral, J. *The Volatility Surface*
 - Piterbarg, V. *Smiling Hybrids*
+
+---
+
+## Exercises
+
+**Exercise 1.** Define the forward smile $\sigma_{\text{fwd}}(K, T_1, T_2)$ and explain how it differs from the spot smile $\sigma_{\text{IV}}(K, T)$. What type of derivative product depends directly on the forward smile?
+
+---
+
+**Exercise 2.** The forward variance for the period $[T_1, T_2]$ is $\sigma_{\text{fwd}}^2 = \frac{w(T_2) - w(T_1)}{T_2 - T_1}$. Given total variances $w(0.25) = 0.01$, $w(0.50) = 0.022$, and $w(1.0) = 0.05$, compute the forward variance for periods $[0.25, 0.50]$ and $[0.50, 1.0]$. Is the forward variance term structure upward or downward sloping?
+
+---
+
+**Exercise 3.** In local volatility models, the forward smile tends to flatten as $T_1$ increases. Explain this by considering how the local volatility surface determines the forward-implied distribution. Why is this "forward smile flattening" inconsistent with empirical observations?
+
+---
+
+**Exercise 4.** Stochastic volatility models (e.g., Heston) preserve a forward smile because the volatility process has memory. If the Heston model has $\rho = -0.7$ and $\xi = 0.4$, describe qualitatively how the forward smile for the period $[1, 2]$ years compares to the spot smile for $T = 1$ year. Is the forward skew steeper or flatter?
+
+---
+
+**Exercise 5.** A cliquet option pays the sum of capped and floored periodic returns: $\sum_{i=1}^n \min(\max(R_i, \text{floor}), \text{cap})$ where $R_i = S_{t_i}/S_{t_{i-1}} - 1$. Explain why the pricing of this product depends critically on the forward smile for each period $[t_{i-1}, t_i]$. Would a local vol model overprice or underprice this product relative to a stochastic vol model?
+
+---
+
+**Exercise 6.** The forward smile can be used as a diagnostic tool for model selection. Describe a procedure to compare the forward smiles of two candidate models (local vol and Heston) against market-implied forward smiles extracted from variance swap curves and cliquet prices. What data sources would you need?
+
+---
+
+**Exercise 7.** Consider a variance swap starting in 6 months with a 6-month tenor. Using the forward variance formula, compute the fair strike given that the 6-month variance swap strike is 0.04 and the 1-year variance swap strike is 0.038. Compare this to the 6-month spot variance swap strike and explain the economic interpretation of the difference.

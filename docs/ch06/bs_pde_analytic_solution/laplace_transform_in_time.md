@@ -1126,10 +1126,28 @@ This unifies **all transform methods**!
 
 ---
 
-Would you like me to explore:
-- Detailed FFT implementation algorithms
-- COS method for berrier options
-- Specific Lévy models (VG, NIG, CGMY)
-- Advanced numerical inversion techniques (Talbot, Gaver-Stehfest)
-- Saddle-point approximations for fast pricing
-- Application to American options via Laplace transforms?
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the log-price formulation of the Black-Scholes PDE, apply the Laplace transform in the time variable $\tau$ and show that the resulting ODE in $x$ is a second-order constant-coefficient equation. Identify its general solution in terms of exponential functions.
+
+---
+
+**Exercise 2.** The Mellin transform of a function $f(S)$ is $\hat{f}(s) = \int_0^\infty f(S) S^{s-1} dS$. Compute the Mellin transform of the European call payoff $(S - K)^+$ and determine the strip of analyticity for the transform variable $s$.
+
+---
+
+**Exercise 3.** Explain why the Fourier transform of the call payoff requires a damping factor (or complex contour shift), while the Mellin transform handles it naturally. What property of the Mellin transform makes it particularly well-suited to multiplicative payoff structures?
+
+---
+
+**Exercise 4.** The convolution theorem states $\mathcal{F}[f * g] = \hat{f} \cdot \hat{g}$. Explain how this theorem is used in option pricing: what are $f$ and $g$ in the context of solving the Black-Scholes PDE via Fourier methods?
+
+---
+
+**Exercise 5.** For the Laplace transform inversion of the Black-Scholes solution, the Bromwich integral is $V(x,\tau) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty} \hat{V}(x,s) e^{s\tau} ds$. Describe the Gaver-Stehfest method for numerically inverting this integral without computing the contour integral directly. What are its advantages and limitations compared to direct numerical integration?
+
+---
+
+**Exercise 6.** Show that all three integral transforms (Fourier, Mellin, Laplace) applied to the Black-Scholes PDE reduce it to an ODE. For each transform, identify what variable is "transformed away" and what type of ODE results (constant coefficient, Euler-Cauchy, etc.).

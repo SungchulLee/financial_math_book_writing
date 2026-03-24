@@ -312,3 +312,29 @@ which vanishes as $\delta t \to 0$, consistent with the CLT. For finite $\delta 
 | Asymptotic distribution | Gaussian by CLT |
 | Leland adjustment | $\hat{\sigma}^2 = \sigma^2(1 + \kappa\sqrt{2/(\pi\sigma^2\delta t)})$ |
 | Key insight | Hedging quality is limited by the $\sqrt{\delta t}$ barrier; transaction costs create a U-shaped total cost curve |
+
+---
+
+## Exercises
+
+**Exercise 1.** For an ATM call with $S = K = 100$, $\sigma = 0.25$, $T = 0.5$, and constant $\Gamma = 0.028$, compute the cumulative hedging error standard deviation for $N = 26$ (weekly), $N = 126$ (daily), and $N = 504$ (twice daily) rebalancing dates. Verify that the ratios of these standard deviations are consistent with the $\sqrt{\delta t}$ scaling law.
+
+---
+
+**Exercise 2.** The total cost function is $\text{Total}(N) = a/\sqrt{N} + b\sqrt{N}$. Derive the optimal $N^*$ that minimizes this function. For $a = 4.0$ and $b = 0.05$, compute $N^*$ and the corresponding optimal rebalancing interval $\delta t^*$ when $T = 0.25$. What is the minimum total cost?
+
+---
+
+**Exercise 3.** Leland's adjusted volatility is $\hat{\sigma}^2 = \sigma^2(1 + \sqrt{2/\pi} \cdot \kappa/(\sigma\sqrt{\delta t}))$. For $\sigma = 0.20$, $\kappa = 0.002$ (20 bps half-spread), and daily rebalancing ($\delta t = 1/252$), compute $\hat{\sigma}$. By what percentage does the Leland volatility exceed the true volatility? How does this percentage change if the trader switches to weekly rebalancing?
+
+---
+
+**Exercise 4.** The expected total transaction cost scales as $\mathbb{E}[\text{TC}_{\text{total}}] \approx C_0 \sqrt{N}$. For an ATM call with $\Gamma = 0.032$, $\sigma = 0.20$, $S = 100$, $T = 0.25$, and $\kappa = 0.001$, compute $C_0$ and the expected transaction costs for daily and hourly rebalancing. At what rebalancing frequency do expected transaction costs equal $1\%$ of the option price (approximately $\$4.50$)?
+
+---
+
+**Exercise 5.** Using the CLT for hedging error, construct a 95% confidence interval for the cumulative hedging error of a daily-rebalanced short ATM call with $S = K = 100$, $\sigma = 0.20$, $T = 0.5$, $\Gamma = 0.025$. Express the interval in dollars and as a percentage of the option price (approximately $\$6.30$). How does the interval change if gamma-weighted adaptive rebalancing reduces the effective number of high-gamma steps by half?
+
+---
+
+**Exercise 6.** A trader considers a non-uniform rebalancing schedule where the interval shrinks near expiry. The adaptive rule triggers rebalancing when $\frac{1}{2}|\Gamma_k| \sigma^2 S_k^2 (t - t_k) > \varepsilon_{\text{target}}$. For $\varepsilon_{\text{target}} = 0.05$, $\sigma = 0.20$, $S = 100$, and $\Gamma$ ranging from $0.03$ (at $\tau = 3$ months) to $0.30$ (at $\tau = 1$ day), compute the maximum allowable interval $\delta t_{\max}$ at each gamma level. How does this compare to a uniform daily schedule?

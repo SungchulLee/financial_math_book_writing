@@ -222,3 +222,31 @@ When forward rates are near zero or negative, the standard SABR model ($\beta > 
 SABR parameters are typically recalibrated daily (or intraday for active desks). The fast calibration speed---milliseconds per slice---makes this feasible even for large swaption grids. Temporal smoothing via $\alpha_0^{\mathrm{smooth}} = \lambda \hat{\alpha}_0 + (1 - \lambda) \alpha_0^{\mathrm{prev}}$ (and similarly for $\rho$ and $\nu$) helps stabilize Greeks.
 
 ---
+
+## Exercises
+
+**Exercise 1.** In the SABR model, $\beta$ controls the backbone dynamics. For $\beta = 1$ (log-normal), ATM implied volatility is roughly constant as the forward moves. For $\beta = 0$ (normal), ATM normal volatility is constant. Explain qualitatively what happens for $\beta = 0.5$. How would you estimate $\beta$ empirically from a time series of ATM vols and forward rates?
+
+---
+
+**Exercise 2.** Given Hagan's ATM formula $\sigma_{\text{ATM}} \approx \alpha_0 / F^{1-\beta} \cdot [1 + (\ldots)T]$, describe the procedure for extracting $\alpha_0$ from the market ATM implied volatility for a given $(\beta, \rho, \nu)$. Why is this step typically performed first before fitting the full smile?
+
+---
+
+**Exercise 3.** A swaption desk observes the 5Y10Y implied volatility smile: ATM vol = 55 bps (normal), 25-delta receiver vol = 62 bps, 25-delta payer vol = 50 bps. The forward swap rate is 3.5%. Using $\beta = 0.5$, outline the calibration steps to determine $(\alpha_0, \rho, \nu)$. Which parameter primarily controls the skew (receiver vs. payer asymmetry)?
+
+---
+
+**Exercise 4.** Hagan's formula is a first-order asymptotic expansion in $T$ and becomes inaccurate for long maturities or far OTM strikes. For a 30-year swaption at 200 bps OTM, discuss the potential magnitude of the approximation error. What alternative pricing methods (PDE, Monte Carlo, higher-order expansions) can be used to validate or replace Hagan's formula?
+
+---
+
+**Exercise 5.** In a negative-rate environment with forward rate $F = -0.5\%$, explain why the standard SABR model with $\beta > 0$ fails. Describe the shifted SABR approach: replace $F$ with $F + s$ where $s > 0$. How should the shift $s$ be chosen? What are the implications for the interpretation of $\alpha_0$ and the smile shape?
+
+---
+
+**Exercise 6.** A SABR calibration for a 2Y5Y swaption on Monday yields $(\alpha_0, \rho, \nu) = (0.025, -0.30, 0.45)$. On Tuesday, with the forward rate unchanged and virtually identical market vols, the calibration yields $(0.028, -0.22, 0.52)$. Compute the percentage change in each parameter. Is this level of instability acceptable? Propose a temporal smoothing formula and discuss how to choose the smoothing parameter $\lambda$.
+
+---
+
+**Exercise 7.** A full swaption surface consists of smiles at (say) 7 expiries and 7 tenors, each requiring a separate SABR calibration. Describe a complete production workflow for calibrating the 49 SABR parameter sets. Address: parallelization strategy, cross-slice consistency checks, storage and versioning of parameters, and integration with a pricing library for swaption risk management.

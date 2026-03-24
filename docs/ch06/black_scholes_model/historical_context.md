@@ -318,3 +318,29 @@ The historical development of option pricing theory proceeded through several di
 **5. Post-1987 extensions**: Stochastic volatility, local volatility, and jump-diffusion models addressed the empirical inadequacies of constant $\sigma$.
 
 Each stage resolved a specific mathematical limitation of its predecessor while preserving the core principle that derivative prices are determined by no-arbitrage constraints, not by investor preferences about risk and return.
+
+---
+
+## Exercises
+
+**Exercise 1.** Using Bachelier's arithmetic Brownian motion model $S_t = S_0 + \sigma W_t$ with $S_0 = 50$ and $\sigma = 10$ (annualized), compute the probability that the stock price is negative after 5 years. Compare this with the probability under GBM with the same $S_0$ and $\sigma / S_0 = 0.20$ as the volatility parameter.
+
+---
+
+**Exercise 2.** Bachelier's call pricing formula is $C = (S_0 - K)\Phi\!\left(\frac{S_0 - K}{\sigma\sqrt{T}}\right) + \sigma\sqrt{T}\,\phi\!\left(\frac{S_0 - K}{\sigma\sqrt{T}}\right)$. Derive this formula by computing $\mathbb{E}[(S_T - K)^+]$ directly, using the fact that $S_T \sim \mathcal{N}(S_0, \sigma^2 T)$ under Bachelier's model.
+
+---
+
+**Exercise 3.** Boness's formula has $\mu$ where the Black-Scholes formula has $r$. If a stock has expected return $\mu = 12\%$, risk-free rate $r = 4\%$, $S_0 = 100$, $K = 100$, $T = 1$, and $\sigma = 25\%$, compute the call price under both Boness's formula and the Black-Scholes formula. What is the percentage difference? Explain why the Black-Scholes price is the correct arbitrage-free price regardless of $\mu$.
+
+---
+
+**Exercise 4.** The hedging argument shows that in a portfolio $\Pi = V - \Delta S$, choosing $\Delta = \partial V / \partial S$ eliminates the $dW_t$ term. Starting from $dV = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}dt$, carry out the full derivation to arrive at the Black-Scholes PDE. Identify precisely where the drift $\mu$ cancels and explain the economic reason for this cancellation.
+
+---
+
+**Exercise 5.** Harrison and Kreps (1979) established that absence of arbitrage is equivalent to the existence of an equivalent martingale measure. In the Black-Scholes market with one stock and one bond, explain why the market is complete (i.e., every contingent claim is replicable) and why this implies the risk-neutral measure $\mathbb{Q}$ is unique. What would change if the market had two independent sources of randomness but only one risky asset?
+
+---
+
+**Exercise 6.** The volatility smile emerged after the 1987 crash. Before the crash, implied volatilities across strikes were approximately flat. Explain what "implied volatility" means in terms of the Black-Scholes formula, and discuss why a non-flat implied volatility surface is inconsistent with the constant-$\sigma$ assumption of GBM. Name two post-1987 models from the table in the text and briefly describe how each addresses the smile phenomenon.

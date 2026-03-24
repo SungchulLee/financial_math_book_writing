@@ -131,3 +131,46 @@ Total computation time: typically milliseconds for all strikes.
 ## Summary
 
 The Carr-Madan FFT method leverages Fourier analysis to convert characteristic function evaluation into efficient option pricing. Its speed and generality make it the gold standard for pricing under stochastic volatility models, especially when multiple strikes need to be priced simultaneously. The method highlights the practical importance of affine models that admit closed-form characteristic functions.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Given $N = 2048$ and frequency spacing $\Delta_u = 0.5$, compute the log-strike spacing $\Delta_x = 2\pi / (N \Delta_u)$ and the total log-strike range $N \Delta_x$. If the spot price is $S_0 = 100$, what are the minimum and maximum dollar strikes on the grid? Are the extreme strikes practically relevant for pricing?
+
+---
+
+**Exercise 2.**
+The Fourier inversion formula recovers the density from the characteristic function:
+
+$$
+f(x) = \frac{1}{\pi} \operatorname{Re}\!\left(\int_0^{\infty} e^{-iux}\varphi(u) \, du\right)
+$$
+
+Explain why the integration over $(-\infty, \infty)$ reduces to an integral over $[0, \infty)$. What symmetry property of $\varphi(u)$ is used? Hint: for a real-valued random variable, $\varphi(-u) = \overline{\varphi(u)}$.
+
+---
+
+**Exercise 3.**
+The FFT computes $N$ equally-spaced prices in $\mathcal{O}(N \log N)$ operations. If $N = 4096$, how many operations does the FFT require? Compare this to evaluating $M = 50$ individual Gil-Pelaez integrals, each requiring 64 CF evaluations. At what value of $M$ does the FFT become more efficient than individual Gil-Pelaez pricing?
+
+---
+
+**Exercise 4.**
+Suppose the density recovered by FFT shows spurious oscillations (ringing) near the boundaries of the log-strike grid. Propose two remedies: (a) increasing $u_{\max}$ (explain why), and (b) applying a windowing function to the frequency-domain data before the inverse FFT. Describe the trade-off between reducing boundary effects and losing resolution.
+
+---
+
+**Exercise 5.**
+The Carr-Madan method produces prices on an equally-spaced log-strike grid, but market strikes are irregularly spaced. Describe how to interpolate the FFT output to obtain prices at arbitrary strikes. Would you use linear interpolation in log-strike space or cubic spline interpolation? Discuss the accuracy implications for deep OTM options where the price function is convex.
+
+---
+
+**Exercise 6.**
+For a Heston model with $v_0 = 0.04$, $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.5$, $\rho = -0.7$, the characteristic function decays as $|\varphi(u)| \sim e^{-cu^2}$ for large $u$. Estimate the truncation error when integrating up to $u_{\max} = 50$ versus $u_{\max} = 100$. Is the improvement worth the additional CF evaluations?
+
+---
+
+**Exercise 7.**
+The FFT prices calls for all strikes simultaneously, but a calibration requires both call prices and implied volatilities. After obtaining the FFT price vector, describe the computational pipeline to convert prices to implied volatilities. If $M = 45$ calibration strikes do not lie on the FFT grid, estimate the total number of Newton-Raphson iterations needed (assuming 4 iterations per strike) and compare this cost to the FFT itself.

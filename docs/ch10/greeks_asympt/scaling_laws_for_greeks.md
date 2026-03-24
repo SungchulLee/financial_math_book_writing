@@ -162,3 +162,29 @@ For \(\tau \to \infty\):
 - Theta and gamma are linked: \(\Theta \approx -\frac{1}{2}\sigma^2 S^2 \Gamma\) for ATM
 - Extreme strikes: tail-dominated sensitivities with exponential decay
 - Dimensional analysis provides quick scaling estimates
+
+---
+
+## Exercises
+
+**Exercise 1.** Using the dimensional analysis framework, verify that $\Gamma_{\text{ATM}} \sim 1/(S\sigma\sqrt{\tau})$ has dimension $\$^{-1}$ and that $\Theta_{\text{ATM}} \sim -S\sigma/(2\sqrt{\tau})$ has dimension $\$/T$. Check that the theta-gamma identity $\Theta + \frac{1}{2}\sigma^2 S^2 \Gamma = r(V - S\Delta)$ is dimensionally consistent.
+
+---
+
+**Exercise 2.** For an OTM call with log-moneyness $x = \ln(K/S) = 0.10$ (roughly 10% OTM), $\sigma = 0.20$, and $\tau = 0.25$ years, compute the exponential decay factor $\exp(-x^2/(2\sigma^2\tau))$. How does this compare to the ATM vega at the same maturity?
+
+---
+
+**Exercise 3.** The theta-gamma relationship states that for ATM options, $\Theta \approx -\frac{1}{2}\sigma^2 S^2 \Gamma$. Verify this numerically for $S = K = 100$, $\sigma = 0.20$, $r = 0.05$, $\tau = 0.5$ by computing both sides using the closed-form Black--Scholes formulas.
+
+---
+
+**Exercise 4.** A portfolio manager holds ATM options at three maturities: $\tau = 0.08$ (1 month), $\tau = 0.5$ (6 months), and $\tau = 2$ (2 years). Using the scaling laws, rank these positions by: (a) gamma exposure, (b) vega exposure, (c) daily theta bleed. Which maturity dominates each risk?
+
+---
+
+**Exercise 5.** The characteristic scale separating ATM from OTM is $|x| \sim \sigma\sqrt{\tau}$. For $\sigma = 0.30$ and $\tau = 1$ month, compute this scale in both log-moneyness units and as a percentage of spot price. An option with $K = 105$ when $S = 100$ --- is it effectively ATM or OTM at this maturity?
+
+---
+
+**Exercise 6.** In the long-maturity regime ($\tau \to \infty$), vega grows as $S\sqrt{\tau}/\sqrt{2\pi}$ while gamma decays as $1/(S\sigma\sqrt{2\pi\tau})$. Show that the ratio $\nu/\Gamma = \sigma S^2 \tau$ grows linearly with $\tau$. What does this imply about the relative importance of vega versus gamma hedging for long-dated options?

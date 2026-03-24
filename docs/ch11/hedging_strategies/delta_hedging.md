@@ -172,3 +172,29 @@ The plot shows: without hedging, P&L is linear in the stock move. With delta hed
 - Residual P&L after delta hedging is driven by gamma, theta, and vega — the higher-order Greeks.
 - Dynamic rebalancing is necessary because delta changes with \(S\) and \(t\).
 - The gamma-theta tradeoff is fundamental: long gamma earns on moves but pays theta; short gamma earns theta but loses on moves.
+
+---
+
+## Exercises
+
+**Exercise 1.** A trader holds 200 European put options with $\Delta_{\text{put}} = -0.40$. Compute the portfolio delta and the number of shares needed to delta-hedge. After hedging, what is the approximate P&L from a $\$2$ increase in the underlying?
+
+---
+
+**Exercise 2.** Starting with a delta-neutral position on a long call ($\Delta = 0.55$, $\Gamma = 0.03$), the underlying moves from $S = 100$ to $S = 104$. Compute: (a) the new approximate delta using $\Delta_{\text{new}} \approx \Delta + \Gamma \cdot \delta S$; (b) the number of shares the hedger must trade to rebalance; (c) the gamma P&L from this move.
+
+---
+
+**Exercise 3.** The P&L decomposition gives $\text{P\&L} \approx \Theta\,\Delta t + \frac{1}{2}\Gamma(\Delta S)^2 + \nu\,\Delta\sigma$. For a delta-hedged long call with $\Theta = -0.05$/day, $\Gamma = 0.04$, $\nu = 15$, compute the daily P&L if: (a) $\Delta S = 0$, $\Delta\sigma = 0$; (b) $\Delta S = 3$, $\Delta\sigma = 0$; (c) $\Delta S = 0$, $\Delta\sigma = +0.02$.
+
+---
+
+**Exercise 4.** Explain why delta hedging breaks down near expiry for ATM options. For $S = K = 100$, $\sigma = 0.20$, $\tau = 1/252$, compute the delta at $S = 99.5$ and $S = 100.5$. How many shares must the hedger trade for a $\$1$ move? Compare this to the same calculation at $\tau = 30/252$.
+
+---
+
+**Exercise 5.** A portfolio manager holds a delta-neutral book with $\Gamma = 5.0$ (portfolio) and $\Theta = -0.80$/day. Using the theta-gamma identity $\Theta + \frac{1}{2}\sigma^2 S^2 \Gamma = r(V - S\Delta)$, and assuming the delta-neutral book has $V - S\Delta \approx 0$, verify the consistency of $\Theta \approx -\frac{1}{2}\sigma^2 S^2 \Gamma$ with $S = 100$ and $\sigma = 0.20$.
+
+---
+
+**Exercise 6.** Modify the Python delta-hedging code to rebalance only when the delta deviation exceeds a threshold of $0.05$ (i.e., only trade when $|\Delta_{\text{new}} - \Delta_{\text{current}}| > 0.05$). Simulate 1000 paths and compare the hedged P&L standard deviation with the continuous rebalancing strategy. How much does the threshold reduce the number of trades?

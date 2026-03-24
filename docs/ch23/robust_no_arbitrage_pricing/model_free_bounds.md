@@ -1057,3 +1057,51 @@ subject to marginal constraints.
 4. **Market Microstructure**: Incorporating realistic frictions (bid-ask spreads, discrete strikes) into model-free theory.
 
 Model-free bounds represent a cornerstone of robust derivative pricing, providing rigorous constraints that must hold regardless of modeling assumptions. This theory bridges classical arbitrage pricing with modern robust optimization, offering both theoretical insights and practical tools for quantitative finance.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a stock with current price $S_0 = 100$, risk-free rate $r = 0$, and maturity $T = 1$. European call prices are observed at strikes $K = 90, 100, 110$ with prices $C(90) = 14$, $C(100) = 8$, and $C(110) = 4$. Verify that these prices satisfy the convexity constraint, and compute the discrete approximation to the risk-neutral density $q(K)$ at $K = 100$ using the Breeden-Litzenberger formula.
+
+---
+
+**Exercise 2.** Prove that put option prices $P(K)$ are convex in the strike $K$. That is, for $K_1 < K_2 < K_3$ with $K_2 = \lambda K_1 + (1 - \lambda) K_3$, show that
+
+$$
+P(K_2) \leq \lambda P(K_1) + (1 - \lambda) P(K_3)
+$$
+
+using a no-arbitrage argument based on butterfly spreads with puts.
+
+---
+
+**Exercise 3.** Using the Carr-Madan decomposition, express the price of a power payoff $g(S_T) = S_T^2$ in terms of European call and put prices. Compute $g''(K)$ and write out the resulting integral formula explicitly.
+
+---
+
+**Exercise 4.** Suppose the risk-neutral distribution of $S_T$ is supported on three points $\{80, 100, 120\}$ with probabilities $\{q_1, q_2, q_3\}$. Given that $S_0 = 100$ and $r = 0$, write down the constraints that $q_1, q_2, q_3$ must satisfy (martingale, normalization, non-negativity). Then formulate and solve the linear program that gives the model-free upper bound for the price of a digital option paying $1$ if $S_T > 100$.
+
+---
+
+**Exercise 5.** For an arithmetic Asian call with payoff $\left(\frac{1}{2}(S_{T/2} + S_T) - K\right)^+$, explain why the model-free upper bound satisfies
+
+$$
+C_{\text{Asian}}(K) \leq \frac{1}{2}\bigl(C(K, T/2) + C(K, T)\bigr)
+$$
+
+where $C(K, T/2)$ and $C(K, T)$ are European call prices at the respective maturities. Under what conditions is this bound tight?
+
+---
+
+**Exercise 6.** Show that the model-free implied variance $\sigma_{\text{MF}}^2$ can be computed from put options alone when $S_0 = F$ (the forward price equals the current price). Specifically, derive
+
+$$
+\sigma_{\text{MF}}^2 = \frac{2}{T} \int_0^{S_0} \frac{P(K)}{K^2} \, dK + \frac{2}{T} \int_{S_0}^{\infty} \frac{C(K)}{K^2} \, dK
+$$
+
+and explain why in practice this formula uses out-of-the-money options for both puts ($K < S_0$) and calls ($K > S_0$).
+
+---
+
+**Exercise 7.** Consider a market with two risky assets $S^{(1)}$ and $S^{(2)}$ and suppose the marginal distributions of $S_T^{(1)}$ and $S_T^{(2)}$ are both uniform on $[80, 120]$ with $S_0^{(1)} = S_0^{(2)} = 100$. Using Frechet-Hoeffding bounds, derive model-free upper and lower bounds on the price of a spread option with payoff $(S_T^{(1)} - S_T^{(2)})^+$. Explain why the upper bound corresponds to the case of maximal negative correlation between the two assets.

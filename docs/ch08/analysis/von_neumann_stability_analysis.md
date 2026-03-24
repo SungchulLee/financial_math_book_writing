@@ -379,3 +379,29 @@ $$
 $$
 
 The explicit scheme's conditional stability ($\lambda \leq 1/2$) imposes a severe time-step restriction for the Black-Scholes PDE: $\Delta\tau \leq (\Delta S)^2 / (\sigma^2 S_{\max}^2)$. The implicit and Crank-Nicolson schemes avoid this restriction entirely, making them the preferred choices for practical option pricing.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the explicit scheme applied to the heat equation $u_\tau = Du_{xx}$ with $D = 1$ and $\Delta x = 0.05$, compute the amplification factor $g(\xi)$ at $\xi = \pi$ (the highest-frequency mode) for $\lambda = 0.4$ and $\lambda = 0.6$. In which case is the scheme stable?
+
+---
+
+**Exercise 2.** Derive the amplification factor for the implicit scheme: starting from $g = 1 - 4\lambda g \sin^2(\xi/2)$, solve for $g$ to obtain $g = 1/(1 + 4\lambda\sin^2(\xi/2))$. Verify that $|g| \leq 1$ for all $\lambda > 0$ and all $\xi$.
+
+---
+
+**Exercise 3.** The Crank-Nicolson amplification factor $g = (1 - 2\lambda\sin^2(\xi/2))/(1 + 2\lambda\sin^2(\xi/2))$ can become negative for large $\lambda$. Find the critical value of $\lambda$ at which $g(\pi) = 0$, and determine for what values of $\lambda$ the highest-frequency mode $g(\pi) < -0.5$. Explain why negative $g$ leads to oscillatory behavior.
+
+---
+
+**Exercise 4.** For the general theta-scheme with amplification factor $g = (1 - (1-\theta)\mu)/(1 + \theta\mu)$ where $\mu = 4\lambda\sin^2(\xi/2)$, prove that the scheme is unconditionally stable when $\theta \geq 1/2$. What is the stability restriction when $\theta = 1/4$?
+
+---
+
+**Exercise 5.** The mesh Peclet number $\text{Pe}_h = |c|\Delta x/D$ governs oscillations in convection-diffusion problems. For the Black-Scholes PDE in log-price coordinates with $r = 0.05$, $\sigma = 0.3$, and $\Delta x = 0.05$, compute $\text{Pe}_h$ and determine whether central differences are oscillation-free. What $\Delta x$ would ensure $\text{Pe}_h \leq 2$?
+
+---
+
+**Exercise 6.** Von Neumann analysis strictly applies only to constant-coefficient problems on periodic domains. Explain why a "frozen-coefficient" analysis at each grid node provides useful (though not rigorous) stability information for the Black-Scholes PDE in the original $S$-coordinates, where the diffusion coefficient $\frac{1}{2}\sigma^2 S_j^2$ varies with $j$.

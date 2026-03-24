@@ -157,3 +157,29 @@ $$
 | Ordering | $V_{\text{vanilla}} \leq V_{\text{fixed lookback}} \leq V_{\text{floating lookback}}$ |
 
 **Lookback options provide perfect hindsight by referencing the extremal price over the option's life, offering maximum payoff potential at the cost of a substantial premium.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Prove the price ordering $V_{\text{vanilla call}} \leq V_{\text{fixed-strike lookback call}}$ by showing that $(S_{\max} - K)^+ \geq (S_T - K)^+$ for every path. Under what condition on the path does equality hold?
+
+---
+
+**Exercise 2.** A floating-strike lookback call has payoff $S_T - S_{\min}$, which is always non-negative. Explain why this payoff is never zero (assuming continuous paths and $\sigma > 0$), and why this property makes floating-strike lookbacks particularly expensive. Estimate the option value as a multiple of the vanilla call price for typical parameters.
+
+---
+
+**Exercise 3.** For discrete monitoring with $n$ observation dates, explain why $S_{\max}^{\text{discrete}} \leq S_{\max}^{\text{continuous}}$. Derive the Broadie-Glasserman-Kou correction $S_{\max}^{\text{continuous}} \approx S_{\max}^{\text{discrete}} \cdot e^{\beta \sigma \sqrt{T/n}}$ and compute the correction factor for $\sigma = 0.25$, $T = 1$, $n = 52$ (weekly monitoring).
+
+---
+
+**Exercise 4.** Consider a fixed-strike lookback put with payoff $(K - S_{\min})^+$ where $K = 100$ and suppose $S_{\min} = 75$ over the option's life. Compare this payoff with a vanilla put that expires with $S_T = 90$. Which option pays more and by how much? Explain why the lookback put is sometimes described as providing "insurance at the best possible price."
+
+---
+
+**Exercise 5.** The Goldman-Sosin-Gatto formula for floating-strike lookback calls involves the joint distribution of $(S_T, S_{\min})$. Explain the connection between this joint distribution and the reflection principle for Brownian motion. Why does the analytical formula require continuous monitoring, and what modifications are needed for discrete monitoring?
+
+---
+
+**Exercise 6.** A partial lookback option only monitors the running maximum over a subinterval $[t_1, t_2] \subset [0, T]$, with payoff $(S_{\max}^{[t_1, t_2]} - K)^+$. Explain why this option is cheaper than a full lookback and more expensive than a vanilla call. Describe how you would price it using Monte Carlo simulation.

@@ -323,3 +323,29 @@ print(f"Max absolute error (log space)     : {np.max(np.abs(V_log - V_exact_log)
 - The explicit FDM evolves the solution using a three-point stencil: $V_i^{n+1} = a_i V_{i-1}^n + b_i V_i^n + c_i V_{i+1}^n$.
 - While simple and intuitive, the scheme requires small $\Delta t$ to remain stable, especially when $\sigma$ or $S_{\max}$ is large.
 - Both original-space and log-price-space implementations are demonstrated, with error comparison against the analytical Black-Scholes formula.
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify the explicit scheme coefficients $a_i = \frac{\Delta t}{2}[\sigma^2 i^2 - ri]$, $b_i = 1 - \Delta t[\sigma^2 i^2 + r]$, $c_i = \frac{\Delta t}{2}[\sigma^2 i^2 + ri]$ by substituting finite difference approximations into the Black-Scholes PDE and isolating terms at nodes $i-1$, $i$, and $i+1$.
+
+---
+
+**Exercise 2.** For $\sigma = 0.2$, $S_{\max} = 300$, $M = 100$ ($\Delta S = 3$), compute the stability bound $\Delta t \leq (\Delta S)^2 / (\sigma^2 S_{\max}^2)$. How many time steps $N$ are required for $T = 1$? What is the total number of floating-point operations (approximately)?
+
+---
+
+**Exercise 3.** The coefficient $a_i = \frac{\Delta t}{2}[\sigma^2 i^2 - ri]$ is negative when $i < r/\sigma^2$. For $r = 0.05$ and $\sigma = 0.2$, compute the threshold index $i^* = r/\sigma^2$. Explain why negative coefficients violate the monotonicity of the scheme and describe the upwinding remedy.
+
+---
+
+**Exercise 4.** Compare the explicit scheme in original space and log-price space for a European put with $K = 100$. In the log-price formulation, the diffusion coefficient is $\sigma^2/2$ (constant), whereas in original space it is $\sigma^2 S^2/2$ (growing with $S$). Explain why the CFL condition in log-space, $\Delta\tau \leq (\Delta x)^2/\sigma^2$, is much less restrictive than the original-space condition.
+
+---
+
+**Exercise 5.** The algorithm outline states that at $t = T$, we set $V_i^N = \max(S_i - K, 0)$ for a call. If we also want to price a put on the same grid, what changes are needed in the terminal condition and boundary conditions? Write them out explicitly.
+
+---
+
+**Exercise 6.** When pricing an American call with the explicit scheme and early exercise projection, explain why early exercise is never optimal for a non-dividend-paying stock (i.e., the projection step never activates). How does this change when the stock pays a continuous dividend yield $q > 0$?

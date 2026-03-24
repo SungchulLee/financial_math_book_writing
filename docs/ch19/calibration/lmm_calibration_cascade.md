@@ -324,3 +324,45 @@ After calibration, decompose the swaption pricing error into:
 - Brigo & Mercurio (2006), *Interest Rate Models: Theory and Practice*, Chapter 7
 - Andersen & Piterbarg (2010), *Interest Rate Modeling*, Volume II, Chapter 15
 - Rebonato (2004), *Volatility and Correlation*, Chapters 18--20
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider an LMM with four forward rates $L_1, L_2, L_3, L_4$ on an annual grid ($T_i = i$ for $i=1,\ldots,4$). The stripped caplet Black volatilities are $v_1 = 20\%$, $v_2 = 22\%$, $v_3 = 21\%$, $v_4 = 19\%$. Using the homogeneous assumption (each off-diagonal volatility in a new row equals the corresponding diagonal element of the previous row), execute the volatility cascade to compute the full lower-triangular volatility matrix $\Lambda = (\lambda_{ij})$. Check that no negative variance arises.
+
+---
+
+**Exercise 2.** In the abcd volatility parameterization $\phi(\tau) = (a + b\tau)e^{-c\tau} + d$, suppose $a = 0.05$, $b = 0.12$, $c = 0.80$, and $d = 0.14$. Compute the peak maturity
+
+$$
+\tau^* = \frac{1}{c} - \frac{a}{b}
+$$
+
+and the corresponding peak volatility $\phi(\tau^*)$. Sketch the volatility as a function of $\tau$ and interpret the hump economically.
+
+---
+
+**Exercise 3.** Suppose Stage 1 of the cascade has been completed and yields a $3 \times 3$ volatility matrix $\Lambda$. Three forward rates have initial values $L_1(0) = 3.5\%$, $L_2(0) = 3.8\%$, $L_3(0) = 4.0\%$ and the initial swap rate is $S(0) = 3.77\%$ with equal weights $w_i = 1/3$. Using Rebonato's swaption volatility formula with exponential correlation $\rho_{ij} = e^{-\beta|i-j|}$, derive an expression for the model swaption volatility $\sigma_S^{\text{model}}$ as an explicit function of $\beta$. Explain qualitatively why increasing $\beta$ (decreasing correlation) reduces $\sigma_S^{\text{model}}$.
+
+---
+
+**Exercise 4.** Explain why a negative value of $\lambda_{kk}^2$ in the cascade indicates an inconsistency between the market caplet volatilities and the structural assumption used for the off-diagonal entries. Propose two concrete remedies and discuss the trade-off between exact caplet fit and parameter smoothness.
+
+---
+
+**Exercise 5.** A co-terminal swaption set with final maturity $T_5 = 5$ years contains swaptions with expiries $1\text{Y}, 2\text{Y}, 3\text{Y}, 4\text{Y}$. Explain how the cascade algorithm can be run "backward" from the longest-expiry co-terminal swaption to achieve an exact fit to all four co-terminal swaption volatilities. Why does this backward calibration produce different diagonal volatilities $\lambda_{kk}$ compared to the standard (caplet-based) forward cascade?
+
+---
+
+**Exercise 6.** After completing both stages of the calibration cascade, the maximum residual swaption volatility error across the full $10 \times 10$ swaption matrix is 4.5 bps, concentrated at the $7\text{Y} \times 3\text{Y}$ and $8\text{Y} \times 2\text{Y}$ swaptions. Perform an error attribution analysis: describe how you would determine whether the residual is primarily due to (a) the volatility parameterization, (b) the correlation parameterization, or (c) the frozen-weight approximation in Rebonato's formula.
+
+---
+
+**Exercise 7.** Consider a regularized cascade where the objective function adds a penalty for deviations from a smooth volatility surface:
+
+$$
+\min_{\Lambda,\, \rho\text{-params}} \sum_i \bigl(\sigma_i^{\text{model}} - \sigma_i^{\text{mkt}}\bigr)^2 + \alpha \sum_i \bigl(\lambda_{ii} - \lambda_{i-1,i-1}\bigr)^2 + \gamma \sum_m \bigl(\sigma_m^{\text{swap, model}} - \sigma_m^{\text{swap, mkt}}\bigr)^2
+$$
+
+Discuss how the regularization parameter $\alpha$ controls the trade-off between exact caplet fit and volatility smoothness. What happens in the limits $\alpha \to 0$ and $\alpha \to \infty$?

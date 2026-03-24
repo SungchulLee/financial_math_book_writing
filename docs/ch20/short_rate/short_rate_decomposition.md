@@ -121,3 +121,29 @@ f(0,T)+\frac{\sigma^2}{2\lambda}\left(e^{-\lambda T}-1\right)^2\\
 ???+ note "Proof"
 
     By matching the analytic ZCB price $P(0,T)$ from the characteristic function with the market ZCB price, and noting that the decomposition separates the deterministic $\psi$ component from the stochastic $\tilde{r}$ component, we obtain the closed-form expression for $\psi(T)$.
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify that $\tilde{r}(t) = r(t) - \psi(t)$ satisfies $d\tilde{r}(t) = -\lambda\tilde{r}(t)\,dt + \sigma\,dW^{\mathbb{Q}}(t)$ by computing $dr(t) - d\psi(t)$ and simplifying. Why does the time-dependent $\theta(t)$ cancel out?
+
+---
+
+**Exercise 2.** Show that $\tilde{r}(t)$ has the explicit solution $\tilde{r}(t) = \sigma\int_0^t e^{-\lambda(t-s)}dW^{\mathbb{Q}}(s)$. Compute the variance of $\tilde{r}(t)$ using the Ito isometry and verify it equals $\frac{\sigma^2}{2\lambda}(1 - e^{-2\lambda t})$.
+
+---
+
+**Exercise 3.** Explain the advantage of the decomposition $r(t) = \tilde{r}(t) + \psi(t)$ for computing the discounted characteristic function. Why is it easier to work with $\tilde{r}$ (which follows a standard OU process) than with $r$ directly?
+
+---
+
+**Exercise 4.** Setting $u = 0$ in the discounted characteristic function yields the ZCB price. Carry out this substitution and show that $P(t,T) = e^{A(\tau) + B(\tau)r(t)}$ where the functions $A$ and $B$ involve $\psi$ and the OU characteristic function.
+
+---
+
+**Exercise 5.** Verify the final form $\psi(T) = f(0,T) + \frac{\sigma^2}{2\lambda}(e^{-\lambda T} - 1)^2$ by checking that $\psi(0) = f(0,0) = r_0$ and that $\psi'(t) = \lambda\theta(t) - \lambda\psi(t)$.
+
+---
+
+**Exercise 6.** For $\sigma = 0.01$, $\lambda = 0.05$, and a flat forward curve $f(0,T) = 0.04$, compute $\psi(T)$ at $T = 0, 5, 10, 30$. How large is the convexity correction $\frac{\sigma^2}{2\lambda}(e^{-\lambda T} - 1)^2$ relative to $f(0,T)$?

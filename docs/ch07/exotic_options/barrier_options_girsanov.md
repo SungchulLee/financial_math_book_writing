@@ -195,3 +195,29 @@ where $\beta \approx 0.5826$ and $\Delta t$ is the monitoring interval.
 ### Near-Barrier Behavior
 
 As $S_t$ approaches the barrier $H$, the option's delta and gamma exhibit extreme behavior, making hedging challenging near the knockout level.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the risk-neutral dynamics $dS_t = rS_t\,dt + \sigma S_t\,d\tilde{W}_t$, derive the log-price process $X_t = \log S_t$ using Ito's lemma. Verify that $X_t = x + \mu t + \sigma \tilde{W}_t$ where $\mu = r - \frac{1}{2}\sigma^2$ and $x = \log S_0$.
+
+---
+
+**Exercise 2.** The up-and-out call formula is $C_{\text{UO}} = C_{\text{BS}}(S_0, K, T) - (S_0/H)^{2\lambda - 2} C_{\text{BS}}(H^2/S_0, K, T)$ with $\lambda = r/\sigma^2 + 1/2$. Verify the two limiting cases: (a) Show that as $H \to \infty$, $C_{\text{UO}} \to C_{\text{BS}}(S_0, K, T)$. (b) Show that as $H \to S_0^+$, $C_{\text{UO}} \to 0$. For part (b), you may assume $C_{\text{BS}}$ is continuous in its first argument.
+
+---
+
+**Exercise 3.** Explain why the reflection principle cannot be applied directly to drifted Brownian motion $X_t = x + \mu t + \sigma W_t$ when $\mu \neq 0$. Describe the Girsanov-type measure change that removes the drift, and show that the Radon-Nikodym derivative produces the factor $(S_0/H)^{2\lambda - 2}$ in the pricing formula.
+
+---
+
+**Exercise 4.** The "reflected spot price" $H^2/S_0$ appears as the first argument of $C_{\text{BS}}$ in the barrier correction term. (a) Show that $\log(H^2/S_0) = 2b - x$ where $b = \log H$ and $x = \log S_0$, confirming this is the image point of $x$ reflected about $b$. (b) For $S_0 = 100$ and $H = 120$, compute $H^2/S_0$ and interpret it geometrically in log-price space.
+
+---
+
+**Exercise 5.** Using in-out parity, derive the up-and-in call formula $C_{\text{UI}} = (S_0/H)^{2\lambda - 2} C_{\text{BS}}(H^2/S_0, K, T)$. For $S_0 = 100$, $K = 100$, $H = 130$, $T = 1$, $r = 0.05$, $\sigma = 0.25$, compute $\lambda$ and the reflected spot price $H^2/S_0$, then explain qualitatively whether $C_{\text{UI}}$ is large or small relative to $C_{\text{BS}}$.
+
+---
+
+**Exercise 6.** The Broadie-Glasserman correction for discrete monitoring adjusts the barrier as $H_{\text{adjusted}} = H \cdot e^{\pm \beta \sigma \sqrt{\Delta t}}$. Explain the sign convention: when should the $+$ sign be used versus the $-$ sign? Relate this to whether discrete monitoring makes a knock-out option more or less valuable compared to continuous monitoring.

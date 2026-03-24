@@ -197,3 +197,46 @@ The Novikov condition $\mathbb{E}^{\mathbb{P}}[\exp(\frac{1}{2}\int_0^T \theta_s
 3. The measure change is valid
 
 Without this condition, $Z_t$ may only be a local martingale, and the measure change may not define a valid probability measure.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Let $\theta$ be a constant. Apply Ito's lemma to $Z_t = \exp(-\theta W_t - \frac{1}{2}\theta^2 t)$ and verify that $dZ_t = -\theta Z_t\,dW_t$. Explain why the absence of a $dt$ term guarantees that $Z_t$ is a local martingale.
+
+---
+
+**Exercise 2.**
+For constant $\theta$, the exponent $X_t = -\theta W_t - \frac{1}{2}\theta^2 t$ is Gaussian with mean $-\frac{1}{2}\theta^2 t$ and variance $\theta^2 t$. Using the moment generating function of a Gaussian random variable, verify that $\mathbb{E}^{\mathbb{P}}[Z_t] = 1$ for all $t \geq 0$.
+
+---
+
+**Exercise 3.**
+In Step 3 of the proof, the change-of-measure formula states
+
+$$
+\mathbb{E}^{\mathbb{Q}}[X_t | \mathcal{F}_s] = \frac{\mathbb{E}^{\mathbb{P}}[X_t Z_T | \mathcal{F}_s]}{Z_s}
+$$
+
+Explain why the denominator is $Z_s$ rather than $Z_T$. What property of $Z_t$ makes this valid?
+
+---
+
+**Exercise 4.**
+Levy's characterization theorem states that a continuous local martingale with quadratic variation $\langle M \rangle_t = t$ is a standard Brownian motion. Explain why both conditions (continuity and unit quadratic variation) are necessary. Give an example of a continuous martingale whose quadratic variation is not $t$ and is therefore not a Brownian motion.
+
+---
+
+**Exercise 5.**
+Consider the process $\widetilde{W}_t = W_t + \int_0^t \theta_s\,ds$. Show that the integral $\int_0^t \theta_s\,ds$ has zero quadratic variation, and conclude that $\langle \widetilde{W} \rangle_t = \langle W \rangle_t = t$. Why does this step rely on the fact that the integral is a finite-variation process?
+
+---
+
+**Exercise 6.**
+Suppose the Novikov condition fails, meaning $\mathbb{E}^{\mathbb{P}}[\exp(\frac{1}{2}\int_0^T \theta_s^2\,ds)] = \infty$. Explain why $Z_t$ may still be a local martingale but could fail to be a true martingale. What goes wrong with the measure change in this case? State the consequence for $\mathbb{E}^{\mathbb{P}}[Z_T]$.
+
+---
+
+**Exercise 7.**
+Verify the characteristic function computation in Step 6: show that $\mathbb{E}^{\mathbb{Q}}[e^{i\lambda \widetilde{W}_t}] = e^{-\lambda^2 t / 2}$ for constant $\theta$. Start from the definition $\mathbb{E}^{\mathbb{Q}}[e^{i\lambda \widetilde{W}_t}] = \mathbb{E}^{\mathbb{P}}[e^{i\lambda \widetilde{W}_t} Z_T]$ and use the fact that $\widetilde{W}_t = W_t + \theta t$ and $Z_T = \exp(-\theta W_T - \frac{1}{2}\theta^2 T)$.

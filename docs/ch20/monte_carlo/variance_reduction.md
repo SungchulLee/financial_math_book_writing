@@ -156,3 +156,33 @@ The combined estimator applies antithetic variates within each stratum and then 
 ## Summary
 
 Variance reduction is essential for efficient Monte Carlo pricing in the Hull-White model. Antithetic variates exploit the symmetry of Gaussian increments and are most effective for monotone payoffs. Control variates using analytically known bond prices provide substantial variance reduction with minimal implementation overhead, achieving reduction factors of $1 - \rho^2$ where $\rho$ is the correlation between the payoff and the control. Importance sampling shifts the sampling distribution toward the payoff region, particularly useful for out-of-the-money options. These techniques can be combined to achieve multiplicative variance reduction, significantly reducing the computational cost of pricing path-dependent interest rate derivatives.
+
+---
+
+## Exercises
+
+**Exercise 1.** Show that the antithetic estimator $\hat{V}_{\text{anti}} = \frac{1}{N}\sum_{k=1}^N \frac{\hat{V}^{(k)} + \hat{V}^{(k,-)}}{2}$ is unbiased. Then prove that $\text{Var}(\hat{V}_{\text{anti}}) \leq \text{Var}(\hat{V}_{\text{std}})$ when the payoff is a monotone function of the short rate path.
+
+---
+
+**Exercise 2.** For a caplet with payoff $\max(l_k - K, 0)$ where $l_k$ is a decreasing function of $r_{T_{k-1}}$, explain why antithetic variates are effective. For a straddle with payoff $|l_k - K|$, explain why antithetic variates provide little benefit.
+
+---
+
+**Exercise 3.** The control variate estimator uses $C^{(k)} = 1/M^{(k)}(T)$ with known expectation $P(0,T)$. Derive the optimal coefficient $\beta^* = \text{Cov}(\hat{V}, C)/\text{Var}(C)$ by minimizing $\text{Var}(\hat{V} - \beta(C - P(0,T)))$ over $\beta$. If $\rho = \text{Corr}(\hat{V}, C) = 0.95$, what is the variance reduction factor?
+
+---
+
+**Exercise 4.** For a Bermudan swaption priced by Monte Carlo, the European swaption (with analytic price via Jamshidian) serves as a control variate. Explain why the correlation between the Bermudan and European payoffs is high, and estimate the expected variance reduction factor.
+
+---
+
+**Exercise 5.** Importance sampling for a deep out-of-the-money caplet shifts the mean of $r_T$ toward the strike $K$. The likelihood ratio per time step is $\exp(-\theta_{\text{IS}} Z_i + \frac{1}{2}\theta_{\text{IS}}^2)$. Derive this formula by computing the Radon-Nikodym derivative between $\mathcal{N}(\theta_{\text{IS}}, 1)$ and $\mathcal{N}(0,1)$ for a single normal draw.
+
+---
+
+**Exercise 6.** Stratified sampling partitions the first standard normal draw into $K$ equal-probability strata. For $K = 10$ strata and $N = 1000$ total paths (100 per stratum), describe the sampling procedure. Why is the stratified estimator guaranteed to have variance no larger than the unstratified estimator?
+
+---
+
+**Exercise 7.** Describe a combined variance reduction strategy using antithetic variates, control variates (with ZCB as control), and stratification on the first time step. In what order should these techniques be applied? Estimate the total variance reduction factor if each technique independently reduces variance by 50%.

@@ -329,3 +329,58 @@ $$
 - [Transition Density as Green's Function](../greens_functions/transition_density_as_greens_function.md) -- the PDE-probability connection
 - [Feynman-Kac Formula](../feynman_kac/feynman_kac_formula.md) -- adding discounting to expectations
 - [Fokker-Planck for Financial Models](fokker_planck_financial_models.md) -- applied Fokker-Planck equations
+
+---
+
+## Exercises
+
+**Exercise 1.**
+For Brownian motion with drift $dX_t = \mu\,dt + \sigma\,dW_t$, compute $\mathbb{E}[X_t^3 \mid X_0 = x_0]$ using the explicit solution $X_t = x_0 + \mu t + \sigma W_t$. Verify your answer by checking that $u(t, x) = \mathbb{E}_x[X_t^3]$ satisfies the backward equation $\partial_t u = \mu\partial_x u + \frac{\sigma^2}{2}\partial_{xx} u$.
+
+---
+
+**Exercise 2.**
+For geometric Brownian motion $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$, derive the variance formula
+
+$$
+\text{Var}(S_t \mid S_0 = s_0) = s_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)
+$$
+
+by first computing $\mathbb{E}[S_t^2]$ using the moment-generating function of the normal distribution. Why does the variance grow exponentially even though $\log S_t$ has variance that grows only linearly?
+
+---
+
+**Exercise 3.**
+For the Ornstein-Uhlenbeck process $dX_t = -\kappa(X_t - \theta)\,dt + \sigma\,dW_t$, use the explicit solution
+
+$$
+X_t = \theta + (x_0 - \theta)e^{-\kappa t} + \sigma\int_0^t e^{-\kappa(t-s)}\,dW_s
+$$
+
+to derive the conditional mean $m(t) = \theta + (x_0 - \theta)e^{-\kappa t}$ and variance $v(t) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})$. Verify that the variance saturates at $\sigma^2/(2\kappa)$ as $t \to \infty$.
+
+---
+
+**Exercise 4.**
+The CIR process $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$ has conditional mean $\mathbb{E}[X_t \mid X_0 = x_0] = \theta + (x_0 - \theta)e^{-\kappa t}$, identical to the OU process. Explain why the means coincide despite the processes being quite different. Compute the conditional variance of the CIR process and compare it to the OU variance.
+
+---
+
+**Exercise 5.**
+The Feller condition $2\kappa\theta \geq \xi^2$ ensures that the CIR process stays strictly positive. Interpret this condition in terms of the balance between mean reversion (pulling toward $\theta > 0$) and volatility (pushing toward zero). What happens to the transition density near $x = 0$ when the Feller condition is violated?
+
+---
+
+**Exercise 6.**
+For the GBM transition density under the risk-neutral measure ($\mu \to r$), derive the Black-Scholes call price by evaluating
+
+$$
+C(0, s_0) = e^{-rT}\int_K^{\infty}(S - K)\,p^{\mathbb{Q}}(T, S \mid 0, s_0)\,dS
+$$
+
+Show that the integral splits into two terms involving the cumulative normal distribution $\Phi$, yielding $C = s_0\Phi(d_1) - Ke^{-rT}\Phi(d_2)$.
+
+---
+
+**Exercise 7.**
+All four processes discussed (BM with drift, GBM, OU, CIR) are affine processes: their characteristic functions have the form $\mathbb{E}[e^{i\xi X_t}] = \exp(A(t, \xi) + B(t, \xi)x_0)$. For the OU process, compute the characteristic function by using the Gaussian transition density and verify the exponential-affine form. Identify $A(t, \xi)$ and $B(t, \xi)$ explicitly.

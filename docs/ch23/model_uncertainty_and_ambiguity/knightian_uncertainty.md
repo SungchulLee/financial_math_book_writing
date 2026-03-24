@@ -637,3 +637,45 @@ $$
 6. **Measurement**: Ambiguity aversion can be quantified through experimental elicitation and calibrated to market data
 
 The study of Knightian uncertainty enriches our understanding of decision-making under incomplete information and provides robust approaches to financial modeling when model specification is uncertain.
+
+---
+
+## Exercises
+
+**Exercise 1.** In the Ellsberg paradox with Urn 2 containing 100 balls of unknown red/black composition, suppose a decision maker uses maxmin expected utility with the set of priors $\mathcal{P}_2 = \{P : P(\text{Red}) \in [0.3, 0.7]\}$. Compute the maxmin expected utility of each bet (A, B, C, D) assuming linear utility $u(x) = x$ and verify that the typical preference pattern (A over C, B over D) is reproduced.
+
+---
+
+**Exercise 2.** For the variational preference representation $V(f) = \min_{P \in \mathcal{P}} \{\mathbb{E}_P[u(f)] + \theta D_{\text{KL}}(P \| P_0)\}$, show that the minimizing measure $P^*$ satisfies
+
+$$
+\frac{dP^*}{dP_0} = \frac{e^{-u(f)/\theta}}{\mathbb{E}_{P_0}[e^{-u(f)/\theta}]}
+$$
+
+Interpret this result: what does the worst-case measure look like when the payoff $f$ is high versus low?
+
+---
+
+**Exercise 3.** Consider a portfolio choice problem under Knightian uncertainty about expected returns. The mean return vector satisfies $\mu \in \{\mu : \|\mu - \hat{\mu}\|_{\Sigma^{-1}} \leq \delta\}$. Derive the robust optimal portfolio
+
+$$
+w^* = \frac{1}{\lambda(1 + \delta / \sqrt{\hat{\mu}^\top \Sigma^{-1} \hat{\mu}})} \Sigma^{-1} \hat{\mu}
+$$
+
+and show that increasing ambiguity $\delta$ uniformly shrinks positions toward zero, equivalent to increasing the effective risk aversion.
+
+---
+
+**Exercise 4.** Prove that ambiguity aversion and risk aversion are orthogonal concepts by constructing an example of an agent who is risk-neutral ($u(x) = x$) but ambiguity-averse (uses maxmin over $\mathcal{P}$). Show that this agent's pricing kernel differs from the standard risk-neutral pricing kernel, and interpret the difference as an ambiguity premium.
+
+---
+
+**Exercise 5.** Explain the rectangularity condition for dynamic consistency of multiple priors. Consider a two-period model where $\mathcal{P}$ contains two measures $P_1$ and $P_2$ on $\{HH, HT, TH, TT\}$. Is the set $\mathcal{P} = \{P_1, P_2\}$ rectangular if $P_1(H_1) = 0.6$, $P_1(H_2|H_1) = 0.5$, $P_1(H_2|T_1) = 0.4$, and $P_2(H_1) = 0.4$, $P_2(H_2|H_1) = 0.5$, $P_2(H_2|T_1) = 0.4$? What if $P_2(H_2|H_1) = 0.6$?
+
+---
+
+**Exercise 6.** The smooth ambiguity model of Klibanoff-Marinacci-Mukerji uses the representation $V(f) = \int_\mathcal{P} \phi(\mathbb{E}_P[u(f)]) \, d\mu(P)$. Consider the case where $\phi(x) = -e^{-\alpha x}$ (exponential ambiguity aversion). Show that for normally distributed outcomes and a Gaussian second-order prior $\mu$, the smooth ambiguity value reduces to a mean-variance criterion with an augmented variance term that reflects ambiguity.
+
+---
+
+**Exercise 7.** In the robust control formulation with linear dynamics $x_{t+1} = Ax_t + Bu_t + Cw_t$ and quadratic costs, the worst-case disturbance is $w_t^* = (1/\theta) C^\top V_{t+1} x_t$, where $V_{t+1}$ is the value function matrix. For a scalar system with $A = 0.9$, $B = 1$, $C = 0.5$, $Q = 1$, $R = 0.1$, solve for the robust optimal control and worst-case disturbance as a function of $\theta$. What happens as $\theta \to \infty$ (maximal robustness concern)?

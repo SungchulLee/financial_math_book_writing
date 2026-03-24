@@ -128,3 +128,63 @@ This formula expresses the local volatility surface as a function of observable 
 
 The Dupire formula represents one of the most important results in quantitative finance. It establishes that local volatility can be determined entirely from the market prices of European options across all strikes and maturities. The integration by parts approach reveals the underlying structure of how the drift and diffusion components of the stochastic process manifest in the option pricing PDE.
 
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the Fokker-Planck equation for the risk-neutral density $p(s, T)$, verify that the drift term integration by parts yields
+
+$$
+\int_{K}^{\infty}(s-K)\left[rs \, p\right]_s \, ds = -\int_{K}^{\infty}rs \, p \, ds
+$$
+
+State explicitly the boundary conditions you use and why they hold for a well-behaved transition density.
+
+---
+
+**Exercise 2.** The Dupire PDE for the call price as a function of strike and maturity is
+
+$$
+C_T = -rKC_K + \frac{1}{2}\sigma^2(K,T) K^2 C_{KK}
+$$
+
+Verify that this PDE is satisfied when $\sigma(K,T) = \sigma_0$ (constant) and $C(K,T)$ is the Black-Scholes call price. Compute $C_T$, $C_K$, and $C_{KK}$ explicitly and confirm the identity.
+
+---
+
+**Exercise 3.** The derivation uses $C_{KK} = e^{-rT}p(K,T)$, which is the Breeden-Litzenberger result. (a) Derive this relationship from $C = e^{-rT}\int_{K}^{\infty}(s-K)p(s,T)\,ds$ by differentiating twice with respect to $K$. (b) Explain why this means the risk-neutral density is always non-negative if and only if $C_{KK} \geq 0$. (c) What arbitrage would exist if $C_{KK} < 0$ for some strike $K$?
+
+---
+
+**Exercise 4.** In the Dupire formula, the numerator $C_T + rKC_K$ must be non-negative for the local variance $\sigma^2(K,T)$ to be well-defined. (a) Interpret $C_T$ financially: what does it measure about the option value as maturity increases? (b) Interpret $rKC_K$ in terms of discounting and the forward price. (c) Construct a scenario where the numerator could become negative and explain what this would signal about the option price surface.
+
+---
+
+**Exercise 5.** The Fokker-Planck approach yields
+
+$$
+\sigma^2 = \frac{\frac{\partial p}{\partial t}}{\frac{1}{2}\frac{\partial^2 p}{\partial x^2}}
+$$
+
+while the Dupire approach yields the formula in terms of $C_T$, $C_K$, and $C_{KK}$. Show that these two expressions are equivalent by using the relationships $C_K = -e^{-rT}\int_{K}^{\infty}p\,ds$ and $C_{KK} = e^{-rT}p(K,T)$ to transform one into the other.
+
+---
+
+**Exercise 6.** In the diffusion term integration by parts, the boundary evaluation produces
+
+$$
+\left[(s-K)\left[(\sigma s)^2 p\right]_s\right]\bigg|_{K}^{\infty}
+$$
+
+(a) Explain why the upper limit ($s \to \infty$) vanishes. What growth conditions on $\sigma(s,T)$ and decay conditions on $p(s,T)$ are required? (b) Evaluate the lower limit at $s = K$. (c) Why is a second integration by parts needed, and what does it produce?
+
+---
+
+**Exercise 7.** Consider extending the Dupire formula to include continuous dividend yield $q$. The risk-neutral dynamics become $dS_t = (r-q)S_t\,dt + \sigma(t,S_t)S_t\,dW_t$. (a) Write down the corresponding Fokker-Planck equation. (b) Repeat the integration by parts derivation to show that the generalized Dupire formula is
+
+$$
+\sigma^2(K,T) = \frac{C_T + (r-q)KC_K + qC}{\frac{1}{2}K^2 C_{KK}}
+$$
+
+(c) Verify that setting $q = 0$ recovers the original formula.
+

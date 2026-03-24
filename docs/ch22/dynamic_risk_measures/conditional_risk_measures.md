@@ -309,3 +309,29 @@ Conditional measures naturally incorporate stress scenarios as information.
 - Bion-Nadal, J. (2008), "Dynamic Risk Measures: Time Consistency and Risk Measures from BMO Martingales"
 - Cheridito, P. & Kupper, M. (2011), "Composition of Time-Consistent Dynamic Monetary Risk Measures"
 - McNeil, A., Frey, R., & Embrechts, P., *Quantitative Risk Management* (conditional ES discussion)
+
+---
+
+## Exercises
+
+**Exercise 1.** Define the conditional Value-at-Risk $\text{VaR}_\alpha(X \mid \mathcal{F}_t)$ as the $\alpha$-quantile of the conditional loss distribution given $\mathcal{F}_t$. If portfolio loss $X$ given $\mathcal{F}_t$ is normally distributed with conditional mean $\mu_t$ and conditional variance $\sigma_t^2$, express $\text{VaR}_{0.99}(X \mid \mathcal{F}_t)$ in closed form.
+
+---
+
+**Exercise 2.** Explain why a conditional risk measure must be $\mathcal{F}_t$-measurable. Give an economic example where a static (unconditional) risk measure gives misleading results because it ignores currently available information.
+
+---
+
+**Exercise 3.** The conditional Expected Shortfall at level $\alpha$ is $\text{ES}_\alpha(X \mid \mathcal{F}_t) = \mathbb{E}[X \mid X \ge \text{VaR}_\alpha(X \mid \mathcal{F}_t), \mathcal{F}_t]$. Verify that conditional ES is a coherent conditional risk measure by checking (conditionally): monotonicity, translation invariance, positive homogeneity, and subadditivity.
+
+---
+
+**Exercise 4.** A portfolio's conditional loss distribution is modeled as $X_T \mid \mathcal{F}_t \sim N(\mu_t, \sigma_t^2)$ with $\mu_t = 100 + 0.5(S_t - 100)$ and $\sigma_t = 20$, where $S_t$ is the current stock price. Compute $\text{VaR}_{0.95}(X_T \mid \mathcal{F}_t)$ for $S_t = 90$ and $S_t = 110$. How does current market information change the risk assessment?
+
+---
+
+**Exercise 5.** Explain how conditional risk measures serve as building blocks for dynamic risk measures. Specifically, show how a sequence of conditional risk measures $\{\rho_t\}_{t=0}^T$ can be composed to define a time-consistent dynamic risk measure via backward recursion.
+
+---
+
+**Exercise 6.** In a two-period model ($t = 0, 1, 2$), a position has conditional distributions $X_2 \mid \mathcal{F}_1 \sim N(\mu_1, 1)$ where $\mu_1$ is $\mathcal{F}_1$-measurable. Compute $\rho_1(X_2) = \text{ES}_{0.95}(X_2 \mid \mathcal{F}_1)$ as a function of $\mu_1$. Then compute $\rho_0(X_2) = \text{ES}_{0.95}(\rho_1(X_2))$ and verify that the composition produces a time-consistent assessment.

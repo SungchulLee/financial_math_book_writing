@@ -117,3 +117,29 @@ These two identities give $\mathbb{E}[S_\tau] = 0$ and $\mathbb{E}[\tau] = \math
 - Durrett, R. (2019). *Probability: Theory and Examples*, 5th ed. Cambridge University Press.
 - Williams, D. (1991). *Probability with Martingales*. Cambridge University Press.
 - Lawler, G. F., & Limic, V. (2010). *Random Walk: A Modern Introduction*. Cambridge University Press.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the asymmetric random walk with $p \neq 1/2$, show that the process $M_n = S_n - n(2p-1)$ is a martingale. Then show that $M_n^2 - 4np(1-p)$ is also a martingale. What are the analogues of Propositions 1.1.3 and 1.1.4 for the centred walk?
+
+---
+
+**Exercise 2.** Let $\{S_n\}$ be a symmetric random walk. Use the Optional Stopping Theorem applied to the martingale $M_n = S_n^2 - n$ and the stopping time $\tau = \min\{n : S_n = -a \text{ or } S_n = b\}$ (with $a, b > 0$) to show that $\mathbb{E}[\tau] = ab$.
+
+---
+
+**Exercise 3.** Prove that the exponential process $Z_n = \left(\frac{1-p}{p}\right)^{S_n}$ is a martingale for any $p \in (0,1)$. For $p = 1/2$, what does this process simplify to, and why is it trivial?
+
+---
+
+**Exercise 4.** Show that the discrete quadratic variation $[S]_n = n$ implies that the process $S_n^2 - [S]_n = S_n^2 - n$ is a martingale. In other words, derive Proposition 1.1.4 from Proposition 1.1.5 without directly computing $\mathbb{E}[S_{n+1}^2 \mid \mathcal{F}_n]$. (Hint: write $S_{n+1}^2 - S_n^2 = 2S_n \xi_{n+1} + \xi_{n+1}^2$ and use $\xi_{n+1}^2 = [S]_{n+1} - [S]_n = 1$.)
+
+---
+
+**Exercise 5.** Let $\lambda \in \mathbb{R}$ and define $E_n = e^{\lambda S_n} / (\cosh \lambda)^n$. Prove that $\{E_n\}$ is a martingale. Use this to derive the MGF of the hitting time $\tau_a = \min\{n \geq 0 : S_n = a\}$ for $a > 0$: show that $\mathbb{E}[(\cosh \lambda)^{-\tau_a}] = e^{-\lambda a}$ for $\lambda > 0$ (under appropriate stopping conditions).
+
+---
+
+**Exercise 6.** A process $\{X_n\}$ is called a **submartingale** if $\mathbb{E}[X_{n+1} \mid \mathcal{F}_n] \geq X_n$. Show that $|S_n|$ is a submartingale for the symmetric random walk. (Hint: use Jensen's inequality with the convex function $f(x) = |x|$.)

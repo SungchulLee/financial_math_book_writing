@@ -379,3 +379,29 @@ $$
 - Duffie, D., & Singleton, K. J. (1999). Modeling term structures of defaultable bonds. *Review of Financial Studies*, 12(4), 687--720.
 - Bielecki, T. R., & Rutkowski, M. (2004). *Credit Risk: Modeling, Valuation and Hedging*. Springer, Chapter 8.
 - Brigo, D., & Mercurio, F. (2006). *Interest Rate Models: Theory and Practice*. Springer, Chapter 21.
+
+---
+
+## Exercises
+
+**Exercise 1.** In the Cox process construction, $\tau = \inf\{t : \Lambda_t \ge E\}$ where $E \sim \text{Exp}(1)$ is independent of $\mathcal{F}_\infty$ and $\Lambda_t = \int_0^t \lambda_s\,ds$. For constant intensity $\lambda$, show that $\tau \sim \text{Exp}(\lambda)$. Compute $\mathbb{P}(\tau > 5)$ for $\lambda = 2\%$.
+
+---
+
+**Exercise 2.** Verify the conditional survival formula: $\mathbb{P}(\tau > T \mid \mathcal{F}_T) = e^{-\int_0^T \lambda_s\,ds}$ under the Cox construction. Start from $\mathbb{P}(\tau > T \mid \mathcal{F}_T) = \mathbb{P}(E > \Lambda_T \mid \mathcal{F}_T)$ and use the independence of $E$ from $\mathcal{F}_\infty$.
+
+---
+
+**Exercise 3.** Explain why the independence of $E$ from $\mathcal{F}_\infty$ in the Cox construction is essential for the immersion (H-hypothesis) property. What would happen to the pricing framework if $E$ were correlated with market factors?
+
+---
+
+**Exercise 4.** For a CIR intensity process with $\kappa = 0.3$, $\theta = 1.5\%$, $\sigma = 6\%$, and $\lambda_0 = 2\%$, simulate (or describe the simulation algorithm for) the Cox process default time. Outline the steps: (a) simulate the intensity path, (b) compute $\Lambda_t$, (c) draw $E$, and (d) find $\tau$.
+
+---
+
+**Exercise 5.** Under the Cox construction, the default time $\tau$ is a totally inaccessible stopping time. Explain what this means intuitively: even though the intensity $\lambda_t$ is known at each time, default cannot be predicted in advance. Contrast this with the predictable default time in a structural model.
+
+---
+
+**Exercise 6.** Consider a two-name credit portfolio where each default time $\tau_i$ is constructed via independent Cox processes sharing a common stochastic intensity factor: $\lambda_t^{(i)} = a_i + b_i \cdot Z_t$ where $Z_t$ is a common CIR process. Explain how this construction induces default correlation. If $Z_t$ spikes, what happens to both default probabilities simultaneously?

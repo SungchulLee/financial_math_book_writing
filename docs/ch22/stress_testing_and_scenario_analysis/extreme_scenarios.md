@@ -336,3 +336,57 @@ Extreme scenarios typically lack probability assignments, complicating aggregati
 - Breuer, T. & Csiszár, I. (2013), "Systematic Stress Tests with Entropic Plausibility Constraints"
 - IMF, "Stress Testing: Principles, Concepts, and Frameworks"
 - Flood, M. & Korenko, G. (2015), "Systematic Scenario Selection"
+
+---
+
+## Exercises
+
+**Exercise 1.** A portfolio has exposure to equities, credit, and interest rates. Using the sensitivity-based approximation
+
+$$
+L^{\text{stress}} \approx -\sum_i \Delta_i \cdot \Delta x_i - \frac{1}{2} \sum_{i,j} \Gamma_{ij} \cdot \Delta x_i \cdot \Delta x_j
+$$
+
+compute the stress loss given $\Delta_{\text{equity}} = 50$M per 1%, $\Delta_{\text{credit}} = -30$M per 100 bps, $\Gamma_{\text{equity,equity}} = 2$M per 1%$^2$, and the scenario $\Delta x_{\text{equity}} = -25\%$, $\Delta x_{\text{credit}} = +400$ bps. Discuss when this approximation would fail significantly.
+
+---
+
+**Exercise 2.** The Mahalanobis distance of a scenario $\mathbf{x}$ from the mean $\boldsymbol{\mu}$ under covariance $\boldsymbol{\Sigma}$ is
+
+$$
+D(\mathbf{x}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^\top \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu})}
+$$
+
+For a two-factor model with $\boldsymbol{\mu} = (0, 0)^\top$ and $\boldsymbol{\Sigma} = \begin{pmatrix} 1 & 0.6 \\ 0.6 & 1 \end{pmatrix}$, compute the Mahalanobis distance for the scenarios $\mathbf{x}_1 = (-3, -3)^\top$ and $\mathbf{x}_2 = (-3, 3)^\top$. Which scenario is more "extreme" in the Mahalanobis sense? Discuss which is more plausible during a flight-to-quality episode.
+
+---
+
+**Exercise 3.** Explain the difference between first-round and second-round effects in stress testing. A bank holds \$10 billion in corporate bonds. Under a stress scenario, credit spreads widen by 300 bps, causing a mark-to-market loss of \$1.5 billion (first round). Describe a plausible chain of second-round effects and estimate qualitatively how they might amplify the total loss. Why are second-round effects particularly difficult to model?
+
+---
+
+**Exercise 4.** The stressed correlation blending formula is
+
+$$
+\boldsymbol{\rho}^{\text{stress}} = \alpha \boldsymbol{\rho}^{\text{normal}} + (1-\alpha) \mathbf{1}\mathbf{1}^\top
+$$
+
+Show that if $\boldsymbol{\rho}^{\text{normal}}$ is a valid correlation matrix with ones on the diagonal, then $\boldsymbol{\rho}^{\text{stress}}$ also has ones on the diagonal. For a 3-asset portfolio with pairwise normal correlations $\rho_{12} = 0.3$, $\rho_{13} = 0.4$, $\rho_{23} = 0.2$, compute $\boldsymbol{\rho}^{\text{stress}}$ with $\alpha = 0.3$. How does portfolio diversification benefit change between the normal and stressed cases?
+
+---
+
+**Exercise 5.** A risk manager must design a hypothetical stagflation scenario. Specify at least six risk factors (equities, rates, credit spreads, FX, commodities, volatility) and their stressed values. Ensure the scenario is internally consistent: explain the economic logic linking each factor move to the stagflation narrative. Why is stagflation particularly challenging for portfolios that use equities and bonds as diversifiers?
+
+---
+
+**Exercise 6.** Consider the maximum loss direction problem
+
+$$
+\mathbf{x}^* = \arg\max_{\mathbf{x}} L(\mathbf{x}) \quad \text{s.t.} \quad D(\mathbf{x}) \le D_{\text{target}}
+$$
+
+For a portfolio with linear loss function $L(\mathbf{x}) = \mathbf{w}^\top \mathbf{x}$ and Mahalanobis distance constraint, show that the maximum loss scenario is $\mathbf{x}^* = -D_{\text{target}} \cdot \boldsymbol{\Sigma} \mathbf{w} / \sqrt{\mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w}}$ (up to sign). Interpret this result: in which direction does the worst-case scenario point?
+
+---
+
+**Exercise 7.** Under the Fed CCAR severely adverse scenario, a bank projects losses of \$15 billion over 9 quarters against a starting CET1 capital of \$80 billion and RWA of \$600 billion. Compute the projected minimum CET1 ratio (ignoring any revenue offsets). If the regulatory minimum CET1 ratio including buffers is 7%, does the bank pass the stress test? Discuss why regulators prefer multi-quarter scenarios over instantaneous shocks.

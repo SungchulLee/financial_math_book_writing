@@ -466,3 +466,29 @@ $$
 4. **Risk Management**: Time-consistent risk measures require careful recursive construction
 
 Dynamic consistency is essential for coherent multi-period decision-making and must be explicitly addressed when extending standard expected utility to incorporate ambiguity or robustness concerns.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a two-period decision problem with states $\Omega = \{uu, ud, du, dd\}$ and a decision maker with maxmin expected utility over the set $\mathcal{P} = \{P_1, P_2\}$ where $P_1(uu) = 0.36$, $P_1(ud) = 0.24$, $P_1(du) = 0.24$, $P_1(dd) = 0.16$ and $P_2(uu) = 0.16$, $P_2(ud) = 0.24$, $P_2(du) = 0.24$, $P_2(dd) = 0.36$. Check whether $\mathcal{P}$ is rectangular. Does the optimal plan at $t = 0$ remain optimal when reconsidered at $t = 1$?
+
+---
+
+**Exercise 2.** The Epstein-Schneider theorem states that maxmin expected utility with multiple priors is dynamically consistent if and only if the set of priors is rectangular. Prove the "only if" direction: if preferences are dynamically consistent and represented by maxmin EU, then the prior set must be rectangular. Use a simple counterexample to illustrate what goes wrong when rectangularity fails.
+
+---
+
+**Exercise 3.** For the recursive variational preference $V_t = \min_{P} \{\mathbb{E}_P[V_{t+1} | \mathcal{F}_t] + \theta D_{\text{KL}}(P \| P_0 | \mathcal{F}_t)\}$, show that this formulation is automatically dynamically consistent (without requiring rectangularity) by verifying the tower property: $V_0 = \min_{P_0} \{\mathbb{E}_{P_0}[\min_{P_1}\{\mathbb{E}_{P_1}[V_2 | \mathcal{F}_1] + \theta D_1\} | \mathcal{F}_0] + \theta D_0\}$ can be collapsed into a single minimization.
+
+---
+
+**Exercise 4.** A pre-commitment strategy is one where the agent commits at $t = 0$ to a plan and cannot deviate. For a dynamically inconsistent preference, compare the welfare of (a) the pre-commitment strategy, (b) the naive strategy (re-optimizing at each period as if preferences were consistent), and (c) the sophisticated strategy (backward induction taking future re-optimization into account). Illustrate with a numerical example.
+
+---
+
+**Exercise 5.** Time-consistent dynamic risk measures must satisfy the property $\rho_t(X) = \rho_t(-\rho_{t+1}(X))$. Show that the conditional entropic risk measure $\rho_t(X) = \frac{1}{\beta}\log \mathbb{E}_t[e^{\beta X}]$ satisfies this recursion, making it time-consistent. Then show that the conditional CVaR does not satisfy this property in general.
+
+---
+
+**Exercise 6.** In a portfolio choice problem over two periods, an ambiguity-averse investor with non-rectangular priors faces a time-inconsistency. The sophisticated strategy uses backward induction: at $t = 1$, the agent optimizes given current beliefs, and at $t = 0$, the agent anticipates this future behavior. Formulate this as a game between the "period-0 self" and "period-1 self" and solve for the subgame perfect equilibrium in a simple two-asset, two-period model.

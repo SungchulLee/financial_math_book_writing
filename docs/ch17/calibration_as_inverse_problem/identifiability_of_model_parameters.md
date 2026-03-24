@@ -155,3 +155,33 @@ When identifiability is weak, produce:
 
 - Inverse problems: Engl, Hanke & Neubauer.
 - Practical calibration discussions: Gatheral; Andersen & Piterbarg (volatility and calibration practice).
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a model with forward pricing map $F(\theta_1, \theta_2) = (\theta_1 + \theta_2, \, \theta_1 \theta_2)$. Is this model structurally identifiable? Prove your answer by determining whether $F(\theta) = F(\theta')$ implies $\theta = \theta'$, or find an explicit counterexample.
+
+---
+
+**Exercise 2.** A stochastic volatility model has $d = 5$ parameters and is calibrated to $m = 20$ implied volatilities. The SVD of the Jacobian at the calibrated point yields singular values $\sigma_1 = 8.0$, $\sigma_2 = 5.2$, $\sigma_3 = 1.1$, $\sigma_4 = 0.03$, $\sigma_5 = 0.001$. Compute the condition number. Identify how many parameters are practically identifiable and how many are weakly identifiable. What specific remedies would you recommend?
+
+---
+
+**Exercise 3.** Suppose you calibrate the SABR model ($\alpha, \beta, \rho, \nu$) to a single-maturity smile consisting of 7 strike-volatility pairs. The parameter $\beta$ is known to be difficult to identify jointly with $\alpha$. Explain why this redundancy arises from the structure of the SABR formula and describe two practical approaches to resolve it.
+
+---
+
+**Exercise 4.** Let $J \in \mathbb{R}^{m \times d}$ be the Jacobian of the forward map and $W$ a diagonal weight matrix with entries $w_j > 0$. Show that the Fisher information matrix for the linearized problem is $\mathcal{I} = J^\top W J$. Derive an expression for the asymptotic covariance of the parameter estimates in terms of $\mathcal{I}$ and explain how this relates to identifiability.
+
+---
+
+**Exercise 5.** A practitioner calibrates a Heston model to two sets of instruments: (A) only ATM options across 6 maturities, and (B) ATM plus 25-delta and 10-delta options across the same 6 maturities. Which set is expected to yield better identifiability for the vol-of-vol parameter $\sigma_v$ and the correlation parameter $\rho$? Justify your answer in terms of the information content of each instrument set.
+
+---
+
+**Exercise 6.** Consider a re-parameterization from $(\sigma_0, \kappa) \mapsto (\sigma_0^2, \kappa / \sigma_0)$ in a mean-reverting volatility model. Compute the Jacobian of the transformation and discuss under what conditions the re-parameterization improves identifiability. When could it make identifiability worse?
+
+---
+
+**Exercise 7.** You observe that a calibrated parameter $\hat\theta_3$ fluctuates wildly from day to day despite stable market conditions. Describe a bootstrap-based diagnostic procedure to assess whether $\theta_3$ is practically identifiable. Specifically, outline the resampling scheme, the quantity to compute for each bootstrap sample, and the criterion for declaring weak identifiability.

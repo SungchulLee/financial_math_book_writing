@@ -253,3 +253,25 @@ The term in parentheses has mean zero (it is the compensated compound Poisson pr
 ## Summary
 
 The Ito formula for jump-diffusion processes extends the classical Ito formula by adding an exact finite-difference term at each jump time. The continuous part contributes the standard $\tfrac{1}{2}\sigma^2 f''$ correction, while the jump part contributes $\sum[f(X_s) - f(X_{s^-})]$ without any second-order approximation. Applied to $f(S) = \ln S$ in the Merton model, the formula yields the log-price decomposition into drift, diffusion, and compound Poisson components, which is the starting point for the characteristic function, the Merton series formula, and the PIDE formulation developed in subsequent sections.
+
+---
+
+## Exercises
+
+**Exercise 1.** Apply the Ito formula for jump processes to $f(S) = \ln S$ in the Merton model to derive $d(\ln S_t) = (r - \lambda\bar{k} - \frac{1}{2}\sigma^2)\,dt + \sigma\,dW_t + \ln Y\,dN_t$. Carefully separate the continuous and jump parts, and explain why there is no second-order jump correction (unlike the $\frac{1}{2}\sigma^2$ term from the diffusion).
+
+---
+
+**Exercise 2.** Apply the Ito formula for jump processes to $f(S) = S^2$. (a) Compute the continuous part $d(S_t^2)^{\text{cont}}$ using $f'(S) = 2S$ and $f''(S) = 2$. (b) Compute the jump part $S_{T_i}^2 - S_{T_i^-}^2 = S_{T_i^-}^2(Y_i^2 - 1)$. (c) Combine both parts and write the full SDE for $S_t^2$.
+
+---
+
+**Exercise 3.** Explain the key structural difference between the continuous Ito correction ($\frac{1}{2}\sigma^2 f''$) and the jump correction ($f(X_s) - f(X_{s^-})$). Why does the continuous part require a Taylor approximation to second order while the jump part uses the exact finite difference?
+
+---
+
+**Exercise 4.** Using the compensated jump decomposition, write $\ln S_t = \ln S_0 + (r - \frac{1}{2}\sigma^2 - \lambda\bar{k} + \lambda\mu_J)t + \sigma W_t + (\sum_{i=1}^{N_t}\ln Y_i - \lambda\mu_J t)$. Verify that the last two terms form a martingale by showing that their expectation is zero. Why is this decomposition useful for pricing and risk management?
+
+---
+
+**Exercise 5.** The proof of the Ito formula for jump processes works by splitting $[0, t]$ at jump times and applying the standard Ito formula on each continuous segment. Carry out this argument explicitly for a single jump time $T_1$: write $f(t, X_t) - f(0, X_0) = [f(T_1^-, X_{T_1^-}) - f(0, X_0)] + [f(T_1, X_{T_1}) - f(T_1, X_{T_1^-})] + [f(t, X_t) - f(T_1, X_{T_1})]$ and identify the continuous Ito terms and the jump term.

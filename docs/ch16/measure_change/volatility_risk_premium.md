@@ -224,3 +224,40 @@ which is positive when VRP $< 0$ (implied exceeds realized).
 ## Summary
 
 The volatility risk premium in the Heston model is determined by the parameter $\lambda$ that governs the measure change from $\mathbb{P}$ to $\mathbb{Q}$, transforming $\kappa^{\mathbb{P}} \to \kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \xi\lambda$ and $\theta^{\mathbb{P}} \to \theta^{\mathbb{Q}} = \kappa^{\mathbb{P}}\theta^{\mathbb{P}}/\kappa^{\mathbb{Q}}$. When $\lambda > 0$ (the empirical norm for equity indices), the risk-neutral variance dynamics have faster mean reversion and a lower long-run level than the physical dynamics, producing a negative VRP (implied exceeds realized). The VRP connects to observable quantities through the variance swap rate and VIX, and it can be estimated from the spread between implied and realized variance or from joint time-series and cross-sectional calibration. The VRP has a term structure that ranges from zero at $\tau = 0$ to $\theta^{\mathbb{Q}} - \theta^{\mathbb{P}}$ at $\tau = \infty$, and its sign explains why selling options is profitable on average.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The stationary VRP is $\text{VRP}(\infty) = \theta^{\mathbb{Q}} - \theta^{\mathbb{P}} = -\xi\lambda\theta^{\mathbb{P}}/(\kappa^{\mathbb{P}} + \xi\lambda)$. For the numerical example ($\kappa^{\mathbb{P}} = 2.0$, $\theta^{\mathbb{P}} = 0.04$, $\xi = 0.4$, $\lambda = 1.5$), verify that $\text{VRP}(\infty) = -0.0092$. Convert this to annualized volatility units by computing $\sqrt{\theta^{\mathbb{Q}}} - \sqrt{\theta^{\mathbb{P}}}$ and interpret the result.
+
+---
+
+**Exercise 2.**
+The VRP term structure goes from 0 at $\tau = 0$ to $\theta^{\mathbb{Q}} - \theta^{\mathbb{P}}$ at $\tau = \infty$. Using the exact formulas, compute the VRP at $\tau = 0.1, 0.5, 1.0, 2.0$ for the numerical example parameters. At what maturity $\tau^*$ does the VRP reach 90% of its asymptotic value? How does $\tau^*$ relate to the physical mean-reversion timescale $1/\kappa^{\mathbb{P}}$?
+
+---
+
+**Exercise 3.**
+Method 1 for estimating $\lambda$ uses $\hat{\lambda} = (\kappa^{\mathbb{Q}} - \kappa^{\mathbb{P}})/\xi$. Suppose $\kappa^{\mathbb{P}} = 2.0$ (estimated from realized variance time series) and $\kappa^{\mathbb{Q}} = 3.5$ (calibrated from the options surface), with $\xi = 0.4$. Compute $\hat{\lambda}$ and the corresponding $\theta^{\mathbb{Q}}$ given $\theta^{\mathbb{P}} = 0.04$. How sensitive is $\hat{\lambda}$ to the estimation error in $\kappa^{\mathbb{P}}$? If $\kappa^{\mathbb{P}}$ has a standard error of $\pm 0.5$, what is the range of $\hat{\lambda}$?
+
+---
+
+**Exercise 4.**
+The expected P&L of a delta-hedged short option position is approximately $\mathbb{E}^{\mathbb{P}}[\text{P\&L}] \approx -\frac{1}{2}\Gamma S^2 \tau \cdot \text{VRP}$. For an ATM call with $\Gamma = 0.02$, $S = 100$, $\tau = 1/12$ (monthly), and $\text{VRP} = -0.006$, compute the expected monthly P&L. Explain why this is positive (profit from selling options) and estimate the annualized Sharpe ratio if the P&L standard deviation is three times the expected P&L.
+
+---
+
+**Exercise 5.**
+The VIX approximates $\sqrt{\mathbb{E}^{\mathbb{Q}}[\frac{1}{\tau}\int_t^{t+\tau} v_s\,ds]}$ with $\tau = 30/365$. Using the Heston formula for the risk-neutral expected integrated variance, compute VIX for $v_0 = 0.04$ and $v_0 = 0.09$ (market stress) using the numerical example parameters. What percentage increase in VIX corresponds to the doubling of $v_0$?
+
+---
+
+**Exercise 6.**
+The sign convention warning notes that the VRP can be defined as either implied $-$ realized or realized $-$ implied. In the Heston model with $\lambda > 0$, the long-run VRP is $\theta^{\mathbb{Q}} - \theta^{\mathbb{P}} < 0$. However, empirically the "VIX minus realized vol" spread is typically positive. Reconcile these: show that $\text{VIX}^2 - \mathbb{E}^{\mathbb{P}}[\text{RV}] < 0$ in the Heston model when $\lambda > 0$, but $\text{VIX} - \sqrt{\mathbb{E}^{\mathbb{P}}[\text{RV}]}$ can be either sign due to Jensen's inequality.
+
+---
+
+**Exercise 7.**
+Joint calibration (Method 3) fits both time-series and cross-sectional data simultaneously. Discuss the practical challenges: the time-series estimate of $\kappa^{\mathbb{P}}$ requires long histories of realized variance data, which may not be stationary, while the cross-sectional estimate of $\kappa^{\mathbb{Q}}$ depends on the option surface on a single date. How would you ensure that the estimated $\lambda$ is stable over time?

@@ -1110,3 +1110,39 @@ Robust delta-gamma hedging continues to evolve with:
 - **Market microstructure**: Incorporating liquidity and market impact into hedging models
 
 The robust delta-gamma framework provides a practical, theoretically sound approach to managing second-order risk while acknowledging and protecting against model uncertainty, bridging academic theory and trading practice in quantitative finance.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a European call option with $S_0 = 100$, $K = 100$, $T = 0.25$, $r = 0$, and $\sigma = 0.20$, compute the Black-Scholes delta $\Delta$ and gamma $\Gamma$. If the stock price moves by $\Delta S = 5$, compute the hedging error from a pure delta hedge and show that the gamma correction $\frac{1}{2}\Gamma (\Delta S)^2$ accounts for most of this error.
+
+---
+
+**Exercise 2.** In the uncertain volatility model with $\sigma_t \in [\sigma_{\min}, \sigma_{\max}] = [0.15, 0.30]$, the robust price of a European call satisfies the Black-Scholes-Barenblatt PDE. Write down this PDE explicitly and explain why the worst-case volatility is $\sigma_{\max}$ when $\Gamma > 0$ and $\sigma_{\min}$ when $\Gamma < 0$. What is the financial intuition behind this "volatility switching" rule?
+
+---
+
+**Exercise 3.** Consider delta-gamma hedging a short position in an exotic option using the underlying stock and one vanilla option. Set up the system of equations for the hedge ratios $(\theta_S, \theta_{\text{vanilla}})$ that simultaneously neutralize delta and gamma exposure. Under what conditions is this system solvable, and what residual risks remain after delta-gamma hedging?
+
+---
+
+**Exercise 4.** Formulate the robust delta-gamma hedging problem as a minimax optimization:
+
+$$
+\min_{\Delta, \phi} \max_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \mathbb{E}_\sigma\left[\left(V_T - \Delta S_T - \phi \cdot C_T^{\text{hedge}} - V_0 + \Delta S_0 + \phi C_0^{\text{hedge}}\right)^2\right]
+$$
+
+where $\phi$ is the position in a hedging option. Explain the trade-off between hedging accuracy and the width of the volatility uncertainty band.
+
+---
+
+**Exercise 5.** A trader holds a portfolio with delta $\Delta_P = 50$, gamma $\Gamma_P = -3$, and vega $\mathcal{V}_P = -200$. Available hedging instruments are the underlying stock ($\Delta = 1$, $\Gamma = 0$, $\mathcal{V} = 0$) and a vanilla call ($\Delta_C = 0.55$, $\Gamma_C = 0.025$, $\mathcal{V}_C = 18$). Compute the hedge ratios that neutralize delta and gamma. Is it possible to also neutralize vega with only two instruments? What additional instrument would be needed?
+
+---
+
+**Exercise 6.** Derive the leading-order hedging error for a delta-gamma hedge that is rebalanced at discrete intervals $\delta t$. Show that the error is of order $O((\delta t)^{3/2})$ for a delta-gamma hedge, compared to $O((\delta t)^{1/2})$ for a pure delta hedge. Explain why this makes gamma hedging especially valuable when rebalancing frequency is limited.
+
+---
+
+**Exercise 7.** In the presence of both volatility uncertainty $\sigma \in [0.15, 0.30]$ and jump risk (Poisson jumps with intensity $\lambda \in [0, 0.5]$ and jump size $J \sim N(-0.05, 0.03^2)$), discuss how the robust delta-gamma hedging framework extends. What additional Greeks are relevant, and how does the worst-case scenario change when jumps are included?

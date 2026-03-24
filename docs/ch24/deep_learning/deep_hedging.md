@@ -282,3 +282,39 @@ This eliminates model risk in the hedging strategy itself, even though a model m
 - Carbonneau & Godin (2021), "Equal Risk Pricing of Derivatives with Deep Learning"
 - Horvath, Teichmann & Zuric (2021), "Deep Hedging Under Rough Volatility"
 - Ruf & Wang (2020), "Neural Networks for Option Pricing and Hedging"
+
+---
+
+## Exercises
+
+**Exercise 1.** Write out the hedging P&L for a strategy $\delta$ hedging a European call with payoff $Z = (S_T - K)^+$ under proportional transaction costs $c_k = \kappa |S_{t_k}||\delta_{t_k} - \delta_{t_{k-1}}|$. For $N = 4$ rebalancing periods, $S_0 = 100$, $K = 100$, and a specific price path $S = (100, 105, 98, 103, 110)$, compute the P&L for the constant strategy $\delta_{t_k} = 0.5$ (holding half a share at all times) with $\kappa = 0.001$. Compare to the P&L of the perfect hedge $\delta_{t_k} = 1$ for $k = 0,\ldots,3$.
+
+---
+
+**Exercise 2.** Explain the deep hedging optimization objective $\min_\delta \rho(-\text{P\&L}(\delta))$ where $\rho$ is a convex risk measure. For the entropic risk measure $\rho_\lambda(X) = \frac{1}{\lambda}\log(\mathbb{E}[e^{-\lambda X}])$, show that as $\lambda \to 0$, $\rho_\lambda(X) \to -\mathbb{E}[X]$ (risk-neutral limit), and as $\lambda \to \infty$, $\rho_\lambda(X) \to \text{ess sup}(-X)$ (worst-case limit). How does the choice of $\lambda$ affect the learned hedging strategy?
+
+---
+
+**Exercise 3.** Classical delta hedging under Black-Scholes with weekly rebalancing and transaction costs of 10 bps achieves a P&L standard deviation of \$1.54 (from the example in the text). Deep hedging with CVaR optimization achieves \$1.38. Compute the percentage improvement. Discuss the economic intuition: what specific adaptive behaviors does the deep hedging strategy learn that delta hedging cannot? Why does delta hedging overtrade near the money?
+
+---
+
+**Exercise 4.** Define the indifference price of a liability $Z$ in the deep hedging framework:
+
+$$
+p = \min_\delta \rho\left(Z - \sum_k \delta_{t_k}^\top \Delta S_{t_k} + \sum_k c_k\right) - \min_\delta \rho\left(-\sum_k \delta_{t_k}^\top \Delta S_{t_k} + \sum_k c_k\right)
+$$
+
+Explain why this price depends on the risk measure $\rho$ and the transaction cost structure. In the limit of zero transaction costs and the mean risk measure ($\rho = -\mathbb{E}$), show that the indifference price recovers the risk-neutral price. Why does the indifference price create a bid-ask spread?
+
+---
+
+**Exercise 5.** In an incomplete market (e.g., stochastic volatility without a volatility instrument), deep hedging can only partially reduce risk. Suppose the underlying follows a Heston model with stochastic variance $v_t$. The hedger can trade only the stock $S$. Explain what residual risk remains after optimal hedging: is it delta risk, Vega risk, or both? If the hedger is also allowed to trade a variance swap, how does the deep hedging framework automatically discover the optimal Vega hedge?
+
+---
+
+**Exercise 6.** Describe how deep hedging can be trained on real historical data rather than model-simulated paths. What are the advantages and challenges of this model-free approach? Discuss: (a) limited data and overfitting risk, (b) non-stationarity of market dynamics, (c) inability to generate new stress scenarios, and (d) how GAN-generated synthetic paths could supplement historical data while preserving realistic features.
+
+---
+
+**Exercise 7.** For a recurrent (LSTM) deep hedging architecture, the hidden state $h_k$ carries information from previous time steps. Compare this to the feedforward architecture where each $\delta_{t_k} = \mathcal{N}_{\theta_k}(S_{t_k}, \delta_{t_{k-1}}, T - t_k)$. Discuss when each architecture is preferable. For a path-dependent option (e.g., Asian option), argue that the recurrent architecture has a natural advantage because the payoff depends on the entire price path. What information must the feedforward architecture include in its input to match the recurrent architecture's performance?

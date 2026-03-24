@@ -239,3 +239,33 @@ where $\bar{S}_k$ is the running average and $S_k^{\max}$ the running maximum. T
 - Buehler, Gonon, Maystre & Niedermeyer (2019), "Deep Hedging"
 - Whalley & Wilmott (1997), "An Asymptotic Analysis of the Davis, Panas & Zariphopoulou Model for Option Pricing with Transaction Costs"
 - Halperin (2020), "QLBS: Q-Learner in the Black-Scholes (-Merton) Worlds"
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider delta hedging a European call with $S_0 = 100$, $K = 100$, $T = 1/12$ (one month), $\sigma = 0.20$, $r = 0$, with weekly rebalancing ($N = 4$). (a) Compute the Black-Scholes delta $\Delta_0 = \Phi(d_1)$ at $t = 0$. (b) After one week, $S_1 = 103$. Compute $\Delta_1$ and the rebalancing trade $|\Delta_1 - \Delta_0| \cdot S_1$. With proportional transaction cost $\kappa = 0.001$, compute the cost. (c) After all 4 weeks with price path $S = (100, 103, 101, 105, 108)$, compute the total hedging P&L: $\sum_{k=0}^3 \Delta_k(S_{k+1} - S_k) - (S_4 - K)^+$. Is the hedge perfect?
+
+---
+
+**Exercise 2.** The RL hedging reward is $r_k = \delta_k(S_{t_{k+1}} - S_{t_k}) - \kappa |S_{t_k}||\delta_k - \delta_{k-1}|$ with terminal payoff $r_N = -(S_T - K)^+$. (a) Write the total return $G = \sum_{k=0}^N r_k$ and explain why $G$ represents the hedging P&L (hedge gains minus costs minus option payoff). (b) A risk-neutral RL agent maximizes $\mathbb{E}[G]$. Show that this is equivalent to maximizing the expected P&L of the hedging strategy. (c) A risk-sensitive agent maximizes $\mathbb{E}[G] - \frac{\lambda}{2}\text{Var}[G]$. Explain why this is more appropriate for hedging: it penalizes variability in the P&L, which is exactly what a hedger cares about.
+
+---
+
+**Exercise 3.** In the Black-Scholes model with zero transaction costs and continuous rebalancing, the RL agent should recover the delta hedge. (a) Argue that the delta hedge achieves $\text{Var}[G] = 0$ (perfect replication), so it is optimal for any risk-averse objective. (b) In the RL training, set $\kappa = 0$ and $N = 100$ (frequent rebalancing). After training, compare the learned hedge ratio $\delta_k^{\text{RL}}$ with the Black-Scholes delta $\Delta_k^{\text{BS}}$ at several time points and moneyness levels. They should approximately agree. (c) Now introduce $\kappa = 0.002$. The RL agent should learn a no-trade band. Describe qualitatively how the learned policy differs from delta hedging.
+
+---
+
+**Exercise 4.** The Whalley-Wilmott no-trade bandwidth is $h \propto (\kappa \sigma S^2 |\Gamma| / \lambda)^{1/3}$. (a) For $\kappa = 0.001$, $\sigma = 0.20$, $S = 100$, $\Gamma = 0.04$ (near-the-money), and $\lambda = 1$, compute $h$. (b) The bandwidth is wider when $\Gamma$ is large (near-the-money, near expiry). Explain why: high gamma means frequent rebalancing under delta hedging, so the cost savings from not rebalancing are largest here. (c) The RL agent should discover this bandwidth automatically. Design a test: plot the learned $\delta_k$ against $\Delta_k^{\text{BS}}$ for 1000 test paths and verify that the agent trades only when $|\delta_{k-1} - \Delta_k^{\text{BS}}| > h$ approximately.
+
+---
+
+**Exercise 5.** An RL hedging agent is trained under a Heston model but tested under GBM. (a) Describe the model mismatch: Heston has stochastic volatility and volatility clustering, while GBM has constant volatility. (b) A delta hedge using the true GBM volatility is optimal under GBM. The RL agent, trained under Heston, has learned to adapt to changing volatility. Under GBM, this adaptation is unnecessary. Does the RL agent underperform delta hedging under GBM? (c) Now consider the reverse: the agent is trained under GBM but tested under Heston. The GBM-trained agent does not adapt to volatility changes. Show that the RL agent trained under multiple models (GBM + Heston + SABR) outperforms single-model agents under misspecification.
+
+---
+
+**Exercise 6.** For path-dependent options, the state must encode path-dependent features. Consider hedging an Asian call with payoff $(\bar{S}_T - K)^+$ where $\bar{S}_T = \frac{1}{N}\sum_{k=0}^{N-1} S_{t_k}$. (a) The state includes the running average $\bar{S}_k = \frac{1}{k}\sum_{j=0}^{k-1} S_{t_j}$. Explain why this is sufficient for the Markov property. (b) There is no simple delta formula for Asian options (the PDE is two-dimensional). The RL agent learns the hedge directly. Discuss the advantage of RL over analytical methods here. (c) Compare the RL hedging P&L variance with a naive delta hedge using $\Delta^{\text{BS}}$ of a European call with the same strike. Which has lower variance?
+
+---
+
+**Exercise 7.** The deep hedging framework and RL for hedging solve the same problem from different perspectives. Deep hedging parameterizes the entire hedging strategy $(\delta_0, \delta_1, \ldots, \delta_{N-1})$ as functions of the state and optimizes the risk measure over all time steps simultaneously. RL decomposes the problem into per-step decisions via the Bellman equation. (a) Explain why deep hedging can be viewed as a "direct" optimization while RL is an "indirect" approach that first learns a value function. (b) Deep hedging typically converges faster for a fixed environment because it optimizes the entire trajectory at once. Why might RL be preferable when the environment changes (e.g., different option maturities, different underlyings)? (c) Propose a hybrid: use deep hedging for the initial training and RL for online fine-tuning as market conditions evolve.

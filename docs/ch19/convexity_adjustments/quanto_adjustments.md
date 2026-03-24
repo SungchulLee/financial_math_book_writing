@@ -312,3 +312,45 @@ These extensions increase calibration complexity but can be important for long-d
 - Andersen & Piterbarg (2010), *Interest Rate Modeling*, Volume III, Chapter 17
 - Hull (2018), *Options, Futures, and Other Derivatives*, Chapter 30 (Quantos)
 - Wystup (2006), *FX Options and Structured Products*, Chapter 1
+
+---
+
+## Exercises
+
+**Exercise 1.** A quanto cap on 3-month GBP LIBOR is settled in USD at a 1:1 exchange rate. The GBP forward rate is $L^f(0) = 4.8\%$, the GBP rate volatility is $\sigma^f = 19\%$, the GBP/USD exchange rate volatility is $\sigma_X = 8\%$, and the rate-FX correlation is $\rho_{L,X} = 0.25$. For a caplet fixing in $T = 3$ years, compute the quanto-adjusted forward rate and the quanto adjustment in basis points. Interpret the sign of the adjustment.
+
+---
+
+**Exercise 2.** Starting from the dynamics of the foreign forward rate under $\mathbb{Q}^{f,T_{i+1}}$ and the exchange rate under $\mathbb{Q}^d$, derive the quanto drift
+
+$$
+\mu_{\text{quanto}}(t) = -\rho_{L,X} \, \sigma_i^f \, \sigma_X
+$$
+
+using Girsanov's theorem for the composite measure change $\mathbb{Q}^{f,T_{i+1}} \to \mathbb{Q}^d \to \mathbb{Q}^{d,T_{i+1}}$. State all assumptions and identify where the correlation enters.
+
+---
+
+**Exercise 3.** Consider a differential (diff) swap that pays $(L_i^f(T_i) - L_i^d(T_i))$ at $T_{i+1}$ in domestic currency. Show that the fair diff-swap spread is
+
+$$
+L_i^{f,\text{quanto}}(0) - L_i^d(0)
+$$
+
+where only the foreign rate requires a quanto adjustment. Explain why the domestic rate does not need an adjustment.
+
+---
+
+**Exercise 4.** A trader estimates the GBP rate / GBP-USD FX correlation to be $\rho_{L,X} = 0.35$ using a 1-year rolling window, but $\rho_{L,X} = 0.15$ using a 5-year window. For a 10-year quanto cap on GBP LIBOR with $\sigma^f = 20\%$, $\sigma_X = 10\%$, and $L^f(0) = 5\%$, compute the quanto adjustment under each correlation estimate and express the difference in basis points. Discuss how this correlation uncertainty affects the risk management of a quanto book.
+
+---
+
+**Exercise 5.** Show that the quanto adjustment formula $L^{f,\text{quanto}} = L^f \exp(-\rho_{L,X}\sigma^f\sigma_X T)$ can be rewritten as a shift in the drift of the lognormal process. Specifically, verify that if $L_i^f(T_i)$ is lognormal under $\mathbb{Q}^{f,T_{i+1}}$ with zero drift, then under $\mathbb{Q}^{d,T_{i+1}}$ it remains lognormal but with drift $\mu_{\text{quanto}} = -\rho_{L,X}\sigma^f\sigma_X$, and that the volatility $\sigma^f$ is unchanged.
+
+---
+
+**Exercise 6.** Price a quanto floorlet on EUR EURIBOR with strike $K = 3.0\%$, settled in JPY. The parameters are: $L^f(0) = 2.8\%$ (EUR forward rate), $\sigma^f = 25\%$, $\sigma_X = 12\%$ (EUR/JPY vol), $\rho_{L,X} = -0.15$, $T = 2$ years, $\delta = 0.5$, and $P^d(0, T_{i+1}) = 0.990$ (JPY discount factor). First compute the quanto-adjusted forward rate, then apply Black's formula for the floorlet.
+
+---
+
+**Exercise 7.** In a stochastic volatility extension, both $\sigma^f(t)$ and $\sigma_X(t)$ follow their own diffusion processes and $\rho_{L,X}(t)$ is state-dependent. Explain qualitatively why the constant-parameter quanto formula $\exp(-\rho\sigma^f\sigma_X T)$ becomes inadequate for long-dated quanto products. Describe two modeling approaches that can handle time-varying or stochastic correlation and discuss their calibration requirements.

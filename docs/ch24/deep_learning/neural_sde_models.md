@@ -267,3 +267,39 @@ In finance, diffusion models can generate realistic return distributions, implie
 - Gierjatowicz, Sabate-Vidales, Siska & Szpruch (2022), "Robust Pricing and Hedging via Neural SDEs"
 - Tzen & Raginsky (2019), "Neural Stochastic Differential Equations"
 - Song, Sohl-Dickstein, Kingma et al. (2021), "Score-Based Generative Modeling through SDEs"
+
+---
+
+## Exercises
+
+**Exercise 1.** Write the Euler-Maruyama discretization for the neural SDE $dX_t = \mu_\theta(t, X_t)dt + \sigma_\phi(t, X_t)dW_t$ and the associated Gaussian transition density. Given observations $X_0 = 100$ and $X_{\Delta t} = 102$ with $\Delta t = 1/252$ (one trading day), and neural network outputs $\mu_\theta = 0.05$ and $\sigma_\phi = 0.20$, compute the log-likelihood of this single transition. How does the likelihood change if $\sigma_\phi = 0.40$?
+
+---
+
+**Exercise 2.** Explain why neural networks with Lipschitz activations (e.g., ReLU with $|\text{ReLU}(x) - \text{ReLU}(y)| \le |x - y|$) and bounded weights produce Lipschitz drift and diffusion functions. If the weight matrices satisfy $\|W^{(\ell)}\|_2 \le B$ for all layers, derive an upper bound on the Lipschitz constant of the neural network in terms of $B$ and the depth $L$. Discuss how weight clipping during training ensures well-posedness of the neural SDE.
+
+---
+
+**Exercise 3.** A neural SDE is used to model stock price dynamics: $d\log S_t = \mu_\theta(t, \log S_t)dt + \sigma_\phi(t, \log S_t)dW_t$. Explain why modeling $\log S$ rather than $S$ naturally ensures positivity of prices. If the neural diffusion uses softplus activation $\sigma_\phi = \log(1 + e^{\mathcal{N}_\phi})$, show that $\sigma_\phi > 0$ always. What would happen if $\sigma_\phi$ could become zero or negative?
+
+---
+
+**Exercise 4.** The adjoint method computes gradients with $O(1)$ memory instead of $O(N)$. Explain the memory bottleneck in standard backpropagation through the Euler-Maruyama scheme: why must all $N$ intermediate states $\{X_{t_k}\}$ be stored? For a neural SDE with 252 daily time steps over 1 year and state dimension $d = 5$, estimate the memory savings of the adjoint method. What is the computational tradeoff (i.e., what additional computation does the adjoint method require)?
+
+---
+
+**Exercise 5.** Describe how a latent neural SDE with variational inference extends classical stochastic volatility models. In the Heston model, the latent state is the variance $v_t$. In the latent neural SDE, the latent state $Z_t \in \mathbb{R}^p$ is learned from data. The KL divergence between the posterior and prior SDEs takes the Girsanov form
+
+$$
+D_{\text{KL}}(q \| p) = \frac{1}{2}\mathbb{E}_q\left[\int_0^T \left\|\sigma^{-1}(\tilde{\mu}_\lambda - \mu_\theta)\right\|^2 dt\right]
+$$
+
+Explain why this penalizes the posterior drift $\tilde{\mu}_\lambda$ for deviating from the prior drift $\mu_\theta$, acting as a regularizer on the latent dynamics.
+
+---
+
+**Exercise 6.** A neural SDE is calibrated to fit the implied volatility surface by minimizing $\sum_i w_i|V_{\text{market}}^{(i)} - V_{\theta,\phi}^{(i)}|^2$. The model prices $V_{\theta,\phi}^{(i)}$ are computed by Monte Carlo simulation of the neural SDE. Discuss the computational challenges: (a) the loss gradient requires differentiating through the Monte Carlo simulation, (b) the variance of the Monte Carlo estimator affects gradient quality. How do techniques like reparameterization (pathwise gradients) and variance reduction help?
+
+---
+
+**Exercise 7.** Compare neural SDEs to classical parametric models (Black-Scholes, Heston, SABR) on three criteria: (a) flexibility to fit the volatility surface, (b) interpretability of model parameters, and (c) out-of-sample stability. Argue that neural SDEs offer superior fit but potentially worse interpretability and stability. Propose a hybrid approach that combines parametric structure with neural network corrections, and explain how this might achieve the benefits of both.

@@ -264,3 +264,41 @@ next section builds the conceptual bridge from these empirical conclusions to
 the continuous-time theory of SDEs.
 
 **Next:** Bridge to Stochastic Differential Equations. $\square$
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider the deterministic ODE $dS/dt = \mu S$ with $S(0) = 100$ and $\mu = 0.10$ (per year). Compute the price $S(t)$ at $t = 1$ year and the log return over $[0,1]$. Now compute $\operatorname{Var}(r)$ for this model. Compare with the empirical annualised volatility of a typical equity ($\sigma \approx 0.25$) and explain why no choice of $\mu$ can resolve this discrepancy.
+
+---
+
+**Exercise 2.** The quadratic variation of a differentiable function $g(t)$ over $[0,T]$ is defined as
+
+$$
+[g]_T = \lim_{|\mathcal{P}| \to 0} \sum_{i=0}^{n-1} \bigl(g(t_{i+1}) - g(t_i)\bigr)^2
+$$
+
+Show that $[g]_T = 0$ for any continuously differentiable function. Then explain why $[W]_T = T$ for standard Brownian motion $W_t$, and why this non-zero quadratic variation rules out differentiable paths as a model for asset prices.
+
+---
+
+**Exercise 3.** Consider the naive additive-noise model $S(t + \Delta t) = S(t)e^{\mu\Delta t} + \varepsilon_t$ with $\varepsilon_t \sim \mathcal{N}(0, \sigma^2\Delta t)$. If $S(t) = 50$, $\mu = 0.05$, and $\sigma = 0.20$, compute the probability that $S(t + \Delta t) < 0$ for $\Delta t = 1/252$ (one trading day). Then repeat for the multiplicative model $S(t+\Delta t) = S(t)\exp(\mu\Delta t + \sigma\sqrt{\Delta t}\cdot Z)$ with $Z \sim \mathcal{N}(0,1)$ and explain why the probability of a negative price is exactly zero.
+
+---
+
+**Exercise 4.** In the multiplicative noise model, consider the normalised log-increment
+
+$$
+\frac{\log S(t+\Delta t) - \log S(t)}{\sqrt{\Delta t}} = \mu\sqrt{\Delta t} + \sigma Z, \qquad Z \sim \mathcal{N}(0,1)
+$$
+
+Compute the mean and variance of this quantity. Take the limit as $\Delta t \to 0$ and show that it converges in distribution to $\mathcal{N}(0, \sigma^2)$. Explain why this convergence justifies the SDE notation $d(\log S_t) = \mu\,dt + \sigma\,dW_t$.
+
+---
+
+**Exercise 5.** The correct GBM solution is $S_t = S_0\exp[(\mu - \sigma^2/2)t + \sigma W_t]$, whereas naive integration gives $S_t = S_0\exp[\mu t + \sigma W_t]$. For $S_0 = 100$, $\mu = 0.08$, $\sigma = 0.30$, and $t = 5$ years, compute $\mathbb{E}[S_t]$ under both formulas. Which formula gives $\mathbb{E}[S_t] = S_0 e^{\mu t}$? Verify that the correct formula satisfies $\mathbb{E}[S_t] = S_0 e^{\mu t}$ by using the moment generating function of the normal distribution.
+
+---
+
+**Exercise 6.** For each of the five structural failures of deterministic models (zero variance, smooth paths, no volatility clustering, no heavy tails, no leverage effect), state which feature of the GBM SDE $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ addresses it and which failures require extensions beyond basic GBM. Organise your answer as a table with columns: Failure, Addressed by GBM?, Required Extension.

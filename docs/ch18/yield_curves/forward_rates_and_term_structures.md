@@ -242,3 +242,29 @@ This does not indicate arbitrage but requires care in lognormal models.
 - Brigo & Mercurio, *Interest Rate Models—Theory and Practice*, Chapter 1
 - Filipović, *Term-Structure Models: A Graduate Course*
 - Hull, *Options, Futures, and Other Derivatives*, Chapters 4 and 6
+
+---
+
+## Exercises
+
+**Exercise 1.** Given zero rates $R(0,1) = 3.0\%$ and $R(0,2) = 3.5\%$ (continuously compounded), compute the forward rate $f(0; 1, 2)$. Verify by showing that investing at $R(0,1)$ for one year then at $f(0;1,2)$ for another year yields the same result as investing at $R(0,2)$ for two years.
+
+---
+
+**Exercise 2.** Derive the simply compounded forward rate $F(t; T_1, T_2) = \frac{1}{T_2 - T_1}\left(\frac{P(t,T_1)}{P(t,T_2)} - 1\right)$ from the no-arbitrage condition that prevents riskless profit from lending over $[t, T_2]$ versus lending over $[t, T_1]$ and rolling into a forward contract.
+
+---
+
+**Exercise 3.** If $P(0, T) = e^{-0.03T - 0.002T^2}$, compute the instantaneous forward rate $f(0, T) = -\frac{\partial}{\partial T}\ln P(0, T)$ and the zero rate $R(0,T)$. Show that the forward curve lies above the zero curve when the zero curve is upward-sloping.
+
+---
+
+**Exercise 4.** Prove the identity $R(t, T) = \frac{1}{T-t}\int_t^T f(t, u)\,du$: the zero rate is the average of the instantaneous forward rate curve over $[t, T]$.
+
+---
+
+**Exercise 5.** An inverted yield curve has $R(0,1) = 5\%$ and $R(0,10) = 3.5\%$. Compute the forward rate $f(0; 1, 10)$ and show it is below $3.5\%$. What does this imply about market expectations for future short-term rates under the expectations hypothesis?
+
+---
+
+**Exercise 6.** Explain the difference between the forward rate $f(0; T, T+\Delta)$ and the expected future spot rate $\mathbb{E}[R(T, T+\Delta)]$. Under the expectations hypothesis they are equal. Under the liquidity premium hypothesis, which is larger and why?

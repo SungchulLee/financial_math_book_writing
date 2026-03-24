@@ -378,3 +378,45 @@ The weights in the annuity combine contributions from each payment date, reflect
 - Björk (2009), *Arbitrage Theory in Continuous Time*, Chapter 26 (Forward Measures)
 - Rebonato (2002), *Modern Pricing of Interest-Rate Derivatives*, Chapters 7--8
 - Jamshidian (1997), "LIBOR and Swap Market Models and Measures"
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a European put option on a zero-coupon bond $P(t, T_B)$ with maturity $T < T_B$ and strike $K$. Using the $T$-forward measure with numéraire $P(t, T)$, derive the put price formula analogous to the call formula in Example 1. Express the result in terms of the forward bond price $F(0) = P(0, T_B)/P(0, T)$, the integrated variance $v^2$, and $K$.
+
+---
+
+**Exercise 2.** In the Vasicek model with $\sigma = 0.008$, $\kappa = 0.15$, the zero-coupon bond prices are $P(0,2) = 0.94$ and $P(0,7) = 0.76$. Price a European call option on $P(t, 7)$ with maturity $T = 2$ and strike $K = 0.80$. Carry out the full calculation: compute the forward bond price, the integrated variance using
+
+$$
+v^2 = \sigma^2 \, B(T_B - T)^2 \cdot \frac{1 - e^{-2\kappa T}}{2\kappa},
+$$
+
+then apply Black's formula.
+
+---
+
+**Exercise 3.** A caplet on 6-month LIBOR has fixing date $T_i = 3$, payment date $T_{i+1} = 3.5$, strike $K = 4\%$, and notional \$1 million. The forward LIBOR rate is $L_i(0) = 4.5\%$, the Black implied volatility is $\sigma_i = 20\%$, and $P(0, 3.5) = 0.87$. Compute the caplet price using the $T_{i+1}$-forward measure. Verify that the intrinsic value (replacing $N(d_1), N(d_2)$ with 1 for deep in-the-money) gives an upper bound for the price.
+
+---
+
+**Exercise 4.** Explain why the forward swap rate $S(t) = (P(t, T_0) - P(t, T_n))/A(t)$ is a martingale under the annuity measure $\mathbb{Q}^A$ but not under the risk-neutral measure $\mathbb{Q}$. Identify the drift of $S(t)$ under $\mathbb{Q}$ in terms of the volatilities of the bond prices and the annuity factor.
+
+---
+
+**Exercise 5.** A 1-year into 2-year receiver swaption (the right to enter a receiver swap: receive fixed, pay floating) has strike $K = 3.5\%$, with annual payments at $T_1 = 2$ and $T_2 = 3$. The market data are $P(0,1) = 0.97$, $P(0,2) = 0.935$, $P(0,3) = 0.90$, and the swaption implied volatility is $\sigma_S = 18\%$. Compute the annuity factor, the forward swap rate, and the receiver swaption price using Black's formula under the annuity measure.
+
+---
+
+**Exercise 6.** Starting from the Radon--Nikodym derivative $d\mathbb{Q}^{T_i}/d\mathbb{Q}^{T_j} = (P(t,T_i)/P(0,T_i))/(P(t,T_j)/P(0,T_j))$ for $j > i$, derive the Girsanov drift adjustment that converts a Brownian motion $W^{T_j}$ into a Brownian motion $W^{T_i}$. Express the drift in terms of the bond volatility functions $\Sigma(t, T_i)$ and $\Sigma(t, T_j)$.
+
+---
+
+**Exercise 7.** A floorlet on 3-month LIBOR pays $\delta \max(K - L_i(T_i), 0)$ at $T_{i+1}$. Using put-call parity for the caplet and floorlet (both priced under $\mathbb{Q}^{T_{i+1}}$), show that
+
+$$
+\text{Caplet} - \text{Floorlet} = \delta \, P(0, T_{i+1})(L_i(0) - K)
+$$
+
+Verify this identity numerically using $L_i(0) = 5\%$, $K = 4.5\%$, $\sigma_i = 22\%$, $T_i = 2$, $\delta = 0.25$, and $P(0, T_{i+1}) = 0.91$.

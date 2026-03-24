@@ -226,3 +226,33 @@ These test cases should be part of any unit test suite for a Hull-White implemen
 ## Summary
 
 The named functions of the Hull-White model exhibit clean limiting behavior that connects to simpler models and provides numerical benchmarks. As $a \to 0$, all functions reduce to their Ho-Lee equivalents: $B(\tau) \to \tau$, $\sigma_r^2(t) \to \sigma^2 t$, $V(t,T) \to \sigma^2\tau^3/3$. As $a \to \infty$, stochastic variation vanishes and the model becomes deterministic. Short-maturity expansions recover simple discounting at leading order, while long-maturity limits show that the one-factor structure cannot independently control the long end. These asymptotics serve as essential validation tools for any numerical implementation of the model.
+
+---
+
+## Exercises
+
+**Exercise 1.** Derive the Ho-Lee limit of $\theta(t)$ by taking $a \to 0$ in the formula $\theta(t) = f'(0,t) + af(0,t) + \frac{\sigma^2}{2a}(1-e^{-2at})$. Be careful with the indeterminate form in the third term; use L'Hopital's rule or Taylor expansion to show it converges to $\sigma^2 t$.
+
+---
+
+**Exercise 2.** For $a = 0.001$, $\sigma = 0.01$, and $\tau = 5$, compute $B(\tau)$ exactly, using the Ho-Lee approximation $B \approx \tau$, and using the first-order correction $B \approx \tau(1 - a\tau/2)$. Report the relative error of each approximation. At what value of $a\tau$ does the first-order correction achieve a relative error below $10^{-4}$?
+
+---
+
+**Exercise 3.** In the fast mean-reversion limit $a \to \infty$, all option prices should vanish. Explain this result intuitively: what happens to the distribution of $r_t$ when mean reversion is infinitely fast? What does this imply for the value of any convexity-dependent instrument?
+
+---
+
+**Exercise 4.** Derive the short-maturity expansion $V(t,T) = \frac{\sigma^2\tau^3}{3} - \frac{\sigma^2 a\tau^4}{6} + O(\tau^5)$ by substituting the Taylor expansions of $B(\tau)$ and $B(2\tau)$ into the formula $V = \frac{\sigma^2}{a^2}[\tau - 2B(\tau) + B(2\tau)/2]$.
+
+---
+
+**Exercise 5.** The long-maturity yield sensitivity $\partial R/\partial r = B(\tau)/\tau \to 1/(a\tau) \to 0$ shows that long yields are insensitive to the short rate. Explain why this is a fundamental limitation of one-factor models. How does a two-factor extension address this limitation?
+
+---
+
+**Exercise 6.** Design a unit test for a Hull-White implementation using the summary table of limits. Write pseudocode that checks $B(\tau)$, $\sigma_r^2(t)$, and $V(t,T)$ against the Ho-Lee limits for $a = 10^{-6}$ and against the fast-mean-reversion limits for $a = 10^{6}$, with appropriate tolerance bounds.
+
+---
+
+**Exercise 7.** The bond price in the Ho-Lee limit is $P(t,T) = \frac{P^M(0,T)}{P^M(0,t)}\exp(\tau[f^M(0,t) - r(t)] + \frac{\sigma^2}{6}\tau^3)$. Identify the convexity correction term $\frac{\sigma^2}{6}\tau^3$ and explain its sign. Why does this term grow with $\tau^3$ rather than $\tau^2$?

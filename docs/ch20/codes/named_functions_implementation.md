@@ -158,3 +158,33 @@ The named functions satisfy several identities that serve as unit tests:
 | **Validation** | Boundary identities + bond price recovery |
 
 For the full class that wraps these functions into a pricing engine, see the [Hull-White Model Class Guide](hull_white_model_class.md). For the derivative pricing methods that use $A$ and $B$, see [Bond and Derivative Pricing Classes Guide](bond_derivative_pricing_classes.md).
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify the boundary conditions $B(0) = 0$ and $A(0) = 0$ by substituting $\tau = 0$ into the formulas. What does $P(T, T) = \exp(A(0) + B(0)\,r_T) = 1$ mean financially?
+
+---
+
+**Exercise 2.** For $\lambda = 0.05$ and $\tau = 1, 5, 10, 20, 50$ years, compute $B(\tau) = -(1 - e^{-\lambda\tau})/\lambda$. Plot $B(\tau)$ as a function of $\tau$ and verify that $B(\tau) \to -1/\lambda = -20$ as $\tau \to \infty$. Explain why the saturation of $B(\tau)$ implies that very long-dated bond prices are approximately insensitive to further increases in maturity.
+
+---
+
+**Exercise 3.** The instantaneous forward rate is computed by central differences: $f(0, t) \approx -[\ln P(t + dt) - \ln P(t - dt)]/(2\,dt)$. For a flat curve at 3\%, the exact answer is $f(0, t) = 0.03$ for all $t$. Compute the numerical forward rate at $t = 5$ for $dt = 10^{-2}, 10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}$ and measure the error. Explain the trade-off between truncation error and round-off error.
+
+---
+
+**Exercise 4.** The $A(\tau)$ function involves a numerical integral evaluated by the trapezoidal rule on $n = 250$ grid points. Estimate the truncation error of the trapezoidal rule for a smooth integrand over $[0, \tau]$: the error is $O(\tau^3/n^2)$. For $\tau = 30$ years and $n = 250$, what is the order of magnitude of the error? How many points would you need for the error to be below $10^{-8}$?
+
+---
+
+**Exercise 5.** Show that for a flat curve $P^M(0, t) = e^{-rt}$, the $\theta(t)$ formula simplifies because $f(0, t) = r$ and $\partial f/\partial t = 0$. Write the simplified expression for $\theta(t)$ and compute it for $r = 0.03$, $\sigma = 0.01$, $\lambda = 0.05$ at $t = 0, 1, 5$. Verify that $\theta(0) = r$.
+
+---
+
+**Exercise 6.** The variance function $\sigma_r^2(t_0, t) = -\frac{1}{2}\sigma^2 B(2(t - t_0))$. Show algebraically that this equals $\frac{\sigma^2}{2\lambda}(1 - e^{-2\lambda(t - t_0)})$. For $\sigma = 0.01$, $\lambda = 0.05$, compute the standard deviation of the short rate at $t = 1, 5, 10$ years (with $t_0 = 0$) and comment on the asymptotic behavior.
+
+---
+
+**Exercise 7.** The bond price recovery test states that $\exp(A(T) + B(T)\,r_0) = P^M(0, T)$. Using a Nelson-Siegel curve with $\beta_0 = 0.04$, $\beta_1 = -0.02$, $\beta_2 = 0.01$, $\alpha = 0.5$, and Hull-White parameters $\sigma = 0.01$, $\lambda = 0.05$, compute both sides for $T = 1, 5, 10, 20$. Report the relative error $|P^{\text{model}} - P^{\text{market}}|/P^{\text{market}}$ and verify it is consistent with the expected numerical accuracy from the table in this section.

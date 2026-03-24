@@ -223,3 +223,51 @@ Expanding the product and using properties of the lognormal distribution, the ar
 - Brigo & Mercurio (2006), *Interest Rate Models: Theory and Practice*, Chapter 13 (In-Arrears Products)
 - Hull (2018), *Options, Futures, and Other Derivatives*, Chapter 29
 - Pelsser (2000), *Efficient Methods for Valuing Interest Rate Derivatives*, Chapter 5
+
+---
+
+## Exercises
+
+**Exercise 1.** A LIBOR-in-arrears payment fixes and pays at $T_i = 3$ years. The forward LIBOR rate is $L_i(0) = 4.2\%$, the Black implied volatility is $\sigma_i = 18\%$, and the accrual fraction is $\delta_i = 0.25$ (quarterly). Compute both the approximate and exact convexity corrections and the corresponding adjusted forward rates. What is the percentage error of the approximation?
+
+---
+
+**Exercise 2.** Starting from the Radon--Nikodym derivative
+
+$$
+\frac{d\mathbb{Q}^{T_i}}{d\mathbb{Q}^{T_{i+1}}}\bigg|_{\mathcal{F}_{T_i}} = \frac{P(0, T_{i+1})}{P(0, T_i)} \cdot (1 + \delta_i L_i(T_i)),
+$$
+
+derive the exact formula
+
+$$
+\mathbb{E}^{\mathbb{Q}^{T_i}}[L_i(T_i)] = \frac{L_i(0)\bigl(1 + \delta_i L_i(0)\,e^{\sigma_i^2 T_i}\bigr)}{1 + \delta_i L_i(0)}
+$$
+
+by computing $\mathbb{E}^{\mathbb{Q}^{T_{i+1}}}[L_i(T_i)^2]$ explicitly under lognormal dynamics. State all assumptions used.
+
+---
+
+**Exercise 3.** Explain why the map $L \mapsto L(1 + \delta L)$ is convex in $L$ for $\delta > 0$, and use Jensen's inequality to give a one-line proof that $\mathbb{E}^{\mathbb{Q}^{T_i}}[L_i(T_i)] > L_i(0)$ without performing any measure-change calculation.
+
+---
+
+**Exercise 4.** Consider a swap that pays LIBOR-in-arrears quarterly for 5 years on a notional of \$100 million. The forward LIBOR rates for each quarterly period are approximately $L_i(0) = 5\%$, the implied volatilities are $\sigma_i = 20\%$, and the accrual fractions are $\delta_i = 0.25$. Estimate the total convexity adjustment (summed over all 20 periods) in dollar terms. How does this compare to a single basis point on the fixed leg?
+
+---
+
+**Exercise 5.** An arrears caplet pays $\delta_i \max(L_i(T_i) - K, 0)$ at time $T_i$ with $K = 5\%$, $L_i(0) = 5\%$, $\sigma_i = 22\%$, $T_i = 2$, and $\delta_i = 0.5$. The standard (non-arrears) caplet with the same parameters pays at $T_{i+1}$. Explain qualitatively why the arrears caplet is more expensive than the standard caplet. Write down the pricing formula for the arrears caplet in terms of an expectation under $\mathbb{Q}^{T_{i+1}}$ and identify the additional term compared to the standard Black caplet formula.
+
+---
+
+**Exercise 6.** Suppose interest rates are modeled under a normal (Bachelier) framework instead of the lognormal (Black) framework, so that $L_i(T_i) \sim \mathcal{N}(L_i(0), \sigma_N^2 T_i)$ under $\mathbb{Q}^{T_{i+1}}$. Rederive the LIBOR-in-arrears convexity correction under normal dynamics and show that it takes the form
+
+$$
+\text{Correction}_{\text{normal}} = \frac{\delta_i \, \sigma_N^2 \, T_i}{1 + \delta_i L_i(0)}
+$$
+
+Compare this to the lognormal correction and discuss when the two formulas give materially different results.
+
+---
+
+**Exercise 7.** A structured note pays $\delta_i \, L_i(T_i)^2$ at time $T_i$ (a "LIBOR-squared" in-arrears payment). Using the change of measure from $\mathbb{Q}^{T_{i+1}}$ to $\mathbb{Q}^{T_i}$, derive the convexity-adjusted expectation $\mathbb{E}^{\mathbb{Q}^{T_i}}[L_i(T_i)^2]$ under lognormal dynamics. You will need the third moment of a lognormal random variable. Express your result in terms of $L_i(0)$, $\sigma_i$, $T_i$, and $\delta_i$.

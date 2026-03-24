@@ -285,3 +285,29 @@ $$
 | **Common error** | Forgetting to update boundary conditions when bumping $r$ |
 
 Vega and rho require additional PDE solves beyond the base case, making them more expensive than delta and gamma. However, the bump-and-revalue approach is straightforward, robust, and extends naturally to any model parameter sensitivity.
+
+---
+
+## Exercises
+
+**Exercise 1.** A base PDE solve gives $V(\sigma = 0.20) = 10.45$. Bumped solves give $V(\sigma = 0.21) = 11.23$ and $V(\sigma = 0.19) = 9.69$. Compute the central difference vega and the forward difference vega. Which is more accurate, and by how much?
+
+---
+
+**Exercise 2.** The optimal bump size for central differences scales as $\delta p \sim \varepsilon_{\text{FDM}}^{1/3}$. If the FDM solution has accuracy $\varepsilon_{\text{FDM}} = 10^{-6}$, compute the optimal $\delta\sigma$ for vega estimation. What bump size is optimal if $\varepsilon_{\text{FDM}} = 10^{-3}$?
+
+---
+
+**Exercise 3.** When bumping the interest rate $r$ to compute rho, three things change in the PDE: the drift term, the discount term, and the boundary conditions. Explain what happens to the rho estimate if you update the PDE coefficients but forget to update the boundary condition $V(t, S_{\max}) = S_{\max} - Ke^{-r(T-t)}$.
+
+---
+
+**Exercise 4.** Vomma (the second derivative of price with respect to volatility) can be computed from the same three PDE solutions used for vega: $\text{Vomma} = (V(\sigma + \delta\sigma) - 2V(\sigma) + V(\sigma - \delta\sigma))/(\delta\sigma)^2$. Using the values from Exercise 1, compute vomma. If the analytical vomma for this option is approximately $75$, assess the accuracy of the estimate.
+
+---
+
+**Exercise 5.** The vega-gamma relationship $\mathcal{V} \approx \sigma S^2 T \Gamma$ provides a cross-check. For an ATM call with $S = 100$, $\sigma = 0.25$, $T = 0.5$, and $\Gamma = 0.032$ (from the FDM grid), estimate vega using this relationship. Compare to the bumped estimate if $V(\sigma + 0.01) = 8.15$ and $V(\sigma - 0.01) = 7.35$.
+
+---
+
+**Exercise 6.** A complete set of Greeks requires 5 PDE solves (base + 2 vega bumps + 2 rho bumps). If each PDE solve takes 0.1 seconds with $M = 500$ and $N = 200$, what is the total time for all Greeks? Propose a strategy to reduce this cost by sharing computations across bumped solves.

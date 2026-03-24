@@ -292,3 +292,29 @@ $$
 | Strength | Simple, robust, handles dividends and exotics |
 
 **The binomial tree remains the workhorse method for American option pricing: intuitive, flexible, and easily extended to handle dividends, time-varying parameters, and path-dependent features.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Price an American put with $S_0 = 100$, $K = 100$, $r = 5\%$, $\sigma = 30\%$, $T = 1$ using a 3-step CRR binomial tree. At each node, show the stock price, the European put value, and the American put value. Identify the nodes where early exercise is optimal.
+
+---
+
+**Exercise 2.** In the binomial tree for an American put, the value at each node is $V = \max\left(\text{payoff}, \, e^{-r\Delta t}[pV_u + (1-p)V_d]\right)$. Explain the role of the $\max$ operation and why it is absent in European option pricing. What would happen if you omitted it?
+
+---
+
+**Exercise 3.** The convergence of the binomial tree to the continuous-time price is $O(1/\sqrt{N})$ but oscillatory. Explain the source of these oscillations for American puts and describe the Richardson extrapolation technique that can improve convergence.
+
+---
+
+**Exercise 4.** Modify the binomial tree to price an American call on a stock paying a discrete dividend $D$ at time $t_d$. Explain the adjustment to the stock price at the ex-dividend node and how early exercise just before the dividend date is handled.
+
+---
+
+**Exercise 5.** From your 3-step binomial tree in Exercise 1, extract the early exercise boundary by identifying the critical stock price $S^*$ at each time step below which exercise is optimal. Plot these values and comment on whether the boundary is increasing or decreasing in time to maturity.
+
+---
+
+**Exercise 6.** Compare the American put price from an $N$-step binomial tree with the European put price (from the same tree) for $N = 10, 50, 100, 500$. Compute the early exercise premium $\epsilon_N = V_{\text{Am}}^{(N)} - V_{\text{Eu}}^{(N)}$ and discuss how it behaves as $N$ increases.

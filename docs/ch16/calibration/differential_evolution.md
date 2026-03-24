@@ -186,3 +186,52 @@ Consider calibrating to $M = 20$ options with the vega-weighted objective from t
 ## Summary
 
 Differential evolution provides a robust, derivative-free global search for the non-convex Heston calibration problem. The algorithm's three operators---mutation (exploration via difference vectors), crossover (mixing of parent and mutant components), and greedy selection (monotonic improvement)---enable it to escape local minima that trap gradient-based methods. For Heston calibration, typical settings of $N_p = 50$, $F = 0.8$, $CR = 0.9$ with a DE/best/1 strategy converge in 100--200 generations. A hybrid approach using DE for global search followed by Levenberg-Marquardt or Nelder-Mead for local polishing achieves both robustness and precision at acceptable computational cost.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Consider a DE population of $N_p = 50$ in the five-dimensional Heston parameter space. At generation $g$, the best member is $\Theta_{\text{best}} = (0.04, 2.0, 0.04, 0.5, -0.7)$ and two randomly selected members are $\Theta_{r_1} = (0.03, 1.5, 0.03, 0.4, -0.6)$ and $\Theta_{r_2} = (0.05, 2.5, 0.05, 0.6, -0.8)$. Compute the mutant vector $\mathbf{V}_i$ using the DE/best/1 strategy with mutation factor $F = 0.8$. Verify that all components lie within the standard Heston bounds, and apply the bounce-back rule to any that do not.
+
+---
+
+**Exercise 2.**
+Given the mutant vector $\mathbf{V}_i = (0.038, 1.2, 0.035, 0.55, -0.74)$ and the target vector $\Theta_i = (0.042, 2.1, 0.040, 0.45, -0.68)$, perform binomial crossover with $CR = 0.9$. Suppose the random draws for each component are $(0.85, 0.95, 0.30, 0.72, 0.91)$ and $j_{\text{rand}} = 2$ (the second component). Write out the trial vector $\mathbf{U}_i$ and explain which components came from the mutant versus the target.
+
+---
+
+**Exercise 3.**
+The penalized objective function is defined as:
+
+$$
+\mathcal{L}_{\text{pen}}(\Theta) = \mathcal{L}(\Theta) + \mu \cdot \max\bigl(0, \, \xi^2 - 2\kappa\theta\bigr)^2
+$$
+
+For the parameter set $(\kappa, \theta, \xi) = (1.5, 0.03, 0.5)$, compute the Feller violation $\xi^2 - 2\kappa\theta$ and the penalty term for $\mu = 50$. If the base loss is $\mathcal{L} = 3.0 \times 10^{-4}$, compute $\mathcal{L}_{\text{pen}}$. Compare with a Feller-satisfying parameter set $(\kappa, \theta, \xi) = (3.0, 0.05, 0.5)$ having the same base loss.
+
+---
+
+**Exercise 4.**
+Explain why the DE/rand/1 strategy provides more robust global exploration than DE/best/1, while DE/best/1 typically converges faster. Consider a Heston calibration landscape with two local minima at $\Theta_A = (0.04, 2.0, 0.04, 0.5, -0.7)$ with $\mathcal{L}_A = 2.5 \times 10^{-4}$ and $\Theta_B = (0.06, 0.8, 0.06, 0.3, -0.5)$ with $\mathcal{L}_B = 2.8 \times 10^{-4}$. If the current best is $\Theta_A$, describe how DE/best/1 could miss $\Theta_B$ even if $\Theta_B$ is actually closer to the global minimum.
+
+---
+
+**Exercise 5.**
+A Heston calibration uses $N_p = 50$, $g_{\max} = 200$, and prices $M = 45$ options per evaluation using the COS method with $N = 128$ terms. Compute the total number of characteristic function evaluations. If each characteristic function evaluation takes $0.5$ microseconds, estimate the total calibration time for the DE stage alone. How does this change if you double $N_p$ to 100? Discuss the trade-off between calibration robustness and computational cost.
+
+---
+
+**Exercise 6.**
+The $\kappa$-$\theta$ ridge structure means that only the product $\kappa\theta$ is well-identified from short-maturity data. To see this, consider the long-run variance level $\theta$ and the mean-reversion speed $\kappa$ in the CIR variance process. Show that for short maturities $T \ll 1/\kappa$, the expected integrated variance depends on $v_0$ and $\kappa\theta$ approximately as:
+
+$$
+\mathbb{E}\!\left[\int_0^T v_t \, dt\right] \approx v_0 T + \frac{1}{2}\kappa(\theta - v_0)T^2
+$$
+
+Conclude that $\kappa$ and $\theta$ are individually identifiable only from data across multiple maturities, and explain how this creates the ridge structure in the objective function.
+
+---
+
+**Exercise 7.**
+Design a stopping criterion for DE-based Heston calibration that combines multiple convergence indicators. Specifically, define a criterion using: (a) the spread $\Delta \mathcal{L} = \max_i \mathcal{L}(\Theta_i^{(g)}) - \min_i \mathcal{L}(\Theta_i^{(g)})$, (b) the parameter dispersion $\Delta\Theta_j = \max_i \Theta_{i,j}^{(g)} - \min_i \Theta_{i,j}^{(g)}$ for each component $j$, and (c) a minimum number of generations. Propose specific threshold values and justify them in the context of Heston calibration accuracy requirements (e.g., IVRMSE below 50 bps).

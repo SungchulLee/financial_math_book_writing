@@ -188,3 +188,29 @@ At $u = 30$: the argument under the square root has a large negative real part: 
 ## Summary
 
 The Heston characteristic function involves multi-valued complex functions (square root and logarithm) that introduce artificial discontinuities if branch cuts are not handled carefully. The original Heston (1993) formulation uses exponentially growing terms $e^{\gamma\tau}$ that amplify branch-cut crossings, producing numerical instabilities at moderate to long maturities. The Albrecher stable formulation replaces these with decaying exponentials $e^{-\gamma\tau}$ by choosing $g$ such that $|g| < 1$, eliminating nearly all branch-cut issues. The rotation count method of Kahl and Jackel provides an additional safeguard by tracking the winding number of the logarithm's argument along the integration path. Any production implementation of the Heston characteristic function should use the Albrecher formulation as the default, with the rotation count available as a fallback for extreme parameters.
+
+---
+
+## Exercises
+
+**Exercise 1.** The principal square root $\gamma = \sqrt{z}$ for complex $z$ has a branch cut along $(-\infty, 0]$. For $z = (\kappa - i\rho\sigma_v u)^2 + \sigma_v^2(iu + u^2)$ with $\kappa = 2$, $\sigma_v = 0.3$, $\rho = -0.7$, compute $z$ at $u = 5$ and verify that $z$ does not lie on the branch cut.
+
+---
+
+**Exercise 2.** Explain the "little Heston trap": the original 1993 formulation uses terms $e^{+\gamma\tau}$ that grow exponentially for large $\tau$, causing catastrophic cancellation when combined with the denominator $1 - g^{-1}e^{+\gamma\tau}$. How does the Albrecher formulation avoid this?
+
+---
+
+**Exercise 3.** The Albrecher formulation ensures $|g| < 1$ by choosing $g = (\beta - \gamma)/(\beta + \gamma)$ with $\operatorname{Re}(\gamma) > 0$. Prove that $|g| < 1$ when $\operatorname{Re}(\gamma) > 0$ and $\operatorname{Re}(\beta) < 0$.
+
+---
+
+**Exercise 4.** The rotation count method of Kahl and Jackel tracks the winding number of the complex logarithm's argument. Explain why discontinuities of $2\pi i$ in the complex logarithm can corrupt the characteristic function and how the rotation count corrects for them.
+
+---
+
+**Exercise 5.** Implement both the Heston 1993 and Albrecher formulations and compare them numerically for $\tau = 5$, $\kappa = 0.5$, $\sigma_v = 1$, $\rho = -0.9$ at $u = 1, 5, 10, 20$. At which $u$ values does the 1993 formulation break down?
+
+---
+
+**Exercise 6.** For a production implementation, describe a testing strategy to verify numerical stability: what parameter ranges should be tested, what reference values can be used, and how should one detect branch-cut crossing errors?

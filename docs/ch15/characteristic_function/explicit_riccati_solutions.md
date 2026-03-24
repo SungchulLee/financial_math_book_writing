@@ -272,3 +272,33 @@ Explicit Riccati solutions exist for the core affine models: the Vasicek model p
 - Albrecher, H., Mayer, P., Schoutens, W., & Tistaert, J. (2007). "The Little Heston Trap." *Wilmott Magazine*, January, 83-92.
 - Cox, J. C., Ingersoll, J. E., & Ross, S. A. (1985). "A Theory of the Term Structure of Interest Rates." *Econometrica*, 53(2), 385-407.
 - Filipovic, D. *Term-Structure Models: A Graduate Course*. Springer, 2009.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Vasicek model, verify by direct differentiation that $\psi(\tau) = ue^{-\kappa\tau}$ satisfies $\psi'(\tau) = -\kappa\psi(\tau)$ with $\psi(0) = u$. Then substitute into the $\phi$-equation and carry out the integration to confirm
+
+$$
+\phi(\tau) = \theta\,u\,(1 - e^{-\kappa\tau}) + \frac{\sigma^2 u^2}{4\kappa}(1 - e^{-2\kappa\tau})
+$$
+
+---
+
+**Exercise 2.** Apply the linearization substitution $\psi = -\frac{2}{\xi^2}\frac{h'}{h}$ to the CIR Riccati equation $\psi' = -\kappa\psi + \frac{\xi^2}{2}\psi^2$. Show that $h$ satisfies the second-order linear ODE $h'' + \kappa h' = 0$ (for the undiscounted case). Solve for $h(\tau)$ and recover $\psi(\tau)$ from the ratio $h'/h$.
+
+---
+
+**Exercise 3.** In the Heston model, the discriminant is $d = \sqrt{(\rho\xi iv - \kappa)^2 + \xi^2(iv + v^2)}$. Compute $d$ numerically for the parameters $\kappa = 2$, $\xi = 0.3$, $\rho = -0.7$, and $v = 1$. Verify that $\operatorname{Re}(d) > 0$.
+
+---
+
+**Exercise 4.** For the CIR bond pricing formula with $B(\tau) = \frac{2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}$ and $\gamma = \sqrt{\kappa^2 + 2\xi^2}$, show that $B(\tau) \to 2/(\gamma + \kappa)$ as $\tau \to \infty$. What is the financial interpretation of this limiting behavior for long-maturity bond prices?
+
+---
+
+**Exercise 5.** Consider a model where the $\psi$-equation has time-dependent parameters: $\psi'(\tau) = -\kappa(\tau)\psi(\tau)$ with $\kappa(\tau) = \kappa_0 + \kappa_1 e^{-\lambda\tau}$. Show that this linear ODE can still be solved in closed form and write down $\psi(\tau)$. Explain why this approach does not generalize easily to the Riccati case with a quadratic term.
+
+---
+
+**Exercise 6.** Using the Heston closed-form solution, verify numerically that the characteristic function satisfies $|\Phi(\tau, v, x)| \leq 1$ for $\tau = 1$, $x = (\log 100, 0.04)$, and several values of $v \in \{0.1, 1, 5, 10, 50\}$. Use parameters $\kappa = 1.5$, $\theta = 0.04$, $\xi = 0.3$, $\rho = -0.7$, $r = 0.05$.

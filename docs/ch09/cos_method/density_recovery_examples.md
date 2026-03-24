@@ -195,3 +195,29 @@ Density recovery examples confirm the COS method's accuracy and provide diagnost
 | Variance Gamma | Levy--Khintchine | $\approx 128$ | Peaked, heavy tails |
 
 **Density recovery via the COS method serves as both a validation tool for characteristic function implementations and a diagnostic for understanding the risk-neutral distributions implied by different financial models, with the reconstructed density providing visual insight into features like skewness, kurtosis, and tail behavior that drive option prices.**
+
+---
+
+## Exercises
+
+**Exercise 1.** For $X \sim N(0, 1)$ on $[-10, 10]$, the COS reconstruction achieves machine precision with $N = 64$. Compute the coefficients $F_0, F_2, F_4$ using $F_k = \frac{1}{10}\,\text{Re}[e^{-k^2\pi^2/800}\cdot e^{ik\pi/2}]$ and verify the values in the text. At what value of $k$ does $|F_k|$ first drop below $10^{-15}$?
+
+---
+
+**Exercise 2.** For the log-normal density (Black-Scholes with $S_0 = 100$, $r = 0.05$, $\sigma = 0.20$, $T = 1$), the truncation interval is approximately $[2.635, 6.635]$. Explain why this interval is not symmetric about $c_1 \approx 4.635$ in the original variable (it is symmetric in log-price). Compute $c_1 = (r - \sigma^2/2)T + \ln S_0$ and verify.
+
+---
+
+**Exercise 3.** The Heston density exhibits negative skew and excess kurtosis compared to the log-normal. If the Heston density has $c_3 < 0$ and $c_4 > 0$, explain how these cumulant values manifest in the shape of the density. Specifically, describe how the left tail, right tail, and peak of the Heston density differ from the log-normal density with the same $c_1$ and $c_2$.
+
+---
+
+**Exercise 4.** The diagnostic checklist includes verifying $\int_a^b\hat{f}_N(x)\,dx \approx 1$. Using the cosine expansion $\hat{f}_N(x) = \sum_{k=0}^{N-1}{}'F_k\cos(k\pi(x-a)/(b-a))$, show that $\int_a^b\hat{f}_N(x)\,dx = \frac{b-a}{2}F_0$. If $F_0 = A_0 = 2/(b-a)$ for a properly truncated density, verify that the integral equals 1.
+
+---
+
+**Exercise 5.** The COS density reconstruction can produce negative values near the boundaries when $N$ is too small. For $N = 8$ and a standard normal on $[-10, 10]$, explain why $\hat{f}_8(x)$ might be negative near $x = \pm 8$. How does increasing $N$ to 64 eliminate the negative values? What is the minimum $N$ for which $\hat{f}_N(x) \geq 0$ for all $x \in [-8, 8]$?
+
+---
+
+**Exercise 6.** Use density recovery as a model validation tool: if you implement the Heston characteristic function and recover the density for $\sigma_v = 0$ (deterministic volatility), the result should match the Black-Scholes log-normal density. Explain what features of the recovered density would indicate a bug in the Heston CF implementation (e.g., wrong sign of skewness, incorrect peak location, density not integrating to 1).

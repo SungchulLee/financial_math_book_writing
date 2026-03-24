@@ -239,3 +239,37 @@ The expectation-based derivation and the PDE-based derivation yield identical bo
 ## Summary
 
 This section derived the Hull-White zero-coupon bond price by computing $\mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r(s)\,ds}\,|\,\mathcal{F}(t)]$ directly. The Gaussian property of the OU-type short rate process implies that the integrated short rate is conditionally normal, and the moment generating function of the normal distribution delivers the closed-form result $P(t,T) = A(t,T)e^{-B(t,T)r(t)}$. The function $A(t,T)$ encodes the initial market term structure and a volatility convexity correction, while $B(t,T)$ captures the mean-reversion-adjusted duration.
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify the conditional variance formula by computing $\sigma^2 \int_t^T B(u,T)^2\,du$ directly. Expand the square $(1 - e^{-\lambda(T-u)})^2$, integrate each term, and confirm the result matches $V(t,T)$.
+
+---
+
+**Exercise 2.** Show that $V(t,T) \to \frac{\sigma^2}{\lambda^2}(T-t)$ in the limit $\lambda \to 0$ by applying L'Hopital's rule or Taylor expanding the exponentials. Interpret this limiting variance in terms of the integrated Brownian motion.
+
+---
+
+**Exercise 3.** For a Hull-White model with $\lambda = 0.1$, $\sigma = 0.015$, and $f^M(0,t) = 0.04$, compute the conditional mean $M(0, 10)$ and variance $V(0, 10)$ of the integrated short rate $\int_0^{10} r(s)\,ds$ given $r(0) = 0.04$.
+
+---
+
+**Exercise 4.** The moment generating function identity $\mathbb{E}[e^{-X}] = e^{-\mu + \frac{1}{2}\sigma^2}$ for $X \sim \mathcal{N}(\mu, \sigma^2)$ is central to the derivation. Prove this identity by completing the square in the integral
+
+$$
+\int_{-\infty}^{\infty} e^{-x} \frac{1}{\sqrt{2\pi}\sigma} e^{-(x-\mu)^2/(2\sigma^2)}\,dx
+$$
+
+---
+
+**Exercise 5.** The factor $B(t,T)$ has the interpretation of a mean-reversion-adjusted duration. Compare $B(0,T) = \frac{1}{\lambda}(1 - e^{-\lambda T})$ with the Macaulay duration $T$ for a zero-coupon bond. For which values of $\lambda$ and $T$ does the difference exceed 10%?
+
+---
+
+**Exercise 6.** Show that the bond price formula satisfies $P(t,t) = 1$ for all $t$ by verifying that $A(t,t) = 0$ and $B(t,t) = 0$. What does this boundary condition represent financially?
+
+---
+
+**Exercise 7.** Explain why the expectation-based derivation and the PDE-based derivation must produce the same bond price formula. Under what conditions could the two approaches give different results (hint: consider models where the short rate is not affine)?

@@ -490,3 +490,33 @@ For a 30-year tenor with quarterly resets:
 - Rebonato (2002), *Modern Pricing of Interest-Rate Derivatives*
 - Brigo & Mercurio (2006), *Interest Rate Models: Theory and Practice*, Chapters 6-7
 - Andersen & Piterbarg (2010), *Interest Rate Modeling*, Volumes 1-3
+
+---
+
+## Exercises
+
+**Exercise 1.** In the LMM, the forward rate $L_i(t)$ is a martingale under $\mathbb{Q}^{T_{i+1}}$ and follows $dL_i(t)/L_i(t) = \sigma_i(t)\,dW_i^{T_{i+1}}(t)$. Explain why $L_i(t)$ is not a martingale under $\mathbb{Q}^{T_{j+1}}$ for $j \neq i$, and describe the drift correction that arises when changing from $\mathbb{Q}^{T_{i+1}}$ to $\mathbb{Q}^{T_{j+1}}$.
+
+---
+
+**Exercise 2.** Consider a simple LMM with two forward rates $L_0$ and $L_1$ on a semiannual grid. The initial rates are $L_0(0) = 4.5\%$ and $L_1(0) = 4.8\%$, with constant volatilities $\sigma_0 = 18\%$ and $\sigma_1 = 20\%$, and correlation $\rho_{01} = 0.85$. The zero-coupon bond prices are $P(0, 0.5) = 0.978$ and $P(0, 1.0) = 0.954$. Compute the annuity $A(0) = 0.5 \cdot P(0, 0.5) + 0.5 \cdot P(0, 1.0)$ and the forward swap rate $S(0)$.
+
+---
+
+**Exercise 3.** The LMM is described as a "market model" because it models directly observable market rates (forward LIBOR rates) rather than latent state variables (like the short rate). Explain why this property is advantageous for calibration. In particular, discuss why a caplet in the LMM is priced exactly by Black's formula, while in the Hull--White model, caplet pricing requires a separate derivation.
+
+---
+
+**Exercise 4.** In the LMM, the number of state variables equals the number of forward rates (e.g., 120 for a 30-year quarterly model). Discuss the computational challenges this poses for Monte Carlo simulation. How does the "frozen drift" approximation reduce computational cost, and what accuracy trade-offs does it introduce?
+
+---
+
+**Exercise 5.** A displaced diffusion extension of the LMM models the forward rate as $dL_i(t) = \sigma_i(t)(L_i(t) + s_i)\,dW_i(t)$, where $s_i > 0$ is a displacement. Explain how this extension allows the model to accommodate negative rates while preserving the analytical tractability of Black-type caplet pricing. What is the effective lower bound on $L_i(t)$ in this model?
+
+---
+
+**Exercise 6.** Explain the distinction between the "spot measure" (rolling money-market numéraire) and the "terminal measure" (fixed-maturity bond numéraire) in the LMM. Under each measure, write down the drift of $L_i(t)$ schematically and discuss which measure is preferred for Monte Carlo simulation of long-dated products.
+
+---
+
+**Exercise 7.** The LMM was originally developed for LIBOR rates but must be adapted for the post-LIBOR world based on risk-free rates (e.g., SOFR). Describe the key modifications needed: (a) replacing forward LIBOR rates with forward compounded SOFR rates, (b) adjusting the tenor structure, and (c) handling the backward-looking nature of compounded rates. Does the fundamental mathematical structure of the model change?

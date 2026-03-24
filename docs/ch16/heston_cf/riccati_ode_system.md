@@ -297,3 +297,29 @@ $$
 Substituting the exponential-affine ansatz into the Feynman-Kac PDE yields a scalar Riccati ODE for $D(\tau, u)$ and a simple quadrature for $C(\tau, u)$. The $D$-equation has constant complex coefficients (parametrized by $u$) with discriminant $\gamma^2 = (\kappa - i\rho\sigma_v u)^2 + \sigma_v^2(iu + u^2)$. The standard Riccati-to-linear substitution $D = -\frac{2}{\sigma_v^2}h'/h$ reduces the ODE to a constant-coefficient linear ODE with characteristic roots involving $\gamma$. The initial condition $D(0) = 0$ determines the integration constants. The closed-form solution for $D$ and $C$ -- the Heston characteristic function itself -- is presented in the [next section](closed_form_characteristic_function.md).
 
 ---
+
+---
+
+## Exercises
+
+**Exercise 1.** Write the $D$-equation: $D' = \frac{1}{2}\sigma_v^2 D^2 + (\rho\sigma_v iu - \kappa)D + \frac{1}{2}(iu - u^2)$. Identify the coefficients $\alpha$, $\beta$, $\gamma$ in the standard Riccati form $D' = \alpha + \beta D + \frac{1}{2}\gamma D^2$ and compute the discriminant $\gamma^2 = \beta^2 - 2\alpha\gamma$.
+
+---
+
+**Exercise 2.** Apply the substitution $D = -\frac{2}{\sigma_v^2}\frac{h'}{h}$ to transform the Riccati ODE into a second-order linear ODE for $h(\tau)$. Solve $h(\tau) = Ae^{r_+\tau} + Be^{r_-\tau}$ where $r_\pm$ are the characteristic roots.
+
+---
+
+**Exercise 3.** From the initial condition $D(0) = 0$, determine the ratio $A/B$ in terms of $r_+$ and $r_-$. Substitute back to obtain $D(\tau)$ in closed form.
+
+---
+
+**Exercise 4.** The $C$-equation is $C'(\tau) = (r-q)iu + \kappa\theta D(\tau)$. Given $D(\tau)$ in closed form, perform the integration to obtain $C(\tau)$ and verify that $C(0) = 0$.
+
+---
+
+**Exercise 5.** For parameters $\kappa = 2$, $\sigma_v = 0.3$, $\rho = -0.7$, compute the discriminant $\gamma$ at $u = 1$ and verify $\operatorname{Re}(\gamma) > 0$.
+
+---
+
+**Exercise 6.** Explain why the $D$-equation is autonomous in $D$ (it does not involve $C$), while the $C$-equation depends on $D$. How does this hierarchical structure simplify the solution process?

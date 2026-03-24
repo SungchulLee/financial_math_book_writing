@@ -408,3 +408,33 @@ Understanding these patterns is essential for:
 - Gatheral, J. *The Volatility Surface*. Comprehensive treatment of empirical smile behavior.
 - Cont, R. and Tankov, P. *Financial Modelling with Jump Processes*. Jump risk and smile.
 - CBOE. *VIX White Paper*. Official methodology and SPX smile analysis.
+
+---
+
+## Exercises
+
+**Exercise 1.** The SPX implied volatility surface shows 25-delta put skew of 6 vol points and ATM IV of 16%. Compute the implied volatility for a 25-delta put. If the risk reversal $\text{RR}_{25} = -7\%$ and the butterfly $\text{BF}_{25} = 1.5\%$, determine the 25-delta call IV. Verify put-call parity of implied volatility at the same strike.
+
+---
+
+**Exercise 2.** Explain the economic mechanisms behind the emergence of the SPX skew after the October 1987 crash. Why was the smile approximately flat before 1987, and what role did portfolio insurance play in the crash dynamics? Is the persistence of skew since 1987 evidence of rational pricing or behavioral bias?
+
+---
+
+**Exercise 3.** Using the filtering criteria (minimum volume 50, minimum open interest 100, maximum bid-ask spread 10% of mid), explain why each filter is necessary for reliable smile analysis. For each filter, describe a specific scenario where omitting it would produce a misleading implied volatility estimate.
+
+---
+
+**Exercise 4.** The table of typical SPX values by regime classifies VIX < 15 as "complacency" with ATM IV of 10-14% and 25-delta skew of 4-6%. During a transition from normal (VIX = 18) to elevated (VIX = 25), estimate the change in (a) ATM IV, (b) 25-delta put IV, and (c) 10-delta put IV using the ranges given. Which part of the smile moves proportionally more?
+
+---
+
+**Exercise 5.** Compare the SPX smile to the VIX smile. The VIX has inverted skew (OTM calls more expensive than OTM puts) and ATM IV of 80-120%. Explain why the VIX smile is inverted while the SPX smile has normal (downward) skew. What property of the VIX as a mean-reverting quantity causes this behavior?
+
+---
+
+**Exercise 6.** A trader observes that the SPX 1-month 90% moneyness put has IV of 28% while the ATM IV is 16%. (a) Compute the skew in vol points. (b) If the Black-Scholes model were correct, what would the 90% moneyness IV be? (c) Estimate the risk-neutral probability of a 10% decline over the next month using the normal distribution with the market-implied IV versus the Black-Scholes flat IV. Discuss the difference.
+
+---
+
+**Exercise 7.** Describe three strategies for trading the SPX smile: smile arbitrage, risk reversals, and butterfly spreads. For each, (a) specify the option positions involved, (b) identify the smile feature being exploited (skew, curvature, or level), and (c) explain the main risk if the trade goes wrong.

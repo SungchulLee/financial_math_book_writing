@@ -224,3 +224,29 @@ Monte Carlo simulation of the SABR model requires careful treatment of the corre
 - Leitao, A., Grzelak, L. A., & Oosterlee, C. W. (2017). *On a one time-step Monte Carlo simulation approach of the SABR model*. Applied Mathematics and Computation.
 - Cai, N., Song, Y., & Chen, N. (2017). *Exact simulation of the SABR model*. Operations Research.
 - Glasserman, P. (2004). *Monte Carlo Methods in Financial Engineering*. Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** Write out the Cholesky decomposition for generating correlated increments $Z_1$ and $Z_2$ with correlation $\rho = -0.4$. Given independent standard normals $\xi_1 = 0.8$ and $\xi_2 = -0.5$, compute the correlated pair $(Z_1, Z_2)$ and verify that the construction satisfies $\text{Corr}(Z_1, Z_2) = \rho$.
+
+---
+
+**Exercise 2.** Starting from $F_0 = 0.03$, $\sigma_0 = 0.035$, $\beta = 0.5$, $\nu = 0.4$, $\rho = -0.3$, and $\Delta t = 0.02$, perform one step of the improved scheme (exact volatility, Euler forward). Use $Z_1 = 0.5$ and $Z_2 = -0.3$ (after Cholesky). Compute $\sigma_1$ (exact lognormal) and $F_1$ (Euler with absorbing boundary). Verify that $\sigma_1 > 0$.
+
+---
+
+**Exercise 3.** The basic Euler scheme for the SABR volatility process $\sigma_{n+1} = \sigma_n + \nu\sigma_n\sqrt{\Delta t}\,Z_2$ can produce negative values. For $\sigma_n = 0.02$, $\nu = 0.5$, and $\Delta t = 0.1$, compute the threshold value of $Z_2$ below which $\sigma_{n+1} < 0$. What is the probability of this event? Explain why the exact lognormal simulation eliminates this problem.
+
+---
+
+**Exercise 4.** From the convergence study table, the Euler scheme gives prices of 97.2, 97.8, 98.3 bps at $N = 50, 100, 500$ time steps, while the Hagan benchmark is 98.5 bps. Estimate the convergence order of the Euler scheme by computing the ratio of errors as $N$ doubles. Is this consistent with $O(\Delta t)$ weak convergence?
+
+---
+
+**Exercise 5.** Describe how to implement antithetic variates for the SABR Monte Carlo simulation. A path uses increments $(Z_1^{(n)}, Z_2^{(n)})$ at each step. The antithetic path uses $(-Z_1^{(n)}, -Z_2^{(n)})$. Explain why the antithetic path has the same volatility process (in the exact lognormal scheme) up to a sign change in the Brownian motion, and why the average payoff has reduced variance.
+
+---
+
+**Exercise 6.** For a SABR Monte Carlo simulation with $M = 10^5$ paths and $N = 200$ time steps, the simulation requires $M \times N = 2 \times 10^7$ random number pairs. Estimate the memory requirement in megabytes for storing the forward and volatility arrays (assuming 8 bytes per float). Would it be more memory-efficient to compute the payoff online (during path generation) rather than storing the full path?

@@ -230,3 +230,40 @@ $$
 | Uniqueness | At most one solution |
 
 **The maximum principle is the analytical counterpart of the fact that Brownian motion "explores" the domain, making it impossible for expected values to exceed their boundary values.**
+
+---
+
+## Exercises
+
+**Exercise 1.**
+State the weak maximum principle for the heat equation on $\overline{Q}_T = [a, b] \times [0, T]$: if $\partial_t u \leq \frac{1}{2}\partial_{xx}u$ in $Q_T$, then $\max_{\overline{Q}_T}u = \max_{\Gamma_T}u$ where $\Gamma_T$ is the parabolic boundary. Identify $\Gamma_T$ explicitly.
+
+---
+
+**Exercise 2.**
+Use the maximum principle to prove uniqueness: if $u$ and $v$ both solve the heat equation with the same initial and boundary conditions, show that $w = u - v$ satisfies $\max|w| = 0$, hence $u = v$.
+
+---
+
+**Exercise 3.**
+Give a probabilistic interpretation of the maximum principle using Brownian motion. If $u(t, x) = \mathbb{E}_x[f(W_{\tau \wedge (T-t)})]$ where $\tau$ is the exit time from $(a, b)$, explain why $u$ cannot exceed $\max f$ on the parabolic boundary.
+
+---
+
+**Exercise 4.**
+The strong maximum principle states: if $u$ achieves its maximum at an interior point of $Q_T$, then $u$ is constant throughout. Explain the intuition using the heat equation: if the temperature has an interior hot spot, heat would flow away from it, reducing the temperature there.
+
+---
+
+**Exercise 5.**
+Apply the comparison principle to option pricing: if two European options have payoffs $g_1(S_T) \leq g_2(S_T)$ for all $S_T$, show that $V_1(t, S) \leq V_2(t, S)$ for all $t < T$ and $S > 0$. Which form of the maximum principle is used?
+
+---
+
+**Exercise 6.**
+Consider the heat equation $\partial_t u = \frac{1}{2}\partial_{xx}u$ on $[0, 1] \times [0, T]$ with $u(0, t) = 0$, $u(1, t) = 1$, and $u(x, 0) = x$. Without solving the PDE, use the maximum principle to determine the range of $u$ on the entire domain.
+
+---
+
+**Exercise 7.**
+The maximum principle fails for the backward heat equation $\partial_t u = -\frac{1}{2}\partial_{xx}u$. Explain why this equation is ill-posed (solutions can blow up from arbitrarily small perturbations in the initial data), and connect this to the financial fact that we solve the pricing PDE backward in time from the terminal condition.

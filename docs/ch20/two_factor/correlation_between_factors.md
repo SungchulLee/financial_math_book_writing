@@ -124,3 +124,39 @@ For well-separated maturities ($|\tau_1 - \tau_2| \gg 1/\lambda_2$), the implied
 ## Summary
 
 The correlation parameter $\rho$ in the two-factor Hull-White model controls the decorrelation between yield changes at different maturities. Negative $\rho$ produces the empirically observed pattern where short and long rates do not move in perfect lockstep. The implied correlation decreases with maturity gap, a feature the one-factor model cannot capture (it produces correlation $1$ everywhere). The covariance structure $\text{Cov}(x_t, y_t) = \rho\sigma_1\sigma_2(1-e^{-(\lambda_1+\lambda_2)t})/(\lambda_1+\lambda_2)$ determines the cross-maturity correlation structure, which is the primary diagnostic for the two-factor model's added value over its one-factor counterpart.
+
+---
+
+## Exercises
+
+**Exercise 1.** Derive the covariance $\text{Cov}(x_t, y_t) = \frac{\rho\sigma_1\sigma_2}{\lambda_1 + \lambda_2}(1 - e^{-(\lambda_1+\lambda_2)t})$ using the Ito isometry. Start from $x_t = \sigma_1\int_0^t e^{-\lambda_1(t-s)}\,dW_s^{(1)}$ and $y_t = \sigma_2\int_0^t e^{-\lambda_2(t-s)}\,dW_s^{(2)}$ with $d\langle W^{(1)}, W^{(2)}\rangle_s = \rho\,ds$.
+
+---
+
+**Exercise 2.** Using $\sigma_1 = 0.005$, $\sigma_2 = 0.008$, $\lambda_1 = 0.01$, $\lambda_2 = 0.3$, $\rho = -0.5$, compute the stationary variance $\text{Var}(r_\infty)$ and compare with the one-factor model having $\sigma = \sqrt{\sigma_1^2 + \sigma_2^2}$ and $\lambda = \lambda_1$. How much does the negative correlation reduce the total variance?
+
+---
+
+**Exercise 3.** Show that in the one-factor limit ($\sigma_2 = 0$), the correlation between yield changes at any two maturities $T_1$ and $T_2$ equals 1. Explain why this is a fundamental limitation for pricing products that depend on the relative movement of different parts of the yield curve.
+
+---
+
+**Exercise 4.** For the parameters in Exercise 2, compute the instantaneous correlation between yield changes at maturities $T_1 = 2$ and $T_2 = 10$ using the formula in this section. Repeat for $T_2 = 20$ and $T_2 = 30$. How rapidly does the correlation decay with maturity gap?
+
+---
+
+**Exercise 5.** The parameter $\rho$ is typically calibrated to negative values in practice. Explain the economic interpretation: when $\rho < 0$ and $\lambda_2 \gg \lambda_1$, a positive shock to the fast factor $y_t$ tends to coincide with a negative shock to the slow factor $x_t$. What type of yield curve movement does this produce (parallel shift, steepening, or twist)?
+
+---
+
+**Exercise 6.** The proposition states that $\text{Corr}(\Delta r_t, \Delta y_T) \to \sigma_1^2/\sqrt{\sigma_1^2 + \sigma_2^2 + 2\rho\sigma_1\sigma_2}$ as $T \to \infty$. Compute this limiting correlation for the parameters in Exercise 2. Under what condition on $\rho$ does this correlation become zero? Is that condition economically reasonable?
+
+---
+
+**Exercise 7.** A swaption trader observes that the market-implied correlation between 1Y and 10Y forward rates is approximately 0.75. Using the two-factor implied correlation formula
+
+$$
+\rho_{\text{implied}}(\tau_1, \tau_2) = \frac{\sigma_1^2 e^{-\lambda_1(\tau_1+\tau_2)} + \sigma_2^2 e^{-\lambda_2(\tau_1+\tau_2)} + \rho\sigma_1\sigma_2[e^{-\lambda_1\tau_1-\lambda_2\tau_2} + e^{-\lambda_2\tau_1-\lambda_1\tau_2}]}{\sqrt{V(\tau_1)\,V(\tau_2)}}
+$$
+
+with $\sigma_1 = 0.005$, $\sigma_2 = 0.008$, $\lambda_1 = 0.01$, $\lambda_2 = 0.3$, find the value of $\rho$ that matches the observed correlation at $\tau_1 = 1$, $\tau_2 = 10$. Is the resulting $\rho$ negative, as expected?

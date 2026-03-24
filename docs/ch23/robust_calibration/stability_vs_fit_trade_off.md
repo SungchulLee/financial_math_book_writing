@@ -375,3 +375,39 @@ $$
 4. **Test out-of-sample**: Validate that stable calibrations perform well
 
 The stability vs fit trade-off is unavoidable in financial modeling; successful practitioners explicitly manage this trade-off through regularization, monitoring, and appropriate penalty selection.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a calibration problem where the Hessian matrix of the objective function has eigenvalues $\lambda_1 = 100$ and $\lambda_2 = 0.01$. Compute the condition number $\kappa$. If market prices are perturbed by $\delta C$ with $\|\delta C\| = 0.001$, estimate the maximum possible parameter perturbation $\|\delta \theta\|$ using the relation $\delta \theta \approx -H^{-1} J^\top \delta C$. What does this tell you about calibration stability?
+
+---
+
+**Exercise 2.** For Tikhonov regularization with objective
+
+$$
+\hat{\theta}_\lambda = \arg\min_\theta \left\{ \sum_{i=1}^m [C_i^{\text{market}} - C_i^{\text{model}}(\theta)]^2 + \lambda \|\theta - \theta_0\|^2 \right\}
+$$
+
+show that the solution satisfies the normal equation $(J^\top J + \lambda I)\hat{\theta}_\lambda = J^\top C^{\text{market}} + \lambda \theta_0$ (in the linear case). Explain how $\lambda$ controls the bias-variance trade-off and compute the effective degrees of freedom $\text{df}(\lambda) = \text{tr}(J(J^\top J + \lambda I)^{-1} J^\top)$.
+
+---
+
+**Exercise 3.** Implement a simple time-series cross-validation scheme for selecting the regularization parameter $\lambda$. Suppose you have 250 daily calibration datasets. Use a rolling window of 200 days for training and 1 day for testing. Write out the algorithm and the cross-validation score $\text{CV}(\lambda) = \frac{1}{50} \sum_{t=201}^{250} \|C_t^{\text{market}} - C_t^{\text{model}}(\hat{\theta}_\lambda^{(t)})\|^2$. How does this differ from standard K-fold cross-validation?
+
+---
+
+**Exercise 4.** Consider the Heston model with parameters $\theta = (\kappa, \bar{v}, \sigma_v, \rho, v_0)$. The re-parameterization $\theta_1 = \kappa \bar{v}$ and $\theta_2 = \sigma_v^2 / (4\kappa)$ is proposed for better stability. Show that if $\kappa$ and $\bar{v}$ both change by 10% in opposite directions, $\theta_1$ changes by approximately 1%. Explain why the Feller condition $2\kappa \bar{v} \geq \sigma_v^2$ is equivalent to $\theta_2 \leq 1/2$ in the new parameterization.
+
+---
+
+**Exercise 5.** Set up the multi-objective optimization problem with $f_1(\theta)$ = calibration error and $f_2(\theta)$ = temporal instability $\|\theta_t - \theta_{t-1}\|^2$. Derive the first-order optimality conditions for the weighted-sum formulation $\min_\theta \{w \cdot f_1(\theta) + (1-w) \cdot f_2(\theta)\}$. Explain how tracing the Pareto frontier as $w$ varies from 0 to 1 reveals the trade-off between fit and stability.
+
+---
+
+**Exercise 6.** A Kalman filter models parameters as $\theta_t = \theta_{t-1} + \eta_t$ with $\eta_t \sim N(0, Q)$ and observations as $C_t = h(\theta_t) + \varepsilon_t$ with $\varepsilon_t \sim N(0, R)$. Derive the update equations for the linearized (extended) Kalman filter in this setting. Explain how the ratio of the process noise covariance $Q$ to the observation noise covariance $R$ controls the smoothness of parameter paths.
+
+---
+
+**Exercise 7.** Using Black-Scholes as a simple example, suppose you calibrate implied volatility $\hat{\sigma}_t$ daily for 20 trading days and observe the sequence $\{0.21, 0.19, 0.23, 0.18, 0.22, 0.20, 0.24, 0.17, 0.23, 0.19, 0.22, 0.20, 0.25, 0.18, 0.21, 0.23, 0.19, 0.22, 0.20, 0.21\}$. Compute the daily parameter change volatility $\text{std}(\hat{\sigma}_t - \hat{\sigma}_{t-1})$ and the coefficient of variation. Then apply temporal regularization with $\gamma = 0.5$ and recalculate both metrics. Quantify the improvement in stability.

@@ -177,3 +177,33 @@ This negative adjustment means that $\mu_r^{T=10}(0,5) < \mu_r^{\mathbb{Q}}(0,5)
 ## Summary
 
 Under the $T$-forward measure $\mathbb{Q}^T$, the Hull-White short rate retains its Ornstein-Uhlenbeck structure with the same volatility $\sigma$ and mean reversion speed $\lambda$, but the mean reversion level shifts to $\theta^T(t) = \theta^{\mathbb{Q}}(t) + \frac{\sigma^2}{\lambda}B(T-t)$. The conditional variance of $r(t)$ is unchanged across measures, while the conditional mean is lowered by a deterministic convexity correction. This Gaussian distribution under $\mathbb{Q}^T$ is the foundation for the closed-form bond option pricing formulas.
+
+---
+
+## Exercises
+
+**Exercise 1.** Show that the drift adjustment $\frac{\sigma^2}{\lambda}B(T-t)$ vanishes as $t \to T$. Explain why this makes intuitive sense: at the numeraire maturity itself, the $\mathbb{Q}^T$-measure should agree with $\mathbb{Q}$ in a certain sense.
+
+---
+
+**Exercise 2.** For $\lambda = 0.05$, $\sigma = 0.01$, and $T = 10$, compute $\theta^T(t) - \theta^{\mathbb{Q}}(t)$ at $t = 0$, $t = 5$, and $t = 9.5$. Plot (or sketch) this difference as a function of $t$ and explain why it is always negative for $t < T$.
+
+---
+
+**Exercise 3.** Verify that the conditional variance $\sigma_r^2(t_0, t) = \frac{\sigma^2}{2\lambda}(1 - e^{-2\lambda(t-t_0)})$ is the same under $\mathbb{Q}$ and $\mathbb{Q}^T$ by showing that Girsanov's theorem does not change the quadratic variation of $r(t)$.
+
+---
+
+**Exercise 4.** Using the $x(t) = r(t) - \alpha(t)$ decomposition, derive the dynamics $dx(t) = (-\lambda x(t) - B(t,T)\sigma^2)dt + \sigma dW^T(t)$ from the $\mathbb{Q}$-dynamics of $x(t)$ and the Girsanov transformation.
+
+---
+
+**Exercise 5.** Consider the numerical example with $\lambda = 0.05$, $\sigma = 0.01$, $T = 10$, and $r(0) = 0.03$. Compute $\mu_r^{T=10}(0, 5)$ and $\mu_r^{\mathbb{Q}}(0, 5)$ for a flat forward curve $f^M(0,t) = 0.03$. Verify that $\mu_r^{T=10}(0,5) < \mu_r^{\mathbb{Q}}(0,5)$.
+
+---
+
+**Exercise 6.** Explain why the conditional mean under $\mathbb{Q}^T$ is lower than under $\mathbb{Q}$. Relate this to the fact that the $T$-forward measure tilts probability toward states where bond prices are high (i.e., interest rates are low).
+
+---
+
+**Exercise 7.** For the bond option pricing formula, we need $r(T) \sim \mathcal{N}(\mu_r^T(t_0, T), \sigma_r^2(t_0, T))$ under $\mathbb{Q}^T$. Explain what goes wrong if one mistakenly uses the $\mathbb{Q}$-distribution of $r(T)$ instead. How would the option price be biased?

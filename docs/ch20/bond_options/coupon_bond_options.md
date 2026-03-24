@@ -193,3 +193,51 @@ Summing the weighted ZCB put prices gives the swaption value.
 ## Summary
 
 European coupon bond options are priced in the Hull-White model by applying Jamshidian's decomposition to reduce the problem to a sum of zero-coupon bond options. The key practical application is that European payer swaptions are equivalent to puts on coupon bonds with strike 1, and receiver swaptions are equivalent to calls. This equivalence, combined with the Hull-White ZCB option formula, yields a fully analytic pricing framework for the European swaption market.
+
+---
+
+## Exercises
+
+**Exercise 1.** A 3-year European call option has strike $K = 1.02$ on a 7-year annual coupon bond with coupon rate $K_{\text{cpn}} = 0.05$ and unit notional. The option maturity is $T_m = 3$ and the bond pays coupons at years 4, 5, 6, and 7. Write out the cash flows $c_k$ for $k = 1, 2, 3, 4$ and express the coupon bond call price $V^{\text{CB-Call}}(0)$ as an explicit sum of ZCB call option prices.
+
+---
+
+**Exercise 2.** Show that for a European payer swaption with strike $K$, option maturity $T_m$, and swap payment dates $T_{m+1}, \ldots, T_n$, the critical short rate $r^*$ satisfies
+
+$$
+\sum_{k=m+1}^{n} c_k\,A(T_m, T_k)\,e^{-B(T_m, T_k)\,r^*} = 1
+$$
+
+where $c_k = K\tau_k$ for $k < n$ and $c_n = K\tau_n + 1$. Explain why this equation has a unique solution.
+
+---
+
+**Exercise 3.** Derive the payer-receiver swaption parity relation
+
+$$
+V^{\text{Payer}}(t_0) - V^{\text{Receiver}}(t_0) = N\!\left(P(t_0, T_m) - \sum_{k=m+1}^{n} c_k\,P(t_0, T_k)\right)
+$$
+
+starting from the Jamshidian decomposition of each swaption and the put-call parity for each individual ZCB option.
+
+---
+
+**Exercise 4.** Consider a 2-year into 3-year payer swaption with annual payments, strike $K = 0.05$, notional $N = \$1{,}000{,}000$, and Hull-White parameters $\lambda = 0.03$, $\sigma = 0.015$. Suppose the market discount factors are $P^M(0,3) = 0.8700$, $P^M(0,4) = 0.8350$, and $P^M(0,5) = 0.8010$. Compute the cash flows $c_1, c_2, c_3$ and the individual ZCB put strikes $K_k$ assuming Newton's method yields $r^* = 0.0452$.
+
+---
+
+**Exercise 5.** Explain why the Jamshidian decomposition used in this section breaks down for a Bermudan swaption. What pricing method must be used instead, and what is the fundamental difference in the exercise decision structure?
+
+---
+
+**Exercise 6.** In the complete pricing formula for swaptions, the volatility parameter entering each ZCB put is
+
+$$
+\sigma_P = \frac{\sigma}{\lambda}\left(1 - e^{-\lambda(T_k - T_m)}\right)\sqrt{\frac{1 - e^{-2\lambda(T_m - t_0)}}{2\lambda}}
+$$
+
+Analyze the behavior of $\sigma_P$ as a function of the payment date $T_k$ for fixed $T_m$ and $t_0$. Does $\sigma_P$ increase or decrease with $T_k$? What is the economic interpretation?
+
+---
+
+**Exercise 7.** Suppose you price a 5-year into 5-year receiver swaption using the coupon bond option equivalence. The market par swap rate at the option maturity equals the swaption strike $K$. Show that in this at-the-money case, the critical short rate $r^*$ satisfies $\sum_{k} c_k\,P(T_m, T_k; r^*) = 1$ and that each individual ZCB option is also approximately at the money, i.e., $K_k \approx P(0, T_k)/P(0, T_m)$.

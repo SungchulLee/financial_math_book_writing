@@ -167,3 +167,33 @@ $$
 ## Summary
 
 The `HullWhite` class implements the complete one-factor Hull-White model computation chain: from model parameters and market curve through named functions ($\theta$, $A$, $B$), bond pricing, short rate simulation, and derivative pricing (ZCB options, caplets, swaps). Each method maps directly to a mathematical formula from the theory sections, with numerical integration and differentiation used where closed-form expressions require the initial forward curve. The class is designed for composability, enabling the construction of higher-level pricing and calibration routines.
+
+---
+
+## Exercises
+
+**Exercise 1.** Using a flat market curve at 4\% and Hull-White parameters $\sigma = 0.01$, $\lambda = 0.10$, compute $\theta(t)$ for $t = 0.5, 1, 5, 10$ years. Verify that in the flat-curve case, $\theta(t)$ converges to the long-run level $r + \sigma^2/(2\lambda^2)$ as $t \to \infty$. What is the numerical value of this limit?
+
+---
+
+**Exercise 2.** The `compute_B(t, T)` method returns $(e^{-\lambda(T-t)} - 1)/\lambda$. Show that $B(t, T) \to -(T-t)$ as $\lambda \to 0$ and $B(t, T) \to -1/\lambda$ as $T - t \to \infty$. Interpret each limit financially in terms of the bond price sensitivity to the short rate.
+
+---
+
+**Exercise 3.** The variance of the short rate is $\sigma_r^2(T) = \frac{\sigma^2}{2\lambda}(1 - e^{-2\lambda T})$. This is the same under both $\mathbb{Q}$ and $\mathbb{Q}^T$. Explain why the Girsanov theorem guarantees this invariance. Compute $\sigma_r(T)$ for $T = 1$ and $T = 10$ with $\sigma = 0.01$, $\lambda = 0.05$.
+
+---
+
+**Exercise 4.** The `generate_sample_paths` method uses moment matching: $Z_i \leftarrow (Z_i - \bar{Z})/\text{std}(Z)$. Explain why this reduces Monte Carlo bias. Generate 10,000 paths for $T = 5$ years with $\sigma = 0.01$, $\lambda = 0.05$, flat curve at 3\%, and compare the sample mean and variance of $r_5$ with the analytical values from `compute_mu_r_T(5)` and `compute_sigma_square_r_T(5)`.
+
+---
+
+**Exercise 5.** The `compute_theta_T` method adjusts $\theta(t)$ for the $T$-forward measure. Show that the adjustment $\sigma^2 B(T-t)/\lambda$ has the correct sign to produce a lower expected short rate under the $T$-forward measure compared to $\mathbb{Q}$ (when $T > t$). Why does a lower expected rate under the $T$-forward measure make economic sense for bond pricing?
+
+---
+
+**Exercise 6.** Using the `compute_SwapPrice` method, price a 5-year payer swap (annual payments) with fixed rate $K = 3\%$ at $t = 0$ with $r_0 = 3\%$ and a flat market curve at 3\%. Verify that the swap value is approximately zero (since $K$ equals the par rate). Then compute the swap value at $t = 0$ for $K = 4\%$ and interpret the sign.
+
+---
+
+**Exercise 7.** The `compute_ZCB_Option_Price` method prices European options on zero-coupon bonds. Price a call on $P(2, 5)$ with strike $K = 0.92$, using $\sigma = 0.01$, $\lambda = 0.05$, and a flat curve at 3\%. Then use put-call parity to obtain the put price. Verify by calling the method directly with `CP=OptionType.PUT`.

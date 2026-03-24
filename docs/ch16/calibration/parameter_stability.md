@@ -180,3 +180,52 @@ The fit is 0.03 vol points worse (imperceptible for hedging), but the parameters
 ## Summary
 
 Parameter stability is not a luxury---it is a requirement for consistent hedging and risk management. The Heston model's $\kappa$-$\theta$ and $\xi$-$\rho$ degeneracies create flat directions in the calibration objective where the optimizer is free to wander. Tikhonov regularization with parameter-specific weights $\lambda_j$ penalizes deviations from a temporal reference, effectively lifting the flat directions and producing smooth parameter trajectories. The Hessian eigenvalue analysis provides a quantitative diagnostic: large condition numbers signal identifiability problems that regularization should address, and approximate confidence intervals indicate which parameters are genuinely constrained by market data.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+On Day 1, a Heston calibration yields $\Theta_1^* = (0.035, 1.80, 0.045, 0.50, -0.72)$. On Day 2 (with only a 0.2 vol-point market shift), the unregularized calibration yields $\Theta_2^* = (0.036, 3.60, 0.025, 0.55, -0.69)$. Compute the product $\kappa\theta$ for each day and verify that the change in $\kappa\theta$ is small compared to the individual changes in $\kappa$ and $\theta$. Quantify the daily parameter change norm $\|\Theta_2^* - \Theta_1^*\|$ using the Euclidean metric.
+
+---
+
+**Exercise 2.**
+The Gauss-Newton approximation of the Hessian is $H \approx 2 J^\top W J$, where $J$ is the $M \times 5$ Jacobian. Suppose $M = 30$ options and the Jacobian has singular values $s_1 = 12, s_2 = 8, s_3 = 5, s_4 = 0.8, s_5 = 0.05$. Compute the eigenvalues of $J^\top J$ (which are $s_j^2$), the condition number $\kappa(H)$, and the approximate 95% confidence interval half-width for the parameter corresponding to the smallest singular value, assuming $\mathcal{L}(\Theta^*) = 2.0 \times 10^{-4}$, unit weights, and $M - 5 = 25$.
+
+---
+
+**Exercise 3.**
+Consider the Tikhonov-regularized objective:
+
+$$
+\mathcal{L}_{\text{reg}}(\Theta) = \mathcal{L}(\Theta) + \sum_{j=1}^{5} \lambda_j (\Theta_j - \Theta_{\text{ref},j})^2
+$$
+
+with $\Theta_{\text{ref}} = (0.040, 2.10, 0.039, 0.40, -0.70)$ and weights $\lambda = (0.01, 0.5, 0.5, 0.1, 0.01)$. If the unregularized minimum is at $\Theta^* = (0.041, 4.50, 0.020, 0.45, -0.68)$, compute the regularization penalty and compare it to a typical unregularized loss of $\mathcal{L} = 2.6 \times 10^{-4}$. Discuss whether the penalty is large enough to shift the regularized minimum away from the unregularized one.
+
+---
+
+**Exercise 4.**
+Explain the L-curve method for choosing the regularization strength $\lambda$. Sketch the expected shape of the L-curve (parameter change on one axis, fit quality on the other) for Heston calibration. What happens at the two extremes: $\lambda \to 0$ and $\lambda \to \infty$? If the L-curve corner occurs at $\lambda = 0.3$ with IVRMSE $= 0.30$ vol points and parameter change norm $= 0.20$, while $\lambda = 0.1$ gives IVRMSE $= 0.27$ and norm $= 0.95$, which would you choose for a hedging application?
+
+---
+
+**Exercise 5.**
+Regularization modifies the Hessian to $H_{\text{reg}} = H + 2\Lambda$ where $\Lambda = \text{diag}(\lambda_1, \ldots, \lambda_5)$. If the original Hessian has eigenvalues $(500, 120, 30, 0.8, 0.002)$ and you set $\lambda_j = 0.5$ for all $j$, compute the regularized eigenvalues and the new condition number. By what factor has the condition number improved? Discuss whether uniform regularization is appropriate given the structure of the Heston degeneracies.
+
+---
+
+**Exercise 6.**
+A trading desk monitors the daily parameter change $\Delta_t = \|\Theta_t^* - \Theta_{t-1}^*\|_\Lambda$ with a 20-day rolling average. Over the past 20 days, $\Delta_t$ averages 0.15 with standard deviation 0.05. Today, $\Delta_t = 0.85$. Propose a statistical test to determine if this spike is abnormal (e.g., more than 3 standard deviations above the mean). If the spike is confirmed as abnormal, list three possible causes and the diagnostic checks you would perform for each.
+
+---
+
+**Exercise 7.**
+Consider two parameter sets that lie on the $\kappa$-$\theta$ ridge: $\Theta_A = (0.04, 2.0, 0.05, 0.45, -0.70)$ and $\Theta_B = (0.04, 5.0, 0.02, 0.45, -0.70)$. Both have $\kappa\theta = 0.10$. Compute the expected average variance $\bar{v}(T)$ for both parameter sets at $T = 0.25$ and $T = 2.0$ using:
+
+$$
+\bar{v}(T) = \theta + (v_0 - \theta)\frac{1 - e^{-\kappa T}}{\kappa T}
+$$
+
+Show that $\bar{v}(0.25)$ is similar for both but $\bar{v}(2.0)$ differs significantly. Conclude that long-maturity options break the $\kappa$-$\theta$ degeneracy.

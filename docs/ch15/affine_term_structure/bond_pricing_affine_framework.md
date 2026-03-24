@@ -266,3 +266,33 @@ The affine bond pricing formula $P(t, T) = \exp(A(\tau) + B(\tau)^\top X_t)$ fol
 - Brigo, D. & Mercurio, F. *Interest Rate Models - Theory and Practice*. Springer, 2007, Chapters 3-4.
 - Filipovic, D. *Term-Structure Models: A Graduate Course*. Springer, 2009.
 - Piazzesi, M. (2010). "Affine Term Structure Models." *Handbook of Financial Econometrics*, Volume 1, 691-766.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider the Vasicek model with parameters $\kappa = 0.8$, $\theta = 0.04$, $\sigma = 0.015$, and current short rate $r_0 = 0.06$. Compute the bond price $P(0, 3)$ and the continuously compounded 3-year yield $y(0, 3)$.
+
+---
+
+**Exercise 2.** Starting from the bond pricing Riccati equation $B'(\tau) = -\kappa B(\tau) - 1$ with $B(0) = 0$ (Vasicek case), verify that $B(\tau) \to -1/\kappa$ as $\tau \to \infty$. Explain the financial meaning of this saturation in terms of mean reversion.
+
+---
+
+**Exercise 3.** In the CIR model with $\kappa = 0.5$, $\theta = 0.05$, $\xi = 0.15$, compute $\gamma = \sqrt{\kappa^2 + 2\xi^2}$ and evaluate $B(10)$ and $A(10)$. Then determine the 10-year yield as a function of $r_0$.
+
+---
+
+**Exercise 4.** For a two-factor model with independent factors $X_t^{(1)}$ (Vasicek with $\kappa_1 = 0.5$, $\sigma_1 = 0.01$) and $X_t^{(2)}$ (CIR with $\kappa_2 = 0.3$, $\xi_2 = 0.1$), and short rate $r_t = X_t^{(1)} + X_t^{(2)}$, write the decoupled Riccati systems for $B_1(\tau)$ and $B_2(\tau)$. Show that the two-factor bond price is $P(t, T) = P_1(t, T) \cdot P_2(t, T)$, where $P_i$ are the one-factor bond prices.
+
+---
+
+**Exercise 5.** Derive the Vasicek long rate $y(\infty) = \theta - \sigma^2 / (2\kappa^2)$ by computing $\lim_{\tau \to \infty} y(t, t+\tau)$ using the explicit expressions for $A(\tau)$ and $B(\tau)$. Under what condition on the parameters is the long rate negative?
+
+---
+
+**Exercise 6.** Prove that the instantaneous forward rate $f(t, T) = -A'(\tau) - B'(\tau) X_t$ satisfies $f(t, t) = r(X_t)$ by evaluating $A'(0)$ and $B'(0)$ from the Riccati initial conditions.
+
+---
+
+**Exercise 7.** Consider the CIR bond pricing formula. Show that $P(t, T)$ is a **convex** function of $r_t$ by computing $\partial^2 P / \partial r_t^2$ and verifying it is positive. Interpret this convexity in terms of Jensen's inequality applied to the discount factor $e^{-\int_t^T r_s\,ds}$.

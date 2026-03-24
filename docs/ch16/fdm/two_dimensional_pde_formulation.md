@@ -197,3 +197,35 @@ Consider pricing a European call with $S_0 = \$100$, $K = \$100$, $T = 1$, $v_0 
 ## Summary
 
 The Heston PDE is a two-dimensional parabolic equation in $(x, v, t)$ with a mixed derivative coupling the stock and variance directions through correlation $\rho$. The log-price transformation simplifies the coefficients, and non-uniform grids concentrate resolution near the strike and current variance. The spatial operator splits naturally into $x$-direction, $v$-direction, and cross-derivative components, setting the stage for [ADI schemes](adi_schemes.md) that solve each direction implicitly. Proper treatment of the mixed derivative---either through a seven-point central stencil or explicit treatment in the ADI framework---is essential for accuracy and stability.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Starting from the Heston dynamics $dS = (r-q)Sdt + \sqrt{v}SdW^{(1)}$ and $dv = \kappa(\theta - v)dt + \xi\sqrt{v}dW^{(2)}$, derive the Heston PDE for $V(S, v, t)$ using Ito's lemma applied to the two-dimensional process $(S_t, v_t)$. Identify each term in the PDE and its financial interpretation.
+
+---
+
+**Exercise 2.**
+Perform the log-price transformation $x = \ln S$ to convert the Heston PDE from $(S, v, t)$ to $(x, v, t)$ coordinates. Show that the $S^2 \partial^2 V / \partial S^2$ term becomes $\partial^2 V / \partial x^2$ (without a multiplicative coefficient), and the drift term gains a $-v/2$ correction.
+
+---
+
+**Exercise 3.**
+The mixed derivative $\rho\xi v \partial^2 V / \partial x \partial v$ is discretized using the four-point stencil. Verify that this stencil is second-order accurate on a uniform grid by Taylor-expanding $V_{i\pm 1, j\pm 1}$ around $(x_i, v_j)$ and showing that the leading error term is $\mathcal{O}(\Delta x^2 + \Delta v^2)$.
+
+---
+
+**Exercise 4.**
+The operator splitting $\mathcal{A} = \mathcal{A}_0 + \mathcal{A}_1 + \mathcal{A}_2$ distributes the kill term $-rV$ equally between $\mathcal{A}_1$ and $\mathcal{A}_2$. Why is this splitting preferred over placing the entire $-rV$ term in one operator? Hint: consider the eigenvalues of the discrete operators and the stability of the ADI scheme.
+
+---
+
+**Exercise 5.**
+A non-uniform grid in $x$ uses a sinh transformation centered at $x_0 = \ln S_0$. With $c_1 = 4$ and $c_2 = 4$, compute the grid points $x_i$ for $i/N_x = 0, 0.25, 0.5, 0.75, 1.0$ with $N_x = 100$. What is the grid spacing $\Delta x$ at the center ($i/N_x = 0.5$) versus at the boundaries?
+
+---
+
+**Exercise 6.**
+If $\rho = 0$, the mixed derivative vanishes and the Heston PDE fully decouples into two independent 1D problems. Is this exactly true? Explain why even with $\rho = 0$, the variance process still affects the stock price through the $\frac{1}{2}v\partial^2 V/\partial x^2$ term, so the two directions are not truly independent. What is the role of the mixed derivative in coupling the directions?

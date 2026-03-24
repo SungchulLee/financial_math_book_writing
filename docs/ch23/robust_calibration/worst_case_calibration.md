@@ -417,3 +417,45 @@ $$
 4. **Documentation**: Document uncertainty set construction for model governance
 
 Worst-case calibration provides a principled framework for incorporating model uncertainty into pricing, hedging, and risk management decisions.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a single-parameter Black-Scholes model calibrated to three call option prices. Suppose the calibration error is $Q(\sigma) = \sum_{i=1}^{3} [C_i^{\text{market}} - C_i^{\text{BS}}(\sigma)]^2$ with minimum $Q(\hat{\sigma}) = 0.01$ at $\hat{\sigma} = 0.20$. Define the uncertainty set $\Theta_\epsilon = \{\sigma : Q(\sigma) \leq 0.05\}$. If $Q(\sigma)$ is locally quadratic, estimate the interval of $\sigma$ values belonging to $\Theta_\epsilon$ and compute the worst-case call price $C^{\text{worst}} = \max_{\sigma \in \Theta_\epsilon} C^{\text{BS}}(\sigma)$ for an at-the-money call with $S_0 = 100$, $K = 100$, $T = 1$, $r = 0$.
+
+---
+
+**Exercise 2.** For a Heston model with parameters $\theta = (\kappa, \bar{v}, \sigma_v, \rho, v_0)$, suppose the calibration identifies two well-fitting parameter sets: $\theta_A = (2.0, 0.04, 0.3, -0.7, 0.04)$ and $\theta_B = (1.5, 0.05, 0.4, -0.6, 0.04)$. For a down-and-in put option, explain qualitatively which parameter set is likely to produce the higher (worst-case) price from a seller's perspective, and identify which parameters are most critical for this exotic payoff.
+
+---
+
+**Exercise 3.** Formulate the minimax hedging problem for a European call option when the volatility is uncertain: $\sigma \in [0.15, 0.30]$. Show that the minimax delta hedge satisfies
+
+$$
+\Delta^* = \arg\min_{\Delta} \max_{\sigma \in [0.15, 0.30]} \mathbb{E}_\sigma\left[(\Phi(S_T) - \Delta(S_T - S_0) - V_0)^2\right]
+$$
+
+and explain why $\Delta^*$ generally differs from the Black-Scholes delta at any single volatility.
+
+---
+
+**Exercise 4.** Derive the worst-case delta bounds for a European call under volatility uncertainty $\sigma \in [\sigma_{\min}, \sigma_{\max}]$. Using the Black-Scholes formula, show that for an at-the-money call, $\Delta^{\text{BS}}(\sigma)$ is an increasing function of $\sigma$ and compute the worst-case delta range when $\sigma_{\min} = 0.15$, $\sigma_{\max} = 0.30$, $S_0 = K = 100$, $T = 1$, $r = 0$.
+
+---
+
+**Exercise 5.** The model reserve is defined as $\text{Reserve} = V^{\text{worst}} - V(\hat{\theta})$. For a portfolio of barrier options, explain why the model reserve can be significantly larger (as a fraction of the option price) than for a portfolio of vanilla options. Relate your argument to the sensitivity of barrier options to the local volatility surface near the barrier.
+
+---
+
+**Exercise 6.** Consider the bilevel optimization for worst-case hedging:
+
+$$
+\min_{\Delta} \max_{\theta \in \Theta_\epsilon} f(\Delta, \theta)
+$$
+
+Describe the alternating optimization algorithm in detail. Prove that if $f$ is convex in $\Delta$ for each $\theta$ and concave in $\theta$ for each $\Delta$, and both feasible sets are compact and convex, then the algorithm converges to a saddle point.
+
+---
+
+**Exercise 7.** Compare worst-case calibration with Bayesian model averaging for pricing an exotic derivative. If the posterior distribution over parameters is $p(\theta | \text{data})$, the Bayesian price is $V^{\text{Bayes}} = \int V(\theta) p(\theta | \text{data}) \, d\theta$, while the worst-case price is $V^{\text{worst}} = \max_{\theta \in \Theta_\epsilon} V(\theta)$. Give a concrete example where these two approaches lead to qualitatively different risk management decisions, and discuss when each approach is more appropriate.

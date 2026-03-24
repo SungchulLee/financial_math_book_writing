@@ -309,4 +309,30 @@ For complex derivatives (American options, barrier options, etc.):
 
 - Black, F., & Scholes, M. (1973). "The Pricing of Options and Corporate Liabilities." *Journal of Political Economy*, 81(3), 637-654.
 - Duffie, D., Pan, J., & Singleton, K. (2000). "Transform Analysis and Asset Pricing for Affine Jump-Diffusions." *Econometrica*, 68(6), 1343-1376.
-- Filipović, D. *Term-Structure Models: A Graduate Course*. Springer, 2009.
+- Filipovic, D. *Term-Structure Models: A Graduate Course*. Springer, 2009.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from $dS_t = rS_t\,dt + \sigma S_t\,dW_t$, apply Ito's lemma to $X_t = \log S_t$ and derive the dynamics $dX_t = (r - \frac{1}{2}\sigma^2)\,dt + \sigma\,dW_t$. Identify the affine parameters $\kappa_0$, $\kappa_1$, $\sigma_0$, $\sigma_1$ for $X_t$.
+
+---
+
+**Exercise 2.** For the log-price process $X_t = \log S_t$ under GBM, write down the Riccati system and solve for $\psi(\tau)$ and $\phi(\tau)$. Use the solution to write the characteristic function $\mathbb{E}[e^{ivX_T} \mid X_t = x]$ in closed form and verify it corresponds to a Gaussian distribution.
+
+---
+
+**Exercise 3.** The stock price $S_t$ has drift $\mu(S) = rS$ and diffusion coefficient $a(S) = \sigma^2 S^2$. Show that $a(S)$ is quadratic (not linear) in $S$, which is the precise reason $S_t$ fails the affine diffusion condition $a(S) = c_0 + c_1 S$.
+
+---
+
+**Exercise 4.** Using the characteristic function of $X_T = \log S_T$ under GBM, compute the discounted characteristic function $\mathbb{E}[e^{-r\tau + ivX_T} \mid X_t = x]$ and verify that setting $v = -i$ recovers the forward price $S_t$ (i.e., the discounted stock price is a martingale).
+
+---
+
+**Exercise 5.** Consider a process $Y_t = S_t^2$. Apply Ito's lemma to derive $dY_t$ and check whether $Y_t$ is an affine process. If not, identify which affine condition fails.
+
+---
+
+**Exercise 6.** The Black-Scholes call price can be recovered from the characteristic function via Fourier inversion. Starting from the discounted characteristic function of the log-price under GBM, outline the steps of the Gil-Pelaez inversion formula to compute $\mathbb{P}(S_T > K)$ and verify that the result involves the standard normal CDF $N(d_2)$.

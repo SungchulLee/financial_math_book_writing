@@ -295,3 +295,29 @@ $$
 | **Limitation** | Requires smooth solutions; fails near kinks and free boundaries |
 
 Richardson extrapolation is a cost-effective way to improve accuracy: computing two solutions on different grids and combining them is often cheaper than solving once on a very fine grid. Combined with Rannacher smoothing, it provides a practical route to high-accuracy option pricing.
+
+---
+
+## Exercises
+
+**Exercise 1.** An implicit scheme with $N = 50$ time steps gives a price of $V(h) = 10.4312$, and with $N = 100$ gives $V(h/2) = 10.4412$. Assuming first-order convergence ($p = 1$), compute the Richardson-extrapolated value $V_{\text{ext}} = 2V(h/2) - V(h)$. If the exact price is $10.4506$, compare the errors of $V(h/2)$ and $V_{\text{ext}}$.
+
+---
+
+**Exercise 2.** For a second-order method (Crank-Nicolson), three grid solutions give: $V(h) = 10.4496$, $V(h/2) = 10.4504$, $V(h/4) = 10.4505$. Compute the Richardson ratio $R = (V(h) - V(h/2))/(V(h/2) - V(h/4))$. Is $R \approx 4$ consistent with second-order convergence?
+
+---
+
+**Exercise 3.** Construct the Romberg table for a Crank-Nicolson solver using solutions at $h$, $h/2$, and $h/4$ with values $V(h) = 10.44$, $V(h/2) = 10.449$, $V(h/4) = 10.4504$. Compute the two level-1 extrapolated values (order 4) and the single level-2 value (order 6).
+
+---
+
+**Exercise 4.** Explain why Richardson extrapolation fails when the payoff has a kink at $S = K$. Specifically, what happens to the error expansion $V(h) = V^* + ch^p + \cdots$ when the solution is not smooth? What does the Richardson ratio look like in this case?
+
+---
+
+**Exercise 5.** For independent spatial and temporal extrapolation, four PDE solutions are needed: $V(\Delta S, \Delta\tau)$, $V(\Delta S/2, \Delta\tau)$, $V(\Delta S, \Delta\tau/2)$, and $V(\Delta S/2, \Delta\tau/2)$. Write down the combined extrapolation formula that eliminates leading-order errors in both space and time for a second-order scheme. What is the effective order of the result?
+
+---
+
+**Exercise 6.** A practitioner wants to improve the accuracy of an implicit (first-order) scheme without switching to Crank-Nicolson. By running the implicit scheme on two grids and applying Richardson extrapolation, they can obtain a second-order result. Compare the total computational cost of this approach to running Crank-Nicolson on the fine grid alone.

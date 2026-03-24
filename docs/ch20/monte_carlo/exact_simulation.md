@@ -195,3 +195,33 @@ With exact simulation, this should converge to $P^M(0,T)$ as $M \to \infty$ for 
 ## Summary
 
 The Hull-White short rate admits exact simulation because its transition distribution is Gaussian with known mean and variance. The exact formula $r(t+\Delta t) = r(t)e^{-\lambda\Delta t} + \alpha(t+\Delta t) - \alpha(t)e^{-\lambda\Delta t} + \sigma\sqrt{(1-e^{-2\lambda\Delta t})/(2\lambda)}\,Z$ eliminates all time-step bias, allowing the use of coarse time grids without sacrificing accuracy. The centered process $x(t) = r(t) - \alpha(t)$ simplifies the simulation further by removing the time-dependent drift. The exact scheme is strictly superior to Euler discretization for Hull-White Monte Carlo and should always be preferred.
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify the exact transition mean $\mu(t,\Delta t) = r(t)e^{-\lambda\Delta t} + \alpha(t+\Delta t) - \alpha(t)e^{-\lambda\Delta t}$ by expanding the Hull-White solution and using the identity $\alpha(s) - \alpha(t)e^{-\lambda(s-t)} = \lambda\int_t^s \theta^{\mathbb{Q}}(u)e^{-\lambda(s-u)}du$. Show that this reduces to the Euler mean $r(t)(1-\lambda\Delta t) + \lambda\theta^{\mathbb{Q}}(t)\Delta t$ to first order in $\Delta t$.
+
+---
+
+**Exercise 2.** The exact transition variance is $\frac{\sigma^2}{2\lambda}(1-e^{-2\lambda\Delta t})$, while the Euler variance is $\sigma^2\Delta t$. Show that the relative error of the Euler variance is approximately $\lambda\Delta t$ for small $\Delta t$. For $\lambda = 0.05$ and $\Delta t = 1$ year, compute the percentage error in the Euler variance.
+
+---
+
+**Exercise 3.** Explain why simulating the centered process $x(t) = r(t) - \alpha(t)$ is computationally advantageous over simulating $r(t)$ directly. What quantity must be precomputed before simulation, and at what cost?
+
+---
+
+**Exercise 4.** The money market account is approximated by the trapezoidal rule $\int_0^T r(s)ds \approx \sum_{i=0}^{N-1}\frac{r(t_i)+r(t_{i+1})}{2}\Delta t_i$. What is the order of accuracy of this quadrature for smooth functions? How does this quadrature error compare to the discretization bias of the Euler scheme?
+
+---
+
+**Exercise 5.** For $\lambda = 0.05$, $\sigma = 0.01$, and $r_0 = 0.03$ with a flat market curve $P^M(0,T) = e^{-0.03T}$, compute $\alpha(1)$ and the exact transition parameters $\mu(0,1)$ and $\sigma^2(0,1)$. Generate one sample of $r(1)$ using a standard normal draw $Z = 0.5$.
+
+---
+
+**Exercise 6.** The Monte Carlo bond price estimator $\hat{P}(0,T) = \frac{1}{M}\sum_{m=1}^M 1/M^{(m)}(T)$ should converge to $P^M(0,T)$ for any step size with exact simulation. Explain why this does not hold for the Euler scheme and quantify the bias as a function of $\Delta t$.
+
+---
+
+**Exercise 7.** The exact simulation formula involves $\sqrt{(1-e^{-2\lambda\Delta t})/(2\lambda)}$. What happens numerically when $\lambda$ is very small (e.g., $\lambda = 10^{-8}$)? Describe a numerically stable implementation that avoids cancellation error, using a Taylor expansion of $1 - e^{-2\lambda\Delta t}$.

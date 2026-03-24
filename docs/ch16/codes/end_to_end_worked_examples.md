@@ -254,3 +254,40 @@ The COS, FFT, and FDM methods agree to 4+ digits for European options. Monte Car
 ## Summary
 
 These four examples demonstrate the complete Heston model workflow: pricing European options across five engines with sub-basis-point agreement; calibrating to synthetic market data and recovering parameters to within the identifiability limits; simulating delta-hedging P&L that reveals the unhedgeable variance risk; and pricing path-dependent exotics with control-variate Monte Carlo. Together, they validate the entire code library and illustrate the practical trade-offs---speed versus accuracy, analytical versus numerical methods, complete versus incomplete hedging---that arise in production Heston model implementations.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Using the five-engine comparison results, the COS and Gil-Pelaez methods agree to 0.00 bps while Monte Carlo has a 0.18 bps error with 1,000,000 paths. How many paths would be needed to reduce the MC standard error to 0.01 bps (matching the FFT/FDM accuracy)? Recall that the standard error scales as $1/\sqrt{N}$. Is this number of paths practically feasible? Discuss the role of variance reduction in making MC competitive with analytical methods.
+
+---
+
+**Exercise 2.**
+In Example 2, the calibrated $\kappa = 1.620$ differs from the true $\kappa = 1.500$ by 8.0%, yet the calibrated $\kappa\theta = 0.077$ differs from the true $\kappa\theta = 0.075$ by only 2.7%. Explain this observation using the $\kappa$-$\theta$ degeneracy. If you added more long-maturity options (e.g., $T = 3$ and $T = 5$ years) to the calibration, would you expect the individual $\kappa$ and $\theta$ errors to decrease? Why or why not?
+
+---
+
+**Exercise 3.**
+The delta-hedging simulation reports a hedging efficiency of 92%. The residual P&L standard deviation is \$0.85. Decompose this residual into contributions from: (a) discrete rebalancing (gamma cost), (b) unhedged variance risk (vega exposure), and (c) higher-order terms. If you rebalanced twice per day instead of once, estimate how the gamma contribution would change (hint: it scales approximately as $\Delta t$).
+
+---
+
+**Exercise 4.**
+The Asian call price (\$4.14) is 61% of the European call price (\$6.81). Derive an intuitive bound: the arithmetic Asian price satisfies $C_{\text{Asian}} \leq C_{\text{Euro}}$ (Jensen's inequality). Explain why monthly averaging reduces the effective volatility. If you changed from monthly to daily averaging ($N_{\text{fix}} = 126$), would the Asian price increase or decrease relative to the monthly case? Justify your answer.
+
+---
+
+**Exercise 5.**
+The control variate in Example 4 reduces the standard error by a factor of 3 (from 0.012 to 0.004). Compute the variance reduction ratio and the effective number of paths: how many plain MC paths would you need to match the control-variate accuracy? If the correlation between the Asian and European payoffs is $\hat{\rho}_{AE}$, the variance reduction ratio is approximately $1/(1 - \hat{\rho}_{AE}^2)$. Estimate $\hat{\rho}_{AE}$ from the reported standard errors.
+
+---
+
+**Exercise 6.**
+The cross-engine consistency matrix shows that European put prices satisfy put-call parity: $C - P = S_0 e^{-qT} - K e^{-rT}$. Verify this for $K = 100$, $T = 0.5$ using $C = 6.806$, $P = 5.818$, $S_0 = 100$, $r = 0.03$, $q = 0.01$. Compute the parity residual and confirm it is within numerical precision.
+
+---
+
+**Exercise 7.**
+Design a fifth end-to-end example: pricing a European digital (binary) call that pays \$1 if $S_T > K$ and \$0 otherwise. Describe how you would compute this price using: (a) the COS method (hint: the payoff coefficients simplify to $H_k = \psi_k(0, b)$), (b) Monte Carlo with the QE scheme, and (c) finite differences on the Heston PDE. For method (b), explain why the convergence is slower than for a vanilla call (the payoff is discontinuous) and propose a variance reduction technique specific to digital options.

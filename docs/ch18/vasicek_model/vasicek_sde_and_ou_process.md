@@ -168,3 +168,33 @@ defines one of the foundational frameworks in interest rate modeling. By recogni
 The mean-reversion property makes the model particularly suitable for long-term interest rate projections and risk management applications, where the assumption that rates fluctuate around a stable long-run equilibrium is reasonable.
 
 **Based on**: QuantPie Lecture Notes - Interest Rate Modeling
+
+---
+
+## Exercises
+
+**Exercise 1.** For Vasicek parameters $\alpha = 0.3$, $\theta = 0.05$, $\sigma = 0.02$, compute the instantaneous expected drift $\mathbb{E}[dr_t \mid r_t]$ when $r_t = 0.02$, $r_t = 0.05$, and $r_t = 0.08$. Interpret the sign and magnitude of the drift in each case.
+
+---
+
+**Exercise 2.** Transform the Vasicek SDE into the standard OU form by defining $y_t = r_t - \theta$. Write the SDE for $y_t$ and identify the mean-reversion speed and volatility. What is the stationary distribution of $y_t$, and how does it relate to the stationary distribution of $r_t$?
+
+---
+
+**Exercise 3.** The stationary variance of the Vasicek model is $\sigma^2/(2\alpha)$. For $\alpha = 0.5$ and $\sigma = 0.02$, compute the stationary standard deviation. If $\alpha$ is halved to $0.25$ while keeping $\sigma$ fixed, by what factor does the stationary standard deviation change? Explain intuitively why weaker mean reversion increases long-run variability.
+
+---
+
+**Exercise 4.** Compare the Vasicek SDE $dr_t = \alpha(\theta - r_t)dt + \sigma dW_t$ with the Merton model $dr_t = \mu\,dt + \sigma dW_t$. Show that the Merton model is a special case of Vasicek with $\alpha = 0$. What happens to the stationary distribution formula $\mathcal{N}(\theta, \sigma^2/(2\alpha))$ as $\alpha \to 0$? Does the Merton model have a stationary distribution?
+
+---
+
+**Exercise 5.** The mean reversion speed $\alpha$ determines how quickly the process returns to $\theta$ after a shock. If rates are currently at $r_0 = 0.08$ and $\theta = 0.05$, compute the expected rate $\mathbb{E}[r_t \mid r_0]$ at $t = 1, 3, 5$ years for $\alpha = 0.1$ and $\alpha = 1.0$ (using the formula from the explicit solution section). How many years does it take for the expected deviation $r_0 - \theta$ to decay to 10% of its initial value in each case?
+
+---
+
+**Exercise 6.** The Hull-White model $dr_t = (\theta(t) - ar_t)dt + \sigma dW_t$ generalizes Vasicek by allowing a time-dependent $\theta(t)$. Explain why this extension enables exact calibration to an arbitrary initial yield curve. What property of the constant-$\theta$ Vasicek model prevents it from matching an arbitrary yield curve?
+
+---
+
+**Exercise 7.** The CIR model replaces the constant diffusion $\sigma$ in Vasicek with $\sigma\sqrt{r_t}$. Explain qualitatively how the square-root diffusion prevents negative rates. Does the CIR model remain an Ornstein-Uhlenbeck process? What key analytical property of the OU process (linearity of the SDE in $r_t$) is lost in CIR?

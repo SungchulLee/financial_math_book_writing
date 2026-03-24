@@ -178,6 +178,28 @@ This limitation motivates the Bates model (Heston + jumps), which uses stochasti
 
 ---
 
+## Exercises
+
+**Exercise 1.** Formulate the Merton calibration problem as a nonlinear least-squares optimization. Write the objective function explicitly, identify the four parameters being optimized, and state the constraints each parameter must satisfy.
+
+---
+
+**Exercise 2.** Explain how each of the four Merton parameters $(\sigma, \lambda, \mu_J, \sigma_J)$ controls a different feature of the implied volatility smile. Given a market smile that is steeply skewed with moderate curvature, which parameters would you expect to have large absolute values?
+
+---
+
+**Exercise 3.** The skew contribution to implied volatility decays as $\lambda\mu_J/\sqrt{T}$. For $\lambda = 1.0$ and $\mu_J = -0.10$: (a) Compute the skew contribution at $T = 1$ month, $T = 6$ months, and $T = 2$ years. (b) Explain why this decay means the Merton model fits short-maturity smiles better than long-maturity smiles.
+
+---
+
+**Exercise 4.** The calibration gradient involves the chain rule $\partial\sigma_{\text{model}}^{(i)}/\partial\theta_j = (\partial C_{\text{Merton}}^{(i)}/\partial\theta_j)/\text{vega}_{\text{BS}}^{(i)}$. Explain why dividing by the Black-Scholes vega converts a price sensitivity into an implied volatility sensitivity. Why is calibration in IV space preferred over price space?
+
+---
+
+**Exercise 5.** Discuss two common pitfalls in Merton model calibration: (a) fitting only to ATM options, and (b) parameter instability across days. For each pitfall, describe the symptom and a practical remedy (e.g., including OTM strikes, regularization).
+
+---
+
 ## Identifiability and Pitfalls
 
 ### Parameter Correlations

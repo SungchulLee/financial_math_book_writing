@@ -334,3 +334,45 @@ $$
 4. **Reporting**: Report confidence sets alongside point estimates
 
 Confidence sets for models provide the statistical foundation for quantifying and communicating uncertainty in calibrated financial models.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a Black-Scholes model calibrated to $m = 5$ call options, the MLE is $\hat{\sigma} = 0.22$ with log-likelihood $\ell(\hat{\sigma}) = -12.5$. Using Wilks' theorem, construct a 95% confidence interval for $\sigma$. The critical value is $\chi^2_{1, 0.95} = 3.84$. If $\ell(\sigma)$ is approximately quadratic near the MLE with curvature $\ell''(\hat{\sigma}) = -500$, compute the confidence interval explicitly.
+
+---
+
+**Exercise 2.** Consider a two-parameter model $\theta = (\sigma, \rho)$ calibrated from option prices. The Fisher information matrix at the MLE $\hat{\theta} = (0.25, -0.65)$ is
+
+$$
+\hat{I} = \begin{pmatrix} 400 & 50 \\ 50 & 200 \end{pmatrix}
+$$
+
+Construct the 95% Wald confidence ellipse. Compute the semi-axes of the ellipse and explain which parameter direction is most precisely estimated.
+
+---
+
+**Exercise 3.** Explain the profile likelihood method for constructing a confidence interval for $\sigma$ in the Heston model while accounting for uncertainty in $(\kappa, \bar{v}, \sigma_v, \rho, v_0)$. Write the profile log-likelihood $\ell_p(\sigma) = \max_{\kappa, \bar{v}, \sigma_v, \rho, v_0} \ell(\sigma, \kappa, \bar{v}, \sigma_v, \rho, v_0)$ and explain why this interval is generally wider than the interval obtained by fixing all other parameters at their MLE values.
+
+---
+
+**Exercise 4.** Hansen's Model Confidence Set (MCS) procedure compares $m = 4$ volatility models: GARCH, EGARCH, GJR-GARCH, and Realized Volatility. Suppose the average loss differences are $\bar{d}_{12} = 0.5$, $\bar{d}_{13} = 1.2$, $\bar{d}_{14} = -0.3$, with standard errors all approximately 0.4. Walk through one iteration of the MCS algorithm at the 10% significance level, identifying which model (if any) is eliminated first and why.
+
+---
+
+**Exercise 5.** Compare a 95% frequentist confidence interval with a 95% Bayesian highest posterior density (HPD) interval for volatility $\sigma$. If the prior is $\sigma \sim \text{Uniform}(0.1, 0.5)$ and the likelihood is concentrated around $\hat{\sigma} = 0.22$, explain qualitatively how the HPD interval differs from the likelihood-based confidence interval. Under what conditions do the two intervals approximately coincide?
+
+---
+
+**Exercise 6.** Using the delta method, derive the approximate variance of the Black-Scholes call price $C(\sigma)$ induced by parameter uncertainty $\hat{\sigma} \sim N(\sigma_0, s^2)$. Show that
+
+$$
+\text{Var}(C(\hat{\sigma})) \approx \left(\frac{\partial C}{\partial \sigma}\right)^2 s^2 = \text{Vega}^2 \cdot s^2
+$$
+
+For $S_0 = K = 100$, $T = 1$, $r = 0$, $\sigma_0 = 0.20$, and $s = 0.02$, compute the 95% confidence interval for the call price.
+
+---
+
+**Exercise 7.** Design a bootstrap procedure to construct a confidence set for the Heston model parameters. Given $n = 100$ daily option price observations, describe the resampling scheme (parametric vs. nonparametric), the computation of bootstrap replicates $\hat{\theta}^{*(1)}, \ldots, \hat{\theta}^{*(B)}$, and the construction of the confidence region from these replicates. Discuss the computational challenges when each bootstrap replicate requires a full Heston calibration.

@@ -87,3 +87,29 @@ In **reinforcement learning**, value functions for Markov decision processes are
 - Ewens, W. J. (2004). *Mathematical Population Genetics*, 2nd ed. Springer.
 - Samuelson, P. A. (1965). Proof that properly anticipated prices fluctuate randomly. *Industrial Management Review*, 6(2), 41–49.
 - Sutton, R. S., & Barto, A. G. (2018). *Reinforcement Learning: An Introduction*, 2nd ed. MIT Press.
+
+---
+
+## Exercises
+
+**Exercise 1.** In the Gambler's Ruin problem with initial wealth $a = 20$ and target $b = 100$, compute the probability of reaching $b$ before going broke (assuming a fair game). Then compute the expected duration $\mathbb{E}[\tau]$ of the game using $\mathbb{E}[\tau] = a(b-a)$.
+
+---
+
+**Exercise 2.** In the Cox-Ross-Rubinstein model with $S_0 = 100$, $\sigma = 0.3$, $r = 0.05$, and $n = 252$ steps (daily), compute the up and down factors $u = e^{\sigma/\sqrt{n}}$ and $d = e^{-\sigma/\sqrt{n}}$, and the risk-neutral probability $p^*$. Verify that $p^* \neq 1/2$ and compute how far it deviates from $1/2$.
+
+---
+
+**Exercise 3.** In Bachelier's arithmetic Brownian motion model $S(t) = S_0 + \sigma W_t$, compute the probability that the stock price becomes negative before time $T = 1$ when $S_0 = 10$ and $\sigma = 3$. This illustrates the defect that motivated the switch to geometric Brownian motion.
+
+---
+
+**Exercise 4.** The Einstein diffusion relation states that the diffusion coefficient is $D = \delta^2/(2\tau)$ where $\delta$ is the step size and $\tau$ is the time per step. If a pollen particle in water has $D = 10^{-9}$ cm$^2$/s and makes $10^{12}$ collisions per second, what is the effective step size $\delta$ of each collision?
+
+---
+
+**Exercise 5.** In the Wright-Fisher model, the fixation probability starting from allele frequency $x$ is $\mathbb{P}(\text{fixation at 1}) = x$. This is the continuous-time analogue of the gambler's ruin result $\mathbb{P}(\tau_b < \tau_0) = a/b$ with $x = a/b$. If a new mutation appears in a population of $N = 1000$ diploid individuals (so $x = 1/(2N) = 0.0005$), what is the fixation probability? How many such mutations must arise for the expected number of fixations to equal 1?
+
+---
+
+**Exercise 6.** The random walk serves as a test problem for temporal-difference learning. Consider a 7-state random walk with states $\{0, 1, 2, 3, 4, 5, 6\}$ where states 0 and 6 are absorbing (giving rewards 0 and 1 respectively), and the walk starts at state 3. Using the martingale property, compute the true value function $V(i) = \mathbb{P}(\text{reach state 6 before state 0} \mid S_0 = i)$ for each state $i = 0, 1, \ldots, 6$.

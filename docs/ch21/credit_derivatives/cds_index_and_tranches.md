@@ -394,3 +394,57 @@ This demonstrates the extreme dispersion of credit risk across the capital struc
 - O'Kane, D. (2008). *Modelling Single-name and Multi-name Credit Derivatives*. Wiley, Chapters 14--18.
 - McGinty, L., et al. (2004). Credit correlation: A guide. *JP Morgan Credit Derivatives Research*.
 - Bielecki, T. R., & Rutkowski, M. (2004). *Credit Risk: Modeling, Valuation and Hedging*. Springer, Chapter 14.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a homogeneous portfolio of $n = 125$ equally weighted names, each with 5-year default probability $p = 3\%$ and recovery rate $R = 40\%$. Compute the expected portfolio loss $\mathbb{E}[L_5]$. Determine the fraction of this expected loss that is absorbed by the equity tranche $[0\%, 3\%]$, assuming the entire expected loss falls below the equity detachment point.
+
+---
+
+**Exercise 2.** In the one-factor Gaussian copula model with correlation $\rho$, the conditional default probability given the systematic factor $M = m$ is
+
+$$
+p(m) = N\!\left(\frac{N^{-1}(p) - \sqrt{\rho}\, m}{\sqrt{1-\rho}}\right)
+$$
+
+For $p = 2\%$ and $\rho = 0.3$, compute $p(m)$ for $m \in \{-2, -1, 0, 1, 2\}$. Plot or describe how the conditional default probability varies with the systematic factor and explain the economic interpretation.
+
+---
+
+**Exercise 3.** Using the Vasicek large-pool approximation
+
+$$
+\mathbb{Q}(L_T \le x) = N\!\left(\frac{\sqrt{1-\rho}\, N^{-1}\!\left(\frac{x}{1-R}\right) - N^{-1}(p)}{\sqrt{\rho}}\right)
+$$
+
+with $p = 2\%$, $R = 40\%$, and $\rho = 20\%$, compute $\mathbb{Q}(L_5 \le 7\%)$ and $\mathbb{Q}(L_5 \le 15\%)$. Use these to estimate the probability that losses reach the mezzanine and senior tranches.
+
+---
+
+**Exercise 4.** A standard CDX tranche has attachment $a = 3\%$ and detachment $d = 7\%$. The expected portfolio losses at the detachment points are $\mathbb{E}[(L_T - 0.03)^+] = 0.45\%$ and $\mathbb{E}[(L_T - 0.07)^+] = 0.10\%$. Compute the expected tranche loss
+
+$$
+\text{ETL}^{[3\%,7\%]} = \frac{\mathbb{E}[(L_T - 0.03)^+] - \mathbb{E}[(L_T - 0.07)^+]}{d - a}
+$$
+
+and the approximate par tranche spread assuming a risky annuity of 4.3 years.
+
+---
+
+**Exercise 5.** Explain qualitatively why increasing the default correlation $\rho$ decreases the equity tranche spread but increases the super senior tranche spread. Illustrate your argument by describing the shape of the portfolio loss distribution for $\rho = 0$, $\rho = 0.3$, and $\rho = 1$.
+
+---
+
+**Exercise 6.** Suppose the market quotes the following base correlations: $\rho_b(3\%) = 15\%$, $\rho_b(7\%) = 25\%$, $\rho_b(10\%) = 35\%$. You wish to price a non-standard tranche with detachment point $K = 5\%$. Describe the interpolation procedure using the base correlation curve. What assumption about the loss distribution does this procedure implicitly make, and what is the main weakness?
+
+---
+
+**Exercise 7.** Prove the index-tranche arbitrage constraint: if the portfolio loss $L_T$ is partitioned into tranches $[a_j, d_j]$ for $j = 1, \ldots, J$ with $a_1 = 0$, $d_J = 1$, and $a_{j+1} = d_j$, then
+
+$$
+\sum_{j=1}^{J} (d_j - a_j)\, \text{ETL}^{[a_j, d_j]}(T) = \mathbb{E}[L_T]
+$$
+
+Starting from the definition $L_T^{[a,d]} = \frac{(L_T - a)^+ - (L_T - d)^+}{d - a}$, show that the tranche losses telescope to recover $L_T$.

@@ -201,3 +201,33 @@ A practical tree with $N = 100$ steps per year typically provides 1--2 basis poi
 ## Summary
 
 The trinomial tree for the Black-Karasinski model operates in log-rate space, where the OU dynamics yield simple branching probabilities. The tree geometry uses standard, up, or down branching to ensure valid probabilities across the entire rate range. Forward induction calibrates $\theta(t_k)$ at each time step by matching the model discount factor to market data, and backward induction prices derivatives by rolling discounted expectations from maturity to the present. The tree naturally handles American-style exercise, making it the preferred method for Bermudan swaptions and callable bonds under BK. Convergence is first-order in $\Delta t$ for smooth payoffs and can be improved by Richardson extrapolation.
+
+---
+
+## Exercises
+
+**Exercise 1.** Given $\sigma = 0.15$ and $\Delta t = 0.02$ year, compute the log-rate spacing $\Delta x = \sigma\sqrt{3\Delta t}$. If $a = 0.08$, compute $j_{\max} = \lceil 0.184/(a\Delta t) \rceil$. How many total nodes exist at a single time step, and what are the minimum and maximum short rates $r_{\min} = e^{-j_{\max}\Delta x}$ and $r_{\max} = e^{j_{\max}\Delta x}$?
+
+---
+
+**Exercise 2.** At a node with $j = 0$ (central node), show that the standard branching probabilities simplify to $p_u = \frac{1}{6} + \frac{\theta(t_k)^2\Delta t^2}{2\Delta x^2} + \frac{\theta(t_k)\Delta t}{2\Delta x}$, $p_m = \frac{2}{3} - \frac{\theta(t_k)^2\Delta t^2}{\Delta x^2}$, and $p_d = \frac{1}{6} + \frac{\theta(t_k)^2\Delta t^2}{2\Delta x^2} - \frac{\theta(t_k)\Delta t}{2\Delta x}$. For $\theta(t_k) = -0.30$, $\Delta t = 0.01$, $\Delta x = 0.03464$, verify these are all positive.
+
+---
+
+**Exercise 3.** Derive the three equations that determine the branching probabilities $p_u$, $p_m$, $p_d$ for standard branching. Specifically, let the successor nodes be at $x_j + \Delta x$, $x_j$, and $x_j - \Delta x$. Write the mean-matching equation, the variance-matching equation, and the probability-summing equation. Solve the $3 \times 3$ system to obtain the formulas given in the text.
+
+---
+
+**Exercise 4.** The Arrow-Debreu price $Q(k+1, j')$ is defined recursively. Suppose at time $t_1$ (one step after $t_0$) the standard branching from the root node $(t_0, 0)$ produces nodes $j' \in \{-1, 0, 1\}$ with probabilities $p_d$, $p_m$, $p_u$. With $r_0 = e^{x_0} = 0.05$ and $\Delta t = 0.5$ year, compute $Q(1, -1)$, $Q(1, 0)$, and $Q(1, 1)$, and verify that $\sum_{j'} Q(1, j') = e^{-r_0 \Delta t}$.
+
+---
+
+**Exercise 5.** Explain why the calibration of $\theta(t_k)$ is a nonlinear root-finding problem. What specifically makes the equation $\sum_j Q(k+1, j) = P^{\text{mkt}}(0, t_{k+1})$ nonlinear in $\theta(t_k)$? Would Newton's method or bisection be more robust for this problem, and why?
+
+---
+
+**Exercise 6.** For a European call option on a zero-coupon bond with expiry $t_K = 1$ year, strike $K = 0.95$, on a bond maturing at $T = 2$ years, describe the two-pass backward induction procedure. In the first pass, what terminal condition is set at $T$, and how far back is the induction performed? In the second pass, what values are set at $t_K$, and how is the option payoff computed at each node?
+
+---
+
+**Exercise 7.** A Bermudan swaption allows exercise at annual dates $t_1, t_2, \ldots, t_5$ into a 5-year swap. At each exercise date, the holder compares the exercise value (swap value) with the continuation value. Write the backward induction equation that incorporates the early exercise decision. Explain why trinomial trees have an advantage over Monte Carlo for this product, and what role the node-by-node comparison plays in avoiding the need for regression-based continuation value estimation.

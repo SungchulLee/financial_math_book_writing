@@ -189,3 +189,29 @@ The SABR model produces sticky-backbone smile dynamics, where ATM implied volati
 - Rebonato, R., McKay, K., & White, R. (2009). *The SABR/LIBOR Market Model*. Wiley.
 - Piterbarg, V. (2005). *Stochastic volatility model with time-dependent skew*. Applied Mathematical Finance.
 - Andersen, L. & Piterbarg, V. (2010). *Interest Rate Modeling*, Volume II. Atlantic Financial Press, Chapters 15--16.
+
+---
+
+## Exercises
+
+**Exercise 1.** The SABR backbone predicts that ATM vol changes as $\sigma_{\text{ATM}} \approx \alpha/F^{1-\beta}$. For $\beta = 0.5$ and $\alpha = 0.025$, compute $\sigma_{\text{ATM}}$ at $F = 0.03$ and $F = 0.025$. If a local volatility model predicts the ATM vol at $F = 0.025$ using the current smile (sticky strike), explain why its prediction differs from SABR's and which is more consistent with market behavior.
+
+---
+
+**Exercise 2.** The dynamic inconsistency of SABR arises because independently calibrated parameters at different expiries are not consistent with the model's own dynamics. Illustrate this: if the 1-year SABR gives $\alpha_1 = 0.025$ and the 2-year gives $\alpha_2 = 0.028$, but the SABR volatility process $\sigma_t = \alpha e^{-\nu^2 t/2 + \nu W_t}$ has $\mathbb{E}[\sigma_t] = \alpha$ (constant), explain the contradiction.
+
+---
+
+**Exercise 3.** A forward-starting swaption has a payoff that depends on the smile at a future date. Explain why the SABR dynamic inconsistency is particularly problematic for this product. If the trader uses today's SABR parameters to price a 1Y-forward-starting 5Y swaption, what error might result?
+
+---
+
+**Exercise 4.** One approach to managing the forward smile is time-dependent SABR parameters: $\alpha(T)$, $\rho(T)$, $\nu(T)$. If $\alpha(T)$ is piecewise constant between calibration expiries, the model matches each expiry's smile exactly. Explain the trade-off: what is gained (consistency) and what is lost (simplicity, uniqueness of hedge ratios) compared to independent per-expiry calibration?
+
+---
+
+**Exercise 5.** Compare sticky-strike, sticky-delta, and sticky-backbone (SABR) smile dynamics. If $F$ drops by 50 bps from 3%: (a) under sticky-strike, what happens to the vol at $K = 2.5\%$? (b) under sticky-delta, how does the ATM vol change? (c) under SABR backbone, compute the new ATM vol for $\beta = 0.5$, $\alpha = 0.025$. Which model best matches the empirical behavior of interest rate smiles?
+
+---
+
+**Exercise 6.** A Bermudan swaption allows exercise at multiple dates. Its price depends on the smile at each exercise date. Explain why independent per-expiry SABR calibration may be insufficient for Bermudan pricing, and what additional modeling features are needed to produce consistent smile evolution across exercise dates.

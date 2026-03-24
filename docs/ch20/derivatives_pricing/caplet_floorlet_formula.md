@@ -364,3 +364,33 @@ d_1&=&\displaystyle
 a-B(\tau_k)v_r(t_0,T_{k-1})\\
 d_2&=&a
 \end{array}$$
+
+---
+
+## Exercises
+
+**Exercise 1.** Show that a caplet with reset date $T_{k-1}$ and payment date $T_k$ is equivalent to a put option on the zero-coupon bond $P(T_{k-1}, T_k)$ with modified notional $\hat{N} = N(1 + \tau_k K)$ and strike $\hat{K} = \frac{1}{1 + \tau_k K}$.
+
+---
+
+**Exercise 2.** In Black's formula, the forward LIBOR rate $l_k(t)$ is assumed lognormal under $\mathbb{Q}^{T_k}$. In the Hull-White model, the short rate is Gaussian. Explain why these two assumptions lead to different implied volatility structures across strikes.
+
+---
+
+**Exercise 3.** For a caplet with $T_{k-1} = 4$, $T_k = 5$, $K = 0.04$, $N = 1{,}000{,}000$, compute $\hat{N}$ and $\hat{K}$. Using Hull-White parameters $\lambda = 0.05$ and $\sigma = 0.01$, describe the inputs needed for the ZCB put option formula.
+
+---
+
+**Exercise 4.** The proof shows two derivation approaches: using the $T_{k-1}$-measure and the $T_k$-measure. Explain the key difference: which measure makes the caplet a put on the ZCB, and which measure keeps the discounting inside the expectation?
+
+---
+
+**Exercise 5.** Verify the cap-floor parity: $\text{Cap}(t_0) - \text{Floor}(t_0) = \text{IRS}^{\text{Payer}}(t_0)$. Explain why this relationship is model-independent.
+
+---
+
+**Exercise 6.** The Hull-White model parameters affect the implied volatility smile produced by the caplet formula. Describe qualitatively how increasing $\sigma$ and increasing $\lambda$ each affect the level and shape of the implied volatility curve.
+
+---
+
+**Exercise 7.** In the Python code, the function `compute_Implied_Volatility_using_Black76` backs out Black implied volatilities from Hull-White caplet prices. Explain why the resulting implied vol may depend on the strike $K$, even though the Hull-White model has constant $\sigma$.

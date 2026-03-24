@@ -268,3 +268,31 @@ Simulated annealing accepts worse solutions with probability $\exp(-\Delta \math
 Basin hopping combines local optimization with random perturbations and Metropolis acceptance. At each step: (1) perturb the current solution, (2) run a local optimizer to convergence, and (3) accept the new local minimum with probability $\min(1, \exp(-\Delta \mathcal{L} / T))$. This is effective when local minima are well-separated and the local optimizer is fast---precisely the situation in Heston calibration with FFT pricing.
 
 ---
+
+## Exercises
+
+**Exercise 1.** In DE/rand/1, the mutant vector is $V_i = \Theta_{r_1} + F(\Theta_{r_2} - \Theta_{r_3})$. Explain geometrically why the difference vector $\Theta_{r_2} - \Theta_{r_3}$ provides a self-adaptive step size: when the population is spread out, the differences are large, and when it has converged, the differences are small. How does this compare to a fixed-step random perturbation?
+
+---
+
+**Exercise 2.** For Heston calibration with $d = 5$ parameters and recommended $NP = 30$, $g_{\max} = 200$, compute the total number of objective function evaluations. If each evaluation takes 0.5 ms (using FFT-based pricing), estimate the total wall time. How does this change if evaluations can be parallelized across 8 cores?
+
+---
+
+**Exercise 3.** Compare DE/rand/1 and DE/best/1 mutation strategies. The former uses a random base vector while the latter uses the current best. Discuss the exploration-exploitation trade-off for each. For a Heston calibration landscape with 3 local minima of similar depth, which strategy is more likely to find the global minimum and why?
+
+---
+
+**Exercise 4.** The crossover rate $CR$ controls how many components of the trial vector come from the mutant. For a separable objective $\mathcal{L}(\Theta) = \sum_k g_k(\Theta_k)$, argue that small $CR$ (e.g., $CR = 0.1$) is appropriate. For the Heston objective where $\kappa$ and $\bar{v}$ are strongly coupled, explain why large $CR$ (e.g., $CR = 0.9$) is preferred.
+
+---
+
+**Exercise 5.** In the JADE adaptive DE variant, the mutation factor $\mu_F$ is updated using the Lehmer mean of successful values: $\mu_F^{(g+1)} = (1-c)\mu_F^{(g)} + c \cdot \sum F_i^2 / \sum F_i$. Show that the Lehmer mean is always greater than or equal to the arithmetic mean. Why is this bias toward larger $F$ values beneficial for maintaining exploration?
+
+---
+
+**Exercise 6.** A hybrid DE-LM strategy runs DE for 50 generations followed by Levenberg-Marquardt. On S&P 500 data, this achieves an objective of 0.0010 with 98% success rate in 12 seconds, while multi-start LM with 20 starts achieves 0.0012 with 90% success rate in 15 seconds. Analyze the cost-effectiveness of each approach. Under what conditions would you prefer multi-start LM over the hybrid?
+
+---
+
+**Exercise 7.** Design a termination criterion for DE that balances computational cost against solution quality. Specifically, define a population convergence metric $\sigma_{\text{pop}}^{(g)} = \max_i \|\Theta_i^{(g)} - \Theta_{\text{best}}^{(g)}\|$ and a stagnation counter. Propose specific thresholds for $\sigma_{\text{pop}}$ and the stagnation limit for Heston calibration with the parameter bounds given in this section. Justify your choices.

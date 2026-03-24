@@ -121,3 +121,33 @@ As $\Delta t \to 0$, the discrete shift $\alpha_i$ converges to $\tilde{r}(t_i) 
 ## Summary
 
 Calibrating the Hull-White trinomial tree to the initial yield curve determines the shift $\alpha_i$ at each time step using Arrow-Debreu prices. The Arrow-Debreu prices propagate forward through the tree via $Q_{i+1,m} = \sum_j Q_{ij}\,p(j \to m)\,e^{-r_{ij}\Delta t}$, and the shift is found from $\alpha_i = (\ln\sum_j Q_{ij}e^{-j\Delta x\Delta t} - \ln P^M(0, t_{i+1}))/\Delta t$. This procedure is exact by construction, matching the market bond curve to machine precision. The calibrated tree is then ready for derivative pricing via backward induction, which is covered in the next section.
+
+---
+
+## Exercises
+
+**Exercise 1.** Explain the financial meaning of an Arrow-Debreu price $Q_{ij}$. Why is $Q_{0,0} = 1$? Show that $\sum_j Q_{ij} = P^{\text{tree}}(0, t_i)$ by interpreting the sum as the price of a zero-coupon bond maturing at $t_i$.
+
+---
+
+**Exercise 2.** In the three-step calibration example, complete Step 2: compute $\alpha_1$ explicitly from the Arrow-Debreu prices $Q_{1,1} \approx 0.1617$, $Q_{1,0} \approx 0.6467$, $Q_{1,-1} \approx 0.1617$ with $\Delta x \approx 0.01732$ and $P^M(0,2) = 0.94$. Then propagate the Arrow-Debreu prices to time step 2.
+
+---
+
+**Exercise 3.** The calibration formula $\alpha_i = \frac{1}{\Delta t}[\ln(\sum_j Q_{ij}e^{-j\Delta x\Delta t}) - \ln P^M(0,t_{i+1})]$ requires the function $f(\alpha) = e^{-\alpha\Delta t}\sum_j Q_{ij}e^{-j\Delta x\Delta t}$ to be strictly decreasing. Prove this monotonicity property and explain why it guarantees uniqueness of $\alpha_i$.
+
+---
+
+**Exercise 4.** After calibration, verify that $\sum_j Q_{i,j} = P^M(0, t_i)$ for each time step $i$. Explain why any discrepancy indicates a bug and describe how to diagnose common implementation errors (sign errors, off-by-one indexing, incorrect branching probabilities).
+
+---
+
+**Exercise 5.** As $\Delta t \to 0$, the discrete shift $\alpha_i$ converges to $f^M(0,t_i) + \frac{\sigma^2}{2\lambda^2}(1 - e^{-\lambda t_i})^2$. Verify this for $i = 0$ by showing that $\alpha_0 = -\ln P^M(0,\Delta t)/\Delta t \to f^M(0,0) = r_0$ as $\Delta t \to 0$.
+
+---
+
+**Exercise 6.** The forward propagation formula $Q_{i+1,m} = \sum_j Q_{ij}p(j \to m)e^{-r_{ij}\Delta t}$ has the same cost as one time step of backward induction. Explain why the total calibration cost is $O(N \cdot j_{\max})$ and compare this to the cost of calibrating a non-recombining tree.
+
+---
+
+**Exercise 7.** Describe how you would modify the calibration algorithm if the market provides bond prices $P^M(0,T_k)$ at irregularly spaced maturities $T_1, T_2, \ldots$ that do not coincide with the tree time steps. What interpolation method would you use, and what are the risks of interpolation error?

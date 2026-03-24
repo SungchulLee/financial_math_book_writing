@@ -295,3 +295,46 @@ The fair strike depends on only three Heston parameters: $v_0$, $\kappa$, and $\
 | [VIX Options Under Heston](vix_options_under_heston.md) | Pricing VIX options using the affine structure |
 | [Forward-Start Options](forward_start_options.md) | Conditional characteristic function methods |
 | [Asian Options (Monte Carlo)](asian_options_monte_carlo.md) | MC pricing of averaging derivatives |
+
+---
+
+## Exercises
+
+**Exercise 1.**
+For Heston parameters $v_0 = 0.04$, $\kappa = 2.0$, $\theta = 0.05$, compute the fair variance strike $K_{\text{var}}$ for a 1-year variance swap using the formula:
+
+$$
+K_{\text{var}} = \theta + (v_0 - \theta)\frac{1 - e^{-\kappa T}}{\kappa T}
+$$
+
+Convert the result to a volatility strike $K_{\text{vol}} = \sqrt{K_{\text{var}}}$ and express in percentage. Does the variance strike lie between $v_0$ and $\theta$?
+
+---
+
+**Exercise 2.**
+Show that as $T \to 0$, the fair variance strike $K_{\text{var}} \to v_0$, and as $T \to \infty$, $K_{\text{var}} \to \theta$. Derive these limits from the formula. Compute $K_{\text{var}}$ for $T = 0.01, 0.1, 1, 5, 20$ years using the parameters from Exercise 1 and verify the convergence to $\theta$.
+
+---
+
+**Exercise 3.**
+The continuous-monitoring fair variance strike differs from the discrete-monitoring version by a convexity correction. The discrete-monitoring realized variance uses squared log-returns $(\ln S_{t_i}/S_{t_{i-1}})^2$, while the continuous version uses $\int_0^T v_t \, dt / T$. The correction is approximately $K_{\text{var}}^{\text{discrete}} \approx K_{\text{var}}^{\text{cont}} + \frac{1}{3n}(\bar{v}\xi^2/\kappa)$ where $n$ is the number of monitoring dates. For daily monitoring ($n = 252$), $\kappa = 2.0$, $\xi = 0.5$, and $\bar{v} = 0.045$, compute the correction and compare it to the continuous strike.
+
+---
+
+**Exercise 4.**
+The VIX index is defined as $\text{VIX}_t = 100\sqrt{K_{\text{var}}(t, t + \tau)}$ where $\tau = 30/365$ and $K_{\text{var}}$ is the fair 30-day variance swap strike. For $v_t = 0.04$, $\kappa = 2.0$, $\theta = 0.05$, compute VIX$_t$. How does VIX change if $v_t$ suddenly increases to 0.09 (a volatility spike)?
+
+---
+
+**Exercise 5.**
+The log-contract replication formula states that the fair variance strike can be expressed as $K_{\text{var}} = -\frac{2}{T}\mathbb{E}^{\mathbb{Q}}[\ln(S_T/S_0) - (e^{(r-q)T} - 1)]$. This connects variance swaps to the log-contract. Verify this formula for the Black-Scholes model where $\ln(S_T/S_0) \sim N((r - q - \sigma^2/2)T, \sigma^2 T)$ and show that $K_{\text{var}} = \sigma^2$.
+
+---
+
+**Exercise 6.**
+A trader buys a 1-year variance swap at $K_{\text{var}} = 0.045$ with notional $N = \$100{,}000$ per variance point. If the realized variance over the year turns out to be $\sigma_R^2 = 0.06$, compute the P&L. Express the result in both variance points and dollars. Now compute the "vega notional" defined as $N_{\text{vega}} = N \cdot 2\sqrt{K_{\text{var}}}$ and explain why this is a more intuitive measure of the swap's exposure.
+
+---
+
+**Exercise 7.**
+The sensitivity of the fair variance strike to $v_0$ is $\partial K_{\text{var}} / \partial v_0 = (1 - e^{-\kappa T})/(\kappa T)$. Compute this sensitivity for $\kappa = 2.0$ and $T = 0.5, 1.0, 2.0$. Show that the sensitivity decreases with $T$ (the strike depends less on $v_0$ for longer maturities). Discuss the implication for hedging: a desk holding a long-dated variance swap has less exposure to short-term variance moves.

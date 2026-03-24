@@ -717,3 +717,45 @@ Understanding these sensitivities enables effective volatility trading and risk 
 - Taleb, N.N. *Dynamic Hedging*. Comprehensive treatment of vega and higher-order Greeks.
 - Gatheral, J. *The Volatility Surface*. Model-consistent Greeks in stochastic volatility.
 - Bergomi, L. *Stochastic Volatility Modeling*. Advanced treatment of volatility sensitivities.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a European call with $S_0 = 100$, $K = 100$, $T = 0.25$, $r = 5\%$, $q = 0$, and $\sigma = 20\%$, compute the Black-Scholes vega using
+
+$$
+\mathcal{V}_{\text{BS}} = S_0 e^{-qT} \phi(d_1) \sqrt{T}
+$$
+
+Verify that a 1 percentage point increase in implied volatility (20% to 21%) changes the option price by approximately $\mathcal{V} \times 0.01$.
+
+---
+
+**Exercise 2.** Using the same parameters as Exercise 1, compute vega at strikes $K = 85, 90, 95, 100, 105, 110, 115$. Plot the results and confirm that vega is maximized at or near ATM. At which strike does vega drop below half of the ATM value?
+
+---
+
+**Exercise 3.** Compute the vanna for an ATM call with $S_0 = K = 100$, $T = 0.5$, $r = 3\%$, $q = 0$, and $\sigma = 25\%$ using
+
+$$
+\text{Vanna} = -\frac{\mathcal{V} \cdot d_2}{S \cdot \sigma \cdot \sqrt{T}}
+$$
+
+Interpret the sign: if the spot increases by \$1 while volatility simultaneously increases by 1%, what is the approximate effect on the option's delta?
+
+---
+
+**Exercise 4.** The volga (vomma) is given by $\text{Volga} = \mathcal{V} \cdot d_1 d_2 / \sigma$. (a) At ATM, show that $d_1 d_2 < 0$ for typical parameter values, so volga is negative. (b) For a deep OTM call with $K = 130$ (same parameters otherwise), show that $d_1 d_2 > 0$ and volga is positive. (c) Explain the economic meaning: why do OTM options benefit from "vol-of-vol"?
+
+---
+
+**Exercise 5.** A trading desk holds a portfolio with vega exposures: +\$200K in 1-month options and $-$\$150K in 6-month options. (a) Compute the parallel vega. (b) Compute the time-weighted vega $\mathcal{V}/\sqrt{T}$ for each bucket. (c) Is the portfolio at risk from a term structure steepening (short-dated vol up, long-dated vol down)? Explain.
+
+---
+
+**Exercise 6.** In the Heston stochastic volatility model, identify three distinct "vegas": spot vol vega ($\partial P / \partial v_0$), long-run vol vega ($\partial P / \partial \theta$), and vol-of-vol vega ($\partial P / \partial \xi$). For a 1-year ATM option, which of these three sensitivities do you expect to be largest? Explain your reasoning based on the option's maturity relative to the mean-reversion time scale $1/\kappa$.
+
+---
+
+**Exercise 7.** An option has price $P = 5.20$, vega $\mathcal{V} = 18.0$, and volga $\text{Volga} = 3.5$. If implied volatility jumps from 22% to 27% (a large 5 percentage point move), compare the first-order approximation $\Delta P \approx \mathcal{V} \cdot \Delta\sigma$ with the second-order approximation $\Delta P \approx \mathcal{V} \cdot \Delta\sigma + \frac{1}{2}\text{Volga} \cdot (\Delta\sigma)^2$. By what percentage does the first-order approximation underestimate the true price change?

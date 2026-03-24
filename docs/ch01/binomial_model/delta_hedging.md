@@ -502,3 +502,35 @@ This is the deep insight of arbitrage pricing: **prices are determined by what c
 | [Risk-Neutral Measure](risk_neutral_measure.md) | The measure $\mathbb{Q}$ and expectation pricing |
 | [Multi-Period Model](multi_period_binomial_model.md) | Dynamic delta hedging over multiple periods |
 | [Binomial to Black–Scholes](binomial_to_black_scholes_limit.md) | Continuous-time limit |
+
+---
+
+## Exercises
+
+**Exercise 1.** In the one-period binomial model with $S_0 = 60$, $u = 1.3$, $d = 0.75$, $r = 6\%$, and $\Delta t = 1$, compute the hedge ratio $\Delta$ for a European call with strike $K = 65$. Construct the hedged portfolio (short 1 call, long $\Delta$ shares) and verify that it has the same terminal value in both states. Confirm that this terminal value equals $\Pi_0 \cdot e^{r\Delta t}$.
+
+---
+
+**Exercise 2.** A derivative has the payoff $H_u = 5$ in the up state and $H_d = 20$ in the down state. Using $S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, and $\Delta t = 1$, compute the hedge ratio $\Delta$. Explain the economic intuition for why $\Delta < 0$ in this case and describe what "short $\Delta$ shares" means in practice.
+
+---
+
+**Exercise 3.** Prove algebraically that the option pricing formula derived from the hedging argument:
+
+$$
+V_0 = e^{-r\Delta t}\left[\frac{e^{r\Delta t} - d}{u - d} H_u + \frac{u - e^{r\Delta t}}{u - d} H_d\right]
+$$
+
+is identical to the replication price $V_0 = \Delta S_0 + B$ where $\Delta = \frac{H_u - H_d}{(u-d)S_0}$ and $B = e^{-r\Delta t}\frac{uH_d - dH_u}{u-d}$.
+
+---
+
+**Exercise 4.** Using the text's parameters ($S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$), compute $\Delta$ for a forward contract with forward price $F = 105.13$. Explain why $\Delta = 1$ for a forward and relate this to the forward's payoff structure.
+
+---
+
+**Exercise 5.** Suppose an investor holds a portfolio of 100 European call options on a stock, each with the delta computed in the text ($\Delta = 0.5$). How many shares of the underlying stock should the investor hold (or short) to delta-hedge the entire position? If the stock price moves from $S_0 = 100$ to $S_0' = 102$, estimate the change in the portfolio value of the 100 calls using the delta approximation $\delta V \approx \Delta \cdot \delta S$.
+
+---
+
+**Exercise 6.** Explain why the physical probability $p$ of an up move does not appear in the delta-hedging derivation. Specifically, show that the hedge ratio $\Delta$ and the resulting option price $V_0$ are the same regardless of whether $p = 0.3$, $p = 0.5$, or $p = 0.9$. What role does $p$ play in the real world, and why is it irrelevant for pricing?

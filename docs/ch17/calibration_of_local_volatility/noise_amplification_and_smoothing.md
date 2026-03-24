@@ -123,3 +123,45 @@ One can:
 - Gatheral, *The Volatility Surface*.
 - Fengler, *Semiparametric Modeling of Implied Volatility*.
 - Andersen & Piterbarg (practical surface construction and stability).
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $\varepsilon_i \sim N(0, \delta^2)$ be independent noise on observed call prices at equally spaced strikes with spacing $h$. Show that the central finite-difference approximation to $\partial_{KK}C$ at a point has variance $6\delta^2/h^4$. If bid-ask noise is $\delta = 0.05$ and strike spacing is $h = 5$, compute the standard deviation of the estimated second derivative.
+
+---
+
+**Exercise 2.** A practitioner uses a cubic spline to smooth call prices across 15 strikes before applying the Dupire formula. The spline is fit by minimizing
+
+$$
+\sum_{j=1}^{15} w_j \bigl(\tilde{C}(K_j) - C_j^{\text{obs}}\bigr)^2 + \lambda \int_{K_{\min}}^{K_{\max}} \bigl(\tilde{C}''(K)\bigr)^2 \, dK
+$$
+
+Explain the role of the penalty parameter $\lambda$. What happens to the local volatility surface as $\lambda \to 0$? As $\lambda \to \infty$?
+
+---
+
+**Exercise 3.** Given three call prices at strikes $K-h$, $K$, $K+h$ for a fixed maturity, and call prices at the same strike $K$ for maturities $T$ and $T + \Delta T$, write down the finite-difference approximations for $\partial_{KK}C(K,T)$ and $\partial_T C(K,T)$. Then express the Dupire local variance estimate $\hat{\sigma}_{\text{loc}}^2(T,K)$ in terms of these five market prices, $r$, $q$, $h$, and $\Delta T$.
+
+---
+
+**Exercise 4.** The no-arbitrage convexity condition requires $\partial_{KK}C \ge 0$. Construct a numerical example with three call prices at strikes $K \in \{90, 100, 110\}$ where the butterfly spread is negative (i.e., $C(90) - 2C(100) + C(110) < 0$). Show that the Dupire formula yields $\sigma_{\text{loc}}^2 < 0$ at this point. Describe how you would correct this violation in practice.
+
+---
+
+**Exercise 5.** Explain why working in total implied variance coordinates $w(k, T) = T\sigma_{\text{impl}}^2(k, T)$ with $k = \ln(K/F_T)$ facilitates calendar-arbitrage checking. Specifically, show that the condition $\partial_T w(k, T) \ge 0$ for fixed $k$ is necessary for absence of calendar arbitrage, and relate this to the positivity of the numerator in the Dupire formula.
+
+---
+
+**Exercise 6.** Compare two smoothing approaches for a set of 50 option quotes across 5 maturities: (a) independent cubic spline per maturity, and (b) joint SVI parameterization across all maturities. Discuss which approach is more likely to satisfy calendar-spread arbitrage constraints and why. What additional steps are needed for approach (a) to ensure time-consistency?
+
+---
+
+**Exercise 7.** Consider the penalized least-squares problem with a roughness penalty in both strike and maturity directions:
+
+$$
+\min_{\tilde{C}} \sum_j w_j\bigl(\tilde{C}_j - C_j^{\text{obs}}\bigr)^2 + \lambda_K \int (\partial_{KK}\tilde{C})^2 \, dK + \lambda_T \int (\partial_T \tilde{C})^2 \, dT
+$$
+
+Discuss why $\lambda_K$ and $\lambda_T$ may need to be chosen differently. If strikes are densely sampled but maturities are sparse, which penalty should be larger and why?

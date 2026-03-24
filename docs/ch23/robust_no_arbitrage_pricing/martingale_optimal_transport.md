@@ -959,3 +959,39 @@ MOT represents a profound synthesis of:
 - **Finance**: Arbitrage pricing and hedging
 
 This interdisciplinary framework continues to drive research at the intersection of mathematics, economics, and computation, offering both deep theoretical insights and practical tools for robust quantitative finance.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $\mu = \delta_{100}$ (point mass at 100) and $\nu = \frac{1}{2}\delta_{80} + \frac{1}{2}\delta_{120}$. Write down all martingale couplings $\pi \in \mathcal{M}(\mu, \nu)$ and verify the martingale condition $\int y \, d\pi(y|x) = x$. Is the martingale coupling unique in this case?
+
+---
+
+**Exercise 2.** Verify Strassen's theorem for the measures $\mu = \delta_{100}$ and $\nu = \frac{1}{3}\delta_{70} + \frac{1}{3}\delta_{100} + \frac{1}{3}\delta_{130}$. Specifically, check that $\mu \preceq_c \nu$ by showing that $\int f \, d\mu \leq \int f \, d\nu$ for $f(x) = |x - a|$ for several values of $a$, and construct an explicit martingale coupling.
+
+---
+
+**Exercise 3.** Consider the MOT problem with $\mu = \delta_{100}$, $\nu$ determined by call prices at strikes $K \in \{90, 100, 110\}$, and cost function $c(x, y) = (y - x)^2$. Set up the discretized linear program (with state space $\{90, 100, 110\}$ for $S_T$) and solve for both the minimum and maximum expected squared return. Interpret the extremal measures financially.
+
+---
+
+**Exercise 4.** Show that the Kantorovich dual for the classical optimal transport problem with cost $c(x,y) = |x - y|^2$ recovers the identity
+
+$$
+W_2^2(\mu, \nu) = \int x^2 \, d\mu + \int y^2 \, d\nu - 2 \sup_{\phi} \left\{ \int \phi \, d\mu + \int \phi^* \, d\nu \right\}
+$$
+
+where $\phi^*$ is the convex conjugate of $\phi$. Explain why this identity does not directly apply in the martingale optimal transport setting.
+
+---
+
+**Exercise 5.** For a forward start call with payoff $(S_{T_2} - S_{T_1})^+$ and marginals $\mu_1$ (at $T_1$) and $\mu_2$ (at $T_2$) both lognormal with means 100 and volatilities $\sigma_1 = 0.15$ and $\sigma_2 = 0.20$ respectively, explain qualitatively why the MOT upper bound is attained by a coupling that maximizes the negative dependence between $S_{T_1}$ and $S_{T_2} - S_{T_1}$. What financial scenario does this worst-case model represent?
+
+---
+
+**Exercise 6.** Describe the Sinkhorn algorithm for entropic regularization of the classical optimal transport problem. Then explain the key modification needed to incorporate the martingale constraint $\sum_j s_j^T \pi_{ij} = s_i^0 \sum_j \pi_{ij}$. Why does entropic regularization improve numerical stability compared to the standard LP formulation?
+
+---
+
+**Exercise 7.** Consider two assets with marginal distributions $\mu_1$ (uniform on $[80, 120]$) and $\mu_2$ (uniform on $[90, 110]$), both with mean 100. For the basket call payoff $g = \left(\frac{1}{2}S_T^{(1)} + \frac{1}{2}S_T^{(2)} - 100\right)^+$, formulate the multi-dimensional MOT problem. Use the Frechet-Hoeffding bounds to argue that the upper bound is attained when the two assets are comonotonic, and compute the resulting bound explicitly.

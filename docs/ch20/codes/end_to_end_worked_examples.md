@@ -183,3 +183,29 @@ print(f"Bermudan premium:  {bermudan_price - european_price:.6f}")
 | 4 | Bermudan swaption | Trinomial tree | Bermudan premium over European |
 
 These examples demonstrate the complete workflow from market data to calibrated model to derivative pricing, using all four components of the implementation: named functions, model class, pricing classes, and numerical engines.
+
+---
+
+## Exercises
+
+**Exercise 1.** In Example 1, the flat curve at 3\% was used. Repeat the ZCB pricing exercise with a Nelson-Siegel curve: $y(T) = 0.03 + 0.01 \cdot (1 - e^{-0.5T})/(0.5T) - 0.005 \cdot ((1 - e^{-0.5T})/(0.5T) - e^{-0.5T})$. Convert to discount factors $P^M(0, T) = e^{-y(T) \cdot T}$ and verify that $P^{\text{HW}}(0, T) = P^M(0, T)$ for $T = 1, 5, 10, 20$ years. Why does the Hull-White model always match the initial curve exactly?
+
+---
+
+**Exercise 2.** In Example 2, the calibration produced repricing errors of 10--20 bps. Suppose you replace the constant $\sigma$ with a piecewise-constant function $\sigma(t) = \sigma_1$ for $t \leq 3$ and $\sigma(t) = \sigma_2$ for $t > 3$. How many free parameters do you now have? Why should this improve the fit? Describe how you would modify the calibration objective function.
+
+---
+
+**Exercise 3.** Example 3 validates the Jamshidian swaption price against Monte Carlo. If the MC estimate is 0.032089 with standard error 0.000120, and the closed-form price is 0.032145, compute the number of standard errors separating the two. At the 95\% confidence level, is the difference statistically significant? How many paths would you need to reduce the standard error to 0.000010?
+
+---
+
+**Exercise 4.** Example 4 reports a Bermudan premium of approximately 7\% over the European price. Explain qualitatively why the Bermudan premium depends on the mean-reversion speed $\lambda$. If $\lambda$ is very large (strong mean reversion), would you expect the Bermudan premium to increase or decrease? Justify your reasoning.
+
+---
+
+**Exercise 5.** Design a fifth example: price a 3-year annual cap with strike 3\% using three methods: (a) the closed-form caplet formula (sum of caplets), (b) Monte Carlo with 50,000 paths, and (c) the trinomial tree with 200 steps per year. Report the price from each method and the computation time. Which method is most accurate for this product, and why?
+
+---
+
+**Exercise 6.** Modify Example 3 to apply the control variate technique. Use the 10-year ZCB price as the control variable. Describe the steps: (a) simulate $\hat{P}_{\text{MC}}(0, 10)$ alongside the swaption payoff, (b) compute the regression coefficient $\beta$, (c) compute the adjusted estimator $\hat{V}_{\text{cv}}$. By what factor would you expect the variance to be reduced, given that the ZCB and swaption payoff are correlated through the same short-rate paths?

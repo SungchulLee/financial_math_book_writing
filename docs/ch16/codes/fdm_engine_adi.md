@@ -250,3 +250,52 @@ The scheme converges as $\mathcal{O}(\Delta x^2 + \Delta v^2 + \Delta t^2)$ with
 ## Summary
 
 The FDM-ADI engine solves the two-dimensional Heston PDE by splitting it into three operators: the $x$-direction diffusion/convection $\mathcal{A}_1$, the $v$-direction diffusion/convection $\mathcal{A}_2$, and the mixed derivative $\mathcal{A}_0$. The Craig-Sneyd scheme treats $\mathcal{A}_1$ and $\mathcal{A}_2$ implicitly via tridiagonal solves and $\mathcal{A}_0$ explicitly with a correction step, achieving unconditional stability and second-order accuracy in all variables. Non-uniform grids in both $x$ and $v$ concentrate resolution where the solution varies most rapidly. The degenerate boundary at $v = 0$ requires special treatment via the reduced PDE. This engine is the foundation for pricing American options (via PSOR) and barrier options under the Heston model.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Starting from the Heston PDE in $(S, v)$ coordinates, derive the log-price PDE by substituting $x = \ln S$. Verify that the coefficient of $\partial V / \partial x$ becomes $(r - q - v/2)$ and that the $S^2$ coefficient in the second derivative is absorbed. Explain why the log-price formulation is preferred for FDM: what numerical problem does the multiplicative $S$ coefficient cause on a uniform grid?
+
+---
+
+**Exercise 2.**
+Consider a non-uniform variance grid $v_j = v_{\max}(j/N_v)^2$ for $j = 0, 1, \ldots, N_v$ with $v_{\max} = 0.5$ and $N_v = 100$. Compute the grid spacing $\Delta v_j = v_{j+1} - v_j$ for $j = 0, 1, 2$ and $j = 98, 99$. What fraction of the grid points lie in $[0, v_{\max}/4] = [0, 0.125]$? Explain why concentrating points near $v = 0$ is important for the accuracy of the Heston FDM.
+
+---
+
+**Exercise 3.**
+At the degenerate boundary $v = 0$, the Heston PDE reduces to:
+
+$$
+\frac{\partial V}{\partial t} + (r - q)\frac{\partial V}{\partial x} + \kappa\theta\frac{\partial V}{\partial v} - rV = 0
+$$
+
+Explain why the diffusion terms vanish at $v = 0$. If the Feller condition $2\kappa\theta \geq \xi^2$ is satisfied, the term $\kappa\theta\frac{\partial V}{\partial v}$ pushes information into the domain. Discretize this reduced PDE using forward differences in $v$ and central differences in $x$, and write the resulting finite difference equation for $V_{i,0}^{n+1}$.
+
+---
+
+**Exercise 4.**
+The Craig-Sneyd ADI scheme has four stages. Stages 2 and 3 each require solving a tridiagonal system. If the grid has $N_x = 150$ and $N_v = 60$, how many tridiagonal solves are performed per time step (counting both stages)? If each tridiagonal solve of size $N$ costs $\mathcal{O}(N)$ operations via Thomas's algorithm, compute the total cost per time step. Compare this with a fully implicit Crank-Nicolson scheme that requires solving a single $(N_x \cdot N_v) \times (N_x \cdot N_v)$ sparse system.
+
+---
+
+**Exercise 5.**
+The convergence table shows that doubling the grid from $100 \times 50 \times 100$ to $200 \times 100 \times 200$ reduces the error from 0.03 bps to 0.00 bps. Verify that this is consistent with second-order convergence $\mathcal{O}(\Delta x^2 + \Delta v^2 + \Delta t^2)$: when all grid sizes are doubled, each spacing halves, so the error should decrease by a factor of approximately 4. Compute the actual error reduction factor and discuss any deviations.
+
+---
+
+**Exercise 6.**
+The mixed derivative stencil:
+
+$$
+\frac{\partial^2 V}{\partial x \partial v}\bigg|_{i,j} \approx \frac{V_{i+1,j+1} - V_{i+1,j-1} - V_{i-1,j+1} + V_{i-1,j-1}}{4\Delta x_i \Delta v_j}
+$$
+
+involves four corner points of the $(i, j)$ cell. Explain why this stencil cannot be made into a tridiagonal matrix in either direction. This is the fundamental reason the cross term must be treated explicitly in the ADI scheme. What is the stability implication of treating $\mathcal{A}_0$ explicitly?
+
+---
+
+**Exercise 7.**
+Modify the FDM engine to price an American put option. The American exercise constraint requires $V(x, v, t) \geq \max(K - e^x, 0)$ at all times. Describe how to incorporate this constraint at each time step using the **projected SOR (PSOR)** method: after the ADI solve, project the solution onto the constraint set $V \geq g(x)$ where $g(x) = \max(K - e^x, 0)$. Where on the $(x, v)$ grid do you expect the early exercise boundary to lie, and how does it depend on $v$?

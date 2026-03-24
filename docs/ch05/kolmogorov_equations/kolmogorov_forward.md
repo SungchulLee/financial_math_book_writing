@@ -608,3 +608,58 @@ The Fokker–Planck equation describes how probability density evolves **forward
 - [Invariant Measures](../../ch03/diffusion_process/invariant_measures_and_stationarity.md) — stationary distributions
 - [Time Reversal of Diffusions](../../ch03/diffusion_process/time_reversal_of_diffusions.md) — connection to score functions
 - [Feynman–Kac Formula](../feynman_kac/feynman_kac_formula.md) — discounted expectations
+
+---
+
+## Exercises
+
+**Exercise 1.**
+For Brownian motion with drift $dX_t = \mu\,dt + \sigma\,dW_t$, verify that the Gaussian density
+
+$$
+p(x, t \mid x_0, 0) = \frac{1}{\sigma\sqrt{2\pi t}}\exp\left(-\frac{(x - x_0 - \mu t)^2}{2\sigma^2 t}\right)
+$$
+
+satisfies the Fokker-Planck equation $\partial_t p = -\mu\partial_x p + \frac{\sigma^2}{2}\partial_{xx} p$ by computing both sides explicitly.
+
+---
+
+**Exercise 2.**
+Write the Fokker-Planck equation in the continuity form $\partial_t p + \partial_x J = 0$ and identify the probability current $J$ for the Ornstein-Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$. At stationarity ($\partial_t p = 0$), show that $J = 0$ and use this to derive the stationary density.
+
+---
+
+**Exercise 3.**
+For constant coefficients, solve the Fokker-Planck equation using the Fourier transform. Starting from $\partial_t \hat{p} = (-ik\mu - \frac{\sigma^2 k^2}{2})\hat{p}$ with initial condition $\hat{p}(k, 0) = e^{-ikx_0}$, find $\hat{p}(k, t)$ and verify that the inverse transform yields the Gaussian transition density.
+
+---
+
+**Exercise 4.**
+For geometric Brownian motion $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$, expand the Fokker-Planck equation
+
+$$
+\frac{\partial p}{\partial t} = -\frac{\partial}{\partial S}(\mu S\,p) + \frac{\sigma^2}{2}\frac{\partial^2}{\partial S^2}(S^2\,p)
+$$
+
+using the product rule. Identify the effective drift and the "spurious drift" terms that arise from the state-dependent diffusion coefficient.
+
+---
+
+**Exercise 5.**
+The general formula for the stationary density of a one-dimensional diffusion is
+
+$$
+p_\infty(x) \propto \frac{1}{\sigma^2(x)}\exp\left(\int^x \frac{2\mu(z)}{\sigma^2(z)}\,dz\right)
+$$
+
+Apply this formula to the CIR process $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$ and show that the stationary density is a Gamma distribution. What condition on the parameters ensures the density is normalizable?
+
+---
+
+**Exercise 6.**
+On a bounded domain $[a, b]$ with homogeneous boundary conditions, the Fokker-Planck solution can be expanded in eigenfunctions: $p(x, t) = \sum_n c_n \phi_n(x) e^{-\lambda_n t}$. For the heat equation on $[0, L]$ with absorbing boundaries, identify the eigenvalues $\lambda_n$ and eigenfunctions $\phi_n$. What is the long-time behavior of $p(x, t)$?
+
+---
+
+**Exercise 7.**
+The score function is defined as $s(x, t) = \nabla_x \log p(x, t)$. For a Gaussian density $p(x, t) = \frac{1}{\sqrt{2\pi v(t)}}\exp(-(x - m(t))^2/(2v(t)))$, compute the score function explicitly. Explain why the reverse-time SDE uses the score to denoise: the drift $-g^2(t)\nabla_x \log p$ points toward regions of higher probability density.

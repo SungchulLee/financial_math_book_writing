@@ -98,3 +98,25 @@ This adjustment ensures consistency between physical and risk-neutral dynamics w
 ## Summary
 
 The Heston characteristic function provides a closed-form expression for the joint distribution of log-returns and variance. Its affine structure enables efficient option pricing through Fourier methods (FFT and COS methods) and is the foundation for understanding smile dynamics and variance-of-variance effects in modern derivatives markets.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the Heston PDE for the characteristic function, substitute the exponential-affine ansatz and collect terms independent of $v$ (giving the $C$-equation) and terms proportional to $v$ (giving the $D$-equation). Verify the resulting Riccati system.
+
+---
+
+**Exercise 2.** For the special case $\rho = 0$ and $\sigma_v = 0$, show that the Heston characteristic function reduces to the Black-Scholes characteristic function $\exp(iux + (iu(r-q) - \frac{1}{2}u^2 v_0)\tau)$.
+
+---
+
+**Exercise 3.** The Heston characteristic function enables pricing via $C = e^{-r\tau}\frac{1}{\pi}\int_0^\infty \operatorname{Re}[\cdots]\,du$. Explain why this integral converges and how the decay rate of $|\varphi(u)|$ as $u \to \infty$ affects the number of quadrature points needed.
+
+---
+
+**Exercise 4.** Compute $\varphi(-i, \tau; x, v)$ and show that it equals $e^{x+(r-q)\tau} = S_t e^{(r-q)\tau}$, confirming the martingale condition $\mathbb{E}[S_T/S_t] = e^{(r-q)\tau}$.
+
+---
+
+**Exercise 5.** Explain qualitatively how each Heston parameter ($\kappa$, $\theta$, $\sigma_v$, $\rho$) affects the shape of $|\varphi(u)|$ as a function of $u$. Which parameter causes the fastest decay?

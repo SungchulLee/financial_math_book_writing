@@ -111,3 +111,39 @@ The second factor is less necessary when:
 ## Summary
 
 The two-factor Hull-White model provides substantial calibration advantages over the one-factor model, primarily in fitting the swaption volatility matrix. The additional parameters $(\lambda_2, \sigma_2, \rho)$ control decorrelation across tenors, reducing the swaption RMSE by a factor of 3--10. The improvement is most significant for off-diagonal swaptions and directly impacts Bermudan swaption pricing, where the early exercise premium depends on cross-maturity rate correlations that the one-factor model sets to unity. For caps, the improvement is more modest. The second factor is most valuable for Bermudan swaptions, CMS products, and risk management of large swaption books.
+
+---
+
+## Exercises
+
+**Exercise 1.** The one-factor Hull-White model with constant $(\sigma, \lambda)$ has 2 free parameters to fit a $4 \times 4$ swaption volatility matrix (16 entries). The two-factor model has 5 parameters. Compute the degrees of freedom (entries minus parameters) for each model. Explain why having more degrees of freedom does not guarantee a worse fit but indicates the model is more constrained.
+
+---
+
+**Exercise 2.** Explain why the one-factor model produces monotonically decreasing swaption volatilities as a function of tenor for fixed expiry. Start from the swaption volatility formula and show that the one-factor bond price volatility $\sigma_P(T_0, T_i) = (\sigma/\lambda)(1 - e^{-\lambda(T_i - T_0)})$ saturates for large $T_i - T_0$. How does this limiting behavior affect the swap rate volatility?
+
+---
+
+**Exercise 3.** The RMSE for the one-factor model is 1--3\% while the two-factor model achieves 0.2--0.5\%. For a 5Y-into-10Y ATM swaption with annuity $A_0 = 7.5$ and forward swap rate $S_0 = 3.5\%$, estimate the pricing error (in basis points of annuity value) that a 2\% volatility error implies. Is this error economically significant for a \$100M notional trade?
+
+---
+
+**Exercise 4.** A Bermudan swaption exercisable annually on a 10-year swap depends on the co-terminal European swaptions: $1 \times 9$, $2 \times 8$, ..., $9 \times 1$. If the one-factor model overstates the $1 \times 9$ vol by 1.5\% and understates the $9 \times 1$ vol by 1\%, explain qualitatively how these errors affect the Bermudan exercise boundary and the resulting Bermudan price. Would the one-factor model overprice or underprice the Bermudan?
+
+---
+
+**Exercise 5.** The proposition states that the early exercise premium (EEP) is 10--30\% higher under the two-factor model than the one-factor model. Explain the economic mechanism: how does imperfect correlation between swap rates at different exercise dates increase the option value of early exercise?
+
+---
+
+**Exercise 6.** For cap calibration, the short rate variance is
+
+$$
+\text{Var}(r_{T_k}) = \frac{\sigma_1^2}{2\lambda_1}(1 - e^{-2\lambda_1 T_k}) + \frac{\sigma_2^2}{2\lambda_2}(1 - e^{-2\lambda_2 T_k}) + \frac{2\rho\sigma_1\sigma_2}{\lambda_1+\lambda_2}(1 - e^{-(\lambda_1+\lambda_2)T_k})
+$$
+
+Show that for $T_k \to \infty$, the stationary variance depends on all five parameters. For typical two-factor parameters $\lambda_1 = 0.02$, $\lambda_2 = 0.3$, which terms dominate the short-horizon caplet variance ($T_k = 0.5$) and which dominate the long-horizon caplet variance ($T_k = 10$)?
+
+---
+
+**Exercise 7.** A risk manager must decide whether to use a one-factor or two-factor Hull-White model for a book containing caps, European swaptions, and Bermudan swaptions. For each product type, assess whether the two-factor model provides a material improvement. Under what circumstances would the computational cost of the two-factor model (roughly $10 \times$ for trees) not be justified?

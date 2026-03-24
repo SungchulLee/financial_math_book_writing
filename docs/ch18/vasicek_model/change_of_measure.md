@@ -200,3 +200,31 @@ The Gaussian nature of the short rate is preserved across all three measures bec
 The $T$-forward measure $\mathbb{Q}^T$ simplifies derivative pricing by replacing the stochastic discount factor with the known bond price $P(t,T)$. In the Vasicek model, the change of measure preserves the OU structure---only the mean-reversion target shifts from $\theta$ to $\theta^T(t) = \theta - (\sigma^2/\kappa)\,B(T-t)$. The short rate remains Gaussian under $\mathbb{Q}^T$, making forward bond prices log-normal and enabling closed-form Black-Scholes-type formulas for bond options, caplets, and swaptions.
 
 ---
+
+## Exercises
+
+**Exercise 1.** Derive the Girsanov kernel for the Vasicek model. Starting from $P(t,T) = A(T-t)e^{-B(T-t)r_t}$, apply Ito's lemma to find $dP/P$ and identify the volatility of the bond price process. Show that $dW_t^T = dW_t^{\mathbb{Q}} + B(T-t)\sigma\,dt$.
+
+---
+
+**Exercise 2.** Substitute $dW_t^{\mathbb{Q}} = dW_t^T - B(T-t)\sigma\,dt$ into the Vasicek SDE and derive the dynamics under $\mathbb{Q}^T$. Show that $\theta^T(t) = \theta - (\sigma^2/\kappa)B(T-t)$ and that $\kappa$ is unchanged.
+
+---
+
+**Exercise 3.** For $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.015$, $T = 5$, compute $\theta^T(t)$ at $t = 0, 2, 4$. Is $\theta^T(t)$ above or below $\theta$? Interpret the direction of the shift economically.
+
+---
+
+**Exercise 4.** The comparison table shows that the Gaussian distribution is preserved under all three measures. Explain why the Girsanov kernel is deterministic in the Vasicek model (it depends only on $B(T-t)$ and $\sigma$, not on $r_t$). Contrast this with the CIR model where the kernel is $B(T-t)\sigma\sqrt{r_t}$.
+
+---
+
+**Exercise 5.** Under $\mathbb{Q}^T$, the forward bond price $F(t) = P(t,S)/P(t,T)$ is a martingale. Derive the SDE for $F(t)$ in the Vasicek model and show that $dF/F = -[B(S-t) - B(T-t)]\sigma\,dW_t^T$. Why is this log-normal dynamics important for option pricing?
+
+---
+
+**Exercise 6.** Explain why the $T$-forward measure simplifies the pricing of a European claim $h(r_T)$ from $V(t) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r_s ds} h(r_T) | \mathcal{F}_t]$ to $V(t) = P(t,T)\mathbb{E}^{\mathbb{Q}^T}[h(r_T) | \mathcal{F}_t]$. What computational advantage does this provide?
+
+---
+
+**Exercise 7.** The market price of risk connects the physical measure $\mathbb{P}$ to the risk-neutral measure $\mathbb{Q}$. If $\lambda$ is constant, show that $\kappa = \kappa^{\mathbb{P}} + \lambda$ and $\theta = \kappa^{\mathbb{P}}\theta^{\mathbb{P}}/\kappa$. Why is $\sigma$ the same under both measures?

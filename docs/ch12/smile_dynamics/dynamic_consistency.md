@@ -385,3 +385,33 @@ Dynamically consistent models should match these observables.
 - Gatheral, J. *The Volatility Surface*. Forward smile and model comparison.
 - Rebonato, R. *Volatility and Correlation*. Practical implications.
 - Piterbarg, V. *Smiling Hybrids*. Multi-factor models and consistency.
+
+---
+
+## Exercises
+
+**Exercise 1.** Define dynamic consistency for a volatility model in your own words. Give a concrete example of how dynamic inconsistency would manifest: a model is calibrated today, evolved forward by one month, and the forward-implied surface differs systematically from the recalibrated surface.
+
+---
+
+**Exercise 2.** Explain why local volatility models are dynamically inconsistent. Specifically, if the model is calibrated today and the spot moves by 5%, describe how the model's predicted forward smile differs from what the market would actually show upon recalibration.
+
+---
+
+**Exercise 3.** The Heston stochastic volatility model has parameters $(\kappa, \theta, \xi, \rho, v_0)$. When recalibrating the Heston model daily, the parameter $v_0$ changes with market conditions but $\theta$ may drift as well. (a) Why does this represent dynamic inconsistency? (b) Which Heston parameters are most stable across recalibrations? (c) What modifications to the model could improve dynamic consistency?
+
+---
+
+**Exercise 4.** Compare local volatility and stochastic volatility models in terms of dynamic consistency for: (a) ATM volatility dynamics, (b) skew dynamics, and (c) forward smile behavior. Summarize your comparison in a table.
+
+---
+
+**Exercise 5.** A cliquet option depends critically on the forward smile because its payoffs are determined by periodic returns. Explain why pricing a cliquet with a dynamically inconsistent model can lead to systematic errors. Would the model overprice or underprice if the forward smile flattens faster than the market expects?
+
+---
+
+**Exercise 6.** Bergomi's variance curve model specifies dynamics for the forward variance curve $\xi_t^T = \mathbb{E}_t[\sigma_T^2]$. Explain why directly modeling the forward variance curve leads to better dynamic consistency than calibrating a parametric model. What tradeoff does this approach introduce?
+
+---
+
+**Exercise 7.** A practitioner recalibrates a local volatility model to the SPX surface every day and uses it to price barrier options. Over one month, the model's delta hedge underperforms consistently. Diagnose this as a dynamic consistency problem and propose two potential solutions: one using a different model class, and one using the same local volatility framework with adjustments.

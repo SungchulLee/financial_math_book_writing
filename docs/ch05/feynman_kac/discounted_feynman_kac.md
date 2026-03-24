@@ -321,3 +321,40 @@ $$
 - [Proof Sketch](feynman_kac_proof_sketch.md) -- detailed derivation via martingale methods
 - [Applications to Option Pricing](feynman_kac_option_pricing.md) -- Black-Scholes, barriers, and more
 - [Kolmogorov Backward Equation](../kolmogorov_equations/kolmogorov_backward.md) -- the $r = 0$ case
+
+---
+
+## Exercises
+
+**Exercise 1.**
+For a European call option under $\mathbb{Q}$ with constant $r = 0.05$, $\sigma = 0.30$, and $S_0 = 100$, write the Black-Scholes PDE with the $-rV$ discounting term and identify each component: generator $\mathcal{L}$, discount rate, and terminal condition for strike $K = 100$.
+
+---
+
+**Exercise 2.**
+Show that if $r$ is constant, the discounted Feynman-Kac expectation $u(t,x) = \mathbb{E}[e^{-r(T-t)}g(X_T) | X_t = x]$ can be written as $e^{-r(T-t)}v(t,x)$ where $v$ solves the undiscounted backward equation $\partial_t v + \mathcal{L}v = 0$. Verify by substitution that $u$ then satisfies $\partial_t u + \mathcal{L}u - ru = 0$.
+
+---
+
+**Exercise 3.**
+In the Vasicek model with $\kappa = 0.5$, $\theta = 0.04$, $\sigma_r = 0.01$, and $r_0 = 0.03$, the zero-coupon bond price satisfies $\partial_t P + \kappa(\theta - r)\partial_r P + \frac{1}{2}\sigma_r^2 \partial_{rr}P - rP = 0$ with $P(T,r) = 1$. Explain why $r$ appears both in the drift coefficient $\kappa(\theta - r)$ and as the discount rate $-rP$. What makes this PDE different from the standard Black-Scholes PDE?
+
+---
+
+**Exercise 4.**
+Consider the discounted Feynman-Kac formula with running payoff: $u(t,x) = \mathbb{E}[\int_t^T e^{-\int_t^s r\,d\tau}f(s, X_s)\,ds | X_t = x]$. This satisfies $\partial_t u + \mathcal{L}u - ru + f = 0$ with $u(T,x) = 0$. Give a financial example where a running payoff arises, and explain why the terminal condition is zero.
+
+---
+
+**Exercise 5.**
+In the killing interpretation, a process $X_t$ is killed at an exponential rate $r(t,X_t)$. Write the survival probability $\mathbb{P}(\zeta > T | \text{path of } X) = e^{-\int_t^T r(s,X_s)\,ds}$. If $r$ is constant at $r = 0.05$ and $T - t = 10$, compute the survival probability. Explain the financial interpretation in terms of discounting.
+
+---
+
+**Exercise 6.**
+For a dividend-paying stock with continuous yield $q$ under $\mathbb{Q}$: $dS_t = (r - q)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$. Write the PDE for an option price $V(t,S)$ including the $-rV$ discounting term. Identify how $q$ affects the drift but not the discount rate.
+
+---
+
+**Exercise 7.**
+Derive the $-ru$ term in the discounted Feynman-Kac PDE by considering the extended process $Y_s = (X_s, R_s)$ where $R_s = \int_t^s r(\tau, X_\tau)\,d\tau$. Show that $v(t, x, \rho) = e^{-\rho}u(t,x)$ satisfies $\partial_\rho v = -e^{-\rho}u$, and use this to derive $\partial_t u + \mathcal{L}u - ru = 0$ from the backward equation for the extended process.

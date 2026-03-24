@@ -1124,11 +1124,28 @@ This is the **geometric essence** of option pricing!
 
 ---
 
-Would you like me to explore:
-- Detailed Lie group analysis for Black-Scholes symmetries
-- Similarity methods for path-dependent options (Asian, lookback)
-- Asymptotic expansions using similarity structure
-- Connection to renormalization group methods in physics
-- Optimal system of subalgebras for Black-Scholes
-- Similarity solutions for transaction cost models
-- Extensions to rough volatility and fractional processes?
+---
+
+## Exercises
+
+**Exercise 1.** Using the Buckingham Pi theorem, show that the Black-Scholes call price must have the form $C = K \cdot f(S/K, \sigma^2\tau, r\tau)$ for some dimensionless function $f$. Verify this by examining the Black-Scholes formula and identifying $f$ explicitly.
+
+---
+
+**Exercise 2.** The similarity variable for the heat equation is $\xi = x / \sqrt{\tau}$. Show that if $F(x, \tau) = g(\xi)$, then substituting into $\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2 \frac{\partial^2 F}{\partial x^2}$ yields the ODE $-\frac{\xi}{2}g'(\xi) = \frac{\sigma^2}{2}g''(\xi)$. Solve this ODE and relate the solution to the error function.
+
+---
+
+**Exercise 3.** The Black-Scholes formula depends on $S$ and $K$ only through the ratio $S/K$ (moneyness). Explain this using the scale invariance of GBM: if $S_t$ satisfies the GBM SDE, show that $\lambda S_t$ also satisfies the same SDE with the same $\mu$ and $\sigma$, and conclude that the call price must be homogeneous of degree 1 in $(S, K)$.
+
+---
+
+**Exercise 4.** Show that the Black-Scholes call price satisfies Euler's identity for homogeneous functions: $C = S\frac{\partial C}{\partial S} + K\frac{\partial C}{\partial K}$. Verify this directly using the Black-Scholes formula.
+
+---
+
+**Exercise 5.** The ATM approximation $C \approx 0.4 S\sigma\sqrt{T}$ can be understood as a similarity scaling. Show that for $S = K$ and $r = 0$, the call price depends on $S$, $\sigma$, and $T$ only through the combination $S\sigma\sqrt{T}$, and determine the proportionality constant from the Black-Scholes formula.
+
+---
+
+**Exercise 6.** A **perpetual American put** is an American put with $T = \infty$. Argue from dimensional analysis that the price must have the form $P(S) = K \cdot h(S/K, r/\sigma^2)$ for some function $h$ (no time dependence since $T = \infty$). Using the ODE that results from the time-independent Black-Scholes equation, find the similarity solution and the optimal exercise boundary.

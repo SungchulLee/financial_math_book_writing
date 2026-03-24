@@ -397,3 +397,39 @@ The CIR model produces a gently upward-sloping curve from 90 bp to 117 bp, while
 - Helwege, J., & Turner, C. M. (1999). The slope of the credit yield curve for speculative-grade issuers. *Journal of Finance*, 54(5), 1869--1884.
 - Duffie, D., & Singleton, K. J. (2003). *Credit Risk: Pricing, Measurement, and Management*. Princeton University Press, Chapter 6.
 - Lando, D. (2004). *Credit Risk Modeling: Theory and Applications*. Princeton University Press.
+
+---
+
+## Exercises
+
+**Exercise 1.** Under the Merton model with $V_0 = 100$, $D = 70$, $r = 4\%$, $\sigma_V = 25\%$, and $R = 40\%$, compute the credit spread at maturities $T = 1, 5, 10$ years. Verify that the spread at $T = 1$ is very small and describe the shape of the resulting spread curve.
+
+---
+
+**Exercise 2.** Explain why the Merton model produces near-zero credit spreads at short maturities for firms with $V_0 > D$. What mathematical property of continuous diffusion processes is responsible? How does the Black-Cox (first-passage) model resolve this issue?
+
+---
+
+**Exercise 3.** Using a CIR intensity model with $\lambda_0 = 3\%$, $\kappa = 0.5$, $\theta = 2\%$, $\sigma = 8\%$, and $R = 40\%$, determine qualitatively whether the resulting spread curve is upward-sloping, downward-sloping, or humped. Justify your answer by comparing $\lambda_0$ with $\theta$ and explaining the role of mean reversion.
+
+---
+
+**Exercise 4.** The credit spread puzzle states that observed spreads for investment-grade bonds far exceed model-predicted expected losses. Using the Huang-Huang data in the text, compute the fraction of the BBB spread explained by default risk. List three non-default factors that account for the remaining spread.
+
+---
+
+**Exercise 5.** Define the instantaneous forward credit spread $s_f(t,T) = (1-R)\lambda_f(t,T)$ and show that the spot credit spread is the average of forward spreads:
+
+$$
+s(t,T) = \frac{1}{T-t}\int_t^T s_f(t,u)\,du
+$$
+
+If forward spreads are rising, what does this imply about the market's expectation of future credit conditions?
+
+---
+
+**Exercise 6.** A speculative-grade issuer (B-rated) has observed credit spreads of 500 bp at 2Y, 450 bp at 5Y, and 380 bp at 10Y. Describe the shape of this spread curve and provide an economic explanation. What does the inverted shape imply about the market's conditional view of the firm's survival?
+
+---
+
+**Exercise 7.** Compare the calibration of structural models and intensity models to an observed credit spread curve. Which model class achieves a better fit at (a) short maturities, (b) medium maturities, and (c) long maturities? Explain why intensity models are preferred by trading desks for mark-to-market purposes.

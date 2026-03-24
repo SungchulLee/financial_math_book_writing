@@ -239,3 +239,69 @@ $$
 - GBM, Vasicek, OU: global Lipschitz + linear growth ✓
 - CIR: linear growth + Yamada–Watanabe ✓
 - $dX = X^2\,dt + dW$: linear growth violated, may explode ✗
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider the SDE
+
+$$
+dX_t = (3 + 2X_t)\,dt + (1 - X_t)\,dW_t
+$$
+
+Verify that the coefficients satisfy the global Lipschitz condition and identify the Lipschitz constant $K$.
+
+---
+
+**Exercise 2.** Determine which of the following diffusion coefficients $\sigma(x)$ satisfy the global Lipschitz condition on $\mathbb{R}$. For those that do, give the Lipschitz constant; for those that do not, explain why.
+
+(a) $\sigma(x) = \sin(x)$
+
+(b) $\sigma(x) = |x|^{2/3}$
+
+(c) $\sigma(x) = \dfrac{x}{1 + |x|}$
+
+(d) $\sigma(x) = x^2$
+
+---
+
+**Exercise 3.** Let $b(x) = -x^3$ and $\sigma(x) = 1$. Show that $b$ is locally Lipschitz but not globally Lipschitz. Then verify that the linear growth condition fails for $b$. What does this imply about the solution to $dX_t = -X_t^3\,dt + dW_t$?
+
+---
+
+**Exercise 4.** Prove that the global Lipschitz condition implies the linear growth condition. Specifically, show that if
+
+$$
+|b(t,x) - b(t,y)| + |\sigma(t,x) - \sigma(t,y)| \leq K|x - y|
+$$
+
+for all $x, y \in \mathbb{R}^d$, and $M := \sup_{t \in [0,T]}\bigl(|b(t,0)| + |\sigma(t,0)|\bigr) < \infty$, then
+
+$$
+|b(t,x)| + |\sigma(t,x)| \leq (M + K)(1 + |x|)
+$$
+
+---
+
+**Exercise 5.** Consider the diffusion coefficient $\sigma(x) = |x|^\alpha$ for $x \in \mathbb{R}$ and $\alpha \in (0,1)$. Show that $\sigma$ satisfies the Yamada--Watanabe condition by verifying that $\rho(u) = u^\alpha$ gives
+
+$$
+\int_0^\epsilon \frac{du}{\rho^2(u)} = \int_0^\epsilon u^{-2\alpha}\,du = +\infty
+$$
+
+if and only if $\alpha \geq \tfrac{1}{2}$. What happens when $\alpha < \tfrac{1}{2}$?
+
+---
+
+**Exercise 6.** The Vasicek model is $dX_t = \kappa(\theta - X_t)\,dt + \sigma\,dW_t$ with $\kappa, \sigma > 0$. Compute the Lipschitz constant $K$ for the pair $(b, \sigma)$ and verify the linear growth condition. Then state what the main existence and uniqueness theorem guarantees about the solution.
+
+---
+
+**Exercise 7.** Let $X_t$ and $Y_t$ be two strong solutions of $dZ_t = b(t,Z_t)\,dt + \sigma(t,Z_t)\,dW_t$ with $X_0 = Y_0$, where the coefficients are globally Lipschitz with constant $K$. Define $\varphi(t) = \mathbb{E}[\sup_{s \leq t}|X_s - Y_s|^2]$. Starting from the estimate
+
+$$
+\varphi(t) \leq C \int_0^t \varphi(s)\,ds
+$$
+
+apply Gronwall's inequality to conclude that $\varphi(t) = 0$ for all $t \in [0,T]$. Then explain why this proves pathwise uniqueness, not merely uniqueness in law.

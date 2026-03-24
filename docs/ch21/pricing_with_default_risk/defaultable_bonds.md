@@ -333,3 +333,41 @@ $$
 - Jarrow, R. A., & Turnbull, S. M. (1995). Pricing derivatives on financial securities subject to credit risk. *Journal of Finance*, 50(1), 53–85.
 - Bielecki, T. R., & Rutkowski, M. (2004). *Credit Risk: Modeling, Valuation and Hedging*. Springer, Chapter 9.
 - O'Kane, D. (2008). *Modelling Single-name and Multi-name Credit Derivatives*. Wiley.
+
+---
+
+## Exercises
+
+**Exercise 1.** A defaultable zero-coupon bond has face value $F = 100$, maturity $T = 3$ years, recovery rate $R = 40\%$ under the RFV convention, constant risk-free rate $r = 5\%$, and constant intensity $\lambda = 3\%$. Compute the price using the formula
+
+$$
+P^d = F \cdot e^{-(r+\lambda)T} + RF \cdot \frac{\lambda}{r+\lambda}\left(1 - e^{-(r+\lambda)T}\right)
+$$
+
+Then compute the yield and credit spread.
+
+---
+
+**Exercise 2.** For the same bond parameters as Exercise 1, compute the price under the RMV (Duffie-Singleton) convention using
+
+$$
+P^d = F \cdot e^{-(r+(1-R)\lambda)T}
+$$
+
+Compare the two prices and explain why they differ.
+
+---
+
+**Exercise 3.** Derive the approximate credit spread formula $s \approx (1-R)\lambda$ starting from the RMV pricing formula. Clearly state the assumptions needed and show the steps. For $R = 40\%$ and $\lambda = 200$ bp, compute the approximate spread and compare with the exact yield spread from Exercise 2.
+
+---
+
+**Exercise 4.** A defaultable coupon bond pays semi-annual coupons of 3% per annum on a face value of 100, with maturity $T = 5$ years, $r = 4\%$ constant, $\lambda = 1.5\%$ constant, and $R = 40\%$ under RMV. Compute the bond price as the sum of defaultable discount factors applied to each cash flow. What is the credit spread?
+
+---
+
+**Exercise 5.** Explain the economic differences among the three recovery conventions (RFV, RT, RMV). For a bond with 10 years to maturity that defaults after 2 years, compute the recovery payment under each convention given $R = 40\%$, $F = 100$, $r = 3\%$, and a pre-default bond price of $P^d = 85$.
+
+---
+
+**Exercise 6.** A zero-recovery ($R = 0$) defaultable bond has price $P^d(0,T) = P(0,T) \cdot S(0,T)$ under independence of rates and intensity. If $r = 3\%$, $\lambda = 2\%$, and $T = 5$, compute the survival probability $S(0,5)$, the risk-free bond price $P(0,5)$, and the defaultable bond price. Verify that the credit spread equals $\lambda = 200$ bp exactly in this case.

@@ -176,3 +176,33 @@ Local existence and uniqueness of the Riccati system follow from the Picard-Lind
 - Duffie, D., Filipovic, D., & Schachermayer, W. (2003). "Affine Processes and Applications in Finance." *Annals of Applied Probability*, 13(3), 984-1053.
 - Keller-Ressel, M. (2011). "Moment Explosions and Long-Term Behavior of Affine Stochastic Volatility Models." *Mathematical Finance*, 21(1), 73-98.
 - Andersen, L. B. G. & Piterbarg, V. V. (2007). "Moment Explosions in Stochastic Volatility Models." *Finance and Stochastics*, 11(1), 29-50.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the scalar Riccati equation $\psi' = -\kappa\psi + \frac{\xi^2}{2}\psi^2$ with $\kappa = 3$ and $\xi = 1$, compute the critical threshold $u^* = 2\kappa/\xi^2$. For the initial condition $u = 7 > u^*$, compute the explosion time $T^*(7)$ using the closed-form formula. Verify your answer by numerically integrating the ODE and observing when the solution diverges.
+
+---
+
+**Exercise 2.** Prove that for the simple ODE $y' = y^2$ with initial condition $y(0) = c > 0$, the solution is $y(t) = c/(1 - ct)$ and the explosion time is $T^* = 1/c$. Use this as a comparison function: if $\psi' \leq \psi^2$ for $\psi > 0$, show that $\psi(\tau) \leq u/(1 - u\tau)$ and deduce that $T^*(\psi) \geq 1/u$.
+
+---
+
+**Exercise 3.** For the CIR process with $\kappa = 2$, $\xi^2 = 1$, show that the equilibrium $\psi^* = 2\kappa/\xi^2 = 4$ of the Riccati equation $\psi' = -2\psi + \frac{1}{2}\psi^2$ is stable from below but unstable from above. Sketch the phase portrait of $\psi' = R(\psi)$ for $\psi \in (-\infty, \infty)$ and identify all equilibria.
+
+---
+
+**Exercise 4.** Using Filipovic's regularity results, explain why the admissible set $\mathcal{U}(\tau)$ shrinks as $\tau$ increases. For the CIR model, describe how $\mathcal{U}(\tau) \cap \mathbb{R}$ changes: what is the maximal real $u$ for which the Riccati solution exists up to time $\tau$?
+
+---
+
+**Exercise 5.** Explain why the characteristic function (with $u = iv$, $v$ real) is guaranteed to have a global Riccati solution, while the moment generating function (with $u$ real and positive) may not. Provide both the probabilistic argument (boundedness of $|\mathbb{E}[e^{ivX}]|$) and the ODE argument (the imaginary initial condition prevents the quadratic term from driving the real part to infinity).
+
+---
+
+**Exercise 6.** For the Heston model, the critical moment $p^+$ satisfies $\mathbb{E}[S_T^{p^+}] = \infty$. Without deriving the exact formula, explain qualitatively how $p^+$ depends on each of the parameters $\kappa$ (mean reversion speed), $\xi$ (vol-of-vol), and $\rho$ (correlation). Which parameter changes would increase $p^+$ and thus reduce the risk of moment explosion?
+
+---
+
+**Exercise 7.** Implement a numerical RK4 solver for the complex Riccati equation $\psi' = -\kappa\psi + \frac{\xi^2}{2}\psi^2$ with $\psi(0) = iv$, $\kappa = 2$, $\xi = 0.5$. Compute $\psi(\tau)$ for $\tau \in [0, 5]$ at $v = 1$ and $v = 10$, and plot $\operatorname{Re}(\psi(\tau))$ and $\operatorname{Im}(\psi(\tau))$. Verify that $|\psi(\tau)|$ remains bounded for all $\tau$.

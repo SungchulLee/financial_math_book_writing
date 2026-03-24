@@ -283,3 +283,35 @@ These relationships make moment computation from the characteristic function a f
 ## Summary
 
 The characteristic function serves as a moment-generating device for the Heston model. Differentiating $\log \varphi(u)$ at $u = 0$ extracts cumulants that characterize the return distribution: the mean (drift minus half integrated variance), the variance (sensitive to $v_0, \theta, \xi$, and $\rho$), the skewness (driven primarily by $\rho\xi$), and the excess kurtosis (driven primarily by $\xi^2$). The term structure of these moments --- diverging skewness and kurtosis at short maturities, convergence to Gaussianity at long maturities --- explains the maturity-dependent shape of the implied volatility surface. These moment formulas provide fast, closed-form diagnostics for parameter calibration and model validation.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The $n$-th cumulant of $\ln S_T$ is $c_n = (-i)^n \frac{d^n}{du^n}\ln\varphi(u)\big|_{u=0}$. Verify that $c_1 = \mathbb{E}[\ln S_T]$ and $c_2 = \text{Var}[\ln S_T]$ for the first two cumulants. Compute $c_1$ for $S_0 = 100$, $r = 3\%$, $q = 1\%$, $v_0 = 0.04$, $\kappa = 2.0$, $\theta = 0.04$, $T = 1.0$.
+
+---
+
+**Exercise 2.**
+The skewness of $\ln S_T$ is $\gamma_1 = c_3 / c_2^{3/2}$ and is driven primarily by $\rho\xi$. For $\rho = -0.7$ and $\xi = 0.5$, the skewness is negative (left-skewed returns). Explain why negative $\rho$ produces negative skewness: when the stock drops, variance increases, making further drops more likely. Compute $\gamma_1$ for $T = 0.1$ and $T = 2.0$ and verify that skewness decreases in magnitude with maturity.
+
+---
+
+**Exercise 3.**
+The excess kurtosis $\gamma_2 = c_4 / c_2^2$ is driven primarily by $\xi^2$ (vol-of-vol squared). For $\xi = 0$ (constant variance), show that $\gamma_2 = 0$ (the distribution is Gaussian). What value of $\xi$ produces excess kurtosis of 3 (typical for 1-month equity returns) at $T = 1/12$?
+
+---
+
+**Exercise 4.**
+The central limit theorem predicts that the standardized distribution of $\ln S_T$ converges to Gaussian as $T \to \infty$, so both skewness and excess kurtosis should decay to zero. Verify that the Heston skewness decays as $\gamma_1 \propto T^{-1/2}$ and the excess kurtosis decays as $\gamma_2 \propto T^{-1}$ for large $T$. What is the financial implication for the shape of the implied volatility smile at long maturities?
+
+---
+
+**Exercise 5.**
+Use the moment formulas as a quick calibration diagnostic. If the market-implied skewness (estimated from the option smile) at $T = 3$ months is $-1.2$ and the Heston model produces $-0.8$ with the current parameters, which parameter would you adjust to increase the magnitude of skewness? Consider both $\rho$ and $\xi$.
+
+---
+
+**Exercise 6.**
+Numerically verify the first moment by comparing the analytical formula $\mathbb{E}[\ln S_T] = \ln S_0 + (r-q)T - \frac{1}{2}[\theta T + (v_0 - \theta)(1 - e^{-\kappa T})/\kappa]$ with the numerical derivative $-i\varphi'(0)$ computed via finite differences of the CF: $\varphi'(0) \approx [\varphi(\epsilon) - \varphi(-\epsilon)]/(2\epsilon)$ with $\epsilon = 10^{-5}$. For the parameters in Exercise 1, verify agreement to at least 8 digits.

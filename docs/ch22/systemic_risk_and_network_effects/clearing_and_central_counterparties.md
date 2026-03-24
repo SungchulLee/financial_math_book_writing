@@ -251,3 +251,33 @@ CCPs hold bank risk:
 - Cont, R. (2017), "The End of the Waterfall: Default Resources of Central Counterparties"
 - Murphy, D. (2013), *OTC Derivatives: Bilateral Trading and Central Clearing*
 - Gregory, J. (2014), *Central Counterparties*
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a network of 4 banks with bilateral exposures (in millions): $E_{12} = 50$, $E_{13} = 30$, $E_{21} = 40$, $E_{23} = 60$, $E_{31} = 20$, $E_{32} = 45$, $E_{14} = 25$, $E_{41} = 35$, $E_{24} = 15$, $E_{42} = 10$, $E_{34} = 55$, $E_{43} = 30$. Compute the total bilateral exposure $\sum_{i<j} |E_{ij} - E_{ji}|$ (net bilateral). Under CCP clearing with multilateral netting, each bank's net exposure to the CCP is $E_i^{\text{CCP}} = \sum_j (E_{ij} - E_{ji})$. Compute each bank's CCP exposure and the total CCP exposure. Compare and discuss the netting benefit.
+
+---
+
+**Exercise 2.** A CCP uses a default waterfall with the following layers: defaulter's IM (\$500M), defaulter's DF contribution (\$100M), CCP skin-in-the-game (\$50M), non-defaulting members' DF (\$800M), and assessment powers (up to \$400M). If a member defaults causing total losses of \$1.2 billion, trace the loss through the waterfall. How much of the non-defaulting members' DF is consumed? If losses were instead \$1.8 billion, would the CCP survive without resolution?
+
+---
+
+**Exercise 3.** Explain the procyclicality problem in CCP margining. During a crisis, volatility doubles from $\sigma = 1.5\%$ to $\sigma = 3.0\%$ daily. If the CCP computes IM as $\text{IM} = z_{0.99} \cdot \sigma \cdot \sqrt{\text{MPOR}} \cdot \text{Notional}$ with MPOR = 5 days and $z_{0.99} = 2.326$, compute the IM for a \$1 billion position under both normal and stressed volatility. What is the increase in margin calls? Describe two anti-procyclicality measures and their tradeoffs.
+
+---
+
+**Exercise 4.** Under the Basel treatment, trade exposures to a qualifying CCP receive a 2% risk weight, while exposures to a non-qualifying CCP receive a 1250% risk weight. A bank has \$10 billion in trade exposures cleared through a qualifying CCP and \$500 million through a non-qualifying CCP. Compute the RWA for each and the total capital charge (assuming 8% capital ratio). Discuss why the regulatory treatment creates strong incentives to clear through qualifying CCPs.
+
+---
+
+**Exercise 5.** The Cover-2 standard requires CCP resources to cover the simultaneous default of the two largest members under extreme conditions. Suppose the two largest members have stressed exposures of \$3 billion and \$2.5 billion respectively. The CCP has total IM of \$4 billion, total DF of \$1.5 billion, and own capital of \$200 million. Does the CCP meet the Cover-2 standard? If not, what is the shortfall, and how might the CCP close the gap?
+
+---
+
+**Exercise 6.** Describe the CCP-bank nexus and the two-way risk it creates. A bank posts \$5 billion in cash as margin to a CCP, and the CCP invests this cash in short-term deposits at banks (including the posting bank itself). Explain the circular risk: what happens if the CCP defaults (bank loses margin), and what happens if a major bank defaults (CCP loses investments)? Propose risk mitigation measures for each direction.
+
+---
+
+**Exercise 7.** Compare bilateral clearing and central clearing for a market with 10 dealers, each with an average of 20 bilateral trades. Under bilateral clearing, each pair must manage counterparty risk independently, resulting in $\binom{10}{2} = 45$ bilateral relationships. Under central clearing, all trades novate to the CCP. Discuss the tradeoffs: multilateral netting benefits, risk concentration, moral hazard, and the impact on market liquidity. Under what conditions might bilateral clearing be preferred for certain asset classes?

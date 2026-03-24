@@ -236,3 +236,29 @@ $$\begin{array}{lll}
 =
 \mathbb{P}_{q(t)}
 \end{array}$$
+
+---
+
+## Exercises
+
+**Exercise 1.** In an LMM with $n$ forward rates and terminal measure $\mathbb{Q}^{T_n}$, the drift of $L_i(t)$ involves a sum over rates $L_{i+1}, \ldots, L_{n-1}$. For $n = 5$ and $i = 1$, write out the drift term explicitly (using constant volatilities $\sigma_k$ and correlation $\rho_{1k}$). How many terms appear in the sum, and which forward rate contributes the largest drift correction?
+
+---
+
+**Exercise 2.** Explain why the forward rate $L_{n-1}(t)$ (the rate closest to the terminal date) is a martingale under the terminal measure $\mathbb{Q}^{T_n}$, while all other forward rates $L_i(t)$ for $i < n-1$ acquire non-zero drifts. What does this imply about the difficulty of simulating rates far from the terminal date?
+
+---
+
+**Exercise 3.** The Girsanov drift adjustment from $\mathbb{Q}^{T_{k+1}}$ to $\mathbb{Q}^{T_k}$ involves the term $\frac{\tau_k\,\sigma_k(t)\,L_k(t)}{1 + \tau_k L_k(t)}$. Show that this drift is bounded above by $\sigma_k(t)$ and approaches $\sigma_k(t)$ when $\tau_k L_k(t)$ is large. Interpret this bound financially: what does it mean when the LIBOR rate is much larger than zero?
+
+---
+
+**Exercise 4.** Compare the drift structure under the terminal measure versus the spot (rolling) measure. Under the terminal measure, the drift of $L_i$ involves a sum from $k = i+1$ to $n-1$. Under the spot measure, the drift involves a sum from $k = q(t)$ to $i$, where $q(t)$ is the index of the next reset date. Which measure produces larger absolute drifts for short-maturity forward rates, and why does this matter for simulation accuracy?
+
+---
+
+**Exercise 5.** The Radon--Nikodym derivative from the spot measure to the terminal measure involves the ratio of the discretely-compounded money market account to the terminal bond price. Show that this ratio equals $\prod_{j=q(t)}^{n-1}(1 + \tau_j L_j(t))$ (up to a deterministic factor) and explain why the spot and rolling-forward measures coincide when evaluated at discrete tenor dates.
+
+---
+
+**Exercise 6.** In a "frozen drift" approximation, the drift of $L_i$ under the terminal measure is evaluated using the initial values $L_k(0)$ rather than the simulated values $L_k(t)$. For the model in Exercise 1, compute the frozen drift and compare it to the exact drift (using current rate values). Under what conditions does the frozen drift approximation fail significantly?

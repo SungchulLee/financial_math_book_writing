@@ -359,3 +359,63 @@ $$
 - Hull, J. C., & White, A. (2000). Valuing credit default swaps I: No counterparty default risk. *Journal of Derivatives*, 8(1), 29–40.
 - Duffie, D. (1999). Credit swap valuation. *Financial Analysts Journal*, 55(1), 73–87.
 - ISDA (2003). *2003 ISDA Credit Derivatives Definitions*.
+
+---
+
+## Exercises
+
+**Exercise 1.** A 5-year CDS has notional $N = \$10$ million, recovery $R = 40\%$, constant risk-free rate $r = 4\%$, and constant intensity $\lambda = 2\%$. Compute the survival probabilities $S(0,t) = e^{-\lambda t}$ for $t = 1, 2, 3, 4, 5$. Then compute the risky PV01 assuming annual premium payments:
+
+$$
+\text{RPV01} = \sum_{i=1}^{5} \Delta_i\, D(0, t_i)\, S(0, t_i)
+$$
+
+with $\Delta_i = 1$ and $D(0,t_i) = e^{-r\,t_i}$.
+
+---
+
+**Exercise 2.** Continuing from Exercise 1, compute the present value of the protection leg:
+
+$$
+\text{PV}_{\text{prot}} = (1-R) \cdot N \cdot \int_0^5 e^{-rt}\,\lambda\, e^{-\lambda t}\,dt
+$$
+
+Then determine the par CDS spread $s_{\text{par}} = \text{PV}_{\text{prot}} / (N \times \text{RPV01})$. Verify that the approximate formula $s \approx (1-R)\lambda$ gives a close answer.
+
+---
+
+**Exercise 3.** Under the post-2009 Big Bang conventions, a CDS trades with a fixed coupon of 100 bp. If the par spread is 180 bp and the RPV01 is 4.3 years on a notional of \$10 million, compute the upfront payment:
+
+$$
+\text{Upfront} = (s_{\text{par}} - s_{\text{fixed}}) \times \text{RPV01} \times N
+$$
+
+Who pays the upfront, the protection buyer or the protection seller?
+
+---
+
+**Exercise 4.** A protection buyer enters a 5-year CDS at a contractual spread of 150 bp. One year later, the par spread has widened to 250 bp and the RPV01 on the remaining 4 years is 3.6. Compute the mark-to-market value to the protection buyer:
+
+$$
+\text{MTM} = (s_{\text{current}} - s_{\text{contract}}) \times N \times \text{RPV01}
+$$
+
+for $N = \$10$ million. Explain why spread widening benefits the protection buyer.
+
+---
+
+**Exercise 5.** Explain the difference between physical settlement and cash settlement for a CDS. In a physical settlement, suppose the protection buyer delivers bonds with a market value of \$3.8 million against a face value of \$10 million. What is the effective recovery rate, and what net amount does the protection buyer receive?
+
+---
+
+**Exercise 6.** Consider a CDS with quarterly premium payments and a flat intensity $\lambda$. Derive the accrued premium adjustment term in the premium leg. Specifically, show that the expected accrued premium contribution is
+
+$$
+\int_0^T D(0,t)\, (\,t - t_{i(t)-1}\,)\, \lambda\, S(0,t)\, dt
+$$
+
+where $t_{i(t)-1}$ is the last scheduled payment date before $t$. Explain why this term is typically small relative to the scheduled premium payments.
+
+---
+
+**Exercise 7.** The CDS-bond basis is defined as $\text{Basis} = s_{\text{CDS}} - s_{\text{bond}}$. Discuss conditions under which the basis is (a) positive and (b) negative. A hedge fund observes a persistent negative basis of $-30$ bp for a particular reference entity. Describe a trading strategy to exploit this and identify the risks involved.

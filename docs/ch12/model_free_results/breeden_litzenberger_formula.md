@@ -613,3 +613,33 @@ Applications include:
 - Static replication of exotic payoffs
 
 The formula forms the foundation for model-free results in option pricing, establishing that the option market **is** the probability distribution under the risk-neutral measure.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the risk-neutral pricing formula $C(K, T) = e^{-rT} \int_K^\infty (S - K) q(S) \, dS$, derive the Breeden-Litzenberger formula $q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}$ by differentiating twice with respect to $K$. State clearly which differentiation rule you use at each step.
+
+---
+
+**Exercise 2.** Three call options with the same maturity $T = 0.5$ and $r = 3\%$ have prices $C(95) = 10.20$, $C(100) = 7.50$, $C(105) = 5.30$. Using the finite-difference approximation $q(K) \approx e^{rT} \frac{C(K - \Delta K) - 2C(K) + C(K + \Delta K)}{(\Delta K)^2}$ with $\Delta K = 5$, estimate the risk-neutral density $q(100)$. Verify that $q(100) > 0$.
+
+---
+
+**Exercise 3.** The cumulative distribution function is given by $Q(K) = e^{rT}(1 + \frac{\partial C}{\partial K})$. If the call price function is $C(K) = e^{-rT}(F - K + \sigma_0 \sqrt{T} \phi(d))$ for some approximation near ATM, show that $Q(F) \approx 0.5$ (the probability of finishing in the money is near 50% for an ATM option).
+
+---
+
+**Exercise 4.** Using the Breeden-Litzenberger formula, explain why the butterfly spread $C(K - \Delta K) - 2C(K) + C(K + \Delta K) \geq 0$ is equivalent to the non-negativity of the risk-neutral density. What economic interpretation does a negative density have, and why is it inconsistent with no-arbitrage?
+
+---
+
+**Exercise 5.** Suppose the risk-neutral density extracted from SPX options is bimodal (two peaks). What does this indicate about the market's view of future price distribution? Provide a market scenario (such as a pending binary event) that would produce a bimodal risk-neutral density.
+
+---
+
+**Exercise 6.** Derive the relationship $\frac{\partial C}{\partial K} = -e^{-rT} \mathbb{P}^{\mathbb{Q}}(S_T > K)$ from the risk-neutral pricing formula. Use this to show that the call delta with respect to strike gives the (discounted) complement of the CDF. Verify that $\frac{\partial C}{\partial K} \to 0$ as $K \to 0$ and $\frac{\partial C}{\partial K} \to -e^{-rT}$ as $K \to \infty$.
+
+---
+
+**Exercise 7.** The Breeden-Litzenberger formula requires the second derivative $\frac{\partial^2 C}{\partial K^2}$, but market data provides prices at discrete strikes. Compare three numerical methods for estimating this derivative: (a) centered finite differences, (b) fitting a smooth parametric curve (such as SVI) and differentiating analytically, (c) kernel smoothing. Discuss the tradeoff between accuracy and robustness to noise for each method.

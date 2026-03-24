@@ -412,3 +412,51 @@ $$
 - Satisfies put-call parity, boundary conditions, and no-arbitrage constraints
 
 The formula's elegance and practical utility have made it ubiquitous in financial markets, despite its simplifying assumptions.
+
+---
+
+## Exercises
+
+**Exercise 1.** A European call option has the following parameters: $S_0 = 80$, $K = 85$, $r = 3\%$, $\sigma = 25\%$, and $T = 0.5$ years. Compute $d_1$, $d_2$, and the Black-Scholes call price $C_0$. Classify the option as ITM, ATM, or OTM.
+
+---
+
+**Exercise 2.** Verify that the Black-Scholes call formula satisfies the lower bound $C \geq \max(S - Ke^{-rT}, 0)$ for the parameters $S_0 = 100$, $K = 90$, $r = 5\%$, $\sigma = 30\%$, $T = 1$. Compute both sides explicitly.
+
+---
+
+**Exercise 3.** Starting from the Black-Scholes call formula $C = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)$, derive the put formula
+
+$$
+P = Ke^{-r(T-t)}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)
+$$
+
+using put-call parity $C - P = S - Ke^{-r(T-t)}$ and the identity $\mathcal{N}(-x) = 1 - \mathcal{N}(x)$.
+
+---
+
+**Exercise 4.** Consider the at-the-money forward case where $S = Ke^{-r(T-t)}$. Show that in this case $d_1 = \frac{\sigma\sqrt{T-t}}{2}$ and $d_2 = -\frac{\sigma\sqrt{T-t}}{2}$. Derive an approximate formula for the ATM forward call price when $\sigma\sqrt{T-t}$ is small, using the Taylor expansion $\mathcal{N}(x) \approx \frac{1}{2} + \frac{x}{\sqrt{2\pi}}$ for small $x$.
+
+---
+
+**Exercise 5.** Show that the Black-Scholes formula recovers the correct terminal payoff. That is, prove that as $t \to T$:
+
+$$
+C(S, t) \to (S - K)^+ \quad \text{and} \quad P(S, t) \to (K - S)^+
+$$
+
+by analyzing the limits of $d_1$ and $d_2$ separately for the cases $S > K$, $S < K$, and $S = K$.
+
+---
+
+**Exercise 6.** Verify that $V(S, t) = S$ (holding the stock) and $V(S, t) = e^{rt}$ (the risk-free bond) both satisfy the Black-Scholes PDE
+
+$$
+\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
+$$
+
+by computing each partial derivative and substituting.
+
+---
+
+**Exercise 7.** In the zero-volatility limit $\sigma \to 0$, explain why the call price reduces to $C = \max(S - Ke^{-r(T-t)}, 0)$. What happens to $d_1$ and $d_2$ in this limit when $S > Ke^{-r(T-t)}$? When $S < Ke^{-r(T-t)}$? Relate your answer to the deterministic evolution of the stock price when $\sigma = 0$.

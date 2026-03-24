@@ -196,3 +196,29 @@ The Fourier cosine expansion on $[a, b]$ provides a more efficient representatio
 | Suitable for densities | Suboptimal | Natural choice |
 
 **The cosine expansion's superior boundary behavior and faster convergence for non-periodic smooth functions make it the natural choice for representing probability densities on truncated intervals, which is why it forms the basis of the COS pricing method.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Construct the even extension of $f(x) = x$ on $[0, \pi]$ and write out the resulting cosine series. Compute the coefficients $a_n = \frac{2}{\pi}\int_0^{\pi}x\cos(nx)\,dx$ for $n = 0, 1, 2, 3$ and verify that all sine coefficients vanish.
+
+---
+
+**Exercise 2.** Explain why the cosine expansion of a non-periodic function $f$ on $[a, b]$ converges faster than the full Fourier series. Specifically, if $f(a) \neq f(b)$, show that the periodic extension of $f$ has a jump discontinuity at the boundary (producing $O(1/n)$ coefficient decay), while the even extension used by the cosine series is continuous at the boundary (producing at least $O(1/n^2)$ decay).
+
+---
+
+**Exercise 3.** Verify the orthogonality of the cosine system on $[a, b]$: show that $\int_a^b \cos(k\pi(x-a)/(b-a))\cos(j\pi(x-a)/(b-a))\,dx = 0$ when $k \neq j$. Use the substitution $y = (x - a)/(b - a)$ to reduce to a standard integral on $[0, 1]$.
+
+---
+
+**Exercise 4.** For the standard normal density $f(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$ truncated to $[-10, 10]$, the cosine coefficients $A_k$ decay exponentially. Using the table of approximate values in the text ($A_0 \approx 0.1000$, $A_{50} \approx 0.0030$, $A_{100} \approx 10^{-8}$), estimate the exponential decay rate by fitting $|A_k| \approx Ce^{-\alpha k^2}$ and determine $C$ and $\alpha$.
+
+---
+
+**Exercise 5.** The function $f(x) = |x|$ on $[-1, 1]$ has a kink at $x = 0$. Compute the first four cosine coefficients on $[-1, 1]$ using $A_k = \int_{-1}^{1}|x|\cos(k\pi(x+1)/2)\,dx$. Verify that $A_k = O(1/k^2)$ and explain why the interior kink limits the convergence rate despite the good boundary behavior.
+
+---
+
+**Exercise 6.** Parseval's theorem for the cosine system states $\frac{2}{b-a}\int_a^b|f(x)|^2\,dx = \frac{A_0^2}{2} + \sum_{k=1}^{\infty}A_k^2$. For a probability density $f$ on $[a,b]$ with $\int_a^b f(x)\,dx = 1$, show that $A_0 = 2/(b-a)$ and use Parseval's theorem to derive a bound on $\sum_{k=1}^{\infty}A_k^2$ in terms of $\int_a^b f(x)^2\,dx$. What does this bound tell you about the number of terms needed in the cosine series?

@@ -267,3 +267,33 @@ For SPX, empirical evidence suggests genuine parameter drift in skew, partially 
 - Andersen & Piterbarg, *Interest Rate Modeling* (calibration stability).
 - OCC/Federal Reserve, "Supervisory Guidance on Model Risk Management" (SR 11-7).
 - Gatheral, *The Volatility Surface* (smile dynamics and parameter interpretation).
+
+---
+
+## Exercises
+
+**Exercise 1.** Define parameter drift and model drift in your own words. For the Heston model calibrated daily to SPX options, give one concrete example of each: a scenario where observed changes in $\rho$ are primarily parameter drift, and a scenario where they are primarily model drift.
+
+---
+
+**Exercise 2.** Consider the decomposition $\hat{\theta}_t = \theta^\star + \delta_t + \epsilon_t$. A bootstrap analysis (perturbing quotes within bid-ask 200 times) estimates $\text{Var}(\epsilon_t) = 0.002$ for the parameter $\bar{v}$ (long-run variance). The observed time-series variance of $\hat{\bar{v}}_t$ over 250 trading days is $\text{Var}(\hat{\bar{v}}_t) = 0.008$. Compute the signal-to-noise ratio. What fraction of the observed parameter variation is attributable to genuine drift versus estimation noise?
+
+---
+
+**Exercise 3.** An encompassing test compares the Heston model (Model A) with the Bates model (Model B = Heston + jumps). After calibrating both daily for one year, the standard deviation of $\hat{\rho}_t$ in Model A is $0.12$, while in Model B it is $0.04$. Interpret this result. Does it suggest that the $\rho$ variation in Model A is primarily parameter drift or model drift? Explain your reasoning.
+
+---
+
+**Exercise 4.** A model validator observes that the calibrated vol-of-vol parameter $\sigma_v$ in a Heston model repeatedly hits its upper constraint bound of $\sigma_v = 2.0$ during market stress. Is this more consistent with parameter drift or model drift? Propose a diagnostic test to confirm your hypothesis, and suggest a model extension that might resolve the issue.
+
+---
+
+**Exercise 5.** Consider an out-of-sample stability test: calibrate at time $t$ with parameters $\hat{\theta}_t$, then predict prices at $t+1$ using $\hat{\theta}_t$ without recalibration. The prediction errors $e_{t+1}^{(j)} = \hat{C}_j(\hat{\theta}_t) - C_j^{\text{mkt}}(t+1)$ are computed for $m = 30$ options. If the errors are serially correlated (positive Ljung--Box test), what does this indicate about the model? Is the issue more likely parameter drift or model drift?
+
+---
+
+**Exercise 6.** Suppose calibrating a stochastic volatility model separately to short-maturity options ($T < 0.5$ years) and long-maturity options ($T > 1$ year) yields systematically different values for $\kappa$ (mean reversion): $\hat{\kappa}_{\text{short}} \approx 5$ and $\hat{\kappa}_{\text{long}} \approx 1.5$. Is this evidence of parameter drift, model drift, or a term-structure effect? Propose a model modification that could resolve this discrepancy.
+
+---
+
+**Exercise 7.** Within the SR 11-7 framework for model risk management, explain how the distinction between parameter drift and model drift affects: (a) the frequency of model revalidation, (b) the size of model risk reserves, and (c) the decision to retire a model in favor of a more complex alternative. Give a concrete decision rule for when model drift is severe enough to warrant model replacement.

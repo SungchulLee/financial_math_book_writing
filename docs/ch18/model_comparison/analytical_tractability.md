@@ -140,3 +140,33 @@ where $n$ is the number of coupon dates and $N_t$, $N_x$ are tree dimensions.
 | Black-Karasinski | No | No | No | 3 |
 
 The tractability hierarchy is clear: Vasicek $\approx$ Hull-White $>$ CIR $\gg$ Black-Karasinski. The question is whether the log-normal rate distribution and guaranteed positivity of BK justify the computational cost. For calibration quality comparisons, see [Calibration Fit Comparison](calibration_fit_comparison.md). For a detailed structural comparison of Hull-White and BK, see [Vasicek vs CIR vs Hull-White](vasicek_vs_cir_vs_hull_white.md).
+
+---
+
+## Exercises
+
+**Exercise 1.** State the affine condition for a one-factor short-rate model: the drift $\mu(t,r)$ and squared diffusion $\sigma^2(t,r)$ must be affine in $r$. For each of the four models (Vasicek, CIR, Hull-White, Black-Karasinski), write $\mu(t,r)$ and $\sigma^2(t,r)$ and verify whether the affine conditions are satisfied.
+
+---
+
+**Exercise 2.** In the Hull-White model, the time-dependent drift $\theta(t)$ is chosen to fit the initial yield curve exactly. Explain why this does not break the affine structure. Specifically, show that $\theta(t) - ar$ is still affine in $r$ even though $\theta(t)$ is time-dependent.
+
+---
+
+**Exercise 3.** A risk management desk needs to compute delta, gamma, and vega for 5,000 swaptions. Under Hull-White, each Greek is an analytical derivative costing $< 0.01$ ms. Under Black-Karasinski, each Greek requires a tree revaluation costing $\sim$50 ms. Compute the total time for all Greeks under each model. If the risk report must be produced within 30 minutes, which model is feasible?
+
+---
+
+**Exercise 4.** The CIR model is listed as having "partial" closed-form swaption pricing. Explain what this means: Jamshidian's decomposition applies, yielding a portfolio of bond puts, each of which has a closed-form CIR price via the non-central chi-squared CDF. Why is this considered "approximate" rather than fully closed-form?
+
+---
+
+**Exercise 5.** For Monte Carlo simulation, both Vasicek and Hull-White allow exact Gaussian sampling of $r_{t+\Delta t} | r_t$, while CIR requires non-central chi-squared sampling and BK requires Gaussian sampling of $\ln r_{t+\Delta t}$. Rank these four models by per-step simulation cost and explain the ranking.
+
+---
+
+**Exercise 6.** A structured product desk prices callable range accrual notes, which are path-dependent with early exercise features. Based on the tractability table, which models can price this product? What numerical method would each use? Why might the desk choose BK over Hull-White despite the computational cost?
+
+---
+
+**Exercise 7.** Consider a scenario where the market exhibits negative rates. Which models from the table can naturally handle negative rates? For those that cannot, what modifications are needed? Discuss the impact of these modifications on analytical tractability.

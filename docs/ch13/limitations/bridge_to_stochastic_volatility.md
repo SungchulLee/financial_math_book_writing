@@ -248,3 +248,33 @@ The bridge from local volatility to stochastic volatility is built on three pill
 3. **The mixing parameter**: The parameter $\eta$ controls the blend between local and stochastic volatility, interpolating from pure LV ($\eta = 0$) to full SV with leverage ($\eta = 1$).
 
 The central message is that local volatility is not wrong -- it is **incomplete**. It captures the correct marginal distributions but misses the conditional distributions that drive exotic option prices and hedging performance. Stochastic volatility adds the missing degrees of freedom, and the SLV framework provides the practical synthesis.
+
+---
+
+## Exercises
+
+**Exercise 1.** Explain the root cause of local volatility's limitations in one sentence. Why does the absence of an independent volatility Brownian motion $dW_t^v$ restrict the model's ability to capture realistic smile dynamics?
+
+---
+
+**Exercise 2.** In the stochastic local volatility (SLV) model, the asset dynamics are $dS_t = (r-q)S_t \, dt + L(S_t, t)\sqrt{v_t} S_t \, dW_t^S$ where $L(S, t)$ is the leverage function. Explain the role of $L$ in reconciling the stochastic volatility component with the observed vanilla surface. What happens if $L \equiv 1$?
+
+---
+
+**Exercise 3.** Gyongy's theorem states that for any stochastic volatility model, there exists a local volatility model with the same marginal distributions. The local volatility is $\sigma_{\text{loc}}^2(K, t) = \mathbb{E}[v_t \mid S_t = K]$. If $v_t$ and $S_t$ are negatively correlated ($\rho < 0$), is $\sigma_{\text{loc}}(K, t)$ increasing or decreasing in $K$? Explain the connection to the implied volatility skew.
+
+---
+
+**Exercise 4.** The leverage function in SLV models is $L^2(K, t) = \sigma_{\text{loc}}^2(K, t) / \mathbb{E}[v_t \mid S_t = K]$. If $\sigma_{\text{loc}}(100, 0) = 0.20$ and $\mathbb{E}[v_0 \mid S_0 = 100] = 0.05$, compute $L(100, 0)$. If the stochastic vol component has higher vol-of-vol than implied by the local vol surface, will $L$ be greater or less than 1 at typical strikes?
+
+---
+
+**Exercise 5.** Compare the prices of a 1-year cliquet option (sum of capped monthly returns) under three models: pure local volatility, Heston stochastic volatility, and SLV. Which model do you expect to give the highest price, and why? Relate your answer to the forward smile behavior of each model.
+
+---
+
+**Exercise 6.** The mixing parameter $\eta$ in an SLV model controls the blend between local and stochastic volatility. At $\eta = 0$, the model reduces to pure local volatility; at $\eta = 1$, it becomes full stochastic volatility with leverage. Describe qualitatively how the forward smile changes as $\eta$ increases from 0 to 1. What value of $\eta$ best fits typical equity markets?
+
+---
+
+**Exercise 7.** A practitioner must choose between Heston, local volatility, and SLV for pricing barrier options on the S&P 500. Discuss the tradeoffs: (a) calibration difficulty, (b) forward smile accuracy, (c) hedging performance, and (d) computational cost. Make a recommendation with justification.

@@ -996,3 +996,43 @@ establishing connection between non-additive integration and maxmin preferences.
 4. **Market Microstructure**: How does ambiguity aversion affect bid-ask spreads and liquidity in models with sets of measures?
 
 The framework of sets of probability measures provides mathematically rigorous foundations for robust decision-making under model uncertainty, with far-reaching applications in quantitative finance, risk management, and machine learning.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $P_0 = N(0, 1)$ be the standard normal distribution. Compute the KL divergence $D_{\text{KL}}(P \| P_0)$ when $P = N(\mu, 1)$ (shifted mean) and when $P = N(0, \sigma^2)$ (changed variance). For the KL ball $\mathcal{P}_{\text{KL}}(0.5) = \{P \ll P_0 : D_{\text{KL}}(P \| P_0) \leq 0.5\}$, determine the range of means $\mu$ allowed when the variance is fixed at 1.
+
+---
+
+**Exercise 2.** For the $\varepsilon$-contamination set $\mathcal{P}_\varepsilon = \{(1 - \varepsilon) P_0 + \varepsilon Q : Q \in \mathcal{M}_1(\mathbb{R})\}$ with $P_0 = N(0,1)$ and $\varepsilon = 0.1$, compute $\sup_{P \in \mathcal{P}_\varepsilon} \mathbb{E}_P[X]$ and $\inf_{P \in \mathcal{P}_\varepsilon} \mathbb{E}_P[X]$ for a bounded loss function $X$ with $X \in [-10, 10]$. Show that the worst-case measure places its contaminating mass at the extreme point.
+
+---
+
+**Exercise 3.** Prove that the total variation ball $\mathcal{P}_{\text{TV}}(\delta) = \{P : \|P - P_0\|_{\text{TV}} \leq \delta\}$ is convex and closed in the weak topology. Then show that for a bounded measurable function $f$ with $\|f\|_\infty \leq M$:
+
+$$
+\sup_{P \in \mathcal{P}_{\text{TV}}(\delta)} \mathbb{E}_P[f] = \mathbb{E}_{P_0}[f] + \delta M
+$$
+
+---
+
+**Exercise 4.** Consider the robust portfolio optimization problem
+
+$$
+\max_w \min_{P \in \mathcal{P}_{\text{KL}}(\theta)} \left\{ w^\top \mathbb{E}_P[R] - \frac{\lambda}{2} w^\top \Sigma_0 w \right\}
+$$
+
+with two assets having $\mu_0 = (0.08, 0.12)^\top$ and $\Sigma_0 = \begin{pmatrix} 0.04 & 0.01 \\ 0.01 & 0.09 \end{pmatrix}$. For $\lambda = 2$ and $\theta = 0.1$, compute the robust optimal portfolio and compare it with the classical Markowitz portfolio (obtained at $\theta = 0$).
+
+---
+
+**Exercise 5.** Derive the exponential tilting solution for the problem $\min_{P} \mathbb{E}_P[X]$ subject to $D_{\text{KL}}(P \| P_0) \leq \theta$. Starting from the Lagrangian $\mathcal{L}(P, \lambda) = \mathbb{E}_P[X] + \lambda(D_{\text{KL}}(P \| P_0) - \theta)$, show that the optimal density ratio is $dP^*/dP_0 \propto e^{-X/\lambda^*}$ and explain how $\lambda^*$ is determined by the constraint $D_{\text{KL}}(P^* \| P_0) = \theta$.
+
+---
+
+**Exercise 6.** Explain why rectangularity of $\mathcal{P}$ is necessary for dynamic consistency with maxmin preferences. Construct a simple two-period example with $\Omega = \{uu, ud, du, dd\}$ where the set $\mathcal{P} = \{P_1, P_2\}$ is not rectangular, and demonstrate that the optimal strategy chosen at $t = 0$ differs from the strategy the agent would choose at $t = 1$ upon reaching a particular node.
+
+---
+
+**Exercise 7.** Compare Wasserstein balls and KL divergence balls as uncertainty sets. For the discrete distribution $P_0 = \frac{1}{3}\delta_1 + \frac{1}{3}\delta_2 + \frac{1}{3}\delta_3$ on $\{1, 2, 3\}$, describe the sets $\mathcal{P}_W(0.5) = \{P : W_1(P, P_0) \leq 0.5\}$ and $\mathcal{P}_{\text{KL}}(0.5) = \{P : D_{\text{KL}}(P \| P_0) \leq 0.5\}$. Which set is larger? Which leads to more conservative worst-case expectations for $f(x) = x^2$?

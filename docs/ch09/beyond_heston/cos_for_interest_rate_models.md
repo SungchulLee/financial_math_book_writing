@@ -201,3 +201,29 @@ The COS method extends to interest rate derivatives by substituting the appropri
 | Swaption (1-factor) | $r_{T_0}$ | Same | Jamshidian decomposition + bond options |
 
 **The COS method's characteristic-function-based framework extends directly to interest rate derivatives under affine short rate models, providing efficient pricing of bond options, caps, floors, and swaptions with the same exponential convergence enjoyed by equity options.**
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Vasicek model with $r_0 = 0.05$, $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.01$, and $T = 1$, compute the mean and variance of $r_T$: $\mu_r = \theta + (r_0 - \theta)e^{-\kappa T}$ and $\sigma_r^2 = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa T})$. Write down the characteristic function $\phi_{\text{Vas}}(u) = \exp(iu\mu_r - \sigma_r^2 u^2/2)$ and evaluate it at $u = 0, 1, 10$.
+
+---
+
+**Exercise 2.** For a European call on a zero-coupon bond, the exercise boundary is $x^* = (A(T, T_B) - \ln K)/B(T, T_B)$, where $A$ and $B$ are the bond pricing coefficients. Explain geometrically why the exercise region is $x < x^*$ (i.e., rates below the critical rate), and what this means financially: a bond call is exercised when rates are low (bond prices are high).
+
+---
+
+**Exercise 3.** The payoff coefficients for a bond option involve $\chi_k^{(-B)}(a, x^*) = \int_a^{x^*}e^{-Bx}\cos(\omega_k(x-a))\,dx$. Derive the closed form by integration by parts, following the same approach used for $\chi_k$ in the equity case. Show that the result is $\frac{1}{B^2 + \omega_k^2}[\cdots]$ with appropriate boundary terms.
+
+---
+
+**Exercise 4.** A caplet on the forward rate $L(T_i, T_{i+1})$ can be expressed as $(1 + \delta K)$ times a put on a zero-coupon bond. Derive this relationship starting from the caplet payoff $\delta(L(T_i, T_{i+1}) - K)^+$ and using $L(T_i, T_{i+1}) = (1/P(T_i, T_{i+1}) - 1)/\delta$. What is the strike of the bond put in terms of $\delta$ and $K$?
+
+---
+
+**Exercise 5.** The Jamshidian decomposition reduces a swaption to a portfolio of bond options. For a payer swaption on a 3-year annual-pay swap with fixed rate $K = 0.04$ and option expiry $T_0 = 1$, list the bond options in the decomposition. How many COS evaluations are needed to price the swaption?
+
+---
+
+**Exercise 6.** The COS method for interest rate models requires the characteristic function of $r_T$ under the $T$-forward measure, not the risk-neutral measure. For the Vasicek model, the forward measure adjustment replaces $\kappa$ by $\kappa + \sigma B(T, T_B)$. Explain why this measure change is needed and how it affects the mean and variance of $r_T$. What happens to the COS price if you forget to apply the measure change?

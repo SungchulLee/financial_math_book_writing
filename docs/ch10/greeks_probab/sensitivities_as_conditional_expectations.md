@@ -163,4 +163,30 @@ The conditional expectation representation of Greeks has several practical appli
 - Delta arises as the predictable integrand in the martingale representation of the discounted option price.
 - In complete markets, this gives a rigorous foundation for "delta is the hedge ratio."
 - Greeks can be expressed as conditional expectations, enabling Monte Carlo computation and extending to complex models.
-- In incomplete markets, not every sensitivity corresponds to a tradable hedge — only the components aligned with traded risk factors.
+- In incomplete markets, not every sensitivity corresponds to a tradable hedge --- only the components aligned with traded risk factors.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the martingale representation $\widetilde{V}_t = \widetilde{V}_0 + \int_0^t Z_s \, \mathrm{d}W_s^{\mathbb{Q}}$, verify that $Z_t = e^{-rt}\sigma S_t \Delta(t, S_t)$ by applying Ito's formula to $\widetilde{V}_t = e^{-rt}V(t, S_t)$ and using the Black--Scholes PDE to cancel the $\mathrm{d}t$ terms.
+
+---
+
+**Exercise 2.** The delta of a European call can be written as $\Delta = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[(S_T/S_t)\mathbf{1}_{S_T > K} \mid S_t]$. Evaluate this expectation explicitly under the log-normal distribution to recover $\Delta = N(d_1)$.
+
+---
+
+**Exercise 3.** In the gamma formula $\Gamma = \frac{e^{-r\tau}}{S_t^2 \sigma^2 \tau}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T)((\log(S_T/S_t) - \mu\tau)^2/(\sigma^2\tau) - 1) \mid S_t]$ with $\mu = r - \sigma^2/2$, explain why this expression does not require $\Phi$ to be differentiable. What class of payoffs can this formula handle that pathwise gamma cannot?
+
+---
+
+**Exercise 4.** Theta is determined by other Greeks via the Black--Scholes PDE: $\Theta = rV - rS\Delta - \frac{1}{2}\sigma^2 S^2 \Gamma$. Explain why theta does not have an independent conditional expectation representation. Is this a limitation or a simplification?
+
+---
+
+**Exercise 5.** In a two-factor stochastic volatility model, the martingale representation has two integrands: $Z^{(1)}$ (tradable) and $Z^{(2)}$ (untradable). If $Z^{(2)}$ represents volatility risk, explain why delta hedging alone cannot eliminate vega exposure. What instruments would be needed to hedge the $Z^{(2)}$ component?
+
+---
+
+**Exercise 6.** The statement "delta is the hedge ratio" relies on the completeness of the market. In an incomplete market (e.g., with jumps), the martingale representation may involve a jump martingale term. Discuss how the hedging interpretation of delta changes when the market is incomplete, and whether delta hedging is still useful despite not being perfect.

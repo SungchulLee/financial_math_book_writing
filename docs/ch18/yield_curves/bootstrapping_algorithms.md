@@ -337,3 +337,29 @@ A well-constructed curve should reprice inputs to within bid-ask tolerance.
 - Brigo & Mercurio, *Interest Rate Models*, Chapter 1
 - Hagan & West, "Interpolation Methods for Curve Construction"
 - Henrard, *Interest Rate Modelling in the Multi-Curve Framework*
+
+---
+
+## Exercises
+
+**Exercise 1.** A 6-month deposit quotes a simply compounded rate of $L = 3.0\%$ with ACT/360 day count and 182 days to maturity. Compute the discount factor $P(0, 0.5)$ using $P = 1/(1 + L \cdot \delta)$ where $\delta = 182/360$. Then compute the continuously compounded zero rate $R$ such that $P = e^{-R \cdot 0.5}$.
+
+---
+
+**Exercise 2.** Given deposit-derived discount factors $P(0, 0.25) = 0.9925$ and $P(0, 0.5) = 0.9845$, and a 1-year par swap rate of $S_1 = 3.2\%$ with semi-annual payments, bootstrap the 1-year discount factor $P(0, 1.0)$ by solving $S_1 = \frac{1 - P(0,1)}{0.5 \cdot P(0, 0.5) + 0.5 \cdot P(0, 1)}$.
+
+---
+
+**Exercise 3.** Explain why bootstrapping must proceed sequentially from short to long maturities. What would happen if you tried to extract $P(0, 5)$ from a 5-year swap rate without first determining all intermediate discount factors?
+
+---
+
+**Exercise 4.** Eurodollar futures quote a rate that differs from the forward rate by a convexity adjustment. If the futures rate is $F_{\text{fut}} = 3.5\%$ and the convexity adjustment is estimated at 5 basis points, what forward rate should be used for bootstrapping? Explain the economic reason for the convexity adjustment.
+
+---
+
+**Exercise 5.** A bootstrapping algorithm uses deposit rates for maturities up to 6 months, futures for 6 months to 2 years, and swap rates from 2 to 30 years. Describe the potential discontinuity in the forward rate curve at the transition points between instrument types. How can this be mitigated?
+
+---
+
+**Exercise 6.** Implement the bootstrapping step for a 3-year annual swap rate $S_3 = 3.8\%$, given previously bootstrapped discount factors $P(0,1) = 0.968$ and $P(0,2) = 0.935$. Solve for $P(0,3)$ and compute the implied 1-year forward rate $f(0; 2, 3)$.

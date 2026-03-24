@@ -388,3 +388,41 @@ $$
 The fundamental result: **a finite one-period market is arbitrage-free if and only if there exists a strictly positive state price vector**. This is the discrete version of the First Fundamental Theorem of Asset Pricing and the gateway to risk-neutral pricing theory.
 
 ---
+
+## Exercises
+
+**Exercise 1.** Consider a market with $S = 2$ states and $N = 2$ assets: a bond with price $P_1 = 1$ paying $1.04$ in both states, and a stock with price $P_2 = 25$ paying $X_{21} = 30$ in state $\omega_1$ and $X_{22} = 22$ in state $\omega_2$. Determine whether a strictly positive state price vector $\boldsymbol{\phi}$ exists. Is the market arbitrage-free?
+
+---
+
+**Exercise 2.** Prove that the Law of One Price does not imply no-arbitrage by constructing a concrete example of a market (specify the payoff matrix $\mathbf{X}$ and price vector $\mathbf{P}$) that satisfies the LOP but admits a Type 1 arbitrage opportunity.
+
+---
+
+**Exercise 3.** In a market with $S = 3$ states and $N = 3$ assets, the payoff matrix and price vector are
+
+$$
+\mathbf{X} = \begin{pmatrix} 1.05 & 1.05 & 1.05 \\ 20 & 15 & 10 \\ 5 & 3 & 0 \end{pmatrix}, \quad \mathbf{P} = \begin{pmatrix} 1 \\ 12 \\ 2 \end{pmatrix}
+$$
+
+Determine whether the market is arbitrage-free by solving for the state price vector. If an arbitrage exists, construct the arbitrage portfolio explicitly.
+
+---
+
+**Exercise 4.** Let $\boldsymbol{\theta}$ be a portfolio in a one-period market satisfying $\boldsymbol{\theta}^\top \mathbf{P} = 0$ and $\mathbf{X}^\top \boldsymbol{\theta} \geq \mathbf{0}$. Suppose that strictly positive state prices $\boldsymbol{\phi} \gg \mathbf{0}$ exist with $\mathbf{P} = \mathbf{X}\,\boldsymbol{\phi}$. Show that $\mathbf{X}^\top \boldsymbol{\theta} = \mathbf{0}$, i.e., the payoff must be identically zero. Explain why this rules out Type 1 arbitrage.
+
+---
+
+**Exercise 5.** A market has $S = 2$ states and $N = 3$ assets. The bond pays $1.10$ in both states. Stock A has price \$40 and pays \$50 in the boom and \$35 in the recession. Stock B has price \$15 and pays \$20 in the boom and \$12 in the recession. Find the state prices from the bond and Stock A alone. Then check whether Stock B's observed price is consistent with these state prices. If not, construct an arbitrage portfolio.
+
+---
+
+**Exercise 6.** Explain the hierarchy
+
+$$
+\text{No-arbitrage} \implies \text{No-dominance} \implies \text{Law of One Price}
+$$
+
+by answering: (a) Why does no-arbitrage imply no-dominance? (b) Why does no-dominance imply the LOP? (c) Give a one-sentence economic interpretation of each implication.
+
+---

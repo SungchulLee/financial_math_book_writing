@@ -146,3 +146,33 @@ However, the model is symmetric under swapping $(\lambda_1, \sigma_1) \leftright
 ## Summary
 
 Parameter stability and identifiability are critical for the practical use of calibrated Hull-White models. Day-to-day recalibration can produce noisy parameter paths, particularly for $\lambda$, which is less well-identified than $\sigma$ from cap data. The Fisher information matrix and its condition number diagnose identifiability issues. Tikhonov regularization, penalizing deviation from a prior parameter set, stabilizes the calibration by filtering noise while preserving sensitivity to genuine market moves. Temporal smoothing extends this to multi-day parameter paths. The regularization strength is chosen via cross-validation or the L-curve method, balancing data fit against parameter stability.
+
+---
+
+## Exercises
+
+**Exercise 1.** The ratio $R_\lambda = \frac{\text{std}(\Delta\lambda)/\bar{\lambda}}{\text{std}(\Delta\sigma_{\text{market}})/\bar{\sigma}_{\text{market}}}$ measures parameter amplification. If $R_\lambda = 5$, what does this mean in practical terms? If market volatilities move by 1% on a given day, how much would you expect $\lambda$ to change?
+
+---
+
+**Exercise 2.** The Fisher information matrix is $I = J^{\top}WJ$ where $J$ is the Jacobian of model volatilities with respect to parameters. For a two-parameter model, $I$ is $2 \times 2$. Describe what a large condition number $\kappa(I)$ implies geometrically about the shape of the objective function near the optimum. Draw a contour plot that illustrates this.
+
+---
+
+**Exercise 3.** Explain why $\lambda$ is less well-identified than $\sigma$ from cap data. In particular, show that for short-dated caplets ($\lambda\delta_k \ll 1$), the bond price volatility $\sigma_P$ is approximately independent of $\lambda$, making those instruments uninformative about $\lambda$.
+
+---
+
+**Exercise 4.** Tikhonov regularization adds the penalty $\mu_\lambda(\lambda - \lambda_{\text{prior}})^2 + \mu_\sigma(\sigma - \sigma_{\text{prior}})^2$ to the objective. Derive the regularized first-order conditions and show that the regularized solution is a weighted average of the unconstrained optimum and the prior, with weights determined by $\mu$.
+
+---
+
+**Exercise 5.** Describe the L-curve method for choosing the regularization strength $\mu$. Plot schematically the regularization penalty versus the data-fit residual as $\mu$ varies from $0$ to $\infty$. Where is the optimal $\mu$ located on this curve, and why?
+
+---
+
+**Exercise 6.** In the two-factor model, swapping $(\lambda_1, \sigma_1) \leftrightarrow (\lambda_2, \sigma_2)$ gives the same model. Explain why this label symmetry creates identifiability problems. How does the convention $\lambda_1 < \lambda_2$ resolve the issue, and what constraint would you impose in the optimizer?
+
+---
+
+**Exercise 7.** Temporal smoothing jointly optimizes parameters across multiple days with the penalty $\mu\sum_{t=2}^T[(\lambda_t - \lambda_{t-1})^2 + (\sigma_t - \sigma_{t-1})^2]$. Discuss the trade-offs of this approach: what happens when $\mu$ is too large? Too small? How does the computational cost scale with the number of days $T$?

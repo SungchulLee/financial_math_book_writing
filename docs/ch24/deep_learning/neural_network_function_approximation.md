@@ -282,3 +282,33 @@ For American option pricing with $d$ exercise features, the neural network appro
 - Telgarsky (2016), "Benefits of Depth in Neural Networks"
 - Yarotsky (2017), "Error Bounds for Approximations with Deep ReLU Networks"
 - Berner, Grohs & Jentzen (2020), "Analysis of the Generalization Error"
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a single-hidden-layer network $g_N(x) = \sum_{i=1}^N c_i \sigma(w_i x + b_i)$ with ReLU activation $\sigma(z) = \max(0,z)$ and $x \in \mathbb{R}$. Show that $g_N$ is a piecewise linear function with at most $N+1$ linear pieces. Sketch $g_3(x)$ for specific choices of $w_i, b_i, c_i$ and verify the piecewise linear structure. How does this relate to the universal approximation theorem?
+
+---
+
+**Exercise 2.** Compute the total number of parameters $\dim(\theta)$ for a feedforward network with input dimension $d = 10$, three hidden layers of widths $n_1 = 50$, $n_2 = 50$, $n_3 = 20$, and output dimension 1. Use the formula $\dim(\theta) = \sum_{\ell=1}^{L+1} n_\ell(n_{\ell-1} + 1)$. If 5,000 training samples are available, discuss whether the model is overparameterized and what regularization strategies might help.
+
+---
+
+**Exercise 3.** Barron's theorem states that for functions $f \in \mathcal{B}_C$ (with finite Fourier moment $C_f$), a single-hidden-layer network with $N$ neurons achieves $L^2$ error $O(C_f^2/N)$. Explain why this rate is independent of the input dimension $d$. For a basket option pricing function $V(S_1, \ldots, S_d)$, argue heuristically why $V$ might have finite Barron norm. What would it mean for the pricing function to have infinite Barron norm?
+
+---
+
+**Exercise 4.** The classical minimax approximation rate for Sobolev functions is $N^{-s/d}$ where $s$ is the smoothness and $d$ is the dimension. For $d = 50$ and $s = 2$, compute the number of parameters $N$ needed to achieve $\varepsilon = 1\%$ accuracy. Compare this to the Barron rate $O(1/N)$ which gives $N = O(1/\varepsilon) = 100$. This comparison illustrates why neural networks can be effective in high-dimensional finance.
+
+---
+
+**Exercise 5.** The error decomposition is: $\mathbb{E}[\|f^* - \hat{f}_n\|^2] \le \text{Approximation error} + \text{Estimation error}$. Describe the bias-variance tradeoff: how does increasing network size $N$ affect each term? For a fixed sample size $n = 10{,}000$, sketch qualitatively how the total error varies with $N$, identifying the optimal network size. What practical technique (e.g., cross-validation, early stopping) would you use to select $N$?
+
+---
+
+**Exercise 6.** The depth separation result (Telgarsky 2016) shows that deep narrow networks can express functions requiring exponential width in shallow networks. Provide an intuitive explanation using the concept of hierarchical composition. In option pricing, the price depends on Greeks, which depend on volatility, which depends on market features. Explain how a 3-layer network might efficiently capture this compositional structure, while a 1-layer network would need exponentially many neurons.
+
+---
+
+**Exercise 7.** A neural network is used to approximate the implied volatility surface $\sigma_{\text{imp}}(K, T)$. The network must satisfy no-arbitrage constraints: total implied variance $\sigma_{\text{imp}}^2 T$ must be non-decreasing in $T$, and the option price must be convex in $K$. Discuss how these constraints relate to partial derivatives $\partial(\sigma^2 T)/\partial T \ge 0$ and $\partial^2 V/\partial K^2 \ge 0$. How can the network architecture be designed to enforce these constraints, and how does this connect to the function approximation theory?

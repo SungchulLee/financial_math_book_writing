@@ -308,3 +308,33 @@ The CIR $B$-function is smaller because the quadratic Riccati term dampens the g
 ## Summary
 
 The Vasicek, CIR, and Hull-White models form a natural progression in short rate modeling. Vasicek provides the foundational mean-reverting Gaussian framework with full analytical tractability but cannot fit the market curve. CIR introduces level-dependent volatility and rate positivity at the cost of more complex analytics. Hull-White extends Vasicek with a time-dependent drift that exactly matches the initial term structure, making it the standard choice for production derivative pricing. The choice among the three depends on the application: Vasicek for pedagogy, CIR when rate positivity and realistic volatility matter, and Hull-White when exact curve calibration and closed-form option pricing are required.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the numerical example parameters ($r(0) = 0.05$, $\kappa = 0.1$, $\theta = 0.05$, $\sigma_{\text{Vas}} = 0.01$, $\sigma_{\text{CIR}} = 0.0447$), compute $B^{\text{Vas}}(10)$ and $B^{\text{CIR}}(10)$. Verify that $B^{\text{CIR}} < B^{\text{Vas}}$ and explain the economic reason for this difference.
+
+---
+
+**Exercise 2.** Compute the 10-year zero-coupon bond price under all three models using the numerical example parameters. For Hull-White, assume a flat yield curve $P^M(0,T) = e^{-0.05T}$. Which model gives the highest bond price? Which gives the lowest? Relate the differences to the $B(\tau)$ functions.
+
+---
+
+**Exercise 3.** The Riccati ODE for $B$ is $\dot{B} = -1 + aB + \frac{1}{2}\delta B^2$ with $B(0) = 0$. Show that when $\delta = 0$ (Vasicek/HW), the equation is linear and the solution is $B(\tau) = (1 - e^{-a\tau})/a$. When $\delta = \sigma^2 > 0$ (CIR), explain why the quadratic term causes $B(\tau)$ to saturate at a lower level than $1/a$.
+
+---
+
+**Exercise 4.** All three models admit Jamshidian's decomposition because bond prices are monotone decreasing in $r$. Prove this for each model by computing $\partial P/\partial r$ and showing it is negative. Under what condition on the CIR parameters is this guaranteed?
+
+---
+
+**Exercise 5.** Hull-White fits the initial yield curve exactly while Vasicek and CIR cannot. Suppose the market curve has zero rates $R(0,1) = 3\%$, $R(0,5) = 4\%$, $R(0,10) = 4.5\%$, $R(0,30) = 5\%$. Calibrate a Vasicek model (minimize yield RMSE) and compute the residual errors. Explain structurally why a 3-parameter model cannot perfectly fit 4 or more market points.
+
+---
+
+**Exercise 6.** In the CIR model, the instantaneous volatility of rate changes is $\sigma\sqrt{r_t}$. If $r_t$ doubles from 3% to 6%, by what factor does the volatility increase? Compare this with Vasicek, where the volatility is constant. Which behavior better matches the empirical observation that rate volatility is higher in high-rate environments?
+
+---
+
+**Exercise 7.** A desk must choose between Hull-White and CIR for pricing a 10-year Bermudan swaption with annual exercise dates. List the advantages of each model for this specific product. Consider: (i) curve fit, (ii) rate positivity (the swap is in JPY where rates were near zero), (iii) tree construction complexity, and (iv) calibration to the swaption volatility matrix.

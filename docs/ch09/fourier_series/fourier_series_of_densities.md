@@ -218,3 +218,29 @@ The Fourier series representation of probability densities connects the characte
 | Fourier inversion | $f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-iux}\phi(u)\,du$ |
 
 **The characteristic function provides a closed-form frequency-domain representation of the density, and the cosine coefficient identity $A_k \approx \frac{2}{b-a}\,\text{Re}[\phi(k\pi/(b-a))e^{-ik\pi a/(b-a)}]$ is the fundamental formula that enables the COS method to price options without ever computing the density explicitly.**
+
+---
+
+## Exercises
+
+**Exercise 1.** For a random variable $X \sim N(\mu, \sigma^2)$, the characteristic function is $\phi(u) = e^{i\mu u - \sigma^2 u^2/2}$. Verify the Fourier inversion theorem by computing $f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-iux}\phi(u)\,du$ and showing that the result is $\frac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/(2\sigma^2)}$. (Hint: complete the square in the exponent.)
+
+---
+
+**Exercise 2.** Derive the cosine coefficient formula $A_k = \frac{2}{b-a}\,\text{Re}[\phi(k\pi/(b-a))\,e^{-ik\pi a/(b-a)}]$ starting from the definition $A_k = \frac{2}{b-a}\int_a^b f(x)\cos(k\pi(x-a)/(b-a))\,dx$. Identify the step where the assumption that $f$ is supported on $[a, b]$ is used, and write the expression for the error when $f$ has mass outside $[a, b]$.
+
+---
+
+**Exercise 3.** For $X \sim N(0, 1)$ on $[a, b] = [-10, 10]$, compute $A_0$, $A_1$, $A_2$, and $A_3$ using the CF-based formula. Verify that odd-indexed coefficients vanish (i.e., $A_1 = A_3 = 0$) and explain this in terms of the symmetry of the standard normal density and the symmetric placement of the interval.
+
+---
+
+**Exercise 4.** The truncation error for the cosine coefficients is $\varepsilon_k = \frac{2}{b-a}\,\text{Re}[e^{-ik\pi a/(b-a)}\int_{\mathbb{R}\setminus[a,b]}f(x)e^{ik\pi x/(b-a)}\,dx]$. For the standard normal with $[a, b] = [-5, 5]$, bound $|\varepsilon_k|$ using $P(|X| > 5) \approx 5.7 \times 10^{-7}$. Is this bound tight enough for practical pricing applications? What happens if you use $[a, b] = [-3, 3]$ instead?
+
+---
+
+**Exercise 5.** The duality table states that convolution of densities corresponds to multiplication of characteristic functions. If $X_1$ and $X_2$ are independent with CFs $\phi_1$ and $\phi_2$, and $Y = X_1 + X_2$ has CF $\phi_Y = \phi_1 \cdot \phi_2$, explain how the cosine coefficients of the density of $Y$ relate to those of $X_1$ and $X_2$. Why is it generally easier to work in the frequency domain for sums of independent random variables?
+
+---
+
+**Exercise 6.** For the log-normal density (Black-Scholes model with $\sigma = 0.2$, $T = 1$, $r = 0.05$), compute the first four cumulants of the log-price $X = \ln S_T$. Use these to determine the truncation interval $[a, b] = [c_1 - L\sqrt{c_2}, c_1 + L\sqrt{c_2}]$ with $L = 10$. Estimate the truncation error $P(X \notin [a, b])$ and verify it is negligible.

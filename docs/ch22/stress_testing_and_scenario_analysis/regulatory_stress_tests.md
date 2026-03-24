@@ -326,3 +326,51 @@ The bank's total CET1 requirement becomes $4.5\% + 6.7\% = 11.2\%$.
 - Kapinos, P. & Mitnik, O. (2016), "A Top-Down Approach to Stress-Testing Banks"
 - Duffie, D. (2019), "Prone to Fail: The Pre-Crisis Financial System," *Journal of Economic Perspectives*
 - Greenlaw, D., Kashyap, A., Schoenholtz, K., & Shin, H.S. (2012), "Stressed Out: Macroprudential Principles for Stress Testing"
+
+---
+
+## Exercises
+
+**Exercise 1.** A bank has initial CET1 capital of \$70 billion and RWA of \$500 billion. Under a severely adverse scenario over 9 quarters, the bank projects PPNR of \$15B, credit losses of \$30B, trading losses of \$10B, operational losses of \$2B, dividends of \$5B, and a \$60B increase in RWA. Compute the minimum CET1 capital and the minimum CET1 ratio. Determine whether the bank passes the stress test assuming a minimum CET1 requirement of 4.5%. Also compute the Stress Capital Buffer (SCB).
+
+---
+
+**Exercise 2.** Consider the credit loss model under stress:
+
+$$
+PD_t^{\text{stress}} = \Phi\left(\frac{\Phi^{-1}(\overline{PD}) + \sqrt{\rho} \cdot z_t}{\sqrt{1 - \rho}}\right)
+$$
+
+For a portfolio with $\overline{PD} = 1.5\%$ and asset correlation $\rho = 0.15$, compute $PD^{\text{stress}}$ when the systematic factor takes the value $z = -2.5$ (representing a severely adverse macroeconomic shock). Compare this to the through-the-cycle PD and discuss the sensitivity of the stressed PD to the correlation parameter.
+
+---
+
+**Exercise 3.** Explain the difference between the static balance sheet assumption (EBA) and the planned capital actions approach (CCAR). A bank with a current CET1 ratio of 12% plans to pay \$3 billion in dividends and repurchase \$2 billion in shares over the stress horizon. Under the EBA static approach, these actions are excluded. Under CCAR, they are included. If the bank's stressed capital decline before capital actions is 4 percentage points, compute the minimum CET1 ratio under each framework. Discuss which framework is more conservative from a capital adequacy perspective.
+
+---
+
+**Exercise 4.** The marginal impact of a macroeconomic variable on the capital ratio is
+
+$$
+\frac{\partial \text{CET1 Ratio}_t}{\partial z_{j,t}} = \frac{1}{W_t}\left(\frac{\partial R_t}{\partial z_{j,t}} - \frac{\partial L_t}{\partial z_{j,t}}\right) - \frac{K_t}{W_t^2} \frac{\partial W_t}{\partial z_{j,t}}
+$$
+
+Explain each of the three terms on the right-hand side. For a bank where GDP growth affects both credit losses ($\partial L / \partial z_{\text{GDP}} < 0$, since lower GDP increases losses) and RWA ($\partial W / \partial z_{\text{GDP}} < 0$, since lower GDP increases risk weights), discuss why the total impact on the CET1 ratio may be larger than the loss effect alone.
+
+---
+
+**Exercise 5.** Discuss the procyclicality concern in regulatory stress testing. During a recession, stress test models calibrated to worsening data may project larger losses, leading to higher capital requirements at precisely the time when banks can least afford to raise capital. Describe three specific mitigants (mathematical or regulatory) that address this procyclicality. What is the role of the countercyclical capital buffer in this context?
+
+---
+
+**Exercise 6.** A bank uses the logistic regression model
+
+$$
+\log\left(\frac{PD_t}{1 - PD_t}\right) = \beta_0 + \beta_1 \Delta\text{GDP}_t + \beta_2 \Delta U_t + \beta_3 \Delta\text{HPI}_t
+$$
+
+with estimated parameters $\beta_0 = -3.5$, $\beta_1 = -0.08$, $\beta_2 = 0.12$, $\beta_3 = -0.04$. Under the severely adverse scenario, $\Delta\text{GDP} = -6\%$, $\Delta U = +5\%$, and $\Delta\text{HPI} = -25\%$. Compute the stressed PD. If the through-the-cycle PD (setting all macro shocks to zero) is $\Phi(\text{logit}^{-1}(\beta_0))$, compute the ratio of stressed PD to baseline PD.
+
+---
+
+**Exercise 7.** Explain why PPNR is an important offset to stress losses. Under a severely adverse scenario, a bank's NII declines because the yield curve flattens (compressing net interest margins). If the bank's interest-sensitive assets total \$400B with an average yield of 4.5% and liabilities total \$380B with an average cost of 2.0%, compute baseline NII. Under stress, the asset yield falls to 3.5% and the liability cost falls to 1.8%. Compute stressed NII and the resulting decline. Discuss how a bank's asset-liability structure determines its vulnerability to interest rate scenarios.

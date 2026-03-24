@@ -315,3 +315,45 @@ In the wings:
 - de Boor, *A Practical Guide to Splines*.
 - Gatheral, *The Volatility Surface* (total variance and Dupire).
 - Fengler, *Semiparametric Modeling of Implied Volatility*.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the central difference approximation to the first derivative, $\partial_K C \approx (C(K+h) - C(K-h))/(2h)$, the total error is the sum of truncation error $O(h^2)$ and noise amplification $\sigma_\varepsilon / h$. Derive the optimal step size $h^\star$ that minimizes total error, and show it satisfies
+
+$$
+h^\star = \left(\frac{3\sigma_\varepsilon}{|C'''|}\right)^{1/3}
+$$
+
+Compute $h^\star$ when $\sigma_\varepsilon = 0.01$ and $|C'''| = 0.0005$.
+
+---
+
+**Exercise 2.** Show that the five-point stencil for $\partial_{KK}C$,
+
+$$
+\frac{-C(K+2h) + 16C(K+h) - 30C(K) + 16C(K-h) - C(K-2h)}{12h^2}
+$$
+
+has truncation error $O(h^4)$ by expanding each term in a Taylor series around $K$ through order $h^6$.
+
+---
+
+**Exercise 3.** Apply Richardson extrapolation to the central difference second derivative. Let $D(h) = (C(K+h) - 2C(K) + C(K-h))/h^2$. Show that the extrapolated estimate $(4D(h/2) - D(h))/3$ cancels the leading $O(h^2)$ error term and yields $O(h^4)$ accuracy. Verify numerically using $C(K) = K^4$ at $K = 1$ with $h = 0.1$.
+
+---
+
+**Exercise 4.** A smoothing spline is fit by minimizing $\sum_i (S(K_i) - C_i)^2 + \lambda \int (S''(K))^2\,dK$. Explain why the solution is a natural cubic spline for any $\lambda > 0$. Discuss the behavior of the derivatives $S'(K)$ and $S''(K)$ as $\lambda$ varies from $0$ (interpolation) to $\infty$ (linear regression). Which regime is more appropriate for Dupire calibration and why?
+
+---
+
+**Exercise 5.** Consider call prices at three strikes: $C(90) = 15.20$, $C(100) = 8.50$, $C(110) = 4.10$. Compute $\partial_{KK}C(100)$ using the central difference with $h = 10$. Verify that the butterfly arbitrage condition $\partial_{KK}C > 0$ holds. Now suppose a data error changes $C(100)$ to $8.80$. Recompute and check whether the arbitrage condition still holds. What does this imply for the robustness of the Dupire local volatility?
+
+---
+
+**Exercise 6.** In total variance coordinates with $w(k, T) = T\sigma_{\text{impl}}^2(k, T)$ and $k = \ln(K/F_T)$, the Dupire local variance involves $\partial_k w$, $\partial_{kk}w$, and $\partial_T w$. Suppose the implied volatility smile at one maturity is fit by the SVI parameterization $w(k) = a + b(\rho(k - m) + \sqrt{(k-m)^2 + \sigma^2})$. Compute $\partial_k w$ and $\partial_{kk}w$ analytically, and discuss why this approach avoids the noise amplification issues of finite differences.
+
+---
+
+**Exercise 7.** A practitioner applies the Dupire formula near the boundary: at the shortest maturity $T_1 = 0.02$ (about one week) and at a deep out-of-the-money strike $K = 140$ with $S_0 = 100$. Describe at least three distinct numerical difficulties that arise in each case. For each difficulty, propose a specific mitigation strategy (e.g., extrapolation method, exclusion rule, or alternative formula).

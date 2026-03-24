@@ -266,3 +266,40 @@ $$
 | Use case | Interest rate derivatives |
 
 **The forward measure transforms the problem of stochastic discounting into a problem of computing a simple expectation, making it indispensable for interest rate modeling.**
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Write the Radon-Nikodym derivative $d\mathbb{Q}^T / d\mathbb{Q}|_{\mathcal{F}_t}$ in terms of $P(t,T)$, $P(0,T)$, and $B_t$. Verify that at $t = T$, this expression simplifies to $e^{-\int_0^T r_s\,ds} / P(0,T)$. Explain why $\mathbb{E}^{\mathbb{Q}}[d\mathbb{Q}^T / d\mathbb{Q}|_{\mathcal{F}_T}] = 1$.
+
+---
+
+**Exercise 2.**
+A forward contract on a stock $S$ for delivery at $T$ has payoff $S_T - K$ at maturity. Using the forward measure, show that the value at time $t$ is $V_t = P(t,T)(F(t,T) - K)$ where $F(t,T) = S_t / P(t,T)$. Determine the forward price $K^*$ that makes the contract initially worth zero.
+
+---
+
+**Exercise 3.**
+In the Vasicek model with $\kappa = 0.3$, $\bar{r} = 0.05$, $\sigma_r = 0.02$, and $B(t,T) = (1 - e^{-\kappa(T-t)})/\kappa$, compute the bond volatility $\sigma_P(t,T) = -B(t,T)\sigma_r$ for $T - t = 5$. Write the drift adjustment for the short rate under $\mathbb{Q}^T$.
+
+---
+
+**Exercise 4.**
+A caplet with strike $K = 0.05$ on the LIBOR rate $L(T; T, T+\delta)$ with $\delta = 0.25$ pays $\delta(L_T - K)^+$ at $T + \delta$. If $L(0; T, T+\delta) = 0.048$ and the forward LIBOR volatility is $\sigma_L = 0.20$, use Black's formula to price the caplet under $\mathbb{Q}^{T+\delta}$. Assume $P(0, T+\delta) = 0.92$.
+
+---
+
+**Exercise 5.**
+Explain why the forward price $F(t,T) = S_t / P(t,T)$ is a $\mathbb{Q}^T$-martingale but not a $\mathbb{Q}$-martingale in general. What is the drift of $F(t,T)$ under the standard risk-neutral measure $\mathbb{Q}$?
+
+---
+
+**Exercise 6.**
+For two different maturities $T_1 < T_2$, write the Radon-Nikodym derivative $d\mathbb{Q}^{T_2}/d\mathbb{Q}^{T_1}|_{\mathcal{F}_t}$ and explain why the measures $\mathbb{Q}^{T_1}$ and $\mathbb{Q}^{T_2}$ differ. In which financial applications does the choice between these measures matter?
+
+---
+
+**Exercise 7.**
+Consider the exchange option with payoff $(S_T^1 - S_T^2)^+$. Using $S_t^2$ as numeraire, derive Margrabe's formula. Explain why the interest rate $r$ does not appear in the final formula, and identify the relevant volatility parameter $\sigma$ in terms of $\sigma_1$, $\sigma_2$, and $\rho$.

@@ -210,3 +210,63 @@ This section develops SDE theory and methods across the following pages:
 
 !!! summary "Key Takeaway"
     A stochastic differential equation extends ordinary differential equations by adding a Brownian motion term. The drift captures deterministic trends, the diffusion captures random fluctuations, and the interplay between them — governed by Itô calculus — produces phenomena that have no counterpart in deterministic mathematics.
+
+---
+
+## Exercises
+
+**Exercise 1.** For each of the following SDEs, identify the drift coefficient $b(t, X_t)$ and the diffusion coefficient $\sigma(t, X_t)$, and classify the noise as additive or multiplicative.
+
+(a) $dX_t = 3\,dt + 2\,dW_t$
+
+(b) $dX_t = \mu X_t\,dt + \sigma X_t\,dW_t$
+
+(c) $dX_t = (1 - X_t)\,dt + \sqrt{X_t}\,dW_t$
+
+(d) $dX_t = \sin(t)\,dt + e^{-t}\,dW_t$
+
+---
+
+**Exercise 2.** Write the integral formulation corresponding to the SDE
+
+$$
+dX_t = (X_t + t)\,dt + X_t^2\,dW_t, \qquad X_0 = 1
+$$
+
+Explain why the differential notation is only shorthand and not a statement about derivatives.
+
+---
+
+**Exercise 3.** Consider the Ornstein–Uhlenbeck process $dX_t = 2(5 - X_t)\,dt + 3\,dW_t$ with $X_0 = 0$.
+
+(a) What is the long-term mean $\mathbb{E}[X_t]$ as $t \to \infty$?
+
+(b) What is the long-term variance $\operatorname{Var}[X_t]$ as $t \to \infty$?
+
+(c) Write down the stationary distribution.
+
+---
+
+**Exercise 4.** For geometric Brownian motion $dS_t = 0.05\,S_t\,dt + 0.2\,S_t\,dW_t$ with $S_0 = 100$:
+
+(a) Write down the explicit solution.
+
+(b) Compute $\mathbb{E}[S_1]$ and $\operatorname{Var}[S_1]$.
+
+(c) Explain why the exponent contains $\mu - \sigma^2/2$ rather than $\mu$.
+
+---
+
+**Exercise 5.** Classify each SDE into one of the four structural categories (additive noise, multiplicative noise, mean reversion, state-dependent diffusion) and state which solution technique you would try first.
+
+(a) $dY_t = -0.5\,Y_t\,dt + 0.1\,dW_t$
+
+(b) $dY_t = r\,Y_t\,dt + \sigma Y_t\,dW_t$
+
+(c) $dY_t = \alpha(\beta - Y_t)\,dt + \gamma\sqrt{Y_t}\,dW_t$
+
+(d) $dY_t = (2t + 1)\,dt + 4\,dW_t$
+
+---
+
+**Exercise 6.** Explain in your own words why an SDE produces a **family of random paths** rather than a single deterministic trajectory. How does this differ from an ordinary differential equation with the same drift term?

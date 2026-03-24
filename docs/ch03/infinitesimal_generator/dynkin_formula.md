@@ -232,3 +232,59 @@ Once the path structure is gone (jump processes, weak solutions), Itô disappear
 - [Generator and Martingales](generator_and_martingales.md)
 - [Applications of Dynkin](applications_of_dynkin.md)
 - [Feynman–Kac Formula](../../ch05/feynman_kac/feynman_kac_formula.md)
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $X_t$ be standard Brownian motion starting at $x \in (0, b)$ and let $\tau = \inf\{t : X_t \notin (0, b)\}$. Use Dynkin's formula with $f(x) = x^3$ to express $\mathbb{E}_x[X_\tau^3]$ in terms of $x$ and $\mathbb{E}_x[\int_0^\tau X_s\,ds]$. (Hint: compute $\mathcal{L}(x^3)$ for the BM generator $\mathcal{L} = \frac{1}{2}\partial_{xx}$.)
+
+---
+
+**Exercise 2.** For Brownian motion on $(a, b)$, use the exit probabilities
+
+$$
+\mathbb{P}_x(X_\tau = b) = \frac{x - a}{b - a}, \qquad \mathbb{P}_x(X_\tau = a) = \frac{b - x}{b - a}
+$$
+
+and Dynkin's formula with $f(x) = x^4$ to show that
+
+$$
+\mathbb{E}_x\!\left[\int_0^\tau X_s^2\,ds\right] = \frac{1}{6}\left[\frac{a^4(b-x) + b^4(x-a)}{b-a} - x^4\right]
+$$
+
+(Hint: $\mathcal{L}(x^4) = 6x^2$ for BM.)
+
+---
+
+**Exercise 3.** Consider the Ornstein--Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$ with $X_0 = x_0$. Applying Dynkin's formula with $f(x) = x^2$ and a deterministic time $t$, derive an integral equation for $\mathbb{E}_{x_0}[X_t^2]$. Solve the resulting ODE to obtain
+
+$$
+\mathbb{E}_{x_0}[X_t^2] = x_0^2 e^{-2\kappa t} + \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})
+$$
+
+---
+
+**Exercise 4.** Explain why Dynkin's formula cannot be directly applied to compute $\mathbb{E}_x[e^{-\lambda \tau}]$ for a stopping time $\tau$ and $\lambda > 0$. What goes wrong if you try to find $f$ such that $\mathcal{L}f = -\lambda f$ and apply the standard Dynkin framework? Which formula provides the correct framework instead?
+
+---
+
+**Exercise 5.** Let $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ (GBM) with $S_0 = s_0$. Apply Dynkin's formula with $f(s) = \ln s$ and a deterministic time $t$ to compute $\mathbb{E}_{s_0}[\ln S_t]$. Verify your answer against the known distribution of $\ln S_t$.
+
+---
+
+**Exercise 6.** Let $X_t$ be BM on $(a, b)$ and $\tau$ the exit time. Suppose $g$ is a $C^2$ function with $\mathcal{L}g = 0$ (i.e., $g$ is harmonic). Use Dynkin's formula to show that
+
+$$
+\mathbb{E}_x[g(X_\tau)] = g(x)
+$$
+
+What are the harmonic functions for BM, and how does this result relate to the exit probabilities $\mathbb{P}_x(X_\tau = b) = \frac{x-a}{b-a}$?
+
+---
+
+**Exercise 7.** Consider the hierarchy: Ito's formula $\to$ Dynkin's formula $\to$ semigroup/generator.
+
+(a) Starting from Ito's lemma for $f(X_t)$ where $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$, show explicitly how taking expectations yields Dynkin's formula.
+
+(b) Give an example of a process (e.g., a jump process or weak solution) for which Dynkin's formula applies but Ito's pathwise formula does not. Explain why the stochastic integral term is not needed at the Dynkin level.

@@ -292,3 +292,48 @@ where the expectation is over the full two-dimensional process.
 - Stein, E. & Stein, J. (1991). *Stock price distributions with stochastic volatility*. Review of Financial Studies.
 - Lewis, A. (2000). *Option Valuation under Stochastic Volatility*. Finance Press.
 - Fouque, J.-P., Papanicolaou, G., & Sircar, R. (2000). *Derivatives in Financial Markets with Stochastic Volatility*. Cambridge University Press.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider the general two-factor SDE system with correlated Brownian motions $W^S$ and $W^V$. Using the decomposition $W_t^V = \rho W_t^S + \sqrt{1-\rho^2}\,W_t^{\perp}$, rewrite the variance dynamics $dV_t = a(V_t)\,dt + b(V_t)\,dW_t^V$ in terms of the independent Brownian motions $W^S$ and $W^{\perp}$. Explain why this decomposition is useful for Monte Carlo simulation.
+
+---
+
+**Exercise 2.** Write down the infinitesimal generator $\mathcal{L}$ for the Heston model:
+
+$$
+\begin{aligned}
+dS_t &= (r-q)S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^S \\
+dV_t &= \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V
+\end{aligned}
+$$
+
+by identifying the coefficients $\mu S$, $\sigma S$, $a$, and $b$ in the general formula. Show explicitly how the cross-derivative term involves $\rho$.
+
+---
+
+**Exercise 3.** In the Stein–Stein model, volatility follows an Ornstein–Uhlenbeck process $dV_t = \kappa(\theta - V_t)\,dt + \xi\,dW_t^V$. Explain why $V_t$ can become negative. Compute the probability $\mathbb{P}(V_t < 0)$ for $V_0 = 0.2$, $\theta = 0.2$, $\kappa = 1.5$, $\xi = 0.3$, and $t = 1$ year, using the known Gaussian distribution of the OU process. Why is this problematic for a stochastic volatility model?
+
+---
+
+**Exercise 4.** Under a two-factor stochastic volatility model, the unconditional distribution of $\log(S_T/S_0)$ is a mixture of normals conditional on integrated variance. Specifically,
+
+$$
+\log(S_T/S_0) \big| \int_0^T V_s\,ds = I \sim \mathcal{N}\!\left((r-q)T - \tfrac{1}{2}I,\; I\right)
+$$
+
+when $\rho = 0$. Show that the unconditional kurtosis of $\log(S_T/S_0)$ exceeds 3 whenever $\text{Var}[\int_0^T V_s\,ds] > 0$. (Hint: use the law of total variance and the formula for kurtosis of a variance-mean mixture of normals.)
+
+---
+
+**Exercise 5.** Compare the Heston and 3/2 models in terms of how volatility of volatility scales with the variance level $V$. In Heston, $b(V) = \xi\sqrt{V}$; in the 3/2 model, $b(V) = \xi V^{3/2}$. Compute the ratio $b_{3/2}(V)/b_{\text{Heston}}(V) = \xi V$ and explain why the 3/2 model generates heavier tails and steeper short-maturity smiles when $V$ is large.
+
+---
+
+**Exercise 6.** The SABR model uses forward-price dynamics $dF_t = \sigma_t F_t^{\beta}\,dW_t^F$ and $d\sigma_t = \nu\sigma_t\,dW_t^{\sigma}$. Explain why there is no drift term in the forward equation (relate to the choice of numeraire). What role does $\beta$ play in determining the backbone of the smile? Contrast the cases $\beta = 0$ (normal), $\beta = 1$ (lognormal), and $\beta = 0.5$.
+
+---
+
+**Exercise 7.** Under Girsanov's theorem, the risk-neutral drift of the variance process is $a^{\mathbb{Q}} = a^{\mathbb{P}} - \lambda_V b$. For the Heston model with $a^{\mathbb{P}}(V) = \kappa^{\mathbb{P}}(\theta^{\mathbb{P}} - V)$ and $b(V) = \xi\sqrt{V}$, suppose $\lambda_V = \lambda\sqrt{V}$ (proportional specification). Derive the risk-neutral parameters $\kappa^{\mathbb{Q}}$ and $\theta^{\mathbb{Q}}$ in terms of $\kappa^{\mathbb{P}}$, $\theta^{\mathbb{P}}$, $\lambda$, and $\xi$. Verify that the Feller condition under $\mathbb{Q}$, namely $2\kappa^{\mathbb{Q}}\theta^{\mathbb{Q}} \geq \xi^2$, is preserved if and only if it holds under $\mathbb{P}$.

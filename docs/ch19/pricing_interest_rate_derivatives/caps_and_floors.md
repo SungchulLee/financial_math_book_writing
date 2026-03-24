@@ -377,3 +377,37 @@ Often structured as **zero-cost collars** where premium paid for cap equals prem
 - Hull, *Options, Futures, and Other Derivatives*, Chapters 29-30
 - Brigo & Mercurio, *Interest Rate Models*, Chapter 1 and 6
 - Rebonato, *Interest Rate Option Models*
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a 2-year cap with semiannual resets ($\delta = 0.5$), notional $N = \$1{,}000{,}000$, and strike $K = 4\%$. The discount factors are $P(0, 0.5) = 0.9901$, $P(0, 1.0) = 0.9803$, $P(0, 1.5) = 0.9706$, $P(0, 2.0) = 0.9610$, and the forward rates are $F_0 = 4.0\%$, $F_1 = 4.0\%$, $F_2 = 4.0\%$, $F_3 = 4.0\%$. Each caplet has Black volatility $\sigma_i = 20\%$. Compute the price of each caplet and the total cap price using Black's formula.
+
+---
+
+**Exercise 2.** Prove cap-floor parity: show that for each period, $\max(L - K, 0) - \max(K - L, 0) = L - K$, and deduce that Cap $-$ Floor $=$ Payer Swap. If the ATM swap rate is 5\% and you observe a 5\%-strike cap trading at 320 bps, what must the 5\%-strike floor be worth?
+
+---
+
+**Exercise 3.** Derive the relationship between a caplet and a put option on a zero-coupon bond. Starting from the caplet payoff $\delta \max(L(T_1, T_2) - K, 0)$ paid at $T_2$, substitute the expression for $L(T_1, T_2)$ in terms of $P(T_1, T_2)$ and show that:
+
+$$
+\delta \max(L - K, 0) = (1 + K\delta)\max\!\left(\frac{1}{1+K\delta} - P(T_1, T_2), 0\right)
+$$
+
+---
+
+**Exercise 4.** A market quotes flat cap volatilities as follows: 1Y cap at 18\%, 2Y cap at 20\%, 3Y cap at 19\%. The caps have annual resets. Bootstrap the spot (caplet) volatilities $\sigma_1$, $\sigma_2$, $\sigma_3$ from these flat volatilities. Explain why the 3Y flat vol can be lower than the 2Y flat vol even though all spot vols are positive.
+
+---
+
+**Exercise 5.** Using the Bachelier (normal) model, price an ATM caplet with $F = K = 3\%$, $\delta = 0.25$, $T = 1$, $P(0, T + \delta) = 0.9926$, normal volatility $\sigma^{(n)} = 60$ bps, and $N = \$10{,}000{,}000$. Compare the result with the approximate conversion formula $\sigma^{(n)} \approx F \cdot \sigma^{(\text{Black})}$ and compute the implied Black volatility.
+
+---
+
+**Exercise 6.** A trader constructs a zero-cost collar by buying a cap at $K_H = 5\%$ and selling a floor at $K_L$, both on the same 3-year semiannual floating rate exposure. If the cap costs 180 bps (in running premium) and the floor premium per basis point of strike is approximately 40 bps per 1\% of strike, estimate the floor strike $K_L$ that makes the collar zero-cost. Discuss the risks of this structure.
+
+---
+
+**Exercise 7.** Compute the cap vega for a 3-year annual cap with $K = 4\%$, $N = \$1{,}000{,}000$, and the following parameters for each caplet: $F_i = 4\%$, $P(0, T_{i+1}) = e^{-0.04 \cdot T_{i+1}}$, $\sigma_i = 22\%$. Verify that the cap vega is the sum of the individual caplet vegas. Which caplet contributes the most vega, and why?

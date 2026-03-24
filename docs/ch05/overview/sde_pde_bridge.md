@@ -379,3 +379,45 @@ The mathematics developed for physics became the foundation of quantitative fina
 - [Dynkin's Formula](../../ch03/infinitesimal_generator/dynkin_formula.md) — integral form of the backward equation
 - [Generator and Martingales](../../ch03/infinitesimal_generator/generator_and_martingales.md) — martingale characterization
 - [Invariant Measures](../../ch03/diffusion_process/invariant_measures_and_stationarity.md) — long-time behavior from Fokker–Planck
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider the Ornstein-Uhlenbeck process $dX_t = -\theta X_t\,dt + \sigma\,dW_t$ with $\theta > 0$. Write down the infinitesimal generator $\mathcal{L}$ and verify that the function $u(t, x) = x\,e^{-\theta t}$ satisfies $\partial_t u = \mathcal{L} u$ (the Kolmogorov backward equation with terminal condition $u(0,x) = x$).
+
+---
+
+**Exercise 2.** For a general one-dimensional diffusion $dX_t = \mu(x)\,dt + \sigma(x)\,dW_t$, the adjoint operator $\mathcal{L}^*$ acting on a density $p$ is
+
+$$
+\mathcal{L}^* p = -\frac{\partial}{\partial x}[\mu(x)\,p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x)\,p]
+$$
+
+Verify the duality relation $\int f(x)\,(\mathcal{L}g)(x)\,dx = \int (\mathcal{L}^* f)(x)\,g(x)\,dx$ by integration by parts, assuming $f$ and $g$ vanish at $\pm\infty$.
+
+---
+
+**Exercise 3.** For Brownian motion ($\mu = 0$, $\sigma = 1$), the transition density is $p(x, t \mid x_0, 0) = \frac{1}{\sqrt{2\pi t}} e^{-(x - x_0)^2/(2t)}$. Verify directly that this density satisfies both the forward equation $\partial_t p = \frac{1}{2}\partial_{xx} p$ in $(x, t)$ and the backward equation $\partial_t p + \frac{1}{2}\partial_{x_0 x_0} p = 0$ in $(x_0, t)$ (with $t$ treated as the same variable in both cases).
+
+---
+
+**Exercise 4.** Let $X_t$ follow geometric Brownian motion $dX_t = rX_t\,dt + \sigma X_t\,dW_t$. Define the value function $u(t, x) = \mathbb{E}[e^{-r(T-t)} g(X_T) \mid X_t = x]$ for a European payoff $g$. Show that $u$ satisfies the Black-Scholes PDE
+
+$$
+\frac{\partial u}{\partial t} + rx\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2 x^2 \frac{\partial^2 u}{\partial x^2} - ru = 0
+$$
+
+by identifying the generator, applying Feynman-Kac, and matching the discounting term.
+
+---
+
+**Exercise 5.** Consider the diffusion $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$ (the CIR process). Write down the generator $\mathcal{L}$ and the Kolmogorov forward equation for the transition density $p(x, t)$. Then find the stationary density $p_\infty(x)$ by solving $\mathcal{L}^* p_\infty = 0$ and identify it as a Gamma distribution.
+
+---
+
+**Exercise 6.** The Feynman-Kac formula states that $u(t,x) = \mathbb{E}_x[e^{-\int_t^T r(X_s)\,ds}\,g(X_T)]$ solves $\partial_t u + \mathcal{L}u - r(x)u = 0$ with $u(T,x) = g(x)$. For the special case $r(x) = r$ (constant) and $dX_t = \mu\,dt + \sigma\,dW_t$ (arithmetic Brownian motion), verify that $u(t, x) = e^{-r(T-t)}\,\mathbb{E}_x[g(X_T)]$ satisfies the PDE by direct substitution, using the fact that $X_T \mid X_t = x$ is $N(x + \mu(T-t),\, \sigma^2(T-t))$.
+
+---
+
+**Exercise 7.** The transition density $p(x, t \mid x_0, t_0)$ satisfies the backward equation in $(x_0, t_0)$ and the forward equation in $(x, t)$ simultaneously. Explain why these two PDEs do not contradict each other, despite involving different differential operators ($\mathcal{L}_{x_0}$ vs. $\mathcal{L}_x^*$). In your answer, clarify the role of which variables are held fixed and which are varied in each equation.

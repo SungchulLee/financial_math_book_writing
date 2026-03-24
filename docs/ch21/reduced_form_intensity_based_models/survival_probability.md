@@ -391,3 +391,35 @@ If bond prices imply $S(t,T_2) > S(t,T_1)$ for $T_2 > T_1$:
 - Brigo, D., & Mercurio, F. (2006). *Interest Rate Models: Theory and Practice*. Springer, Chapter 21.
 - Duffie, D., & Singleton, K. J. (2003). *Credit Risk: Pricing, Measurement, and Management*. Princeton University Press.
 - Schönbucher, P. J. (2003). *Credit Derivatives Pricing Models*. Wiley.
+
+---
+
+## Exercises
+
+**Exercise 1.** For constant intensity $\lambda = 2\%$, compute the survival probability $S(0,T) = e^{-\lambda T}$ for $T = 1, 3, 5, 10$ years. Also compute the corresponding default probabilities $\mathbb{Q}(\tau \le T) = 1 - S(0,T)$. Plot or describe the shape of the survival curve.
+
+---
+
+**Exercise 2.** Show that the conditional survival probability satisfies $S(t,T) = S(0,T)/S(0,t)$ for deterministic intensity. Use this to compute the probability of defaulting between years 3 and 5, given survival to year 3, when $\lambda = 2\%$.
+
+---
+
+**Exercise 3.** The forward default probability over the interval $(T_1, T_2]$ given survival to $T_1$ is
+
+$$
+p(T_1, T_2) = 1 - \frac{S(0, T_2)}{S(0, T_1)}
+$$
+
+For piecewise-constant intensity $\lambda_1 = 1\%$ on $[0,3]$ and $\lambda_2 = 2.5\%$ on $(3,5]$, compute $p(3,5)$ and compare with $p(0,3)$.
+
+---
+
+**Exercise 4.** Under a CIR intensity model, the survival probability has the affine form $S(t,T) = e^{-\alpha(T-t) - \beta(T-t)\lambda_t}$. Explain qualitatively why higher current intensity $\lambda_t$ leads to lower survival probability. For two issuers with $\lambda_0^{(1)} = 1\%$ and $\lambda_0^{(2)} = 3\%$ (same CIR parameters otherwise), which has a steeper survival curve?
+
+---
+
+**Exercise 5.** Survival probabilities can be extracted from CDS spreads using the approximate relation $S(0,T) \approx e^{-\frac{s}{1-R}T}$. A 5-year CDS has spread $s = 150$ bp and recovery $R = 40\%$. Compute the implied 5-year survival probability. What is the implied annual default probability (assuming constant intensity)?
+
+---
+
+**Exercise 6.** Prove that the survival probability function $S(0,T)$ satisfies: (a) $S(0,0) = 1$, (b) $S(0,T)$ is non-increasing in $T$, and (c) $\lim_{T \to \infty} S(0,T) = 0$ when $\int_0^\infty \lambda_s\,ds = \infty$ a.s. Explain the economic meaning of each property.

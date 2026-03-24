@@ -375,3 +375,29 @@ For regulatory 10-day VaR: $\text{VaR}_{0.99}^{10\text{-day}} \approx \sqrt{10} 
 - Christoffersen, P. (1998), "Evaluating Interval Forecasts," *International Economic Review*
 - Kupiec, P. (1995), "Techniques for Verifying the Accuracy of Risk Measurement Models"
 - Glasserman, P., *Monte Carlo Methods in Financial Engineering*
+
+---
+
+## Exercises
+
+**Exercise 1.** Describe the three principal methods for computing VaR: historical simulation, parametric (variance-covariance), and Monte Carlo simulation. For each method, state one key advantage and one key limitation.
+
+---
+
+**Exercise 2.** A portfolio of two assets has weights $w_1 = 0.6$, $w_2 = 0.4$, daily volatilities $\sigma_1 = 2\%$, $\sigma_2 = 3\%$, and correlation $\rho = 0.5$. Using the parametric method, compute the portfolio's daily standard deviation and the 99% VaR for a \$100M portfolio.
+
+---
+
+**Exercise 3.** Historical simulation uses 500 days of return data. Explain the "ghost effect": when a large loss drops out of the estimation window, the VaR can change abruptly even if recent market conditions are stable. Propose a remedy using exponentially weighted returns.
+
+---
+
+**Exercise 4.** Monte Carlo VaR requires specifying a model for the joint distribution of risk factors. Describe the steps: (a) calibrate the model, (b) simulate $N$ scenarios, (c) revalue the portfolio under each scenario, (d) compute the $\alpha$-quantile of losses. How many simulations are typically needed for stable 99% VaR estimates?
+
+---
+
+**Exercise 5.** A portfolio contains options with nonlinear payoffs. Explain why the parametric (delta-normal) method underestimates VaR for such portfolios. How does including gamma (second-order) effects improve the estimate? When is Monte Carlo simulation necessary?
+
+---
+
+**Exercise 6.** Backtest the following VaR model: over 250 trading days, a 99% VaR model produces 6 exceptions. Using the Kupiec test, compute the test statistic $\text{LR}_{\text{POF}} = -2\ln\left[\frac{(1-p)^{n-x} p^x}{(1-\hat{p})^{n-x}\hat{p}^x}\right]$ where $p = 0.01$, $\hat{p} = 6/250$, $n = 250$, $x = 6$. Is the model rejected at the 5% significance level?

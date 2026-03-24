@@ -248,3 +248,41 @@ The relationship between local and implied volatility is characterized by:
 3. **ATM time average**: $\sigma_{\text{imp}}^2(S_0, T) \approx \frac{1}{T}\int_0^T \sigma_{\text{loc}}^2(S_0, t)\,dt$ -- the ATM implied variance is the running average of ATM local variance.
 4. **Skew doubling**: The local volatility skew is approximately twice as steep as the implied volatility skew, a consequence of the midpoint averaging.
 5. **Forward variance analogy**: Local variance plays the role of forward rate, while implied variance plays the role of spot rate.
+
+---
+
+## Exercises
+
+**Exercise 1.** Using the BBF approximation $\sigma_{\text{imp}}(K, T) \approx \sigma_{\text{loc}}((S_0 + K)/2, T/2)$, compute the implied volatility at $K = 90$ and $T = 1$ if the local volatility surface is $\sigma_{\text{loc}}(S, t) = 0.25 - 0.001(S - 100)$. Verify that the implied volatility skew is approximately half as steep as the local volatility skew.
+
+---
+
+**Exercise 2.** The ATM time-average relation states $\sigma_{\text{imp}}^2(S_0, T) \approx \frac{1}{T}\int_0^T \sigma_{\text{loc}}^2(S_0, t) \, dt$. Suppose the ATM local volatility is $\sigma_{\text{loc}}(S_0, t) = 0.20 + 0.05 e^{-2t}$. Compute $\sigma_{\text{imp}}(S_0, T)$ for $T = 0.5$ and $T = 2.0$. Is the implied volatility term structure increasing or decreasing?
+
+---
+
+**Exercise 3.** Prove the skew doubling rule: starting from $\sigma_{\text{imp}}(K, T) \approx \sigma_{\text{loc}}((S_0 + K)/2, T/2)$, differentiate with respect to $K$ and evaluate at $K = S_0$ to show:
+
+$$
+\frac{\partial \sigma_{\text{imp}}}{\partial K}\bigg|_{K=S_0} \approx \frac{1}{2}\frac{\partial \sigma_{\text{loc}}}{\partial S}\bigg|_{S=S_0}
+$$
+
+Explain the financial intuition: why does midpoint averaging halve the observed skew?
+
+---
+
+**Exercise 4.** Given a linear implied volatility skew $\sigma_{\text{imp}}(K) = 0.22 - 0.0006(K - 100)$ with $S_0 = 100$, $T = 0.5$, and $r = 2\%$, $q = 0$, use the Gatheral formula to compute $\sigma_{\text{loc}}^2(100, 0.5)$. You may assume $\partial_T \sigma_{\text{imp}} = 0$ and $\partial_{KK} \sigma_{\text{imp}} = 0$.
+
+---
+
+**Exercise 5.** The forward variance analogy equates local variance with the forward rate and implied variance with the spot rate. Given an ATM implied volatility term structure $\sigma_{\text{imp}}(S_0, T)$ at maturities $T = 0.25, 0.50, 1.0$ with values $22\%, 21\%, 20\%$, compute the ATM local variance at $T = 0.25, 0.50$, and $1.0$ using:
+
+$$
+\sigma_{\text{loc}}^2(S_0, T) = \frac{\partial}{\partial T}[T \cdot \sigma_{\text{imp}}^2(S_0, T)]
+$$
+
+Is the local variance term structure monotone?
+
+---
+
+**Exercise 6.** The "mirror" formula for inverting the BBF relationship is $\sigma_{\text{loc}}(S, t) \approx \sigma_{\text{imp}}(2S - S_0, 2t)$. Given an implied volatility surface $\sigma_{\text{imp}}(K, T) = 0.20 - 0.001(K - 100) + 0.01\sqrt{T}$ with $S_0 = 100$, compute the approximate local volatility at $(S, t) = (95, 0.5)$ and $(S, t) = (105, 0.5)$.

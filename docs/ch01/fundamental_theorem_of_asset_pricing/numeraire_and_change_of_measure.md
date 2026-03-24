@@ -243,3 +243,31 @@ The numéraire framework shows that arbitrage-free pricing is invariant under th
 - Shreve, S. E. (2004). *Stochastic Calculus for Finance II: Continuous-Time Models.* Springer.
 
 - Björk, T. (2009). *Arbitrage Theory in Continuous Time.* 3rd edition, Oxford University Press.
+
+---
+
+## Exercises
+
+**Exercise 1.** In the Black-Scholes model with $r = 0.05$, $\sigma = 0.3$, and $S_0 = 100$, compute the Radon-Nikodym derivative $d\mathbb{Q}^T / d\mathbb{Q}$ at time $T = 1$ when the numéraire changes from the money market account $e^{rt}$ to the zero-coupon bond $P(t, T)$. Express the result in terms of $P(0, T)$ and $e^{rT}$.
+
+---
+
+**Exercise 2.** Two stocks follow geometric Brownian motion under the risk-neutral measure: $dS^1_t = r S^1_t\, dt + 0.2\, S^1_t\, dW^1_t$ and $dS^2_t = r S^2_t\, dt + 0.3\, S^2_t\, dW^2_t$, with $\text{Corr}(W^1, W^2) = 0.5$. Use Margrabe's formula to price the exchange option $(S^1_T - S^2_T)^+$ at $T = 0.5$, given $S^1_0 = 50$, $S^2_0 = 48$, and $r = 0.03$.
+
+---
+
+**Exercise 3.** Verify the pricing invariance formula directly for a simple one-period model. Let $\Omega = \{\omega_1, \omega_2\}$ with two assets: a bond paying 1.05 in both states and a stock with $S_0 = 10$, $S_1(\omega_1) = 14$, $S_1(\omega_2) = 8$. Compute the price of a call with payoff $\Phi = (\max(S_1 - 10, 0))$ using (a) the money market as numéraire and (b) the stock as numéraire. Verify both give the same answer.
+
+---
+
+**Exercise 4.** Show that if $N_t$ is a numéraire (strictly positive traded asset) and $M_t / N_t$ is a $\mathbb{Q}^N$-martingale, then the Radon-Nikodym process $L_t = (M_t / M_0) / (N_t / N_0)$ satisfies $L_0 = 1$ and $\mathbb{E}^{\mathbb{Q}^N}[L_T] = 1$. Why are these two properties necessary and sufficient for $L_T$ to define a change of measure?
+
+---
+
+**Exercise 5.** In the context of interest rate modeling, explain why the $T$-forward measure is the natural choice for pricing a caplet on the LIBOR rate $L(T_{i-1}, T_i)$. What simplification does this numéraire choice provide compared to using the money market account?
+
+---
+
+**Exercise 6.** Consider an exchange option $(S^1_T - S^2_T)^+$ in the Black-Scholes setting with $\sigma_1 = \sigma_2 = \sigma$ and $\rho = 1$ (perfect correlation). Show that Margrabe's formula reduces to $V_0 = \max(S^1_0 - S^2_0, 0)$. Interpret this result: why does the option have no time value when the two assets are perfectly correlated with the same volatility?
+
+---

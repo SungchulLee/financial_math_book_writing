@@ -285,3 +285,33 @@ $$
 | Front-fixing | Track boundary explicitly |
 
 **American option pricing requires specialized numerical techniques to handle the free boundary between continuation and exercise regions.**
+
+---
+
+## Exercises
+
+**Exercise 1.** For an American put with $K = 100$, $r = 0.05$, $\sigma = 0.20$, explain why the exercise boundary $S^*(t)$ satisfies $S^*(t) < K$ for $t < T$ and $S^*(T) = K$. Why is early exercise never optimal for an American call on a non-dividend-paying stock?
+
+---
+
+**Exercise 2.** State the smooth pasting conditions at the free boundary $S = S^*(t)$ for an American put. Explain geometrically why both $V(t, S^*) = K - S^*$ and $V_S(t, S^*) = -1$ must hold simultaneously.
+
+---
+
+**Exercise 3.** The simple projection method enforces $u_j^{n+1} \leftarrow \max(u_j^{n+1}, \Phi_j)$ after each time step. Suppose at a given time step, the unconstrained implicit solve yields $\tilde{u} = (48, 12, 3, 0.5)^T$ on a grid with $S = (40, 80, 120, 160)$ and the put payoff is $\Phi = (60, 20, 0, 0)^T$. Apply the projection and identify the exercise and continuation regions.
+
+---
+
+**Exercise 4.** Write out the linear complementarity problem (LCP) for a single time step of the implicit scheme: $(I - \Delta\tau A)\mathbf{u}^{n+1} \geq \mathbf{u}^n$, $\mathbf{u}^{n+1} \geq \boldsymbol{\Phi}$, $(L\mathbf{u}^{n+1} - \mathbf{u}^n)^T(\mathbf{u}^{n+1} - \boldsymbol{\Phi}) = 0$. Explain the complementarity condition in terms of the exercise and continuation regions.
+
+---
+
+**Exercise 5.** The penalty method replaces the hard constraint with $\rho(V - \Phi)^-$ for large $\rho$. If $\rho = 10^6$, estimate the penalty approximation error. What value of $\rho$ would be needed to make the penalty error smaller than the discretization error on a grid with $\Delta S = 1$ and $\Delta\tau = 0.01$?
+
+---
+
+**Exercise 6.** Compare the four methods for American option pricing (projection, PSOR, penalty, front-fixing) in terms of implementation complexity, accuracy near the free boundary, and computational cost per time step. Which method would you recommend for a production implementation pricing American puts on a single underlying?
+
+---
+
+**Exercise 7.** The early exercise premium is defined as $V_{\text{American}} - V_{\text{European}}$. For an at-the-money put with $K = 100$, $r = 0.05$, $\sigma = 0.20$, $T = 1$, the European put price is approximately $\$5.57$. If a numerical solver gives an American put price of $\$6.08$, what is the early exercise premium? Is this magnitude reasonable?

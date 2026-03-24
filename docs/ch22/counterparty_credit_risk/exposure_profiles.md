@@ -280,3 +280,29 @@ Peak exposure is used for:
 - Brigo, D., Morini, M., & Pallavicini, A., *Counterparty Credit Risk, Collateral and Funding*
 - Pykhtin, M. & Zhu, S. (2007), "A Guide to Modeling Counterparty Credit Risk"
 - Basel Committee, "The Standardised Approach for Measuring Counterparty Credit Risk Exposures"
+
+---
+
+## Exercises
+
+**Exercise 1.** Sketch the typical exposure profile of a plain vanilla interest rate swap over its 10-year life. Explain why the exposure starts near zero, rises to a peak at approximately one-third to one-half of the swap's life, then declines back toward zero at maturity.
+
+---
+
+**Exercise 2.** Define current exposure (CE), potential future exposure (PFE), and expected exposure (EE). For a 5-year FX forward with notional \$100 million, explain qualitatively how each measure evolves over time.
+
+---
+
+**Exercise 3.** An interest rate swap has a current mark-to-market value of \$5 million. Compute the current exposure. If the counterparty defaults today, what is the bank's loss assuming zero recovery? What if the mark-to-market is $-\$3$ million?
+
+---
+
+**Exercise 4.** Explain why the exposure profile of a cross-currency swap differs from that of a single-currency interest rate swap. In particular, why does the cross-currency swap have a "rising then flat" profile rather than a "hump-shaped" profile?
+
+---
+
+**Exercise 5.** A portfolio contains 50 interest rate swaps with the same counterparty. Some swaps have positive value and others negative. Explain why gross exposure (sum of positive values) overstates the actual credit exposure. How does a netting agreement change the exposure profile?
+
+---
+
+**Exercise 6.** Describe the "amortizing" and "diffusing" effects that determine the shape of a swap's exposure profile. Why does the expected exposure initially grow (diffusion effect dominates) and then decline (amortization effect dominates)?

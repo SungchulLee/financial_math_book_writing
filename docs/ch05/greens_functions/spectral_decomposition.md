@@ -277,3 +277,40 @@ $$
 - [Uniqueness via Energy Methods](../heat_equation/uniqueness_via_energy_methods.md) -- energy decay and the Poincare inequality
 - [Free vs Bounded Domains](free_vs_bounded_domains.md) -- discrete vs continuous spectrum
 - [Fundamental Solution](../heat_equation/fundamental_solution.md) -- the free-space case (continuous spectrum)
+
+---
+
+## Exercises
+
+**Exercise 1.**
+For the operator $\mathcal{L} = \frac{1}{2}\partial_{xx}$ on $[0, \pi]$ with Dirichlet conditions, verify that $\phi_n(x) = \sqrt{2/\pi}\sin(nx)$ are eigenfunctions with eigenvalues $\lambda_n = n^2/2$. Check orthonormality: $\int_0^{\pi}\phi_m(x)\phi_n(x)\,dx = \delta_{mn}$.
+
+---
+
+**Exercise 2.**
+Using the spectral decomposition, write the Green's function for the heat equation on $[0, L]$ with Dirichlet conditions as $G(t,x;0,y) = \sum_{n=1}^{\infty}e^{-\lambda_n t}\phi_n(x)\phi_n(y)$. For $L = 1$, compute the first three terms and discuss how quickly the series converges for large $t$.
+
+---
+
+**Exercise 3.**
+Explain why the smallest eigenvalue $\lambda_1$ determines the long-time decay rate of the Green's function. In a double-barrier option context, relate $\lambda_1$ to the rate at which the option price decays toward zero as maturity $T \to \infty$.
+
+---
+
+**Exercise 4.**
+For the free domain $\mathbb{R}$, the eigenvalue problem has a continuous spectrum rather than a discrete one. The Fourier transform replaces the eigenfunction expansion: $G(t,x;0,y) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{i\xi(x-y)}e^{-\xi^2 t/2}\,d\xi$. Verify this gives the Gaussian kernel by evaluating the integral.
+
+---
+
+**Exercise 5.**
+Consider the Sturm-Liouville problem $-\frac{1}{2}\phi'' = \lambda\phi$ on $[0, 1]$ with Neumann conditions $\phi'(0) = \phi'(1) = 0$. Find the eigenfunctions and eigenvalues. Why does $\lambda_0 = 0$ appear, and what does it mean for the long-time behavior of the Green's function?
+
+---
+
+**Exercise 6.**
+A barrier option on $[0, L]$ has its price given by the spectral expansion. Explain why truncating the series after $N$ terms gives exponentially good approximation for large $T - t$, but poor approximation near maturity. What alternative method is better for short maturities?
+
+---
+
+**Exercise 7.**
+For a non-self-adjoint operator $\mathcal{L} = \mu\partial_x + \frac{1}{2}\sigma^2\partial_{xx}$ with $\mu \neq 0$, the eigenfunctions are no longer orthogonal in the standard $L^2$ inner product. Explain how a change of variables (the "speed measure" or Liouville transformation) can symmetrize the operator, and why this is important for obtaining a well-behaved spectral decomposition.

@@ -293,3 +293,52 @@ A common approach is to:
 - Brigo & Mercurio (2006), *Interest Rate Models: Theory and Practice*, Chapter 5 (HJM)
 - Filipović (2009), *Term-Structure Models: A Graduate Course*, Chapter 7
 - Litterman & Scheinkman (1991), "Common Factors Affecting Bond Returns" (original PCA study)
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a one-factor HJM model with constant volatility $\sigma(t, T) = 0.01$. Compute the correlation between changes in the 2-year and 10-year forward rates over a small time interval $dt$. Explain why this model implies that all forward rates are perfectly correlated and discuss the limitation for pricing instruments sensitive to curve shape (e.g., CMS spread options).
+
+---
+
+**Exercise 2.** A two-factor HJM model has exponential volatility structures $\sigma_1(t, T) = \sigma_1 e^{-\kappa_1(T-t)}$ and $\sigma_2(t, T) = \sigma_2 e^{-\kappa_2(T-t)}$ with $\sigma_1 = 0.010$, $\kappa_1 = 0.03$, $\sigma_2 = 0.008$, $\kappa_2 = 0.50$. Compute the instantaneous correlation between the 1-year and 10-year forward rates. How does this correlation depend on the relative magnitudes of the two factors?
+
+---
+
+**Exercise 3.** The humped volatility function $\sigma(t, T) = [\sigma_0 + \sigma_1(T-t)]e^{-\kappa(T-t)}$ is a common specification. For $\sigma_0 = 0.005$, $\sigma_1 = 0.003$, and $\kappa = 0.20$, find the time-to-maturity $\tau^* = T - t$ at which the volatility is maximized. Compute the peak volatility and the long-maturity asymptotic volatility.
+
+---
+
+**Exercise 4.** A principal component analysis of weekly changes in US Treasury zero rates (2Y, 5Y, 10Y, 30Y) produces the following first three eigenvectors:
+
+| Maturity | PC1 (Level) | PC2 (Slope) | PC3 (Curvature) |
+|---|---|---|---|
+| 2Y | 0.45 | -0.60 | 0.55 |
+| 5Y | 0.50 | -0.20 | -0.50 |
+| 10Y | 0.52 | 0.30 | -0.30 |
+| 30Y | 0.53 | 0.70 | 0.60 |
+
+The eigenvalues are $\lambda_1 = 85$, $\lambda_2 = 10$, $\lambda_3 = 3$ (in basis points squared per week). What fraction of total variance is explained by the first two factors? Describe how you would use these eigenvectors to construct a three-factor HJM model.
+
+---
+
+**Exercise 5.** Explain the concept of a separable volatility structure $\sigma_i(t, T) = \phi_i(t)\,\psi_i(T-t)$ in the context of HJM. Why does separability simplify the computation of the drift condition? Show that for a separable specification, the drift becomes
+
+$$
+\alpha(t, T) = \sum_{i=1}^d \phi_i(t)^2\,\psi_i(T-t)\int_t^T \psi_i(u-t)\,du
+$$
+
+---
+
+**Exercise 6.** A piecewise-constant volatility specification assigns a constant volatility to each forward rate in each time period: $\sigma(t, T) = \lambda_{j,k}$ for $t \in [t_{k-1}, t_k)$ and $T \in [T_{j-1}, T_j)$. For a model with 4 quarterly periods and 4 forward rates, write down the full volatility matrix $\Lambda = (\lambda_{j,k})$ and count the number of free parameters. Compare this with the 2--4 parameters of the abcd specification and discuss the trade-off.
+
+---
+
+**Exercise 7.** In a one-factor model, all forward rates are perfectly correlated. Prove this formally by showing that the instantaneous correlation
+
+$$
+\rho(T_1, T_2) = \frac{\sigma(t, T_1)\,\sigma(t, T_2)}{\sqrt{\sigma(t, T_1)^2\,\sigma(t, T_2)^2}} = 1
+$$
+
+for any $T_1, T_2$. Then show that in a two-factor model, the correlation is strictly less than 1 in general, and express it in terms of the factor loadings at $T_1$ and $T_2$.

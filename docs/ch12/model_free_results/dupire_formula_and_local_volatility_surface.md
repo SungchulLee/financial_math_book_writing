@@ -529,3 +529,39 @@ $$
 
 
 Together, these model-free results allow complete characterization of the arbitrage-free price surface and the underlying dynamics without assuming a specific parametric model.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the Dupire formula
+
+$$
+\sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + (r - q) K \frac{\partial C}{\partial K} + q C}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}}
+$$
+
+explain the role of each term in the numerator. What happens to $\sigma_{\text{loc}}^2$ if $\frac{\partial^2 C}{\partial K^2} \to 0$? Why does this indicate a problem with the input data?
+
+---
+
+**Exercise 2.** For a flat implied volatility surface $\sigma_{\text{IV}}(K, T) = \sigma_0$ (constant), show that Dupire's formula yields $\sigma_{\text{loc}}(K, T) = \sigma_0$ for all $(K, T)$. This verifies that the Black-Scholes model is the unique local volatility model with flat smile.
+
+---
+
+**Exercise 3.** Given call prices $C(K, T)$ on a discrete grid, describe how to numerically compute all partial derivatives needed for Dupire's formula. Use centered finite differences: $\frac{\partial C}{\partial T} \approx \frac{C(K, T + \Delta T) - C(K, T - \Delta T)}{2\Delta T}$ and similar expressions for strike derivatives. What grid spacing issues arise for deep OTM options?
+
+---
+
+**Exercise 4.** The forward Kolmogorov (Fokker-Planck) equation for the local volatility model is $\frac{\partial p}{\partial t} = -\frac{\partial}{\partial S}[(r-q)Sp] + \frac{1}{2}\frac{\partial^2}{\partial S^2}[\sigma_{\text{loc}}^2 S^2 p]$. Explain why this is a "forward" equation (evolving in maturity $T$), and contrast it with the "backward" Black-Scholes PDE. Why is the forward equation more natural for calibration from market data?
+
+---
+
+**Exercise 5.** Consider a local volatility surface $\sigma_{\text{loc}}(S, t) = 0.20 + 0.001(S - 100)$ at $t = 0$. Compute the local volatility at $S = 90, 100, 110$. What does this imply about the short-maturity implied volatility smile? Is the smile upward-sloping, downward-sloping, or U-shaped?
+
+---
+
+**Exercise 6.** Dupire's formula can also be expressed in terms of implied volatility rather than call prices. State the version involving $\sigma_{\text{IV}}$, $\frac{\partial \sigma_{\text{IV}}}{\partial T}$, and $\frac{\partial \sigma_{\text{IV}}}{\partial K}$. Why is this "implied volatility form" of Dupire's equation useful in practice despite being more complex?
+
+---
+
+**Exercise 7.** Explain why the local volatility model perfectly calibrates to all vanilla European option prices (existence and uniqueness of $\sigma_{\text{loc}}$), yet may produce unrealistic dynamics for exotic options. Specifically, discuss the forward smile problem: what does the local volatility model predict for the implied volatility smile of a forward-starting option, and how does this compare to market observations?

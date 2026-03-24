@@ -141,3 +141,29 @@ The tail behavior of option prices reflects moment conditions on the underlying:
 - Implied volatility at extreme strikes reflects moment conditions (Roger Lee's formula).
 - Market option prices often imply fatter tails than log-normal.
 - Greeks vanish exponentially for far OTM options.
+
+---
+
+## Exercises
+
+**Exercise 1.** For $S = 100$, $\sigma = 0.20$, $\tau = 1$, $r = 0.03$, compute the OTM call price using the large-strike asymptotic formula for $K = 150$, $200$, and $300$. Compare with the exact Black--Scholes prices. At what strike does the asymptotic formula become a good approximation?
+
+---
+
+**Exercise 2.** Roger Lee's moment formula states that the right-tail slope $\beta_R$ of implied variance is bounded by $2 - 4(\sqrt{\alpha^2 + \alpha} - \alpha)$ when $\mathbb{E}[S_T^{1+\alpha}] < \infty$. For the log-normal model where all moments are finite ($\alpha \to \infty$), show that $\beta_R \to 0$, confirming that Black--Scholes implied volatility is bounded for extreme strikes.
+
+---
+
+**Exercise 3.** The OTM put asymptotics show $P \approx \frac{Ke^{-r\tau}\sigma\sqrt{\tau}}{\sqrt{2\pi}|\ln(S/K)|}\exp(-\frac{(\ln(S/K))^2}{2\sigma^2\tau})$ for $K \to 0$. For $S = 100$, $K = 50$, $\sigma = 0.25$, $\tau = 0.5$, compute this approximation and compare with the exact put price.
+
+---
+
+**Exercise 4.** All Greeks vanish exponentially for far OTM options. For a call with $K = 200$ when $S = 100$, $\sigma = 0.20$, $\tau = 1$, compute $\Delta$, $\Gamma$, and $\nu$ using the exact formulas. Verify that they are negligibly small. What does this imply about hedging deep OTM options?
+
+---
+
+**Exercise 5.** Market implied volatility smiles often show steeper wings than the Black--Scholes model predicts. Using the tail behavior framework, explain why models with heavier tails (e.g., jump-diffusion or variance gamma) produce implied volatility that increases with $|k|$ for large $|k|$, while Black--Scholes does not.
+
+---
+
+**Exercise 6.** In log-moneyness coordinates $k = \ln(K/F)$ where $F = Se^{r\tau}$, the right-tail call price decays as $\exp(-(k - \frac{1}{2}\sigma^2\tau)^2/(2\sigma^2\tau))$. Show that for fixed $\sigma^2\tau$, the tails become thinner as $\tau$ decreases (equivalently, as $\sigma$ increases for fixed $\tau$). What does this mean for the shape of the short-maturity smile?

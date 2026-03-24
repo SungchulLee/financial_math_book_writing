@@ -137,3 +137,29 @@ Combine with robust losses (Huber):
 - Gatheral, *The Volatility Surface* (practical surface and calibration).
 - Fengler, *Semiparametric Modeling of Implied Volatility*.
 - Cont & Tankov (data issues and calibration in jump models).
+
+---
+
+## Exercises
+
+**Exercise 1.** Given three option quotes with bid-ask spreads $s_1 = 0.10$, $s_2 = 0.50$, $s_3 = 0.25$, compute the bid-ask-based weights $w_j = 1/s_j^2$ (unnormalized) and the normalized weights $\tilde{w}_j = w_j / \sum_k w_k$. How much more influence does option 1 have compared to option 2?
+
+---
+
+**Exercise 2.** A calibration uses 30 options across 3 maturities: 5 options at $T_1 = 0.1$, 15 options at $T_2 = 0.5$, and 10 options at $T_3 = 1.0$. Without maturity balancing, which maturity dominates the fit? Apply the per-maturity normalization $w_{j \in T} \leftarrow w_j / \sum_{k \in T} w_k$ and explain how this changes the effective contribution of each maturity.
+
+---
+
+**Exercise 3.** Vega weighting in vol-space means using weights $w_j \propto \text{Vega}_j^2 / s_j^2$. Compute the effective weight for an ATM option with $\text{Vega} = 0.40$ and spread $s = 0.10$, versus a deep OTM option with $\text{Vega} = 0.02$ and spread $s = 0.50$. Should the ATM option have more or less weight? Discuss the implications for tail-sensitive products.
+
+---
+
+**Exercise 4.** A practitioner notices that after calibration, the model fits ATM options very well (residual $< 0.1$ vol points) but fits 25-delta puts poorly (residual $> 2$ vol points). Propose three possible causes: one related to weighting, one related to model limitations, and one related to data quality. For each, suggest a diagnostic test.
+
+---
+
+**Exercise 5.** Design a "spread + maturity balancing + cap" weighting scheme. Start with $w_j = 1/s_j^2$, apply a cap $w_j \le w_{\max}$ and floor $w_j \ge w_{\min}$, then normalize per maturity. For $w_{\max}/w_{\min} = 100$, discuss how this ratio affects the calibration. What happens if the ratio is too large? Too small?
+
+---
+
+**Exercise 6.** A perturbed-data stability test reveals that perturbing the price of a single deep OTM put by one tick changes a calibrated parameter by 30%. This option has a very tight spread and hence a very large weight. Propose a modification to the weighting scheme that would reduce this sensitivity without completely ignoring the option's information content.

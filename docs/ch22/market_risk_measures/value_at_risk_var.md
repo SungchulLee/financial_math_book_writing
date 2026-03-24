@@ -198,3 +198,29 @@ VaR became the standard regulatory risk measure under the **1996 Market Risk Ame
 - McNeil, A., Frey, R., & Embrechts, P., *Quantitative Risk Management*
 - Artzner, P., Delbaen, F., Eber, J.-M., & Heath, D. (1999), "Coherent Measures of Risk"
 - Gneiting, T. (2011), "Making and Evaluating Point Forecasts" (elicitability)
+
+---
+
+## Exercises
+
+**Exercise 1.** A portfolio's daily P&L is normally distributed with mean $\mu = 0$ and standard deviation $\sigma = \$5\text{M}$. Compute the 1-day 99% VaR. Then compute the 10-day 99% VaR using the square-root-of-time rule.
+
+---
+
+**Exercise 2.** Using historical simulation with 500 daily returns, explain how to compute the 99% VaR. How many observations fall in the tail beyond the VaR estimate? What is the main advantage of historical simulation over the parametric (normal) approach?
+
+---
+
+**Exercise 3.** Construct a two-asset example demonstrating that VaR is not subadditive. Let $X_1$ and $X_2$ each have a 4% probability of losing \$100 and 96% probability of zero loss. If the losses are perfectly negatively correlated, compute $\text{VaR}_{0.95}(X_1)$, $\text{VaR}_{0.95}(X_2)$, and $\text{VaR}_{0.95}(X_1 + X_2)$.
+
+---
+
+**Exercise 4.** A bank uses VaR as its primary risk measure. Explain the "cliff effect": positions can be structured to have VaR just below the threshold while having very large expected losses beyond VaR. Why does this make VaR a poor measure of tail risk?
+
+---
+
+**Exercise 5.** Kupiec's POF (Proportion of Failures) test is used to backtest VaR. Over 250 trading days, a 99% VaR model produces 5 exceedances. Compute the expected number of exceedances and perform a binomial test at the 5% significance level. Is the model rejected?
+
+---
+
+**Exercise 6.** Compare VaR at the 99% level for three distributions with the same mean and variance: (a) normal, (b) Student-$t$ with 4 degrees of freedom, and (c) a mixture of two normals. Which distribution produces the highest VaR? What does this reveal about VaR's sensitivity to distributional assumptions?

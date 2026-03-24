@@ -224,3 +224,40 @@ $$
 | Similarity variable | $\eta = x/\sqrt{t}$ |
 
 **Scaling invariance is the fingerprint of diffusion, distinguishing it from wave propagation and revealing the deep connection between the heat equation and Brownian motion.**
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Verify the parabolic scaling: if $u(x, t)$ solves $\partial_t u = \frac{1}{2}\partial_{xx}u$, show that $v(x, t) = u(\lambda x, \lambda^2 t)$ also solves the same equation for any $\lambda > 0$.
+
+---
+
+**Exercise 2.**
+The similarity variable $\eta = x/\sqrt{t}$ reduces the heat equation to an ODE. Seek solutions of the form $u(x, t) = f(\eta)$ with $\eta = x/\sqrt{t}$. Show that $f$ satisfies $f'' + \eta f' = 0$ and identify the solution in terms of the error function.
+
+---
+
+**Exercise 3.**
+Brownian scaling states $B_{\lambda^2 t} \overset{d}{=} \lambda B_t$. Use this to show that the standard deviation of $B_t$ grows as $\sqrt{t}$, not linearly in $t$. Explain why this $\sqrt{t}$ scaling is characteristic of diffusion processes and distinguishes them from ballistic motion.
+
+---
+
+**Exercise 4.**
+The diffusion length $\ell \sim \sigma\sqrt{t}$ determines how far a Brownian particle wanders in time $t$. For a stock with $\sigma = 0.25$, compute the diffusion length after 1 day ($t = 1/252$), 1 month ($t = 1/12$), and 1 year ($t = 1$). How does this relate to option pricing?
+
+---
+
+**Exercise 5.**
+Show that the fundamental solution $G(t, x) = (2\pi t)^{-1/2}\exp(-x^2/(2t))$ is a self-similar function: $G(t, x) = t^{-1/2}\Phi(x/\sqrt{t})$ for some function $\Phi$. Identify $\Phi$ explicitly.
+
+---
+
+**Exercise 6.**
+The wave equation $\partial_{tt}u = c^2\partial_{xx}u$ has scaling $x \mapsto \lambda x$, $t \mapsto \lambda t$ (linear scaling). Compare this with the parabolic scaling $x \mapsto \lambda x$, $t \mapsto \lambda^2 t$ of the heat equation. Explain the physical difference: waves propagate at constant speed $c$, while diffusion spreads as $\sqrt{t}$.
+
+---
+
+**Exercise 7.**
+In option pricing, the Black-Scholes formula depends on $\sigma\sqrt{T-t}$ rather than $\sigma(T-t)$ or $\sigma(T-t)^2$. Explain how this $\sqrt{T-t}$ dependence is a direct consequence of parabolic scaling and why it determines the shape of the implied volatility surface as a function of maturity.

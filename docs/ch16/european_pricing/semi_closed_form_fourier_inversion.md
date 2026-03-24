@@ -244,3 +244,46 @@ $$
 ## Summary
 
 The semi-closed-form Heston pricing formula expresses the European call as $C = S_0 e^{-q\tau} P_1 - K e^{-r\tau} P_2$, where $P_1$ and $P_2$ are exercise probabilities computed by Gil-Pelaez Fourier inversion of the Heston characteristic function under the stock-price numeraire and risk-neutral measures respectively. The integrals converge rapidly due to the exponential decay of the CF and can be evaluated to 10--15 digit accuracy using Gauss-Laguerre quadrature with 32--64 nodes. While not the fastest method for production pricing (COS and FFT are faster for multiple strikes), the semi-closed-form approach provides the definitive benchmark for validating all other Heston pricing implementations.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Starting from the call price $C = S_0 e^{-q\tau} P_1 - K e^{-r\tau} P_2$, derive the put price using put-call parity. Express the result in terms of $P_1$ and $P_2$. Verify that for the worked example ($S_0 = 100$, $K = 100$, $r = 5\%$, $q = 0$, $\tau = 1$, $C = 8.628$), the put price is $P = 8.628 - 100 + 100e^{-0.05} = 3.755$.
+
+---
+
+**Exercise 2.**
+The exercise probability $P_2 = \mathbb{Q}(S_T > K)$ under the risk-neutral measure, and $P_1 = \mathbb{Q}^S(S_T > K)$ under the stock-price numeraire. Explain the economic interpretation of each probability. Why is $P_1 > P_2$ in general for positive-drift assets? Show that in the Black-Scholes model, $P_1 = N(d_1)$ and $P_2 = N(d_2)$ with $d_1 - d_2 = \sigma\sqrt{T}$.
+
+---
+
+**Exercise 3.**
+The semi-closed-form approach computes $P_j$ via:
+
+$$
+P_j = \frac{1}{2} + \frac{1}{\pi}\int_0^\infty \operatorname{Re}\!\left[\frac{e^{-iu\ln K}\varphi_j(u)}{iu}\right] du
+$$
+
+For $P_2$, the CF is $\varphi_2(u) = \varphi(u)$ (the standard Heston CF). For $P_1$, the CF is $\varphi_1(u) = \varphi(u - i)/\varphi(-i)$. Verify that $\varphi(-i) = \mathbb{E}[S_T/S_0] \cdot e^{iu\ln S_0}|_{u=-i}$ equals the forward price ratio $e^{(r-q)\tau}$ (up to the log-spot factor).
+
+---
+
+**Exercise 4.**
+Using Gauss-Laguerre quadrature with $N = 32$ nodes, estimate the total number of CF evaluations needed to price a single European call (accounting for both $P_1$ and $P_2$ integrals). If each CF evaluation costs $T_{\text{cf}} = 0.5$ microseconds, estimate the pricing time. Compare with the COS method using $N_{\text{cos}} = 128$ terms.
+
+---
+
+**Exercise 5.**
+The sensitivity table shows that Simpson's rule with $M = 200$ points achieves an error of $3 \times 10^{-6}$, while Gauss-Laguerre with only 32 nodes achieves $2 \times 10^{-8}$. Explain why Gauss-Laguerre is so much more efficient. Hint: the Heston CF decays as $e^{-cu^2}$ for large $u$, and Gauss-Laguerre quadrature is exact for integrands of the form $p(u)e^{-u}$ where $p$ is a polynomial of degree $\leq 2N - 1$.
+
+---
+
+**Exercise 6.**
+A deep OTM put with $K = 70$, $S_0 = 100$, $\tau = 0.25$ has a very small price. Compute the probabilities $P_1$ and $P_2$ by noting that $\ln(K/S_0) = \ln(0.7) = -0.357$. The factor $e^{-iu\ln K}$ causes the integrand to oscillate with period $2\pi / |\ln K| \approx 1.77$. Estimate how many Gauss-Laguerre nodes are needed to resolve these oscillations accurately. Would adaptive quadrature be preferable in this case?
+
+---
+
+**Exercise 7.**
+The semi-closed-form formula directly provides $P_1$, which is the Heston delta: $\Delta = e^{-q\tau} P_1$. Compute the delta for the worked example ($P_1 = 0.57481$, $q = 0$, $\tau = 1$) and compare with the Black-Scholes delta $N(d_1)$ at the implied volatility $\sigma_{\text{imp}} = 20.1\%$. Explain why the Heston delta differs from the Black-Scholes delta even when the implied volatility is similar, and discuss the implications for hedging.

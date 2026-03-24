@@ -159,3 +159,29 @@ with hyperparameters \(\lambda_i\) chosen by stability/validation.
 
 - Inverse problems and regularization: Engl, Hanke & Neubauer.
 - Practical calibration choices: Gatheral; Cont & Tankov; Andersen & Piterbarg.
+
+---
+
+## Exercises
+
+**Exercise 1.** Write down the price-space and implied-vol-space objective functions for calibrating a model to $m$ vanilla options. Show that if the model is exactly correct, both objectives are minimized at the same $\theta$. Give an example of how the two can yield different $\hat{\theta}$ when the model is misspecified.
+
+---
+
+**Exercise 2.** Using the approximation $\Delta C \approx \text{Vega} \cdot \Delta\sigma$, show that minimizing the price-space objective $\sum w_j (C_j^{\text{model}} - C_j^{\text{mkt}})^2$ is approximately equivalent to minimizing $\sum w_j \cdot \text{Vega}_j^2 \cdot (\sigma_j^{\text{model}} - \sigma_j^{\text{mkt}})^2$. What does this imply about which regions of the surface dominate the price-space calibration?
+
+---
+
+**Exercise 3.** The Huber loss is defined as $\ell_H(r) = \frac{1}{2}r^2$ for $|r| \le \delta$ and $\delta|r| - \frac{1}{2}\delta^2$ for $|r| > \delta$. Calibrate a hypothetical one-parameter model by hand: given residuals $r_1 = 0.02$, $r_2 = 0.01$, $r_3 = 0.5$ (an outlier) with $\delta = 0.1$, compute the Huber loss. Compare to the squared loss. Which residual's influence is most changed?
+
+---
+
+**Exercise 4.** A practitioner uses relative price errors $(C^{\text{model}} - C^{\text{mkt}})/C^{\text{mkt}}$ as the calibration residual. Discuss why this may be problematic for deep out-of-the-money options where $C^{\text{mkt}}$ is very small. Propose an alternative normalization that avoids division by near-zero quantities while still equalizing the scale across the surface.
+
+---
+
+**Exercise 5.** In multi-objective calibration with $\mathcal{L}(\theta) = \lambda_1\mathcal{L}_{\text{vanilla}}(\theta) + \lambda_2\mathcal{L}_{\text{exotic}}(\theta)$, discuss the Pareto frontier of the two objectives. Sketch the trade-off curve and explain how the choice of $\lambda_1/\lambda_2$ determines where on the frontier the calibration lands. When might a trader prefer to sacrifice vanilla fit to improve exotic fit?
+
+---
+
+**Exercise 6.** For maximum likelihood calibration, the weights should satisfy $w_j = 1/\sigma_j^2$ where $\sigma_j$ is the standard deviation of the observation noise. If option $j$ has bid-ask spread $s_j$ and we model $\sigma_j = s_j / (2\sqrt{3})$ (uniform distribution assumption), derive the implied weight $w_j$. What assumption about the noise distribution justifies the factor $2\sqrt{3}$?

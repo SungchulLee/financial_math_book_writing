@@ -93,3 +93,40 @@ viewpoints.
 > **Drift lives in the probability measure, not in the paths.**
 
 Everything that follows is a rigorous formulation of this idea.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Consider two observers watching the same set of stock price paths over one year. Observer A uses measure $\mathbb{P}$ and estimates a positive drift of 8%. Observer B uses measure $\mathbb{Q}$ and sees drift equal to the risk-free rate $r = 2\%$. Explain how both observers can be correct simultaneously, and describe what differs between their assessments.
+
+---
+
+**Exercise 2.**
+Let $W_t$ be a standard Brownian motion under $\mathbb{P}$, and define $Y_t = W_t + 3t$. Under $\mathbb{P}$, compute $\mathbb{E}^{\mathbb{P}}[Y_t]$ and $\mathrm{Var}^{\mathbb{P}}(Y_t)$. Girsanov's theorem asserts there exists a measure $\mathbb{Q}$ under which $Y_t$ is a standard Brownian motion. Under $\mathbb{Q}$, what are $\mathbb{E}^{\mathbb{Q}}[Y_t]$ and $\mathrm{Var}^{\mathbb{Q}}(Y_t)$?
+
+---
+
+**Exercise 3.**
+A skeptic argues: "If changing the probability measure does not change any sample paths, then it cannot possibly change the price of a derivative." Explain the flaw in this reasoning, using the concept that expected values (and hence prices computed as discounted expectations) depend on the measure.
+
+---
+
+**Exercise 4.**
+Suppose you flip a biased coin with $\mathbb{P}(\text{Heads}) = 0.7$. Define a new measure $\mathbb{Q}$ with $\mathbb{Q}(\text{Heads}) = 0.5$. The sample space $\{\text{H}, \text{T}\}$ is the same under both measures. Compute the Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}$ on each outcome and verify that $\mathbb{E}^{\mathbb{P}}[d\mathbb{Q}/d\mathbb{P}] = 1$. Use this discrete example to illustrate the intuition behind Girsanov's theorem.
+
+---
+
+**Exercise 5.**
+In the thought experiment of observing many random paths, suppose the first observer sees an average drift of $+5\%$ per year and the second observer sees an average drift of $0\%$. If both observe the same 10,000 simulated paths, explain how the second observer's probability weights must differ from the first's. Which paths receive higher weight under the second observer's measure?
+
+---
+
+**Exercise 6.**
+The statement "drift lives in the probability measure, not in the paths" is the central idea. Provide a concrete numerical example: take a discrete random walk with three possible paths and show that by reassigning probabilities (without adding or removing paths), you can change the expected drift from positive to zero.
+
+---
+
+**Exercise 7.**
+Explain why the Girsanov measure change preserves the volatility of the process. Specifically, if $Y_t = W_t + \theta t$ has the same quadratic variation as $W_t$ under both $\mathbb{P}$ and $\mathbb{Q}$, what does this imply about the "roughness" or "fluctuation" of the paths? Why is this property important for option pricing?

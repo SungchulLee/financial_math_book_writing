@@ -201,3 +201,47 @@ The Tanaka formula extends calculus to handle non-smooth functions, which are ub
 
 The key takeaway is that the apparent singularity in the payoff function (the kink at the strike) is not a defect but rather a feature that carries crucial information: it concentrates the measure of uncertainty at the strike price and directly links to the probability density of the underlying asset.
 
+---
+
+## Exercises
+
+**Exercise 1.** Compute the first and second distributional derivatives of the put payoff $(K - S_T)^+$ with respect to $S_T$. Express the second derivative in terms of the Dirac delta function and compare with the call payoff case.
+
+---
+
+**Exercise 2.** Using the sifting property of the Dirac delta function, evaluate the following integral:
+
+$$
+\int_0^{\infty} \delta(S - K) \, S^2 \sigma^2(S, T) \, p(S, T) \, dS
+$$
+
+where $p(S, T)$ is the risk-neutral density. Explain the financial interpretation of this result in the context of the Dupire PDE.
+
+---
+
+**Exercise 3.** The gamma of a European call option satisfies $\Gamma = e^{-rT} p(K, T)$. Suppose the risk-neutral density at maturity $T = 1$ is lognormal with parameters $\mu = \ln(100) + (0.05 - 0.5 \times 0.04)$ and $\sigma = 0.2$. Compute the gamma for a call with strike $K = 100$, risk-free rate $r = 5\%$, and current spot $S_0 = 100$.
+
+---
+
+**Exercise 4.** Consider the "straddle" payoff $|S_T - K|$. Write this payoff in terms of call and put payoffs, then compute its first and second distributional derivatives with respect to $S_T$. Show that the second derivative involves a constant term plus a Dirac delta contribution.
+
+---
+
+**Exercise 5.** Starting from the extended Ito formula applied to $(S_T - K)^+$, verify that taking expectations of both sides and differentiating with respect to $T$ produces the Dupire PDE:
+
+$$
+C_T + rK C_K + \frac{1}{2}\sigma^2(K, T)K^2 C_{KK} = rC
+$$
+
+Identify which step uses the Dirac delta sifting property and which step uses the martingale property of the discounted stock price.
+
+---
+
+**Exercise 6.** Prove that for any twice-differentiable function $g(S)$ with compact support, the Breeden-Litzenberger identity
+
+$$
+g(S_T) = g(F) + g'(F)(S_T - F) + \int_0^F g''(K)(K - S_T)^+ \, dK + \int_F^{\infty} g''(K)(S_T - K)^+ \, dK
+$$
+
+holds, where $F = \mathbb{E}^Q[S_T]$. Hint: use the distributional decomposition of $g''$ and the call/put payoff second derivatives.
+

@@ -293,3 +293,51 @@ Swaption markets quote in terms of **Black implied volatility** $\sigma_S^{\text
 - Rebonato (2002), *Modern Pricing of Interest-Rate Derivatives*, Chapter 8
 - Jamshidian (1997), "LIBOR and Swap Market Models and Measures"
 - Andersen & Piterbarg (2010), *Interest Rate Modeling*, Volume II, Chapter 12
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a swap with semiannual payments over 3 years ($T_0 = 0$, payment dates $T_1 = 0.5, T_2 = 1.0, \ldots, T_6 = 3.0$). The zero-coupon bond prices are $P(0, 0.5) = 0.985$, $P(0, 1.0) = 0.968$, $P(0, 1.5) = 0.950$, $P(0, 2.0) = 0.930$, $P(0, 2.5) = 0.910$, $P(0, 3.0) = 0.889$. Compute the annuity factor $A(0)$ and the forward swap rate $S(0)$.
+
+---
+
+**Exercise 2.** Using the data from Exercise 1, price a 3-year ATM payer swaption (exercise at $T_0 = 0$, but assume the swaption expires in 1 year with $T_0 = 1$, payment dates $T_1 = 1.5, \ldots, T_4 = 3.0$) with Black implied volatility $\sigma_S = 25\%$. Recompute $A(0)$ and $S(0)$ for this sub-swap and apply Black's swaption formula.
+
+---
+
+**Exercise 3.** Prove that the forward swap rate $S(t) = (P(t, T_0) - P(t, T_n))/A(t)$ can be written as a weighted average of forward LIBOR rates
+
+$$
+S(t) = \sum_{i=0}^{n-1} w_i(t)\,L_i(t), \qquad w_i(t) = \frac{\delta_i\,P(t, T_{i+1})}{A(t)}
+$$
+
+and verify that $\sum_{i=0}^{n-1} w_i(t) = 1$. State what additional assumption is needed for this decomposition to hold exactly.
+
+---
+
+**Exercise 4.** Using Rebonato's frozen-weight approximation, compute the Black swaption implied volatility for a 2-year into 3-year swaption in an LMM with three annual forward rates. The parameters are: $L_0(0) = 4.0\%$, $L_1(0) = 4.2\%$, $L_2(0) = 4.5\%$; flat volatilities $\sigma_0 = \sigma_1 = \sigma_2 = 20\%$; and exponential correlation $\rho_{ij} = e^{-0.1|i-j|}$. The forward swap rate is $S(0) = 4.23\%$ with weights $w_0 = 0.34$, $w_1 = 0.33$, $w_2 = 0.33$.
+
+---
+
+**Exercise 5.** Derive the put--call parity relationship for swaptions. Show that the difference between a payer and a receiver swaption with the same strike and expiry equals
+
+$$
+V_0^{\text{payer}} - V_0^{\text{receiver}} = A(0)(S(0) - K)
+$$
+
+Interpret this result in terms of the value of a forward-starting swap.
+
+---
+
+**Exercise 6.** An ATM swaption straddle on a 5-year swap has $A(0) = 4.20$, $S(0) = 3.8\%$, and Black implied volatility $\sigma_S = 22\%$ with expiry $T_0 = 2$ years. Using the approximation $V_0^{\text{ATM straddle}} \approx 2A(0)\,S(0)\,v_S/\sqrt{2\pi}$, compute the straddle value and express it as a percentage of the notional.
+
+---
+
+**Exercise 7.** The swap measure $\mathbb{Q}^A$ can be viewed as a weighted combination of individual forward measures. Starting from the Radon--Nikodym derivative
+
+$$
+\frac{d\mathbb{Q}^A}{d\mathbb{Q}^{T_j}}\bigg|_{\mathcal{F}_t} = \frac{A(t)\,P(0, T_j)}{P(t, T_j)\,A(0)},
+$$
+
+derive the Girsanov drift adjustment $dW_t^A = dW_t^{T_j} - [\sigma_A(t) - \Sigma(t, T_j)]\,dt$, identifying the volatility $\sigma_A(t)$ of the annuity factor in terms of the individual bond volatilities $\Sigma(t, T_k)$.

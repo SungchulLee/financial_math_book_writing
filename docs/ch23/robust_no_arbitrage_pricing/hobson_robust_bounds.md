@@ -357,3 +357,39 @@ The choice of embedding determines the extremal model, and different payoff stru
 6. **Practical Relevance**: The gap between robust upper and lower bounds quantifies model risk for exotic derivatives, informing reserve calculations and model validation
 
 7. **Variance Swaps**: Uniquely among common derivatives, variance swaps have zero model risk --- their price is completely determined by the marginal distribution
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $\mu = \frac{1}{4}\delta_{60} + \frac{1}{2}\delta_{100} + \frac{1}{4}\delta_{140}$ with $S_0 = 100$. Verify that $\delta_{S_0} \preceq_{cx} \mu$ by checking the martingale condition and computing $\int f \, d\mu$ for the convex functions $f(x) = (x - 100)^+$ and $f(x) = |x - 100|$.
+
+---
+
+**Exercise 2.** For the marginal $\mu$ in Exercise 1, compute the European call prices $C(K)$ for $K = 60, 80, 100, 120, 140$, and evaluate Hobson's robust upper bound for the floating-strike lookback call:
+
+$$
+\overline{V}_{\text{lookback}} = \int_0^\infty \frac{2 \, C(K)}{K} \, dK
+$$
+
+by discretizing the integral over the support of $\mu$.
+
+---
+
+**Exercise 3.** Consider the forward start option payoff $\Phi = (S_T / S_{t_1} - 1)^+$ with only the terminal marginal $\mu$ given. Prove the lower bound $\underline{V} = 0$ by constructing a martingale model where $S_{t_1} = S_T$ almost surely. Then prove the upper bound $\overline{V} = C(S_0)/S_0$ by showing that $\Phi \leq (S_T/S_0 - 1)^+$ holds under the martingale model where $S_{t_1} = S_0$ almost surely.
+
+---
+
+**Exercise 4.** Explain why the variance swap payoff $\sum_{i=1}^N (\log(S_{t_i}/S_{t_{i-1}}))^2$ has zero model risk in Hobson's framework, i.e., $\overline{V} = \underline{V}$. Use the Carr-Madan formula to show that the price is uniquely determined by the marginal $\mu$, and argue via the dual (superhedging) formulation that no gap exists.
+
+---
+
+**Exercise 5.** In the two-marginal MOT setting with marginals $\mu_1$ at $T_1$ and $\mu_2$ at $T_2 > T_1$, formulate the strong duality result for the robust upper bound of a barrier option payoff $(S_{T_2} - K)^+ \cdot \mathbb{1}\{\max_{t \leq T_2} S_t \geq H\}$. Write the dual as an infimum over semi-static superhedging strategies and interpret the static and dynamic components of the hedge.
+
+---
+
+**Exercise 6.** Let $\mu$ be lognormal with parameters matching Black-Scholes with $\sigma = 0.25$ and $S_0 = 100$. Numerically estimate (to two decimal places) the Hobson robust upper bound $\overline{V}_{\text{lookback}} = \int_0^\infty 2C_{\text{BS}}(K)/K \, dK$ and compare it to the Black-Scholes lookback call price. What fraction of the Black-Scholes price does the model risk gap represent?
+
+---
+
+**Exercise 7.** For the double no-touch payoff $\Phi = \mathbb{1}\{L \leq S_t \leq H \text{ for all } t \in [0,T]\}$ with $L = 80$, $H = 120$, and $S_0 = 100$, explain qualitatively why the robust upper bound is attained by a martingale model that keeps paths inside $[L, H]$ as long as possible. How does the extremal model relate to the Perkins embedding of the Skorokhod embedding problem?

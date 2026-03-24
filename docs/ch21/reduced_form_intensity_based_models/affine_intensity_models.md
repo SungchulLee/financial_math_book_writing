@@ -370,3 +370,29 @@ $$
 - Duffie, D., & Singleton, K. J. (1999). Modeling term structures of defaultable bonds. *Review of Financial Studies*, 12(4), 687--720.
 - Duffie, D., & Garleanu, N. (2001). Risk and valuation of collateralized debt obligations. *Financial Analysts Journal*, 57(1), 41--59.
 - Lando, D. (2004). *Credit Risk Modeling: Theory and Applications*. Princeton University Press.
+
+---
+
+## Exercises
+
+**Exercise 1.** In a one-factor CIR intensity model $d\lambda_t = \kappa(\theta - \lambda_t)dt + \sigma\sqrt{\lambda_t}\,dW_t$, the survival probability is $S(t,T) = e^{-\alpha(T-t) - \beta(T-t)\lambda_t}$. State the Riccati ODEs that $\alpha(\cdot)$ and $\beta(\cdot)$ must satisfy. Verify the boundary conditions $\alpha(0) = 0$ and $\beta(0) = 0$.
+
+---
+
+**Exercise 2.** For the CIR model with $\kappa = 0.5$, $\theta = 2\%$, $\sigma = 8\%$, and $\lambda_0 = 1.5\%$, compute the expected intensity at $t = 5$: $\mathbb{E}[\lambda_5] = \theta + (\lambda_0 - \theta)e^{-\kappa t}$. Then estimate the approximate 5-year credit spread using $s \approx (1-R)\,\mathbb{E}[\bar{\lambda}]$ with $R = 40\%$.
+
+---
+
+**Exercise 3.** Show that the affine model nests the Vasicek intensity model as a special case by taking $d\lambda_t = \kappa(\theta - \lambda_t)dt + \sigma\,dW_t$. What is the main disadvantage of the Vasicek specification for default intensity? Under what conditions can $\lambda_t$ become negative?
+
+---
+
+**Exercise 4.** In a two-factor affine model, $\lambda_t = X_t^{(1)} + X_t^{(2)}$ where each factor follows an independent CIR process. Explain the economic motivation for using two factors. How does the two-factor structure affect the shape of the credit spread term structure compared to a single-factor model?
+
+---
+
+**Exercise 5.** The Feller condition for the CIR model is $2\kappa\theta \ge \sigma^2$. Verify whether the parameters $\kappa = 0.5$, $\theta = 2\%$, $\sigma = 10\%$ satisfy this condition. Explain what happens to the intensity process when the Feller condition is violated.
+
+---
+
+**Exercise 6.** Affine jump-diffusion models extend the CIR intensity by adding jumps: $d\lambda_t = \kappa(\theta - \lambda_t)dt + \sigma\sqrt{\lambda_t}\,dW_t + dJ_t$. Explain why jumps in default intensity are economically motivated (e.g., sudden credit events, rating downgrades). How does adding jumps affect the tail behavior of the credit spread distribution?

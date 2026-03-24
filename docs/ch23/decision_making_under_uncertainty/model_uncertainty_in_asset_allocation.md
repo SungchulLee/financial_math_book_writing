@@ -438,3 +438,29 @@ with appropriate importance weights.
 4. **Continuous Updating**: Update model beliefs as new evidence arrives
 
 Model uncertainty in asset allocation represents a fundamental challenge that standard optimization ignores, requiring either Bayesian or robust approaches to produce sensible investment strategies.
+
+---
+
+## Exercises
+
+**Exercise 1.** An investor considers two models for equity returns: Model A (GBM with $\mu_A = 0.08$, $\sigma_A = 0.18$) and Model B (regime-switching with $\mu_B^1 = 0.12$, $\sigma_B^1 = 0.12$ in the bull regime and $\mu_B^2 = -0.05$, $\sigma_B^2 = 0.30$ in the bear regime). For a mean-variance investor with risk aversion $\lambda = 3$, compute the optimal equity allocation under each model. How does the allocation change under Bayesian model averaging with equal model weights?
+
+---
+
+**Exercise 2.** Using the Bayesian framework, derive the posterior distribution of the mean return $\mu$ given a conjugate prior $\mu \sim N(\mu_0, \sigma_0^2)$ and $n$ observed returns with sample mean $\bar{X}$ and known variance $\sigma^2$. Show that the posterior predictive variance exceeds the sample variance by a term reflecting estimation uncertainty, and explain how this additional variance affects portfolio construction.
+
+---
+
+**Exercise 3.** Compare three approaches to handling model uncertainty in a two-asset allocation problem: (a) plug-in optimization using MLE estimates, (b) Bayesian model averaging, and (c) robust optimization with an ellipsoidal uncertainty set. For each, describe the resulting portfolio and explain which approach produces the most diversified allocation.
+
+---
+
+**Exercise 4.** The "estimation risk premium" is the additional return required to compensate for parameter uncertainty. For a single risky asset with uncertain mean $\mu \sim N(\hat{\mu}, \sigma_\mu^2)$, derive the effective risk aversion of a Bayesian investor and show that it exceeds the nominal risk aversion $\lambda$ by a term proportional to $\sigma_\mu^2 / \sigma^2$, where $\sigma^2$ is the return variance.
+
+---
+
+**Exercise 5.** Demonstrate the "1/N puzzle": for $N = 10$ assets with estimated mean returns and covariance, show numerically that the naive equal-weight portfolio $w_i = 1/N$ often outperforms the Markowitz optimal portfolio out of sample. Explain this result in terms of estimation error amplification and the condition number of the sample covariance matrix.
+
+---
+
+**Exercise 6.** An investor uses Bayesian model averaging with three models: Black-Scholes, Heston, and SABR. The posterior model probabilities are $P(M_1 | \text{data}) = 0.5$, $P(M_2 | \text{data}) = 0.35$, $P(M_3 | \text{data}) = 0.15$. For a portfolio of options, compute the model-averaged price and the model uncertainty contribution to total pricing uncertainty. How should the investor update these weights as new data arrives?

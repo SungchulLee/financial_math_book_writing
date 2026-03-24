@@ -947,3 +947,29 @@ The theory continues to evolve with extensions to:
 - Machine learning integration
 
 g-Expectations represent a cornerstone of modern mathematical finance, providing rigorous foundations for robust valuation and decision-making under uncertainty.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a linear generator $g(t, y, z) = \mu y + \lambda z$, show that the g-expectation reduces to a standard expectation under a change of measure. Specifically, prove that $\mathcal{E}_g[\xi] = \mathbb{E}_\mathbb{Q}[e^{-\mu T}\xi]$ where $\mathbb{Q}$ is the measure with Girsanov kernel $\lambda$.
+
+---
+
+**Exercise 2.** Prove that the g-expectation $\mathcal{E}_g[\xi] = Y_0$ where $(Y, Z)$ solves $-dY_t = g(t, Y_t, Z_t) \, dt - Z_t \, dW_t$ with $Y_T = \xi$ satisfies monotonicity: if $\xi_1 \leq \xi_2$ a.s., then $\mathcal{E}_g[\xi_1] \leq \mathcal{E}_g[\xi_2]$. Use the comparison theorem for BSDEs.
+
+---
+
+**Exercise 3.** The generator $g(z) = \frac{1}{2}\overline{\sigma}^2 z^+ - \frac{1}{2}\underline{\sigma}^2 z^-$ (where $z^+ = \max(z, 0)$ and $z^- = \max(-z, 0)$) corresponds to the uncertain volatility model. Show that the resulting g-expectation is sublinear: $\mathcal{E}_g[\xi_1 + \xi_2] \leq \mathcal{E}_g[\xi_1] + \mathcal{E}_g[\xi_2]$. What financial interpretation does sublinearity have for derivative pricing?
+
+---
+
+**Exercise 4.** The conditional g-expectation $\mathcal{E}_g[\xi | \mathcal{F}_t] = Y_t$ satisfies the tower property: $\mathcal{E}_g[\mathcal{E}_g[\xi | \mathcal{F}_s] | \mathcal{F}_t] = \mathcal{E}_g[\xi | \mathcal{F}_t]$ for $t \leq s$. Prove this using the uniqueness of BSDE solutions, and explain why this property is essential for dynamic risk management.
+
+---
+
+**Exercise 5.** Consider the quadratic generator $g(t, y, z) = -ry + \frac{\beta}{2}|z|^2$ arising from exponential utility. Solve the BSDE explicitly for a terminal condition $\xi = (S_T - K)^+$ under geometric Brownian motion and show that the g-expectation gives the indifference price of the option. How does $\beta$ affect the price relative to the Black-Scholes price?
+
+---
+
+**Exercise 6.** A coherent risk measure $\rho(\xi) = \mathcal{E}_g[-\xi]$ can be defined via g-expectations. For the generator $g(z) = \theta|z|$ (entropic-type), compute $\rho(\xi)$ for a Gaussian random variable $\xi \sim N(\mu, \sigma^2)$ and show that $\rho(\xi) = -\mu + \theta\sigma$. Compare this with the CVaR risk measure and discuss the advantages of the g-expectation-based approach for dynamic risk measurement.

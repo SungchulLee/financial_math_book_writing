@@ -322,3 +322,51 @@ $$
 Because Brownian paths have infinite variation, summing absolute increments $\sum |B_{t_{k+1}} - B_{t_k}|$ diverges as the partition becomes finer. Moreover, unlike the time integral, the limit of discrete sums **depends on where the integrand is sampled**—left endpoint, midpoint, and right endpoint give different limits. Different conventions lead to different stochastic integrals: most notably the **Itô integral** (left endpoint) and the **Stratonovich integral** (midpoint).
 
 To make sense of $\int_0^t f(s, B_s)\, dB_s$, we must introduce a new definition of integration specifically designed for stochastic processes—the Itô integral studied in the next section.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $B_t$ be a standard Brownian motion. Compute the mean and variance of the time integral
+
+$$
+\int_0^T B_s^2 \, ds
+$$
+
+*Hint*: Use Fubini's theorem and $\mathbb{E}[B_s^2] = s$, $\mathbb{E}[B_s^4] = 3s^2$.
+
+---
+
+**Exercise 2.** Using the coin-flip approximation with $n = 10$ and the sequence $T, H, H, T, T, H, T, H, H, H$, compute the discrete Riemann sum approximation to
+
+$$
+\int_0^1 B_s \, ds
+$$
+
+Compare your answer with the theoretical mean of this integral.
+
+---
+
+**Exercise 3.** Explain why the Riemann sum approximation to $\int_0^t f(s, B_s)\, ds$ converges to the same limit regardless of whether the integrand is evaluated at the left endpoint, midpoint, or right endpoint of each subinterval. Why does this property fail for stochastic integrals of the form $\int_0^t f(s, B_s)\, dB_s$?
+
+---
+
+**Exercise 4.** Compute the variance of
+
+$$
+\int_0^T s^2 B_s \, ds
+$$
+
+by evaluating the double integral $\int_0^T \int_0^T s^2 t^2 \min(s,t)\, ds\, dt$.
+
+---
+
+**Exercise 5.** In the short-rate model, the discount factor is $D(0,T) = \exp\!\left(-\int_0^T r_s\, ds\right)$, where $r_t = r_0 + \sigma B_t$ for constants $r_0 > 0$ and $\sigma > 0$. Show that $\int_0^T r_s\, ds$ is Gaussian and find its mean and variance.
+
+---
+
+**Exercise 6.** Let $f(s) = e^{-\alpha s}$ for a constant $\alpha > 0$. Show that the integral $\int_0^T f(s) \, ds$ is deterministic and compute its value. Then consider the integral $\int_0^T f(s) B_s \, ds$ and compute its variance.
+
+---
+
+**Exercise 7.** Prove that $\int_0^t B_s \, ds$ has the same distribution as $\int_0^t (t - s) \, dB_s$ by computing the mean and variance of both sides. Why does the representation $\int_0^t B_s\, ds = tB_t - \int_0^t s\, dB_s$ (integration by parts) make this plausible?

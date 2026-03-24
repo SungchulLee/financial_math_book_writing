@@ -179,3 +179,35 @@ This reduces a high-dimensional global optimization to a sequence of low-dimensi
 | Calibration | Sequential by maturity; regularize inter-interval jumps |
 
 The piecewise-constant extension connects to the [Bates model](bates_model.md) (adding jumps for short-maturity fit) and the [Double Heston model](double_heston_model.md) (adding a second factor for richer dynamics). All three extensions address the same fundamental limitation: constant-parameter Heston cannot simultaneously reproduce the entire term structure of market smiles.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+A piecewise-constant Heston model uses two intervals: $[0, T_1]$ with parameters $(\kappa_1, \theta_1, \xi_1, \rho_1)$ and $[T_1, T_2]$ with $(\kappa_2, \theta_2, \xi_2, \rho_2)$. If $T_1 = 0.25$ and $T_2 = 1.0$, how many total parameters are there (including $v_0$)? If the market provides 5 maturities with 9 strikes each (45 options), what is the data-to-parameter ratio?
+
+---
+
+**Exercise 2.**
+The CF for piecewise-constant parameters is computed by chaining: first solve the Riccati system on $[T_1, T_2]$ with parameters $(\kappa_2, \theta_2, \xi_2, \rho_2)$ and terminal condition $C(0) = D(0) = 0$, then use $C(T_2 - T_1)$ and $D(T_2 - T_1)$ as initial conditions for the next interval. Describe this sequential integration procedure. Why does the order of integration matter?
+
+---
+
+**Exercise 3.**
+Allowing $\rho$ to vary between intervals means the leverage effect can be different at short and long horizons. If $\rho_1 = -0.85$ (steep short-maturity skew) and $\rho_2 = -0.50$ (flatter long-maturity skew), explain how this matches the empirical observation that equity skews flatten with maturity. What constraint ensures continuity of the implied volatility surface at the interval boundary $T_1$?
+
+---
+
+**Exercise 4.**
+The calibration of piecewise-constant parameters is typically done sequentially: first calibrate $(\kappa_1, \theta_1, \xi_1, \rho_1)$ to options with $T \leq T_1$, then calibrate $(\kappa_2, \theta_2, \xi_2, \rho_2)$ to options with $T_1 < T \leq T_2$ (holding the first interval's parameters fixed). Discuss the advantages and disadvantages of this sequential approach compared to simultaneous calibration of all parameters.
+
+---
+
+**Exercise 5.**
+Adding more intervals improves the fit but increases the risk of overfitting and parameter instability. Propose a regularization strategy that penalizes large jumps between consecutive intervals: $\sum_k \lambda (\Theta_{k+1} - \Theta_k)^2$. For $\lambda = 1.0$ and intervals with $(\rho_1, \rho_2, \rho_3) = (-0.85, -0.65, -0.50)$, compute the regularization penalty. How does this compare to a typical fit improvement of $10^{-4}$ in the objective function?
+
+---
+
+**Exercise 6.**
+The time-dependent Heston model with $N$ intervals has $4N + 1$ parameters (4 per interval plus $v_0$). For $N = 5$, this gives 21 parameters. If the calibration surface has 60 options, the ratio is approximately 3:1. Design a strategy to keep the effective parameter count manageable: for example, fix $\kappa$ and $\xi$ across all intervals (they are poorly identified) and vary only $\theta$ and $\rho$. How many parameters does this reduced model have?

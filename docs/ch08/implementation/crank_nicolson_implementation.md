@@ -265,3 +265,29 @@ print(f"Max absolute error (log space)     : {np.max(np.abs(V_log - V_exact_log)
 - The Crank-Nicolson scheme offers a **balance between accuracy and stability**.
 - It requires solving a tridiagonal system at each time step, like the implicit method.
 - It is **ideal for production-quality option pricing engines**, especially for European-style derivatives.
+
+---
+
+## Exercises
+
+**Exercise 1.** Write out the Crank-Nicolson update in component form: express $u_j^{n+1}$ as a function of $u_{j-1}^{n+1}$, $u_j^{n+1}$, $u_{j+1}^{n+1}$ and $u_{j-1}^n$, $u_j^n$, $u_{j+1}^n$. Identify the left-hand side matrix and right-hand side matrix coefficients.
+
+---
+
+**Exercise 2.** Using the parameters $S_0 = 100$, $K = 100$, $T = 1$, $r = 0.05$, $\sigma = 0.2$, $M = 100$, compare the Crank-Nicolson solution in original space vs log-space. Which coordinate system produces a smaller maximum absolute error? Explain why log-space is expected to perform better for puts at small $S$ values.
+
+---
+
+**Exercise 3.** The Crank-Nicolson scheme averages the spatial operator between time levels $n$ and $n+1$. Show that this averaging is equivalent to applying the trapezoidal rule to the ODE system $d\mathbf{u}/d\tau = A\mathbf{u}$, and explain why the trapezoidal rule is second-order accurate.
+
+---
+
+**Exercise 4.** For the American call implementation in the code above, the explicit scheme with early exercise is used instead of Crank-Nicolson. Explain why the Crank-Nicolson scheme with projection can produce spurious oscillations for American options, and describe the Rannacher time-stepping fix.
+
+---
+
+**Exercise 5.** The boundary condition $\mathbf{b}_{\text{boundary}}$ in the Crank-Nicolson system $A\mathbf{V}^{n+1} = B\mathbf{V}^n + \mathbf{b}_{\text{boundary}}$ depends on the boundary values at both time levels $n$ and $n+1$. Explain why both boundary values contribute and write down the explicit form of the boundary vector for a European call.
+
+---
+
+**Exercise 6.** If you double the spatial resolution from $M = 100$ to $M = 200$ while keeping $N$ fixed, what happens to the Crank-Nicolson solution accuracy? What is the optimal relationship between $M$ and $N$ for the Crank-Nicolson scheme to achieve balanced spatial and temporal accuracy?

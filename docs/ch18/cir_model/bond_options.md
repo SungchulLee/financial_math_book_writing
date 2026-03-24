@@ -201,3 +201,33 @@ The exact numerical evaluation requires the non-central chi-squared CDF, which i
 ## Summary
 
 The CIR model provides closed-form European bond option prices through the non-central chi-squared distribution. The formula decomposes the call price into two terms --- each involving a non-central chi-squared CDF with different parameters --- analogous to the two normal CDF terms in the Black-Scholes formula. The critical rate $r^* = \frac{1}{B(S-T)}\ln(A(S-T)/K)$ translates the bond strike into the rate domain. Put-call parity $C - P = P(t,S) - KP(t,T)$ completes the framework. The non-central chi-squared distribution arises because the CIR process preserves its distributional family under the $T$-forward measure change, making the entire derivation possible without numerical PDE solvers.
+
+---
+
+## Exercises
+
+**Exercise 1.** For CIR parameters $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.1$, compute $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$. Then compute the bond price functions $A(4)$ and $B(4)$ for a 4-year zero-coupon bond. Given a strike $K = 0.80$, find the critical rate $r^* = \frac{1}{B(4)}\ln\frac{A(4)}{K}$.
+
+---
+
+**Exercise 2.** Explain the economic meaning of the critical rate $r^*$. If $r_T < r^*$, why is the call option on the bond exercised? How does the critical rate change if the strike $K$ increases? What happens in the limiting case $K \to 0$ and $K \to 1$?
+
+---
+
+**Exercise 3.** The CIR call option formula involves two non-central chi-squared CDF evaluations with different parameters $\lambda_1$ and $\lambda_2$. Explain the role of each term by analogy with the Black-Scholes formula $C = S\,\Phi(d_1) - Ke^{-rT}\Phi(d_2)$. Which CIR term corresponds to the "delta-weighted asset value" and which to the "discounted strike probability"?
+
+---
+
+**Exercise 4.** Verify put-call parity for CIR bond options. Starting from $C(t) - P_{\text{put}}(t) = P(t,S) - K\,P(t,T)$, use the call formula involving $\chi^2(x_1; d, \lambda_1)$ and $\chi^2(x_2; d, \lambda_2)$ to derive the put formula. Show that the complementary probabilities $1 - \chi^2(\cdot)$ appear naturally.
+
+---
+
+**Exercise 5.** In the zero-volatility limit $\sigma \to 0$, the CIR model becomes deterministic with $r_t = \theta + (r_0 - \theta)e^{-\kappa t}$. For $\kappa = 0.5$, $\theta = 0.06$, $r_0 = 0.05$, compute $r_T$ at $T = 1$ year. Then compute $P(T, S)$ for $S = 5$ directly (using the deterministic forward rate) and determine whether a call with strike $K = 0.80$ would be exercised.
+
+---
+
+**Exercise 6.** For the at-the-money forward case $K = P(t,S)/P(t,T)$, show that the critical rate $r^*$ satisfies $B(S-T)\,r^* = \ln A(S-T) - \ln K$. Express $r^*$ in terms of the model yield $R(t,T,S) = -\ln P(t,S)/(S-T) + \ln P(t,T)/(S-T)$ and the functions $A$, $B$. What does the ATM condition imply about the relative magnitudes of $\lambda_1$ and $\lambda_2$?
+
+---
+
+**Exercise 7.** The non-central chi-squared CDF can be numerically unstable for large non-centrality parameters $\lambda$. For $d = 12$, $\lambda = 500$, explain why the series representation $\chi^2(x; d, \lambda) = \sum_{k=0}^{\infty} e^{-\lambda/2}\frac{(\lambda/2)^k}{k!}\,F_{\chi^2(d+2k)}(x)$ converges slowly. What alternative numerical methods (saddle-point approximation, Gaussian approximation) could be used, and under what conditions are they accurate?

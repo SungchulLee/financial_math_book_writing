@@ -192,3 +192,29 @@ $$
 | Key trade-off | Immediate payoff vs. future optionality + time value |
 
 **Early exercise analysis reveals a fundamental asymmetry between calls and puts: while call exercise sacrifices time value and interest, put exercise can generate interest that dominates the remaining optionality.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Prove that it is never optimal to exercise an American call early on a non-dividend-paying stock. Use the inequality $C \geq S - Ke^{-r(T-t)} > S - K$ (for $r > 0$, $T > t$) to show that the call is always worth more alive than dead.
+
+---
+
+**Exercise 2.** For an American put on a non-dividend-paying stock, explain why early exercise can be optimal when the put is sufficiently deep in the money. Specifically, show that the interest earned on the strike proceeds $rK \, dt$ can exceed the time value lost from exercise.
+
+---
+
+**Exercise 3.** Consider an American call on a stock that pays a discrete dividend $D$ at time $t_d < T$. Explain why it may be optimal to exercise just before the ex-dividend date. Derive the condition on $D$ that makes early exercise worthwhile.
+
+---
+
+**Exercise 4.** The exercise boundary $S^*(t)$ for an American put satisfies $S^*(T) = K$ and $S^*(t) < K$ for $t < T$. At the exercise boundary, two conditions hold: $V(S^*, t) = K - S^*$ (value matching) and $\frac{\partial V}{\partial S}(S^*, t) = -1$ (smooth pasting). Explain the economic intuition behind each condition.
+
+---
+
+**Exercise 5.** Compare the early exercise behavior of American calls and puts by filling in a table with the following columns: option type (call/put), dividend status (yes/no), early exercise possible (yes/no), and economic reason. Cover all four combinations.
+
+---
+
+**Exercise 6.** An American call on a stock paying continuous dividends at rate $q > 0$ may be exercised early. Show that the critical dividend yield $q^*$ above which early exercise becomes possible depends on $r$, $\sigma$, and $T$. For $r = 5\%$, $\sigma = 20\%$, $T = 1$, estimate $q^*$ numerically using a binomial tree.

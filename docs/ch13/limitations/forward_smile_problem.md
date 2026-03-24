@@ -246,3 +246,39 @@ The forward smile problem is the most important practical limitation of local vo
 4. **Pricing impact**: Forward-starting options, cliquets, and accumulators are systematically underpriced by local volatility, with errors of 10-30% of premium for structured products.
 5. **Stochastic volatility resolution**: Stochastic volatility models produce more persistent forward smiles due to the vol-of-vol parameter $\xi$, better matching market data.
 6. **Observable test**: Forward smiles can be extracted from calendar spreads, forward-starting option quotes, and variance swap term structures, providing a direct empirical test of the model.
+
+---
+
+## Exercises
+
+**Exercise 1.** Define the forward implied volatility surface $\sigma_{\text{fwd}}(K, T_1, T_2)$ and explain how it relates to the conditional distribution of $S_{T_2}$ given information at $T_1$. Why do forward-starting options depend on this surface?
+
+---
+
+**Exercise 2.** Under local volatility, explain intuitively why the forward smile becomes flatter as $T_1$ increases. Relate this to the diffusion of the probability density over the local volatility surface.
+
+---
+
+**Exercise 3.** A 1-year forward-starting ATM call (resetting at 6 months, expiring at 12 months) is priced using local volatility at \$4.20 and using Heston at \$5.10. (a) Which model produces a flatter forward smile? (b) Compute the percentage pricing difference. (c) If the market price is \$5.00, which model is closer?
+
+---
+
+**Exercise 4.** The forward variance between $T_1$ and $T_2$ under local volatility is
+
+$$
+\sigma_{\text{fwd}}^2(K, T_1, T_2) = \frac{w(K, T_2) - w(K, T_1)}{T_2 - T_1}
+$$
+
+Given a negatively-skewed spot smile, show that the forward smile computed from this formula has reduced skew compared to the spot smile. What property of the total variance $w(K, T)$ causes this?
+
+---
+
+**Exercise 5.** A cliquet option with 12 monthly resets and caps/floors depends on 12 successive forward smiles. If local volatility underestimates each forward smile skew by 30%, estimate the cumulative pricing error direction for a cliquet that has downside floors. Is the cliquet overpriced or underpriced by local volatility?
+
+---
+
+**Exercise 6.** Describe how to extract market-implied forward smiles from (a) variance swap term structures and (b) calendar spreads of vanilla options. Which approach is more model-dependent, and why?
+
+---
+
+**Exercise 7.** The forward smile problem is often cited as the main motivation for stochastic volatility models. However, stochastic volatility models have their own forward smile predictions. Design a test comparing the forward smile predictions of local volatility, Heston, and SABR to market data from forward-starting options. What data would you need, and what metric would you use to assess accuracy?

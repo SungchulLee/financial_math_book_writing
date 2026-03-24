@@ -154,3 +154,25 @@ The Black–Scholes PDE is thus not merely a no-arbitrage condition—it is a **
 - Cochrane, J. H. (2005). *Asset Pricing.* Revised edition, Princeton University Press.
 
 - Björk, T. (2009). *Arbitrage Theory in Continuous Time.* 3rd edition, Oxford University Press.
+
+---
+
+## Exercises
+
+**Exercise 1.** In the representative-agent economy with CRRA utility $U(C) = C^{1-\gamma}/(1-\gamma)$, derive the optimal portfolio weight $\pi^* = (\mu - r)/(\gamma\sigma^2)$ by solving the first-order condition of the Merton problem. Verify that market clearing ($\pi^* = 1$) implies the equilibrium risk premium $\mu - r = \gamma\sigma^2$.
+
+---
+
+**Exercise 2.** Using the equilibrium condition $\mu - r = \gamma\sigma^2$ and the equity premium puzzle numbers ($\mu - r \approx 6\%$, $\sigma \approx 16\%$), compute the implied risk aversion parameter $\gamma$. Explain why this value is considered implausibly high and name one model extension that attempts to resolve this puzzle.
+
+---
+
+**Exercise 3.** The pricing kernel in the equilibrium model is $M_t = e^{-\rho t} S_t^{-\gamma}$. Show that the condition for $M_t V(t, S_t)$ to be a $\mathbb{P}$-martingale, combined with the equilibrium substitution $\mu - \gamma\sigma^2 = r$, yields the Black-Scholes PDE.
+
+---
+
+**Exercise 4.** Compare the equilibrium derivation with the delta-hedging derivation. The equilibrium approach "explains" $r$ and $\mu - r$ as endogenous quantities, while delta hedging takes them as given. Describe the advantages and limitations of each perspective for a practitioner pricing options.
+
+---
+
+**Exercise 5.** In the CRRA equilibrium, the risk-free rate is $r = \rho + \gamma\mu - \frac{1}{2}\gamma(\gamma+1)\sigma^2$. For $\gamma = 2$, $\mu = 0.10$, $\sigma = 0.20$, and $\rho = 0.03$, compute the equilibrium $r$ and the equity risk premium $\mu - r$. Verify that the Black-Scholes PDE holds with these values.

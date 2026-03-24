@@ -237,3 +237,29 @@ The plot shows theta income accelerating as expiry approaches — the short opti
 - Short option positions earn theta but are exposed to gamma and vega risk.
 - Calendar spreads exploit differential time decay between near and far maturities.
 - The gamma-theta tradeoff is inescapable: earning theta always implies bearing some form of convexity risk.
+
+---
+
+## Exercises
+
+**Exercise 1.** An ATM call with $S = K = 100$, $\sigma = 0.20$, $r = 0.03$ has price $C = \$4.50$ at $\tau = 0.25$ and $C = \$3.80$ at $\tau = 0.20$. Estimate the average daily theta over this 12.6-trading-day interval. Compare with the instantaneous theta from the Black--Scholes formula at $\tau = 0.25$.
+
+---
+
+**Exercise 2.** A calendar spread consists of selling a 1-month ATM call and buying a 3-month ATM call at $K = 100$. Using the theta formula $\Theta_{\text{ATM}} \approx -\frac{S\sigma}{2\sqrt{2\pi\tau}}$, compute the net theta of this spread for $\sigma = 0.20$. Under what conditions does the spread earn positive net theta?
+
+---
+
+**Exercise 3.** Theta acceleration near expiry scales as $1/\sqrt{\tau}$. Compute the ratio $\Theta(\tau = 1\text{ day})/\Theta(\tau = 30\text{ days})$ for an ATM option. A short-dated option writer earns more theta per day --- explain why this does not constitute a "free lunch" by discussing the corresponding gamma risk.
+
+---
+
+**Exercise 4.** For a short ATM call position that is delta-hedged, the daily P&L is approximately $|\Theta|\Delta t - \frac{1}{2}|\Gamma|(\Delta S)^2$. If $\Theta = -0.08$/day and $\Gamma = 0.04$ per option, and the trader is short 100 options, compute the net daily P&L for realized daily moves of $|\Delta S| = 0$, $1$, $2$, and $3$ dollars. What is the breakeven daily move?
+
+---
+
+**Exercise 5.** A trader wants to construct a theta-neutral portfolio using ATM options at $\tau_1 = 1$ month and $\tau_2 = 6$ months. If $\Theta_1 = -0.12$/day and $\Theta_2 = -0.04$/day per option, how many of each option should the trader hold (long or short) to achieve net theta $\approx 0$ with 100 options at the shorter maturity? What is the resulting gamma exposure?
+
+---
+
+**Exercise 6.** Using the Python theta visualization code, add a plot showing the **daily theta P&L** of a calendar spread (short 1-month call, long 6-month call) as a function of the underlying price $S$ at inception. Identify the spot range where the spread earns positive daily theta and explain why the spread loses money when $S$ moves far from the strike.

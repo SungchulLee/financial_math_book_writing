@@ -253,3 +253,33 @@ The Vasicek model admits a **closed-form solution** with explicit distributional
 These explicit formulas enable precise forecasting, efficient simulation, and rigorous risk quantification without resorting to approximations.
 
 **Based on**: QuantPie Lecture Notes - Interest Rate Modeling
+
+---
+
+## Exercises
+
+**Exercise 1.** For Vasicek parameters $\kappa = 0.5$ (using $\alpha = \kappa$), $\theta = 0.05$, $\sigma = 0.02$, and $r_0 = 0.03$, compute the conditional mean $\mathbb{E}[r_t | r_0]$ and conditional standard deviation $\sqrt{\text{Var}(r_t | r_0)}$ at $t = 1, 5, 10$ years.
+
+---
+
+**Exercise 2.** Derive the stationary distribution by taking $t \to \infty$ in the conditional mean and variance formulas. Show that $r_\infty \sim \mathcal{N}(\theta, \sigma^2/(2\kappa))$. For the parameters in Exercise 1, compute the stationary mean and standard deviation.
+
+---
+
+**Exercise 3.** Using the explicit solution $r_t = r_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t}) + \sigma\int_0^t e^{-\kappa(t-s)}dW_s$, explain why $r_t$ is Gaussian. Identify the deterministic part and the stochastic part. What distribution does the stochastic integral have?
+
+---
+
+**Exercise 4.** Compute $\mathbb{P}(r_5 > 0.08 | r_0 = 0.03)$ for $\kappa = 0.5$, $\theta = 0.05$, $\sigma = 0.02$. Also compute $\mathbb{P}(r_5 < 0 | r_0 = 0.03)$.
+
+---
+
+**Exercise 5.** The half-life of mean reversion is $t_{1/2} = \ln 2/\kappa$. Compute $t_{1/2}$ for $\kappa = 0.1, 0.5, 2.0$. After two half-lives, what fraction of the initial deviation $r_0 - \theta$ remains?
+
+---
+
+**Exercise 6.** Show that the conditional variance $\text{Var}(r_t | r_0) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})$ is monotonically increasing in $t$ and bounded above by $\sigma^2/(2\kappa)$. Sketch the variance as a function of $t$ for $\kappa = 0.5$, $\sigma = 0.02$.
+
+---
+
+**Exercise 7.** The transition density $p(r_t | r_0)$ is Gaussian with known mean and variance. Write the log-likelihood function for $N$ equally spaced observations $r_0, r_{\Delta t}, r_{2\Delta t}, \ldots$ and show that maximizing it is equivalent to an OLS regression of $r_{t+\Delta t}$ on $r_t$.

@@ -448,3 +448,37 @@ The examples on this page demonstrate several core principles:
 4. **Arbitrage manifests as the impossibility of positive state prices.** If no strictly positive probability vector satisfies $X^T q = 0$, the [Separating Hyperplane Theorem](separating_hyperplane_theorem.md) constructively produces the arbitrage portfolio as the separating direction.
 
 These finite-dimensional results carry over to continuous-time models in a natural way, with the linear algebra replaced by functional analysis. The [FTAP page](fundamental_theorem_of_asset_pricing.md) discusses this extension under the heading of NFLVR and the Delbaen--Schachermayer theorem.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a two-state market with one risky asset: $S^1_0 = 80$, $S^1_1(\omega_1) = 100$, $S^1_1(\omega_2) = 70$. Find the unique EMM and use it to price a European put option with strike $K = 85$.
+
+---
+
+**Exercise 2.** In a three-state market with one risky asset, $S^1_0 = 50$, $S^1_1 = (70, 55, 35)$, parameterize the family of EMMs. Compute the no-arbitrage price interval for a butterfly spread with payoff $\Phi = (0, 10, 0)$. Is this claim attainable?
+
+---
+
+**Exercise 3.** Consider a market with $n = 3$ states and $d = 2$ risky assets with payoff matrix
+
+$$
+X = \begin{pmatrix} 15 & 8 \\ -5 & 2 \\ -10 & -6 \end{pmatrix}
+$$
+
+Determine whether the market is arbitrage-free. If so, find the unique EMM and verify it satisfies the martingale condition for both assets.
+
+---
+
+**Exercise 4.** A three-state market has one risky asset and $\operatorname{rank}(X) = 1$. A second risky asset is added with payoff vector $(a, b, c)^T$ and initial price $S^2_0$. What conditions on $(a, b, c)$ ensure that the augmented payoff matrix has rank 2? Under what additional condition on $S^2_0$ does the augmented market remain arbitrage-free?
+
+---
+
+**Exercise 5.** In Example 4 of this section, the payoff matrix $X$ has rank 2 but the market admits arbitrage. Explain why high rank alone does not guarantee the absence of arbitrage. What specific property of the columns causes the EMM to require $q_1 = 0$?
+
+---
+
+**Exercise 6.** Consider a two-state market with $d = 2$ risky assets: $S^1_0 = 20$, $S^1_1 = (25, 16)$, $S^2_0 = 10$, $S^2_1 = (13, 8)$. Check whether $\operatorname{rank}(X) = n - 1 = 1$. If not, is one of the assets redundant? Find the EMM and price the claim $\Phi = (5, 0)$.
+
+---

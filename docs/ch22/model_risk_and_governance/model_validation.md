@@ -244,3 +244,33 @@ Continuous tracking:
 - OCC (2011), "Supervisory Guidance on Model Risk Management (OCC 2011-12)"
 - Basel Committee (2009), "Principles for Sound Stress Testing"
 - Rebonato, R. (2002), "Model Risk: New Challenges, New Solutions"
+
+---
+
+## Exercises
+
+**Exercise 1.** A pricing model for exotic interest rate derivatives uses a one-factor short-rate model. Describe a conceptual validation process: what theoretical limitations should the validator flag, and what alternative models could serve as benchmarks?
+
+---
+
+**Exercise 2.** A model's sensitivity analysis reveals that a 1% change in the correlation parameter $\rho$ causes a 15% change in portfolio VaR, while a 1% change in individual volatilities causes only a 2% change. Discuss the implications for model risk. How should this inform the validator's recommendations regarding parameter uncertainty and limits on the model's use?
+
+---
+
+**Exercise 3.** Consider a model scored on four dimensions: conceptual soundness (weight 0.3), implementation quality (weight 0.2), performance (weight 0.3), and documentation (weight 0.2). Suppose the scores are 4, 5, 3, and 2 respectively (on a 1-5 scale). Compute the overall weighted rating. If the thresholds for green, yellow, and red are $[4, 5]$, $[3, 4)$, and $[1, 3)$ respectively, what is the model's traffic light rating? Identify which dimension most urgently needs improvement.
+
+---
+
+**Exercise 4.** A validation team discovers that a credit risk model was calibrated using data from 2012-2019, a period of low defaults. The model is currently used to estimate losses for a portfolio during a period of rising defaults. Explain which validation component (conceptual review, data quality assessment, implementation testing, or outcome analysis) is most relevant to this issue. What specific biases might be present, and how would you recommend addressing them?
+
+---
+
+**Exercise 5.** Explain the difference between look-ahead bias and survivorship bias in the context of model validation. Provide a concrete example of each in a portfolio risk model. Describe a testing procedure a validator could use to detect each type of bias.
+
+---
+
+**Exercise 6.** Under the SR 11-7 framework, model risk is defined as "the potential for adverse consequences from decisions based on incorrect or misused model outputs." Consider a correctly implemented Black-Scholes model used to price long-dated equity options. Argue that this scenario can still generate significant model risk. Identify at least three specific sources of model risk in this case, distinguishing between errors in model specification and errors in model use.
+
+---
+
+**Exercise 7.** A bank has 150 internal models, each requiring annual validation. With a team of 10 validators, each capable of completing 20 validations per year, the bank cannot validate all models annually. Design a risk-based prioritization scheme: define at least three criteria for ranking model validation priority, explain how you would assign models to tiers with different review frequencies, and discuss how triggered reviews interact with the periodic schedule.

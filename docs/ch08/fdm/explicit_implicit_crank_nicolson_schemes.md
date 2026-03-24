@@ -274,3 +274,29 @@ $$
 | Non-smooth data | Rannacher (implicit start, then C-N) |
 
 **The choice of time-stepping scheme balances accuracy, stability, and computational efficiency.**
+
+---
+
+## Exercises
+
+**Exercise 1.** For the explicit scheme with $\sigma = 0.3$, $S_{\max} = 300$, and $\Delta S = 1$, compute the maximum allowable time step $\Delta\tau$ for stability. How many time steps are needed for $T = 1$? Repeat for $\Delta S = 0.5$ and comment on how halving the spatial step affects the computational cost.
+
+---
+
+**Exercise 2.** The theta-scheme is given by $(I - \theta\Delta\tau A)\mathbf{u}^{n+1} = (I + (1-\theta)\Delta\tau A)\mathbf{u}^n$. Show that for $\theta = 0$ this reduces to the explicit scheme and for $\theta = 1$ it reduces to the implicit scheme. What value of $\theta$ gives the Crank-Nicolson scheme, and why is it second-order accurate in time?
+
+---
+
+**Exercise 3.** Write out the Thomas algorithm (forward sweep and back substitution) for solving a tridiagonal system of size $M - 1 = 4$. Count the total number of multiplications and divisions and confirm the $O(M)$ cost.
+
+---
+
+**Exercise 4.** Explain the Rannacher time-stepping strategy. Why does the Crank-Nicolson scheme produce oscillations near $\tau = 0$ when the initial data has a kink? How do a few initial implicit steps suppress these oscillations while maintaining overall second-order accuracy?
+
+---
+
+**Exercise 5.** Consider a European call with $K = 100$ priced using both the explicit and implicit schemes with $M = 100$ spatial points. If the explicit scheme requires $N = 5000$ time steps (due to the CFL condition) while the implicit scheme uses $N = 100$, compare the total computational costs. Which scheme is more efficient, and by what factor?
+
+---
+
+**Exercise 6.** For the implicit scheme, the linear system $(I - \Delta\tau A)\mathbf{u}^{n+1} = \mathbf{u}^n$ involves a tridiagonal matrix. Explain why this matrix is an M-matrix (positive diagonal, non-positive off-diagonal, non-singular with non-negative inverse). Why does the M-matrix property guarantee that the numerical solution preserves the non-negativity of option prices?

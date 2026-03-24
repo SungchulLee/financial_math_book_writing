@@ -231,3 +231,51 @@ For CMS caps, the convexity adjustment is embedded in the pricing and affects th
 - Brigo & Mercurio (2006), *Interest Rate Models: Theory and Practice*, Chapter 13
 - Andersen & Piterbarg (2010), *Interest Rate Modeling*, Volume III, Chapter 16
 - Pelsser (2003), "Mathematical Foundation of Convexity Correction"
+
+---
+
+## Exercises
+
+**Exercise 1.** A CMS 10Y coupon fixes in 5 years ($T_f = 5$) and is paid at $T_p = 5.25$. The forward 10-year swap rate is $S(0) = 3.5\%$, the swaption implied volatility is $\sigma_S = 22\%$, and the underlying swap has annual payments ($\delta = 1$, $n = 10$). Using Hagan's formula, compute the CMS convexity adjustment and the adjusted CMS rate. Compare the result to the worked example in this section and explain why the adjustment is larger.
+
+---
+
+**Exercise 2.** Show that the CMS convexity adjustment is always positive by arguing that $G'(S_0) > 0$ (or equivalently, that $h(S_0) > 0$). Specifically, for a swap with $n$ annual payments, verify that
+
+$$
+\frac{1}{S_0} > \frac{n\delta}{(1 + \delta S_0)\bigl((1 + \delta S_0)^n - 1\bigr)}
+$$
+
+for all $S_0 > 0$, $n \geq 2$, and $\delta > 0$.
+
+---
+
+**Exercise 3.** Consider two CMS coupons: CMS 5Y and CMS 30Y, both fixing in 3 years with identical swaption implied volatility $\sigma_S = 20\%$. Without performing a full calculation, explain qualitatively why the CMS 30Y convexity adjustment is much larger than the CMS 5Y adjustment. Which properties of the underlying swap drive this difference?
+
+---
+
+**Exercise 4.** Starting from the Radon--Nikodym derivative
+
+$$
+\frac{d\mathbb{Q}^{T_p}}{d\mathbb{Q}^A}\bigg|_{\mathcal{F}_{T_f}} = \frac{P(T_f, T_p) \cdot A(0)}{A(T_f) \cdot P(0, T_p)},
+$$
+
+derive the expression $\mathbb{E}^{\mathbb{Q}^{T_p}}[S(T_f)] = \frac{A(0)}{P(0, T_p)}\,\mathbb{E}^{\mathbb{Q}^A}[S(T_f) \cdot G(S(T_f))]$ where $G(S) = P(T_f, T_p)/A(T_f)$. State clearly which properties of $S(T_f)$ under $\mathbb{Q}^A$ you use.
+
+---
+
+**Exercise 5.** A CMS cap with strike $K = 4\%$ pays $\delta\max(S(T_f) - K, 0)$ at $T_p$. Explain why pricing this product requires knowledge of the full swaption smile (i.e., implied volatilities across all strikes), not just the ATM swaption volatility. Describe how the static replication formula
+
+$$
+\max(S - K, 0) = (S - K)^+ = \int_K^\infty \delta(S - K')\,dK'
+$$
+
+can be used together with swaption prices to value the CMS caplet.
+
+---
+
+**Exercise 6.** A trader prices a 5-year CMS swap (receiving CMS 10Y annually against paying 3-month LIBOR quarterly). The trader uses an ATM-only CMS convexity adjustment of 4.2 bp per coupon. A risk manager argues that the smile is important and that using the full swaption smile increases the adjustment by 1.5 bp. Over 5 annual CMS coupons on a \$500 million notional, compute the total valuation difference between the ATM-only and smile-adjusted approaches.
+
+---
+
+**Exercise 7.** Suppose the swaption implied volatility doubles from $\sigma_S$ to $2\sigma_S$. By what factor does the CMS convexity adjustment approximately change? Verify this using the scaling property of Hagan's formula and discuss the practical implication for CMS product risk management in high-volatility environments.

@@ -265,3 +265,45 @@ Capital shortfall in a crisis, where:
 - Adrian, T. & Brunnermeier, M. (2016), "CoVaR"
 - Acharya, V. et al. (2017), "Measuring Systemic Risk"
 - Greenwood, R., Landier, A., & Thesmar, D. (2015), "Vulnerable Banks"
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a 3-bank Eisenberg-Noe network with external assets $e = (80, 60, 40)$, nominal liabilities $\bar{p} = (100, 80, 50)$, and relative liability matrix
+
+$$
+\Pi = \begin{pmatrix} 0 & 0.6 & 0.4 \\ 0.5 & 0 & 0.5 \\ 0.7 & 0.3 & 0 \end{pmatrix}
+$$
+
+Starting from $p^{(0)} = \bar{p}$, perform two iterations of the clearing algorithm $p^{(k+1)} = \min(\bar{p}, e + \Pi^\top p^{(k)})$. Identify which banks default. Explain why the algorithm converges.
+
+---
+
+**Exercise 2.** A bank has assets of \$500 billion and equity of \$50 billion (leverage ratio of 10x). If assets decline by 2%, compute the percentage decline in equity. Now suppose the bank operates at 25x leverage. Repeat the calculation. Explain why leverage amplifies balance sheet shocks and connect this to the fire sale externality: if many banks at high leverage simultaneously face a 2% asset decline, what feedback loop can emerge?
+
+---
+
+**Exercise 3.** Define CoVaR, MES, and SRISK. For a large bank with daily MES$_{5\%}$ = 4.0%, market equity $W = \$80$ billion, and book debt $D = \$720$ billion, compute LRMES using the approximation $\text{LRMES} \approx 1 - \exp(-18 \cdot \text{MES})$ and then compute SRISK with prudential ratio $k = 8\%$. Interpret the result: is this institution a net contributor to or absorber of systemic risk?
+
+---
+
+**Exercise 4.** Explain the core-periphery structure commonly observed in financial networks. A network has 3 core banks each connected to all other core banks and 7 peripheral banks, each connected to exactly 1 core bank. Compute the degree centrality of a core bank and a peripheral bank. If one core bank fails with LGD = 60%, describe qualitatively how losses would propagate differently compared to the failure of a peripheral bank. What does this imply for capital surcharges?
+
+---
+
+**Exercise 5.** The fire sale price impact model states $P' = P \cdot (1 - \alpha \cdot \text{Sales}/\text{Market Cap})$. Two banks each hold \$10 billion of a security with market cap \$50 billion and $\alpha = 0.5$. Bank 1 is forced to sell \$5 billion. Compute the new price as a fraction of the original. What is Bank 2's mark-to-market loss on its remaining \$10 billion holding? If Bank 2's equity is \$8 billion and a margin covenant triggers at a 40% equity loss, will Bank 2 be forced to sell? Trace the feedback loop.
+
+---
+
+**Exercise 6.** In the DebtRank model, the distress propagation rule is
+
+$$
+h_i(t+1) = \min\left(1, h_i(t) + \sum_{j \in \mathcal{N}(i)} W_{ij} h_j(t)\right)
+$$
+
+For a network of 3 banks with $W_{12} = 0.3$, $W_{13} = 0.2$, $W_{21} = 0.4$, $W_{23} = 0.1$, $W_{31} = 0.5$, $W_{32} = 0.15$, and initial distress $h(0) = (1, 0, 0)$ (Bank 1 has fully defaulted), compute $h(1)$ and $h(2)$. What is the total DebtRank of the initial shock?
+
+---
+
+**Exercise 7.** Discuss why no single systemic risk metric is sufficient. A regulator monitors both CoVaR and SRISK for a set of banks. Bank A has a very high $|\Delta\text{CoVaR}|$ but low SRISK, while Bank B has moderate $|\Delta\text{CoVaR}|$ but very high SRISK. Explain what each metric is capturing about these two banks. Under what circumstances would each bank be the greater systemic concern? What additional information (e.g., from network models) might help resolve the discrepancy?

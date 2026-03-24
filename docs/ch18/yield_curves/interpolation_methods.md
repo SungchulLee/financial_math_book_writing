@@ -346,3 +346,29 @@ Recent work uses neural networks to:
 - Hagan & West, "Interpolation Methods for Curve Construction" (2006)
 - Andersen & Piterbarg, *Interest Rate Modeling*, Volume 1
 - Le Floc'h, "Stable Interpolation for the Yield Curve" (2017)
+
+---
+
+## Exercises
+
+**Exercise 1.** Given bootstrapped discount factors at $T = 1, 2, 3, 5, 7, 10$ years, you need $P(0, 4)$. Compare linear interpolation on zero rates versus linear interpolation on log discount factors. Compute both and show they give different answers. Which produces smoother forward rates?
+
+---
+
+**Exercise 2.** Explain why linear interpolation on discount factors can produce negative forward rates even when all zero rates are positive. Construct a numerical example with two adjacent discount factors that demonstrates this pathology.
+
+---
+
+**Exercise 3.** Cubic spline interpolation on zero rates produces a $C^2$ curve. Describe the boundary conditions (natural, clamped, not-a-knot) and their effect on the forward rate curve near the short and long ends. Which boundary condition is most appropriate for yield curve construction?
+
+---
+
+**Exercise 4.** The monotone convex method ensures positive and stable forward rates. Explain the key idea: interpolate on log discount factors with constraints that prevent the forward curve from becoming negative. What is the trade-off compared to unconstrained cubic splines?
+
+---
+
+**Exercise 5.** A hedger computes DV01 by bumping individual input rates and observing the discount factor change. Show that the choice of interpolation method affects the hedging sensitivities, even though the curve passes through the same market points. Why might cubic spline interpolation produce unrealistic hedging buckets?
+
+---
+
+**Exercise 6.** Compare piecewise constant forward rates with piecewise linear forward rates. For each method, describe the continuity class of the discount factor curve and the forward rate curve. Which is simpler to implement? Which produces more realistic hedging behavior?

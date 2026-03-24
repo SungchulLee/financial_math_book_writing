@@ -182,3 +182,33 @@ The advantage is clear: instead of computing $\mathbb{E}^{\mathbb{Q}}[e^{-\int_0
 ## Summary
 
 The $T$-forward measure $\mathbb{Q}^T$ uses the zero-coupon bond $P(t,T)$ as numeraire and is obtained from $\mathbb{Q}$ via Girsanov's theorem with drift adjustment $\sigma_P(t,T)$. Under $\mathbb{Q}^T$, the discount factor is absorbed into the measure change, simplifying derivative pricing to $P(t,T)\,\mathbb{E}^T[V(T)]$. The instantaneous forward rate $f(t,T)$ becomes a $\mathbb{Q}^T$-martingale, and the Gaussian structure of the Hull-White model is preserved under this measure change.
+
+---
+
+## Exercises
+
+**Exercise 1.** State the general change-of-numeraire theorem. If the numeraire is $N(t) = P(t,T)$ and the base measure is $\mathbb{Q}$ with numeraire $M(t) = e^{\int_0^t r(s)\,ds}$, write down the Radon-Nikodym derivative $\frac{d\mathbb{Q}^T}{d\mathbb{Q}}\big|_{\mathcal{F}(t)}$ and verify that $P(t,S)/P(t,T)$ is a $\mathbb{Q}^T$-martingale for any $S$.
+
+---
+
+**Exercise 2.** Verify the Girsanov transformation $dW^T(t) = dW^{\mathbb{Q}}(t) - \sigma_P(t,T)\,dt$ by substituting $\sigma_P(t,T) = -\frac{\sigma}{\lambda}(1 - e^{-\lambda(T-t)})$ and computing the drift adjustment explicitly for $\lambda = 0.05$ and $\sigma = 0.01$ at $t = 3$ and $T = 10$.
+
+---
+
+**Exercise 3.** Show that the forward rate $f(t,T)$ has zero drift under $\mathbb{Q}^T$ by starting from the HJM drift condition under $\mathbb{Q}$ and applying the Girsanov transformation. Explain why the exact cancellation of drift terms is a consequence of the HJM no-arbitrage condition.
+
+---
+
+**Exercise 4.** Prove that the forward price $X(t)/P(t,T)$ is a $\mathbb{Q}^T$-martingale using the abstract Bayes formula. Explain why this martingale property makes the $T$-forward measure the natural choice for pricing European derivatives with payoff at time $T$.
+
+---
+
+**Exercise 5.** In the numerical example, the option price is $V(0) = P(0,5)\,\mathbb{E}^5[\max(P(5,10) - 0.75, 0)]$. Explain why computing this expectation under $\mathbb{Q}^5$ is simpler than computing $\mathbb{E}^{\mathbb{Q}}[e^{-\int_0^5 r(s)\,ds}\max(P(5,10) - 0.75, 0)]$. What correlation structure makes the $\mathbb{Q}$-expectation more difficult?
+
+---
+
+**Exercise 6.** Consider two different $T$-forward measures, $\mathbb{Q}^{T_1}$ and $\mathbb{Q}^{T_2}$ with $T_1 < T_2$. Derive the Radon-Nikodym derivative $\frac{d\mathbb{Q}^{T_2}}{d\mathbb{Q}^{T_1}}\big|_{\mathcal{F}(t)}$ and the corresponding Girsanov transformation between the two measures.
+
+---
+
+**Exercise 7.** The forward LIBOR rate $L(t, T, T+\delta)$ defined by $1 + \delta L(t,T,T+\delta) = P(t,T)/P(t,T+\delta)$ is a martingale under $\mathbb{Q}^{T+\delta}$. Verify this claim for the Hull-White model and explain how this connects to the pricing of caplets.

@@ -319,3 +319,41 @@ $$
 - Jeulin, T. (1980). *Semi-martingales et grossissement d'une filtration*. Lecture Notes in Mathematics 833, Springer.
 - Bielecki, T. R., & Rutkowski, M. (2004). *Credit Risk: Modeling, Valuation and Hedging*. Springer, Chapter 5.
 - Jeanblanc, M., Yor, M., & Chesney, M. (2009). *Mathematical Methods for Financial Markets*. Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $\tau$ be a default time with constant intensity $\lambda > 0$ under a Cox process construction, so that $G_t = e^{-\lambda t}$. Write down the Doob-Meyer decomposition $G_t = G_0 + m_t - A_t$ explicitly. Show that $m_t = 0$ (i.e., $G_t$ is purely deterministic) and $A_t = 1 - e^{-\lambda t}$.
+
+---
+
+**Exercise 2.** Prove that the Azema supermartingale $G_t = \mathbb{P}(\tau > t \mid \mathcal{F}_t)$ satisfies $\mathbb{E}[G_t \mid \mathcal{F}_s] \le G_s$ for $s \le t$. In your proof, clearly identify where the inclusion $\{\tau > t\} \subseteq \{\tau > s\}$ is used.
+
+---
+
+**Exercise 3.** Under the Cox construction with CIR intensity $d\lambda_t = \kappa(\theta - \lambda_t)dt + \sigma\sqrt{\lambda_t}\,dW_t$, the Azema supermartingale is $G_t = e^{-\int_0^t \lambda_s\,ds}$. Apply Ito's formula to show that
+
+$$
+dG_t = -\lambda_t G_t\,dt + G_t \cdot (\text{martingale terms})
+$$
+
+Identify the compensator $dA_t = \lambda_t G_t\,dt$ and verify that the intensity equals $\lambda_t = dA_t / (G_{t-}\,dt)$.
+
+---
+
+**Exercise 4.** Explain why the Azema supermartingale for Azema's example ($\tau = \sup\{t \le 1 : W_t = 0\}$, the last zero of Brownian motion before time 1) has a singular Doob-Meyer decomposition. Why does no intensity exist in this case? What property of the local time of Brownian motion is responsible for the singularity?
+
+---
+
+**Exercise 5.** Using the pre-default pricing formula
+
+$$
+V_t = \frac{1}{G_t}\,\mathbb{E}\!\left[e^{-\int_t^T r_s\,ds}\,X \cdot G_T \mid \mathcal{F}_t\right]
+$$
+
+derive the price of a zero-coupon defaultable bond with zero recovery, constant risk-free rate $r$, and constant intensity $\lambda$. Show that the result is $V_t = e^{-(r+\lambda)(T-t)}$.
+
+---
+
+**Exercise 6.** Consider two default times $\tau_1$ and $\tau_2$ with respective Azema supermartingales $G_t^{(1)} = \mathbb{P}(\tau_1 > t \mid \mathcal{F}_t)$ and $G_t^{(2)} = \mathbb{P}(\tau_2 > t \mid \mathcal{F}_t)$. If $\tau_1$ and $\tau_2$ are conditionally independent given $\mathcal{F}_\infty$, show that the joint survival probability satisfies $\mathbb{P}(\tau_1 > t, \tau_2 > t \mid \mathcal{F}_t) = G_t^{(1)} G_t^{(2)}$.

@@ -662,3 +662,39 @@ Understanding these benchmarks enables more nuanced analysis of actual market dy
 - Gatheral, J. *The Volatility Surface*. Empirical analysis of smile behavior.
 - Rebonato, R. *Volatility and Correlation*. Practical hedging under smile dynamics.
 - Hagan, P. et al. *Managing Smile Risk*. SABR model and smile dynamics.
+
+---
+
+## Exercises
+
+**Exercise 1.** Under the sticky strike assumption, the implied volatility at a fixed strike $K$ does not change when the spot moves. If an ATM call option ($K = S_0 = 100$) has $\sigma_{\text{IV}} = 22\%$ and the spot rises to $S = 103$, what is the implied volatility at $K = 100$ under sticky strike? What is the implied volatility at the new ATM strike ($K = 103$) if the smile has skew $\frac{\partial \sigma}{\partial k} = -15\%$?
+
+---
+
+**Exercise 2.** Under the sticky delta assumption, the implied volatility at a fixed delta level is unchanged when spot moves. If the 25-delta put has $\sigma_{\text{IV}} = 27\%$ when $S_0 = 100$, what is its implied volatility when the spot moves to $S = 105$? In absolute strike space, does the $K$ corresponding to the 25-delta put increase or decrease?
+
+---
+
+**Exercise 3.** For a call option with $S_0 = 100$, $K = 100$, $T = 0.25$, $r = 5\%$, $q = 0$, $\sigma_{\text{ATM}} = 20\%$, and skew $\frac{\partial \sigma}{\partial k} = -20\%$, compute the total delta under sticky moneyness. Use
+
+$$
+\Delta_{\text{total}} = \Delta_{\text{BS}} + \mathcal{V} \cdot \frac{\partial \sigma}{\partial S}
+$$
+
+with $\Delta_{\text{BS}} = 0.569$ and $\mathcal{V} = 19.73$. Compare with the Black-Scholes delta (sticky strike delta).
+
+---
+
+**Exercise 4.** The skew stickiness ratio (SSR) is defined as the ratio of the actual ATM IV change to the predicted change under sticky strike. If the SSR for an equity index is 0.5, and the smile has $\frac{\partial \sigma}{\partial k} = -18\%$, determine the actual delta adjustment relative to the full sticky-moneyness adjustment. Where does this place the true dynamics on the spectrum from sticky strike to sticky moneyness?
+
+---
+
+**Exercise 5.** Explain why FX markets naturally align with the sticky delta assumption while equity markets tend toward sticky strike behavior. Discuss the role of quoting conventions (delta-quoted vs. strike-quoted) in this distinction.
+
+---
+
+**Exercise 6.** In the SABR model, the backbone parameter $\beta$ interpolates between sticky strike ($\beta = 1$) and sticky delta ($\beta = 0$) behavior. For intermediate $\beta = 0.5$ with $F = 100$, $\alpha = 0.20$, $\nu = 0.3$, and $\rho = -0.4$, qualitatively describe how the smile shifts when the forward moves from 100 to 105. Is the behavior closer to sticky strike or sticky delta?
+
+---
+
+**Exercise 7.** A hedger must choose between using $\Delta_{\text{BS}}$ (sticky strike) and the adjusted delta (sticky delta) for an equity index call spread. The portfolio is long an ATM call and short a 110-strike call, both with $T = 0.5$ years. Under which assumption is the net delta larger? Describe a scenario analysis comparing P&L under both assumptions when the index falls by 5% with a concurrent 3% rise in ATM implied volatility.

@@ -233,3 +233,29 @@ The Carr--Madan FFT method provides simultaneous option pricing across a grid of
 | Simpson's rule | Improves discretization from $O(\eta^2)$ to $O(\eta^4)$ |
 
 **The Carr--Madan FFT method exploits the Fourier structure of option prices to produce an entire strike-grid of prices in a single $O(N\log N)$ pass, making it the method of choice for calibration problems that require evaluating hundreds of option prices per iteration.**
+
+---
+
+## Exercises
+
+**Exercise 1.** The European call price $C(k)$ as a function of log-strike $k = \ln K$ is not square-integrable because $C(k) \to S_0 e^{-qT}$ as $k \to -\infty$. Verify this by showing that $\int_{-\infty}^{0}|C(k)|^2\,dk = \infty$ for $C(k) \approx S_0 e^{-qT}$ (constant) on $(-\infty, 0]$. Explain why the damping factor $e^{\alpha k}$ resolves this issue.
+
+---
+
+**Exercise 2.** Derive the Carr-Madan formula $\psi_T(u) = \frac{e^{-rT}\phi_T(u - (\alpha+1)i)}{(\alpha + iu)(\alpha + 1 + iu)}$ by evaluating the inner integral $\int_{-\infty}^{x}e^{(\alpha + iu)k}(e^x - e^k)\,dk$. Show each step of the integration and verify the denominator simplification.
+
+---
+
+**Exercise 3.** The integrability condition requires $\mathbb{E}[S_T^{\alpha+1}] < \infty$. For the Black-Scholes model with $\ln S_T \sim N(\mu, \sigma^2 T)$, show that $\mathbb{E}[S_T^p] = \exp(p\mu + p^2\sigma^2 T/2)$, which is finite for all $p$. For the Heston model, explain why there exists a finite upper bound $u^*$ such that $\mathbb{E}[S_T^p] = \infty$ for $p > u^*$, and what this implies for the choice of $\alpha$.
+
+---
+
+**Exercise 4.** The FFT grid relation $\Delta k = 2\pi/(N\eta)$ links the log-strike spacing to the frequency spacing $\eta$ and the grid size $N$. For $N = 4096$ and $\eta = 0.25$, compute $\Delta k$ and the total log-strike range $N\Delta k$. Convert the log-strike range to a strike range centered at $K = 100$ and determine the minimum and maximum strikes on the grid.
+
+---
+
+**Exercise 5.** Simpson's rule weights $w_j = \frac{\eta}{3}(3 + (-1)^{j+1} - \delta_j)$ improve the discretization from $O(\eta^2)$ to $O(\eta^4)$. Write out the first six weights $w_0, w_1, \ldots, w_5$ explicitly and verify they match the standard Simpson's $1/3$ rule pattern $\{1, 4, 2, 4, 2, 4, \ldots\}/3 \cdot \eta$.
+
+---
+
+**Exercise 6.** Compare the Carr-Madan FFT and COS methods for a calibration problem with 50 market-observed strikes and 1000 optimizer iterations. For each method, estimate the total number of characteristic function evaluations and total arithmetic operations. Under what circumstances would COS (with shared $F_k$) be competitive with Carr-Madan for calibration?

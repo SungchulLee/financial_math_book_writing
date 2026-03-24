@@ -405,3 +405,53 @@ where $\lambda_j$ is the variance of the $j$-th principal component.
 - Tuckman & Serrat (2011), *Fixed Income Securities*, Chapters 5--7
 - Fabozzi (2007), *Fixed Income Analysis*, Chapter on Duration
 - Litterman & Scheinkman (1991), "Common Factors Affecting Bond Returns" (PCA of yield curves)
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a 5-year zero-coupon bond priced at par yield 4\%, with key rates at 2Y, 5Y, and 10Y. Using the triangular shift functions defined in this section, determine which key rate shifts affect this bond's price. Compute the key rate durations at 2Y, 5Y, and 10Y. Verify that their sum equals the modified duration.
+
+---
+
+**Exercise 2.** Show that the triangular shift functions satisfy the partition of unity property $\sum_{k=1}^{K} s_k(T) = 1$ for any maturity $T$. Using this result, prove that $\sum_{k=1}^{K} \text{KRD}_k = D_{\text{mod}}$ for any bond or portfolio.
+
+---
+
+**Exercise 3.** A portfolio has the following key rate DV01 profile (per \$100M notional):
+
+| Key Rate | 2Y | 5Y | 10Y | 30Y |
+|---|---|---|---|---|
+| KR-DV01 | \$3,200 | \$8,500 | \$15,000 | \$2,300 |
+
+Suppose the yield curve steepens: the 2Y rate falls by 25 bps, the 5Y rate is unchanged, the 10Y rate rises by 15 bps, and the 30Y rate rises by 30 bps. Compute the portfolio P\&L. What would the P\&L be under a parallel shift of $+10$ bps?
+
+---
+
+**Exercise 4.** Using the matrix formulation $Ah = b$, set up and solve the hedging problem for the portfolio in Exercise 3 using three hedging instruments: 2Y, 10Y, and 30Y par swaps. The KR-DV01 profiles (per \$1M notional) of the swaps are:
+
+| Instrument | 2Y KR-DV01 | 5Y KR-DV01 | 10Y KR-DV01 | 30Y KR-DV01 |
+|---|---|---|---|---|
+| 2Y Swap | \$190 | \$0 | \$0 | \$0 |
+| 10Y Swap | \$0 | \$10 | \$870 | \$0 |
+| 30Y Swap | \$0 | \$0 | \$20 | \$2,500 |
+
+Explain why the 5Y bucket cannot be fully hedged with these three instruments.
+
+---
+
+**Exercise 5.** Suppose the first three principal components of yield curve changes are PC$_1 = (1, 1, 1, 1)$, PC$_2 = (-1, -0.3, 0.3, 1)$, PC$_3 = (1, -1, -1, 1)$ at key rates 2Y, 5Y, 10Y, 30Y. For the portfolio in Exercise 3, compute the PC durations $D_{\text{PC},1}$, $D_{\text{PC},2}$, $D_{\text{PC},3}$. Interpret each: which yield curve movements pose the greatest risk?
+
+---
+
+**Exercise 6.** A 10-year interest rate cap has key rate DV01 distributed across maturities 1Y through 10Y, unlike a 10-year swap which concentrates its exposure near the 10Y point. Explain qualitatively why this difference arises. How would you construct a bucket hedge for the cap using swaps of tenors 2Y, 5Y, and 10Y?
+
+---
+
+**Exercise 7.** The variance of portfolio P\&L is given by
+
+$$
+\text{Var}(\text{P\&L}) = \sum_{k,l} \text{KR-DV01}_k \cdot \text{KR-DV01}_l \cdot \text{Cov}(\Delta y_k, \Delta y_l)
+$$
+
+For a two-key-rate system (2Y, 10Y) with KR-DV01$_{\text{2Y}} = \$5{,}000$ and KR-DV01$_{\text{10Y}} = \$20{,}000$, yield volatilities $\sigma_{\text{2Y}} = 90$ bps/year and $\sigma_{\text{10Y}} = 70$ bps/year, and correlation $\rho = 0.85$, compute the annualized P\&L standard deviation. Compare with the result assuming perfect correlation ($\rho = 1$).

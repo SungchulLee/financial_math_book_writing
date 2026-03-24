@@ -158,3 +158,33 @@ Consider a 2-year European call with strike $K = 1.0$ on a 5-year annual coupon 
 ## Summary
 
 Jamshidian's trick exploits the monotonicity of bond prices in the short rate to decompose a European coupon bond option into a sum of European zero-coupon bond options. The critical step is finding the unique short rate $r^*$ at which the option is exactly at the money. Each individual ZCB option can then be priced using the Hull-White closed-form formula, yielding an analytic price for the coupon bond option without any numerical integration over the joint distribution of bond prices.
+
+---
+
+## Exercises
+
+**Exercise 1.** In the Hull-White model, the bond price at time $T_m$ for maturity $T_k$ is $P(T_m, T_k) = e^{A(T_k - T_m) + B(T_k - T_m)\,r(T_m)}$ with $B(\tau) = -(1 - e^{-\lambda\tau})/\lambda$. Prove that $B(\tau) < 0$ for all $\tau > 0$ and that $P(T_m, T_k)$ is strictly decreasing in $r(T_m)$.
+
+---
+
+**Exercise 2.** Let $g(r) = \sum_{k=m+1}^{n} c_k\,e^{A(T_k - T_m) + B(T_k - T_m)\,r}$ with positive cash flows $c_k > 0$. Show that $\lim_{r \to -\infty} g(r) = +\infty$ and $\lim_{r \to +\infty} g(r) = 0$, and conclude that the equation $g(r) = K$ has a unique solution for any $K > 0$.
+
+---
+
+**Exercise 3.** Consider a European put on a coupon bond with cash flows $c_k$ and strike $K$. Write the payoff at $T_m$, apply the Jamshidian decomposition, and verify that the put decomposes as $V^{\text{CB-Put}}(t_0) = \sum_k c_k \cdot V_p^{\text{ZCB}}(t_0, T_m, T_k; K_k)$, where the option is exercised when $r(T_m) > r^*$.
+
+---
+
+**Exercise 4.** Suppose a coupon bond pays $c_1 = 0.03$ at $T_1 = 3$, $c_2 = 0.03$ at $T_2 = 4$, and $c_3 = 1.03$ at $T_3 = 5$. A European call on this bond has strike $K = 0.98$ and option maturity $T_m = 2$. With Hull-White parameters $\lambda = 0.05$ and $\sigma = 0.01$, outline the Newton's method iteration to find $r^*$. Write the derivative $g'(r)$ explicitly and describe how convergence is guaranteed.
+
+---
+
+**Exercise 5.** In a two-factor Hull-White model, bond prices depend on two state variables $(r_1(t), r_2(t))$. Explain why the monotonicity argument fails: construct a scenario where increasing $r_1$ increases $P(T_m, T_1)$ but decreases $P(T_m, T_2)$, so that the terms $c_k(P(T_m, T_k) - K_k)$ do not all switch sign at the same threshold.
+
+---
+
+**Exercise 6.** Verify numerically that $\sum_{k=m+1}^{n} c_k K_k = K$ holds by construction. Starting from $K_k = P(T_m, T_k; r^*)$ and the definition $g(r^*) = K$, show this identity algebraically without relying on any specific parameter values.
+
+---
+
+**Exercise 7.** The Jamshidian decomposition relies on the identity $\max(\sum_k a_k, 0) = \sum_k \max(a_k, 0)$ when all $a_k$ have the same sign. Construct a simple two-term counterexample where $a_1 > 0$ and $a_2 < 0$ to show that this identity fails when the terms can have different signs. Relate this to why the trick requires a one-factor model.

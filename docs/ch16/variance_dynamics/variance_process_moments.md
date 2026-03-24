@@ -254,3 +254,27 @@ The CIR variance process has closed-form conditional moments at all orders, deri
 The [next section](mean_reversion_and_long_run.md) examines the mean-reversion mechanism in detail, including the half-life, the term structure of variance, and the distinction between physical and risk-neutral mean-reversion parameters.
 
 ---
+
+## Exercises
+
+**Exercise 1.** Derive $\mathbb{E}[V_T \mid V_t] = \theta + (V_t - \theta)e^{-\kappa\tau}$ by solving the ODE $\frac{d}{d\tau}\mathbb{E}[V_{t+\tau}] = \kappa(\theta - \mathbb{E}[V_{t+\tau}])$ with initial condition $\mathbb{E}[V_t] = V_t$.
+
+---
+
+**Exercise 2.** Compute the conditional variance $\operatorname{Var}(V_T \mid V_t) = V_t\frac{\sigma_v^2}{\kappa}(e^{-\kappa\tau} - e^{-2\kappa\tau}) + \frac{\theta\sigma_v^2}{2\kappa}(1 - e^{-\kappa\tau})^2$ for $\kappa = 2$, $\theta = 0.04$, $\sigma_v = 0.3$, $V_t = 0.04$, $\tau = 1$. Is the conditional standard deviation of $V_T$ large relative to its mean?
+
+---
+
+**Exercise 3.** The integrated variance $\bar{V} = \frac{1}{\tau}\int_t^{t+\tau} V_s\,ds$ has conditional mean $\mathbb{E}[\bar{V} \mid V_t] = \theta + (V_t - \theta)\frac{1 - e^{-\kappa\tau}}{\kappa\tau}$. Compute this for $\tau = 0.25$ (3-month variance swap) with $V_t = 0.05$, $\theta = 0.04$, $\kappa = 2$.
+
+---
+
+**Exercise 4.** The stationary variance of $V_t$ is $\operatorname{Var}_\infty(V) = \theta\sigma_v^2/(2\kappa)$. Compute the coefficient of variation $\text{CV} = \sqrt{\operatorname{Var}_\infty(V)}/\theta$ for the parameters in Exercise 2. A CV greater than 1 indicates very heavy-tailed variance dynamics.
+
+---
+
+**Exercise 5.** Show that $\mathbb{E}[\int_t^T V_s\,ds \mid V_t] = \theta\tau + (V_t - \theta)\frac{1 - e^{-\kappa\tau}}{\kappa}$ by integrating $\mathbb{E}[V_s \mid V_t]$ from $t$ to $T$. This formula gives the fair value of a variance swap starting at $t$ with maturity $T$.
+
+---
+
+**Exercise 6.** For the higher moments, the conditional third central moment of $V_T$ is needed for skewness. Without deriving it fully, explain why the CIR process has positive skewness (heavier right tail than left) and relate this to the square-root diffusion.

@@ -324,3 +324,29 @@ Use stressed scenarios to assess WWR impact:
 - Hull, J. & White, A. (2012), "CVA and Wrong-Way Risk"
 - Rosen, D. & Saunders, D. (2012), "CVA the Wrong Way"
 - Pykhtin, M. & Rosen, D. (2010), "Pricing Counterparty Risk at the Trade Level and CVA Allocations"
+
+---
+
+## Exercises
+
+**Exercise 1.** Define wrong-way risk (WWR) and right-way risk (RWR). For each of the following trades, classify the risk as WWR or RWR from the bank's perspective: (a) a put option purchased from a counterparty on the counterparty's own stock, (b) a commodity swap where the counterparty is a commodity producer receiving a fixed price, (c) a CDS where the bank buys protection on a sovereign from a domestic bank in that country.
+
+---
+
+**Exercise 2.** In standard CVA, exposure and default probability are assumed independent. Write the unilateral CVA formula and explain how wrong-way risk violates this independence assumption. Propose a modification that accounts for positive correlation between exposure and default.
+
+---
+
+**Exercise 3.** An FX derivative with an emerging-market counterparty has exposure that increases when the local currency depreciates. Explain why this is wrong-way risk. If the counterparty's default probability doubles when the currency depreciates by 30%, estimate the impact on CVA relative to the independence assumption.
+
+---
+
+**Exercise 4.** Describe two modeling approaches for wrong-way risk: (a) stochastic correlation between exposure and default intensity, and (b) conditional exposure given default. Discuss the advantages and limitations of each approach.
+
+---
+
+**Exercise 5.** Regulators require banks to identify and stress-test for wrong-way risk. Describe a stress scenario for a portfolio of interest rate swaps with financial institution counterparties where wrong-way risk materializes. How should the stress test affect the bank's capital requirements?
+
+---
+
+**Exercise 6.** The opposite of wrong-way risk is right-way risk, where exposure decreases as the counterparty's credit deteriorates. Give two examples of trades exhibiting right-way risk. Should a bank reduce its CVA for trades with right-way risk? Discuss the regulatory and economic considerations.

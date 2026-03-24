@@ -351,3 +351,39 @@ The cost of calibration depends on:
 - Storn & Price, "Differential Evolution" (1997).
 - Jones, Schonlau & Welch, "Efficient Global Optimization" (Bayesian optimization).
 - Press et al., *Numerical Recipes* (practical implementations).
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the weighted least-squares objective $\mathcal{L}(\theta) = \tfrac{1}{2}\|r(\theta)\|_W^2$, derive the Gauss--Newton update formula $(J^\top W J)\Delta\theta = -J^\top W r$ by expanding $\mathcal{L}(\theta + \Delta\theta)$ to second order and dropping the term involving second derivatives of $r$.
+
+---
+
+**Exercise 2.** In the Levenberg--Marquardt algorithm, the update solves $(J^\top W J + \lambda I)\Delta\theta = -J^\top W r$. Show that as $\lambda \to \infty$, the direction $\Delta\theta$ approaches a scaled negative gradient direction $-\nabla\mathcal{L}/\lambda$, and as $\lambda \to 0$, it reduces to the Gauss--Newton step.
+
+---
+
+**Exercise 3.** Consider a calibration problem with $d = 3$ parameters and $m = 5$ market instruments. Suppose the Jacobian at the current iterate has singular values $\sigma_1 = 10$, $\sigma_2 = 0.5$, $\sigma_3 = 0.001$. Compute the condition number of $J^\top J$. If the data perturbation $\|\delta y\| = 0.01$, estimate an upper bound on the parameter perturbation $\|\delta\theta\|$ using the pseudoinverse. Explain why Levenberg--Marquardt with $\lambda > 0$ improves the situation.
+
+---
+
+**Exercise 4.** In differential evolution, the mutant vector is constructed as $v_i = \theta_{r_1} + F(\theta_{r_2} - \theta_{r_3})$. Explain geometrically what the mutation operator does. If the population has converged so that all members are close together, what happens to the mutation step size? How does this relate to the algorithm's ability to explore versus exploit?
+
+---
+
+**Exercise 5.** A practitioner calibrates a Heston model using two approaches: (a) Levenberg--Marquardt from a single initial guess, and (b) multi-start with 50 random initializations followed by LM. Method (a) takes 0.2 seconds and achieves loss $\mathcal{L} = 0.0035$; method (b) takes 8 seconds and achieves loss $\mathcal{L} = 0.0008$. Discuss the trade-off. Under what circumstances would you prefer (a) over (b) in a production environment?
+
+---
+
+**Exercise 6.** For the trust-region method, the ratio
+
+$$
+\rho_k = \frac{\mathcal{L}(\theta^{(k)}) - \mathcal{L}(\theta^{(k)} + \Delta\theta)}{q(0) - q(\Delta\theta)}
+$$
+
+governs the trust-region radius adjustment. Show that if the quadratic model $q$ is exact (i.e., $\mathcal{L}$ is exactly quadratic), then $\rho_k = 1$. Give an example objective function where $\rho_k < 0$ and explain what this means geometrically.
+
+---
+
+**Exercise 7.** You need to calibrate a model where each function evaluation requires a Monte Carlo simulation costing 2 seconds. The parameter space has $d = 5$ dimensions. Compare the expected wall-clock time for: (a) Nelder--Mead with at most 500 evaluations, (b) differential evolution with population size 30 and 100 generations, and (c) Bayesian optimization with 200 evaluations. Which method would you choose and why? How would access to 16 parallel cores change your answer?

@@ -377,3 +377,63 @@ The Basel framework connects deeply to other topics in this book:
 - Board of Governors of the Federal Reserve System (2011), "Supervisory Guidance on Model Risk Management (SR 11-7)"
 - Vasicek, O. (2002), "The Distribution of Loan Portfolio Value"
 - McNeil, A., Frey, R. & Embrechts, P. (2015), *Quantitative Risk Management: Concepts, Techniques and Tools*, 2nd ed., Princeton University Press
+
+---
+
+## Exercises
+
+**Exercise 1.** A corporate loan has $\text{PD} = 2\%$, $\text{LGD} = 40\%$, $\text{EAD} = \$50$ million, and effective maturity $M = 4$ years. Using the Basel IRB asset correlation formula
+
+$$
+\rho = 0.12 \cdot \frac{1 - e^{-50 \cdot \text{PD}}}{1 - e^{-50}} + 0.24 \cdot \left(1 - \frac{1 - e^{-50 \cdot \text{PD}}}{1 - e^{-50}}\right)
+$$
+
+compute the asset correlation $\rho$, the capital charge $K$, the maturity adjustment $\text{MA}$, and the resulting risk-weighted assets.
+
+---
+
+**Exercise 2.** In the Vasicek single-factor model, the conditional default probability given the systematic factor $Z = z$ is
+
+$$
+p(z) = \Phi\!\left(\frac{\Phi^{-1}(\text{PD}) - \sqrt{\rho}\, z}{\sqrt{1-\rho}}\right)
+$$
+
+Show that $p(z)$ is decreasing in $z$ and increasing in $\rho$ (for fixed $z < 0$). Explain the economic intuition: why does higher asset correlation lead to a fatter tail in the portfolio loss distribution?
+
+---
+
+**Exercise 3.** Under Basel III, a G-SIB has a CET1 ratio of 11.5%, with a countercyclical buffer set at 1.5% and a G-SIB surcharge of 2.0%. Determine whether this bank meets all capital requirements including the capital conservation buffer. If the bank's RWA is \$800 billion, compute the CET1 shortfall (if any) in dollar terms.
+
+---
+
+**Exercise 4.** Explain why FRTB replaces the uniform 10-day VaR horizon with variable liquidity horizons $P_j \in \{10, 20, 40, 60, 120\}$ days. Consider a portfolio of liquid equity index futures (10-day horizon) and illiquid credit derivatives (120-day horizon). Discuss qualitatively how the FRTB aggregation formula
+
+$$
+\text{ES} = \sqrt{\sum_{j=1}^{J} \left(\text{ES}_j(P_j)\right)^2}
+$$
+
+treats these two positions differently, and why this is economically appropriate.
+
+---
+
+**Exercise 5.** The Basel IV output floor requires
+
+$$
+\text{RWA}_{\text{floor}} = \max\!\big(\text{RWA}_{\text{internal}},\; 72.5\% \times \text{RWA}_{\text{standardized}}\big)
+$$
+
+A bank computes $\text{RWA}_{\text{internal}} = \$400$ billion and $\text{RWA}_{\text{standardized}} = \$620$ billion. Determine the binding RWA. By what percentage would the bank need to reduce its standardized RWA (holding internal RWA fixed) for the output floor to become non-binding?
+
+---
+
+**Exercise 6.** A bank has total exposure of \$1.2 trillion, Tier 1 capital of \$40 billion, HQLA of \$250 billion, and projected 30-day net cash outflows of \$230 billion. Compute the leverage ratio, the LCR, and determine which of these two constraints is binding. Discuss why regulators impose a non-risk-based leverage ratio alongside risk-weighted capital requirements.
+
+---
+
+**Exercise 7.** In the FRTB internal models approach, the aggregate capital charge is
+
+$$
+\text{IMCC} = \rho \cdot \text{ES}_{\text{FC}} + (1 - \rho) \cdot \sum_{i=1}^{5} \text{ES}_{\text{RC},i}
+$$
+
+with $\rho = 0.5$. Suppose $\text{ES}_{\text{FC}} = \$800$ million and the five risk class ES values are \$300M, \$250M, \$200M, \$150M, and \$100M. Compute the IMCC. Explain the economic rationale for the weighted average: what happens in the limits $\rho = 0$ and $\rho = 1$, and why did the BCBS choose an intermediate value?

@@ -221,3 +221,46 @@ Consider a European call with $S_0 = \$100$, $K = \$100$, $T = 1$, $r = 0.05$ un
 ## Summary
 
 Variance reduction techniques improve Monte Carlo efficiency by factors of 10--500 depending on the method and the payoff structure. Antithetic variates provide a simple 2--4 fold improvement by pairing each path with its mirror. Control variates using the Black-Scholes price exploit the strong correlation between Heston and Black-Scholes payoffs, achieving 5--50 fold improvements for ATM options. Importance sampling targets OTM options by shifting the drift toward the exercise region, delivering the largest gains for deep OTM pricing. Combining antithetic variates with control variates is the standard production approach; adding importance sampling provides further benefit for tail-risk pricing and OTM Greeks.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Antithetic variates negate both $Z_1$ and $Z_2$ to create the mirror path. Show that for the log-price under constant variance ($v_t = v_0$ for all $t$), the antithetic terminal value is $\ln\tilde{S}_T = 2\ln S_0 + 2(r - q - v_0/2)T - \ln S_T$, so $\tilde{S}_T = S_0^2 e^{2(r-q-v_0/2)T}/S_T$. For a call payoff $g(S_T) = (S_T - K)^+$, explain why the correlation between $g(S_T)$ and $g(\tilde{S}_T)$ is strongly negative, leading to effective variance reduction.
+
+---
+
+**Exercise 2.**
+The variance of the antithetic estimator is $\text{Var}(\hat{V}_{\text{anti}}) = \frac{1}{M}\cdot\frac{\sigma_g^2 + \text{Cov}(g, \tilde{g})}{2}$. If $\text{Cov}(g, \tilde{g}) = -0.8\sigma_g^2$, compute the variance reduction factor $\sigma_g^2/\text{Var}(\hat{V}_{\text{anti}} \cdot M) = 2/(1 + \text{Corr}(g, \tilde{g}))$. How many naive paths would be needed to match the precision of $M = 10{,}000$ antithetic paths?
+
+---
+
+**Exercise 3.**
+The Black-Scholes control variate uses $\bar{\sigma}$ as the control volatility. Explain why setting $\bar{\sigma}$ equal to the Heston ATM implied volatility maximizes the correlation $\rho_{g,C}$ between the Heston and Black-Scholes payoffs. For an ATM call, estimate $\rho_{g,C}$ heuristically: since the Heston and BS models differ primarily in the randomness of variance, and the call payoff is primarily sensitive to the total integrated variance, the correlation should be close to
+
+$$
+\rho_{g,C} \approx \frac{\mathbb{E}[\bar{v}]}{\sqrt{\mathbb{E}[\bar{v}^2]}}
+$$
+
+where $\bar{v} = \frac{1}{T}\int_0^T v_s\,ds$. Is this ratio close to 1 for typical Heston parameters?
+
+---
+
+**Exercise 4.**
+The optimal control variate coefficient is $\beta^* = \text{Cov}(g, C)/\text{Var}(C)$. In the worked example, the control variate reduces the standard error from $\$0.15$ to $\$0.02$, a factor of 7.5 in standard error (factor of $\approx 56$ in variance). Compute $\rho_{g,C}$ from the variance reduction formula $1 - \rho_{g,C}^2 = 1/56$. Is this correlation value realistic for a Black-Scholes control on an ATM Heston call?
+
+---
+
+**Exercise 5.**
+For a deep OTM call ($K = 150$, $S_0 = 100$), most naive Monte Carlo paths finish out of the money. The importance sampling shift $\mu^* = [\ln(K/S_0) - (r - q - \bar{v}/2)T]/T$ centers the log-price distribution around $\ln K$. With $r = 0.05$, $\bar{v} = 0.04$, $T = 1$, compute $\mu^*$. What fraction of shifted paths finish in the money versus the fraction under the original measure? Estimate the variance reduction factor for this OTM option.
+
+---
+
+**Exercise 6.**
+The warning about variance explosion in importance sampling states that poorly chosen shifts can increase variance. Consider an extreme shift $\mu = 3\mu^*$ (three times the optimal). The likelihood ratio $\exp(-\mu W_T/\sqrt{\bar{v}} - \mu^2 T/(2\bar{v}))$ has very heavy tails. Compute the effective sample size $\text{ESS} = (\sum w_m)^2/\sum w_m^2$ for $M = 1{,}000$ paths and explain why ESS $\ll M$ indicates the estimator is unreliable. What is the maximum safe drift shift as a rule of thumb?
+
+---
+
+**Exercise 7.**
+The combined estimator uses antithetic variates with a Black-Scholes control variate. In the worked example, this achieves a reduction factor of 278. Decompose this into the antithetic contribution and the control variate contribution. If antithetic variates alone give a factor of 3 and control variates alone give a factor of 56, explain why the combined factor ($278 \approx 3 \times 93$) exceeds the product of individual factors. Hint: the antithetic averaging smooths the payoff, increasing the correlation with the control variate.

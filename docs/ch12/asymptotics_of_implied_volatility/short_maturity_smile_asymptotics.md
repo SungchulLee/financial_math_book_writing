@@ -631,3 +631,39 @@ $$
 
 
 The small-time limit provides a powerful lens for understanding the instantaneous structure of volatility and the geometry of the price process.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a local volatility model with $\sigma(S, 0) = 0.20 + 0.001(S - 100)$ for $S$ near $S_0 = 100$. Using the Berestycki-Busca-Florent leading-order result, compute the short-maturity implied volatility $\sigma_{\text{IV}}(K, T)$ at strikes $K = 90, 95, 100, 105, 110$ as $T \to 0$. Sketch the resulting smile.
+
+---
+
+**Exercise 2.** In the Heston model with $v_0 = 0.04$, $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.3$, and $\rho = -0.7$, use Theorem 4.4.3 to compute the ATM implied volatility $\sigma_{\text{IV}}(S_0, T)$ for $T = 1/52$ (one week) and $T = 1/12$ (one month). Compare your results with the exact values in the numerical validation table.
+
+---
+
+**Exercise 3.** Explain why short-maturity smile asymptotics break down when the underlying process includes jumps. Specifically, if
+
+$$
+dS_t = \mu S_t \, dt + \sigma S_t \, dW_t + S_t \, dJ_t
+$$
+
+where $J_t$ is a compound Poisson process, show heuristically why $\sigma_{\text{IV}}(K, T) \to \infty$ for $K \neq S_0$ as $T \to 0$.
+
+---
+
+**Exercise 4.** For the SABR model with $F = 100$, $\alpha = 0.20$, $\beta = 0.5$, $\nu = 0.4$, and $\rho = -0.3$, use Hagan's asymptotic formula (Theorem 4.4.5) to compute implied volatilities at strikes $K = 90, 95, 100, 105, 110$ for $T = 1/12$. Compare with the table in the numerical validation section.
+
+---
+
+**Exercise 5.** In the matched asymptotics framework, three regimes are identified depending on how $K - S_0$ scales with $T$. For a local volatility model with $\sigma(S, 0) = 0.25$ and $\sigma'(S_0, 0) = 0.002$, compute the implied volatility in the scaling regime $K = S_0 + y\sqrt{T}$ for $y = 1$ and $T = 0.01$. How does this compare with the Regime 2 result $\sigma_{\text{IV}} \sim \sigma(K, 0)$?
+
+---
+
+**Exercise 6.** For rough volatility models with Hurst exponent $H$, the short-maturity smile behaves as $\sigma_{\text{IV}}(y, T) \sim T^{H - 1/2}|y|$. (a) If $H = 0.1$, how does the slope of the smile (in $y$) scale with maturity for short $T$? (b) Compare this with the Heston model where skew is $O(T^0)$. (c) Empirical evidence suggests $H \approx 0.1$. What does this imply about the steepness of very short-dated smiles?
+
+---
+
+**Exercise 7.** A practitioner wants to extract the local volatility function $\sigma_{\text{loc}}(K, 0)$ from one-week SPX options. Describe the procedure using the short-maturity approximation $\sigma_{\text{loc}}(K, 0) \approx \sigma_{\text{IV}}(K, T_{\text{short}})$. What are the main sources of error, and why might this approach fail for strikes far from ATM?

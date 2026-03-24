@@ -206,3 +206,27 @@ The correlation parameter $\rho$ in the Heston model generates the leverage effe
 The characteristic function derivation in the [next section](../heston_cf/heston_sde_and_affine_recap.md) incorporates $\rho$ through the mixed partial derivative term in the Feynman-Kac PDE, completing the mathematical picture.
 
 ---
+
+## Exercises
+
+**Exercise 1.** Compute the instantaneous covariance $\operatorname{Cov}(d\log S_t, dV_t) = \rho\sigma_v V_t\,dt$ for $\rho = -0.75$, $\sigma_v = 0.4$, $V_t = 0.04$. Interpret the sign and magnitude.
+
+---
+
+**Exercise 2.** The skewness of log-returns over a short period $\Delta t$ is approximately proportional to $\rho\sigma_v\sqrt{V_t}\Delta t$. Explain why $\rho < 0$ produces negative skewness and relate this to the shape of the implied volatility smile.
+
+---
+
+**Exercise 3.** For the ATM implied volatility skew, the leading-order approximation is $\frac{\partial\sigma_{\text{imp}}}{\partial k}\big|_{k=0} \approx \frac{\rho\sigma_v}{2\sqrt{V_0}}$ where $k = \log(K/F)$. Compute this for $\rho = -0.7$, $\sigma_v = 0.3$, $V_0 = 0.04$. Is the skew negative as expected?
+
+---
+
+**Exercise 4.** If $\rho = 0$, the Heston model produces a symmetric implied volatility smile (no skew). Sketch the smile shape for $\rho = 0$, $\rho = -0.5$, and $\rho = -0.9$, labeling the ATM level and the skew.
+
+---
+
+**Exercise 5.** The leverage effect implies that hedging a short call position requires buying more stock than the Black-Scholes delta suggests. Explain this qualitatively: when $\rho < 0$ and the stock drops, what happens to volatility, and how does this affect the option's delta?
+
+---
+
+**Exercise 6.** Empirical studies find $\rho \in [-0.9, -0.5]$ for equity indices but $\rho \approx 0$ or slightly positive for some commodities and FX pairs. Explain the economic mechanisms behind these differences.

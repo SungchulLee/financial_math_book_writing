@@ -123,3 +123,45 @@ You should validate local vol surfaces by:
 - Dupire (1994), “Pricing with a Smile”.
 - Gatheral, *The Volatility Surface*.
 - Rebonato, *Volatility and Correlation* (practitioner view on local vol pitfalls).
+
+---
+
+## Exercises
+
+**Exercise 1.** The Dupire formula involves the ratio of a numerator $N = 2(\partial_T C + (r-q)K\partial_K C - qC)$ to a denominator $D = K^2 \partial_{KK}C$. Suppose both $N$ and $D$ are estimated with relative errors $\delta_N$ and $\delta_D$ respectively. Using first-order error propagation, show that the relative error in $\sigma_{\text{loc}}^2 = N/D$ satisfies
+
+$$
+\frac{\delta(\sigma_{\text{loc}}^2)}{\sigma_{\text{loc}}^2} \approx \sqrt{\delta_N^2 + \delta_D^2}
+$$
+
+Explain why the instability is worst when $|D|$ is small, even if $\delta_D$ is moderate.
+
+---
+
+**Exercise 2.** Consider a deep out-of-the-money call with $K = 150$, $S_0 = 100$, $T = 0.5$, and observed price $C^{\text{obs}} = 0.12$. The butterfly spread value $\partial_{KK}C$ estimated from neighboring strikes is $0.0003$. Estimate $\sigma_{\text{loc}}^2$ using a simplified Dupire formula with $r = q = 0$ and numerator $\partial_T C = 0.25$. Now perturb the butterfly spread by $\pm 0.0001$ and recompute. What is the relative change in $\sigma_{\text{loc}}^2$?
+
+---
+
+**Exercise 3.** A practitioner observes that the local volatility surface extracted on Monday and Tuesday (with very similar market data) differs by up to 30% in the short-maturity wings. List at least four specific sources of this instability, ordered from most to least impactful. For each source, propose a concrete mitigation strategy.
+
+---
+
+**Exercise 4.** In the regularized local volatility reconstruction
+
+$$
+\min_{\sigma_{\text{loc}}} \|\text{Price}(\sigma_{\text{loc}}) - C^{\text{mkt}}\|^2 + \lambda\,\mathcal{R}(\sigma_{\text{loc}})
+$$
+
+suppose $\mathcal{R}(\sigma_{\text{loc}}) = \int\int [(\partial_T \sigma_{\text{loc}})^2 + (\partial_K \sigma_{\text{loc}})^2]\,dK\,dT$. Explain the trade-off controlled by $\lambda$. What happens to the vanilla repricing error as $\lambda \to \infty$? How would you choose $\lambda$ in practice using an L-curve or cross-validation approach?
+
+---
+
+**Exercise 5.** At very short maturities ($T < 0.05$), discrete dividends introduce jumps in the forward price. Explain why ignoring discrete dividends leads to errors in $\partial_T C$ and hence in the extracted local volatility. Describe how using a proportional dividend model versus a cash dividend model affects the stability of the Dupire inversion near ex-dividend dates.
+
+---
+
+**Exercise 6.** As a stability check, a practitioner perturbs each market quote within its bid-ask spread (say $\pm 0.5$ vols) and re-calibrates the local volatility surface 100 times. The resulting distribution of $\sigma_{\text{loc}}(T_0, K_0)$ at a specific point has mean $0.22$ and standard deviation $0.08$. Is this level of uncertainty acceptable for hedging purposes? How would you use this bootstrap analysis to define confidence bands on the local volatility surface?
+
+---
+
+**Exercise 7.** Compare the stability properties of two approaches to local volatility calibration: (a) direct Dupire inversion from a smoothed implied volatility surface, and (b) PDE-constrained optimization that minimizes pricing errors subject to a smoothness penalty on $\sigma_{\text{loc}}$. Discuss computational cost, accuracy of vanilla repricing, and robustness to data noise for each approach. Under what conditions does method (b) justify its additional cost?

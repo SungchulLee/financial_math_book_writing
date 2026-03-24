@@ -260,3 +260,55 @@ Since $v_0 = \theta = 0.04$, the term structure is flat at approximately 20% acr
 ## Summary
 
 The `HestonModel` class encapsulates the five model parameters and market data in a single validated object. Construction-time validation enforces the mathematical domain constraints ($v_0 > 0$, $\kappa > 0$, $\theta > 0$, $\xi > 0$, $|\rho| < 1$) while issuing warnings for Feller condition violations. Derived properties---Feller ratio, half-life, stationary moments, and ATM volatility approximation---provide immediate diagnostic insight without recomputation. By passing the model object (not individual parameters) to pricing engines, the design eliminates parameter mismatch errors and provides a clean separation between model specification and numerical computation.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+For the model $v_0 = 0.04$, $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.5$, $\rho = -0.7$, compute the Feller ratio, mean-reversion half-life, stationary mean, and stationary standard deviation. Verify that the Feller condition is violated. If you were to increase $\kappa$ to satisfy Feller while keeping all other parameters fixed, what is the minimum $\kappa$ required?
+
+---
+
+**Exercise 2.**
+The ATM implied volatility approximation is:
+
+$$
+\sigma_{\text{ATM}}(T) \approx \sqrt{\theta + (v_0 - \theta)\frac{1 - e^{-\kappa T}}{\kappa T}}
+$$
+
+For $v_0 = 0.0225$ (initial vol = 15%), $\theta = 0.0625$ (long-run vol = 25%), and $\kappa = 1.5$, compute $\sigma_{\text{ATM}}(T)$ for $T = 0.1, 0.5, 1, 2, 5$ years. Plot or describe the shape of the term structure. At what maturity $T^*$ does the approximation reach 90% of the way from $\sqrt{v_0}$ to $\sqrt{\theta}$?
+
+---
+
+**Exercise 3.**
+The stationary distribution of the CIR variance process is a Gamma distribution with shape $\alpha = 2\kappa\theta / \xi^2$ and scale $\beta = \xi^2 / (2\kappa)$. For $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.5$, compute $\alpha$ and $\beta$. What is the probability that the stationary variance exceeds $0.16$ (i.e., instantaneous vol exceeds 40%)? Use the fact that for a Gamma$(\alpha, \beta)$ random variable, the CDF can be expressed via the regularized incomplete gamma function.
+
+---
+
+**Exercise 4.**
+The class validates that $|\rho| < 1$ but accepts $\rho = 0$ and $\rho = \pm 0.99$. Explain why $\rho = \pm 1$ is excluded from the mathematical domain. What happens to the Heston model when $\rho = -1$? Show that with $\rho = -1$, the log-price and variance processes can be written in terms of a single Brownian motion, and discuss the implications for option pricing.
+
+---
+
+**Exercise 5.**
+A colleague creates two model instances:
+
+```python
+model_a = HestonModel(S0=100, r=0.03, q=0.01, v0=0.04, kappa=2.0,
+                      theta=0.04, xi=0.5, rho=-0.7)
+model_b = HestonModel(S0=100, r=0.03, q=0.01, v0=0.04, kappa=8.0,
+                      theta=0.01, xi=0.5, rho=-0.7)
+```
+
+Both have $\kappa\theta = 0.08$. Compute and compare: the Feller ratio, mean-reversion half-life, stationary standard deviation, and $\sigma_{\text{ATM}}(T)$ for $T = 0.25$ and $T = 2.0$. Which model would produce a flatter ATM term structure?
+
+---
+
+**Exercise 6.**
+The immutability principle states that parameters should not be modified after construction. Discuss why this is important in a production system where the same model object is shared between a pricing engine and a Greeks engine. Give a concrete example of a bug that could arise if a downstream engine modified `model.v0` while another engine was still using the original value.
+
+---
+
+**Exercise 7.**
+Extend the `HestonModel` class conceptually to support time-dependent parameters $\kappa(t)$ and $\theta(t)$. What changes to the interface are needed? The characteristic function is no longer available in closed form for general time-dependent parameters. Describe two pricing approaches that would still work: (a) a piecewise-constant approximation that chains multiple constant-parameter Heston CFs, and (b) Monte Carlo with the QE scheme using local $\kappa(t_n)$ and $\theta(t_n)$ at each time step.

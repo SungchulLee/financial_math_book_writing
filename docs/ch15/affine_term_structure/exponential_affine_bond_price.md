@@ -307,3 +307,39 @@ The exponential-affine bond price formula $P(t,T) = \exp(A(\tau) + B(\tau)^\top 
 - Dai, Q. and Singleton, K. (2000). "Specification Analysis of Affine Term Structure Models." *Journal of Finance*, 55(5), 1943--1978.
 - Filipovic, D. (2009). *Term-Structure Models: A Graduate Course*. Springer.
 - Brigo, D. and Mercurio, F. (2007). *Interest Rate Models --- Theory and Practice*. Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Vasicek model with $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.02$, compute $B(\tau)$ and $A(\tau)$ at $\tau = 1, 5, 10$ years. Verify that $B(\tau) < 0$ for all three maturities and that $|B(\tau)|$ is increasing.
+
+---
+
+**Exercise 2.** Starting from the Feynman-Kac PDE $\partial f/\partial t + \mu(x)^\top \nabla_x f + \frac{1}{2}\operatorname{tr}[\sigma(x)\sigma(x)^\top \nabla_x^2 f] - r(x)f = 0$ with terminal condition $f(T,x) = 1$, carry out the full derivation of the Riccati system by substituting $f(t,x) = \exp(A(\tau) + B(\tau)^\top x)$ for a general $d$-dimensional affine model. Identify explicitly the constant and linear terms in $x$.
+
+---
+
+**Exercise 3.** In the CIR model, define $\gamma = \sqrt{\kappa^2 + 2\xi^2}$. Show that $\gamma > \kappa$ and use this to prove that the denominator $(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma > 0$ for all $\tau > 0$. This guarantees that $B(\tau)$ is well-defined and finite for all maturities.
+
+---
+
+**Exercise 4.** Compute the limiting factor loading $\lim_{\tau \to \infty} |B(\tau)|$ for both the Vasicek model and the CIR model. Express the CIR limit in terms of $\kappa$, $\xi$, and $\gamma$. Explain why the CIR saturation level $2/(\gamma + \kappa)$ is always less than the Vasicek saturation level $1/\kappa$.
+
+---
+
+**Exercise 5.** Consider a two-factor model with $X_t = (r_t, v_t)^\top$, short rate $r_t = X_t^{(1)}$, and dynamics
+
+$$
+dr_t = \kappa_r(\theta_r - r_t)\,dt + \sqrt{v_t}\,dW_t^{(1)}, \qquad dv_t = \kappa_v(\theta_v - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
+$$
+
+Write the Riccati system for $B_1(\tau)$ and $B_2(\tau)$, and explain why $B_2(\tau) \neq 0$ even though $v_t$ does not appear directly in the short rate specification.
+
+---
+
+**Exercise 6.** The convexity correction $A(\tau)$ in the Vasicek model can be decomposed as $A(\tau) = A_{\text{drift}}(\tau) + A_{\text{vol}}(\tau)$ where $A_{\text{drift}} = \kappa\theta \int_0^\tau B(s)\,ds$ and $A_{\text{vol}} = \frac{1}{2}\sigma^2 \int_0^\tau B(s)^2\,ds$. Evaluate both integrals in closed form and verify that $A_{\text{vol}}(\tau) > 0$ for all $\tau > 0$.
+
+---
+
+**Exercise 7.** Show that the bond price formula $P(t,T) = \exp(A(\tau) + B(\tau)^\top X_t)$ is a special case of the general discounted affine transform by setting $u = \mathbf{0}$ in the transform $\mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r_s\,ds + u^\top X_T} \mid X_t = x]$. What do the functions $\tilde{\phi}(\tau, \mathbf{0})$ and $\tilde{\psi}(\tau, \mathbf{0})$ correspond to?

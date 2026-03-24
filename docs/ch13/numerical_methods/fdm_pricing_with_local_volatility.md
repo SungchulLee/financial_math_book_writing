@@ -332,3 +332,51 @@ Finite difference methods provide a robust framework for pricing under local vol
 4. **Implicit schemes** are unconditionally stable and handle volatile local volatility surfaces without time step restrictions
 5. **Crank-Nicolson** achieves second-order accuracy in both space and time, with Rannacher smoothing needed near payoff discontinuities
 6. **Grid design** and **surface interpolation** are the two principal implementation challenges specific to local volatility FDM
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the local volatility PDE in $S$-space, perform the log-spot transformation $x = \ln S$ and verify that the PDE coefficients are:
+
+$$
+a(x, t) = \frac{1}{2}\sigma_{\text{loc}}^2(e^x, t), \quad b(x, t) = r - q - a(x, t), \quad c = -r
+$$
+
+Show each step of the chain rule computation explicitly.
+
+---
+
+**Exercise 2.** Consider a local volatility surface $\sigma_{\text{loc}}(S, t) = 0.3$ for $S < 100$ and $\sigma_{\text{loc}}(S, t) = 0.15$ for $S \geq 100$. Using a uniform grid in log-space with $\Delta x = 0.01$, compute the explicit scheme CFL time step constraint $\Delta t_{\max}$ at both $S = 80$ and $S = 120$. Which region dictates the global stability constraint?
+
+---
+
+**Exercise 3.** Write out the tridiagonal matrix $\mathbf{A}^n$ for the fully implicit scheme on a grid with $M = 4$ interior points. Specify all entries in terms of $\alpha_j^n$, $\delta_j^n$, and $\gamma_j^n$. What boundary condition modifications are needed in the first and last rows for a European call?
+
+---
+
+**Exercise 4.** Explain why Rannacher time-stepping (2--4 initial fully implicit steps followed by Crank-Nicolson) eliminates spurious oscillations near payoff discontinuities while preserving second-order convergence. What property of the fully implicit scheme causes it to damp oscillations, and why does switching to Crank-Nicolson after the initial steps not reintroduce them?
+
+---
+
+**Exercise 5.** Derive the finite difference formulas for delta and gamma in the log-spot coordinate $x = \ln S$. Starting from:
+
+$$
+\Delta = \frac{\partial V}{\partial S} = \frac{1}{S}\frac{\partial U}{\partial x}
+$$
+
+show that the centered difference approximation yields:
+
+$$
+\Delta \approx \frac{U_{j+1}^0 - U_{j-1}^0}{2\Delta x \cdot e^{x_j}}
+$$
+
+Then derive the corresponding formula for $\Gamma = \partial^2 V / \partial S^2$ in terms of $U$ and $x$.
+
+---
+
+**Exercise 6.** A convergence study for a European put under local volatility shows prices of 5.4321, 5.4189, 5.4156, and 5.4148 on grids of $100 \times 50$, $200 \times 100$, $400 \times 200$, and $800 \times 400$ (spatial $\times$ temporal). Compute the Richardson ratios and determine the observed order of convergence. Estimate the extrapolated exact price.
+
+---
+
+**Exercise 7.** For the sinh-based non-uniform grid $x_j = x_c + d \sinh((\xi_j - \xi_c)/\alpha)$, explain how the parameter $\alpha$ controls the grid concentration. If you need the grid spacing at the center $x_c$ to be approximately $\Delta x_{\text{center}} = 0.002$ and the grid spans $[-2, 2]$ in log-space with $M = 200$ points, estimate an appropriate value of $\alpha$.

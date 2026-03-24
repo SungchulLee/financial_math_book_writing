@@ -160,3 +160,45 @@ Calibrate to a subset of instruments and test on the held-out instruments to det
 | Validation | Calibrated model | Repricing errors | Analytical repricing |
 
 For the end-to-end workflow combining all stages with market data, see [End-to-End Worked Examples Guide](end_to_end_worked_examples.md).
+
+---
+
+## Exercises
+
+**Exercise 1.** The calibration pipeline computes $\theta(t)$ from the market curve $P^M(0, T)$ using numerical differentiation of $\ln P^M(0, t)$. For a flat curve at rate $r$, show analytically that $\theta(t) = r + \frac{\sigma^2}{2\lambda^2}(1 - e^{-2\lambda t})$. Verify this by plugging $P^M(0, t) = e^{-rt}$ into the numerical formula and comparing with the analytical result for $\sigma = 0.01$, $\lambda = 0.05$, $r = 0.03$.
+
+---
+
+**Exercise 2.** Explain why the cap volatility objective function uses implied volatility errors rather than price errors:
+
+$$
+f(\sigma, \lambda) = \sum_j w_j\left[\sigma_j^{\text{model}} - \sigma_j^{\text{mkt}}\right]^2
+$$
+
+What problems might arise from minimizing price errors instead? How should the weights $w_j$ be chosen?
+
+---
+
+**Exercise 3.** The one-factor Hull-White model has only two free parameters $(\sigma, \lambda)$ for fitting cap volatilities across many maturities. Explain the $\sigma$-$\lambda$ tradeoff: if $\sigma$ increases while $\lambda$ is adjusted appropriately, what happens to short-maturity caplet prices versus long-maturity caplet prices? Why does this create a ridge in the objective function landscape?
+
+---
+
+**Exercise 4.** Describe the three-stage calibration pipeline (market curve, theta fit, volatility calibration) and explain why the stages must be performed in this specific order. What would happen if you attempted to calibrate $(\sigma, \lambda)$ before computing $\theta(t)$?
+
+---
+
+**Exercise 5.** After calibrating to cap implied volatilities, the validation step reveals that the 3Y cap has a repricing error of 25 bps. Propose three possible causes and describe how you would diagnose each: (a) a numerical issue, (b) a model limitation, (c) a market data issue.
+
+---
+
+**Exercise 6.** In joint calibration with weight $\alpha$:
+
+$$
+h(\sigma, \lambda) = \alpha\,f(\sigma, \lambda) + (1 - \alpha)\,g(\sigma, \lambda)
+$$
+
+explain why $\alpha = 0.5$ does not necessarily give equal importance to caps and swaptions. What determines the effective relative importance? How would you modify the weighting to ensure that a 1 bp repricing error in caps is penalized equally to a 1 bp error in swaptions?
+
+---
+
+**Exercise 7.** Describe how you would assess parameter stability by calibrating to market data on five consecutive business days. What metrics would you compute? If $\hat{\sigma}$ varies by 30\% across the five days while $\hat{\lambda}$ varies by 200\%, what does this suggest about the identifiability of the parameters?

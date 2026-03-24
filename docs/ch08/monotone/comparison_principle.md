@@ -228,3 +228,29 @@ $$
 | **Discrete version** | Monotone schemes preserve ordering |
 
 The comparison principle is the cornerstone of viscosity solution theory. It guarantees that the option pricing PDE (or variational inequality for American options) has a unique answer, and it provides the theoretical foundation for proving that monotone numerical schemes converge to this unique answer.
+
+---
+
+## Exercises
+
+**Exercise 1.** State the comparison principle for viscosity sub- and supersolutions. Prove the uniqueness corollary: if $u$ and $v$ are both viscosity solutions with the same boundary data, then $u = v$.
+
+---
+
+**Exercise 2.** For a European call, construct explicit sub- and supersolutions (barriers): $\underline{u}(S) = 0$ and $\overline{u}(S) = S$. Verify that $\underline{u}$ is a viscosity subsolution and $\overline{u}$ is a viscosity supersolution of the Black-Scholes PDE, and conclude that $0 \leq V(t, S) \leq S$.
+
+---
+
+**Exercise 3.** The stability corollary states that small perturbations in boundary data produce small changes in the solution. If the terminal payoff is perturbed by $\epsilon$ (i.e., $\Phi_\epsilon(S) = (S - K)^+ + \epsilon$), bound the change in the option price using the comparison principle.
+
+---
+
+**Exercise 4.** Verify the four assumptions required for the comparison principle to hold for the Black-Scholes operator: degenerate ellipticity, properness, continuity, and growth conditions. For the properness condition, explain why $r \geq 0$ is essential.
+
+---
+
+**Exercise 5.** The discrete comparison principle states: if $S_h[u] \leq S_h[v]$ at all nodes, then $u \leq v$ at all nodes. Show that the explicit scheme satisfies this property when all stencil coefficients are non-negative (monotone scheme).
+
+---
+
+**Exercise 6.** The "doubling of variables" proof technique introduces a penalized supremum $\Phi_\alpha(\tau, x, \sigma, y) = u(\tau, x) - v(\sigma, y) - \frac{\alpha}{2}|x-y|^2 - \frac{\alpha}{2}(\tau - \sigma)^2$. Explain the role of the quadratic penalty terms: why do they force the supremum to occur near the diagonal $x = y$, $\tau = \sigma$?

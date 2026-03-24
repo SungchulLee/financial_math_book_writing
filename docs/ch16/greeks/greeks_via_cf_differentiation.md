@@ -200,3 +200,35 @@ For a European call with $S_0 = \$100$, $K = \$100$, $T = 1$, $r = 0.05$, $q = 0
 ## Summary
 
 Differentiating the Fourier inversion integral with respect to model parameters produces exact Greeks for the Heston model. Delta and gamma follow from the simple dependence of $\phi$ on $\ln S_0$; vega follows from the linear dependence on $v_0$ through the Riccati function $D$; parameter sensitivities ($\xi$, $\rho$, $\kappa$, $\theta$) require chain-rule differentiation of the Riccati solutions. All Greeks can be computed in a single quadrature pass, making this approach both more accurate and more efficient than [finite difference Greeks](greeks_via_finite_differences.md). The method is limited to European options priced via Fourier inversion; for American or exotic options, finite differences or pathwise Monte Carlo sensitivities are needed.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The Heston CF has the form $\varphi(u) = \exp(C + Dv_0 + iu\ln S_0)$. Show that $\partial\varphi/\partial(\ln S_0) = iu\cdot\varphi(u)$ and $\partial^2\varphi/\partial(\ln S_0)^2 = -u^2\cdot\varphi(u)$. Use these to express the delta and gamma integrands in the Gil-Pelaez framework.
+
+---
+
+**Exercise 2.**
+The Heston vega $\partial C_{\text{call}}/\partial v_0$ involves $\partial\varphi/\partial v_0 = D(u,\tau)\cdot\varphi(u)$, where $D$ is the Riccati function. Explain why the Heston vega depends on the maturity $\tau$ through $D(u,\tau)$ in a fundamentally different way from Black-Scholes vega, which depends on $\tau$ only through $\sqrt{\tau}$.
+
+---
+
+**Exercise 3.**
+The sensitivity $\partial C/\partial\rho$ requires $\partial D/\partial\rho$ and $\partial C_{\text{Riccati}}/\partial\rho$. These involve differentiating $\gamma = \sqrt{(\kappa - i\rho\xi u)^2 + \xi^2(iu + u^2)}$ with respect to $\rho$. Compute $\partial\gamma/\partial\rho$ in terms of $\gamma$, $\kappa$, $\rho$, $\xi$, and $u$.
+
+---
+
+**Exercise 4.**
+All Greeks can be computed in a single pass over the quadrature nodes. If you need price, delta, gamma, vega, and $\partial C/\partial\rho$, describe the algorithm: at each node $u_n$, evaluate $\varphi(u_n)$ and accumulate contributions to each Greek using the appropriate multiplier ($iu$ for delta, $-u^2$ for gamma, $D$ for vega, etc.). Estimate the cost saving versus five separate quadrature passes.
+
+---
+
+**Exercise 5.**
+Compare the CF-differentiation delta with the Black-Scholes delta $N(d_1)$ for an ATM call with $K = S_0 = 100$, $T = 0.5$, $v_0 = 0.04$, $\rho = -0.7$. The Heston delta accounts for the correlation between stock and variance moves. Explain qualitatively why negative $\rho$ makes the Heston delta slightly different from the BS delta.
+
+---
+
+**Exercise 6.**
+CF differentiation produces exact Greeks (up to quadrature error) but only for European options priced via Fourier inversion. For an American put under Heston, explain why CF differentiation cannot be used directly and describe the alternative approach (finite differences on the PDE solution or pathwise MC sensitivities).

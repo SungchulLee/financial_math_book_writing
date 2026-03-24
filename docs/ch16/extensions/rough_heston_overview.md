@@ -276,3 +276,35 @@ where $N_u$ is the number of quadrature points for Fourier inversion and $N$ is 
 | [Bates Model](bates_model.md) | Jump-based alternative for short-maturity smile |
 | [Double Heston Model](double_heston_model.md) | Multi-factor Markovian approach |
 | [Time-Dependent Parameters](time_dependent_parameters.md) | Piecewise-constant calibration |
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The fractional kernel is $K_H(t) = t^{H-1/2}/\Gamma(H+1/2)$. For $H = 0.1$, compute $K_H(t)$ at $t = 0.001, 0.01, 0.1, 1.0$. Compare with the standard Markovian case $H = 0.5$ where $K_{0.5}(t) = 1/\Gamma(1) = 1$ (constant kernel). Explain why the rough kernel $K_{0.1}(t) \propto t^{-0.4}$ diverges as $t \to 0$ and what this means for the regularity of variance paths.
+
+---
+
+**Exercise 2.**
+The Hurst parameter $H$ controls the roughness of volatility paths via $\mathbb{E}[|v_{t+\Delta} - v_t|^2] \sim \Delta^{2H}$. For $H = 0.1$, compute this scaling for $\Delta = 1$ day, 1 hour, and 1 minute (in fractions of a year). Compare with $H = 0.5$. Why does smaller $H$ produce "rougher" paths?
+
+---
+
+**Exercise 3.**
+In the rough Heston model, the variance process is non-Markovian: $v_t$ depends on the entire history $\{v_s : s < t\}$, not just the current state. Explain why this makes Monte Carlo simulation more expensive than for the standard Heston model. If a standard Heston QE step requires $O(1)$ operations, and a rough Heston step requires accessing the full history, what is the cost per path of $N$ steps?
+
+---
+
+**Exercise 4.**
+The characteristic function of the rough Heston model satisfies a fractional Riccati equation. Unlike the standard Riccati ODE (which has a closed-form solution), the fractional Riccati must be solved numerically. Describe the Adams method for solving fractional ODEs and explain why it is well-suited to this problem.
+
+---
+
+**Exercise 5.**
+Empirically, $H \approx 0.1$ for equity indices. The ATM skew in the rough Heston model behaves as $T^{H-1/2}$ for short maturities. Compare $T^{0.1 - 0.5} = T^{-0.4}$ (rough Heston) with $T^{-0.5}$ (standard Heston) for $T = 1/252, 1/52, 1/12$. Which model produces steeper short-maturity skews? How does this compare with the Bates model's approach to steep short-maturity smiles?
+
+---
+
+**Exercise 6.**
+The rough Heston model nests the standard Heston model as the special case $H = 0.5$. Verify that the fractional kernel $K_{0.5}(t) = 1/\Gamma(1) = 1$ is constant and that the Volterra integral equation reduces to the standard CIR ODE. Discuss the practical implications: if $H = 0.5$ were the true value, would the rough Heston framework add any value?

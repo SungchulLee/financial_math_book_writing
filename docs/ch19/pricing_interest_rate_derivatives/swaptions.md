@@ -402,3 +402,41 @@ Swaptions and caps are connected via correlation:
 - Jamshidian (1997), "LIBOR and Swap Market Models"
 - Brigo & Mercurio, *Interest Rate Models*, Chapters 6-7
 - Rebonato, *Modern Pricing of Interest-Rate Derivatives*
+
+---
+
+## Exercises
+
+**Exercise 1.** Price a 2Y-into-3Y ATM payer swaption using Black's formula. The current forward swap rate is $S_0 = 4.5\%$, the swaption volatility is $\sigma = 18\%$, and the present value of the annuity is $A_0 = 2.72$ (with annual payments and discount factors consistent with a flat 4.5\% curve). Verify put-call parity by also pricing the receiver swaption.
+
+---
+
+**Exercise 2.** Prove the put-call parity relation for swaptions: Payer Swaption $-$ Receiver Swaption $=$ Forward Swap. Start from the payoff definitions and show that the forward swap value at $T_0$ is $A(T_0)(S_{T_0} - K)$. Deduce that when $K = S_0$, the payer and receiver swaptions have equal value.
+
+---
+
+**Exercise 3.** Explain Jamshidian's trick in detail. For a 1Y-into-2Y payer swaption (annual payments) in the Hull-White model with $\lambda = 0.05$, $\sigma = 0.01$, and strike $K = 5\%$: (a) Write down the equation that determines $r^*$. (b) Explain why the decomposition into bond puts requires the bond price to be monotonic in $r$. (c) In what models does Jamshidian's trick fail, and why?
+
+---
+
+**Exercise 4.** An ATM swaption has the approximate value $V \approx A_0 \cdot S_0 \cdot \sigma\sqrt{T_0} \cdot \sqrt{2/\pi}$. For a 5Y-into-10Y ATM swaption with $S_0 = 3.5\%$, $A_0 = 8.2$, and $\sigma = 15\%$, compute the approximate price. Compare with the exact Black's formula result and discuss when the approximation breaks down.
+
+---
+
+**Exercise 5.** A swaption desk observes the following ATM implied volatilities for the swaption matrix (in percent):
+
+|  | 1Y Tenor | 5Y Tenor | 10Y Tenor |
+|---|---|---|---|
+| 1Y Expiry | 25.0 | 22.0 | 19.0 |
+| 5Y Expiry | 20.0 | 18.5 | 17.0 |
+| 10Y Expiry | 16.0 | 15.5 | 15.0 |
+
+Describe the qualitative features of this matrix (term structure in expiry, term structure in tenor). Is a one-factor short-rate model likely to fit this matrix well? Justify your answer.
+
+---
+
+**Exercise 6.** Compute the delta, vega, and gamma of a 3Y-into-5Y payer swaption with $K = S_0 = 4\%$, $\sigma = 20\%$, and $A_0 = 4.35$. If the swap rate increases by 50 bps, estimate the new swaption value using (a) delta only, and (b) delta plus gamma.
+
+---
+
+**Exercise 7.** A Bermudan swaption exercisable at years 1, 2, 3, 4, 5 into a swap paying until year 10 is worth more than the corresponding 1Y-into-9Y European swaption. Explain the source of the early exercise premium. Describe how you would price this Bermudan swaption using backward induction on a trinomial tree, specifying the exercise decision rule at each exercise date.

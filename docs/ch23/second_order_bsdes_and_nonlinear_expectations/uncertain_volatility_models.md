@@ -986,3 +986,35 @@ Uncertain volatility models bridge:
 - **Finance**: Pricing, hedging, and risk management
 
 The UVM framework represents a cornerstone of robust quantitative finance, providing rigorous mathematical foundations for handling model uncertainty while maintaining practical applicability in derivative pricing, hedging, and risk management.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider the Black-Scholes-Barenblatt equation for an uncertain volatility model with $\sigma \in [\underline{\sigma}, \overline{\sigma}] = [0.15, 0.30]$. For a European call with $S_0 = K = 100$ and $T = 1$, the robust price satisfies $V^{\text{sup}} = \text{BS}(S_0, K, \overline{\sigma}, T)$ since $\Gamma > 0$ for a call. Compute $V^{\text{sup}}$ and $V^{\text{sub}} = \text{BS}(S_0, K, \underline{\sigma}, T)$ and interpret the bid-ask spread.
+
+---
+
+**Exercise 2.** Write down the Black-Scholes-Barenblatt PDE for the superhedging price:
+
+$$
+\frac{\partial V}{\partial t} + \frac{1}{2}S^2 a^*(S, t) \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
+$$
+
+where $a^*(S,t) = \overline{\sigma}^2$ if $\Gamma > 0$ and $a^*(S,t) = \underline{\sigma}^2$ if $\Gamma < 0$. For a butterfly spread payoff $(S - K_1)^+ - 2(S - K_2)^+ + (S - K_3)^+$ with $K_1 < K_2 < K_3$, describe how the worst-case volatility switches as a function of $S$, and explain why the BSB equation becomes a free-boundary problem.
+
+---
+
+**Exercise 3.** Prove that the gamma of a European call is always positive: $\Gamma = \partial^2 C / \partial S^2 > 0$. Then show that for a digital call payoff $\mathbb{1}\{S_T > K\}$, the gamma changes sign near the strike (positive for $S < K$, negative for $S > K$). What is the worst-case volatility for pricing the digital call, and why does it differ from the call option case?
+
+---
+
+**Exercise 4.** Implement a finite difference scheme for the BSB equation on a grid with $N_S = 100$ spatial points and $N_t = 250$ time steps. At each node, the scheme must select the worst-case volatility based on the sign of $\Gamma$. Describe the algorithm and discuss convergence: why is the BSB equation harder to solve numerically than the standard Black-Scholes PDE?
+
+---
+
+**Exercise 5.** The uncertain volatility model can be connected to 2BSDEs. Show that the superhedging price $V_t$ satisfies the 2BSDE $-dY_t = f(t, Y_t, Z_t, \Gamma_t) \, dt - Z_t \, dW_t$ where the generator $f$ depends on the uncertain volatility through $\Gamma_t$. What is the explicit form of the generator $f$ for the uncertain volatility model?
+
+---
+
+**Exercise 6.** For a portfolio of vanilla options with both positive and negative gamma regions, the worst-case volatility in the UVM switches between $\underline{\sigma}$ and $\overline{\sigma}$ depending on the portfolio gamma. Consider a risk reversal (long OTM call, short OTM put). Determine which volatility is worst-case in each moneyness region and explain why the robust price of the risk reversal depends on the correlation between the volatility switching and the stock price level.

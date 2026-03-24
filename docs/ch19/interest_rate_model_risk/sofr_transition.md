@@ -335,3 +335,39 @@ The LIBOR Market Model can be adapted to SOFR by modeling **compounded overnight
 - Piterbarg (2020), "Interest Rate Modeling Post-LIBOR"
 - Henrard (2019), *Interest Rate Modelling in the Multi-Curve Framework*
 - Andersen & Piterbarg (2010), *Interest Rate Modeling*, Volume I (adapted for RFRs in later editions)
+
+---
+
+## Exercises
+
+**Exercise 1.** The daily SOFR rates over a 5-day accrual period are $r_1 = 4.30\%$, $r_2 = 4.32\%$, $r_3 = 4.28\%$, $r_4 = 4.35\%$, $r_5 = 4.31\%$. Compute the compounded SOFR rate using
+
+$$
+R = \frac{1}{\delta}\left[\prod_{i=1}^{5}\left(1 + \frac{d_i \, r_i}{360}\right) - 1\right]
+$$
+
+where $d_i = 1$ for each day and $\delta = 5/360$. Compare the result to the simple arithmetic average of the daily rates.
+
+---
+
+**Exercise 2.** A legacy 5-year LIBOR swap with a fixed rate of 3.80% is being converted to SOFR under ISDA fallback provisions. The fixed spread adjustment for 3-month USD LIBOR is 26.161 bps. What is the effective fixed rate the payer will pay after conversion? Is the conversion value-neutral at the time of the fallback, and why might it not be perfectly neutral in practice?
+
+---
+
+**Exercise 3.** Explain the difference between a "lookback" convention and a "lockout" convention for SOFR-based floating payments. For a quarterly floating coupon, describe how a 5-business-day lookback works and how a 2-business-day lockout works. Which convention is preferred for syndicated loans and why?
+
+---
+
+**Exercise 4.** LIBOR contains a term credit premium while SOFR does not (being secured). For a bank that funds itself at LIBOR + 30 bps, discuss how the transition to SOFR affects the economics of making floating-rate loans. How does the credit-sensitive alternative (e.g., BSBY or Ameribor) attempt to address this issue, and what are the regulatory concerns with such alternatives?
+
+---
+
+**Exercise 5.** Term SOFR is derived from SOFR futures prices. Explain how the market prices of 1-month and 3-month SOFR futures can be used to construct a forward-looking term rate. Why did regulators recommend limiting the use of Term SOFR to certain products (primarily loans) rather than allowing it for all derivatives?
+
+---
+
+**Exercise 6.** Under the LIBOR framework, the forward LIBOR rate $L_i(t)$ was a martingale under $\mathbb{Q}^{T_{i+1}}$, leading to Black's caplet formula. In the SOFR framework, the compounded rate over $[T_i, T_{i+1}]$ is backward-looking and only known at $T_{i+1}$. Discuss how this affects the measure-theoretic setup for pricing SOFR caplets and whether Black's formula can still be applied (with appropriate modifications).
+
+---
+
+**Exercise 7.** The transition from multi-curve (OIS + multiple LIBOR tenors) to essentially single-curve (SOFR) simplifies the modeling framework. Describe three specific simplifications that arise in a SOFR-only world and one new complexity that the backward-looking nature of SOFR introduces compared to forward-looking LIBOR.

@@ -968,11 +968,28 @@ This is the **complete theory** in four statements!
 
 ---
 
-Would you like me to explore:
-- Detailed proof of the comparison principle for Black-Scholes
-- Specific numerical schemes and their monotonicity properties
-- Multi-dimensional obstacle problems (e.g., multi-asset Americans)
-- Connection to backward stochastic differential equations (BSDEs)
-- Singular control and impulse control in detail
-- Viscosity solutions for path-dependent options
-- The relationship with weak formulations and Sobolev spaces?
+---
+
+## Exercises
+
+**Exercise 1.** A digital call option has payoff $\Phi(S) = \mathbf{1}_{\{S > K\}}$, which is discontinuous at $S = K$. Explain why the Black-Scholes PDE with this terminal condition has no classical ($C^{2,1}$) solution. Then describe how the viscosity solution framework resolves this issue, and verify that $V(S,t) = e^{-r(T-t)}\mathcal{N}(d_2)$ is the viscosity solution.
+
+---
+
+**Exercise 2.** State the definition of a viscosity subsolution and supersolution for the Black-Scholes PDE. Using these definitions, explain why the maximum of two viscosity solutions is a viscosity subsolution but not necessarily a viscosity solution.
+
+---
+
+**Exercise 3.** For an American put option, the value function satisfies the variational inequality $\min\left(-\mathcal{L}V, \, V - (K - S)^+\right) = 0$, where $\mathcal{L}$ is the Black-Scholes differential operator. Interpret each of the two conditions in this inequality financially, and explain why the obstacle problem formulation is natural for early exercise.
+
+---
+
+**Exercise 4.** The comparison principle for viscosity solutions states that if $u$ is a subsolution and $v$ is a supersolution with $u(S,T) \leq v(S,T)$, then $u \leq v$ everywhere. Explain why this principle is essential for proving uniqueness of viscosity solutions. Give a financial example where non-uniqueness of PDE solutions would lead to arbitrage.
+
+---
+
+**Exercise 5.** The Barles-Souganidis theorem guarantees convergence of numerical schemes to the viscosity solution if the scheme is monotone, consistent, and stable. For the explicit finite-difference scheme applied to the Black-Scholes PDE, state the CFL condition that ensures monotonicity and explain what happens when it is violated.
+
+---
+
+**Exercise 6.** Consider the Black-Scholes PDE with transaction costs, leading to the nonlinear equation $\frac{\partial V}{\partial t} + \frac{1}{2}\tilde{\sigma}^2(\Gamma) S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0$ where $\tilde{\sigma}$ depends on $\Gamma = \frac{\partial^2 V}{\partial S^2}$. Explain why classical solutions may not exist for this equation and why the viscosity solution framework is the appropriate mathematical setting.

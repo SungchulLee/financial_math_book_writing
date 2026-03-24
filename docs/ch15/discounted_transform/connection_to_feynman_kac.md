@@ -204,3 +204,29 @@ The Feynman-Kac theorem connects the discounted conditional expectation $V(t, x)
 - Duffie, D., Pan, J., & Singleton, K. (2000). "Transform Analysis and Asset Pricing for Affine Jump-Diffusions." *Econometrica*, 68(6), 1343-1376.
 - Karatzas, I. & Shreve, S. E. *Brownian Motion and Stochastic Calculus*. Springer, 1991, Section 4.4.
 - Filipovic, D. *Term-Structure Models: A Graduate Course*. Springer, 2009.
+
+---
+
+## Exercises
+
+**Exercise 1.** State the Feynman-Kac theorem for the function $V(t, x) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r(X_s)\,ds}\,h(X_T) \mid X_t = x]$. Write down the PDE that $V$ satisfies, including the terminal condition. For the Black-Scholes model with $h(x) = (e^x - K)^+$, identify the generator $\mathcal{A}$ and the discount rate $r$.
+
+---
+
+**Exercise 2.** For a one-dimensional affine diffusion $dX_t = (\kappa_0 + \kappa_1 X_t)\,dt + \sqrt{\sigma_0 + \sigma_1 X_t}\,dW_t$ with short rate $r(x) = \rho_0 + \rho_1 x$, substitute the exponential-affine ansatz $V(\tau, x) = e^{\phi(\tau) + \psi(\tau)x}$ into the Feynman-Kac PDE $\frac{\partial V}{\partial \tau} = \mathcal{A}V - rV$ and derive the extended Riccati system by matching constant and linear terms in $x$.
+
+---
+
+**Exercise 3.** Verify the Feynman-Kac solution for the Vasicek bond price. Starting from $V(\tau, x) = P(t, T) = e^{A(\tau) + B(\tau)x}$ with the Vasicek generator, show that $V$ satisfies $\frac{\partial V}{\partial \tau} = \kappa(\theta - x)\frac{\partial V}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 V}{\partial x^2} - xV$ by computing each derivative and substituting.
+
+---
+
+**Exercise 4.** Explain why the Feynman-Kac approach converts the computational cost from "exponential in dimension $d$" (for PDE grid methods) to "polynomial in $d$" (for Riccati ODE methods) when the process is affine. What is the dominant cost in the Riccati approach as the number of factors $d$ increases?
+
+---
+
+**Exercise 5.** The Feynman-Kac theorem requires regularity conditions on the coefficients and the terminal function $h$. For the payoff $h(x) = (e^x - K)^+$, explain why $h$ is not smooth at $x = \log K$ and discuss how this affects the validity of the Feynman-Kac representation. Does the exponential-affine form still apply?
+
+---
+
+**Exercise 6.** For a two-factor affine model with state vector $(r_t, V_t)$ and short rate $r(x) = x_1$, write down the Feynman-Kac PDE in two spatial dimensions. Show that the exponential-affine ansatz $V(\tau, x_1, x_2) = e^{\phi(\tau) + \psi_1(\tau)x_1 + \psi_2(\tau)x_2}$ reduces this PDE to a system of three ODEs.

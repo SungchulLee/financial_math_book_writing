@@ -511,3 +511,29 @@ This follows from the tower property of conditional expectations applied to expo
 6. **Observational Equivalence**: With exponential utility, multiplier preferences are indistinguishable from standard expected utility with higher risk aversion --- the interpretation (robustness vs risk aversion) determines calibration and comparative statics
 
 7. **Dynamic Consistency**: Unlike max-min preferences, multiplier preferences are automatically dynamically consistent without requiring rectangularity conditions
+
+---
+
+## Exercises
+
+**Exercise 1.** For a gamble $f$ with two outcomes: $f(\omega_1) = 10$ with $P_0(\omega_1) = 0.6$ and $f(\omega_2) = -5$ with $P_0(\omega_2) = 0.4$, compute the multiplier preference value $V(f) = -\theta \log \mathbb{E}_{P_0}[e^{-u(f)/\theta}]$ for $u(x) = x$ (linear utility) and $\theta \in \{1, 5, 50\}$. Verify that as $\theta \to \infty$, $V(f) \to \mathbb{E}_{P_0}[f]$, and as $\theta \to 0$, $V(f) \to \min_\omega f(\omega)$.
+
+---
+
+**Exercise 2.** Derive the worst-case measure for the multiplier preference. Starting from $V(f) = \min_{P \ll P_0}\{\mathbb{E}_P[u(f)] + \theta D_{\text{KL}}(P \| P_0)\}$, use calculus of variations to show that the minimizing $P^*$ satisfies $dP^*/dP_0 \propto e^{-u(f)/\theta}$. Compute $P^*$ for the gamble in Exercise 1 with $\theta = 5$, and verify that $P^*$ shifts probability toward the worse outcome.
+
+---
+
+**Exercise 3.** In the Hansen-Sargent robust control framework with linear dynamics $x_{t+1} = Ax_t + Bu_t + Cw_t$ and quadratic cost, the robust optimal control is $u_t^* = -(R + B^\top P_\theta B)^{-1}B^\top P_\theta A x_t$ where $P_\theta$ satisfies a modified Riccati equation involving $\theta$. For $A = 0.95$, $B = 1$, $C = 0.3$, $Q = 1$, $R = 0.1$, compare the optimal control gains for $\theta = \infty$ (standard LQG), $\theta = 10$, and $\theta = 2$.
+
+---
+
+**Exercise 4.** Show that multiplier preferences with exponential utility $u(x) = -e^{-\alpha x}$ are observationally equivalent to standard expected utility with adjusted risk aversion $\alpha' = \alpha + 1/\theta$. What implication does this have for empirically distinguishing robustness concerns from pure risk aversion? Discuss how comparative statics (e.g., response to information quality changes) can break this equivalence.
+
+---
+
+**Exercise 5.** Prove that multiplier preferences are dynamically consistent without requiring rectangularity. Specifically, show that for the recursive formulation $V_t = -\theta \log \mathbb{E}_{P_0}[e^{-V_{t+1}/\theta} | \mathcal{F}_t]$, the tower property holds: $V_0 = -\theta \log \mathbb{E}_{P_0}[e^{-(-\theta \log \mathbb{E}_{P_0}[e^{-V_2/\theta}|\mathcal{F}_1])/\theta}] = -\theta \log \mathbb{E}_{P_0}[e^{-V_2/\theta}]$.
+
+---
+
+**Exercise 6.** Apply multiplier preferences to the equity premium puzzle. In a consumption-based asset pricing model with $\log C_{t+1} - \log C_t \sim N(\mu_c, \sigma_c^2)$, the equity premium under multiplier preferences is $\mathbb{E}[R_e - R_f] = (\alpha + 1/\theta)\sigma_c^2 + \sigma_c^2/\theta$. For $\mu_c = 0.02$, $\sigma_c = 0.035$, $\alpha = 2$, show that $\theta = 5$ generates an equity premium consistent with the historical average of approximately 6%, while standard expected utility with $\alpha = 2$ generates a premium of only about 0.25%.

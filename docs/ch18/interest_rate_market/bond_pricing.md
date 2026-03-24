@@ -294,3 +294,31 @@ The discount factor $P(t,T)$ is the fundamental quantity from which all others d
     Under a short-rate model $dr_t = \mu(t, r_t) \, dt + \sigma(t, r_t) \, dW_t$, the zero-coupon bond price satisfies $P(t,T) = \mathbb{E}_t^{\mathbb{Q}}[e^{-\int_t^T r_s \, ds}]$. The deterministic discount factor framework of this section is recovered in the limit of zero volatility ($\sigma \to 0$), where $P(t,T) = e^{-\int_t^T f(t,s) \, ds}$ with $f(t,s)$ the deterministic forward rate. The stochastic generalization is developed in the short-rate model sections of this chapter.
 
 ---
+
+## Exercises
+
+**Exercise 1.** A zero-coupon bond with face value \$100 and maturity $T = 2$ years has a market price of \$94.50. Compute the continuously compounded zero rate $R(0, 2)$, the semi-annually compounded yield, and the simply compounded rate. Verify that all three rates produce the same discount factor.
+
+---
+
+**Exercise 2.** A coupon bond with face value $N = 100$, annual coupon rate $c = 5\%$, and semi-annual payments matures in 3 years. The discount factors are $P(0, 0.5) = 0.985$, $P(0, 1.0) = 0.968$, $P(0, 1.5) = 0.950$, $P(0, 2.0) = 0.930$, $P(0, 2.5) = 0.910$, $P(0, 3.0) = 0.889$. Compute the bond price and the par yield for a 3-year semi-annual bond.
+
+---
+
+**Exercise 3.** Derive the Newton-Raphson iteration for computing the yield to maturity of a coupon bond. For the bond in Exercise 2 with computed price $B$, perform two Newton-Raphson iterations starting from $y_0 = 0.04$ (semi-annual compounding). Show that the derivative $dB/dy$ involves the Macaulay duration.
+
+---
+
+**Exercise 4.** A 10-year bond with 6% annual coupon (paid semi-annually) and face value \$100 has a yield to maturity of 5%. Compute the Macaulay duration, modified duration, and DV01. If the yield increases by 25 basis points, estimate the percentage price change using the duration approximation.
+
+---
+
+**Exercise 5.** Compute the convexity of the bond in Exercise 4. Using the second-order approximation $\Delta B / B \approx -D_{\text{mod}}\Delta y + \frac{1}{2}C(\Delta y)^2$, estimate the price change for a 100 basis point yield increase. Compare this to the duration-only estimate and explain the source of the difference.
+
+---
+
+**Exercise 6.** Two bonds have the same modified duration of 7 years but different convexities: Bond A has $C_A = 60$ and Bond B has $C_B = 90$. Both are priced at par. Which bond is more valuable and why? Compute the price difference for a parallel yield shift of $\pm 200$ basis points using the second-order approximation.
+
+---
+
+**Exercise 7.** A US Treasury note is quoted at "101-16+" with a 3% coupon (semi-annual) and 5 years to maturity. The last coupon was paid 45 days ago in a 182-day coupon period. Convert the quote to a decimal clean price, compute the accrued interest, and determine the dirty price (invoice price) per \$100 face value.

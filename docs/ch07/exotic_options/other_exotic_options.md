@@ -195,3 +195,29 @@ This decomposition clarifies the probabilistic structure of the Black–Scholes 
 | Digital | Fixed payout if condition met | $e^{-rT} N(d_2)$ | Binary outcomes, structured notes |
 
 **Beyond the core barrier, Asian, and lookback structures, the exotic options universe includes chooser, rainbow, cliquet, compound, and digital options—each designed to serve specific financial needs through tailored payoff mechanisms.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Using put-call parity, show that a simple chooser option with choice date $t_c$, strike $K$, and maturity $T$ can be decomposed into a call with strike $K$ and maturity $T$ plus a put with strike $Ke^{-r(T-t_c)}$ and maturity $t_c$. Price both components using Black-Scholes for $S_0 = 100$, $K = 100$, $T = 1$, $t_c = 0.5$, $r = 5\%$, $\sigma = 20\%$.
+
+---
+
+**Exercise 2.** For a best-of call on two assets with payoff $(\max(S_T^{(1)}, S_T^{(2)}) - K)^+$, explain why the price depends critically on the correlation $\rho$ between the two assets. What happens to the best-of call price as $\rho \to +1$? As $\rho \to -1$? Sketch the price as a function of $\rho$.
+
+---
+
+**Exercise 3.** A cliquet option with annual resets and 3-year maturity has local floor $f = 0\%$ and local cap $c = 10\%$ per period. If the annual returns of the underlying are $+15\%$, $-8\%$, $+22\%$, compute the total cliquet payoff. Compare this with the payoff of holding the underlying asset directly over the same period.
+
+---
+
+**Exercise 4.** A call on a call (compound option) with strikes $K_1 = 3$ (compound strike) and $K_2 = 100$ (underlying call strike), compound expiry $t_1 = 0.5$, and underlying call expiry $T_2 = 1$, gives the right to buy a call option for $\$3$. At time $t_1$, the underlying call is worth $C(t_1, S_{t_1}; 100, 1)$. (a) For what value of $S_{t_1}$ is the compound option exactly at the money? (b) Explain why compound options arise naturally in real options analysis for staged investment decisions.
+
+---
+
+**Exercise 5.** A cash-or-nothing digital call pays $Q = \$1$ if $S_T > K$ and zero otherwise. Its Black-Scholes price is $e^{-rT} N(d_2)$. (a) Compute the delta of the digital call and show that it becomes infinite as $T \to 0$ when $S_0 = K$. (b) Explain why this makes digital options extremely difficult to hedge near expiry. (c) Describe how a digital call can be approximately replicated using a tight call spread $(C(K) - C(K + \epsilon))/\epsilon$.
+
+---
+
+**Exercise 6.** Show that a vanilla European call can be decomposed as the difference of an asset-or-nothing call and $K$ cash-or-nothing calls: $C = S_0 N(d_1) - Ke^{-rT} N(d_2)$. Interpret $N(d_1)$ as the probability that $S_T > K$ under a specific measure and $N(d_2)$ as the probability under a different measure. Which measures are these?

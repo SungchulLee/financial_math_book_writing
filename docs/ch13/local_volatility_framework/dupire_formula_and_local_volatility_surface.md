@@ -529,3 +529,33 @@ $$
 
 
 Together, these model-free results allow complete characterization of the arbitrage-free price surface and the underlying dynamics without assuming a specific parametric model.
+
+---
+
+## Exercises
+
+**Exercise 1.** State Dupire's formula in its simplest form (forward coordinates) and identify the role of each partial derivative. What does the numerator $\frac{\partial C}{\partial T}$ correspond to economically? What does the denominator $\frac{1}{2}K^2 \frac{\partial^2 C}{\partial K^2}$ correspond to?
+
+---
+
+**Exercise 2.** For a constant implied volatility surface $\sigma_{\text{IV}}(K, T) = 0.25$, verify that Dupire's formula yields $\sigma_{\text{loc}}(K, T) = 0.25$ for all $(K, T)$. Use the Black-Scholes call price to compute the necessary derivatives.
+
+---
+
+**Exercise 3.** Given discrete call prices $C(95, 0.25) = 8.50$, $C(100, 0.25) = 5.80$, $C(105, 0.25) = 3.70$, $C(100, 0.20) = 4.30$, $C(100, 0.30) = 7.10$, with $\Delta K = 5$ and $\Delta T = 0.05$, compute $\sigma_{\text{loc}}^2(100, 0.25)$ using finite-difference approximations. Take $r = 0.03$ and $q = 0$.
+
+---
+
+**Exercise 4.** The ATM approximation gives $\sigma_{\text{loc}}^2(F, T) \approx \sigma_{\text{IV}}^2 + 2T\sigma_{\text{IV}} \frac{\partial \sigma_{\text{IV}}}{\partial T}$. If $\sigma_{\text{IV}}(F, 0.5) = 20\%$ and $\frac{\partial \sigma_{\text{IV}}}{\partial T} = 0.02$ (IV increases by 2% per year of maturity), compute $\sigma_{\text{loc}}(F, 0.5)$. Is local volatility higher or lower than implied volatility when the term structure is upward sloping?
+
+---
+
+**Exercise 5.** Explain why the Tanaka formula approach to deriving Dupire's result uses local time $L_T^K$ of the process at level $K$. What is the connection between the occupation density of the diffusion and the option price?
+
+---
+
+**Exercise 6.** List four limitations of the local volatility model. For each, describe a specific exotic option that would be mispriced and explain the direction of the error (overpriced or underpriced).
+
+---
+
+**Exercise 7.** A practitioner has computed the local volatility surface and finds $\sigma_{\text{loc}} = 150\%$ at a deep OTM put strike. (a) Is this economically reasonable? (b) What data quality issue likely caused this? (c) Describe two regularization approaches to address the problem while maintaining arbitrage-free properties.

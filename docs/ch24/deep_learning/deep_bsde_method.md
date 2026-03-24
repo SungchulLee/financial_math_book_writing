@@ -277,3 +277,39 @@ where $M$ is the number of sample paths, $N$ the number of time steps, and $C_{\
 - Beck, E & Jentzen (2019), "Machine Learning Approximation Algorithms for High-Dimensional FBSDEs"
 - Pardoux & Peng (1990), "Adapted Solution of a Backward Stochastic Differential Equation"
 - Bouchard & Touzi (2004), "Discrete-Time Approximation and Monte-Carlo Simulation of BSDEs"
+
+---
+
+## Exercises
+
+**Exercise 1.** Write out the discretized BSDE forward step
+
+$$
+Y_{t_{k+1}} = Y_{t_k} - f(t_k, X_{t_k}, Y_{t_k}, Z_{t_k})\,\Delta t_k + Z_{t_k}^\top \Delta W_k
+$$
+
+for the Black-Scholes PDE with driver $f(t, x, y, z) = -ry$. Verify that this simplifies to $Y_{t_{k+1}} = Y_{t_k}(1 + r\Delta t_k) + Z_{t_k}^\top \Delta W_k$. Explain why $Y_0$ corresponds to the option price and $Z_{t_k}$ to the delta-hedging portfolio (scaled by $\sigma$).
+
+---
+
+**Exercise 2.** The Deep BSDE loss function is $\mathcal{L}(\Theta) = \mathbb{E}[|Y_{t_N}^\Theta - g(X_{t_N})|^2]$. Explain why minimizing this loss over parameters $\Theta = (Y_0, \theta_0, \ldots, \theta_{N-1})$ produces both the PDE solution $u(0, x_0) = Y_0$ and the gradient process $Z_{t_k} = \mathcal{Z}_{\theta_k}(t_k, X_{t_k})$. What value should the loss converge to if the neural networks can perfectly represent the true gradient?
+
+---
+
+**Exercise 3.** The convergence bound states $|\hat{u}(0,x_0) - u(0,x_0)|^2 \le C(\Delta t + \delta^2)$ where $\Delta t$ is the time step and $\delta$ the network approximation error. If $T = 1$ year and $N = 50$ time steps, compute $\Delta t$. Discuss qualitatively how increasing the network width affects $\delta$ (via universal approximation), and why neither error term depends exponentially on dimension $d$. Why is this dimension independence the key advantage over finite difference methods?
+
+---
+
+**Exercise 4.** Consider using the Deep BSDE method for a 10-asset basket option pricing problem. The forward SDE in log-coordinates is $dX_t^{(i)} = (r - \sigma_i^2/2)dt + \sigma_i dW_t^{(i)}$ for $i = 1,\ldots,10$. Describe the input and output dimensions of the neural network $\mathcal{Z}_{\theta_k}$ at each time step. If each hidden layer has 20 neurons and there are 2 hidden layers, estimate the total number of parameters per sub-network. With $N = 50$ time steps and unshared networks, how many total parameters are there?
+
+---
+
+**Exercise 5.** The Deep BSDE method for a nonlinear PDE with driver $f(t, x, y, z) = y - y^3$ (Allen-Cahn equation) involves the update $Y_{t_{k+1}} = Y_{t_k} - (Y_{t_k} - Y_{t_k}^3)\Delta t_k + Z_{t_k}^\top \Delta W_k$. Explain why standard Monte Carlo cannot solve this PDE (since it requires an expectation under a nonlinear Feynman-Kac formula). How does the Deep BSDE method handle the nonlinearity through the forward simulation? In what financial application does a similar nonlinear driver arise?
+
+---
+
+**Exercise 6.** Compare the shared and unshared network architectures for the Deep BSDE method. In the shared architecture, a single network $\mathcal{Z}_\theta(t, x)$ is used for all time steps with time $t$ as an additional input. In the unshared architecture, each time step has its own network $\mathcal{Z}_{\theta_k}(x)$. Discuss the tradeoffs in terms of: (a) total number of parameters, (b) ability to capture time-varying gradient structure, (c) generalization performance, and (d) training time. Which architecture would you recommend for a long-dated (30-year) problem with $N = 120$ quarterly steps?
+
+---
+
+**Exercise 7.** A financial application of the Deep BSDE method is computing CVA for a multi-currency portfolio with $d = 20$ risk factors. The semilinear PDE includes the nonlinear driver $f(v) = \lambda_C \cdot \text{LGD} \cdot v^+$. Explain why this is intractable with grid-based PDE methods. Describe how you would set up the Deep BSDE problem: define the forward process, the BSDE driver, and the terminal condition. What does $Y_0$ represent financially, and what does $Z_0$ represent?

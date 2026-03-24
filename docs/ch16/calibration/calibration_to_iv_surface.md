@@ -229,3 +229,58 @@ Heston calibration to a full implied volatility surface follows a systematic wor
 - Christoffersen, P., Heston, S., and Jacobs, K. (2009). "The shape and term structure of the index option smear." *Management Science*, 55(12), 1914--1932.
 - Gatheral, J. (2006). *The Volatility Surface: A Practitioner's Guide*. Wiley.
 - Cont, R. and Tankov, P. (2004). *Financial Modelling with Jump Processes*. CRC Press.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Consider a market with $S_0 = 5000$, $r = 5\%$, and $q = 2\%$. Compute the forward price $F$ for maturities $T = 0.25$, $T = 0.5$, and $T = 1.0$. Then convert the strikes $K = 4500, 5000, 5500$ to log-moneyness $m = \ln(K/F)$ for each maturity. Explain why the same strike corresponds to different log-moneyness values at different maturities.
+
+---
+
+**Exercise 2.**
+A Heston calibration yields parameters $v_0 = 0.04$, $\kappa = 1.5$, $\theta = 0.05$, $\xi = 0.60$, and $\rho = -0.75$. Compute the Feller ratio $2\kappa\theta / \xi^2$. Is the Feller condition satisfied? Discuss why equity-calibrated Heston parameters commonly violate this condition, and explain the practical consequences for the variance process.
+
+---
+
+**Exercise 3.**
+Suppose you calibrate the Heston model using uniform price weights and observe that the IVRMSE is 55 bps, with most of the error concentrated in OTM put options. Explain mathematically why uniform price weights bias the fit toward ITM options. Derive the relationship between price errors and implied volatility errors using the vega approximation:
+
+$$
+C^{\text{model}} - C^{\text{mkt}} \approx \mathcal{V}\,(\sigma^{\text{model}}_{\text{imp}} - \sigma^{\text{mkt}}_{\text{imp}})
+$$
+
+and show that minimizing $\sum_i (C_i^{\text{model}} - C_i^{\text{mkt}})^2$ with uniform weights effectively places weight proportional to $\mathcal{V}_i^2$ on implied volatility errors.
+
+---
+
+**Exercise 4.**
+Given the residual table in the worked example, verify the reported IVRMSE of 32 bps. The IVRMSE is defined as:
+
+$$
+\text{IVRMSE} = \sqrt{\frac{1}{M}\sum_{i=1}^M (\sigma_i^{\text{model}} - \sigma_i^{\text{mkt}})^2}
+$$
+
+Using the residuals (in basis points) for all 45 options, compute the IVRMSE explicitly. Also compute the mean absolute error and confirm that the maximum absolute error is 95 bps.
+
+---
+
+**Exercise 5.**
+A differential evolution run with population size $N_p = 50$ and 200 generations requires $50 \times 200 = 10{,}000$ objective function evaluations (plus the initial population). If each evaluation requires pricing 45 options via the COS method with $N = 128$ cosine terms, estimate the total number of characteristic function evaluations performed during the entire calibration. Discuss how vectorization across strikes and maturities reduces the wall-clock time compared to a naive loop implementation.
+
+---
+
+**Exercise 6.**
+The residual analysis shows that short-maturity wing errors are much larger than long-maturity errors. Using the short-maturity smile asymptotics result:
+
+$$
+\frac{\partial\sigma_{\text{imp}}}{\partial m}\bigg|_{m=0} = O(T^{-1/2}) \quad \text{as } T \to 0
+$$
+
+explain why the ATM skew steepens as $T \to 0$ in any pure stochastic volatility model. If the market skew behaves as $O(T^{-0.7})$, argue that no adjustment of the Heston parameters $(\kappa, \theta, \xi, \rho)$ can match the market at very short maturities. What model extension would you recommend?
+
+---
+
+**Exercise 7.**
+You are tasked with calibrating the Heston model daily for a trading desk. On day 1, the calibrated parameters are $\Theta_1 = (0.034, 2.15, 0.036, 0.48, -0.72)$. On day 2, without warm-starting, the optimizer finds $\Theta_2 = (0.038, 3.80, 0.034, 0.62, -0.65)$, which achieves a similar objective function value. Compute the relative change in each parameter. Explain why such parameter instability is problematic for a hedging desk that computes Greeks from the model, and describe how warm-starting the DE population with $\Theta_1$ helps mitigate this issue.

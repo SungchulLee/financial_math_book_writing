@@ -295,3 +295,40 @@ where $\beta$ is the optimal regression coefficient. This is especially powerful
 ## Summary
 
 The QE scheme provides near-exact simulation of the Heston variance process by matching conditional moments through a psi-based switching rule: the quadratic approximation $v = a(b + Z)^2$ when variance is large ($\psi \leq 1.5$), and the exponential approximation when variance is near zero ($\psi > 1.5$). The log-price update uses precomputed coefficients $K_0, \ldots, K_4$ that automatically enforce the martingale condition. Combined with antithetic variates and control variates, the QE-based Monte Carlo engine achieves pricing accuracy comparable to Fourier methods for European options while extending naturally to path-dependent and exotic payoffs.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+For Heston parameters $v_0 = 0.04$, $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.5$ with $\Delta t = 1/252$ (daily steps), compute the conditional mean $m$ and variance $s^2$ of $v_{\Delta t}$ given $v_0 = 0.04$. Then compute $\psi = s^2 / m^2$. Is $\psi$ above or below the threshold $\psi_c = 1.5$? Which QE case (quadratic or exponential) would be used for this step?
+
+---
+
+**Exercise 2.**
+In Case 1 (quadratic approximation) with $\psi = 0.5$ and $m = 0.04$, compute $b^2$, $b$, and $a$. If $Z_v = 1.2$, compute the sampled variance $v_{t+\Delta t} = a(b + Z_v)^2$. Verify that the result is positive. What is the minimum value of $Z_v$ that produces $v_{t+\Delta t} = 0$ (i.e., $Z_v = -b$)?
+
+---
+
+**Exercise 3.**
+In Case 2 (exponential approximation) with $\psi = 3.0$ and $m = 0.005$, compute $p$ and $\beta$. If $U_v = 0.3$, is the sampled variance zero or positive? If $U_v = 0.7$, compute $v_{t+\Delta t}$. Verify that $\mathbb{E}[v_{t+\Delta t}] = m$ by computing $(1 - p) \cdot \mathbb{E}[\beta^{-1}\ln((1-p)/(1-U_v)) \mid U_v > p]$ (the conditional expectation of the exponential component).
+
+---
+
+**Exercise 4.**
+The log-price update coefficients are $K_0 = -\rho\kappa\theta\Delta t / \xi$, $K_1 = \frac{1}{2}\Delta t(\rho\kappa/\xi - 1/2) - \rho/\xi$, $K_2 = \frac{1}{2}\Delta t(\rho\kappa/\xi - 1/2) + \rho/\xi$. For $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.5$, $\rho = -0.7$, $\Delta t = 1/252$, compute $K_0$, $K_1$, $K_2$, $K_3$, and $K_4$. Verify the martingale condition: show that $\mathbb{E}[e^{x_{t+\Delta t} - x_t}] = e^{(r-q)\Delta t}$ by taking expectations over $Z_x$ and using the moment-generating function of a normal random variable.
+
+---
+
+**Exercise 5.**
+Antithetic variates pair paths using $(Z_v, Z_\perp)$ and $(-Z_v, -Z_\perp)$. Explain why, for a European call payoff $\max(S_T - K, 0)$, the antithetic path produces a negatively correlated payoff (i.e., if the original path has a high terminal price, the antithetic tends to have a low one). In Case 2 of the QE scheme, the variance is sampled from a uniform random variable $U_v$. How should you construct the antithetic for $U_v$ to maintain negative correlation?
+
+---
+
+**Exercise 6.**
+A Monte Carlo simulation with 100,000 QE paths and 100 time steps prices an ATM European call at \$6.82 with standard error \$0.031. The analytical (COS) price is \$6.806. Compute the $z$-score for the MC estimate: $z = (6.82 - 6.806)/0.031$. Is the MC estimate consistent with the true price at the 95% confidence level? If you increase the number of paths to 1,000,000, what standard error do you expect, and how long would the simulation take if the 100,000-path version takes 0.5 seconds?
+
+---
+
+**Exercise 7.**
+Design a control-variate strategy for pricing a discretely-monitored up-and-out barrier call under Heston. The payoff is $\max(S_T - K, 0) \cdot \mathbf{1}\{S_{t_k} < B \text{ for all } k\}$ where $B$ is the barrier. The vanilla European call has a known analytical price. Explain why the correlation between the barrier and vanilla payoffs is high when $B$ is far above the current price, but decreases as $B$ approaches ATM. Propose an additional control variate (e.g., the barrier call in the Black-Scholes model with $\sigma = \sqrt{v_0}$) and discuss its effectiveness.

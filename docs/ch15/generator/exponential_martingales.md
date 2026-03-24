@@ -218,3 +218,29 @@ The exponential martingale $M_t = \exp(\phi(T-t,u) + \psi(T-t,u)^\top X_t)$ is t
 - Duffie, D., Filipovic, D., and Schachermayer, W. (2003). "Affine Processes and Applications in Finance." *Annals of Applied Probability*, 13(3), 984--1053.
 - Andersen, L. and Piterbarg, V. (2007). "Moment Explosions in Stochastic Volatility Models." *Finance and Stochastics*, 11(1), 29--50.
 - Filipovic, D. (2009). *Term-Structure Models: A Graduate Course*. Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Vasicek model with $\psi(\tau, u) = ue^{-\kappa\tau}$, write out $M_t = \exp(\phi(T-t, u) + ue^{-\kappa(T-t)}X_t)$ explicitly. Compute $dM_t$ using Ito's lemma and verify that the drift term vanishes, leaving only the stochastic integral $dM_t = M_t \cdot ue^{-\kappa(T-t)}\sigma\,dW_t$.
+
+---
+
+**Exercise 2.** The Novikov condition requires $\mathbb{E}[\exp(\frac{1}{2}\int_0^T |\psi(T-s,u)^\top\sigma(X_s)|^2\,ds)] < \infty$. For the Vasicek model, show that the integrand $|\psi(T-s,u)|^2 \sigma^2 = |u|^2 e^{-2\kappa(T-s)}\sigma^2$ is deterministic and bounded, so the Novikov condition is satisfied for all $u \in \mathbb{C}$.
+
+---
+
+**Exercise 3.** For the CIR model with $u = iv$ (purely imaginary), explain why $|M_t^{(iv,T)}| = |\exp(\phi(T-t,iv) + \psi(T-t,iv)X_t)|$ is bounded by a deterministic constant times $\exp(|\operatorname{Re}(\psi(T-t,iv))| \cdot X_t)$. Under what conditions on $\psi$ does this guarantee boundedness of $|M_t|$?
+
+---
+
+**Exercise 4.** Prove that if $M_t^{(u,T)}$ is a true martingale, then $\mathbb{E}[M_T^{(u,T)}] = M_0^{(u,T)}$. Use this to derive the log-affine expectation formula $\mathbb{E}[e^{u^\top X_T} \mid X_0 = x] = \exp(\phi(T,u) + \psi(T,u)^\top x)$ directly from the martingale property.
+
+---
+
+**Exercise 5.** Consider the exponential martingale $M_t = \exp(\phi(T-t,u) + \psi(T-t,u)X_t)$ for a CIR process with $u = 5$ and parameters $\kappa = 2$, $\xi = 1$. The critical threshold is $u^* = 4 < u = 5$, so the Riccati solution $\psi(\tau, 5)$ explodes at some finite time $T^*$. Explain why $M_t$ is only a strict local martingale (not a true martingale) for $T > T^*$, and what this implies for the moment generating function $\mathbb{E}[e^{5X_T}]$.
+
+---
+
+**Exercise 6.** Suppose you want to use $M_t^{(u,T)}$ as a Radon-Nikodym derivative to define a new measure $\mathbb{Q}$. What normalization condition must hold so that $\mathbb{E}^{\mathbb{P}}[M_T^{(u,T)}] = 1$? Express this condition in terms of $\phi(T, u)$, $\psi(T, u)$, and $X_0$, and explain why it constrains the choice of $u$.

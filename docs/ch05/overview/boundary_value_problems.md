@@ -301,3 +301,46 @@ $$
 - [Classification of Second-Order PDEs](classification_of_second_order_pdes.md) -- which boundary conditions are appropriate for which PDE type
 - [Maximum Principle](../heat_equation/maximum_principle.md) -- the tool for uniqueness and stability
 - [Kolmogorov Backward Equation](../kolmogorov_equations/kolmogorov_backward.md) -- boundary conditions for diffusion expectations
+
+---
+
+## Exercises
+
+**Exercise 1.**
+For a European put option under Black-Scholes dynamics, state the terminal condition $V(T, S)$ and the boundary conditions at $S = 0$ and as $S \to \infty$. Verify that the boundary condition at $S = 0$ is consistent with the degenerate PDE $\partial_t V = rV$ at that point.
+
+---
+
+**Exercise 2.**
+Consider a down-and-out call option with barrier $B < K$ and strike $K$. Write the complete initial-boundary value problem: the Black-Scholes PDE on the domain $S \in (B, \infty)$, the terminal condition, and the Dirichlet boundary condition at $S = B$. What is the probabilistic interpretation of the Dirichlet condition?
+
+---
+
+**Exercise 3.**
+The Hadamard well-posedness conditions require existence, uniqueness, and continuous dependence on data. Using the maximum principle, prove the continuous dependence estimate
+
+$$
+\|u_1 - u_2\|_\infty \leq \max(\|g_1 - g_2\|_\infty, \|h_1 - h_2\|_\infty)
+$$
+
+for two solutions $u_1$, $u_2$ of the parabolic IBVP with different terminal data $g_1$, $g_2$ and boundary data $h_1$, $h_2$.
+
+---
+
+**Exercise 4.**
+Explain why the backward heat equation $\partial_t u + \frac{1}{2}\partial_{xx} u = 0$ with initial data $u(0, x) = f(x)$ solved forward in time is ill-posed. Construct a sequence of initial data $f_n(x) = \frac{1}{n}\sin(nx)$ such that $\|f_n\|_\infty \to 0$ but the solution at any $t > 0$ blows up. What does this say about the irreversibility of diffusion?
+
+---
+
+**Exercise 5.**
+For an American put option, the free boundary $S^*(t)$ separates the continuation region from the exercise region. State the smooth-pasting condition at $S^*(t)$ and explain why both value matching and smooth pasting must hold simultaneously. What would happen to the hedging strategy if the delta were discontinuous across the exercise boundary?
+
+---
+
+**Exercise 6.**
+At $S = 0$, the Black-Scholes PDE degenerates because $\frac{1}{2}\sigma^2 S^2 \to 0$. Explain why this means no boundary condition needs to be imposed at $S = 0$. Connect this to the probabilistic fact that geometric Brownian motion can never reach zero: $\mathbb{P}(S_t = 0 \text{ for some } t > 0) = 0$.
+
+---
+
+**Exercise 7.**
+Compare Dirichlet, Neumann, and Robin boundary conditions in terms of their probabilistic meaning for a diffusion process. For a particle undergoing Brownian motion in the interval $(a, b)$, describe the behavior at the boundary under each condition: absorption (killing), reflection, and partial absorption with probability $\alpha$.

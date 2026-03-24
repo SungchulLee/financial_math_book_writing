@@ -520,3 +520,51 @@ These limits provide:
 - Bounds for arbitrage detection
 
 Understanding asymptotic behavior is essential for both theoretical analysis and practical implementation of option pricing models.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $C(S, K, T, r, \sigma)$ denote the Black-Scholes call price. Prove rigorously that
+
+$$
+\lim_{S \to \infty} \frac{C(S, K, T, r, \sigma)}{S} = 1
+$$
+
+by analyzing the rate at which $\mathcal{N}(d_1) \to 1$ as $S \to \infty$. What does this tell you about the delta of a deep in-the-money call?
+
+---
+
+**Exercise 2.** For an at-the-money call ($S = K$) with $r = 0$, use the Taylor expansion of $\mathcal{N}(x)$ around $x = 0$ to show that the call price satisfies
+
+$$
+C \approx \frac{S \sigma \sqrt{T}}{\sqrt{2\pi}}
+$$
+
+for small $T$. Compute the percentage error of this approximation relative to the exact Black-Scholes price when $S = K = 100$, $\sigma = 0.25$, $r = 0$, and $T = 0.01$.
+
+---
+
+**Exercise 3.** Consider the put price $P$ as $\sigma \to \infty$. Show from the Black-Scholes formula (not from put-call parity) that $P \to Ke^{-rT}$. Explain the financial intuition: why should the put attain its maximum theoretical value when volatility is infinite?
+
+---
+
+**Exercise 4.** Examine the behavior of the Black-Scholes call price as $r \to -\infty$ (negative interest rates). Determine $\lim_{r \to -\infty} d_1$, $\lim_{r \to -\infty} d_2$, and $\lim_{r \to -\infty} C$. Is the result consistent with the economic interpretation of a very negative interest rate?
+
+---
+
+**Exercise 5.** The summary table states that as $T \to \infty$, the put price satisfies $P \to 0$. However, this assumes $r > 0$. What happens to $\lim_{T \to \infty} P$ when $r = 0$? Prove your answer by carefully analyzing $d_1$ and $d_2$ in this special case.
+
+---
+
+**Exercise 6.** Using the ATM approximation $C_{\text{ATM}} \approx 0.4 \, S \sigma \sqrt{T}$, derive an approximate formula for the ATM implied volatility $\sigma_{\text{impl}}$ given a market price $C_{\text{mkt}}$ of an at-the-money call. Apply your formula to find the approximate implied volatility when $S = 50$, $T = 0.25$, and $C_{\text{mkt}} = 2.00$.
+
+---
+
+**Exercise 7.** Consider the ratio of a European put to a European call, $P/C$, for a fixed strike $K$ and maturity $T$. Determine
+
+$$
+\lim_{\sigma \to 0^+} \frac{P(S, K, T, r, \sigma)}{C(S, K, T, r, \sigma)}
+$$
+
+for the three cases $S > Ke^{-rT}$, $S < Ke^{-rT}$, and $S = Ke^{-rT}$. Discuss why the $S = Ke^{-rT}$ case requires careful treatment.

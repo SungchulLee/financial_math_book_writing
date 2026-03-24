@@ -169,3 +169,33 @@ Swaptions are priced similarly: compute the swap value at the exercise date at e
 | Caplet pricing | `price_caplet` | LIBOR payoff + backward induction |
 
 For calibration of the model parameters $(a, \sigma)$ to market cap volatilities using this tree, see [Calibration to Cap Volatilities](calibration_to_cap_volatilities.md). For a comparison with the Hull-White tree implementation, see [Comparison with Hull-White](comparison_with_hull_white.md).
+
+---
+
+## Exercises
+
+**Exercise 1.** Given $a = 0.10$, $\sigma = 0.20$, and $\Delta t = 0.01$ year, compute the grid spacing $\Delta x = \sigma\sqrt{3\Delta t}$ and the maximum node index $j_{\max} = \lceil 0.184/(a\Delta t) \rceil$. How many nodes exist at a given time step (in terms of $j_{\max}$)?
+
+---
+
+**Exercise 2.** At node $(t_k, x_j)$ with $j = 3$, $\Delta x = 0.03464$, $\theta(t_k) = -0.25$, $a = 0.10$, and $\Delta t = 0.01$, compute the conditional drift $\mu_j = \theta(t_k) - a \cdot j \cdot \Delta x$ and then the standard branching probabilities $p_u$, $p_m$, $p_d$. Verify that $p_u + p_m + p_d = 1$ and all probabilities are non-negative.
+
+---
+
+**Exercise 3.** Explain the role of the Arrow-Debreu prices $Q(k, j)$ in the forward induction procedure. If at time step $k$ there are 5 active nodes with Arrow-Debreu prices $Q(k, -2) = 0.02$, $Q(k, -1) = 0.15$, $Q(k, 0) = 0.55$, $Q(k, 1) = 0.20$, $Q(k, 2) = 0.03$, what is the model discount factor $P^{\text{model}}(0, t_k)$? How does this relate to the calibration condition?
+
+---
+
+**Exercise 4.** The `calibrate_theta` method uses `brentq` to solve for $\theta(t_k)$ at each time step. Explain why the calibration equation $\sum_j Q(k+1, j) = P^{\text{mkt}}(0, t_{k+1})$ is monotone in $\theta(t_k)$ (i.e., why the root is unique). What is the economic intuition for why increasing $\theta(t_k)$ changes the sum of Arrow-Debreu prices?
+
+---
+
+**Exercise 5.** Describe how the backward induction for a caplet differs from that for a zero-coupon bond. Specifically, for a caplet with reset $T_i$ and payment $T_{i+1}$, explain: (i) what terminal condition is set at $T_{i+1}$, (ii) how the LIBOR rate $L_j$ is computed at each node at $T_i$, and (iii) why a separate bond price computation is needed at $T_i$ nodes.
+
+---
+
+**Exercise 6.** A practitioner runs the BK tree with `n_steps = 50` and gets a 5-year zero-coupon bond price of 0.7695. With `n_steps = 100`, the price is 0.7700, and with `n_steps = 200`, it is 0.7701. Use Richardson extrapolation to estimate the converged bond price from the 50-step and 100-step results. How does your extrapolated value compare to the 200-step result?
+
+---
+
+**Exercise 7.** The code switches from standard branching to up/down branching when $|j| > j_{\max}$. Explain why standard branching produces negative probabilities for large $|j|$ by examining the formula for $p_m$ as $|\mu_j \Delta t|$ grows relative to $\Delta x$. What is the economic scenario (in terms of the short rate level) that triggers the branching switch?

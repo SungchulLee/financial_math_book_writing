@@ -240,3 +240,29 @@ The probability density of the SABR model is the heat kernel on a Riemannian man
 - McKean, H. P. (1970). *An upper bound to the spectrum of $\Delta$ on a manifold of negative curvature*. Journal of Differential Geometry.
 - Lesniewski, A. (2002). *Notes on the SABR model*. Unpublished lecture notes.
 - Paulot, L. (2009). *Asymptotic implied volatility at the second order with application to the SABR model*. SSRN preprint.
+
+---
+
+## Exercises
+
+**Exercise 1.** The SABR model with $\rho = 0$ defines a diffusion on a surface isometric to the Poincare hyperbolic plane with curvature $-\nu^2$. Explain intuitively why the curvature is negative (the "geometry" is hyperbolic rather than Euclidean or spherical). What happens to the curvature as $\nu \to 0$? What does this limit correspond to in terms of the SABR model?
+
+---
+
+**Exercise 2.** The geodesic distance on the SABR manifold between the initial point $(F_0, \alpha)$ and the point $(K, \alpha)$ is related to the Hagan smile factor $z/x(z)$. For $\rho = 0$, the geodesic distance simplifies to $d = \frac{1}{\nu}\cosh^{-1}\!\bigl(1 + \frac{\nu^2}{2\alpha^2}\frac{(K-F)^2}{(FK)^{1-\beta}}\bigr)$ (schematic). Explain why a larger geodesic distance (corresponding to a further OTM strike) leads to a higher implied volatility through the heat kernel decay.
+
+---
+
+**Exercise 3.** The short-time heat kernel expansion gives the density as $p(t, x, y) \sim \frac{1}{t}\exp\bigl(-\frac{d^2(x,y)}{2t}\bigr) \cdot g(x,y)$ where $d$ is the geodesic distance and $g$ involves curvature corrections. Explain why the leading $\exp(-d^2/(2t))$ term becomes more concentrated around $x = y$ as $t \to 0$, and how the $O(t)$ corrections give rise to the skew and convexity terms in the Hagan formula.
+
+---
+
+**Exercise 4.** For the uncorrelated case $\rho = 0$, the McKean heat kernel provides the exact transition density. Explain why adding correlation ($\rho \neq 0$) breaks the simple hyperbolic geometry and requires perturbation methods. How does the Hagan formula handle the correlation: is $\rho$ included in the geodesic distance, the curvature correction, or both?
+
+---
+
+**Exercise 5.** The geometric approach yields higher-order corrections to the Hagan formula (Paulot 2009). The second-order correction improves accuracy from $O(\nu^2 T^2)$ to $O(\nu^2 T^3)$. For a 5-year swaption with $\nu = 0.5$, estimate the improvement factor $T$ in the error bound. Is the second-order correction worth implementing for practical applications?
+
+---
+
+**Exercise 6.** Compare the geometric (heat kernel) derivation of the Hagan formula with the direct PDE perturbation approach. Both yield the same leading-order formula. What additional insight does the geometric approach provide? Specifically, explain how the Riemannian metric interpretation helps determine when the approximation will fail (e.g., for strikes far from ATM on the manifold).

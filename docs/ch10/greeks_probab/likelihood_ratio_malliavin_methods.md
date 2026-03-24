@@ -165,3 +165,29 @@ LR/Malliavin methods are essential for:
 - The cost is potentially high variance from heavy-tailed weights, especially for short maturities.
 - Malliavin calculus provides the theoretical foundation; Hermite polynomials appear in higher-order weights.
 - Practical implementations combine pathwise (away from kinks) with LR (near kinks).
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Black--Scholes model with $S_T = S\exp((r - \frac{1}{2}\sigma^2)\tau + \sigma\sqrt{\tau}Z)$, verify the LR delta formula $\Delta = \mathbb{E}[e^{-r\tau}\Phi(S_T) \cdot Z/(S\sigma\sqrt{\tau})]$ by applying it to a European call $\Phi(x) = (x-K)^+$ and showing it yields $N(d_1)$.
+
+---
+
+**Exercise 2.** The LR vega estimator involves the weight $(Z^2 - 1 - Z\sigma\sqrt{\tau})/\sigma$. Compute the variance of this weight for $\sigma = 0.20$ and $\tau = 0.25$. Compare it to the variance of the pathwise vega weight $S_T(\sqrt{\tau}Z - \sigma\tau)$. Which has higher variance?
+
+---
+
+**Exercise 3.** The Malliavin delta weight is $H_\Delta = Z/(S\sigma\sqrt{\tau})$. For $\tau = 1/252$ (one day), $\sigma = 0.20$, $S = 100$, compute $\mathbb{E}[H_\Delta^2]$ and explain why LR estimators have high variance for short maturities.
+
+---
+
+**Exercise 4.** Consider a digital call with payoff $\Phi(S_T) = \mathbf{1}_{S_T > K}$. Explain why pathwise differentiation fails for this payoff (what is $\Phi'$?), while the LR method produces a valid estimator. Write down the LR delta estimator for the digital call.
+
+---
+
+**Exercise 5.** The Malliavin gamma weight involves the second Hermite polynomial $H_2(z) = z^2 - 1$. Show that $\mathbb{E}[H_2(Z)] = 0$ and $\mathbb{E}[H_2(Z)^2] = 2$ for $Z \sim \mathcal{N}(0,1)$. Why does the appearance of Hermite polynomials in higher-order weights increase the variance of the estimator?
+
+---
+
+**Exercise 6.** A practitioner wants to estimate gamma for a barrier option near the barrier. She has access to both finite-difference and LR methods. The finite-difference method uses step $h = 1$, and the LR method uses $N = 100{,}000$ Monte Carlo paths. Discuss the tradeoffs: which method is likely more accurate near the barrier, and why? What variance reduction techniques could improve the LR estimator?

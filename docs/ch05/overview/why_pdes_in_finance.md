@@ -284,3 +284,33 @@ The PDE approach to finance rests on three pillars:
 - [Boundary Value Problems](boundary_value_problems.md) -- Dirichlet, Neumann, Robin conditions
 - [Feynman-Kac Formula](../feynman_kac/feynman_kac_formula.md) -- the rigorous statement and proof
 - [Black-Scholes PDE](../../ch06/bs_pde_structure/discounting_and_killing_term.md) -- detailed PDE structure
+
+---
+
+## Exercises
+
+**Exercise 1.** A stock follows geometric Brownian motion $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$ with $r = 0.05$ and $\sigma = 0.25$. Write down the infinitesimal generator $\mathcal{L}$ in terms of $S$, and verify that the Black-Scholes PDE $\partial_t V + \mathcal{L}V = rV$ matches the standard form $\partial_t V + rS\,\partial_S V + \frac{1}{2}\sigma^2 S^2\,\partial_{SS}V = rV$.
+
+---
+
+**Exercise 2.** Using the Black-Scholes PDE relationship $\Theta = rV - rS\Delta - \frac{1}{2}\sigma^2 S^2 \Gamma$, compute Theta for a European call option with $S = 100$, $K = 100$, $T - t = 0.5$, $r = 0.05$, $\sigma = 0.20$, given that $\Delta = 0.5987$, $\Gamma = 0.0261$, and $V = 7.97$. Compare your result with the interpretation that Theta represents time decay.
+
+---
+
+**Exercise 3.** A Crank-Nicolson scheme has convergence $O(\Delta x^2 + \Delta t^2)$, while a Monte Carlo estimator with $N$ paths has error $O(1/\sqrt{N})$. Suppose each finite-difference step costs $O(J)$ operations (where $J$ is the number of spatial grid points), and each Monte Carlo path costs $O(M)$ operations (where $M$ is the number of time steps). For a one-dimensional pricing problem requiring four decimal places of accuracy, estimate which method is more efficient and explain your reasoning.
+
+---
+
+**Exercise 4.** Derive the Black-Scholes PDE via the hedging argument. Starting from a portfolio $\Pi = V - \Delta S$ with $\Delta = \partial V/\partial S$, apply Ito's lemma to $dV$, substitute, and impose $d\Pi = r\Pi\,dt$ to obtain the PDE. Identify where the no-arbitrage condition enters and explain why the physical drift $\mu$ drops out.
+
+---
+
+**Exercise 5.** The Heston model produces a two-dimensional PDE in $(t, S, v)$ for the option price $V$. Explain why PDE methods become impractical for basket options on $d \geq 4$ assets, even though they provide excellent accuracy in low dimensions. Relate your answer to the "curse of dimensionality" and contrast with the dimension-independence of Monte Carlo convergence rates.
+
+---
+
+**Exercise 6.** In the Merton jump-diffusion model, the pricing equation is a partial integro-differential equation (PIDE) with an integral term $\lambda\int_{\mathbb{R}}[V(t, Se^z) - V(t, S)]\,\nu(dz)$. Explain physically what this integral term represents, why it is nonlocal, and why a standard finite difference scheme for the Black-Scholes PDE cannot be applied directly without modification.
+
+---
+
+**Exercise 7.** The text states that tree methods are "a discrete approximation to the PDE and converge to the continuous solution as the mesh refines." For a one-step binomial tree with up factor $u = e^{\sigma\sqrt{\Delta t}}$, down factor $d = 1/u$, and risk-neutral probability $\hat{p} = (e^{r\Delta t} - d)/(u - d)$, show that the backward pricing equation $V = e^{-r\Delta t}[\hat{p}V_u + (1-\hat{p})V_d]$ is consistent with the Black-Scholes PDE in the limit $\Delta t \to 0$ by performing a Taylor expansion to second order in $\sqrt{\Delta t}$.

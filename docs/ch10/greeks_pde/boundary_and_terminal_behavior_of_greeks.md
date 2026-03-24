@@ -124,4 +124,30 @@ For finite-difference PDE solvers:
 - Boundary conditions for PDE numerics are guided by far-field Greek limits.
 - Near maturity, gamma spikes near the strike with \(\Gamma \sim \tau^{-1/2}\); delta becomes step-like.
 - Transition layer has width \(\mathcal{O}(\sigma\sqrt{\tau})\) in log-moneyness.
-- Far from the money, Greeks decay exponentially with rate \(\sim 1/\tau\).
+- Far from the money, Greeks decay exponentially with rate $\sim 1/\tau$.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a European call as $S \to \infty$, the option behaves like $V \approx S - Ke^{-r\tau}$. Using this, verify that $\Delta \to 1$, $\Gamma \to 0$, and $\Theta \to -rKe^{-r\tau}$ in this limit. Interpret these results financially.
+
+---
+
+**Exercise 2.** The ATM gamma diverges as $\Gamma_{\text{ATM}} \sim (K\sigma\sqrt{2\pi\tau})^{-1}$ when $\tau \to 0$. For $K = 100$ and $\sigma = 0.25$, compute the gamma values at $\tau = 30$, $7$, $1$, and $0.1$ trading days (use $\tau = \text{days}/252$). Plot or tabulate the results.
+
+---
+
+**Exercise 3.** The transition layer where delta moves from 0 to 1 has width $\delta S \sim S \cdot \sigma\sqrt{\tau}$ in spot space. For $S = K = 100$, $\sigma = 0.20$, compute the transition width for $\tau = 1$ year, $1$ month, and $1$ day. How does this affect a hedger's rebalancing requirements?
+
+---
+
+**Exercise 4.** For a deep OTM call with $S < K$, delta decays as $\Delta \approx \exp\left(-\frac{(\ln(K/S))^2}{2\sigma^2 \tau}\right)$ as $\tau \to 0$. Compute this exponential decay rate for $S = 95$, $K = 100$, $\sigma = 0.20$ at $\tau = 5$ days. At what point does delta become effectively zero (say, less than $10^{-6}$)?
+
+---
+
+**Exercise 5.** A finite-difference PDE solver requires boundary conditions at $S = 0$ and $S = S_{\max}$. For a European put, write down the analogous boundary conditions to those given for the call, including the values of $V$, $\Delta$, and $\Gamma$ at each boundary.
+
+---
+
+**Exercise 6.** Near maturity, the vega of an ATM option satisfies $\nu_{\text{ATM}} \sim K\sqrt{\tau}/\sqrt{2\pi}$, which vanishes as $\tau \to 0$. Explain why this is consistent with the fact that an option about to expire is insensitive to volatility. What does this imply about hedging vega risk for short-dated options?

@@ -531,3 +531,51 @@ Key results:
 - Extension to non-vanilla payoffs requires careful monotonicity verification
 
 This rigorous foundation justifies using implied volatility as a fundamental coordinate system for option pricing.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a European call with $S = 50$, $K = 55$, $T = 0.25$, $r = 3\%$, and $q = 0$. Compute the admissible price interval $(C_{\text{intrinsic}}, S e^{-qT})$ for implied volatility to exist. If $C_{\text{market}} = 0.80$, verify that implied volatility exists.
+
+---
+
+**Exercise 2.** Prove that the vega of a Black-Scholes call option satisfies $\mathcal{V} > 0$ for all $\sigma > 0$ directly from the formula
+
+$$
+\mathcal{V} = S e^{-qT} \phi(d_1) \sqrt{T}
+$$
+
+State explicitly which properties of the Gaussian density $\phi$ and the parameters $S$, $T$ are used.
+
+---
+
+**Exercise 3.** Using the Implicit Function Theorem applied to $G(C, \sigma) = C_{\text{BS}}(\sigma) - C = 0$, derive the formula for the second derivative of implied volatility with respect to price:
+
+$$
+\frac{d^2 \sigma_{\text{IV}}}{dC^2} = -\frac{d\mathcal{V}/d\sigma}{\mathcal{V}^3}
+$$
+
+Evaluate the sign of this expression at ATM (where $d_1 d_2 \approx 0$) and deep OTM (where $d_1 d_2 > 0$).
+
+---
+
+**Exercise 4.** The condition number for implied volatility extraction is $\kappa = \frac{C}{\sigma_{\text{IV}} \mathcal{V}(\sigma_{\text{IV}})}$. For a near-ATM option with $S = K = 100$, $T = 1$, $r = 0$, and $\sigma_{\text{IV}} = 0.20$, compute $\kappa$ numerically. Then compute $\kappa$ for a deep OTM option with $K = 130$ (same other parameters) and compare. Explain why implied volatility extraction is harder for OTM options.
+
+---
+
+**Exercise 5.** The zero-volatility limit of the Black-Scholes price requires a case analysis on the forward moneyness $m = S e^{-qT}/(K e^{-rT})$. For the ATM-forward case $m = 1$, show carefully using the Taylor expansion $\Phi(x) \approx \frac{1}{2} + \frac{x}{\sqrt{2\pi}}$ that $\lim_{\sigma \to 0^+} C_{\text{BS}} = 0$.
+
+---
+
+**Exercise 6.** For a binary (digital) call option with payoff $\mathbb{1}_{S_T > K}$, the Black-Scholes price is $D_{\text{BS}}(\sigma) = e^{-rT} \Phi(d_2)$. Show that $\partial D_{\text{BS}} / \partial \sigma$ can be negative for certain values of moneyness and volatility. Provide a specific numerical example where uniqueness of implied volatility fails for a digital option.
+
+---
+
+**Exercise 7.** Implement the Newton-Raphson iteration for implied volatility:
+
+$$
+\sigma_{n+1} = \sigma_n - \frac{C_{\text{BS}}(\sigma_n) - C_{\text{market}}}{S \phi(d_1(\sigma_n)) \sqrt{T}}
+$$
+
+Starting from $\sigma_0 = 0.50$, compute three iterations for a call with $S = 100$, $K = 100$, $T = 0.5$, $r = 0.02$, $q = 0$, and $C_{\text{market}} = 8.00$. Verify quadratic convergence by examining the ratio of successive errors.

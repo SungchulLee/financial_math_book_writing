@@ -170,3 +170,35 @@ def swaption(self, T0, payment_dates, K, delta, r0):
 | Swaption | `swaption` | Jamshidian decomposition |
 
 For the tree-based and Monte Carlo pricing engines (used for path-dependent derivatives), see [Tree and Monte Carlo Engines Guide](tree_and_monte_carlo_engines.md). For the calibration pipeline that uses these pricing classes, see [Calibration Pipeline Guide](calibration_pipeline.md).
+
+---
+
+## Exercises
+
+**Exercise 1.** Using the `BondPricer` class with Hull-White parameters $\sigma = 0.01$, $\lambda = 0.05$, and a flat market curve at 3\%, compute $B(0, 10)$ and $A(0, 10)$. Verify that the model zero-coupon bond price $P^{\text{HW}}(0, 10)$ matches $e^{-0.03 \times 10}$ to within the numerical tolerance of the trapezoidal integration.
+
+---
+
+**Exercise 2.** The bond price volatility $\sigma_P$ is given by
+
+$$
+\sigma_P = \frac{\sigma}{\lambda}(1 - e^{-\lambda(T_1 - T_0)})\sqrt{\frac{1 - e^{-2\lambda T_0}}{2\lambda}}
+$$
+
+Compute $\sigma_P$ for a bond option with $T_0 = 2$, $T_1 = 5$, $\sigma = 0.015$, $\lambda = 0.03$. Explain why $\sigma_P$ increases with $T_1 - T_0$ but eventually saturates.
+
+---
+
+**Exercise 3.** Verify the caplet-bond-put equivalence numerically. Using parameters $\sigma = 0.01$, $\lambda = 0.05$, $r_0 = 0.03$, flat curve at 3\%, price a caplet with $T_i = 1$, $\delta = 0.5$, $K = 3\%$ by: (a) calling `caplet(T_i, delta, K, r0)`, and (b) manually computing $(1 + K\delta) \times \text{Put}(T_i, T_i + \delta, 1/(1+K\delta))$. Confirm the two approaches give identical results.
+
+---
+
+**Exercise 4.** In the Jamshidian swaption decomposition, explain why the critical rate $r^*$ exists and is unique. For a payer swaption with $T_0 = 1$, annual payments at $T_1 = 2, T_2 = 3$, and $K = 4\%$, write down the equation for $r^*$ explicitly in terms of the Hull-White bond price formula. What happens to $r^*$ if $K$ is very large? Very small?
+
+---
+
+**Exercise 5.** Using the `bond_option` method, compute the price of a European call on a 5-year ZCB with strike $K = 0.85$, option expiry $T_0 = 2$, and parameters $\sigma = 0.01$, $\lambda = 0.05$, flat curve at 3\%. Then compute the corresponding put price using put-call parity: Put $=$ Call $- P(0, 5) + K \cdot P(0, 2)$. Verify that the direct put formula gives the same answer.
+
+---
+
+**Exercise 6.** Price a 5-year cap (annual resets, $\delta = 1$, $K = 3\%$) using the Hull-White model with $\sigma = 0.01$, $\lambda = 0.05$, flat curve at 3\%. Decompose the cap price into individual caplet contributions. Which caplet is most expensive, and why? How does the answer change if $\lambda$ is increased to 0.20?

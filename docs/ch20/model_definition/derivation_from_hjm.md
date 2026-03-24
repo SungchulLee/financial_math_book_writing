@@ -256,3 +256,33 @@ are developed in full detail in the section on HJM volatility and drift conditio
 ## Summary
 
 The Hull-White model emerges from the HJM framework by choosing the forward rate volatility $\sigma_f(t,T) = \sigma e^{-a(T-t)}$. The HJM no-arbitrage drift condition determines $\alpha(t,T) = \frac{\sigma^2}{a} e^{-a(T-t)}(1 - e^{-a(T-t)})$ uniquely, and extracting the short rate via $r_t = f(t,t)$ yields the Hull-White SDE $dr_t = [\theta(t) - ar_t]\, dt + \sigma\, dW_t^{\mathbb{Q}}$ with $\theta(t) = f'(0,t) + af(0,t) + \frac{\sigma^2}{2a}(1 - e^{-2at})$. This derivation guarantees no-arbitrage consistency, makes the initial term structure's role explicit through $\theta(t)$, and reveals that the Hull-White model is the unique Markov short-rate model within the HJM class for this volatility structure.
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify the HJM drift condition $\alpha(t,T) = \sigma_f(t,T)\int_t^T \sigma_f(t,u)\,du$ for the Hull-White volatility $\sigma_f(t,T) = \sigma e^{-a(T-t)}$. Compute the integral explicitly and show that $\alpha(t,T) = \frac{\sigma^2}{a}e^{-a(T-t)}(1 - e^{-a(T-t)})$.
+
+---
+
+**Exercise 2.** Show that the integrated HJM drift $\int_0^t \alpha(s,t)\,ds = \frac{\sigma^2}{2a^2}(1 - e^{-at})^2$. Identify this as the convexity correction in the short rate formula $r_t = f(0,t) + \frac{\sigma^2}{2a^2}(1 - e^{-at})^2 + \sigma\int_0^t e^{-a(t-s)}dW_s$.
+
+---
+
+**Exercise 3.** For a flat forward curve $f(0,t) = 0.04$ with $a = 0.1$ and $\sigma = 0.01$, compute $\theta(t)$ at $t = 0, 5, 10, 50$. Verify that $\theta(0) = a \times 0.04 = 0.004$ and identify the long-run limit of $\theta(t)$.
+
+---
+
+**Exercise 4.** Explain why the exponential volatility structure $\sigma_f(t,T) = \sigma e^{-a(T-t)}$ produces a Markov short rate, while a general deterministic volatility $\sigma_f(t,T) = g(t,T)$ does not. What algebraic property of the exponential function is essential?
+
+---
+
+**Exercise 5.** The Ho-Lee model corresponds to $a = 0$ in the HJM volatility. Derive $\alpha(t,T)$ for the Ho-Lee case by taking the limit $a \to 0$ in the Hull-White drift formula. Show that $\theta(t)$ becomes $f'(0,t) + \sigma^2 t$.
+
+---
+
+**Exercise 6.** Starting from the stochastic part $\tilde{r}_t = \sigma\int_0^t e^{-a(t-s)}dW_s$, apply the Leibniz-Ito rule to derive $d\tilde{r}_t = -a\tilde{r}_t\,dt + \sigma\,dW_t$. This verifies that the stochastic component is an Ornstein-Uhlenbeck process.
+
+---
+
+**Exercise 7.** Consider a two-factor HJM volatility $\sigma_f(t,T) = \sigma_1 e^{-a_1(T-t)} + \sigma_2 e^{-a_2(T-t)}$. Is the resulting short rate process Markov in $r_t$ alone? If not, what is the minimal state vector needed? Discuss how this relates to the two-factor Hull-White model.

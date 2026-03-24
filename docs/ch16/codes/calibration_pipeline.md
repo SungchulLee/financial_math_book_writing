@@ -277,3 +277,46 @@ Calibrate to SPX options with $S_0 = 4500$, 5 maturities (1M to 2Y), 135 total o
 ## Summary
 
 The calibration pipeline transforms raw market option data into validated Heston parameters through five stages: preprocessing (arbitrage filtering, IV extraction), configuration (pricing engine, vega weights, bounds, regularization), optimization (DE global + local refinement), validation (IVRMSE, residual patterns, parameter reasonableness), and storage (parameters + metadata). Each stage has failure modes that must be monitored: arbitrage violations in the input data, optimizer convergence failures, parameters hitting bounds, and systematic residual patterns indicating model limitations. The pipeline in [`calibration_pipeline.py`](calibration_pipeline.py) implements this workflow with the `HestonCalibrator` class.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+A market data set contains 150 European call options across 6 maturities. After applying static arbitrage filters, 12 options are removed: 5 for butterfly violations, 4 for negative mid-prices, and 3 for calendar spread violations. Explain each type of arbitrage violation in financial terms. If you observe that most butterfly violations occur at the shortest maturity, what does this suggest about the quality of the short-dated market quotes?
+
+---
+
+**Exercise 2.**
+The pipeline uses data-informed bounds for $v_0$ and $\theta$. If the shortest-maturity ATM implied volatility is $\sigma_{\text{ATM}}^{\text{short}} = 18\%$ and the longest-maturity ATM is $\sigma_{\text{ATM}}^{\text{long}} = 22\%$, compute the bounds for $v_0$ and $\theta$ using the rule $[0.5\sigma^2, 2.0\sigma^2]$. Why is it advantageous to use data-informed bounds rather than fixed bounds like $[0.001, 1.0]$?
+
+---
+
+**Exercise 3.**
+The pipeline uses `scipy.optimize.differential_evolution` with `popsize=15` (so population $= 15 \times 5 = 75$) and `maxiter=300`. Compute the maximum number of objective function evaluations. If each evaluation prices $M = 128$ options using the Carr-Madan FFT with $N = 4096$ points, estimate the total number of FFT calls (one per maturity per evaluation, assuming 5 maturities). Compare the cost if the COS method ($N = 128$) were used per-strike instead.
+
+---
+
+**Exercise 4.**
+After calibration, the pipeline reports per-maturity IVRMSE as: 1M: 31 bps, 3M: 18 bps, 6M: 15 bps, 1Y: 20 bps, 2Y: 28 bps. The total IVRMSE is 22 bps. Verify that the total IVRMSE is consistent with the per-maturity values by computing:
+
+$$
+\text{IVRMSE}_{\text{total}} = \sqrt{\frac{1}{M}\sum_{j=1}^{N_T} N_j \cdot [\text{IVRMSE}(T_j)]^2}
+$$
+
+assuming the strike counts are $N_1 = 35$, $N_2 = 30$, $N_3 = 25$, $N_4 = 22$, $N_5 = 16$ with $M = 128$. Discuss whether a market-making desk would find these error levels acceptable.
+
+---
+
+**Exercise 5.**
+The calibrated parameters are $v_0 = 0.0263$, $\kappa = 2.35$, $\theta = 0.0438$, $\xi = 0.42$, $\rho = -0.72$, with a Feller ratio of 1.17. Suppose next day's calibration (without regularization) yields $v_0 = 0.0270$, $\kappa = 4.10$, $\theta = 0.0250$, $\xi = 0.50$, $\rho = -0.70$. Verify the Feller ratio for both parameter sets. Discuss whether the day-to-day parameter change is acceptable for a production system and propose specific regularization weights $\lambda_j$ to stabilize the calibration.
+
+---
+
+**Exercise 6.**
+The validation stage checks for "red flags" such as parameters hitting their bounds. Suppose $\rho$ calibrates to $-0.99$ (the lower bound). List three possible root causes and the diagnostic steps you would take for each. Would widening the bound to $\rho \in [-0.999, -0.01]$ solve the problem? Why or why not?
+
+---
+
+**Exercise 7.**
+Design a monitoring dashboard for a production calibration pipeline. Specify the metrics, thresholds, and alert conditions for each of the five pipeline stages. For example, Stage 4 (Validation) might alert if IVRMSE exceeds 50 bps or if any parameter changes by more than 50% day-over-day. Write the alert conditions as mathematical inequalities and justify each threshold based on typical market conditions and hedging requirements.

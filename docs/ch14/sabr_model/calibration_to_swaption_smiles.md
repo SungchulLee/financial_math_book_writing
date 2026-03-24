@@ -194,3 +194,29 @@ SABR calibration to swaption smiles follows a structured two-step procedure: fix
 - West, G. (2005). *Calibration of the SABR model in illiquid markets*. Applied Mathematical Finance, 12(4), 371--385.
 - Rebonato, R., McKay, K., & White, R. (2009). *The SABR/LIBOR Market Model*. Wiley, Chapters 6--8.
 - Le Floc'h, F. (2014). *Fast and accurate analytic basis point SABR*. SSRN preprint.
+
+---
+
+## Exercises
+
+**Exercise 1.** The SABR calibration procedure has two steps: (a) determine $\alpha$ from the ATM quote; (b) fit $\rho$ and $\nu$ to the OTM smile. Explain why the ATM-first approach guarantees an exact ATM fit. For a market ATM implied vol of 18% with $F = 3\%$, $\beta = 0.5$, $T = 5$, and initial guesses $\rho = 0$, $\nu = 0.3$, solve for $\alpha$ approximately from $\sigma_{\text{ATM}} \approx \alpha/F^{1-\beta}$.
+
+---
+
+**Exercise 2.** The OTM fit minimizes $\sum_i (\sigma^{\text{SABR}}(K_i) - \sigma^{\text{mkt}}(K_i))^2$ over $(\rho, \nu)$. Suppose the market smile has 5 quotes at strikes 1.5%, 2%, 2.5% (ATM), 3%, 3.5%. Explain why two parameters ($\rho$, $\nu$) are well-determined by 4 OTM quotes (5 total minus 1 ATM). What happens if only 2 quotes are available?
+
+---
+
+**Exercise 3.** Warm starting uses yesterday's calibrated parameters as today's initial guess. Explain why this improves both speed and stability. If yesterday's parameters were $\rho = -0.25$, $\nu = 0.42$, and today's ATM vol shifted by 1 bp, would you expect the new $\rho$ and $\nu$ to change significantly? Why or why not?
+
+---
+
+**Exercise 4.** A swaption trader calibrates SABR independently for each expiry-tenor pair in the swaption cube. For a 5Y expiry with tenors 5Y, 10Y, 20Y, 30Y, she obtains $\rho = -0.28, -0.35, -0.42, -0.48$ respectively. Is the trend in $\rho$ across tenors economically sensible? Explain why longer-tenor swaps might have more negative $\rho$ values.
+
+---
+
+**Exercise 5.** The Levenberg-Marquardt algorithm requires the Jacobian $\partial\sigma^{\text{SABR}}(K_i)/\partial\rho$ and $\partial\sigma^{\text{SABR}}(K_i)/\partial\nu$. These can be computed analytically by differentiating the Hagan formula. Explain why analytic Jacobians are preferred over finite-difference Jacobians for calibration. What numerical issues might arise with finite differences when $\nu$ is small?
+
+---
+
+**Exercise 6.** After calibration, the SABR parameters provide a compact representation of the smile that can be used for interpolation. Explain how to compute the implied vol at an arbitrary strike $K^*$ not in the original calibration set. Compare this SABR-based interpolation with linear interpolation in strike space. Which produces smoother and more financially sensible results?

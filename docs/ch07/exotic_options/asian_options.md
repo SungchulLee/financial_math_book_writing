@@ -176,3 +176,29 @@ $$
 | Pricing challenge | Sum of lognormals (arithmetic) is not lognormal |
 
 **Asian options replace point-in-time price risk with average price risk, producing cheaper hedging instruments that are naturally resistant to manipulation and widely used in commodity and FX markets.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Prove that $C_{\text{Asian}} \leq C_{\text{vanilla}}$ for an average-price call by applying Jensen's inequality. Specifically, show that $\mathbb{E}[(\bar{S} - K)^+] \leq \mathbb{E}[(S_T - K)^+]$ when $\bar{S}$ and $S_T$ have the same mean. State the convexity property you use.
+
+---
+
+**Exercise 2.** Under GBM, the continuous geometric average has adjusted volatility $\hat{\sigma} = \sigma/\sqrt{3}$. Derive this result by computing $\text{Var}\left(\frac{1}{T}\int_0^T \log S_t\, dt\right)$ where $\log S_t = \log S_0 + (r - \frac{1}{2}\sigma^2)t + \sigma W_t$. You will need the covariance $\text{Cov}(W_s, W_t) = \min(s, t)$.
+
+---
+
+**Exercise 3.** Consider a discrete arithmetic average Asian call with $n = 12$ monthly fixings, $S_0 = 100$, $K = 100$, $T = 1$, $r = 5\%$, $\sigma = 20\%$. Suppose 6 months have elapsed and the observed fixings are $S_1 = 102, S_2 = 105, S_3 = 98, S_4 = 101, S_5 = 103, S_6 = 107$. Compute the partial average of the observed fixings and explain how the pricing problem simplifies for the remaining 6 months.
+
+---
+
+**Exercise 4.** Explain why the arithmetic average of lognormal random variables is not lognormal. Describe the moment-matching approximation: what distribution is assumed for $\bar{S}_{\text{arith}}$, how are the parameters $\hat{\mu}$ and $\hat{\sigma}^2$ determined, and what is the resulting approximate pricing formula?
+
+---
+
+**Exercise 5.** Compare the average-price call payoff $(\bar{S} - K)^+$ with the average-strike call payoff $(S_T - \bar{S})^+$. (a) Which option is more expensive and why? (b) For which option is the holder exposed to manipulation of the terminal price $S_T$? (c) Describe a hedging scenario where the average-strike call is more appropriate than the average-price call.
+
+---
+
+**Exercise 6.** The geometric average Asian option serves as a control variate for pricing arithmetic average Asian options. Explain the control variate method: write the variance-reduced estimator $\hat{V}_{\text{arith}} = \hat{V}_{\text{arith,MC}} + (V_{\text{geom,exact}} - \hat{V}_{\text{geom,MC}})$, and explain why the geometric average is a better control variate than the vanilla European call for this purpose.

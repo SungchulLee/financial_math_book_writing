@@ -246,3 +246,33 @@ This quantity $\sigma_P$ appears directly in the Hull-White zero-coupon bond opt
 ## Summary
 
 The Hull-White volatility structure $\sigma_f(t,T) = \sigma e^{-a(T-t)}$ produces an exponentially decaying forward rate volatility that captures the empirical observation that short rates are more volatile than long rates. The HJM drift condition determines $\alpha(t,T) = \frac{\sigma^2}{a} e^{-a(T-t)}(1 - e^{-a(T-t)})$ uniquely, and the bond price volatility is $\sigma_P(t,T) = -\sigma B(T-t)$ with $B(\tau) = (1-e^{-a\tau})/a$. The one-factor structure implies perfect correlation among all forward rates, a limitation addressed by the two-factor extension. The integrated bond price variance $\sigma_P^2$ combines the exponential decay with the variance accumulation formula and enters directly into bond option pricing formulas.
+
+---
+
+## Exercises
+
+**Exercise 1.** For $\sigma = 0.012$ and $a = 0.08$, compute the forward rate volatility $\sigma_f(t,T)$ for time-to-maturity $\tau = 0, 5, 10, 20$ years. At what maturity does the forward rate volatility fall below 50% of the short rate volatility?
+
+---
+
+**Exercise 2.** Verify that the HJM drift $\alpha(t,T)$ is maximized at $T - t = \frac{\ln 2}{a}$ by differentiating $\alpha(t,T)$ with respect to $T$ and setting it to zero. For $a = 0.05$ and $\sigma = 0.01$, compute the maximum drift in basis points per year.
+
+---
+
+**Exercise 3.** Derive the bond price volatility $\sigma_P(t,T) = -\frac{\sigma}{a}(1 - e^{-a(T-t)})$ from the forward rate volatility via $\sigma_P(t,T) = -\int_t^T \sigma_f(t,u)\,du$. Verify the sign and interpret why bond prices move opposite to interest rates.
+
+---
+
+**Exercise 4.** Show that the correlation between forward rate changes at maturities $T_1$ and $T_2$ equals 1 in the one-factor Hull-White model. Why is this a limitation for pricing instruments sensitive to yield curve shape, such as CMS spread options?
+
+---
+
+**Exercise 5.** Compute the integrated bond price variance $\sigma_P^2 = \frac{\sigma^2}{a^2}(1 - e^{-a(S-T)})^2 \cdot \frac{1 - e^{-2a(T-t)}}{2a}$ for a bond option with $t = 0$, $T = 5$, $S = 10$, $a = 0.05$, $\sigma = 0.01$. This quantity appears as the volatility parameter in the Black-Scholes-type bond option formula.
+
+---
+
+**Exercise 6.** Compare the Ho-Lee model ($a = 0$) with the Hull-White model in terms of: (i) forward rate volatility term structure, (ii) bond price volatility growth with maturity, and (iii) variance of the integrated short rate $\int_t^T r(s)\,ds$.
+
+---
+
+**Exercise 7.** Explain how the two-factor volatility specification $\sigma_f(t,T) = \sigma_1 e^{-a_1(T-t)} + \sigma_2 e^{-a_2(T-t)}$ breaks the perfect correlation between forward rates. Compute the correlation between the 1-year and 10-year forward rate changes for $\sigma_1 = 0.008$, $a_1 = 0.02$, $\sigma_2 = 0.005$, $a_2 = 0.30$.

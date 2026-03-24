@@ -163,3 +163,29 @@ $$\mathbb{E}[S_n^4] = n + 3n(n-1) = 3n^2 - 2n. \quad\square$$
 
 - Feller, W. (1968). *An Introduction to Probability Theory and Its Applications*, Vol. 1, 3rd ed. Wiley.
 - Durrett, R. (2019). *Probability: Theory and Examples*, 5th ed. Cambridge University Press.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the asymmetric random walk with $p = 0.7$, compute $\mathbb{E}[S_{50}]$, $\text{Var}(S_{50})$, and $\mathbb{E}[S_{50}^2]$. After how many steps does the mean exceed $2$ standard deviations (i.e., find the smallest $n$ such that $\mathbb{E}[S_n] > 2\sqrt{\text{Var}(S_n)}$)?
+
+---
+
+**Exercise 2.** Verify the fourth moment formula $\mathbb{E}[S_n^4] = 3n^2 - 2n$ for $n = 1$ and $n = 2$ by direct computation. For $n = 1$, $S_1 = \xi_1 \in \{-1, +1\}$, so $S_1^4 = 1$ always. For $n = 2$, enumerate all four equally likely outcomes of $(\xi_1, \xi_2)$ and compute $\mathbb{E}[S_2^4]$.
+
+---
+
+**Exercise 3.** Show that $\text{Var}(S_n^2) = \mathbb{E}[S_n^4] - (\mathbb{E}[S_n^2])^2 = 2n^2 - 2n$ for the symmetric random walk. Then compute $\text{Var}(S_n^2 - n)$ and verify it equals $2n^2 - 2n$. (This is the variance of the quadratic martingale $M_n = S_n^2 - n$.)
+
+---
+
+**Exercise 4.** For the general random walk ($p \neq 1/2$), the direct expansion gives $\mathbb{E}[S_n^2] = n + n(n-1)(2p-1)^2$. Derive $\mathbb{E}[S_n^2]$ independently using the identity $\mathbb{E}[S_n^2] = \text{Var}(S_n) + (\mathbb{E}[S_n])^2$ and the formulas for $\text{Var}(S_n)$ and $\mathbb{E}[S_n]$. Confirm both methods agree.
+
+---
+
+**Exercise 5.** The diffusive scaling $\text{SD}(S_n) = \sqrt{n}$ says that after $n$ steps, typical displacement is of order $\sqrt{n}$. A gambler plays $n = 10{,}000$ fair coin-flip games. Using the normal approximation, estimate the probability that the gambler is ahead by more than $\$200$ (i.e., $\mathbb{P}(S_{10000} > 200)$). Is this a likely outcome?
+
+---
+
+**Exercise 6.** Compute $\mathbb{E}[S_n^3]$ for the symmetric random walk by the index-counting method used for $\mathbb{E}[S_n^4]$. Show that $\mathbb{E}[S_n^3] = 0$ by arguing that all surviving terms in the expansion $\sum_{i,j,k} \mathbb{E}[\xi_i \xi_j \xi_k]$ vanish. Does this generalize: is $\mathbb{E}[S_n^k] = 0$ for all odd $k$? Why or why not?

@@ -441,3 +441,33 @@ The wide interval $(4.88, \, 11.95)$ reflects the fundamental pricing ambiguity 
 | [Binomial to Black-Scholes](binomial_to_black_scholes_limit.md) | Continuous-time limit of the binomial tree |
 | [Complete Markets and Uniqueness](../fundamental_theorem_of_asset_pricing/complete_markets_and_uniqueness.md) | Second FTAP: uniqueness of $\mathbb{Q}$ and completeness |
 | [Trinomial Tree Pricing (Python)](../codes/trinomial_tree_pricing.py) | Computational implementation of the trinomial tree |
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider the trinomial model with $S_0 = 100$, $u = 1.3$, $m = 1.05$, $d = 0.7$, $r = 5\%$, and $\Delta t = 1$. Verify the no-arbitrage condition. Then parameterize the family of risk-neutral measures by $q_d = \lambda$ and determine the admissible range of $\lambda$.
+
+---
+
+**Exercise 2.** Using the trinomial model from Exercise 1, compute the no-arbitrage price interval for a European put with strike $K = 100$. Express $V_0(\lambda)$ as a function of $\lambda$ and find the supremum and infimum over the admissible range. Compare the width of the interval to that of a call with the same strike.
+
+---
+
+**Exercise 3.** Prove that a contingent claim $H = (H_u, H_m, H_d)$ in the one-period trinomial model is replicable if and only if the payoff is **affine** in $S_{\Delta t}$, i.e., $H = a \cdot S_{\Delta t} + b$ for some constants $a, b$. Show that this is equivalent to the condition:
+
+$$
+\frac{H_u - H_m}{u - m} = \frac{H_m - H_d}{m - d}
+$$
+
+---
+
+**Exercise 4.** In the worked example from the text ($S_0 = 100$, $u = 1.2$, $m = 1.0$, $d = 0.8$, $r = 5\%$), the binomial price of the call equals the upper bound of the trinomial interval. Prove this is not a coincidence: show that for any claim with $H_m = H_d$ (the middle and down payoffs coincide), the binomial price always equals the upper bound of the trinomial price interval.
+
+---
+
+**Exercise 5.** Suppose the trinomial market is "completed" by adding a traded European call option with strike $K = 100$ and observed market price $C_0 = 8.50$ (using the same parameters as the worked example in the text). With three assets (stock, bond, call) and three states, the risk-neutral measure becomes unique. Find the unique risk-neutral measure $(q_u, q_m, q_d)$ and use it to price a European put with strike $K = 110$.
+
+---
+
+**Exercise 6.** For the Boyle (1988) parameterization with $\sigma = 0.20$, $r = 0.05$, and $\Delta t = 0.25$, compute $u$, $m$, $d$, $q_u$, $q_d$, and $q_m$. Verify that (a) $q_u + q_m + q_d = 1$, (b) the martingale condition $q_u u + q_m m + q_d d = e^{r\Delta t}$ holds, and (c) $\text{Var}^{\mathbb{Q}}[\ln(S_{\Delta t}/S_0)] \approx \sigma^2 \Delta t$.

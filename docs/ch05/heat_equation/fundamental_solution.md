@@ -232,3 +232,40 @@ The fundamental solution:
 - Satisfies the semigroup property
 
 **The heat kernel is the bridge between the heat equation and Brownian motion.**
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Verify that $G(t, x) = (2\pi t)^{-1/2}\exp(-x^2/(2t))$ satisfies $\partial_t G = \frac{1}{2}\partial_{xx}G$ by computing both sides explicitly and showing they are equal.
+
+---
+
+**Exercise 2.**
+Show that $\int_{-\infty}^{\infty}G(t, x)\,dx = 1$ for all $t > 0$. Interpret this result probabilistically: it says the total probability is conserved, consistent with $G$ being the transition density of Brownian motion.
+
+---
+
+**Exercise 3.**
+The convolution formula $u(t, x) = \int_{-\infty}^{\infty}G(t, x-y)\,f(y)\,dy$ gives the solution to the heat equation with initial condition $u(0, x) = f(x)$. Compute $u(t, x)$ for $f(y) = 1$ (constant initial data) and verify the result makes physical sense.
+
+---
+
+**Exercise 4.**
+Show that the heat kernel satisfies the semigroup property: $\int_{-\infty}^{\infty}G(t-s, x-z)\,G(s, z-y)\,dz = G(t, x-y)$ for $0 < s < t$. (Hint: this is the convolution of two Gaussians.) What is the probabilistic interpretation?
+
+---
+
+**Exercise 5.**
+Compute $\lim_{t \to 0^+}G(t, x)$ for $x \neq 0$ and $x = 0$ separately. Explain why $G(t, x) \to \delta(x)$ in the distributional sense as $t \to 0^+$, even though $G(t, 0) \to \infty$.
+
+---
+
+**Exercise 6.**
+The heat kernel exhibits instantaneous smoothing: for any initial condition $f \in L^1(\mathbb{R})$, the solution $u(t, x) = \int G(t, x-y)f(y)\,dy$ is $C^{\infty}$ for $t > 0$. Explain intuitively why convolution with a Gaussian produces a smooth function, regardless of how rough $f$ is.
+
+---
+
+**Exercise 7.**
+For the diffusion equation with coefficient $D$, the fundamental solution is $G_D(t, x) = (4\pi D t)^{-1/2}\exp(-x^2/(4Dt))$. Identify the relationship between $D$ and the notation used in this text (where $D = \sigma^2/2$). For a stock with $\sigma = 0.30$, compute $D$ and the standard deviation $\sqrt{2Dt}$ of the kernel after one year.

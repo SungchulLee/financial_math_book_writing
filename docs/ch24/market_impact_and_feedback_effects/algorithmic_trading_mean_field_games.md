@@ -319,3 +319,33 @@ At higher frequencies, the MFG framework can model the dynamics of the limit ord
 - Almgren, R. & Chriss, N. (2001), "Optimal Execution of Portfolio Transactions," *Journal of Risk*, 3(2), 5--39
 - Lacker, D. (2015), "Mean Field Games via Controlled McKean-Vlasov Dynamics," *SIAM Journal on Control and Optimization*, 55(3), 1403--1422
 - Casgrain, P. & Jaimungal, S. (2020), "Mean-Field Games with Differing Beliefs for Algorithmic Trading," *Mathematical Finance*, 30(3), 995--1034
+
+---
+
+## Exercises
+
+**Exercise 1.** In the Almgren-Chriss framework, the optimal trading rate for a single agent liquidating $Q$ shares is $v_t^* = \frac{\kappa Q}{\sinh(\kappa T)} \cosh(\kappa(T-t))$ with $\kappa = \sqrt{\lambda \sigma^2 / \eta}$. (a) For $Q = 100{,}000$ shares, $T = 1$ day, $\sigma = 0.02$, $\eta = 10^{-4}$, and $\lambda = 10^{-6}$, compute $\kappa$ and the optimal trading rate at $t = 0$, $t = T/2$, and $t = T$. (b) Verify that $\int_0^T v_t^* \, dt = Q$. (c) Explain why the strategy front-loads execution when $\kappa T$ is large and approaches TWAP when $\kappa T$ is small.
+
+---
+
+**Exercise 2.** Consider the $N = 2$ symmetric player game where both traders liquidate $Q$ shares. (a) Explain why the permanent impact term $g v_t^i \sum_{j \neq i} q_t^j$ creates a strategic incentive to trade faster than the single-agent optimum: if trader 2 is still holding inventory, trader 1 benefits from selling before the price drops further. (b) Derive the first-order conditions for the symmetric Nash equilibrium and show that the equilibrium parameter $\tilde{\kappa} > \kappa$, confirming that strategic interaction accelerates execution. (c) Discuss how this predatory trading incentive relates to front-running in practice.
+
+---
+
+**Exercise 3.** The mean field game equilibrium is characterized by the coupled system: HJB equation (backward in time) and Fokker-Planck equation (forward in time). (a) Explain why the HJB equation determines the optimal control given the population distribution, while the Fokker-Planck equation determines the population distribution given the optimal control. (b) Describe a numerical fixed-point iteration: start with an initial guess for $\mu_t$, solve HJB backward, solve FP forward, and repeat. (c) Under what conditions on the cost functional does the monotonicity condition of Lasry-Lions guarantee uniqueness of the MFG equilibrium?
+
+---
+
+**Exercise 4.** For the linear-quadratic MFG, the optimal trading rate is $v_t^* = A(t) q_t + B(t) \bar{q}_t$ where $A(t)$ and $B(t)$ satisfy Riccati equations. (a) Interpret $A(t)$ as the sensitivity of the trading rate to the individual inventory and $B(t)$ as the sensitivity to the average inventory. (b) At the terminal time, $A(T) = -c/\eta$ and $B(T) = 0$. Explain why the terminal penalty $c$ for residual inventory drives the boundary condition. (c) If all agents start with the same inventory $Q$, show that $\bar{q}_t = q_t$ for all $t$ and the effective trading rate becomes $(A(t) + B(t)) q_t$. How does this compare with the single-agent solution?
+
+---
+
+**Exercise 5.** The MFG equilibrium approximates the $N$-player Nash equilibrium with error $O(1/\sqrt{N})$. (a) For $N = 100$ traders, estimate the relative error in the cost functional. (b) For $N = 10$, is the mean field approximation accurate enough for practical use? What corrections might improve accuracy? (c) Discuss a financial market where the mean field approximation fails: a market with one dominant seller and many small buyers (major-minor model). Explain how the major-minor MFG framework extends the standard MFG to handle this case.
+
+---
+
+**Exercise 6.** In the MFG framework, permanent price impact is endogenous: $S_t = S_0 + \sigma W_t - gN \int_0^t (A(s) + B(s)) \bar{q}_s \, ds$. (a) Show that the total permanent impact over $[0,T]$ equals $gNQ$ regardless of the trading strategy (as long as all inventory is liquidated). (b) Explain why this is consistent with the empirical observation that permanent impact depends on the total volume traded, not the trading speed. (c) Contrast this with the temporary impact $\eta v_t$, which does depend on trading speed. Why does optimal execution trade off permanent impact (unavoidable) against temporary impact (minimizable) and inventory risk?
+
+---
+
+**Exercise 7.** Consider an extension with heterogeneous agents: half the population has high urgency ($c_H = 10$) and half has low urgency ($c_L = 1$). (a) How does the mean field distribution at time $t$ differ from the homogeneous case? Describe the bimodal structure. (b) Do high-urgency traders benefit or suffer from the presence of low-urgency traders? (Hint: consider the effect on price impact.) (c) In practice, the distribution of trader types is unknown. Propose a method to infer the mean field distribution from observed order flow data, and discuss the identification challenges.

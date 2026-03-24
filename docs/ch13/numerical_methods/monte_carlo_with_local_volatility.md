@@ -275,3 +275,35 @@ Monte Carlo simulation under local volatility requires careful treatment of the 
 4. **Discretization bias** scales with $\Delta t$ and with the gradient of $\sigma_{\text{loc}}$, requiring more steps in steep-volatility regions
 5. **Variance reduction** via antithetic variates and Black-Scholes control variates can reduce computational cost by an order of magnitude
 6. The choice between FDM and Monte Carlo depends on the payoff structure: FDM for Europeans, Monte Carlo for path-dependent exotics
+
+---
+
+## Exercises
+
+**Exercise 1.** Write out the log-Euler discretization step for the local volatility SDE. Starting from $S_n = 100$, $\sigma_{\text{loc}}(100, t_n) = 0.25$, $r = 3\%$, $q = 1\%$, $\Delta t = 0.01$, and $Z_n = 0.5$, compute $S_{n+1}$ using the log-Euler scheme. Verify that $S_{n+1} > 0$ regardless of the value of $Z_n$.
+
+---
+
+**Exercise 2.** The Milstein scheme for the local volatility SDE requires the derivative $\partial \sigma_{\text{loc}} / \partial S$. Suppose the local volatility surface is stored on a grid with spacing $\Delta S = 1$. Write the finite difference formula for $\partial \sigma_{\text{loc}} / \partial S$ at $(S_n, t_n)$ and estimate the additional computational cost per time step compared to the Euler scheme, for $N_{\text{paths}} = 10^5$.
+
+---
+
+**Exercise 3.** Consider two interpolation methods for looking up $\sigma_{\text{loc}}(S_n, t_n)$ during simulation: bilinear interpolation ($C^0$ continuity) and bicubic spline interpolation ($C^2$ continuity). Explain how the lack of $C^1$ continuity in bilinear interpolation can affect simulated paths. In what type of exotic product would this difference be most significant?
+
+---
+
+**Exercise 4.** A Monte Carlo simulation under local volatility with $10^5$ paths and 200 time steps produces a European call price of $\hat{C}_{\text{LV}} = 8.42$ with standard error 0.12. A parallel Black-Scholes simulation with the same paths yields $\hat{C}_{\text{BS}} = 8.15$, while the exact Black-Scholes price is $C_{\text{BS}}^{\text{exact}} = 8.20$. The estimated correlation between $\hat{C}_{\text{LV}}$ and $\hat{C}_{\text{BS}}$ is 0.97. Compute the control variate estimator $\hat{C}_{\text{CV}}$ and estimate the variance reduction factor.
+
+---
+
+**Exercise 5.** The discretization bias for the log-Euler scheme is approximately:
+
+$$
+\text{bias} \approx -\frac{\Delta t}{12}\mathbb{E}\left[\int_0^T \left(\sigma_{\text{loc}} \frac{\partial \sigma_{\text{loc}}}{\partial S} S\right)^2 dt\right]
+$$
+
+Explain why steep local volatility gradients (large $|\partial \sigma_{\text{loc}} / \partial S|$) increase the bias. For a local volatility surface with a skew of $\partial \sigma_{\text{loc}} / \partial S = -0.003$ near the money, estimate whether $\Delta t = 1/250$ (daily steps) is sufficient for a one-year European option, or whether finer stepping is needed.
+
+---
+
+**Exercise 6.** Describe the adaptive time stepping rule $\Delta t_n = \min(\Delta t_{\max}, c / \sigma_{\text{loc}}^2(S_n, t_n))$. If the local volatility ranges from 10% to 60% across the grid, compute the ratio of the smallest to the largest time step size. What is the advantage of this approach over uniform time stepping for pricing a barrier option?

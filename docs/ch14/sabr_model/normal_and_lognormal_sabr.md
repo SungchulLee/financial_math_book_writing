@@ -263,3 +263,29 @@ Normal SABR ($\beta = 0$) and lognormal SABR ($\beta = 1$) represent the two fun
 - Antonov, A., Konikov, M., & Spector, M. (2015). *The free boundary SABR: Natural extension to negative rates*. SSRN preprint.
 - Bartlett, B. (2006). *Hedging under SABR model*. Wilmott Magazine, July, 2--4.
 - Kienitz, J. & Wetterau, D. (2012). *Financial Modelling: Theory, Implementation and Practice with MATLAB Source*. Wiley.
+
+---
+
+## Exercises
+
+**Exercise 1.** For normal SABR ($\beta = 0$), the forward dynamics are $dF_t = \sigma_t\,dW_t^{(1)}$. Show that $F_T | \int_0^T \sigma_s^2\,ds = I$ is Gaussian with mean $F_0$ and variance $I$. Why does this imply that the normal SABR can handle negative forwards naturally?
+
+---
+
+**Exercise 2.** The ATM Bachelier (normal) implied volatility for $\beta = 0$ SABR is $\sigma_N^{\text{ATM}} = \alpha[1 + \frac{2-3\rho^2}{24}\nu^2 T]$. The ATM Black (lognormal) implied volatility for $\beta = 1$ SABR is $\sigma_B^{\text{ATM}} = \alpha[1 + \frac{2-3\rho^2}{24}\nu^2 T]$. Despite the identical form, these are fundamentally different quantities. For $\alpha = 80$ bps, $\rho = -0.2$, $\nu = 0.45$, $T = 1$, $F = 3\%$, compute both $\sigma_N$ and $\sigma_B$. Convert from Bachelier to Black using $\sigma_B \approx \sigma_N / F$ at ATM and verify consistency.
+
+---
+
+**Exercise 3.** The shifted SABR model uses dynamics $dF_t = \sigma_t(F_t + s)^\beta\,dW_t^{(1)}$. For a EUR swaption with forward rate $F = -0.2\%$ and shift $s = 3\%$, compute the shifted forward $\tilde{F} = F + s = 2.8\%$. Using $\beta = 0.5$, $\alpha = 0.012$, $\rho = 0.1$, $\nu = 0.4$, $T = 5$, compute the ATM implied volatility via the Hagan formula applied to $\tilde{F}$.
+
+---
+
+**Exercise 4.** Explain why the choice between $\beta = 0$ and $\beta = 1$ affects the backbone dynamics. If the forward rate drops from 3% to 2%, by how much does the ATM Bachelier vol change under normal SABR ($\beta = 0$) versus lognormal SABR ($\beta = 1$)? Which model predicts a larger change in Black implied vol?
+
+---
+
+**Exercise 5.** In post-2014 EUR markets, forward swap rates went negative. Explain why $\beta = 1$ SABR fails in this environment (the term $F^\beta$ is undefined for $F < 0$ when $\beta = 1$). Compare three solutions: (a) switching to $\beta = 0$; (b) using shifted SABR with $\beta = 0.5$; (c) using free-boundary SABR. What are the trade-offs for each approach?
+
+---
+
+**Exercise 6.** A swaption trader quotes the 10Y-10Y swaption smile in Bachelier (basis point) volatility. The ATM normal vol is 65 bps, and the forward rate is 2.5%. Convert to Black (lognormal) implied volatility using the approximation $\sigma_B \approx \sigma_N / F$. For a 50 bp OTM put (strike = 2.0%), is the conversion formula still accurate? Explain why the conversion becomes less reliable for deep OTM options.

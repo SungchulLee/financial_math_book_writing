@@ -225,3 +225,33 @@ Each extension maps directly to the mathematical content developed in the corres
 ## Summary
 
 The Python implementation encapsulates the Merton jump-diffusion model in a `MertonJumpDiffusion` class with methods for path simulation (log-Euler scheme with Poisson jumps), Monte Carlo pricing (discounted expected payoff), and the Merton series formula (Poisson-weighted Black-Scholes sum). The drift adjustment $r - \lambda\bar{k}$ is precomputed for efficiency. The module demonstrates the key theoretical result that Merton prices exceed Black-Scholes prices for the same diffusion volatility, reflecting the additional uncertainty introduced by the jump component. The companion function `compare_bs_merton` provides a ready-to-use comparison of the two models.
+
+---
+
+## Exercises
+
+**Exercise 1.** The compensator is $\bar{k} = e^{\mu_J + \sigma_J^2/2} - 1$. For the default parameters $\mu_J = -0.10$ and $\sigma_J = 0.30$, compute $\bar{k}$ by hand and verify the adjusted drift $r - \lambda\bar{k}$ with $r = 0.05$ and $\lambda = 0.5$. Explain why $\bar{k} < 0$ when $\mu_J$ is sufficiently negative (downward jumps on average) and what this implies for the adjusted drift.
+
+---
+
+**Exercise 2.** The log-Euler simulation step is $S_{t+\Delta t} = S_t \exp[(r - \lambda\bar{k} - \frac{1}{2}\sigma^2)\Delta t + \sigma\sqrt{\Delta t}\,Z + \sum_{i=1}^{n}\ln Y_i]$ where $n \sim \text{Poisson}(\lambda\Delta t)$ and $\ln Y_i \sim N(\mu_J, \sigma_J^2)$. Show that when $n = 0$ (no jumps in the time step), this reduces to the standard log-Euler step for geometric Brownian motion. Then show that $\mathbb{E}[S_{t+\Delta t}/S_t] = e^{r\Delta t}$ by computing the expectation over both $Z$ and the jump component (using the tower property over $n$).
+
+---
+
+**Exercise 3.** The Merton series formula is $C = \sum_{n=0}^{\infty} \frac{e^{-\lambda'T}(\lambda'T)^n}{n!}\,C_{\text{BS}}(S_0, K, T, r_n, \sigma_n)$. For the default parameters, compute the first three terms ($n = 0, 1, 2$) of the series numerically. Use the Black-Scholes formula with $\sigma_0^2 = 0.04$, $r_0 \approx r - \lambda\bar{k}$ for $n = 0$, and the corresponding $\sigma_n^2$ and $r_n$ for $n = 1, 2$. Verify that the sum converges rapidly by comparing the $n = 0, 1, 2$ partial sums.
+
+---
+
+**Exercise 4.** The output shows that the Merton call price (\$11.35) exceeds the Black-Scholes call price (\$10.45) by approximately \$0.90, and the same difference holds for puts. Explain why the difference is identical for calls and puts by invoking put-call parity. Then explain economically why jump risk increases option prices: consider the effect of jumps on the tails of the return distribution and the convexity of option payoffs.
+
+---
+
+**Exercise 5.** The Monte Carlo standard error is $\text{SE} = \hat{\sigma}/\sqrt{M}$ where $\hat{\sigma}$ is the sample standard deviation of the discounted payoffs and $M$ is the number of paths. For $M = 50{,}000$ and a typical $\hat{\sigma} \approx 15$, estimate the standard error. How many paths would be needed to reduce the standard error below \$0.01? Propose a variance reduction technique (e.g., antithetic variates or control variates using the Black-Scholes price) and explain how it would reduce $\hat{\sigma}$.
+
+---
+
+**Exercise 6.** Modify the `simulate_paths` logic conceptually to handle the case where $\Delta t$ is large enough that $\lambda\Delta t > 1$. In this regime, multiple jumps per time step are common. Show that the sum $\sum_{i=1}^n \ln Y_i$ for $n \sim \text{Poisson}(\lambda\Delta t)$ has mean $\lambda\Delta t\,\mu_J$ and variance $\lambda\Delta t(\sigma_J^2 + \mu_J^2) - (\lambda\Delta t\,\mu_J)^2$. Explain why the exact distribution of $S_{t+\Delta t}/S_t$ remains tractable (it is a mixture of log-normals), and why the simulation is exact regardless of the time step size.
+
+---
+
+**Exercise 7.** The `compare_bs_merton` function uses a diffusion volatility $\sigma = 0.20$ for both models. In practice, the "implied volatility" of the Merton model is higher than $\sigma$ because jumps add variance. Compute the total annualized variance of log-returns under the Merton model, $\sigma_{\text{total}}^2 = \sigma^2 + \lambda(\mu_J^2 + \sigma_J^2)$, for the default parameters. Find $\sigma_{\text{total}}$ and compare the Black-Scholes price using $\sigma_{\text{total}}$ with the Merton series price. Are they close? Explain why the Merton price cannot be exactly replicated by a single Black-Scholes volatility.

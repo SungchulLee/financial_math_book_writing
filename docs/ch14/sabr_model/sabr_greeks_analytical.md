@@ -221,3 +221,35 @@ SABR Greeks are computed by applying the chain rule through the Hagan implied vo
 - Hagan, P. et al. (2002). *Managing smile risk*. Wilmott Magazine, 1, 84--108.
 - Rebonato, R. (2004). *Volatility and Correlation*. Wiley, Chapter 13.
 - Castagna, A. & Mercurio, F. (2007). *The vanna-volga method for implied volatilities*. RISK, January.
+
+---
+
+## Exercises
+
+**Exercise 1.** The SABR delta is computed via the chain rule:
+
+$$
+\Delta_{\text{SABR}} = \Delta_{\text{Black}} + \text{Vega}_{\text{Black}} \cdot \frac{\partial\sigma_B}{\partial F}
+$$
+
+For a call with $\Delta_{\text{Black}} = 0.55$, $\text{Vega}_{\text{Black}} = 0.25$, and $\partial\sigma_B/\partial F = -3.5$ (from the Hagan formula), compute $\Delta_{\text{SABR}}$. Is the SABR delta larger or smaller than the Black delta? Explain the sign of the correction.
+
+---
+
+**Exercise 2.** The Bartlett correction further adjusts the delta to account for the instantaneous correlation between $F$ and $\sigma$. The corrected delta is approximately $\Delta_{\text{Bartlett}} = \Delta_{\text{SABR}} + \text{Vega}_{\text{Black}} \cdot \rho\nu/\alpha \cdot (\partial\sigma_B/\partial\alpha)$. Explain intuitively why the Bartlett correction improves hedging performance: when $\rho < 0$ and $F$ drops, $\sigma$ tends to increase simultaneously, and the delta should account for this correlation.
+
+---
+
+**Exercise 3.** The SABR vega $\partial C/\partial\alpha$ measures sensitivity to a parallel shift in the volatility level. Compute it using $\text{Vega}_{\text{SABR}} = \text{Vega}_{\text{Black}} \cdot \partial\sigma_B/\partial\alpha$. For an ATM swaption with $\text{Vega}_{\text{Black}} = 0.30$ and $\partial\sigma_B/\partial\alpha \approx 1/F^{1-\beta}$, compute the SABR vega for $F = 0.03$ and $\beta = 0.5$.
+
+---
+
+**Exercise 4.** Vanna measures the cross-sensitivity $\partial^2 C/(\partial F\,\partial\sigma_B)$. In the SABR model, vanna arises because $\sigma_B$ depends on $F$ through the backbone. Explain why a portfolio that is vanna-neutral is partially protected against simultaneous moves in $F$ and $\sigma$. For a swaption desk with large negative vanna, describe a hedging strategy using other swaptions.
+
+---
+
+**Exercise 5.** Volga measures $\partial^2 C/\partial\sigma_B^2$, the convexity of the option price in volatility. ATM options have small volga, while OTM options have large volga. Explain why this means OTM option prices are more sensitive to the vol-of-vol parameter $\nu$ in the SABR model. How does this connect to the smile curvature?
+
+---
+
+**Exercise 6.** Compare the hedging P&L of three delta strategies over a 1-month horizon: (a) Black delta with constant implied vol; (b) SABR delta (backbone-corrected); (c) Bartlett-corrected SABR delta. If the forward drops from 3% to 2.5% and implied vol increases by 2 vol points, rank the three strategies from best to worst hedging performance. Which correction matters most: the backbone or the Bartlett?

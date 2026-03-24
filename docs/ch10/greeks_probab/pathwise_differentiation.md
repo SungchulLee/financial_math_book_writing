@@ -237,3 +237,29 @@ The key difference from Black–Scholes is that the Jacobian \(\frac{\partial S_
 - Likelihood ratio methods work for kinked payoffs (gamma, digital options) but exhibit higher variance.
 - Finite difference is simple to implement but requires careful choice of step size \(d\theta\).
 - Heston model preserves pathwise delta formula but increases sampling variance due to stochastic volatility.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a European call with payoff $\Phi(x) = (x - K)^+$, verify that $\Phi'(x) = \mathbf{1}_{x > K}$ almost everywhere, and that the pathwise delta formula $\Delta = \mathbb{E}^{t,S}[e^{-r\tau}\mathbf{1}_{S_T > K} \cdot S_T/S]$ is well-defined despite the kink in the payoff.
+
+---
+
+**Exercise 2.** Compute the pathwise vega weight $\frac{\partial S_T}{\partial \sigma} = S_T(\sqrt{\tau}Z - \sigma\tau)$ for $S = 100$, $\sigma = 0.20$, $\tau = 0.5$, and a specific realization $Z = 1.5$. What is $S_T$ in this case, and what is the vega contribution from this single path?
+
+---
+
+**Exercise 3.** For a digital option with payoff $\Phi(x) = \mathbf{1}_{x > K}$, we have $\Phi'(x) = \delta(x - K)$. Explain why the pathwise delta formula fails for this payoff. What would a naive Monte Carlo estimator of $\mathbb{E}[e^{-r\tau}\delta(S_T - K) \cdot S_T/S]$ compute, and why is it not useful?
+
+---
+
+**Exercise 4.** The central difference approximation $\frac{\partial V}{\partial \theta} \approx \frac{V(\theta + d\theta) - V(\theta - d\theta)}{2d\theta}$ has $O(d\theta^2)$ error. If $V$ is estimated by Monte Carlo with $N = 10^6$ paths, the sampling error is approximately $\epsilon \sim N^{-1/2} \approx 10^{-3}$. What is the optimal $d\theta$ that balances discretization and sampling errors?
+
+---
+
+**Exercise 5.** In the Heston model, the pathwise delta formula is $\Delta = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[\Phi'(S_T) \cdot S_T/S_0]$, the same form as Black--Scholes. Explain why the Jacobian $\partial S_T / \partial S_0 = S_T/S_0$ still holds despite stochastic volatility. Does the pathwise vega formula change in the Heston model?
+
+---
+
+**Exercise 6.** The dominated convergence conditions for interchanging $\partial/\partial\theta$ and $\mathbb{E}$ require an integrable dominating function. For a power payoff $\Phi(x) = x^3$, verify that the condition $|\Phi'(S_T) \cdot S_T/S| \leq g(S_T)$ is satisfied for some integrable $g$ under the log-normal distribution. What happens for payoffs with exponential growth, such as $\Phi(x) = e^x$?

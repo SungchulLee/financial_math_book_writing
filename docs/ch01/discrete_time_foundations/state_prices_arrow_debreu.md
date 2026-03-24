@@ -380,3 +380,47 @@ where $m_{t+1} = \pi_{t+1}/\pi_t$ is the **one-period SDF** and $D_{t+1}$ is any
 | Breeden-Litzenberger | State prices from option prices | $\phi(K) = e^{rT} \partial^2 C / \partial K^2$ |
 
 ---
+
+## Exercises
+
+**Exercise 1.** Consider a two-state economy with states $\Omega = \{\omega_1, \omega_2\}$. A risk-free bond has price $P_{\text{rf}} = 0.90$ and pays \$1 in both states. A stock has price $P_2 = 60$ and pays \$80 in state $\omega_1$ and \$50 in state $\omega_2$. Compute the state prices $\phi_1$ and $\phi_2$, the risk-neutral probabilities $q_1$ and $q_2$, and the stochastic discount factor values $m_1$ and $m_2$ assuming physical probabilities $p_1 = 0.5$ and $p_2 = 0.5$.
+
+---
+
+**Exercise 2.** Prove that if no-arbitrage holds and a risk-free bond exists paying \$1 in every state, then the sum of the state prices satisfies
+
+$$
+\sum_{s=1}^{S} \phi_s = \frac{1}{1 + r_f}
+$$
+
+where $r_f$ is the risk-free rate. What does this imply about the relationship between state prices and risk-neutral probabilities?
+
+---
+
+**Exercise 3.** In a three-state economy with $\Omega = \{\omega_1, \omega_2, \omega_3\}$, the payoff matrix and price vector are
+
+$$
+\mathbf{X} = \begin{pmatrix} 1 & 1 & 1 \\ 60 & 50 & 40 \\ 10 & 5 & 0 \end{pmatrix}, \quad \mathbf{P} = \begin{pmatrix} 0.96 \\ 48 \\ 4.80 \end{pmatrix}
+$$
+
+Solve $\mathbf{X}\,\boldsymbol{\phi} = \mathbf{P}$ for the state price vector $\boldsymbol{\phi}$. Verify that all components are strictly positive and compute the implied risk-free rate.
+
+---
+
+**Exercise 4.** Show that the stochastic discount factor $m_s = \phi_s / p_s$ satisfies
+
+$$
+\mathbb{E}^{\mathbb{P}}[m] = \frac{1}{1 + r_f}
+$$
+
+when a risk-free bond exists. Interpret this result in terms of the relationship between the SDF and the time value of money.
+
+---
+
+**Exercise 5.** A market has two states and two traded assets (a bond and a stock). The state prices are $\phi_1 = 0.35$ and $\phi_2 = 0.60$. A new derivative is introduced with payoff $\Phi(\omega_1) = 10$ and $\Phi(\omega_2) = 3$. Using the fundamental pricing equation, compute the no-arbitrage price of this derivative. Then verify your answer using the risk-neutral pricing formula $P = \frac{1}{1+r_f}\mathbb{E}^{\mathbb{Q}}[\Phi]$.
+
+---
+
+**Exercise 6.** Explain why the Breeden-Litzenberger formula $\phi(K) = e^{r_f T} \frac{\partial^2 C}{\partial K^2}$ implies that the call price $C(K)$ must be a convex function of the strike price $K$ in an arbitrage-free market. What would a violation of convexity imply about state prices?
+
+---

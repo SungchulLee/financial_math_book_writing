@@ -302,3 +302,51 @@ def heston_cf(u, S0, V0, kappa, theta, xi, rho, r, q, tau):
 - Lee, R. (2004). *The moment formula for implied volatility at extreme strikes*. Mathematical Finance.
 - Lord, R. & Kahl, C. (2010). *Complex logarithms in Heston-like models*. Mathematical Finance.
 - Andersen, L. & Piterbarg, V. (2007). *Moment explosions in stochastic volatility models*. Finance and Stochastics.
+
+---
+
+## Exercises
+
+**Exercise 1.** The characteristic function of a standard normal random variable $Z \sim \mathcal{N}(0,1)$ is $\varphi_Z(u) = e^{-u^2/2}$. Using the moment-generating property $\mathbb{E}[Z^n] = i^{-n}\varphi_Z^{(n)}(0)$, verify that $\mathbb{E}[Z] = 0$, $\mathbb{E}[Z^2] = 1$, $\mathbb{E}[Z^3] = 0$, and $\mathbb{E}[Z^4] = 3$ by computing successive derivatives of $\varphi_Z(u)$ at $u = 0$.
+
+---
+
+**Exercise 2.** Write the Black–Scholes characteristic function for $X_T = \log S_T$ with parameters $S_0 = 100$, $r = 3\%$, $q = 1\%$, $\sigma = 25\%$, and $T = 0.5$. Verify the martingale condition $\varphi(-i) = e^{(r-q)T}$ by substituting $u = -i$ into your formula.
+
+---
+
+**Exercise 3.** The Heston characteristic function involves the discriminant $d = \sqrt{(\kappa - \rho\xi iu)^2 + \xi^2(iu + u^2)}$. For $\kappa = 2$, $\xi = 0.4$, $\rho = -0.7$: (a) compute $d$ at $u = 0$ and verify it equals $\kappa$; (b) compute $d$ at $u = 5$ and $u = 20$, showing that $\text{Re}(d) > 0$; (c) explain why the choice of branch for the complex square root affects the result and how the Lord-Kahl formulation addresses this.
+
+---
+
+**Exercise 4.** The Gil-Pelaez inversion formula for the CDF is
+
+$$
+F_X(x) = \frac{1}{2} - \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-iux}\varphi_X(u)}{iu}\right]du
+$$
+
+For a standard normal with $\varphi(u) = e^{-u^2/2}$, evaluate $F_X(0)$ and verify it equals $1/2$. Then set $x = 1.96$ and compute the integral numerically (using, e.g., the trapezoidal rule with $\Delta u = 0.01$ and $u_{\max} = 50$) to verify that $F_X(1.96) \approx 0.975$.
+
+---
+
+**Exercise 5.** Analytic continuation of the characteristic function to complex arguments is essential for Fourier pricing. Explain why the Carr-Madan formula evaluates $\varphi(u - i(\alpha + 1))$ rather than $\varphi(u)$. If the critical moment for the Heston model is $n^*(T) = 3.5$, what is the maximum allowable damping parameter $\alpha$? What happens numerically if $\alpha$ is chosen too large?
+
+---
+
+**Exercise 6.** Lee's moment formula states that the implied volatility wing behaves as
+
+$$
+\sigma_{\text{impl}}^2(k, T) \sim \frac{2|k|}{T}\left(1 - \frac{1}{n^*}\text{sgn}(k)\right) \quad \text{as } |k| \to \infty
+$$
+
+For a model with critical right moment $n^* = 4$ and $T = 1$, compute the asymptotic implied volatility at log-moneyness $k = 2$ (far OTM call). Repeat for $k = -2$ (far OTM put) assuming the critical left moment is also $n^* = 4$. Compare with typical Black-Scholes implied volatilities.
+
+---
+
+**Exercise 7.** The Variance Gamma (VG) model has characteristic function
+
+$$
+\varphi_{\text{VG}}(\tau, u) = \exp(iu\omega\tau)\left(\frac{1}{1 - iu\theta\nu + \frac{\sigma^2\nu u^2}{2}}\right)^{\tau/\nu}
+$$
+
+Show that the characteristic function is well-defined (the base of the power is positive) for all real $u$ when $\sigma > 0$ and $\nu > 0$. Compare the tail behavior of $|\varphi_{\text{VG}}(u)|$ as $|u| \to \infty$ with that of the Black-Scholes CF $|\varphi_{\text{BS}}(u)| = e^{-\sigma^2 u^2 T/2}$. Which decays faster, and what does this imply about the smoothness of the respective densities?

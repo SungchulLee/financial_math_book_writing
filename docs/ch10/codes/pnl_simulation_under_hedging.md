@@ -275,3 +275,29 @@ The decomposition shows the fundamental tension: theta bleeds value continuously
 - Monte Carlo simulations quantify hedging error distributions across many scenarios.
 - Rebalancing frequency analysis confirms the \(\sqrt{\Delta t}\) scaling of discrete hedging error.
 - The theta-gamma decomposition is the key diagnostic for understanding delta-hedged P&L.
+
+---
+
+## Exercises
+
+**Exercise 1.** Modify the single-path simulation to include a **proportional transaction cost** of $\kappa = 0.001$ (10 bps) per dollar traded at each rebalancing. Recompute the dynamic hedge P&L with transaction costs included. How much do transaction costs erode the hedging performance?
+
+---
+
+**Exercise 2.** In the multi-path Monte Carlo simulation, compute the **skewness** and **kurtosis** of the hedged P&L distribution for daily rebalancing. Is the distribution approximately Gaussian, as predicted by the CLT? At what rebalancing frequency does the distribution become noticeably non-Gaussian?
+
+---
+
+**Exercise 3.** Extend the rebalancing frequency analysis to include a **non-uniform** rebalancing schedule that rebalances more frequently near expiry (when gamma is large). Compare the hedging error standard deviation with uniform daily rebalancing using the same total number of rebalancing dates.
+
+---
+
+**Exercise 4.** The theta-gamma decomposition shows that daily hedged P&L is approximately $\Theta_i \cdot \Delta t + \frac{1}{2}\Gamma_i(\Delta S_i)^2$. For the simulated path, compute the correlation between the daily gamma P&L and the squared daily return $(R_i)^2$. Is the correlation close to 1, as predicted by theory?
+
+---
+
+**Exercise 5.** Simulate the hedged P&L under a **misspecified volatility** scenario: the true dynamics use $\sigma = 0.25$ while the hedger computes deltas using $\hat{\sigma} = 0.20$. Plot the distribution of hedged P&L and compute its mean. Verify that the mean hedging error is approximately $\frac{1}{2}\bar{\Gamma}S^2(\sigma^2 - \hat{\sigma}^2)T$.
+
+---
+
+**Exercise 6.** Implement a **Whalley-Wilmott no-trade band** strategy: only rebalance when the current delta deviates from the target delta by more than $h = (3\lambda/(2\Gamma))^{1/3}$ with $\lambda = 0.001$. Compare the total cost (hedging error variance + transaction costs) with the fixed-frequency strategies from the multi-path simulation.

@@ -129,3 +129,35 @@ The scaled process $S^{(n)}(t)$ inherits this property at dyadic times, which pe
 - Einstein, A. (1905). Über die von der molekularkinetischen Theorie der Wärme geforderte Bewegung. *Annalen der Physik*.
 - Feller, W. (1968). *An Introduction to Probability Theory and Its Applications*, Vol. 1, 3rd ed. Wiley.
 - Lawler, G. F., & Limic, V. (2010). *Random Walk: A Modern Introduction*. Cambridge University Press.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $S_n = \sum_{i=1}^n \xi_i$ be a symmetric random walk starting at $S_0 = 0$. Compute the probability $\mathbb{P}(S_4 = 2)$ by enumerating all paths of length 4 that end at position 2. Express your answer using the binomial coefficient.
+
+---
+
+**Exercise 2.** For the asymmetric random walk with $p = 0.6$, compute $\mathbb{E}[S_{100}]$ and $\text{Var}(S_{100})$. After how many steps $n$ does the expected position $\mathbb{E}[S_n]$ exceed 3 standard deviations $3\sqrt{\text{Var}(S_n)}$? Interpret this result in terms of the drift dominating the fluctuations.
+
+---
+
+**Exercise 3.** Prove the Markov property more carefully: show that for any bounded measurable function $g$,
+
+$$
+\mathbb{E}[g(S_{n+1}) \mid \mathcal{F}_n] = \frac{1}{2}g(S_n + 1) + \frac{1}{2}g(S_n - 1)
+$$
+
+in the symmetric case. Why does this imply that the conditional distribution of $S_{n+1}$ given all of the past depends only on $S_n$?
+
+---
+
+**Exercise 4.** A random walk starts at $S_0 = 0$ and takes $n = 200$ steps with $p = 1/2$. Using the normal approximation (CLT), estimate the probability that $S_{200} > 20$. Compare your answer to the exact probability obtained from the binomial distribution.
+
+---
+
+**Exercise 5.** Explain why the simple random walk $\{S_n\}$ on $\mathbb{Z}$ can visit only even positions at even times and only odd positions at odd times (the "parity" or "periodicity" property). What consequence does this have for $\mathbb{P}(S_n = 0)$ when $n$ is odd?
+
+---
+
+**Exercise 6.** Consider a random walk that at each step moves $+2$ with probability $1/3$, $0$ with probability $1/3$, and $-1$ with probability $1/3$. Compute $\mathbb{E}[\xi_i]$ and $\text{Var}(\xi_i)$. Is this process a martingale? If not, what value of the probabilities would make it a martingale while keeping the same step sizes $\{+2, 0, -1\}$?

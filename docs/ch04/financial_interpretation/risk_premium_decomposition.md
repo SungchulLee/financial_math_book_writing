@@ -370,3 +370,52 @@ For the implications when the risk premium decomposition breaks down, see
 [When Measure Change Fails](when_measure_change_fails.md). For practical
 aspects of calibrating $\theta$ from market data, see
 [Practitioner Perspective](practitioner_perspective.md).
+
+---
+
+## Exercises
+
+**Exercise 1.**
+A stock has physical drift $\mu = 0.10$, volatility $\sigma = 0.30$, and the risk-free rate is $r = 0.02$. Compute the market price of risk $\theta$, the risk premium $\sigma\theta$, and write the Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T}$ for $T = 1$.
+
+---
+
+**Exercise 2.**
+Starting from the $\mathbb{P}$-dynamics $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}$ and the Girsanov relation $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t$ (for constant $\theta$), derive the $\mathbb{Q}$-dynamics of $S_t$ and verify that the drift becomes $r$. Explain why the volatility $\sigma$ is unchanged under the measure change.
+
+---
+
+**Exercise 3.**
+In the Vasicek model, the short rate follows $dr_t = \kappa(\bar{r} - r_t)\,dt + \sigma_r\,dW_t^{\mathbb{P}}$ with $\kappa = 0.5$, $\bar{r} = 0.04$, $\sigma_r = 0.01$, and market price of interest rate risk $\theta = 0.3$. Compute the risk-neutral long-run mean $\bar{r}^{\mathbb{Q}}$ and explain the economic intuition for why $\bar{r}^{\mathbb{Q}} < \bar{r}$ when $\theta > 0$.
+
+---
+
+**Exercise 4.**
+Consider three assets driven by two independent Brownian motions with drift vector $\boldsymbol{\mu} = (0.08, 0.12, 0.06)^{\top}$, risk-free rate $r = 0.02$, and volatility matrix
+
+$$
+\Sigma = \begin{pmatrix} 0.20 & 0.10 \\ 0.15 & 0.25 \\ 0.10 & 0.05 \end{pmatrix}
+$$
+
+Determine whether the system $\boldsymbol{\mu} - r\mathbf{1} = \Sigma\boldsymbol{\theta}$ has a solution. If so, is it unique? If not, explain the no-arbitrage implication.
+
+---
+
+**Exercise 5.**
+Prove that the Sharpe ratio $(\mu - r)/\sigma$ is the same for all assets in a single-factor complete market. Hint: use the risk premium decomposition and the fact that $\theta$ is unique in a complete market.
+
+---
+
+**Exercise 6.**
+Consider a stock with time-varying market price of risk $\theta_t$ satisfying
+
+$$
+\int_0^T \theta_t^2\,dt < \infty \quad \text{a.s.}
+$$
+
+Write the Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T}$ in terms of $\theta_t$ and explain why the Novikov condition $\mathbb{E}^{\mathbb{P}}[\exp(\frac{1}{2}\int_0^T \theta_t^2\,dt)] < \infty$ is sufficient to guarantee that the stochastic exponential is a true martingale.
+
+---
+
+**Exercise 7.**
+In the CAPM framework, asset $i$ has $\beta_i = 1.2$, the market expected return is $\mu_M = 0.09$, market volatility is $\sigma_M = 0.18$, and $r = 0.03$. Compute the expected return $\mu_i$ using the CAPM relation, determine the market price of risk $\theta_M$, and express asset $i$'s risk premium in the form $\sigma_i \rho_{iM} \theta_M$ given that $\sigma_i = 0.24$ and $\rho_{iM} = 0.9$. Verify consistency with the CAPM formula.

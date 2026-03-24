@@ -319,3 +319,39 @@ Regulators expect:
 - Rebonato, *Volatility and Correlation* (model risk in hedging).
 - Gatheral, *The Volatility Surface* (Greeks under stochastic volatility).
 - Glasserman, *Monte Carlo Methods in Financial Engineering* (Greek estimation).
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from $\Delta(\hat{\theta}) - \Delta(\theta^\star) \approx \nabla_\theta \Delta^\top (\hat{\theta} - \theta^\star)$, derive the variance of the hedge ratio due to parameter uncertainty:
+
+$$
+\text{Var}(\Delta) = \nabla_\theta \Delta^\top \Sigma_\theta \nabla_\theta \Delta
+$$
+
+For a Heston model with $\Sigma_\theta = \text{diag}(0.002^2, 0.3^2, 0.005^2, 0.05^2, 0.05^2)$ and $\nabla_\theta \Delta = (15, 0.005, 2, 0.3, 0.8)$, compute $\sigma_\Delta$ and interpret the result for a \$100M notional position.
+
+---
+
+**Exercise 2.** A delta-hedged portfolio has hedging error $\epsilon \approx \frac{1}{2}(\Gamma(\theta^\star) - \Gamma(\hat{\theta}))(\Delta S)^2$ per period. Over 252 trading days, if the gamma error is systematic (same sign each day) with magnitude 0.001 and daily spot moves have standard deviation $\sigma_S = 1.5\%$, estimate the cumulative P&L impact. Compare this to the case where gamma errors are random with mean zero.
+
+---
+
+**Exercise 3.** In the numerical example, mis-estimating $\rho$ by $0.1$ changed the delta of a 95%-strike put from $-0.35$ to $-0.30$. Compute the parameter sensitivity $\partial\Delta/\partial\rho$ from these values. If $\rho$ uncertainty is $\sigma_\rho = 0.05$, what is the 95% confidence interval for the hedge ratio?
+
+---
+
+**Exercise 4.** Explain the concept of "cross-Greek contamination." Consider a vanna-hedged position where the hedge ratio is $\partial^2 P / \partial S \partial \sigma$. If both $\rho$ and $\sigma_v$ are mis-estimated, show how the vanna error depends on both parameter errors simultaneously. Why might this compound effect be larger than the sum of individual parameter impacts?
+
+---
+
+**Exercise 5.** A risk manager proposes hedging with Greek ranges: $\Delta \in [\Delta_{\min}, \Delta_{\max}]$ computed over a 95% confidence region for parameters. For a position where $\Delta_{\min} = -0.38$ and $\Delta_{\max} = -0.28$, the desk hedges at the midpoint $-0.33$. Compute the maximum residual delta exposure for a \$50M notional. Discuss when hedging at the midpoint is optimal versus hedging more conservatively.
+
+---
+
+**Exercise 6.** Compare the following robust hedging strategies for a book of barrier options: (a) delta-hedging with the calibrated model, (b) static hedging using vanilla options, and (c) delta-hedging but using an average delta across three different models (Heston, SABR, local vol). For each strategy, discuss model dependence, transaction costs, and residual risk.
+
+---
+
+**Exercise 7.** The recalibration-Greek feedback loop generates transaction costs proportional to $|\Delta_t(\hat{\theta}_t) - \Delta_{t-1}(\hat{\theta}_{t-1})|$. Using the decomposition $\Delta\Delta_t = (\partial\Delta/\partial S)\Delta S + (\partial\Delta/\partial\sigma)\Delta\sigma + \nabla_\theta\Delta^\top\Delta\hat{\theta}$, identify which term represents unnecessary turnover due to calibration noise. Propose a quantitative criterion for deciding when to skip rebalancing (i.e., when the calibration-induced component dominates the market-driven components).

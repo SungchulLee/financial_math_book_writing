@@ -338,3 +338,46 @@ This symmetry between test functions and densities underlies much of diffusion t
 - [Invariant Measures](../../ch03/diffusion_process/invariant_measures_and_stationarity.md) — fixed points of $\mathcal{L}^*$
 - [Time Reversal of Diffusions](../../ch03/diffusion_process/time_reversal_of_diffusions.md) — reversed dynamics
 - [Feynman–Kac Formula](../feynman_kac/feynman_kac_formula.md) — discounted expectations
+
+---
+
+## Exercises
+
+**Exercise 1.**
+For the generator $\mathcal{L} = \mu(x)\partial_x + \frac{\sigma^2(x)}{2}\partial_{xx}$, derive the adjoint $\mathcal{L}^*$ by integrating $\int f(x)(\mathcal{L}g)(x)\,dx$ by parts twice. Identify the boundary terms that must vanish for the duality relation to hold.
+
+---
+
+**Exercise 2.**
+For standard Brownian motion ($\mu = 0$, $\sigma = 1$), verify that $\mathcal{L} = \mathcal{L}^* = \frac{1}{2}\partial_{xx}$. Explain why the operator is self-adjoint in this case. For Brownian motion with constant drift $\mu \neq 0$, show that $\mathcal{L} \neq \mathcal{L}^*$ and describe how the drift term changes sign under the adjoint.
+
+---
+
+**Exercise 3.**
+Consider the Ornstein-Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$. Write out the generator $\mathcal{L}$ and its adjoint $\mathcal{L}^*$ explicitly. Verify that the stationary density $\pi(x) \propto \exp(-\kappa x^2/\sigma^2)$ satisfies $\mathcal{L}^* \pi = 0$.
+
+---
+
+**Exercise 4.**
+The transition density $p(x, t \mid x_0, t_0)$ satisfies both the forward equation in $(x, t)$ and the backward equation in $(x_0, t_0)$. For Brownian motion with drift, verify this explicitly using the Gaussian transition density
+
+$$
+p(x, t \mid x_0, t_0) = \frac{1}{\sigma\sqrt{2\pi(t - t_0)}} \exp\left(-\frac{(x - x_0 - \mu(t - t_0))^2}{2\sigma^2(t - t_0)}\right)
+$$
+
+by checking that it satisfies both $\partial_t p = \mathcal{L}_x^* p$ and $\partial_{t_0} p + \mathcal{L}_{x_0} p = 0$.
+
+---
+
+**Exercise 5.**
+Suppose you want to compute $\mathbb{E}[g(X_T)]$ for a specific payoff $g$ and a specific starting point $x_0$. Describe the backward approach (solve one PDE with terminal condition $g$, evaluate at $x_0$) and the forward approach (solve one PDE with initial condition $\delta(x - x_0)$, integrate against $g$). Under what circumstances is each approach more computationally efficient?
+
+---
+
+**Exercise 6.**
+The detailed balance condition states $\pi(x)p(y, t \mid x, 0) = \pi(y)p(x, t \mid y, 0)$. For the Ornstein-Uhlenbeck process, verify that detailed balance holds by using the explicit Gaussian transition density and the Gaussian stationary distribution. Explain the physical meaning: the probability flux from $x$ to $y$ equals the flux from $y$ to $x$ when weighted by $\pi$.
+
+---
+
+**Exercise 7.**
+For the OU process, the eigenvalues of $\mathcal{L}$ are $\lambda_n = n\kappa$ and the eigenfunctions are Hermite polynomials $H_n(x)$. Using the spectral expansion $p(x, t \mid x_0, 0) = \pi(x)\sum_{n=0}^{\infty} e^{-\lambda_n t} H_n(x)H_n(x_0)$, explain why the transition density converges to the stationary density $\pi(x)$ as $t \to \infty$. What is the rate of convergence, and which eigenvalue determines it?

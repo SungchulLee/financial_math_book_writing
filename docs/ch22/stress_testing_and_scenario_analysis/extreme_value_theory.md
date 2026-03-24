@@ -304,3 +304,59 @@ EVT typically produces higher VaR estimates at extreme confidence levels, reflec
 - Pickands, J. (1975), "Statistical Inference Using Extreme Order Statistics"
 - Hill, B.M. (1975), "A Simple General Approach to Inference About the Tail of a Distribution"
 - Balkema, A.A. & de Haan, L. (1974), "Residual Life Time at Great Age"
+
+---
+
+## Exercises
+
+**Exercise 1.** A dataset of 2,500 daily losses has 80 exceedances above a threshold $u = 2.5\%$. The GPD fit yields $\hat{\xi} = 0.25$ and $\hat{\beta} = 0.8\%$. Compute the EVT-based estimates of $\text{VaR}_{99\%}$, $\text{VaR}_{99.9\%}$, and $\text{ES}_{99\%}$ using the formulas
+
+$$
+\widehat{\text{VaR}}_\alpha = u + \frac{\hat{\beta}}{\hat{\xi}} \left[\left(\frac{n}{N_u}(1 - \alpha)\right)^{-\hat{\xi}} - 1\right]
+$$
+
+$$
+\widehat{\text{ES}}_\alpha = \frac{\widehat{\text{VaR}}_\alpha + \hat{\beta} - \hat{\xi} u}{1 - \hat{\xi}}
+$$
+
+Compare the 99.9% VaR to the normal approximation $\Phi^{-1}(0.999) \cdot \sigma$ where $\sigma = 1\%$.
+
+---
+
+**Exercise 2.** Show that the mean excess function of the GPD is linear in the threshold. Starting from
+
+$$
+e(u) = \mathbb{E}[L - u \mid L > u] = \frac{\beta + \xi u}{1 - \xi}
+$$
+
+explain how you would use the mean excess plot to select a threshold $u$ for a POT analysis. Sketch what a mean excess plot looks like for (a) exponentially-tailed data and (b) heavy-tailed data.
+
+---
+
+**Exercise 3.** The Hill estimator for the tail index is
+
+$$
+\hat{\xi}_{\text{Hill}} = \frac{1}{k} \sum_{i=1}^{k} \log L_{(n-i+1)} - \log L_{(n-k)}
+$$
+
+Given the 10 largest order statistics: 8.2, 7.1, 6.5, 5.8, 5.3, 4.9, 4.5, 4.2, 3.9, 3.7, compute $\hat{\xi}_{\text{Hill}}$ for $k = 5$ and $k = 9$. Discuss the sensitivity of the estimate to the choice of $k$ and the bias-variance tradeoff involved.
+
+---
+
+**Exercise 4.** A Student-$t$ distribution with $\nu$ degrees of freedom belongs to the Frechet maximum domain of attraction with $\xi = 1/\nu$. For $\nu = 4$, compute $\xi$ and the implied tail probability $\mathbb{P}(L > x)$ for large $x$ using the power-law approximation $\bar{F}(x) \sim c \cdot x^{-1/\xi}$. Why does this imply that the fourth moment is infinite? What consequences does this have for risk estimation based on sample kurtosis?
+
+---
+
+**Exercise 5.** Explain the role of the extremal index $\theta$ when applying EVT to GARCH-type financial returns. If a series has $\theta = 0.6$, what is the average cluster size? A POT analysis identifies 100 exceedances, but after declustering (extracting cluster maxima), only 60 remain. Explain how the tail probability estimate changes when accounting for dependence, using the adjusted formula
+
+$$
+\bar{F}(x) \approx \theta \cdot \frac{N_u}{n} \cdot \left(1 + \hat{\xi}\frac{x-u}{\hat{\beta}}\right)^{-1/\hat{\xi}}
+$$
+
+---
+
+**Exercise 6.** Prove that the GEV distribution $G_\xi(x) = \exp(-(1 + \xi x)^{-1/\xi})$ reduces to the Gumbel distribution $G_0(x) = \exp(-e^{-x})$ as $\xi \to 0$. (Hint: Use the fact that $\lim_{\xi \to 0}(1 + \xi x)^{1/\xi} = e^x$.)
+
+---
+
+**Exercise 7.** A risk manager must choose between a parametric Student-$t$ VaR model and an EVT-based POT model. For a 99% VaR with 1,000 observations, both methods perform similarly. Discuss why the two approaches may diverge significantly at the 99.97% level (Basel's 3-year return period). Under what conditions would you recommend the EVT approach over the parametric approach, and what are the key practical challenges (threshold selection, data requirements, stationarity assumptions)?

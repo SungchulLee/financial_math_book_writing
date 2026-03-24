@@ -372,3 +372,39 @@ The resulting VIX is a model-free measure of implied variance that:
 - Uses the entire option smile, not just a single ATM option
 - Overestimates expected realized volatility due to the variance risk premium and jump effects
 - Provides the benchmark for volatility derivatives trading
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the Ito decomposition $\ln(S_T/S_0) = (r - q)T - \frac{1}{2}\int_0^T \sigma_t^2 \, dt + \int_0^T \sigma_t \, dW_t$, derive the formula for expected integrated variance $\mathbb{E}^{\mathbb{Q}}[\int_0^T \sigma_t^2 \, dt] = 2(r-q)T - 2\mathbb{E}^{\mathbb{Q}}[\ln(S_T/S_0)]$. Explain why this requires no assumptions about the volatility process $\sigma_t$.
+
+---
+
+**Exercise 2.** The log contract payoff $\ln(S_T/F)$ can be replicated using a portfolio of OTM puts and calls via $\ln(S_T/F) = \frac{S_T - F}{F} - \int_0^F \frac{1}{K^2}\max(K - S_T, 0) \, dK - \int_F^\infty \frac{1}{K^2}\max(S_T - K, 0) \, dK$. Verify this identity for $S_T = 80$ with $F = 100$ by evaluating both sides.
+
+---
+
+**Exercise 3.** The CBOE VIX formula in continuous form is
+
+$$
+\text{VIX}^2 = \frac{2}{T} \left[\int_0^F \frac{P(K)}{K^2} dK + \int_F^\infty \frac{C(K)}{K^2} dK\right]
+$$
+
+Explain why only OTM options are used (puts for $K < F$, calls for $K > F$). What would go wrong if ITM options were included instead?
+
+---
+
+**Exercise 4.** The discrete CBOE VIX formula approximates the integral as a Riemann sum: $\text{VIX}^2 = \frac{2}{T}\sum_i \frac{\Delta K_i}{K_i^2} e^{rT} Q(K_i) - \frac{1}{T}(F/K_0 - 1)^2$, where $Q(K_i)$ is the midpoint of the bid-ask spread. Given 5 equally spaced strikes at $K = 90, 95, 100, 105, 110$ with $\Delta K = 5$, $F = 100$, $T = 30/365$, $r = 2\%$, and mid prices $Q = [8.50, 5.20, 3.00, 1.80, 0.90]$, compute $\text{VIX}^2$ and VIX.
+
+---
+
+**Exercise 5.** The VIX measures expected variance under the risk-neutral measure $\mathbb{Q}$, not the physical measure $\mathbb{P}$. The difference is the variance risk premium (VRP). If the VIX is 20 and the expected 30-day realized volatility under $\mathbb{P}$ is 16%, compute the annualized VRP in variance terms. Explain why VRP is typically positive for equity indices.
+
+---
+
+**Exercise 6.** The convexity adjustment between volatility and variance implies that $\mathbb{E}[\sigma] \leq \sqrt{\mathbb{E}[\sigma^2]}$ by Jensen's inequality. If the fair variance swap strike is $K_{\text{var}} = 0.04$ (20% vol), what is the upper bound on the expected volatility? Under what distributional assumptions would equality hold?
+
+---
+
+**Exercise 7.** The VIX formula assumes a continuous strike grid, but in practice only finitely many strikes are traded. Describe how truncation of the integral at the last available OTM strike introduces a downward bias in the VIX calculation. How does the CBOE handle this, and why does the problem worsen during market stress when deep OTM puts become very valuable?

@@ -733,3 +733,29 @@ $$
 2. **Leverages classical PDE theory:** Uses well-known Green's function and superposition principle
 3. **Reveals structure:** The Gaussian kernel connects to Brownian motion transition densities
 4. **Generalizable:** Extends to other parabolic PDEs and non-standard payoffs
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify that the Green's function $G(x,\tau;z) = \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right)$ satisfies the heat equation $\frac{\partial G}{\partial \tau} = \frac{1}{2}\sigma^2 \frac{\partial^2 G}{\partial x^2}$ by computing both sides explicitly and showing they are equal.
+
+---
+
+**Exercise 2.** Derive the Black-Scholes put formula using the heat equation approach. Start from the initial condition $\psi(x) = (K - e^x)^+$ and evaluate the two resulting Gaussian integrals. Verify that your answer matches the put formula $P = Ke^{-r\tau}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)$.
+
+---
+
+**Exercise 3.** In the transformation from the BS PDE to the heat equation, the first-order term cancels. Show this cancellation in detail: substitute the transformed derivatives into the PDE and verify that all $\frac{\partial V}{\partial x}$ terms cancel exactly.
+
+---
+
+**Exercise 4.** The three transformations $(\tau, x, F)$ reduce the BS PDE to the heat equation with diffusivity $\kappa = \frac{1}{2}\sigma^2$. If we instead define $y = x / (\sigma\sqrt{2})$ and $F(y,\tau)$, show that we obtain the standard heat equation $\frac{\partial F}{\partial \tau} = \frac{\partial^2 F}{\partial y^2}$ with unit diffusivity. Express $d_1$ and $d_2$ in terms of $y$ and $\tau$.
+
+---
+
+**Exercise 5.** Use the superposition integral to price a **digital call** with payoff $\psi(x) = \mathbf{1}_{\{e^x > K\}} = \mathbf{1}_{\{x > \ln K\}}$. Evaluate the resulting Gaussian integral and transform back to original variables to obtain $D_0 = e^{-rT}\mathcal{N}(d_2)$.
+
+---
+
+**Exercise 6.** The heat equation approach requires the initial condition $\psi(x) = (e^x - K)^+$ to be integrable against the Green's function. Discuss what happens if the payoff grows faster than $e^{|x|}$ as $|x| \to \infty$. Give an example of a payoff for which the superposition integral diverges, and explain what this means financially.

@@ -397,3 +397,35 @@ Vanna measures how delta changes with volatility, or equivalently how vega chang
 Volga is important for volatility surface dynamics and smile risk management. Long volga positions benefit from volatility-of-volatility.
 
 > **Forward reference.** These higher-order Greeks become central in **Chapter 7** (Implied Volatility) for understanding smile dynamics, and in **Chapter 9** (Stochastic Volatility) for analyzing model risk.
+
+---
+
+## Exercises
+
+**Exercise 1.** Using the identity $SN'(d_1) = Ke^{-r\tau}N'(d_2)$, verify that vega is the same for a European call and a European put by directly computing $\partial P / \partial \sigma$ from the put formula $P = Ke^{-r\tau}N(-d_2) - SN(-d_1)$.
+
+---
+
+**Exercise 2.** For a European call with $S = 100$, $K = 105$, $\tau = 0.5$, $r = 0.03$, $\sigma = 0.25$, compute $d_1$, $d_2$, and all five Greeks: $\Delta$, $\Gamma$, $\nu$, $\Theta$, $\rho$. Verify the theta-gamma identity $\Theta + \frac{1}{2}\sigma^2 S^2 \Gamma + rS\Delta - rC = 0$.
+
+---
+
+**Exercise 3.** Prove that the peak of gamma occurs near $S = K$ for short maturities by setting $d_1 = 0$ and solving for $S$ in terms of $K$, $r$, $\sigma$, and $\tau$. Show that as $\tau \to 0$, the peak location converges to $S = K$.
+
+---
+
+**Exercise 4.** Using the closed-form expression for charm,
+
+$$
+\text{Charm}_{\text{call}} = -N'(d_1)\left(\frac{2(r-q)\tau - d_2\sigma\sqrt{\tau}}{2\tau\sigma\sqrt{\tau}}\right)
+$$
+
+with $q = 0$, compute the rate at which delta changes over one day for an ATM call with $S = K = 100$, $\sigma = 0.20$, $r = 0.05$, $\tau = 30/365$. Interpret the sign of charm in terms of the hedger's rebalancing needs.
+
+---
+
+**Exercise 5.** Show that volga $= \nu \cdot d_1 d_2 / \sigma$ is negative for options that are near-the-money (where $d_1 > 0$ and $d_2 < 0$) and positive for options that are sufficiently far from the money. At what moneyness does volga change sign?
+
+---
+
+**Exercise 6.** Using put-call parity $P = C - S + Ke^{-r\tau}$, derive the put formulas for $\Delta_{\text{put}}$, $\Theta_{\text{put}}$, and $\rho_{\text{put}}$ from the corresponding call formulas without differentiating the put pricing formula directly.

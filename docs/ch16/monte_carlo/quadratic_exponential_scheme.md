@@ -252,3 +252,40 @@ Drawing $Z_v = 0.5$: $v_{n+1} = 0.001509 \cdot (5.051 + 0.5)^2 = 0.001509 \cdot 
 ## Summary
 
 Andersen's QE scheme matches the exact conditional mean and variance of the CIR transition at each step, switching between a quadratic (squared Gaussian) approximation when the variance is well above zero and an exponential approximation when it is near zero. The switching is controlled by the coefficient of variation $\psi = s^2/m^2$ with threshold $\psi_c \approx 1.5$. The scheme achieves near-exact accuracy for the variance distribution with minimal computational overhead, making it the **standard method** for Heston Monte Carlo in practice. For truly bias-free simulation, the [exact simulation](exact_simulation_broadie_kaya.md) method of Broadie and Kaya eliminates all discretization error.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The conditional mean of the CIR transition is $m = \theta + (v_n - \theta)e^{-\kappa\Delta t}$. Show that $m = \theta$ when $v_n = \theta$ (the variance is at its long-run level), $m > \theta$ when $v_n > \theta$, and $m < \theta$ when $v_n < \theta$. For $v_n = 0$ (variance at zero), show that $m = \theta(1 - e^{-\kappa\Delta t})$ and explain why this is strictly positive: the CIR drift pushes the variance away from zero even when the diffusion vanishes.
+
+---
+
+**Exercise 2.**
+The switching criterion is $\psi = s^2/m^2$. For the worked example ($v_n = 0.04 = \theta$, $\kappa = 1.5$, $\xi = 0.3$, $\Delta t = 1/12$), $\psi \approx 0.148$, well below $\psi_c = 1.5$. Now consider $v_n = 0.001$ (variance near zero) with the same parameters. Recompute $m$, $s^2$, and $\psi$. Does the scheme switch to the exponential branch? At what value of $v_n$ does the transition from quadratic to exponential occur?
+
+---
+
+**Exercise 3.**
+In the quadratic approximation, $v_{n+1} = a(b + Z_v)^2$ with $Z_v \sim N(0,1)$. This is always non-negative, since it is a squared quantity times a positive constant. However, it cannot produce negative variance. Show that $\mathbb{P}(v_{n+1} = 0) = \mathbb{P}(Z_v = -b)$ which has probability zero for a continuous distribution. In what sense does the quadratic approximation handle the zero boundary differently from the exact non-central chi-squared?
+
+---
+
+**Exercise 4.**
+In the exponential approximation, $v_{n+1} = 0$ with probability $p = (\psi - 1)/(\psi + 1)$. For $\psi = 2.0$, compute $p$ and $\beta$. Explain the economic meaning: when $\psi$ is large (high coefficient of variation), the variance is near zero and has a significant probability of staying there. Draw 10 samples from this distribution using a table of uniform random numbers and compute the sample mean. How does it compare with $m$?
+
+---
+
+**Exercise 5.**
+The log-price update uses constants $K_0, K_1, K_2, K_3, K_4$ that ensure the martingale property $\mathbb{E}[S_{n+1}|\mathcal{F}_n] = S_n e^{(r-q)\Delta t}$. Using the formula $x_{n+1} = x_n + K_0 + K_1 v_n + K_2 v_{n+1} + \sqrt{K_3 v_n + K_4 v_{n+1}}\,Z_x$, show that the martingale condition requires $\mathbb{E}[\exp(K_0 + K_1 v_n + K_2 v_{n+1} + \sqrt{K_3 v_n + K_4 v_{n+1}}\,Z_x)] = e^{(r-q)\Delta t}$. Why is this condition harder to enforce analytically in the QE scheme than in the Euler scheme?
+
+---
+
+**Exercise 6.**
+The comparison table shows that QE with $N = 12$ monthly steps has a bias of $-\$0.01$ while Euler full truncation with $N = 252$ daily steps has a bias of $-\$0.05$. The QE scheme is both more accurate and $252/12 \approx 21$ times faster per path. Explain why moment matching is so much more effective than Euler discretization for the CIR process: the QE scheme captures the correct mean and variance of the transition, while Euler introduces systematic bias from truncating negative values.
+
+---
+
+**Exercise 7.**
+The threshold $\psi_c$ controls the switching between quadratic and exponential branches. Andersen recommends $\psi_c = 1.5$. Investigate the sensitivity to this choice by computing $\psi$ for $v_n$ ranging from $0.001$ to $0.1$ (with the standard parameters and $\Delta t = 1/12$). For what fraction of the $v_n$ range does the scheme use the exponential branch? What happens if you set $\psi_c = 0.5$ (always exponential) or $\psi_c = 3.0$ (almost always quadratic)? Discuss the accuracy implications.

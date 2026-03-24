@@ -243,4 +243,40 @@ Local volatility surface construction transforms market data into a usable funct
 5. **Validation:** Reprice vanilla options to verify consistency, check for negative values and spikes
 6. **Coordinate mapping:** Convert from $(K, T)$ to $(S, t)$ for use in pricing engines
 
-The quality of the local volatility surface depends critically on the quality of the input data and the smoothing step. Garbage in, garbage out — no amount of regularization can compensate for fundamentally flawed input data.
+The quality of the local volatility surface depends critically on the quality of the input data and the smoothing step. Garbage in, garbage out -- no amount of regularization can compensate for fundamentally flawed input data.
+
+---
+
+## Exercises
+
+**Exercise 1.** Given a smooth call price surface with $C(100, 1) = 10.45$, $C(105, 1) = 7.80$, $C(95, 1) = 13.60$, $C(100, 0.9) = 9.90$, $C(100, 1.1) = 10.95$, and parameters $r = 3\%$, $q = 1\%$, compute the local volatility $\sigma_{\text{loc}}(100, 1)$ using Dupire's formula with centered finite differences. Use $\Delta K = 5$ and $\Delta T = 0.1$.
+
+---
+
+**Exercise 2.** The Gatheral-Jacquier formula expresses local volatility in terms of implied volatility derivatives. Explain why this formulation is often more numerically stable than differentiating call prices directly. Under what conditions does it avoid finite differences entirely?
+
+---
+
+**Exercise 3.** Consider the total variance formulation of Dupire's formula:
+
+$$
+\sigma_{\text{loc}}^2 = \frac{\partial_T w}{\left(1 - \frac{y}{w}\partial_y w\right)^2 - \frac{1}{4}(\partial_y w)^2\left(\frac{1}{w} + \frac{1}{4}\right) + \frac{1}{2}\partial_{yy} w}
+$$
+
+Verify that when the total variance surface is flat ($w(y, T) = \sigma_0^2 T$, independent of $y$), the formula correctly gives $\sigma_{\text{loc}} = \sigma_0$.
+
+---
+
+**Exercise 4.** Tikhonov regularization adds penalty terms $\lambda_1 \int\!\!\int (\partial_K \sigma_{\text{loc}})^2 \, dK\,dT + \lambda_2 \int\!\!\int (\partial_T \sigma_{\text{loc}})^2 \, dK\,dT$ to the objective function. Explain the effect of increasing $\lambda_1$ relative to $\lambda_2$. In what market scenario (e.g., steep skew vs flat skew, sparse vs dense maturities) would you choose a larger $\lambda_2$?
+
+---
+
+**Exercise 5.** After constructing a local volatility surface, the repricing test yields an RMSE of 2.5 implied volatility points. List three possible causes of this large repricing error and for each cause describe a corrective action.
+
+---
+
+**Exercise 6.** Explain the coordinate transformation from $(K, T)$ to $(S, t)$ in the context of Dupire's formula. Why is it valid to set $\sigma_{\text{loc}}(S, t) = \sigma_{\text{loc}}(K = S, T = t)$? Under what circumstances does this simple relabeling fail, and what additional steps are needed?
+
+---
+
+**Exercise 7.** Using the SVI parametrization $w(y) = a + b(\rho(y-m) + \sqrt{(y-m)^2 + \sigma^2})$, compute the analytic first and second derivatives $\partial_y w$ and $\partial_{yy} w$. Verify that $\partial_{yy} w > 0$ for all $y$, which guarantees the butterfly no-arbitrage condition is not violated by the convexity term alone.

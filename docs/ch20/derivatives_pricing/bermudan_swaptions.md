@@ -177,3 +177,33 @@ The exercise boundary $r^*(T_j)$ as a function of the exercise date provides ins
 ## Summary
 
 Bermudan swaptions require numerical methods because the early exercise decision at each date depends on the continuation value. The Hull-White trinomial tree enables exact backward induction with the Bellman equation $V = \max(E, C)$ at each exercise node. For multi-factor extensions, the Longstaff-Schwartz Monte Carlo algorithm provides a flexible alternative using least-squares regression to estimate continuation values. The exercise boundary $r^*(T_j)$ characterizes the optimal exercise strategy and slopes upward as the remaining tenor decreases.
+
+---
+
+## Exercises
+
+**Exercise 1.** Explain the inequality $V^{\text{European}} \le V^{\text{Bermudan}} \le V^{\text{American}}$. Why is the Bermudan value always at least as large as the European value? Under what conditions would the Bermudan and European values be equal?
+
+---
+
+**Exercise 2.** In the backward induction algorithm, the Bellman equation is $V_{ij} = \max(E_{ij}, C_{ij})$. Describe what happens at nodes where $T_i \notin \mathcal{T}$ (not an exercise date). Why is the continuation value the only relevant quantity at such nodes?
+
+---
+
+**Exercise 3.** The exercise boundary $r^*(T_j)$ slopes upward as $T_j$ approaches the final exercise date. Explain this behavior intuitively: why does the holder require a lower rate to exercise early versus late?
+
+---
+
+**Exercise 4.** In the Longstaff-Schwartz algorithm, the regression is performed only on in-the-money paths. Explain why this restriction improves the accuracy of the continuation value estimate near the exercise boundary.
+
+---
+
+**Exercise 5.** Compare the trinomial tree and Longstaff-Schwartz approaches for pricing a Bermudan swaption in the one-factor Hull-White model. Which method is more efficient, and why? Under what circumstances would you prefer the Monte Carlo approach?
+
+---
+
+**Exercise 6.** The Longstaff-Schwartz algorithm produces a low-biased estimate. Explain the source of this bias and describe how the Andersen-Broadie dual method provides an upper bound, yielding a confidence interval for the true price.
+
+---
+
+**Exercise 7.** For a 10-year Bermudan payer swaption with annual exercise rights and $K = 0.04$, describe qualitatively how the early exercise premium $V^{\text{Berm}} - V^{\text{European}}$ depends on the volatility parameter $\sigma$ and the mean reversion speed $\lambda$.

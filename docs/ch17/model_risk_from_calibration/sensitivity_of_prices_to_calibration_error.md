@@ -323,3 +323,33 @@ which may be $5$–$10\%$ of the option value—significant model risk.
 - Glasserman, *Monte Carlo Methods in Financial Engineering* (sensitivity estimation).
 - Rebonato, *Volatility and Correlation* (model risk in practice).
 - Hull, *Options, Futures, and Other Derivatives* (bump-and-reprice).
+
+---
+
+## Exercises
+
+**Exercise 1.** Given the parameter covariance $\Sigma_\theta = \text{diag}(\sigma_{v_0}^2, \sigma_\kappa^2, \sigma_{\bar{v}}^2, \sigma_{\sigma_v}^2, \sigma_\rho^2)$ and price gradient $\nabla_\theta P$, derive the formula for price standard deviation $\sigma_P = \sqrt{\nabla_\theta P^\top \Sigma_\theta \nabla_\theta P}$. Using the Heston example values $\hat{\theta} = (0.04, 2.0, 0.04, 0.5, -0.7)$, $\sigma_\theta = (0.002, 0.3, 0.005, 0.05, 0.05)$, and $\nabla_\theta P = (0.5, 0.01, 0.1, 0.02, 0.05)$ for a vanilla option, compute $\sigma_P$ and the contribution of each parameter.
+
+---
+
+**Exercise 2.** For a down-and-out call with barrier 10% below spot, the price gradient is $\nabla_\theta P = (2.0, 0.05, 0.3, 0.2, 0.8)$ with the same $\sigma_\theta$ as Exercise 1. Compute $\sigma_P$ and identify the dominant source of model risk. Compare to the vanilla case and explain why barriers amplify calibration sensitivity.
+
+---
+
+**Exercise 3.** Using the second-order Taylor expansion $\Delta P \approx \nabla_\theta P^\top \Delta\theta + \frac{1}{2}\Delta\theta^\top H_P \Delta\theta$, explain when the second-order term is important. For a product where $H_P$ is positive definite, show that $\mathbb{E}[\Delta P] \ne 0$ even when $\mathbb{E}[\Delta\theta] = 0$. Compute the bias $\mathbb{E}[\Delta P] = \frac{1}{2}\text{tr}(H_P \Sigma_\theta)$ and discuss its implications for mark-to-model pricing.
+
+---
+
+**Exercise 4.** Describe the bump-and-reprice method for estimating $\partial P / \partial \theta_i$. Why should the bump size $\delta$ be chosen on the order of $\sigma_{\theta_i}$? For a Monte Carlo pricer with numerical noise $\sigma_{\text{MC}} = 0.01$, derive the minimum bump size needed for the signal $|P(\theta + \delta e_i) - P(\theta - \delta e_i)|$ to exceed the noise level $2\sigma_{\text{MC}}$, given $\partial P / \partial \theta_i = 0.5$.
+
+---
+
+**Exercise 5.** A principal component analysis of $\Sigma_\theta$ reveals that 90% of parameter variance is captured by the first two eigenvectors. Describe how to use these principal components to efficiently estimate the price standard deviation $\sigma_P$. If the first eigenvector points in the $(\kappa, \bar{v})$ direction, what does this suggest about the structure of parameter uncertainty?
+
+---
+
+**Exercise 6.** Define Parameter VaR as $\text{VaR}_\alpha^{\text{param}} = z_\alpha \cdot \sigma_P$. For a portfolio of 10 exotic options, each with $\sigma_{P_i}$ computed independently, the total model risk is not simply $\sum_i \sigma_{P_i}$ due to correlation. Derive the correct formula for portfolio-level $\sigma_P^{\text{portfolio}}$ accounting for the fact that all options depend on the same parameters $\theta$. Show that diversification of model risk is limited when sensitivities have the same sign.
+
+---
+
+**Exercise 7.** A trader prices a 1-year cliquet option under the Heston, SABR, and local volatility models, obtaining prices of 4.2, 3.8, and 5.1 respectively, all calibrated to the same vanilla surface. Discuss how this price range reflects model risk beyond parameter uncertainty. How would you combine the within-model parameter uncertainty (from calibration error) with the across-model uncertainty to produce a single confidence interval for the fair price?

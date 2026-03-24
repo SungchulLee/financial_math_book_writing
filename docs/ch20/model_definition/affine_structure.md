@@ -235,3 +235,33 @@ The affine property enables a cascade of analytical results:
 ## Summary
 
 The Hull-White model belongs to the affine term structure class because its drift is linear in $r$ and its diffusion is constant, ensuring that the bond pricing PDE admits an exponential-affine solution $P(t,T) = e^{A(t,T) + B(t,T) r_t}$. The function $B(t,T) = -(1 - e^{-a(T-t)})/a$ satisfies a linear ODE from the Riccati system, and $A(t,T)$ is determined by a quadrature that can be evaluated in closed form when $\theta(t)$ is expressed via the initial term structure. The affine structure is the engine behind all analytical pricing formulas in the Hull-White framework, from zero-coupon bonds through options, caps, floors, and swaptions.
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify that the Hull-White model satisfies the sufficient conditions for affine structure by identifying $\alpha(t) = \theta(t)$, $\beta(t) = -a$, $\gamma(t) = \sigma^2$, and $\delta(t) = 0$. Which of these conditions would fail for the CIR model $dr_t = a(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t$?
+
+---
+
+**Exercise 2.** Solve the Riccati ODE $\frac{dB}{d\tau} = -aB - 1$ with $B(0) = 0$ using Laplace transforms instead of the integrating factor method. Verify the same result $B(\tau) = -(1 - e^{-a\tau})/a$.
+
+---
+
+**Exercise 3.** Show that $|B(\tau)| \approx \tau$ for small $a\tau$ and $|B(\tau)| \to 1/a$ as $\tau \to \infty$. For $a = 0.05$, at what maturity $\tau$ does $|B(\tau)|$ reach 90% of its asymptotic value?
+
+---
+
+**Exercise 4.** The yield $y(t,T) = -\frac{A(t,T)}{T-t} - \frac{B(t,T)}{T-t}r_t$ is affine in $r_t$. For the numerical example ($a = 0.05$, $\sigma = 0.01$, $f(0,t) = 0.03$), compute the 5-year and 30-year yields for $r_t = 0.03$ and $r_t = 0.05$. Verify that the yield difference is proportional to $B(t,T)/(T-t)$.
+
+---
+
+**Exercise 5.** Explain why Jamshidian's trick works for affine models. Specifically, show that the exercise boundary for a coupon bond option can be expressed as a critical value $r^*$ of the short rate, because all zero-coupon bond prices are monotone in $r_T$.
+
+---
+
+**Exercise 6.** The CIR model has $\delta(t) \neq 0$, meaning the diffusion depends on $r_t$. Show that the CIR model is still affine but its Riccati ODE for $B$ is genuinely nonlinear: $\frac{dB}{d\tau} = -aB - \frac{1}{2}\sigma^2 B^2 - 1$. Why does this make the $B$-equation harder to solve?
+
+---
+
+**Exercise 7.** Use the affine bond price formula to compute the bond price sensitivity $\frac{\partial P}{\partial r} = B(t,T)\,P(t,T)$. For $a = 0.05$ and maturity $\tau = 10$, compute the dollar duration $|B|\times P$ and compare it with the Macaulay duration $\tau$ of a zero-coupon bond.

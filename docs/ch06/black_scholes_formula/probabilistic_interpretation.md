@@ -430,3 +430,39 @@ The Black-Scholes formula has a deep probabilistic structure:
    - $\mathbb{Q}^S$ for hedging (captures risk exposure)
 
 This probabilistic interpretation reveals that option pricing is fundamentally about **weighted expectations under carefully chosen probability measures**.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $S_0 = 120$, $K = 110$, $r = 4\%$, $\sigma = 30\%$, $T = 0.75$ years. Compute $d_1$ and $d_2$, then evaluate $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$. Interpret the numerical difference $\mathcal{N}(d_1) - \mathcal{N}(d_2)$ in terms of the measure change between $\mathbb{Q}$ and $\mathbb{Q}^S$.
+
+---
+
+**Exercise 2.** Prove that $\mathcal{N}(d_2) = \mathbb{Q}(S_T > K)$ by starting from the log-normal distribution of $S_T$ under $\mathbb{Q}$ and standardizing the inequality $S_T > K$ to obtain a standard normal probability. Show every algebraic step.
+
+---
+
+**Exercise 3.** The stock measure $\mathbb{Q}^S$ is defined by the Radon-Nikodym derivative $\frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_T e^{-rT}}{S_0}$. Show that under $\mathbb{Q}^S$, the drift of the stock price becomes $r + \sigma^2$ instead of $r$. Use Girsanov's theorem to identify the new Brownian motion $\tilde{W}_t = W_t - \sigma t$.
+
+---
+
+**Exercise 4.** Verify the conditional expectation identity
+
+$$
+e^{-rT}\mathbb{E}^{\mathbb{Q}}[S_T \cdot \mathbf{1}_{\{S_T > K\}}] = S_0 \mathcal{N}(d_1)
+$$
+
+by writing $S_T = S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma\sqrt{T} Z}$ with $Z \sim \mathcal{N}(0,1)$, substituting into the expectation, and completing the square in the exponent.
+
+---
+
+**Exercise 5.** For a European put option, show that $\mathcal{N}(-d_2) = \mathbb{Q}(S_T < K)$ is the risk-neutral probability that the put finishes in-the-money. Using the parameters $S_0 = 90$, $K = 100$, $r = 2\%$, $\sigma = 25\%$, $T = 1$, compute the risk-neutral exercise probability for the put and compare it to the stock-measure probability $\mathcal{N}(-d_1)$.
+
+---
+
+**Exercise 6.** Show that the difference $d_1 - d_2 = \sigma\sqrt{T}$ implies that the gap between stock-measure and risk-neutral exercise probabilities is always positive and increasing in both $\sigma$ and $T$. Under what market conditions does this gap become negligible? When does it become large?
+
+---
+
+**Exercise 7.** Consider a deep out-of-the-money call with $S_0 = 50$, $K = 100$, $r = 5\%$, $\sigma = 40\%$, $T = 2$. Compute $\mathcal{N}(d_1)$, $\mathcal{N}(d_2)$, and the call price. Despite the option being far OTM, explain why the call still has significant value by referring to the probabilistic interpretation and the log-normal distribution of $S_T$.

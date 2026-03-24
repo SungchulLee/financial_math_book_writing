@@ -170,3 +170,25 @@ For convenience, we collect the notation used throughout the characteristic func
 This section has collected the Heston bivariate SDE in log-price form, summarized the affine conditions that make the characteristic function tractable, defined the conditional characteristic function, written the Feynman-Kac PDE, and stated the exponential-affine ansatz with its initial conditions. The stage is set for the [Riccati ODE derivation](riccati_ode_system.md), where we substitute the ansatz into the PDE and extract the ODE system for $C(\tau, u)$ and $D(\tau, u)$.
 
 ---
+
+---
+
+## Exercises
+
+**Exercise 1.** Write the Heston bivariate SDE in log-price form: $dx_t = (r - q - \frac{1}{2}v_t)\,dt + \sqrt{v_t}\,dW_t^{(1)}$ and $dv_t = \kappa(\theta - v_t)\,dt + \sigma_v\sqrt{v_t}\,dW_t^{(2)}$ with $\operatorname{Corr}(dW^{(1)}, dW^{(2)}) = \rho\,dt$. Identify the drift vector and diffusion matrix as functions of the state $(x, v)$ and verify the affine property.
+
+---
+
+**Exercise 2.** The conditional characteristic function is defined as $\varphi(u, \tau; x, v) = \mathbb{E}[e^{iux_T} \mid x_t = x, v_t = v]$. Show that the initial condition is $\varphi(u, 0; x, v) = e^{iux}$ by setting $\tau = 0$.
+
+---
+
+**Exercise 3.** Write the Feynman-Kac PDE for $\varphi$ including all terms: the time derivative, the drift terms, the diffusion terms (including the cross-derivative $\rho\sigma_v v \frac{\partial^2 \varphi}{\partial x \partial v}$), and the discounting term. Verify that there are six terms in total.
+
+---
+
+**Exercise 4.** Substitute the exponential-affine ansatz $\varphi = \exp(C(\tau, u) + D(\tau, u)v + iux)$ into the PDE and show that the $x$-dependence cancels, leaving ODEs in $\tau$ only.
+
+---
+
+**Exercise 5.** State the initial conditions for the Riccati system: $C(0, u) = 0$ and $D(0, u) = 0$. Explain why these follow from $\varphi(u, 0; x, v) = e^{iux}$.

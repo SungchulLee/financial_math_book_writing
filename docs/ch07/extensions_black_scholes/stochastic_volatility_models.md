@@ -271,3 +271,29 @@ $$
 | **Pricing** | Fourier methods or 2D PDE |
 
 **Stochastic volatility models capture realistic smile dynamics at the cost of market incompleteness, leading to more reliable exotic pricing and hedging than local volatility.**
+
+---
+
+## Exercises
+
+**Exercise 1.** In the Heston model, the variance process $dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}$ is a CIR process. (a) Verify the Feller condition $2\kappa\theta \geq \xi^2$ for the parameter set $\kappa = 2$, $\theta = 0.04$, $\xi = 0.3$. (b) When the Feller condition is violated, what happens to the variance process at $v = 0$? (c) Compute the long-run mean and variance of $v_t$ in terms of $\kappa$, $\theta$, and $\xi$.
+
+---
+
+**Exercise 2.** The Heston PDE for option price $V(t, S, v)$ contains a mixed derivative term $\rho\xi v S \frac{\partial^2 V}{\partial S \partial v}$. (a) Explain the financial origin of this term in terms of the correlation between stock and volatility shocks. (b) Why does this term vanish when $\rho = 0$? (c) Describe the computational challenge this mixed derivative introduces for finite difference methods and how ADI (Alternating Direction Implicit) schemes address it.
+
+---
+
+**Exercise 3.** The Heston model has five parameters: $v_0, \kappa, \theta, \xi, \rho$. Describe the effect of each parameter on the implied volatility surface. Specifically: (a) Which parameter controls the ATM volatility level? (b) Which parameter controls the skew? (c) Which parameter controls the smile convexity (curvature)? (d) Which parameters determine the term structure?
+
+---
+
+**Exercise 4.** Explain why stochastic volatility models lead to incomplete markets. Specifically, identify the two sources of randomness and the single traded asset. What is the volatility risk premium $\lambda(t, v_t)$, and why is it not determined by no-arbitrage alone? Describe how calibration to option prices implicitly selects a specific risk-neutral measure.
+
+---
+
+**Exercise 5.** Compare local volatility and stochastic volatility models by filling in a comparison table covering: (a) number of risk factors, (b) market completeness, (c) quality of smile fit, (d) forward smile behavior, (e) calibration stability, and (f) hedging performance. Explain why the forward smile behavior is a critical distinguishing factor for pricing exotic options.
+
+---
+
+**Exercise 6.** Write pseudocode for an Euler discretization of the Heston model. Generate correlated Brownian increments $dW_1$ and $dW_2$ from independent standard normals. Discuss the issue of negative variance and compare the truncation scheme $v_{i+1} = \max(v_{i+1}, 0)$ with the reflection scheme $v_{i+1} = |v_{i+1}|$. Which scheme introduces less bias?

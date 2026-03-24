@@ -302,3 +302,39 @@ Interpolation and smoothing form the critical preprocessing step for local volat
 4. **SVI/SSVI parametrizations** offer parsimonious, arbitrage-free representations of the smile surface
 5. **Total variance interpolation** in maturity naturally preserves calendar monotonicity
 6. **Wing extrapolation** requires care, as Dupire's formula amplifies errors at extreme strikes
+
+---
+
+## Exercises
+
+**Exercise 1.** Suppose call prices are observed at strikes $K = 90, 95, 100, 105, 110$ with values $C = 12.50, 8.80, 5.90, 3.70, 2.10$. Compute the centered second difference $C_{KK}$ at $K = 100$ using the standard formula. If the prices have noise of $\epsilon = \$0.03$, estimate the noise-to-signal ratio in $C_{KK}$.
+
+---
+
+**Exercise 2.** State and interpret the three no-arbitrage conditions (strike monotonicity, strike convexity, calendar monotonicity) for European call prices. For each condition, describe the specific arbitrage strategy that would be available if the condition were violated.
+
+---
+
+**Exercise 3.** Given the SVI parametrization $w(y) = a + b(\rho(y - m) + \sqrt{(y - m)^2 + \sigma^2})$ with parameters $a = 0.04$, $b = 0.15$, $\rho = -0.3$, $m = 0$, $\sigma = 0.1$, compute:
+
+(a) The total implied variance $w(y)$ at log-moneyness $y = -0.2$, $y = 0$, and $y = 0.2$.
+
+(b) The wing slopes $b(1 + \rho)$ and $b(1 - \rho)$, and verify that Lee's moment formula constraint $b(1 + |\rho|) \leq 2$ is satisfied.
+
+---
+
+**Exercise 4.** Explain the tradeoff controlled by the smoothing parameter $\lambda$ in the smoothing spline objective:
+
+$$
+\min_{\hat{\sigma}} \left\{\sum_{i=1}^m w_i (\hat{\sigma}(K_i) - \sigma_i)^2 + \lambda \int (\hat{\sigma}''(K))^2 \, dK \right\}
+$$
+
+What happens in the limits $\lambda \to 0$ and $\lambda \to \infty$? How does leave-one-out cross-validation select $\lambda$ in a data-driven manner?
+
+---
+
+**Exercise 5.** Consider implied volatilities at two maturities: $\sigma_{\text{IV}}(K, T_1) = 20\%$ with $T_1 = 0.25$ and $\sigma_{\text{IV}}(K, T_2) = 22\%$ with $T_2 = 1.0$. Compute the total variances $w(T_1)$ and $w(T_2)$, verify the calendar monotonicity condition, and compute the forward variance $\sigma_{\text{fwd}}^2(T_1, T_2)$. What implied volatility does linear interpolation in total variance assign to $T = 0.5$?
+
+---
+
+**Exercise 6.** Describe the complete seven-step practical workflow for transforming raw market option data into a smooth call price surface suitable for Dupire's formula. For each step, identify the primary source of error and the quality metric used to assess it.

@@ -189,3 +189,35 @@ The positive coefficient $\kappa\theta = 0.06$ on $V_v$ confirms the upwind dire
 ## Summary
 
 Boundary conditions for the Heston PDE require careful treatment at all four edges. The most distinctive feature is the **degeneracy at $v = 0$**, where the PDE reduces to first order and the Feller condition determines the nature of the boundary. When Feller holds, the reduced PDE itself serves as the boundary condition with an upwind discretization. At $v = v_{\max}$, a Neumann condition with $v_{\max} = 5$--$10\theta$ is sufficient. Stock-price boundaries use standard Dirichlet conditions from the asymptotic behavior of the payoff. Corner points are determined by the dominant stock-price limit. These conditions are incorporated into the [ADI schemes](adi_schemes.md) at each implicit sweep.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+At $v = 0$, the Heston PDE reduces to $\partial V / \partial t + (r - q)\partial V / \partial x + \kappa\theta \partial V / \partial v - rV = 0$. Explain why the second-derivative terms vanish. If $\kappa\theta > 0$ (Feller satisfied), the term $\kappa\theta \partial V / \partial v$ pushes information into the domain. Discretize this reduced PDE using forward differences in $v$ and central differences in $x$.
+
+---
+
+**Exercise 2.**
+At $v = v_{\max}$, a Neumann condition $\partial^2 V / \partial v^2 = 0$ (linear extrapolation) is commonly used. With $v_{\max} = 5\theta$ and $\theta = 0.04$, we have $v_{\max} = 0.20$. For a European call, explain why the option value is approximately linear in $v$ for large $v$. What error is introduced if $v_{\max}$ is too small?
+
+---
+
+**Exercise 3.**
+At $x = x_{\min}$ (very low stock price), the call value is approximately zero: $V(x_{\min}, v, t) = 0$. At $x = x_{\max}$ (very high stock price), the call value approaches $S - Ke^{-r(T-t)}$. Verify these conditions for $K = 100$, $r = 3\%$, $T = 1$, and $x_{\max} = \ln(500)$. Are these Dirichlet conditions exact or approximate?
+
+---
+
+**Exercise 4.**
+When the Feller condition is violated ($2\kappa\theta < \xi^2$), the variance process can hit zero. Discuss two approaches to the $v = 0$ boundary: (a) still use the reduced PDE (ignoring the violation), (b) impose $V(x, 0, t) = V^{\text{BS}}(x, 0, t)$ (Black-Scholes value at zero vol). Which approach is more physically motivated?
+
+---
+
+**Exercise 5.**
+Corner points where two boundaries meet (e.g., $v = 0$ and $x = x_{\min}$) require special treatment. For a European call at $(x_{\min}, 0)$, both the stock-price condition ($V = 0$) and the reduced PDE condition apply. Show that they are consistent: if $V = 0$ for all $x \leq x_{\min}$, then all derivatives of $V$ at $x_{\min}$ vanish, satisfying the reduced PDE trivially.
+
+---
+
+**Exercise 6.**
+Design a sensitivity test: compute the European call price with $v_{\max} = 3\theta, 5\theta, 10\theta, 20\theta$ (keeping all other grid parameters fixed) and measure the convergence of the price. At what value of $v_{\max}$ does the price stabilize to 4 significant digits? Why does choosing $v_{\max}$ too large waste grid points?

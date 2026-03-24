@@ -216,3 +216,35 @@ For validation, the COS method should be compared against independent semi-analy
 ## Summary
 
 The COS method converges exponentially fast for European calls and puts under the Heston model, achieving six-digit accuracy with $N = 64$ terms and machine precision with $N = 256$. The convergence rate depends primarily on the vol-of-vol $\xi$ (heavier tails require more terms) and maturity $\tau$ (wider densities need wider truncation intervals). For discontinuous payoffs such as digitals, convergence drops to algebraic $O(1/N^2)$, requiring smoothing techniques for competitive accuracy. In direct benchmarks, the COS method is 10--50 times faster than Carr-Madan FFT for single-strike pricing and 100,000 times faster than Monte Carlo, while maintaining comparable or superior accuracy. The recommended defaults of $N = 64$ for calibration and $N = 128$ for pricing cover virtually all practical Heston parameter regimes.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The COS method achieves exponential convergence: the error decreases as $e^{-cN}$ for some $c > 0$. Verify this by computing a European call price with $N = 32, 64, 128, 256$ and computing $\log_{10}|\text{error}|$ against a Gil-Pelaez reference. Estimate $c$ from the slope of the error curve.
+
+---
+
+**Exercise 2.**
+Increasing $\xi$ (vol-of-vol) fattens the tails of the density, requiring more COS terms. Compute the European call price with $\xi = 0.3$ and $\xi = 1.0$ using $N = 64$. For which $\xi$ is the error larger? Explain using the relation between $\xi$ and the decay rate of the characteristic function.
+
+---
+
+**Exercise 3.**
+For a digital (cash-or-nothing) call, convergence drops to $O(1/N^2)$ due to the discontinuous payoff. Compute the digital call price with $N = 64, 128, 256, 512$ and verify algebraic convergence. Then apply a call-spread smoothing with spread width $\epsilon = 0.5$ and show that exponential convergence is restored.
+
+---
+
+**Exercise 4.**
+Compare the COS method and Carr-Madan FFT for pricing a single ATM call. The COS method uses $N = 128$ CF evaluations; the FFT uses $N = 4096$. Compute the ratio of CF evaluations and the accuracy of each method. For what number of strikes does the FFT become more efficient than COS?
+
+---
+
+**Exercise 5.**
+The truncation range $[a, b]$ must contain the bulk of the density. If $L = 10$ and the density standard deviation is $\sigma_{\text{eff}} = \sqrt{(v_0 + \theta)\tau}$, compute $[a, b]$ for $\tau = 0.1$ and $\tau = 5.0$. For the longer maturity, is $L = 10$ sufficient, or should $L$ be increased?
+
+---
+
+**Exercise 6.**
+Design a parameter regime stress test for the COS method. Consider extreme parameters: $\xi = 2.0$, $\rho = -0.95$, $\kappa = 0.1$ (very slow mean reversion), $v_0 = 0.16$ (vol = 40%). Does $N = 128$ still achieve 6-digit accuracy? If not, determine the minimum $N$ needed and explain which parameter is most responsible for the slower convergence.

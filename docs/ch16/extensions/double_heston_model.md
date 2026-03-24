@@ -271,3 +271,35 @@ Total initial variance: $v_0 = 0.04$ (20% vol). Long-run total variance: $\theta
 | [Bates Model](bates_model.md) | Adding jumps to Heston |
 | [Rough Heston (Overview)](rough_heston_overview.md) | Fractional variance dynamics |
 | [Time-Dependent Parameters](time_dependent_parameters.md) | Piecewise-constant parameter approach |
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The double Heston model uses two CIR variance factors: $dv_t^{(1)} = \kappa_1(\theta_1 - v_t^{(1)})dt + \xi_1\sqrt{v_t^{(1)}}dW_t^{(3)}$ and $dv_t^{(2)} = \kappa_2(\theta_2 - v_t^{(2)})dt + \xi_2\sqrt{v_t^{(2)}}dW_t^{(4)}$, with the total variance $v_t = v_t^{(1)} + v_t^{(2)}$. If $v_0^{(1)} = 0.02$, $\kappa_1 = 5.0$, $\theta_1 = 0.02$ (fast factor) and $v_0^{(2)} = 0.02$, $\kappa_2 = 0.5$, $\theta_2 = 0.03$ (slow factor), compute the half-life of each factor and the long-run total variance $\theta_1 + \theta_2$.
+
+---
+
+**Exercise 2.**
+The double Heston CF is the product of two single-factor Heston CFs: $\phi_{\text{DH}}(u) = \phi_{\text{H}}^{(1)}(u) \cdot \phi_{\text{H}}^{(2)}(u)$ where each factor uses its own $(\kappa_j, \theta_j, \xi_j, \rho_j, v_0^{(j)})$. Explain why this factorization holds (the two variance processes are independent). What changes if the two Brownian motions $W^{(3)}$ and $W^{(4)}$ are correlated?
+
+---
+
+**Exercise 3.**
+With 10 parameters, the double Heston model has a data-to-parameter ratio of 45/10 = 4.5 for a surface with 45 options. Discuss the overfitting risk. Propose constraints that reduce the effective parameter count: for example, fixing $v_0^{(1)} + v_0^{(2)} = \sigma_{\text{ATM,short}}^2$ and $\theta_1 + \theta_2 = \sigma_{\text{ATM,long}}^2$ based on market data. How many free parameters remain?
+
+---
+
+**Exercise 4.**
+The fast factor ($\kappa_1 = 5.0$, half-life = 0.14 years) primarily controls the short-maturity smile, while the slow factor ($\kappa_2 = 0.5$, half-life = 1.4 years) controls the long-maturity term structure. Compute the contribution of each factor to the expected average variance $\bar{v}(T) = \bar{v}^{(1)}(T) + \bar{v}^{(2)}(T)$ at $T = 1$ month and $T = 2$ years. Verify that the fast factor dominates at short maturities.
+
+---
+
+**Exercise 5.**
+Each factor has its own correlation: $\rho_1$ and $\rho_2$. Explain how this allows the model to produce different skew dynamics at different horizons. If $\rho_1 = -0.9$ (strong negative correlation for the fast factor) and $\rho_2 = -0.4$ (weak correlation for the slow factor), what does this imply about the behavior of the skew term structure?
+
+---
+
+**Exercise 6.**
+Calibrate the double Heston model conceptually: given a market surface with systematically positive residuals in the short-maturity wings (Heston underfits) and negative residuals in the long-maturity term structure (Heston overfits the ATM level), explain which double Heston parameters you would adjust to fix each issue. Use the fast/slow factor interpretation.

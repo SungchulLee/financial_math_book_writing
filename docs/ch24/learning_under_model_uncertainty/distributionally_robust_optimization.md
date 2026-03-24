@@ -268,3 +268,45 @@ The robustness penalty $\varepsilon\|x\|_2$ acts as an $\ell_2$ shrinkage on por
 - Delage & Ye (2010), "Distributionally Robust Optimization Under Moment Uncertainty"
 - Fournier & Guillin (2015), "On the Rate of Convergence in Wasserstein Distance"
 - Pflug & Wozabal (2007), "Ambiguity in Portfolio Selection"
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a portfolio with two assets and return vector $\xi \sim \mathbb{P}$. The moment-based ambiguity set is $\mathcal{P} = \{\mathbb{P} : \mathbb{E}[\xi] = \mu, \; \text{Cov}(\xi) = \Sigma\}$ with $\mu = (0.08, 0.05)^\top$ and $\Sigma = \begin{pmatrix} 0.04 & 0.01 \\ 0.01 & 0.02 \end{pmatrix}$. The worst-case CVaR under this ambiguity set is $\text{CVaR}_\alpha^{\text{wc}} = \mu_L + \sigma_L \sqrt{(1-\alpha)/\alpha}$ where $\mu_L = -x^\top \mu$ and $\sigma_L^2 = x^\top \Sigma x$ for portfolio loss $L = -x^\top \xi$. (a) For the equal-weighted portfolio $x = (0.5, 0.5)^\top$ and $\alpha = 0.05$, compute the worst-case CVaR. (b) Compare this with the Gaussian CVaR using $\text{CVaR}_\alpha = \mu_L + \sigma_L \frac{\phi(\Phi^{-1}(\alpha))}{\alpha}$. Which is more conservative, and by how much?
+
+---
+
+**Exercise 2.** For linear loss $\ell(x, \xi) = \xi^\top x$ and type-1 Wasserstein ball with $\ell_2$-norm transport cost, the DRO problem reduces to
+
+$$
+\min_{x \in \mathcal{X}} \left\{\frac{1}{n}\sum_{i=1}^n \hat{\xi}_i^\top x + \varepsilon \|x\|_2\right\}
+$$
+
+(a) Show that this is equivalent to Ridge-penalized optimization. (b) If the transport cost uses the $\ell_\infty$-norm instead, show that the regularization becomes $\varepsilon \|x\|_1$ (LASSO). (c) For a factor model with $k = 20$ factors, $n = 60$ monthly observations, and $\varepsilon = 0.05$, discuss which norm choice ($\ell_1$ vs $\ell_2$) produces sparser and more interpretable portfolio weights.
+
+---
+
+**Exercise 3.** The Wasserstein distance between the empirical distribution $\hat{\mathbb{P}}_n$ and the true distribution $\mathbb{P}^*$ satisfies $\mathbb{P}(W_p(\hat{\mathbb{P}}_n, \mathbb{P}^*) > \varepsilon) \le C \exp(-c \, n \varepsilon^{\max(d,2)})$. (a) For $d = 5$ asset returns and $n = 250$ daily observations, find the radius $\varepsilon$ such that $\mathbb{P}^* \in \mathcal{P}_W$ with probability at least 95%. (b) Explain the curse of dimensionality: how does the required $\varepsilon$ scale with $d$ for fixed $n$ and confidence level? (c) Discuss why this concentration result is important for calibrating the ambiguity set radius in practice.
+
+---
+
+**Exercise 4.** Compare the DRO robust factor portfolio $x^{\text{DRO}} = \arg\min_{x \in \mathcal{X}} \{-\hat{\mu}^\top x + \varepsilon\|x\|_2 + \frac{\gamma}{2} x^\top \hat{\Sigma} x\}$ with the standard mean-variance portfolio $x^{\text{MV}} = \frac{1}{\gamma}\hat{\Sigma}^{-1}\hat{\mu}$. (a) Derive the first-order optimality condition for $x^{\text{DRO}}$ and show how the robustness parameter $\varepsilon$ shrinks the portfolio weights. (b) Show that as $\varepsilon \to \infty$, $x^{\text{DRO}}$ converges to the minimum-variance portfolio. (c) Using simulated data with $d = 10$ assets, true Sharpe ratio 0.5, and $n = 120$ observations, argue why $x^{\text{DRO}}$ typically outperforms $x^{\text{MV}}$ out-of-sample due to estimation error in $\hat{\mu}$.
+
+---
+
+**Exercise 5.** The strong duality result for type-1 Wasserstein DRO states
+
+$$
+\sup_{\mathbb{P}: W_1(\mathbb{P}, \hat{\mathbb{P}}_n) \le \varepsilon} \mathbb{E}_\mathbb{P}[\ell(x, \xi)] = \inf_{\lambda \ge 0} \left\{\lambda \varepsilon + \frac{1}{n}\sum_{i=1}^n \sup_\xi [\ell(x, \xi) - \lambda \|\xi - \hat{\xi}_i\|]\right\}
+$$
+
+(a) Interpret the dual variable $\lambda$ as the sensitivity of the worst-case loss to the ambiguity radius $\varepsilon$. (b) For the loss $\ell(x, \xi) = (-x^\top \xi)^+$ (portfolio shortfall), show that the inner supremum is finite only when $\lambda$ is large enough relative to $\|x\|$. (c) Explain why this duality converts an infinite-dimensional optimization (over distributions) into a finite-dimensional convex program.
+
+---
+
+**Exercise 6.** A risk manager uses DRO to stress test a portfolio. The worst-case distribution $\mathbb{P}^*$ achieving $\sup_{\mathbb{P} \in \mathcal{P}} \text{CVaR}_\alpha^\mathbb{P}(L)$ represents the most adverse scenario consistent with the ambiguity set. (a) For a moment-based ambiguity set, describe the structure of $\mathbb{P}^*$ (hint: it is a discrete distribution supported on at most $d+1$ points by Richter's theorem). (b) Compare this principled worst-case approach with ad-hoc stress scenarios. (c) A portfolio has 3 risk factors. The worst-case distribution places mass on 4 points. Explain how examining these points reveals which tail events and correlation structures drive the worst-case risk.
+
+---
+
+**Exercise 7.** A quantitative fund uses cross-validation to select the Wasserstein radius $\varepsilon$. The data consists of 120 monthly returns for 50 assets. (a) Describe a time-series cross-validation procedure (rolling window) for selecting $\varepsilon$, being careful to avoid look-ahead bias. (b) Plot the expected out-of-sample Sharpe ratio as a function of $\varepsilon$: at $\varepsilon = 0$ (standard mean-variance) performance is poor due to estimation error; at $\varepsilon$ too large, performance is poor due to excessive conservatism. Explain this U-shaped curve. (c) Discuss whether the optimal $\varepsilon$ is stable over time or should be adapted to market conditions (e.g., larger $\varepsilon$ during high-volatility regimes).

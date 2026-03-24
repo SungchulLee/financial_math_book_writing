@@ -96,3 +96,33 @@ $$
 - Hull & White (1990), "Pricing Interest-Rate-Derivative Securities"
 - Brigo & Mercurio, *Interest Rate Models*, Chapter 3
 - Andersen & Piterbarg, *Interest Rate Modeling*, Volume 2
+
+---
+
+## Exercises
+
+**Exercise 1.** Write the Hull-White SDE and identify each component. How does it differ from the Vasicek SDE? What specific role does the time-dependent function $\theta(t)$ play, and why can it not be replaced by a constant if exact yield curve fitting is required?
+
+---
+
+**Exercise 2.** The Hull-White drift function is given by $\theta(t) = f_t(0,t) + \kappa f(0,t) + \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})$, where $f(0,t)$ is the market instantaneous forward rate. For a flat forward rate curve $f(0,t) = 4\%$, compute $\theta(t)$ at $t = 0, 1, 5, 10$ with $\kappa = 0.05$ and $\sigma = 0.01$.
+
+---
+
+**Exercise 3.** Explain why the Hull-White model produces the same $B(\tau) = (1 - e^{-\kappa\tau})/\kappa$ as the Vasicek model, while the $A(t,T)$ function differs. What part of the bond pricing formula absorbs the time-dependent drift?
+
+---
+
+**Exercise 4.** A trader observes that the Hull-White model can generate negative rates. For $\kappa = 0.03$, $\sigma = 0.01$, and $r_0 = 0.5\%$, compute the conditional distribution of $r_5$ (the rate in 5 years) and find $\mathbb{P}(r_5 < 0)$. Is this probability negligible or material?
+
+---
+
+**Exercise 5.** Hull-White preserves the affine structure of Vasicek. Explain why this means that Jamshidian's decomposition applies for swaption pricing. How many zero-coupon bond options would appear in the Jamshidian decomposition of a 2Y-into-5Y annual payer swaption?
+
+---
+
+**Exercise 6.** Compare the calibration procedures for Hull-White and Black-Karasinski. Both use time-dependent drifts to fit the yield curve. Why can Hull-White extract $\theta(t)$ analytically while Black-Karasinski requires iterative tree-based calibration?
+
+---
+
+**Exercise 7.** The two-factor Hull-White (G2++) model uses $r_t = x_t + y_t + \phi(t)$ with two correlated OU processes. Explain what additional yield curve dynamics this enables compared to the one-factor model. Why might a single-factor Hull-White fail for pricing a 10Y Bermudan swaption even if it calibrates well to the swaption volatility matrix diagonal?

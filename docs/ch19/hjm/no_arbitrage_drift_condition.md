@@ -458,3 +458,57 @@ The drift condition involves **integration**, which smooths out volatility irreg
 - Heath, Jarrow & Morton (1992), "Bond Pricing and the Term Structure of Interest Rates: A New Methodology"
 - Björk, *Arbitrage Theory in Continuous Time*, Chapter 25
 - Filipović, *Term-Structure Models*, Chapter 7
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the log bond price $Z(t, T) = -\int_t^T f(t, u)\,du$, apply Leibniz's rule to verify that
+
+$$
+dZ(t, T) = r_t\,dt - \int_t^T \alpha(t, u)\,du\,dt - \Sigma(t, T)\,dW_t
+$$
+
+where $\Sigma(t, T) = \int_t^T \sigma(t, u)\,du$. Carefully explain the origin of the $r_t\,dt$ term from the moving lower limit of integration.
+
+---
+
+**Exercise 2.** Consider a two-factor HJM model with volatilities $\sigma_1(t, T) = 0.012$ and $\sigma_2(t, T) = 0.008\,e^{-0.2(T-t)}$. Compute the drift $\alpha(t, T)$ using the multi-factor drift condition. Evaluate $\alpha(t, T)$ numerically at $T - t = 5$ and $T - t = 10$. Which factor contributes more to the drift at long maturities?
+
+---
+
+**Exercise 3.** Prove that the integral form of the martingale condition, $\int_t^T \alpha(t, u)\,du = \frac{1}{2}\Sigma(t, T)^2$, implies the pointwise condition $\alpha(t, T) = \sigma(t, T)\,\Sigma(t, T)$ by differentiating both sides with respect to $T$. What regularity conditions on $\alpha$ and $\sigma$ are needed for this differentiation to be valid?
+
+---
+
+**Exercise 4.** For the Hull--White volatility $\sigma(t, T) = \sigma e^{-\kappa(T-t)}$, compute the bond volatility
+
+$$
+\Sigma(t, T) = \int_t^T \sigma e^{-\kappa(u-t)}\,du = \frac{\sigma}{\kappa}\bigl(1 - e^{-\kappa(T-t)}\bigr)
+$$
+
+and verify that the drift condition gives $\alpha(t, T) = \frac{\sigma^2}{\kappa}e^{-\kappa(T-t)}(1 - e^{-\kappa(T-t)})$. Show that this drift is always non-negative and identify its maximum as a function of $T - t$.
+
+---
+
+**Exercise 5.** The HJM framework automatically fits the initial yield curve. Explain precisely how: if you specify $f(0, T)$ from market data and evolve the forward rate according to $df(t, T) = \sigma(t, T)\,\Sigma(t, T)\,dt + \sigma(t, T)\,dW_t$, why is $P(0, T) = \exp(-\int_0^T f(0, u)\,du)$ guaranteed to match market bond prices at time 0? Contrast this with the Vasicek model, where additional parameter fitting is needed.
+
+---
+
+**Exercise 6.** Under the physical measure $\mathbb{P}$, suppose $df(t, T) = \alpha^{\mathbb{P}}(t, T)\,dt + \sigma(t, T)\,dW_t^{\mathbb{P}}$ with a constant market price of risk $\lambda$. Show that the risk-neutral drift satisfies
+
+$$
+\alpha(t, T) = \alpha^{\mathbb{P}}(t, T) - \lambda\,\sigma(t, T)
+$$
+
+and that the HJM condition then constrains the physical drift as $\alpha^{\mathbb{P}}(t, T) = \sigma(t, T)[\Sigma(t, T) + \lambda]$. Interpret the term $\lambda\,\sigma(t, T)$ as a risk premium.
+
+---
+
+**Exercise 7.** Verify the consistency of the discounted bond price dynamics. Starting from
+
+$$
+d\tilde{P} = \tilde{P}\left[\left(-\int_t^T \alpha(t, u)\,du + \frac{1}{2}\Sigma(t, T)^2\right)dt - \Sigma(t, T)\,dW_t\right],
+$$
+
+substitute the drift condition $\int_t^T \alpha(t, u)\,du = \frac{1}{2}\Sigma(t, T)^2$ and confirm that the drift of $\tilde{P}$ vanishes, leaving $d\tilde{P} = -\tilde{P}\,\Sigma(t, T)\,dW_t$, which is indeed a martingale (assuming appropriate integrability conditions).

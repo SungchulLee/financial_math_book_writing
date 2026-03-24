@@ -271,3 +271,51 @@ Higher capital buffers:
 - Glasserman, P. & Young, H.P. (2016), "Contagion in Financial Networks"
 - Cont, R. et al. (2013), "Network Model of Credit Risk Contagion"
 - Acemoglu, D., Ozdaglar, A., & Tahbaz-Salehi, A. (2015), "Systemic Risk and Stability in Financial Networks"
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a network of 5 banks with the following interbank exposures $E_{ij}$ (bank $i$'s lending to bank $j$) and capital buffers $C_i$: Bank 1 lends 40 to Bank 2, 30 to Bank 3; Bank 2 lends 50 to Bank 3, 20 to Bank 4; Bank 3 lends 35 to Bank 4, 15 to Bank 5; Bank 4 lends 25 to Bank 5; Bank 5 lends 10 to Bank 1. Capital buffers are $C_1 = 60$, $C_2 = 45$, $C_3 = 30$, $C_4 = 20$, $C_5 = 15$, all in millions. Assuming LGD = 100%, if Bank 3 defaults exogenously, trace the default cascade. Which banks fail, and in what round?
+
+---
+
+**Exercise 2.** In the Gai-Kapadia network model, the basic reproduction number for contagion is
+
+$$
+R_0 = \bar{d} \cdot p_{\text{default}}
+$$
+
+where $\bar{d}$ is the average degree and $p_{\text{default}}$ is the probability that a connection causes default. For a network with average degree $\bar{d} = 5$ and individual exposure-to-capital ratio of 0.15, if $p_{\text{default}} \approx \text{exposure/capital}$, compute $R_0$. Is this network in the contagion regime ($R_0 > 1$)? How much would the average degree need to decrease to exit the contagion regime?
+
+---
+
+**Exercise 3.** In the Greenwood-Landier-Thesmar fire sale model, the price impact of institution $i$ selling asset $a$ is $\Delta P_a = -\lambda_a \cdot \text{Sales}_{ia} / D_a$. Suppose two banks each hold \$1 billion of asset $a$ (with $\lambda_a = 0.5$, $D_a = \$5$B) and \$0.5 billion of asset $b$ (with $\lambda_b = 1.0$, $D_b = \$2$B). If Bank 1 is forced to sell 50% of its holdings, compute the price impact on each asset and the mark-to-market loss to Bank 2. Compare the contagion through asset $a$ versus asset $b$ and explain why illiquid assets amplify fire sale contagion.
+
+---
+
+**Exercise 4.** The SIR-type differential equation model for financial contagion is
+
+$$
+\frac{dI(t)}{dt} = \beta S(t) I(t) - \gamma I(t)
+$$
+
+where $S + I + R = N$ (total institutions). Starting with $S(0) = 99$, $I(0) = 1$, $R(0) = 0$, $\beta = 0.005$, and $\gamma = 0.1$, compute $dI/dt$ at $t = 0$. Will the infection grow or shrink initially? Compute the epidemic threshold: what value of $\beta$ is needed for an epidemic ($dI/dt > 0$ at the start)?
+
+---
+
+**Exercise 5.** Explain the "robust-yet-fragile" property of financial networks. In a highly connected network, small shocks are absorbed because losses are distributed across many counterparties. However, a sufficiently large shock can cascade through the entire system. Provide a stylized example with a complete network of 4 banks (each bank connected to all others) showing: (a) a shock size that is absorbed without any cascade, and (b) a shock size that causes all banks to fail. What determines the critical shock threshold?
+
+---
+
+**Exercise 6.** A researcher wants to measure contagion using the Granger causality approach. Describe how the regression
+
+$$
+R_B(t) = \alpha + \beta R_A(t-1) + \gamma R_M(t-1) + \epsilon_t
+$$
+
+tests for contagion from institution $A$ to $B$, controlling for market-wide factor $R_M$. Discuss the limitations of this approach: can Granger causality distinguish between true contagion and correlated exposures to common factors? What additional data or methodology would be needed to identify causal contagion channels?
+
+---
+
+**Exercise 7.** Compare credit contagion, fire sale contagion, and information contagion in terms of (a) transmission speed, (b) the type of data needed to model each channel, and (c) policy tools best suited to mitigate each. For the 2008 financial crisis, identify which channel was most significant during the Lehman Brothers default and explain the specific mechanisms through which it operated.

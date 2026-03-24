@@ -259,3 +259,33 @@ so all the distributional properties of the Hull-White short rate follow from th
 ## Summary
 
 The Hull-White model $dr_t = [\theta(t) - ar_t]\, dt + \sigma\, dW_t^{\mathbb{Q}}$ is a time-inhomogeneous Ornstein-Uhlenbeck process whose key parameters are the mean-reversion speed $a$, the volatility $\sigma$, and the drift function $\theta(t)$ determined by the initial term structure. The explicit solution via the integrating factor shows the short rate as a sum of a decaying initial condition, a deterministic drift integral, and a Gaussian stochastic integral. The conditional distribution is normal with variance $\sigma^2(1 - e^{-2a\tau})/(2a)$ that saturates at $\sigma^2/(2a)$ for large $\tau$, and the half-life of mean reversion is $\ln 2 / a$. These properties form the foundation for all subsequent derivations of bond prices, option formulas, and calibration procedures in the Hull-White framework.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a mean-reversion speed $a = 0.07$, compute the half-life of mean reversion. If the short rate is currently 200 basis points above its target level, how long does it take for the deterministic displacement to fall below 50 basis points?
+
+---
+
+**Exercise 2.** Verify the explicit solution of the Hull-White SDE by substituting $r_t = r_s e^{-a(t-s)} + \int_s^t e^{-a(t-u)}\theta(u)\,du + \sigma\int_s^t e^{-a(t-u)}dW_u^{\mathbb{Q}}$ back into the SDE $dr_t = [\theta(t) - ar_t]\,dt + \sigma\,dW_t^{\mathbb{Q}}$ and confirming that both sides match.
+
+---
+
+**Exercise 3.** Compute the conditional variance $\Sigma^2(0, t)$ for $a = 0.05$ and $\sigma = 0.01$ at $t = 1, 5, 10, 50$. Verify that the short-time approximation $\Sigma^2 \approx \sigma^2 t$ is accurate for $t = 1$ and that the long-time limit $\sigma^2/(2a)$ is nearly reached by $t = 50$.
+
+---
+
+**Exercise 4.** The Hull-White model allows negative interest rates. For $\mu(0, 10) = 0.03$ and $\Sigma(0, 10) = 0.02$, compute $\mathbb{P}(r_{10} < 0)$. Discuss whether this probability is acceptable for practical applications.
+
+---
+
+**Exercise 5.** Show that the three-part structure of the Hull-White solution (decaying initial condition, deterministic drift integral, stochastic integral) simplifies to $r_t = \theta_\infty + (r_s - \theta_\infty)e^{-a(t-s)} + \sigma\int_s^t e^{-a(t-u)}dW_u$ when $\theta(t) = a\theta_\infty$ is constant. Identify this as the Vasicek solution.
+
+---
+
+**Exercise 6.** Derive the conditional covariance $\text{Cov}(r_t, r_s)$ for $t > s > 0$ in the Hull-White model. Show that $\text{Cov}(r_t, r_s) = \frac{\sigma^2}{2a}e^{-a(t-s)}(1 - e^{-2as})$ and interpret the exponential decay with $|t - s|$.
+
+---
+
+**Exercise 7.** The Black-Karasinski model $d\ln r_t = [\theta(t) - a\ln r_t]\,dt + \sigma\,dW_t$ guarantees positive rates. Explain what analytical tractability is lost compared to the Hull-White model, and under what market conditions the Gaussian limitation of Hull-White becomes problematic.

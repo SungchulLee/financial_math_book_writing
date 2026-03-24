@@ -276,3 +276,58 @@ Despite the ATM error being five times larger in price, the two contributions to
 ## Summary
 
 The objective function is the lens through which the optimizer views the calibration problem. Price-space RMSE is simple but biased toward ITM options. IV-space IVRMSE provides uniform scaling but adds computational overhead. Vega weighting achieves the best of both worlds: it approximates the IVRMSE objective via the first-order relationship $\Delta\sigma \approx \Delta C / \mathcal{V}$, with zero additional cost per iteration. In practice, vega-weighted least squares combined with Tikhonov regularization forms the standard objective function for Heston calibration, producing stable fits that balance accuracy across the implied volatility surface.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Consider three European call options on a stock with $S_0 = 100$, $r = 3\%$, $q = 0$: (i) an ITM call with $K = 85$, $T = 0.5$, $\sigma^{\text{mkt}} = 22\%$; (ii) an ATM call with $K = 100$, $T = 0.5$, $\sigma^{\text{mkt}} = 20\%$; (iii) an OTM call with $K = 120$, $T = 0.5$, $\sigma^{\text{mkt}} = 25\%$. Compute the Black-Scholes vega $\mathcal{V} = S_0\sqrt{T}\,\phi(d_1)$ for each option and the corresponding vega weight $w = 1/\mathcal{V}^2$. Verify that the OTM option receives the largest weight and explain why this is desirable for calibration.
+
+---
+
+**Exercise 2.**
+Using the first-order approximation $\sigma_i^{\text{mod}} - \sigma_i^{\text{mkt}} \approx (C_i^{\text{mod}} - C_i^{\text{mkt}})/\mathcal{V}_i$, show that the vega-weighted price-space objective:
+
+$$
+\mathcal{L}_{\text{vega}}(\Theta) = \sum_{i=1}^{M} \frac{1}{\mathcal{V}_i^2} (C_i^{\text{mod}} - C_i^{\text{mkt}})^2
+$$
+
+is exactly equal to the IV-space objective $\mathcal{L}_{\text{IV}}(\Theta) = \sum_i (\sigma_i^{\text{mod}} - \sigma_i^{\text{mkt}})^2$ to first order. Then give a scenario where the approximation breaks down (hint: consider large price errors or options near expiry).
+
+---
+
+**Exercise 3.**
+A calibration uses $M = 20$ options. The optimizer finds parameters that produce model prices with a price RMSE of \$0.35 and an IVRMSE of 42 bps. Suppose you switch from uniform weights to vega weights. The new calibration yields a price RMSE of \$0.52 but an IVRMSE of 28 bps. Explain why the price RMSE increased while the IVRMSE decreased. Which metric should a volatility trader use to evaluate calibration quality, and why?
+
+---
+
+**Exercise 4.**
+The $\kappa$-$\theta$ degeneracy means the objective function has a valley along curves where $\kappa\theta \approx \text{const}$. Suppose $\kappa\theta = 0.10$ and you consider the pairs $(\kappa, \theta) = (2.0, 0.05)$ and $(\kappa, \theta) = (5.0, 0.02)$. Both yield the same $\kappa\theta$ product. Compute the mean-reversion half-life $\tau_{1/2} = \ln(2)/\kappa$ for each case and the Feller ratio $2\kappa\theta/\xi^2$ for $\xi = 0.5$. Discuss which parameter set produces more realistic variance dynamics and what data would help distinguish between them.
+
+---
+
+**Exercise 5.**
+Consider the Tikhonov regularization term:
+
+$$
+\mathcal{L}_{\text{reg}}(\Theta) = \mathcal{L}(\Theta) + \sum_{j=1}^{5} \lambda_j (\Theta_j - \Theta_{\text{ref},j})^2
+$$
+
+with $\Theta_{\text{ref}} = (0.04, 2.0, 0.04, 0.5, -0.70)$ and penalty weights $\lambda = (0, 10, 10, 0, 0)$. Explain why $\lambda_1 = \lambda_4 = \lambda_5 = 0$ (no penalty on $v_0$, $\xi$, $\rho$) while $\lambda_2 = \lambda_3 = 10$ (strong penalty on $\kappa$ and $\theta$). If tomorrow's unregularized calibration gives $\kappa = 5.0$ and $\theta = 0.02$ with an objective value of $\mathcal{L} = 2.0 \times 10^{-4}$, compute the total regularized objective and compare it to a stable solution $\kappa = 2.1$, $\theta = 0.039$ with $\mathcal{L} = 2.5 \times 10^{-4}$.
+
+---
+
+**Exercise 6.**
+In the worked example, the ATM 1-year option has $\mathcal{V} = 39.10$ and a \$0.50 pricing error, while the OTM 3-month option has $\mathcal{V} = 11.98$ and a \$0.10 pricing error. Convert each pricing error to an implied volatility error using the approximation $\Delta\sigma \approx \Delta C / \mathcal{V}$. Express both in basis points and compare. Which option has a larger IV error, and does this match the relative contributions to the vega-weighted objective?
+
+---
+
+**Exercise 7.**
+Design an objective function that combines vega weighting with bid-ask spread weighting. Propose a formula of the form:
+
+$$
+w_i = \frac{1}{\mathcal{V}_i^2} \cdot f(\sigma_i^{\text{ask}} - \sigma_i^{\text{bid}})
+$$
+
+where $f$ is a function of the IV bid-ask spread. Justify your choice of $f$ (e.g., $f(s) = 1/s^2$, $f(s) = 1/s$, or a clipped version). Discuss the trade-off: if an OTM option has a small vega (large $1/\mathcal{V}_i^2$) but a wide bid-ask spread (suggesting the market quote is unreliable), should the combined weight be large or small?

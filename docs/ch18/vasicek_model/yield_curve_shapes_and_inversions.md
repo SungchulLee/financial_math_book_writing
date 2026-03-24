@@ -225,3 +225,31 @@ The Vasicek model captures the first effect (rate expectations) but not the latt
 The Vasicek yield curve shape is determined by the position of the short rate $r_t$ relative to the asymptotic yield $R_\infty = \theta - \sigma^2/(2\kappa^2)$. When $r_t < R_\infty$, the curve is normal; when $r_t \gg R_\infty$, it inverts; intermediate values produce humped shapes. The convexity correction $\sigma^2/(2\kappa^2)$ always pushes the long end below $\theta$, ensuring that the asymptotic yield is less than the mean-reversion level. These results follow directly from the closed-form expressions for $A(\tau)$ and $B(\tau)$ derived in the previous section.
 
 ---
+
+## Exercises
+
+**Exercise 1.** For $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.02$, compute the asymptotic yield $R_\infty = \theta - \sigma^2/(2\kappa^2)$. What is the convexity correction in basis points? For what value of $\sigma$ would the convexity correction exceed 100 basis points (holding $\kappa$ and $\theta$ fixed)?
+
+---
+
+**Exercise 2.** Using the Taylor expansion $R(\tau) = r_t + \frac{1}{2}\kappa(\theta - r_t)\tau + O(\tau^2)$, determine the initial slope of the yield curve for $r_t = 0.03$, $r_t = 0.05$, and $r_t = 0.07$ with $\kappa = 0.5$ and $\theta = 0.05$. In which case is the curve initially flat?
+
+---
+
+**Exercise 3.** Derive the sufficient condition for a monotonically inverted yield curve: $r_t > \theta + \sigma^2/(2\kappa^2)$. For the parameters $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.02$, compute this threshold. If $r_0 = 0.10$ (as in the numerical example), verify that the condition is satisfied and the curve is monotonically decreasing.
+
+---
+
+**Exercise 4.** The forward rate curve is $f(t,T) = e^{-\kappa\tau}r_t + \theta(1 - e^{-\kappa\tau}) - \frac{\sigma^2}{2\kappa^2}(1 - e^{-\kappa\tau})^2$. Show that the forward rate is monotonically decreasing in $\tau$ if and only if $r_t > R_\infty$. Why can a decreasing forward curve coexist with an upward-sloping yield curve at intermediate maturities?
+
+---
+
+**Exercise 5.** For the humped yield curve case ($r_0 = 0.058$, $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.02$), the yield curve rises slightly before falling to $R_\infty$. Estimate the maturity $\tau^*$ at which the yield curve peaks by numerically evaluating yields at $\tau = 1, 2, 3, 5, 10, 20, 30$ years.
+
+---
+
+**Exercise 6.** Explain why a one-factor Vasicek model cannot produce a yield curve that is simultaneously steep at the short end and flat at the long end (a common empirical pattern). What additional factor would a two-factor model need to capture independent movements of the short end and long end?
+
+---
+
+**Exercise 7.** The yield can be written as $R(\tau) = h(\tau)\,r_t + (1 - h(\tau))\,R_\infty + C(\tau)$ where $h(\tau) = B(\tau)/\tau$ and $C(\tau) = \sigma^2 B(\tau)^2/(4\kappa\tau)$ is the convexity adjustment. For $\kappa = 0.5$ and $\sigma = 0.02$, compute $h(\tau)$ and $C(\tau)$ at $\tau = 1, 5, 10, 30$. Verify that $h$ decreases from $1$ to $0$ and $C$ remains small relative to the other terms.

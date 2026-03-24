@@ -294,3 +294,37 @@ and bond prices take the form $P(t,T) = e^{A(\tau) - B(\tau) r_t}$ where $A$ and
 The named functions $A(\tau)$ and $B(\tau)$ encode all the information needed for bond pricing in the Vasicek model. The function $B(\tau) = (1 - e^{-\kappa\tau})/\kappa$ captures the sensitivity of the bond price to the short rate and saturates at $1/\kappa$ due to mean reversion. The function $\ln A(\tau)$ captures the drift and convexity effects, producing the long-run yield reduction $R_\infty = \theta - \sigma^2/(2\kappa^2)$. Together they deliver the full yield curve, forward rate curve, and all rate sensitivities in closed form.
 
 ---
+
+## Exercises
+
+**Exercise 1.** Verify the ODE for $B(\tau)$. Starting from $\dot{B} = 1 - \kappa B$ with $B(0) = 0$, solve using the integrating factor $e^{\kappa\tau}$ and confirm that $B(\tau) = (1 - e^{-\kappa\tau})/\kappa$. Check that $B(\tau) \approx \tau - \frac{1}{2}\kappa\tau^2$ for small $\tau$ by Taylor expansion.
+
+---
+
+**Exercise 2.** For $\kappa = 0.5$ and $\sigma = 0.02$, compute $B(\tau)$ and $\ln A(\tau)$ at $\tau = 1, 5, 10, 30$ using $\theta = 0.04$. Verify that $B(\tau)/\tau$ decreases monotonically toward $0$ and that $B(\tau) \to 1/\kappa = 2$ as $\tau \to \infty$.
+
+---
+
+**Exercise 3.** Derive the long-run yield $R_\infty = \theta - \sigma^2/(2\kappa^2)$ by computing $\lim_{\tau \to \infty} R(\tau)$ from the yield formula $R(\tau) = -\ln A(\tau)/\tau + B(\tau)\,r_t/\tau$. Show that the result is independent of $r_t$ and explain why the convexity correction $\sigma^2/(2\kappa^2)$ makes $R_\infty < \theta$.
+
+---
+
+**Exercise 4.** The instantaneous forward rate is $f(t,T) = -\partial_T \ln P(t,T)$. Using $P(t,T) = A(\tau)e^{-B(\tau)r_t}$, show that
+
+$$
+f(t,T) = e^{-\kappa\tau}\,r_t + \theta(1 - e^{-\kappa\tau}) - \frac{\sigma^2}{2\kappa^2}(1 - e^{-\kappa\tau})^2
+$$
+
+and verify that $f(t,t) = r_t$ and $\lim_{\tau\to\infty} f(t,T) = R_\infty$.
+
+---
+
+**Exercise 5.** Show that $\partial P/\partial r = -B(\tau)\,P(t,T)$ and $\partial^2 P/\partial r^2 = B(\tau)^2\,P(t,T)$. Explain why $B(\tau)$ plays the role of "duration with respect to the short rate." For what range of $\tau$ is $B(\tau) \approx \tau$ (i.e., when does short-rate duration approximately equal time to maturity)?
+
+---
+
+**Exercise 6.** In the general one-factor affine framework with $dr_t = (\alpha_0 + \alpha_1 r_t)dt + \sqrt{\beta_0 + \beta_1 r_t}\,dW_t$, the Riccati ODE for $B$ is $\dot{B} = 1 + \alpha_1 B + \frac{1}{2}\beta_1 B^2$. For the Vasicek model ($\beta_1 = 0$), confirm that this reduces to the linear ODE $\dot{B} = 1 - \kappa B$. Why does $\beta_1 = 0$ make the ODE simpler than the CIR case?
+
+---
+
+**Exercise 7.** Verify the numerical example: for $\kappa = 0.5$, $\theta = 0.04$, $\sigma = 0.02$, $r_0 = 0.03$, compute $P(0,1)$, $P(0,5)$, and $P(0,10)$ step by step. Compare the yields $R(0,\tau) = -\ln P(0,\tau)/\tau$ with the long-run yield $R_\infty$. Is the yield curve upward-sloping, and does it converge to $R_\infty$?

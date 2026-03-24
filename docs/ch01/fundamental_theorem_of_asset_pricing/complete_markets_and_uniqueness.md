@@ -371,3 +371,31 @@ Together with the [First FTAP](fundamental_theorem_of_asset_pricing.md), these r
 - Föllmer, H. and Schied, A. (2016). *Stochastic Finance: An Introduction in Discrete Time.* 4th edition, de Gruyter.
 
 - Shreve, S. E. (2004). *Stochastic Calculus for Finance I: The Binomial Asset Pricing Model.* Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a one-period market with $n = 3$ states and $d = 1$ risky asset. The excess return vector is $X = (8, 0, -4)^T$. Show that the market is incomplete and parameterize the full family of EMMs. What is the no-arbitrage price interval for the claim $\Phi = (3, 1, 0)^T$?
+
+---
+
+**Exercise 2.** In a market with $n = 4$ states and $d = 3$ risky assets, the payoff matrix has rank 3. Is the market complete? Justify your answer using the rank condition. How many EMMs exist?
+
+---
+
+**Exercise 3.** Prove that in a complete, arbitrage-free market, the replication cost of any contingent claim $\Phi$ equals $\mathbb{E}^{\mathbb{Q}}[\Phi]$, where $\mathbb{Q}$ is the unique EMM. Start from the decomposition $\Phi = c \cdot \mathbf{1} + X\theta$ and use the martingale property of $X$ under $\mathbb{Q}$.
+
+---
+
+**Exercise 4.** An incomplete market has $n = 3$ states and $d = 1$ risky asset with $S^1_0 = 50$ and $S^1_1 = (65, 50, 40)$. A new asset with payoffs $S^2_1 = (10, 5, 0)$ is introduced at price $S^2_0 = a$. For which values of $a$ does the augmented market remain arbitrage-free? For which value of $a$ does the augmented market become complete?
+
+---
+
+**Exercise 5.** Suppose the stochastic volatility model has two Brownian motions $(W^1_t, W^2_t)$ driving the stock price $S_t$ and its volatility $\sigma_t$, but only $S_t$ is traded. Explain why this market is incomplete using the counting rule ($d < m$). How many independent sources of risk remain unhedgeable?
+
+---
+
+**Exercise 6.** In an incomplete market, the no-arbitrage price of a non-attainable claim $\Phi$ lies in the interval $[\inf_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}[\Phi/S^0_T], \sup_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}[\Phi/S^0_T]]$. Show that for an attainable claim, the infimum and supremum coincide, so the price is unique even in an incomplete market.
+
+---

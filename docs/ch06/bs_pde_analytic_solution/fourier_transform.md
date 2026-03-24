@@ -1423,11 +1423,28 @@ Just **change the CF**, everything else stays the same!
 
 ---
 
-Would you like me to explore:
-- Detailed implementation of FFT algorithm for options
-- Wiener-Hopf technique for barriers in detail
-- Advanced characteristic function derivations (e.g., CGMY)
-- Fourier methods for Asian and lookback options
-- Numerical stability and accuracy analysis
-- Extensions to rough volatility models (fractional Brownian motion)
-- Connection between Fourier methods and PIDE (partial integro-differential equations)?
+---
+
+## Exercises
+
+**Exercise 1.** Verify the characteristic exponent for the Black-Scholes model. Starting from the log-price formulation of the PDE, apply the Fourier transform to both sides and show that the ODE in Fourier space has the characteristic exponent $\psi(\omega) = -\frac{\sigma^2\omega^2}{2} + i\omega(r - \frac{\sigma^2}{2}) - r$.
+
+---
+
+**Exercise 2.** The Fourier transform of the call payoff $(e^x - 1)^+$ diverges for real $\omega$. Show explicitly that the integral $\int_0^{\infty}(e^x - 1)e^{-i\omega x}dx$ diverges by analyzing the behavior of the integrand as $x \to \infty$. Then verify that introducing the damping factor $e^{-\alpha x}$ with $\alpha > 1$ makes the integral convergent.
+
+---
+
+**Exercise 3.** Using the Carr-Madan formula with $\alpha = 1.5$, $S_0 = 100$, $K = 100$, $r = 5\%$, $\sigma = 20\%$, and $T = 1$, set up the numerical integration for the call price. Write the integrand explicitly and verify that evaluating the integral (e.g., via Simpson's rule with a fine grid) recovers the standard Black-Scholes call price to at least 4 decimal places.
+
+---
+
+**Exercise 4.** For the Heston stochastic volatility model with parameters $\kappa = 2$, $\theta = 0.04$, $\xi = 0.3$, $\rho = -0.7$, $v_0 = 0.04$, compute the characteristic function $\phi(\omega, T)$ at $\omega = 1$ and $T = 1$. Identify the terms $A(T,\omega)$ and $B(T,\omega)$ from the Riccati equations and evaluate them numerically.
+
+---
+
+**Exercise 5.** Explain the relationship $e^{\psi(\omega)\tau} = e^{-r\tau}\phi_X(\omega, \tau)$ between the characteristic exponent of the PDE and the characteristic function of the log-return. Why is this identity central to the Fourier pricing framework? How does it generalize beyond the Black-Scholes model to Levy processes?
+
+---
+
+**Exercise 6.** The COS method approximates the density using a cosine expansion on $[a,b]$. For the Black-Scholes model with $S_0 = 100$, $r = 5\%$, $\sigma = 25\%$, $T = 0.5$, compute appropriate bounds $[a,b]$ using $L = 10$ standard deviations. Determine how many terms $N$ in the cosine expansion are needed to achieve 6-digit accuracy for an ATM call.

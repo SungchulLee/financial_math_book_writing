@@ -263,3 +263,49 @@ a-B(\tau)v_r(t_0,T)\\
 d_2&=&\displaystyle
 a\\
 \end{array}$$
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a Hull-White model with $\sigma = 0.02$, $\lambda = 0.05$, and a flat forward rate curve $f^M(0,t) = 0.04$. A European call option on a zero-coupon bond has option maturity $T = 3$ years, ZCB maturity $T_S = 8$ years, and strike $K = 0.80$. Compute $B(\tau)$ where $\tau = T_S - T$, and verify that $B(\tau) < 0$.
+
+---
+
+**Exercise 2.** Starting from the risk-neutral pricing formula
+
+$$
+V^{\text{ZCB}}(t_0, T) = \mathbb{E}^{\mathbb{Q}}\!\left[\frac{M(t_0)}{M(T)}\max\!\left(P(T,T_S) - K, 0\right)\,\Big|\,\mathcal{F}(t_0)\right]
+$$
+
+show that the change of numeraire from the money market account to the $T$-maturity bond yields
+
+$$
+V^{\text{ZCB}}(t_0, T) = P(t_0, T)\,\mathbb{E}^{T}\!\left[\max\!\left(P(T,T_S) - K, 0\right)\,\Big|\,\mathcal{F}(t_0)\right]
+$$
+
+Explain why this step simplifies the computation.
+
+---
+
+**Exercise 3.** In the ZCB option formula, the integration boundary $a$ satisfies $e^{B(\tau)\mu_r(t_0,T) + B(\tau)v_r(t_0,T)z} > \hat{K}$ for $z < a$. Explain why the inequality direction reverses (compared to a standard Black-Scholes call) and relate this to the sign of $B(\tau)$.
+
+---
+
+**Exercise 4.** Derive the put option price $V^{\text{ZCB,put}}(t_0, T)$ on a zero-coupon bond using put-call parity for bond options. Verify that the parity relation takes the form
+
+$$
+V^{\text{ZCB,call}} - V^{\text{ZCB,put}} = P(t_0, T_S) - K\,P(t_0, T)
+$$
+
+---
+
+**Exercise 5.** Using the Monte Carlo code provided, explain why the discount factor used is $1/M[:, -1]$ rather than $e^{-rT}$. What would happen to the Monte Carlo estimate if the number of paths were reduced from 50,000 to 500? Discuss the convergence behavior.
+
+---
+
+**Exercise 6.** Show that in the limit $\lambda \to 0$ (no mean reversion), the variance $v_r^2(t_0, T)$ reduces to $\sigma^2(T - t_0)$ and $B(\tau)$ reduces to $-\tau$. Interpret this limiting case in terms of the Ho-Lee model.
+
+---
+
+**Exercise 7.** Consider the discounted characteristic function $\phi(u; t, T) = e^{A(u,\tau) + B(u,\tau)r(t)}$. Show that setting $u = 0$ recovers the zero-coupon bond price $P(t,T)$, and explain why $\phi$ can be used for Fourier-based option pricing in the Hull-White model.

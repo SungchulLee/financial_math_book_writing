@@ -178,3 +178,33 @@ In each case, the square-root diffusion structure is preserved. The physical-to-
 ## Summary
 
 The $T$-forward measure $\mathbb{Q}^T$ simplifies CIR derivative pricing by removing the stochastic discount factor from the pricing expectation. Under this measure, the CIR process retains its square-root diffusion structure with time-dependent drift parameters $\kappa^T(\tau) = \kappa + \sigma^2 B(\tau)$ and $\theta^T(\tau) = \kappa\theta/\kappa^T(\tau)$. The forward measure increases the speed of mean reversion and lowers the long-run mean, reflecting the bias toward low-rate states introduced by the bond numeraire. The Feller condition is preserved, and the transition density remains non-central chi-squared with modified parameters. This framework provides the foundation for the closed-form CIR bond option formulas developed in the next section.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the CIR bond price $P(t,T) = A(\tau)e^{-B(\tau)r_t}$ with $\tau = T - t$, apply Ito's lemma to $\ln P(t,T)$ and identify the drift and diffusion terms. Confirm that the diffusion coefficient of $\ln P$ is $-B(\tau)\sigma\sqrt{r_t}$, which gives rise to the Girsanov kernel.
+
+---
+
+**Exercise 2.** Derive the CIR dynamics under $\mathbb{Q}^T$ step by step. Substitute $dW_t^{\mathbb{Q}} = dW_t^T - B(\tau)\sigma\sqrt{r_t}\,dt$ into the risk-neutral CIR SDE and collect terms to obtain $dr_t = [\kappa\theta - (\kappa + \sigma^2 B(\tau))r_t]\,dt + \sigma\sqrt{r_t}\,dW_t^T$. Verify that $\kappa^T(\tau) = \kappa + \sigma^2 B(\tau)$ and $\theta^T(\tau) = \kappa\theta/\kappa^T(\tau)$.
+
+---
+
+**Exercise 3.** For CIR parameters $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.10$, compute $B(\tau)$ for $\tau = 5$ years using the CIR formula. Then compute $\kappa^T(5) = \kappa + \sigma^2 B(5)$ and $\theta^T(5) = \kappa\theta/\kappa^T(5)$. Compare these with the risk-neutral values $\kappa$ and $\theta$. Interpret the economic meaning of the changes.
+
+---
+
+**Exercise 4.** Show that the Feller condition is preserved under the $T$-forward measure. Specifically, verify that $2\kappa^T(\tau)\theta^T(\tau) = 2\kappa\theta$ for all $\tau$, so the condition $2\kappa\theta \geq \sigma^2$ is equivalent under both measures.
+
+---
+
+**Exercise 5.** The forward measure tilts the rate distribution downward. Explain this economically: the numeraire is the zero-coupon bond $P(t,T)$, which is high when rates are low. How does conditioning on a high numeraire value bias the distribution of $r_T$? Relate this to the decrease in $\theta^T(\tau)$ compared to $\theta$.
+
+---
+
+**Exercise 6.** In the chain $\mathbb{P} \to \mathbb{Q} \to \mathbb{Q}^T$, the diffusion $\sigma\sqrt{r_t}$ is unchanged at each step. Explain why the diffusion coefficient is invariant under measure changes in general (Girsanov's theorem only modifies the drift). If the market price of risk is $\lambda(r_t) = \lambda_0\sqrt{r_t}$, compute the physical-measure drift parameters $\kappa^{\mathbb{P}}$ and $\theta^{\mathbb{P}}$ in terms of $\kappa$, $\theta$, and $\lambda_0$.
+
+---
+
+**Exercise 7.** A European digital bond option pays \$1 if $P(T, S) > K$ and \$0 otherwise, with expiry $T$ and underlying bond maturity $S$. Using the $T$-forward measure, write the price of this digital option as $P(t,T) \cdot \mathbb{Q}^T(r_T < r^*)$. Express this probability in terms of the non-central chi-squared CDF with the appropriate parameters under $\mathbb{Q}^T$.

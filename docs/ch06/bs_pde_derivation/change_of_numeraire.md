@@ -210,3 +210,25 @@ This derivation is fundamentally different from the replication approach. It beg
 - Shreve, S. E. (2004). *Stochastic Calculus for Finance II: Continuous-Time Models.* Springer.
 
 - Björk, T. (2009). *Arbitrage Theory in Continuous Time.* 3rd edition, Oxford University Press.
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify that the density process $Z_t = S_t e^{-rt}/S_0$ is a $\mathbb{Q}$-martingale by showing that $dZ_t / Z_t = \sigma \, dW_t^{\mathbb{Q}}$ (i.e., the drift vanishes under $\mathbb{Q}$). Compute $\mathbb{E}^{\mathbb{Q}}[Z_T]$ and confirm it equals 1.
+
+---
+
+**Exercise 2.** Under the stock measure $\mathbb{Q}^S$, the process $u_t = V(t, S_t)/S_t$ is a martingale. Apply Ito's lemma to $u_t$ using the stock dynamics under $\mathbb{Q}^S$ and show that setting the drift of $u_t$ to zero yields the Black-Scholes PDE for $V$.
+
+---
+
+**Exercise 3.** Explain why $d_1 \neq d_2$ in the Black-Scholes formula from the change-of-numeraire perspective. Under $\mathbb{Q}^S$, what is the distribution of $\ln S_T$, and how does it differ from the distribution under $\mathbb{Q}$?
+
+---
+
+**Exercise 4.** The change-of-numeraire approach does not require constructing a self-financing portfolio. Compare the logical structure of this derivation with the delta-hedging derivation. In particular, identify which assumption (no-arbitrage, completeness, or Girsanov's theorem) plays the role that the hedging argument plays in the classical approach.
+
+---
+
+**Exercise 5.** Suppose the stock pays a continuous dividend yield $q$. Repeat the change-of-numeraire derivation with $S_t$ as numeraire and show that the PDE becomes $\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + (r-q)S\frac{\partial V}{\partial S} - rV = 0$.

@@ -166,3 +166,45 @@ Under $\mathbb{Q}^u$, the process $\widetilde{W}_t := W_t - \frac{1}{\sqrt{\vare
 - Rare events occur along **instanton paths** (minimisers of $I_{0,T}$ subject to the constraint).
 - Large deviations connect stochastic dynamics to **nonlinear Hamilton–Jacobi PDEs**, replacing the linear Kolmogorov equations.
 - The Freidlin–Wentzell LDP applies under **uniform ellipticity**; degenerate cases require separate treatment.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider the small-noise SDE $\mathrm{d}X_t^\varepsilon = -X_t^\varepsilon\,\mathrm{d}t + \sqrt{\varepsilon}\,\mathrm{d}W_t$ with $X_0^\varepsilon = 1$. Write down the deterministic skeleton $\bar{x}(t)$ (the ODE solution with $\varepsilon = 0$). For the path $\phi(t) = e^{-t} + \delta\sin(\pi t/T)$ on $[0, T]$, compute the control $u(t)$ such that $\dot{\phi} = b(\phi) + u$ and express the rate function $I_{0,T}(\phi)$ as an integral involving $u$.
+
+---
+
+**Exercise 2.** Let $b(x) = -V'(x)$ with $V(x) = \frac{1}{2}x^2$ and $\sigma = 1$. Compute the quasipotential $U(y) = \inf\{I_{0,\infty}(\phi) : \phi(0) = 0,\, \phi(\infty) = y\}$ and verify that $U(y) = V(y) - V(0) = \frac{1}{2}y^2$. Show that the Hamiltonian $H(x, p) = -V'(x)\,p + \frac{1}{2}p^2$ satisfies $H(x, \nabla U(x)) = 0$.
+
+---
+
+**Exercise 3.** Consider the double-well potential $V(x) = \frac{1}{4}x^4 - \frac{1}{2}x^2$ with minima at $x = \pm 1$ and a saddle at $x = 0$. For the gradient diffusion $\mathrm{d}X_t^\varepsilon = -V'(X_t^\varepsilon)\,\mathrm{d}t + \sqrt{\varepsilon}\,\mathrm{d}W_t$ started at $X_0 = -1$, compute the potential barrier $\Delta V = V(0) - V(-1)$ and give the exponential rate at which $X^\varepsilon$ escapes from the left well to the right well as $\varepsilon \to 0$.
+
+---
+
+**Exercise 4.** Explain the Girsanov-based derivation of the rate function. For the small-noise SDE $\mathrm{d}X_t^\varepsilon = b(X_t^\varepsilon)\,\mathrm{d}t + \sqrt{\varepsilon}\,\sigma(X_t^\varepsilon)\,\mathrm{d}W_t$, describe how shifting $W_t$ by $u(t)/\sqrt{\varepsilon}$ via Girsanov's theorem produces a change-of-measure density proportional to $\exp(-I_{0,T}(\phi)/\varepsilon)$. Why does Novikov's condition hold for a deterministic control $u \in L^2$?
+
+---
+
+**Exercise 5.** State the upper and lower bounds of the Freidlin–Wentzell LDP. For a continuity set $A$ (where $\inf_{\mathrm{int}(A)} I = \inf_{\bar{A}} I$), show that the two bounds combine to give
+
+$$
+\lim_{\varepsilon \downarrow 0}\;\varepsilon\log\mathbb{P}(X^\varepsilon \in A) = -\inf_{\phi \in A} I_{0,T}(\phi).
+$$
+
+Give a concrete example of a set $A$ in path space that is a continuity set and one that is not.
+
+---
+
+**Exercise 6.** For the small-noise diffusion $\mathrm{d}X_t^\varepsilon = b(X_t^\varepsilon)\,\mathrm{d}t + \sqrt{\varepsilon}\,\sigma(X_t^\varepsilon)\,\mathrm{d}W_t$, define the Hamiltonian $H(x, p) = b(x) \cdot p + \frac{1}{2}p^\top a(x)\,p$ with $a = \sigma\sigma^\top$. Write down the Hamilton equations (the Euler–Lagrange equations for minimising $I_{0,T}$) and show that the instanton path $\phi^*$ satisfies
+
+$$
+\dot{\phi}^* = b(\phi^*) + a(\phi^*)\,p^*, \qquad \dot{p}^* = -(\nabla_x b)^\top p^* - \frac{1}{2}\nabla_x(p^{*\top} a\,p^*),
+$$
+
+where $p^*$ is the conjugate momentum.
+
+---
+
+**Exercise 7.** Consider the two-dimensional system $\mathrm{d}X_t^\varepsilon = A X_t^\varepsilon\,\mathrm{d}t + \sqrt{\varepsilon}\,\mathrm{d}W_t$ where $A$ is a $2 \times 2$ stable matrix (all eigenvalues have negative real part) and $X_0^\varepsilon = 0$. Write down the rate function $I_{0,T}(\phi)$ for a path $\phi$ with $\phi(0) = 0$. Show that the quasipotential $U(y) = \inf_{\phi(0) = 0,\, \phi(\infty) = y} I_{0,\infty}(\phi)$ is a quadratic form $U(y) = \frac{1}{2}y^\top Q\,y$ and find the matrix equation that $Q$ must satisfy in terms of $A$.

@@ -420,3 +420,37 @@ The SEP can be extended to other Markov processes:
 5. **Multi-marginal extensions**: When multiple marginals are observed, iterated embeddings tighten the bounds while preserving the structural connection between specific embeddings and specific payoffs
 
 6. **Computational tractability**: Both continuous (PDE-based) and discrete (LP-based) methods are available for computing optimal embeddings and the associated robust bounds
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $\mu = \frac{1}{2}\delta_{-1} + \frac{1}{2}\delta_{+1}$. Compute the first exit time $\tau_1 = \inf\{t \geq 0 : |B_t| = 1\}$ and verify that $B_{\tau_1} \sim \mu$. Using the identity $\mathbb{E}[\tau] = \text{Var}(\mu)$, confirm that $\mathbb{E}[\tau_1] = 1$.
+
+---
+
+**Exercise 2.** For the target measure $\mu = \frac{1}{3}\delta_{-2} + \frac{1}{3}\delta_{0} + \frac{1}{3}\delta_{+2}$, verify that $\mu$ is centered and compute its variance. Then explain why the first exit time from $\{-2, +2\}$ does not embed $\mu$ (since it misses the atom at 0), and describe how Skorokhod's original iterative construction could be adapted to embed this measure.
+
+---
+
+**Exercise 3.** Compute the barycentre function $\psi(x) = \mathbb{E}_\mu[X \mid X \geq x]$ for the distribution $\mu = \frac{1}{2}\delta_{-1} + \frac{1}{2}\delta_{+3}$ (which has mean 1, so start Brownian motion at $B_0 = 1$). Write down the Azema-Yor stopping time $\tau_{AY} = \inf\{t \geq 0 : B_t \leq \psi^{-1}(\overline{B}_t)\}$ explicitly. Verify that $\overline{B}_{\tau_{AY}} = \psi(B_{\tau_{AY}})$ a.s.
+
+---
+
+**Exercise 4.** Prove that among all stopping times $\tau$ embedding the measure $\mu$, the Azema-Yor embedding maximizes $\mathbb{E}[\overline{B}_\tau]$. Use the fact that $\overline{B}_{\tau_{AY}} = \psi(B_{\tau_{AY}})$ and Jensen's inequality to show that for any other embedding $\tau'$:
+
+$$
+\mathbb{E}[\overline{B}_{\tau'}] \leq \mathbb{E}[\psi(B_{\tau'})] = \mathbb{E}[\psi(B_{\tau_{AY}})] = \mathbb{E}[\overline{B}_{\tau_{AY}}]
+$$
+
+---
+
+**Exercise 5.** State the Dambis-Dubins-Schwarz theorem and explain how it reduces the robust pricing of a lookback option $\Phi = \max_{0 \leq t \leq T} S_t - S_T$ to an optimization over Skorokhod embeddings. Specifically, if $S_t$ is a continuous martingale with $S_T \sim \mu$, show that $\max_{t \leq T} S_t$ has the same law as $S_0 + \overline{W}_\tau$ for some stopping time $\tau$ embedding $\mu$.
+
+---
+
+**Exercise 6.** Consider the Root embedding for $\mu = \frac{1}{2}\delta_{-1} + \frac{1}{2}\delta_{+1}$. Describe the Root barrier $\mathcal{R} = \{(t, x) : t \geq r(x)\}$ qualitatively: for which values of $x$ is $r(x)$ finite, and for which is $r(x) = 0$ or $r(x) = \infty$? Compare the expected stopping time $\mathbb{E}[\tau_R]$ to that of the first exit time embedding from Exercise 1.
+
+---
+
+**Exercise 7.** In a multi-marginal setting with marginals $\mu_1 \preceq_{cx} \mu_2$ observed at times $T_1 < T_2$, explain why adding the constraint $S_{T_1} \sim \mu_1$ tightens the robust upper bound for a lookback call compared to the single-marginal bound. Illustrate with $\mu_1 = \frac{1}{2}\delta_{90} + \frac{1}{2}\delta_{110}$ and $\mu_2 = \frac{1}{4}\delta_{70} + \frac{1}{2}\delta_{100} + \frac{1}{4}\delta_{130}$, with $S_0 = 100$.

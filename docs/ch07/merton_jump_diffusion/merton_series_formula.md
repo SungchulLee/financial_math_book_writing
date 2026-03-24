@@ -253,3 +253,29 @@ This asymmetric impact across strikes is precisely what generates the implied vo
 ## Summary
 
 The Merton series formula decomposes the European option price into a Poisson-weighted sum of Black-Scholes prices, each evaluated at adjusted volatility $\sigma_n^2 = \sigma^2 + n\sigma_J^2/T$ and rate $r_n = r - \lambda\bar{k} + n\ln(1+\bar{k})/T$. The series converges rapidly due to the factorial decay of Poisson weights, with 10--20 terms typically sufficient for machine precision. The formula reduces to Black-Scholes when $\lambda = 0$ and generates an implied volatility smile that steepens at short maturities, matching the empirical behavior that pure diffusion models cannot reproduce.
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify that the Merton series formula reduces to the standard Black-Scholes formula when $\lambda = 0$. Specifically, show that $w_0 = 1$, $w_n = 0$ for $n \geq 1$, $\sigma_0 = \sigma$, and $r_0 = r$.
+
+---
+
+**Exercise 2.** For the parameters $S_0 = 100$, $K = 100$, $T = 0.5$, $r = 0.05$, $\sigma = 0.20$, $\lambda = 1.0$, $\mu_J = -0.05$, $\sigma_J = 0.20$: (a) Compute $\bar{k}$ and $\lambda'$. (b) Compute the Poisson weights $w_0, w_1, w_2, w_3$. (c) Compute the adjusted volatilities $\sigma_0, \sigma_1, \sigma_2$ and rates $r_0, r_1, r_2$. (d) Estimate the option price by summing the first 4 terms of the series.
+
+---
+
+**Exercise 3.** The truncation error of the Merton series after $M$ terms is bounded by $S_0 \sum_{n=M+1}^{\infty} w_n$. For $\lambda' T = 2$, how many terms are needed to ensure truncation error below $10^{-8}$? Use the Poisson tail bound to estimate.
+
+---
+
+**Exercise 4.** Explain the asymmetric impact of jumps across strikes: why do jumps increase OTM put prices more than OTM call prices when $\mu_J < 0$? Relate your answer to the probability of large downward moves under the conditional distribution $\ln(S_T/S_0) | N_T = n$.
+
+---
+
+**Exercise 5.** In the pure jump case ($\sigma = 0$), the $n = 0$ term has $\sigma_0 = 0$. Explain what happens to $C_{\text{BS}}(S_0, K, T, r_0, 0)$ and why this term produces a digital-like payoff. What is the economic interpretation of the $n = 0$ term in this limiting case?
+
+---
+
+**Exercise 6.** The Merton series formula expresses the option price as a mixture of Black-Scholes prices. Use this interpretation to prove that put-call parity $C - P = S_0 - Ke^{-rT}$ holds for the Merton model without computing the prices explicitly.

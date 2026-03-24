@@ -289,3 +289,29 @@ $$
 | Rannacher (implicit start + CN) | Yes (effectively) | Yes |
 
 The Barles-Souganidis theorem provides the definitive convergence guarantee for finite difference methods applied to option pricing PDEs. Its practical message is clear: ensure your scheme is monotone (non-negative coefficients, CFL condition, or implicit time stepping) to guarantee convergence to the correct price, especially for American options and problems with non-smooth data.
+
+---
+
+## Exercises
+
+**Exercise 1.** State the Barles-Souganidis theorem precisely. What are the four hypotheses, and what is the conclusion? Compare this to the Lax equivalence theorem and explain why the additional monotonicity condition is needed.
+
+---
+
+**Exercise 2.** Verify each of the three Barles-Souganidis conditions for the explicit scheme with the CFL condition satisfied: (a) monotonicity from non-negative stencil coefficients, (b) stability from the discrete maximum principle, (c) consistency from Taylor expansion of the local truncation error.
+
+---
+
+**Exercise 3.** The Crank-Nicolson scheme fails the monotonicity condition because its amplification factor can be negative for high-frequency modes. Give a concrete example with specific parameter values where this failure produces visible oscillations in the numerical solution.
+
+---
+
+**Exercise 4.** The Godunov-type barrier states that monotone schemes are limited to first-order accuracy. Explain the practical resolution of this accuracy-monotonicity tradeoff: how does the Rannacher time-stepping strategy achieve effectively second-order accuracy while maintaining monotonicity where it matters?
+
+---
+
+**Exercise 5.** For the American option obstacle problem with projection $u_j^{n+1} = \max(\text{time-step result}, \Phi_j)$, explain why the $\max$ operation preserves monotonicity. Specifically, show that if the time-stepping scheme is monotone and $u \leq v$ at all nodes, then $\max(u_j, \Phi_j) \leq \max(v_j, \Phi_j)$.
+
+---
+
+**Exercise 6.** The Barles-Souganidis theorem guarantees convergence but does not provide a convergence rate. Why is this limitation important in practice? Describe how you would empirically determine the convergence rate of a monotone scheme for an American put option where no analytical solution is available.

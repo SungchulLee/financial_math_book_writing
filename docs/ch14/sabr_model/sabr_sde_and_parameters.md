@@ -251,3 +251,33 @@ The SABR model is defined by a driftless CEV forward process coupled with a logn
 - Hagan, P., Kumar, D., Lesniewski, A., & Woodward, D. (2002). *Managing smile risk*. Wilmott Magazine, 1, 84--108.
 - Rebonato, R., McKay, K., & White, R. (2009). *The SABR/LIBOR Market Model*. Wiley.
 - Gatheral, J. (2006). *The Volatility Surface: A Practitioner's Guide*. Wiley, Chapter 7.
+
+---
+
+## Exercises
+
+**Exercise 1.** Write down the SABR SDE system for the special case $\beta = 0$ (normal SABR). Show that the forward $F_t$ can become negative. Compute the expected value $\mathbb{E}[F_T]$ and explain why it equals $F_0$ (the martingale property).
+
+---
+
+**Exercise 2.** Using the Cholesky decomposition $W_t^{(2)} = \rho\,B_t^{(1)} + \sqrt{1-\rho^2}\,B_t^{(2)}$, verify that $\text{Var}[W_t^{(2)}] = t$ and $\text{Cov}[W_t^{(1)}, W_t^{(2)}] = \rho t$. For $\rho = -0.65$, compute the fraction of the volatility shock $dW^{(2)}$ that is correlated with the forward shock $dW^{(1)}$ versus the orthogonal component.
+
+---
+
+**Exercise 3.** The volatility process $\sigma_t = \alpha\exp(-\nu^2 t/2 + \nu W_t^{(2)})$ is a geometric Brownian motion. For $\alpha = 0.03$, $\nu = 0.5$, compute the expected value, variance, and 95th percentile of $\sigma_T$ at $T = 1$ and $T = 5$. Explain why the absence of mean reversion makes the SABR model less suitable for multi-expiry calibration.
+
+---
+
+**Exercise 4.** The backbone relationship is $\sigma_{\text{ATM}} \approx \alpha / F^{1-\beta}$. For $\alpha = 0.04$ and $F = 3\%$, compute $\sigma_{\text{ATM}}$ for $\beta = 0, 0.5, 1.0$. If the forward drops from 3% to 2%, recompute $\sigma_{\text{ATM}}$ for each $\beta$. Which value of $\beta$ produces the largest change in ATM vol for a given forward move?
+
+---
+
+**Exercise 5.** Explain the moment explosion property: $\mathbb{E}[\sigma_t^n] = \alpha^n\exp(n(n-1)\nu^2 t/2)$. For $\alpha = 0.03$, $\nu = 0.5$, compute $\mathbb{E}[\sigma_1^2]$ and $\mathbb{E}[\sigma_1^4]$. At what maturity $T^*$ does the fourth moment exceed $10^6 \cdot \alpha^4$? What are the implications for Monte Carlo simulation convergence?
+
+---
+
+**Exercise 6.** The SABR model has four parameters but only three are typically calibrated ($\alpha, \rho, \nu$) while $\beta$ is fixed. Explain the identifiability issue: why can't $\beta$ and $\alpha$ be simultaneously determined from smile data alone? (Hint: consider how $\alpha$ and $\beta$ jointly affect the ATM implied volatility through $\sigma_{\text{ATM}} \approx \alpha/F^{1-\beta}$.)
+
+---
+
+**Exercise 7.** Compare the SABR and Heston models by identifying which feature of the implied volatility surface each model is better equipped to capture. Specifically, for each of the following, state which model performs better and why: (a) single-expiry smile fitting; (b) term structure of ATM volatility; (c) calibration speed; (d) handling negative rates; (e) consistency across expiries.

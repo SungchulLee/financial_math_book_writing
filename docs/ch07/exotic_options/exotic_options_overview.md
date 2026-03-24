@@ -123,3 +123,29 @@ where the expectation must account for path-dependent features—this is what ma
 | Market role | Hedging, cost reduction, structured products, tailored speculation |
 
 **Exotic options extend the vanilla framework by introducing path dependency and structural complexity, requiring pricing methods that go beyond closed-form solutions to simulation and tree-based approaches.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a derivative with payoff $\Phi = f(\{S_t\}_{0 \leq t \leq T})$, where $f$ depends on the entire price path. Explain precisely what "path dependency" means mathematically and why it prevents the use of a single terminal distribution $S_T$ for pricing. Give one example each of a payoff that is path-dependent and one that is not.
+
+---
+
+**Exercise 2.** A vanilla European call on a stock with $S_0 = 100$, $K = 100$, $T = 1$, $r = 5\%$, $\sigma = 20\%$ costs approximately $\$10.45$. Without computing exact prices, rank the following from cheapest to most expensive and justify each ordering using no-arbitrage arguments: (a) a down-and-out call with barrier $H = 80$, (b) the vanilla call, (c) a fixed-strike lookback call, (d) an arithmetic average-price call.
+
+---
+
+**Exercise 3.** Explain why Asian options are popular in commodity markets but barrier options are more common in FX markets. Relate your answer to the specific financial risks each instrument is designed to hedge.
+
+---
+
+**Exercise 4.** A chooser option allows the holder to choose at time $t_c$ whether the option is a call or a put. Explain why a chooser option is always cheaper than a straddle (i.e., buying both a call and a put with the same strike and maturity). Under what conditions does the chooser price approach the straddle price?
+
+---
+
+**Exercise 5.** The pricing formula for any exotic option under risk-neutral valuation is $V_0 = e^{-rT} \mathbb{E}^{\mathbb{Q}}[\Phi(\{S_t\})]$. For a vanilla option, this expectation depends only on the marginal distribution of $S_T$. For which of the following exotics does the pricing require knowledge of the full joint distribution of $(S_{t_1}, S_{t_2}, \ldots, S_{t_n})$, and for which does the marginal of $S_T$ (possibly augmented with one additional statistic) suffice? (a) Barrier option, (b) Asian option, (c) Digital option, (d) Lookback option.
+
+---
+
+**Exercise 6.** Consider a multi-asset exotic whose payoff depends on $d$ correlated assets. Explain why Monte Carlo simulation is preferred over binomial trees for $d \geq 3$. Quantify the computational cost of each method as a function of $d$ and the number of discretization points $N$.

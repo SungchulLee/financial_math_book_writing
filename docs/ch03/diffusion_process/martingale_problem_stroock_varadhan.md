@@ -145,3 +145,45 @@ which (by the Itô isometry) ensures the stochastic integral is square-integrabl
 - The **Stroock–Varadhan theorem**: bounded measurable $b$ + bounded continuous uniformly elliptic $a$ $\Rightarrow$ well-posedness.
 - Well-posedness of the martingale problem $\Leftrightarrow$ uniqueness in law for the SDE.
 - The martingale problem is the right framework for non-Lipschitz and degenerate coefficients.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $d = 1$, $b(x) = -\theta x$, and $a(x) = \sigma^2$ (constants $\theta > 0$, $\sigma > 0$). Write down the generator $\mathcal{L}$ and explicitly verify that for $f(x) = x$, the process
+
+$$
+M_t^f = X_t - X_0 + \theta\int_0^t X_s\,\mathrm{d}s
+$$
+
+is a martingale when $X_t$ is an Ornstein–Uhlenbeck process.
+
+---
+
+**Exercise 2.** Using the test function $f(x) = x^i x^j$ in the martingale problem formulation, derive the identity $\mathrm{d}\langle X^i, X^j \rangle_t = a^{ij}(X_t)\,\mathrm{d}t$. Explain the localisation argument needed since $f(x) = x^i x^j$ is not in $C_c^\infty(\mathbb{R}^d)$.
+
+---
+
+**Exercise 3.** Consider $d = 1$ with $b = 0$ and $\sigma(x) = |x|^\alpha$ for $\alpha \in (0,1)$. For which values of $\alpha$ does the Yamada–Watanabe criterion guarantee pathwise uniqueness of the SDE $\mathrm{d}X_t = |X_t|^\alpha\,\mathrm{d}W_t$? For the remaining values, explain why uniqueness in law (well-posedness of the martingale problem) may still hold or fail.
+
+---
+
+**Exercise 4.** State the conditions of the Stroock–Varadhan theorem. For each condition (bounded measurable $b$, bounded continuous $a$, uniform ellipticity), give a concrete one-dimensional example where the condition is violated and describe what goes wrong (non-existence, non-uniqueness, or both).
+
+---
+
+**Exercise 5.** Show that if $X_t$ is a strong solution to the SDE $\mathrm{d}X_t^i = b^i(X_t)\,\mathrm{d}t + \sigma^{i\alpha}(X_t)\,\mathrm{d}W_t^\alpha$ and $f \in C_c^\infty(\mathbb{R}^d)$, then the stochastic integral
+
+$$
+\int_0^t \frac{\partial f}{\partial x_i}(X_s)\,\sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^\alpha
+$$
+
+is a true martingale (not merely a local martingale). What integrability condition on $\nabla f$ and $\sigma$ is used?
+
+---
+
+**Exercise 6.** Explain the relationship between pathwise uniqueness, uniqueness in law, and well-posedness of the martingale problem. State the Yamada–Watanabe theorem and use it to show that pathwise uniqueness implies uniqueness in law but not vice versa. Give a concrete example where uniqueness in law holds but pathwise uniqueness fails.
+
+---
+
+**Exercise 7.** Let $\mathcal{L}_1$ and $\mathcal{L}_2$ be two generators with the same $a^{ij}$ but different drifts $b_1^i \ne b_2^i$. Suppose both martingale problems are well-posed. Can the two solutions have the same law? Justify your answer by considering the martingale $M_t^f$ for a suitable choice of test function $f$.

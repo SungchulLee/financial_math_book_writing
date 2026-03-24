@@ -235,3 +235,27 @@ The Heston model is a bivariate SDE system in which the asset price follows a ge
 The next section examines the [connection to the general stochastic volatility framework](connection_to_sv_framework.md), showing how the Heston model specializes a broader class of SV models.
 
 ---
+
+## Exercises
+
+**Exercise 1.** Starting from $dS_t = rS_t\,dt + \sqrt{V_t}\,S_t\,dW_t^S$, apply Ito's lemma to derive the SDE for $x_t = \log S_t$. Identify the drift and diffusion of $x_t$ and explain why the drift contains the term $-\frac{1}{2}V_t$.
+
+---
+
+**Exercise 2.** The Heston model has five parameters: $\kappa$, $\theta$, $\sigma_v$, $\rho$, and $V_0$. Describe the financial role of each parameter. Which parameter controls the overall level of implied volatility? Which controls the skew? Which controls the smile's convexity?
+
+---
+
+**Exercise 3.** Show that if $\sigma_v = 0$ (zero vol-of-vol), the Heston model collapses to the Black-Scholes model with deterministic (but time-varying) variance. What happens to the implied volatility surface in this limit?
+
+---
+
+**Exercise 4.** Compute the instantaneous covariance $\operatorname{Cov}(dx_t, dV_t) = \rho\sigma_v V_t\,dt$ between the log-price and the variance. For $\rho = -0.7$, $\sigma_v = 0.3$, and $V_t = 0.04$, evaluate this covariance numerically and interpret its sign.
+
+---
+
+**Exercise 5.** The variance process $dV_t = \kappa(\theta - V_t)\,dt + \sigma_v\sqrt{V_t}\,dW_t^V$ has mean-reverting drift. Compute $\mathbb{E}[V_t \mid V_0]$ by solving the ODE $\frac{d}{dt}\mathbb{E}[V_t] = \kappa(\theta - \mathbb{E}[V_t])$ and show that $\mathbb{E}[V_t] = \theta + (V_0 - \theta)e^{-\kappa t}$.
+
+---
+
+**Exercise 6.** For a typical equity calibration ($\kappa = 2$, $\theta = 0.04$, $\sigma_v = 0.5$, $\rho = -0.75$, $V_0 = 0.04$), compute the half-life of mean reversion $t_{1/2} = \ln 2/\kappa$ and the stationary standard deviation of $V_t$. Is the Feller condition $2\kappa\theta \geq \sigma_v^2$ satisfied?

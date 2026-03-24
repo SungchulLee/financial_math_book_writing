@@ -335,3 +335,29 @@ Risk-sensitive control generalizes exponential utility to multi-period settings.
 - **Interpretation**: Balances expected cost against variability
 
 Risk-sensitive control provides a principled framework for incorporating risk preferences into dynamic optimization, with deep connections to robust control, information theory, and financial economics.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the risk-sensitive criterion $J_\gamma = \frac{1}{\gamma}\log \mathbb{E}[e^{\gamma \sum_{t=0}^T c_t}]$ with a quadratic stage cost $c_t = x_t^2 + u_t^2$, show that as $\gamma \to 0$, $J_\gamma \to \mathbb{E}[\sum_t c_t]$ (risk-neutral case). Then compute the second-order expansion $J_\gamma \approx \mathbb{E}[C] + \frac{\gamma}{2}\text{Var}(C)$ where $C = \sum_t c_t$, demonstrating that risk sensitivity penalizes variance.
+
+---
+
+**Exercise 2.** Prove the duality between risk-sensitive control and robust control: show that $\frac{1}{\gamma}\log \mathbb{E}_{P_0}[e^{\gamma C}] = \sup_{P \ll P_0}\{\mathbb{E}_P[C] - \frac{1}{\gamma}D_{\text{KL}}(P \| P_0)\}$. Interpret the worst-case measure $P^*$ and explain how the parameter $\gamma$ trades off expected cost against model uncertainty.
+
+---
+
+**Exercise 3.** In the linear-quadratic-Gaussian setting with dynamics $x_{t+1} = Ax_t + Bu_t + w_t$, $w_t \sim N(0, \Sigma_w)$, the risk-sensitive optimal control satisfies a modified Riccati equation. Compare the risk-sensitive gain matrix with the standard LQG gain for $A = 0.9$, $B = 1$, $Q = 1$, $R = 0.1$, $\Sigma_w = 0.25$, and $\gamma = 0.5$. How does risk sensitivity change the optimal control law?
+
+---
+
+**Exercise 4.** Calibrate the risk sensitivity parameter $\gamma$ using the detection error probability method. Given a reference model $P_0$ and a worst-case model $P^*$, the detection error probability is $p_e = \frac{1}{2}(P_0(\text{reject } P_0) + P^*(\text{reject } P^*))$. For a Gaussian reference model, show that $p_e$ depends on the KL divergence between $P_0$ and $P^*$, and determine $\gamma$ such that $p_e = 0.10$.
+
+---
+
+**Exercise 5.** Apply risk-sensitive control to a Merton portfolio problem. An investor with risk-sensitive criterion $\frac{1}{\gamma}\log \mathbb{E}[e^{\gamma W_T}]$ chooses the fraction of wealth in a risky asset with return $\mu = 0.08$ and volatility $\sigma = 0.20$. Derive the optimal portfolio weight and show that it is smaller than the Merton ratio $\mu/(\sigma^2)$ for $\gamma > 0$.
+
+---
+
+**Exercise 6.** In an asset-liability management context, a pension fund must match liabilities $L_T$ at time $T$. Formulate the risk-sensitive ALM problem as $\min_u \frac{1}{\gamma}\log \mathbb{E}[e^{\gamma(L_T - A_T)^2}]$ where $A_T$ is the asset value. Explain how $\gamma$ controls the fund's aversion to shortfall risk, and why the risk-sensitive formulation is more appropriate than the standard mean-variance approach for pension funds.

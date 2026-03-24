@@ -180,3 +180,29 @@ Beyond numerical issues, some models have inherent Greek instabilities:
 - Optimal step size balances truncation and noise: \(h \sim \epsilon^{1/4}\)
 - Robust systems smooth or bucket sensitivities
 - Alternative methods (LR, AD) can avoid finite-difference instabilities
+
+---
+
+## Exercises
+
+**Exercise 1.** The finite-difference gamma formula is $\Gamma_{\text{num}} = (V(S+h) - 2V(S) + V(S-h))/h^2$ with error $\mathcal{O}(\epsilon/h^2) + \mathcal{O}(h^2)$. For a Monte Carlo price with $N = 10{,}000$ paths ($\epsilon \sim N^{-1/2} = 0.01$), compute the optimal step size $h_{\text{opt}} \sim \epsilon^{1/4}$ and the achievable accuracy. Repeat for $N = 1{,}000{,}000$ paths. How does the number of paths affect the quality of gamma estimation?
+
+---
+
+**Exercise 2.** Consider the speed formula $\text{Speed}_{\text{num}} = (V(S+2h) - 2V(S+h) + 2V(S-h) - V(S-2h))/(2h^3)$. If the option price is computed to accuracy $\epsilon = 10^{-4}$, derive the optimal step size by balancing $\mathcal{O}(\epsilon/h^3)$ noise against $\mathcal{O}(h^2)$ truncation error. What achievable accuracy does this give, and how does it compare to gamma's achievable accuracy?
+
+---
+
+**Exercise 3.** For an ATM call with $S = K = 100$, $\sigma = 0.20$, compute $\Gamma$ and $\partial\Gamma/\partial S$ (speed) at $\tau = 30$ days, $\tau = 7$ days, and $\tau = 1$ day using the Black-Scholes formula. Verify the scaling $\Gamma \sim \tau^{-1/2}$ and $\partial\Gamma/\partial S \sim \tau^{-1}$. At what maturity does the condition number $\kappa_\Gamma = |\Gamma| h^2 / |V|$ exceed 1 for $h = 0.01$?
+
+---
+
+**Exercise 4.** Polynomial fitting is used to stabilize gamma estimation: fit $V(S)$ to a degree-4 polynomial $V(S) \approx a_0 + a_1(S - S_0) + a_2(S - S_0)^2 + a_3(S - S_0)^3 + a_4(S - S_0)^4$ using option prices at $S = 98, 99, 100, 101, 102$. If $\Gamma \approx 2a_2$, explain why this is more stable than the three-point finite difference. What is the effective smoothing being applied?
+
+---
+
+**Exercise 5.** The gamma profile for an ATM option has spatial width $\sim \sigma\sqrt{\tau}$. For a finite-difference step $h$ used in delta computation, explain why $h$ must satisfy $h \ll \sigma\sqrt{\tau}$ for the delta estimate to be meaningful. For $\sigma = 0.20$ and $\tau = 1$ day, compute $\sigma\sqrt{\tau}$ and identify the range of acceptable $h$ values. What happens when $h$ exceeds this scale?
+
+---
+
+**Exercise 6.** Compare three approaches to computing gamma for a near-expiry digital call ($\tau = 1$ day, $S = K = 100$, $\sigma = 0.20$): (a) central finite differences with optimal $h$; (b) the likelihood ratio method $\Gamma = \mathbb{E}[e^{-r\tau}\Phi(S_T) H_\Gamma]$ with 100,000 Monte Carlo paths; (c) bucketing over the interval $[99, 101]$. Discuss the relative advantages and limitations of each approach for this extreme case.

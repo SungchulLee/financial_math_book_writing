@@ -191,3 +191,29 @@ This demonstrates: unhedged P&L is dominated by directional moves, static delta 
 - Straddles and strangles provide symmetric exposure to large moves (or calm markets).
 - Risk reversals combine directional and volatility views, often exploiting skew.
 - Understanding the Greek profile of each strategy is essential before entering any position.
+
+---
+
+## Exercises
+
+**Exercise 1.** A trader constructs a long straddle by buying an ATM call and an ATM put, each priced at $\$5.00$. The combined premium is $\$10.00$. Compute the breakeven stock prices at expiry. If the underlying finishes at $S_T = 115$ with $K = 100$, what is the profit or loss?
+
+---
+
+**Exercise 2.** For a short strangle with $K_1 = 90$ (put) and $K_2 = 110$ (call), both OTM, the trader collects a total premium of $\$3.50$. Determine the breakeven levels and the maximum profit. Compute the P&L at $S_T = 85$ and $S_T = 120$.
+
+---
+
+**Exercise 3.** Using the Greek summary table, explain why a long straddle has $\Delta \approx 0$ initially but $\Gamma > 0$. As the underlying moves from $S = 100$ to $S = 108$, how does the portfolio delta change? What must the trader do to maintain delta neutrality?
+
+---
+
+**Exercise 4.** A risk reversal is constructed by buying a call at $K = 110$ and selling a put at $K = 90$ with $S_0 = 100$. If the call costs $\$3.00$ and the put premium received is $\$3.50$, what is the net premium? Compute the P&L at $S_T = 80$, $100$, and $120$. Explain why this strategy expresses both a directional and a volatility view.
+
+---
+
+**Exercise 5.** Explain the gamma-theta tradeoff for a short gamma position. If a trader sells an ATM straddle with $\Gamma = -0.08$ (portfolio) and $\Theta = +0.15$ per day, compute the P&L after one day if the underlying: (a) does not move; (b) moves by $2\%$; (c) moves by $5\%$. At what daily move does the gamma loss exceed the theta gain?
+
+---
+
+**Exercise 6.** Extend the P&L simulator to include a **long strangle** strategy. Compute and plot the P&L as a function of the final stock price for $K_1 = 90$, $K_2 = 110$, with both options having $\tau = 0.5$, $\sigma = 0.25$, $r = 0.03$. How does the profile compare to a long straddle at $K = 100$?

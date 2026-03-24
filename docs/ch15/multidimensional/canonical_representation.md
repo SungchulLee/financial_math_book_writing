@@ -207,3 +207,29 @@ The canonical representation of affine processes resolves the inherent redundanc
 - Duffie, D., Filipovic, D., and Schachermayer, W. (2003). "Affine Processes and Applications in Finance." *Annals of Applied Probability*, 13(3), 984--1053.
 - Dai, Q. and Singleton, K. (2000). "Specification Analysis of Affine Term Structure Models." *Journal of Finance*, 55(5), 1943--1978.
 - Collin-Dufresne, P., Goldstein, R., and Jones, C. (2008). "Identification of Maximal Affine Term Structure Models." *Journal of Finance*, 63(2), 743--795.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a one-factor Vasicek model $dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t$ with short rate $r_t = X_t$. Apply the affine transformation $\tilde{X}_t = cX_t + d$ for constants $c > 0$ and $d$. Derive the SDE for $\tilde{X}_t$ and show it is still Vasicek with transformed parameters. Express $\tilde{\kappa}$, $\tilde{\theta}$, $\tilde{\sigma}$ in terms of the original parameters and $c$, $d$.
+
+---
+
+**Exercise 2.** For the $A_0(2)$ family (two Gaussian factors), count the number of free parameters in the unrestricted model (drift $b_0 \in \mathbb{R}^2$, $B \in \mathbb{R}^{2 \times 2}$, $a_0 \in \mathbb{S}^2_+$, $\rho_0 \in \mathbb{R}$, $\rho_1 \in \mathbb{R}^2$). Then count the degrees of freedom in the transformation group (invertible $C \in \mathbb{R}^{2 \times 2}$ and $c \in \mathbb{R}^2$). How many parameters remain after canonical normalization?
+
+---
+
+**Exercise 3.** Explain why two different parametrizations of an affine model that are related by an invertible affine state transformation produce identical bond prices, yield curves, and option prices. Show this explicitly for the zero-coupon bond price $P(t,T) = e^{A(\tau) + B(\tau)^\top x}$ by computing how $A$ and $B$ transform.
+
+---
+
+**Exercise 4.** The canonical form for the CIR process normalizes $\xi = 1$ (or equivalently $a_1 = 1$). Given an arbitrary CIR process with parameters $(\kappa, \theta, \xi)$, find the transformation $\tilde{X}_t = cX_t$ that achieves $\tilde{\xi} = 1$ and express the canonical parameters $(\tilde{\kappa}, \tilde{\theta})$ in terms of the originals.
+
+---
+
+**Exercise 5.** For the $A_1(2)$ model (one CIR, one Gaussian), the Dai-Singleton canonical form fixes certain entries of the drift matrix $B$ and the diffusion matrices. List the normalization constraints and count the remaining free parameters. Compare this to the number of parameters in the most general unconstrained $A_1(2)$ specification.
+
+---
+
+**Exercise 6.** Explain why the identification problem is more severe for affine term structure models (where only bond prices are observed) than for models where the state vector itself is observed. How does the canonical representation help in maximum likelihood estimation of affine term structure models?

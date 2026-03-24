@@ -257,3 +257,29 @@ $$
 | Entropy minimization | Stay close to physical measure |
 
 **In incomplete markets, arbitrage-free pricing provides bounds rather than unique prices, requiring additional economic or mathematical criteria to pin down specific values.**
+
+---
+
+## Exercises
+
+**Exercise 1.** In the Black-Scholes model, the market is complete because there is one source of randomness and one traded asset (plus the bond). In the Heston model, there are two sources of randomness but still only one traded risky asset. (a) Explain why this leads to incompleteness. (b) If variance swaps were liquidly traded, would the Heston market become complete? Justify your answer.
+
+---
+
+**Exercise 2.** The superhedging price $\overline{\pi}(H) = \inf\{x : \exists \theta \text{ s.t. } x + \int_0^T \theta_t\,dS_t \geq H \text{ a.s.}\}$ is the cost of the cheapest portfolio that dominates the payoff. (a) Explain why the superhedging price is always at least as large as any arbitrage-free price. (b) Why is the superhedging price often impractically large for insurance products? (c) How does the subhedging price provide a lower bound?
+
+---
+
+**Exercise 3.** The utility indifference price $\pi^U(H)$ satisfies $\sup_\theta \mathbb{E}[U(X_T^{x-\pi^U}+H)] = \sup_\theta \mathbb{E}[U(X_T^x)]$. For exponential utility $U(x) = -e^{-\gamma x}$: (a) Show that the indifference price is independent of the investor's initial wealth $x$. (b) Explain why the indifference price lies in the no-arbitrage interval $[\underline{\pi}, \overline{\pi}]$. (c) What happens to $\pi^U$ as $\gamma \to 0$ (risk-neutral investor) and as $\gamma \to \infty$ (infinitely risk-averse)?
+
+---
+
+**Exercise 4.** For the Heston model, the market price of volatility risk $\lambda(t, v_t)$ is not determined by no-arbitrage. (a) Describe how calibration to market option prices implicitly selects a specific $\lambda$. (b) Explain why two different calibrated Heston models (with different parameters but identical vanilla fits) can give different prices for exotic options. (c) How does this relate to the concept of "model risk"?
+
+---
+
+**Exercise 5.** List the four pricing measure selection criteria discussed: minimal martingale, variance-optimal, utility indifference, and entropy minimization. For each, (a) state the defining principle, (b) give one advantage, and (c) describe a situation where that criterion would be preferred.
+
+---
+
+**Exercise 6.** The FTAP (Fundamental Theorem of Asset Pricing) states that the market is complete if and only if there exists exactly one equivalent martingale measure. Using this theorem, prove that adding a liquidly traded variance swap to the Heston model makes the market complete. How many equivalent martingale measures exist before and after adding this instrument?

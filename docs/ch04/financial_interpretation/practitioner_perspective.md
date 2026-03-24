@@ -379,3 +379,64 @@ guarantee. For the mathematical foundations, see
 [Physical vs Risk-Neutral World](physical_vs_risk_neutral_world.md). For the
 conditions under which the framework breaks down entirely, see
 [When Measure Change Fails](when_measure_change_fails.md).
+
+---
+
+## Exercises
+
+**Exercise 1.**
+A stock has physical drift $\mu = 0.15$, volatility $\sigma = 0.25$, and the risk-free rate is $r = 0.04$. A desk calibrates a Black-Scholes model to at-the-money implied volatility and obtains $\sigma_{\mathrm{imp}} = 0.22$. Explain why the calibrated volatility differs from the physical volatility, and state which volatility should be used for pricing a European call option under $\mathbb{Q}$.
+
+---
+
+**Exercise 2.**
+Given the calibration objective
+
+$$
+\hat{\boldsymbol{\alpha}} = \arg\min_{\boldsymbol{\alpha}} \sum_{i=1}^{N} w_i\!\left(C_i^{\mathrm{model}}(\boldsymbol{\alpha}) - C_i^{\mathrm{mkt}}\right)^2
+$$
+
+suppose two different parameter vectors $\boldsymbol{\alpha}_1$ and $\boldsymbol{\alpha}_2$ both achieve the global minimum of the objective for a set of vanilla options. Explain why the prices of an exotic barrier option may still differ under $\boldsymbol{\alpha}_1$ and $\boldsymbol{\alpha}_2$, and relate this to the concept of market incompleteness.
+
+---
+
+**Exercise 3.**
+A delta-hedged short call position has gamma $\Gamma = 0.04$ and current stock price $S = 100$. Over one day ($\Delta t = 1/252$), the realized stock return produces $(\Delta W)^2 = 0.006$ while the model predicts $\sigma^2 \Delta t = 0.0004$. Compute the approximate P&L from the gamma P&L formula
+
+$$
+\text{P\&L} \approx \frac{1}{2}\Gamma\,S^2\left[(\Delta W)^2 - \sigma^2 \Delta t\right]
+$$
+
+and determine whether the position gained or lost money.
+
+---
+
+**Exercise 4.**
+Transaction costs at rate $\kappa$ per dollar traded produce a total hedging cost that scales as $\kappa\,\sigma\,S_0\,\sqrt{T / \Delta t}$, while the hedging error scales as $\Gamma\,\sigma^2\,S_0^2\,\sqrt{\Delta t}$. By minimizing the sum of these two costs with respect to $\Delta t$, derive an expression for the optimal rebalancing interval in terms of $\kappa$, $\sigma$, $\Gamma$, and $S_0$.
+
+---
+
+**Exercise 5.**
+Using the Breeden-Litzenberger formula
+
+$$
+\frac{\partial^2 C}{\partial K^2}\bigg|_{K=k} = e^{-rT}\,q(k, T)
+$$
+
+explain why the risk-neutral density $q(k, T)$ can be extracted from a sufficiently smooth implied volatility surface. If the implied volatility smile is symmetric around the at-the-money strike, what does this imply about the skewness of the risk-neutral distribution?
+
+---
+
+**Exercise 6.**
+Consider the Dupire local volatility formula
+
+$$
+\sigma_{\mathrm{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + rK\frac{\partial C}{\partial K}}{\frac{1}{2}K^2\frac{\partial^2 C}{\partial K^2}}
+$$
+
+Suppose call prices $C(K, T)$ are given by the Black-Scholes formula with constant implied volatility $\sigma_0$. Show that the local volatility surface reduces to $\sigma_{\mathrm{loc}}(K, T) = \sigma_0$ for all $K$ and $T$.
+
+---
+
+**Exercise 7.**
+A desk calibrates three models (Black-Scholes, local volatility, and Heston stochastic volatility) to the same set of vanilla option prices. For a down-and-out call with barrier $B$, the model prices are $V_{\mathrm{BS}} = 4.82$, $V_{\mathrm{LV}} = 5.41$, and $V_{\mathrm{Heston}} = 5.18$. Compute the model risk as defined by $\sup_{\mathcal{M}} V^{\mathcal{M}} - \inf_{\mathcal{M}} V^{\mathcal{M}}$. Explain why barrier options are particularly sensitive to model choice compared to vanilla options.

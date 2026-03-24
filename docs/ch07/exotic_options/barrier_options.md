@@ -185,3 +185,29 @@ $$
 | Cost advantage | Barrier options are cheaper than vanilla (restricted optionality) |
 
 **Barrier options introduce path dependency through threshold conditions, creating a family of derivatives that trade optionality for reduced premiums and are priced using the reflection principle of Brownian motion.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Prove the in-out parity $V_{\text{knock-in}} + V_{\text{knock-out}} = V_{\text{vanilla}}$ rigorously by showing that the sum of knock-in and knock-out payoffs equals the vanilla payoff for every possible path $\{S_t\}_{0 \leq t \leq T}$. State the precise partition of the sample space used in the argument.
+
+---
+
+**Exercise 2.** For a down-and-out call with $S_0 = 100$, $K = 95$, $H = 90$, $T = 1$, $r = 5\%$, $\sigma = 25\%$: (a) Use in-out parity to express the down-and-in call price in terms of the vanilla call and the down-and-out call. (b) If the vanilla call price is $\$14.23$ and the down-and-out call price is $\$10.71$, find the down-and-in call price. (c) Explain intuitively why the down-and-out call is cheaper than the vanilla call.
+
+---
+
+**Exercise 3.** The Rubinstein-Reiner formula for a down-and-out call contains terms involving $(H/S_0)^{2\lambda}$ where $\lambda = (r + \frac{1}{2}\sigma^2)/\sigma^2$. Explain the mathematical origin of this exponent in terms of the reflection principle applied to drifted Brownian motion. What happens to this factor when $r = 0$ and $\sigma^2 = 2$?
+
+---
+
+**Exercise 4.** The Broadie-Glasserman-Kou correction for discrete barrier monitoring is $H_{\text{eff}} = H \cdot e^{\pm \beta \sigma \sqrt{T/m}}$ where $\beta \approx 0.5826$. (a) For a down-and-out call with $H = 90$, $\sigma = 0.20$, $T = 1$, and $m = 252$ (daily monitoring), compute $H_{\text{eff}}$. (b) Explain why the correction shifts the barrier outward (downward for a down barrier). (c) What happens to $H_{\text{eff}}$ as $m \to \infty$?
+
+---
+
+**Exercise 5.** A knock-out barrier option with rebate $R$ pays $R \cdot e^{-r(\tau_H - t)}$ at the time the barrier is first hit. Explain why the rebate is discounted from the hitting time $\tau_H$ rather than from maturity $T$. Write the total payoff formula for a down-and-out call with rebate, carefully distinguishing the two mutually exclusive events.
+
+---
+
+**Exercise 6.** Consider an up-and-out call with $K = 100$ and $H = 120$. As the barrier $H$ approaches the strike $K$ from above, what happens to the option price? As $H \to \infty$, what does the option price converge to? Sketch the option price as a function of $H$ for fixed $S_0 = 100$ and explain the shape of the curve.

@@ -226,3 +226,29 @@ where the parameters are functions of model inputs and $r^*$ solves $P(T_1, T_2,
 
 - Cox, Ingersoll & Ross (1985), "A Theory of the Term Structure of Interest Rates"
 - Brigo & Mercurio, *Interest Rate Models*, Chapter 3
+
+---
+
+## Exercises
+
+**Exercise 1.** State the Feller condition $2\kappa\theta \ge \sigma^2$ for the CIR model and explain its financial significance. For $\kappa = 0.5$, $\theta = 0.04$, determine the maximum $\sigma$ for which the Feller condition holds.
+
+---
+
+**Exercise 2.** Show that the CIR bond price has the affine form $P(t,T) = e^{A(\tau) - B(\tau)r_t}$ by substituting into the term-structure PDE and deriving the Riccati equations for $A$ and $B$. State the boundary conditions $A(0) = 0$, $B(0) = 0$.
+
+---
+
+**Exercise 3.** Compare the CIR and Vasicek models: both are mean-reverting with the same drift structure. The key difference is the diffusion coefficient $\sigma\sqrt{r_t}$ versus $\sigma$. Explain how the square-root diffusion prevents negative rates (when the Feller condition holds) and how it affects the yield curve shape.
+
+---
+
+**Exercise 4.** The CIR transition density is a noncentral chi-squared distribution. For parameters $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.1$, $r_0 = 0.03$, $\Delta t = 0.25$, compute the degrees of freedom and noncentrality parameter. What is $\mathbb{E}[r_{\Delta t}]$ and $\text{Var}(r_{\Delta t})$?
+
+---
+
+**Exercise 5.** Compute the 5-year and 10-year zero-coupon bond prices under CIR with $\kappa = 0.5$, $\theta = 0.04$, $\sigma = 0.08$, $r_0 = 0.03$. Compare to the Vasicek model with the same $\kappa$, $\theta$, $r_0$ and $\sigma = 0.01$ (chosen to give similar yield curve levels). Which model produces a steeper long-end?
+
+---
+
+**Exercise 6.** Explain why the CIR model belongs to the affine term structure class but the Black-Karasinski model does not. What computational consequence does this have for bond pricing and derivative valuation?

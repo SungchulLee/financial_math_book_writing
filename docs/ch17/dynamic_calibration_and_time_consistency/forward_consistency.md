@@ -242,3 +242,33 @@ Quantifying this risk requires:
 - Carmona & Nadtochiy, "Local Volatility Dynamic Models" (2009).
 - Bergomi, *Stochastic Volatility Modeling* (forward variance models).
 - Filipović, *Term-Structure Models: A Graduate Course*.
+
+---
+
+## Exercises
+
+**Exercise 1.** State the definition of forward consistency for a parameterized model. Then consider a simple model where option prices depend on a single parameter $\sigma$ (implied volatility). The model dynamics predict that $\sigma_{t+\Delta t} = \sigma_t + \mu\Delta t + \eta\sqrt{\Delta t}\,Z$ where $Z \sim N(0,1)$. If recalibration at $t + \Delta t$ yields $\hat{\sigma}_{t+\Delta t}$ that differs systematically from the model-predicted $\sigma_{t+\Delta t}$, explain what this implies about forward consistency.
+
+---
+
+**Exercise 2.** In the HJM framework, the no-arbitrage drift condition is $\alpha(t,T) = \sigma(t,T)\int_t^T \sigma(t,u)\,du$. Derive this condition starting from the requirement that discounted bond prices are martingales under the risk-neutral measure. Show each step of the derivation.
+
+---
+
+**Exercise 3.** Consider the Heston model with parameters $(\kappa, \bar{v}, \sigma_v, \rho, v_0)$. Explain why the model is not forward consistent by constructing a concrete example: calibrate on day $t$ to obtain $\hat{v}_0 = 0.04$; evolve $v_t$ one day according to the CIR dynamics with $\kappa = 2$, $\bar{v} = 0.04$, $\sigma_v = 0.3$; then show that recalibration on day $t+1$ could yield $\hat{v}_0^{\text{new}} \ne v_{\Delta t}^{\text{model}}$.
+
+---
+
+**Exercise 4.** Bergomi's forward variance model specifies the dynamics of $\xi_t(T) = \mathbb{E}_t[v_T]$. Explain why this model is forward consistent by analogy with HJM. What plays the role of the forward rate curve? What is the analog of the HJM drift condition? What are the practical challenges of implementing this model?
+
+---
+
+**Exercise 5.** In the Consistent Recalibration (CRC) framework, the requirement is $\mathcal{C}(\text{prices at }t+\Delta t) = \Phi(\mathcal{C}(\text{prices at }t), \omega)$. Consider a model with two parameters $(\sigma, \rho)$ and a calibration map $\mathcal{C}$ that extracts these from ATM implied volatility and 25-delta skew. Write down the CRC condition explicitly. Explain why most standard models fail to satisfy it, and what additional structure (e.g., stochastic parameters) is needed.
+
+---
+
+**Exercise 6.** A cliquet option pays the sum of capped monthly returns over one year. Explain why forward consistency is particularly important for pricing this product. If the model is not forward consistent, describe how the cliquet price might change between two consecutive calibration dates even when the underlying spot price is unchanged, and quantify the economic impact for a notional of \$10 million with a monthly cap of 3%.
+
+---
+
+**Exercise 7.** Compare three approaches to achieving forward consistency: (a) HJM-style infinite-dimensional state models, (b) stochastic parameter extensions, and (c) term-structure extensions of scalar parameters. For each approach, discuss: dimensionality of the state space, calibration complexity, computational cost for pricing, and suitability for equity volatility versus interest rate modeling.

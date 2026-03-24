@@ -125,4 +125,30 @@ Free boundaries reduce regularity; viscosity solutions provide the right weak fr
 - Interior regularity follows from Schauder estimates; \(V \in C^\infty\) for \(t < T\).
 - Payoff kinks create large gamma near maturity: height \(\sim \tau^{-1/2}\), width \(\sim \sqrt{\tau}\).
 - The Black–Scholes operator degenerates at \(S=0\); log-transform restores uniform ellipticity.
-- Early exercise introduces weaker regularity and free boundary effects; \(\Gamma\) may be discontinuous.
+- Early exercise introduces weaker regularity and free boundary effects; $\Gamma$ may be discontinuous.
+
+---
+
+## Exercises
+
+**Exercise 1.** The heat kernel for the log-transformed Black--Scholes equation is Gaussian. Explain why convolution of any bounded measurable terminal data with this kernel produces a $C^\infty$ function for $t < T$, and relate this to the Schauder estimate $\|V\|_{C^{2+\alpha, 1+\alpha/2}(K)} \leq C_K \|\Phi\|_{L^\infty}$.
+
+---
+
+**Exercise 2.** For the call payoff $\Phi(S) = (S-K)^+$, the gamma at time $t < T$ has height $\mathcal{O}(\tau^{-1/2})$, width $\mathcal{O}(\sqrt{\tau})$, and area $\mathcal{O}(1)$. Verify the area claim by computing $\int_0^\infty \Gamma(t,S) \, dS$ for the Black--Scholes gamma formula and showing it equals $1/S$ (or a constant independent of $\tau$).
+
+---
+
+**Exercise 3.** The Black--Scholes operator degenerates at $S = 0$. Explain why the change of variable $x = \ln S$ transforms the operator into a uniformly elliptic one. Write down the transformed PDE explicitly.
+
+---
+
+**Exercise 4.** For an American put, the exercise boundary $S^*(t)$ creates a jump in gamma. Using the smooth-pasting condition ($V$ is $C^1$ across the boundary), explain why $\Delta$ is continuous but $\Gamma$ has a discontinuity. What is the sign of the gamma jump?
+
+---
+
+**Exercise 5.** Consider a digital call with payoff $\Phi(S) = \mathbf{1}_{S > K}$, which is discontinuous at $S = K$. Describe the regularity of the digital call price $V(t,S)$ for $t < T$. Is delta smooth? How does the delta of a digital call behave as $\tau \to 0$?
+
+---
+
+**Exercise 6.** A finite-difference scheme for the Black--Scholes PDE must handle the terminal condition $V(T,S) = (S-K)^+$, which has a kink at $S = K$. Explain why using the exact payoff as initial data can introduce oscillations in the numerical gamma, and propose two remedies.

@@ -67,3 +67,29 @@ This was evident during the global financial crisis.
 
 - Li, Gaussian copula model.
 - Duffie et al., correlated defaults.
+
+---
+
+## Exercises
+
+**Exercise 1.** In a one-factor Gaussian copula model, each firm's latent variable is $X_i = \sqrt{\rho}\,Z + \sqrt{1-\rho}\,\epsilon_i$ where $Z$ and $\epsilon_i$ are independent standard normals. Compute the pairwise correlation $\text{Corr}(X_i, X_j) = \rho$ for $i \neq j$. Explain why this single-parameter structure may be insufficient for capturing heterogeneous correlation patterns across sectors.
+
+---
+
+**Exercise 2.** Consider a portfolio of 100 identical firms, each with 5-year default probability $p = 3\%$. Under zero correlation ($\rho = 0$), compute the expected number of defaults and approximate the standard deviation using the binomial model. Repeat for perfect correlation ($\rho = 1$). Compare the shapes of the two loss distributions.
+
+---
+
+**Exercise 3.** Explain why credit correlation increases during financial crises. Identify at least three channels through which correlated defaults propagate: (a) macroeconomic, (b) direct financial linkages, and (c) information contagion.
+
+---
+
+**Exercise 4.** A risk manager assumes a portfolio default correlation of $\rho = 15\%$ based on pre-crisis data. During a crisis, realized correlations rise to $\rho = 50\%$. Describe qualitatively how the portfolio loss distribution changes and why diversification benefits are reduced. What implications does this have for the pricing of senior CDO tranches?
+
+---
+
+**Exercise 5.** Compare three approaches to modeling default correlation: (a) copula-based models, (b) multi-name intensity factor models, and (c) structural multi-firm asset models. For each, describe the main advantages and limitations.
+
+---
+
+**Exercise 6.** Define systemic risk and distinguish it from idiosyncratic credit risk. Explain why a portfolio with zero expected loss at the individual name level can still suffer large losses due to systemic risk. Give a numerical example using a simple two-state model (normal vs crisis) with correlation $\rho_{\text{normal}} = 10\%$ and $\rho_{\text{crisis}} = 60\%$.

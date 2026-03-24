@@ -458,3 +458,29 @@ Jumps generate truly instantaneous default risk even when the firm is far from t
 - Leland, H. E. (1994). Corporate debt value, bond covenants, and optimal capital structure. *Journal of Finance*, 49(4), 1213--1252.
 - Longstaff, F. A., & Schwartz, E. S. (1995). A simple approach to valuing risky fixed and floating rate debt. *Journal of Finance*, 50(3), 789--819.
 - Bielecki, T. R., & Rutkowski, M. (2004). *Credit Risk: Modeling, Valuation and Hedging*. Springer, Chapter 3.
+
+---
+
+## Exercises
+
+**Exercise 1.** In the Black-Cox model with constant barrier $B = 60$, firm value $V_0 = 100$, asset volatility $\sigma_V = 25\%$, risk-free rate $r = 4\%$, and maturity $T = 5$, compute the first-passage default probability using the formula for the hitting time of geometric Brownian motion. Compare with the Merton default probability where default only occurs at $T$.
+
+---
+
+**Exercise 2.** Explain why the Black-Cox model produces positive credit spreads at short maturities, unlike the Merton model. Relate this to the first-passage property: the firm can default at any instant if it is close to the barrier. What role does the ratio $V_0/B$ play in determining short-term spreads?
+
+---
+
+**Exercise 3.** Consider an exponential barrier $B_t = B_0\,e^{\gamma t}$ where $\gamma < r$. Explain the economic interpretation: the barrier represents a growing minimum net worth requirement. If $B_0 = 50$, $\gamma = 2\%$, and $r = 4\%$, compute $B_5$ and discuss whether this barrier is realistic for a typical corporate borrower.
+
+---
+
+**Exercise 4.** The Black-Cox model can produce upward-sloping, humped, or downward-sloping credit spread curves depending on the firm's distance to the barrier. For a firm with $V_0/B = 2$ (far from barrier), describe the expected spread curve shape. Repeat for $V_0/B = 1.1$ (near barrier). Explain the economic intuition.
+
+---
+
+**Exercise 5.** Compare the Black-Cox model with the Merton model along three dimensions: (a) timing of possible default, (b) short-maturity credit spread behavior, and (c) variety of credit spread curve shapes. Which model is better suited for pricing short-dated credit derivatives?
+
+---
+
+**Exercise 6.** In the Black-Cox model, safety covenants trigger early default when asset value hits the barrier. Explain how this feature models real-world covenant violations in loan agreements. What happens to the model's default probability if the barrier $B$ is raised (more stringent covenants)?

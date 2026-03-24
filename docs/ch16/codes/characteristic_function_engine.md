@@ -245,3 +245,44 @@ For calibration (where the same $\tau$ is used for many parameter trials), the f
 ## Summary
 
 The characteristic function engine is the most critical numerical component of the Heston implementation. The Albrecher formulation, which ensures $|g| < 1$ by choosing $\text{Re}(\gamma) > 0$, eliminates the branch-cut discontinuities that plague the original Heston (1993) formula. The implementation evaluates the CF on a vectorized frequency grid and feeds the result to the Gil-Pelaez integral (trapezoidal rule on $[0, u_{\max}]$) for European option pricing. Validation against analytical moments confirms numerical correctness before the engine is used in production pricing or calibration.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+For Heston parameters $\kappa = 2.0$, $\xi = 0.5$, $\rho = -0.7$, compute the complex discriminant $\gamma$ at $u = 5$. That is, evaluate $\alpha = \kappa - i\rho\xi u$ and $\gamma = \sqrt{\alpha^2 + \xi^2(iu + u^2)}$. Verify that $\text{Re}(\gamma) > 0$. If $\text{Re}(\gamma) < 0$, explain why flipping the sign to $-\gamma$ is valid and does not change $\gamma^2$.
+
+---
+
+**Exercise 2.**
+Using the Albrecher formulation, compute the auxiliary ratio $g$ for $u = 10$, $\kappa = 2.0$, $\xi = 0.5$, $\rho = -0.7$. Verify that $|g| < 1$. Then compute $g$ using the original Heston (1993) formulation $\tilde{g} = 1/g$ and confirm that $|\tilde{g}| > 1$. Explain why $|\tilde{g}| > 1$ causes numerical instability for large $\tau$.
+
+---
+
+**Exercise 3.**
+The Gil-Pelaez inversion uses the trapezoidal rule with $u_{\max} = 100$ and $N = 4096$. Compute the grid spacing $\Delta u$. Using the Heston parameters $v_0 = 0.04$, $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.5$, $\rho = -0.7$, $\tau = 1.0$, estimate the magnitude $|\varphi(u_{\max}, \tau)|$ by noting that $|\varphi(u)| \sim \exp(-c u^2 \tau)$ for large $u$ where $c \approx v_0/2$. Is $u_{\max} = 100$ sufficient to make the truncation error negligible?
+
+---
+
+**Exercise 4.**
+The moment validation computes $\mathbb{E}[\ln S_T]$ both analytically and numerically via finite differences of the characteristic function. For $S_0 = 100$, $r = 3\%$, $q = 1\%$, $v_0 = 0.04$, $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.5$, $T = 1.0$, compute the analytical expected log-price:
+
+$$
+\mathbb{E}[\ln S_T] = \ln S_0 + (r - q)T - \frac{1}{2}\left[\theta T + (v_0 - \theta)\frac{1 - e^{-\kappa T}}{\kappa}\right]
+$$
+
+---
+
+**Exercise 5.**
+The CF under the stock-price numeraire is obtained as $\varphi_1(u) = \varphi(u - i) / \varphi(-i)$. Explain why this measure change is necessary for the Gil-Pelaez decomposition $C = S_0 e^{-qT} P_1 - K e^{-rT} P_2$. Verify that $\varphi(-i) = \mathbb{E}[S_T / S_0]$ by substituting $u = -i$ into the CF definition $\varphi(u) = \mathbb{E}[e^{iu\ln S_T}]$ (with $\ln S_0$ already factored out from the forward term).
+
+---
+
+**Exercise 6.**
+Suppose the CF engine produces a call price of $C = -0.02$ (negative) for a deep OTM call with $K = 200$, $S_0 = 100$, $T = 0.25$. This is clearly wrong. List three possible numerical causes: (a) branch-cut error, (b) integration truncation error, (c) insufficient grid resolution. For each, describe the diagnostic you would perform and the fix you would apply.
+
+---
+
+**Exercise 7.**
+For calibration performance, the CF is evaluated at $N = 4096$ frequencies for each of 5 maturities per objective function evaluation. If the DE optimizer runs for 200 generations with population size 75, compute the total number of CF evaluations. Assuming each CF evaluation takes 0.5 microseconds (vectorized across frequencies), estimate the total compute time for CF evaluation alone. What fraction of the total calibration time does this represent if the full calibration takes 9 seconds?

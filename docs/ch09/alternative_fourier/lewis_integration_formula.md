@@ -200,3 +200,29 @@ The Lewis formula provides the simplest Fourier pricing representation for a sin
 | Accuracy | Machine precision with moderate $M$ |
 
 **The Lewis formula's parameter-free contour integration along the critical line, combined with $O(u^{-2})$ integrand decay, makes it the simplest and most robust Fourier method for pricing individual European options.**
+
+---
+
+## Exercises
+
+**Exercise 1.** The strip of analyticity of $\phi_T(z)$ is determined by the exponential moments $\mathbb{E}[S_T^p]$. For the Black-Scholes model, show that $\mathbb{E}[S_T^p] < \infty$ for all $p \in \mathbb{R}$, so the strip is $(-\infty, \infty)$. For a model where the density has power-law tails $f(x) \sim e^{-Mx}$ as $x \to +\infty$ (with $M > 0$), show that $\mathbb{E}[S_T^p] < \infty$ only for $p < M$ and determine the strip boundary.
+
+---
+
+**Exercise 2.** Verify the denominator calculation in the Lewis derivation. At $z = u + i/2$, show that $-z(z-i) = -(u + i/2)(u - i/2) = -(u^2 + 1/4)$. Then explain why the factor $1/(u^2 + 1/4)$ ensures $O(u^{-2})$ decay of the integrand as $u \to \infty$.
+
+---
+
+**Exercise 3.** For the Black-Scholes model with $\phi_T(u) = \exp(i(r - \sigma^2/2)Tu - \sigma^2 Tu^2/2)$, evaluate the Lewis integrand at $u = 0, 1, 5, 10$ for the parameters $S_0 = 100$, $K = 100$, $r = 0.05$, $\sigma = 0.20$, $T = 1$. Estimate the upper truncation limit $U$ beyond which the integrand is negligible (say, $< 10^{-15}$).
+
+---
+
+**Exercise 4.** The Lewis formula requires no damping parameter, unlike the Carr-Madan method. Explain why the contour $\text{Im}(z) = 1/2$ is "canonical"---that is, why this particular contour avoids the poles at $z = 0$ and $z = i$ while remaining inside the strip of analyticity for standard financial models.
+
+---
+
+**Exercise 5.** Implement the Lewis formula numerically for a European call under Black-Scholes ($S_0 = 100$, $K = 110$, $r = 0.05$, $\sigma = 0.25$, $T = 0.5$) using the trapezoidal rule with $M = 64$ points on $[0, 50]$. Compare your result to the Black-Scholes closed-form price and estimate the quadrature error. How many points $M$ are needed for $10^{-10}$ accuracy?
+
+---
+
+**Exercise 6.** The three Fourier methods (COS, Carr-Madan, Lewis) are related by contour deformation. The Carr-Madan integrand at $\text{Im}(u) = 0$ can be deformed to Lewis's contour at $\text{Im}(u) = 1/2$ plus a residue at $u = i$. Explain what the residue at $u = i$ corresponds to financially (the forward price component $S_0 e^{-qT}$) and why deforming the contour from real axis to the critical line improves the integrand decay from $O(u^{-1})$ to $O(u^{-2})$.

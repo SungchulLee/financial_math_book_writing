@@ -235,3 +235,40 @@ The heat equation-Brownian motion connection establishes:
 | Exit times | Boundary value problems |
 
 **This connection is the prototype for Feynman-Kac, risk-neutral pricing, and all probabilistic methods in PDE theory.**
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Let $W_t$ be a standard Brownian motion. Show that $u(t, x) = \mathbb{E}[f(x + W_{T-t})]$ solves $\partial_t u + \frac{1}{2}\partial_{xx}u = 0$ for $t < T$ with terminal condition $u(T, x) = f(x)$. What is the connection to the heat kernel convolution?
+
+---
+
+**Exercise 2.**
+A function $h(x)$ is harmonic for Brownian motion on $(a, b)$ if $\frac{1}{2}h''(x) = 0$. Show that $h(x) = \alpha + \beta x$ for constants $\alpha, \beta$. Verify that $h(W_{t \wedge \tau})$ is a martingale, where $\tau$ is the exit time from $(a, b)$.
+
+---
+
+**Exercise 3.**
+The expected exit time of Brownian motion from $(-a, a)$ starting at $x = 0$ satisfies $\frac{1}{2}u''(x) = -1$ with $u(-a) = u(a) = 0$. Solve this boundary value problem and compute $u(0)$.
+
+---
+
+**Exercise 4.**
+The generator of Brownian motion is $\mathcal{L} = \frac{1}{2}\partial_{xx}$. For Brownian motion with drift $\mu$, the generator becomes $\mathcal{L} = \mu\partial_x + \frac{1}{2}\partial_{xx}$. Show that the function $u(t, x) = \mathbb{E}[f(x + \mu(T-t) + W_{T-t})]$ satisfies $\partial_t u + \mu\partial_x u + \frac{1}{2}\partial_{xx}u = 0$.
+
+---
+
+**Exercise 5.**
+Explain the correspondence: Brownian paths correspond to solutions of the heat equation, expected values correspond to convolution with the heat kernel. For $f(x) = x^2$, compute $\mathbb{E}[(W_t + x)^2]$ and verify it equals the heat equation solution with initial data $f$.
+
+---
+
+**Exercise 6.**
+In the heat equation, an initial hot spot diffuses and spreads over time. In the Brownian motion picture, a particle starting at a point wanders randomly. Explain how the maximum principle ($u$ cannot have an interior maximum) follows from the martingale property of $u(t, W_t)$.
+
+---
+
+**Exercise 7.**
+The exit time $\tau = \inf\{t : W_t \notin (a, b)\}$ connects Brownian motion to the Dirichlet boundary value problem. State the relationship $\mathbb{E}_x[f(W_\tau)] = u(x)$ where $u$ solves $\frac{1}{2}u'' = 0$ on $(a,b)$ with $u(a) = f(a)$ and $u(b) = f(b)$. Solve for $u(x)$ and verify with a specific example.

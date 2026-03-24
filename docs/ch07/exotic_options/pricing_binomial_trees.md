@@ -167,3 +167,29 @@ The number of distinct running maxima at node $(n, j)$ can be bounded by $j + 1$
 | Key issue | Oscillatory convergence for barrier options (specification error) |
 
 **Binomial trees extend naturally to exotic option pricing by tracking path-dependent state variables, but the exponential growth of state spaces for complex path dependencies limits their practical use to barrier options and low-dimensional problems.**
+
+---
+
+## Exercises
+
+**Exercise 1.** For a down-and-out call with $S_0 = 100$, $K = 100$, $H = 90$, $T = 1$, $r = 5\%$, $\sigma = 20\%$, build a 3-step CRR binomial tree. At each node, compute the stock price, identify whether the barrier has been breached, and calculate the option value using backward induction with barrier enforcement. Compare your result with the vanilla call price from the same tree.
+
+---
+
+**Exercise 2.** Explain the "specification error" that causes oscillatory convergence when pricing barrier options on binomial trees. Specifically, for a barrier at $H = 90$ and a CRR tree with $u = e^{\sigma\sqrt{\Delta t}}$, show that $H$ generally does not coincide with any node $S_0 u^j d^{n-j}$. Describe the adaptive mesh refinement technique that mitigates this problem.
+
+---
+
+**Exercise 3.** For an Asian option on a 3-step binomial tree, enumerate all possible paths and their corresponding arithmetic averages. Verify that the number of distinct averages is $2^3 = 8$ (one per path), and explain why this exponential growth makes exact tree pricing of Asian options impractical for large $N$.
+
+---
+
+**Exercise 4.** The Hull-White approximation for Asian options on trees uses interpolation between representative average values at each node. Describe the algorithm: (a) How are the representative average values chosen at each node? (b) How is backward induction performed with interpolation? (c) What is the computational complexity as a function of $N$ and the number of average grid points $M$?
+
+---
+
+**Exercise 5.** For a lookback option on a binomial tree, the state at each node is $(S_{n,j}, S_{\max})$. At node $(n, j)$ with $j$ up-moves out of $n$ steps, how many distinct values of $S_{\max}$ are possible? Derive the bound and explain why lookback options have $O(N^3)$ complexity on trees, compared to $O(N^2)$ for barrier options.
+
+---
+
+**Exercise 6.** Compare the binomial tree and Monte Carlo methods for pricing a down-and-out barrier call with $N = 200$ time steps and $10{,}000$ Monte Carlo paths. Which method gives a more accurate price? Discuss the trade-offs in terms of convergence behavior, computational cost, and ease of implementation for barrier options specifically.

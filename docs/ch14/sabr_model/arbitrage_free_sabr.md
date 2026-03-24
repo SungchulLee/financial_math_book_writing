@@ -217,3 +217,29 @@ The Hagan implied volatility formula can produce negative probability densities 
 - Antonov, A., Konikov, M., & Spector, M. (2015). *The free boundary SABR: Natural extension to negative rates*. SSRN preprint.
 - Rebonato, R. & Cardoso, M. (2004). *Unconstrained fitting of the SABR parameters*. RISK, March.
 - Le Floc'h, F. & Kennedy, G. (2014). *Finite difference techniques for arbitrage-free SABR*. Journal of Computational Finance.
+
+---
+
+## Exercises
+
+**Exercise 1.** The Breeden-Litzenberger formula gives the implied density as $f(K) = e^{rT}\partial^2 C/\partial K^2$. If the Hagan formula produces a call price function $C(K)$ that is not convex for extreme $K$, explain why $f(K) < 0$ at those strikes. What type of arbitrage does a negative density create? (Hint: consider butterfly spreads.)
+
+---
+
+**Exercise 2.** For SABR parameters $\alpha = 0.035$, $\beta = 0.5$, $\rho = -0.5$, $\nu = 0.6$, $F = 0.03$, $T = 10$, compute the Hagan implied volatility at several deep OTM put strikes ($K = 0.005, 0.002, 0.001$). At what strike does the formula become unreliable? How would you detect this in practice?
+
+---
+
+**Exercise 3.** The 1D effective PDE method (Hagan et al., 2014) replaces the Hagan formula with a numerically solved forward Kolmogorov equation. Explain why solving the forward equation guarantees a non-negative density (since the transition density of a well-posed diffusion is non-negative). How does this approach preserve consistency with the Hagan formula near ATM?
+
+---
+
+**Exercise 4.** CMS (Constant Maturity Swap) products are particularly sensitive to the tails of the forward distribution because the CMS convexity adjustment depends on $\mathbb{E}[(F_T - K)^+ / P(T)]$ for all $K$. Explain why using the standard Hagan formula (with potential negative densities in the tails) can lead to significant mispricing of CMS caps and floors. How much error might result for a 30-year CMS cap?
+
+---
+
+**Exercise 5.** The free-boundary SABR of Antonov et al. (2015) solves the full 2D SABR PDE with absorbing boundary at $F = 0$. Compare this approach with the 1D effective PDE in terms of: (a) computational cost; (b) accuracy; (c) ability to handle negative rates; (d) implementation complexity. Which approach would you recommend for a rates trading desk?
+
+---
+
+**Exercise 6.** A mixture model constructs an arbitrage-free density as a weighted sum of simple distributions: $f(K) = \sum_i w_i f_i(K)$ where each $f_i \geq 0$ and $\sum_i w_i = 1$ with $w_i \geq 0$. If the component distributions are lognormals with different volatilities, explain how the weights and volatilities can be chosen to match the SABR smile near ATM while ensuring non-negative densities everywhere. What is the main limitation of this approach?

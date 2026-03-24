@@ -187,3 +187,31 @@ All estimates agree with the closed-form value within the confidence interval, v
 The Vasicek model admits exact simulation via the Gaussian transition $r_{t+\Delta t} = e^{-\kappa\Delta t}r_t + (1 - e^{-\kappa\Delta t})\theta + v_{\Delta t}\,Z$, eliminating discretization error. Bond prices are estimated by averaging $e^{-\int r_s\,ds}$ across simulated paths, with variance reduction through antithetic variates (exploiting symmetry), control variates (exploiting the known bond price), and importance sampling (tilting toward the exercise region). The exact simulation scheme and the Gaussian integral distribution provide a baseline for testing Monte Carlo methods before applying them to models where closed forms are unavailable.
 
 ---
+
+## Exercises
+
+**Exercise 1.** For the exact OU transition $r_{t+\Delta t} = \theta + (r_t - \theta)e^{-\kappa\Delta t} + v_{\Delta t}\,Z$, compute $\mu_{\Delta t}$ and $v_{\Delta t}$ explicitly for $\kappa = 0.5$, $\theta = 0.04$, $\sigma = 0.02$, and $\Delta t = 0.25$. Verify that the conditional mean and variance match the formulas $\mu_{\Delta t}(r_t) = \theta + (r_t - \theta)e^{-\kappa\Delta t}$ and $v_{\Delta t}^2 = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\Delta t})$.
+
+---
+
+**Exercise 2.** Compare the Euler-Maruyama scheme $\hat{r}_{t+\Delta t} = \hat{r}_t + \kappa(\theta - \hat{r}_t)\Delta t + \sigma\sqrt{\Delta t}\,Z$ with the exact transition by computing the conditional mean and variance of each scheme for one step. Show that the Euler-Maruyama conditional mean differs from the exact mean by $O(\Delta t^2)$ and identify the leading error term.
+
+---
+
+**Exercise 3.** Explain why the exact simulation scheme produces no discretization error for the marginal distribution of $r_T$, even with a single step from $0$ to $T$. Under what circumstances would you still need multiple intermediate steps?
+
+---
+
+**Exercise 4.** For bond pricing via Monte Carlo, the integral $\int_0^T r_s\,ds$ is approximated by the trapezoidal rule. Using the Vasicek parameters $\kappa = 0.5$, $\theta = 0.04$, $\sigma = 0.02$, $r_0 = 0.03$, compute the exact mean and variance of the Gaussian integral $\int_0^5 r_s\,ds$ conditional on $r_0$. Why does this exact distribution make trapezoidal approximation unnecessary for plain bond pricing?
+
+---
+
+**Exercise 5.** In antithetic variate sampling, the estimator uses both $Z$ and $-Z$ innovations. Show that the antithetic path $\tilde{r}_T$ satisfies $\tilde{r}_T = 2\mu_T(r_0) - r_T$ for the exact one-step simulation from $0$ to $T$. Compute $\text{Cov}(e^{-\int r_s\,ds}, e^{-\int \tilde{r}_s\,ds})$ and explain why it is negative, leading to variance reduction.
+
+---
+
+**Exercise 6.** A control variate estimator for a bond option uses the bond price $P(0,T) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_0^T r_s\,ds}]$ as the control. Write the control variate estimator explicitly for a European call on a ZCB with payoff $(P(T,S) - K)^+$. Why is the optimal control coefficient $c^*$ expected to be positive?
+
+---
+
+**Exercise 7.** With $M$ simulation paths, the Monte Carlo standard error is $\text{SE} = \hat{\sigma}/\sqrt{M}$. If naive Monte Carlo gives $\text{SE} = 1.2 \times 10^{-4}$ with $M = 100{,}000$ paths, how many paths are needed to achieve $\text{SE} = 1.0 \times 10^{-5}$ without variance reduction? If control variates reduce variance by a factor of 50, how many paths achieve the same precision?

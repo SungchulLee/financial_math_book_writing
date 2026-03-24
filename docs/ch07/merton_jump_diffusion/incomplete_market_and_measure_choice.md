@@ -181,3 +181,33 @@ This approach treats the $\mathbb{Q}$-parameters as free and makes no assumption
 ## Summary
 
 The Merton jump-diffusion model is incomplete because the compound Poisson jump process introduces unhedgeable risk. Multiple equivalent martingale measures exist, each corresponding to different assumptions about the market price of jump risk. Selection criteria include the Esscher transform (exponential tilting with connections to utility theory), the minimal entropy measure (closest to $\mathbb{P}$ in Kullback-Leibler divergence), and the minimal martingale measure (Merton's original diversification argument). In practice, calibration to observed option prices implicitly selects a pricing measure, with the calibrated jump parameters under $\mathbb{Q}$ reflecting investors' compensation for bearing jump risk.
+
+---
+
+## Exercises
+
+**Exercise 1.** In the Black-Scholes model with one Brownian motion and one stock, explain why the market is complete by counting risk sources and hedging instruments. Then explain why adding a compound Poisson process $N_t$ (independent of $W_t$) breaks completeness, even though the stock price $S_t$ still trades continuously between jumps.
+
+---
+
+**Exercise 2.** For a delta-hedged portfolio $\Pi_t = V_t - \Delta_t S_t$ with $\Delta_t = \partial V/\partial S$, compute the hedging error at a jump time when $S$ jumps from $S_{t^-}$ to $S_{t^-}Y$. Show that for a European call with convex payoff, the hedging error $\Delta\Pi = V(S_{t^-}Y) - V(S_{t^-}) - \Delta_t S_{t^-}(Y-1)$ is strictly positive for large jumps (both up and down), and explain why this means jump risk cannot be hedged by any choice of $\Delta_t$.
+
+---
+
+**Exercise 3.** The no-arbitrage constraint for an EMM $\mathbb{Q}$ is $r = \mu^{\mathbb{P}} - \sigma\theta + \lambda^{\mathbb{Q}}\bar{k}^{\mathbb{Q}} - \lambda^{\mathbb{P}}\bar{k}^{\mathbb{P}}$. Verify that this is a single equation in the unknowns $(\theta, \lambda^{\mathbb{Q}}, \mu_J^{\mathbb{Q}}, \sigma_J^{\mathbb{Q}})$, and explain why infinitely many solutions exist. For the special case where $\lambda^{\mathbb{Q}} = \lambda^{\mathbb{P}}$ and $\sigma_J^{\mathbb{Q}} = \sigma_J^{\mathbb{P}}$, solve for $\mu_J^{\mathbb{Q}}$ in terms of the other parameters.
+
+---
+
+**Exercise 4.** Under the Esscher transform with parameter $h$, the jump intensity changes to $\lambda^{\mathbb{Q}} = \lambda^{\mathbb{P}} e^{h\mu_J + h^2\sigma_J^2/2}$ and the mean log-jump shifts to $\mu_J^{\mathbb{Q}} = \mu_J + h\sigma_J^2$. Suppose $\lambda^{\mathbb{P}} = 0.5$, $\mu_J = -0.10$, $\sigma_J = 0.30$. For $h = 1$, compute $\lambda^{\mathbb{Q}}$ and $\mu_J^{\mathbb{Q}}$. Interpret the sign of the shift in $\mu_J$: does the Esscher transform make downward jumps more or less severe?
+
+---
+
+**Exercise 5.** The minimal entropy martingale measure minimizes $H(\mathbb{Q} \| \mathbb{P}) = \mathbb{E}^{\mathbb{Q}}[\ln(d\mathbb{Q}/d\mathbb{P})]$ over all EMMs. Explain intuitively why this criterion chooses the measure that is "closest" to the physical measure. In what sense is a low-entropy measure more conservative than one with high entropy? Contrast this with the minimal martingale measure, which fixes jump parameters at their physical values.
+
+---
+
+**Exercise 6.** Consider the no-arbitrage pricing interval $[\underline{\pi}(H),\, \overline{\pi}(H)]$ for a deep out-of-the-money put option with strike $K = 0.7 S_0$. The text states that this interval widens with increasing jump sensitivity. Explain why OTM puts are more sensitive to jump risk than ATM calls, and why the interval width increases with $\lambda$ (jump intensity) and $\sigma_J$ (jump size dispersion).
+
+---
+
+**Exercise 7.** A practitioner calibrates the Merton model to S&P 500 option prices and finds $\lambda^{\mathbb{Q}} = 1.5$ while the historical estimate is $\lambda^{\mathbb{P}} = 0.5$. The calibrated mean log-jump is $\mu_J^{\mathbb{Q}} = -0.15$ versus the historical $\mu_J^{\mathbb{P}} = -0.08$. Interpret these differences as a **jump risk premium**: the market prices crashes as both more frequent and more severe than historical data suggests. Compute the ratio $\lambda^{\mathbb{Q}}/\lambda^{\mathbb{P}}$ and discuss what this implies about investors' attitude toward tail risk.

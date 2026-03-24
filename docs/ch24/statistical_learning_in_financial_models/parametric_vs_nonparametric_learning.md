@@ -405,3 +405,55 @@ where $w$ is window size and $h$ is forecast horizon.
 - Fan & Gijbels, *Local Polynomial Modelling and Its Applications*
 - Aït-Sahalia & Lo (1998), "Nonparametric Estimation of State-Price Densities"
 - Robinson (1988), "Root-N-Consistent Semiparametric Regression"
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a GARCH(1,1) model $\sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2$.
+
+(a) How many parameters does this model have? What is the convergence rate for estimating them with $n$ observations?
+
+(b) If the true conditional variance follows a regime-switching process, explain why the GARCH MLE converges to a pseudo-true parameter rather than the truth. What does this imply for risk forecasts?
+
+---
+
+**Exercise 2.** For the Nadaraya–Watson kernel regression estimator with Gaussian kernel and bandwidth $h$, the bias is $O(h^2)$ and the variance is $O(1/(nh^d))$.
+
+(a) Derive the optimal bandwidth $h^*$ that minimizes the mean integrated squared error by balancing bias and variance.
+
+(b) Compute $h^*$ and the resulting MISE rate for $d = 1$ and $d = 10$ with $n = 1000$. Interpret the difference.
+
+---
+
+**Exercise 3.** A partially linear model for returns is
+
+$$
+R_{t+1} = \beta \cdot \text{DivYield}_t + f(\text{Volatility}_t) + \varepsilon_{t+1}
+$$
+
+(a) Describe Robinson's differencing procedure to estimate $\beta$ at the parametric rate $\sqrt{n}$.
+
+(b) Why is it advantageous to model the volatility effect nonparametrically while keeping the dividend yield effect linear?
+
+---
+
+**Exercise 4.** You are estimating the Black–Scholes implied volatility surface from 200 observed option prices.
+
+(a) A parametric approach uses the SVI parameterization with 5 parameters per maturity slice. With 4 maturities, how many total parameters are estimated? What is the convergence rate?
+
+(b) A nonparametric approach uses kernel smoothing in the $(K, T)$ plane. Using Stone's rate with $\beta = 2$ and $d = 2$, what is the convergence rate with 200 observations?
+
+(c) Which approach would you recommend and why?
+
+---
+
+**Exercise 5.** Compare AIC and BIC for selecting between a 3-factor and a 5-factor linear return model estimated on $n = 120$ monthly observations. If both models have log-likelihoods $\ell_3 = -340$ and $\ell_5 = -335$:
+
+(a) Compute AIC and BIC for each model.
+
+(b) Which model does each criterion select? Explain why they may disagree.
+
+---
+
+**Exercise 6.** Explain why nonparametric return prediction models frequently underperform simple linear models out-of-sample in finance, despite being more flexible. Your answer should reference the signal-to-noise ratio, the curse of dimensionality, and the bias–variance trade-off.

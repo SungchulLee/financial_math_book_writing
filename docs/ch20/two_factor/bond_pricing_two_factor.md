@@ -145,3 +145,33 @@ For long maturities, $B_x \to -1/\lambda_1$ and $B_y \to -1/\lambda_2$, so the b
 ## Summary
 
 The two-factor Hull-White bond price $P(t,T) = \exp(A^{(2)}(t,T) + B_x(t,T)x_t + B_y(t,T)y_t)$ preserves the exponential-affine structure with two factor loadings $B_x = (e^{-\lambda_1\tau}-1)/\lambda_1$ and $B_y = (e^{-\lambda_2\tau}-1)/\lambda_2$. The function $A^{(2)}$ involves an integrated variance $V(t,T)$ with three components: two one-factor terms and a cross-correlation term proportional to $\rho\sigma_1\sigma_2$. The model exactly fits the initial yield curve by construction. The bond price volatility has contributions from both factors, producing a richer volatility term structure than the one-factor model. The extended named functions generalize the one-factor apparatus with cross-terms capturing the factor interaction.
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify that the factor loading ODEs $dB_x/d\tau = 1 - \lambda_1 B_x$ with $B_x(0) = 0$ have the solution $B_x(\tau) = (1 - e^{-\lambda_1\tau})/\lambda_1$. Show that $B_x(\tau) \to 1/\lambda_1$ as $\tau \to \infty$ and $B_x(\tau) \approx \tau$ for small $\tau$. Repeat for $B_y(\tau)$.
+
+---
+
+**Exercise 2.** Using $\lambda_1 = 0.01$, $\lambda_2 = 0.1$, $\sigma_1 = 0.005$, $\sigma_2 = 0.008$, $\rho = -0.3$, and a flat market curve at 3\%, compute the two-factor bond price $P(5, 10)$ for factor values $x_5 = 0.002$ and $y_5 = -0.001$. Compare with the initial market discount factor $P^M(0, 10)/P^M(0, 5)$, which is the time-5 bond price under the one-factor model with $x_5 = y_5 = 0$.
+
+---
+
+**Exercise 3.** Show that the consistency condition $P(0, T) = P^M(0, T)$ holds by substituting $x_0 = y_0 = 0$ into the two-factor formula and using $V(0, 0) = 0$. Why is this condition essential for an arbitrage-free term structure model?
+
+---
+
+**Exercise 4.** Compute the total bond price volatility $\sigma_P^{(2)}(t, T)$ for $t = 0$, $T = 5, 10, 20, 30$ using the parameters in Exercise 2. Plot $\sigma_P^{(2)}(0, T)$ as a function of $T$ and compare with the one-factor volatility $\sigma_P^{(1)}(0, T) = |\sigma_1 B_x(0, T)|$. At what maturity does the difference become most pronounced?
+
+---
+
+**Exercise 5.** In the one-factor limit $\sigma_2 \to 0$, verify that $A^{(2)}(t, T) \to A(t, T)$ (one-factor) and $\sigma_P^{(2)} \to |\sigma_1 B_x|$. Show that the cross-correlation terms in $V(t, T)$ vanish and the variance function reduces to the one-factor expression.
+
+---
+
+**Exercise 6.** When $\lambda_1 = \lambda_2 = \lambda$, the two-factor model degenerates. Show that in this case, $r_t = (x_t + y_t) + \varphi(t)$ behaves as a single OU process with effective volatility $\sigma_{\text{eff}} = \sqrt{\sigma_1^2 + \sigma_2^2 + 2\rho\sigma_1\sigma_2}$. What does this imply about the minimum number of distinct mean-reversion speeds needed for the second factor to add value?
+
+---
+
+**Exercise 7.** The two-factor bond pricing PDE involves mixed partial derivatives $\partial^2 P / (\partial x\,\partial y)$ when $\rho \neq 0$. Explain why this cross-derivative term complicates finite-difference solutions. What transformation of variables would eliminate the cross-derivative, and what is the cost of this transformation?

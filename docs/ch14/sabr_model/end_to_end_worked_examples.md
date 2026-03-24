@@ -349,3 +349,35 @@ The end-to-end workflow --- calibrate from ATM out, price via Black formula at t
 - Bartlett, B. (2006). "Hedging under SABR model." *Wilmott Magazine*, July.
 - Rebonato, R., McKay, K., and White, R. (2009). *The SABR/LIBOR Market Model*. Wiley.
 - Hagan, P., Lesniewski, A., and Woodward, D. (2014). "Probability distribution in the SABR model of stochastic volatility." In *Large Deviations and Asymptotic Methods in Finance*, Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** In Example 1, the leading-order alpha estimate is $\alpha_0 = \sigma_B^{\text{ATM}} \cdot F^{1-\beta}$. Derive this formula from the Hagan ATM approximation by setting the correction term to zero. Then compute $\alpha_0$ for a EUR swaption with $F = 2.00\%$, $\beta = 0.5$, and $\sigma_B^{\text{ATM}} = 25.0\%$.
+
+---
+
+**Exercise 2.** Using the calibrated parameters from Example 1 ($\alpha = 0.03821$, $\beta = 0.5$, $\rho = -0.3185$, $\nu = 0.4073$, $F = 3.50\%$, $T = 5$), compute the SABR implied volatility at the strike $K = 3.00\%$ using the Hagan formula. Verify your answer is consistent with the model IV of 20.98% reported in the validation table.
+
+---
+
+**Exercise 3.** In Example 2, the payer swaption at $K = 4.00\%$ is priced at 335.5 bps. Compute the corresponding receiver swaption price using put-call parity for swaptions:
+
+$$
+V_{\text{payer}}(K) - V_{\text{receiver}}(K) = A(F - K)
+$$
+
+where $A = 7.82$ and $F = 3.50\%$.
+
+---
+
+**Exercise 4.** The Bartlett delta correction in Example 3 reduces the delta from 3.297 (SABR delta) to 2.402 (Bartlett delta). Explain the financial reasoning behind this correction: why does accounting for the forward-volatility correlation ($\rho < 0$) reduce the hedge ratio for a payer swaption?
+
+---
+
+**Exercise 5.** In Example 5, the SABR model predicts that a 50 bp increase in the forward rate raises ATM implied volatility by 92 bps. The backbone effect for $\beta = 0.5$ gives $\sigma_B^{\text{ATM}} \approx \alpha / F^{0.5}$. Verify this prediction by computing $\alpha / F^{0.5}$ at $F = 3.50\%$ and $F = 4.00\%$ with $\alpha = 0.03821$ and taking the difference.
+
+---
+
+**Exercise 6.** The calibration in Example 1 has 7 market quotes and 3 parameters ($\alpha$, $\rho$, $\nu$), with $\alpha$ determined by the ATM condition, leaving 2 free parameters for 6 non-ATM quotes. Discuss whether this system is over-determined or under-determined. What would change if you added two more wing strikes at $K = 0.50\%$ and $K = 7.00\%$? Would you expect the RMSE to improve or worsen?

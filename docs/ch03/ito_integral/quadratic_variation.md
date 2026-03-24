@@ -245,3 +245,45 @@ The $-t/2$ correction is exactly the quadratic variation of $W$ on $[0,t]$. In o
 * For an Itô integral $M_t = \int_0^t H_s\,dW_s$, the quadratic variation is $[M]_t = \int_0^t H_s^2\,ds$.
 * The Itô multiplication table $dW^\alpha\,dW^\beta = \delta^{\alpha\beta}\,dt$ is the symbolic expression of these quadratic variation identities.
 * Quadratic variation is the reason Itô's formula differs from the ordinary chain rule: second-order Taylor terms survive in the stochastic setting because $(\Delta W)^2 \approx \Delta t \not\to 0$.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $f(t) = t^2$ on $[0,1]$. For a uniform partition with $n$ subintervals, compute the quadratic variation sum $Q(f, \Pi) = \sum_{k=1}^n (f(t_k) - f(t_{k-1}))^2$ explicitly. Show that $Q(f, \Pi) \to 0$ as $n \to \infty$, confirming that smooth functions have zero quadratic variation.
+
+---
+
+**Exercise 2.** Using the identity $\operatorname{Var}((\Delta W_k)^2) = 2(\Delta t_k)^2$ for a Gaussian increment, show that
+
+$$
+\operatorname{Var}(Q(W, \Pi)) = 2 \sum_{k=1}^n (\Delta t_k)^2
+$$
+
+For a uniform partition with $n$ subintervals on $[0,T]$, evaluate this expression and verify it tends to zero as $n \to \infty$.
+
+---
+
+**Exercise 3.** Let $X_t = \mu t + \sigma W_t$ be Brownian motion with drift. Compute the quadratic variation $[X]_t$. Does the drift $\mu t$ contribute to the quadratic variation? Justify your answer.
+
+---
+
+**Exercise 4.** Let $M_t = \int_0^t s\, dW_s$. Compute the quadratic variation $[M]_t$ and use it to verify that $M_t^2 - [M]_t$ is a martingale by computing $\mathbb{E}[M_t^2 - [M]_t]$.
+
+---
+
+**Exercise 5.** Using the Ito multiplication table, compute $(dX_t)^2$ for the Ornstein-Uhlenbeck process $dX_t = -\theta X_t\, dt + \sigma\, dW_t$. What is $[X]_t$?
+
+---
+
+**Exercise 6.** Prove that if a process $A_t$ has bounded total variation on $[0,T]$, then $[A]_T = 0$. *Hint*: Bound $\sum_k (\Delta A_k)^2 \le \max_k |\Delta A_k| \cdot \sum_k |\Delta A_k|$ and argue that $\max_k |\Delta A_k| \to 0$ for a continuous finite-variation process.
+
+---
+
+**Exercise 7.** Apply Ito's formula to $f(x) = x^4$ with $X_t = W_t$ to derive
+
+$$
+W_t^4 = 4\int_0^t W_s^3\, dW_s + 6\int_0^t W_s^2\, ds
+$$
+
+Use this identity and the Ito isometry to compute $\mathbb{E}\!\left[\left(\int_0^t W_s^3\, dW_s\right)^2\right]$. *Hint*: You will need $\mathbb{E}[W_s^6] = 15s^3$.

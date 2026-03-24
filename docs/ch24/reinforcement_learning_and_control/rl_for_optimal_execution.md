@@ -272,3 +272,33 @@ These are handled via action masking or constrained policy optimization.
 - Ning, Ling & Jaimungal (2021), "Double Deep Q-Learning for Optimal Execution"
 - Fang, Oosterlee & Schoenmakers (2021), "Deep RL for Optimal Execution"
 - Cartea, Jaimungal & Penalva (2015), *Algorithmic and High-Frequency Trading*, Chapter 6
+
+---
+
+## Exercises
+
+**Exercise 1.** In the Almgren-Chriss framework, a trader liquidates $Q = 10{,}000$ shares over $N = 10$ periods with $\Delta t = 1$, temporary impact $\eta = 0.001$, permanent impact $\gamma = 0.0005$, volatility $\sigma = 0.02$, and risk aversion $\lambda = 10^{-5}$. (a) Compute $\kappa = \cosh^{-1}(\frac{\gamma \Delta t}{2\eta} + 1 + \frac{\lambda \sigma^2 \Delta t}{2\eta})/\Delta t$ and the optimal trade sizes $n_k^*$ for $k = 0, 1, \ldots, 9$. (b) Verify that $\sum_k n_k^* = Q$. (c) Compute the expected implementation shortfall $\mathbb{E}[\text{IS}] = \eta \sum_k (n_k^*)^2 + \gamma \sum_k n_k^* q_k$. (d) Compare with the TWAP strategy $n_k = 1{,}000$ for all $k$.
+
+---
+
+**Exercise 2.** An RL agent for optimal execution uses the state $s_k = (q_k, S_k, t_k)$ and the reward $r_k = n_k S_k^{\text{exec}} - \lambda_{\text{risk}} q_k^2 \hat{\sigma}^2 \Delta t$ with terminal penalty $r_N = -\Lambda q_N^2$. (a) Explain why the risk penalty $\lambda_{\text{risk}} q_k^2 \hat{\sigma}^2 \Delta t$ encourages the agent to reduce inventory: the cost of holding is quadratic in remaining inventory. (b) What happens if $\Lambda$ is too small? The agent may not fully liquidate. What if $\Lambda$ is too large? The agent may dump everything at the end regardless of impact. (c) Propose a reward modification that explicitly enforces $q_N = 0$ as a hard constraint rather than a soft penalty.
+
+---
+
+**Exercise 3.** Compare the RL execution agent with TWAP in a market with stochastic liquidity. The bid-ask spread alternates between $s_{\text{tight}} = 0.01$ and $s_{\text{wide}} = 0.05$ with equal probability at each step. (a) TWAP sells $Q/N$ shares regardless of the spread. Compute the expected total spread cost over $N = 10$ periods for $Q = 10{,}000$. (b) An adaptive RL agent learns to sell more when the spread is tight and less when wide. If the agent sells 1.5 times the TWAP amount when spread is tight and 0.5 times when wide (still totaling $Q$), recompute the expected spread cost. (c) Show that the adaptive strategy reduces expected costs by exploiting the concavity of the cost function. This illustrates the adaptivity benefit formalized in the proposition on $C_{\text{adaptive}} < C_{\text{static}}$.
+
+---
+
+**Exercise 4.** A Deep Q-Network for execution discretizes the action space into 11 levels: sell 0%, 10%, 20%, ..., 100% of remaining inventory. (a) For state $s = (q = 5000, S = 100, t = 5/10)$, the Q-values are $Q(s, 0\%) = -50$, $Q(s, 10\%) = -42$, $Q(s, 20\%) = -38$, $Q(s, 30\%) = -35$, $Q(s, 40\%) = -34$, $Q(s, 50\%) = -36$, ..., $Q(s, 100\%) = -65$. What action does the greedy policy select? (b) With $\epsilon = 0.05$ exploration, what is the probability of selecting each action? (c) The Bellman loss for one transition is $(r + \gamma \max_{a'} Q_{\bar{\theta}}(s', a') - Q_\theta(s, a))^2$. If $r = 3800$, $\gamma = 1$, $\max_{a'} Q_{\bar{\theta}}(s', a') = -30$, and $Q_\theta(s, a) = -34$, compute the loss and the gradient direction for updating $\theta$.
+
+---
+
+**Exercise 5.** The sim-to-real gap is a critical challenge for deploying RL execution agents. (a) A simulator uses linear permanent impact $\gamma = 0.0005$, but the real market has concave impact $\gamma_{\text{real}}(n) = 0.001 \sqrt{n}$. For $n = 1{,}000$ shares, compare the simulated and real permanent impacts. (b) Domain randomization trains the agent across a distribution of simulator parameters: $\gamma \sim \text{Uniform}(0.0003, 0.0008)$, $\eta \sim \text{Uniform}(0.0005, 0.002)$, $\sigma \sim \text{Uniform}(0.01, 0.04)$. Explain why the resulting policy is more robust than one trained on fixed parameters. (c) Propose a safe deployment protocol: start with small order sizes, monitor execution quality (implementation shortfall relative to TWAP benchmark), and gradually increase the agent's autonomy.
+
+---
+
+**Exercise 6.** An actor-critic agent for execution uses a Gaussian policy $\pi_\theta(a|s) = \mathcal{N}(\mu_\theta(s), \sigma_\theta^2(s))$ where $a$ is the trade size. (a) The mean network $\mu_\theta(s)$ has input $(q/Q, S/S_0, (T-t)/T, \text{spread}, \text{volume})$ and outputs a scalar. Why is it important to normalize the inputs? (b) The variance $\sigma_\theta^2(s)$ controls exploration: high variance during training for exploration, low variance during deployment for consistent execution. Describe a schedule for $\sigma$ during training. (c) The advantage estimate is $\hat{A}_k = r_k + \gamma V_w(s_{k+1}) - V_w(s_k)$. If the agent sells aggressively and $r_k$ is high but $V_w(s_{k+1})$ is low (because remaining inventory is small and time is ample), is $\hat{A}_k$ positive or negative? Explain the interpretation.
+
+---
+
+**Exercise 7.** Regulatory constraints require that an execution algorithm not exceed 20% of market volume in any 5-minute interval. (a) Formalize this as a constraint on the action space: $n_k \le 0.20 \cdot V_k$ where $V_k$ is the predicted volume in interval $k$. (b) Action masking sets $Q(s, a) = -\infty$ for infeasible actions. Describe how this is implemented in a DQN. (c) For a continuous-action actor-critic, the policy must be constrained. Propose using a projected Gaussian: sample $a \sim \mathcal{N}(\mu, \sigma^2)$ and clip to $[0, \min(q_k, 0.20 V_k)]$. What are the implications of this clipping for the policy gradient computation?

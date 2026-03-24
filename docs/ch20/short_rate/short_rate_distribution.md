@@ -261,3 +261,33 @@ The Gaussian distribution of $\int_t^T r_s\, ds$ is what makes the bond price $P
 ## Summary
 
 The Hull-White short rate has a Gaussian conditional distribution $r_T \mid r_t \sim \mathcal{N}(\mu(t,T), \Sigma^2(t,T))$ with mean $\mu(t,T) = r_t e^{-a(T-t)} + \int_t^T e^{-a(T-u)} \theta(u)\, du$ and variance $\Sigma^2(t,T) = \frac{\sigma^2}{2a}(1 - e^{-2a(T-t)})$. The transition density, MGF, and characteristic function all follow from the Gaussian property. The integrated short rate $\int_t^T r_s\, ds$ is also Gaussian, which is the foundation for analytical bond pricing. The probability of negative rates is $\Phi(-\mu/\Sigma)$, which is small but nonzero for typical parameters and becomes the principal limitation of the Gaussian framework.
+
+---
+
+## Exercises
+
+**Exercise 1.** For parameters $a = 0.05$, $\sigma = 0.01$, and a flat forward curve $f(0,t) = 0.02$, compute the probability $\mathbb{P}(r_{10} < 0 \mid r_0 = 0.02)$. How does the probability change if $r_0 = 0.005$?
+
+---
+
+**Exercise 2.** Using the conditional MGF $M(u; t, T) = \exp(u\mu + \frac{1}{2}u^2\Sigma^2)$, show that the bond price $P(t,T) = \mathbb{E}[e^{-\int_t^T r_s\,ds} | \mathcal{F}_t]$ can be obtained by applying the MGF identity to the integrated short rate distribution.
+
+---
+
+**Exercise 3.** Verify that the transition density $p(r_T | r_t; t, T)$ satisfies the Fokker-Planck equation $\frac{\partial p}{\partial T} = -\frac{\partial}{\partial r_T}[(\theta(T) - ar_T)p] + \frac{1}{2}\sigma^2\frac{\partial^2 p}{\partial r_T^2}$ by direct substitution.
+
+---
+
+**Exercise 4.** The characteristic function $\phi(\xi; t, T) = \exp(i\xi\mu - \frac{1}{2}\xi^2\Sigma^2)$ can be used for Fourier-based pricing. Explain how the COS method would use this characteristic function to price a caplet in the Hull-White model.
+
+---
+
+**Exercise 5.** Compute the variance $V(0, 10)$ of the integrated short rate $\int_0^{10} r_s\,ds$ for $a = 0.05$ and $\sigma = 0.01$. Compare with the Ho-Lee approximation $V \approx \frac{\sigma^2}{3}(T-t)^3$ obtained by setting $a = 0$.
+
+---
+
+**Exercise 6.** Prove that the skewness and excess kurtosis of $r_T | r_t$ are both zero in the Hull-White model. Why is zero skewness a potential concern when modeling interest rate distributions?
+
+---
+
+**Exercise 7.** The exact simulation formula $r_T = \mu(t,T) + \Sigma(t,T)Z$ with $Z \sim \mathcal{N}(0,1)$ has no discretization error. Compare this with an Euler-Maruyama discretization using $n$ time steps and discuss the trade-off between computational cost and accuracy.

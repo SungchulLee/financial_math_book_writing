@@ -364,3 +364,33 @@ K_k-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
 &=&\displaystyle
 N\sum_{k=m+1}^n c_k V^{\text{ZCB}}_{p}(t_0,T_m,T_k;K_k)\\
 \end{array}$$
+
+---
+
+## Exercises
+
+**Exercise 1.** Explain why Jamshidian's trick works: show that since each $P(T_m, T_k) = e^{A(T_k - T_m) + B(T_k - T_m)r(T_m)}$ is a strictly decreasing function of $r(T_m)$, the max of the sum equals the sum of the maxes when all terms change sign at the same critical rate $r^*$.
+
+---
+
+**Exercise 2.** For a payer swaption with $T_m = 5$, $T_n = 10$, annual payments, $K = 0.04$, and $N = 1{,}000{,}000$, write out the coefficients $c_k$ for $k = 6, 7, 8, 9, 10$. Verify that $c_{10} = K\tau_{10} + 1 = 1.04$.
+
+---
+
+**Exercise 3.** The critical rate $r^*$ satisfies $\sum_{k=m+1}^n c_k e^{A(T_k - T_m) + B(T_k - T_m)r^*} = 1$. Describe a numerical method (e.g., Newton-Raphson) for solving this equation. Why is the solution unique?
+
+---
+
+**Exercise 4.** Compare the Black swaption formula (assuming lognormal swap rates) with the Hull-White swaption formula (sum of ZCB puts). Under what market conditions might the two formulas produce significantly different prices?
+
+---
+
+**Exercise 5.** Show that the swap rate $S_{mn}(t)$ is a martingale under the annuity measure $\mathbb{Q}^{mn}$. What is the numeraire for this measure, and why is this martingale property useful for Black's swaption formula?
+
+---
+
+**Exercise 6.** The "crucial expression" rewrites the swaption payoff as $1 - \sum_{k=m+1}^n c_k P(T_m, T_k)$. Derive this step by step from $\sum_{k=m+1}^n \tau_k P(T_m, T_k)(l_k(T_m) - K)$, using the definition of the forward rate $l_k$.
+
+---
+
+**Exercise 7.** In Jamshidian's trick, each ZCB put has its own strike $K_k = A(T_m, T_k)e^{-B(T_m, T_k)r^*}$. Explain why these strikes depend on $r^*$ and how an error in the root-finding for $r^*$ propagates to the swaption price.

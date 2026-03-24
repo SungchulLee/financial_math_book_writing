@@ -236,3 +236,29 @@ Affine jump-diffusions extend the continuous affine framework by adding compound
 - Duffie, D., Pan, J., and Singleton, K. (2000). "Transform Analysis and Asset Pricing for Affine Jump-Diffusions." *Econometrica*, 68(6), 1343--1376.
 - Kou, S. (2002). "A Jump-Diffusion Model for Option Pricing." *Management Science*, 48(8), 1086--1101.
 - Filipovic, D. (2009). *Term-Structure Models: A Graduate Course*. Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Merton jump-diffusion model $d\log S_t = (r - \frac{1}{2}\sigma^2 - \lambda\bar{k})\,dt + \sigma\,dW_t + J_t\,dN_t$ where $J_t \sim N(\mu_J, \sigma_J^2)$ and $N_t$ is Poisson with intensity $\lambda$, identify the affine parameters and compute $F(u)$ and $R(u)$. Verify that $R(u) = 0$ (no state-dependent jumps).
+
+---
+
+**Exercise 2.** For the Bates model (Heston + Merton jumps in the log-price), write the extended Riccati system. Show that the jump contribution adds $\lambda(\exp(\mu_J u + \frac{1}{2}\sigma_J^2 u^2) - 1)$ to the $\phi$-equation (or the appropriate component). How does this modify the characteristic function compared to pure Heston?
+
+---
+
+**Exercise 3.** Consider a jump-diffusion on $\mathbb{R}_+$ with exponentially distributed jumps: $m_1(dz) = \lambda\eta e^{-\eta z}\,dz$ for $z > 0$. Compute the jump contribution to $R(u)$ as $\lambda(\frac{\eta}{\eta - u} - 1)$ and determine the domain of $u$ for which this expression is finite. What happens at $u = \eta$?
+
+---
+
+**Exercise 4.** Explain why log-normal jump sizes (Merton model) produce heavier tails than double-exponential jump sizes (Kou model) for extreme returns. Which distribution generates a steeper short-maturity implied volatility smile? Justify your answer in terms of the moment generating functions of the two distributions.
+
+---
+
+**Exercise 5.** For a self-exciting (Hawkes-type) jump process where the jump intensity $\lambda(X_t) = \lambda_0 + \lambda_1 X_t$ depends affinely on the state, verify that the jump contribution to $R_j(u)$ is $\lambda_1 \int(e^{uz} - 1)\nu(dz)$. Why does affine intensity preserve the affine structure, while a nonlinear intensity (e.g., $\lambda(x) = \lambda_0 + \lambda_2 x^2$) would break it?
+
+---
+
+**Exercise 6.** Compare the computational cost of evaluating the characteristic function for (i) pure Heston, (ii) Bates (Heston + Merton jumps), and (iii) Heston with double-exponential (Kou) jumps. In each case, is the Riccati system solvable in closed form, or is numerical ODE integration required?

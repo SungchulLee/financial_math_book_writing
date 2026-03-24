@@ -348,3 +348,40 @@ $$
 - [Proof Sketch](feynman_kac_proof_sketch.md) -- the martingale derivation
 - [Boundary Value Problems](../overview/boundary_value_problems.md) -- types of boundary conditions
 - [Free vs Bounded Domains](../greens_functions/free_vs_bounded_domains.md) -- Green's functions with barriers
+
+---
+
+## Exercises
+
+**Exercise 1.**
+For a European put option with payoff $g(S) = (K - S)^+$, write the Feynman-Kac probabilistic representation and the corresponding Black-Scholes PDE with terminal and boundary conditions. What are the boundary conditions as $S \to 0$ and $S \to \infty$?
+
+---
+
+**Exercise 2.**
+A down-and-out call with barrier $B < S_0$ and strike $K > B$ has price $V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+\mathbf{1}_{\{\tau_B > T\}} | S_t = S]$. Write the PDE domain and boundary conditions. Explain why the PDE is solved on $(B, \infty)$ rather than $(0, \infty)$ and how the killing at the barrier is implemented.
+
+---
+
+**Exercise 3.**
+For a double barrier option with lower barrier $B_l$ and upper barrier $B_u$, the domain is $(B_l, B_u)$. If the payoff is $g(S) = (S - K)^+$ and both barriers are knock-out, write the boundary conditions at $S = B_l$ and $S = B_u$. How does the solution domain affect the Feynman-Kac expectation?
+
+---
+
+**Exercise 4.**
+Explain the difference between the Feynman-Kac representation for European options ($e^{-r\tau}\mathbb{E}[g(S_T)]$) and the optimal stopping formulation for American options ($\sup_\tau \mathbb{E}[e^{-r\tau}g(S_\tau)]$). Why does the American option require a free boundary problem rather than a standard PDE?
+
+---
+
+**Exercise 5.**
+For a European call in the Black-Scholes model, verify that the solution $V(t,S) = S\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)$ satisfies the terminal condition $V(T, S) = (S - K)^+$ by computing $\lim_{t \to T^-} V(t, S)$ for the cases $S > K$ and $S < K$.
+
+---
+
+**Exercise 6.**
+An Asian option has payoff $g = (\frac{1}{T}\int_0^T S_s\,ds - K)^+$. Explain why the standard one-dimensional Feynman-Kac approach is insufficient and an augmented state variable $A_t = \int_0^t S_s\,ds$ is needed. Write the two-dimensional PDE that the option price satisfies.
+
+---
+
+**Exercise 7.**
+A digital (binary) barrier option pays $\$1$ if $S_T > K$ and the stock never crosses the barrier $B < K$ during $[0, T]$. Write the Feynman-Kac representation, identify the PDE domain, and describe the terminal and boundary conditions.

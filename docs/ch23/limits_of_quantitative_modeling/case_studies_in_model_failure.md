@@ -143,3 +143,29 @@ The financial crisis involved multiple simultaneous model failures:
     - Behavioral factors (herd behavior, fear) amplify mathematical models
     - Model sophistication can mask rather than illuminate risks
     - Humility about model limitations essential for risk management
+
+---
+
+## Exercises
+
+**Exercise 1.** In the LTCM crisis, convergence trades between on-the-run and off-the-run Treasury bonds widened dramatically instead of converging. Explain how the use of historical correlation assumptions in the risk model led to a severe underestimation of portfolio risk. What specific model assumption was violated, and how could a robust framework (e.g., worst-case volatility or stress testing) have flagged this risk?
+
+---
+
+**Exercise 2.** During the 2007-2008 financial crisis, CDO tranches experienced losses far beyond what Gaussian copula models predicted. Explain the role of correlation assumptions in the Gaussian copula model, and describe quantitatively how a change from $\rho = 0.3$ to $\rho = 0.8$ in the default correlation would affect the expected loss on a mezzanine tranche. What alternative copula structures better capture tail dependence?
+
+---
+
+**Exercise 3.** The "London Whale" incident at JPMorgan in 2012 involved a VaR model change that halved the reported risk of a large credit derivatives portfolio. Discuss how model governance failures (changing the VaR model mid-stream, using Excel-based calculations) contributed to the loss. What organizational controls would have prevented or detected this issue earlier?
+
+---
+
+**Exercise 4.** Compare the model failures in the 1987 Black Monday crash and the 2020 COVID-19 market crash. In both cases, implied volatilities spiked far beyond historical levels. Discuss whether a model incorporating regime-switching (with a "crisis" regime) would have provided adequate hedging, and identify the fundamental challenge of calibrating rare-event models from limited historical data.
+
+---
+
+**Exercise 5.** The Barings Bank collapse (1995) involved unauthorized trading by Nick Leeson. While primarily an operational risk failure, discuss how the absence of model-based position monitoring and real-time risk aggregation contributed to the loss. Design a model-based alert system that would have detected the growing exposure.
+
+---
+
+**Exercise 6.** After each major model failure, regulators have responded with new requirements (e.g., Basel II after LTCM, Basel III after 2008, FRTB after 2008). Discuss the phenomenon of "regulatory model risk"---the risk that models designed to satisfy regulations become targets for regulatory arbitrage. Give a specific example of how a bank might exploit the VaR framework to reduce reported risk without reducing actual risk.

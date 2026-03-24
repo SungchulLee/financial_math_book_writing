@@ -229,3 +229,29 @@ $$
 $$
 
 Viscosity solutions provide the rigorous mathematical foundation for proving that finite difference schemes converge to the correct answer, especially in the presence of degeneracies and non-smoothness that arise naturally in option pricing.
+
+---
+
+## Exercises
+
+**Exercise 1.** The Black-Scholes PDE has diffusion coefficient $\frac{1}{2}\sigma^2 S^2$, which degenerates at $S = 0$. Explain what the PDE reduces to at $S = 0$ and why this prevents the classical theory from applying uniformly on $[0, \infty)$.
+
+---
+
+**Exercise 2.** State the definition of a viscosity subsolution of the PDE $F(x, u, Du, D^2u) = 0$. Explain the geometric meaning of "a smooth test function $\varphi$ touching $u$ from above at $x_0$" and why the derivatives of $\varphi$ serve as generalized derivatives of $u$.
+
+---
+
+**Exercise 3.** Prove that if $u \in C^2$ is a classical solution of $F = 0$ (with $F$ degenerate elliptic), then $u$ is a viscosity solution. The key steps are: (i) at a local max of $u - \varphi$, show $Du = D\varphi$ and $D^2u \leq D^2\varphi$; (ii) use degenerate ellipticity to conclude $F(x_0, u, D\varphi, D^2\varphi) \leq 0$.
+
+---
+
+**Exercise 4.** For the American option obstacle problem $\min(-u_\tau + \mathcal{L}u, u - \Phi) = 0$, write out the viscosity subsolution and supersolution conditions. Explain how the $\min$ operator encodes the free boundary without explicitly tracking $S^*(t)$.
+
+---
+
+**Exercise 5.** The digital call payoff $\Phi(S) = \mathbf{1}_{S > K}$ is discontinuous. The USC and LSC envelopes at $S = K$ are $\Phi^*(K) = 1$ and $\Phi_*(K) = 0$. Explain why the viscosity framework handles this discontinuity while the classical framework cannot.
+
+---
+
+**Exercise 6.** The Barles-Souganidis theorem requires monotonicity, stability, and consistency for convergence to the viscosity solution. Explain the practical implication for a financial engineer implementing an FDM solver: what specific design choices (regarding stencil coefficients, CFL condition, and time stepping) ensure that the numerical solution converges to the correct option price?

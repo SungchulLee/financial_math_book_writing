@@ -306,3 +306,35 @@ The Python implementation of the SABR model centers on three components: the Hag
 - Le Floc'h, F. (2014). *Fast and accurate analytic basis point SABR*. SSRN preprint.
 - Hagan, P. et al. (2002). *Managing smile risk*. Wilmott Magazine, 1, 84--108.
 - VanderPlas, J. (2016). *Python Data Science Handbook*. O'Reilly, Chapters 2--4 (NumPy and SciPy).
+
+---
+
+## Exercises
+
+**Exercise 1.** The Hagan formula involves the ratio $z/x(z)$ where $x(z) = \ln((\sqrt{1 - 2\rho z + z^2} + z - \rho)/(1 - \rho))$. Compute $z/x(z)$ numerically for $\rho = -0.3$ and $z = 0.5$. Then compute it for $z = 10^{-8}$ and verify that the Taylor expansion $z/x(z) \approx 1$ is appropriate for small $|z|$.
+
+---
+
+**Exercise 2.** The ATM-first calibration determines $\alpha$ by solving $\sigma_B^{\text{Hagan}}(\alpha, \rho, \nu) = \sigma_B^{\text{ATM}}$ using Newton's method. Write the Newton iteration formula explicitly:
+
+$$
+\alpha_{k+1} = \alpha_k - \frac{\sigma_B^{\text{Hagan}}(\alpha_k) - \sigma_B^{\text{ATM}}}{\partial\sigma_B^{\text{Hagan}}/\partial\alpha|_{\alpha_k}}
+$$
+
+For $F = 0.03$, $\beta = 0.5$, $\sigma_B^{\text{ATM}} = 0.22$, $\rho = -0.25$, and $\nu = 0.35$, compute the initial guess $\alpha_0 = \sigma_B^{\text{ATM}} \cdot F^{1-\beta}$.
+
+---
+
+**Exercise 3.** In the Monte Carlo implementation, the volatility is simulated exactly: $\sigma_{n+1} = \sigma_n \exp(-\frac{1}{2}\nu^2\Delta t + \nu\sqrt{\Delta t}\,W_2)$. Show that this is the exact solution to $d\sigma_t = \nu\sigma_t\,dW_t^{(2)}$ over the interval $[t_n, t_{n+1}]$. Why does this eliminate the need for a positivity floor on $\sigma$?
+
+---
+
+**Exercise 4.** The implementation uses `np.maximum(F + dF, 0)` to enforce the absorbing boundary. Discuss the bias this introduces: does it overestimate or underestimate the absorption probability? How would you implement the more accurate chi-squared-based absorption test described in the Monte Carlo section?
+
+---
+
+**Exercise 5.** Design a validation test for the SABR implementation that checks the Black-Scholes limit ($\beta = 1$, $\nu = 0$). In this limit, the SABR model reduces to geometric Brownian motion with constant volatility $\alpha$. Write a test that compares the Hagan formula output, the Monte Carlo price, and the exact Black-Scholes price for an ATM call with $F = 0.05$, $T = 1$, and $\alpha = 0.20$. What tolerances should you use for each comparison?
+
+---
+
+**Exercise 6.** The calibration function uses bounds $\rho \in (-0.999, 0.999)$ and $\nu \in (0.01, 2.0)$. Explain why each bound is necessary. What numerical problems arise if $\rho$ is allowed to reach exactly $\pm 1$? What happens to the Hagan formula if $\nu = 0$, and why is a small positive lower bound used instead?

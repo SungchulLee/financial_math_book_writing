@@ -229,3 +229,29 @@ The linear complementarity formulation provides the natural mathematical framewo
 | Free boundary | Determined implicitly by the active set |
 | Smooth pasting | Consequence of $C^1$ regularity, not imposed |
 | Solvers | PSOR, penalty method, active set (covered in subsequent sections) |
+
+---
+
+## Exercises
+
+**Exercise 1.** Write the American put variational inequality in complementarity form. At a point $(t, S)$ with $S = 80$, $K = 100$, explain which of the two conditions (PDE equality or constraint binding) holds, and why.
+
+---
+
+**Exercise 2.** For the discrete LCP with $L = I + \Delta\tau A$, verify that $L$ is an M-matrix for the implicit Euler discretization of the Black-Scholes operator. Specifically, show that $L$ has positive diagonal, non-positive off-diagonal entries, and is diagonally dominant.
+
+---
+
+**Exercise 3.** Consider the worked example with $\boldsymbol{\Phi} = (50, 0, 0, 0)^T$ and unconstrained solution $\tilde{\mathbf{u}} = (45, 8, 1, 0)^T$. Verify that the LCP solution $\mathbf{u} = (50, 8, 1, 0)^T$ satisfies all three LCP conditions: $L\mathbf{u} \geq \mathbf{q}$, $\mathbf{u} \geq \boldsymbol{\Phi}$, and $(L\mathbf{u} - \mathbf{q})_j(u_j - \Phi_j) = 0$ for each $j$.
+
+---
+
+**Exercise 4.** The smooth pasting condition (continuity of $V_S$ across the free boundary) is not explicitly imposed in the LCP formulation. Explain why it emerges automatically from the $C^1$ regularity of the obstacle problem solution. What numerical evidence could you check to verify that smooth pasting holds in your FDM solution?
+
+---
+
+**Exercise 5.** The LCP can be reformulated as a quadratic program: $\min_{\mathbf{u} \geq \boldsymbol{\Phi}} \frac{1}{2}\mathbf{u}^T L\mathbf{u} - \mathbf{q}^T\mathbf{u}$. Show that the KKT conditions of this optimization problem are equivalent to the LCP conditions. What is the role of the Lagrange multipliers?
+
+---
+
+**Exercise 6.** Compare the LCP formulation with direct projection for a coarse grid ($M = 10$) and a fine grid ($M = 1000$). On the coarse grid, the two methods may give noticeably different results near the free boundary. Explain the source of this difference and why the LCP solution is more accurate.

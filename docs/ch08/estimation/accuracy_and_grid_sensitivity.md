@@ -265,3 +265,29 @@ $$
 | **Validation** | Check PDE residual and put-call parity relations |
 
 Reliable Greek estimates require more care than reliable prices. The amplification of errors through differentiation, combined with payoff non-smoothness, makes grid design and convergence verification essential steps in any production-quality FDM implementation.
+
+---
+
+## Exercises
+
+**Exercise 1.** If the option price at each grid node has error $\varepsilon = 10^{-4}$ and $\Delta S = 1$, compute the maximum amplified error in the central difference delta and gamma estimates. Repeat for $\Delta S = 0.5$ and explain the tradeoff between truncation error (which decreases with $\Delta S$) and amplified error (which increases).
+
+---
+
+**Exercise 2.** A grid refinement study for gamma at $S = K$ (without Rannacher smoothing) gives error ratios of approximately 2.0, 2.4, 2.3 across successive refinements. Compute the observed convergence order $p \approx \log_2(R)$ for each pair. Is the order consistent with the theoretical $O((\Delta S)^{1/2})$ behavior near the strike?
+
+---
+
+**Exercise 3.** Explain why placing a grid node exactly at $S = K$ improves gamma accuracy. If $K = 100$ and $M = 150$ with $S_{\max} = 300$, the uniform grid spacing is $\Delta S = 2$, and $S_{50} = 100$ falls exactly on the strike. But if $M = 149$, does $K$ fall on a node? Compute the nearest grid points and the interpolation error.
+
+---
+
+**Exercise 4.** The sinh stretching formula $S_j = K + K\sinh(\alpha(j/M - 1/2))/\sinh(\alpha/2)$ concentrates points near $K$. For $\alpha = 5$ and $M = 100$, compute the local spacing near $K$ (i.e., $S_{51} - S_{50}$) and compare it to the spacing far from $K$ (e.g., $S_{90} - S_{89}$). How does this non-uniformity improve Greek accuracy?
+
+---
+
+**Exercise 5.** Richardson extrapolation for Greeks: compute delta on grids with $M = 100$ and $M = 200$, obtaining $\Delta(100) = 0.6489$ and $\Delta(200) = 0.6505$. Apply the extrapolation formula $\Delta_{\text{ext}} = (4\Delta(200) - \Delta(100))/3$. If the exact delta is $0.6510$, compare the errors.
+
+---
+
+**Exercise 6.** The PDE residual $|\Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2\Gamma - rV|$ should be small at every grid node. If you observe a large residual at a particular node, list three possible causes and describe how you would diagnose each one.

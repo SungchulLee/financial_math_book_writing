@@ -216,3 +216,29 @@ The cosine coefficient identity is the central computational result of the COS m
 | Cost | $N$ evaluations of $\phi$, no integration |
 
 **By expressing the cosine coefficients as evaluations of the characteristic function at discrete frequencies, the COS method eliminates numerical integration from the density expansion, reducing the coefficient computation to $N$ function evaluations that can be performed in closed form for any affine model.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from $A_k = \frac{2}{b-a}\int_a^b f(x)\cos(k\pi(x-a)/(b-a))\,dx$, carry out the full derivation of the CF-based formula $F_k = \frac{2}{b-a}\,\text{Re}[\phi(k\pi/(b-a))\,e^{-ik\pi a/(b-a)}]$. Identify each step: (i) replacing cosine by $\text{Re}[e^{i\cdot}]$, (ii) factoring out the phase, and (iii) extending the integral from $[a, b]$ to $\mathbb{R}$ using the support assumption.
+
+---
+
+**Exercise 2.** The uniform truncation error bound states $|\varepsilon_k| \leq 2P(X \notin [a, b])/(b-a)$ for all $k$. For a distribution with $P(X \notin [a, b]) = 10^{-10}$ and $b - a = 10$, compute the bound on $|\varepsilon_k|$. If the COS price involves summing $N = 128$ terms with $|V_k| \leq 100$, bound the total truncation-induced price error.
+
+---
+
+**Exercise 3.** For $X \sim N(0, 1)$ on $[-10, 10]$, compute $F_0$, $F_2$, and $F_4$ using the CF-based formula. Verify that $F_1 = F_3 = 0$ by showing that $\text{Re}[e^{-k^2\pi^2/800}\cdot i^k] = 0$ for odd $k$. Explain this result in terms of the symmetry of the standard normal density.
+
+---
+
+**Exercise 4.** The phase factor $e^{-ik\pi a/(b-a)}$ can be computed incrementally as $\alpha^k$ where $\alpha = e^{-i\pi a/(b-a)}$. For $[a, b] = [-5, 5]$, compute $\alpha$ and verify that $\alpha^0 = 1$, $\alpha^1 = e^{i\pi/2} = i$, $\alpha^2 = e^{i\pi} = -1$. Explain why this incremental computation saves computational effort compared to evaluating $e^{-ik\pi a/(b-a)}$ from scratch for each $k$.
+
+---
+
+**Exercise 5.** The verification table for $N(0,1)$ shows agreement between direct integration and the CF formula to machine precision ($< 10^{-16}$). Explain why the agreement is so exact for this distribution (not merely close, but exact to machine precision). What property of the normal distribution on $[-10, 10]$ makes the truncation error negligible?
+
+---
+
+**Exercise 6.** For the Heston model, the coefficient magnitudes $|F_k|$ decay exponentially. If $|F_{64}| \approx 10^{-8}$ and $|F_{128}| \approx 10^{-15}$, estimate the exponential decay rate $c$ in $|F_k| \approx Ce^{-ck}$. Using this rate, predict $|F_{256}|$ and determine the number of terms $N$ needed for $|F_N| < 10^{-12}$.

@@ -350,3 +350,29 @@ $$
 - Lando, D. (1998). On Cox processes and credit risky securities. *Review of Derivatives Research*, 2(2–3), 99–120.
 - Bielecki, T. R., & Rutkowski, M. (2004). *Credit Risk: Modeling, Valuation and Hedging*. Springer, Chapters 7–8.
 - Jarrow, R. A., & Turnbull, S. M. (1995). Pricing derivatives on financial securities subject to credit risk. *Journal of Finance*, 50(1), 53–85.
+
+---
+
+## Exercises
+
+**Exercise 1.** The default intensity $\lambda_t$ is defined heuristically as $\lambda_t \approx \mathbb{Q}(\tau \in (t, t+\Delta t] \mid \tau > t, \mathcal{F}_t) / \Delta t$. For constant intensity $\lambda = 3\%$, compute the probability of default in the next 6 months given survival to time $t$. Then compute the 5-year survival probability $S(0,5)$.
+
+---
+
+**Exercise 2.** Explain the key difference between the structural approach and the reduced-form approach to credit risk modeling. Why does the reduced-form approach produce "surprise" defaults while the structural approach does not? What mathematical property of the default time distinguishes the two frameworks?
+
+---
+
+**Exercise 3.** The hazard rate function $h(t)$ for a deterministic intensity model is defined by $S(0,t) = e^{-\int_0^t h(s)\,ds}$. Given survival probabilities $S(0,1) = 0.98$, $S(0,3) = 0.93$, and $S(0,5) = 0.87$, compute the average hazard rates over the intervals $[0,1]$, $[0,3]$, and $[0,5]$. Is the hazard rate increasing or decreasing?
+
+---
+
+**Exercise 4.** Consider a piecewise-constant intensity: $\lambda(t) = 1\%$ for $t \in [0,2]$ and $\lambda(t) = 3\%$ for $t \in (2,5]$. Compute $S(0,2)$, $S(0,5)$, and the conditional survival probability $S(2,5 \mid \tau > 2)$. What is the default probability over $[0,5]$?
+
+---
+
+**Exercise 5.** A reduced-form model has intensity $\lambda_t = a + b\,r_t$ where $r_t$ is the short rate. Explain the economic rationale for making default intensity depend on the interest rate. If interest rates rise during a recession, what does this specification imply about the correlation between default risk and market conditions?
+
+---
+
+**Exercise 6.** List five advantages of reduced-form (intensity-based) models over structural models for practical credit derivatives pricing. For each advantage, provide a specific example where the reduced-form approach is superior.

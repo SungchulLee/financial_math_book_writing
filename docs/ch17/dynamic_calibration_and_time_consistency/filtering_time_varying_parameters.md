@@ -377,3 +377,33 @@ This reduces variance and improves efficiency.
 - Doucet, de Freitas & Gordon, *Sequential Monte Carlo Methods in Practice*.
 - Johannes, Polson & Stroud, "Optimal Filtering of Jump Diffusions" (2009).
 - Bates, "Maximum Likelihood Estimation of Latent Affine Processes" (2006).
+
+---
+
+## Exercises
+
+**Exercise 1.** Write down the Kalman filter predict and update equations for the linear state-space model $\theta_{t+1} = A\theta_t + \eta_t$, $y_t = H\theta_t + \varepsilon_t$ with $A = I$ (random walk), $H \in \mathbb{R}^{m \times d}$. Show that the Kalman gain $K_t$ converges to a steady-state value $K_\infty$ when $Q$ and $R$ are constant. Derive $K_\infty$ for the scalar case ($d = m = 1$) in terms of $Q$ and $R$.
+
+---
+
+**Exercise 2.** In the extended Kalman filter, the observation function $h(\theta)$ is linearized as $h(\theta) \approx h(\hat{\theta}_{t|t-1}) + H_t(\theta - \hat{\theta}_{t|t-1})$ where $H_t$ is the Jacobian. For the Heston model with $\theta = (v_0, \kappa, \bar{v}, \sigma_v, \rho)$ and observation $h(\theta) = \sigma_{\text{impl}}(K, T; \theta)$, explain how you would compute the Jacobian $H_t$ numerically. What are the relative merits of finite differences versus adjoint methods for this computation?
+
+---
+
+**Exercise 3.** The unscented Kalman filter uses $2d + 1$ sigma points. For $d = 5$ (Heston parameters), how many sigma points are generated? If each function evaluation (pricing all observed options) takes 0.1 seconds, estimate the cost per filter update. Compare this to the EKF cost with finite-difference Jacobians using $2d$ additional evaluations.
+
+---
+
+**Exercise 4.** Consider a particle filter with $N$ particles for the Heston spot variance $v_t$. After the update step, suppose the effective sample size is $N_{\text{eff}} = 1/\sum_i (w_i)^2 = 15$ out of $N = 1000$ particles. Explain what this means about weight degeneracy. Describe the systematic resampling algorithm and explain how it addresses this issue.
+
+---
+
+**Exercise 5.** A practitioner chooses the state noise covariance $Q = \text{diag}(q_1, \ldots, q_5)$ for the Heston parameter filter. Argue that $q_1$ (corresponding to $v_0$) should be much larger than $q_2$ (corresponding to $\kappa$). If $v_0$ is expected to change by about 0.005 per day and $\kappa$ by about 0.05 per month, estimate appropriate values for $q_1$ and $q_2$ (assuming daily observations and Gaussian transitions).
+
+---
+
+**Exercise 6.** Compare the Kalman filter, extended Kalman filter, and particle filter in terms of: (a) assumptions on linearity, (b) assumptions on noise distribution, (c) computational cost per update step, and (d) quality of uncertainty quantification. For each filter type, give one calibration scenario where it would be the preferred choice.
+
+---
+
+**Exercise 7.** In Rao--Blackwellized particle filtering, certain state components are filtered analytically (via Kalman filter) conditional on particles for the remaining components. For the Heston model, suppose $v_t$ is filtered with particles and $(\kappa, \bar{v})$ are filtered with a Kalman filter conditional on $v_t$. Write down the conditional linear-Gaussian observation model for $(\kappa, \bar{v})$ given $v_t$, and explain why this decomposition reduces the variance of the Monte Carlo estimate compared to a full particle filter.

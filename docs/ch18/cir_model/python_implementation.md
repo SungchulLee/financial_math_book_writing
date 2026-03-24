@@ -412,3 +412,33 @@ if __name__ == "__main__":
 ## Summary
 
 This section provided complete Python implementations of the CIR model: closed-form bond pricing via the exponential-affine formula, yield curve and forward rate computation, exact path simulation using the non-central chi-squared distribution, Monte Carlo bond pricing with variance reduction, calibration to market zero rates using L-BFGS-B optimization, and European bond option pricing via the non-central chi-squared CDF. Each function is annotated with the underlying mathematical formula and includes a self-contained test in the `__main__` block. These building blocks can be combined to price caps, swaptions, and exotic derivatives as described in the earlier sections of this chapter.
+
+---
+
+## Exercises
+
+**Exercise 1.** Using the `cir_bond_price` function, compute $P(0, T)$ for $T = 1, 5, 10, 30$ with $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.08$, $r_0 = 0.03$. Then compute the corresponding yields $R(0,T) = -\ln P/T$. Verify that the yield curve is upward-sloping and that the long rate approaches $R_\infty = 2\kappa\theta/(\gamma + \kappa)$.
+
+---
+
+**Exercise 2.** The `cir_B` function computes $B(\tau)$ using the formula involving $\gamma$. For the limiting case $\sigma \to 0$, show analytically that $\gamma \to \kappa$ and $B(\tau) \to (1 - e^{-\kappa\tau})/\kappa$, which is the Vasicek $B$ function. Verify this numerically by calling `cir_B` with $\sigma = 10^{-6}$ and comparing to the Vasicek formula.
+
+---
+
+**Exercise 3.** The exact simulation function `cir_exact_simulate` uses `rng.noncentral_chisquare(d, lam)`. Run the simulation with $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.15$, $r_0 = 0.02$, $T = 5$, `n_steps=250`, `n_paths=10000`. Compute $\mathbb{E}[r_T]$ and $\text{Std}(r_T)$ from the simulated paths and compare with the analytical conditional mean and standard deviation.
+
+---
+
+**Exercise 4.** Modify the Monte Carlo bond pricing code to implement a control variate using the known CIR conditional mean $\mathbb{E}[r_s | r_0] = \theta + (r_0 - \theta)e^{-\kappa s}$. Specifically, use $C^{(m)} = \sum_k r_{t_k}^{(m)} \Delta t$ as the control variate with known mean $\sum_k \mathbb{E}[r_{t_k}] \Delta t$. Measure the variance reduction compared to the plain estimator.
+
+---
+
+**Exercise 5.** The calibration function `cir_calibrate` uses L-BFGS-B with box constraints. Explain why the bounds include $\kappa \in [0.01, 5.0]$ and $\sigma \in [0.001, 0.50]$. What would happen if the lower bound on $\sigma$ were set to 0? Add a post-calibration check that prints a warning if the Feller condition is violated.
+
+---
+
+**Exercise 6.** Use the bond option functions `cir_zcb_call` and `cir_zcb_put` to price a caplet with strike $K = 4\%$, reset date $T_i = 2$, payment date $T_{i+1} = 2.25$, notional $N = 1{,}000{,}000$, using CIR parameters $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.10$, $r_0 = 0.04$. Recall that the caplet is equivalent to $N(1+K\delta)\text{Put}(t; T_i, T_{i+1}, \tilde{K})$ with $\tilde{K} = 1/(1+K\delta)$.
+
+---
+
+**Exercise 7.** Write a convergence test that compares the Monte Carlo bond price $\hat{P}(0, 5)$ against the analytical $P^{\text{exact}}(0, 5)$ for increasing values of $M \in \{1000, 5000, 10000, 50000, 100000\}$. For each $M$, record the absolute error $|\hat{P} - P^{\text{exact}}|$ and the standard error. Plot the error versus $M$ on a log-log scale and verify that the slope is approximately $-0.5$, confirming the $O(1/\sqrt{M})$ convergence rate.

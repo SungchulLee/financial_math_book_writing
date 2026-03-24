@@ -238,3 +238,46 @@ which is finite. In practice, quadrature nodes never land exactly at $u = 0$ (Ga
 ## Summary
 
 The Gil-Pelaez formula $\mathbb{P}(X > x) = \frac{1}{2} + \frac{1}{\pi}\int_0^\infty \text{Re}[e^{-iux}\varphi(u)/(iu)]\,du$ recovers the CDF directly from the characteristic function through a single one-dimensional integral. For the Heston model, this formula is applied twice (under $\mathbb{Q}$ and $\mathbb{Q}^S$) to compute the exercise probabilities $P_1$ and $P_2$ that constitute the semi-closed-form call price. The integrand has a removable singularity at $u = 0$ and decays exponentially for large $u$, making it ideal for Gauss-Laguerre quadrature (32--64 nodes for 10--14 digit accuracy). Damping shifts the contour into the complex plane to accelerate convergence for heavy-tailed models, though it is rarely needed for Heston. Adaptive quadrature provides a robust alternative that automatically handles oscillatory integrands for deep OTM options. The Gil-Pelaez approach, combined with the Albrecher stable CF formulation, constitutes the definitive benchmark for Heston European option pricing.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+State the Gil-Pelaez formula for $\mathbb{P}(X > x)$ and verify it for the special case $X \sim N(\mu, \sigma^2)$ where $\varphi(u) = e^{i\mu u - \sigma^2 u^2 / 2}$. Show that the integral reproduces $\Phi((x - \mu)/\sigma)$ where $\Phi$ is the standard normal CDF. Hint: complete the square in the exponent.
+
+---
+
+**Exercise 2.**
+The integrand $\operatorname{Re}[e^{-iux}\varphi(u)/(iu)]$ has a removable singularity at $u = 0$. Show that:
+
+$$
+\lim_{u \to 0} \operatorname{Re}\!\left[\frac{e^{-iux}\varphi(u)}{iu}\right] = -x + \mathbb{E}[X]
+$$
+
+by expanding $e^{-iux} = 1 - iux + O(u^2)$ and $\varphi(u) = 1 + iu\mathbb{E}[X] + O(u^2)$.
+
+---
+
+**Exercise 3.**
+For the Heston model with $v_0 = 0.04$, $\tau = 1$, the CF decays approximately as $|\varphi(u)| \sim e^{-v_0 u^2 \tau / 2}$ for large $u$. Compute $|\varphi(100)|$ and $|\varphi(200)|$. If the trapezoidal rule uses nodes up to $u_{\max} = 100$ and the integrand at $u = u_{\max}$ is of order $|\varphi(u_{\max})| / u_{\max}$, estimate the truncation error. Is $u_{\max} = 100$ sufficient for 10-digit accuracy?
+
+---
+
+**Exercise 4.**
+Gauss-Laguerre quadrature approximates $\int_0^\infty f(u) e^{-u} du \approx \sum_{n=1}^N w_n f(u_n)$. To apply this to the Gil-Pelaez integral, the change of variable $u = \alpha t$ transforms the integral into $\int_0^\infty g(t) e^{-t} dt \cdot e^t / \alpha$. Describe how to choose the scaling parameter $\alpha$ so that the integrand's effective support matches the Gauss-Laguerre nodes. For the Heston CF with $v_0 = 0.04$ and $\tau = 0.5$, suggest a value of $\alpha$.
+
+---
+
+**Exercise 5.**
+Consider pricing a deep OTM call with $K/S_0 = 1.5$ (50% OTM) and $\tau = 0.25$. The Gil-Pelaez integrand $\operatorname{Re}[e^{-iu\ln K}\varphi(u)/(iu)]$ oscillates rapidly because $\ln K$ is large and positive. Estimate the oscillation period as $2\pi / |\ln K|$. If $\ln(K) = 0.405$, compute the period. Does standard Gauss-Laguerre with 64 nodes adequately sample these oscillations? Propose a modification (e.g., adaptive quadrature or contour deformation).
+
+---
+
+**Exercise 6.**
+The damped Gil-Pelaez formula shifts the integration contour by replacing $u \to u - i\alpha$ for some $\alpha > 0$. This introduces a factor $e^{\alpha x}$ and modifies the CF argument to $\varphi(u - i\alpha)$. State the condition on $\alpha$ for the shifted CF to exist (i.e., for $\mathbb{E}[e^{\alpha X}] < \infty$). For the Heston model, this requires $\alpha + 1 < p^*$, the critical moment exponent. Explain why damping accelerates convergence for heavy-tailed distributions.
+
+---
+
+**Exercise 7.**
+Using the convergence table in the worked example, verify that Gauss-Laguerre quadrature converges exponentially: the error decreases by a factor of roughly $10^{2-3}$ each time $N$ doubles. Compare with Simpson's rule, which converges as $\mathcal{O}(\Delta u^4)$: verify that doubling $M$ from 200 to 1000 (a factor of 5) reduces the error by approximately $5^4 = 625$. Which method achieves 10-digit accuracy with fewer function evaluations?

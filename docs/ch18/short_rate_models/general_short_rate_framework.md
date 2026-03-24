@@ -320,3 +320,29 @@ A key requirement is **exact fit** to the initial term structure. Approaches inc
 - Brigo & Mercurio, *Interest Rate Models—Theory and Practice*, Chapter 3
 - Björk, *Arbitrage Theory in Continuous Time*, Chapters 22-23
 - Filipović, *Term-Structure Models*, Chapters 5-6
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the bond pricing formula $P(t,T) = \mathbb{E}_t^{\mathbb{Q}}[e^{-\int_t^T r_s\,ds}]$, show that the instantaneous forward rate satisfies $f(t,T) = -\frac{\partial}{\partial T}\ln P(t,T)$ and that $P(t,T) = \exp(-\int_t^T f(t,u)\,du)$.
+
+---
+
+**Exercise 2.** Derive the PDE satisfied by the zero-coupon bond price $P(t,T) = F(t, r_t, T)$ in a general short-rate model $dr_t = \mu(t,r)\,dt + \sigma(t,r)\,dW_t$. Apply Ito's lemma and use the no-arbitrage condition to obtain the term-structure PDE.
+
+---
+
+**Exercise 3.** The money-market account satisfies $dB_t = r_t B_t\,dt$ with $B_0 = 1$. Show that $B_t = \exp(\int_0^t r_s\,ds)$. Why is this account risk-free in the instantaneous sense but not over finite horizons?
+
+---
+
+**Exercise 4.** Explain why the short-rate model approach is considered a "bottom-up" approach to term-structure modeling, while the HJM framework is "top-down." What are the main advantages and disadvantages of each?
+
+---
+
+**Exercise 5.** In the general framework, the market price of risk $\lambda(t, r)$ links the physical and risk-neutral drifts: $\mu^{\mathbb{Q}} = \mu^{\mathbb{P}} - \lambda\sigma$. Explain the economic interpretation of $\lambda$ and discuss why it cannot be determined from bond prices alone.
+
+---
+
+**Exercise 6.** Show that if the short rate is deterministic ($\sigma = 0$), then $P(t,T) = e^{-\int_t^T r_s\,ds}$ exactly (no expectation needed). Use this to explain why stochastic models are necessary for pricing interest rate options.

@@ -332,3 +332,40 @@ is the martingale. The $-f$ from the PDE cancels the $+f$ from the integral term
 - [Discounted Feynman-Kac](discounted_feynman_kac.md) -- the discounting/killing extension
 - [Kolmogorov Backward Equation](../kolmogorov_equations/kolmogorov_backward.md) -- the $r = 0$ special case
 - [Applications to Option Pricing](feynman_kac_option_pricing.md) -- financial applications
+
+---
+
+## Exercises
+
+**Exercise 1.**
+In Direction 1 (PDE to Expectation), the key step is showing that $Y_s = D(t,s)\,u(s, X_s)$ is a martingale when $u$ solves the PDE. Apply Ito's lemma to $D(t,s)\,u(s, X_s)$ for constant $r$ and verify that the drift vanishes when $\partial_t u + \mathcal{L}u - ru = 0$.
+
+---
+
+**Exercise 2.**
+In Direction 2 (Expectation to PDE), the starting point is $u(t,x) = \mathbb{E}[D(t,T)g(X_T) | X_t = x]$. Using the Markov property, show that $u(t, X_t)$ can be expressed as a conditional expectation and hence $D(t,s)u(s, X_s)$ is a martingale. Conclude that the drift of this process must be zero.
+
+---
+
+**Exercise 3.**
+In the proof, the integrability condition ensures that the local martingale $Y_s$ is a true martingale. Give an example where the stochastic integral $\int_t^s D\,\sigma\,u_x\,dW$ might fail to be a true martingale, and explain the consequence for the Feynman-Kac representation.
+
+---
+
+**Exercise 4.**
+For the case $r = 0$ and $f = 0$, the Feynman-Kac proof simplifies to showing that $u(s, X_s)$ is a martingale. Carry out this simplified proof for $dX_s = \sigma\,dW_s$ and $g(x) = x^2$, verifying each step explicitly.
+
+---
+
+**Exercise 5.**
+The running payoff extension involves the process $Y_s = D(t,s)u(s,X_s) + \int_t^s D(t,\tau)f(\tau, X_\tau)\,d\tau$. Show that the $+f$ from the integral and the $-f$ from the PDE cancel in the drift of $Y_s$, leaving $Y_s$ as a martingale.
+
+---
+
+**Exercise 6.**
+Explain why the Feynman-Kac proof requires $u \in C^{1,2}$ (once differentiable in $t$, twice in $x$). What goes wrong with the Ito lemma application if $u$ is only continuous? In this case, what weaker concept of solution (viscosity solution) can be used?
+
+---
+
+**Exercise 7.**
+Summarize the Feynman-Kac proof in one sentence for each of the five steps: (1) define the process, (2) apply Ito's lemma, (3) use the PDE, (4) conclude martingale property, (5) evaluate at boundary times. Then explain why step (3) is the crucial one that connects the PDE to probability.

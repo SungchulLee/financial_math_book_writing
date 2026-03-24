@@ -240,3 +240,40 @@ The full truncation scheme is the **standard choice** for Euler-based Heston sim
 ## Summary
 
 The Euler-Maruyama discretization of the Heston model faces a fundamental obstacle: the square-root diffusion coefficient in the CIR variance process is not Lipschitz, causing naive Euler steps to produce negative variance. Three fix schemes---full truncation, reflection, and absorption---restore non-negativity with different bias characteristics. All three achieve weak order $\mathcal{O}(\Delta t)$ and strong order $\mathcal{O}(\Delta t^{1/2})$. Among these, full truncation offers the smallest pricing bias and is the recommended default. For higher accuracy, the [Milstein scheme](milstein_scheme.md) and the [quadratic-exponential scheme](quadratic_exponential_scheme.md) provide improved convergence at moderate additional complexity.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The Cholesky decomposition generates correlated Brownian increments as $\Delta W^{(2)} = \sqrt{\Delta t}(\rho Z_1 + \sqrt{1 - \rho^2}\,Z_2)$. Verify that $\text{Var}(\Delta W^{(2)}) = \Delta t$ and $\text{Cov}(\Delta W^{(1)}, \Delta W^{(2)}) = \rho\,\Delta t$. For $\rho = -0.7$, compute the coefficient of $Z_2$ and explain why the $Z_2$ component represents the variance risk that is orthogonal to the stock.
+
+---
+
+**Exercise 2.**
+The Feller ratio is $2\kappa\theta/\xi^2$. For the worked example parameters ($\kappa = 1.5$, $\theta = 0.04$, $\xi = 0.3$), the ratio is approximately 1.33. Now consider market-calibrated parameters $\kappa = 2.0$, $\theta = 0.02$, $\xi = 0.5$, giving a Feller ratio of 0.32. With $v_n = 0.01$, $\Delta t = 1/252$, and a random draw $Z_2 = -2.5$, compute the naive Euler update $\hat{v}_{n+1}$. Is it negative? Repeat for full truncation, reflection, and absorption, showing the three different corrected values.
+
+---
+
+**Exercise 3.**
+In the full truncation scheme, when $v_n < 0$, the drift term becomes $\kappa(\theta - 0) = \kappa\theta > 0$ (maximally mean-reverting) and the diffusion term is $\xi\sqrt{0} = 0$. Show that the next update is deterministic: $v_{n+1} = v_n + \kappa\theta\,\Delta t$. How many consecutive steps are needed for $v$ to return to positive territory if $v_n = -0.005$? Use $\kappa = 1.5$, $\theta = 0.04$, $\Delta t = 1/252$.
+
+---
+
+**Exercise 4.**
+The reflection scheme sets $v_{n+1} = |\tilde{v}_{n+1}|$. Argue that this introduces a positive bias in the variance distribution: the probability of $v_{n+1} = x > 0$ under reflection includes both the probability of $\tilde{v}_{n+1} = x$ and $\tilde{v}_{n+1} = -x$. How does this bias affect the option price? Would you expect reflected-Euler call prices to be systematically higher or lower than the true price?
+
+---
+
+**Exercise 5.**
+The weak convergence order of 1 means that the pricing bias decreases linearly with $\Delta t$. If the Euler full-truncation bias at $\Delta t = 1/252$ is $\$0.05$, estimate the bias at $\Delta t = 1/504$ and $\Delta t = 1/1008$. How many steps are needed to reduce the bias below $\$0.001$? Compare the total computational cost (paths $\times$ steps) against using the QE scheme with 12 steps and near-zero bias.
+
+---
+
+**Exercise 6.**
+The log-price update uses $v_n^+$ in both the drift and diffusion: $x_{n+1} = x_n + (r - q - \frac{1}{2}v_n^+)\Delta t + \sqrt{v_n^+}\,\Delta W_n^{(1)}$. When $v_n^+ = 0$, the update becomes $x_{n+1} = x_n + (r - q)\Delta t$ with no randomness. Explain how this affects the simulated stock price distribution during periods of zero variance and why it can cause the Monte Carlo estimator to underestimate the true option price.
+
+---
+
+**Exercise 7.**
+Implement the Euler full-truncation scheme with $M = 10{,}000$ paths and $N = 252$ steps for the worked example parameters. Compute the European call price and its 95% confidence interval. Then repeat with $N = 50$ steps (weekly) and $N = 12$ steps (monthly). How does the bias change with $N$? At what point does the bias dominate the Monte Carlo standard error?

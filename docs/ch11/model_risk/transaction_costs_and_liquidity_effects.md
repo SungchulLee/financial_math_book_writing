@@ -171,3 +171,29 @@ For comparison, the option value is \(\sim \$3.20\), so costs are \(\sim 1\%\) o
 - Leland's approach adjusts volatility to account for costs
 - Near-expiry positions face particularly high transaction costs
 - Utility loss from costs scales as \(\lambda^{2/3}\), not linearly
+
+---
+
+## Exercises
+
+**Exercise 1.** The Whalley-Wilmott bandwidth is $h = (3\lambda e^{-r\tau}/(2\Gamma))^{1/3}$. For an ATM call with $\Gamma = 0.04$, $\lambda = 0.001$, $r = 0.05$, and $\tau = 0.25$, compute $h$ in delta units. If the current delta is $0.52$, what are the upper and lower bounds of the no-trade band? How does $h$ change if the spread doubles to $\lambda = 0.002$?
+
+---
+
+**Exercise 2.** Leland's modified volatility is $\sigma_{\text{Leland}}^2 = \sigma^2 + \text{sign}(\Gamma) \cdot \sigma\sqrt{8\lambda/(\pi\Delta t)}$. For $\sigma = 0.20$, $\lambda = 0.001$, and daily rebalancing ($\Delta t = 1/252$), compute $\sigma_{\text{Leland}}$ for both a long gamma position ($\Gamma > 0$) and a short gamma position ($\Gamma < 0$). Why does the adjustment have opposite signs for long and short positions?
+
+---
+
+**Exercise 3.** The gamma-weighted turnover diverges near expiry as $\int_0^T |\Gamma|\sigma S\,dt \sim \int_0^T \sigma S/\sqrt{T-t}\,dt$. Evaluate this integral explicitly for $S = 100$, $\sigma = 0.20$, $T = 1/12$ (one month). What is the total expected transaction cost with $\lambda = 0.001$? At what time before expiry does the instantaneous turnover rate exceed 1 share per day?
+
+---
+
+**Exercise 4.** The utility loss from transaction costs scales as $(\lambda\Gamma S^2\sigma^2)^{2/3}T^{1/3}$. Explain why the exponent is $2/3$ rather than $1$ by considering the three competing forces: hedging error ($\sim h^2$), transaction cost per rebalance ($\sim \lambda h$), and rebalancing frequency ($\sim 1/h^2$). If transaction costs decrease by a factor of 8, by what factor does the utility loss decrease?
+
+---
+
+**Exercise 5.** Market impact follows $\text{Execution Price} = S + \eta|\delta\theta|^\alpha$ with $\alpha \approx 0.5$. A trader needs to rebalance by $\delta\theta = 200$ shares, with $S = 100$ and $\eta = 0.01$. Compute the market impact cost. Compare this to the proportional spread cost with $\lambda = 0.001$. At what trade size does market impact begin to dominate spread costs?
+
+---
+
+**Exercise 6.** Consider a portfolio of 100 short ATM calls with $S = K = 100$, $\sigma = 0.20$, $\tau = 30$ days. The portfolio gamma is $\Gamma_{\text{port}} = 100 \times 0.055 = 5.5$ and the spread is $\lambda = 0.0005$. Compute the Whalley-Wilmott bandwidth for the portfolio, the expected total transaction cost over the option's life, and compare to the total premium collected. At what spread level does the transaction cost consume more than 10% of the premium?

@@ -149,3 +149,45 @@ $\square$
 !!! note "Extension to general Itô processes"
 
     The same procedure extends to a general Itô process $dX_t = \mu_t\,dt + \sigma_t\,dW_t$. The key step is that $(dX_t)^2 = \sigma_t^2\,dt$, because only the $dW_t$ component survives squaring: $(\mu_t\,dt)^2 = 0$, $\mu_t\,dt\cdot\sigma_t\,dW_t = 0$, and $(\sigma_t\,dW_t)^2 = \sigma_t^2\,dt$. Substituting this into the second-order Taylor term yields the general Itô formula; see [Itô's Lemma](ito_lemma.md).
+
+---
+
+## Exercises
+
+**Exercise 1.** Using the Itô multiplication table, evaluate each of the following products:
+
+(a) $(3\,dt)(2\,dW_t)$
+
+(b) $(dW_t)(5\,dW_t)$
+
+(c) $(\mu\,dt + \sigma\,dW_t)^2$ for constants $\mu$ and $\sigma$
+
+---
+
+**Exercise 2.** Let $f(x) = e^x$. Write out all five terms of the second-order Taylor expansion for $f(t, W_t + dW_t) - f(t, W_t)$, apply the multiplication table term by term, and derive Itô's formula for $d(e^{W_t})$.
+
+---
+
+**Exercise 3.** Explain why $(dt \cdot dW_t) = 0$ by analyzing the order of magnitude. Specifically, if $dW_t = O(\sqrt{dt})$, show that $dt \cdot dW_t = O((dt)^{3/2})$, and explain why this vanishes faster than $dt$.
+
+---
+
+**Exercise 4.** Apply the derivation of Section 3 to the function $f(t, x) = \sin(x)$. Compute $f_t$, $f_x$, $f_{xx}$, substitute into the five-term Taylor expansion, apply the multiplication table, and write the resulting Itô formula for $d(\sin(W_t))$.
+
+---
+
+**Exercise 5.** Consider a general Itô process $dX_t = \mu_t\,dt + \sigma_t\,dW_t$.
+
+(a) Expand $(dX_t)^2 = (\mu_t\,dt + \sigma_t\,dW_t)^2$ into four terms.
+
+(b) Apply the multiplication table to each term and show that $(dX_t)^2 = \sigma_t^2\,dt$.
+
+(c) Use this to write the second-order Taylor term $\frac{1}{2}f_{xx}(dX_t)^2$ for a general $C^2$ function $f$.
+
+---
+
+**Exercise 6.** Let $f(x) = x^3$. Derive $d(W_t^3)$ by writing out the full five-term Taylor expansion and applying the multiplication table. Verify that your result matches what you would obtain from applying Itô's formula directly.
+
+---
+
+**Exercise 7.** Suppose two independent Brownian motions $W_t^1$ and $W_t^2$ are given. Using the multiplication table extended to two independent Brownian motions (where $dW_t^1 \cdot dW_t^2 = 0$), compute $(dW_t^1 + dW_t^2)^2$ and interpret the result.

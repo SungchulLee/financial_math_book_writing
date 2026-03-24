@@ -190,3 +190,40 @@ The Milstein correction adds approximately $0.00011$ to the variance, partially 
 ## Summary
 
 The Milstein scheme improves the strong convergence order of the CIR variance discretization from $\frac{1}{2}$ to 1 by adding the correction term $\frac{\xi^2}{4}[(\Delta W)^2 - \Delta t]$, which is constant for the square-root diffusion. For the log-price equation, the Milstein correction vanishes because the diffusion does not depend on $x$. The correlated two-dimensional Heston system requires the Levy area for full strong order 1 convergence, which is expensive to simulate. In practice, applying Milstein to the variance process alone (without the Levy area) offers a modest improvement over Euler at negligible additional cost. For substantially better accuracy, the [QE scheme](quadratic_exponential_scheme.md) and [exact simulation](exact_simulation_broadie_kaya.md) are preferred.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The Milstein correction for a general scalar SDE $dY = a(Y)\,dt + b(Y)\,dW$ is $\frac{1}{2}b(Y)b'(Y)[(\Delta W)^2 - \Delta t]$. For the CIR process, $b(v) = \xi\sqrt{v}$ and $b'(v) = \xi/(2\sqrt{v})$, giving $b(v)b'(v) = \xi^2/2$. Now consider the alternative diffusion $b(v) = \xi v^\alpha$ for general $\alpha > 0$. Compute $b(v)b'(v)$ and show that the correction is state-dependent except when $\alpha = 1/2$ (the CIR case). For $\alpha = 1$ (geometric Brownian motion for the variance), what is the Milstein correction?
+
+---
+
+**Exercise 2.**
+The worked example computes a single Milstein step with $v_n = 0.04$, $Z_2 = -1.5$, $\Delta t = 1/252$. The Milstein correction adds $0.00011$ to the Euler value. Compute the correction as a percentage of the Euler increment $|v_{n+1}^{\text{Euler}} - v_n|$. For what magnitude of $Z_2$ does the Milstein correction exceed 10% of the Euler increment? Does the correction always have the same sign as $(\Delta W)^2 - \Delta t$?
+
+---
+
+**Exercise 3.**
+The Milstein correction $\frac{\xi^2}{4}[(\Delta W)^2 - \Delta t]$ has expected value zero (since $\mathbb{E}[(\Delta W)^2] = \Delta t$). Show this directly: $\mathbb{E}[\frac{\xi^2}{4}((\Delta W)^2 - \Delta t)] = \frac{\xi^2}{4}(\Delta t - \Delta t) = 0$. Compute the variance of the correction term and show it equals $\frac{\xi^4}{8}\Delta t^2$. For $\xi = 0.3$ and $\Delta t = 1/252$, is this variance significant compared to the variance of the Euler diffusion term $\xi^2 v_n \Delta t$?
+
+---
+
+**Exercise 4.**
+The Levy area $A_n = \int_{t_n}^{t_{n+1}}\int_{t_n}^s dW_u^{(1)}\,dW_s^{(2)} - \int_{t_n}^{t_{n+1}}\int_{t_n}^s dW_u^{(2)}\,dW_s^{(1)}$ is needed for full strong order 1 in the 2D Heston system. Show that $\mathbb{E}[A_n] = 0$ and $\text{Var}(A_n) = \frac{1}{3}(\Delta t)^2$. Why can't $A_n$ be expressed as a function of $\Delta W^{(1)}$ and $\Delta W^{(2)}$ alone? Hint: $A_n$ measures the "signed area" enclosed by the 2D Brownian path, which requires path information beyond the endpoints.
+
+---
+
+**Exercise 5.**
+The convergence comparison table shows that Milstein (variance only, without Levy area) achieves strong order 1 for the variance but only $\frac{1}{2}$ for the joint system. Explain why the variance benefits from the correction independently: the variance SDE is a scalar equation driven by $W^{(2)}$ alone, so no Levy area is needed for its Milstein scheme. The coupling to $W^{(1)}$ enters only through the joint system.
+
+---
+
+**Exercise 6.**
+For weak convergence (option pricing), both Euler and Milstein achieve order 1. Explain why the Milstein correction provides little benefit for European option pricing: the weak error depends on the distribution of the terminal values, not on pathwise accuracy. In what setting would the improved strong convergence of Milstein be important? Consider path-dependent options like Asian options where the payoff depends on individual path values.
+
+---
+
+**Exercise 7.**
+Compare the cost-accuracy trade-off of Euler, Milstein, and QE for pricing a European call. Use $M = 100{,}000$ paths with $N = 252$ (daily) steps for Euler and Milstein, and $N = 12$ (monthly) steps for QE. The QE scheme has near-zero discretization bias with 12 steps, while Euler and Milstein have $O(\Delta t)$ weak bias. Estimate the total floating-point operations for each method (Euler/Milstein cost $\sim 10$ operations per step per path; QE costs $\sim 30$ operations per step per path) and the expected bias. Which method achieves the best accuracy per unit of computation?

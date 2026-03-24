@@ -248,3 +248,40 @@ The COS method is the preferred choice for Greeks of European options under Hest
 ## Summary
 
 The COS method computes Greeks by differentiating the cosine expansion term by term. Delta and gamma require differentiating the density coefficients $A_k$ with respect to $\log S_0$, producing factors of $iu_k/S_0$ and $-u_k^2/S_0^2$ respectively. Vega differentiates $A_k$ with respect to $v_0$, introducing the factor $D(\tau, u_k)$. Theta uses the Riccati ODE directly to compute time derivatives of $C$ and $D$. All COS Greeks inherit the exponential convergence of the price, with gamma requiring approximately 50% more terms due to its $u^2$ weighting. The resulting Greeks are faster, more accurate, and more stable than finite-difference alternatives, making the COS method the method of choice for European option risk management under the Heston model.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The COS delta uses the modified density coefficients $A_k^{(1)} = \frac{2}{(b-a)S_0}\,\text{Re}[iu_k\,\varphi(u_k)e^{-iu_k a}]$. For $k = 0$, show that $A_0^{(1)} = 0$ (since $u_0 = 0$). What does this imply about the contribution of the $k = 0$ term to the delta? Compare with the price formula where $A_0 \neq 0$.
+
+---
+
+**Exercise 2.**
+Gamma involves the factor $-u_k^2/S_0^2$, which amplifies high-frequency components. For the standard parameter set ($S_0 = 100$, $N = 128$, $b - a = 4$), compute the maximum frequency $u_{127}$ and the amplification factor $u_{127}^2/S_0^2$. Explain why gamma convergence requires approximately $1.5\times$ more COS terms than the price.
+
+---
+
+**Exercise 3.**
+For a European call, verify numerically that $\Delta = e^{-q\tau}P_1$ where $P_1 = \mathbb{Q}^S(S_T > K)$ is the exercise probability under the stock-price numeraire. Use the COS method with $N = 128$ to compute both the COS delta (via $A_k^{(1)}$) and $P_1$ (via the COS formula with the shifted characteristic function $\varphi_1(u) = \varphi(u-i)/(S_0 e^{(r-q)\tau})$). Do the two approaches agree to at least 8 decimal places?
+
+---
+
+**Exercise 4.**
+COS vega uses $A_k^{(v)} = \frac{2}{b-a}\,\text{Re}[D(\tau, u_k)\,\varphi(u_k)\,e^{-iu_k a}]$. The Riccati function $D(\tau, u)$ is bounded and decays exponentially for large $u$, so vega converges at the same rate as the price. Verify this empirically by computing the vega error at $N = 32, 64, 128, 256$ and checking that the error ratio between successive doublings of $N$ is approximately constant (exponential convergence).
+
+---
+
+**Exercise 5.**
+COS theta requires the time derivatives $\dot{C}(\tau, u) = (r-q)iu + \kappa\theta D$ and $\dot{D}(\tau, u) = \frac{1}{2}\xi^2 D^2 + (i\rho\xi u - \kappa)D + \frac{1}{2}(iu - u^2)$. These are just the Riccati ODEs evaluated at the current solution. Explain why no additional numerical differentiation is needed: the Riccati equations themselves provide the time derivatives analytically. Compute $\Theta$ for the ATM call in the numerical example and verify the identity $\Theta + rC = rS_0\Delta - \frac{1}{2}v_0 S_0^2\Gamma + \kappa(\theta - v_0)\mathcal{V}$ (the Heston PDE evaluated at the option).
+
+---
+
+**Exercise 6.**
+Compare the computational cost of COS Greeks versus finite-difference Greeks. For a single option, the COS approach computes delta, gamma, vega, and theta in one pass (modifying only the $A_k$ coefficients), while finite differences require separate repricing with bumped $S_0$, $S_0 \pm h$, $v_0 + \epsilon$, and $\tau + \delta$. Count the total number of CF evaluations for each approach with $N = 128$. By what factor is the COS approach faster?
+
+---
+
+**Exercise 7.**
+For a digital (cash-or-nothing) call, the COS delta is formally a Dirac delta function at $S = K$. Explain why the COS delta series converges poorly (algebraically) for digital options, analogous to the Gibbs phenomenon for prices. Propose a smoothing strategy (e.g., computing delta as the derivative of a call-spread-approximated digital price) and argue that this restores exponential convergence for the smoothed delta.

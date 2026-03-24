@@ -122,3 +122,33 @@ This is usually posed as a weighted optimization problem (see next sections).
 - Gatheral, *The Volatility Surface* (implied vol geometry and SVI).
 - Fengler, *Semiparametric Modeling of Implied Volatility*.
 - Andersen & Piterbarg, *Interest Rate Modeling* (practitioner calibration details).
+
+---
+
+## Exercises
+
+**Exercise 1.** Define the Black--Scholes implied volatility $\sigma_{\text{impl}}(K,T)$ precisely. For a call option with $S_0 = 100$, $K = 100$, $T = 0.25$, $r = 0.02$, $q = 0$, and market price $C^{\text{mkt}} = 5.50$, describe how you would numerically solve for $\sigma_{\text{impl}}$ using Newton's method. Write down the iteration formula and explain why Vega appears in the denominator.
+
+---
+
+**Exercise 2.** Explain why implied volatility is more convenient than raw prices for visualizing the volatility surface. Given the following data: $\sigma_{\text{impl}}(90, 0.25) = 0.28$, $\sigma_{\text{impl}}(100, 0.25) = 0.22$, $\sigma_{\text{impl}}(110, 0.25) = 0.20$, sketch the smile at $T = 0.25$ and identify the skew. What market phenomenon typically produces this pattern for equity index options?
+
+---
+
+**Exercise 3.** Define the total variance surface $w(k,T) = T\sigma_{\text{impl}}^2(k,T)$ where $k = \ln(K/F_T)$. State the calendar arbitrage condition in terms of $w$ and explain why it is easier to check in total variance coordinates than in implied volatility coordinates.
+
+---
+
+**Exercise 4.** A practitioner constructs an implied volatility surface from 50 market quotes using cubic spline interpolation in log-moneyness for each of 5 maturities. After interpolation, they discover that the butterfly spread $C(K-h) - 2C(K) + C(K+h) < 0$ at a specific point. What type of arbitrage does this violate? Propose two methods to repair the surface.
+
+---
+
+**Exercise 5.** When computing model implied volatilities $\sigma_{\text{impl}}^{\text{model}}(K_i, T_i; \theta)$ for calibration, one must numerically invert the Black--Scholes formula for each model price. Discuss the computational cost of this nested inversion when calibrating a Heston model to 200 vanilla options. How does this compare to calibrating directly in price space?
+
+---
+
+**Exercise 6.** Compare calibrating in log-moneyness coordinates $k = \ln(K/F_T)$ versus delta-parameterized coordinates $\Delta$. For which market (equity vs. FX) is each convention more natural? How does the choice of coordinates affect the interpolation quality in the wings?
+
+---
+
+**Exercise 7.** Data sparsity can make surface construction unreliable. Suppose you have 3 strikes at $T = 0.1$, 8 strikes at $T = 0.5$, and 5 strikes at $T = 2.0$. Describe how you would handle this uneven data density when constructing a smooth surface. What risks arise from over-interpolating in sparse regions, and how do these propagate to calibrated model parameters?

@@ -289,3 +289,48 @@ $$
 | Crank-Nicolson | Unconditional | None |
 
 **A well-designed finite difference scheme must be both consistent and stable to guarantee convergence to the correct solution.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider the explicit scheme for the heat equation $u_\tau = \frac{1}{2}u_{xx}$ with mesh ratio $\lambda = \Delta\tau / (\Delta x)^2$. Show that the amplification factor is $G = 1 - 2\lambda(1 - \cos(k\Delta x))$ and derive the stability condition $\lambda \leq 1/2$ directly from $|G| \leq 1$.
+
+---
+
+**Exercise 2.** Verify the consistency of the Crank-Nicolson scheme by substituting the exact solution into the discrete equation and performing a Taylor expansion. Show that the local truncation error is
+
+$$
+\text{LTE} = O((\Delta\tau)^2 + (\Delta S)^2)
+$$
+
+Identify the leading-order error terms explicitly.
+
+---
+
+**Exercise 3.** The Lax Equivalence Theorem states that for a consistent, well-posed linear problem, stability is equivalent to convergence. Explain why each of the three hypotheses (linearity, well-posedness, consistency) is necessary by giving a counterexample or argument for what can go wrong when each is removed.
+
+---
+
+**Exercise 4.** A convergence study on four successively refined grids produces the following maximum errors for a European call priced via Crank-Nicolson:
+
+| Grid ($M$) | Max Error |
+|------------|-----------|
+| 50         | 0.0820    |
+| 100        | 0.0205    |
+| 200        | 0.0051    |
+| 400        | 0.0013    |
+
+Compute the error ratios and confirm second-order convergence. If the error were instead $O((\Delta S)^{3/2})$, what ratios would you expect?
+
+---
+
+**Exercise 5.** For the Black-Scholes PDE with $\sigma = 0.25$ and $S_{\max} = 400$, compute the CFL restriction on $\Delta\tau$ for the explicit scheme when $\Delta S = 2$. How many time steps are needed for $T = 1$ year? Repeat the calculation in log-price coordinates with $\Delta x = 0.02$ and compare.
+
+---
+
+**Exercise 6.** The payoff $(S - K)^+$ has a kink at $S = K$. Explain, using the concept of local truncation error, why the convergence rate of a second-order scheme may degrade near $S = K$. Describe two remedies and state how each restores the expected convergence order.
+
+---
+
+**Exercise 7.** Suppose a numerical scheme has iteration matrix $B$ with spectral radius $\rho(B) = 1 + 2\Delta\tau$. Is this scheme stable in the sense required by the Lax Equivalence Theorem? Justify your answer by relating $\rho(B)$ to the bound $\|B^n\| \leq C$ for $n\Delta\tau \leq T$.

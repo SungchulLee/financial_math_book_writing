@@ -172,3 +172,39 @@ The fit is within 3 basis points across all maturities, which is typical for a t
 ## Summary
 
 CIR calibration proceeds through cross-sectional fitting (to yield curves and/or cap volatilities) or time-series estimation (MLE using the non-central chi-squared transition density). Cross-sectional calibration determines risk-neutral parameters for pricing, while MLE recovers physical parameters for risk measurement. The main challenges are the limited flexibility of the three-parameter family (which cannot perfectly fit arbitrary term structures), parameter correlation between $\kappa$ and $\theta$, and the distinction between physical and risk-neutral parameter sets. Joint calibration to both yield curves and options provides the most robust parameter estimates, and multiple starting points are essential to avoid local optima.
+
+---
+
+## Exercises
+
+**Exercise 1.** Given market zero rates $R^{\text{mkt}}(0, T_j)$ for $T_j \in \{1, 3, 5, 10\}$ years with values $\{2.5\%, 3.0\%, 3.5\%, 4.0\%\}$, write out the yield-space objective function explicitly. How many free parameters does CIR have, and why is the optimization over-determined in this case?
+
+---
+
+**Exercise 2.** Compute the CIR bond price $P^{\text{CIR}}(0, 5)$ for parameters $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.08$, and $r_0 = 0.03$. First compute $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$, then $B(5)$ and $A(5)$, and finally $P(0,5) = A(5)\,e^{-B(5)\,r_0}$.
+
+---
+
+**Exercise 3.** The parameters $\kappa$ and $\theta$ are highly correlated in yield curve fitting. Show that the long rate $R_\infty = 2\kappa\theta/(\gamma + \kappa)$ depends on the product $\kappa\theta$ more strongly than on each parameter individually by computing $\partial R_\infty / \partial \kappa$ and $\partial R_\infty / \partial \theta$. Give two different $(\kappa, \theta)$ pairs that produce approximately the same $R_\infty$ with $\sigma = 0.10$.
+
+---
+
+**Exercise 4.** For MLE calibration, the transition density involves the non-central chi-squared distribution with parameters $c_e$, $d$, and $\lambda$. Given $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.10$, $\Delta t = 1/252$ (daily), and $r_t = 0.05$, compute $c_e$, $d$, and $\lambda$. What is the expected value of $r_{t+\Delta t}$ under this density?
+
+---
+
+**Exercise 5.** Explain the distinction between physical parameters $(\kappa^{\mathbb{P}}, \theta^{\mathbb{P}}, \sigma)$ estimated from historical data and risk-neutral parameters $(\kappa, \theta, \sigma)$ calibrated from market prices. If MLE gives $\kappa^{\mathbb{P}} = 0.3$ and $\theta^{\mathbb{P}} = 0.05$, and cross-sectional calibration gives $\kappa = 0.5$ and $\theta = 0.06$, what is the implied market price of risk parameter $\lambda_0$?
+
+---
+
+**Exercise 6.** In the joint calibration objective
+
+$$
+\alpha\sum_{j}\left(R_j^{\text{CIR}} - R_j^{\text{mkt}}\right)^2 + (1-\alpha)\sum_{i}w_i\left(\sigma_{\text{Black},i}^{\text{CIR}} - \sigma_{\text{Black},i}^{\text{mkt}}\right)^2
+$$
+
+explain why the mixing parameter $\alpha$ matters. If yield errors are on the order of $10^{-4}$ (in decimal) and volatility errors are on the order of $10^{-2}$, what value of $\alpha$ would approximately equalize the two terms?
+
+---
+
+**Exercise 7.** After calibrating to the five-maturity yield curve in the numerical example, the residuals show a pattern: positive at 1Y, negative at 2Y and 5Y, positive at 10Y, and negative at 30Y. Discuss what this systematic pattern reveals about the CIR model's yield curve shape limitations. What structural feature of a real yield curve might CIR be unable to capture with its three parameters?

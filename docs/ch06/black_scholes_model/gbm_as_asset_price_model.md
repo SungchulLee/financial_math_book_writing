@@ -299,3 +299,33 @@ Geometric Brownian motion provides the stochastic foundation for the Black-Schol
 **6. Limitations**: Real returns exhibit fat tails, volatility clustering, leverage effects, and jumps---all absent from GBM. These limitations motivate the extensions discussed in later chapters.
 
 The next section on self-financing portfolios builds directly on the GBM dynamics developed here, showing how to construct trading strategies that replicate derivative payoffs through continuous rebalancing.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $S_t$ follow GBM with $S_0 = 50$, $\mu = 0.08$, and $\sigma = 0.30$. Compute $\mathbb{E}[S_2]$, $\text{Var}(S_2)$, and the probability $\mathbb{P}(S_2 > 75)$.
+
+---
+
+**Exercise 2.** Starting from the GBM SDE $dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$, apply Ito's lemma to $f(S_t) = S_t^n$ (for integer $n \geq 2$) to derive the SDE satisfied by $S_t^n$. Use this to verify the formula for $\mathbb{E}[S_t^n]$ given in the text.
+
+---
+
+**Exercise 3.** The coefficient of variation $\text{CV}(S_t) = \sqrt{e^{\sigma^2 t} - 1}$ depends only on $\sigma$ and $t$. Compute the CV for $\sigma = 0.20$ and $t \in \{0.25, 1, 5, 10\}$. At what time horizon $t^*$ does the CV equal 1 (i.e., the standard deviation equals the mean)? Express $t^*$ in terms of $\sigma$.
+
+---
+
+**Exercise 4.** Show that under GBM, the median of $S_t$ is $S_0 \exp[(\mu - \frac{1}{2}\sigma^2)t]$, which is strictly less than the mean $\mathbb{E}[S_t] = S_0 e^{\mu t}$ whenever $\sigma > 0$. Explain intuitively why the mean exceeds the median for a log-normally distributed random variable.
+
+---
+
+**Exercise 5.** A common critique of GBM is that it cannot produce the "volatility clustering" observed in real data. Explain precisely what property of the GBM log-returns $r_{t,h} = \ln(S_{t+h}/S_t)$ rules out volatility clustering. Propose a minimal modification to the GBM framework that could accommodate this phenomenon, and describe how it would alter the distribution of $S_t$.
+
+---
+
+**Exercise 6.** Consider two stocks, $S_t^{(1)}$ and $S_t^{(2)}$, each following independent GBMs with the same parameters $\mu$ and $\sigma$ but different initial prices $S_0^{(1)} = 100$ and $S_0^{(2)} = 200$. Define the ratio $R_t = S_t^{(1)} / S_t^{(2)}$. Apply Ito's lemma to show that $R_t$ is also a GBM, determine its drift and volatility, and compute $\mathbb{E}[R_1]$.
+
+---
+
+**Exercise 7.** On October 19, 1987, the S&P 500 fell approximately 20% in a single day. Assuming GBM with $\sigma = 0.20$ (annualized) and using $\Delta t = 1/252$ for one trading day, compute the probability of a daily log-return less than $\ln(0.80)$. Express your answer in terms of standard deviations from the mean. What does this imply about the adequacy of the GBM model for tail-risk assessment?

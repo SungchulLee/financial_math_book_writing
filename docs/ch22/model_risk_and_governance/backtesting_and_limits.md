@@ -265,3 +265,51 @@ Track:
 - Acerbi, C. & Szekely, B. (2014), "Backtesting Expected Shortfall"
 - Basel Committee (1996, updated), "Supervisory Framework for the Use of Backtesting"
 - McNeil, A. & Frey, R. (2000), "Estimation of Tail-Related Risk Measures for Heteroscedastic Financial Time Series"
+
+---
+
+## Exercises
+
+**Exercise 1.** A bank uses a 99% VaR model and observes 8 exceedances over 250 trading days. Compute the Kupiec likelihood ratio test statistic $LR_{uc}$ and determine whether the model falls in the Basel green, yellow, or red zone. State clearly the expected number of exceedances under $H_0$.
+
+---
+
+**Exercise 2.** Suppose a VaR backtest over $n = 250$ days at the 99% confidence level yields the following transition counts: $n_{00} = 234$, $n_{01} = 6$, $n_{10} = 6$, $n_{11} = 4$. Compute the transition probabilities $\hat{\pi}_{01}$ and $\hat{\pi}_{11}$, and explain whether the exceedances exhibit clustering. Set up the Christoffersen independence test statistic $LR_{ind}$ and state its asymptotic distribution under $H_0$.
+
+---
+
+**Exercise 3.** A desk operates under a VaR limit of \$50 million and a stress loss limit of \$200 million. On a given day, the desk's VaR is \$48 million and its worst-case stress loss is \$210 million. Classify the breach severity for each limit, and describe the appropriate escalation actions according to a standard limit breach management framework.
+
+---
+
+**Exercise 4.** Consider the Acerbi-Szekely ES backtest. Given a sample of $n = 250$ days at confidence level $\alpha = 0.975$, suppose there are 7 exceedances with losses $L_t$ and corresponding ES forecasts $\text{ES}_t$ as follows:
+
+$$
+\sum_{t: L_t > \text{VaR}_t} \frac{L_t}{\text{ES}_t} = 8.12
+$$
+
+Compute the test statistic $Z$ and interpret whether the ES model appears to be well-calibrated (i.e., whether $Z$ is close to 1).
+
+---
+
+**Exercise 5.** In the Basel traffic light framework, a bank has 6 exceedances over 250 days at 99% VaR. The base capital multiplier is 3.0. Compute the adjusted multiplier $k$ using the yellow zone formula
+
+$$
+k = 3.0 + 0.2 \times (\text{exceedances} - 4)
+$$
+
+If the bank's current VaR is \$80 million, what is the required regulatory capital under the adjusted multiplier versus the base multiplier?
+
+---
+
+**Exercise 6.** Explain why Expected Shortfall is not directly elicitable, and discuss how this complicates backtesting compared to VaR. Describe how the McNeil-Frey test transforms exceedances
+
+$$
+e_t = \frac{L_t - \text{VaR}_t}{\text{ES}_t - \text{VaR}_t}
+$$
+
+and state what distribution the transformed residuals should follow under a correctly specified model. What statistical tests can be used to verify this?
+
+---
+
+**Exercise 7.** A firm has a hierarchical limit structure: the firm-wide VaR limit is \$500 million, and it has three business units with individual VaR limits of \$250 million, \$200 million, and \$180 million. Explain why the sum of business unit limits (\$630 million) can exceed the firm-wide limit without inconsistency. Under what correlation assumptions would the firm-wide limit be binding? Derive a condition on the pairwise correlation $\rho$ among business unit P&L assuming equal volatilities such that the aggregate VaR equals the firm-wide limit.

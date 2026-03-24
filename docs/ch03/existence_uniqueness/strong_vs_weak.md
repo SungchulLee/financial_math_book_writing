@@ -252,3 +252,55 @@ $$
    a strong solution: pathwise uniqueness fails by the Engelbert–Schmidt theorem,
    and non-existence of a strong solution follows from Yamada–Watanabe by
    contrapositive.
+
+---
+
+## Exercises
+
+**Exercise 1.** For each of the following SDEs, determine whether the solution is strong, weak (but not strong), or whether existence fails. Justify your answers by identifying which conditions (Lipschitz, Yamada--Watanabe, etc.) hold or fail.
+
+(a) $dX_t = -X_t\,dt + 2\,dW_t$, $\quad X_0 = 1$
+
+(b) $dX_t = \mathrm{sgn}(X_t)\,dW_t$, $\quad X_0 = 0$
+
+(c) $dX_t = X_t\,dt + X_t\,dW_t$, $\quad X_0 = x_0 > 0$
+
+---
+
+**Exercise 2.** State the formal definition of a strong solution. Explain why condition 1 ($X_t$ is $\mathcal{F}_t^W$-adapted) means that a strong solution is a "functional of the Brownian path." Give an explicit example by writing the strong solution of the geometric Brownian motion SDE $dX_t = \mu X_t\,dt + \sigma X_t\,dW_t$ as a measurable map $X_t = F(t, W_s : 0 \leq s \leq t)$.
+
+---
+
+**Exercise 3.** Consider Tanaka's SDE $dX_t = \mathrm{sgn}(X_t)\,dW_t$ with $X_0 = 0$. The text constructs a weak solution using the Tanaka--Meyer formula for $|B_t|$.
+
+(a) Verify that $W_t = \int_0^t \mathrm{sgn}(B_s)\,dB_s$ has quadratic variation $\langle W \rangle_t = t$, confirming it is a Brownian motion by Levy's characterisation.
+
+(b) Explain why $X_t = |B_t|$ satisfies $dX_t = \mathrm{sgn}(X_t)\,dW_t$ despite the presence of the local time term $L_t^0(B)$ in the Tanaka--Meyer formula.
+
+---
+
+**Exercise 4.** Prove that pathwise uniqueness implies uniqueness in law. Proceed as follows: let $(\Omega_1, \mathbb{P}_1, W^1, X^1)$ and $(\Omega_2, \mathbb{P}_2, W^2, X^2)$ be two weak solutions with the same initial distribution. Construct a common probability space on which both solutions can be compared (hint: use the product space $\Omega_1 \times \Omega_2$), and explain how pathwise uniqueness on this space forces $\mathrm{Law}(X^1) = \mathrm{Law}(X^2)$.
+
+---
+
+**Exercise 5.** The Yamada--Watanabe theorem states:
+
+$$
+\text{Pathwise uniqueness} + \text{Weak existence} \implies \text{Strong existence}
+$$
+
+Explain why the converse fails: give an example (or describe a scenario) where a strong solution exists but pathwise uniqueness does not hold. Then explain why the Yamada--Watanabe theorem is still useful despite this asymmetry.
+
+---
+
+**Exercise 6.** In mathematical finance, the Black--Scholes model $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ admits a strong solution. Explain why strong existence is essential for delta-hedging, where the hedging strategy must be computed pathwise as a function of the observed asset price trajectory. Contrast this with option pricing under the risk-neutral measure, where only the distribution of $S_T$ matters, and a weak solution would suffice.
+
+---
+
+**Exercise 7.** Complete the following classification table by filling in "Yes," "No," or "N/A" for each entry. Justify each answer briefly.
+
+| SDE | Weak existence | Pathwise uniqueness | Uniqueness in law | Strong existence |
+|---|---|---|---|---|
+| $dX_t = -X_t\,dt + dW_t$ | | | | |
+| $dX_t = \mathrm{sgn}(X_t)\,dW_t$, $X_0 = 0$ | | | | |
+| $dX_t = \kappa(\theta - X_t)\,dt + \sigma\sqrt{X_t}\,dW_t$ (CIR) | | | | |

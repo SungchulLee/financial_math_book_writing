@@ -184,3 +184,31 @@ The term $\ln A(\tau)$ includes the effect $-\sigma^2 B(\tau)^2/(4\kappa)$, whic
 The Gaussian distribution of the Vasicek short rate implies $\mathbb{P}(r_t < 0) = \Phi(-\mu(t)/v(t)) > 0$ for all parameter values. The probability is controlled by the signal-to-noise ratio $\theta\sqrt{2\kappa}/\sigma$ and increases with volatility and horizon. While historically viewed as a deficiency, the negative rate property became empirically relevant after 2012. The main practical remedies---shifted models, CIR, and log-normal specifications---each trade off analytical tractability against distributional constraints. For calibration to modern rate markets where negative rates are observed, the unmodified Vasicek model is a reasonable choice.
 
 ---
+
+## Exercises
+
+**Exercise 1.** For Vasicek parameters $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.025$, $r_0 = 0.04$, compute $\mathbb{P}(r_t < 0)$ at $t = 1, 5, 10$ years and in the stationary limit. How does the signal-to-noise ratio $\theta\sqrt{2\kappa}/\sigma$ compare with the pre-crisis example in the text?
+
+---
+
+**Exercise 2.** Derive the stationary probability of negative rates $\mathbb{P}(r_\infty < 0) = \Phi(-\theta\sqrt{2\kappa}/\sigma)$ from the stationary distribution $r_\infty \sim \mathcal{N}(\theta, \sigma^2/(2\kappa))$. For what value of $\sigma$ does this probability equal exactly 5% when $\kappa = 0.3$ and $\theta = 0.05$?
+
+---
+
+**Exercise 3.** In a low-rate environment with $\kappa = 0.1$, $\theta = 0.01$, $\sigma = 0.015$, $r_0 = 0.005$, the text reports $\mathbb{P}(r_\infty < 0) = 38.3\%$. Verify this calculation. Then find the value of $\kappa$ (holding $\theta$ and $\sigma$ fixed) that would reduce the stationary negative-rate probability to 5%.
+
+---
+
+**Exercise 4.** When the short rate is negative, the zero-coupon bond price can exceed par ($P(t,T) > 1$). Using the Vasicek formula $P(t,T) = A(\tau)e^{-B(\tau)r_t}$, find the critical short rate $r^*(T)$ such that $P(0,T) = 1$ for $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.02$, and $T = 5$. Is $r^*(T)$ positive or negative?
+
+---
+
+**Exercise 5.** The long-run yield is $R_\infty = \theta - \sigma^2/(2\kappa^2)$. Find the condition on $(\kappa, \theta, \sigma)$ under which $R_\infty < 0$. For $\kappa = 0.1$ and $\theta = 0.02$, what is the maximum volatility $\sigma$ for which $R_\infty$ remains positive?
+
+---
+
+**Exercise 6.** In the shifted Vasicek model $r_t = \underline{r} + x_t$ where $x_t$ follows standard Vasicek dynamics, the probability of rates below $\underline{r}$ is the same as the probability of negative rates in the original model. If the original model has $\mathbb{P}(r_\infty < 0) = 2.64\%$, what is $\mathbb{P}(r_\infty < \underline{r})$ in the shifted model? Explain why the shift does not eliminate the tail risk but merely relocates it.
+
+---
+
+**Exercise 7.** Compare the Vasicek and CIR models in terms of their treatment of negative rates. For the CIR model $dr_t = \kappa(\theta - r_t)dt + \sigma\sqrt{r_t}\,dW_t$ with the Feller condition $2\kappa\theta \geq \sigma^2$, explain why $r_t \geq 0$ almost surely. What empirical scenarios favor the Vasicek model's ability to produce negative rates over CIR's non-negativity constraint?

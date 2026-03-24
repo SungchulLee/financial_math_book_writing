@@ -147,3 +147,45 @@ The computational cost of BK bond pricing is orders of magnitude higher than for
 ## Summary
 
 The Black-Karasinski model requires numerical methods for bond pricing because the non-affine structure prevents closed-form solutions. The three standard approaches --- trinomial trees, finite differences, and Monte Carlo --- offer different tradeoffs between accuracy, speed, and ease of calibration. Trees are the most common in practice due to their natural integration with the forward-induction calibration of $\theta(t)$. Finite differences provide higher-order convergence, while Monte Carlo handles path-dependent products. Asymptotic approximations offer quick estimates for short maturities but lack the accuracy needed for precision pricing. The computational cost of BK bond pricing, while manageable with modern hardware, is orders of magnitude higher than for affine models and represents the practical price of non-negativity and exact term structure fitting.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the bond pricing PDE in the log-rate variable,
+
+$$
+g_t + [\theta(t) - ax]\,g_x + \frac{1}{2}\sigma^2\,g_{xx} - e^x\,g = 0
+$$
+
+attempt the affine ansatz $g(t,x) = \exp(A(t) + B(t)\,x)$ and show that it fails. Specifically, substitute the ansatz and demonstrate that the resulting equation cannot be separated into terms depending only on $t$ and terms depending only on $x$.
+
+---
+
+**Exercise 2.** On a BK trinomial tree with $\Delta t = 0.5$ year, the log-rate at a node is $x_j = \ln(0.06)$, and the three successor node bond values are $g_{j+1} = 0.945$, $g_j = 0.950$, $g_{j-1} = 0.955$, with branching probabilities $p_u = 0.1667$, $p_m = 0.6667$, $p_d = 0.1667$. Compute the bond price $g(t_k, x_j)$ using the backward induction formula.
+
+---
+
+**Exercise 3.** Write out the Crank-Nicolson finite difference equation for the interior node $j$ at time step $k \to k+1$, using the spatial operator $\mathcal{L}^k$ defined in the text. If $\Delta x = 0.05$, $\Delta t = 0.01$, $a = 0.10$, $\sigma = 0.20$, $\theta(t_k) = -0.25$, and $x_j = \ln(0.05)$, compute the coefficients of $g_{j-1}^{k+1}$, $g_j^{k+1}$, and $g_{j+1}^{k+1}$ on the implicit side of the scheme.
+
+---
+
+**Exercise 4.** Using the short-maturity expansion
+
+$$
+P(t,T) \approx 1 - r_t\,\tau + \frac{1}{2}\left(r_t^2 + r_t\left[\theta(t) - a\ln r_t + \frac{1}{2}\sigma^2\right]\right)\tau^2
+$$
+
+compute $P(t,T)$ for $r_t = 5\%$, $\tau = 0.25$ year, $\theta(t) = -0.25$, $a = 0.10$, and $\sigma = 0.20$. Compare this with the naive approximation $e^{-r_t \tau}$ and quantify the difference.
+
+---
+
+**Exercise 5.** A cap with 40 quarterly caplets must be calibrated. Each calibration iteration requires pricing all 40 caplets, and convergence takes 100 iterations. If one trinomial tree bond price takes $1$ ms and one affine-model bond price takes $1$ ns, compute the total calibration time for both the BK model and an affine model (e.g., CIR). Express the ratio.
+
+---
+
+**Exercise 6.** In the log-normal approximation, $P(t,T) \approx \exp(-\mu_Y + \frac{1}{2}\sigma_Y^2)$ where $Y = \int_t^T r_s\,ds$. Show that this approximation is exact when $Y$ is Gaussian (as would be the case if $r_s$ were a Gaussian process). For the BK model, explain why $Y$ is not Gaussian and discuss the sign of the error introduced by this approximation for typical parameter values.
+
+---
+
+**Exercise 7.** Compare the boundary conditions for the finite difference PDE solver: $g \approx 1$ at $x_{\min}$ (very low rates) and $g \approx 0$ at $x_{\max}$ (very high rates). Justify these conditions economically. What happens to the bond price as $r_t \to 0$? What happens as $r_t \to \infty$? How should $x_{\min}$ and $x_{\max}$ be chosen relative to the model parameters $a$, $\sigma$, and $\theta(t)$ to ensure negligible truncation error?

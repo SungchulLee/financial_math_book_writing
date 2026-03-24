@@ -343,3 +343,45 @@ The full solution requires matching these two regimes at $u = 0$, creating a **f
 - Henry-Labordere, P. (2012), "Counterparty Risk Valuation: A Marked Branching Diffusion Approach"
 - E, W., Han, J., & Jentzen, A. (2017), "Deep Learning-Based Numerical Methods for High-Dimensional Parabolic PDEs and BSDEs"
 - Peng, S. (1997), "Backward SDE and Related $g$-Expectations"
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the XVA semilinear PDE
+
+$$
+\partial_t u + \frac{1}{2}\sigma^2 x^2 \partial_{xx} u + rx \partial_x u - ru + \lambda_C \cdot \text{LGD}_C \cdot u^+ - \lambda_B \cdot \text{LGD}_B \cdot u^- + s_F \cdot u^+ = 0
+$$
+
+show that when $u > 0$ everywhere, the PDE reduces to a standard Black-Scholes equation with an adjusted discount rate $\tilde{r} = r - \lambda_C \cdot \text{LGD}_C - s_F$. Compute $\tilde{r}$ for $r = 3\%$, $\lambda_C = 2\%$, $\text{LGD}_C = 60\%$, $s_F = 80$ bps. Explain why $\tilde{r} < r$ and what this means economically for the price of a call option.
+
+---
+
+**Exercise 2.** Verify that the XVA driver $f(t, v, z) = -rv + \lambda_C \cdot \text{LGD}_C \cdot v^+ - \lambda_B \cdot \text{LGD}_B \cdot v^- + s_F(v - c)^+$ satisfies the Lipschitz condition. Compute the Lipschitz constant $K$ in terms of $r$, $\lambda_C$, $\text{LGD}_C$, $\lambda_B$, $\text{LGD}_B$, and $s_F$. Using the Pardoux-Peng existence theorem, state what this guarantees about the BSDE solution.
+
+---
+
+**Exercise 3.** Consider the first-order (additive) approximation where $u \approx \hat{u}$ in the nonlinear terms:
+
+$$
+\text{CVA} \approx \mathbb{E}\left[\int_t^T e^{-r(s-t)} \lambda_C \cdot \text{LGD}_C \cdot \hat{u}^+(s, X_s) \, ds\right]
+$$
+
+Explain why this approximation is valid when XVA adjustments are small relative to the risk-free price. For a derivative with $\hat{u} = \$10$M and total XVA = \$0.5M, assess whether the approximation is reasonable. What interactions does the additive approach miss that the full nonlinear solution captures?
+
+---
+
+**Exercise 4.** The comparison theorem states that if $f_1 \le f_2$ and $\xi_1 \le \xi_2$, then $V^1_t \le V^2_t$. Use this to prove that higher counterparty credit spread (higher $\lambda_C$) reduces the XVA-adjusted price for a derivative with positive value. Specifically, if $\lambda_C^{(1)} < \lambda_C^{(2)}$, show that $f^{(1)} \ge f^{(2)}$ for $v > 0$ and therefore $V^{(1)}_t \ge V^{(2)}_t$.
+
+---
+
+**Exercise 5.** The one-dimensional XVA PDE creates a free boundary problem at $u = 0$ where the effective discount rate changes. Explain why this is analogous to an American option free boundary. For a forward contract (which starts at $u = 0$ and can become either positive or negative), sketch the qualitative behavior of the XVA-adjusted price versus the risk-free price as a function of the underlying. Indicate the regions where CVA dominates (u > 0) and where DVA dominates (u < 0).
+
+---
+
+**Exercise 6.** Describe the deep BSDE method for solving the XVA pricing equation in high dimensions. The method parameterizes the initial value as $V_{t_0} \approx \mathcal{N}_\theta(\mathbf{x}_0)$ and the control as $Z_{t_i} \approx \mathcal{N}_\phi^{(i)}(\mathbf{X}_{t_i})$, then minimizes $\mathbb{E}[|V_{t_N}^{\theta,\phi} - \Phi(X_T)|^2]$. Explain why the curse of dimensionality makes grid-based PDE methods infeasible for realistic XVA problems (e.g., a portfolio with 20 risk factors). How does the deep BSDE method circumvent this? What are the practical challenges in training the neural networks?
+
+---
+
+**Exercise 7.** The connection between XVA pricing and dynamic risk measures via $g$-expectations is: $\mathcal{E}_g[X | \mathcal{F}_t] = Y_t$ where $Y$ solves a BSDE with driver $g$. If $g = 0$, this reduces to the conditional expectation (risk-neutral pricing). Explain how a convex driver $g$ corresponds to a convex risk measure. In the XVA context, is the standard XVA driver convex in $v$? Check by computing $\partial^2 f / \partial v^2$ at $v = 0$ and discussing what happens at the non-smooth points.

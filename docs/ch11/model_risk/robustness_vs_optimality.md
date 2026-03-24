@@ -225,3 +225,29 @@ Robust strategies sacrifice some expected return for reduced tail risk.
 - Reserve capital for model uncertainty (price bounds width)
 - Optimal strategies can be fragile; robust strategies sacrifice some return for stability
 - Practical robustness: diversify hedges, monitor slippage, set model risk limits
+
+---
+
+## Exercises
+
+**Exercise 1.** For a European call with $S = K = 100$, $T = 0.5$, $r = 0.03$, and volatility uncertainty $\sigma \in [0.15, 0.30]$, compute the Black-Scholes price at both endpoints to obtain the robust price bounds $[\underline{V}, \overline{V}]$. What is the width of the bounds? If vega at the midpoint volatility $\sigma = 0.225$ is approximately $\nu = 20$, verify that $\overline{V} - \underline{V} \approx \nu(\sigma_{\max} - \sigma_{\min})$.
+
+---
+
+**Exercise 2.** The worst-case hedge is $\Delta^* = \frac{1}{2}(\Delta(\sigma_{\min}) + \Delta(\sigma_{\max}))$. For the option in Exercise 1, compute $\Delta(0.15)$ and $\Delta(0.30)$ and the robust hedge ratio $\Delta^*$. Compare this to the delta at the midpoint volatility $\Delta(0.225)$. Under what conditions does the simple average outperform the midpoint delta?
+
+---
+
+**Exercise 3.** Model risk capital is computed as $\text{MRC} = \alpha \times (\overline{V} - \underline{V})$ with regulatory multiplier $\alpha$. For a portfolio of 1,000 short calls (each with the bounds from Exercise 1), compute the model risk capital for $\alpha = 1.5$. If the trader reduces the volatility uncertainty to $\sigma \in [0.18, 0.25]$ through better calibration, by what percentage does the required capital decrease?
+
+---
+
+**Exercise 4.** A trader uses model averaging with three models: Black-Scholes ($w_1 = 0.3$, $\Delta_1 = 0.55$), Heston ($w_2 = 0.5$, $\Delta_2 = 0.52$), and SABR ($w_3 = 0.2$, $\Delta_3 = 0.58$). Compute the model-averaged delta $\Delta^* = \sum_i w_i \Delta_i$. If the realized P&L under each model's delta is $\$0.10$, $-\$0.05$, and $\$0.20$ respectively, compute the P&L under the averaged hedge. Is the averaged P&L better or worse than the best single model?
+
+---
+
+**Exercise 5.** The P&L variance across models measures robustness. A hedge strategy produces the following P&L under five stress scenarios: $+\$0.50$, $-\$0.30$, $+\$0.10$, $-\$0.80$, $+\$0.20$. Compute the mean P&L, P&L variance, and maximum drawdown. A second (more robust) strategy produces: $+\$0.15$, $-\$0.10$, $+\$0.05$, $-\$0.20$, $+\$0.10$. Compute the same metrics. Which strategy is preferable if the risk limit is a maximum drawdown of $\$0.50$?
+
+---
+
+**Exercise 6.** Robust Greeks are reported as ranges: $\Delta \in [\Delta_{\min}, \Delta_{\max}]$. For a European put with $S = 100$, $K = 95$, $T = 0.25$, $r = 0.03$, compute the delta range arising from volatility uncertainty $\sigma \in [0.18, 0.28]$. Compute the gamma range as well. A trader claims that gamma is "approximately 0.03." Is this precise enough given the model uncertainty? What is the relative uncertainty $(\Gamma_{\max} - \Gamma_{\min})/\bar{\Gamma}$?

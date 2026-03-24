@@ -218,3 +218,46 @@ With $M = 10{,}000$ paths, the exact simulation produces a price estimate with z
 ## Summary
 
 The Broadie-Kaya exact simulation algorithm eliminates discretization bias entirely by sampling from the true Heston transition distributions. The three-step procedure---non-central chi-squared for $v_T$, Fourier inversion for $\int v_s \, ds$, conditional Gaussian for $\ln S_T$---produces exact samples at the cost of an expensive numerical inversion per step. For production use, the [QE scheme](quadratic_exponential_scheme.md) provides a better cost-accuracy trade-off, but exact simulation remains the gold standard for benchmarking and research. Combining exact simulation with [variance reduction techniques](variance_reduction_techniques.md) can partially offset the computational overhead.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The non-central chi-squared degrees of freedom are $d = 4\kappa\theta/\xi^2$. For the worked example ($\kappa = 1.5$, $\theta = 0.04$, $\xi = 0.3$), verify that $d \approx 2.667$. Since $d > 1$, the direct decomposition $\chi^2_d(\lambda) = \chi^2_1(\lambda) + \chi^2_{d-1}(0)$ applies. Explain each component: $\chi^2_1(\lambda) = (Z + \sqrt{\lambda})^2$ with $Z \sim N(0,1)$ captures the non-centrality, and $\chi^2_{d-1}(0)$ is a central chi-squared with $d - 1 \approx 1.667$ degrees of freedom. How would you sample a central chi-squared with non-integer degrees of freedom?
+
+---
+
+**Exercise 2.**
+The non-centrality parameter is $\lambda = 4\kappa e^{-\kappa T} v_0 / [\xi^2(1 - e^{-\kappa T})]$. Compute $\lambda$ for $T = 0.1$ and $T = 5.0$ with the worked example parameters. Explain why $\lambda$ decreases with $T$: as $T$ grows, the influence of $v_0$ on $v_T$ diminishes due to mean reversion, and the distribution of $v_T$ converges to the stationary distribution (central chi-squared with $\lambda = 0$).
+
+---
+
+**Exercise 3.**
+In Step 3, the log-price is reconstructed using the identity
+
+$$
+\int_0^T \sqrt{v_s}\,dW_s^{(2)} = \frac{1}{\xi}[v_T - v_0 - \kappa\theta T + \kappa I_T]
+$$
+
+Derive this by integrating the CIR SDE: $v_T - v_0 = \kappa\theta T - \kappa I_T + \xi\int_0^T \sqrt{v_s}\,dW_s^{(2)}$ and solving for the stochastic integral. Why is this identity exact and not an approximation?
+
+---
+
+**Exercise 4.**
+The conditional variance of $\ln S_T$ given $v_T$ and $I_T$ is $(1 - \rho^2)I_T$. For $\rho = -0.7$, this equals $0.51 \cdot I_T$. Explain why the conditional variance decreases as $|\rho| \to 1$: when $\rho = \pm 1$, the stock and variance are perfectly correlated, so knowing $v_T$ and $I_T$ determines $\ln S_T$ exactly. What is the conditional variance when $\rho = 0$?
+
+---
+
+**Exercise 5.**
+The computational bottleneck of exact simulation is the Fourier inversion for $I_T \mid (v_0, v_T)$. The CDF is computed via $F(x) = \frac{1}{2} + \frac{1}{\pi}\int_0^\infty \text{Re}[e^{-iux}\phi(u)/(iu)]\,du$, and root-finding solves $F(x) = U$. If each CDF evaluation requires 100 quadrature points and root-finding needs 20 CDF evaluations, estimate the cost per path (in number of function evaluations) for a European option ($N = 1$ step) and for an Asian option with monthly monitoring ($N = 12$ steps). Compare with the QE scheme cost.
+
+---
+
+**Exercise 6.**
+For path-dependent options, the Broadie-Kaya algorithm generates the correct finite-dimensional marginals $(v_{t_k}, S_{t_k})$ at observation times $t_0, t_1, \ldots, t_N$. However, the path between observations is not simulated. Explain why this is adequate for discretely monitored Asian options but problematic for continuously monitored barrier options. Propose a hybrid approach: use exact simulation for the variance and log-price at monitoring dates, and apply a Brownian bridge correction for the barrier between dates.
+
+---
+
+**Exercise 7.**
+Compare the mean squared error (MSE) of exact simulation versus QE for a European call with $M = 1{,}000$ paths. Exact simulation has zero bias but high cost per path, while QE has near-zero bias and low cost per path. If the QE scheme costs $C_{\text{QE}}$ per path and exact simulation costs $500 \cdot C_{\text{QE}}$ per path, and both achieve the same standard error per path, how many QE paths can be run for the same total cost as $M = 1{,}000$ exact paths? Which approach achieves lower MSE?

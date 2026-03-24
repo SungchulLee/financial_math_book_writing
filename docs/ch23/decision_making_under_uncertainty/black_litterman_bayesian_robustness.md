@@ -316,3 +316,29 @@ Both approaches address the same problem---sensitivity of mean-variance optimiza
 - Theil, H. (1971), *Principles of Econometrics*, Wiley
 - Meucci, A. (2010), "The Black-Litterman Approach: Original Model and Extensions," *Encyclopedia of Quantitative Finance*
 - Satchell, S. & Scowcroft, A. (2000), "A Demystification of the Black-Litterman Model," *Journal of Asset Management*, 1(2), 138--150
+
+---
+
+## Exercises
+
+**Exercise 1.** Given a market-capitalization-weighted portfolio $w_{\text{mkt}} = (0.6, 0.4)^\top$ for two assets with covariance $\Sigma = \begin{pmatrix} 0.04 & 0.01 \\ 0.01 & 0.09 \end{pmatrix}$ and risk aversion $\lambda = 2.5$, compute the implied equilibrium returns $\Pi = \lambda \Sigma w_{\text{mkt}}$. Explain why these "reverse-optimized" returns serve as a more stable prior than sample means.
+
+---
+
+**Exercise 2.** An investor believes Asset 2 will outperform Asset 1 by 2% (i.e., the view is $\mu_2 - \mu_1 = 0.02$ with confidence $\omega^2 = 0.001$). Using the Black-Litterman formula with $\tau = 0.05$ and the equilibrium returns from Exercise 1, compute the posterior expected returns $\mu_{\text{BL}} = [(\tau\Sigma)^{-1} + P^\top \Omega^{-1} P]^{-1}[(\tau\Sigma)^{-1}\Pi + P^\top \Omega^{-1} q]$ where $P = (-1, 1)$, $q = 0.02$, $\Omega = (0.001)$.
+
+---
+
+**Exercise 3.** Show that the Black-Litterman model is equivalent to Theil's mixed estimation. Specifically, write the equilibrium prior as $\Pi = \mu + \epsilon_1$ with $\epsilon_1 \sim N(0, \tau\Sigma)$ and the view as $q = P\mu + \epsilon_2$ with $\epsilon_2 \sim N(0, \Omega)$, then derive the GLS estimator $\hat{\mu}_{\text{BL}}$ by stacking these "observation" equations.
+
+---
+
+**Exercise 4.** The parameter $\tau$ controls the relative weight of the equilibrium prior versus investor views. For $\tau \in \{0.01, 0.05, 0.25, 1.0\}$, compute the Black-Litterman posterior returns from Exercise 2 and plot how the portfolio allocation changes. At what value of $\tau$ does the view dominate the equilibrium? Explain the financial interpretation.
+
+---
+
+**Exercise 5.** The Garlappi-Uppal-Wang robust extension of Black-Litterman introduces an ellipsoidal uncertainty set around the posterior mean. The robust portfolio is $w^* = \frac{1}{\lambda}\Sigma^{-1}\hat{\mu}_{\text{BL}} \cdot \frac{1}{1 + \varepsilon/\sqrt{\hat{\mu}_{\text{BL}}^\top \Sigma^{-1}\hat{\mu}_{\text{BL}}}}$. For the setup of Exercises 1-2 and $\varepsilon = 0.3$, compute the robust portfolio and compare it with the standard Black-Litterman portfolio. By how much does robustness reduce the allocation to risky assets?
+
+---
+
+**Exercise 6.** An epsilon-contamination robustification replaces the Gaussian prior $\Pi \sim N(\mu, \tau\Sigma)$ with a contaminated prior $(1 - \varepsilon) N(\mu, \tau\Sigma) + \varepsilon Q$ for arbitrary $Q$. Explain qualitatively how this affects the posterior distribution and why it leads to wider confidence intervals for the expected returns. For what types of views (strong vs. weak, concentrated vs. diffuse) does the contamination have the largest impact on the portfolio?

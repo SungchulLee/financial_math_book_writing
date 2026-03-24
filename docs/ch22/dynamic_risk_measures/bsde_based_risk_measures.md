@@ -321,3 +321,29 @@ This connects BSDE-based risk measures to **nonlinear PDEs**.
 - Delbaen, F., Peng, S., & Rosazza Gianin, E. (2010), "Representation of the Penalty Term of Dynamic Concave Utilities"
 - Pardoux, E. & Peng, S. (1990), "Adapted Solution of a Backward Stochastic Differential Equation"
 - Crépey, S. (2015), "Bilateral Counterparty Risk under Funding Constraints" (BSDE approach to XVA)
+
+---
+
+## Exercises
+
+**Exercise 1.** A standard BSDE takes the form $-dY_t = f(t, Y_t, Z_t)\,dt - Z_t\,dW_t$ with terminal condition $Y_T = \xi$. Explain why the driver (generator) $f$ determines the risk measure. For the linear driver $f(t,y,z) = \mu\,|z|$, what type of risk measure does the BSDE define?
+
+---
+
+**Exercise 2.** Show that the entropic risk measure $\rho(X) = \frac{1}{\theta}\ln\mathbb{E}[e^{-\theta X}]$ can be represented as a BSDE with quadratic driver $f(t,y,z) = \frac{\theta}{2}|z|^2$. Verify that for $\theta \to 0$, the risk measure converges to the negative expectation $\rho(X) \to -\mathbb{E}[X]$.
+
+---
+
+**Exercise 3.** Explain why BSDEs naturally produce time-consistent risk measures. Use the recursive structure: $\rho_t(X) = Y_t$ where $Y$ solves the BSDE backward from $T$ to $t$. Why does this recursion ensure that if $\rho_s(X) \le \rho_s(Y)$ at some time $s > t$, then $\rho_t(X) \le \rho_t(Y)$?
+
+---
+
+**Exercise 4.** In the context of XVA (valuation adjustments), BSDEs are used to model the recursive dependence of derivative values on their own CVA. Explain why this creates a nonlinear pricing problem and how the BSDE framework handles this circularity.
+
+---
+
+**Exercise 5.** The driver $f(t,y,z) = -\gamma y + \frac{\beta}{2}|z|^2$ generates a risk measure with both discounting and risk aversion. Interpret the parameters $\gamma$ (discount rate) and $\beta$ (risk aversion). What happens to the risk measure as $\beta$ increases?
+
+---
+
+**Exercise 6.** Compare BSDE-based risk measures with the backward recursion approach using conditional risk measures $\rho_t(X) = \rho_t(\rho_{t+1}(X))$. Explain how BSDEs provide the continuous-time limit of this discrete recursion. What regularity conditions on the driver $f$ ensure existence and uniqueness of the BSDE solution?

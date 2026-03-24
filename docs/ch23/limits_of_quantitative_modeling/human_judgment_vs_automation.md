@@ -369,3 +369,29 @@ $$
 5. Review performance of human-model allocation regularly
 
 The optimal balance between human judgment and automation depends on the specific task, market conditions, and organizational capabilities. Effective risk management requires thoughtful design of this interaction.
+
+---
+
+## Exercises
+
+**Exercise 1.** A quantitative trading desk uses an automated hedging system that rebalances delta-neutral positions every 5 minutes. During a flash crash, the system generates a cascade of sell orders. Describe how a human override protocol should be designed: what triggers should pause automated trading, what information should be presented to the human decision-maker, and what decision framework should guide the override?
+
+---
+
+**Exercise 2.** Compare the strengths and weaknesses of human judgment versus algorithmic models in the following tasks: (a) calibrating a volatility surface, (b) identifying a regime change in market dynamics, (c) pricing a bespoke structured product, and (d) managing a large portfolio during a liquidity crisis. For each task, recommend the appropriate balance between human and automated decision-making.
+
+---
+
+**Exercise 3.** The concept of "automation bias" describes the tendency for humans to over-rely on automated systems. In a risk management context, a trader consistently approves model-generated hedge ratios without independent verification. Design an organizational process that mitigates automation bias while preserving the efficiency benefits of automated systems.
+
+---
+
+**Exercise 4.** Consider a model that predicts credit default probabilities using machine learning. The model's outputs are used to set credit limits. A credit analyst notices that the model assigns low default probability to a company despite qualitative warning signs (management turnover, accounting irregularities). Formalize a decision framework that combines the quantitative model output with qualitative analyst judgment, including explicit rules for when analyst overrides are warranted.
+
+---
+
+**Exercise 5.** During the COVID-19 market dislocation in March 2020, many quantitative models produced signals that were historically unprecedented. Describe how a well-designed human-automation system should handle such situations. What specific thresholds or indicators should trigger a shift from automated to human-led decision-making?
+
+---
+
+**Exercise 6.** A bank's model validation team must decide whether to approve a new AI-based pricing model that outperforms traditional models on backtests but is largely unexplainable (a "black box"). Discuss the trade-off between model accuracy and interpretability, and propose a framework for evaluating whether the model should be deployed, including the role of human oversight in monitoring its ongoing performance.

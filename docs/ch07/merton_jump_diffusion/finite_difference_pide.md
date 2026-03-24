@@ -224,3 +224,33 @@ The PIDE approach is particularly valuable for:
 ## Summary
 
 The partial integro-differential equation for Merton jump-diffusion pricing combines the standard Black-Scholes PDE with an integral term representing the expected option value change from jumps. The change to log-price coordinates reveals the convolution structure of the integral, enabling FFT-based evaluation. The IMEX splitting treats the tridiagonal differential part implicitly and the dense integral part explicitly, achieving unconditional stability for the diffusion component with only a mild CFL-like restriction from the jump intensity. The resulting scheme has $O(\Delta x^2, \Delta t^2)$ convergence for smooth payoffs and extends naturally to American options and barrier options through penalty methods and grid alignment.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the Merton PIDE in the original price variable $S$, perform the change of variable $x = \ln S$, $v(t,x) = V(t, e^x)$ to derive the log-price PIDE. Verify that the drift coefficient becomes $r - \lambda\bar{k} - \frac{1}{2}\sigma^2$ and that the integral term becomes a convolution $\lambda\int v(t, x+y)\,f(y)\,dy$ where $f$ is the $N(\mu_J, \sigma_J^2)$ density.
+
+---
+
+**Exercise 2.** Consider the spatial discretization of the differential part on a uniform grid with spacing $\Delta x$. Write down the tridiagonal matrix $A$ that represents the discrete operator $\frac{1}{2}\sigma^2 \frac{v_{j+1} - 2v_j + v_{j-1}}{\Delta x^2} + \alpha\frac{v_{j+1} - v_{j-1}}{2\Delta x} - (r+\lambda)v_j$ where $\alpha = r - \lambda\bar{k} - \frac{1}{2}\sigma^2$. Express the sub-diagonal, diagonal, and super-diagonal entries in terms of $\sigma$, $\alpha$, $r$, $\lambda$, and $\Delta x$.
+
+---
+
+**Exercise 3.** For the IMEX scheme with backward Euler ($\theta = 1$), the update at each time step is $(I - \Delta t\,\mathcal{D})v^k = v^{k+1} + \Delta t\,\mathcal{I}v^{k+1}$. Explain why treating $\mathcal{I}$ explicitly introduces a stability restriction $\Delta t \leq C/\lambda$, while treating $\mathcal{D}$ implicitly removes the parabolic CFL condition. What would happen to the computational cost if $\mathcal{I}$ were also treated implicitly?
+
+---
+
+**Exercise 4.** The convolution $I_j = \lambda\int v(t, x_j + y)\,f(y)\,dy$ can be computed via the FFT. Explain why $\mathcal{F}[v * f] = \mathcal{F}[v] \cdot \mathcal{F}[f]$ holds, and why this reduces the cost from $O(J^2)$ (direct summation) to $O(J \log J)$. What care must be taken regarding the periodic extension assumption of the discrete Fourier transform?
+
+---
+
+**Exercise 5.** For the worked example (European put with $S_0 = \$100$, $K = \$100$, $T = 0.5$, $\sigma = 0.20$, $\lambda = 1.0$, $\mu_J = -0.08$, $\sigma_J = 0.25$, $r = 0.05$), compute the compensator $\bar{k}$ and the adjusted drift $\alpha = r - \lambda\bar{k} - \frac{1}{2}\sigma^2$. Verify that $\Delta t \cdot \lambda = 0.005$ for $N_t = 100$ time steps, and explain why this satisfies the stability condition.
+
+---
+
+**Exercise 6.** A European call payoff $\max(S - K, 0) = \max(e^x - K, 0)$ has a kink at $x = \ln K$. Explain why the convergence of the finite difference scheme degrades from $O(\Delta x^2)$ to $O(\Delta x)$ near this point. Describe two techniques to restore second-order convergence: (a) aligning a grid point with $x = \ln K$, and (b) smoothing the payoff by replacing the kink with a regularized approximation.
+
+---
+
+**Exercise 7.** The PIDE framework extends to American options by adding the early exercise constraint $V(t, S) \geq \Phi(S)$ at each time step (where $\Phi$ is the intrinsic value). Describe how the penalty method modifies the IMEX scheme: at each time step, add a term $\rho\,\max(\Phi_j - v_j^k, 0)$ to the right-hand side with a large penalty parameter $\rho$. Explain why this forces $v_j^k \geq \Phi_j$ approximately, and what trade-off the choice of $\rho$ involves.

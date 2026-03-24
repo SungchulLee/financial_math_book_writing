@@ -346,3 +346,29 @@ compute_hedge(portfolio, instruments)
 - Greeks surfaces reveal how sensitivities concentrate near ATM and blow up near expiry.
 - Monte Carlo P&L simulations demonstrate the variance reduction achieved by delta hedging.
 - Systematic hedge quantity computation ensures consistent risk management across complex portfolios.
+
+---
+
+## Exercises
+
+**Exercise 1.** Modify the `bs_greeks` function to include the higher-order Greeks: charm, vanna, and volga. Test your implementation by computing these Greeks for an ATM call with $S = K = 100$, $\tau = 0.5$, $r = 0.05$, $\sigma = 0.20$, and verify that vanna agrees with the formula $\text{Vanna} = -N'(d_1)d_2/\sigma$.
+
+---
+
+**Exercise 2.** Using the Greeks surface code, generate a contour plot (instead of a 3D surface) of gamma over the $(S, \tau)$ plane. Identify the region where gamma exceeds $0.05$ and shade it. How does this region change if volatility increases from $0.20$ to $0.40$?
+
+---
+
+**Exercise 3.** The P&L simulation compares unhedged and delta-hedged portfolios. Extend the simulation to include a **delta-gamma hedged** portfolio that also trades a second option to neutralize gamma at each step. Compare the three strategies' P&L distributions.
+
+---
+
+**Exercise 4.** The hedge quantity calculator uses a sequential approach: gamma-hedge first, then delta-hedge. Modify the code to perform **joint gamma-vega hedging** using two option instruments, solving the $2 \times 2$ linear system, and then delta-hedging with shares.
+
+---
+
+**Exercise 5.** Run the P&L simulation with different random seeds and compute the mean and standard deviation of the hedged P&L standard deviation across 50 random seeds. How stable is the estimate of hedging quality? Does the central limit theorem prediction $\text{Std}(\text{HE}) \sim \sqrt{\Delta t}$ hold empirically?
+
+---
+
+**Exercise 6.** Add a theta term to the P&L decomposition by computing $\Theta_i \cdot \Delta t$ at each step. Verify that the sum $\sum_i (\Theta_i \cdot \Delta t + \frac{1}{2}\Gamma_i(\Delta S_i)^2)$ approximately equals the total hedged P&L. For what fraction of steps does the gamma P&L exceed the theta cost?

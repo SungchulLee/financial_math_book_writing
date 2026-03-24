@@ -115,3 +115,29 @@ The recurrence/transience dichotomy has consequences far beyond the random walk:
 - Feller, W. (1968). *An Introduction to Probability Theory and Its Applications*, Vol. 1, 3rd ed. Wiley.
 - Lawler, G. F., & Limic, V. (2010). *Random Walk: A Modern Introduction*. Cambridge University Press.
 - Spitzer, F. (1964). *Principles of Random Walk*. Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** Using Stirling's approximation, show that $u_{2n} = \binom{2n}{n} 2^{-2n} \sim \frac{1}{\sqrt{\pi n}}$ for large $n$. Give explicit upper and lower bounds on $u_{2n}$ that hold for all $n \geq 1$.
+
+---
+
+**Exercise 2.** For the 1D symmetric random walk, the first-return probability generating function satisfies $F(s) = 1 - 1/U(s)$. Using $u_{2n} \sim (\pi n)^{-1/2}$, show that $U(1) = \infty$ and hence $F(1) = 1$, confirming recurrence. Then compute $f_{2n}$ (the probability of first return at time $2n$) for $n = 1, 2, 3$ directly and verify $f_2 = 1/2$, $f_4 = 1/8$, $f_6 = 1/16$.
+
+---
+
+**Exercise 3.** For the asymmetric walk with $p = 0.6$, the Strong Law of Large Numbers gives $S_n/n \to 0.2$ a.s. Use this to show that $\mathbb{P}(S_n = 0 \text{ for infinitely many } n) = 0$. Does this argument require Stirling's approximation?
+
+---
+
+**Exercise 4.** In $d = 2$, the return probability is $u_{2n}^{(2)} \sim \frac{1}{\pi n}$. The series $\sum_{n=1}^N u_{2n}^{(2)} \sim \frac{1}{\pi}\log N$ diverges, but slowly. Estimate the number of steps needed before the expected number of returns to the origin reaches 10. Compare this with $d = 1$, where $\sum_{n=1}^N u_{2n}^{(1)} \sim \frac{2}{\sqrt{\pi}}\sqrt{N}$.
+
+---
+
+**Exercise 5.** In $d = 3$, the return probability is $F^{(3)}(1) \approx 0.340537$. Using the renewal relation $U(1) = 1/(1 - F(1))$, compute the expected total number of visits to the origin $U^{(3)}(1)$. What does this tell you about the "average number of times the 3D walk returns home"?
+
+---
+
+**Exercise 6.** Prove that the $d$-dimensional random walk on $\mathbb{Z}^d$ with $d \geq 3$ is transient by using a generating function argument rather than Stirling's approximation. Specifically, show that $u_{2n}^{(d)} \leq (u_{2n}^{(1)})^d \cdot d^n / 1 = C \cdot n^{-d/2}$ for some constant $C$, and deduce that $\sum_n u_{2n}^{(d)} < \infty$ when $d \geq 3$.

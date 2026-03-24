@@ -292,3 +292,39 @@ The Stratonovich integral and the Itô integral differ by a correction term equa
     $$
 
     For state-independent diffusion (as here), the Itô and Stratonovich forms coincide. When the diffusion coefficient depends on $x$, the two forms differ by a state-dependent noise-induced drift, which has important physical consequences (e.g., in thermophoresis and stochastic resonance).
+
+---
+
+## Exercises
+
+**Exercise 1.** Compute the Stratonovich integral $\int_0^t s \circ dB_s$. Does it differ from the Ito integral $\int_0^t s\, dB_s$? Explain why or why not, using the conversion formula.
+
+---
+
+**Exercise 2.** Using the conversion formula
+
+$$
+\int_0^t f(B_s) \circ dB_s = \int_0^t f(B_s)\, dB_s + \frac{1}{2}\int_0^t f'(B_s)\, ds
+$$
+
+compute $\int_0^t B_s^2 \circ dB_s$ and verify that the result is consistent with the classical chain rule applied to $g(x) = x^3/3$.
+
+---
+
+**Exercise 3.** The Stratonovich chain rule gives $d(\sin B_t) = \cos(B_t) \circ dB_t$. Convert this to Ito form by finding $d(\sin B_t)$ using Ito's formula. Identify the drift correction term and verify it matches the conversion formula.
+
+---
+
+**Exercise 4.** Consider the Stratonovich SDE $dX_t = \sigma X_t \circ dB_t$ (no drift in Stratonovich form). Convert this to its equivalent Ito SDE. What drift term appears in the Ito form? Solve the resulting Ito SDE.
+
+---
+
+**Exercise 5.** Let $f(x) = e^x$. Using the Stratonovich chain rule, write $d(e^{B_t})$ in Stratonovich form. Then convert to Ito form and verify that you recover the standard result from Ito's formula.
+
+---
+
+**Exercise 6.** Using the coin-flip approximation with $n = 10$ and the sequence $H, T, H, H, T, H, T, T, H, H$, compute both the left-endpoint (Ito) and midpoint (Stratonovich) sums for $\int_0^1 B_s\, dB_s$. Verify that their difference is approximately $\frac{1}{2} \cdot 1 = 0.5$ times the quadratic variation sum $\sum (\Delta B_k)^2$.
+
+---
+
+**Exercise 7.** Explain why the Stratonovich integral $\int_0^t B_s \circ dB_s = \frac{1}{2}B_t^2$ is not a martingale, while the Ito integral $\int_0^t B_s\, dB_s = \frac{1}{2}(B_t^2 - t)$ is a martingale. What property of the midpoint evaluation causes the martingale property to fail?

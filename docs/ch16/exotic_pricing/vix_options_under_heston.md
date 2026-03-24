@@ -290,3 +290,46 @@ So VIX$_T^2 = 0.00460 + 0.8849 \, v_T$, confirming VIX$^2$ is approximately $0.8
 | [Forward-Start Options](forward_start_options.md) | Conditional characteristic function pricing |
 | [Double Heston Model](../extensions/double_heston_model.md) | Two-factor variance for improved VIX fitting |
 | [Variance Swaps (Closed-Form)](variance_swaps_closed_form.md) | The variance swap as a VIX building block |
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Under Heston, VIX$^2$ is an affine function of the instantaneous variance $v_t$:
+
+$$
+\text{VIX}_t^2 = A + B \cdot v_t
+$$
+
+where $A = \theta(1 - (1 - e^{-\kappa\tau})/(\kappa\tau))$ and $B = (1 - e^{-\kappa\tau})/(\kappa\tau)$ with $\tau = 30/365$. For $\kappa = 2.0$ and $\theta = 0.04$, compute $A$ and $B$. If $v_t = 0.04$, compute VIX in percentage.
+
+---
+
+**Exercise 2.**
+Since VIX$^2 = A + Bv_t$ is affine in $v_t$, the characteristic function of VIX$^2$ follows from the known distribution of $v_t$. If $v_t$ has a CIR stationary distribution (Gamma), show that VIX$^2$ also follows a shifted Gamma distribution. Compute the mean and variance of VIX$^2$ in terms of $A$, $B$, $\theta$, $\kappa$, and $\xi$.
+
+---
+
+**Exercise 3.**
+VIX call options have payoff $({\text{VIX}_T - K_{\text{VIX}}})^+$ where $K_{\text{VIX}}$ is the VIX strike (in percentage). To price this via Fourier inversion, we need the CF of VIX$_T$ (not VIX$_T^2$). Describe the challenge: VIX$_T = \sqrt{A + Bv_T}$ is a nonlinear function of $v_T$. Explain how to price VIX options by: (a) computing the CF of $v_T$ (which is known for CIR), (b) changing variables from VIX to $v_T$, and (c) applying Gil-Pelaez inversion.
+
+---
+
+**Exercise 4.**
+The Heston model generates a **VIX smile**: implied volatilities of VIX options vary with the VIX strike. Explain why the VIX smile is upward-sloping (OTM VIX calls have higher implied vol than ATM). Hint: VIX$^2$ is affine in $v_t$, and $v_t$ follows a CIR process whose distribution is right-skewed. The positive skewness of VIX translates to an upward-sloping smile.
+
+---
+
+**Exercise 5.**
+A key limitation of single-factor Heston for VIX options is that it cannot fit both the SPX implied volatility surface and the VIX smile simultaneously. Explain why: the five Heston parameters are fully determined by the SPX surface calibration, leaving no degrees of freedom to fit VIX options. If the SPX-calibrated parameters give VIX at-the-money implied volatility of 80%, but the market shows 100%, what does this discrepancy reveal about the model?
+
+---
+
+**Exercise 6.**
+Compute the Heston-implied VIX for $v_0 = 0.04$ and $v_0 = 0.09$ (the latter representing a market stress scenario). Using $\kappa = 2.0$, $\theta = 0.04$, $\tau = 30/365$, compute VIX in both cases. Then compute the VIX "delta" with respect to $v_t$: $\partial\text{VIX}/\partial v_t = 100 \cdot B / (2\sqrt{A + Bv_t})$. Is the VIX more sensitive to variance changes when $v_t$ is high or low?
+
+---
+
+**Exercise 7.**
+The double Heston model adds a second variance factor $v_t^{(2)}$ so that VIX$^2 = A_1 + B_1 v_t^{(1)} + A_2 + B_2 v_t^{(2)}$. Explain how this extra factor provides additional degrees of freedom to calibrate VIX options. If the first factor has $\kappa_1 = 2.0$ (slow mean-reversion) and the second has $\kappa_2 = 10.0$ (fast mean-reversion), which factor dominates short-dated VIX options and which dominates long-dated ones?

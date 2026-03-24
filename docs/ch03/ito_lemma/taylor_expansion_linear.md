@@ -231,3 +231,45 @@ Brownian motion breaks this guarantee. Its increments scale like \(\Delta B_t \s
 This means the quadratic term in the Taylor expansion does **not** vanish — it contributes at the same order as the linear terms. The next section makes this precise by examining exactly how large second-order corrections become, and why ignoring them leads to wrong answers.
 
 That analysis leads to **Itô's lemma**, which can be viewed as a Taylor expansion that keeps the quadratic term. The scaling $(\Delta B_t)^2 \sim \Delta t$ is made precise in [From Taylor to Itô](from_taylor_to_ito.md) and [Quadratic Variation of Brownian Motion](../../ch02/brownian_motion/quadratic_variation_of_brownian_motion.md), and is the key fact that makes this correction necessary.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $f(x) = \sin(x)$. Write the first-order Taylor approximation of $f$ around $x_0 = 0$. Use it to approximate $f(0.1)$ and compare with the exact value.
+
+---
+
+**Exercise 2.** For the function $f(t, b) = t^2 + tb + b^3$, compute the first-order Taylor expansion around $(t_0, b_0) = (1, 1)$. Identify the tangent plane equation explicitly.
+
+---
+
+**Exercise 3.** A deterministic path satisfies $\Delta x = O(\Delta t)$, so $(\Delta x)^2 = O((\Delta t)^2)$. Explain why this means the quadratic term in the Taylor expansion is negligible for smooth deterministic functions. Then explain why the same argument fails for Brownian motion, where $\Delta B_t \sim \sqrt{\Delta t}$.
+
+---
+
+**Exercise 4.** Consider $f(x) = \log(x)$ expanded around $x_0 = 1$.
+
+(a) Write the first-order Taylor approximation.
+
+(b) Use it to approximate $\log(1.05)$.
+
+(c) Compute the exact value and the absolute error. How does the error scale with $\Delta x = 0.05$?
+
+---
+
+**Exercise 5.** Let $f(t, b) = e^{-t}\cos(b)$. Compute the partial derivatives $f_t(0, 0)$ and $f_b(0, 0)$, and write the first-order Taylor expansion around $(0, 0)$. What is the geometric interpretation of the result?
+
+---
+
+**Exercise 6.** The error of a first-order Taylor approximation is proportional to $(\Delta x)^2$. Suppose you approximate $f(x) = e^x$ at $x_0 = 0$ with $\Delta x = 0.1$ and observe an error $\epsilon$. Predict (without computing the exact value) by what factor the error decreases if you reduce $\Delta x$ to $0.01$.
+
+---
+
+**Exercise 7.** A Brownian motion path is simulated with $N = 1000$ steps over $[0, 1]$, so $\Delta t = 0.001$. For each increment $\Delta B_i$, we have $\mathbb{E}[(\Delta B_i)^2] = \Delta t$.
+
+(a) What is the expected value of $\sum_{i=0}^{N-1} (\Delta B_i)^2$?
+
+(b) Why does this sum converge to $t = 1$ as $N \to \infty$, while $\sum_{i=0}^{N-1} (\Delta t)^2 \to 0$?
+
+(c) Explain in one sentence why this difference is the reason linear Taylor approximations are insufficient for functions of Brownian motion.

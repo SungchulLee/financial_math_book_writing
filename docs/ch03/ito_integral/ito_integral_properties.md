@@ -258,3 +258,43 @@ In the next section, we introduce **Itô processes**, which combine ordinary and
 
 ??? note "Advanced: local martingales"
     For processes not globally in $\mathcal{L}^2$, the Itô integral is defined as a **local martingale**: there exist stopping times $\tau_n \uparrow \infty$ such that each stopped process $I_{t \wedge \tau_n}$ is a true martingale. Local martingales need not have constant expectation. For example, $\int_0^t e^{B_s}\,dB_s$ is a local martingale but its expectation is not zero in general, since $e^{B_s}$ is not globally square-integrable.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $H_s = \cos(s)$ and $K_s = \sin(s)$ on $[0, \pi]$. Using linearity and the Ito isometry, compute the variance of
+
+$$
+\int_0^\pi \bigl(3\cos(s) + 2\sin(s)\bigr)\, dB_s
+$$
+
+---
+
+**Exercise 2.** Show directly from the martingale property that $\mathbb{E}[I_t \cdot I_s] = \mathbb{E}[I_s^2]$ for $s \le t$, where $I_t = \int_0^t H_u\, dB_u$. *Hint*: Write $I_t = I_s + (I_t - I_s)$ and use the fact that $I_t - I_s$ is independent of $\mathcal{F}_s$.
+
+---
+
+**Exercise 3.** Let $I_t = \int_0^t B_s\, dB_s = \frac{1}{2}(B_t^2 - t)$. Verify each of the six fundamental properties (linearity, zero mean, martingale, Ito isometry, continuity, quadratic variation) directly for this specific integral.
+
+---
+
+**Exercise 4.** Using the polarization identity
+
+$$
+\mathbb{E}\!\left[\int_0^t H_s\, dB_s \cdot \int_0^t K_s\, dB_s\right] = \mathbb{E}\!\left[\int_0^t H_s K_s\, ds\right]
+$$
+
+compute $\mathbb{E}[I_t \cdot J_t]$ where $I_t = \int_0^t s\, dB_s$ and $J_t = \int_0^t s^2\, dB_s$.
+
+---
+
+**Exercise 5.** Let $I_t = \int_0^t \sigma(s)\, dB_s$ for a deterministic function $\sigma(s)$. Show that $I_t$ is Gaussian and compute its distribution. Then verify that $I_t^2 - \int_0^t \sigma(s)^2\, ds$ is a martingale by computing its expectation.
+
+---
+
+**Exercise 6.** The quadratic variation of $I_t = \int_0^t H_s\, dB_s$ is $[I,I]_t = \int_0^t H_s^2\, ds$. Consider the Ito process $X_t = \mu t + \int_0^t \sigma_s\, dB_s$. Show that $[X,X]_t = \int_0^t \sigma_s^2\, ds$, i.e., the drift contributes nothing to the quadratic variation.
+
+---
+
+**Exercise 7.** The martingale representation theorem states that every square-integrable martingale in the Brownian filtration is an Ito integral. The process $M_t = B_t^3 - 3tB_t$ is a martingale. Find the integrand $H_s$ such that $M_t = \int_0^t H_s\, dB_s$. *Hint*: Apply Ito's formula to $f(t, x) = x^3 - 3tx$.

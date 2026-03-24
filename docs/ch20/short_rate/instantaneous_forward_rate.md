@@ -264,3 +264,33 @@ The one-factor limitation is that all forward rates are perfectly correlated, me
 ## Summary
 
 The Hull-White forward rate $f(t,T)$ is an affine function of $r_t$ with loading $e^{-a(T-t)}$ that decays exponentially with maturity. The forward rate volatility $\sigma_f(t,T) = \sigma e^{-a(T-t)}$ produces a risk-neutral drift $\mu^{\mathbb{Q}}(t,T) = \frac{\sigma^2}{a} e^{-a(T-t)}(1-e^{-a(T-t)})$ via the HJM condition. Under the $T$-forward measure, $f(t,T)$ is a driftless martingale. The explicit formula $f(t,T) = f(0,T) + \frac{\sigma^2}{2a^2}(1-e^{-a(T-t)})^2 + e^{-a(T-t)}(r_t - \alpha(t))$ connects the current forward curve to the initial curve and the short rate, and the consistency check $f(t,t) = r_t$ confirms internal coherence. All forward rates move in lock-step with $r_t$ due to the one-factor structure.
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify the consistency condition $f(t,t) = r_t$ by substituting $T = t$ into the formula $f(t,T) = f(0,T) + \frac{\sigma^2}{2a^2}(1 - e^{-a(T-t)})^2 + e^{-a(T-t)}(r_t - \alpha(t))$.
+
+---
+
+**Exercise 2.** Compute the forward rate sensitivity $\frac{\partial f(t,T)}{\partial r_t} = e^{-a(T-t)}$ for $a = 0.05$ at maturities $T - t = 1, 5, 10, 30$. If $r_t$ increases by 25 basis points, what is the resulting shift in the 30-year forward rate?
+
+---
+
+**Exercise 3.** Show that the HJM drift $\mu^{\mathbb{Q}}(t,T) = \frac{\sigma^2}{a}e^{-a(T-t)}(1 - e^{-a(T-t)})$ is non-negative for all $T \geq t$. At what maturity $T - t$ is the drift maximized?
+
+---
+
+**Exercise 4.** Under the $T$-forward measure, $df(t,T) = \sigma e^{-a(T-t)}dW_t^T$. Show that the cancellation of drift relies on the identity $\sigma^2 e^{-a(T-t)}B(t,T) = -\mu^{\mathbb{Q}}(t,T)$ and verify this identity.
+
+---
+
+**Exercise 5.** For a flat initial curve $f(0,T) = 0.03$ with $a = 0.05$ and $\sigma = 0.01$, compute $f(5, 15)$ as a function of $r_5$. Determine the value of $r_5$ at which $f(5, 15) = 0.03$ (unchanged from the initial curve).
+
+---
+
+**Exercise 6.** The one-factor structure implies perfect correlation among all forward rates. Explain how this can be seen from the formula $df(t,T) = \sigma e^{-a(T-t)}dW_t^{\mathbb{Q}}$. What structural change would break this perfect correlation?
+
+---
+
+**Exercise 7.** Derive $f(t,T) = -\frac{\partial A(t,T)}{\partial T} - \frac{\partial B(t,T)}{\partial T}r_t$ from the bond price formula $P(t,T) = e^{A(t,T) + B(t,T)r_t}$. Compute $\frac{\partial B}{\partial T}$ and verify that it equals $-e^{-a(T-t)}$.

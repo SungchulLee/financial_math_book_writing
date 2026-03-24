@@ -133,3 +133,29 @@ The Feynman–Kac theorem provides the converse: any sufficiently regular soluti
 - Shreve, S. E. (2004). *Stochastic Calculus for Finance II: Continuous-Time Models.* Springer.
 
 - Björk, T. (2009). *Arbitrage Theory in Continuous Time.* 3rd edition, Oxford University Press.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the risk-neutral pricing formula $V(t,S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]$, apply Ito's lemma to $e^{-rt}V(t, S_t)$ under $\mathbb{Q}$ and show that setting the drift to zero yields the Black-Scholes PDE.
+
+---
+
+**Exercise 2.** The market price of risk is $\theta = (\mu - r)/\sigma$. Explain its economic interpretation and show that Girsanov's theorem uses $\theta$ to transform $W_t$ under $\mathbb{P}$ into $W_t^{\mathbb{Q}} = W_t + \theta t$ under $\mathbb{Q}$. Verify that under $\mathbb{Q}$, the stock drift becomes $r$.
+
+---
+
+**Exercise 3.** The fundamental theorem of asset pricing states that no-arbitrage implies the existence of $\mathbb{Q}$, and completeness implies its uniqueness. In the Black-Scholes market with one stock and one Brownian motion, explain why the market is complete and $\mathbb{Q}$ is unique. What changes if the stock price is driven by two independent Brownian motions?
+
+---
+
+**Exercise 4.** Verify that the Black-Scholes PDE is the backward Kolmogorov equation associated with the $\mathbb{Q}$-diffusion $dS_t = rS_t \, dt + \sigma S_t \, dW_t^{\mathbb{Q}}$, including the discounting term $-rV$. Write down the corresponding forward (Fokker-Planck) equation for the transition density.
+
+---
+
+**Exercise 5.** The Feynman-Kac theorem provides the converse: any smooth solution of the Black-Scholes PDE with terminal condition $V(T,S) = \Phi(S)$ equals the risk-neutral expectation. State the regularity conditions on $\Phi$ and $V$ required for the theorem to hold. Give an example of a payoff where these conditions are violated and explain how this is handled in practice.
+
+---
+
+**Exercise 6.** Using the risk-neutral measure approach, price a European option with payoff $\Phi(S_T) = S_T \mathbf{1}_{\{S_T > K\}}$ (an asset-or-nothing call). Show that the price is $V = S\mathcal{N}(d_1)$ and interpret this as the "stock term" in the Black-Scholes call formula.

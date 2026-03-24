@@ -184,3 +184,29 @@ Truncation to a finite domain is the first step of the COS method, and the cumul
 | Diagnostic | Check $A_0(b-a)/2 \approx 1$ |
 
 **The cumulant-based truncation rule adapts the interval $[a, b]$ to the distribution's shape, ensuring that the truncation error is negligible while keeping the interval as narrow as possible to maximize the convergence rate of the cosine series.**
+
+---
+
+## Exercises
+
+**Exercise 1.** For $X \sim N(0, 1)$, the cumulants are $c_1 = 0$, $c_2 = 1$, $c_3 = 0$, $c_4 = 0$. Compute the cumulant-based truncation interval $[a, b]$ using the formula $[c_1 - L\sqrt{c_2 + \sqrt{c_4 + 2c_2^2}},\; c_1 + L\sqrt{c_2 + \sqrt{c_4 + 2c_2^2}}]$ with $L = 10$. Compare this to the simpler rule $[c_1 - L\sqrt{c_2}, c_1 + L\sqrt{c_2}]$ and explain the difference.
+
+---
+
+**Exercise 2.** Compute the first four cumulants $c_1, c_2, c_3, c_4$ for the Variance Gamma model with parameters $\sigma = 0.12$, $\theta = -0.14$, $\nu = 0.2$, $r = 0.05$, $T = 1$. Using the formulas $c_2 = (\sigma^2 + \nu\theta^2)T$, $c_4 = (3\sigma^4\nu + 12\sigma^2\theta^2\nu^2 + 6\theta^4\nu^3)T$, determine the truncation interval with $L = 12$. How much wider is this interval compared to the Black-Scholes case with the same variance?
+
+---
+
+**Exercise 3.** The Chebyshev-based truncation bound gives $P(X \notin [c_1 - L\sqrt{c_2}, c_1 + L\sqrt{c_2}]) \leq 1/L^2$. For $L = 10$, this yields $\delta \leq 0.01$. Why is this bound extremely conservative for a normal distribution? Compute the exact value of $P(|X| > 10)$ for $X \sim N(0, 1)$ and compare to the Chebyshev bound.
+
+---
+
+**Exercise 4.** Explain the interaction between the truncation interval width $b - a$ and the COS convergence rate. If $[a, b]$ is widened by a factor of 2, how does this affect (a) the truncation error $\varepsilon_1$, (b) the cosine frequencies $\omega_k = k\pi/(b-a)$, and (c) the number of terms $N$ needed for a given series truncation error $\varepsilon_2$? What is the optimal balance?
+
+---
+
+**Exercise 5.** The diagnostic check "$A_0(b-a)/2 \approx 1$" verifies proper truncation. For a correctly truncated density, $A_0 = 2/(b-a)\int_a^b f(x)\,dx \approx 2/(b-a)$, so $A_0(b-a)/2 \approx 1$. If you observe $A_0(b-a)/2 = 0.95$, what does this indicate about the truncation interval? Estimate the fraction of probability mass outside $[a, b]$.
+
+---
+
+**Exercise 6.** For very short maturities ($T = 0.001$), the density concentrates sharply near the forward price. Compute $c_2 = \sigma^2 T$ for $\sigma = 0.20$ and determine the half-width $L\sqrt{c_2}$ with $L = 10$. Explain why the COS method requires many more terms $N$ for short maturities even though the truncation interval is narrow, and suggest a practical strategy for handling this regime.

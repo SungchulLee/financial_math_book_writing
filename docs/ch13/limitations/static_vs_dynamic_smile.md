@@ -223,3 +223,33 @@ The static vs dynamic distinction is the most important conceptual framework for
 4. **SSR mismatch**: The skew stickiness ratio is 2 under local volatility but typically 1.0-1.5 in markets.
 5. **Exotic mispricing**: Path-dependent and forward smile-dependent options are systematically mispriced: local volatility underprices products with convexity in volatility (cliquets, variance swaps, forward-starting options).
 6. **Resolution**: Stochastic local volatility models combine perfect static calibration with realistic dynamics, addressing the fundamental tension at the cost of increased complexity.
+
+---
+
+## Exercises
+
+**Exercise 1.** Distinguish between static calibration and dynamic consistency. A model can perfectly match today's option prices (static) yet predict incorrect future smile behavior (dynamic). Give an example of a situation where this distinction matters for pricing.
+
+---
+
+**Exercise 2.** The skew stickiness ratio (SSR) measures how the ATM implied volatility changes relative to the prediction under sticky strike. Local volatility implies SSR = 2, while markets show SSR $\approx$ 1.0-1.5 for equity indices. (a) Define SSR precisely. (b) Explain why local volatility produces SSR = 2. (c) What does the empirical SSR of 1.3 imply about the true smile dynamics?
+
+---
+
+**Exercise 3.** Under local volatility, the implied vol-of-vol is perfectly determined by the local volatility surface and is typically too low compared to realized vol-of-vol. Explain the mechanism: why does the deterministic nature of $\sigma_{\text{loc}}(S, t)$ underestimate the actual randomness of volatility?
+
+---
+
+**Exercise 4.** A barrier option (e.g., a down-and-out call with barrier at 80% of spot) is priced under local volatility and Heston. The local volatility price is systematically lower. Explain why the incorrect smile dynamics of local volatility (too much sticky strike, too little vol-of-vol) lead to underpricing of this specific product.
+
+---
+
+**Exercise 5.** Perfect static calibration guarantees that all European option prices match the market. Why is this necessary but not sufficient for correct pricing of exotic options? Provide two examples of exotic products where static calibration alone fails to produce accurate prices.
+
+---
+
+**Exercise 6.** The local volatility model implies a perfect negative correlation between spot and volatility ($\rho_{S,\sigma} = -1$). Empirically, equity indices exhibit $\rho \approx -0.7$. How does this discrepancy affect the hedging of a delta-neutral, vega-neutral portfolio? Which Greek is most affected?
+
+---
+
+**Exercise 7.** Stochastic local volatility (SLV) models aim to combine the static calibration of local volatility with the dynamic realism of stochastic volatility. Describe the tradeoff: what is gained and what is lost in terms of (a) model complexity, (b) calibration effort, (c) pricing accuracy for vanillas, and (d) pricing accuracy for exotics?

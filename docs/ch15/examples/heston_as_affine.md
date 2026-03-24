@@ -251,3 +251,33 @@ The Heston model is a two-dimensional affine process on $\mathbb{R} \times \math
 - Gatheral, J. *The Volatility Surface*. Wiley, 2006, Chapter 2.
 - Albrecher, H., Mayer, P., Schoutens, W., & Tistaert, J. (2007). "The Little Heston Trap." *Wilmott Magazine*, January, 83-92.
 - Andersen, L. (2008). "Simple and Efficient Simulation of the Heston Stochastic Volatility Model." *Journal of Computational Finance*, 11(3), 1-42.
+
+---
+
+## Exercises
+
+**Exercise 1.** Write the Heston model in the affine form $dX_t = (b_0 + BX_t)\,dt + \sigma(X_t)\,dW_t$ by identifying the state vector $X_t = (\log S_t, V_t)^T$, the drift parameters $b_0$ and $B$, and the diffusion matrix $a(x) = a_0 + \alpha_1 x_1 + \alpha_2 x_2$. Verify that the diffusion matrix depends only on $V_t$ (the CIR-type component).
+
+---
+
+**Exercise 2.** In the Heston Riccati system, $\psi_1(\tau) = iv$ is constant. Explain why this is the case by examining the $R_1$ function and showing that the log-price component has no state-dependent diffusion contribution ($\alpha_2 = 0$ for the log-price equation in a suitable formulation).
+
+---
+
+**Exercise 3.** For the Heston model with parameters $\kappa = 1.5$, $\theta = 0.04$, $\xi = 0.3$, $\rho = -0.7$, compute the discriminant $d = \sqrt{(\rho\xi iv - \kappa)^2 + \xi^2(iv + v^2)}$ at $v = 1$. Verify that $\operatorname{Re}(d) > 0$.
+
+---
+
+**Exercise 4.** The correlation $\rho$ between the stock price and variance processes generates the leverage effect. Explain how $\rho < 0$ produces a negative skew in the implied volatility smile. What would happen to the smile if $\rho = 0$? If $\rho > 0$?
+
+---
+
+**Exercise 5.** Verify the Feller condition $2\kappa\theta \geq \xi^2$ for the parameters $\kappa = 1.5$, $\theta = 0.04$, $\xi = 0.3$. What is the financial consequence if the Feller condition is violated? Does the affine characteristic function formula remain valid when the condition fails?
+
+---
+
+**Exercise 6.** The Heston characteristic function involves the ratio $g = (\beta - d)/(\beta + d)$ where $\beta = \rho\xi iv - \kappa$. Show that $|g| < 1$ when $\operatorname{Re}(d) > 0$, and explain why this ensures numerical stability of the formula $\psi_2(\tau) = \frac{\beta - d}{\xi^2}\frac{1 - e^{-d\tau}}{1 - ge^{-d\tau}}$ for large $\tau$.
+
+---
+
+**Exercise 7.** Compare the Heston model to the Black-Scholes model as affine processes: both are $A_1(2)$ and $A_0(1)$ respectively in the Dai-Singleton classification. List the additional parameters that Heston introduces and explain what degree of freedom each one captures in the implied volatility surface.

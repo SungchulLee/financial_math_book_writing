@@ -97,3 +97,29 @@ When the Feller condition is violated, special care is needed in simulation and 
 ## Summary
 
 The non-central chi-squared distribution characterizes the transition dynamics of variance processes in Heston and interest rate processes in CIR models. Understanding its properties—especially the non-centrality parameter, mean, and variance—is essential for accurate pricing and risk management of derivatives that depend on these processes.
+
+---
+
+## Exercises
+
+**Exercise 1.** A non-central chi-squared random variable $X \sim \chi^2(\nu, \lambda)$ with $\nu$ degrees of freedom and non-centrality $\lambda$ has mean $\nu + \lambda$ and variance $2(\nu + 2\lambda)$. Verify these formulas for $\nu = 4$ and $\lambda = 3$.
+
+---
+
+**Exercise 2.** For the CIR process, the scaled transition density gives $v_T/c \sim \chi^2(\delta, \lambda)$ where $\delta = 4\kappa\theta/\sigma_v^2$ and $c = \sigma_v^2(1 - e^{-\kappa\tau})/(4\kappa)$. Compute $\delta$ and $c$ for $\kappa = 2$, $\theta = 0.04$, $\sigma_v = 0.3$, $\tau = 1$.
+
+---
+
+**Exercise 3.** The non-central chi-squared CDF can be computed as a mixture of central chi-squared CDFs: $F_{\chi^2(\nu,\lambda)}(x) = \sum_{k=0}^\infty \frac{e^{-\lambda/2}(\lambda/2)^k}{k!} F_{\chi^2(\nu+2k)}(x)$. Explain why this is a Poisson-weighted sum and relate the Poisson parameter $\lambda/2$ to the CIR non-centrality.
+
+---
+
+**Exercise 4.** When $\delta < 2$ (Feller condition violated), the density $f_{\chi^2(\delta, \lambda)}(x)$ has a singularity at $x = 0$. Explain the physical meaning: for the variance process, this means there is positive probability of $V_T$ being exactly zero. How does the non-centrality $\lambda$ (which depends on $v_t$) affect this probability?
+
+---
+
+**Exercise 5.** To sample from a non-central chi-squared distribution, one common method uses $\chi^2(\nu, \lambda) = \chi^2(\nu - 1) + (Z + \sqrt{\lambda})^2$ where $Z \sim N(0,1)$ and $\chi^2(\nu-1)$ is central chi-squared (valid for $\nu \geq 1$). Describe the steps to generate a sample of $v_T$ given $v_t$ using this decomposition.
+
+---
+
+**Exercise 6.** Compare the computational cost of exact sampling from the non-central chi-squared distribution versus Euler discretization with $N$ time steps. For what values of $N$ does exact sampling become preferable?

@@ -102,3 +102,29 @@ Modern practice includes:
     - Circularity in model-dependent pricing is dangerous
     - Conservative risk management requires model-skeptical approach
     - Simple, implementable models can mask complexity
+
+---
+
+## Exercises
+
+**Exercise 1.** In the one-factor Gaussian copula model with $X_i = \rho Z + \sqrt{1-\rho^2}\,\epsilon_i$, compute the conditional default probability $p_i(z) = \Phi\!\left(\frac{\Phi^{-1}(p_i) - \rho z}{\sqrt{1-\rho^2}}\right)$ for $p_i = 2\%$, $\rho = 0.3$, and $z = -2$. Interpret this result economically: what does a strongly negative realization of the systematic factor imply for default rates?
+
+---
+
+**Exercise 2.** The "correlation smile" in CDO markets refers to the phenomenon that different tranches imply different correlations when each is calibrated separately using the Gaussian copula. Explain why the equity tranche implies a lower correlation than the super senior tranche. What does this pattern reveal about the model's limitations in capturing tail dependence?
+
+---
+
+**Exercise 3.** Compare the Gaussian copula with the Student-$t$ copula (with, say, $\nu = 4$ degrees of freedom) in terms of tail dependence. Define the concept of upper tail dependence and compute or state the tail dependence coefficient for each copula. Explain why the Student-$t$ copula produces more realistic pricing for senior CDO tranches.
+
+---
+
+**Exercise 4.** During the 2008 crisis, senior CDO tranches rated AAA experienced defaults. Using the Gaussian copula framework, compute the probability that portfolio losses exceed $15\%$ (the typical senior attachment point) for $p = 5\%$, $R = 40\%$, and $\rho = 25\%$ using the Vasicek large-pool formula. Then recompute with $\rho = 60\%$. What does the change illustrate about the sensitivity of senior tranches to correlation?
+
+---
+
+**Exercise 5.** Describe the circularity problem in CDO pricing during illiquid markets: models are calibrated to market prices, but market prices themselves depend on model outputs. How did this feedback loop contribute to the mispricing of credit risk before 2008?
+
+---
+
+**Exercise 6.** List four lessons learned from the Gaussian copula crisis that should inform modern credit risk management. For each lesson, propose a concrete risk management practice that addresses the identified weakness (e.g., multi-model comparison, stress testing with regime switches).

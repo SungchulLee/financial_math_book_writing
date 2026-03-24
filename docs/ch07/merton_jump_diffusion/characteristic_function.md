@@ -274,3 +274,25 @@ Without a closed-form characteristic function, Fourier pricing requires numerica
 ## Summary
 
 The characteristic function of the Merton log-return has the closed-form expression $\phi_{x_T}(u) = \exp[iu\mu'T - \frac{1}{2}\sigma^2 u^2 T + \lambda T(e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2} - 1)]$, combining a Gaussian factor from the diffusion with an exponential factor from the compound Poisson jumps. This structure is a special case of the Levy-Khintchine formula for finite-activity Levy processes. The cumulants extracted from the characteristic function reveal that jumps contribute all cumulants of order three and above, generating the negative skewness and excess kurtosis that distinguish the Merton model from Black-Scholes. The closed-form characteristic function enables efficient Fourier-based option pricing via the Carr-Madan formula and FFT methods.
+
+---
+
+## Exercises
+
+**Exercise 1.** Derive the characteristic function of the Merton log-return by computing $\mathbb{E}[e^{iux_T}]$ as a product of three independent factors: the deterministic drift, the Gaussian diffusion, and the compound Poisson jumps. Verify that the jump factor is $\exp[\lambda T(e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2} - 1)]$.
+
+---
+
+**Exercise 2.** Extract the first four cumulants from the characteristic function $\Psi(u) = \ln \phi_{x_T}(u)$ by Taylor-expanding around $u = 0$. Verify that $\kappa_1 = (r - \lambda\bar{k} - \frac{1}{2}\sigma^2 + \lambda\mu_J)T$ and $\kappa_2 = (\sigma^2 + \lambda(\mu_J^2 + \sigma_J^2))T$.
+
+---
+
+**Exercise 3.** The Merton model is a finite-activity Levy process because $\nu(\mathbb{R}) = \lambda < \infty$. Explain the distinction between finite-activity and infinite-activity processes. Name one infinite-activity Levy model and describe how its characteristic function differs structurally from the Merton model's.
+
+---
+
+**Exercise 4.** For $r = 0.05$, $\sigma = 0.20$, $\lambda = 0.5$, $\mu_J = -0.10$, $\sigma_J = 0.30$, $T = 1$: (a) Compute the skewness and excess kurtosis of the log-return. (b) Repeat for $T = 0.1$ (one month). (c) Verify that the skewness scales as $T^{-1/2}$ and the kurtosis scales as $T^{-1}$.
+
+---
+
+**Exercise 5.** The Carr-Madan formula $C(K) = \frac{e^{-rT-\alpha k}}{\pi}\int_0^{\infty} e^{-ivk}\frac{\phi_{x_T}(v - (\alpha+1)i)}{(\alpha + iv)(\alpha + 1 + iv)}\,dv$ requires evaluating the characteristic function at complex arguments. Show that $\phi_{x_T}(u)$ can be analytically continued to complex $u$ and remains well-defined for $\text{Im}(u) \in (-\alpha - 1, 0)$ provided $\alpha > 0$.

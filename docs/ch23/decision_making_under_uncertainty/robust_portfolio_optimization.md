@@ -514,3 +514,29 @@ $$
 4. **Performance**: Better out-of-sample performance despite lower in-sample optimality
 
 Robust portfolio optimization provides a principled framework for translating parameter uncertainty into improved investment decisions, bridging statistical estimation theory with portfolio construction.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a two-asset portfolio with estimated returns $\hat{\mu} = (0.08, 0.12)^\top$ and covariance $\hat{\Sigma} = \begin{pmatrix} 0.04 & 0.01 \\ 0.01 & 0.09 \end{pmatrix}$, compute the classical Markowitz portfolio and the robust portfolio under an ellipsoidal uncertainty set $\mathcal{U} = \{\mu : (\mu - \hat{\mu})^\top \hat{\Sigma}^{-1} (\mu - \hat{\mu}) \leq \kappa^2\}$ with $\kappa = 0.5$ and risk aversion $\lambda = 2$. Compare the two portfolios and explain why the robust portfolio is more conservative.
+
+---
+
+**Exercise 2.** Show that robust mean-variance optimization with a norm-bounded uncertainty set $\|\mu - \hat{\mu}\| \leq \delta$ is equivalent to a standard mean-variance problem with an adjusted risk aversion. Specifically, derive that the robust portfolio is $w^* = \frac{1}{\lambda}\Sigma^{-1}\hat{\mu} - \frac{\delta}{\lambda}\frac{\Sigma^{-1}\Sigma^{-1}\hat{\mu}}{\|\Sigma^{-1}\hat{\mu}\|}$ (under appropriate norm) and interpret the correction term as a shrinkage toward zero.
+
+---
+
+**Exercise 3.** The Goldfarb-Iyengar SOCP formulation recasts the robust portfolio problem as a second-order cone program. For the uncertainty set $\mathcal{U} = \{\mu : \|\mu - \hat{\mu}\|_2 \leq \delta\}$, write the robust problem $\max_w \{w^\top \hat{\mu} - \delta \|w\| - \frac{\lambda}{2}w^\top \hat{\Sigma} w\}$ and formulate it as an SOCP. Explain why this is computationally efficient.
+
+---
+
+**Exercise 4.** Demonstrate the equivalence between robust optimization and regularization. Show that $\max_w \min_{\mu \in \mathcal{U}} w^\top \mu - \frac{\lambda}{2}w^\top \Sigma w$ is equivalent to $\max_w w^\top \hat{\mu} - \frac{\lambda}{2}w^\top \Sigma w - \delta \|w\|$ where the penalty $\delta \|w\|$ acts as a regularizer. What type of regularization (L1, L2, elastic net) arises from different shapes of the uncertainty set?
+
+---
+
+**Exercise 5.** In distributionally robust portfolio optimization, the uncertainty is over the entire return distribution, not just the mean. For a Wasserstein ball of radius $\varepsilon$ around the empirical distribution, formulate the problem $\min_w \sup_{P \in \mathcal{P}_W(\varepsilon)} \text{CVaR}_{0.95}^P(-w^\top R)$. Explain why this provides protection against both parameter estimation error and model misspecification.
+
+---
+
+**Exercise 6.** The Black-Litterman model can be viewed as an implicit form of robust optimization. Starting from equilibrium returns $\Pi = \lambda \Sigma w_{\text{mkt}}$, show that incorporating views $Q\mu = q + \epsilon$ with $\epsilon \sim N(0, \Omega)$ is equivalent to solving a regularized optimization problem where the regularizer penalizes deviation from equilibrium. Compute the Black-Litterman portfolio for $\tau = 0.05$, and compare it with the robust portfolio from Exercise 1.

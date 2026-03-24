@@ -284,3 +284,33 @@ For Hull-White: $\beta = -a$, $\delta = 0$, $\alpha(t) = \theta(t)$, $\gamma = \
 ## Summary
 
 The named functions $A(t,T)$ and $B(t,T)$ are derived by substituting the exponential-affine ansatz $P = e^{A+Br}$ into the Hull-White bond pricing PDE. The coefficient of $r$ yields the linear ODE $\partial_t B = aB + 1$ with solution $B(\tau) = -(1-e^{-a\tau})/a$, which is a degenerate Riccati equation. The constant term yields an ODE for $A$ that reduces to a quadrature given $B$, producing $A(t,T) = \ln(P^M(0,T)/P^M(0,t)) + B(t,T) f(0,t) + \frac{\sigma^2}{4a} B(t,T)^2(1-e^{-2at})$ when $\theta(t)$ is eliminated via the initial curve. The complete bond price is then available in closed form as a function of $r_t$ and market observables.
+
+---
+
+## Exercises
+
+**Exercise 1.** Carry out the substitution of $P = e^{A + Br}$ into the Hull-White bond pricing PDE explicitly. Show that after dividing by $P$ and grouping by powers of $r$, you obtain exactly two conditions: one for the coefficient of $r$ and one for the constant term.
+
+---
+
+**Exercise 2.** Solve the Riccati ODE $\frac{d\tilde{B}}{d\tau} = -a\tilde{B} - 1$ with $\tilde{B}(0) = 0$ using the integrating factor method. Verify that the solution $B(\tau) = -(1-e^{-a\tau})/a$ satisfies the terminal condition $B(T,T) = 0$ and the asymptotic limit $B(\tau) \to -1/a$ as $\tau \to \infty$.
+
+---
+
+**Exercise 3.** For the CIR model $dr = a(b-r)\,dt + \sigma\sqrt{r}\,dW$, the $B$-equation becomes a true (quadratic) Riccati equation. Write down this Riccati equation and explain why the solution involves hyperbolic functions rather than simple exponentials.
+
+---
+
+**Exercise 4.** The formula $A(t,T) = \ln\frac{P^M(0,T)}{P^M(0,t)} + B(t,T)f(0,t) + \frac{\sigma^2}{4a}B(t,T)^2(1-e^{-2at})$ eliminates $\theta(t)$ entirely. Describe the steps needed to go from the quadrature $A(t,T) = \int_t^T \theta(u)B(u,T)\,du + \frac{1}{2}\sigma^2\int_t^T B(u,T)^2\,du$ to this closed-form expression.
+
+---
+
+**Exercise 5.** Verify the integral $\int_t^T B(u,T)^2\,du = \frac{1}{a^2}\left[(T-t) - \frac{2}{a}(1-e^{-a(T-t)}) + \frac{1}{2a}(1-e^{-2a(T-t)})\right]$ by direct computation. For $a = 0.05$ and $T - t = 5$, evaluate the integral numerically and compare with numerical quadrature.
+
+---
+
+**Exercise 6.** At $t = 0$, the bond price must satisfy $P(0,T) = P^M(0,T)$. Substitute $t = 0$ into the complete bond price formula and verify that this consistency condition is satisfied identically. What role does the condition $f(0,0) = r_0$ play?
+
+---
+
+**Exercise 7.** The general affine framework sets $\mu(t,r) = \alpha(t) + \beta r$ and $\sigma^2(t,r) = \gamma + \delta r$. Show that the Hull-White, Vasicek, CIR, and Ho-Lee models each correspond to a specific choice of $(\alpha, \beta, \gamma, \delta)$. For which of these models is the Riccati equation for $B$ truly nonlinear?

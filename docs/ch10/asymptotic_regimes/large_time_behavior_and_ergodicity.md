@@ -130,3 +130,29 @@ Long-time asymptotics matter for:
 - Mean-reverting factors (e.g., stochastic variance) can be ergodic, and their long-run averages determine the effective volatility for long-dated options.
 - Long-time asymptotics are model-dependent and linked to large deviations or ergodicity of latent factors.
 - The rate of convergence to ergodic limits is governed by the mean-reversion speed.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a European call in Black--Scholes, show that $C(S_0, K, T) \to S_0$ as $T \to \infty$ by verifying that $N(d_1) \to 1$ and $Ke^{-rT}N(d_2) \to 0$. What is the economic interpretation of this limit?
+
+---
+
+**Exercise 2.** In the CIR variance process $dv_t = \kappa(\bar{v} - v_t)\,dt + \xi\sqrt{v_t}\,dW_t$, the stationary distribution is Gamma with shape $\alpha = 2\kappa\bar{v}/\xi^2$ and rate $\beta = 2\kappa/\xi^2$. For $\kappa = 2$, $\bar{v} = 0.04$, $\xi = 0.3$, compute $\alpha$ and $\beta$ and verify that the Feller condition $2\kappa\bar{v} > \xi^2$ is satisfied.
+
+---
+
+**Exercise 3.** The implied volatility for long-dated ATM options converges to $\sqrt{\bar{v}}$ with corrections of order $T^{-1}$. For the parameters in Exercise 2, compute $\sqrt{\bar{v}}$ and explain why the speed of convergence depends on $\kappa$. What happens to the implied vol term structure when $\kappa$ is very small?
+
+---
+
+**Exercise 4.** For a European put in Black--Scholes, show that $P(S_0, K, T) \to 0$ as $T \to \infty$. Explain why the put price vanishes but the call price does not, and relate this to the asymmetry of the payoff functions.
+
+---
+
+**Exercise 5.** The large deviations rate function in Black--Scholes is $I(x) = (x - \mu)^2/(2\sigma^2)$ with $\mu = r - \sigma^2/2$. For $r = 0.05$, $\sigma = 0.20$, compute $I(x)$ at $x = 0$ (no growth), $x = \mu$ (drift), and $x = 2\mu$ (double the drift). Which deviation costs the most probability?
+
+---
+
+**Exercise 6.** A pension fund holds equity-linked guarantees with a 20-year horizon. Using the large-time asymptotics framework, explain why the choice between a stochastic volatility model (with ergodic variance) and a constant-volatility Black--Scholes model matters significantly for pricing these guarantees. Which model features are most important to calibrate for long-dated products?

@@ -180,3 +180,29 @@ For alternative derivations that arrive at the same PDE via different reasoning,
 - Shreve, S. E. (2004). *Stochastic Calculus for Finance II: Continuous-Time Models.* Springer.
 
 - Björk, T. (2009). *Arbitrage Theory in Continuous Time.* 3rd edition, Oxford University Press.
+
+---
+
+## Exercises
+
+**Exercise 1.** Carry out the full delta-hedging derivation. Starting from the portfolio $\Pi = V - \Delta S$, apply Ito's lemma to $V(t, S_t)$, compute $d\Pi$, choose $\Delta = \partial V / \partial S$, and set $d\Pi = r\Pi \, dt$ to derive the Black-Scholes PDE.
+
+---
+
+**Exercise 2.** In the delta-hedging derivation, explain precisely where and how the physical drift $\mu$ cancels. If an investor has a different estimate $\hat{\mu} \neq \mu$ for the stock's expected return, does this affect the option price? Why or why not?
+
+---
+
+**Exercise 3.** The delta-hedging argument assumes $V \in C^{1,2}$, i.e., the option price is once differentiable in time and twice differentiable in the stock price. Identify a common option payoff for which this smoothness assumption fails at maturity, and explain how the Feynman-Kac representation handles this case even though the PDE derivation does not strictly apply.
+
+---
+
+**Exercise 4.** Modify the delta-hedging derivation to account for a continuous dividend yield $q$ paid by the stock. The key change is that a position of $\Delta$ shares earns dividend income $\Delta q S \, dt$. Show that the modified PDE is $\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + (r-q)S\frac{\partial V}{\partial S} - rV = 0$.
+
+---
+
+**Exercise 5.** The derivation assumes continuous rebalancing. In practice, the portfolio is rebalanced at discrete intervals $\Delta t$. Show that the hedging error per step is approximately $\frac{1}{2}\Gamma(\Delta S)^2 - \frac{1}{2}\Gamma \sigma^2 S^2 \Delta t$, where $\Gamma = \frac{\partial^2 V}{\partial S^2}$. What is the expected hedging error, and what is its variance?
+
+---
+
+**Exercise 6.** Verify that $V = S$ (the stock) and $V = e^{r(t-T)}$ (a zero-coupon bond) both satisfy the Black-Scholes PDE. Interpret these "trivial" solutions in the context of the delta-hedging argument: what is the hedge ratio $\Delta$ for each?

@@ -271,3 +271,25 @@ The Heston characteristic function has the closed form $\phi = \exp(C + Dv + iux
 The [next section](derivation_of_characteristic_function.md) provides an alternative derivation using the probability flow approach, while the [numerical stability section](numerical_stability_and_branch_cuts.md) addresses the practical implementation challenges.
 
 ---
+
+---
+
+## Exercises
+
+**Exercise 1.** Write the Heston characteristic function in the form $\varphi(u, \tau; x, v) = \exp(C(\tau,u) + D(\tau,u)v + iux)$ and state the closed-form expressions for $C$ and $D$ involving the discriminant $\gamma$, the ratio $g$, and the parameters $\kappa, \theta, \sigma_v, \rho$.
+
+---
+
+**Exercise 2.** Verify the formula $g = (\beta - \gamma)/(\beta + \gamma)$ where $\beta = \kappa - i\rho\sigma_v u$. For $\kappa = 2$, $\sigma_v = 0.3$, $\rho = -0.7$, $u = 1$, compute $g$ and verify $
+
+---
+
+g
+
+---
+
+ < 1$.
+
+---
+
+**Exercise 3.** Show that $D(\tau, u) \to 0$ as $\tau \to 0$ and $C(\tau, u) \to 0$ as $\tau \to 0$, consistent with the initial conditions of the Riccati system.|**Exercise 4.** For $u = -i$, verify that $\varphi(-i, \tau; x, v) = S_t e^{(r-q)\tau}$, confirming the forward price martingale condition.|**Exercise 5.** Implement the characteristic function numerically and compute $|\varphi(u, 1; \log 100, 0.04)|$ for $u = 0.5, 1, 5, 10, 50$ using typical parameters. Verify that the modulus is always at most 1.

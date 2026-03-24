@@ -425,3 +425,35 @@ Computation depends only on $n$, not $D$. But generalization still depends on ef
 - Ledoit & Wolf (2004), "Honey, I Shrunk the Sample Covariance Matrix"
 - Wainwright, *High-Dimensional Statistics*, Chapters 6–7
 - Johnstone (2001), "On the Distribution of the Largest Eigenvalue in PCA"
+
+---
+
+## Exercises
+
+**Exercise 1.** Compute the ratio of the volume of a $d$-dimensional hypersphere of radius $1/2$ to the unit hypercube for $d = 3, 15, 50$. At what dimension does this ratio first drop below $10^{-3}$?
+
+---
+
+**Exercise 2.** For $n = 500$ uniformly distributed points in $[0,1]^d$, estimate the expected nearest-neighbor distance $\mathbb{E}[\min_i \|x - X_i\|] \asymp n^{-1/d}$ for $d = 2, 10, 50, 100$. At what dimension does this distance exceed half the diameter of the space?
+
+---
+
+**Exercise 3.** Using Stone's minimax rate $n^{-2\beta/(2\beta+d)}$, compute the effective sample size $n_{\text{eff}} = n^{(2\beta+1)/(2\beta+d)}$ for $\beta = 1$ (Lipschitz functions) with $n = 10{,}000$ observations in dimensions $d = 1, 5, 20, 100$. Interpret the results for a portfolio with 100 risk factors.
+
+---
+
+**Exercise 4.** A portfolio manager estimates the covariance matrix of $n = 200$ assets using $T = 250$ daily returns.
+
+(a) How many free parameters does the covariance matrix have?
+
+(b) Compute the ratio $\gamma = n/T$. Using the Marchenko–Pastur distribution, find the support $[\lambda_-, \lambda_+]$ of sample eigenvalues when the true covariance is $I$.
+
+(c) Explain why the smallest sample eigenvalues are biased downward and how Ledoit–Wolf shrinkage addresses this.
+
+---
+
+**Exercise 5.** Suppose returns satisfy a sparse linear model with $s = 5$ truly relevant predictors out of $d = 500$ candidates. Using the LASSO oracle bound $\|\hat{\beta} - \beta^*\|_2^2 \leq C \frac{s \log d}{n} \sigma^2$, determine the minimum sample size $n$ needed to achieve $\|\hat{\beta} - \beta^*\|_2^2 \leq 0.01\,\sigma^2$.
+
+---
+
+**Exercise 6.** Explain why Cover's theorem (random labelings become linearly separable in high dimensions) does not contradict the curse of dimensionality for generalization. Specifically, distinguish between training error and test error in high dimensions and relate this to the concept of overfitting in financial return prediction.

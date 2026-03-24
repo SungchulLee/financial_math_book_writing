@@ -341,3 +341,51 @@ These empirical findings have direct consequences:
 - Bollerslev, T. (1986). *Generalized autoregressive conditional heteroskedasticity*. Journal of Econometrics.
 - Cont, R. (2001). *Empirical properties of asset returns: stylized facts and statistical issues*. Quantitative Finance.
 - Black, F. (1976). *Studies of stock price volatility changes*. Proceedings of the Business and Economics Section, ASA.
+
+---
+
+## Exercises
+
+**Exercise 1.** Suppose daily log-returns on a stock index have sample kurtosis $\hat{\kappa} = 7.2$ and sample skewness $\hat{s} = -0.6$. Explain why these values are inconsistent with the constant-volatility Black–Scholes assumption, and describe which features of the return distribution they reveal.
+
+---
+
+**Exercise 2.** A GARCH(1,1) model for daily variance is given by
+
+$$
+\sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2
+$$
+
+with $\omega = 0.000002$, $\alpha = 0.08$, and $\beta = 0.91$. Compute the unconditional (long-run) variance $\bar{\sigma}^2 = \omega / (1 - \alpha - \beta)$, convert it to annualized volatility (assume 252 trading days), and verify that $\alpha + \beta < 1$ so the process is stationary.
+
+---
+
+**Exercise 3.** Using the leverage effect, explain qualitatively why out-of-the-money put options on equity indices tend to have higher implied volatility than at-the-money options. How does the empirical correlation $\text{Corr}(r_t, \sigma_{t+1}^2 - \sigma_t^2) \approx -0.5$ manifest in the implied volatility surface?
+
+---
+
+**Exercise 4.** Consider a stock with annualized volatility that fluctuates between $\sigma_{\text{low}} = 10\%$ and $\sigma_{\text{high}} = 50\%$ across market regimes. Compute the ratio of the 1-day 99% Value-at-Risk in the high-volatility regime to that in the low-volatility regime, assuming conditionally normal returns. What does this imply about risk management under constant-volatility assumptions?
+
+---
+
+**Exercise 5.** Suppose you observe that over a 20-year sample, the frequency of daily returns exceeding $3\sigma$ in magnitude is $1.8\%$, where $\sigma$ is the sample standard deviation. Under a Gaussian distribution, the expected frequency is approximately $0.27\%$. Compute the ratio of empirical to theoretical frequency. If you were pricing a digital option that pays $\$1$ when the daily return exceeds $3\sigma$, by what factor would the Black–Scholes price (assuming normality) underestimate the fair value?
+
+---
+
+**Exercise 6.** The autocorrelation of squared daily returns at lag $k$ is defined as
+
+$$
+\rho_k = \text{Corr}(r_t^2, r_{t+k}^2)
+$$
+
+Suppose $\rho_1 = 0.20$ and the autocorrelation decays exponentially: $\rho_k = \rho_1 \cdot e^{-\lambda(k-1)}$ with $\lambda = 0.03$. Estimate the half-life of volatility clustering in trading days (i.e., the lag $k^*$ at which $\rho_{k^*} = \rho_1 / 2$). Explain why this persistence is incompatible with constant volatility.
+
+---
+
+**Exercise 7.** A trader delta-hedges a short call position assuming constant volatility $\sigma = 20\%$. During the life of the option, realized volatility turns out to be $30\%$. Using the Black–Scholes gamma P&L formula, the daily hedging P&L from the volatility mismatch is approximately
+
+$$
+\text{P\&L} \approx \frac{1}{2}\Gamma S^2 (\sigma_{\text{realized}}^2 - \sigma_{\text{implied}}^2)\,\Delta t
+$$
+
+If $\Gamma = 0.02$, $S = 100$, and $\Delta t = 1/252$, compute the daily P&L leakage. Explain why this systematic loss arises and how stochastic volatility models address it.

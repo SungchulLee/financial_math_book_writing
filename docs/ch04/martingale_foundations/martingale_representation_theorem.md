@@ -290,3 +290,40 @@ $$
 
 !!! summary "Key Takeaway"
     The Martingale Representation Theorem formalizes the idea that Brownian motion generates all randomness in its filtration. In finance, this translates to **market completeness**: every derivative can be perfectly hedged, and the hedging strategy is unique. When the theorem fails (incomplete markets), unhedgeable risk remains, and pricing/hedging become more complex.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Let $M_t = W_t^2 - t$, where $W_t$ is a standard Brownian motion. Verify that $M_t$ is a martingale. Then find the predictable process $\phi_t$ such that $M_t = \int_0^t \phi_s\,dW_s$. (Hint: apply Ito's formula to $W_t^2$.)
+
+---
+
+**Exercise 2.**
+In the Black-Scholes model, the discounted option price $\tilde{V}_t = e^{-rt}V_t$ is a $\mathbb{Q}$-martingale. By the MRT, $\tilde{V}_t = \tilde{V}_0 + \int_0^t \psi_s\,dW_s^{\mathbb{Q}}$. Explain how the hedging strategy $\Delta_t = \psi_t / (\sigma S_t e^{-rt})$ is derived from the MRT integrand, and why the uniqueness of $\psi_t$ implies the uniqueness of the replicating portfolio.
+
+---
+
+**Exercise 3.**
+Consider a market with a stock $S_t$ and an independent Poisson process $N_t$. Explain why the Martingale Representation Theorem fails in this setting. What does the Kunita-Watanabe decomposition tell us about the hedging problem for a claim that depends on $N_T$?
+
+---
+
+**Exercise 4.**
+Prove that the Ito isometry map $\phi \mapsto \int_0^T \phi_s\,dW_s$ is an isometry from $L^2(\Omega \times [0,T])$ to $L^2(\Omega)$. Explain why this means $\mathcal{I}$ (the space of stochastic integrals) is a closed subspace of $L^2(\Omega, \mathcal{F}_T, \mathbb{P})$.
+
+---
+
+**Exercise 5.**
+The Clark-Ocone formula states $F = \mathbb{E}[F] + \int_0^T \mathbb{E}[D_t F | \mathcal{F}_t]\,dW_t$ for $F \in \mathbb{D}^{1,2}$. For $F = W_T^3$, use the Malliavin derivative $D_t(W_T^3) = 3W_T^2$ to write the explicit representation. Verify your answer by checking that $\mathbb{E}[(\int_0^T \phi_s\,dW_s)^2] = \mathbb{E}[F^2] - (\mathbb{E}[F])^2$.
+
+---
+
+**Exercise 6.**
+In a two-dimensional Brownian filtration with $\mathbf{W}_t = (W_t^1, W_t^2)$, a square-integrable martingale $M_t$ has representation $M_t = M_0 + \int_0^t \phi_s^1\,dW_s^1 + \int_0^t \phi_s^2\,dW_s^2$. If only one stock is traded (driven by $W_t^1$), explain why the component $\int_0^t \phi_s^2\,dW_s^2$ represents unhedgeable risk and relate this to market incompleteness.
+
+---
+
+**Exercise 7.**
+Consider a European call option in the Black-Scholes model. The delta hedge is $\Delta_t = \Phi(d_1(t, S_t))$. Identify the MRT integrand $\psi_t$ in terms of the Black-Scholes Greeks and model parameters. Verify dimensionally that $\Delta_t = \psi_t / (\sigma \tilde{S}_t)$ is consistent.

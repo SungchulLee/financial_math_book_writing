@@ -114,3 +114,29 @@ This is **Donsker's Invariance Principle**, proved in [Donsker's Theorem](donske
 - Billingsley, P. (1999). *Convergence of Probability Measures*, 2nd ed. Wiley.
 - Ethier, S. N., & Kurtz, T. G. (1986). *Markov Processes: Characterization and Convergence*. Wiley.
 - Paley, R. E. A. C., Wiener, N., & Zygmund, A. (1933). Notes on random functions. *Mathematische Zeitschrift*, 37(1), 647–668.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the scaled random walk $S^{(n)}(t) = S_{\lfloor nt \rfloor}/\sqrt{n}$, compute the exact variance $\text{Var}(S^{(n)}(t))$ as a function of $n$ and $t$, and show that the error $|t - \text{Var}(S^{(n)}(t))| \leq 1/n$ for all $t \in [0, T]$.
+
+---
+
+**Exercise 2.** For fixed $0 < s < t \leq T$ with $s$ and $t$ both multiples of $1/n$, compute the distribution of the increment $S^{(n)}(t) - S^{(n)}(s)$. Show that its mean is 0 and its variance is $t - s$. Why is $S^{(n)}(t) - S^{(n)}(s)$ independent of $S^{(n)}(s)$?
+
+---
+
+**Exercise 3.** The difference quotient of the scaled walk at a jump time $t = k/n$ satisfies $\frac{S^{(n)}(t + 1/n) - S^{(n)}(t)}{1/n} = \sqrt{n}\,\xi_{k+1}$. Compute $\mathbb{E}\left[\left(\frac{S^{(n)}(t+1/n) - S^{(n)}(t)}{1/n}\right)^2\right]$ and explain why this divergence as $n \to \infty$ is consistent with the nowhere-differentiability of Brownian motion.
+
+---
+
+**Exercise 4.** For the scaled walk over $[0, t]$ with the uniform partition at resolution $n$, verify that the quadratic variation is $[S^{(n)}]_t = \lfloor nt \rfloor / n$. Show that this converges to $t$ and that the rate of convergence is $O(1/n)$. Compare this deterministic convergence to the $L^2$ convergence of $[B]_T^{(\Pi_n)} \to T$ for Brownian motion (which has random fluctuations of order $1/\sqrt{n}$).
+
+---
+
+**Exercise 5.** Consider a "biased scaled walk" with $p = 1/2 + c/\sqrt{n}$ for some constant $c > 0$. Show that $\mathbb{E}[S^{(n)}(t)] \to 2ct$ and $\text{Var}(S^{(n)}(t)) \to t$ as $n \to \infty$. What continuous process does this converge to? Relate this to **Brownian motion with drift** $W_t + \mu t$.
+
+---
+
+**Exercise 6.** The covariance structure $\text{Cov}(S^{(n)}(s), S^{(n)}(t)) \to \min(s,t)$ is the defining property of Brownian motion's second-order structure. Verify that $\min(s,t)$ is a **positive semi-definite kernel**: for any $t_1 < t_2 < \cdots < t_k$ and any $a_1, \ldots, a_k \in \mathbb{R}$, show that $\sum_{i,j} a_i a_j \min(t_i, t_j) \geq 0$. (Hint: write $\min(t_i, t_j) = \int_0^T \mathbf{1}_{[0,t_i]}(u)\,\mathbf{1}_{[0,t_j]}(u)\,du$.)

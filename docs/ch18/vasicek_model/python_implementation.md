@@ -196,3 +196,31 @@ The `python_implementation.py` file in this section is a self-contained single-f
 The Python implementation translates each Vasicek formula into a corresponding method of the `VasicekModel` class. The named functions $A(\tau)$ and $B(\tau)$ are the computational core, with bond prices, yields, forward rates, and option prices all derived from them. The module serves as both a practical tool and a verification of the analytical results: Monte Carlo simulation with the exact OU transition should reproduce the closed-form bond price within sampling error.
 
 ---
+
+## Exercises
+
+**Exercise 1.** The `bond_price` method uses the edge case `tau < 1e-10` to return $P = 1.0$. Explain why this guard is necessary. What numerical issues could arise if $\tau$ is exactly zero in the formulas for $B(\tau)$ and $\ln A(\tau)$?
+
+---
+
+**Exercise 2.** The `simulate_paths` method uses Euler-Maruyama discretization. Replace the Euler step with the exact OU transition and simulate $M = 10{,}000$ paths for $T = 5$ years with $N = 10$ steps. Compare the sample mean and standard deviation of $r_T$ with the closed-form values $\mathbb{E}[r_T] = \theta + (r_0 - \theta)e^{-\kappa T}$ and $\text{SD}(r_T) = \sigma\sqrt{(1 - e^{-2\kappa T})/(2\kappa)}$ for $\kappa = 0.2$, $\theta = 0.05$, $\sigma = 0.02$, $r_0 = 0.04$.
+
+---
+
+**Exercise 3.** Using the `bond_option_price` method, compute the price of a European call on a 5-year ZCB with strike $K = 0.85$, option expiry $T = 2$, and parameters $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.015$, $r_0 = 0.04$. Verify the result by computing $d_1$, $d_2$, and $\sigma_P$ by hand.
+
+---
+
+**Exercise 4.** The calibration method uses Nelder-Mead optimization with a penalty for $\kappa \leq 0$ or $\sigma \leq 0$. Explain why gradient-based methods (e.g., Levenberg-Marquardt) might be preferable. What is the Jacobian of the bond price vector $[P(0,T_1), \ldots, P(0,T_n)]$ with respect to $(\kappa, \theta, \sigma)$?
+
+---
+
+**Exercise 5.** Run the `calibrate_to_bond_prices` method with the market bond prices from the usage example and starting guesses $(\kappa, \theta, \sigma) = (0.5, 0.03, 0.03)$---far from the true values $(0.2, 0.05, 0.02)$. Does the optimizer converge to the correct parameters? Try at least three different starting points and report whether the calibration is sensitive to initialization.
+
+---
+
+**Exercise 6.** Add a method `exact_simulate_paths(r0, T, num_paths, num_steps)` to the `VasicekModel` class that uses the exact Gaussian transition instead of Euler-Maruyama. Using both methods, simulate $M = 50{,}000$ paths to estimate $P(0,5)$ via the Monte Carlo estimator $\hat{P} = M^{-1}\sum_j \exp(-\int_0^T r_s^{(j)}\,ds)$ with trapezoidal integration. Compare the results and standard errors with the closed-form bond price.
+
+---
+
+**Exercise 7.** The `yield_curve` method includes a guard `price > 0`. Can the Vasicek bond price $P(t,T) = A(\tau)e^{-B(\tau)r_t}$ ever be non-positive for finite parameter values? Prove that $A(\tau) > 0$ for all $\tau > 0$ and therefore $P(t,T) > 0$ always. Under what extreme numerical conditions might floating-point underflow produce `price = 0`?

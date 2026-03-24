@@ -219,3 +219,29 @@ The affine framework delivers its remarkable tractability --- exponential-affine
 - El Euch, O. and Rosenbaum, M. (2019). "The characteristic function of rough Heston models." *Mathematical Finance*, 29(1), 3--38.
 - Duffie, D., Filipovic, D., and Schachermayer, W. (2003). "Affine processes and applications in finance." *Annals of Applied Probability*, 13(3), 984--1053.
 - Filipovic, D. (2009). *Term-Structure Models: A Graduate Course*. Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** The SABR model has dynamics $dF_t = \sigma_t F_t^\beta\,dW_t^{(1)}$ and $d\sigma_t = \alpha\sigma_t\,dW_t^{(2)}$ with $\operatorname{Corr}(dW^{(1)}, dW^{(2)}) = \rho\,dt$. Identify which affine condition fails for $\beta \neq 0, 1/2, 1$ and explain why the exponential-affine ansatz cannot be applied.
+
+---
+
+**Exercise 2.** Rough volatility models use fractional Brownian motion $B_t^H$ with Hurst parameter $H < 1/2$. The process $B_t^H$ is not Markovian. Explain why the Markov property is essential for the affine framework and why its failure prevents the derivation of Riccati ODEs.
+
+---
+
+**Exercise 3.** Consider a local volatility model $dS_t = rS_t\,dt + \sigma(S_t, t)S_t\,dW_t$ where $\sigma(S, t)$ is a general function calibrated to the implied volatility surface. Show that unless $\sigma(S, t)$ has the specific form $\sigma(S, t) = \sqrt{c_0 + c_1\log S}$, the diffusion is not affine in the log-price.
+
+---
+
+**Exercise 4.** The rough Heston model replaces the CIR variance process with a fractional process driven by $B^H$. El Euch and Rosenbaum (2019) showed that the characteristic function satisfies a fractional Riccati equation. Describe qualitatively how a fractional Riccati equation differs from the standard Riccati ODE and why it is harder to solve.
+
+---
+
+**Exercise 5.** List three empirical phenomena that affine models handle well and three that they handle poorly. For each poorly-handled phenomenon, name a non-affine model that addresses it. Discuss the pricing/calibration trade-off: what computational advantage is lost by moving to the non-affine model?
+
+---
+
+**Exercise 6.** The 3/2 stochastic volatility model has dynamics $dV_t = \kappa V_t(\theta - V_t)\,dt + \xi V_t^{3/2}\,dW_t$. Show that $V_t$ is not affine by checking the diffusion condition: $a(V) = \xi^2 V^3$ is cubic in $V$, not affine. However, show that $Y_t = 1/V_t$ is a CIR process and therefore affine. What does this tell you about the importance of choosing the right state variable?

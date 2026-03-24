@@ -210,3 +210,35 @@ Consider an American put with:
 ## Summary
 
 American options under the Heston model are priced by solving a two-dimensional linear complementarity problem that couples the Heston PDE with the early exercise constraint. The PSOR algorithm efficiently solves this LCP by combining SOR iteration with projection onto the intrinsic value bound. Integration with ADI schemes---either through post-step projection (operator splitting) or intra-sweep PSOR---produces accurate American option prices and the two-dimensional free boundary $S^*(t, v)$. The relaxation parameter $\omega \approx 1.5$ and tolerance $\epsilon \approx 10^{-7}$ are robust defaults. The resulting exercise boundary reveals how optimal exercise depends on both moneyness and the current variance level.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+State the linear complementarity problem (LCP) for an American put under Heston: $V \geq g(S)$, $\mathcal{L}V \leq 0$, $(V - g)\mathcal{L}V = 0$, where $g(S) = (K - S)^+$ and $\mathcal{L}$ is the Heston PDE operator. Explain each condition in financial terms. Why can the problem not be solved by simply solving the PDE and then clamping the result?
+
+---
+
+**Exercise 2.**
+The early exercise boundary $S^*(t, v)$ for an American put under Heston depends on both time to maturity and the current variance. Explain qualitatively why higher variance $v$ leads to a lower exercise boundary (the put should be exercised less readily). Hint: higher variance increases the option's continuation value.
+
+---
+
+**Exercise 3.**
+The PSOR algorithm projects the SOR iterate onto the constraint set: $V_{i,j}^{(k+1)} = \max(V_{i,j}^{(k+1)}, g_{i,j})$. Explain why this projection is applied after each SOR update (not just at the end of the iteration). What happens if you only project at the end?
+
+---
+
+**Exercise 4.**
+The relaxation parameter $\omega$ in SOR controls convergence speed. For $\omega = 1$ (Gauss-Seidel), convergence is guaranteed but slow. For $\omega = 1.5$, convergence is faster. The optimal $\omega$ depends on the spectral radius of the iteration matrix. Describe a practical procedure to choose $\omega$ for the Heston PSOR: run a few time steps with $\omega = 1.0, 1.2, 1.4, 1.6, 1.8$ and count the iterations to convergence.
+
+---
+
+**Exercise 5.**
+The American put premium (American price minus European price) under Heston depends on the Heston parameters. Explain how $v_0$ and $\kappa$ affect the premium. If $v_0$ is very high, is the American premium large or small relative to the European put price?
+
+---
+
+**Exercise 6.**
+Compute the early exercise boundary at $t = 0$ (i.e., right now) for an American put with $K = 100$, $T = 1$, $r = 5\%$, under Black-Scholes with $\sigma = 20\%$. The boundary satisfies $K - S^* = \text{Put}_{\text{BS}}(S^*, K, T, r, \sigma)$ approximately. Under Heston, explain why the boundary $S^*(v)$ is a curve in the $(S, v)$ plane rather than a single point.

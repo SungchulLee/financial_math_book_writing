@@ -234,3 +234,29 @@ print(f"Final Delta: {new_delta + shares:.4f}")
 - The gamma-theta tradeoff is fundamental: you cannot simultaneously be long gamma and long theta.
 - Short gamma earns theta but requires frequent rebalancing and exposes the portfolio to large moves.
 - Joint gamma-vega hedging requires at least two option instruments plus shares.
+
+---
+
+## Exercises
+
+**Exercise 1.** A portfolio has $\Gamma = +3.0$ and $\Delta = +45$. An ATM put with $\Gamma_{\text{put}} = 0.04$ and $\Delta_{\text{put}} = -0.50$ is available for gamma hedging. Compute: (a) the number of puts to short for gamma neutrality; (b) the new portfolio delta after adding the puts; (c) the number of shares to trade for delta neutrality.
+
+---
+
+**Exercise 2.** Using the formula $\nu = \sigma S^2 \tau \Gamma$ in Black--Scholes, verify that gamma-hedging an ATM option with another ATM option at the same maturity automatically hedges vega. Why does this relationship break down when the hedging option has a different maturity?
+
+---
+
+**Exercise 3.** Solve the joint gamma-vega hedging system for: existing portfolio $\Gamma = +4$, $\nu = +200$; Option A: $\Gamma_A = 0.05$, $\nu_A = 3.0$; Option B: $\Gamma_B = 0.02$, $\nu_B = 5.0$. Find the positions $n_1$, $n_2$ in Options A and B that neutralize both gamma and vega.
+
+---
+
+**Exercise 4.** A short gamma strategy sells 50 ATM calls ($\Gamma = -0.04$ per option, $\Theta = +0.08$ per option per day) and delta-hedges daily. Compute: (a) the portfolio gamma and daily theta income; (b) the breakeven daily move $|\Delta S|^*$ such that $\frac{1}{2}|\Gamma_{\text{port}}|(\Delta S^*)^2 = \Theta_{\text{port}} \cdot 1\text{ day}$; (c) the implied daily volatility corresponding to this breakeven move.
+
+---
+
+**Exercise 5.** Explain why the order of operations matters: gamma-hedge first with options, then delta-hedge with shares. What goes wrong if you delta-hedge first and then gamma-hedge? Specifically, does adding options after delta-hedging with shares change the delta?
+
+---
+
+**Exercise 6.** A portfolio has the following Greeks: $\Delta = 100$, $\Gamma = 6.0$, $\nu = 350$, $\Theta = -1.20$/day. Only one hedging option is available with $\Delta_H = 0.55$, $\Gamma_H = 0.04$, $\nu_H = 2.8$. The trader can gamma-hedge but not simultaneously vega-hedge. Compute the position in the hedging option for gamma neutrality, the resulting net vega, and discuss whether the residual vega exposure is acceptable.

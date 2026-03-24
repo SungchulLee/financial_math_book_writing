@@ -200,3 +200,33 @@ def price_cap(hw, N, K, T_reset_dates, T_payment_dates):
 ## Summary
 
 Interest rate caps and floors are portfolios of caplets and floorlets. In the Hull-White model, each caplet reduces to a put on a zero-coupon bond via the equivalence $\text{Caplet}_k = \hat{N}\,V_p^{\text{ZCB}}(t_0, T_{k-1}, T_k; \hat{K})$, enabling fully analytic pricing. The cap-floor parity $\text{Cap} - \text{Floor} = \text{Payer Swap}$ holds model-independently. Compared to Black's formula, the Hull-White model generates a volatility skew due to its Gaussian short rate distribution, providing a richer structure than the flat smile implied by lognormal forward rates.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a 3-year annual cap with $N = \$1{,}000{,}000$, $K = 0.05$, compute $\hat{N}_k$ and $\hat{K}_k$ for each of the three caplets. Describe the ZCB put that needs to be priced for each caplet.
+
+---
+
+**Exercise 2.** Derive the floorlet-ZCB call equivalence: show that $\text{Floorlet}_k(t_0) = \hat{N}\,V_c^{\text{ZCB}}(t_0, T_{k-1}, T_k; \hat{K})$ by starting from the floorlet payoff and applying the same algebra as the caplet derivation.
+
+---
+
+**Exercise 3.** Verify the cap-floor parity $\text{Cap} - \text{Floor} = \text{IRS}^{\text{Payer}}$ by summing the individual caplet-floorlet parities. Explain why this relationship is model-independent (holds for any arbitrage-free model).
+
+---
+
+**Exercise 4.** The Hull-White model implies a decreasing term structure of cap volatilities. Explain why: as the caplet maturity increases, what happens to the effective volatility of the underlying forward rate in the Hull-White model?
+
+---
+
+**Exercise 5.** Explain the difference between flat (running) volatility and spot volatility for cap pricing. Given a flat cap volatility of 20% for a 5-year cap, describe how you would strip the individual spot volatilities $\sigma_k^{\text{spot}}$ for each caplet.
+
+---
+
+**Exercise 6.** Using the Python code provided, modify the `price_cap` function to also return the individual caplet prices. For Hull-White parameters $\lambda = 0.05$ and $\sigma = 0.01$ with $K = 0.04$, which caplet contributes the most to the total cap value?
+
+---
+
+**Exercise 7.** Compare the cap prices produced by the Hull-White model versus Black's formula for at-the-money and deep out-of-the-money strikes. At which strikes do the two models diverge most, and why?

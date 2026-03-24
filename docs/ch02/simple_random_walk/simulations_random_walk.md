@@ -335,3 +335,29 @@ for b, f1, f3 in zip(step_budgets, frac_1d, frac_3d):
 ![Return Fractions: d=1 vs d=3](figures/fig06_recurrence.png)
 
 **What to observe:** The 1D return fraction climbs toward 1 as the step budget increases — consistent with recurrence (certain return, but no finite time guarantee). The 3D fraction plateaus well below 1 at approximately 0.341 — consistent with transience (positive probability of never returning). The dotted lines mark the theoretical limits.
+
+---
+
+## Exercises
+
+**Exercise 1.** Modify Simulation 1 to generate an asymmetric random walk with $p = 0.55$. Run 100 steps and plot the result. Compute the sample mean and compare it to the theoretical value $\mathbb{E}[S_{100}] = 100(2 \cdot 0.55 - 1) = 10$. Does the upward drift become visually apparent in a single path?
+
+---
+
+**Exercise 2.** In Simulation 5, the fourth moment formula $\mathbb{E}[S_n^4] = 3n^2 - 2n$ is verified with 10,000 trials. Derive the theoretical standard error of the Monte Carlo estimate of $\mathbb{E}[S_n^4]$ at $n = 100$, and verify that the observed error in the simulation is within 2 standard errors. (Hint: you will need $\mathbb{E}[S_n^8]$ or an upper bound on it.)
+
+---
+
+**Exercise 3.** Write a simulation to verify that the quadratic variation of the **scaled** random walk $S^{(n)}(t) = S_{\lfloor nt \rfloor}/\sqrt{n}$ converges to $t$ as $n$ increases. Use $t = 1$ and $n = 10, 100, 1000, 10000$. For each $n$, compute $[S^{(n)}]_1 = \lfloor n \rfloor / n$ and verify it equals 1 (or very close to 1 for non-integer $nt$).
+
+---
+
+**Exercise 4.** Extend Simulation 6 to include $d = 2$. The 2D walk should use the four directions $\{\pm e_1, \pm e_2\}$ with equal probability $1/4$. Verify that the 2D return fraction approaches 1 (recurrence) but much more slowly than the 1D case. Plot all three dimensions on the same graph.
+
+---
+
+**Exercise 5.** Write a simulation to estimate the distribution of the **maximum** of a symmetric random walk over $n = 1000$ steps: $M_n = \max_{0 \leq k \leq n} S_k$. Generate 10,000 paths and plot the histogram of $M_n / \sqrt{n}$. Compare your histogram to the theoretical distribution $\mathbb{P}(\max_{0 \leq t \leq 1} W_t \leq x) = 2\Phi(x) - 1$ for $x \geq 0$ (which follows from the reflection principle of Brownian motion).
+
+---
+
+**Exercise 6.** Use Simulation 3 (scaled walk convergence) as a starting point. Generate 1000 paths of the scaled walk $W^{(n)}$ for $n = 500$ and compute the sample distribution of $W^{(n)}(0.5)$. Plot the histogram and overlay the theoretical density $\mathcal{N}(0, 0.5)$. This provides a visual verification of the CLT at the intermediate time $t = 0.5$.

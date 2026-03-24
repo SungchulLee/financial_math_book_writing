@@ -326,3 +326,35 @@ Bond options are less liquid than caps/swaptions. Often, cap/floor and swaption 
 - Jamshidian (1989), "An Exact Bond Option Formula"
 - Brigo & Mercurio, *Interest Rate Models*, Chapter 3
 - Hull, *Options, Futures, and Other Derivatives*, Chapter 31
+
+---
+
+## Exercises
+
+**Exercise 1.** In the Vasicek model, the price of a European call on a zero-coupon bond $P(t, T_B)$ with option maturity $T$ and strike $K$ is given by
+
+$$
+C = P(0, T_B)\,N(d_1) - K\,P(0, T)\,N(d_2)
+$$
+
+where $d_{1,2}$ depend on the integrated variance $v^2 = \sigma^2 B(T_B - T)^2(1 - e^{-2\kappa T})/(2\kappa)$ and $B(\tau) = (1 - e^{-\kappa\tau})/\kappa$. For $\sigma = 0.01$, $\kappa = 0.10$, $T = 2$, $T_B = 7$, $K = 0.82$, $P(0,2) = 0.94$, and $P(0,7) = 0.78$, compute the call option price.
+
+---
+
+**Exercise 2.** Using put--call parity for bond options, derive the price of a European put on the same bond as in Exercise 1 with the same strike and maturity. Verify that $C - P = P(0, T_B) - K\,P(0, T)$.
+
+---
+
+**Exercise 3.** Explain Jamshidian's decomposition for coupon bond options. A 3-year annual coupon bond pays coupons of 5% and par at maturity. An option to buy this bond in 1 year at strike $K_{\text{total}} = 100$ is decomposed into options on individual zero-coupon bonds. If the critical short rate $r^*$ at option expiry makes the bond worth exactly $K_{\text{total}}$, derive the individual strikes $K_j = P(T, T_j; r^*)$ for each coupon date.
+
+---
+
+**Exercise 4.** In the CIR model, bond option pricing involves the non-central chi-squared distribution rather than the normal distribution. Explain why the CIR model cannot use the same Black-type formula as Vasicek, and describe qualitatively how the non-central chi-squared approach works. What is the main advantage of the CIR model for bond option pricing?
+
+---
+
+**Exercise 5.** A one-factor short-rate model implies that all bond prices are perfectly correlated (all driven by a single factor). Explain how this affects the pricing of options on a portfolio of bonds versus options on individual bonds. For a spread option paying $\max(P(T, T_1) - P(T, T_2) - K, 0)$, why does a one-factor model underestimate the option value?
+
+---
+
+**Exercise 6.** Compute the bond option delta $\Delta = \partial C / \partial P(0, T_B)$ and the bond option vega $\mathcal{V} = \partial C / \partial \sigma$ for the Vasicek bond option formula. Using the parameters from Exercise 1, evaluate these Greeks numerically and interpret their financial meaning.

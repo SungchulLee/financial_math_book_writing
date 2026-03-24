@@ -197,3 +197,33 @@ The exact method produces no negative steps by construction. The Euler scheme ge
 ## Summary
 
 The CIR process admits exact simulation via its non-central chi-squared transition density, eliminating discretization bias entirely. The Euler-Maruyama scheme, while simple, can produce negative rates that violate the model's non-negativity property, requiring ad-hoc fixes (truncation, reflection, or absorption) that introduce bias. The Milstein scheme reduces but does not eliminate this problem. For production-quality Monte Carlo in the CIR model, exact simulation is preferred; for rapid prototyping, Euler with full truncation is adequate. The choice depends on the tradeoff between per-step computational cost and the accuracy requirements of the application.
+
+---
+
+## Exercises
+
+**Exercise 1.** For CIR parameters $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.15$, and $r_t = 0.02$, compute the exact simulation parameters for $\Delta t = 1/252$ (one trading day): the scaling factor $c$, the degrees of freedom $d$, and the non-centrality parameter $\lambda(r_t)$. What is the expected value of $r_{t+\Delta t}$?
+
+---
+
+**Exercise 2.** Using the Euler scheme with $r_{t_k} = 0.005$, $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.15$, and $\Delta t = 1/252$, compute the probability that the next Euler step produces a negative rate. Use the formula $\mathbb{P}(r_{t_{k+1}} < 0) = \Phi(-m/s)$ where $m = r_{t_k} + \kappa(\theta - r_{t_k})\Delta t$ and $s = \sigma\sqrt{r_{t_k}\Delta t}$.
+
+---
+
+**Exercise 3.** Compare the three Euler fixes (truncation, reflection, absorption) for a path where the Euler update gives $r_{t_{k+1}} = -0.002$. For each method, what value is used for $r_{t_{k+1}}$? Which method best preserves the expected value of $r_{t_{k+1}}$, and why?
+
+---
+
+**Exercise 4.** Derive the Milstein correction term $\frac{\sigma^2}{4}(Z_k^2 - 1)\Delta t$ for the CIR process. Start from $\frac{\partial}{\partial r}(\sigma\sqrt{r}) = \frac{\sigma}{2\sqrt{r}}$ and use the Ito-Taylor expansion to show that the double stochastic integral contributes $\frac{1}{2}\sigma\sqrt{r}\cdot\frac{\sigma}{2\sqrt{r}}((\Delta W)^2 - \Delta t) = \frac{\sigma^2}{4}(Z^2 - 1)\Delta t$.
+
+---
+
+**Exercise 5.** The implicit Milstein scheme gives $r_{t_{k+1}} = \frac{r_{t_k} + \kappa\theta\Delta t + \sigma\sqrt{r_{t_k}}\sqrt{\Delta t}\,Z_k + \frac{\sigma^2}{4}(Z_k^2 - 1)\Delta t}{1 + \kappa\Delta t}$. Show that the denominator $1 + \kappa\Delta t > 1$ dampens extreme values. For $r_{t_k} = 0.01$, $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.15$, $\Delta t = 1/252$, compute $r_{t_{k+1}}$ for $Z_k = -3$ (a large negative shock) using both the explicit and implicit Milstein schemes. Does either produce a negative value?
+
+---
+
+**Exercise 6.** Explain why the exact simulation method allows arbitrarily large time steps $\Delta t$ without introducing discretization error, while the Euler method requires $\Delta t$ to be small. If a derivative payoff depends on the rate at monthly dates only, how many time steps does exact simulation need for a 5-year horizon versus daily Euler?
+
+---
+
+**Exercise 7.** Design a convergence experiment comparing exact simulation, Euler with truncation, and implicit Milstein for pricing a 5-year zero-coupon bond under CIR with $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.15$, $r_0 = 0.04$. Describe the experiment: what is the "true" price (from the analytical formula), how many paths $M$ to use, which time step sizes $\Delta t$ to test, and how to measure convergence. What plot would you produce to demonstrate the convergence rates?

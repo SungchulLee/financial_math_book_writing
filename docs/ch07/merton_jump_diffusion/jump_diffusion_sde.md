@@ -239,3 +239,25 @@ The Merton jump-diffusion SDE introduced here serves as the foundation for the e
 ## Summary
 
 The Merton jump-diffusion SDE extends geometric Brownian motion by adding a compound Poisson jump component. The three building blocks are: a deterministic drift (adjusted by the compensator $\lambda\bar{k}$), a continuous Brownian diffusion, and discrete random jumps arriving at Poisson times. The explicit solution factorizes into an exponential diffusion term and a product of random jump multipliers. The resulting return distribution is a Gaussian mixture that naturally produces negative skewness and excess kurtosis, matching key empirical features of asset returns that the Black-Scholes model cannot capture.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the Merton jump-diffusion SDE $dS_t/S_{t^-} = (r - \lambda\bar{k})\,dt + \sigma\,dW_t + dJ_t$, verify the compensator $\bar{k} = e^{\mu_J + \sigma_J^2/2} - 1$ by computing $\mathbb{E}[Y_i - 1]$ where $\ln Y_i \sim N(\mu_J, \sigma_J^2)$. Show that the drift adjustment ensures $\mathbb{E}^{\mathbb{Q}}[dS_t/S_{t^-}] = r\,dt$.
+
+---
+
+**Exercise 2.** For parameters $S_0 = 100$, $r = 0.05$, $\sigma = 0.15$, $\lambda = 1.0$, $\mu_J = -0.08$, $\sigma_J = 0.25$: (a) Compute $\bar{k}$ and the adjusted drift $r - \lambda\bar{k}$. (b) Compute the annualized variance of log-returns $\sigma^2 + \lambda(\sigma_J^2 + \mu_J^2)$. (c) Compute the excess kurtosis over a one-year horizon and compare with the Gaussian value of zero.
+
+---
+
+**Exercise 3.** The explicit solution of the Merton SDE is $S_t = S_0 \exp[(r - \lambda\bar{k} - \frac{1}{2}\sigma^2)t + \sigma W_t] \prod_{i=1}^{N_t} Y_i$. Verify this by showing that conditional on $N_t = n$, the log-return $\ln(S_t/S_0)$ is normally distributed. State the conditional mean and variance.
+
+---
+
+**Exercise 4.** Explain why the skewness of the Merton log-return distribution scales as $T^{-1/2}$ for small $T$, and why this implies that short-maturity implied volatility smiles are steeper than long-maturity smiles. What does this imply about the term structure of the implied volatility skew?
+
+---
+
+**Exercise 5.** Compare the Merton jump-diffusion model with the Black-Scholes model by listing three empirical features of equity returns that the Merton model captures but Black-Scholes cannot. For each feature, identify which parameter(s) of the Merton model are responsible.

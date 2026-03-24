@@ -256,3 +256,29 @@ Exact solutions exist for two special cases of the SABR model. For normal SABR (
 - Henry-Labordere, P. (2008). *Analysis, Geometry, and Modeling in Finance: Advanced Methods in Option Pricing*. Chapman & Hall/CRC.
 - Islah, O. (2009). *Solving SABR in exact form and unifying it with LIBOR market model*. SSRN preprint.
 - Antonov, A. & Spector, M. (2012). *Advanced analytics for the SABR model*. SSRN preprint.
+
+---
+
+## Exercises
+
+**Exercise 1.** For normal SABR ($\beta = 0$) with zero correlation ($\rho = 0$), the forward conditional on the integrated variance is $F_T | I \sim \mathcal{N}(F_0, I)$ where $I = \int_0^T \sigma_s^2\,ds$. Write the European call price as a mixture: $C = e^{-rT}\mathbb{E}_{I}[\text{BS}_N(F_0, K, I)]$ where $\text{BS}_N$ is the Bachelier formula. Explain why this reduces option pricing to computing the distribution of $I$.
+
+---
+
+**Exercise 2.** The moments of the integrated variance $I = \int_0^T \sigma_s^2\,ds$ for lognormal volatility $\sigma_t = \alpha e^{-\nu^2 t/2 + \nu W_t}$ are $\mathbb{E}[I] = \alpha^2 T$ and $\mathbb{E}[I^2] = \alpha^4 T^2 + \alpha^4(e^{\nu^2 T} - 1 - \nu^2 T)/\nu^2$. For $\alpha = 0.03$, $\nu = 0.5$, $T = 1$, compute $\mathbb{E}[I]$ and $\text{Var}[I]$. How does the variance of integrated variance grow with $\nu$?
+
+---
+
+**Exercise 3.** The Hagan approximation error grows as $O(\nu^2 T^2)$. For $\nu = 0.5$ and $T = 1, 5, 10, 20$ years, compute $\nu^2 T^2$ and estimate the relative error. At what maturity does the error term exceed 10%? Why are exact solutions essential for benchmarking long-dated products?
+
+---
+
+**Exercise 4.** For uncorrelated lognormal SABR ($\beta = 1$, $\rho = 0$), the option price is a mixture of Black-Scholes prices weighted by the density of integrated variance. Explain intuitively why this mixture produces heavier tails than Black-Scholes: both very low and very high realized volatility paths contribute, creating a distribution that is both more peaked and has fatter tails.
+
+---
+
+**Exercise 5.** Compare exact versus Hagan implied volatilities for normal SABR with $\alpha = 80$ bps, $\nu = 0.5$, $\rho = 0$, $F = 3\%$, at strikes $K = 1\%, 2\%, 3\%, 4\%, 5\%$ for $T = 1$ and $T = 10$. At which maturities and strikes would you expect the largest discrepancy? Why are the wings more affected than ATM?
+
+---
+
+**Exercise 6.** The exact solutions involve modified Bessel functions and numerical integration. Discuss the trade-off between using the exact solution versus the Hagan formula in the following contexts: (a) real-time pricing of 10,000 swaptions; (b) CMS spread pricing where tail accuracy matters; (c) validating a new finite difference implementation. In which case would you use the exact solution?

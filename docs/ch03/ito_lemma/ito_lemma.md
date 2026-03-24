@@ -158,3 +158,37 @@ $$
 4. Simplify; if the \(dt\) coefficient vanishes, \(f(t, X_t)\) is a **local martingale** (provided $\sigma_t f_x$ is locally square-integrable, so that the stochastic integral term is a well-defined local martingale). Under an additional integrability condition such as Novikov's condition, it is a true martingale.
 
 For a full set of worked examples — including \(e^{B_t}\), geometric Brownian motion, and the Black-Scholes PDE — see [Applications and Examples](ito_calculus_applications.md).
+
+---
+
+## Exercises
+
+**Exercise 1.** Apply Itô's lemma (Version 1) to $f(x) = x^3$ with $X_t = B_t$. Write down $d(B_t^3)$ and express $\int_0^t B_s^2\,dB_s$ in terms of $B_t^3$ and an ordinary integral.
+
+---
+
+**Exercise 2.** Let $f(t, x) = e^{-\lambda t}\sin(x)$ where $\lambda$ is a constant. Using Version 2 of Itô's lemma, compute $df(t, B_t)$. For what value of $\lambda$ does the $dt$ coefficient vanish, making $f(t, B_t)$ a local martingale?
+
+---
+
+**Exercise 3.** Consider the Itô process $dX_t = r X_t\,dt + \sigma X_t\,dB_t$ with constants $r$ and $\sigma > 0$. Apply Version 3 of Itô's lemma to $f(x) = x^2$ to compute $d(X_t^2)$. Express the result in the form $d(X_t^2) = (\cdots)\,dt + (\cdots)\,dB_t$.
+
+---
+
+**Exercise 4.** Verify the comparison table in Section 3 by applying both the classical chain rule and Itô's lemma to $f(x) = e^x$. Specifically:
+
+(a) In the classical case, compute $df = f'(x)\,dx$.
+
+(b) In the stochastic case, compute $d(e^{B_t})$ using Itô's lemma and identify the Itô correction term.
+
+---
+
+**Exercise 5.** Let $dS_t = \mu S_t\,dt + \sigma S_t\,dB_t$ and $f(x) = x^{-1}$. Apply Itô's lemma to compute $d(S_t^{-1})$. Show that $S_t^{-1}$ satisfies an SDE of the form $d(S_t^{-1}) = \alpha S_t^{-1}\,dt + \beta S_t^{-1}\,dB_t$ and determine $\alpha$ and $\beta$ in terms of $\mu$ and $\sigma$.
+
+---
+
+**Exercise 6.** Using the step-by-step application procedure from Section 4, apply Itô's lemma to $f(t, x) = x\,e^{-rt}$ where $dX_t = r X_t\,dt + \sigma X_t\,dB_t$. Show that the $dt$ coefficient vanishes, and conclude that $X_t e^{-rt}$ is a local martingale. Under what conditions is it a true martingale?
+
+---
+
+**Exercise 7.** Consider $f(x) = \log(1 + x^2)$. Compute $f'(x)$ and $f''(x)$, then apply Itô's lemma (Version 1) to write $d(\log(1 + B_t^2))$. Does the process $\log(1 + B_t^2)$ have a positive or negative drift? Interpret this in terms of the convexity of $f$.

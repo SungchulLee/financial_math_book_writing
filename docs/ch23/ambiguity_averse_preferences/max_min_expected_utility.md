@@ -635,3 +635,56 @@ The robust portfolio problem can be reformulated as an SDP using Schur complemen
 - Learning and updating of ambiguous beliefs
 
 Max-min expected utility provides the theoretical foundation for understanding decision-making under Knightian uncertainty, with profound implications for financial economics and practical applications in portfolio management, risk assessment, and product design.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider the Ellsberg two-urn experiment. Suppose a decision-maker has MEU preferences with utility $u(x) = x$ and prior set $\mathcal{P} = \{P : P(\text{red from Urn II}) \in [0.3, 0.7]\}$. Compute the MEU value of each gamble $f_1, f_2, f_3, f_4$ (where a win pays \$100 and a loss pays \$0). Verify that the resulting preference ordering is $f_1 \sim f_2 \succ f_3 \sim f_4$, consistent with Ellsberg-type behavior.
+
+---
+
+**Exercise 2.** Let $\Omega = \{\omega_1, \omega_2, \omega_3\}$ and consider the $\varepsilon$-contamination model with reference measure $P_0 = (0.5, 0.3, 0.2)$ and $\varepsilon = 0.2$. For an act $f$ with $u(f(\omega_1)) = 10$, $u(f(\omega_2)) = 4$, $u(f(\omega_3)) = -2$, compute the MEU value
+
+$$
+V(f) = (1-\varepsilon)\,\mathbb{E}_{P_0}[u(f)] + \varepsilon \inf_{\omega \in \Omega} u(f(\omega))
+$$
+
+Compare this with the standard expected utility $\mathbb{E}_{P_0}[u(f)]$.
+
+---
+
+**Exercise 3.** In the MEU portfolio problem with ellipsoidal uncertainty set $\mathcal{U}_\mu = \{\mu : (\mu - \hat{\mu})^\top \Sigma^{-1}(\mu - \hat{\mu}) \leq \kappa^2\}$, show that the worst-case mean for portfolio $w$ is
+
+$$
+\mu^*(w) = \hat{\mu} - \kappa \frac{\Sigma w}{\sqrt{w^\top \Sigma w}}
+$$
+
+by solving the inner minimization problem using Lagrange multipliers. Then show that the robust portfolio problem reduces to
+
+$$
+\max_w \left\{ w^\top \hat{\mu} - \kappa \sqrt{w^\top \Sigma w} - \frac{\lambda}{2} w^\top \Sigma w \right\}
+$$
+
+---
+
+**Exercise 4.** Prove that the uncertainty aversion axiom (Axiom 5) is satisfied by MEU preferences. That is, if $\mathcal{P}$ is a closed convex set of priors and $V(f) = \min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)]$, show that $V(f) = V(g)$ implies $V(\alpha f + (1-\alpha)g) \geq V(f)$ for all $\alpha \in (0,1)$.
+
+---
+
+**Exercise 5.** Consider a two-period model where an MEU agent has prior set $\mathcal{P} = \{P_1, P_2\}$ over three states. At $t=0$, event $A = \{\omega_1\}$ or $A^c = \{\omega_2, \omega_3\}$ is observed. Define
+
+$$
+P_1 = (0.4, 0.4, 0.2), \quad P_2 = (0.3, 0.2, 0.5)
+$$
+
+(a) Compute the unconditional worst-case measure for the act $f$ with $u(f(\omega_1)) = 5$, $u(f(\omega_2)) = 2$, $u(f(\omega_3)) = 8$.
+(b) Compute the conditional worst-case measures given $A$ and $A^c$ separately. Does the agent who re-optimizes at $t=1$ follow the same plan chosen at $t=0$? Discuss time consistency.
+
+---
+
+**Exercise 6.** Let $\nu$ be the capacity defined on $\Omega = \{\omega_1, \omega_2, \omega_3\}$ by $\nu(\{\omega_i\}) = 0.2$ for each singleton and $\nu(\{\omega_i, \omega_j\}) = 0.6$ for each pair. Verify that $\nu$ is convex (i.e., $\nu(A \cup B) + \nu(A \cap B) \geq \nu(A) + \nu(B)$ for all $A, B$). Then compute the core of $\nu$ and show that the Choquet integral of the act $u(f) = (3, 1, 5)$ with respect to $\nu$ equals the minimum expected utility over the core.
+
+---
+
+**Exercise 7.** Consider the robust option pricing problem with volatility uncertainty $\sigma \in [\underline{\sigma}, \overline{\sigma}] = [0.15, 0.30]$. For a European call option with strike $K = 100$, maturity $T = 1$, risk-free rate $r = 0.05$, and current stock price $S_0 = 100$, compute the Black-Scholes prices at both extreme volatilities. The buyer's price is the maximum and the seller's price is the minimum. Calculate the bid-ask spread and explain how this spread relates to ambiguity about the volatility parameter.

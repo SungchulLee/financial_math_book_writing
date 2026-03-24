@@ -225,3 +225,33 @@ The next section develops **Itô's lemma**—the chain rule of stochastic calcul
     + \sum_i \frac{\partial f}{\partial x_i}\,dX_t^i
     + \frac{1}{2}\sum_{i,j} \frac{\partial^2 f}{\partial x_i \partial x_j}\, d[X^i, X^j]_t
     $$
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $X_t = 3 + 2t + 5B_t$. Identify the drift coefficient $\mu_t$, the diffusion coefficient $\sigma_t$, and the initial value $X_0$. Compute $\mathbb{E}[X_t]$, $\operatorname{Var}(X_t)$, and the quadratic variation $[X,X]_t$.
+
+---
+
+**Exercise 2.** Let $dX_t = \alpha X_t\, dt + \sigma X_t\, dB_t$ with $X_0 = 1$. Is $X_t$ a martingale? A supermartingale? Justify your answer using the martingale characterization theorem for Ito processes.
+
+---
+
+**Exercise 3.** Let $X_t$ be an Ito process with $dX_t = \mu_t\, dt + \sigma_t\, dB_t$. Using the heuristic multiplication rules $(dt)^2 = 0$, $dB_t \cdot dt = 0$, and $(dB_t)^2 = dt$, compute $(dX_t)^2$ and verify that it equals $\sigma_t^2\, dt$, consistent with $d[X,X]_t = \sigma_t^2\, dt$.
+
+---
+
+**Exercise 4.** Consider the Ornstein-Uhlenbeck process $dX_t = -\theta X_t\, dt + \sigma\, dB_t$ with $X_0 = x_0$. Write down the explicit Doob-Meyer decomposition $X_t = M_t + A_t$, identifying the local martingale part $M_t$ and the finite-variation part $A_t$. Compute the quadratic variation $[X,X]_t$.
+
+---
+
+**Exercise 5.** Let $X_t = t B_t$. Use the integration by parts identity $d(tB_t) = B_t\, dt + t\, dB_t$ to write $X_t$ in integral form. Identify $\mu_t$ and $\sigma_t$, and determine whether $X_t$ is a martingale.
+
+---
+
+**Exercise 6.** Let $dX_t = \mu_t\, dt + \sigma_t\, dB_t$ and $dY_t = \nu_t\, dt + \rho_t\, dB_t$, where both processes are driven by the same Brownian motion. Using the multiplication rules, show that the quadratic covariation satisfies $d[X,Y]_t = \sigma_t \rho_t\, dt$.
+
+---
+
+**Exercise 7.** For the geometric Brownian motion $S_t = S_0 \exp\!\left((\mu - \frac{\sigma^2}{2})t + \sigma B_t\right)$, verify that $\mathbb{E}[S_t] = S_0 e^{\mu t}$ and $\operatorname{Var}(S_t) = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)$. Why does the drift of $\log S_t$ differ from $\mu$?

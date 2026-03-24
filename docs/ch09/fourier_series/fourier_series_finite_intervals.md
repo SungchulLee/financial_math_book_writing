@@ -305,3 +305,33 @@ The Fourier series on a finite interval $[a, b]$ decomposes a function into sinu
 | Parseval's theorem | $\sum |c_n|^2 = \frac{1}{L}\|f\|_2^2$ (completeness of trigonometric system) |
 
 **The orthogonal decomposition of functions into sinusoidal components, together with Parseval's energy identity, provides the mathematical foundation for reconstructing probability densities from characteristic functions in the COS pricing method.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Compute the Fourier cosine and sine coefficients $a_n$ and $b_n$ for $f(x) = x^2$ on $[0, 2\pi]$. Verify the constant term $a_0/2$ equals the average value of $f$ on the interval. Use integration by parts and confirm that $a_n = O(1/n^2)$ and $b_n = O(1/n)$.
+
+---
+
+**Exercise 2.** Prove the orthogonality relation $\int_a^b \cos(2\pi m x / L)\sin(2\pi n x / L)\,dx = 0$ for all integers $m, n \geq 0$, where $L = b - a$. Use the product-to-sum identity $\cos\alpha\sin\beta = \frac{1}{2}[\sin(\alpha + \beta) - \sin(\alpha - \beta)]$.
+
+---
+
+**Exercise 3.** The best $L^2$ approximation theorem states that the Fourier partial sum $S_N f$ minimizes $\|f - T_N\|_2$ over all trigonometric polynomials of degree $\leq N$. Verify this numerically for $f(x) = e^{\cos x}$ on $[-\pi, \pi]$ by computing $\|f - S_N f\|_2$ for $N = 4, 8, 16$ and confirming that the error decreases with each increase in $N$.
+
+---
+
+**Exercise 4.** Using Parseval's theorem with the Fourier series of $f(x) = x$ on $[0, 2\pi]$ (which has $a_0 = 2\pi$, $a_n = 0$, and $b_n = -2/n$), derive the identity $\sum_{n=1}^{\infty}1/n^2 = \pi^2/6$. Explain each step of the derivation and identify where Parseval's equality is applied.
+
+---
+
+**Exercise 5.** Convert the real Fourier series of $f(x) = x$ on $[0, 2\pi]$ to complex exponential form $\sum_{n=-\infty}^{\infty} c_n e^{2\pi i n x / L}$. Verify that $c_{-n} = \overline{c_n}$ for all $n$, and confirm that Parseval's theorem in complex form $\sum_{n} |c_n|^2 = \frac{1}{L}\|f\|_2^2$ gives the same result as the real form.
+
+---
+
+**Exercise 6.** Bessel's inequality states $\frac{a_0^2}{4} + \frac{1}{2}\sum_{n=1}^{\infty}(a_n^2 + b_n^2) \leq \frac{1}{L}\int_a^b|f(x)|^2\,dx$. For a function $f \in L^2([a,b])$, explain under what conditions the inequality becomes an equality (Parseval's theorem). Give an example of a function space where Bessel's inequality is strict, and explain why.
+
+---
+
+**Exercise 7.** For the probability density $f(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$ truncated to $[-5, 5]$, compute the complex Fourier coefficient $c_n$ using $c_n = \frac{1}{L}\int_a^b f(x)e^{-2\pi i n x/L}\,dx$ and explain how this integral relates to the characteristic function $\phi(u) = e^{-u^2/2}$ evaluated at $u = 2\pi n / L$. This connection foreshadows the COS method.

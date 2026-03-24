@@ -258,3 +258,29 @@ The various approaches studied --- mean-variance, local risk minimization, utili
 | Utility-based | $\max \mathbb{E}[U(W_T)]$ | Entropy / HJB duality |
 | Price ordering | $\pi^{\sup} \geq \pi_\varepsilon \geq p_{\text{indiff}} \geq \inf \mathbb{E}^{\mathbb{Q}}[\tilde{H}]$ | |
 | Key insight | Incompleteness creates a risk-cost frontier; no approach eliminates the tradeoff | |
+
+---
+
+## Exercises
+
+**Exercise 1.** The superreplication price of a European call under volatility uncertainty $\sigma \in [0.15, 0.35]$ is $\text{BS}(S, K, T, \sigma_{\max})$. For $S = K = 100$, $T = 1$, $r = 0.03$, compute the superreplication price and the sub-replication price $\text{BS}(\sigma_{\min})$. What is the width of the no-arbitrage price interval? Express this width as a fraction of the midpoint price.
+
+---
+
+**Exercise 2.** Quantile hedging with budget $c = 0.90 \times \pi^{\sup}(H)$ replicates the claim on a success set $A^*$ chosen by Neyman-Pearson. If the superreplication price from Exercise 1 is $\pi^{\sup}$, compute the budget $c$. The claim fails to replicate on paths where realized volatility exceeds some threshold $\sigma^*$. Assuming that $\mathbb{P}(\sigma > \sigma^*)$ can be made as small as 5%, explain qualitatively which paths are "sacrificed" and why the Neyman-Pearson structure selects the most expensive-to-hedge scenarios first.
+
+---
+
+**Exercise 3.** The shortfall risk with linear loss is $\mathcal{R}(c, \xi) = \mathbb{E}[(H - c - G_T(\xi))^+]$. For a simple two-state model where the hedge falls short by $\$5$ with probability 0.10 and short by $\$0$ otherwise, compute the expected shortfall. Compare this to a strategy that falls short by $\$2$ with probability 0.20. Which strategy has lower shortfall risk? Which has lower failure probability (quantile hedging criterion)?
+
+---
+
+**Exercise 4.** The price ordering states $\pi^{\sup}(H) \geq \pi_\varepsilon(H) \geq p_{\text{indiff}}(H) \geq \inf_{\mathbb{Q}}\mathbb{E}^{\mathbb{Q}}[\tilde{H}]$. Using the worked example values ($\pi^{\sup} = \$14.80$, $\pi_\varepsilon = \$12.50$, $p_{\text{MV}} = \$10.30$, sub-rep $= \$6.20$), verify the ordering. Compute the "conservatism premium" $\pi^{\sup} - p_{\text{MV}}$ and express it as a percentage of $p_{\text{MV}}$. For what type of institution would the superreplication price be appropriate?
+
+---
+
+**Exercise 5.** A trader sells a European call for $\$11.00$ (the expected shortfall minimization price from the worked example) and delta-hedges using mean-variance optimal deltas. Under the worst-case volatility scenario ($\sigma = 0.35$), the Black-Scholes price is $\$14.80$. Compute the maximum shortfall $\$14.80 - \$11.00$. Under the best-case scenario ($\sigma = 0.15$), the price is $\$6.20$. Compute the best-case profit. What is the expected P&L if the trader believes $\sigma$ is uniformly distributed on $[0.15, 0.35]$?
+
+---
+
+**Exercise 6.** The risk-cost frontier illustrates the fundamental tradeoff in incomplete markets. For the stochastic volatility example, plot the following five points on a risk-cost diagram: (a) superreplication: cost $= \$14.80$, residual risk $= 0$; (b) quantile hedging: cost $= \$12.50$, failure probability $= 5\%$; (c) expected shortfall min: cost $= \$11.00$; (d) mean-variance: cost $= \$10.30$, residual std $\approx \$2.50$; (e) sub-replication: cost $= \$6.20$, maximum risk. Is the frontier convex or concave? Explain why no strategy can achieve simultaneously lower cost and lower risk than any point on the frontier.

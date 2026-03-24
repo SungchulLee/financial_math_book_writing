@@ -307,3 +307,31 @@ The complete Heston calibration pipeline consists of the following stages:
 7. **Deployment.** Use calibrated parameters for pricing and hedging, with regular recalibration as market conditions evolve.
 
 ---
+
+## Exercises
+
+**Exercise 1.** The Heston model has five parameters $(v_0, \kappa, \theta, \sigma_v, \rho)$. Describe qualitatively which parameters are primarily identified by short-dated options and which by long-dated options. Why does this separation motivate a hierarchical calibration strategy?
+
+---
+
+**Exercise 2.** State the Feller condition $2\kappa\theta \ge \sigma_v^2$ and explain its financial significance. If a calibration yields $\kappa = 1.5$, $\theta = 0.03$, $\sigma_v = 0.6$, check whether the Feller condition is satisfied. What are the numerical consequences for Monte Carlo simulation when it is violated?
+
+---
+
+**Exercise 3.** Describe the data cleaning steps needed before Heston calibration: liquidity filtering, arbitrage detection, and forward extraction via put-call parity. For a specific example with $S_0 = 100$, $r = 2\%$, $q = 1\%$, $T = 0.5$, and observed call and put prices $C = 8.50$, $P = 5.20$ at $K = 100$, verify put-call parity and extract the implied forward.
+
+---
+
+**Exercise 4.** Compare price-space versus implied-vol-space objective functions for Heston calibration. A deep OTM put with $K = 70$, $T = 0.25$ has a market price of \$0.05 and implied vol of 35%. A bump of 1 vol point changes the price by approximately \$0.001. Compute the residual contribution in each space for a model implying 36% vol. Which space gives more weight to this option?
+
+---
+
+**Exercise 5.** A simple initialization heuristic sets $v_0 \approx \sigma_{\text{ATM}}^2$, $\rho$ from the 25-delta skew, and $\sigma_v$ from the smile curvature. For an ATM implied vol of 20%, 25-delta put vol of 25%, and 25-delta call vol of 18%, propose initial values for $v_0$, $\rho$, and $\sigma_v$. Discuss the limitations of this heuristic.
+
+---
+
+**Exercise 6.** After calibration, the residuals (model vol minus market vol) at 10 strikes for a single maturity are: $+0.15, +0.10, +0.05, +0.02, -0.01, -0.02, +0.03, +0.08, +0.12, +0.18$ (in vol points). The residuals show a systematic U-shaped pattern. What does this suggest about the model's ability to fit the smile? Propose a model extension that could address this deficiency.
+
+---
+
+**Exercise 7.** Describe the complete Heston calibration pipeline from start to finish for a trading desk that needs to calibrate daily to 200 SPX options across 8 maturities. Specify: data source and cleaning, objective function choice, optimization algorithm, convergence criteria, validation checks, and runtime target. Justify each choice.

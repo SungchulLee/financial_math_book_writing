@@ -296,3 +296,29 @@ which yields portfolios robust to model uncertainty.
 - Frittelli, M. & Rosazza Gianin, E. (2002), "Putting Order in Risk Measures," *Journal of Banking and Finance*
 - Detlefsen, K. & Scandolo, G. (2005), "Conditional and Dynamic Convex Risk Measures"
 - Delbaen, F. (2002), "Coherent Risk Measures on General Probability Spaces"
+
+---
+
+## Exercises
+
+**Exercise 1.** A monetary risk measure satisfies monotonicity and translation invariance. State each axiom formally. Verify that the worst-case risk measure $\rho(X) = -\text{ess inf}(X)$ is monetary. Is it also coherent?
+
+---
+
+**Exercise 2.** Show that VaR at level $\alpha$ satisfies monotonicity and translation invariance (hence is monetary) but fails subadditivity. Construct an explicit example with two positions $X$ and $Y$ where $\text{VaR}_\alpha(X + Y) > \text{VaR}_\alpha(X) + \text{VaR}_\alpha(Y)$.
+
+---
+
+**Exercise 3.** A convex risk measure satisfies monotonicity, translation invariance, and convexity: $\rho(\lambda X + (1-\lambda)Y) \le \lambda\rho(X) + (1-\lambda)\rho(Y)$. Show that every coherent risk measure is convex, but not vice versa. Provide an example of a convex but not coherent risk measure (hint: the entropic risk measure).
+
+---
+
+**Exercise 4.** The dual representation of a coherent risk measure is $\rho(X) = \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^{\mathbb{Q}}[-X]$ for some set of probability measures $\mathcal{Q}$. For Expected Shortfall at level $\alpha$, describe the set $\mathcal{Q}$ explicitly. Why does this representation have the interpretation of "worst-case expected loss"?
+
+---
+
+**Exercise 5.** Verify that the entropic risk measure $\rho_\theta(X) = \frac{1}{\theta}\ln\mathbb{E}[e^{-\theta X}]$ satisfies monotonicity and translation invariance. Show that it is convex but not positively homogeneous (hence not coherent). What role does the parameter $\theta$ play as a risk aversion coefficient?
+
+---
+
+**Exercise 6.** Explain the hierarchy: monetary $\supset$ convex $\supset$ coherent risk measures. For each level, provide a representative example and state which additional axioms are required. Why did the Artzner et al. (1999) coherence axioms become the standard framework for regulatory risk measurement?

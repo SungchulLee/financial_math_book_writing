@@ -243,3 +243,29 @@ The COS pricing formula combines density coefficients from the characteristic fu
 | Option price | $e^{-rT}\sum_{k=0}^{N-1}{}' F_k V_k$ | Summation |
 
 **The COS pricing formula achieves exponential convergence for smooth densities, requires only $N$ characteristic function evaluations, and produces option prices accurate to machine precision with $N = 64$ to $128$ for typical affine models.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Derive the COS pricing formula $V_{\text{COS}} = e^{-rT}\sum_{k=0}^{N-1}{}' F_k V_k$ starting from the risk-neutral pricing identity $V = e^{-rT}\int_{-\infty}^{\infty}\Phi(x)f(x)\,dx$. Identify the three approximation steps (truncation to $[a, b]$, cosine expansion of $f$, exchange of sum and integral) and the error introduced by each step.
+
+---
+
+**Exercise 2.** Prove the closed-form expression for $\chi_k(c, d) = \int_c^d e^x\cos(\omega_k(x-a))\,dx$ using integration by parts twice. Show that $(1 + \omega_k^2)\chi_k(c,d) = [e^x(\cos(\omega_k(x-a)) + \omega_k\sin(\omega_k(x-a)))]_c^d$ and verify the formula for $k = 0$ (where $\omega_0 = 0$) reduces to $\chi_0(c,d) = e^d - e^c$.
+
+---
+
+**Exercise 3.** For a European put with payoff $\Phi(x) = K(1 - e^x)^+$ on $[a, 0]$, derive the payoff coefficients $V_k^{\text{put}} = K[\psi_k(a, 0) - \chi_k(a, 0)]$. Verify that the put-call parity relation $V_k^{\text{call}} - V_k^{\text{put}} = K[\chi_k(a, b) - \psi_k(a, b)]$ holds at the coefficient level.
+
+---
+
+**Exercise 4.** For a cash-or-nothing digital call with payoff $\Phi(x) = \mathbf{1}_{x > 0}$, the payoff coefficients are $V_k^{\text{digital}} = \psi_k(0, b)$. Compute $V_0^{\text{digital}}$, $V_1^{\text{digital}}$, and $V_2^{\text{digital}}$ for $[a, b] = [-1, 1]$. How do the coefficient magnitudes compare to those of a vanilla call?
+
+---
+
+**Exercise 5.** In the Black-Scholes verification example ($S_0 = 100$, $K = 100$, $r = 0.10$, $\sigma = 0.25$, $T = 0.1$), the COS method achieves $10^{-12}$ accuracy with $N = 64$. Each doubling of $N$ adds approximately 4 digits of accuracy. Explain this super-exponential convergence in terms of the Gaussian decay of the cosine coefficients $|A_k| \sim e^{-ck^2}$.
+
+---
+
+**Exercise 6.** The COS method allows pricing at multiple strikes with a single set of density coefficients $F_k$. If pricing at 100 strikes with $N = 128$ using COS requires 128 CF evaluations plus $100 \times 128$ arithmetic operations, compare the total cost to Carr-Madan FFT pricing with $N_{\text{FFT}} = 4096$. Under what conditions does COS become more expensive than FFT for a strike grid?

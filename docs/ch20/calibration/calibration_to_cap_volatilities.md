@@ -130,3 +130,33 @@ This produces a piecewise constant volatility function that exactly reproduces a
 ## Summary
 
 Calibrating the Hull-White model to cap volatilities involves stripping the cap volatility curve into individual caplet volatilities, computing the model-implied caplet volatility $\sigma_k^{\text{HW}}$ from the bond price volatility formula, and minimizing the weighted squared error. The two parameters $(\lambda, \sigma)$ control the level and slope of the caplet volatility term structure: $\sigma$ sets the overall level and $\lambda$ determines how rapidly volatility decays with maturity. For exact fitting, the piecewise constant $\sigma(t)$ extension matches each caplet individually via bootstrap. The next sections cover calibration to swaption volatilities and joint calibration strategies.
+
+---
+
+## Exercises
+
+**Exercise 1.** Given a 3-year annual cap with flat Black volatility $\sigma_{\text{cap}}(3) = 0.20$ and caplet volatilities $\sigma_1^{\text{cplt}} = 0.22$, $\sigma_2^{\text{cplt}} = 0.21$ already stripped, describe the bootstrap step to extract $\sigma_3^{\text{cplt}}$. Why is this strip procedure sequential rather than simultaneous?
+
+---
+
+**Exercise 2.** The Hull-White bond price volatility for a caplet is $\sigma_P(T_{k-1}, T_k) = \frac{\sigma}{\lambda}(1 - e^{-\lambda\delta_k})\sqrt{\frac{1 - e^{-2\lambda T_{k-1}}}{2\lambda}}$. Show that this formula reduces to $\sigma\delta_k\sqrt{T_{k-1}}$ in the Ho-Lee limit $\lambda \to 0$. What does this imply about the shape of the caplet volatility term structure when mean reversion is absent?
+
+---
+
+**Exercise 3.** For Hull-White parameters $\lambda = 0.05$, $\sigma = 0.01$, and annual resets ($\delta_k = 1$), compute the bond price volatility $\sigma_P(T_{k-1}, T_k)$ for caplets with reset dates $T_{k-1} = 1, 2, 5, 10$ years. Describe how the volatility varies with maturity and explain the role of $\lambda$.
+
+---
+
+**Exercise 4.** The calibration objective $\min_{\lambda, \sigma}\sum_k w_k(\sigma_k^{\text{HW}} - \sigma_k^{\text{market}})^2$ has two parameters and typically 5--10 calibration instruments. Explain why the problem is overconstrained and describe what the residual errors reveal about the model's limitations.
+
+---
+
+**Exercise 5.** Explain the proposition that for fixed $\lambda$, the optimal $\sigma$ can be found semi-analytically because the caplet price is approximately linear in $\sigma$. Under what conditions does this approximation break down? How would you implement the resulting one-dimensional outer optimization over $\lambda$?
+
+---
+
+**Exercise 6.** The piecewise constant $\sigma(t)$ extension can fit each caplet exactly but may produce non-smooth or negative $\sigma_k$ values. Describe a regularization approach that penalizes large jumps $|\sigma_{k+1} - \sigma_k|$ while preserving a good fit. How does this balance accuracy against stability?
+
+---
+
+**Exercise 7.** Compare cap-based calibration with swaption-based calibration. Which parameter ($\lambda$ or $\sigma$) is better identified by cap data, and why? Under what circumstances would you prefer to calibrate to caps rather than swaptions?

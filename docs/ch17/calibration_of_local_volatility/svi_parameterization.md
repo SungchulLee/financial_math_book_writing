@@ -272,3 +272,45 @@ Extensions (eSSVI, extended SSVI) address some limitations by allowing more flex
 - Gatheral & Jacquier, "Arbitrage-Free SVI Volatility Surfaces" (2014).
 - De Marco & Martini, "Quasi-Explicit Calibration of SVI" (Zeliade white paper).
 - Hendriks & Martini, "Extended SSVI" (2019).
+
+---
+
+## Exercises
+
+**Exercise 1.** For the raw SVI formula $w(k) = a + b(\rho(k-m) + \sqrt{(k-m)^2 + \sigma^2})$, compute the asymptotic slopes of the left and right wings:
+
+$$
+\lim_{k \to -\infty} \frac{w(k)}{|k|} \quad \text{and} \quad \lim_{k \to +\infty} \frac{w(k)}{k}
+$$
+
+Express your answers in terms of $b$ and $\rho$. Verify that when $\rho < 0$, the left wing is steeper than the right, consistent with equity index skew.
+
+---
+
+**Exercise 2.** Show that the SVI total variance at the center $k = m$ is $w(m) = a + b\sigma$. Use the sufficient no-arbitrage condition $a + b\sigma\sqrt{1-\rho^2} \ge 0$ to derive a lower bound on $a$ in terms of $b$, $\sigma$, and $\rho$. For $b = 0.3$, $\sigma = 0.1$, $\rho = -0.7$, compute this lower bound.
+
+---
+
+**Exercise 3.** Verify analytically that the SVI second derivative with respect to log-moneyness is
+
+$$
+\partial_{kk}w = \frac{b\sigma^2}{((k-m)^2 + \sigma^2)^{3/2}}
+$$
+
+Show that $\partial_{kk}w > 0$ for all $k$ when $b > 0$ and $\sigma > 0$. Explain why this property is important for the denominator of the Dupire formula.
+
+---
+
+**Exercise 4.** Consider a market with ATM total variance $w_{\text{ATM}} = 0.04$, left-wing slope approximately $0.45$, and right-wing slope approximately $0.15$. Using the asymptotic wing formulas from Exercise 1, set up a system of equations for $b$ and $\rho$. Solve for $b$ and $\rho$, then choose initial values for $a$, $m$, and $\sigma$ to begin a local optimization. Describe your reasoning for each initial value.
+
+---
+
+**Exercise 5.** For the SSVI parameterization with power-law $\phi(\theta) = \eta/(\theta^\gamma(1+\theta)^{1-\gamma})$, show that the condition for absence of butterfly arbitrage at $k = 0$ imposes an upper bound on $\eta$ that depends on $\rho$. Specifically, show that $\eta(1 + |\rho|) \le 2$ is sufficient. What happens to the smile curvature when $\eta$ approaches this upper bound?
+
+---
+
+**Exercise 6.** A practitioner fits SVI independently to 5 maturities ($T = 0.1, 0.25, 0.5, 1.0, 2.0$) and obtains parameters $(a_i, b_i, \rho_i, m_i, \sigma_i)$ for each. To check calendar arbitrage, one must verify $w(k, T_{i+1}) \ge w(k, T_i)$ for all $k$. Show that this is not guaranteed by per-slice SVI fits even if each slice is individually arbitrage-free. Construct a concrete numerical example where two arbitrage-free SVI slices violate calendar monotonicity at some $k$.
+
+---
+
+**Exercise 7.** Starting from the SVI analytic derivatives $\partial_k w$ and $\partial_{kk}w$, substitute into the Dupire formula in total variance coordinates to obtain an expression for $\sigma_{\text{loc}}^2(k, T)$ purely in terms of SVI parameters and $\partial_T w$. Assuming $\partial_T w$ is estimated via finite differences between adjacent maturities, discuss which term in the denominator is most sensitive to parameter uncertainty and why.

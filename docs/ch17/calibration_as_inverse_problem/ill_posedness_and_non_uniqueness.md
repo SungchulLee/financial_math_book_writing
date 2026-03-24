@@ -136,3 +136,51 @@ This connects directly to **regularization** (Chapter 5.3).
 - Hadamard, *Lectures on Cauchy’s problem in linear partial differential equations*.
 - Engl, Hanke & Neubauer, *Regularization of Inverse Problems*.
 - Gatheral, *The Volatility Surface* (practical calibration issues).
+
+---
+
+## Exercises
+
+**Exercise 1.** State the three Hadamard conditions for well-posedness. Give a concrete calibration example where condition (2) (uniqueness) fails: describe a two-parameter model and a set of market observables such that two distinct parameter vectors produce the same model prices.
+
+---
+
+**Exercise 2.** Consider a model with forward pricing map $F:\mathbb{R}^d \to \mathbb{R}^m$ and Jacobian $J = \partial F/\partial\theta$ evaluated at $\theta_0$. Suppose the singular value decomposition of $J$ is $J = U\Sigma V^\top$ with singular values $\sigma_1 \ge \sigma_2 \ge \cdots \ge \sigma_{\min(m,d)}$. Show that the condition number of the normal equations matrix $J^\top J$ is
+
+$$
+\kappa(J^\top J) = \left(\frac{\sigma_1}{\sigma_d}\right)^2
+$$
+
+and explain why a large condition number implies instability in the calibrated parameters.
+
+---
+
+**Exercise 3.** A practitioner calibrates a stochastic volatility model on Monday and obtains parameters $\theta_{\text{Mon}}$. On Tuesday, with nearly identical market data (perturbation $\|\varepsilon\| < 0.01$), the calibration yields $\theta_{\text{Tue}}$ with $\|\theta_{\text{Tue}} - \theta_{\text{Mon}}\| > 10$. Which of the three Hadamard conditions is violated? Propose two practical remedies from the diagnostics discussed in this section.
+
+---
+
+**Exercise 4.** Let $F(\alpha, \beta) = \alpha \beta$ be a simplified pricing function mapping two parameters to a single observable $y$. Show that the level set $\{(\alpha,\beta) : F(\alpha,\beta) = y\}$ is a hyperbola for $y \neq 0$. Compute the Jacobian $J$ at the point $(\alpha_0, \beta_0)$ and verify that the linearized inverse problem has a one-dimensional null space when $m = 1$ and $d = 2$.
+
+---
+
+**Exercise 5.** Suppose market data $y$ lies outside the range of the forward map, i.e., $y \notin \mathrm{Range}(F)$, due to model misspecification. Show that the least-squares objective
+
+$$
+\mathcal{L}(\theta) = \frac{1}{2}\|F(\theta) - y\|^2
+$$
+
+still has a minimizer under mild compactness assumptions on the parameter space, but that this minimizer need not be unique. Provide a geometric argument using the projection theorem.
+
+---
+
+**Exercise 6.** Consider a weighted least-squares calibration with weight matrix $W = \mathrm{diag}(w_1, \ldots, w_m)$ and the linearized update $\Delta\theta = (J^\top W J)^{-1} J^\top W \,\delta y$, where $\delta y$ is a perturbation in market data. If $w_i = 1/\sigma_i^2$ where $\sigma_i$ is the bid-ask half-width of instrument $i$, show that the parameter perturbation satisfies
+
+$$
+\|\Delta\theta\| \le \|(J^\top W J)^{-1}\|_2 \cdot \|J^\top W\|_2 \cdot \|\delta y\|
+$$
+
+and discuss how instruments with tight bid-ask spreads (small $\sigma_i$) disproportionately influence parameter stability.
+
+---
+
+**Exercise 7.** A calibration of the Heston model to 20 vanilla option prices yields two local minima: $\theta_A$ with loss $\mathcal{L}_A = 0.0012$ and $\theta_B$ with loss $\mathcal{L}_B = 0.0015$. However, $\theta_B$ produces more stable Greeks and day-to-day parameter estimates. Discuss the trade-off between goodness of fit and parameter stability. Under what criteria might a risk manager prefer $\theta_B$? How does this relate to the regularization approach described in Chapter 5.3?

@@ -210,3 +210,29 @@ Consistency in day count conventions is essential when comparing rates or buildi
 - Brigo & Mercurio, *Interest Rate Models—Theory and Practice*
 - Hull, *Options, Futures, and Other Derivatives* (yield curve basics)
 - Filipović, *Term-Structure Models: A Graduate Course*
+
+---
+
+## Exercises
+
+**Exercise 1.** Given a discount factor $P(0, 3) = 0.915$, compute the continuously compounded zero rate $R(0,3)$, the semi-annually compounded rate, and the simply compounded rate over 3 years. Verify all three produce the same discount factor.
+
+---
+
+**Exercise 2.** Prove that in a positive-rate environment, $P(t, T)$ is strictly decreasing in $T$. What does a discount factor $P(0, T) > 1$ imply about the interest rate over $[0, T]$?
+
+---
+
+**Exercise 3.** The discount factor curve is given at maturities $T = 1, 2, 3, 4, 5$ as $P = (0.97, 0.93, 0.89, 0.85, 0.80)$. Compute the zero rate curve $R(0, T)$ for each maturity. Is the zero rate curve upward-sloping, flat, or inverted?
+
+---
+
+**Exercise 4.** Show that the relationship between continuous and discrete compounding rates is $R_c = m\ln(1 + R_m/m)$. For $R_m = 5\%$ with quarterly compounding ($m = 4$), compute $R_c$.
+
+---
+
+**Exercise 5.** A central bank sets a negative policy rate of $-0.5\%$. Compute the discount factor $P(0, 1)$ under continuous compounding with $R = -0.005$. Verify that $P > 1$ and explain the economic meaning: you pay more today to receive \$1 in one year.
+
+---
+
+**Exercise 6.** Given discount factors at semi-annual intervals $P(0, 0.5) = 0.988$, $P(0, 1.0) = 0.975$, $P(0, 1.5) = 0.960$, $P(0, 2.0) = 0.944$, compute the present value of a cash flow stream paying \$50 at $T = 0.5, 1.0, 1.5$ and \$1050 at $T = 2.0$.

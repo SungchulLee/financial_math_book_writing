@@ -911,3 +911,29 @@ where $Y_t$ solves a 2BSDE with appropriate generator.
 - **Stochastic Control**: Generalizing classical optimal control
 
 The theory continues to develop rapidly, with ongoing research addressing computational challenges, extending to new application domains, and deepening theoretical understanding of nonlinear expectations and robust valuation under fundamental uncertainty.
+
+---
+
+## Exercises
+
+**Exercise 1.** A standard BSDE has the form $-dY_t = f(t, Y_t, Z_t) \, dt - Z_t \, dW_t$ with terminal condition $Y_T = \xi$. Explain the key difference between a BSDE and a 2BSDE, which has the form $-dY_t = f(t, Y_t, Z_t, \hat{a}_t) \, dt - Z_t \, dW_t$ where $\hat{a}_t$ represents the uncertain quadratic variation. Why does the 2BSDE require a family of probability measures rather than a single one?
+
+---
+
+**Exercise 2.** For the linear BSDE $-dY_t = (\alpha Y_t + \beta Z_t) \, dt - Z_t \, dW_t$ with $Y_T = \xi$, show that the solution is $Y_t = \mathbb{E}_t^{\mathbb{Q}}[e^{-\alpha(T-t)}\xi]$ where $\mathbb{Q}$ is the measure under which $\tilde{W}_t = W_t - \beta t$ is a Brownian motion. Then explain why no such simple representation exists for the nonlinear generator in a 2BSDE.
+
+---
+
+**Exercise 3.** The Soner-Touzi-Zhang wellposedness result for 2BSDEs requires the generator to satisfy certain regularity conditions. State these conditions and explain their financial interpretation. In particular, why is the Lipschitz condition on the generator important for ensuring the uniqueness of the robust derivative price?
+
+---
+
+**Exercise 4.** Show that the superhedging price under uncertain volatility $\sigma_t \in [\underline{\sigma}, \overline{\sigma}]$ can be characterized as the solution of a 2BSDE with generator $f(t, y, z, a) = -rz + \frac{1}{2}\overline{\sigma}^2 |z|^2 \mathbb{1}_{z \geq 0} + \frac{1}{2}\underline{\sigma}^2 |z|^2 \mathbb{1}_{z < 0}$. Verify that this reduces to the BSB equation in the Markovian case.
+
+---
+
+**Exercise 5.** Describe a numerical scheme for solving 2BSDEs based on the branching diffusion method or the deep learning approach. For the deep learning approach, explain how the neural network parameterizes the control $Z_t$ and how the loss function enforces the terminal condition $Y_T = \xi$ and the dynamics. What are the main computational challenges compared to standard BSDEs?
+
+---
+
+**Exercise 6.** The connection between 2BSDEs and fully nonlinear PDEs is established through the nonlinear Feynman-Kac formula. State this formula and explain how the solution $u(t, x)$ of the fully nonlinear PDE $\partial_t u + G(D^2 u) = 0$ with $G(A) = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]}\frac{1}{2}\sigma^2 A$ is related to the 2BSDE solution. Why is the viscosity solution concept necessary here?

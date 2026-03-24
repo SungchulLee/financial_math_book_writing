@@ -238,3 +238,58 @@ The QE scheme nearly eliminates bias while avoiding negative variance entirely.
 - Andersen, L. (2008). *Efficient simulation of the Heston stochastic volatility model*. Journal of Computational Finance.
 - Lord, R., Koekkoek, R., & van Dijk, D. (2010). *A comparison of biased simulation schemes for stochastic volatility models*. Quantitative Finance.
 - Glasserman, P. (2003). *Monte Carlo Methods in Financial Engineering*. Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** Compute the Feller ratio $\nu = 2\kappa\theta/\xi^2$ for the following parameter sets and classify the boundary at $V = 0$ (entrance, entrance-not-exit, or regular):
+
+| Set | $\kappa$ | $\theta$ | $\xi$ |
+|-----|----------|----------|--------|
+| A   | 3.0      | 0.04     | 0.30   |
+| B   | 1.5      | 0.05     | 0.50   |
+| C   | 5.0      | 0.02     | 0.80   |
+| D   | 2.0      | 0.06     | 0.40   |
+
+---
+
+**Exercise 2.** Using Feller's boundary classification, the scale function for the CIR process is
+
+$$
+s(x) = \int_c^x \exp\left(-\int_c^y \frac{2\kappa(\theta - z)}{\xi^2 z}\,dz\right)dy
+$$
+
+Evaluate the inner integral $\int_c^y \frac{2\kappa(\theta - z)}{\xi^2 z}\,dz$ in closed form (it involves $\ln y$ and linear terms). Show that for $\nu > 1$, the integral $\int_0^c s(x)\,dx$ diverges, which implies the boundary at zero is unattainable.
+
+---
+
+**Exercise 3.** For the Heston parameters $\kappa = 2$, $\theta = 0.04$, $\xi = 0.5$, $V_0 = 0.04$ (so $\nu = 0.64 < 1$), explain why the characteristic function and hence European option prices remain valid. Specifically, argue that the quantity $\mathbb{E}[\int_0^T V_s\,ds]$ is finite and well-defined even though $V_t$ can touch zero.
+
+---
+
+**Exercise 4.** In the Euler scheme with full truncation, starting from $V_t = 0.005$ with $\kappa = 2$, $\theta = 0.04$, $\xi = 0.5$, $\Delta = 1/252$:
+
+(a) Compute the mean and variance of $V_{t+\Delta}$ before truncation.
+
+(b) Find the probability that $V_{t+\Delta} < 0$ before truncation.
+
+(c) Explain the bias introduced by replacing negative values with zero. Is this bias positive or negative in the expected value of $V$?
+
+---
+
+**Exercise 5.** The QE scheme switches between a quadratic and exponential approximation based on the ratio $\psi = s^2/m^2$. Given $V_t = 0.02$, $\kappa = 3$, $\theta = 0.04$, $\xi = 0.6$, $\Delta = 1/252$:
+
+(a) Compute $m = \theta + (V_t - \theta)e^{-\kappa\Delta}$.
+
+(b) Compute $s^2 = \frac{V_t\xi^2 e^{-\kappa\Delta}}{\kappa}(1 - e^{-\kappa\Delta}) + \frac{\theta\xi^2}{2\kappa}(1 - e^{-\kappa\Delta})^2$.
+
+(c) Evaluate $\psi$ and determine which branch (quadratic or exponential with $\psi_c = 1.5$) the QE scheme would use.
+
+---
+
+**Exercise 6.** The exact transition distribution of the CIR process is a scaled non-central $\chi^2$ with degrees of freedom $d = 4\kappa\theta/\xi^2$ and non-centrality $\lambda = \frac{4\kappa e^{-\kappa\Delta}}{\xi^2(1 - e^{-\kappa\Delta})}V_t$. For $V_t = 0.04$, $\kappa = 2$, $\theta = 0.04$, $\xi = 0.5$, $\Delta = 1/252$, compute $d$ and $\lambda$. Verify that the mean of $V_{t+\Delta}$ equals $\theta + (V_t - \theta)e^{-\kappa\Delta}$.
+
+---
+
+**Exercise 7.** A risk manager calibrates the Heston model to S&P 500 options during a stress period and obtains $\kappa = 1.2$, $\theta = 0.08$, $\xi = 0.9$. Compute $\nu$ and determine if Feller is satisfied. The manager needs to run a Monte Carlo simulation with 100,000 paths. Compare the expected accuracy (in terms of bias and variance) of Euler truncation vs. QE for pricing a 1-year ATM call. Which scheme should she use, and why?

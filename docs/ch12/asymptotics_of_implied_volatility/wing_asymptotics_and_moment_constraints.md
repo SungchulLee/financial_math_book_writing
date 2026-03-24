@@ -743,3 +743,39 @@ Finite variance requires wings grow at least linearly in $|y|$.
 - **Commodities:** Variable, depends on market structure
 
 Wing asymptotics provide a rigorous framework for understanding tail risk, constraining models, and ensuring arbitrage-free pricing across the entire strike range.
+
+---
+
+## Exercises
+
+**Exercise 1.** Using Lee's moment formula $p_{\pm} = 2/m_{\pm}$, compute the wing slopes $p_+$ and $p_-$ for a risk-neutral distribution with maximum finite right moment $m_+ = 3$ and maximum finite left moment $m_- = 1.5$. Which wing is steeper? What does this say about the relative heaviness of the tails?
+
+---
+
+**Exercise 2.** Consider a risk-neutral density with power law right tail $q(S) \sim C_+ S^{-4}$ as $S \to \infty$. (a) Determine the maximum finite moment $m_+$. (b) Compute the right wing slope $p_+$. (c) Write the asymptotic formula for $\sigma_{\text{IV}}^2(y, T) T$ as $y \to +\infty$. (d) Is the variance of $S_T$ finite?
+
+---
+
+**Exercise 3.** The SVI parametrization has wing slopes $p_+ = 1 + \rho$ and $p_- = 1 - \rho$. (a) For $\rho = -0.4$, compute both wing slopes and verify $0 < p_{\pm} < 2$. (b) What value of $\rho$ produces symmetric wings? (c) Explain why $|\rho| > 1$ would violate arbitrage constraints.
+
+---
+
+**Exercise 4.** An equity index has empirical wing slopes $p_- \approx 1.2$ and $p_+ \approx 2.0$. Using Lee's formula, determine the maximum finite moments $m_-$ and $m_+$. Explain the economic interpretation: why does the left tail exhibit a lower maximum finite moment?
+
+---
+
+**Exercise 5.** Suppose a variance swap has fair strike $K_{\text{var}} = 0.04$ (corresponding to $\sigma_{\text{var}} = 20\%$). The variance swap formula involves
+
+$$
+K_{\text{var}} = \frac{2 e^{rT}}{T} \left(\int_0^F \frac{P(K)}{K^2} dK + \int_F^\infty \frac{C(K)}{K^2} dK\right)
+$$
+
+Explain why this integral diverges if the implied volatility wings are flat (constant $\sigma_{\text{IV}}$ for large $|y|$), and connect this to the condition that all moments must be infinite when $p_{\pm} = 0$.
+
+---
+
+**Exercise 6.** Consider an absorbing barrier model where $\mathbb{P}^{\mathbb{Q}}(S_T = 0) = p_0 = 0.02$. (a) Compute the minimum put price $P(K, T) \geq K e^{-rT} p_0$ for $K = 50$ with $r = 0.05$ and $T = 1$. (b) Explain why the left wing implied volatility must satisfy $\sigma_{\text{IV}}(K, T) \to \infty$ as $K \to 0$. (c) In which asset classes might this model be realistic?
+
+---
+
+**Exercise 7.** A parametric smile model produces wing behavior $\sigma_{\text{IV}}^2(y, T) T = 0.05 + 0.8|y| + 0.1 y^2$ for large $|y|$. (a) Identify the leading-order behavior and determine the effective wing slope. (b) Does this satisfy the arbitrage constraint $0 < p_{\pm} \leq 2$? (c) Compute the implied maximum finite moments $m_{\pm}$ using Lee's formula.

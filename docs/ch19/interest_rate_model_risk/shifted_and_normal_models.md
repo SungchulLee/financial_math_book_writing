@@ -376,3 +376,33 @@ This is the **normal SABR** model, which is increasingly popular for negative ra
 - Brigo & Mercurio (2006), *Interest Rate Models: Theory and Practice*, Chapter 1
 - Hagan et al. (2002), "Managing Smile Risk" (SABR model)
 - Andersen & Piterbarg (2010), *Interest Rate Modeling*, Volume I, Chapter 5
+
+---
+
+## Exercises
+
+**Exercise 1.** Using the Bachelier (normal) caplet formula, price a caplet with forward rate $F = -0.15\%$, strike $K = 0\%$, normal volatility $\sigma_N = 0.45\%$, expiry $T = 3$ years, accrual $\delta = 0.5$, and discount factor $P(0, T_{i+1}) = 1.005$. Verify that the formula is well-defined despite the negative forward rate.
+
+---
+
+**Exercise 2.** For the shifted lognormal model with shift $s = 2\%$, forward rate $F = 0.5\%$, and shifted lognormal volatility $\sigma_{\text{SLN}} = 30\%$, compute the shifted forward $F + s$ and price an ATM caplet (strike $K = F$) with $T = 2$, $\delta = 0.25$, and $P(0, T_{i+1}) = 0.99$. Then convert the shifted lognormal vol to the equivalent normal vol using $\sigma_N \approx \sigma_{\text{SLN}} \cdot (F + s)$ and verify the price is approximately the same under the Bachelier formula.
+
+---
+
+**Exercise 3.** Consider two choices of shift: $s_1 = 1\%$ and $s_2 = 3\%$. For a forward rate $F = 1\%$ and expiry $T = 5$, compute the shifted lognormal volatility in each case such that both models produce the same ATM caplet price. How do the implied volatility smiles differ for OTM strikes (e.g., $K = -0.5\%$ and $K = 3\%$)? Discuss the model risk implications.
+
+---
+
+**Exercise 4.** Explain why the lognormal distribution has a heavier right tail than the normal distribution, while the normal distribution assigns more probability to extreme negative values. How does this affect the relative pricing of deep out-of-the-money caps versus deep out-of-the-money floors under the two models?
+
+---
+
+**Exercise 5.** A swaption desk currently quotes in Black (lognormal) implied volatility. With EUR swap rates at $-0.20\%$, the desk needs to switch convention. Compare the advantages of quoting in (a) normal implied volatility versus (b) shifted lognormal implied volatility with a standard shift. Which convention is more stable as rates move through zero?
+
+---
+
+**Exercise 6.** In the shifted SABR model, the forward rate dynamics are $dF = \sigma_{\text{SLN}}(F + s)^\beta\,dW$ with $\beta = 0.5$ and $s = 2\%$. For $F = 0.3\%$ and $\sigma_{\text{SLN}} = 40\%$, compute the local volatility at $F$ and compare it with the $\beta = 1$ (pure shifted lognormal) and $\beta = 0$ (pure normal) cases. Discuss how $\beta$ controls the smile shape.
+
+---
+
+**Exercise 7.** A risk manager compares the delta of an ATM swaption under the normal model versus the lognormal model. In the normal model, delta is $\partial V / \partial F = \delta\,P\,N(d)$, while in the lognormal model it is $\partial V / \partial F = \delta\,P\,N(d_1)$. For $F = 2\%$, $\sigma_N = 0.60\%$, $\sigma_{\text{LN}} = 30\%$, and $T = 5$, compute both deltas and the difference. Does the choice of model materially affect the hedge ratio?

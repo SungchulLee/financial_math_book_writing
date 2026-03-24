@@ -881,3 +881,49 @@ Superhedging duality bridges:
 - Convex optimization (duality theory)
 
 This connection provides both deep theoretical insights and practical computational tools for robust derivative pricing under model uncertainty.
+
+---
+
+## Exercises
+
+**Exercise 1.** In a single-period binomial model with $S_0 = 100$, $S_1 \in \{80, 130\}$, and $r = 0$, compute the superhedging price and the sub-replication price for a European put with strike $K = 100$. Verify that the unique equivalent martingale measure yields a price within the interval $[\pi^{\text{sub}}, \pi^{\text{sup}}]$.
+
+---
+
+**Exercise 2.** Consider a trinomial model with $S_0 = 100$, $S_1 \in \{80, 100, 120\}$, and $r = 0$. Characterize the set of equivalent martingale measures $\mathcal{M}$ by parameterizing the probabilities $(q_1, q_2, q_3)$ of the three outcomes. For a digital call paying $1$ if $S_1 > 100$, compute
+
+$$
+\pi^{\text{sup}} = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[\xi] \quad \text{and} \quad \pi^{\text{sub}} = \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[\xi]
+$$
+
+---
+
+**Exercise 3.** Prove that for any contingent claim $\xi$ and constant $a > 0$,
+
+$$
+\pi^{\text{sup}}(a\xi) = a \cdot \pi^{\text{sup}}(\xi) \quad \text{and} \quad \pi^{\text{sup}}(\xi_1 + \xi_2) \leq \pi^{\text{sup}}(\xi_1) + \pi^{\text{sup}}(\xi_2)
+$$
+
+That is, show that the superhedging price functional is positive homogeneous and subadditive (hence a coherent risk measure on payoffs).
+
+---
+
+**Exercise 4.** In a model with uncertain volatility $\sigma_t \in [0.15, 0.30]$, current price $S_0 = 100$, strike $K = 100$, maturity $T = 1$, and $r = 0$, compute the superhedging and sub-replication prices for a European call using the Black-Scholes formula with the two extreme volatilities. Explain why the superhedging price corresponds to $\sigma_{\max}$ and the sub-replication price corresponds to $\sigma_{\min}$ for a standard call.
+
+---
+
+**Exercise 5.** The good-deal bound restricts the set of equivalent martingale measures to those with bounded Radon-Nikodym derivative: $\mathcal{M}_{\text{GD}} = \{\mathbb{Q} \in \mathcal{M} : \|d\mathbb{Q}/d\mathbb{P}\|_\infty \leq K\}$. In the trinomial model of Exercise 2, with physical probabilities $\mathbb{P} = (0.3, 0.4, 0.3)$, compute the good-deal bounds for the digital call with $K = 3$, and compare them with the superhedging/sub-replication bounds from Exercise 2.
+
+---
+
+**Exercise 6.** Consider a two-period model where at each step the stock either goes up by 20% or down by 20%, with $S_0 = 100$ and $r = 0$. Formulate the superhedging problem for a lookback payoff $\xi = \max(S_0, S_1, S_2) - S_2$ as a dynamic programming problem. Compute the superhedging price and the corresponding hedging strategy at each node.
+
+---
+
+**Exercise 7.** Prove that under proportional transaction costs with parameter $\lambda > 0$ (buying at $(1+\lambda)S$ and selling at $(1-\lambda)S$), the superhedging price of a European call satisfies
+
+$$
+\pi^{\text{sup}}(\xi; \lambda) \geq \pi^{\text{sup}}(\xi; 0)
+$$
+
+Provide an economic interpretation of why transaction costs increase the superhedging cost, and explain the heuristic that the leading-order correction scales as $O(\sqrt{\lambda})$.

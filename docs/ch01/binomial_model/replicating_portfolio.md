@@ -536,3 +536,33 @@ See [FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_
 | [Delta Hedging](delta_hedging.md) | Pricing via risk elimination |
 | [Risk-Neutral Measure](risk_neutral_measure.md) | The measure $\mathbb{Q}$ and expectation pricing |
 | [Multi-Period Model](multi_period_binomial_model.md) | Extending to multiple time steps |
+
+---
+
+## Exercises
+
+**Exercise 1.** In the one-period binomial model with $S_0 = 80$, $u = 1.25$, $d = 0.85$, $r = 4\%$, and $\Delta t = 1$, find the replicating portfolio $(\Delta, B)$ and the price of a European put with strike $K = 85$. Verify the replication by checking that the portfolio payoff matches the put payoff in both states.
+
+---
+
+**Exercise 2.** Prove that in the one-period binomial model, the stock and bond payoff vectors are linearly independent if and only if $u \neq d$. What would happen to the replication problem if $u = d$?
+
+---
+
+**Exercise 3.** Using the parameters from the text ($S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$), compute the state prices $\psi_u$ and $\psi_d$. Verify that (a) $\psi_u u + \psi_d d = 1$, (b) $\psi_u + \psi_d = e^{-r\Delta t}$, and (c) a European call with strike $K = 105$ priced via state prices gives the same result as the stock-bond replication method.
+
+---
+
+**Exercise 4.** A **bear spread** consists of a long put with strike $K_2$ and a short put with strike $K_1$, where $K_1 < K_2$. Using the state price method with $S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$, $K_1 = 95$, and $K_2 = 110$, compute the bear spread price. Then verify your answer by pricing each put separately and taking the difference.
+
+---
+
+**Exercise 5.** Suppose a derivative pays $H_u = 10$ in the up state and $H_d = 25$ in the down state. Using the standard parameters ($S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$), compute the replicating portfolio. Interpret the sign of $\Delta$ and explain why the replicating portfolio is long or short the stock.
+
+---
+
+**Exercise 6.** Consider a one-period binomial model where a third asset (a call option with known market price $C_0^{\text{mkt}}$) is also traded. Show that if $C_0^{\text{mkt}}$ differs from the no-arbitrage price $C_0 = \psi_u H_u + \psi_d H_d$, then an arbitrage portfolio can be constructed using the stock, bond, and call. Describe the arbitrage strategy explicitly for $C_0^{\text{mkt}} > C_0$.
+
+---
+
+**Exercise 7.** Derive the state price formulas $\psi_u = e^{-r\Delta t} q$ and $\psi_d = e^{-r\Delta t}(1-q)$ directly from the two consistency conditions $\psi_u u + \psi_d d = 1$ and $\psi_u + \psi_d = e^{-r\Delta t}$, without using the replication argument. That is, solve the $2 \times 2$ linear system for $\psi_u$ and $\psi_d$.

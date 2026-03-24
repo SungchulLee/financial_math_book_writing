@@ -755,3 +755,45 @@ $$
 4. Verify consistency with wing asymptotics
 
 ATM expansions are fundamental for understanding the local structure of the volatility smile and serve as the primary calibration tool for parametric models.
+
+---
+
+## Exercises
+
+**Exercise 1.** Given an implied volatility smile parametrized by $\sigma(y) = \sigma_0 + \sigma_1 y + \frac{\sigma_2}{2} y^2$ with $\sigma_0 = 0.22$, $\sigma_1 = -0.30$, and $\sigma_2 = 10.0$, compute the implied volatility at log-moneyness $y = -0.05$ and $y = 0.05$. Verify that the smile is downward-sloping (equity-like) near ATM.
+
+---
+
+**Exercise 2.** The skew-skewness relationship states
+
+$$
+\sigma_1 \approx -\frac{\gamma_3}{6\sigma_0}
+$$
+
+If the risk-neutral distribution of $X = \ln(S_T/F)$ has skewness $\gamma_3 = -1.2$ and ATM volatility $\sigma_0 = 0.18$, compute the smile skew parameter $\sigma_1$. Interpret the sign of $\sigma_1$ in the context of equity index options.
+
+---
+
+**Exercise 3.** In the Heston model with parameters $v_0 = 0.0625$, $\kappa = 1.5$, $\theta = 0.04$, $\xi = 0.5$, and $\rho = -0.65$, use the ATM expansion formulas to compute: (a) the leading-order ATM implied volatility $\sigma_0$, (b) the skew parameter $\sigma_1$, and (c) the first-order correction to $\sigma_{\text{ATM}}^2$ for maturity $T = 0.25$.
+
+---
+
+**Exercise 4.** An FX options desk quotes the following for 1-month EUR/USD options: ATM volatility $\sigma_{\text{ATM}} = 10\%$, 25-delta risk reversal $\text{RR}_{25\Delta} = -0.8\%$, and 25-delta butterfly $\text{BF}_{25\Delta} = 0.4\%$. Using $T = 1/12$ and $\Phi^{-1}(0.75) \approx 0.6745$, compute the quadratic smile coefficients $(\sigma_0, \sigma_1, \sigma_2)$ and write the approximate smile function $\sigma(y)$.
+
+---
+
+**Exercise 5.** Explain why the volga (vomma) of an ATM option is approximately zero for short maturities. Starting from the formula
+
+$$
+\text{Volga} = S_0 e^{-qT} \phi(d_1) \sqrt{T} \frac{d_1 d_2}{\sigma}
+$$
+
+show that $d_1 d_2 \to 0$ as $T \to 0$ at the ATM strike. What does this imply about the stability of ATM vega?
+
+---
+
+**Exercise 6.** The curvature-kurtosis relationship gives $\sigma_2 \approx \frac{\gamma_4 - 3}{24\sigma_0}$. Suppose the risk-neutral kurtosis is $\gamma_4 = 5.0$ and $\sigma_0 = 0.25$. (a) Compute the curvature parameter $\sigma_2$. (b) Is the resulting smile U-shaped or inverted? (c) What value of $\gamma_4$ would produce a flat smile (zero curvature)?
+
+---
+
+**Exercise 7.** Consider the SABR model with $\beta = 0.5$, $\alpha = 0.15$, $\nu = 0.35$, and $\rho = -0.40$ for a forward price $F = 50$. Using the SABR ATM expansion, compute the approximate ATM implied volatility for $T = 1/4$. Then compute the ATM skew $\frac{\partial \sigma}{\partial \ln K}\big|_{K=F}$ and interpret the result.

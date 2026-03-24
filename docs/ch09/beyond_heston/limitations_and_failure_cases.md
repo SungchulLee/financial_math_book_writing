@@ -274,3 +274,29 @@ The COS method fails or degrades when its three foundational assumptions are vio
 - Carr, P. and Madan, D. (1999). "Option valuation using the fast Fourier transform." *Journal of Computational Finance*, 2(4), 61--73.
 - Albrecher, H., Mayer, P., Schoutens, W., and Tistaert, J. (2007). "The little Heston trap." *Wilmott Magazine*, January, 83--92.
 - Lord, R. and Kahl, C. (2010). "Complex logarithms in Heston-like models." *Mathematical Finance*, 20(4), 671--694.
+
+---
+
+## Exercises
+
+**Exercise 1.** The COS method requires three conditions for exponential convergence: smoothness of the density, rapid decay of the CF, and adequate truncation. For a model where the density has a kink (e.g., a barrier option density), which condition is violated? What is the resulting convergence rate, and how many COS terms would be needed for $10^{-4}$ accuracy if $|A_k| = O(k^{-2})$?
+
+---
+
+**Exercise 2.** For the CGMY model with $Y = 1.8$, the worked example shows algebraic convergence: $N = 64$ gives error $\approx 0.21$, while $N = 512$ gives error $\approx 1.2 \times 10^{-4}$. Estimate the convergence order $p$ in $\varepsilon \sim N^{-p}$ by fitting $\log(\varepsilon)$ vs $\log(N)$ using two data points. Compare this to the exponential convergence for CGMY with $Y = 0.5$.
+
+---
+
+**Exercise 3.** The Heston characteristic function involves $\gamma = \sqrt{(\kappa - i\rho\sigma_v u)^2 + \sigma_v^2(iu + u^2)}$. Explain why the principal branch of the complex square root can produce a discontinuous $\phi(u)$ along the real $u$-axis. Describe the "little Heston trap" fix (Albrecher et al., 2007) and why it resolves the branch-cut problem.
+
+---
+
+**Exercise 4.** Heavy-tailed distributions (e.g., stable processes with polynomial tails) cause the cumulant-based truncation rule to fail because $c_4$ may be infinite. Propose a quantile-based truncation rule as an alternative: given a target truncation error $\epsilon$, describe how to find $a$ and $b$ such that $F(a) < \epsilon$ and $1 - F(b) < \epsilon$ using the Gil-Pelaez formula for the CDF.
+
+---
+
+**Exercise 5.** Oscillatory characteristic functions arise in jump-diffusion models with concentrated jumps ($\sigma_J$ small). For the Merton model with $\lambda = 10$, $\mu_J = 0.01$, and $\sigma_J = 0.001$, the jump CF oscillates with frequency approximately $\lambda T \mu_J / \sigma_J$. Estimate this frequency for $T = 1$ and compute the Nyquist condition $N > 2\mu_J/(b-a) \cdot \lambda T / \sigma_J^2$ to determine the minimum $N$ needed to resolve the oscillations on an interval with $b - a = 4$.
+
+---
+
+**Exercise 6.** The diagnostic checklist includes six checks. Apply all six to the following scenario: a COS price under the Heston model that changes by $0.05$ when $N$ is doubled from 128 to 256, and changes by $0.02$ when $[a, b]$ is widened by 20%. Identify the likely failure mode, propose the appropriate remedy, and describe how you would verify the fix.

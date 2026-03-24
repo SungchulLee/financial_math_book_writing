@@ -219,3 +219,33 @@ In practice, the market standard is to use Hull-White (or its extensions) and vi
 ## Summary
 
 The Hull-White model generalizes Vasicek by replacing the constant drift $a\theta_{\infty}$ with $\theta(t)$, enabling exact calibration to the initial term structure. Setting $\theta(t) = a\theta_{\infty}$ recovers the Vasicek model, with its stationary distribution $\mathcal{N}(\theta_{\infty}, \sigma^2/(2a))$ and closed-form forward curve. The Vasicek model cannot match an arbitrary yield curve because its three parameters constrain the forward curve to a monotone exponential shape, while the Hull-White drift function $\theta(t)$ absorbs all the complexity of the observed market curve. Both models share the same mean-reversion speed, volatility, and variance structure, differing only in the drift specification.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider the Vasicek model with $a = 0.08$, $\theta_\infty = 0.05$, $\sigma = 0.015$. Compute the stationary mean and variance. What is the 95% confidence interval for the long-run short rate?
+
+---
+
+**Exercise 2.** Verify that substituting $\theta(t) = a\theta_\infty$ into the Hull-White solution $r_t = r_s e^{-a(t-s)} + \int_s^t e^{-a(t-u)}\theta(u)\,du + \sigma\int_s^t e^{-a(t-u)}dW_u$ yields the Vasicek solution. Evaluate the deterministic integral explicitly.
+
+---
+
+**Exercise 3.** Under the Vasicek model, the implied forward rate is $f^{\text{Vas}}(0,T) = \theta_\infty + (r_0 - \theta_\infty)e^{-aT} - \frac{\sigma^2}{2a^2}(1 - e^{-aT})^2$. Plot this curve for $a = 0.1$, $\theta_\infty = 0.04$, $\sigma = 0.01$, and $r_0 = 0.03$. Is it monotone? What is the asymptotic forward rate as $T \to \infty$?
+
+---
+
+**Exercise 4.** A market has a humped forward curve $f^M(0,t) = 0.03 + 0.02t\,e^{-0.5t}$. Show that no choice of Vasicek parameters $(a, \theta_\infty, \sigma, r_0)$ can reproduce this curve exactly. Estimate the maximum fitting error in basis points for a best-fit Vasicek model.
+
+---
+
+**Exercise 5.** Explain why the Hull-White model does not have a stationary distribution when $\theta(t)$ is time-dependent. Under what conditions on $\theta(t)$ would the Hull-White model have an approximate stationary distribution?
+
+---
+
+**Exercise 6.** The Vasicek bond price formula involves $A^{\text{Vas}}(T) = (\theta_\infty - \frac{\sigma^2}{2a^2})(B(T) - T) - \frac{\sigma^2}{4a}B(T)^2$. Derive this from the Hull-White formula for $A(t,T)$ by setting $\theta(t) = a\theta_\infty$ and $t = 0$.
+
+---
+
+**Exercise 7.** Discuss the trade-offs between using the Vasicek model and the Hull-White model for (a) long-horizon risk simulation, (b) pricing a 5-year cap, and (c) hedging a callable bond. In which cases is term structure consistency essential?

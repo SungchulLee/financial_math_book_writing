@@ -217,3 +217,45 @@ The characteristic function of an affine process has the exponential-affine form
 - Duffie, D., Pan, J., & Singleton, K. (2000). "Transform Analysis and Asset Pricing for Affine Jump-Diffusions." *Econometrica*, 68(6), 1343-1376.
 - Filipovic, D. *Term-Structure Models: A Graduate Course*. Springer, 2009, Chapter 10.
 - Fang, F. & Oosterlee, C. W. (2008). "A Novel Pricing Method for European Options Based on Fourier-Cosine Series Expansions." *SIAM Journal on Scientific Computing*, 31(2), 826-848.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Vasicek model with $\kappa_0 = \kappa\theta$, $\kappa_1 = -\kappa$, $\sigma_0 = \sigma^2$, $\sigma_1 = 0$, verify the Hermitian symmetry property $\Phi(\tau, -v, x) = \overline{\Phi(\tau, v, x)}$ by showing that $\phi(\tau, -iv) = \overline{\phi(\tau, iv)}$ and $\psi(\tau, -iv) = \overline{\psi(\tau, iv)}$.
+
+---
+
+**Exercise 2.** Starting from the characteristic function of the OU process
+
+$$
+\Phi(\tau, v, x) = \exp\!\left(-\frac{\sigma^2 v^2}{4\kappa}(1 - e^{-2\kappa\tau}) + iv\,e^{-\kappa\tau} x\right)
+$$
+
+use the Fourier inversion formula to recover the conditional density $f(\tau, y, x)$ and verify that it is Gaussian with mean $xe^{-\kappa\tau}$ and variance $\frac{\sigma^2}{2\kappa}(1-e^{-2\kappa\tau})$.
+
+---
+
+**Exercise 3.** For the CIR process, the discriminant is $\gamma = \sqrt{\kappa^2 - 2\xi^2 iv}$. Compute $|\gamma|^2$ as a function of $v$ and verify that $\operatorname{Re}(\gamma) > 0$ for all real $v$ when the principal square root is used. Why is this positivity condition necessary for the stability of the closed-form solution?
+
+---
+
+**Exercise 4.** Consider the discounted characteristic function $\mathbb{E}[e^{-\int_t^T r_s\,ds + ivX_T} \mid X_t = x]$ for the CIR short-rate model. How does the Riccati ODE for $\psi$ change compared to the undiscounted case? Write down the modified ODE and identify the new discriminant.
+
+---
+
+**Exercise 5.** For arithmetic Brownian motion $dX_t = \mu\,dt + \sigma\,dW_t$, the characteristic function is $\Phi(\tau, v, x) = \exp(ivx + iv\mu\tau - \frac{1}{2}\sigma^2 v^2\tau)$. Use this to compute the price of a European call option on $e^{X_T}$ with strike $K$ via the Fourier inversion formula
+
+$$
+C = e^{-r\tau}\int_{-\infty}^{\infty} (e^y - K)^+ f(\tau, y, x)\,dy
+$$
+
+and verify that you recover the Black-Scholes formula.
+
+---
+
+**Exercise 6.** Explain why the characteristic function of any affine process is continuous in the frequency variable $v$ but the moment generating function may not be continuous in $u$ across the boundary of the admissible set. Illustrate with the CIR process, identifying the critical value $u^*$ at which continuity breaks down.
+
+---
+
+**Exercise 7.** For a two-dimensional affine process with independent Gaussian and CIR components, write the joint conditional characteristic function $\mathbb{E}[e^{iv_1 X_T^{(1)} + iv_2 X_T^{(2)}} \mid X_t = x]$ as a product of two one-dimensional characteristic functions. Under what conditions on the diffusion matrix does this factorization hold?

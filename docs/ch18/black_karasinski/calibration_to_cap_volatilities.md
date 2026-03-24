@@ -186,3 +186,39 @@ For ATM caps, the map from $\sigma_i$ to model cap volatilities is monotone: hig
 | **Output** | Calibrated $a$ and $\sigma(t)$ |
 
 The calibrated BK model can then be used to price caps at non-standard strikes, floors (by put-call parity), and structured products. For swaption calibration under BK, see [Comparison with Hull-White](comparison_with_hull_white.md) for a discussion of relative strengths.
+
+---
+
+## Exercises
+
+**Exercise 1.** A caplet resets at $T_i = 1$ year, pays at $T_{i+1} = 1.25$ years, has strike $K = 3\%$, and the one-period tree bond price at the reset node is $P_{\text{tree}}(T_i, T_{i+1}; x_j) = 0.9920$. Compute the spot LIBOR rate $L_j$ and the caplet payoff $\delta_i[L_j - K]^+$ at this node.
+
+---
+
+**Exercise 2.** Explain why calibrating $\theta(t)$ to the market yield curve must be done *before* (or simultaneously with) pricing caplets on the BK tree. What would go wrong if $\theta(t)$ were set to a constant instead of being calibrated to match market discount factors?
+
+---
+
+**Exercise 3.** A model caplet price is $V_{\text{cplt}} = 0.00215$, the forward LIBOR rate is $F_i = 4.5\%$, the strike is $K = 4.5\%$ (at-the-money), the discount factor is $P(0, T_{i+1}) = 0.9560$, and $\delta_i = 0.25$, $T_i = 2$. Using Black's caplet formula for ATM options (where $d_1 = \frac{1}{2}\sigma^{\text{Black}}\sqrt{T_i}$ and $d_2 = -d_1$), set up the equation that determines $\sigma^{\text{Black}}$ and describe how Newton-Raphson would be used to solve it.
+
+---
+
+**Exercise 4.** In the sequential (bootstrap) calibration procedure, suppose the 1Y ATM cap market volatility is 18% and the 2Y ATM cap market volatility is 20%. After step 1, you have calibrated $\sigma_1$. Explain precisely which caplets depend on $\sigma_2$ in step 2 and why fixing $\sigma_1$ from step 1 makes the problem one-dimensional.
+
+---
+
+**Exercise 5.** Consider the calibration objective function
+
+$$
+\min_{a,\,\sigma(\cdot)}\;\sum_{j=1}^{M} w_j\left[\sigma^{\text{model}}_j - \sigma^{\text{mkt}}_j\right]^2
+$$
+
+with uniform weights $w_j = 1$. If there are $M = 10$ ATM caps (maturities 1Y through 10Y) and piecewise-constant $\sigma(t)$ with 10 breakpoints, how many free parameters does the global calibration have? Why might a practitioner choose to fix $a$ from swaption data rather than calibrating it jointly with the $\sigma_i$?
+
+---
+
+**Exercise 6.** You calibrate the BK model at two tree resolutions: 50 steps per year and 100 steps per year. For a particular volatility segment, you find $\sigma_3^{(50)} = 0.1425$ and $\sigma_3^{(100)} = 0.1418$. Is this level of convergence acceptable for a tolerance $\epsilon = 0.001$? Estimate the computational cost ratio between the two resolutions, assuming cost scales as $O(N_t^2)$.
+
+---
+
+**Exercise 7.** Explain why the map from $\sigma_i$ to ATM cap implied volatility is monotone, and give an intuitive argument for why this monotonicity may break down for deep out-of-the-money caps. How does the potential for multiple local minima affect the choice between sequential and global calibration strategies?

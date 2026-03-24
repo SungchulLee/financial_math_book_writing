@@ -112,3 +112,35 @@ Ignoring this can lead to misleading calibration comparisons.
 - Wahba, *Spline Models for Observational Data*.
 - Fengler, *Semiparametric Modeling of Implied Volatility*.
 - Gatheral, *The Volatility Surface*.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a discretized local volatility surface on a grid with $n$ strike points, write down the first-difference and second-difference penalty matrices $D_1$ and $D_2$ explicitly for $n = 5$. Show that the second-difference penalty $\mathcal{R}(\theta) = \|D_2\theta\|^2$ penalizes curvature while leaving linear functions unpenalized.
+
+---
+
+**Exercise 2.** Consider the continuous smoothness penalty $\mathcal{R}(f) = \int_a^b (f''(x))^2\,dx$. Show that among all functions interpolating $n$ data points, the one minimizing this penalty is a natural cubic spline. What boundary conditions does the natural cubic spline satisfy?
+
+---
+
+**Exercise 3.** A practitioner fits an implied volatility smile at a single maturity using a penalized least-squares objective:
+
+$$
+\min_f \sum_{i=1}^m w_i(f(k_i) - \sigma_i^{\text{obs}})^2 + \lambda \int (f''(k))^2\,dk
+$$
+
+If $\lambda$ is too small, the fit interpolates the noisy data exactly. If $\lambda$ is too large, the fit becomes a straight line. For intermediate $\lambda$, how many effective degrees of freedom does the smoother have? Relate this to the trace of the smoother matrix.
+
+---
+
+**Exercise 4.** Monotonicity of total variance in maturity ($\partial_T w \ge 0$) is a no-arbitrage constraint. Formulate this as both a hard constraint and a soft penalty. For the soft penalty version, propose a specific penalty function $\mathcal{R}_{\text{mono}}(w)$ that is zero when the constraint is satisfied and positive otherwise. Discuss the trade-off between hard and soft enforcement.
+
+---
+
+**Exercise 5.** For a local volatility grid with spacing $h$ in strike, show that the first-difference penalty with coefficient $\lambda$ is equivalent to a continuous penalty with effective strength $\lambda / h$. Conclude that if the grid is refined (smaller $h$), the penalty coefficient $\lambda$ must be increased proportionally to maintain the same level of smoothing. Derive the exact scaling relationship.
+
+---
+
+**Exercise 6.** Combine a smoothness penalty with a convexity constraint for fitting a call price surface. Write down the full optimization problem including: (a) data-fitting term, (b) smoothness penalty in strike, (c) smoothness penalty in maturity, and (d) hard convexity constraint $\partial_{KK}C \ge 0$. Discuss how you would solve this constrained optimization problem numerically.

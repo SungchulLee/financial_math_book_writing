@@ -238,3 +238,40 @@ where $\Delta t$ is the sub-step size. With $n_{\text{sub}} = 1$ (no sub-steps),
 | [Variance Swaps (Closed-Form)](variance_swaps_closed_form.md) | Analytical pricing of variance derivatives under Heston |
 | [Barrier Options (Semi-Analytical)](barrier_options_semi_analytical.md) | Fourier methods for path-dependent options |
 | [Variance Reduction Techniques](../monte_carlo/variance_reduction_techniques.md) | General variance reduction for Heston MC |
+
+---
+
+## Exercises
+
+**Exercise 1.**
+An arithmetic Asian call with monthly averaging ($m = 12$) and strike $K = 100$ is priced under Heston with $S_0 = 100$, $v_0 = 0.04$. Explain why the Asian call price is always less than or equal to the corresponding European call price with the same strike and maturity. Hint: use Jensen's inequality applied to the convex payoff function $(x - K)^+$ and the fact that the arithmetic average of a convex function is greater than the function of the average.
+
+---
+
+**Exercise 2.**
+A geometric Asian call has the property that $\ln A_{\text{geom}} = \frac{1}{m}\sum_{k=1}^m \ln S_{t_k}$ is a sum of correlated log-prices. Under the Heston model, this sum does not have a closed-form distribution, but its conditional mean and variance can be computed. If $m = 6$ with monthly fixings and $T = 0.5$, write out the monitoring dates $t_k = k/12$. Compare the effective volatility of $A_{\text{geom}}$ with the terminal volatility of $S_T$ and explain why the geometric average has lower volatility.
+
+---
+
+**Exercise 3.**
+A Monte Carlo simulation with 500,000 QE paths prices an arithmetic Asian call at \$4.15 with standard error \$0.012. The geometric Asian call is priced at \$4.02 with standard error \$0.011. The correlation between the arithmetic and geometric payoffs is estimated at $\hat{\rho} = 0.98$. If the geometric Asian price were known analytically (hypothetically \$4.01), compute the control-variate estimator and its approximate standard error using $\text{SE}_{\text{cv}} \approx \text{SE} \cdot \sqrt{1 - \hat{\rho}^2}$.
+
+---
+
+**Exercise 4.**
+Compare the prices of fixed-strike and floating-strike Asian calls. The fixed-strike call has payoff $(A - K)^+$ and the floating-strike call has payoff $(S_T - A)^+$. For $S_0 = K = 100$ and Heston parameters $v_0 = 0.04$, $\theta = 0.04$, explain intuitively why the floating-strike Asian call is more expensive than the fixed-strike Asian call. Hint: the floating-strike call benefits from high terminal prices regardless of the average.
+
+---
+
+**Exercise 5.**
+Increasing the monitoring frequency from monthly ($m = 12$) to daily ($m = 252$) changes the Asian option price. Does the arithmetic Asian call price increase or decrease as $m$ increases? Give a rigorous argument using the fact that finer averaging reduces the effective volatility. Compute the ratio of the continuous-monitoring effective variance to the terminal variance for a geometric average under constant volatility $\sigma$: $\text{Var}[\ln A_{\text{geom}}^{\text{cont}}] / \text{Var}[\ln S_T] = 1/3$.
+
+---
+
+**Exercise 6.**
+Under the Heston model, periods of high volatility contribute more to the arithmetic average because $S_{t_k}$ tends to have larger absolute fluctuations. Design a Monte Carlo experiment to measure this effect: simulate 100,000 paths, separate them into "high-vol paths" (where the average $\bar{v} = \frac{1}{m}\sum v_{t_k} > \theta$) and "low-vol paths" ($\bar{v} \leq \theta$), and compare the average Asian payoff in each group. What does this tell you about the interaction between stochastic volatility and Asian option pricing?
+
+---
+
+**Exercise 7.**
+The antithetic variate technique generates paired paths using $(Z_v, Z_\perp)$ and $(-Z_v, -Z_\perp)$. For an Asian call, explain why the variance reduction from antithetic variates is generally smaller than for European calls. Hint: the averaging effect already reduces variance, leaving less room for the antithetic estimator to improve. If the plain MC standard error for the Asian call is \$0.012 and antithetic reduces it by a factor of 1.5 (rather than 2 for European), compute the antithetic standard error.

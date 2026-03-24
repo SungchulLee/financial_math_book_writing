@@ -277,3 +277,45 @@ The PINN loss $\sum |\mathcal{R}_\theta|^2$ simultaneously learns the option pri
 - Salvador, Pinto & Teixeira (2021), "Financial Option Valuation by Unsupervised Learning with PINNs"
 - Shin, Darbon & Karniadakis (2020), "On the Convergence of PINNs"
 - Wang, Teng & Perdikaris (2021), "Understanding and Mitigating Gradient Pathologies in PINNs"
+
+---
+
+## Exercises
+
+**Exercise 1.** Write the PINN residual for the Black-Scholes PDE in log-price coordinates $x = \log S$:
+
+$$
+\mathcal{R}_\theta(t, x) = \frac{\partial u_\theta}{\partial t} + \frac{1}{2}\sigma^2 \frac{\partial^2 u_\theta}{\partial x^2} + \left(r - \frac{\sigma^2}{2}\right)\frac{\partial u_\theta}{\partial x} - ru_\theta
+$$
+
+Explain why constant coefficients (as opposed to the $S^2$ factor in the original coordinates) improve the conditioning of the PINN. If $\sigma = 0.2$, $r = 0.03$, and the network outputs $u_\theta = 10.0$ with derivatives $\partial u_\theta/\partial t = -0.5$, $\partial u_\theta/\partial x = 8.0$, $\partial^2 u_\theta/\partial x^2 = -3.0$ at a point, compute the residual $\mathcal{R}_\theta$.
+
+---
+
+**Exercise 2.** Design a hard-constrained PINN ansatz for a European put option with terminal condition $V(T, S) = (K - S)^+$ and boundary conditions $V(t, 0) = Ke^{-r(T-t)}$ and $V(t, \infty) = 0$. Your ansatz should have the form $u_\theta(t, S) = A(t, S) + B(t, S) \cdot \mathcal{N}_\theta(t, S)$ where $A$ satisfies the boundary conditions and $B$ vanishes on the boundary. Verify that your ansatz satisfies all three boundary/terminal conditions exactly.
+
+---
+
+**Exercise 3.** The PINN loss has three components with weights $\lambda_{\text{PDE}}$, $\lambda_{\text{BC}}$, and $\lambda_{\text{data}}$. Explain the effect of setting $\lambda_{\text{PDE}} \gg \lambda_{\text{BC}}$ versus $\lambda_{\text{BC}} \gg \lambda_{\text{PDE}}$. In the extreme case $\lambda_{\text{PDE}} = 0$, what does the PINN reduce to? In the extreme $\lambda_{\text{data}} = 0$, what does it reduce to? Describe the adaptive weighting strategy and why it balances gradient magnitudes.
+
+---
+
+**Exercise 4.** A PINN is used to solve the Heston PDE with 3 inputs $(t, S, v)$. The PDE residual involves second-order derivatives $\partial^2 V/\partial S^2$, $\partial^2 V/\partial v^2$, and the mixed derivative $\partial^2 V/\partial S \partial v$. Explain how automatic differentiation computes these quantities through the neural network. Compare the computational cost to finite differences on a $(t, S, v)$ grid with $M$ points per dimension, noting that the PINN avoids the $O(M^3)$ grid storage.
+
+---
+
+**Exercise 5.** The spectral bias of neural networks means that low-frequency components of the PDE solution are learned first, while high-frequency components (e.g., the payoff kink at $S = K$) converge slowly. For a call option with $K = 100$, the payoff $(S - K)^+$ has a discontinuity in the first derivative at $S = 100$. Discuss: (a) why smooth activations ($\tanh$) are preferred over ReLU for PINNs, (b) how Fourier feature layers can accelerate learning of sharp features, and (c) how residual-based adaptive refinement concentrates collocation points near $S = K$.
+
+---
+
+**Exercise 6.** Explain how the PINN penalty method handles the American option free boundary. The residual
+
+$$
+\mathcal{R}_\theta(t, S) = \max\left(\frac{\partial u_\theta}{\partial t} + \mathcal{L}_{\text{BS}}[u_\theta], \; h(S) - u_\theta(t, S)\right)
+$$
+
+is zero in both the continuation region (PDE holds, $u \ge h$) and the exercise region ($u = h$). Why does minimizing $\sum |\mathcal{R}_\theta|^2$ simultaneously determine the price and the exercise boundary? Compare this to the finite-difference penalty method.
+
+---
+
+**Exercise 7.** A PINN is trained on the Black-Scholes PDE with 5,000 interior collocation points, 1,000 terminal condition points, and 200 observed market prices of European options at various strikes and maturities. After training, the PDE residual loss is $10^{-5}$ and the data loss is $10^{-3}$. Discuss whether the PINN is correctly calibrated. How could the PINN be used to extrapolate option prices to strikes and maturities not observed in the market? What ensures that the extrapolated prices are arbitrage-free?

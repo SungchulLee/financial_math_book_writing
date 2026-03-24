@@ -214,3 +214,29 @@ Convergence of Fourier series is governed by the smoothness of the function bein
 | Gibbs phenomenon | 9% overshoot at jump discontinuities | Fejer summation, sigma factors, filters |
 
 **The smoothness-to-convergence correspondence is the fundamental reason why Fourier pricing methods achieve extraordinary efficiency for models with smooth densities: analytic characteristic functions produce exponentially decaying Fourier coefficients, requiring only tens of terms for machine-precision option prices.**
+
+---
+
+## Exercises
+
+**Exercise 1.** The Dirichlet convergence theorem states that at a jump discontinuity, the Fourier series converges to $\frac{1}{2}[f(x^+) + f(x^-)]$. For the square wave $f(x) = \text{sgn}(\sin x)$ on $[0, 2\pi]$, compute $f(0^+)$, $f(0^-)$, and the value to which the Fourier series converges at $x = 0$. Explain why this midpoint rule is a consequence of the symmetry of the Dirichlet kernel.
+
+---
+
+**Exercise 2.** Prove that if $f \in C^k$ (with periodic boundary conditions), then its Fourier coefficients satisfy $a_n, b_n = O(1/n^{k+1})$. Carry out the integration-by-parts argument explicitly for $k = 2$, showing where the periodicity of $f$ and $f'$ is used to eliminate boundary terms.
+
+---
+
+**Exercise 3.** The Gibbs phenomenon produces an overshoot of approximately 8.95% of the jump size at a discontinuity. For a function with a jump of magnitude $d = 4$, compute the peak overshoot value. If you add more Fourier terms ($N \to \infty$), does this overshoot decrease? Explain why or why not, and describe two methods (sigma factors, Fejer summation) that can suppress the overshoot.
+
+---
+
+**Exercise 4.** Compare the Fourier coefficient decay rates for (a) $f(x) = |x|$ on $[-\pi, \pi]$ (continuous but not $C^1$) and (b) $f(x) = e^{\cos x}$ on $[-\pi, \pi]$ (real-analytic). For each function, state the expected decay rate of the coefficients and compute the number of terms $N$ needed to achieve $\|f - S_N f\|_\infty < 10^{-6}$.
+
+---
+
+**Exercise 5.** The $L^2$ convergence rate is $\|f - S_N f\|_2^2 = \sum_{|n|>N}|c_n|^2$. For a piecewise continuous function with $|c_n| = O(1/n)$, show that $\|f - S_N f\|_2 = O(1/\sqrt{N})$. Contrast this with the pointwise convergence rate and explain why $L^2$ convergence is weaker.
+
+---
+
+**Exercise 6.** A risk-neutral density from the Heston model is smooth ($C^\infty$) with exponential tail decay. A density from a barrier option model has a discontinuity at the barrier. For each density, predict the Fourier coefficient decay rate and estimate the number of COS terms $N$ needed for $10^{-8}$ pricing accuracy. Explain the practical implications for choosing $N$ in the COS method.

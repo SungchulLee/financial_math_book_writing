@@ -271,3 +271,29 @@ When constructing a yield curve, verify:
 - Björk, *Arbitrage Theory in Continuous Time*, Chapter 22
 - Brigo & Mercurio, *Interest Rate Models—Theory and Practice*, Chapters 1-2
 - Rebonato, *Modern Pricing of Interest-Rate Derivatives*, Chapter 2
+
+---
+
+## Exercises
+
+**Exercise 1.** Prove that $P(t, T_1) \ge P(t, T_2)$ for $T_1 \le T_2$ must hold to prevent arbitrage. Construct the arbitrage strategy if this condition is violated: specify which bonds to buy, which to sell, and show the resulting profit.
+
+---
+
+**Exercise 2.** Show that the multiplicative property $P(t, T_2) = P(t, T_1) \cdot P(t; T_1, T_2)$ where $P(t; T_1, T_2)$ is the forward discount factor, follows from no-arbitrage. Derive the forward discount factor from the two zero-coupon bond prices.
+
+---
+
+**Exercise 3.** A yield curve has $P(0,1) = 0.97$, $P(0,2) = 0.93$, $P(0,3) = 0.90$. Verify that the forward rates $f(0;0,1)$, $f(0;1,2)$, $f(0;2,3)$ are all positive and that the no-arbitrage condition $P(0,3) = P(0,1) \cdot P(0;1,2) \cdot P(0;2,3)$ holds.
+
+---
+
+**Exercise 4.** The calendar spread condition for European call options on zero-coupon bonds requires $C(t, T_1, K) \le C(t, T_2, K)$ for $T_1 \le T_2$ (same strike, longer maturity is worth more). Relate this to the no-arbitrage condition on discount factors.
+
+---
+
+**Exercise 5.** In continuous time, the no-arbitrage relation $R(t, T) = \frac{1}{T-t}\int_t^T f(t, u)\,du$ links zero rates to forward rates. If the forward rate curve $f(0, T)$ is constant at $f_0 = 4\%$, what shape does the zero rate curve have? What about the discount factor curve?
+
+---
+
+**Exercise 6.** A trader observes the following quotes: 1-year deposit at 3%, 1x2 FRA at 3.5%, 2-year par swap at 3.2%. Check whether these quotes are internally consistent by computing the implied 2-year discount factor from: (a) the deposit + FRA, and (b) the swap rate. If they disagree, which instrument is likely mispriced?

@@ -572,3 +572,39 @@ These conditions ensure:
 3. Finite moments for the underlying distribution
 
 Violation of any constraint allows construction of a riskless profit strategy, invalidating the surface for pricing and hedging.
+
+---
+
+## Exercises
+
+**Exercise 1.** A European call option has spot $S = 100$, strike $K = 95$, risk-free rate $r = 5\%$, dividend yield $q = 2\%$, and maturity $T = 0.5$ years. Compute the no-arbitrage bounds $C_{\text{intrinsic}} < C < S e^{-qT}$. If a broker quotes $C = 6.50$, does implied volatility exist?
+
+---
+
+**Exercise 2.** Suppose three call options with the same maturity have strikes $K_1 = 90$, $K_2 = 100$, $K_3 = 110$ and prices $C(90) = 14.20$, $C(100) = 8.50$, $C(110) = 4.80$. (a) Verify that strike monotonicity $C(K_1) \geq C(K_2) \geq C(K_3)$ holds. (b) Check whether the butterfly spread constraint $C(K_1) - 2C(K_2) + C(K_3) \geq 0$ is satisfied. (c) What would it mean economically if this constraint were violated?
+
+---
+
+**Exercise 3.** Consider the Gatheral constraint for an arbitrage-free implied volatility surface in terms of total variance $w(y, T) = \sigma_{\text{IV}}^2(y, T) \cdot T$. If $w(y) = 0.04 + 0.02 y + 0.01 y^2$ for a fixed maturity, compute $\frac{\partial w}{\partial y}$ and $\frac{\partial^2 w}{\partial y^2}$. Is the sufficient condition $\frac{\partial^2 w}{\partial y^2} \geq 0$ satisfied?
+
+---
+
+**Exercise 4.** Using the Breeden-Litzenberger formula $\frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)$, explain why butterfly spread convexity is equivalent to non-negativity of the risk-neutral density. If a parametric model produces $q(K) < 0$ for some strike range, what type of arbitrage strategy could be constructed?
+
+---
+
+**Exercise 5.** Two European call options with the same strike $K = 100$ have maturities $T_1 = 0.25$ and $T_2 = 0.50$. The observed prices are $C(T_1) = 5.80$ and $C(T_2) = 5.60$, violating calendar monotonicity. (a) Describe a calendar spread arbitrage strategy. (b) Under what market conditions (e.g., discrete dividends) could this apparent violation be consistent with no-arbitrage?
+
+---
+
+**Exercise 6.** Lee's moment formula implies that for a finite-variance risk-neutral density, the wing behavior of total variance must satisfy
+
+$$
+\sigma_{\text{IV}}^2(y, T) \geq C \frac{|y|}{T}
+$$
+
+for large $|y|$. Consider a parametric model with $\sigma_{\text{IV}}(y) = 0.20$ (constant). Does this satisfy Lee's constraint? What does it imply about the moments of the risk-neutral distribution?
+
+---
+
+**Exercise 7.** In Durrleman's framework, the two conditions for an arbitrage-free surface are butterfly arbitrage-free ($\partial^2 C / \partial K^2 \geq 0$) and calendar arbitrage-free ($\partial C / \partial T \geq 0$). Given a surface where total variance is $w(y, T) = 0.01 T + 0.005 |y|$, verify whether both conditions are met. Discuss the implications of the non-differentiability at $y = 0$ for the risk-neutral density.

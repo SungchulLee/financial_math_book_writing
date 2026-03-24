@@ -229,3 +229,35 @@ Consider European calls with $S_0 = \$100$, $r = 0.05$, $q = 0$, $v_0 = 0.04$, $
 ## Summary
 
 The vega surface in the Heston model is a two-dimensional function of $(K, T)$ that exhibits a maturity hump driven by mean reversion: short-dated vega grows with $\sqrt{T}$ (like Black-Scholes), while long-dated vega decays as $e^{-\kappa T}$. The Black-Scholes identity $\mathcal{V} = \sigma S^2 T \Gamma$ breaks down in Heston, where vega and gamma are driven by different risk factors. The vol-of-vol sensitivity $\partial V / \partial \xi$ captures exposure to the curvature of the smile and is largest for OTM options. Together with the correlation sensitivity and mean-reversion sensitivities, these Greeks provide a complete picture of the Heston model's risk profile that goes well beyond the single vega number of Black-Scholes.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The Heston vega surface $\mathcal{V}(K, T) = \partial V / \partial v_0$ has a hump in maturity. For an ATM call, the vega increases for short $T$ (like Black-Scholes $\mathcal{V} \propto \sqrt{T}$) but decreases for long $T$ due to mean reversion. Estimate the maturity $T^*$ at which vega peaks by setting $d\mathcal{V}/dT = 0$. For $\kappa = 2.0$, show that $T^* \approx 1/(2\kappa) = 0.25$ years.
+
+---
+
+**Exercise 2.**
+In Black-Scholes, $\mathcal{V} = \sigma S^2 T \Gamma$, linking vega and gamma. Under Heston, this identity fails. Explain why: vega measures sensitivity to $v_0$ (the variance level), while gamma measures sensitivity to spot moves. Since $v_t$ is stochastic and partially independent of $S_t$ (unless $\rho = \pm 1$), the two Greeks are driven by different factors.
+
+---
+
+**Exercise 3.**
+The vol-of-vol sensitivity $\partial V / \partial \xi$ is largest for OTM options. Explain intuitively: $\xi$ controls the curvature of the implied volatility smile, and OTM options lie in the wings where curvature effects are most visible. For an ATM option, the smile curvature has minimal effect, so $\partial V / \partial \xi$ is small.
+
+---
+
+**Exercise 4.**
+Compute the vega at $K = 100$ (ATM) and $K = 80$ (deep OTM put) for a Heston call with $T = 0.5$, $v_0 = 0.04$, $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.5$, $\rho = -0.7$. Explain why the ATM vega is larger in absolute terms but the OTM vega is larger relative to the option price.
+
+---
+
+**Exercise 5.**
+The sensitivity $\partial V / \partial \kappa$ measures exposure to changes in mean-reversion speed. For a long-dated ATM call ($T = 2$), explain whether increasing $\kappa$ raises or lowers the option price. Hint: faster mean reversion pulls $v_t$ toward $\theta$ more quickly, reducing the effective variance over long horizons if $v_0 > \theta$, or increasing it if $v_0 < \theta$.
+
+---
+
+**Exercise 6.**
+A portfolio contains ATM calls at $T = 0.25, 0.5, 1.0, 2.0$ years. Sketch the vega profile (vega vs $T$) and identify the peak. If the trader wants to be vega-neutral across all maturities, explain why this requires hedging with instruments at multiple maturities, not just a single variance swap.

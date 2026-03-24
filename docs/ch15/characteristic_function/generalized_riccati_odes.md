@@ -248,3 +248,35 @@ The generalized Riccati ODE system $\phi' = F(\psi)$, $\psi' = R(\psi)$ arises f
 - Duffie, D., Pan, J., & Singleton, K. (2000). "Transform Analysis and Asset Pricing for Affine Jump-Diffusions." *Econometrica*, 68(6), 1343-1376.
 - Filipovic, D. *Term-Structure Models: A Graduate Course*. Springer, 2009, Chapter 10.
 - Duffie, D., Filipovic, D., & Schachermayer, W. (2003). "Affine Processes and Applications in Finance." *Annals of Applied Probability*, 13(3), 984-1053.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a scalar affine diffusion with $\kappa_0 = 0.05$, $\kappa_1 = -0.5$, $\sigma_0 = 0$, and $\sigma_1 = 0.04$, write down the functions $F(w)$ and $R(w)$ explicitly. Classify the $\psi$-equation: is it linear, Riccati, or of jump-diffusion type? What financial model does this specification correspond to?
+
+---
+
+**Exercise 2.** Starting from the PDE for $g(\tau, x) = \mathbb{E}[e^{uX_{t+\tau}} \mid X_t = x]$ with a diffusion of the form $\sigma(x) = \sigma_0 + \sigma_1 x + \sigma_2 x^2$, attempt the exponential-affine ansatz and show that matching powers of $x$ produces three equations (for $x^0$, $x^1$, and $x^2$) but only two unknowns ($\phi'$ and $\psi'$), leading to an overdetermined system. What does this prove about the necessity of the affine structure?
+
+---
+
+**Exercise 3.** For the two-factor model in the worked example (Vasicek $r_t$ and CIR $V_t$, independent), solve the decoupled Riccati system explicitly. That is, write $\psi_1(\tau)$ in closed form (linear ODE) and $\psi_2(\tau)$ in closed form (scalar Riccati), then integrate $\phi(\tau) = \int_0^\tau F(\psi(s))\,ds$.
+
+---
+
+**Exercise 4.** Explain the hierarchical structure of the Riccati system: why is it that $\psi' = R(\psi)$ does not depend on $\phi$, but $\phi' = F(\psi)$ does depend on $\psi$? Relate this to the separation of the backward Kolmogorov PDE by powers of $x$.
+
+---
+
+**Exercise 5.** Consider a one-dimensional affine jump-diffusion on $\mathbb{R}_+$ with drift $\kappa_1 = -\kappa$, diffusion $\sigma_1 = \xi^2$, and exponentially distributed jumps with Levy measure $m_1(dz) = \lambda\eta e^{-\eta z}\,dz$. Show that
+
+$$
+R(w) = -\kappa w + \frac{\xi^2}{2}w^2 + \lambda\left(\frac{\eta}{\eta - w} - 1\right)
+$$
+
+and identify the domain of $w$ for which $R(w)$ is well-defined. What happens at $w = \eta$?
+
+---
+
+**Exercise 6.** In the Duffie-Pan-Singleton formulation, the discounted characteristic function satisfies $\frac{dB}{d\tau} = -r_1 + a_1^T B + \frac{1}{2}c_1^T B \odot B$. For a one-factor CIR model with $r_1 = 1$, $a_1 = -\kappa$, $c_1 = \xi^2$, write this as a scalar Riccati equation for $B(\tau)$ and verify that the initial condition $B(0) = iv$ is correct for the characteristic function and $B(0) = 0$ is correct for bond pricing.

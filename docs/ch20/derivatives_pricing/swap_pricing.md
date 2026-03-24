@@ -58,3 +58,29 @@ N\left(P(t,T_m)-P(t,T_n)\right)-NK\sum_{k=m+1}^n \tau_k P(t,T_k)
 \end{array}$$
 
 The Hull-White model computes each $P(t,T_k)=e^{A(t,T_k)+B(t,T_k)r(t)}$ using the calibrated functions $A$ and $B$, which by construction match the market ZCB curve. Therefore, the Hull-White swap price agrees with the market swap price.
+
+---
+
+## Exercises
+
+**Exercise 1.** A payer swap has notional $N = \$10{,}000$, fixed rate $K = 0.05$, and annual payments from year 1 to year 10. Write out the formula for the swap value at $t = 0$ in terms of ZCB prices $P(0, T_k)$.
+
+---
+
+**Exercise 2.** Show that the par swap rate $K^*$ (the rate that makes the swap value zero at inception) is given by $K^* = \frac{P(0, T_m) - P(0, T_n)}{\sum_{k=m+1}^n \tau_k P(0, T_k)}$. Compute $K^*$ for a 5-year annual swap when $P(0, k) = e^{-0.04k}$ for $k = 1, \ldots, 5$.
+
+---
+
+**Exercise 3.** Explain why the Hull-White model recovers the same swap price as direct computation from the market ZCB curve. What property of the Hull-White calibration guarantees this?
+
+---
+
+**Exercise 4.** In the Monte Carlo approach, why are multiple paths simulated even though the swap at $t = 0$ is model-independent? Discuss how Monte Carlo becomes essential for pricing path-dependent swap variants.
+
+---
+
+**Exercise 5.** Derive the receiver swap value from the payer swap value using the identity $\text{IRS}^{\text{Receiver}} = -\text{IRS}^{\text{Payer}}$. For what value of $K$ are the payer and receiver swap values equal?
+
+---
+
+**Exercise 6.** A forward-starting swap begins at $T_m = 5$ with payments at years 6 through 10. Express its value at $t = 0$ in terms of ZCB prices and explain how the Hull-White model prices this instrument.

@@ -263,3 +263,51 @@ Exact simulation is possible but computationally expensive.
 - Gatheral, J. (2006). *The Volatility Surface: A Practitioner's Guide*. Wiley.
 - Andersen, L. (2008). *Efficient simulation of the Heston stochastic volatility model*. Journal of Computational Finance.
 - Lord, R., Koekkoek, R., & van Dijk, D. (2010). *A comparison of biased simulation schemes for stochastic volatility models*. Quantitative Finance.
+
+---
+
+## Exercises
+
+**Exercise 1.** Given the Heston parameters $\kappa = 2.5$, $\theta = 0.04$, $\xi = 0.6$, $\rho = -0.7$, and $V_0 = 0.06$, compute: (a) the half-life of variance shocks $t_{1/2} = \ln 2 / \kappa$; (b) the Feller ratio $\nu = 2\kappa\theta/\xi^2$ and whether the Feller condition is satisfied; (c) the stationary variance $\text{Var}[V_\infty] = \xi^2\theta/(2\kappa)$; and (d) the expected path of $V_t$ in the deterministic limit ($\xi = 0$) at $t = 0.5$ and $t = 2.0$.
+
+---
+
+**Exercise 2.** Using the short-maturity implied volatility approximation
+
+$$
+\sigma_{\text{impl}}(k, T) \approx \sqrt{V_0} + \frac{\rho\xi}{4\sqrt{V_0}}k + \frac{\xi^2(1-\rho^2)}{8V_0^{3/2}}k^2
+$$
+
+with $V_0 = 0.04$, $\rho = -0.65$, and $\xi = 0.50$, compute $\sigma_{\text{impl}}$ at log-moneyness $k = -0.10$ (OTM put), $k = 0$ (ATM), and $k = 0.10$ (OTM call). Plot or sketch the resulting smile and identify the skew and curvature.
+
+---
+
+**Exercise 3.** The Heston model reduces to time-dependent Black–Scholes when $\xi = 0$. In this limit, the effective variance is
+
+$$
+\bar{\sigma}^2(T) = \frac{1}{T}\int_0^T V_s\,ds = \theta + \frac{(V_0 - \theta)(1 - e^{-\kappa T})}{\kappa T}
+$$
+
+Compute $\bar{\sigma}(T)$ for $T = 0.25, 1.0, 5.0$ with $V_0 = 0.09$, $\theta = 0.04$, $\kappa = 1.5$. Verify that $\bar{\sigma}(T) \to \sqrt{\theta}$ as $T \to \infty$.
+
+---
+
+**Exercise 4.** The stationary distribution of the CIR variance process is Gamma with shape $\alpha = 2\kappa\theta/\xi^2$ and rate $\beta = 2\kappa/\xi^2$. For $\kappa = 3$, $\theta = 0.05$, $\xi = 0.4$: (a) compute the shape and rate parameters; (b) find the mode of the Gamma distribution; (c) compute $\mathbb{P}(V_\infty > 0.10)$ (variance exceeding 10%) using the Gamma CDF. What does this tell you about the frequency of high-volatility regimes?
+
+---
+
+**Exercise 5.** In the Euler simulation scheme, one step of the variance process is
+
+$$
+V_{t+\Delta} = V_t + \kappa(\theta - V_t^+)\Delta + \xi\sqrt{V_t^+}\sqrt{\Delta}\,Z
+$$
+
+with $Z \sim \mathcal{N}(0,1)$. Starting from $V_0 = 0.01$ with $\kappa = 2$, $\theta = 0.04$, $\xi = 0.5$, $\Delta = 1/252$, compute the threshold value $Z^*$ such that $V_\Delta < 0$ when $Z < Z^*$. What is $\mathbb{P}(Z < Z^*)$? How does this probability change if $V_0 = 0.04$?
+
+---
+
+**Exercise 6.** Compare the five Heston parameters $(\kappa, \theta, \xi, \rho, V_0)$ in terms of which implied volatility surface features each primarily controls. For each parameter, state whether it mainly affects (a) the ATM level, (b) the skew (slope), (c) the smile curvature (wings), or (d) the term structure. Justify each answer with the relevant approximation formula or economic intuition.
+
+---
+
+**Exercise 7.** A trader calibrates the Heston model to S&P 500 options and obtains $V_0 = 0.025$, $\theta = 0.04$, $\kappa = 1.8$, $\xi = 0.55$, $\rho = -0.72$. She then uses $\sigma_{\text{BS}} = \sqrt{V_0} = 15.8\%$ in the Black–Scholes formula for an ATM 1-year call. Using the Heston effective variance formula, compute $\bar{\sigma}(1)$ and the percentage error in using $\sqrt{V_0}$ instead. Explain why this error systematically under- or over-prices the option depending on whether $V_0 < \theta$ or $V_0 > \theta$.

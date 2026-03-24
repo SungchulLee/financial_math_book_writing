@@ -365,3 +365,57 @@ plt.show()
 *Figure 3. Left: a simulated Brownian path \(B_t\) and the transformed process \(B_t^2\). Right: the cumulative squared increments \(\sum (\Delta B_i)^2\) compared with cumulative time \(t = \sum dt\). The close agreement in the right panel illustrates that $(\Delta B_t)^2 \sim \Delta t$, motivating why the squared increment cannot be ignored when expanding functions of Brownian motion.*
 
 Unlike deterministic calculus, the squared increment does **not** vanish. This is why quadratic terms cannot be ignored when expanding functions of Brownian motion. This phenomenon leads directly to the modified Taylor expansion known as **Itô's lemma**.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $f(x) = \cos(x)$. Compute the second-order Taylor approximation around $x_0 = 0$ and use it to approximate $\cos(0.3)$. Compare with the exact value and compute the absolute error.
+
+---
+
+**Exercise 2.** For the function $f(t, b) = e^t \sin(b)$, compute all partial derivatives up to second order at the expansion point $(t_0, b_0) = (0, 0)$. Write the full second-order Taylor expansion.
+
+---
+
+**Exercise 3.** Consider $f(x) = \sqrt{1 + x}$ expanded around $x_0 = 0$.
+
+(a) Write the second-order Taylor approximation.
+
+(b) Compute the linear approximation error and the quadratic approximation error at $x = 0.2$.
+
+(c) Verify that the quadratic approximation error is roughly proportional to $(\Delta x)^3$ by comparing errors at $x = 0.1$ and $x = 0.2$.
+
+---
+
+**Exercise 4.** In the two-variable expansion
+
+$$
+\Delta f \approx f_t \Delta t + f_b \Delta b + \frac{1}{2}f_{tt}(\Delta t)^2 + \frac{1}{2}f_{bb}(\Delta b)^2 + f_{tb}\Delta t \Delta b
+$$
+
+explain why, for a deterministic variable $b$ with $\Delta b = O(\Delta t)$, all three second-order terms are $O((\Delta t)^2)$ and can be dropped. Then explain why, when $b = B_t$ is a Brownian motion with $\Delta B_t = O(\sqrt{\Delta t})$, the term $\frac{1}{2}f_{bb}(\Delta B_t)^2$ is $O(\Delta t)$ and must be retained.
+
+---
+
+**Exercise 5.** The Hessian matrix of $f(t, b) = t^2 b + e^b$ at $(t_0, b_0) = (1, 0)$ is
+
+$$
+H = \begin{pmatrix} f_{tt} & f_{tb} \\ f_{bt} & f_{bb} \end{pmatrix}
+$$
+
+Compute $H$ at $(1, 0)$ and write the full quadratic Taylor expansion of $f$ around this point.
+
+---
+
+**Exercise 6.** For a Brownian motion with time step $\Delta t$, consider the three second-order products $(\Delta t)^2$, $\Delta t \cdot \Delta B_t$, and $(\Delta B_t)^2$. State the order of each in terms of powers of $\Delta t$, and identify which ones survive in the limit $\Delta t \to 0$ (i.e., which are $O(\Delta t)$ rather than $o(\Delta t)$).
+
+---
+
+**Exercise 7.** Simulate a Brownian path with $N = 5000$ steps over $[0, 1]$. For the function $f(x) = x^3$, compute $f(B_T) - f(B_0)$ along the path. Then compute the sum
+
+$$
+\sum_{i=0}^{N-1}\left[f'(B_{t_i})\Delta B_i + \frac{1}{2}f''(B_{t_i})(\Delta B_i)^2\right]
+$$
+
+Verify numerically that this sum closely approximates $f(B_T) - f(B_0)$, confirming that the quadratic correction term is essential.

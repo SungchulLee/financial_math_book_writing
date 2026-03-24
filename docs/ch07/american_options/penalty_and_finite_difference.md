@@ -261,3 +261,25 @@ $$
 | Error | $O(1/\lambda)$ from penalty + $O(h^2, \Delta t^p)$ from discretization |
 
 **Penalty methods and PSOR provide complementary approaches to the American option LCP: penalty methods offer simplicity and compatibility with existing solvers, while PSOR delivers exact constraint satisfaction without penalty approximation error.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Write down the linear complementarity problem (LCP) for an American put: state the PDE inequality, the exercise constraint, and the complementarity condition. Explain why the three conditions together uniquely determine the American put price and the free boundary.
+
+---
+
+**Exercise 2.** In the penalty method, the variational inequality is approximated by $\frac{\partial V}{\partial t} + \mathcal{L}V + \lambda \max(g(S) - V, 0) = 0$ where $g(S) = (K-S)^+$ is the payoff. Explain the role of the penalty parameter $\lambda$: what happens as $\lambda \to \infty$, and what is the trade-off between large $\lambda$ (accuracy) and numerical conditioning?
+
+---
+
+**Exercise 3.** Describe the PSOR (projected successive over-relaxation) algorithm for solving the discretized American option LCP. At each grid point, what is the projection step, and how does it enforce the early-exercise constraint?
+
+---
+
+**Exercise 4.** For the Crank-Nicolson scheme applied to the American put PDE, explain why the standard time-stepping must be modified to handle the early-exercise constraint. Describe how the projection is applied after each implicit solve.
+
+---
+
+**Exercise 5.** Compare the penalty method and PSOR in terms of: (a) accuracy of the free boundary approximation, (b) computational cost per time step, (c) ease of implementation, and (d) sensitivity to parameter choices. Which method would you recommend for a production pricing system, and why?

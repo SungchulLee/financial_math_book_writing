@@ -135,3 +135,33 @@ The tree price converges to the continuous-time analytical price as $\Delta t \t
 ## Summary
 
 Backward induction on the calibrated Hull-White trinomial tree prices derivatives by computing $V_{ij} = e^{-r_{ij}\Delta t}\sum_\ell p_\ell V_{i+1,m_\ell}$ from the terminal payoff back to time $0$. European bond options use the affine formula at expiry nodes. Coupon bonds add cash flows at coupon dates. Caps and floors decompose into caplets priced independently. Swaptions use the swap value at expiry nodes. The tree approach is particularly valuable when analytical formulas are unavailable, and it naturally extends to American and Bermudan exercise, which is covered in the next section.
+
+---
+
+## Exercises
+
+**Exercise 1.** Show that pricing a ZCB maturing at $t_N$ on the calibrated tree (with $V_{N,j} = 1$ for all $j$) recovers $V_{0,0} = P^M(0,t_N)$. Explain why this result is guaranteed by the calibration construction and what it would mean if the result failed.
+
+---
+
+**Exercise 2.** For a European call option on a ZCB, the payoff at expiry node $(T,j)$ uses $P(T,S;r_{T,j}) = \exp(A(T,S) + B(T,S)r_{T,j})$. Explain the advantage of using the analytic bond price formula at expiry nodes rather than computing bond prices by a separate backward induction from $S$ to $T$.
+
+---
+
+**Exercise 3.** The convergence rate for European options on the tree is typically $O(\Delta t)$. Explain why this rate can degrade when the strike $K$ does not align with any node value $P(T,S;r_{T,j})$. How would you modify the tree to improve convergence in this case?
+
+---
+
+**Exercise 4.** For a coupon bond with cash flows $c_i$ at dates $T_1, \ldots, T_n$, the backward induction adds $c_i$ at each coupon date. Describe how to price the coupon bond on the tree, then compute the price of a European put option on this coupon bond with strike $K$ and expiry $T < T_1$.
+
+---
+
+**Exercise 5.** A cap with annual resets at $T_0, T_1, \ldots, T_4$ and payment dates $T_1, \ldots, T_5$ is priced on the tree by pricing each caplet independently. Explain why the caplet payoff is computed at the reset date $T_{k-1}$ rather than the payment date $T_k$, and describe how the one-period discounting is applied.
+
+---
+
+**Exercise 6.** For a European payer swaption with expiry $T_0$ on the tree, the swap value at each expiry node is computed using the affine bond price formula. Compare this tree-based approach with the analytic Jamshidian decomposition. Under what circumstances would the two methods give different results, and which is more reliable?
+
+---
+
+**Exercise 7.** The backward induction formula $V_{ij} = e^{-r_{ij}\Delta t}\sum_\ell p_\ell V_{i+1,m_\ell}$ uses the discount factor $e^{-r_{ij}\Delta t}$. For a tree with very large $\Delta t$ (e.g., annual steps), this approximation becomes inaccurate. Describe how to improve the discounting approximation and discuss the trade-off between tree step size and accuracy.

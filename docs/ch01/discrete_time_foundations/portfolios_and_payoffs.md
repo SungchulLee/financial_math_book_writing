@@ -400,3 +400,45 @@ This result implies that what matters for the richness of the market is not the 
 | Linear pricing | Price of portfolio = portfolio of prices | $V_0(\boldsymbol{\theta} + \boldsymbol{\eta}) = V_0(\boldsymbol{\theta}) + V_0(\boldsymbol{\eta})$ |
 
 With the portfolio and payoff structure in place, the [next section](arbitrage_and_dominance.md) introduces the concept of arbitrage and establishes when market prices are consistent with the absence of free profit opportunities.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider the two-asset, three-state model from the worked example. Compute the payoff vector $V_1(\boldsymbol{\theta})$ for the portfolio $\boldsymbol{\theta} = (10, -1)^\top$. In which states does the investor make a profit relative to the initial cost? In which states does the investor lose money?
+
+---
+
+**Exercise 2.** In a market with $K = 2$ states and $d + 1 = 3$ assets (one bond and two stocks), the payoff matrix is
+
+$$
+\mathbf{D} = \begin{pmatrix} 1.05 & 12 & 8 \\ 1.05 & 9 & 11 \end{pmatrix}
+$$
+
+Determine $\operatorname{rank}(\mathbf{D})$ and decide whether the market is complete or incomplete.
+
+---
+
+**Exercise 3.** Prove that the cost functional $V_0(\boldsymbol{\theta}) = \boldsymbol{\theta}^\top \mathbf{p}$ satisfies $V_0(\alpha \boldsymbol{\theta}) = \alpha V_0(\boldsymbol{\theta})$ for all $\alpha \in \mathbb{R}$. Explain why this property implies that scaling a portfolio by a constant scales both its cost and its payoff by the same constant.
+
+---
+
+**Exercise 4.** Let $\mathbf{D} \in \mathbb{R}^{K \times (d+1)}$ be the payoff matrix. Show that if $\boldsymbol{\theta}_1$ and $\boldsymbol{\theta}_2$ are two portfolios with the same payoff vector ($\mathbf{D}\boldsymbol{\theta}_1 = \mathbf{D}\boldsymbol{\theta}_2$), then $\boldsymbol{\theta}_1 - \boldsymbol{\theta}_2 \in \ker(\mathbf{D})$. If additionally the market satisfies the Law of One Price, what can you conclude about $V_0(\boldsymbol{\theta}_1)$ and $V_0(\boldsymbol{\theta}_2)$?
+
+---
+
+**Exercise 5.** A market has $K = 3$ states and $d + 1 = 3$ assets with prices $\mathbf{p} = (1, 20, 5)^\top$ and payoff matrix
+
+$$
+\mathbf{D} = \begin{pmatrix} 1.02 & 25 & 7 \\ 1.02 & 20 & 5 \\ 1.02 & 15 & 4 \end{pmatrix}
+$$
+
+Determine whether the contingent claim $\mathbf{c} = (3, 1, 0)^\top$ is attainable. If it is, find the replicating portfolio and its cost.
+
+---
+
+**Exercise 6.** Explain why removing a redundant asset from the market does not change the set of attainable payoffs. Give a concrete example of two assets whose payoff vectors are linearly dependent and show that removing one does not reduce $\operatorname{rank}(\mathbf{D})$.
+
+---
+
+**Exercise 7.** In a market with $K = 4$ states and $d + 1 = 2$ assets, what is the maximum dimension of the attainable set $\mathcal{M}$? How many additional linearly independent assets would be needed to make the market complete?

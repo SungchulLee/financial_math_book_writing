@@ -214,3 +214,27 @@ Mean reversion is the mechanism by which the Heston variance process converges t
 The [next section](correlation_and_leverage_effect.md) examines the correlation parameter $\rho$ and its role in generating the implied volatility skew through the leverage effect.
 
 ---
+
+## Exercises
+
+**Exercise 1.** Compute the half-life of mean reversion $t_{1/2} = \ln 2/\kappa$ for $\kappa = 1$ and $\kappa = 5$. In each case, how many trading days does it take for a variance shock to decay by 50%?
+
+---
+
+**Exercise 2.** For $\kappa = 2$, $\theta = 0.04$, and $V_0 = 0.09$ (post-crash elevated variance), compute $\mathbb{E}[V_t]$ at $t = 0.25, 0.5, 1, 2$ years. Plot or sketch the mean-reversion trajectory.
+
+---
+
+**Exercise 3.** The term structure of implied variance for an ATM option is approximately $\mathbb{E}[\bar{V}_{0,T}] = \theta + (V_0 - \theta)\frac{1 - e^{-\kappa T}}{\kappa T}$. Compute this for $T = 0.1, 0.5, 1, 5$ years with $\kappa = 2$, $\theta = 0.04$, $V_0 = 0.06$. Is the term structure upward-sloping or downward-sloping?
+
+---
+
+**Exercise 4.** Explain why a higher $\kappa$ produces a flatter implied volatility term structure: the variance converges to $\theta$ faster, so the effect of the current $V_0$ dissipates quickly for longer maturities.
+
+---
+
+**Exercise 5.** The variance risk premium $\lambda_v$ causes the risk-neutral $\kappa^{\mathbb{Q}}$ to differ from the physical $\kappa^{\mathbb{P}}$. If $\kappa^{\mathbb{P}} = 3$ and $\lambda_v = -1.5$ (investors dislike variance risk), what is $\kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \lambda_v$? Is mean reversion faster or slower under the risk-neutral measure?
+
+---
+
+**Exercise 6.** The autocorrelation function of $V_t$ in stationarity is $\operatorname{Corr}(V_t, V_{t+h}) = e^{-\kappa h}$. For $\kappa = 2$, compute the autocorrelation at lags of 1 day, 1 week, 1 month, and 1 year. At what lag does the correlation drop below 0.1?

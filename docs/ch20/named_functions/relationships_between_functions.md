@@ -241,3 +241,33 @@ The relationship is simply $B_{\text{neg}} = -B_{\text{pos}}$ and $A$ is the sam
 ## Summary
 
 The Hull-White named functions form a tightly connected system. The core relationships are: $B(\tau) = (1-e^{-a\tau})/a$ with $B'(\tau) = 1 - aB(\tau)$; $\alpha(t) = \psi(t)$ both satisfying $y' = \theta(t) - ay$; $\sigma_r^2(t) = \frac{\sigma^2}{2} B(2t)$; $V(t,T) = \frac{\sigma^2}{a^2}[\tau - 2B(\tau) + B(2\tau)/2]$; and the bond price $P(t,T) = \frac{P(0,T)}{P(0,t)} \exp(B(\tau)[f(0,t) - r_t] + \frac{\sigma^2}{4a} B(\tau)^2(1-e^{-2at}))$. These identities enable cross-checking of implementations and simplification of complex pricing formulas, and the translation table between sign conventions resolves the most common source of confusion in the literature.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from $\alpha(t) = f(0,t) + \frac{\sigma^2}{2a^2}(1-e^{-at})^2$, verify that $\alpha'(t) = \theta(t) - a\alpha(t)$ by computing $\alpha'(t)$ directly and substituting the formula for $\theta(t)$. Show all algebraic steps.
+
+---
+
+**Exercise 2.** Prove the identity $\sigma_r^2(t) = \frac{\sigma^2}{2}B(2t)$ by substituting the definition of $B$. Then use the doubling formula $B(2\tau) = B(\tau)(2 - aB(\tau))$ to express $\sigma_r^2(t)$ in terms of $B(t)$ alone.
+
+---
+
+**Exercise 3.** The duration identity states $\frac{\partial P(t,T)}{\partial r_t} = -B(\tau)P(t,T)$. Derive this from $P(t,T) = e^{A(t,T) - B(\tau)r_t}$. Explain why $B(\tau)$ is called a "duration-like" function and how it differs from Macaulay duration.
+
+---
+
+**Exercise 4.** Verify the consistency check $A(0,T) - B(T)r_0 = \ln P(0,T)$ numerically for $a = 0.05$, $\sigma = 0.01$, $r_0 = 0.03$, and a flat market curve $P^M(0,T) = e^{-0.03T}$ at $T = 1, 5, 10$.
+
+---
+
+**Exercise 5.** The variance decomposition identity involves a cross-covariance term between $\int_0^t r_s\,ds$ and $\int_t^T r_s\,ds$. Explain why this cross-covariance is nonzero in the Hull-White model. Compute it explicitly using the covariance function $\text{Cov}(r_s, r_u) = \frac{\sigma^2}{2a}e^{-a|u-s|}(1-e^{-2a\min(s,u)})$.
+
+---
+
+**Exercise 6.** A reference uses the negative-$B$ convention $P = e^{A + Br}$ with $B = -(1-e^{-a\tau})/a < 0$. Translate the bond price formula, the duration identity, and the yield formula from this section into the negative-$B$ convention. Verify that all pricing results are numerically identical.
+
+---
+
+**Exercise 7.** Using the relationship $B'(\tau) = 1 - aB(\tau)$, show that $\int_0^\tau B(s)\,ds = \frac{\tau - B(\tau)}{a}$. Then use this result to simplify the $A$-function quadrature $\int_t^T \theta(u)B(u,T)\,du$ when $\theta$ is constant.

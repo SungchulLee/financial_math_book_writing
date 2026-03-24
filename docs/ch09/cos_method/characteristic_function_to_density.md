@@ -216,3 +216,29 @@ Recovering a density from its characteristic function is the gateway to Fourier-
 | COS reconstruction | $\hat{f}_N(x) = \sum_{k=0}^{N-1}{}' A_k\cos(\cdots)$ | No integration, exponential convergence |
 
 **The COS method's cosine series reconstruction provides the most efficient density recovery for smooth distributions, requiring only $N$ characteristic function evaluations and no numerical quadrature, which is why it has become the preferred approach for model validation and option pricing in practice.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the Fourier inversion formula $f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-iux}\phi(u)\,du$, use the conjugate symmetry $\phi(-u) = \overline{\phi(u)}$ (for real-valued $X$) to derive the real-valued form $f(x) = \frac{1}{\pi}\int_0^{\infty}\text{Re}[e^{-iux}\phi(u)]\,du$. Show each step of the simplification.
+
+---
+
+**Exercise 2.** Derive the Gil-Pelaez formula $F(x) = \frac{1}{2} - \frac{1}{\pi}\int_0^{\infty}\text{Im}[\frac{e^{-iux}\phi(u)}{u}]\,du$ starting from $F(x) = \int_{-\infty}^{x}f(y)\,dy$. Explain why the integrand decays as $O(|\phi(u)|/u)$ and why this improved decay (compared to the density inversion integrand) makes the Gil-Pelaez integral easier to evaluate numerically.
+
+---
+
+**Exercise 3.** For the standard normal distribution with $\phi(u) = e^{-u^2/2}$, evaluate the Gil-Pelaez integrand $\text{Im}[e^{-iux}\phi(u)/u]$ at $x = 0$ and simplify. Explain why $F(0) = 1/2$ follows from the formula, and estimate the number of trapezoidal rule quadrature points needed on $[0, 20]$ to achieve $10^{-10}$ accuracy.
+
+---
+
+**Exercise 4.** The COS density reconstruction uses $\hat{f}_N(x) = \sum_{k=0}^{N-1}{}' A_k\cos(k\pi(x-a)/(b-a))$ with $A_k$ computed from the characteristic function. For $N(0,1)$ on $[-10, 10]$, compute the reconstruction error $|\hat{f}_{64}(0) - f(0)|$ and $|\hat{f}_{64}(3) - f(3)|$. Explain why the error at $x = 3$ is comparable to the error at $x = 0$ despite the density being much smaller there.
+
+---
+
+**Exercise 5.** Compare the three density inversion approaches (Fourier inversion, Gil-Pelaez, COS reconstruction) for the Heston model. For each method, list the required inputs, the computational cost to evaluate the density at a single point, and the main source of numerical error. Which method would you choose for (a) evaluating $f(x)$ at a single point, (b) plotting $f(x)$ on a grid of 1000 points?
+
+---
+
+**Exercise 6.** The COS reconstruction can produce negative density values near the boundaries of $[a, b]$, which is a truncation artifact. Explain why this occurs in terms of the Gibbs phenomenon for truncated cosine series. Propose two strategies to mitigate negative density values and discuss the tradeoff each introduces.

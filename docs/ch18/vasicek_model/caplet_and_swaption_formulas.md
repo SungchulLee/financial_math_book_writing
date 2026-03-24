@@ -191,3 +191,31 @@ $$
 In the Vasicek framework, caplets reduce to puts on zero-coupon bonds via the identity $\delta(L - \kappa_{\text{cap}})^+ = (1 + \delta\kappa_{\text{cap}})(K - P)^+$, and swaptions reduce to portfolios of ZCB puts (or calls) via Jamshidian's trick. All pricing is therefore reduced to the single ZCB option formula derived from the log-normality of forward bond prices under the $T$-forward measure. The model produces a flat implied volatility smile, which is its main limitation for calibrating to market cap and swaption volatilities.
 
 ---
+
+## Exercises
+
+**Exercise 1.** Derive the caplet-put equivalence step by step. Starting from the caplet payoff $N\delta(L(T_0, T_1) - K_{\text{cap}})^+$, substitute $L = (1/P - 1)/\delta$ and show the result is $N(1 + K_{\text{cap}}\delta)(\tilde{K} - P(T_0, T_1))^+$ with $\tilde{K} = 1/(1 + K_{\text{cap}}\delta)$.
+
+---
+
+**Exercise 2.** Using the numerical example parameters ($\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.015$, $r_0 = 0.04$), compute the caplet price for a 6-month caplet with reset $T_0 = 1$, payment $T_1 = 1.5$, and strike 5%. Follow all intermediate steps: adjusted strike, bond prices, bond option volatility, and put price.
+
+---
+
+**Exercise 3.** Explain why the Vasicek model produces a flat implied volatility smile for caplets. What property of the Gaussian distribution causes this? How does this compare with the Black-Karasinski model?
+
+---
+
+**Exercise 4.** For a 2Y-into-3Y payer swaption at strike 5%, write out the cash flow structure ($c_1$, $c_2$, $c_3$) and the Jamshidian decomposition. How many ZCB put options appear? What equation determines $r^*$?
+
+---
+
+**Exercise 5.** Prove cap-floor parity: $\text{Cap}(t) - \text{Floor}(t) = \text{Swap}(t)$. Use the identity $(x-K)^+ - (K-x)^+ = x - K$ applied to each caplet-floorlet pair.
+
+---
+
+**Exercise 6.** The bond option volatility for a caplet is $\sigma_P = B(\delta)\sigma\sqrt{(1 - e^{-2\kappa T_0})/(2\kappa)}$. Analyze how this volatility depends on (i) the accrual period $\delta$, (ii) the reset date $T_0$, and (iii) the mean reversion $\kappa$. For large $T_0$, what does $\sigma_P$ converge to?
+
+---
+
+**Exercise 7.** A receiver swaption with expiry $T_0$ into a swap with payment dates $T_1, \ldots, T_n$ decomposes into a portfolio of ZCB calls via Jamshidian's trick. Write the pricing formula analogous to the payer swaption decomposition. Verify swaption parity: Payer $-$ Receiver $=$ Swap value.

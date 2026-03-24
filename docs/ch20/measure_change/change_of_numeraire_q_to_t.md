@@ -129,3 +129,33 @@ r(t_0)e^{-\lambda (t-t_0)}+\lambda\int_{t_0}^t\theta^\mathbb{T}(t')e^{-\lambda(t
 &=&\displaystyle
 -\frac{1}{2}\sigma^2 B(2(t-t_0))
 \end{array}$$
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the ZCB dynamics $\frac{dP(t,T)}{P(t,T)} = r(t)dt + \sigma_P(t,T)dW^{\mathbb{Q}}(t)$, derive the Radon-Nikodym derivative $\frac{d\mathbb{T}}{d\mathbb{Q}}\big|_{\mathcal{F}(t)}$ step by step. Verify that it is an exponential martingale.
+
+---
+
+**Exercise 2.** Show that the forward rate $f(t,T)$ is a martingale under the $\mathbb{T}$-measure by verifying that $df(t,T) = \sigma(t,T)dW^{\mathbb{T}}(t)$ has zero drift. Explain why this property is useful for derivative pricing.
+
+---
+
+**Exercise 3.** Compute $\theta^{\mathbb{T}}(t)$ explicitly in terms of $\theta(t)$ and the bond volatility $\sigma_P(t,T)$. For a Hull-White model with $\sigma = 0.01$ and $\lambda = 0.05$, evaluate the drift adjustment $\frac{\sigma}{\lambda}\sigma_P(t,T)$ at $t = 2$ and $T = 10$.
+
+---
+
+**Exercise 4.** Verify that the variance $\sigma_r^2(t_0, t) = -\frac{1}{2}\sigma^2 B(2(t-t_0))$ is the same under both $\mathbb{Q}$ and $\mathbb{T}$. Explain why Girsanov's theorem preserves the diffusion coefficient but changes the drift.
+
+---
+
+**Exercise 5.** The bond dynamics under $\mathbb{T}$ have drift $r(t) + \sigma_P^2(t,T)$ instead of $r(t)$. Explain the economic meaning of the extra drift term $\sigma_P^2(t,T)$ in terms of the risk premium associated with the change of numeraire.
+
+---
+
+**Exercise 6.** Consider the $x(t)$ process under $\mathbb{Q}$: $dx(t) = -\lambda x(t)dt + \sigma dW^{\mathbb{Q}}(t)$. Derive the $x(t)$ process under $\mathbb{T}$ by substituting $dW^{\mathbb{Q}}(t) = dW^{\mathbb{T}}(t) + \sigma_P(t,T)dt$ and simplify.
+
+---
+
+**Exercise 7.** For the conditional distribution $r(t)|r(t_0) \sim N(\mu^{\mathbb{T}}_r(t_0,t), \sigma_r^2(t_0,t))$ under the $T$-forward measure, compute $\mu^{\mathbb{T}}_r(0, 5)$ for $r(0) = 0.04$, $\sigma = 0.01$, $\lambda = 0.05$, and $T = 10$ with a flat forward curve $f^M(0,t) = 0.04$. Compare with the $\mathbb{Q}$-measure mean and explain the direction of the difference.

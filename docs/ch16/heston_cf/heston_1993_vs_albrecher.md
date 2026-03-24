@@ -228,3 +228,25 @@ Heston's original 1993 paper did not address numerical stability because the com
 ## Summary
 
 The Heston 1993 and Albrecher formulations are algebraically equivalent representations of the same characteristic function, differing only in whether exponential terms grow ($e^{+\gamma\tau}$, Heston 1993) or decay ($e^{-\gamma\tau}$, Albrecher). The original formulation decomposes the call price into probabilities $P_1$ (stock-numeraire measure) and $P_2$ (risk-neutral measure), each requiring a separate Fourier inversion with distinct characteristic functions $\varphi_1$ and $\varphi_2$. The Albrecher formulation achieves numerical stability by ensuring $|g| < 1$, which keeps the logarithm's argument away from the branch cut and prevents catastrophic cancellation. For production implementations, the Albrecher formulation should always be used; the two-probability decomposition remains valuable for extracting exercise probabilities and delta-related quantities.
+
+---
+
+## Exercises
+
+**Exercise 1.** Write both the Heston 1993 formulation (with $e^{+\gamma\tau}$ terms) and the Albrecher formulation (with $e^{-\gamma\tau}$ terms) for $D(\tau, u)$. Show algebraically that they are equivalent by multiplying numerator and denominator by $e^{-\gamma\tau}$.
+
+---
+
+**Exercise 2.** In the two-probability decomposition, the call price is $C = S e^{-q\tau}P_1 - Ke^{-r\tau}P_2$. Explain the financial interpretation of $P_1$ (exercise probability under the stock-price numeraire) and $P_2$ (exercise probability under the risk-neutral measure).
+
+---
+
+**Exercise 3.** Compute $P_1$ and $P_2$ numerically for $S = 100$, $K = 100$, $\tau = 1$, $r = 0.05$, $q = 0$, $v_0 = \theta = 0.04$, $\kappa = 2$, $\sigma_v = 0.3$, $\rho = -0.7$. Verify that $P_1 > P_2$ (the stock-numeraire probability is always higher).
+
+---
+
+**Exercise 4.** The Heston delta is $\Delta = e^{-q\tau}P_1$. Derive this from the two-probability decomposition and explain why it differs from the Black-Scholes delta.
+
+---
+
+**Exercise 5.** For long maturities ($\tau > 3$), the 1993 formulation can produce numerical errors exceeding $10^{-3}$. Demonstrate this by computing the call price using both formulations at $\tau = 5$ with $\kappa = 0.5$, $\sigma_v = 1$, $\rho = -0.9$.

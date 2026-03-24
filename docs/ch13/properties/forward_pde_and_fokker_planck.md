@@ -315,3 +315,49 @@ The Fokker-Planck equation is the forward counterpart of the backward pricing PD
 4. **Conservation law**: The forward PDE preserves total probability and admits a flux interpretation with drift and diffusion components.
 5. **Computational efficiency**: The forward PDE solves for all strikes simultaneously, making it the natural tool for calibrating the local volatility surface.
 6. **Well-posedness**: Under uniform ellipticity and regularity conditions on $\sigma_{\text{loc}}$, the forward PDE has a unique, strictly positive, smooth solution.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the SDE $dS_t = (r - q)S_t \, dt + \sigma_{\text{loc}}(S_t, t) S_t \, dW_t$, carry out the integration-by-parts steps to derive the Fokker-Planck equation. Specifically, show that:
+
+$$
+\int_0^{\infty} \frac{1}{2}\sigma_{\text{loc}}^2 S^2 \varphi''(S) p(S, t) \, dS = \int_0^{\infty} \varphi(S) \frac{1}{2}\frac{\partial^2}{\partial S^2}[\sigma_{\text{loc}}^2 S^2 p] \, dS
+$$
+
+State the boundary conditions on $p$ required for the boundary terms to vanish.
+
+---
+
+**Exercise 2.** Write the Fokker-Planck equation for the log-coordinate $x = \log S$, with density $\tilde{p}(x, t) = p(e^x, t)e^x$. Verify that when $\sigma_{\text{loc}}$ is constant, the solution is a Gaussian density with mean $x_0 + (r - q - \sigma^2/2)t$ and variance $\sigma^2 t$.
+
+---
+
+**Exercise 3.** The probability flux is $J(S, t) = (r - q)S p - \frac{1}{2}\partial_S[\sigma_{\text{loc}}^2 S^2 p]$. Consider a piecewise constant local volatility: $\sigma_{\text{loc}} = 0.30$ for $S < 100$ and $\sigma_{\text{loc}} = 0.15$ for $S > 100$. Qualitatively describe the shape of the density $p(S, T)$ for $T = 1$ year. Which region has a fatter tail, and why?
+
+---
+
+**Exercise 4.** Prove the conservation of probability: starting from $\partial_t p + \partial_S J = 0$, show that $\int_0^{\infty} p(S, t) \, dS = 1$ for all $t \geq 0$. What physical assumptions are needed at the boundaries $S = 0$ and $S = \infty$?
+
+---
+
+**Exercise 5.** Explain the duality between the forward and backward Kolmogorov equations. If $u(S, t)$ solves the backward equation with terminal condition $u(S, T) = \varphi(S)$ and $p(S, T \mid S_0, 0)$ solves the forward equation with initial condition $p(S, 0) = \delta(S - S_0)$, show that:
+
+$$
+\int_0^{\infty} \varphi(S) p(S, T \mid S_0, 0) \, dS = u(S_0, 0)
+$$
+
+---
+
+**Exercise 6.** The forward PDE in call price space is:
+
+$$
+\frac{\partial U}{\partial T} = \frac{1}{2}\sigma_{\text{loc}}^2(K, T) K^2 \frac{\partial^2 U}{\partial K^2} - (r - q)K \frac{\partial U}{\partial K} - qU
+$$
+
+with $U(K, 0) = (S_0 - K)^+$. Explain why this formulation computes call prices at all strikes simultaneously in a single forward sweep. Compare the computational cost with the backward PDE approach for pricing vanilla options at $N$ different strikes.
+
+---
+
+**Exercise 7.** Under the Gaussian bounds for the transition density (Theorem 13.3.2), show that $C_{KK} = e^{-rT} p(K, T) > 0$ for all $K > 0$ and $T > 0$. Explain why this strict positivity is essential for the well-definedness of Dupire's formula.

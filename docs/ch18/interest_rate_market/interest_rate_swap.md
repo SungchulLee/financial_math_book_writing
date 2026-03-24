@@ -108,3 +108,33 @@ S_{m,n}(t)
     &=&\displaystyle
     \frac{1-\prod_{j=m+1}^n\frac{1}{1+\tau_jL(t,T_{j-1},T_j)}}{\sum_{k=m+1}^n \tau_k \prod_{j=m+1}^k\frac{1}{1+\tau_jL(t,T_{j-1},T_j)}}\\
     \end{array}$$
+
+---
+
+## Exercises
+
+**Exercise 1.** A 3-year payer IRS with annual payments has notional $N = 10{,}000{,}000$, fixed rate $K = 3.5\%$, and discount factors $P(0,1) = 0.970$, $P(0,2) = 0.935$, $P(0,3) = 0.900$. Compute the swap value $\text{IRS}^{\text{Payer}}(0, \mathcal{T}, N, K)$ using the formula $N(P(0,T_m) - P(0,T_n)) - NK\sum_k \tau_k P(0, T_k)$.
+
+---
+
+**Exercise 2.** Derive the par swap rate $S_{m,n}(t) = \frac{P(t,T_m) - P(t,T_n)}{A_{m,n}(t)}$ by setting the payer IRS value to zero. Using the discount factors from Exercise 1, compute the par swap rate for a 3-year annual swap.
+
+---
+
+**Exercise 3.** Show that the swap rate $S_{m,n}(t)$ is a weighted average of forward rates: $S_{m,n}(t) = \sum_k \omega_k(t) l_k(t)$ where $\omega_k(t) = \tau_k P(t,T_k) / A_{m,n}(t)$. Verify that the weights sum to one.
+
+---
+
+**Exercise 4.** Given forward rates $L(0, 0, 1) = 3.0\%$, $L(0, 1, 2) = 3.5\%$, $L(0, 2, 3) = 4.0\%$ with annual tenor $\tau = 1$, compute the 3-year par swap rate using the formula $S = \frac{1 - \prod_j(1+\tau_j L_j)^{-1}}{\sum_k \tau_k \prod_j^k(1+\tau_j L_j)^{-1}}$.
+
+---
+
+**Exercise 5.** The annuity factor $A_{m,n}(t) = \sum_k \tau_k P(t, T_k)$ appears as the numeraire for the swap measure. Explain why the swap rate $S_{m,n}(t)$ is a martingale under the annuity measure $\mathbb{Q}^A$. What is the practical significance of this result for swaption pricing?
+
+---
+
+**Exercise 6.** A receiver IRS with 5 years remaining has a fixed rate of $K = 4\%$ while the current par swap rate is $S = 3.2\%$. Is this swap an asset or a liability for the receiver? Without computing the exact value, explain qualitatively why and estimate the sign and approximate magnitude of the swap's mark-to-market value for a notional of \$50 million.
+
+---
+
+**Exercise 7.** Show that an interest rate swap can be decomposed as a portfolio of FRAs: $\text{IRS}^{\text{Payer}} = \sum_k \text{FRA}^{\text{Payer}}(t, T_{k-1}, T_k, N, K)$. What does this imply about the replication of a swap using simpler instruments? Can each FRA be hedged independently?

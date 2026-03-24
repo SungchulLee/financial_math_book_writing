@@ -624,3 +624,33 @@ $$
 4. **Complementarity:** B-L + Dupire + IV together fully characterize arbitrage-free surface
 
 The IV surface is not merely a quoting convention—it is a rich source of distributional information, encoding the market's view of future price dynamics under the risk-neutral measure.
+
+---
+
+## Exercises
+
+**Exercise 1.** Explain the three equivalent representations of option market information: option prices $C(K, T)$, risk-neutral density $q(S_T)$, and implied volatility surface $\sigma_{\text{IV}}(K, T)$. For each, state one advantage and one disadvantage as a representation for practical use.
+
+---
+
+**Exercise 2.** The risk-neutral skewness of the log-return distribution is related to the implied volatility skew via $\text{Skew} \propto -\mathcal{S}$ where $\mathcal{S} = \frac{\partial \sigma_{\text{IV}}}{\partial y}\big|_{y=0}$. If the observed ATM skew is $\mathcal{S} = -0.20$ (per unit log-moneyness), what is the sign of the risk-neutral skewness? Interpret this in terms of the shape of the risk-neutral density.
+
+---
+
+**Exercise 3.** The implied volatility surface at a fixed maturity $T = 0.25$ has $\sigma_{\text{ATM}} = 18\%$, skew $\mathcal{S} = -0.25$, and curvature $\mathcal{C} = 1.5$. Using the Taylor expansion $\sigma(y) \approx \sigma_{\text{ATM}} + \mathcal{S} y + \frac{1}{2}\mathcal{C} y^2$, compute the risk-neutral density $q(K)$ at $K = F$ (ATM) using the Breeden-Litzenberger formula applied to the Black-Scholes price with this smile.
+
+---
+
+**Exercise 4.** A flat implied volatility surface ($\sigma_{\text{IV}} = \sigma_0$ for all $K, T$) corresponds to a lognormal risk-neutral density. If the smile has positive curvature ($\mathcal{C} > 0$), the risk-neutral density has fatter tails than lognormal. Explain this connection intuitively: why do elevated wing volatilities imply more probability mass in the tails?
+
+---
+
+**Exercise 5.** An analyst extracts the risk-neutral density from 1-month SPX options and finds that the probability of a 10% decline is 3.2%, while the lognormal density with the same ATM volatility assigns only 0.8%. (a) What feature of the implied volatility smile accounts for this difference? (b) Is 3.2% the "true" probability of a 10% decline? Explain the role of the variance risk premium.
+
+---
+
+**Exercise 6.** Describe how to use the implied volatility surface to compute the risk-neutral probability that the underlying finishes between two strikes $K_1$ and $K_2$. Express your answer in terms of call prices and verify using the Breeden-Litzenberger CDF formula $Q(K) = e^{rT}(1 + \frac{\partial C}{\partial K})$.
+
+---
+
+**Exercise 7.** The risk-neutral density and the physical (real-world) density differ due to the pricing kernel. If the pricing kernel is $\xi(S) \propto S^{-\gamma}$ (power utility with risk aversion $\gamma$), show that the risk-neutral density places more weight on low values of $S$ compared to the physical density. How does this manifest in the implied volatility smile?

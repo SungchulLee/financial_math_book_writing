@@ -176,3 +176,33 @@ where $\beta$ is the regression coefficient estimated from the simulation.
 | Monte Carlo | Forward simulation | Path-dependent payoffs, scalable | No early exercise (without LSM), statistical error |
 
 For closed-form pricing of European derivatives, see [Bond and Derivative Pricing Classes Guide](bond_derivative_pricing_classes.md). For the calibration workflow that uses all three engines, see [Calibration Pipeline Guide](calibration_pipeline.md).
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Hull-White trinomial tree with $\sigma = 0.01$, $\lambda = 0.05$, and $\Delta t = 0.01$, compute the rate spacing $\Delta r = \sigma\sqrt{3\Delta t}$ and the maximum node index $j_{\max} = \lceil 0.184/(\lambda\,\Delta t) \rceil$. How many nodes does the tree have at each time step? What happens to $j_{\max}$ if $\lambda$ is increased to 0.50?
+
+---
+
+**Exercise 2.** Verify that the branching probabilities $p_u$, $p_m$, $p_d$ sum to 1 and that they match the conditional mean $\mu_j\,\Delta t$ and conditional variance $\sigma^2\,\Delta t$ of the OU process. Write out the two moment-matching equations explicitly and solve for $p_u$, $p_m$, $p_d$ as functions of $\mu_j$, $\Delta t$, and $\Delta r$.
+
+---
+
+**Exercise 3.** Price a 5-year zero-coupon bond using the trinomial tree with 500 time steps. The terminal payoff is $V(T, r_j) = 1$ for all nodes. Roll backward using the discounted expectation formula. Compare the result with the analytical price $P^M(0, 5)$ and report the pricing error as a function of the number of time steps (try $n = 50, 100, 200, 500$). What convergence rate do you observe?
+
+---
+
+**Exercise 4.** Explain the difference between exact simulation and Euler-Maruyama discretization for the Hull-White short rate. For the exact simulation scheme, the transition from $r_{t_k}$ to $r_{t_{k+1}}$ uses the OU conditional distribution. Write down the conditional mean $\psi(t_k, t_{k+1})$ and conditional variance $\sigma_r^2(t_k, t_{k+1})$ explicitly. What advantage does exact simulation have over Euler-Maruyama for computing the money market account?
+
+---
+
+**Exercise 5.** Implement antithetic variates for pricing a 3-year caplet. For each set of $N/2$ Gaussian increments $\{Z_1, \ldots, Z_M\}$, generate both the original and the negated path $\{-Z_1, \ldots, -Z_M\}$. Average the two caplet payoffs before discounting. Compare the standard error with and without antithetic variates for $N = 10{,}000$ total paths.
+
+---
+
+**Exercise 6.** Describe how you would price a Bermudan swaption on the trinomial tree. At each exercise date, the algorithm compares the continuation value with the exercise value. For a 5-into-5 Bermudan swaption (exercisable at years 5, 6, 7, 8, 9), how many backward induction steps are needed? At which nodes is the early-exercise check performed? What determines whether the holder exercises early?
+
+---
+
+**Exercise 7.** The control variate technique uses the closed-form ZCB price as a control. If $\hat{V}$ is the raw MC swaption estimate and $\hat{P}_{\text{MC}}(0, T)$ is the MC estimate of the ZCB price, the adjusted estimator is $\hat{V}_{\text{cv}} = \hat{V} - \beta(\hat{P}_{\text{MC}} - P^M)$. Explain how to estimate $\beta$ from the simulation. Why is this technique particularly effective in the Hull-White model?

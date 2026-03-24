@@ -230,3 +230,27 @@ Moment explosions are an intrinsic feature of the Heston model: for each maturit
 The [variance dynamics](../variance_dynamics/cir_variance_process_solution.md) section next examines the exact solution and transition density of the CIR variance process.
 
 ---
+
+## Exercises
+
+**Exercise 1.** For Heston parameters $\kappa = 2$, $\sigma_v = 0.3$, $\rho = -0.7$, compute the long-maturity critical moment $p^*_+$ using the Andersen-Piterbarg formula. Verify that $p^*_+ > 2$, which is needed for the second moment of $S_T$ to be finite.
+
+---
+
+**Exercise 2.** Explain the connection between the critical moment $p^*_+$ and the strip of analyticity of the characteristic function. If $p^*_+ = 8$, what is the maximal damping parameter $\alpha$ in the Carr-Madan FFT method?
+
+---
+
+**Exercise 3.** For $\rho = 0$ (no leverage), show that the critical moment formula simplifies and $p^*_+$ is maximized. Why does negative $\rho$ decrease $p^*_+$ and thus make moment explosions more restrictive?
+
+---
+
+**Exercise 4.** The Lee moment formula relates the slope of the implied volatility smile at extreme strikes to the critical moment: $\lim_{k \to \infty} \sigma^2(k)\tau / k = 2 - 4(\sqrt{p^*_+(p^*_+ - 1)} - p^*_+)$ where $k = \log(K/F)$. For $p^*_+ = 10$, compute the right-wing slope and interpret it as the decay rate of the right tail of the return distribution.
+
+---
+
+**Exercise 5.** During calibration, the optimizer may propose parameters with very high $\sigma_v$ or very negative $\rho$, leading to $p^*_+ < 2$. Explain why this causes numerical problems in Fourier pricing and describe how to impose $p^*_+ > \alpha + 1$ as a constraint in the optimization.
+
+---
+
+**Exercise 6.** Compare moment explosion behavior in the Heston model to the Black-Scholes model. In Black-Scholes, show that $\mathbb{E}[S_T^p] < \infty$ for all real $p$ and all $T > 0$ (because the log-normal distribution has finite moments of all orders). What structural feature of the Heston model causes the breakdown of this property?

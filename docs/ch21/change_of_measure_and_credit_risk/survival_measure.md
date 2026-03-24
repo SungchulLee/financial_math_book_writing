@@ -316,3 +316,45 @@ Under $\mathbb{Q}^S$, the intensity mean-reverts faster ($\kappa^S = 0.510$ vs $
 - Bielecki, T. R., & Rutkowski, M. (2004). *Credit Risk: Modeling, Valuation and Hedging*. Springer, Chapter 10.
 - Collin-Dufresne, P., Goldstein, R., & Hugonnier, J. (2004). A general formula for valuing defaultable securities. *Econometrica*, 72(5), 1377--1407.
 - Jeanblanc, M., Yor, M., & Chesney, M. (2009). *Mathematical Methods for Financial Markets*. Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $r = 4\%$ (constant) and suppose default intensity follows a CIR process with $\kappa = 0.3$, $\theta = 3\%$, $\sigma = 6\%$, and $\lambda_0 = 2\%$. Using the affine formula for the survival probability, compute the defaultable zero-coupon bond price $\bar{P}(0, 5)$ and the survival measure parameters $\kappa^S$ and $\theta^S$. Verify that $\kappa^S > \kappa$ and $\theta^S < \theta$.
+
+---
+
+**Exercise 2.** Starting from the Radon--Nikodym derivative
+
+$$
+\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{e^{-\int_0^T (r_s + \lambda_s) ds}}{\bar{P}(0,T)}
+$$
+
+verify that $\mathbb{E}^{\mathbb{Q}}[d\mathbb{Q}^S/d\mathbb{Q}|_{\mathcal{F}_T}] = 1$. Then show that the restricted density $d\mathbb{Q}^S/d\mathbb{Q}|_{\mathcal{F}_t}$ is a $\mathbb{Q}$-martingale.
+
+---
+
+**Exercise 3.** Prove the main pricing formula: for an $\mathcal{F}_T$-measurable payoff $X$,
+
+$$
+\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} X \mid \mathcal{F}_t\right] = \bar{P}(t,T) \cdot \mathbb{E}^{\mathbb{Q}^S}[X \mid \mathcal{F}_t]
+$$
+
+by applying the abstract Bayes formula. Identify each step of the argument.
+
+---
+
+**Exercise 4.** Suppose $r_t$ and $\lambda_t$ are independent under $\mathbb{Q}$, with $r_t$ following a Vasicek model and $\lambda_t$ following a CIR model. Show that the defaultable bond price factorizes as $\bar{P}(t,T) = P(t,T) \cdot S(t,T)$. Under the survival measure, do the Girsanov drift corrections for $r_t$ and $\lambda_t$ interact, or are they independent? Justify your answer.
+
+---
+
+**Exercise 5.** Consider a defaultable coupon bond paying $c$ at times $t_1, \ldots, t_n = T$ conditional on survival, with recovery $R$ paid at default. Express the price of this bond using the survival measure $\mathbb{Q}^S$ and the defaultable zero-coupon bonds $\bar{P}(t, t_i)$. Compare this expression with the standard risk-neutral pricing formula.
+
+---
+
+**Exercise 6.** Using the numerical example parameters ($\kappa = 0.5$, $\theta = 2\%$, $\sigma = 8\%$, $\lambda_0 = 1.5\%$, $r = 3\%$), compute the par CDS spread for a 3-year CDS with quarterly premium payments and 40% recovery. Use the survival measure to simplify the computation of the risky annuity in the denominator.
+
+---
+
+**Exercise 7.** Compare the $T$-forward measure and the $T$-survival measure by answering the following: (a) What numeraire defines each measure? (b) What quantity is eliminated from pricing formulas by each measure change? (c) Under what condition does the survival measure reduce to the forward measure? (d) Give an example of a derivative for which the survival measure is essential but the forward measure is insufficient.

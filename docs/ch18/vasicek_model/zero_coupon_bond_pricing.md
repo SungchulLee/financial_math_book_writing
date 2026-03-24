@@ -217,3 +217,33 @@ Both the **market price of risk approach** and the **risk-neutral measure approa
 The closed-form solution $P(t,T) = A(t,T)e^{-B(t,T)r_t}$ provides a practical tool for bond pricing, option pricing, and portfolio management in the Vasicek framework.
 
 **Based on**: QuantPie Lecture Notes - Interest Rate Modeling
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the Vasicek SDE $dr_t = \alpha(\theta - r_t)dt + \sigma dW_t$, apply Ito's lemma to $f(t, r_t) = P(t,T)$ and derive the drift $\mu$ and volatility $\nu$ of the bond return $df/f$. Show that $\nu(t, r_t, T) = \sigma f_r / f$ and interpret the sign of $\nu$ given that $f_r < 0$ for zero-coupon bonds.
+
+---
+
+**Exercise 2.** In the market price of risk approach, the no-arbitrage condition leads to $(\mu - r)/\nu = \lambda_t$ being independent of maturity $T$. Explain economically why the Sharpe ratio of every bond (regardless of maturity) must be the same. What would happen if two bonds had different Sharpe ratios?
+
+---
+
+**Exercise 3.** Derive the bond pricing PDE $f_t + \frac{1}{2}\sigma^2 f_{rr} + [\alpha(\theta - r) - \sigma\lambda]f_r - rf = 0$ from the martingale condition on the discounted bond price $f(t,r)\,D(t)$ under $\mathbb{Q}$. Verify that the cross-variation term $d\langle f, D\rangle = 0$ because $D(t)$ has no diffusion component.
+
+---
+
+**Exercise 4.** The closed-form solution is $P(t,T) = A(\tau)e^{-B(\tau)r_t}$ with $B(\tau) = (1 - e^{-\alpha\tau})/\alpha$. Verify the boundary condition $P(T,T) = 1$ by substituting $\tau = 0$. Then compute $\partial P / \partial r$ and show it is negative, confirming that bond prices decrease when rates increase.
+
+---
+
+**Exercise 5.** Using the risk-neutral representation $P(t,T) = \mathbb{E}^{\mathbb{Q}}_t[e^{-\int_t^T r_s\,ds}]$, explain why Jensen's inequality implies $P(t,T) \geq e^{-\mathbb{E}^{\mathbb{Q}}_t[\int_t^T r_s\,ds]}$. How does this relate to the convexity term in $\ln A(\tau)$?
+
+---
+
+**Exercise 6.** The market price of risk $\lambda$ shifts the drift of the short rate from the physical measure to the risk-neutral measure: $dr_t = [\alpha(\theta - r_t) - \sigma\lambda]dt + \sigma dW_t^{\mathbb{Q}}$. If $\lambda > 0$, does this increase or decrease the risk-neutral drift? How does the sign of $\lambda$ affect the yield curve level?
+
+---
+
+**Exercise 7.** For Vasicek parameters $\alpha = 0.3$, $\theta = 0.05$, $\sigma = 0.015$, $r_0 = 0.04$, and $\lambda = 0$ (zero market price of risk), compute $P(0,1)$, $P(0,5)$, and $P(0,10)$ using the closed-form formula. Then repeat with $\lambda = 0.1$ (positive risk premium) and compare. Which set of parameters produces higher bond prices, and why?

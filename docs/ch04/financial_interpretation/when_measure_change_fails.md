@@ -324,3 +324,40 @@ For a discussion of how practitioners navigate these challenges, see
 [Practitioner Perspective](practitioner_perspective.md). For the role of the
 risk premium in determining the measure change, see
 [Risk Premium Decomposition](risk_premium_decomposition.md).
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Consider the market price of risk $\theta_t = c / \sqrt{T - t}$ for $t < T$. Verify that the Novikov condition fails by computing $\int_0^T \theta_s^2\,ds$ and showing it diverges. Explain in financial terms why a model with a market price of risk that blows up near maturity is problematic.
+
+---
+
+**Exercise 2.**
+Let $Z_t$ be the stochastic exponential defining the Radon-Nikodym derivative. Suppose $\mathbb{E}^{\mathbb{P}}[Z_T] = 0.95$. Compute the defect $\delta$ and explain why $Z_T / \mathbb{E}^{\mathbb{P}}[Z_T]$ does not define a measure equivalent to $\mathbb{P}$. Where has the "missing mass" gone?
+
+---
+
+**Exercise 3.**
+In the CEV model $dS_t = rS_t\,dt + \sigma S_t^{\beta}\,dW_t^{\mathbb{Q}}$, the discounted price process is a strict local martingale when $\beta > 1$. Show that the bubble component $\beta_0 = S_0 - \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] > 0$ in this case. Explain why put-call parity $C - P = S_0 - Ke^{-rT}$ must be modified when a bubble is present.
+
+---
+
+**Exercise 4.**
+Consider the Heston model with stock dynamics $dS_t = \mu S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^{1,\mathbb{P}}$ and variance dynamics $dV_t = \kappa(\bar{V} - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{2,\mathbb{P}}$. Explain why $\theta_1$ is determined by no-arbitrage but $\theta_2$ is not. If a practitioner chooses $\theta_2 = 0$ vs $\theta_2 = -0.5$, describe qualitatively how the risk-neutral variance dynamics differ and which choice produces higher prices for out-of-the-money put options.
+
+---
+
+**Exercise 5.**
+Under $\mathbb{P}$, let $X_t = W_t$ (standard Brownian motion), and under $\mathbb{Q}$, let $X_t = W_t + \theta t$ for $\theta \neq 0$. Using the law of large numbers, show that $X_t / t \to 0$ $\mathbb{P}$-a.s. and $X_t / t \to \theta$ $\mathbb{Q}$-a.s. Conclude that $\mathbb{P} \perp \mathbb{Q}$ on $\mathcal{F}_{\infty}$ and explain the implication for pricing perpetual derivatives.
+
+---
+
+**Exercise 6.**
+A model for an equity market assumes constant volatility and a constant positive risk-free rate, but through a calibration error the model parameters imply a negative forward variance for certain maturities. Explain which failure mode this represents, why no equivalent martingale measure can exist in this case, and what the practitioner should do to remedy the situation.
+
+---
+
+**Exercise 7.**
+Consider a market with $n = 1$ traded asset and $d = 2$ Brownian motions. The stock dynamics are $dS_t = \mu S_t\,dt + \sigma_1 S_t\,dW_t^1 + \sigma_2 S_t\,dW_t^2$. The risk premium equation is $\mu - r = \sigma_1\theta_1 + \sigma_2\theta_2$, which defines a line in $(\theta_1, \theta_2)$ space. Parametrize the family of risk-neutral measures by writing $\theta_2$ as a function of $\theta_1$. For the claim $\Phi = (W_T^2)^2$, explain why different points on this line produce different prices.

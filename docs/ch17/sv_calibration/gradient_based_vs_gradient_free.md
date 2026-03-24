@@ -243,3 +243,31 @@ Run $N$ independent LM optimizations from randomly sampled starting points and s
 With $N = 10$--$50$ starts, this approach achieves near-global optimality with full parallelizability across starting points.
 
 ---
+
+## Exercises
+
+**Exercise 1.** Starting from the nonlinear least-squares objective $\mathcal{L}(\Theta) = \frac{1}{2}\|r(\Theta)\|_W^2$, derive the Gauss-Newton update equation $(J^\top W J)\Delta\Theta = -J^\top W r$. Under what conditions on the residual vector $r(\Theta^\star)$ does the Gauss-Newton method achieve quadratic convergence?
+
+---
+
+**Exercise 2.** The Levenberg-Marquardt system is $(J^\top W J + \lambda I)\Delta\Theta = -J^\top W r$. Show that for $\lambda \to \infty$, the update direction approaches $-J^\top W r / \lambda$, which is a scaled gradient descent step. Compute the LM step explicitly for the scalar case ($d = 1$, $m = 3$) with $J = (1, 2, 3)^\top$, $W = I$, $r = (0.1, -0.05, 0.2)^\top$, and $\lambda = 1$.
+
+---
+
+**Exercise 3.** The optimal finite-difference step size for computing $\partial r_j / \partial \Theta_k$ is $h^\star \sim \sqrt{\varepsilon_{\text{mach}}} \cdot |\Theta_k|$. For double precision ($\varepsilon_{\text{mach}} \approx 10^{-16}$) and $\Theta_k = 0.04$ (typical for $v_0$), compute $h^\star$. Compare the cost of computing the full Jacobian via forward finite differences ($d+1$ evaluations) versus adjoint AD ($\le 5$ evaluations) for Heston with $d = 5$ and $m = 50$.
+
+---
+
+**Exercise 4.** The Nelder-Mead simplex method uses reflection, expansion, contraction, and shrink operations. For a 2D problem, sketch a simplex (triangle) and illustrate each operation geometrically. Why does the lack of convergence guarantees for $d \ge 2$ not prevent practitioners from using Nelder-Mead for SABR calibration ($d = 3$)?
+
+---
+
+**Exercise 5.** Bayesian optimization with expected improvement (EI) balances exploitation and exploration. For a GP surrogate with current best $\mathcal{L}_{\min} = 0.002$, posterior mean $\mu(\Theta) = 0.0018$ and posterior standard deviation $\sigma(\Theta) = 0.001$ at a candidate point $\Theta$, compute the expected improvement. Would this point be evaluated next if an alternative point has $\mu = 0.0025$, $\sigma = 0.005$?
+
+---
+
+**Exercise 6.** Compare the following calibration strategies for a rough volatility model where each Monte Carlo pricing evaluation takes 5 seconds: (a) Levenberg-Marquardt with finite-difference Jacobians, (b) Nelder-Mead, and (c) Bayesian optimization with 150 evaluation budget. Estimate the total wall time for each and discuss which is most suitable.
+
+---
+
+**Exercise 7.** In the global-then-local hybrid strategy, DE runs for 50 generations with $NP = 30$ to locate the global basin, then LM refines. Suppose DE terminates with best objective 0.0025 and LM converges to 0.0008 in 20 iterations. Could LM alone have reached 0.0008 from a random starting point? Design an experiment using multi-start LM to estimate the probability of reaching the same basin without DE's guidance.

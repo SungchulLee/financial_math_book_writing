@@ -1039,3 +1039,45 @@ Pathwise hedging transforms derivative pricing from probabilistic to determinist
 - **Validation**: Testable on historical data without assuming model
 
 The pathwise perspective reveals that many classical results in stochastic finance have deterministic analogs, deepening our understanding of hedging and replication in quantitative finance.
+
+---
+
+## Exercises
+
+**Exercise 1.** State Follmer's pathwise Ito formula for a twice continuously differentiable function $F(t, x)$ and a continuous path $x(t)$ with finite quadratic variation $[x]_t$. Apply it to $F(t, x) = x^2$ and verify that $x(T)^2 = x(0)^2 + 2\int_0^T x(t) \, dx(t) + [x]_T$ holds for any continuous path, without any probabilistic assumptions.
+
+---
+
+**Exercise 2.** Consider a European call option with payoff $(S_T - K)^+$ and a pathwise hedging strategy that holds $\Delta_t = \partial C / \partial S (t, S_t)$ shares at each time $t$, where $C$ is the Black-Scholes price function with some reference volatility $\sigma$. Using the pathwise Ito formula, show that the hedging error is
+
+$$
+\text{Error} = \frac{1}{2}\int_0^T \Gamma(t, S_t) S_t^2 \left(d[S]_t - \sigma^2 S_t^2 \, dt\right)
+$$
+
+and explain why this error depends on the realized quadratic variation versus the assumed variance.
+
+---
+
+**Exercise 3.** In the game-theoretic probability framework of Vovk, a hedger and nature play a game. The hedger chooses a portfolio at each step, and nature chooses the next price move. Formalize the superhedging problem in this setting: define the outer measure of a set of paths $A$ as the minimal initial capital needed to ensure non-negative wealth on all paths in $A^c$. Explain why this approach requires no probability measure.
+
+---
+
+**Exercise 4.** For a discrete-time pathwise hedging strategy with rebalancing at times $0 = t_0 < t_1 < \cdots < t_N = T$, show that the hedging error for a smooth payoff $g(S_T)$ is bounded by
+
+$$
+|\text{Error}| \leq \frac{1}{2} \sup_{t, S} |\Gamma(t, S)| \cdot S^2 \cdot \sum_{i=0}^{N-1} \left(\frac{S_{t_{i+1}} - S_{t_i}}{S_{t_i}}\right)^2
+$$
+
+How does this relate to the realized variance of the path?
+
+---
+
+**Exercise 5.** Dupire's functional Ito calculus extends the pathwise approach to path-dependent derivatives. For a lookback option with payoff $\max_{0 \leq t \leq T} S_t - S_T$, explain why the classical (non-path-dependent) delta hedge is insufficient and describe what additional pathwise information the functional delta $\nabla_\omega V$ captures that the standard delta $\partial V / \partial S$ does not.
+
+---
+
+**Exercise 6.** Construct a pathwise superhedging strategy for a variance swap with payoff $\sum_{i=1}^N (\log S_{t_i} / S_{t_{i-1}})^2 - K_{\text{var}}$ using the Carr-Madan log-contract replication. Show that the strategy involves holding $-2/S_t$ shares of the underlying plus a static portfolio of options, and that this hedge works for every price path without any distributional assumptions.
+
+---
+
+**Exercise 7.** Rough path theory extends pathwise calculus to paths of low regularity (Holder exponent $H < 1/2$). Explain qualitatively why financial applications with rough volatility (where $H \approx 0.1$) require the rough path framework rather than the classical Follmer pathwise calculus. What is the "iterated integral" or "signature" of a path, and why is it needed for pathwise integration against rough paths?

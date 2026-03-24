@@ -267,3 +267,33 @@ $$
 **Key observation:** The martingale property of $\tilde{V}(t)$ holds under $\mathbb{Q}$, not $\mathbb{P}$. The drift $\mu$ appears in the Radon-Nikodym derivative but not in the final formula because we compute the expectation under $\mathbb{Q}$.
 
 This is why option prices are **drift-neutral**: they depend only on the volatility $\sigma$, the risk-free rate $r$, and the option structure, not on traders' expectations ($\mu$) about future stock returns.
+
+---
+
+## Exercises
+
+**Exercise 1.** Suppose the real-world drift is $\mu = 12\%$, the risk-free rate is $r = 3\%$, and the volatility is $\sigma = 20\%$. Compute the market price of risk $\theta = \frac{\mu - r}{\sigma}$ and write down the Radon-Nikodym derivative $Z_T$ explicitly for $T = 1$ year.
+
+---
+
+**Exercise 2.** Starting from the real-world SDE $dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$ and the Girsanov change $\tilde{W}_t = W_t + \theta t$, substitute $dW_t = d\tilde{W}_t - \theta \, dt$ to verify that the risk-neutral SDE becomes $dS_t = r S_t \, dt + \sigma S_t \, d\tilde{W}_t$.
+
+---
+
+**Exercise 3.** Under the risk-neutral measure $\mathbb{Q}$, write the explicit solution for $S_T$ and verify that $\log S_T$ is normally distributed. State the mean and variance of $\log S_T$ under $\mathbb{Q}$ and confirm that the expected value $\mathbb{E}^{\mathbb{Q}}[S_T] = S_0 e^{rT}$.
+
+---
+
+**Exercise 4.** Using the Feynman-Kac connection, show that if $V(t, S)$ satisfies the Black-Scholes PDE with terminal condition $V(T, S_T) = (S_T - K)^+$, then the discounted process $\tilde{V}(t) = e^{-rt} V(t, S_t)$ is a martingale under $\mathbb{Q}$. Verify by applying Ito's lemma to $\tilde{V}(t)$ and showing the drift vanishes.
+
+---
+
+**Exercise 5.** Consider two traders who agree on all market parameters except the real-world drift: Trader A believes $\mu = 8\%$ while Trader B believes $\mu = 15\%$. Show that both traders arrive at the same Black-Scholes option price, and explain why the drift $\mu$ does not appear in the pricing formula despite appearing in the Radon-Nikodym derivative.
+
+---
+
+**Exercise 6.** For the parameters $S_0 = 100$, $K = 105$, $r = 5\%$, $\sigma = 25\%$, $T = 0.5$, carry out the full Girsanov derivation: compute $d_1$, $d_2$, evaluate $\Phi(d_1)$ and $\Phi(d_2)$, and obtain the call price $C_0 = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2)$.
+
+---
+
+**Exercise 7.** The Novikov condition $\mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\theta^2 T\right)\right] < \infty$ guarantees that the Girsanov change of measure is well-defined. Show that this condition is automatically satisfied when $\theta$ is a constant. Discuss what could go wrong if $\theta$ were a stochastic process that grows too fast.

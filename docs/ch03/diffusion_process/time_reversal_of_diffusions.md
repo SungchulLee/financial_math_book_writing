@@ -167,3 +167,39 @@ Dividing by $\widetilde{p} > 0$ and expanding $\partial_{x_j}(a^{ij}\widetilde{p
 - The reversed process is a semimartingale with respect to the **backward filtration**; $\widetilde{W}$ is a new BM, not $-W$.
 - Under **detailed balance** (reversibility), the reversed drift equals the forward drift and $\widetilde{X} \stackrel{d}{=} X$.
 - The score term connects time reversal to **score-based generative models** (diffusion models in ML), where learning $\nabla\log p$ enables sampling by running the SDE in reverse.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $\mathrm{d}X_t = \mu\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ on $[0, T]$ with $X_0 = x_0$, where $\mu, \sigma$ are constants. The density of $X_t$ is $p(t, x) = \phi(x;\, x_0 + \mu t,\, \sigma^2 t)$ (Gaussian). Compute the score $\partial_x \log p(t, x)$ and substitute into the reversed drift formula to derive the SDE for $\widetilde{X}_t = X_{T-t}$. Show that $\widetilde{X}$ has a Brownian bridge-type drift.
+
+---
+
+**Exercise 2.** Consider the Ornstein–Uhlenbeck process $\mathrm{d}X_t = -\theta X_t\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ with $\theta > 0$, started from the invariant distribution $X_0 \sim \mathcal{N}(0, \sigma^2/(2\theta))$. Show that the reversed drift $\widetilde{b}(t, x)$ equals the forward drift $b(x) = -\theta x$, confirming reversibility. What property of the OU process makes this work?
+
+---
+
+**Exercise 3.** Let $\mathrm{d}X_t = b(X_t)\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ with constant $\sigma > 0$ and a smooth density $p(t, x) > 0$. Starting from the forward Fokker–Planck equation
+
+$$
+\partial_t p = -\partial_x(b\,p) + \frac{\sigma^2}{2}\,\partial_x^2 p,
+$$
+
+derive the reversed drift formula $\widetilde{b}(t, x) = -b(T-t, x) + \sigma^2\,\partial_x \log p(T-t, x)$ by requiring that the reversed density $\widetilde{p}(t, x) = p(T-t, x)$ satisfies its own Fokker–Planck equation.
+
+---
+
+**Exercise 4.** Explain why the reversed Brownian motion $\widetilde{W}_t$ is adapted to the backward filtration $\widetilde{\mathcal{F}}_t = \sigma(X_s : T - t \le s \le T)$ and is generally **not** adapted to the forward filtration $(\mathcal{F}_t)$. Why does this distinction matter when writing the reversed SDE?
+
+---
+
+**Exercise 5.** Consider a two-dimensional diffusion with constant diffusion matrix $a = I$ (the $2 \times 2$ identity) and drift $b(x_1, x_2) = (-x_1 + x_2,\, -x_1 - x_2)^\top$. Suppose the process is started from its invariant distribution. Is this process reversible? Compute the reversed drift $\widetilde{b}$ and compare it to $b$.
+
+---
+
+**Exercise 6.** In the context of score-based generative models, the forward process is often taken as $\mathrm{d}X_t = -\frac{1}{2}\beta(t)\,X_t\,\mathrm{d}t + \sqrt{\beta(t)}\,\mathrm{d}W_t$ for a noise schedule $\beta(t) > 0$. Write down the reversed SDE using the time-reversal formula. Identify the score term $\nabla_x \log p(t, x)$ that must be learned. Why does the forward process eventually converge to an (approximately) standard Gaussian as $t \to \infty$?
+
+---
+
+**Exercise 7.** Explain the connection between time reversal and Doob's $h$-transform. Specifically, for a diffusion with constant $a$ and forward drift $b$, show that the reversed measure on path space can be obtained by an $h$-transform with $h(t, x) = p(T - t, x)$, where $p$ is the forward density. Verify that $h$ is a space-time harmonic function for the adjoint operator.

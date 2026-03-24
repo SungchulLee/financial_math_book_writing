@@ -723,3 +723,33 @@ $$
 - **Calibration:** Term structure slope constrains model parameters ($\kappa, \theta$ in Heston)
 
 The term structure is a critical dimension of the volatility surface, revealing market beliefs about volatility evolution and serving as a key input for pricing, hedging, and risk management.
+
+---
+
+## Exercises
+
+**Exercise 1.** The ATM implied volatilities for SPX options at various maturities are: 1M = 14%, 3M = 16%, 6M = 18%, 1Y = 20%. (a) Is the term structure upward or downward sloping? (b) Compute the total variance $w(T) = \sigma^2 T$ for each maturity. (c) Verify the no-arbitrage condition $w(T_2) \geq w(T_1)$ for all pairs. (d) Compute the forward volatility $\sigma_{\text{fwd}}$ between 3M and 6M.
+
+---
+
+**Exercise 2.** In the Heston model, the short-maturity ATM variance is $\sigma_{\text{ATM}}^2(T) \approx v_0 + \kappa(\theta - v_0) T$. For parameters $v_0 = 0.09$ (30% vol), $\kappa = 3$, and $\theta = 0.04$ (20% long-run vol): (a) compute the initial slope $\frac{d\sigma_{\text{ATM}}^2}{dT}\big|_{T=0}$; (b) is the term structure upward or downward sloping near $T = 0$? (c) What is the economic interpretation of $v_0 > \theta$?
+
+---
+
+**Exercise 3.** Define the instantaneous forward variance as $\sigma_{\text{inst}}^2(T) = \frac{dw}{dT}$. Given a total variance function $w(T) = 0.04T + 0.002T^2$, compute: (a) the implied volatility $\sigma_{\text{ATM}}(T) = \sqrt{w(T)/T}$ for $T = 0.25, 0.5, 1.0$; (b) the instantaneous forward variance $\sigma_{\text{inst}}^2(T)$ for the same maturities; (c) verify that $\sigma_{\text{inst}}^2(T) > \sigma_{\text{ATM}}^2(T)$ when the term structure is upward sloping.
+
+---
+
+**Exercise 4.** During a market crisis, the VIX spikes to 45 and the term structure inverts: 1M ATM IV = 45%, 3M = 35%, 6M = 28%, 1Y = 24%. (a) Compute total variances and verify no-arbitrage. (b) Compute forward volatilities for each adjacent pair. (c) What is the market's implied expectation for volatility between 6M and 1Y? (d) Is this consistent with mean reversion?
+
+---
+
+**Exercise 5.** A variance swap has fair strike $K_{\text{var}}(T)$ related to the integral of option prices across strikes. Explain why $\sigma_{\text{var}}(T) \geq \sigma_{\text{ATM}}(T)$ in general, and under what conditions would equality hold. Relate this to Jensen's inequality and the convexity of the variance swap payoff.
+
+---
+
+**Exercise 6.** Compare the term structure behavior of the following models: (a) Black-Scholes (constant volatility), (b) deterministic local volatility $\sigma_{\text{loc}}(t) = 0.15 + 0.01t$, and (c) Heston with $v_0 = 0.0225$, $\theta = 0.04$, $\kappa = 2$. For each, describe the shape of the term structure (flat, upward, downward) and compute $\sigma_{\text{ATM}}(T)$ at $T = 0.5$ and $T = 2.0$.
+
+---
+
+**Exercise 7.** An options trader notices a humped term structure in natural gas options with peak IV at the 6-month maturity corresponding to the upcoming winter heating season. (a) Explain the economic reasoning behind this hump. (b) The trader wants to trade the view that the hump is overpriced. Describe a forward variance swap or calendar spread strategy that isolates the event-specific volatility. (c) What risks does this trade carry?

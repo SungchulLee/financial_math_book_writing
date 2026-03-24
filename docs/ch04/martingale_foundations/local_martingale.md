@@ -588,3 +588,46 @@ Mass leakage: 65.29%
 ![Strict Local Martingale Simulation](./image/strict_local_martingale_simulation.png)
 
 **Interpretation**: The plot shows $\mathbb{E}[M_t]$ decreasing below $M_0 = 1$, demonstrating the strict local martingale property. The "leaked mass" corresponds to paths where $R_t$ has drifted far from the origin—as the 3D Bessel process is transient and escapes to infinity, $1/R_t \to 0$, but the expectation cannot be preserved because the probability mass needed to compensate has "escaped to infinity."
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Let $M_t = \int_0^t \sigma_s\,dW_s$ where $\sigma_s = 1/(1 - s)$ for $s \in [0, 1)$. Show that $\int_0^1 \sigma_s^2\,ds = +\infty$ but $\int_0^t \sigma_s^2\,ds < \infty$ for every $t < 1$. Construct a localizing sequence $\{\tau_n\}$ that makes $M_{t \wedge \tau_n}$ a true martingale for each $n$.
+
+---
+
+**Exercise 2.**
+Prove that every true martingale is a local martingale. Then explain why the converse fails by giving the key property that a strict local martingale violates. (Hint: consider the integrability condition.)
+
+---
+
+**Exercise 3.**
+Let $M_t$ be a non-negative local martingale with $M_0 = 1$. Using Fatou's lemma, prove the supermartingale inequality $\mathbb{E}[M_t] \leq 1$ for all $t \geq 0$. Explain the financial interpretation of $1 - \mathbb{E}[M_t]$ when $M_t$ is the discounted price of an asset under the risk-neutral measure.
+
+---
+
+**Exercise 4.**
+Consider the CEV model $dX_t = \sigma X_t^{\beta}\,dW_t$ with $X_0 = 1$ and $\sigma = 0.5$. For $\beta = 0.5$, verify that $X_t$ is a true martingale by checking that $\mathbb{E}[\langle X \rangle_T] < \infty$ is plausible. For $\beta = 1.5$, explain qualitatively why $X_t$ is only a strict local martingale.
+
+---
+
+**Exercise 5.**
+In the Black-Scholes model under $\mathbb{Q}$, the discounted stock price $\tilde{S}_t = e^{-rt}S_t$ satisfies $d\tilde{S}_t = \sigma \tilde{S}_t\,dW_t^{\mathbb{Q}}$. Show that this is a true martingale by verifying that
+
+$$
+\mathbb{E}\left[\int_0^T \sigma^2 \tilde{S}_s^2\,ds\right] < \infty
+$$
+
+Explain why this condition guarantees the validity of risk-neutral pricing in the Black-Scholes model.
+
+---
+
+**Exercise 6.**
+Suppose the discounted price process $\tilde{S}_t$ is a strict local martingale under $\mathbb{Q}$ with $\mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] = 0.95\,S_0$. Compute the bubble component $\beta_0$. Then, using the modified put-call parity $C - P = \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] - Ke^{-rT}$, show that the classical put-call parity fails and determine the sign of the error.
+
+---
+
+**Exercise 7.**
+For the 3D Bessel process reciprocal $M_t = 1/R_t$ starting from $R_0 = r_0 > 0$, verify the Ito computation: apply Ito's formula to $f(r) = 1/r$ and the SDE $dR_t = (1/R_t)\,dt + dW_t$ to obtain $dM_t = -M_t^2\,dW_t$. Explain why the absence of a $dt$ term confirms $M_t$ is a local martingale, and why the drift terms from $f'$ and $f''$ cancel exactly.

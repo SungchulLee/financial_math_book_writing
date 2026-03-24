@@ -231,3 +231,29 @@ The Vasicek and CIR models are the simplest non-trivial affine term structure mo
 - Vasicek, O. (1977). "An Equilibrium Characterization of the Term Structure." *Journal of Financial Economics*, 5(2), 177-188.
 - Cox, J. C., Ingersoll, J. E., & Ross, S. A. (1985). "A Theory of the Term Structure of Interest Rates." *Econometrica*, 53(2), 385-407.
 - Brigo, D. & Mercurio, F. *Interest Rate Models - Theory and Practice*. Springer, 2007, Chapters 3-4.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Vasicek model, the bond price $B(\tau)$ satisfies $B'(\tau) = -1 - \kappa B(\tau)$ with $B(0) = 0$. Solve this linear ODE to obtain $B(\tau) = \frac{1}{\kappa}(e^{-\kappa\tau} - 1)$ and then integrate $A'(\tau) = \kappa\theta B(\tau) + \frac{1}{2}\sigma^2 B(\tau)^2$ to derive the complete bond price formula.
+
+---
+
+**Exercise 2.** Compare the long-run yield $y_\infty = \lim_{\tau \to \infty} y(\tau)$ for the Vasicek and CIR models. For the Vasicek model, show that $y_\infty = \theta - \frac{\sigma^2}{2\kappa^2}$, and for the CIR model, show that $y_\infty = \frac{2\kappa\theta}{\gamma + \kappa}$ where $\gamma = \sqrt{\kappa^2 + 2\xi^2}$. For which model can the long-run yield be negative?
+
+---
+
+**Exercise 3.** The Vasicek model has Gaussian transitions: $r_T \mid r_t \sim N(\mu_\tau, \sigma_\tau^2)$. Derive the conditional mean $\mu_\tau = \theta(1 - e^{-\kappa\tau}) + r_t e^{-\kappa\tau}$ and variance $\sigma_\tau^2 = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\tau})$ directly from the SDE. What is the stationary distribution as $\tau \to \infty$?
+
+---
+
+**Exercise 4.** For the CIR model, the transition density involves the non-central chi-squared distribution. Without deriving the density, use the characteristic function to compute the conditional mean $\mathbb{E}[r_T \mid r_t]$ and variance $\operatorname{Var}(r_T \mid r_t)$. Verify that $\mathbb{E}[r_T \mid r_t] = \theta(1 - e^{-\kappa\tau}) + r_t e^{-\kappa\tau}$ (same mean as Vasicek) but the variance differs.
+
+---
+
+**Exercise 5.** The Feller condition for the CIR model is $2\kappa\theta \geq \xi^2$. Interpret each side of this inequality financially: what does $\kappa\theta$ represent, and what does $\xi^2$ represent? Explain intuitively why the mean reversion "pull" must dominate the volatility for the rate to stay strictly positive.
+
+---
+
+**Exercise 6.** Plot (or sketch) the yield curves $y(\tau) = -\frac{A(\tau)}{\tau} - \frac{B(\tau)}{\tau}r_0$ for the Vasicek model with $\kappa = 0.5$, $\theta = 0.05$, $\sigma = 0.02$ for three different starting rates: $r_0 = 0.02$ (below $\theta$), $r_0 = 0.05$ (at $\theta$), and $r_0 = 0.08$ (above $\theta$). Describe the shape of each curve (normal, inverted, or humped).

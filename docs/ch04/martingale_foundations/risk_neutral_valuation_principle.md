@@ -354,3 +354,46 @@ $$
 
 !!! summary "Key Takeaway"
     The risk-neutral valuation principle transforms the economic problem of pricing into a mathematical problem of computing expectations. The measure $\mathbb{Q}$ is not about beliefs—it encodes the no-arbitrage constraints from traded asset prices. In complete markets, this gives unique derivative prices; in incomplete markets, it gives bounds.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+A stock follows $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$ under the risk-neutral measure with $r = 0.05$, $\sigma = 0.30$, $S_0 = 100$, and $T = 0.5$. Compute the risk-neutral price of a European put option with strike $K = 95$ using the Black-Scholes formula. Verify that put-call parity holds.
+
+---
+
+**Exercise 2.**
+A digital (binary) call option pays $\$1$ if $S_T > K$ and nothing otherwise. Derive its price under risk-neutral valuation and show that it equals $e^{-rT}\Phi(d_2)$. What happens to the price as $\sigma \to 0$?
+
+---
+
+**Exercise 3.**
+Explain why the risk-neutral valuation formula uses $\mathbb{Q}$ rather than $\mathbb{P}$. Specifically, show that computing $e^{-rT}\mathbb{E}^{\mathbb{P}}[\Phi(S_T)]$ does not in general yield a no-arbitrage price. Under what special condition on the payoff $\Phi$ would the two computations agree?
+
+---
+
+**Exercise 4.**
+Derive the risk-neutral valuation formula from no-arbitrage in five steps: (i) apply the FTAP to get the martingale property of discounted prices, (ii) extend to derivative prices, (iii) apply the martingale property, (iv) use the terminal condition, and (v) rearrange. At which step does the assumption of market completeness enter?
+
+---
+
+**Exercise 5.**
+Consider a stochastic interest rate model where $r_t$ follows the Vasicek process. The price of a zero-coupon bond is $P(t, T) = \mathbb{E}^{\mathbb{Q}}[\exp(-\int_t^T r_s\,ds) | \mathcal{F}_t]$. Explain why this is a direct application of the risk-neutral valuation principle with payoff $\Phi = 1$. Why is the discount factor inside the expectation rather than outside when $r_t$ is stochastic?
+
+---
+
+**Exercise 6.**
+In an incomplete market, two equivalent martingale measures $\mathbb{Q}_1$ and $\mathbb{Q}_2$ both exist. For a non-traded claim with payoff $\Phi(X_T)$, show that the two measures can give different prices $V_0^{(1)} \neq V_0^{(2)}$, both consistent with no-arbitrage. Explain the economic meaning of the pricing interval $[\underline{V}, \overline{V}]$.
+
+---
+
+**Exercise 7.**
+Show that the Black-Scholes PDE
+
+$$
+\frac{\partial V}{\partial t} + rx\frac{\partial V}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2 V}{\partial x^2} - rV = 0
+$$
+
+is equivalent to the risk-neutral valuation formula via the Feynman-Kac theorem. Identify the generator $\mathcal{L}^{\mathbb{Q}}$, the discount rate, and the terminal condition. Explain why the PDE contains $r$ (not $\mu$) in the drift term.

@@ -322,3 +322,39 @@ Place priors on risk premium parameters and update with data:
 - Carr, P. & Wu, L. (2009). *Variance risk premiums*. Review of Financial Studies.
 - Andersen, T.G. & Piterbarg, V. (2007). *Moment explosions in stochastic volatility models*. Finance and Stochastics.
 - Fouque, J.-P., Papanicolaou, G., Sircar, R., & Sølna, K. (2011). *Multiscale Stochastic Volatility for Equity, Interest Rate, and Credit Derivatives*. Cambridge University Press.
+
+---
+
+## Exercises
+
+**Exercise 1.** Under the physical measure $\mathbb{P}$, the Heston variance process has parameters $\kappa^{\mathbb{P}} = 1.5$ and $\theta^{\mathbb{P}} = 0.04$. The market price of volatility risk is $\lambda^V = \lambda\sqrt{V}$ with $\lambda = 2.0$, and $\xi = 0.3$. Compute the risk-neutral parameters $\kappa^{\mathbb{Q}}$ and $\theta^{\mathbb{Q}}$. Verify that $\kappa^{\mathbb{Q}} > \kappa^{\mathbb{P}}$ and interpret this economically.
+
+---
+
+**Exercise 2.** A variance swap with 3-month maturity has a swap rate of $(22\%)^2 = 0.0484$. Historical analysis estimates the expected realized variance under $\mathbb{P}$ to be $(18\%)^2 = 0.0324$. Compute the variance risk premium $VRP = \mathbb{E}^{\mathbb{Q}}[\sigma^2] - \mathbb{E}^{\mathbb{P}}[\sigma^2]$ in both variance and volatility terms. If a trader sells the variance swap and realizes the expected variance, what is the annualized P&L?
+
+---
+
+**Exercise 3.** Explain why mixing $\mathbb{P}$-parameters with $\mathbb{Q}$-parameters leads to inconsistent dynamics. Specifically, suppose a practitioner calibrates $\kappa^{\mathbb{Q}} = 3.0$ and $\theta^{\mathbb{Q}} = 0.05$ from options, but uses $\kappa^{\mathbb{P}} = 1.5$ from time-series estimation as the mean-reversion speed in a Monte Carlo simulation for pricing. What error results, and how does it affect the term structure of implied volatility?
+
+---
+
+**Exercise 4.** The Radon–Nikodym derivative for the measure change is
+
+$$
+Z_T = \exp\!\left(-\int_0^T \lambda_t \cdot dW_t^{\mathbb{P}} - \frac{1}{2}\int_0^T |\lambda_t|^2\,dt\right)
+$$
+
+Show that $\mathbb{E}^{\mathbb{P}}[Z_T] = 1$ (i.e., $Z_T$ defines a valid probability measure) by computing $d(\log Z_t)$ using Ito's lemma and verifying that $Z_t$ is a martingale under $\mathbb{P}$ when $\lambda$ satisfies the Novikov condition.
+
+---
+
+**Exercise 5.** A practitioner estimates from historical S&P 500 data that $\theta^{\mathbb{P}} \approx (16\%)^2$ and $\kappa^{\mathbb{P}} \approx 2.0$. From option calibration, she obtains $\theta^{\mathbb{Q}} \approx (19\%)^2$ and $\kappa^{\mathbb{Q}} \approx 3.2$, with $\xi = 0.4$. Using the relationship $\kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \lambda\xi$, recover the risk premium parameter $\lambda$. Then verify consistency via $\theta^{\mathbb{Q}} = \kappa^{\mathbb{P}}\theta^{\mathbb{P}} / \kappa^{\mathbb{Q}}$. Is the recovered $\theta^{\mathbb{Q}}$ consistent? If not, what could explain the discrepancy?
+
+---
+
+**Exercise 6.** Consider joint estimation of $\mathbb{P}$ and $\mathbb{Q}$ parameters. You have two data sources: (a) a time series of 2000 daily returns, and (b) a cross-section of 50 option prices observed on a single day. Which data source primarily identifies each of the following: $\kappa^{\mathbb{P}}$, $\theta^{\mathbb{P}}$, $\kappa^{\mathbb{Q}}$, $\theta^{\mathbb{Q}}$, $\xi$, $\rho$, $V_0$? Explain which parameters are identifiable from options alone and which require historical data.
+
+---
+
+**Exercise 7.** The market price of equity risk is $\lambda^S = (\mu^{\mathbb{P}} - (r-q))/\sqrt{V}$. For a stock with $\mu^{\mathbb{P}} = 8\%$, $r = 4\%$, $q = 2\%$, and current instantaneous variance $V_0 = (20\%)^2 = 0.04$, compute $\lambda^S$. Explain why $\lambda^S$ is uniquely determined by no-arbitrage (the asset is traded), whereas $\lambda^V$ is not. What would happen to $\lambda^S$ during a high-volatility regime with $V = (40\%)^2$?

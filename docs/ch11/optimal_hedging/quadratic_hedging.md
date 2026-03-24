@@ -234,3 +234,29 @@ This is a standard least-squares problem that can be solved by backward inductio
 | Coincide when | Market complete, or $\hat{K}_T$ deterministic | |
 | Residual risk | $\operatorname{Var}(L_T^H) = (1 - R^2)\operatorname{Var}(H)$ | Same in many models |
 | Practical computation | Conditional regression at each step | Global regression / backward induction |
+
+---
+
+## Exercises
+
+**Exercise 1.** In the discrete-time local risk minimization formula, $\xi_{t_k}^* = \operatorname{Cov}(\Delta\tilde{V}_{t_k}, \Delta\tilde{S}_{t_k} \mid \mathcal{F}_{t_k}) / \operatorname{Var}(\Delta\tilde{S}_{t_k} \mid \mathcal{F}_{t_k})$, this is a regression coefficient. For a one-period model with $\tilde{S}_0 = 100$, $\tilde{S}_1 \in \{110, 100, 90\}$ with probabilities $\{0.3, 0.4, 0.3\}$, and a claim $H$ with payoffs $\{12, 3, 0\}$, compute $\xi_0^*$ and the residual risk $\mathbb{E}[(H - c^* - \xi_0^*\Delta\tilde{S})^2]$.
+
+---
+
+**Exercise 2.** The minimal martingale measure $\hat{\mathbb{P}}$ changes only the drift of $\tilde{S}$ and leaves orthogonal martingales unchanged. In a stochastic volatility model $dS = \mu S\,dt + \sigma(v)S\,dW^1$, $dv = b(v)\,dt + \eta(v)\,dW^2$ with $\rho = 0$, explain why the minimal martingale measure preserves the physical-measure dynamics of $v$. How does this affect the locally risk-minimizing price compared to a risk-neutral price that uses a market price of volatility risk?
+
+---
+
+**Exercise 3.** The Kunita-Watanabe decomposition writes $N_t = N_0 + \int_0^t \phi_s\,dM_s + L_t$ with $\langle L, M\rangle = 0$. For a two-dimensional Brownian motion $(W^1, W^2)$ with $M_t = W_t^1$, decompose $N_t = \rho W_t^1 + \sqrt{1-\rho^2}W_t^2$. Identify $\phi$ and $L$, and verify $\langle L, M\rangle = 0$. What is $\mathbb{E}[L_T^2]$ and what fraction of $N$'s variance is hedgeable?
+
+---
+
+**Exercise 4.** Local risk minimization and variance-optimal hedging coincide when the mean-variance tradeoff $\hat{K}_T = \int_0^T \alpha_t^2\,d\langle M\rangle_t$ is deterministic. For the Black-Scholes model with $\alpha = (\mu - r)/\sigma^2$ and $d\langle M\rangle_t = \sigma^2 S_t^2\,dt$, show that $\hat{K}_T = ((\mu - r)/\sigma)^2 T$, which is deterministic. Conclude that both quadratic approaches yield the same hedge in Black-Scholes.
+
+---
+
+**Exercise 5.** In the basis risk model with $\rho = 0.6$, $\sigma_S = 0.20$, $\sigma_Y = 0.30$, and a call on $Y$ with $\Delta_Y = 0.50$, $Y_0 = S_0 = 100$: compute the locally risk-minimizing hedge $\xi^{\text{LRM}} = \rho(\sigma_Y/\sigma_S)(Y/S)\Delta_Y$. Compute the residual risk as $(1-\rho^2)\operatorname{Var}(H)$ if $\operatorname{Var}(H) = 50$. By how much does the hedge reduce the total risk compared to an unhedged position?
+
+---
+
+**Exercise 6.** The coefficient of determination $R^2 = \rho^2$ measures hedge effectiveness. A trader hedges a basket option on three stocks using only the index. The basket's correlation with the index is $\rho = 0.85$. Compute $R^2$ and the fraction of unhedgeable variance. If the basket option has standard deviation $\$5.00$, what is the minimum achievable hedging error standard deviation? The trader considers adding a sector ETF with incremental $R^2$ improvement of $0.05$. What is the new residual standard deviation?

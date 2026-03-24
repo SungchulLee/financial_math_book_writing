@@ -262,3 +262,29 @@ The infinitesimal generator of an affine process has three components --- drift,
 - Duffie, D., Filipovic, D., and Schachermayer, W. (2003). "Affine Processes and Applications in Finance." *Annals of Applied Probability*, 13(3), 984--1053.
 - Filipovic, D. (2009). *Term-Structure Models: A Graduate Course*. Springer.
 - Sato, K. (1999). *Levy Processes and Infinitely Divisible Distributions*. Cambridge University Press.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Vasicek model $dX_t = \kappa(\theta - X_t)\,dt + \sigma\,dW_t$, write down the infinitesimal generator $\mathcal{A}$ and compute $\mathcal{A}f$ for $f(x) = x^2$. Verify that $\mathcal{A}f(x) = 2\kappa(\theta - x)x + \sigma^2$, and explain why this result does not have the form $[F(u) + R(u)x]\,f(x)$ (i.e., polynomial test functions do not simplify in the same way as exponentials).
+
+---
+
+**Exercise 2.** For the CIR process, compute $\mathcal{A}e^{ux}$ directly by evaluating $\kappa(\theta - x)(ue^{ux}) + \frac{1}{2}\xi^2 x(u^2 e^{ux})$. Collect terms to identify $F(u) = \kappa\theta u$ and $R(u) = -\kappa u + \frac{1}{2}\xi^2 u^2$. Verify that these match the Riccati ODE right-hand sides.
+
+---
+
+**Exercise 3.** Consider a two-dimensional affine process where $X_t^{(1)}$ follows a CIR process and $X_t^{(2)}$ follows a Vasicek process, with no cross-diffusion. Write down the generator $\mathcal{A}$ and compute $\mathcal{A}e^{u_1 x_1 + u_2 x_2}$. Show that $F$ and $R = (R_1, R_2)$ decompose into independent scalar contributions.
+
+---
+
+**Exercise 4.** For the affine jump-diffusion $dX_t = \kappa(\theta - X_t)\,dt + \sigma\,dW_t + dJ_t$ with compound Poisson jumps of intensity $\lambda$ and exponential jump sizes with parameter $\eta$, compute $\hat{\nu}(u) = \int_0^\infty e^{uz}\eta e^{-\eta z}\,dz$ and identify the domain of $u$ for which the integral converges. Write down $F(u)$ incorporating the jump term $\lambda(\hat{\nu}(u) - 1)$.
+
+---
+
+**Exercise 5.** The extended generator allows $\mathcal{A}$ to act on exponential functions that do not vanish at infinity. Explain why the standard generator defined on $C_0(\mathbb{R}^d)$ cannot handle $e_u(x) = e^{u^\top x}$, and state the growth condition that $u$ must satisfy for $e_u$ to belong to the domain of the extended generator when $X_t$ has CIR-type components on $\mathbb{R}_+$.
+
+---
+
+**Exercise 6.** Using the generator definition $\mathcal{A}f(x) = \lim_{t \downarrow 0}\frac{P_t f(x) - f(x)}{t}$, verify $\mathcal{A}e^{ux} = [F(u) + R(u)x]e^{ux}$ for the OU process by first computing $P_t e^{ux} = \mathbb{E}[e^{uX_t} \mid X_0 = x]$ using the known Gaussian transition density, then differentiating at $t = 0$.

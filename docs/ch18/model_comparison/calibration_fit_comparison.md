@@ -157,3 +157,33 @@ In all models, the mean-reversion speed $a$ and the volatility $\sigma$ are part
 | Calibration speed | Hull-White (100$\times$ faster than BK) |
 
 The overall conclusion: Hull-White dominates for ATM calibration due to speed and stability. Black-Karasinski adds value primarily for OTM products where the log-normal smile is empirically closer to market prices. For a structural comparison of the two models, see [Vasicek vs CIR vs Hull-White](vasicek_vs_cir_vs_hull_white.md). For when to choose which model in practice, see [When to Use Which](when_to_use_which.md).
+
+---
+
+## Exercises
+
+**Exercise 1.** Define the three calibration error metrics (RMSE, MAE, MaxErr) and explain their relative merits. Under what circumstances would you prefer MAE over RMSE? When is MaxErr the most informative metric?
+
+---
+
+**Exercise 2.** A Hull-White model with constant $\sigma$ produces ATM cap volatility RMSE of 20 bps. After switching to piecewise-constant $\sigma(t)$ with one level per cap maturity, the RMSE drops to $< 0.1$ bps. Explain why this dramatic improvement occurs. How many free volatility parameters does the piecewise-constant model have if there are 10 cap maturities?
+
+---
+
+**Exercise 3.** The CIR model with constant parameters shows higher cap volatility RMSE (20--35 bps) than Hull-White (15--25 bps). Identify the structural reason: the CIR cap implied volatility depends on the rate level through $\sqrt{r}$, while Hull-White cap implied volatility is level-independent. How does this affect the fit quality when the current rate is far from $\theta$?
+
+---
+
+**Exercise 4.** Explain why the one-factor structure is the dominant source of swaption calibration error, regardless of whether Hull-White or Black-Karasinski is used. What specific property of the swaption volatility matrix cannot be reproduced by any one-factor model?
+
+---
+
+**Exercise 5.** BK with piecewise-constant $\sigma(t)$ shows higher parameter instability (2--5% daily change per bucket) than HW (1--3%). Explain why tree-based calibration introduces discretization noise that contributes to this instability. How would increasing the number of tree steps affect stability?
+
+---
+
+**Exercise 6.** The $a$--$\sigma$ correlation creates a ridge in the calibration objective function. For Hull-White, sketch the level curves of the cap volatility RMSE in the $(a, \sigma)$ plane and indicate the ridge direction. Explain the practical recommendation to fix $a$ from historical estimation.
+
+---
+
+**Exercise 7.** A portfolio contains both ATM caps and deep OTM receiver swaptions. Based on the summary table, propose a calibration strategy that uses Hull-White for the ATM caps and Black-Karasinski for the OTM swaptions. What challenges arise from using two models for the same portfolio, particularly for hedging and risk aggregation?

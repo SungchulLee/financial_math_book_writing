@@ -191,3 +191,50 @@ Timing adjustments are typically small for standard derivatives but become signi
 - Brigo & Mercurio (2006), *Interest Rate Models: Theory and Practice*, Chapter 13
 - Pelsser (2000), *Efficient Methods for Valuing Interest Rate Derivatives*, Chapter 5
 - Hunt & Kennedy (2004), *Financial Derivatives in Theory and Practice*, Chapter 14
+
+---
+
+## Exercises
+
+**Exercise 1.** A 6-month LIBOR rate fixes at $T_i = 4.0$ with natural payment at $T_{i+1} = 4.5$, but actual payment is at $T_p = 5.0$. The forward rate is $L_i(0) = 3.0\%$, Black volatility is $\sigma_i = 22\%$, the bond volatility for the delay period is $\sigma_P(T_{i+1}, T_p) = 0.6\%$, and the correlation is $\rho = 0.90$. Compute the timing adjustment and the adjusted expectation $\mathbb{E}^{\mathbb{Q}^{T_p}}[L_i(T_i)]$.
+
+---
+
+**Exercise 2.** Derive the timing adjustment formula starting from the Radon--Nikodym derivative
+
+$$
+\frac{d\mathbb{Q}^{T_p}}{d\mathbb{Q}^{T_{i+1}}}\bigg|_{\mathcal{F}_t} = \frac{P(t, T_p) / P(0, T_p)}{P(t, T_{i+1}) / P(0, T_{i+1})}
+$$
+
+by applying Girsanov's theorem to the lognormal forward rate dynamics. Show explicitly how the drift correction depends on the covariance between the forward rate and the bond price ratio $P(t, T_p)/P(t, T_{i+1})$.
+
+---
+
+**Exercise 3.** A floating-rate note pays quarterly coupons, but due to a settlement convention, each coupon is paid 5 business days (approximately 1 week) after the end of the accrual period. The forward rate for a typical period is $L_i(0) = 4.5\%$, $\sigma_i = 15\%$, and the fixing time is $T_i = 7$ years. Estimate the timing adjustment for this 1-week delay and argue whether it is material enough to warrant explicit computation in practice.
+
+---
+
+**Exercise 4.** Explain qualitatively why the LIBOR-in-arrears convexity correction (payment at $T_i$ instead of $T_{i+1}$) is always positive, while a payment delay beyond $T_{i+1}$ can produce a correction of either sign depending on the correlation. Use the general covariance formula to support your argument.
+
+---
+
+**Exercise 5.** Consider two structured notes, both referencing 3-month LIBOR:
+
+- Note A fixes at $T_i = 5$ and pays at $T_p = 5$ (in-arrears).
+- Note B fixes at $T_i = 5$ and pays at $T_p = 6$ (delayed by 1 year).
+
+With $L_i(0) = 4\%$, $\sigma_i = 20\%$, and $\delta_i = 0.25$, compute the timing adjustment for each note. Use the LIBOR-in-arrears formula for Note A and the general timing adjustment formula (with $\sigma_P = 0.8\%$ and $\rho = 0.80$) for Note B. Which adjustment is larger and why?
+
+---
+
+**Exercise 6.** The general timing adjustment formula involves the covariance
+
+$$
+\text{Cov}^{\mathbb{Q}^{T_{\text{nat}}}}\!\left(R(T_{\text{fix}}),\;\frac{P(T_{\text{fix}}, T_p)}{P(T_{\text{fix}}, T_{\text{nat}})}\right)
+$$
+
+Under what conditions on the rate $R$ and the yield curve dynamics does this covariance equal zero, making the timing adjustment vanish? Give a concrete example of a model or market scenario where this could approximately hold.
+
+---
+
+**Exercise 7.** A cross-currency swap pays USD LIBOR quarterly but EUR EURIBOR semiannually, with mismatched payment dates. For a specific EUR coupon, the EURIBOR rate $L^f$ fixes at $T = 3$ with natural payment at $T + 0.5 = 3.5$, but the actual payment (aligned with the USD schedule) occurs at $T_p = 3.25$. Using $L^f(0) = 2.5\%$, $\sigma^f = 16\%$, and appropriate estimates for the bond volatility and correlation, estimate the timing adjustment and discuss whether it should be combined with any other convexity or quanto adjustments.

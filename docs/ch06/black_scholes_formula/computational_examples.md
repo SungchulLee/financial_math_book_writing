@@ -711,3 +711,39 @@ This section provided:
 - Implied volatility calculation inverts the pricing formula
 
 The combination of theoretical understanding and computational proficiency enables effective use of the Black-Scholes model in practice.
+
+---
+
+## Exercises
+
+**Exercise 1.** Price a European put option with $S_0 = 65$, $K = 60$, $T = 0.75$ years, $r = 3\%$, and $\sigma = 35\%$. Show every intermediate step: compute $d_1$, $d_2$, $\mathcal{N}(-d_1)$, $\mathcal{N}(-d_2)$, and the final put price. Verify your answer using put-call parity.
+
+---
+
+**Exercise 2.** A market maker observes a European call on a non-dividend-paying stock trading at \$8.25. The stock price is $S_0 = 110$, the strike is $K = 105$, the risk-free rate is $r = 4\%$, and the option expires in 90 days. Using the bisection method (or Brent's method), find the implied volatility to four decimal places. Describe the convergence behavior of your root-finding algorithm.
+
+---
+
+**Exercise 3.** Compute the full set of Greeks (delta, gamma, vega, theta, rho) for a European call with $S_0 = 100$, $K = 100$, $T = 1$, $r = 5\%$, and $\sigma = 20\%$. Then verify the following relationships numerically:
+
+$$
+\Gamma_{\text{call}} = \Gamma_{\text{put}}, \qquad \mathcal{V}_{\text{call}} = \mathcal{V}_{\text{put}}, \qquad \Delta_{\text{call}} - \Delta_{\text{put}} = 1
+$$
+
+---
+
+**Exercise 4.** Using the Black-Scholes formula, create a table of call option prices for $S_0 = 100$, $r = 5\%$, $\sigma = 25\%$, with strikes $K \in \{80, 90, 100, 110, 120\}$ and maturities $T \in \{0.25, 0.5, 1.0, 2.0\}$ years. For each entry, decompose the price into intrinsic value and time value. Identify which combination of strike and maturity has the largest time value, and explain why.
+
+---
+
+**Exercise 5.** Implement a finite-difference approximation to verify the Black-Scholes Greeks. For the call with parameters $S_0 = 50$, $K = 52$, $T = 0.5$, $r = 5\%$, $\sigma = 30\%$, compute:
+
+$$
+\Delta \approx \frac{C(S_0 + h) - C(S_0 - h)}{2h}, \qquad \Gamma \approx \frac{C(S_0 + h) - 2C(S_0) + C(S_0 - h)}{h^2}
+$$
+
+with $h = 0.01$. Compare with the analytical Greeks and report the relative errors.
+
+---
+
+**Exercise 6.** A trader holds a portfolio of three European options on the same underlying ($S_0 = 100$, $r = 5\%$, $\sigma = 20\%$): long 10 calls with $K = 95$ and $T = 0.5$, short 20 calls with $K = 100$ and $T = 0.5$, and long 10 calls with $K = 105$ and $T = 0.5$. Compute the portfolio's total delta, gamma, and vega. Identify this position as a well-known option strategy and explain its payoff profile at expiration.

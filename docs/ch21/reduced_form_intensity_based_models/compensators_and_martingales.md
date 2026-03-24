@@ -345,3 +345,33 @@ The martingale/compensator framework justifies this formula rigorously.
 - Brémaud, P. (1981). *Point Processes and Queues: Martingale Dynamics*. Springer.
 - Elliott, R. J., Aggoun, L., & Moore, J. B. (1995). *Hidden Markov Models*. Springer.
 - Bielecki, T. R., & Rutkowski, M. (2004). *Credit Risk: Modeling, Valuation and Hedging*. Springer, Chapter 8.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $H_t = \mathbf{1}_{\{\tau \le t\}}$ be the default indicator process with constant intensity $\lambda$. Show that $M_t = H_t - \lambda(t \wedge \tau)$ is a $\mathcal{G}_t$-martingale by computing $\mathbb{E}[M_t - M_s \mid \mathcal{G}_s]$ for $s < t$, separately on $\{\tau \le s\}$ and $\{\tau > s\}$.
+
+---
+
+**Exercise 2.** For a stochastic intensity $\lambda_t$, the compensator of $H_t$ is $\Lambda_{t \wedge \tau} = \int_0^{t \wedge \tau} \lambda_s\,ds$. Explain why the compensator stops accumulating after default (i.e., the integral is capped at $\tau$). What would go wrong economically if the compensator continued to grow after default?
+
+---
+
+**Exercise 3.** The compensated default process $M_t^H = H_t - \int_0^{t \wedge \tau} \lambda_s\,ds$ is a martingale. Show that $\mathbb{E}[M_t^H] = 0$ for all $t$ and compute $\text{Var}(M_t^H)$ for constant intensity $\lambda$.
+
+---
+
+**Exercise 4.** Prove that the default indicator $H_t$ is a submartingale. Use the Doob-Meyer decomposition to identify its predictable compensator. How does this relate to the hazard rate?
+
+---
+
+**Exercise 5.** Using the martingale property of $M_t^H$, derive the pricing formula for a defaultable claim that pays 1 at default time $\tau$ if $\tau \le T$:
+
+$$
+\mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_0^{\tau} r_s\,ds}\,\mathbf{1}_{\{\tau \le T\}}\right] = \mathbb{E}^{\mathbb{Q}}\!\left[\int_0^T e^{-\int_0^u r_s\,ds}\,\lambda_u\,S(0,u)\,du\right]
+$$
+
+---
+
+**Exercise 6.** In a model with two default times $\tau_1$ and $\tau_2$ (e.g., two firms), the joint default indicator is $H_t^{(1,2)} = \mathbf{1}_{\{\tau_1 \le t, \tau_2 \le t\}}$. If defaults are conditionally independent given a common factor $Z$, describe the compensator of $H_t^{(1,2)}$. How does the correlation between default events enter through the common factor?

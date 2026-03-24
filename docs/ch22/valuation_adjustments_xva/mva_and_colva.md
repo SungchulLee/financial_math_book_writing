@@ -323,3 +323,57 @@ This represents approximately 1.9 bps of notional per annum.
 - ISDA (2022), "ISDA SIMM Methodology"
 - Crépey, S., Bielecki, T., & Brigo, D. (2014), *Counterparty Risk and Funding: A Tale of Two Puzzles*
 - Anfuso, F., Aziz, D., Giltinan, P., & Loukopoulos, K. (2017), "A Sound Modelling and Backtesting Framework for Forecasting Initial Margin Requirements"
+
+---
+
+## Exercises
+
+**Exercise 1.** A 10-year cleared interest rate swap with notional \$200M has an initial margin profile $\text{IM}(t) = 8(1 - t/10)$ million (linearly decaying). The bank's funding spread is 70 bps. Compute the MVA using
+
+$$
+\text{MVA} = s_F \int_0^{10} \text{IM}(t) \cdot e^{-rt} \, dt
+$$
+
+with $r = 3\%$. Express the result in basis points of notional per annum.
+
+---
+
+**Exercise 2.** A CSA allows the poster to choose between cash (earning OIS rate $r = 2.5\%$) and government bonds (earning coupon rate $r_C = 3.0\%$, subject to haircut $h = 5\%$). The collateral amount is \$50M. Compute the ColVA for each collateral type over 1 year. Which is the cheapest-to-deliver? Explain the collateral choice option and who benefits from it.
+
+---
+
+**Exercise 3.** A trade requires average regulatory capital of \$5M over 7 years, with the bank's hurdle rate $h = 11\%$, survival probability $S_B(t) = e^{-0.01t}$, and discount rate $r = 3\%$. Compute the KVA using
+
+$$
+\text{KVA} = h \int_0^T K(t) \cdot S_B(t) \cdot D(0,t) \, dt
+$$
+
+Why does the bank's survival probability appear in the formula? What happens to KVA if the bank's credit quality deteriorates significantly?
+
+---
+
+**Exercise 4.** Explain why MVA is always a cost (never a benefit) to the posting institution, while FVA can be either a cost or a benefit depending on the sign of the derivative's value. For a fully collateralized trade where FVA is approximately zero, the MVA may still be substantial. Provide a numerical example: a 20-year swap with IM averaging \$15M and funding spread of 90 bps. Compare this MVA to a typical bid-ask spread for the same swap.
+
+---
+
+**Exercise 5.** The ISDA SIMM aggregation formula is
+
+$$
+\text{IM}_{\text{SIMM}} = \sqrt{\sum_{r} \text{IM}_r^2 + \sum_{r \ne s} \psi_{rs} \cdot \text{IM}_r \cdot \text{IM}_s}
+$$
+
+Consider a portfolio with exposures to interest rates ($\text{IM}_{\text{IR}} = \$8$M), credit ($\text{IM}_{\text{CR}} = \$5$M), and equity ($\text{IM}_{\text{EQ}} = \$3$M), with cross-correlations $\psi_{\text{IR,CR}} = 0.25$, $\psi_{\text{IR,EQ}} = 0.15$, $\psi_{\text{CR,EQ}} = 0.20$. Compute the total SIMM IM. Compare this to the sum of individual IMs and discuss the diversification benefit.
+
+---
+
+**Exercise 6.** In the BSDE formulation including MVA, the driver is
+
+$$
+f(t, V, Z) = -rV + \lambda_C \cdot \text{LGD}_C \cdot V^+ - \lambda_B \cdot \text{LGD}_B \cdot V^- + s_F(V - C)^+ + s_F \cdot \text{IM}(t, V, Z)
+$$
+
+Explain why the IM term depends on $Z$ (the hedging process / sensitivity) through the SIMM formula. What computational challenge does this create for solving the BSDE numerically? Describe the "simulation within simulation" problem and one approach to overcome it.
+
+---
+
+**Exercise 7.** For a 10-year uncollateralized interest rate swap with \$100M notional, the typical XVA ranges are: CVA 20-50 bps, DVA 10-30 bps (benefit), FVA 5-20 bps, MVA 10-30 bps, KVA 10-25 bps, ColVA 0-5 bps. Taking midpoint values, compute the total XVA in dollar terms and as a percentage of notional. If the swap's clean mid-market value is \$0 (at-market), what upfront fee or running spread would the bank need to charge to break even on XVA? Discuss how this affects the bank's competitiveness.

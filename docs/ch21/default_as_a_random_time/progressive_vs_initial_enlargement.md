@@ -240,3 +240,41 @@ The uncertainty is completely resolved by knowing $\tau$.
 - Jacod, J. (1985). Grossissement initial, hypothèse (H'), et théorème de Girsanov. *Séminaire de Probabilités XIX*.
 - Bielecki, T. R., & Rutkowski, M. (2004). *Credit Risk: Modeling, Valuation and Hedging*. Springer, Chapter 5.
 - Protter, P. (2005). *Stochastic Integration and Differential Equations*. Springer, Chapter VI.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $\tau \sim \text{Exp}(\lambda)$ be independent of $\mathcal{F}_t$. Under progressive enlargement, compute $\mathbb{P}(\tau > T \mid \mathcal{G}_t^{\text{prog}})$ on the event $\{\tau > t\}$ for $T > t$. Compare this with the result under initial enlargement. Explain the economic difference between the two answers.
+
+---
+
+**Exercise 2.** Show that for any time $t$, the filtrations satisfy the strict inclusion $\mathcal{F}_t \subsetneq \mathcal{G}_t^{\text{prog}} \subsetneq \mathcal{G}_t^{\text{init}}$. Provide a concrete random variable that is $\mathcal{G}_t^{\text{init}}$-measurable but not $\mathcal{G}_t^{\text{prog}}$-measurable on the event $\{\tau > t\}$.
+
+---
+
+**Exercise 3.** Under progressive enlargement, every $\mathcal{G}_t$-measurable random variable $X$ has the form
+
+$$
+X = Y\,\mathbf{1}_{\{\tau > t\}} + Z(\tau)\,\mathbf{1}_{\{\tau \le t\}}
+$$
+
+For the specific case where $X$ represents the mark-to-market value of a defaultable bond, identify the economic meaning of $Y$ (the pre-default component) and $Z(\tau)$ (the post-default component). How does recovery at default enter through $Z(\tau)$?
+
+---
+
+**Exercise 4.** Explain why initial enlargement corresponds to "insider information" in the context of credit risk. A trader who knows the exact default time $\tau$ in advance can construct arbitrage strategies. Describe one such strategy for a CDS contract and explain why the no-arbitrage principle fails under initial enlargement without appropriate measure changes.
+
+---
+
+**Exercise 5.** Under progressive enlargement with the density hypothesis, an $\mathcal{F}$-semimartingale $X_t$ decomposes as
+
+$$
+X_t = \tilde{X}_t + \int_0^{t \wedge \tau} \frac{d\langle X, G\rangle_s}{G_{s-}}
+$$
+
+For $X_t = W_t$ (a standard Brownian motion) and $G_t = e^{-\lambda t}$ (constant intensity), compute the drift correction. Show that $W_t$ remains a $\mathcal{G}$-martingale, confirming immersion.
+
+---
+
+**Exercise 6.** Jacod's criterion states that $\mathcal{F}$-semimartingales remain $\mathcal{G}^{\text{init}}$-semimartingales if the conditional law of $\tau$ given $\mathcal{F}_\infty$ is absolutely continuous. Give an example of a default time $\tau$ for which this condition fails (hint: consider $\tau$ that is $\mathcal{F}_\infty$-measurable). Explain why semimartingale preservation breaks down in this case.

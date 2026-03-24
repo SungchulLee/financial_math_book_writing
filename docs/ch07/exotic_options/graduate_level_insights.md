@@ -169,3 +169,29 @@ where $\{\psi_p\}$ and $\{\phi_q\}$ are polynomial or other basis functions.
 | LSM for exotics | Extend regression basis to include path-dependent state variables |
 
 **These graduate-level insights connect the computational methods for exotic option pricing to their mathematical foundations, providing the theoretical depth needed for rigorous implementation and error analysis.**
+
+---
+
+## Exercises
+
+**Exercise 1.** The Broadie-Glasserman-Kou correction shifts a down barrier from $H$ to $H_{\text{eff}} = H \exp(-\beta \sigma \sqrt{\Delta t})$ where $\beta \approx 0.5826$. (a) Derive the intuition for this correction using the Brownian bridge: given $S_{t_k} > H$ and $S_{t_{k+1}} > H$, what is the probability that $\min_{t_k \leq t \leq t_{k+1}} S_t \leq H$? (b) Verify numerically that for a down-and-out call with $H = 90$, $\sigma = 0.20$, $T = 1$, and $M = 50$ time steps, the correction moves the effective barrier to approximately $H_{\text{eff}} \approx 88.35$.
+
+---
+
+**Exercise 2.** For the moment-matching approximation of arithmetic Asian options, derive the first moment $M_1 = \mathbb{E}^{\mathbb{Q}}[\bar{S}]$ for a discrete average with $n$ equally-spaced fixings under GBM. Show that $M_1 = \frac{S_0}{n} \sum_{i=1}^{n} e^{r t_i}$ and evaluate this sum in closed form as a geometric series.
+
+---
+
+**Exercise 3.** The joint distribution of $(W_T, \max_{0 \leq t \leq T} W_t)$ is derived from the reflection principle. Starting from the reflection principle for standard Brownian motion, derive the formula $\mathbb{P}(\max_{0 \leq t \leq T} W_t \leq y, \; W_T \leq x) = N(x/\sqrt{T}) - e^{-2xy/T} N((x - 2y)/\sqrt{T})$ for $y \geq 0$, $x \leq y$. Verify that setting $y = \infty$ recovers $\mathbb{P}(W_T \leq x) = N(x/\sqrt{T})$.
+
+---
+
+**Exercise 4.** For an American Asian put, the LSM regression at time $t_k$ must include both $S_{t_k}$ and the running average $\bar{S}_k$ as state variables. Write the regression model $C \approx \sum_{p,q} \alpha_{pq} S_{t_k}^p \bar{S}_k^q$ for polynomial degree 2. How many basis functions does this produce? Discuss the trade-off between using more basis functions and the risk of overfitting with a finite number of paths.
+
+---
+
+**Exercise 5.** Compare three methods for pricing a down-and-out call: (a) naive Monte Carlo with discrete monitoring, (b) Monte Carlo with the BGK correction, and (c) the closed-form image method formula. For each method, state the convergence rate as a function of the number of time steps $M$ and/or paths $N$. Under what circumstances does each method have a practical advantage?
+
+---
+
+**Exercise 6.** The Geman-Yor Laplace transform approach expresses the Asian option price through the Laplace transform in the strike variable. Explain conceptually why a Laplace transform in the time-to-maturity variable (rather than the strike) would also be useful. What are the main computational challenges in numerically inverting the Laplace transform, and name one algorithm commonly used for this inversion.

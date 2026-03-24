@@ -545,3 +545,33 @@ Trigger alert if $|Z_t| > h \cdot \text{se}$ for threshold $h$.
 - Cappé & Moulines (2009), "Online EM Algorithm for Latent Data Models"
 - Kingma & Ba (2015), "Adam: A Method for Stochastic Optimization"
 - Shalev-Shwartz (2012), "Online Learning and Online Convex Optimization"
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a linear model $Y_t = X_t^\top \theta + \varepsilon_t$ with $\theta \in \mathbb{R}^2$, $X_t = (1, f_t)^\top$ (intercept and a factor), and observations $(f_1, Y_1) = (0.5, 1.2)$, $(f_2, Y_2) = (-0.3, 0.4)$, $(f_3, Y_3) = (0.8, 1.6)$. (a) Initialize RLS with $\hat{\theta}_0 = (0, 0)^\top$ and $P_0^{-1} = 0.01 I_2$. Compute the gain $K_1$, the updated estimate $\hat{\theta}_1$, and the updated $P_1^{-1}$ after the first observation. (b) Continue for observations 2 and 3. (c) Verify that $\hat{\theta}_3$ approximately equals the batch OLS solution computed from all three observations.
+
+---
+
+**Exercise 2.** Exponentially weighted RLS uses a forgetting factor $\lambda$. (a) For $\lambda = 0.95$, compute the effective window length $T_{\text{eff}} = 1/(1-\lambda)$. (b) The weight on an observation from $k$ periods ago is $\lambda^k$. How many periods back does the weight drop below 1% of the current observation's weight? (c) A hedge fund recalibrates its factor model daily using $\lambda = 0.99$ in calm markets and $\lambda = 0.95$ during crises. Explain the rationale: crises require faster adaptation (shorter memory). (d) Propose an adaptive forgetting factor $\lambda_t = \lambda_{\min} + (1-\lambda_{\min})\exp(-\gamma e_t^2)$ and explain how large prediction errors $e_t$ automatically reduce $\lambda_t$.
+
+---
+
+**Exercise 3.** Compare RLS and SGD for online estimation of a linear regression with $d = 100$ features. (a) What is the per-update computational complexity of RLS ($O(d^2)$) versus SGD ($O(d)$)? For $d = 100$, how much faster is SGD per iteration? (b) RLS converges in one pass over the data (for stationary linear problems), while SGD requires multiple passes. Explain why this is due to the second-order information captured in $P_t^{-1}$. (c) For a nonlinear model (e.g., a neural network with $d = 10{,}000$ parameters), why is SGD the only practical choice?
+
+---
+
+**Exercise 4.** The stability-adaptivity tradeoff for a constant-gain estimator tracking a drifting parameter gives MSE $= KR/(2-K) + Q/(K(2-K))$ where $R$ is observation noise variance and $Q$ is drift variance. (a) For $R = 0.04$ and $Q = 0.001$, compute the optimal gain $K^* = \sqrt{Q/(R + Q/2)}$ and the resulting MSE. (b) Plot or sketch the MSE as a function of $K$ for these parameter values, showing the two components (noise amplification increasing with $K$, drift lag decreasing with $K$). (c) In financial terms, $R$ corresponds to daily return noise and $Q$ to the rate of parameter change. During a crisis, $Q$ increases tenfold. Compute the new optimal $K^*$ and explain why the estimator should adapt faster.
+
+---
+
+**Exercise 5.** The Adam optimizer updates parameters using bias-corrected first and second moment estimates. For a single parameter with gradient sequence $g_1 = 0.5$, $g_2 = -0.3$, $g_3 = 0.2$, and hyperparameters $\beta_1 = 0.9$, $\beta_2 = 0.999$, $\eta = 0.01$, $\epsilon = 10^{-8}$: (a) Compute $m_t$, $v_t$, $\hat{m}_t$, $\hat{v}_t$, and the parameter update $\Delta\theta_t$ for $t = 1, 2, 3$. (b) Why is the bias correction $\hat{m}_t = m_t / (1-\beta_1^t)$ necessary in the early steps? (c) Compare the effective learning rate $\eta / \sqrt{\hat{v}_t}$ at each step with the fixed learning rate used in standard SGD. How does Adam automatically adjust the step size?
+
+---
+
+**Exercise 6.** A streaming VaR estimator updates the $\alpha$-quantile using $\hat{q}_t^{(\alpha)} = \hat{q}_{t-1}^{(\alpha)} + \gamma_t(\alpha - \mathbf{1}\{R_t \le \hat{q}_{t-1}^{(\alpha)}\})$. (a) Explain why this is an SGD update on the pinball (quantile) loss $\rho_\alpha(u) = u(\alpha - \mathbf{1}\{u \le 0\})$. (b) For $\alpha = 0.01$ (1% VaR), if the current estimate is $\hat{q}_t = -2.5\%$ and the new return is $R_{t+1} = -3.2\%$ (a loss exceeding VaR), compute the update direction. What is the update direction when $R_{t+1} = -1.5\%$ (no VaR breach)? (c) The step size $\gamma_t$ must satisfy the Robbins-Monro conditions. What happens if $\gamma_t$ is too large (erratic estimates) or too small (slow adaptation)?
+
+---
+
+**Exercise 7.** The online EM algorithm for a two-component Gaussian mixture model $p(Y) = \pi \mathcal{N}(Y; \mu_1, \sigma_1^2) + (1-\pi)\mathcal{N}(Y; \mu_2, \sigma_2^2)$ updates sufficient statistics incrementally. (a) For a financial application, interpret the two components as "normal" and "crisis" return distributions with $\mu_1 = 0.03\%$, $\sigma_1 = 1\%$, $\mu_2 = -0.1\%$, $\sigma_2 = 3\%$, and $\pi = 0.9$. (b) When a new return observation $Y_t = -4\%$ arrives, compute the responsibilities $r_{t1}$ and $r_{t2}$. Which component claims this observation? (c) Describe how the online EM updates $\bar{n}_k$, $\bar{s}_k$, and hence $\hat{\mu}_k$ and $\hat{\pi}$. With step size $\gamma_t = 1/t$, how does the influence of old observations decay over time?

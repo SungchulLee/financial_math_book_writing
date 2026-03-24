@@ -859,3 +859,39 @@ Semi-static hedging continues to evolve with:
 - **Multiple sources of risk**: Extending to multi-asset, multi-factor settings
 
 The semi-static framework provides a practical, cost-effective approach to derivative hedging that bridges theory and practice, combining the elegance of static replication with the flexibility of dynamic adjustments.
+
+---
+
+## Exercises
+
+**Exercise 1.** Using the Carr-Madan static replication formula, express the payoff of a variance swap $g(S_T) = -2\log(S_T/F)$ as a portfolio of European puts and calls. Write out the explicit weights $g''(K) = 2/K^2$ and explain why the replication uses out-of-the-money puts for $K < F$ and out-of-the-money calls for $K > F$.
+
+---
+
+**Exercise 2.** Consider an up-and-out call with strike $K = 100$ and barrier $H = 120$. Under the Black-Scholes model with constant volatility, describe the semi-static hedging strategy that uses a static portfolio of vanilla calls plus a dynamic adjustment at the barrier. Specifically, show that at the moment the barrier is first hit, the static portfolio should be liquidated and its proceeds invested in bonds.
+
+---
+
+**Exercise 3.** Compare the total hedging cost (including transaction costs) of three strategies for a barrier option: (a) continuous delta hedging, (b) semi-static hedging with adjustment at the barrier only, and (c) purely static replication using vanilla options. If proportional transaction costs are $\varepsilon = 0.1\%$ and the option has 1 year to maturity with daily rebalancing for strategy (a), estimate which strategy is cheapest.
+
+---
+
+**Exercise 4.** For a forward start option with payoff $(S_T / S_{T_1} - 1)^+$, design a semi-static hedging strategy. The static component should be established at time $0$ and the dynamic adjustment should occur at time $T_1$ when the strike becomes known. What vanilla instruments are needed at each time, and how do the required positions depend on $S_{T_1}$?
+
+---
+
+**Exercise 5.** Formalize the semi-static hedging problem as an optimization. Given a target exotic payoff $\Phi$, static positions $\alpha_i$ in vanilla options $\{V_i\}_{i=1}^N$, and a dynamic strategy $\theta_t$, minimize the expected squared hedging error:
+
+$$
+\min_{\alpha, \theta} \mathbb{E}\left[\left(\Phi - \sum_{i=1}^N \alpha_i V_i(S_T) - \int_0^T \theta_t \, dS_t\right)^2\right]
+$$
+
+Explain why separating the problem into static and dynamic components simplifies the optimization.
+
+---
+
+**Exercise 6.** A semi-static hedge for a double barrier option $\mathbb{1}\{L \leq S_t \leq H, \forall t\}$ involves adjustments at each barrier touch. In a discrete monitoring setting (daily), describe the adjustment protocol: what positions are modified when $S_t$ crosses $L$ or $H$, and how does the strategy differ from continuous monitoring? Discuss the model risk arising from the discrete vs. continuous monitoring discrepancy.
+
+---
+
+**Exercise 7.** Prove that for any European payoff $g(S_T)$ that is twice differentiable, the Carr-Madan static replication is exact and model-free. Then explain why path-dependent payoffs generally cannot be perfectly replicated statically and require the dynamic component. Give an example of a path-dependent payoff for which the semi-static hedge achieves exact replication under specific model assumptions but not model-free.

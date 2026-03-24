@@ -167,3 +167,29 @@ The sensitivity to volatility misspecification motivates several practical appro
 - This motivates implied-vs-realized volatility trading intuition and the variance risk premium.
 - When misspecification occurs matters as much as how much, due to gamma weighting.
 - The framework connects naturally to variance swaps, uncertain volatility models, and robust hedging.
+
+---
+
+## Exercises
+
+**Exercise 1.** A trader sells a 3-month ATM call ($S = K = 100$, $\tau = 0.25$) at implied vol $\hat{\sigma} = 0.22$ and delta-hedges. The realized volatility turns out to be $\sigma = 0.18$. Using the El Karoui-Jeanblanc-Shreve formula with constant $\Gamma \approx 0.03$ and $S \approx 100$, estimate the cumulative hedging P&L. Is this a profit or a loss for the option seller?
+
+---
+
+**Exercise 2.** The hedging error is $\varepsilon = \frac{1}{2}\int_0^T \Gamma(t,S_t)(\sigma^2 - \hat{\sigma}^2)S_t^2\,dt$. Explain why the sign of $\varepsilon$ depends on whether the trader is long or short gamma. For a long put position (positive gamma), what happens to the hedging error if realized vol exceeds implied vol?
+
+---
+
+**Exercise 3.** Even if the average realized variance equals the hedge variance ($\frac{1}{T}\int_0^T \sigma(t)^2\,dt = \hat{\sigma}^2$), the hedging error can be nonzero due to gamma weighting. Construct a simple example with two time periods where the average variance is correct but the hedging error is nonzero because higher volatility coincides with higher gamma.
+
+---
+
+**Exercise 4.** The variance swap interpretation writes $\varepsilon = T(\sigma_R^2 - \hat{\sigma}^2)\overline{\Gamma_\$}$. If a trader wants to hedge the volatility misspecification risk of a short call position, explain how buying a variance swap with notional proportional to $\overline{\Gamma_\$}$ provides protection. What is the residual risk after this hedge?
+
+---
+
+**Exercise 5.** For a small misspecification $\delta\sigma = \sigma - \hat{\sigma}$, the hedging error is approximately $2\hat{\sigma}\,\delta\sigma\int_0^T \Gamma_\$(t,S_t)\,dt$. Compute this for $\hat{\sigma} = 0.20$, $\delta\sigma = 0.03$, $\Gamma_\$ \approx 150$ (constant), $T = 0.5$. Compare the P&L with the option's vega times $\delta\sigma$.
+
+---
+
+**Exercise 6.** An uncertain volatility model assumes $\sigma \in [0.15, 0.30]$. For a European call with $S = K = 100$, $\tau = 1$, $r = 0.03$, compute the Black--Scholes price at both endpoints. What is the width of the price bounds? If the trader prices at the midpoint and hedges with midpoint delta, estimate the maximum hedging error using the El Karoui formula.

@@ -320,3 +320,55 @@ The optimal $d$ is the smallest value that achieves stationarity (e.g., passing 
 - Cartea, Jaimungal & Penalva (2015), *Algorithmic and High-Frequency Trading*
 - Hastie, Tibshirani & Friedman (2009), *ESL*, Chapters 3 and 18
 - Harvey, Liu & Zhu (2016), "... and the Cross-Section of Expected Returns"
+
+---
+
+## Exercises
+
+**Exercise 1.** A stock has daily closing prices $S_0 = 100$, $S_1 = 102$, $S_2 = 99$, $S_3 = 101$.
+
+(a) Compute the simple returns and log returns for each day.
+
+(b) Verify that the 3-day log return equals the sum of the daily log returns.
+
+(c) Compute the 3-day momentum feature $\text{Mom}^{(3,1)}$ and explain its interpretation.
+
+---
+
+**Exercise 2.** Given 20 days of daily returns, compute the EWMA volatility $\hat{\sigma}_t^2 = \lambda \hat{\sigma}_{t-1}^2 + (1 - \lambda) r_t^2$ with $\lambda = 0.94$, starting from $\hat{\sigma}_0^2 = \text{Var}(r)$ (sample variance). Compare the EWMA estimate at $t = 20$ with the rolling 20-day standard deviation. Which responds faster to a volatility spike at $t = 15$?
+
+---
+
+**Exercise 3.** Explain why each of the following constitutes look-ahead bias:
+
+(a) Standardizing features using the full-sample mean and variance.
+
+(b) Using revised GDP figures instead of first-release data.
+
+(c) Computing momentum only for stocks that survive to the end of the sample.
+
+For each case, describe how to construct the feature correctly.
+
+---
+
+**Exercise 4.** Consider the Parkinson volatility estimator $\hat{\sigma}^{\text{Park}} = |\log H - \log L| / \sqrt{4 \log 2}$.
+
+(a) Show that $\mathbb{E}[(\log H - \log L)^2] = 4 \log 2 \cdot \sigma^2$ for geometric Brownian motion (hint: the range of a Brownian bridge).
+
+(b) Explain why this estimator is more efficient than the close-to-close estimator $|r_t|$.
+
+---
+
+**Exercise 5.** For a cross-section of $N = 500$ stocks, you observe a raw feature $X_{i,t}$ (e.g., market capitalization). Describe the difference between:
+
+(a) Cross-sectional rank: $\text{Rank}_{i,t} / N$
+
+(b) Cross-sectional z-score: $(X_{i,t} - \bar{X}_t) / \hat{\sigma}_t^X$
+
+(c) Industry-adjusted feature: $X_{i,t} - \bar{X}_{g(i),t}$
+
+Under what conditions would you prefer rank over z-score? When is industry adjustment necessary?
+
+---
+
+**Exercise 6.** The fractional differencing operator of order $d$ is $(1 - B)^d X_t = \sum_{k=0}^{\infty} \binom{d}{k} (-1)^k X_{t-k}$. Compute the first four weights $w_k = \binom{d}{k}(-1)^k$ for $d = 0.4$. Explain why $d \in (0, 0.5)$ produces a stationary series while preserving more memory than full differencing ($d = 1$).

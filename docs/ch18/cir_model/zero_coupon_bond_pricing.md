@@ -310,3 +310,33 @@ The corresponding continuously compounded yield is $R(0, 5) = -\ln(0.770)/5 \app
 ## Summary
 
 The CIR model produces zero-coupon bond prices of the exponential-affine form $P(t,T) = A(\tau)e^{-B(\tau)r_t}$, where the functions $A$ and $B$ solve a coupled system of ordinary differential equations. The Riccati ODE for $B(\tau)$ --- quadratic rather than linear as in Vasicek --- arises from the state-dependent volatility $\sigma\sqrt{r}$ and is solved in closed form using the discriminant $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$. The resulting formula preserves non-negativity of rates (when the Feller condition holds), provides the long-run yield $R_\infty = 2\kappa\theta/(\gamma + \kappa)$, and reduces to instantaneous discounting at short maturities. This closed-form solution is the foundation for yield curve fitting, bond option pricing, and calibration procedures developed in subsequent sections.
+
+---
+
+## Exercises
+
+**Exercise 1.** Substitute the exponential-affine ansatz $f(t,r) = A(\tau)e^{-B(\tau)r}$ into the CIR bond pricing PDE and derive the two ODEs for $A$ and $B$ by collecting powers of $r$. Show each step explicitly.
+
+---
+
+**Exercise 2.** For $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.08$, compute the discriminant $\gamma$, then evaluate $B(\tau)$ for $\tau = 1, 5, 10, 30$. What is the limiting value $B_\infty = 2/(\gamma + \kappa)$? How close is $B(30)$ to $B_\infty$?
+
+---
+
+**Exercise 3.** Factor the Riccati ODE as $B' = -\frac{\sigma^2}{2}(B - B_+)(B - B_-)$ where $B_{\pm} = (-\kappa \pm \gamma)/\sigma^2$. For $\kappa = 0.5$ and $\sigma = 0.1$, compute $B_+$ and $B_-$. Verify that $B_+ > 0$ is the stable equilibrium and $B_- < 0$ is the unstable equilibrium.
+
+---
+
+**Exercise 4.** Compute the complete CIR bond price $P(0, 10)$ for $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.10$, $r_0 = 0.05$. Show each intermediate step: $\gamma$, $e^{\gamma \cdot 10}$, $B(10)$, the denominator $D(10)$, $A(10)$, and finally $P = A \cdot e^{-Br_0}$.
+
+---
+
+**Exercise 5.** The bond price sensitivity to the short rate is $\partial P/\partial r_t = -B(\tau)P(t,T)$. For a \$1,000,000 face value 10-year zero-coupon bond with the parameters from Exercise 4, compute the DV01 (dollar value of a one-basis-point change in $r_t$). Compare with the Vasicek DV01 using $B^{\text{Vas}}(10) = (1 - e^{-\kappa \cdot 10})/\kappa$.
+
+---
+
+**Exercise 6.** Show that in the limit $\sigma \to 0$, the CIR bond price formula reduces to pure deterministic discounting: $P(t,T) = \exp(-\int_t^T r_s\,ds)$ where $r_s = \theta + (r_t - \theta)e^{-\kappa(s-t)}$. Verify by showing $\gamma \to \kappa$, $B(\tau) \to (1 - e^{-\kappa\tau})/\kappa$, and computing $\lim_{\sigma \to 0} A(\tau)$.
+
+---
+
+**Exercise 7.** Compare the CIR and Vasicek bond prices for $\tau = 1, 5, 10, 30$ using $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.10$, $r_0 = 0.04$. For which maturities is the difference largest? Explain why the CIR price is higher than Vasicek for long maturities by relating the difference to the saturation levels $B_\infty^{\text{CIR}}$ versus $B_\infty^{\text{Vas}} = 1/\kappa$.

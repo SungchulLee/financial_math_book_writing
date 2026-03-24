@@ -371,3 +371,45 @@ Additional reserves for:
 - Burgard, C. & Kjaer, M. (2013), "Funding Costs, Funding Strategies"
 - Andersen, L. & Piterbarg, V. (2010), *Interest Rate Modeling* (Vol. III on products and risk)
 - Green, A. (2015), *XVA: Credit, Funding and Capital Valuation Adjustments*
+
+---
+
+## Exercises
+
+**Exercise 1.** Explain why XVA pricing breaks the law of one price. Two banks, A and B, price the same 5-year swap. Bank A has a funding spread of 50 bps and counterparty credit spread of 150 bps; Bank B has a funding spread of 100 bps and counterparty credit spread of 100 bps. With LGD = 60% and average expected exposure of \$10M, compute CVA and FVA for each bank (use simplified formulas). Which bank offers a more competitive price, and why?
+
+---
+
+**Exercise 2.** A portfolio consists of two trades with the same counterparty: Trade 1 has $V_1 = +\$5$M and Trade 2 has $V_2 = -\$3$M. Under a netting agreement, the netted exposure is $\max(V_1 + V_2, 0) = \$2$M. Compute the standalone CVA for each trade and the netted CVA, using a flat hazard rate $\lambda = 2\%$, LGD = 60%, and 5-year horizon. Verify that $\text{CVA}(\text{Netted}) < \text{CVA}(1) + \text{CVA}(2)$ and compute the netting benefit.
+
+---
+
+**Exercise 3.** In the BSDE framework, the generic XVA driver is
+
+$$
+f(t, V, Z) = -rV + \lambda_C \cdot \text{LGD}_C \cdot V^+ - \lambda_B \cdot \text{LGD}_B \cdot V^- + s_F \cdot (V - C)^+
+$$
+
+Explain why the $V^+$ and $V^-$ terms make this equation nonlinear. What would the equation reduce to if there were no default risk and no funding costs? Show that in the linear case, the solution recovers the classical risk-neutral price.
+
+---
+
+**Exercise 4.** Compute the incremental XVA for a new trade added to an existing portfolio. The portfolio's current CVA is \$2.0M. Adding a new trade (standalone CVA = \$0.5M) that partially offsets existing exposures results in a new portfolio CVA of \$2.1M. What is the incremental CVA of the new trade? Compare this to the standalone CVA and explain why incremental pricing is essential for trade decisions. Under what conditions could the incremental CVA be negative?
+
+---
+
+**Exercise 5.** Consider the XVA-adjusted delta hedge. A bank holds a call option with clean delta $\Delta^{\text{clean}} = 0.55$. The CVA delta is $\Delta^{\text{CVA}} = 0.03$ (CVA increases when the underlying rises, because exposure increases). The FVA delta is $\Delta^{\text{FVA}} = 0.01$. Compute the total XVA-adjusted delta $\Delta^{\text{total}} = \Delta^{\text{clean}} - \Delta^{\text{CVA}} - \Delta^{\text{FVA}}$ (note: CVA and FVA deltas reduce the effective hedge ratio). Discuss why ignoring XVA Greeks leads to systematic hedging errors.
+
+---
+
+**Exercise 6.** A trading desk proposes a 5-year equity swap with \$50M notional. The XVA desk computes: CVA = \$300K, DVA = \$150K, FVA = \$200K, KVA = \$400K. The desk expects to earn a spread of 30 bps per annum (\$150K/year). Using the deal acceptability criterion
+
+$$
+\text{Accept if } \text{Expected Profit} > \text{XVA Charge}
+$$
+
+where Expected Profit = total spread revenue over 5 years, determine whether the trade should be accepted. What minimum spread (in bps) would make the trade acceptable?
+
+---
+
+**Exercise 7.** Discuss the FVA debate between Hull-White (2012) and Burgard-Kjaer (2011). Hull and White argue that FVA should not be included in derivative pricing because it creates arbitrage opportunities relative to the risk-neutral framework. Burgard and Kjaer argue that FVA reflects real costs that banks face. Present both arguments. If two banks disagree on whether to include FVA, what market consequences arise? How does the existence of FVA affect the concept of a "fair" derivative price?

@@ -401,3 +401,33 @@ A good model should capture:
 - Gatheral, J. *The Volatility Surface*
 - Bergomi, L. *Smile Dynamics* series
 - Bouchaud, J.P. and Potters, M. *Theory of Financial Risk and Derivative Pricing*
+
+---
+
+## Exercises
+
+**Exercise 1.** The leverage effect is quantified by $\Delta\sigma_{\text{ATM}} \approx \beta \cdot \frac{\Delta S}{S}$ with $\beta \approx -2.0$ for the S&P 500. If the SPX drops 4% in one day, estimate the change in ATM implied volatility. If ATM IV was 16% before the move, what is the new ATM IV?
+
+---
+
+**Exercise 2.** The asymmetry $|\beta_{\text{down}}| > |\beta_{\text{up}}|$ means volatility responds more strongly to down moves than up moves. Propose a simple piecewise-linear model for the spot-vol relationship: $\Delta\sigma = \beta_+ \frac{\Delta S}{S}$ for $\Delta S > 0$ and $\Delta\sigma = \beta_- \frac{\Delta S}{S}$ for $\Delta S < 0$ with $|\beta_-| > |\beta_+|$. Using $\beta_+ = -1.0$ and $\beta_- = -3.0$, compute $\Delta\sigma$ for (a) $\Delta S/S = +3\%$ and (b) $\Delta S/S = -3\%$.
+
+---
+
+**Exercise 3.** Implied volatility exhibits mean reversion with a characteristic half-life of 2-4 weeks for equity indices. If the current ATM IV is 35% (elevated due to a crisis) and the long-run mean is 18%, use the mean-reversion model $\sigma(t) = \sigma_\infty + (\sigma_0 - \sigma_\infty)e^{-\lambda t}$ with half-life 3 weeks ($\lambda = \ln 2 / 3$ per week) to predict ATM IV in 1 week, 4 weeks, and 12 weeks.
+
+---
+
+**Exercise 4.** The skew-spot beta measures how the slope of the smile changes with spot: $\frac{d(\text{skew})}{d(\log S)} \approx -0.4$ for SPX. If the current 25-delta skew is 6 vol points and the spot drops 5%, estimate the new skew. What does this steepening mean for the price of OTM puts relative to ATM options?
+
+---
+
+**Exercise 5.** Term structure inversion is a hallmark of crisis periods. Describe the mechanism by which a sudden spike in short-term uncertainty (e.g., a flash crash) inverts the volatility term structure. Why does the long end of the term structure respond less dramatically than the short end?
+
+---
+
+**Exercise 6.** The volatility smile exhibits "stickiness" that lies between sticky strike and sticky delta. The skew stickiness ratio (SSR) for SPX is approximately 0.4-0.6. Define the SSR and explain how it relates to the spot-vol beta $\beta$. If SSR = 0.5 and the smile skew is 20% per unit log-moneyness, compute the effective spot-vol sensitivity $\Sigma_S = \frac{\partial \sigma_{\text{IV}}}{\partial S}$ for $S = 100$.
+
+---
+
+**Exercise 7.** List five key stylized facts of implied volatility dynamics for equity indices. For each, state (a) the qualitative observation, (b) a typical quantitative value, and (c) which model class (local vol, Heston, SABR, rough vol) best captures it. Identify which stylized fact is hardest for standard models to reproduce.

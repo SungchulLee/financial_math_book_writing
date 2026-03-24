@@ -314,3 +314,39 @@ Neither alone is sufficient.
 - Berkowitz, J. (2001), "Testing Density Forecasts, with Applications to Risk Management"
 - Pritsker, M. (2006), "The Hidden Dangers of Historical Simulation"
 - Glasserman, P. (2004), *Monte Carlo Methods in Financial Engineering*
+
+---
+
+## Exercises
+
+**Exercise 1.** A portfolio has 500 days of historical returns. Using historical simulation, compute the 99% VaR as $L_{(\lceil 500 \times 0.99 \rceil)} = L_{(495)}$ and the 99% ES as the average of the 5 worst losses. If the 5 largest losses (in millions) are 12.3, 10.8, 9.5, 8.7, and 8.1, compute both the VaR and ES. Discuss why the ES estimate based on only 5 observations has high sampling uncertainty.
+
+---
+
+**Exercise 2.** Explain the concept of filtered historical simulation. A GARCH(1,1) model estimates current conditional volatility at $\hat{\sigma}_t = 2.5\%$ (daily), while the historical average volatility is $1.5\%$. A historical return of $r_s = -3.0\%$ has a standardized innovation $\epsilon_s = r_s / 1.5\% = -2.0$. Under filtered historical simulation, what is the volatility-adjusted scenario return applied to the current portfolio? Compare this to the unfiltered historical simulation return and discuss when filtered simulation gives materially different risk estimates.
+
+---
+
+**Exercise 3.** A risk manager must decide between using 1 year (250 days) and 4 years (1,000 days) of historical data for VaR estimation at the 99% confidence level. With 250 days, there are approximately 2-3 observations in the tail; with 1,000 days, approximately 10. Discuss the tradeoff between sample size and relevance (stationarity). Under what market conditions would the shorter window be preferred? Compute the standard error of the empirical 99% quantile for both sample sizes using the approximation $\text{SE}(\hat{q}_\alpha) \approx \sqrt{\alpha(1-\alpha)/(n \cdot f(q_\alpha)^2)}$, assuming $f(q_\alpha) = 0.02$.
+
+---
+
+**Exercise 4.** During the 2008 financial crisis, correlations between major equity markets increased from approximately 0.6 to 0.9. A portfolio is equally weighted across 4 equity markets, each with daily volatility $\sigma = 1.5\%$. Compute the portfolio daily volatility under normal correlations ($\rho = 0.6$) and stressed correlations ($\rho = 0.9$). What is the percentage increase in portfolio risk? Explain why historical simulation using pre-crisis data would underestimate risk during the crisis.
+
+---
+
+**Exercise 5.** Compare how historical simulation and stress testing handle the following scenario: a central bank unexpectedly raises rates by 300 bps (an event not observed in the 5-year historical window). Explain why historical simulation fails to capture this risk and how a stress test can address it. Describe how you would design an internally consistent stress scenario around this rate shock, specifying at least four other risk factors and their plausible movements.
+
+---
+
+**Exercise 6.** A bank uses historical simulation with a 250-day window for daily VaR reporting and also runs quarterly stress tests with scenarios calibrated to 2008-level severity. The historical simulation 99% VaR is \$50 million, while the stress test loss is \$350 million. Discuss the implications of this large gap. Should the bank's capital be sized to the VaR estimate or the stress test loss? Explain the regulatory formula
+
+$$
+\text{Total Risk Picture} = \text{Statistical Measures (VaR/ES)} + \text{Stress Test Results}
+$$
+
+and how each component contributes to the capital requirement.
+
+---
+
+**Exercise 7.** The Basel framework requires banks to compute a "Stressed VaR" using a 12-month period of significant stress. Explain the methodology: how is the stress period selected, and how is Stressed VaR different from simply applying historical simulation with all available data? If a bank selects the period September 2008 to August 2009, discuss what features of the market during that period would cause the Stressed VaR to be significantly higher than the current VaR computed over the most recent 250 days of relatively calm markets.

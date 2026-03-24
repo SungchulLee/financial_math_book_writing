@@ -691,3 +691,39 @@ $$
 6. **Extract density/local vol:** Apply Breeden-Litzenberger/Dupire
 
 **Key principle:** Static arbitrage-free conditions are **necessary** for the existence of a valid risk-neutral measure and for meaningful model calibration. Any violation indicates mispricing, data error, or market friction that must be addressed before further analysis.
+
+---
+
+## Exercises
+
+**Exercise 1.** Three call options with the same maturity have strikes and prices: $C(90) = 15.20$, $C(100) = 9.00$, $C(110) = 5.50$. (a) Verify strike monotonicity. (b) Compute the butterfly spread $B = C(90) - 2C(100) + C(110)$ and verify it is non-negative. (c) If instead $C(110) = 2.00$, would butterfly arbitrage exist? Describe the arbitrage strategy.
+
+---
+
+**Exercise 2.** Using the Breeden-Litzenberger formula $q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}$, suppose a fitted call price curve has $\frac{\partial^2 C}{\partial K^2} = -0.001$ at some strike $K^*$. (a) What does this imply about the risk-neutral density at $K^*$? (b) What type of arbitrage is present? (c) Describe a portfolio that would exploit this violation.
+
+---
+
+**Exercise 3.** For the SVI parametrization $w(y) = a + b(\rho(y-m) + \sqrt{(y-m)^2 + \sigma^2})$, verify analytically that the wing behavior satisfies
+
+$$
+\lim_{y \to \pm\infty} \frac{w(y)}{|y|} = b(1 \pm \rho)
+$$
+
+Use Lee's constraint $0 < p_{\pm} \leq 2$ to derive bounds on $b$ and $\rho$ that ensure the distribution has finite variance.
+
+---
+
+**Exercise 4.** Two call options on the same stock with strike $K = 100$ have maturities $T_1 = 0.25$ and $T_2 = 0.50$. Their total variances are $w(T_1) = 0.01$ and $w(T_2) = 0.018$. (a) Verify the calendar arbitrage-free condition $w(T_2) \geq w(T_1)$. (b) Compute the implied volatilities $\sigma(T_1)$ and $\sigma(T_2)$. (c) Is the term structure upward or downward sloping? (d) Compute the forward volatility $\sigma_{\text{fwd}}(T_1, T_2)$.
+
+---
+
+**Exercise 5.** Explain why Gatheral's simplified sufficient condition $\frac{\partial^2 w}{\partial y^2} \geq 0$ (convexity of total variance in log-moneyness) is more restrictive than Durrleman's necessary and sufficient condition. Give an example of a total variance function $w(y)$ that violates convexity but still satisfies the full Durrleman condition.
+
+---
+
+**Exercise 6.** A market data set shows the following mid-market call prices for 3-month options: $C(95) = 10.20$, $C(100) = 7.50$, $C(105) = 5.80$, $C(110) = 3.50$. The bid-ask spread is \$0.15 for all strikes. (a) Check butterfly and call-spread conditions using mid prices. (b) Could any apparent violations be explained by bid-ask spreads? (c) Explain the distinction between violations at mid prices versus executable prices.
+
+---
+
+**Exercise 7.** When Dupire's formula is applied to an implied volatility surface that violates the butterfly condition ($\frac{\partial^2 C}{\partial K^2} < 0$), the extracted local volatility becomes imaginary ($\sigma_{\text{loc}}^2 < 0$). Explain why this happens by relating the Dupire formula to the Breeden-Litzenberger density. What preprocessing step should be applied to market data before extracting local volatility?

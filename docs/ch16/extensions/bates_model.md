@@ -248,3 +248,35 @@ where $\hat{v}$ is the effective variance from the QE scheme and $Z \sim \mathca
 | [Double Heston Model](double_heston_model.md) | Two-factor variance alternative |
 | [Rough Heston (Overview)](rough_heston_overview.md) | Fractional kernel approach |
 | [Time-Dependent Parameters](time_dependent_parameters.md) | Piecewise-constant calibration |
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Compute the jump compensator $\bar{k} = e^{\mu_J + \sigma_J^2/2} - 1$ for $\mu_J = -0.08$ and $\sigma_J = 0.15$. Verify that $\bar{k} < 0$ (the drift adjustment is positive, compensating for the expected downward jumps). What happens to $\bar{k}$ if $\mu_J = 0$ and $\sigma_J > 0$? Explain the financial interpretation.
+
+---
+
+**Exercise 2.**
+The Bates CF is the product $\phi_{\text{Bates}} = \phi_{\text{Heston}} \times \phi_{\text{Jump}}$ where $\phi_{\text{Jump}}(u, \tau) = \exp(\lambda\tau[e^{iu\mu_J - u^2\sigma_J^2/2} - 1])$. Show that $|\phi_{\text{Jump}}(u, \tau)| = \exp(\lambda\tau[e^{-u^2\sigma_J^2/2}\cos(u\mu_J) - 1])$. For $u = 10$, $\lambda = 2$, $\mu_J = -0.05$, $\sigma_J = 0.10$, $\tau = 0.5$, compute $|\phi_{\text{Jump}}|$ and determine whether the jump component decays faster or slower than the Heston component for large $u$.
+
+---
+
+**Exercise 3.**
+From the worked example, the Bates IV at 1-week 95% moneyness is 28.4% versus Heston's 22.1%. Convert both to Black-Scholes call prices for $S_0 = 100$, $K = 95$, $T = 1/52$, $r = 3\%$, $q = 0$. What is the price difference in dollar terms? For a market maker selling this put, discuss why the Bates correction is critical.
+
+---
+
+**Exercise 4.**
+Show that in the limit $T \to 0$, the Bates ATM skew approaches $\lambda\mu_J / (2\sqrt{v_0})$, which is finite and proportional to $\lambda\mu_J$. Compare this with the Heston ATM skew $\rho\xi/(4\sqrt{v_0})$, which also has a finite short-maturity limit. Why is the jump skew more effective at matching steep market skews?
+
+---
+
+**Exercise 5.**
+The Bates model has a partial degeneracy between the diffusive skew parameters $(\rho, \xi)$ and the jump skew parameters $(\lambda, \mu_J)$. Design a calibration strategy that resolves this degeneracy: calibrate $(\rho, \xi)$ primarily from long-maturity smile data (where jumps are negligible) and $(\lambda, \mu_J, \sigma_J)$ from short-maturity data (where jumps dominate). Describe the two-stage procedure.
+
+---
+
+**Exercise 6.**
+For the Monte Carlo simulation of the Bates model, the expected number of jumps per daily time step is $\lambda\Delta t = 2.0/252 \approx 0.008$. Compute the probability of zero, one, and two jumps in a single step. Argue that the computational overhead of adding jumps to the QE scheme is negligible because $P(N_{\Delta t} = 0) > 99\%$ for typical parameters.

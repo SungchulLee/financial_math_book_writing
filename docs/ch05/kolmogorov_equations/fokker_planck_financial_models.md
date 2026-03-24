@@ -137,3 +137,52 @@ The **Fokker-Planck equation** is the **forward Kolmogorov equation** - it descr
 | **Describes** | Evolution of density | PDE for expected values |
 | **Application** | Probability distributions | Option pricing, exit times |
 | **Boundary Conditions** | Initial condition required | Terminal condition required |
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Write the Fokker-Planck equation for the Ornstein-Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dB_t$. Verify that the stationary density $p_\infty(x) \propto \exp(-\kappa x^2/\sigma^2)$ satisfies $\mathcal{L}^* p_\infty = 0$.
+
+---
+
+**Exercise 2.**
+Starting from the general Fokker-Planck equation for $dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dB_t$, derive the Fokker-Planck equation for geometric Brownian motion $dS_t = \mu S_t\,dt + \sigma S_t\,dB_t$ by identifying $\mu(S) = \mu S$ and $\sigma(S) = \sigma S$. Expand all derivatives using the product rule.
+
+---
+
+**Exercise 3.**
+For the CIR process $dr_t = \kappa(\theta - r_t)\,dt + \sqrt{\gamma r_t}\,dB_t$, write down the Fokker-Planck equation. Determine the stationary density by solving $\mathcal{L}^* p_\infty = 0$ and identify it as a Gamma distribution. Under what condition on $\kappa$, $\theta$, and $\gamma$ is $p_\infty$ integrable?
+
+---
+
+**Exercise 4.**
+Using the Fokker-Planck derivation via Ito's lemma and test functions, show that for any smooth test function $f$ with compact support and any diffusion process $X_t$:
+
+$$
+\frac{d}{dt}\mathbb{E}[f(X_t)] = \mathbb{E}\left[\mu(X_t)f'(X_t) + \frac{1}{2}\sigma^2(X_t)f''(X_t)\right]
+$$
+
+Explain how integration by parts transfers the derivatives from $f$ to $p$.
+
+---
+
+**Exercise 5.**
+For geometric Brownian motion with drift $\mu$ and volatility $\sigma$, verify that the log-normal density
+
+$$
+p(y, t) = \frac{1}{\sigma\sqrt{2\pi t}} \exp\left(-\frac{(y - (\mu - \sigma^2/2)t)^2}{2\sigma^2 t}\right)
+$$
+
+(where $y = \ln S$) satisfies the Fokker-Planck equation in log-space. What is the Fokker-Planck equation in the original $S$ variable?
+
+---
+
+**Exercise 6.**
+Explain why the Fokker-Planck equation for the Ornstein-Uhlenbeck process has a well-defined stationary distribution while standard Brownian motion does not. Relate this to the sign of the mean-reversion parameter $\kappa$ and the behavior of the probability current $J(x) = \mu(x)p - \frac{1}{2}\partial_x[\sigma^2 p]$ at stationarity.
+
+---
+
+**Exercise 7.**
+In the table comparing forward and backward equations, the forward equation describes the evolution of density while the backward equation describes PDE solutions for expected values. For a European call option with payoff $g(S_T) = (S_T - K)^+$, explain which equation you would use to find the option price and which you would use to find the terminal distribution of $S_T$. How are the two approaches connected via the identity $\mathbb{E}[g(X_T)] = \int g(x)\,p(x, T)\,dx$?

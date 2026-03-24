@@ -161,3 +161,29 @@ In practice, many implementations combine methods:
 | Implementation | Simple | Moderate | Simple |
 
 **The COS method offers the best accuracy-per-cost ratio for individual option pricing and Greeks, Carr--Madan FFT is optimal for calibration over dense strike grids, and the Lewis formula provides the simplest parameter-free approach for single-option pricing and validation.**
+
+---
+
+## Exercises
+
+**Exercise 1.** For pricing a single ATM European call under the Heston model, compare the number of characteristic function evaluations required by each method: COS with $N = 128$, Carr-Madan FFT with $N = 4096$, and Lewis with $M = 200$. Compute the ratio of CF evaluations for Carr-Madan vs COS and explain why COS is preferred for single-option pricing.
+
+---
+
+**Exercise 2.** A calibration problem requires pricing options at 200 strikes for each of 500 parameter proposals. For each method, compute the total number of CF evaluations: (a) COS with $N = 128$ (CF evaluations shared across strikes), (b) Carr-Madan FFT with $N = 4096$ (all strikes from one FFT), (c) Lewis with $M = 200$ (independent integral per strike). Which method minimizes the total CF evaluation cost?
+
+---
+
+**Exercise 3.** The accuracy benchmark shows COS with $N = 128$ achieving $10^{-11}$ error, while Carr-Madan with Simpson's rule achieves $10^{-6}$ error using 4096 CF evaluations. Compute the "accuracy per CF evaluation" for each method (defined as $-\log_{10}(\text{error})/N_{\text{CF}}$). What does this metric tell you about the efficiency of exponential vs algebraic convergence?
+
+---
+
+**Exercise 4.** The Lewis formula has no free parameters to tune, while Carr-Madan requires choosing $\alpha$, $\eta$, and $N$. Describe a practical scenario where poor parameter choices in Carr-Madan lead to significant pricing errors. Specifically, explain what happens when (a) $\alpha$ is too close to the explosion boundary of the Heston CF, and (b) $\eta$ is too large.
+
+---
+
+**Exercise 5.** For computing delta ($\partial V/\partial S$) under the COS method, the density coefficients $F_k$ depend on $S_0$ through $\phi$, while the payoff coefficients $V_k$ depend on $K/S_0$ through the log-moneyness. Explain how to compute delta analytically by differentiating the COS formula. Compare this to the Lewis approach, where delta requires re-evaluating the quadrature with a modified integrand.
+
+---
+
+**Exercise 6.** Design a hybrid pricing workflow for a trading desk that needs: (a) daily model calibration against 500 market options, (b) real-time pricing of individual exotic options, (c) Greeks computation for the top 50 positions. Assign the appropriate Fourier method (COS, Carr-Madan, or Lewis) to each task, justify your choices, and estimate the total computation time assuming each CF evaluation takes 1 microsecond.

@@ -169,3 +169,35 @@ Standard assumption for CDS: $R = 40\%$ (senior unsecured).
 
 - Duffie, D., & Singleton, K. J. (1999). Modeling term structures of defaultable bonds. *Review of Financial Studies*.
 - O'Kane, D. (2008). *Modelling Single-name and Multi-name Credit Derivatives*. Wiley.
+
+---
+
+## Exercises
+
+**Exercise 1.** Under the RFV convention with constant $r = 4\%$ and $\lambda = 2\%$, compute the price of a 5-year defaultable zero-coupon bond with $F = 100$ and $R = 40\%$. Decompose the price into the survival component and the default (recovery) component.
+
+---
+
+**Exercise 2.** Repeat Exercise 1 using the RMV (Duffie-Singleton) convention. Compare the total prices under RFV and RMV. Explain intuitively why the two conventions give different prices and under what conditions the difference is small.
+
+---
+
+**Exercise 3.** Under recovery of treasury (RT), the bond price simplifies to
+
+$$
+P^d(0,T) = F \cdot P(0,T)\left[R + (1-R)\,S(0,T)\right]
+$$
+
+Derive this formula from the general pricing expression. For $r = 3\%$, $\lambda = 2\%$, $R = 40\%$, and $T = 5$, compute the price.
+
+---
+
+**Exercise 4.** The recovery-intensity trade-off means that pairs $(R, \lambda)$ can produce the same CDS spread since $s \approx (1-R)\lambda$. Find two pairs $(R_1, \lambda_1)$ and $(R_2, \lambda_2)$ that both give a spread of 90 bp. Then compute the defaultable bond prices under RFV for each pair with $r = 3\%$ and $T = 5$. Are the bond prices also equal? Why or why not?
+
+---
+
+**Exercise 5.** Using the empirical recovery data in the table (Senior Secured: 50--70%, Senior Unsecured: 35--45%, Subordinated: 20--35%), a firm has both senior unsecured and subordinated bonds with the same maturity $T = 5$ and the same default intensity $\lambda = 3\%$. Compute the credit spread for each seniority class under the approximation $s \approx (1-R)\lambda$. How does the seniority structure affect the spread?
+
+---
+
+**Exercise 6.** Explain why the RMV convention leads to the simplest pricing formulas. Specifically, show that the recursive definition (recovery equals $R$ times the pre-default market value) converts the two-component pricing formula into a single exponential discount. Why is this analytically convenient for affine intensity models?

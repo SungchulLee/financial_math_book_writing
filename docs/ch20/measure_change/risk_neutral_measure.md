@@ -148,3 +148,33 @@ For the Hull-White volatility specification $\sigma(t,T) = \sigma\,e^{-\lambda(T
 ## Summary
 
 The Hull-White model under $\mathbb{Q}$ is obtained from the physical measure $\mathbb{P}$ via Girsanov's theorem with market price of risk $\gamma(t)$. The mean reversion speed is preserved (for constant $\gamma$), while the mean reversion level shifts according to $\lambda\theta^{\mathbb{Q}}(t) = \lambda^{\mathbb{P}}\theta^{\mathbb{P}}(t) - \sigma\gamma(t)$. In practice, the model is calibrated directly under $\mathbb{Q}$ by fitting $\theta^{\mathbb{Q}}(t)$ to the market term structure, bypassing explicit specification of the physical measure.
+
+---
+
+## Exercises
+
+**Exercise 1.** The Novikov condition requires $\mathbb{E}^{\mathbb{P}}[\exp(\frac{1}{2}\int_0^T \gamma(s)^2\,ds)] < \infty$. For a constant market price of risk $\gamma$, show that this condition is always satisfied and compute the Radon-Nikodym derivative explicitly.
+
+---
+
+**Exercise 2.** Suppose $\lambda^{\mathbb{P}} = 0.04$, $\theta^{\mathbb{P}}(t) = 0.06$, $\sigma = 0.012$, and $\gamma = -0.20$. Compute $\lambda$ and $\theta^{\mathbb{Q}}(t)$ under the risk-neutral measure. Is $\theta^{\mathbb{Q}}(t)$ higher or lower than $\theta^{\mathbb{P}}(t)$, and why?
+
+---
+
+**Exercise 3.** For the affine market price of risk $\gamma(t) = \gamma_0 + \gamma_1 r(t)$, show that the risk-neutral mean reversion speed is $\lambda = \lambda^{\mathbb{P}} + \sigma\gamma_1$, which differs from $\lambda^{\mathbb{P}}$. Give a financial interpretation of why the mean reversion speed can change under a measure change when $\gamma_1 \neq 0$.
+
+---
+
+**Exercise 4.** Explain why the volatility parameter $\sigma$ is the same under both $\mathbb{P}$ and $\mathbb{Q}$. What theorem guarantees this invariance, and what property of the diffusion coefficient is required?
+
+---
+
+**Exercise 5.** Under $\mathbb{Q}$, the discounted bond price $P(t,T)/M(t)$ is a martingale. Verify this for the Hull-White model by showing that the drift of $d(P(t,T)/M(t))$ vanishes. (Hint: use the bond dynamics $dP/P = r\,dt + \sigma_P dW^{\mathbb{Q}}$ and the money market dynamics $dM = rM\,dt$.)
+
+---
+
+**Exercise 6.** Describe the alternative route from HJM to the risk-neutral Hull-White SDE. Starting from the HJM volatility $\sigma(t,T) = \sigma e^{-\lambda(T-t)}$, derive the HJM drift condition and show that the short rate $r(t) = f(t,t)$ satisfies the Hull-White SDE.
+
+---
+
+**Exercise 7.** In practice, $\theta^{\mathbb{Q}}(t)$ is calibrated to the market term structure rather than derived from $\theta^{\mathbb{P}}(t)$ and $\gamma(t)$. Discuss the advantages and disadvantages of this approach. Under what circumstances would you need to estimate $\gamma(t)$ explicitly?

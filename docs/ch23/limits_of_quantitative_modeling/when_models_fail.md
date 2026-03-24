@@ -390,3 +390,29 @@ $$
 5. **Governance**: Formal processes for model management
 
 Understanding when and how models fail is as important as understanding how they work; robust risk management requires constant awareness of model limitations.
+
+---
+
+## Exercises
+
+**Exercise 1.** The Gaussian VaR model assumes normally distributed returns. For a portfolio with daily returns that are actually $t$-distributed with 4 degrees of freedom, compute the 99% VaR under both the Gaussian and $t$-distribution assumptions. By what factor does the Gaussian model underestimate tail risk? Relate this to the concept of model misspecification.
+
+---
+
+**Exercise 2.** Correlation breakdown during crises is one of the most common model failures. Using the DCC-GARCH framework, explain how conditional correlations between asset returns can spike from 0.3 to 0.9 during a market crash. Why does a constant-correlation model fail during such episodes, and what are the implications for portfolio diversification?
+
+---
+
+**Exercise 3.** Design a set of five early warning indicators that signal potential model failure. For each indicator, specify: (a) what data is needed, (b) what threshold triggers a warning, and (c) what remedial action should be taken. Consider indicators based on backtesting violations, parameter instability, residual analysis, liquidity measures, and market regime detection.
+
+---
+
+**Exercise 4.** The "Lucas critique" states that economic relationships change when policy changes. Apply this critique to financial models: explain how the widespread adoption of delta-hedging strategies can alter the volatility dynamics that the hedging model assumes. This is an example of a feedback effect where model usage affects market dynamics.
+
+---
+
+**Exercise 5.** Liquidity risk is notoriously difficult to model. Describe a scenario where a position appears low-risk under mark-to-market valuation but becomes extremely costly to unwind during a liquidity crisis. How should models incorporate the distinction between mark-to-market risk and liquidation risk?
+
+---
+
+**Exercise 6.** Regime-switching models attempt to capture structural breaks in financial time series. For a two-regime model with $\mu_1 = 0.10$, $\sigma_1 = 0.15$ (normal regime) and $\mu_2 = -0.20$, $\sigma_2 = 0.40$ (crisis regime), with transition probabilities $p_{12} = 0.02$ and $p_{21} = 0.10$, compute the stationary distribution over regimes and the unconditional mean and variance of returns. How does this model improve upon a single-regime model for risk management?

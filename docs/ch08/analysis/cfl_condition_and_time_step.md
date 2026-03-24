@@ -252,3 +252,29 @@ $$
 | **Remedy** | Use implicit or Crank-Nicolson (unconditionally stable) |
 
 The CFL condition is a necessary evil for explicit schemes. Its severity for the Black-Scholes PDE in original coordinates is the main motivation for using either implicit time-stepping or log-price coordinates in practice.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the advection equation $u_t + cu_x = 0$ with $c = 2$, $\Delta x = 0.1$, and $\Delta t = 0.04$, compute the Courant number $\nu = |c|\Delta t/\Delta x$. Is the CFL condition satisfied? What is the maximum allowable $\Delta t$?
+
+---
+
+**Exercise 2.** For the Black-Scholes PDE in original coordinates with $\sigma = 0.25$, $S_{\max} = 400$, and $M = 200$ ($\Delta S = 2$), compute the CFL restriction on $\Delta\tau$. How many time steps are needed for $T = 1$? Repeat the calculation in log-price coordinates with the same number of spatial points and compare.
+
+---
+
+**Exercise 3.** The explicit scheme coefficients for the Black-Scholes PDE are $a_j = \frac{\Delta\tau}{2}(\sigma^2 j^2 - rj)$, $b_j = 1 - \Delta\tau(\sigma^2 j^2 + r)$, $c_j = \frac{\Delta\tau}{2}(\sigma^2 j^2 + rj)$. Rewrite the scheme as a convex combination of neighboring values and show that non-negativity of all three coefficients is equivalent to the CFL condition plus $j \geq r/\sigma^2$.
+
+---
+
+**Exercise 4.** For the accuracy-matched time step strategy with Crank-Nicolson, the error is $O((\Delta\tau)^2 + (\Delta S)^2)$. If $M = 200$ and $S_{\max} = 300$ (so $\Delta S = 1.5$), what value of $N$ balances the temporal and spatial errors? Compare this to the CFL-required $N$ for the explicit scheme.
+
+---
+
+**Exercise 5.** Explain the "explicit scheme trap": why does doubling the spatial resolution ($M \to 2M$) increase the total computational cost of the explicit scheme by a factor of 8, while the implicit scheme's cost only increases by a factor of 4?
+
+---
+
+**Exercise 6.** The Rannacher start strategy uses 2-4 implicit steps followed by Crank-Nicolson. If the implicit steps use the same $\Delta\tau$ as the Crank-Nicolson steps, what fraction of the total computation time is spent on implicit steps when $N = 200$? Does this overhead significantly affect efficiency?

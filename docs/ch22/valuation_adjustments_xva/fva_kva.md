@@ -317,3 +317,51 @@ $$
 - Albanese, C. et al. (2015), "Coherent Global Market Simulations and Securitization Measures for Counterparty Credit Risk"
 - Crépey, S., Bielecki, T., & Brigo, D. (2014), *Counterparty Risk and Funding: A Tale of Two Puzzles*
 - Andersen, L., Duffie, D., & Song, Y. (2019), "Funding Value Adjustments"
+
+---
+
+## Exercises
+
+**Exercise 1.** A bank has a funding spread of 80 bps over the risk-free rate. It enters a 7-year uncollateralized swap with expected positive exposure $\mathbb{E}[V_t^+]$ averaging \$15M and expected negative exposure $\mathbb{E}[V_t^-]$ averaging \$10M over the life. Compute the symmetric FVA using
+
+$$
+\text{FVA} = s_F \int_0^T \mathbb{E}[V_t] \cdot D(0,t) \, dt
+$$
+
+assuming a flat discount rate of 3%. Also compute the asymmetric FVA if the lending spread is $s_F^- = 40$ bps and the borrowing spread is $s_F^+ = 80$ bps.
+
+---
+
+**Exercise 2.** A derivative portfolio requires average regulatory capital of \$8M over 10 years. The bank's hurdle rate (cost of capital) is 12%. Compute the KVA using the simplified formula
+
+$$
+\text{KVA} \approx h \int_0^T K(t) \cdot D(0,t) \, dt
+$$
+
+with a flat discount rate of 3%. If the bank's survival probability is $S_B(t) = e^{-0.01t}$, how does incorporating the survival probability change the KVA?
+
+---
+
+**Exercise 3.** Explain why XVAs are not additive across trades: $\text{XVA}(A + B) \neq \text{XVA}(A) + \text{XVA}(B)$. Provide a concrete example involving netting: two swaps with the same counterparty where Swap A has positive value and Swap B has negative value. Show that the CVA of the netted portfolio is less than the sum of individual CVAs. What implications does this non-additivity have for trade pricing and the allocation of XVA charges to individual business units?
+
+---
+
+**Exercise 4.** Consider the complete XVA calculation for a 10-year uncollateralized swap with \$100M notional. The inputs are: CVA = \$2.5M, DVA = \$1.0M, FVA = \$0.6M, KVA = \$2.0M, MVA = \$0 (uncollateralized, no IM). The clean price is \$5M. Compute the total XVA-adjusted price. If a competitor bank with a lower funding spread quotes the trade at a tighter XVA charge, explain how this creates competitive distortions and why different banks may quote different prices for the same derivative.
+
+---
+
+**Exercise 5.** Post-crisis regulations require bilateral initial margin for uncleared derivatives. A 10-year swap requires IM averaging \$12M over its life, funded at a spread of 90 bps. Compute the MVA. If the same trade is novated to a CCP with IM of \$8M but at a lower funding spread of 60 bps (because CCP margin is more efficiently funded), compute the CCP MVA. Which clearing arrangement has lower total margin-related costs?
+
+---
+
+**Exercise 6.** In the BSDE framework for XVA pricing, the driver function is
+
+$$
+g(t, V, Z) = -r V + s_F V^+ - s_L V^- + \lambda_C(V^+ - C)
+$$
+
+where $r$ is the risk-free rate, $s_F$ is the funding spread, $s_L$ is the lending rate, $\lambda_C$ is the counterparty hazard rate, and $C$ is collateral. Explain each term economically. Why does the BSDE framework naturally avoid the double-counting problem between DVA and FVA? What makes the equation nonlinear, and what are the computational implications?
+
+---
+
+**Exercise 7.** An XVA desk charges a total of \$4M in XVA at trade inception on a new swap. Over the next year, the counterparty's credit spread widens by 50 bps and the bank's funding spread widens by 20 bps. Qualitatively describe the direction of change for each XVA component (CVA, DVA, FVA, KVA). If the XVA desk hedged the credit spread component with CDS but did not hedge the funding component, estimate the P&L impact on the desk. Discuss the organizational challenges of managing a centralized XVA desk.

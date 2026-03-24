@@ -184,4 +184,30 @@ The analysis assumes correct model. In practice:
 - Standard deviation scales as \(\sqrt{\Delta t}\)
 - Near-expiry gamma blow-up magnifies the error
 - More frequent rebalancing reduces error but increases costs
-- The hedging error is approximately Gaussian for small \(\Delta t\) (CLT)
+- The hedging error is approximately Gaussian for small $\Delta t$ (CLT)
+
+---
+
+## Exercises
+
+**Exercise 1.** For an ATM call with $S = K = 100$, $\sigma = 0.20$, $\tau = 0.5$, $r = 0.03$, compute $\Gamma$ and then the per-step hedging error variance $\text{Var}(\epsilon_k) \approx \frac{1}{2}\Gamma^2 S^4 \sigma^4 (\Delta t)^2$ for daily rebalancing ($\Delta t = 1/252$). What is the standard deviation of a single day's hedging error?
+
+---
+
+**Exercise 2.** Using the cumulative error variance formula $\text{Var}(\text{HE}) \approx \frac{1}{2}\bar{\Gamma}^2 S^4 \sigma^4 T \cdot \Delta t$, compute the hedging error standard deviation for daily, weekly, and monthly rebalancing of an ATM call with $T = 0.25$, $\Gamma = 0.032$, $S = 100$, $\sigma = 0.20$. Verify the $\sqrt{\Delta t}$ scaling.
+
+---
+
+**Exercise 3.** The error formula $\epsilon_k \approx \frac{1}{2}\Gamma_k[(\Delta S_k)^2 - \sigma^2 S_k^2 \Delta t]$ shows that the hedging error is zero in expectation. Explain intuitively why: what would it mean if the expected hedging error were nonzero, and how would that contradict the Black--Scholes pricing framework?
+
+---
+
+**Exercise 4.** Consider two options with the same gamma but different paths to expiry: Option A stays ATM throughout, while Option B moves deep ITM early on. Which option has higher cumulative hedging error variance? Explain using the path dependence of $\Gamma(t, S_t)$.
+
+---
+
+**Exercise 5.** The CLT predicts that $\text{HE}/\sqrt{\Delta t} \xrightarrow{d} \mathcal{N}(0, \frac{1}{2}\int_0^T \Gamma^2 S^4 \sigma^4 \, dt)$. For a 95% confidence interval on the hedging error with daily rebalancing, compute the interval bounds for the ATM call in Exercise 1. Express the interval in dollars and as a percentage of the option price.
+
+---
+
+**Exercise 6.** A trader claims that switching from daily to hourly rebalancing will "eliminate hedging error." Using the $\sqrt{\Delta t}$ scaling, compute the reduction factor in hedging error standard deviation. Is the improvement sufficient to justify the approximately $8\times$ increase in transaction costs? At what cost-per-trade does hourly rebalancing become suboptimal?

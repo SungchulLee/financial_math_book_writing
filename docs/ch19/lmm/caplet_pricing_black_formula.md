@@ -274,3 +274,33 @@ $$
 - Brace, Gatarek & Musiela (1997), "The Market Model of Interest Rate Dynamics"
 - Brigo & Mercurio (2006), *Interest Rate Models: Theory and Practice*, Chapter 6
 - Hagan et al. (2002), "Managing Smile Risk" (SABR model)
+
+---
+
+## Exercises
+
+**Exercise 1.** A caplet on 3-month LIBOR has the following parameters: $L_i(0) = 3.8\%$, $K = 4.0\%$, $\sigma_i^{\text{Black}} = 24\%$, $T_i = 2$ years, $\delta_i = 0.25$, and $P(0, T_{i+1}) = 0.925$. Compute $d_1$, $d_2$, and the caplet price. Is this caplet in-the-money or out-of-the-money?
+
+---
+
+**Exercise 2.** The market quotes flat cap volatilities for 2Y, 3Y, and 5Y caps as 19.5%, 20.2%, and 21.0% respectively, with annual caplets. Describe the bootstrapping procedure to extract spot caplet volatilities from these flat cap quotes. If the 2Y caplet vol is 19.5%, what equation determines the 3Y spot caplet vol?
+
+---
+
+**Exercise 3.** Show that in the LMM, the Black caplet formula is exact (not an approximation). Specifically, explain why the forward rate $L_i(t)$ is exactly lognormal under $\mathbb{Q}^{T_{i+1}}$, even though $L_i(t)$ interacts with other forward rates under the terminal measure. What property of the $T_{i+1}$-forward measure makes this possible?
+
+---
+
+**Exercise 4.** Derive the caplet vega $\mathcal{V}_i = \delta_i P(0, T_{i+1}) L_i(0) \sqrt{T_i}\,\phi(d_1)$ by differentiating the Black caplet formula with respect to $\sigma_i^{\text{Black}}$. Use this to estimate the price change of the caplet in Exercise 1 if the volatility increases by 1 percentage point (from 24% to 25%).
+
+---
+
+**Exercise 5.** Put-call parity for caplets and floorlets states that $\text{Caplet} - \text{Floorlet} = \delta_i P(0, T_{i+1})(L_i(0) - K)$. Verify this identity algebraically using the Black formulas for caplets and floorlets. Then compute the floorlet price corresponding to Exercise 1.
+
+---
+
+**Exercise 6.** A trader observes that the ATM caplet implied volatility for 1-year expiry is 18% while the 10-year expiry is 24%. The forward rates are roughly constant at 4%. Compare the caplet prices per unit notional and per basis point of vega at the two maturities. Which caplet is more sensitive to volatility changes in absolute terms?
+
+---
+
+**Exercise 7.** The SABR model extends Black's formula to capture the volatility smile. In the SABR framework, the ATM Black volatility is approximately $\sigma^{\text{Black}}(K = F) \approx \alpha / F^{1-\beta}$, where $\alpha$ is the initial stochastic vol level and $\beta$ controls the backbone. For $\beta = 0.5$, $\alpha = 0.03$, and $F = 4\%$, compute the approximate ATM Black vol. How does this compare to the Bachelier (normal) vol $\sigma_N \approx \alpha\,F^\beta$?

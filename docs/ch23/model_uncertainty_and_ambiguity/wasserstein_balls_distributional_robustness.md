@@ -502,3 +502,33 @@ This has the clean interpretation: each data point can be perturbed by at most $
 6. **Computational Tractability**: For common loss functions and ground metrics, the worst-case problem admits LP, SOCP, or SDP reformulations that scale to realistic problem sizes
 
 7. **Trade-Off**: Compared to KL divergence, Wasserstein offers geometric awareness and support extension at the cost of slower convergence rates in high dimensions and more complex duality formulas
+
+---
+
+## Exercises
+
+**Exercise 1.** Compute the 1-Wasserstein distance $W_1(P, Q)$ between $P = \frac{1}{2}\delta_0 + \frac{1}{2}\delta_2$ and $Q = \frac{1}{2}\delta_1 + \frac{1}{2}\delta_3$ on $\mathbb{R}$ with ground metric $d(x,y) = |x - y|$. Compare this with the total variation distance $\|P - Q\|_{\text{TV}}$ and explain why the Wasserstein distance better captures the geometric proximity of the two distributions.
+
+---
+
+**Exercise 2.** Let $\hat{P}_n = \frac{1}{n}\sum_{i=1}^n \delta_{X_i}$ be the empirical distribution of $n$ samples from $P^* = N(0,1)$. Using the concentration inequality $\mathbb{P}(W_1(\hat{P}_n, P^*) > \varepsilon) \leq C e^{-c n \varepsilon^2}$, determine the radius $\varepsilon_n$ needed so that $P^* \in \mathcal{P}_W(\varepsilon_n) = \{P : W_1(P, \hat{P}_n) \leq \varepsilon_n\}$ with probability at least 95% when $n = 100$.
+
+---
+
+**Exercise 3.** For the distributionally robust portfolio problem $\min_w \sup_{P \in \mathcal{P}_W(\varepsilon)} \mathbb{E}_P[-w^\top R]$, explain why the worst-case distribution shifts probability mass to make the portfolio return as negative as possible while staying within the Wasserstein ball. For a single asset with $\hat{P}_n = \frac{1}{3}\delta_{-0.05} + \frac{1}{3}\delta_{0.02} + \frac{1}{3}\delta_{0.08}$ and $\varepsilon = 0.03$, compute the worst-case expected return for a long position $w = 1$.
+
+---
+
+**Exercise 4.** State and prove the strong duality result for the Wasserstein DRO problem: $\sup_{P \in \mathcal{P}_W(\varepsilon)} \mathbb{E}_P[\ell(x, \xi)] = \inf_{\lambda \geq 0} \{\lambda \varepsilon + \mathbb{E}_{\hat{P}_n}[\sup_{\xi'} \{\ell(x, \xi') - \lambda d(\xi, \xi')\}]\}$. Interpret the dual variable $\lambda$ as a "transportation price" and explain its role in balancing robustness against conservatism.
+
+---
+
+**Exercise 5.** Show that the Wasserstein DRO problem with quadratic loss $\ell(w, r) = -(w^\top r)$ and 2-Wasserstein ball is equivalent to a regularized mean-variance problem. Specifically, derive that $\sup_{P \in \mathcal{P}_{W_2}(\varepsilon)} \mathbb{E}_P[-w^\top R] = -w^\top \hat{\mu} + \varepsilon \|w\|_2$, establishing the connection between distributional robustness and norm regularization.
+
+---
+
+**Exercise 6.** Compare Wasserstein and KL divergence ambiguity sets for computing worst-case CVaR. For the empirical distribution $\hat{P}_3 = \frac{1}{3}\delta_{-0.10} + \frac{1}{3}\delta_{0.00} + \frac{1}{3}\delta_{0.05}$ of portfolio returns, compute the worst-case $\text{CVaR}_{0.95}$ under a Wasserstein ball of radius $\varepsilon = 0.02$. Explain why the Wasserstein formulation can produce losses more extreme than any observed data point, while the KL formulation cannot.
+
+---
+
+**Exercise 7.** A stress testing framework uses Wasserstein balls to generate adverse scenarios. Given an empirical joint distribution of equity returns and credit spreads, describe how to solve $\sup_{P \in \mathcal{P}_W(\varepsilon)} \mathbb{E}_P[\text{Portfolio Loss}]$ computationally. What ground metric $d$ is appropriate for the joint space of returns and spreads, and how does the choice of metric affect the generated stress scenarios?

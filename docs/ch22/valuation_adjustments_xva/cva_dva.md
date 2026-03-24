@@ -309,3 +309,59 @@ $$
 - Cesari, G. et al., *Modelling, Pricing, and Hedging Counterparty Credit Exposure*
 - Pykhtin, M. & Zhu, S. (2007), "A Guide to Modelling Counterparty Credit Risk"
 - ISDA, "ISDA Margin Survey" (market practice)
+
+---
+
+## Exercises
+
+**Exercise 1.** A bank enters a 5-year interest rate swap with notional \$200M. The expected exposure profile and survival probabilities are:
+
+| Year $t$ | EE($t$) (\$M) | $S(t) = e^{-0.015t}$ |
+|---|---|---|
+| 1 | 3.0 | 0.9851 |
+| 2 | 5.5 | 0.9704 |
+| 3 | 6.0 | 0.9560 |
+| 4 | 4.5 | 0.9418 |
+| 5 | 2.0 | 0.9277 |
+
+With LGD = 60% and risk-free rate 3%, compute the CVA using the discrete approximation
+
+$$
+\text{CVA} \approx \text{LGD} \sum_{i=1}^{5} \text{EE}(t_i) \cdot [S(t_{i-1}) - S(t_i)] \cdot D(0, t_i)
+$$
+
+---
+
+**Exercise 2.** Explain the DVA controversy. A bank's credit spread widens from 100 bps to 200 bps. How does this affect the DVA on a portfolio where the bank has net negative exposure (i.e., the bank owes money to counterparties)? Compute the approximate change in DVA if the bank's NEE is \$500M with 5 years remaining and LGD = 60%. Discuss why recognizing this as a profit is problematic from both economic and regulatory perspectives.
+
+---
+
+**Exercise 3.** A derivative has $V^{\text{risk-free}} = \$10$M. The CVA is \$1.5M and the DVA is \$0.8M. Compute the adjusted derivative value $V^{\text{adjusted}}$. Now suppose the bank's credit quality deteriorates, increasing DVA by \$0.3M while the counterparty's credit quality is unchanged. What is the new adjusted value? Explain the paradox that the bank's value increases as its own credit worsens.
+
+---
+
+**Exercise 4.** A counterparty has a flat hazard rate $\lambda = 3\%$ per year. Compute the survival probability $S(t) = e^{-\lambda t}$ and cumulative default probability $PD(t) = 1 - S(t)$ for $t = 1, 3, 5, 10$ years. If the expected exposure is constant at $\text{EE}(t) = \$5$M and LGD = 60%, compute the CVA over a 10-year horizon using
+
+$$
+\text{CVA} = \text{LGD} \int_0^{T} \text{EE}(t) \cdot \lambda \cdot S(t) \cdot D(0,t) \, dt
+$$
+
+with a flat discount rate of 2%.
+
+---
+
+**Exercise 5.** Derive the credit spread sensitivity of CVA. Starting from the CVA formula with constant hazard rate $\lambda = s / \text{LGD}$ (where $s$ is the credit spread), show that
+
+$$
+\frac{\partial \text{CVA}}{\partial s} \approx -\text{LGD} \int_0^T \text{EE}(t) \cdot t \cdot e^{-st} \cdot D(0,t) \, dt
+$$
+
+is negative, meaning CVA increases as the counterparty's credit spread widens. For the exposure profile in Exercise 1, compute this sensitivity numerically at $s = 150$ bps.
+
+---
+
+**Exercise 6.** A CVA desk hedges counterparty credit risk by buying CDS protection. The counterparty's 5-year CDS spread is 200 bps. The CVA on a portfolio of trades with this counterparty is \$3M, with average expected exposure of \$50M. Estimate the appropriate CDS notional for the hedge. Discuss why this hedge is imperfect: what happens if the exposure profile changes due to market moves? What is the residual "gap risk"?
+
+---
+
+**Exercise 7.** In the bilateral (first-to-default) framework, a derivative with $V_t > 0$ at time $t$ is exposed to counterparty default, while $V_t < 0$ creates DVA exposure. Consider a swap that can have both positive and negative values over its life. Explain why the bilateral valuation $V^{\text{bilateral}} = V^{\text{risk-free}} - \text{CVA} + \text{DVA}$ depends on the joint distribution of $(V_t, \tau_C, \tau_B)$. Discuss how wrong-way risk (correlation between exposure and default) affects CVA and provide an example of a derivative exhibiting strong wrong-way risk.

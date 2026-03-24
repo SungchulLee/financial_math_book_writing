@@ -405,3 +405,39 @@ This transformation:
 - Admits **smooth inversion** with explicit derivatives (vega-based)
 
 The existence of the implied volatility smile—variation of $\sigma_{\text{IV}}$ with strike and maturity—reveals the limitations of the constant-volatility Black-Scholes model while simultaneously providing a powerful descriptive framework for option market dynamics.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a European call with $S = 100$, $K = 105$, $T = 0.5$, and $r = 3\%$, compute the admissible price interval $(C_{\text{intrinsic}}, S)$. Explain why a market price of $C_{\text{market}} = 101$ would not admit an implied volatility.
+
+---
+
+**Exercise 2.** Starting from the Black-Scholes formula $C_{\text{BS}} = S\Phi(d_1) - Ke^{-rT}\Phi(d_2)$, verify analytically that $\lim_{\sigma \to \infty} C_{\text{BS}} = S$ by showing $d_1 \to +\infty$ and $d_2 \to -\infty$. Which term in $d_1$ dominates as $\sigma \to \infty$?
+
+---
+
+**Exercise 3.** The derivative of implied volatility with respect to price is given by
+
+$$
+\frac{d\sigma_{\text{IV}}}{dC} = \frac{1}{S\phi(d_1(\sigma_{\text{IV}}))\sqrt{T}}
+$$
+
+For an ATM option ($S = K = 100$) with $T = 1$, $r = 0$, and $\sigma_{\text{IV}} = 0.25$, compute $d_1$, evaluate $\phi(d_1)$, and find $d\sigma_{\text{IV}}/dC$. Interpret the result: how much does implied volatility change per \$1 change in the option price?
+
+---
+
+**Exercise 4.** Explain conceptually why the Black-Scholes pricing map $\mathcal{C}: \sigma \mapsto C_{\text{BS}}(\sigma)$ is a diffeomorphism from $(0, \infty)$ to $(C_{\text{intrinsic}}, S)$. State the three properties (monotonicity, continuity, range) required for this, and identify where each is used in the proof of Theorem 4.1.1.
+
+---
+
+**Exercise 5.** A trader observes two call options on the same stock with the same maturity $T = 0.25$ but different strikes: $K_1 = 95$ with $C_1 = 9.50$ and $K_2 = 105$ with $C_2 = 3.20$. Both options have $S = 100$ and $r = 2\%$. (a) Verify that both prices lie in their respective admissible intervals. (b) Which option do you expect to have higher implied volatility if the smile has negative skew? Explain without computing.
+
+---
+
+**Exercise 6.** Compare and contrast three numerical methods for computing implied volatility: Newton-Raphson, Brent's method, and bisection. For each method, state (a) the convergence rate, (b) whether it requires vega evaluation, and (c) under what conditions it might fail or be preferred. Why is Brent's method often used in production systems?
+
+---
+
+**Exercise 7.** If the underlying truly followed geometric Brownian motion with constant volatility $\sigma = 0.20$, what would the implied volatility surface $\sigma_{\text{IV}}(K, T)$ look like? In practice, $\sigma_{\text{IV}}$ varies with $K$ and $T$. List three market phenomena that cause deviations from the flat surface, and for each, describe qualitatively how it affects the shape of $\sigma_{\text{IV}}(K)$ at a fixed maturity.

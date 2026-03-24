@@ -375,3 +375,33 @@ after de-leveraging.
 - Vassalou, M., & Xing, Y. (2004). Default risk in equity returns. *Journal of Finance*, 59(2), 831--868.
 - Duffie, D., Saita, L., & Wang, K. (2007). Multi-period corporate default prediction with stochastic covariates. *Journal of Financial Economics*, 83(3), 635--665.
 - Bharath, S. T., & Shumway, T. (2008). Forecasting default with the Merton distance to default model. *Review of Financial Studies*, 21(3), 1339--1369.
+
+---
+
+## Exercises
+
+**Exercise 1.** A firm has equity value $E_0 = 50$, total liabilities $D = 80$ (with short-term debt 30, long-term debt 50, default point $= 30 + 0.5 \times 50 = 55$), equity volatility $\sigma_E = 45\%$, and expected asset return $\mu = 8\%$. Solve the Merton system to find $V_0$ and $\sigma_V$, then compute the distance to default:
+
+$$
+DD = \frac{\ln(V_0 / \text{DPT}) + (\mu - \sigma_V^2/2) \times 1}{\sigma_V \times 1}
+$$
+
+---
+
+**Exercise 2.** The KMV model maps distance to default (DD) to expected default frequency (EDF) using an empirical database rather than the normal distribution. Explain why $N(-DD)$ (the Merton model's theoretical default probability) typically underestimates the actual default rate. What empirical features (fat tails, model error) account for the discrepancy?
+
+---
+
+**Exercise 3.** Two firms have the same equity value ($E_0 = 40$) and asset volatility ($\sigma_V = 20\%$), but Firm A has debt $D = 60$ and Firm B has debt $D = 90$. Compute the asset values $V_0^A$ and $V_0^B$ (approximately, using $V_0 \approx E_0 + D$). Then compute the distance to default for each firm and explain which firm has higher default risk.
+
+---
+
+**Exercise 4.** Explain the KMV "default point" convention: DPT = Short-term Debt + 0.5 $\times$ Long-term Debt. Why is only half of long-term debt included? What economic assumption about debt rollovers motivates this choice?
+
+---
+
+**Exercise 5.** A firm's distance to default drops from DD = 4.5 to DD = 2.0 over one year. Describe the changes in the firm's financial condition that could cause this decline. What actions might the firm's management, creditors, and rating agencies take in response?
+
+---
+
+**Exercise 6.** Compare the KMV distance-to-default approach with rating-based credit assessment (e.g., Moody's or S&P ratings). Discuss the advantages of DD as a continuous, market-based measure versus discrete ratings. What are the limitations of relying solely on market-implied measures?

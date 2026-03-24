@@ -290,3 +290,52 @@ After significant failures:
 - Basel Committee (2009), "Principles for Sound Stress Testing Practices and Supervision"
 - Glasserman, P. & Xu, X. (2014), "Robust Risk Measurement and Model Risk"
 - Danielsson, J. et al. (2016), "Model Risk of Risk Models"
+
+---
+
+## Exercises
+
+**Exercise 1.** A risk manager has three VaR models producing daily 99% VaR estimates of \$12M, \$15M, and \$18M for the same portfolio. Describe the model averaging and envelope approaches. Compute the risk estimate under each. Discuss when each approach is more appropriate, and explain why equal-weighted averaging may be suboptimal.
+
+---
+
+**Exercise 2.** Consider the maximin decision framework
+
+$$
+\max_a \min_s U(a, s)
+$$
+
+A portfolio manager must choose between two hedging strategies $a_1$ and $a_2$ under three scenarios $s_1, s_2, s_3$ with the following utility (P&L) matrix:
+
+| | $s_1$ | $s_2$ | $s_3$ |
+|---|---|---|---|
+| $a_1$ | $-5$ | $+10$ | $+2$ |
+| $a_2$ | $+1$ | $+3$ | $+4$ |
+
+Which action does the maximin criterion select? Compare this to the expected utility criterion assuming equal scenario probabilities. Discuss the tradeoffs between the two decision rules in the context of risk management.
+
+---
+
+**Exercise 3.** A model risk buffer is applied as $\text{Adjusted Risk} = \text{Model Risk} \times (1 + b)$. If a bank's statistical VaR is \$100M and the stress capital is \$140M, and the capital is set as $\text{Capital} = \max(\text{Statistical Capital}, \text{Stress Capital})$, determine the minimum buffer $b$ such that statistical capital with the buffer exceeds stress capital. Discuss whether this approach adequately captures the tail risk that stress testing is designed to reveal.
+
+---
+
+**Exercise 4.** In the Bayesian approach to model uncertainty, the posterior predictive distribution of risk is
+
+$$
+p(\text{Risk} | \text{Data}) = \int p(\text{Risk} | \theta) \cdot p(\theta | \text{Data}) \, d\theta
+$$
+
+Explain why a point estimate $\hat{\theta}$ (e.g., MLE) underestimates the true uncertainty in the risk measure compared to the full Bayesian integral. Suppose the model is a normal distribution with unknown mean $\mu$ and known variance $\sigma^2$. Show that the posterior predictive variance of a future observation exceeds $\sigma^2$, and interpret this extra variance as parameter uncertainty.
+
+---
+
+**Exercise 5.** During the 2008 financial crisis, many banks experienced "25-sigma events" under their Gaussian VaR models. Explain why these events were model artifacts rather than genuine statistical anomalies. If a bank observed daily returns of $-8\%$ with an estimated daily volatility of $1\%$ under a Gaussian model, compute the implied number of standard deviations. Discuss at least two specific model assumptions that failed and how a robust framework could have provided better risk estimates.
+
+---
+
+**Exercise 6.** A bank's model inventory contains 200 models. Design a tiering scheme using three criteria: (i) P&L impact measured as the notional value of positions dependent on the model, (ii) model complexity measured as the number of parameters, and (iii) replacement difficulty. Define specific thresholds that assign each model to Tier 1, 2, or 3. For a limited validation budget of 50 full validations per year, propose a review schedule across tiers and justify your allocation.
+
+---
+
+**Exercise 7.** Consider two kill-switch triggers: (a) more than 5 VaR backtesting exceedances in 60 days, and (b) the model's 1-day VaR exceeding 3 times its 60-day rolling average. For trigger (a), compute the probability of a false alarm under the null hypothesis that the 99% VaR model is correctly specified, using the binomial distribution with $n = 60$ and $p = 0.01$. Discuss the tradeoff between false alarms and delayed detection in setting kill-switch thresholds.

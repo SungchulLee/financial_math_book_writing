@@ -196,3 +196,29 @@ This sets a **floor** on risk that cannot be eliminated by trading the underlyin
 - Systematic model errors accumulate; random errors scale as \(\sqrt{T}\)
 - In jump models, perfect replication is impossible: markets are incomplete
 - Size positions for worst-case jump scenarios
+
+---
+
+## Exercises
+
+**Exercise 1.** In a jump-diffusion model, a jump of size $J = -0.10$ (10% downward) occurs. For a short ATM call with $S = 100$, $K = 100$, $\Gamma = 0.04$, compute the hedging error $\epsilon_{\text{jump}} \approx \frac{1}{2}\Gamma S^2 J^2$. Compare this to the daily diffusive hedging error standard deviation (with $\sigma = 0.20$, $\Delta t = 1/252$). How many standard deviations of diffusive error does a single 10% jump represent?
+
+---
+
+**Exercise 2.** The expected hedging error from jumps is $\frac{1}{2}\lambda_J\int_0^T \Gamma S^2 \sigma_J^2\,dt$. For $\lambda_J = 2$ (two expected jumps per year), $\sigma_J^2 = 0.01$ (jump variance), $\Gamma = 0.03$, $S = 100$, and $T = 0.5$, compute the expected jump hedging error. Is this error systematic or mean-zero? How does this compare to the volatility misspecification error from using $\hat{\sigma} = 0.20$ when true $\sigma = 0.22$?
+
+---
+
+**Exercise 3.** Consider a delta-hedged short call in the Merton jump-diffusion model with $\sigma = 0.15$, $\lambda_J = 1$, and $J \sim \mathcal{N}(-0.05, 0.03^2)$. Compute the minimum hedging error variance $\text{Var}_{\min}(\text{HE}) = \lambda_J\mathbb{E}[(\frac{1}{2}\Gamma S^2 J^2)^2]$ for $\Gamma = 0.04$ and $S = 100$. This is the floor on risk that cannot be eliminated by trading the underlying alone.
+
+---
+
+**Exercise 4.** A trader monitors the hedge P&L daily to detect volatility misspecification. The cumulative misspecification error is $\text{HE} = \frac{1}{2}\int_0^t \Gamma S^2(\sigma^2 - \hat{\sigma}^2)\,ds$. If $\hat{\sigma} = 0.20$, $\sigma = 0.25$, $\Gamma = 0.03$, and $S = 100$, compute the expected daily P&L drift from misspecification. After how many days would the cumulative drift exceed one standard deviation of the diffusive hedging error (assuming daily rebalancing)?
+
+---
+
+**Exercise 5.** The comparison table shows different error structures: discrete trading ($\sqrt{\Delta t}$), jump risk ($\lambda_J\sigma_J^2$), and vol misspecification ($\sim T$). For a 6-month option with daily rebalancing, $\sigma = 0.20$, $\Gamma = 0.03$, $S = 100$, $\lambda_J = 1$, $\sigma_J = 0.08$, and vol misspecification $\delta\sigma = 0.02$, compute the contribution of each error source to the total hedging error. Which dominates?
+
+---
+
+**Exercise 6.** Delta-gamma hedging uses a second option to neutralize gamma, providing protection against large moves and jumps. If the underlying has $\Gamma_1$ and the hedging option has $\Gamma_2 = 0.06$, explain how to set up a delta-gamma neutral position. For a jump of size $J = -0.15$, compute the residual hedging error from the speed term $\frac{1}{6}\text{Speed} \cdot S^3 J^3$ with $\text{Speed} = 0.002$ and $S = 100$. Is gamma hedging sufficient protection against large jumps?

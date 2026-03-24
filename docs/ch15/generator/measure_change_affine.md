@@ -251,3 +251,33 @@ The closure property of affine processes under measure change is the key to thei
 - Duffee, G. (2002). "Term Premia and Interest Rate Forecasts in Affine Models." *Journal of Finance*, 57(1), 405--443.
 - Cheridito, P., Filipovic, D., and Kimmel, R. (2007). "Market Price of Risk Specifications for Affine Models." *Journal of Financial Economics*, 83(1), 123--170.
 - Filipovic, D. (2009). *Term-Structure Models: A Graduate Course*. Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Vasicek model under $\mathbb{P}$ with parameters $\kappa^{\mathbb{P}} = 0.5$, $\theta^{\mathbb{P}} = 0.06$, $\sigma = 0.02$, and a constant market price of risk $\lambda = 0.3$, compute the risk-neutral parameters $\kappa^{\mathbb{Q}}$ and $\theta^{\mathbb{Q}}$. Verify that the diffusion coefficient $\sigma$ is unchanged under the measure change.
+
+---
+
+**Exercise 2.** For the CIR model, the standard market price of risk is $\lambda(r) = \lambda_1 \sqrt{r}/\xi$. Show that the measure change produces risk-neutral parameters with $\kappa^{\mathbb{Q}}\theta^{\mathbb{Q}} = \kappa^{\mathbb{P}}\theta^{\mathbb{P}}$. Explain why this invariance of the product $\kappa\theta$ guarantees that the Feller condition is preserved under the measure change.
+
+---
+
+**Exercise 3.** Explain why a market price of risk of the form $\lambda(x) = \lambda_0 + \Lambda x$ with a general (non-diagonal) matrix $\Lambda$ can break the affine structure for CIR-type components. Show explicitly that the cross-term $\alpha_i x^{(i)} \Lambda x$ produces a quadratic dependence on $x$ that cannot be absorbed into a linear drift.
+
+---
+
+**Exercise 4.** For the Esscher transform with parameter $\theta \in \mathbb{R}$, applied to a one-dimensional OU process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, compute the drift of $X_t$ under the new measure $\mathbb{Q}^\theta$. Show that $X_t$ remains an OU process under $\mathbb{Q}^\theta$ with modified parameters $\kappa^{\mathbb{Q}} = \kappa - \sigma^2\theta$ and unchanged diffusion $\sigma$.
+
+---
+
+**Exercise 5.** Consider an affine jump-diffusion with compound Poisson jumps having exponential jump sizes with parameter $\eta$ under $\mathbb{P}$. Under the Esscher transform $m^{\mathbb{Q}}(dz) = e^{\gamma z}m^{\mathbb{P}}(dz)$, show that the jump sizes under $\mathbb{Q}$ are still exponentially distributed, but with parameter $\eta - \gamma$ (provided $\gamma < \eta$). What is the new jump intensity?
+
+---
+
+**Exercise 6.** In the essentially affine specification of Duffee (2002), the Gaussian components of the state vector can have unrestricted market prices of risk while CIR components are restricted to the completely affine form. For a two-factor model with one Gaussian factor $X_1$ and one CIR factor $X_2$, write down the most general essentially affine market price of risk $\lambda(x)$ and identify which parameters are free and which are constrained.
+
+---
+
+**Exercise 7.** Suppose you calibrate a CIR model to the yield curve and obtain risk-neutral parameters $\kappa^{\mathbb{Q}} = 0.8$, $\theta^{\mathbb{Q}} = 0.05$, $\xi = 0.15$. From time-series estimation, you find $\kappa^{\mathbb{P}} = 0.3$ and $\theta^{\mathbb{P}} = 0.07$. Compute the implied market price of risk parameter $\lambda_1$ and verify that $\kappa^{\mathbb{P}}\theta^{\mathbb{P}} = \kappa^{\mathbb{Q}}\theta^{\mathbb{Q}}$.

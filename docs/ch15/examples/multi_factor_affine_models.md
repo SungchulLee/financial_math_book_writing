@@ -213,3 +213,29 @@ Multi-factor affine models in the $A_m(d)$ classification combine $m$ CIR-type a
 - Duffie, D. & Kan, R. (1996). "A Yield-Factor Model of Interest Rates." *Mathematical Finance*, 6(4), 379-406.
 - Piazzesi, M. (2010). "Affine Term Structure Models." *Handbook of Financial Econometrics*, Volume 1, 691-766.
 - Filipovic, D. *Term-Structure Models: A Graduate Course*. Springer, 2009, Chapter 11.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the $A_0(3)$ model (three Gaussian factors), write the most general drift structure $b(x) = b_0 + Bx$ with a full $3 \times 3$ matrix $B$. How many free parameters does this model have (counting drift, diffusion, and short rate parameters)?
+
+---
+
+**Exercise 2.** Consider the $A_1(2)$ model with one CIR factor $X_1 \geq 0$ and one Gaussian factor $X_2 \in \mathbb{R}$. If the short rate is $r_t = X_t^{(1)} + X_t^{(2)}$, write down the bond pricing Riccati system for $B_1(\tau)$ and $B_2(\tau)$. Under what condition on the drift matrix $B$ do these two equations decouple?
+
+---
+
+**Exercise 3.** Explain why the $A_0(d)$ models (purely Gaussian) can produce negative interest rates while the $A_d(d)$ models (purely CIR) guarantee non-negative rates. What is the trade-off in terms of the volatility structure?
+
+---
+
+**Exercise 4.** For a two-factor CIR model ($A_2(2)$) with independent factors and short rate $r_t = X_t^{(1)} + X_t^{(2)}$, show that the bond price factors as $P(t,T) = P_1(t,T) \cdot P_2(t,T)$ where each $P_i$ is the bond price from a single-factor CIR model. Under what conditions does this factorization break down?
+
+---
+
+**Exercise 5.** The Dai-Singleton classification restricts the matrix $\Lambda$ in the market price of risk to ensure affine closure. For the $A_1(2)$ model, state the restriction and explain its origin: why can the Gaussian component have an unrestricted market price of risk while the CIR component cannot?
+
+---
+
+**Exercise 6.** A three-factor model with $d = 3$ and $m = 1$ (one CIR factor) can capture level, slope, and curvature of the yield curve. Describe qualitatively which factor controls which aspect of the yield curve, and explain why at least three factors are needed for a realistic model.

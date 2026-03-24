@@ -315,3 +315,35 @@ The TR receiver bears both the upside and downside of the reference asset, net o
 - Duffie, D., & Singleton, K. J. (2003). *Credit Risk: Pricing, Measurement, and Management*. Princeton University Press.
 - Bomfim, A. N. (2005). *Understanding Credit Derivatives and Related Instruments*. Academic Press, Chapter 4.
 - Gregory, J. (2010). *Counterparty Credit Risk*. Wiley, Chapter 8.
+
+---
+
+## Exercises
+
+**Exercise 1.** A TRS is written on a corporate bond with face value \$10 million and a semi-annual coupon of 6%. The bond price at the start of the quarter is $P_0 = 101\%$. At the end of the quarter, the price is $P_1 = 99.5\%$. The floating rate is SOFR $= 4.5\%$ and the TRS spread is 60 bp. Compute the net cash flow to the TR receiver for this quarter.
+
+---
+
+**Exercise 2.** At inception of a TRS, the fair spread is determined by
+
+$$
+s_{\text{TRS}} = y_{\text{bond}} - L
+$$
+
+where $y_{\text{bond}}$ is the bond yield and $L$ is the floating rate. A bond yields 5.8% and the floating rate is 4.5%. Compute the fair TRS spread. If the TR receiver can borrow at $L + 200$ bp, explain the economic advantage of entering the TRS versus purchasing the bond outright.
+
+---
+
+**Exercise 3.** Explain why a TRS transfers all market risks (credit, interest rate, and liquidity) while a CDS transfers only default risk. Construct a portfolio combining a TRS and a CDS on the same reference entity that isolates the non-default component of credit spread risk. Describe what residual risks remain.
+
+---
+
+**Exercise 4.** The reference bond in a TRS defaults at time $\tau$, with post-default recovery price $P_{\tau} = 38\%$ of face. The bond price at the last reset before default was $P_{\text{prev}} = 95\%$. On a notional of \$10 million, compute the settlement payment at default. Who makes this payment, the TR payer or the TR receiver?
+
+---
+
+**Exercise 5.** Describe the wrong-way risk embedded in a TRS from the perspective of the TR payer. Specifically, explain why the counterparty credit exposure and the TR receiver's creditworthiness may be positively correlated during a credit crisis. How does daily margining mitigate (but not eliminate) this risk?
+
+---
+
+**Exercise 6.** A hedge fund uses a TRS to gain leveraged exposure to a \$100 million bond portfolio. The initial margin requirement is 10% of notional. If the bond portfolio appreciates by 3% over the first quarter and the net funding cost (SOFR + TRS spread) is 5.2% annualized, compute the hedge fund's return on equity for the quarter. Compare this to the unleveraged return from purchasing the bonds outright.

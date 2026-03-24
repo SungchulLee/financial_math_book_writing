@@ -182,3 +182,31 @@ At the boundary $\nu = 1$, zero is technically an entrance boundary (the process
 The Feller condition $2\kappa\theta \geq \sigma^2$ (equivalently $\nu = 2\kappa\theta/\sigma^2 \geq 1$) is the fundamental criterion governing the CIR process near zero. When satisfied, the boundary $r = 0$ is an entrance boundary and the short rate is strictly positive. When violated, zero is reached in finite time but the process is instantaneously reflected, maintaining non-negativity. The condition constrains calibration and determines whether simple Euler discretization schemes remain valid or whether exact simulation methods are required.
 
 ---
+
+## Exercises
+
+**Exercise 1.** For each parameter set below, compute the Feller ratio $\nu = 2\kappa\theta/\sigma^2$ and classify the boundary at $r = 0$ as entrance or regular: (a) $\kappa = 1.0$, $\theta = 0.05$, $\sigma = 0.20$; (b) $\kappa = 0.2$, $\theta = 0.03$, $\sigma = 0.10$; (c) $\kappa = 0.5$, $\theta = 0.08$, $\sigma = 0.20$.
+
+---
+
+**Exercise 2.** Apply Ito's lemma to $Y_t = \sqrt{r_t}$ where $r_t$ follows the CIR SDE. Derive the drift of $Y_t$ near $Y_t = 0$ and show that it behaves like $(\kappa\theta - \sigma^2/4)/(2Y_t)$. Explain why this drift is repelling from zero when $2\kappa\theta > \sigma^2/2$ and relate this to the Feller condition.
+
+---
+
+**Exercise 3.** The scale density for the CIR process is $s'(x) = x^{-\nu} e^{2\kappa x/\sigma^2}$. Evaluate $\int_0^c s'(x)\,dx$ for $c = 0.01$ and show that the integral converges if and only if $\nu < 1$. What does the divergence of this integral for $\nu \geq 1$ imply about the accessibility of the boundary?
+
+---
+
+**Exercise 4.** A risk manager calibrates the CIR model in a low-rate environment and obtains $\kappa = 0.15$, $\theta = 0.01$, $\sigma = 0.08$. Check the Feller condition. If it is violated, what is the maximum $\sigma$ that would satisfy the Feller condition while keeping $\kappa$ and $\theta$ fixed? Alternatively, what is the minimum $\theta$ that satisfies the condition while keeping $\kappa$ and $\sigma$ fixed?
+
+---
+
+**Exercise 5.** Explain why the Feller condition constrains the feasible region for CIR calibration. Draw the feasible region in the $(\theta, \sigma)$ plane for fixed $\kappa = 0.5$, shading the area where $2\kappa\theta \geq \sigma^2$. What shape is this region?
+
+---
+
+**Exercise 6.** In the Heston stochastic volatility model, typical calibrated parameters are $\kappa_v = 2.0$, $\theta_v = 0.04$, and $\sigma_v = 0.5$. Compute the Feller ratio $\nu = 2\kappa_v\theta_v/\sigma_v^2$. Is the Feller condition satisfied? Discuss the practical implications for Monte Carlo simulation of the Heston model when the variance process can touch zero.
+
+---
+
+**Exercise 7.** When $\nu < 1$ and the process reaches zero, it is "instantaneously reflected." Explain what this means mathematically: the process spends zero Lebesgue time at the boundary (i.e., $\int_0^T \mathbf{1}_{\{r_t = 0\}}\,dt = 0$ a.s.), yet it visits zero. Contrast this with an "absorbing" boundary where the process stays at zero once reached. Why is reflection the correct boundary behavior for the CIR process?

@@ -181,3 +181,29 @@ Variance reduction techniques (antithetic variates, control variates, importance
 - Vega and rho have analogous pathwise representations.
 - Gamma requires more care when payoffs are nonsmooth; the pathwise method fails for kinked payoffs like vanilla calls and puts.
 - The stochastic flow approach generalizes to arbitrary diffusion models through the variational equation.
+
+---
+
+## Exercises
+
+**Exercise 1.** Verify the stochastic flow identity $\frac{\partial S_T}{\partial S} = \frac{S_T}{S}$ for geometric Brownian motion $S_T = S\exp((r - \frac{1}{2}\sigma^2)\tau + \sigma(W_T - W_t))$ by direct differentiation with respect to $S$.
+
+---
+
+**Exercise 2.** The pathwise delta formula for a European call gives $\Delta = \frac{e^{-r\tau}}{S}\mathbb{E}^{t,S}[S_T \mathbf{1}_{S_T > K}]$. Evaluate this expectation under the risk-neutral log-normal distribution and recover $\Delta = N(d_1)$. (Hint: use the fact that $S_T/S = \exp((r - \frac{1}{2}\sigma^2)\tau + \sigma\sqrt{\tau}Z)$.)
+
+---
+
+**Exercise 3.** For the rho formula $\rho = -\tau V + e^{-r\tau}\tau \mathbb{E}^{t,S}[\Phi'(S_T)S_T]$, explain the two contributions: one from the discount factor and one from the drift. For a deep ITM call where $\Phi'(S_T) \approx 1$ and $V \approx S - Ke^{-r\tau}$, show that $\rho \approx K\tau e^{-r\tau}$.
+
+---
+
+**Exercise 4.** The pathwise approach to gamma fails for the call payoff because $\Phi''(x) = \delta(x - K)$. However, for $\frac{\partial^2 S_T}{\partial S^2} = 0$ in GBM, the gamma expression simplifies. Show that $\Gamma = \frac{1}{S^2}\mathbb{E}^{t,S}[e^{-r\tau}\Phi''(S_T)S_T^2]$, and explain why this is only formal (not rigorous) for the call payoff.
+
+---
+
+**Exercise 5.** For a general diffusion $dS_t = \mu(t, S_t)\,dt + \sigma(t, S_t)\,dW_t$, the variational equation for $Y_t = \partial S_t / \partial S_0$ is $dY_t = \mu'(t,S_t)Y_t\,dt + \sigma'(t,S_t)Y_t\,dW_t$ with $Y_0 = 1$. For the CEV model $\sigma(S) = \sigma_0 S^{\beta-1}$, compute $\sigma'(S)$ and write down the variational equation. Does $Y_T = S_T/S_0$ still hold?
+
+---
+
+**Exercise 6.** Describe the Monte Carlo workflow for computing delta and vega simultaneously along a single set of simulated paths. How many additional function evaluations are needed per path compared to computing the price alone? What are the advantages of pathwise estimation over finite-difference estimation in this context?

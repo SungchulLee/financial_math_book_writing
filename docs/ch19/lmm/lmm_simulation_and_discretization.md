@@ -265,3 +265,39 @@ The complete LMM simulation algorithm for pricing under the spot measure proceed
 - Andersen & Piterbarg (2010), *Interest Rate Modeling*, Volume II, Chapters 13--14
 - Brigo & Mercurio (2006), *Interest Rate Models: Theory and Practice*, Chapter 7
 - Hunter, Jäckel & Joshi (2001), "Getting the Drift: LMM Simulation"
+
+---
+
+## Exercises
+
+**Exercise 1.** In the log-Euler scheme for the LMM, the forward rate is updated as
+
+$$
+\ln L_i(t + \Delta t) = \ln L_i(t) + \left(\mu_i(t) - \frac{1}{2}\sigma_i^2\right)\Delta t + \sigma_i\sqrt{\Delta t}\,Z_i
+$$
+
+where $Z_i$ are correlated standard normals. For $L_i(t) = 4\%$, $\mu_i(t) = -0.001$, $\sigma_i = 0.20$, and $\Delta t = 0.25$, generate one sample of $L_i(t + \Delta t)$ using $Z_i = 0.75$. Verify that the result is positive regardless of the value of $Z_i$.
+
+---
+
+**Exercise 2.** Explain why the direct Euler scheme $L_i(t + \Delta t) = L_i(t) + \mu_i L_i \Delta t + \sigma_i L_i \sqrt{\Delta t}\,Z_i$ can produce negative forward rates, while the log-Euler scheme cannot. For what values of $Z_i$ does the direct Euler scheme give $L_i(t+\Delta t) < 0$ when $L_i(t) = 2\%$, $\sigma_i = 0.30$, and $\Delta t = 1$?
+
+---
+
+**Exercise 3.** The predictor--corrector method for the LMM drift uses the following two-step procedure: (a) compute a "predicted" rate using the Euler drift at time $t$, (b) recompute the drift at the predicted rate, and (c) average the two drifts for the final update. Write out this procedure explicitly for the terminal-measure drift and explain why it achieves higher-order convergence ($O(\Delta t)$ rather than $O(\sqrt{\Delta t})$).
+
+---
+
+**Exercise 4.** For an LMM with $n = 10$ forward rates and exponential correlation $\rho_{ij} = e^{-0.1|i-j|}$, describe how to generate correlated normal random variables using (a) full Cholesky decomposition and (b) rank-3 factor loading matrix $B \in \mathbb{R}^{10 \times 3}$. Compare the computational cost per time step for each approach.
+
+---
+
+**Exercise 5.** A cap on 3-month LIBOR with 5 years of quarterly caplets is priced by Monte Carlo in the LMM. The simulation uses 10,000 paths with one time step per quarter. Estimate the standard error of the Monte Carlo estimate if the caplet prices are approximately \$0.50 per \$100 notional. Describe how antithetic variates reduce this standard error.
+
+---
+
+**Exercise 6.** The spot measure (rolling money-market numéraire) is preferred for Monte Carlo simulation over the terminal measure. Explain two reasons for this preference: (a) the drift of each forward rate involves only rates with indices up to $i$ (not beyond), and (b) the money-market account provides a natural discounting mechanism. Why does the terminal measure sometimes produce larger discretization errors for short-dated rates?
+
+---
+
+**Exercise 7.** Design a control variate for the Monte Carlo pricing of a Bermudan swaption in the LMM. Specifically, use the analytical approximation (Rebonato's formula) for the corresponding European swaption as the control. Write down the control variate estimator and explain why this can dramatically reduce the variance of the Monte Carlo estimate.

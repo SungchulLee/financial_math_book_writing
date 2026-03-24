@@ -134,3 +134,33 @@ The key implementation steps for pricing any path-dependent derivative under Hul
 ## Summary
 
 Path-dependent derivatives under the Hull-White model are priced via Monte Carlo simulation, leveraging the model's exact Gaussian transitions to eliminate discretization bias. Callable bonds require regression-based backward induction (Longstaff-Schwartz), range accruals need fine-grid monitoring of the reference rate, TARNs involve cumulative coupon tracking, and CMO tranches depend on rate-driven prepayment models. In all cases, the affine bond price formula allows efficient computation of reference rates and discount factors at each simulated time step. The primary source of error is statistical, decreasing as $O(1/\sqrt{N_{\text{paths}}})$, and can be reduced further using the variance reduction techniques discussed in the next section.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a range accrual note with corridor $[L, U] = [0.02, 0.05]$, daily monitoring over a 1-year period, and notional $N = \$1{,}000{,}000$, describe the Monte Carlo pricing procedure step by step. How many time steps are needed in the simulation, and what determines the time grid?
+
+---
+
+**Exercise 2.** In the Longstaff-Schwartz algorithm for callable bonds, the regression $\hat{C}(r_{T_j}) = \sum_{m=0}^M \beta_m \phi_m(r_{T_j})$ estimates the continuation value. Explain why the issuer calls when $\hat{C}(r_{T_j}) > K_{\text{call}}$ (not $<$). What is the difference between the issuer's call decision and the holder's exercise decision for a Bermudan swaption?
+
+---
+
+**Exercise 3.** A TARN has a cumulative coupon cap $H$. Explain why Monte Carlo is the natural pricing method for TARNs, and why tree-based backward induction is difficult. What additional state variable would the tree need to track?
+
+---
+
+**Exercise 4.** The CMO prepayment model uses $\text{CPR}(t) = \text{CPR}_{\min} + (\text{CPR}_{\max} - \text{CPR}_{\min})\Phi\left(\frac{r^* - r_t}{\sigma_{\text{CPR}}}\right)$. Explain the economic intuition: why does prepayment increase when $r_t < r^*$? What do the parameters $r^*$ and $\sigma_{\text{CPR}}$ control?
+
+---
+
+**Exercise 5.** The auto-callable note redeems when $r_{T_j} \leq r^*$ at any observation date. Describe how to compute the Monte Carlo price, paying careful attention to the stopping time $\tau^{(k)}$ on each path. What happens on paths where the trigger is never hit?
+
+---
+
+**Exercise 6.** For path-dependent derivatives with daily monitoring, the time grid must include all monitoring dates. With exact simulation, adding more time steps does not introduce discretization bias but increases computational cost. Describe strategies to reduce this cost, such as precomputing $A(t_i, T)$ and $B(t_i, T)$ for the full grid.
+
+---
+
+**Exercise 7.** Compare tree-based and Monte Carlo approaches for pricing a callable bond in the one-factor Hull-White model. What are the advantages of each method? For a two-factor Hull-White model, why does the tree approach become impractical?

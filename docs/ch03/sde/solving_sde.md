@@ -357,3 +357,85 @@ Solving SDEs is rarely about brute-force calculation. The essential skill is to
 4. know when to stop and switch to other analytical or numerical tools
 
 That combination of structural recognition and technical fluency is the heart of solving stochastic differential equations.
+
+---
+
+## Exercises
+
+**Exercise 1.** Solve the following SDE by direct integration:
+
+$$
+dX_t = (3t^2 + 1)\,dt + e^{-t}\,dW_t, \qquad X_0 = 2
+$$
+
+Write down the distribution of $X_t$.
+
+---
+
+**Exercise 2.** Solve the geometric Brownian motion SDE
+
+$$
+dV_t = rV_t\,dt + \sigma V_t\,dW_t, \qquad V_0 = V_0
+$$
+
+by applying Itô's lemma to $Y_t = \ln V_t$. Show all steps of the transformation, including the Itô correction term.
+
+---
+
+**Exercise 3.** Consider the linear SDE
+
+$$
+dX_t = (2 - 3X_t)\,dt + 4\,dW_t, \qquad X_0 = 0
+$$
+
+(a) Identify the mean-reversion speed $a$, long-term mean $\theta$, and volatility $\sigma$.
+
+(b) Solve using the integrating factor method. Write the integrating factor explicitly.
+
+(c) Compute $\mathbb{E}[X_t]$ and $\operatorname{Var}[X_t]$.
+
+---
+
+**Exercise 4.** Consider the SDE with state-dependent diffusion
+
+$$
+dX_t = \mu X_t\,dt + \sigma X_t^\beta\,dW_t, \qquad \beta \neq 1
+$$
+
+(a) What is the Lamperti transform $h(x) = \int^x \frac{1}{\sigma s^\beta}\,ds$ for this SDE?
+
+(b) Apply Itô's lemma to $Y_t = h(X_t)$ and verify that the diffusion coefficient of $Y_t$ is constant.
+
+---
+
+**Exercise 5.** Solve the Vasicek model
+
+$$
+dr_t = 0.5(0.04 - r_t)\,dt + 0.01\,dW_t, \qquad r_0 = 0.03
+$$
+
+(a) Write the explicit solution for $r_t$.
+
+(b) Find the stationary distribution.
+
+(c) Compute $\mathbb{E}[r_1]$ and $\operatorname{Var}[r_1]$.
+
+---
+
+**Exercise 6.** Consider the SDE $dX_t = X_t^2\,dt + X_t^2\,dW_t$. Attempt to apply each of the four standard techniques (direct integration, log transform, integrating factor, Lamperti transform). Explain why none of them reduces this equation to a standard solvable form.
+
+---
+
+**Exercise 7.** Verify that the solution to the time-varying linear SDE
+
+$$
+dX_t = [-a(t)X_t + b(t)]\,dt + c(t)\,dW_t
+$$
+
+is given by
+
+$$
+X_t = \Phi(t)\!\left[X_0 + \int_0^t \Phi(s)^{-1} b(s)\,ds + \int_0^t \Phi(s)^{-1} c(s)\,dW_s\right]
+$$
+
+where $\Phi(t) = \exp\!\left(-\int_0^t a(u)\,du\right)$. Apply Itô's product rule to $\Phi(t)^{-1} X_t$ to derive the result.

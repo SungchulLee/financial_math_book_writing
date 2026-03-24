@@ -1098,3 +1098,39 @@ $$
 4. **Causal Inference**: Double robustness and related techniques for handling model uncertainty
 
 The interplay between misspecification and estimation error is central to statistical modeling. A deep understanding of both error sources and their interaction is essential for robust quantitative finance applications, from derivative pricing to risk management to portfolio optimization.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a true data-generating process $P^*$ that is a mixture of two normals: $P^* = 0.7 \cdot N(0.05, 0.04) + 0.3 \cdot N(-0.10, 0.09)$. A practitioner fits a single Gaussian model $P_\theta = N(\mu, \sigma^2)$. Compute the pseudo-true parameter $\theta^* = \arg\min_\theta D_{\text{KL}}(P^* \| P_\theta)$ and the misspecification error. Explain why the fitted model fails to capture the left tail of $P^*$.
+
+---
+
+**Exercise 2.** For a correctly specified model $P^* = P_{\theta_0}$ with $n = 100$ observations, the MLE $\hat{\theta}_n$ has asymptotic variance $I(\theta_0)^{-1}/n$. Compute the estimation error contribution to the total pricing error $|V(\hat{\theta}_n) - V(\theta_0)|$ using the delta method when $V(\theta) = \text{BS}(S_0, K, \sigma(\theta), T)$ is a Black-Scholes call price. Express the result in terms of the vega and the Fisher information.
+
+---
+
+**Exercise 3.** Explain the decomposition of total model risk into misspecification and estimation components:
+
+$$
+\text{Total Error} = \underbrace{|V(\theta^*) - V^*|}_{\text{misspecification}} + \underbrace{|V(\hat{\theta}_n) - V(\theta^*)|}_{\text{estimation}}
+$$
+
+In which regime (small $n$ vs. large $n$) does each term dominate? Illustrate with a concrete example of fitting a geometric Brownian motion to data with stochastic volatility.
+
+---
+
+**Exercise 4.** The sandwich (Huber-White) variance estimator provides valid standard errors under model misspecification. For a quasi-MLE $\hat{\theta}$, the sandwich variance is $\hat{V} = A^{-1} B (A^{-1})^\top$ where $A = -\frac{1}{n}\sum_{i=1}^n \nabla^2 \ell_i(\hat{\theta})$ and $B = \frac{1}{n}\sum_{i=1}^n \nabla \ell_i(\hat{\theta}) \nabla \ell_i(\hat{\theta})^\top$. Explain why $A \neq B$ indicates misspecification and how this affects confidence intervals compared to the standard MLE variance $A^{-1}/n$.
+
+---
+
+**Exercise 5.** A modeler compares Black-Scholes (1 parameter: $\sigma$) against Heston (5 parameters) for pricing a set of 20 vanilla options. Using AIC, derive the penalty for each model and explain when the simpler Black-Scholes model might be preferred despite higher in-sample calibration error. How does this relate to the bias-variance trade-off?
+
+---
+
+**Exercise 6.** Consider the White (1982) information matrix test for misspecification. The null hypothesis is $H_0: A = B$ (where $A$ and $B$ are defined as in Exercise 4). Describe how to implement this test for a GARCH(1,1) model fitted to daily returns, and interpret rejection of $H_0$ in terms of what aspects of the return distribution the GARCH model fails to capture.
+
+---
+
+**Exercise 7.** In a simulation study, generate $n = 500$ observations from a stochastic volatility model (Heston) and fit both a Black-Scholes model and a Heston model. For each fitted model, compute the pricing error for an out-of-the-money put option ($K = 0.9 S_0$). Decompose the Black-Scholes error into misspecification and estimation components. For the Heston model, argue that the misspecification error is zero and all error comes from estimation. Under what conditions might the misspecified Black-Scholes model produce a smaller total error?

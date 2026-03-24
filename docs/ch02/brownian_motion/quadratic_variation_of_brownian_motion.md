@@ -240,3 +240,35 @@ The standard deviation decays as $T\sqrt{2/n}$, consistent with our variance bou
     - The extra $\frac{1}{2}f''(B_t)\,dt$ term in Itô's formula is a direct consequence of $[B]_t = t$.
 
 The next section turns to the **Reflection Principle**, which exploits the symmetry of Brownian motion to derive distributions of first passage times and running maxima.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $\Pi_n$ be the uniform partition of $[0, T]$ into $n$ equal subintervals. Compute $\mathrm{Var}([B]_T^{(\Pi_n)})$ explicitly and show that $\mathrm{Var}([B]_T^{(\Pi_n)}) = 2T^2/n$. Using Chebyshev's inequality, find the smallest $n$ such that $\mathbb{P}(|[B]_T^{(\Pi_n)} - T| > 0.1) \leq 0.05$ when $T = 1$.
+
+---
+
+**Exercise 2.** Consider a non-uniform partition $\Pi = \{0, T/4, T/2, 3T/4, T\}$ (four subintervals of equal length $T/4$) and a partition $\Pi' = \{0, T/8, T/4, T/2, T\}$ (four subintervals of unequal length). Compute $\mathrm{Var}([B]_T^{(\Pi)})$ and $\mathrm{Var}([B]_T^{(\Pi')})$. Which partition gives a tighter estimate of $T$, and why?
+
+---
+
+**Exercise 3.** Let $f(t) = \sin(2\pi t)$ for $t \in [0, 1]$. Compute the quadratic variation $V_2(f, \Pi_n)$ along the uniform partition $\Pi_n$ with $n$ subintervals and verify that $V_2(f, \Pi_n) \to 0$ as $n \to \infty$. Contrast this with the result $[B]_1 = 1$ for Brownian motion.
+
+---
+
+**Exercise 4.** Using the multiplication table for stochastic differentials ($dB_t \cdot dB_t = dt$, $dB_t \cdot dt = 0$, $dt \cdot dt = 0$), apply Ito's formula to $f(B_t) = B_t^3$. Verify your answer by checking that $\mathbb{E}[B_T^3] = 0$ is consistent with the Ito integral representation you obtain.
+
+---
+
+**Exercise 5.** Let $B^{(1)}$ and $B^{(2)}$ be two Brownian motions with correlation $\rho = 0.5$. Compute the cross variation $[B^{(1)}, B^{(2)}]_T$. Define $X_t = B_t^{(1)} + B_t^{(2)}$ and compute $[X]_T$ using the bilinearity of quadratic variation: $[X]_T = [B^{(1)}]_T + 2[B^{(1)}, B^{(2)}]_T + [B^{(2)}]_T$.
+
+---
+
+**Exercise 6.** Prove that Brownian motion has infinite total variation on $[0, T]$ almost surely. Specifically, show that for the uniform partition $\Pi_n$:
+
+$$
+\mathbb{E}[V_1(B, \Pi_n)] = \sum_{i=0}^{n-1} \mathbb{E}[|\Delta B_i|] = n \cdot \sqrt{\frac{2T}{\pi n}} = \sqrt{\frac{2nT}{\pi}} \to \infty
+$$
+
+Explain why infinite total variation and finite quadratic variation can coexist.

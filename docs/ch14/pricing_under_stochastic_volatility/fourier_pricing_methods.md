@@ -362,3 +362,51 @@ $$
 - Fang, F. & Oosterlee, C.W. (2008). *A novel pricing method for European options based on Fourier-cosine series expansions*. SIAM Journal on Scientific Computing.
 - Lord, R. & Kahl, C. (2007). *Optimal Fourier inversion in semi-analytical option pricing*. Journal of Computational Finance.
 - Lee, R. (2004). *Option pricing by transform methods: extensions, unification, and error control*. Journal of Computational Finance.
+
+---
+
+## Exercises
+
+**Exercise 1.** In the Carr-Madan formula, the damped call transform is
+
+$$
+\hat{c}(u) = \frac{e^{-rT}\varphi(u - i(\alpha+1))}{\alpha^2 + \alpha - u^2 + i(2\alpha+1)u}
+$$
+
+Verify that the denominator can be factored as $-(u - i\alpha)(u - i(\alpha + 1))$. For $\alpha = 1.5$, compute $|\hat{c}(u)|$ at $u = 0, 5, 20, 50$ given a Black-Scholes CF with $\sigma = 0.20$, $T = 1$, $r = 0.03$, $S_0 = 100$. How fast does $|\hat{c}(u)|$ decay?
+
+---
+
+**Exercise 2.** The FFT requires the log-strike spacing and frequency spacing to satisfy $\Delta u \cdot \Delta k = 2\pi/N$. For $N = 4096$ and $\Delta u = 0.01$: (a) compute $\Delta k$; (b) find the range of log-strikes $[k_{\min}, k_{\max}]$; (c) convert to actual strikes $K = e^k$ and determine the strike range for $S_0 = 100$. Are ITM and OTM options well-covered?
+
+---
+
+**Exercise 3.** The Lewis formula is
+
+$$
+C(K) = S_0 e^{-qT} - \frac{\sqrt{S_0 K}\,e^{-(r+q)T/2}}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{iuk}\varphi(u - i/2)}{u^2 + 1/4}\right]du
+$$
+
+Show that for the Black-Scholes CF $\varphi(u) = \exp(iu[(r-q-\sigma^2/2)T] - \sigma^2 u^2 T/2)$, the formula recovers the standard Black-Scholes call price. (Hint: the integral reduces to a known Fourier integral related to the normal distribution.)
+
+---
+
+**Exercise 4.** The COS method approximates the density by a cosine expansion on $[a, b]$ with domain chosen using cumulants. For the Heston model with $V_0 = 0.04$, $\theta = 0.04$, $\kappa = 2$, $\xi = 0.5$, $\rho = -0.7$, $T = 1$: (a) compute the first cumulant $c_1 = (r - q)T - \frac{1}{2}\mathbb{E}[\int_0^T V_s\,ds] + \log S_0$; (b) estimate $c_2 \approx \mathbb{E}[\int_0^T V_s\,ds]$ (the approximate variance); (c) choose $[a, b]$ using $a = c_1 - 10\sqrt{c_2}$, $b = c_1 + 10\sqrt{c_2}$.
+
+---
+
+**Exercise 5.** Compare the computational cost of pricing a single European call option using: (a) Carr-Madan FFT with $N = 4096$; (b) COS method with $N = 128$ terms; (c) direct numerical integration (trapezoidal rule) with 1000 points. Express costs in terms of the number of characteristic function evaluations. If each CF evaluation takes $1\,\mu s$, estimate wall-clock times for each method.
+
+---
+
+**Exercise 6.** A digital call option pays $\$1$ if $S_T > K$. Its price under a stochastic volatility model is
+
+$$
+D_C(K) = e^{-rT}\left[\frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-iu\log K}\varphi(u)}{iu}\right]du\right]
+$$
+
+Explain why this formula is simply the discounted risk-neutral probability $\mathbb{Q}(S_T > K)$ expressed via Gil-Pelaez inversion. If the underlying follows a Heston model, describe how the smile affects digital prices compared to Black-Scholes digital prices at strikes below and above ATM.
+
+---
+
+**Exercise 7.** Implement (or describe the steps to implement) a put-call parity check for the Carr-Madan FFT pricer. Specifically, for a given set of Heston parameters, compute $C(K)$ and $P(K) = C(K) - S_0 e^{-qT} + K e^{-rT}$ at several strikes. Explain why put-call parity provides a useful validation: it tests whether the martingale condition $\varphi(-i) = e^{(r-q)T}$ is satisfied, and whether the numerical integration is accurate. What is the typical magnitude of put-call parity violations in a well-implemented FFT pricer?

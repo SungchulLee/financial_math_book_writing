@@ -268,3 +268,29 @@ Mean-variance hedging is a **global** criterion: it minimizes the total hedging 
 | Variance-optimal measure | $\mathbb{Q}^*$ minimizes $\mathbb{E}[(d\mathbb{Q}/d\mathbb{P})^2]$ |
 | Complete markets | Reduces to perfect replication |
 | Basis risk | Hedgeable fraction = $\rho^2$ when using correlated proxy |
+
+---
+
+## Exercises
+
+**Exercise 1.** In the basis risk model with $dS_t = 0.08 S_t\,dt + 0.20 S_t\,dW_t^1$ and $dY_t = 0.10 Y_t\,dt + 0.30 Y_t(\rho\,dW_t^1 + \sqrt{1-\rho^2}\,dW_t^2)$, the minimum-variance hedge ratio for a call on $Y$ is $\xi_t^* = \rho(\sigma_Y/\sigma_S)(Y_t/S_t)(\partial C/\partial Y)$. For $\rho = 0.8$, $S_0 = Y_0 = 100$, and $\Delta_Y = \partial C/\partial Y = 0.55$, compute the optimal number of shares of $S$ to hold. What happens to $\xi^*$ as $\rho \to 0$?
+
+---
+
+**Exercise 2.** The hedgeable fraction of a claim's variance in the basis risk model is $\rho^2$. For correlations $\rho = 0.5, 0.7, 0.8, 0.9, 0.95$, compute both the hedgeable fraction and the residual variance $(1-\rho^2)\operatorname{Var}(H)$. If $\operatorname{Var}(H) = 100$, at what correlation level does the residual standard deviation fall below $\$3$?
+
+---
+
+**Exercise 3.** The orthogonality condition for the mean-variance optimal hedge states $\mathbb{E}[(H - c^* - G_T(\xi^*))(c + G_T(\xi))] = 0$ for all $c, \xi$. Explain why setting $\xi = 0$ gives $c^* = \mathbb{E}[H]$ when $\tilde{S}$ is a $\mathbb{P}$-martingale. What is the economic interpretation of this condition --- why must the hedging error be uncorrelated with every tradeable payoff?
+
+---
+
+**Exercise 4.** In the Heston model with $|\rho| = 0.7$, the unhedgeable component $L_T^H$ captures volatility risk. If $\mathbb{E}[(L_T^H)^2] = (1 - \rho^2) \cdot \operatorname{Var}(H)$ approximately, and $\operatorname{Var}(H) = 64$ for an ATM call, compute the minimum hedging error standard deviation achievable by trading the stock alone. How much additional variance reduction would a variance swap (adding a second traded instrument) provide if it has correlation $0.95$ with the volatility factor?
+
+---
+
+**Exercise 5.** The Follmer-Schweizer decomposition writes $H = H_0 + \int_0^T \xi_t^H\,d\tilde{S}_t + L_T^H$. In a complete market ($L_T^H = 0$), this reduces to the replicating strategy. For a European call in the Black-Scholes model with $S_0 = 100$, $K = 100$, $\sigma = 0.20$, $r = 0.05$, $T = 1$, identify $H_0$ (the optimal initial capital) and $\xi_t^*$ (the hedging strategy). Verify that $H_0$ equals the Black-Scholes price.
+
+---
+
+**Exercise 6.** The variance-optimal measure $\mathbb{Q}^*$ minimizes $\mathbb{E}[(d\mathbb{Q}/d\mathbb{P})^2]$ over all equivalent martingale measures. In a model where $d\tilde{S}_t = \sigma\tilde{S}_t\,dW_t + \alpha\sigma^2\tilde{S}_t\,dt$ (with $\alpha = (\mu - r)/\sigma^2$), the density of $\mathbb{Q}^*$ involves the stochastic exponential $\mathcal{E}(-\alpha\sigma\,W)_T$. For $\mu = 0.08$, $r = 0.03$, $\sigma = 0.25$, $T = 1$, compute the Sharpe ratio $\lambda = (\mu - r)/\sigma$ and the mean-variance tradeoff $\hat{K}_T = \lambda^2 T$. What is the economic interpretation of $\hat{K}_T$?

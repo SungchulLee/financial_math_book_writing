@@ -315,3 +315,33 @@ Robust calibration facilitates communication:
 - Hastie, Tibshirani & Friedman, *The Elements of Statistical Learning* (regularization, cross-validation).
 - Tarantola, *Inverse Problem Theory* (robust estimation).
 - OCC/Federal Reserve, "Supervisory Guidance on Model Risk Management" (SR 11-7).
+
+---
+
+## Exercises
+
+**Exercise 1.** Define the five criteria for robust calibration listed in this section (stability, avoidance of extremes, out-of-sample performance, temporal stability, stable Greeks). For a Heston model calibrated to SPX options, design a specific quantitative test for each criterion and specify a pass/fail threshold.
+
+---
+
+**Exercise 2.** The Huber loss function is $\ell_H(r) = \frac{1}{2}r^2$ for $|r| \le \delta$ and $\delta|r| - \frac{1}{2}\delta^2$ for $|r| > \delta$. Show that $\ell_H$ is continuously differentiable but not twice differentiable at $|r| = \delta$. Compare the influence function of Huber loss to that of squared loss, and explain why Huber loss is more robust to outlier quotes.
+
+---
+
+**Exercise 3.** A perturbation analysis is performed: market quotes are perturbed 500 times within bid-ask spreads, and the model is recalibrated each time. The resulting parameter distributions for $\rho$ have mean $-0.71$ and standard deviation $0.08$. For $\sigma_v$, the mean is $0.45$ and standard deviation is $0.15$. Which parameter is more robustly identified? How would you use these distributions to compute a confidence interval for the price of a barrier option?
+
+---
+
+**Exercise 4.** Design a cross-validation experiment for a Heston calibration. You have 40 vanilla options across 8 strikes and 5 maturities. Describe the hold-out strategy (which instruments to hold out), the metric for out-of-sample performance, and how to interpret a scenario where in-sample RMSE is 0.2 vol points but out-of-sample RMSE is 1.5 vol points.
+
+---
+
+**Exercise 5.** Consider the regularized objective $\mathcal{L}_{\text{robust}}(\theta) = \mathcal{L}_{\text{fit}}(\theta) + \lambda\|\theta - \hat{\theta}_{t-1}\|^2$. Show that the first-order condition implies the optimal $\hat{\theta}_t$ lies on the line segment between the unconstrained MLE $\hat{\theta}_t^{\text{MLE}}$ and the prior $\hat{\theta}_{t-1}$, assuming $\mathcal{L}_{\text{fit}}$ is quadratic near its minimum. Express the optimal $\hat{\theta}_t$ as a weighted average and derive the weights in terms of $\lambda$ and the Fisher information matrix.
+
+---
+
+**Exercise 6.** The worst-case objective $\min_\theta \max_{y \in \mathcal{Y}} \mathcal{L}(\theta, y)$ provides a minimax calibration. For a simplified setting with one parameter $\theta$ and two market quotes $y_1, y_2$ each within a band $[y_i - \delta_i, y_i + \delta_i]$, solve the minimax problem graphically. How does the minimax solution differ from the standard least-squares solution?
+
+---
+
+**Exercise 7.** A model validation team observes that calibrated parameters for a SABR model exhibit the following over 120 trading days: mean $\alpha = 0.35$, std $0.08$; mean $\rho = -0.45$, std $0.12$; mean $\nu = 0.80$, std $0.25$. Using the robust calibration checklist from this section, assess whether each parameter meets the temporal stability criterion. Propose specific adjustments to the calibration procedure to improve stability for the most problematic parameter.

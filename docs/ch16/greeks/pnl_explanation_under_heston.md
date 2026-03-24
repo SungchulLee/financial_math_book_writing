@@ -366,3 +366,35 @@ The **delta-hedged P&L** (removing the delta component) is approximately $+\$0.0
 | [Greeks via Finite Differences](greeks_via_finite_differences.md) | Numerical Greek computation by bumping |
 | [Vega Surface and Vol-of-Vol](vega_surface_and_vol_of_vol.md) | The term structure of variance sensitivity |
 | [Variance Swaps (Closed-Form)](../exotic_pricing/variance_swaps_closed_form.md) | Hedging the vega P&L component |
+
+---
+
+## Exercises
+
+**Exercise 1.**
+In Black-Scholes, the delta-hedged P&L over an interval $[t, t+dt]$ is $dP\&L = \frac{1}{2}\Gamma S^2(\sigma_{\text{real}}^2 - \sigma_{\text{imp}}^2)dt + \Theta\,dt$. Under Heston, an additional vega term appears: $\mathcal{V}\,dv_t$. Explain the financial meaning of this term. If $\mathcal{V} > 0$ (long vega) and variance increases ($dv > 0$), is the P&L contribution positive or negative?
+
+---
+
+**Exercise 2.**
+The Heston P&L decomposition includes a vanna term $\partial^2 V / \partial S \partial v \cdot S\sqrt{v}\rho\xi v\,dt$. Explain why this term arises from the correlation between $dS$ and $dv$. For $\rho < 0$, does a simultaneous drop in $S$ and rise in $v$ produce a positive or negative vanna P&L for a long call position?
+
+---
+
+**Exercise 3.**
+A trader sells an ATM call and delta-hedges daily. Over one month, the unexplained P&L (residual after delta, gamma, theta, and vega terms) has a standard deviation of \$0.50 per option. Identify three sources of this unexplained P&L: (a) discrete hedging error, (b) unhedged volga ($\partial^2 V/\partial v^2$) exposure, (c) model mis-specification. Which is likely the dominant source?
+
+---
+
+**Exercise 4.**
+The gamma P&L is $\frac{1}{2}\Gamma S^2 (dS/S)^2 \approx \frac{1}{2}\Gamma S^2 v\,dt$. The vega P&L is $\mathcal{V}\,dv$. For typical equity Heston parameters ($v_0 = 0.04$, $\xi = 0.5$), estimate the order of magnitude of each term for an ATM call with $T = 0.5$, $S_0 = 100$. Which contributes more to daily P&L variance?
+
+---
+
+**Exercise 5.**
+To hedge the vega P&L, a trader can add a variance swap to the portfolio. Explain how: if the delta-hedged call has vega $\mathcal{V}$ and the variance swap has vega $\mathcal{V}_{\text{VS}} = \partial(\text{VS price})/\partial v_0$, what notional of the variance swap neutralizes the vega exposure?
+
+---
+
+**Exercise 6.**
+Simulate a delta-hedging experiment under Heston: sell a 6-month ATM call, delta-hedge daily using the Heston delta, and record the total P&L across 10,000 paths. Decompose the P&L into gamma, theta, and vega components. Verify that the mean P&L is approximately zero (the hedge is unbiased) and that the standard deviation reflects the unhedged variance risk.

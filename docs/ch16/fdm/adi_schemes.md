@@ -216,3 +216,35 @@ The quadratic scaling in grid size is clearly visible. For the $100 \times 50$ g
 ## Summary
 
 ADI schemes transform the two-dimensional Heston PDE into sequences of one-dimensional tridiagonal solves, reducing the per-step cost from $\mathcal{O}(N_x^2 N_v^2)$ to $\mathcal{O}(N_x N_v)$. The Douglas-Rachford scheme is simplest but can be unstable for large $|\rho|$. The Craig-Sneyd scheme improves mixed derivative treatment. The Hundsdorfer-Verwer scheme provides **unconditional stability** for all correlation values and is the recommended default. All three achieve second-order temporal accuracy with $\theta = \frac{1}{2}$. The ADI framework extends naturally to [American options via PSOR](american_options_psor.md), where the early exercise constraint is applied after each time step.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+A fully implicit Crank-Nicolson scheme on a grid with $N_x = 200$ and $N_v = 100$ produces a sparse system of size $20{,}000 \times 20{,}000$. If solving this system with a banded solver costs $\mathcal{O}(N_x^2 N_v)$ per time step, compare the total cost for $N_t = 200$ steps with the ADI cost of $\mathcal{O}(N_x N_v \cdot N_t)$. Compute the speedup factor.
+
+---
+
+**Exercise 2.**
+The Douglas-Rachford scheme treats the mixed derivative explicitly. For $\rho = -0.9$, explain why the CFL-type stability constraint becomes binding. If $\Delta t = T/N_t$ with $T = 1$ and $N_t = 100$, is this time step small enough for stability on a typical Heston grid?
+
+---
+
+**Exercise 3.**
+The Craig-Sneyd scheme adds a correction step that updates the cross-term. Write the four stages explicitly for the Heston PDE operators $\mathcal{A}_0$, $\mathcal{A}_1$, $\mathcal{A}_2$ with $\theta = 1/2$. Explain why Stage 4 (cross-term correction) improves the local truncation error from $\mathcal{O}(\Delta t)$ to $\mathcal{O}(\Delta t^2)$.
+
+---
+
+**Exercise 4.**
+Compare the computational cost per time step of the three ADI schemes. If Thomas's algorithm costs $5N$ operations for a tridiagonal system of size $N$, compute the total operations for: (a) Douglas-Rachford ($N_v$ solves of size $N_x$ + $N_x$ solves of size $N_v$), (b) Craig-Sneyd (same plus one explicit cross-term evaluation), (c) Hundsdorfer-Verwer (double the implicit sweeps). Use $N_x = 200$, $N_v = 100$.
+
+---
+
+**Exercise 5.**
+Design a convergence study for the Craig-Sneyd scheme: compute the European call price on grids $(N_x, N_v, N_t) = (50, 25, 50)$, $(100, 50, 100)$, $(200, 100, 200)$ and compare with the COS reference. If the scheme is second-order, the error should decrease by a factor of 4 each time. Verify this by computing the convergence rate $p = \log_2(\text{error}_1 / \text{error}_2)$.
+
+---
+
+**Exercise 6.**
+The Hundsdorfer-Verwer scheme performs two sets of implicit sweeps per time step. Describe the advantage: unconditional stability allows larger $\Delta t$. If the Craig-Sneyd scheme requires $N_t = 200$ steps for stability while Hundsdorfer-Verwer requires only $N_t = 100$ for the same accuracy, which scheme is faster overall? Account for the fact that Hundsdorfer-Verwer costs twice as much per step.

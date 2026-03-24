@@ -176,3 +176,31 @@ The stationary standard deviation is $\sqrt{\theta\sigma^2/(2\kappa)} = \sqrt{0.
 The CIR model $dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t$ replaces the Vasicek constant diffusion with $\sigma\sqrt{r_t}$, ensuring non-negative rates and producing level-dependent volatility. The conditional mean is the same as Vasicek, but the variance depends on the initial rate $r_0$. Strong existence and uniqueness hold by the Yamada-Watanabe theorem despite the non-Lipschitz diffusion at zero. The Feller condition $2\kappa\theta \geq \sigma^2$ determines whether zero is accessible, and the CIR process reappears as the variance dynamics in the Heston model.
 
 ---
+
+## Exercises
+
+**Exercise 1.** For CIR parameters $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.08$, and $r_0 = 0.03$, compute the conditional mean $\mathbb{E}[r_t \mid r_0]$ and conditional standard deviation at horizons $t = 1, 5, 10$ years. How do these compare with the Vasicek model having the same $\kappa$, $\theta$, and $\sigma_{\text{Vas}} = \sigma\sqrt{\theta}$?
+
+---
+
+**Exercise 2.** Verify the Feller condition for the parameters $\kappa = 0.5$, $\theta = 0.04$, $\sigma = 0.15$. Compute the Feller ratio $2\kappa\theta/\sigma^2$. Is zero accessible or inaccessible? What happens to the boundary classification if $\sigma$ is increased to $0.25$ while keeping $\kappa$ and $\theta$ fixed?
+
+---
+
+**Exercise 3.** Starting from $d(r_t^2) = 2r_t\,dr_t + (dr_t)^2$, derive the ODE for $\mathbb{E}[r_t^2]$ and then obtain the conditional variance formula. Show each step of the calculation, using $\mathbb{E}[r_t\,dW_t] = 0$ and $(dr_t)^2 = \sigma^2 r_t\,dt$.
+
+---
+
+**Exercise 4.** The Yamada-Watanabe theorem requires $|h(x) - h(y)| \leq C|x-y|^\alpha$ for $\alpha \geq 1/2$. Verify this for $h(r) = \sigma\sqrt{r}$ by showing that $|\sqrt{x} - \sqrt{y}| \leq \sqrt{|x-y|}$ for all $x, y \geq 0$. Where does the standard Lipschitz condition (i.e., $\alpha = 1$) fail?
+
+---
+
+**Exercise 5.** The stationary variance of the CIR process is $\theta\sigma^2/(2\kappa)$, while the Vasicek stationary variance is $\sigma_{\text{Vas}}^2/(2\kappa)$. If both models have the same stationary variance, what is the relationship between $\sigma$ (CIR) and $\sigma_{\text{Vas}}$ (Vasicek)? Compute the CIR and Vasicek volatilities that give a stationary standard deviation of 1% when $\kappa = 0.5$ and $\theta = 0.04$.
+
+---
+
+**Exercise 6.** In the Heston model, the variance process $dv_t = \kappa_v(\theta_v - v_t)\,dt + \sigma_v\sqrt{v_t}\,dW_t^v$ is CIR. If $\kappa_v = 2.0$, $\theta_v = 0.04$ (corresponding to 20% implied vol), and $\sigma_v = 0.3$, check the Feller condition. Discuss the practical implications if the Feller condition is violated for the variance process in an equity options model.
+
+---
+
+**Exercise 7.** Compare the CIR and Vasicek conditional variance formulas at short and long horizons. For small $t$, show that both variances are approximately $\sigma^2 r_0 \cdot t$ (CIR) and $\sigma_{\text{Vas}}^2 \cdot t$ (Vasicek). For large $t$, show that the CIR variance converges to $\theta\sigma^2/(2\kappa)$, independent of $r_0$. Give an economic interpretation of why the CIR short-horizon variance depends on $r_0$.

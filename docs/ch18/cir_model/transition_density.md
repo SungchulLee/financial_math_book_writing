@@ -202,3 +202,31 @@ The distribution $2c\,r_1 \sim \chi^2_8(9.241)$ has mode at approximately $\nu +
 The CIR transition density is a scaled non-central chi-squared distribution $2c\,r_s \sim \chi^2_\nu(\lambda)$ with degrees of freedom $\nu = 4\kappa\theta/\sigma^2$ (constant, twice the Feller ratio) and non-centrality $\lambda = 2c\,r_t\,e^{-\kappa\tau}$ (decreasing with the time horizon). This characterization provides exact simulation without discretization error, a well-defined likelihood function for parameter estimation, and the foundation for bond option pricing via the non-central chi-squared CDF.
 
 ---
+
+## Exercises
+
+**Exercise 1.** For CIR parameters $\kappa = 0.5$, $\theta = 0.04$, $\sigma = 0.10$, $r_t = 0.03$, and $\tau = s - t = 1$ year, compute the scaling constant $c(t,s)$, degrees of freedom $\nu$, and non-centrality parameter $\lambda$. Then verify that $\mathbb{E}[r_s \mid r_t] = (\nu + \lambda)/(2c)$ equals the conditional mean from the CIR SDE.
+
+---
+
+**Exercise 2.** The non-central chi-squared distribution can be represented as a Poisson mixture: $\chi^2_\nu(\lambda) = \chi^2_{\nu + 2J}$ where $J \sim \text{Poisson}(\lambda/2)$. For $\nu = 8$ and $\lambda = 9.24$, compute $\mathbb{E}[J] = \lambda/2$ and $\mathbb{P}(J = 0)$, $\mathbb{P}(J = 1)$, $\mathbb{P}(J = 2)$. What is the effective average degrees of freedom $\nu + 2\mathbb{E}[J]$?
+
+---
+
+**Exercise 3.** Show that as $\tau \to \infty$, the non-centrality parameter $\lambda \to 0$ and the stationary distribution of $r_\infty$ is $\text{Gamma}(\nu/2, \sigma^2/(4\kappa))$. Compute the mean and variance of this Gamma distribution and verify that they match $\theta$ and $\theta\sigma^2/(2\kappa)$.
+
+---
+
+**Exercise 4.** The conditional variance of $r_s$ given $r_t$ can be computed from $\text{Var}(2c\,r_s) = 2(\nu + 2\lambda)$. Derive $\text{Var}(r_s | r_t)$ in terms of $\kappa$, $\theta$, $\sigma$, $r_t$, and $\tau$. Verify that your expression matches the formula $r_t\frac{\sigma^2}{\kappa}(e^{-\kappa\tau} - e^{-2\kappa\tau}) + \theta\frac{\sigma^2}{2\kappa}(1 - e^{-\kappa\tau})^2$.
+
+---
+
+**Exercise 5.** The non-central chi-squared PDF involves the modified Bessel function $I_{\nu/2-1}(\sqrt{\lambda x})$. For the numerical example ($\nu = 8$, $\lambda = 9.24$), this is $I_3(\sqrt{9.24 x})$. At the mode $x \approx 15.2$, compute $\sqrt{\lambda x} \approx \sqrt{9.24 \times 15.2}$. Explain why the Bessel function argument grows with both $\lambda$ and $x$, and discuss the numerical implications for evaluating the PDF at extreme values.
+
+---
+
+**Exercise 6.** For maximum likelihood estimation with daily data ($\Delta t = 1/252$), the non-centrality parameter $\lambda$ is very large because $c$ is large and $e^{-\kappa\Delta t} \approx 1$. Compute $\lambda$ for $r_t = 0.05$, $\kappa = 0.5$, $\sigma = 0.10$, $\Delta t = 1/252$. Explain why large $\lambda$ makes the series representation of the non-central chi-squared PDF converge slowly and suggest an alternative computational approach.
+
+---
+
+**Exercise 7.** Compare the CIR transition density with the Vasicek transition density (which is Gaussian). For the same conditional mean and variance, plot or describe the qualitative differences between the two densities. In particular, discuss: (i) support ($r \geq 0$ vs $r \in \mathbb{R}$), (ii) skewness (right-skewed vs symmetric), and (iii) behavior near zero. Under what parameter regimes do the two densities look most similar?

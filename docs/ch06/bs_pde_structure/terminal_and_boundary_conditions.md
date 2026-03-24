@@ -272,3 +272,29 @@ $$
 $$
 
 **Terminal and boundary conditions transform abstract PDEs into specific pricing problems, encoding the contractual features of financial derivatives.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Write down the terminal condition and boundary conditions (as $S \to 0$ and $S \to \infty$) for a European put option with strike $K$ and maturity $T$. Verify that the boundary conditions are consistent with the put-call parity relation.
+
+---
+
+**Exercise 2.** For a down-and-out call with barrier $B < K$, the option is worthless if $S$ ever touches $B$. Write down the complete set of conditions: terminal condition at $t = T$, Dirichlet boundary condition at $S = B$, and behavior as $S \to \infty$. Explain why the far-field condition $V \sim S - Ke^{-r(T-t)}$ as $S \to \infty$ is appropriate.
+
+---
+
+**Exercise 3.** The American put has a free boundary $S^*(t)$ separating the exercise and continuation regions. State the smooth-pasting conditions at $S = S^*(t)$ and explain their financial interpretation. Why are two conditions (value matching and smooth pasting) needed at the free boundary?
+
+---
+
+**Exercise 4.** For a finite-difference implementation on a truncated domain $[0, S_{\max}]$, discuss the effect of choosing $S_{\max}$ too small. What type of error does this introduce, and how does the error propagate inward from the boundary? Provide a rule of thumb for choosing $S_{\max}$ in terms of $K$ and $\sigma\sqrt{T}$.
+
+---
+
+**Exercise 5.** A Neumann boundary condition $\frac{\partial V}{\partial S}\big|_{S=B} = h(t)$ constrains the delta at the boundary. Give a financial example where such a condition arises naturally, and explain how it differs from a Dirichlet condition in terms of the information it encodes about the derivative contract.
+
+---
+
+**Exercise 6.** Show that the terminal condition $V(T,S) = (S - K)^+$ is not differentiable at $S = K$. Discuss the implications for the PDE solution at $t = T$: is $V(t,S)$ smooth for $t < T$ even though the terminal data is not? Relate this to the smoothing property of the heat equation.

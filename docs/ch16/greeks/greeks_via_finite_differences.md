@@ -199,3 +199,35 @@ Consider a European call under Heston with $S_0 = \$100$, $K = \$100$, $T = 1$, 
 ## Summary
 
 Finite difference Greeks via bump-and-revalue provide a universal method for computing sensitivities under the Heston model, applicable to any pricing engine (Monte Carlo, PDE, or numerical Fourier). The central difference formula with optimal bump size balances truncation error against pricing noise. Common random numbers are essential for Monte Carlo Greeks, reducing noise by orders of magnitude. Second-order Greeks (gamma, cross-sensitivities) require larger bumps or more paths due to the $h^2$ denominator. For Fourier-priced Europeans, [CF differentiation](greeks_via_cf_differentiation.md) is preferred; for path-dependent exotics or American options, finite differences remain the primary tool.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The central difference formula for delta is $\Delta \approx [C(S_0 + h) - C(S_0 - h)]/(2h)$ with truncation error $\mathcal{O}(h^2)$. If the pricing engine has noise of order $\epsilon$, the total error is approximately $h^2/6 \cdot |C'''| + \epsilon/h$. Minimize this with respect to $h$ to find the optimal bump size $h^* \propto \epsilon^{1/3}$. For a COS engine with $\epsilon \approx 10^{-10}$, compute $h^*$.
+
+---
+
+**Exercise 2.**
+The gamma via central differences is $\Gamma \approx [C(S_0 + h) - 2C(S_0) + C(S_0 - h)]/h^2$. The noise amplification is $\epsilon/h^2$, worse than for delta ($\epsilon/h$). Compute the optimal bump size for gamma and compare with the delta optimal bump. Why must gamma bumps be larger?
+
+---
+
+**Exercise 3.**
+A Monte Carlo engine with 100,000 paths has standard error \$0.03. Using central differences with $h = 1.0$ to compute delta, the noise in $\Delta$ is approximately $2 \times 0.03/(2 \times 1.0) = 0.03$. With common random numbers (same paths for both bumped prices), the noise drops to approximately $0.001$. Explain why common random numbers are so effective: the pricing noise cancels in the difference because both evaluations use the same random draws.
+
+---
+
+**Exercise 4.**
+Compute the Heston vega via finite differences: $\mathcal{V} \approx [C(v_0 + h_v) - C(v_0 - h_v)]/(2h_v)$. For $v_0 = 0.04$ and a COS engine, suggest an appropriate bump size $h_v$. Compare the result with the CF-differentiation vega and discuss the accuracy trade-off.
+
+---
+
+**Exercise 5.**
+Cross-Greeks like vanna ($\partial^2 C / \partial S_0 \partial v_0$) require a 2D finite difference stencil with four evaluations. Write the formula and estimate the noise amplification. For a Monte Carlo engine, how many paths are needed to achieve a vanna standard error of 0.001?
+
+---
+
+**Exercise 6.**
+Design a validation test: compute delta, gamma, and vega using both CF differentiation and finite differences for a European call under Heston. The CF method serves as the reference. Vary the bump size $h$ logarithmically from $10^{-8}$ to $10^{-1}$ and plot the finite-difference error. Describe the expected V-shaped error curve and identify the optimal bump region.

@@ -229,3 +229,46 @@ The call spread approximation improves accuracy by a factor of 20 at no addition
 ## Summary
 
 Digital options (cash-or-nothing and asset-or-nothing) are priced via the COS method using payoff coefficients that reduce to the psi and chi auxiliary functions. Cash-or-nothing coefficients involve only $\psi_k$, while asset-or-nothing coefficients involve only $\chi_k$. The discontinuous payoff causes the Gibbs phenomenon, reducing COS convergence from exponential to algebraic ($O(1/N^2)$ in the price). Practical mitigation strategies include the call spread approximation (which smooths the payoff and restores exponential convergence), Richardson extrapolation, and direct Gil-Pelaez inversion for benchmarking. The decomposition of vanilla options into digital building blocks provides a useful consistency check and connects COS pricing to the probability measures $P_1$ and $P_2$ from the Heston pricing framework.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+The COS payoff coefficients for a cash-or-nothing call are $V_k^{\text{CoN,call}} = B\,\psi_k(\ell, b)$ with $\ell = \log K$. Show that for $k = 0$ this reduces to $V_0^{\text{CoN,call}} = B(b - \ell)$, and interpret this geometrically as the width of the integration domain in log-space. What fraction of the total domain $[a, b]$ does this represent for an ATM option with $S_0 = 100$ and $L = 10$?
+
+---
+
+**Exercise 2.**
+Verify the consistency check: $V_k^{\text{CoN,call}} + V_k^{\text{CoN,put}} = B\,\psi_k(a, b)$. Use this to show that the COS price of a cash-or-nothing call plus a cash-or-nothing put equals $Be^{-r\tau}$ (a zero-coupon bond). Why does this identity hold regardless of the characteristic function or model choice?
+
+---
+
+**Exercise 3.**
+The European call decomposes as $C = \text{AoN call} - K \cdot \text{CoN call}$. Using the COS prices from the numerical example ($S_0 = 100$, $K = 100$, $r = 0.05$, $\tau = 1$), verify that
+
+$$
+C = 57.4812 - 100 \times 0.4884 = 8.64
+$$
+
+Compare this with the direct COS call price. Explain any discrepancy in terms of the different convergence rates of the digital and vanilla COS series.
+
+---
+
+**Exercise 4.**
+The Gibbs phenomenon causes the COS series for a cash-or-nothing option to converge as $O(1/N^2)$ in the price. If the error at $N = 64$ is approximately $8 \times 10^{-3}$, estimate the error at $N = 256$ and $N = 1024$ assuming exact $O(1/N^2)$ scaling. How many COS terms are needed to achieve four-digit accuracy ($10^{-4}$) for the direct COS digital price?
+
+---
+
+**Exercise 5.**
+The call spread approximation replaces the digital payoff $\mathbf{1}_{S_T > K}$ with $(C(K - \epsilon) - C(K + \epsilon))/(2\epsilon)$. For $\epsilon = 0.5$ and $K = 100$, compute the two call prices using COS with $N = 128$, form the spread, and compare with the Gil-Pelaez reference price $0.4884$. Show that the smoothing bias is $O(\epsilon^2)$ by repeating with $\epsilon = 0.25$ and comparing the errors.
+
+---
+
+**Exercise 6.**
+Richardson extrapolation uses $V_{\text{extrap}} = 2V_{2N} - V_N$ to improve convergence from $O(1/N^2)$ to $O(1/N^4)$. Compute the COS cash-or-nothing call price at $N = 64$ and $N = 128$, apply Richardson extrapolation, and compare the result with the Gil-Pelaez reference. By what factor does the error improve compared to the un-extrapolated $N = 128$ result?
+
+---
+
+**Exercise 7.**
+The asset-or-nothing call price relates to the exercise probability $P_1$ via $\text{AoN call} = S_0 e^{-q\tau} P_1$. Explain why the COS convergence for the asset-or-nothing call is better than for the cash-or-nothing call, despite both having a discontinuity at $y = \log K$. Hint: the payoff $e^y \cdot \mathbf{1}_{y > \ell}$ is continuous from the right but has a jump in value at $y = \ell$, while the cash-or-nothing payoff has a jump of magnitude $B$. How does the payoff magnitude at the discontinuity affect the Gibbs overshoot?

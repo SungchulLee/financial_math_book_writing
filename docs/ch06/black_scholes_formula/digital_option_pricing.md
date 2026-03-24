@@ -117,3 +117,45 @@ $$
 $$
 
 where $\phi$ is the standard normal density. Near expiry ($T \to 0$) and near the strike ($S_0 \approx K$), this delta becomes extremely large, making digital options **notoriously difficult to hedge** in practice. This discontinuity in the payoff creates significant gamma risk near maturity.
+
+---
+
+## Exercises
+
+**Exercise 1.** Derive the price of a digital call option that pays an amount $Q$ (instead of $1$) at maturity if $S_T > K$. Express the result in terms of $d_2$ and verify that your formula reduces to the standard result when $Q = 1$.
+
+---
+
+**Exercise 2.** Show that the digital call price $D_0 = e^{-rT}\Phi(d_2)$ can be recovered by differentiating the Black-Scholes call price with respect to the strike:
+
+$$
+D_0 = -\frac{\partial C_0}{\partial K}
+$$
+
+Carry out the differentiation explicitly, using the relationship $\frac{\partial d_1}{\partial K} = \frac{\partial d_2}{\partial K} = -\frac{1}{K \sigma \sqrt{T}}$ and the identity $S_0 \phi(d_1) = K e^{-rT} \phi(d_2)$.
+
+---
+
+**Exercise 3.** A digital call and a digital put on the same underlying with the same strike and maturity have prices $D_0^{\text{call}}$ and $D_0^{\text{put}}$. Prove that their sum equals $e^{-rT}$. What is the financial interpretation of this identity?
+
+---
+
+**Exercise 4.** Compute the gamma of a digital call option. Show that the gamma is:
+
+$$
+\Gamma_{\text{digital}} = -e^{-rT} \frac{\phi(d_2) \, d_1}{S_0^2 \sigma^2 T}
+$$
+
+At what value of $S_0$ (in terms of $K$, $r$, $\sigma$, $T$) does the digital call gamma equal zero?
+
+---
+
+**Exercise 5.** Consider a **double digital option** (also called a digital range option) that pays $1$ at maturity if $K_1 < S_T < K_2$ for $K_1 < K_2$. Express the price of this option in terms of the standard normal CDF $\Phi$. Compute its price when $S_0 = 100$, $K_1 = 95$, $K_2 = 105$, $r = 5\%$, $\sigma = 20\%$, and $T = 0.5$.
+
+---
+
+**Exercise 6.** A trader replicates a digital call by constructing a **call spread**: buying a call at strike $K - \epsilon$ and selling a call at strike $K$, then scaling by $1/\epsilon$. Show that in the limit $\epsilon \to 0$, this replicating portfolio converges to the digital call payoff. What practical difficulties arise for small but nonzero $\epsilon$?
+
+---
+
+**Exercise 7.** The digital call delta $\Delta_{\text{digital}} = e^{-rT} \frac{\phi(d_2)}{S_0 \sigma \sqrt{T}}$ diverges as $T \to 0$ when $S_0 = K$. Compute the delta explicitly for $S_0 = K = 100$, $\sigma = 25\%$, $r = 3\%$, and $T \in \{1, 0.1, 0.01, 0.001\}$. Discuss why this behavior makes near-expiry digital options extremely difficult to delta-hedge in practice.

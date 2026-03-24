@@ -287,3 +287,29 @@ $$
 - Basel Committee on Banking Supervision, "The Standardised Approach for Measuring Counterparty Credit Risk Exposures (SA-CCR)"
 - Brigo, D., Morini, M., & Pallavicini, A., *Counterparty Credit Risk, Collateral and Funding*
 - Canabarro, E. & Duffie, D. (2003), "Measuring and Marking Counterparty Risk"
+
+---
+
+## Exercises
+
+**Exercise 1.** Define Expected Exposure (EE) and Expected Positive Exposure (EPE). A 5-year interest rate swap has expected exposure profile $\text{EE}(t) = 0.5\,t\,(5-t)$ (in millions). Compute the EPE as $\text{EPE} = \frac{1}{T}\int_0^T \text{EE}(t)\,dt$.
+
+---
+
+**Exercise 2.** The regulatory Exposure at Default under the Internal Model Method is $\text{EAD} = \alpha \times \text{Effective EPE}$ where $\alpha \ge 1.4$. If the effective EPE is \$12 million, compute the EAD with $\alpha = 1.4$. Explain the economic purpose of the alpha multiplier.
+
+---
+
+**Exercise 3.** Explain why EPE is the appropriate exposure measure for unilateral CVA calculations. How does EPE differ from Potential Future Exposure (PFE) in terms of the aspect of risk it captures (average vs tail)?
+
+---
+
+**Exercise 4.** The Effective EPE is defined as the running maximum of EE: $\text{Effective EE}(t) = \max_{s \le t}\text{EE}(s)$. Explain why this adjustment is conservative. Give an example of a portfolio where EE decreases over time but effective EE does not.
+
+---
+
+**Exercise 5.** A netting set contains two interest rate swaps with opposite directions. Swap A has positive expected exposure, Swap B has negative expected exposure. Explain why the EPE of the netting set is less than the EPE of Swap A alone. Under what conditions does netting provide the greatest benefit?
+
+---
+
+**Exercise 6.** Describe how Monte Carlo simulation is used to estimate EPE. Outline the key steps: (a) simulate risk factor paths, (b) revalue the portfolio on each path and date, (c) take the positive part, (d) average across paths. What are the main computational challenges for large portfolios?

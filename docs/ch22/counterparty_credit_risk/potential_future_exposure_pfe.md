@@ -337,3 +337,29 @@ where $\hat{p}$ is the observed exceedance rate.
 - Gregory, J., *Counterparty Credit Risk and Credit Value Adjustment*
 - Pykhtin, M. (2009), "Modeling Credit Exposure for Collateralized Counterparties"
 - Glasserman, P. & Yang, L. (2016), "Bounding Wrong-Way Risk in CVA Calculation"
+
+---
+
+## Exercises
+
+**Exercise 1.** Define Potential Future Exposure (PFE) at confidence level $\alpha$ and time $t$: $\text{PFE}_\alpha(t) = \inf\{x : \mathbb{P}(V_t^+ \le x) \ge \alpha\}$. For a portfolio whose positive exposure follows a lognormal distribution with mean \$5M and volatility 40%, compute the 97.5% PFE at $t = 1$ year.
+
+---
+
+**Exercise 2.** Explain the difference between PFE and Expected Exposure (EE). A risk manager uses PFE for setting counterparty credit limits and EE for CVA calculations. Justify why each measure is appropriate for its respective purpose.
+
+---
+
+**Exercise 3.** Sketch the PFE profile of a 10-year interest rate swap at the 97.5% confidence level. Explain why the PFE profile is "hump-shaped" and peaks at roughly 30--50% of the swap's life.
+
+---
+
+**Exercise 4.** A bank sets a counterparty credit limit of \$50M based on peak PFE. The current portfolio's peak PFE is \$45M. A new trade would add \$8M to the peak PFE. Should the bank enter the trade? What options are available (e.g., netting, collateral, restructuring)?
+
+---
+
+**Exercise 5.** Explain how collateral agreements affect the PFE profile. If a CSA with daily margining and a \$0 threshold is in place, describe qualitatively how the PFE profile changes compared to an uncollateralized portfolio. Why does the Margin Period of Risk determine the residual PFE?
+
+---
+
+**Exercise 6.** PFE is estimated via Monte Carlo simulation. Describe why the estimation of PFE at high confidence levels (e.g., 99%) requires many more simulation paths than EE estimation. What techniques (importance sampling, stratification) can improve efficiency?

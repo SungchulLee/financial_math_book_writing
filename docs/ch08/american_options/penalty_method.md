@@ -265,3 +265,29 @@ where $\mathcal{L}_d$ is the multi-dimensional Black-Scholes operator. The penal
 | Conditioning | Degrades with large $\rho$; balance against discretization error |
 | Advantage | Simple implementation, natural multi-dimensional extension |
 | Limitation | Introduces approximation error; conditioning sensitivity |
+
+---
+
+## Exercises
+
+**Exercise 1.** For the penalty method with $\rho = 10^6$, estimate the penalty approximation error $O(1/\rho)$. If the discretization error is $O(h^2)$ with $h = 0.01$, is the penalty error negligible? What value of $\rho$ would balance the penalty and discretization errors?
+
+---
+
+**Exercise 2.** Write out one iteration of Newton's method for the penalty system at a single time step. Given $\mathbf{u}^{(0)} = \mathbf{u}^n = (58, 18, 2)^T$ with $\boldsymbol{\Phi} = (60, 20, 0)^T$ and $\rho = 10^4$, compute the indicator matrix $P$ and describe qualitatively how the Newton step adjusts the solution.
+
+---
+
+**Exercise 3.** The penalty function $(x)^- = \min(x, 0)$ has a discontinuous derivative at $x = 0$. Describe the smoothed penalty function $p(x) = -\frac{1}{2}(\sqrt{x^2 + \epsilon^2} - x)$ and explain how it approximates $(x)^-$. For what choice of $\epsilon$ relative to $\rho$ does the smoothing not affect the overall penalty accuracy?
+
+---
+
+**Exercise 4.** The condition number of the Jacobian scales as $\kappa(J) \sim \rho\Delta\tau$ in the exercise region. For $\rho = 10^8$ and $\Delta\tau = 0.01$, estimate $\kappa(J)$. At what point does the conditioning become problematic for double-precision floating-point arithmetic?
+
+---
+
+**Exercise 5.** Compare the penalty method and PSOR for pricing an American put. If the penalty method uses 3 Newton iterations per time step (each costing one tridiagonal solve) and PSOR uses 12 iterations per time step (each costing one sweep), which method is faster per time step? Consider that a tridiagonal solve costs approximately $5M$ operations and a PSOR sweep costs approximately $3M$ operations.
+
+---
+
+**Exercise 6.** The penalty method extends naturally to multi-dimensional problems. For a two-asset American option with a 2D spatial grid of size $M \times M$, the penalty term does not change the sparsity structure of the discretization matrix. Explain why this is a significant advantage over PSOR, which is less natural in higher dimensions.

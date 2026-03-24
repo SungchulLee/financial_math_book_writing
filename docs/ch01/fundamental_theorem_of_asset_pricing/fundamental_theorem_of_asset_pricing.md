@@ -369,3 +369,37 @@ The theorem tells us that in an arbitrage-free market, there exists a probabilit
 - Föllmer, H. and Schied, A. (2016). *Stochastic Finance: An Introduction in Discrete Time.* 4th edition, de Gruyter.
 
 - Shreve, S. E. (2004). *Stochastic Calculus for Finance II: Continuous-Time Models.* Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a one-period market with $n = 3$ states and $d = 2$ risky assets. The payoff matrix of discounted excess returns is
+
+$$
+X = \begin{pmatrix} 5 & 2 \\ 0 & -1 \\ -3 & 1 \end{pmatrix}
+$$
+
+Find all probability vectors $q = (q_1, q_2, q_3)$ with $q_i > 0$ and $\sum q_i = 1$ satisfying $X^T q = 0$. Is the market arbitrage-free? Is it complete?
+
+---
+
+**Exercise 2.** Prove the easy direction of the First FTAP in detail: if an equivalent martingale measure $\mathbb{Q}$ exists, then no arbitrage opportunity exists. Your proof should explicitly use the strict positivity of the Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}$.
+
+---
+
+**Exercise 3.** In the proof of the First FTAP (Direction 2), the argument constructs a vector $q^* \in \bar{\Delta}_n$ with $X^T q^* = 0$ but possibly $q^*_i = 0$ for some $i$. Explain why the convex combination $q_\varepsilon = (1 - \varepsilon) q^* + \varepsilon p$ does not immediately solve the problem, and describe the iterative refinement used to upgrade $q^*$ to an interior point of the simplex.
+
+---
+
+**Exercise 4.** In the Black-Scholes model with $dS_t = \mu S_t\, dt + \sigma S_t\, dW_t$ and constant risk-free rate $r$, compute the market price of risk $\lambda = (\mu - r)/\sigma$. Show that $W^{\mathbb{Q}}_t = W_t + \lambda t$ is a $\mathbb{Q}$-Brownian motion and verify that $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale.
+
+---
+
+**Exercise 5.** A one-period market has $n = 4$ states and $d = 2$ risky assets. What is the dimension of $\ker(X^T)$? How many free parameters does the set of EMMs have? How many additional risky assets (with linearly independent payoffs) would be needed to make the market complete?
+
+---
+
+**Exercise 6.** Explain the distinction between "no arbitrage" (NA) and "no free lunch with vanishing risk" (NFLVR) in continuous-time models. Why is NFLVR strictly stronger than NA? Provide an intuitive description of a "free lunch with vanishing risk" that is not an outright arbitrage.
+
+---

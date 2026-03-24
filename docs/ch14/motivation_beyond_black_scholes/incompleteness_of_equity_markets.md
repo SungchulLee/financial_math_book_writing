@@ -279,3 +279,57 @@ $$
 - Duffie, D. (2001). *Dynamic Asset Pricing Theory*, 3rd ed. Princeton University Press.
 - Föllmer, H. & Schied, A. (2016). *Stochastic Finance: An Introduction in Discrete Time*, 4th ed. De Gruyter.
 - Cont, R. (2006). *Model uncertainty and its impact on the pricing of derivative instruments*. Mathematical Finance.
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a market with two sources of randomness ($W^S$, $W^V$) but only one risky asset $S$ and a risk-free bond. Using a dimension-counting argument, explain why this market is incomplete. How many additional traded instruments would be needed to restore completeness?
+
+---
+
+**Exercise 2.** In a stochastic volatility model, two equivalent martingale measures $\mathbb{Q}_1$ and $\mathbb{Q}_2$ give call option prices $C_1 = 5.20$ and $C_2 = 5.80$ for the same strike and maturity. What can you conclude about the no-arbitrage bounds $[\underline{C}, \overline{C}]$? Explain why, unlike in the Black–Scholes model, additional economic assumptions are needed to select a unique price.
+
+---
+
+**Exercise 3.** The market price of volatility risk $\lambda_V$ transforms the volatility Brownian motion from $\mathbb{P}$ to $\mathbb{Q}$ via
+
+$$
+dW_t^{V,\mathbb{Q}} = dW_t^{V,\mathbb{P}} - \lambda_V\,dt
+$$
+
+If the physical-measure volatility dynamics are $dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V$, write the risk-neutral dynamics under $\mathbb{Q}$ explicitly. Identify the risk-neutral mean-reversion speed and long-run variance level in terms of $\kappa$, $\theta$, $\xi$, and $\lambda_V$ (assuming $\lambda_V$ is constant).
+
+---
+
+**Exercise 4.** The variance risk premium is defined as $VRP = \mathbb{E}^{\mathbb{Q}}[\sigma^2] - \mathbb{E}^{\mathbb{P}}[\sigma^2]$. Suppose the variance swap rate (risk-neutral expected variance) for a 1-month horizon is $(18\%)^2$ and the expected realized variance under $\mathbb{P}$ is $(15\%)^2$. Compute the VRP in variance terms and explain why a negative risk premium for variance sellers (positive $VRP$) is economically consistent with the leverage effect.
+
+---
+
+**Exercise 5.** A trader holds a delta-hedged short call position. Decompose the hedging P&L into gamma, vega, and higher-order components:
+
+$$
+\text{P\&L} = \text{Gamma P\&L} + \text{Vega P\&L} + \text{Volga/Vanna P\&L} + \text{Unexplained}
+$$
+
+Explain which components are hedgeable using only the underlying stock, and which require additional instruments such as options. Why does market incompleteness make it impossible to eliminate all components simultaneously?
+
+---
+
+**Exercise 6.** In utility indifference pricing, an agent with exponential utility $U(x) = -e^{-\gamma x}$ values a claim at the price $p$ satisfying
+
+$$
+\sup_{\pi} \mathbb{E}[U(X_T^{\pi})] = \sup_{\pi} \mathbb{E}[U(X_T^{\pi} + H - p)]
+$$
+
+Explain intuitively why this price depends on the risk aversion parameter $\gamma$. What happens to the indifference price as $\gamma \to 0$ (risk-neutral agent)? As $\gamma \to \infty$ (infinitely risk-averse agent)?
+
+---
+
+**Exercise 7.** Consider a jump-diffusion model where the stock follows
+
+$$
+dS_t = \mu S_t\,dt + \sigma S_t\,dW_t + S_{t^-}(e^J - 1)\,dN_t
+$$
+
+with $N_t$ a Poisson process with intensity $\lambda = 2$ per year and $J \sim \mathcal{N}(-0.05, 0.1^2)$. Even if $\sigma$ is constant, explain why the market is still incomplete. What additional instrument(s) could partially complete the market?

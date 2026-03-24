@@ -603,3 +603,29 @@ Black-Scholes assumptions face numerous real-world violations:
 - **No model is perfect**: All models are wrong, some are useful
 
 The evolution from Black-Scholes to modern models illustrates the progression of quantitative finance—building on elegant foundations while addressing empirical challenges. Understanding both the original model and its extensions is essential for effective derivative pricing and risk management.
+
+---
+
+## Exercises
+
+**Exercise 1.** The S&P 500 implied volatility surface shows a pronounced skew: OTM puts trade at higher implied volatility than OTM calls. Explain why the Black-Scholes assumption of constant volatility is inconsistent with this observation. Which model extension (local volatility, stochastic volatility, or jump-diffusion) would you choose to capture this feature, and why?
+
+---
+
+**Exercise 2.** The kurtosis of S&P 500 daily returns is approximately 6-8, compared to 3 for a normal distribution. (a) Explain what excess kurtosis implies about the frequency of extreme events. (b) Show that the Merton jump-diffusion model can produce excess kurtosis by considering the unconditional return distribution as a mixture. (c) Estimate the probability of a 4-standard-deviation move under a normal distribution versus a Merton model with $\lambda = 1$, $\mu_J = -0.05$, $\sigma_J = 0.10$.
+
+---
+
+**Exercise 3.** The Leland model adjusts volatility for transaction costs as $\sigma_{\text{adj}} = \sigma\sqrt{1 + \sqrt{2/\pi} \cdot k/(\sigma\sqrt{\Delta t})}$. (a) For $\sigma = 0.20$, $k = 0.005$ (0.5% round-trip cost), and daily rehedging ($\Delta t = 1/252$), compute $\sigma_{\text{adj}}$. (b) Explain why the adjusted volatility is always higher than the true volatility. (c) What happens to $\sigma_{\text{adj}}$ as $\Delta t \to 0$, and what does this imply about continuous hedging with transaction costs?
+
+---
+
+**Exercise 4.** Explain why the Black-Scholes model remains the industry standard despite its well-documented limitations. Discuss at least three specific roles the model plays in modern practice (e.g., quoting conventions, benchmarking, risk management) that do not require the model to be "correct."
+
+---
+
+**Exercise 5.** For a European call with $S_0 = 100$, $K = 90$ (deep ITM), $T = 0.25$ (3 months), the market implied volatility is 25%, while for $K = 110$ (deep OTM) it is 22%. (a) Compute the Black-Scholes prices using each implied volatility. (b) Explain the "model selection hierarchy" from Level 1 (BS with strike-dependent implied vol) to Level 3 (stochastic volatility). (c) For which applications does Level 1 suffice, and when must one move to Level 3?
+
+---
+
+**Exercise 6.** In the Heston stochastic volatility model, the correlation $\rho$ between the stock and variance Brownian motions is typically negative for equities ($\rho \approx -0.7$). Explain the economic mechanism (leverage effect) behind this negative correlation, and describe how it produces a volatility skew in implied volatility. What would the implied volatility surface look like if $\rho = 0$?

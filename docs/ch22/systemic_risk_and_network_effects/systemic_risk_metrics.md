@@ -297,3 +297,56 @@ where $W_{ij} = A_{ij}/E_i$ is the exposure of $i$ to $j$ relative to $i$'s equi
 - Eisenberg, L. & Noe, T. (2001), "Systemic Risk in Financial Systems," *Management Science*, 47(2), 236--249
 - Battiston, S. et al. (2012), "DebtRank: Too Central to Fail?," *Scientific Reports*, 2, 541
 - Bisias, D., Flood, M., Lo, A. & Valavanis, S. (2012), "A Survey of Systemic Risk Analytics," *Annual Review of Financial Economics*, 4, 255--296
+
+---
+
+## Exercises
+
+**Exercise 1.** Using the quantile regression specification
+
+$$
+R_{\text{sys},t} = \beta_0^\alpha + \beta_1^\alpha R_{i,t} + \gamma^\alpha M_t + \varepsilon_t^\alpha
+$$
+
+suppose at the 5% quantile the estimated coefficients are $\hat{\beta}_0 = -0.01$, $\hat{\beta}_1 = 0.8$, and $\hat{\gamma} = -0.3$. The current state variable is $M_t = 0.05$ and institution $i$'s $\text{VaR}_{5\%} = -6\%$. Compute $\text{CoVaR}_{5\%}^{\text{sys}|i}$. If the median return of institution $i$ is $+0.5\%$, compute $\Delta\text{CoVaR}^i$. Interpret the result.
+
+---
+
+**Exercise 2.** Show that MES provides an exact additive decomposition of system ES:
+
+$$
+\text{ES}_\alpha^{\text{sys}} = \sum_{i=1}^n w_i \cdot \text{MES}_\alpha^i
+$$
+
+Start from the definition $\text{ES}_\alpha^{\text{sys}} = -\mathbb{E}[R_{\text{sys}} | R_{\text{sys}} \le \text{VaR}_\alpha^{\text{sys}}]$ and the fact that $R_{\text{sys}} = \sum_i w_i R_i$. Explain why this Euler allocation property makes MES particularly useful for attributing systemic risk across institutions.
+
+---
+
+**Exercise 3.** Compute SRISK for two banks:
+
+- Bank A: $W_A = \$30$B, $D_A = \$270$B, daily $\text{MES}_{5\%} = 2.5\%$
+- Bank B: $W_B = \$100$B, $D_B = \$400$B, daily $\text{MES}_{5\%} = 1.8\%$
+
+Use $k = 8\%$ and $\text{LRMES} \approx 1 - \exp(-18 \cdot \text{MES})$. Which bank has a higher SRISK? Decompose the result into the debt contribution ($k \cdot D$) and the equity absorption capacity ($(1-k) \cdot W \cdot (1 - \text{LRMES})$). Discuss why a highly leveraged bank with moderate MES can have higher SRISK than a less leveraged bank with higher MES.
+
+---
+
+**Exercise 4.** In the Eisenberg-Noe framework, a 3-bank system has external assets $e = (100, 50, 30)$, nominal liabilities $\bar{p} = (80, 60, 40)$, and relative liability matrix
+
+$$
+\Pi = \begin{pmatrix} 0 & 0.5 & 0.5 \\ 0.6 & 0 & 0.4 \\ 0.4 & 0.6 & 0 \end{pmatrix}
+$$
+
+Now suppose an external shock reduces Bank 3's assets from 30 to 10. Compute the new clearing vector by iteration. Does the shock cause any additional defaults beyond Bank 3? What is the total system loss (sum of unpaid liabilities)?
+
+---
+
+**Exercise 5.** The DCC-GARCH MES estimator expresses time-varying MES as a function of conditional volatilities and correlation. Explain intuitively why MES increases when (a) the institution's own volatility $\sigma_{i,t}$ increases, (b) the correlation $\rho_t$ between the institution and the system increases, and (c) the system is in a high-volatility regime. During the 2008 crisis, all three factors moved adversely simultaneously. Discuss why this made MES estimates spike and what implications this has for real-time systemic risk monitoring.
+
+---
+
+**Exercise 6.** A regulator observes the following daily data over 250 trading days for institution $i$ and the financial sector index. On the 12 days when the sector return was below its 5% VaR, institution $i$'s returns were: $-5.2\%$, $-4.8\%$, $-6.1\%$, $-3.9\%$, $-7.2\%$, $-4.5\%$, $-5.8\%$, $-3.2\%$, $-6.5\%$, $-4.1\%$, $-5.5\%$, $-4.0\%$. Compute the nonparametric MES estimate. Compare this to a hypothetical bank $j$ with tail-day returns averaging $-2.5\%$. Which institution poses a greater systemic risk according to MES?
+
+---
+
+**Exercise 7.** Compare the information content of CoVaR, MES, and SRISK for a non-bank financial institution (e.g., a large insurance company) versus a major commercial bank. Discuss which metric might be most informative for each institution type, considering differences in: (a) leverage structure, (b) liquidity of equity, (c) tail risk profile, and (d) interconnectedness with the banking system. Why might network-based models (Eisenberg-Noe) be less applicable to non-bank financials?

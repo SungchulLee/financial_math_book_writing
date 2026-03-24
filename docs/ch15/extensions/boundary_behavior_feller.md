@@ -224,3 +224,29 @@ The Feller classification determines the boundary behavior of CIR-type component
 - Cox, J., Ingersoll, J., and Ross, S. (1985). "A Theory of the Term Structure of Interest Rates." *Econometrica*, 53(2), 385--407.
 - Broadie, M. and Kaya, O. (2006). "Exact Simulation of Stochastic Volatility and Other Affine Jump Diffusion Processes." *Operations Research*, 54(2), 217--231.
 - Andersen, L. (2008). "Simple and Efficient Simulation of the Heston Stochastic Volatility Model." *Journal of Computational Finance*, 11(3), 1--42.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the CIR process $dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t$ with $\kappa = 2$, $\theta = 0.04$, $\xi = 0.3$, check whether the Feller condition $2\kappa\theta \geq \xi^2$ is satisfied. Interpret the result: can the variance reach zero?
+
+---
+
+**Exercise 2.** Repeat Exercise 1 with $\xi = 0.5$. Now the Feller condition is violated. Explain qualitatively what happens when $V_t$ hits zero: is the process absorbed at zero or reflected? What is the implication for the transition density at $V = 0$?
+
+---
+
+**Exercise 3.** The Feller condition can be written as $\nu := 2\kappa\theta/\xi^2 \geq 1$, where $\nu$ is the dimension parameter of the non-central chi-squared distribution of $V_T$ (conditional on $V_t$). For the CIR process, express the conditional distribution of $V_T$ in terms of $\nu$ and explain why $\nu < 1$ implies a probability mass at $V_T = 0$.
+
+---
+
+**Exercise 4.** For the Euler discretization of the CIR process, $\hat{V}_{n+1} = \hat{V}_n + \kappa(\theta - \hat{V}_n)\Delta t + \xi\sqrt{\hat{V}_n}\sqrt{\Delta t}\,Z_{n+1}$, explain why negative values of $\hat{V}_{n+1}$ can occur even when the Feller condition holds. Describe two common remedies: absorption ($\hat{V}_{n+1} = \max(\hat{V}_{n+1}, 0)$) and reflection ($\hat{V}_{n+1} = |\hat{V}_{n+1}|$).
+
+---
+
+**Exercise 5.** The scale function $s(x)$ and speed measure $m(x)$ of a one-dimensional diffusion classify the boundary behavior. For the CIR process, compute $s(x) = \exp(-\int^x \frac{2\kappa(\theta - y)}{\xi^2 y}\,dy)$ and determine the integrability of $s(x)$ near $x = 0$. How does this relate to the Feller condition?
+
+---
+
+**Exercise 6.** In the multidimensional setting (e.g., the Heston model), the Feller condition applies to each CIR-type component independently. For a two-factor model on $\mathbb{R}_+^2$ where $V_t^{(1)}$ satisfies the Feller condition but $V_t^{(2)}$ does not, describe the behavior of the process near the boundary $V_t^{(2)} = 0$ while $V_t^{(1)} > 0$. Does the overall model remain well-defined?

@@ -361,3 +361,29 @@ After execution:
 - Bouchaud, J.-P., Farmer, J.D., & Lillo, F. (2009), "How Markets Slowly Digest Changes in Supply and Demand"
 - Gatheral, J. (2010), "No-Dynamic-Arbitrage and Market Impact"
 - Cartea, Á., Jaimungal, S., & Penalva, J. (2015), *Algorithmic and High-Frequency Trading*
+
+---
+
+## Exercises
+
+**Exercise 1.** A trader executes a market order to buy 100,000 shares of a stock with average daily volume of 1,000,000 shares and a bid-ask spread of \$0.05. Estimate the immediate (temporary) market impact using the "square-root law": $\Delta P \approx \sigma \cdot \sqrt{Q/V}$, where $\sigma$ is the daily volatility (2%), $Q = 100{,}000$, and $V = 1{,}000{,}000$.
+
+---
+
+**Exercise 2.** Distinguish between temporary and permanent market impact. A trade of size $Q$ causes a temporary impact of $\eta\,Q$ (which decays) and a permanent impact of $\gamma\,Q$ (which persists). If $\eta = 0.001$ \$/share and $\gamma = 0.0003$ \$/share for a 50,000-share order, compute each component and the total execution cost.
+
+---
+
+**Exercise 3.** Explain why market impact is nonlinear: doubling the trade size more than doubles the impact. The empirical square-root law states impact $\propto \sigma \sqrt{Q/V}$. Provide an intuitive explanation based on order book structure and adverse selection.
+
+---
+
+**Exercise 4.** A fund manager needs to liquidate a \$500M equity position. The stock has average daily volume of \$50M and daily volatility of 1.5%. Estimate the market impact cost if the position is liquidated over (a) 1 day, (b) 5 days, and (c) 10 days. Discuss the trade-off between impact cost and timing risk.
+
+---
+
+**Exercise 5.** In the Almgren-Chriss framework, market impact has a permanent component $g(v) = \gamma\,v$ and a temporary component $h(v) = \eta\,v + \epsilon\,\text{sgn}(v)$, where $v$ is the trading rate. Explain the economic interpretation of each parameter. Why is the bid-ask spread captured by $\epsilon$?
+
+---
+
+**Exercise 6.** How does market impact affect derivative hedging? A delta-hedging strategy requires frequent rebalancing. If each rebalance incurs market impact costs, describe how the total hedging cost depends on rebalancing frequency. What is the optimal trade-off between hedging accuracy and transaction costs?

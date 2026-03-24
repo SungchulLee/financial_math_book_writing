@@ -272,3 +272,29 @@ print(f"Max absolute error (log space)     : {np.max(np.abs(V_log - V_exact_log)
 - The implicit method improves numerical stability and allows for larger time steps.
 - It transforms the discretized PDE into a tridiagonal system at each time step.
 - Though more complex than the explicit method, it is **more robust** and **practical** for real-world applications.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the implicit scheme with $M = 4$ interior points, $\sigma = 0.2$, $r = 0.05$, $S_{\max} = 200$ ($\Delta S = 40$), and $\Delta t = 0.01$, compute the tridiagonal matrix coefficients $a_i$, $b_i$, $c_i$ for $i = 1, 2, 3, 4$. Verify that all diagonal entries $b_i$ are positive and all off-diagonal entries $a_i$, $c_i$ are negative, confirming the M-matrix structure.
+
+---
+
+**Exercise 2.** The Thomas algorithm solves a tridiagonal system in $O(M)$ operations. Describe what would happen if you used standard Gaussian elimination instead. What is its cost, and why is the Thomas algorithm preferred?
+
+---
+
+**Exercise 3.** The implicit scheme is unconditionally stable, meaning any $\Delta t > 0$ can be used. However, choosing $\Delta t$ too large reduces accuracy. For a European call with $K = 100$, $T = 1$, $\sigma = 0.2$, $M = 200$, what is a reasonable choice of $N$ (number of time steps) if the target is $O((\Delta S)^2)$ accuracy in space and $O(\Delta t)$ accuracy in time?
+
+---
+
+**Exercise 4.** Compare the implicit scheme solutions for a European call in original space and log-price space. The log-price formulation has constant coefficients, while the original-space formulation has $S$-dependent coefficients. Discuss how this affects the Thomas algorithm implementation and the accuracy of the solution.
+
+---
+
+**Exercise 5.** For the American put, the implicit scheme is combined with early exercise projection: after solving the tridiagonal system, set $V_i = \max(V_i, \Phi_i)$ for all $i$. Explain why this projection approach is simpler to implement with the implicit scheme than with Crank-Nicolson. What is the overall convergence order of the projection + implicit method?
+
+---
+
+**Exercise 6.** The implicit scheme introduces numerical dissipation that damps high-frequency oscillations. While this makes the scheme robust, it can cause over-smoothing of sharp features. For a digital (binary) option with payoff $\Phi(S) = 1$ if $S > K$ and $0$ otherwise, explain how this dissipation affects the numerical solution near $S = K$.

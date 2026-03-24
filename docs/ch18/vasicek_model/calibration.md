@@ -207,3 +207,31 @@ The fit is within 5 basis points across all maturities---acceptable for a three-
 Calibration of the Vasicek model involves fitting three parameters $(\kappa, \theta, \sigma)$ to market yields and/or cap volatilities. Yield curve calibration minimizes pricing errors across observed maturities, with the fundamental constraint that a three-parameter model cannot match an arbitrary curve exactly. Cap volatility calibration targets the single parameter $\sigma$ that drives option prices. Maximum likelihood estimation on historical rate data provides an alternative (physical measure) calibration via the AR(1) regression structure of the OU process, with the caveat that the mean-reversion speed is poorly identified from short time series. The distinction between physical and risk-neutral parameters requires combining cross-sectional and time-series information.
 
 ---
+
+## Exercises
+
+**Exercise 1.** Write the yield-space objective function for calibrating Vasicek to 5 market zero rates. How many free parameters are there, and why is the problem over-determined?
+
+---
+
+**Exercise 2.** Using the calibrated parameters $\hat{\kappa} = 0.25$, $\hat{\theta} = 0.0455$, $\hat{\sigma} = 0.018$, compute the Vasicek long-run yield $R_\infty = \theta - \sigma^2/(2\kappa^2)$. Compare this with the 30Y market yield of 4.40%.
+
+---
+
+**Exercise 3.** In MLE for the Vasicek model, the discretized OU process gives the AR(1) regression $r_{t+\Delta t} = \alpha + \beta r_t + \epsilon_t$. Express $\kappa$, $\theta$, and $\sigma$ in terms of $\alpha$, $\beta$, and $\text{Var}(\epsilon)$ and $\Delta t$.
+
+---
+
+**Exercise 4.** Explain why the mean-reversion speed $\kappa$ is poorly identified from short time series. If a 2-year daily sample gives $\hat{\kappa}^{\mathbb{P}} = 0.05$ with standard error 0.04, what does this imply about the reliability of $\hat{\kappa}$?
+
+---
+
+**Exercise 5.** A cap volatility calibration requires matching the Vasicek implied cap volatility $\sigma_{\text{cap}}$ to the market Black volatility. Since the Vasicek cap price depends only on $\sigma$ (with $\kappa$ and $\theta$ fixed from the yield curve), this is a one-dimensional root-finding problem. Describe the procedure using Newton's method and the cap vega.
+
+---
+
+**Exercise 6.** The calibrated model has residual yield errors of $\{+2, -4, +2, +2, +3\}$ basis points across maturities $\{1, 2, 5, 10, 30\}$Y. Is this pattern random or systematic? What does a systematic pattern tell you about the model's yield curve shape limitations?
+
+---
+
+**Exercise 7.** Distinguish physical measure parameters $(\kappa^{\mathbb{P}}, \theta^{\mathbb{P}}, \sigma)$ from risk-neutral parameters $(\kappa, \theta, \sigma)$. If historical estimation gives $\kappa^{\mathbb{P}} = 0.10$, $\theta^{\mathbb{P}} = 0.04$, and market calibration gives $\kappa = 0.25$, $\theta = 0.0455$, compute the market price of risk $\lambda$ using $\kappa = \kappa^{\mathbb{P}} + \lambda$.

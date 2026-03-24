@@ -137,3 +137,33 @@ These limitations motivate the use of piecewise constant $\sigma(t)$ (which help
 ## Summary
 
 Calibration to swaption volatilities fits the Hull-White parameters $(\lambda, \sigma)$ to the market swaption matrix by minimizing weighted squared errors between model and market implied volatilities. The model swaption price is computed via Jamshidian's trick, decomposing the swaption into ZCB options. The mean-reversion $\lambda$ is primarily identified from the tenor dimension of the matrix, controlling how bond price volatility saturates for long maturities. Co-terminal swaptions are the most important calibration subset for Bermudan swaption pricing. The two-parameter model cannot fit the full matrix, motivating extensions to piecewise constant volatility and multi-factor models.
+
+---
+
+## Exercises
+
+**Exercise 1.** The swaption volatility matrix is indexed by expiry and tenor. Explain the difference between the $5 \times 10$ swaption (5-year expiry, 10-year tenor) and the $10 \times 5$ swaption (10-year expiry, 5-year tenor). Which has higher sensitivity to the mean-reversion parameter $\lambda$, and why?
+
+---
+
+**Exercise 2.** For a 10-year Bermudan swaption with annual exercise, identify the co-terminal swaptions that should be used for calibration. Explain why fitting these co-terminal instruments is more important than fitting the entire swaption matrix when the goal is to price the Bermudan.
+
+---
+
+**Exercise 3.** The approximate Hull-White swaption variance formula involves the sum $\sum_{i,j} w_i w_j \sigma^2 B(T_0, T_i) B(T_0, T_j) \frac{1 - e^{-2\lambda T_0}}{2\lambda}$. Show that this can be written as $\sigma^2 \left(\sum_i w_i B(T_0, T_i)\right)^2 \frac{1 - e^{-2\lambda T_0}}{2\lambda}$ and explain the simplification.
+
+---
+
+**Exercise 4.** Describe the role of the annuity-weighted portfolio weights $w_i = c_i P(0,T_i) / \sum_j c_j P(0,T_j)$ in the swaption volatility formula. How do these weights change as the swap rate $K$ increases? What happens to the swaption volatility approximation for deep in-the-money versus deep out-of-the-money strikes?
+
+---
+
+**Exercise 5.** The text states that the model overestimates short-expiry/long-tenor volatilities while underestimating long-expiry/short-tenor volatilities (or vice versa). Explain the source of this misfit in terms of the one-factor structure and the specific functional form of $B(T_0, T_i)$.
+
+---
+
+**Exercise 6.** Implement a simple calibration: given co-terminal swaption volatilities $\sigma_{1\times9} = 0.22$, $\sigma_{5\times5} = 0.18$, and $\sigma_{9\times1} = 0.14$, find $(\lambda, \sigma)$ that minimizes the sum of squared errors. Describe your optimization approach and discuss whether three instruments suffice to identify both parameters.
+
+---
+
+**Exercise 7.** Compare uniform weighting, vega weighting, and co-terminal weighting for swaption calibration. For pricing a 10-year Bermudan swaption, which weighting scheme is most appropriate? For hedging a portfolio of European swaptions across the matrix, which scheme is preferable?

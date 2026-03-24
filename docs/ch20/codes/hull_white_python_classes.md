@@ -316,3 +316,33 @@ class HullWhite2:
             M[:, i+1] = M[:, i] * np.exp(R[:, i] * dt)
         return t, X, Y, R, M
 ```
+
+---
+
+## Exercises
+
+**Exercise 1.** Using the `BrownianMotion` class, generate 5,000 paths of standard Brownian motion over $T = 1$ year with 252 time steps. Verify that the terminal distribution $B_T$ has approximately zero mean and unit variance. Explain why the moment-matching step (centering and standardizing) ensures these properties hold exactly for any finite number of paths.
+
+---
+
+**Exercise 2.** Using the `Vasicek` class with $r_0 = 5\%$, $\lambda = 0.3$, $\theta = 4\%$, $\sigma = 1\%$, generate 10,000 paths over $T = 10$ years. Compute the sample mean and standard deviation of $r_{10}$ and compare with the analytical values:
+
+$$
+\mathbb{E}[r_T] = \theta + (r_0 - \theta)e^{-\lambda T}, \qquad \text{Std}(r_T) = \sigma\sqrt{\frac{1 - e^{-2\lambda T}}{2\lambda}}
+$$
+
+---
+
+**Exercise 3.** The CIR model uses truncation $R[:,i] = \max(R[:,i], 0)$ to prevent negative rates. Explain why negative rates can occur in the Euler-Maruyama discretization even when the Feller condition $2\lambda\theta \geq \sigma^2$ is satisfied. With parameters $\lambda = 0.5$, $\theta = 0.04$, $\sigma = 0.15$, $r_0 = 0.04$, check whether the Feller condition holds and estimate the frequency of negative-rate truncation events in 10,000 paths.
+
+---
+
+**Exercise 4.** The `HullWhite` class computes $\theta(t)$ using two levels of numerical differentiation. Using a flat curve at 3\%, compute $\theta(0.5)$ analytically and compare with the numerical result from `compute_theta(0.5)` for step sizes $dt = 10^{-2}, 10^{-3}, 10^{-4}, 10^{-5}$. At what step size does round-off error begin to degrade the accuracy?
+
+---
+
+**Exercise 5.** The `HullWhite2` class generates correlated paths via the Cholesky decomposition: $Z_2^{\text{corr}} = \rho Z_1 + \sqrt{1 - \rho^2}\,Z_2$. Verify that $\text{Corr}(Z_1, Z_2^{\text{corr}}) = \rho$ and $\text{Var}(Z_2^{\text{corr}}) = 1$. Using the two-factor model with $\sigma_1 = 0.005$, $\sigma_2 = 0.008$, $\lambda_1 = 0.01$, $\lambda_2 = 0.3$, $\rho = -0.5$, generate paths and verify that $\text{Corr}(x_T, y_T)$ converges to the theoretical value as the number of paths increases.
+
+---
+
+**Exercise 6.** Using the `HullWhite` class, price a 5-year zero-coupon bond by Monte Carlo: generate $N = 50{,}000$ paths, compute $P^{\text{MC}}(0, 5) = \frac{1}{N}\sum_{i=1}^N 1/M_5^{(i)}$ where $M_5^{(i)}$ is the money market account at $T = 5$ along path $i$. Compare with the analytical price $P^M(0, 5)$. Report the standard error and the 95\% confidence interval.

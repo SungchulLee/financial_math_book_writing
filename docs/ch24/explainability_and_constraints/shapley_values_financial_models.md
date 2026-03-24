@@ -288,3 +288,51 @@ SHAP values serve as a compliance mechanism, though they explain *what* drives p
 - Molnar, C. (2022), *Interpretable Machine Learning*, 2nd ed.
 - Joseph, A. (2019), "Shapley Regressions: A Framework for Statistical Inference on Machine Learning Models," Bank of England Staff Working Paper No. 784
 - Sudjianto, A. & Zhang, A. (2021), "Designing Inherently Interpretable Machine Learning Models," *SSRN*
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a model $f$ with three features $N = \{1, 2, 3\}$ and characteristic function values $v(\emptyset) = 0$, $v(\{1\}) = 4$, $v(\{2\}) = 2$, $v(\{3\}) = 1$, $v(\{1,2\}) = 8$, $v(\{1,3\}) = 6$, $v(\{2,3\}) = 5$, $v(\{1,2,3\}) = 12$. Compute the exact Shapley value $\phi_i$ for each player using the formula
+
+$$
+\phi_i(v) = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|!\,(n - |S| - 1)!}{n!}\,\big[v(S \cup \{i\}) - v(S)\big]
+$$
+
+Verify that the efficiency axiom $\phi_1 + \phi_2 + \phi_3 = v(N)$ holds. Then verify symmetry: are any two players symmetric, and do they receive equal Shapley values?
+
+---
+
+**Exercise 2.** A credit scoring model $f(x)$ produces a probability of default. For a denied applicant with $f(x) = 0.18$ and base value $\phi_0 = \mathbb{E}[f(X)] = 0.06$, the SHAP values are $\phi_{\text{income}} = +0.01$, $\phi_{\text{DTI}} = +0.06$, $\phi_{\text{history}} = +0.03$, $\phi_{\text{inquiries}} = +0.02$. (a) Verify the efficiency property $f(x) = \phi_0 + \sum_i \phi_i$. (b) Rank the features for an adverse action notice as required by ECOA. (c) If the denial threshold is $\theta = 0.10$, identify the minimal set of features whose SHAP contributions, if removed (set to zero), would bring the prediction below the threshold. (d) Discuss why SHAP-based explanations may not satisfy a causal interpretation of "reasons for denial."
+
+---
+
+**Exercise 3.** For KernelSHAP with $n = 4$ features, compute the SHAP kernel weight $\pi(z)$ for coalitions of size $|z| = 1$, $|z| = 2$, and $|z| = 3$. Recall
+
+$$
+\pi(z) = \frac{n - 1}{\binom{n}{|z|}\,|z|\,(n - |z|)}
+$$
+
+Show that $\pi(z) \to \infty$ as $|z| \to 0$ or $|z| \to n$ (i.e., the kernel diverges for the empty and full coalitions). Explain intuitively why very small and very large coalitions receive the highest weight in the regression. How does the sampling approximation handle this divergence in practice?
+
+---
+
+**Exercise 4.** TreeSHAP has complexity $O(T \cdot L \cdot D^2)$ per instance for an ensemble of $T$ trees, each with $L$ leaves and maximum depth $D$. (a) For a gradient-boosted model with $T = 500$ trees, $D = 8$, and $L = 200$ leaves per tree, compute the cost per instance and compare it to the exact exponential computation $O(2^n)$ for $n = 50$ features. (b) Explain why the polynomial-time algorithm is possible for trees but not for arbitrary models. (c) Discuss the difference between observational and interventional TreeSHAP when features are correlated: if income and education are positively correlated, how might the two variants differ in attributing importance to education?
+
+---
+
+**Exercise 5.** The SHAP interaction value between features $i$ and $j$ is based on
+
+$$
+\Delta_{ij}(S) = v_x(S \cup \{i,j\}) - v_x(S \cup \{i\}) - v_x(S \cup \{j\}) + v_x(S)
+$$
+
+Using the characteristic function from Exercise 1, compute $\Delta_{12}(S)$ for all $S \subseteq \{3\}$ (i.e., $S = \emptyset$ and $S = \{3\}$). Then compute the SHAP interaction value $\Phi_{12}$. Interpret the sign: does the interaction between players 1 and 2 exhibit complementarity ($\Delta_{12} > 0$) or substitutability ($\Delta_{12} < 0$)? Relate this to a financial example where two risk factors interact nonlinearly.
+
+---
+
+**Exercise 6.** A portfolio risk model computes $\text{VaR}(x) = 15.2\%$ for a portfolio with exposures to four asset classes. SHAP decomposes this as $\phi_0 = 5.0\%$, $\phi_{\text{equity}} = 4.8\%$, $\phi_{\text{credit}} = 3.1\%$, $\phi_{\text{rates}} = 1.5\%$, $\phi_{\text{FX}} = 0.8\%$. (a) Verify efficiency. (b) Compare these SHAP-based risk attributions with the Euler allocation (marginal contributions scaled to sum to total): under what conditions would Euler allocation and SHAP attribution agree? (c) The portfolio manager wants to reduce VaR to below 12%. Using the SHAP decomposition, suggest a reallocation strategy. (d) Discuss why SHAP attributions might be misleading if VaR is not subadditive (i.e., when diversification benefits are negative).
+
+---
+
+**Exercise 7.** A bank deploys a neural network credit model and uses KernelSHAP with $M = 500$ samples for adverse action explanations. (a) Discuss the statistical uncertainty in the SHAP estimates: how would you construct confidence intervals for individual $\phi_i$ values? (b) If two features have SHAP values $\phi_1 = -0.03 \pm 0.02$ and $\phi_2 = -0.025 \pm 0.02$, can you reliably rank them for the adverse action notice? (c) KernelSHAP uses marginal expectations rather than conditional expectations. For a model with correlated features (e.g., income and zip code), explain how this can lead to attributions based on implausible feature combinations and propose a correction. (d) Discuss the gaming risk: if a bank discloses that "number of recent credit inquiries" has the highest SHAP value for denial, how might applicants respond, and does this actually reduce the bank's credit risk?

@@ -464,3 +464,33 @@ With $k$ factors, we have $k$ factor risk premia $\lambda_j$ to estimate.
 - Belkin et al. (2019), "Reconciling Modern Machine Learning and the Bias-Variance Trade-off"
 - Gu, Kelly & Xiu (2020), "Empirical Asset Pricing via Machine Learning"
 - Cochrane (2011), "Presidential Address: Discount Rates"
+
+---
+
+## Exercises
+
+**Exercise 1.** A linear regression model $\hat{f}(x) = \hat{\beta}_0 + \hat{\beta}_1 x$ is fitted to daily S&P 500 returns predicted by the previous day's VIX level. The true relationship is $f^*(x) = 0.001 - 0.0002 x + 0.000001 x^2$ (slightly nonlinear). The noise standard deviation is $\sigma = 0.01$. (a) Compute the bias at $x_0 = 20$ (VIX = 20): the linear model omits the quadratic term, so $\text{Bias} = \mathbb{E}[\hat{f}(x_0)] - f^*(x_0)$ depends on the missing term. (b) For $n = 252$ daily observations, the variance of the linear prediction is approximately $\text{Var}[\hat{f}(x_0)] \approx \sigma^2(1/n + (x_0 - \bar{x})^2/\sum(x_i - \bar{x})^2)$. Estimate this variance. (c) Compare the total MSE of the linear model with a quadratic model at $x_0 = 20$. Which has lower total error?
+
+---
+
+**Exercise 2.** The signal-to-noise ratio in daily equity return prediction is approximately $\text{SNR} = |\mu|/\sigma \approx 0.05$, giving $R^2 \approx 0.25\%$. (a) If a model achieves $R^2 = 2\%$ in-sample on daily data, argue that it is very likely overfitting. What in-sample $R^2$ would you expect from a true model with $R^2_{\text{true}} = 0.25\%$? (b) Compute the out-of-sample $R^2$ penalty due to estimation variance: $R^2_{\text{OOS}} \approx R^2_{\text{true}} - d/n$ where $d$ is the number of parameters and $n$ is the sample size. For $d = 10$ and $n = 252$, is $R^2_{\text{OOS}}$ positive? (c) Argue that in this low-SNR regime, models with fewer parameters (lower variance) consistently outperform models with many parameters (lower bias), even if the true relationship is complex.
+
+---
+
+**Exercise 3.** Ridge regression estimates are $\hat{\beta}_{\text{ridge}} = (\mathbf{X}^\top \mathbf{X} + \lambda I)^{-1}\mathbf{X}^\top \mathbf{Y}$. For a factor model with $d = 50$ factors and $n = 120$ months: (a) The OLS estimator is ill-conditioned because $d/n = 0.42$. Show that $\hat{\beta}_{\text{OLS}}$ has high variance by noting that $\text{Var}[\hat{\beta}_{\text{OLS}}] = \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}$ and small eigenvalues of $\mathbf{X}^\top \mathbf{X}$ inflate this. (b) Ridge shrinks eigenvalues by replacing $\lambda_j$ with $\lambda_j + \lambda$. Show that the MSE of $\hat{\beta}_{\text{ridge}}$ is $\sum_j \frac{\lambda^2 \beta_j^{*2}}{(\lambda_j + \lambda)^2} + \sigma^2 \sum_j \frac{\lambda_j}{(\lambda_j + \lambda)^2}$ (bias + variance). (c) Find the optimal $\lambda$ by differentiating the MSE and argue that it is positive whenever $d > 2$, proving that OLS is inadmissible.
+
+---
+
+**Exercise 4.** Bagging (bootstrap aggregating) reduces variance. A random forest predicts stock returns using 100 trees, each fitted on a bootstrap sample. (a) If each tree has bias $b$ and variance $v$, and trees have pairwise correlation $\rho$, the bagged estimator has $\text{Var}_{\text{bag}} = \rho v + (1-\rho)v/B$ where $B = 100$ is the number of trees. Compute $\text{Var}_{\text{bag}}$ for $v = 0.01$, $\rho = 0.3$. (b) Explain why the bias of the bagged estimator is approximately unchanged: $\text{Bias}_{\text{bag}} \approx b$. (c) The random forest reduces $\rho$ by restricting each split to a random subset of features. If $\rho$ decreases from 0.3 to 0.1, recompute $\text{Var}_{\text{bag}}$. Discuss why decorrelation is the key mechanism.
+
+---
+
+**Exercise 5.** The double descent phenomenon challenges classical bias-variance intuition. (a) Sketch the U-shaped classical test error curve and the double descent curve on the same axes, with model complexity on the x-axis. Label the interpolation threshold where the model perfectly fits the training data. (b) Explain the mechanism of the second descent: among all models that interpolate the training data, the minimum-norm solution generalizes well because it is implicitly regularized. (c) In finance, where $n$ is small and noise is high, argue that the interpolation threshold is reached at low complexity ($d \approx n$). The double descent region ($d \gg n$) requires massively overparameterized models. Is this regime practically relevant for financial prediction? Discuss.
+
+---
+
+**Exercise 6.** A fund manager must choose the lookback window for estimating expected returns. Short windows (e.g., 1 year) have low bias but high variance; long windows (e.g., 10 years) have high bias (if the market has changed) but low variance. (a) Model the expected return as $\mu_t = \mu + \delta_t$ where $\delta_t$ is a slow drift with $\text{Var}(\delta_t) = \sigma_\delta^2 t$. The rolling-window estimator using the last $W$ observations has $\text{Bias}^2 \approx \sigma_\delta^2 W / 3$ and $\text{Var} \approx \sigma^2 / W$. (b) Minimize the total MSE to find the optimal window $W^* = (3\sigma^2 / \sigma_\delta^2)^{1/2}$. For $\sigma = 0.16$ (annualized), $\sigma_\delta = 0.02$/year, compute $W^*$ in years. (c) Relate this to the bias-variance tradeoff: faster drift (larger $\sigma_\delta$) favors shorter windows (lower bias), while higher noise ($\sigma$) favors longer windows (lower variance).
+
+---
+
+**Exercise 7.** Cross-validation for time series must respect temporal ordering to avoid look-ahead bias. (a) Describe the rolling-window cross-validation procedure: at time $t$, train on $[t-W, t]$ and test on $[t+1, t+h]$. Compute the average test error across all valid $t$. (b) Compare this with standard $K$-fold CV, which shuffles the data. Explain why shuffling destroys the temporal dependence structure and leads to optimistic error estimates. (c) A LASSO model for return prediction selects 5 features out of 50 using rolling CV with $W = 120$ months and $h = 1$ month. The in-sample $R^2$ is 8% and the out-of-sample $R^2$ is 1.5%. Is the model useful? Compute the t-statistic for the out-of-sample $R^2$ and discuss statistical significance.

@@ -180,3 +180,33 @@ Each node connects to three successor nodes, with the branching pattern (normal,
 ## Summary
 
 The Hull-White trinomial tree construction discretizes the zero-mean OU process $x_t$ on a recombining grid with spacing $\Delta x = \sigma\sqrt{3\Delta t}$. Three branching patterns (normal, up, down) ensure positive probabilities everywhere by switching to non-normal branching when $|j| > j_{\max}$. The branching probabilities are determined by matching the conditional mean and variance of the continuous-time process. The resulting tree has $O(N \cdot j_{\max})$ nodes total, where $j_{\max}$ is bounded by the mean-reversion parameter. The next section covers calibrating the shift $\alpha_i$ at each time slice to fit the initial yield curve.
+
+---
+
+## Exercises
+
+**Exercise 1.** For $\lambda = 0.05$, $\sigma = 0.01$, and $\Delta t = 0.5$, compute $\Delta x$, $j_{\max}$, and the total number of nodes at a single time step. How does $j_{\max}$ change if $\lambda$ is doubled to $0.10$?
+
+---
+
+**Exercise 2.** Verify that the normal branching probabilities $p_u = \frac{1}{6} + \frac{j^2\lambda^2\Delta t^2 - j\lambda\Delta t}{2}$, $p_m = \frac{2}{3} - j^2\lambda^2\Delta t^2$, $p_d = \frac{1}{6} + \frac{j^2\lambda^2\Delta t^2 + j\lambda\Delta t}{2}$ sum to $1$ for all $j$. Then show that $p_m$ becomes negative when $j^2\lambda^2\Delta t^2 > 2/3$, confirming the need for non-normal branching.
+
+---
+
+**Exercise 3.** The spatial step $\Delta x = \sigma\sqrt{3\Delta t}$ is chosen to match the variance of the continuous-time process. Derive this choice by requiring that the second moment of the trinomial distribution $p_u(\Delta x)^2 + p_m(0)^2 + p_d(-\Delta x)^2$ equals $\sigma^2\Delta t$ when $j = 0$.
+
+---
+
+**Exercise 4.** For the up branching pattern ($j \to j, j-1, j-2$), derive the probabilities by solving the three moment-matching equations: normalization, mean-matching, and variance-matching. Verify that the formulas given in the text are correct.
+
+---
+
+**Exercise 5.** Explain why the tree is recombining. Show that after an up-middle-down sequence and a down-middle-up sequence, the process returns to the same node. What advantage does the recombining property provide for computational complexity?
+
+---
+
+**Exercise 6.** The boundary constant $0.1844$ in $j_{\max} = \lfloor 0.1844/(\lambda\Delta t) \rfloor$ ensures positive probabilities. Derive this constant by finding the value of $j\lambda\Delta t$ at which one of the normal branching probabilities first reaches zero.
+
+---
+
+**Exercise 7.** Compare the trinomial tree with a binomial tree for the Hull-White model. A binomial tree has only two successors per node. Explain why a binomial tree cannot simultaneously match the mean and variance of the OU process while maintaining positive probabilities and a recombining structure.

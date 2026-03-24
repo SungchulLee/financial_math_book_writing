@@ -281,3 +281,46 @@ Typical agreement is 8+ digits for COS with $N = 128$ and 4--6 digits for FFT wi
 ## Summary
 
 The COS and FFT methods are the workhorses of Fourier-based Heston pricing. The COS method expands the density in a cosine series, converging exponentially with $N = 64$--$128$ terms, and excels at pricing individual options with high accuracy. The Carr-Madan FFT produces prices on an entire log-strike grid in $\mathcal{O}(N\log N)$ operations, making it the natural choice for calibration sweeps. Both methods rely on the characteristic function engine for their input and should be validated against Gil-Pelaez inversion before deployment.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+For the COS method with Heston parameters $v_0 = 0.04$, $\theta = 0.06$, $\tau = 1.0$, $S_0 = 100$, $K = 100$, $r = 3\%$, $q = 1\%$, and $L = 10$, compute the truncation range $[a, b]$ using the simplified rule $a = x_0 - L\sqrt{(v_0 + \theta)\tau}$ and $b = x_0 + L\sqrt{(v_0 + \theta)\tau}$ where $x_0 = \ln(S_0/K) + (r - q)\tau$. How wide is the interval in terms of standard deviations of $\ln(S_T/K)$?
+
+---
+
+**Exercise 2.**
+The COS method uses $N$ terms in the cosine expansion. If the method achieves exponential convergence with error $\sim e^{-cN}$ for some $c > 0$, how many digits of accuracy do you gain by doubling $N$ from 64 to 128? Compare this with the Carr-Madan FFT, which converges as $\mathcal{O}(\Delta\nu^4)$ with Simpson's rule: how many digits does the FFT gain by doubling $N$ from 4096 to 8192?
+
+---
+
+**Exercise 3.**
+In the Carr-Madan FFT, the frequency and log-strike grids satisfy $\Delta\nu \cdot \Delta k = 2\pi / N$. With $N = 4096$ and $\Delta\nu = 0.01$, compute $\Delta k$ and the total log-strike range $[k_0, k_0 + N\Delta k]$. If $S_0 = 100$ and the FFT grid is centered at $\ln(S_0) = 4.605$, what are the minimum and maximum strikes (in dollar terms) on the grid? Are these reasonable for a calibration application?
+
+---
+
+**Exercise 4.**
+The damping parameter $\alpha$ in the Carr-Madan method must satisfy $\alpha + 1 < p^*$, where $p^*$ is the critical moment exponent. For Heston parameters $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.5$, $\rho = -0.7$, the critical exponent satisfies $p^* \approx 2 + 2\kappa/(\xi^2(1 - \rho^2))$. Compute $p^*$ and determine the maximum allowable $\alpha$. Explain what happens to the FFT prices if $\alpha$ is chosen too large (i.e., $\alpha + 1 > p^*$).
+
+---
+
+**Exercise 5.**
+A calibration requires pricing $M = 35$ options at a single maturity. Compare the computational cost (in number of CF evaluations) for: (a) the COS method with $N = 128$ applied per-strike ($M \times N$ evaluations), and (b) the Carr-Madan FFT with $N = 4096$ (a single FFT). At what value of $M$ does the COS method become more expensive than the FFT? Consider also the cost of interpolating the FFT output to the exact market strikes.
+
+---
+
+**Exercise 6.**
+Implement the payoff coefficients for a European call. For $k = 0$, show that $\psi_0(0, b) = b$ and compute $\chi_0(0, b)$ in closed form. For general $k \geq 1$, verify the formula:
+
+$$
+\chi_k(0, b) = \frac{1}{1 + (k\pi/(b-a))^2}\left[\cos\!\left(\frac{k\pi(b-a)}{b-a}\right)e^b - 1 + \frac{k\pi}{b-a}\sin\!\left(\frac{k\pi(b-a)}{b-a}\right)e^b\right]
+$$
+
+by simplifying $\theta_c = k\pi(0 - a)/(b-a)$ and $\theta_d = k\pi(b - a)/(b-a) = k\pi$.
+
+---
+
+**Exercise 7.**
+You need to price 200 options across 5 maturities (40 strikes per maturity) for a Heston calibration. Design an optimal pricing strategy that mixes COS and FFT methods. For which maturities would you use the FFT, and for which would you use COS? Justify your answer based on the number of strikes, desired accuracy, and total computational cost. Estimate the total number of CF evaluations for your strategy.

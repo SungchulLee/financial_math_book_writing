@@ -234,3 +234,61 @@ H -->|No| J[Use analytical approximations or numerical methods]
 In this chapter we focused on **conceptual foundations**: what it means to solve an SDE, the four senses of solvability, and the structural patterns that determine which techniques apply.
 
 In the next chapter we turn to the main **solution techniques** themselves: direct integration, Itô transformations, integrating factors, Lamperti transforms, and the practical workflow for applying them to classical solvable models.
+
+---
+
+## Exercises
+
+**Exercise 1.** For each of the following, state which type of solution is being described: explicit pathwise solution, distributional characterization, PDE/generator characterization, or numerical solvability.
+
+(a) $S_t = S_0 \exp[(\mu - \sigma^2/2)t + \sigma W_t]$
+
+(b) The transition density of $r_t$ satisfies the Fokker–Planck equation.
+
+(c) $r_t$ follows a noncentral chi-squared distribution with known parameters.
+
+(d) Euler–Maruyama simulation with $10^6$ sample paths gives $\widehat{\mathbb{E}}[X_T] = 3.14 \pm 0.02$.
+
+---
+
+**Exercise 2.** For the SDE $dX_t = \alpha X_t(1 - X_t)\,dt + \sigma X_t(1 - X_t)\,dW_t$:
+
+(a) Classify the noise structure (additive, multiplicative, or state-dependent diffusion).
+
+(b) Suggest a transformation that might simplify the diffusion coefficient.
+
+(c) Is a closed-form pathwise solution likely? Justify your reasoning.
+
+---
+
+**Exercise 3.** Consider the three canonical transformations:
+
+| Transformation | Target structure |
+|---|---|
+| $Y_t = \log X_t$ | ? |
+| $Y_t = e^{at}(X_t - \theta)$ | ? |
+| $Y_t = \int^{X_t} \frac{dx}{\sigma(x)}$ | ? |
+
+Fill in the "Target structure" column by describing what type of SDE each transformation is designed to simplify.
+
+---
+
+**Exercise 4.** The SABR model for forward rates is
+
+$$
+dF_t = \sigma_t F_t^\beta\,dW_t^{(1)}, \qquad d\sigma_t = \alpha\,\sigma_t\,dW_t^{(2)}
+$$
+
+with $\langle dW_t^{(1)}, dW_t^{(2)} \rangle = \rho\,dt$.
+
+(a) Does this model admit an elementary closed-form pathwise solution? Why or why not?
+
+(b) Which of the four senses of solvability (pathwise, distributional, PDE, numerical) are available for this model?
+
+---
+
+**Exercise 5.** Explain why the Feynman–Kac formula creates a connection between SDEs and PDEs. Specifically, if $u(t,x) = \mathbb{E}[\phi(X_T) \mid X_t = x]$ for an SDE with drift $b(x)$ and diffusion $\sigma(x)$, write down the PDE that $u$ satisfies and explain why this is useful when direct simulation is expensive.
+
+---
+
+**Exercise 6.** A colleague proposes modeling a stock price with the SDE $dS_t = \mu\,dt + \sigma\,dW_t$ (Brownian motion with drift) instead of geometric Brownian motion. Identify at least two problems with this choice from a modeling perspective, referring to the structural classification discussed in this chapter.

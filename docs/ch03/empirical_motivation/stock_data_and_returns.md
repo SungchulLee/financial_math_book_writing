@@ -322,3 +322,41 @@ established in this section:
    documents in detail.
 
 **Next:** Stylized Facts of Financial Returns. $\square$
+
+---
+
+## Exercises
+
+**Exercise 1.** A stock closes at \$80.00 on the cum-dividend date and pays a cash dividend of \$2.00. The ex-dividend price is observed at \$78.20. Compute the adjustment factor and the adjusted close price for a historical date when the raw close was \$60.00. Explain why the adjustment factor differs slightly from $78/80$.
+
+---
+
+**Exercise 2.** On two consecutive trading days, a stock's adjusted close prices are $S_0 = 150$ and $S_1 = 147$. Compute both the discrete return $r^{(D)}$ and the log return $r^{(C)}$. Verify the relationship $r^{(C)} = \log(1 + r^{(D)})$ numerically, and compute the absolute difference between the two return measures. At what approximate magnitude of $|r^{(D)}|$ does the difference between the two measures first exceed 0.5 %?
+
+---
+
+**Exercise 3.** Let $\{r_t^{(C)}\}_{t=1}^{5}$ be five consecutive daily log returns: $+0.012$, $-0.008$, $+0.015$, $-0.003$, $+0.006$. Compute the 5-day cumulative log return directly as a sum. Then convert each daily log return to a discrete return, compute the 5-day cumulative discrete return as
+
+$$
+1 + r_{[1,5]}^{(D)} = \prod_{t=1}^{5}(1 + r_t^{(D)}),
+$$
+
+and verify that $\log(1 + r_{[1,5]}^{(D)})$ equals the sum of log returns.
+
+---
+
+**Exercise 4.** A daily log-return series of $T = 504$ observations (approximately two years) has sample mean $\hat{\mu} = 0.0004$ and sample standard deviation $\hat{\sigma} = 0.018$. Compute the annualised mean return and annualised volatility using $N = 252$. Then compute the annualised Sharpe ratio (assuming zero risk-free rate). State the key assumption under which the $\sqrt{N}$ volatility scaling is valid, and explain why this assumption is violated in practice.
+
+---
+
+**Exercise 5.** Show algebraically that for an $n$-period investment the discrete return satisfies
+
+$$
+1 + r_{[t,\,t+n]}^{(D)} = \prod_{i=1}^{n}(1 + r_{t+i}^{(D)}),
+$$
+
+while the log return satisfies $r_{[t,\,t+n]}^{(C)} = \sum_{i=1}^{n} r_{t+i}^{(C)}$. Explain why the additive property of log returns makes them more convenient for probabilistic analysis involving the Central Limit Theorem.
+
+---
+
+**Exercise 6.** A sample of $T = 1000$ daily log returns yields excess kurtosis $\hat{\kappa} = 4.2$ and skewness $\hat{\gamma}_1 = -0.35$. Under the null hypothesis of i.i.d. normality, the standard error of the sample excess kurtosis is approximately $\sqrt{24/T}$ and the standard error of the sample skewness is approximately $\sqrt{6/T}$. Compute both standard errors, construct approximate 95 % confidence intervals for the true kurtosis and skewness, and determine whether the Gaussian null ($\kappa = 0$, $\gamma_1 = 0$) can be rejected at the 5 % level for each moment.

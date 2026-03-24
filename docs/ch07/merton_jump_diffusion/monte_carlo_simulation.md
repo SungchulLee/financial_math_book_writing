@@ -201,3 +201,25 @@ $$
 ## Summary
 
 Monte Carlo simulation of the Merton jump-diffusion generates paths by sampling Poisson-distributed jump counts and normally distributed jump sizes alongside the standard Brownian increments. Exact terminal simulation requires no time stepping and produces unbiased samples, while the log-Euler scheme provides full path dynamics at $O(\sqrt{\Delta t})$ strong convergence. Variance reduction through antithetic variates, control variates (using the exact Merton series price), and importance sampling can reduce computational cost by one to two orders of magnitude, making Monte Carlo practical for pricing path-dependent and early-exercise derivatives under jump-diffusion dynamics.
+
+---
+
+## Exercises
+
+**Exercise 1.** Implement the exact simulation algorithm for $S_T$ under the Merton model. For $S_0 = 100$, $K = 100$, $T = 0.5$, $r = 0.05$, $\sigma = 0.20$, $\lambda = 1.0$, $\mu_J = -0.08$, $\sigma_J = 0.25$, price a European call using $M = 50{,}000$ paths. Compare your Monte Carlo estimate with the Merton series formula result.
+
+---
+
+**Exercise 2.** Explain why the exact simulation algorithm produces unbiased samples while the Euler-Maruyama scheme introduces discretization bias. For what types of payoffs (European, path-dependent, barrier) is exact simulation sufficient, and when must you use the Euler scheme?
+
+---
+
+**Exercise 3.** The antithetic variate method negates the Brownian increments $\{Z_k\}$ but keeps the same jump draws. Explain why the jump component limits the variance reduction factor compared to the pure diffusion case. Estimate the expected variance reduction for a European call when jumps contribute 40% of the total variance.
+
+---
+
+**Exercise 4.** Describe the control variate estimator $\hat{C}_{\text{CV}} = \hat{C}_{\text{exotic}} - \beta(\hat{C}_{\text{vanilla}} - C_{\text{Merton}})$ where $C_{\text{Merton}}$ is the exact series price. (a) Explain why the optimal $\beta^*$ equals $\text{Cov}(g_{\text{exotic}}, g_{\text{vanilla}})/\text{Var}(g_{\text{vanilla}})$. (b) For an Asian call under Merton dynamics, would you expect the European call or the geometric average Asian call to be a better control variate?
+
+---
+
+**Exercise 5.** For the Euler-Maruyama scheme, explain the guideline $\lambda\Delta t \ll 1$. (a) What is the probability of two or more jumps in a single time step when $\lambda = 2$ and $\Delta t = 1/252$? (b) Why does the log-Euler scheme $S_{t+\Delta t} = S_t \exp[\ldots]$ preserve positivity while the additive Euler scheme can produce negative prices?

@@ -85,3 +85,29 @@ Weaknesses:
     - Heston for path-dependent exotics and long-dated instruments
     - Local vol as reality check for exotic pricing
     - Monitor cross-model P&L attribution to identify regime changes
+
+---
+
+## Exercises
+
+**Exercise 1.** The Heston model has 5 parameters while SABR (with fixed $\beta$) has 3. Discuss how the difference in parameter count affects: (a) the ability to fit the implied volatility surface, (b) the stability of calibrated parameters over time, and (c) the risk of overfitting. Under what conditions might fewer parameters be an advantage?
+
+---
+
+**Exercise 2.** Local volatility is extracted from the Dupire formula and provides an exact fit to all quoted vanilla options. Despite this, it is widely acknowledged to have poor extrapolation properties. Explain why an exact fit to vanillas does not guarantee accurate pricing of barrier options. What specific dynamic property does local vol get wrong compared to stochastic volatility models?
+
+---
+
+**Exercise 3.** A practitioner calibrates Heston, SABR, and local vol to the same set of 50 SPX options. The Heston model has RMSE of 0.35 vol points, SABR has 0.15 vol points, and local vol has 0.00 (exact). A down-and-out put is then priced under each model, yielding prices of 2.15, 1.98, and 2.72 respectively. Discuss the dispersion of exotic prices in light of the vanilla fit quality. Why does better vanilla fit not imply more reliable exotic pricing?
+
+---
+
+**Exercise 4.** Describe how to approximately map Heston parameters $(\kappa, \bar{v}, \sigma_v, \rho, v_0)$ to SABR parameters $(\alpha, \beta, \rho_{\text{SABR}}, \nu)$ at a single maturity. What quantities (ATM vol, skew, curvature) constrain this mapping? Why is the mapping only approximate and maturity-dependent?
+
+---
+
+**Exercise 5.** The practical calibration pipeline suggests: "Start with SABR for speed, validate with Heston for dynamics, use local vol for exotic pricing." Critique this pipeline. In what market regime might this ordering be suboptimal? Propose an alternative pipeline for pricing long-dated autocallable notes.
+
+---
+
+**Exercise 6.** An ensemble approach averages prices across models: $\hat{P} = w_1 P_{\text{Heston}} + w_2 P_{\text{SABR}} + w_3 P_{\text{LV}}$. Discuss how to choose the weights $w_i$. Should they depend on the product being priced? On the calibration fit quality? On historical backtesting performance? Propose a specific weighting scheme and justify it.

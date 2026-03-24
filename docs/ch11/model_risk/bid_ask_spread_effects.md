@@ -48,3 +48,29 @@ Spreads create a pricing band:
     - Perfect replication is impossible (hedging costs accumulate to significant levels)
     - Safe pricing requires markup that exceeds model price by a spread-dependent premium
     - Dynamic hedging becomes an optimal control problem, not a replication strategy
+
+---
+
+## Exercises
+
+**Exercise 1.** A trader delta-hedges a short ATM call with $S = K = 100$, $\sigma = 0.20$, $\tau = 0.25$, and $\Gamma = 0.032$. The bid-ask spread is $\$0.10$ (so the half-spread is $\$0.05$ per share). If the trader rebalances daily and the expected daily delta change is $|\Delta\Gamma| \cdot \sigma S \sqrt{\Delta t} \cdot \sqrt{2/\pi}$ shares, compute the expected daily spread cost and the total spread cost over the option's life. Compare this to the option premium (approximately $\$4.50$).
+
+---
+
+**Exercise 2.** The optimal rehedging frequency balances spread costs ($\sim N \cdot S_{\text{spread}} \cdot |\delta\Delta|$) against gamma losses between rehedges ($\sim \frac{1}{2}\Gamma \sigma^2 S^2 \delta t$ per step). For $\Gamma = 0.04$, $\sigma = 0.25$, $S = 100$, and a bid-ask spread of $\$0.08$, estimate the optimal rebalancing interval by equating marginal spread cost to marginal gamma loss reduction. Express your answer in trading days.
+
+---
+
+**Exercise 3.** The effective spread, realized spread, and market impact decompose the total transaction cost. If a trader buys 500 shares at an execution price of $\$100.06$ when the mid-quote is $\$100.00$, the next mid-quote is $\$100.03$, and the permanent price impact is $\$100.02$, compute: (a) the effective half-spread; (b) the realized spread; (c) the temporary market impact; (d) the permanent impact. Which component dominates?
+
+---
+
+**Exercise 4.** Bid-ask spreads create a no-arbitrage band around the model price. If the Black-Scholes price of a call is $\$5.20$ and the spread on the option is $\$0.30$, what are the effective bid and ask prices? A trader believes the "true" value is $\$5.40$. Is there an opportunity to profit after accounting for the spread? What minimum mispricing (relative to the model) is needed to overcome the spread?
+
+---
+
+**Exercise 5.** Spreads typically widen during periods of high volatility. Suppose the half-spread is $\kappa = 0.001$ under normal conditions ($\sigma = 0.20$) and widens to $\kappa = 0.003$ during a volatility spike ($\sigma = 0.40$). For a delta-hedged short call with $\Gamma = 0.03$ and $S = 100$, compute the expected daily rehedging cost under both regimes. How does the cost-to-gamma-benefit ratio change between regimes?
+
+---
+
+**Exercise 6.** A market maker quotes a bid-ask spread of $\$0.20$ on an option worth $\$8.00$ (model price). The option has $\Gamma = 0.05$, $\Theta = -0.03$ per day, and the underlying spread is $\$0.05$. If the market maker delta-hedges and the expected daily move is consistent with $\sigma = 0.25$, compute: (a) the daily spread revenue from market making; (b) the daily hedging cost (spread on underlying times expected turnover); (c) the net daily P&L before gamma/theta effects. Is the spread sufficient to cover hedging costs?

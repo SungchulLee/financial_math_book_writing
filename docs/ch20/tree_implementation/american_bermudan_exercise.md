@@ -143,3 +143,33 @@ Richardson extrapolation can accelerate convergence: compute the price on trees 
 ## Summary
 
 American and Bermudan exercise on the Hull-White trinomial tree extends backward induction by comparing continuation and exercise values: $V_{ij} = \max(C_{ij}, E_{ij})$ at eligible exercise dates. The primary application is the Bermudan swaption, where the holder may enter a swap at any of several dates. Callable bonds use $\min(C_{ij}, K_{\text{call}})$ reflecting the issuer's optimal call strategy. The early exercise premium, the excess over the European value, is typically 5--15\% for Bermudan swaptions. Convergence improves when tree time steps align with exercise dates, and Richardson extrapolation accelerates the convergence rate.
+
+---
+
+## Exercises
+
+**Exercise 1.** For a Bermudan payer swaption with exercise dates at years 1, 2, and 3 on a 4-year swap, describe the exercise value $E_{ij}$ at each exercise date. How does the number of remaining swap payments affect $E_{ij}$, and why does the exercise value generally decrease at later exercise dates (for a given short rate)?
+
+---
+
+**Exercise 2.** Explain why the Bermudan backward induction uses $V_{ij} = C_{ij}$ at non-exercise dates but $V_{ij} = \max(C_{ij}, E_{ij})$ at exercise dates. What would go wrong if the exercise test were applied at every time step for a Bermudan option?
+
+---
+
+**Exercise 3.** For a callable bond, the backward induction uses $\min(C_{ij} + c_i, K_{\text{call}})$ at call dates. Explain why the issuer's optimal strategy corresponds to a $\min$ rather than a $\max$. How does the callable bond value relate to the straight bond value and the issuer's call option value?
+
+---
+
+**Exercise 4.** The exercise boundary $r^*(t_i)$ for a Bermudan payer swaption is the rate at which $C(r^*) = E(r^*)$. On the tree, describe how to extract $r^*(t_i)$ from the backward induction values at exercise date $t_i$. Would you use interpolation between nodes, and if so, what method?
+
+---
+
+**Exercise 5.** Richardson extrapolation combines tree prices with $N$ and $2N$ steps via $V_{\text{ext}} = 2V_{2N} - V_N$. Derive this formula assuming the tree price has an error of the form $V_N = V_{\text{true}} + c\Delta t + O(\Delta t^2)$. What order of convergence does the extrapolated price achieve?
+
+---
+
+**Exercise 6.** The early exercise premium (EEP) for a Bermudan swaption is typically 5--15% of the European value. Explain qualitatively why the EEP increases with volatility $\sigma$ and decreases with mean-reversion speed $\lambda$. For a flat yield curve at $r_0 = K_{\text{swap}}$, would the EEP be larger or smaller than for a steep upward-sloping curve?
+
+---
+
+**Exercise 7.** An American put option on a ZCB with maturity $S = 5$, strike $K = 0.95$, and option expiry $T_{\text{opt}} = 3$ allows exercise at any time $t \leq 3$. Describe the backward induction on the tree, including the exercise value formula $E_{ij} = \max(K - P(t_i, S; r_{ij}), 0)$ at each node. When would early exercise be optimal for this option?

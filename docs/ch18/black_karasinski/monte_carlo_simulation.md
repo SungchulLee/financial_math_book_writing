@@ -157,3 +157,33 @@ The first two rows show the statistical error decreasing with $M$. The third row
 ## Summary
 
 Monte Carlo simulation for the Black-Karasinski model benefits from the exact Gaussian simulation of the log-rate $x_t = \ln r_t$, eliminating discretization error in the state variable. The only numerical approximation is the integration of the discount factor $\int e^{x_s}\,ds$, which is controlled by the time step size. Antithetic variates and control variates provide substantial variance reduction (30--80%), and the Longstaff-Schwartz algorithm extends the method to American-style exercise. Monte Carlo complements the trinomial tree by handling path-dependent and high-dimensional products, and convergence should be verified against tree prices for plain-vanilla bonds before applying to exotic derivatives.
+
+---
+
+## Exercises
+
+**Exercise 1.** Given BK parameters $a = 0.10$, $\sigma = 0.20$, piecewise-constant $\theta_k = -0.25$, and current log rate $x_0 = \ln(0.05)$, write out the exact simulation update for $x_{\Delta t}$ with $\Delta t = 0.01$ year. Compute the numerical values of the conditional mean, conditional standard deviation, and express $x_{\Delta t}$ in terms of a single standard normal draw $Z$.
+
+---
+
+**Exercise 2.** Consider approximating $\int_0^T r_s\,ds$ with the trapezoidal rule using $N$ equal steps of size $\Delta t = T/N$. If $T = 5$ years and $r_t$ has an approximate second derivative $|r''(t)| \leq C = 0.002$, bound the absolute integration error using the classical trapezoidal error formula $|E| \leq \frac{C T (\Delta t)^2}{12}$ for $N = 50$ and $N = 250$. By what factor does the error decrease?
+
+---
+
+**Exercise 3.** You run $M = 10{,}000$ Monte Carlo paths and obtain $\hat{P}(0,5) = 0.7698$ with standard error $\text{SE} = 0.0009$. Construct the 95% confidence interval. How many paths $M'$ would be needed to reduce the standard error to $0.0001$? If each path takes $10^{-4}$ seconds, what is the total computation time for $M'$ paths?
+
+---
+
+**Exercise 4.** Explain why the antithetic variate estimator is effective for the discount factor $Y = \exp(-\int_0^T r_s\,ds)$. Specifically, argue that $Y$ is a convex function of the Gaussian innovations, and use Jensen's inequality to show that $\text{Var}\!\left(\frac{Y + Y'}{2}\right) \leq \text{Var}(Y)$, where $Y'$ is the antithetic path.
+
+---
+
+**Exercise 5.** In the control variate approach, the closed-form expression $\mathbb{E}[r_t] = \exp(\mathbb{E}[x_t] + \frac{1}{2}\text{Var}(x_t))$ is used. For the parameters $a = 0.10$, $\sigma = 0.20$, $x_0 = \ln(0.05)$, and constant $\theta = -0.25$, compute $\mathbb{E}[r_1]$ and $\mathbb{E}[r_5]$. Discuss why the sample average rate $\bar{r}^{(m)}$ is a good control variate for bond pricing and what determines the optimal regression coefficient $\beta$.
+
+---
+
+**Exercise 6.** A range accrual note pays an annual coupon of 5% multiplied by the fraction of quarterly observation dates where $r_t \in [2\%, 6\%]$, on a notional of \$1,000,000, maturing in 3 years. Describe the Monte Carlo algorithm to price this note under BK, including: (i) the number of observation dates, (ii) the discount factor computation, and (iii) how the payoff indicator function is evaluated along each path.
+
+---
+
+**Exercise 7.** The convergence table shows that $\hat{P}(0,5)$ with $M = 100{,}000$ and $N_t = 50$ is 0.7695 versus the tree price of 0.7700, while the same $M$ with $N_t = 250$ gives 0.7701. Decompose the total error into statistical error and integration (bias) error for each case. Which source of error dominates when $N_t = 50$? Propose a strategy using Richardson extrapolation to reduce the integration bias without increasing $N_t$.

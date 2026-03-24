@@ -92,3 +92,40 @@ A **risk-neutral measure** is a probability measure \(\mathbb{Q}\) equivalent to
 \(\mathbb{P}\) under which all discounted traded asset prices are martingales.
 
 Its existence ensures arbitrage-free pricing.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+A stock has physical dynamics $dS_t = 0.10\,S_t\,dt + 0.25\,S_t\,dW_t^{\mathbb{P}}$ with risk-free rate $r = 0.04$. Compute the market price of risk $\theta$, write the Radon-Nikodym derivative $Z_T$, and derive the discounted price dynamics under $\mathbb{Q}$. Verify that the discounted price is a $\mathbb{Q}$-martingale.
+
+---
+
+**Exercise 2.**
+Starting from the discounted price $\tilde{S}_t = S_t / B_t$ and its dynamics $d\tilde{S}_t = (\mu_t - r_t)\tilde{S}_t\,dt + \sigma_t\tilde{S}_t\,dW_t^{\mathbb{P}}$, show that choosing $\theta_t = (\mu_t - r_t)/\sigma_t$ and defining $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \int_0^t \theta_s\,ds$ eliminates the drift term in the $\tilde{S}_t$ dynamics. Why is this drift removal equivalent to the martingale property?
+
+---
+
+**Exercise 3.**
+Explain why the risk-neutral measure $\mathbb{Q}$ must be equivalent to $\mathbb{P}$ (i.e., both measures agree on which events have probability zero). What would go wrong financially if $\mathbb{Q}$ assigned positive probability to an event that is impossible under $\mathbb{P}$?
+
+---
+
+**Exercise 4.**
+For time-varying coefficients $\mu_t$, $\sigma_t$, and $r_t$, the market price of risk $\theta_t = (\mu_t - r_t)/\sigma_t$ is a stochastic process. State the Novikov condition that ensures $Z_t$ is a true martingale and $\mathbb{Q}$ is well-defined. Give an example where the condition fails.
+
+---
+
+**Exercise 5.**
+Consider a market with two risky assets and one Brownian motion. Write the system of equations that $\theta$ must satisfy for both discounted prices to be $\mathbb{Q}$-martingales. Under what condition on $\mu_1, \mu_2, \sigma_1, \sigma_2, r$ is the system consistent (i.e., no arbitrage)?
+
+---
+
+**Exercise 6.**
+A student claims: "The risk-neutral measure is the probability measure that investors actually use to form expectations." Explain why this is incorrect and describe the correct interpretation of $\mathbb{Q}$.
+
+---
+
+**Exercise 7.**
+Suppose the risk-free rate is stochastic: $dr_t = \alpha(r_t)\,dt + \beta(r_t)\,dW_t^{\mathbb{P}}$, and the same Brownian motion drives the stock. Write the discounted stock price dynamics and determine $\theta_t$. Explain why this market is complete (one Brownian motion, one traded asset besides the bond).

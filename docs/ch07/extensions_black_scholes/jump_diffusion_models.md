@@ -298,3 +298,29 @@ C_{\text{Merton}} = \sum_{n=0}^\infty \frac{e^{-\lambda'T}(\lambda'T)^n}{n!} C_{
 $$
 
 **Jump-diffusion models capture sudden large moves and short-maturity smiles that pure diffusion models cannot, at the cost of market incompleteness and more complex pricing equations.**
+
+---
+
+## Exercises
+
+**Exercise 1.** In Merton's jump-diffusion model, the drift adjustment term is $-\lambda\kappa$ where $\kappa = e^{\mu_J + \sigma_J^2/2} - 1$. (a) Show that this adjustment ensures $\mathbb{E}^{\mathbb{Q}}[dS_t/S_{t^-}] = r\,dt$. (b) For $\lambda = 1$, $\mu_J = -0.05$, $\sigma_J = 0.10$, compute $\kappa$ and the compensated drift $r - \lambda\kappa$ when $r = 0.05$.
+
+---
+
+**Exercise 2.** Merton's formula expresses the option price as a Poisson-weighted sum of Black-Scholes prices: $C = \sum_{n=0}^{\infty} \frac{e^{-\lambda'T}(\lambda'T)^n}{n!} C_{\text{BS}}(S, K, T, r_n, \sigma_n)$. (a) Interpret this formula: conditioning on $n$ jumps, what is the effective volatility and risk-free rate? (b) In practice, how many terms of the series are needed for convergence? Estimate for $\lambda' T = 3$. (c) Why does this formula not extend to path-dependent options?
+
+---
+
+**Exercise 3.** Compare the PIDE for jump-diffusion pricing with the standard Black-Scholes PDE. Identify the additional integral term and explain its financial interpretation as the expected change in option value due to jumps. Why does this integral term make the equation non-local?
+
+---
+
+**Exercise 4.** The Kou double-exponential model uses asymmetric jump sizes: upward jumps with parameter $\eta_1$ and downward jumps with parameter $\eta_2$. Explain why this asymmetry is important for fitting equity option markets. How does the ratio $p/(1-p)$ (probability of upward vs. downward jump) affect the implied volatility skew?
+
+---
+
+**Exercise 5.** Explain why jump-diffusion models lead to incomplete markets. Identify the unhedgeable risk component and describe why delta hedging alone is insufficient. What additional instruments could be used to hedge jump risk, and how does this relate to the non-uniqueness of the risk-neutral measure?
+
+---
+
+**Exercise 6.** The SVJ (stochastic volatility plus jumps) model combines Heston dynamics with Merton-style jumps. Write the SDE system for this model and explain which market phenomena each component captures. Why might the SVJ model provide a better fit to the entire implied volatility surface (both short and long maturities) than either Heston or Merton alone?

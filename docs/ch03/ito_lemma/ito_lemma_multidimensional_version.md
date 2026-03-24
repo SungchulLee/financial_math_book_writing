@@ -153,3 +153,45 @@ $$
 | Full drift of $f$ | $f_t + \mu f_x + \tfrac{1}{2}\sigma^2 f_{xx}$ | $f_t + b^i f_i + \tfrac{1}{2}a^{ij}f_{ij}$ |
 
 The 1D formula is recovered by setting $d = m = 1$, $b^1 = \mu$, $\sigma^{11} = \sigma$, so $a^{11} = \sigma^2$.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $d = 2$, $m = 2$, with $dX_t^1 = \sigma_1\,dW_t^1$ and $dX_t^2 = \sigma_2\,dW_t^2$ (two independent Brownian motions, no drift). Compute the diffusion matrix $a^{ij} = \sigma^{i\alpha}\sigma^{j\alpha}$ and verify that it is diagonal.
+
+---
+
+**Exercise 2.** Let $f(x^1, x^2) = x^1 x^2$ with the same setup as Exercise 1. Apply the multidimensional Itô formula to compute $d(X_t^1 X_t^2)$. Show that the Itô correction term vanishes because the two processes are driven by independent Brownian motions.
+
+---
+
+**Exercise 3.** Now suppose $dX_t^1 = \sigma_1\,dW_t^1$ and $dX_t^2 = \sigma_2\,dW_t^1$ (both driven by the **same** Brownian motion). Compute the diffusion matrix $a^{ij}$ and the quadratic covariation $d\langle X^1, X^2 \rangle_t$. Apply the multidimensional Itô formula to $f(x^1, x^2) = x^1 x^2$ and identify the Itô correction.
+
+---
+
+**Exercise 4.** Let $X_t = (X_t^1, X_t^2)$ be a 2D process with
+
+$$
+dX_t^1 = dW_t^1, \qquad dX_t^2 = dW_t^1 + dW_t^2
+$$
+
+where $W^1$ and $W^2$ are independent. Compute the $2 \times 2$ diffusion matrix $a^{ij} = (\sigma\sigma^T)^{ij}$ and verify that it is positive definite.
+
+---
+
+**Exercise 5.** For the setting in Example 1 (norm squared), let $d = 3$, $m = 3$, with $dX_t^i = \mu^i\,dt + dW_t^i$ for $i = 1, 2, 3$ (independent standard Brownian motions with constant drifts). Compute $d|X_t|^2$ explicitly. What is the Itô correction term $\operatorname{tr}(\sigma\sigma^T)$ in this case?
+
+---
+
+**Exercise 6.** Consider a 2D geometric Brownian motion:
+
+$$
+dS_t^1 = \mu_1 S_t^1\,dt + \sigma_1 S_t^1\,dW_t^1, \qquad dS_t^2 = \mu_2 S_t^2\,dt + \sigma_2 S_t^2\,dW_t^2
+$$
+
+with independent Brownian motions. Apply the multidimensional Itô formula to $f(x^1, x^2) = \log(x^1) + \log(x^2) = \log(x^1 x^2)$ to derive the SDE for $\log(S_t^1 S_t^2)$.
+
+---
+
+**Exercise 7.** The infinitesimal generator is defined as $(\mathcal{L}f)(t, x) = b^i f_i + \frac{1}{2}a^{ij}f_{ij}$. For $d = 2$, $m = 1$, with $dX_t^1 = \sigma_1\,dW_t$ and $dX_t^2 = \sigma_2\,dW_t$ (same Brownian motion, no drift), compute $\mathcal{L}f$ for $f(x^1, x^2) = (x^1)^2 + (x^2)^2$. Verify your answer by applying the multidimensional Itô formula directly and reading off the $dt$ coefficient.

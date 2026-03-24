@@ -319,3 +319,61 @@ $$
 - Ikonen, S. & Toivanen, J. (2008). *Efficient numerical methods for pricing American options under stochastic volatility*. Numerical Methods for Partial Differential Equations.
 - Haentjens, T. & in 't Hout, K. (2012). *Alternating direction implicit finite difference schemes for the Heston–Hull–White PDE*. Journal of Computational Finance.
 - Glasserman, P. (2003). *Monte Carlo Methods in Financial Engineering*. Springer.
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the Heston SDE system under $\mathbb{Q}$, apply the Feynman-Kac theorem to derive the pricing PDE for a European option $V(t, S, v)$. Identify each term in the PDE and explain its financial interpretation (e.g., which terms correspond to the asset drift, variance mean reversion, the hedging cost, etc.).
+
+---
+
+**Exercise 2.** Perform the log-price transformation $x = \log S$ on the Heston PDE. Show explicitly how the terms $S\frac{\partial V}{\partial S}$ and $S^2\frac{\partial^2 V}{\partial S^2}$ transform. Verify that the resulting PDE has coefficients that are at most linear in $v$ (confirming the affine structure).
+
+---
+
+**Exercise 3.** At the boundary $v = 0$, the Heston PDE degenerates because the diffusion coefficients involving $v$ vanish. Write the limiting PDE as $v \to 0$ and show it reduces to
+
+$$
+\frac{\partial V}{\partial t} + (r-q)S\frac{\partial V}{\partial S} + \kappa\theta\frac{\partial V}{\partial v} - rV = 0
+$$
+
+Explain why this is a first-order PDE in $v$ (no second-order $v$ derivatives) and what this means for the numerical treatment of the $v = 0$ boundary.
+
+---
+
+**Exercise 4.** For a finite difference grid with $N_x = 200$ points in the log-price direction and $N_v = 100$ points in the variance direction, compute the total number of unknowns per time step. If $N_t = 500$ time steps are used, estimate the total number of floating-point operations for: (a) an explicit scheme ($O(N_x \cdot N_v)$ per step); (b) an implicit scheme requiring solution of a banded linear system. Compare with the cost of a Fourier method using $N_u = 256$ integration points.
+
+---
+
+**Exercise 5.** The mixed derivative $\frac{\partial^2 V}{\partial x \partial v}$ is approximated by the four-point stencil
+
+$$
+\frac{\partial^2 V}{\partial x \partial v} \approx \frac{V_{i+1,j+1} - V_{i+1,j-1} - V_{i-1,j+1} + V_{i-1,j-1}}{4\Delta x \Delta v}
+$$
+
+Show that this stencil has truncation error $O((\Delta x)^2 + (\Delta v)^2)$. When $\rho$ is close to $\pm 1$, explain why the coefficient of the mixed derivative becomes large and can cause stability issues. How does the coordinate transformation $y = x - \rho v$ help?
+
+---
+
+**Exercise 6.** For an American put option under Heston dynamics, the free boundary problem requires
+
+$$
+V(t, S, v) \geq (K - S)^+ \quad \text{for all } (t, S, v)
+$$
+
+Explain why the early exercise boundary $S^*(t, v)$ is now a surface (function of both $t$ and $v$) rather than a curve as in Black-Scholes. How does increasing $v$ affect $S^*(t, v)$? (Hint: consider the option holder's incentive to exercise when volatility is high vs. low.)
+
+---
+
+**Exercise 7.** Compare PDE and Fourier methods for the following pricing problems, and recommend the better approach for each:
+
+(a) Pricing ATM European calls at 50 different strikes for calibration.
+
+(b) Pricing an American put with $T = 1$ year under Heston dynamics.
+
+(c) Computing delta and gamma of a European call.
+
+(d) Pricing a down-and-out barrier call with barrier at $B = 0.8 S_0$.
+
+Justify each recommendation based on computational cost, accuracy, and ease of implementation.

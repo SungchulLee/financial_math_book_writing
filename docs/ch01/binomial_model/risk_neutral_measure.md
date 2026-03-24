@@ -556,3 +556,35 @@ See [Multi-Period Binomial Model](multi_period_binomial_model.md) for complete d
 |---------|-------|
 | [Multi-Period Binomial Model](multi_period_binomial_model.md) | Backward induction in trees |
 | [Binomial to Black–Scholes Limit](binomial_to_black_scholes_limit.md) | Continuous-time convergence |
+
+---
+
+## Exercises
+
+**Exercise 1.** Consider a one-period binomial model with $S_0 = 50$, $u = 1.3$, $d = 0.8$, $r = 3\%$, and $\Delta t = 1$. Compute the risk-neutral probability $q$ and verify that $0 < q < 1$. Then price a European call with strike $K = 55$ using the risk-neutral pricing formula.
+
+---
+
+**Exercise 2.** In the standard one-period binomial model, prove that the risk-neutral pricing formula $V_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)$ is a **linear** functional of the payoff vector $(H_u, H_d)$. That is, show that for any payoffs $H^{(1)}$, $H^{(2)}$ and scalars $\alpha$, $\beta$:
+
+$$
+V_0(\alpha H^{(1)} + \beta H^{(2)}) = \alpha V_0(H^{(1)}) + \beta V_0(H^{(2)})
+$$
+
+Explain why this property is economically important for pricing portfolios of derivatives.
+
+---
+
+**Exercise 3.** A **straddle** consists of a long call and a long put with the same strike $K$. Using the parameters $S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$, and $K = 105$, compute the risk-neutral price of the straddle in two ways: (a) by pricing the straddle payoff directly, and (b) by summing the individual call and put prices. Verify that both methods agree.
+
+---
+
+**Exercise 4.** Prove that in the one-period binomial model, the risk-neutral probability $q$ satisfies $0 < q < 1$ if and only if the no-arbitrage condition $d < e^{r\Delta t} < u$ holds. What happens to the pricing formula if $q \leq 0$ or $q \geq 1$?
+
+---
+
+**Exercise 5.** A digital put pays $\$1$ if the stock finishes below the strike and $\$0$ otherwise. Using the same parameters as in the text ($S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$, $K = 105$), compute the digital put price. Show that the sum of the digital call price and the digital put price equals $e^{-r\Delta t}$, and explain why this identity must hold.
+
+---
+
+**Exercise 6.** Suppose a one-period binomial model has $S_0 = 100$, $u = 1.15$, $d = 0.85$, $r = 2\%$, and $\Delta t = 0.5$. An exotic derivative pays $H = S_{\Delta t}^2 / S_0$ in both states. Compute the risk-neutral price $V_0$ and the replicating portfolio $(\Delta, B)$. Verify that the replication price equals the risk-neutral price.

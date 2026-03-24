@@ -153,3 +153,29 @@ exp\left(
 iuX_t\right)
 \end{array}
 $$
+
+---
+
+## Exercises
+
+**Exercise 1.** Starting from the Duffie-Pan-Singleton formula, verify that setting $\mathbf{u} = \mathbf{0}$ recovers the zero-coupon bond price $P(t,T) = e^{A(\mathbf{0},\tau) + \mathbf{B}(\mathbf{0},\tau)^T \mathbf{X}_t}$. What are the initial conditions for $A$ and $\mathbf{B}$ in the bond pricing case?
+
+---
+
+**Exercise 2.** In the Black-Scholes example, confirm that $B(\tau) = iu$ (constant) satisfies $\frac{dB}{d\tau} = 0$ with initial condition $B(0) = iu$. Then substitute $B = iu$ into the $A$-equation and integrate to verify $A(\tau) = [-r + (r - \frac{1}{2}\sigma^2)iu - \frac{1}{2}\sigma^2 u^2]\tau$.
+
+---
+
+**Exercise 3.** Using the discounted characteristic function for the Black-Scholes model, compute $\varphi(X_t, t, u, T)$ at $u = -i$ (i.e., evaluate $\mathbb{E}^{\mathbb{Q}}[e^{-r\tau}S_T \mid S_t]$). Verify that you recover $S_t$, confirming that the discounted stock price is a martingale.
+
+---
+
+**Exercise 4.** For a one-dimensional CIR short-rate model $r_t = X_t$ with $r_0 = 0$ and $r_1 = 1$, write down the extended Riccati equations for the discounted characteristic function. Identify how the $-r_0$ and $-r_1$ terms modify the standard (undiscounted) Riccati system.
+
+---
+
+**Exercise 5.** Explain why the Black-Scholes PDE for $U(X,t)$ has no $X$-dependent coefficient in the $\frac{dB}{d\tau}$ equation, yielding $B(\tau) = iu$ (constant). Under what conditions on the model would $B(\tau)$ be non-constant?
+
+---
+
+**Exercise 6.** Show that the discounted characteristic function $\varphi(X_t, t, u, T)$ satisfies $|\varphi| \leq e^{A_{\text{re}}(\tau) + B_{\text{re}}(\tau)X_t}$ where subscript "re" denotes the real part. For the BS case, compute $|\varphi|$ explicitly and verify it equals $e^{(-r - \frac{1}{2}\sigma^2 u^2)\tau}$ when $u$ is real.

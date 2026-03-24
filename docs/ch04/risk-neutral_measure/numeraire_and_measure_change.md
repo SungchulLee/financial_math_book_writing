@@ -247,3 +247,40 @@ $$
 | Right numéraire simplifies pricing | Choose to make payoff simple |
 
 **Numéraire techniques are essential for interest rate derivatives, FX options, and multi-asset problems.**
+
+---
+
+## Exercises
+
+**Exercise 1.**
+Verify the change-of-numeraire formula: if $M_t = B_t$ (money market) and $N_t = P(t,T)$ (zero-coupon bond), write $d\mathbb{Q}^T / d\mathbb{Q}|_{\mathcal{F}_T}$ and show that it equals $e^{-\int_0^T r_s\,ds} / P(0,T)$. Confirm that this is a valid Radon-Nikodym derivative by showing its $\mathbb{Q}$-expectation is 1.
+
+---
+
+**Exercise 2.**
+Under the stock measure $\mathbb{Q}^S$ (numeraire $N_t = S_t$), a European put option with payoff $(K - S_T)^+$ has price $V_t = S_t \cdot \mathbb{E}^{\mathbb{Q}^S}[(K/S_T - 1)^+ | \mathcal{F}_t]$. Explain why this formulation is useful, and describe how the distribution of $1/S_T$ under $\mathbb{Q}^S$ differs from the distribution of $S_T$ under $\mathbb{Q}$.
+
+---
+
+**Exercise 3.**
+For Black's formula, a call on a forward contract has price $C_t = P(t,T)[F_t\Phi(d_1) - K\Phi(d_2)]$. Verify that as $\sigma_F \to 0$, the formula reduces to $C_t = P(t,T)\max(F_t - K, 0)$. What is the interpretation of this limit?
+
+---
+
+**Exercise 4.**
+In the exchange option (Margrabe's formula), the price is $V_t = S_t^1\Phi(d_1) - S_t^2\Phi(d_2)$. Explain why the risk-free rate $r$ does not appear. Compute $V_0$ for $S_0^1 = 100$, $S_0^2 = 95$, $\sigma_1 = 0.20$, $\sigma_2 = 0.25$, $\rho = 0.5$, and $T = 1$.
+
+---
+
+**Exercise 5.**
+Under the money market numeraire, $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$. Under the stock measure, $dS_t = (r + \sigma^2)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}^S}$. Derive the drift change $r \to r + \sigma^2$ using the Girsanov kernel implicit in the numeraire change from $B_t$ to $S_t$.
+
+---
+
+**Exercise 6.**
+The annuity numeraire is $A(t) = \sum_{i=1}^n \tau_i P(t, T_i)$. Under the swap measure $\mathbb{Q}^A$, the swap rate $S(t) = (P(t,T_0) - P(t,T_n))/A(t)$ is a martingale. Explain why this makes Black's model applicable to swaptions. What assumption about the swap rate distribution is needed?
+
+---
+
+**Exercise 7.**
+Consider a quanto option: a European call on a foreign stock $S_t^f$ with strike $K$, where the payoff $(S_T^f - K)^+$ is paid in domestic currency. The relevant numeraire is the foreign money market account converted to domestic currency: $N_t = B_t^f X_t$. Write the pricing formula under the corresponding measure and explain what "quanto adjustment" is needed for the drift of $S_t^f$.

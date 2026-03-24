@@ -347,3 +347,40 @@ $$
 3. Karatzas, I. and Shreve, S.E. (1991). *Brownian Motion and Stochastic Calculus*, 2nd ed. Springer. Section 3.5.
 
 4. Revuz, D. and Yor, M. (1999). *Continuous Martingales and Brownian Motion*, 3rd ed. Springer. Chapter VIII.
+
+---
+
+## Exercises
+
+**Exercise 1.**
+In the Black-Scholes model, the market price of risk is $\theta = (\mu - r)/\sigma$ with $\mu = 0.10$, $\sigma = 0.25$, and $r = 0.03$. Verify Novikov's condition explicitly for $T = 10$ and conclude that the Girsanov measure change is valid.
+
+---
+
+**Exercise 2.**
+Consider a deterministic but time-varying market price of risk $\theta(t) = \alpha e^{\beta t}$ with $\alpha > 0$ and $\beta > 0$. Compute $\int_0^T \theta(t)^2\,dt$ and determine for which values of $T$ the Novikov condition holds. What happens as $T \to \infty$?
+
+---
+
+**Exercise 3.**
+Prove that Novikov's condition implies Kazamaki's condition. Specifically, show that if $\mathbb{E}[\exp(\frac{1}{2}\langle M \rangle_T)] < \infty$, then $\sup_{t \leq T}\mathbb{E}[\exp(\frac{1}{2}M_t)] < \infty$. (Hint: write $\exp(\frac{1}{2}M_t)$ in terms of $\mathcal{E}(\frac{1}{2}M)_t$ and $\exp(\frac{1}{8}\langle M \rangle_t)$, then use the supermartingale property.)
+
+---
+
+**Exercise 4.**
+For the Heston model with $\theta_t = (\mu - r)/\sqrt{V_t}$, explain why Novikov's condition involves $\mathbb{E}[\exp(\frac{(\mu-r)^2}{2}\int_0^T V_s^{-1}\,ds)]$. State the Feller condition $2\kappa\bar{V} \geq \xi^2$ and explain its role in ensuring $V_t > 0$. Why does $V_t$ hitting zero cause the Novikov condition to potentially fail?
+
+---
+
+**Exercise 5.**
+Consider $\theta_t = c / \sqrt{T - t}$ for $t < T$ with $c > 0$. Show that $\int_0^T \theta_s^2\,ds$ diverges logarithmically. Despite this divergence, explain why the stochastic exponential $Z_t$ may still be well-defined as a local martingale, and identify the defect $\delta = 1 - \mathbb{E}[Z_T]$.
+
+---
+
+**Exercise 6.**
+Suppose $|\theta_t| \leq M$ almost surely for some constant $M > 0$ and all $t \in [0, T]$. Show that both the Novikov condition and the Kazamaki condition are satisfied. What is the upper bound on $\mathbb{E}[\exp(\frac{1}{2}\int_0^T \theta_s^2\,ds)]$ in terms of $M$ and $T$?
+
+---
+
+**Exercise 7.**
+Construct a process $M_t$ for which Kazamaki's condition is satisfied but Novikov's condition fails. (Hint: consider a process where $M_t$ has controlled moments but $\langle M \rangle_T$ has heavy tails. You may describe the construction conceptually rather than giving an explicit formula.)

@@ -339,3 +339,35 @@ $$
 - Black, F., & Scholes, M. (1973). The pricing of options and corporate liabilities. *Journal of Political Economy*, 81(3), 637–654.
 - Leland, H. E. (1994). Corporate debt value, bond covenants, and optimal capital structure. *Journal of Finance*, 49(4), 1213–1252.
 - Crosbie, P., & Bohn, J. (2003). Modeling default risk. *Moody's KMV Technical Document*.
+
+---
+
+## Exercises
+
+**Exercise 1.** A firm has current asset value $V_0 = 100$, debt face value $D = 70$, asset volatility $\sigma_V = 25\%$, risk-free rate $r = 4\%$, and debt maturity $T = 5$. Compute $d_1$ and $d_2$ and find the risk-neutral default probability $\mathbb{Q}(\tau \le T) = N(-d_2)$. Also compute the equity value $E_0 = V_0\,N(d_1) - De^{-rT}\,N(d_2)$.
+
+---
+
+**Exercise 2.** In the Merton model, equity is a call option on firm value with strike $D$. Using put-call parity, show that the value of risky debt can be written as $D_0 = V_0 - E_0 = De^{-rT} - \text{Put}(V_0, D, T)$, where Put is a European put on $V_t$ with strike $D$. Interpret this economically.
+
+---
+
+**Exercise 3.** Compute the physical default probability in the Merton model using $\mathbb{P}(\tau \le T) = N(-DD)$ where the distance to default is
+
+$$
+DD = \frac{\ln(V_0/D) + (\mu - \sigma_V^2/2)T}{\sigma_V\sqrt{T}}
+$$
+
+Use the parameters from Exercise 1 with asset drift $\mu = 10\%$. Compare with the risk-neutral default probability from Exercise 1 and explain why they differ.
+
+---
+
+**Exercise 4.** The Merton model credit spread is $s(T) = -\frac{1}{T}\ln[N(d_2) + \frac{1}{L}N(-d_1)]$ where $L = De^{-rT}/V_0$. Compute $s(T)$ for $T = 1, 3, 5, 10$ years using the parameters from Exercise 1. Describe the shape of the resulting spread curve and explain why it vanishes at short maturities.
+
+---
+
+**Exercise 5.** Explain three major limitations of the Merton model: (a) default only at maturity, (b) single debt class, (c) unobservable firm value. For each limitation, describe a model extension that addresses it (e.g., Black-Cox for (a), KMV for (c)).
+
+---
+
+**Exercise 6.** A firm's equity value increases from $E_0 = 30$ to $E_1 = 45$ over one year. If asset volatility $\sigma_V$ and debt $D$ remain constant, explain qualitatively how the firm's default probability, credit spread, and distance to default change. What leverage ratio measure is most relevant?

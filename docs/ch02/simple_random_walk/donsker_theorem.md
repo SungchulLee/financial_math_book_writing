@@ -92,3 +92,29 @@ The theorem holds for any i.i.d. sequence with mean 0 and variance 1 — not jus
 - Billingsley, P. (1999). *Convergence of Probability Measures*, 2nd ed. Wiley. (See Theorem 12.3 for the tightness estimate.)
 - Ethier, S. N., & Kurtz, T. G. (1986). *Markov Processes: Characterization and Convergence*. Wiley.
 - Durrett, R. (2019). *Probability: Theory and Examples*, 5th ed. Cambridge University Press.
+
+---
+
+## Exercises
+
+**Exercise 1.** State precisely what "weak convergence in $C[0, T]$" means. That is, for any bounded continuous functional $F: C[0,T] \to \mathbb{R}$, what does $W^{(n)} \Rightarrow W$ imply about $\mathbb{E}[F(W^{(n)})]$?
+
+---
+
+**Exercise 2.** Donsker's theorem implies that $\max_{0 \leq t \leq 1} W^{(n)}(t) \xrightarrow{d} \max_{0 \leq t \leq 1} W_t$, since $f \mapsto \max_{0 \leq t \leq 1} f(t)$ is a continuous functional on $C[0,1]$. Using the known distribution $\mathbb{P}(\max_{0 \leq t \leq 1} W_t \leq x) = 2\Phi(x) - 1$ for $x \geq 0$ (where $\Phi$ is the standard normal CDF), compute $\mathbb{P}(\max_{0 \leq t \leq 1} W_t > 2)$.
+
+---
+
+**Exercise 3.** Explain why finite-dimensional convergence alone is insufficient for Donsker's theorem. Give an example of a sequence of processes $\{X^{(n)}\}$ on $[0,1]$ whose finite-dimensional distributions converge to those of Brownian motion, but whose paths do not converge weakly in $C[0,1]$. (Hint: consider processes that have a single large spike.)
+
+---
+
+**Exercise 4.** The tightness estimate states $\mathbb{E}[(W^{(n)}(t) - W^{(n)}(s))^4] \leq C|t-s|^2$. For the symmetric random walk with $s$ and $t$ both multiples of $1/n$, compute $\mathbb{E}[(W^{(n)}(t) - W^{(n)}(s))^4]$ exactly in terms of $n$ and $|t-s|$. (Hint: the increment is $(\lfloor n|t-s| \rfloor)^{-1/2}$ times $S_{\lfloor n|t-s| \rfloor}$, and use $\mathbb{E}[S_m^4] = 3m^2 - 2m$.)
+
+---
+
+**Exercise 5.** Donsker's theorem holds for any i.i.d. sequence with mean 0 and variance 1 (universality). Consider $\xi_i$ uniformly distributed on $\{-\sqrt{3}, 0, +\sqrt{3}\}$ with equal probabilities $1/3$. Verify that $\mathbb{E}[\xi_i] = 0$ and $\text{Var}(\xi_i) = 1$, so Donsker's theorem applies. What is qualitatively different about the paths of this scaled walk compared to the $\pm 1$ walk?
+
+---
+
+**Exercise 6.** Using Donsker's theorem and the continuous mapping theorem, prove that the distribution of $\int_0^1 (W^{(n)}(t))^2 \, dt$ converges to the distribution of $\int_0^1 W_t^2 \, dt$ as $n \to \infty$. The latter is known to have the distribution of $\sum_{k=1}^\infty \frac{Z_k^2}{(k - 1/2)^2 \pi^2}$ where $Z_k$ are i.i.d. standard normal. What is $\mathbb{E}[\int_0^1 W_t^2 \, dt]$?

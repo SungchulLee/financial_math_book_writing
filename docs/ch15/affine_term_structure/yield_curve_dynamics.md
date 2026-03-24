@@ -205,3 +205,29 @@ In an affine term structure model, the continuously compounded yield is $y(t,T) 
 - Duffie, D. and Kan, R. (1996). "A Yield-Factor Model of Interest Rates." *Mathematical Finance*, 6(4), 379--406.
 - Dai, Q. and Singleton, K. (2000). "Specification Analysis of Affine Term Structure Models." *Journal of Finance*, 55(5), 1943--1978.
 - Piazzesi, M. (2010). "Affine Term Structure Models." In *Handbook of Financial Econometrics*, Vol. 1, 691--766.
+
+---
+
+## Exercises
+
+**Exercise 1.** For the Vasicek model with $B(\tau) = \frac{1}{\kappa}(e^{-\kappa\tau} - 1)$, compute the factor loading $b(\tau) = -B(\tau)/\tau$ and plot it as a function of $\tau$ for $\kappa = 0.5$. Show that $b(\tau) \to 1$ as $\tau \to 0$ and $b(\tau) \to 0$ as $\tau \to \infty$. Interpret these limits.
+
+---
+
+**Exercise 2.** Derive the instantaneous forward rate $f(t, T) = -\frac{\partial}{\partial T}\log P(t, T) = -A'(\tau) - B'(\tau)^\top X_t$ for the Vasicek model. Verify that $f(t, t) = r_t$ (the short rate) by evaluating at $\tau = 0$.
+
+---
+
+**Exercise 3.** Using the affine yield formula $y(t, \tau) = a(\tau) + b(\tau)^\top X_t$ with $a(\tau) = -A(\tau)/\tau$ and $b(\tau) = -B(\tau)/\tau$, apply Ito's lemma to derive $dy(t, \tau)$ for a one-factor model. Express the drift and volatility of the yield in terms of $b(\tau)$, the state dynamics, and the Riccati solution $B(\tau)$.
+
+---
+
+**Exercise 4.** For a two-factor model with $X_t = (X_t^{(1)}, X_t^{(2)})^\top$ and factor loadings $b_1(\tau)$ and $b_2(\tau)$, explain the level-slope-curvature interpretation: if $b_1(\tau) \approx 1$ for all $\tau$ (flat loading) and $b_2(\tau)$ is monotonically decreasing from 1 to 0, which factor controls the level and which controls the slope of the yield curve?
+
+---
+
+**Exercise 5.** Compute the convexity of a zero-coupon bond in the Vasicek model: $\frac{\partial^2}{\partial r^2}\log P(t,T) = B(\tau)^2$. How does convexity depend on maturity $\tau$? Why is convexity always non-negative in one-factor affine models?
+
+---
+
+**Exercise 6.** The Nelson-Siegel yield curve model parametrizes yields as $y(\tau) = \beta_0 + \beta_1\frac{1 - e^{-\lambda\tau}}{\lambda\tau} + \beta_2(\frac{1 - e^{-\lambda\tau}}{\lambda\tau} - e^{-\lambda\tau})$. Show that the Vasicek factor loading $b(\tau) = \frac{1 - e^{-\kappa\tau}}{\kappa\tau}$ matches the Nelson-Siegel slope factor. Does any affine model generate the curvature factor as well?

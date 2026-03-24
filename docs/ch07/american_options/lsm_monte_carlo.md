@@ -281,3 +281,25 @@ $$
 | Best for | Multi-asset and path-dependent American options |
 
 **LSM transforms the American pricing problem from an intractable high-dimensional optimal stopping problem into a sequence of regressions, making it the method of choice for complex derivatives with early-exercise features.**
+
+---
+
+## Exercises
+
+**Exercise 1.** Describe the LSM algorithm step by step for an American put with 3 exercise dates. At each exercise date, explain what regression is performed, what the dependent and independent variables are, and how the exercise decision is made.
+
+---
+
+**Exercise 2.** In LSM, the continuation value at time $t_k$ is approximated as $\hat{C}(S_{t_k}) = \sum_{j=0}^{M} a_j \phi_j(S_{t_k})$ where $\phi_j$ are basis functions. Common choices include polynomials, Laguerre polynomials, and Chebyshev polynomials. Discuss the trade-off between using more basis functions (larger $M$) and the risk of overfitting. What is a typical choice of $M$ in practice?
+
+---
+
+**Exercise 3.** LSM produces a low-biased estimate of the American option price (i.e., $\hat{V}_{\text{LSM}} \leq V_{\text{true}}$). Explain why the suboptimal exercise strategy identified by the regression leads to a lower bound rather than an upper bound.
+
+---
+
+**Exercise 4.** For a max-call option on two assets with payoff $(\max(S_1, S_2) - K)^+$, explain how LSM handles the two-dimensional state space. What basis functions would you use for the regression at each exercise date?
+
+---
+
+**Exercise 5.** Compare the LSM method with the binomial tree for pricing a single-asset American put with $S_0 = 100$, $K = 100$, $r = 5\%$, $\sigma = 30\%$, $T = 1$. Discuss the relative strengths of each method in terms of accuracy, computational cost, and ease of implementation. In what situation would you prefer LSM over a binomial tree?

@@ -304,3 +304,40 @@ $$
 4. **Volatility unchanged**: Only drift changes under measure transformation
 
 **The construction of $\mathbb{Q}$ is the mathematical foundation of derivative pricing.**
+
+---
+
+## Exercises
+
+**Exercise 1.**
+In the Black-Scholes model with $\mu = 0.15$, $r = 0.03$, and $\sigma = 0.30$, compute the market price of risk $\theta$ and the Radon-Nikodym derivative $Z_1$ for a specific path where $W_1^{\mathbb{P}} = -0.5$. Is this path upweighted or downweighted under $\mathbb{Q}$?
+
+---
+
+**Exercise 2.**
+A stock pays a continuous dividend yield $q = 0.02$ with $\mu = 0.08$, $\sigma = 0.20$, and $r = 0.05$. Verify that the market price of risk is the same as in the no-dividend case. Write the risk-neutral dynamics and check that the discounted reinvested-dividend process is a $\mathbb{Q}$-martingale.
+
+---
+
+**Exercise 3.**
+For the two correlated stocks model, take $\mu_1 = 0.12$, $\mu_2 = 0.08$, $r = 0.03$, $\sigma_1 = 0.25$, $\sigma_2 = 0.30$, and $\rho = 0.4$. Solve for $\theta_1$ and $\theta_2$. Verify your answer by checking that both excess returns $\mu_i - r$ are reproduced by $\Sigma\boldsymbol{\theta}$.
+
+---
+
+**Exercise 4.**
+In the Heston stochastic volatility model, explain why the volatility risk premium $\theta_2$ cannot be determined by no-arbitrage. If one practitioner sets $\theta_2 = 0$ and another sets $\theta_2 = -0.5\sqrt{V_t}$, write the risk-neutral variance dynamics under each choice. Which choice produces a lower long-run mean of variance under $\mathbb{Q}$?
+
+---
+
+**Exercise 5.**
+In the FX example, the no-arbitrage condition implies $\mu_X = r_d - r_f$. Derive this condition by requiring the domestic-currency value of a foreign money market investment to grow at rate $r_d$ under $\mathbb{Q}$. What happens to the market price of risk if $\mu_X \neq r_d - r_f$?
+
+---
+
+**Exercise 6.**
+In the Vasicek model with $\kappa = 0.5$, $\bar{r} = 0.04$, $\sigma = 0.01$, and constant market price of risk $\theta = 0.2$, compute $\bar{r}^* = \bar{r} - \sigma\theta/\kappa$. Using the risk-neutral dynamics, compute the zero-coupon bond price $P(0, T)$ for $T = 5$ with $r_0 = 0.03$.
+
+---
+
+**Exercise 7.**
+Consider a market with 3 stocks and 2 Brownian motions. Write the system $\boldsymbol{\mu} - r\mathbf{1} = \Sigma\boldsymbol{\theta}$ where $\Sigma$ is $3 \times 2$. This is an overdetermined system. State the condition for a solution to exist and interpret it as a no-arbitrage condition. If the condition is violated, construct a specific arbitrage strategy.

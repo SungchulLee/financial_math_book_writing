@@ -368,3 +368,29 @@ Given the yield curve, calibrate $\sigma$ (and possibly $\kappa$) to cap/swaptio
 - Vasicek, O. (1977), "An Equilibrium Characterization of the Term Structure"
 - Hull & White (1990), "Pricing Interest-Rate-Derivative Securities"
 - Brigo & Mercurio, Chapter 3
+
+---
+
+## Exercises
+
+**Exercise 1.** Solve the Vasicek SDE $dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t$ by applying Ito's lemma to $e^{\kappa t}r_t$. Show that $r_t = \theta + (r_0 - \theta)e^{-\kappa t} + \sigma\int_0^t e^{-\kappa(t-s)}\,dW_s$.
+
+---
+
+**Exercise 2.** Show that $r_t$ in the Vasicek model is normally distributed with mean $\mathbb{E}[r_t] = \theta + (r_0 - \theta)e^{-\kappa t}$ and variance $\text{Var}(r_t) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})$. What is the stationary distribution as $t \to \infty$?
+
+---
+
+**Exercise 3.** For parameters $\kappa = 0.5$, $\theta = 0.04$, $\sigma = 0.01$, $r_0 = 0.03$, compute the mean and standard deviation of $r_t$ at $t = 1, 5, 10$. What is the probability that $r_{10} < 0$?
+
+---
+
+**Exercise 4.** Derive the Vasicek bond pricing formula $P(t,T) = e^{A(\tau) - B(\tau)r_t}$ where $\tau = T - t$, $B(\tau) = \frac{1-e^{-\kappa\tau}}{\kappa}$, by computing $\mathbb{E}_t^{\mathbb{Q}}[e^{-\int_t^T r_s\,ds}]$ using the Gaussian distribution of $\int_t^T r_s\,ds$.
+
+---
+
+**Exercise 5.** Using the parameters from Exercise 3, compute the zero-coupon bond price $P(0, 5)$ and the corresponding 5-year zero rate. Plot the yield curve $R(0, T)$ for $T = 1, 2, \ldots, 30$ and identify whether it is normal, inverted, or humped.
+
+---
+
+**Exercise 6.** The main criticism of the Vasicek model is that it allows negative interest rates. Compute the probability $\Pr(r_t < 0)$ as a function of $t$ for the parameters in Exercise 3. At what time horizon does this probability exceed 5%? Discuss whether negative rates invalidate the model in the post-2015 era.

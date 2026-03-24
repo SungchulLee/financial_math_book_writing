@@ -283,3 +283,41 @@ The Hagan implied volatility approximation is the analytical formula that makes 
 - Obloj, J. (2008). *Fine-tune your smile: Correction to Hagan et al.* Wilmott Magazine, March/April.
 - Paulot, L. (2009). *Asymptotic implied volatility at the second order with application to the SABR model*. SSRN preprint.
 - Gatheral, J. (2006). *The Volatility Surface*. Wiley, Chapter 7.
+
+---
+
+## Exercises
+
+**Exercise 1.** Using the ATM Hagan formula for general $\beta$:
+
+$$
+\sigma_{\text{ATM}} = \frac{\alpha}{F^{1-\beta}}\left[1 + \left(\frac{(1-\beta)^2}{24}\frac{\alpha^2}{F^{2(1-\beta)}} + \frac{\rho\beta\nu\alpha}{4F^{1-\beta}} + \frac{2-3\rho^2}{24}\nu^2\right)T\right]
+$$
+
+compute $\sigma_{\text{ATM}}$ for $F = 0.03$, $\alpha = 0.025$, $\beta = 0.5$, $\rho = -0.3$, $\nu = 0.4$, $T = 1$. Identify the contribution of each correction term separately.
+
+---
+
+**Exercise 2.** The Hagan formula involves the function $x(z) = \ln\!\bigl(\frac{\sqrt{1-2\rho z+z^2}+z-\rho}{1-\rho}\bigr)$. Show that $x(z)/z \to 1$ as $z \to 0$ (using L'Hopital's rule or Taylor expansion). Why is this limit important for the ATM case where $K = F$?
+
+---
+
+**Exercise 3.** Compute the SABR implied volatility at strikes $K = 0.02, 0.025, 0.03, 0.035, 0.04$ using the Hagan formula with parameters $F = 0.03$, $\alpha = 0.025$, $\beta = 0.5$, $\rho = -0.3$, $\nu = 0.45$, $T = 1$. Plot or sketch the resulting smile. Identify the skew and curvature visually.
+
+---
+
+**Exercise 4.** The Hagan formula is an asymptotic expansion valid for small $\nu^2 T$ and moderate log-moneyness. Estimate the reliability by computing $\sigma_{\text{Hagan}}$ at $K/F = 0.5$ (deep OTM put) and $T = 10$ years, with $\alpha = 0.03$, $\beta = 0.5$, $\rho = -0.4$, $\nu = 0.5$. Is the correction term $O(\nu^2 T)$ small? At what point does the approximation become unreliable?
+
+---
+
+**Exercise 5.** Derive the first-order skew at ATM:
+
+$$
+\frac{\partial\sigma_{\text{impl}}}{\partial k}\bigg|_{k=0} \approx \frac{\rho\nu}{2\sigma_{\text{ATM}}} - \frac{(1-\beta)}{2F}
+$$
+
+by differentiating the Hagan formula with respect to $k = \ln(K/F)$. For $\beta = 0.5$, $F = 0.03$, $\rho = -0.4$, $\nu = 0.5$, $\sigma_{\text{ATM}} = 0.15$, compute the skew. Which term dominates: the correlation-induced skew or the backbone skew?
+
+---
+
+**Exercise 6.** The Obloj (2008) correction modifies the Hagan formula to improve accuracy in the wings. Without deriving the correction, explain qualitatively why the original formula can produce implied volatilities that decrease too rapidly for extreme strikes. What is the practical consequence of using the uncorrected formula for risk management of deeply OTM options?

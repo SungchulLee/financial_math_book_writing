@@ -307,3 +307,29 @@ Note that as $t \to 0$, the skewness scales as $t^{-1/2}$ (assuming jumps domina
 ## Summary
 
 The Poisson process provides the counting mechanism for jump arrivals, with intensity $\lambda$ governing the expected frequency and exponentially distributed inter-arrival times encoding the memoryless property. The compound Poisson process pairs each jump with a random magnitude, and its MGF factorizes elegantly as $\exp(\lambda t(M_Z(u) - 1))$. In Merton's model, the log-normal jump specification $\ln Y_i \sim N(\mu_J, \sigma_J^2)$ generates negative skewness (when $\mu_J < 0$) and positive excess kurtosis in the return distribution, matching the stylized facts of equity markets that pure diffusion cannot reproduce.
+
+---
+
+## Exercises
+
+**Exercise 1.** Prove that the inter-arrival times of a Poisson process with intensity $\lambda$ are exponentially distributed with parameter $\lambda$. Use the definition $\tau_1 = \inf\{t > 0 : N_t \geq 1\}$ and the fact that $\mathbb{P}(N_t = 0) = e^{-\lambda t}$ to derive $\mathbb{P}(\tau_1 > t) = e^{-\lambda t}$.
+
+---
+
+**Exercise 2.** Derive the moment generating function of the compound Poisson process $J_t = \sum_{i=1}^{N_t} Z_i$ by conditioning on $N_t$. Starting from $M_{J_t}(u) = \mathbb{E}[e^{uJ_t}] = \sum_{n=0}^{\infty} \mathbb{E}[e^{u\sum Z_i}] \mathbb{P}(N_t = n)$, show that $M_{J_t}(u) = \exp(\lambda t(M_Z(u) - 1))$.
+
+---
+
+**Exercise 3.** For the log-normal jump multiplier $Y$ with $\ln Y \sim N(\mu_J, \sigma_J^2)$, compute $\mathbb{E}[Y]$, $\mathbb{E}[Y^2]$, and $\text{Var}(Y)$ in terms of $\mu_J$ and $\sigma_J$. Verify your formulas numerically for $\mu_J = -0.10$ and $\sigma_J = 0.30$.
+
+---
+
+**Exercise 4.** Using the variance decomposition $\text{Var}(J_t) = \mathbb{E}[N_t]\text{Var}(Z_1) + \text{Var}(N_t)(\mathbb{E}[Z_1])^2$, derive the jump variance $\text{Var}(\mathcal{J}_t) = \lambda t(\sigma_J^2 + \mu_J^2)$ where $\mathcal{J}_t = \sum_{i=1}^{N_t} \ln Y_i$. Identify the two sources of randomness contributing to this variance.
+
+---
+
+**Exercise 5.** For $\lambda = 0.5$ and $T = 1$ year, compute the probabilities $\mathbb{P}(N_T = 0)$, $\mathbb{P}(N_T = 1)$, $\mathbb{P}(N_T = 2)$, and $\mathbb{P}(N_T \geq 3)$. What fraction of simulated paths will exhibit no jumps at all? How does this affect the computational efficiency of Monte Carlo simulation?
+
+---
+
+**Exercise 6.** The compensated Poisson process $\tilde{N}_t = N_t - \lambda t$ is a martingale. Verify that $\mathbb{E}[\tilde{N}_t] = 0$ and compute $\text{Var}(\tilde{N}_t)$. Explain the role of the compensated Poisson process in the stochastic calculus for jump processes, drawing an analogy with the role of Brownian motion in continuous stochastic calculus.

@@ -78,3 +78,29 @@ Computing spectral risk measures:
     - Flexibility to match institutional risk tolerance
     - Framework for incorporating expert judgment
     - Bridge between academic rigor and practical needs
+
+---
+
+## Exercises
+
+**Exercise 1.** A spectral risk measure is defined as $\rho_\phi(X) = \int_0^1 \text{VaR}_u(X)\,\phi(u)\,du$ where the weight function $\phi$ satisfies $\phi \ge 0$, $\int_0^1 \phi(u)\,du = 1$, and $\phi$ is non-decreasing. Show that ES at level $\alpha$ is a spectral risk measure by identifying its weight function $\phi(u) = \frac{1}{1-\alpha}\mathbf{1}_{\{u \ge \alpha\}}$.
+
+---
+
+**Exercise 2.** Explain why the non-decreasing condition on the weight function $\phi$ is necessary for the spectral risk measure to be coherent. What economic property does this condition encode (hint: aversion to tail risk)?
+
+---
+
+**Exercise 3.** The exponential spectral risk measure uses $\phi(u) = \frac{\gamma e^{\gamma u}}{e^\gamma - 1}$ for risk aversion parameter $\gamma > 0$. Compute $\phi(0)$ and $\phi(1)$ for $\gamma = 2$. Explain how increasing $\gamma$ shifts more weight toward the tail of the loss distribution.
+
+---
+
+**Exercise 4.** VaR at level $\alpha$ can be written as $\text{VaR}_\alpha(X) = \int_0^1 \text{VaR}_u(X)\,\delta(u - \alpha)\,du$, where $\delta$ is the Dirac delta. Explain why this weight function is not non-decreasing and hence VaR is not a spectral risk measure. What property of coherence does VaR consequently lack?
+
+---
+
+**Exercise 5.** For a portfolio loss $X \sim N(0, \sigma^2)$, compute the spectral risk measure with the exponential weight function from Exercise 3. Express the result as a function of $\sigma$ and $\gamma$. How does it compare to $\text{ES}_{0.95}$?
+
+---
+
+**Exercise 6.** Discuss the practical challenges of implementing spectral risk measures in a trading desk risk system. How would you estimate a spectral risk measure from historical P&L data? What are the advantages over simply using ES at a fixed confidence level?
