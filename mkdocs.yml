@@ -6,6 +6,8 @@ theme:
 markdown_extensions:
     - admonition
     - pymdownx.details
+    - attr_list
+    - md_in_html
     - toc:
         permalink: true
     - pymdownx.superfences:
@@ -19,6 +21,9 @@ markdown_extensions:
 extra_javascript:
     - javascripts/mathjax.js
     - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - stylesheets/extra.css
 
 nav:
     - Home: index.md
@@ -47,23 +52,6 @@ nav:
                 - Complete Markets and Uniqueness: ch01/fundamental_theorem_of_asset_pricing/complete_markets_and_uniqueness.md
                 - Numéraire and Change of Measure: ch01/fundamental_theorem_of_asset_pricing/numeraire_and_change_of_measure.md
                 - Finite Market Examples: ch01/fundamental_theorem_of_asset_pricing/finite_market_examples.md
-            - 1.4 Python Examples:
-                - One-Period Binomial Pricing: ch01/codes/binomial_one_period_pricing.py
-                - Multi-Period Binomial Tree: ch01/codes/binomial_multi_period_tree.py
-                - Replicating Portfolio Construction: ch01/codes/binomial_replicating_portfolio.py
-                - Risk-Neutral Probabilities: ch01/codes/binomial_risk_neutral_probabilities.py
-                - Delta Hedging Simulation: ch01/codes/binomial_delta_hedging.py
-                - American Put on Binomial Tree: ch01/codes/binomial_american_put.py
-                - Trinomial Tree Pricing: ch01/codes/trinomial_tree_pricing.py
-                - Binomial to Black-Scholes Convergence: ch01/codes/binomial_to_bs_convergence.py
-                - No-Arbitrage Check: ch01/codes/ftap_no_arbitrage_check.py
-                - Arrow–Debreu Price Extraction: ch01/codes/arrow_debreu_prices.py
-                - Characteristic Function of Normal (Grzelak): ch01/codes/grzelak_char_function_normal.py
-                - Black-Scholes-Merton Monte Carlo European (Intro): ch01/codes/bsm_mcs_euro.py
-                - Binomial Model Parameter: ch01/codes/binomial_model/binomial_model_parameter.py
-                - Binomial Model Plotter: ch01/codes/binomial_model/binomial_model_plotter.py
-                - Binomial Model Pricer: ch01/codes/binomial_model/binomial_model_pricer.py
-                - Binomial Model Wrapper: ch01/codes/binomial_model/binomial_model_wrapper.py
 
         - 2 Brownian Motion:
             - Chapter Overview: ch02/index.md
@@ -175,13 +163,6 @@ nav:
                 - Risk Premium Decomposition: ch04/financial_interpretation/risk_premium_decomposition.md
                 - When Measure Change Fails: ch04/financial_interpretation/when_measure_change_fails.md
                 - Practitioner Perspective: ch04/financial_interpretation/practitioner_perspective.md
-            - 4.5 Python Examples:
-                - Girsanov Drift Change Visualization: ch04/codes/girsanov_drift_change.py
-                - Radon–Nikodym Density Simulation: ch04/codes/radon_nikodym_density.py
-                - Risk-Neutral vs Physical Paths: ch04/codes/risk_neutral_vs_physical_paths.py
-                - Market Price of Risk Estimation: ch04/codes/market_price_of_risk.py
-                - Measure Change for Geometric Brownian Motion: ch04/codes/measure_change_gbm.py
-                - Martingale Verification (Grzelak): ch04/codes/grzelak_martingale_verification.py
 
         - 5 PDE in Finance:
             - Chapter Overview: ch05/index.md

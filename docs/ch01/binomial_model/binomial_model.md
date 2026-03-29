@@ -81,7 +81,7 @@ where:
 
 <figure markdown="span">
   ![One-Period Binomial Model](./image/binomial_one_period.svg)
-  <figcaption markdown="span">Figure 1: One-period binomial model. The stock price evolves from $S_0$ to either $uS_0$ (up) or $dS_0$ (down) with physical probabilities $p$ and $1 - p$. The bank account grows deterministically from 1 to $e^{r\Delta t}$.</figcaption>
+  <figcaption markdown="span">**Figure 1:** One-period binomial model. The stock price evolves from $S_0$ to either $uS_0$ (up) or $dS_0$ (down) with physical probabilities $p$ and $1 - p$. The bank account grows deterministically from 1 to $e^{r\Delta t}$.</figcaption>
 </figure>
 
 !!! example "Numerical Example"
@@ -127,10 +127,17 @@ H_d & \text{if } S_{\Delta t} = d S_0
 \end{cases}
 $$
 
+
+<figure markdown="span">
+  ![binomial_model_question](./image/binomial_model_question.svg)
+  <figcaption markdown="span">**Figure 2:** One-period binomial model with a contingent claim. The stock price evolves from $S_0$ to either $uS_0$ (up) or $dS_0$ (down) with physical probabilities $p$ and $1 - p$. The bank account grows deterministically from $1$ to $e^{r\Delta t}$. A contingent claim $H$ pays $H_u$ or $H_d$ at $t = \Delta t$ depending on the stock outcome. The central question of the binomial model is: what is the fair price $H_0$ at $t = 0$?</figcaption>
+</figure>
+
 !!! example "Common Examples"
     - **European call option**: $H = (S_{\Delta t} - K)^+ = \max(S_{\Delta t} - K, 0)$
     - **European put option**: $H = (K - S_{\Delta t})^+$
-    - **Digital call**: $H = \mathbf{1}_{\{S_{\Delta t} > K\}}$
+    - **Digital call option**: $H = \mathbf{1}_{\{S_{\Delta t} > K\}}$
+    - **Digital put option**: $H = \mathbf{1}_{\{S_{\Delta t} < K\}}$
     - **Forward contract**: $H = S_{\Delta t} - F$
 
 The central question of asset pricing is:
@@ -139,9 +146,9 @@ The central question of asset pricing is:
 
 We will answer this question through three equivalent perspectives:
 
-1. **No-arbitrage** (existence of admissible prices)
-2. **Replication** (uniqueness of prices) — covered in [Replicating Portfolio Pricing](replicating_portfolio.md)
-3. **Risk-neutral pricing** (valuation by expectation) — covered in [Risk-Neutral Pricing](risk_neutral_measure.md)
+1. **Replication** (uniqueness of prices) — covered in [Replicating Portfolio](replicating_portfolio.md)
+2. **Delta Hedging** (risk elimination) — covered in [Delta Hedging](delta_hedging.md)
+3. **Risk-neutral pricing** (valuation by expectation) — covered in [Risk-Neutral Measure](risk_neutral_measure.md)
 
 ---
 
@@ -379,7 +386,9 @@ This introductory section established the one-period framework. The subsequent s
 | [Replicating Portfolio](replicating_portfolio.md) | Replication with stock-bond and state prices |
 | [Delta Hedging](delta_hedging.md) | Pricing via risk elimination |
 | [Risk-Neutral Measure](risk_neutral_measure.md) | The measure $\mathbb{Q}$ and expectation pricing |
-| [Multi-Period Binomial Model](multi_period_binomial_model.md) | Trees, backward induction, dynamic hedging |
+| [Multi-Period Model](multi_period_binomial_model.md) | Trees, backward induction, dynamic hedging |
+| [American Options on Trees](american_options_on_trees.md) | Early exercise and optimal stopping |
+| [Trinomial Model](trinomial_model.md) | Incomplete markets and non-unique pricing |
 | [Binomial to Black–Scholes](binomial_to_black_scholes_limit.md) | The continuous-time limit |
 
 ---

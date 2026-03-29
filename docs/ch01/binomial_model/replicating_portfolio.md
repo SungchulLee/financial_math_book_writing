@@ -6,10 +6,17 @@ In a complete market, every contingent claim can be **replicated**—there exist
 
 This section develops replication from two complementary perspectives:
 
-1. **Trading Basis**: Replicate derivatives using stock and bond
-2. **State Price Basis**: Replicate everything using Arrow-Debreu securities
+1. **Trading Basis**: Replicate derivatives using stock and bond 
 
-Both approaches yield the same prices, but the state price perspective reveals the deeper structure of arbitrage-free pricing.
+    — the practical approach that can be directly implemented in real markets.
+
+2. **State Price Basis**: Replicate everything using **Arrow-Debreu securities** 
+
+    — hypothetical assets that pay \$1 in exactly one state of the world and nothing otherwise 
+    
+    — revealing the deeper structure of arbitrage-free pricing.
+
+Both approaches yield the same prices.
 
 !!! info "Prerequisites"
     - [Binomial Model](binomial_model.md) (market setup, no-arbitrage condition)
@@ -217,7 +224,11 @@ $$
 V_0 = 1 \times 100 - Fe^{-0.05} = S_0 - Fe^{-r\Delta t}
 $$
 
-Setting $V_0 = 0$ (forward has zero initial cost): $F = S_0 e^{r\Delta t} = 105.13$
+Setting $V_0 = 0$ (forward has zero initial cost): 
+
+$$
+F = S_0 e^{r\Delta t} = 105.13
+$$
 
 ---
 
@@ -459,13 +470,13 @@ $$
 
 ### Forward Contract
 
-$$
-V_0 = \psi_u(120 - F) + \psi_d(90 - F) = 0.4797 \times 120 + 0.4716 \times 90 - F(\psi_u + \psi_d)
-$$
-
-$$
-= 57.56 + 42.44 - F \times 0.9512 = 100 - 0.9512F
-$$
+$$\begin{array}{lll}
+V_0 
+&=&\displaystyle \psi_u(120 - F) + \psi_d(90 - F)\\
+&=&\displaystyle 0.4797 \times 120 + 0.4716 \times 90 - F(\psi_u + \psi_d)\\
+&=&\displaystyle 57.56 + 42.44 - F \times 0.9512\\ 
+&=&\displaystyle 100 - 0.9512F
+\end{array}$$
 
 Setting $V_0 = 0$: $F = 100/0.9512 = 105.13$ ✓
 

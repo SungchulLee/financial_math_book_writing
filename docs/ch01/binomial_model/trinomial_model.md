@@ -440,7 +440,6 @@ The wide interval $(4.88, \, 11.95)$ reflects the fundamental pricing ambiguity 
 |---------|-------|
 | [Binomial to Black-Scholes](binomial_to_black_scholes_limit.md) | Continuous-time limit of the binomial tree |
 | [Complete Markets and Uniqueness](../fundamental_theorem_of_asset_pricing/complete_markets_and_uniqueness.md) | Second FTAP: uniqueness of $\mathbb{Q}$ and completeness |
-| [Trinomial Tree Pricing (Python)](../codes/trinomial_tree_pricing.py) | Computational implementation of the trinomial tree |
 
 ---
 

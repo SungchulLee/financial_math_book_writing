@@ -102,6 +102,25 @@ under $\mathbb{Q}$.
 
 **Key insight:** The theorem shows that drift can be removed by reweighting paths via a change of measure. The drift is not a fundamental property of the process—it's an artifact of how we assign probabilities to outcomes.
 
+<figure markdown="span">
+  ![Girsanov measure change visualization](./image/girsanov_theorem_demo.png){ width="100%" }
+  <figcaption>
+    <strong>Figure 1 — Girsanov's theorem visualized on 60 simulated paths
+    (μ = −1.5, σ = 1, T = 1).</strong>
+    <em>Top-left:</em> Paths under the physical measure ℙ with equal weights; the sample mean
+    (amber dashed) tracks the theoretical drift μt.
+    <em>Top-center:</em> The same paths reweighted by the Radon-Nikodym derivative
+    Z<sub>T</sub> = exp(−θW<sub>T</sub> − ½θ²T) — bright green = high weight,
+    dark red ≈ zero weight, making the measure change explicit.
+    <em>Top-right:</em> Sorted bar chart of relative Z<sub>T</sub> weights; the amber dashed
+    line marks equal weight (Z̄ = 1), confirming 𝔼<sup>ℙ</sup>[Z<sub>T</sub>] ≈ 1 (Novikov condition).
+    <em>Bottom-left/center:</em> Running means under ℙ (drifts at rate μ) vs. the
+    Z<sub>T</sub>-weighted mean under ℚ (collapses to zero), confirming drift removal.
+    <em>Bottom-right:</em> Histogram of Z<sub>T</sub> values — right-skewed lognormal distribution
+    centred near 1, consistent with the martingale property.
+  </figcaption>
+</figure>
+
 ---
 
 ## Connection to SDEs: Removing Drift
@@ -369,6 +388,188 @@ Girsanov's theorem is indispensable because:
 4. **Consistent pricing across assets:** Girsanov ensures that a single choice of numeraire and measure prices all derivatives consistently
 
 5. **Computational advantage:** Working under $\mathbb{Q}$ often simplifies calculations because many prices become martingales
+
+---
+
+## Python: Simulating the Measure Change
+
+The following script reproduces Figure 1. It simulates drifted Brownian motion paths under $\mathbb{P}$,
+computes the Radon-Nikodym weights $Z_T$, and visualizes the measure change in six panels.
+
+**Dependencies:** `numpy`, `matplotlib`
+
+```python
+"""
+Girsanov's Theorem – Visualization
+====================================
+Simulates drifted BM paths under P, computes Radon-Nikodym weights Z_T,
+and displays the measure change P → Q in six panels (reproduces Figure 1).
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+from matplotlib.collections import LineCollection
+from matplotlib.cm import ScalarMappable
+from matplotlib.colors import Normalize
+
+# ── Parameters ────────────────────────────────────────────────────────────────
+RNG      = np.random.default_rng(42)
+N_PATHS  = 20        # number of simulated paths
+N_STEPS  = 200       # discretisation steps
+T        = 1.0       # terminal time
+MU       = -1.5      # drift under P  (negative, as in the Wikipedia figure)
+SIGMA    = 1.0       # diffusion coefficient
+dt       = T / N_STEPS
+t_grid   = np.linspace(0, T, N_STEPS + 1)
+
+# ── Simulate paths under P: X_t = μt + σW_t ──────────────────────────────────
+dW   = RNG.standard_normal((N_PATHS, N_STEPS)) * np.sqrt(dt)
+W    = np.hstack([np.zeros((N_PATHS, 1)), np.cumsum(dW, axis=1)])
+X_P  = MU * t_grid + SIGMA * W
+
+# ── Girsanov kernel and Radon-Nikodym weights ─────────────────────────────────
+# Choose θ = μ/σ so that the drift is completely removed under Q.
+theta = MU / SIGMA                                      # = -1.5 here
+
+# Z_T = exp(−θ W_T − ½ θ² T)   [constant θ → stochastic integral = θ·W_T]
+Z_T   = np.exp(-theta * W[:, -1] - 0.5 * theta**2 * T)
+Z_norm = Z_T / Z_T.mean()                              # relative weights (mean ≈ 1)
+
+# ── Weighted mean under Q ─────────────────────────────────────────────────────
+mean_P = X_P.mean(axis=0)
+mean_Q = (X_P * Z_T[:, None]).sum(axis=0) / Z_T.sum()
+
+# ── Figure layout ─────────────────────────────────────────────────────────────
+DARK_BG  = "#0d0d0d"
+PANEL_BG = "#141414"
+AMBER_C  = "#f5a623"
+BLUE_C   = "#4fb3d4"
+GRID_C   = "#2a2a2a"
+
+fig = plt.figure(figsize=(16, 10), facecolor=DARK_BG)
+fig.suptitle(
+    "Girsanov's Theorem  ·  Measure Change from  P  to  Q",
+    fontsize=16, color="white", fontfamily="serif", y=0.98
+)
+gs = gridspec.GridSpec(2, 3, figure=fig,
+                       hspace=0.42, wspace=0.35,
+                       left=0.06, right=0.96, top=0.92, bottom=0.08)
+
+ax_P    = fig.add_subplot(gs[0, 0])   # paths under P
+ax_Q    = fig.add_subplot(gs[0, 1])   # reweighted paths (view under Q)
+ax_wt   = fig.add_subplot(gs[0, 2])   # weight bar chart
+ax_mean = fig.add_subplot(gs[1, :2])  # running mean P vs Q
+ax_zd   = fig.add_subplot(gs[1, 2])   # Z_T histogram
+
+for ax in [ax_P, ax_Q, ax_wt, ax_mean, ax_zd]:
+    ax.set_facecolor(PANEL_BG)
+    for spine in ax.spines.values():
+        spine.set_color("#333")
+    ax.tick_params(colors="#888", labelsize=8)
+    ax.xaxis.label.set_color("#aaa")
+    ax.yaxis.label.set_color("#aaa")
+    ax.title.set_color("white")
+    ax.grid(color=GRID_C, linewidth=0.4, linestyle="--")
+
+# ── Helper: draw paths coloured by weight ────────────────────────────────────
+def draw_paths(ax, paths, weights, title):
+    cmap = plt.cm.RdYlGn
+    norm = Normalize(vmin=0, vmax=weights.max())
+    for i in range(N_PATHS):
+        pts  = np.column_stack([t_grid, paths[i]])
+        segs = np.stack([pts[:-1], pts[1:]], axis=1)
+        lc   = LineCollection(segs,
+                              colors=[cmap(norm(weights[i]))] * len(segs),
+                              linewidths=0.8, alpha=0.85)
+        ax.add_collection(lc)
+    ax.set_xlim(0, T)
+    ax.set_ylim(paths.min() - 0.1, paths.max() + 0.1)
+    ax.set_title(title, fontsize=10, pad=6)
+    ax.set_xlabel("time t", fontsize=8)
+    sm = ScalarMappable(cmap=cmap, norm=norm)
+    sm.set_array([])
+    cbar = fig.colorbar(sm, ax=ax, fraction=0.04, pad=0.02)
+    cbar.ax.tick_params(labelsize=7, colors="#888")
+    cbar.set_label("Z_T weight", fontsize=7, color="#aaa")
+
+# Panel 1 – Under P (equal weights)
+draw_paths(ax_P, X_P, np.ones(N_PATHS), "Paths under P  (drift mu={})".format(MU))
+ax_P.plot(t_grid, MU * t_grid, color=AMBER_C, lw=2, ls="--",
+          label="E^P[X_t] = {}t".format(MU))
+ax_P.legend(fontsize=7, loc="lower left", framealpha=0.3,
+            labelcolor="white", facecolor=PANEL_BG)
+
+# Panel 2 – Same paths reweighted by Z_T
+draw_paths(ax_Q, X_P, Z_norm, "Same paths reweighted by Z_T  (view under Q)")
+ax_Q.axhline(0, color=BLUE_C, lw=1.5, ls="--", label="E^Q[X_t] = 0")
+ax_Q.legend(fontsize=7, loc="upper right", framealpha=0.3,
+            labelcolor="white", facecolor=PANEL_BG)
+
+# Panel 3 – Weight bar chart
+sorted_idx  = np.argsort(Z_norm)
+bar_colors  = plt.cm.RdYlGn(Normalize()(Z_norm[sorted_idx]))
+ax_wt.bar(np.arange(N_PATHS), Z_norm[sorted_idx],
+          color=bar_colors, width=0.9, edgecolor="none")
+ax_wt.axhline(1.0, color=AMBER_C, lw=1, ls="--", label="Equal weight = 1")
+ax_wt.set_title("Radon-Nikodym weights  Z_T / mean(Z_T)", fontsize=10)
+ax_wt.set_xlabel("Path index (sorted)", fontsize=8)
+ax_wt.set_ylabel("Relative weight", fontsize=8)
+ax_wt.legend(fontsize=7, framealpha=0.3, labelcolor="white", facecolor=PANEL_BG)
+
+# Panel 4 – Running mean comparison
+ax_mean.plot(t_grid, MU * t_grid, color="#e8473f", lw=2, ls="--",
+             label="Theoretical E^P[X_t] = {}t".format(MU))
+ax_mean.plot(t_grid, mean_P, color="#e8473f", lw=1.5, alpha=0.7,
+             label="Sample mean under P")
+ax_mean.axhline(0, color=BLUE_C, lw=2, ls="--",
+                label="Theoretical E^Q[X_t] = 0  (drift removed)")
+ax_mean.plot(t_grid, mean_Q, color=BLUE_C, lw=1.5, alpha=0.7,
+             label="Weighted mean under Q")
+ax_mean.fill_between(t_grid,
+                     np.percentile(X_P, 10, axis=0),
+                     np.percentile(X_P, 90, axis=0),
+                     color="#e8473f", alpha=0.08, label="10-90th pct (P)")
+ax_mean.set_xlim(0, T)
+ax_mean.set_title("Running mean: P-measure (drift mu) vs Q-measure (drift removed)", fontsize=10)
+ax_mean.set_xlabel("time t", fontsize=9)
+ax_mean.set_ylabel("X_t", fontsize=9)
+ax_mean.legend(fontsize=7.5, loc="lower left", framealpha=0.3,
+               labelcolor="white", facecolor=PANEL_BG, ncol=2)
+
+# Annotation box
+info = (
+    "Girsanov kernel:  theta = mu/sigma = {:.2f}\n"
+    "Z_T = exp(-theta*W_T - 0.5*theta^2*T)\n"
+    "W_tilde = W_t + theta*t  is BM under Q"
+).format(theta)
+ax_mean.text(0.62, 0.97, info, transform=ax_mean.transAxes,
+             fontsize=8, verticalalignment="top", color="#ccc",
+             fontfamily="monospace",
+             bbox=dict(boxstyle="round,pad=0.5", facecolor="#1e1e1e",
+                       edgecolor="#444", alpha=0.9))
+
+# Panel 5 – Z_T histogram
+ax_zd.hist(Z_T, bins=20, color=BLUE_C, edgecolor=DARK_BG, alpha=0.85, density=True)
+ax_zd.axvline(Z_T.mean(), color=AMBER_C, lw=1.5, ls="--",
+              label="Mean Z_T = {:.3f}  (approx 1 by Novikov)".format(Z_T.mean()))
+ax_zd.set_title("Distribution of Z_T  (Radon-Nikodym derivative)", fontsize=9)
+ax_zd.set_xlabel("Z_T", fontsize=8)
+ax_zd.set_ylabel("Density", fontsize=8)
+ax_zd.legend(fontsize=7, framealpha=0.3, labelcolor="white", facecolor=PANEL_BG)
+
+plt.savefig("./image/girsanov_theorem_demo.png", dpi=150,
+            bbox_inches="tight", facecolor=DARK_BG)
+plt.show()
+```
+
+!!! note "Running the script"
+    Save the script as `girsanov_demo.py` alongside your docs folder and run:
+    ```bash
+    pip install numpy matplotlib
+    python girsanov_demo.py
+    ```
+    The output is saved to `./image/girsanov_theorem_demo.png` (Figure 1 above).
 
 ---
 

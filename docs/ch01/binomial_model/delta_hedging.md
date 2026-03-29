@@ -131,17 +131,15 @@ With $\Delta = \frac{H_u - H_d}{(u-d)S_0}$, the portfolio has the same terminal 
 
 Substituting into the up-state value:
 
-$$
-\Pi_{\Delta t} = \Delta \cdot uS_0 - H_u = \frac{H_u - H_d}{(u-d)S_0} \cdot uS_0 - H_u
-$$
-
-$$
-= \frac{u(H_u - H_d)}{u - d} - H_u = \frac{uH_u - uH_d - (u-d)H_u}{u - d}
-$$
-
-$$
-= \frac{uH_u - uH_d - uH_u + dH_u}{u - d} = \frac{dH_u - uH_d}{u - d}
-$$
+$$\begin{array}{lll}
+\Pi_{\Delta t} 
+&=&\displaystyle \Delta \cdot uS_0 - H_u\\ 
+&=&\displaystyle \frac{H_u - H_d}{(u-d)S_0} \cdot uS_0 - H_u\\
+&=&\displaystyle \frac{u(H_u - H_d)}{u - d} - H_u\\
+&=&\displaystyle \frac{uH_u - uH_d - (u-d)H_u}{u - d}\\
+&=&\displaystyle \frac{uH_u - uH_d - uH_u + dH_u}{u - d}\\
+&=&\displaystyle \frac{dH_u - uH_d}{u - d}
+\end{array}$$
 
 **Verification** (down state):
 
@@ -168,11 +166,13 @@ $$
 ### Why This Must Be True
 
 **If the portfolio earned more than $r$:**
+
 - Borrow at rate $r$
 - Invest in the portfolio
 - Earn the spread risk-free → **arbitrage**
 
 **If the portfolio earned less than $r$:**
+
 - Short the portfolio
 - Lend at rate $r$  
 - Earn the spread risk-free → **arbitrage**
@@ -209,17 +209,12 @@ $$
 
 Substituting $\Delta = \frac{H_u - H_d}{(u-d)S_0}$:
 
-$$
-V_0 = \frac{H_u - H_d}{u - d} - e^{-r\Delta t} \cdot \frac{dH_u - uH_d}{u - d}
-$$
-
-$$
-V_0 = \frac{1}{u-d}\left[(H_u - H_d) - e^{-r\Delta t}(dH_u - uH_d)\right]
-$$
-
-$$
-V_0 = \frac{1}{u-d}\left[H_u(1 - de^{-r\Delta t}) + H_d(ue^{-r\Delta t} - 1)\right]
-$$
+$$\begin{array}{lll}
+V_0 
+&=&\displaystyle \frac{H_u - H_d}{u - d} - e^{-r\Delta t} \cdot \frac{dH_u - uH_d}{u - d}\\
+&=&\displaystyle \frac{1}{u-d}\left[(H_u - H_d) - e^{-r\Delta t}(dH_u - uH_d)\right]\\
+&=&\displaystyle \frac{1}{u-d}\left[H_u(1 - de^{-r\Delta t}) + H_d(ue^{-r\Delta t} - 1)\right]
+\end{array}$$
 
 Multiplying by $\frac{e^{r\Delta t}}{e^{r\Delta t}}$:
 
@@ -259,6 +254,7 @@ The risk-neutral probability **emerges from hedging**—it was not assumed!
 | Strike | $K = 105$ |
 
 **Stock prices at $\Delta t$:**
+
 - Up: $S_{\Delta t}^{up} = 120$
 - Down: $S_{\Delta t}^{down} = 90$
 
@@ -294,15 +290,11 @@ $$
 V_0 = \Delta S_0 - \Pi_0 = 0.5 \times 100 - 42.80 = 7.20
 $$
 
-### Verification
+**Verification:**
 
-**Up state:**
-- Portfolio: $0.5 \times 120 - 15 = 60 - 15 = 45$ ✓
-- Return: $45 / 42.80 = 1.0514 = e^{0.05}$ ✓
-
-**Down state:**
-- Portfolio: $0.5 \times 90 - 0 = 45$ ✓
-- Return: $45 / 42.80 = 1.0514 = e^{0.05}$ ✓
+- Up state: $0.5 \times 120 - 15 = 45$ ✓
+- Down state: $0.5 \times 90 - 0 = 45$ ✓
+- Return: $45 / 42.80 = e^{0.05}$ ✓
 
 !!! success "Result"
     The hedged portfolio earns exactly the risk-free rate in both states, confirming $C_0 = 7.20$.
@@ -312,78 +304,40 @@ $$
 **Payoffs:**
 
 $$
-H_u = 0, \qquad H_d = 15
+H_u = (105 - 120)^+ = 0, \qquad H_d = (105 - 90)^+ = 15
 $$
 
 **Delta:**
 
 $$
-\Delta = \frac{0 - 15}{30} = -0.5
+\Delta = \frac{H_u - H_d}{(u - d)S_0} = \frac{0 - 15}{0.3 \times 100} = -0.5
 $$
 
-**Risk-free portfolio terminal value:**
+The negative delta means the put gains when the stock falls, so the hedge requires **shorting 0.5 shares** of stock.
 
-$$
-\Pi_{\Delta t} = \frac{0.9 \times 0 - 1.2 \times 15}{0.3} = \frac{-18}{0.3} = -60
-$$
-
-Note: Negative terminal value means we **owe** money. This is because with $\Delta < 0$, we're short stock + short put.
-
-Let's redo with long put + short stock (holder's perspective):
-
-**Portfolio**: Long 1 put + short $|\Delta| = 0.5$ shares
-
-**Terminal values:**
-- Up: $0 - 0.5 \times 120 = -60$
-- Down: $15 - 0.5 \times 90 = 15 - 45 = -30$
-
-These aren't equal! The issue is we need to hedge from the **writer's** perspective for a put.
-
-**Correct portfolio**: Short 1 put + long $\Delta = -0.5$ shares (i.e., short 0.5 shares)
-
-**Initial value:**
-
-$$
-\Pi_0 = -0.5 \times 100 - (-V_0) = -50 + V_0
-$$
-
-**Terminal values:**
-- Up: $-0.5 \times 120 - 0 = -60$
-- Down: $-0.5 \times 90 - 15 = -45 - 15 = -60$ ✓
-
-Both give $-60$, so the portfolio is risk-free (with negative value—a liability).
-
-**No-arbitrage:**
-
-$$
--60 = (V_0 - 50) \times e^{0.05}
-$$
-
-$$
-V_0 - 50 = -60 \times e^{-0.05} = -57.07
-$$
-
-$$
-V_0 = 50 - 57.07 = -7.07
-$$
-
-Wait, this is negative! Let me reconsider the sign convention.
-
-**Corrected analysis**: For a put with $\Delta < 0$, the hedged portfolio (short put, long $\Delta$ shares) means we're actually **short** $|\Delta|$ shares:
+**Hedged portfolio** (short 1 put, long $\Delta = -0.5$ shares, i.e., short 0.5 shares):
 
 $$
 \Pi_0 = \Delta S_0 - V_0 = -0.5 \times 100 - V_0 = -50 - V_0
 $$
 
+**Terminal values:**
+
 $$
-\Pi_{\Delta t} = -0.5 \times uS_0 - H_u = -60 - 0 = -60 \text{ (up)}
+\Pi_{\Delta t}^{up} = -0.5 \times 120 - 0 = -60
 $$
 
 $$
-\Pi_{\Delta t} = -0.5 \times dS_0 - H_d = -45 - 15 = -60 \text{ (down)}
+\Pi_{\Delta t}^{down} = -0.5 \times 90 - 15 = -60 \checkmark
 $$
 
-No-arbitrage: $-60 = (-50 - V_0) \times e^{0.05}$
+The portfolio is risk-free with terminal value $-60$ (a liability — consistent with being short stock and short put).
+
+**No-arbitrage** ($\Pi_{\Delta t} = \Pi_0 \cdot e^{r\Delta t}$):
+
+$$
+-60 = (-50 - V_0) \times e^{0.05}
+$$
 
 $$
 -50 - V_0 = -60 \times e^{-0.05} = -57.07
@@ -394,8 +348,15 @@ V_0 = -50 + 57.07 = 7.07
 $$
 
 !!! success "European Put Price"
-
     $$P_0 = 7.07$$
+    
+    **Verification via risk-neutral pricing:**
+    
+    $$q = \frac{e^{0.05} - 0.9}{0.3} \approx 0.504$$
+    
+    $$P_0 = e^{-0.05}(0.504 \times 0 + 0.496 \times 15) = e^{-0.05} \times 7.44 \approx 7.08$$
+    
+    The tiny residual difference is due to rounding throughout; both methods are consistent.
 
 ---
 
@@ -428,6 +389,7 @@ $$
 ### Delta as Hedge Ratio
 
 To hedge an option position:
+
 - **Long 1 call** → **Short $\Delta$ shares** (where $\Delta > 0$)
 - **Long 1 put** → **Long $|\Delta|$ shares** (where $\Delta < 0$, so long)
 
@@ -440,16 +402,19 @@ The hedge neutralizes the portfolio's sensitivity to small stock price movements
 ### The Two Approaches
 
 **Replication** (from [Replicating Portfolio](replicating_portfolio.md)):
+
 - Find $(\Delta, B)$ such that $\Delta S_{\Delta t} + B e^{r\Delta t} = H$ in all states
 - Price = $\Delta S_0 + B$
 
 **Hedging** (this section):
+
 - Find $\Delta$ such that $\Delta S_{\Delta t} - H$ is constant
 - Apply no-arbitrage to determine price
 
 ### Why They're Equivalent
 
 Both approaches:
+
 1. Use the same $\Delta = \frac{H_u - H_d}{(u-d)S_0}$
 2. Apply no-arbitrage (law of one price / risk-free rate)
 3. Yield the same price formula

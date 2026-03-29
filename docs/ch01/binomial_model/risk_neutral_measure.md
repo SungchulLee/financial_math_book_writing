@@ -97,17 +97,13 @@ $$
 
 Substituting $q = \frac{e^{r\Delta t} - d}{u - d}$:
 
-$$
-qu + (1-q)d = \frac{e^{r\Delta t} - d}{u - d} \cdot u + \frac{u - e^{r\Delta t}}{u - d} \cdot d
-$$
-
-$$
-= \frac{(e^{r\Delta t} - d)u + (u - e^{r\Delta t})d}{u - d} = \frac{ue^{r\Delta t} - ud + ud - de^{r\Delta t}}{u - d}
-$$
-
-$$
-= \frac{e^{r\Delta t}(u - d)}{u - d} = e^{r\Delta t}
-$$
+$$\begin{array}{lll}
+qu + (1-q)d 
+&=&\displaystyle \frac{e^{r\Delta t} - d}{u - d} \cdot u + \frac{u - e^{r\Delta t}}{u - d} \cdot d\\
+&=&\displaystyle \frac{(e^{r\Delta t} - d)u + (u - e^{r\Delta t})d}{u - d}\\ 
+&=&\displaystyle \frac{ue^{r\Delta t} - ud + ud - de^{r\Delta t}}{u - d}\\
+&=&\displaystyle \frac{e^{r\Delta t}(u - d)}{u - d} = e^{r\Delta t}
+\end{array}$$
 
 Therefore:
 
@@ -157,43 +153,24 @@ $$
 
 Substituting:
 
-$$
-V_0^{rep} = \frac{H_u - H_d}{(u-d)S_0} \cdot S_0 + e^{-r\Delta t}\left(H_u - \frac{H_u - H_d}{(u-d)S_0} \cdot uS_0\right)
-$$
-
-$$
-= \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(H_u - \frac{u(H_u - H_d)}{u-d}\right)
-$$
-
-$$
-= \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{(u-d)H_u - u(H_u - H_d)}{u-d}\right)
-$$
-
-$$
-= \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{uH_u - dH_u - uH_u + uH_d}{u-d}\right)
-$$
-
-$$
-= \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{uH_d - dH_u}{u-d}\right)
-$$
+$$\begin{array}{lll}
+V_0^{rep} 
+&=&\displaystyle \frac{H_u - H_d}{(u-d)S_0} \cdot S_0 + e^{-r\Delta t}\left(H_u - \frac{H_u - H_d}{(u-d)S_0} \cdot uS_0\right)\\
+&=&\displaystyle \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(H_u - \frac{u(H_u - H_d)}{u-d}\right)\\
+&=&\displaystyle \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{(u-d)H_u - u(H_u - H_d)}{u-d}\right)\\
+&=&\displaystyle \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{uH_u - dH_u - uH_u + uH_d}{u-d}\right)\\
+&=&\displaystyle \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{uH_d - dH_u}{u-d}\right)
+\end{array}$$
 
 **Risk-neutral price**:
 
-$$
-V_0^{RN} = e^{-r\Delta t}(qH_u + (1-q)H_d)
-$$
-
-$$
-= e^{-r\Delta t}\left(\frac{e^{r\Delta t} - d}{u-d}H_u + \frac{u - e^{r\Delta t}}{u-d}H_d\right)
-$$
-
-$$
-= e^{-r\Delta t}\left(\frac{(e^{r\Delta t} - d)H_u + (u - e^{r\Delta t})H_d}{u-d}\right)
-$$
-
-$$
-= \frac{1}{u-d}\left(\frac{e^{r\Delta t} - d}{e^{r\Delta t}}H_u + \frac{u - e^{r\Delta t}}{e^{r\Delta t}}H_d\right)
-$$
+$$\begin{array}{lll}
+V_0^{RN} 
+&=&\displaystyle e^{-r\Delta t}(qH_u + (1-q)H_d)\\
+&=&\displaystyle e^{-r\Delta t}\left(\frac{e^{r\Delta t} - d}{u-d}H_u + \frac{u - e^{r\Delta t}}{u-d}H_d\right)\\
+&=&\displaystyle e^{-r\Delta t}\left(\frac{(e^{r\Delta t} - d)H_u + (u - e^{r\Delta t})H_d}{u-d}\right)\\
+&=&\displaystyle \frac{1}{u-d}\left(\frac{e^{r\Delta t} - d}{e^{r\Delta t}}H_u + \frac{u - e^{r\Delta t}}{e^{r\Delta t}}H_d\right)
+\end{array}$$
 
 To show $V_0^{rep} = V_0^{RN}$, we can verify algebraically (or more simply, note that both give the unique no-arbitrage price, so they must be equal).
 
@@ -252,14 +229,8 @@ $$
 
 $$
 C_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)
-$$
-
-$$
 = e^{-0.05}(0.5043 \times 15 + 0.4957 \times 0)
-$$
-
-$$
-= 0.9512 \times 7.565 = 7.19
+= 7.19
 $$
 
 !!! success "European Call Price"
@@ -282,14 +253,8 @@ $$
 
 $$
 P_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)
-$$
-
-$$
 = e^{-0.05}(0.5043 \times 0 + 0.4957 \times 15)
-$$
-
-$$
-= 0.9512 \times 7.436 = 7.07
+= 7.07
 $$
 
 !!! success "European Put Price"
@@ -322,9 +287,6 @@ $$
 
 $$
 V_0 = e^{-r\Delta t}(q \cdot 1 + (1-q) \cdot 0) = e^{-r\Delta t} \cdot q
-$$
-
-$$
 = 0.9512 \times 0.5043 = 0.48
 $$
 
@@ -356,9 +318,6 @@ $$
 
 $$
 V_0 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t} - F]
-$$
-
-$$
 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] - e^{-r\Delta t}F
 $$
 
@@ -400,17 +359,12 @@ $$
 
 Using the identity $(S - K)^+ - (K - S)^+ = S - K$:
 
-$$
-C_0 - P_0 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t} - K]
-$$
-
-$$
-= e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] - Ke^{-r\Delta t}
-$$
-
-$$
-= e^{-r\Delta t} \cdot S_0 e^{r\Delta t} - Ke^{-r\Delta t} = S_0 - Ke^{-r\Delta t}
-$$
+$$\begin{array}{lll}
+C_0 - P_0 
+&=&\displaystyle e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t} - K]\\
+&=&\displaystyle e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] - Ke^{-r\Delta t}\\
+&=&\displaystyle e^{-r\Delta t} \cdot S_0 e^{r\Delta t} - Ke^{-r\Delta t} = S_0 - Ke^{-r\Delta t}
+\end{array}$$
 
 !!! success "Put–Call Parity"
 
@@ -448,17 +402,12 @@ No additional calculation is needed—linearity allows decomposition of complex 
 
 Linearity follows from the expectation operator:
 
-$$
-V_0(\alpha H^{(1)} + \beta H^{(2)}) = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[\alpha H^{(1)} + \beta H^{(2)}]
-$$
-
-$$
-= \alpha e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H^{(1)}] + \beta e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H^{(2)}]
-$$
-
-$$
-= \alpha V_0(H^{(1)}) + \beta V_0(H^{(2)})
-$$
+$$\begin{array}{lll}
+V_0(\alpha H^{(1)} + \beta H^{(2)})\\
+&=&\displaystyle e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[\alpha H^{(1)} + \beta H^{(2)}]\\
+&=&\displaystyle \alpha e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H^{(1)}] + \beta e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H^{(2)}]\\
+&=&\displaystyle \alpha V_0(H^{(1)}) + \beta V_0(H^{(2)})
+\end{array}$$
 
 ---
 

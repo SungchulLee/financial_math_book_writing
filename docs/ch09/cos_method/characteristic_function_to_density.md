@@ -161,6 +161,132 @@ To validate the inversion approaches, consider the standard normal distribution.
 
     This recovers the standard normal CDF. The integrand $e^{-u^2/2}\sin(ux)/u$ is bounded and rapidly decaying, so the trapezoidal rule with $M = 100$ points on $[0, 20]$ achieves $10^{-12}$ accuracy.
 
+### Python: PDF, CDF, and Characteristic Function of Normal($\mu$, $\sigma^2$)
+
+The following code plots all three objects simultaneously for Normal($\mu = 10$, $\sigma^2 = 1$), illustrating the three panels: PDF $f(x)$, CDF $F(x)$, and the characteristic function $\varphi(u)$ showing its real part, imaginary part, and Gaussian modulus envelope $|\varphi(u)| = e^{-\sigma^2 u^2/2}$.
+
+```python
+"""
+Normal Distribution: PDF, CDF, and Characteristic Function
+===========================================================
+Plots the probability density function, cumulative distribution function,
+and characteristic function of a Normal(mu, sigma^2) distribution.
+
+The characteristic function of X ~ Normal(mu, sigma^2) is:
+
+    phi(u) = E[e^{iuX}] = exp(i * mu * u - sigma^2 * u^2 / 2)
+
+which is a complex-valued function of the real argument u.
+We plot its real part Re[phi(u)] and imaginary part Im[phi(u)] as a
+2-D panel, alongside the Gaussian modulus envelope exp(-sigma^2 u^2 / 2).
+The envelope decays regardless of mu, reflecting the Riemann-Lebesgue lemma.
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.stats as st
+
+# ── Parameters ────────────────────────────────────────────────────────────────
+mu    = 10.0   # mean
+sigma =  1.0   # standard deviation
+
+# ── Functions ─────────────────────────────────────────────────────────────────
+i = complex(0, 1)
+
+def chf(u: np.ndarray) -> np.ndarray:
+    """Characteristic function of Normal(mu, sigma^2)."""
+    return np.exp(i * mu * u - sigma**2 * u**2 / 2.0)
+
+def pdf(x: np.ndarray) -> np.ndarray:
+    """Probability density function of Normal(mu, sigma^2)."""
+    return st.norm.pdf(x, mu, sigma)
+
+def cdf(x: np.ndarray) -> np.ndarray:
+    """Cumulative distribution function of Normal(mu, sigma^2)."""
+    return st.norm.cdf(x, mu, sigma)
+
+# ── Grids ─────────────────────────────────────────────────────────────────────
+x = np.linspace(mu - 5 * sigma, mu + 5 * sigma, 400)   # support for PDF / CDF
+u = np.linspace(0, 5, 500)                              # frequency axis for CHF
+
+# ── Evaluate ──────────────────────────────────────────────────────────────────
+chf_vals = chf(u)
+re_vals  = np.real(chf_vals)
+im_vals  = np.imag(chf_vals)
+mod_vals = np.abs(chf_vals)     # Gaussian envelope exp(-sigma^2 u^2 / 2)
+
+# ── Colors ────────────────────────────────────────────────────────────────────
+FACECOLOR = '#FAFAFA'
+COLOR_MAIN = '#1A6EBD'
+COLOR_RE   = '#1A6EBD'
+COLOR_IM   = '#C0392B'
+COLOR_MOD  = '#888780'
+COLOR_MU   = '#BA7517'
+
+
+def _style(ax, xlabel: str, ylabel: str, title: str) -> None:
+    """Apply shared axis style."""
+    ax.set_facecolor(FACECOLOR)
+    ax.set_xlabel(xlabel, fontsize=11)
+    ax.set_ylabel(ylabel, fontsize=11)
+    ax.set_title(title, fontsize=11, pad=8)
+    ax.spines[['top', 'right']].set_visible(False)
+    ax.grid(True, linewidth=0.4, color='#CCCCCC')
+
+
+# ── Single figure, three axes ─────────────────────────────────────────────────
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 4.5))
+fig.patch.set_facecolor(FACECOLOR)
+
+# ── Axis 1: PDF ───────────────────────────────────────────────────────────────
+ax1.plot(x, pdf(x), color=COLOR_MAIN, linewidth=2.0)
+ax1.fill_between(x, pdf(x), alpha=0.12, color=COLOR_MAIN)
+ax1.axvline(mu, color=COLOR_MU, linewidth=1.0, linestyle='--', alpha=0.8,
+            label=rf'$\mu = {mu:.0f}$')
+_style(ax1, xlabel=r'$x$', ylabel=r'$f(x)$',
+       title=rf'PDF — Normal$(\mu={mu:.0f},\,\sigma^2={sigma**2:.0f})$')
+ax1.legend(fontsize=10, framealpha=0.85)
+ax1.set_xlim(x[0], x[-1])
+ax1.set_ylim(bottom=0)
+
+# ── Axis 2: CDF ───────────────────────────────────────────────────────────────
+ax2.plot(x, cdf(x), color=COLOR_MAIN, linewidth=2.0)
+ax2.axvline(mu, color=COLOR_MU, linewidth=1.0, linestyle='--', alpha=0.8,
+            label=rf'$\mu = {mu:.0f}$  ($F(\mu)=0.5$)')
+ax2.axhline(0.5, color=COLOR_MU, linewidth=0.7, linestyle=':', alpha=0.5)
+_style(ax2, xlabel=r'$x$', ylabel=r'$F(x)$',
+       title=rf'CDF — Normal$(\mu={mu:.0f},\,\sigma^2={sigma**2:.0f})$')
+ax2.legend(fontsize=10, framealpha=0.85)
+ax2.set_xlim(x[0], x[-1])
+ax2.set_ylim(0, 1)
+
+# ── Axis 3: CHF (Re, Im, modulus) ─────────────────────────────────────────────
+ax3.plot(u, re_vals,   color=COLOR_RE,  linewidth=2.0,
+         label=r'$\mathrm{Re}[\varphi(u)]$')
+ax3.plot(u, im_vals,   color=COLOR_IM,  linewidth=2.0,
+         label=r'$\mathrm{Im}[\varphi(u)]$')
+ax3.plot(u,  mod_vals, color=COLOR_MOD, linewidth=1.3, linestyle='--',
+         label=r'$|\varphi(u)| = e^{-\sigma^2 u^2/2}$')
+ax3.plot(u, -mod_vals, color=COLOR_MOD, linewidth=1.3, linestyle='--', alpha=0.45)
+ax3.axhline(0, color='#AAAAAA', linewidth=0.6)
+_style(ax3, xlabel=r'$u$', ylabel=r'$\varphi(u)$',
+       title=(rf'CHF — Normal$(\mu={mu:.0f},\,\sigma^2={sigma**2:.0f})$'
+              '\n'
+              r'$\varphi(u)=e^{i\mu u - \sigma^2 u^2/2}$'))
+ax3.legend(fontsize=10, framealpha=0.85)
+ax3.set_xlim(u[0], u[-1])
+
+# ── Save ──────────────────────────────────────────────────────────────────────
+plt.tight_layout()
+plt.savefig('pdf_cdf_and_characteristic_function.svg', bbox_inches='tight')
+plt.show()
+```
+
+<figure markdown="span">
+  ![PDF, CDF, and Characteristic Function of Normal(10, 1)](./image/pdf_cdf_and_characteristic_function.png)
+  <figcaption markdown="span">**Figure 1:** PDF, CDF, and characteristic function of Normal($\mu = 10$, $\sigma^2 = 1$). Left: the density $f(x)$ with mean marked. Centre: the CDF $F(x)$ with $F(\mu) = 0.5$ highlighted. Right: the characteristic function $\varphi(u) = e^{i\mu u - \sigma^2 u^2/2}$, showing its real part (blue), imaginary part (red), and Gaussian modulus envelope $|\varphi(u)| = e^{-\sigma^2 u^2/2}$ (gray dashed). The oscillation frequency of Re and Im grows with $\mu$, while the envelope decays purely with $\sigma^2$, independently of $\mu$ — a direct consequence of the Riemann–Lebesgue lemma.</figcaption>
+</figure>
+
 ---
 
 ## Example: Heston Model Density

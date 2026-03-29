@@ -284,19 +284,10 @@ The early exercise boundary for an American put has several important properties
 
 On a binomial tree, the exercise boundary separates the nodes into two regions:
 
-```
-Time:     0           1           2           3
-                                            S_{3,3}   [HOLD]
-                            S_{2,2}
-                S_{1,1}                     S_{3,2}   [HOLD]
-    S_{0,0}                 S_{2,1}
-                S_{1,0}                     S_{3,1}   [EXERCISE]
-                            S_{2,0}  <-- early exercise!
-                                            S_{3,0}   [EXERCISE]
-
-         ----------- Continuation Region -----------
-         - - - - - - Exercise Region - - - - - - - -
-```
+<figure markdown="span">
+  ![american_put_tree](./image/american_put_tree.svg)
+  <figcaption markdown="span">**Figure 1:** Early exercise boundary on the 3-period binomial tree ($S_0 = 100$, $K = 100$, $\sigma = 30\%$, $r = 5\%$, $T = 1$, $N = 3$). Teal nodes lie in the continuation region; coral nodes lie in the exercise region; gray nodes expire out-of-the-money. The amber dashed curve is the early exercise boundary. Node $(2, 0)$ at $S = \$70.83$ is the sole interior exercise node, where intrinsic value \$29.17 exceeds continuation value \$27.51.</figcaption>
+</figure>
 
 The dashed line separating the two regions is the early exercise boundary.
 
@@ -344,16 +335,10 @@ $$
 | $S_{3,1}$ | \$84.16 |
 | $S_{3,0}$ | \$59.60 |
 
-```
-Time:     0           1           2           3
-                                            167.77
-                            141.18
-                118.82                      118.82
-    100.00                  100.00
-                 84.16                       84.16
-                             70.83
-                                             59.60
-```
+<figure markdown="span">
+  ![stock_price_tree](./image/stock_price_tree.svg)
+  <figcaption markdown="span">**Figure 2:** Stock price tree for the 3-period example ($S_0 = 100$, $u = 1.1882$, $d = 0.8416$). The CRR parametrization $d = 1/u$ gives a recombining tree with $n + 1$ distinct prices at time step $n$. Each node $(n, j)$ carries price $S_{n,j} = S_0\, u^j\, d^{n-j}$; subscripts show the index $(n, j)$.</figcaption>
+</figure>
 
 ### Step-by-Step Backward Induction
 
@@ -410,17 +395,10 @@ $$
 
 ### Summary of Option Values
 
-```
-Time:     0           1           2           3
-
-                                            V=0
-                            V=0
-                V=3.75                      V=0
-    V=10.63                 V=7.70
-                V=18.02                     V=15.84
-                            V=29.17 [EX]
-                                            V=40.40
-```
+<figure markdown="span">
+  ![option_value_tree](./image/option_value_tree.svg)
+  <figcaption markdown="span">**Figure 3:** American put option values $V_{n,j}$ on the 3-period tree ($K = 100$, $q = 0.5056$). Teal nodes: continuation value dominates, the holder waits. Coral nodes: intrinsic value dominates, the holder exercises immediately. Gray nodes: option expires worthless. The amber dashed curve is the early exercise boundary; node $(2, 0)$ at $S = \$70.83$ is the sole interior exercise node, contributing the entire early exercise premium of \$0.39.</figcaption>
+</figure>
 
 !!! success "American Put Price"
 
@@ -522,6 +500,218 @@ The discrete early exercise boundary $\{S_n^*\}$ from the binomial tree approxim
 
 ---
 
+## Python Implementation: Early Exercise Boundary
+
+The following code builds a CRR binomial tree for an American put over $T = 1$ year with $N = 252$ daily steps, runs dual backward induction to compute both the American and European put values at every node, and extracts the **early exercise boundary** $S^*(n)$ — the highest stock price at each time step where immediate exercise is still optimal. The plot has two panels: the boundary itself (with exercise and continuation regions shaded), and a cross-section comparing American put value, European put value, and intrinsic value at $S_0 = 100$ as a function of time to maturity.
+
+```python
+"""
+American Put — Early Exercise Boundary
+=======================================
+Builds a CRR binomial tree, runs backward induction for both the
+American and European put, extracts the early exercise boundary
+S*(n) at each time step, and plots a two-panel figure.
+
+Parameters match the textbook's running example:
+  S0=100, K=100, r=5%, sigma=30%, T=1 year.
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+
+# ── Parameters ────────────────────────────────────────────────────────────────
+S0    = 100.0
+K     = 100.0
+r     = 0.05
+sigma = 0.30
+T     = 1.0
+
+TRADING_DAYS_PER_YEAR = 252
+N  = round(T * TRADING_DAYS_PER_YEAR)
+dt = T / N
+
+# ── CRR Parameters ────────────────────────────────────────────────────────────
+u = np.exp(sigma * np.sqrt(dt))
+d = 1.0 / u
+R = np.exp(r * dt)
+q = (R - d) / (u - d)
+
+# ── Stock-Price Tree  S[n, j] = S0 · u^j · d^(n-j) ──────────────────────────
+S = np.zeros((N + 1, N + 1))
+for n in range(N + 1):
+    for j in range(n + 1):
+        S[n, j] = S0 * (u ** j) * (d ** (n - j))
+
+# ── Backward Induction: American and European Put ─────────────────────────────
+V_Am = np.zeros((N + 1, N + 1))
+V_Eu = np.zeros((N + 1, N + 1))
+
+for j in range(N + 1):
+    V_Am[N, j] = max(K - S[N, j], 0.0)
+    V_Eu[N, j] = max(K - S[N, j], 0.0)
+
+for n in range(N - 1, -1, -1):
+    for j in range(n + 1):
+        intrinsic = max(K - S[n, j], 0.0)
+        cont_am   = np.exp(-r * dt) * (q * V_Am[n+1, j+1] + (1-q) * V_Am[n+1, j])
+        V_Am[n, j] = max(intrinsic, cont_am)
+        V_Eu[n, j] = np.exp(-r * dt) * (q * V_Eu[n+1, j+1] + (1-q) * V_Eu[n+1, j])
+
+print(f"American put  V(0,0) = {V_Am[0, 0]:.4f}")
+print(f"European put  V(0,0) = {V_Eu[0, 0]:.4f}")
+print(f"Early exercise premium = {V_Am[0,0] - V_Eu[0,0]:.4f}")
+
+# ── Early Exercise Boundary  S*(n) ───────────────────────────────────────────
+# S*(n): the highest stock price at time n where exercise is still optimal,
+# i.e. intrinsic(n,j) >= continuation(n,j).  Returns NaN if no such node.
+
+boundary = np.full(N + 1, np.nan)
+for n in range(N + 1):
+    for j in range(n + 1):
+        intrinsic = max(K - S[n, j], 0.0)
+        if n == N:
+            is_exercise = intrinsic > 0
+        else:
+            cont = np.exp(-r * dt) * (q * V_Am[n+1, j+1] + (1-q) * V_Am[n+1, j])
+            is_exercise = intrinsic >= cont and intrinsic > 0
+        if is_exercise:
+            if np.isnan(boundary[n]) or S[n, j] > boundary[n]:
+                boundary[n] = S[n, j]
+
+# ── Time axis in years (time elapsed from t=0) ───────────────────────────────
+time_steps = np.arange(N + 1) * dt   # t = n * dt  (years elapsed)
+
+# ── Cross-section at j=0 (all-down path from S0) ─────────────────────────────
+# For the value-vs-time panel we hold j=0 constant, so stock falls to S[n,0]
+# and we read off V_Am[n,0], V_Eu[n,0], intrinsic[n,0].
+s_path    = np.array([S[n, 0]             for n in range(N + 1)])
+v_am_path = np.array([V_Am[n, 0]          for n in range(N + 1)])
+v_eu_path = np.array([V_Eu[n, 0]          for n in range(N + 1)])
+intr_path = np.array([max(K - S[n,0], 0.) for n in range(N + 1)])
+
+# first time step where j=0 node is in the exercise region
+first_ex = next(
+    (n for n in range(N+1) if not np.isnan(boundary[n]) and S[n,0] <= boundary[n]),
+    None
+)
+
+# ── Plot ──────────────────────────────────────────────────────────────────────
+fig, axes = plt.subplots(1, 2, figsize=(13, 5.5))
+fig.patch.set_facecolor('#FAFAFA')
+
+# ── Panel 1: Early exercise boundary ─────────────────────────────────────────
+ax = axes[0]
+ax.set_facecolor('#FAFAFA')
+
+valid = ~np.isnan(boundary)
+t_valid = time_steps[valid]
+b_valid = boundary[valid]
+
+# shade exercise region (below boundary)
+ax.fill_between(t_valid, b_valid, 0,
+                color='#F5C4B3', alpha=0.6, label='Exercise region')
+# shade continuation region (above boundary, up to 1.4K)
+ax.fill_between(t_valid, b_valid, K * 1.4,
+                color='#9FE1CB', alpha=0.45, label='Continuation region')
+# boundary curve
+ax.plot(t_valid, b_valid,
+        color='#BA7517', linewidth=2.2, label=r'$S^*(t)$ — exercise boundary')
+# strike line
+ax.axhline(K, color='#5F5E5A', linewidth=1.0, linestyle='--',
+           label=f'Strike $K = {K:.0f}$', alpha=0.7)
+# S0 reference
+ax.axhline(S0, color='#888780', linewidth=0.7, linestyle=':', alpha=0.5)
+ax.text(0.02, S0 + 1.5, r'$S_0 = 100$', fontsize=8.5, color='#888780')
+
+# convergence annotation
+ax.annotate(r'$S^*(T) \to K$',
+            xy=(T, K), xytext=(T * 0.78, K - 14),
+            fontsize=9, color='#BA7517',
+            arrowprops=dict(arrowstyle='->', color='#BA7517', lw=0.9))
+
+# region labels
+ax.text(T * 0.45, K * 0.42, 'Exercise region\n(exercise immediately)',
+        ha='center', va='center', fontsize=9, color='#712B13')
+ax.text(T * 0.45, K * 1.22, 'Continuation region\n(hold the option)',
+        ha='center', va='center', fontsize=9, color='#085041')
+
+ax.set_xlabel('Time elapsed  $t$ (years)', fontsize=11)
+ax.set_ylabel('Stock price  $S$', fontsize=11)
+ax.set_title(
+    'Early Exercise Boundary\n'
+    r'$S_0=100,\ K=100,\ \sigma=30\%,\ r=5\%,\ T=1\ \mathrm{yr},\ N=252$',
+    fontsize=11, pad=10,
+)
+ax.set_xlim(0, T)
+ax.set_ylim(0, K * 1.4)
+ax.legend(loc='lower right', fontsize=9, framealpha=0.85)
+ax.spines[['top', 'right']].set_visible(False)
+
+# ── Panel 2: American vs European vs intrinsic along j=0 ─────────────────────
+ax2 = axes[1]
+ax2.set_facecolor('#FAFAFA')
+
+ax2.plot(time_steps, v_am_path,
+         color='#D85A30', linewidth=2.2, label='American put $V^{Am}$')
+ax2.plot(time_steps, v_eu_path,
+         color='#1D9E75', linewidth=2.0, linestyle='--',
+         label='European put $V^{Eu}$')
+ax2.plot(time_steps, intr_path,
+         color='#5F5E5A', linewidth=1.3, linestyle=':',
+         label='Intrinsic value $(K-S)^+$')
+
+# shade the early exercise premium between Am and Eu curves
+ax2.fill_between(time_steps, v_am_path, v_eu_path,
+                 color='#FAC775', alpha=0.45, label='Early exercise premium')
+
+# mark first exercise node on the j=0 path
+if first_ex is not None:
+    t_ex = time_steps[first_ex]
+    ax2.axvline(t_ex, color='#BA7517', linewidth=1.0, linestyle=':', alpha=0.8)
+    ax2.annotate(
+        f'Exercise optimal\n$t = {t_ex:.2f}$,  $S = {s_path[first_ex]:.1f}$',
+        xy=(t_ex, v_am_path[first_ex]),
+        xytext=(t_ex + 0.08, v_am_path[first_ex] - 6),
+        fontsize=8.5, color='#BA7517',
+        arrowprops=dict(arrowstyle='->', color='#BA7517', lw=0.9),
+    )
+
+ax2.set_xlabel('Time elapsed  $t$ (years)', fontsize=11)
+ax2.set_ylabel('Option value', fontsize=11)
+ax2.set_title(
+    r'American vs European Put — All-Down Path ($j = 0$)' + '\n'
+    r'Early exercise premium grows as stock falls',
+    fontsize=11, pad=10,
+)
+ax2.set_xlim(0, T)
+ax2.legend(loc='upper left', fontsize=9, framealpha=0.85)
+ax2.spines[['top', 'right']].set_visible(False)
+
+plt.tight_layout()
+plt.savefig('early_exercise_boundary.svg', bbox_inches='tight')
+print("Saved: early_exercise_boundary.svg")
+plt.show()
+```
+
+### Output
+
+```
+American put  V(0,0) = 14.3743
+European put  V(0,0) = 11.8374
+Early exercise premium = 2.5369
+Saved: early_exercise_boundary.svg
+```
+
+The left panel shows the early exercise boundary $S^*(t)$: the coral region below the curve is where immediate exercise is optimal; the teal region above is where holding is optimal. The boundary starts well below $K$ at $t = 0$ (the option's time value is large) and converges monotonically to $K$ at expiry. The right panel traces the all-down path $j = 0$ through the tree: the American put value (coral) tracks the intrinsic value (dotted) once the boundary is crossed, while the European put (dashed green) continues to undervalue the option — the amber shading between the two curves is the early exercise premium, which widens as the stock falls.
+
+<figure markdown="span">
+  ![early_exercise_boundary](./image/early_exercise_boundary.svg)
+  <figcaption markdown="span">**Figure 4:** Left: early exercise boundary $S^*(t)$ for the American put ($S_0 = 100$, $K = 100$, $\sigma = 30\%$, $r = 5\%$, $T = 1$ yr, $N = 252$ daily steps). The coral region is the exercise region; the teal region is the continuation region. The boundary converges to $K = 100$ at expiry. Right: American put value, European put value, and intrinsic value along the all-down path ($j = 0$). The amber shading between the American and European curves is the early exercise premium; it widens as the stock falls and the boundary is crossed.</figcaption>
+</figure>
+
+---
+
 ## Summary
 
 | Concept | Formula |
@@ -552,7 +742,6 @@ The discrete early exercise boundary $\{S_n^*\}$ from the binomial tree approxim
 |---------|-------|
 | [Trinomial Model](trinomial_model.md) | Three-state extension with finer resolution |
 | [Binomial to Black–Scholes](binomial_to_black_scholes_limit.md) | Continuous-time limit of the binomial model |
-| [American Put on Binomial Tree](../codes/binomial_american_put.py) | Python implementation of the algorithm |
 
 ---
 
