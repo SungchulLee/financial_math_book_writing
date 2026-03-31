@@ -286,3 +286,136 @@ The one-period market model provides the minimal mathematical setting in which t
 **Exercise 6.** A one-period market has $\Omega = \{\omega_1, \omega_2\}$ with $p_1 = 0.7$, $p_2 = 0.3$, and $r_f = 0.10$. The market contains a bond and a stock with $P_2 = 20$, $X_{21} = 28$, $X_{22} = 16$. Write the complete model specification $(\Omega, \mathbb{P}, N, \mathbf{P}, \mathbf{X}, r_f)$. Compute the expected return on the stock and the risk premium over the risk-free rate.
 
 ---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The risk-free bond has price $P_1 = 1$ (by convention) and pays $1 + r_f = 1.03$ in every state. The stock has price $P_2 = 40$.
+
+    **Price vector:**
+
+    $$
+    \mathbf{P} = \begin{pmatrix} 1 \\ 40 \end{pmatrix}
+    $$
+
+    **Payoff matrix** (rows = assets, columns = states):
+
+    $$
+    \mathbf{X} = \begin{pmatrix} 1.03 & 1.03 & 1.03 \\ 55 & 42 & 30 \end{pmatrix}
+    $$
+
+    **Discount factor:**
+
+    $$
+    \beta = \frac{1}{1 + r_f} = \frac{1}{1.03} \approx 0.9709
+    $$
+
+??? success "Solution to Exercise 2"
+    With the new stock payoff of \$70 in the Boom state and \$40 in the Recession state (unchanged), the expected stock payoff under $\mathbb{P}$ is:
+
+    $$
+    \mathbb{E}^{\mathbb{P}}[X_2] = 0.6 \times 70 + 0.4 \times 40 = 42 + 16 = 58
+    $$
+
+    The expected gross return on the stock is:
+
+    $$
+    \frac{\mathbb{E}^{\mathbb{P}}[X_2]}{P_2} = \frac{58}{50} = 1.16
+    $$
+
+    so the expected net return is $16\%$. The risk-free rate is $5\%$, so the risk premium is:
+
+    $$
+    16\% - 5\% = 11\%
+    $$
+
+    In the original example, the expected net return was $10\%$ and the risk premium was $5\%$. The new risk premium of $11\%$ is **larger** than the original $5\%$. This makes sense: the upside payoff increased (from \$65 to \$70) while the downside remained unchanged (\$40), increasing the spread between boom and recession payoffs, and thus the expected return.
+
+??? success "Solution to Exercise 3"
+    Suppose $r_f > 0$. Then $1 + r_f > 1 > 0$, so the discount factor is:
+
+    $$
+    \beta = \frac{1}{1 + r_f}
+    $$
+
+    Since $1 + r_f > 0$, we have $\beta > 0$. Since $1 + r_f > 1$, we have $\beta = 1/(1 + r_f) < 1$. Thus $0 < \beta < 1$.
+
+    **When $r_f = 0$:** We get $\beta = 1/(1 + 0) = 1$. There is no time value of money; a dollar today is worth exactly the same as a dollar tomorrow.
+
+    **When $-1 < r_f < 0$:** We have $0 < 1 + r_f < 1$, so $\beta = 1/(1 + r_f) > 1$. A dollar tomorrow is worth more than a dollar today. This corresponds to a negative interest rate environment, where holding cash is penalized or deflation is expected.
+
+??? success "Solution to Exercise 4"
+    The payoff matrix $\mathbf{X} \in \mathbb{R}^{3 \times 4}$ has 3 rows and 4 columns. By the rank inequality:
+
+    $$
+    \operatorname{rank}(\mathbf{X}) \leq \min(3, 4) = 3
+    $$
+
+    so the maximum possible rank is $3$.
+
+    The market is complete when every contingent claim in $\mathbb{R}^S = \mathbb{R}^4$ can be replicated. This requires $\operatorname{rank}(\mathbf{X}) = S = 4$. However, since the maximum rank is $3 < 4$, **the market cannot be complete with only 3 assets and 4 states**, regardless of the specific payoff values. At least one more linearly independent asset is needed.
+
+??? success "Solution to Exercise 5"
+    Suppose asset $j$ has constant payoff $X_{js} = c > 0$ for all $s = 1, \ldots, S$, and $c \neq (1 + r_f)P_j$.
+
+    The risk-free bond pays $1 + r_f$ in every state and has price $1$. Asset $j$ pays $c$ in every state, so it is also riskless. Consider the portfolio that buys $\alpha$ units of the bond and $\beta$ units of asset $j$, chosen to exploit the mispricing.
+
+    **Case 1: $c > (1 + r_f)P_j$.** Asset $j$ offers a higher return than the risk-free rate. Form a portfolio: buy $1$ unit of asset $j$ and sell $c/(1 + r_f)$ units of the bond. The cost is:
+
+    $$
+    P_j - \frac{c}{1 + r_f} \cdot 1 = P_j - \frac{c}{1 + r_f} < 0
+    $$
+
+    since $c > (1 + r_f)P_j$ implies $P_j < c/(1 + r_f)$. The payoff in every state is:
+
+    $$
+    c - \frac{c}{1 + r_f} \cdot (1 + r_f) = c - c = 0
+    $$
+
+    This is a Type 2 arbitrage: the portfolio generates cash at $t = 0$ (negative cost) with zero payoff in every state.
+
+    **Case 2: $c < (1 + r_f)P_j$.** Reverse the strategy: sell $1$ unit of asset $j$ and buy $c/(1 + r_f)$ units of the bond. The cost is $c/(1 + r_f) - P_j < 0$ and the payoff is $0$ in every state. Again a Type 2 arbitrage.
+
+    In both cases, an arbitrage opportunity exists.
+
+??? success "Solution to Exercise 6"
+    **Complete model specification:**
+
+    - $\Omega = \{\omega_1, \omega_2\}$ with $S = 2$
+    - $\mathbb{P}$: $p_1 = 0.7$, $p_2 = 0.3$
+    - $N = 2$ (bond and stock)
+    - $r_f = 0.10$, so $\beta = 1/1.10 \approx 0.9091$
+
+    **Price vector:**
+
+    $$
+    \mathbf{P} = \begin{pmatrix} 1 \\ 20 \end{pmatrix}
+    $$
+
+    **Payoff matrix:**
+
+    $$
+    \mathbf{X} = \begin{pmatrix} 1.10 & 1.10 \\ 28 & 16 \end{pmatrix}
+    $$
+
+    **Expected stock payoff:**
+
+    $$
+    \mathbb{E}^{\mathbb{P}}[X_2] = 0.7 \times 28 + 0.3 \times 16 = 19.6 + 4.8 = 24.4
+    $$
+
+    **Expected gross return on the stock:**
+
+    $$
+    \frac{\mathbb{E}^{\mathbb{P}}[X_2]}{P_2} = \frac{24.4}{20} = 1.22
+    $$
+
+    so the expected net return is $22\%$.
+
+    **Risk premium:**
+
+    $$
+    22\% - 10\% = 12\%
+    $$
+
+    The stock's expected return of $22\%$ exceeds the risk-free rate of $10\%$ by a risk premium of $12\%$, compensating investors for bearing the uncertainty between the \$28 and \$16 payoffs.

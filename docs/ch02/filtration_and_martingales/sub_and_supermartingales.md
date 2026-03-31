@@ -287,3 +287,134 @@ $$
 *Hint*: Apply optional sampling to $\tau = \inf\{t : X_t \ge \lambda\}$.
 
 (c) Use (b) to bound $\mathbb{P}(\sup_{t \ge 0} e^{\theta W_t - \theta^2 t/2} \ge K)$ for $K > 1$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** Compute $\mathbb{E}[e^{W_t} \mid \mathcal{F}_s]$ for $s \le t$. Write $e^{W_t} = e^{W_s} \cdot e^{W_t - W_s}$.
+
+    $$
+    \mathbb{E}[e^{W_t} \mid \mathcal{F}_s] = e^{W_s} \cdot \mathbb{E}[e^{W_t - W_s}] = e^{W_s} \cdot e^{(t-s)/2}
+    $$
+
+    Since $e^{(t-s)/2} > 1$ for $t > s$, we have $\mathbb{E}[e^{W_t} \mid \mathcal{F}_s] > e^{W_s}$, so $e^{W_t}$ is a **submartingale**.
+
+    It is not a supermartingale (the inequality goes the wrong way), so it is not a martingale either.
+
+    **(b)** Let $r = q/p$ where $q = 1 - p$. We compute:
+
+    $$
+    \mathbb{E}[X_{n+1} \mid \mathcal{F}_n] = \mathbb{E}[r^{S_{n+1}} \mid \mathcal{F}_n] = r^{S_n} \cdot \mathbb{E}[r^{\xi_{n+1}}]
+    $$
+
+    $$
+    \mathbb{E}[r^{\xi_{n+1}}] = p \cdot r + q \cdot r^{-1} = p \cdot \frac{q}{p} + q \cdot \frac{p}{q} = q + p = 1
+    $$
+
+    Therefore $\mathbb{E}[X_{n+1} \mid \mathcal{F}_n] = X_n$, and $X_n$ is a **martingale** for all $p \in (0, 1)$.
+
+    **(c)** $|M_t|^\alpha$ is a submartingale when $\alpha \ge 1$. The function $\varphi(x) = |x|^\alpha$ is convex for $\alpha \ge 1$ (its second derivative is $\alpha(\alpha - 1)|x|^{\alpha - 2} \ge 0$). By conditional Jensen:
+
+    $$
+    \mathbb{E}[|M_t|^\alpha \mid \mathcal{F}_s] \ge |\mathbb{E}[M_t \mid \mathcal{F}_s]|^\alpha = |M_s|^\alpha
+    $$
+
+    For $0 < \alpha < 1$, $\varphi(x) = |x|^\alpha$ is concave, and Jensen gives the reverse inequality:
+
+    $$
+    \mathbb{E}[|M_t|^\alpha \mid \mathcal{F}_s] \le |M_s|^\alpha
+    $$
+
+    So $|M_t|^\alpha$ is a supermartingale for $0 < \alpha < 1$.
+
+??? success "Solution to Exercise 2"
+    **(a)** Since $M_t$ is a martingale with $\mathbb{E}[M_t^2] < \infty$, the function $\varphi(x) = x^2$ is convex. By conditional Jensen:
+
+    $$
+    \mathbb{E}[M_t^2 \mid \mathcal{F}_s] \ge (\mathbb{E}[M_t \mid \mathcal{F}_s])^2 = M_s^2
+    $$
+
+    So $M_t^2$ is a submartingale. $\square$
+
+    **(b)** The function $\varphi(x) = (x - c)^+ = \max(x - c, 0)$ is convex (it is the maximum of the linear function $x - c$ and the constant 0). By conditional Jensen:
+
+    $$
+    \mathbb{E}[(M_t - c)^+ \mid \mathcal{F}_s] \ge (\mathbb{E}[M_t \mid \mathcal{F}_s] - c)^+ = (M_s - c)^+
+    $$
+
+    **Financial interpretation**: If $M_t$ represents the price of an underlying asset (a martingale under the risk-neutral measure) and $c$ is the strike price, then $(M_t - c)^+$ is the intrinsic value of a European call option. The submartingale property says the expected intrinsic value increases over time — reflecting the growing "optionality" as time progresses.
+
+    **(c)** Consider the two-dimensional Brownian motion case. Let $W_t^{(1)}, W_t^{(2)}$ be independent Brownian motions and $M_t = W_t^{(1)}$. Define $f(x) = \mathbb{E}[g(x, W_1^{(2)})]$ for some carefully chosen $g$. This is somewhat contrived.
+
+    A simpler observation: let $M_t = W_t$ and define $f(M_t, t) = W_t^2 - t$. This is a martingale. But $f(x) = x^2 - t$ depends on $t$ as well as $x$, so it's not of the form $\varphi(M_t)$ for a fixed function $\varphi$. However, the exercise asks for $f(M_t)$ that is a submartingale but not $\varphi(M_t)$ for convex $\varphi$, which requires a time-dependent $f$ or a more elaborate construction.
+
+    As a concrete example: the constant function $f \equiv 0$ gives a trivial martingale (hence submartingale), but this is $\varphi(M_t)$ with $\varphi \equiv 0$ (convex). The key point is that time-dependent submartingale transforms like $M_t^2 - t + t = M_t^2$ can be expressed as convex functions of $M_t$, so distinguishing these cases requires external randomness or time dependence in $f$.
+
+??? success "Solution to Exercise 3"
+    **(a)** For a submartingale $X_t$ and $s \le t$:
+
+    $$
+    \mathbb{E}[X_t] = \mathbb{E}[\mathbb{E}[X_t \mid \mathcal{F}_s]] \ge \mathbb{E}[X_s]
+    $$
+
+    The inequality uses the submartingale property $\mathbb{E}[X_t \mid \mathcal{F}_s] \ge X_s$ and monotonicity of expectation. $\square$
+
+    **(b)** If $\mathbb{E}[X_t] = \mathbb{E}[X_0]$ for all $t$ and $X_t$ is a submartingale, then $\mathbb{E}[X_t \mid \mathcal{F}_s] \ge X_s$ with $\mathbb{E}[\mathbb{E}[X_t \mid \mathcal{F}_s]] = \mathbb{E}[X_t] = \mathbb{E}[X_s]$.
+
+    If $\mathbb{E}[X_t \mid \mathcal{F}_s] \ge X_s$ a.s. and $\mathbb{E}[\mathbb{E}[X_t \mid \mathcal{F}_s] - X_s] = 0$, then $\mathbb{E}[X_t \mid \mathcal{F}_s] - X_s \ge 0$ a.s. with expectation 0, which forces $\mathbb{E}[X_t \mid \mathcal{F}_s] = X_s$ a.s. Therefore $X_t$ is actually a **martingale**.
+
+    **(c)** No, convergence of $\mathbb{E}[X_t]$ does not imply a.s. convergence. **Counterexample**: Let $X_n = (-1)^n$. Then $\mathbb{E}[X_n] = (-1)^n$ does not converge. Instead, let $X_n = \mathbf{1}_{A_n}$ where $A_n$ cycles through events of measure $1/2$: $A_n = [0, 1/2)$ for $n$ even and $A_n = [1/2, 1)$ for $n$ odd. Then $\mathbb{E}[X_n] = 1/2$ for all $n$ (converges to $1/2$), but $X_n(\omega)$ oscillates between 0 and 1 for every $\omega$, so there is no a.s. convergence.
+
+??? success "Solution to Exercise 4"
+    **(a)** Let $\tau$ be a bounded stopping time with $\tau \le T$. Since $X_t$ is a supermartingale, the stopped process $X_{t \wedge \tau}$ is also a supermartingale. Therefore:
+
+    $$
+    \mathbb{E}[X_\tau] = \mathbb{E}[X_{T \wedge \tau}] \le \mathbb{E}[X_0]
+    $$
+
+    The last inequality uses the supermartingale property at times $0$ and $T$: $\mathbb{E}[X_{T \wedge \tau} \mid \mathcal{F}_0] \le X_0$, and taking expectations gives $\mathbb{E}[X_{T \wedge \tau}] \le \mathbb{E}[X_0]$. $\square$
+
+    **(b)** For any bounded stopping time $\tau \le T$, part (a) gives $\mathbb{E}[X_\tau] \le \mathbb{E}[X_0]$. Since the expected value at any bounded stopping time is at most the starting value, no bounded stopping rule can make the game favorable (i.e., achieve $\mathbb{E}[X_\tau] > \mathbb{E}[X_0]$). $\square$
+
+    **(c)** For unbounded stopping times, the conclusion can fail without additional conditions. **Counterexample**: Let $S_n$ be a symmetric random walk ($p = 1/2$), so $-S_n$ is also a martingale (hence a supermartingale). Define $\tau = \inf\{n : S_n = -1\}$. Then $\mathbb{P}(\tau < \infty) = 1$ and $S_\tau = -1$, so $\mathbb{E}[-S_\tau] = 1 > 0 = \mathbb{E}[-S_0]$. The supermartingale $-S_n$ has $\mathbb{E}[(-S)_\tau] > \mathbb{E}[(-S)_0]$, contradicting the inequality. This works because $\tau$ is unbounded ($\mathbb{E}[\tau] = \infty$).
+
+??? success "Solution to Exercise 5"
+    **(a)** $Z_t = e^{\theta W_t - \theta^2 t/2}$ is a positive martingale with $\mathbb{E}[Z_t] = 1$ (proved in the text on Brownian motion martingales).
+
+    To show $Z_t \to 0$ a.s.: take logarithms: $\log Z_t = \theta W_t - \frac{\theta^2}{2}t$. By the law of the iterated logarithm, $W_t / t \to 0$ a.s., so $\theta W_t = o(t)$. Therefore $\log Z_t \sim -\frac{\theta^2}{2}t \to -\infty$ a.s., giving $Z_t \to 0$ a.s.
+
+    This is consistent with the non-negative supermartingale convergence theorem: $Z_t$ is a non-negative martingale (hence supermartingale), so $Z_\infty = \lim_{t \to \infty} Z_t$ exists a.s. We have shown $Z_\infty = 0$ a.s. The theorem also states $\mathbb{E}[Z_\infty] \le \mathbb{E}[Z_0] = 1$, which is satisfied since $\mathbb{E}[Z_\infty] = 0 < 1$.
+
+    **(b)** Let $\tau = \inf\{t : X_t \ge \lambda\}$. If $\sup_{t \ge 0} X_t \ge \lambda$, then $\tau < \infty$ and $X_\tau \ge \lambda$ (by right-continuity).
+
+    By optional sampling for the supermartingale $X$ at the bounded stopping time $\tau \wedge T$:
+
+    $$
+    \mathbb{E}[X_{\tau \wedge T}] \le \mathbb{E}[X_0]
+    $$
+
+    On the event $\{\tau \le T\}$, $X_{\tau \wedge T} = X_\tau \ge \lambda$. Therefore:
+
+    $$
+    \mathbb{E}[X_0] \ge \mathbb{E}[X_{\tau \wedge T}] \ge \mathbb{E}[X_\tau \mathbf{1}_{\{\tau \le T\}}] \ge \lambda \cdot \mathbb{P}(\tau \le T)
+    $$
+
+    Letting $T \to \infty$: $\lambda \cdot \mathbb{P}(\tau < \infty) \le \mathbb{E}[X_0]$. Since $\{\sup_{t \ge 0} X_t \ge \lambda\} = \{\tau < \infty\}$:
+
+    $$
+    \lambda \cdot \mathbb{P}\left(\sup_{t \ge 0} X_t \ge \lambda\right) \le \mathbb{E}[X_0] \quad \square
+    $$
+
+    **(c)** Apply (b) with $X_t = Z_t = e^{\theta W_t - \theta^2 t/2}$ (a non-negative martingale, hence supermartingale) and $\lambda = K$:
+
+    $$
+    K \cdot \mathbb{P}\left(\sup_{t \ge 0} e^{\theta W_t - \theta^2 t/2} \ge K\right) \le \mathbb{E}[Z_0] = 1
+    $$
+
+    Therefore:
+
+    $$
+    \mathbb{P}\left(\sup_{t \ge 0} e^{\theta W_t - \theta^2 t/2} \ge K\right) \le \frac{1}{K}
+    $$

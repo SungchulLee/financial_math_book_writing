@@ -584,6 +584,136 @@ Let $a > 0$ and define $X_t := \frac{1}{\sqrt{a}} W_{at}$.
 
 10. (Stochastic Volatility Interpretation) In a model where $dS_t = \sigma_t S_t dW_t$, explain why the "realized variance" $\int_0^T \sigma_t^2 dt$ represents the "true time" experienced by the asset price.
 
+### Solutions
+
+??? success "Solution to Exercise 1"
+    Define $X_t = \frac{1}{\sqrt{a}} W_{at}$. We verify the four defining properties of Brownian motion.
+
+    **(i) Initial condition:** $X_0 = \frac{1}{\sqrt{a}} W_0 = 0$ a.s.
+
+    **(ii) Independent increments:** For $0 \leq t_0 < t_1 < \cdots < t_n$:
+
+    $$
+    X_{t_k} - X_{t_{k-1}} = \frac{1}{\sqrt{a}}(W_{at_k} - W_{at_{k-1}})
+    $$
+
+    Since $at_0 < at_1 < \cdots < at_n$, the increments $W_{at_k} - W_{at_{k-1}}$ are independent by the independent increments property of $W$. Scaling by $1/\sqrt{a}$ preserves independence.
+
+    **(iii) Gaussian stationary increments:** For $s < t$:
+
+    $$
+    X_t - X_s = \frac{1}{\sqrt{a}}(W_{at} - W_{as}) \sim \frac{1}{\sqrt{a}} \mathcal{N}(0, a(t-s)) = \mathcal{N}(0, t-s)
+    $$
+
+    **(iv) Continuity of paths:** Since $t \mapsto at$ is continuous and $t \mapsto W_t$ is continuous a.s., the composition $t \mapsto W_{at}$ is continuous a.s. Dividing by the constant $\sqrt{a}$ preserves continuity.
+
+??? success "Solution to Exercise 2"
+    **Self-similarity** means that the statistical properties of the process are preserved under simultaneous rescaling of time and space. Specifically, $W_{ct} \overset{d}{=} \sqrt{c}\,W_t$ means the process at time scale $c$ is identical in distribution to the process at the original time scale after spatial rescaling by $\sqrt{c}$.
+
+    **Visual implication:** If you zoom into a Brownian path by magnifying the time axis by a factor $c$ and the space axis by $\sqrt{c}$, the resulting picture is statistically indistinguishable from the original. At any resolution — whether you view the path over milliseconds or years — the roughness and structure look the same. There is no characteristic scale at which the path becomes "smooth" or "different."
+
+??? success "Solution to Exercise 3"
+    **(a)** Since $X_t = \frac{1}{\sqrt{a}} W_{at}$ is a standard Brownian motion (by Exercise 1):
+
+    $$
+    \text{Var}(X_t) = t
+    $$
+
+    And indeed $\text{Var}(X_t) = \frac{1}{a}\text{Var}(W_{at}) = \frac{1}{a} \cdot at = t = \text{Var}(W_t)$. The variance is the same.
+
+    **(b)** The scaling $W_{ct} \overset{d}{=} \sqrt{c}\,W_t$ relates time and space units: multiplying time by $c$ is equivalent to multiplying space by $\sqrt{c}$. This gives the fundamental relationship "space scales as the square root of time." In finance, this is why daily volatility $\sigma_{\text{daily}}$ annualizes as $\sigma_{\text{annual}} = \sigma_{\text{daily}}\sqrt{252}$.
+
+??? success "Solution to Exercise 4"
+    **(a)** $B_t = W_{t^2}$, so:
+
+    $$
+    \text{Var}(B_t) = \text{Var}(W_{t^2}) = t^2
+    $$
+
+    For $s < t$: $\text{Cov}(B_s, B_t) = \text{Cov}(W_{s^2}, W_{t^2}) = \min(s^2, t^2) = s^2$.
+
+    **(b)** $B_t$ is **not** a Brownian motion. For Brownian motion we need $\text{Var}(B_t) = t$, but $\text{Var}(B_t) = t^2 \neq t$ (for $t \neq 0, 1$).
+
+    **(c)** The increments are not stationary:
+
+    $$
+    \text{Var}(B_t - B_s) = \text{Var}(W_{t^2} - W_{s^2}) = t^2 - s^2 = (t-s)(t+s)
+    $$
+
+    This depends on $s$ and $t$ separately, not just on $t - s$. For instance, $\text{Var}(B_2 - B_1) = 4 - 1 = 3$ while $\text{Var}(B_3 - B_2) = 9 - 4 = 5$, even though both intervals have length 1.
+
+??? success "Solution to Exercise 5"
+    $W_{\phi(t)}$ is a standard Brownian motion if and only if $\phi(t) = t$.
+
+    **Proof.** For $W_{\phi(t)}$ to be a Brownian motion, we need $W_{\phi(t)} - W_{\phi(s)} \sim \mathcal{N}(0, t-s)$ for all $s < t$. But:
+
+    $$
+    W_{\phi(t)} - W_{\phi(s)} \sim \mathcal{N}(0, \phi(t) - \phi(s))
+    $$
+
+    So we need $\phi(t) - \phi(s) = t - s$ for all $0 \leq s < t$. Setting $s = 0$: $\phi(t) - \phi(0) = t - 0$, and since $\phi(0) = 0$, we get $\phi(t) = t$ for all $t$.
+
+    Conversely, if $\phi(t) = t$ then $W_{\phi(t)} = W_t$, which is a Brownian motion by assumption.
+
+??? success "Solution to Exercise 6"
+    With $\phi(t) = e^t - 1$:
+
+    $$
+    \text{Cov}(W_{\phi(s)}, W_{\phi(t)}) = \min(\phi(s), \phi(t)) = \min(e^s - 1, e^t - 1)
+    $$
+
+    For $s < t$, this equals $e^s - 1$.
+
+    **Effect of the time change:** Since $\phi'(t) = e^t$, the clock runs exponentially faster as $t$ increases. Near $t = 0$, $\phi(t) \approx t$ so the process behaves like standard Brownian motion. For large $t$, $\phi(t) \approx e^t$, so the variance $\text{Var}(W_{\phi(t)}) = e^t - 1$ grows exponentially rather than linearly. The increments become increasingly volatile over time.
+
+??? success "Solution to Exercise 7"
+    **(a)** By the scaling property, $W_{ct} \overset{d}{=} \sqrt{c}\,W_t$. This means $X_{ct} \overset{d}{=} c^{1/2} X_t$ where $X = W$, confirming $H = 1/2$.
+
+    **(b)** If $H > 1/2$, the process exhibits **persistent** behavior: the increments are positively correlated. If the process went up in the past, it is more likely to continue going up. This is sometimes called "long-range dependence" or "trending" behavior.
+
+    **(c)** For a process with independent increments, the variance of the increment over $[0, ct]$ must equal the sum of variances over $[0, t]$ and $[t, ct]$. If $X_{ct} \overset{d}{=} c^H X_t$, then $\text{Var}(X_{ct}) = c^{2H}\text{Var}(X_t)$. By independent stationary increments, $\text{Var}(X_{ct}) = ct \cdot \sigma^2$. Setting equal: $c^{2H} t\sigma^2 = ct\sigma^2$, so $c^{2H} = c$ for all $c > 0$, which requires $2H = 1$, i.e., $H = 1/2$.
+
+??? success "Solution to Exercise 8"
+    **(a)** For $M_t = \sigma W_t$, the quadratic variation is:
+
+    $$
+    \langle M \rangle_t = \sigma^2 \langle W \rangle_t = \sigma^2 t
+    $$
+
+    **(b)** By the Dambis-Dubins-Schwarz theorem, there exists a Brownian motion $B$ such that $M_t = B_{\langle M \rangle_t} = B_{\sigma^2 t}$. Indeed:
+
+    $$
+    B_{\sigma^2 t} \overset{d}{=} \sqrt{\sigma^2 t}\,Z = \sigma\sqrt{t}\,Z \quad \text{where } Z \sim \mathcal{N}(0,1)
+    $$
+
+    And $M_t = \sigma W_t \sim \mathcal{N}(0, \sigma^2 t)$, which matches. This is also consistent with the scaling property: $B_{\sigma^2 t} \overset{d}{=} \sigma B_t \overset{d}{=} \sigma W_t = M_t$.
+
+??? success "Solution to Exercise 9"
+    **(a)** For $M_t = \int_0^t s\,dW_s$, the quadratic variation is computed using the Itô isometry formula:
+
+    $$
+    \langle M \rangle_t = \int_0^t s^2\,ds = \frac{t^3}{3}
+    $$
+
+    **(b)** By the Dambis-Dubins-Schwarz theorem, there exists a Brownian motion $B$ such that:
+
+    $$
+    M_t = B_{\langle M \rangle_t} = B_{t^3/3}
+    $$
+
+    The stochastic integral $\int_0^t s\,dW_s$ is a Brownian motion run on the clock $t^3/3$. Since the integrand $H_s = s$ grows with time, the clock accelerates: the process accumulates quadratic variation at rate $s^2$ at time $s$, so early times contribute less randomness than later times.
+
+??? success "Solution to Exercise 10"
+    In the stochastic volatility model $dS_t = \sigma_t S_t\,dW_t$ (ignoring drift for simplicity), the log-price satisfies $d\log S_t = -\frac{1}{2}\sigma_t^2\,dt + \sigma_t\,dW_t$. The martingale part is $M_t = \int_0^t \sigma_s\,dW_s$, with quadratic variation:
+
+    $$
+    \langle M \rangle_t = \int_0^t \sigma_s^2\,ds
+    $$
+
+    By Dambis-Dubins-Schwarz, $M_t = B_{\int_0^t \sigma_s^2 ds}$ for some Brownian motion $B$.
+
+    The **realized variance** $\int_0^T \sigma_t^2\,dt$ represents the "true time" because it measures the total amount of randomness experienced by the asset price. When volatility is high, the asset accumulates more randomness per unit of calendar time, so its "internal clock" runs faster. When volatility is low, the clock runs slower. The realized variance is the total elapsed time on this internal clock, which is why option prices in stochastic volatility models depend on the distribution of $\int_0^T \sigma_t^2\,dt$ rather than just $\sigma^2 T$.
+
 ### References
 
 - Dambis, K. E. (1965). On the decomposition of continuous submartingales. *Theory of Probability & Its Applications*, 10(3), 401-410.

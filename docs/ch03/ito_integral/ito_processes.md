@@ -255,3 +255,157 @@ The next section develops **Itô's lemma**—the chain rule of stochastic calcul
 ---
 
 **Exercise 7.** For the geometric Brownian motion $S_t = S_0 \exp\!\left((\mu - \frac{\sigma^2}{2})t + \sigma B_t\right)$, verify that $\mathbb{E}[S_t] = S_0 e^{\mu t}$ and $\operatorname{Var}(S_t) = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)$. Why does the drift of $\log S_t$ differ from $\mu$?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The process is $X_t = 3 + 2t + 5B_t$. In integral form:
+
+    $$
+    X_t = 3 + \int_0^t 2\, ds + \int_0^t 5\, dB_s
+    $$
+
+    Reading off the components:
+
+    - Initial value: $X_0 = 3$
+    - Drift coefficient: $\mu_t = 2$
+    - Diffusion coefficient: $\sigma_t = 5$
+
+    **Mean:** $\mathbb{E}[X_t] = 3 + 2t + 5\,\mathbb{E}[B_t] = 3 + 2t$.
+
+    **Variance:** $\operatorname{Var}(X_t) = 25\,\operatorname{Var}(B_t) = 25t$.
+
+    **Quadratic variation:** $[X,X]_t = \int_0^t \sigma_s^2\, ds = \int_0^t 25\, ds = 25t$.
+
+??? success "Solution to Exercise 2"
+    The SDE is $dX_t = \alpha X_t\, dt + \sigma X_t\, dB_t$ with drift coefficient $\mu_t = \alpha X_t$.
+
+    By the martingale characterization theorem, $X_t$ is a martingale if and only if $\mu_t = 0$ a.e. Since $\mu_t = \alpha X_t$ and $X_0 = 1 > 0$ (and $X_t > 0$ a.s. for geometric Brownian motion), $\mu_t = 0$ a.e. requires $\alpha = 0$.
+
+    - If $\alpha \neq 0$: $X_t$ is **not** a martingale.
+    - If $\alpha > 0$: $\mu_t = \alpha X_t > 0$ a.e., so $X_t$ is a **submartingale** (not a supermartingale).
+    - If $\alpha < 0$: $\mu_t = \alpha X_t < 0$ a.e. (since $X_t > 0$), so $X_t$ is a **supermartingale**.
+    - If $\alpha = 0$: $X_t$ is a **martingale**.
+
+??? success "Solution to Exercise 3"
+    Starting from $dX_t = \mu_t\, dt + \sigma_t\, dB_t$, we compute:
+
+    $$
+    (dX_t)^2 = (\mu_t\, dt + \sigma_t\, dB_t)^2
+    $$
+
+    Expanding:
+
+    $$
+    (dX_t)^2 = \mu_t^2 (dt)^2 + 2\mu_t \sigma_t\, dt\, dB_t + \sigma_t^2 (dB_t)^2
+    $$
+
+    Applying the multiplication rules: $(dt)^2 = 0$, $dt\, dB_t = 0$, $(dB_t)^2 = dt$:
+
+    $$
+    (dX_t)^2 = 0 + 0 + \sigma_t^2\, dt = \sigma_t^2\, dt
+    $$
+
+    This is consistent with $d[X,X]_t = \sigma_t^2\, dt$, or equivalently $[X,X]_t = \int_0^t \sigma_s^2\, ds$. The drift term contributes nothing to the quadratic variation.
+
+??? success "Solution to Exercise 4"
+    The OU process $dX_t = -\theta X_t\, dt + \sigma\, dB_t$ with $X_0 = x_0$ has the Doob-Meyer decomposition $X_t = M_t + A_t$ where:
+
+    **Finite-variation part:**
+
+    $$
+    A_t = x_0 + \int_0^t (-\theta X_s)\, ds = x_0 - \theta \int_0^t X_s\, ds
+    $$
+
+    **Local martingale part:**
+
+    $$
+    M_t = \int_0^t \sigma\, dB_s = \sigma B_t
+    $$
+
+    So $X_t = \sigma B_t + x_0 - \theta \int_0^t X_s\, ds$.
+
+    Note: the standard Doob-Meyer form separates as $X_t = M_t + A_t$ where $M_t = \sigma B_t$ (a continuous local martingale starting at zero) and $A_t = x_0 - \theta \int_0^t X_s\, ds$ (a continuous finite-variation process).
+
+    **Quadratic variation:** Since $\sigma_t = \sigma$ is constant:
+
+    $$
+    [X,X]_t = \int_0^t \sigma^2\, ds = \sigma^2 t
+    $$
+
+??? success "Solution to Exercise 5"
+    From $d(tB_t) = B_t\, dt + t\, dB_t$, integrating from $0$ to $t$:
+
+    $$
+    tB_t = \int_0^t B_s\, ds + \int_0^t s\, dB_s
+    $$
+
+    Therefore:
+
+    $$
+    X_t = tB_t = \int_0^t B_s\, ds + \int_0^t s\, dB_s
+    $$
+
+    In the form $X_t = X_0 + \int_0^t \mu_s\, ds + \int_0^t \sigma_s\, dB_s$, we need to identify the time integral. We have $\int_0^t B_s\, ds$ as the drift integral, but $B_s$ is itself random — it is still the finite-variation part. So:
+
+    - $X_0 = 0$
+    - $\mu_t = B_t$ (drift coefficient, which is random but adapted)
+    - $\sigma_t = t$ (diffusion coefficient)
+
+    **Martingale check:** Since $\mu_t = B_t \neq 0$ a.e. for $t > 0$, $X_t = tB_t$ is **not** a martingale. We can verify directly: $\mathbb{E}[tB_t \mid \mathcal{F}_s] = tB_s \neq sB_s$ for $t \neq s$.
+
+??? success "Solution to Exercise 6"
+    Compute $d[X,Y]_t$ using the multiplication rules. The increments are:
+
+    $$
+    dX_t = \mu_t\, dt + \sigma_t\, dB_t, \qquad dY_t = \nu_t\, dt + \rho_t\, dB_t
+    $$
+
+    The quadratic covariation is $d[X,Y]_t = dX_t \cdot dY_t$:
+
+    $$
+    dX_t \cdot dY_t = (\mu_t\, dt + \sigma_t\, dB_t)(\nu_t\, dt + \rho_t\, dB_t)
+    $$
+
+    Expanding:
+
+    $$
+    = \mu_t \nu_t (dt)^2 + \mu_t \rho_t\, dt\, dB_t + \sigma_t \nu_t\, dB_t\, dt + \sigma_t \rho_t (dB_t)^2
+    $$
+
+    Applying the rules $(dt)^2 = 0$, $dt\, dB_t = dB_t\, dt = 0$, $(dB_t)^2 = dt$:
+
+    $$
+    dX_t \cdot dY_t = \sigma_t \rho_t\, dt
+    $$
+
+    Therefore $d[X,Y]_t = \sigma_t \rho_t\, dt$, or equivalently $[X,Y]_t = \int_0^t \sigma_s \rho_s\, ds$.
+
+??? success "Solution to Exercise 7"
+    **Mean.** Let $Z_t = (\mu - \sigma^2/2)t + \sigma B_t$, so $S_t = S_0 e^{Z_t}$. Since $B_t \sim \mathcal{N}(0, t)$, we have $Z_t \sim \mathcal{N}((\mu - \sigma^2/2)t,\; \sigma^2 t)$. Using the moment generating function of a Gaussian:
+
+    $$
+    \mathbb{E}[S_t] = S_0\, \mathbb{E}[e^{Z_t}] = S_0 \exp\!\left((\mu - \tfrac{\sigma^2}{2})t + \tfrac{1}{2}\sigma^2 t\right) = S_0 e^{\mu t}
+    $$
+
+    **Variance.** We need $\mathbb{E}[S_t^2] - (\mathbb{E}[S_t])^2$. Since $S_t^2 = S_0^2 e^{2Z_t}$ and $2Z_t \sim \mathcal{N}(2(\mu - \sigma^2/2)t,\; 4\sigma^2 t)$:
+
+    $$
+    \mathbb{E}[S_t^2] = S_0^2 \exp\!\left(2(\mu - \tfrac{\sigma^2}{2})t + \tfrac{1}{2} \cdot 4\sigma^2 t\right) = S_0^2 e^{(2\mu + \sigma^2)t}
+    $$
+
+    Therefore:
+
+    $$
+    \operatorname{Var}(S_t) = S_0^2 e^{(2\mu + \sigma^2)t} - S_0^2 e^{2\mu t} = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)
+    $$
+
+    **Why the drift of $\log S_t$ differs from $\mu$.** By construction, $\log S_t = \log S_0 + (\mu - \sigma^2/2)t + \sigma B_t$, so the drift of $\log S_t$ is $\mu - \sigma^2/2$, not $\mu$. This is because Ito's formula applied to $\log S_t$ introduces a correction term: if $dS_t = \mu S_t\, dt + \sigma S_t\, dB_t$, then
+
+    $$
+    d(\log S_t) = \frac{1}{S_t}\, dS_t - \frac{1}{2}\frac{1}{S_t^2}(dS_t)^2 = \mu\, dt + \sigma\, dB_t - \frac{\sigma^2}{2}\, dt
+    $$
+
+    The $-\sigma^2/2$ correction is a direct consequence of the quadratic variation of $S_t$. This is the Ito correction term — the fundamental difference between stochastic and ordinary calculus.

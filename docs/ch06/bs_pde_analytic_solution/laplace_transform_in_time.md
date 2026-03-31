@@ -1151,3 +1151,152 @@ This unifies **all transform methods**!
 ---
 
 **Exercise 6.** Show that all three integral transforms (Fourier, Mellin, Laplace) applied to the Black-Scholes PDE reduce it to an ODE. For each transform, identify what variable is "transformed away" and what type of ODE results (constant coefficient, Euler-Cauchy, etc.).
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Starting from the log-price formulation with $x = \ln S$ and $\tau = T - t$:
+
+    $$
+    \frac{\partial V}{\partial \tau} = \frac{\sigma^2}{2}\frac{\partial^2 V}{\partial x^2} + \left(r - \frac{\sigma^2}{2}\right)\frac{\partial V}{\partial x} - rV
+    $$
+
+    Apply the Laplace transform in $\tau$: $\tilde{V}(x,s) = \int_0^{\infty}V(x,\tau)e^{-s\tau}d\tau$.
+
+    Using $\mathcal{L}\left[\frac{\partial V}{\partial \tau}\right] = s\tilde{V}(x,s) - V(x,0)$ and the fact that the $x$-derivatives pass through the $\tau$-integral:
+
+    $$
+    s\tilde{V} - V(x,0) = \frac{\sigma^2}{2}\frac{\partial^2 \tilde{V}}{\partial x^2} + \left(r - \frac{\sigma^2}{2}\right)\frac{\partial \tilde{V}}{\partial x} - r\tilde{V}
+    $$
+
+    Rearranging with $V(x,0) = \Phi(e^x)$:
+
+    $$
+    \frac{\sigma^2}{2}\frac{\partial^2 \tilde{V}}{\partial x^2} + \left(r - \frac{\sigma^2}{2}\right)\frac{\partial \tilde{V}}{\partial x} - (r+s)\tilde{V} = -\Phi(e^x)
+    $$
+
+    This is a **second-order constant-coefficient ODE** in $x$. The homogeneous equation $\frac{\sigma^2}{2}X'' + (r - \frac{\sigma^2}{2})X' - (r+s)X = 0$ has the characteristic equation:
+
+    $$
+    \frac{\sigma^2}{2}\lambda^2 + \left(r - \frac{\sigma^2}{2}\right)\lambda - (r+s) = 0
+    $$
+
+    with roots:
+
+    $$
+    \lambda_{\pm} = \frac{-(r - \frac{\sigma^2}{2}) \pm \sqrt{(r - \frac{\sigma^2}{2})^2 + 2\sigma^2(r+s)}}{\sigma^2}
+    $$
+
+    The general solution is $\tilde{V}(x,s) = Ae^{\lambda_+ x} + Be^{\lambda_- x} + \tilde{V}_p(x,s)$, where $\tilde{V}_p$ is a particular solution driven by $\Phi(e^x)$.
+
+??? success "Solution to Exercise 2"
+    The Mellin transform of $(S - K)^+$ is:
+
+    $$
+    \mathcal{M}[(S-K)^+](s) = \int_0^{\infty}(S-K)^+ S^{s-1}dS = \int_K^{\infty}(S-K)S^{s-1}dS
+    $$
+
+    $$
+    = \int_K^{\infty}S^s \, dS - K\int_K^{\infty}S^{s-1} \, dS
+    $$
+
+    For the first integral: $\int_K^{\infty}S^s \, dS = \left[\frac{S^{s+1}}{s+1}\right]_K^{\infty}$. This converges (the upper limit goes to zero) when $\text{Re}(s+1) < 0$, i.e., $\text{Re}(s) < -1$. Then $\int_K^{\infty}S^s \, dS = -\frac{K^{s+1}}{s+1}$.
+
+    For the second integral: $K\int_K^{\infty}S^{s-1}dS = K\left[\frac{S^s}{s}\right]_K^{\infty}$. This converges when $\text{Re}(s) < 0$. Then $K\int_K^{\infty}S^{s-1}dS = -\frac{K^{s+1}}{s}$.
+
+    Combining (requiring $\text{Re}(s) < -1$):
+
+    $$
+    \mathcal{M}[(S-K)^+](s) = -\frac{K^{s+1}}{s+1} + \frac{K^{s+1}}{s} = K^{s+1}\left(\frac{1}{s} - \frac{1}{s+1}\right) = \frac{K^{s+1}}{s(s+1)}
+    $$
+
+    The **strip of analyticity** is $-2 < \text{Re}(s) < -1$. The lower bound comes from requiring integrability near $S = K$ (the integrand behaves like $(S-K)S^{s-1}$ near $S = K$, which is integrable for all $s$), and the upper bound $\text{Re}(s) < -1$ ensures convergence at $S \to \infty$.
+
+??? success "Solution to Exercise 3"
+    **Why Fourier requires damping.** The Fourier transform operates on $x = \ln S \in (-\infty, \infty)$. The call payoff $(e^x - 1)^+ \sim e^x$ as $x \to \infty$, and $|e^{-i\omega x}| = 1$, so $\int_0^{\infty}e^x e^{-i\omega x} dx$ diverges. A damping factor $e^{-\alpha x}$ with $\alpha > 1$ is needed to suppress the exponential growth.
+
+    **Why Mellin handles it naturally.** The Mellin transform $\int_0^{\infty}(S-K)^+ S^{s-1}dS$ converges for $\text{Re}(s) < -1$ without any modification, because the power $S^{s-1}$ with $\text{Re}(s) < -1$ acts as a natural damping factor at large $S$.
+
+    **The key property.** The Mellin transform is designed for **multiplicative structures**: it converts the operators $S\frac{\partial}{\partial S}$ and $S^2\frac{\partial^2}{\partial S^2}$ into polynomial multiplications $s$ and $s(s-1)$. Since stock prices are multiplicative (GBM is multiplicative in $S$), and payoffs like $(S-K)^+$ are naturally defined on $(0,\infty)$, the Mellin transform respects the domain and the algebraic structure of the problem without artificial modification.
+
+??? success "Solution to Exercise 4"
+    In solving the Black-Scholes PDE via Fourier methods, the solution is expressed as the convolution:
+
+    $$
+    V(x,\tau) = \int_{-\infty}^{\infty}\Phi(y) \cdot G(x-y, \tau) \, dy = (\Phi * G)(x)
+    $$
+
+    where:
+
+    - $f = \Phi(y)$ is the (transformed) payoff function, i.e., $\Phi(e^y)$ in log-price space
+    - $g = G(x,\tau) = \frac{1}{\sqrt{2\pi\sigma^2\tau}}e^{-x^2/(2\sigma^2\tau)}$ is the Green's function (heat kernel, or risk-neutral transition density in log-price space)
+
+    By the convolution theorem, $\mathcal{F}[\Phi * G] = \hat{\Phi} \cdot \hat{G}$. In Fourier space:
+
+    $$
+    \hat{V}(\omega,\tau) = \hat{\Phi}(\omega) \cdot \hat{G}(\omega,\tau)
+    $$
+
+    where $\hat{G}(\omega,\tau) = e^{-\sigma^2\omega^2\tau/2}$ is the Fourier transform of the Gaussian kernel. Including the drift and discounting terms:
+
+    $$
+    \hat{V}(\omega,\tau) = \hat{\Phi}(\omega) \cdot e^{\psi(\omega)\tau}
+    $$
+
+    The convolution theorem converts the spatial integral (convolution with Green's function) into a simple multiplication in frequency space, which is why Fourier methods are computationally efficient.
+
+??? success "Solution to Exercise 5"
+    The **Gaver-Stehfest method** approximates the inverse Laplace transform using only real-valued evaluations of the transform, avoiding the complex contour integral entirely.
+
+    **Algorithm.** The inverse is approximated as:
+
+    $$
+    V(x,\tau) \approx \frac{\ln 2}{\tau}\sum_{k=1}^{N} c_k \tilde{V}\left(x, \frac{k\ln 2}{\tau}\right)
+    $$
+
+    where the weights $c_k$ are given by a specific combinatorial formula involving alternating sums of binomial coefficients. Typically $N$ is even (e.g., $N = 8, 10, 12$).
+
+    **Advantages:**
+
+    - Only requires evaluating $\tilde{V}(x,s)$ at $N$ real values of $s$ (no complex arithmetic)
+    - Very simple to implement
+    - Works well for smooth, monotone functions $V(x,\tau)$
+    - No need to choose an integration contour or truncation parameters
+
+    **Limitations:**
+
+    - Requires high-precision arithmetic because the weights $c_k$ grow rapidly and alternate in sign, causing severe cancellation
+    - Accuracy is limited: typically 5-8 digits with standard double precision
+    - Performs poorly for oscillatory or discontinuous functions in $\tau$
+    - The number of accurate digits is roughly $0.6N$ in exact arithmetic but much less in floating point
+    - Cannot easily increase accuracy beyond the precision limits of the arithmetic
+
+    Compared to direct numerical integration of the Bromwich contour (e.g., via Talbot's method or the trapezoidal rule on a deformed contour), the Gaver-Stehfest method is simpler but less accurate and less robust for functions with sharp features.
+
+??? success "Solution to Exercise 6"
+    **Fourier transform** (in $x = \ln S$):
+
+    - **Variable transformed away:** The spatial variable $x$
+    - **Remaining equation:** A first-order ODE in $\tau$ (time): $\frac{\partial \hat{V}}{\partial \tau} = \psi(\omega)\hat{V}$
+    - **Type:** Constant coefficient (since $\psi(\omega)$ does not depend on $\tau$)
+    - **Solution:** $\hat{V}(\omega,\tau) = \hat{V}(\omega,0)e^{\psi(\omega)\tau}$
+
+    **Mellin transform** (in $S$):
+
+    - **Variable transformed away:** The spatial variable $S$
+    - **Remaining equation:** A first-order ODE in $t$: $\frac{\partial \hat{V}}{\partial t} + \Lambda(s)\hat{V} = 0$
+    - **Type:** Constant coefficient (since $\Lambda(s) = \frac{\sigma^2}{2}s^2 + (r - \frac{\sigma^2}{2})s - r$ does not depend on $t$)
+    - **Solution:** $\hat{V}(s,t) = \hat{V}(s,T)e^{-\Lambda(s)(T-t)}$
+
+    The Mellin transform works because the operators $S\frac{\partial}{\partial S}$ and $S^2\frac{\partial^2}{\partial S^2}$ become algebraic multipliers $s$ and $s(s-1)$.
+
+    **Laplace transform** (in $\tau = T - t$):
+
+    - **Variable transformed away:** The time variable $\tau$
+    - **Remaining equation:** A second-order ODE in $S$ (or $x$): $\frac{\sigma^2}{2}S^2\tilde{V}'' + rS\tilde{V}' - (r+p)\tilde{V} = -\Phi(S)$
+    - **Type:** Euler-Cauchy (equidimensional) equation in $S$, or equivalently a constant-coefficient equation in $x = \ln S$
+    - **Solution:** Power-law solutions $S^{\lambda_{\pm}}$ for the homogeneous part
+
+    In summary, all three transforms convert the parabolic PDE into an ODE by "transforming away" one of the two independent variables, but they remove different variables and yield different types of ODEs.

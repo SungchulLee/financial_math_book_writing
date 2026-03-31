@@ -332,3 +332,162 @@ $$
 ---
 
 **Exercise 7.** Let $B_0 = b > 0$ and define $Y_t = B_t^2$ for $t < \tau_0 = \inf\{t : B_t = 0\}$. Use Itô's lemma to compute $dY_t$. Then apply Itô's lemma again to $g(y) = \sqrt{y}$ to recover $dB_t$ from $dY_t$, and verify consistency. What regularity condition on $g$ fails at $y = 0$, and why does this matter?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Choose $f(x) = \frac{1}{4}x^4$, so $f'(x) = x^3$ and $f''(x) = 3x^2$. Itô's lemma gives:
+
+    $$
+    d\!\left(\frac{B_t^4}{4}\right) = B_t^3\,dB_t + \frac{1}{2}(3B_t^2)\,dt
+    $$
+
+    Integrating from $0$ to $t$ (with $B_0 = 0$):
+
+    $$
+    \frac{B_t^4}{4} = \int_0^t B_s^3\,dB_s + \frac{3}{2}\int_0^t B_s^2\,ds
+    $$
+
+    Therefore:
+
+    $$
+    \int_0^t B_s^3\,dB_s = \frac{1}{4}B_t^4 - \frac{3}{2}\int_0^t B_s^2\,ds
+    $$
+
+??? success "Solution to Exercise 2"
+    For $M_t = \cos(\theta B_t)\,e^{\theta^2 t/2}$, write $f(t, x) = \cos(\theta x)\,e^{\theta^2 t/2}$. Compute:
+
+    - $f_t = \frac{\theta^2}{2}\cos(\theta x)\,e^{\theta^2 t/2}$
+    - $f_x = -\theta\sin(\theta x)\,e^{\theta^2 t/2}$
+    - $f_{xx} = -\theta^2\cos(\theta x)\,e^{\theta^2 t/2}$
+
+    By Itô's lemma (Version 2):
+
+    $$
+    dM_t = \left(\frac{\theta^2}{2}\cos(\theta B_t) + \frac{1}{2}(-\theta^2\cos(\theta B_t))\right)e^{\theta^2 t/2}\,dt - \theta\sin(\theta B_t)\,e^{\theta^2 t/2}\,dB_t
+    $$
+
+    The $dt$ coefficient is $\left(\frac{\theta^2}{2} - \frac{\theta^2}{2}\right)\cos(\theta B_t)\,e^{\theta^2 t/2} = 0$. Therefore:
+
+    $$
+    dM_t = -\theta\sin(\theta B_t)\,e^{\theta^2 t/2}\,dB_t
+    $$
+
+    Since the $dt$ term vanishes, $M_t$ is a local martingale.
+
+??? success "Solution to Exercise 3"
+    The Ornstein--Uhlenbeck SDE is $dX_t = -\theta X_t\,dt + \sigma\,dB_t$. Let $f(t, x) = e^{\theta t}x$. Then:
+
+    - $f_t = \theta e^{\theta t}x$
+    - $f_x = e^{\theta t}$
+    - $f_{xx} = 0$
+
+    Since $X_t$ is the Itô process with $\mu_t = -\theta X_t$ and $\sigma_t = \sigma$, Version 3 gives:
+
+    $$
+    d(e^{\theta t}X_t) = \left(\theta e^{\theta t}X_t + e^{\theta t}(-\theta X_t) + \frac{1}{2}(0)\sigma^2\right)dt + e^{\theta t}\sigma\,dB_t
+    $$
+
+    The $dt$ coefficient simplifies to $0$, so $d(e^{\theta t}X_t) = \sigma e^{\theta t}\,dB_t$. Integrating:
+
+    $$
+    e^{\theta t}X_t = x_0 + \sigma\int_0^t e^{\theta s}\,dB_s
+    $$
+
+    Therefore:
+
+    $$
+    X_t = e^{-\theta t}x_0 + \sigma e^{-\theta t}\int_0^t e^{\theta s}\,dB_s = e^{-\theta t}x_0 + \sigma\int_0^t e^{-\theta(t-s)}\,dB_s
+    $$
+
+??? success "Solution to Exercise 4"
+    For $f(x) = x^p$ with $dS_t = \mu S_t\,dt + \sigma S_t\,dB_t$: $f'(x) = px^{p-1}$, $f''(x) = p(p-1)x^{p-2}$. By Version 3:
+
+    $$
+    d(S_t^p) = \left(pS_t^{p-1}\mu S_t + \frac{1}{2}p(p-1)S_t^{p-2}\sigma^2 S_t^2\right)dt + pS_t^{p-1}\sigma S_t\,dB_t
+    $$
+
+    Simplifying:
+
+    $$
+    d(S_t^p) = \left(p\mu + \frac{1}{2}p(p-1)\sigma^2\right)S_t^p\,dt + p\sigma S_t^p\,dB_t
+    $$
+
+    This is a geometric Brownian motion SDE for $S_t^p$ with drift $p\mu + \frac{1}{2}p(p-1)\sigma^2$ and diffusion $p\sigma$. Applying the log and exponentiating (as in Example 7):
+
+    $$
+    S_t^p = S_0^p\exp\!\left[\left(p\mu + \frac{1}{2}p(p-1)\sigma^2 - \frac{1}{2}p^2\sigma^2\right)t + p\sigma B_t\right]
+    $$
+
+    Simplifying the drift exponent: $p\mu + \frac{1}{2}p(p-1)\sigma^2 - \frac{1}{2}p^2\sigma^2 = p\mu - \frac{1}{2}p\sigma^2 = p(\mu - \frac{1}{2}\sigma^2)$. Alternatively, since $S_t = S_0\exp((\mu - \frac{1}{2}\sigma^2)t + \sigma B_t)$, raising to power $p$ directly:
+
+    $$
+    S_t^p = S_0^p\exp\!\left[\left(p\mu + \frac{1}{2}p(p-1)\sigma^2\right)t + p\sigma B_t\right]
+    $$
+
+    where the exponent is $p(\mu - \frac{1}{2}\sigma^2)t + p\sigma B_t = (p\mu - \frac{1}{2}p\sigma^2)t + p\sigma B_t$, and we verify: writing $S_t^p$ as a GBM with drift coefficient $p\mu + \frac{1}{2}p(p-1)\sigma^2$ and applying the log-to-exponential conversion with convexity adjustment $-\frac{1}{2}(p\sigma)^2$ confirms the stated formula.
+
+??? success "Solution to Exercise 5"
+    Split the integral: $\int_0^t (1 + B_s^2)\,dB_s = \int_0^t dB_s + \int_0^t B_s^2\,dB_s$.
+
+    The first integral is simply $B_t - B_0 = B_t$.
+
+    For the second integral, choose $f(x) = \frac{1}{3}x^3$ with $f'(x) = x^2$ and $f''(x) = 2x$. Itô's lemma gives:
+
+    $$
+    \int_0^t B_s^2\,dB_s = \frac{1}{3}B_t^3 - \int_0^t B_s\,ds
+    $$
+
+    Combining:
+
+    $$
+    \int_0^t (1 + B_s^2)\,dB_s = B_t + \frac{1}{3}B_t^3 - \int_0^t B_s\,ds
+    $$
+
+??? success "Solution to Exercise 6"
+    For $f(x) = \log(x^2) = 2\log(x)$ with $x > 0$ and $dX_t = \mu X_t\,dt + \sigma X_t\,dB_t$:
+
+    $$
+    f'(x) = \frac{2}{x}, \qquad f''(x) = -\frac{2}{x^2}
+    $$
+
+    By Itô's lemma (Version 3):
+
+    $$
+    d(\log(X_t^2)) = \frac{2}{X_t}(\mu X_t\,dt + \sigma X_t\,dB_t) + \frac{1}{2}\left(-\frac{2}{X_t^2}\right)\sigma^2 X_t^2\,dt
+    $$
+
+    $$
+    = 2\mu\,dt + 2\sigma\,dB_t - \sigma^2\,dt = 2\!\left(\mu - \frac{\sigma^2}{2}\right)dt + 2\sigma\,dB_t
+    $$
+
+    This is exactly twice the result from the $\log(x)$ computation: $d(\log X_t) = (\mu - \frac{\sigma^2}{2})\,dt + \sigma\,dB_t$. This must be the case because $\log(x^2) = 2\log(x)$, so by linearity of the differential, $d(\log(X_t^2)) = 2\,d(\log X_t)$.
+
+??? success "Solution to Exercise 7"
+    For $Y_t = B_t^2$ with $f(x) = x^2$: $f'(x) = 2x$, $f''(x) = 2$. Itô's lemma gives:
+
+    $$
+    dY_t = 2B_t\,dB_t + dt
+    $$
+
+    Now apply $g(y) = \sqrt{y}$ to $Y_t$. For $y > 0$: $g'(y) = \frac{1}{2}y^{-1/2}$, $g''(y) = -\frac{1}{4}y^{-3/2}$. The quadratic variation of $Y_t$ is $(dY_t)^2 = (2B_t\,dB_t + dt)^2 = 4B_t^2\,dt$ (only the $(dB_t)^2$ term survives). Itô's lemma gives:
+
+    $$
+    d(\sqrt{Y_t}) = \frac{1}{2}Y_t^{-1/2}\,dY_t + \frac{1}{2}\left(-\frac{1}{4}\right)Y_t^{-3/2}(dY_t)^2
+    $$
+
+    Substituting $Y_t = B_t^2$, $dY_t = 2B_t\,dB_t + dt$, $(dY_t)^2 = 4B_t^2\,dt$:
+
+    $$
+    d|B_t| = \frac{1}{2|B_t|}(2B_t\,dB_t + dt) - \frac{1}{8}|B_t|^{-3} \cdot 4B_t^2\,dt
+    $$
+
+    $$
+    = \frac{B_t}{|B_t|}\,dB_t + \frac{1}{2|B_t|}\,dt - \frac{1}{2|B_t|}\,dt = \operatorname{sgn}(B_t)\,dB_t
+    $$
+
+    For $B_t > 0$ (which holds for $t < \tau_0$), $\operatorname{sgn}(B_t) = 1$, so $d(\sqrt{Y_t}) = dB_t$, which is consistent.
+
+    The regularity condition that fails at $y = 0$ is $C^2$ smoothness: $g''(y) = -\frac{1}{4}y^{-3/2} \to -\infty$ as $y \to 0^+$. Itô's lemma requires $g \in C^2$, so the formula breaks down when $B_t$ hits zero (i.e., $Y_t = 0$). This is why we restrict to $t < \tau_0$.

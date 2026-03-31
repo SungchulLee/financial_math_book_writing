@@ -568,3 +568,236 @@ $$
 $$
 
 for the three cases $S > Ke^{-rT}$, $S < Ke^{-rT}$, and $S = Ke^{-rT}$. Discuss why the $S = Ke^{-rT}$ case requires careful treatment.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    We need to show $\lim_{S \to \infty} C/S = 1$. From the Black-Scholes formula:
+
+    $$
+    \frac{C}{S} = \mathcal{N}(d_1) - \frac{Ke^{-rT}}{S}\mathcal{N}(d_2)
+    $$
+
+    As $S \to \infty$, we have $d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}} \to +\infty$, so $\mathcal{N}(d_1) \to 1$. Similarly $d_2 \to +\infty$, so $\mathcal{N}(d_2) \to 1$.
+
+    For the second term, $\frac{Ke^{-rT}}{S} \to 0$ while $\mathcal{N}(d_2) \to 1$, so $\frac{Ke^{-rT}}{S}\mathcal{N}(d_2) \to 0$.
+
+    To analyze the rate, note that for large $x$, $1 - \mathcal{N}(x) \sim \frac{\phi(x)}{x}$ where $\phi$ is the standard normal density. Since $d_1 \sim \frac{\ln S}{\sigma\sqrt{T}}$ for large $S$:
+
+    $$
+    1 - \mathcal{N}(d_1) \sim \frac{\phi(d_1)}{d_1} \sim \frac{\sigma\sqrt{T}}{\ln S} \cdot \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{(\ln S)^2}{2\sigma^2 T}\right)
+    $$
+
+    This decays faster than any power of $S$, so $\mathcal{N}(d_1) \to 1$ extremely rapidly. Therefore:
+
+    $$
+    \frac{C}{S} = \mathcal{N}(d_1) - \frac{Ke^{-rT}}{S}\mathcal{N}(d_2) \to 1 - 0 = 1
+    $$
+
+    For the delta interpretation: since $\Delta = \frac{\partial C}{\partial S} = \mathcal{N}(d_1)$ and $d_1 \to +\infty$ as $S \to \infty$, we get $\Delta \to 1$. This means a deep in-the-money call behaves like holding the stock itself, with a one-to-one response to stock price changes.
+
+??? success "Solution to Exercise 2"
+    With $S = K$ and $r = 0$, we have:
+
+    $$
+    d_1 = \frac{\ln(1) + \frac{1}{2}\sigma^2 T}{\sigma\sqrt{T}} = \frac{\sigma\sqrt{T}}{2}
+    $$
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{T} = -\frac{\sigma\sqrt{T}}{2}
+    $$
+
+    For small $T$, let $\epsilon = \frac{\sigma\sqrt{T}}{2}$. Using the Taylor expansion $\mathcal{N}(x) \approx \frac{1}{2} + \frac{x}{\sqrt{2\pi}}$ for small $x$:
+
+    $$
+    \mathcal{N}(d_1) \approx \frac{1}{2} + \frac{\epsilon}{\sqrt{2\pi}}, \quad \mathcal{N}(d_2) \approx \frac{1}{2} - \frac{\epsilon}{\sqrt{2\pi}}
+    $$
+
+    With $r = 0$, the call price is:
+
+    $$
+    C = S\mathcal{N}(d_1) - K\mathcal{N}(d_2) = S\left(\frac{1}{2} + \frac{\epsilon}{\sqrt{2\pi}}\right) - S\left(\frac{1}{2} - \frac{\epsilon}{\sqrt{2\pi}}\right) = \frac{2S\epsilon}{\sqrt{2\pi}}
+    $$
+
+    Substituting $\epsilon = \frac{\sigma\sqrt{T}}{2}$:
+
+    $$
+    C \approx \frac{2S}{2\sqrt{2\pi}} \cdot \sigma\sqrt{T} = \frac{S\sigma\sqrt{T}}{\sqrt{2\pi}}
+    $$
+
+    **Numerical check** with $S = K = 100$, $\sigma = 0.25$, $r = 0$, $T = 0.01$:
+
+    Approximation: $C_{\text{approx}} = \frac{100 \times 0.25 \times \sqrt{0.01}}{\sqrt{2\pi}} = \frac{100 \times 0.25 \times 0.1}{\sqrt{2\pi}} = \frac{2.5}{2.5066} \approx 0.9974$.
+
+    Exact: $d_1 = \frac{0.25\sqrt{0.01}}{2} = 0.0125$, $d_2 = -0.0125$.
+
+    $$
+    C_{\text{exact}} = 100\,\mathcal{N}(0.0125) - 100\,\mathcal{N}(-0.0125) = 100(0.50499 - 0.49501) = 0.9974
+    $$
+
+    Percentage error: $\frac{|0.9974 - 0.9974|}{0.9974} \approx 0.003\%$, which is negligible for small $T$.
+
+??? success "Solution to Exercise 3"
+    The Black-Scholes put formula is:
+
+    $$
+    P = Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)
+    $$
+
+    As $\sigma \to \infty$, recall from the main text that $d_1 \to +\infty$ and $d_2 \to -\infty$. Therefore:
+
+    $$
+    \mathcal{N}(-d_1) = 1 - \mathcal{N}(d_1) \to 1 - 1 = 0
+    $$
+
+    $$
+    \mathcal{N}(-d_2) = 1 - \mathcal{N}(d_2) \to 1 - 0 = 1
+    $$
+
+    Substituting into the put formula:
+
+    $$
+    P \to Ke^{-rT} \cdot 1 - S \cdot 0 = Ke^{-rT}
+    $$
+
+    **Financial intuition**: When volatility is infinite, the stock price at maturity is essentially unpredictable, with arbitrarily large swings in either direction. The put holder benefits from downward moves (payoff $K - S_T$ when $S_T < K$), and with infinite volatility, the probability of the stock finishing near zero becomes significant. The maximum payoff of a put is $K$ (when $S_T = 0$), and with infinite volatility, the expected discounted payoff approaches $Ke^{-rT}$. This is the theoretical maximum value for a European put: the present value of the strike, corresponding to the scenario where the stock is almost certainly worthless at expiration.
+
+??? success "Solution to Exercise 4"
+    As $r \to -\infty$:
+
+    $$
+    d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+    $$
+
+    The term $(r + \frac{1}{2}\sigma^2)T \to -\infty$, so $d_1 \to -\infty$.
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{T} \to -\infty
+    $$
+
+    Therefore $\mathcal{N}(d_1) \to 0$ and $\mathcal{N}(d_2) \to 0$.
+
+    For the call price:
+
+    $$
+    C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
+    $$
+
+    The first term $S\mathcal{N}(d_1) \to 0$.
+
+    For the second term, $e^{-rT} \to +\infty$ as $r \to -\infty$, but $\mathcal{N}(d_2) \to 0$. We need to evaluate $Ke^{-rT}\mathcal{N}(d_2)$ more carefully. Using the asymptotic $\mathcal{N}(x) \sim \frac{\phi(x)}{|x|}$ for $x \to -\infty$ and substituting $d_2 \approx \frac{rT}{\sigma\sqrt{T}} = \frac{r\sqrt{T}}{\sigma}$:
+
+    $$
+    Ke^{-rT}\mathcal{N}(d_2) \sim Ke^{-rT} \cdot \frac{1}{|d_2|\sqrt{2\pi}} \exp\left(-\frac{d_2^2}{2}\right) \sim Ke^{-rT} \cdot \frac{\sigma}{|r|\sqrt{T}\sqrt{2\pi}} \exp\left(-\frac{r^2 T}{2\sigma^2}\right)
+    $$
+
+    Since $e^{-rT} = e^{|r|T}$ grows only exponentially while $e^{-r^2 T/(2\sigma^2)}$ decays as a Gaussian in $r$, the product goes to $0$ as $r \to -\infty$.
+
+    Therefore:
+
+    $$
+    \lim_{r \to -\infty} C = 0
+    $$
+
+    **Economic interpretation**: A very negative interest rate means cash is extremely expensive to hold, and the present value of the strike $Ke^{-rT} \to +\infty$. The forward price $Se^{rT} \to 0$, meaning the stock is expected to lose nearly all its value under the risk-neutral measure. The option to buy the stock at any positive strike is worthless because the stock itself becomes worthless in forward terms. This is consistent: no rational agent would pay for the right to buy an asset whose risk-neutral expected value vanishes.
+
+??? success "Solution to Exercise 5"
+    When $r = 0$, the stock price dynamics under $\mathbb{Q}$ are $dS_t = \sigma S_t dW_t$ (pure martingale).
+
+    $$
+    d_1 = \frac{\ln(S/K) + \frac{1}{2}\sigma^2 T}{\sigma\sqrt{T}} = \frac{\ln(S/K)}{\sigma\sqrt{T}} + \frac{\sigma\sqrt{T}}{2}
+    $$
+
+    As $T \to \infty$: the first term $\frac{\ln(S/K)}{\sigma\sqrt{T}} \to 0$, while the second term $\frac{\sigma\sqrt{T}}{2} \to +\infty$.
+
+    So $d_1 \to +\infty$ and $\mathcal{N}(d_1) \to 1$.
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{T} = \frac{\ln(S/K)}{\sigma\sqrt{T}} - \frac{\sigma\sqrt{T}}{2} \to -\infty
+    $$
+
+    So $\mathcal{N}(d_2) \to 0$.
+
+    The put price (with $r = 0$, so $e^{-rT} = 1$):
+
+    $$
+    P = K\mathcal{N}(-d_2) - S\mathcal{N}(-d_1) \to K \cdot 1 - S \cdot 0 = K
+    $$
+
+    Therefore $\lim_{T \to \infty} P = K$ when $r = 0$.
+
+    This contrasts with the $r > 0$ case where $P \to 0$. The difference arises because when $r = 0$, there is no discounting: $Ke^{-rT} = K$ for all $T$. The put's maximum payoff is $K$ (when $S_T = 0$), and with infinite time, the stock—being a martingale under $\mathbb{Q}$ when $r = 0$—has a positive probability of approaching zero. In fact, geometric Brownian motion with zero drift almost surely reaches arbitrarily small values over infinite time, so the put captures nearly its full payoff value $K$.
+
+??? success "Solution to Exercise 6"
+    From the ATM approximation $C_{\text{ATM}} \approx 0.4\, S \sigma \sqrt{T}$, we solve for $\sigma$:
+
+    $$
+    \sigma_{\text{impl}} \approx \frac{C_{\text{mkt}}}{0.4\, S \sqrt{T}}
+    $$
+
+    More precisely, using $C_{\text{ATM}} \approx \frac{S\sigma\sqrt{T}}{\sqrt{2\pi}}$:
+
+    $$
+    \sigma_{\text{impl}} \approx \frac{C_{\text{mkt}}\sqrt{2\pi}}{S\sqrt{T}}
+    $$
+
+    **Application** with $S = 50$, $T = 0.25$, $C_{\text{mkt}} = 2.00$:
+
+    $$
+    \sigma_{\text{impl}} \approx \frac{2.00}{0.4 \times 50 \times \sqrt{0.25}} = \frac{2.00}{0.4 \times 50 \times 0.5} = \frac{2.00}{10} = 0.20 = 20\%
+    $$
+
+    The approximate implied volatility is $20\%$.
+
+??? success "Solution to Exercise 7"
+    **Case 1: $S > Ke^{-rT}$ (forward price above strike)**
+
+    As $\sigma \to 0^+$: $d_1, d_2 \to +\infty$, so $C \to S - Ke^{-rT} > 0$ and $P \to 0$.
+
+    $$
+    \lim_{\sigma \to 0^+} \frac{P}{C} = \frac{0}{S - Ke^{-rT}} = 0
+    $$
+
+    **Case 2: $S < Ke^{-rT}$ (forward price below strike)**
+
+    As $\sigma \to 0^+$: $d_1, d_2 \to -\infty$, so $C \to 0$ and $P \to Ke^{-rT} - S > 0$.
+
+    $$
+    \lim_{\sigma \to 0^+} \frac{P}{C} = \frac{Ke^{-rT} - S}{0^+} = +\infty
+    $$
+
+    **Case 3: $S = Ke^{-rT}$ (ATM forward)**
+
+    Both $C \to 0$ and $P \to 0$, giving a $0/0$ indeterminate form. Using the ATM approximations for small $\sigma$:
+
+    $$
+    d_1 = \frac{\sigma\sqrt{T}}{2}, \quad d_2 = -\frac{\sigma\sqrt{T}}{2}
+    $$
+
+    With the Taylor expansion $\mathcal{N}(x) \approx \frac{1}{2} + \frac{x}{\sqrt{2\pi}}$ for small $x$:
+
+    $$
+    C \approx S\left(\frac{1}{2} + \frac{\sigma\sqrt{T}}{2\sqrt{2\pi}}\right) - Ke^{-rT}\left(\frac{1}{2} - \frac{\sigma\sqrt{T}}{2\sqrt{2\pi}}\right)
+    $$
+
+    Since $S = Ke^{-rT}$, denote this common value by $F$:
+
+    $$
+    C \approx F\left(\frac{1}{2} + \frac{\sigma\sqrt{T}}{2\sqrt{2\pi}}\right) - F\left(\frac{1}{2} - \frac{\sigma\sqrt{T}}{2\sqrt{2\pi}}\right) = \frac{F\sigma\sqrt{T}}{\sqrt{2\pi}}
+    $$
+
+    Similarly:
+
+    $$
+    P = C - S + Ke^{-rT} = C - F + F = C
+    $$
+
+    So $P \approx C$ when $S = Ke^{-rT}$, giving:
+
+    $$
+    \lim_{\sigma \to 0^+} \frac{P}{C} = 1
+    $$
+
+    The $S = Ke^{-rT}$ case requires careful treatment because both numerator and denominator vanish simultaneously, creating an indeterminate form. L'Hopital's rule or Taylor expansion around $\sigma = 0$ is needed. The limiting ratio of $1$ reflects the symmetry of the ATM forward position: at the forward strike, calls and puts have equal value to leading order.

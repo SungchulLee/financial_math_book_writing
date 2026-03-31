@@ -920,3 +920,189 @@ and explain how the discounting factor $e^{-rT}$ in the Black-Scholes formula sh
 ---
 
 **Exercise 6.** Discuss which of the six Black-Scholes assumptions is most severely violated for each of the following instruments: (a) a 1-week option on a liquid large-cap stock, (b) a 2-year LEAPS option on a high-dividend utility stock, (c) an option on a cryptocurrency. For each case, identify the assumption that is most problematic and suggest an appropriate model extension.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Under GBM, the stock price at $t = 1$ satisfies
+
+    $$
+    \ln S_1 \sim \mathcal{N}\!\left(\ln S_0 + \left(\mu - \frac{1}{2}\sigma^2\right), \sigma^2\right)
+    $$
+
+    With $S_0 = 100$, $\mu = 0.10$, $\sigma = 0.25$:
+
+    $$
+    \ln S_1 \sim \mathcal{N}\!\left(\ln 100 + 0.10 - \frac{0.0625}{2}, 0.0625\right) = \mathcal{N}(4.6677, 0.0625)
+    $$
+
+    We need $\mathbb{P}(S_1 < 80) = \mathbb{P}(\ln S_1 < \ln 80)$:
+
+    $$
+    z = \frac{\ln 80 - 4.6677}{\sqrt{0.0625}} = \frac{4.3820 - 4.6677}{0.25} = \frac{-0.2857}{0.25} = -1.1429
+    $$
+
+    Therefore $\mathbb{P}(S_1 < 80) = \Phi(-1.1429) \approx 0.1265$, or about 12.65%.
+
+    Under Bachelier's arithmetic Brownian motion with $S_t = S_0 + \sigma_{\text{ABM}} W_t$ (using the same absolute volatility $\sigma_{\text{ABM}} = \sigma \cdot S_0 = 25$), we have $S_1 \sim \mathcal{N}(100, 625)$, so:
+
+    $$
+    \mathbb{P}(S_1 < 80) = \Phi\!\left(\frac{80 - 100}{25}\right) = \Phi(-0.80) \approx 0.2119
+    $$
+
+    The ABM probability (~21.2%) is considerably higher because (i) it has no drift term pushing the price upward, and (ii) the normal distribution is symmetric about the mean, whereas the log-normal distribution under GBM is right-skewed, placing less mass in the left tail relative to the mean.
+
+??? success "Solution to Exercise 2"
+    When delta-hedging with transaction costs, each rebalancing requires trading a quantity of stock approximately proportional to the change in delta. Over a small time interval $\Delta t$, the change in delta is dominated by the gamma term:
+
+    $$
+    |\Delta(\text{shares})| \approx \bar{\Gamma} \cdot |\Delta S|
+    $$
+
+    where $|\Delta S| \approx \sigma S \sqrt{\Delta t}$ for a typical move. Each such trade costs $\kappa$ per dollar transacted, so the cost of one rebalancing is approximately:
+
+    $$
+    \text{Cost per rebalance} \approx \kappa \cdot \bar{\Gamma} \cdot S \cdot |\Delta S| \approx \kappa \bar{\Gamma} \sigma S^2 \sqrt{\Delta t}
+    $$
+
+    With $N$ rebalancing steps and $\Delta t = T/N$, the total transaction cost is approximately:
+
+    $$
+    \text{Total cost} \approx N \cdot \kappa \bar{\Gamma} \sigma S^2 \sqrt{\frac{T}{N}} = \kappa \bar{\Gamma} \sigma S^2 \sqrt{NT}
+    $$
+
+    As $N \to \infty$, this total cost grows as $\sqrt{N} \to \infty$. Therefore, continuous hedging is infeasible: the accumulated transaction costs diverge to infinity, making perfect replication impossible in the presence of any positive transaction cost $\kappa > 0$.
+
+??? success "Solution to Exercise 3"
+    We prove that early exercise of an American call on a non-dividend-paying stock is never optimal.
+
+    At any time $t < T$, the holder of the American call can either (i) exercise early, receiving payoff $S_t - K$, or (ii) continue to hold the option.
+
+    The value of the European call satisfies the lower bound:
+
+    $$
+    C(S_t, t) \geq S_t - Ke^{-r(T-t)}
+    $$
+
+    This follows from no-arbitrage: a portfolio of one call plus $Ke^{-r(T-t)}$ in the bond dominates a portfolio of one share (at maturity the call pays at least $S_T - K$ when $S_T > K$, and the bond grows to $K$, giving total $\geq S_T$; when $S_T \leq K$, the total is $\geq K \geq 0$).
+
+    Since $r > 0$ and $T - t > 0$, we have $e^{-r(T-t)} < 1$, which gives:
+
+    $$
+    C(S_t, t) \geq S_t - Ke^{-r(T-t)} > S_t - K
+    $$
+
+    The American call is worth at least as much as the European call (it has all the same rights plus the early exercise option), so:
+
+    $$
+    C_{\text{Am}}(S_t, t) \geq C(S_t, t) > S_t - K
+    $$
+
+    Since the value of holding the option strictly exceeds the early exercise payoff $S_t - K$ at every $t < T$, it is never optimal to exercise early. $\square$
+
+??? success "Solution to Exercise 4"
+    We derive the generalized Black-Scholes PDE with a time-dependent risk-free rate.
+
+    Consider a portfolio $\Pi = V - \Delta S$ where $V = V(S, t)$ is the option price. By Ito's lemma:
+
+    $$
+    dV = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}dt
+    $$
+
+    Choosing $\Delta = \frac{\partial V}{\partial S}$ eliminates the stochastic term:
+
+    $$
+    d\Pi = dV - \frac{\partial V}{\partial S}dS = \left(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}\right)dt
+    $$
+
+    The no-arbitrage condition requires the risk-free portfolio to earn the instantaneous risk-free rate $r(t)$:
+
+    $$
+    d\Pi = r(t)\Pi \, dt = r(t)\left(V - S\frac{\partial V}{\partial S}\right)dt
+    $$
+
+    Equating the two expressions:
+
+    $$
+    \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} = r(t)V - r(t)S\frac{\partial V}{\partial S}
+    $$
+
+    Rearranging gives the generalized PDE:
+
+    $$
+    \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + r(t)S\frac{\partial V}{\partial S} - r(t)V = 0
+    $$
+
+    The discounting factor $e^{-rT}$ in the constant-rate Black-Scholes formula must be replaced by:
+
+    $$
+    e^{-rT} \longrightarrow \exp\!\left(-\int_0^T r(s)\,ds\right)
+    $$
+
+    That is, the constant discount factor is replaced by the integral of the instantaneous short rate over the option's lifetime. The risk-neutral pricing formula becomes $V_0 = \exp\!\left(-\int_0^T r(s)\,ds\right)\mathbb{E}^{\mathbb{Q}}[H]$.
+
+??? success "Solution to Exercise 5"
+    With $S = 100$, $K = 100$, $r = 0.05$, $q = 0.03$, $\sigma = 0.20$, $T = 1$.
+
+    First compute $d_1$ and $d_2$:
+
+    $$
+    d_1 = \frac{\ln(100/100) + (0.05 - 0.03 + 0.5 \times 0.04) \times 1}{0.20 \times 1} = \frac{0 + 0.04}{0.20} = 0.20
+    $$
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{T} = 0.20 - 0.20 = 0.00
+    $$
+
+    From normal distribution tables: $\mathcal{N}(0.20) \approx 0.5793$ and $\mathcal{N}(0.00) = 0.5000$.
+
+    **Call price**:
+
+    $$
+    C = 100 \cdot e^{-0.03} \cdot 0.5793 - 100 \cdot e^{-0.05} \cdot 0.5000
+    $$
+
+    $$
+    C = 100 \times 0.97045 \times 0.5793 - 100 \times 0.95123 \times 0.5000
+    $$
+
+    $$
+    C \approx 56.22 - 47.56 = 8.66
+    $$
+
+    **Put price** via put-call parity: $P = C - Se^{-qT} + Ke^{-rT}$:
+
+    $$
+    P = 8.66 - 100 \times 0.97045 + 100 \times 0.95123
+    $$
+
+    $$
+    P = 8.66 - 97.045 + 95.123 \approx 6.74
+    $$
+
+    **Verification of dividend-adjusted put-call parity**:
+
+    $$
+    C - P = 8.66 - 6.74 = 1.92
+    $$
+
+    $$
+    Se^{-qT} - Ke^{-rT} = 97.045 - 95.123 = 1.92 \quad \checkmark
+    $$
+
+    The dividend-adjusted put-call parity $C - P = Se^{-qT} - Ke^{-rT}$ holds exactly (up to rounding).
+
+??? success "Solution to Exercise 6"
+    **(a) 1-week option on a liquid large-cap stock**:
+
+    The most severely violated assumption is **Assumption 3 (Continuous Trading)**. Even though the stock is liquid and one week is short enough that dividends, interest rate changes, and volatility shifts are minor, markets close overnight and on weekends. For a 1-week option, overnight gaps represent a significant fraction of the total time to maturity, creating unhedgeable exposure. Additionally, while rare, flash crashes or sudden news events can cause discrete jumps (violating Assumption 1), and these are relatively more impactful for short-dated options where gamma is high. **Model extension**: Discrete hedging models or jump-diffusion (Merton, 1976) to account for overnight gaps and sudden moves.
+
+    **(b) 2-year LEAPS option on a high-dividend utility stock**:
+
+    The most severely violated assumption is **Assumption 6 (No Dividends)**. Utility stocks typically have dividend yields of 3--5%, and over a 2-year horizon, multiple quarterly dividend payments will occur, each causing a discrete drop in the stock price on the ex-dividend date. Ignoring dividends leads to significant overpricing of calls and underpricing of puts. The constant risk-free rate assumption (Assumption 4) is also problematic over 2 years, as interest rates can change materially. **Model extension**: The dividend-adjusted Black-Scholes model with continuous yield $q$ as a first approximation, or a discrete-dividend model for greater accuracy. For interest rate uncertainty, one could use Black's model with the forward price.
+
+    **(c) Option on a cryptocurrency**:
+
+    The most severely violated assumption is **Assumption 1 (GBM with constant parameters)**. Cryptocurrency prices exhibit extreme volatility clustering, very fat tails (daily moves of 10--20% are not unusual), and frequent jumps driven by regulatory announcements, exchange failures, or shifts in market sentiment. The constant volatility assumption is grossly inadequate. Additionally, Assumption 2 (frictionless markets) is violated due to significant bid-ask spreads on many exchanges, varying liquidity across platforms, and potential for exchange outages. **Model extension**: Stochastic volatility with jumps (e.g., Bates model combining Heston stochastic volatility with Merton jumps), or regime-switching models to capture the distinct volatility regimes observed in cryptocurrency markets.

@@ -577,3 +577,178 @@ See [FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_
 ---
 
 **Exercise 7.** Derive the state price formulas $\psi_u = e^{-r\Delta t} q$ and $\psi_d = e^{-r\Delta t}(1-q)$ directly from the two consistency conditions $\psi_u u + \psi_d d = 1$ and $\psi_u + \psi_d = e^{-r\Delta t}$, without using the replication argument. That is, solve the $2 \times 2$ linear system for $\psi_u$ and $\psi_d$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Given $S_0 = 80$, $u = 1.25$, $d = 0.85$, $r = 4\%$, $\Delta t = 1$, and $K = 85$.
+
+    **Stock prices at $\Delta t$:**
+
+    - Up: $S_u = 1.25 \times 80 = 100$
+    - Down: $S_d = 0.85 \times 80 = 68$
+
+    **Put payoffs:**
+
+    $$
+    H_u = (85 - 100)^+ = 0, \qquad H_d = (85 - 68)^+ = 17
+    $$
+
+    **Replicating portfolio:**
+
+    $$
+    \Delta = \frac{H_u - H_d}{(u - d)S_0} = \frac{0 - 17}{(1.25 - 0.85) \times 80} = \frac{-17}{32} = -0.53125
+    $$
+
+    $$
+    B = e^{-r\Delta t}\left(\frac{uH_d - dH_u}{u - d}\right) = e^{-0.04}\left(\frac{1.25 \times 17 - 0.85 \times 0}{0.40}\right) = 0.96079 \times 53.125 = 51.04
+    $$
+
+    **Price:**
+
+    $$
+    P_0 = \Delta S_0 + B = -0.53125 \times 80 + 51.04 = -42.50 + 51.04 = 8.54
+    $$
+
+    **Verification:**
+
+    - Up state: $\Delta \cdot uS_0 + B \cdot e^{r\Delta t} = -0.53125 \times 100 + 51.04 \times 1.04081 = -53.125 + 53.125 = 0 = H_u$ $\checkmark$
+    - Down state: $\Delta \cdot dS_0 + B \cdot e^{r\Delta t} = -0.53125 \times 68 + 51.04 \times 1.04081 = -36.125 + 53.125 = 17 = H_d$ $\checkmark$
+
+??? success "Solution to Exercise 2"
+    The stock payoff vector is $(uS_0, dS_0)$ and the bond payoff vector is $(e^{r\Delta t}, e^{r\Delta t})$.
+
+    These are linearly independent if and only if one is not a scalar multiple of the other. Suppose $(uS_0, dS_0) = c(e^{r\Delta t}, e^{r\Delta t})$ for some scalar $c$. Then $uS_0 = ce^{r\Delta t}$ and $dS_0 = ce^{r\Delta t}$, which implies $uS_0 = dS_0$, hence $u = d$.
+
+    **Conversely**, if $u \neq d$, then $uS_0 \neq dS_0$ while $e^{r\Delta t} = e^{r\Delta t}$, so the stock payoff vector cannot be a multiple of the bond payoff vector. The two vectors are linearly independent.
+
+    **If $u = d$:** The stock payoff is the same in both states, so $S_{\Delta t} = uS_0$ deterministically. The stock becomes equivalent to a scaled bond, and the two assets span only a one-dimensional subspace of $\mathbb{R}^2$. Replication of a general payoff $(H_u, H_d)$ with $H_u \neq H_d$ is impossible because no portfolio can distinguish between the two states.
+
+??? success "Solution to Exercise 3"
+    With $S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$, we have $q = \frac{e^{0.05} - 0.9}{1.2 - 0.9} = \frac{0.15127}{0.3} = 0.5043$.
+
+    **State prices:**
+
+    $$
+    \psi_u = e^{-0.05} \times 0.5043 = 0.9512 \times 0.5043 = 0.4797
+    $$
+
+    $$
+    \psi_d = e^{-0.05} \times 0.4957 = 0.9512 \times 0.4957 = 0.4716
+    $$
+
+    **(a)** $\psi_u u + \psi_d d = 0.4797 \times 1.2 + 0.4716 \times 0.9 = 0.5756 + 0.4244 = 1.0000$ $\checkmark$
+
+    **(b)** $\psi_u + \psi_d = 0.4797 + 0.4716 = 0.9513 \approx e^{-0.05} = 0.9512$ $\checkmark$ (rounding)
+
+    **(c)** European call with $K = 105$: $H_u = 15$, $H_d = 0$.
+
+    State price method:
+
+    $$
+    C_0 = \psi_u \times 15 + \psi_d \times 0 = 0.4797 \times 15 = 7.20
+    $$
+
+    Replication method: $\Delta = 0.5$, $B = -42.80$, $V_0 = 50 - 42.80 = 7.20$ $\checkmark$
+
+??? success "Solution to Exercise 4"
+    With the standard parameters, $\psi_u = 0.4797$ and $\psi_d = 0.4716$.
+
+    **Put with $K_1 = 95$:**
+
+    - $H_u = (95 - 120)^+ = 0$, $H_d = (95 - 90)^+ = 5$
+    - $P_1 = 0.4797 \times 0 + 0.4716 \times 5 = 2.36$
+
+    **Put with $K_2 = 110$:**
+
+    - $H_u = (110 - 120)^+ = 0$, $H_d = (110 - 90)^+ = 20$
+    - $P_2 = 0.4797 \times 0 + 0.4716 \times 20 = 9.43$
+
+    **Bear spread** (long $K_2$ put, short $K_1$ put):
+
+    $$
+    V_0^{\text{bear}} = P_2 - P_1 = 9.43 - 2.36 = 7.07
+    $$
+
+    **Direct calculation:** Bear spread payoff is $H_u = 0 - 0 = 0$, $H_d = 20 - 5 = 15$.
+
+    $$
+    V_0 = \psi_u \times 0 + \psi_d \times 15 = 0.4716 \times 15 = 7.07 \quad \checkmark
+    $$
+
+??? success "Solution to Exercise 5"
+    Given $H_u = 10$, $H_d = 25$, with $S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$.
+
+    **Replicating portfolio:**
+
+    $$
+    \Delta = \frac{H_u - H_d}{(u - d)S_0} = \frac{10 - 25}{0.3 \times 100} = \frac{-15}{30} = -0.5
+    $$
+
+    $$
+    B = e^{-0.05}\left(\frac{1.2 \times 25 - 0.9 \times 10}{0.3}\right) = 0.9512 \times \frac{30 - 9}{0.3} = 0.9512 \times 70 = 66.58
+    $$
+
+    **Price:**
+
+    $$
+    V_0 = -0.5 \times 100 + 66.58 = -50 + 66.58 = 16.58
+    $$
+
+    **Interpretation of $\Delta < 0$:** The derivative pays **more** in the down state ($H_d = 25$) than in the up state ($H_u = 10$). It behaves like a put-like instrument whose value increases when the stock falls. To replicate it, we must **short** 0.5 shares of stock (so the stock leg gains when the stock falls) and **lend** \$66.58 (the positive cash position provides the base payoff level).
+
+??? success "Solution to Exercise 6"
+    The no-arbitrage price of the call is $C_0 = \psi_u H_u + \psi_d H_d$. If $C_0^{\text{mkt}} \neq C_0$, we can construct an arbitrage.
+
+    **Case $C_0^{\text{mkt}} > C_0$ (call is overpriced):**
+
+    The strategy is to **sell the overpriced call** and **buy the replicating portfolio**:
+
+    1. Sell 1 call at price $C_0^{\text{mkt}}$
+    2. Buy the replicating portfolio $(\Delta_C, B_C)$ at cost $C_0 = \Delta_C S_0 + B_C$
+
+    **Initial cash flow:** $C_0^{\text{mkt}} - C_0 > 0$ (profit at inception).
+
+    **Terminal payoff in each state:**
+
+    - Up state: Replicating portfolio pays $H_u$, call obligation is $H_u$. Net = $0$.
+    - Down state: Replicating portfolio pays $H_d$, call obligation is $H_d$. Net = $0$.
+
+    The replicating portfolio exactly offsets the call obligation in every state, so the terminal net payoff is zero. The initial profit $C_0^{\text{mkt}} - C_0 > 0$ is a riskless arbitrage.
+
+    Investing this profit in the bank account yields $(C_0^{\text{mkt}} - C_0)e^{r\Delta t} > 0$ at maturity with zero risk.
+
+??? success "Solution to Exercise 7"
+    We solve the system:
+
+    $$
+    \psi_u u + \psi_d d = 1 \qquad (1)
+    $$
+
+    $$
+    \psi_u + \psi_d = e^{-r\Delta t} \qquad (2)
+    $$
+
+    From (2): $\psi_d = e^{-r\Delta t} - \psi_u$. Substituting into (1):
+
+    $$
+    \psi_u u + (e^{-r\Delta t} - \psi_u)d = 1
+    $$
+
+    $$
+    \psi_u(u - d) + de^{-r\Delta t} = 1
+    $$
+
+    $$
+    \psi_u = \frac{1 - de^{-r\Delta t}}{u - d} = \frac{e^{-r\Delta t}(e^{r\Delta t} - d)}{u - d} = e^{-r\Delta t} \cdot \frac{e^{r\Delta t} - d}{u - d} = e^{-r\Delta t} q
+    $$
+
+    Then:
+
+    $$
+    \psi_d = e^{-r\Delta t} - \psi_u = e^{-r\Delta t} - e^{-r\Delta t} q = e^{-r\Delta t}(1 - q)
+    $$
+
+    This confirms $\psi_u = e^{-r\Delta t} q$ and $\psi_d = e^{-r\Delta t}(1-q)$ directly from the consistency conditions.

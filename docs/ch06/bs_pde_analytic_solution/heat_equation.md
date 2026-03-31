@@ -759,3 +759,179 @@ $$
 ---
 
 **Exercise 6.** The heat equation approach requires the initial condition $\psi(x) = (e^x - K)^+$ to be integrable against the Green's function. Discuss what happens if the payoff grows faster than $e^{|x|}$ as $|x| \to \infty$. Give an example of a payoff for which the superposition integral diverges, and explain what this means financially.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The Green's function is $G(x,\tau;z) = \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right)$.
+
+    **Compute the left side** $\frac{\partial G}{\partial \tau}$. Let $u = \frac{(x-z)^2}{2\sigma^2\tau}$. Then:
+
+    $$
+    G = (2\pi\sigma^2\tau)^{-1/2} e^{-u}
+    $$
+
+    $$
+    \frac{\partial G}{\partial \tau} = -\frac{1}{2\tau}G + G \cdot \frac{(x-z)^2}{2\sigma^2\tau^2} = G\left[-\frac{1}{2\tau} + \frac{(x-z)^2}{2\sigma^2\tau^2}\right]
+    $$
+
+    **Compute the right side** $\frac{1}{2}\sigma^2\frac{\partial^2 G}{\partial x^2}$. First:
+
+    $$
+    \frac{\partial G}{\partial x} = G \cdot \left(-\frac{x-z}{\sigma^2\tau}\right)
+    $$
+
+    $$
+    \frac{\partial^2 G}{\partial x^2} = G \cdot \frac{(x-z)^2}{\sigma^4\tau^2} + G \cdot \left(-\frac{1}{\sigma^2\tau}\right) = G\left[\frac{(x-z)^2}{\sigma^4\tau^2} - \frac{1}{\sigma^2\tau}\right]
+    $$
+
+    Therefore:
+
+    $$
+    \frac{1}{2}\sigma^2\frac{\partial^2 G}{\partial x^2} = G\left[\frac{(x-z)^2}{2\sigma^2\tau^2} - \frac{1}{2\tau}\right]
+    $$
+
+    This equals $\frac{\partial G}{\partial \tau}$, confirming that $G$ satisfies the heat equation.
+
+??? success "Solution to Exercise 2"
+    For the European put, the initial condition is $\psi(x) = (K - e^x)^+ = K - e^x$ for $x < \ln K$ and $0$ for $x \geq \ln K$.
+
+    The superposition integral is:
+
+    $$
+    F(x,\tau) = \int_{-\infty}^{\ln K}(K - e^z)\frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right)dz
+    $$
+
+    Split into two integrals:
+
+    $$
+    F = K\underbrace{\int_{-\infty}^{\ln K}\frac{1}{\sqrt{2\pi\sigma^2\tau}}e^{-(x-z)^2/(2\sigma^2\tau)}dz}_{J_2} - \underbrace{\int_{-\infty}^{\ln K}e^z \frac{1}{\sqrt{2\pi\sigma^2\tau}}e^{-(x-z)^2/(2\sigma^2\tau)}dz}_{J_1}
+    $$
+
+    **Integral $J_2$:** With the substitution $Z = (z-x)/(\sigma\sqrt{\tau})$:
+
+    $$
+    J_2 = \mathbb{P}\left(Z \leq \frac{\ln K - x}{\sigma\sqrt{\tau}}\right) = \mathcal{N}\left(\frac{\ln K - x}{\sigma\sqrt{\tau}}\right) = \mathcal{N}(-d_2)
+    $$
+
+    **Integral $J_1$:** By the same completing-the-square technique as for the call:
+
+    $$
+    J_1 = e^{x + \sigma^2\tau/2}\mathcal{N}\left(\frac{\ln K - x - \sigma^2\tau}{\sigma\sqrt{\tau}}\right) = e^{x+\sigma^2\tau/2}\mathcal{N}(-d_1)
+    $$
+
+    Therefore:
+
+    $$
+    F(x,\tau) = K\mathcal{N}(-d_2) - e^{x+\sigma^2\tau/2}\mathcal{N}(-d_1)
+    $$
+
+    Transforming back with $e^{x+\sigma^2\tau/2} = Se^{r\tau}$ and $V = Fe^{-r\tau}$:
+
+    $$
+    P(S,t) = Ke^{-r\tau}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)
+    $$
+
+    This matches the standard put formula.
+
+??? success "Solution to Exercise 3"
+    The transformed derivatives yield the following first-order terms in the PDE:
+
+    $$
+    -\left(r - \frac{1}{2}\sigma^2\right)\frac{\partial V}{\partial x} + r\frac{\partial V}{\partial x} - \frac{1}{2}\sigma^2\frac{\partial V}{\partial x}
+    $$
+
+    The first term comes from the time derivative transformation ($\frac{\partial V}{\partial t}$ contribution). The second term comes from the $rS\frac{\partial V}{\partial S} = r\frac{\partial V}{\partial x}$ term. The third term comes from the second-order term: $\frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} = \frac{1}{2}\sigma^2\left(\frac{\partial^2 V}{\partial x^2} - \frac{\partial V}{\partial x}\right)$, contributing $-\frac{1}{2}\sigma^2\frac{\partial V}{\partial x}$.
+
+    Summing all first-order coefficients:
+
+    $$
+    -r + \frac{1}{2}\sigma^2 + r - \frac{1}{2}\sigma^2 = 0
+    $$
+
+    The cancellation is exact. This happens because the transformation $x = \ln S + (r - \frac{1}{2}\sigma^2)\tau$ was specifically designed to incorporate the risk-neutral drift, thereby eliminating the convection (first-order) term from the PDE.
+
+??? success "Solution to Exercise 4"
+    Define $y = x/(\sigma\sqrt{2})$. Then $x = \sigma\sqrt{2}\,y$ and:
+
+    $$
+    \frac{\partial F}{\partial y} = \frac{\partial F}{\partial x}\frac{\partial x}{\partial y} = \sigma\sqrt{2}\frac{\partial F}{\partial x}
+    $$
+
+    $$
+    \frac{\partial^2 F}{\partial y^2} = 2\sigma^2\frac{\partial^2 F}{\partial x^2}
+    $$
+
+    Substituting into $\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2}$:
+
+    $$
+    \frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2 \cdot \frac{1}{2\sigma^2}\frac{\partial^2 F}{\partial y^2} = \frac{1}{2} \cdot \frac{1}{2}\frac{\partial^2 F}{\partial y^2}
+    $$
+
+    Hmm, this gives $\frac{\partial F}{\partial \tau} = \frac{1}{4}\frac{\partial^2 F}{\partial y^2}$, not unit diffusivity. To get the standard heat equation $\frac{\partial F}{\partial \tau} = \frac{\partial^2 F}{\partial y^2}$, we need the rescaling $y = x/(\sigma\sqrt{\tau})$ or $y = x/\sigma$ with a time rescaling $\tilde{\tau} = \frac{1}{2}\sigma^2\tau$. With $\tilde{\tau} = \frac{1}{2}\sigma^2\tau$:
+
+    $$
+    \frac{\partial F}{\partial \tilde{\tau}} = \frac{1}{\frac{1}{2}\sigma^2}\frac{\partial F}{\partial \tau} = \frac{1}{\frac{1}{2}\sigma^2}\cdot\frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2} = \frac{\partial^2 F}{\partial x^2}
+    $$
+
+    So with $y = x$ and $\tilde{\tau} = \frac{1}{2}\sigma^2\tau$, we obtain unit diffusivity. In these variables:
+
+    $$
+    d_1 = \frac{x + \sigma^2\tau - \ln K}{\sigma\sqrt{\tau}} = \frac{x + 2\tilde{\tau} - \ln K}{\sqrt{2\tilde{\tau}}}
+    $$
+
+    $$
+    d_2 = \frac{x - \ln K}{\sigma\sqrt{\tau}} = \frac{x - \ln K}{\sqrt{2\tilde{\tau}}}
+    $$
+
+??? success "Solution to Exercise 5"
+    The digital call payoff is $\psi(x) = \mathbf{1}_{\{x > \ln K\}}$. The superposition integral gives:
+
+    $$
+    F(x,\tau) = \int_{\ln K}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right)dz
+    $$
+
+    This is a standard Gaussian tail probability. With $Z = (z - x)/(\sigma\sqrt{\tau})$:
+
+    $$
+    F(x,\tau) = \mathbb{P}\left(Z \geq \frac{\ln K - x}{\sigma\sqrt{\tau}}\right) = \mathcal{N}\left(\frac{x - \ln K}{\sigma\sqrt{\tau}}\right) = \mathcal{N}(d_2)
+    $$
+
+    where $d_2 = \frac{x - \ln K}{\sigma\sqrt{\tau}}$.
+
+    Transforming back to original variables: $x = \ln S + (r - \frac{1}{2}\sigma^2)\tau$, so:
+
+    $$
+    d_2 = \frac{\ln S + (r - \frac{1}{2}\sigma^2)\tau - \ln K}{\sigma\sqrt{\tau}} = \frac{\ln(S/K) + (r - \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}
+    $$
+
+    Since $V = Fe^{-r\tau}$ and $F = \mathcal{N}(d_2)$:
+
+    $$
+    D_0 = e^{-rT}\mathcal{N}(d_2)
+    $$
+
+    This is the price of a digital (cash-or-nothing) call paying \$1 if $S_T > K$.
+
+??? success "Solution to Exercise 6"
+    The superposition integral is $F(x,\tau) = \int_{-\infty}^{\infty}\psi(z)G(x,\tau;z)dz$ where $G$ is the Gaussian kernel with variance $\sigma^2\tau$.
+
+    **Growth condition.** For the integral to converge, we need:
+
+    $$
+    \int_{-\infty}^{\infty}|\psi(z)| \cdot \frac{1}{\sqrt{2\pi\sigma^2\tau}}e^{-(x-z)^2/(2\sigma^2\tau)}dz < \infty
+    $$
+
+    The Gaussian kernel decays as $e^{-z^2/(2\sigma^2\tau)}$ for large $|z|$, so $\psi(z)$ can grow at most as $e^{cz^2}$ for some $c < 1/(2\sigma^2\tau)$ and the integral still converges. In particular, any payoff growing as $e^{\alpha|z|}$ (polynomial exponential growth) is integrable.
+
+    **Divergent example.** Consider the payoff $\psi(z) = e^{z^2}$ (super-exponential growth). The integral becomes:
+
+    $$
+    \int_{-\infty}^{\infty}e^{z^2}\frac{1}{\sqrt{2\pi\sigma^2\tau}}e^{-(x-z)^2/(2\sigma^2\tau)}dz
+    $$
+
+    The exponent grows as $z^2 - z^2/(2\sigma^2\tau) = z^2(1 - 1/(2\sigma^2\tau))$. For $\tau > 1/(2\sigma^2)$, the coefficient is positive and the integral diverges.
+
+    **Financial interpretation.** A payoff that grows faster than exponentially in $\ln S$ (i.e., super-polynomially in $S$) cannot be priced using the standard Green's function approach because the expected payoff under the risk-neutral measure is infinite. Such payoffs violate the integrability conditions needed for the risk-neutral pricing formula to hold. Financially, no finite amount of capital can replicate such a payoff, so it has no well-defined arbitrage-free price. The standard call payoff $(e^x - K)^+$ grows only as $e^x$ (linearly in $S$), which is within the allowable growth rate.

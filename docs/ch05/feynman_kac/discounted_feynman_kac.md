@@ -358,3 +358,144 @@ For a dividend-paying stock with continuous yield $q$ under $\mathbb{Q}$: $dS_t 
 
 **Exercise 7.**
 Derive the $-ru$ term in the discounted Feynman-Kac PDE by considering the extended process $Y_s = (X_s, R_s)$ where $R_s = \int_t^s r(\tau, X_\tau)\,d\tau$. Show that $v(t, x, \rho) = e^{-\rho}u(t,x)$ satisfies $\partial_\rho v = -e^{-\rho}u$, and use this to derive $\partial_t u + \mathcal{L}u - ru = 0$ from the backward equation for the extended process.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The Black-Scholes PDE with the given parameters is:
+
+    $$
+    \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0
+    $$
+
+    Substituting $r = 0.05$ and $\sigma = 0.30$:
+
+    $$
+    \frac{\partial V}{\partial t} + 0.05\,S\frac{\partial V}{\partial S} + \frac{1}{2}(0.09)\,S^2\frac{\partial^2 V}{\partial S^2} - 0.05\,V = 0
+    $$
+
+    **Components:**
+
+    - **Generator** $\mathcal{L}$: Under $\mathbb{Q}$, the stock follows $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$, so $\mu(S) = rS = 0.05S$ and $\sigma_{\text{diff}}(S) = \sigma S = 0.30S$. The generator is $\mathcal{L}V = 0.05S\,\partial_S V + \frac{1}{2}(0.09)S^2\,\partial_{SS}V$.
+    - **Discount rate**: The constant risk-free rate $r = 0.05$, appearing in the $-rV = -0.05V$ term.
+    - **Terminal condition**: For a call with strike $K = 100$, we have $V(T, S) = (S - 100)^+$.
+
+??? success "Solution to Exercise 2"
+    Let $v(t, x) = \mathbb{E}[g(X_T) \mid X_t = x]$, which solves the undiscounted backward equation $\partial_t v + \mathcal{L}v = 0$ with $v(T, x) = g(x)$.
+
+    Define $u(t, x) = e^{-r(T-t)}v(t, x)$. Since $r$ is constant, the discount factor $e^{-r(T-t)}$ does not depend on the path of $X$, so:
+
+    $$
+    u(t, x) = e^{-r(T-t)}\mathbb{E}[g(X_T) \mid X_t = x] = \mathbb{E}[e^{-r(T-t)}g(X_T) \mid X_t = x]
+    $$
+
+    which is the discounted Feynman-Kac expectation.
+
+    **Verification by substitution.** Compute each derivative of $u = e^{-r(T-t)}v$:
+
+    $$
+    \partial_t u = re^{-r(T-t)}v + e^{-r(T-t)}\partial_t v = ru + e^{-r(T-t)}\partial_t v
+    $$
+
+    $$
+    \partial_x u = e^{-r(T-t)}\partial_x v, \quad \partial_{xx}u = e^{-r(T-t)}\partial_{xx}v
+    $$
+
+    Therefore:
+
+    $$
+    \mathcal{L}u = e^{-r(T-t)}\mathcal{L}v
+    $$
+
+    Substituting into $\partial_t u + \mathcal{L}u - ru$:
+
+    $$
+    \partial_t u + \mathcal{L}u - ru = ru + e^{-r(T-t)}\partial_t v + e^{-r(T-t)}\mathcal{L}v - ru = e^{-r(T-t)}(\partial_t v + \mathcal{L}v) = 0
+    $$
+
+    since $v$ solves $\partial_t v + \mathcal{L}v = 0$. $\checkmark$
+
+??? success "Solution to Exercise 3"
+    In the Vasicek model, the short rate $r_t$ is the **state variable** itself. This creates a dual role for $r$:
+
+    1. **In the drift $\kappa(\theta - r)$**: The short rate is mean-reverting toward $\theta$, and the current value $r$ determines the drift of the process. This is the standard role of the state variable in the generator $\mathcal{L}$.
+
+    2. **In the discount term $-rP$**: The same variable $r$ serves as the instantaneous discounting rate. This arises because the bond price is $P(t, r) = \mathbb{E}[e^{-\int_t^T r_s\,ds} \mid r_t = r]$, and the Feynman-Kac formula produces the $-r\,P$ term.
+
+    **Difference from Black-Scholes**: In the Black-Scholes PDE, the discount rate $r$ is a fixed constant, independent of the state variable $S$. The state variable $S$ appears in the drift ($rS$) and the diffusion ($\sigma S$), but $r$ in the $-rV$ term is simply a parameter. In the Vasicek PDE, the discount rate is the state variable: the coefficient of $-P$ is $r$ itself, which varies stochastically. This makes the problem inherently different because the discounting is path-dependent, and the discount factor $e^{-\int_t^T r_s\,ds}$ cannot be factored out of the expectation.
+
+??? success "Solution to Exercise 4"
+    **Financial example**: A coupon bond that pays continuous coupons at rate $c$ per unit time. The holder receives a stream of payments $f(s, X_s) = c$ over $[t, T]$, each discounted to present value. With no terminal payoff ($g = 0$, or equivalently with a face value $g = 1$ at maturity for a standard bond), the value is:
+
+    $$
+    u(t, x) = \mathbb{E}\!\left[\int_t^T e^{-\int_t^s r(\tau, X_\tau)\,d\tau}\,c\,ds \,\Big|\, X_t = x\right]
+    $$
+
+    Other examples include: a stock paying continuous dividends at rate $qS$, where $f(s, S_s) = qS_s$; or a floating-rate note with running interest payments.
+
+    **Why the terminal condition is zero**: The formula $u(t,x) = \mathbb{E}[\int_t^T e^{-\int_t^s r\,d\tau}f(s, X_s)\,ds \mid X_t = x]$ represents only the running payoff component. At maturity $T$, there are no remaining future running payments to collect (the integral $\int_T^T \cdots\,ds = 0$), so $u(T, x) = 0$. If there were also a terminal payoff $g(X_T)$, it would be added separately, and the terminal condition would be $u(T, x) = g(x)$.
+
+??? success "Solution to Exercise 5"
+    With constant killing rate $r = 0.05$ and time horizon $T - t = 10$:
+
+    $$
+    \mathbb{P}(\zeta > T \mid \text{path of } X) = e^{-\int_t^T r\,ds} = e^{-0.05 \times 10} = e^{-0.5} \approx 0.6065
+    $$
+
+    So approximately $60.65\%$ of the probability mass survives to time $T$.
+
+    **Financial interpretation**: The survival probability $e^{-r(T-t)}$ is exactly the **discount factor** used to compute present values. A payoff of $\$1$ received at time $T$ is worth $e^{-0.5} \approx \$0.6065$ today. In the killing interpretation, we imagine the process being "killed" at random with intensity $r = 0.05$ per year. After 10 years, the probability that the process has not been killed is $e^{-0.5}$. The expected payoff, conditional on survival, times the survival probability gives the discounted expected value -- this is exactly how risk-neutral pricing works.
+
+??? success "Solution to Exercise 6"
+    Under $\mathbb{Q}$, the dividend-paying stock follows $dS_t = (r - q)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$, so the drift is $\mu(S) = (r - q)S$ and the diffusion coefficient is $\sigma_{\text{diff}}(S) = \sigma S$.
+
+    Applying the discounted Feynman-Kac formula with discount rate $r$, the PDE for $V(t, S)$ is:
+
+    $$
+    \frac{\partial V}{\partial t} + (r - q)S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0
+    $$
+
+    **How $q$ affects the PDE**: The dividend yield $q$ enters only through the drift term $(r - q)S\,\partial_S V$. Compared to the non-dividend case (where the drift coefficient is $rS$), the effective risk-neutral growth rate is reduced from $r$ to $r - q$. Intuitively, dividends "leak" value from the stock at rate $q$, so the capital appreciation under $\mathbb{Q}$ is slower.
+
+    **The discount rate is unchanged**: The $-rV$ term remains at rate $r$, not $r - q$. This is because discounting reflects the time value of money (the risk-free rate), which is independent of whether the stock pays dividends. The dividend yield affects the dynamics of the underlying but not the rate at which future payoffs are discounted.
+
+??? success "Solution to Exercise 7"
+    Consider the extended process $Y_s = (X_s, R_s)$ where $dX_s = \mu(s, X_s)\,ds + \sigma(s, X_s)\,dW_s$ and $dR_s = r(s, X_s)\,ds$ with $R_t = 0$. The function:
+
+    $$
+    v(t, x, \rho) = \mathbb{E}\!\left[e^{-R_T}\,g(X_T) \mid X_t = x, R_t = \rho\right]
+    $$
+
+    satisfies the backward equation for the joint process $(X_s, R_s)$:
+
+    $$
+    \partial_t v + \mu\,\partial_x v + \frac{1}{2}\sigma^2\,\partial_{xx}v + r\,\partial_\rho v = 0
+    $$
+
+    The term $r\,\partial_\rho v$ arises because $R_s$ has drift $r(s, X_s)$ and zero diffusion.
+
+    Now, by the multiplicative structure of $e^{-R_T} = e^{-\rho}\,e^{-\int_t^T r\,ds}$ (since $R_T = \rho + \int_t^T r(s, X_s)\,ds$), we can write:
+
+    $$
+    v(t, x, \rho) = e^{-\rho}\,u(t, x)
+    $$
+
+    where $u(t, x) = \mathbb{E}[e^{-\int_t^T r\,ds}\,g(X_T) \mid X_t = x]$.
+
+    Computing the partial derivative: $\partial_\rho v = -e^{-\rho}\,u$.
+
+    Substituting into the backward equation:
+
+    $$
+    e^{-\rho}\,\partial_t u + e^{-\rho}\,\mu\,\partial_x u + \frac{1}{2}e^{-\rho}\,\sigma^2\,\partial_{xx}u + r\,(-e^{-\rho}\,u) = 0
+    $$
+
+    Dividing through by $e^{-\rho} > 0$:
+
+    $$
+    \partial_t u + \mu\,\partial_x u + \frac{1}{2}\sigma^2\,\partial_{xx}u - r\,u = 0
+    $$
+
+    which is $\partial_t u + \mathcal{L}u - r\,u = 0$. $\square$

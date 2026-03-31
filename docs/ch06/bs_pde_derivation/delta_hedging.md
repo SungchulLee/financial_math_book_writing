@@ -206,3 +206,119 @@ For alternative derivations that arrive at the same PDE via different reasoning,
 ---
 
 **Exercise 6.** Verify that $V = S$ (the stock) and $V = e^{r(t-T)}$ (a zero-coupon bond) both satisfy the Black-Scholes PDE. Interpret these "trivial" solutions in the context of the delta-hedging argument: what is the hedge ratio $\Delta$ for each?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Define the portfolio $\Pi_t = V(t, S_t) - \Delta\, S_t$. Apply Itô's formula to $V(t, S_t)$ with $dS_t = \mu S_t\, dt + \sigma S_t\, dW_t$:
+
+    $$dV = \left(\frac{\partial V}{\partial t} + \mu S \frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}\right) dt + \sigma S \frac{\partial V}{\partial S}\, dW$$
+
+    The change in portfolio value (holding $\Delta$ fixed over $[t, t+dt]$) is:
+
+    $$d\Pi = dV - \Delta\, dS = \left(\frac{\partial V}{\partial t} + \mu S \frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - \Delta \mu S\right) dt + \left(\sigma S \frac{\partial V}{\partial S} - \Delta \sigma S\right) dW$$
+
+    Choose $\Delta = \partial V / \partial S$ to eliminate the stochastic term:
+
+    $$d\Pi = \left(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}\right) dt$$
+
+    The portfolio is now locally riskless. By the no-arbitrage condition, it must earn the risk-free rate:
+
+    $$d\Pi = r\Pi\, dt = r\!\left(V - \frac{\partial V}{\partial S}\, S\right) dt$$
+
+    Equating the two expressions for $d\Pi$:
+
+    $$\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} = rV - rS\frac{\partial V}{\partial S}$$
+
+    Rearranging:
+
+    $$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0$$
+
+    This is the Black–Scholes PDE.
+
+??? success "Solution to Exercise 2"
+    The physical drift $\mu$ cancels at the step where we choose $\Delta = \partial V / \partial S$. In the expression for $d\Pi$, the drift contains the terms:
+
+    $$\mu S \frac{\partial V}{\partial S} - \Delta \mu S = \mu S\!\left(\frac{\partial V}{\partial S} - \Delta\right)$$
+
+    Setting $\Delta = \partial V / \partial S$ makes this zero. The drift $\mu$ appears in both $dV$ (through the Itô expansion) and $\Delta\, dS$, and the choice of $\Delta$ eliminates $\mu$ from both the stochastic and the drift parts simultaneously.
+
+    If an investor uses $\hat{\mu} \neq \mu$, this does **not** affect the option price. The reason is that the hedging argument eliminates all dependence on $\mu$: the delta hedge removes the stock's random fluctuations, and the no-arbitrage condition determines the portfolio's return as $r$. The resulting PDE depends only on $\sigma$ and $r$, not on $\mu$. Economically, two investors who disagree about $\mu$ but agree on $\sigma$ will agree on the option price, because the cost of replicating the option (through continuous delta hedging) depends on the magnitude of fluctuations ($\sigma$) but not their expected direction ($\mu$).
+
+??? success "Solution to Exercise 3"
+    The smoothness assumption $V \in C^{1,2}$ fails at maturity for the standard **European call** (or put) payoff $\Phi(S) = (S - K)^+$. At $t = T$, the payoff function has a kink at $S = K$: the first derivative $\Phi'(S)$ jumps from 0 to 1 at $S = K$, so $\Phi''(S)$ does not exist at $S = K$ in the classical sense (it is a Dirac delta).
+
+    This means the PDE derivation via Itô's formula does not strictly apply at the terminal time. However, the **Feynman–Kac representation** handles this case because it only requires the payoff $\Phi$ to be measurable and satisfy a growth condition (e.g., $|\Phi(S)| \leq C(1 + S^p)$ for some constants $C, p$). The pricing formula
+
+    $$V(t, S) = e^{-r(T-t)}\, \mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]$$
+
+    is well-defined for any integrable payoff, and the resulting function $V(t, S)$ is smooth ($C^{1,2}$) for $t < T$ even when $\Phi$ is not smooth. The smoothing effect of the diffusion (the heat kernel) regularizes the terminal data: for any $t < T$, the probability of landing exactly at the kink $S_T = K$ is zero, and the conditional expectation is an integral against a smooth Gaussian density. The PDE holds for all $t < T$, and the non-smooth terminal condition is approached in the limit $t \to T^-$.
+
+??? success "Solution to Exercise 4"
+    With a continuous dividend yield $q$, the stock dynamics under $\mathbb{P}$ become $dS_t = (\mu - q)S_t\, dt + \sigma S_t\, dW_t$. Form the portfolio $\Pi = V - \Delta S$. Since we are short $\Delta$ shares, we must pay dividends to the lender at rate $q\Delta S\, dt$. The portfolio change is:
+
+    $$d\Pi = dV - \Delta\, dS - q\Delta S\, dt$$
+
+    Apply Itô's formula to $V(t, S_t)$:
+
+    $$dV = \left(\frac{\partial V}{\partial t} + (\mu - q)S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}\right)dt + \sigma S \frac{\partial V}{\partial S}\, dW$$
+
+    Set $\Delta = \partial V/\partial S$ to eliminate the $dW$ term. After cancellation of $(\mu - q)S\, \partial V/\partial S$ from $dV$ and $\Delta\, dS$:
+
+    $$d\Pi = \left(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - qS\frac{\partial V}{\partial S}\right)dt$$
+
+    The no-arbitrage condition $d\Pi = r\Pi\, dt = r(V - S\partial V/\partial S)\, dt$ gives:
+
+    $$\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - qS\frac{\partial V}{\partial S} = rV - rS\frac{\partial V}{\partial S}$$
+
+    Rearranging:
+
+    $$\frac{\partial V}{\partial t} + (r-q)S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0$$
+
+    The dividend yield $q$ replaces $r$ by $r - q$ in the drift term, while the discounting term $-rV$ is unchanged.
+
+??? success "Solution to Exercise 5"
+    Over a discrete time step $\Delta t$, the hedged portfolio is $\Pi = V - \Delta S$ with $\Delta = \partial V/\partial S$ held fixed. The actual change in $V$ is:
+
+    $$\Delta V \approx \frac{\partial V}{\partial t}\Delta t + \frac{\partial V}{\partial S}\Delta S + \frac{1}{2}\frac{\partial^2 V}{\partial S^2}(\Delta S)^2$$
+
+    The portfolio change is $\Delta\Pi = \Delta V - \frac{\partial V}{\partial S}\Delta S$, so:
+
+    $$\Delta\Pi = \frac{\partial V}{\partial t}\Delta t + \frac{1}{2}\Gamma(\Delta S)^2$$
+
+    where $\Gamma = \partial^2 V/\partial S^2$. In the continuous limit, the Black–Scholes PDE gives $\frac{\partial V}{\partial t} = rV - rS\frac{\partial V}{\partial S} - \frac{1}{2}\sigma^2 S^2 \Gamma$, so the "theoretical" portfolio return is $r\Pi\, \Delta t$. The hedging error per step is:
+
+    $$\epsilon = \Delta\Pi - r\Pi\, \Delta t = \frac{1}{2}\Gamma\bigl[(\Delta S)^2 - \sigma^2 S^2 \Delta t\bigr]$$
+
+    This is the difference between the realized quadratic variation $(\Delta S)^2$ and its expected value $\sigma^2 S^2 \Delta t$.
+
+    **Expected hedging error:** Since $\mathbb{E}[(\Delta S)^2] = \sigma^2 S^2 \Delta t + O((\Delta t)^2)$ (the $\mu^2 S^2 (\Delta t)^2$ term is higher order), we have:
+
+    $$\mathbb{E}[\epsilon] = 0 + O((\Delta t)^2)$$
+
+    The expected hedging error is zero to leading order.
+
+    **Variance of the hedging error:** We need $\text{Var}[(\Delta S)^2]$. Writing $\Delta S \approx \sigma S \sqrt{\Delta t}\, Z$ where $Z \sim \mathcal{N}(0,1)$ (to leading order), we get $(\Delta S)^2 \approx \sigma^2 S^2 \Delta t\, Z^2$. Since $\text{Var}[Z^2] = 2$:
+
+    $$\text{Var}[\epsilon] = \frac{1}{4}\Gamma^2 \cdot \text{Var}[(\Delta S)^2] \approx \frac{1}{4}\Gamma^2 \cdot 2\sigma^4 S^4 (\Delta t)^2 = \frac{1}{2}\Gamma^2 \sigma^4 S^4 (\Delta t)^2$$
+
+    The standard deviation of the hedging error per step is proportional to $\Gamma \sigma^2 S^2 \Delta t$, which decreases linearly with the rebalancing interval.
+
+??? success "Solution to Exercise 6"
+    **Case 1: $V = S$ (the stock itself).**
+
+    Compute the derivatives: $\partial V/\partial t = 0$, $\partial V/\partial S = 1$, $\partial^2 V/\partial S^2 = 0$. Substitute into the Black–Scholes PDE:
+
+    $$0 + rS(1) + \frac{1}{2}\sigma^2 S^2(0) - rS = rS - rS = 0 \;\checkmark$$
+
+    The hedge ratio is $\Delta = \partial V/\partial S = 1$. The hedging portfolio is $\Pi = V - \Delta S = S - S = 0$, which trivially earns $r \cdot 0 = 0$. Interpretation: to replicate the stock, hold the stock. No hedging is needed because the "derivative" is the underlying itself.
+
+    **Case 2: $V = e^{r(t-T)}$ (a zero-coupon bond paying \$1 at time $T$).**
+
+    Compute the derivatives: $\partial V/\partial t = re^{r(t-T)}= rV$, $\partial V/\partial S = 0$, $\partial^2 V/\partial S^2 = 0$. Substitute:
+
+    $$rV + rS(0) + \frac{1}{2}\sigma^2 S^2(0) - rV = rV - rV = 0 \;\checkmark$$
+
+    The hedge ratio is $\Delta = \partial V/\partial S = 0$. The hedging portfolio is $\Pi = V - 0 \cdot S = V = e^{r(t-T)}$, and $d\Pi = rV\, dt = r\Pi\, dt$, confirming it earns the risk-free rate. Interpretation: a zero-coupon bond has no stock exposure, so no hedge is needed. The bond price grows deterministically at rate $r$.

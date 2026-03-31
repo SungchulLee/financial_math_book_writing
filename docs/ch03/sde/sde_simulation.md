@@ -1698,3 +1698,151 @@ flowchart TD
 (b) Increase $N$ until the scheme stabilizes. What is the critical value of $a\,\Delta t$ for stability?
 
 (c) Compare with exact OU simulation using the same parameters. Why is exact simulation immune to this stability issue?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    This is a conceptual and implementation exercise. The SDE $dX_t = \sin(X_t)\,dt + 0.5\,dW_t$ has a bounded drift ($|\sin(x)| \leq 1$) and constant diffusion. The Euler-Maruyama update is:
+
+    $$
+    X_{n+1} = X_n + \sin(X_n)\,\Delta t + 0.5\,\Delta W_n
+    $$
+
+    with $\Delta t = 5/1000 = 0.005$ and $\Delta W_n \sim \mathcal{N}(0, \Delta t)$.
+
+    The drift $\sin(X_t)$ has stable equilibria at $X = 2k\pi$ (even multiples of $\pi$) and unstable equilibria at $X = (2k+1)\pi$ (odd multiples). The process should exhibit a stationary distribution: the bounded, periodic drift combined with constant noise prevents the process from drifting to infinity. The sample paths will fluctuate around multiples of $2\pi$, and a histogram of $X_T$ across many paths should reveal a periodic density on $\mathbb{R}$.
+
+??? success "Solution to Exercise 2"
+    **(a)-(c)** For GBM with $\mu = 0.05$, $\sigma = 0.3$, $S_0 = 100$, $T = 1$, the exact terminal distribution is log-normal with:
+
+    $$
+    \mathbb{E}[S_1] = 100\,e^{0.05} \approx 105.127
+    $$
+
+    $$
+    \operatorname{Std}[S_1] = 100\,e^{0.05}\sqrt{e^{0.09} - 1} \approx 105.127 \times 0.30681 \approx 32.26
+    $$
+
+    Euler-Maruyama introduces a weak-order bias of $O(\Delta t)$. As $N$ increases:
+
+    - $N = 10$ ($\Delta t = 0.1$): noticeable bias in the sample mean; the distribution is slightly distorted.
+    - $N = 100$ ($\Delta t = 0.01$): bias is much smaller, sample statistics approach exact values.
+    - $N = 1000$ ($\Delta t = 0.001$): bias is negligible for practical purposes.
+    - Exact simulation: no discretization error at all; only Monte Carlo sampling error remains.
+
+    The Euler-Maruyama bias decreases linearly with $\Delta t$ (weak order 1). For GBM specifically, the Log-Euler scheme eliminates this bias entirely regardless of step size.
+
+??? success "Solution to Exercise 3"
+    For the CIR process $dr_t = a(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t$, the diffusion function is $\sigma(r) = \sigma\sqrt{r}$.
+
+    The derivative is:
+
+    $$
+    \sigma'(r) = \frac{\sigma}{2\sqrt{r}}
+    $$
+
+    The Milstein correction term is:
+
+    $$
+    \frac{1}{2}\sigma(r)\sigma'(r)(\Delta W^2 - \Delta t) = \frac{1}{2} \cdot \sigma\sqrt{r} \cdot \frac{\sigma}{2\sqrt{r}} \cdot (\Delta W^2 - \Delta t) = \frac{\sigma^2}{4}(\Delta W^2 - \Delta t)
+    $$
+
+    The full Milstein update step is:
+
+    $$
+    r_{n+1} = r_n + a(\theta - r_n)\Delta t + \sigma\sqrt{r_n}\,\Delta W_n + \frac{\sigma^2}{4}(\Delta W_n^2 - \Delta t)
+    $$
+
+    Note that the correction term $\frac{\sigma^2}{4}(\Delta W_n^2 - \Delta t)$ does not depend on $r_n$, which is a special feature of the square-root diffusion. However, this scheme can still produce negative values; boundary modifications (e.g., full truncation or reflection) are needed in practice.
+
+??? success "Solution to Exercise 4"
+    OU process with $\kappa = 1$, $\theta = 0$, $\sigma = 1$, $X_0 = 5$.
+
+    **(a)-(b)** The exact conditional distribution is:
+
+    $$
+    X_{t+\Delta t} \mid X_t \sim \mathcal{N}\!\left(X_t\,e^{-\Delta t},\; \frac{1}{2}(1 - e^{-2\Delta t})\right)
+    $$
+
+    At $T = 10$, $e^{-10} \approx 4.5 \times 10^{-5}$, so the initial condition has essentially decayed to zero.
+
+    The stationary distribution is $\mathcal{N}(\theta, \sigma^2/(2\kappa)) = \mathcal{N}(0, 0.5)$. The theoretical stationary density is:
+
+    $$
+    p(x) = \frac{1}{\sqrt{2\pi \times 0.5}}\exp\!\left(-\frac{x^2}{2 \times 0.5}\right) = \frac{1}{\sqrt{\pi}}\exp(-x^2)
+    $$
+
+    **(c)** Theoretical values at $T = 10$:
+
+    $$
+    \mathbb{E}[X_{10}] = 5\,e^{-10} \approx 0.0000
+    $$
+
+    $$
+    \operatorname{Var}[X_{10}] = \frac{1}{2}(1 - e^{-20}) \approx 0.5000
+    $$
+
+    The sample mean and variance from $10{,}000$ paths should be very close to $0$ and $0.5$, respectively.
+
+??? success "Solution to Exercise 5"
+    This is an implementation exercise. Under risk-neutral GBM, $S_T = S_0\exp[(r - \sigma^2/2)T + \sigma\sqrt{T}\,Z]$ with $Z \sim \mathcal{N}(0,1)$.
+
+    The Black-Scholes price for the at-the-money call ($S_0 = K = 100$, $r = 0.05$, $\sigma = 0.2$, $T = 1$) serves as a benchmark: approximately \$10.45.
+
+    **(a)** Standard Monte Carlo with $M = 10{,}000$ paths: generate $Z_1, \ldots, Z_M$ independently, compute $\hat{C} = e^{-rT}\frac{1}{M}\sum_{i=1}^M \max(S_T^{(i)} - K, 0)$ with standard error $\text{SE} = \hat{\sigma}/\sqrt{M}$.
+
+    **(b)** Antithetic variates with $M/2 = 5{,}000$ pairs: for each $Z_i$, compute payoffs for both $Z_i$ and $-Z_i$, then average each pair before averaging across pairs.
+
+    **(c)** The antithetic estimator typically reduces the standard error by a factor of 3-5 for this problem, because $\max(S_T(Z) - K, 0)$ and $\max(S_T(-Z) - K, 0)$ are negatively correlated (when one is large, the other tends to be small). The variance of the pair average $\frac{1}{2}[f(Z) + f(-Z)]$ is $\frac{1}{4}[\operatorname{Var}(f(Z)) + \operatorname{Var}(f(-Z)) + 2\operatorname{Cov}(f(Z), f(-Z))]$, and the negative covariance reduces total variance significantly.
+
+??? success "Solution to Exercise 6"
+    The Euler-Maruyama update for GBM $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ is:
+
+    $$
+    S_{n+1} = S_n(1 + \mu\,\Delta t + \sigma\,\Delta W_n)
+    $$
+
+    This can produce $S_{n+1} < 0$ whenever $1 + \mu\,\Delta t + \sigma\,\Delta W_n < 0$, i.e., when:
+
+    $$
+    \Delta W_n < -\frac{1 + \mu\,\Delta t}{\sigma}
+    $$
+
+    Since $\Delta W_n \sim \mathcal{N}(0, \Delta t)$, this event has probability:
+
+    $$
+    \Phi\!\left(-\frac{1 + \mu\,\Delta t}{\sigma\sqrt{\Delta t}}\right)
+    $$
+
+    This probability is largest when $\sigma$ is large and $\Delta t$ is large (making $\sigma\sqrt{\Delta t}$ comparable to $1$). For example, with $\sigma = 0.3$ and $\Delta t = 0.1$, the threshold is approximately $\Delta W < -10.5\sqrt{\Delta t}$, which is extremely unlikely. But with $\sigma = 1.0$ and $\Delta t = 1.0$, the threshold becomes $\Delta W < -1.05$, which has probability $\Phi(-1.05) \approx 15\%$.
+
+    The Log-Euler scheme avoids this by construction. The update is:
+
+    $$
+    S_{n+1} = S_n \exp\!\left[(\mu - \sigma^2/2)\Delta t + \sigma\,\Delta W_n\right]
+    $$
+
+    Since the exponential function is always positive, $S_{n+1} > 0$ for any value of $\Delta W_n$, regardless of step size or parameters. This is because the scheme operates on $\log S$, which is an additive SDE, and then exponentiates the result.
+
+??? success "Solution to Exercise 7"
+    **(a)** With $a = 50$, $\Delta t = T/N = 2/100 = 0.02$, so $a\,\Delta t = 50 \times 0.02 = 1.0$.
+
+    The Euler-Maruyama update for the OU process is:
+
+    $$
+    X_{n+1} = X_n + a(\theta - X_n)\Delta t + \sigma\,\Delta W_n = X_n(1 - a\,\Delta t) + a\theta\,\Delta t + \sigma\,\Delta W_n
+    $$
+
+    The deterministic amplification factor is $|1 - a\,\Delta t| = |1 - 1.0| = 0$. At $a\,\Delta t = 1.0$ the scheme is marginally stable. For $a\,\Delta t > 1$, the factor $|1 - a\,\Delta t| > 1$ and perturbations grow, causing oscillatory instability.
+
+    **(b)** The critical stability condition is $|1 - a\,\Delta t| < 1$, which gives $a\,\Delta t < 2$. Thus $N > aT/2 = 50$ suffices. More conservatively, $a\,\Delta t < 1$ avoids oscillatory behavior entirely, requiring $N > aT = 100$. With $N = 200$ ($a\,\Delta t = 0.5$), the scheme should be clearly stable.
+
+    **(c)** Exact OU simulation uses the conditional distribution:
+
+    $$
+    X_{n+1} \mid X_n \sim \mathcal{N}(X_n e^{-a\Delta t} + \theta(1 - e^{-a\Delta t}),\; \tfrac{\sigma^2}{2a}(1 - e^{-2a\Delta t}))
+    $$
+
+    The factor $e^{-a\Delta t}$ is always in $[0, 1)$ for $a > 0$ and $\Delta t > 0$, so the scheme is **unconditionally stable** regardless of step size. The exact transition distribution correctly captures the exponential decay without any discretization amplification. Even with $a\,\Delta t = 100$, the exact scheme simply gives $e^{-100} \approx 0$, meaning each step essentially resamples from near the stationary distribution. This is why exact simulation is immune to stability issues that plague explicit Euler schemes for stiff equations.

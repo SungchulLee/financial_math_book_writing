@@ -545,3 +545,212 @@ $$
 ---
 
 **Exercise 7.** The skewness of GBM at time $t$ is given by $(e^{\sigma^2 t} + 2)\sqrt{e^{\sigma^2 t} - 1}$. Compute the skewness for $\sigma = 0.2$ at $t = 1$ and $t = 10$. Explain why the distribution becomes more skewed over longer time horizons in terms of the multiplicative noise structure.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The SDE is $dX_t = 2\,dt + 3\,dW_t$ with $X_0 = 1$, so $X_t = 1 + 2t + 3W_t$.
+
+    At $t = 5$: $X_5 = 1 + 10 + 3W_5$, where $W_5 \sim \mathcal{N}(0, 5)$.
+
+    **(a)**
+
+    $$
+    \mathbb{E}[X_5] = 1 + 10 = 11
+    $$
+
+    $$
+    \operatorname{Var}[X_5] = 9 \cdot 5 = 45
+    $$
+
+    **(b)** Using $\mathbb{E}[X_5^2] = \operatorname{Var}[X_5] + (\mathbb{E}[X_5])^2$:
+
+    $$
+    \mathbb{E}[X_5^2] = 45 + 121 = 166
+    $$
+
+    **(c)** Since $X_5 - \mathbb{E}[X_5] = 3W_5 \sim \mathcal{N}(0, 45)$, this is a centered Gaussian with variance $\sigma^2 = 45$. The fourth central moment of a Gaussian is $3\sigma^4$:
+
+    $$
+    \mathbb{E}[(X_5 - \mathbb{E}[X_5])^4] = 3 \times 45^2 = 3 \times 2025 = 6075
+    $$
+
+??? success "Solution to Exercise 2"
+    GBM with $\mu = 0.08$, $\sigma = 0.3$, $S_0 = 50$.
+
+    **(a)** At $t = 2$:
+
+    $$
+    \mathbb{E}[S_2] = 50\,e^{0.08 \times 2} = 50\,e^{0.16} \approx 50 \times 1.17351 \approx 58.676
+    $$
+
+    $$
+    \operatorname{Var}[S_2] = 50^2 e^{2 \times 0.08 \times 2}(e^{0.09 \times 2} - 1) = 2500\,e^{0.32}(e^{0.18} - 1)
+    $$
+
+    $$
+    \approx 2500 \times 1.37713 \times 0.19722 \approx 678.97
+    $$
+
+    **(b)** Using the general power moment formula $\mathbb{E}[S_t^n] = S_0^n \exp[n\mu t + \frac{n(n-1)}{2}\sigma^2 t]$:
+
+    $$
+    \mathbb{E}[S_2^3] = 50^3 \exp\!\left[3 \times 0.08 \times 2 + \frac{3 \times 2}{2} \times 0.09 \times 2\right]
+    $$
+
+    $$
+    = 125{,}000 \exp(0.48 + 0.54) = 125{,}000\,e^{1.02} \approx 125{,}000 \times 2.77319 \approx 346{,}649
+    $$
+
+    **(c)** The mean $\mathbb{E}[S_t] = S_0 e^{\mu t}$ is **independent of $\sigma$** — it does not change as volatility increases. However, the median $S_0 e^{(\mu - \sigma^2/2)t}$ is **decreasing** in $\sigma$ because higher volatility increases the Ito correction $\sigma^2/2$, which lowers the median growth rate.
+
+    The difference arises because GBM has multiplicative noise. Higher volatility makes the distribution more right-skewed: rare large upward moves (which drive the mean) become more extreme, while the typical outcome (the median) actually decreases. The mean remains constant because the increased probability mass in the right tail exactly compensates the reduction in the center of the distribution.
+
+??? success "Solution to Exercise 3"
+    Vasicek model: $a = 0.8$, $\theta = 0.05$, $\sigma = 0.02$, $r_0 = 0.03$.
+
+    **(a)** At $t = 1$:
+
+    $$
+    \mathbb{E}[r_1] = 0.03\,e^{-0.8} + 0.05(1 - e^{-0.8}) = 0.03 \times 0.44933 + 0.05 \times 0.55067
+    $$
+
+    $$
+    \approx 0.01348 + 0.02753 = 0.04101
+    $$
+
+    $$
+    \operatorname{Var}[r_1] = \frac{0.0004}{1.6}(1 - e^{-1.6}) = 0.00025 \times (1 - 0.20190) \approx 0.00025 \times 0.79810 \approx 1.995 \times 10^{-4}
+    $$
+
+    **(b)** Stationary mean: $\theta = 0.05$.
+
+    Stationary variance: $\frac{\sigma^2}{2a} = \frac{0.0004}{1.6} = 2.5 \times 10^{-4}$.
+
+    **(c)** In the stationary regime, $\rho(s, t) = e^{-a|t-s|}$. For $|t - s| = 2$:
+
+    $$
+    \rho = e^{-0.8 \times 2} = e^{-1.6} \approx 0.2019
+    $$
+
+??? success "Solution to Exercise 4"
+    CIR model: $a = 0.5$, $\theta = 0.04$, $\sigma = 0.1$, $r_0 = 0.04$.
+
+    **(a)** The Feller condition requires $2a\theta \geq \sigma^2$:
+
+    $$
+    2 \times 0.5 \times 0.04 = 0.04, \qquad \sigma^2 = 0.01
+    $$
+
+    Since $0.04 \geq 0.01$, the Feller condition is **satisfied**, so $r_t > 0$ for all $t > 0$.
+
+    **(b)** The expectation has the same formula as Vasicek:
+
+    $$
+    \mathbb{E}[r_t] = 0.04\,e^{-0.5t} + 0.04(1 - e^{-0.5t}) = 0.04
+    $$
+
+    Since $r_0 = \theta = 0.04$, the mean is constant: $\mathbb{E}[r_t] = 0.04$ for all $t$.
+
+    **(c)** The CIR long-term variance is:
+
+    $$
+    \lim_{t \to \infty} \operatorname{Var}[r_t] = \frac{\theta\sigma^2}{2a} = \frac{0.04 \times 0.01}{1.0} = 4 \times 10^{-4}
+    $$
+
+    The Vasicek long-term variance with the same parameters would be:
+
+    $$
+    \frac{\sigma^2}{2a} = \frac{0.01}{1.0} = 0.01
+    $$
+
+    The CIR variance ($4 \times 10^{-4}$) is smaller than the Vasicek variance ($0.01$) by a factor of $\theta = 0.04$. This reflects the state-dependent volatility: when $r_t$ is near $\theta = 0.04$, the CIR diffusion coefficient $\sigma\sqrt{r_t} = 0.1 \times 0.2 = 0.02$ is much smaller than the constant Vasicek diffusion $\sigma = 0.1$, producing significantly less variability.
+
+??? success "Solution to Exercise 5"
+    By Ito isometry, for a deterministic integrand $f(s)$:
+
+    $$
+    \operatorname{Var}(I_t) = \mathbb{E}[I_t^2] = \int_0^t f(s)^2\,ds
+    $$
+
+    Here $f(s) = s\,e^{-s}$, so $f(s)^2 = s^2 e^{-2s}$:
+
+    $$
+    \operatorname{Var}(I_t) = \int_0^t s^2 e^{-2s}\,ds
+    $$
+
+    Integrating by parts twice (or using the formula $\int s^2 e^{-2s}\,ds = -e^{-2s}(\frac{s^2}{2} + \frac{s}{2} + \frac{1}{4})$):
+
+    $$
+    \operatorname{Var}(I_t) = \left[-e^{-2s}\!\left(\frac{s^2}{2} + \frac{s}{2} + \frac{1}{4}\right)\right]_0^t = \frac{1}{4} - e^{-2t}\!\left(\frac{t^2}{2} + \frac{t}{2} + \frac{1}{4}\right)
+    $$
+
+    $$
+    = \frac{1}{4}\left[1 - e^{-2t}(2t^2 + 2t + 1)\right]
+    $$
+
+??? success "Solution to Exercise 6"
+    The SDE is $dX_t = -\alpha X_t\,dt + \sigma X_t\,dW_t$ with $X_0 > 0$.
+
+    **(a)** Taking expectations of the SDE (the stochastic integral has zero expectation):
+
+    $$
+    \frac{d}{dt}\mathbb{E}[X_t] = -\alpha\,\mathbb{E}[X_t]
+    $$
+
+    **(b)** This is a linear ODE with solution:
+
+    $$
+    m(t) = \mathbb{E}[X_t] = X_0\,e^{-\alpha t}
+    $$
+
+    **(c)** Apply Ito's lemma to $f(x) = x^2$ with $f'(x) = 2x$ and $f''(x) = 2$:
+
+    $$
+    d(X_t^2) = 2X_t\,dX_t + \frac{1}{2} \cdot 2 \cdot (\sigma X_t)^2\,dt
+    $$
+
+    $$
+    = 2X_t(-\alpha X_t\,dt + \sigma X_t\,dW_t) + \sigma^2 X_t^2\,dt
+    $$
+
+    $$
+    = (-2\alpha + \sigma^2)X_t^2\,dt + 2\sigma X_t^2\,dW_t
+    $$
+
+    Taking expectations:
+
+    $$
+    \frac{d}{dt}\mathbb{E}[X_t^2] = (-2\alpha + \sigma^2)\mathbb{E}[X_t^2]
+    $$
+
+    Solving: $\mathbb{E}[X_t^2] = X_0^2\,e^{(-2\alpha + \sigma^2)t}$.
+
+    The variance is:
+
+    $$
+    \operatorname{Var}[X_t] = \mathbb{E}[X_t^2] - (\mathbb{E}[X_t])^2 = X_0^2 e^{-2\alpha t}(e^{\sigma^2 t} - 1)
+    $$
+
+??? success "Solution to Exercise 7"
+    The skewness formula is $\operatorname{Skew}(S_t) = (e^{\sigma^2 t} + 2)\sqrt{e^{\sigma^2 t} - 1}$.
+
+    With $\sigma = 0.2$, we have $\sigma^2 = 0.04$.
+
+    **At $t = 1$:** $\sigma^2 t = 0.04$, so $e^{0.04} \approx 1.04081$:
+
+    $$
+    \operatorname{Skew}(S_1) = (1.04081 + 2)\sqrt{1.04081 - 1} = 3.04081 \times \sqrt{0.04081} \approx 3.04081 \times 0.20202 \approx 0.614
+    $$
+
+    **At $t = 10$:** $\sigma^2 t = 0.4$, so $e^{0.4} \approx 1.49182$:
+
+    $$
+    \operatorname{Skew}(S_{10}) = (1.49182 + 2)\sqrt{1.49182 - 1} = 3.49182 \times \sqrt{0.49182} \approx 3.49182 \times 0.70130 \approx 2.449
+    $$
+
+    The skewness increases from approximately $0.614$ at $t = 1$ to $2.449$ at $t = 10$.
+
+    The distribution becomes more skewed over longer horizons because of the **multiplicative noise structure**. In GBM, random shocks multiply the current price level. Over long periods, this compounding effect causes the distribution of $S_t$ to become increasingly right-skewed: most paths cluster near or below the median (which grows at rate $\mu - \sigma^2/2$), while a small fraction of paths experience sustained positive shocks that push them far to the right. The mean is pulled upward by these rare extreme outcomes. As $t$ grows, the cumulative effect of multiplicative compounding amplifies the asymmetry, causing both skewness and kurtosis to increase exponentially in $\sigma^2 t$.

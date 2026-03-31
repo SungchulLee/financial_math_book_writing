@@ -288,3 +288,188 @@ What are the harmonic functions for BM, and how does this result relate to the e
 (a) Starting from Ito's lemma for $f(X_t)$ where $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$, show explicitly how taking expectations yields Dynkin's formula.
 
 (b) Give an example of a process (e.g., a jump process or weak solution) for which Dynkin's formula applies but Ito's pathwise formula does not. Explain why the stochastic integral term is not needed at the Dynkin level.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The BM generator is $\mathcal{L}f = \frac{1}{2}f''$. For $f(x) = x^3$:
+
+    - $f'(x) = 3x^2$, $f''(x) = 6x$
+
+    $$
+    \mathcal{L}(x^3) = \frac{1}{2}\cdot 6x = 3x
+    $$
+
+    Applying Dynkin's formula with $\tau$ being the exit time from $(0, b)$:
+
+    $$
+    \mathbb{E}_x[X_\tau^3] = x^3 + \mathbb{E}_x\!\left[\int_0^\tau 3X_s\,ds\right] = x^3 + 3\,\mathbb{E}_x\!\left[\int_0^\tau X_s\,ds\right]
+    $$
+
+    Note that $X_\tau \in \{0, b\}$, so $\mathbb{E}_x[X_\tau^3] = b^3 \cdot \mathbb{P}_x(X_\tau = b) + 0 = b^3 \cdot \frac{x}{b} = b^2 x$, using the exit probability $\mathbb{P}_x(X_\tau = b) = x/b$ for BM on $(0,b)$. Therefore:
+
+    $$
+    b^2 x = x^3 + 3\,\mathbb{E}_x\!\left[\int_0^\tau X_s\,ds\right]
+    $$
+
+    Solving:
+
+    $$
+    \mathbb{E}_x\!\left[\int_0^\tau X_s\,ds\right] = \frac{b^2 x - x^3}{3} = \frac{x(b^2 - x^2)}{3}
+    $$
+
+??? success "Solution to Exercise 2"
+    For $f(x) = x^4$, the BM generator gives $\mathcal{L}(x^4) = \frac{1}{2}\cdot 12x^2 = 6x^2$. By Dynkin's formula:
+
+    $$
+    \mathbb{E}_x[X_\tau^4] = x^4 + \mathbb{E}_x\!\left[\int_0^\tau 6X_s^2\,ds\right] = x^4 + 6\,\mathbb{E}_x\!\left[\int_0^\tau X_s^2\,ds\right]
+    $$
+
+    To find $\mathbb{E}_x[X_\tau^4]$, note that $X_\tau \in \{a, b\}$:
+
+    $$
+    \mathbb{E}_x[X_\tau^4] = a^4 \cdot \mathbb{P}_x(X_\tau = a) + b^4 \cdot \mathbb{P}_x(X_\tau = b) = a^4 \cdot \frac{b-x}{b-a} + b^4 \cdot \frac{x-a}{b-a} = \frac{a^4(b-x) + b^4(x-a)}{b-a}
+    $$
+
+    Substituting:
+
+    $$
+    \frac{a^4(b-x) + b^4(x-a)}{b-a} = x^4 + 6\,\mathbb{E}_x\!\left[\int_0^\tau X_s^2\,ds\right]
+    $$
+
+    Solving:
+
+    $$
+    \mathbb{E}_x\!\left[\int_0^\tau X_s^2\,ds\right] = \frac{1}{6}\left[\frac{a^4(b-x) + b^4(x-a)}{b-a} - x^4\right]
+    $$
+
+??? success "Solution to Exercise 3"
+    The OU generator is $\mathcal{L}f = -\kappa x\,f' + \frac{\sigma^2}{2}f''$. For $f(x) = x^2$:
+
+    - $f'(x) = 2x$, $f''(x) = 2$
+
+    $$
+    \mathcal{L}(x^2) = -\kappa x \cdot 2x + \frac{\sigma^2}{2}\cdot 2 = -2\kappa x^2 + \sigma^2
+    $$
+
+    Applying Dynkin's formula with deterministic time $t$:
+
+    $$
+    \mathbb{E}_{x_0}[X_t^2] = x_0^2 + \int_0^t \mathbb{E}_{x_0}[-2\kappa X_s^2 + \sigma^2]\,ds = x_0^2 - 2\kappa\int_0^t \mathbb{E}_{x_0}[X_s^2]\,ds + \sigma^2 t
+    $$
+
+    Setting $v(t) = \mathbb{E}_{x_0}[X_t^2]$ and differentiating:
+
+    $$
+    v'(t) = -2\kappa v(t) + \sigma^2, \qquad v(0) = x_0^2
+    $$
+
+    This is a first-order linear ODE. The integrating factor is $e^{2\kappa t}$:
+
+    $$
+    \frac{d}{dt}\!\left[e^{2\kappa t}v(t)\right] = \sigma^2 e^{2\kappa t}
+    $$
+
+    Integrating:
+
+    $$
+    e^{2\kappa t}v(t) = x_0^2 + \frac{\sigma^2}{2\kappa}(e^{2\kappa t} - 1)
+    $$
+
+    Therefore:
+
+    $$
+    \mathbb{E}_{x_0}[X_t^2] = x_0^2 e^{-2\kappa t} + \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})
+    $$
+
+    As $t \to \infty$, this converges to $\frac{\sigma^2}{2\kappa}$, the variance of the OU stationary distribution.
+
+??? success "Solution to Exercise 4"
+    Dynkin's formula in its standard form is:
+
+    $$
+    \mathbb{E}_x[f(X_\tau)] = f(x) + \mathbb{E}_x\!\left[\int_0^\tau (\mathcal{L}f)(X_s)\,ds\right]
+    $$
+
+    To compute $\mathbb{E}_x[e^{-\lambda \tau}]$, we would need to find $f$ such that Dynkin's formula yields this quantity. The natural attempt is to look for $f$ satisfying $\mathcal{L}f = -\lambda f$. If such $f$ existed and we applied Dynkin:
+
+    $$
+    \mathbb{E}_x[f(X_\tau)] = f(x) + \mathbb{E}_x\!\left[\int_0^\tau (-\lambda f(X_s))\,ds\right] = f(x) - \lambda\,\mathbb{E}_x\!\left[\int_0^\tau f(X_s)\,ds\right]
+    $$
+
+    This gives a relationship involving $\mathbb{E}_x[\int_0^\tau f(X_s)\,ds]$, not $\mathbb{E}_x[e^{-\lambda\tau}]$. The functional $e^{-\lambda\tau}$ is multiplicative (exponential) in $\tau$, while Dynkin's formula produces additive (integral) quantities.
+
+    The correct framework is the **Feynman--Kac formula**. One considers $v(x) = \mathbb{E}_x[e^{-\lambda\tau}]$ and shows that $e^{-\lambda t}v(X_t)$ must be a martingale (up to the stopping time). Applying the extended generator $\tilde{\mathcal{L}}$ to $g(x,t) = e^{-\lambda t}v(x)$ and setting $\tilde{\mathcal{L}}g = 0$ gives:
+
+    $$
+    -\lambda e^{-\lambda t}v(x) + e^{-\lambda t}\mathcal{L}v(x) = 0 \implies \mathcal{L}v = \lambda v
+    $$
+
+    This is the Feynman--Kac eigenvalue equation. Unlike Dynkin, which relates expectations of $f(X_\tau)$ to integrals of $\mathcal{L}f$, Feynman--Kac handles the exponential discounting $e^{-\lambda\tau}$ through the "killing" term $\lambda v$.
+
+??? success "Solution to Exercise 5"
+    For GBM $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$, the generator is $\mathcal{L}f = \mu s\,f'(s) + \frac{\sigma^2 s^2}{2}f''(s)$. For $f(s) = \ln s$:
+
+    - $f'(s) = 1/s$, $f''(s) = -1/s^2$
+
+    $$
+    \mathcal{L}(\ln s) = \mu s \cdot \frac{1}{s} + \frac{\sigma^2 s^2}{2}\cdot\left(-\frac{1}{s^2}\right) = \mu - \frac{\sigma^2}{2}
+    $$
+
+    Applying Dynkin with deterministic time $t$:
+
+    $$
+    \mathbb{E}_{s_0}[\ln S_t] = \ln s_0 + \int_0^t \left(\mu - \frac{\sigma^2}{2}\right)ds = \ln s_0 + \left(\mu - \frac{\sigma^2}{2}\right)t
+    $$
+
+    **Verification**: We know $\ln S_t = \ln s_0 + (\mu - \sigma^2/2)t + \sigma W_t$, which is normally distributed with mean $\ln s_0 + (\mu - \sigma^2/2)t$. This confirms the result.
+
+??? success "Solution to Exercise 6"
+    Since $g$ is $C^2$ and $\mathcal{L}g = 0$ (i.e., $g$ is harmonic), Dynkin's formula gives:
+
+    $$
+    \mathbb{E}_x[g(X_\tau)] = g(x) + \mathbb{E}_x\!\left[\int_0^\tau (\mathcal{L}g)(X_s)\,ds\right] = g(x) + \mathbb{E}_x\!\left[\int_0^\tau 0\,ds\right] = g(x)
+    $$
+
+    For BM with $\mathcal{L} = \frac{1}{2}\partial_{xx}$, the harmonic functions satisfy $\frac{1}{2}g'' = 0$, so $g'' = 0$, meaning $g(x) = \alpha x + \beta$ (affine functions).
+
+    For the exit probability, take $g(x) = \frac{x - a}{b - a}$, which is affine (hence harmonic) with $g(a) = 0$ and $g(b) = 1$. Since $X_\tau \in \{a, b\}$:
+
+    $$
+    g(x) = \mathbb{E}_x[g(X_\tau)] = g(b)\,\mathbb{P}_x(X_\tau = b) + g(a)\,\mathbb{P}_x(X_\tau = a) = 1 \cdot \mathbb{P}_x(X_\tau = b) + 0
+    $$
+
+    Therefore $\mathbb{P}_x(X_\tau = b) = g(x) = \frac{x - a}{b - a}$. The exit probabilities are encoded in harmonic functions with appropriate boundary values.
+
+??? success "Solution to Exercise 7"
+    **(a)** By Ito's lemma for $f(X_t)$ where $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$:
+
+    $$
+    f(X_t) = f(X_0) + \int_0^t \!\left[\mu(X_s)f'(X_s) + \frac{1}{2}\sigma^2(X_s)f''(X_s)\right]ds + \int_0^t f'(X_s)\sigma(X_s)\,dW_s
+    $$
+
+    Recognizing $\mathcal{L}f = \mu f' + \frac{\sigma^2}{2}f''$:
+
+    $$
+    f(X_t) = f(X_0) + \int_0^t (\mathcal{L}f)(X_s)\,ds + \int_0^t f'(X_s)\sigma(X_s)\,dW_s
+    $$
+
+    Taking expectations (under conditions ensuring the Ito integral has zero mean):
+
+    $$
+    \mathbb{E}_x[f(X_t)] = f(x) + \mathbb{E}_x\!\left[\int_0^t (\mathcal{L}f)(X_s)\,ds\right]
+    $$
+
+    This is Dynkin's formula. The stochastic integral vanishes because $\mathbb{E}\!\left[\int_0^t f'\sigma\,dW_s\right] = 0$.
+
+    **(b)** Consider a compound Poisson process $X_t = \sum_{i=1}^{N_t} Y_i$ where $N_t$ is Poisson with rate $\lambda$ and $Y_i$ are i.i.d. with distribution $\nu$. This process has discontinuous paths, so Ito's formula (which requires continuity via the quadratic variation of a continuous semimartingale) does not apply in its standard form.
+
+    However, Dynkin's formula still holds: for $f \in C^2$ with the generator $(\mathcal{L}f)(x) = \lambda\int[f(x+y) - f(x)]\,\nu(dy)$:
+
+    $$
+    \mathbb{E}_x[f(X_t)] = f(x) + \mathbb{E}_x\!\left[\int_0^t (\mathcal{L}f)(X_s)\,ds\right]
+    $$
+
+    The stochastic integral term is not needed at the Dynkin level because Dynkin's formula operates on expectations (the law of $X_t$), not on individual paths. The martingale noise — whether from continuous diffusion or from compensated jumps — has zero mean and averages out. Dynkin captures only the systematic (drift) component encoded in $\mathcal{L}$.

@@ -437,3 +437,180 @@ A proposed solution is $X_t = x_0\,e^{-\alpha t} + \sigma \int_0^t e^{-\alpha(t-
 ---
 
 **Exercise 7.** A student verifies a solution by applying the ordinary chain rule (without the Itô correction) and obtains a drift of $(\mu - \sigma^2/2) S_t$ instead of $\mu S_t$ for GBM. Explain precisely where the error occurs and why the correction $\frac{1}{2}\sigma^2 f_{xx}$ is not negligible in stochastic calculus.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Write $X_t = f(W_t, t) = X_0 + \mu t + \sigma W_t$ where $f(x, t) = X_0 + \mu t + \sigma x$.
+
+    Compute partial derivatives:
+
+    $$
+    \frac{\partial f}{\partial t} = \mu, \qquad \frac{\partial f}{\partial x} = \sigma, \qquad \frac{\partial^2 f}{\partial x^2} = 0
+    $$
+
+    Apply Ito's lemma (special case with $X_t = W_t$, so $\mu_t = 0$, $\sigma_t = 1$):
+
+    $$
+    dX_t = \left(\mu + \frac{1}{2} \cdot 1^2 \cdot 0\right)dt + \sigma \cdot 1\,dW_t = \mu\,dt + \sigma\,dW_t \; \checkmark
+    $$
+
+    Initial condition: $f(0, 0) = X_0 + 0 + 0 = X_0$. $\checkmark$
+
+    The proposed solution satisfies the SDE.
+
+??? success "Solution to Exercise 2"
+    The student claims $S_t = S_0 \exp(\mu t + \sigma W_t)$ solves $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$.
+
+    Write $f(x, t) = S_0 \exp(\mu t + \sigma x)$. Compute derivatives:
+
+    $$
+    f_t = \mu S_t, \qquad f_x = \sigma S_t, \qquad f_{xx} = \sigma^2 S_t
+    $$
+
+    Apply Ito's lemma:
+
+    $$
+    dS_t = \left(\mu S_t + \frac{1}{2}\sigma^2 S_t\right)dt + \sigma S_t\,dW_t = \left(\mu + \frac{\sigma^2}{2}\right)S_t\,dt + \sigma S_t\,dW_t
+    $$
+
+    The drift is $(\mu + \sigma^2/2)S_t$, **not** $\mu S_t$. The claim is **incorrect**.
+
+    The missing correction is $-\sigma^2/2$ in the exponent. The correct solution is:
+
+    $$
+    S_t = S_0 \exp\!\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
+    $$
+
+    With this correction, $f_t = (\mu - \sigma^2/2)S_t$, and the Ito lemma gives drift $(\mu - \sigma^2/2)S_t + \frac{1}{2}\sigma^2 S_t = \mu S_t$, which matches the SDE.
+
+??? success "Solution to Exercise 3"
+    **(a)** Define $Y_t = e^{\alpha t}X_t$. Since $e^{\alpha t}$ is deterministic (finite variation), the Ito product rule gives:
+
+    $$
+    dY_t = \alpha e^{\alpha t}X_t\,dt + e^{\alpha t}\,dX_t
+    $$
+
+    Substituting $dX_t = -\alpha X_t\,dt + \sigma\,dW_t$:
+
+    $$
+    dY_t = \alpha e^{\alpha t}X_t\,dt + e^{\alpha t}(-\alpha X_t\,dt + \sigma\,dW_t) = \sigma e^{\alpha t}\,dW_t
+    $$
+
+    **(b)** The drift terms $\alpha e^{\alpha t}X_t\,dt$ and $-\alpha e^{\alpha t}X_t\,dt$ cancel exactly, confirming:
+
+    $$
+    dY_t = \sigma e^{\alpha t}\,dW_t \; \checkmark
+    $$
+
+    **(c)** Integrating from $0$ to $t$:
+
+    $$
+    Y_t = Y_0 + \sigma \int_0^t e^{\alpha s}\,dW_s
+    $$
+
+    Since $Y_0 = e^0 \cdot X_0 = x_0$, we have $e^{\alpha t}X_t = x_0 + \sigma \int_0^t e^{\alpha s}\,dW_s$. Dividing by $e^{\alpha t}$:
+
+    $$
+    X_t = x_0\,e^{-\alpha t} + \sigma \int_0^t e^{-\alpha(t-s)}\,dW_s
+    $$
+
+    Initial condition: at $t = 0$, $X_0 = x_0\,e^0 + 0 = x_0$. $\checkmark$
+
+??? success "Solution to Exercise 4"
+    **(a)** The candidate is $X_t = \exp(\frac{1}{2}t + W_t)$. Write $f(x, t) = \exp(\frac{1}{2}t + x)$.
+
+    Compute derivatives:
+
+    $$
+    f_t = \tfrac{1}{2}X_t, \qquad f_x = X_t, \qquad f_{xx} = X_t
+    $$
+
+    Ito's lemma gives:
+
+    $$
+    dX_t = \left(\tfrac{1}{2}X_t + \tfrac{1}{2}X_t\right)dt + X_t\,dW_t = X_t\,dt + X_t\,dW_t \; \checkmark
+    $$
+
+    The candidate **satisfies** the SDE $dX_t = X_t\,dt + X_t\,dW_t$.
+
+    Check initial condition: $X_0 = \exp(0 + 0) = 1$. $\checkmark$
+
+    **(b)** The candidate is already correct. This is a GBM with $\mu = 1$ and $\sigma = 1$. The general GBM solution is:
+
+    $$
+    X_t = X_0\exp\!\left[(\mu - \sigma^2/2)t + \sigma W_t\right] = \exp\!\left(\tfrac{1}{2}t + W_t\right)
+    $$
+
+    which matches the candidate.
+
+??? success "Solution to Exercise 5"
+    For the CIR-type SDE $dr_t = (2 - r_t)\,dt + \sqrt{r_t}\,dW_t$, apply Ito's lemma to $Y_t = \sqrt{r_t} = f(r_t)$ where $f(r) = r^{1/2}$.
+
+    Derivatives: $f'(r) = \frac{1}{2}r^{-1/2}$ and $f''(r) = -\frac{1}{4}r^{-3/2}$.
+
+    By Ito's lemma:
+
+    $$
+    dY_t = f'(r_t)\,dr_t + \frac{1}{2}f''(r_t)(dr_t)^2
+    $$
+
+    With $(dr_t)^2 = r_t\,dt$ (from the diffusion term):
+
+    $$
+    dY_t = \frac{1}{2\sqrt{r_t}}[(2 - r_t)\,dt + \sqrt{r_t}\,dW_t] + \frac{1}{2}\left(-\frac{1}{4r_t^{3/2}}\right)r_t\,dt
+    $$
+
+    $$
+    = \left[\frac{2 - r_t}{2\sqrt{r_t}} - \frac{1}{8\sqrt{r_t}}\right]dt + \frac{1}{2}\,dW_t
+    $$
+
+    Writing in terms of $Y_t = \sqrt{r_t}$ (so $r_t = Y_t^2$):
+
+    $$
+    dY_t = \left[\frac{2 - Y_t^2}{2Y_t} - \frac{1}{8Y_t}\right]dt + \frac{1}{2}\,dW_t = \left[\frac{1}{Y_t} - \frac{Y_t}{2} - \frac{1}{8Y_t}\right]dt + \frac{1}{2}\,dW_t
+    $$
+
+    $$
+    = \left[\frac{7}{8Y_t} - \frac{Y_t}{2}\right]dt + \frac{1}{2}\,dW_t
+    $$
+
+    The diffusion coefficient of $Y_t$ is the constant $\frac{1}{2}$, confirming that the square-root transformation converts the state-dependent diffusion into a constant diffusion.
+
+??? success "Solution to Exercise 6"
+    We need to show $X_t = X_0 e^{\sigma W_t}$ solves $dX_t = \frac{1}{2}\sigma^2 X_t\,dt + \sigma X_t\,dW_t$.
+
+    Write $f(x, t) = X_0 e^{\sigma x}$ (note: no explicit time dependence). Derivatives:
+
+    $$
+    f_t = 0, \qquad f_x = \sigma X_0 e^{\sigma x} = \sigma X_t, \qquad f_{xx} = \sigma^2 X_0 e^{\sigma x} = \sigma^2 X_t
+    $$
+
+    Apply Ito's lemma (with $X_t = W_t$ as the underlying process):
+
+    $$
+    dX_t = \left(0 + \frac{1}{2}\sigma^2 X_t\right)dt + \sigma X_t\,dW_t = \frac{1}{2}\sigma^2 X_t\,dt + \sigma X_t\,dW_t \; \checkmark
+    $$
+
+    Initial condition: $X_0 = X_0 e^{\sigma \cdot 0} = X_0$. $\checkmark$
+
+    The solution is verified.
+
+??? success "Solution to Exercise 7"
+    The student applied the ordinary chain rule to $S_t = S_0 \exp[(\mu - \sigma^2/2)t + \sigma W_t]$, treating $W_t$ as a smooth function. Using only the first-order terms:
+
+    $$
+    dS_t \stackrel{\text{ordinary}}{=} f_t\,dt + f_x\,dW_t = \left(\mu - \frac{\sigma^2}{2}\right)S_t\,dt + \sigma S_t\,dW_t
+    $$
+
+    This gives a drift of $(\mu - \sigma^2/2)S_t$ instead of $\mu S_t$.
+
+    The error is the omission of the **Ito correction term** $\frac{1}{2}\sigma_t^2 f_{xx}\,dt$. In stochastic calculus, the quadratic variation of Brownian motion satisfies $(dW_t)^2 = dt$, which is **not negligible** (unlike $(dx)^2 = 0$ in ordinary calculus). Since $f_{xx} = \sigma^2 S_t$ and $\sigma_t = 1$ (when the underlying process is $W_t$), the missing term is:
+
+    $$
+    \frac{1}{2} \cdot 1^2 \cdot \sigma^2 S_t\,dt = \frac{\sigma^2}{2}S_t\,dt
+    $$
+
+    Adding this to $(\mu - \sigma^2/2)S_t\,dt$ gives the correct drift $\mu S_t\,dt$. The correction is non-negligible because Brownian motion accumulates quadratic variation at a finite rate, a fundamental property that has no analogue in deterministic calculus.

@@ -440,3 +440,156 @@ Suppose call prices $C(K, T)$ are given by the Black-Scholes formula with consta
 
 **Exercise 7.**
 A desk calibrates three models (Black-Scholes, local volatility, and Heston stochastic volatility) to the same set of vanilla option prices. For a down-and-out call with barrier $B$, the model prices are $V_{\mathrm{BS}} = 4.82$, $V_{\mathrm{LV}} = 5.41$, and $V_{\mathrm{Heston}} = 5.18$. Compute the model risk as defined by $\sup_{\mathcal{M}} V^{\mathcal{M}} - \inf_{\mathcal{M}} V^{\mathcal{M}}$. Explain why barrier options are particularly sensitive to model choice compared to vanilla options.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The physical volatility $\sigma = 0.25$ is estimated from historical returns under $\mathbb{P}$ and describes how the stock actually moves over time. The implied volatility $\sigma_{\mathrm{imp}} = 0.22$ is extracted from option market prices and reflects the risk-neutral distribution under $\mathbb{Q}$.
+
+    These differ for several reasons:
+
+    1. **Different measures:** Physical volatility is a $\mathbb{P}$-measure quantity, while implied volatility is a $\mathbb{Q}$-measure quantity. Although Girsanov's theorem preserves the diffusion coefficient (volatility is invariant under measure change for a geometric Brownian motion), the Black-Scholes implied volatility is not literally the diffusion coefficient---it is the constant $\sigma$ that, when plugged into the Black-Scholes formula, reproduces the market price. In more realistic models (stochastic volatility, jumps), the implied volatility surface is a nonlinear transformation of the risk-neutral dynamics and need not equal the physical volatility.
+
+    2. **Variance risk premium:** Empirically, implied volatility tends to exceed realized volatility on average (the "variance risk premium"), meaning option sellers are compensated for bearing volatility risk. The observation that $\sigma_{\mathrm{imp}} = 0.22 < \sigma = 0.25$ here is atypical but can occur in specific market conditions.
+
+    For pricing a European call under $\mathbb{Q}$, the practitioner should use the **implied volatility** $\sigma_{\mathrm{imp}} = 0.22$, because this is the market-consistent $\mathbb{Q}$-measure input. Using the physical volatility $\sigma = 0.25$ would produce a price inconsistent with the market, creating an apparent arbitrage against the desk's own book.
+
+??? success "Solution to Exercise 2"
+    Both $\boldsymbol{\alpha}_1$ and $\boldsymbol{\alpha}_2$ achieve the global minimum of the calibration objective for vanilla options, so they fit the same set of vanilla prices perfectly (or equally well). However, vanilla option prices determine only the **marginal distributions** of $S_T$ at each maturity $T$ (via the Breeden-Litzenberger formula). They do not uniquely determine the **dynamics** of $S_t$ along the path.
+
+    A barrier option's payoff depends on whether the stock price hits the barrier $B$ at any time during the life of the option. This is a path-dependent event that depends on the **joint distribution** of $(S_t)_{0 \leq t \leq T}$, not just on the terminal distribution $S_T$. Two different parameter vectors $\boldsymbol{\alpha}_1$ and $\boldsymbol{\alpha}_2$ can produce the same marginal distributions at each maturity but different path dynamics (e.g., different local volatility surfaces, different correlation structures between spot and volatility, different jump intensities along the path).
+
+    This is directly related to market incompleteness: vanilla options alone do not span all contingent claims. The exotic barrier option lies outside the span of the calibration instruments, so its price is not uniquely determined by no-arbitrage and the vanilla surface. Each parameter vector $\boldsymbol{\alpha}_j$ implicitly selects a different risk-neutral measure from the family of measures consistent with the vanilla prices, and these measures can disagree on the value of path-dependent claims.
+
+??? success "Solution to Exercise 3"
+    Applying the gamma P&L formula:
+
+    $$
+    \text{P\&L} \approx \frac{1}{2}\Gamma\,S^2\left[(\Delta W)^2 - \sigma^2 \Delta t\right]
+    $$
+
+    Substituting the given values:
+
+    $$
+    \text{P\&L} \approx \frac{1}{2} \times 0.04 \times 100^2 \times (0.006 - 0.0004)
+    $$
+
+    $$
+    = \frac{1}{2} \times 0.04 \times 10{,}000 \times 0.0056
+    $$
+
+    $$
+    = 0.5 \times 0.04 \times 10{,}000 \times 0.0056 = 1.12
+    $$
+
+    The P&L is approximately $+\$1.12$.
+
+    Since the position is a **short** call that is delta-hedged, the positive P&L means the position **gained** money. The realized squared increment $(\Delta W)^2 = 0.006$ greatly exceeds the model's expected variance $\sigma^2\Delta t = 0.0004$, meaning realized volatility was much higher than implied volatility over this interval. For a short gamma position, this would normally cause a loss, but the formula gives the P&L from the perspective of the **hedger** who holds the gamma exposure: the large realized move generated profit from the gamma term because the actual move was much larger than what the model predicted. The trader who is short gamma and long the delta hedge profits from the rebalancing gains that exceed the theta decay embedded in the model.
+
+??? success "Solution to Exercise 4"
+    The total cost to minimize is
+
+    $$
+    C(\Delta t) = \underbrace{\kappa\,\sigma\,S_0\,\sqrt{\frac{T}{\Delta t}}}_{\text{transaction costs}} + \underbrace{\Gamma\,\sigma^2\,S_0^2\,\sqrt{\Delta t}}_{\text{hedging error}}
+    $$
+
+    Taking the derivative with respect to $\Delta t$ and setting it to zero:
+
+    $$
+    \frac{dC}{d(\Delta t)} = -\frac{1}{2}\kappa\,\sigma\,S_0\,\sqrt{T}\,(\Delta t)^{-3/2} + \frac{1}{2}\Gamma\,\sigma^2\,S_0^2\,(\Delta t)^{-1/2} = 0
+    $$
+
+    Solving:
+
+    $$
+    \frac{1}{2}\Gamma\,\sigma^2\,S_0^2\,(\Delta t)^{-1/2} = \frac{1}{2}\kappa\,\sigma\,S_0\,\sqrt{T}\,(\Delta t)^{-3/2}
+    $$
+
+    Multiplying both sides by $2(\Delta t)^{3/2}$:
+
+    $$
+    \Gamma\,\sigma^2\,S_0^2\,\Delta t = \kappa\,\sigma\,S_0\,\sqrt{T}
+    $$
+
+    $$
+    \Delta t^* = \frac{\kappa\,\sqrt{T}}{\Gamma\,\sigma\,S_0}
+    $$
+
+    The optimal rebalancing interval increases with transaction costs $\kappa$ (hedge less frequently when trading is expensive) and decreases with gamma $\Gamma$, volatility $\sigma$, and stock price $S_0$ (hedge more frequently when the hedging error is large).
+
+??? success "Solution to Exercise 5"
+    The Breeden-Litzenberger formula states that the risk-neutral density is the second derivative of call prices with respect to strike:
+
+    $$
+    q(k, T) = e^{rT}\frac{\partial^2 C}{\partial K^2}\bigg|_{K=k}
+    $$
+
+    To extract $q$ from the implied volatility surface, one needs $C(K, T)$ to be twice differentiable in $K$. Given a smooth implied volatility surface $\sigma_{\mathrm{imp}}(K, T)$, the call price is $C(K, T) = \mathrm{BS}(S_0, K, T, r, \sigma_{\mathrm{imp}}(K, T))$, and the second derivative can be computed via the chain rule (involving $\partial \sigma_{\mathrm{imp}}/\partial K$ and $\partial^2 \sigma_{\mathrm{imp}}/\partial K^2$). As long as the surface is sufficiently smooth and the resulting $q(k, T) \geq 0$ everywhere, the density is well-defined.
+
+    **Symmetric smile and skewness:** If the implied volatility smile is symmetric around the at-the-money strike $K = S_0 e^{rT}$ (i.e., $\sigma_{\mathrm{imp}}(K_0 + \delta, T) = \sigma_{\mathrm{imp}}(K_0 - \delta, T)$ for all $\delta$), then the risk-neutral density $q(k, T)$ is symmetric around its central value. A symmetric density has **zero skewness**.
+
+    In equity markets, the implied volatility smile is typically asymmetric (a "skew" with higher implied volatility for low strikes), reflecting a negatively skewed risk-neutral distribution. The left tail is fatter than the right, consistent with crash risk being priced by the market. A symmetric smile would imply no such asymmetry.
+
+??? success "Solution to Exercise 6"
+    Under constant implied volatility $\sigma_0$, the Black-Scholes call price is
+
+    $$
+    C(K, T) = S_0\,N(d_1) - Ke^{-rT}N(d_2)
+    $$
+
+    where $d_1 = \frac{\ln(S_0/K) + (r + \sigma_0^2/2)T}{\sigma_0\sqrt{T}}$ and $d_2 = d_1 - \sigma_0\sqrt{T}$.
+
+    The Dupire formula requires three partial derivatives. For the Black-Scholes formula with constant $\sigma_0$:
+
+    **Numerator:** Using the Black-Scholes PDE from the call price perspective, $\frac{\partial C}{\partial T} + rK\frac{\partial C}{\partial K}$. It is known that for the Black-Scholes price with constant volatility:
+
+    $$
+    \frac{\partial C}{\partial T} = S_0\,n(d_1)\frac{\sigma_0}{2\sqrt{T}} + rKe^{-rT}N(d_2)
+    $$
+
+    $$
+    \frac{\partial C}{\partial K} = -e^{-rT}N(d_2)
+    $$
+
+    So the numerator is
+
+    $$
+    S_0\,n(d_1)\frac{\sigma_0}{2\sqrt{T}} + rKe^{-rT}N(d_2) - rKe^{-rT}N(d_2) = S_0\,n(d_1)\frac{\sigma_0}{2\sqrt{T}}
+    $$
+
+    **Denominator:** The second derivative of the Black-Scholes call with respect to $K$ is
+
+    $$
+    \frac{\partial^2 C}{\partial K^2} = e^{-rT}\frac{n(d_2)}{K\sigma_0\sqrt{T}}
+    $$
+
+    Using $S_0\,n(d_1) = Ke^{-rT}n(d_2)$ (a standard Black-Scholes identity), the numerator becomes $Ke^{-rT}n(d_2)\frac{\sigma_0}{2\sqrt{T}}$. Therefore:
+
+    $$
+    \sigma_{\mathrm{loc}}^2 = \frac{Ke^{-rT}n(d_2)\frac{\sigma_0}{2\sqrt{T}}}{\frac{1}{2}K^2 \cdot e^{-rT}\frac{n(d_2)}{K\sigma_0\sqrt{T}}} = \frac{Ke^{-rT}n(d_2)\frac{\sigma_0}{2\sqrt{T}}}{\frac{1}{2}Ke^{-rT}\frac{n(d_2)}{\sigma_0\sqrt{T}}} = \frac{\sigma_0}{2\sqrt{T}} \cdot \frac{2\sigma_0\sqrt{T}}{1} = \sigma_0^2
+    $$
+
+    Therefore $\sigma_{\mathrm{loc}}(K, T) = \sigma_0$ for all $K$ and $T$, confirming that when the implied volatility surface is flat, the local volatility surface is also flat and equal to $\sigma_0$. This is consistent with the fact that Black-Scholes is the special case of the local volatility model with constant local volatility.
+
+??? success "Solution to Exercise 7"
+    The model risk is
+
+    $$
+    \sup_{\mathcal{M}} V^{\mathcal{M}} - \inf_{\mathcal{M}} V^{\mathcal{M}} = \max(4.82, 5.41, 5.18) - \min(4.82, 5.41, 5.18) = 5.41 - 4.82 = 0.59
+    $$
+
+    This represents a spread of \$0.59, or approximately 12% of the Black-Scholes price.
+
+    **Why barrier options are particularly sensitive to model choice:**
+
+    Vanilla option prices depend only on the **marginal distribution** of $S_T$ at maturity. All three models are calibrated to the same vanilla surface, meaning they agree on these marginal distributions. Consequently, vanilla prices are identical across models by construction.
+
+    Barrier options, however, are **path-dependent**: their payoff depends on whether $S_t$ crosses the barrier $B$ at any time during $[0, T]$. This depends on the **transition densities** and **joint distributions** of $(S_{t_1}, S_{t_2}, \ldots, S_{t_n})$ at multiple times, not just the terminal distribution. Different models make fundamentally different assumptions about these dynamics:
+
+    - **Black-Scholes** assumes constant volatility, producing smooth, continuous paths with a specific hitting probability for the barrier.
+    - **Local volatility** has state-dependent volatility $\sigma(S, t)$, which changes the diffusion rate near the barrier, altering the hitting probability.
+    - **Heston** has stochastic volatility with mean-reversion, producing clustering of high/low volatility periods that affects barrier crossing probabilities differently.
+
+    Since the path dynamics differ across models even when marginal distributions agree, barrier option prices diverge. The closer the barrier is to the current spot price, and the longer the maturity, the more sensitive the price becomes to these dynamic differences.

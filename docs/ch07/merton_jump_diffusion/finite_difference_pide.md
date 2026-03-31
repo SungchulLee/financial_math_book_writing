@@ -254,3 +254,152 @@ The partial integro-differential equation for Merton jump-diffusion pricing comb
 ---
 
 **Exercise 7.** The PIDE framework extends to American options by adding the early exercise constraint $V(t, S) \geq \Phi(S)$ at each time step (where $\Phi$ is the intrinsic value). Describe how the penalty method modifies the IMEX scheme: at each time step, add a term $\rho\,\max(\Phi_j - v_j^k, 0)$ to the right-hand side with a large penalty parameter $\rho$. Explain why this forces $v_j^k \geq \Phi_j$ approximately, and what trade-off the choice of $\rho$ involves.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Starting from the PIDE in the original variable $S$:
+
+    $$
+    \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} + (r - \lambda\bar{k})S\frac{\partial V}{\partial S} - (r+\lambda)V + \lambda\int_0^{\infty}V(t, Sy)g(y)\,dy = 0
+    $$
+
+    Set $x = \ln S$, so $S = e^x$ and $v(t, x) = V(t, e^x)$. Compute the derivatives using the chain rule:
+
+    $$
+    \frac{\partial V}{\partial S} = \frac{1}{S}\frac{\partial v}{\partial x}, \qquad \frac{\partial^2 V}{\partial S^2} = \frac{1}{S^2}\left(\frac{\partial^2 v}{\partial x^2} - \frac{\partial v}{\partial x}\right)
+    $$
+
+    Substituting into the PDE terms:
+
+    $$
+    \frac{1}{2}\sigma^2 S^2 \cdot \frac{1}{S^2}\left(\frac{\partial^2 v}{\partial x^2} - \frac{\partial v}{\partial x}\right) + (r - \lambda\bar{k})S \cdot \frac{1}{S}\frac{\partial v}{\partial x} = \frac{1}{2}\sigma^2\frac{\partial^2 v}{\partial x^2} + \left(r - \lambda\bar{k} - \frac{1}{2}\sigma^2\right)\frac{\partial v}{\partial x}
+    $$
+
+    For the integral term, substitute $Sy = e^{x+\ln y}$. Setting $z = \ln y$, we have $y = e^z$, $dy = e^z\,dz$, and $g(y)\,dy = f(z)\,dz$ where $f(z)$ is the density of $\ln Y \sim N(\mu_J, \sigma_J^2)$. Therefore:
+
+    $$
+    \lambda\int_0^{\infty}V(t, Sy)g(y)\,dy = \lambda\int_{-\infty}^{\infty}v(t, x + z)f(z)\,dz
+    $$
+
+    The complete log-price PIDE is:
+
+    $$
+    \frac{\partial v}{\partial t} + \frac{1}{2}\sigma^2\frac{\partial^2 v}{\partial x^2} + \left(r - \lambda\bar{k} - \frac{1}{2}\sigma^2\right)\frac{\partial v}{\partial x} - (r+\lambda)v + \lambda\int_{-\infty}^{\infty}v(t, x+z)f(z)\,dz = 0
+    $$
+
+    The drift coefficient is indeed $r - \lambda\bar{k} - \frac{1}{2}\sigma^2$, and the integral is a convolution $\lambda(v * f)(x)$.
+
+??? success "Solution to Exercise 2"
+    Define $\alpha = r - \lambda\bar{k} - \frac{1}{2}\sigma^2$. The discrete operator at grid point $j$ is:
+
+    $$
+    \mathcal{D}v_j = \frac{\sigma^2}{2}\frac{v_{j+1} - 2v_j + v_{j-1}}{\Delta x^2} + \alpha\frac{v_{j+1} - v_{j-1}}{2\Delta x} - (r+\lambda)v_j
+    $$
+
+    Collecting coefficients of $v_{j-1}$, $v_j$, and $v_{j+1}$:
+
+    **Sub-diagonal** (coefficient of $v_{j-1}$):
+
+    $$
+    a = \frac{\sigma^2}{2\Delta x^2} - \frac{\alpha}{2\Delta x}
+    $$
+
+    **Diagonal** (coefficient of $v_j$):
+
+    $$
+    b = -\frac{\sigma^2}{\Delta x^2} - (r + \lambda)
+    $$
+
+    **Super-diagonal** (coefficient of $v_{j+1}$):
+
+    $$
+    c = \frac{\sigma^2}{2\Delta x^2} + \frac{\alpha}{2\Delta x}
+    $$
+
+    The tridiagonal matrix $A$ has $a$ on the sub-diagonal, $b$ on the main diagonal, and $c$ on the super-diagonal:
+
+    $$
+    A = \begin{pmatrix} b & c & & \\ a & b & c & \\ & \ddots & \ddots & \ddots \\ & & a & b \end{pmatrix}
+    $$
+
+??? success "Solution to Exercise 3"
+    **Why implicit $\mathcal{D}$ removes the parabolic CFL:** The differential operator $\mathcal{D}$ is a discretization of a parabolic PDE (diffusion equation). Explicit treatment would require $\Delta t \leq \Delta x^2/(2\sigma^2)$ for stability, which becomes very restrictive as $\Delta x \to 0$. Implicit treatment (backward Euler or Crank-Nicolson) is unconditionally stable for parabolic equations because the eigenvalues of $(I - \theta\Delta t\,\mathcal{D})^{-1}$ remain bounded regardless of $\Delta t/\Delta x^2$.
+
+    **Why explicit $\mathcal{I}$ introduces a CFL-like restriction:** The integral operator $\mathcal{I}$ has operator norm approximately $\lambda$ (since $\int f(y)\,dy = 1$ and the operator evaluates $v$ at shifted points with weight $\lambda$). Explicit treatment means the scheme amplifies the solution by a factor $(I + \Delta t\,\mathcal{I})$, whose spectral radius is approximately $1 + \lambda\Delta t$. For stability, we need this factor not to grow unboundedly, requiring $\lambda\Delta t \leq C$ for a moderate constant $C$ (typically $C \approx 1$).
+
+    **Cost of implicit $\mathcal{I}$:** If $\mathcal{I}$ were treated implicitly, the system to solve at each time step would be $(I - \theta\Delta t\,\mathcal{D} - \Delta t\,\mathcal{I})v^k = b$. The operator $\mathcal{I}$ couples all grid points (it is a dense matrix from the convolution), so the system matrix is dense $J \times J$. Direct solution would cost $O(J^3)$ per time step (LU factorization of a dense matrix), or $O(J^2)$ per time step using iterative methods. This is vastly more expensive than the $O(J)$ cost of solving the tridiagonal system from the implicit $\mathcal{D}$ alone.
+
+??? success "Solution to Exercise 4"
+    The convolution theorem states that the Fourier transform of a convolution equals the product of the Fourier transforms:
+
+    $$
+    \mathcal{F}[v * f](k) = \mathcal{F}[v](k) \cdot \mathcal{F}[f](k)
+    $$
+
+    This holds because $(v * f)(x) = \int v(x-y)f(y)\,dy$, and taking the Fourier transform and exchanging the order of integration yields the product. Therefore, the convolution can be computed as:
+
+    $$
+    I_j = \lambda \cdot \mathcal{F}^{-1}[\mathcal{F}[v] \cdot \mathcal{F}[f]]_j
+    $$
+
+    Direct summation of $I_j = \lambda\sum_l v_{j+l}f_l\Delta x$ for all $j$ costs $O(J^2)$ (each of $J$ grid points requires summing over $J$ terms). Using the FFT, each transform costs $O(J\log J)$, pointwise multiplication costs $O(J)$, and the inverse FFT costs $O(J\log J)$, for a total of $O(J\log J)$.
+
+    **Care with periodic extension:** The discrete Fourier transform assumes the input is periodic with period $J\Delta x$. If $v$ is not periodic (it generally is not, since boundary values differ), the circular convolution introduces errors at the boundaries. To avoid this, **zero-padding** is used: extend the arrays $v$ and $f$ to length $2J$ (padding with zeros), compute the circular convolution on the extended grid, and extract the central $J$ values. This converts the circular convolution into a linear convolution, at the cost of doubling the array length (still $O(J\log J)$ overall).
+
+??? success "Solution to Exercise 5"
+    The compensator is:
+
+    $$
+    \bar{k} = e^{\mu_J + \sigma_J^2/2} - 1 = e^{-0.08 + 0.0625/2} - 1 = e^{-0.08 + 0.03125} - 1 = e^{-0.04875} - 1 \approx -0.04758
+    $$
+
+    The adjusted drift is:
+
+    $$
+    \alpha = r - \lambda\bar{k} - \frac{1}{2}\sigma^2 = 0.05 - 1.0 \times (-0.04758) - \frac{1}{2}(0.04) = 0.05 + 0.04758 - 0.02 = 0.07758
+    $$
+
+    For $N_t = 100$ time steps over $T = 0.5$, the time step is $\Delta t = T/N_t = 0.5/100 = 0.005$.
+
+    The stability parameter is:
+
+    $$
+    \Delta t \cdot \lambda = 0.005 \times 1.0 = 0.005
+    $$
+
+    This is much less than 1, well within the stability bound $\Delta t \leq C/\lambda$. The condition requires $\Delta t \cdot \lambda = O(1)$, so having $\Delta t \cdot \lambda = 0.005 \ll 1$ provides a large stability margin. This means the explicit treatment of the integral part will not cause numerical instabilities, and the overall IMEX scheme will be stable.
+
+??? success "Solution to Exercise 6"
+    The European call payoff $g(x) = \max(e^x - K, 0)$ has a discontinuous first derivative (kink) at $x = \ln K$. The central difference approximation of $g''(x)$ involves a Dirac delta at the kink:
+
+    $$
+    g''(x) = e^x\mathbf{1}_{x > \ln K} + K\delta(x - \ln K)
+    $$
+
+    When the grid does not align with $\ln K$, the kink falls between grid points, and the finite difference approximation of $g''$ introduces an $O(1/\Delta x)$ error localized near the strike. This pollutes the solution in a neighborhood of the strike, degrading global convergence from $O(\Delta x^2)$ to $O(\Delta x)$.
+
+    **(a) Grid alignment:** Place a grid point exactly at $x^* = \ln K$ by choosing $\Delta x$ and the grid offset so that $x^* = x_{\min} + j^*\Delta x$ for some integer $j^*$. This ensures the kink lies at a grid point rather than between grid points, and the finite difference stencil correctly captures the discontinuity in the derivative. With alignment, the $O(\Delta x^2)$ convergence is restored away from the strike, and the overall convergence improves significantly.
+
+    **(b) Payoff smoothing:** Replace $g(x) = \max(e^x - K, 0)$ with a regularized version that has a continuous second derivative. For example, use the smoothed payoff:
+
+    $$
+    g_\epsilon(x) = \frac{e^x - K}{2}\left(1 + \text{erf}\!\left(\frac{x - \ln K}{\epsilon}\right)\right)
+    $$
+
+    where $\epsilon = O(\Delta x)$ is a smoothing width. Alternatively, replace the terminal condition with the exact Black-Scholes price at a small residual maturity $\Delta t$ (which is smooth), and start the backward timestepping from $T - \Delta t$. Both approaches eliminate the kink and restore second-order convergence.
+
+??? success "Solution to Exercise 7"
+    The penalty method modifies the IMEX time step by adding a penalty term that enforces the early exercise constraint. At each time step, the update becomes:
+
+    $$
+    (I - \theta\Delta t\,\mathcal{D})v^k = (I + (1-\theta)\Delta t\,\mathcal{D})v^{k+1} + \Delta t\,\mathcal{I}v^{k+1} + \rho\Delta t\,\max(\Phi - v^k, 0)
+    $$
+
+    where $\Phi_j = \max(K - e^{x_j}, 0)$ for a put (or $\max(e^{x_j} - K, 0)$ for a call) and $\rho \gg 1$ is the penalty parameter.
+
+    **Why it works:** If $v_j^k < \Phi_j$ at some grid point, the penalty term $\rho\,(\Phi_j - v_j^k)$ is large and positive, pushing $v_j^k$ upward toward $\Phi_j$. The larger $\rho$ is, the more strongly the constraint is enforced. In the limit $\rho \to \infty$, the solution satisfies $v_j^k \geq \Phi_j$ exactly. For finite $\rho$, the constraint is satisfied approximately, with violation of order $O(1/\rho)$.
+
+    **Trade-off in choosing $\rho$:** A large $\rho$ enforces the constraint more accurately but stiffens the system of equations, potentially causing convergence issues in iterative solvers (the condition number of the linear system grows with $\rho$). It may also require smaller time steps for the nonlinear iteration to converge. A small $\rho$ gives a well-conditioned system but allows violations of the exercise constraint, introducing a pricing error of order $O(1/\rho)$. In practice, $\rho$ is chosen large enough that the penalty error is smaller than the discretization error (e.g., $\rho = 10^4$ to $10^8$), and the nonlinear system is solved by iteration (computing $\max(\Phi - v^k, 0)$ using the previous iterate and repeating until convergence).

@@ -513,3 +513,204 @@ Dynkin's formula states $\mathbb{E}_x[g(X_t)] = g(x) + \mathbb{E}_x\left[\int_0^
 
 **Exercise 7.**
 Consider the first exit time $\tau = \inf\{t \geq 0 : X_t \notin (a, b)\}$ for a Brownian motion with drift $dX_t = \mu\,dt + \sigma\,dW_t$. The expected exit time $u(x) = \mathbb{E}_x[\tau]$ satisfies the boundary value problem $\mathcal{L}u = -1$ in $(a, b)$ with $u(a) = u(b) = 0$. Solve this ODE explicitly and verify that $u(x) > 0$ for $x \in (a, b)$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    For the OU process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, the generator is:
+
+    $$
+    \mathcal{L} = -\kappa x\frac{\partial}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2}{\partial x^2}
+    $$
+
+    The backward equation is:
+
+    $$
+    \frac{\partial u}{\partial t} = -\kappa x\frac{\partial u}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2 u}{\partial x^2}
+    $$
+
+    **Verification** that $u(t, x) = xe^{-\kappa t}$ solves it with $g(x) = x$:
+
+    $$
+    \frac{\partial u}{\partial t} = -\kappa x e^{-\kappa t}, \qquad \frac{\partial u}{\partial x} = e^{-\kappa t}, \qquad \frac{\partial^2 u}{\partial x^2} = 0
+    $$
+
+    $$
+    \mathcal{L}u = -\kappa x \cdot e^{-\kappa t} + \frac{\sigma^2}{2}\cdot 0 = -\kappa x e^{-\kappa t} = \frac{\partial u}{\partial t} \;\checkmark
+    $$
+
+    Also $u(0, x) = x \cdot 1 = x = g(x)$. $\checkmark$
+
+    **Probabilistic interpretation**: $u(t, x) = \mathbb{E}[X_t \mid X_0 = x] = xe^{-\kappa t}$. This says the expected position of the OU process at time $t$ decays exponentially toward zero (the long-run mean when $\theta = 0$). The mean-reversion parameter $\kappa$ controls how fast the expectation converges.
+
+??? success "Solution to Exercise 2"
+    For Brownian motion $dX_t = dW_t$, the backward equation is $\partial_t u = \frac{1}{2}\partial_{xx}u$. We guess $u(t, x) = e^{\alpha x + \beta t}$. Then:
+
+    $$
+    \frac{\partial u}{\partial t} = \beta e^{\alpha x + \beta t}, \qquad \frac{\partial^2 u}{\partial x^2} = \alpha^2 e^{\alpha x + \beta t}
+    $$
+
+    Substituting into $\partial_t u = \frac{1}{2}\partial_{xx}u$:
+
+    $$
+    \beta e^{\alpha x + \beta t} = \frac{\alpha^2}{2}e^{\alpha x + \beta t}
+    $$
+
+    Dividing by $e^{\alpha x + \beta t}$ gives $\beta = \frac{\alpha^2}{2}$.
+
+    Therefore the solution is:
+
+    $$
+    u(t, x) = e^{\alpha x + \alpha^2 t / 2}
+    $$
+
+    **Verification**: At $t = 0$, $u(0, x) = e^{\alpha x} = g(x)$. $\checkmark$
+
+    **Probabilistic check**: $u(t, x) = \mathbb{E}_x[e^{\alpha X_t}] = \mathbb{E}[e^{\alpha(x + W_t)}] = e^{\alpha x}\mathbb{E}[e^{\alpha W_t}]$. Since $W_t \sim N(0, t)$, the moment-generating function gives $\mathbb{E}[e^{\alpha W_t}] = e^{\alpha^2 t/2}$. Therefore $u(t, x) = e^{\alpha x + \alpha^2 t/2}$. $\checkmark$
+
+??? success "Solution to Exercise 3"
+    Given $v(t, x) = u(T - t, x)$, we compute:
+
+    $$
+    \frac{\partial v}{\partial t}(t, x) = -\frac{\partial u}{\partial s}(s, x)\bigg|_{s = T - t}
+    $$
+
+    where $s = T - t$. Since $u$ satisfies $\frac{\partial u}{\partial s} = \mathcal{L}u$:
+
+    $$
+    \frac{\partial v}{\partial t} = -\mathcal{L}u(T - t, x) = -\mathcal{L}v(t, x)
+    $$
+
+    Therefore $\frac{\partial v}{\partial t} + \mathcal{L}v = 0$. $\checkmark$
+
+    For the condition: $v(T, x) = u(T - T, x) = u(0, x) = g(x)$. $\checkmark$
+
+    **Why Form 2 is more natural for option pricing**: In finance, the payoff $g(S_T) = (S_T - K)^+$ is known at maturity $T$. We want to find the present value at time $t < T$. The terminal value formulation $\partial_t v + \mathcal{L}v = 0$ with $v(T, x) = g(x)$ directly models this situation: we know the boundary condition at the future time $T$ and solve backward to find the value at earlier times. The time variable $t$ represents calendar time, running from now to expiry, and $v(t, S)$ gives the option price at each intermediate time.
+
+??? success "Solution to Exercise 4"
+    For GBM $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$, the generator is $\mathcal{L} = \mu S\partial_S + \frac{\sigma^2 S^2}{2}\partial_{SS}$, so the backward equation is:
+
+    $$
+    \frac{\partial u}{\partial t} = \mu S\frac{\partial u}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 u}{\partial S^2}
+    $$
+
+    Under the risk-neutral measure, replace $\mu$ with $r$. In the terminal value form, the backward equation becomes:
+
+    $$
+    \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} = 0
+    $$
+
+    Now, the option price involves discounting: $V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[g(S_T) \mid S_t = S]$. To account for the discounting factor, define $\tilde{V} = e^{r(T-t)}V$, so $\tilde{V}$ satisfies the backward equation without discounting. From $V = e^{-r(T-t)}\tilde{V}$:
+
+    $$
+    \frac{\partial V}{\partial t} = re^{-r(T-t)}\tilde{V} + e^{-r(T-t)}\frac{\partial\tilde{V}}{\partial t} = rV + e^{-r(T-t)}\frac{\partial\tilde{V}}{\partial t}
+    $$
+
+    Since $\tilde{V}$ satisfies $\frac{\partial\tilde{V}}{\partial t} + rS\frac{\partial\tilde{V}}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2\tilde{V}}{\partial S^2} = 0$, and noting $\frac{\partial V}{\partial S} = e^{-r(T-t)}\frac{\partial\tilde{V}}{\partial S}$ (similarly for the second derivative), substituting gives:
+
+    $$
+    \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} = rV
+    $$
+
+    This is the **Black-Scholes PDE**. $\checkmark$
+
+??? success "Solution to Exercise 5"
+    Suppose $v(t, x)$ solves $\frac{\partial v}{\partial t} + \mathcal{L}v = 0$ with $v(T, x) = g(x)$. Apply Ito's lemma to $v(t, X_t)$:
+
+    $$
+    dv(t, X_t) = \frac{\partial v}{\partial t}\,dt + \frac{\partial v}{\partial x}\,dX_t + \frac{1}{2}\frac{\partial^2 v}{\partial x^2}\,(dX_t)^2
+    $$
+
+    Substituting $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$ and $(dX_t)^2 = \sigma^2(X_t)\,dt$:
+
+    $$
+    dv = \left(\frac{\partial v}{\partial t} + \mu\frac{\partial v}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2 v}{\partial x^2}\right)dt + \sigma\frac{\partial v}{\partial x}\,dW_t
+    $$
+
+    $$
+    = \left(\frac{\partial v}{\partial t} + \mathcal{L}v\right)dt + \sigma\frac{\partial v}{\partial x}\,dW_t = 0 \cdot dt + \sigma\frac{\partial v}{\partial x}\,dW_t
+    $$
+
+    So $v(t, X_t)$ is a local martingale (the $dt$ term vanishes because $v$ solves the PDE).
+
+    Under suitable integrability conditions (e.g., $v$ and $\partial_x v \cdot \sigma$ are bounded), $v(t, X_t)$ is a true martingale. Therefore:
+
+    $$
+    v(0, x) = \mathbb{E}_x[v(0, X_0)] = \mathbb{E}_x[v(T, X_T)] = \mathbb{E}_x[g(X_T)]
+    $$
+
+    This confirms that the solution to the backward PDE gives the expected value of the terminal payoff. $\checkmark$
+
+??? success "Solution to Exercise 6"
+    Dynkin's formula states:
+
+    $$
+    \mathbb{E}_x[g(X_t)] = g(x) + \mathbb{E}_x\left[\int_0^t(\mathcal{L}g)(X_s)\,ds\right]
+    $$
+
+    Differentiating both sides with respect to $t$:
+
+    $$
+    \frac{\partial}{\partial t}\mathbb{E}_x[g(X_t)] = \frac{\partial}{\partial t}\mathbb{E}_x\left[\int_0^t(\mathcal{L}g)(X_s)\,ds\right] = \mathbb{E}_x[(\mathcal{L}g)(X_t)]
+    $$
+
+    At $t = 0$:
+
+    $$
+    \frac{\partial}{\partial t}\mathbb{E}_x[g(X_t)]\bigg|_{t=0} = \mathbb{E}_x[(\mathcal{L}g)(X_0)] = (\mathcal{L}g)(x)
+    $$
+
+    Writing $u(t, x) = \mathbb{E}_x[g(X_t)]$, this gives $\partial_t u(0, x) = (\mathcal{L}u)(0, x)$, which is the backward equation at $t = 0$.
+
+    **Extension to all $t > 0$ via the Markov property**: By the Markov property, $\mathbb{E}_x[g(X_{t+h}) \mid \mathcal{F}_t] = \mathbb{E}_{X_t}[g(X_h)]$. Therefore:
+
+    $$
+    u(t + h, x) = \mathbb{E}_x[g(X_{t+h})] = \mathbb{E}_x[\mathbb{E}_{X_t}[g(X_h)]] = \mathbb{E}_x[u(h, X_t)]
+    $$
+
+    This shows that $u(t + h, x)$ can be viewed as computing the expectation $\mathbb{E}_x[\tilde{g}(X_t)]$ where $\tilde{g}(\cdot) = u(h, \cdot)$. Applying the same Dynkin argument to $\tilde{g}$ and differentiating with respect to $h$ at $h = 0$ gives $\partial_t u(t, x) = (\mathcal{L}u)(t, x)$ for all $t > 0$.
+
+??? success "Solution to Exercise 7"
+    The ODE is $\mathcal{L}u = -1$ with $\mathcal{L} = \mu\frac{d}{dx} + \frac{\sigma^2}{2}\frac{d^2}{dx^2}$:
+
+    $$
+    \mu u' + \frac{\sigma^2}{2}u'' = -1, \qquad u(a) = u(b) = 0
+    $$
+
+    **Case 1: $\mu = 0$**. The ODE becomes $\frac{\sigma^2}{2}u'' = -1$, so $u'' = -2/\sigma^2$. Integrating twice:
+
+    $$
+    u(x) = -\frac{x^2}{\sigma^2} + C_1 x + C_2
+    $$
+
+    Boundary conditions: $u(a) = 0$ and $u(b) = 0$ give $C_1 = \frac{a + b}{\sigma^2}$ and $C_2 = -\frac{ab}{\sigma^2}$. Thus:
+
+    $$
+    u(x) = \frac{(x - a)(b - x)}{\sigma^2}
+    $$
+
+    Since $a < x < b$, both factors are positive, so $u(x) > 0$. $\checkmark$
+
+    **Case 2: $\mu \neq 0$**. Let $\lambda = 2\mu/\sigma^2$. The ODE is $u'' + \lambda u' = -2/\sigma^2$. The homogeneous solution is $u_h = A + Be^{-\lambda x}$. A particular solution is $u_p = -x/\mu$ (verify: $u_p' = -1/\mu$, $u_p'' = 0$, so $\mu(-1/\mu) + 0 = -1$). The general solution:
+
+    $$
+    u(x) = A + Be^{-\lambda x} - \frac{x}{\mu}
+    $$
+
+    Applying $u(a) = 0$ and $u(b) = 0$:
+
+    $$
+    A + Be^{-\lambda a} = \frac{a}{\mu}, \qquad A + Be^{-\lambda b} = \frac{b}{\mu}
+    $$
+
+    Subtracting: $B(e^{-\lambda a} - e^{-\lambda b}) = \frac{a - b}{\mu}$, so:
+
+    $$
+    B = \frac{a - b}{\mu(e^{-\lambda a} - e^{-\lambda b})}
+    $$
+
+    and $A = \frac{a}{\mu} - Be^{-\lambda a}$.
+
+    **Positivity**: By the maximum principle for elliptic equations, since $\mathcal{L}u = -1 < 0$ in $(a, b)$ and $u = 0$ on the boundary, the minimum of $u$ must be attained on the boundary. Since $u(a) = u(b) = 0$ and $u$ cannot have an interior minimum below zero (that would contradict $\mathcal{L}u = -1 < 0$), we conclude $u(x) \geq 0$ in $[a, b]$. The strong maximum principle sharpens this to $u(x) > 0$ for $x \in (a, b)$.

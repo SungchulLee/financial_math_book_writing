@@ -270,3 +270,113 @@ Explain why the differential notation is only shorthand and not a statement abou
 ---
 
 **Exercise 6.** Explain in your own words why an SDE produces a **family of random paths** rather than a single deterministic trajectory. How does this differ from an ordinary differential equation with the same drift term?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** $dX_t = 3\,dt + 2\,dW_t$
+
+    - Drift: $b(t, X_t) = 3$ (constant)
+    - Diffusion: $\sigma(t, X_t) = 2$ (constant)
+    - **Additive noise** — neither drift nor diffusion depends on $X_t$.
+
+    **(b)** $dX_t = \mu X_t\,dt + \sigma X_t\,dW_t$
+
+    - Drift: $b(t, X_t) = \mu X_t$
+    - Diffusion: $\sigma(t, X_t) = \sigma X_t$
+    - **Multiplicative noise** — both coefficients are proportional to $X_t$.
+
+    **(c)** $dX_t = (1 - X_t)\,dt + \sqrt{X_t}\,dW_t$
+
+    - Drift: $b(t, X_t) = 1 - X_t$
+    - Diffusion: $\sigma(t, X_t) = \sqrt{X_t}$
+    - **Multiplicative noise** (state-dependent diffusion) — the diffusion depends on $X_t$ through a square-root function.
+
+    **(d)** $dX_t = \sin(t)\,dt + e^{-t}\,dW_t$
+
+    - Drift: $b(t, X_t) = \sin(t)$
+    - Diffusion: $\sigma(t, X_t) = e^{-t}$
+    - **Additive noise** — neither coefficient depends on $X_t$; both depend only on time.
+
+??? success "Solution to Exercise 2"
+    The integral formulation is
+
+    $$
+    X_t = 1 + \int_0^t (X_s + s)\,ds + \int_0^t X_s^2\,dW_s
+    $$
+
+    The differential notation $dX_t = (X_t + t)\,dt + X_t^2\,dW_t$ is shorthand because Brownian motion $W_t$ is continuous but **nowhere differentiable** with probability one. The expression $dW_t$ is not a derivative in the classical sense — it is the increment of a process whose sample paths have infinite variation on every interval. The symbol $dW_t/dt$ does not exist. The only rigorous interpretation is through the integral equation above, where the second integral is an **Ito stochastic integral**.
+
+??? success "Solution to Exercise 3"
+    The OU process is $dX_t = 2(5 - X_t)\,dt + 3\,dW_t$ with parameters $a = 2$, $\theta = 5$, $\sigma = 3$.
+
+    **(a)** The mean satisfies $\mathbb{E}[X_t] = X_0 e^{-at} + \theta(1 - e^{-at})$. As $t \to \infty$, $e^{-at} \to 0$, so
+
+    $$
+    \lim_{t \to \infty} \mathbb{E}[X_t] = \theta = 5
+    $$
+
+    **(b)** The variance satisfies $\operatorname{Var}[X_t] = \frac{\sigma^2}{2a}(1 - e^{-2at})$. As $t \to \infty$:
+
+    $$
+    \lim_{t \to \infty} \operatorname{Var}[X_t] = \frac{\sigma^2}{2a} = \frac{9}{4} = 2.25
+    $$
+
+    **(c)** The stationary distribution is
+
+    $$
+    X_\infty \sim \mathcal{N}\!\left(5,\; \frac{9}{4}\right)
+    $$
+
+??? success "Solution to Exercise 4"
+    The GBM SDE is $dS_t = 0.05\,S_t\,dt + 0.2\,S_t\,dW_t$ with $\mu = 0.05$, $\sigma = 0.2$, $S_0 = 100$.
+
+    **(a)** The explicit solution is
+
+    $$
+    S_t = 100 \exp\!\left[\left(0.05 - \frac{0.04}{2}\right)t + 0.2\,W_t\right] = 100 \exp\!\left(0.03\,t + 0.2\,W_t\right)
+    $$
+
+    **(b)** The expectation is $\mathbb{E}[S_t] = S_0 e^{\mu t}$, so
+
+    $$
+    \mathbb{E}[S_1] = 100\,e^{0.05} \approx 105.127
+    $$
+
+    The variance is $\operatorname{Var}[S_t] = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)$, so
+
+    $$
+    \operatorname{Var}[S_1] = 100^2 \cdot e^{0.10} \cdot (e^{0.04} - 1) \approx 10{,}000 \cdot 1.10517 \cdot 0.04081 \approx 451.19
+    $$
+
+    **(c)** The exponent contains $\mu - \sigma^2/2$ rather than $\mu$ because of the **Ito correction**. When we apply Ito's lemma to $\log S_t$, the second-order term $\frac{1}{2}\sigma^2 S_t^2 \cdot (-1/S_t^2) = -\sigma^2/2$ appears in the drift of the log process. This arises from the fundamental identity $(dW_t)^2 = dt$ in stochastic calculus, which produces a non-negligible correction absent in ordinary calculus. The log-price grows at rate $\mu - \sigma^2/2$ (the drift of $\log S_t$), while the expected price level grows at rate $\mu$ because the convexity of the exponential function adds back the $\sigma^2/2$ factor when taking expectations.
+
+??? success "Solution to Exercise 5"
+    **(a)** $dY_t = -0.5\,Y_t\,dt + 0.1\,dW_t$
+
+    - This is a **mean-reverting (OU) process** with $a = 0.5$, $\theta = 0$, $\sigma = 0.1$.
+    - Technique: **integrating factor method**.
+
+    **(b)** $dY_t = r\,Y_t\,dt + \sigma Y_t\,dW_t$
+
+    - This is **multiplicative noise** (geometric Brownian motion).
+    - Technique: **log transform / Ito transformation**.
+
+    **(c)** $dY_t = \alpha(\beta - Y_t)\,dt + \gamma\sqrt{Y_t}\,dW_t$
+
+    - This is a **state-dependent diffusion** (CIR process) with mean reversion.
+    - Technique: **Lamperti transform** (or Bessel-type analysis).
+
+    **(d)** $dY_t = (2t + 1)\,dt + 4\,dW_t$
+
+    - This is **additive noise** — both coefficients depend only on time, not on $Y_t$.
+    - Technique: **direct integration**.
+
+??? success "Solution to Exercise 6"
+    An SDE produces a family of random paths rather than a single trajectory because the Brownian motion term $\sigma(t, X_t)\,dW_t$ introduces randomness at every instant. Each realization of the Brownian motion $W_t(\omega)$ corresponds to a different sample path of the solution $X_t(\omega)$.
+
+    In an ordinary differential equation $dx_t = b(t, x_t)\,dt$ with the same drift, the solution is uniquely determined by the initial condition — there is exactly one trajectory for each starting value. The evolution is entirely deterministic.
+
+    In contrast, the SDE $dX_t = b(t, X_t)\,dt + \sigma(t, X_t)\,dW_t$ produces infinitely many paths, one for each outcome $\omega$ in the underlying probability space. Different realizations of $W_t$ lead to different trajectories, even from the same initial condition. The solution is therefore a **stochastic process** — a random variable for each time $t$ — rather than a deterministic function of time.

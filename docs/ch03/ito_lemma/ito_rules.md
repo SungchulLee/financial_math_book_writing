@@ -285,3 +285,144 @@ d(X_t^2) = 2X_t\,dX_t + b_t^2\,dt
 $$
 
 and interpret the term $b_t^2\,dt$ as the Itô correction.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    First compute $dY_t$ for $Y_t = W_t^2$ using Itô's lemma: $dY_t = 2W_t\,dW_t + dt$.
+
+    Now apply the product rule to $Z_t = tW_t^2 = X_t Y_t$ with $X_t = t$ (deterministic, $dX_t = dt$). Since $X_t$ is deterministic, $d[X, Y]_t = 0$:
+
+    $$
+    d(tW_t^2) = t\,dY_t + W_t^2\,dX_t + 0
+    $$
+
+    Substituting $dY_t = 2W_t\,dW_t + dt$ and $dX_t = dt$:
+
+    $$
+    d(tW_t^2) = t(2W_t\,dW_t + dt) + W_t^2\,dt = (t + W_t^2)\,dt + 2tW_t\,dW_t
+    $$
+
+??? success "Solution to Exercise 2"
+    With $dX_t = dY_t = \sigma\,dW_t$, the diffusion coefficients are $b_t = e_t = \sigma$. The quadratic covariation is:
+
+    $$
+    d[X, Y]_t = b_t e_t\,dt = \sigma^2\,dt
+    $$
+
+    Applying the product rule:
+
+    $$
+    d(X_t Y_t) = X_t\,dY_t + Y_t\,dX_t + d[X,Y]_t = X_t\sigma\,dW_t + Y_t\sigma\,dW_t + \sigma^2\,dt
+    $$
+
+    $$
+    = \sigma^2\,dt + \sigma(X_t + Y_t)\,dW_t
+    $$
+
+    The covariation $d[X,Y]_t = \sigma^2\,dt$ is verified: both processes have the same diffusion coefficient $\sigma$ and are driven by the same Brownian motion.
+
+??? success "Solution to Exercise 3"
+    First, apply the product rule with $X_s = Y_s = W_s$ to get $d(W_t^2) = 2W_t\,dW_t + dt$, which gives $\int_0^t W_s\,dW_s = \frac{1}{2}(W_t^2 - t)$.
+
+    To derive $\int_0^t W_s^2\,dW_s$, apply integration by parts with $X_s = W_s$ and $Y_s = W_s^2$. From Itô's lemma, $dY_s = 2W_s\,dW_s + ds$, and $dX_s = dW_s$. The diffusion coefficient of $X$ is $1$ and the diffusion coefficient of $Y$ is $2W_s$, so the covariation is $d[X, Y]_s = 2W_s\,dt$.
+
+    The integration by parts formula gives:
+
+    $$
+    \int_0^t W_s\,dY_s = W_t \cdot W_t^2 - 0 - \int_0^t W_s^2\,dW_s - [X, Y]_t
+    $$
+
+    The left side expands as $\int_0^t W_s(2W_s\,dW_s + ds) = 2\int_0^t W_s^2\,dW_s + \int_0^t W_s\,ds$, and $[X,Y]_t = \int_0^t 2W_s\,ds$. Substituting:
+
+    $$
+    2\int_0^t W_s^2\,dW_s + \int_0^t W_s\,ds = W_t^3 - \int_0^t W_s^2\,dW_s - 2\int_0^t W_s\,ds
+    $$
+
+    $$
+    3\int_0^t W_s^2\,dW_s = W_t^3 - 3\int_0^t W_s\,ds
+    $$
+
+    $$
+    \int_0^t W_s^2\,dW_s = \frac{1}{3}W_t^3 - \int_0^t W_s\,ds
+    $$
+
+    This matches Example 4 from the Applications page.
+
+??? success "Solution to Exercise 4"
+    For $dX_t = \mu X_t\,dt + \sigma X_t\,dW_t$, use the quotient rule with $X_t$ in the numerator replaced by the constant $1$ (i.e., compute $d(1/X_t)$). Equivalently, apply Itô's lemma to $g(x) = 1/x$:
+
+    $$
+    g'(x) = -x^{-2}, \qquad g''(x) = 2x^{-3}
+    $$
+
+    With $\mu_t = \mu X_t$ and $\sigma_t = \sigma X_t$:
+
+    $$
+    d(X_t^{-1}) = \left(-X_t^{-2}\mu X_t + \frac{1}{2}(2X_t^{-3})\sigma^2 X_t^2\right)dt + (-X_t^{-2})\sigma X_t\,dW_t
+    $$
+
+    $$
+    = (-\mu + \sigma^2)X_t^{-1}\,dt - \sigma X_t^{-1}\,dW_t
+    $$
+
+    So $1/X_t$ follows a geometric Brownian motion SDE with drift $-\mu + \sigma^2$ and diffusion $-\sigma$. The Itô correction $+\sigma^2$ in the drift arises from the positive curvature of $1/x$.
+
+??? success "Solution to Exercise 5"
+    For $X_t = e^{W_t}$, Itô's lemma gives $dX_t = e^{W_t}\,dW_t + \frac{1}{2}e^{W_t}\,dt$.
+
+    For $Y_t = e^{-W_t}$, Itô's lemma gives $dY_t = -e^{-W_t}\,dW_t + \frac{1}{2}e^{-W_t}\,dt$.
+
+    The diffusion coefficients are $b_t = e^{W_t}$ and $e_t = -e^{-W_t}$. The covariation is:
+
+    $$
+    d[X, Y]_t = e^{W_t} \cdot (-e^{-W_t})\,dt = -dt
+    $$
+
+    Product rule:
+
+    $$
+    d(X_t Y_t) = X_t\,dY_t + Y_t\,dX_t + d[X,Y]_t
+    $$
+
+    $$
+    = e^{W_t}\!\left(-e^{-W_t}\,dW_t + \frac{1}{2}e^{-W_t}\,dt\right) + e^{-W_t}\!\left(e^{W_t}\,dW_t + \frac{1}{2}e^{W_t}\,dt\right) - dt
+    $$
+
+    $$
+    = -dW_t + \frac{1}{2}\,dt + dW_t + \frac{1}{2}\,dt - dt
+    $$
+
+    $$
+    = 0
+    $$
+
+    The $dW_t$ terms cancel ($-dW_t + dW_t = 0$), and the $dt$ terms cancel ($\frac{1}{2} + \frac{1}{2} - 1 = 0$). This confirms $d(X_tY_t) = 0$, consistent with $X_tY_t = e^{W_t}e^{-W_t} = 1$.
+
+??? success "Solution to Exercise 6"
+    For $Z_t = X_t Y_t = X_t e^{\theta t}$ with $Y_t = e^{\theta t}$ deterministic ($dY_t = \theta e^{\theta t}\,dt$):
+
+    The product rule gives $d(X_tY_t) = Y_t\,dX_t + X_t\,dY_t + d[X,Y]_t$.
+
+    Since $Y_t$ is deterministic, its diffusion coefficient is zero, so $d[X,Y]_t = 0$. Substituting $dX_t = -\theta X_t\,dt + \sigma\,dW_t$ and $dY_t = \theta e^{\theta t}\,dt$:
+
+    $$
+    dZ_t = e^{\theta t}(-\theta X_t\,dt + \sigma\,dW_t) + X_t \theta e^{\theta t}\,dt
+    $$
+
+    $$
+    = -\theta X_t e^{\theta t}\,dt + \sigma e^{\theta t}\,dW_t + \theta X_t e^{\theta t}\,dt = \sigma e^{\theta t}\,dW_t
+    $$
+
+    The drift terms cancel, leaving $dZ_t = \sigma e^{\theta t}\,dW_t$. The quadratic covariation $d[X,Y]_t$ vanishes because $Y_t = e^{\theta t}$ is a deterministic function of time with no stochastic component (its diffusion coefficient is zero).
+
+??? success "Solution to Exercise 7"
+    Setting $Y_t = X_t$ in the product rule: $dX_t = a_t\,dt + b_t\,dW_t$, so the diffusion coefficients for both "copies" are $b_t$. The covariation is $d[X, X]_t = b_t^2\,dt$:
+
+    $$
+    d(X_t^2) = X_t\,dX_t + X_t\,dX_t + d[X,X]_t = 2X_t\,dX_t + b_t^2\,dt
+    $$
+
+    The term $b_t^2\,dt$ is the Itô correction. It arises because $(dX_t)^2 = b_t^2\,dt \neq 0$: the squared diffusion coefficient contributes a deterministic drift to $X_t^2$ that has no classical counterpart. Geometrically, $x^2$ is convex ($f'' = 2 > 0$), so symmetric random fluctuations of size $b_t\,dW_t$ produce a net positive contribution $b_t^2\,dt$ to the expected change in $X_t^2$.

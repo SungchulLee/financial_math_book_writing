@@ -421,3 +421,274 @@ by identifying the generator, applying Feynman-Kac, and matching the discounting
 ---
 
 **Exercise 7.** The transition density $p(x, t \mid x_0, t_0)$ satisfies the backward equation in $(x_0, t_0)$ and the forward equation in $(x, t)$ simultaneously. Explain why these two PDEs do not contradict each other, despite involving different differential operators ($\mathcal{L}_{x_0}$ vs. $\mathcal{L}_x^*$). In your answer, clarify the role of which variables are held fixed and which are varied in each equation.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The Ornstein-Uhlenbeck process $dX_t = -\theta X_t\,dt + \sigma\,dW_t$ has drift $\mu(x) = -\theta x$ and diffusion coefficient $\sigma(x) = \sigma$. The infinitesimal generator is:
+
+    $$
+    \mathcal{L} = -\theta x\frac{\partial}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2}{\partial x^2}
+    $$
+
+    Now verify that $u(t, x) = xe^{-\theta t}$ satisfies $\partial_t u = \mathcal{L} u$.
+
+    **Left-hand side**:
+
+    $$
+    \frac{\partial u}{\partial t} = -\theta x e^{-\theta t}
+    $$
+
+    **Right-hand side**: Compute each term of $\mathcal{L} u$:
+
+    $$
+    \frac{\partial u}{\partial x} = e^{-\theta t}, \qquad \frac{\partial^2 u}{\partial x^2} = 0
+    $$
+
+    Therefore:
+
+    $$
+    \mathcal{L} u = -\theta x \cdot e^{-\theta t} + \frac{\sigma^2}{2} \cdot 0 = -\theta x e^{-\theta t}
+    $$
+
+    Since $\partial_t u = -\theta x e^{-\theta t} = \mathcal{L} u$, the function $u(t,x) = xe^{-\theta t}$ satisfies the Kolmogorov backward equation. This is consistent with the probabilistic interpretation: $\mathbb{E}[X_t \mid X_0 = x] = xe^{-\theta t}$ for the OU process, which is the conditional mean decaying exponentially toward zero.
+
+??? success "Solution to Exercise 2"
+    We need to verify $\int f\,(\mathcal{L}g)\,dx = \int (\mathcal{L}^* f)\,g\,dx$ where:
+
+    $$
+    \mathcal{L}g = \mu g' + \frac{1}{2}\sigma^2 g'', \qquad \mathcal{L}^* f = -(\mu f)' + \frac{1}{2}(\sigma^2 f)''
+    $$
+
+    Consider the left-hand side, integrating term by term.
+
+    **First term** (drift):
+
+    $$
+    \int_{-\infty}^{\infty} f(x)\,\mu(x)\,g'(x)\,dx
+    $$
+
+    Integrate by parts (boundary terms vanish since $f, g \to 0$ at $\pm\infty$):
+
+    $$
+    = -\int_{-\infty}^{\infty} \frac{\partial}{\partial x}[\mu(x)\,f(x)]\,g(x)\,dx = -\int_{-\infty}^{\infty} (\mu f)'(x)\,g(x)\,dx
+    $$
+
+    **Second term** (diffusion):
+
+    $$
+    \int_{-\infty}^{\infty} f(x)\,\frac{1}{2}\sigma^2(x)\,g''(x)\,dx
+    $$
+
+    Integrate by parts once:
+
+    $$
+    = -\int_{-\infty}^{\infty} \frac{\partial}{\partial x}\!\left[\frac{1}{2}\sigma^2(x)\,f(x)\right] g'(x)\,dx
+    $$
+
+    Integrate by parts again:
+
+    $$
+    = \int_{-\infty}^{\infty} \frac{\partial^2}{\partial x^2}\!\left[\frac{1}{2}\sigma^2(x)\,f(x)\right] g(x)\,dx
+    $$
+
+    Combining both terms:
+
+    $$
+    \int f\,(\mathcal{L}g)\,dx = \int \left\{-(\mu f)' + \frac{1}{2}(\sigma^2 f)''\right\} g\,dx = \int (\mathcal{L}^* f)\,g\,dx
+    $$
+
+    This confirms the duality relation. $\square$
+
+??? success "Solution to Exercise 3"
+    The Brownian motion transition density is $p(x, t \mid x_0, 0) = \frac{1}{\sqrt{2\pi t}}\exp\!\left(-\frac{(x-x_0)^2}{2t}\right)$.
+
+    **Forward equation**: $\partial_t p = \frac{1}{2}\partial_{xx} p$ with derivatives taken in $(x, t)$, holding $x_0$ fixed.
+
+    Compute $\partial_t p$. Let $\phi = -\frac{(x-x_0)^2}{2t}$, so $p = (2\pi t)^{-1/2}e^\phi$.
+
+    $$
+    \partial_t p = p\left(-\frac{1}{2t} + \frac{(x-x_0)^2}{2t^2}\right)
+    $$
+
+    Compute $\partial_{xx} p$:
+
+    $$
+    \partial_x p = p\cdot\frac{-(x-x_0)}{t}
+    $$
+
+    $$
+    \partial_{xx} p = p\left(\frac{(x-x_0)^2}{t^2} - \frac{1}{t}\right)
+    $$
+
+    Therefore $\frac{1}{2}\partial_{xx}p = p\left(\frac{(x-x_0)^2}{2t^2} - \frac{1}{2t}\right) = \partial_t p$. The forward equation is verified.
+
+    **Backward equation**: $\partial_t p + \frac{1}{2}\partial_{x_0 x_0} p = 0$ with derivatives in $(x_0, t)$, holding $x$ fixed. (Note: here $t$ plays the role of the time variable in both equations.)
+
+    $$
+    \partial_{x_0} p = p\cdot\frac{(x - x_0)}{t}, \qquad \partial_{x_0 x_0} p = p\left(\frac{(x-x_0)^2}{t^2} - \frac{1}{t}\right)
+    $$
+
+    Note that $\partial_{x_0 x_0}p = \partial_{xx}p$ since $(x - x_0)^2$ is symmetric and only the sign of the first derivative changes. Therefore:
+
+    $$
+    \partial_t p + \frac{1}{2}\partial_{x_0 x_0}p = p\left(-\frac{1}{2t} + \frac{(x-x_0)^2}{2t^2}\right) + \frac{1}{2}p\left(\frac{(x-x_0)^2}{t^2} - \frac{1}{t}\right)
+    $$
+
+    Wait -- this does not give zero. The issue is the sign convention. For Brownian motion with $\mu = 0$, the backward equation in the standard form is $\partial_t p = \frac{1}{2}\partial_{x_0 x_0}p$ (or equivalently $-\partial_{t_0}p = \frac{1}{2}\partial_{x_0 x_0}p$ when differentiating in the initial time $t_0$). Since $p$ depends on $t - t_0$ and we set $t_0 = 0$, we have $\partial_{t_0}p = -\partial_t p$. The backward equation in $(x_0, t_0)$ becomes:
+
+    $$
+    -\partial_t p = -\frac{1}{2}\partial_{x_0 x_0}p \quad \Longleftrightarrow \quad \partial_t p = \frac{1}{2}\partial_{x_0 x_0}p
+    $$
+
+    Since $\partial_{x_0 x_0}p = \partial_{xx}p$ (by the symmetry $(x - x_0)^2$), this is the same computation as the forward equation, and it holds. $\square$
+
+??? success "Solution to Exercise 4"
+    For geometric Brownian motion under the risk-neutral measure, $dX_t = rX_t\,dt + \sigma X_t\,dW_t$, the generator is:
+
+    $$
+    \mathcal{L} = rx\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2}{\partial x^2}
+    $$
+
+    The value function is $u(t, x) = \mathbb{E}\!\left[e^{-r(T-t)}g(X_T) \mid X_t = x\right]$.
+
+    By the **Feynman-Kac theorem**, the function $u(t, x) = \mathbb{E}_x\!\left[e^{-\int_t^T r\,ds}\,g(X_T)\right]$ satisfies:
+
+    $$
+    \frac{\partial u}{\partial t} + \mathcal{L}u - r\,u = 0, \qquad u(T, x) = g(x)
+    $$
+
+    Substituting the generator:
+
+    $$
+    \frac{\partial u}{\partial t} + rx\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2 u}{\partial x^2} - ru = 0
+    $$
+
+    This is exactly the **Black-Scholes PDE** with terminal condition $u(T, x) = g(x)$.
+
+    The key steps are:
+
+    1. **Identify the generator**: From $dX_t = rX_t\,dt + \sigma X_t\,dW_t$, we read off $\mu(x) = rx$ and $\sigma(x) = \sigma x$, giving $\mathcal{L} = rx\partial_x + \frac{1}{2}\sigma^2 x^2\partial_{xx}$
+    2. **Apply Feynman-Kac**: The discounted expectation $u = \mathbb{E}[e^{-r(T-t)}g(X_T)]$ satisfies $\partial_t u + \mathcal{L}u - ru = 0$
+    3. **Match the discounting term**: The constant discount rate $r$ produces the $-ru$ term in the PDE, which converts the generator equation into the pricing PDE $\square$
+
+??? success "Solution to Exercise 5"
+    The CIR process $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$ has $\mu(x) = \kappa(\theta - x)$ and $\sigma(x) = \xi\sqrt{x}$.
+
+    **Generator**:
+
+    $$
+    \mathcal{L} = \kappa(\theta - x)\frac{\partial}{\partial x} + \frac{\xi^2 x}{2}\frac{\partial^2}{\partial x^2}
+    $$
+
+    **Kolmogorov forward equation**: $\partial_t p = \mathcal{L}^* p$ where:
+
+    $$
+    \mathcal{L}^* p = -\frac{\partial}{\partial x}[\kappa(\theta - x)\,p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\xi^2 x\,p]
+    $$
+
+    **Stationary density**: Set $\mathcal{L}^* p_\infty = 0$:
+
+    $$
+    -\frac{d}{dx}[\kappa(\theta - x)\,p_\infty] + \frac{1}{2}\frac{d^2}{dx^2}[\xi^2 x\,p_\infty] = 0
+    $$
+
+    Integrate once:
+
+    $$
+    -\kappa(\theta - x)p_\infty + \frac{1}{2}\frac{d}{dx}[\xi^2 x\,p_\infty] = C_1
+    $$
+
+    With the boundary condition that $p_\infty \to 0$ as $x \to \infty$ and the flux vanishes, we set $C_1 = 0$:
+
+    $$
+    \frac{1}{2}\xi^2\frac{d}{dx}[x\,p_\infty] = \kappa(\theta - x)p_\infty
+    $$
+
+    Expand the left side: $\frac{1}{2}\xi^2(p_\infty + xp_\infty') = \kappa(\theta - x)p_\infty$. Rearranging:
+
+    $$
+    xp_\infty' = \left(\frac{2\kappa\theta}{\xi^2} - 1\right)p_\infty - \frac{2\kappa}{\xi^2}x\,p_\infty
+    $$
+
+    Let $\alpha = \frac{2\kappa\theta}{\xi^2}$ and $\beta = \frac{2\kappa}{\xi^2}$. Then:
+
+    $$
+    xp_\infty' = (\alpha - 1)p_\infty - \beta x\,p_\infty
+    $$
+
+    This ODE has the solution $p_\infty(x) = C\,x^{\alpha - 1}e^{-\beta x}$ for $x > 0$, which is the **Gamma distribution** $\text{Gamma}(\alpha, \beta)$ with shape $\alpha = \frac{2\kappa\theta}{\xi^2}$ and rate $\beta = \frac{2\kappa}{\xi^2}$.
+
+    The normalizing constant is $C = \frac{\beta^\alpha}{\Gamma(\alpha)}$, giving:
+
+    $$
+    p_\infty(x) = \frac{\beta^\alpha}{\Gamma(\alpha)}\,x^{\alpha-1}\,e^{-\beta x}, \quad x > 0
+    $$
+
+    The Feller condition $2\kappa\theta > \xi^2$ (i.e., $\alpha > 1$) ensures that $p_\infty(0) = 0$, so the process stays strictly positive.
+
+??? success "Solution to Exercise 6"
+    For constant $r$ and arithmetic Brownian motion $dX_t = \mu\,dt + \sigma\,dW_t$, we have $X_T \mid X_t = x \sim N(x + \mu(T-t),\, \sigma^2(T-t))$.
+
+    The Feynman-Kac solution is:
+
+    $$
+    u(t, x) = e^{-r(T-t)}\,\mathbb{E}_x[g(X_T)] = e^{-r(T-t)} \int_{-\infty}^{\infty} g(y)\,\frac{1}{\sigma\sqrt{2\pi(T-t)}}\exp\!\left(-\frac{(y - x - \mu(T-t))^2}{2\sigma^2(T-t)}\right)dy
+    $$
+
+    Let $\tau = T - t$, so $u(t,x) = e^{-r\tau}\,F(x, \tau)$ where $F(x, \tau) = \mathbb{E}_x[g(X_T)]$.
+
+    **Compute $\partial_t u$**: Since $\tau = T - t$, $\partial_t = -\partial_\tau$:
+
+    $$
+    \partial_t u = re^{-r\tau}F - e^{-r\tau}\partial_\tau F
+    $$
+
+    **Compute $\partial_x u$**: The dependence on $x$ enters only through the Gaussian mean $x + \mu\tau$:
+
+    $$
+    \partial_x F = \int g(y)\,\frac{y - x - \mu\tau}{\sigma^2\tau}\,\phi\,dy, \quad \partial_{xx}F = \int g(y)\left(\frac{(y-x-\mu\tau)^2}{\sigma^4\tau^2} - \frac{1}{\sigma^2\tau}\right)\phi\,dy
+    $$
+
+    where $\phi$ is the Gaussian density. These are standard results for Gaussian convolutions.
+
+    Now $F$ satisfies the **backward (heat-type) equation** $\partial_\tau F = \mu\partial_x F + \frac{1}{2}\sigma^2\partial_{xx}F$ (the Kolmogorov backward equation for ABM). Therefore $\partial_\tau F = \mathcal{L}F$.
+
+    Substituting into the PDE $\partial_t u + \mathcal{L}u - ru = 0$:
+
+    $$
+    \partial_t u + \mathcal{L}u - ru = (re^{-r\tau}F - e^{-r\tau}\partial_\tau F) + e^{-r\tau}\mathcal{L}F - re^{-r\tau}F
+    $$
+
+    $$
+    = e^{-r\tau}(-\partial_\tau F + \mathcal{L}F) = 0
+    $$
+
+    since $\partial_\tau F = \mathcal{L}F$. The PDE is satisfied. At $t = T$ ($\tau = 0$), the Gaussian collapses to a point mass at $x$, giving $u(T, x) = g(x)$. $\square$
+
+??? success "Solution to Exercise 7"
+    The transition density $p(x, t \mid x_0, t_0)$ is a function of **four variables**: $(x, t, x_0, t_0)$. The two PDEs operate on different pairs of these variables:
+
+    **Backward equation**: Fix the destination $(x, t)$ and differentiate in the origin $(x_0, t_0)$:
+
+    $$
+    \frac{\partial p}{\partial t_0} + \mathcal{L}_{x_0}\,p = 0
+    $$
+
+    Here $\mathcal{L}_{x_0} = \mu(x_0)\partial_{x_0} + \frac{1}{2}\sigma^2(x_0)\partial_{x_0 x_0}$ acts on $p$ as a function of $x_0$, with $(x, t)$ treated as fixed parameters. This equation asks: "How does the transition probability change as we vary the starting point?"
+
+    **Forward equation**: Fix the origin $(x_0, t_0)$ and differentiate in the destination $(x, t)$:
+
+    $$
+    \frac{\partial p}{\partial t} = \mathcal{L}_x^*\,p
+    $$
+
+    Here $\mathcal{L}_x^* = -\partial_x[\mu(x)\,\cdot\,] + \frac{1}{2}\partial_{xx}[\sigma^2(x)\,\cdot\,]$ acts on $p$ as a function of $x$, with $(x_0, t_0)$ treated as fixed parameters. This equation asks: "How does the probability density spread over time?"
+
+    **Why there is no contradiction**: The two equations involve **differentiation with respect to different variables**. The backward equation constrains $p$ as a function of $(x_0, t_0)$ for each fixed $(x, t)$, while the forward equation constrains $p$ as a function of $(x, t)$ for each fixed $(x_0, t_0)$. These are independent sets of constraints on the same function, and a sufficiently smooth function of four variables can satisfy both simultaneously.
+
+    An analogy: a function $f(x, y) = e^{x+y}$ satisfies $\partial_x f = f$ (an equation in $x$) and $\partial_y f = f$ (an equation in $y$) simultaneously without contradiction, because the two equations operate on different variables.
+
+    The operators $\mathcal{L}_{x_0}$ and $\mathcal{L}_x^*$ are different ($\mathcal{L}$ vs. its adjoint) precisely because they act on different arguments and encode different physical questions. The generator $\mathcal{L}_{x_0}$ describes how expected values depend on starting position; the adjoint $\mathcal{L}_x^*$ describes how probability mass flows through space. These are dual perspectives on the same Markov process, and duality is what guarantees that a single transition density can satisfy both equations.

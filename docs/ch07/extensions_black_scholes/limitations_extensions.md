@@ -629,3 +629,137 @@ The evolution from Black-Scholes to modern models illustrates the progression of
 ---
 
 **Exercise 6.** In the Heston stochastic volatility model, the correlation $\rho$ between the stock and variance Brownian motions is typically negative for equities ($\rho \approx -0.7$). Explain the economic mechanism (leverage effect) behind this negative correlation, and describe how it produces a volatility skew in implied volatility. What would the implied volatility surface look like if $\rho = 0$?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The Black-Scholes assumption of constant volatility implies that all European options on the same underlying with the same maturity should have the same implied volatility, regardless of strike price. The pronounced skew in S&P 500 options directly contradicts this: OTM puts at lower strikes have implied volatilities of 25-30%, while OTM calls at higher strikes have implied volatilities of 18-20%. If $\sigma$ were constant, the implied volatility surface would be perfectly flat.
+
+    Among the three extensions, **stochastic volatility** (e.g., Heston) is the best choice for capturing the skew. The key reasons are:
+
+    - **Local volatility** can fit the observed skew exactly by construction (via Dupire's formula), but it predicts that the smile will flatten over time (poor dynamics). The forward smile does not match market behavior.
+    - **Stochastic volatility** captures the skew through the negative correlation $\rho < 0$ between the stock and volatility processes (leverage effect). When the stock drops, volatility rises, making OTM puts more expensive. Crucially, stochastic volatility produces a smile that **persists** over time, matching empirical observations.
+    - **Jump-diffusion** models generate skew through asymmetric downward jumps and are effective for short-maturity smiles, but they do not capture volatility clustering or the term structure of the smile as well as stochastic volatility.
+
+    For a model that captures both the static skew shape and its realistic dynamic behavior, stochastic volatility is preferred.
+
+??? success "Solution to Exercise 2"
+    **(a)** Excess kurtosis (kurtosis greater than 3) means the return distribution has heavier tails than the normal distribution. With kurtosis of 6-8, extreme events (large positive or negative returns) occur far more frequently than a Gaussian model predicts. The distribution has more probability mass in the tails and at the center, with less in the intermediate region. This implies that "five-sigma" or "six-sigma" events, which should be extraordinarily rare under normality, are observed relatively often in financial markets.
+
+    **(b)** In the Merton model, the return over period $[0, T]$ is a mixture:
+
+    $$
+    \log(S_T/S_0) = (r - \tfrac{1}{2}\sigma^2 - \lambda\kappa)T + \sigma W_T + \sum_{i=1}^{N_T} \log Y_i
+    $$
+
+    Conditioning on $N_T = n$ jumps, the log-return is normal with variance $\sigma^2 T + n\sigma_J^2$. The unconditional distribution is a Poisson mixture of normals:
+
+    $$
+    f(x) = \sum_{n=0}^{\infty} \frac{e^{-\lambda T}(\lambda T)^n}{n!} \phi\left(x; \mu_n, \sigma^2 T + n\sigma_J^2\right)
+    $$
+
+    A mixture of normals with different variances produces excess kurtosis because the mixture has heavier tails than any single component. The kurtosis of the mixture exceeds 3 because the Poisson-weighted averaging of different variance levels fattens the tails.
+
+    **(c)** Under a normal distribution with $\sigma_{\text{daily}} \approx 0.01$ (1% daily vol), a 4-standard-deviation move ($|r| > 0.04$) has probability $\Pr(|Z| > 4) \approx 6.3 \times 10^{-5}$, or about 0.006% of days (roughly once every 63 years).
+
+    Under the Merton model with $\lambda = 1$ (one jump per year on average), $\mu_J = -0.05$, $\sigma_J = 0.10$, and daily time step $\Delta t = 1/252$: The probability of at least one jump in a day is $\lambda \Delta t \approx 0.004$. When a jump occurs, the additional log-return is $N(-0.05, 0.01)$, contributing roughly $\pm 10\%$ moves. The probability of a 4% move is substantially higher because even a single jump can contribute 5-15% in magnitude. Numerically, the probability of $|r| > 4\%$ under the Merton model is approximately 0.1-0.3%, which is 15-50 times more frequent than the Gaussian prediction.
+
+??? success "Solution to Exercise 3"
+    **(a)** With $\sigma = 0.20$, $k = 0.005$, and $\Delta t = 1/252$:
+
+    $$
+    \frac{k}{\sigma\sqrt{\Delta t}} = \frac{0.005}{0.20 \times \sqrt{1/252}} = \frac{0.005}{0.20 \times 0.06299} = \frac{0.005}{0.01260} \approx 0.3968
+    $$
+
+    $$
+    \sqrt{\frac{2}{\pi}} \approx 0.7979
+    $$
+
+    $$
+    \sigma_{\text{adj}} = 0.20\sqrt{1 + 0.7979 \times 0.3968} = 0.20\sqrt{1 + 0.3166} = 0.20\sqrt{1.3166} = 0.20 \times 1.1475 \approx 0.2295
+    $$
+
+    The adjusted volatility is approximately 22.95%, compared to the true volatility of 20%.
+
+    **(b)** The adjusted volatility is always higher because $\sigma_{\text{adj}} = \sigma\sqrt{1 + \text{positive term}}$. The term $\sqrt{2/\pi} \cdot k/(\sigma\sqrt{\Delta t})$ is strictly positive for any $k > 0$ and finite $\Delta t$, so $\sigma_{\text{adj}} > \sigma$ always. Financially, the option seller must charge more to compensate for the transaction costs incurred during delta hedging. Each rebalance costs $k$ times the notional traded, and this accumulated cost is reflected as a higher effective volatility.
+
+    **(c)** As $\Delta t \to 0$ (continuous hedging):
+
+    $$
+    \frac{k}{\sigma\sqrt{\Delta t}} \to \infty
+    $$
+
+    so $\sigma_{\text{adj}} \to \infty$. This means the total transaction costs explode when hedging continuously with proportional costs. Continuous rebalancing requires infinitely many trades, each incurring a cost, and the total cost diverges. This is a fundamental result: the Black-Scholes perfect hedging strategy, which requires continuous trading, is not feasible in the presence of transaction costs. In practice, one must hedge at discrete intervals, accepting some hedging error to keep transaction costs finite.
+
+??? success "Solution to Exercise 4"
+    Despite its well-documented limitations, Black-Scholes remains the industry standard for several reasons:
+
+    **1. Quoting convention (implied volatility)**: Options are quoted in terms of Black-Scholes implied volatility rather than price. Traders say "the 100-strike call trades at 22 vol" rather than quoting a dollar price. This convention is universal across exchanges, brokers, and asset classes. The implied volatility is a normalized, unit-free measure that allows comparison across strikes, maturities, and underlyings. The model does not need to be "correct" for this usage -- it merely serves as a bijective mapping between prices and volatilities.
+
+    **2. Benchmarking and relative value**: Black-Scholes provides a common baseline against which all models and market prices are compared. Traders assess whether an option is "cheap" or "expensive" relative to Black-Scholes. The difference between model prices and market prices reveals information about market expectations (skew, term structure, jump risk). More complex models are evaluated by how much they improve upon the Black-Scholes baseline.
+
+    **3. Risk management (Greeks)**: The Black-Scholes Greeks ($\Delta$, $\Gamma$, $\Theta$, $\mathcal{V}$, $\rho$) provide the foundational language for risk management. Even when traders use more sophisticated models, they often translate risk sensitivities into Black-Scholes equivalent Greeks. The simple, intuitive relationships (e.g., delta hedging, gamma scalping, theta decay) provide actionable hedging guidance. The Greeks framework extends naturally to more complex models but originated with Black-Scholes.
+
+    **Additional roles**: Black-Scholes also serves as a teaching tool that builds intuition for no-arbitrage pricing, risk-neutral valuation, and dynamic replication. Its closed-form solution allows rapid computation for real-time trading and is used for back-of-the-envelope calculations. Regulatory frameworks often reference Black-Scholes or its Greeks for margin requirements and capital calculations.
+
+??? success "Solution to Exercise 5"
+    **(a)** Using $r = 0.05$, $T = 0.25$, and $S_0 = 100$:
+
+    For $K = 90$ with $\sigma = 0.25$:
+
+    $$
+    d_1 = \frac{\ln(100/90) + (0.05 + 0.5 \times 0.0625) \times 0.25}{0.25\sqrt{0.25}} = \frac{0.10536 + 0.02031}{0.125} = \frac{0.12567}{0.125} \approx 1.0054
+    $$
+
+    $$
+    d_2 = 1.0054 - 0.125 = 0.8804
+    $$
+
+    $$
+    C_{90} = 100 \times \mathcal{N}(1.0054) - 90 \times e^{-0.0125} \times \mathcal{N}(0.8804)
+    $$
+
+    $$
+    C_{90} \approx 100 \times 0.8426 - 88.882 \times 0.8107 \approx 84.26 - 72.06 \approx 12.20
+    $$
+
+    For $K = 110$ with $\sigma = 0.22$:
+
+    $$
+    d_1 = \frac{\ln(100/110) + (0.05 + 0.5 \times 0.0484) \times 0.25}{0.22\sqrt{0.25}} = \frac{-0.09531 + 0.01855}{0.11} = \frac{-0.07676}{0.11} \approx -0.6978
+    $$
+
+    $$
+    d_2 = -0.6978 - 0.11 = -0.8078
+    $$
+
+    $$
+    C_{110} = 100 \times \mathcal{N}(-0.6978) - 110 \times e^{-0.0125} \times \mathcal{N}(-0.8078)
+    $$
+
+    $$
+    C_{110} \approx 100 \times 0.2427 - 108.633 \times 0.2096 \approx 24.27 - 22.77 \approx 1.50
+    $$
+
+    **(b)** The model selection hierarchy:
+
+    - **Level 1 (BS with strike-dependent implied vol)**: Use a different $\sigma_{\text{imp}}(K, T)$ for each option. The model is internally inconsistent (no single process generates these prices), but it matches market quotes exactly. Simple, fast, and widely used for vanilla pricing and quoting.
+    - **Level 2 (Local volatility or jump-diffusion)**: Use a single consistent model with $\sigma_{\text{loc}}(t, S)$ or jumps. Calibrate to the vanilla surface. Provides a coherent framework for pricing exotics, but local vol has poor dynamics and jump-diffusion may miss long-term features.
+    - **Level 3 (Stochastic volatility)**: Use Heston, SABR, or similar models. Captures realistic smile dynamics (persistence, leverage effect), produces better hedging strategies, and gives more reliable exotic prices.
+
+    **(c)** Level 1 suffices for quoting and trading vanilla options, real-time risk monitoring, and quick pricing. One must move to Level 3 for pricing path-dependent exotics (barriers, cliquets, forward-starting options), computing accurate hedging ratios that account for smile dynamics, and any application where forward volatility or smile evolution matters.
+
+??? success "Solution to Exercise 6"
+    The **leverage effect** refers to the economic mechanism linking stock price declines to volatility increases. Two main explanations exist:
+
+    **Financial leverage**: When a firm's stock price drops, its debt-to-equity ratio increases (debt is relatively fixed), making the firm more leveraged. Higher leverage means the equity is riskier, so its volatility increases. Conversely, stock price increases reduce leverage and lower volatility.
+
+    **Behavioral/feedback**: When markets fall, fear and uncertainty rise, prompting increased hedging activity (buying puts, selling stocks), which further increases realized and implied volatility. This feedback loop reinforces the negative correlation.
+
+    In the Heston model, $\rho < 0$ encodes this relationship. When $dW^{(1)} < 0$ (stock falls), the correlated increment $dW^{(2)}$ tends to be negative as well, but since $dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}$ has $\xi > 0$, a correlated negative $dW^{(2)}$ pushes $v_t$ upward (recalling that $W^{(2)}$ enters with a positive coefficient). Actually, let us be precise: with $\rho < 0$, when $dW^{(1)} < 0$, we have $dW^{(2)}$ tending to have the same sign as $\rho \cdot dW^{(1)}$, i.e., positive when $\rho < 0$ and $dW^{(1)} < 0$. This means $v_t$ increases when $S_t$ decreases.
+
+    **How this produces skew**: For OTM puts (low $K$), reaching the strike requires the stock to fall. But when the stock falls, volatility rises (due to $\rho < 0$), making the fall even more likely. This positive feedback inflates the value of OTM puts, raising their implied volatility. For OTM calls (high $K$), reaching the strike requires the stock to rise, which decreases volatility (due to $\rho < 0$), making large upward moves less likely. This depresses OTM call values and their implied volatilities. The result is a downward-sloping implied volatility curve: higher implied vol at low strikes, lower at high strikes -- the classic equity skew.
+
+    **If $\rho = 0$**: Stock and volatility movements would be independent. Volatility would still be stochastic (creating a smile), but increases and decreases in the stock would be equally likely to coincide with high or low volatility. The implied volatility surface would show a **symmetric smile** (convex in strike, centered at ATM) rather than a skew. There would be no preferential increase in implied vol for low strikes versus high strikes.

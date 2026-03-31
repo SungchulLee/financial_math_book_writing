@@ -328,3 +328,178 @@ compute $\int_0^t B_s^2 \circ dB_s$ and verify that the result is consistent wit
 ---
 
 **Exercise 7.** Explain why the Stratonovich integral $\int_0^t B_s \circ dB_s = \frac{1}{2}B_t^2$ is not a martingale, while the Ito integral $\int_0^t B_s\, dB_s = \frac{1}{2}(B_t^2 - t)$ is a martingale. What property of the midpoint evaluation causes the martingale property to fail?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The integrand $f(s) = s$ is deterministic — it does not depend on $B_s$. Using the conversion formula:
+
+    $$
+    \int_0^t f(s) \circ dB_s = \int_0^t f(s)\, dB_s + \frac{1}{2}\int_0^t \frac{\partial f}{\partial x}(s)\, \sigma(s)\, ds
+    $$
+
+    Since $f(s) = s$ does not depend on the stochastic process (i.e., $\partial f / \partial x = 0$), the correction term vanishes:
+
+    $$
+    \int_0^t s \circ dB_s = \int_0^t s\, dB_s
+    $$
+
+    The two integrals are identical. This illustrates the general principle: **when the integrand does not depend on the driving Brownian motion, the Ito and Stratonovich integrals coincide**.
+
+??? success "Solution to Exercise 2"
+    Apply the conversion formula with $f(x) = x^2$ (so $f'(x) = 2x$) and $X_t = B_t$ (so $\sigma = 1$):
+
+    $$
+    \int_0^t B_s^2 \circ dB_s = \int_0^t B_s^2\, dB_s + \frac{1}{2}\int_0^t 2B_s \cdot 1\, ds = \int_0^t B_s^2\, dB_s + \int_0^t B_s\, ds
+    $$
+
+    From Ito's formula applied to $x^3/3$ (Exercise 5 of the Ito integration intuitive section): $\int_0^t B_s^2\, dB_s = \frac{1}{3}B_t^3 - \int_0^t B_s\, ds$. Substituting:
+
+    $$
+    \int_0^t B_s^2 \circ dB_s = \frac{1}{3}B_t^3 - \int_0^t B_s\, ds + \int_0^t B_s\, ds = \frac{1}{3}B_t^3
+    $$
+
+    **Verification via the classical chain rule:** For $g(x) = x^3/3$, the classical chain rule gives $dg(B_t) = g'(B_t) \circ dB_t = B_t^2 \circ dB_t$. Integrating: $g(B_t) - g(0) = \int_0^t B_s^2 \circ dB_s$, so $\int_0^t B_s^2 \circ dB_s = B_t^3/3$. ✓
+
+??? success "Solution to Exercise 3"
+    **Stratonovich chain rule:** $d(\sin B_t) = \cos(B_t) \circ dB_t$.
+
+    **Ito's formula** applied to $f(x) = \sin x$ with $f'(x) = \cos x$, $f''(x) = -\sin x$:
+
+    $$
+    d(\sin B_t) = \cos(B_t)\, dB_t + \frac{1}{2}(-\sin(B_t))\, dt = \cos(B_t)\, dB_t - \frac{1}{2}\sin(B_t)\, dt
+    $$
+
+    **Identifying the drift correction:** The Ito form has a drift term $-\frac{1}{2}\sin(B_t)\, dt$ that is absent from the Stratonovich form.
+
+    **Verification via the conversion formula:** With $f(x) = \cos x$ (the integrand in the Stratonovich integral), $f'(x) = -\sin x$, and $\sigma = 1$:
+
+    $$
+    \cos(B_t) \circ dB_t = \cos(B_t)\, dB_t + \frac{1}{2}(-\sin(B_t)) \cdot 1\, dt
+    $$
+
+    This matches the Ito form: $d(\sin B_t) = \cos(B_t)\, dB_t - \frac{1}{2}\sin(B_t)\, dt$. ✓
+
+??? success "Solution to Exercise 4"
+    The Stratonovich SDE is $dX_t = \sigma X_t \circ dB_t$. Apply the conversion formula with $f(x) = \sigma x$, so $f'(x) = \sigma$, and the diffusion coefficient of $X_t$ is $\sigma X_t$:
+
+    $$
+    \sigma X_t \circ dB_t = \sigma X_t\, dB_t + \frac{1}{2}\sigma \cdot \sigma X_t\, dt = \sigma X_t\, dB_t + \frac{\sigma^2}{2}X_t\, dt
+    $$
+
+    The equivalent Ito SDE is:
+
+    $$
+    dX_t = \frac{\sigma^2}{2}X_t\, dt + \sigma X_t\, dB_t
+    $$
+
+    A drift term $\frac{\sigma^2}{2}X_t\, dt$ appears in the Ito form. This is geometric Brownian motion with $\mu = \sigma^2/2$. The solution is:
+
+    $$
+    X_t = X_0 \exp\!\left(\left(\frac{\sigma^2}{2} - \frac{\sigma^2}{2}\right)t + \sigma B_t\right) = X_0 e^{\sigma B_t}
+    $$
+
+    In the Stratonovich framework, the zero-drift SDE $dX_t = \sigma X_t \circ dB_t$ has the "naive" exponential solution $X_t = X_0 e^{\sigma B_t}$, consistent with the classical chain rule.
+
+??? success "Solution to Exercise 5"
+    **Stratonovich chain rule** applied to $f(x) = e^x$ with $X_t = B_t$:
+
+    $$
+    d(e^{B_t}) = e^{B_t} \circ dB_t
+    $$
+
+    **Converting to Ito form** using $f(x) = e^x$, $f'(x) = e^x$, $\sigma = 1$:
+
+    $$
+    e^{B_t} \circ dB_t = e^{B_t}\, dB_t + \frac{1}{2}e^{B_t}\, dt
+    $$
+
+    So in Ito form:
+
+    $$
+    d(e^{B_t}) = e^{B_t}\, dB_t + \frac{1}{2}e^{B_t}\, dt
+    $$
+
+    **Verification via Ito's formula:** With $f(x) = e^x$, $f'(x) = e^x$, $f''(x) = e^x$:
+
+    $$
+    d(e^{B_t}) = e^{B_t}\, dB_t + \frac{1}{2}e^{B_t}\, dt
+    $$
+
+    This matches. ✓
+
+??? success "Solution to Exercise 6"
+    With $n = 10$, $\Delta t = 1/10$, $\Delta B_k = \pm 1/\sqrt{10}$. The sequence $H, T, H, H, T, H, T, T, H, H$ gives increments $+,-,+,+,-,+,-,-,+,+$ in units of $1/\sqrt{10}$.
+
+    Build the path:
+
+    | $k$ | $\Delta B_k$ | $B_{t_k}$ |
+    |-----|-------------|-----------|
+    | 0 | | $0$ |
+    | 1 | $+1/\sqrt{10}$ | $1/\sqrt{10}$ |
+    | 2 | $-1/\sqrt{10}$ | $0$ |
+    | 3 | $+1/\sqrt{10}$ | $1/\sqrt{10}$ |
+    | 4 | $+1/\sqrt{10}$ | $2/\sqrt{10}$ |
+    | 5 | $-1/\sqrt{10}$ | $1/\sqrt{10}$ |
+    | 6 | $+1/\sqrt{10}$ | $2/\sqrt{10}$ |
+    | 7 | $-1/\sqrt{10}$ | $1/\sqrt{10}$ |
+    | 8 | $-1/\sqrt{10}$ | $0$ |
+    | 9 | $+1/\sqrt{10}$ | $1/\sqrt{10}$ |
+    | 10 | $+1/\sqrt{10}$ | $2/\sqrt{10}$ |
+
+    **Ito (left-endpoint) sum:** $\sum_{k=0}^{9} B_{t_k} \Delta B_k$
+
+    $$
+    = \frac{1}{10}\left(0 \cdot (+1) + 1 \cdot (-1) + 0 \cdot (+1) + 1 \cdot (+1) + 2 \cdot (-1) + 1 \cdot (+1) + 2 \cdot (-1) + 1 \cdot (-1) + 0 \cdot (+1) + 1 \cdot (+1)\right)
+    $$
+
+    $$
+    = \frac{1}{10}(0 - 1 + 0 + 1 - 2 + 1 - 2 - 1 + 0 + 1) = \frac{-3}{10}
+    $$
+
+    **Verification:** $\frac{1}{2}(B_1^2 - 1) = \frac{1}{2}(4/10 - 1) = \frac{1}{2}(-6/10) = -3/10$. ✓
+
+    **Stratonovich (midpoint) sum:** $\sum_{k=0}^{9} \frac{1}{2}(B_{t_k} + B_{t_{k+1}}) \Delta B_k$
+
+    $$
+    = \frac{1}{2} \cdot \frac{1}{10}\left((0+1)(+1) + (1+0)(-1) + (0+1)(+1) + (1+2)(+1) + (2+1)(-1)\right.
+    $$
+
+    $$
+    \left.+ (1+2)(+1) + (2+1)(-1) + (1+0)(-1) + (0+1)(+1) + (1+2)(+1)\right)
+    $$
+
+    $$
+    = \frac{1}{20}(1 - 1 + 1 + 3 - 3 + 3 - 3 - 1 + 1 + 3) = \frac{4}{20} = \frac{1}{5}
+    $$
+
+    **Verification:** $\frac{1}{2}B_1^2 = \frac{1}{2} \cdot 4/10 = 2/10 = 1/5$. ✓
+
+    **Difference:** Stratonovich $-$ Ito $= 1/5 - (-3/10) = 1/5 + 3/10 = 5/10 = 1/2$.
+
+    **Quadratic variation sum:** $\sum_{k=0}^{9} (\Delta B_k)^2 = 10 \cdot (1/10) = 1$.
+
+    So the difference is $\frac{1}{2} \cdot 1 = 1/2$, exactly half the quadratic variation sum. ✓
+
+??? success "Solution to Exercise 7"
+    **Ito integral $\frac{1}{2}(B_t^2 - t)$ is a martingale.** For $s < t$:
+
+    $$
+    \mathbb{E}\!\left[\frac{B_t^2 - t}{2} \,\Big|\, \mathcal{F}_s\right] = \frac{1}{2}\left(\mathbb{E}[B_t^2 \mid \mathcal{F}_s] - t\right) = \frac{1}{2}(B_s^2 + (t-s) - t) = \frac{B_s^2 - s}{2}
+    $$
+
+    This equals $I_s$, confirming the martingale property. ✓
+
+    **Stratonovich integral $\frac{1}{2}B_t^2$ is not a martingale.** For $s < t$:
+
+    $$
+    \mathbb{E}\!\left[\frac{B_t^2}{2} \,\Big|\, \mathcal{F}_s\right] = \frac{1}{2}(B_s^2 + (t - s)) = \frac{B_s^2}{2} + \frac{t-s}{2} \neq \frac{B_s^2}{2}
+    $$
+
+    The conditional expectation exceeds the current value by $(t-s)/2$, so $\frac{1}{2}B_t^2$ is a **submartingale**, not a martingale.
+
+    **Why midpoint evaluation breaks the martingale property.** The martingale property of the Ito integral relies on the independence of the integrand from the future Brownian increment: $\mathbb{E}[H_{t_k} \Delta B_k \mid \mathcal{F}_{t_k}] = H_{t_k} \cdot \mathbb{E}[\Delta B_k \mid \mathcal{F}_{t_k}] = 0$. With left-endpoint evaluation, $H_{t_k}$ is $\mathcal{F}_{t_k}$-measurable and thus independent of $\Delta B_k$.
+
+    With midpoint evaluation, the integrand involves $\frac{1}{2}(B_{t_k} + B_{t_{k+1}})$, which partially depends on $B_{t_{k+1}}$ and hence on the increment $\Delta B_k$. This creates a positive correlation between the integrand and the increment: $\mathbb{E}[\frac{1}{2}(B_{t_k} + B_{t_{k+1}})\Delta B_k] = \frac{1}{2}\mathbb{E}[(\Delta B_k)^2] = \frac{\Delta t}{2} > 0$. Summing these positive contributions produces the systematic upward drift of $t/2$, destroying the martingale property.

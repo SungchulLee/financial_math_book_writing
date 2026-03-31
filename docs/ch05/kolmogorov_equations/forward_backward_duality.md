@@ -381,3 +381,238 @@ The detailed balance condition states $\pi(x)p(y, t \mid x, 0) = \pi(y)p(x, t \m
 
 **Exercise 7.**
 For the OU process, the eigenvalues of $\mathcal{L}$ are $\lambda_n = n\kappa$ and the eigenfunctions are Hermite polynomials $H_n(x)$. Using the spectral expansion $p(x, t \mid x_0, 0) = \pi(x)\sum_{n=0}^{\infty} e^{-\lambda_n t} H_n(x)H_n(x_0)$, explain why the transition density converges to the stationary density $\pi(x)$ as $t \to \infty$. What is the rate of convergence, and which eigenvalue determines it?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    We compute $\int f(x)(\mathcal{L}g)(x)\,dx$ where $\mathcal{L}g = \mu(x)g'(x) + \frac{\sigma^2(x)}{2}g''(x)$.
+
+    **Drift term** — integrate by parts once with $u = f(x)\mu(x)$ and $dv = g'(x)\,dx$:
+
+    $$
+    \int_{-\infty}^{\infty} f(x)\mu(x)g'(x)\,dx = \underbrace{[f\mu g]_{-\infty}^{\infty}}_{\text{boundary term } B_1} - \int_{-\infty}^{\infty}\frac{\partial}{\partial x}[f\mu]\,g(x)\,dx
+    $$
+
+    **Diffusion term** — integrate by parts twice. First integration by parts:
+
+    $$
+    \int_{-\infty}^{\infty} f\frac{\sigma^2}{2}g''\,dx = \underbrace{\left[\frac{\sigma^2 f}{2}g'\right]_{-\infty}^{\infty}}_{\text{boundary term } B_2} - \int_{-\infty}^{\infty}\frac{\partial}{\partial x}\left[\frac{\sigma^2 f}{2}\right]g'\,dx
+    $$
+
+    Second integration by parts:
+
+    $$
+    -\int_{-\infty}^{\infty}\frac{\partial}{\partial x}\left[\frac{\sigma^2 f}{2}\right]g'\,dx = -\underbrace{\left[\frac{\partial}{\partial x}\left(\frac{\sigma^2 f}{2}\right)g\right]_{-\infty}^{\infty}}_{\text{boundary term } B_3} + \int_{-\infty}^{\infty}\frac{\partial^2}{\partial x^2}\left[\frac{\sigma^2 f}{2}\right]g\,dx
+    $$
+
+    **Combining**, the duality relation holds when $B_1 = B_2 = B_3 = 0$:
+
+    $$
+    \int f(\mathcal{L}g)\,dx = \int\left(-\frac{\partial}{\partial x}[\mu f] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2 f]\right)g\,dx = \int(\mathcal{L}^*f)\,g\,dx
+    $$
+
+    The boundary terms that must vanish are:
+
+    - $B_1 = [f(x)\mu(x)g(x)]_{-\infty}^{\infty}$
+    - $B_2 = \left[\frac{\sigma^2(x)f(x)}{2}g'(x)\right]_{-\infty}^{\infty}$
+    - $B_3 = \left[\frac{\partial}{\partial x}\left(\frac{\sigma^2(x)f(x)}{2}\right)g(x)\right]_{-\infty}^{\infty}$
+
+    These vanish when $f$ and $g$ (along with their derivatives) decay sufficiently fast at $\pm\infty$, or when working with compactly supported test functions.
+
+??? success "Solution to Exercise 2"
+    For standard Brownian motion ($\mu = 0$, $\sigma = 1$):
+
+    $$
+    \mathcal{L}f = \frac{1}{2}f'', \qquad \mathcal{L}^*f = \frac{1}{2}f''
+    $$
+
+    These are identical, so $\mathcal{L} = \mathcal{L}^*$. The operator is self-adjoint because neither the drift term nor the diffusion term depends on $x$. When we integrate by parts, the derivatives of constant coefficients vanish, so transferring derivatives from $g$ to $f$ produces exactly the same expression.
+
+    For Brownian motion with constant drift $\mu \neq 0$ and $\sigma = 1$:
+
+    $$
+    \mathcal{L}f = \mu f' + \frac{1}{2}f''
+    $$
+
+    Computing the adjoint: the drift term gives $-(\mu f)' = -\mu f'$ (since $\mu$ is constant), and the diffusion term gives $\frac{1}{2}f''$. Therefore:
+
+    $$
+    \mathcal{L}^*f = -\mu f' + \frac{1}{2}f''
+    $$
+
+    Since $\mathcal{L}f = \mu f' + \frac{1}{2}f''$ and $\mathcal{L}^*f = -\mu f' + \frac{1}{2}f''$, we see $\mathcal{L} \neq \mathcal{L}^*$. The **drift term changes sign** under the adjoint (from $+\mu f'$ to $-\mu f'$), while the diffusion term is unchanged. Physically, taking the adjoint reverses the direction of advection: if probability flows to the right in the forward equation, the backward equation "looks" from the right.
+
+??? success "Solution to Exercise 3"
+    For the OU process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, we have $\mu(x) = -\kappa x$ and $\sigma(x) = \sigma$ (constant).
+
+    **Generator:**
+
+    $$
+    \mathcal{L}f = -\kappa x f' + \frac{\sigma^2}{2}f''
+    $$
+
+    **Adjoint:** For the drift term, $-\frac{\partial}{\partial x}[\mu f] = -\frac{\partial}{\partial x}[-\kappa x f] = \kappa f + \kappa x f' = \kappa\frac{\partial(xf)}{\partial x}$. For the diffusion term (constant $\sigma$), $\frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2 f] = \frac{\sigma^2}{2}f''$. Therefore:
+
+    $$
+    \mathcal{L}^*f = \kappa\frac{\partial(xf)}{\partial x} + \frac{\sigma^2}{2}f'' = \kappa f + \kappa x f' + \frac{\sigma^2}{2}f''
+    $$
+
+    **Verification that $\pi(x) \propto \exp(-\kappa x^2/\sigma^2)$ satisfies $\mathcal{L}^*\pi = 0$:**
+
+    Compute the derivatives:
+
+    $$
+    \pi'(x) = -\frac{2\kappa x}{\sigma^2}\pi(x), \qquad \pi''(x) = \left(\frac{4\kappa^2 x^2}{\sigma^4} - \frac{2\kappa}{\sigma^2}\right)\pi(x)
+    $$
+
+    Substituting:
+
+    $$
+    \mathcal{L}^*\pi = \kappa\pi + \kappa x\left(-\frac{2\kappa x}{\sigma^2}\right)\pi + \frac{\sigma^2}{2}\left(\frac{4\kappa^2 x^2}{\sigma^4} - \frac{2\kappa}{\sigma^2}\right)\pi
+    $$
+
+    $$
+    = \pi\left[\kappa - \frac{2\kappa^2 x^2}{\sigma^2} + \frac{2\kappa^2 x^2}{\sigma^2} - \kappa\right] = 0
+    $$
+
+??? success "Solution to Exercise 4"
+    The transition density for Brownian motion with drift is:
+
+    $$
+    p(x, t \mid x_0, t_0) = \frac{1}{\sigma\sqrt{2\pi\tau}}\exp\left(-\frac{(x - x_0 - \mu\tau)^2}{2\sigma^2\tau}\right)
+    $$
+
+    where $\tau = t - t_0$. Define $z = x - x_0 - \mu\tau$ for convenience.
+
+    **Forward equation check** ($\partial_t p = \mathcal{L}_x^* p = -\mu\partial_x p + \frac{\sigma^2}{2}\partial_{xx}p$):
+
+    $$
+    \frac{\partial p}{\partial t} = p\left(-\frac{1}{2\tau} + \frac{z^2}{2\sigma^2\tau^2} + \frac{\mu z}{\sigma^2\tau}\right)
+    $$
+
+    $$
+    \frac{\partial p}{\partial x} = -\frac{z}{\sigma^2\tau}p, \qquad \frac{\partial^2 p}{\partial x^2} = \left(\frac{z^2}{\sigma^4\tau^2} - \frac{1}{\sigma^2\tau}\right)p
+    $$
+
+    $$
+    -\mu\frac{\partial p}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2 p}{\partial x^2} = \frac{\mu z}{\sigma^2\tau}p + \frac{\sigma^2}{2}\left(\frac{z^2}{\sigma^4\tau^2} - \frac{1}{\sigma^2\tau}\right)p = p\left(\frac{\mu z}{\sigma^2\tau} + \frac{z^2}{2\sigma^2\tau^2} - \frac{1}{2\tau}\right) = \frac{\partial p}{\partial t} \;\checkmark
+    $$
+
+    **Backward equation check** ($\partial_{t_0} p + \mathcal{L}_{x_0} p = 0$, i.e., $\partial_{t_0}p + \mu\partial_{x_0}p + \frac{\sigma^2}{2}\partial_{x_0 x_0}p = 0$):
+
+    Since $\tau = t - t_0$, we have $\partial_{t_0}\tau = -1$. Note $z = x - x_0 - \mu\tau$, so $\partial_{t_0}z = \mu$ and $\partial_{x_0}z = -1$.
+
+    $$
+    \frac{\partial p}{\partial t_0} = p\left(\frac{1}{2\tau} - \frac{z^2}{2\sigma^2\tau^2} - \frac{\mu z}{\sigma^2\tau}\right)
+    $$
+
+    $$
+    \frac{\partial p}{\partial x_0} = \frac{z}{\sigma^2\tau}p, \qquad \frac{\partial^2 p}{\partial x_0^2} = \left(\frac{z^2}{\sigma^4\tau^2} - \frac{1}{\sigma^2\tau}\right)p
+    $$
+
+    $$
+    \frac{\partial p}{\partial t_0} + \mu\frac{\partial p}{\partial x_0} + \frac{\sigma^2}{2}\frac{\partial^2 p}{\partial x_0^2}
+    $$
+
+    $$
+    = p\left[\frac{1}{2\tau} - \frac{z^2}{2\sigma^2\tau^2} - \frac{\mu z}{\sigma^2\tau} + \frac{\mu z}{\sigma^2\tau} + \frac{z^2}{2\sigma^2\tau^2} - \frac{1}{2\tau}\right] = 0 \;\checkmark
+    $$
+
+??? success "Solution to Exercise 5"
+    **Backward approach**: Solve the PDE $\partial_t v + \mathcal{L}v = 0$ with terminal condition $v(T, x) = g(x)$. This gives $v(t, x) = \mathbb{E}[g(X_T) \mid X_t = x]$, and evaluating at $(t, x) = (0, x_0)$ gives $v(0, x_0) = \mathbb{E}[g(X_T) \mid X_0 = x_0]$.
+
+    - **Advantages**: Solves one PDE to get the answer for all starting points $x_0$ simultaneously. For a fixed payoff $g$, one PDE solve suffices.
+    - **More efficient when**: We have a single payoff $g$ but need the expected value at many different starting points (e.g., option pricing at different spot prices).
+
+    **Forward approach**: Solve the PDE $\partial_t p = \mathcal{L}^* p$ with initial condition $p(x, 0) = \delta(x - x_0)$. This gives the transition density $p(x, T)$, and then:
+
+    $$
+    \mathbb{E}[g(X_T)] = \int g(x)p(x, T)\,dx
+    $$
+
+    - **Advantages**: Once $p(x, T)$ is known, we can compute expected values for any payoff $g$ by integration.
+    - **More efficient when**: We have a fixed starting point $x_0$ but need to evaluate many different payoffs $g$ (e.g., pricing an entire book of options on the same underlying, all starting from the same spot price).
+
+    In summary: backward is efficient for "one payoff, many starting points," while forward is efficient for "one starting point, many payoffs."
+
+??? success "Solution to Exercise 6"
+    The OU process has transition density:
+
+    $$
+    p(y, t \mid x, 0) = \frac{1}{\sqrt{2\pi v(t)}}\exp\left(-\frac{(y - xe^{-\kappa t})^2}{2v(t)}\right)
+    $$
+
+    where $v(t) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})$, and stationary distribution:
+
+    $$
+    \pi(x) = \sqrt{\frac{\kappa}{\pi\sigma^2}}\exp\left(-\frac{\kappa x^2}{\sigma^2}\right)
+    $$
+
+    We must verify $\pi(x)p(y, t \mid x, 0) = \pi(y)p(x, t \mid y, 0)$.
+
+    Compute $\pi(x)p(y, t \mid x, 0)$:
+
+    $$
+    \propto \exp\left(-\frac{\kappa x^2}{\sigma^2} - \frac{(y - xe^{-\kappa t})^2}{2v(t)}\right)
+    $$
+
+    Expanding the exponent:
+
+    $$
+    -\frac{\kappa x^2}{\sigma^2} - \frac{y^2 - 2xye^{-\kappa t} + x^2 e^{-2\kappa t}}{2v(t)}
+    $$
+
+    Using $v(t) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})$ and $\frac{1}{2v(t)} = \frac{\kappa}{\sigma^2(1 - e^{-2\kappa t})}$:
+
+    $$
+    = -\frac{\kappa x^2}{\sigma^2} - \frac{\kappa}{\sigma^2(1 - e^{-2\kappa t})}(y^2 - 2xye^{-\kappa t} + x^2 e^{-2\kappa t})
+    $$
+
+    $$
+    = -\frac{\kappa}{\sigma^2}\left[x^2 + \frac{y^2 - 2xye^{-\kappa t} + x^2 e^{-2\kappa t}}{1 - e^{-2\kappa t}}\right]
+    $$
+
+    $$
+    = -\frac{\kappa}{\sigma^2}\cdot\frac{x^2(1 - e^{-2\kappa t}) + y^2 - 2xye^{-\kappa t} + x^2 e^{-2\kappa t}}{1 - e^{-2\kappa t}}
+    $$
+
+    $$
+    = -\frac{\kappa}{\sigma^2}\cdot\frac{x^2 + y^2 - 2xye^{-\kappa t}}{1 - e^{-2\kappa t}}
+    $$
+
+    This expression is **symmetric in $x$ and $y$**, so swapping $x \leftrightarrow y$ gives the same result. Therefore $\pi(x)p(y,t \mid x, 0) = \pi(y)p(x, t \mid y, 0)$, confirming detailed balance.
+
+    **Physical meaning**: In the stationary regime, if a particle is at position $x$ (drawn from $\pi$), the probability of transitioning to $y$ in time $t$ equals the probability that a particle starting at $y$ transitions to $x$ in the same time. There is no net probability current between any pair of states — the system is in thermodynamic equilibrium.
+
+??? success "Solution to Exercise 7"
+    The spectral expansion is:
+
+    $$
+    p(x, t \mid x_0, 0) = \pi(x)\sum_{n=0}^{\infty}e^{-n\kappa t}H_n(x)H_n(x_0)
+    $$
+
+    where $\lambda_n = n\kappa$ and $H_0(x) = 1$.
+
+    As $t \to \infty$, the exponential factors $e^{-n\kappa t}$ decay to zero for all $n \geq 1$ (since $\kappa > 0$). Only the $n = 0$ term survives:
+
+    $$
+    \lim_{t\to\infty}p(x, t \mid x_0, 0) = \pi(x)\cdot e^{0}\cdot H_0(x)H_0(x_0) = \pi(x)
+    $$
+
+    since $H_0 = 1$. This shows the transition density converges to the stationary density $\pi(x)$ regardless of the starting point $x_0$.
+
+    **Rate of convergence**: The dominant correction comes from the $n = 1$ term:
+
+    $$
+    p(x, t \mid x_0, 0) = \pi(x)\left[1 + e^{-\kappa t}H_1(x)H_1(x_0) + O(e^{-2\kappa t})\right]
+    $$
+
+    The rate of convergence is determined by the **spectral gap**, which is the smallest nonzero eigenvalue $\lambda_1 = \kappa$. The transition density converges to the stationary distribution exponentially fast with rate $\kappa$:
+
+    $$
+    \|p(\cdot, t \mid x_0, 0) - \pi(\cdot)\| = O(e^{-\kappa t})
+    $$
+
+    Larger $\kappa$ (stronger mean reversion) leads to faster convergence to equilibrium.

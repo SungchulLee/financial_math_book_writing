@@ -149,3 +149,81 @@ where the expectation must account for path-dependent features—this is what ma
 ---
 
 **Exercise 6.** Consider a multi-asset exotic whose payoff depends on $d$ correlated assets. Explain why Monte Carlo simulation is preferred over binomial trees for $d \geq 3$. Quantify the computational cost of each method as a function of $d$ and the number of discretization points $N$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    A payoff $\Phi = f(\{S_t\}_{0 \leq t \leq T})$ is **path-dependent** if $f$ cannot be written as a function of $S_T$ alone. Mathematically, there exist two paths $\omega_1$ and $\omega_2$ such that $S_T(\omega_1) = S_T(\omega_2)$ but $f(\omega_1) \neq f(\omega_2)$. The payoff depends on the full trajectory, not just the endpoint.
+
+    Path dependency prevents the use of the terminal distribution alone because the risk-neutral price $V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[f(\{S_t\})]$ requires integrating over the entire path measure, not just the marginal distribution of $S_T$. The joint distribution of the path (or at least specific path functionals like the running maximum or average) is needed.
+
+    **Path-dependent example:** A lookback call with payoff $(\max_{0 \leq t \leq T} S_t - K)^+$. Two paths with the same $S_T = 110$ but different maxima (one reaching 130 and the other only reaching 112) produce different payoffs.
+
+    **Non-path-dependent example:** A vanilla European call with payoff $(S_T - K)^+$. This depends only on $S_T$, so the marginal distribution of $S_T$ suffices for pricing.
+
+??? success "Solution to Exercise 2"
+    The ranking from cheapest to most expensive is:
+
+    **(d) Arithmetic average-price Asian call** $<$ **(a) Down-and-out call** $<$ **(b) Vanilla call** $<$ **(c) Fixed-strike lookback call**
+
+    Justification:
+
+    - **(d) $\leq$ (b):** The Asian call satisfies $C_{\text{Asian}} \leq C_{\text{vanilla}}$ because averaging reduces variance and the payoff function $(x-K)^+$ is convex (Jensen's inequality).
+
+    - **(a) $\leq$ (b):** The down-and-out call pays the vanilla payoff only when the barrier is not breached, and zero otherwise. Therefore its payoff is dominated path-by-path: $(S_T - K)^+ \mathbf{1}_{\min S_t > H} \leq (S_T - K)^+$. By no-arbitrage, the down-and-out call is cheaper.
+
+    - **(b) $\leq$ (c):** The fixed-strike lookback call has payoff $(S_{\max} - K)^+$ where $S_{\max} \geq S_T$. So $(S_{\max} - K)^+ \geq (S_T - K)^+$ path by path, making the lookback call more expensive.
+
+    - **(d) $\leq$ (a):** The Asian call is typically cheaper than the down-and-out call for these parameters. With $H = 80$ well below $S_0 = 100$, the probability of knockout is modest, so the down-and-out call retains most of the vanilla value. The Asian call's averaging effect provides a more substantial discount.
+
+??? success "Solution to Exercise 3"
+    **Asian options in commodity markets:** Commodity producers and consumers face gradual exposure over time (e.g., an airline buying jet fuel monthly, an oil producer selling output continuously). The average price over a period better represents their actual economic exposure than the spot price on a single date. Asian options also resist price manipulation near settlement, which is a concern in less liquid commodity markets.
+
+    **Barrier options in FX markets:** FX markets are highly liquid with tight spreads, and corporate treasurers often have specific exchange rate levels that trigger hedging actions (e.g., a budget rate or a pain threshold). Barrier options provide cheaper hedging than vanilla options by accepting that the hedge expires if rates move beyond a certain level. The deep liquidity of FX markets ensures continuous monitoring of barriers is practical. Additionally, structured FX products for corporate clients often embed barriers to reduce premium costs while providing protection within a relevant range.
+
+??? success "Solution to Exercise 4"
+    A **straddle** has payoff at maturity:
+
+    $$
+    (S_T - K)^+ + (K - S_T)^+ = |S_T - K|
+    $$
+
+    A **chooser** with choice date $t_c$ has payoff at maturity equal to either $(S_T - K)^+$ or $(K - S_T)^+$, whichever the holder selects at $t_c$. The chosen payoff is $\max(C(t_c), P(t_c))$.
+
+    The chooser is cheaper because the straddle holder receives **both** the call and put payoffs at maturity, while the chooser holder receives only **one**. For every outcome:
+
+    $$
+    \max(C(t_c), P(t_c)) \leq C(t_c) + P(t_c)
+    $$
+
+    since both $C(t_c) \geq 0$ and $P(t_c) \geq 0$. By risk-neutral pricing, $V_{\text{chooser}} \leq V_{\text{straddle}}$.
+
+    The chooser price approaches the straddle price when **$t_c \to T$** (choice date near maturity). At that point, the holder sees the near-final price and knows which option will be in the money, so choosing the better one is nearly as valuable as holding both. Specifically, as $t_c \to T$, $\min(C(t_c), P(t_c)) \to 0$ (one option is deep out of the money), so $\max(C, P) \to C + P$ and the chooser value converges to the straddle value.
+
+??? success "Solution to Exercise 5"
+    **(a) Barrier option:** Requires the **joint distribution** of $(S_T, \max_{t} S_t)$ or $(S_T, \min_{t} S_t)$. The payoff depends on $S_T$ through $(S_T - K)^+$ and on the path extremum through the indicator function. However, the marginal of $S_T$ augmented with one additional statistic (the running maximum or minimum) suffices — the full joint distribution of all intermediate prices is not needed.
+
+    **(b) Asian option:** Requires the **full joint distribution** $(S_{t_1}, S_{t_2}, \ldots, S_{t_n})$ because the payoff depends on $\bar{S} = \frac{1}{n}\sum S_{t_i}$. The average is a function of all intermediate prices, not just a single additional statistic. (For the continuous average, the integral $\int_0^T S_t\,dt$ depends on the entire path.)
+
+    **(c) Digital option:** The payoff $Q \cdot \mathbf{1}_{\{S_T > K\}}$ depends only on **$S_T$**, so the marginal distribution of $S_T$ suffices. No path information is needed.
+
+    **(d) Lookback option:** Requires the **joint distribution** of $(S_T, \max_t S_t)$ or $(S_T, \min_t S_t)$. Like the barrier option, the marginal of $S_T$ augmented with one additional statistic (the running extremum) is sufficient.
+
+??? success "Solution to Exercise 6"
+    **Binomial tree cost:** A single-asset binomial tree with $N$ time steps has $O(N^2)$ nodes. For $d$ assets, a multinomial tree (where each asset independently moves up or down at each step) has $O(2^d)$ branches at each node, producing a tree with $O((N+1)^d)$ terminal nodes. The total computational cost is:
+
+    $$
+    O(N^d) \quad \text{(tree-based method)}
+    $$
+
+    For $d = 3$ and $N = 100$, this gives $100^3 = 10^6$ nodes. For $d = 5$ and $N = 100$, this gives $100^5 = 10^{10}$, which is intractable. This exponential growth in $d$ is the **curse of dimensionality**.
+
+    **Monte Carlo cost:** Monte Carlo simulates $N_{\text{paths}}$ independent paths, each requiring $O(M \cdot d)$ operations (where $M$ is the number of time steps per path and $d$ is the dimension for generating correlated normals via Cholesky). The total cost is:
+
+    $$
+    O(N_{\text{paths}} \cdot M \cdot d) \quad \text{(Monte Carlo)}
+    $$
+
+    This scales **linearly** in the dimension $d$, making Monte Carlo the only practical method for $d \geq 3$. The convergence rate $O(1/\sqrt{N_{\text{paths}}})$ is independent of dimension, unlike grid methods whose convergence degrades with dimension.

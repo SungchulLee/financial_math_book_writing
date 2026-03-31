@@ -275,3 +275,108 @@ as $n, m \to \infty$. Explain why this makes the sequence of integrals a Cauchy 
 ---
 
 **Exercise 7.** The analogy between the Ito isometry and Parseval's identity states that stochastic integration preserves $L^2$ norms. In Fourier analysis, Parseval's identity says $\sum_n |c_n|^2 = \frac{1}{2\pi}\int |f|^2\, dx$. Write a brief comparison: what plays the role of the Fourier coefficients $c_n$ in the stochastic setting, and what plays the role of the $L^2$ norm of $f$?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    By the Ito isometry (the integrand $3t + 1$ is deterministic):
+
+    $$
+    \operatorname{Var}\!\left(\int_0^2 (3t + 1)\, dW_t\right) = \int_0^2 (3t + 1)^2\, dt
+    $$
+
+    Expanding:
+
+    $$
+    = \int_0^2 (9t^2 + 6t + 1)\, dt = \left[3t^3 + 3t^2 + t\right]_0^2 = 3(8) + 3(4) + 2 = 24 + 12 + 2 = 38
+    $$
+
+??? success "Solution to Exercise 2"
+    By the Ito isometry (deterministic integrand):
+
+    $$
+    \mathbb{E}\!\left[\left(\int_0^T e^{-\alpha t}\, dW_t\right)^2\right] = \int_0^T e^{-2\alpha t}\, dt = \left[-\frac{1}{2\alpha}e^{-2\alpha t}\right]_0^T = \frac{1}{2\alpha}(1 - e^{-2\alpha T})
+    $$
+
+    As $T \to \infty$, since $\alpha > 0$, $e^{-2\alpha T} \to 0$:
+
+    $$
+    \lim_{T \to \infty} \frac{1}{2\alpha}(1 - e^{-2\alpha T}) = \frac{1}{2\alpha}
+    $$
+
+    The variance converges to a finite limit, reflecting the fact that the exponentially decaying integrand effectively "turns off" the accumulation of Brownian noise at large times.
+
+??? success "Solution to Exercise 3"
+    The argument that cross terms vanish uses the tower property of conditional expectation and the independence of future Brownian increments from past information. For $i < j$:
+
+    $$
+    \mathbb{E}[\beta_i \beta_j \Delta W_i \Delta W_j] = \mathbb{E}\!\left[\beta_i \beta_j \Delta W_i \cdot \mathbb{E}[\Delta W_j \mid \mathcal{F}_{t_j}]\right] = 0
+    $$
+
+    This works because $\beta_j$ is $\mathcal{F}_{t_j}$-measurable (known at the **left** endpoint $t_j$), and $\Delta W_j = W_{t_{j+1}} - W_{t_j}$ is independent of $\mathcal{F}_{t_j}$ with mean zero.
+
+    **With right-endpoint evaluation**, the position $\beta_j$ would be $\mathcal{F}_{t_{j+1}}$-measurable. Then $\beta_j$ would depend on $\Delta W_j$ (since $\Delta W_j$ is part of the information available at $t_{j+1}$). The independence used to kill the cross terms no longer holds. In fact, even the diagonal terms change: $\mathbb{E}[\beta_j^2 (\Delta W_j)^2] \neq \mathbb{E}[\beta_j^2] \cdot \mathbb{E}[(\Delta W_j)^2]$ because $\beta_j$ and $\Delta W_j$ are no longer independent.
+
+    Concretely, for $\beta_j = W_{t_{j+1}}$ and $\Delta W_j = W_{t_{j+1}} - W_{t_j}$: $\beta_j$ is correlated with $\Delta W_j$, and $\mathbb{E}[W_{t_{j+1}} \cdot \Delta W_j] = \mathbb{E}[(\Delta W_j)^2] = \Delta t_j \neq 0$. The entire isometry framework breaks down.
+
+??? success "Solution to Exercise 4"
+    By the Ito isometry with $\beta(t) = W_t^2$:
+
+    $$
+    \operatorname{Var}\!\left(\int_0^T W_t^2\, dW_t\right) = \mathbb{E}\!\left[\int_0^T W_t^4\, dt\right] = \int_0^T \mathbb{E}[W_t^4]\, dt
+    $$
+
+    Using $\mathbb{E}[W_t^4] = 3t^2$ (the fourth moment of $\mathcal{N}(0, t)$):
+
+    $$
+    = \int_0^T 3t^2\, dt = 3 \cdot \frac{T^3}{3} = T^3
+    $$
+
+??? success "Solution to Exercise 5"
+    Since both integrands are deterministic, the polarized Ito isometry gives:
+
+    $$
+    \operatorname{Cov}\!\left(\int_0^1 t\, dW_t,\; \int_0^1 t^2\, dW_t\right) = \mathbb{E}\!\left[\int_0^1 t \cdot t^2\, dt\right] = \int_0^1 t^3\, dt = \frac{1}{4}
+    $$
+
+    (Since both integrals have mean zero, the covariance equals the expectation of their product.)
+
+??? success "Solution to Exercise 6"
+    By linearity of the Ito integral:
+
+    $$
+    \int_0^T H_s^{(n)}\, dW_s - \int_0^T H_s^{(m)}\, dW_s = \int_0^T (H_s^{(n)} - H_s^{(m)})\, dW_s
+    $$
+
+    By the Ito isometry:
+
+    $$
+    \mathbb{E}\!\left[\left(\int_0^T (H_s^{(n)} - H_s^{(m)})\, dW_s\right)^2\right] = \mathbb{E}\!\left[\int_0^T (H_s^{(n)} - H_s^{(m)})^2\, ds\right] = \|H^{(n)} - H^{(m)}\|_{\mathcal{L}^2}^2
+    $$
+
+    Since $H^{(n)} \to H$ and $H^{(m)} \to H$ in $\mathcal{L}^2$, the triangle inequality gives:
+
+    $$
+    \|H^{(n)} - H^{(m)}\|_{\mathcal{L}^2} \le \|H^{(n)} - H\|_{\mathcal{L}^2} + \|H - H^{(m)}\|_{\mathcal{L}^2} \to 0
+    $$
+
+    Therefore $\|H^{(n)} - H^{(m)}\|_{\mathcal{L}^2}^2 \to 0$, which means:
+
+    $$
+    \mathbb{E}\!\left[\left(\int_0^T H_s^{(n)}\, dW_s - \int_0^T H_s^{(m)}\, dW_s\right)^2\right] \to 0
+    $$
+
+    This shows $\{\int_0^T H_s^{(n)}\, dW_s\}$ is a Cauchy sequence in $L^2(\Omega)$. Since $L^2(\Omega)$ is a complete Hilbert space, the sequence converges to a unique limit, and this limit defines $\int_0^T H_s\, dW_s$.
+
+??? success "Solution to Exercise 7"
+    The analogy between the Ito isometry and Parseval's identity can be summarized as follows.
+
+    In **Fourier analysis**, a function $f$ in $L^2$ is decomposed into orthogonal components $c_n e^{inx}$, and Parseval's identity states that the energy of the function equals the sum of energies of the components: $\sum_n |c_n|^2 = \frac{1}{2\pi}\int |f|^2\, dx$.
+
+    In **stochastic integration**, the integrand $\beta(t)$ plays the role of $f$ — it lives in the "input" Hilbert space $\mathcal{L}^2([0,T])$ with norm $\|\beta\|^2 = \mathbb{E}[\int_0^T \beta^2(t)\, dt]$. The stochastic integral $\int_0^T \beta(t)\, dW_t$ plays the role of the "output" living in $L^2(\Omega)$ with norm $\mathbb{E}[(\int \beta\, dW)^2]$.
+
+    The Brownian increments $\Delta W_k$ on disjoint intervals are orthogonal in $L^2(\Omega)$ (independent with mean zero), just as the Fourier basis functions $e^{inx}$ are orthogonal. The contributions $\beta_k \Delta W_k$ play the role of the Fourier coefficients $c_n$: they are the projections of the stochastic integral onto orthogonal "directions" in $L^2(\Omega)$.
+
+    The Ito isometry $\mathbb{E}[(\int \beta\, dW)^2] = \mathbb{E}[\int \beta^2\, dt]$ states that the transform preserves energy, just as Parseval's identity does. In both cases, the identity holds because cross terms vanish due to orthogonality, and only diagonal terms survive.

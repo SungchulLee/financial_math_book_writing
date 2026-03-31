@@ -292,3 +292,69 @@ with $\langle dW_t^{(1)}, dW_t^{(2)} \rangle = \rho\,dt$.
 ---
 
 **Exercise 6.** A colleague proposes modeling a stock price with the SDE $dS_t = \mu\,dt + \sigma\,dW_t$ (Brownian motion with drift) instead of geometric Brownian motion. Identify at least two problems with this choice from a modeling perspective, referring to the structural classification discussed in this chapter.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** $S_t = S_0 \exp[(\mu - \sigma^2/2)t + \sigma W_t]$ — this is an **explicit pathwise solution**. The process is written as a deterministic function of time, the initial condition, and the Brownian motion path.
+
+    **(b)** The transition density of $r_t$ satisfies the Fokker-Planck equation — this is a **PDE/generator characterization**. The process is described indirectly through the partial differential equation governing its probability density.
+
+    **(c)** $r_t$ follows a noncentral chi-squared distribution with known parameters — this is a **distributional characterization**. The full law of $r_t$ is specified, even though no simple pathwise formula may exist.
+
+    **(d)** Euler-Maruyama simulation with $10^6$ sample paths gives $\widehat{\mathbb{E}}[X_T] = 3.14 \pm 0.02$ — this is **numerical solvability**. The SDE is studied through Monte Carlo simulation rather than analytical formulas.
+
+??? success "Solution to Exercise 2"
+    **(a)** The diffusion coefficient is $\sigma(X_t) = \sigma X_t(1 - X_t)$, which depends on the state $X_t$ in a nonlinear way. This is **state-dependent diffusion** (neither purely additive nor simply multiplicative in the standard sense).
+
+    **(b)** The Lamperti transform $h(x) = \int^x \frac{1}{\sigma s(1-s)}\,ds$ would normalize the diffusion to a constant. Using partial fractions:
+
+    $$
+    \frac{1}{s(1-s)} = \frac{1}{s} + \frac{1}{1-s}
+    $$
+
+    so $h(x) = \frac{1}{\sigma}\ln\frac{x}{1-x}$, i.e., the **logit transform** $Y_t = \frac{1}{\sigma}\ln\frac{X_t}{1-X_t}$ would make the diffusion coefficient constant.
+
+    **(c)** A closed-form pathwise solution is **unlikely**. The drift $\alpha X_t(1 - X_t)$ is nonlinear (logistic growth), and after the Lamperti transform the resulting drift in $Y_t$ will generally be a complicated nonlinear function of $Y_t$. Standard transformation techniques are unlikely to reduce this to a directly integrable form. One would typically resort to numerical simulation, PDE methods, or moment analysis.
+
+??? success "Solution to Exercise 3"
+    | Transformation | Target structure |
+    |---|---|
+    | $Y_t = \log X_t$ | Removes **multiplicative noise**: if $dX_t = \mu X_t\,dt + \sigma X_t\,dW_t$, then $Y_t = \log X_t$ satisfies an SDE with **additive (constant) diffusion** coefficient, namely $dY_t = (\mu - \sigma^2/2)\,dt + \sigma\,dW_t$ |
+    | $Y_t = e^{at}(X_t - \theta)$ | Eliminates **linear mean-reverting drift**: if $dX_t = a(\theta - X_t)\,dt + \sigma\,dW_t$, then $Y_t$ satisfies a **driftless SDE** $dY_t = \sigma e^{at}\,dW_t$ that can be integrated directly |
+    | $Y_t = \int^{X_t} \frac{dx}{\sigma(x)}$ | Normalizes **state-dependent diffusion** to unit (constant) diffusion coefficient — this is the **Lamperti transform**, converting the SDE to one where only the drift remains state-dependent |
+
+??? success "Solution to Exercise 4"
+    **(a)** The SABR model does **not** admit an elementary closed-form pathwise solution. Several factors prevent this:
+
+    - The forward rate $F_t$ has **state-dependent diffusion** $\sigma_t F_t^\beta$, where the local volatility itself is stochastic.
+    - The volatility $\sigma_t$ follows its own GBM-type SDE.
+    - The two Brownian motions are **correlated** ($\rho \neq 0$), creating a coupled two-dimensional system.
+    - No single transformation can simultaneously simplify both equations into integrable form.
+
+    **(b)** Available senses of solvability:
+
+    - **Pathwise:** Not available in elementary form.
+    - **Distributional:** Asymptotic expansions for the implied volatility are available (the Hagan et al. formula), which provide approximate distributional information. The exact transition density is not known in closed form.
+    - **PDE:** The Kolmogorov backward equation for the two-dimensional diffusion $(F_t, \sigma_t)$ can be written down and solved numerically or asymptotically.
+    - **Numerical:** Monte Carlo simulation is straightforward and is the standard approach for pricing under SABR. Euler-Maruyama or more specialized schemes can be applied to the coupled system.
+
+??? success "Solution to Exercise 5"
+    For an SDE $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$, consider the function $u(t, x) = \mathbb{E}[\phi(X_T) \mid X_t = x]$. By the Feynman-Kac formula, $u$ satisfies the backward PDE
+
+    $$
+    \frac{\partial u}{\partial t} + b(x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2 u}{\partial x^2} = 0
+    $$
+
+    with terminal condition $u(T, x) = \phi(x)$.
+
+    This connection is useful because it provides two complementary approaches to the same problem. When Monte Carlo simulation is expensive (high-dimensional expectations, path-dependent payoffs, need for full solution surface), one can instead solve the PDE numerically using finite difference or finite element methods. Conversely, when PDE methods are expensive (high-dimensional state spaces), Monte Carlo simulation of the SDE provides an efficient alternative. The Feynman-Kac formula guarantees that both approaches compute the same quantity, and it forms the mathematical foundation of the Black-Scholes equation, where the option price satisfies a PDE derived from the underlying GBM dynamics.
+
+??? success "Solution to Exercise 6"
+    **Problem 1: Non-positivity.** Brownian motion with drift $S_t = S_0 + \mu t + \sigma W_t$ is a Gaussian process. Since a Gaussian random variable takes all real values with positive probability, $S_t < 0$ occurs with positive probability for any $t > 0$. Stock prices cannot be negative, so this model is structurally inconsistent with the fundamental constraint of limited liability.
+
+    **Problem 2: Constant absolute volatility vs proportional volatility.** In Brownian motion with drift, the diffusion coefficient is the constant $\sigma$, meaning that a \$1000 stock and a \$1 stock experience the same absolute random fluctuations. In reality, price fluctuations are roughly proportional to the price level. GBM captures this with multiplicative noise ($\sigma S_t\,dW_t$), producing **percentage returns** that are stationary, which is consistent with empirical observations.
+
+    In terms of the structural classification: the additive-noise model uses a constant diffusion coefficient independent of the state, while GBM uses multiplicative noise where the diffusion is proportional to the state. The multiplicative structure is what ensures positivity (through the log-normal distribution) and produces realistic return dynamics.

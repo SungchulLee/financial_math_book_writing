@@ -326,3 +326,194 @@ Explain the role of Green's functions in option pricing: the price of a European
 
 **Exercise 7.**
 Consider the generator $\mathcal{L} = \frac{1}{2}\partial_{xx} - \frac{1}{2}\partial_x$ (Brownian motion with drift $-1/2$). Compute the Green's function by completing the square in the exponent, starting from the Gaussian kernel and incorporating the drift shift.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    We must show that $\lim_{t \to 0^+} \int_{-\infty}^{\infty} G(t,x;0,y)\,f(y)\,dy = f(x)$ for continuous $f$. Write
+
+    $$
+    \int_{-\infty}^{\infty} G(t,x;0,y)\,f(y)\,dy = \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi t}} \exp\!\left(-\frac{(x-y)^2}{2t}\right) f(y)\,dy
+    $$
+
+    Substitute $z = (y - x)/\sqrt{t}$, so $y = x + z\sqrt{t}$ and $dy = \sqrt{t}\,dz$:
+
+    $$
+    \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-z^2/2}\,f(x + z\sqrt{t})\,dz
+    $$
+
+    As $t \to 0^+$, the argument $x + z\sqrt{t} \to x$ for every fixed $z$. Since $f$ is continuous, $f(x + z\sqrt{t}) \to f(x)$. By the dominated convergence theorem (assuming $f$ is bounded or has at most polynomial growth, which is sufficient since the Gaussian provides exponential decay), we can pass the limit inside the integral:
+
+    $$
+    \lim_{t \to 0^+} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-z^2/2}\,f(x + z\sqrt{t})\,dz = f(x)\int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-z^2/2}\,dz = f(x) \cdot 1 = f(x)
+    $$
+
+    This confirms the delta-function initial condition: $G(t, x; 0, y)$ acts as an approximate identity that selects the value $f(x)$ in the limit $t \to 0^+$.
+
+??? success "Solution to Exercise 2"
+    We need to evaluate
+
+    $$
+    u(t, x) = \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi t}} \exp\!\left(-\frac{(x-y)^2}{2t}\right) e^{-y^2}\,dy
+    $$
+
+    Combine the exponents:
+
+    $$
+    -\frac{(x-y)^2}{2t} - y^2 = -\frac{(x-y)^2 + 2ty^2}{2t} = -\frac{x^2 - 2xy + y^2 + 2ty^2}{2t} = -\frac{(1+2t)y^2 - 2xy + x^2}{2t}
+    $$
+
+    Complete the square in $y$:
+
+    $$
+    (1+2t)y^2 - 2xy = (1+2t)\!\left(y - \frac{x}{1+2t}\right)^2 - \frac{x^2}{1+2t}
+    $$
+
+    Therefore
+
+    $$
+    -\frac{(1+2t)y^2 - 2xy + x^2}{2t} = -\frac{(1+2t)}{2t}\!\left(y - \frac{x}{1+2t}\right)^2 - \frac{x^2}{2t} + \frac{x^2}{2t(1+2t)}
+    $$
+
+    Simplifying the $x^2$ terms: $-\frac{x^2}{2t} + \frac{x^2}{2t(1+2t)} = -\frac{x^2}{1+2t}$.
+
+    The Gaussian integral in $y$ evaluates to $\sqrt{2\pi t/(1+2t)}$, giving
+
+    $$
+    u(t, x) = \frac{1}{\sqrt{2\pi t}} \cdot \sqrt{\frac{2\pi t}{1+2t}} \cdot \exp\!\left(-\frac{x^2}{1+2t}\right) = \frac{1}{\sqrt{1+2t}} \exp\!\left(-\frac{x^2}{1+2t}\right)
+    $$
+
+    This is a Gaussian that broadens over time: the initial width $1$ increases to $\sqrt{1+2t}$, which is the convolution of two Gaussians with variances $1$ (from $f$) and $t$ (from the heat kernel) giving total variance $(1+2t)/2$.
+
+??? success "Solution to Exercise 3"
+    The semigroup property states that for $s < r < t$:
+
+    $$
+    G(t, x; s, y) = \int_{-\infty}^{\infty} G(t, x; r, z)\,G(r, z; s, y)\,dz
+    $$
+
+    **PDE argument**: Consider the initial value problem $\partial_t u = \mathcal{L}_x u$ with $u(s, x) = \delta(x - y)$. The solution at time $t$ is $u(t, x) = G(t, x; s, y)$. We can equivalently solve in two stages: first evolve from $s$ to $r$ to get $u(r, z) = G(r, z; s, y)$, then use this as initial data and evolve from $r$ to $t$:
+
+    $$
+    u(t, x) = \int G(t, x; r, z)\,u(r, z)\,dz = \int G(t, x; r, z)\,G(r, z; s, y)\,dz
+    $$
+
+    By uniqueness of the PDE solution, this must equal $G(t, x; s, y)$.
+
+    **Probabilistic interpretation**: This is the Chapman-Kolmogorov equation. For a Markov process $X_t$:
+
+    $$
+    p(t, x \mid s, y) = \int p(t, x \mid r, z)\,p(r, z \mid s, y)\,dz
+    $$
+
+    This says: the probability of going from $y$ at time $s$ to $x$ at time $t$ equals the sum over all intermediate states $z$ at time $r$ of the probability of going $y \to z$ then $z \to x$. This follows from the Markov property (the future depends on the past only through the present) and the law of total probability.
+
+??? success "Solution to Exercise 4"
+    Given $\mathcal{L} = \mu(x)\partial_x + \frac{1}{2}\sigma^2(x)\partial_{xx}$, the Green's function satisfies the **forward equation** $\partial_t G = \mathcal{L}_x G$ in the observation variables $(t, x)$.
+
+    The formal adjoint $\mathcal{L}^*$ is obtained by integration by parts. For any smooth functions $u, v$ vanishing at infinity:
+
+    $$
+    \int (\mathcal{L}u)\,v\,dx = \int u\,(\mathcal{L}^* v)\,dx
+    $$
+
+    Computing term by term:
+
+    - $\int \mu(x)\,u_x\,v\,dx = -\int u\,\frac{\partial}{\partial x}[\mu(x)\,v]\,dx$ (integration by parts once)
+    - $\int \frac{1}{2}\sigma^2(x)\,u_{xx}\,v\,dx = \int u\,\frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x)\,v]\,dx$ (integration by parts twice)
+
+    Therefore
+
+    $$
+    \mathcal{L}^* v = -\frac{\partial}{\partial x}[\mu(x)\,v] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x)\,v]
+    $$
+
+    The backward equation is $-\partial_s G = \mathcal{L}_y^* G$, which involves $\mathcal{L}^*$ acting on the source variables.
+
+    The adjoint equation $\partial_t p = \mathcal{L}^* p$ is exactly the **Fokker-Planck (forward) equation**: it describes how the probability density $p$ evolves over time. The terms $-\partial_x[\mu\,p]$ represent the advective flux (drift carries probability) and $\frac{1}{2}\partial_{xx}[\sigma^2 p]$ represents the diffusive flux (noise spreads probability). The adjoint structure ensures that probability is conserved: $\frac{d}{dt}\int p\,dx = 0$.
+
+??? success "Solution to Exercise 5"
+    Under the log-transformation $X_t = \ln S_t$, Ito's formula gives
+
+    $$
+    dX_t = \left(r - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
+    $$
+
+    This is Brownian motion with drift $\mu = r - \sigma^2/2$ and diffusion coefficient $\sigma$. The transition density of $X_t$ given $X_s = \ln S$ is Gaussian:
+
+    $$
+    p_X(t, x \mid s, \ln S) = \frac{1}{\sigma\sqrt{2\pi(t-s)}} \exp\!\left(-\frac{(x - \ln S - (r - \sigma^2/2)(t-s))^2}{2\sigma^2(t-s)}\right)
+    $$
+
+    This is the Green's function $G(t, x; s, \ln S)$ for the PDE $\partial_t u = (r - \sigma^2/2)\partial_x u + \frac{1}{2}\sigma^2\partial_{xx}u$.
+
+    To obtain the transition density of $S_t$ in the original variable, use the change of variables $S_T = e^x$, so $dS_T = e^x\,dx$ and $p_S(t, S_T \mid s, S) = p_X(t, \ln S_T \mid s, \ln S)/S_T$:
+
+    $$
+    p_S(t, S_T \mid s, S) = \frac{1}{S_T \sigma\sqrt{2\pi(t-s)}} \exp\!\left(-\frac{(\ln(S_T/S) - (r - \sigma^2/2)(t-s))^2}{2\sigma^2(t-s)}\right)
+    $$
+
+    This is the lognormal transition density. The log-space Green's function and the lognormal density are related by the Jacobian factor $1/S_T$ from the exponential change of variables.
+
+??? success "Solution to Exercise 6"
+    The European derivative price under risk-neutral pricing is
+
+    $$
+    V(t, S) = e^{-r(T-t)}\,\mathbb{E}^{\mathbb{Q}}[g(S_T) \mid S_t = S] = e^{-r(T-t)}\int_0^{\infty} g(S_T)\,p^{\mathbb{Q}}(T, S_T \mid t, S)\,dS_T
+    $$
+
+    In log-space ($y = \ln S_T$):
+
+    $$
+    V(t, S) = e^{-r(T-t)}\int_{-\infty}^{\infty} g(e^y)\,G(T, y; t, \ln S)\,dy
+    $$
+
+    The Green's function $G(T, y; t, \ln S)$ plays the role of a **state-price density** (Arrow-Debreu price). For each terminal state $y$, the quantity $e^{-r(T-t)}G(T, y; t, \ln S)\,dy$ is the price today of a security that pays $\$1$ if the log-price at maturity falls in the interval $[y, y + dy]$ and zero otherwise.
+
+    The Green's function encodes all information needed for pricing because:
+
+    - It captures the dynamics of the underlying process (drift, volatility) through the PDE it satisfies.
+    - It incorporates the risk-neutral measure through the drift adjustment ($r$ replaces $\mu$).
+    - Any European payoff $g$ can be priced by integrating against $G$ -- different payoffs simply change the weighting function, not the kernel.
+    - The discount factor $e^{-r(T-t)}$ accounts for the time value of money.
+
+    Thus, knowing the Green's function is equivalent to knowing all European option prices simultaneously.
+
+??? success "Solution to Exercise 7"
+    The generator is $\mathcal{L} = \frac{1}{2}\partial_{xx} - \frac{1}{2}\partial_x$, corresponding to the SDE $dX_t = -\frac{1}{2}\,dt + dW_t$ (Brownian motion with drift $\mu = -1/2$).
+
+    The Green's function for drift-diffusion $dX_t = \mu\,dt + \sigma\,dW_t$ with $\mu = -1/2$ and $\sigma = 1$ is
+
+    $$
+    G(t, x; s, y) = \frac{1}{\sqrt{2\pi(t-s)}} \exp\!\left(-\frac{(x - y + \frac{1}{2}(t-s))^2}{2(t-s)}\right)
+    $$
+
+    **Derivation by completing the square**: Start with the Gaussian kernel and incorporate the drift. The PDE is $\partial_t u = \frac{1}{2}\partial_{xx}u - \frac{1}{2}\partial_x u$. Make the substitution $u(t, x) = e^{\alpha x + \beta t}\,v(t, x)$ to eliminate the first-order term. Substituting:
+
+    $$
+    e^{\alpha x + \beta t}(\beta v + v_t) = \frac{1}{2}e^{\alpha x + \beta t}(\alpha^2 v + 2\alpha v_x + v_{xx}) - \frac{1}{2}e^{\alpha x + \beta t}(\alpha v + v_x)
+    $$
+
+    Choosing $\alpha = 1/2$ eliminates the $v_x$ terms (since $2\alpha \cdot \frac{1}{2} - \frac{1}{2} = 0$), and then $\beta = -\alpha^2/2 + \alpha/2 = -1/8 + 1/4 = 1/8$. This gives $v_t = \frac{1}{2}v_{xx}$, the standard heat equation.
+
+    The Green's function of the heat equation is $\Gamma(t, x-y) = (2\pi t)^{-1/2}e^{-(x-y)^2/(2t)}$. Reverting:
+
+    $$
+    G(t, x; 0, y) = e^{-\frac{1}{2}(x-y) - \frac{1}{8}t} \cdot \frac{1}{\sqrt{2\pi t}}\,e^{-(x-y)^2/(2t)}
+    $$
+
+    Combining the exponentials:
+
+    $$
+    -\frac{(x-y)^2}{2t} - \frac{x-y}{2} - \frac{t}{8} = -\frac{(x-y)^2 + t(x-y) + t^2/4}{2t} = -\frac{(x - y + t/2)^2}{2t}
+    $$
+
+    Therefore
+
+    $$
+    G(t, x; 0, y) = \frac{1}{\sqrt{2\pi t}} \exp\!\left(-\frac{(x - y + t/2)^2}{2t}\right)
+    $$
+
+    This is a Gaussian centered at $y - t/2$ (the source point shifted by the drift $-1/2$ over time $t$), confirming that the drift simply translates the center of the heat kernel.

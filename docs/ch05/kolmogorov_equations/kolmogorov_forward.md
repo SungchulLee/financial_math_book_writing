@@ -663,3 +663,226 @@ On a bounded domain $[a, b]$ with homogeneous boundary conditions, the Fokker-Pl
 
 **Exercise 7.**
 The score function is defined as $s(x, t) = \nabla_x \log p(x, t)$. For a Gaussian density $p(x, t) = \frac{1}{\sqrt{2\pi v(t)}}\exp(-(x - m(t))^2/(2v(t)))$, compute the score function explicitly. Explain why the reverse-time SDE uses the score to denoise: the drift $-g^2(t)\nabla_x \log p$ points toward regions of higher probability density.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The Fokker-Planck equation for constant coefficients is $\partial_t p = -\mu\partial_x p + \frac{\sigma^2}{2}\partial_{xx}p$. Let
+
+    $$
+    p(x, t) = \frac{1}{\sigma\sqrt{2\pi t}}\exp\left(-\frac{(x - x_0 - \mu t)^2}{2\sigma^2 t}\right)
+    $$
+
+    and define $z = x - x_0 - \mu t$ and $\tau = t$ for convenience. Compute:
+
+    $$
+    \frac{\partial p}{\partial t} = p\left(-\frac{1}{2t} + \frac{z^2}{2\sigma^2 t^2} + \frac{\mu z}{\sigma^2 t}\right)
+    $$
+
+    (the three terms come from differentiating $(2\pi\sigma^2 t)^{-1/2}$ and the exponential, noting $\partial_t z = -\mu$).
+
+    $$
+    \frac{\partial p}{\partial x} = -\frac{z}{\sigma^2 t}p, \qquad \frac{\partial^2 p}{\partial x^2} = \left(\frac{z^2}{\sigma^4 t^2} - \frac{1}{\sigma^2 t}\right)p
+    $$
+
+    Now compute the right-hand side:
+
+    $$
+    -\mu\frac{\partial p}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2 p}{\partial x^2} = \frac{\mu z}{\sigma^2 t}p + \frac{\sigma^2}{2}\left(\frac{z^2}{\sigma^4 t^2} - \frac{1}{\sigma^2 t}\right)p
+    $$
+
+    $$
+    = p\left(\frac{\mu z}{\sigma^2 t} + \frac{z^2}{2\sigma^2 t^2} - \frac{1}{2t}\right) = \frac{\partial p}{\partial t}
+    $$
+
+    Both sides are equal, confirming the Gaussian density satisfies the Fokker-Planck equation. $\checkmark$
+
+??? success "Solution to Exercise 2"
+    For the OU process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, we have $\mu(x) = -\kappa x$ and $\sigma(x) = \sigma$.
+
+    The probability current is:
+
+    $$
+    J(x, t) = \mu(x)p - \frac{1}{2}\frac{\partial}{\partial x}[\sigma^2 p] = -\kappa x\,p - \frac{\sigma^2}{2}\frac{\partial p}{\partial x}
+    $$
+
+    The continuity form of the Fokker-Planck equation is $\partial_t p + \partial_x J = 0$.
+
+    **At stationarity** ($\partial_t p = 0$): $\partial_x J = 0$, so $J = \text{const}$. For a density on $\mathbb{R}$ that decays at infinity, the current must vanish at $\pm\infty$, so $J = 0$ everywhere.
+
+    Setting $J = 0$:
+
+    $$
+    -\kappa x\,p_\infty = \frac{\sigma^2}{2}\frac{dp_\infty}{dx}
+    $$
+
+    This is a separable ODE:
+
+    $$
+    \frac{dp_\infty}{p_\infty} = -\frac{2\kappa x}{\sigma^2}dx
+    $$
+
+    Integrating:
+
+    $$
+    \ln p_\infty = -\frac{\kappa x^2}{\sigma^2} + C
+    $$
+
+    $$
+    p_\infty(x) = A\exp\left(-\frac{\kappa x^2}{\sigma^2}\right)
+    $$
+
+    Normalizing: this is a Gaussian with variance $\sigma^2/(2\kappa)$, so $A = \sqrt{\kappa/(\pi\sigma^2)}$ and:
+
+    $$
+    p_\infty(x) = \sqrt{\frac{\kappa}{\pi\sigma^2}}\exp\left(-\frac{\kappa x^2}{\sigma^2}\right)
+    $$
+
+    This is $N(0, \sigma^2/(2\kappa))$.
+
+??? success "Solution to Exercise 3"
+    For constant coefficients, the Fokker-Planck equation in Fourier space is:
+
+    $$
+    \frac{\partial\hat{p}}{\partial t} = \left(-ik\mu - \frac{\sigma^2 k^2}{2}\right)\hat{p}
+    $$
+
+    This is a first-order linear ODE in $t$ with solution:
+
+    $$
+    \hat{p}(k, t) = \hat{p}(k, 0)\exp\left[\left(-ik\mu - \frac{\sigma^2 k^2}{2}\right)t\right]
+    $$
+
+    With initial condition $p(x, 0) = \delta(x - x_0)$, the Fourier transform gives $\hat{p}(k, 0) = e^{-ikx_0}$. Therefore:
+
+    $$
+    \hat{p}(k, t) = \exp\left[-ik(x_0 + \mu t) - \frac{\sigma^2 t}{2}k^2\right]
+    $$
+
+    This is the characteristic function of $N(x_0 + \mu t, \sigma^2 t)$. The inverse Fourier transform gives:
+
+    $$
+    p(x, t) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{p}(k, t)e^{ikx}\,dk = \frac{1}{2\pi}\int_{-\infty}^{\infty}\exp\left[ik(x - x_0 - \mu t) - \frac{\sigma^2 t}{2}k^2\right]dk
+    $$
+
+    Completing the square in $k$ and evaluating the Gaussian integral:
+
+    $$
+    p(x, t) = \frac{1}{\sigma\sqrt{2\pi t}}\exp\left(-\frac{(x - x_0 - \mu t)^2}{2\sigma^2 t}\right)
+    $$
+
+    This is the Gaussian transition density. $\checkmark$
+
+??? success "Solution to Exercise 4"
+    For GBM, $\mu(S) = \mu S$ and $\sigma^2(S) = \sigma^2 S^2$. Expanding the Fokker-Planck equation:
+
+    **Drift term:**
+
+    $$
+    -\frac{\partial}{\partial S}(\mu S\,p) = -\mu p - \mu S\frac{\partial p}{\partial S}
+    $$
+
+    **Diffusion term** (using the product rule twice):
+
+    $$
+    \frac{\sigma^2}{2}\frac{\partial^2}{\partial S^2}(S^2 p) = \frac{\sigma^2}{2}\frac{\partial}{\partial S}\left(2Sp + S^2\frac{\partial p}{\partial S}\right) = \frac{\sigma^2}{2}\left(2p + 4S\frac{\partial p}{\partial S} + S^2\frac{\partial^2 p}{\partial S^2}\right)
+    $$
+
+    **Combined:**
+
+    $$
+    \frac{\partial p}{\partial t} = (\sigma^2 - \mu)p + (2\sigma^2 - \mu)S\frac{\partial p}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 p}{\partial S^2}
+    $$
+
+    **Identifying the terms:**
+
+    - **Standard diffusion**: $\frac{\sigma^2 S^2}{2}\partial_{SS}p$ — this is the usual second-order diffusion term.
+    - **Effective drift on $p$**: $(2\sigma^2 - \mu)S\partial_S p$ — this combines the physical drift $-\mu S$ with additional terms from differentiating $\sigma^2 S^2$.
+    - **Spurious drift terms**: The $\sigma^2 p$ and $2\sigma^2 S\partial_S p$ contributions arise because $\sigma(S) = \sigma S$ depends on $S$. When the diffusion coefficient varies in space, differentiating $\sigma^2(S)p$ produces extra terms beyond $\frac{\sigma^2(S)}{2}\partial_{SS}p$. The term $\sigma^2 p$ is analogous to a zeroth-order "source" or "sink" of probability, while $2\sigma^2 S\partial_S p$ acts as an additional advective flux. These spurious drift effects cause probability mass to flow from high-volatility regions (large $S$) toward low-volatility regions.
+
+??? success "Solution to Exercise 5"
+    For the CIR process, $\mu(x) = \kappa(\theta - x)$ and $\sigma^2(x) = \xi^2 x$. The general stationary density formula gives:
+
+    $$
+    p_\infty(x) \propto \frac{1}{\xi^2 x}\exp\left(\int^x\frac{2\kappa(\theta - z)}{\xi^2 z}\,dz\right)
+    $$
+
+    Evaluate the integral:
+
+    $$
+    \int^x\frac{2\kappa(\theta - z)}{\xi^2 z}\,dz = \frac{2\kappa}{\xi^2}\int^x\left(\frac{\theta}{z} - 1\right)dz = \frac{2\kappa}{\xi^2}(\theta\ln x - x)
+    $$
+
+    Therefore:
+
+    $$
+    p_\infty(x) \propto \frac{1}{\xi^2 x}\exp\left(\frac{2\kappa\theta}{\xi^2}\ln x - \frac{2\kappa x}{\xi^2}\right) = \frac{1}{\xi^2}x^{2\kappa\theta/\xi^2 - 1}\exp\left(-\frac{2\kappa x}{\xi^2}\right)
+    $$
+
+    This is the density of a **Gamma distribution** with shape parameter $\alpha = 2\kappa\theta/\xi^2$ and rate parameter $\beta = 2\kappa/\xi^2$:
+
+    $$
+    p_\infty(x) = \frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha - 1}e^{-\beta x}, \qquad x > 0
+    $$
+
+    **Normalizability condition**: The Gamma density is normalizable if and only if $\alpha > 0$, i.e.:
+
+    $$
+    \frac{2\kappa\theta}{\xi^2} > 0
+    $$
+
+    Since $\kappa, \theta > 0$, this is always satisfied. The stronger Feller condition $2\kappa\theta \geq \xi^2$ (i.e., $\alpha \geq 1$) ensures the density is bounded at the origin.
+
+??? success "Solution to Exercise 6"
+    On $[0, L]$ with absorbing (Dirichlet) boundaries $p(0, t) = p(L, t) = 0$, the heat equation $\partial_t p = \frac{1}{2}\partial_{xx}p$ is solved by separation of variables.
+
+    Write $p(x, t) = X(x)T(t)$. Then $T'/T = \frac{1}{2}X''/X = -\lambda$ (separation constant). This gives:
+
+    $$
+    X'' + 2\lambda X = 0, \qquad X(0) = X(L) = 0
+    $$
+
+    The eigenvalues and eigenfunctions are:
+
+    $$
+    \lambda_n = \frac{n^2\pi^2}{2L^2}, \qquad \phi_n(x) = \sin\left(\frac{n\pi x}{L}\right), \qquad n = 1, 2, 3, \ldots
+    $$
+
+    The time part gives $T_n(t) = e^{-\lambda_n t}$. The general solution is:
+
+    $$
+    p(x, t) = \sum_{n=1}^{\infty}c_n\sin\left(\frac{n\pi x}{L}\right)\exp\left(-\frac{n^2\pi^2 t}{2L^2}\right)
+    $$
+
+    where $c_n$ are determined by the initial condition.
+
+    **Long-time behavior**: As $t \to \infty$, the dominant term is $n = 1$ (smallest eigenvalue):
+
+    $$
+    p(x, t) \approx c_1\sin\left(\frac{\pi x}{L}\right)\exp\left(-\frac{\pi^2 t}{2L^2}\right)
+    $$
+
+    The density decays exponentially to zero at rate $\lambda_1 = \pi^2/(2L^2)$. This makes physical sense: with absorbing boundaries, all probability is eventually absorbed, so $p \to 0$. There is no stationary distribution (the eigenvalue $\lambda_0 = 0$ does not appear because $\sin(0) = 0$ fails to satisfy the boundary conditions nontrivially).
+
+??? success "Solution to Exercise 7"
+    For the Gaussian density $p(x, t) = \frac{1}{\sqrt{2\pi v(t)}}\exp\left(-\frac{(x - m(t))^2}{2v(t)}\right)$:
+
+    $$
+    \log p(x, t) = -\frac{1}{2}\log(2\pi v(t)) - \frac{(x - m(t))^2}{2v(t)}
+    $$
+
+    The score function is:
+
+    $$
+    s(x, t) = \frac{\partial}{\partial x}\log p(x, t) = -\frac{x - m(t)}{v(t)}
+    $$
+
+    **Interpretation**: The score points toward the mean $m(t)$:
+
+    - If $x > m(t)$: $s(x,t) < 0$, pointing left (toward the mean)
+    - If $x < m(t)$: $s(x,t) > 0$, pointing right (toward the mean)
+    - The magnitude $|s| = |x - m(t)|/v(t)$ is larger when $x$ is far from the mean or when the variance is small (sharp peak)
+
+    **Why the reverse-time SDE uses the score for denoising**: In the reverse-time SDE, the drift contains the term $-g^2(t)\nabla_x\log p$. Since the score $\nabla_x\log p$ always points in the direction of increasing probability density, the contribution $-g^2(t)\nabla_x\log p$ acts as a drift that pushes samples toward regions of higher probability density. During the forward process, noise is added, spreading the distribution. The reverse process must undo this: the score-based drift counteracts diffusion by steering samples back toward the high-density regions of the data distribution, effectively denoising the signal.

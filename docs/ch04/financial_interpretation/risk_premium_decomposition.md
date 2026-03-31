@@ -419,3 +419,194 @@ Write the Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T}$ in
 
 **Exercise 7.**
 In the CAPM framework, asset $i$ has $\beta_i = 1.2$, the market expected return is $\mu_M = 0.09$, market volatility is $\sigma_M = 0.18$, and $r = 0.03$. Compute the expected return $\mu_i$ using the CAPM relation, determine the market price of risk $\theta_M$, and express asset $i$'s risk premium in the form $\sigma_i \rho_{iM} \theta_M$ given that $\sigma_i = 0.24$ and $\rho_{iM} = 0.9$. Verify consistency with the CAPM formula.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The market price of risk is
+
+    $$
+    \theta = \frac{\mu - r}{\sigma} = \frac{0.10 - 0.02}{0.30} = \frac{0.08}{0.30} = \frac{4}{15} \approx 0.2667
+    $$
+
+    The risk premium is
+
+    $$
+    \sigma\theta = 0.30 \times \frac{4}{15} = 0.08
+    $$
+
+    This confirms $\mu - r = 0.10 - 0.02 = 0.08$.
+
+    The Radon-Nikodym derivative for $T = 1$ is
+
+    $$
+    \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_1} = \exp\!\left(-\theta W_1^{\mathbb{P}} - \frac{1}{2}\theta^2\right) = \exp\!\left(-\frac{4}{15}W_1^{\mathbb{P}} - \frac{1}{2}\cdot\frac{16}{225}\right)
+    $$
+
+    $$
+    = \exp\!\left(-\frac{4}{15}W_1^{\mathbb{P}} - \frac{8}{225}\right)
+    $$
+
+    This stochastic exponential reweights paths: those with positive $W_1^{\mathbb{P}}$ (above-average returns) are downweighted, and those with negative $W_1^{\mathbb{P}}$ (below-average returns) are upweighted, effectively removing the risk premium from the drift.
+
+??? success "Solution to Exercise 2"
+    Starting from the $\mathbb{P}$-dynamics:
+
+    $$
+    dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}
+    $$
+
+    The Girsanov relation gives $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t$, so $dW_t^{\mathbb{P}} = dW_t^{\mathbb{Q}} - \theta\,dt$. Substituting:
+
+    $$
+    dS_t = \mu S_t\,dt + \sigma S_t\left(dW_t^{\mathbb{Q}} - \theta\,dt\right)
+    $$
+
+    $$
+    = \left(\mu - \sigma\theta\right)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
+    $$
+
+    Using $\theta = (\mu - r)/\sigma$, we get $\sigma\theta = \mu - r$, so
+
+    $$
+    \mu - \sigma\theta = \mu - (\mu - r) = r
+    $$
+
+    Therefore the $\mathbb{Q}$-dynamics are
+
+    $$
+    dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
+    $$
+
+    The drift has changed from $\mu$ to $r$, confirming the measure change removes the risk premium.
+
+    The volatility $\sigma$ is unchanged because it is the diffusion coefficient, which is determined by the quadratic variation $\langle S \rangle_t = \sigma^2 S_t^2\,dt$. Quadratic variation is a path-by-path property: it depends on the sample paths of the process, not on the probability weights assigned to those paths. Since $\mathbb{P}$ and $\mathbb{Q}$ are equivalent measures defined on the same sample space with the same paths, the quadratic variation---and hence the volatility---is identical under both measures.
+
+??? success "Solution to Exercise 3"
+    The risk-neutral long-run mean in the Vasicek model is
+
+    $$
+    \bar{r}^{\mathbb{Q}} = \bar{r} - \frac{\sigma_r\theta}{\kappa} = 0.04 - \frac{0.01 \times 0.3}{0.5} = 0.04 - 0.006 = 0.034
+    $$
+
+    Since $\theta > 0$, we have $\bar{r}^{\mathbb{Q}} = 0.034 < 0.04 = \bar{r}$.
+
+    **Economic intuition:** A positive market price of interest rate risk $\theta > 0$ means investors demand compensation for bearing interest rate risk. Under $\mathbb{P}$, the short rate mean-reverts to a higher level $\bar{r} = 0.04$ because this level includes the risk premium.
+
+    Under $\mathbb{Q}$, the risk premium is removed, so the long-run mean is lower. The risk-neutral measure reweights scenarios such that higher interest rate paths are downweighted (their excess return above the risk-free rate is stripped away). This lower risk-neutral mean shifts the yield curve: bond prices, which are expectations of discounted payoffs under $\mathbb{Q}$, are computed using this lower long-run mean, effectively embedding the term premium into the yield curve.
+
+??? success "Solution to Exercise 4"
+    The system is $\boldsymbol{\mu} - r\mathbf{1} = \Sigma\boldsymbol{\theta}$, which gives
+
+    $$
+    \begin{pmatrix} 0.06 \\ 0.10 \\ 0.04 \end{pmatrix} = \begin{pmatrix} 0.20 & 0.10 \\ 0.15 & 0.25 \\ 0.10 & 0.05 \end{pmatrix} \begin{pmatrix} \theta_1 \\ \theta_2 \end{pmatrix}
+    $$
+
+    This is an overdetermined system with 3 equations and 2 unknowns. We need to check if the vector $(0.06, 0.10, 0.04)^{\top}$ lies in the column space of $\Sigma$.
+
+    Using the first two equations:
+
+    $$
+    0.20\theta_1 + 0.10\theta_2 = 0.06
+    $$
+
+    $$
+    0.15\theta_1 + 0.25\theta_2 = 0.10
+    $$
+
+    From the first equation: $\theta_2 = 0.6 - 2\theta_1$. Substituting into the second:
+
+    $$
+    0.15\theta_1 + 0.25(0.6 - 2\theta_1) = 0.10
+    $$
+
+    $$
+    0.15\theta_1 + 0.15 - 0.50\theta_1 = 0.10
+    $$
+
+    $$
+    -0.35\theta_1 = -0.05 \implies \theta_1 = \frac{1}{7} \approx 0.1429
+    $$
+
+    $$
+    \theta_2 = 0.6 - \frac{2}{7} = \frac{16}{35} \approx 0.3143
+    $$
+
+    Now check the third equation: $0.10\theta_1 + 0.05\theta_2 = 0.10 \times \frac{1}{7} + 0.05 \times \frac{16}{35} = \frac{0.10}{7} + \frac{0.80}{35} = \frac{0.50}{35} + \frac{0.80}{35} = \frac{1.30}{35} \approx 0.0371$.
+
+    This does not equal $0.04$. Therefore the system has **no solution**.
+
+    **No-arbitrage implication:** The inconsistency means that the three excess returns are not compatible with any single market price of risk vector. This implies an **arbitrage opportunity** exists: the three assets' risk premia are inconsistent with the assumption of two independent risk factors. One can construct a portfolio of the three assets that has zero exposure to both Brownian motions but earns a positive excess return, violating no-arbitrage.
+
+??? success "Solution to Exercise 5"
+    In a single-factor complete market, there is one Brownian motion and one risky asset, so $n = d = 1$. Each asset $i$ has dynamics
+
+    $$
+    dS_t^i = \mu_i S_t^i\,dt + \sigma_i S_t^i\,dW_t^{\mathbb{P}}
+    $$
+
+    The risk premium decomposition for each asset is
+
+    $$
+    \mu_i - r = \sigma_i\theta
+    $$
+
+    where $\theta$ is the unique market price of risk (since the market is complete, $\theta$ is determined uniquely). Dividing both sides by $\sigma_i$:
+
+    $$
+    \frac{\mu_i - r}{\sigma_i} = \theta
+    $$
+
+    The left side is the Sharpe ratio of asset $i$. Since $\theta$ is the same for all assets (it is a property of the market, not of individual assets), the Sharpe ratio $(\mu_i - r)/\sigma_i = \theta$ is identical for every traded asset.
+
+    This is the continuous-time analogue of the result from CAPM: in equilibrium, all assets on the capital market line have the same Sharpe ratio, equal to the market price of risk. The uniqueness of $\theta$ in a complete market is what enforces this equality.
+
+??? success "Solution to Exercise 6"
+    For a time-varying market price of risk $\theta_t$, the Radon-Nikodym derivative is given by the stochastic exponential
+
+    $$
+    \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = Z_T = \exp\!\left(-\int_0^T \theta_t\,dW_t^{\mathbb{P}} - \frac{1}{2}\int_0^T \theta_t^2\,dt\right)
+    $$
+
+    This is $Z_T = \mathcal{E}(M)_T$ where $M_t = -\int_0^t \theta_s\,dW_s^{\mathbb{P}}$ is a continuous local martingale.
+
+    The stochastic exponential $Z_t$ is always a non-negative local martingale, hence a supermartingale by Fatou's lemma. For $Z_T$ to define a valid probability density, we need $\mathbb{E}^{\mathbb{P}}[Z_T] = 1$, which requires $Z_t$ to be a **true** martingale.
+
+    The **Novikov condition** states that if
+
+    $$
+    \mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(\frac{1}{2}\int_0^T \theta_t^2\,dt\right)\right] < \infty
+    $$
+
+    then $Z_t$ is a true martingale on $[0, T]$. The intuition is as follows: The quadratic variation of $M$ is $\langle M \rangle_T = \int_0^T \theta_t^2\,dt$, which controls how fast the local martingale $M_t$ can fluctuate. If the exponential moment of $\langle M \rangle_T / 2$ is finite, the fluctuations of $M_t$ are sufficiently controlled to prevent mass from leaking to infinity. Specifically, the condition ensures that $Z_t$ cannot drift systematically downward in expectation (which would happen if paths with very large $|M_t|$ values carried too much weight), guaranteeing $\mathbb{E}[Z_T] = 1$.
+
+??? success "Solution to Exercise 7"
+    **CAPM expected return:** Using $\mu_i - r = \beta_i(\mu_M - r)$:
+
+    $$
+    \mu_i = r + \beta_i(\mu_M - r) = 0.03 + 1.2 \times (0.09 - 0.03) = 0.03 + 1.2 \times 0.06 = 0.03 + 0.072 = 0.102
+    $$
+
+    **Market price of risk:**
+
+    $$
+    \theta_M = \frac{\mu_M - r}{\sigma_M} = \frac{0.09 - 0.03}{0.18} = \frac{0.06}{0.18} = \frac{1}{3} \approx 0.3333
+    $$
+
+    **Risk premium in the form $\sigma_i \rho_{iM} \theta_M$:**
+
+    $$
+    \sigma_i \rho_{iM} \theta_M = 0.24 \times 0.9 \times \frac{1}{3} = 0.072
+    $$
+
+    **Verification:** The CAPM risk premium is $\beta_i(\mu_M - r) = 1.2 \times 0.06 = 0.072$.
+
+    To confirm consistency, recall that $\beta_i = \frac{\operatorname{Cov}(R_i, R_M)}{\operatorname{Var}(R_M)} = \frac{\rho_{iM}\sigma_i\sigma_M}{\sigma_M^2} = \frac{\rho_{iM}\sigma_i}{\sigma_M}$. Therefore:
+
+    $$
+    \beta_i(\mu_M - r) = \frac{\rho_{iM}\sigma_i}{\sigma_M}(\mu_M - r) = \rho_{iM}\sigma_i \cdot \frac{\mu_M - r}{\sigma_M} = \sigma_i\rho_{iM}\theta_M
+    $$
+
+    Numerically: $\beta_i = \frac{0.9 \times 0.24}{0.18} = 1.2$ $\checkmark$, and $\sigma_i\rho_{iM}\theta_M = 0.072 = \beta_i(\mu_M - r)$ $\checkmark$. The two expressions for the risk premium are identical, confirming the consistency of the CAPM with the market price of risk framework.

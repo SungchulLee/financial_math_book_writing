@@ -189,3 +189,103 @@ $$\mathbb{E}[S_n^4] = n + 3n(n-1) = 3n^2 - 2n. \quad\square$$
 ---
 
 **Exercise 6.** Compute $\mathbb{E}[S_n^3]$ for the symmetric random walk by the index-counting method used for $\mathbb{E}[S_n^4]$. Show that $\mathbb{E}[S_n^3] = 0$ by arguing that all surviving terms in the expansion $\sum_{i,j,k} \mathbb{E}[\xi_i \xi_j \xi_k]$ vanish. Does this generalize: is $\mathbb{E}[S_n^k] = 0$ for all odd $k$? Why or why not?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    With $p = 0.7$, the drift per step is $\mu = 2(0.7) - 1 = 0.4$ and the step variance is $\sigma^2 = 4(0.7)(0.3) = 0.84$.
+
+    $$
+    \mathbb{E}[S_{50}] = 50 \cdot 0.4 = 20
+    $$
+
+    $$
+    \text{Var}(S_{50}) = 50 \cdot 0.84 = 42
+    $$
+
+    $$
+    \mathbb{E}[S_{50}^2] = \text{Var}(S_{50}) + (\mathbb{E}[S_{50}])^2 = 42 + 400 = 442
+    $$
+
+    We need the smallest $n$ such that $\mathbb{E}[S_n] > 2\sqrt{\text{Var}(S_n)}$, i.e., $0.4n > 2\sqrt{0.84n}$. Squaring:
+
+    $$
+    0.16n^2 > 4 \cdot 0.84n = 3.36n
+    $$
+
+    Dividing by $n$: $0.16n > 3.36$, so $n > 21$. The smallest such $n$ is $n = 22$.
+
+??? success "Solution to Exercise 2"
+    **For $n = 1$:** $S_1 = \xi_1 \in \{-1,+1\}$, so $S_1^4 = 1$ always. Thus $\mathbb{E}[S_1^4] = 1$. The formula gives $3(1)^2 - 2(1) = 1$. Confirmed.
+
+    **For $n = 2$:** The four equally likely outcomes $(\xi_1, \xi_2)$ are $(+1,+1)$, $(+1,-1)$, $(-1,+1)$, $(-1,-1)$, giving $S_2 \in \{2, 0, 0, -2\}$. Therefore:
+
+    $$
+    \mathbb{E}[S_2^4] = \frac{1}{4}(2^4 + 0^4 + 0^4 + (-2)^4) = \frac{1}{4}(16 + 0 + 0 + 16) = 8
+    $$
+
+    The formula gives $3(2)^2 - 2(2) = 12 - 4 = 8$. Confirmed.
+
+??? success "Solution to Exercise 3"
+    We have $\mathbb{E}[S_n^2] = n$ and $\mathbb{E}[S_n^4] = 3n^2 - 2n$, so:
+
+    $$
+    \text{Var}(S_n^2) = \mathbb{E}[S_n^4] - (\mathbb{E}[S_n^2])^2 = (3n^2 - 2n) - n^2 = 2n^2 - 2n
+    $$
+
+    For the quadratic martingale $M_n = S_n^2 - n$:
+
+    $$
+    \text{Var}(M_n) = \text{Var}(S_n^2 - n) = \text{Var}(S_n^2)
+    $$
+
+    since subtracting a constant does not change the variance. Therefore $\text{Var}(M_n) = 2n^2 - 2n$.
+
+    As a check: $\text{Var}(M_n) = \mathbb{E}[M_n^2] - (\mathbb{E}[M_n])^2 = \mathbb{E}[(S_n^2 - n)^2] - 0^2 = \mathbb{E}[S_n^4] - 2n\mathbb{E}[S_n^2] + n^2 = (3n^2 - 2n) - 2n^2 + n^2 = 2n^2 - 2n$. Confirmed.
+
+??? success "Solution to Exercise 4"
+    From the formulas: $\mathbb{E}[S_n] = n(2p-1)$ and $\text{Var}(S_n) = 4np(1-p)$. Using $\mathbb{E}[S_n^2] = \text{Var}(S_n) + (\mathbb{E}[S_n])^2$:
+
+    $$
+    \mathbb{E}[S_n^2] = 4np(1-p) + n^2(2p-1)^2
+    $$
+
+    Expanding $(2p-1)^2 = 4p^2 - 4p + 1$:
+
+    $$
+    = 4np - 4np^2 + 4n^2p^2 - 4n^2p + n^2
+    $$
+
+    From the direct expansion: $\mathbb{E}[S_n^2] = n + n(n-1)(2p-1)^2$. Expanding:
+
+    $$
+    = n + (n^2 - n)(4p^2 - 4p + 1) = n + 4n^2p^2 - 4n^2p + n^2 - 4np^2 + 4np - n
+    $$
+
+    $$
+    = 4n^2p^2 - 4n^2p + n^2 - 4np^2 + 4np
+    $$
+
+    Both expressions are identical: $4np(1-p) + n^2(2p-1)^2 = 4np - 4np^2 + 4n^2p^2 - 4n^2p + n^2$, which matches the direct expansion.
+
+??? success "Solution to Exercise 5"
+    With $n = 10{,}000$ and $p = 1/2$: $\mathbb{E}[S_n] = 0$, $\text{Var}(S_n) = 10{,}000$, so $\text{SD}(S_n) = 100$. By the CLT:
+
+    $$
+    \mathbb{P}(S_{10000} > 200) = \mathbb{P}\!\left(\frac{S_{10000}}{100} > 2\right) \approx \mathbb{P}(Z > 2) = 1 - \Phi(2) \approx 0.0228
+    $$
+
+    So there is approximately a 2.3% chance the gambler is ahead by more than \$200 after 10,000 games. This is **not** a likely outcome — it corresponds to a 2-standard-deviation event. Despite the large number of games, the typical displacement is only $\sqrt{10{,}000} = 100$ (the standard deviation), and being ahead by \$200 is twice that.
+
+??? success "Solution to Exercise 6"
+    Expand $\mathbb{E}[S_n^3] = \sum_{i,j,k=1}^{n} \mathbb{E}[\xi_i \xi_j \xi_k]$. Since $\mathbb{E}[\xi_i] = 0$ and the $\xi_i$ are independent, $\mathbb{E}[\xi_i \xi_j \xi_k]$ is nonzero only when every distinct index appears an even number of times. With three index slots, the possible patterns are:
+
+    - **All three equal** ($i = j = k$): $\mathbb{E}[\xi_i^3] = \mathbb{E}[\xi_i] = 0$ (since $\xi_i^3 = \xi_i$ when $\xi_i \in \{-1,+1\}$). Contribution: 0.
+    - **Exactly two equal, one different** (e.g., $i = j \neq k$): $\mathbb{E}[\xi_i^2 \xi_k] = \mathbb{E}[\xi_i^2]\mathbb{E}[\xi_k] = 1 \cdot 0 = 0$. Contribution: 0.
+    - **All three distinct**: $\mathbb{E}[\xi_i]\mathbb{E}[\xi_j]\mathbb{E}[\xi_k] = 0$. Contribution: 0.
+
+    Every case gives 0, so $\mathbb{E}[S_n^3] = 0$.
+
+    **Generalization:** Yes, $\mathbb{E}[S_n^k] = 0$ for all odd $k$. This follows from the symmetry $\xi_i \overset{d}{=} -\xi_i$, which implies $S_n \overset{d}{=} -S_n$. For any odd $k$: $\mathbb{E}[S_n^k] = \mathbb{E}[(-S_n)^k] = -\mathbb{E}[S_n^k]$, which forces $\mathbb{E}[S_n^k] = 0$. Alternatively, the index-counting argument shows that with an odd number of index slots, at least one distinct index must appear an odd number of times, introducing a factor of $\mathbb{E}[\xi_i^{\text{odd}}] = 0$.

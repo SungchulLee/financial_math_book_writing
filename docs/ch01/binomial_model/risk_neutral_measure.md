@@ -537,3 +537,175 @@ Explain why this property is economically important for pricing portfolios of de
 ---
 
 **Exercise 6.** Suppose a one-period binomial model has $S_0 = 100$, $u = 1.15$, $d = 0.85$, $r = 2\%$, and $\Delta t = 0.5$. An exotic derivative pays $H = S_{\Delta t}^2 / S_0$ in both states. Compute the risk-neutral price $V_0$ and the replicating portfolio $(\Delta, B)$. Verify that the replication price equals the risk-neutral price.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Given $S_0 = 50$, $u = 1.3$, $d = 0.8$, $r = 3\%$, $\Delta t = 1$.
+
+    **Risk-neutral probability:**
+
+    $$
+    q = \frac{e^{0.03} - 0.8}{1.3 - 0.8} = \frac{1.03045 - 0.8}{0.5} = \frac{0.23045}{0.5} = 0.4609
+    $$
+
+    **Verify $0 < q < 1$:** $0 < 0.4609 < 1$ $\checkmark$
+
+    **Stock prices at $\Delta t$:** $S_u = 65$, $S_d = 40$.
+
+    **Call payoffs** ($K = 55$):
+
+    $$
+    H_u = (65 - 55)^+ = 10, \qquad H_d = (40 - 55)^+ = 0
+    $$
+
+    **Risk-neutral price:**
+
+    $$
+    C_0 = e^{-0.03}(0.4609 \times 10 + 0.5391 \times 0) = 0.97045 \times 4.609 = 4.47
+    $$
+
+??? success "Solution to Exercise 2"
+    The risk-neutral pricing formula is $V_0(H) = e^{-r\Delta t}(qH_u + (1-q)H_d)$. For payoffs $H^{(1)} = (H_u^{(1)}, H_d^{(1)})$ and $H^{(2)} = (H_u^{(2)}, H_d^{(2)})$ and scalars $\alpha, \beta$:
+
+    $$
+    V_0(\alpha H^{(1)} + \beta H^{(2)}) = e^{-r\Delta t}\bigl(q(\alpha H_u^{(1)} + \beta H_u^{(2)}) + (1-q)(\alpha H_d^{(1)} + \beta H_d^{(2)})\bigr)
+    $$
+
+    $$
+    = e^{-r\Delta t}\bigl(\alpha(qH_u^{(1)} + (1-q)H_d^{(1)}) + \beta(qH_u^{(2)} + (1-q)H_d^{(2)})\bigr)
+    $$
+
+    $$
+    = \alpha \, e^{-r\Delta t}(qH_u^{(1)} + (1-q)H_d^{(1)}) + \beta \, e^{-r\Delta t}(qH_u^{(2)} + (1-q)H_d^{(2)})
+    $$
+
+    $$
+    = \alpha \, V_0(H^{(1)}) + \beta \, V_0(H^{(2)})
+    $$
+
+    **Economic importance:** Linearity means that a portfolio of derivatives can be priced by summing the individual prices. This allows traders to decompose complex payoffs into simpler components (calls, puts, digitals), price each piece separately, and sum. It also implies that hedging a portfolio is equivalent to hedging each component, and that there are no "portfolio effects" in arbitrage-free pricing.
+
+??? success "Solution to Exercise 3"
+    With $S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$, $K = 105$, and $q = 0.5043$.
+
+    **Straddle payoff** = call payoff + put payoff:
+
+    - Up: $H_u = (120 - 105)^+ + (105 - 120)^+ = 15 + 0 = 15$
+    - Down: $H_d = (90 - 105)^+ + (105 - 90)^+ = 0 + 15 = 15$
+
+    **(a) Direct pricing:**
+
+    $$
+    V_0^{\text{straddle}} = e^{-0.05}(0.5043 \times 15 + 0.4957 \times 15) = e^{-0.05} \times 15 = 0.9512 \times 15 = 14.27
+    $$
+
+    **(b) Sum of individual prices:**
+
+    $$
+    C_0 = e^{-0.05}(0.5043 \times 15 + 0.4957 \times 0) = 0.9512 \times 7.5645 = 7.19
+    $$
+
+    $$
+    P_0 = e^{-0.05}(0.5043 \times 0 + 0.4957 \times 15) = 0.9512 \times 7.4355 = 7.07
+    $$
+
+    $$
+    C_0 + P_0 = 7.19 + 7.07 = 14.26
+    $$
+
+    Both methods agree (up to rounding). $\checkmark$
+
+    Note: in this particular example, the straddle pays 15 in both states, making it equivalent to a deterministic payoff. Its price equals $15 \times e^{-r\Delta t}$, which is just the present value of \$15.
+
+??? success "Solution to Exercise 4"
+    The risk-neutral probability is $q = \frac{e^{r\Delta t} - d}{u - d}$.
+
+    **($\Rightarrow$)** Assume $d < e^{r\Delta t} < u$. Then:
+
+    - Numerator: $e^{r\Delta t} - d > 0$ (since $e^{r\Delta t} > d$)
+    - Denominator: $u - d > 0$ (since $u > d$)
+    - So $q > 0$
+
+    Also $e^{r\Delta t} - d < u - d$ (since $e^{r\Delta t} < u$), so $q < 1$. Hence $0 < q < 1$.
+
+    **($\Leftarrow$)** Assume $q \in (0,1)$.
+
+    - $q > 0$ means $e^{r\Delta t} - d > 0$, so $e^{r\Delta t} > d$
+    - $q < 1$ means $e^{r\Delta t} - d < u - d$, so $e^{r\Delta t} < u$
+
+    **What if $q \leq 0$ or $q \geq 1$:**
+
+    If $q \leq 0$, then $e^{r\Delta t} \leq d$, meaning the risk-free rate dominates even the worst stock return. The "risk-neutral measure" assigns zero or negative weight to the up state, so it is not a valid probability. Arbitrage exists: buy stock financed by borrowing.
+
+    If $q \geq 1$, then $e^{r\Delta t} \geq u$, meaning the risk-free rate dominates even the best stock return. The measure assigns zero or negative weight to the down state. Arbitrage exists: short stock and invest in the bank.
+
+    In both cases, the pricing formula breaks down because no equivalent martingale measure exists.
+
+??? success "Solution to Exercise 5"
+    A digital put pays $H_u = 0$ (stock above strike) and $H_d = 1$ (stock below strike), with $K = 105$.
+
+    Since $S_u = 120 > 105$ and $S_d = 90 < 105$:
+
+    $$
+    V_0^{\text{dig put}} = e^{-r\Delta t}(q \times 0 + (1-q) \times 1) = e^{-0.05}(1 - q) = 0.9512 \times 0.4957 = 0.4716
+    $$
+
+    **Digital call price** (from the text): $V_0^{\text{dig call}} = e^{-r\Delta t} q = 0.9512 \times 0.5043 = 0.4797$.
+
+    **Sum:**
+
+    $$
+    V_0^{\text{dig call}} + V_0^{\text{dig put}} = 0.4797 + 0.4716 = 0.9513 \approx e^{-0.05} = 0.9512
+    $$
+
+    (The small difference is due to rounding.) $\checkmark$
+
+    **Why this must hold:** A portfolio of one digital call and one digital put pays \$1 in **every** state (if the stock is above the strike, the digital call pays 1; if below, the digital put pays 1). This combined payoff is equivalent to a zero-coupon bond paying \$1 at maturity. By no-arbitrage, its price must equal $e^{-r\Delta t}$, the discount factor.
+
+??? success "Solution to Exercise 6"
+    Given $S_0 = 100$, $u = 1.15$, $d = 0.85$, $r = 2\%$, $\Delta t = 0.5$.
+
+    **Stock prices:** $S_u = 115$, $S_d = 85$.
+
+    **Payoffs:** $H = S_{\Delta t}^2 / S_0$:
+
+    $$
+    H_u = \frac{115^2}{100} = \frac{13225}{100} = 132.25, \qquad H_d = \frac{85^2}{100} = \frac{7225}{100} = 72.25
+    $$
+
+    **Risk-neutral probability:**
+
+    $$
+    q = \frac{e^{0.02 \times 0.5} - 0.85}{1.15 - 0.85} = \frac{e^{0.01} - 0.85}{0.30} = \frac{1.01005 - 0.85}{0.30} = \frac{0.16005}{0.30} = 0.5335
+    $$
+
+    **Risk-neutral price:**
+
+    $$
+    V_0 = e^{-0.01}(0.5335 \times 132.25 + 0.4665 \times 72.25)
+    $$
+
+    $$
+    = 0.99005 \times (70.54 + 33.70) = 0.99005 \times 104.24 = 103.21
+    $$
+
+    **Replicating portfolio:**
+
+    $$
+    \Delta = \frac{H_u - H_d}{(u-d)S_0} = \frac{132.25 - 72.25}{0.30 \times 100} = \frac{60}{30} = 2.0
+    $$
+
+    $$
+    B = e^{-0.01}\left(\frac{1.15 \times 72.25 - 0.85 \times 132.25}{0.30}\right) = 0.99005 \times \frac{83.09 - 112.41}{0.30} = 0.99005 \times (-97.73) = -96.76
+    $$
+
+    **Replication price:**
+
+    $$
+    V_0^{rep} = \Delta S_0 + B = 2.0 \times 100 + (-96.76) = 200 - 96.76 = 103.24
+    $$
+
+    The risk-neutral price and replication price agree (up to rounding). $\checkmark$

@@ -273,3 +273,109 @@ $$
 *Hint*: This is the converse direction of the de la Vallée Poussin theorem. Construct $\Phi$ stepwise using the UI condition.
 
 (c) Conclude that the three characterizations of UI in the main text are all equivalent.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** For $T < \infty$, $\sup_{t \le T} \mathbb{E}[W_t^2] = \sup_{t \le T} t = T < \infty$. Since the family $\{W_t : 0 \le t \le T\}$ is $L^2$-bounded (with $p = 2 > 1$), it is uniformly integrable by the $L^p$ criterion. $\square$
+
+    **(b)** The exponential martingale $Z_t = e^{W_t - t/2}$ satisfies $Z_t \to 0$ a.s. as $t \to \infty$ (since $\log Z_t = W_t - t/2 \to -\infty$ a.s. by the law of the iterated logarithm). However, $\mathbb{E}[Z_t] = 1$ for all $t$.
+
+    If $\{Z_t : t \ge 0\}$ were UI, then by the Vitali convergence theorem, $Z_t \to 0$ a.s. combined with UI would imply $Z_t \to 0$ in $L^1$, giving $\mathbb{E}[Z_t] \to 0$. But $\mathbb{E}[Z_t] = 1$ for all $t$, a contradiction. Therefore the family is **not** UI. $\square$
+
+    **(c)** $|\sin(W_t)| \le 1$ for all $t$ and $\omega$. The constant $Y \equiv 1$ is in $L^1$. Since $|\sin(W_t)| \le Y$ for all $t$, the family is dominated by an integrable random variable, hence **uniformly integrable**. $\square$
+
+??? success "Solution to Exercise 2"
+    **(a)** Let $X_n = n \cdot \mathbf{1}_{[0, 1/n]}$ on $(\Omega, \mathbb{P}) = ([0,1], \text{Lebesgue})$. Then $X_n \to 0$ a.s. (for $\omega > 0$, eventually $\omega > 1/n$) but $\mathbb{E}[X_n] = n \cdot (1/n) = 1$ for all $n$.
+
+    The family is not UI because the tail mass does not vanish: for $K < n$,
+
+    $$
+    \mathbb{E}[X_n \mathbf{1}_{\{X_n > K\}}] = \mathbb{E}[n \cdot \mathbf{1}_{[0, 1/n]}] = 1
+    $$
+
+    since $X_n = n > K$ on $[0, 1/n]$ and $X_n = 0$ elsewhere. Thus $\sup_n \mathbb{E}[X_n \mathbf{1}_{\{X_n > K\}}] = 1$ for all $K$, which does not tend to 0.
+
+    **(b)** Since $\mathbb{E}[X_n^2] \le C$ for all $n$, the family $\{X_n\}$ is $L^2$-bounded with $p = 2 > 1$, hence uniformly integrable. Combined with $X_n \to X$ in probability (which implies a.s. convergence along a subsequence), the Vitali convergence theorem gives $X_n \to X$ in $L^1$. $\square$
+
+    More directly: UI and convergence in probability imply $L^1$ convergence (this is a standard extension of Vitali's theorem where a.s. convergence is replaced by convergence in probability).
+
+    **(c)** Consider $X_n = Y \cdot \mathbf{1}_{\{U \le 1/n\}}$ where $Y \in L^1$ and $U \sim \text{Uniform}[0,1]$ independent of $Y$. Then $X_n \to 0$ in $L^1$ (since $\mathbb{E}[|X_n|] = \mathbb{E}[|Y|]/n \to 0$). However, $X_n$ need not converge a.s. (consider replacing the indicator with a more oscillating sequence). The $L^1$ convergence directly implies UI by the Vitali theorem (in the $L^1$-convergence-implies-UI direction). $\square$
+
+??? success "Solution to Exercise 3"
+    **(a)** Let $M_n = \mathbb{E}[X \mid \mathcal{F}_n]$ for $X \in L^2$. By the conditional Jensen inequality:
+
+    $$
+    \mathbb{E}[M_n^2] = \mathbb{E}[(\mathbb{E}[X \mid \mathcal{F}_n])^2] \le \mathbb{E}[\mathbb{E}[X^2 \mid \mathcal{F}_n]] = \mathbb{E}[X^2] < \infty
+    $$
+
+    So $\sup_n \mathbb{E}[M_n^2] \le \mathbb{E}[X^2] < \infty$. The family is $L^2$-bounded, hence UI.
+
+    For $L^2$ convergence: $M_n = \mathbb{E}[X \mid \mathcal{F}_n]$ is the orthogonal projection of $X$ onto $L^2(\mathcal{F}_n)$. As $\mathcal{F}_n \uparrow \mathcal{F}_\infty$, the projections converge: $\|M_n - X\|_{L^2} \to 0$ by the $L^2$ martingale convergence theorem. $\square$
+
+    **(b)** Let $M_n = \prod_{i=1}^n \xi_i$ where $\mathbb{P}(\xi_i = 2) = \mathbb{P}(\xi_i = 0) = 1/2$, with $M_0 = 1$.
+
+    - $\mathbb{E}[M_n] = 1$ for all $n$, so $\sup_n \mathbb{E}[|M_n|] = 1 < \infty$ ($L^1$-bounded).
+    - $M_n \to 0$ a.s. (since with probability 1, eventually some $\xi_i = 0$).
+    - $\mathbb{E}[M_n] = 1 \not\to 0 = \mathbb{E}[M_\infty]$, so $M_n$ does not converge in $L^1$.
+
+    To see it is not UI: $\mathbb{E}[M_n \mathbf{1}_{\{M_n > K\}}] = \mathbb{E}[M_n] - \mathbb{E}[M_n \mathbf{1}_{\{M_n \le K\}}]$. Since $M_n \to 0$ a.s. and $M_n \mathbf{1}_{\{M_n \le K\}} \to 0$ a.s. with $|M_n \mathbf{1}_{\{M_n \le K\}}| \le K$, by bounded convergence $\mathbb{E}[M_n \mathbf{1}_{\{M_n \le K\}}] \to 0$. Therefore $\mathbb{E}[M_n \mathbf{1}_{\{M_n > K\}}] \to 1$ as $n \to \infty$, so $\sup_n \mathbb{E}[M_n \mathbf{1}_{\{M_n > K\}}] = 1$ for all $K$. Not UI. $\square$
+
+    **(c)** Let $\tau$ be a stopping time (possibly infinite) and $(M_n)$ a UI martingale with $M_n \to M_\infty$ a.s. and in $L^1$. Define $\tau_k = \tau \wedge k$ (bounded stopping times).
+
+    By bounded optional sampling: $M_{\tau_k} = \mathbb{E}[M_k \mid \mathcal{F}_{\tau_k}]$... Actually, more directly: for bounded stopping times $\sigma \le \tau_k$:
+
+    $$
+    \mathbb{E}[M_{\tau_k} \mid \mathcal{F}_\sigma] = M_\sigma
+    $$
+
+    As $k \to \infty$, $\tau_k \to \tau$ and $M_{\tau_k} \to M_\tau$ a.s. By UI of the martingale, $M_{\tau_k} \to M_\tau$ in $L^1$. For any $A \in \mathcal{F}_\tau$:
+
+    $$
+    \mathbb{E}[M_\tau \mathbf{1}_A] = \lim_k \mathbb{E}[M_{\tau_k} \mathbf{1}_A]
+    $$
+
+    Also, for $A \in \mathcal{F}_\tau$ and $k$ large enough, since $M$ is a UI martingale with terminal value $M_\infty$:
+
+    $$
+    \mathbb{E}[M_{\tau_k} \mathbf{1}_A] = \mathbb{E}[\mathbb{E}[M_\infty \mid \mathcal{F}_{\tau_k}] \mathbf{1}_A] = \mathbb{E}[M_\infty \mathbf{1}_A]
+    $$
+
+    (using $A \in \mathcal{F}_\tau \subseteq \mathcal{F}_{\tau_k}$). Therefore $\mathbb{E}[M_\tau \mathbf{1}_A] = \mathbb{E}[M_\infty \mathbf{1}_A]$ for all $A \in \mathcal{F}_\tau$, giving $M_\tau = \mathbb{E}[M_\infty \mid \mathcal{F}_\tau]$. $\square$
+
+??? success "Solution to Exercise 4"
+    **(a)** Take $\Phi(x) = x\log(1 + x)$. Then $\Phi(0) = 0$, $\Phi$ is convex on $[0, \infty)$ (since $\Phi''(x) = \frac{1}{1+x} + \frac{1}{(1+x)^2} \cdot x^{-1}\ldots$ actually let's verify: $\Phi'(x) = \log(1+x) + \frac{x}{1+x}$ and $\Phi''(x) = \frac{1}{1+x} + \frac{1}{(1+x)^2} > 0$), and
+
+    $$
+    \frac{\Phi(x)}{x} = \log(1 + x) \to \infty \quad \text{as } x \to \infty
+    $$
+
+    If $\sup_\alpha \mathbb{E}[|X_\alpha|\log(1 + |X_\alpha|)] < \infty$, then by the de la Vallee Poussin criterion (with $\Phi(x) = x\log(1+x)$), the family $\{X_\alpha\}$ is UI. $\square$
+
+    **(b)** Given a UI family $\{X_\alpha\}$, for each $n \ge 1$, by UI there exists $K_n$ such that:
+
+    $$
+    \sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| > K_n\}}] < \frac{1}{n}
+    $$
+
+    We may take $K_1 < K_2 < \cdots$ increasing. Define $\Phi$ piecewise: set $\Phi(x) = x$ for $x \le K_1$, and for $x \in (K_n, K_{n+1}]$, define $\Phi(x)$ to grow like $nx$ (making $\Phi(x)/x$ increase to $\infty$). Specifically, define:
+
+    $$
+    \Phi(x) = \int_0^x g(t)\,dt, \quad g(t) = n \text{ for } t \in (K_n, K_{n+1}]
+    $$
+
+    Then $\Phi$ is convex (since $g$ is non-decreasing), $\Phi(x)/x \to \infty$ as $x \to \infty$ (since $g(t) \to \infty$), and:
+
+    $$
+    \sup_\alpha \mathbb{E}[\Phi(|X_\alpha|)] \le \sum_{n=1}^\infty n \cdot \sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| > K_n\}}] \le \sum_{n=1}^\infty n \cdot \frac{1}{n} + C < \infty
+    $$
+
+    (with appropriate bookkeeping of the bounded part). $\square$
+
+    **(c)** Parts (a) and (b) together with the proof sketches in the main text (i $\Rightarrow$ ii, ii $\Rightarrow$ i, iii $\Rightarrow$ i, and the construction in (b) showing i $\Rightarrow$ iii) establish that all three characterizations are equivalent:
+
+    - (i) UI definition (tail truncation)
+    - (ii) $L^1$-bounded plus equi-absolute continuity
+    - (iii) de la Vallee Poussin condition $\square$

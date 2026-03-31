@@ -786,3 +786,250 @@ $$
 $$
 
 Compare this to $-1$ and explain why perfect smooth-pasting only holds in the continuous-time limit.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Given $S_0 = 40$, $u = 1.2$, $d = 0.9$, $r = 4\%$, $\Delta t = 0.5$, $K = 42$.
+
+    **Risk-neutral probability:**
+
+    $$
+    q = \frac{e^{0.04 \times 0.5} - 0.9}{1.2 - 0.9} = \frac{e^{0.02} - 0.9}{0.3} = \frac{1.02020 - 0.9}{0.3} = \frac{0.12020}{0.3} = 0.4007
+    $$
+
+    **Stock price tree:**
+
+    | Node | Price |
+    |------|-------|
+    | $S_{0,0}$ | $40.00$ |
+    | $S_{1,1}$ | $48.00$ |
+    | $S_{1,0}$ | $36.00$ |
+    | $S_{2,2}$ | $57.60$ |
+    | $S_{2,1}$ | $43.20$ |
+    | $S_{2,0}$ | $32.40$ |
+
+    **Terminal put payoffs** ($n = 2$): $h_{2,j} = (42 - S_{2,j})^+$
+
+    $$
+    V_{2,2} = 0, \quad V_{2,1} = 0, \quad V_{2,0} = 9.60
+    $$
+
+    **At $n = 1$:**
+
+    *Node $(1,1)$*: $S_{1,1} = 48.00$
+
+    - Intrinsic: $(42 - 48)^+ = 0$
+    - Continuation: $e^{-0.02}[0.4007 \times 0 + 0.5993 \times 0] = 0$
+    - $V_{1,1} = \max(0, 0) = 0$ — **Hold**
+
+    *Node $(1,0)$*: $S_{1,0} = 36.00$
+
+    - Intrinsic: $(42 - 36)^+ = 6.00$
+    - Continuation: $e^{-0.02}[0.4007 \times 0 + 0.5993 \times 9.60] = 0.98020 \times 5.753 = 5.639$
+    - $V_{1,0} = \max(6.00, 5.639) = 6.00$ — **Exercise!**
+
+    **At $n = 0$:**
+
+    *Node $(0,0)$*: $S_{0,0} = 40.00$
+
+    - Intrinsic: $(42 - 40)^+ = 2.00$
+    - Continuation: $e^{-0.02}[0.4007 \times 0 + 0.5993 \times 6.00] = 0.98020 \times 3.596 = 3.525$
+    - $V_{0,0} = \max(2.00, 3.525) = 3.525$ — **Hold**
+
+    $$
+    P_0^{\text{Am}} = 3.525
+    $$
+
+    **European put:** At node $(1,0)$, the European recursion gives $V_{1,0}^{\text{Eu}} = 5.639$ (no exercise check). Then:
+
+    $$
+    V_{0,0}^{\text{Eu}} = e^{-0.02}[0.4007 \times 0 + 0.5993 \times 5.639] = 0.98020 \times 3.380 = 3.313
+    $$
+
+    **Early exercise premium:**
+
+    $$
+    P_0^{\text{Am}} - P_0^{\text{Eu}} = 3.525 - 3.313 = 0.212
+    $$
+
+??? success "Solution to Exercise 2"
+    We prove that the continuation value of an American call at any pre-terminal node $(n,j)$ satisfies $C_{n,j} \geq S_{n,j} - Ke^{-r(N-n)\Delta t} > S_{n,j} - K$.
+
+    The continuation value is:
+
+    $$
+    C_{n,j} = e^{-r\Delta t}[q\,V_{n+1,j+1} + (1-q)\,V_{n+1,j}]
+    $$
+
+    Since $V_{n+1,k} \geq (S_{n+1,k} - K)^+ \geq S_{n+1,k} - K$ for all $k$:
+
+    $$
+    C_{n,j} \geq e^{-r\Delta t}[q(S_{n+1,j+1} - K) + (1-q)(S_{n+1,j} - K)]
+    $$
+
+    $$
+    = e^{-r\Delta t}[qS_{n+1,j+1} + (1-q)S_{n+1,j}] - Ke^{-r\Delta t}
+    $$
+
+    By the martingale property, $e^{-r\Delta t}[qS_{n+1,j+1} + (1-q)S_{n+1,j}] = S_{n,j}$, so:
+
+    $$
+    C_{n,j} \geq S_{n,j} - Ke^{-r\Delta t}
+    $$
+
+    Iterating this argument from step $n$ to $N$:
+
+    $$
+    C_{n,j} \geq S_{n,j} - Ke^{-r(N-n)\Delta t}
+    $$
+
+    Since $r > 0$ and $N - n \geq 1$, we have $e^{-r(N-n)\Delta t} < 1$, so:
+
+    $$
+    S_{n,j} - Ke^{-r(N-n)\Delta t} > S_{n,j} - K = h_{n,j}
+    $$
+
+    The continuation value strictly exceeds the intrinsic value, so the $\max$ always selects continuation. Early exercise is never optimal.
+
+    **Where the proof breaks down for puts:** For a put, $V_{n+1,k} \geq (K - S_{n+1,k})^+$, but $(K - S_{n+1,k})^+ \geq K - S_{n+1,k}$. Following the same steps:
+
+    $$
+    C_{n,j}^{\text{put}} \geq e^{-r\Delta t}[q(K - S_{n+1,j+1}) + (1-q)(K - S_{n+1,j})]
+    $$
+
+    $$
+    = Ke^{-r\Delta t} - S_{n,j}
+    $$
+
+    But $Ke^{-r\Delta t} < K$, so $Ke^{-r\Delta t} - S_{n,j} < K - S_{n,j} = h_{n,j}$. The inequality goes the **wrong way** — the bound is weaker than the intrinsic value, so we cannot conclude that continuation dominates.
+
+??? success "Solution to Exercise 3"
+    Using the 3-period tree from the text: $q = 0.5056$, $r\Delta t = 0.0167$, and American put values from the worked example.
+
+    The supermartingale condition requires $e^{-rn\Delta t}V_{n,j} \geq e^{-r(n+1)\Delta t}[qV_{n+1,j+1} + (1-q)V_{n+1,j}]$.
+
+    **At $(0,0)$:** $V_{0,0} = 10.63$. Continuation value $= e^{-0.0167}[0.5056 \times 3.75 + 0.4944 \times 18.02] = 10.63$.
+
+    $$
+    10.63 \geq 10.63 \quad \checkmark \text{ (equality — hold is optimal)}
+    $$
+
+    **At $(1,1)$:** $V_{1,1} = 3.75$. Continuation value $= e^{-0.0167}[0.5056 \times 0 + 0.4944 \times 7.70] = 3.75$.
+
+    $$
+    e^{-0.0167} \times 3.75 \geq e^{-0.0334} \times [0.5056 \times 0 + 0.4944 \times 7.70] \quad \checkmark \text{ (equality)}
+    $$
+
+    **At $(1,0)$:** $V_{1,0} = 18.02$. Continuation value $= e^{-0.0167}[0.5056 \times 7.70 + 0.4944 \times 29.17] = 18.02$.
+
+    $$
+    e^{-0.0167} \times 18.02 \geq e^{-0.0334} \times 18.32 \quad \checkmark \text{ (equality)}
+    $$
+
+    **At $(2,0)$:** $V_{2,0} = 29.17$ (exercise). Continuation value $= e^{-0.0167}[0.5056 \times 15.84 + 0.4944 \times 40.40] = 27.51$.
+
+    $$
+    e^{-0.0334} \times 29.17 = 28.20 \geq e^{-0.0501} \times 27.98 = 26.59 \quad \checkmark
+    $$
+
+    Here, **strict inequality** holds: $28.20 > 26.59$. This is the node where early exercise is optimal. The supermartingale is strict because the option value "jumps up" from the continuation value to the intrinsic value at the exercise node, creating a decrease in the discounted process.
+
+    At nodes where the holder continues (no exercise), equality holds in the supermartingale condition. At the exercise node $(2,0)$, the strict inequality reflects the early exercise premium.
+
+??? success "Solution to Exercise 4"
+    At node $(2,0)$, the intrinsic value is $h_{2,0} = (100 - 70.83)^+ = 29.17$ and the continuation value from European recursion is $V_{2,0}^{\text{Eu}} = 27.51$.
+
+    If we use the European recursion (no exercise check), the discounted value at $(2,0)$ is:
+
+    $$
+    e^{-r \cdot 2\Delta t} V_{2,0}^{\text{Eu}} = e^{-0.0334} \times 27.51 = 26.59
+    $$
+
+    The discounted intrinsic value at $(2,0)$ is:
+
+    $$
+    e^{-r \cdot 2\Delta t} h_{2,0} = e^{-0.0334} \times 29.17 = 28.20
+    $$
+
+    We need the domination condition $U_n \geq h_n$. In undiscounted terms, this requires $V_{2,0} \geq h_{2,0} = 29.17$. But the European recursion gives $V_{2,0}^{\text{Eu}} = 27.51 < 29.17$.
+
+    The domination condition $U_{2,0} \geq h_{2,0}$ is violated:
+
+    $$
+    27.51 < 29.17
+    $$
+
+    This shows the European price process is **not** a supermartingale dominating the intrinsic value — it dips below the payoff at node $(2,0)$. The Snell envelope corrects this by replacing $27.51$ with $\max(29.17, 27.51) = 29.17$, restoring the domination property. This is precisely the role of the early exercise check in the American recursion.
+
+??? success "Solution to Exercise 5"
+    With $\delta = 3\%$, the risk-neutral probability becomes:
+
+    $$
+    q = \frac{e^{(r-\delta)\Delta t} - d}{u - d} = \frac{e^{(0.05-0.03)/3} - 0.8416}{1.1882 - 0.8416} = \frac{e^{0.00667} - 0.8416}{0.3466}
+    $$
+
+    $$
+    = \frac{1.00669 - 0.8416}{0.3466} = \frac{0.16509}{0.3466} = 0.4763
+    $$
+
+    **Stock price tree:** Same as before (dividends affect $q$ but not the tree structure with continuous dividends):
+
+    $S_{3,3} = 167.77$, $S_{3,2} = 118.82$, $S_{3,1} = 84.16$, $S_{3,0} = 59.60$.
+
+    **European call** ($K = 100$): Terminal payoffs $V_{3,j} = (S_{3,j} - 100)^+$:
+
+    $V_{3,3} = 67.77$, $V_{3,2} = 18.82$, $V_{3,1} = 0$, $V_{3,0} = 0$.
+
+    Backward induction (European):
+
+    $V_{2,2} = e^{-0.0167}[0.4763 \times 67.77 + 0.5237 \times 18.82] = 0.9834 \times 42.14 = 41.44$
+
+    $V_{2,1} = e^{-0.0167}[0.4763 \times 18.82 + 0.5237 \times 0] = 0.9834 \times 8.96 = 8.81$
+
+    $V_{2,0} = 0$
+
+    $V_{1,1} = e^{-0.0167}[0.4763 \times 41.44 + 0.5237 \times 8.81] = 0.9834 \times 24.35 = 23.95$
+
+    $V_{1,0} = e^{-0.0167}[0.4763 \times 8.81 + 0.5237 \times 0] = 0.9834 \times 4.20 = 4.13$
+
+    $V_{0,0}^{\text{Eu}} = e^{-0.0167}[0.4763 \times 23.95 + 0.5237 \times 4.13] = 0.9834 \times 13.57 = 13.34$
+
+    **American call:** At each node, compare intrinsic value to continuation value.
+
+    At $(2,2)$: intrinsic $= (141.18 - 100)^+ = 41.18$. Continuation $= 41.44$. Since $41.44 > 41.18$, **hold**.
+
+    At $(1,1)$: intrinsic $= (118.82 - 100)^+ = 18.82$. Continuation $= 23.95$. Since $23.95 > 18.82$, **hold**.
+
+    At $(1,0)$: intrinsic $= 0$. Continue.
+
+    At $(0,0)$: intrinsic $= 0$. Continue.
+
+    In this example, early exercise is **not** optimal at any node.
+
+    **Why dividends change the analysis:** With continuous dividends at rate $\delta$, the no-early-exercise proof breaks down because the martingale condition becomes $\mathbb{E}^{\mathbb{Q}}[e^{-r\Delta t}S_{n+1}] = e^{-\delta\Delta t}S_n$, not $S_n$. The key inequality becomes:
+
+    $$
+    C_{n,j} \geq e^{-\delta\Delta t}S_{n,j} - Ke^{-r\Delta t}
+    $$
+
+    When $\delta > 0$, $e^{-\delta\Delta t}S_{n,j} < S_{n,j}$, so it is no longer guaranteed that $C_{n,j} > S_{n,j} - K$. For sufficiently high dividends or deep-in-the-money calls, early exercise can become optimal because the holder forfeits dividend income by not owning the stock.
+
+??? success "Solution to Exercise 6"
+    From the worked example: $V_{2,1} = 7.70$, $V_{2,0} = 29.17$ (exercise value), $S_{2,1} = 100.00$, $S_{2,0} = 70.83$.
+
+    **Discrete "smooth-pasting" approximation:**
+
+    $$
+    \frac{V_{2,1} - V_{2,0}}{S_{2,1} - S_{2,0}} = \frac{7.70 - 29.17}{100.00 - 70.83} = \frac{-21.47}{29.17} = -0.736
+    $$
+
+    **Comparison to $-1$:** The discrete approximation gives $-0.736$, which is less negative than $-1$. Perfect smooth-pasting ($\partial P/\partial S = -1$) only holds in the continuous-time limit for two reasons:
+
+    1. **Coarse grid:** With $N = 3$ periods, the nodes are widely spaced. The finite difference $\Delta V / \Delta S$ is a crude approximation of the true derivative $\partial V/\partial S$.
+
+    2. **Discrete exercise boundary:** In the discrete tree, the exercise boundary is "jagged" — it jumps between discrete stock prices. At node $(2,0)$, exercise is optimal, but the next non-exercise node is at $S_{2,1} = 100$, a large gap. The smooth-pasting condition requires the value function to meet the intrinsic value tangentially, which can only happen with an infinitely fine grid.
+
+    As $N \to \infty$ and $\Delta t \to 0$, the grid becomes arbitrarily fine and the discrete finite difference converges to $-1$ at the exercise boundary, recovering the continuous-time smooth-pasting condition.

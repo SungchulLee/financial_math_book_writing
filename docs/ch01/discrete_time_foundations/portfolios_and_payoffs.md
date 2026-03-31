@@ -442,3 +442,162 @@ Determine whether the contingent claim $\mathbf{c} = (3, 1, 0)^\top$ is attainab
 ---
 
 **Exercise 7.** In a market with $K = 4$ states and $d + 1 = 2$ assets, what is the maximum dimension of the attainable set $\mathcal{M}$? How many additional linearly independent assets would be needed to make the market complete?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    From the worked example, the price vector and payoff matrix are:
+
+    $$
+    \mathbf{p} = \begin{pmatrix} 1 \\ 10 \end{pmatrix}, \qquad \mathbf{D} = \begin{pmatrix} 1.05 & 14 \\ 1.05 & 10.5 \\ 1.05 & 7 \end{pmatrix}
+    $$
+
+    For $\boldsymbol{\theta} = (10, -1)^\top$:
+
+    **Initial cost:**
+
+    $$
+    V_0(\boldsymbol{\theta}) = \boldsymbol{\theta}^\top \mathbf{p} = 10(1) + (-1)(10) = 10 - 10 = 0
+    $$
+
+    **Payoff vector:**
+
+    $$
+    V_1(\boldsymbol{\theta}) = \mathbf{D}\boldsymbol{\theta} = \begin{pmatrix} 1.05 & 14 \\ 1.05 & 10.5 \\ 1.05 & 7 \end{pmatrix} \begin{pmatrix} 10 \\ -1 \end{pmatrix} = \begin{pmatrix} 10.5 - 14 \\ 10.5 - 10.5 \\ 10.5 - 7 \end{pmatrix} = \begin{pmatrix} -3.5 \\ 0 \\ 3.5 \end{pmatrix}
+    $$
+
+    The initial cost is \$0, so profit equals the payoff:
+
+    - **Boom ($\omega_1$):** payoff $= -3.5$, net profit $= -3.5 - 0 = -\$3.50$ (loss)
+    - **Flat ($\omega_2$):** payoff $= 0$, net profit $= 0 - 0 = \$0$ (break even)
+    - **Bust ($\omega_3$):** payoff $= 3.5$, net profit $= 3.5 - 0 = \$3.50$ (profit)
+
+    The investor profits in the bust state and loses money in the boom state. This makes sense: the portfolio is long 10 bonds and short 1 stock, so it benefits when the stock performs poorly.
+
+??? success "Solution to Exercise 2"
+    The payoff matrix is:
+
+    $$
+    \mathbf{D} = \begin{pmatrix} 1.05 & 12 & 8 \\ 1.05 & 9 & 11 \end{pmatrix}
+    $$
+
+    This matrix has 2 rows ($K = 2$ states) and 3 columns ($d + 1 = 3$ assets), so:
+
+    $$
+    \operatorname{rank}(\mathbf{D}) \leq \min(2, 3) = 2
+    $$
+
+    To check whether $\operatorname{rank}(\mathbf{D}) = 2$, we examine whether the two rows are linearly independent. The rows are $(1.05, 12, 8)$ and $(1.05, 9, 11)$. These are not proportional (since $12/9 \neq 8/11$), so the rows are linearly independent and $\operatorname{rank}(\mathbf{D}) = 2$.
+
+    Since $\operatorname{rank}(\mathbf{D}) = 2 = K$, the attainable set $\mathcal{M} = \mathbb{R}^2$. The market is **complete**: every contingent claim in $\mathbb{R}^2$ can be replicated by some portfolio of the three assets.
+
+??? success "Solution to Exercise 3"
+    We need to show $V_0(\alpha\boldsymbol{\theta}) = \alpha V_0(\boldsymbol{\theta})$. By definition:
+
+    $$
+    V_0(\alpha\boldsymbol{\theta}) = (\alpha\boldsymbol{\theta})^\top \mathbf{p} = \alpha(\boldsymbol{\theta}^\top \mathbf{p}) = \alpha \, V_0(\boldsymbol{\theta})
+    $$
+
+    The second equality uses the property that scalar multiplication commutes with the transpose/inner product: $(\alpha \mathbf{v})^\top \mathbf{w} = \alpha(\mathbf{v}^\top \mathbf{w})$ for any scalar $\alpha$ and vectors $\mathbf{v}, \mathbf{w}$.
+
+    **Financial interpretation:** Scaling a portfolio $\boldsymbol{\theta}$ by $\alpha$ means multiplying every position by $\alpha$. By the homogeneity property just proved, the cost scales by $\alpha$:
+
+    $$
+    V_0(\alpha\boldsymbol{\theta}) = \alpha \, V_0(\boldsymbol{\theta})
+    $$
+
+    By linearity of the payoff map, the payoff also scales by $\alpha$:
+
+    $$
+    V_1(\alpha\boldsymbol{\theta}) = \mathbf{D}(\alpha\boldsymbol{\theta}) = \alpha \, \mathbf{D}\boldsymbol{\theta} = \alpha \, V_1(\boldsymbol{\theta})
+    $$
+
+    Together, these say that doubling all positions ($\alpha = 2$) doubles both the cost and the payoff, halving all positions ($\alpha = 0.5$) halves both, and so on. This is a direct consequence of the frictionless market assumption: there are no transaction costs, price impact, or position limits.
+
+??? success "Solution to Exercise 4"
+    If $\mathbf{D}\boldsymbol{\theta}_1 = \mathbf{D}\boldsymbol{\theta}_2$, then:
+
+    $$
+    \mathbf{D}(\boldsymbol{\theta}_1 - \boldsymbol{\theta}_2) = \mathbf{D}\boldsymbol{\theta}_1 - \mathbf{D}\boldsymbol{\theta}_2 = \mathbf{0}
+    $$
+
+    By definition of the kernel (null space), $\boldsymbol{\theta}_1 - \boldsymbol{\theta}_2 \in \ker(\mathbf{D})$.
+
+    If the market satisfies the Law of One Price, then any two portfolios with the same payoff must have the same cost. Since $\mathbf{D}\boldsymbol{\theta}_1 = \mathbf{D}\boldsymbol{\theta}_2$ (same payoff), the LOP implies:
+
+    $$
+    V_0(\boldsymbol{\theta}_1) = \boldsymbol{\theta}_1^\top \mathbf{p} = \boldsymbol{\theta}_2^\top \mathbf{p} = V_0(\boldsymbol{\theta}_2)
+    $$
+
+    Equivalently, for any $\boldsymbol{\alpha} \in \ker(\mathbf{D})$, we must have $\boldsymbol{\alpha}^\top \mathbf{p} = 0$. The price vector $\mathbf{p}$ is orthogonal to the kernel of $\mathbf{D}$, which means $\mathbf{p}$ lies in the row space of $\mathbf{D}$. This is precisely the condition that ensures the cost functional is well-defined on the attainable set.
+
+??? success "Solution to Exercise 5"
+    We need to solve $\mathbf{D}\boldsymbol{\theta} = \mathbf{c}$:
+
+    $$
+    \begin{pmatrix} 1.02 & 25 & 7 \\ 1.02 & 20 & 5 \\ 1.02 & 15 & 4 \end{pmatrix} \begin{pmatrix} \theta^0 \\ \theta^1 \\ \theta^2 \end{pmatrix} = \begin{pmatrix} 3 \\ 1 \\ 0 \end{pmatrix}
+    $$
+
+    Subtract equation (2) from equation (1):
+
+    $$
+    5\theta^1 + 2\theta^2 = 2 \quad \cdots \text{(i)}
+    $$
+
+    Subtract equation (3) from equation (2):
+
+    $$
+    5\theta^1 + \theta^2 = 1 \quad \cdots \text{(ii)}
+    $$
+
+    Subtract (ii) from (i): $\theta^2 = 1$. Substituting into (ii): $5\theta^1 = 0$, so $\theta^1 = 0$. From equation (3): $1.02\,\theta^0 + 15(0) + 4(1) = 0$, so $\theta^0 = -4/1.02 \approx -3.9216$.
+
+    **Verification:**
+
+    $$
+    \mathbf{D}\boldsymbol{\theta} = \begin{pmatrix} 1.02(-3.9216) + 25(0) + 7(1) \\ 1.02(-3.9216) + 20(0) + 5(1) \\ 1.02(-3.9216) + 15(0) + 4(1) \end{pmatrix} = \begin{pmatrix} -4 + 7 \\ -4 + 5 \\ -4 + 4 \end{pmatrix} = \begin{pmatrix} 3 \\ 1 \\ 0 \end{pmatrix}
+    $$
+
+    The claim is **attainable** with replicating portfolio $\boldsymbol{\theta} = (-4/1.02,\; 0,\; 1)^\top$.
+
+    **Cost of the replicating portfolio:**
+
+    $$
+    V_0(\boldsymbol{\theta}) = \boldsymbol{\theta}^\top \mathbf{p} = \left(-\frac{4}{1.02}\right)(1) + 0(20) + 1(5) = -\frac{4}{1.02} + 5 = \frac{-4 + 5.10}{1.02} = \frac{1.10}{1.02} \approx 1.0784
+    $$
+
+??? success "Solution to Exercise 6"
+    **Why removing a redundant asset preserves the attainable set:** An asset is redundant if its payoff column in $\mathbf{D}$ is a linear combination of the other columns. When we form a portfolio that includes the redundant asset, the contribution of that asset to the payoff can be exactly replicated by adjusting the holdings of the other assets. Therefore, any payoff achievable with the redundant asset included can also be achieved without it, and conversely. Formally, if column $j$ satisfies $\mathbf{d}_j = \sum_{i \neq j} \alpha_i \mathbf{d}_i$, then for any portfolio $\boldsymbol{\theta}$, define $\tilde{\boldsymbol{\theta}}$ by setting $\tilde{\theta}^j = 0$ and $\tilde{\theta}^i = \theta^i + \alpha_i \theta^j$ for $i \neq j$. Then $\mathbf{D}\tilde{\boldsymbol{\theta}} = \mathbf{D}\boldsymbol{\theta}$, so the same payoff is achieved.
+
+    **Concrete example:** Suppose $K = 2$ states and we have three assets: a bond paying $(1.05, 1.05)^\top$, Stock A paying $(12, 6)^\top$, and Stock B paying $(7.05, 4.05)^\top$. Note that:
+
+    $$
+    \begin{pmatrix} 7.05 \\ 4.05 \end{pmatrix} = 2 \begin{pmatrix} 1.05 \\ 1.05 \end{pmatrix} + \frac{1}{2.4} \begin{pmatrix} 12 \\ 6 \end{pmatrix} - \frac{1}{2.4}\begin{pmatrix} 12 \\ 6 \end{pmatrix} + \frac{1}{2.4}\begin{pmatrix} 12 \\ 6 \end{pmatrix}
+    $$
+
+    Actually, let us use a simpler example. Take Stock B's payoff to be exactly twice the bond: $(2.10, 2.10)^\top = 2 \times (1.05, 1.05)^\top$. Then Stock B is redundant. The payoff matrix with all three assets is:
+
+    $$
+    \mathbf{D} = \begin{pmatrix} 1.05 & 12 & 2.10 \\ 1.05 & 6 & 2.10 \end{pmatrix}
+    $$
+
+    The third column is $2$ times the first column, so $\operatorname{rank}(\mathbf{D}) = 2$. Removing Stock B:
+
+    $$
+    \widetilde{\mathbf{D}} = \begin{pmatrix} 1.05 & 12 \\ 1.05 & 6 \end{pmatrix}
+    $$
+
+    The two remaining columns are linearly independent, so $\operatorname{rank}(\widetilde{\mathbf{D}}) = 2 = \operatorname{rank}(\mathbf{D})$. The attainable set is unchanged.
+
+??? success "Solution to Exercise 7"
+    With $K = 4$ states and $d + 1 = 2$ assets, the payoff matrix $\mathbf{D} \in \mathbb{R}^{4 \times 2}$. The maximum dimension of the attainable set is:
+
+    $$
+    \dim(\mathcal{M}) = \operatorname{rank}(\mathbf{D}) \leq \min(4, 2) = 2
+    $$
+
+    So the maximum dimension of $\mathcal{M}$ is $2$.
+
+    For the market to be complete, we need $\dim(\mathcal{M}) = K = 4$. Currently the maximum attainable dimension is $2$, so we need at least $4 - 2 = 2$ additional linearly independent assets to reach full rank $4$. In total, at least $4$ linearly independent assets are required, and we currently have at most $2$, so **2 additional assets** are needed.

@@ -1151,3 +1151,176 @@ This unifies **all transform methods**!
 ---
 
 **Exercise 6.** The unified contour integral representation $V(S,t) = \frac{1}{2\pi i}\int_\mathcal{C} \hat{V}(\omega) \exp[\Psi(\omega,S,t)] d\omega$ encompasses all three transform methods. For the Black-Scholes model, write $\Psi(\omega, S, t)$ explicitly for the Fourier case ($x = \ln S$, transform in $x$) and verify that the saddle-point approximation of this integral recovers the leading-order behavior of the Black-Scholes formula for deep in-the-money options.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The Mellin transform of the European put payoff $(K - S)^+$ is:
+
+    $$
+    \mathcal{M}[(K-S)^+](s) = \int_0^{\infty}(K-S)^+ S^{s-1}dS = \int_0^K (K-S)S^{s-1}dS
+    $$
+
+    $$
+    = K\int_0^K S^{s-1}dS - \int_0^K S^s \, dS = K\left[\frac{S^s}{s}\right]_0^K - \left[\frac{S^{s+1}}{s+1}\right]_0^K
+    $$
+
+    The lower limits vanish when $\text{Re}(s) > 0$ (for the first) and $\text{Re}(s) > -1$ (for the second). So we need $\text{Re}(s) > 0$:
+
+    $$
+    = \frac{K^{s+1}}{s} - \frac{K^{s+1}}{s+1} = K^{s+1}\left(\frac{1}{s} - \frac{1}{s+1}\right) = \frac{K^{s+1}}{s(s+1)}
+    $$
+
+    The **strip of analyticity** is $0 < \text{Re}(s) < \infty$, though for practical purposes we restrict to a suitable vertical strip.
+
+    **Comparison with the call.** The Mellin transform of the call payoff is also $\frac{K^{s+1}}{s(s+1)}$ but valid for $\text{Re}(s) < -1$. The two transforms have the **same functional form** but on **different strips of analyticity** (put: $\text{Re}(s) > 0$; call: $\text{Re}(s) < -1$).
+
+    **Put-call parity in transform space.** Since $(S-K)^+ - (K-S)^+ = S - K$, and $\mathcal{M}[S](s) = \frac{K^{s+1}}{s+1}$ for $\text{Re}(s) < -1$ and $\mathcal{M}[K](s) = \frac{K^{s+1}}{s}$ for $\text{Re}(s) < 0$, the transform of $S - K$ relates the two payoff transforms via analytic continuation across the strip boundaries.
+
+??? success "Solution to Exercise 2"
+    The Mellin transform of $S^2\frac{\partial^2 V}{\partial S^2}$ is computed via integration by parts.
+
+    Starting from $\mathcal{M}\left[S^2 V_{SS}\right](s) = \int_0^{\infty}S^2 V_{SS}(S) \cdot S^{s-1}dS = \int_0^{\infty}S^{s+1}V_{SS}(S)dS$.
+
+    Integrate by parts (with boundary terms vanishing):
+
+    $$
+    \int_0^{\infty}S^{s+1}V_{SS}dS = \left[S^{s+1}V_S\right]_0^{\infty} - (s+1)\int_0^{\infty}S^s V_S \, dS
+    $$
+
+    $$
+    = -(s+1)\left(\left[S^s V\right]_0^{\infty} - s\int_0^{\infty}S^{s-1}V \, dS\right) = (s+1)s\int_0^{\infty}S^{s-1}V \, dS
+    $$
+
+    Therefore:
+
+    $$
+    \mathcal{M}\left[S^2\frac{\partial^2 V}{\partial S^2}\right](s) = s(s+1)\hat{V}(s)
+    $$
+
+    Wait, let us redo more carefully. We have $\mathcal{M}[S V_S](s) = -s\hat{V}(s)$ (by one integration by parts). And $\mathcal{M}[S^2 V_{SS}](s)$: note $S^2 V_{SS} = S\frac{d}{dS}(SV_S) - SV_S$. Alternatively, using the standard result:
+
+    $$
+    \mathcal{M}\left[S^2 V_{SS}\right](s) = s(s-1)\hat{V}(s)
+    $$
+
+    This is a **polynomial in $s$** (specifically $s^2 - s$), confirming that the Mellin transform converts the variable-coefficient operator $S^2\frac{\partial^2}{\partial S^2}$ into a simple algebraic multiplier. Combined with $\mathcal{M}[SV_S] = -s\hat{V}$, the full Black-Scholes operator becomes:
+
+    $$
+    \frac{\sigma^2}{2}s(s-1) + r(-s) - r = \frac{\sigma^2}{2}s^2 - \frac{\sigma^2}{2}s - rs - r = \frac{\sigma^2}{2}s^2 - \left(r + \frac{\sigma^2}{2}\right)s - r
+    $$
+
+    Wait, the sign convention depends on the direction of integration by parts. Using the convention from the text where $\mathcal{M}[SV_S] = s\hat{V}$ (not $-s$):
+
+    $$
+    \Lambda(s) = \frac{\sigma^2}{2}s(s-1) + rs - r = \frac{\sigma^2}{2}s^2 + \left(r - \frac{\sigma^2}{2}\right)s - r
+    $$
+
+    This is a polynomial in $s$, confirming the ODE has constant coefficients in the Mellin domain.
+
+??? success "Solution to Exercise 3"
+    The damping parameter $\alpha$ in the Carr-Madan method controls the convergence of the Fourier integral.
+
+    **Role of $\alpha$.** The modified call price $c_T(k) = e^{\alpha k}C(K=e^k)$ has a Fourier transform that is well-defined (integrable) only when $\alpha > 0$ makes $c_T$ decay sufficiently at both $k \to -\infty$ and $k \to +\infty$. For a call, we need $\alpha > 1$ to ensure $e^{\alpha k}C(e^k) \to 0$ as $k \to +\infty$ (since $C \sim e^k$ for large $k$).
+
+    **$\alpha$ too small** (approaching 1 from above): The integrand $\psi_T(\omega)$ decays slowly in $\omega$, requiring a very fine grid and large truncation in $\omega$ space. The denominator $\alpha^2 + \alpha - \omega^2 + i(2\alpha+1)\omega$ has poles closer to the real axis, making numerical integration more delicate.
+
+    **$\alpha$ too large:** The factor $e^{-\alpha k}$ in the inversion $C = e^{-\alpha k}c_T(k)$ causes numerical instability for large $|k|$ (deep OTM options). The characteristic function $\phi_T(\omega - (\alpha+1)i)$ is evaluated at a large imaginary shift, which can cause overflow.
+
+    **Practical selection procedure:**
+
+    1. Choose $\alpha$ to minimize the variance of the integrand, typically $\alpha \in [1.1, 2.0]$
+    2. A common choice is $\alpha = 0.75$ for puts (which need $\alpha > 0$) and $\alpha = 1.5$ for calls
+    3. One can optimize by minimizing the $L^2$ norm of the integrand or by ensuring the denominator has no near-zeros on the integration path
+    4. Lord and Kahl (2007) suggest choosing $\alpha$ to minimize the integration error, typically near the saddle point of the integrand
+
+??? success "Solution to Exercise 4"
+    Applying the Laplace transform in $\tau$ to the log-price PDE converts it to:
+
+    $$
+    \frac{\sigma^2}{2}\tilde{V}_{xx} + \left(r - \frac{\sigma^2}{2}\right)\tilde{V}_x - (r+s)\tilde{V} = -\Phi(e^x)
+    $$
+
+    This is a second-order ODE in $x$ with constant coefficients, which is an inhomogeneous equation driven by $-\Phi(e^x)$.
+
+    **Green's function.** The homogeneous solutions are $e^{\lambda_+ x}$ and $e^{\lambda_- x}$ where $\lambda_{\pm}$ solve the characteristic equation $\frac{\sigma^2}{2}\lambda^2 + (r - \frac{\sigma^2}{2})\lambda - (r+s) = 0$. For $\text{Re}(s)$ large enough, $\lambda_+ > 0$ and $\lambda_- < 0$.
+
+    The Green's function for the ODE on $(-\infty, \infty)$ is:
+
+    $$
+    \tilde{G}(x,y;s) = \frac{1}{\frac{\sigma^2}{2}(\lambda_+ - \lambda_-)}\begin{cases}e^{\lambda_-(x-y)} & x > y \\ e^{\lambda_+(x-y)} & x < y\end{cases}
+    $$
+
+    The particular solution is $\tilde{V}(x,s) = \int_{-\infty}^{\infty}\tilde{G}(x,y;s)\Phi(e^y)dy$.
+
+    **Bromwich integral.** The option price is:
+
+    $$
+    V(x,\tau) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\tilde{V}(x,s)e^{s\tau}ds
+    $$
+
+    **Singularity structure.** The integrand has singularities where:
+
+    - $\lambda_+(s)$ or $\lambda_-(s)$ create branch points (the square root in $\lambda_{\pm}$ vanishes)
+    - The discriminant $(r - \frac{\sigma^2}{2})^2 + 2\sigma^2(r+s) = 0$ gives $s = -r - \frac{(r-\sigma^2/2)^2}{2\sigma^2}$, which is a branch point on the negative real axis
+    - The contour $c$ must be chosen to the right of all singularities
+
+??? success "Solution to Exercise 5"
+    **Fourier transform** (variable: $x = \ln S$, domain: $\omega \in \mathbb{R}$):
+
+    (a) Transform variable: $\omega \in \mathbb{R}$ (or $\omega \in \mathbb{C}$ with damping); domain is the real line (or a horizontal strip in $\mathbb{C}$)
+
+    (b) Equation after transformation: first-order ODE in $\tau$: $\frac{\partial \hat{V}}{\partial \tau} = \psi(\omega)\hat{V}$
+
+    (c) Inversion: $V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{V}(\omega,\tau)e^{i\omega x}d\omega$
+
+    (d) Main challenge: The call payoff Fourier transform diverges for real $\omega$; requires damping or complex contour shift
+
+    **Mellin transform** (variable: $S \in (0,\infty)$, domain: $s \in \mathbb{C}$):
+
+    (a) Transform variable: $s \in \mathbb{C}$ on a vertical strip $c_1 < \text{Re}(s) < c_2$
+
+    (b) Equation: first-order ODE in $t$: $\frac{\partial \hat{V}}{\partial t} + \Lambda(s)\hat{V} = 0$
+
+    (c) Inversion: $V(S,t) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\hat{V}(s,t)S^{-s}ds$ (Bromwich-type contour)
+
+    (d) Main challenge: The Bromwich contour integral requires careful numerical evaluation; choosing the correct strip of analyticity
+
+    **Laplace transform** (variable: $\tau = T-t$, domain: $p \in \mathbb{C}$):
+
+    (a) Transform variable: $p \in \mathbb{C}$ with $\text{Re}(p) > 0$
+
+    (b) Equation: second-order ODE in $S$ (Euler-Cauchy type): $\frac{\sigma^2}{2}S^2\tilde{V}'' + rS\tilde{V}' - (r+p)\tilde{V} = -\Phi(S)$
+
+    (c) Inversion: $V(S,\tau) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\tilde{V}(S,p)e^{p\tau}dp$
+
+    (d) Main challenge: Numerical Laplace inversion (ill-conditioned); requires special algorithms (Gaver-Stehfest, Talbot) or high-precision arithmetic
+
+??? success "Solution to Exercise 6"
+    For the Fourier case with $x = \ln S$ and transform in $x$, the solution is:
+
+    $$
+    V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{\Phi}(\omega)e^{\psi(\omega)\tau + i\omega x}d\omega
+    $$
+
+    So $\Psi(\omega, S, t) = \psi(\omega)\tau + i\omega x$ where $x = \ln S$ and $\tau = T - t$:
+
+    $$
+    \Psi(\omega, S, t) = \left[-\frac{\sigma^2\omega^2}{2} + i\omega\left(r - \frac{\sigma^2}{2}\right) - r\right]\tau + i\omega\ln S
+    $$
+
+    **Saddle-point approximation.** For deep ITM ($S \gg K$), the integral is dominated by the saddle point where $\frac{\partial \Psi}{\partial \omega} = 0$:
+
+    $$
+    -\sigma^2\omega\tau + i\left(r - \frac{\sigma^2}{2}\right)\tau + i\ln S = 0
+    $$
+
+    $$
+    \omega^* = \frac{i}{\sigma^2}\left[\left(r - \frac{\sigma^2}{2}\right) + \frac{\ln S}{\tau}\right]
+    $$
+
+    For deep ITM with $\ln(S/K) \gg 1$, the dominant contribution gives $V \approx S - Ke^{-r\tau}$, which is the intrinsic value. This matches the leading-order behavior of the Black-Scholes formula: as $S/K \to \infty$, $\mathcal{N}(d_1) \to 1$ and $\mathcal{N}(d_2) \to 1$, so $C \to S - Ke^{-r\tau}$.
+
+    The saddle-point method confirms that the deep ITM limit is dominated by the intrinsic value, with the next-order correction involving the Gaussian tails $1 - \mathcal{N}(d_1)$ and $1 - \mathcal{N}(d_2)$ that decay exponentially in $\ln(S/K)$.

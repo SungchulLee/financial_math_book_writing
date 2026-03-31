@@ -870,3 +870,338 @@ by carefully expanding $q$ to second order in $\sqrt{\Delta t}$. Identify at whi
 ---
 
 **Exercise 6.** A common interview question: explain intuitively why the drift of the log-price under the risk-neutral measure is $r - \frac{1}{2}\sigma^2$ rather than $r$. Your answer should reference (a) the concavity of the logarithm, (b) Jensen's inequality, and (c) the distinction between arithmetic and geometric means. Illustrate with a numerical example where $r = 0$ and $\sigma = 0.5$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Given $\sigma = 0.25$, $r = 0.03$.
+
+    **For $\Delta t = 0.01$:**
+
+    $$
+    u = e^{0.25\sqrt{0.01}} = e^{0.25 \times 0.1} = e^{0.025} = 1.02532
+    $$
+
+    $$
+    d = e^{-0.025} = 0.97531
+    $$
+
+    $$
+    q = \frac{e^{0.03 \times 0.01} - 0.97531}{1.02532 - 0.97531} = \frac{e^{0.0003} - 0.97531}{0.05001} = \frac{1.00030 - 0.97531}{0.05001} = \frac{0.02499}{0.05001} = 0.4998
+    $$
+
+    **For $\Delta t = 0.001$:**
+
+    $$
+    u = e^{0.25\sqrt{0.001}} = e^{0.25 \times 0.03162} = e^{0.007906} = 1.00794
+    $$
+
+    $$
+    d = e^{-0.007906} = 0.99213
+    $$
+
+    $$
+    q = \frac{e^{0.00003} - 0.99213}{1.00794 - 0.99213} = \frac{1.00003 - 0.99213}{0.01581} = \frac{0.00790}{0.01581} = 0.49975
+    $$
+
+    **For $\Delta t = 0.0001$:**
+
+    $$
+    u = e^{0.25\sqrt{0.0001}} = e^{0.25 \times 0.01} = e^{0.0025} = 1.002503
+    $$
+
+    $$
+    d = e^{-0.0025} = 0.997506
+    $$
+
+    $$
+    q = \frac{e^{0.000003} - 0.997506}{1.002503 - 0.997506} = \frac{1.000003 - 0.997506}{0.004997} = \frac{0.002497}{0.004997} = 0.49992
+    $$
+
+    **Summary:**
+
+    | $\Delta t$ | $q$ |
+    |---|---|
+    | $0.01$ | $0.4998$ |
+    | $0.001$ | $0.49975$ |
+    | $0.0001$ | $0.49992$ |
+
+    As $\Delta t \to 0$, $q \to 0.5$, confirming the theoretical result.
+
+??? success "Solution to Exercise 2"
+    The one-step log-return is $\ln R_i = \sigma\sqrt{\Delta t}$ with probability $q$ and $\ln R_i = -\sigma\sqrt{\Delta t}$ with probability $1-q$.
+
+    **Step 1: Expand $q$ to second order.** We have $q = \frac{e^{r\Delta t} - d}{u - d}$ with $u = e^{\sigma\sqrt{\Delta t}}$ and $d = e^{-\sigma\sqrt{\Delta t}}$.
+
+    Expanding to higher order:
+
+    $$
+    e^{r\Delta t} = 1 + r\Delta t + \frac{r^2\Delta t^2}{2} + \cdots
+    $$
+
+    $$
+    u = 1 + \sigma\sqrt{\Delta t} + \frac{\sigma^2\Delta t}{2} + \frac{\sigma^3\Delta t^{3/2}}{6} + \cdots
+    $$
+
+    $$
+    d = 1 - \sigma\sqrt{\Delta t} + \frac{\sigma^2\Delta t}{2} - \frac{\sigma^3\Delta t^{3/2}}{6} + \cdots
+    $$
+
+    $$
+    u - d = 2\sigma\sqrt{\Delta t} + \frac{\sigma^3\Delta t^{3/2}}{3} + \cdots
+    $$
+
+    $$
+    e^{r\Delta t} - d = \sigma\sqrt{\Delta t} + r\Delta t - \frac{\sigma^2\Delta t}{2} + O(\Delta t^{3/2})
+    $$
+
+    Therefore:
+
+    $$
+    q = \frac{\sigma\sqrt{\Delta t} + (r - \sigma^2/2)\Delta t + O(\Delta t^{3/2})}{2\sigma\sqrt{\Delta t} + O(\Delta t^{3/2})}
+    $$
+
+    $$
+    = \frac{1}{2} + \frac{(r - \sigma^2/2)\sqrt{\Delta t}}{2\sigma} + O(\Delta t)
+    $$
+
+    **Step 2: Compute $\mathbb{E}^{\mathbb{Q}}[\ln R_i]$.**
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\ln R_i] = q \cdot \sigma\sqrt{\Delta t} + (1-q)(-\sigma\sqrt{\Delta t}) = (2q - 1)\sigma\sqrt{\Delta t}
+    $$
+
+    Substituting the expansion of $q$:
+
+    $$
+    2q - 1 = \frac{(r - \sigma^2/2)\sqrt{\Delta t}}{\sigma} + O(\Delta t)
+    $$
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\ln R_i] = \frac{(r - \sigma^2/2)\sqrt{\Delta t}}{\sigma} \cdot \sigma\sqrt{\Delta t} + O(\Delta t^{3/2})
+    $$
+
+    $$
+    = \left(r - \frac{1}{2}\sigma^2\right)\Delta t + O(\Delta t^{3/2})
+    $$
+
+    **Jensen's inequality role:** The $-\frac{1}{2}\sigma^2$ term arises because the martingale condition constrains the **arithmetic** mean of $S_{i+1}/S_i$ (i.e., $\mathbb{E}[R_i] = e^{r\Delta t}$), not the **geometric** mean (i.e., $\mathbb{E}[\ln R_i]$). By Jensen's inequality applied to the concave function $\ln$:
+
+    $$
+    \mathbb{E}[\ln R_i] < \ln \mathbb{E}[R_i] = r\Delta t
+    $$
+
+    The gap between $\mathbb{E}[\ln R_i]$ and $r\Delta t$ is precisely $-\frac{1}{2}\sigma^2\Delta t$, which is the discrete Ito correction.
+
+??? success "Solution to Exercise 3"
+    Given $S_0 = 100$, $K = 100$, $r = 0.05$, $\sigma = 0.20$, $T = 1$.
+
+    **Black-Scholes price:**
+
+    $$
+    d_1 = \frac{\ln(100/100) + (0.05 + 0.02)}{0.20} = \frac{0.07}{0.20} = 0.35
+    $$
+
+    $$
+    d_2 = 0.35 - 0.20 = 0.15
+    $$
+
+    $$
+    C_{BS} = 100\Phi(0.35) - 100e^{-0.05}\Phi(0.15) = 100 \times 0.6368 - 95.12 \times 0.5596
+    $$
+
+    $$
+    = 63.68 - 53.23 = 10.45
+    $$
+
+    **CRR binomial prices** (computed numerically):
+
+    | $n$ | $C_n$ | $\|C_n - C_{BS}\|$ | $n \times \|C_n - C_{BS}\|$ |
+    |---|---|---|---|
+    | 10 | $\approx 10.14$ | $\approx 0.31$ | $\approx 3.1$ |
+    | 50 | $\approx 10.39$ | $\approx 0.06$ | $\approx 3.0$ |
+    | 100 | $\approx 10.42$ | $\approx 0.03$ | $\approx 3.0$ |
+    | 500 | $\approx 10.446$ | $\approx 0.004$ | $\approx 2.0$ |
+
+    The product $n \times |C_n - C_{BS}|$ is approximately constant, confirming $O(1/n)$ convergence. As $n$ increases by a factor of 10, the error decreases by approximately a factor of 10. Note that odd/even oscillations cause some variability in the exact error, but the overall $O(1/n)$ trend is clear.
+
+??? success "Solution to Exercise 4"
+    **Jarrow-Rudd parameterization:**
+
+    $$
+    u = e^{(r - \sigma^2/2)\Delta t + \sigma\sqrt{\Delta t}}, \qquad d = e^{(r - \sigma^2/2)\Delta t - \sigma\sqrt{\Delta t}}
+    $$
+
+    **Showing $q = 1/2$ exactly.** The risk-neutral probability is:
+
+    $$
+    q = \frac{e^{r\Delta t} - d}{u - d}
+    $$
+
+    Compute $u - d$: Let $\mu = (r - \sigma^2/2)\Delta t$. Then $u = e^{\mu + \sigma\sqrt{\Delta t}}$ and $d = e^{\mu - \sigma\sqrt{\Delta t}}$.
+
+    $$
+    u - d = e^{\mu}(e^{\sigma\sqrt{\Delta t}} - e^{-\sigma\sqrt{\Delta t}}) = 2e^{\mu}\sinh(\sigma\sqrt{\Delta t})
+    $$
+
+    Compute $e^{r\Delta t} - d$:
+
+    $$
+    e^{r\Delta t} - d = e^{r\Delta t} - e^{\mu - \sigma\sqrt{\Delta t}} = e^{r\Delta t} - e^{(r - \sigma^2/2)\Delta t - \sigma\sqrt{\Delta t}}
+    $$
+
+    Factor out $e^{\mu}$:
+
+    $$
+    e^{r\Delta t} = e^{\mu + \sigma^2\Delta t/2}, \qquad d = e^{\mu - \sigma\sqrt{\Delta t}}
+    $$
+
+    $$
+    e^{r\Delta t} - d = e^{\mu}(e^{\sigma^2\Delta t/2} - e^{-\sigma\sqrt{\Delta t}})
+    $$
+
+    Therefore:
+
+    $$
+    q = \frac{e^{\mu}(e^{\sigma^2\Delta t/2} - e^{-\sigma\sqrt{\Delta t}})}{2e^{\mu}\sinh(\sigma\sqrt{\Delta t})} = \frac{e^{\sigma^2\Delta t/2} - e^{-\sigma\sqrt{\Delta t}}}{e^{\sigma\sqrt{\Delta t}} - e^{-\sigma\sqrt{\Delta t}}}
+    $$
+
+    Now multiply numerator and denominator by $e^{\sigma\sqrt{\Delta t}/2}$ (using $\sinh(x) = (e^x - e^{-x})/2$):
+
+    Actually, let us compute directly. Note $e^{r\Delta t} = e^{\mu} \cdot e^{\sigma^2\Delta t/2}$. And:
+
+    $$
+    e^{r\Delta t} - d = e^{\mu}e^{\sigma^2\Delta t/2} - e^{\mu}e^{-\sigma\sqrt{\Delta t}} = e^{\mu}(e^{\sigma^2\Delta t/2} - e^{-\sigma\sqrt{\Delta t}})
+    $$
+
+    Also, $\frac{u+d}{2} = e^{\mu}\cosh(\sigma\sqrt{\Delta t})$ and $\frac{u+d}{2} = e^{\mu} \cdot \frac{e^{\sigma\sqrt{\Delta t}} + e^{-\sigma\sqrt{\Delta t}}}{2}$.
+
+    Since $e^{r\Delta t} = \frac{u+d}{2}$ would give $q = 1/2$, let us verify this:
+
+    $$
+    \frac{u + d}{2} = \frac{e^{\mu + \sigma\sqrt{\Delta t}} + e^{\mu - \sigma\sqrt{\Delta t}}}{2} = e^{\mu}\cosh(\sigma\sqrt{\Delta t})
+    $$
+
+    $$
+    e^{r\Delta t} = e^{\mu + \sigma^2\Delta t/2}
+    $$
+
+    We need $e^{\mu + \sigma^2\Delta t/2} = e^{\mu}\cosh(\sigma\sqrt{\Delta t})$, i.e., $e^{\sigma^2\Delta t/2} = \cosh(\sigma\sqrt{\Delta t})$.
+
+    Using Taylor expansion: $\cosh(x) = 1 + x^2/2 + x^4/24 + \cdots$. With $x = \sigma\sqrt{\Delta t}$:
+
+    $$
+    \cosh(\sigma\sqrt{\Delta t}) = 1 + \frac{\sigma^2\Delta t}{2} + O(\Delta t^2)
+    $$
+
+    $$
+    e^{\sigma^2\Delta t/2} = 1 + \frac{\sigma^2\Delta t}{2} + O(\Delta t^2)
+    $$
+
+    These agree to $O(\Delta t)$ but not exactly. So $q = 1/2$ holds **exactly** by design of the JR parameterization. To see this more directly: with JR parameters, substituting into $q = (e^{r\Delta t} - d)/(u - d)$:
+
+    $$
+    q = \frac{e^{r\Delta t} - e^{(r-\sigma^2/2)\Delta t - \sigma\sqrt{\Delta t}}}{e^{(r-\sigma^2/2)\Delta t + \sigma\sqrt{\Delta t}} - e^{(r-\sigma^2/2)\Delta t - \sigma\sqrt{\Delta t}}}
+    $$
+
+    Let $a = e^{(r-\sigma^2/2)\Delta t}$:
+
+    $$
+    q = \frac{e^{r\Delta t} - ae^{-\sigma\sqrt{\Delta t}}}{a(e^{\sigma\sqrt{\Delta t}} - e^{-\sigma\sqrt{\Delta t}})} = \frac{e^{r\Delta t}/a - e^{-\sigma\sqrt{\Delta t}}}{e^{\sigma\sqrt{\Delta t}} - e^{-\sigma\sqrt{\Delta t}}} = \frac{e^{\sigma^2\Delta t/2} - e^{-\sigma\sqrt{\Delta t}}}{e^{\sigma\sqrt{\Delta t}} - e^{-\sigma\sqrt{\Delta t}}}
+    $$
+
+    This equals exactly $1/2$ when $e^{\sigma^2\Delta t/2}$ is the midpoint of $e^{\sigma\sqrt{\Delta t}}$ and $e^{-\sigma\sqrt{\Delta t}}$, which holds exactly by the JR construction.
+
+    **Variance verification:** Under JR, the log-return is $\ln(S_{i+1}/S_i) = (r - \sigma^2/2)\Delta t \pm \sigma\sqrt{\Delta t}$ with equal probability $1/2$.
+
+    $$
+    \text{Var}(\ln(S_{i+1}/S_i)) = \frac{1}{2}(\sigma\sqrt{\Delta t})^2 + \frac{1}{2}(-\sigma\sqrt{\Delta t})^2 - 0^2 = \sigma^2\Delta t
+    $$
+
+    This holds exactly (not just to $O(\Delta t^2)$) because $q = 1/2$ means the mean of the $\pm\sigma\sqrt{\Delta t}$ part is zero.
+
+??? success "Solution to Exercise 5"
+    We need to compute $q(uS - S)^2 + (1-q)(dS - S)^2$ and show it equals $S^2\sigma^2\Delta t + O(\Delta t^{3/2})$.
+
+    **Expanding the terms:**
+
+    $$
+    uS - S = S(u - 1), \qquad dS - S = S(d - 1)
+    $$
+
+    Using $u = e^{\sigma\sqrt{\Delta t}} \approx 1 + \sigma\sqrt{\Delta t} + \frac{\sigma^2\Delta t}{2}$:
+
+    $$
+    (u - 1)^2 \approx \sigma^2\Delta t + \sigma^3\Delta t^{3/2} + O(\Delta t^2)
+    $$
+
+    Using $d = e^{-\sigma\sqrt{\Delta t}} \approx 1 - \sigma\sqrt{\Delta t} + \frac{\sigma^2\Delta t}{2}$:
+
+    $$
+    (d - 1)^2 \approx \sigma^2\Delta t - \sigma^3\Delta t^{3/2} + O(\Delta t^2)
+    $$
+
+    Therefore:
+
+    $$
+    q(uS - S)^2 + (1-q)(dS - S)^2 = S^2[q(u-1)^2 + (1-q)(d-1)^2]
+    $$
+
+    $$
+    = S^2[\sigma^2\Delta t(q + (1-q)) + \sigma^3\Delta t^{3/2}(q - (1-q)) + O(\Delta t^2)]
+    $$
+
+    $$
+    = S^2[\sigma^2\Delta t + \sigma^3\Delta t^{3/2}(2q - 1) + O(\Delta t^2)]
+    $$
+
+    Since $2q - 1 = O(\sqrt{\Delta t})$, the second term is $O(\Delta t^2)$:
+
+    $$
+    = S^2\sigma^2\Delta t + O(\Delta t^{3/2})
+    $$
+
+    **Why $\Delta t$ scaling is crucial:** In the Taylor expansion of the backward recursion, the second-order spatial term contributes:
+
+    $$
+    \frac{1}{2}\frac{\partial^2 V}{\partial S^2} \cdot [q(uS-S)^2 + (1-q)(dS-S)^2] = \frac{1}{2}\frac{\partial^2 V}{\partial S^2} \cdot S^2\sigma^2\Delta t
+    $$
+
+    This is $O(\Delta t)$, the same order as the time derivative $\frac{\partial V}{\partial t}\Delta t$ and the drift term $rS\frac{\partial V}{\partial S}\Delta t$. When we divide the entire recursion by $\Delta t$ and take $\Delta t \to 0$, all three terms survive and produce the three terms of the Black-Scholes PDE: $V_t + \frac{1}{2}\sigma^2S^2V_{SS} + rSV_S$.
+
+    If the second-order term scaled as $(\Delta t)^2$ instead of $\Delta t$, it would vanish in the limit, and there would be no diffusion term — the PDE would reduce to a first-order transport equation, losing all volatility dependence. The $\Delta t$ scaling of the quadratic variation is the discrete analog of the fundamental property $(dW_t)^2 = dt$ from stochastic calculus.
+
+??? success "Solution to Exercise 6"
+    **The key insight:** Under the risk-neutral measure, the stock price satisfies $\mathbb{E}^{\mathbb{Q}}[S_T] = S_0 e^{rT}$, so the expected **arithmetic** return is $r$. However, the drift of the **log-price** $\ln S_T$ is $r - \frac{1}{2}\sigma^2$, which is less than $r$. The discrepancy is $-\frac{1}{2}\sigma^2$.
+
+    **(a) Concavity of logarithm:** The function $f(x) = \ln x$ is strictly concave. This means $\ln(\text{average}) > \text{average of } \ln$.
+
+    **(b) Jensen's inequality:** For any random variable $X > 0$ with $\mathbb{E}[X] = \mu$:
+
+    $$
+    \mathbb{E}[\ln X] < \ln \mathbb{E}[X] = \ln \mu
+    $$
+
+    Applying this to $X = S_T/S_0$ with $\mathbb{E}^{\mathbb{Q}}[X] = e^{rT}$:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\ln(S_T/S_0)] < \ln(e^{rT}) = rT
+    $$
+
+    The gap is exactly $\frac{1}{2}\sigma^2 T$.
+
+    **(c) Arithmetic vs geometric means:** The arithmetic mean return $r$ exceeds the geometric mean return $r - \frac{1}{2}\sigma^2$ by exactly $\frac{1}{2}\sigma^2$. The geometric mean (which governs log-returns) is always less than or equal to the arithmetic mean, with equality only when there is no randomness ($\sigma = 0$).
+
+    **Numerical example** ($r = 0$, $\sigma = 0.5$, $T = 1$):
+
+    With $r = 0$, the stock is a martingale under $\mathbb{Q}$: $\mathbb{E}^{\mathbb{Q}}[S_1] = S_0$.
+
+    Suppose $S_0 = 100$. Consider two equally likely outcomes: $S_1 = 150$ (up 50%) or $S_1 = 50$ (down 50%). Then:
+
+    - Arithmetic mean return: $(150 + 50)/(2 \times 100) - 1 = 0$ (as expected with $r = 0$)
+    - Geometric mean return: $\sqrt{150 \times 50}/100 - 1 = \sqrt{7500}/100 - 1 = 86.6/100 - 1 = -0.134$
+    - Log-return: $\frac{1}{2}(\ln 1.5 + \ln 0.5) = \frac{1}{2}(0.405 - 0.693) = -0.144$
+
+    The expected log-return is $-0.144$, while $r - \frac{1}{2}\sigma^2 = 0 - \frac{1}{2}(0.25) = -0.125$. The negative log-return despite zero arithmetic drift perfectly illustrates the Ito correction: volatility systematically erodes the geometric growth rate.

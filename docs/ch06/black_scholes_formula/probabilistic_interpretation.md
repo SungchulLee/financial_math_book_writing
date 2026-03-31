@@ -466,3 +466,228 @@ by writing $S_T = S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma\sqrt{T} Z}$ with $Z
 ---
 
 **Exercise 7.** Consider a deep out-of-the-money call with $S_0 = 50$, $K = 100$, $r = 5\%$, $\sigma = 40\%$, $T = 2$. Compute $\mathcal{N}(d_1)$, $\mathcal{N}(d_2)$, and the call price. Despite the option being far OTM, explain why the call still has significant value by referring to the probabilistic interpretation and the log-normal distribution of $S_T$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **Parameters**: $S_0 = 120$, $K = 110$, $r = 0.04$, $\sigma = 0.30$, $T = 0.75$.
+
+    **Compute $d_1$**:
+
+    $$
+    d_1 = \frac{\ln(120/110) + (0.04 + 0.5 \times 0.09) \times 0.75}{0.30\sqrt{0.75}}
+    $$
+
+    $$
+    = \frac{0.08701 + (0.04 + 0.045) \times 0.75}{0.25981} = \frac{0.08701 + 0.06375}{0.25981} = \frac{0.15076}{0.25981} = 0.5803
+    $$
+
+    **Compute $d_2$**:
+
+    $$
+    d_2 = 0.5803 - 0.25981 = 0.3205
+    $$
+
+    **Evaluate probabilities**:
+
+    $$
+    \mathcal{N}(d_1) = \mathcal{N}(0.5803) \approx 0.7191
+    $$
+
+    $$
+    \mathcal{N}(d_2) = \mathcal{N}(0.3205) \approx 0.6257
+    $$
+
+    **Difference**: $\mathcal{N}(d_1) - \mathcal{N}(d_2) = 0.7191 - 0.6257 = 0.0934$.
+
+    **Interpretation**: The 9.34 percentage point gap represents the effect of changing from the risk-neutral measure $\mathbb{Q}$ to the stock measure $\mathbb{Q}^S$. Under the stock measure, the stock's drift is $r + \sigma^2 = 0.04 + 0.09 = 0.13$ instead of $r = 0.04$, which tilts the distribution toward higher stock prices and increases the probability of finishing ITM. This gap is $\mathcal{N}(d_1) - \mathcal{N}(d_2) = \mathcal{N}(d_2 + \sigma\sqrt{T}) - \mathcal{N}(d_2)$, which is approximately $\phi(d_2) \cdot \sigma\sqrt{T} \approx 0.3790 \times 0.2598 \approx 0.0985$ (close to our exact value). The gap is larger when volatility and time to maturity are large, since these amplify the drift difference between the two measures.
+
+??? success "Solution to Exercise 2"
+    Under $\mathbb{Q}$, $S_T = S_0 \exp\left((r - \frac{1}{2}\sigma^2)T + \sigma W_T\right)$ where $W_T \sim \mathcal{N}(0, T)$.
+
+    The event $S_T > K$ is equivalent to:
+
+    $$
+    S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma W_T\right) > K
+    $$
+
+    Taking logarithms:
+
+    $$
+    \ln S_0 + \left(r - \frac{1}{2}\sigma^2\right)T + \sigma W_T > \ln K
+    $$
+
+    Isolating $W_T$:
+
+    $$
+    \sigma W_T > \ln K - \ln S_0 - \left(r - \frac{1}{2}\sigma^2\right)T
+    $$
+
+    $$
+    W_T > \frac{\ln(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma}
+    $$
+
+    Dividing both sides by $\sqrt{T}$ to standardize (since $Z = W_T/\sqrt{T} \sim \mathcal{N}(0,1)$):
+
+    $$
+    Z > \frac{\ln(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+    $$
+
+    Now define:
+
+    $$
+    d_2 = \frac{\ln(S_0/K) + (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+    $$
+
+    The right-hand side of the inequality is:
+
+    $$
+    \frac{\ln(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}} = \frac{-[\ln(S_0/K) + (r - \frac{1}{2}\sigma^2)T]}{\sigma\sqrt{T}} = -d_2
+    $$
+
+    Therefore:
+
+    $$
+    \mathbb{Q}(S_T > K) = \mathbb{Q}(Z > -d_2) = 1 - \mathcal{N}(-d_2) = \mathcal{N}(d_2)
+    $$
+
+    where the last step uses the symmetry $1 - \mathcal{N}(-x) = \mathcal{N}(x)$.
+
+??? success "Solution to Exercise 3"
+    The Radon-Nikodym derivative is $\frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_T e^{-rT}}{S_0}$. Under $\mathbb{Q}$:
+
+    $$
+    S_T = S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma W_T}
+    $$
+
+    So:
+
+    $$
+    \frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma W_T} \cdot e^{-rT}}{S_0} = e^{-\frac{1}{2}\sigma^2 T + \sigma W_T}
+    $$
+
+    This has the form of an exponential martingale $\mathcal{E}(\sigma W)_T = \exp(\sigma W_T - \frac{1}{2}\sigma^2 T)$.
+
+    By Girsanov's theorem, under $\mathbb{Q}^S$, the process:
+
+    $$
+    \tilde{W}_t = W_t - \sigma t
+    $$
+
+    is a Brownian motion. Substituting $W_t = \tilde{W}_t + \sigma t$ into the risk-neutral SDE:
+
+    $$
+    dS_t = rS_t\,dt + \sigma S_t\,dW_t = rS_t\,dt + \sigma S_t(d\tilde{W}_t + \sigma\,dt)
+    $$
+
+    $$
+    = (r + \sigma^2)S_t\,dt + \sigma S_t\,d\tilde{W}_t
+    $$
+
+    Therefore under $\mathbb{Q}^S$, the drift of $S_t$ is $r + \sigma^2$ instead of $r$.
+
+??? success "Solution to Exercise 4"
+    We compute $e^{-rT}\mathbb{E}^{\mathbb{Q}}[S_T \cdot \mathbf{1}_{\{S_T > K\}}]$.
+
+    Write $S_T = S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma\sqrt{T}Z}$ with $Z \sim \mathcal{N}(0,1)$.
+
+    The condition $S_T > K$ becomes $Z > -d_2$ (from Exercise 2).
+
+    $$
+    e^{-rT}\mathbb{E}^{\mathbb{Q}}[S_T \cdot \mathbf{1}_{\{Z > -d_2\}}] = e^{-rT} S_0 \int_{-d_2}^{\infty} e^{(r-\frac{1}{2}\sigma^2)T + \sigma\sqrt{T}z} \frac{1}{\sqrt{2\pi}}e^{-z^2/2}\,dz
+    $$
+
+    $$
+    = S_0 \int_{-d_2}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2}\sigma^2 T + \sigma\sqrt{T}z - z^2/2}\,dz
+    $$
+
+    Complete the square in the exponent:
+
+    $$
+    -\frac{1}{2}\sigma^2 T + \sigma\sqrt{T}z - \frac{z^2}{2} = -\frac{1}{2}(z - \sigma\sqrt{T})^2
+    $$
+
+    Substituting $u = z - \sigma\sqrt{T}$, so $dz = du$ and when $z = -d_2$, $u = -d_2 - \sigma\sqrt{T} = -d_1$:
+
+    $$
+    = S_0 \int_{-d_1}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-u^2/2}\,du = S_0 \mathcal{N}(d_1)
+    $$
+
+    This confirms:
+
+    $$
+    e^{-rT}\mathbb{E}^{\mathbb{Q}}[S_T \cdot \mathbf{1}_{\{S_T > K\}}] = S_0\mathcal{N}(d_1)
+    $$
+
+??? success "Solution to Exercise 5"
+    By the complementary probability, $\mathcal{N}(-d_2) = 1 - \mathcal{N}(d_2) = 1 - \mathbb{Q}(S_T > K) = \mathbb{Q}(S_T \leq K)$.
+
+    Since $S_T$ has a continuous distribution (log-normal), $\mathbb{Q}(S_T = K) = 0$, so:
+
+    $$
+    \mathcal{N}(-d_2) = \mathbb{Q}(S_T < K)
+    $$
+
+    **Numerical computation** with $S_0 = 90$, $K = 100$, $r = 0.02$, $\sigma = 0.25$, $T = 1$:
+
+    $$
+    d_1 = \frac{\ln(90/100) + (0.02 + 0.03125) \times 1}{0.25} = \frac{-0.10536 + 0.05125}{0.25} = \frac{-0.05411}{0.25} = -0.2164
+    $$
+
+    $$
+    d_2 = -0.2164 - 0.25 = -0.4664
+    $$
+
+    **Risk-neutral exercise probability for the put**: $\mathcal{N}(-d_2) = \mathcal{N}(0.4664) = 0.6795$.
+
+    **Stock-measure probability**: $\mathcal{N}(-d_1) = \mathcal{N}(0.2164) = 0.5857$.
+
+    The risk-neutral probability ($67.95\%$) exceeds the stock-measure probability ($58.57\%$). This is because the stock measure tilts the distribution toward higher stock prices (drift $r + \sigma^2$ vs. $r$), making it less likely that $S_T < K$. The difference of $8.38$ percentage points reflects the measure change effect, consistent with $d_1 - d_2 = \sigma\sqrt{T} = 0.25$.
+
+??? success "Solution to Exercise 6"
+    Since $d_1 = d_2 + \sigma\sqrt{T}$, we have:
+
+    $$
+    \mathcal{N}(d_1) - \mathcal{N}(d_2) = \mathcal{N}(d_2 + \sigma\sqrt{T}) - \mathcal{N}(d_2)
+    $$
+
+    By the mean value theorem, this equals $\phi(c) \cdot \sigma\sqrt{T}$ for some $c \in (d_2, d_1)$, where $\phi > 0$. Since $\sigma > 0$ and $T > 0$, the gap is always **strictly positive**.
+
+    **Increasing in $\sigma$**: The gap $\sigma\sqrt{T}$ between $d_1$ and $d_2$ increases linearly in $\sigma$. Since $\phi$ is bounded and positive, the gap $\mathcal{N}(d_1) - \mathcal{N}(d_2)$ generally increases with $\sigma$ (especially for moderate values of $d_2$).
+
+    **Increasing in $T$**: Similarly, $\sigma\sqrt{T}$ increases with $T$, widening the gap.
+
+    **When the gap is negligible**: When $\sigma\sqrt{T} \ll 1$ (either very low volatility or very short time to maturity), $d_1 \approx d_2$ and the two probabilities are nearly equal. The two measures are "close" because the Girsanov drift adjustment $\sigma\,dt$ has little cumulative effect over a short time or with small volatility.
+
+    **When the gap is large**: When $\sigma\sqrt{T} \gg 1$ (high volatility, long maturity), the gap between $d_1$ and $d_2$ is large, and the stock measure assigns significantly more probability to high stock prices than the risk-neutral measure. This occurs in practice for long-dated options on volatile stocks, where the hedging ratio $\mathcal{N}(d_1)$ can substantially exceed the risk-neutral exercise probability $\mathcal{N}(d_2)$.
+
+??? success "Solution to Exercise 7"
+    **Parameters**: $S_0 = 50$, $K = 100$, $r = 0.05$, $\sigma = 0.40$, $T = 2$.
+
+    $$
+    d_1 = \frac{\ln(50/100) + (0.05 + 0.08) \times 2}{0.40\sqrt{2}} = \frac{-0.6931 + 0.26}{0.5657} = \frac{-0.4331}{0.5657} = -0.7655
+    $$
+
+    $$
+    d_2 = -0.7655 - 0.5657 = -1.3312
+    $$
+
+    $$
+    \mathcal{N}(d_1) = \mathcal{N}(-0.7655) \approx 0.2220
+    $$
+
+    $$
+    \mathcal{N}(d_2) = \mathcal{N}(-1.3312) \approx 0.0916
+    $$
+
+    **Call price**:
+
+    $$
+    C_0 = 50 \times 0.2220 - 100 \times e^{-0.10} \times 0.0916 = 11.10 - 90.48 \times 0.0916 = 11.10 - 8.29 = 2.81
+    $$
+
+    Despite the stock being at half the strike price, the call is worth $\$2.81$ (about $5.6\%$ of the stock price).
+
+    **Why the call has significant value**: The risk-neutral probability of finishing ITM is $\mathcal{N}(d_2) = 9.16\%$, which is far from negligible. This is because $S_T$ follows a log-normal distribution, which is right-skewed. With $\sigma = 40\%$ and $T = 2$ years, the total uncertainty is $\sigma\sqrt{T} = 56.57\%$, meaning the stock price can easily double or more. Specifically, a $2$-standard-deviation upward move gives $S_T = 50 \times e^{0.26 + 2 \times 0.5657} \approx 50 \times e^{1.39} \approx 201$, far above the strike. The log-normal distribution places substantial probability on extreme upward moves, and these contribute disproportionately to the option's expected payoff since the payoff is linear in $S_T - K$ for $S_T > K$. The stock-measure probability $\mathcal{N}(d_1) = 22.2\%$ is even higher, reflecting the additional upward bias of the stock numéraire measure.

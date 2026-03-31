@@ -320,3 +320,143 @@ $$
 $$
 
 converge to the same limit in $L^2(\Omega)$, so the extended integral is well defined.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The process $H_t = \mathbf{1}_{(a,b]}(t)$ is a simple process with a single nonzero piece, $H_0 = 1$ on $(a,b]$. By the definition for simple processes:
+
+    $$
+    \int_0^T H_s\, dB_s = 1 \cdot (B_{b \wedge T} - B_{a \wedge T}) = B_b - B_a
+    $$
+
+    (assuming $b \le T$).
+
+    **Verification of the Ito isometry.** The left side is:
+
+    $$
+    \mathbb{E}\!\left[\left(\int_0^T H_s\, dB_s\right)^2\right] = \mathbb{E}[(B_b - B_a)^2] = b - a
+    $$
+
+    since $B_b - B_a \sim \mathcal{N}(0, b-a)$.
+
+    The right side is:
+
+    $$
+    \mathbb{E}\!\left[\int_0^T H_s^2\, ds\right] = \mathbb{E}\!\left[\int_0^T \mathbf{1}_{(a,b]}(s)\, ds\right] = b - a
+    $$
+
+    Both sides equal $b - a$, confirming the Ito isometry.
+
+??? success "Solution to Exercise 2"
+    The Riemann-Stieltjes integral $\int_0^T f(s)\, dg(s)$ is defined as the limit of sums $\sum_k f(t_k^*)(g(t_{k+1}) - g(t_k))$ as the partition mesh tends to zero. A sufficient condition for this limit to exist is that $g$ has **bounded variation** on $[0,T]$.
+
+    For Brownian motion $B_t(\omega)$, the total variation is almost surely infinite on every interval $[0,T]$. This is because $\mathbb{E}[\sum |B_{t_{k+1}} - B_{t_k}|] = n\sqrt{2T/(\pi n)} = \sqrt{2nT/\pi} \to \infty$, and the expected total variation diverging implies almost sure divergence.
+
+    When the integrator has infinite variation, the Riemann-Stieltjes sums may not converge, or they may converge to different limits depending on the choice of evaluation points $t_k^*$. Finite variation is essential because it ensures that the oscillation of $g$ on each subinterval goes to zero fast enough that the choice of evaluation point within each subinterval becomes irrelevant in the limit. Without this, the sum $\sum f(t_k^*) \Delta g_k$ is sensitive to the exact location of $t_k^*$ within $[t_k, t_{k+1}]$, as demonstrated by the different values of the Ito and Stratonovich integrals.
+
+??? success "Solution to Exercise 3"
+    On the uniform partition of $[0,1]$ with $n$ points, $t_k = k/n$ and $\Delta t = 1/n$. The simple process approximation is $H_t^{(n)} = B_{t_k}$ on $(t_k, t_{k+1}]$. We need:
+
+    $$
+    \mathbb{E}\!\left[\int_0^1 (B_t - H_t^{(n)})^2\, dt\right] = \sum_{k=0}^{n-1} \int_{t_k}^{t_{k+1}} \mathbb{E}[(B_t - B_{t_k})^2]\, dt
+    $$
+
+    Since $B_t - B_{t_k}$ is an increment of Brownian motion with $\mathbb{E}[(B_t - B_{t_k})^2] = t - t_k$:
+
+    $$
+    = \sum_{k=0}^{n-1} \int_{t_k}^{t_{k+1}} (t - t_k)\, dt = \sum_{k=0}^{n-1} \frac{(\Delta t)^2}{2} = n \cdot \frac{1}{2n^2} = \frac{1}{2n}
+    $$
+
+    As $n \to \infty$, $\frac{1}{2n} \to 0$. This confirms that simple processes are dense in $\mathcal{L}^2([0,1])$ for the integrand $H_t = B_t$.
+
+??? success "Solution to Exercise 4"
+    By the polarization identity, for any random variables $X, Y$ in $L^2$:
+
+    $$
+    \mathbb{E}[XY] = \frac{1}{4}\left(\mathbb{E}[(X+Y)^2] - \mathbb{E}[(X-Y)^2]\right)
+    $$
+
+    Apply this with $X = \int_0^T H_s\, dB_s$ and $Y = \int_0^T K_s\, dB_s$. By linearity:
+
+    $$
+    X + Y = \int_0^T (H_s + K_s)\, dB_s, \qquad X - Y = \int_0^T (H_s - K_s)\, dB_s
+    $$
+
+    By the Ito isometry:
+
+    $$
+    \mathbb{E}[(X+Y)^2] = \mathbb{E}\!\left[\int_0^T (H_s + K_s)^2\, ds\right]
+    $$
+
+    $$
+    \mathbb{E}[(X-Y)^2] = \mathbb{E}\!\left[\int_0^T (H_s - K_s)^2\, ds\right]
+    $$
+
+    Subtracting:
+
+    $$
+    \mathbb{E}[(X+Y)^2] - \mathbb{E}[(X-Y)^2] = \mathbb{E}\!\left[\int_0^T 4 H_s K_s\, ds\right]
+    $$
+
+    since $(H+K)^2 - (H-K)^2 = 4HK$. Dividing by 4:
+
+    $$
+    \mathbb{E}\!\left[\int_0^T H_s\, dB_s \cdot \int_0^T K_s\, dB_s\right] = \mathbb{E}\!\left[\int_0^T H_s K_s\, ds\right]
+    $$
+
+??? success "Solution to Exercise 5"
+    The simple process is $H_t = c \cdot \mathbf{1}_{(0, T/2]}(t)$, so:
+
+    $$
+    I_t = \int_0^t c \cdot \mathbf{1}_{(0, T/2]}(s)\, dB_s
+    $$
+
+    For $t \le T/2$: $I_t = c(B_t - B_0) = cB_t$.
+
+    For $t > T/2$: $I_t = c(B_{T/2} - B_0) = cB_{T/2}$.
+
+    Now take $s < T/2 < t$. We need to show $\mathbb{E}[I_t \mid \mathcal{F}_s] = I_s$.
+
+    Since $t > T/2$, $I_t = cB_{T/2}$. Since $s < T/2$, $I_s = cB_s$. So we need:
+
+    $$
+    \mathbb{E}[cB_{T/2} \mid \mathcal{F}_s] = cB_s
+    $$
+
+    Write $B_{T/2} = B_s + (B_{T/2} - B_s)$. Since $B_{T/2} - B_s$ is independent of $\mathcal{F}_s$ with mean zero:
+
+    $$
+    \mathbb{E}[cB_{T/2} \mid \mathcal{F}_s] = c\left(B_s + \mathbb{E}[B_{T/2} - B_s \mid \mathcal{F}_s]\right) = cB_s = I_s
+    $$
+
+    This confirms $\mathbb{E}[I_t \mid \mathcal{F}_s] = I_s$.
+
+??? success "Solution to Exercise 6"
+    By linearity of the Ito integral for simple processes:
+
+    $$
+    \int_0^T H_s^{(n)}\, dB_s - \int_0^T \tilde{H}_s^{(n)}\, dB_s = \int_0^T (H_s^{(n)} - \tilde{H}_s^{(n)})\, dB_s
+    $$
+
+    By the Ito isometry:
+
+    $$
+    \mathbb{E}\!\left[\left(\int_0^T (H_s^{(n)} - \tilde{H}_s^{(n)})\, dB_s\right)^2\right] = \mathbb{E}\!\left[\int_0^T (H_s^{(n)} - \tilde{H}_s^{(n)})^2\, ds\right]
+    $$
+
+    By the triangle inequality in $\mathcal{L}^2([0,T])$:
+
+    $$
+    \|H^{(n)} - \tilde{H}^{(n)}\|_{\mathcal{L}^2} \le \|H^{(n)} - H\|_{\mathcal{L}^2} + \|H - \tilde{H}^{(n)}\|_{\mathcal{L}^2}
+    $$
+
+    Both terms tend to zero by assumption. Therefore:
+
+    $$
+    \mathbb{E}\!\left[\left(\int_0^T H_s^{(n)}\, dB_s - \int_0^T \tilde{H}_s^{(n)}\, dB_s\right)^2\right] \to 0
+    $$
+
+    This means the two sequences of integrals converge to the same limit in $L^2(\Omega)$, so the extended integral is well defined (independent of the approximating sequence).

@@ -1021,3 +1021,161 @@ The art is knowing which representation to use for each problem.
 ---
 
 **Exercise 6.** For a down-and-out call with barrier at $S = B$ (where $B < K$), describe how the method of images can be used instead of separation of variables to satisfy the boundary condition $V(B, t) = 0$. What is the "image" solution, and how does the final formula relate to the standard Black-Scholes price?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    On $x \in (a,b)$ with $F(a,\tau) = F(b,\tau) = 0$, substitute $F(x,\tau) = X(x)T(\tau)$:
+
+    $$
+    X(x)T'(\tau) = \frac{1}{2}\sigma^2 X''(x)T(\tau)
+    $$
+
+    Divide by $X(x)T(\tau)$:
+
+    $$
+    \frac{T'(\tau)}{T(\tau)} = \frac{\frac{1}{2}\sigma^2 X''(x)}{X(x)} = -\mu
+    $$
+
+    for some separation constant $\mu$.
+
+    **Spatial ODE:** $X'' + \frac{2\mu}{\sigma^2}X = 0$ with $X(a) = X(b) = 0$.
+
+    Let $k^2 = \frac{2\mu}{\sigma^2}$. The general solution is $X(x) = A\sin(k(x-a)) + B\cos(k(x-a))$.
+
+    Boundary condition $X(a) = 0$ gives $B = 0$. Boundary condition $X(b) = 0$ gives $\sin(k(b-a)) = 0$, so:
+
+    $$
+    k_n = \frac{n\pi}{b-a}, \quad n = 1, 2, 3, \ldots
+    $$
+
+    The eigenvalues are $\mu_n = \frac{\sigma^2 k_n^2}{2} = \frac{\sigma^2}{2}\left(\frac{n\pi}{b-a}\right)^2$, and since the time equation is $T' = -\mu T$:
+
+    $$
+    \lambda_n = -\mu_n = -\frac{1}{2}\sigma^2\left(\frac{n\pi}{b-a}\right)^2
+    $$
+
+    The eigenfunctions are:
+
+    $$
+    X_n(x) = \sin\left(\frac{n\pi(x-a)}{b-a}\right)
+    $$
+
+??? success "Solution to Exercise 2"
+    Using the eigenvalue decomposition, the solution for a double-barrier knock-out call in log-price space $x = \ln S$, with barriers at $x_l = \ln B_l$ and $x_u = \ln B_u$:
+
+    $$
+    F(x,\tau) = \sum_{n=1}^{\infty}c_n \sin\left(\frac{n\pi(x - x_l)}{x_u - x_l}\right)\exp\left(-\frac{\sigma^2}{2}\left(\frac{n\pi}{x_u - x_l}\right)^2\tau\right)
+    $$
+
+    The coefficients are determined by the initial condition $F(x,0) = (e^x - K)^+$ (after accounting for the drift removal and discounting transformations):
+
+    $$
+    c_n = \frac{2}{x_u - x_l}\int_{x_l}^{x_u}(e^z - K)^+\sin\left(\frac{n\pi(z-x_l)}{x_u - x_l}\right)dz
+    $$
+
+    Since the payoff is non-zero only for $z > \ln K$:
+
+    $$
+    c_n = \frac{2}{x_u - x_l}\int_{\ln K}^{x_u}(e^z - K)\sin\left(\frac{n\pi(z - x_l)}{x_u - x_l}\right)dz
+    $$
+
+    **Convergence rate:** For a smooth initial condition (e.g., the payoff is $C^{\infty}$), the Fourier sine coefficients $c_n$ decay as $O(n^{-k})$ for any $k$, giving spectral (super-polynomial) convergence. For the call payoff, which has a kink at $S = K$ (i.e., $\Phi''$ has a delta function), $c_n \sim O(n^{-2})$. This means the series converges as $O(1/N^2)$ for $N$ terms when $\tau = 0$, but for $\tau > 0$, the exponential decay $e^{-cn^2\tau}$ dramatically accelerates convergence.
+
+??? success "Solution to Exercise 3"
+    **Bounded domain (barrier options).** When barriers at $B_l$ and $B_u$ bound the stock price, the log-price domain $[\ln B_l, \ln B_u]$ is finite. The spatial operator with homogeneous Dirichlet boundary conditions has a **discrete spectrum**: eigenvalues $\lambda_1 < \lambda_2 < \cdots$ accumulating at $-\infty$, with corresponding eigenfunctions forming a complete orthonormal basis. The solution is a Fourier sine series (discrete sum).
+
+    **Unbounded domain (vanilla options).** For vanilla European options, $S \in (0,\infty)$ so $x = \ln S \in (-\infty, \infty)$. There are no boundary conditions to constrain the eigenvalues, so the spectrum is **continuous**: every $\lambda \leq 0$ is in the spectrum. The eigenfunctions $e^{i\omega x}$ are not square-integrable (they are generalized eigenfunctions).
+
+    **What replaces the discrete sum.** The discrete eigenvalue sum $\sum_{n=1}^{\infty}c_n X_n(x)e^{-\lambda_n\tau}$ is replaced by the continuous Fourier integral:
+
+    $$
+    V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{V}(\omega,0)e^{\psi(\omega)\tau}e^{i\omega x}d\omega
+    $$
+
+    This is the Fourier transform solution. The discrete-to-continuous transition is a manifestation of the general principle in spectral theory: as the domain $[a,b] \to (-\infty,\infty)$, the eigenvalue spacing $\Delta\lambda \sim \pi^2/(b-a)^2 \to 0$ and the sum becomes an integral.
+
+??? success "Solution to Exercise 4"
+    Starting from the heat equation $\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2}$, substitute $F(x,\tau) = X(x)T(\tau)$:
+
+    $$
+    X(x)T'(\tau) = \frac{1}{2}\sigma^2 X''(x)T(\tau)
+    $$
+
+    Divide by $XT$:
+
+    $$
+    \frac{T'(\tau)}{T(\tau)} = \frac{\sigma^2}{2}\frac{X''(x)}{X(x)} = -\lambda
+    $$
+
+    **Time ODE:** $T' + \lambda T = 0$, with solution:
+
+    $$
+    T(\tau) = Ce^{-\lambda\tau}
+    $$
+
+    **Spatial ODE:** $\frac{\sigma^2}{2}X'' + \lambda X = 0$, or equivalently $X'' + \frac{2\lambda}{\sigma^2}X = 0$.
+
+    For $\lambda > 0$: Let $k^2 = 2\lambda/\sigma^2$. Then $X(x) = A\cos(kx) + B\sin(kx)$, or equivalently $X(x) = Ce^{ikx} + De^{-ikx}$.
+
+    For $\lambda < 0$: Let $\kappa^2 = -2\lambda/\sigma^2$. Then $X(x) = Ae^{\kappa x} + Be^{-\kappa x}$ (exponential solutions, not bounded on $\mathbb{R}$).
+
+    For $\lambda = 0$: $X(x) = Ax + B$.
+
+    On the infinite domain, boundedness requires $\lambda \geq 0$, and $k$ ranges continuously over $\mathbb{R}$, recovering the Fourier transform representation. The separation constant $\lambda = \frac{\sigma^2 k^2}{2}$ parametrizes the continuous spectrum.
+
+??? success "Solution to Exercise 5"
+    **Green's function representation.** The solution is:
+
+    $$
+    V(x,\tau) = \int_{-\infty}^{\infty}\Phi(y)G(x-y,\tau)dy
+    $$
+
+    where $G(x,\tau) = \frac{1}{\sqrt{2\pi\sigma^2\tau}}e^{-x^2/(2\sigma^2\tau)}$.
+
+    **Fourier transform representation.** The solution is:
+
+    $$
+    V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{\Phi}(\omega)e^{-\sigma^2\omega^2\tau/2}e^{i\omega x}d\omega
+    $$
+
+    **Equivalence.** By the convolution theorem, $V = \Phi * G$ in real space corresponds to $\hat{V} = \hat{\Phi} \cdot \hat{G}$ in Fourier space. The Fourier transform of the Gaussian kernel is:
+
+    $$
+    \hat{G}(\omega,\tau) = \int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2\tau}}e^{-x^2/(2\sigma^2\tau)}e^{-i\omega x}dx = e^{-\sigma^2\omega^2\tau/2}
+    $$
+
+    Therefore:
+
+    $$
+    V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{\Phi}(\omega)\hat{G}(\omega,\tau)e^{i\omega x}d\omega = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{\Phi}(\omega)e^{-\sigma^2\omega^2\tau/2}e^{i\omega x}d\omega
+    $$
+
+    Applying the inverse Fourier transform of the product $\hat{\Phi}\cdot\hat{G}$ gives the convolution $\Phi * G$, confirming both representations are identical.
+
+??? success "Solution to Exercise 6"
+    **Method of images.** The idea is to construct a solution that automatically satisfies $V(B,t) = 0$ by adding an "image" solution that cancels the original at $S = B$.
+
+    Start with the standard Black-Scholes call price $C_{\text{BS}}(S,K,\tau)$. The "image" of a point source at $S$ reflected in the barrier $B$ is $B^2/S$ (in the stock price domain). The image solution is:
+
+    $$
+    V_{\text{image}}(S,t) = \left(\frac{B}{S}\right)^{2r/\sigma^2 - 1}C_{\text{BS}}\left(\frac{B^2}{S}, K, \tau\right)
+    $$
+
+    The power $\left(\frac{B}{S}\right)^{2r/\sigma^2 - 1}$ is chosen so that $V_{\text{image}}$ also satisfies the Black-Scholes PDE (this exponent arises from the drift term in the PDE).
+
+    **Down-and-out call price:**
+
+    $$
+    V_{\text{DO}}(S,t) = C_{\text{BS}}(S,K,\tau) - \left(\frac{B}{S}\right)^{2r/\sigma^2 - 1}C_{\text{BS}}\left(\frac{B^2}{S}, K, \tau\right)
+    $$
+
+    **Verification at $S = B$:** When $S = B$:
+
+    $$
+    V_{\text{DO}}(B,t) = C_{\text{BS}}(B,K,\tau) - (1)^{2r/\sigma^2 - 1}C_{\text{BS}}(B,K,\tau) = 0
+    $$
+
+    The boundary condition is satisfied. The formula gives the exact price of a continuously-monitored down-and-out call option under GBM, and it is simpler than the eigenfunction expansion approach since it requires no series truncation or computation of eigenvalues.

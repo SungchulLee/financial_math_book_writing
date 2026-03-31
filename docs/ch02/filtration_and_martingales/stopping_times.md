@@ -310,3 +310,85 @@ Let $\tau = \inf\{t : W_t = 1\}$.
 (b) Let $\tau_a = \inf\{t : W_t = a\}$. Use the strong Markov property to show that $\tau_a + \tau_b \circ \theta_{\tau_a}$ has the same distribution as $\tau_{a+b}$, where $\theta$ is the shift operator.
 
 (c) Derive the reflection principle: $\mathbb{P}(\sup_{s \le t} W_s \ge a) = 2\mathbb{P}(W_t \ge a)$ for $a > 0$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** $\tau = \inf\{t \ge 0 : W_t = 1\}$ is a **stopping time**. This is the first hitting time of the closed set $\{1\}$ by the continuous adapted process $W_t$. By the general result for first hitting times of closed sets by continuous processes, $\tau$ is a stopping time.
+
+    **(b)** $\tau = \sup\{t \le 1 : W_t = 0\}$ is **not** a stopping time. To determine whether the last zero before time 1 has occurred by time $t < 1$, one would need to know the future path after $t$ — specifically, whether Brownian motion returns to 0 between $t$ and 1. This requires information beyond $\mathcal{F}_t$.
+
+    **(c)** $\tau = \inf\{t \ge 0 : W_t > W_s \text{ for all } s < t\}$. This asks for the first time the process exceeds all previous values. Since $W_0 = 0$ and $W_t$ is continuous with $\limsup_{t \to 0^+} W_t/\sqrt{t} = +\infty$ a.s. (by the law of the iterated logarithm), there exist arbitrarily small times $t$ with $W_t > 0 = W_0$. In fact, $\tau = 0$ a.s. because for any $\varepsilon > 0$, there exists $t \in (0, \varepsilon)$ with $W_t > 0 > \inf_{s \in [0, t)} W_s$ is not guaranteed to mean $W_t > W_s$ for ALL $s < t$. Actually, $\tau = 0$ because Brownian motion starts fresh and immediately exceeds its starting value. Since $\tau = 0$ is a constant, it is trivially a **stopping time**.
+
+    **(d)** $\tau = \inf\{t \ge 0 : \int_0^t W_s\,ds \ge 1\}$ is a **stopping time**. The process $Y_t = \int_0^t W_s\,ds$ is adapted and continuous (as the integral of a continuous adapted process). Therefore $\tau$ is the first hitting time of the closed set $[1, \infty)$ by the continuous adapted process $Y_t$, hence a stopping time.
+
+    **(e)** $\tau = \inf\{t \ge 1 : W_t = W_{t-1}\}$ is a **stopping time**. Define $Y_t = W_t - W_{t-1}$ for $t \ge 1$. Then $Y_t$ is adapted to $(\mathcal{F}_t)$ (since both $W_t$ and $W_{t-1}$ are $\mathcal{F}_t$-measurable for $t \ge 1$) and has continuous paths. The time $\tau = \inf\{t \ge 1 : Y_t = 0\}$ is the first hitting time of 0 by the continuous adapted process $Y_t$ starting at time 1, hence a stopping time.
+
+??? success "Solution to Exercise 2"
+    **(a)** For any $t \ge 0$:
+
+    $$
+    \{\sigma \wedge \tau \le t\} = \{\min(\sigma, \tau) \le t\} = \{\sigma \le t\} \cup \{\tau \le t\}
+    $$
+
+    Since $\sigma$ and $\tau$ are stopping times, $\{\sigma \le t\} \in \mathcal{F}_t$ and $\{\tau \le t\} \in \mathcal{F}_t$. As $\mathcal{F}_t$ is a $\sigma$-algebra, $\{\sigma \le t\} \cup \{\tau \le t\} \in \mathcal{F}_t$. $\square$
+
+    **(b)** Assume $\sigma, \tau < \infty$ a.s. We need $\{\sigma + \tau \le t\} \in \mathcal{F}_t$. Write:
+
+    $$
+    \{\sigma + \tau \le t\} = \bigcup_{q \in \mathbb{Q} \cap [0, t]} (\{\sigma \le q\} \cap \{\tau \le t - q\})
+    $$
+
+    For each rational $q \in [0, t]$: $\{\sigma \le q\} \in \mathcal{F}_q \subseteq \mathcal{F}_t$ and $\{\tau \le t - q\} \in \mathcal{F}_{t-q} \subseteq \mathcal{F}_t$. So each intersection is in $\mathcal{F}_t$, and the countable union is in $\mathcal{F}_t$. $\square$
+
+    **(c)** Let $\sigma = \tau = \inf\{t : W_t = 1\}$. Then $\sigma - \tau = 0$ is trivially a stopping time. For a non-trivial example: let $\sigma = 2$ (deterministic) and $\tau = \inf\{t : W_t = 1\}$. Then $\sigma - \tau = 2 - \tau$. The event $\{2 - \tau \le t\} = \{\tau \ge 2 - t\}$ for $t \le 2$, which is $\{\tau < 2 - t\}^c$. For small $t$, $\{\tau \ge 2 - t\}$ depends on whether Brownian motion has hit 1 by time $2 - t$, which requires looking at the path up to time $2 - t > t$ (for $t < 1$). This is not necessarily in $\mathcal{F}_t$. Hence $\sigma - \tau$ need not be a stopping time.
+
+??? success "Solution to Exercise 3"
+    **(a)** Let $\tau = \inf\{t : W_t = 1\}$. The random variable $W_\tau = 1$ (by continuity of Brownian paths, the process equals 1 at the hitting time). A constant is measurable with respect to any $\sigma$-algebra, so $W_\tau$ is $\mathcal{F}_\tau$-measurable.
+
+    More generally, for any progressively measurable process $X$, $X_\tau$ is $\mathcal{F}_\tau$-measurable on $\{\tau < \infty\}$.
+
+    **(b)** $W_{\tau + 1}$ is **not** $\mathcal{F}_\tau$-measurable. By the strong Markov property, $\widetilde{W}_s = W_{\tau + s} - W_\tau$ is a Brownian motion independent of $\mathcal{F}_\tau$. Therefore $W_{\tau + 1} = W_\tau + \widetilde{W}_1 = 1 + \widetilde{W}_1$, and $\widetilde{W}_1 \sim N(0, 1)$ is independent of $\mathcal{F}_\tau$. Since $W_{\tau + 1}$ depends on the independent increment $\widetilde{W}_1$, it is not $\mathcal{F}_\tau$-measurable.
+
+    **(c)** $\mathcal{F}_\tau$ consists of all events whose occurrence can be determined by knowing the path of Brownian motion up to and including the first time it hits 1. Formally, $\mathcal{F}_\tau = \sigma(W_{t \wedge \tau} : t \ge 0)$ — it contains all information about the Brownian path up to the hitting time, but no information about the path after hitting 1. It encodes the shape of the path on $[0, \tau]$, the value of $\tau$ itself, and all events determined by these.
+
+??? success "Solution to Exercise 4"
+    **(a)** The **strong Markov property for Brownian motion**: Let $W$ be a standard Brownian motion and $\tau$ a stopping time with $\tau < \infty$ a.s. Then the process $\widetilde{W}_t := W_{\tau + t} - W_\tau$, $t \ge 0$, is a standard Brownian motion independent of $\mathcal{F}_\tau$.
+
+    **(b)** By the strong Markov property, $\widetilde{W}_t = W_{\tau_a + t} - W_{\tau_a}$ is a Brownian motion independent of $\mathcal{F}_{\tau_a}$, starting from 0. The first hitting time of level $b$ by $\widetilde{W}$ is $\tilde{\tau}_b = \inf\{t : \widetilde{W}_t = b\}$. This has the same distribution as $\tau_b$ (by the definition of Brownian motion).
+
+    Now, $\tau_a + \tilde{\tau}_b$ is the first time $W$ reaches level $a$ (at time $\tau_a$) and then the additional time for the process to travel from $a$ to $a + b$ (an additional distance of $b$). Since $W_{\tau_a} = a$, the first time $W$ reaches level $a + b$ is $\tau_{a+b} = \tau_a + \tilde{\tau}_b$, and $\tilde{\tau}_b \stackrel{d}{=} \tau_b$ is independent of $\tau_a$. Therefore $\tau_{a+b} \stackrel{d}{=} \tau_a + \tau_b$ with $\tau_a$ and $\tau_b$ independent.
+
+    **(c)** For $a > 0$, define $\tau_a = \inf\{t : W_t = a\}$. Decompose the event $\{W_t \ge a\}$:
+
+    $$
+    \{W_t \ge a\} \subseteq \left\{\sup_{s \le t} W_s \ge a\right\}
+    $$
+
+    Conversely, on the event $\{\sup_{s \le t} W_s \ge a\}$, we have $\tau_a \le t$. By the strong Markov property, $\widetilde{W}_s = W_{\tau_a + s} - a$ is a Brownian motion independent of $\mathcal{F}_{\tau_a}$. Thus:
+
+    $$
+    \mathbb{P}\left(\sup_{s \le t} W_s \ge a\right) = \mathbb{P}(\tau_a \le t)
+    $$
+
+    Given $\tau_a \le t$, by symmetry of $\widetilde{W}$:
+
+    $$
+    \mathbb{P}(W_t \ge a \mid \tau_a \le t) = \mathbb{P}(W_t - a \ge 0 \mid \tau_a \le t) = \mathbb{P}(\widetilde{W}_{t - \tau_a} \ge 0 \mid \tau_a \le t) = \frac{1}{2}
+    $$
+
+    (The last equality uses symmetry of Brownian motion: $\mathbb{P}(\widetilde{W}_s \ge 0) = 1/2$ for any $s > 0$, and independence.)
+
+    Therefore:
+
+    $$
+    \mathbb{P}(W_t \ge a) = \mathbb{P}(W_t \ge a, \tau_a \le t) = \mathbb{P}(\tau_a \le t) \cdot \frac{1}{2} = \frac{1}{2}\mathbb{P}\left(\sup_{s \le t} W_s \ge a\right)
+    $$
+
+    Rearranging:
+
+    $$
+    \mathbb{P}\left(\sup_{s \le t} W_s \ge a\right) = 2\mathbb{P}(W_t \ge a) \quad \square
+    $$

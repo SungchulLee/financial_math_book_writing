@@ -324,3 +324,121 @@ Let $M_t = \sup_{s \le t} W_s$.
 *Hint*: Use the reflection principle. The process $W'_t = W_t - 2(W_t - M_t)^+ = 2M_t - W_t$ (reflecting $W$ at its running maximum) is also a Brownian motion. Show $M_t = \sup_{s\le t}W'_s$ and use symmetry.
 
 (c) Use this to find $\mathbb{P}(M_t \ge a, W_t \le b)$ for $a > b$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** Brownian motion $W_t$ is a martingale, so $|W_t|$ is a non-negative submartingale. By Doob's $L^2$ inequality (with $p = 2$):
+
+    $$
+    \mathbb{E}\left[\sup_{0 \le t \le T} |W_t|^2\right] \le \left(\frac{2}{2-1}\right)^2 \mathbb{E}[|W_T|^2] = 4\mathbb{E}[W_T^2] = 4T
+    $$
+
+    **(b)** By Doob's weak $L^1$ inequality (applied to the submartingale $|W_t|$) with $\lambda = 3$:
+
+    $$
+    \mathbb{P}\left(\sup_{t \le 1} |W_t| \ge 3\right) \le \frac{\mathbb{E}[|W_1|^2]}{3^2} = \frac{1}{9} \approx 0.111
+    $$
+
+    Alternatively, using the $L^2$ bound: by Markov's inequality applied to the $L^2$ result:
+
+    $$
+    \mathbb{P}\left(\sup_{t \le 1} |W_t| \ge 3\right) \le \frac{\mathbb{E}[\sup_{t \le 1} W_t^2]}{9} \le \frac{4 \cdot 1}{9} = \frac{4}{9} \approx 0.444
+    $$
+
+    The Chebyshev-type bound is tighter: $1/9$.
+
+    **(c)** The exact value from the reflection principle: $\mathbb{P}(\sup_{t \le 1} W_t \ge 3) = 2\mathbb{P}(W_1 \ge 3) = 2\Phi(-3) \approx 2 \times 0.00135 = 0.0027$. By symmetry, $\mathbb{P}(\sup_{t \le 1} |W_t| \ge 3) \le 2 \times 0.0027 = 0.0054$ (this is not exact for the absolute value, but gives the right order). The exact value is approximately $0.0054$, far smaller than the bounds of $1/9 \approx 0.111$ or $4/9 \approx 0.444$. The Doob bounds are correct but conservative.
+
+??? success "Solution to Exercise 2"
+    **(a)** By Doob's $L^p$ inequality with $p = 4$:
+
+    $$
+    \mathbb{E}\left[\sup_{t \le T} |M_t|^4\right] \le \left(\frac{4}{4-1}\right)^4 \mathbb{E}[|M_T|^4] = \left(\frac{4}{3}\right)^4 C = \frac{256}{81}C \approx 3.16C
+    $$
+
+    **(b)** As $p \to 1^+$, the constant $\left(\frac{p}{p-1}\right)^p \to \infty$. Specifically, $\frac{p}{p-1} \to \infty$ as $p \to 1^+$, so the bound becomes vacuous. This reflects the fact that for $p = 1$, the maximal inequality in the strong $L^p$ form does not hold — one needs the weaker $L^1$ form or the $L\log L$ condition.
+
+    **(c)** **Doob's $L^1$ weak inequality**: For a non-negative submartingale $\{X_t\}$ and $\lambda > 0$:
+
+    $$
+    \lambda \cdot \mathbb{P}(X_T^* \ge \lambda) \le \mathbb{E}[X_T \cdot \mathbf{1}_{\{X_T^* \ge \lambda\}}] \le \mathbb{E}[X_T]
+    $$
+
+    **Proof**: Define $\tau = \inf\{t : X_t \ge \lambda\} \wedge T$. On $\{X_T^* \ge \lambda\}$, $X_\tau \ge \lambda$. By optional sampling for submartingales:
+
+    $$
+    \mathbb{E}[X_T \mid \mathcal{F}_\tau] \ge X_\tau
+    $$
+
+    Multiplying by $\mathbf{1}_{\{X_T^* \ge \lambda\}}$ (which is $\mathcal{F}_\tau$-measurable) and taking expectations:
+
+    $$
+    \mathbb{E}[X_T \cdot \mathbf{1}_{\{X_T^* \ge \lambda\}}] \ge \mathbb{E}[X_\tau \cdot \mathbf{1}_{\{X_T^* \ge \lambda\}}] \ge \lambda \cdot \mathbb{P}(X_T^* \ge \lambda) \quad \square
+    $$
+
+??? success "Solution to Exercise 3"
+    **(a)** By Doob's $L^2$ inequality:
+
+    $$
+    \mathbb{E}\left[\sup_n |M_n|^2\right] \le 4 \sup_n \mathbb{E}[M_n^2] < \infty
+    $$
+
+    Since $\mathbb{E}[\sup_n |M_n|^2] < \infty$, we have $\sup_n |M_n|^2 < \infty$ a.s., hence $\sup_n |M_n| < \infty$ a.s. $\square$
+
+    **(b)** Since $\sup_n \mathbb{E}[M_n^2] < \infty$ implies $\sup_n \mathbb{E}[|M_n|] \le \sup_n (\mathbb{E}[M_n^2])^{1/2} < \infty$ (by Jensen), the martingale is $L^1$-bounded. By Doob's martingale convergence theorem, $M_n$ converges a.s. to a finite limit $M_\infty$.
+
+    Moreover, $L^2$-boundedness implies uniform integrability (since $p = 2 > 1$), so $M_n \to M_\infty$ also in $L^1$ (and in fact in $L^2$). $\square$
+
+    **(c)** Let $M_n = \prod_{i=1}^n \xi_i$ where $\mathbb{P}(\xi_i = 2) = \mathbb{P}(\xi_i = 0) = 1/2$, with $M_0 = 1$. Then $\mathbb{E}[M_n] = 1$ and $\sup_n \mathbb{E}[|M_n|] = 1 < \infty$.
+
+    By the convergence theorem, $M_n \to M_\infty$ a.s. Since eventually some $\xi_i = 0$, $M_\infty = 0$ a.s.
+
+    But $\mathbb{E}[M_n] = 1 \not\to 0 = \mathbb{E}[M_\infty]$, so $M_n$ does not converge in $L^1$. The family $\{M_n\}$ is not uniformly integrable: the expectation is carried by the event $\{\xi_1 = \cdots = \xi_n = 2\}$ of probability $(1/2)^n$, where $M_n = 2^n$.
+
+??? success "Solution to Exercise 4"
+    **(a)** Let $M_t = \sup_{s \le t} W_s$. Since $W_t \le M_t$ always and $M_t$ is the running maximum, $M_t - W_t \ge 0$.
+
+    To show $M_t - W_t$ is increasing in $t$: for $s < t$, $M_t \ge M_s$ (the maximum can only increase). But $M_t - W_t$ is not necessarily monotone increasing. Actually, $M_t - W_t$ is **not** monotone increasing in general (it can decrease when $W$ moves up toward a new maximum). The correct statement is that $M_t$ is increasing in $t$ (non-decreasing). The process $M_t - W_t$ is non-negative but oscillates.
+
+    What is true: $M_t - W_t \ge 0$ for all $t$, and $M_t - W_t = 0$ precisely when $W_t$ is at its running maximum (i.e., $W_t = M_t$).
+
+    **(b)** By the reflection principle and Lévy's identity:
+
+    $$
+    (M_t, M_t - W_t) \stackrel{d}{=} (|W_t|, |W_t| \cdot \text{sign terms...})
+    $$
+
+    More precisely, **Lévy's identity** states:
+
+    $$
+    M_t - W_t \stackrel{d}{=} |W_t|
+    $$
+
+    and $M_t \stackrel{d}{=} |W_t|$.
+
+    To see $M_t \stackrel{d}{=} |W_t|$: from the reflection principle, $\mathbb{P}(M_t \ge a) = 2\mathbb{P}(W_t \ge a) = \mathbb{P}(|W_t| \ge a)$ for $a > 0$ (using $\mathbb{P}(W_t \ge a) = \mathbb{P}(W_t \le -a)$ by symmetry). So $M_t$ and $|W_t|$ have the same distribution.
+
+    The identity $M_t - W_t \stackrel{d}{=} |W_t|$ follows from Lévy's theorem, which states that $(M_t - W_t, M_t) \stackrel{d}{=} (|W_t|, L_t)$ where $L_t$ is the local time at 0, or more directly that $M_t - W_t$ is a reflected Brownian motion.
+
+    **(c)** For $a > b$ (so $a > 0$ and $b < a$):
+
+    $$
+    \mathbb{P}(M_t \ge a, W_t \le b) = \mathbb{P}(M_t \ge a) - \mathbb{P}(M_t \ge a, W_t > b)
+    $$
+
+    By the reflection principle: on $\{M_t \ge a\}$, reflect the path at time $\tau_a$. The reflected path $\hat{W}_t = 2a - W_t$ has $\hat{W}_t \ge 2a - b > a$ when $W_t \le b$. Therefore:
+
+    $$
+    \mathbb{P}(M_t \ge a, W_t \le b) = \mathbb{P}(W_t \ge 2a - b)
+    $$
+
+    since the reflection creates a bijection between paths hitting $a$ and ending at or below $b$, and paths ending at or above $2a - b$.
+
+    $$
+    \mathbb{P}(M_t \ge a, W_t \le b) = \Phi\left(\frac{-(2a - b)}{\sqrt{t}}\right) = \Phi\left(\frac{b - 2a}{\sqrt{t}}\right)
+    $$
+
+    where $\Phi$ is the standard normal CDF.

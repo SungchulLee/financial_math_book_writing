@@ -203,3 +203,212 @@ derive the reversed drift formula $\widetilde{b}(t, x) = -b(T-t, x) + \sigma^2\,
 ---
 
 **Exercise 7.** Explain the connection between time reversal and Doob's $h$-transform. Specifically, for a diffusion with constant $a$ and forward drift $b$, show that the reversed measure on path space can be obtained by an $h$-transform with $h(t, x) = p(T - t, x)$, where $p$ is the forward density. Verify that $h$ is a space-time harmonic function for the adjoint operator.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    With $X_0 = x_0$, the density of $X_t$ is Gaussian: $p(t, x) = \phi(x;\, x_0 + \mu t,\, \sigma^2 t)$, where $\phi(x; m, v) = (2\pi v)^{-1/2}\exp(-(x-m)^2/(2v))$.
+
+    The score is
+
+    $$
+    \partial_x \log p(t, x) = -\frac{x - (x_0 + \mu t)}{\sigma^2 t}
+    $$
+
+    The reversed drift formula (constant $a = \sigma^2$) gives
+
+    $$
+    \widetilde{b}(t, x) = -b(T-t, x) + a\,\partial_x \log p(T-t, x)
+    $$
+
+    Since $b = \mu$ (constant drift):
+
+    $$
+    \widetilde{b}(t, x) = -\mu + \sigma^2 \cdot \left(-\frac{x - (x_0 + \mu(T-t))}{\sigma^2(T-t)}\right) = -\mu - \frac{x - x_0 - \mu(T-t)}{T-t}
+    $$
+
+    Simplifying:
+
+    $$
+    \widetilde{b}(t, x) = -\mu - \frac{x - x_0}{T-t} + \mu = -\frac{x - x_0}{T-t} + \frac{-\mu(T-t) + \mu(T-t)}{T-t}
+    $$
+
+    Wait — let us be more careful:
+
+    $$
+    \widetilde{b}(t, x) = -\mu - \frac{x - x_0 - \mu(T-t)}{T-t} = -\mu - \frac{x - x_0}{T-t} + \mu = -\frac{x - x_0}{T-t}
+    $$
+
+    The reversed SDE is
+
+    $$
+    \mathrm{d}\widetilde{X}_t = -\frac{\widetilde{X}_t - x_0}{T - t}\,\mathrm{d}t + \sigma\,\mathrm{d}\widetilde{W}_t
+    $$
+
+    This is a **Brownian bridge drift**: $\widetilde{X}_0 = X_T \sim \mathcal{N}(x_0 + \mu T, \sigma^2 T)$ and the drift pulls $\widetilde{X}_t$ toward $x_0$ as $t \to T$, so $\widetilde{X}_T = x_0 = X_0$. The process is a Brownian bridge from the forward endpoint back to the forward starting point.
+
+??? success "Solution to Exercise 2"
+    The OU process has $b(x) = -\theta x$, $a = \sigma^2$. Started from the invariant distribution $X_0 \sim \pi = \mathcal{N}(0, \sigma^2/(2\theta))$, the process is stationary, so $p(t, x) = \pi(x)$ for all $t$.
+
+    The score is
+
+    $$
+    \partial_x \log \pi(x) = \partial_x \left(-\frac{\theta x^2}{\sigma^2}\right) = -\frac{2\theta x}{\sigma^2}
+    $$
+
+    The reversed drift is
+
+    $$
+    \widetilde{b}(t, x) = -b(T-t, x) + a\,\partial_x \log p(T-t, x) = -(-\theta x) + \sigma^2 \cdot \left(-\frac{2\theta x}{\sigma^2}\right) = \theta x - 2\theta x = -\theta x
+    $$
+
+    Therefore $\widetilde{b}(t, x) = -\theta x = b(x)$, confirming that the reversed drift equals the forward drift.
+
+    **What makes this work:** The OU process is a **gradient diffusion** — the drift $b(x) = -\theta x = -\nabla V(x)$ with $V(x) = \frac{\theta}{2}x^2$ and constant diffusion $\sigma$. Gradient diffusions with constant noise are **reversible** (satisfy detailed balance) with respect to their invariant measure $\pi \propto e^{-V}$. Reversibility means $(X_t)_{0 \le t \le T} \stackrel{d}{=} (X_{T-t})_{0 \le t \le T}$ when started from $\pi$, which forces $\widetilde{b} = b$. The key property is the self-adjointness of $\mathcal{L}$ in $L^2(\pi)$.
+
+??? success "Solution to Exercise 3"
+    The forward Fokker–Planck equation for $p(t,x)$ is
+
+    $$
+    \partial_t p = -\partial_x(bp) + \frac{\sigma^2}{2}\partial_x^2 p
+    $$
+
+    The reversed density is $\widetilde{p}(t,x) = p(T-t, x)$. This must satisfy its own Fokker–Planck equation with drift $\widetilde{b}$:
+
+    $$
+    \partial_t \widetilde{p} = -\partial_x(\widetilde{b}\,\widetilde{p}) + \frac{\sigma^2}{2}\partial_x^2 \widetilde{p}
+    $$
+
+    Since $\partial_t \widetilde{p}(t,x) = -\partial_t p(T-t, x)$, substituting the forward Fokker–Planck:
+
+    $$
+    -\partial_t p(T-t,x) = \partial_x(b\,p)(T-t,x) - \frac{\sigma^2}{2}\partial_x^2 p(T-t,x) = \partial_x(b\,\widetilde{p}) - \frac{\sigma^2}{2}\partial_x^2\widetilde{p}
+    $$
+
+    Equating the two expressions for $\partial_t\widetilde{p}$:
+
+    $$
+    \partial_x(b\,\widetilde{p}) - \frac{\sigma^2}{2}\partial_x^2\widetilde{p} = -\partial_x(\widetilde{b}\,\widetilde{p}) + \frac{\sigma^2}{2}\partial_x^2\widetilde{p}
+    $$
+
+    Rearranging:
+
+    $$
+    \partial_x(\widetilde{b}\,\widetilde{p}) = -\partial_x(b\,\widetilde{p}) + \sigma^2\,\partial_x^2\widetilde{p}
+    $$
+
+    Integrating with respect to $x$ (the constant of integration is zero for integrability):
+
+    $$
+    \widetilde{b}\,\widetilde{p} = -b\,\widetilde{p} + \sigma^2\,\partial_x\widetilde{p}
+    $$
+
+    Dividing by $\widetilde{p} > 0$:
+
+    $$
+    \widetilde{b}(t,x) = -b(T-t, x) + \sigma^2\,\frac{\partial_x\widetilde{p}(t,x)}{\widetilde{p}(t,x)} = -b(T-t, x) + \sigma^2\,\partial_x\log p(T-t, x)
+    $$
+
+    This completes the derivation of the reversed drift formula. $\square$
+
+??? success "Solution to Exercise 4"
+    The reversed process $\widetilde{X}_t = X_{T-t}$ is defined by "reading the path backwards." The reversed Brownian motion $\widetilde{W}_t$ is constructed via the Doob–Meyer decomposition of $\widetilde{X}_t$ as a semimartingale with respect to the backward filtration.
+
+    The backward filtration is $\widetilde{\mathcal{F}}_t = \sigma(X_s : T-t \le s \le T) = \sigma(\widetilde{X}_r : 0 \le r \le t)$. This encodes information about the **future** of the original process (from time $T-t$ to $T$), which is the **past** of the reversed process.
+
+    $\widetilde{W}_t$ is adapted to $\widetilde{\mathcal{F}}_t$ because it is constructed from the martingale part of $\widetilde{X}$ in the backward decomposition. However, $\widetilde{W}_t$ is generally **not** adapted to the forward filtration $\mathcal{F}_t = \sigma(X_s : 0 \le s \le t)$ because knowing the path from $0$ to $t$ does not determine the reversed martingale increments (which depend on the path from $T-t$ to $T$).
+
+    **Why this matters:** The reversed SDE $\mathrm{d}\widetilde{X}_t = \widetilde{b}\,\mathrm{d}t + \sigma\,\mathrm{d}\widetilde{W}_t$ is an Itô equation with respect to $(\widetilde{\mathcal{F}}_t)$, not $(\mathcal{F}_t)$. If one mistakenly uses the forward filtration, the stochastic integral $\int \sigma\,\mathrm{d}\widetilde{W}$ is not well-defined (the integrand must be adapted to the filtration of the driving Brownian motion). Conflating the two filtrations leads to incorrect applications of Itô's formula and erroneous drift calculations.
+
+??? success "Solution to Exercise 5"
+    The drift is $b(x) = (-x^1 + x^2,\, -x^1 - x^2)^\top$, written as $b(x) = Bx$ with $B = \begin{pmatrix}-1&1\\-1&-1\end{pmatrix}$, and $a = I$.
+
+    The eigenvalues of $B$ are $-1 \pm i$ (complex with negative real part), so $B$ is stable and an invariant measure exists. As computed in the invariant measures chapter, the invariant covariance $\Sigma$ solves $B\Sigma + \Sigma B^\top + I = 0$, giving $\Sigma = \frac{1}{2}I$.
+
+    **Reversibility check:** A linear diffusion $\mathrm{d}X = BX\,\mathrm{d}t + \mathrm{d}W$ with $a = I$ is reversible if and only if $B$ is symmetric. Here $B \ne B^\top$ (the off-diagonal entries $1$ and $-1$ differ), so the process is **not reversible**.
+
+    **Reversed drift:** With stationary $p(t,x) = \pi(x)$ (since we start from the invariant distribution), the score is
+
+    $$
+    \nabla\log\pi(x) = -\Sigma^{-1}x = -2x
+    $$
+
+    The reversed drift is
+
+    $$
+    \widetilde{b}(t,x) = -b(x) + a\,\nabla\log\pi(x) = -Bx + I\cdot(-2x) = (-B - 2I)x
+    $$
+
+    Computing:
+
+    $$
+    -B - 2I = \begin{pmatrix}1&-1\\1&1\end{pmatrix} - \begin{pmatrix}2&0\\0&2\end{pmatrix} = \begin{pmatrix}-1&-1\\1&-1\end{pmatrix}
+    $$
+
+    So $\widetilde{b}(x) = B^\top x$ where $B^\top = \begin{pmatrix}-1&-1\\1&-1\end{pmatrix}$.
+
+    Comparing: $b(x) = Bx$ and $\widetilde{b}(x) = B^\top x$. Since $B \ne B^\top$, the reversed drift differs from the forward drift, confirming non-reversibility. The reversed process has the rotation component flipped (clockwise instead of counterclockwise).
+
+??? success "Solution to Exercise 6"
+    The forward SDE is $\mathrm{d}X_t = -\frac{1}{2}\beta(t)X_t\,\mathrm{d}t + \sqrt{\beta(t)}\,\mathrm{d}W_t$, with time-dependent $b(t,x) = -\frac{1}{2}\beta(t)x$, $\sigma(t) = \sqrt{\beta(t)}$, and $a(t) = \beta(t)$.
+
+    Since $a$ is spatially constant, the reversed drift formula gives
+
+    $$
+    \widetilde{b}(t,x) = -b(T-t, x) + a(T-t)\,\nabla_x\log p(T-t, x) = \frac{1}{2}\beta(T-t)\,x + \beta(T-t)\,\nabla_x\log p(T-t, x)
+    $$
+
+    The reversed SDE is
+
+    $$
+    \mathrm{d}\widetilde{X}_t = \left[\frac{1}{2}\beta(T-t)\,\widetilde{X}_t + \beta(T-t)\,\nabla_x\log p(T-t, \widetilde{X}_t)\right]\mathrm{d}t + \sqrt{\beta(T-t)}\,\mathrm{d}\widetilde{W}_t
+    $$
+
+    The **score term** that must be learned is $s_\theta(x, t) \approx \nabla_x\log p(t, x)$ — the gradient of the log-density of the forward process at time $t$.
+
+    **Convergence to Gaussian:** The forward SDE is a time-inhomogeneous OU process. Its solution (with $X_0 = x_0$) is
+
+    $$
+    X_t = x_0\,e^{-\frac{1}{2}\int_0^t \beta(s)\,\mathrm{d}s} + \int_0^t e^{-\frac{1}{2}\int_s^t \beta(r)\,\mathrm{d}r}\sqrt{\beta(s)}\,\mathrm{d}W_s
+    $$
+
+    As $t \to \infty$, the first term (the "signal") decays to zero provided $\int_0^\infty \beta(s)\,\mathrm{d}s = \infty$. The variance of the second term (the "noise") converges to $\int_0^\infty \beta(s)e^{-\int_s^\infty \beta(r)\,\mathrm{d}r}\,\mathrm{d}s = 1$. Therefore $X_t \to \mathcal{N}(0, I)$ in distribution as $t \to \infty$. The noise schedule $\beta(t)$ controls the rate at which the data distribution is destroyed and replaced by standard Gaussian noise.
+
+??? success "Solution to Exercise 7"
+    **Doob's $h$-transform** for a diffusion with generator $\mathcal{L}$ and a positive function $h > 0$ defines a new process with generator
+
+    $$
+    \mathcal{L}^h f = \frac{1}{h}\mathcal{L}(hf) - \frac{f}{h}\mathcal{L}h
+    $$
+
+    For the space-time setting with generator $\partial_t + \mathcal{L}$, a function $h(t,x) > 0$ defines a new drift. In the constant-$a$ case, $\mathcal{L}f = b \cdot \nabla f + \frac{1}{2}\text{tr}(a\,\nabla^2 f)$, and the $h$-transformed process has drift
+
+    $$
+    b^h(t,x) = b(t,x) + a\,\frac{\nabla_x h(t,x)}{h(t,x)} = b(t,x) + a\,\nabla_x\log h(t,x)
+    $$
+
+    **Time reversal as $h$-transform:** Set $h(t,x) = p(T-t, x)$. The $h$-transformed drift starting from the **negated** forward drift (accounting for time reversal) is
+
+    $$
+    \widetilde{b}(t,x) = -b(T-t, x) + a\,\nabla_x\log h(t,x) = -b(T-t, x) + a\,\nabla_x\log p(T-t, x)
+    $$
+
+    which is exactly the reversed drift formula.
+
+    **Verification that $h$ is space-time harmonic for the adjoint:** We need to show that $(\partial_t + \mathcal{L}^*)h = 0$, where $\mathcal{L}^*$ is the formal adjoint of $\mathcal{L}$. For constant $a$, $\mathcal{L}^*g = -\nabla\cdot(bg) + \frac{1}{2}\text{tr}(a\,\nabla^2 g)$.
+
+    With $h(t,x) = p(T-t, x)$, we have $\partial_t h(t,x) = -\partial_t p(T-t, x)$. The forward Fokker–Planck equation states $\partial_t p = \mathcal{L}^* p$, so
+
+    $$
+    \partial_t h(t,x) = -(\mathcal{L}^* p)(T-t, x)
+    $$
+
+    Meanwhile $\mathcal{L}^* h(t, \cdot) = (\mathcal{L}^* p)(T-t, \cdot)$ (since $h(t,x) = p(T-t,x)$ and $\mathcal{L}^*$ acts on $x$). Therefore
+
+    $$
+    (\partial_t + \mathcal{L}^*)h = -\mathcal{L}^* p(T-t, \cdot) + \mathcal{L}^* p(T-t, \cdot) = 0
+    $$
+
+    confirming that $h(t,x) = p(T-t, x)$ is space-time harmonic for $\partial_t + \mathcal{L}^*$. $\square$

@@ -272,3 +272,179 @@ For an Ito diffusion $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$, the generator $\
 
 **Exercise 7.**
 The call payoff $g(S) = (S - K)^+$ has a kink (discontinuous first derivative) at $S = K$. Yet for any $t < T$, the Black-Scholes price $V(t, S)$ is a smooth function of $S$. This is the parabolic smoothing property. Give an intuitive explanation using the probabilistic interpretation: $V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ \mid S_t = S]$ is an average over many possible terminal values, which smooths out the kink.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** $u_{xx} + 2u_{xy} + u_{yy} = 0$: Here $A = 1$, $B = 1$ (the coefficient of $u_{xy}$ is $2B$, so $B = 1$), $C = 1$.
+
+    $$
+    \Delta = B^2 - AC = 1 - 1 = 0
+    $$
+
+    The equation is **parabolic**.
+
+    **(b)** $u_{xx} - 4u_{yy} = 0$: Here $A = 1$, $B = 0$, $C = -4$.
+
+    $$
+    \Delta = B^2 - AC = 0 - (1)(-4) = 4 > 0
+    $$
+
+    The equation is **hyperbolic**. (This is a wave equation with speed $c = 2$.)
+
+    **(c)** $3u_{xx} + 2u_{xy} + u_{yy} = 0$: Here $A = 3$, $B = 1$ (since the coefficient of $u_{xy}$ is $2B = 2$), $C = 1$.
+
+    $$
+    \Delta = B^2 - AC = 1 - 3 = -2 < 0
+    $$
+
+    The equation is **elliptic**.
+
+??? success "Solution to Exercise 2"
+    The Black-Scholes PDE is:
+
+    $$
+    \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
+    $$
+
+    With independent variables $(x, y) = (S, t)$, the highest-order terms are:
+
+    - Coefficient of $\partial^2 V / \partial S^2$: this gives $A = \frac{1}{2}\sigma^2 S^2$
+    - Coefficient of $\partial^2 V / \partial S\,\partial t$: there is no mixed second-order term, so $2B = 0$, hence $B = 0$
+    - Coefficient of $\partial^2 V / \partial t^2$: there is no such term, so $C = 0$
+
+    The discriminant is:
+
+    $$
+    \Delta = B^2 - AC = 0 - \frac{1}{2}\sigma^2 S^2 \cdot 0 = 0
+    $$
+
+    Since $\Delta = 0$, the equation is **parabolic**, as expected for a pricing PDE arising from a diffusion process. Note that this classification holds for all $S > 0$ and $\sigma > 0$; at $S = 0$ the equation degenerates (the leading coefficient $A$ vanishes).
+
+??? success "Solution to Exercise 3"
+    **Parabolic equations (heat equation)**: The discriminant $\Delta = 0$ means there is exactly **one family of real characteristics** -- the time slices $t = \text{const}$. Information from the initial data propagates instantaneously in all spatial directions. In Fourier space, an initial mode $e^{ikx}$ evolves as $e^{ikx - \frac{1}{2}k^2 t}$, where the factor $e^{-\frac{1}{2}k^2 t}$ damps high-frequency components exponentially fast. This damping is stronger for larger $|k|$, which explains why the heat equation smooths rough initial data instantly: all discontinuities and kinks are immediately suppressed.
+
+    **Hyperbolic equations (wave equation)**: The discriminant $\Delta > 0$ means there are **two families of real characteristics** $x \pm ct = \text{const}$. Information propagates at finite speed $c$ along these characteristics. The general solution $u(t,x) = f(x - ct) + g(x + ct)$ shows that the initial profile is simply translated without distortion. In Fourier space, modes evolve as $e^{i(kx \pm kct)}$ -- pure oscillation with no damping. Discontinuities in the initial data travel along the characteristics indefinitely without being smoothed.
+
+    **Summary**: The parabolic structure implies infinite propagation speed with exponential frequency damping (smoothing), while the hyperbolic structure implies finite propagation speed with no damping (preservation of singularities). This is why the heat equation instantaneously regularizes any initial data, whereas the wave equation preserves discontinuities forever.
+
+??? success "Solution to Exercise 4"
+    The diffusion matrix of the Heston model is:
+
+    $$
+    a = \begin{pmatrix} vS^2 & \rho\xi v S \\ \rho\xi v S & \xi^2 v \end{pmatrix}
+    $$
+
+    **Determinant**:
+
+    $$
+    \det(a) = vS^2 \cdot \xi^2 v - (\rho\xi v S)^2 = \xi^2 v^2 S^2 - \rho^2\xi^2 v^2 S^2 = \xi^2 v^2 S^2(1 - \rho^2)
+    $$
+
+    **Eigenvalues**: The trace is $\text{tr}(a) = vS^2 + \xi^2 v = v(S^2 + \xi^2)$, and $\det(a) = \xi^2 v^2 S^2(1-\rho^2)$. The eigenvalues $\lambda_{1,2}$ satisfy:
+
+    $$
+    \lambda_{1,2} = \frac{\text{tr}(a) \pm \sqrt{\text{tr}(a)^2 - 4\det(a)}}{2}
+    $$
+
+    $$
+    = \frac{v(S^2 + \xi^2) \pm \sqrt{v^2(S^2 + \xi^2)^2 - 4\xi^2 v^2 S^2(1-\rho^2)}}{2}
+    $$
+
+    The discriminant under the square root simplifies to:
+
+    $$
+    v^2\left[(S^2 - \xi^2)^2 + 4\rho^2\xi^2 S^2\right] \geq 0
+    $$
+
+    so both eigenvalues are real and non-negative.
+
+    **Non-degenerate parabolic condition**: The PDE is non-degenerate parabolic when both eigenvalues are strictly positive, which requires $\det(a) > 0$. This holds when:
+
+    - $v > 0$ (variance is positive)
+    - $S > 0$ (stock price is positive)
+    - $|\rho| < 1$ (correlation is not $\pm 1$)
+    - $\xi > 0$ (vol-of-vol is positive)
+
+    **At $v = 0$**: Both entries involving $v$ vanish, so $a = 0$ (the zero matrix). The PDE completely degenerates -- there is no diffusion. This corresponds to the variance process hitting zero, where the Feller boundary condition determines the behavior.
+
+    **At $S = 0$**: The matrix becomes $a = \begin{pmatrix} 0 & 0 \\ 0 & \xi^2 v \end{pmatrix}$, which has rank 1 (if $v > 0$). The PDE degenerates in the $S$-direction but remains diffusive in the $v$-direction. As with Black-Scholes, $S = 0$ is an absorbing boundary for geometric Brownian motion.
+
+??? success "Solution to Exercise 5"
+    The Black-Scholes PDE has the second-order term $\frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}$. At $S = 0$, the coefficient $\frac{1}{2}\sigma^2 S^2$ vanishes, so the PDE loses its second-order (diffusive) character. Similarly, the drift term $rS\frac{\partial V}{\partial S}$ also vanishes. The equation reduces to:
+
+    $$
+    \frac{\partial V}{\partial t} - rV = 0
+    $$
+
+    which is a first-order ODE in $t$ that determines $V(t, 0)$ uniquely from the terminal condition $V(T, 0) = g(0)$.
+
+    **Why no boundary condition is needed**: For a non-degenerate parabolic PDE on a domain with boundary, a boundary condition is required because the diffusion term allows the process to reach the boundary, and we must specify what happens there. At $S = 0$, the diffusion coefficient vanishes, so the PDE cannot "transport" information through the boundary $S = 0$. The equation is self-contained at that point.
+
+    **Probabilistic connection**: Geometric Brownian motion has the explicit solution:
+
+    $$
+    S_t = S_0 \exp\!\left(\left(r - \tfrac{1}{2}\sigma^2\right)t + \sigma W_t\right)
+    $$
+
+    The exponential function is strictly positive for all real arguments, so $S_t > 0$ for all $t \geq 0$ whenever $S_0 > 0$. Therefore $\mathbb{P}(S_t = 0 \text{ for some } t > 0) = 0$. Since the diffusion never reaches $S = 0$, there are no sample paths that require a boundary rule at $S = 0$. The conditional expectation $V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[g(S_T) \mid S_t = S]$ is fully determined without specifying boundary behavior.
+
+    In contrast, at a finite barrier $B > 0$, the coefficient $\frac{1}{2}\sigma^2 B^2 > 0$ and the process reaches $B$ with positive probability, so a boundary condition is necessary to specify the option's behavior upon barrier contact.
+
+??? success "Solution to Exercise 6"
+    For a general Ito diffusion $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$, the infinitesimal generator is:
+
+    $$
+    \mathcal{L} = \mu(x)\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2}{\partial x^2}
+    $$
+
+    The Kolmogorov backward equation for $u(t, x) = \mathbb{E}[g(X_T) \mid X_t = x]$ is:
+
+    $$
+    \frac{\partial u}{\partial t} + \mathcal{L}u = 0
+    $$
+
+    Written explicitly:
+
+    $$
+    \frac{\partial u}{\partial t} + \mu(x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2 u}{\partial x^2} = 0
+    $$
+
+    Identifying the second-order coefficients with $(x, y) = (x, t)$:
+
+    - $A = \frac{1}{2}\sigma^2(x)$ (coefficient of $\partial_{xx}$)
+    - $B = 0$ (no mixed $\partial_{xt}$ term)
+    - $C = 0$ (no $\partial_{tt}$ term)
+
+    The discriminant is $\Delta = B^2 - AC = 0 - \frac{1}{2}\sigma^2(x) \cdot 0 = 0$.
+
+    This gives $\Delta = 0$ **regardless** of the specific forms of $\mu$ and $\sigma$. The reason is structural: the Ito SDE is first-order in time ($dX_t = \ldots\,dt + \ldots\,dW_t$), so the generator $\mathcal{L}$ contains no time derivatives. The resulting PDE $\partial_t u + \mathcal{L}u = 0$ is therefore first-order in $t$ and (at most) second-order in $x$, with no $\partial_{tt}$ or $\partial_{tx}$ terms. This structure forces $B = C = 0$ and hence $\Delta = 0$, making the PDE parabolic.
+
+    The condition $\sigma \neq 0$ ensures that $A = \frac{1}{2}\sigma^2 > 0$, so the equation is genuinely second-order (non-degenerate parabolic), with the associated smoothing and maximum principle properties. If $\sigma = 0$ everywhere, the equation reduces to a first-order PDE (transport equation) rather than a parabolic one.
+
+??? success "Solution to Exercise 7"
+    The Black-Scholes price of a European call is:
+
+    $$
+    V(t, S) = e^{-r(T-t)}\,\mathbb{E}^{\mathbb{Q}}\!\left[(S_T - K)^+ \mid S_t = S\right]
+    $$
+
+    Under the risk-neutral measure, $S_T = S\exp\!\left((r - \frac{1}{2}\sigma^2)(T-t) + \sigma\sqrt{T-t}\,Z\right)$ where $Z \sim N(0,1)$. Thus:
+
+    $$
+    V(t, S) = e^{-r(T-t)} \int_{-\infty}^{\infty} \left(S e^{(r-\frac{1}{2}\sigma^2)(T-t) + \sigma\sqrt{T-t}\,z} - K\right)^+ \frac{e^{-z^2/2}}{\sqrt{2\pi}}\,dz
+    $$
+
+    **Why smoothing occurs**: The payoff $(S_T - K)^+$ has a kink at $S_T = K$. However, the price $V(t, S)$ is an **integral** of this kinked function against the Gaussian density $\phi(z)$. This integral is a convolution-like operation that averages the payoff over all possible outcomes of $S_T$.
+
+    For any $t < T$, the distribution of $S_T \mid S_t = S$ is a **log-normal distribution with positive variance** $\sigma^2(T-t) > 0$. The key mechanism is:
+
+    1. When $S$ varies smoothly, the entire log-normal distribution of $S_T$ shifts smoothly
+    2. The kink at $S_T = K$ is a fixed feature of the integrand, but the weight placed on values near $K$ changes smoothly as $S$ varies
+    3. Integration against a smooth (Gaussian) kernel produces a smooth function
+
+    Technically, differentiation under the integral sign is justified because the Gaussian density $\phi(z)$ is $C^\infty$ and decays rapidly. Each derivative $\frac{\partial^k V}{\partial S^k}$ passes through the integral, producing a finite result for all orders $k$.
+
+    At $t = T$, however, the variance $\sigma^2(T - t) = 0$, so $S_T = S$ deterministically. The "averaging" collapses to a point evaluation, and the kink reappears: $V(T, S) = (S - K)^+$. The smoothing is only effective when there is genuine uncertainty ($T - t > 0$) to "smear out" the non-smoothness.

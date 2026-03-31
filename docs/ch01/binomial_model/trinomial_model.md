@@ -470,3 +470,299 @@ $$
 ---
 
 **Exercise 6.** For the Boyle (1988) parameterization with $\sigma = 0.20$, $r = 0.05$, and $\Delta t = 0.25$, compute $u$, $m$, $d$, $q_u$, $q_d$, and $q_m$. Verify that (a) $q_u + q_m + q_d = 1$, (b) the martingale condition $q_u u + q_m m + q_d d = e^{r\Delta t}$ holds, and (c) $\text{Var}^{\mathbb{Q}}[\ln(S_{\Delta t}/S_0)] \approx \sigma^2 \Delta t$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Given $S_0 = 100$, $u = 1.3$, $m = 1.05$, $d = 0.7$, $r = 5\%$, $\Delta t = 1$.
+
+    **No-arbitrage condition:** We need $d < e^{r\Delta t} < u$.
+
+    $$
+    e^{0.05} = 1.05127
+    $$
+
+    $$
+    0.7 < 1.05127 < 1.3 \quad \checkmark
+    $$
+
+    **Parameterizing the risk-neutral family:** With $q_d = \lambda$, the two constraints are $q_u + q_m + q_d = 1$ and $1.3q_u + 1.05q_m + 0.7q_d = 1.05127$.
+
+    Substituting $q_m = 1 - q_u - \lambda$:
+
+    $$
+    1.3q_u + 1.05(1 - q_u - \lambda) + 0.7\lambda = 1.05127
+    $$
+
+    $$
+    1.3q_u + 1.05 - 1.05q_u - 1.05\lambda + 0.7\lambda = 1.05127
+    $$
+
+    $$
+    0.25q_u - 0.35\lambda = 0.00127
+    $$
+
+    $$
+    q_u = \frac{0.00127 + 0.35\lambda}{0.25} = 0.00508 + 1.4\lambda
+    $$
+
+    $$
+    q_m = 1 - (0.00508 + 1.4\lambda) - \lambda = 0.99492 - 2.4\lambda
+    $$
+
+    **Positivity constraints:**
+
+    - $q_d = \lambda > 0$: requires $\lambda > 0$
+    - $q_u = 0.00508 + 1.4\lambda > 0$: automatically satisfied for $\lambda > 0$
+    - $q_m = 0.99492 - 2.4\lambda > 0$: requires $\lambda < 0.41455$
+
+    **Admissible range:** $\lambda \in (0, \, 0.41455)$.
+
+??? success "Solution to Exercise 2"
+    Using the trinomial model from Exercise 1, the European put with $K = 100$ has payoffs:
+
+    | State | $S_{\Delta t}$ | Put payoff $H = (K - S_{\Delta t})^+$ |
+    |-------|:---:|:---:|
+    | Up | $130$ | $0$ |
+    | Middle | $105$ | $0$ |
+    | Down | $70$ | $30$ |
+
+    **Put price as a function of $\lambda$:**
+
+    $$
+    V_0(\lambda) = e^{-0.05}(q_u \times 0 + q_m \times 0 + q_d \times 30) = e^{-0.05} \times 30\lambda = 28.537\lambda
+    $$
+
+    **Bounds:**
+
+    - As $\lambda \to 0^+$: $V_0 \to 0$
+    - As $\lambda \to 0.41455^-$: $V_0 \to 28.537 \times 0.41455 = 11.83$
+
+    **Price interval for the put:** $V_0 \in (0, \; 11.83)$.
+
+    **Width comparison:**
+
+    - Put interval width: $11.83 - 0 = 11.83$
+    - Call interval width (from text): $11.95 - 4.88 = 7.07$
+
+    The put interval is wider. This is because the put payoff is concentrated entirely in the down state, so varying $q_d$ (which is our free parameter $\lambda$) has maximum impact on the put price. The call payoff is concentrated in the up state, and $q_u = 0.00508 + 1.4\lambda$ has a baseline component $0.00508$ that limits how small the call price can become.
+
+??? success "Solution to Exercise 3"
+    A claim $H = (H_u, H_m, H_d)$ is replicable if there exist $\Delta, \beta$ satisfying:
+
+    $$
+    \Delta \cdot u S_0 + \beta e^{r\Delta t} = H_u \qquad (1)
+    $$
+
+    $$
+    \Delta \cdot m S_0 + \beta e^{r\Delta t} = H_m \qquad (2)
+    $$
+
+    $$
+    \Delta \cdot d S_0 + \beta e^{r\Delta t} = H_d \qquad (3)
+    $$
+
+    From $(1) - (2)$: $\Delta S_0(u - m) = H_u - H_m$, so $\Delta = \frac{H_u - H_m}{(u-m)S_0}$.
+
+    From $(2) - (3)$: $\Delta S_0(m - d) = H_m - H_d$, so $\Delta = \frac{H_m - H_d}{(m-d)S_0}$.
+
+    For both to hold simultaneously, we need:
+
+    $$
+    \frac{H_u - H_m}{(u - m)S_0} = \frac{H_m - H_d}{(m - d)S_0}
+    $$
+
+    which simplifies to:
+
+    $$
+    \frac{H_u - H_m}{u - m} = \frac{H_m - H_d}{m - d}
+    $$
+
+    **Equivalence to affine payoff:** This condition says the "slope" of the payoff is constant between adjacent states. Setting $a = \frac{H_u - H_m}{(u-m)S_0}$ and solving for $\beta$ from equation (1):
+
+    $$
+    \beta = e^{-r\Delta t}(H_u - a \cdot uS_0)
+    $$
+
+    Then $H = a \cdot S_{\Delta t} + b$ where $b = \beta e^{r\Delta t}$ is the bond component. The payoff is affine in $S_{\Delta t}$. Conversely, any affine payoff $H = aS_{\Delta t} + b$ automatically satisfies the replication conditions with $\Delta = a$ and $\beta = be^{-r\Delta t}$. $\square$
+
+??? success "Solution to Exercise 4"
+    We prove that when $H_m = H_d$, the binomial price (with states $u$ and $d$ only) equals $\sup_{\mathbb{Q}} e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H]$ over the trinomial risk-neutral family.
+
+    The trinomial price as a function of $\lambda$ is:
+
+    $$
+    V_0(\lambda) = e^{-r\Delta t}(q_u H_u + q_m H_m + q_d H_d)
+    $$
+
+    Since $H_m = H_d$:
+
+    $$
+    V_0(\lambda) = e^{-r\Delta t}(q_u H_u + (q_m + q_d) H_d) = e^{-r\Delta t}(q_u H_u + (1 - q_u) H_d)
+    $$
+
+    This depends only on $q_u$. From the parameterization, $q_u$ increases as $\lambda$ increases (since $q_u = c_1 + c_2\lambda$ with $c_2 > 0$, where $c_1, c_2$ depend on the specific model).
+
+    If $H_u > H_d$ (as for a call), then $V_0$ is increasing in $q_u$, hence increasing in $\lambda$. The supremum is reached as $\lambda \to \lambda_{\max}$, which is when $q_m \to 0^+$.
+
+    When $q_m = 0$, the trinomial model collapses to the binomial model (middle state has zero probability). In this limit, $q_u + q_d = 1$ and the martingale condition becomes $q_u u + q_d d = e^{r\Delta t}$, giving:
+
+    $$
+    q_u = \frac{e^{r\Delta t} - d}{u - d}
+    $$
+
+    This is exactly the binomial risk-neutral probability, and the corresponding price is the binomial price. Since this is the limiting value as $\lambda \to \lambda_{\max}$ (approached but not reached), the supremum of the trinomial prices equals the binomial price. $\square$
+
+??? success "Solution to Exercise 5"
+    With the call market price $C_0 = 8.50$ and call payoffs $H^C = (20, 0, 0)$, we have three traded assets: stock payoffs $(120, 100, 80)$, bond payoffs $(e^{0.05}, e^{0.05}, e^{0.05})$, and call payoffs $(20, 0, 0)$.
+
+    The unique risk-neutral measure must satisfy:
+
+    $$
+    q_u + q_m + q_d = 1 \qquad (1)
+    $$
+
+    $$
+    120q_u + 100q_m + 80q_d = 100 \times e^{0.05} = 105.127 \qquad (2)
+    $$
+
+    $$
+    20q_u \times e^{-0.05} = 8.50, \quad \text{so } q_u = \frac{8.50 \times e^{0.05}}{20} = \frac{8.50 \times 1.05127}{20} = 0.44679 \qquad (3)
+    $$
+
+    From (1): $q_m + q_d = 1 - 0.44679 = 0.55321$.
+
+    From (2): $120 \times 0.44679 + 100q_m + 80q_d = 105.127$
+
+    $$
+    53.615 + 100q_m + 80q_d = 105.127
+    $$
+
+    $$
+    100q_m + 80q_d = 51.512
+    $$
+
+    Using $q_m = 0.55321 - q_d$:
+
+    $$
+    100(0.55321 - q_d) + 80q_d = 51.512
+    $$
+
+    $$
+    55.321 - 20q_d = 51.512
+    $$
+
+    $$
+    q_d = \frac{3.809}{20} = 0.19045
+    $$
+
+    $$
+    q_m = 0.55321 - 0.19045 = 0.36276
+    $$
+
+    **Unique risk-neutral measure:** $(q_u, q_m, q_d) = (0.4468, \, 0.3628, \, 0.1905)$.
+
+    **Pricing a European put with $K = 110$:** Put payoffs $H^P = (110 - S_{\Delta t})^+$:
+
+    - Up: $(110 - 120)^+ = 0$
+    - Middle: $(110 - 100)^+ = 10$
+    - Down: $(110 - 80)^+ = 30$
+
+    $$
+    P_0 = e^{-0.05}(0.4468 \times 0 + 0.3628 \times 10 + 0.1905 \times 30)
+    $$
+
+    $$
+    = 0.9512 \times (0 + 3.628 + 5.715) = 0.9512 \times 9.343 = 8.89
+    $$
+
+??? success "Solution to Exercise 6"
+    Given $\sigma = 0.20$, $r = 0.05$, $\Delta t = 0.25$.
+
+    **Boyle parameters:**
+
+    $$
+    u = e^{\sigma\sqrt{2\Delta t}} = e^{0.20\sqrt{0.5}} = e^{0.20 \times 0.7071} = e^{0.14142} = 1.15191
+    $$
+
+    $$
+    m = 1, \qquad d = e^{-\sigma\sqrt{2\Delta t}} = e^{-0.14142} = 0.86817
+    $$
+
+    **Risk-neutral probabilities:**
+
+    $$
+    q_u = \left(\frac{e^{r\Delta t/2} - e^{-\sigma\sqrt{\Delta t/2}}}{e^{\sigma\sqrt{\Delta t/2}} - e^{-\sigma\sqrt{\Delta t/2}}}\right)^2
+    $$
+
+    First compute the intermediate quantities: $\sqrt{\Delta t/2} = \sqrt{0.125} = 0.35355$.
+
+    $$
+    e^{\sigma\sqrt{\Delta t/2}} = e^{0.20 \times 0.35355} = e^{0.07071} = 1.07327
+    $$
+
+    $$
+    e^{-\sigma\sqrt{\Delta t/2}} = e^{-0.07071} = 0.93174
+    $$
+
+    $$
+    e^{r\Delta t/2} = e^{0.05 \times 0.125} = e^{0.00625} = 1.00627
+    $$
+
+    $$
+    q_u = \left(\frac{1.00627 - 0.93174}{1.07327 - 0.93174}\right)^2 = \left(\frac{0.07453}{0.14153}\right)^2 = (0.5266)^2 = 0.2773
+    $$
+
+    $$
+    q_d = \left(\frac{1.07327 - 1.00627}{1.07327 - 0.93174}\right)^2 = \left(\frac{0.06700}{0.14153}\right)^2 = (0.4734)^2 = 0.2241
+    $$
+
+    $$
+    q_m = 1 - 0.2773 - 0.2241 = 0.4986
+    $$
+
+    **(a) Normalization:** $q_u + q_m + q_d = 0.2773 + 0.4986 + 0.2241 = 1.0000$ $\checkmark$
+
+    **(b) Martingale condition:**
+
+    $$
+    q_u u + q_m m + q_d d = 0.2773 \times 1.15191 + 0.4986 \times 1 + 0.2241 \times 0.86817
+    $$
+
+    $$
+    = 0.31943 + 0.49860 + 0.19455 = 1.01258
+    $$
+
+    $$
+    e^{r\Delta t} = e^{0.0125} = 1.01258 \quad \checkmark
+    $$
+
+    **(c) Variance of log-return:**
+
+    $$
+    \ln u = 0.14142, \quad \ln m = 0, \quad \ln d = -0.14142
+    $$
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\ln(S_{\Delta t}/S_0)] = 0.2773 \times 0.14142 + 0.4986 \times 0 + 0.2241 \times (-0.14142) = 0.03922 - 0.03169 = 0.00753
+    $$
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[(\ln(S_{\Delta t}/S_0))^2] = 0.2773 \times 0.14142^2 + 0.4986 \times 0 + 0.2241 \times 0.14142^2
+    $$
+
+    $$
+    = (0.2773 + 0.2241) \times 0.02000 = 0.5014 \times 0.02000 = 0.01003
+    $$
+
+    $$
+    \text{Var}^{\mathbb{Q}}[\ln(S_{\Delta t}/S_0)] = 0.01003 - 0.00753^2 = 0.01003 - 0.00006 = 0.00997
+    $$
+
+    $$
+    \sigma^2 \Delta t = 0.04 \times 0.25 = 0.01000
+    $$
+
+    The computed variance $0.00997 \approx 0.01000 = \sigma^2 \Delta t$ $\checkmark$

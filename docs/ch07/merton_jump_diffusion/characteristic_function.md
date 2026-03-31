@@ -296,3 +296,138 @@ The characteristic function of the Merton log-return has the closed-form express
 ---
 
 **Exercise 5.** The Carr-Madan formula $C(K) = \frac{e^{-rT-\alpha k}}{\pi}\int_0^{\infty} e^{-ivk}\frac{\phi_{x_T}(v - (\alpha+1)i)}{(\alpha + iv)(\alpha + 1 + iv)}\,dv$ requires evaluating the characteristic function at complex arguments. Show that $\phi_{x_T}(u)$ can be analytically continued to complex $u$ and remains well-defined for $\text{Im}(u) \in (-\alpha - 1, 0)$ provided $\alpha > 0$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The log-return decomposes as $x_T = \mu'T + \sigma W_T + \sum_{i=1}^{N_T}\ln Y_i$ where $\mu' = r - \lambda\bar{k} - \frac{1}{2}\sigma^2$. The three components are mutually independent, so
+
+    $$
+    \phi_{x_T}(u) = \mathbb{E}[e^{iux_T}] = e^{iu\mu'T} \cdot \mathbb{E}[e^{iu\sigma W_T}] \cdot \mathbb{E}\!\left[e^{iu\sum_{i=1}^{N_T}\ln Y_i}\right]
+    $$
+
+    **Factor 1 (drift):** The deterministic drift contributes $e^{iu\mu'T}$.
+
+    **Factor 2 (diffusion):** Since $\sigma W_T \sim N(0, \sigma^2 T)$, the characteristic function of a normal random variable $X \sim N(0, \sigma^2 T)$ is $\mathbb{E}[e^{iuX}] = e^{-\frac{1}{2}\sigma^2 u^2 T}$.
+
+    **Factor 3 (jumps):** Condition on $N_T = n$:
+
+    $$
+    \mathbb{E}\!\left[e^{iu\sum_{i=1}^{N_T}\ln Y_i}\right] = \sum_{n=0}^{\infty}\frac{(\lambda T)^n}{n!}e^{-\lambda T}\,\left[\phi_{\ln Y}(u)\right]^n
+    $$
+
+    where $\phi_{\ln Y}(u) = \mathbb{E}[e^{iu\ln Y}]$. Since $\ln Y \sim N(\mu_J, \sigma_J^2)$, we have $\phi_{\ln Y}(u) = e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2}$. Summing the series:
+
+    $$
+    \sum_{n=0}^{\infty}\frac{(\lambda T)^n}{n!}e^{-\lambda T}\left[\phi_{\ln Y}(u)\right]^n = e^{-\lambda T}\exp\!\left[\lambda T\,\phi_{\ln Y}(u)\right] = \exp\!\left[\lambda T\left(\phi_{\ln Y}(u) - 1\right)\right]
+    $$
+
+    Substituting $\phi_{\ln Y}(u) = e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2}$ gives the jump factor $\exp[\lambda T(e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2} - 1)]$.
+
+    Multiplying all three factors:
+
+    $$
+    \phi_{x_T}(u) = \exp\!\left[iu\mu'T - \frac{1}{2}\sigma^2 u^2 T + \lambda T\!\left(e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2} - 1\right)\right]
+    $$
+
+??? success "Solution to Exercise 2"
+    The cumulant generating function is $\Psi(u) = \ln\phi_{x_T}(u)$. We need to expand $\Psi(u) = \sum_{n=1}^{\infty}\kappa_n\frac{(iu)^n}{n!}$ by Taylor-expanding around $u = 0$.
+
+    Write $\Psi(u) = iu\mu'T - \frac{1}{2}\sigma^2 u^2 T + \lambda T(e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2} - 1)$.
+
+    Expand $e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2}$ around $u = 0$. Let $w = iu\mu_J - \frac{1}{2}\sigma_J^2 u^2$, so $e^w = 1 + w + \frac{w^2}{2} + \frac{w^3}{6} + \frac{w^4}{24} + \cdots$
+
+    Collecting powers of $(iu)$: $w = (iu)\mu_J + \frac{1}{2}\sigma_J^2(iu)^2$, so
+
+    $$
+    e^w - 1 = (iu)\mu_J + \frac{1}{2}(\sigma_J^2 + \mu_J^2)(iu)^2 + \frac{1}{6}(\mu_J^3 + 3\mu_J\sigma_J^2)(iu)^3 + \cdots
+    $$
+
+    **First cumulant ($\kappa_1$):** From the coefficient of $iu$:
+
+    $$
+    \kappa_1 = \mu'T + \lambda T\mu_J = (r - \lambda\bar{k} - \tfrac{1}{2}\sigma^2 + \lambda\mu_J)T
+    $$
+
+    **Second cumulant ($\kappa_2$):** From the coefficient of $(iu)^2/2!$, noting $-\frac{1}{2}\sigma^2 u^2 T = \frac{1}{2}\sigma^2 T(iu)^2$:
+
+    $$
+    \kappa_2 = \sigma^2 T + \lambda T(\sigma_J^2 + \mu_J^2) = (\sigma^2 + \lambda(\mu_J^2 + \sigma_J^2))T
+    $$
+
+    **Third cumulant ($\kappa_3$):** From the coefficient of $(iu)^3/3!$:
+
+    $$
+    \kappa_3 = \lambda(\mu_J^3 + 3\mu_J\sigma_J^2)T
+    $$
+
+    **Fourth cumulant ($\kappa_4$):** From the coefficient of $(iu)^4/4!$:
+
+    $$
+    \kappa_4 = \lambda(\mu_J^4 + 6\mu_J^2\sigma_J^2 + 3\sigma_J^4)T
+    $$
+
+    The first two cumulants match the stated formulas.
+
+??? success "Solution to Exercise 3"
+    A **finite-activity** Levy process has a Levy measure $\nu$ with $\nu(\mathbb{R}) < \infty$. This means there are finitely many jumps in any bounded time interval (almost surely). The Merton model has $\nu(\mathbb{R}) = \lambda < \infty$, so it is finite-activity. The jumps arrive as a Poisson process with rate $\lambda$, and the expected number of jumps in $[0, T]$ is $\lambda T$.
+
+    An **infinite-activity** Levy process has $\nu(\mathbb{R}) = \infty$, meaning infinitely many (small) jumps accumulate in any finite time interval. The truncation indicator $\mathbf{1}_{|y|<1}$ in the Levy-Khintchine formula is essential in this case because the integral $\int y\,\nu(dy)$ may diverge.
+
+    An example of an infinite-activity model is the **Variance Gamma (VG)** process, where $\nu(dy) = C\frac{e^{-G|y|}}{|y|}\mathbf{1}_{y<0}\,dy + C\frac{e^{-My}}{y}\mathbf{1}_{y>0}\,dy$ with $C, G, M > 0$. The Levy measure has a $1/|y|$ singularity at the origin, so $\int_{\mathbb{R}}\nu(dy) = \infty$. Structurally, the VG characteristic function is $\phi_{X_T}(u) = \left(\frac{GM}{(G+iu)(M-iu)}\right)^{CT}$, which involves a rational function raised to a power, rather than the exponential-of-exponential structure of the Merton model. The VG model has no Brownian component ($\sigma = 0$); all variation comes from the infinite accumulation of small jumps.
+
+??? success "Solution to Exercise 4"
+    **(a)** Using the cumulant formulas with $r = 0.05$, $\sigma = 0.20$, $\lambda = 0.5$, $\mu_J = -0.10$, $\sigma_J = 0.30$, $T = 1$:
+
+    $$
+    \kappa_2 = (0.04 + 0.5(0.01 + 0.09)) \times 1 = 0.04 + 0.05 = 0.09
+    $$
+
+    $$
+    \kappa_3 = 0.5((-0.10)^3 + 3(-0.10)(0.09)) \times 1 = 0.5(-0.001 - 0.027) = -0.014
+    $$
+
+    $$
+    \kappa_4 = 0.5(0.0001 + 6(0.01)(0.09) + 3(0.0081)) \times 1 = 0.5(0.0001 + 0.0054 + 0.0243) = 0.0149
+    $$
+
+    $$
+    \text{Skewness} = \frac{\kappa_3}{\kappa_2^{3/2}} = \frac{-0.014}{0.09^{3/2}} = \frac{-0.014}{0.02700} \approx -0.519
+    $$
+
+    $$
+    \text{Excess kurtosis} = \frac{\kappa_4}{\kappa_2^2} = \frac{0.0149}{0.0081} \approx 1.840
+    $$
+
+    **(b)** For $T = 0.1$: all cumulants scale linearly with $T$, so $\kappa_2 = 0.009$, $\kappa_3 = -0.0014$, $\kappa_4 = 0.00149$.
+
+    $$
+    \text{Skewness}_{T=0.1} = \frac{-0.0014}{0.009^{3/2}} = \frac{-0.0014}{0.000854} \approx -1.639
+    $$
+
+    $$
+    \text{Excess kurtosis}_{T=0.1} = \frac{0.00149}{0.009^2} = \frac{0.00149}{0.000081} \approx 18.40
+    $$
+
+    **(c)** Verification: The skewness ratio is $(-1.639)/(-0.519) \approx 3.162 \approx \sqrt{10} = (1/0.1)^{1/2}/(1/1)^{1/2}$, confirming the $T^{-1/2}$ scaling. The kurtosis ratio is $18.40/1.840 = 10 = T_1/T_2 = 1/0.1$, confirming the $T^{-1}$ scaling.
+
+??? success "Solution to Exercise 5"
+    The characteristic function $\phi_{x_T}(u) = \exp[iu\mu'T - \frac{1}{2}\sigma^2 u^2 T + \lambda T(e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2} - 1)]$ is defined for real $u$, but the expression makes sense for any complex $u$ as long as the exponent converges.
+
+    Let $u = a + ib$ where $a = \text{Re}(u)$ and $b = \text{Im}(u)$. The critical term for convergence is $e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2}$. Substituting $u = a + ib$:
+
+    $$
+    iu\mu_J = i(a+ib)\mu_J = ia\mu_J - b\mu_J
+    $$
+
+    $$
+    -\frac{1}{2}\sigma_J^2 u^2 = -\frac{1}{2}\sigma_J^2(a^2 - b^2 + 2iab)
+    $$
+
+    The real part of the exponent of the jump term is $-b\mu_J - \frac{1}{2}\sigma_J^2(a^2 - b^2)$, which is finite for all finite $a, b$.
+
+    For the overall characteristic function to be well-defined, we also need $\mathbb{E}[e^{iuX_T}]$ to converge. With $u = a + ib$, this requires $\mathbb{E}[e^{-bX_T}] < \infty$. The exponential moment exists when $-b$ lies within the domain of the moment generating function of $x_T$. For the Merton model, we need the jump component $\mathbb{E}[e^{-b\ln Y}] = \mathbb{E}[Y^{-b}] = e^{-b\mu_J + b^2\sigma_J^2/2} < \infty$, which holds for all $b \in \mathbb{R}$ since $\ln Y$ is Gaussian.
+
+    In the Carr-Madan formula, the argument is $v - (\alpha+1)i$, so $b = -(\alpha+1)$. This requires $\mathbb{E}[S_T^{\alpha+1}] < \infty$, which holds for the Merton model for any finite $\alpha > 0$. Therefore $\phi_{x_T}(u)$ is well-defined for $\text{Im}(u) \in (-\alpha-1, 0)$ as required.

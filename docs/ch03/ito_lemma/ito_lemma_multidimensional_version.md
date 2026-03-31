@@ -195,3 +195,130 @@ with independent Brownian motions. Apply the multidimensional Itô formula to $f
 ---
 
 **Exercise 7.** The infinitesimal generator is defined as $(\mathcal{L}f)(t, x) = b^i f_i + \frac{1}{2}a^{ij}f_{ij}$. For $d = 2$, $m = 1$, with $dX_t^1 = \sigma_1\,dW_t$ and $dX_t^2 = \sigma_2\,dW_t$ (same Brownian motion, no drift), compute $\mathcal{L}f$ for $f(x^1, x^2) = (x^1)^2 + (x^2)^2$. Verify your answer by applying the multidimensional Itô formula directly and reading off the $dt$ coefficient.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The diffusion matrix is $\sigma = \begin{pmatrix} \sigma_1 & 0 \\ 0 & \sigma_2 \end{pmatrix}$ (each component driven by its own independent Brownian motion). The diffusion matrix $a^{ij} = \sigma^{i\alpha}\sigma^{j\alpha}$ is computed by summing over $\alpha = 1, 2$:
+
+    - $a^{11} = \sigma^{11}\sigma^{11} + \sigma^{12}\sigma^{12} = \sigma_1^2 + 0 = \sigma_1^2$
+    - $a^{12} = \sigma^{11}\sigma^{21} + \sigma^{12}\sigma^{22} = 0 + 0 = 0$
+    - $a^{21} = \sigma^{21}\sigma^{11} + \sigma^{22}\sigma^{12} = 0 + 0 = 0$
+    - $a^{22} = \sigma^{21}\sigma^{21} + \sigma^{22}\sigma^{22} = 0 + \sigma_2^2 = \sigma_2^2$
+
+    So $a = \begin{pmatrix} \sigma_1^2 & 0 \\ 0 & \sigma_2^2 \end{pmatrix}$, which is diagonal. This confirms that independent Brownian drivers produce a diagonal diffusion matrix — the two components have no quadratic covariation.
+
+??? success "Solution to Exercise 2"
+    For $f(x^1, x^2) = x^1 x^2$: $f_1 = x^2$, $f_2 = x^1$, $f_{11} = 0$, $f_{22} = 0$, $f_{12} = f_{21} = 1$. From Exercise 1, $a^{ij}$ is diagonal with $a^{12} = 0$. No drift ($b^i = 0$). The Itô correction is:
+
+    $$
+    \frac{1}{2}a^{ij}f_{ij} = \frac{1}{2}(a^{11} \cdot 0 + a^{12} \cdot 1 + a^{21} \cdot 1 + a^{22} \cdot 0) = \frac{1}{2}(0 + 0 + 0 + 0) = 0
+    $$
+
+    The multidimensional Itô formula gives:
+
+    $$
+    d(X_t^1 X_t^2) = X_t^2\,dX_t^1 + X_t^1\,dX_t^2 + 0 = \sigma_1 X_t^2\,dW_t^1 + \sigma_2 X_t^1\,dW_t^2
+    $$
+
+    The Itô correction vanishes because $d\langle X^1, X^2\rangle_t = 0$ — the two processes are driven by independent Brownian motions.
+
+??? success "Solution to Exercise 3"
+    Now $\sigma = \begin{pmatrix} \sigma_1 \\ \sigma_2 \end{pmatrix}$ (a $2 \times 1$ matrix, since $m = 1$). The diffusion matrix is:
+
+    $$
+    a^{ij} = \sigma^{i1}\sigma^{j1} = \begin{pmatrix} \sigma_1^2 & \sigma_1\sigma_2 \\ \sigma_1\sigma_2 & \sigma_2^2 \end{pmatrix}
+    $$
+
+    The quadratic covariation is $d\langle X^1, X^2\rangle_t = \sigma_1\sigma_2\,dt$.
+
+    For $f(x^1, x^2) = x^1 x^2$: $f_{12} = 1$, all other second derivatives are zero. The Itô correction is:
+
+    $$
+    \frac{1}{2}a^{ij}f_{ij} = \frac{1}{2}(0 + \sigma_1\sigma_2 \cdot 1 + \sigma_1\sigma_2 \cdot 1 + 0) = \sigma_1\sigma_2
+    $$
+
+    The full formula gives:
+
+    $$
+    d(X_t^1 X_t^2) = X_t^2 \sigma_1\,dW_t + X_t^1 \sigma_2\,dW_t + \sigma_1\sigma_2\,dt
+    $$
+
+    $$
+    = \sigma_1\sigma_2\,dt + (\sigma_1 X_t^2 + \sigma_2 X_t^1)\,dW_t
+    $$
+
+    The Itô correction $\sigma_1\sigma_2\,dt$ is non-zero because both processes share the same Brownian motion.
+
+??? success "Solution to Exercise 4"
+    The diffusion matrix is $\sigma = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}$ (rows correspond to $X^1, X^2$; columns to $W^1, W^2$). The diffusion matrix is:
+
+    $$
+    a = \sigma\sigma^T = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 2 \end{pmatrix}
+    $$
+
+    To verify positive definiteness, check that both eigenvalues are positive. The determinant is $1 \cdot 2 - 1 \cdot 1 = 1 > 0$ and the trace is $3 > 0$, so both eigenvalues are positive. Alternatively, $\det(a) = 1 > 0$ and $a^{11} = 1 > 0$, confirming positive definiteness by Sylvester's criterion.
+
+??? success "Solution to Exercise 5"
+    With $dX_t^i = \mu^i\,dt + dW_t^i$ for $i = 1, 2, 3$, the diffusion matrix is $\sigma = I_{3\times 3}$ (the identity), so $a = \sigma\sigma^T = I$. For $f(x) = |x|^2 = (x^1)^2 + (x^2)^2 + (x^3)^2$:
+
+    - $f_i = 2x^i$, $f_{ij} = 2\delta^{ij}$
+
+    The Itô correction is $\frac{1}{2}a^{ij}f_{ij} = \frac{1}{2}\delta^{ij} \cdot 2\delta^{ij} = \sum_i 1 = 3$. That is, $\operatorname{tr}(\sigma\sigma^T) = \operatorname{tr}(I) = 3$.
+
+    The full formula:
+
+    $$
+    d|X_t|^2 = \left(2\sum_{i=1}^3 X_t^i \mu^i + 3\right)dt + 2\sum_{i=1}^3 X_t^i\,dW_t^i
+    $$
+
+    The Itô correction contributes $+3\,dt$ to the drift, reflecting the fact that three independent Brownian motions each contribute $+1\,dt$ through their quadratic variation.
+
+??? success "Solution to Exercise 6"
+    For $f(x^1, x^2) = \log(x^1) + \log(x^2)$:
+
+    - $f_1 = 1/x^1$, $f_2 = 1/x^2$
+    - $f_{11} = -1/(x^1)^2$, $f_{22} = -1/(x^2)^2$, $f_{12} = 0$
+
+    Since $W^1$ and $W^2$ are independent, $a^{12} = 0$, $a^{11} = \sigma_1^2(S_t^1)^2$, $a^{22} = \sigma_2^2(S_t^2)^2$. The drift of $S^i$ is $\mu_i S_t^i$. Applying the formula:
+
+    $$
+    d(\log(S_t^1 S_t^2)) = \left(\frac{\mu_1 S_t^1}{S_t^1} + \frac{\mu_2 S_t^2}{S_t^2} + \frac{1}{2}\left(-\frac{\sigma_1^2(S_t^1)^2}{(S_t^1)^2} - \frac{\sigma_2^2(S_t^2)^2}{(S_t^2)^2}\right)\right)dt + \frac{\sigma_1 S_t^1}{S_t^1}\,dW_t^1 + \frac{\sigma_2 S_t^2}{S_t^2}\,dW_t^2
+    $$
+
+    Simplifying:
+
+    $$
+    d(\log(S_t^1 S_t^2)) = \left(\mu_1 + \mu_2 - \frac{\sigma_1^2}{2} - \frac{\sigma_2^2}{2}\right)dt + \sigma_1\,dW_t^1 + \sigma_2\,dW_t^2
+    $$
+
+    This is the sum of the individual log-dynamics: $d\log(S_t^1) + d\log(S_t^2)$, each with its own convexity adjustment $-\sigma_i^2/2$.
+
+??? success "Solution to Exercise 7"
+    With $d = 2$, $m = 1$, $b^i = 0$, $\sigma^{11} = \sigma_1$, $\sigma^{21} = \sigma_2$:
+
+    $$
+    a^{ij} = \sigma^{i1}\sigma^{j1} = \begin{pmatrix} \sigma_1^2 & \sigma_1\sigma_2 \\ \sigma_1\sigma_2 & \sigma_2^2 \end{pmatrix}
+    $$
+
+    For $f(x^1, x^2) = (x^1)^2 + (x^2)^2$: $f_1 = 2x^1$, $f_2 = 2x^2$, $f_{11} = 2$, $f_{22} = 2$, $f_{12} = 0$. The generator is:
+
+    $$
+    \mathcal{L}f = b^i f_i + \frac{1}{2}a^{ij}f_{ij} = 0 + \frac{1}{2}(\sigma_1^2 \cdot 2 + \sigma_1\sigma_2 \cdot 0 + \sigma_1\sigma_2 \cdot 0 + \sigma_2^2 \cdot 2) = \sigma_1^2 + \sigma_2^2
+    $$
+
+    Verification via the multidimensional Itô formula. Since $f_t = 0$, the $dt$ coefficient is $f_t + \mathcal{L}f = \sigma_1^2 + \sigma_2^2$, and the $dW_t$ coefficient is:
+
+    $$
+    \sigma^{i1}f_i = \sigma_1 \cdot 2X_t^1 + \sigma_2 \cdot 2X_t^2
+    $$
+
+    So:
+
+    $$
+    d((X_t^1)^2 + (X_t^2)^2) = (\sigma_1^2 + \sigma_2^2)\,dt + 2(\sigma_1 X_t^1 + \sigma_2 X_t^2)\,dW_t
+    $$
+
+    The $dt$ coefficient $\sigma_1^2 + \sigma_2^2$ matches $\mathcal{L}f$, confirming the computation.

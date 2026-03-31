@@ -231,3 +231,193 @@ is a local martingale. Under what additional condition on $f$ and $\sigma$ does 
 ---
 
 **Exercise 7.** Let $X_t$ be a $d$-dimensional Itô diffusion with constant drift $b \in \mathbb{R}^d$ and constant diffusion matrix $\sigma \in \mathbb{R}^{d \times m}$. Show that $X_t$ is a Gaussian process and compute $\mathbb{E}[X_t]$ and $\mathrm{Cov}(X_s, X_t)$ for $s \le t$ in terms of $b$, $a = \sigma\sigma^\top$, and the initial condition $X_0 = x_0$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The diffusion coefficient is $\sigma(x) = \beta$, so the covariance matrix is
+
+    $$
+    a(x) = \sigma(x)^2 = \beta^2
+    $$
+
+    The infinitesimal generator for a one-dimensional diffusion with drift $b(x) = -\alpha x$ and covariance $a(x) = \beta^2$ is
+
+    $$
+    \mathcal{L}f(x) = b(x)\,f'(x) + \frac{1}{2}\,a(x)\,f''(x) = -\alpha x\,f'(x) + \frac{\beta^2}{2}\,f''(x)
+    $$
+
+    Applying $\mathcal{L}$ to $f(x) = x^2$: we have $f'(x) = 2x$ and $f''(x) = 2$, so
+
+    $$
+    \mathcal{L}(x^2) = -\alpha x \cdot 2x + \frac{\beta^2}{2} \cdot 2 = -2\alpha x^2 + \beta^2
+    $$
+
+    **Interpretation.** By Itô's formula, $f(X_t) - f(X_0) - \int_0^t \mathcal{L}f(X_s)\,\mathrm{d}s$ is a local martingale, so
+
+    $$
+    \frac{\mathrm{d}}{\mathrm{d}t}\mathbb{E}[X_t^2] = \mathbb{E}[\mathcal{L}(X_t^2)] = -2\alpha\,\mathbb{E}[X_t^2] + \beta^2
+    $$
+
+    The term $-2\alpha\,\mathbb{E}[X_t^2]$ represents mean reversion pulling the second moment toward zero, while $\beta^2$ represents the constant injection of variance by the noise. At equilibrium, $\mathbb{E}[X_t^2] = \beta^2/(2\alpha)$.
+
+??? success "Solution to Exercise 2"
+    The drift is $b(x) = (x^2, -x^1)^\top$ and the diffusion matrix is $\sigma = I_{2 \times 2}$ (the identity). Therefore
+
+    $$
+    a^{ij} = \sigma^{i\alpha}\sigma^{j\alpha} = \delta^{ij}
+    $$
+
+    so
+
+    $$
+    a = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}
+    $$
+
+    The quadratic covariation is
+
+    $$
+    \langle X^1, X^2 \rangle_t = \int_0^t a^{12}(X_s)\,\mathrm{d}s = \int_0^t 0\,\mathrm{d}s = 0
+    $$
+
+    The matrix $a = I$ is strictly positive definite (all eigenvalues equal $1$), so it is **non-degenerate**. The two components of the diffusion are driven by independent Brownian motions, despite the coupling in the drift.
+
+??? success "Solution to Exercise 3"
+    For geometric Brownian motion $\mathrm{d}S_t = \mu S_t\,\mathrm{d}t + \sigma S_t\,\mathrm{d}W_t$, the coefficients are:
+
+    - **Drift field:** $b(s) = \mu s$
+    - **Diffusion coefficient:** $\sigma(s) = \sigma s$ (using $\sigma$ for both the constant and the function, with the understanding that the diffusion coefficient function is $s \mapsto \sigma s$)
+    - **Covariance matrix:** $a(s) = (\sigma s)^2 = \sigma^2 s^2$
+
+    The semimartingale decomposition is
+
+    $$
+    S_t = S_0 + \underbrace{\int_0^t \mu S_s\,\mathrm{d}s}_{\text{finite variation}} + \underbrace{\int_0^t \sigma S_s\,\mathrm{d}W_s}_{\text{local martingale}}
+    $$
+
+    The infinitesimal generator is
+
+    $$
+    \mathcal{L}f(s) = \mu s\,f'(s) + \frac{1}{2}\sigma^2 s^2\,f''(s)
+    $$
+
+    For $f(s) = \log s$: we have $f'(s) = 1/s$ and $f''(s) = -1/s^2$, so
+
+    $$
+    \mathcal{L}(\log s) = \mu s \cdot \frac{1}{s} + \frac{1}{2}\sigma^2 s^2 \cdot \left(-\frac{1}{s^2}\right) = \mu - \frac{\sigma^2}{2}
+    $$
+
+    This is a constant, confirming that $\log S_t - (\mu - \sigma^2/2)t$ is a local martingale — consistent with the well-known result $\log S_t = \log S_0 + (\mu - \sigma^2/2)t + \sigma W_t$.
+
+??? success "Solution to Exercise 4"
+    By Itô's formula applied to $f \in C^2(\mathbb{R}^d)$ (taking $f$ time-independent):
+
+    $$
+    f(X_t) = f(X_0) + \int_0^t \frac{\partial f}{\partial x_i}(X_s)\,\mathrm{d}X_s^i + \frac{1}{2}\int_0^t \frac{\partial^2 f}{\partial x_i \partial x_j}(X_s)\,\mathrm{d}\langle X^i, X^j \rangle_s
+    $$
+
+    Substituting $\mathrm{d}X_s^i = b^i(X_s)\,\mathrm{d}s + \sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^\alpha$ and $\mathrm{d}\langle X^i, X^j\rangle_s = a^{ij}(X_s)\,\mathrm{d}s$:
+
+    $$
+    f(X_t) - f(X_0) = \int_0^t \left(b^i \partial_i f + \frac{1}{2}a^{ij}\partial_i\partial_j f\right)(X_s)\,\mathrm{d}s + \int_0^t \partial_i f(X_s)\,\sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^\alpha
+    $$
+
+    The first integral is $\int_0^t (\mathcal{L}f)(X_s)\,\mathrm{d}s$, so
+
+    $$
+    M_t^f = f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,\mathrm{d}s = \int_0^t \partial_i f(X_s)\,\sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^\alpha
+    $$
+
+    This is a stochastic integral with respect to Brownian motion, hence a **local martingale**.
+
+    $M_t^f$ is a **true martingale** if the integrand is square-integrable:
+
+    $$
+    \mathbb{E}\!\int_0^t \sum_{i,\alpha} |\partial_i f(X_s)|^2\,|\sigma^{i\alpha}(X_s)|^2\,\mathrm{d}s < \infty
+    $$
+
+    A sufficient condition is that $\nabla f$ is bounded (e.g. $f \in C_c^2(\mathbb{R}^d)$) and $\sigma$ satisfies the linear growth condition $|\sigma(x)| \le C(1 + |x|)$, combined with finite moments $\mathbb{E}[\sup_{s \le t}|X_s|^2] < \infty$.
+
+??? success "Solution to Exercise 5"
+    For the gradient diffusion $\mathrm{d}X_t = -\nabla V(X_t)\,\mathrm{d}t + \sqrt{2}\,\mathrm{d}W_t$ with $V(x) = \frac{1}{2}k|x|^2$:
+
+    - **Drift:** $b^i(x) = -\partial_i V(x) = -kx^i$
+    - **Diffusion matrix:** $\sigma^{i\alpha} = \sqrt{2}\,\delta^{i\alpha}$, so $a^{ij} = 2\delta^{ij}$
+    - **Generator:**
+
+    $$
+    \mathcal{L}f(x) = -kx^i\,\partial_i f(x) + \frac{1}{2}\cdot 2\delta^{ij}\,\partial_i\partial_j f(x) = -kx \cdot \nabla f(x) + \Delta f(x)
+    $$
+
+    The invariant density is $\pi(x) \propto e^{-V(x)} = e^{-k|x|^2/2}$. Normalizing:
+
+    $$
+    \pi(x) = \left(\frac{k}{2\pi}\right)^{d/2} \exp\!\left(-\frac{k}{2}|x|^2\right)
+    $$
+
+    This is a $d$-dimensional Gaussian with:
+
+    - **Mean:** $\mathbb{E}[X] = 0$
+    - **Covariance:** $\mathrm{Cov}(X^i, X^j) = \frac{1}{k}\,\delta^{ij}$, i.e. $\Sigma = \frac{1}{k}I_d$
+
+    This is verified by matching the exponent: $-\frac{k}{2}|x|^2 = -\frac{1}{2}x^\top(kI)x$, which is the exponent of $\mathcal{N}(0, k^{-1}I)$.
+
+??? success "Solution to Exercise 6"
+    With $b(x) = 0$ and $\sigma(x) = \sqrt{1 + x^2}$, the covariance function is
+
+    $$
+    a(x) = \sigma(x)^2 = 1 + x^2
+    $$
+
+    The generator is
+
+    $$
+    \mathcal{L}f(x) = \frac{1}{2}(1 + x^2)\,f''(x)
+    $$
+
+    **Lipschitz condition.** We need $|\sigma(x) - \sigma(y)| \le L|x - y|$ for some constant $L$. Compute
+
+    $$
+    \sigma'(x) = \frac{x}{\sqrt{1 + x^2}}
+    $$
+
+    Since $|\sigma'(x)| = |x|/\sqrt{1+x^2} < 1$ for all $x$, by the mean value theorem $|\sigma(x) - \sigma(y)| \le |x - y|$. So the **Lipschitz condition holds** with $L = 1$.
+
+    **Linear growth condition.** We need $|\sigma(x)| \le C(1 + |x|)$ for some constant $C$. Since $\sqrt{1 + x^2} \le 1 + |x|$ (squaring both sides: $1 + x^2 \le 1 + 2|x| + x^2$, which is true), the **linear growth condition holds** with $C = 1$.
+
+    Therefore, by the standard existence and uniqueness theorem, the SDE $\mathrm{d}X_t = \sqrt{1+X_t^2}\,\mathrm{d}W_t$ has a unique strong solution.
+
+??? success "Solution to Exercise 7"
+    With constant $b$ and $\sigma$, the SDE $\mathrm{d}X_t = b\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ has the explicit solution
+
+    $$
+    X_t = x_0 + bt + \sigma W_t
+    $$
+
+    Since $W_t$ is a Gaussian process (every finite collection $(W_{t_1}, \ldots, W_{t_k})$ is jointly Gaussian), and $X_t$ is an affine transformation of $W_t$, $X_t$ is also a **Gaussian process**.
+
+    **Mean:**
+
+    $$
+    \mathbb{E}[X_t] = x_0 + bt
+    $$
+
+    **Covariance:** For $s \le t$, using $a = \sigma\sigma^\top$:
+
+    $$
+    \mathrm{Cov}(X_s^i, X_t^j) = \mathrm{Cov}\!\left(\sigma^{i\alpha}W_s^\alpha,\, \sigma^{j\beta}W_t^\beta\right) = \sigma^{i\alpha}\sigma^{j\beta}\,\mathrm{Cov}(W_s^\alpha, W_t^\beta)
+    $$
+
+    Since $\mathrm{Cov}(W_s^\alpha, W_t^\beta) = \min(s,t)\,\delta^{\alpha\beta} = s\,\delta^{\alpha\beta}$ for $s \le t$:
+
+    $$
+    \mathrm{Cov}(X_s^i, X_t^j) = \sigma^{i\alpha}\sigma^{j\alpha}\,s = a^{ij}\,s
+    $$
+
+    In matrix form:
+
+    $$
+    \mathrm{Cov}(X_s, X_t) = a\,\min(s, t) = \sigma\sigma^\top \min(s, t)
+    $$

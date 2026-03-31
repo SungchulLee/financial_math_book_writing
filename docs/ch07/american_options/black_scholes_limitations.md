@@ -201,3 +201,139 @@ $$
 ---
 
 **Exercise 5.** Barone-Adesi and Whaley (1987) proposed an analytical approximation for the American put. The key idea is to decompose $V_{\text{Am}} = V_{\text{Eu}} + \epsilon(S,t)$ and approximate $\epsilon$. Describe the advantage of this decomposition approach over solving the free-boundary problem directly, and discuss its accuracy limitations for long-dated options.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The Black-Scholes derivation proceeds through several steps, and it is the **solving the PDE** step that breaks down for American options.
+
+    1. **Construction of the hedged portfolio:** Form $\Pi = V - \Delta S$ with $\Delta = \partial V / \partial S$. This step is unchanged for American options; we can still construct a delta-hedged portfolio.
+
+    2. **Application of Ito's lemma:** Ito's lemma applied to $V(S, t)$ gives $dV = V_t \, dt + V_S \, dS + \frac{1}{2}V_{SS}(dS)^2$. This holds wherever $V$ is twice differentiable, which is true in the continuation region. However, $V$ is only $C^1$ (not $C^2$) at the free boundary $S^*(t)$, so Ito's lemma must be applied more carefully.
+
+    3. **No-arbitrage condition:** Setting $d\Pi = r\Pi \, dt$ yields the Black-Scholes PDE $V_t + \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S - rV = 0$. For American options, this PDE holds only in the **continuation region** $\{S > S^*(t)\}$ (for a put), not everywhere.
+
+    4. **Solving the PDE (the breakdown):** For European options, the PDE is solved on the fixed domain $(0, \infty) \times [0, T)$ with the terminal condition $V(S, T) = \Phi(S)$ and boundary conditions at $S = 0$ and $S \to \infty$. The solution uses the heat equation transformation and yields the Black-Scholes formula.
+
+    For American options, the domain of the PDE is $\{(S, t) : S > S^*(t), \, 0 \leq t < T\}$, where $S^*(t)$ is unknown. The free boundary $S^*(t)$ must be found simultaneously with $V$. This couples the PDE solution to the boundary determination, creating a **free-boundary problem** that cannot be solved by the standard Feynman-Kac / heat equation approach. The additional constraint $V(S, t) \geq \Phi(S)$ and the smooth-pasting conditions at $S^*(t)$ have no analog in the European case.
+
+??? success "Solution to Exercise 2"
+    For $T = \infty$, the put price depends only on $S$ (not $t$), so $V_t = 0$ and the PDE becomes the ODE:
+
+    $$
+    \frac{1}{2}\sigma^2 S^2 V''(S) + rSV'(S) - rV(S) = 0, \quad S > S^*
+    $$
+
+    This is a Cauchy-Euler equation. Try $V(S) = S^\gamma$:
+
+    $$
+    \frac{1}{2}\sigma^2 \gamma(\gamma - 1) + r\gamma - r = 0
+    $$
+
+    $$
+    \frac{1}{2}\sigma^2 \gamma^2 + \left(r - \frac{1}{2}\sigma^2\right)\gamma - r = 0
+    $$
+
+    The roots are:
+
+    $$
+    \gamma = \frac{-(r - \sigma^2/2) \pm \sqrt{(r - \sigma^2/2)^2 + 2\sigma^2 r}}{\sigma^2}
+    $$
+
+    One root is $\gamma_1 > 0$ and the other is $\gamma_2 < 0$. Since $V(\infty) = 0$, we need $\gamma < 0$, so:
+
+    $$
+    V(S) = A S^{\gamma_2}, \quad \gamma_2 = \frac{-(r - \sigma^2/2) - \sqrt{(r - \sigma^2/2)^2 + 2\sigma^2 r}}{\sigma^2}
+    $$
+
+    Let $\lambda = -\gamma_2 > 0$, so $V(S) = A S^{-\lambda}$.
+
+    **Applying boundary conditions at $S^*$:**
+
+    Value-matching: $A (S^*)^{-\lambda} = K - S^*$
+
+    Smooth-pasting: $-\lambda A (S^*)^{-\lambda - 1} = -1$, which gives $A = \frac{(S^*)^{\lambda + 1}}{\lambda}$.
+
+    Substituting into value-matching:
+
+    $$
+    \frac{(S^*)^{\lambda+1}}{\lambda} \cdot (S^*)^{-\lambda} = K - S^* \implies \frac{S^*}{\lambda} = K - S^* \implies S^*\left(1 + \frac{1}{\lambda}\right) = K
+    $$
+
+    $$
+    S^* = \frac{\lambda K}{\lambda + 1}
+    $$
+
+    The perpetual American put price for $S > S^*$ is:
+
+    $$
+    V(S) = (K - S^*)\left(\frac{S}{S^*}\right)^{-\lambda} = \frac{K}{\lambda + 1}\left(\frac{S(\lambda + 1)}{\lambda K}\right)^{-\lambda}
+    $$
+
+    where $\lambda = \frac{2r}{\sigma^2}$ (using the simplified form when $r - \sigma^2/2$ simplifies; more precisely, $\lambda = -\gamma_2$ from the quadratic above).
+
+??? success "Solution to Exercise 3"
+    At maturity, $S^*(T) = K$: exercise whenever the put is in the money.
+
+    As $t$ decreases from $T$ (i.e., as time to maturity increases), $S^*(t)$ **decreases**. Equivalently, the exercise boundary moves to the left (lower stock prices).
+
+    **Economic argument:** With more time remaining until maturity:
+
+    - The option has greater **time value** (more chance for favorable stock movements).
+    - The holder needs stronger incentive to give up this time value by exercising.
+    - Therefore, the stock price must be lower (the put must be deeper in the money) to justify exercise.
+
+    Conversely, as maturity approaches ($t \to T$):
+
+    - Time value diminishes, so the cost of exercising early decreases.
+    - Even a moderately in-the-money put should be exercised because little time value remains.
+    - The boundary rises toward $K$.
+
+    **Qualitative sketch:** $S^*(t)$ is a monotonically increasing curve from some value $S^*(0) < K$ on the left to $S^*(T) = K$ on the right. The curve is concave, rising steeply near maturity. For large time to maturity, $S^*(t)$ approaches the perpetual boundary $S^*_\infty = \frac{\lambda}{\lambda+1}K$ where $\lambda = 2r/\sigma^2$.
+
+??? success "Solution to Exercise 4"
+    **European PDE domain:** The Black-Scholes PDE holds on the entire half-plane $\{(S, t) : S > 0, \, 0 \leq t < T\}$. The boundary conditions are:
+
+    - Terminal: $V(S, T) = (K - S)^+$
+    - $V(0, t) = Ke^{-r(T-t)}$ (put value when $S = 0$)
+    - $V(S, t) \to 0$ as $S \to \infty$
+
+    The domain and all boundary conditions are known a priori, so the PDE can be solved directly (via heat equation transformation or Feynman-Kac).
+
+    **American PDE domain:** The PDE holds only in the continuation region $\{(S, t) : S > S^*(t), \, 0 \leq t < T\}$. The boundary conditions are:
+
+    - Terminal: $V(S, T) = (K - S)^+$
+    - At the free boundary: $V(S^*(t), t) = K - S^*(t)$ and $V_S(S^*(t), t) = -1$
+    - $V(S, t) \to 0$ as $S \to \infty$
+
+    **Why the unknown boundary makes the problem harder:**
+
+    1. The PDE domain itself is part of the unknown, creating a **coupled problem**: you need $S^*(t)$ to define the domain, but you need to solve the PDE to find $S^*(t)$.
+
+    2. Standard solution techniques (Green's function, Fourier transform, Feynman-Kac) require a known domain. The free boundary invalidates these approaches.
+
+    3. Numerically, the free boundary must be tracked or approximated at each time step, adding an inner loop (e.g., Newton iteration or PSOR) to the standard time-stepping algorithm.
+
+    4. The smooth-pasting condition $V_S(S^*, t) = -1$ is an additional constraint that determines $S^*(t)$, but it involves the derivative of the solution at a point that is itself unknown.
+
+??? success "Solution to Exercise 5"
+    **The decomposition approach:** Write $V_{\text{Am}}(S, t) = V_{\text{Eu}}(S, t) + \epsilon(S, t)$, where $\epsilon$ is the early exercise premium. The European price $V_{\text{Eu}}$ is known analytically, so the problem reduces to finding $\epsilon$.
+
+    **Advantages over solving the free-boundary problem directly:**
+
+    1. **The European part is exact:** $V_{\text{Eu}}$ is computed via Black-Scholes with no approximation error. Only $\epsilon$ needs to be approximated.
+
+    2. **$\epsilon$ is smoother and smaller:** The early exercise premium $\epsilon$ is a smooth, non-negative function that is typically much smaller than $V_{\text{Am}}$ itself. Approximating a small correction is easier than approximating the full solution.
+
+    3. **Simplified PDE for $\epsilon$:** Substituting the decomposition into the variational inequality and using the fact that $V_{\text{Eu}}$ satisfies the Black-Scholes PDE yields a simpler equation for $\epsilon$. Barone-Adesi and Whaley further approximate this by dropping the time derivative term $\epsilon_t$, reducing the PDE to an ODE that can be solved analytically.
+
+    4. **Speed:** The resulting approximation requires only evaluation of the Black-Scholes formula plus a small correction, making it orders of magnitude faster than numerical methods.
+
+    **Accuracy limitations for long-dated options:** The approximation drops $\epsilon_t$ by assuming it is small relative to other terms. This is valid when $T$ is small (the premium changes slowly with time). For long-dated options:
+
+    - The early exercise premium has significant time dependence, so $\epsilon_t$ is not negligible.
+    - The approximation can underestimate the true American price by several percent for $T > 1$--$2$ years.
+    - The error increases with volatility and interest rate, both of which amplify the early exercise premium.
+    - For very long maturities, the error is bounded by the difference between the finite-maturity and perpetual American prices, but it can be practically significant for pricing and hedging.

@@ -268,3 +268,127 @@ Let $\xi_1, \xi_2, \ldots$ be i.i.d. with $\mathbb{P}(\xi_i = 1) = p$ and $\math
 (b) For general $p \in (0,1)$, find a function $f$ such that $f(S_n, n)$ is a martingale.
 
 (c) Show that $M_n = \left(\frac{1-p}{p}\right)^{S_n}$ is a martingale when $p \neq 1/2$. *(Note: This also holds trivially when $p = 1/2$ since the ratio equals 1.)*
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** $M_t = W_t^2 - t$ is a **martingale**. This was proved in the text: $\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + (t - s)$, so $\mathbb{E}[W_t^2 - t \mid \mathcal{F}_s] = W_s^2 - s$.
+
+    **(b)** $M_t = e^{W_t}$ is a **submartingale** (and not a martingale or supermartingale). Since $\varphi(x) = e^x$ is convex and $W_t$ is a martingale, Jensen's inequality gives:
+
+    $$
+    \mathbb{E}[e^{W_t} \mid \mathcal{F}_s] \ge e^{\mathbb{E}[W_t \mid \mathcal{F}_s]} = e^{W_s}
+    $$
+
+    Direct computation confirms: $\mathbb{E}[e^{W_t} \mid \mathcal{F}_s] = e^{W_s} \cdot \mathbb{E}[e^{W_t - W_s}] = e^{W_s} \cdot e^{(t-s)/2} = e^{W_s + (t-s)/2} > e^{W_s}$ for $t > s$. Since the inequality is strict, $e^{W_t}$ is a strict submartingale (not a martingale).
+
+    **(c)** $M_t = W_t^3 - 3tW_t$ is a **martingale**. Expanding $(W_s + \Delta)^3$ where $\Delta = W_t - W_s$:
+
+    $$
+    \mathbb{E}[W_t^3 \mid \mathcal{F}_s] = W_s^3 + 3W_s(t-s)
+    $$
+
+    Also $\mathbb{E}[3tW_t \mid \mathcal{F}_s] = 3tW_s$. Therefore:
+
+    $$
+    \mathbb{E}[W_t^3 - 3tW_t \mid \mathcal{F}_s] = W_s^3 + 3W_s(t-s) - 3tW_s = W_s^3 - 3sW_s
+    $$
+
+    **(d)** $M_t = \sin(W_t)$ is a **supermartingale**. By Ito's formula:
+
+    $$
+    d\sin(W_t) = \cos(W_t)\,dW_t - \frac{1}{2}\sin(W_t)\,dt
+    $$
+
+    The drift is $-\frac{1}{2}\sin(W_t)$. Since the drift is not identically zero (and has no definite sign), $\sin(W_t)$ is neither a martingale nor purely a sub/supermartingale in general.
+
+    More precisely: $\mathbb{E}[\sin(W_t)] = e^{-t/2}\sin(0) = 0$ (using the formula $\mathbb{E}[\sin(\theta W_t)] = e^{-\theta^2 t/2}\sin(0)$... actually $\mathbb{E}[\sin(W_t)] = \text{Im}(\mathbb{E}[e^{iW_t}]) = \text{Im}(e^{-t/2}) = 0$).
+
+    Since $\mathbb{E}[\sin(W_t) \mid \mathcal{F}_s] = e^{-(t-s)/2}\sin(W_s)$ (which can be verified by writing $\sin(W_t) = \text{Im}(e^{iW_t})$ and computing the conditional expectation of the exponential), and $e^{-(t-s)/2} \le 1$ with $|\sin(W_s)| \le 1$, the conditional expectation has the same sign as $\sin(W_s)$ but smaller magnitude. Thus $\sin(W_t)$ is **neither** a submartingale nor a supermartingale (since $e^{-(t-s)/2}\sin(W_s) \le \sin(W_s)$ when $\sin(W_s) \ge 0$ and $e^{-(t-s)/2}\sin(W_s) \ge \sin(W_s)$ when $\sin(W_s) \le 0$). It is **none of the above**.
+
+    **(e)** $M_t = W_t^4 - 6tW_t^2 + 3t^2$ is a **martingale**. This is the fourth Hermite polynomial martingale $H_4(W_t, t)$. One can verify directly by expanding $(W_s + \Delta)^4$ and computing the conditional expectation, using $\mathbb{E}[\Delta] = 0$, $\mathbb{E}[\Delta^2] = t-s$, $\mathbb{E}[\Delta^3] = 0$, $\mathbb{E}[\Delta^4] = 3(t-s)^2$.
+
+??? success "Solution to Exercise 2"
+    **(a)** For $s \le t$, by the tower property:
+
+    $$
+    \mathbb{E}[M_t \mid \mathcal{F}_s] = \mathbb{E}[\mathbb{E}[X \mid \mathcal{F}_t] \mid \mathcal{F}_s] = \mathbb{E}[X \mid \mathcal{F}_s] = M_s
+    $$
+
+    The second equality uses the tower property (since $\mathcal{F}_s \subseteq \mathcal{F}_t$). $\square$
+
+    **(b)** For $t \le T$: $M_t = \mathbb{E}[W_T \mid \mathcal{F}_t] = W_t$ (by the martingale property of Brownian motion). For $t > T$: $M_t = \mathbb{E}[W_T \mid \mathcal{F}_t] = W_T$ (since $W_T$ is $\mathcal{F}_T \subseteq \mathcal{F}_t$-measurable).
+
+    Therefore $M_t = W_{t \wedge T}$ for all $t \ge 0$.
+
+    **(c)** For $t \le T$:
+
+    $$
+    M_t = \mathbb{E}[W_T^2 \mid \mathcal{F}_t]
+    $$
+
+    Write $W_T = W_t + (W_T - W_t)$, so $W_T^2 = W_t^2 + 2W_t(W_T - W_t) + (W_T - W_t)^2$.
+
+    $$
+    \mathbb{E}[W_T^2 \mid \mathcal{F}_t] = W_t^2 + 2W_t \cdot 0 + (T - t) = W_t^2 + (T - t)
+    $$
+
+    Therefore $M_t = W_t^2 + T - t$ for $t \le T$.
+
+??? success "Solution to Exercise 3"
+    **(a)** By conditional Jensen's inequality with convex $\varphi$:
+
+    $$
+    \mathbb{E}[\varphi(M_t) \mid \mathcal{F}_s] \ge \varphi(\mathbb{E}[M_t \mid \mathcal{F}_s]) = \varphi(M_s)
+    $$
+
+    The last equality uses the martingale property $\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s$. Since $\varphi(M_t)$ is adapted and integrable (by hypothesis), it is a submartingale. $\square$
+
+    **(b)** Apply part (a):
+
+    - $|W_t|$: Use $\varphi(x) = |x|$ (convex). Then $|W_t|$ is a submartingale.
+    - $W_t^2$: Use $\varphi(x) = x^2$ (convex). Then $W_t^2$ is a submartingale.
+    - $(W_t)^+ = \max(W_t, 0)$: Use $\varphi(x) = \max(x, 0)$ (convex). Then $(W_t)^+$ is a submartingale.
+
+    **(c)** The function $\varphi(x) = \log(1 + x^2)$ is **not** convex on all of $\mathbb{R}$ (its second derivative is $\varphi''(x) = \frac{2(1 + x^2) - 4x^2}{(1 + x^2)^2} = \frac{2 - 2x^2}{(1 + x^2)^2}$, which is negative for $|x| > 1$). So we cannot directly apply Jensen's inequality.
+
+    However, $\log(1 + W_t^2)$ is still a submartingale. To see this, since $W_t^2$ is a submartingale and $x \mapsto \log(1 + x)$ is concave and increasing on $[0, \infty)$, one might think this gives a supermartingale. But a direct computation using Ito's formula yields:
+
+    $$
+    d\log(1 + W_t^2) = \frac{2W_t}{1 + W_t^2}\,dW_t + \frac{1 + W_t^2 - 2W_t^2}{(1 + W_t^2)^2}\,dt = \frac{2W_t}{1 + W_t^2}\,dW_t + \frac{1 - W_t^2}{(1 + W_t^2)^2}\,dt
+    $$
+
+    The drift $\frac{1 - W_t^2}{(1 + W_t^2)^2}$ changes sign, so $\log(1 + W_t^2)$ is **neither** a submartingale nor a supermartingale in general.
+
+??? success "Solution to Exercise 4"
+    **(a)** $S_n$ is a martingale when $\mathbb{E}[\xi_i] = 0$, i.e., $p \cdot 1 + (1-p) \cdot (-1) = 2p - 1 = 0$, so $p = 1/2$.
+
+    **(b)** We seek $f$ such that $f(S_n, n)$ is a martingale. Since $\mathbb{E}[S_{n+1} \mid \mathcal{F}_n] = S_n + (2p - 1)$, the process has drift $\mu = 2p - 1$ per step.
+
+    Define $f(x, n) = x - n\mu = x - n(2p - 1)$. Then $f(S_n, n) = S_n - n(2p-1)$ and:
+
+    $$
+    \mathbb{E}[f(S_{n+1}, n+1) \mid \mathcal{F}_n] = \mathbb{E}[S_{n+1} \mid \mathcal{F}_n] - (n+1)(2p-1)
+    $$
+
+    $$
+    = S_n + (2p-1) - (n+1)(2p-1) = S_n - n(2p-1) = f(S_n, n)
+    $$
+
+    So $S_n - n(2p - 1)$ is a martingale.
+
+    **(c)** Let $r = \frac{1-p}{p}$ and $M_n = r^{S_n}$. We verify:
+
+    $$
+    \mathbb{E}[M_{n+1} \mid \mathcal{F}_n] = \mathbb{E}[r^{S_n + \xi_{n+1}} \mid \mathcal{F}_n] = r^{S_n} \cdot \mathbb{E}[r^{\xi_{n+1}}]
+    $$
+
+    since $\xi_{n+1}$ is independent of $\mathcal{F}_n$. Now:
+
+    $$
+    \mathbb{E}[r^{\xi_{n+1}}] = p \cdot r^1 + (1-p) \cdot r^{-1} = p \cdot \frac{1-p}{p} + (1-p) \cdot \frac{p}{1-p} = (1-p) + p = 1
+    $$
+
+    Therefore $\mathbb{E}[M_{n+1} \mid \mathcal{F}_n] = r^{S_n} = M_n$, so $M_n$ is a martingale. $\square$

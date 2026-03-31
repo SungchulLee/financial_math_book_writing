@@ -192,3 +192,136 @@ For a full set of worked examples — including \(e^{B_t}\), geometric Brownian 
 ---
 
 **Exercise 7.** Consider $f(x) = \log(1 + x^2)$. Compute $f'(x)$ and $f''(x)$, then apply Itô's lemma (Version 1) to write $d(\log(1 + B_t^2))$. Does the process $\log(1 + B_t^2)$ have a positive or negative drift? Interpret this in terms of the convexity of $f$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    For $f(x) = x^3$: $f'(x) = 3x^2$ and $f''(x) = 6x$. By Itô's lemma (Version 1):
+
+    $$
+    d(B_t^3) = 3B_t^2\,dB_t + \frac{1}{2}(6B_t)\,dt = 3B_t^2\,dB_t + 3B_t\,dt
+    $$
+
+    Integrating from $0$ to $t$ (with $B_0 = 0$):
+
+    $$
+    B_t^3 = 3\int_0^t B_s^2\,dB_s + 3\int_0^t B_s\,ds
+    $$
+
+    Solving for the stochastic integral:
+
+    $$
+    \int_0^t B_s^2\,dB_s = \frac{1}{3}B_t^3 - \int_0^t B_s\,ds
+    $$
+
+??? success "Solution to Exercise 2"
+    For $f(t, x) = e^{-\lambda t}\sin(x)$:
+
+    - $f_t = -\lambda e^{-\lambda t}\sin(x)$
+    - $f_x = e^{-\lambda t}\cos(x)$
+    - $f_{xx} = -e^{-\lambda t}\sin(x)$
+
+    By Itô's lemma (Version 2):
+
+    $$
+    df(t, B_t) = \left(-\lambda e^{-\lambda t}\sin(B_t) + \frac{1}{2}(-e^{-\lambda t}\sin(B_t))\right)dt + e^{-\lambda t}\cos(B_t)\,dB_t
+    $$
+
+    The $dt$ coefficient is $-(\lambda + \frac{1}{2})e^{-\lambda t}\sin(B_t)$. This vanishes for all $(t, B_t)$ when
+
+    $$
+    \lambda = -\frac{1}{2}
+    $$
+
+    With $\lambda = -1/2$, the process $e^{t/2}\sin(B_t)$ is a local martingale.
+
+??? success "Solution to Exercise 3"
+    For $f(x) = x^2$ applied to $X_t$ with $dX_t = rX_t\,dt + \sigma X_t\,dB_t$: $f'(x) = 2x$, $f''(x) = 2$, $\mu_t = rX_t$, $\sigma_t = \sigma X_t$. By Version 3:
+
+    $$
+    d(X_t^2) = \left(2X_t \cdot rX_t + \frac{1}{2} \cdot 2 \cdot \sigma^2 X_t^2\right)dt + 2X_t \cdot \sigma X_t\,dB_t
+    $$
+
+    Simplifying:
+
+    $$
+    d(X_t^2) = (2r + \sigma^2)X_t^2\,dt + 2\sigma X_t^2\,dB_t
+    $$
+
+    The process $X_t^2$ itself follows a geometric Brownian motion SDE with drift coefficient $2r + \sigma^2$ and diffusion coefficient $2\sigma$.
+
+??? success "Solution to Exercise 4"
+    **(a)** Classical chain rule: for $f(x) = e^x$, $df = f'(x)\,dx = e^x\,dx$.
+
+    **(b)** Stochastic case with $X_t = B_t$: $f'(x) = e^x$, $f''(x) = e^x$. Itô's lemma gives:
+
+    $$
+    d(e^{B_t}) = e^{B_t}\,dB_t + \frac{1}{2}e^{B_t}\,dt
+    $$
+
+    The term $\frac{1}{2}e^{B_t}\,dt$ is the Itô correction. It has no classical counterpart and arises from the quadratic variation $(dB_t)^2 = dt$. The correction is always positive (since $e^{B_t} > 0$), reflecting the positive curvature ($f'' > 0$) of the exponential function — symmetric Brownian fluctuations around any point produce a net upward drift.
+
+??? success "Solution to Exercise 5"
+    For $f(x) = x^{-1}$: $f'(x) = -x^{-2}$, $f''(x) = 2x^{-3}$. With $dS_t = \mu S_t\,dt + \sigma S_t\,dB_t$ (so $\mu_t = \mu S_t$, $\sigma_t = \sigma S_t$):
+
+    $$
+    d(S_t^{-1}) = \left(-S_t^{-2} \cdot \mu S_t + \frac{1}{2} \cdot 2S_t^{-3} \cdot \sigma^2 S_t^2\right)dt + (-S_t^{-2}) \cdot \sigma S_t\,dB_t
+    $$
+
+    Simplifying:
+
+    $$
+    d(S_t^{-1}) = (-\mu + \sigma^2)S_t^{-1}\,dt - \sigma S_t^{-1}\,dB_t
+    $$
+
+    This is an SDE of the form $d(S_t^{-1}) = \alpha S_t^{-1}\,dt + \beta S_t^{-1}\,dB_t$ with
+
+    $$
+    \alpha = -\mu + \sigma^2, \qquad \beta = -\sigma
+    $$
+
+    The drift changes from $\mu$ to $-\mu + \sigma^2$: the sign flip comes from the reciprocal, while the extra $\sigma^2$ is the Itô correction due to the positive curvature of $x^{-1}$ for $x > 0$.
+
+??? success "Solution to Exercise 6"
+    For $f(t, x) = xe^{-rt}$ with $dX_t = rX_t\,dt + \sigma X_t\,dB_t$:
+
+    - $f_t = -rx\,e^{-rt}$
+    - $f_x = e^{-rt}$
+    - $f_{xx} = 0$
+
+    Applying Version 3 with $\mu_t = rX_t$ and $\sigma_t = \sigma X_t$:
+
+    $$
+    d(X_t e^{-rt}) = \left(-rX_t e^{-rt} + rX_t \cdot e^{-rt} + \frac{1}{2}\sigma^2 X_t^2 \cdot 0\right)dt + \sigma X_t e^{-rt}\,dB_t
+    $$
+
+    The $dt$ coefficient is $-rX_t e^{-rt} + rX_t e^{-rt} = 0$, so
+
+    $$
+    d(X_t e^{-rt}) = \sigma X_t e^{-rt}\,dB_t
+    $$
+
+    Since the $dt$ coefficient vanishes, $X_t e^{-rt}$ is a local martingale. It is a true martingale if $\sigma X_t e^{-rt}$ is locally square-integrable. Since $X_t$ is geometric Brownian motion ($X_t = X_0 \exp((\mu - \sigma^2/2)t + \sigma B_t)$, with $\mu = r$ here), Novikov's condition $\mathbb{E}[\exp(\frac{1}{2}\int_0^T \sigma^2\,ds)] = e^{\sigma^2 T/2} < \infty$ holds for all finite $T$, so $X_t e^{-rt}$ is a true martingale.
+
+??? success "Solution to Exercise 7"
+    For $f(x) = \log(1 + x^2)$:
+
+    $$
+    f'(x) = \frac{2x}{1 + x^2}, \qquad f''(x) = \frac{2(1 + x^2) - 2x \cdot 2x}{(1 + x^2)^2} = \frac{2(1 - x^2)}{(1 + x^2)^2}
+    $$
+
+    By Itô's lemma (Version 1):
+
+    $$
+    d(\log(1 + B_t^2)) = \frac{2B_t}{1 + B_t^2}\,dB_t + \frac{1}{2} \cdot \frac{2(1 - B_t^2)}{(1 + B_t^2)^2}\,dt
+    $$
+
+    The drift is
+
+    $$
+    \frac{1 - B_t^2}{(1 + B_t^2)^2}\,dt
+    $$
+
+    This is positive when $|B_t| < 1$ and negative when $|B_t| > 1$. The sign of the drift reflects the convexity of $f$: for $|x| < 1$, $f''(x) > 0$ (convex), so the Itô correction pushes the drift upward; for $|x| > 1$, $f''(x) < 0$ (concave), so the correction pushes the drift downward. At $|B_t| = 1$, the function has an inflection point and the drift vanishes.

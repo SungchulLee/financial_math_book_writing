@@ -403,3 +403,150 @@ Find all probability vectors $q = (q_1, q_2, q_3)$ with $q_i > 0$ and $\sum q_i 
 **Exercise 6.** Explain the distinction between "no arbitrage" (NA) and "no free lunch with vanishing risk" (NFLVR) in continuous-time models. Why is NFLVR strictly stronger than NA? Provide an intuitive description of a "free lunch with vanishing risk" that is not an outright arbitrage.
 
 ---
+
+
+## Solutions
+
+
+??? success "Solution to Exercise 1"
+    We need $q = (q_1, q_2, q_3)$ with $q_i > 0$, $\sum q_i = 1$, and $X^T q = 0$. The system $X^T q = 0$ gives two equations:
+
+    $$
+    5q_1 + 0 \cdot q_2 - 3q_3 = 0 \quad \Longrightarrow \quad q_1 = \frac{3}{5}q_3
+    $$
+
+    $$
+    2q_1 - q_2 + q_3 = 0 \quad \Longrightarrow \quad q_2 = 2q_1 + q_3 = \frac{6}{5}q_3 + q_3 = \frac{11}{5}q_3
+    $$
+
+    From the normalization $q_1 + q_2 + q_3 = 1$:
+
+    $$
+    \frac{3}{5}q_3 + \frac{11}{5}q_3 + q_3 = \frac{3 + 11 + 5}{5}q_3 = \frac{19}{5}q_3 = 1 \quad \Longrightarrow \quad q_3 = \frac{5}{19}
+    $$
+
+    Therefore:
+
+    $$
+    q_1 = \frac{3}{19}, \qquad q_2 = \frac{11}{19}, \qquad q_3 = \frac{5}{19}
+    $$
+
+    All components are strictly positive, so the market is **arbitrage-free**. The EMM is unique (the two equations from $X^T q = 0$ plus normalization fully determine three unknowns), so the market is **complete**.
+
+    Verification: $\operatorname{rank}(X) = 2 = n - 1 = 3 - 1$, confirming completeness by the rank condition.
+
+
+??? success "Solution to Exercise 2"
+    Let $\mathbb{Q}$ be an EMM with Radon--Nikodym derivative $Z = d\mathbb{Q}/d\mathbb{P}$, so $Z(\omega) > 0$ for all $\omega$ (since $\mathbb{Q} \sim \mathbb{P}$). The discounted price process $\tilde{S}^i_t = S^i_t / S^0_t$ is a $\mathbb{Q}$-martingale, meaning for any strategy $\theta$:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\tilde{V}_T(\theta)] = \tilde{V}_0(\theta)
+    $$
+
+    where $\tilde{V}_t(\theta)$ is the discounted portfolio value. For a zero-cost strategy ($V_0(\theta) = 0$), this gives $\mathbb{E}^{\mathbb{Q}}[\tilde{V}_T(\theta)] = 0$.
+
+    Now suppose $\theta$ is an arbitrage: $V_0(\theta) = 0$, $V_T(\theta) \geq 0$ a.s., and $\mathbb{P}(V_T(\theta) > 0) > 0$. Since $S^0_T > 0$, the discounted terminal value $\tilde{V}_T(\theta) = V_T(\theta)/S^0_T$ satisfies $\tilde{V}_T(\theta) \geq 0$ a.s.
+
+    Since $\mathbb{Q} \sim \mathbb{P}$, the event $\{V_T(\theta) > 0\}$ has $\mathbb{Q}$-probability strictly positive: $\mathbb{Q}(V_T(\theta) > 0) > 0$. This uses exactly the equivalence $\mathbb{Q} \sim \mathbb{P}$, which means $\mathbb{P}(A) > 0 \iff \mathbb{Q}(A) > 0$.
+
+    Therefore $\tilde{V}_T(\theta) \geq 0$ $\mathbb{Q}$-a.s. with $\mathbb{Q}(\tilde{V}_T(\theta) > 0) > 0$, which gives
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\tilde{V}_T(\theta)] > 0
+    $$
+
+    But the martingale property requires $\mathbb{E}^{\mathbb{Q}}[\tilde{V}_T(\theta)] = 0$. This is a contradiction, so no arbitrage can exist. $\square$
+
+
+??? success "Solution to Exercise 3"
+    The convex combination $q_\varepsilon = (1 - \varepsilon)q^* + \varepsilon p$ has all strictly positive components (since $p_i > 0$ and $\varepsilon > 0$), but it satisfies
+
+    $$
+    X^T q_\varepsilon = (1 - \varepsilon) X^T q^* + \varepsilon X^T p = \varepsilon X^T p
+    $$
+
+    This equals zero only if $X^T p = 0$, meaning the physical measure $p$ is already an EMM. In general, $X^T p \neq 0$, so $q_\varepsilon$ fails the martingale condition $X^T q = 0$ for any $\varepsilon > 0$. The perturbation fixes the positivity problem but breaks the martingale property.
+
+    The **iterative refinement** works as follows. Let $q^* \in \mathcal{K} = \{q \in \bar{\Delta}_n : X^T q = 0\}$ with support $I = \{i : q^*_i > 0\}$. If $I \neq \{1, \ldots, n\}$, consider the complementary states $I^c$. Restrict the no-arbitrage condition to the sub-market on states $I^c$: the restricted payoff matrix $X_{I^c}$ (rows indexed by $I^c$) must also admit no arbitrage (otherwise the original market would have an arbitrage). By applying the separation argument to this restricted model, there exists a probability vector $\hat{q}$ supported on $I^c$ with $X^T_{I^c} \hat{q} = 0$.
+
+    Extend $\hat{q}$ to all $n$ states by setting $\hat{q}_i = 0$ for $i \in I$. Then $X^T \hat{q} = 0$, and $\hat{q}$ is supported on $I^c$. The convex combination
+
+    $$
+    q^{**} = \frac{1}{2} q^* + \frac{1}{2} \hat{q}
+    $$
+
+    satisfies $X^T q^{**} = 0$ and has support $I \cup I^c$, which is strictly larger than $I$. If $q^{**}$ still has zero components, repeat the procedure. Since $|\Omega| = n$ is finite, after at most $n$ iterations the support covers all states, yielding $q \in \operatorname{int}(\Delta_n)$ with $X^T q = 0$.
+
+
+??? success "Solution to Exercise 4"
+    In the Black--Scholes model, $dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$ with constant $\mu$, $\sigma$, and risk-free rate $r$. The market price of risk is
+
+    $$
+    \lambda = \frac{\mu - r}{\sigma}
+    $$
+
+    Define the Radon--Nikodym derivative process
+
+    $$
+    Z_t = \exp\left(-\lambda W_t - \frac{\lambda^2}{2} t\right)
+    $$
+
+    By Girsanov's theorem, the process $W^{\mathbb{Q}}_t = W_t + \lambda t$ is a Brownian motion under the measure $\mathbb{Q}$ defined by $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T} = Z_T$.
+
+    Rewriting the stock dynamics in terms of $W^{\mathbb{Q}}_t$: since $W_t = W^{\mathbb{Q}}_t - \lambda t$,
+
+    $$
+    dS_t = \mu S_t \, dt + \sigma S_t (dW^{\mathbb{Q}}_t - \lambda \, dt) = (\mu - \sigma\lambda) S_t \, dt + \sigma S_t \, dW^{\mathbb{Q}}_t
+    $$
+
+    Substituting $\lambda = (\mu - r)/\sigma$:
+
+    $$
+    \mu - \sigma\lambda = \mu - \sigma \cdot \frac{\mu - r}{\sigma} = \mu - (\mu - r) = r
+    $$
+
+    So under $\mathbb{Q}$: $dS_t = r S_t \, dt + \sigma S_t \, dW^{\mathbb{Q}}_t$.
+
+    Now consider the discounted price $\tilde{S}_t = e^{-rt} S_t$. By Ito's lemma:
+
+    $$
+    d\tilde{S}_t = e^{-rt}(dS_t - rS_t \, dt) = e^{-rt} \sigma S_t \, dW^{\mathbb{Q}}_t = \sigma \tilde{S}_t \, dW^{\mathbb{Q}}_t
+    $$
+
+    The process $\tilde{S}_t$ is a driftless Ito process (a local martingale) under $\mathbb{Q}$. Since $\tilde{S}_t = S_0 \exp(\sigma W^{\mathbb{Q}}_t - \sigma^2 t/2)$, it is a geometric Brownian motion with zero drift, which is a true martingale (as it is a positive exponential martingale with $\mathbb{E}^{\mathbb{Q}}[\tilde{S}_t] = S_0$ for all $t$). This confirms that $e^{-rt} S_t$ is a $\mathbb{Q}$-martingale.
+
+
+??? success "Solution to Exercise 5"
+    The payoff matrix $X$ is $n \times d = 4 \times 2$. The kernel of $X^T$ has dimension
+
+    $$
+    \dim(\ker(X^T)) = n - \operatorname{rank}(X) = 4 - \operatorname{rank}(X)
+    $$
+
+    Since $d = 2$, we have $\operatorname{rank}(X) \leq 2$. Generically (assuming the two columns are linearly independent), $\operatorname{rank}(X) = 2$, so
+
+    $$
+    \dim(\ker(X^T)) = 4 - 2 = 2
+    $$
+
+    The set of EMMs is the intersection of this 2-dimensional kernel with the affine hyperplane $\{\sum q_i = 1\}$ and the positivity constraints $q_i > 0$. The affine constraint reduces the dimension by 1, so the EMM set is generically a 1-dimensional family (a line segment in the interior of the 4-simplex). This means there is **one free parameter** in the set of EMMs.
+
+    For completeness, we need $\operatorname{rank}(X) = n - 1 = 3$, which requires $d \geq 3$. Since we currently have $d = 2$, we need
+
+    $$
+    3 - 2 = 1
+    $$
+
+    additional risky asset with a payoff vector that is linearly independent of the existing two columns. This would bring $\operatorname{rank}(X) = 3 = n - 1$, making $\dim(\ker(X^T)) = 1$ and the EMM unique.
+
+
+??? success "Solution to Exercise 6"
+    **No Arbitrage (NA)** requires that no single admissible self-financing strategy $\theta$ can achieve $V_0(\theta) = 0$, $V_T(\theta) \geq 0$ a.s., and $\mathbb{P}(V_T(\theta) > 0) > 0$. This rules out exact risk-free profits.
+
+    **No Free Lunch with Vanishing Risk (NFLVR)** is strictly stronger. It requires that there is no sequence of admissible strategies $(\theta_n)$ with $V_0(\theta_n) = 0$ and payoffs $f_n = V_T(\theta_n)$ such that $f_n \geq -\varepsilon_n$ (with $\varepsilon_n \to 0$) and $f_n$ converges (in an appropriate sense) to some $f \geq 0$ with $\mathbb{P}(f > 0) > 0$.
+
+    **Why NFLVR is strictly stronger:** NFLVR rules out not only outright arbitrage but also **approximate arbitrage** that becomes arbitrarily close to risk-free. NA only checks individual strategies; NFLVR checks limits of strategy sequences.
+
+    **Intuitive example of a free lunch with vanishing risk that is not an outright arbitrage:** Consider a sequence of zero-cost strategies where the $n$-th strategy produces a payoff satisfying $V_T(\theta_n) \geq -1/n$ (the downside risk vanishes) and $V_T(\theta_n) \to 1$ in probability. No single strategy is an arbitrage because each has a small potential loss of up to $1/n$. But the sequence approximates a riskless profit of $1$ with losses that shrink to zero. An investor who follows strategy $\theta_n$ for large $n$ takes negligible risk for a near-certain profit -- economically indistinguishable from arbitrage.
+
+    In finite-state models, NA and NFLVR are equivalent (every convergent sequence of payoffs in a finite-dimensional space has its limit attained). The distinction matters only in infinite-dimensional continuous-time models, where the strategy space is rich enough for limiting arguments to produce "free lunches" that individual strategies cannot.

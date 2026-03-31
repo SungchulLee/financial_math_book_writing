@@ -361,3 +361,182 @@ A model for an equity market assumes constant volatility and a constant positive
 
 **Exercise 7.**
 Consider a market with $n = 1$ traded asset and $d = 2$ Brownian motions. The stock dynamics are $dS_t = \mu S_t\,dt + \sigma_1 S_t\,dW_t^1 + \sigma_2 S_t\,dW_t^2$. The risk premium equation is $\mu - r = \sigma_1\theta_1 + \sigma_2\theta_2$, which defines a line in $(\theta_1, \theta_2)$ space. Parametrize the family of risk-neutral measures by writing $\theta_2$ as a function of $\theta_1$. For the claim $\Phi = (W_T^2)^2$, explain why different points on this line produce different prices.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Computing the integral:
+
+    $$
+    \int_0^T \theta_s^2\,ds = \int_0^T \frac{c^2}{T - s}\,ds
+    $$
+
+    Using the substitution $u = T - s$, $du = -ds$:
+
+    $$
+    \int_0^T \frac{c^2}{T - s}\,ds = c^2\int_0^T \frac{1}{u}\,du = c^2\left[\ln u\right]_{\epsilon}^{T} \to +\infty \text{ as } \epsilon \to 0
+    $$
+
+    Since $\int_0^T \theta_s^2\,ds = +\infty$, the Novikov condition requires
+
+    $$
+    \mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(\frac{1}{2}\int_0^T \theta_s^2\,ds\right)\right] < \infty
+    $$
+
+    but the integrand diverges, so the exponential is infinite and the condition fails.
+
+    **Financial interpretation:** A market price of risk that blows up near maturity means the risk premium becomes unbounded as $t \to T$. This implies that the compensation required for bearing risk over the interval $[t, T]$ grows without bound as $t$ approaches $T$. In practical terms, the model would require infinitely aggressive reweighting of probabilities near the terminal time, which is economically unreasonable. The stochastic exponential $Z_t$ converges to zero almost surely, meaning the "probability measure" $\mathbb{Q}$ loses mass and cannot serve as a valid pricing measure on $[0, T]$. Any derivative prices computed under this $\mathbb{Q}$ would be unreliable or undefined.
+
+??? success "Solution to Exercise 2"
+    The defect is
+
+    $$
+    \delta = 1 - \mathbb{E}^{\mathbb{P}}[Z_T] = 1 - 0.95 = 0.05
+    $$
+
+    The normalized density $\tilde{Z}_T = Z_T / \mathbb{E}^{\mathbb{P}}[Z_T] = Z_T / 0.95$ integrates to 1 and thus defines a probability measure $\tilde{\mathbb{Q}}$. However, $\tilde{\mathbb{Q}}$ is **not equivalent** to $\mathbb{P}$.
+
+    To see why, note that $Z_T \geq 0$ a.s. under $\mathbb{P}$. The fact that $\mathbb{E}[Z_T] < 1$ means that $Z_T$ is "smaller than it should be" on average---probability mass has leaked away. Technically, the event $\{Z_T = 0\}$ may have positive $\mathbb{P}$-probability, or more precisely, $Z_T$ may concentrate less mass on certain events than required for equivalence. The measure $\tilde{\mathbb{Q}}$ assigns zero probability to any event where $Z_T = 0$, but $\mathbb{P}$ may assign positive probability to such events, breaking mutual absolute continuity.
+
+    The "missing mass" of $\delta = 0.05$ has escaped to infinity in the following sense: the stochastic exponential $Z_t$ is a supermartingale (not a true martingale), and its expected value decreases over time. The paths along which $Z_t$ becomes very small contribute less and less to the expectation. In financial terms, these are extreme paths (e.g., with very large positive Brownian increments) that the measure change attempts to downweight so aggressively that their contribution to the total probability vanishes. The resulting $\tilde{\mathbb{Q}}$ effectively ignores these extreme scenarios, which means it cannot correctly price claims that pay off in those states.
+
+??? success "Solution to Exercise 3"
+    When $\beta > 1$ in the CEV model, the discounted price process $\tilde{S}_t = e^{-rt}S_t$ is a strict local martingale under $\mathbb{Q}$. By the supermartingale property:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T \mid \mathcal{F}_0] \leq S_0
+    $$
+
+    with strict inequality when $\tilde{S}_t$ is a strict local martingale. Therefore the bubble component is
+
+    $$
+    \beta_0 = S_0 - \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] > 0
+    $$
+
+    This means the current price $S_0$ exceeds the risk-neutral expected discounted future value. The difference is the bubble: the portion of the price not justified by the fundamental (discounted expected payoff).
+
+    **Modification of put-call parity:** In the standard framework where $\tilde{S}_t$ is a true martingale, put-call parity states
+
+    $$
+    C - P = S_0 - Ke^{-rT}
+    $$
+
+    This derivation uses $\mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] = S_0$. When a bubble is present, $\mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] = S_0 - \beta_0 < S_0$. The call price is
+
+    $$
+    C = \mathbb{E}^{\mathbb{Q}}[e^{-rT}(S_T - K)^+]
+    $$
+
+    and the put price is
+
+    $$
+    P = \mathbb{E}^{\mathbb{Q}}[e^{-rT}(K - S_T)^+]
+    $$
+
+    Computing $C - P$:
+
+    $$
+    C - P = \mathbb{E}^{\mathbb{Q}}[e^{-rT}(S_T - K)] = \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] - Ke^{-rT} = (S_0 - \beta_0) - Ke^{-rT}
+    $$
+
+    So the modified put-call parity is $C - P = S_0 - Ke^{-rT} - \beta_0$, which differs from the standard formula by the bubble term $\beta_0$.
+
+??? success "Solution to Exercise 4"
+    **Why $\theta_1$ is determined:** The stock $S_t$ is traded, so no-arbitrage requires the discounted stock price to be a $\mathbb{Q}$-martingale. This pins down the drift removal for the Brownian motion $W^1$ driving stock returns. Specifically, the stock dynamics give $\mu - r = \sqrt{V_t}\,\theta_1$, so $\theta_1 = (\mu - r)/\sqrt{V_t}$.
+
+    **Why $\theta_2$ is free:** The variance process $V_t$ is driven by $W^2$ but is not directly traded. There is no asset whose price depends solely on $W^2$ that would impose a no-arbitrage constraint on $\theta_2$. The volatility risk premium $\theta_2$ is therefore a free parameter, and each choice defines a different risk-neutral measure.
+
+    **Comparing $\theta_2 = 0$ vs $\theta_2 = -0.5$:**
+
+    With $\theta_2 = 0$, the risk-neutral variance dynamics are
+
+    $$
+    dV_t = \kappa(\bar{V} - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{2,\mathbb{Q}}
+    $$
+
+    With $\theta_2 = -0.5$, the dynamics become
+
+    $$
+    dV_t = \left[\kappa(\bar{V} - V_t) + 0.5\xi\sqrt{V_t}\right]dt + \xi\sqrt{V_t}\,dW_t^{2,\mathbb{Q}}
+    $$
+
+    The additional positive drift term $0.5\xi\sqrt{V_t}$ means that under $\theta_2 = -0.5$, the risk-neutral variance process has a higher mean level. Higher risk-neutral variance means fatter tails in the risk-neutral distribution of $S_T$. Out-of-the-money put options pay off in the left tail, so fatter tails increase their risk-neutral expected payoff. Therefore, $\theta_2 = -0.5$ produces **higher prices** for out-of-the-money puts compared to $\theta_2 = 0$.
+
+    This is consistent with the empirical observation that the volatility risk premium is typically negative ($\theta_2 < 0$), which is necessary to generate the volatility skew observed in equity option markets.
+
+??? success "Solution to Exercise 5"
+    Under $\mathbb{P}$, $X_t = W_t$ is a standard Brownian motion. By the strong law of large numbers for Brownian motion:
+
+    $$
+    \frac{X_t}{t} = \frac{W_t}{t} \to 0 \quad \mathbb{P}\text{-a.s.}
+    $$
+
+    Under $\mathbb{Q}$, $X_t = W_t + \theta t$ where $W_t$ is a $\mathbb{P}$-Brownian motion. Equivalently, $X_t = \tilde{W}_t + \theta t$ where $\tilde{W}_t = W_t$ is a standard Brownian motion under... but more directly:
+
+    $$
+    \frac{X_t}{t} = \frac{W_t}{t} + \theta \to \theta \quad \mathbb{Q}\text{-a.s.}
+    $$
+
+    because under $\mathbb{Q}$, $X_t - \theta t$ is a $\mathbb{Q}$-Brownian motion, so $(X_t - \theta t)/t \to 0$ $\mathbb{Q}$-a.s.
+
+    Now define the events $A = \{\omega : X_t(\omega)/t \to 0\}$ and $B = \{\omega : X_t(\omega)/t \to \theta\}$. Since $\theta \neq 0$, these events are disjoint: $A \cap B = \emptyset$. We have $\mathbb{P}(A) = 1$ and $\mathbb{Q}(B) = 1$, so $\mathbb{P}(B) \leq \mathbb{P}(A^c) = 0$ and $\mathbb{Q}(A) \leq \mathbb{Q}(B^c) = 0$.
+
+    Therefore $\mathbb{P}(B) = 0$ while $\mathbb{Q}(B) = 1$, which means $\mathbb{P}$ and $\mathbb{Q}$ are **mutually singular** on $\mathcal{F}_{\infty}$: $\mathbb{P} \perp \mathbb{Q}$.
+
+    **Implication for perpetual derivatives:** Since $\mathbb{P}$ and $\mathbb{Q}$ are singular on $\mathcal{F}_{\infty}$, risk-neutral pricing via $\mathbb{E}^{\mathbb{Q}}[\cdot]$ cannot be directly applied to claims with infinite horizon. The equivalence of measures, which is essential for interpreting the risk-neutral expectation as an arbitrage-free price, breaks down. For perpetual American options or other infinite-horizon claims, one must work on finite horizons $[0, T]$ (where $\mathbb{P} \sim \mathbb{Q}$) and then carefully take the limit $T \to \infty$, verifying that convergence is well-behaved.
+
+??? success "Solution to Exercise 6"
+    This represents **Failure Mode 5: No equivalent martingale measure exists**.
+
+    A negative forward variance means that the model implies $\sigma^2(t) < 0$ for some future time $t$. Since variance must be non-negative, this is a fundamental inconsistency in the model: no valid diffusion process can have negative instantaneous variance. The model's assumed dynamics are not well-defined, and the SDE describing the asset price process has no solution for those maturities.
+
+    Without a well-defined asset price process, one cannot construct a risk-neutral measure. More precisely, the discounted price process cannot be expressed as a martingale under any equivalent measure because the process itself is not mathematically valid. The calibration error has produced model parameters that violate the basic conditions for the existence of an equivalent martingale measure.
+
+    **Remedy:** The practitioner should:
+
+    1. Re-examine the calibration procedure to identify the source of the error (e.g., interpolation of implied volatilities that produces a non-monotone total variance surface).
+    2. Impose **arbitrage-free constraints** on the calibration: the total implied variance $\sigma_{\mathrm{imp}}^2(K, T) \cdot T$ must be non-decreasing in $T$ for each strike $K$ (calendar spread arbitrage condition).
+    3. Use a model that guarantees non-negative variance by construction (e.g., the Heston model where the CIR dynamics ensure $V_t \geq 0$ under the Feller condition).
+
+??? success "Solution to Exercise 7"
+    The risk premium equation $\mu - r = \sigma_1\theta_1 + \sigma_2\theta_2$ is a single linear equation in two unknowns. Solving for $\theta_2$:
+
+    $$
+    \theta_2 = \frac{\mu - r - \sigma_1\theta_1}{\sigma_2}
+    $$
+
+    This parametrizes the family of risk-neutral measures as a line in $(\theta_1, \theta_2)$ space. Each point on this line defines a different $\boldsymbol{\theta} = (\theta_1, \theta_2)$ and hence a different risk-neutral measure $\mathbb{Q}^{\boldsymbol{\theta}}$ via Girsanov's theorem.
+
+    Under any choice of $\boldsymbol{\theta}$, the risk-neutral Brownian motions are
+
+    $$
+    W_t^{i,\mathbb{Q}} = W_t^{i,\mathbb{P}} + \theta_i t, \quad i = 1, 2
+    $$
+
+    The claim $\Phi = (W_T^2)^2$ depends on the second Brownian motion. Under $\mathbb{Q}^{\boldsymbol{\theta}}$:
+
+    $$
+    W_T^{2,\mathbb{P}} = W_T^{2,\mathbb{Q}} - \theta_2 T
+    $$
+
+    But the claim is written on $W_T^2 = W_T^{2,\mathbb{P}}$, so
+
+    $$
+    \Phi = (W_T^{2,\mathbb{P}})^2 = (W_T^{2,\mathbb{Q}} - \theta_2 T)^2
+    $$
+
+    The price is
+
+    $$
+    V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}\!\left[(W_T^{2,\mathbb{Q}} - \theta_2 T)^2\right]
+    $$
+
+    Since $W_T^{2,\mathbb{Q}} \sim N(0, T)$ under $\mathbb{Q}$:
+
+    $$
+    V_0 = e^{-rT}\left[\mathbb{E}^{\mathbb{Q}}[(W_T^{2,\mathbb{Q}})^2] - 2\theta_2 T\,\mathbb{E}^{\mathbb{Q}}[W_T^{2,\mathbb{Q}}] + \theta_2^2 T^2\right] = e^{-rT}(T + \theta_2^2 T^2)
+    $$
+
+    Since $\theta_2 = (\mu - r - \sigma_1\theta_1)/\sigma_2$ depends on the free parameter $\theta_1$, different points on the line give different values of $\theta_2$ and hence different prices. The claim $\Phi = (W_T^2)^2$ has exposure to the second Brownian motion, which is not hedgeable using the single traded asset. This unhedgeable risk is priced differently by each risk-neutral measure, producing the pricing interval characteristic of incomplete markets.

@@ -631,3 +631,142 @@ Suppose the discounted price process $\tilde{S}_t$ is a strict local martingale 
 
 **Exercise 7.**
 For the 3D Bessel process reciprocal $M_t = 1/R_t$ starting from $R_0 = r_0 > 0$, verify the Ito computation: apply Ito's formula to $f(r) = 1/r$ and the SDE $dR_t = (1/R_t)\,dt + dW_t$ to obtain $dM_t = -M_t^2\,dW_t$. Explain why the absence of a $dt$ term confirms $M_t$ is a local martingale, and why the drift terms from $f'$ and $f''$ cancel exactly.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    We have $\sigma_s = 1/(1-s)$ for $s \in [0,1)$. For $t < 1$:
+
+    $$
+    \int_0^t \sigma_s^2\,ds = \int_0^t \frac{1}{(1-s)^2}\,ds = \left[\frac{1}{1-s}\right]_0^t = \frac{1}{1-t} - 1 = \frac{t}{1-t} < \infty
+    $$
+
+    As $t \to 1^-$, this diverges: $\int_0^1 \sigma_s^2\,ds = \lim_{t \to 1^-} \frac{t}{1-t} = +\infty$.
+
+    For the localizing sequence, define:
+
+    $$
+    \tau_n = \inf\left\{t \geq 0 : \int_0^t \sigma_s^2\,ds \geq n\right\} \wedge \left(1 - \frac{1}{n}\right)
+    $$
+
+    Then $\tau_n \uparrow 1$ a.s. as $n \to \infty$, and by construction:
+
+    $$
+    \int_0^{T \wedge \tau_n} \sigma_s^2\,ds \leq n < \infty
+    $$
+
+    Since $\mathbb{E}\left[\int_0^{T \wedge \tau_n} \sigma_s^2\,ds\right] \leq n < \infty$, the Itô isometry criterion guarantees that $M_{t \wedge \tau_n} = \int_0^{t \wedge \tau_n} \sigma_s\,dW_s$ is a true (square-integrable) martingale for each $n$.
+
+??? success "Solution to Exercise 2"
+    **Every true martingale is a local martingale**: Let $M_t$ be a true martingale. Define $\tau_n = n$ for all $n \geq 1$. Then $\tau_n \to \infty$, and $M_{t \wedge \tau_n} = M_{t \wedge n}$ is a martingale (a stopped martingale is still a martingale). Hence $M$ is a local martingale with localizing sequence $\{\tau_n = n\}$.
+
+    **The converse fails**: A strict local martingale $M_t$ violates the **integrability condition**. Specifically, for a true martingale we need $\mathbb{E}[|M_t|] < \infty$ for all $t$ and $\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s$. A strict local martingale may have $\mathbb{E}[|M_t|] < \infty$ but satisfy only the inequality $\mathbb{E}[M_t \mid \mathcal{F}_s] \leq M_s$ (supermartingale property for non-negative case) rather than equality. The key property violated is **mean preservation**: for a non-negative strict local martingale, $\mathbb{E}[M_t] < \mathbb{E}[M_0]$, meaning the expectation strictly decreases over time due to "mass leaking to infinity."
+
+??? success "Solution to Exercise 3"
+    Let $M_t$ be a non-negative local martingale with $M_0 = 1$ and localizing sequence $\{\tau_n\}$. For each $n$, $M_{t \wedge \tau_n}$ is a true martingale, so:
+
+    $$
+    \mathbb{E}[M_{t \wedge \tau_n}] = \mathbb{E}[M_0] = 1
+    $$
+
+    As $n \to \infty$, $\tau_n \to \infty$ a.s., so $M_{t \wedge \tau_n} \to M_t$ a.s. Since $M_t \geq 0$, Fatou's lemma gives:
+
+    $$
+    \mathbb{E}[M_t] = \mathbb{E}\left[\liminf_{n \to \infty} M_{t \wedge \tau_n}\right] \leq \liminf_{n \to \infty} \mathbb{E}[M_{t \wedge \tau_n}] = 1
+    $$
+
+    **Financial interpretation**: When $M_t$ is the discounted price of an asset under $\mathbb{Q}$, the quantity $1 - \mathbb{E}[M_t]$ represents the **bubble component**. If $M_t$ is a strict local martingale, $\mathbb{E}[M_t] < 1 = M_0$, meaning the current asset price exceeds its "fundamental value" $\mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T]$ by the amount $S_0(1 - \mathbb{E}[M_t])$. This excess is the mathematical signature of a financial bubble.
+
+??? success "Solution to Exercise 4"
+    **For $\beta = 0.5$**: The SDE is $dX_t = 0.5 X_t^{0.5}\,dW_t$, so the quadratic variation is:
+
+    $$
+    \langle X \rangle_T = \int_0^T (0.5)^2 X_s\,ds = 0.25 \int_0^T X_s\,ds
+    $$
+
+    Since $X_t$ is a non-negative local martingale with $X_0 = 1$, we have $\mathbb{E}[X_t] \leq 1$ for all $t$. Thus:
+
+    $$
+    \mathbb{E}[\langle X \rangle_T] = 0.25 \int_0^T \mathbb{E}[X_s]\,ds \leq 0.25T < \infty
+    $$
+
+    By the sufficient condition (finite expected quadratic variation), $X_t$ is a true martingale on $[0, T]$.
+
+    **For $\beta = 1.5$**: The diffusion coefficient is $\sigma(x) = 0.5 x^{1.5}$, which grows superlinearly. For $\beta > 1$, the process can "explode" — reach infinity in finite time with positive probability. This happens because the volatility grows so rapidly as $X_t$ increases that the process is pushed to infinity. The explosion causes $\mathbb{E}[X_t] < X_0 = 1$ since the "mass" associated with exploded paths is lost. The scale function analysis for the boundary at infinity shows it is accessible (reached in finite time), confirming that $X_t$ is only a strict local martingale.
+
+??? success "Solution to Exercise 5"
+    Under $\mathbb{Q}$, $\tilde{S}_t = e^{-rt}S_t$ with $S_t = S_0 \exp((r - \sigma^2/2)t + \sigma W_t^{\mathbb{Q}})$, so:
+
+    $$
+    \tilde{S}_t = S_0 \exp\left(-\frac{\sigma^2}{2}t + \sigma W_t^{\mathbb{Q}}\right)
+    $$
+
+    Therefore $\tilde{S}_t^2 = S_0^2 \exp(-\sigma^2 t + 2\sigma W_t^{\mathbb{Q}})$. Taking expectations:
+
+    $$
+    \mathbb{E}[\tilde{S}_t^2] = S_0^2 \exp(-\sigma^2 t) \cdot \mathbb{E}[\exp(2\sigma W_t^{\mathbb{Q}})] = S_0^2 \exp(-\sigma^2 t) \cdot \exp(2\sigma^2 t) = S_0^2 \exp(\sigma^2 t)
+    $$
+
+    Now:
+
+    $$
+    \mathbb{E}\left[\int_0^T \sigma^2 \tilde{S}_s^2\,ds\right] = \sigma^2 \int_0^T \mathbb{E}[\tilde{S}_s^2]\,ds = \sigma^2 S_0^2 \int_0^T e^{\sigma^2 s}\,ds = S_0^2(e^{\sigma^2 T} - 1) < \infty
+    $$
+
+    Since $\mathbb{E}\left[\int_0^T \sigma^2 \tilde{S}_s^2\,ds\right] < \infty$, the Itô integral $\int_0^t \sigma \tilde{S}_s\,dW_s^{\mathbb{Q}}$ is a true martingale (not just a local martingale). This ensures $\tilde{S}_t$ is a true $\mathbb{Q}$-martingale, which validates the risk-neutral pricing formula $V_0 = \mathbb{E}^{\mathbb{Q}}[e^{-rT}\Phi(S_T)]$ in the Black-Scholes model.
+
+??? success "Solution to Exercise 6"
+    The **bubble component** is:
+
+    $$
+    \beta_0 = S_0 - \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] = S_0 - 0.95\,S_0 = 0.05\,S_0
+    $$
+
+    So 5% of the current price is due to the bubble.
+
+    For put-call parity, in the standard (true martingale) case:
+
+    $$
+    C - P = S_0 - Ke^{-rT}
+    $$
+
+    Under the strict local martingale setting, the modified put-call parity is:
+
+    $$
+    C - P = \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] - Ke^{-rT} = 0.95\,S_0 - Ke^{-rT}
+    $$
+
+    Comparing with the classical formula:
+
+    $$
+    (C - P)_{\text{classical}} - (C - P)_{\text{actual}} = S_0 - 0.95\,S_0 = 0.05\,S_0 = \beta_0 > 0
+    $$
+
+    The classical put-call parity **overestimates** $C - P$ by the bubble component $\beta_0 = 0.05\,S_0$. Equivalently, the put price is higher than what classical parity would predict (it includes a "bubble premium"), while the call price is lower. The error is positive: $S_0 - Ke^{-rT} > C - P$.
+
+??? success "Solution to Exercise 7"
+    Let $f(r) = 1/r$, so $f'(r) = -1/r^2$ and $f''(r) = 2/r^3$. By Itô's formula applied to $M_t = f(R_t)$:
+
+    $$
+    dM_t = f'(R_t)\,dR_t + \frac{1}{2}f''(R_t)\,(dR_t)^2
+    $$
+
+    With $dR_t = \frac{1}{R_t}\,dt + dW_t$, we have $(dR_t)^2 = dt$ (since $(dW_t)^2 = dt$ and all other terms vanish). Substituting:
+
+    $$
+    dM_t = -\frac{1}{R_t^2}\left(\frac{1}{R_t}\,dt + dW_t\right) + \frac{1}{2}\cdot\frac{2}{R_t^3}\,dt
+    $$
+
+    $$
+    = -\frac{1}{R_t^3}\,dt - \frac{1}{R_t^2}\,dW_t + \frac{1}{R_t^3}\,dt
+    $$
+
+    $$
+    = -\frac{1}{R_t^2}\,dW_t = -M_t^2\,dW_t
+    $$
+
+    The drift terms cancel exactly: $f'(R_t) \cdot \mu(R_t) + \frac{1}{2}f''(R_t) \cdot 1 = -R_t^{-3} + R_t^{-3} = 0$. This happens because $f(r) = 1/r$ is a **harmonic function** for the 3D Bessel generator $\mathcal{L} = \frac{1}{r}\frac{\partial}{\partial r} + \frac{1}{2}\frac{\partial^2}{\partial r^2}$, i.e., $\mathcal{L}f = 0$.
+
+    The absence of a $dt$ term means $M_t$ is a pure stochastic integral $M_t = M_0 + \int_0^t (-M_s^2)\,dW_s$, which is by definition a local martingale. The drift cancellation is not coincidental — it reflects the deep connection between harmonic functions and martingales via the generator criterion.

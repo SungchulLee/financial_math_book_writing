@@ -302,3 +302,184 @@ Compute the mean and variance of this quantity. Take the limit as $\Delta t \to 
 ---
 
 **Exercise 6.** For each of the five structural failures of deterministic models (zero variance, smooth paths, no volatility clustering, no heavy tails, no leverage effect), state which feature of the GBM SDE $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ addresses it and which failures require extensions beyond basic GBM. Organise your answer as a table with columns: Failure, Addressed by GBM?, Required Extension.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The solution to $dS/dt = \mu S$ with $S(0) = 100$ and $\mu = 0.10$ is:
+
+    $$
+    S(t) = S(0)e^{\mu t} = 100 e^{0.10 \times 1} = 100 e^{0.10} \approx 110.52
+    $$
+
+    The log return over $[0,1]$ is:
+
+    $$
+    r = \log\frac{S(1)}{S(0)} = \log e^{0.10} = 0.10
+    $$
+
+    Since $S(t)$ is a deterministic function, the return $r = \mu t$ is a constant (not a random variable). Therefore:
+
+    $$
+    \operatorname{Var}(r) = 0
+    $$
+
+    A typical equity has annualised volatility $\sigma \approx 0.25$, meaning $\operatorname{Var}(r_{\text{ann}}) = \sigma^2 \approx 0.0625$. No choice of $\mu$ can resolve this discrepancy because $\mu$ only controls the **level** of the deterministic return, not its variability. The variance is identically zero for any value of $\mu$ — whether $\mu = 0.01$ or $\mu = 100$, the model produces a single deterministic path with no randomness. The failure is structural: a deterministic ODE produces exactly one trajectory, so there is no ensemble of outcomes over which variance could be defined. Matching observed return dispersion requires a fundamentally different mathematical framework that incorporates randomness.
+
+??? success "Solution to Exercise 2"
+    **Quadratic variation of a differentiable function is zero.** Let $g$ be continuously differentiable on $[0,T]$. By the Mean Value Theorem, for each subinterval:
+
+    $$
+    g(t_{i+1}) - g(t_i) = g'(\xi_i)(t_{i+1} - t_i)
+    $$
+
+    for some $\xi_i \in (t_i, t_{i+1})$. Therefore:
+
+    $$
+    \sum_{i=0}^{n-1}(g(t_{i+1}) - g(t_i))^2 = \sum_{i=0}^{n-1}[g'(\xi_i)]^2(t_{i+1} - t_i)^2
+    $$
+
+    Since $g'$ is continuous on $[0,T]$, it is bounded: $|g'(\xi_i)| \leq M$ for some constant $M$. Let $|\mathcal{P}| = \max_i(t_{i+1} - t_i)$ denote the mesh of the partition. Then:
+
+    $$
+    \sum_{i=0}^{n-1}[g'(\xi_i)]^2(t_{i+1} - t_i)^2 \leq M^2 |\mathcal{P}| \sum_{i=0}^{n-1}(t_{i+1} - t_i) = M^2 |\mathcal{P}| \cdot T
+    $$
+
+    As $|\mathcal{P}| \to 0$, this upper bound tends to zero, so $[g]_T = 0$.
+
+    **Quadratic variation of Brownian motion.** For standard Brownian motion $W_t$, the quadratic variation over $[0,T]$ is $[W]_T = T$. This can be seen by considering a partition $0 = t_0 < t_1 < \cdots < t_n = T$ with equal spacing $\Delta t = T/n$. The increments $\Delta W_i = W_{t_{i+1}} - W_{t_i}$ are independent with $\Delta W_i \sim \mathcal{N}(0, \Delta t)$, so $(\Delta W_i)^2$ has mean $\Delta t$ and variance $2(\Delta t)^2$. Therefore:
+
+    $$
+    \mathbb{E}\!\left[\sum_{i=0}^{n-1}(\Delta W_i)^2\right] = n\Delta t = T
+    $$
+
+    $$
+    \operatorname{Var}\!\left[\sum_{i=0}^{n-1}(\Delta W_i)^2\right] = n \cdot 2(\Delta t)^2 = 2T^2/n \to 0
+    $$
+
+    By the $L^2$ convergence (mean $T$, variance $\to 0$), the sum converges to $T$ almost surely.
+
+    **Why this rules out differentiable paths.** Real financial data exhibit non-zero quadratic variation: $\sum_i (S_{t_{i+1}} - S_{t_i})^2$ converges to a positive value $\sigma^2 T > 0$ as the partition is refined. Since any differentiable function has zero quadratic variation, ODE solutions cannot reproduce this empirical feature. Only processes with non-differentiable paths (such as Brownian motion) can generate the non-zero quadratic variation observed in real prices.
+
+??? success "Solution to Exercise 3"
+    **Additive-noise model:** $S(t + \Delta t) = S(t)e^{\mu\Delta t} + \varepsilon_t$ with $\varepsilon_t \sim \mathcal{N}(0, \sigma^2\Delta t)$.
+
+    With $S(t) = 50$, $\mu = 0.05$, $\Delta t = 1/252$:
+
+    $$
+    S(t)e^{\mu\Delta t} = 50 \cdot e^{0.05/252} \approx 50 \cdot 1.000198 \approx 50.0099
+    $$
+
+    The standard deviation of $\varepsilon_t$ is $\sigma\sqrt{\Delta t} = 0.20\sqrt{1/252} = 0.20/15.875 \approx 0.01260$.
+
+    For $S(t+\Delta t) < 0$, we need $\varepsilon_t < -50.0099$. The number of standard deviations below the mean:
+
+    $$
+    z = \frac{-50.0099}{0.01260} \approx -3969
+    $$
+
+    This is approximately 3969 standard deviations below zero. While $P(\varepsilon_t < -50.0099)$ is astronomically small (effectively zero for practical purposes), it is **strictly positive**. The Gaussian distribution has unbounded support, so there is always a non-zero probability of any real value. In principle, $P(S(t+\Delta t) < 0) > 0$, making the model economically inadmissible.
+
+    **Multiplicative model:** $S(t+\Delta t) = S(t)\exp(\mu\Delta t + \sigma\sqrt{\Delta t}\cdot Z)$.
+
+    Since $S(t) = 50 > 0$ and the exponential function satisfies $e^x > 0$ for all $x \in \mathbb{R}$, regardless of the value of $Z$:
+
+    $$
+    S(t+\Delta t) = 50 \cdot \exp(\mu\Delta t + \sigma\sqrt{\Delta t}\cdot Z) > 0
+    $$
+
+    The probability of a negative price is **exactly zero**. This is the fundamental advantage of multiplicative noise: the exponential structure guarantees price positivity for all realisations of the driving random variable, making it consistent with the economic requirement that asset prices cannot be negative.
+
+??? success "Solution to Exercise 4"
+    The normalised log-increment is:
+
+    $$
+    Y_{\Delta t} = \frac{\log S(t+\Delta t) - \log S(t)}{\sqrt{\Delta t}} = \mu\sqrt{\Delta t} + \sigma Z, \quad Z \sim \mathcal{N}(0,1)
+    $$
+
+    **Mean:**
+
+    $$
+    \mathbb{E}[Y_{\Delta t}] = \mu\sqrt{\Delta t} + \sigma \cdot \mathbb{E}[Z] = \mu\sqrt{\Delta t} + 0 = \mu\sqrt{\Delta t}
+    $$
+
+    **Variance:**
+
+    $$
+    \operatorname{Var}(Y_{\Delta t}) = \sigma^2 \operatorname{Var}(Z) = \sigma^2 \cdot 1 = \sigma^2
+    $$
+
+    (The term $\mu\sqrt{\Delta t}$ is a constant and does not contribute to variance.)
+
+    **Limit as $\Delta t \to 0$:** As $\Delta t \to 0$, the mean $\mu\sqrt{\Delta t} \to 0$ and the variance remains $\sigma^2$. Therefore:
+
+    $$
+    Y_{\Delta t} = \mu\sqrt{\Delta t} + \sigma Z \xrightarrow{d} \sigma Z \sim \mathcal{N}(0, \sigma^2)
+    $$
+
+    The convergence is in distribution (in fact, also in $L^2$ and almost surely, since only the deterministic shift vanishes).
+
+    This convergence justifies the SDE notation $d(\log S_t) = \mu\,dt + \sigma\,dW_t$ as follows. Over an infinitesimal interval $dt$, the log-price increment is $d(\log S_t) = \mu\,dt + \sigma\,dW_t$, where $dW_t \sim \mathcal{N}(0, dt)$. Dividing by $\sqrt{dt}$:
+
+    $$
+    \frac{d(\log S_t)}{\sqrt{dt}} = \mu\sqrt{dt} + \sigma\frac{dW_t}{\sqrt{dt}}
+    $$
+
+    Since $dW_t/\sqrt{dt} \sim \mathcal{N}(0,1)$, this matches $Y_{\Delta t}$ in the limit. The SDE notation encodes the distributional structure of the limiting rescaled increment.
+
+??? success "Solution to Exercise 5"
+    **Naive formula:** $S_t = S_0\exp[\mu t + \sigma W_t]$
+
+    Since $W_t \sim \mathcal{N}(0, t)$, we use the moment generating function $\mathbb{E}[e^{aW_t}] = e^{a^2 t/2}$:
+
+    $$
+    \mathbb{E}[S_t^{\text{naive}}] = S_0 e^{\mu t}\mathbb{E}[e^{\sigma W_t}] = S_0 e^{\mu t} \cdot e^{\sigma^2 t/2} = S_0 e^{(\mu + \sigma^2/2)t}
+    $$
+
+    With $S_0 = 100$, $\mu = 0.08$, $\sigma = 0.30$, $t = 5$:
+
+    $$
+    \mathbb{E}[S_5^{\text{naive}}] = 100\exp\!\left[(0.08 + 0.045) \times 5\right] = 100\exp(0.625) \approx 186.82
+    $$
+
+    **Correct formula:** $S_t = S_0\exp[(\mu - \sigma^2/2)t + \sigma W_t]$
+
+    $$
+    \mathbb{E}[S_t^{\text{correct}}] = S_0 e^{(\mu - \sigma^2/2)t}\mathbb{E}[e^{\sigma W_t}] = S_0 e^{(\mu - \sigma^2/2)t} \cdot e^{\sigma^2 t/2} = S_0 e^{\mu t}
+    $$
+
+    With the given parameters:
+
+    $$
+    \mathbb{E}[S_5^{\text{correct}}] = 100\exp(0.08 \times 5) = 100\exp(0.40) \approx 149.18
+    $$
+
+    The **correct formula** gives $\mathbb{E}[S_t] = S_0 e^{\mu t}$. The naive formula gives $\mathbb{E}[S_t] = S_0 e^{(\mu + \sigma^2/2)t}$, which overestimates the expected price.
+
+    **Verification using the MGF:** For the correct formula, $\log S_t = \log S_0 + (\mu - \sigma^2/2)t + \sigma W_t$, so $S_t = S_0 \exp[(\mu - \sigma^2/2)t + \sigma W_t]$. Taking expectations:
+
+    $$
+    \mathbb{E}[S_t] = S_0 e^{(\mu - \sigma^2/2)t} \cdot \mathbb{E}[e^{\sigma W_t}]
+    $$
+
+    Since $\sigma W_t \sim \mathcal{N}(0, \sigma^2 t)$, the MGF gives $\mathbb{E}[e^{\sigma W_t}] = e^{\sigma^2 t / 2}$. Therefore:
+
+    $$
+    \mathbb{E}[S_t] = S_0 e^{(\mu - \sigma^2/2)t} \cdot e^{\sigma^2 t/2} = S_0 e^{\mu t}
+    $$
+
+    The $-\sigma^2/2$ in the exponent of the GBM solution exactly cancels the $+\sigma^2/2$ from the MGF, yielding the clean result $\mathbb{E}[S_t] = S_0 e^{\mu t}$.
+
+??? success "Solution to Exercise 6"
+
+    | Failure | Addressed by GBM? | Required Extension |
+    |---|---|---|
+    | Zero variance | Yes. The $\sigma S_t\,dW_t$ term gives $\operatorname{Var}(r_t) = \sigma^2\Delta t > 0$ | None |
+    | Smooth paths | Yes. Brownian motion $W_t$ has continuous but nowhere-differentiable paths, so $S_t$ is also nowhere differentiable | None |
+    | No volatility clustering | No. GBM has constant $\sigma$, so $\operatorname{Corr}(r_t^2, r_{t+k}^2) = 0$ | Stochastic volatility SDE (e.g., Heston: $dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V$) |
+    | No heavy tails | No. GBM produces log-normal returns with excess kurtosis 0 for log returns | Jump-diffusion models (Merton) or stochastic volatility (which generates excess kurtosis through mixing) |
+    | No leverage effect | No. GBM has a single Brownian motion; there is no mechanism linking returns to future volatility | Correlated Brownian motions with $\rho < 0$ in a stochastic volatility model (Heston with $\rho < 0$) |
+
+    In summary, GBM resolves the two most fundamental failures of deterministic models (zero variance and smooth paths) by introducing Brownian motion. However, it cannot capture the three stylized facts that involve the **structure** of volatility (clustering, heavy tails, leverage), which require the volatility itself to be a stochastic process correlated with the price.

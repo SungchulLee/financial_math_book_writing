@@ -113,3 +113,105 @@ In **reinforcement learning**, value functions for Markov decision processes are
 ---
 
 **Exercise 6.** The random walk serves as a test problem for temporal-difference learning. Consider a 7-state random walk with states $\{0, 1, 2, 3, 4, 5, 6\}$ where states 0 and 6 are absorbing (giving rewards 0 and 1 respectively), and the walk starts at state 3. Using the martingale property, compute the true value function $V(i) = \mathbb{P}(\text{reach state 6 before state 0} \mid S_0 = i)$ for each state $i = 0, 1, \ldots, 6$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    With $a = 20$ and $b = 100$ in a fair game ($p = 1/2$), the probability of reaching $b$ before going broke is:
+
+    $$
+    \mathbb{P}(\tau_b < \tau_0) = \frac{a}{b} = \frac{20}{100} = \frac{1}{5} = 0.2
+    $$
+
+    The expected duration of the game is:
+
+    $$
+    \mathbb{E}[\tau] = a(b - a) = 20 \cdot (100 - 20) = 20 \cdot 80 = 1600 \text{ rounds}
+    $$
+
+??? success "Solution to Exercise 2"
+    With $S_0 = 100$, $\sigma = 0.3$, $r = 0.05$, and $n = 252$:
+
+    $$
+    u = e^{\sigma/\sqrt{n}} = e^{0.3/\sqrt{252}} = e^{0.3/15.875} = e^{0.01890} \approx 1.01908
+    $$
+
+    $$
+    d = e^{-\sigma/\sqrt{n}} = e^{-0.01890} \approx 0.98127
+    $$
+
+    The risk-neutral probability is:
+
+    $$
+    p^* = \frac{e^{r/n} - d}{u - d} = \frac{e^{0.05/252} - 0.98127}{1.01908 - 0.98127}
+    $$
+
+    Computing: $e^{0.05/252} = e^{0.000198} \approx 1.000198$. Therefore:
+
+    $$
+    p^* = \frac{1.000198 - 0.98127}{0.03781} = \frac{0.01893}{0.03781} \approx 0.5005
+    $$
+
+    The deviation from $1/2$ is $p^* - 0.5 \approx 0.0005$, which is very small. This small deviation reflects the risk-free drift $r = 0.05$ being spread over 252 daily steps.
+
+??? success "Solution to Exercise 3"
+    In Bachelier's model, $S(t) = S_0 + \sigma W_t$ with $S_0 = 10$ and $\sigma = 3$. The stock becomes negative when $S(t) < 0$, i.e., $W_t < -S_0/\sigma = -10/3$. The probability that $\min_{0 \leq t \leq 1} S(t) < 0$ equals the probability that $\min_{0 \leq t \leq 1} W_t < -10/3$.
+
+    By the reflection principle, $\mathbb{P}(\min_{0 \leq t \leq 1} W_t < -c) = 2\mathbb{P}(W_1 < -c) = 2\Phi(-c)$ for $c > 0$. With $c = 10/3 \approx 3.333$:
+
+    $$
+    \mathbb{P}(\text{negative price before } T=1) = 2\Phi(-10/3) = 2\Phi(-3.333) \approx 2 \times 0.000429 = 0.000858
+    $$
+
+    Although this is small (about 0.086%), the probability is strictly positive, illustrating the fundamental defect of arithmetic Brownian motion: for any $S_0$ and $\sigma > 0$, there is always a positive probability of negative prices.
+
+??? success "Solution to Exercise 4"
+    Given $D = 10^{-9}$ cm$^2$/s and the collision rate is $10^{12}$/s, so $\tau = 10^{-12}$ s. From $D = \delta^2/(2\tau)$:
+
+    $$
+    \delta^2 = 2D\tau = 2 \times 10^{-9} \times 10^{-12} = 2 \times 10^{-21} \text{ cm}^2
+    $$
+
+    $$
+    \delta = \sqrt{2 \times 10^{-21}} = \sqrt{2} \times 10^{-10.5} \approx 1.41 \times 10^{-10.5} \approx 4.47 \times 10^{-11} \text{ cm}
+    $$
+
+    This is $\delta \approx 4.47 \times 10^{-13}$ m $= 0.447$ pm (picometers), which is on the order of atomic bond lengths, consistent with the physical picture of molecular collisions.
+
+??? success "Solution to Exercise 5"
+    In a diploid population of $N = 1000$, a new mutation starts at frequency $x = 1/(2N) = 1/2000 = 0.0005$. The fixation probability is:
+
+    $$
+    \mathbb{P}(\text{fixation}) = x = 0.0005
+    $$
+
+    For the expected number of fixations to equal 1, we need $m$ mutations where $m \times 0.0005 = 1$:
+
+    $$
+    m = \frac{1}{0.0005} = 2000
+    $$
+
+    So 2000 independent new mutations must arise for one fixation event to be expected on average.
+
+??? success "Solution to Exercise 6"
+    By the Gambler's Ruin result (martingale property), the probability of reaching state $b$ before state 0 starting from state $i$ is $V(i) = i/b$. Here, the absorbing states are 0 and 6, so $b = 6$:
+
+    $$
+    V(i) = \frac{i}{6}
+    $$
+
+    The value function for each state is:
+
+    | State $i$ | $V(i) = i/6$ |
+    |---|---|
+    | 0 | 0 |
+    | 1 | 1/6 |
+    | 2 | 2/6 = 1/3 |
+    | 3 | 3/6 = 1/2 |
+    | 4 | 4/6 = 2/3 |
+    | 5 | 5/6 |
+    | 6 | 1 |
+
+    The linearity of $V(i)$ reflects the martingale property: $V(i)$ satisfies $V(i) = \frac{1}{2}V(i-1) + \frac{1}{2}V(i+1)$ for interior states (the discrete harmonic condition), with boundary conditions $V(0) = 0$ and $V(6) = 1$, whose unique solution is $V(i) = i/6$.

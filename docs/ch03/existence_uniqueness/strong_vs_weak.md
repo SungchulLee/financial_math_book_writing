@@ -304,3 +304,129 @@ Explain why the converse fails: give an example (or describe a scenario) where a
 | $dX_t = -X_t\,dt + dW_t$ | | | | |
 | $dX_t = \mathrm{sgn}(X_t)\,dW_t$, $X_0 = 0$ | | | | |
 | $dX_t = \kappa(\theta - X_t)\,dt + \sigma\sqrt{X_t}\,dW_t$ (CIR) | | | | |
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** $dX_t = -X_t\,dt + 2\,dW_t$, $X_0 = 1$.
+
+    The drift $b(x) = -x$ is globally Lipschitz with constant $K = 1$, and the diffusion $\sigma(x) = 2$ is constant (Lipschitz with constant $0$). Both satisfy linear growth. By the main existence and uniqueness theorem, a **strong solution** exists and is pathwise unique. This is the Ornstein--Uhlenbeck process with explicit solution:
+
+    $$
+    X_t = e^{-t} + 2\int_0^t e^{-(t-s)}\,dW_s
+    $$
+
+    **(b)** $dX_t = \mathrm{sgn}(X_t)\,dW_t$, $X_0 = 0$.
+
+    This is Tanaka's SDE. The diffusion coefficient $\sigma(x) = \mathrm{sgn}(x)$ is discontinuous at $x = 0$, so the global Lipschitz condition fails. As shown in the text, a **weak solution** exists (via the Tanaka--Meyer formula, $X_t = |B_t|$), but pathwise uniqueness fails (by the Engelbert--Schmidt theorem). By the contrapositive of Yamada--Watanabe, **no strong solution exists**. Uniqueness in law does hold.
+
+    **(c)** $dX_t = X_t\,dt + X_t\,dW_t$, $X_0 = x_0 > 0$.
+
+    Both $b(x) = x$ and $\sigma(x) = x$ are globally Lipschitz with constant $K = 1$, and linear growth holds. A **strong solution** exists and is pathwise unique. The explicit solution is geometric Brownian motion:
+
+    $$
+    X_t = x_0 \exp\!\left(\tfrac{1}{2}t + W_t\right)
+    $$
+
+??? success "Solution to Exercise 2"
+    A strong solution is a continuous adapted process $X_t$ on a given filtered probability space $(\Omega, \mathcal{F}, (\mathcal{F}_t), \mathbb{P})$ carrying a Brownian motion $W_t$ such that:
+
+    1. $X_t$ is $\mathcal{F}_t^W$-adapted (measurable with respect to the natural filtration of $W$).
+    2. $\int_0^T (|b(t,X_t)| + |\sigma(t,X_t)|^2)\,dt < \infty$ a.s.
+    3. $X_t = x + \int_0^t b(s,X_s)\,ds + \int_0^t \sigma(s,X_s)\,dW_s$ a.s.
+
+    **Why condition 1 means "functional of the Brownian path":** Being $\mathcal{F}_t^W$-adapted means that for each $t$, the random variable $X_t(\omega)$ depends on $\omega$ only through the values $(W_s(\omega) : 0 \leq s \leq t)$. By measurability, there exists a measurable function $F_t$ such that $X_t = F_t(W_s : 0 \leq s \leq t)$. The solution is completely determined by the Brownian path — no additional randomness is needed.
+
+    **Explicit example for GBM:** The SDE $dX_t = \mu X_t\,dt + \sigma X_t\,dW_t$ has the strong solution:
+
+    $$
+    X_t = x_0 \exp\!\left[\left(\mu - \tfrac{1}{2}\sigma^2\right)t + \sigma W_t\right]
+    $$
+
+    This is an explicit measurable map $F(t, W_s : 0 \leq s \leq t) = x_0\exp[(\mu - \sigma^2/2)t + \sigma W_t]$. Note that $X_t$ depends on the Brownian path only through the terminal value $W_t$, which is a special feature of SDEs with linear coefficients.
+
+??? success "Solution to Exercise 3"
+    **(a)** Define $W_t = \int_0^t \mathrm{sgn}(B_s)\,dB_s$. The quadratic variation is:
+
+    $$
+    \langle W \rangle_t = \int_0^t \mathrm{sgn}(B_s)^2\,ds = \int_0^t 1\,ds = t
+    $$
+
+    since $\mathrm{sgn}(x)^2 = 1$ for all $x$ (using $\mathrm{sgn}(0) = -1$ by convention, but the set $\{s : B_s = 0\}$ has Lebesgue measure zero a.s., so the value at zero is irrelevant). Since $W_t$ is a continuous local martingale (as a stochastic integral of a bounded predictable integrand against a Brownian motion) with $\langle W \rangle_t = t$, Levy's characterisation theorem implies $W_t$ is a standard Brownian motion.
+
+    **(b)** The Tanaka--Meyer formula gives:
+
+    $$
+    |B_t| = \int_0^t \mathrm{sgn}(B_s)\,dB_s + L_t^0(B) = W_t + L_t^0(B)
+    $$
+
+    Setting $X_t = |B_t|$, we want to verify $dX_t = \mathrm{sgn}(X_t)\,dW_t$. Since $X_t = |B_t| \geq 0$, we have $\mathrm{sgn}(X_t) = 1$ for $X_t > 0$ and $\mathrm{sgn}(0) = -1$.
+
+    The key observation is that in the SDE integral equation:
+
+    $$
+    X_t = X_0 + \int_0^t \mathrm{sgn}(X_s)\,dW_s
+    $$
+
+    we need to check this against $X_t = W_t + L_t^0(B)$. We can write $dB_s = \mathrm{sgn}(B_s)\,dW_s$ (inverting $dW_s = \mathrm{sgn}(B_s)\,dB_s$, since $\mathrm{sgn}^2 = 1$). Then:
+
+    $$
+    \int_0^t \mathrm{sgn}(X_s)\,dW_s = \int_0^t \mathrm{sgn}(|B_s|)\,\mathrm{sgn}(B_s)\,dB_s = \int_0^t |\mathrm{sgn}(B_s)|\,dB_s
+    $$
+
+    Since $|\mathrm{sgn}(B_s)| = 1$ a.e., this equals $\int_0^t dB_s = B_t = B_t - B_0$. But the Tanaka--Meyer formula gives $|B_t| = W_t + L_t^0$, and the local time $L_t^0(B)$ is a continuous non-decreasing process that increases only when $B_t = 0$ (equivalently, $X_t = 0$). The local time acts as a reflecting boundary term. In the weak formulation, the SDE $dX_t = \mathrm{sgn}(X_t)\,dW_t$ is satisfied because the local time does not contribute to the martingale part — it is a process of zero quadratic variation, and the SDE is understood to hold in the sense of the integral equation with $X_0 = 0$.
+
+??? success "Solution to Exercise 4"
+    Let $(\Omega_1, \mathbb{P}_1, W^1, X^1)$ and $(\Omega_2, \mathbb{P}_2, W^2, X^2)$ be two weak solutions with $\mathrm{Law}(X_0^1) = \mathrm{Law}(X_0^2) = \mu$.
+
+    **Construct a common probability space:** Take the product space $(\Omega, \mathbb{P}) = (\Omega_1 \times \Omega_2, \mathbb{P}_1 \otimes \mathbb{P}_2)$. Define:
+
+    - $\tilde{X}^1(\omega_1, \omega_2) = X^1(\omega_1)$, $\tilde{W}^1(\omega_1, \omega_2) = W^1(\omega_1)$
+    - $\tilde{X}^2(\omega_1, \omega_2) = X^2(\omega_2)$, $\tilde{W}^2(\omega_1, \omega_2) = W^2(\omega_2)$
+
+    Both $(\tilde{X}^1, \tilde{W}^1)$ and $(\tilde{X}^2, \tilde{W}^2)$ are weak solutions on the product space.
+
+    Now, $\tilde{W}^1$ and $\tilde{W}^2$ are two different Brownian motions on $(\Omega, \mathbb{P})$. Since $\mathrm{Law}(\tilde{W}^1) = \mathrm{Law}(\tilde{W}^2)$ (both are standard Brownian motions) and $\mathrm{Law}(\tilde{X}_0^1) = \mathrm{Law}(\tilde{X}_0^2) = \mu$, the joint distributions $\mathrm{Law}(\tilde{X}_0^1, \tilde{W}^1)$ and $\mathrm{Law}(\tilde{X}_0^2, \tilde{W}^2)$ agree (both equal $\mu \otimes \text{Wiener measure}$ since the initial condition is independent of the Brownian motion).
+
+    By the Skorokhod representation theorem, we can find a probability space $(\hat{\Omega}, \hat{\mathbb{P}})$ carrying a single Brownian motion $\hat{W}$ and two processes $\hat{X}^1$, $\hat{X}^2$ such that $(\hat{X}^i, \hat{W})$ has the same law as $(\tilde{X}^i, \tilde{W}^i)$ for $i = 1,2$, and both solve the SDE driven by $\hat{W}$ with $\hat{X}_0^1 = \hat{X}_0^2$ a.s.
+
+    Now pathwise uniqueness applies on $(\hat{\Omega}, \hat{\mathbb{P}})$: since $\hat{X}^1$ and $\hat{X}^2$ are two solutions driven by the same $\hat{W}$ with the same initial condition, $\hat{X}^1 = \hat{X}^2$ a.s. Therefore $\mathrm{Law}(X^1) = \mathrm{Law}(\hat{X}^1) = \mathrm{Law}(\hat{X}^2) = \mathrm{Law}(X^2)$.
+
+??? success "Solution to Exercise 5"
+    **Why the converse fails:** A strong solution can exist without pathwise uniqueness. Consider an SDE where the coefficients are smooth and Lipschitz except on a null set that is never visited by any particular solution. More concretely, consider an SDE of the form $dX_t = \sigma(X_t)\,dW_t$ where $\sigma$ is chosen so that multiple weak solutions exist (pathwise uniqueness fails), yet one can still construct a strong (adapted to $\mathcal{F}^W$) solution for specific initial conditions.
+
+    A more standard example: the SDE $dX_t = \mathrm{sgn}(X_t)\,dW_t$ with $X_0 = 1$ (instead of $X_0 = 0$). For this initial condition, the solution $X_t$ stays away from zero for small $t$ (where the discontinuity lives), and the coefficients are locally Lipschitz away from zero. A local strong solution exists. However, pathwise uniqueness in the global sense (for all initial conditions, including $X_0 = 0$) fails.
+
+    **Why Yamada--Watanabe is still useful:** Despite the asymmetry, the theorem provides a powerful strategy for establishing strong existence: instead of constructing a strong solution directly (which requires exhibiting a measurable functional of the Brownian motion), one can separately (1) prove pathwise uniqueness via analytical estimates and (2) construct any weak solution by choosing a convenient probability space. This decomposition is often much easier than a direct construction.
+
+??? success "Solution to Exercise 6"
+    **Delta-hedging requires strong solutions:** In the Black--Scholes framework, the delta-hedging strategy $\Delta_t = \partial_S V(t, S_t)$ must be computed as a function of the observed asset price trajectory $S_t$. This requires that $S_t$ is a functional of the Brownian motion driving the market — precisely the condition for a strong solution. The hedger observes the price path $(S_s : 0 \leq s \leq t)$, which determines $W_t$ (and vice versa), and must construct a portfolio process adapted to this filtration.
+
+    If only a weak solution existed, $S_t$ would not be uniquely determined by the Brownian path. Different probability spaces could yield different price trajectories with the same distribution but different pathwise relationships to the driving noise. The hedging strategy $\Delta_t$ would not be well-defined as a function of the observed path, because the map from the Brownian motion to the asset price would not be unique.
+
+    **Option pricing needs only weak solutions:** The Black--Scholes price of a European option with payoff $h(S_T)$ is:
+
+    $$
+    V_0 = e^{-rT}\,\mathbb{E}^{\mathbb{Q}}[h(S_T)]
+    $$
+
+    This depends only on the distribution of $S_T$ under the risk-neutral measure $\mathbb{Q}$, not on the pathwise relationship between $S_t$ and $W_t$. If two weak solutions $S$ and $S'$ have the same law, then $\mathbb{E}^{\mathbb{Q}}[h(S_T)] = \mathbb{E}^{\mathbb{Q}}[h(S_T')]$, so the price is the same. A weak solution (plus uniqueness in law) therefore suffices for pricing.
+
+??? success "Solution to Exercise 7"
+    The completed table:
+
+    | SDE | Weak existence | Pathwise uniqueness | Uniqueness in law | Strong existence |
+    |---|---|---|---|---|
+    | $dX_t = -X_t\,dt + dW_t$ | Yes | Yes | Yes | Yes |
+    | $dX_t = \mathrm{sgn}(X_t)\,dW_t$, $X_0 = 0$ | Yes | No | Yes | No |
+    | $dX_t = \kappa(\theta - X_t)\,dt + \sigma\sqrt{X_t}\,dW_t$ (CIR) | Yes | Yes | Yes | Yes |
+
+    **Justifications:**
+
+    **OU process** $dX_t = -X_t\,dt + dW_t$: Both $b(x) = -x$ and $\sigma(x) = 1$ are globally Lipschitz (with $K = 1$) and satisfy linear growth. The main existence and uniqueness theorem gives strong existence and pathwise uniqueness. Uniqueness in law follows since pathwise uniqueness implies it.
+
+    **Tanaka's SDE** $dX_t = \mathrm{sgn}(X_t)\,dW_t$, $X_0 = 0$: Weak existence holds via the Tanaka--Meyer construction ($X_t = |B_t|$). Pathwise uniqueness fails by the Engelbert--Schmidt theorem (the coefficient $\mathrm{sgn}(x)$ is discontinuous at $x = 0$). Strong existence fails by the contrapositive of Yamada--Watanabe. Uniqueness in law holds: every weak solution has the law of reflected Brownian motion $|B_t|$.
+
+    **CIR process:** The drift $b(x) = \kappa(\theta - x)$ is globally Lipschitz with constant $\kappa$. The diffusion $\sigma(x) = \sigma\sqrt{x}$ is not globally Lipschitz, but satisfies the Yamada--Watanabe condition with $\rho(u) = \sigma u^{1/2}$ (since $\int_0^\epsilon u^{-1}\,du = +\infty$). Linear growth holds since $|\sqrt{x}| \leq 1 + |x|$. Weak existence follows from general results (e.g., the Stroock--Varadhan martingale problem, or direct construction). Pathwise uniqueness holds by the Yamada--Watanabe $\rho$-condition. By the Yamada--Watanabe theorem, strong existence and uniqueness in law follow.

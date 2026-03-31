@@ -283,3 +283,193 @@ and verify that $f(x) \geq 0$ on $[0, b]$.
 (a) Differentiate with respect to $\lambda$ at $\lambda = 0$ to recover $\mathbb{E}_x[\tau_0]$. What do you find, and is it consistent with $\mathbb{E}_x[\tau_0] = \infty$?
 
 (b) For BM on $(0, b)$ hitting either boundary, the Laplace transform satisfies $\frac{1}{2}v'' = \lambda v$ with $v(0) = v(b) = 1$. Solve this ODE and verify the boundary conditions. Use your solution to show that $\mathbb{E}_x[e^{-\lambda\tau}] \to 1$ as $\lambda \to 0$, consistent with $\tau < \infty$ a.s.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The generator for BM with drift is $\mathcal{L}f = \mu f' + \frac{\sigma^2}{2}f''$. The Poisson equation is:
+
+    $$
+    \mu u' + \frac{\sigma^2}{2}u'' = -1, \qquad u(a) = 0, \quad u(b) = 0
+    $$
+
+    **Solve the homogeneous equation** $\mu u' + \frac{\sigma^2}{2}u'' = 0$: the characteristic equation $\frac{\sigma^2}{2}r^2 + \mu r = 0$ gives $r = 0$ and $r = -2\mu/\sigma^2$. So the homogeneous solution is $u_h = A + B e^{-2\mu x/\sigma^2}$.
+
+    **Particular solution**: Try $u_p = Cx$. Then $u_p' = C$, $u_p'' = 0$, so $\mu C = -1$, giving $C = -1/\mu$ (assuming $\mu \neq 0$). So $u_p = -x/\mu$.
+
+    **General solution**: $u(x) = A + B e^{-2\mu x/\sigma^2} - x/\mu$.
+
+    **Apply boundary conditions**:
+
+    - $u(a) = 0$: $A + B e^{-2\mu a/\sigma^2} - a/\mu = 0$
+    - $u(b) = 0$: $A + B e^{-2\mu b/\sigma^2} - b/\mu = 0$
+
+    Subtracting: $B(e^{-2\mu a/\sigma^2} - e^{-2\mu b/\sigma^2}) = (b-a)/\mu$, so:
+
+    $$
+    B = \frac{b - a}{\mu(e^{-2\mu a/\sigma^2} - e^{-2\mu b/\sigma^2})}
+    $$
+
+    and $A = a/\mu - B e^{-2\mu a/\sigma^2}$.
+
+    The expected exit time is:
+
+    $$
+    \mathbb{E}_x[\tau] = \frac{b - x}{\mu} - \frac{b - a}{\mu}\cdot\frac{e^{-2\mu x/\sigma^2} - e^{-2\mu b/\sigma^2}}{e^{-2\mu a/\sigma^2} - e^{-2\mu b/\sigma^2}}
+    $$
+
+    **Verification** ($\mu = 0$, $\sigma = 1$): As $\mu \to 0$, set $\gamma = 2\mu/\sigma^2 \to 0$. Using $e^{-\gamma x} \approx 1 - \gamma x + \gamma^2 x^2/2$:
+
+    $$
+    \frac{e^{-\gamma x} - e^{-\gamma b}}{e^{-\gamma a} - e^{-\gamma b}} \approx \frac{\gamma(b - x)}{\gamma(b - a)} = \frac{b - x}{b - a}
+    $$
+
+    and $\frac{b-x}{\mu} - \frac{b-a}{\mu}\cdot\frac{b-x}{b-a} = \frac{b-x}{\mu} - \frac{b-x}{\mu} = 0$. This is $0/0$, so we need a more careful expansion. Expanding to second order and using L'Hopital's rule in $\mu$, one recovers $(x-a)(b-x)$, matching the driftless BM result.
+
+??? success "Solution to Exercise 2"
+    The OU generator is $\mathcal{L}f = -\kappa x\,f' + \frac{\sigma^2}{2}f''$. The Poisson equation is:
+
+    $$
+    -\kappa x\,u'(x) + \frac{\sigma^2}{2}u''(x) = -1, \qquad u(-a) = u(a) = 0
+    $$
+
+    **(a)** The OU process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$ has a symmetric law: if $X_0 = -x_0$, then $-X_t$ has the same law as $X_t$ starting from $x_0$ (since $d(-X_t) = -\kappa(-X_t)\,dt + \sigma\,d(-W_t)$ and $-W_t$ is also a standard BM). The domain $(-a, a)$ is symmetric about the origin. Therefore, by the symmetry of the process and domain, $u(x) = \mathbb{E}_x[\tau]$ must satisfy $u(-x) = u(x)$, i.e., $u$ is an even function.
+
+    This can also be verified from the ODE: if $u(x)$ is a solution, then $\tilde{u}(x) := u(-x)$ satisfies $-\kappa(-x)\tilde{u}'(-x)\cdot(-1) + \frac{\sigma^2}{2}\tilde{u}''(-x) = -\kappa x\,u'(-x)(-1)(-1) + \frac{\sigma^2}{2}u''(-x) = -\kappa x u'(-x) + \frac{\sigma^2}{2}u''(-x) = -1$ (evaluating the ODE at $-x$). So $\tilde{u}$ also solves the same ODE with the same boundary conditions, and by uniqueness $u(x) = u(-x)$.
+
+    **(b)** Since $u$ is even and satisfies $u(-a) = u(a) = 0$ with $u \geq 0$ on $(-a,a)$, we show $u(0) \geq u(x)$ for all $x \in (-a,a)$. The maximum of $u$ occurs at some interior point $x^*$. At $x^*$, $u'(x^*) = 0$ and $u''(x^*) \leq 0$, so from the ODE:
+
+    $$
+    -\kappa x^* \cdot 0 + \frac{\sigma^2}{2}u''(x^*) = -1 \implies u''(x^*) = -\frac{2}{\sigma^2} < 0
+    $$
+
+    This is consistent. Since $u$ is even, $u'(0) = 0$, and from the ODE at $x = 0$: $u''(0) = -2/\sigma^2 < 0$, so $x = 0$ is a local maximum. Since $u$ is even and smooth with $u(0) > 0 = u(\pm a)$, and the ODE has a unique solution, $x = 0$ must be the global maximum on $(-a, a)$. Therefore $u(0) > u(x)$ for all $x \neq 0$ in $(-a, a)$.
+
+??? success "Solution to Exercise 3"
+    Apply the change of variable $Y_t = \ln S_t$. By Ito's lemma:
+
+    $$
+    dY_t = \left(r - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
+    $$
+
+    So $Y_t$ is BM with drift $\mu_Y = r - \sigma^2/2$ and volatility $\sigma_Y = \sigma$ on the interval $(\ln L, \ln U)$, starting at $y = \ln s$.
+
+    The exit probability formula for BM with drift on $(a_Y, b_Y) = (\ln L, \ln U)$ is:
+
+    $$
+    \mathbb{P}_y(Y_\tau = b_Y) = \frac{e^{-2\mu_Y y/\sigma_Y^2} - e^{-2\mu_Y a_Y/\sigma_Y^2}}{e^{-2\mu_Y b_Y/\sigma_Y^2} - e^{-2\mu_Y a_Y/\sigma_Y^2}}
+    $$
+
+    Setting $\gamma = 2\mu_Y/\sigma_Y^2 = 2(r - \sigma^2/2)/\sigma^2 = 2r/\sigma^2 - 1$:
+
+    $$
+    \mathbb{P}_s(S_\tau = U) = \frac{e^{-\gamma \ln s} - e^{-\gamma \ln L}}{e^{-\gamma \ln U} - e^{-\gamma \ln L}} = \frac{s^{-\gamma} - L^{-\gamma}}{U^{-\gamma} - L^{-\gamma}}
+    $$
+
+    where $\gamma = 2r/\sigma^2 - 1$. When $r = \sigma^2/2$, we have $\gamma = 0$ and L'Hopital gives $\mathbb{P}_s(S_\tau = U) = \frac{\ln s - \ln L}{\ln U - \ln L}$.
+
+??? success "Solution to Exercise 4"
+    **(a)** The probabilistic (Kakutani) representation is:
+
+    $$
+    f(x, y) = \mathbb{E}_{(x,y)}[g(B_\tau)]
+    $$
+
+    where $B_t = (W_t^1, W_t^2)$ is 2D Brownian motion starting at $(x,y) \in D$ and $\tau = \inf\{t : |B_t| = 1\}$ is the exit time from the unit disk. Here $g(\theta) = \cos\theta$, so $g(B_\tau) = \cos(\arg(B_\tau))$, which equals the $x$-coordinate of $B_\tau$ on the unit circle. Thus:
+
+    $$
+    f(x, y) = \mathbb{E}_{(x,y)}[W_\tau^1 / |B_\tau|] = \mathbb{E}_{(x,y)}[W_\tau^1]
+    $$
+
+    since $|B_\tau| = 1$.
+
+    **(b)** For $f(x, y) = x$:
+
+    - $\Delta f = \partial_{xx}f + \partial_{yy}f = 0 + 0 = 0$ in $D$ $\checkmark$
+    - On $\partial D$: a point on the unit circle is $(\cos\theta, \sin\theta)$, so $f(\cos\theta, \sin\theta) = \cos\theta = g(\theta)$ $\checkmark$
+
+    Therefore $f(x,y) = x$ is the unique harmonic function solving the Dirichlet problem with boundary data $g(\theta) = \cos\theta$ on the unit disk.
+
+??? success "Solution to Exercise 5"
+    We need to solve $\frac{1}{2}f''(x) = -x$ with $f(0) = 0$ and $f(b) = 0$.
+
+    Integrating twice: $f''(x) = -2x$, so $f'(x) = -x^2 + C_1$ and $f(x) = -\frac{x^3}{3} + C_1 x + C_2$.
+
+    From $f(0) = 0$: $C_2 = 0$.
+
+    From $f(b) = 0$: $-\frac{b^3}{3} + C_1 b = 0$, so $C_1 = \frac{b^2}{3}$.
+
+    Therefore:
+
+    $$
+    f(x) = \frac{b^2 x}{3} - \frac{x^3}{3} = \frac{x(b^2 - x^2)}{3}
+    $$
+
+    **Verification** ($f(x) \geq 0$ on $[0, b]$): For $x \in [0, b]$, we have $x \geq 0$ and $b^2 - x^2 \geq 0$, so $f(x) \geq 0$ $\checkmark$.
+
+    The maximum of $f$ occurs at $f'(x) = \frac{b^2}{3} - x^2 = 0$, i.e., $x = b/\sqrt{3}$, where $f(b/\sqrt{3}) = \frac{2b^3}{9\sqrt{3}}$.
+
+??? success "Solution to Exercise 6"
+    **(a)** The exit probability formula for BM with drift $\mu > 0$ on $(0, b)$ with $\sigma = 1$ gives:
+
+    $$
+    \mathbb{P}_x(X_\tau = 0) = \frac{e^{-2\mu x} - e^{-2\mu b}}{1 - e^{-2\mu b}}
+    $$
+
+    This follows from the general formula with $a = 0$. Equivalently:
+
+    $$
+    \mathbb{P}_x(\text{ruin}) = \frac{e^{-2\mu x} - e^{-2\mu b}}{1 - e^{-2\mu b}}
+    $$
+
+    **(b)** With $x = 50$, $b = 100$:
+
+    - **$\mu = 0$ (fair game)**: $\mathbb{P}_{50}(\text{ruin}) = \frac{b - x}{b} = \frac{50}{100} = 0.5$ (by L'Hopital or the driftless formula).
+    - **$\mu = 0.01$**: $\mathbb{P}_{50}(\text{ruin}) = \frac{e^{-1} - e^{-2}}{1 - e^{-2}} = \frac{0.3679 - 0.1353}{1 - 0.1353} \approx \frac{0.2326}{0.8647} \approx 0.269$.
+    - **$\mu = 0.1$**: $\mathbb{P}_{50}(\text{ruin}) = \frac{e^{-10} - e^{-20}}{1 - e^{-20}} \approx \frac{e^{-10}}{1} \approx 4.54 \times 10^{-5}$.
+
+    As $\mu \to \infty$: the drift is so strong that the process moves upward almost deterministically, so $\mathbb{P}_x(\text{ruin}) \to 0$. Formally, $e^{-2\mu x} \to 0$ and $e^{-2\mu b} \to 0$, but $e^{-2\mu x}/1 \to 0$ since $x > 0$.
+
+??? success "Solution to Exercise 7"
+    **(a)** The Laplace transform is $\mathbb{E}_x[e^{-\lambda\tau_0}] = e^{-\sqrt{2\lambda}\,x}$. Differentiating with respect to $\lambda$:
+
+    $$
+    \frac{d}{d\lambda}\mathbb{E}_x[e^{-\lambda\tau_0}] = -\mathbb{E}_x[\tau_0\,e^{-\lambda\tau_0}]
+    $$
+
+    On the other hand:
+
+    $$
+    \frac{d}{d\lambda}e^{-\sqrt{2\lambda}\,x} = -\frac{x}{\sqrt{2\lambda}}\,e^{-\sqrt{2\lambda}\,x}
+    $$
+
+    Setting $\lambda \to 0^+$: $\mathbb{E}_x[\tau_0\,e^{-\lambda\tau_0}] = \frac{x}{\sqrt{2\lambda}}\,e^{-\sqrt{2\lambda}\,x} \to \frac{x}{\sqrt{2\lambda}} \to \infty$. By monotone convergence, $\mathbb{E}_x[\tau_0] = \lim_{\lambda \to 0^+}\mathbb{E}_x[\tau_0\,e^{-\lambda\tau_0}] = \infty$, consistent with the known result $\mathbb{E}_x[\tau_0] = \infty$.
+
+    **(b)** The ODE $\frac{1}{2}v'' = \lambda v$ has characteristic equation $r^2 = 2\lambda$, giving $r = \pm\sqrt{2\lambda}$. Set $\alpha = \sqrt{2\lambda}$. General solution:
+
+    $$
+    v(x) = A\cosh(\alpha x) + B\sinh(\alpha x)
+    $$
+
+    (using hyperbolic functions, which are more convenient for symmetric boundary conditions). Apply boundary conditions:
+
+    - $v(0) = 1$: $A = 1$
+    - $v(b) = 1$: $\cosh(\alpha b) + B\sinh(\alpha b) = 1$, so $B = \frac{1 - \cosh(\alpha b)}{\sinh(\alpha b)}$
+
+    Therefore:
+
+    $$
+    v(x) = \cosh(\alpha x) + \frac{1 - \cosh(\alpha b)}{\sinh(\alpha b)}\sinh(\alpha x)
+    $$
+
+    This can be simplified. Using the identity $\cosh(\alpha x)\sinh(\alpha b) + \sinh(\alpha x) - \sinh(\alpha x)\cosh(\alpha b) = \sinh(\alpha(b-x)) + \sinh(\alpha x)$... More cleanly, write:
+
+    $$
+    v(x) = \frac{\cosh(\alpha(x - b/2))}{\cosh(\alpha b/2)}
+    $$
+
+    **Verification**: $v(0) = \frac{\cosh(\alpha b/2)}{\cosh(\alpha b/2)} = 1$ $\checkmark$ and $v(b) = \frac{\cosh(\alpha b/2)}{\cosh(\alpha b/2)} = 1$ $\checkmark$.
+
+    As $\lambda \to 0$: $\alpha \to 0$, so $\cosh(\alpha(x - b/2)) \to 1$ and $\cosh(\alpha b/2) \to 1$, giving $v(x) \to 1$. Thus $\mathbb{E}_x[e^{-\lambda\tau}] \to 1$, which means $\mathbb{P}(\tau < \infty) = 1$: BM exits $(0,b)$ in finite time almost surely.

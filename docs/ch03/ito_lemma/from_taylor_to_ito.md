@@ -191,3 +191,118 @@ $\square$
 ---
 
 **Exercise 7.** Suppose two independent Brownian motions $W_t^1$ and $W_t^2$ are given. Using the multiplication table extended to two independent Brownian motions (where $dW_t^1 \cdot dW_t^2 = 0$), compute $(dW_t^1 + dW_t^2)^2$ and interpret the result.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** $(3\,dt)(2\,dW_t) = 6\,dt\,dW_t = 6 \cdot 0 = 0$ since $dt\,dW_t = 0$ by the multiplication table.
+
+    **(b)** $(dW_t)(5\,dW_t) = 5(dW_t)^2 = 5\,dt$ since $(dW_t)^2 = dt$.
+
+    **(c)** Expanding:
+
+    $$
+    (\mu\,dt + \sigma\,dW_t)^2 = \mu^2(dt)^2 + 2\mu\sigma\,dt\,dW_t + \sigma^2(dW_t)^2
+    $$
+
+    Applying the multiplication table: $(dt)^2 = 0$, $dt\,dW_t = 0$, $(dW_t)^2 = dt$. Therefore
+
+    $$
+    (\mu\,dt + \sigma\,dW_t)^2 = \sigma^2\,dt
+    $$
+
+    Only the Brownian component survives when squaring an Itô differential.
+
+??? success "Solution to Exercise 2"
+    For $f(x) = e^x$ (no explicit time dependence), we have $f_t = 0$, $f_{tt} = 0$, $f_{tx} = 0$, and $f_x = e^x$, $f_{xx} = e^x$. The five-term expansion is
+
+    $$
+    f(t, W_t + dW_t) - f(t, W_t) = 0 \cdot dt + e^{W_t}\,dW_t + \frac{1}{2}(0)(dt)^2 + 0 \cdot dt\,dW_t + \frac{1}{2}e^{W_t}(dW_t)^2
+    $$
+
+    Applying the multiplication table: $(dt)^2 = 0$, $dt\,dW_t = 0$, $(dW_t)^2 = dt$:
+
+    $$
+    d(e^{W_t}) = e^{W_t}\,dW_t + \frac{1}{2}e^{W_t}\,dt
+    $$
+
+    The Itô correction $\frac{1}{2}e^{W_t}\,dt$ arises from the positive curvature of $e^x$ (since $f''(x) = e^x > 0$).
+
+??? success "Solution to Exercise 3"
+    If $dW_t = O(\sqrt{dt})$, then
+
+    $$
+    dt \cdot dW_t = O(dt \cdot \sqrt{dt}) = O((dt)^{3/2})
+    $$
+
+    Since $3/2 > 1$, this product vanishes faster than $dt$ as $dt \to 0$. Formally, $\frac{dt \cdot dW_t}{dt} = O((dt)^{1/2}) \to 0$, so $dt \cdot dW_t = o(dt)$. In the Taylor expansion, any term that is $o(dt)$ makes zero contribution in the infinitesimal limit and is therefore set to zero in the Itô multiplication table.
+
+??? success "Solution to Exercise 4"
+    For $f(t, x) = \sin(x)$: $f_t = 0$, $f_x = \cos(x)$, $f_{tt} = 0$, $f_{tx} = 0$, $f_{xx} = -\sin(x)$. The five-term expansion gives
+
+    $$
+    d(\sin(W_t)) = 0 \cdot dt + \cos(W_t)\,dW_t + \frac{1}{2}(0)(dt)^2 + 0 \cdot dt\,dW_t + \frac{1}{2}(-\sin(W_t))(dW_t)^2
+    $$
+
+    Applying the multiplication table (only $(dW_t)^2 = dt$ survives):
+
+    $$
+    d(\sin(W_t)) = \cos(W_t)\,dW_t - \frac{1}{2}\sin(W_t)\,dt
+    $$
+
+    The Itô correction $-\frac{1}{2}\sin(W_t)\,dt$ arises from the negative curvature of $\sin(x)$ at points where $\sin(x) > 0$.
+
+??? success "Solution to Exercise 5"
+    **(a)** Expanding $(dX_t)^2 = (\mu_t\,dt + \sigma_t\,dW_t)^2$:
+
+    $$
+    (dX_t)^2 = \mu_t^2(dt)^2 + 2\mu_t\sigma_t\,dt\,dW_t + \sigma_t^2(dW_t)^2
+    $$
+
+    **(b)** Applying the multiplication table term by term:
+
+    - $\mu_t^2(dt)^2 = 0$
+    - $2\mu_t\sigma_t\,dt\,dW_t = 0$
+    - $\sigma_t^2(dW_t)^2 = \sigma_t^2\,dt$
+
+    Therefore $(dX_t)^2 = \sigma_t^2\,dt$.
+
+    **(c)** The second-order Taylor term becomes
+
+    $$
+    \frac{1}{2}f_{xx}(dX_t)^2 = \frac{1}{2}f''(X_t)\sigma_t^2\,dt
+    $$
+
+    This is the Itô correction for a general Itô process: it depends only on the diffusion coefficient $\sigma_t$ and the second derivative of $f$.
+
+??? success "Solution to Exercise 6"
+    For $f(x) = x^3$: $f_t = 0$, $f_x = 3x^2$, $f_{xx} = 6x$, $f_{tt} = f_{tx} = 0$. The five-term expansion:
+
+    $$
+    d(W_t^3) = 0 \cdot dt + 3W_t^2\,dW_t + 0 + 0 + \frac{1}{2}(6W_t)(dW_t)^2
+    $$
+
+    Applying $(dW_t)^2 = dt$:
+
+    $$
+    d(W_t^3) = 3W_t^2\,dW_t + 3W_t\,dt
+    $$
+
+    Verification via Itô's formula: $df(B_t) = f'(B_t)\,dB_t + \frac{1}{2}f''(B_t)\,dt = 3W_t^2\,dW_t + \frac{1}{2}(6W_t)\,dt = 3W_t^2\,dW_t + 3W_t\,dt$. The results match.
+
+??? success "Solution to Exercise 7"
+    Expanding $(dW_t^1 + dW_t^2)^2$:
+
+    $$
+    (dW_t^1 + dW_t^2)^2 = (dW_t^1)^2 + 2\,dW_t^1\,dW_t^2 + (dW_t^2)^2
+    $$
+
+    Since $W_t^1$ and $W_t^2$ are independent: $(dW_t^1)^2 = dt$, $(dW_t^2)^2 = dt$, and $dW_t^1 \cdot dW_t^2 = 0$. Therefore
+
+    $$
+    (dW_t^1 + dW_t^2)^2 = dt + 0 + dt = 2\,dt
+    $$
+
+    Interpretation: the process $W_t^1 + W_t^2$ has quadratic variation $2t$, which is twice that of a single Brownian motion. This is consistent with the fact that $W_t^1 + W_t^2$ has variance $2t$ (the variances add for independent processes). Equivalently, $\frac{1}{\sqrt{2}}(W_t^1 + W_t^2)$ is a standard Brownian motion with quadratic variation $t$.

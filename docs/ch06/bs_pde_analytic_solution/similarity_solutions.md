@@ -1149,3 +1149,273 @@ This is the **geometric essence** of option pricing!
 ---
 
 **Exercise 6.** A **perpetual American put** is an American put with $T = \infty$. Argue from dimensional analysis that the price must have the form $P(S) = K \cdot h(S/K, r/\sigma^2)$ for some function $h$ (no time dependence since $T = \infty$). Using the ODE that results from the time-independent Black-Scholes equation, find the similarity solution and the optimal exercise boundary.
+
+---
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+
+    The Black-Scholes call price depends on the dimensional quantities $S$, $K$, $\tau = T - t$, $\sigma$, and $r$. These involve two fundamental dimensions: currency $[\$]$ and time $[T]$.
+
+    By the Buckingham Pi theorem, any physical law relating $n$ dimensional quantities with $m$ independent dimensions can be expressed in terms of $n - m$ dimensionless groups. Here $n = 6$ (including $C$) and $m = 2$, giving 4 dimensionless groups:
+
+    $$
+    \pi_1 = \frac{S}{K}, \quad \pi_2 = \sigma^2 \tau, \quad \pi_3 = r\tau, \quad \pi_4 = \frac{C}{K}
+    $$
+
+    The Buckingham Pi theorem requires $\pi_4 = f(\pi_1, \pi_2, \pi_3)$, i.e.,
+
+    $$
+    C = K \cdot f\!\left(\frac{S}{K},\, \sigma^2\tau,\, r\tau\right)
+    $$
+
+    Now verify with the Black-Scholes formula $C = S\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2)$. Dividing by $K$:
+
+    $$
+    \frac{C}{K} = \frac{S}{K}\mathcal{N}(d_1) - e^{-r\tau}\mathcal{N}(d_2)
+    $$
+
+    The arguments $d_1$ and $d_2$ are
+
+    $$
+    d_1 = \frac{\ln(S/K) + (r + \sigma^2/2)\tau}{\sigma\sqrt{\tau}}, \quad d_2 = d_1 - \sigma\sqrt{\tau}
+    $$
+
+    Both depend only on $S/K$, $\sigma^2\tau$, and $r\tau$. Therefore the dimensionless function is
+
+    $$
+    f(x, v, \rho) = x\,\mathcal{N}\!\left(\frac{\ln x + \rho + v/2}{\sqrt{v}}\right) - e^{-\rho}\,\mathcal{N}\!\left(\frac{\ln x + \rho - v/2}{\sqrt{v}}\right)
+    $$
+
+    where $x = S/K$, $v = \sigma^2\tau$, $\rho = r\tau$, confirming the Buckingham Pi prediction exactly.
+
+??? success "Solution to Exercise 2"
+
+    Let $\xi = x / \sqrt{\tau}$ and assume $F(x, \tau) = g(\xi)$. We compute the partial derivatives using the chain rule. Since $\xi = x\tau^{-1/2}$:
+
+    $$
+    \frac{\partial \xi}{\partial \tau} = -\frac{x}{2\tau^{3/2}} = -\frac{\xi}{2\tau}, \quad \frac{\partial \xi}{\partial x} = \frac{1}{\sqrt{\tau}}
+    $$
+
+    Therefore:
+
+    $$
+    \frac{\partial F}{\partial \tau} = g'(\xi)\cdot\left(-\frac{\xi}{2\tau}\right)
+    $$
+
+    $$
+    \frac{\partial F}{\partial x} = g'(\xi)\cdot\frac{1}{\sqrt{\tau}}, \quad \frac{\partial^2 F}{\partial x^2} = g''(\xi)\cdot\frac{1}{\tau}
+    $$
+
+    Substituting into $\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2}$:
+
+    $$
+    -\frac{\xi}{2\tau}g'(\xi) = \frac{\sigma^2}{2\tau}g''(\xi)
+    $$
+
+    Multiplying both sides by $\tau$ yields:
+
+    $$
+    -\frac{\xi}{2}g'(\xi) = \frac{\sigma^2}{2}g''(\xi)
+    $$
+
+    For the standard heat equation with $\sigma = 1$, this becomes $g'' + \xi g' = 0$. To solve, let $h = g'$:
+
+    $$
+    h' + \xi h = 0 \implies h(\xi) = A e^{-\xi^2/2}
+    $$
+
+    Integrating:
+
+    $$
+    g(\xi) = A\int_0^{\xi} e^{-s^2/2}\,ds + B = A\sqrt{\frac{\pi}{2}}\,\mathrm{erf}\!\left(\frac{\xi}{\sqrt{2}}\right) + B
+    $$
+
+    For general $\sigma$, the substitution $\eta = \xi/\sigma$ gives $g(\xi) = A\,\mathrm{erf}\!\left(\frac{\xi}{\sigma\sqrt{2}}\right) + B$. This is precisely the **error function** solution. The fundamental solution of the heat equation, $\frac{1}{\sigma\sqrt{2\pi\tau}}e^{-x^2/(2\sigma^2\tau)}$, is recovered by differentiating $g$ with respect to $x$, confirming that the Gaussian kernel arises naturally from the similarity reduction.
+
+??? success "Solution to Exercise 3"
+
+    Let $S_t$ satisfy the GBM SDE under the risk-neutral measure:
+
+    $$
+    dS_t = rS_t\,dt + \sigma S_t\,dW_t
+    $$
+
+    For any constant $\lambda > 0$, define $\tilde{S}_t = \lambda S_t$. Then:
+
+    $$
+    d\tilde{S}_t = \lambda\,dS_t = r(\lambda S_t)\,dt + \sigma(\lambda S_t)\,dW_t = r\tilde{S}_t\,dt + \sigma\tilde{S}_t\,dW_t
+    $$
+
+    So $\tilde{S}_t$ satisfies the same GBM SDE with the same drift $r$ and volatility $\sigma$, confirming scale invariance.
+
+    Now consider the European call price $C(S, K, \tau) = e^{-r\tau}\mathbb{E}[(S_T - K)^+]$. For any $\lambda > 0$:
+
+    $$
+    C(\lambda S, \lambda K, \tau) = e^{-r\tau}\mathbb{E}[(\lambda S_T - \lambda K)^+] = \lambda\, e^{-r\tau}\mathbb{E}[(S_T - K)^+] = \lambda\, C(S, K, \tau)
+    $$
+
+    where we used the fact that $\lambda S_T$ has the same distribution as $S_T$ starting from $\lambda S$ (by scale invariance of GBM), and homogeneity of the payoff.
+
+    This shows $C$ is **homogeneous of degree 1** in $(S, K)$: $C(\lambda S, \lambda K, \tau) = \lambda C(S, K, \tau)$. Setting $\lambda = 1/K$:
+
+    $$
+    C(S, K, \tau) = K \cdot C\!\left(\frac{S}{K}, 1, \tau\right)
+    $$
+
+    Therefore $C$ depends on $S$ and $K$ only through the moneyness ratio $S/K$. This is a direct consequence of the scale invariance of the underlying GBM dynamics.
+
+??? success "Solution to Exercise 4"
+
+    Euler's theorem states that if $f$ is homogeneous of degree $k$, then $\sum_i x_i \frac{\partial f}{\partial x_i} = k f$. From Exercise 3, $C(S, K, \tau)$ is homogeneous of degree 1 in $(S, K)$, so:
+
+    $$
+    S\frac{\partial C}{\partial S} + K\frac{\partial C}{\partial K} = C
+    $$
+
+    We verify directly using the Black-Scholes formula $C = S\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2)$.
+
+    **Step 1**: Compute $\frac{\partial C}{\partial S}$. Note that $\frac{\partial d_1}{\partial S} = \frac{\partial d_2}{\partial S} = \frac{1}{S\sigma\sqrt{\tau}}$. Then:
+
+    $$
+    \frac{\partial C}{\partial S} = \mathcal{N}(d_1) + S\mathcal{N}'(d_1)\frac{1}{S\sigma\sqrt{\tau}} - Ke^{-r\tau}\mathcal{N}'(d_2)\frac{1}{S\sigma\sqrt{\tau}}
+    $$
+
+    Using the identity $S\mathcal{N}'(d_1) = Ke^{-r\tau}\mathcal{N}'(d_2)$ (which follows from $d_1 - d_2 = \sigma\sqrt{\tau}$ and the log-normal relationship), the last two terms cancel:
+
+    $$
+    \frac{\partial C}{\partial S} = \mathcal{N}(d_1) = \Delta
+    $$
+
+    **Step 2**: Compute $\frac{\partial C}{\partial K}$. Since $\frac{\partial d_1}{\partial K} = \frac{\partial d_2}{\partial K} = -\frac{1}{K\sigma\sqrt{\tau}}$:
+
+    $$
+    \frac{\partial C}{\partial K} = S\mathcal{N}'(d_1)\left(-\frac{1}{K\sigma\sqrt{\tau}}\right) - e^{-r\tau}\mathcal{N}(d_2) - Ke^{-r\tau}\mathcal{N}'(d_2)\left(-\frac{1}{K\sigma\sqrt{\tau}}\right)
+    $$
+
+    Again using $S\mathcal{N}'(d_1) = Ke^{-r\tau}\mathcal{N}'(d_2)$, the first and third terms cancel:
+
+    $$
+    \frac{\partial C}{\partial K} = -e^{-r\tau}\mathcal{N}(d_2)
+    $$
+
+    **Step 3**: Verify Euler's identity:
+
+    $$
+    S\frac{\partial C}{\partial S} + K\frac{\partial C}{\partial K} = S\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2) = C
+    $$
+
+    This confirms Euler's identity for the degree-1 homogeneous Black-Scholes call price.
+
+??? success "Solution to Exercise 5"
+
+    Set $S = K$ (ATM) and $r = 0$. The Black-Scholes formula becomes:
+
+    $$
+    C = S\mathcal{N}(d_1) - S\mathcal{N}(d_2)
+    $$
+
+    where $d_1 = \frac{\sigma\sqrt{T}}{2}$ and $d_2 = -\frac{\sigma\sqrt{T}}{2}$.
+
+    By symmetry of the normal distribution, $\mathcal{N}(-x) = 1 - \mathcal{N}(x)$, so:
+
+    $$
+    C = S\mathcal{N}(d_1) - S(1 - \mathcal{N}(d_1)) = S(2\mathcal{N}(d_1) - 1)
+    $$
+
+    **Dimensional analysis**: With $r = 0$ and $S = K$, the only remaining dimensional quantities are $S$ $[\$]$, $\sigma$ $[T^{-1/2}]$, and $T$ $[T]$. The unique dimensionless combination from $\sigma$ and $T$ is $\sigma\sqrt{T}$, so $C$ must have the form:
+
+    $$
+    C = S \cdot \psi(\sigma\sqrt{T})
+    $$
+
+    where $\psi(z) = 2\mathcal{N}(z/2) - 1$.
+
+    **Proportionality constant**: For small $z = \sigma\sqrt{T}$, expand $\mathcal{N}(z/2)$ using $\mathcal{N}(x) \approx \frac{1}{2} + \frac{x}{\sqrt{2\pi}}$ for small $x$:
+
+    $$
+    C \approx S\left(2\left(\frac{1}{2} + \frac{\sigma\sqrt{T}}{2\sqrt{2\pi}}\right) - 1\right) = S\cdot\frac{\sigma\sqrt{T}}{\sqrt{2\pi}}
+    $$
+
+    Since $\frac{1}{\sqrt{2\pi}} \approx 0.3989 \approx 0.4$:
+
+    $$
+    C \approx 0.4\, S\sigma\sqrt{T}
+    $$
+
+    This confirms the ATM approximation as a similarity scaling result, with the proportionality constant being exactly $1/\sqrt{2\pi}$.
+
+??? success "Solution to Exercise 6"
+
+    **Dimensional analysis**: For a perpetual American put ($T = \infty$), there is no time dependence, so $\tau = T - t \to \infty$ is irrelevant. The remaining quantities are $S$ $[\$]$, $K$ $[\$]$, $\sigma$ $[T^{-1/2}]$, and $r$ $[T^{-1}]$. The dimensionless groups are $S/K$ and $r/\sigma^2$, yielding:
+
+    $$
+    P(S) = K \cdot h\!\left(\frac{S}{K},\, \frac{r}{\sigma^2}\right)
+    $$
+
+    **The ODE**: With $\partial V/\partial t = 0$, the Black-Scholes PDE reduces to the time-independent ODE:
+
+    $$
+    \frac{\sigma^2 S^2}{2}P''(S) + rSP'(S) - rP(S) = 0
+    $$
+
+    This is an Euler-Cauchy equation. Substituting $P(S) = AS^\beta$:
+
+    $$
+    \frac{\sigma^2}{2}\beta(\beta - 1)AS^\beta + r\beta AS^\beta - rAS^\beta = 0
+    $$
+
+    Dividing by $AS^\beta$:
+
+    $$
+    \frac{\sigma^2}{2}\beta(\beta - 1) + r\beta - r = 0
+    $$
+
+    $$
+    \frac{\sigma^2}{2}\beta^2 + \left(r - \frac{\sigma^2}{2}\right)\beta - r = 0
+    $$
+
+    The roots are:
+
+    $$
+    \beta = \frac{-(r - \sigma^2/2) \pm \sqrt{(r - \sigma^2/2)^2 + 2\sigma^2 r}}{\sigma^2}
+    $$
+
+    Simplifying the discriminant: $(r - \sigma^2/2)^2 + 2\sigma^2 r = (r + \sigma^2/2)^2$, so:
+
+    $$
+    \beta_1 = 1, \quad \beta_2 = -\frac{2r}{\sigma^2}
+    $$
+
+    The general solution is $P(S) = A_1 S + A_2 S^{\beta_2}$ where $\beta_2 = -2r/\sigma^2 < 0$.
+
+    **Boundary conditions**: As $S \to \infty$, $P(S) \to 0$, so $A_1 = 0$. At the optimal exercise boundary $S^*$, value matching gives $P(S^*) = K - S^*$ and smooth pasting gives $P'(S^*) = -1$.
+
+    From $P(S) = A_2 S^{\beta_2}$: value matching yields $A_2 (S^*)^{\beta_2} = K - S^*$, and smooth pasting yields $A_2 \beta_2 (S^*)^{\beta_2 - 1} = -1$.
+
+    Dividing the second by the first:
+
+    $$
+    \frac{\beta_2}{S^*} = \frac{-1}{K - S^*} \implies S^* = \frac{\beta_2 K}{\beta_2 - 1} = \frac{2rK}{2r + \sigma^2}
+    $$
+
+    Substituting back:
+
+    $$
+    A_2 = \frac{K - S^*}{(S^*)^{\beta_2}} = \frac{K}{(S^*)^{\beta_2}}\cdot\frac{-1}{\beta_2 - 1}
+    $$
+
+    The perpetual American put price is:
+
+    $$
+    P(S) = (K - S^*)\left(\frac{S}{S^*}\right)^{\beta_2} \quad \text{for } S \geq S^*
+    $$
+
+    $$
+    P(S) = K - S \quad \text{for } S \leq S^*
+    $$
+
+    where $\beta_2 = -2r/\sigma^2$ and $S^* = \frac{2rK}{2r + \sigma^2}$. This is a pure similarity solution: it depends on $S$ and $K$ only through $S/K$, and on $r$ and $\sigma$ only through the ratio $r/\sigma^2$.

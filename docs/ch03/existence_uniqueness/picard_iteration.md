@@ -311,3 +311,234 @@ $$
 ---
 
 **Exercise 7.** Let $X_t$ and $Y_t$ be two solutions of the same SDE with $X_0 = Y_0 = x_0$ under global Lipschitz conditions. Define $\varphi(t) = \mathbb{E}[\sup_{s \leq t}|X_s - Y_s|^2]$. Show that $\varphi$ satisfies $\varphi(t) \leq C \int_0^t \varphi(s)\,ds$ and $\varphi(0) = 0$. State Gronwall's inequality and use it to conclude $\varphi(t) = 0$ for all $t \in [0,T]$. Why is this stronger than the conclusion one would get from the Picard convergence argument alone?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The coefficients are $b(t,x) = \alpha$ and $\sigma(t,x) = \beta$, both constant (independent of $x$).
+
+    **Iterate 0:**
+
+    $$
+    X_t^{(0)} = x_0
+    $$
+
+    **Iterate 1:**
+
+    $$
+    X_t^{(1)} = x_0 + \int_0^t \alpha\,ds + \int_0^t \beta\,dW_s = x_0 + \alpha t + \beta W_t
+    $$
+
+    **Iterate 2:** Since $X_s^{(1)} = x_0 + \alpha s + \beta W_s$, we substitute into the iteration formula. Because $b$ and $\sigma$ are constant (they do not depend on $X_s^{(1)}$):
+
+    $$
+    X_t^{(2)} = x_0 + \int_0^t \alpha\,ds + \int_0^t \beta\,dW_s = x_0 + \alpha t + \beta W_t
+    $$
+
+    Since the coefficients are independent of $x$, every iterate gives the same result:
+
+    $$
+    X_t^{(n)} = x_0 + \alpha t + \beta W_t \quad \text{for all } n \geq 1
+    $$
+
+    This coincides with the exact solution $X_t = x_0 + \alpha t + \beta W_t$, which can be verified directly by taking differentials: $dX_t = \alpha\,dt + \beta\,dW_t$.
+
+??? success "Solution to Exercise 2"
+    We have $X_t^{(0)} = x_0$ and $X_t^{(1)} = x_0(1 + \alpha t + \beta W_t)$, so:
+
+    $$
+    X_t^{(1)} - X_t^{(0)} = x_0(\alpha t + \beta W_t)
+    $$
+
+    Computing the second moment:
+
+    $$
+    \mathbb{E}\bigl[|X_t^{(1)} - X_t^{(0)}|^2\bigr] = x_0^2\,\mathbb{E}\bigl[(\alpha t + \beta W_t)^2\bigr]
+    $$
+
+    Expanding the square and using $\mathbb{E}[W_t] = 0$, $\mathbb{E}[W_t^2] = t$:
+
+    $$
+    \mathbb{E}\bigl[(\alpha t + \beta W_t)^2\bigr] = \alpha^2 t^2 + 2\alpha\beta t\,\mathbb{E}[W_t] + \beta^2\,\mathbb{E}[W_t^2] = \alpha^2 t^2 + \beta^2 t
+    $$
+
+    Therefore:
+
+    $$
+    \mathbb{E}\bigl[|X_t^{(1)} - X_t^{(0)}|^2\bigr] = x_0^2(\alpha^2 t^2 + \beta^2 t)
+    $$
+
+    For the bound $e_0(t) \leq C(K)(1 + |x_0|^2)\,t$, note that the Lipschitz constant is $K = |\alpha| + |\beta|$. We have:
+
+    $$
+    x_0^2(\alpha^2 t^2 + \beta^2 t) \leq x_0^2(\alpha^2 T + \beta^2)\,t \leq K^2(1 + |x_0|^2)\,t
+    $$
+
+    where the last inequality uses $\alpha^2 T + \beta^2 \leq K^2(T+1)$ and absorbing constants. This confirms the Step 1 bound.
+
+??? success "Solution to Exercise 3"
+    Starting from the difference:
+
+    $$
+    X_t^{(n+1)} - X_t^{(n)} = \underbrace{\int_0^t \bigl[b(s, X_s^{(n)}) - b(s, X_s^{(n-1)})\bigr]\,ds}_{=: I_t} + \underbrace{\int_0^t \bigl[\sigma(s, X_s^{(n)}) - \sigma(s, X_s^{(n-1)})\bigr]\,dW_s}_{=: J_t}
+    $$
+
+    **(a)** Apply $(a+b)^2 \leq 2a^2 + 2b^2$:
+
+    $$
+    \sup_{s \leq t}|X_s^{(n+1)} - X_s^{(n)}|^2 \leq 2\sup_{s \leq t}|I_s|^2 + 2\sup_{s \leq t}|J_s|^2
+    $$
+
+    **(b)** For the drift term, Cauchy--Schwarz gives:
+
+    $$
+    |I_s|^2 = \left|\int_0^s [b(u, X_u^{(n)}) - b(u, X_u^{(n-1)})]\,du\right|^2 \leq s \int_0^s |b(u, X_u^{(n)}) - b(u, X_u^{(n-1)})|^2\,du
+    $$
+
+    so $\sup_{s \leq t}|I_s|^2 \leq t \int_0^t |b(u, X_u^{(n)}) - b(u, X_u^{(n-1)})|^2\,du$.
+
+    **(c)** For the stochastic integral, Doob's maximal inequality gives:
+
+    $$
+    \mathbb{E}\bigl[\sup_{s \leq t}|J_s|^2\bigr] \leq 4\,\mathbb{E}|J_t|^2
+    $$
+
+    and the Ito isometry gives:
+
+    $$
+    \mathbb{E}|J_t|^2 = \int_0^t \mathbb{E}\bigl[|\sigma(s, X_s^{(n)}) - \sigma(s, X_s^{(n-1)})|^2\bigr]\,ds
+    $$
+
+    **(d)** Applying the Lipschitz condition $|b(s,x) - b(s,y)|^2 + |\sigma(s,x) - \sigma(s,y)|^2 \leq 2K^2|x-y|^2$ (which follows from $(|b|+|\sigma|)^2 \leq 2(|b|^2 + |\sigma|^2)$ and the Lipschitz bound):
+
+    Combining all estimates and taking expectations:
+
+    $$
+    e_n(t) \leq 2t \int_0^t 2K^2\,\mathbb{E}|X_s^{(n)} - X_s^{(n-1)}|^2\,ds + 8K^2 \int_0^t \mathbb{E}|X_s^{(n)} - X_s^{(n-1)}|^2\,ds
+    $$
+
+    Since $\mathbb{E}|X_s^{(n)} - X_s^{(n-1)}|^2 \leq \mathbb{E}[\sup_{u \leq s}|X_u^{(n)} - X_u^{(n-1)}|^2] = e_{n-1}(s)$:
+
+    $$
+    e_n(t) \leq (4K^2 T + 8K^2)\int_0^t e_{n-1}(s)\,ds = C \int_0^t e_{n-1}(s)\,ds
+    $$
+
+    where $C = 4K^2(T + 2)$.
+
+??? success "Solution to Exercise 4"
+    Using the factorial decay bound $e_n(t) \leq (Ct)^n e_0(T)/n!$:
+
+    $$
+    \sup_{0 \leq t \leq T}\sqrt{e_n(t)} \leq \sqrt{\frac{(CT)^n e_0(T)}{n!}} = \sqrt{e_0(T)} \cdot \frac{(CT)^{n/2}}{\sqrt{n!}}
+    $$
+
+    Therefore:
+
+    $$
+    \sum_{n=0}^{\infty} \sup_{0 \leq t \leq T}\sqrt{e_n(t)} \leq \sqrt{e_0(T)} \sum_{n=0}^{\infty} \frac{(CT)^{n/2}}{\sqrt{n!}}
+    $$
+
+    The series $\sum_{n=0}^\infty (CT)^{n/2}/\sqrt{n!}$ converges by comparison with the exponential series. Specifically, by Stirling's approximation $n! \geq (n/e)^n$, so $\sqrt{n!} \geq (n/e)^{n/2}$, and the ratio test gives:
+
+    $$
+    \frac{(CT)^{(n+1)/2}/\sqrt{(n+1)!}}{(CT)^{n/2}/\sqrt{n!}} = \frac{(CT)^{1/2}}{\sqrt{n+1}} \to 0 \quad \text{as } n \to \infty
+    $$
+
+    so the series converges.
+
+    **Why this implies Cauchy:** Define $S_N(t) = X_t^{(0)} + \sum_{n=0}^{N-1}(X_t^{(n+1)} - X_t^{(n)})$, so $S_N = X^{(N)}$. The norm in $L^2(\Omega; C([0,T]))$ is $\|X\| = \mathbb{E}[\sup_{t \leq T}|X_t|^2]^{1/2}$. For $M > N$:
+
+    $$
+    \|X^{(M)} - X^{(N)}\| \leq \sum_{n=N}^{M-1}\|X^{(n+1)} - X^{(n)}\| = \sum_{n=N}^{M-1}\sqrt{e_n(T)}
+    $$
+
+    Since $\sum_n \sqrt{e_n(T)} < \infty$, the partial sums form a Cauchy sequence. Completeness of $L^2(\Omega; C([0,T], \mathbb{R}^d))$ then guarantees convergence to a limit $X$.
+
+??? success "Solution to Exercise 5"
+    The OU SDE is $dX_t = -\kappa X_t\,dt + \nu\,dW_t$ with $b(t,x) = -\kappa x$ and $\sigma(t,x) = \nu$.
+
+    **Iterate 0:**
+
+    $$
+    X_t^{(0)} = x_0
+    $$
+
+    **Iterate 1:**
+
+    $$
+    X_t^{(1)} = x_0 + \int_0^t (-\kappa x_0)\,ds + \int_0^t \nu\,dW_s = x_0 - \kappa x_0 t + \nu W_t = x_0(1 - \kappa t) + \nu W_t
+    $$
+
+    **Iterate 2:** Substituting $X_s^{(1)} = x_0(1 - \kappa s) + \nu W_s$:
+
+    $$
+    X_t^{(2)} = x_0 + \int_0^t \bigl[-\kappa\bigl(x_0(1-\kappa s) + \nu W_s\bigr)\bigr]\,ds + \int_0^t \nu\,dW_s
+    $$
+
+    $$
+    = x_0 - \kappa x_0 t + \kappa^2 x_0 \frac{t^2}{2} - \kappa\nu\int_0^t W_s\,ds + \nu W_t
+    $$
+
+    $$
+    = x_0\!\left(1 - \kappa t + \frac{\kappa^2 t^2}{2}\right) + \nu W_t - \kappa\nu\int_0^t W_s\,ds
+    $$
+
+    **Comparison with the exact solution:** The known solution is:
+
+    $$
+    X_t = x_0 e^{-\kappa t} + \nu\int_0^t e^{-\kappa(t-s)}\,dW_s
+    $$
+
+    The Taylor expansion of the deterministic part is $x_0 e^{-\kappa t} = x_0(1 - \kappa t + \kappa^2 t^2/2 - \cdots)$. For the stochastic integral, expand $e^{-\kappa(t-s)} = 1 - \kappa(t-s) + \cdots$:
+
+    $$
+    \nu\int_0^t e^{-\kappa(t-s)}\,dW_s = \nu\int_0^t dW_s - \kappa\nu\int_0^t (t-s)\,dW_s + \cdots
+    $$
+
+    $$
+    = \nu W_t - \kappa\nu\!\left(tW_t - \int_0^t s\,dW_s\right) + \cdots
+    $$
+
+    Using integration by parts, $\int_0^t (t-s)\,dW_s = tW_t - \int_0^t s\,dW_s$ and $\int_0^t s\,dW_s = tW_t - \int_0^t W_s\,ds$, so $\int_0^t(t-s)\,dW_s = \int_0^t W_s\,ds$. Therefore the first-order stochastic correction is $-\kappa\nu\int_0^t W_s\,ds$, matching $X_t^{(2)}$.
+
+??? success "Solution to Exercise 6"
+    In the ODE setting, $\sup_{s \leq t}|x_s^{(n+1)} - x_s^{(n)}|$ is a deterministic quantity that can be bounded directly using the Lipschitz condition and Cauchy--Schwarz for ordinary integrals.
+
+    In the SDE setting, the difference $X_t^{(n+1)} - X_t^{(n)}$ contains the stochastic integral:
+
+    $$
+    \int_0^t \bigl[\sigma(s, X_s^{(n)}) - \sigma(s, X_s^{(n-1)})\bigr]\,dW_s
+    $$
+
+    The supremum of a stochastic integral **cannot be bounded pathwise** in a useful way. For any continuous local martingale $M_t$, the sample paths of $\sup_{s \leq t}|M_s|$ are not controlled by $\langle M \rangle_t$ on a path-by-path basis — the supremum can be arbitrarily large on a set of small but positive probability.
+
+    To obtain a useful bound, one must take expectations and apply **Doob's maximal inequality**:
+
+    $$
+    \mathbb{E}\!\left[\sup_{s \leq t}|M_s|^2\right] \leq 4\,\mathbb{E}[|M_t|^2]
+    $$
+
+    followed by the **Ito isometry** to convert $\mathbb{E}[|M_t|^2]$ into an ordinary integral. Both tools operate at the level of $L^2$ expectations, not individual paths. This is why the convergence metric must be $\|X\| = \mathbb{E}[\sup_{t \leq T}|X_t|^2]^{1/2}$ rather than the pathwise supremum norm.
+
+??? success "Solution to Exercise 7"
+    **Deriving the integral inequality:** Define $Z_t = X_t - Y_t$. Since both solve the same SDE with $X_0 = Y_0 = x_0$:
+
+    $$
+    Z_t = \int_0^t [b(s,X_s) - b(s,Y_s)]\,ds + \int_0^t [\sigma(s,X_s) - \sigma(s,Y_s)]\,dW_s
+    $$
+
+    Using $(a+b)^2 \leq 2a^2 + 2b^2$, Cauchy--Schwarz on the drift integral, Doob's maximal inequality and the Ito isometry on the stochastic integral, and finally the Lipschitz condition:
+
+    $$
+    \varphi(t) = \mathbb{E}\!\left[\sup_{s \leq t}|Z_s|^2\right] \leq C\int_0^t \mathbb{E}|Z_s|^2\,ds \leq C\int_0^t \varphi(s)\,ds
+    $$
+
+    Since $Z_0 = 0$, we have $\varphi(0) = 0$.
+
+    **Gronwall's inequality (integral form):** If $\varphi : [0,T] \to [0,\infty)$ is continuous, $\varphi(t) \leq \alpha + \beta\int_0^t \varphi(s)\,ds$ with $\alpha \geq 0$ and $\beta > 0$, then $\varphi(t) \leq \alpha e^{\beta t}$.
+
+    Applying with $\alpha = 0$ and $\beta = C$: $\varphi(t) \leq 0$ for all $t$. Since $\varphi(t) \geq 0$, we conclude $\varphi(t) = 0$ for all $t \in [0,T]$.
+
+    **Why this is stronger than Picard convergence:** The Picard convergence argument shows that the iterates $X^{(n)}$ converge to a **unique limit** in $L^2(\Omega; C([0,T]))$. This proves that the solution constructed by Picard iteration is unique among all possible limits of that iteration scheme. However, it does not immediately rule out the existence of a solution that is not the limit of the Picard iterates. The Gronwall argument is stronger because it takes **any** two solutions $X$ and $Y$ (not necessarily constructed by Picard iteration) and proves $X = Y$ a.s. This establishes uniqueness among all adapted processes satisfying the SDE, not just among limits of a particular approximation scheme.

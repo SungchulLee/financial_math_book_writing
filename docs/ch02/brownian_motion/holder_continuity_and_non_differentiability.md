@@ -332,6 +332,104 @@ plt.show()
 
 ---
 
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Suppose $f:[0,T]\to\mathbb{R}$ is Hölder-$\alpha$ with $\alpha > 1$. Then there exists $C > 0$ such that for all $s, t \in [0,T]$:
+
+    $$
+    |f(t) - f(s)| \leq C\,|t - s|^\alpha
+    $$
+
+    For any fixed $s$ and $t$, divide the interval $[s, t]$ into $n$ equal parts with mesh $h = (t-s)/n$. By the triangle inequality and then the Hölder condition:
+
+    $$
+    |f(t) - f(s)| \leq \sum_{k=0}^{n-1}|f(s + (k+1)h) - f(s + kh)| \leq n \cdot C \cdot h^\alpha = C \cdot n \cdot \left(\frac{t-s}{n}\right)^\alpha = C(t-s)^\alpha \cdot n^{1-\alpha}
+    $$
+
+    Since $\alpha > 1$, we have $1 - \alpha < 0$, so $n^{1-\alpha} \to 0$ as $n \to \infty$. Therefore $|f(t) - f(s)| = 0$ for all $s, t$, which means $f$ is constant.
+
+??? success "Solution to Exercise 2"
+    We apply Kolmogorov's criterion with $p = 4$. For Brownian motion:
+
+    $$
+    \mathbb{E}[|W_t - W_s|^4] = 3(t-s)^2 = 3\,|t-s|^{1+1}
+    $$
+
+    This is of the form $\mathbb{E}[|X_t - X_s|^p] \leq C|t-s|^{1+\beta}$ with $p = 4$, $\beta = 1$, and $C = 3$.
+
+    By Kolmogorov's criterion, $W$ has a modification that is Hölder-$\alpha$ for every:
+
+    $$
+    \alpha < \frac{\beta}{p} = \frac{1}{4}
+    $$
+
+    This gives the weaker bound $\alpha < 1/4$. To recover the optimal bound $\alpha < 1/2$, one uses arbitrarily large $p$: with $p > 2$, $\mathbb{E}[|W_t - W_s|^p] = C_p |t-s|^{p/2}$, giving $\beta = p/2 - 1$ and $\alpha < (p/2-1)/p = 1/2 - 1/p$. Letting $p \to \infty$ yields $\alpha < 1/2$.
+
+??? success "Solution to Exercise 3"
+    For $X_t = t$, the quadratic variation along a uniform partition $\Pi_n = \{0 = t_0 < t_1 < \cdots < t_n = T\}$ with $\Delta t_i = T/n$ is:
+
+    $$
+    V_2(X, \Pi_n) = \sum_{i=0}^{n-1}(X_{t_{i+1}} - X_{t_i})^2 = \sum_{i=0}^{n-1}\left(\frac{T}{n}\right)^2 = n \cdot \frac{T^2}{n^2} = \frac{T^2}{n} \to 0
+    $$
+
+    The total variation is:
+
+    $$
+    V_1(X, \Pi_n) = \sum_{i=0}^{n-1}|X_{t_{i+1}} - X_{t_i}| = \sum_{i=0}^{n-1}\frac{T}{n} = T < \infty
+    $$
+
+    **Contrast with Brownian motion:** For $X_t = t$, the quadratic variation is zero and the total variation is $T$ (finite). For Brownian motion, the quadratic variation is $T$ (finite, nonzero) and the total variation is $+\infty$. Brownian paths oscillate so much that they accumulate infinite path length, yet the squared increments sum to a finite quantity.
+
+??? success "Solution to Exercise 4"
+    Let $f$ be Hölder-$\alpha$ with $\alpha > 1/2$. Then $|f(t_{i+1}) - f(t_i)| \leq C|t_{i+1} - t_i|^\alpha = C(\Delta t_i)^\alpha$ for some constant $C$. Therefore:
+
+    $$
+    \sum_i (f(t_{i+1}) - f(t_i))^2 \leq C^2 \sum_i (\Delta t_i)^{2\alpha}
+    $$
+
+    Since $2\alpha > 1$, each term satisfies $(\Delta t_i)^{2\alpha} \leq \|\Pi\|^{2\alpha - 1} \cdot \Delta t_i$:
+
+    $$
+    \sum_i (\Delta t_i)^{2\alpha} \leq \|\Pi\|^{2\alpha - 1} \sum_i \Delta t_i = T \cdot \|\Pi\|^{2\alpha - 1} \to 0
+    $$
+
+    as $\|\Pi\| \to 0$ (since $2\alpha - 1 > 0$). Therefore the quadratic variation of any Hölder-$\alpha$ function with $\alpha > 1/2$ is zero.
+
+??? success "Solution to Exercise 5"
+    For a single Brownian path on $[0, T]$ with uniform partition $t_i = iT/n$, the total variation is:
+
+    $$
+    V_1(W, \Pi_n) = \sum_{i=0}^{n-1} |W_{t_{i+1}} - W_{t_i}|
+    $$
+
+    Each $|W_{t_{i+1}} - W_{t_i}| = \sqrt{T/n}\,|Z_i|$ where $Z_i \sim \mathcal{N}(0,1)$ are independent. The expected total variation is:
+
+    $$
+    \mathbb{E}[V_1(W, \Pi_n)] = n \cdot \sqrt{\frac{T}{n}} \cdot \mathbb{E}[|Z|] = n \cdot \sqrt{\frac{T}{n}} \cdot \sqrt{\frac{2}{\pi}} = \sqrt{\frac{2nT}{\pi}}
+    $$
+
+    This grows as $\sqrt{n} \to \infty$. To verify numerically, simulate a Brownian path for increasing $n$ and plot $V_1(W, \Pi_n)$ vs $n$. The plot should show a curve growing like $\sqrt{n}$, confirming that the total variation diverges.
+
+??? success "Solution to Exercise 6"
+    Suppose $f$ is differentiable at $t_0$ with $f'(t_0) = L$. Then for any $\varepsilon > 0$, there exists $\delta > 0$ such that for all $|h| < \delta$:
+
+    $$
+    |f(t_0 + h) - f(t_0) - Lh| \leq \varepsilon |h|
+    $$
+
+    In particular, $|f(t_0 + h) - f(t_0)| \leq (|L| + \varepsilon)|h|$.
+
+    For any partition $\Pi$ of $[t_0, t_0 + \eta]$ with $\eta < \delta$ and mesh $\|\Pi\| < \delta$:
+
+    $$
+    \sum_i (f(t_{i+1}) - f(t_i))^2 \leq (|L| + \varepsilon)^2 \sum_i (\Delta t_i)^2 \leq (|L| + \varepsilon)^2 \|\Pi\| \sum_i \Delta t_i = (|L| + \varepsilon)^2 \|\Pi\| \cdot \eta
+    $$
+
+    As $\|\Pi\| \to 0$, the right side tends to 0. Therefore $\sum_i (f(t_{i+1}) - f(t_i))^2 \to 0$, confirming zero quadratic variation at a point of differentiability.
+
+---
+
 ## References
 
 - Karatzas, I., & Shreve, S. E. (1991). *Brownian Motion and Stochastic Calculus*, 2nd ed. Springer. (Theorem 2.2.8 for Kolmogorov criterion; Chapter 1 for path properties)

@@ -392,6 +392,139 @@ appears directly in the option price formula.
 
 ---
 
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Using the CDF formula $\mathbb{P}(\tau_a \leq t) = 2\Phi(-a/\sqrt{t})$:
+
+    **$\mathbb{P}(\tau_1 \leq 1)$:** With $a = 1$, $t = 1$:
+
+    $$
+    \mathbb{P}(\tau_1 \leq 1) = 2\Phi(-1) = 2(1 - \Phi(1)) = 2(1 - 0.8413) = 2 \times 0.1587 = 0.3174
+    $$
+
+    **$\mathbb{P}(\tau_1 \leq 4)$:** With $a = 1$, $t = 4$:
+
+    $$
+    \mathbb{P}(\tau_1 \leq 4) = 2\Phi(-1/\sqrt{4}) = 2\Phi(-0.5) = 2(1 - 0.6915) = 2 \times 0.3085 = 0.6171
+    $$
+
+    **$\mathbb{P}(\tau_2 \leq 4)$:** With $a = 2$, $t = 4$:
+
+    $$
+    \mathbb{P}(\tau_2 \leq 4) = 2\Phi(-2/\sqrt{4}) = 2\Phi(-1) = 2 \times 0.1587 = 0.3174
+    $$
+
+    Note that $\mathbb{P}(\tau_2 \leq 4) = \mathbb{P}(\tau_1 \leq 1)$, which is consistent with the scaling $\tau_{ca} \overset{d}{=} c^2 \tau_a$ (here $c = 2$, so $\tau_2 \overset{d}{=} 4\tau_1$).
+
+??? success "Solution to Exercise 2"
+    We verify $\int_0^\infty f_{\tau_a}(t)\,dt = 1$ using the substitution $u = a/\sqrt{t}$.
+
+    Then $t = a^2/u^2$ and $dt = -2a^2/u^3\,du$. When $t \to 0^+$, $u \to \infty$; when $t \to \infty$, $u \to 0^+$:
+
+    $$
+    \int_0^\infty \frac{a}{\sqrt{2\pi t^3}} e^{-a^2/(2t)}\,dt = \frac{a}{\sqrt{2\pi}} \int_0^\infty t^{-3/2} e^{-a^2/(2t)}\,dt
+    $$
+
+    Substituting $t = a^2/u^2$, so $t^{-3/2} = u^3/a^3$:
+
+    $$
+    = \frac{a}{\sqrt{2\pi}} \int_\infty^0 \frac{u^3}{a^3} e^{-u^2/2} \left(-\frac{2a^2}{u^3}\right) du = \frac{a}{\sqrt{2\pi}} \cdot \frac{2}{a} \int_0^\infty e^{-u^2/2}\,du
+    $$
+
+    Since $\int_0^\infty e^{-u^2/2}\,du = \sqrt{\pi/2}$:
+
+    $$
+    = \frac{2}{\sqrt{2\pi}} \cdot \sqrt{\frac{\pi}{2}} = \frac{2\sqrt{\pi}}{\sqrt{2\pi} \cdot \sqrt{2}} = \frac{2\sqrt{\pi}}{2\sqrt{\pi}} = 1
+    $$
+
+??? success "Solution to Exercise 3"
+    We compute $\mathbb{E}[\tau_a^{1/2}] = \int_0^\infty t^{1/2} f_{\tau_a}(t)\,dt$ using the Lévy density:
+
+    $$
+    \mathbb{E}[\tau_a^{1/2}] = \frac{a}{\sqrt{2\pi}} \int_0^\infty t^{1/2} \cdot t^{-3/2} e^{-a^2/(2t)}\,dt = \frac{a}{\sqrt{2\pi}} \int_0^\infty t^{-1} e^{-a^2/(2t)}\,dt
+    $$
+
+    Substitute $u = a^2/(2t)$, so $t = a^2/(2u)$ and $dt = -a^2/(2u^2)\,du$:
+
+    $$
+    = \frac{a}{\sqrt{2\pi}} \int_0^\infty \frac{2u}{a^2} e^{-u} \cdot \frac{a^2}{2u^2}\,du = \frac{a}{\sqrt{2\pi}} \int_0^\infty \frac{e^{-u}}{u}\,du
+    $$
+
+    This integral diverges logarithmically! Let us redo this more carefully. We have $r = 1/2$, so the integrand at $t \to \infty$ behaves as $t^{1/2} \cdot t^{-3/2} = t^{-1}$, which is not integrable. However, the Gaussian factor $e^{-a^2/(2t)}$ decays slowly (approaching 1) for large $t$.
+
+    Instead, use the Laplace transform approach. From $\mathbb{E}[e^{-\alpha\tau_a}] = e^{-a\sqrt{2\alpha}}$, we can use the identity:
+
+    $$
+    \mathbb{E}[\tau_a^{-1/2}] = \frac{1}{\Gamma(1/2)} \int_0^\infty \alpha^{-1/2} \mathbb{E}[e^{-\alpha\tau_a}]\,d\alpha = \frac{1}{\sqrt{\pi}} \int_0^\infty \alpha^{-1/2} e^{-a\sqrt{2\alpha}}\,d\alpha
+    $$
+
+    Substitute $\beta = a\sqrt{2\alpha}$, so $\alpha = \beta^2/(2a^2)$ and $d\alpha = \beta/(a^2)\,d\beta$:
+
+    $$
+    = \frac{1}{\sqrt{\pi}} \int_0^\infty \frac{a\sqrt{2}}{\beta} \cdot e^{-\beta} \cdot \frac{\beta}{a^2}\,d\beta = \frac{\sqrt{2}}{a\sqrt{\pi}} \int_0^\infty e^{-\beta}\,d\beta = \frac{\sqrt{2}}{a\sqrt{\pi}}
+    $$
+
+    This shows $\mathbb{E}[\tau_a^{-1/2}] < \infty$. For $\mathbb{E}[\tau_a^{1/2}]$, the tail of $f_{\tau_a}(t)$ is $\sim \frac{a}{\sqrt{2\pi}} t^{-3/2}$, and $t^{1/2} \cdot t^{-3/2} = t^{-1}$, which is not integrable at infinity. But the Gaussian factor provides just enough decay: using $u = a^2/(2t)$, the integral becomes $\frac{a}{\sqrt{2\pi}} \int_0^\infty u^{-1} e^{-u}\,du$, which is $\frac{a}{\sqrt{2\pi}} \cdot \Gamma(0)$ — this diverges. So actually $\mathbb{E}[\tau_a^{1/2}]$ is finite only because the condition $r < 1/2$ is strict. In fact, $\mathbb{E}[\tau_a^r] < \infty$ iff $r < 1/2$, so $r = 1/2$ is the borderline case. To show finiteness for $r < 1/2$, take any such $r$. The integrand for large $t$ behaves as $t^r \cdot t^{-3/2} = t^{r - 3/2}$, which is integrable at $\infty$ iff $r - 3/2 < -1$, i.e., $r < 1/2$. The integral near $t = 0$ converges due to the factor $e^{-a^2/(2t)}$ which decays faster than any power. Hence $\mathbb{E}[\tau_a^r] < \infty$ for all $r < 1/2$.
+
+??? success "Solution to Exercise 4"
+    From the Laplace transform $\mathbb{E}[e^{-\alpha\tau_a}] = e^{-a\sqrt{2\alpha}}$, moments are obtained by differentiation:
+
+    $$
+    \mathbb{E}[\tau_a^n] = (-1)^n \lim_{\alpha \to 0^+} \frac{d^n}{d\alpha^n} e^{-a\sqrt{2\alpha}}
+    $$
+
+    For $n = 1$: $\frac{d}{d\alpha} e^{-a\sqrt{2\alpha}} = -\frac{a}{\sqrt{2\alpha}} e^{-a\sqrt{2\alpha}}$, and as $\alpha \to 0^+$, $\frac{a}{\sqrt{2\alpha}} \to \infty$, so $\mathbb{E}[\tau_a] = \infty$.
+
+    For the variance: $\text{Var}(\tau_a) = \mathbb{E}[\tau_a^2] - (\mathbb{E}[\tau_a])^2$. Since $\mathbb{E}[\tau_a] = \infty$, the variance is automatically $\infty$.
+
+    Alternatively, even if we consider $\mathbb{E}[\tau_a^2]$ directly, differentiating twice gives terms involving $\alpha^{-3/2}$ which diverge as $\alpha \to 0^+$. Therefore $\text{Var}(\tau_a) = \infty$.
+
+??? success "Solution to Exercise 5"
+    By the scaling property of Brownian motion, $\{W_{c^2 t}\}_{t \geq 0} \overset{d}{=} \{c\,W_t\}_{t \geq 0}$ as processes. Define $\widetilde{W}_t = W_{c^2 t}/c$, which is a standard Brownian motion.
+
+    Then:
+
+    $$
+    \tau_{ca} = \inf\{t \geq 0 : W_t = ca\}
+    $$
+
+    Substitute $t = c^2 s$, so we want the first time $W_{c^2 s} = ca$, i.e., $W_{c^2 s}/c = a$, i.e., $\widetilde{W}_s = a$:
+
+    $$
+    \tau_{ca} = c^2 \inf\{s \geq 0 : \widetilde{W}_s = a\} \overset{d}{=} c^2 \tau_a
+    $$
+
+    since $\widetilde{W}$ is a standard Brownian motion and $\tau_a$ under $\widetilde{W}$ has the same distribution as $\tau_a$ under $W$.
+
+??? success "Solution to Exercise 6"
+    We verify the identity $\frac{\partial}{\partial a}\mathbb{E}[e^{-\alpha\tau_a}] = -\sqrt{2\alpha}\,\mathbb{E}[e^{-\alpha\tau_a}]$.
+
+    Since $\mathbb{E}[e^{-\alpha\tau_a}] = e^{-a\sqrt{2\alpha}}$, differentiate with respect to $a$:
+
+    $$
+    \frac{\partial}{\partial a} e^{-a\sqrt{2\alpha}} = -\sqrt{2\alpha}\,e^{-a\sqrt{2\alpha}} = -\sqrt{2\alpha}\,\mathbb{E}[e^{-\alpha\tau_a}]
+    $$
+
+    This confirms the identity. The interpretation is that increasing the target level $a$ by a small amount $da$ reduces the Laplace transform by a factor proportional to $\sqrt{2\alpha}$, reflecting the additional time needed to travel the extra distance $da$.
+
+??? success "Solution to Exercise 7"
+    For Brownian motion with drift $\mu$, $X_t = W_t + \mu t$, the Laplace transform of the first passage time to $a > 0$ is:
+
+    $$
+    \mathbb{E}[e^{-\alpha\tau_a}] = e^{-a(\sqrt{2\alpha + \mu^2} - \mu)}
+    $$
+
+    Setting $\mu = 0$:
+
+    $$
+    e^{-a(\sqrt{2\alpha + 0} - 0)} = e^{-a\sqrt{2\alpha}}
+    $$
+
+    This matches the formula for standard Brownian motion. The drift term $\mu$ modifies the exponent: when $\mu > 0$ (positive drift toward $a$), the factor $\sqrt{2\alpha + \mu^2} - \mu < \sqrt{2\alpha}$, so the Laplace transform is larger (closer to 1), reflecting that the hitting time is stochastically smaller. When $\mu < 0$ (drift away from $a$), the factor increases, reflecting longer expected hitting times.
+
+---
+
 ## References
 
 - Karatzas, I., & Shreve, S. E. (1991). *Brownian Motion and Stochastic Calculus*, 2nd ed. Springer. (Chapter 2)

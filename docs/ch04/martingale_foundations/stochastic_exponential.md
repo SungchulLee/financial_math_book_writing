@@ -436,3 +436,184 @@ For the Radon-Nikodym derivative $Z_t = \mathcal{E}(-\int_0^{\cdot}\theta_s\,dW_
 
 **Exercise 7.**
 Consider two independent Brownian motions $W_t^1$ and $W_t^2$ and define $X_t = \sigma_1 W_t^1 + \sigma_2 W_t^2$. Compute $\langle X \rangle_t$ and write $\mathcal{E}(X)_t$ explicitly. Then verify using the multiplication rule that $\mathcal{E}(\sigma_1 W^1)_t \cdot \mathcal{E}(\sigma_2 W^2)_t = \mathcal{E}(\sigma_1 W^1 + \sigma_2 W^2)_t$ (since $\langle W^1, W^2 \rangle = 0$).
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    For $\sigma = 2$:
+
+    $$
+    \mathcal{E}(2W)_t = \exp\left(2W_t - \frac{4t}{2}\right) = \exp(2W_t - 2t)
+    $$
+
+    To verify $\mathbb{E}[\mathcal{E}(2W)_t] = 1$: since $W_t \sim N(0, t)$, we have $2W_t \sim N(0, 4t)$. Using the MGF of a normal, $\mathbb{E}[e^{aW_t}] = e^{a^2 t/2}$:
+
+    $$
+    \mathbb{E}[\mathcal{E}(2W)_t] = \mathbb{E}[e^{2W_t - 2t}] = e^{-2t}\mathbb{E}[e^{2W_t}] = e^{-2t} \cdot e^{4t/2} = e^{-2t} \cdot e^{2t} = 1
+    $$
+
+    For the variance, first compute $\mathbb{E}[\mathcal{E}(2W)_t^2]$:
+
+    $$
+    \mathbb{E}[\mathcal{E}(2W)_t^2] = \mathbb{E}[e^{4W_t - 4t}] = e^{-4t}\mathbb{E}[e^{4W_t}] = e^{-4t} \cdot e^{16t/2} = e^{-4t} \cdot e^{8t} = e^{4t}
+    $$
+
+    Therefore:
+
+    $$
+    \mathrm{Var}(\mathcal{E}(2W)_t) = \mathbb{E}[\mathcal{E}(2W)_t^2] - (\mathbb{E}[\mathcal{E}(2W)_t])^2 = e^{4t} - 1
+    $$
+
+??? success "Solution to Exercise 2"
+    With $X_t = \int_0^t s\,dW_s$, the quadratic variation is:
+
+    $$
+    \langle X \rangle_t = \int_0^t s^2\,ds = \frac{t^3}{3}
+    $$
+
+    The stochastic exponential is:
+
+    $$
+    \mathcal{E}(X)_t = \exp\left(\int_0^t s\,dW_s - \frac{t^3}{6}\right)
+    $$
+
+    The quadratic variation of $\mathcal{E}(X)$ is computed from $d\mathcal{E}(X)_t = \mathcal{E}(X)_t\,dX_t = \mathcal{E}(X)_t \cdot t\,dW_t$:
+
+    $$
+    \langle \mathcal{E}(X) \rangle_t = \int_0^t \mathcal{E}(X)_s^2 \cdot s^2\,ds
+    $$
+
+    **Novikov verification**: For finite $T$:
+
+    $$
+    \mathbb{E}\left[\exp\left(\frac{1}{2}\langle X \rangle_T\right)\right] = \exp\left(\frac{T^3}{6}\right) < \infty
+    $$
+
+    Since $\sigma_s = s$ is deterministic, $\langle X \rangle_T = T^3/3$ is deterministic, and the exponential moment is trivially finite. By Novikov's theorem, $\mathcal{E}(X)$ is a true martingale on $[0, T]$ for any finite $T$.
+
+??? success "Solution to Exercise 3"
+    **Without correction**: Let $Z_t = e^{W_t}$. By Itô's lemma with $f(x) = e^x$:
+
+    $$
+    dZ_t = f'(W_t)\,dW_t + \frac{1}{2}f''(W_t)\,dt = e^{W_t}\,dW_t + \frac{1}{2}e^{W_t}\,dt = Z_t\,dW_t + \frac{1}{2}Z_t\,dt
+    $$
+
+    The $\frac{1}{2}Z_t\,dt$ drift makes $Z_t$ a submartingale (systematically increasing in expectation).
+
+    **With correction**: Let $\mathcal{E}(W)_t = e^{W_t - t/2}$. Define $Y_t = W_t - t/2$, so $\mathcal{E}(W)_t = e^{Y_t}$. By Itô's lemma:
+
+    $$
+    d\mathcal{E}(W)_t = e^{Y_t}\,dY_t + \frac{1}{2}e^{Y_t}(dY_t)^2
+    $$
+
+    Now $dY_t = dW_t - \frac{1}{2}\,dt$ and $(dY_t)^2 = (dW_t)^2 = dt$. Substituting:
+
+    $$
+    d\mathcal{E}(W)_t = e^{Y_t}\left(dW_t - \frac{1}{2}\,dt\right) + \frac{1}{2}e^{Y_t}\,dt = e^{Y_t}\,dW_t - \frac{1}{2}e^{Y_t}\,dt + \frac{1}{2}e^{Y_t}\,dt = \mathcal{E}(W)_t\,dW_t
+    $$
+
+    The $dt$ terms cancel exactly. The Itô correction $-\frac{1}{2}\langle W \rangle_t = -t/2$ compensates precisely for the second-order term $\frac{1}{2}f''(W_t)\,dt$ in Itô's formula, removing the drift and producing a martingale.
+
+??? success "Solution to Exercise 4"
+    Let $Z_t = \mathcal{E}(X)_t$ and $U_t = \mathcal{E}(Y)_t$. By the Itô product rule:
+
+    $$
+    d(Z_t U_t) = Z_t\,dU_t + U_t\,dZ_t + d\langle Z, U \rangle_t
+    $$
+
+    Since $dZ_t = Z_t\,dX_t$ and $dU_t = U_t\,dY_t$:
+
+    $$
+    d(Z_t U_t) = Z_t U_t\,dY_t + U_t Z_t\,dX_t + d\langle Z, U \rangle_t
+    $$
+
+    For the covariation: $d\langle Z, U \rangle_t = Z_t U_t\,d\langle X, Y \rangle_t$ (since the diffusion coefficients of $Z$ and $U$ are $Z_t$ times $dX_t$ and $U_t$ times $dY_t$).
+
+    Therefore:
+
+    $$
+    d(Z_t U_t) = Z_t U_t\,(dX_t + dY_t + d\langle X, Y \rangle_t)
+    $$
+
+    This means $Z_t U_t$ solves the SDE $d\mathcal{E} = \mathcal{E}\,d(X + Y + \langle X, Y \rangle)$ with initial condition $Z_0 U_0 = 1$. By uniqueness of the stochastic exponential SDE:
+
+    $$
+    \mathcal{E}(X)_t \cdot \mathcal{E}(Y)_t = \mathcal{E}(X + Y + \langle X, Y \rangle)_t
+    $$
+
+    The covariation $\langle X, Y \rangle$ enters through the cross-term $d\langle Z, U \rangle_t$ in the Itô product rule — this is the stochastic calculus analogue of the fact that the product of two exponentials involves the sum of exponents, but with an additional correction from quadratic covariation.
+
+??? success "Solution to Exercise 5"
+    The stock price is $S_t = S_0 e^{(\mu - \sigma^2/2)t + \sigma W_t} = S_0 e^{\mu t}\mathcal{E}(\sigma W)_t$. The discounted price is:
+
+    $$
+    e^{-rt}S_t = S_0 e^{(\mu - r)t}\mathcal{E}(\sigma W)_t
+    $$
+
+    Under $\mathbb{P}$: The factor $e^{(\mu - r)t}$ introduces a deterministic drift. Since $\mathcal{E}(\sigma W)_t$ is a $\mathbb{P}$-martingale with $\mathbb{E}^{\mathbb{P}}[\mathcal{E}(\sigma W)_t] = 1$:
+
+    $$
+    \mathbb{E}^{\mathbb{P}}[e^{-rt}S_t] = S_0 e^{(\mu - r)t} \neq S_0 \quad (\text{unless } \mu = r)
+    $$
+
+    So $e^{-rt}S_t$ is not a $\mathbb{P}$-martingale when $\mu \neq r$.
+
+    Under $\mathbb{Q}$: Girsanov's theorem replaces $W_t$ by $W_t^{\mathbb{Q}} - \frac{\mu - r}{\sigma}t$, so $\sigma W_t = \sigma W_t^{\mathbb{Q}} - (\mu - r)t$. Then:
+
+    $$
+    e^{-rt}S_t = S_0 e^{(\mu - r)t}\exp\left(\sigma W_t^{\mathbb{Q}} - (\mu - r)t - \frac{\sigma^2 t}{2}\right) = S_0\mathcal{E}(\sigma W^{\mathbb{Q}})_t
+    $$
+
+    The factor $e^{(\mu-r)t}$ cancels with $e^{-(\mu-r)t}$ from the Girsanov shift, and the discounted price becomes $S_0\mathcal{E}(\sigma W^{\mathbb{Q}})_t$, which is a $\mathbb{Q}$-martingale with unit expectation.
+
+??? success "Solution to Exercise 6"
+    Let $M_t = -\int_0^t \theta_s\,dW_s$, so $Z_t = \mathcal{E}(M)_t = \exp(M_t - \frac{1}{2}\langle M \rangle_t)$ and $\langle M \rangle_t = \int_0^t \theta_s^2\,ds$.
+
+    The reciprocal is:
+
+    $$
+    \frac{1}{Z_t} = \exp(-M_t + \frac{1}{2}\langle M \rangle_t) = \exp\left(\int_0^t \theta_s\,dW_s + \frac{1}{2}\int_0^t \theta_s^2\,ds\right)
+    $$
+
+    On the other hand, $\mathcal{E}(-M)_t = \mathcal{E}(\int_0^\cdot \theta_s\,dW_s)_t = \exp(\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds)$.
+
+    Comparing:
+
+    $$
+    \frac{1}{Z_t} = \mathcal{E}(-M)_t \cdot \exp(\langle M \rangle_t) = \mathcal{E}\left(\int_0^\cdot \theta_s\,dW_s\right)_t \cdot \exp\left(\int_0^t \theta_s^2\,ds\right)
+    $$
+
+    The extra factor is $\exp(\langle M \rangle_t) = \exp(\int_0^t \theta_s^2\,ds)$, which is always $\geq 1$. So $1/Z_t > \mathcal{E}(-M)_t$ unless $\theta \equiv 0$. This discrepancy arises because the reciprocal operation interacts with the Itô correction term: flipping the sign of $M$ changes the sign of the first-order term but not the sign of the quadratic variation, creating an asymmetry.
+
+??? success "Solution to Exercise 7"
+    With $X_t = \sigma_1 W_t^1 + \sigma_2 W_t^2$ and $W^1, W^2$ independent:
+
+    $$
+    \langle X \rangle_t = \sigma_1^2\langle W^1 \rangle_t + 2\sigma_1\sigma_2\langle W^1, W^2 \rangle_t + \sigma_2^2\langle W^2 \rangle_t = \sigma_1^2 t + 0 + \sigma_2^2 t = (\sigma_1^2 + \sigma_2^2)t
+    $$
+
+    The stochastic exponential is:
+
+    $$
+    \mathcal{E}(X)_t = \exp\left(\sigma_1 W_t^1 + \sigma_2 W_t^2 - \frac{(\sigma_1^2 + \sigma_2^2)t}{2}\right)
+    $$
+
+    Now verify the multiplication rule. With $\langle \sigma_1 W^1, \sigma_2 W^2 \rangle_t = \sigma_1\sigma_2\langle W^1, W^2 \rangle_t = 0$ (independence):
+
+    $$
+    \mathcal{E}(\sigma_1 W^1)_t \cdot \mathcal{E}(\sigma_2 W^2)_t = \mathcal{E}(\sigma_1 W^1 + \sigma_2 W^2 + \langle \sigma_1 W^1, \sigma_2 W^2 \rangle)_t = \mathcal{E}(\sigma_1 W^1 + \sigma_2 W^2)_t
+    $$
+
+    Explicitly:
+
+    $$
+    \mathcal{E}(\sigma_1 W^1)_t \cdot \mathcal{E}(\sigma_2 W^2)_t = \exp\left(\sigma_1 W_t^1 - \frac{\sigma_1^2 t}{2}\right) \cdot \exp\left(\sigma_2 W_t^2 - \frac{\sigma_2^2 t}{2}\right)
+    $$
+
+    $$
+    = \exp\left(\sigma_1 W_t^1 + \sigma_2 W_t^2 - \frac{(\sigma_1^2 + \sigma_2^2)t}{2}\right) = \mathcal{E}(X)_t
+    $$
+
+    The key point is that when the cross-covariation vanishes ($\langle W^1, W^2 \rangle = 0$), the multiplication rule reduces to the ordinary exponential identity $e^a \cdot e^b = e^{a+b}$.

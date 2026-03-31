@@ -207,3 +207,282 @@ $$
 $$
 
 for some normalising constant $C > 0$. Apply this formula to recover the invariant density of the OU process from Exercise 1.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The OU process has $b(x) = -\theta x$ and $\sigma(x) = \sigma$ (constant), so $a(x) = \sigma^2$. The generator is
+
+    $$
+    \mathcal{L}f(x) = -\theta x\,f'(x) + \frac{\sigma^2}{2}\,f''(x)
+    $$
+
+    The stationary Fokker–Planck equation $\mathcal{L}^*\pi = 0$ in one dimension is
+
+    $$
+    -\frac{\mathrm{d}}{\mathrm{d}x}\bigl(b(x)\,\pi(x)\bigr) + \frac{1}{2}\frac{\mathrm{d}^2}{\mathrm{d}x^2}\bigl(\sigma^2\,\pi(x)\bigr) = 0
+    $$
+
+    Since $\sigma^2$ is constant, this becomes
+
+    $$
+    \frac{\mathrm{d}}{\mathrm{d}x}\bigl(\theta x\,\pi(x)\bigr) + \frac{\sigma^2}{2}\,\pi''(x) = 0
+    $$
+
+    Integrating once (the integration constant must be zero for $\pi$ to be integrable):
+
+    $$
+    \theta x\,\pi(x) + \frac{\sigma^2}{2}\,\pi'(x) = 0
+    $$
+
+    This gives
+
+    $$
+    \frac{\pi'(x)}{\pi(x)} = -\frac{2\theta x}{\sigma^2}
+    $$
+
+    Integrating:
+
+    $$
+    \log\pi(x) = -\frac{\theta x^2}{\sigma^2} + C_0
+    $$
+
+    so $\pi(x) \propto \exp(-\theta x^2/\sigma^2)$. Normalizing:
+
+    $$
+    \pi(x) = \sqrt{\frac{\theta}{\pi\sigma^2}}\,\exp\!\left(-\frac{\theta x^2}{\sigma^2}\right)
+    $$
+
+    This is a Gaussian density $\mathcal{N}(0, \sigma^2/(2\theta))$ with mean $0$ and variance $\sigma^2/(2\theta)$.
+
+??? success "Solution to Exercise 2"
+    With $V(x) = \frac{1}{4}x^4 - \frac{1}{2}x^2$ and the gradient diffusion $\mathrm{d}X_t = -V'(X_t)\,\mathrm{d}t + \sqrt{2}\,\mathrm{d}W_t$, the invariant density is
+
+    $$
+    \pi(x) \propto e^{-V(x)} = \exp\!\left(-\frac{1}{4}x^4 + \frac{1}{2}x^2\right)
+    $$
+
+    The maxima of $\pi$ occur where $V(x)$ is minimized. Setting $V'(x) = x^3 - x = x(x^2 - 1) = 0$ gives critical points $x = 0, \pm 1$. We have $V''(x) = 3x^2 - 1$, so $V''(0) = -1 < 0$ (local maximum of $V$, hence local minimum of $\pi$) and $V''(\pm 1) = 2 > 0$ (local minima of $V$, hence local maxima of $\pi$).
+
+    Therefore $\pi(x)$ has **two maxima at $x = \pm 1$** and a local minimum at $x = 0$. The density is bimodal, reflecting the double-well structure of $V$.
+
+    **Reversibility:** Yes, this process is reversible. It is a gradient diffusion with constant diffusion matrix ($a = 2I$), which automatically satisfies detailed balance with respect to $\pi(x) \propto e^{-V(x)}$. The generator
+
+    $$
+    \mathcal{L}f = -V'(x)f'(x) + f''(x)
+    $$
+
+    is self-adjoint in $L^2(\pi)$: for $f, g \in C_c^\infty(\mathbb{R})$,
+
+    $$
+    \int (\mathcal{L}f)\,g\,\pi\,\mathrm{d}x = -\int f'\,g'\,\pi\,\mathrm{d}x = \int f\,(\mathcal{L}g)\,\pi\,\mathrm{d}x
+    $$
+
+    which follows by integration by parts.
+
+??? success "Solution to Exercise 3"
+    The diffusion is $\mathrm{d}X_t = -X_t\,\mathrm{d}t + \mathrm{d}W_t$ in $\mathbb{R}^d$, with $b(x) = -x$ and $a = I_d$. The Lyapunov function is $V(x) = 1 + |x|^2$.
+
+    Computing $\mathcal{L}V$:
+
+    $$
+    \partial_i V = 2x^i, \qquad \partial_i\partial_j V = 2\delta^{ij}
+    $$
+
+    $$
+    \mathcal{L}V(x) = b^i(x)\,\partial_i V(x) + \frac{1}{2}a^{ij}\,\partial_i\partial_j V(x) = (-x^i)(2x^i) + \frac{1}{2}\delta^{ij}(2\delta^{ij})
+    $$
+
+    $$
+    = -2|x|^2 + d
+    $$
+
+    We want $\mathcal{L}V(x) \le -\alpha V(x) + K\,\mathbf{1}_C(x)$. Since $V(x) = 1 + |x|^2$:
+
+    $$
+    -2|x|^2 + d \le -\alpha(1 + |x|^2) + K\,\mathbf{1}_C(x)
+    $$
+
+    Choose $\alpha = 1$. Then we need
+
+    $$
+    -2|x|^2 + d \le -(1 + |x|^2) + K\,\mathbf{1}_C(x)
+    $$
+
+    $$
+    -|x|^2 + d + 1 \le K\,\mathbf{1}_C(x)
+    $$
+
+    For $|x|^2 \ge d + 1$, the left side is $\le 0$ and the inequality holds without the indicator. Choose $C = \{x : |x|^2 \le d + 1\}$ (a compact ball) and $K = d + 1$. Then for $x \in C$: $-|x|^2 + d + 1 \le d + 1 = K$, so the inequality holds.
+
+    Therefore the Foster–Lyapunov criterion is satisfied with $\alpha = 1$, $K = d + 1$, and $C = \{x : |x| \le \sqrt{d+1}\}$.
+
+??? success "Solution to Exercise 4"
+    The drift is $b(x) = (-x^1 + x^2,\, -x^1 - x^2)^\top$ and $a = I_2$. Try a Gaussian invariant measure $\pi \sim \mathcal{N}(0, \Sigma)$ with $\Sigma = \text{diag}(\sigma_1^2, \sigma_2^2)$ or more generally a symmetric positive definite matrix.
+
+    The drift can be written $b(x) = Bx$ where
+
+    $$
+    B = \begin{pmatrix} -1 & 1 \\ -1 & -1 \end{pmatrix}
+    $$
+
+    For a linear SDE $\mathrm{d}X = BX\,\mathrm{d}t + \mathrm{d}W$ with constant $a = I$, the invariant covariance $\Sigma$ solves the **Lyapunov equation**
+
+    $$
+    B\Sigma + \Sigma B^\top + I = 0
+    $$
+
+    Writing $\Sigma = \begin{pmatrix} a & c \\ c & b \end{pmatrix}$ and $B^\top = \begin{pmatrix} -1 & -1 \\ 1 & -1 \end{pmatrix}$:
+
+    $$
+    B\Sigma + \Sigma B^\top = \begin{pmatrix} -2a+2c & -2c+a+b \\ a+b-2c & 2c-2b \end{pmatrix} + \text{correction}
+    $$
+
+    Computing directly:
+
+    $$
+    B\Sigma = \begin{pmatrix} -a+c & -c+b \\ -a-c & -c-b \end{pmatrix}, \quad \Sigma B^\top = \begin{pmatrix} -a-c & a-c \\ -c-b & c-b \end{pmatrix}
+    $$
+
+    $$
+    B\Sigma + \Sigma B^\top = \begin{pmatrix} -2a & a-2c+b \\ a-2c+b & -2b \end{pmatrix} = -I = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}
+    $$
+
+    From the diagonal entries: $-2a = -1$ gives $a = 1/2$, $-2b = -1$ gives $b = 1/2$. From the off-diagonal: $a - 2c + b = 0$ gives $c = (a+b)/2 = 1/2$.
+
+    Wait — checking: $c = 1/2$ but then $\Sigma = \frac{1}{2}\begin{pmatrix}1&1\\1&1\end{pmatrix}$ which is singular. Let me recompute.
+
+    Actually, recomputing $\Sigma B^\top$ with $B^\top = \begin{pmatrix}-1&-1\\1&-1\end{pmatrix}$:
+
+    $$
+    \Sigma B^\top = \begin{pmatrix}a&c\\c&b\end{pmatrix}\begin{pmatrix}-1&-1\\1&-1\end{pmatrix} = \begin{pmatrix}-a+c & -a-c \\ -c+b & -c-b\end{pmatrix}
+    $$
+
+    $$
+    B\Sigma + \Sigma B^\top = \begin{pmatrix}-2a+2c & -a-2c+b \\ a+b-2c & 2c-2b\end{pmatrix} + \begin{pmatrix}0&0\\0&0\end{pmatrix}
+    $$
+
+    Wait, let me redo this carefully:
+
+    $$
+    B\Sigma + \Sigma B^\top = \begin{pmatrix}-a+c-a+c & -c+b-a-c \\ -a-c-c+b & -c-b+c-b \end{pmatrix}
+    $$
+
+    Hmm, let me just add element-by-element. $(B\Sigma)_{11} = -a+c$, $(\Sigma B^\top)_{11} = -a+c$, sum $= -2a+2c$. Setting $-2a+2c = -1$ gives $a - c = 1/2$. $(B\Sigma+\Sigma B^\top)_{22} = (-c-b)+(-c-b) = -2c-2b$. Setting $-2b-2c=-1$ gives $b+c=1/2$. Off-diagonal $(1,2)$: $(-c+b)+(-a-c) = -a+b-2c = 0$. So $b = a+2c$.
+
+    From $a-c=1/2$ and $b+c=1/2$: $b = 1/2-c$ and $a = 1/2+c$. From $b=a+2c$: $1/2-c = 1/2+c+2c$, so $-c = 3c$, giving $c = 0$. Then $a = b = 1/2$.
+
+    So $\Sigma = \frac{1}{2}I$ and the invariant measure is $\pi = \mathcal{N}(0, \frac{1}{2}I)$.
+
+    **Reversibility:** The process is reversible if and only if $B\Sigma = \Sigma B^\top$ (the drift is self-adjoint in $L^2(\pi)$). We have $B\Sigma = \frac{1}{2}B$ and $\Sigma B^\top = \frac{1}{2}B^\top$, so reversibility requires $B = B^\top$. But
+
+    $$
+    B = \begin{pmatrix}-1&1\\-1&-1\end{pmatrix} \ne \begin{pmatrix}-1&-1\\1&-1\end{pmatrix} = B^\top
+    $$
+
+    So the process is **not reversible**. The antisymmetric part of $B$ (the rotation component $\begin{pmatrix}0&1\\-1&0\end{pmatrix}$) generates a probability current that circulates around the origin, breaking detailed balance.
+
+??? success "Solution to Exercise 5"
+    Assume detailed balance holds: for all bounded measurable $f, g$ and $t \ge 0$,
+
+    $$
+    \int f(x)\,(P_t g)(x)\,\pi(\mathrm{d}x) = \int g(x)\,(P_t f)(x)\,\pi(\mathrm{d}x)
+    $$
+
+    To show $\pi P_t = \pi$, we must show $\int P_t f\,\mathrm{d}\pi = \int f\,\mathrm{d}\pi$ for all bounded measurable $f$.
+
+    Set $g \equiv 1$ in the detailed balance condition. Then $P_t g = P_t 1 = 1$ (since $P_t$ is a Markov semigroup, $P_t 1 = 1$). The left side becomes
+
+    $$
+    \int f(x) \cdot 1\,\pi(\mathrm{d}x) = \int f\,\mathrm{d}\pi
+    $$
+
+    The right side becomes
+
+    $$
+    \int 1 \cdot (P_t f)(x)\,\pi(\mathrm{d}x) = \int P_t f\,\mathrm{d}\pi
+    $$
+
+    Therefore $\int f\,\mathrm{d}\pi = \int P_t f\,\mathrm{d}\pi$ for all bounded measurable $f$, which is exactly $\pi P_t = \pi$. $\square$
+
+??? success "Solution to Exercise 6"
+    Consider the two-dimensional diffusion
+
+    $$
+    \mathrm{d}X_t = b(X_t)\,\mathrm{d}t + \sqrt{2}\,\mathrm{d}W_t
+    $$
+
+    with drift $b(x) = -\nabla V(x) + \gamma(x)$, where $V(x) = \frac{1}{2}|x|^2$ and $\gamma(x) = (-x^2, x^1)^\top$ is a divergence-free rotational field ($\nabla \cdot \gamma = 0$).
+
+    **Invariance:** The stationary Fokker–Planck equation is $\mathcal{L}^*\pi = 0$:
+
+    $$
+    -\nabla \cdot (b\,\pi) + \Delta\pi = 0
+    $$
+
+    Try $\pi(x) \propto e^{-V(x)} = e^{-|x|^2/2}$. Then $\nabla\pi = -(\nabla V)\pi$ and:
+
+    $$
+    -\nabla\cdot(b\,\pi) + \Delta\pi = -\nabla\cdot\bigl((-\nabla V + \gamma)\pi\bigr) + \Delta\pi
+    $$
+
+    The gradient part: $-\nabla\cdot(-\nabla V\,\pi) + \Delta\pi = \nabla\cdot(\nabla V\,\pi) + \Delta\pi = 0$ (this is the same cancellation as for the pure gradient diffusion).
+
+    The rotational part: $-\nabla\cdot(\gamma\,\pi) = -\gamma\cdot\nabla\pi - (\nabla\cdot\gamma)\pi = -\gamma\cdot(-\nabla V\,\pi) - 0 = \gamma\cdot\nabla V\,\pi$. Now $\gamma \cdot \nabla V = (-x^2, x^1)\cdot(x^1, x^2) = -x^1 x^2 + x^1 x^2 = 0$. So the rotational drift does not affect the invariant measure.
+
+    Therefore $\pi(x) \propto e^{-|x|^2/2}$ is invariant.
+
+    **Detailed balance fails:** Reversibility requires $\mathcal{L}$ to be self-adjoint in $L^2(\pi)$. The generator is $\mathcal{L}f = (-\nabla V + \gamma)\cdot\nabla f + \Delta f$. The rotational component $\gamma\cdot\nabla f$ is antisymmetric in $L^2(\pi)$ (since $\gamma$ is divergence-free and orthogonal to $\nabla V$):
+
+    $$
+    \int (\gamma\cdot\nabla f)\,g\,\pi\,\mathrm{d}x = -\int f\,(\gamma\cdot\nabla g)\,\pi\,\mathrm{d}x
+    $$
+
+    This antisymmetric part breaks the self-adjointness of $\mathcal{L}$, so detailed balance fails. Physically, the rotational drift induces a probability current circulating around the origin.
+
+??? success "Solution to Exercise 7"
+    The generator is $\mathcal{L}f = bf' + \frac{1}{2}\sigma^2 f''$. The adjoint operator $\mathcal{L}^*$ acts on densities as
+
+    $$
+    \mathcal{L}^*\pi = -(b\pi)' + \frac{1}{2}(\sigma^2\pi)''
+    $$
+
+    Setting $\mathcal{L}^*\pi = 0$ and integrating once (with the integration constant set to zero for integrability at the boundary):
+
+    $$
+    -b(x)\,\pi(x) + \frac{1}{2}\bigl(\sigma^2(x)\,\pi(x)\bigr)' = 0
+    $$
+
+    Expanding the derivative:
+
+    $$
+    -b\,\pi + \frac{1}{2}(\sigma^2)'\pi + \frac{1}{2}\sigma^2\pi' = 0
+    $$
+
+    Dividing by $\frac{1}{2}\sigma^2\pi$:
+
+    $$
+    \frac{\pi'}{\pi} = \frac{2b - (\sigma^2)'}{\sigma^2} = \frac{2b}{\sigma^2} - \frac{(\sigma^2)'}{\sigma^2}
+    $$
+
+    Integrating:
+
+    $$
+    \log\pi(x) = \int^x \frac{2b(y)}{\sigma^2(y)}\,\mathrm{d}y - \log\sigma^2(x) + \text{const}
+    $$
+
+    Exponentiating:
+
+    $$
+    \pi(x) = \frac{C}{\sigma^2(x)}\exp\!\left(\int^x \frac{2b(y)}{\sigma^2(y)}\,\mathrm{d}y\right)
+    $$
+
+    **Application to the OU process:** With $b(x) = -\theta x$ and $\sigma^2 = \sigma^2$ (constant):
+
+    $$
+    \pi(x) = \frac{C}{\sigma^2}\exp\!\left(\int^x \frac{-2\theta y}{\sigma^2}\,\mathrm{d}y\right) = \frac{C}{\sigma^2}\exp\!\left(-\frac{\theta x^2}{\sigma^2}\right)
+    $$
+
+    This is $\mathcal{N}(0, \sigma^2/(2\theta))$, consistent with Exercise 1.

@@ -272,3 +272,120 @@ For Neumann boundary conditions $\partial_x u(t, 0) = \partial_x u(t, L) = 0$, t
 
 **Exercise 7.**
 Consider a double-barrier option with $B_l = 80$ and $B_u = 120$ on a stock with $S_0 = 100$. In log-space, this corresponds to a bounded domain $[\ln 80, \ln 120]$. Explain qualitatively how the spectral decomposition of the Green's function on this interval determines the option price, and why shorter-maturity options are more sensitive to higher-order eigenmodes.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The free-space Green's function for $\partial_t u = \frac{1}{2}\partial_{xx}u$ is
+
+    $$
+    G_{\text{free}}(t, x; 0, y) = \frac{1}{\sqrt{2\pi t}} \exp\!\left(-\frac{(x-y)^2}{2t}\right)
+    $$
+
+    To verify that $\int_{-\infty}^{\infty} G_{\text{free}}\,dx = 1$, observe that the integrand is the density of a normal distribution $N(y, t)$ with mean $y$ and variance $t$. Substituting $z = (x - y)/\sqrt{t}$, we get $dx = \sqrt{t}\,dz$ and
+
+    $$
+    \int_{-\infty}^{\infty} G_{\text{free}}\,dx = \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi t}} \exp\!\left(-\frac{z^2 t}{2t}\right)\sqrt{t}\,dz = \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-z^2/2}\,dz = 1
+    $$
+
+    The last integral equals $1$ because the integrand is the standard normal density. This holds for all $t > 0$, confirming that $G_{\text{free}}$ is a probability density in $x$ and that total probability (or heat) is conserved on the free domain.
+
+??? success "Solution to Exercise 2"
+    On the bounded domain $[0, L]$ with absorbing conditions $u(t, 0) = u(t, L) = 0$, the method of images starts with the free-space Green's function and adds image sources to enforce the boundary conditions.
+
+    The first image correction for the boundary at $x = 0$ places a negative image at $y' = -y$ (the reflection of $y$ across $x = 0$):
+
+    $$
+    G \approx G_{\text{free}}(t, x; 0, y) - G_{\text{free}}(t, x; 0, -y)
+    $$
+
+    This ensures $G(t, 0; 0, y) = G_{\text{free}}(t, 0; 0, y) - G_{\text{free}}(t, 0; 0, -y) = 0$ because both Gaussians are centered symmetrically about $x = 0$.
+
+    For the boundary at $x = L$, a negative image is placed at $y' = 2L - y$ (the reflection of $y$ across $x = L$):
+
+    $$
+    G \approx G_{\text{free}}(t, x; 0, y) - G_{\text{free}}(t, x; 0, -y) - G_{\text{free}}(t, x; 0, 2L - y) + \cdots
+    $$
+
+    Geometrically, $-y$ is the mirror image of $y$ through the left boundary, and $2L - y$ is the mirror image through the right boundary. The negative sign ensures cancellation at the boundary (Dirichlet condition). Enforcing both conditions simultaneously requires an infinite sequence of images at $y + 2kL$ and $-y + 2kL$ for all integers $k$, producing the full image series.
+
+??? success "Solution to Exercise 3"
+    For the half-line $[B, \infty)$ with absorbing condition at $X = B$, we apply the method of images. The image of the source at $y$ (with $y > B$) is placed at $y' = 2B - y$ (the reflection of $y$ across $B$), giving
+
+    $$
+    G(t, x; 0, y) = G_{\text{free}}(t, x; 0, y) - G_{\text{free}}(t, x; 0, 2B - y)
+    $$
+
+    At $x = B$, both Gaussians evaluate to the same value since $(B - y)^2 = (B - (2B - y))^2 = (y - B)^2$, so the difference vanishes identically: $G(t, B; 0, y) = 0$.
+
+    **Financial interpretation**: The first term $G_{\text{free}}(t, x; 0, y)$ represents the transition density of the unrestricted log-price process (the vanilla option contribution). The subtracted term $G_{\text{free}}(t, x; 0, 2B - y)$ represents paths that have crossed the barrier $B$ and been reflected back into the domain. By the reflection principle for Brownian motion, the density of reflected paths that end up at $x > B$ after crossing $B$ is exactly $G_{\text{free}}(t, x; 0, 2B - y)$. Subtracting these reflected paths removes the contribution of barrier-crossing trajectories, correctly pricing the down-and-out option.
+
+??? success "Solution to Exercise 4"
+    **Free-space Green's function**: As $t \to \infty$, $G_{\text{free}}(t, x; 0, y) = (2\pi t)^{-1/2}\exp(-(x-y)^2/(2t)) \to 0$ pointwise for every fixed $x$. The Gaussian spreads and flattens, but total mass is conserved: $\int_{-\infty}^{\infty} G_{\text{free}}\,dx = 1$ for all $t > 0$. The particle diffuses to infinity, distributing its probability over the entire real line.
+
+    **Bounded Dirichlet Green's function**: The long-time behavior is governed by the spectral expansion. The dominant term decays as $e^{-\lambda_1 t}$ where $\lambda_1 = \pi^2/(2L^2)$, so $G_{\text{Dir}} \to 0$ exponentially fast. Moreover, the total mass decays:
+
+    $$
+    \int_0^L G_{\text{Dir}}(t, x; 0, y)\,dx < 1 \quad \text{and} \quad \int_0^L G_{\text{Dir}}\,dx \to 0 \text{ as } t \to \infty
+    $$
+
+    **Probabilistic reason**: On the free domain, Brownian motion wanders to infinity but never disappears -- every trajectory survives forever, so total probability is conserved. On the bounded Dirichlet domain, the absorbing boundaries "kill" the process upon contact. As $t$ grows, more and more trajectories have been absorbed, so the surviving probability mass decreases. The exponential decay rate $\lambda_1$ is the principal eigenvalue, which represents the escape rate of the process from the domain.
+
+??? success "Solution to Exercise 5"
+    On $[0, L]$ with Dirichlet conditions, the spectral expansion of the Green's function is
+
+    $$
+    G_{\text{Dir}}(t, x; 0, y) = \frac{2}{L}\sum_{n=1}^{\infty} e^{-\lambda_n t}\sin\!\left(\frac{n\pi x}{L}\right)\sin\!\left(\frac{n\pi y}{L}\right)
+    $$
+
+    with eigenvalues $\lambda_n = n^2\pi^2/(2L^2)$. For large $t$, the exponential factors $e^{-\lambda_n t}$ decay at rates proportional to $n^2$. The $n = 1$ term decays slowest (smallest eigenvalue $\lambda_1$), while all higher modes are suppressed exponentially faster:
+
+    $$
+    e^{-\lambda_n t} = e^{-n^2\pi^2 t/(2L^2)} \ll e^{-\pi^2 t/(2L^2)} \quad \text{for } n \geq 2, \; t \gg 1
+    $$
+
+    Therefore, for large $t$:
+
+    $$
+    G_{\text{Dir}}(t, x; 0, y) \approx \frac{2}{L} e^{-\lambda_1 t}\sin\!\left(\frac{\pi x}{L}\right)\sin\!\left(\frac{\pi y}{L}\right)
+    $$
+
+    The decay rate is $\lambda_1$, the smallest eigenvalue. For $L = 1$, $\lambda_1 = \pi^2/2 \approx 4.93$, so the Green's function decays as $e^{-\pi^2 t/2}$. This means the total surviving probability decays at rate $\pi^2/2$ per unit time.
+
+??? success "Solution to Exercise 6"
+    With Neumann boundary conditions $\partial_x u(t, 0) = \partial_x u(t, L) = 0$, the derivative of $u$ vanishes at both boundaries. This means there is no net flux of probability through the boundary -- particles that reach the boundary are reflected back into the domain rather than being absorbed.
+
+    The spectral expansion contains the constant eigenfunction $\phi_0(x) = 1/\sqrt{L}$ with eigenvalue $\lambda_0 = 0$. Since this mode does not decay, total mass is conserved:
+
+    $$
+    \int_0^L G_{\text{Neu}}(t, x; 0, y)\,dx = 1 \quad \text{for all } t > 0
+    $$
+
+    All higher modes decay exponentially, so $G_{\text{Neu}} \to 1/L$ (uniform distribution) as $t \to \infty$.
+
+    **Financial interpretation**: A reflecting barrier prevents the process from leaving the domain. This corresponds to financial models where prices are constrained to remain within a band. Examples include:
+
+    - **Exchange rate target zones**: A central bank intervenes to keep the exchange rate within a band (e.g., the European Exchange Rate Mechanism). When the rate reaches the boundary, intervention reflects it back.
+    - **Regulated interest rates**: Short rates subject to a floor (zero lower bound) or a ceiling, where the rate is reflected when it hits the constraint.
+    - **Constrained portfolio processes**: Wealth processes with minimum guarantees, where the portfolio is rebalanced at the boundary to prevent breaching the constraint.
+
+??? success "Solution to Exercise 7"
+    In log-space, the domain is $[a, b] = [\ln 80, \ln 120]$ with $L = b - a = \ln(120/80) = \ln(3/2) \approx 0.405$. The Dirichlet Green's function on this interval has the spectral decomposition
+
+    $$
+    G(t, x; 0, y) = \frac{2}{L}\sum_{n=1}^{\infty} e^{-\lambda_n t}\sin\!\left(\frac{n\pi(x-a)}{L}\right)\sin\!\left(\frac{n\pi(y-a)}{L}\right)
+    $$
+
+    with eigenvalues $\lambda_n = n^2\pi^2/(2L^2)$.
+
+    The option price is
+
+    $$
+    V = e^{-rT}\int_a^b g(e^x)\,G(T, x; 0, \ln S_0)\,dx
+    $$
+
+    which decomposes into a sum of contributions from each eigenmode. The $n$-th mode contributes a term proportional to $e^{-\lambda_n T}$, so each eigenmode decays at its own characteristic rate.
+
+    **Sensitivity to higher eigenmodes at short maturities**: For short maturity $T$, the exponential factors $e^{-\lambda_n T}$ are all close to $1$ (since $\lambda_n T$ is small), so many modes contribute significantly to the sum. The payoff function $g(e^x)$ must be resolved accurately, requiring the higher-frequency components. In contrast, for long maturity $T$, the higher modes with large $\lambda_n$ are exponentially suppressed, and only the first few terms matter. The dominant term decays as $e^{-\lambda_1 T}$ with $\lambda_1 = \pi^2/(2L^2) \approx 30.2$, leading to rapid decay of the option price with maturity. This is why short-maturity double-barrier options are harder to price with the spectral method (many terms needed) but the method becomes very efficient for long maturities.

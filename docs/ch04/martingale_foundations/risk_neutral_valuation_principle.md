@@ -397,3 +397,150 @@ $$
 $$
 
 is equivalent to the risk-neutral valuation formula via the Feynman-Kac theorem. Identify the generator $\mathcal{L}^{\mathbb{Q}}$, the discount rate, and the terminal condition. Explain why the PDE contains $r$ (not $\mu$) in the drift term.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    With $r = 0.05$, $\sigma = 0.30$, $S_0 = 100$, $T = 0.5$, $K = 95$:
+
+    $$
+    d_1 = \frac{\ln(100/95) + (0.05 + 0.09/2)(0.5)}{0.30\sqrt{0.5}} = \frac{\ln(1.05263) + 0.0475 \cdot 0.5}{0.2121} = \frac{0.05129 + 0.02375}{0.2121} = \frac{0.07504}{0.2121} \approx 0.3539
+    $$
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{T} = 0.3539 - 0.2121 = 0.1418
+    $$
+
+    The call price is:
+
+    $$
+    C = S_0\Phi(d_1) - Ke^{-rT}\Phi(d_2) = 100\Phi(0.3539) - 95e^{-0.025}\Phi(0.1418)
+    $$
+
+    $$
+    = 100(0.6383) - 92.63(0.5564) = 63.83 - 51.53 \approx 12.30
+    $$
+
+    The put price via put-call parity is:
+
+    $$
+    P = C - S_0 + Ke^{-rT} = 12.30 - 100 + 92.63 = 4.93
+    $$
+
+    **Verification of put-call parity**: $C - P = 12.30 - 4.93 = 7.37$ and $S_0 - Ke^{-rT} = 100 - 92.63 = 7.37$. The parity holds.
+
+??? success "Solution to Exercise 2"
+    The digital call pays $\Phi_{\text{digital}} = \mathbf{1}_{S_T > K}$. By risk-neutral valuation:
+
+    $$
+    V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[\mathbf{1}_{S_T > K}] = e^{-rT}\mathbb{Q}(S_T > K)
+    $$
+
+    Under $\mathbb{Q}$, $\ln S_T = \ln S_0 + (r - \sigma^2/2)T + \sigma\sqrt{T}\,Z$ where $Z \sim N(0,1)$. Therefore:
+
+    $$
+    \mathbb{Q}(S_T > K) = \mathbb{Q}\left(Z > \frac{\ln(K/S_0) - (r - \sigma^2/2)T}{\sigma\sqrt{T}}\right) = \mathbb{Q}(Z > -d_2) = \Phi(d_2)
+    $$
+
+    Hence:
+
+    $$
+    V_0 = e^{-rT}\Phi(d_2)
+    $$
+
+    **As $\sigma \to 0$**: The stock becomes deterministic with $S_T = S_0 e^{rT}$. If $S_0 e^{rT} > K$ (i.e., the option is in-the-money at the forward), then $d_2 \to +\infty$ and $\Phi(d_2) \to 1$, giving $V_0 \to e^{-rT}$. If $S_0 e^{rT} < K$, then $d_2 \to -\infty$ and $V_0 \to 0$. If $S_0 e^{rT} = K$, $d_2 \to 0$ and $V_0 \to e^{-rT}/2$. The price converges to the discounted deterministic payoff.
+
+??? success "Solution to Exercise 3"
+    Under $\mathbb{P}$, $S_T = S_0 \exp((\mu - \sigma^2/2)T + \sigma W_T^{\mathbb{P}})$, so:
+
+    $$
+    e^{-rT}\mathbb{E}^{\mathbb{P}}[\Phi(S_T)]
+    $$
+
+    uses the physical drift $\mu$, not $r$, in the distribution of $S_T$. If $\Phi(x) = x$ (the payoff is the stock itself), then:
+
+    $$
+    e^{-rT}\mathbb{E}^{\mathbb{P}}[S_T] = e^{-rT} S_0 e^{\mu T} = S_0 e^{(\mu - r)T} \neq S_0
+    $$
+
+    unless $\mu = r$. This violates no-arbitrage since the discounted stock price should have expectation $S_0$ under the pricing measure, not $S_0 e^{(\mu-r)T}$.
+
+    The fundamental issue is that $\mathbb{P}$-expectations do not account for the market price of risk. The $\mathbb{Q}$-expectation correctly prices by eliminating risk premia from the drift.
+
+    The two computations agree when $\Phi$ is a **constant** payoff: $\Phi(S_T) = c$. Then $e^{-rT}\mathbb{E}^{\mathbb{Q}}[c] = e^{-rT}\mathbb{E}^{\mathbb{P}}[c] = ce^{-rT}$, since a constant is independent of the measure. More generally, the two agree if $\Phi(S_T)$ is $\mathcal{F}_0$-measurable (deterministic payoff), so the expectation does not depend on the probability measure at all.
+
+??? success "Solution to Exercise 4"
+    **(i)** The FTAP states that NFLVR holds if and only if there exists $\mathbb{Q} \sim \mathbb{P}$ such that the discounted traded asset $\tilde{S}_t = e^{-\int_0^t r_s\,ds}S_t$ is a $\mathbb{Q}$-martingale.
+
+    **(ii)** If the derivative with price $V_t$ can be replicated by a self-financing strategy in the traded assets, then $\tilde{V}_t = e^{-\int_0^t r_s\,ds}V_t$ must also be a $\mathbb{Q}$-martingale. If it were not, an arbitrage would exist between the derivative and its replicating portfolio.
+
+    **(iii)** The martingale property gives: $\tilde{V}_t = \mathbb{E}^{\mathbb{Q}}[\tilde{V}_T \mid \mathcal{F}_t]$.
+
+    **(iv)** At maturity $V_T = \Phi(X_T)$, so $\tilde{V}_T = e^{-\int_0^T r_s\,ds}\Phi(X_T)$. Substituting: $\tilde{V}_t = \mathbb{E}^{\mathbb{Q}}[e^{-\int_0^T r_s\,ds}\Phi(X_T) \mid \mathcal{F}_t]$.
+
+    **(v)** Since $\tilde{V}_t = e^{-\int_0^t r_s\,ds}V_t$, multiply both sides by $e^{\int_0^t r_s\,ds}$:
+
+    $$
+    V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}\Phi(X_T) \;\middle|\; \mathcal{F}_t\right]
+    $$
+
+    **Market completeness enters at step (ii)**: the argument that $\tilde{V}_t$ is a $\mathbb{Q}$-martingale requires the derivative to be **replicable**. In an incomplete market, the claim may not be replicable, and different equivalent martingale measures give different prices. Completeness (equivalently, uniqueness of $\mathbb{Q}$) ensures a unique no-arbitrage price.
+
+??? success "Solution to Exercise 5"
+    A zero-coupon bond pays $\Phi = 1$ at time $T$. The risk-neutral valuation formula gives:
+
+    $$
+    P(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds} \cdot 1 \;\middle|\; \mathcal{F}_t\right] = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds} \;\middle|\; \mathcal{F}_t\right]
+    $$
+
+    This is indeed the risk-neutral valuation formula with constant payoff $\Phi = 1$.
+
+    The discount factor $e^{-\int_t^T r_s\,ds}$ must be **inside** the expectation because it is **random** when $r_t$ is stochastic. The integral $\int_t^T r_s\,ds$ depends on the future path of $r_s$, which is unknown at time $t$. If we wrote $e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[1]$, we would be treating the discount factor as deterministic, which is only valid when $r$ is constant.
+
+    Under the Vasicek model, $r_t$ is an Ornstein–Uhlenbeck process under $\mathbb{Q}$, and $\int_t^T r_s\,ds$ is Gaussian (as a linear functional of a Gaussian process). The expectation can be computed in closed form, yielding the affine bond price formula $P(t,T) = \exp(A(T-t) - B(T-t)r_t)$ for explicit functions $A$ and $B$.
+
+??? success "Solution to Exercise 6"
+    Let $\mathbb{Q}_1$ and $\mathbb{Q}_2$ be two equivalent martingale measures. The two prices are:
+
+    $$
+    V_0^{(1)} = \mathbb{E}^{\mathbb{Q}_1}[e^{-rT}\Phi(X_T)], \quad V_0^{(2)} = \mathbb{E}^{\mathbb{Q}_2}[e^{-rT}\Phi(X_T)]
+    $$
+
+    Both are valid no-arbitrage prices because both measures make discounted traded-asset prices into martingales. However, since $\Phi(X_T)$ is a **non-traded** claim, different measures assign different expectations.
+
+    To see $V_0^{(1)} \neq V_0^{(2)}$ in general, note that $\mathbb{Q}_1 \neq \mathbb{Q}_2$ means they differ on some events. If $\Phi$ is non-constant and depends on the unhedgeable risk, then the difference in measure weighting leads to different expectations.
+
+    The pricing interval $[\underline{V}, \overline{V}]$ is defined as:
+
+    $$
+    \underline{V} = \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}^{\mathbb{Q}}[e^{-rT}\Phi(X_T)], \quad \overline{V} = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}^{\mathbb{Q}}[e^{-rT}\Phi(X_T)]
+    $$
+
+    where $\mathcal{M}$ is the set of all equivalent martingale measures. Any price within $[\underline{V}, \overline{V}]$ is consistent with no-arbitrage. The bounds $\underline{V}$ and $\overline{V}$ correspond to superhedging prices: $\overline{V}$ is the minimum cost to super-replicate $\Phi(X_T)$ (seller's price), and $\underline{V}$ is the maximum price a buyer would pay while maintaining no-arbitrage (buyer's price).
+
+??? success "Solution to Exercise 7"
+    The Black-Scholes PDE is:
+
+    $$
+    \frac{\partial V}{\partial t} + rx\frac{\partial V}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2 V}{\partial x^2} - rV = 0
+    $$
+
+    with terminal condition $V(T,x) = \Phi(x)$.
+
+    **Identifying components for Feynman–Kac**:
+
+    - **Generator**: $\mathcal{L}^{\mathbb{Q}} = rx\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2}{\partial x^2}$. This is the infinitesimal generator of geometric Brownian motion under $\mathbb{Q}$: $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$.
+    - **Discount rate**: $r$ (the coefficient of $-V$ in the PDE).
+    - **Terminal condition**: $V(T,x) = \Phi(x)$.
+
+    The Feynman–Kac theorem states that the solution to $\frac{\partial V}{\partial t} + \mathcal{L}^{\mathbb{Q}}V - rV = 0$ with $V(T,x) = \Phi(x)$ is:
+
+    $$
+    V(t,x) = \mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)}\Phi(S_T) \mid S_t = x]
+    $$
+
+    where $S$ follows the $\mathbb{Q}$-dynamics. This is exactly the risk-neutral valuation formula.
+
+    The PDE contains $r$ (not $\mu$) because the generator $\mathcal{L}^{\mathbb{Q}}$ corresponds to the **risk-neutral dynamics** $dS = rS\,dt + \sigma S\,dW^{\mathbb{Q}}$. The measure change from $\mathbb{P}$ to $\mathbb{Q}$ via Girsanov replaces the physical drift $\mu$ with $r$. The PDE is derived by requiring that the discounted option price be a $\mathbb{Q}$-martingale, which forces the drift to be $r$.

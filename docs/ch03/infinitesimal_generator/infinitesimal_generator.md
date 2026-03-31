@@ -383,3 +383,187 @@ then $\tilde{\mathcal{L}}V - rV = 0$, where $\mathcal{L}$ is the generator of ge
 ---
 
 **Exercise 7.** Let $dX_t = \sigma(X_t)\,dW_t$ (a driftless diffusion with state-dependent volatility). Write down the generator $\mathcal{L}$ and show that every affine function $f(x) = ax + b$ satisfies $\mathcal{L}f = 0$. What does this imply about $f(X_t)$ as a stochastic process?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The SDE is $dX_t = 3X_t\,dt + 2X_t\,dW_t$, so $\mu(x) = 3x$ and $\sigma(x) = 2x$. The generator is:
+
+    $$
+    \mathcal{L}f(x) = \mu(x)f'(x) + \frac{1}{2}\sigma^2(x)f''(x) = 3x\,f'(x) + \frac{1}{2}(2x)^2 f''(x) = 3x\,f'(x) + 2x^2 f''(x)
+    $$
+
+    For $f(x) = x^2$, we have $f'(x) = 2x$ and $f''(x) = 2$:
+
+    $$
+    \mathcal{L}f(x) = 3x \cdot 2x + 2x^2 \cdot 2 = 6x^2 + 4x^2 = 10x^2
+    $$
+
+    This means $\frac{d}{dt}\mathbb{E}[X_t^2 \mid X_0 = x] = 10\,\mathbb{E}[X_t^2 \mid X_0 = x]$, so $\mathbb{E}[X_t^2] = x^2 e^{10t}$.
+
+??? success "Solution to Exercise 2"
+    The OU generator is $\mathcal{L}f = -\kappa x\,f'(x) + \frac{\sigma^2}{2}f''(x)$. For $f(x) = e^{\alpha x}$:
+
+    - $f'(x) = \alpha e^{\alpha x}$, $f''(x) = \alpha^2 e^{\alpha x}$
+
+    $$
+    \mathcal{L}f(x) = -\kappa x \cdot \alpha e^{\alpha x} + \frac{\sigma^2}{2}\alpha^2 e^{\alpha x} = \left(-\kappa \alpha x + \frac{\sigma^2 \alpha^2}{2}\right)e^{\alpha x}
+    $$
+
+    Now set $m(t) = \mathbb{E}_x[e^{\alpha X_t}]$. By Dynkin's formula:
+
+    $$
+    m(t) = e^{\alpha x} + \int_0^t \mathbb{E}_x\!\left[\left(-\kappa \alpha X_s + \frac{\sigma^2 \alpha^2}{2}\right)e^{\alpha X_s}\right]ds
+    $$
+
+    Differentiating:
+
+    $$
+    m'(t) = -\kappa \alpha\,\mathbb{E}_x[X_t\,e^{\alpha X_t}] + \frac{\sigma^2 \alpha^2}{2}m(t)
+    $$
+
+    Note that $\mathbb{E}_x[X_t\,e^{\alpha X_t}] = \frac{\partial}{\partial \alpha}m(t)$, so:
+
+    $$
+    m'(t) = -\kappa \alpha \frac{\partial m}{\partial \alpha}(t) + \frac{\sigma^2 \alpha^2}{2}m(t)
+    $$
+
+    This is a PDE in $(\alpha, t)$ for the moment generating function. In the special case where we only want the ODE for the mean ($\alpha \to 0$), we differentiate $m(t)$ with respect to $\alpha$ and set $\alpha = 0$. Writing $\mu_1(t) = \mathbb{E}_x[X_t]$: differentiating the Dynkin integral equation with $f(x) = x$ (i.e., the $\alpha$-derivative at $\alpha = 0$) gives $\mu_1'(t) = -\kappa \mu_1(t)$, yielding $\mu_1(t) = x\,e^{-\kappa t}$.
+
+??? success "Solution to Exercise 3"
+    The drift and diffusion coefficients are $\mu^1(x,y) = y$, $\mu^2(x,y) = -x$, $\sigma^{1,1} = 1$, $\sigma^{2,2} = 1$, with $\sigma^{1,2} = \sigma^{2,1} = 0$. The diffusion matrix is $a = \sigma\sigma^\top = I$ (the identity). The multidimensional generator is:
+
+    $$
+    \mathcal{L}f = y\frac{\partial f}{\partial x} - x\frac{\partial f}{\partial y} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2} + \frac{1}{2}\frac{\partial^2 f}{\partial y^2}
+    $$
+
+    For $f(x,y) = x^2 + y^2$:
+
+    - $\frac{\partial f}{\partial x} = 2x$, $\frac{\partial f}{\partial y} = 2y$
+    - $\frac{\partial^2 f}{\partial x^2} = 2$, $\frac{\partial^2 f}{\partial y^2} = 2$
+
+    $$
+    \mathcal{L}f = y \cdot 2x + (-x) \cdot 2y + \frac{1}{2}\cdot 2 + \frac{1}{2}\cdot 2 = 2xy - 2xy + 1 + 1 = 2
+    $$
+
+    By Dynkin's formula, $\mathbb{E}[X_t^2 + Y_t^2] = (x_0^2 + y_0^2) + 2t$, showing the radius squared grows linearly on average. The cross terms from the drift cancel exactly, and only the diffusion contributes.
+
+??? success "Solution to Exercise 4"
+    Let $f(x) = -x^2$. This function attains a global maximum at $x^* = 0$ with $f(0) = 0$. For $x \neq 0$, $f(x) < 0$.
+
+    The generator of the compound Poisson process gives:
+
+    $$
+    (\mathcal{L}f)(0) = \lambda \int_{\mathbb{R}} [f(0+y) - f(0)]\,\nu(dy) = \lambda \int_{\mathbb{R}} (-y^2)\,\nu(dy) = -\lambda\int_{\mathbb{R}} y^2\,\nu(dy)
+    $$
+
+    Wait — this is $-\lambda \mathbb{E}_\nu[Y^2] \leq 0$, so the maximum principle actually holds for this choice. We need a different construction.
+
+    Instead, let $\nu = \delta_0$ (point mass at zero — the trivial case where jumps have size zero). Then $(\mathcal{L}f)(x^*) = \lambda[f(x^*) - f(x^*)] = 0$, which does not violate the principle.
+
+    The correct approach: take $f(x) = -(x-1)^2$, which has a maximum at $x^* = 1$ with $f(1) = 0$. Choose $\nu = \delta_{-1}$ (all jumps of size $-1$):
+
+    $$
+    (\mathcal{L}f)(1) = \lambda[f(1 + (-1)) - f(1)] = \lambda[f(0) - f(1)] = \lambda[-(0-1)^2 - 0] = -\lambda < 0
+    $$
+
+    This still does not violate. Let us try more carefully. Take $f(x) = \mathbf{1}_{x=0}$ — but this is not smooth. We need a smooth function.
+
+    Take $f(x) = e^{-x^2}$, which has a maximum at $x^* = 0$ with $f(0) = 1$. Let $\nu = \frac{1}{2}\delta_{-\epsilon} + \frac{1}{2}\delta_{\epsilon}$ for small $\epsilon > 0$:
+
+    $$
+    (\mathcal{L}f)(0) = \lambda\left[\frac{1}{2}f(-\epsilon) + \frac{1}{2}f(\epsilon) - f(0)\right] = \lambda\left[e^{-\epsilon^2} - 1\right] < 0
+    $$
+
+    This is still negative. In fact, for **any** function with a strict maximum, $f(x^* + y) \leq f(x^*)$ for all $y$, so $\int [f(x^*+y) - f(x^*)]\,\nu(dy) \leq 0$. If $f$ has a **global** maximum, the principle holds even for jump processes.
+
+    The maximum principle for diffusions states: if $f$ has a **local interior** maximum at $x^*$ in a domain $D$, then $\mathcal{L}f(x^*) \leq 0$. For jump processes, this fails because jumps can reach outside the local neighborhood. Consider $f$ defined on $\mathbb{R}$ by:
+
+    $$
+    f(x) = \begin{cases} 1 - x^2 & |x| \leq 1 \\ 2e^{-(x-2)^2} & x > 1 \\ 0 & x < -1 \end{cases}
+    $$
+
+    smoothly interpolated, with a local maximum at $x^* = 0$ where $f(0) = 1$, and a global maximum at $x = 2$ where $f(2) = 2$. Now take $\nu = \delta_2$ (jumps of size $2$):
+
+    $$
+    (\mathcal{L}f)(0) = \lambda[f(2) - f(0)] = \lambda[2 - 1] = \lambda > 0
+    $$
+
+    This violates the maximum principle: $f$ has a local maximum at $x^* = 0$, but $(\mathcal{L}f)(0) = \lambda > 0$. The jump process can "see" the higher value at $x = 2$, which a diffusion (being continuous) cannot reach instantly.
+
+??? success "Solution to Exercise 5"
+    The generator of BM is $\mathcal{L}f = \frac{1}{2}f''$.
+
+    **(a)** $f(x) = |x|$. This function is not differentiable at $x = 0$, so $f \notin C^2(\mathbb{R})$. At $x \neq 0$, $f''(x) = 0$, so $\mathcal{L}f(x) = 0$ away from the origin. However, $f''$ does not exist at $x = 0$ (as a classical derivative), so $f \notin \mathrm{Dom}(\mathcal{L})$ in the classical sense.
+
+    **(b)** $f(x) = x^3$. We have $f'(x) = 3x^2$ and $f''(x) = 6x$, both well-defined and continuous. Thus:
+
+    $$
+    \mathcal{L}f(x) = \frac{1}{2}\cdot 6x = 3x
+    $$
+
+    This is well-defined for all $x$, so $f \in \mathrm{Dom}(\mathcal{L})$.
+
+    **(c)** $f(x) = \sin(x)$. We have $f''(x) = -\sin(x)$, which is smooth and bounded. Thus:
+
+    $$
+    \mathcal{L}f(x) = -\frac{1}{2}\sin(x)
+    $$
+
+    This is well-defined for all $x$, so $f \in \mathrm{Dom}(\mathcal{L})$.
+
+    **(d)** $f(x) = (x-1)^+ = \max(x-1, 0)$. This function has a kink at $x = 1$: $f'$ has a jump discontinuity at $x = 1$ and $f''$ does not exist there (in the classical sense). So $f \notin C^2(\mathbb{R})$ and $f \notin \mathrm{Dom}(\mathcal{L})$ classically. This is the call option payoff, illustrating why option pricing requires regularization or weak solutions.
+
+??? success "Solution to Exercise 6"
+    Under the risk-neutral measure, $dS_t = rS_t\,dt + \sigma S_t\,dW_t$, so the generator of GBM is:
+
+    $$
+    \mathcal{L}f = rS\frac{\partial f}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 f}{\partial S^2}
+    $$
+
+    The extended generator is $\tilde{\mathcal{L}}f = \frac{\partial f}{\partial t} + \mathcal{L}f$. For $V(S,t)$:
+
+    $$
+    \tilde{\mathcal{L}}V = \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2}
+    $$
+
+    The Black--Scholes PDE states exactly that this expression equals $rV$:
+
+    $$
+    \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} = rV
+    $$
+
+    Therefore $\tilde{\mathcal{L}}V - rV = 0$.
+
+    To see why $e^{-rt}V(S_t, t)$ is a martingale, apply Ito's lemma to $g(S,t) = e^{-rt}V(S,t)$:
+
+    $$
+    dg = e^{-rt}\!\left[-rV\,dt + \frac{\partial V}{\partial t}\,dt + rS\frac{\partial V}{\partial S}\,dt + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2}\,dt + \sigma S\frac{\partial V}{\partial S}\,dW_t\right]
+    $$
+
+    The $dt$ terms combine to $e^{-rt}(\tilde{\mathcal{L}}V - rV)\,dt = 0$ by the Black--Scholes PDE. The only surviving term is:
+
+    $$
+    dg = e^{-rt}\sigma S_t \frac{\partial V}{\partial S}(S_t, t)\,dW_t
+    $$
+
+    This is a (local) martingale since it is a stochastic integral with respect to $W_t$. Under appropriate integrability conditions (which hold for standard option payoffs), it is a true martingale. Therefore $e^{-rt}V(S_t, t)$ is a martingale, confirming the risk-neutral pricing formula $V(S_0, 0) = \mathbb{E}[e^{-rT}V(S_T, T)]$.
+
+??? success "Solution to Exercise 7"
+    The SDE is $dX_t = \sigma(X_t)\,dW_t$, so $\mu(x) = 0$ and the generator is:
+
+    $$
+    \mathcal{L}f(x) = 0 \cdot f'(x) + \frac{1}{2}\sigma^2(x)f''(x) = \frac{1}{2}\sigma^2(x)f''(x)
+    $$
+
+    For $f(x) = ax + b$, we have $f'(x) = a$ and $f''(x) = 0$. Therefore:
+
+    $$
+    \mathcal{L}f(x) = \frac{1}{2}\sigma^2(x) \cdot 0 = 0
+    $$
+
+    for any choice of $\sigma(x)$, confirming $f$ is $\mathcal{L}$-harmonic.
+
+    Since $\mathcal{L}f = 0$, the Dynkin martingale becomes $M_t = f(X_t) - f(X_0) - 0 = f(X_t) - f(X_0)$. Therefore $f(X_t) = aX_t + b$ is a local martingale. In particular, $X_t$ itself (taking $a = 1$, $b = 0$) is a local martingale, which is expected since the SDE has zero drift. Under appropriate integrability conditions on $\sigma$, $X_t$ is a true martingale.

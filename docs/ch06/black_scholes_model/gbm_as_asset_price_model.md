@@ -329,3 +329,213 @@ The next section on self-financing portfolios builds directly on the GBM dynamic
 ---
 
 **Exercise 7.** On October 19, 1987, the S&P 500 fell approximately 20% in a single day. Assuming GBM with $\sigma = 0.20$ (annualized) and using $\Delta t = 1/252$ for one trading day, compute the probability of a daily log-return less than $\ln(0.80)$. Express your answer in terms of standard deviations from the mean. What does this imply about the adequacy of the GBM model for tail-risk assessment?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    With $S_0 = 50$, $\mu = 0.08$, $\sigma = 0.30$, and $t = 2$:
+
+    **Expected value**:
+
+    $$
+    \mathbb{E}[S_2] = S_0 e^{\mu t} = 50 \cdot e^{0.08 \times 2} = 50 \cdot e^{0.16} \approx 50 \times 1.1735 = 58.67
+    $$
+
+    **Variance**:
+
+    $$
+    \text{Var}(S_2) = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1) = 2500 \cdot e^{0.32}(e^{0.18} - 1)
+    $$
+
+    $$
+    = 2500 \times 1.3771 \times 0.1972 \approx 678.9
+    $$
+
+    **Probability $\mathbb{P}(S_2 > 75)$**: Since $\ln S_2 \sim \mathcal{N}(\ln 50 + (0.08 - 0.045) \times 2, 0.09 \times 2) = \mathcal{N}(3.9820 , 0.18)$:
+
+    $$
+    \mathbb{P}(S_2 > 75) = \mathbb{P}(\ln S_2 > \ln 75) = 1 - \Phi\!\left(\frac{\ln 75 - 3.9820}{\sqrt{0.18}}\right)
+    $$
+
+    $$
+    = 1 - \Phi\!\left(\frac{4.3175 - 3.9820}{0.4243}\right) = 1 - \Phi(0.7907)
+    $$
+
+    $$
+    \approx 1 - 0.7854 = 0.2146
+    $$
+
+    There is approximately a 21.5% probability that the stock price exceeds 75 after two years.
+
+??? success "Solution to Exercise 2"
+    Let $f(S_t) = S_t^n$. We compute the derivatives: $f'(x) = nx^{n-1}$ and $f''(x) = n(n-1)x^{n-2}$.
+
+    Applying Ito's lemma to $Y_t = S_t^n$:
+
+    $$
+    dY_t = f'(S_t)\,dS_t + \frac{1}{2}f''(S_t)(\sigma S_t)^2\,dt
+    $$
+
+    $$
+    = nS_t^{n-1}(\mu S_t\,dt + \sigma S_t\,dW_t) + \frac{1}{2}n(n-1)S_t^{n-2}\sigma^2 S_t^2\,dt
+    $$
+
+    $$
+    = nS_t^n\mu\,dt + nS_t^n\sigma\,dW_t + \frac{1}{2}n(n-1)\sigma^2 S_t^n\,dt
+    $$
+
+    $$
+    = S_t^n\!\left[\left(n\mu + \frac{n(n-1)}{2}\sigma^2\right)dt + n\sigma\,dW_t\right]
+    $$
+
+    Therefore $Y_t = S_t^n$ satisfies a GBM-type SDE with drift coefficient $n\mu + \frac{n(n-1)}{2}\sigma^2$ and diffusion coefficient $n\sigma$.
+
+    Taking expectations (using $\mathbb{E}[dW_t] = 0$):
+
+    $$
+    \frac{d}{dt}\mathbb{E}[S_t^n] = \left(n\mu + \frac{n(n-1)}{2}\sigma^2\right)\mathbb{E}[S_t^n]
+    $$
+
+    This ODE has solution:
+
+    $$
+    \mathbb{E}[S_t^n] = S_0^n \exp\!\left[\left(n\mu + \frac{n(n-1)}{2}\sigma^2\right)t\right] = S_0^n \exp\!\left[n\mu t + \frac{n^2 - n}{2}\sigma^2 t\right]
+    $$
+
+    which agrees with the formula in the text. $\square$
+
+??? success "Solution to Exercise 3"
+    The coefficient of variation is $\text{CV}(S_t) = \sqrt{e^{\sigma^2 t} - 1}$.
+
+    With $\sigma = 0.20$ (so $\sigma^2 = 0.04$):
+
+    | $t$ | $\sigma^2 t$ | $e^{\sigma^2 t}$ | $\text{CV}(S_t)$ |
+    |-----|-------------|-----------------|------------------|
+    | 0.25 | 0.01 | 1.01005 | $\sqrt{0.01005} \approx 0.1003$ |
+    | 1 | 0.04 | 1.04081 | $\sqrt{0.04081} \approx 0.2020$ |
+    | 5 | 0.20 | 1.22140 | $\sqrt{0.22140} \approx 0.4705$ |
+    | 10 | 0.40 | 1.49182 | $\sqrt{0.49182} \approx 0.7013$ |
+
+    Setting $\text{CV} = 1$:
+
+    $$
+    \sqrt{e^{\sigma^2 t^*} - 1} = 1 \implies e^{\sigma^2 t^*} = 2 \implies t^* = \frac{\ln 2}{\sigma^2}
+    $$
+
+    For $\sigma = 0.20$: $t^* = \frac{0.6931}{0.04} = 17.33$ years.
+
+    In general, $t^* = \frac{\ln 2}{\sigma^2}$. This shows that the standard deviation equals the mean only at very long horizons for typical equity volatilities, reflecting the exponential growth of GBM uncertainty over time.
+
+??? success "Solution to Exercise 4"
+    The median of a log-normal random variable $X$ with $\ln X \sim \mathcal{N}(m, v^2)$ is $e^m$ (since $\mathbb{P}(\ln X \leq m) = \Phi(0) = 0.5$).
+
+    For $S_t$ under GBM, $\ln S_t \sim \mathcal{N}(\ln S_0 + (\mu - \frac{1}{2}\sigma^2)t, \sigma^2 t)$, so:
+
+    $$
+    \text{Median}(S_t) = \exp\!\left[\ln S_0 + \left(\mu - \frac{1}{2}\sigma^2\right)t\right] = S_0 e^{(\mu - \frac{1}{2}\sigma^2)t}
+    $$
+
+    The mean is $\mathbb{E}[S_t] = S_0 e^{\mu t}$. The ratio is:
+
+    $$
+    \frac{\text{Median}(S_t)}{\mathbb{E}[S_t]} = e^{-\frac{1}{2}\sigma^2 t} < 1 \quad \text{for all } \sigma > 0, t > 0
+    $$
+
+    so the median is strictly less than the mean.
+
+    **Intuition**: The log-normal distribution is right-skewed. A small number of very large outcomes (in the heavy right tail) pull the mean upward without affecting the median. More than half the sample paths end up below the mean, while the average is inflated by the few paths that reach very high values. This is the continuous-time manifestation of the asymmetry in compounding: the arithmetic mean return exceeds the geometric mean return, and most individual paths grow at the geometric rate $\mu - \frac{1}{2}\sigma^2$.
+
+??? success "Solution to Exercise 5"
+    Under GBM, the log-returns $r_{t,h} = \ln(S_{t+h}/S_t) = (\mu - \frac{1}{2}\sigma^2)h + \sigma(W_{t+h} - W_t)$ are **independent** across non-overlapping intervals and have **constant variance** $\sigma^2 h$.
+
+    Volatility clustering means that the magnitude of returns (or squared returns) is positively autocorrelated: a large $|r_{t,h}|$ tends to be followed by another large $|r_{t+h,h}|$. Under GBM, since returns over non-overlapping intervals are independent, the autocorrelation of $r_{t,h}^2$ is exactly zero:
+
+    $$
+    \text{Corr}(r_{t,h}^2, r_{t+h,h}^2) = 0
+    $$
+
+    This **independence of increments** is the specific property that rules out volatility clustering. In GBM, knowing that today's return was large gives no information about whether tomorrow's return will be large or small.
+
+    **Minimal modification**: Replace the constant volatility $\sigma$ with a stochastic process $\sigma_t$ that has its own dynamics. The simplest such model is the Heston (1993) stochastic volatility model:
+
+    $$
+    dS_t = \mu S_t\,dt + \sqrt{v_t}\,S_t\,dW_t^{(1)}
+    $$
+
+    $$
+    dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
+    $$
+
+    where $v_t = \sigma_t^2$ is the instantaneous variance, $\kappa$ is the mean-reversion speed, $\theta$ is the long-run variance, $\xi$ is the volatility of volatility, and $W_t^{(1)}, W_t^{(2)}$ are (possibly correlated) Brownian motions. This model produces volatility clustering because $v_t$ is persistent (mean-reverting with autocorrelation), so periods of high variance tend to be followed by high variance. The distribution of $S_t$ is no longer log-normal; instead, it has fatter tails and the conditional distribution depends on the current volatility level.
+
+??? success "Solution to Exercise 6"
+    Let $S_t^{(1)} = S_0^{(1)} e^{(\mu - \frac{1}{2}\sigma^2)t + \sigma W_t^{(1)}}$ and $S_t^{(2)} = S_0^{(2)} e^{(\mu - \frac{1}{2}\sigma^2)t + \sigma W_t^{(2)}}$, where $W_t^{(1)}$ and $W_t^{(2)}$ are independent Brownian motions.
+
+    Define $R_t = S_t^{(1)} / S_t^{(2)}$. Then:
+
+    $$
+    R_t = \frac{S_0^{(1)}}{S_0^{(2)}} \exp\!\left[\sigma(W_t^{(1)} - W_t^{(2)})\right]
+    $$
+
+    To find the SDE for $R_t$, apply Ito's lemma to $R_t = f(S_t^{(1)}, S_t^{(2)}) = S_t^{(1)}/S_t^{(2)}$.
+
+    The partial derivatives are: $f_1 = 1/S^{(2)}$, $f_2 = -S^{(1)}/(S^{(2)})^2$, $f_{11} = 0$, $f_{22} = 2S^{(1)}/(S^{(2)})^3$, $f_{12} = -1/(S^{(2)})^2$.
+
+    By the multidimensional Ito formula (using independence so the cross-variation $d\langle S^{(1)}, S^{(2)}\rangle = 0$):
+
+    $$
+    dR_t = \frac{1}{S_t^{(2)}}dS_t^{(1)} - \frac{S_t^{(1)}}{(S_t^{(2)})^2}dS_t^{(2)} + \frac{1}{2}\cdot\frac{2S_t^{(1)}}{(S_t^{(2)})^3}(\sigma S_t^{(2)})^2\,dt
+    $$
+
+    Substituting the GBM dynamics:
+
+    $$
+    dR_t = R_t\!\left[\mu\,dt + \sigma\,dW_t^{(1)}\right] - R_t\!\left[\mu\,dt + \sigma\,dW_t^{(2)}\right] + \sigma^2 R_t\,dt
+    $$
+
+    $$
+    = R_t\!\left[\sigma^2\,dt + \sigma\,dW_t^{(1)} - \sigma\,dW_t^{(2)}\right]
+    $$
+
+    Define $\tilde{W}_t = \frac{1}{\sqrt{2}}(W_t^{(1)} - W_t^{(2)})$, which is a standard Brownian motion (since $W_t^{(1)} - W_t^{(2)}$ has variance $2t$). Then:
+
+    $$
+    dR_t = \sigma^2 R_t\,dt + \sigma\sqrt{2}\,R_t\,d\tilde{W}_t
+    $$
+
+    This is a GBM with drift $\sigma^2$ and volatility $\sigma\sqrt{2}$.
+
+    The expected value of $R_1$ is:
+
+    $$
+    \mathbb{E}[R_1] = R_0\,e^{\sigma^2 \cdot 1} = \frac{100}{200}\,e^{\sigma^2} = 0.5\,e^{\sigma^2}
+    $$
+
+    Note that $\mathbb{E}[R_1] = 0.5\,e^{\sigma^2} > 0.5 = R_0$, so the expected ratio grows over time due to the convexity effect (Jensen's inequality).
+
+??? success "Solution to Exercise 7"
+    Under GBM, the daily log-return over $\Delta t = 1/252$ is:
+
+    $$
+    r_{\text{daily}} = \ln\!\left(\frac{S_{t+\Delta t}}{S_t}\right) \sim \mathcal{N}\!\left(\left(\mu - \frac{1}{2}\sigma^2\right)\Delta t,\; \sigma^2 \Delta t\right)
+    $$
+
+    The daily standard deviation is $\sigma\sqrt{\Delta t} = 0.20 / \sqrt{252} \approx 0.01260$.
+
+    The mean daily log-return is $(\mu - \frac{1}{2}\sigma^2)/252$, which is negligibly small relative to the standard deviation (on the order of $10^{-4}$), so we approximate the mean as zero.
+
+    A 20% drop corresponds to a log-return of $\ln(0.80) = -0.22314$.
+
+    The number of standard deviations from the mean:
+
+    $$
+    z = \frac{-0.22314}{0.01260} \approx -17.71
+    $$
+
+    This is approximately a **17.7-sigma event**. The probability of a standard normal variable being below $-17.7$ is astronomically small, far less than $10^{-50}$.
+
+    To put this in context, a 5-sigma event has probability about $3 \times 10^{-7}$ (once in several million days), and a 6-sigma event is roughly $10^{-9}$. A 17.7-sigma event is so improbable under the normal distribution that it should essentially never occur in the lifetime of the universe.
+
+    **Implication**: The GBM model is fundamentally inadequate for tail-risk assessment. The 1987 crash was a real event, yet the model assigns it essentially zero probability. This demonstrates that real market returns have much heavier tails than the normal distribution predicts. Models incorporating jumps (Merton jump-diffusion), stochastic volatility (Heston), or heavy-tailed distributions (Student's $t$) are necessary for realistic tail-risk analysis and extreme event modeling.

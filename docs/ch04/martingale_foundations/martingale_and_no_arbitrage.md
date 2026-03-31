@@ -529,3 +529,119 @@ In the Black–Scholes model with $\mu = 0.10$, $r = 0.02$, $\sigma = 0.20$:
 (c) Verify Novikov's condition is satisfied.
 
 (d) Under $\mathbb{Q}$, what is the drift of $S_t$?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** By the product rule:
+
+    $$
+    d(\phi_t S_t) = \phi_t\,dS_t + S_t\,d\phi_t + d\phi_t\,dS_t
+    $$
+
+    $$
+    d(\psi_t B_t) = \psi_t\,dB_t + B_t\,d\psi_t + d\psi_t\,dB_t
+    $$
+
+    Since $\phi_t$ and $\psi_t$ are of bounded variation (trading strategies), the cross terms $d\phi_t\,dS_t$ and $d\psi_t\,dB_t$ vanish. Adding:
+
+    $$
+    dV_t = \phi_t\,dS_t + S_t\,d\phi_t + \psi_t\,dB_t + B_t\,d\psi_t
+    $$
+
+    The self-financing condition states $dV_t = \phi_t\,dS_t + \psi_t\,dB_t$. Subtracting:
+
+    $$
+    S_t\,d\phi_t + B_t\,d\psi_t = 0
+    $$
+
+    **(b)** This says that any rebalancing of the portfolio must be self-funding: if you buy more stock (increasing $\phi_t$), you must finance it by selling bonds (decreasing $\psi_t$), and vice versa. The total cost of rebalancing at current prices is zero — no external cash is injected or withdrawn.
+
+??? success "Solution to Exercise 2"
+    Define $\tilde{V}_t = V_t / B_t = V_t \cdot B_t^{-1}$. By Itô's product rule:
+
+    $$
+    d\tilde{V}_t = V_t\,d(B_t^{-1}) + B_t^{-1}\,dV_t + dV_t\,d(B_t^{-1})
+    $$
+
+    Since $B_t$ is differentiable (no stochastic term), the cross-variation vanishes: $dV_t\,d(B_t^{-1}) = 0$. Now $d(B_t^{-1}) = -r_t B_t^{-1}\,dt$, and by self-financing $dV_t = \phi_t\,dS_t + \psi_t\,dB_t$. Substituting:
+
+    $$
+    d\tilde{V}_t = -r_t V_t B_t^{-1}\,dt + B_t^{-1}(\phi_t\,dS_t + \psi_t\,dB_t)
+    $$
+
+    $$
+    = -r_t \tilde{V}_t\,dt + \phi_t B_t^{-1}\,dS_t + \psi_t B_t^{-1} r_t B_t\,dt
+    $$
+
+    $$
+    = -r_t \tilde{V}_t\,dt + \phi_t B_t^{-1}\,dS_t + r_t \psi_t\,dt
+    $$
+
+    Since $\tilde{V}_t = \phi_t \tilde{S}_t + \psi_t$, we have $r_t\tilde{V}_t = r_t\phi_t\tilde{S}_t + r_t\psi_t$. Thus:
+
+    $$
+    d\tilde{V}_t = -r_t\phi_t\tilde{S}_t\,dt + \phi_t B_t^{-1}\,dS_t
+    $$
+
+    Now $d\tilde{S}_t = d(S_t B_t^{-1}) = B_t^{-1}\,dS_t - r_t \tilde{S}_t\,dt$, so $B_t^{-1}\,dS_t = d\tilde{S}_t + r_t\tilde{S}_t\,dt$. Substituting:
+
+    $$
+    d\tilde{V}_t = -r_t\phi_t\tilde{S}_t\,dt + \phi_t(d\tilde{S}_t + r_t\tilde{S}_t\,dt) = \phi_t\,d\tilde{S}_t
+    $$
+
+    Integrating from $0$ to $t$:
+
+    $$
+    \tilde{V}_t = \tilde{V}_0 + \int_0^t \phi_s\,d\tilde{S}_s
+    $$
+
+??? success "Solution to Exercise 3"
+    **(a)** Since $G_t \geq -M$, we have $H_t = G_t + M \geq 0$. Since $G_t$ is a local martingale with localizing sequence $\{\tau_n\}$, the stopped process $G_{t \wedge \tau_n}$ is a martingale. Then $H_{t \wedge \tau_n} = G_{t \wedge \tau_n} + M$ is also a martingale (adding a constant preserves the martingale property). Hence $H_t$ is a non-negative local martingale.
+
+    **(b)** Since $H_t \geq 0$ is a non-negative local martingale, by Fatou's lemma:
+
+    $$
+    \mathbb{E}[H_T] = \mathbb{E}\left[\lim_{n \to \infty} H_{T \wedge \tau_n}\right] \leq \liminf_{n \to \infty} \mathbb{E}[H_{T \wedge \tau_n}] = \liminf_{n \to \infty} H_0 = H_0
+    $$
+
+    Therefore $\mathbb{E}[H_T] \leq H_0 = G_0 + M$.
+
+    **(c)** Since $\mathbb{E}[H_T] = \mathbb{E}[G_T + M] = \mathbb{E}[G_T] + M \leq G_0 + M$, we get:
+
+    $$
+    \mathbb{E}[G_T] \leq G_0
+    $$
+
+    **(d)** If $G_T \geq 0$ a.s. and $G_0 = 0$, then from part (c): $\mathbb{E}[G_T] \leq 0$. But $G_T \geq 0$ a.s. implies $\mathbb{E}[G_T] \geq 0$. Together: $\mathbb{E}[G_T] = 0$. Since $G_T \geq 0$ a.s. and has zero expectation, we conclude $G_T = 0$ almost surely.
+
+??? success "Solution to Exercise 4"
+    **(a)** The market price of risk is:
+
+    $$
+    \theta = \frac{\mu - r}{\sigma} = \frac{0.10 - 0.02}{0.20} = \frac{0.08}{0.20} = 0.4
+    $$
+
+    **(b)** The Radon–Nikodym derivative for $T = 1$ is:
+
+    $$
+    \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_1} = \exp\left(-\theta W_1^{\mathbb{P}} - \frac{\theta^2}{2}\right) = \exp\left(-0.4\, W_1^{\mathbb{P}} - 0.08\right)
+    $$
+
+    **(c)** Novikov's condition requires:
+
+    $$
+    \mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\int_0^1 \theta^2\,ds\right)\right] = \exp\left(\frac{\theta^2}{2}\right) = \exp(0.08) \approx 1.0833 < \infty
+    $$
+
+    Since $\theta$ is constant, the integral $\int_0^1 \theta^2\,ds = \theta^2 = 0.16$ is deterministic, and the exponential moment is trivially finite. Novikov's condition is satisfied.
+
+    **(d)** Under $\mathbb{Q}$, the drift of $S_t$ is $r = 0.02$. Specifically:
+
+    $$
+    dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}} = 0.02\,S_t\,dt + 0.20\,S_t\,dW_t^{\mathbb{Q}}
+    $$
+
+    The physical drift $\mu = 0.10$ has been replaced by the risk-free rate $r = 0.02$.

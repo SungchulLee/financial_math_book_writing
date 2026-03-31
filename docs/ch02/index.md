@@ -16,7 +16,7 @@ This chapter builds the probabilistic engine that powers continuous-time finance
 
 Random walks provide the most natural discrete model for asset prices evolving under uncertainty. Understanding their large-scale behavior reveals why Brownian motion, rather than some other continuous process, is the canonical building block of stochastic finance.
 
-The simple symmetric random walk $S_n = \sum_{i=1}^n X_i$ with $\mathbb{P}(X_i = \pm 1) = 1/2$ serves as the discrete precursor to Brownian motion. The rescaled walk $W^{(n)}_t = n^{-1/2} S_{\lfloor nt \rfloor}$ converges in distribution to standard Brownian motion as $n \to \infty$. This is the content of Donsker's theorem: weak convergence holds in $C[0,T]$ equipped with the sup-norm topology.
+The simple symmetric random walk $S_n = \sum_{i=1}^n X_i$ with $\mathbb{P}(X_i = \pm 1) = 1/2$ serves as the discrete precursor to Brownian motion. The rescaled walk $W^{(n)}_t = n^{-1/2} S_{\lfloor nt \rfloor}$ converges, as $n \to \infty$, to standard Brownian motion. This is the content of Donsker's theorem: weak convergence holds in $C[0,T]$ equipped with the sup-norm topology.
 
 Standard Brownian motion is the unique (in law) process satisfying:
 

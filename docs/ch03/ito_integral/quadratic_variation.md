@@ -287,3 +287,150 @@ W_t^4 = 4\int_0^t W_s^3\, dW_s + 6\int_0^t W_s^2\, ds
 $$
 
 Use this identity and the Ito isometry to compute $\mathbb{E}\!\left[\left(\int_0^t W_s^3\, dW_s\right)^2\right]$. *Hint*: You will need $\mathbb{E}[W_s^6] = 15s^3$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    On a uniform partition $t_k = k/n$, $\Delta t = 1/n$, and $f(t_k) = (k/n)^2$. The increments are:
+
+    $$
+    f(t_k) - f(t_{k-1}) = \frac{k^2}{n^2} - \frac{(k-1)^2}{n^2} = \frac{2k - 1}{n^2}
+    $$
+
+    The quadratic variation sum is:
+
+    $$
+    Q(f, \Pi) = \sum_{k=1}^n \left(\frac{2k-1}{n^2}\right)^2 = \frac{1}{n^4}\sum_{k=1}^n (2k-1)^2
+    $$
+
+    Using $\sum_{k=1}^n (2k-1)^2 = \frac{n(2n-1)(2n+1)}{3}$:
+
+    $$
+    Q(f, \Pi) = \frac{(2n-1)(2n+1)}{3n^3} = \frac{4n^2 - 1}{3n^3}
+    $$
+
+    As $n \to \infty$:
+
+    $$
+    Q(f, \Pi) = \frac{4n^2 - 1}{3n^3} \sim \frac{4}{3n} \to 0
+    $$
+
+    This confirms that the smooth function $f(t) = t^2$ has zero quadratic variation.
+
+??? success "Solution to Exercise 2"
+    Since $\Delta W_k \sim \mathcal{N}(0, \Delta t_k)$ and increments are independent:
+
+    $$
+    Q(W, \Pi) = \sum_{k=1}^n (\Delta W_k)^2
+    $$
+
+    Each $(\Delta W_k)^2$ is an independent random variable. For a centered Gaussian $Z \sim \mathcal{N}(0, \sigma^2)$, $\operatorname{Var}(Z^2) = \mathbb{E}[Z^4] - (\mathbb{E}[Z^2])^2 = 3\sigma^4 - \sigma^4 = 2\sigma^4$.
+
+    So $\operatorname{Var}((\Delta W_k)^2) = 2(\Delta t_k)^2$, and by independence:
+
+    $$
+    \operatorname{Var}(Q(W, \Pi)) = \sum_{k=1}^n \operatorname{Var}((\Delta W_k)^2) = 2\sum_{k=1}^n (\Delta t_k)^2
+    $$
+
+    For a uniform partition on $[0, T]$: $\Delta t_k = T/n$ for all $k$:
+
+    $$
+    \operatorname{Var}(Q(W, \Pi)) = 2\sum_{k=1}^n \frac{T^2}{n^2} = 2n \cdot \frac{T^2}{n^2} = \frac{2T^2}{n} \to 0 \quad \text{as } n \to \infty
+    $$
+
+??? success "Solution to Exercise 3"
+    Write $X_t = \mu t + \sigma W_t$. The increment is $\Delta X_k = \mu \Delta t_k + \sigma \Delta W_k$. The quadratic variation sum is:
+
+    $$
+    \sum_k (\Delta X_k)^2 = \sum_k (\mu \Delta t_k + \sigma \Delta W_k)^2
+    $$
+
+    $$
+    = \mu^2 \sum_k (\Delta t_k)^2 + 2\mu\sigma \sum_k \Delta t_k \Delta W_k + \sigma^2 \sum_k (\Delta W_k)^2
+    $$
+
+    As the mesh $\|\Pi\| \to 0$:
+
+    - $\sum_k (\Delta t_k)^2 \le \|\Pi\| \cdot T \to 0$
+    - $\sum_k \Delta t_k \Delta W_k \to 0$ in probability (by a similar argument, the variance is bounded by $\sum_k (\Delta t_k)^2 \cdot \Delta t_k \to 0$)
+    - $\sum_k (\Delta W_k)^2 \to t$ in $L^2$
+
+    Therefore $[X]_t = \sigma^2 t$. The drift $\mu t$ does **not** contribute to the quadratic variation, because the drift increments $\mu \Delta t_k$ are of order $\Delta t_k$, so their squares $\mu^2 (\Delta t_k)^2$ are of order $(\Delta t_k)^2$ and vanish when summed.
+
+??? success "Solution to Exercise 4"
+    Since $M_t = \int_0^t s\, dW_s$, the quadratic variation is:
+
+    $$
+    [M]_t = \int_0^t s^2\, ds = \frac{t^3}{3}
+    $$
+
+    To verify that $M_t^2 - [M]_t$ is a martingale, compute its expectation. By the Ito isometry:
+
+    $$
+    \mathbb{E}[M_t^2] = \mathbb{E}\!\left[\int_0^t s^2\, ds\right] = \frac{t^3}{3}
+    $$
+
+    Therefore:
+
+    $$
+    \mathbb{E}[M_t^2 - [M]_t] = \frac{t^3}{3} - \frac{t^3}{3} = 0
+    $$
+
+    for all $t$, which is consistent with $M_t^2 - [M]_t$ being a martingale (a martingale starting at zero has constant expectation equal to zero).
+
+??? success "Solution to Exercise 5"
+    The OU process has $dX_t = -\theta X_t\, dt + \sigma\, dW_t$. Using the multiplication rules:
+
+    $$
+    (dX_t)^2 = (-\theta X_t\, dt + \sigma\, dW_t)^2
+    $$
+
+    Expanding:
+
+    $$
+    = \theta^2 X_t^2 (dt)^2 - 2\theta X_t \sigma\, dt\, dW_t + \sigma^2 (dW_t)^2
+    $$
+
+    Applying $(dt)^2 = 0$, $dt\, dW_t = 0$, $(dW_t)^2 = dt$:
+
+    $$
+    (dX_t)^2 = \sigma^2\, dt
+    $$
+
+    Therefore $d[X]_t = \sigma^2\, dt$, giving $[X]_t = \sigma^2 t$.
+
+??? success "Solution to Exercise 6"
+    Let $V = \sup_\Pi \sum_k |A_{t_k} - A_{t_{k-1}}| < \infty$ be the total variation of $A$ on $[0,T]$. For any partition $\Pi$:
+
+    $$
+    \sum_k (\Delta A_k)^2 = \sum_k |\Delta A_k|^2 \le \left(\max_k |\Delta A_k|\right) \cdot \sum_k |\Delta A_k| \le \left(\max_k |\Delta A_k|\right) \cdot V
+    $$
+
+    Since $A_t$ is continuous (and hence uniformly continuous on $[0,T]$), as the mesh $\|\Pi\| \to 0$, $\max_k |\Delta A_k| \to 0$. Since $V < \infty$ is a fixed finite constant:
+
+    $$
+    \sum_k (\Delta A_k)^2 \le \left(\max_k |\Delta A_k|\right) \cdot V \to 0 \cdot V = 0
+    $$
+
+    Therefore $[A]_T = 0$.
+
+??? success "Solution to Exercise 7"
+    Apply Ito's formula to $f(x) = x^4$ with $X_t = W_t$. We have $f'(x) = 4x^3$ and $f''(x) = 12x^2$:
+
+    $$
+    W_t^4 = 0 + \int_0^t 4W_s^3\, dW_s + \frac{1}{2}\int_0^t 12W_s^2\, ds = 4\int_0^t W_s^3\, dW_s + 6\int_0^t W_s^2\, ds
+    $$
+
+    Now compute $\mathbb{E}[(\int_0^t W_s^3\, dW_s)^2]$ using the Ito isometry:
+
+    $$
+    \mathbb{E}\!\left[\left(\int_0^t W_s^3\, dW_s\right)^2\right] = \mathbb{E}\!\left[\int_0^t W_s^6\, ds\right] = \int_0^t \mathbb{E}[W_s^6]\, ds
+    $$
+
+    Using $\mathbb{E}[W_s^6] = 15s^3$ (the sixth moment of $\mathcal{N}(0, s)$ is $15s^3$):
+
+    $$
+    = \int_0^t 15s^3\, ds = 15 \cdot \frac{t^4}{4} = \frac{15t^4}{4}
+    $$

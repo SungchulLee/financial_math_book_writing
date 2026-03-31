@@ -344,3 +344,197 @@ Each stage resolved a specific mathematical limitation of its predecessor while 
 ---
 
 **Exercise 6.** The volatility smile emerged after the 1987 crash. Before the crash, implied volatilities across strikes were approximately flat. Explain what "implied volatility" means in terms of the Black-Scholes formula, and discuss why a non-flat implied volatility surface is inconsistent with the constant-$\sigma$ assumption of GBM. Name two post-1987 models from the table in the text and briefly describe how each addresses the smile phenomenon.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Under Bachelier's ABM with $S_t = S_0 + \sigma W_t$, we have $S_t \sim \mathcal{N}(S_0, \sigma^2 t)$ with $S_0 = 50$ and $\sigma = 10$.
+
+    After $t = 5$ years: $S_5 \sim \mathcal{N}(50, 100 \times 5) = \mathcal{N}(50, 500)$.
+
+    $$
+    \mathbb{P}(S_5 < 0) = \Phi\!\left(\frac{0 - 50}{\sqrt{500}}\right) = \Phi\!\left(\frac{-50}{22.36}\right) = \Phi(-2.236) \approx 0.0127
+    $$
+
+    Under ABM, there is approximately a 1.27% probability of a negative stock price after 5 years.
+
+    Under GBM with volatility parameter $\sigma_{\text{GBM}} = \sigma/S_0 = 10/50 = 0.20$ and drift $\mu = 0$ (for direct comparison):
+
+    $$
+    S_t = 50\exp\!\left(-\frac{1}{2}(0.04)(5) + 0.20 W_5\right) = 50\exp(-0.10 + 0.20 W_5)
+    $$
+
+    Since $S_t = S_0 \exp(\cdot) > 0$ always, $\mathbb{P}(S_5 < 0) = 0$ under GBM, for any parameter values. The exponential function guarantees strict positivity of paths.
+
+    This demonstrates the fundamental advantage of GBM over ABM: while both models capture randomness in price evolution, only GBM rules out the economically meaningless scenario of negative stock prices.
+
+??? success "Solution to Exercise 2"
+    Under Bachelier's model, $S_T \sim \mathcal{N}(S_0, \sigma^2 T)$, so $S_T = S_0 + \sigma\sqrt{T}\,Z$ where $Z \sim \mathcal{N}(0,1)$.
+
+    Define $a = \frac{S_0 - K}{\sigma\sqrt{T}}$. Then:
+
+    $$
+    \mathbb{E}[(S_T - K)^+] = \mathbb{E}[(S_0 + \sigma\sqrt{T}\,Z - K)^+] = \mathbb{E}[(\sigma\sqrt{T}\,Z + \sigma\sqrt{T}\,a)^+]
+    $$
+
+    $$
+    = \sigma\sqrt{T}\,\mathbb{E}[(Z + a)^+]
+    $$
+
+    Now compute $\mathbb{E}[(Z + a)^+]$:
+
+    $$
+    \mathbb{E}[(Z + a)^+] = \int_{-a}^{\infty}(z + a)\phi(z)\,dz
+    $$
+
+    $$
+    = \int_{-a}^{\infty}z\,\phi(z)\,dz + a\int_{-a}^{\infty}\phi(z)\,dz
+    $$
+
+    For the first integral, using the identity $z\,\phi(z) = -\phi'(z)$:
+
+    $$
+    \int_{-a}^{\infty}z\,\phi(z)\,dz = [-\phi(z)]_{-a}^{\infty} = \phi(-a) = \phi(a)
+    $$
+
+    (using symmetry $\phi(-a) = \phi(a)$). For the second integral:
+
+    $$
+    a\int_{-a}^{\infty}\phi(z)\,dz = a\,\Phi(a)
+    $$
+
+    Therefore:
+
+    $$
+    \mathbb{E}[(Z + a)^+] = \phi(a) + a\,\Phi(a)
+    $$
+
+    Substituting back with $a = \frac{S_0 - K}{\sigma\sqrt{T}}$:
+
+    $$
+    C = \sigma\sqrt{T}\!\left[\phi(a) + a\,\Phi(a)\right] = \sigma\sqrt{T}\,\phi\!\left(\frac{S_0 - K}{\sigma\sqrt{T}}\right) + (S_0 - K)\,\Phi\!\left(\frac{S_0 - K}{\sigma\sqrt{T}}\right)
+    $$
+
+    which is precisely Bachelier's formula. $\square$
+
+??? success "Solution to Exercise 3"
+    The Black-Scholes formula for a European call is $C = S_0\,\Phi(d_1) - Ke^{-rT}\,\Phi(d_2)$ with:
+
+    $$
+    d_1 = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}
+    $$
+
+    Boness's formula: $C_{\text{Boness}} = S_0\,\Phi(d_1^B) - Ke^{-\mu T}\,\Phi(d_2^B)$ with $\mu$ replacing $r$ in the $d_1, d_2$ expressions.
+
+    With $\mu = 0.12$, $r = 0.04$, $S_0 = 100$, $K = 100$, $T = 1$, $\sigma = 0.25$:
+
+    **Black-Scholes**:
+
+    $$
+    d_1 = \frac{0 + (0.04 + 0.03125)}{0.25} = \frac{0.07125}{0.25} = 0.285, \quad d_2 = 0.285 - 0.25 = 0.035
+    $$
+
+    $$
+    C_{\text{BS}} = 100 \times \Phi(0.285) - 100e^{-0.04}\Phi(0.035) = 100(0.6121) - 96.08(0.5140) \approx 61.21 - 49.38 = 11.83
+    $$
+
+    **Boness**:
+
+    $$
+    d_1^B = \frac{0 + (0.12 + 0.03125)}{0.25} = \frac{0.15125}{0.25} = 0.605, \quad d_2^B = 0.605 - 0.25 = 0.355
+    $$
+
+    $$
+    C_{\text{Boness}} = 100 \times \Phi(0.605) - 100e^{-0.12}\Phi(0.355) = 100(0.7274) - 88.69(0.6388) \approx 72.74 - 56.64 = 16.10
+    $$
+
+    The percentage difference is $(16.10 - 11.83)/11.83 \approx 36\%$. Boness's formula significantly overprices the call.
+
+    **Why the Black-Scholes price is correct**: The Black-Scholes price is the arbitrage-free price because the option can be replicated by a self-financing portfolio of stock and bonds that costs $C_{\text{BS}}$ to set up. The replicating argument shows that the drift $\mu$ cancels when the portfolio is delta-hedged: the hedged portfolio is risk-free and must earn rate $r$ by no-arbitrage. Any price different from $C_{\text{BS}}$ creates an arbitrage opportunity regardless of $\mu$. Boness's formula gives the wrong price because it discounts at $\mu$ instead of $r$, conflating the stock's risk premium with the relevant discount rate for a replicable (and hence risk-free) payoff.
+
+??? success "Solution to Exercise 4"
+    Starting from the Ito expansion of the option price:
+
+    $$
+    dV = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}dt
+    $$
+
+    Substitute $dS = \mu S\,dt + \sigma S\,dW_t$:
+
+    $$
+    dV = \left(\frac{\partial V}{\partial t} + \mu S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}\right)dt + \sigma S\frac{\partial V}{\partial S}\,dW_t
+    $$
+
+    The portfolio $\Pi = V - \Delta S$ has change:
+
+    $$
+    d\Pi = dV - \Delta\,dS = \left(\frac{\partial V}{\partial t} + \mu S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}\right)dt + \sigma S\frac{\partial V}{\partial S}\,dW_t - \Delta(\mu S\,dt + \sigma S\,dW_t)
+    $$
+
+    Collecting the $dW_t$ terms: $\sigma S(\frac{\partial V}{\partial S} - \Delta)\,dW_t$. Setting $\Delta = \frac{\partial V}{\partial S}$ eliminates all randomness:
+
+    $$
+    d\Pi = \left(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}\right)dt
+    $$
+
+    **This is where $\mu$ cancels**: the $\mu S \frac{\partial V}{\partial S}$ term from $dV$ is exactly offset by $-\Delta \cdot \mu S\,dt = -\frac{\partial V}{\partial S}\mu S\,dt$ from $-\Delta\,dS$. The drift cancels because the hedge eliminates exposure to the stock's directional movement.
+
+    Since $\Pi$ is risk-free, no-arbitrage requires $d\Pi = r\Pi\,dt = r(V - \frac{\partial V}{\partial S}S)\,dt$:
+
+    $$
+    \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} = rV - rS\frac{\partial V}{\partial S}
+    $$
+
+    Rearranging:
+
+    $$
+    \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
+    $$
+
+    **Economic reason for the cancellation**: Once the portfolio is hedged, its return is deterministic regardless of which direction the stock moves. A risk-free portfolio must earn the risk-free rate $r$ by no-arbitrage. The expected return $\mu$ is irrelevant because the hedge eliminates the stock's risk, and with it, any compensation for bearing that risk.
+
+??? success "Solution to Exercise 5"
+    **Implied volatility** is the value of $\sigma$ that, when substituted into the Black-Scholes formula, produces a model price equal to the observed market price. Formally, given a market price $C_{\text{mkt}}$ for a European call with known $S_0, K, T, r$, the implied volatility $\sigma_{\text{imp}}$ solves:
+
+    $$
+    C_{\text{BS}}(S_0, K, T, r, \sigma_{\text{imp}}) = C_{\text{mkt}}
+    $$
+
+    Since the Black-Scholes price is strictly increasing in $\sigma$ (positive vega), this equation has a unique solution for any valid market price.
+
+    **Inconsistency with constant $\sigma$**: If the true underlying dynamics were GBM with constant $\sigma$, then the Black-Scholes formula would produce correct prices for *all* strikes and maturities using the same $\sigma$. Therefore, the implied volatility obtained by inverting the formula would be the same constant $\sigma$ for every $(K, T)$ pair. A non-flat implied volatility surface --- where $\sigma_{\text{imp}}(K, T)$ varies across strikes and maturities --- demonstrates that the market prices options as if the underlying distribution is *not* log-normal. The smile/skew indicates heavier tails (especially on the downside) than GBM predicts.
+
+    **Two post-1987 models**:
+
+    1. **Heston stochastic volatility model (1993)**: Models volatility as a separate mean-reverting stochastic process ($dv_t = \kappa(\theta - v_t)dt + \xi\sqrt{v_t}dW_t^{(2)}$) correlated with the stock price. The random volatility produces fatter tails in the return distribution, and negative correlation between stock returns and volatility generates the downside skew. Admits a semi-analytical (Fourier-based) pricing formula.
+
+    2. **Dupire local volatility model (1994)**: Replaces constant $\sigma$ with a deterministic function $\sigma(S, t)$ of the stock price and time. The local volatility surface is uniquely determined by the observed market option prices via Dupire's formula. This model exactly reproduces the entire implied volatility surface by construction, but it lacks the dynamics of stochastic volatility (e.g., it does not produce realistic forward smile dynamics).
+
+??? success "Solution to Exercise 6"
+    Under Bachelier's model, $C = (S_0 - K)\Phi(d) + \sigma\sqrt{T}\,\phi(d)$ where $d = (S_0 - K)/(\sigma\sqrt{T})$.
+
+    Under the Black-Scholes formula, $C = S_0\Phi(d_1) - Ke^{-rT}\Phi(d_2)$.
+
+    **Derivation of Bachelier from $\mathbb{E}[(S_T - K)^+]$**:
+
+    Since Bachelier assumed zero interest rate and zero drift, $S_T = S_0 + \sigma W_T \sim \mathcal{N}(S_0, \sigma^2 T)$, and the call price is simply the undiscounted expectation $\mathbb{E}[(S_T - K)^+]$.
+
+    Writing $S_T = S_0 + \sigma\sqrt{T}Z$ with $Z \sim \mathcal{N}(0,1)$, the payoff is positive when $Z > -(S_0-K)/(\sigma\sqrt{T}) = -d$:
+
+    $$
+    C = \int_{-d}^{\infty}(S_0 + \sigma\sqrt{T}z - K)\phi(z)\,dz
+    $$
+
+    $$
+    = (S_0 - K)\int_{-d}^{\infty}\phi(z)\,dz + \sigma\sqrt{T}\int_{-d}^{\infty}z\,\phi(z)\,dz
+    $$
+
+    The first integral gives $(S_0 - K)\Phi(d)$. For the second, use $\int_{-d}^{\infty}z\phi(z)\,dz = \phi(-d) = \phi(d)$. Therefore:
+
+    $$
+    C = (S_0 - K)\Phi(d) + \sigma\sqrt{T}\,\phi(d)
+    $$
+
+    This confirms Bachelier's formula. The key difference from Black-Scholes is that Bachelier prices under a normal (not log-normal) distribution, uses no discounting ($r = 0$), and the result depends on the preference-free expectation only because Bachelier implicitly assumed that the market price of risk is zero (equivalent to the physical measure coinciding with the risk-neutral measure when $r = 0$ and $\mu = 0$).

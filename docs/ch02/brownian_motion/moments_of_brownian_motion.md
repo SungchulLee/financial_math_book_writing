@@ -391,6 +391,117 @@ These moment formulas will be used in:
 
 6. Show that $\mathbb{E}[(W_T - W_S)^4] = 3(T-S)^2$ for $S < T$ using the moment formula and independent increments.
 
+### Solutions
+
+??? success "Solution to Exercise 1"
+    We need to verify that $\mathbb{E}[W_T^6] = 15T^3$ by direct integration against the Gaussian density.
+
+    $$
+    \mathbb{E}[W_T^6] = \int_{-\infty}^{\infty} x^6 \frac{1}{\sqrt{2\pi T}} e^{-x^2/(2T)} dx
+    $$
+
+    Substitute $y = x/\sqrt{T}$, so $x = y\sqrt{T}$ and $dx = \sqrt{T}\,dy$:
+
+    $$
+    = \int_{-\infty}^{\infty} (y\sqrt{T})^6 \frac{1}{\sqrt{2\pi T}} e^{-y^2/2} \sqrt{T}\,dy = T^3 \int_{-\infty}^{\infty} y^6 \frac{1}{\sqrt{2\pi}} e^{-y^2/2} dy
+    $$
+
+    We need $\mathbb{E}[Z^6]$ where $Z \sim \mathcal{N}(0,1)$. Using integration by parts repeatedly with $u = y^5$ and $dv = y e^{-y^2/2}\,dy$:
+
+    $$
+    \int_{-\infty}^{\infty} y^6 e^{-y^2/2} dy = 5 \int_{-\infty}^{\infty} y^4 e^{-y^2/2} dy = 5 \cdot 3 \int_{-\infty}^{\infty} y^2 e^{-y^2/2} dy = 15 \int_{-\infty}^{\infty} y^2 e^{-y^2/2} dy = 15\sqrt{2\pi}
+    $$
+
+    Therefore $\mathbb{E}[W_T^6] = T^3 \cdot \frac{15\sqrt{2\pi}}{\sqrt{2\pi}} = 15T^3$.
+
+??? success "Solution to Exercise 2"
+    Using the MGF method, $M_{W_T}(\theta) = e^{T\theta^2/2}$, and $\mathbb{E}[W_T^{2k}] = (2k-1)!! \cdot T^k$.
+
+    For $k = 4$ (i.e., the 8th moment):
+
+    $$
+    \mathbb{E}[W_T^8] = (2 \cdot 4 - 1)!! \cdot T^4 = 7!! \cdot T^4
+    $$
+
+    Computing $7!! = 7 \cdot 5 \cdot 3 \cdot 1 = 105$, so:
+
+    $$
+    \mathbb{E}[W_T^8] = 105T^4
+    $$
+
+    Alternatively, from the series expansion $e^{T\theta^2/2} = \sum_{j=0}^{\infty} \frac{T^j}{j!\,2^j}\theta^{2j}$, the coefficient of $\theta^8$ is $\frac{T^4}{4!\cdot 2^4} = \frac{T^4}{384}$. Since $\frac{\mathbb{E}[W_T^8]}{8!} = \frac{T^4}{384}$, we get $\mathbb{E}[W_T^8] = \frac{8!}{384}T^4 = \frac{40320}{384}T^4 = 105T^4$.
+
+??? success "Solution to Exercise 3"
+    We use $\text{Var}(W_T^2) = \mathbb{E}[W_T^4] - (\mathbb{E}[W_T^2])^2$.
+
+    From the moment formulas:
+
+    - $\mathbb{E}[W_T^2] = T$ (the $k=1$ even moment)
+    - $\mathbb{E}[W_T^4] = 3T^2$ (the $k=2$ even moment, since $(2\cdot 2 - 1)!! = 3!! = 3$)
+
+    Therefore:
+
+    $$
+    \text{Var}(W_T^2) = \mathbb{E}[W_T^4] - (\mathbb{E}[W_T^2])^2 = 3T^2 - T^2 = 2T^2
+    $$
+
+??? success "Solution to Exercise 4"
+    For $S_T = S_0 e^{(\mu - \sigma^2/2)T + \sigma W_T}$, we compute:
+
+    **Expected value:** Since $W_T \sim \mathcal{N}(0, T)$, the MGF gives $\mathbb{E}[e^{\theta W_T}] = e^{\theta^2 T/2}$. Setting $\theta = \sigma$:
+
+    $$
+    \mathbb{E}[S_T] = S_0 e^{(\mu - \sigma^2/2)T} \mathbb{E}[e^{\sigma W_T}] = S_0 e^{(\mu - \sigma^2/2)T} e^{\sigma^2 T/2} = S_0 e^{\mu T}
+    $$
+
+    **Second moment:** Setting $\theta = 2\sigma$:
+
+    $$
+    \mathbb{E}[S_T^2] = S_0^2 e^{2(\mu - \sigma^2/2)T} \mathbb{E}[e^{2\sigma W_T}] = S_0^2 e^{(2\mu - \sigma^2)T} e^{2\sigma^2 T} = S_0^2 e^{(2\mu + \sigma^2)T}
+    $$
+
+    **Variance:**
+
+    $$
+    \text{Var}(S_T) = \mathbb{E}[S_T^2] - (\mathbb{E}[S_T])^2 = S_0^2 e^{(2\mu + \sigma^2)T} - S_0^2 e^{2\mu T} = S_0^2 e^{2\mu T}(e^{\sigma^2 T} - 1)
+    $$
+
+??? success "Solution to Exercise 5"
+    We prove $(2k-1)!! = \frac{(2k)!}{2^k k!}$ by induction.
+
+    **Base case:** $k = 1$: $(2 \cdot 1 - 1)!! = 1!! = 1$ and $\frac{2!}{2^1 \cdot 1!} = \frac{2}{2} = 1$. Verified.
+
+    **Inductive step:** Assume $(2k-1)!! = \frac{(2k)!}{2^k k!}$. We need to show $(2(k+1)-1)!! = \frac{(2k+2)!}{2^{k+1}(k+1)!}$.
+
+    By definition of the double factorial:
+
+    $$
+    (2k+1)!! = (2k+1) \cdot (2k-1)!! = (2k+1) \cdot \frac{(2k)!}{2^k k!}
+    $$
+
+    On the other hand:
+
+    $$
+    \frac{(2k+2)!}{2^{k+1}(k+1)!} = \frac{(2k+2)(2k+1)(2k)!}{2 \cdot 2^k \cdot (k+1) \cdot k!} = \frac{(2k+1)(2k)!}{2^k k!}
+    $$
+
+    where we used $(2k+2) = 2(k+1)$, which cancels $2 \cdot (k+1)$ in the denominator. Both expressions are equal, completing the induction.
+
+??? success "Solution to Exercise 6"
+    Since $W_T - W_S$ is independent of $\mathcal{F}_S$ and $W_T - W_S \sim \mathcal{N}(0, T-S)$, the increment is a centered Gaussian with variance $T - S$.
+
+    By the moment formula for Brownian motion, $\mathbb{E}[Z^{2k}] = (2k-1)!! \cdot \sigma^{2k}$ where $Z \sim \mathcal{N}(0, \sigma^2)$. With $k = 2$ and $\sigma^2 = T - S$:
+
+    $$
+    \mathbb{E}[(W_T - W_S)^4] = (2 \cdot 2 - 1)!! \cdot (T-S)^2 = 3!! \cdot (T-S)^2 = 3(T-S)^2
+    $$
+
+    Alternatively, since $W_T - W_S \overset{d}{=} \sqrt{T-S}\,Z$ where $Z \sim \mathcal{N}(0,1)$:
+
+    $$
+    \mathbb{E}[(W_T - W_S)^4] = (T-S)^2 \mathbb{E}[Z^4] = (T-S)^2 \cdot 3 = 3(T-S)^2
+    $$
+
 ### References
 
 - Karatzas, I., & Shreve, S. E. (1991). *Brownian Motion and Stochastic Calculus*, 2nd ed. Springer. (Chapter 1)

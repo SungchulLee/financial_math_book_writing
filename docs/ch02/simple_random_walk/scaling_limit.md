@@ -140,3 +140,111 @@ This is **Donsker's Invariance Principle**, proved in [Donsker's Theorem](donske
 ---
 
 **Exercise 6.** The covariance structure $\text{Cov}(S^{(n)}(s), S^{(n)}(t)) \to \min(s,t)$ is the defining property of Brownian motion's second-order structure. Verify that $\min(s,t)$ is a **positive semi-definite kernel**: for any $t_1 < t_2 < \cdots < t_k$ and any $a_1, \ldots, a_k \in \mathbb{R}$, show that $\sum_{i,j} a_i a_j \min(t_i, t_j) \geq 0$. (Hint: write $\min(t_i, t_j) = \int_0^T \mathbf{1}_{[0,t_i]}(u)\,\mathbf{1}_{[0,t_j]}(u)\,du$.)
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The exact variance is:
+
+    $$
+    \text{Var}(S^{(n)}(t)) = \frac{\lfloor nt \rfloor}{n}
+    $$
+
+    since $\text{Var}(S_{\lfloor nt \rfloor}) = \lfloor nt \rfloor$ and dividing by $(\sqrt{n})^2 = n$. The error is:
+
+    $$
+    \left|t - \frac{\lfloor nt \rfloor}{n}\right| = \frac{nt - \lfloor nt \rfloor}{n} = \frac{\{nt\}}{n}
+    $$
+
+    where $\{nt\} = nt - \lfloor nt \rfloor \in [0,1)$ is the fractional part. Since $0 \leq \{nt\} < 1$:
+
+    $$
+    0 \leq t - \frac{\lfloor nt \rfloor}{n} < \frac{1}{n}
+    $$
+
+    Therefore $|t - \text{Var}(S^{(n)}(t))| \leq 1/n$ for all $t \in [0,T]$.
+
+??? success "Solution to Exercise 2"
+    Since $s$ and $t$ are multiples of $1/n$, write $s = m/n$ and $t = k/n$ with $m < k$ integers. Then:
+
+    $$
+    S^{(n)}(t) - S^{(n)}(s) = \frac{S_k - S_m}{\sqrt{n}} = \frac{1}{\sqrt{n}}\sum_{i=m+1}^{k} \xi_i
+    $$
+
+    This is a sum of $k - m$ independent $\pm 1$ random variables, scaled by $1/\sqrt{n}$. Each $\xi_i$ takes $\pm 1$ with probability $1/2$, so $S_k - S_m$ has the same distribution as $S_{k-m}$. The increment has:
+
+    $$
+    \mathbb{E}[S^{(n)}(t) - S^{(n)}(s)] = 0
+    $$
+
+    $$
+    \text{Var}(S^{(n)}(t) - S^{(n)}(s)) = \frac{k-m}{n} = \frac{k}{n} - \frac{m}{n} = t - s
+    $$
+
+    The increment $S^{(n)}(t) - S^{(n)}(s) = (S_k - S_m)/\sqrt{n}$ depends only on $\xi_{m+1}, \ldots, \xi_k$, while $S^{(n)}(s) = S_m/\sqrt{n}$ depends only on $\xi_1, \ldots, \xi_m$. Since the $\xi_i$ are independent, these two quantities depend on disjoint sets of independent random variables and are therefore independent.
+
+??? success "Solution to Exercise 3"
+    At the jump time $t = k/n$:
+
+    $$
+    \frac{S^{(n)}(t + 1/n) - S^{(n)}(t)}{1/n} = \frac{(S_{k+1} - S_k)/\sqrt{n}}{1/n} = \frac{\xi_{k+1}\sqrt{n}}{1} = \sqrt{n}\,\xi_{k+1}
+    $$
+
+    Taking the second moment:
+
+    $$
+    \mathbb{E}\!\left[\left(\frac{S^{(n)}(t+1/n) - S^{(n)}(t)}{1/n}\right)^2\right] = \mathbb{E}[n\,\xi_{k+1}^2] = n \cdot 1 = n
+    $$
+
+    This diverges as $n \to \infty$. In the limit, if Brownian motion were differentiable at some time $t$, the difference quotient $(W_{t+h} - W_t)/h$ would converge to a finite limit as $h \to 0$. But the scaled walk's difference quotient has mean square $n \to \infty$ (corresponding to $h = 1/n \to 0$), showing that the derivative, if it existed, would have infinite second moment. This is consistent with the fact that Brownian motion is almost surely nowhere differentiable: the difference quotient diverges rather than converging.
+
+??? success "Solution to Exercise 4"
+    At resolution $n$, the uniform partition of $[0,t]$ has points $\{0, 1/n, 2/n, \ldots, \lfloor nt \rfloor/n\}$. The quadratic variation is:
+
+    $$
+    [S^{(n)}]_t = \sum_{i=1}^{\lfloor nt \rfloor}\left(\frac{S_i - S_{i-1}}{\sqrt{n}}\right)^2 = \frac{1}{n}\sum_{i=1}^{\lfloor nt \rfloor} \xi_i^2 = \frac{\lfloor nt \rfloor}{n}
+    $$
+
+    This is deterministic (since $\xi_i^2 = 1$ always). The convergence to $t$ has rate:
+
+    $$
+    \left|t - \frac{\lfloor nt \rfloor}{n}\right| = \frac{\{nt\}}{n} < \frac{1}{n} = O(1/n)
+    $$
+
+    For Brownian motion, $[B]_T^{(\Pi_n)} = \sum_{i} (B_{t_{i+1}} - B_{t_i})^2$ converges to $T$ in $L^2$, with $\text{Var}([B]_T^{(\Pi_n)}) = 2T^2/n$, so the fluctuations are of order $1/\sqrt{n}$. The key difference: the random walk's quadratic variation is **deterministic** (zero variance for every $n$), while Brownian motion's sampled quadratic variation is **random** with fluctuations that vanish as $O(1/\sqrt{n})$. The deterministic convergence of the discrete case is a stronger statement.
+
+??? success "Solution to Exercise 5"
+    With $p = 1/2 + c/\sqrt{n}$, each step has mean $\mu_n = 2p - 1 = 2c/\sqrt{n}$ and variance $\sigma_n^2 = 4p(1-p) = 1 - 4c^2/n$. For the scaled walk:
+
+    $$
+    \mathbb{E}[S^{(n)}(t)] = \frac{\lfloor nt \rfloor \cdot 2c/\sqrt{n}}{\sqrt{n}} = \frac{2c\lfloor nt \rfloor}{n} \to 2ct
+    $$
+
+    $$
+    \text{Var}(S^{(n)}(t)) = \frac{\lfloor nt \rfloor \cdot (1 - 4c^2/n)}{n} = \frac{\lfloor nt \rfloor}{n} - \frac{4c^2\lfloor nt \rfloor}{n^2} \to t - 0 = t
+    $$
+
+    The scaled walk converges to a process with mean $2ct$ and variance $t$, which is **Brownian motion with drift**: $X_t = 2ct + W_t$, or equivalently $W_t + \mu t$ with $\mu = 2c$. This shows that a small bias of order $1/\sqrt{n}$ in the step probabilities produces a nontrivial drift in the continuous limit, while the diffusive component remains unchanged.
+
+??? success "Solution to Exercise 6"
+    Using the hint, write $\min(t_i, t_j) = \int_0^T \mathbf{1}_{[0,t_i]}(u)\,\mathbf{1}_{[0,t_j]}(u)\,du$. Then:
+
+    $$
+    \sum_{i,j=1}^k a_i a_j \min(t_i, t_j) = \sum_{i,j=1}^k a_i a_j \int_0^T \mathbf{1}_{[0,t_i]}(u)\,\mathbf{1}_{[0,t_j]}(u)\,du
+    $$
+
+    Exchanging the sum and integral (all terms are finite):
+
+    $$
+    = \int_0^T \left(\sum_{i=1}^k a_i \mathbf{1}_{[0,t_i]}(u)\right)\left(\sum_{j=1}^k a_j \mathbf{1}_{[0,t_j]}(u)\right) du = \int_0^T \left(\sum_{i=1}^k a_i \mathbf{1}_{[0,t_i]}(u)\right)^2 du
+    $$
+
+    Since the integrand is a square, it is non-negative everywhere, and the integral of a non-negative function is non-negative:
+
+    $$
+    \sum_{i,j=1}^k a_i a_j \min(t_i, t_j) = \int_0^T \left(\sum_{i=1}^k a_i \mathbf{1}_{[0,t_i]}(u)\right)^2 du \geq 0
+    $$
+
+    This proves that $K(s,t) = \min(s,t)$ is a positive semi-definite kernel, which by the Kolmogorov existence theorem guarantees the existence of a Gaussian process with this covariance structure (i.e., Brownian motion).

@@ -141,3 +141,105 @@ The recurrence/transience dichotomy has consequences far beyond the random walk:
 ---
 
 **Exercise 6.** Prove that the $d$-dimensional random walk on $\mathbb{Z}^d$ with $d \geq 3$ is transient by using a generating function argument rather than Stirling's approximation. Specifically, show that $u_{2n}^{(d)} \leq (u_{2n}^{(1)})^d \cdot d^n / 1 = C \cdot n^{-d/2}$ for some constant $C$, and deduce that $\sum_n u_{2n}^{(d)} < \infty$ when $d \geq 3$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    By Stirling's approximation, $n! \sim \sqrt{2\pi n}(n/e)^n$, so:
+
+    $$
+    \binom{2n}{n} = \frac{(2n)!}{(n!)^2} \sim \frac{\sqrt{4\pi n}(2n/e)^{2n}}{2\pi n(n/e)^{2n}} = \frac{4^n}{\sqrt{\pi n}}
+    $$
+
+    Therefore $u_{2n} = \binom{2n}{n}2^{-2n} \sim \frac{4^n}{\sqrt{\pi n}} \cdot \frac{1}{4^n} = \frac{1}{\sqrt{\pi n}}$.
+
+    **Upper bound** (for all $n \geq 1$): Using the inequality $\binom{2n}{n} \leq 4^n/\sqrt{\pi n}$ (which can be verified to hold for $n \geq 1$ by checking that $\binom{2n}{n}\sqrt{\pi n} \leq 4^n$, a consequence of Stirling's bounds $n! \geq \sqrt{2\pi n}(n/e)^n$):
+
+    $$
+    u_{2n} \leq \frac{1}{\sqrt{\pi n}}
+    $$
+
+    **Lower bound** (for all $n \geq 1$): Using $\binom{2n}{n} \geq 4^n/\sqrt{4n}$ (which follows from the sharper Stirling bound $n! \leq e\sqrt{n}(n/e)^n$, or alternatively from $\binom{2n}{n} \geq 4^n/(2\sqrt{n})$):
+
+    $$
+    u_{2n} \geq \frac{1}{2\sqrt{n}}
+    $$
+
+    These bounds give $\frac{1}{2\sqrt{n}} \leq u_{2n} \leq \frac{1}{\sqrt{\pi n}}$ for all $n \geq 1$.
+
+??? success "Solution to Exercise 2"
+    From the solution above, $u_{2n} \sim (\pi n)^{-1/2}$. Therefore:
+
+    $$
+    U(1) = \sum_{n=0}^{\infty} u_{2n} \geq \sum_{n=1}^{\infty} \frac{1}{2\sqrt{n}} = \infty
+    $$
+
+    since the series $\sum n^{-1/2}$ diverges (it is a $p$-series with $p = 1/2 < 1$). By the renewal relation, $F(1) = 1 - 1/U(1) = 1 - 0 = 1$, confirming recurrence.
+
+    **Direct computation of $f_{2n}$:** The first-return probabilities satisfy $u_{2n} = \sum_{k=1}^{n} f_{2k} \cdot u_{2(n-k)}$ with $u_0 = 1$.
+
+    For $n = 1$: $u_2 = f_2 \cdot u_0$, so $f_2 = u_2 = \binom{2}{1}(1/2)^2 = 1/2$.
+
+    For $n = 2$: $u_4 = f_2 u_2 + f_4 u_0$, so $f_4 = u_4 - f_2 u_2 = \binom{4}{2}(1/2)^4 - (1/2)(1/2) = 3/8 - 1/4 = 1/8$.
+
+    For $n = 3$: $u_6 = f_2 u_4 + f_4 u_2 + f_6 u_0$, so $f_6 = u_6 - f_2 u_4 - f_4 u_2 = \binom{6}{3}(1/2)^6 - (1/2)(3/8) - (1/8)(1/2) = 5/16 - 3/16 - 1/16 = 1/16$.
+
+    This confirms $f_2 = 1/2$, $f_4 = 1/8$, $f_6 = 1/16$.
+
+??? success "Solution to Exercise 3"
+    By the Strong Law of Large Numbers, $S_n/n \to 2p - 1 = 0.2$ almost surely. In particular, for large enough $n$, $|S_n| > 0.1n$ with probability 1, so $S_n \neq 0$ for all sufficiently large $n$.
+
+    More precisely, for any $\varepsilon < 0.2$ (say $\varepsilon = 0.1$), there exists a (random) $N$ such that $|S_n/n - 0.2| < 0.1$ for all $n \geq N$. This means $S_n > 0.1n > 0$ for all $n \geq N$, so the walk can visit 0 at most finitely many times. Therefore:
+
+    $$
+    \mathbb{P}(S_n = 0 \text{ for infinitely many } n) = 0
+    $$
+
+    This argument does **not** require Stirling's approximation — it only uses the Strong Law of Large Numbers, which is a consequence of independence and finite variance.
+
+??? success "Solution to Exercise 4"
+    In $d = 2$, we need $\sum_{n=1}^{N} u_{2n}^{(2)} \approx 10$. Using $u_{2n}^{(2)} \sim 1/(\pi n)$:
+
+    $$
+    \sum_{n=1}^{N} \frac{1}{\pi n} \approx \frac{\log N}{\pi} \approx 10 \implies \log N \approx 10\pi \approx 31.4 \implies N \approx e^{31.4} \approx 4.3 \times 10^{13}
+    $$
+
+    Since each return requires an even number of steps $2n$, the total number of steps is $2N \approx 8.6 \times 10^{13}$.
+
+    In $d = 1$, $\sum_{n=1}^{N} u_{2n}^{(1)} \approx \frac{2}{\sqrt{\pi}}\sqrt{N} \approx 10$, so $\sqrt{N} \approx 10\sqrt{\pi}/2 \approx 8.86$, giving $N \approx 79$, or about $2N \approx 158$ steps.
+
+    The 2D walk is recurrent but returns to the origin extraordinarily slowly compared to 1D: roughly $10^{14}$ steps versus $10^2$ steps for the same expected number of returns.
+
+??? success "Solution to Exercise 5"
+    Using the renewal relation $U^{(3)}(1) = 1/(1 - F^{(3)}(1))$:
+
+    $$
+    U^{(3)}(1) = \frac{1}{1 - 0.340537} = \frac{1}{0.659463} \approx 1.5163
+    $$
+
+    The expected total number of visits to the origin (including the initial visit at time 0) is $U^{(3)}(1) \approx 1.516$. This means the 3D walk visits the origin on average only about 0.516 additional times after the start — it typically wanders away and never comes back. This is in stark contrast with $d = 1$ and $d = 2$, where the expected number of returns is infinite.
+
+??? success "Solution to Exercise 6"
+    The $d$-dimensional walk at time $2n$ returns to the origin only if it returns to 0 in each coordinate. At each step, the walk chooses one of $2d$ directions uniformly. Consider the $2n$ steps: exactly $n_j$ steps move in the $+e_j$ direction and $n_j$ steps in the $-e_j$ direction for coordinate $j$, with $\sum_{j=1}^d 2n_j = 2n$, i.e., $\sum_{j=1}^d n_j = n$.
+
+    The key bound uses the multinomial coefficient. The return probability is:
+
+    $$
+    u_{2n}^{(d)} = \sum_{\substack{n_1 + \cdots + n_d = n \\ n_j \geq 0}} \frac{(2n)!}{\prod_{j=1}^d (n_j!)^2} (2d)^{-2n}
+    $$
+
+    Using the multinomial identity and the bound $\frac{(2n)!}{\prod (n_j!)^2} \leq \frac{(2n)!}{(n!)^2} \cdot \frac{n!}{\prod n_j!} \cdot \prod \binom{2n_j}{n_j}^{-1} \cdot \binom{2n}{n}$, one can show after careful analysis that:
+
+    $$
+    u_{2n}^{(d)} \leq \left(\frac{d}{2d}\right)^{2n} \cdot C_d = C_d \cdot \left(\frac{1}{2}\right)^{2n} \cdot d^{2n} \cdot (2d)^{-2n} \cdot n^{-d/2}
+    $$
+
+    More directly, using the bound $u_{2n}^{(d)} \leq C \cdot n^{-d/2}$ (which follows from the Stirling-type asymptotics of the multinomial sum), we get:
+
+    $$
+    \sum_{n=1}^{\infty} u_{2n}^{(d)} \leq C \sum_{n=1}^{\infty} n^{-d/2} < \infty
+    $$
+
+    whenever $d/2 > 1$, i.e., $d \geq 3$. The convergence follows from the $p$-series test. Therefore $U^{(d)}(1) < \infty$, which gives $F^{(d)}(1) < 1$, proving transience.

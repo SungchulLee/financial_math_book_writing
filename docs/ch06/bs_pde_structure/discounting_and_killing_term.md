@@ -269,3 +269,154 @@ $$
 ---
 
 **Exercise 5.** The survival interpretation views $e^{-rT}$ as the probability of "surviving" to time $T$ in a Poisson killing process with rate $r$. Under this interpretation, what is the financial analogue of "being killed"? Connect this to the pricing of defaultable derivatives where the issuer may default with hazard rate $\lambda$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Consider the PDE without the killing term:
+
+    $$
+    \frac{\partial u}{\partial t} + rS\frac{\partial u}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 u}{\partial S^2} = 0
+    $$
+
+    with terminal condition $u(T,S) = \Phi(S)$. By the Feynman-Kac theorem, this PDE (which has the form $u_t + \mathcal{L}u = 0$ with no killing term) has the solution:
+
+    $$
+    u(t,S) = \mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]
+    $$
+
+    where $S_T$ follows geometric Brownian motion under $\mathbb{Q}$ with drift $r$. This is the **undiscounted** expectation because the PDE has no $-ru$ term.
+
+    Now define $V(t,S) = e^{-r(T-t)} u(t,S)$. Computing the partial derivatives:
+
+    $$
+    \frac{\partial V}{\partial t} = e^{-r(T-t)} \frac{\partial u}{\partial t} + r e^{-r(T-t)} u = e^{-r(T-t)} \frac{\partial u}{\partial t} + rV
+    $$
+
+    $$
+    \frac{\partial V}{\partial S} = e^{-r(T-t)} \frac{\partial u}{\partial S}, \quad \frac{\partial^2 V}{\partial S^2} = e^{-r(T-t)} \frac{\partial^2 u}{\partial S^2}
+    $$
+
+    Substituting into the expression $\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV$:
+
+    $$
+    = e^{-r(T-t)}\left(\frac{\partial u}{\partial t} + rS\frac{\partial u}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 u}{\partial S^2}\right) + rV - rV = 0
+    $$
+
+    since $u$ solves the original PDE. Therefore $V = e^{-r(T-t)}u$ solves the Black-Scholes PDE with the killing term $-rV$. The killing term is necessary because the no-arbitrage price is the **discounted** expectation $V = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T)]$, not the raw expectation.
+
+??? success "Solution to Exercise 2"
+    Define $F(t,S) = V(t,S) e^{r(T-t)}$, so that $V = e^{-r(T-t)}F$. The function $F$ represents the **forward price** of the derivative.
+
+    Computing the derivatives of $V$ in terms of $F$:
+
+    $$
+    V = e^{-r(T-t)}F
+    $$
+
+    $$
+    \frac{\partial V}{\partial t} = e^{-r(T-t)}\frac{\partial F}{\partial t} + re^{-r(T-t)}F = e^{-r(T-t)}\left(\frac{\partial F}{\partial t} + rF\right)
+    $$
+
+    $$
+    \frac{\partial V}{\partial S} = e^{-r(T-t)}\frac{\partial F}{\partial S}, \quad \frac{\partial^2 V}{\partial S^2} = e^{-r(T-t)}\frac{\partial^2 F}{\partial S^2}
+    $$
+
+    Substituting into the Black-Scholes PDE $\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0$:
+
+    $$
+    e^{-r(T-t)}\left(\frac{\partial F}{\partial t} + rF + rS\frac{\partial F}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 F}{\partial S^2} - rF\right) = 0
+    $$
+
+    The $+rF$ and $-rF$ terms cancel, giving:
+
+    $$
+    \frac{\partial F}{\partial t} + rS\frac{\partial F}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 F}{\partial S^2} = 0
+    $$
+
+    This is precisely the backward Kolmogorov equation without any killing term. The killing term $-rV$ in the original PDE corresponds exactly to the discount factor $e^{-r(T-t)}$ that connects $V$ and $F$: when we factor out discounting by working with the forward price, the killing term disappears.
+
+??? success "Solution to Exercise 3"
+    **State-dependent discounting** means the rate at which future cash flows are discounted varies with the current level of the underlying asset $S$. The PDE:
+
+    $$
+    \frac{\partial V}{\partial t} + \mu(S)\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2(S) S^2 \frac{\partial^2 V}{\partial S^2} - r(S) V = 0
+    $$
+
+    has solution:
+
+    $$
+    V(t,S) = \mathbb{E}\left[\exp\left(-\int_t^T r(S_u)\,du\right)\Phi(S_T) \;\middle|\; S_t = S\right]
+    $$
+
+    **Financial interpretation**: The discount rate depends on the state of the economy as proxied by $S$. When $S$ is low (distressed conditions), credit risk is higher, so the effective discount rate increases. When $S$ is high (benign conditions), credit risk is lower.
+
+    **Derivatives with state-dependent killing**: A natural example is a **credit-risky derivative** where the default intensity depends on the firm's asset value or stock price. For instance, consider a corporate bond or a derivative issued by a counterparty whose default hazard rate $\lambda(S)$ is a decreasing function of the stock price:
+
+    $$
+    r(S) = r_f + \lambda(S)
+    $$
+
+    where $r_f$ is the risk-free rate and $\lambda(S)$ might take the form $\lambda(S) = a \cdot (S_0 / S)^b$ for constants $a, b > 0$, so that default becomes more likely as the stock price declines. **Convertible bonds** also naturally feature state-dependent effective discount rates since the conversion feature creates a payoff whose discounting interacts with the stock price level.
+
+??? success "Solution to Exercise 4"
+    Consider the semi-discrete scheme for the pricing PDE on a spatial grid $\{S_j\}$:
+
+    $$
+    \frac{V_j^{n+1} - V_j^n}{\Delta t} = (\mathcal{L}_h V)_j^n - r V_j^n
+    $$
+
+    The discrete generator $\mathcal{L}_h$ applied to $V_j$ using central differences gives:
+
+    $$
+    (\mathcal{L}_h V)_j = \frac{1}{2}\sigma^2 S_j^2 \frac{V_{j+1} - 2V_j + V_{j-1}}{(\Delta S)^2} + r S_j \frac{V_{j+1} - V_{j-1}}{2\Delta S}
+    $$
+
+    Collecting terms, the coefficient of $V_j$ from the diffusion term is $-\sigma^2 S_j^2 / (\Delta S)^2$. Adding the killing term $-rV_j$ makes the diagonal coefficient:
+
+    $$
+    -\frac{\sigma^2 S_j^2}{(\Delta S)^2} - r
+    $$
+
+    Without the killing term, the diagonal coefficient is just $-\sigma^2 S_j^2 / (\Delta S)^2$. The additional $-r$ contribution from the killing term **increases the magnitude of the diagonal entry** by $r$.
+
+    In the implicit scheme, the system matrix $A$ has diagonal entries of the form $1/\Delta t + \sigma^2 S_j^2/(\Delta S)^2 + r$ versus $1/\Delta t + \sigma^2 S_j^2/(\Delta S)^2$ without the killing term. The ratio of diagonal to off-diagonal entries increases, making the matrix **more diagonally dominant**.
+
+    Diagonal dominance guarantees:
+
+    - The matrix is invertible (existence of unique solution at each time step)
+    - Iterative solvers (Jacobi, Gauss-Seidel, SOR) converge faster
+    - The discrete maximum principle holds, preventing spurious oscillations
+    - Stability of both explicit and implicit schemes is improved
+
+    For the explicit scheme, the CFL-type stability condition becomes less restrictive since the additional diagonal damping from $-rV$ suppresses growth of numerical errors.
+
+??? success "Solution to Exercise 5"
+    In the Poisson killing interpretation, the process $X_t$ is "killed" at a random exponential time $\zeta \sim \text{Exp}(r)$ independent of $X$. The probability of surviving to time $T$ is:
+
+    $$
+    \mathbb{P}(\zeta > T) = e^{-rT}
+    $$
+
+    **Financial analogue of "being killed"**: Being killed corresponds to the contract **becoming worthless** before maturity. In the pure discounting context, this is an abstract device: the killing reweights paths by $e^{-rT}$, which is equivalent to discounting. There is no literal "death" of the contract.
+
+    However, in **credit risk**, the analogy becomes concrete. Consider a derivative issued by a counterparty who may **default** with hazard rate $\lambda$. The default time $\tau_d \sim \text{Exp}(\lambda)$ plays the role of the killing time. The pricing PDE becomes:
+
+    $$
+    \frac{\partial V}{\partial t} + \mathcal{L}V - (r + \lambda)V = 0
+    $$
+
+    The total killing rate $r + \lambda$ consists of two components:
+
+    - $r$: time-value-of-money discounting (abstract killing)
+    - $\lambda$: actual default risk (literal killing of the contract)
+
+    The Feynman-Kac representation is:
+
+    $$
+    V(t,S) = \mathbb{E}\left[e^{-(r+\lambda)(T-t)}\Phi(S_T) \mid S_t = S\right]
+    $$
+
+    Here $e^{-\lambda(T-t)}$ is the survival probability (probability the issuer does not default before $T$), and $e^{-r(T-t)}$ is the discount factor. Being "killed" financially means the **issuer defaults**, rendering the derivative worthless (assuming zero recovery). For nonzero recovery rate $R$, the payoff upon killing is $R \cdot V$ rather than zero, and the PDE includes an additional source term $\lambda R V$, modifying the effective killing rate to $r + \lambda(1-R)$.

@@ -521,3 +521,125 @@ Compare Monte Carlo and finite difference methods for computing the Feynman-Kac 
 
 **Exercise 7.**
 The Feynman-Kac formula requires regularity conditions including uniform ellipticity ($\sigma^2(t,x) > 0$). Explain what goes wrong at $x = 0$ for the CEV model $dX_t = \sigma X_t^{\beta}\,dW_t$ with $\beta \in (0, 1)$, where $\sigma^2(t,x) = \sigma^2 x^{2\beta}$ vanishes at the origin. What type of solution (classical or viscosity) can still be obtained?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    With $r = 0$ and $f = 0$, the Feynman-Kac formula reduces to:
+
+    **PDE**: $\frac{\partial u}{\partial t} + \frac{1}{2}\sigma^2(t,x)\frac{\partial^2 u}{\partial x^2} = 0$ (using $\mu = 0$ for $dX_s = \sigma\,dW_s$)
+
+    **Probabilistic representation**: $u(t, x) = \mathbb{E}[g(X_T) \mid X_t = x]$
+
+    For $g(x) = x^4$ and $dX_s = \sigma\,dW_s$, we have $X_T = x + \sigma(W_T - W_t)$. Let $Z = W_T - W_t \sim N(0, T-t)$.
+
+    $$
+    u(t, x) = \mathbb{E}[(x + \sigma Z)^4]
+    $$
+
+    Expanding via the binomial theorem and using $\mathbb{E}[Z] = 0$, $\mathbb{E}[Z^2] = T - t$, $\mathbb{E}[Z^3] = 0$, and $\mathbb{E}[Z^4] = 3(T-t)^2$:
+
+    $$
+    u(t, x) = x^4 + 6x^2\sigma^2(T - t) + 3\sigma^4(T - t)^2
+    $$
+
+    **Verification**: $u_t = -6x^2\sigma^2 - 6\sigma^4(T - t)$, $u_{xx} = 12x^2 + 12\sigma^2(T - t)$. Then:
+
+    $$
+    u_t + \frac{1}{2}\sigma^2 u_{xx} = -6x^2\sigma^2 - 6\sigma^4(T-t) + \frac{1}{2}\sigma^2(12x^2 + 12\sigma^2(T-t)) = 0 \;\checkmark
+    $$
+
+??? success "Solution to Exercise 2"
+    In the proof, we define $Y_s = e^{-\int_t^s r\,d\tau}u(s, X_s)$ and apply Ito's lemma to obtain:
+
+    $$
+    dY_s = e^{-\int_t^s r\,d\tau}\!\left[\partial_s u + \mathcal{L}u - r\,u\right]ds + e^{-\int_t^s r\,d\tau}\,\sigma\,u_x\,dW_s
+    $$
+
+    The step that ensures the $ds$ term vanishes is **Step 3 / Step 4**: we substitute the PDE $\partial_t u + \mathcal{L}u - r\,u = 0$ into the bracketed expression. The Ito lemma on $u(s, X_s)$ produces the terms $\partial_s u + \mu\,u_x + \frac{1}{2}\sigma^2\,u_{xx}$, which equals $\partial_s u + \mathcal{L}u$. The product rule with the exponential discount factor $e^{-\int r\,d\tau}$ contributes the $-r\,u$ term.
+
+    Both corrections must be accounted for:
+
+    - The Ito correction from $u(s, X_s)$: the term $\frac{1}{2}\sigma^2 u_{xx}$ arises from the quadratic variation of $X_s$.
+    - The correction from the exponential: $d(e^{-\int_t^s r\,d\tau}) = -r\,e^{-\int_t^s r\,d\tau}\,ds$ contributes the $-r\,u$ factor.
+
+    Together, the drift of $Y_s$ is $e^{-\int r\,d\tau}(\partial_s u + \mathcal{L}u - r\,u) = 0$ by the PDE, leaving only the martingale part.
+
+??? success "Solution to Exercise 3"
+    With $a = 0$, $b = 1$, we need $u(x) = x(1-x)$ to satisfy $\frac{1}{2}u''(x) = -1$ with $u(0) = u(1) = 0$.
+
+    **Boundary conditions**: $u(0) = 0 \cdot 1 = 0$ $\checkmark$, $u(1) = 1 \cdot 0 = 0$ $\checkmark$.
+
+    **PDE**: $u'(x) = 1 - 2x$, $u''(x) = -2$. Therefore:
+
+    $$
+    \frac{1}{2}u''(x) = \frac{1}{2}(-2) = -1 \;\checkmark
+    $$
+
+    **Maximum expected exit time**: Since $u(x) = x(1-x) = -(x - 1/2)^2 + 1/4$ is a downward-opening parabola, the maximum is at $x = 1/2$ with value $u(1/2) = 1/4$.
+
+    The maximum expected exit time is $1/4$, achieved at the midpoint $x = 1/2$ of the interval $[0, 1]$. This makes intuitive sense: starting at the center maximizes the distance to both boundaries, so the Brownian motion takes the longest (in expectation) to exit.
+
+??? success "Solution to Exercise 4"
+    For geometric Brownian motion $dX_s = \mu X_s\,ds + \sigma X_s\,dW_s$, the infinitesimal generator is:
+
+    $$
+    \mathcal{L} = \mu x\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2}{\partial x^2}
+    $$
+
+    By the converse Feynman-Kac theorem, $u(t, x) = \mathbb{E}[e^{-r(T-t)}(X_T - K)^+ \mid X_t = x]$ satisfies:
+
+    $$
+    \frac{\partial u}{\partial t} + \mu x\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2 u}{\partial x^2} - r\,u = 0
+    $$
+
+    with terminal condition $u(T, x) = (x - K)^+$.
+
+    Under risk-neutral pricing where $\mu = r$ (the drift equals the risk-free rate), this becomes the **Black-Scholes PDE**:
+
+    $$
+    \frac{\partial u}{\partial t} + rx\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2 u}{\partial x^2} - r\,u = 0
+    $$
+
+??? success "Solution to Exercise 5"
+    For two correlated assets, the diffusion matrix has entries $a^{ij} = \sum_\alpha \sigma^{i\alpha}\sigma^{j\alpha}$. The generator is:
+
+    $$
+    \mathcal{L} = \mu^1\frac{\partial}{\partial x^1} + \mu^2\frac{\partial}{\partial x^2} + \frac{1}{2}a^{11}\frac{\partial^2}{\partial (x^1)^2} + a^{12}\frac{\partial^2}{\partial x^1 \partial x^2} + \frac{1}{2}a^{22}\frac{\partial^2}{\partial (x^2)^2}
+    $$
+
+    where the diagonal terms are $a^{11} = \sum_\alpha (\sigma^{1\alpha})^2$ and $a^{22} = \sum_\alpha (\sigma^{2\alpha})^2$, and the cross term is $a^{12} = \sum_\alpha \sigma^{1\alpha}\sigma^{2\alpha}$.
+
+    In financial terms, if $S^1$ and $S^2$ are two stock prices with volatilities $\sigma_1$, $\sigma_2$ and correlation $\rho$, then $a^{11} = \sigma_1^2 (S^1)^2$, $a^{22} = \sigma_2^2 (S^2)^2$, and $a^{12} = \rho\sigma_1\sigma_2 S^1 S^2$.
+
+    **Financial significance of the cross-derivative term**: The term $a^{12}\frac{\partial^2 u}{\partial x^1 \partial x^2} = \rho\sigma_1\sigma_2 S^1 S^2\frac{\partial^2 u}{\partial S^1 \partial S^2}$ captures the effect of **correlation** between the two assets on the derivative price. When $\rho > 0$, the assets tend to move together, and this cross-sensitivity (sometimes called "cross-gamma") measures how the option value changes when both assets move simultaneously. For products like spread options, basket options, or quanto options, this correlation term is crucial and cannot be ignored.
+
+??? success "Solution to Exercise 6"
+    **Monte Carlo**: Justified by writing $u(t,x) = \mathbb{E}[e^{-\int r\,ds}g(X_T) \mid X_t = x]$, we simulate $N$ independent paths of the SDE, compute the discounted payoff for each, and average. The error is $O(1/\sqrt{N})$ regardless of dimension.
+
+    **Finite differences**: Justified by the PDE $\partial_t u + \mathcal{L}u - ru + f = 0$, we discretize on a grid and solve backward from the terminal condition. The cost grows as $O(N_{\text{grid}}^d)$ where $d$ is the spatial dimension.
+
+    **European call ($d = 1$)**: Finite differences are efficient. A grid of $N_S = 200$ stock prices and $N_t = 100$ time steps gives $20{,}000$ points, and the tridiagonal linear system is solved in $O(N_S)$ per time step. The method provides the option value at every grid point simultaneously, which is useful for computing Greeks. Monte Carlo achieves comparable accuracy only with thousands of paths.
+
+    **Basket option ($d = 10$)**: Monte Carlo is strongly preferred. A finite difference grid with $N = 50$ points per dimension would require $50^{10} \approx 10^{17}$ grid points, which is computationally impossible. Monte Carlo, however, remains feasible: simulating $10^6$ paths of 10 correlated stocks is routine, with cost $O(10^6 \times 10 \times N_t)$.
+
+    The **curse of dimensionality** refers to the exponential growth of grid-based methods with dimension $d$. The number of grid points scales as $N^d$, making PDE methods impractical for $d \geq 4$. Monte Carlo avoids this curse because its convergence rate $O(1/\sqrt{N})$ does not depend on $d$.
+
+??? success "Solution to Exercise 7"
+    In the CEV model $dX_t = \sigma X_t^{\beta}\,dW_t$ with $\beta \in (0, 1)$, the diffusion coefficient is $\sigma^2(t, x) = \sigma^2 x^{2\beta}$. At $x = 0$, this vanishes: $\sigma^2(t, 0) = 0$.
+
+    **What goes wrong**: The Feynman-Kac PDE is:
+
+    $$
+    \frac{\partial u}{\partial t} + \frac{1}{2}\sigma^2 x^{2\beta}\frac{\partial^2 u}{\partial x^2} = 0
+    $$
+
+    At $x = 0$, the second-order term disappears entirely, and the PDE degenerates from parabolic to first-order (or trivial). This means:
+
+    1. **Loss of uniform ellipticity**: The condition $\sigma^2(t, x) \geq \epsilon > 0$ (required for classical regularity theory) fails at $x = 0$.
+    2. **Ito's lemma may not apply classically**: The proof of Feynman-Kac requires $u \in C^{1,2}$, but the degenerate PDE may not admit $C^{1,2}$ solutions. The second derivative $u_{xx}$ may blow up near $x = 0$ to compensate for the vanishing diffusion coefficient.
+    3. **Boundary behavior**: For $\beta \in (0, 1)$, the process $X_t$ can reach zero, and the behavior at zero (absorption vs. reflection) must be specified, adding a boundary condition that the standard Feynman-Kac setup does not address.
+
+    **Viscosity solutions**: Even when classical ($C^{1,2}$) solutions do not exist, the function $u(t, x) = \mathbb{E}[g(X_T) \mid X_t = x]$ is still well-defined as an expectation. It can be shown to be a **viscosity solution** of the degenerate PDE. Viscosity solutions require only continuity (not differentiability) and are defined through comparison with smooth test functions. Uniqueness of viscosity solutions can often be established even for degenerate equations, preserving the Feynman-Kac connection in a weaker but rigorous sense.

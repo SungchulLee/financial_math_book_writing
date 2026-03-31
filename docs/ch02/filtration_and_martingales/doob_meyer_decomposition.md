@@ -364,3 +364,91 @@ Let $M_t$ be a continuous martingale and $f$ a convex $C^2$ function. Then $f(M_
 (b) Verify your answer for $f(x) = x^2$ and $M_t = W_t$.
 
 (c) What is the compensator when $f(x) = e^x$ and $M_t = W_t$?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** Using the discrete Doob decomposition: $A_n - A_{n-1} = \mathbb{E}[X_n - X_{n-1} \mid \mathcal{F}_{n-1}] = \mathbb{E}[Y_n \mid \mathcal{F}_{n-1}] = c$.
+
+    Therefore $A_n = \sum_{k=1}^n c = cn$ (with $A_0 = 0$).
+
+    The martingale part is $M_n = X_n - X_0 - A_n = X_n - cn$ (with $M_0 = 0$).
+
+    So the decomposition is: $X_n = M_n + cn$, where $M_n = \sum_{k=1}^n (Y_k - c)$.
+
+    **(b)** $A_n = cn$ is predictable: $A_n - A_{n-1} = c$ is a constant, hence $\mathcal{F}_{n-1}$-measurable.
+
+    $A_n$ is increasing: since $c > 0$, $A_n - A_{n-1} = c > 0$ for all $n$. $\square$
+
+    **(c)** Since $A_n = cn$ is increasing (with $c > 0$), $X_n$ is a **submartingale**. It is not a martingale (unless $c = 0$) because the compensator is non-zero.
+
+??? success "Solution to Exercise 2"
+    **(a)** By Ito's formula applied to $f(x) = x^2$ and $W_t$:
+
+    $$
+    W_t^2 = W_0^2 + 2\int_0^t W_s\,dW_s + \int_0^t 1\,ds = 2\int_0^t W_s\,dW_s + t
+    $$
+
+    So $M_t = 2\int_0^t W_s\,dW_s$ (martingale) and $A_t = t$ (predictable increasing).
+
+    **(b)** The compensator is $A_t = t$. This is deterministic, continuous, and increasing.
+
+    **(c)** The compensator $A_t = t$ equals the quadratic variation $[W]_t = t$. This is a general fact: for a continuous local martingale $M$, the process $M^2 - [M]$ is a local martingale, so $[M]$ is the compensator of the submartingale $M^2$. The identity:
+
+    $$
+    \text{Quadratic variation of } W = \text{Compensator of } W^2
+    $$
+
+??? success "Solution to Exercise 3"
+    **(a)** The process $|W_t|$ is a submartingale (since $|\cdot|$ is convex and $W_t$ is a martingale). Its Doob-Meyer decomposition involves local time because $|x|$ is not $C^2$ at $x = 0$. The standard Ito formula does not apply directly, but Tanaka's formula (a generalization of Ito's formula to convex functions) gives the decomposition.
+
+    The compensator must account for the "kink" in $|x|$ at the origin. The local time $L_t^0$ measures how much time the process spends near zero, and it provides exactly the increasing process needed.
+
+    **(b)** Tanaka's formula states:
+
+    $$
+    |W_t| = \int_0^t \text{sgn}(W_s)\,dW_s + L_t^0
+    $$
+
+    where $\text{sgn}(x) = +1$ for $x > 0$, $\text{sgn}(x) = -1$ for $x < 0$, $\text{sgn}(0) = 0$, and $L_t^0$ is the local time of $W$ at 0.
+
+    **(c)**
+
+    - **Martingale part**: $M_t = \int_0^t \text{sgn}(W_s)\,dW_s$. This is a continuous local martingale (in fact a true martingale since $|\text{sgn}(W_s)| \le 1$).
+
+    - **Increasing part (compensator)**: $A_t = L_t^0$. This is a continuous, non-decreasing, adapted process with $L_0^0 = 0$. It increases only when $W_t = 0$, measuring the "time spent at zero" in a generalized sense.
+
+??? success "Solution to Exercise 4"
+    **(a)** By Ito's formula applied to $f(M_t)$ where $M_t$ is a continuous martingale and $f \in C^2$:
+
+    $$
+    f(M_t) = f(M_0) + \int_0^t f'(M_s)\,dM_s + \frac{1}{2}\int_0^t f''(M_s)\,d[M]_s
+    $$
+
+    The Doob-Meyer decomposition is:
+
+    - **Martingale part**: $\int_0^t f'(M_s)\,dM_s$ (a local martingale)
+    - **Compensator**: $A_t = \frac{1}{2}\int_0^t f''(M_s)\,d[M]_s$
+
+    Since $f$ is convex, $f'' \ge 0$, so $A_t$ is non-decreasing. This confirms $f(M_t)$ is a submartingale.
+
+    **(b)** For $f(x) = x^2$ and $M_t = W_t$: $f'(x) = 2x$, $f''(x) = 2$, $[W]_t = t$.
+
+    - Martingale part: $\int_0^t 2W_s\,dW_s$ (matches Example 1)
+    - Compensator: $\frac{1}{2}\int_0^t 2\,ds = t$ (matches Example 1)
+
+    **(c)** For $f(x) = e^x$ and $M_t = W_t$: $f'(x) = e^x$, $f''(x) = e^x$, $[W]_t = t$.
+
+    $$
+    e^{W_t} = e^{W_0} + \int_0^t e^{W_s}\,dW_s + \frac{1}{2}\int_0^t e^{W_s}\,ds
+    $$
+
+    The compensator is:
+
+    $$
+    A_t = \frac{1}{2}\int_0^t e^{W_s}\,ds
+    $$
+
+    This is a random, continuous, increasing process (since $e^{W_s} > 0$). The martingale part is $\int_0^t e^{W_s}\,dW_s$.

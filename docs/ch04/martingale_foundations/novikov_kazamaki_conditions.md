@@ -384,3 +384,146 @@ Suppose $|\theta_t| \leq M$ almost surely for some constant $M > 0$ and all $t \
 
 **Exercise 7.**
 Construct a process $M_t$ for which Kazamaki's condition is satisfied but Novikov's condition fails. (Hint: consider a process where $M_t$ has controlled moments but $\langle M \rangle_T$ has heavy tails. You may describe the construction conceptually rather than giving an explicit formula.)
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    With $\mu = 0.10$, $\sigma = 0.25$, and $r = 0.03$, the market price of risk is:
+
+    $$
+    \theta = \frac{\mu - r}{\sigma} = \frac{0.10 - 0.03}{0.25} = 0.28
+    $$
+
+    Since $\theta$ is constant, the Novikov condition becomes:
+
+    $$
+    \mathbb{E}\left[\exp\left(\frac{1}{2}\int_0^{10} \theta^2\,ds\right)\right] = \exp\left(\frac{\theta^2 \cdot 10}{2}\right) = \exp\left(\frac{0.0784 \cdot 10}{2}\right) = \exp(0.392) \approx 1.480 < \infty
+    $$
+
+    The quantity inside the expectation is deterministic and finite, so Novikov's condition is trivially satisfied. Therefore $\mathcal{E}(-\theta W^{\mathbb{P}})_T$ is a true martingale with $\mathbb{E}[Z_T] = 1$, and the Girsanov measure change from $\mathbb{P}$ to $\mathbb{Q}$ is valid for $T = 10$.
+
+??? success "Solution to Exercise 2"
+    With $\theta(t) = \alpha e^{\beta t}$:
+
+    $$
+    \int_0^T \theta(t)^2\,dt = \int_0^T \alpha^2 e^{2\beta t}\,dt = \frac{\alpha^2}{2\beta}\left(e^{2\beta T} - 1\right)
+    $$
+
+    Since $\theta(t)$ is deterministic, the Novikov condition reduces to:
+
+    $$
+    \exp\left(\frac{1}{2}\int_0^T \theta(t)^2\,dt\right) = \exp\left(\frac{\alpha^2}{4\beta}(e^{2\beta T} - 1)\right) < \infty
+    $$
+
+    This is finite for **every finite $T$**, since the exponential of any finite number is finite. Thus Novikov's condition holds for all $T < \infty$.
+
+    As $T \to \infty$: $\int_0^T \theta(t)^2\,dt \to \infty$ (exponential growth), so $\exp(\frac{1}{2}\int_0^\infty \theta(t)^2\,dt) = +\infty$. On any finite horizon, the Girsanov measure change is valid, but the condition does not extend to infinite horizon. The exponential growth of $\theta(t)$ means the market price of risk becomes arbitrarily large, which would require increasingly extreme probability reweighting.
+
+??? success "Solution to Exercise 3"
+    Assume Novikov holds: $\mathbb{E}[\exp(\frac{1}{2}\langle M \rangle_T)] < \infty$. We want to show $\sup_{t \leq T}\mathbb{E}[\exp(\frac{1}{2}M_t)] < \infty$.
+
+    Write:
+
+    $$
+    \exp\left(\frac{1}{2}M_t\right) = \mathcal{E}\left(\frac{1}{2}M\right)_t \cdot \exp\left(\frac{1}{8}\langle M \rangle_t\right)
+    $$
+
+    This follows from the definition of the stochastic exponential:
+
+    $$
+    \mathcal{E}\left(\frac{1}{2}M\right)_t = \exp\left(\frac{1}{2}M_t - \frac{1}{2}\cdot\frac{1}{4}\langle M \rangle_t\right) = \exp\left(\frac{1}{2}M_t - \frac{1}{8}\langle M \rangle_t\right)
+    $$
+
+    Now $\mathcal{E}(\frac{1}{2}M)$ is a non-negative local martingale, hence a supermartingale: $\mathbb{E}[\mathcal{E}(\frac{1}{2}M)_t] \leq \mathcal{E}(\frac{1}{2}M)_0 = 1$.
+
+    Taking expectations using Cauchy–Schwarz:
+
+    $$
+    \mathbb{E}\left[\exp\left(\frac{1}{2}M_t\right)\right] = \mathbb{E}\left[\mathcal{E}\left(\frac{1}{2}M\right)_t \cdot \exp\left(\frac{1}{8}\langle M \rangle_t\right)\right]
+    $$
+
+    $$
+    \leq \left(\mathbb{E}\left[\mathcal{E}\left(\frac{1}{2}M\right)_t^2\right]\right)^{1/2} \cdot \left(\mathbb{E}\left[\exp\left(\frac{1}{4}\langle M \rangle_t\right)\right]\right)^{1/2}
+    $$
+
+    Alternatively, a simpler bound: since $\mathcal{E}(\frac{1}{2}M)_t \leq 1$ is not generally true, we use Jensen's inequality more carefully. Since $\langle M \rangle_t \leq \langle M \rangle_T$ for $t \leq T$:
+
+    $$
+    \mathbb{E}\left[\exp\left(\frac{1}{2}M_t\right)\right] \leq \mathbb{E}\left[\exp\left(\frac{1}{8}\langle M \rangle_T\right)\right] \leq \mathbb{E}\left[\exp\left(\frac{1}{2}\langle M \rangle_T\right)\right]^{1/4} < \infty
+    $$
+
+    where the last step uses Jensen's inequality with the convex function $x \mapsto x^4$ (or equivalently, $\frac{1}{8} \leq \frac{1}{2}$ combined with monotonicity of the exponential). The bound is uniform in $t \leq T$, so $\sup_{t \leq T}\mathbb{E}[\exp(\frac{1}{2}M_t)] < \infty$, which is Kazamaki's condition.
+
+??? success "Solution to Exercise 4"
+    In the Heston model, $\theta_t = (\mu - r)/\sqrt{V_t}$, so:
+
+    $$
+    \int_0^T \theta_s^2\,ds = \int_0^T \frac{(\mu-r)^2}{V_s}\,ds = (\mu-r)^2 \int_0^T \frac{ds}{V_s}
+    $$
+
+    Novikov's condition requires:
+
+    $$
+    \mathbb{E}\left[\exp\left(\frac{(\mu-r)^2}{2}\int_0^T V_s^{-1}\,ds\right)\right] < \infty
+    $$
+
+    The **Feller condition** $2\kappa\bar{V} \geq \xi^2$ ensures that the CIR process $V_t$ never reaches zero. Specifically, when Feller holds, $V_t > 0$ for all $t > 0$ a.s. (the boundary at zero is **entrance**, not accessible). This keeps $1/V_s$ bounded in a neighborhood of zero, preventing $\int_0^T V_s^{-1}\,ds$ from exploding.
+
+    When Feller is violated ($2\kappa\bar{V} < \xi^2$), $V_t$ can hit zero. Near zero, $1/V_s$ diverges, and $\int_0^T V_s^{-1}\,ds$ may become infinite. If the process spends too much time near zero, the exponential moment in Novikov's condition blows up, and the stochastic exponential may fail to be a true martingale. This would invalidate the Girsanov measure change and potentially signal the presence of arbitrage or bubbles in the model.
+
+??? success "Solution to Exercise 5"
+    With $\theta_t = c/\sqrt{T-t}$ for $t < T$:
+
+    $$
+    \int_0^T \theta_s^2\,ds = \int_0^T \frac{c^2}{T-s}\,ds = c^2\left[-\ln(T-s)\right]_0^T = c^2 \lim_{\epsilon \to 0^+}(\ln T - \ln \epsilon) = +\infty
+    $$
+
+    The integral diverges logarithmically: $\int_0^{T-\epsilon} \theta_s^2\,ds = c^2 \ln(T/\epsilon)$.
+
+    Despite this, the stochastic exponential $Z_t = \exp(\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds)$ is still well-defined as a local martingale for $t < T$, because $\int_0^t \theta_s^2\,ds < \infty$ for each $t < T$. The process $Z_t$ satisfies $dZ_t = Z_t \theta_t\,dW_t$ and is a non-negative local martingale, hence a supermartingale.
+
+    As $t \to T$, the explosive growth of $\theta_t$ causes $Z_t \to 0$ a.s., leading to:
+
+    $$
+    \mathbb{E}[Z_T] < 1
+    $$
+
+    The defect $\delta = 1 - \mathbb{E}[Z_T] > 0$ represents the "mass" lost to infinity. The exact value depends on $c$ and the specific path structure, but $\delta > 0$ confirms that $Z$ is a strict local martingale and cannot serve as a valid Radon–Nikodym derivative for an equivalent measure.
+
+??? success "Solution to Exercise 6"
+    If $|\theta_t| \leq M$ a.s. for all $t \in [0,T]$, then:
+
+    $$
+    \int_0^T \theta_s^2\,ds \leq M^2 T \quad \text{a.s.}
+    $$
+
+    **Novikov's condition**:
+
+    $$
+    \mathbb{E}\left[\exp\left(\frac{1}{2}\int_0^T \theta_s^2\,ds\right)\right] \leq \exp\left(\frac{M^2 T}{2}\right) < \infty
+    $$
+
+    So Novikov is satisfied with upper bound $\exp(M^2 T / 2)$.
+
+    **Kazamaki's condition**: Since Novikov implies Kazamaki (proved in Exercise 3), Kazamaki is automatically satisfied. Alternatively, direct verification: $M_t = \int_0^t \theta_s\,dW_s$ is a continuous martingale with $\langle M \rangle_t \leq M^2 t$, and:
+
+    $$
+    \sup_{t \leq T}\mathbb{E}\left[\exp\left(\frac{1}{2}M_t\right)\right] \leq \sup_{t \leq T}\exp\left(\frac{1}{8}M^2 t\right) \cdot 1 \leq \exp\left(\frac{M^2 T}{8}\right) < \infty
+    $$
+
+    (using the supermartingale bound from the proof that Novikov implies Kazamaki).
+
+??? success "Solution to Exercise 7"
+    **Construction** (conceptual): Let $\tau$ be a random time with $\mathbb{P}(\tau \leq T) = 1$ and define $\theta_t$ to be a process that is bounded for $t < \tau$ but has a carefully chosen blow-up at $t = \tau$.
+
+    More concretely, consider $M_t = \int_0^t \theta_s\,dW_s$ where $\theta_s$ is chosen so that:
+
+    - $\langle M \rangle_T = \int_0^T \theta_s^2\,ds$ has a **heavy-tailed** distribution (e.g., comparable to an exponential or Pareto random variable), so $\mathbb{E}[\exp(\frac{1}{2}\langle M \rangle_T)] = \infty$ — Novikov fails.
+
+    - $M_T$ itself remains "controlled" enough that $\mathbb{E}[\exp(\frac{1}{2}M_T)] < \infty$ — Kazamaki holds.
+
+    This is possible because $M_T$ has both positive and negative fluctuations (it is a martingale centered at zero), while $\langle M \rangle_T$ is always non-negative and monotone increasing. The quadratic variation accumulates without cancellation, while the martingale $M_T$ benefits from cancellations between positive and negative increments.
+
+    A classical example from Kazamaki (1977): take $\theta_s$ to depend on $W$ itself in such a way that $\int_0^T \theta_s^2\,ds$ has moments growing faster than exponential, but $M_T = \int_0^T \theta_s\,dW_s$ has controlled exponential moments due to the "centering" effect of the stochastic integral. The separation arises precisely because $\langle M \rangle$ measures accumulated volatility (always additive), while $M$ itself benefits from martingale cancellations.

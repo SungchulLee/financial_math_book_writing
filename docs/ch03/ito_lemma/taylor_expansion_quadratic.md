@@ -419,3 +419,118 @@ $$
 $$
 
 Verify numerically that this sum closely approximates $f(B_T) - f(B_0)$, confirming that the quadratic correction term is essential.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The second-order Taylor approximation of $f(x) = \cos(x)$ around $x_0 = 0$ requires $f(0) = 1$, $f'(0) = -\sin(0) = 0$, and $f''(0) = -\cos(0) = -1$:
+
+    $$
+    \cos(x) \approx 1 + 0 \cdot x + \frac{1}{2}(-1)x^2 = 1 - \frac{x^2}{2}
+    $$
+
+    At $x = 0.3$:
+
+    $$
+    \cos(0.3) \approx 1 - \frac{(0.3)^2}{2} = 1 - 0.045 = 0.955
+    $$
+
+    The exact value is $\cos(0.3) = 0.95534\ldots$, so the absolute error is approximately $|0.955 - 0.95534| \approx 0.00034$. This small error confirms the accuracy of the quadratic approximation for small increments.
+
+??? success "Solution to Exercise 2"
+    Compute all partial derivatives of $f(t, b) = e^t \sin(b)$ at $(0, 0)$:
+
+    - $f(0, 0) = e^0 \sin(0) = 0$
+    - $f_t = e^t \sin(b)$, so $f_t(0, 0) = 0$
+    - $f_b = e^t \cos(b)$, so $f_b(0, 0) = 1$
+    - $f_{tt} = e^t \sin(b)$, so $f_{tt}(0, 0) = 0$
+    - $f_{bb} = -e^t \sin(b)$, so $f_{bb}(0, 0) = 0$
+    - $f_{tb} = e^t \cos(b)$, so $f_{tb}(0, 0) = 1$
+
+    The full second-order Taylor expansion is
+
+    $$
+    f(t, b) \approx 0 + 0 \cdot t + 1 \cdot b + \frac{1}{2}(0)t^2 + \frac{1}{2}(0)b^2 + 1 \cdot tb = b + tb
+    $$
+
+    That is, $f(t, b) \approx b(1 + t)$.
+
+??? success "Solution to Exercise 3"
+    **(a)** For $f(x) = \sqrt{1 + x}$, we have $f(0) = 1$, $f'(x) = \frac{1}{2}(1+x)^{-1/2}$ so $f'(0) = \frac{1}{2}$, and $f''(x) = -\frac{1}{4}(1+x)^{-3/2}$ so $f''(0) = -\frac{1}{4}$. The second-order Taylor approximation is
+
+    $$
+    \sqrt{1+x} \approx 1 + \frac{1}{2}x + \frac{1}{2}\left(-\frac{1}{4}\right)x^2 = 1 + \frac{x}{2} - \frac{x^2}{8}
+    $$
+
+    **(b)** At $x = 0.2$, the exact value is $\sqrt{1.2} = 1.09544\ldots$
+
+    - Linear approximation: $1 + 0.1 = 1.1$, error $\approx 0.00456$
+    - Quadratic approximation: $1 + 0.1 - 0.005 = 1.095$, error $\approx 0.00044$
+
+    The quadratic approximation reduces the error by roughly a factor of $10$.
+
+    **(c)** At $x = 0.1$: exact value $\sqrt{1.1} = 1.04881\ldots$, quadratic approximation $1 + 0.05 - 0.00125 = 1.04875$, error $\approx 0.00006$. At $x = 0.2$: error $\approx 0.00044$. The ratio is $0.00044 / 0.00006 \approx 7.3 \approx 2^3 = 8$, consistent with the error being proportional to $(\Delta x)^3$ (since $0.2/0.1 = 2$ and $2^3 = 8$).
+
+??? success "Solution to Exercise 4"
+    For a deterministic variable $b$ with $\Delta b = O(\Delta t)$, the three second-order terms scale as:
+
+    - $\frac{1}{2}f_{tt}(\Delta t)^2 = O((\Delta t)^2)$
+    - $\frac{1}{2}f_{bb}(\Delta b)^2 = O((\Delta t)^2)$ since $(\Delta b)^2 = O((\Delta t)^2)$
+    - $f_{tb}\Delta t \Delta b = O((\Delta t)^2)$ since $\Delta t \cdot \Delta b = O((\Delta t)^2)$
+
+    All three are $O((\Delta t)^2)$, which is negligible compared to the first-order terms $O(\Delta t)$, so they can be dropped.
+
+    When $b = B_t$ is a Brownian motion, $\Delta B_t = O(\sqrt{\Delta t})$, so $(\Delta B_t)^2 = O(\Delta t)$. The term $\frac{1}{2}f_{bb}(\Delta B_t)^2 = O(\Delta t)$ is the same order as the first-order terms $f_t\Delta t$ and $f_b\Delta B_t$, and therefore must be retained. The other two second-order terms remain $O((\Delta t)^{3/2})$ or higher and still vanish.
+
+??? success "Solution to Exercise 5"
+    For $f(t, b) = t^2 b + e^b$, compute derivatives:
+
+    - $f_t = 2tb$, so $f_t(1, 0) = 0$
+    - $f_b = t^2 + e^b$, so $f_b(1, 0) = 2$
+    - $f_{tt} = 2b$, so $f_{tt}(1, 0) = 0$
+    - $f_{bb} = e^b$, so $f_{bb}(1, 0) = 1$
+    - $f_{tb} = 2t$, so $f_{tb}(1, 0) = 2$
+
+    The Hessian at $(1, 0)$ is
+
+    $$
+    H = \begin{pmatrix} 0 & 2 \\ 2 & 1 \end{pmatrix}
+    $$
+
+    Also, $f(1, 0) = 0 + 1 = 1$. The full quadratic Taylor expansion is
+
+    $$
+    f(t, b) \approx 1 + 0 \cdot (t-1) + 2b + \frac{1}{2}\left[0 \cdot (t-1)^2 + 2 \cdot 2(t-1)b + 1 \cdot b^2\right]
+    $$
+
+    which simplifies to
+
+    $$
+    f(t, b) \approx 1 + 2b + 2(t-1)b + \frac{1}{2}b^2
+    $$
+
+??? success "Solution to Exercise 6"
+    The three second-order products and their orders are:
+
+    - $(\Delta t)^2 = O((\Delta t)^2)$: this is $o(\Delta t)$, so it **vanishes**
+    - $\Delta t \cdot \Delta B_t = O((\Delta t)^{3/2})$: since $3/2 > 1$, this is $o(\Delta t)$, so it **vanishes**
+    - $(\Delta B_t)^2 = O(\Delta t)$: this is exactly $O(\Delta t)$, so it **survives**
+
+    Only $(\Delta B_t)^2$ survives in the limit $\Delta t \to 0$. This is the term that gives rise to the Itô correction.
+
+??? success "Solution to Exercise 7"
+    For $f(x) = x^3$, we have $f'(x) = 3x^2$ and $f''(x) = 6x$. The sum
+
+    $$
+    S = \sum_{i=0}^{N-1}\left[3B_{t_i}^2 \Delta B_i + \frac{1}{2}(6B_{t_i})(\Delta B_i)^2\right] = \sum_{i=0}^{N-1}\left[3B_{t_i}^2 \Delta B_i + 3B_{t_i}(\Delta B_i)^2\right]
+    $$
+
+    approximates $f(B_T) - f(B_0) = B_T^3$ (since $B_0 = 0$). This is because the sum is precisely the discrete version of the Itô formula applied to $f(x) = x^3$:
+
+    $$
+    B_T^3 = \int_0^T 3B_s^2\,dB_s + \frac{1}{2}\int_0^T 6B_s\,ds
+    $$
+
+    The first sum term approximates $\int_0^T 3B_s^2\,dB_s$ and the second approximates $3\int_0^T B_s\,ds$ (using $(\Delta B_i)^2 \approx \Delta t$). Running the simulation will confirm that $S \approx B_T^3$, verifying that the quadratic correction is essential — omitting the $3B_{t_i}(\Delta B_i)^2$ terms would leave only the stochastic integral part, which systematically deviates from the true value.

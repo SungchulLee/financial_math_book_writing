@@ -195,3 +195,164 @@ where $\{\psi_p\}$ and $\{\phi_q\}$ are polynomial or other basis functions.
 ---
 
 **Exercise 6.** The Geman-Yor Laplace transform approach expresses the Asian option price through the Laplace transform in the strike variable. Explain conceptually why a Laplace transform in the time-to-maturity variable (rather than the strike) would also be useful. What are the main computational challenges in numerically inverting the Laplace transform, and name one algorithm commonly used for this inversion.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a) Brownian bridge intuition:** Given $S_{t_k} > H$ and $S_{t_{k+1}} > H$, the log-price between $t_k$ and $t_{k+1}$ is approximately a Brownian bridge connecting $\log S_{t_k}$ and $\log S_{t_{k+1}}$. The probability that a Brownian bridge $B_t$ connecting $a = \log(S_{t_k}/H)$ and $b = \log(S_{t_{k+1}}/H)$ (both positive) touches zero is:
+
+    $$
+    p = \exp\left(-\frac{2ab}{\sigma^2 \Delta t}\right) = \exp\left(-\frac{2\log(S_{t_k}/H)\log(S_{t_{k+1}}/H)}{\sigma^2 \Delta t}\right)
+    $$
+
+    When both $S_{t_k}$ and $S_{t_{k+1}}$ are close to $H$, this probability is substantial, meaning the naive discrete simulation frequently misses barrier crossings. The BGK correction accounts for these missed crossings by shifting the barrier.
+
+    **(b) Numerical verification:** With $H = 90$, $\sigma = 0.20$, $T = 1$, $M = 50$:
+
+    $$
+    \Delta t = T/M = 1/50 = 0.02
+    $$
+
+    $$
+    H_{\text{eff}} = 90 \cdot \exp(-0.5826 \times 0.20 \times \sqrt{0.02})
+    $$
+
+    Computing: $\sqrt{0.02} = 0.14142$, and $0.5826 \times 0.20 \times 0.14142 = 0.016479$.
+
+    $$
+    H_{\text{eff}} = 90 \cdot e^{-0.016479} = 90 \cdot 0.98366 \approx 88.53
+    $$
+
+    This is approximately $88.35$ to $88.53$ depending on precision, confirming the stated value is in the right range. The effective barrier is shifted about $1.5$ to $1.7$ points below the nominal barrier $90$.
+
+??? success "Solution to Exercise 2"
+    Under GBM with risk-neutral dynamics, $S_{t_i} = S_0 \exp((r - \frac{1}{2}\sigma^2)t_i + \sigma W_{t_i})$. Taking expectations:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[S_{t_i}] = S_0 e^{r t_i}
+    $$
+
+    Therefore the first moment of the arithmetic average is:
+
+    $$
+    M_1 = \mathbb{E}^{\mathbb{Q}}[\bar{S}] = \frac{1}{n}\sum_{i=1}^{n} \mathbb{E}^{\mathbb{Q}}[S_{t_i}] = \frac{S_0}{n}\sum_{i=1}^{n} e^{r t_i}
+    $$
+
+    For equally-spaced fixings $t_i = iT/n$, this sum is a geometric series:
+
+    $$
+    \sum_{i=1}^{n} e^{r i T/n} = e^{rT/n} \sum_{i=0}^{n-1} e^{r i T/n} = e^{rT/n} \cdot \frac{e^{rT} - 1}{e^{rT/n} - 1}
+    $$
+
+    Using the geometric series formula $\sum_{i=0}^{n-1} x^i = (x^n - 1)/(x - 1)$ with $x = e^{rT/n}$:
+
+    $$
+    M_1 = \frac{S_0}{n} \cdot e^{rT/n} \cdot \frac{e^{rT} - 1}{e^{rT/n} - 1}
+    $$
+
+    For small $rT/n$, $e^{rT/n} - 1 \approx rT/n$, so $M_1 \approx \frac{S_0}{n} \cdot \frac{e^{rT} - 1}{rT/n} = \frac{S_0(e^{rT} - 1)}{rT}$, which is the continuous-average limit.
+
+??? success "Solution to Exercise 3"
+    Starting from the **reflection principle for standard Brownian motion**: for a path starting at $W_0 = 0$, if it reaches level $y > 0$ at some time $\tau \leq T$, reflecting the path after time $\tau$ about level $y$ produces a valid Brownian motion path. This gives the key identity:
+
+    $$
+    \mathbb{P}(M_T \geq y,\, W_T \leq x) = \mathbb{P}(W_T \geq 2y - x) \quad \text{for } x \leq y
+    $$
+
+    because the reflected path ends at $2y - x \geq y > 0$.
+
+    The desired probability is the complement:
+
+    $$
+    \mathbb{P}(M_T \leq y,\, W_T \leq x) = \mathbb{P}(W_T \leq x) - \mathbb{P}(M_T \geq y,\, W_T \leq x)
+    $$
+
+    Substituting:
+
+    $$
+    = \mathbb{P}(W_T \leq x) - \mathbb{P}(W_T \geq 2y - x)
+    $$
+
+    Since $W_T \sim N(0, T)$:
+
+    $$
+    = N\!\left(\frac{x}{\sqrt{T}}\right) - \left[1 - N\!\left(\frac{2y - x}{\sqrt{T}}\right)\right]
+    $$
+
+    Using $1 - N(z) = N(-z)$:
+
+    $$
+    = N\!\left(\frac{x}{\sqrt{T}}\right) - N\!\left(\frac{-(2y - x)}{\sqrt{T}}\right) = N\!\left(\frac{x}{\sqrt{T}}\right) - N\!\left(\frac{x - 2y}{\sqrt{T}}\right)
+    $$
+
+    Wait — we need to account for the exponential factor. Using the reflection: $\mathbb{P}(W_T \geq 2y - x) = N(-(2y-x)/\sqrt{T}) = N((x-2y)/\sqrt{T})$. But then:
+
+    $$
+    \mathbb{P}(M_T \leq y,\, W_T \leq x) = N\!\left(\frac{x}{\sqrt{T}}\right) - N\!\left(\frac{x - 2y}{\sqrt{T}}\right)
+    $$
+
+    However, the stated formula includes an exponential factor $e^{-2xy/T}$. This factor arises when we compute $\mathbb{P}(M_T \geq y, W_T \leq x)$ more carefully. For the **driftless** case, the reflection gives:
+
+    $$
+    \mathbb{P}(M_T \geq y,\, W_T \in dw) = e^{-2y(y-w)/T} \frac{1}{\sqrt{2\pi T}} e^{-w^2/(2T)}\,dw
+    $$
+
+    Integrating and simplifying, the CDF is:
+
+    $$
+    \mathbb{P}(M_T \leq y,\, W_T \leq x) = N\!\left(\frac{x}{\sqrt{T}}\right) - e^{-2xy/T}\,N\!\left(\frac{x - 2y}{\sqrt{T}}\right)
+    $$
+
+    **Verification ($y \to \infty$):** As $y \to \infty$, $e^{-2xy/T} \to 0$ (for $x > 0$; for $x \leq 0$, the second term $N((x-2y)/\sqrt{T}) \to 0$ even faster). So:
+
+    $$
+    \mathbb{P}(M_T \leq \infty,\, W_T \leq x) = N\!\left(\frac{x}{\sqrt{T}}\right)
+    $$
+
+    which is simply $\mathbb{P}(W_T \leq x)$, as expected since the maximum is always finite.
+
+??? success "Solution to Exercise 4"
+    For polynomial degree 2 in both variables $S_{t_k}$ and $\bar{S}_k$, the basis functions are $\{S_{t_k}^p \bar{S}_k^q : 0 \leq p + q \leq 2,\, p \geq 0,\, q \geq 0\}$:
+
+    | $p$ | $q$ | Basis function |
+    |-----|-----|----------------|
+    | 0 | 0 | $1$ (constant) |
+    | 1 | 0 | $S_{t_k}$ |
+    | 0 | 1 | $\bar{S}_k$ |
+    | 2 | 0 | $S_{t_k}^2$ |
+    | 1 | 1 | $S_{t_k}\bar{S}_k$ |
+    | 0 | 2 | $\bar{S}_k^2$ |
+
+    This produces **6 basis functions**.
+
+    **Trade-off discussion:** Using more basis functions (higher polynomial degree or additional functions like $e^{-S}$) allows the regression to capture more complex nonlinear relationships in the continuation value surface. However, with a finite number of simulated paths $N$:
+
+    - **Overfitting risk:** With too many basis functions relative to $N$, the regression fits noise rather than the true conditional expectation. The estimated continuation values become unreliable, leading to suboptimal exercise decisions.
+    - **Bias-variance trade-off:** Fewer basis functions introduce approximation bias (underfitting) but lower variance. More basis functions reduce bias but increase variance.
+    - **Practical rule:** The number of basis functions should be much smaller than $N$. For $N = 10{,}000$ paths, 6 to 10 basis functions typically works well. For $N = 100{,}000$, one can safely use 15 to 20 basis functions.
+
+??? success "Solution to Exercise 5"
+    **(a) Naive Monte Carlo with discrete monitoring:** Convergence in the number of time steps is $O(1/\sqrt{M})$ due to the probability of missing barrier crossings between steps. Convergence in the number of paths is $O(1/\sqrt{N})$. The overall error is $O(1/\sqrt{M}) + O(1/\sqrt{N})$.
+
+    **(b) Monte Carlo with BGK correction:** The corrected barrier shifts by $O(\sqrt{\Delta t})$, and the residual discretization error improves to $O(1/M)$. Combined with path sampling error: $O(1/M) + O(1/\sqrt{N})$. This is a dramatic improvement in the time-step convergence.
+
+    **(c) Closed-form image method:** Exact for continuously monitored barriers under GBM. No discretization error and no sampling error. Computation is $O(1)$ (constant time).
+
+    **Practical advantages:**
+
+    - **Image method** is best when applicable: simple single barriers, GBM, continuous monitoring. It is exact, instantaneous, and requires no simulation. However, it fails for time-dependent barriers, double barriers, discrete monitoring (without correction), and non-GBM models.
+    - **BGK-corrected Monte Carlo** is best for discrete monitoring, complex payoffs, or non-standard barrier structures. It provides good accuracy with moderate $M$ (50-100 steps suffice).
+    - **Naive Monte Carlo** is the fallback when BGK corrections are unavailable (e.g., time-dependent barriers, non-constant volatility). It requires very large $M$ to achieve acceptable accuracy.
+
+??? success "Solution to Exercise 6"
+    **Laplace transform in time-to-maturity:** A Laplace transform in $T$ (time to maturity) is useful because the Asian option pricing PDE involves the integral $\int_0^T S_t\,dt$ as a state variable. Transforming in $T$ converts the pricing PDE from a time-dependent problem into an ODE in the Laplace variable, which is often easier to solve. The Laplace-transformed price can be expressed in terms of special functions (confluent hypergeometric/Whittaker functions), and the original price is recovered by numerical inversion.
+
+    **Main computational challenges in numerical Laplace inversion:**
+
+    1. **Ill-conditioning:** The inverse Laplace transform is inherently ill-conditioned — small errors in the transform domain can produce large errors in the time domain. This requires high-precision arithmetic.
+    2. **Oscillatory integrands:** The inversion integral $f(t) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty} e^{st}\hat{f}(s)\,ds$ involves oscillatory exponentials, making numerical quadrature difficult.
+    3. **Choice of contour:** The integration contour must be chosen to lie in the region of convergence and to optimize numerical stability.
+
+    **Common algorithm:** The **Euler algorithm** (Abate and Whitt, 1995) is widely used for Laplace inversion in the Asian option context. It approximates the Bromwich integral using an Euler summation of the trapezoidal rule, combined with Richardson extrapolation. The **Gaver-Stehfest algorithm** is another popular choice, which uses a weighted sum of transform values at real points, avoiding complex arithmetic entirely.

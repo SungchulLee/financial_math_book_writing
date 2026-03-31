@@ -387,3 +387,191 @@ S(t+\Delta t) - S(t) \approx \mu\,S(t)\,\Delta t + \sigma\,S(t)\,\sqrt{\Delta t}
 $$
 
 The second-order expansion includes the additional term $\frac{1}{2}\sigma^2 S(t)\,\Delta t$. Show that this extra term is $O(\Delta t)$ and therefore the same order as the drift $\mu\,S(t)\,\Delta t$. Explain why ignoring it changes the drift coefficient of the limiting SDE, and identify the resulting $-\sigma^2/2$ correction in the GBM solution $S_t = S_0\exp[(\mu - \sigma^2/2)t + \sigma W_t]$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    After $N$ steps, the log-price is:
+
+    $$
+    \log S_N = \log S_0 + \sum_{n=0}^{N-1}(\log S_{n+1} - \log S_n) = \log S_0 + \sum_{n=0}^{N-1}(\mu\,\Delta t + \sigma\sqrt{\Delta t}\cdot Z_n)
+    $$
+
+    **Mean:** Since $\mathbb{E}[Z_n] = 0$ for all $n$:
+
+    $$
+    \mathbb{E}[\log S_N] = \log S_0 + \sum_{n=0}^{N-1}\mu\,\Delta t = \log S_0 + N\mu\,\Delta t = \log S_0 + \mu T
+    $$
+
+    where $T = N\Delta t$.
+
+    **Variance:** Since the $Z_n$ are i.i.d. with $\operatorname{Var}(Z_n) = 1$, and $\log S_0$ is a constant:
+
+    $$
+    \operatorname{Var}(\log S_N) = \operatorname{Var}\!\left(\sum_{n=0}^{N-1}\sigma\sqrt{\Delta t}\cdot Z_n\right) = \sum_{n=0}^{N-1}\sigma^2\Delta t\cdot\operatorname{Var}(Z_n) = N\sigma^2\Delta t
+    $$
+
+    Since $T = N\Delta t$:
+
+    $$
+    \operatorname{Var}(\log S_N) = \sigma^2 N\Delta t = \sigma^2 T
+    $$
+
+    The variance depends only on the total time $T = N\Delta t$, not on the individual values of $N$ and $\Delta t$. Whether we use $N = 252$ steps of $\Delta t = 1/252$ or $N = 25200$ steps of $\Delta t = 1/25200$, the variance is $\sigma^2 T$ in both cases. This confirms that the variance of the log-price scales linearly with total time, independent of the discretisation — a necessary consistency condition for the continuous-time limit to be well-defined.
+
+??? success "Solution to Exercise 2"
+    Yes, Donsker's theorem still applies. The theorem requires only that the $Z_i$ are i.i.d. with $\mathbb{E}[Z_i] = 0$ and $\operatorname{Var}(Z_i) = 1$. The Rademacher distribution satisfies both conditions:
+
+    $$
+    \mathbb{E}[Z_i] = \frac{1}{2}(+1) + \frac{1}{2}(-1) = 0
+    $$
+
+    $$
+    \operatorname{Var}(Z_i) = \mathbb{E}[Z_i^2] = \frac{1}{2}(1)^2 + \frac{1}{2}(-1)^2 = 1
+    $$
+
+    The limiting process is **standard Brownian motion** $W_t$, the same limit as for Gaussian increments.
+
+    This universality is important for finance because it means the choice of Brownian motion as the canonical noise process does not depend on the specific distribution of individual price shocks. Real daily returns are non-Gaussian (heavy-tailed, skewed), yet the rescaled cumulative return process still converges to Brownian motion as the time step shrinks, provided the increments have finite variance. This justifies using the SDE framework $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ as a continuous-time model regardless of the precise distributional form of discrete-time returns. The only requirement is finite variance — when this fails (e.g., for stable distributions with $\alpha < 2$), the limit is no longer Brownian motion but a Levy process, requiring a different framework.
+
+??? success "Solution to Exercise 3"
+    **(a)** By property 3 (Gaussian increments), $W_t = W_t - W_0 \sim \mathcal{N}(0, t - 0) = \mathcal{N}(0, t)$. Therefore:
+
+    $$
+    \mathbb{E}[W_t] = 0 \quad \text{for all } t \geq 0
+    $$
+
+    **(b)** From the same property:
+
+    $$
+    \operatorname{Var}(W_t) = \mathbb{E}[W_t^2] - (\mathbb{E}[W_t])^2 = \mathbb{E}[W_t^2] - 0 = t
+    $$
+
+    **(c)** Assume without loss of generality that $s \leq t$. Decompose $W_t = (W_t - W_s) + W_s$. Then:
+
+    $$
+    \operatorname{Cov}(W_s, W_t) = \operatorname{Cov}(W_s, (W_t - W_s) + W_s)
+    $$
+
+    $$
+    = \operatorname{Cov}(W_s, W_t - W_s) + \operatorname{Cov}(W_s, W_s)
+    $$
+
+    By property 2 (independent increments), $W_t - W_s$ is independent of $W_s = W_s - W_0$ since the intervals $[0, s]$ and $[s, t]$ are non-overlapping. For independent random variables, the covariance is zero:
+
+    $$
+    \operatorname{Cov}(W_s, W_t - W_s) = 0
+    $$
+
+    Therefore:
+
+    $$
+    \operatorname{Cov}(W_s, W_t) = 0 + \operatorname{Var}(W_s) = s = \min(s, t)
+    $$
+
+    By symmetry ($\operatorname{Cov}(W_s, W_t) = \operatorname{Cov}(W_t, W_s)$), the result holds for $s > t$ as well, giving $\operatorname{Cov}(W_s, W_t) = \min(s, t)$ for all $s, t \geq 0$.
+
+??? success "Solution to Exercise 4"
+    **(a) Geometric Brownian Motion:** $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$
+
+    - Drift: $\mu(x, t) = \mu x$
+    - Diffusion: $\sigma(x, t) = \sigma x$
+    - The diffusion is **multiplicative** because $\sigma(x,t)$ depends on the state $x$ (proportional to the current price).
+
+    **(b) Ornstein--Uhlenbeck:** $dX_t = \kappa(\theta - X_t)\,dt + \sigma\,dW_t$
+
+    - Drift: $\mu(x, t) = \kappa(\theta - x)$ (mean-reverting toward $\theta$)
+    - Diffusion: $\sigma(x, t) = \sigma$ (a constant)
+    - The diffusion is **additive** because $\sigma(x,t) = \sigma$ does not depend on the state $x$.
+
+    **(c) Cox--Ingersoll--Ross:** $dr_t = \kappa(\theta - r_t)\,dt + \xi\sqrt{r_t}\,dW_t$
+
+    - Drift: $\mu(x, t) = \kappa(\theta - x)$ (mean-reverting toward $\theta$, same structure as OU)
+    - Diffusion: $\sigma(x, t) = \xi\sqrt{x}$
+    - The diffusion is **multiplicative** because $\sigma(x,t) = \xi\sqrt{x}$ depends on the state $x$. This square-root diffusion ensures that the volatility of the interest rate decreases as $r_t$ approaches zero, which helps keep $r_t$ non-negative (under the Feller condition $2\kappa\theta \geq \xi^2$).
+
+??? success "Solution to Exercise 5"
+    **Non-anticipativity with left-endpoint evaluation.** When the integrand is $\sigma(X_{t_i}, t_i)$, it depends only on the state at time $t_i$. The increment $W_{t_{i+1}} - W_{t_i}$ is the Brownian motion increment over the interval $(t_i, t_{i+1}]$. By the independent-increments property, $W_{t_{i+1}} - W_{t_i}$ is independent of $\mathcal{F}_{t_i}$ (the information available up to time $t_i$). Since $\sigma(X_{t_i}, t_i)$ is $\mathcal{F}_{t_i}$-measurable, the integrand is determined **before** the increment is realised — this is non-anticipativity.
+
+    **Why right-endpoint evaluation violates non-anticipativity.** If we use $\sigma(X_{t_{i+1}}, t_{i+1})$, the integrand depends on $X_{t_{i+1}}$, which itself depends on the increment $W_{t_{i+1}} - W_{t_i}$ (through the SDE dynamics). The coefficient of the Brownian increment would therefore depend on the increment itself — this is "looking into the future" and violates non-anticipativity.
+
+    **Martingale property with left-endpoint evaluation.** For the left-endpoint sum, consider a single term. Since $\sigma(X_{t_i}, t_i)$ is $\mathcal{F}_{t_i}$-measurable and $W_{t_{i+1}} - W_{t_i}$ is independent of $\mathcal{F}_{t_i}$:
+
+    $$
+    \mathbb{E}[\sigma(X_{t_i}, t_i)(W_{t_{i+1}} - W_{t_i}) \mid \mathcal{F}_{t_i}] = \sigma(X_{t_i}, t_i)\,\mathbb{E}[W_{t_{i+1}} - W_{t_i} \mid \mathcal{F}_{t_i}]
+    $$
+
+    $$
+    = \sigma(X_{t_i}, t_i) \cdot 0 = 0
+    $$
+
+    The key step is pulling $\sigma(X_{t_i}, t_i)$ outside the conditional expectation (valid because it is $\mathcal{F}_{t_i}$-measurable), and then using $\mathbb{E}[W_{t_{i+1}} - W_{t_i} \mid \mathcal{F}_{t_i}] = 0$ (independent increments with zero mean).
+
+    **Why this fails with right-endpoint evaluation.** If we use $\sigma(X_{t_{i+1}}, t_{i+1})$, it is not $\mathcal{F}_{t_i}$-measurable, so we cannot pull it outside the conditional expectation. Moreover, $\sigma(X_{t_{i+1}}, t_{i+1})$ and $W_{t_{i+1}} - W_{t_i}$ are generally **correlated** (since $X_{t_{i+1}}$ depends on $W_{t_{i+1}} - W_{t_i}$), so:
+
+    $$
+    \mathbb{E}[\sigma(X_{t_{i+1}}, t_{i+1})(W_{t_{i+1}} - W_{t_i}) \mid \mathcal{F}_{t_i}] \neq 0
+    $$
+
+    in general. The non-zero conditional expectation introduces a systematic drift, destroying the martingale property of the stochastic integral. This is the essential difference between Ito and Stratonovich integration.
+
+??? success "Solution to Exercise 6"
+    Starting from the discrete multiplicative model:
+
+    $$
+    S(t+\Delta t) = S(t)\exp(\mu\Delta t + \sigma\sqrt{\Delta t}\cdot Z)
+    $$
+
+    The exact increment is:
+
+    $$
+    S(t+\Delta t) - S(t) = S(t)\left[\exp(\mu\Delta t + \sigma\sqrt{\Delta t}\cdot Z) - 1\right]
+    $$
+
+    Let $x = \mu\Delta t + \sigma\sqrt{\Delta t}\cdot Z$. The second-order Taylor expansion of $e^x - 1$ is:
+
+    $$
+    e^x - 1 \approx x + \frac{1}{2}x^2
+    $$
+
+    Expanding $x^2$:
+
+    $$
+    x^2 = (\mu\Delta t + \sigma\sqrt{\Delta t}\cdot Z)^2 = \mu^2(\Delta t)^2 + 2\mu\sigma(\Delta t)^{3/2}Z + \sigma^2\Delta t\cdot Z^2
+    $$
+
+    The dominant term is $\sigma^2\Delta t \cdot Z^2$, which is $O(\Delta t)$ (since $\mathbb{E}[Z^2] = 1$). The other terms are $O((\Delta t)^{3/2})$ or higher and vanish in the limit. Therefore the second-order correction is:
+
+    $$
+    \frac{1}{2}x^2 \approx \frac{1}{2}\sigma^2\Delta t\cdot Z^2
+    $$
+
+    **This is $O(\Delta t)$** — the same order as the drift term $\mu\Delta t$. Since $\mathbb{E}[Z^2] = 1$, the expected value of this correction is $\frac{1}{2}\sigma^2\Delta t$, contributing an additional drift of $+\frac{1}{2}\sigma^2$ per unit time.
+
+    **Why ignoring it changes the drift.** The full expansion of the increment is:
+
+    $$
+    S(t+\Delta t) - S(t) \approx S(t)\!\left[\mu\Delta t + \sigma\sqrt{\Delta t}\cdot Z + \tfrac{1}{2}\sigma^2\Delta t \cdot Z^2\right]
+    $$
+
+    Taking expectations: $\mathbb{E}[Z] = 0$ and $\mathbb{E}[Z^2] = 1$, so the expected increment per unit time is $\mu + \frac{1}{2}\sigma^2$, not $\mu$. The first-order expansion misses the $\frac{1}{2}\sigma^2$ term, leading to an incorrect drift.
+
+    **Connection to the GBM solution.** The log-price SDE is $d(\log S_t) = \mu\,dt + \sigma\,dW_t$ (from the discrete model). Applying Ito's lemma to $f(S) = \log S$ with $dS_t = \tilde{\mu}S_t\,dt + \sigma S_t\,dW_t$ yields:
+
+    $$
+    d(\log S_t) = \left(\tilde{\mu} - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
+    $$
+
+    The $-\sigma^2/2$ arises from the $(dW_t)^2 = dt$ quadratic variation term in Ito's lemma. Integrating:
+
+    $$
+    \log S_t = \log S_0 + \left(\tilde{\mu} - \frac{\sigma^2}{2}\right)t + \sigma W_t
+    $$
+
+    $$
+    S_t = S_0\exp\!\left[\left(\tilde{\mu} - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
+    $$
+
+    Here $\tilde{\mu}$ is the drift of the price-level SDE, and $\tilde{\mu} - \sigma^2/2$ is the drift of the log-price. The $-\sigma^2/2$ correction is the continuous-time manifestation of the second-order term $\frac{1}{2}\sigma^2\Delta t$ that the first-order heuristic expansion discarded. This term is the hallmark of Ito calculus and has no analogue in ordinary calculus.

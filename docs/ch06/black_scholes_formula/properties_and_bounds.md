@@ -536,3 +536,175 @@ $$
 $$
 
 Show that both terms are negative, so $\Theta < 0$ in general. Under what limiting conditions (deep ITM, near expiration) might the interest rate term dominate the volatility term? Can theta ever be positive for a European call on a non-dividend-paying stock?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **Given**: $C = 12$, $S = 100$, $K = 95$, $r = 0.04$, $T = 0.5$.
+
+    **Upper bound check**: $C = 12 \leq 100 = S$ ✓
+
+    **Lower bound**: $\max(S - Ke^{-rT}, 0) = \max(100 - 95e^{-0.02}, 0) = \max(100 - 93.12, 0) = 6.88$.
+
+    $C = 12 \geq 6.88$ ✓
+
+    Both bounds are satisfied.
+
+    **Time value**: The intrinsic value is $\max(S - K, 0) = \max(100 - 95, 0) = 5$.
+
+    $$
+    \text{Time value} = C - \text{Intrinsic value} = 12 - 5 = 7
+    $$
+
+    The option's time value is $\$7$, representing the value of optionality (the chance of further favorable moves and the interest savings from deferring the strike payment).
+
+??? success "Solution to Exercise 2"
+    Consider the butterfly spread portfolio: buy 1 call at $K_1$, sell 2 calls at $K_2 = \frac{K_1+K_3}{2}$, buy 1 call at $K_3$.
+
+    The payoff at maturity is $\Pi(S_T) = (S_T - K_1)^+ - 2(S_T - K_2)^+ + (S_T - K_3)^+$.
+
+    **Case 1: $S_T \leq K_1$**
+
+    All calls expire worthless: $\Pi = 0 - 0 + 0 = 0 \geq 0$.
+
+    **Case 2: $K_1 < S_T \leq K_2$**
+
+    $$
+    \Pi = (S_T - K_1) - 0 + 0 = S_T - K_1 > 0
+    $$
+
+    **Case 3: $K_2 < S_T \leq K_3$**
+
+    $$
+    \Pi = (S_T - K_1) - 2(S_T - K_2) + 0 = -S_T + 2K_2 - K_1 = K_3 - S_T
+    $$
+
+    since $2K_2 - K_1 = K_3$. Since $S_T \leq K_3$, we have $\Pi = K_3 - S_T \geq 0$.
+
+    **Case 4: $S_T > K_3$**
+
+    $$
+    \Pi = (S_T - K_1) - 2(S_T - K_2) + (S_T - K_3) = -K_1 + 2K_2 - K_3 = 0
+    $$
+
+    In all cases $\Pi \geq 0$. By no-arbitrage, a portfolio with non-negative payoff must have non-negative cost:
+
+    $$
+    C(K_1) - 2C(K_2) + C(K_3) \geq 0
+    $$
+
+    Rearranging: $C(K_2) \leq \frac{C(K_1) + C(K_3)}{2}$.
+
+??? success "Solution to Exercise 3"
+    **Parameters**: $S = 50$, $K = 50$, $r = 0.03$, $\sigma = 0.20$, $T = 1$.
+
+    $$
+    d_1 = \frac{\ln(1) + (0.03 + 0.02) \times 1}{0.20} = \frac{0.05}{0.20} = 0.25
+    $$
+
+    Standard normal values: $\mathcal{N}(0.25) = 0.5987$, $\mathcal{N}'(0.25) = \phi(0.25) = \frac{1}{\sqrt{2\pi}}e^{-0.03125} = 0.3867$.
+
+    **Delta**:
+
+    $$
+    \Delta = \mathcal{N}(d_1) = 0.5987
+    $$
+
+    Check: $\Delta \in (0, 1)$ ✓
+
+    **Gamma**:
+
+    $$
+    \Gamma = \frac{\mathcal{N}'(d_1)}{S\sigma\sqrt{T}} = \frac{0.3867}{50 \times 0.20 \times 1} = \frac{0.3867}{10} = 0.03867
+    $$
+
+    Check: $\Gamma > 0$ ✓
+
+    **Vega**:
+
+    $$
+    \nu = S\sqrt{T}\,\mathcal{N}'(d_1) = 50 \times 1 \times 0.3867 = 19.34
+    $$
+
+    Check: $\nu > 0$ ✓
+
+    All three conditions are verified, consistent with the theoretical properties of European options.
+
+??? success "Solution to Exercise 4"
+    From put-call parity:
+
+    $$
+    P = C - S + Ke^{-rT}
+    $$
+
+    Differentiate once with respect to $S$:
+
+    $$
+    \frac{\partial P}{\partial S} = \frac{\partial C}{\partial S} - 1
+    $$
+
+    Differentiate again:
+
+    $$
+    \frac{\partial^2 P}{\partial S^2} = \frac{\partial^2 C}{\partial S^2}
+    $$
+
+    That is:
+
+    $$
+    \Gamma_{\text{put}} = \Gamma_{\text{call}}
+    $$
+
+    The second derivative of $Ke^{-rT}$ (a constant with respect to $S$) is zero, and the second derivative of $-S$ is also zero. Therefore the gamma of the put equals the gamma of the call for options with the same strike and maturity. This also follows intuitively: gamma measures the curvature of the option price with respect to $S$, and since put and call prices differ by a linear function of $S$, their curvatures are identical.
+
+??? success "Solution to Exercise 5"
+    Check convexity: $\frac{C(90) + C(110)}{2} = \frac{15.20 + 5.80}{2} = 10.50$.
+
+    Compare with $C(100) = 9.50$.
+
+    Since $9.50 \leq 10.50$, the convexity condition $C(100) \leq \frac{C(90) + C(110)}{2}$ **holds**. ✓
+
+    There is no arbitrage opportunity. The butterfly spread (buy $C(90)$, sell $2 \times C(100)$, buy $C(110)$) costs $15.20 - 2(9.50) + 5.80 = 2.00 > 0$, which is consistent with its non-negative payoff. If the condition had been violated (say $C(100) = 11.00 > 10.50$), one would sell the butterfly (sell $C(90)$, buy $2 \times C(100)$, sell $C(110)$) to collect a positive upfront cash flow with a non-positive future liability.
+
+??? success "Solution to Exercise 6"
+    For a European call on a non-dividend-paying stock, the no-arbitrage lower bound is:
+
+    $$
+    C \geq \max(S - Ke^{-r(T-t)}, 0) \geq S - Ke^{-r(T-t)}
+    $$
+
+    When $r > 0$ and $T - t > 0$: $e^{-r(T-t)} < 1$, so $Ke^{-r(T-t)} < K$, which gives:
+
+    $$
+    C \geq S - Ke^{-r(T-t)} > S - K
+    $$
+
+    If the American call were exercised early, the holder would receive $S - K$ (the intrinsic value). But the option is worth at least $S - Ke^{-r(T-t)} > S - K$, so exercising destroys value equal to at least $K(1 - e^{-r(T-t)}) > 0$.
+
+    This excess value has two components:
+
+    1. **Time value of money**: By not exercising, the holder defers paying $K$, earning interest $K(1 - e^{-r(T-t)})$ on the deferred payment.
+    2. **Insurance value**: The option protects against the stock falling below $K$; early exercise forfeits this downside protection.
+
+    Since the option alive is always worth more than the exercise value $S - K$, early exercise is never optimal for an American call on a non-dividend-paying stock.
+
+??? success "Solution to Exercise 7"
+    The theta formula is:
+
+    $$
+    \Theta = -\underbrace{\frac{S\mathcal{N}'(d_1)\sigma}{2\sqrt{T-t}}}_{\text{Term 1}} - \underbrace{rKe^{-r(T-t)}\mathcal{N}(d_2)}_{\text{Term 2}}
+    $$
+
+    **Term 1**: $S > 0$, $\mathcal{N}'(d_1) = \phi(d_1) > 0$, $\sigma > 0$, $\sqrt{T-t} > 0$, so Term 1 is strictly positive, making $-\text{Term 1} < 0$.
+
+    **Term 2**: $r > 0$, $K > 0$, $e^{-r(T-t)} > 0$, $\mathcal{N}(d_2) > 0$, so Term 2 is strictly positive, making $-\text{Term 2} < 0$.
+
+    Both terms are negative, so $\Theta < 0$ in general when $r > 0$.
+
+    **When the interest rate term dominates**: For deep ITM calls ($S \gg K$), $d_1 \to +\infty$, so $\mathcal{N}'(d_1) = \phi(d_1) \to 0$ (the volatility term vanishes since the normal density decays rapidly). Meanwhile $\mathcal{N}(d_2) \to 1$, so Term 2 $\to rKe^{-r(T-t)}$, which remains bounded and positive. In this regime, theta is dominated by the interest rate term.
+
+    **Can theta be positive?** For a European call on a non-dividend-paying stock with $r > 0$, theta is always negative (both terms have the same sign). However, if we consider the edge case $r = 0$, Term 2 vanishes and $\Theta = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} < 0$ still.
+
+    In practice, theta can become very slightly positive for deep ITM European calls on dividend-paying stocks (or for European puts), but for calls on non-dividend-paying stocks, $\Theta \leq 0$ always holds (with equality only in degenerate limits).

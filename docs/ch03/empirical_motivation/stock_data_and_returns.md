@@ -360,3 +360,181 @@ while the log return satisfies $r_{[t,\,t+n]}^{(C)} = \sum_{i=1}^{n} r_{t+i}^{(C
 ---
 
 **Exercise 6.** A sample of $T = 1000$ daily log returns yields excess kurtosis $\hat{\kappa} = 4.2$ and skewness $\hat{\gamma}_1 = -0.35$. Under the null hypothesis of i.i.d. normality, the standard error of the sample excess kurtosis is approximately $\sqrt{24/T}$ and the standard error of the sample skewness is approximately $\sqrt{6/T}$. Compute both standard errors, construct approximate 95 % confidence intervals for the true kurtosis and skewness, and determine whether the Gaussian null ($\kappa = 0$, $\gamma_1 = 0$) can be rejected at the 5 % level for each moment.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The adjustment factor is computed from the ex-dividend price and the cum-dividend price:
+
+    $$
+    \text{factor} = \frac{P_{\text{ex}}}{P_{\text{cum}}} = \frac{78.20}{80.00} = 0.9775
+    $$
+
+    The adjusted close price for the historical date with raw close \$60.00 is:
+
+    $$
+    P_{\text{adj}} = 60.00 \times 0.9775 = 58.65
+    $$
+
+    The factor differs from $78/80 = 0.975$ because the theoretical ex-dividend price would be $P_{\text{cum}} - D = 80.00 - 2.00 = 78.00$, but the observed ex-dividend price is \$78.20, not \$78.00. The difference arises because in practice the stock does not drop by the full dividend amount on the ex-date. Tax effects (dividends are taxed, so the market does not discount the full pre-tax dividend), supply-demand dynamics, and other market frictions cause the ex-date drop to be slightly less than $D$. The adjustment factor uses the actually observed $P_{\text{ex}} = 78.20$, which is why it equals $0.9775$ rather than the theoretical $0.975$.
+
+??? success "Solution to Exercise 2"
+    The discrete return is:
+
+    $$
+    r^{(D)} = \frac{S_1 - S_0}{S_0} = \frac{147 - 150}{150} = -0.02
+    $$
+
+    The log return is:
+
+    $$
+    r^{(C)} = \log\frac{S_1}{S_0} = \log\frac{147}{150} = \log(0.98) \approx -0.020203
+    $$
+
+    Verifying the relationship:
+
+    $$
+    \log(1 + r^{(D)}) = \log(1 + (-0.02)) = \log(0.98) \approx -0.020203 = r^{(C)}
+    $$
+
+    The absolute difference between the two measures is:
+
+    $$
+    |r^{(D)} - r^{(C)}| = |-0.02 - (-0.020203)| = 0.000203 \approx 0.02\%
+    $$
+
+    To find when the difference first exceeds 0.5%, we need $|r^{(D)} - \log(1+r^{(D)})| > 0.005$. Using the Taylor expansion $\log(1+x) \approx x - x^2/2$, the difference is approximately $|x^2/2|$. Setting $x^2/2 = 0.005$ gives $|x| = \sqrt{0.01} = 0.1$. So the difference first exceeds 0.5% when $|r^{(D)}| \approx 10\%$, i.e., a daily move of about 10%.
+
+??? success "Solution to Exercise 3"
+    The 5-day cumulative log return is the sum of the daily log returns:
+
+    $$
+    r_{[1,5]}^{(C)} = 0.012 + (-0.008) + 0.015 + (-0.003) + 0.006 = 0.022
+    $$
+
+    Converting each daily log return to a discrete return using $r_t^{(D)} = e^{r_t^{(C)}} - 1$:
+
+    | Day | $r_t^{(C)}$ | $r_t^{(D)} = e^{r_t^{(C)}} - 1$ |
+    |---|---|---|
+    | 1 | $+0.012$ | $e^{0.012} - 1 \approx 0.012072$ |
+    | 2 | $-0.008$ | $e^{-0.008} - 1 \approx -0.007968$ |
+    | 3 | $+0.015$ | $e^{0.015} - 1 \approx 0.015113$ |
+    | 4 | $-0.003$ | $e^{-0.003} - 1 \approx -0.002996$ |
+    | 5 | $+0.006$ | $e^{0.006} - 1 \approx 0.006018$ |
+
+    The 5-day cumulative discrete return is:
+
+    $$
+    1 + r_{[1,5]}^{(D)} = \prod_{t=1}^{5}(1 + r_t^{(D)}) = e^{0.012} \cdot e^{-0.008} \cdot e^{0.015} \cdot e^{-0.003} \cdot e^{0.006}
+    $$
+
+    $$
+    = e^{0.012 - 0.008 + 0.015 - 0.003 + 0.006} = e^{0.022}
+    $$
+
+    Therefore:
+
+    $$
+    \log(1 + r_{[1,5]}^{(D)}) = \log(e^{0.022}) = 0.022 = \sum_{t=1}^{5} r_t^{(C)}
+    $$
+
+    This confirms the identity. The key insight is that $1 + r_t^{(D)} = e^{r_t^{(C)}}$, so the product of discrete gross returns equals the exponential of the sum of log returns, and taking logarithms recovers the sum.
+
+??? success "Solution to Exercise 4"
+    The annualised mean return is:
+
+    $$
+    \hat{\mu}_{\text{ann}} = N \hat{\mu} = 252 \times 0.0004 = 0.1008 \approx 10.08\%
+    $$
+
+    The annualised volatility is:
+
+    $$
+    \hat{\sigma}_{\text{ann}} = \sqrt{N}\,\hat{\sigma} = \sqrt{252} \times 0.018 \approx 15.875 \times 0.018 \approx 0.2858 \approx 28.58\%
+    $$
+
+    The annualised Sharpe ratio (with zero risk-free rate) is:
+
+    $$
+    \text{SR} = \frac{\hat{\mu}_{\text{ann}}}{\hat{\sigma}_{\text{ann}}} = \frac{0.1008}{0.2858} \approx 0.3527
+    $$
+
+    The $\sqrt{N}$ volatility scaling is valid under the assumption that daily log returns are **independent and identically distributed (i.i.d.)**. Specifically, if $r_1, \ldots, r_N$ are i.i.d. with variance $\hat{\sigma}^2$, then $\operatorname{Var}(r_1 + \cdots + r_N) = N\hat{\sigma}^2$, giving $\hat{\sigma}_{\text{ann}} = \sqrt{N}\,\hat{\sigma}$.
+
+    This assumption is violated in practice because of **volatility clustering** (Stylized Fact 2): squared returns are positively autocorrelated, meaning $\operatorname{Cov}(r_t^2, r_{t+k}^2) > 0$ for $k \geq 1$. When returns are not independent, the variance of the annual sum includes covariance terms:
+
+    $$
+    \operatorname{Var}\!\left(\sum_{t=1}^{N} r_t\right) = \sum_{t=1}^{N} \operatorname{Var}(r_t) + 2\sum_{t<s} \operatorname{Cov}(r_t, r_s)
+    $$
+
+    While $\operatorname{Cov}(r_t, r_s) \approx 0$ (no return autocorrelation), the non-constant conditional variance induced by GARCH effects means the effective variance of the sum exceeds $N\hat{\sigma}^2$. The $\sqrt{N}$ rule therefore **understates** the true annualised volatility.
+
+??? success "Solution to Exercise 5"
+    **Discrete return multiplicativity.** By definition $1 + r_{t+i}^{(D)} = S_{t+i}/S_{t+i-1}$. Taking the product:
+
+    $$
+    \prod_{i=1}^{n}(1 + r_{t+i}^{(D)}) = \prod_{i=1}^{n}\frac{S_{t+i}}{S_{t+i-1}} = \frac{S_{t+1}}{S_t} \cdot \frac{S_{t+2}}{S_{t+1}} \cdots \frac{S_{t+n}}{S_{t+n-1}} = \frac{S_{t+n}}{S_t}
+    $$
+
+    The right-hand side is by definition $1 + r_{[t,t+n]}^{(D)}$, establishing the result.
+
+    **Log return additivity.** By definition $r_{t+i}^{(C)} = \log S_{t+i} - \log S_{t+i-1}$. Summing:
+
+    $$
+    \sum_{i=1}^{n} r_{t+i}^{(C)} = \sum_{i=1}^{n}(\log S_{t+i} - \log S_{t+i-1})
+    $$
+
+    This is a telescoping sum:
+
+    $$
+    = \log S_{t+n} - \log S_t = \log\frac{S_{t+n}}{S_t} = r_{[t,t+n]}^{(C)}
+    $$
+
+    **Why additivity is convenient for the CLT.** The Central Limit Theorem applies to **sums** of random variables: if $X_1, \ldots, X_n$ are i.i.d. with finite mean $\mu$ and variance $\sigma^2$, then
+
+    $$
+    \frac{\sum_{i=1}^n X_i - n\mu}{\sigma\sqrt{n}} \xrightarrow{d} \mathcal{N}(0,1)
+    $$
+
+    Since $n$-period log returns are sums of single-period log returns, the CLT applies directly. This gives us the distributional convergence to normality at long horizons (aggregational Gaussianity), simple formulas for the variance of multi-period returns ($\operatorname{Var} = n\sigma^2$ under i.i.d.), and a natural connection to Brownian motion via Donsker's theorem. In contrast, discrete returns multiply, and the distribution of products of random variables is far harder to characterise — there is no simple "product CLT" that gives Gaussian limits.
+
+??? success "Solution to Exercise 6"
+    **Standard error of excess kurtosis:**
+
+    $$
+    \text{SE}(\hat{\kappa}) = \sqrt{\frac{24}{T}} = \sqrt{\frac{24}{1000}} = \sqrt{0.024} \approx 0.1549
+    $$
+
+    **Standard error of skewness:**
+
+    $$
+    \text{SE}(\hat{\gamma}_1) = \sqrt{\frac{6}{T}} = \sqrt{\frac{6}{1000}} = \sqrt{0.006} \approx 0.0775
+    $$
+
+    **95% confidence interval for excess kurtosis** (using $z_{0.025} = 1.96$):
+
+    $$
+    \hat{\kappa} \pm 1.96 \times \text{SE}(\hat{\kappa}) = 4.2 \pm 1.96 \times 0.1549 = 4.2 \pm 0.3036
+    $$
+
+    $$
+    \text{CI}_\kappa = [3.896,\; 4.504]
+    $$
+
+    **95% confidence interval for skewness:**
+
+    $$
+    \hat{\gamma}_1 \pm 1.96 \times \text{SE}(\hat{\gamma}_1) = -0.35 \pm 1.96 \times 0.0775 = -0.35 \pm 0.1519
+    $$
+
+    $$
+    \text{CI}_{\gamma_1} = [-0.502,\; -0.198]
+    $$
+
+    **Testing the Gaussian null for kurtosis** ($H_0: \kappa = 0$): The test statistic is $\hat{\kappa}/\text{SE}(\hat{\kappa}) = 4.2/0.1549 \approx 27.1$. Since $|27.1| \gg 1.96$, we reject $H_0$ at the 5% level. The Gaussian null of zero excess kurtosis is overwhelmingly rejected.
+
+    **Testing the Gaussian null for skewness** ($H_0: \gamma_1 = 0$): The test statistic is $|\hat{\gamma}_1|/\text{SE}(\hat{\gamma}_1) = 0.35/0.0775 \approx 4.52$. Since $|4.52| > 1.96$, we reject $H_0$ at the 5% level. The Gaussian null of zero skewness is also rejected.
+
+    Both confidence intervals exclude zero, confirming that daily log returns are significantly non-Gaussian in both skewness and kurtosis.

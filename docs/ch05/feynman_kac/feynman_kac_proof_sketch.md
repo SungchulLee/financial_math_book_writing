@@ -369,3 +369,140 @@ Explain why the Feynman-Kac proof requires $u \in C^{1,2}$ (once differentiable 
 
 **Exercise 7.**
 Summarize the Feynman-Kac proof in one sentence for each of the five steps: (1) define the process, (2) apply Ito's lemma, (3) use the PDE, (4) conclude martingale property, (5) evaluate at boundary times. Then explain why step (3) is the crucial one that connects the PDE to probability.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    For constant $r$, we have $D(t, s) = e^{-r(s-t)}$ and $Y_s = e^{-r(s-t)}u(s, X_s)$.
+
+    Applying Ito's lemma to $u(s, X_s)$:
+
+    $$
+    du = \left(\partial_s u + \mu\,u_x + \frac{1}{2}\sigma^2\,u_{xx}\right)ds + \sigma\,u_x\,dW_s
+    $$
+
+    By the product rule (the cross-variation is zero since $e^{-r(s-t)}$ is deterministic in $W$):
+
+    $$
+    dY_s = e^{-r(s-t)}\,du + u\,d(e^{-r(s-t)}) = e^{-r(s-t)}\,du - r\,e^{-r(s-t)}\,u\,ds
+    $$
+
+    Substituting:
+
+    $$
+    dY_s = e^{-r(s-t)}\!\left[\partial_s u + \mu\,u_x + \frac{1}{2}\sigma^2\,u_{xx} - r\,u\right]ds + e^{-r(s-t)}\,\sigma\,u_x\,dW_s
+    $$
+
+    The drift coefficient is $e^{-r(s-t)}[\partial_s u + \mathcal{L}u - r\,u]$. When $u$ solves $\partial_t u + \mathcal{L}u - r\,u = 0$, this drift vanishes identically, leaving:
+
+    $$
+    dY_s = e^{-r(s-t)}\,\sigma(s, X_s)\,u_x(s, X_s)\,dW_s
+    $$
+
+    which is a pure stochastic integral against $dW$ with no drift -- confirming $Y_s$ is a (local) martingale. $\checkmark$
+
+??? success "Solution to Exercise 2"
+    Define $u(t, x) = \mathbb{E}[D(t, T)\,g(X_T) \mid X_t = x]$. By the **Markov property** of $X_t$, the conditional expectation at time $s > t$ can be expressed as:
+
+    $$
+    u(s, X_s) = \mathbb{E}\!\left[e^{-\int_s^T r(\tau, X_\tau)\,d\tau}\,g(X_T) \,\Big|\, \mathcal{F}_s\right]
+    $$
+
+    Now consider the process $M_s = D(t, s)\,u(s, X_s)$:
+
+    $$
+    M_s = e^{-\int_t^s r\,d\tau}\,\mathbb{E}\!\left[e^{-\int_s^T r\,d\tau}\,g(X_T) \,\Big|\, \mathcal{F}_s\right] = \mathbb{E}\!\left[e^{-\int_t^T r\,d\tau}\,g(X_T) \,\Big|\, \mathcal{F}_s\right]
+    $$
+
+    The last expression is a conditional expectation of the $\mathcal{F}_T$-measurable random variable $D(t,T)\,g(X_T)$ given $\mathcal{F}_s$. By the **tower property**, this is a martingale: for $s_1 < s_2$,
+
+    $$
+    \mathbb{E}[M_{s_2} \mid \mathcal{F}_{s_1}] = \mathbb{E}\!\left[\mathbb{E}[D(t,T)\,g(X_T) \mid \mathcal{F}_{s_2}] \,\Big|\, \mathcal{F}_{s_1}\right] = \mathbb{E}[D(t,T)\,g(X_T) \mid \mathcal{F}_{s_1}] = M_{s_1}
+    $$
+
+    Since $M_s$ is a martingale and (assuming $u \in C^{1,2}$) Ito's lemma gives $dM_s = D(t,s)[\partial_s u + \mathcal{L}u - r\,u]\,ds + (\text{martingale})$, the drift must be zero. Therefore $\partial_s u + \mathcal{L}u - r\,u = 0$.
+
+??? success "Solution to Exercise 3"
+    The integrability condition ensures that $\mathbb{E}[\int_t^T (D\,\sigma\,u_x)^2\,ds] < \infty$, which guarantees that the stochastic integral $\int_t^s D\,\sigma\,u_x\,dW$ is a true martingale (not merely a local martingale).
+
+    **Example of failure**: Consider the SDE $dX_s = X_s^2\,dW_s$ and suppose $u_x$ grows like $e^{x^2}$. Then $\sigma\,u_x = X_s^2\,e^{X_s^2}$ can grow extremely fast. The stochastic integral may be only a local martingale: there exist localizing stopping times $\tau_n \uparrow T$ such that the stopped process is a martingale, but the unstopped process may not be.
+
+    **Consequence**: If $Y_s$ is a local martingale but not a true martingale, then $\mathbb{E}[Y_T] \leq Y_t$ (supermartingale) rather than $\mathbb{E}[Y_T] = Y_t$. This means:
+
+    $$
+    u(t, x) \geq \mathbb{E}[D(t,T)\,g(X_T) \mid X_t = x]
+    $$
+
+    with strict inequality possible. The Feynman-Kac representation would give only a lower bound for the PDE solution, and the probabilistic formula would not recover the full PDE solution. This is related to the phenomenon of **bubbles** in mathematical finance, where the discounted price process is a strict local martingale.
+
+??? success "Solution to Exercise 4"
+    With $r = 0$, $f = 0$, $dX_s = \sigma\,dW_s$, and $g(x) = x^2$:
+
+    **Step 1**: The PDE is $\partial_t u + \frac{1}{2}\sigma^2\,\partial_{xx}u = 0$ with $u(T, x) = x^2$. The solution is $u(t, x) = x^2 + \sigma^2(T - t)$ (computed by Feynman-Kac or by direct verification).
+
+    **Step 2**: Define $Y_s = u(s, X_s)$. Apply Ito's lemma:
+
+    $$
+    du(s, X_s) = \left(\partial_s u + \frac{1}{2}\sigma^2\,\partial_{xx}u\right)ds + \sigma\,\partial_x u\,dW_s
+    $$
+
+    Compute the derivatives: $\partial_s u = -\sigma^2$, $\partial_x u = 2x$, $\partial_{xx}u = 2$. Therefore:
+
+    $$
+    du = (-\sigma^2 + \frac{1}{2}\sigma^2 \cdot 2)\,ds + \sigma \cdot 2X_s\,dW_s = 0\,ds + 2\sigma X_s\,dW_s
+    $$
+
+    **Step 3**: The PDE $\partial_t u + \frac{1}{2}\sigma^2\,u_{xx} = -\sigma^2 + \sigma^2 = 0$ is satisfied, so the drift vanishes.
+
+    **Step 4**: $Y_s = u(s, X_s)$ is a martingale (it equals $X_s^2 + \sigma^2(T - s)$, which is the well-known result that $W_s^2 - s$ is a martingale, rescaled).
+
+    **Step 5**: $Y_t = u(t, x) = x^2 + \sigma^2(T - t)$ and $Y_T = u(T, X_T) = X_T^2$. By the martingale property: $u(t, x) = \mathbb{E}[X_T^2 \mid X_t = x] = x^2 + \sigma^2(T - t)$. $\checkmark$
+
+??? success "Solution to Exercise 5"
+    Define $Y_s = D(t,s)\,u(s, X_s) + \int_t^s D(t, \tau)\,f(\tau, X_\tau)\,d\tau$. We compute $dY_s$:
+
+    $$
+    dY_s = d\!\left[D(t,s)\,u(s, X_s)\right] + D(t, s)\,f(s, X_s)\,ds
+    $$
+
+    From the proof of Direction 1 (without running payoff), we already know:
+
+    $$
+    d\!\left[D(t,s)\,u(s, X_s)\right] = D(t,s)\!\left[\partial_s u + \mathcal{L}u - r\,u\right]ds + D(t,s)\,\sigma\,u_x\,dW_s
+    $$
+
+    Adding the running payoff term:
+
+    $$
+    dY_s = D(t,s)\!\left[\partial_s u + \mathcal{L}u - r\,u + f\right]ds + D(t,s)\,\sigma\,u_x\,dW_s
+    $$
+
+    Since $u$ solves $\partial_t u + \mathcal{L}u - r\,u + f = 0$, the drift coefficient is:
+
+    $$
+    D(t,s)\!\left[\partial_s u + \mathcal{L}u - r\,u + f\right] = D(t,s) \cdot 0 = 0
+    $$
+
+    The cancellation occurs precisely because the PDE includes $+f$ as a source term, and the integral $\int_t^s D\,f\,d\tau$ contributes $+D\,f\,ds$ to $dY_s$. These combine with the $-f$ implicit in the PDE (since $\partial_t u + \mathcal{L}u - r\,u = -f$) to make the total drift zero. Therefore $Y_s$ is a (local) martingale.
+
+??? success "Solution to Exercise 6"
+    Ito's lemma states: if $u \in C^{1,2}$ and $X_s$ is an Ito process, then $u(s, X_s)$ is also an Ito process with specific drift and diffusion terms. The formula requires computing $\partial_s u$, $\partial_x u$, and $\partial_{xx}u$, so $u$ must be at least $C^{1,2}$ (once continuously differentiable in $t$, twice in $x$).
+
+    **If $u$ is only continuous**: Ito's lemma cannot be applied, because the chain rule for stochastic calculus fundamentally requires second-order spatial derivatives. Without $u_{xx}$, we cannot write $du(s, X_s)$ and cannot identify the drift term that must vanish. The entire martingale argument breaks down at Step 2.
+
+    **Viscosity solutions**: When classical solutions do not exist (e.g., when $g(x) = (x - K)^+$ has a kink, or when the diffusion coefficient degenerates), we use **viscosity solutions**. A continuous function $u$ is a viscosity solution if, for every smooth test function $\varphi$ that touches $u$ from above (or below) at a point $(t_0, x_0)$, the PDE inequality $\partial_t \varphi + \mathcal{L}\varphi - r\,\varphi \leq 0$ (or $\geq 0$) holds at that point. This definition replaces the pointwise PDE with a family of inequalities involving smooth approximations, avoiding the need for $u$ to be differentiable. Viscosity solution theory provides existence and uniqueness under much weaker conditions than classical theory.
+
+??? success "Solution to Exercise 7"
+    **(1) Define the process**: Construct $Y_s = D(t,s)\,u(s, X_s)$, the product of the stochastic discount factor and the PDE solution evaluated along the SDE path.
+
+    **(2) Apply Ito's lemma**: Use the product rule and Ito's lemma to decompose $dY_s$ into a drift term (proportional to $ds$) and a martingale term (proportional to $dW_s$).
+
+    **(3) Use the PDE**: Recognize that the drift coefficient equals $D(t,s)[\partial_s u + \mathcal{L}u - r\,u]$, which vanishes because $u$ solves the Feynman-Kac PDE.
+
+    **(4) Conclude martingale property**: Since the drift is zero and the stochastic integral satisfies integrability conditions, $Y_s$ is a true martingale on $[t, T]$.
+
+    **(5) Evaluate at boundary times**: Apply the martingale property $Y_t = \mathbb{E}[Y_T \mid \mathcal{F}_t]$ with $Y_t = u(t, x)$ and $Y_T = D(t,T)\,g(X_T)$ to obtain the representation formula.
+
+    **Why step (3) is crucial**: Step (3) is where the PDE and probability meet. The PDE $\partial_t u + \mathcal{L}u - r\,u = 0$ is exactly the condition that eliminates the drift from the discounted process, and a driftless process is a martingale. Without this step, we would have a general Ito process with both drift and diffusion; the PDE is precisely the "no-drift" condition. This is also the mathematical content of the fundamental theorem of asset pricing: the PDE for option prices is equivalent to the statement that discounted prices are martingales under the risk-neutral measure.

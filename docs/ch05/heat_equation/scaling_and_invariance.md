@@ -261,3 +261,177 @@ The wave equation $\partial_{tt}u = c^2\partial_{xx}u$ has scaling $x \mapsto \l
 
 **Exercise 7.**
 In option pricing, the Black-Scholes formula depends on $\sigma\sqrt{T-t}$ rather than $\sigma(T-t)$ or $\sigma(T-t)^2$. Explain how this $\sqrt{T-t}$ dependence is a direct consequence of parabolic scaling and why it determines the shape of the implied volatility surface as a function of maturity.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Let $u(x,t)$ solve $\partial_t u = \frac{1}{2}\partial_{xx}u$ and define $v(x,t) = u(\lambda x, \lambda^2 t)$.
+
+    Set $X = \lambda x$ and $T = \lambda^2 t$, so $v(x,t) = u(X, T)$.
+
+    **Time derivative**:
+
+    $$
+    \frac{\partial v}{\partial t} = \frac{\partial u}{\partial T}\cdot\frac{\partial T}{\partial t} = \lambda^2\frac{\partial u}{\partial T}(X, T)
+    $$
+
+    **Spatial derivatives**:
+
+    $$
+    \frac{\partial v}{\partial x} = \frac{\partial u}{\partial X}\cdot\frac{\partial X}{\partial x} = \lambda\frac{\partial u}{\partial X}(X, T)
+    $$
+
+    $$
+    \frac{\partial^2 v}{\partial x^2} = \lambda^2\frac{\partial^2 u}{\partial X^2}(X, T)
+    $$
+
+    **Verification**:
+
+    $$
+    \frac{\partial v}{\partial t} - \frac{1}{2}\frac{\partial^2 v}{\partial x^2} = \lambda^2\frac{\partial u}{\partial T} - \frac{\lambda^2}{2}\frac{\partial^2 u}{\partial X^2} = \lambda^2\left(\frac{\partial u}{\partial T} - \frac{1}{2}\frac{\partial^2 u}{\partial X^2}\right) = 0
+    $$
+
+    since $u$ solves the heat equation. Therefore $v$ also solves $\partial_t v = \frac{1}{2}\partial_{xx}v$.
+
+??? success "Solution to Exercise 2"
+    Seeking solutions $u(x,t) = f(\eta)$ with $\eta = x/\sqrt{t}$:
+
+    $$
+    \partial_t u = f'(\eta)\cdot\frac{\partial \eta}{\partial t} = f'(\eta)\cdot\left(-\frac{x}{2t^{3/2}}\right) = -\frac{\eta}{2t}f'(\eta)
+    $$
+
+    $$
+    \partial_{xx}u = \frac{1}{t}f''(\eta)
+    $$
+
+    Substituting into $\partial_t u = \frac{1}{2}\partial_{xx}u$:
+
+    $$
+    -\frac{\eta}{2t}f'(\eta) = \frac{1}{2t}f''(\eta)
+    $$
+
+    Multiplying by $2t$:
+
+    $$
+    f''(\eta) + \eta f'(\eta) = 0
+    $$
+
+    This is a first-order ODE for $g = f'$: $g' + \eta g = 0$, which gives $g(\eta) = Ce^{-\eta^2/2}$.
+
+    Integrating:
+
+    $$
+    f(\eta) = C\int_0^{\eta} e^{-s^2/2}\,ds + D = C\sqrt{\frac{\pi}{2}}\,\text{erf}\!\left(\frac{\eta}{\sqrt{2}}\right) + D
+    $$
+
+    where $\text{erf}(z) = \frac{2}{\sqrt{\pi}}\int_0^z e^{-s^2}\,ds$ is the error function. In terms of the original variables:
+
+    $$
+    u(x,t) = A\,\text{erf}\!\left(\frac{x}{\sqrt{2t}\cdot\sqrt{2}}\right) + D = A\,\text{erf}\!\left(\frac{x}{2\sqrt{t/2}}\right) + D
+    $$
+
+    This solution describes the diffusion of a step function initial condition and is related to the cumulative distribution function of the normal distribution.
+
+??? success "Solution to Exercise 3"
+    From Brownian scaling, $B_{\lambda^2 t} \overset{d}{=} \lambda B_t$. Taking $\lambda^2 t = T$ (so $\lambda = \sqrt{T/t}$):
+
+    $$
+    B_T \overset{d}{=} \sqrt{\frac{T}{t}}\,B_t
+    $$
+
+    In particular, with $t = 1$: $B_T \overset{d}{=} \sqrt{T}\,B_1$. Since $B_1 \sim N(0,1)$:
+
+    $$
+    \text{Std}(B_T) = \sqrt{T}\,\text{Std}(B_1) = \sqrt{T}
+    $$
+
+    The standard deviation grows as $\sqrt{T}$, not linearly.
+
+    **Why $\sqrt{t}$ characterizes diffusion**: In ballistic (deterministic) motion with velocity $v$, displacement grows linearly: $x = vt$. In diffusion, each step is random and independent. After $n$ independent steps of typical size $\delta$, the net displacement has standard deviation $\delta\sqrt{n}$ by the central limit theorem (the random walk). Since $n \propto t$, displacement grows as $\sqrt{t}$. This sub-linear growth is the hallmark of diffusion: doubling the time does not double the spread, it only increases it by a factor of $\sqrt{2}$.
+
+??? success "Solution to Exercise 4"
+    The diffusion length is $\ell = \sigma\sqrt{t}$ with $\sigma = 0.25$.
+
+    **After 1 day** ($t = 1/252$):
+
+    $$
+    \ell = 0.25\sqrt{1/252} = 0.25 \times 0.06299 \approx 0.01575
+    $$
+
+    About $1.6\%$ of the current price.
+
+    **After 1 month** ($t = 1/12$):
+
+    $$
+    \ell = 0.25\sqrt{1/12} = 0.25 \times 0.28868 \approx 0.07217
+    $$
+
+    About $7.2\%$ of the current price.
+
+    **After 1 year** ($t = 1$):
+
+    $$
+    \ell = 0.25\sqrt{1} = 0.25
+    $$
+
+    About $25\%$ of the current price.
+
+    **Relation to option pricing**: The diffusion length $\sigma\sqrt{t}$ directly determines the width of the distribution of log-returns. In the Black-Scholes model, the quantity $d_1$ and $d_2$ in the pricing formula involve $\sigma\sqrt{T-t}$, which measures how far the stock can wander by expiry. Options with longer maturity have larger diffusion lengths, making them more valuable (all else equal), and the time value of an option scales approximately as $\sqrt{T-t}$, not linearly in $T-t$.
+
+??? success "Solution to Exercise 5"
+    The fundamental solution is:
+
+    $$
+    G(t,x) = \frac{1}{\sqrt{2\pi t}}\exp\!\left(-\frac{x^2}{2t}\right)
+    $$
+
+    Factor out $t^{-1/2}$:
+
+    $$
+    G(t,x) = t^{-1/2} \cdot \frac{1}{\sqrt{2\pi}} \exp\!\left(-\frac{1}{2}\left(\frac{x}{\sqrt{t}}\right)^2\right) = t^{-1/2}\,\Phi\!\left(\frac{x}{\sqrt{t}}\right)
+    $$
+
+    where:
+
+    $$
+    \Phi(\eta) = \frac{1}{\sqrt{2\pi}}\exp\!\left(-\frac{\eta^2}{2}\right)
+    $$
+
+    This is the standard normal density. The self-similar structure $G(t,x) = t^{-1/2}\Phi(x/\sqrt{t})$ confirms that the heat kernel at any time $t$ is just a rescaled version of the standard normal density, stretched horizontally by $\sqrt{t}$ and compressed vertically by $1/\sqrt{t}$ to preserve unit total mass.
+
+??? success "Solution to Exercise 6"
+    **Wave equation scaling**: If $u(x,t)$ solves $u_{tt} = c^2 u_{xx}$, then $v(x,t) = u(\lambda x, \lambda t)$ also solves it, because:
+
+    $$
+    v_{tt} = \lambda^2 u_{tt}, \quad v_{xx} = \lambda^2 u_{xx}
+    $$
+
+    The ratio $v_{tt}/(c^2 v_{xx}) = u_{tt}/(c^2 u_{xx}) = 1$. The scaling is $x \mapsto \lambda x$, $t \mapsto \lambda t$ (both scale the same way).
+
+    **Heat equation scaling**: As shown in Exercise 1, the scaling is $x \mapsto \lambda x$, $t \mapsto \lambda^2 t$.
+
+    **Physical difference**:
+
+    - Waves: The characteristic speed is $x/t = c$ (constant). A disturbance at the origin reaches position $x$ at time $t = x/c$. Doubling the distance doubles the travel time. Waves propagate at constant speed.
+    - Diffusion: The characteristic length is $x/\sqrt{t} = \text{const}$ (the similarity variable). A disturbance at the origin reaches position $x$ at time $t \propto x^2$. Doubling the distance quadruples the time. Diffusion slows down at large distances because particles must perform many random steps to drift far from the origin.
+
+    This fundamental difference explains why sound travels across a room in milliseconds (wave propagation), while the scent of perfume takes minutes to diffuse across the same distance (diffusion).
+
+??? success "Solution to Exercise 7"
+    In the Black-Scholes model, after transforming to log-price coordinates $x = \log(S/K)$ and time-to-maturity $\tau = T - t$, the option pricing PDE reduces to the heat equation with diffusion coefficient $\sigma^2/2$. The solution involves the heat kernel evaluated at the similarity variable:
+
+    $$
+    \frac{x}{\sigma\sqrt{\tau}} = \frac{\log(S/K)}{\sigma\sqrt{T-t}}
+    $$
+
+    This is precisely the quantity $d_2$ (up to the drift correction). The appearance of $\sigma\sqrt{T-t}$ rather than $\sigma(T-t)$ is a direct consequence of parabolic scaling: the natural dimensionless combination of space and time for the heat equation is $x/\sqrt{t}$, not $x/t$.
+
+    **Impact on the implied volatility surface**: For at-the-money options ($S \approx K$, so $x \approx 0$), the option price scales approximately as $\sigma\sqrt{T-t}$ (from the linear approximation of the normal CDF near zero). This means:
+
+    - The at-the-money option price is approximately proportional to $\sqrt{T-t}$
+    - The implied volatility for ATM options is roughly constant across maturities in the Black-Scholes model
+    - For out-of-the-money options, the moneyness $\log(S/K)$ enters through the ratio $\log(S/K)/(\sigma\sqrt{T-t})$, so a fixed strike becomes "less out-of-the-money" at longer maturities (since $\sigma\sqrt{T-t}$ grows)
+
+    In real markets, deviations from the Black-Scholes model create the volatility smile/skew, but the $\sqrt{T-t}$ scaling still governs the overall maturity structure. The implied volatility surface is often parameterized in terms of the "total variance" $\sigma^2(T-t)$, directly reflecting this parabolic scaling.

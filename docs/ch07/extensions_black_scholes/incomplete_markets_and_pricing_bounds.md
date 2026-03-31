@@ -283,3 +283,123 @@ $$
 ---
 
 **Exercise 6.** The FTAP (Fundamental Theorem of Asset Pricing) states that the market is complete if and only if there exists exactly one equivalent martingale measure. Using this theorem, prove that adding a liquidly traded variance swap to the Heston model makes the market complete. How many equivalent martingale measures exist before and after adding this instrument?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** In the Heston model, the dynamics under the risk-neutral measure are
+
+    $$
+    \begin{aligned}
+    dS_t &= rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)} \\
+    dv_t &= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
+    \end{aligned}
+    $$
+
+    with $\text{Corr}(dW^{(1)}, dW^{(2)}) = \rho$. There are two independent sources of randomness ($W^{(1)}$ and $W^{(2)}$) but only one traded risky asset $S$ (plus the risk-free bond). To replicate an arbitrary contingent claim, we need as many tradeable assets as independent risk factors. Since we have 2 risk factors but only 1 risky asset, we cannot span the full space of contingent claims. Specifically, the volatility risk driven by $W^{(2)}$ cannot be hedged using $S$ alone, making the market incomplete.
+
+    **(b)** Yes, adding a liquidly traded variance swap would make the Heston market complete. A variance swap pays the realized variance $\int_0^T v_t\,dt$ and is directly sensitive to the variance process $v_t$. With $S$ and the variance swap, we now have two traded instruments whose prices are driven by the two independent Brownian motions $W^{(1)}$ and $W^{(2)}$. The stock $S$ is primarily exposed to $W^{(1)}$ (and partially to $W^{(2)}$ through correlation), while the variance swap is exposed to $W^{(2)}$. Together, they span the full risk space: any contingent claim can be replicated by dynamically trading $S$, the variance swap, and the bond. With two independent risk factors and two independent traded instruments, the market becomes complete, and the equivalent martingale measure becomes unique.
+
+??? success "Solution to Exercise 2"
+    **(a)** The superhedging price satisfies $x + \int_0^T \theta_t\,dS_t \geq H$ almost surely for some strategy $\theta$. For any equivalent martingale measure $\mathbb{Q} \in \mathcal{Q}$, taking expectations under $\mathbb{Q}$:
+
+    $$
+    x + \mathbb{E}^{\mathbb{Q}}\left[\int_0^T \theta_t\,dS_t\right] \geq \mathbb{E}^{\mathbb{Q}}[H]
+    $$
+
+    Since $S$ is a $\mathbb{Q}$-martingale (after discounting), the stochastic integral has zero expectation (under appropriate integrability conditions), so $x \geq \mathbb{E}^{\mathbb{Q}}[e^{-rT}H]$. This holds for every $\mathbb{Q} \in \mathcal{Q}$, so
+
+    $$
+    \overline{\pi}(H) \geq \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^{\mathbb{Q}}[e^{-rT}H]
+    $$
+
+    The duality theorem states that equality holds under technical conditions. Therefore, the superhedging price is at least as large as any arbitrage-free price (which lies in the interval).
+
+    **(b)** For insurance products, the payoff $H$ can take extreme values (e.g., catastrophic losses), and the superhedging strategy must cover the worst-case scenario with probability one. This requires enough capital to cover even the most extreme realizations of $H$, making the superhedging price very conservative and impractically expensive. For example, superhedging a put option in a jump-diffusion model requires hedging against arbitrarily large downward jumps, leading to a superhedging price close to the strike price itself.
+
+    **(c)** The subhedging price is $\underline{\pi}(H) = \sup\{x : \exists \theta \text{ s.t. } x + \int_0^T \theta_t\,dS_t \leq H \text{ a.s.}\}$. By an analogous argument, for any $\mathbb{Q} \in \mathcal{Q}$, taking expectations yields $x \leq \mathbb{E}^{\mathbb{Q}}[e^{-rT}H]$, so $\underline{\pi}(H) \leq \inf_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}[e^{-rT}H]$. With duality, equality holds and $\underline{\pi}(H)$ equals the lower bound of the no-arbitrage interval, providing the minimum price a seller should accept.
+
+??? success "Solution to Exercise 3"
+    **(a)** For exponential utility $U(x) = -e^{-\gamma x}$, the indifference price $\pi^U$ satisfies
+
+    $$
+    \sup_\theta \mathbb{E}[-e^{-\gamma(X_T^{x-\pi^U} + H)}] = \sup_\theta \mathbb{E}[-e^{-\gamma X_T^x}]
+    $$
+
+    Since the wealth process is $X_T^{x} = x + \int_0^T \theta_t\,dS_t$, we can write
+
+    $$
+    \sup_\theta \mathbb{E}[-e^{-\gamma(x - \pi^U + G + H)}] = \sup_\theta \mathbb{E}[-e^{-\gamma(x + G)}]
+    $$
+
+    where $G = \int_0^T \theta_t\,dS_t$ is the trading gain. Factoring out the constant $e^{-\gamma x}$ from both sides:
+
+    $$
+    e^{-\gamma(x-\pi^U)} \sup_\theta \mathbb{E}[-e^{-\gamma(G+H)}] = e^{-\gamma x} \sup_\theta \mathbb{E}[-e^{-\gamma G}]
+    $$
+
+    Dividing both sides by $-e^{-\gamma x}$:
+
+    $$
+    e^{\gamma \pi^U} \inf_\theta \mathbb{E}[e^{-\gamma(G+H)}] = \inf_\theta \mathbb{E}[e^{-\gamma G}]
+    $$
+
+    The factor $e^{-\gamma x}$ cancels completely, so $\pi^U$ does not depend on $x$. This is the **translation invariance** property of exponential utility.
+
+    **(b)** If $\pi^U > \overline{\pi}(H)$, then an investor would overpay relative to the superhedging price, and a seller could superhedge the claim with a sure profit, creating an arbitrage for the seller. If $\pi^U < \underline{\pi}(H)$, then the seller would accept less than the subhedging price, and the buyer could create an arbitrage. Therefore, the indifference price must satisfy $\underline{\pi}(H) \leq \pi^U(H) \leq \overline{\pi}(H)$.
+
+    **(c)** As $\gamma \to 0$ (risk-neutral investor), the investor becomes indifferent to risk. The indifference price converges to the expected discounted payoff under the minimal martingale measure, i.e., $\pi^U \to \mathbb{E}^{\mathbb{Q}^{\min}}[e^{-rT}H]$.
+
+    As $\gamma \to \infty$ (infinitely risk-averse investor), the investor demands full protection against the worst case. The indifference price for a buyer converges to the superhedging price: $\pi^U \to \overline{\pi}(H)$. This is because an infinitely risk-averse agent only accepts positions that are hedged with certainty.
+
+??? success "Solution to Exercise 4"
+    **(a)** Calibrating the Heston model to market option prices means choosing parameters $(\kappa, \theta, \xi, \rho, v_0)$ so that model prices match observed vanilla option prices across strikes and maturities. Once these parameters are fixed, the dynamics under $\mathbb{Q}$ are fully specified, including the drift of the variance process. Since the drift under $\mathbb{Q}$ incorporates the market price of volatility risk $\lambda$, calibration implicitly determines $\lambda$ through the relationship between the $\mathbb{P}$-drift and the $\mathbb{Q}$-drift. Specifically, if under $\mathbb{P}$ we have $dv_t = [\kappa(\theta - v_t) - \lambda(t,v_t)]\,dt + \xi\sqrt{v_t}\,dW_t^{(2),\mathbb{P}}$, then matching market prices fixes the $\mathbb{Q}$-drift $\kappa(\theta - v_t)$ and hence implicitly determines $\lambda$.
+
+    **(b)** Two Heston models with different parameters $(\kappa_1, \theta_1, \xi_1, \rho_1, v_{0,1})$ and $(\kappa_2, \theta_2, \xi_2, \rho_2, v_{0,2})$ can produce identical prices for all vanilla options (European calls and puts across all strikes and maturities). However, exotic options depend on the full joint distribution of $(S_t, v_t)$ over the path, not just marginal distributions at fixed times. Different parameter sets imply different dynamics for the variance process, leading to different path-dependent behaviors. For example, a barrier option or a cliquet depends on the joint evolution, which differs between the two calibrated models.
+
+    **(c)** This is a manifestation of **model risk**: the risk that the chosen model, even when calibrated to liquid instruments, gives incorrect prices for illiquid or exotic products. In incomplete markets, multiple martingale measures are consistent with observed vanilla prices, and each gives a different exotic price. The spread between these prices quantifies model risk.
+
+??? success "Solution to Exercise 5"
+    **1. Minimal Martingale Measure**
+
+    - **(a) Principle**: Choose $\mathbb{Q}^{\min}$ so that only the traded risk (the component driving $S$) is adjusted, while the orthogonal (unhedgeable) component retains its $\mathbb{P}$-distribution.
+    - **(b) Advantage**: Preserves the structure of unhedgeable risk, making minimal assumptions about unobservable risk premia.
+    - **(c) Preferred when**: Pricing in stochastic volatility models where one wants a "neutral" baseline that does not impose any view on the volatility risk premium.
+
+    **2. Variance-Optimal Measure**
+
+    - **(a) Principle**: Choose $\mathbb{Q}^{\text{var}}$ to minimize $\text{Var}^{\mathbb{P}}[d\mathbb{Q}/d\mathbb{P}]$, i.e., the variance of the Radon-Nikodym derivative under the physical measure.
+    - **(b) Advantage**: Leads to the best mean-variance hedging strategy; the resulting hedge minimizes the $L^2$ hedging error.
+    - **(c) Preferred when**: Constructing optimal hedging portfolios in a mean-variance framework, for example when a trader wants to minimize the variance of their P&L.
+
+    **3. Utility Indifference Pricing**
+
+    - **(a) Principle**: Price $\pi^U(H)$ makes the investor indifferent between holding the claim (with hedging) and not holding it, given utility function $U$.
+    - **(b) Advantage**: Incorporates the investor's specific risk preferences and provides economically meaningful prices that account for risk aversion.
+    - **(c) Preferred when**: Pricing illiquid or non-tradeable risks (e.g., insurance liabilities, weather derivatives) where an investor's risk appetite directly influences the acceptable price.
+
+    **4. Entropy Minimization**
+
+    - **(a) Principle**: Choose $\mathbb{Q}^{\text{ent}}$ to minimize the relative entropy (Kullback-Leibler divergence) $H(\mathbb{Q}|\mathbb{P}) = \mathbb{E}^{\mathbb{Q}}[\log(d\mathbb{Q}/d\mathbb{P})]$.
+    - **(b) Advantage**: Stays as close as possible to the physical measure in an information-theoretic sense, making the least distortion to the real-world probabilities.
+    - **(c) Preferred when**: Pricing in models where one wants to remain close to historical/statistical estimates, such as in credit derivatives or emerging market products where the physical measure is estimated from data.
+
+??? success "Solution to Exercise 6"
+    **Before adding the variance swap**: The Heston model has two sources of randomness ($W^{(1)}$ and $W^{(2)}$) but only one traded risky asset $S$. By the Second Fundamental Theorem of Asset Pricing, the market is complete if and only if $|\mathcal{Q}| = 1$. Since there is one "free" parameter (the market price of volatility risk $\lambda$), there are infinitely many equivalent martingale measures $\mathbb{Q} \in \mathcal{Q}$.
+
+    **After adding the variance swap**: Consider the market with two traded instruments: the stock $S$ (driven primarily by $W^{(1)}$) and the variance swap $V^{\text{var}}$ (driven primarily by $W^{(2)}$ through the variance process). The dynamics under any $\mathbb{Q} \in \mathcal{Q}$ are:
+
+    $$
+    \begin{aligned}
+    dS_t &= rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1),\mathbb{Q}} \\
+    dv_t &= \kappa^{\mathbb{Q}}(\theta^{\mathbb{Q}} - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2),\mathbb{Q}}
+    \end{aligned}
+    $$
+
+    The no-arbitrage condition for $S$ determines the drift adjustment for $W^{(1)}$. The no-arbitrage condition for the variance swap determines the drift of $v_t$ under $\mathbb{Q}$, which fixes the market price of volatility risk $\lambda$. With both drifts determined, there are no remaining free parameters in the measure change, so $|\mathcal{Q}| = 1$.
+
+    Formally, we now have 2 traded instruments and 2 risk factors. The volatility matrix (the matrix of diffusion coefficients relating the 2 asset returns to the 2 Brownian motions) is $2 \times 2$. If this matrix is invertible (which it is, since $S$ and $V^{\text{var}}$ have independent exposures to the two Brownian motions), the market price of risk vector $\theta = (\theta^{(1)}, \theta^{(2)})$ is uniquely determined. By the FTAP, uniqueness of $\mathbb{Q}$ implies completeness.
+
+    **Summary**: Before adding the variance swap, $|\mathcal{Q}| = \infty$. After adding it, $|\mathcal{Q}| = 1$, and the market is complete.

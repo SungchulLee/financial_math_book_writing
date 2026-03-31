@@ -993,3 +993,156 @@ This is the **complete theory** in four statements!
 ---
 
 **Exercise 6.** Consider the Black-Scholes PDE with transaction costs, leading to the nonlinear equation $\frac{\partial V}{\partial t} + \frac{1}{2}\tilde{\sigma}^2(\Gamma) S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0$ where $\tilde{\sigma}$ depends on $\Gamma = \frac{\partial^2 V}{\partial S^2}$. Explain why classical solutions may not exist for this equation and why the viscosity solution framework is the appropriate mathematical setting.
+
+---
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+
+    **Why the classical solution fails**: A classical ($C^{2,1}$) solution requires that $V(S,t)$ be twice continuously differentiable in $S$ and once in $t$ on the entire domain, including at the terminal time $T$. However, the terminal condition $V(S,T) = \mathbf{1}_{\{S > K\}}$ is discontinuous at $S = K$.
+
+    For $V$ to be $C^{2,1}$ up to $t = T$, the terminal data must be sufficiently smooth. The discontinuity at $S = K$ means that no $C^{2,1}$ function can satisfy $V(S,T) = \mathbf{1}_{\{S > K\}}$ pointwise while also solving the PDE in the classical sense. Near $S = K$ as $t \to T^-$, the solution develops increasingly steep gradients: $\frac{\partial V}{\partial S}$ behaves like a delta function and $\frac{\partial^2 V}{\partial S^2}$ diverges.
+
+    **Viscosity solution framework**: The viscosity approach replaces pointwise derivatives with test function comparisons. A function $V$ is a viscosity solution if for every smooth test function $\phi$ that touches $V$ from above (or below) at a point $(S_0, t_0)$, the PDE inequality holds for $\phi$ at that point. This requires only continuity of $V$, not differentiability.
+
+    **Verification**: The candidate solution is $V(S,t) = e^{-r(T-t)}\mathcal{N}(d_2)$ where
+
+    $$
+    d_2 = \frac{\ln(S/K) + (r - \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}
+    $$
+
+    For $t < T$, this function is $C^\infty$ in both $S$ and $t$ (as a composition of smooth functions with $S > 0$ and $T - t > 0$), so it is a classical solution on $(0,\infty) \times [0,T)$. Being a classical solution on the interior automatically makes it a viscosity solution there.
+
+    At $t = T$, we verify: as $t \to T^-$, $\sigma\sqrt{T-t} \to 0$, so $d_2 \to +\infty$ if $S > K$ (giving $\mathcal{N}(d_2) \to 1$) and $d_2 \to -\infty$ if $S < K$ (giving $\mathcal{N}(d_2) \to 0$). Thus $V(S,T^-) = \mathbf{1}_{\{S > K\}}$ for $S \neq K$, and the terminal condition is met in the viscosity sense. The viscosity framework extends the notion of solution to accommodate this boundary discontinuity through semicontinuous envelopes.
+
+??? success "Solution to Exercise 2"
+
+    **Definition of viscosity subsolution**: A function $u$ that is upper semicontinuous (USC) is a viscosity subsolution of the Black-Scholes PDE
+
+    $$
+    -\frac{\partial V}{\partial t} - rS\frac{\partial V}{\partial S} - \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} + rV = 0
+    $$
+
+    if for every smooth test function $\phi \in C^{2,1}$ such that $u - \phi$ has a local maximum at $(S_0, t_0)$, we have
+
+    $$
+    -\frac{\partial \phi}{\partial t}(S_0,t_0) - rS_0\frac{\partial \phi}{\partial S}(S_0,t_0) - \frac{\sigma^2 S_0^2}{2}\frac{\partial^2 \phi}{\partial S^2}(S_0,t_0) + r\,u(S_0,t_0) \leq 0
+    $$
+
+    **Definition of viscosity supersolution**: A function $v$ that is lower semicontinuous (LSC) is a viscosity supersolution if for every smooth $\phi$ such that $v - \phi$ has a local minimum at $(S_0, t_0)$:
+
+    $$
+    -\frac{\partial \phi}{\partial t}(S_0,t_0) - rS_0\frac{\partial \phi}{\partial S}(S_0,t_0) - \frac{\sigma^2 S_0^2}{2}\frac{\partial^2 \phi}{\partial S^2}(S_0,t_0) + r\,v(S_0,t_0) \geq 0
+    $$
+
+    **Why $\max(u_1, u_2)$ is a subsolution**: Let $u_1, u_2$ be viscosity subsolutions and define $w = \max(u_1, u_2)$. At any point $(S_0, t_0)$, suppose $\phi$ touches $w$ from above, i.e., $w - \phi$ has a local maximum at $(S_0, t_0)$. Without loss of generality, assume $w(S_0, t_0) = u_1(S_0, t_0) \geq u_2(S_0, t_0)$. Then $u_1 \leq w \leq \phi$ locally, and $u_1(S_0, t_0) = \phi(S_0, t_0)$, so $\phi$ also touches $u_1$ from above at $(S_0, t_0)$. Since $u_1$ is a subsolution, the subsolution inequality holds for $\phi$ at that point, making $w$ a subsolution.
+
+    **Why it is not necessarily a viscosity solution**: Being a viscosity solution requires being both a subsolution and a supersolution. The function $w = \max(u_1, u_2)$ is generally not a supersolution because at points where $u_1 = u_2$ and the two functions cross, $w$ may develop a corner (a non-smooth kink). At such a corner, a test function touching $w$ from below must lie below the maximum of the two, but the supersolution inequality need not hold for any such test function. In particular, the second derivative of any test function touching $w$ from below at a kink point is constrained in a way that the supersolution inequality may be violated.
+
+??? success "Solution to Exercise 3"
+
+    The variational inequality is $\min\left(-\mathcal{L}V,\, V - (K-S)^+\right) = 0$ where
+
+    $$
+    \mathcal{L}V = \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV
+    $$
+
+    **First condition: $V \geq (K - S)^+$**. This is the **obstacle constraint**. It states that the American put value is always at least the immediate exercise payoff. Financially, if $V < (K - S)^+$ at any point, an arbitrage opportunity would exist: buy the put for $V$, exercise immediately, and pocket $(K - S)^+ - V > 0$. The holder has the right (not obligation) to exercise at any time, so the option value must dominate the payoff.
+
+    **Second condition: $-\mathcal{L}V \geq 0$**. This states that the option earns at least the risk-free rate in the continuation region. Equivalently, the discounted option value is a supermartingale under the risk-neutral measure. If $-\mathcal{L}V < 0$ at some point, the holder could do better by holding the option (earning more than $r$), which would contradict optimality of exercise.
+
+    **The minimum condition**: The "min = 0" structure encodes the complementarity: at every $(S, t)$, exactly one of the following holds:
+
+    - **Continuation region** ($V > (K-S)^+$): The option is worth more alive than dead, so $\mathcal{L}V = 0$ (the standard Black-Scholes PDE holds). The holder optimally continues.
+
+    - **Exercise region** ($V = (K-S)^+$): The option is exercised immediately. Here $-\mathcal{L}V \geq 0$, meaning the PDE is not satisfied as an equality; instead, the holder captures the payoff.
+
+    **Why the obstacle formulation is natural**: Early exercise creates a free boundary $S^*(t)$ separating the continuation and exercise regions. The classical free-boundary approach must explicitly track this curve, which is analytically difficult. The obstacle problem encodes both the PDE and the free boundary condition in a single variational inequality, allowing the free boundary to emerge as part of the solution rather than being specified a priori. The viscosity framework handles the non-smooth behavior at the free boundary (where $V$ is $C^1$ but not $C^2$) without requiring classical differentiability.
+
+??? success "Solution to Exercise 4"
+
+    **Why comparison implies uniqueness**: Suppose $u$ and $v$ are both viscosity solutions of the Black-Scholes PDE with the same terminal condition $u(S,T) = v(S,T) = g(S)$. A viscosity solution is both a subsolution and a supersolution. Applying the comparison principle:
+
+    - Since $u$ is a subsolution and $v$ is a supersolution with $u(S,T) = g(S) \leq g(S) = v(S,T)$, we get $u \leq v$ everywhere.
+    - Since $v$ is a subsolution and $u$ is a supersolution with $v(S,T) \leq u(S,T)$, we get $v \leq u$ everywhere.
+
+    Therefore $u = v$, establishing uniqueness.
+
+    Without comparison, uniqueness can fail: there could be multiple functions satisfying the PDE in some generalized sense. The comparison principle is the crucial analytical tool that prevents this.
+
+    **Financial example of arbitrage from non-uniqueness**: Suppose the Black-Scholes PDE with European call terminal data $g(S) = (S - K)^+$ had two distinct viscosity solutions $V_1(S,t)$ and $V_2(S,t)$ with $V_1(S_0, 0) < V_2(S_0, 0)$ for some $S_0$. A market maker could:
+
+    - Sell the option for $V_2(S_0, 0)$ (claiming this is the correct price)
+    - Hedge using the delta from $V_1$ (the cheaper replication cost)
+    - Pocket $V_2(S_0, 0) - V_1(S_0, 0) > 0$ as riskless profit
+
+    Both $V_1$ and $V_2$ would be valid self-financing replicating strategies reaching the same terminal payoff, but at different initial costs, violating the law of one price. The comparison principle (and hence uniqueness) ensures that no-arbitrage pricing yields a single, well-defined price.
+
+??? success "Solution to Exercise 5"
+
+    The explicit finite-difference scheme approximates the Black-Scholes PDE on a grid $(S_i, t^n)$ with spatial step $\Delta S$ and time step $\Delta t$. After transformation to the heat equation (or working directly), the scheme updates values as:
+
+    $$
+    V_i^{n} = \alpha_i V_{i-1}^{n+1} + \beta_i V_i^{n+1} + \gamma_i V_{i+1}^{n+1}
+    $$
+
+    where the coefficients (for the untransformed BS PDE) are:
+
+    $$
+    \alpha_i = \frac{\Delta t}{2}\left(\frac{\sigma^2 i^2}{1} - ri\right)\frac{1}{1+r\Delta t}, \quad \gamma_i = \frac{\Delta t}{2}\left(\sigma^2 i^2 + ri\right)\frac{1}{1+r\Delta t}
+    $$
+
+    $$
+    \beta_i = 1 - \sigma^2 i^2 \Delta t \cdot \frac{1}{1+r\Delta t}
+    $$
+
+    (where $i$ indexes the spatial grid with $S_i = i\Delta S$).
+
+    **Monotonicity condition (CFL)**: The Barles-Souganidis theorem requires the scheme to be **monotone**: the numerical solution at time $t^n$ must be a non-decreasing function of the values at time $t^{n+1}$. This means all coefficients $\alpha_i, \beta_i, \gamma_i$ must be non-negative. The binding constraint is typically $\beta_i \geq 0$, which gives:
+
+    $$
+    \sigma^2 i^2 \Delta t \leq 1 \quad \text{for all grid points } i
+    $$
+
+    If $i_{\max}$ is the largest grid index, the **CFL condition** is:
+
+    $$
+    \Delta t \leq \frac{1}{\sigma^2 i_{\max}^2}
+    $$
+
+    Equivalently, in terms of $S_{\max} = i_{\max}\Delta S$:
+
+    $$
+    \Delta t \leq \frac{(\Delta S)^2}{\sigma^2 S_{\max}^2}
+    $$
+
+    **When CFL is violated**: If $\Delta t$ is too large, some coefficients become negative. This means the scheme is no longer monotone: increasing the future value at a neighboring node can decrease the current value, which is financially absurd (a higher future payoff should not reduce the current option price). Numerically, the scheme produces **spurious oscillations** that grow exponentially, leading to instability. More fundamentally, without monotonicity, the Barles-Souganidis convergence theorem does not apply, and the finite-difference solution may converge to the wrong function (or not converge at all), rather than to the unique viscosity solution.
+
+??? success "Solution to Exercise 6"
+
+    **Why classical solutions may not exist**: The Leland-type transaction cost model has modified volatility:
+
+    $$
+    \tilde{\sigma}^2(\Gamma) = \sigma^2\left(1 + c_0\,\mathrm{sgn}(\Gamma)\sqrt{\frac{2}{\pi\Delta t}}\frac{1}{\sigma}\right)
+    $$
+
+    or more generally $\tilde{\sigma}^2 = \sigma^2 + f(\Gamma)$ for some function $f$ that depends on $\Gamma = V_{SS}$. Classical solutions fail for several reasons:
+
+    **1. Nonlinearity and degeneracy**: The equation is **quasilinear** since the coefficient of $V_{SS}$ depends on $V_{SS}$ itself. This creates a circular dependence: the diffusion coefficient depends on the solution's own curvature. Standard linear PDE existence theorems (e.g., Schauder theory) do not directly apply.
+
+    **2. Loss of uniform ellipticity**: If $\tilde{\sigma}^2(\Gamma)$ vanishes or changes sign for certain values of $\Gamma$, the equation degenerates. For example, in some models $\tilde{\sigma}^2(\Gamma) = \sigma^2(1 + \alpha\,\mathrm{sgn}(\Gamma))$, which has a jump discontinuity at $\Gamma = 0$. At points where $\Gamma$ changes sign, the effective volatility is discontinuous, preventing $C^2$ regularity.
+
+    **3. Non-smooth structure**: Near points where $\Gamma = 0$, the dependence $\tilde{\sigma}^2(\Gamma)$ may be non-smooth (involving $|\Gamma|$ or $\mathrm{sgn}(\Gamma)$). Solutions develop regions where $V_{SS}$ is not classically defined, particularly at the boundary between convex and concave regions of the option price surface.
+
+    **Why viscosity solutions are appropriate**:
+
+    - **Existence**: The viscosity framework guarantees existence of solutions for fully nonlinear, possibly degenerate elliptic/parabolic equations via Perron's method. One constructs the solution as the supremum of all subsolutions, which is itself a viscosity solution.
+
+    - **Uniqueness**: The comparison principle extends to many nonlinear equations, provided the nonlinearity $F(x, t, u, Du, D^2u)$ is **proper** (non-decreasing in $u$) and **degenerate elliptic** (non-increasing in $D^2u$ in the matrix ordering). The transaction cost PDE satisfies these structural conditions.
+
+    - **Stability**: The viscosity framework is closed under uniform limits: if $V^\epsilon$ are viscosity solutions of approximating equations (e.g., with smoothed transaction cost functions) and $V^\epsilon \to V$ uniformly, then $V$ is a viscosity solution of the limit equation. This is critical for the financial modeling where $\tilde{\sigma}^2$ arises as a limit of discrete rebalancing.
+
+    - **Stochastic control interpretation**: The transaction cost problem can be formulated as a stochastic control problem where the agent chooses rebalancing times. The value function of this control problem is automatically a viscosity solution of the HJB equation, providing both existence and the financial interpretation simultaneously.

@@ -267,3 +267,121 @@ Consider the heat equation $\partial_t u = \frac{1}{2}\partial_{xx}u$ on $[0, 1]
 
 **Exercise 7.**
 The maximum principle fails for the backward heat equation $\partial_t u = -\frac{1}{2}\partial_{xx}u$. Explain why this equation is ill-posed (solutions can blow up from arbitrarily small perturbations in the initial data), and connect this to the financial fact that we solve the pricing PDE backward in time from the terminal condition.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The weak maximum principle states: if $u$ is continuous on $\overline{Q}_T = [a,b] \times [0,T]$ and satisfies $\partial_t u \leq \frac{1}{2}\partial_{xx}u$ in the interior $Q_T = (a,b) \times (0,T]$, then:
+
+    $$
+    \max_{\overline{Q}_T} u = \max_{\Gamma_T} u
+    $$
+
+    where $\Gamma_T$ is the **parabolic boundary**.
+
+    The parabolic boundary consists of those parts of $\partial Q_T$ from which information flows into the domain. Explicitly:
+
+    $$
+    \Gamma_T = \bigl(\{0\} \times [a,b]\bigr) \cup \bigl([0,T] \times \{a\}\bigr) \cup \bigl([0,T] \times \{b\}\bigr)
+    $$
+
+    This is the bottom edge (initial time $t = 0$ for all $x \in [a,b]$) plus the two lateral edges (spatial boundaries $x = a$ and $x = b$ for all times $t \in [0,T]$). The top edge $\{T\} \times [a,b]$ is **not** part of the parabolic boundary, because the heat equation propagates information forward in time.
+
+??? success "Solution to Exercise 2"
+    Let $u$ and $v$ both solve the heat equation $\partial_t w = \frac{1}{2}\partial_{xx}w$ on $Q_T$ with the same initial condition $u(0,x) = v(0,x) = f(x)$ and the same boundary conditions $u(t,a) = v(t,a)$ and $u(t,b) = v(t,b)$.
+
+    Define $w = u - v$. By linearity, $w$ solves the heat equation:
+
+    $$
+    \partial_t w = \frac{1}{2}\partial_{xx}w
+    $$
+
+    with $w = 0$ on the entire parabolic boundary $\Gamma_T$ (both initial and boundary data are the same).
+
+    Apply the maximum principle to $w$: $\max_{\overline{Q}_T} w = \max_{\Gamma_T} w = 0$.
+
+    Apply the maximum principle to $-w$ (which also solves the heat equation): $\max_{\overline{Q}_T}(-w) = \max_{\Gamma_T}(-w) = 0$.
+
+    Combining: $w \leq 0$ and $-w \leq 0$, so $w = 0$ everywhere. Therefore $\max_{\overline{Q}_T}|w| = 0$, giving $u = v$.
+
+??? success "Solution to Exercise 3"
+    In the probabilistic formulation, $u(t,x) = \mathbb{E}_x[f(W_{\tau \wedge (T-t)})]$ where $W$ is Brownian motion starting at $x$ and $\tau$ is the exit time from $(a,b)$.
+
+    The process $W_{\tau \wedge s}$ is a stopped Brownian motion. At the stopping time $\tau \wedge (T-t)$, the Brownian motion is either:
+
+    - At one of the boundary points $\{a, b\}$ (if $\tau \leq T - t$), or
+    - At some interior point at the terminal time (if $\tau > T - t$)
+
+    In both cases, $W_{\tau \wedge (T-t)}$ takes values on the parabolic boundary. Since $u(t,x)$ is an expected value of $f$ evaluated at points on the parabolic boundary:
+
+    $$
+    u(t,x) = \mathbb{E}_x[f(W_{\tau \wedge (T-t)})] \leq \max_{\Gamma_T} f
+    $$
+
+    An expected value (weighted average) of a collection of numbers cannot exceed the maximum of those numbers. This is precisely the maximum principle: the solution $u$ at any interior point is a probability-weighted average of its boundary/initial values, so it cannot exceed the maximum boundary value.
+
+??? success "Solution to Exercise 4"
+    Suppose $u$ has an interior maximum at $(t_0, x_0)$ with $0 < t_0 \leq T$ and $a < x_0 < b$.
+
+    At this point, the temperature is higher than at all neighboring points. The heat equation describes diffusion: heat flows from hot regions to cold regions. Since $(t_0, x_0)$ is hotter than its spatial neighbors:
+
+    - $\partial_{xx}u(t_0, x_0) \leq 0$ (the function curves downward at a maximum)
+
+    By the heat equation, $\partial_t u = \frac{1}{2}\partial_{xx}u \leq 0$, meaning the temperature at this point is decreasing (or staying constant) over time. Heat is flowing away from the hot spot to cooler surrounding areas.
+
+    This means the hot spot cannot persist: if it existed at time $t_0$, then at a slightly earlier time $t_0 - \epsilon$, the value must have been at least as large (since the temperature is decreasing). Tracing backward, the maximum must originate from the initial or boundary data. The only way the temperature can be constant (not decreasing) at the hot spot is if $\partial_{xx}u = 0$, which propagates the argument to neighbors, forcing $u$ to be constant everywhere.
+
+??? success "Solution to Exercise 5"
+    Since $g_1(S_T) \leq g_2(S_T)$ for all $S_T > 0$, the option prices satisfy $V_i(T, S) = g_i(S)$ at maturity. Both $V_1$ and $V_2$ solve the Black-Scholes PDE:
+
+    $$
+    \partial_t V + \frac{1}{2}\sigma^2 S^2 \partial_{SS}V + rS\partial_S V - rV = 0
+    $$
+
+    Define $w = V_1 - V_2$. Then $w$ solves the same PDE (by linearity) with terminal condition $w(T, S) = g_1(S_T) - g_2(S_T) \leq 0$.
+
+    After transforming the Black-Scholes PDE into the heat equation (via $x = \log S$, $\tau = T - t$), the terminal condition becomes an initial condition, and the comparison principle (a consequence of the maximum principle) applies:
+
+    $$
+    w \leq 0 \quad \text{on } \Gamma_T \implies w \leq 0 \quad \text{everywhere}
+    $$
+
+    Therefore $V_1(t, S) \leq V_2(t, S)$ for all $t < T$ and $S > 0$.
+
+    This uses the **comparison principle**, which is a direct corollary of the weak maximum principle applied to $w = V_1 - V_2$.
+
+??? success "Solution to Exercise 6"
+    The boundary and initial data are: $u(0, t) = 0$, $u(1, t) = 1$, and $u(x, 0) = x$.
+
+    On the parabolic boundary $\Gamma_T$:
+
+    - At $x = 0$: $u = 0$
+    - At $x = 1$: $u = 1$
+    - At $t = 0$: $u(x, 0) = x \in [0, 1]$ for $x \in [0, 1]$
+
+    So $\min_{\Gamma_T} u = 0$ and $\max_{\Gamma_T} u = 1$.
+
+    By the maximum principle: $\max_{\overline{Q}_T} u = \max_{\Gamma_T} u = 1$.
+
+    By the minimum principle: $\min_{\overline{Q}_T} u = \min_{\Gamma_T} u = 0$.
+
+    Therefore $0 \leq u(x,t) \leq 1$ for all $(x,t) \in [0,1] \times [0,T]$.
+
+    In fact, the steady-state solution $u_\infty(x) = x$ satisfies the heat equation ($\partial_t u_\infty = 0$, $\partial_{xx} u_\infty = 0$) and matches all the boundary and initial data. By uniqueness, $u(x,t) = x$ for all $t$.
+
+??? success "Solution to Exercise 7"
+    The backward heat equation $\partial_t u = -\frac{1}{2}\partial_{xx}u$ is ill-posed because high-frequency perturbations grow exponentially in time rather than decaying.
+
+    Consider the Fourier mode $u(x,t) = e^{\alpha^2 t/2}\sin(\alpha x)$. This solves the backward heat equation:
+
+    $$
+    \partial_t u = \frac{\alpha^2}{2}e^{\alpha^2 t/2}\sin(\alpha x), \quad -\frac{1}{2}\partial_{xx}u = \frac{\alpha^2}{2}e^{\alpha^2 t/2}\sin(\alpha x)
+    $$
+
+    For large $\alpha$, the growth rate $\alpha^2/2$ is enormous. An initial perturbation of amplitude $\epsilon$ at frequency $\alpha$ grows to $\epsilon e^{\alpha^2 t/2}$, which is unbounded as $\alpha \to \infty$. No matter how small $\epsilon$ is, arbitrarily high frequencies cause the solution to blow up instantly.
+
+    The maximum principle fails because the backward equation has the wrong sign: at an interior maximum, $\partial_{xx}u \leq 0$ gives $\partial_t u = -\frac{1}{2}\partial_{xx}u \geq 0$, meaning the maximum grows rather than shrinks.
+
+    **Financial connection**: In option pricing, the Black-Scholes PDE is naturally posed backward in time (from terminal payoff at $T$ to present value at $t < T$). However, this is well-posed because setting $\tau = T - t$ transforms it into the forward heat equation $\partial_\tau u = \frac{1}{2}\partial_{xx}u$, which is stable. The financial practice of "solving backward from terminal condition" corresponds mathematically to solving the well-posed forward heat equation in the reversed time variable $\tau$.

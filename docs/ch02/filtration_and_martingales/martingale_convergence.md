@@ -346,3 +346,94 @@ Let $X_1, X_2, \ldots$ be i.i.d. with $\mathbb{E}[X_1] = \mu$ and $\mathbb{E}|X_
 (b) Prove that $(\bar{X}_n, \mathcal{F}_n)_{n \geq 1}$ is a backward martingale.
 
 (c) Use backward martingale convergence to prove the strong law of large numbers: $\bar{X}_n \to \mu$ a.s.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** **Doob's upcrossing inequality**: If $\{X_n\}_{n=0}^N$ is a submartingale and $a < b$, then:
+
+    $$
+    (b - a)\,\mathbb{E}[U_N^{[a,b]}] \le \mathbb{E}[(X_N - a)^+]
+    $$
+
+    where $U_N^{[a,b]}$ is the number of upcrossings of $[a, b]$ by $X_0, \ldots, X_N$.
+
+    **(b)** For any rational $a < b$, the upcrossing inequality gives:
+
+    $$
+    \mathbb{E}[U_\infty^{[a,b]}] = \lim_{N \to \infty} \mathbb{E}[U_N^{[a,b]}] \le \frac{\sup_n \mathbb{E}[(M_n - a)^+]}{b - a}
+    $$
+
+    Now $(M_n - a)^+ \le |M_n| + |a|$, so $\mathbb{E}[(M_n - a)^+] \le \mathbb{E}[|M_n|] + |a|$. For a submartingale, $\mathbb{E}[M_n^+] \le \mathbb{E}[|M_n|]$ and $\mathbb{E}[|M_n|] = 2\mathbb{E}[M_n^+] - \mathbb{E}[M_n] \le 2\mathbb{E}[M_n^+]$ (using $|x| = 2x^+ - x$). If $\sup_n \mathbb{E}[M_n^+] < \infty$, then $\sup_n \mathbb{E}[|M_n|] < \infty$.
+
+    Therefore $U_\infty^{[a,b]} < \infty$ a.s. for each rational pair $a < b$. The event "$(M_n)$ oscillates infinitely" is $\bigcup_{a < b, \, a,b \in \mathbb{Q}} \{U_\infty^{[a,b]} = \infty\}$, a countable union of null sets, hence null. So $M_n$ converges a.s. $\square$
+
+    **(c)** The condition involves $M_n^+$ rather than $|M_n|$ because for a submartingale, the positive part controls the negative part. Specifically, $\mathbb{E}[M_n^-] = \mathbb{E}[M_n^+] - \mathbb{E}[M_n] \le \mathbb{E}[M_n^+] - \mathbb{E}[M_0]$ (since $\mathbb{E}[M_n]$ is non-decreasing for submartingales). So bounding $\mathbb{E}[M_n^+]$ automatically bounds $\mathbb{E}[M_n^-]$ and hence $\mathbb{E}[|M_n|] = \mathbb{E}[M_n^+] + \mathbb{E}[M_n^-]$.
+
+    For a general martingale, $\mathbb{E}[M_n^+] = \mathbb{E}[M_n^-] + \mathbb{E}[M_n]$, and if $\mathbb{E}[M_n] = \mathbb{E}[M_0]$ is constant, then $\sup_n \mathbb{E}[M_n^+] < \infty$ is equivalent to $\sup_n \mathbb{E}[|M_n|] < \infty$.
+
+??? success "Solution to Exercise 2"
+    **(a)** ($\Rightarrow$) Assume $\{X_\alpha\}$ is UI. Then $\sup_\alpha \mathbb{E}[|X_\alpha|] < \infty$ (taking $K = 0$ in the definition).
+
+    For equi-absolute continuity: given $\varepsilon > 0$, choose $K$ such that $\sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| > K\}}] < \varepsilon/2$. Then for any event $A$:
+
+    $$
+    \mathbb{E}[|X_\alpha| \mathbf{1}_A] = \mathbb{E}[|X_\alpha| \mathbf{1}_A \mathbf{1}_{\{|X_\alpha| \le K\}}] + \mathbb{E}[|X_\alpha| \mathbf{1}_A \mathbf{1}_{\{|X_\alpha| > K\}}] \le K\,\mathbb{P}(A) + \varepsilon/2
+    $$
+
+    Taking $\delta = \varepsilon/(2K)$: if $\mathbb{P}(A) < \delta$, then $\sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_A] < \varepsilon$.
+
+    ($\Leftarrow$) Assume $L^1$-bounded and equi-absolutely continuous. Note:
+
+    $$
+    \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| > K\}}] \le \sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_{A_\alpha}]
+    $$
+
+    where $A_\alpha = \{|X_\alpha| > K\}$. By Markov: $\mathbb{P}(A_\alpha) \le \mathbb{E}[|X_\alpha|]/K \le C/K$. Given $\varepsilon > 0$, choose $\delta$ from equi-absolute continuity, then $K = C/\delta$. For this $K$, $\mathbb{P}(A_\alpha) < \delta$ for all $\alpha$, so $\sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| > K\}}] < \varepsilon$. $\square$
+
+    **(b)** $\sup_{t \le T} \mathbb{E}[W_t^2] = T < \infty$. Since $p = 2 > 1$ and the family is $L^2$-bounded, it is UI. $\square$
+
+    **(c)** As shown in Exercise 1(b): $Z_t = e^{W_t - t/2} \to 0$ a.s. but $\mathbb{E}[Z_t] = 1$, so $\mathbb{E}[Z_t] \not\to \mathbb{E}[\lim Z_t] = 0$. By Vitali's theorem, this failure of $L^1$ convergence despite a.s. convergence implies the family is not UI. $\square$
+
+??? success "Solution to Exercise 3"
+    **(a)** Define $\mathcal{F}_n = \sigma(S_n, S_{n+1}, \ldots)$ where $S_k = X_1 + \cdots + X_k$.
+
+    If we know $(S_n, S_{n+1}, S_{n+2}, \ldots)$, we can recover $(S_{n+1}, S_{n+2}, \ldots)$ (by just ignoring $S_n$). But knowing $(S_n, S_{n+1}, \ldots)$ gives strictly more information than knowing $(S_{n+1}, S_{n+2}, \ldots)$ because we also know $S_n$ and hence $X_n = S_n - S_{n-1}$ if we know $S_{n-1}$... Actually, more precisely:
+
+    $\mathcal{F}_{n+1} = \sigma(S_{n+1}, S_{n+2}, \ldots) \subseteq \sigma(S_n, S_{n+1}, S_{n+2}, \ldots) = \mathcal{F}_n$
+
+    since every function of $(S_{n+1}, S_{n+2}, \ldots)$ is also a function of $(S_n, S_{n+1}, S_{n+2}, \ldots)$. So $\mathcal{F}_n \supseteq \mathcal{F}_{n+1}$: the sequence is decreasing. $\square$
+
+    **(b)** We need to show $\mathbb{E}[\bar{X}_n \mid \mathcal{F}_{n+1}] = \bar{X}_{n+1}$ for all $n \ge 1$.
+
+    Since $\bar{X}_n = S_n/n$ and $S_n = S_{n+1} - X_{n+1}$: $\bar{X}_n = (S_{n+1} - X_{n+1})/n$.
+
+    Given $\mathcal{F}_{n+1} = \sigma(S_{n+1}, S_{n+2}, \ldots)$, $S_{n+1}$ is $\mathcal{F}_{n+1}$-measurable. We need $\mathbb{E}[X_{n+1} \mid \mathcal{F}_{n+1}]$. By the exchangeability argument: given $(S_{n+1}, S_{n+2}, \ldots)$, the individual summands $X_1, \ldots, X_{n+1}$ are exchangeable (by the i.i.d. assumption). Therefore:
+
+    $$
+    \mathbb{E}[X_{n+1} \mid \mathcal{F}_{n+1}] = \mathbb{E}[X_k \mid \mathcal{F}_{n+1}] \quad \text{for all } k = 1, \ldots, n+1
+    $$
+
+    Summing over $k$: $(n+1)\mathbb{E}[X_{n+1} \mid \mathcal{F}_{n+1}] = \mathbb{E}[S_{n+1} \mid \mathcal{F}_{n+1}] = S_{n+1}$.
+
+    So $\mathbb{E}[X_{n+1} \mid \mathcal{F}_{n+1}] = S_{n+1}/(n+1) = \bar{X}_{n+1}$.
+
+    Therefore:
+
+    $$
+    \mathbb{E}[\bar{X}_n \mid \mathcal{F}_{n+1}] = \frac{1}{n}\mathbb{E}[S_{n+1} - X_{n+1} \mid \mathcal{F}_{n+1}] = \frac{S_{n+1} - S_{n+1}/(n+1)}{n} = \frac{S_{n+1} \cdot n/(n+1)}{n} = \frac{S_{n+1}}{n+1} = \bar{X}_{n+1}
+    $$
+
+    So $(\bar{X}_n, \mathcal{F}_n)$ is a backward martingale. $\square$
+
+    **(c)** By the backward martingale convergence theorem, $\bar{X}_n \to M_\infty$ a.s. and in $L^1$, where $M_\infty = \mathbb{E}[X_1 \mid \mathcal{F}_\infty]$ and $\mathcal{F}_\infty = \bigcap_{n \ge 1} \mathcal{F}_n$ is the tail $\sigma$-algebra.
+
+    By Kolmogorov's zero-one law, $\mathcal{F}_\infty$ is trivial (all events have probability 0 or 1). This is because $\mathcal{F}_\infty \subseteq \sigma(X_{n+1}, X_{n+2}, \ldots)$ for all $n$ (the tail $\sigma$-algebra of the partial sums is contained in the tail $\sigma$-algebra of the i.i.d. sequence), and the latter is trivial by Kolmogorov's 0-1 law.
+
+    Since $\mathcal{F}_\infty$ is trivial, $\mathbb{E}[X_1 \mid \mathcal{F}_\infty] = \mathbb{E}[X_1] = \mu$ a.s. Therefore:
+
+    $$
+    \bar{X}_n = \frac{S_n}{n} \to \mu \quad \text{a.s.} \quad \square
+    $$

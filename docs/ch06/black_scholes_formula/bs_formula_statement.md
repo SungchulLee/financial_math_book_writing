@@ -460,3 +460,253 @@ by computing each partial derivative and substituting.
 ---
 
 **Exercise 7.** In the zero-volatility limit $\sigma \to 0$, explain why the call price reduces to $C = \max(S - Ke^{-r(T-t)}, 0)$. What happens to $d_1$ and $d_2$ in this limit when $S > Ke^{-r(T-t)}$? When $S < Ke^{-r(T-t)}$? Relate your answer to the deterministic evolution of the stock price when $\sigma = 0$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **Parameters**: $S_0 = 80$, $K = 85$, $r = 0.03$, $\sigma = 0.25$, $T = 0.5$.
+
+    **Step 1: Compute $d_1$**
+
+    $$
+    d_1 = \frac{\ln(80/85) + (0.03 + 0.5 \times 0.0625) \times 0.5}{0.25\sqrt{0.5}}
+    $$
+
+    Numerator: $\ln(0.9412) + (0.03 + 0.03125) \times 0.5 = -0.06062 + 0.030625 = -0.02999$.
+
+    Denominator: $0.25 \times 0.7071 = 0.17678$.
+
+    $$
+    d_1 = \frac{-0.02999}{0.17678} = -0.1697
+    $$
+
+    **Step 2: Compute $d_2$**
+
+    $$
+    d_2 = -0.1697 - 0.17678 = -0.3465
+    $$
+
+    **Step 3: Evaluate cumulative normal values**
+
+    $$
+    \mathcal{N}(d_1) = \mathcal{N}(-0.1697) \approx 0.4326
+    $$
+
+    $$
+    \mathcal{N}(d_2) = \mathcal{N}(-0.3465) \approx 0.3645
+    $$
+
+    **Step 4: Compute call price**
+
+    $$
+    C_0 = 80 \times 0.4326 - 85 \times e^{-0.03 \times 0.5} \times 0.3645
+    $$
+
+    $$
+    = 34.61 - 85 \times 0.9851 \times 0.3645 = 34.61 - 30.52 = 4.09
+    $$
+
+    **Classification**: Since $S_0 = 80 < K = 85$, the call is **out-of-the-money (OTM)**. The entire value of \$4.09 is time value.
+
+??? success "Solution to Exercise 2"
+    **Parameters**: $S_0 = 100$, $K = 90$, $r = 0.05$, $\sigma = 0.30$, $T = 1$.
+
+    **Lower bound**: $\max(S_0 - Ke^{-rT}, 0) = \max(100 - 90e^{-0.05}, 0) = \max(100 - 85.61, 0) = 14.39$.
+
+    **Compute Black-Scholes price**:
+
+    $$
+    d_1 = \frac{\ln(100/90) + (0.05 + 0.045) \times 1}{0.30} = \frac{0.10536 + 0.095}{0.30} = \frac{0.20036}{0.30} = 0.6679
+    $$
+
+    $$
+    d_2 = 0.6679 - 0.30 = 0.3679
+    $$
+
+    $$
+    \mathcal{N}(0.6679) \approx 0.7479, \quad \mathcal{N}(0.3679) \approx 0.6436
+    $$
+
+    $$
+    C_0 = 100 \times 0.7479 - 90 \times e^{-0.05} \times 0.6436 = 74.79 - 85.61 \times 0.6436 = 74.79 - 55.10 = 19.69
+    $$
+
+    **Verification**:
+
+    - Upper bound: $C_0 = 19.69 \leq 100 = S_0$ ✓
+    - Lower bound: $C_0 = 19.69 \geq 14.39 = S_0 - Ke^{-rT}$ ✓
+
+    Both bounds are satisfied.
+
+??? success "Solution to Exercise 3"
+    Starting from put-call parity:
+
+    $$
+    C - P = S - Ke^{-r(T-t)}
+    $$
+
+    Solving for $P$:
+
+    $$
+    P = C - S + Ke^{-r(T-t)}
+    $$
+
+    Substituting the Black-Scholes call formula:
+
+    $$
+    P = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2) - S + Ke^{-r(T-t)}
+    $$
+
+    Rearranging:
+
+    $$
+    P = -S[1 - \mathcal{N}(d_1)] + Ke^{-r(T-t)}[1 - \mathcal{N}(d_2)]
+    $$
+
+    Using the identity $\mathcal{N}(-x) = 1 - \mathcal{N}(x)$:
+
+    $$
+    1 - \mathcal{N}(d_1) = \mathcal{N}(-d_1), \quad 1 - \mathcal{N}(d_2) = \mathcal{N}(-d_2)
+    $$
+
+    Therefore:
+
+    $$
+    P = Ke^{-r(T-t)}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)
+    $$
+
+    This is exactly the Black-Scholes put formula.
+
+??? success "Solution to Exercise 4"
+    When $S = Ke^{-r(T-t)}$, we have $\ln(S/K) = -r(T-t)$.
+
+    $$
+    d_1 = \frac{-r(T-t) + (r + \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}} = \frac{\frac{1}{2}\sigma^2(T-t)}{\sigma\sqrt{T-t}} = \frac{\sigma\sqrt{T-t}}{2}
+    $$
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{T-t} = \frac{\sigma\sqrt{T-t}}{2} - \sigma\sqrt{T-t} = -\frac{\sigma\sqrt{T-t}}{2}
+    $$
+
+    Let $\epsilon = \frac{\sigma\sqrt{T-t}}{2}$, which is small when $\sigma\sqrt{T-t}$ is small. Using $\mathcal{N}(x) \approx \frac{1}{2} + \frac{x}{\sqrt{2\pi}}$:
+
+    $$
+    C = S\mathcal{N}(\epsilon) - Ke^{-r(T-t)}\mathcal{N}(-\epsilon)
+    $$
+
+    Since $S = Ke^{-r(T-t)}$, denote this common value by $F$:
+
+    $$
+    C = F\left(\frac{1}{2} + \frac{\epsilon}{\sqrt{2\pi}}\right) - F\left(\frac{1}{2} - \frac{\epsilon}{\sqrt{2\pi}}\right) = \frac{2F\epsilon}{\sqrt{2\pi}}
+    $$
+
+    Substituting back $\epsilon = \frac{\sigma\sqrt{T-t}}{2}$ and $F = Ke^{-r(T-t)}$:
+
+    $$
+    C_{\text{ATMF}} \approx \frac{Ke^{-r(T-t)} \sigma\sqrt{T-t}}{\sqrt{2\pi}} \approx 0.3989 \cdot Ke^{-r(T-t)} \cdot \sigma\sqrt{T-t}
+    $$
+
+??? success "Solution to Exercise 5"
+    Let $\tau = T - t \to 0$.
+
+    **Case 1: $S > K$**
+
+    $$
+    d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}
+    $$
+
+    Since $\ln(S/K) > 0$ is fixed and $\sigma\sqrt{\tau} \to 0$, we get $d_1 \to +\infty$. Similarly $d_2 \to +\infty$.
+
+    $$
+    C \to S \cdot 1 - K \cdot e^0 \cdot 1 = S - K = (S-K)^+
+    $$
+
+    $$
+    P \to K \cdot 0 - S \cdot 0 = 0 = (K-S)^+
+    $$
+
+    **Case 2: $S < K$**
+
+    Now $\ln(S/K) < 0$, so $d_1 \to -\infty$ and $d_2 \to -\infty$.
+
+    $$
+    C \to S \cdot 0 - K \cdot 0 = 0 = (S-K)^+
+    $$
+
+    $$
+    P \to K \cdot 1 - S \cdot 1 = K - S = (K-S)^+
+    $$
+
+    **Case 3: $S = K$**
+
+    $$
+    d_1 = \frac{(r + \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}} = \frac{(r + \frac{1}{2}\sigma^2)\sqrt{\tau}}{\sigma} \to 0
+    $$
+
+    Similarly $d_2 \to 0$. So $\mathcal{N}(d_1), \mathcal{N}(d_2) \to \frac{1}{2}$.
+
+    $$
+    C \to K \cdot \frac{1}{2} - K \cdot 1 \cdot \frac{1}{2} = 0 = (S-K)^+
+    $$
+
+    $$
+    P \to K \cdot \frac{1}{2} - K \cdot \frac{1}{2} = 0 = (K-S)^+
+    $$
+
+    In all three cases, $C(S,t) \to (S-K)^+$ and $P(S,t) \to (K-S)^+$ as $t \to T$.
+
+??? success "Solution to Exercise 6"
+    **For $V(S,t) = S$:**
+
+    $$
+    \frac{\partial V}{\partial t} = 0, \quad \frac{\partial V}{\partial S} = 1, \quad \frac{\partial^2 V}{\partial S^2} = 0
+    $$
+
+    Substituting into the PDE:
+
+    $$
+    0 + \frac{1}{2}\sigma^2 S^2 \cdot 0 + rS \cdot 1 - rS = rS - rS = 0 \quad \checkmark
+    $$
+
+    **For $V(S,t) = e^{rt}$:**
+
+    $$
+    \frac{\partial V}{\partial t} = re^{rt}, \quad \frac{\partial V}{\partial S} = 0, \quad \frac{\partial^2 V}{\partial S^2} = 0
+    $$
+
+    Substituting into the PDE:
+
+    $$
+    re^{rt} + \frac{1}{2}\sigma^2 S^2 \cdot 0 + rS \cdot 0 - re^{rt} = re^{rt} - re^{rt} = 0 \quad \checkmark
+    $$
+
+    Both trivial solutions satisfy the Black-Scholes PDE.
+
+??? success "Solution to Exercise 7"
+    When $\sigma = 0$, the stock evolves deterministically: $S_T = Se^{r(T-t)}$. There is no randomness, so the option payoff is known with certainty.
+
+    **When $S > Ke^{-r(T-t)}$**, equivalently $Se^{r(T-t)} > K$:
+
+    $$
+    d_1 = \frac{\ln(S/K) + r(T-t)}{\sigma\sqrt{T-t}} + \frac{\sigma\sqrt{T-t}}{2}
+    $$
+
+    The numerator $\ln(S/K) + r(T-t) = \ln(Se^{r(T-t)}/K) > 0$ since $Se^{r(T-t)} > K$. Dividing by $\sigma\sqrt{T-t} \to 0^+$ gives $d_1 \to +\infty$. Similarly $d_2 \to +\infty$.
+
+    $$
+    C \to S \cdot 1 - Ke^{-r(T-t)} \cdot 1 = S - Ke^{-r(T-t)}
+    $$
+
+    **When $S < Ke^{-r(T-t)}$**, equivalently $Se^{r(T-t)} < K$:
+
+    The numerator $\ln(Se^{r(T-t)}/K) < 0$, so dividing by $\sigma\sqrt{T-t} \to 0^+$ gives $d_1 \to -\infty$ and $d_2 \to -\infty$.
+
+    $$
+    C \to S \cdot 0 - Ke^{-r(T-t)} \cdot 0 = 0
+    $$
+
+    Combining: $C \to \max(S - Ke^{-r(T-t)}, 0)$.
+
+    This makes sense because with $\sigma = 0$, the stock grows deterministically at rate $r$, reaching $Se^{r(T-t)}$ at maturity. The call payoff is $(Se^{r(T-t)} - K)^+ = (S - Ke^{-r(T-t)})^+ \cdot e^{r(T-t)}$, and discounting back gives $\max(S - Ke^{-r(T-t)}, 0)$. Without randomness, there is no option premium beyond the forward intrinsic value.

@@ -321,3 +321,217 @@ $$
 ---
 
 **Exercise 6.** A trader holds a delta-hedged call position. Explain how gamma risk arises between rebalancing times and estimate the P&L over a time step $\Delta t$ in terms of gamma and the realized stock move $\Delta S$. When does the trader profit from gamma, and when does the theta cost dominate?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    From the Black-Scholes PDE in Greek notation:
+
+    $$
+    \Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2 \Gamma = rV
+    $$
+
+    Rearranging for $\Theta$:
+
+    $$
+    \Theta = rV - rS\Delta - \frac{1}{2}\sigma^2 S^2 \Gamma
+    $$
+
+    For a long call position: $V > 0$, $0 < \Delta < 1$, and $\Gamma > 0$.
+
+    The term $rV - rS\Delta = r(V - S\Delta)$. For a call option, $V < S$ (the option is worth less than the stock), and $\Delta < 1$, so $V - S\Delta$ can be positive or negative depending on moneyness. However, the dominant term for typical parameters is $-\frac{1}{2}\sigma^2 S^2 \Gamma$, which is strictly negative when $\Gamma > 0$.
+
+    More precisely, for an at-the-money call where $r$ is small relative to $\sigma^2$, the approximation $\Theta \approx -\frac{1}{2}\sigma^2 S^2 \Gamma$ shows clearly that positive gamma forces negative theta.
+
+    **Financial intuition**: A long gamma position benefits from large moves in either direction (convexity profit). This is a valuable feature and cannot be obtained for free. The cost of maintaining this convexity is time decay: each day that passes without a sufficiently large move, the option loses value. This is the **theta-gamma tradeoff** — the holder pays a daily "insurance premium" (theta) in exchange for profiting from large price swings (gamma).
+
+??? success "Solution to Exercise 2"
+    Given: $S = 100$, $K = 100$, $T - t = 0.5$, $r = 0.05$, $\sigma = 0.20$.
+
+    First, compute $d_1$ and $d_2$:
+
+    $$
+    d_1 = \frac{\ln(S/K) + (r + \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}} = \frac{0 + (0.05 + 0.02)(0.5)}{0.20\sqrt{0.5}} = \frac{0.035}{0.1414} \approx 0.2475
+    $$
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{T-t} = 0.2475 - 0.1414 \approx 0.1061
+    $$
+
+    Using standard normal tables: $\Phi(d_1) \approx 0.5977$, $\Phi(d_2) \approx 0.5423$, $\phi(d_1) \approx 0.3873$.
+
+    **Call price**:
+
+    $$
+    C = S\Phi(d_1) - Ke^{-rT}\Phi(d_2) = 100(0.5977) - 100e^{-0.025}(0.5423) \approx 59.77 - 52.89 = 6.88
+    $$
+
+    **Delta**: $\Delta = \Phi(d_1) \approx 0.5977$
+
+    **Gamma**:
+
+    $$
+    \Gamma = \frac{\phi(d_1)}{S\sigma\sqrt{T-t}} = \frac{0.3873}{100 \times 0.20 \times 0.7071} \approx 0.02739
+    $$
+
+    **Theta**:
+
+    $$
+    \Theta = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\Phi(d_2) = -\frac{100 \times 0.3873 \times 0.20}{2 \times 0.7071} - 0.05 \times 100 \times 0.9753 \times 0.5423
+    $$
+
+    $$
+    \approx -5.480 - 2.645 = -8.125
+    $$
+
+    **Vega**: $\mathcal{V} = S\sqrt{T-t}\,\phi(d_1) = 100 \times 0.7071 \times 0.3873 \approx 27.39$
+
+    **Rho**: $\rho = K(T-t)e^{-r(T-t)}\Phi(d_2) = 100 \times 0.5 \times 0.9753 \times 0.5423 \approx 26.44$
+
+    **Verification** of the PDE relationship:
+
+    $$
+    \Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2 \Gamma = -8.125 + 0.05 \times 100 \times 0.5977 + \frac{1}{2}(0.04)(10000)(0.02739)
+    $$
+
+    $$
+    \approx -8.125 + 2.989 + 5.478 = 0.342
+    $$
+
+    And $rV = 0.05 \times 6.88 \approx 0.344$. The two sides agree (up to rounding), confirming the PDE relationship.
+
+??? success "Solution to Exercise 3"
+    **Gamma**: Put-call parity states:
+
+    $$
+    C - P = S - Ke^{-r(T-t)}
+    $$
+
+    Differentiating once with respect to $S$:
+
+    $$
+    \frac{\partial C}{\partial S} - \frac{\partial P}{\partial S} = 1
+    $$
+
+    which gives $\Delta_C - \Delta_P = 1$. Differentiating again:
+
+    $$
+    \frac{\partial^2 C}{\partial S^2} - \frac{\partial^2 P}{\partial S^2} = 0
+    $$
+
+    Therefore $\Gamma_C = \Gamma_P$. Gamma is the same for calls and puts with the same strike and maturity.
+
+    **Vega**: Differentiating put-call parity with respect to $\sigma$:
+
+    $$
+    \frac{\partial C}{\partial \sigma} - \frac{\partial P}{\partial \sigma} = \frac{\partial}{\partial \sigma}\left(S - Ke^{-r(T-t)}\right) = 0
+    $$
+
+    since the right-hand side $S - Ke^{-r(T-t)}$ does not depend on $\sigma$. Therefore $\mathcal{V}_C = \mathcal{V}_P$.
+
+    **Intuition**: Put-call parity shows that calls and puts differ only by a forward contract $S - Ke^{-r(T-t)}$, which is linear in $S$ and independent of $\sigma$. All second-order effects in $S$ (gamma) and all volatility sensitivity (vega) come from the nonlinear "optionality" component, which is identical for calls and puts.
+
+??? success "Solution to Exercise 4"
+    Let the portfolio be $\Pi = n_1 C_1 + n_2 C_2$ where $C_i$ is a call at strike $K_i$ with Greeks $\Delta_i$ and $\Gamma_i$.
+
+    **Delta-neutral condition**: $n_1 \Delta_1 + n_2 \Delta_2 = 0$
+
+    **Gamma-neutral condition**: $n_1 \Gamma_1 + n_2 \Gamma_2 = 0$
+
+    From the gamma condition: $n_1 / n_2 = -\Gamma_2 / \Gamma_1$. Substituting into the delta condition:
+
+    $$
+    -\frac{\Gamma_2}{\Gamma_1} \Delta_1 + \Delta_2 = 0 \quad \Longrightarrow \quad \Delta_2 \Gamma_1 = \Delta_1 \Gamma_2
+    $$
+
+    In general, $\Delta_i / \Gamma_i$ differs across strikes (this ratio depends on $d_1$), so the system has a nontrivial solution. One can choose $n_2 = 1$ and solve:
+
+    $$
+    n_1 = -\frac{\Gamma_2}{\Gamma_1}, \quad \text{with the delta condition automatically satisfied when } \frac{\Delta_1}{\Gamma_1} = \frac{\Delta_2}{\Gamma_2}
+    $$
+
+    If the delta and gamma conditions are not simultaneously satisfiable with just the two options, one adds a stock position $n_S$ shares. Then: solve $n_1 \Gamma_1 + n_2 \Gamma_2 = 0$ for the ratio $n_1/n_2$, and set $n_S = -(n_1 \Delta_1 + n_2 \Delta_2)$ to zero the total delta.
+
+    **Why theta is nonzero**: From the PDE relationship applied to the portfolio:
+
+    $$
+    \Theta_\Pi + rS\Delta_\Pi + \frac{1}{2}\sigma^2 S^2 \Gamma_\Pi = r V_\Pi
+    $$
+
+    With $\Delta_\Pi = 0$ and $\Gamma_\Pi = 0$, this reduces to $\Theta_\Pi = r V_\Pi$. As long as the portfolio has nonzero value ($V_\Pi \neq 0$), theta must be nonzero. The portfolio earns (or pays) the risk-free rate on its value, which manifests as theta.
+
+??? success "Solution to Exercise 5"
+    Starting from the Black-Scholes PDE in Greek form:
+
+    $$
+    \Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2 \Gamma = rV
+    $$
+
+    Differentiate both sides with respect to $S$:
+
+    $$
+    \frac{\partial \Theta}{\partial S} + r\Delta + rS\frac{\partial \Delta}{\partial S} + \sigma^2 S \Gamma + \frac{1}{2}\sigma^2 S^2 \frac{\partial \Gamma}{\partial S} = r\Delta
+    $$
+
+    The $r\Delta$ terms cancel. Recognizing the higher-order Greeks:
+
+    - Charm: $\text{Ch} = \frac{\partial \Delta}{\partial t} = \frac{\partial \Theta}{\partial S}$ (by equality of mixed partials, $V_{tS} = V_{St}$)
+    - Speed: $\text{Sp} = \frac{\partial \Gamma}{\partial S} = \frac{\partial^3 V}{\partial S^3}$
+
+    The equation becomes:
+
+    $$
+    \text{Ch} + rS\Gamma + \sigma^2 S \Gamma + \frac{1}{2}\sigma^2 S^2 \,\text{Sp} = 0
+    $$
+
+    Solving for charm:
+
+    $$
+    \boxed{\text{Ch} = -(rS + \sigma^2 S)\Gamma - \frac{1}{2}\sigma^2 S^2 \,\text{Sp}}
+    $$
+
+    This shows that charm (the rate at which delta changes over time) is determined by gamma and speed. For an ATM option where speed is small, charm is approximately $-(r + \sigma^2)S\Gamma$, meaning delta drifts over time at a rate proportional to gamma.
+
+??? success "Solution to Exercise 6"
+    A trader holds a delta-hedged call: long one call $C(t,S)$ and short $\Delta$ shares. The portfolio value is $\Pi = C - \Delta S$, which is delta-neutral at time $t$.
+
+    **How gamma risk arises**: Over a small interval $\Delta t$, the stock moves by $\Delta S$. Taylor-expanding the call price:
+
+    $$
+    \Delta C \approx \Theta\,\Delta t + \Delta \cdot \Delta S + \frac{1}{2}\Gamma(\Delta S)^2
+    $$
+
+    The hedge (short $\Delta$ shares) offsets the $\Delta \cdot \Delta S$ term. The portfolio P&L is:
+
+    $$
+    \Delta\Pi = \Delta C - \Delta \cdot \Delta S \approx \Theta\,\Delta t + \frac{1}{2}\Gamma(\Delta S)^2
+    $$
+
+    **Gamma P&L**: The term $\frac{1}{2}\Gamma(\Delta S)^2$ is always non-negative for a long call ($\Gamma > 0$). The trader profits from the gamma whenever the stock moves, regardless of direction.
+
+    **Theta cost**: The term $\Theta\,\Delta t$ is negative for a long call ($\Theta < 0$), representing the daily time decay cost.
+
+    **When gamma profits dominate**: The trader profits when:
+
+    $$
+    \frac{1}{2}\Gamma(\Delta S)^2 > |\Theta|\,\Delta t
+    $$
+
+    Using $\Theta \approx -\frac{1}{2}\sigma^2 S^2 \Gamma$, the breakeven condition is:
+
+    $$
+    \frac{1}{2}\Gamma(\Delta S)^2 > \frac{1}{2}\sigma^2 S^2 \Gamma\,\Delta t
+    $$
+
+    $$
+    (\Delta S)^2 > \sigma^2 S^2\,\Delta t
+    $$
+
+    Since the expected squared move under GBM is $\mathbb{E}[(\Delta S)^2] \approx \sigma^2 S^2 \Delta t$, the trader profits when the **realized** move exceeds the **implied** (expected) move. In other words:
+
+    - **Gamma profits dominate** when realized volatility exceeds implied volatility
+    - **Theta cost dominates** when realized volatility is below implied volatility
+
+    This is the fundamental principle behind volatility trading: buying options (long gamma) is a bet that realized volatility will exceed the implied volatility priced into the option.

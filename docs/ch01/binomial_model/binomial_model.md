@@ -428,3 +428,131 @@ $$
 $$
 
 and explain why the interior (strict inequalities) is necessary for the risk-neutral probability to be a valid probability measure.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    We have $S_0 = 80$, $u = 1.25$, $d = 0.85$, $r = 0.03$, and $\Delta t = 1$.
+
+    **No-arbitrage condition:** We need $d < e^{r\Delta t} < u$, i.e., $0.85 < e^{0.03} < 1.25$.
+
+    Computing $e^{0.03} \approx 1.03045$, we verify:
+
+    $$
+    0.85 < 1.03045 < 1.25 \quad \checkmark
+    $$
+
+    **Risk-neutral probability:**
+
+    $$
+    q = \frac{e^{r\Delta t} - d}{u - d} = \frac{1.03045 - 0.85}{1.25 - 0.85} = \frac{0.18045}{0.40} = 0.4511
+    $$
+
+    Since $0 < 0.4511 < 1$, we confirm $q \in (0,1)$.
+
+??? success "Solution to Exercise 2"
+    We must show that if $e^{r\Delta t} = u$, an arbitrage exists. Consider the portfolio: short 1 share of stock and invest $S_0$ in the bank account.
+
+    **Initial cost:** $V_0 = -S_0 + S_0 = 0$.
+
+    **Terminal values:**
+
+    - Up state: $V_{\Delta t} = -uS_0 + S_0 e^{r\Delta t} = -uS_0 + uS_0 = 0$
+    - Down state: $V_{\Delta t} = -dS_0 + S_0 e^{r\Delta t} = -dS_0 + uS_0 = (u - d)S_0 > 0$
+
+    since $u > d$.
+
+    This portfolio satisfies: (1) $V_0 = 0$, (2) $V_{\Delta t} \geq 0$ in all states, and (3) $V_{\Delta t} > 0$ with positive probability (in the down state). This is a **Type 1 arbitrage** (zero cost, non-negative payoff, positive probability of profit).
+
+??? success "Solution to Exercise 3"
+    We need to verify $\mathbb{E}^{\mathbb{Q}}[\tilde{S}_{\Delta t}] = S_0$ where $\tilde{S}_{\Delta t} = e^{-r\Delta t} S_{\Delta t}$.
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\tilde{S}_{\Delta t}] = e^{-r\Delta t}\bigl(q \cdot uS_0 + (1-q) \cdot dS_0\bigr) = e^{-r\Delta t} S_0 \bigl(qu + (1-q)d\bigr)
+    $$
+
+    Substituting $q = \frac{e^{r\Delta t} - d}{u - d}$:
+
+    $$
+    qu + (1-q)d = \frac{(e^{r\Delta t} - d)u + (u - e^{r\Delta t})d}{u - d} = \frac{e^{r\Delta t}(u - d)}{u - d} = e^{r\Delta t}
+    $$
+
+    Therefore:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\tilde{S}_{\Delta t}] = e^{-r\Delta t} S_0 \cdot e^{r\Delta t} = S_0
+    $$
+
+    This confirms the martingale property.
+
+??? success "Solution to Exercise 4"
+    Given $S_0 = 50$, $u = 1.15$, $d = 0.90$, $r = 0.06$, $\Delta t = 0.5$.
+
+    **Risk-neutral probability:**
+
+    $$
+    q = \frac{e^{0.06 \times 0.5} - 0.90}{1.15 - 0.90} = \frac{e^{0.03} - 0.90}{0.25} = \frac{1.03045 - 0.90}{0.25} = \frac{0.13045}{0.25} = 0.5218
+    $$
+
+    **Stock prices at $\Delta t$:**
+
+    - Up: $S_u = 1.15 \times 50 = 57.50$
+    - Down: $S_d = 0.90 \times 50 = 45.00$
+
+    **European call** ($K = 52$):
+
+    - $H_u^C = (57.50 - 52)^+ = 5.50$
+    - $H_d^C = (45.00 - 52)^+ = 0$
+
+    $$
+    C_0 = e^{-0.03}(0.5218 \times 5.50 + 0.4782 \times 0) = 0.97045 \times 2.8699 = 2.785
+    $$
+
+    **European put** ($K = 52$):
+
+    - $H_u^P = (52 - 57.50)^+ = 0$
+    - $H_d^P = (52 - 45.00)^+ = 7.00$
+
+    $$
+    P_0 = e^{-0.03}(0.5218 \times 0 + 0.4782 \times 7.00) = 0.97045 \times 3.3474 = 3.248
+    $$
+
+    **Put-call parity verification:**
+
+    $$
+    C_0 - P_0 = 2.785 - 3.248 = -0.463
+    $$
+
+    $$
+    S_0 - Ke^{-r\Delta t} = 50 - 52 \times e^{-0.03} = 50 - 50.463 = -0.463 \quad \checkmark
+    $$
+
+??? success "Solution to Exercise 5"
+    The risk-neutral probability $q = (e^{r\Delta t} - d)/(u - d)$ depends only on the model parameters $(u, d, r, \Delta t)$ and not on $p$ because the pricing formula is derived from **no-arbitrage** (replication or hedging), not from expected returns under the physical measure.
+
+    **Intuitive explanation:** The option price is determined by the cost of the replicating portfolio $(\Delta, B)$. The replication equations require the portfolio payoff to match the option payoff in **every** state:
+
+    - Up state: $\Delta \cdot uS_0 + B \cdot e^{r\Delta t} = H_u$
+    - Down state: $\Delta \cdot dS_0 + B \cdot e^{r\Delta t} = H_d$
+
+    These equations involve only $u$, $d$, $r$, and the payoffs $H_u$, $H_d$. The probability $p$ of reaching each state never appears because the portfolio must replicate in **both** states simultaneously, regardless of which is more likely.
+
+    **Role of $p$ in practice:** The physical probability $p$ is relevant for risk management (computing VaR, expected P&L), portfolio optimization, and forecasting actual returns. It determines the real-world distribution of gains and losses but is irrelevant for arbitrage-free pricing.
+
+??? success "Solution to Exercise 6"
+    The discounted future stock values are $\frac{uS_0}{e^{r\Delta t}}$ and $\frac{dS_0}{e^{r\Delta t}}$. The condition $d < e^{r\Delta t} < u$ is equivalent to:
+
+    $$
+    \frac{dS_0}{e^{r\Delta t}} < S_0 < \frac{uS_0}{e^{r\Delta t}}
+    $$
+
+    To see this, divide $d < e^{r\Delta t}$ by $e^{r\Delta t}$ to get $d/e^{r\Delta t} < 1$, then multiply by $S_0$ to get $dS_0/e^{r\Delta t} < S_0$. Similarly, $e^{r\Delta t} < u$ gives $1 < u/e^{r\Delta t}$, so $S_0 < uS_0/e^{r\Delta t}$.
+
+    **Why strict inequalities are necessary:** The risk-neutral probability is $q = (e^{r\Delta t} - d)/(u - d)$. For $q$ to be a valid probability, we need $q \in (0,1)$:
+
+    - $q > 0$ requires $e^{r\Delta t} - d > 0$, i.e., $e^{r\Delta t} > d$ (strict inequality)
+    - $q < 1$ requires $e^{r\Delta t} - d < u - d$, i.e., $e^{r\Delta t} < u$ (strict inequality)
+
+    If either inequality were non-strict (boundary case), then $q = 0$ or $q = 1$, meaning one state would have zero probability under $\mathbb{Q}$. This would violate the requirement that $\mathbb{Q}$ be **equivalent** to $\mathbb{P}$ (both measures must assign positive probability to all states), and arbitrage would exist as shown in the text.

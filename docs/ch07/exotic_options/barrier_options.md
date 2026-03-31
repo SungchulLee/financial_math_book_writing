@@ -211,3 +211,104 @@ $$
 ---
 
 **Exercise 6.** Consider an up-and-out call with $K = 100$ and $H = 120$. As the barrier $H$ approaches the strike $K$ from above, what happens to the option price? As $H \to \infty$, what does the option price converge to? Sketch the option price as a function of $H$ for fixed $S_0 = 100$ and explain the shape of the curve.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Let $\omega$ denote any path $\{S_t(\omega)\}_{0 \leq t \leq T}$. Define two events:
+
+    - $A = \{\omega : \text{barrier is breached}\}$
+    - $A^c = \{\omega : \text{barrier is not breached}\}$
+
+    These form a **partition** of the sample space: $A \cup A^c = \Omega$ and $A \cap A^c = \emptyset$.
+
+    The knock-in payoff is $\Phi_{\text{KI}}(\omega) = (S_T(\omega) - K)^+ \cdot \mathbf{1}_A(\omega)$ and the knock-out payoff is $\Phi_{\text{KO}}(\omega) = (S_T(\omega) - K)^+ \cdot \mathbf{1}_{A^c}(\omega)$.
+
+    For every path $\omega$:
+
+    $$
+    \Phi_{\text{KI}}(\omega) + \Phi_{\text{KO}}(\omega) = (S_T - K)^+ \cdot \mathbf{1}_A + (S_T - K)^+ \cdot \mathbf{1}_{A^c} = (S_T - K)^+ \cdot (\mathbf{1}_A + \mathbf{1}_{A^c}) = (S_T - K)^+
+    $$
+
+    since $\mathbf{1}_A(\omega) + \mathbf{1}_{A^c}(\omega) = 1$ for every $\omega$. This is the vanilla payoff.
+
+    Taking risk-neutral expectations and discounting:
+
+    $$
+    V_{\text{KI}} + V_{\text{KO}} = e^{-rT}\mathbb{E}^{\mathbb{Q}}[\Phi_{\text{KI}} + \Phi_{\text{KO}}] = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+] = V_{\text{vanilla}}
+    $$
+
+??? success "Solution to Exercise 2"
+    **(a)** By in-out parity: $V_{\text{KI}} + V_{\text{KO}} = V_{\text{vanilla}}$. Therefore:
+
+    $$
+    V_{\text{down-and-in call}} = V_{\text{vanilla call}} - V_{\text{down-and-out call}}
+    $$
+
+    **(b)** Substituting the given values:
+
+    $$
+    V_{\text{down-and-in call}} = \$14.23 - \$10.71 = \$3.52
+    $$
+
+    **(c)** The down-and-out call is cheaper than the vanilla call because it provides **restricted optionality**. If the stock price drops to or below the barrier $H = 90$ at any time before expiry, the knock-out option expires worthless, even if the stock subsequently recovers above the strike $K = 95$. The holder accepts this risk of losing the option in exchange for a lower premium. The difference $\$14.23 - \$10.71 = \$3.52$ represents the value of the "insurance" that the vanilla call provides against the barrier-triggering scenario.
+
+??? success "Solution to Exercise 3"
+    The exponent $2\lambda$ arises from the **reflection principle applied to drifted Brownian motion**. Under $\mathbb{Q}$, the log-price follows $X_t = \log S_t = x + \mu t + \sigma W_t$ where $\mu = r - \frac{1}{2}\sigma^2$.
+
+    The reflection principle applies directly only to driftless Brownian motion. To remove the drift, we perform a Girsanov-type measure change. Define a new measure $\hat{\mathbb{Q}}$ via the Radon-Nikodym derivative:
+
+    $$
+    \frac{d\hat{\mathbb{Q}}}{d\mathbb{Q}} = \exp\left(-\frac{\mu}{\sigma}W_T - \frac{\mu^2}{2\sigma^2}T\right)
+    $$
+
+    Under $\hat{\mathbb{Q}}$, the process $X_t - x = \sigma \hat{W}_t$ is a driftless Brownian motion (scaled by $\sigma$).
+
+    When reflecting a path that hits barrier $b = \log H$ about that barrier, the reflected path starts from $2b - x = \log(H^2/S_0)$. The Radon-Nikodym factor evaluated at the reflected starting point introduces a multiplicative correction:
+
+    $$
+    \exp\left(\frac{2\mu}{\sigma^2}(b - x)\right) = \exp\left(\frac{2\mu}{\sigma^2}\log\frac{H}{S_0}\right) = \left(\frac{H}{S_0}\right)^{2\mu/\sigma^2}
+    $$
+
+    Since $\mu/\sigma^2 = (r - \frac{1}{2}\sigma^2)/\sigma^2 = r/\sigma^2 - 1/2 = \lambda - 1$, the factor becomes $(H/S_0)^{2\lambda - 2}$, equivalently $(S_0/H)^{-(2\lambda-2)}$.
+
+    When $r = 0$ and $\sigma^2 = 2$: $\lambda = (0 + \frac{1}{2}\cdot 2)/2 = \frac{1}{2}$, so $2\lambda = 1$ and $(H/S_0)^{2\lambda} = (H/S_0)^1 = H/S_0$. The factor $2\lambda - 2 = -1$, so the reflection correction becomes $(H/S_0)^{-1} = S_0/H$.
+
+??? success "Solution to Exercise 4"
+    **(a)** For a down barrier with $H = 90$, $\sigma = 0.20$, $T = 1$, $m = 252$:
+
+    $$
+    H_{\text{eff}} = 90 \cdot \exp\left(-0.5826 \times 0.20 \times \sqrt{\frac{1}{252}}\right)
+    $$
+
+    Computing: $\sqrt{1/252} \approx 0.06299$, so $0.5826 \times 0.20 \times 0.06299 \approx 0.007340$.
+
+    $$
+    H_{\text{eff}} = 90 \cdot e^{-0.007340} \approx 90 \cdot 0.99269 \approx 89.34
+    $$
+
+    The effective barrier shifts from $90$ down to approximately $89.34$.
+
+    **(b)** The correction shifts the barrier **outward** (downward for a down barrier, upward for an up barrier). This is because discrete monitoring **misses** barrier crossings that occur between observation times. A path may dip below $H$ between two consecutive observation dates without being detected. To replicate the continuous-monitoring behavior with discrete observations, we must lower the barrier to catch some of these paths that would have been knocked out under continuous monitoring. Equivalently, the continuous-monitoring price uses a "tighter" effective barrier.
+
+    **(c)** As $m \to \infty$, $\Delta t = T/m \to 0$, so $\sqrt{T/m} \to 0$, and thus $H_{\text{eff}} \to H \cdot e^0 = H$. The correction vanishes, confirming that infinitely frequent discrete monitoring converges to continuous monitoring.
+
+??? success "Solution to Exercise 5"
+    The rebate is discounted from the hitting time $\tau_H$ rather than from maturity $T$ because the rebate is **paid at the moment the barrier is hit**, not at maturity. Since the holder receives the cash amount $R$ at time $\tau_H$, its present value at time $t < \tau_H$ is $R \cdot e^{-r(\tau_H - t)}$. If we discounted from $T$, we would be undervaluing the rebate (since $\tau_H \leq T$, the holder receives the money sooner).
+
+    The total payoff for a down-and-out call with rebate, evaluated at time $0$, is:
+
+    $$
+    \Phi = (S_T - K)^+ \cdot \mathbf{1}_{\{\min_{0 \leq t \leq T} S_t > H\}} + R \cdot e^{-r\tau_H} \cdot \mathbf{1}_{\{\min_{0 \leq t \leq T} S_t \leq H\}}
+    $$
+
+    The two events $\{\min_{0 \leq t \leq T} S_t > H\}$ (barrier not breached) and $\{\min_{0 \leq t \leq T} S_t \leq H\}$ (barrier breached at time $\tau_H$) are mutually exclusive and exhaustive. On the first event, the option survives and pays the standard call payoff at maturity. On the second event, the option is knocked out and the holder receives the rebate $R$ at the hitting time $\tau_H$.
+
+??? success "Solution to Exercise 6"
+    **As $H \to K^+$ (barrier approaches strike from above):** The up-and-out call price approaches **zero**. For the call to have a positive payoff, we need $S_T > K$. But for a call that is in the money at expiry, the stock must have risen above $K$ at some point. If $H$ is only slightly above $K$, then any path where $S_T > K$ almost certainly has $\max_{0 \leq t \leq T} S_t \geq H$, which triggers knockout. Therefore, the option is nearly always either out of the money or knocked out, and its value vanishes.
+
+    **As $H \to \infty$:** The barrier is never reached, so the knockout condition $\max_{0 \leq t \leq T} S_t \geq H$ has probability approaching zero. The up-and-out call converges to the **vanilla European call price** $C_{\text{BS}}(S_0, K, T)$.
+
+    **Shape of the curve:** The option price as a function of $H$ is a monotonically increasing curve. At $H = K$ (or slightly above), the price is near zero. As $H$ increases, the price rises and asymptotically approaches $C_{\text{BS}}$. The curve is concave, rising steeply near $H = K$ (since small increases in $H$ significantly reduce knockout probability) and flattening as $H$ grows large (since the barrier is already rarely reached). For $S_0 = 100$ and $K = 100$, the curve starts near zero at $H \approx 100$ and converges to approximately $\$10.45$ as $H \to \infty$.

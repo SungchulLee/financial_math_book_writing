@@ -399,3 +399,134 @@ Together with the [First FTAP](fundamental_theorem_of_asset_pricing.md), these r
 **Exercise 6.** In an incomplete market, the no-arbitrage price of a non-attainable claim $\Phi$ lies in the interval $[\inf_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}[\Phi/S^0_T], \sup_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}[\Phi/S^0_T]]$. Show that for an attainable claim, the infimum and supremum coincide, so the price is unique even in an incomplete market.
 
 ---
+
+
+## Solutions
+
+
+??? success "Solution to Exercise 1"
+    The payoff matrix is $3 \times 1$:
+
+    $$
+    X = \begin{pmatrix} 8 \\ 0 \\ -4 \end{pmatrix}
+    $$
+
+    **Rank check:** $\operatorname{rank}(X) = 1 < n - 1 = 2$, so the market is **incomplete**.
+
+    **Finding EMMs.** We need $q = (q_1, q_2, q_3)$ with $q_i > 0$, $\sum q_i = 1$, and $X^T q = 0$:
+
+    $$
+    8q_1 + 0 \cdot q_2 - 4q_3 = 0 \implies q_1 = \frac{1}{2}q_3
+    $$
+
+    From normalization: $\frac{1}{2}q_3 + q_2 + q_3 = 1$, so $q_2 = 1 - \frac{3}{2}q_3$.
+
+    For strict positivity: $q_3 > 0$, $q_1 = q_3/2 > 0$ (automatic), and $q_2 = 1 - 3q_3/2 > 0$ gives $q_3 < 2/3$. The family of EMMs is:
+
+    $$
+    \mathcal{Q} = \left\{\left(\frac{q_3}{2}, \; 1 - \frac{3q_3}{2}, \; q_3\right) : q_3 \in \left(0, \frac{2}{3}\right)\right\}
+    $$
+
+    **Price interval for $\Phi = (3, 1, 0)^T$:**
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\Phi] = 3 \cdot \frac{q_3}{2} + 1 \cdot \left(1 - \frac{3q_3}{2}\right) + 0 \cdot q_3 = \frac{3q_3}{2} + 1 - \frac{3q_3}{2} = 1
+    $$
+
+    Remarkably, the price is constant across all EMMs: $\pi(\Phi) = 1$. Despite the market being incomplete, this particular claim has a unique no-arbitrage price. This occurs because $\Phi - 1 \cdot \mathbf{1} = (2, 0, -1)^T = \frac{1}{4}(8, 0, -4)^T = \frac{1}{4}X$, so $\Phi$ is attainable with $\theta = 1/4$ and initial cost $c = 1$.
+
+
+??? success "Solution to Exercise 2"
+    With $n = 4$ states and $d = 3$ risky assets, the payoff matrix $X$ is $4 \times 3$ with $\operatorname{rank}(X) = 3$.
+
+    The rank condition for completeness requires $\operatorname{rank}(X) = n - 1 = 3$. Since $\operatorname{rank}(X) = 3 = n - 1$, the market **is complete** (assuming it is arbitrage-free).
+
+    The dimension of $\ker(X^T)$ is $n - \operatorname{rank}(X) = 4 - 3 = 1$. Intersecting this one-dimensional kernel with the affine hyperplane $\{\sum q_i = 1\}$ gives a single point. If this point lies in the interior of the simplex (all $q_i > 0$), then the EMM is unique and exactly **one** EMM exists. The market is both arbitrage-free and complete.
+
+
+??? success "Solution to Exercise 3"
+    If $\Phi$ is attainable, there exist $c \in \mathbb{R}$ and $\theta \in \mathbb{R}^d$ such that
+
+    $$
+    \Phi = c \cdot \mathbf{1} + X\theta
+    $$
+
+    Taking the expectation under any EMM $\mathbb{Q}$ (with weight vector $q$ satisfying $X^T q = 0$ and $\mathbf{1}^T q = 1$):
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\Phi] = \mathbb{E}^{\mathbb{Q}}[c \cdot \mathbf{1} + X\theta] = c \cdot \mathbb{E}^{\mathbb{Q}}[\mathbf{1}] + \mathbb{E}^{\mathbb{Q}}[X\theta]
+    $$
+
+    Now $\mathbb{E}^{\mathbb{Q}}[\mathbf{1}] = \mathbf{1}^T q = 1$, and
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[X\theta] = q^T(X\theta) = (X^T q)^T \theta = 0^T \theta = 0
+    $$
+
+    since $X^T q = 0$ is the martingale condition. Therefore
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\Phi] = c
+    $$
+
+    for every EMM $\mathbb{Q}$. The replication cost $c$ is the unique no-arbitrage price, and it equals the risk-neutral expectation regardless of which EMM is chosen. $\square$
+
+
+??? success "Solution to Exercise 4"
+    The original payoff matrix is $X_1 = (15, -5, -10)^T$ with the excess returns for the first asset. The excess returns for the second asset are $S^2_1 - S^2_0 = (10 - a, \, 5 - a, \, 0 - a)$.
+
+    The augmented payoff matrix is
+
+    $$
+    X = \begin{pmatrix} 15 & 10 - a \\ -5 & 5 - a \\ -10 & -a \end{pmatrix}
+    $$
+
+    **Finding EMMs for the original market.** From $15q_1 - 5q_2 - 10q_3 = 0$ and $q_1 + q_2 + q_3 = 1$: $q_1 = 2q_3/3 + q_2/3$. Using normalization, the family is parameterized by $q_2$. For the augmented market, adding the second equation $(10-a)q_1 + (5-a)q_2 + (-a)q_3 = 0$ pins down a unique solution (if $\operatorname{rank}(X) = 2$).
+
+    From the first constraint: $3q_1 = q_2 + 2q_3$, so $q_1 = (q_2 + 2q_3)/3$.
+
+    With $q_1 + q_2 + q_3 = 1$: $(q_2 + 2q_3)/3 + q_2 + q_3 = 1$, giving $4q_2 + 5q_3 = 3$.
+
+    The second asset constraint $(10-a)q_1 + (5-a)q_2 - aq_3 = 0$ expands to $10q_1 + 5q_2 - a(q_1 + q_2 + q_3) = 0$, so $10q_1 + 5q_2 = a$.
+
+    Substituting $q_1 = (q_2 + 2q_3)/3$: $10(q_2 + 2q_3)/3 + 5q_2 = a$, giving $25q_2/3 + 20q_3/3 = a$, i.e., $25q_2 + 20q_3 = 3a$.
+
+    From $4q_2 + 5q_3 = 3$: $q_2 = (3 - 5q_3)/4$. Substituting:
+
+    $$
+    25 \cdot \frac{3 - 5q_3}{4} + 20q_3 = 3a \implies \frac{75 - 125q_3 + 80q_3}{4} = 3a \implies 75 - 45q_3 = 12a
+    $$
+
+    So $q_3 = (75 - 12a)/45 = (25 - 4a)/15$.
+
+    For $q_3 > 0$: $a < 25/4 = 6.25$. Then $q_2 = (3 - 5(25 - 4a)/15)/4 = (45 - 125 + 20a)/(60) = (20a - 80)/60 = (a - 4)/3$. For $q_2 > 0$: $a > 4$. And $q_1 = (q_2 + 2q_3)/3 = ((a-4)/3 + 2(25-4a)/15)/3 = (5a - 20 + 50 - 8a)/(45) = (30 - 3a)/45 = (10 - a)/15$. For $q_1 > 0$: $a < 10$ (automatic given $a < 6.25$).
+
+    The augmented market is **arbitrage-free** for $a \in (4, 25/4)$.
+
+    The market becomes **complete** for any $a$ in this range (since $\operatorname{rank}(X) = 2 = n - 1$ when the second column is not proportional to the first, which holds for $a \neq 5$ in general; one should verify linear independence for the specific value).
+
+
+??? success "Solution to Exercise 5"
+    The stochastic volatility model has $m = 2$ independent sources of randomness (Brownian motions $W^1_t$ and $W^2_t$) but only $d = 1$ traded risky asset ($S_t$). The counting rule states that completeness requires $d \geq m$. Since $d = 1 < 2 = m$, the market is **incomplete**.
+
+    The number of unhedgeable sources of risk is $m - d = 2 - 1 = 1$. Specifically, the stock $S_t$ provides exposure to a particular linear combination of $W^1_t$ and $W^2_t$ (through its volatility vector). By trading $S_t$, one can hedge risk in that direction. However, the orthogonal direction -- the component of risk not spanned by the stock's volatility -- cannot be hedged.
+
+    In a stochastic volatility model, the unhedgeable risk is typically the **volatility risk**: changes in $\sigma_t$ driven by the Brownian motion that is not (or only partially) correlated with the stock's Brownian motion. This is why the EMM is not unique -- different choices of the "market price of volatility risk" correspond to different equivalent martingale measures, and each assigns a different price to volatility-sensitive derivatives.
+
+
+??? success "Solution to Exercise 6"
+    Let $\Phi$ be attainable: $\Phi = c \cdot \mathbf{1} + X\theta$ for some $c \in \mathbb{R}$ and $\theta \in \mathbb{R}^d$. For any EMM $\mathbb{Q}$ with weight vector $q$ (satisfying $X^T q = 0$ and $\mathbf{1}^T q = 1$), with $S^0_T = 1$ (normalized numéraire):
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}\!\left[\frac{\Phi}{S^0_T}\right] = \mathbb{E}^{\mathbb{Q}}[\Phi] = q^T \Phi = q^T(c \cdot \mathbf{1} + X\theta) = c \cdot q^T \mathbf{1} + q^T X\theta = c \cdot 1 + (X^T q)^T \theta = c
+    $$
+
+    This holds for **every** EMM $\mathbb{Q} \in \mathcal{M}$. Therefore
+
+    $$
+    \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}^{\mathbb{Q}}[\Phi] = c = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}^{\mathbb{Q}}[\Phi]
+    $$
+
+    The infimum and supremum coincide, giving the unique price $\pi(\Phi) = c$.
+
+    This result makes economic sense: an attainable claim can be perfectly replicated at cost $c$. By no-arbitrage, its price must equal $c$ regardless of the model -- any other price would create an arbitrage by buying (or selling) the claim and implementing the replicating (or reverse) strategy. Since the replication argument uses only the traded assets, it is independent of the choice of EMM, and all measures agree on the price. $\square$

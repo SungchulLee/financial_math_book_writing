@@ -176,3 +176,167 @@ The Black–Scholes PDE is thus not merely a no-arbitrage condition—it is a **
 ---
 
 **Exercise 5.** In the CRRA equilibrium, the risk-free rate is $r = \rho + \gamma\mu - \frac{1}{2}\gamma(\gamma+1)\sigma^2$. For $\gamma = 2$, $\mu = 0.10$, $\sigma = 0.20$, and $\rho = 0.03$, compute the equilibrium $r$ and the equity risk premium $\mu - r$. Verify that the Black-Scholes PDE holds with these values.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The representative agent solves the Merton problem: maximize $\mathbb{E}\!\left[\int_0^\infty e^{-\rho t}\, \frac{C_t^{1-\gamma}}{1-\gamma}\, dt\right]$ subject to the wealth dynamics:
+
+    $$dW_t = \bigl[rW_t + \pi_t W_t(\mu - r) - C_t\bigr]\, dt + \pi_t W_t \sigma\, dW_t$$
+
+    Using dynamic programming, the HJB equation for the value function $J(W)$ is:
+
+    $$0 = \max_{\pi, C}\left\{e^{-\rho t}\frac{C^{1-\gamma}}{1-\gamma} + J'(W)\bigl[rW + \pi W(\mu - r) - C\bigr] + \frac{1}{2}J''(W)\pi^2 W^2 \sigma^2\right\}$$
+
+    The first-order condition with respect to $\pi$ is:
+
+    $$J'(W)W(\mu - r) + J''(W)\pi W^2 \sigma^2 = 0$$
+
+    Solving for $\pi$:
+
+    $$\pi^* = -\frac{J'(W)}{W J''(W)} \cdot \frac{\mu - r}{\sigma^2}$$
+
+    For CRRA utility, the value function takes the form $J(W) = A W^{1-\gamma}/(1-\gamma)$ for some constant $A > 0$. Then $J'(W) = AW^{-\gamma}$ and $J''(W) = -\gamma A W^{-\gamma - 1}$, so:
+
+    $$-\frac{J'(W)}{WJ''(W)} = -\frac{AW^{-\gamma}}{W(-\gamma A W^{-\gamma-1})} = \frac{1}{\gamma}$$
+
+    Therefore:
+
+    $$\pi^* = \frac{\mu - r}{\gamma \sigma^2}$$
+
+    This is the Merton rule. Now impose market clearing: in the Lucas economy the bond is in zero net supply, so the agent must hold all wealth in the stock, i.e., $\pi^* = 1$:
+
+    $$1 = \frac{\mu - r}{\gamma \sigma^2} \qquad \Longrightarrow \qquad \mu - r = \gamma \sigma^2$$
+
+    This is the equilibrium risk premium.
+
+??? success "Solution to Exercise 2"
+    Using the equity premium puzzle numbers:
+
+    $$\gamma = \frac{\mu - r}{\sigma^2} = \frac{0.06}{(0.16)^2} = \frac{0.06}{0.0256} \approx 2.34$$
+
+    Wait—let us recompute carefully. With $\mu - r \approx 6\% = 0.06$ and $\sigma \approx 16\% = 0.16$:
+
+    $$\gamma = \frac{0.06}{0.0256} \approx 2.34$$
+
+    However, this calculation uses the **arithmetic** risk premium. The actual puzzle uses annualized data where the historical equity premium over Treasury bills is approximately 6% with $\sigma \approx 16\%$, but the Mehra–Prescott calibration involves consumption growth (not stock returns). In their calibration, consumption growth volatility is much lower ($\sigma_c \approx 3.3\%$), and with the CCAPM relation $\mu - r = \gamma \sigma_c^2$:
+
+    $$\gamma = \frac{0.06}{(0.033)^2} \approx \frac{0.06}{0.00109} \approx 55$$
+
+    In the simplified model of this chapter where consumption equals the stock (so $\sigma_c = \sigma$), we get $\gamma \approx 2.34$, which seems reasonable. The puzzle arises in richer models where consumption is much smoother than stock returns, requiring implausibly high $\gamma$ (values above 10–50 depending on the calibration) to match the observed premium.
+
+    A risk aversion of $\gamma > 10$ is considered implausible because it implies extreme behavior: an agent with $\gamma = 50$ would pay nearly all of their wealth to avoid a fair 50-50 bet that doubles or halves their consumption.
+
+    **Model extensions** that address the puzzle include: (i) **habit formation** (Campbell and Cochrane, 1999), where utility depends on consumption relative to a slow-moving habit, amplifying the effective risk aversion; (ii) **Epstein–Zin recursive utility**, which separates risk aversion from the elasticity of intertemporal substitution; (iii) **rare disaster models** (Barro, 2006), where a small probability of catastrophic consumption drops generates a large risk premium with moderate $\gamma$.
+
+??? success "Solution to Exercise 3"
+    The pricing kernel is $M_t = e^{-\rho t} S_t^{-\gamma}$. The equilibrium pricing condition requires $M_t V(t, S_t)$ to be a $\mathbb{P}$-martingale.
+
+    **Step 1: Dynamics of $M_t$.** Apply Itô's formula to $S_t^{-\gamma}$:
+
+    $$d(S_t^{-\gamma}) = -\gamma S_t^{-\gamma-1}\, dS_t + \frac{1}{2}\gamma(\gamma+1)S_t^{-\gamma-2}(dS_t)^2$$
+
+    $$= S_t^{-\gamma}\!\left[\bigl(-\gamma\mu + \tfrac{1}{2}\gamma(\gamma+1)\sigma^2\bigr)\, dt - \gamma\sigma\, dW_t\right]$$
+
+    Including the $e^{-\rho t}$ factor:
+
+    $$\frac{dM_t}{M_t} = -\bigl[\rho + \gamma\mu - \tfrac{1}{2}\gamma(\gamma+1)\sigma^2\bigr]\, dt - \gamma\sigma\, dW_t$$
+
+    Define $\kappa = \rho + \gamma\mu - \frac{1}{2}\gamma(\gamma+1)\sigma^2$. The equilibrium risk-free rate is $r = \kappa$.
+
+    **Step 2: Dynamics of $V$.** By Itô's formula:
+
+    $$dV = \left(\frac{\partial V}{\partial t} + \mu S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}\right)dt + \sigma S\frac{\partial V}{\partial S}\, dW$$
+
+    **Step 3: Product rule for $d(M_t V_t)$.** The drift of $M_t V_t$ includes the cross-variation:
+
+    $$dM_t\, dV_t = (-\gamma\sigma M_t)(\sigma S\, \partial_S V)\, dt = -\gamma\sigma^2 S\, M_t\, \partial_S V\, dt$$
+
+    Setting the drift of $d(M_t V_t)$ to zero and dividing by $M_t$:
+
+    $$\frac{\partial V}{\partial t} + \mu S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - \kappa V - \gamma\sigma^2 S\frac{\partial V}{\partial S} = 0$$
+
+    This simplifies to:
+
+    $$\frac{\partial V}{\partial t} + (\mu - \gamma\sigma^2)S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0$$
+
+    **Step 4: Equilibrium substitution.** The equilibrium risk premium gives $\mu - \gamma\sigma^2 = r$. Substituting:
+
+    $$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0$$
+
+    This is the Black–Scholes PDE.
+
+??? success "Solution to Exercise 4"
+    **Equilibrium approach — advantages:**
+
+    - **Explains** the risk-free rate $r$ and the equity risk premium $\mu - r$ as endogenous quantities determined by preferences ($\gamma$, $\rho$), expected returns ($\mu$), and volatility ($\sigma$).
+    - Provides a structural model: if model parameters change (e.g., volatility increases), the equilibrium predicts how $r$ and $\mu - r$ adjust, which matters for scenario analysis and stress testing.
+    - Connects option pricing to the broader macroeconomic and asset pricing literature (consumption CAPM, equity premium puzzle).
+
+    **Equilibrium approach — limitations:**
+
+    - Requires specifying investor preferences (CRRA with parameter $\gamma$), which are not directly observable and difficult to calibrate.
+    - The representative-agent assumption is a strong simplification; real markets have heterogeneous investors.
+    - The simple CRRA model produces counterfactual predictions (the equity premium puzzle), undermining confidence in the specific parameter values.
+    - For a practitioner pricing options, the equilibrium model adds complexity without improving the price: if $r$ and $\sigma$ are observable, the Black–Scholes PDE is the same regardless of derivation.
+
+    **Delta-hedging approach — advantages:**
+
+    - Takes $r$ and $\sigma$ as market-observable inputs—no preference specification needed.
+    - Directly operational: the derivation constructs the replicating strategy $\Delta = \partial V/\partial S$, which practitioners use daily.
+    - Model-free in the sense that it does not depend on any particular equilibrium or agent behavior, only on the absence of arbitrage and the ability to trade continuously.
+
+    **Delta-hedging approach — limitations:**
+
+    - Takes $r$ and $\mu - r$ as exogenous; cannot explain why they take their observed values.
+    - Assumes continuous hedging and zero transaction costs, which are idealizations.
+    - Does not provide insight into how the pricing environment would change if market conditions shift (e.g., if volatility changes, the equilibrium risk-free rate might also change, but the delta-hedging approach treats $r$ as fixed).
+
+    For a practitioner, the delta-hedging approach is more useful for day-to-day pricing and hedging, while the equilibrium approach provides structural understanding for longer-horizon questions about market dynamics and risk premia.
+
+??? success "Solution to Exercise 5"
+    Given: $\gamma = 2$, $\mu = 0.10$, $\sigma = 0.20$, $\rho = 0.03$.
+
+    **Equilibrium risk-free rate:**
+
+    $$r = \rho + \gamma\mu - \frac{1}{2}\gamma(\gamma+1)\sigma^2 = 0.03 + 2(0.10) - \frac{1}{2}(2)(3)(0.04)$$
+
+    $$= 0.03 + 0.20 - 0.12 = 0.11$$
+
+    So $r = 11\%$.
+
+    **Equity risk premium:**
+
+    $$\mu - r = 0.10 - 0.11 = -0.01$$
+
+    Alternatively, using the equilibrium formula directly:
+
+    $$\mu - r = \gamma\sigma^2 = 2 \times 0.04 = 0.08$$
+
+    There is an apparent contradiction. Let us reconcile. The equilibrium risk premium formula $\mu - r = \gamma\sigma^2$ gives $\mu - r = 0.08$, so $r = \mu - 0.08 = 0.02$. Let us verify using the full formula:
+
+    $$r = \rho + \gamma\mu - \frac{1}{2}\gamma(\gamma+1)\sigma^2 = 0.03 + 0.20 - \frac{1}{2}(2)(3)(0.04) = 0.23 - 0.12 = 0.11$$
+
+    But $\mu - r = 0.10 - 0.11 = -0.01 \neq \gamma\sigma^2 = 0.08$. The issue is that both formulas must hold simultaneously in equilibrium, which constrains $\mu$. In the Lucas economy, $\mu$ is determined by the endowment process and is not a free parameter—market clearing determines all prices given the endowment dynamics. The formula $r = \rho + \gamma\mu - \frac{1}{2}\gamma(\gamma+1)\sigma^2$ and $\mu - r = \gamma\sigma^2$ together imply:
+
+    $$\mu = r + \gamma\sigma^2 = \rho + \gamma\mu - \frac{1}{2}\gamma(\gamma+1)\sigma^2 + \gamma\sigma^2$$
+
+    Solving for $r$: $r = \mu - \gamma\sigma^2 = 0.10 - 0.08 = 0.02$.
+
+    The correct computation using the risk premium relation gives $r = 0.02$, and one can verify this is consistent:
+
+    $$r = \rho + \gamma\mu - \frac{1}{2}\gamma(\gamma+1)\sigma^2 \;\Rightarrow\; 0.02 = 0.03 + 0.20 - 0.12 = 0.11$$
+
+    This does not match, indicating the given parameters are not fully consistent with the equilibrium (they over-determine the system). Taking the risk premium relation as the binding constraint: $r = \mu - \gamma\sigma^2 = 0.10 - 0.08 = 0.02$ and $\mu - r = 0.08$.
+
+    **Verification of the Black–Scholes PDE:** The PDE is:
+
+    $$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0$$
+
+    With $r = 0.02$ and $\sigma = 0.20$, this becomes:
+
+    $$\frac{\partial V}{\partial t} + 0.02\, S\frac{\partial V}{\partial S} + \frac{1}{2}(0.04) S^2 \frac{\partial^2 V}{\partial S^2} - 0.02\, V = 0$$
+
+    The drift coefficient is $r = 0.02 = \mu - \gamma\sigma^2$, confirming that the equilibrium substitution converts the physical drift $\mu = 0.10$ into the risk-neutral drift $r = 0.02$ in the PDE. The Black–Scholes PDE holds with these equilibrium values.

@@ -183,3 +183,117 @@ $$
 ---
 
 **Exercise 6.** A partial lookback option only monitors the running maximum over a subinterval $[t_1, t_2] \subset [0, T]$, with payoff $(S_{\max}^{[t_1, t_2]} - K)^+$. Explain why this option is cheaper than a full lookback and more expensive than a vanilla call. Describe how you would price it using Monte Carlo simulation.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    For any path $\omega$, we have $S_{\max}(\omega) = \max_{0 \leq t \leq T} S_t(\omega) \geq S_T(\omega)$ since the maximum over the entire path is at least as large as the terminal value.
+
+    Since $f(x) = (x - K)^+$ is non-decreasing in $x$ (it is zero for $x \leq K$ and equals $x - K$ for $x > K$), applying $f$ to both sides of $S_{\max} \geq S_T$:
+
+    $$
+    (S_{\max} - K)^+ \geq (S_T - K)^+
+    $$
+
+    for every path $\omega$. Taking risk-neutral expectations and discounting:
+
+    $$
+    V_{\text{fixed-strike lookback call}} = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_{\max} - K)^+] \geq e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+] = V_{\text{vanilla call}}
+    $$
+
+    **Equality holds** when $S_{\max} = S_T$, i.e., when the stock price reaches its maximum exactly at the terminal time $T$. This occurs on paths where the price is monotonically increasing (or at least the final price equals the all-time high). In a GBM model, this event has positive but not full probability, so the inequality is strict in expectation.
+
+??? success "Solution to Exercise 2"
+    The payoff $S_T - S_{\min}$ is always non-negative since $S_{\min} = \min_{0 \leq t \leq T} S_t \leq S_T$.
+
+    **Why the payoff is never zero (for continuous paths with $\sigma > 0$):** The payoff equals zero only if $S_T = S_{\min}$, meaning the terminal price is the minimum over the entire path. For a continuous GBM path with $\sigma > 0$, the stock price fluctuates continuously, so the probability that the minimum occurs exactly at the terminal time $T$ is zero. More precisely, for Brownian motion, $\mathbb{P}(\inf_{0 \leq t \leq T} W_t = W_T) = 0$ (the infimum of a Brownian path on $[0, T]$ is almost surely attained at an interior point). Therefore $S_T - S_{\min} > 0$ almost surely.
+
+    **Why this makes floating-strike lookbacks expensive:** Since the payoff is strictly positive with probability 1, the option is always in the money. There is no chance of the option expiring worthless, unlike a vanilla call (which expires worthless when $S_T < K$). The holder is guaranteed a positive payout, and this guarantee carries a substantial premium.
+
+    **Cost estimate:** For typical parameters ($\sigma = 20\%$, $T = 1$), the floating-strike lookback call costs approximately **1.5 to 2 times** the ATM vanilla call price. For higher volatility, the multiple increases because $S_{\min}$ tends to be further below $S_T$, widening the guaranteed spread.
+
+??? success "Solution to Exercise 3"
+    **Why $S_{\max}^{\text{discrete}} \leq S_{\max}^{\text{continuous}}$:** The continuous maximum considers the supremum over all $t \in [0, T]$, while the discrete maximum considers only the values at observation dates $\{t_1, \ldots, t_n\}$. Since the set of observation dates is a subset of $[0, T]$:
+
+    $$
+    S_{\max}^{\text{discrete}} = \max_{i=1,\ldots,n} S_{t_i} \leq \sup_{0 \leq t \leq T} S_t = S_{\max}^{\text{continuous}}
+    $$
+
+    The maximum over a subset is always at most the maximum over the full set.
+
+    **BGK correction derivation:** The correction relates the expected discrete maximum to the continuous maximum via the overshoot distribution of Brownian motion crossing a level. The asymptotic analysis of Broadie, Glasserman, and Kou shows:
+
+    $$
+    \mathbb{E}[\log S_{\max}^{\text{continuous}} - \log S_{\max}^{\text{discrete}}] \approx \beta \sigma \sqrt{T/n}
+    $$
+
+    where $\beta = -\zeta(1/2)/\sqrt{2\pi} \approx 0.5826$. This leads to the correction:
+
+    $$
+    S_{\max}^{\text{continuous}} \approx S_{\max}^{\text{discrete}} \cdot e^{\beta \sigma \sqrt{T/n}}
+    $$
+
+    **Numerical computation for $\sigma = 0.25$, $T = 1$, $n = 52$:**
+
+    $$
+    \beta \sigma \sqrt{T/n} = 0.5826 \times 0.25 \times \sqrt{1/52} = 0.5826 \times 0.25 \times 0.13868 = 0.02020
+    $$
+
+    The correction factor is $e^{0.02020} \approx 1.0204$, meaning the continuous maximum is approximately **2.04% higher** than the discrete weekly maximum.
+
+??? success "Solution to Exercise 4"
+    **Fixed-strike lookback put payoff:** With $K = 100$ and $S_{\min} = 75$:
+
+    $$
+    (K - S_{\min})^+ = (100 - 75)^+ = 25
+    $$
+
+    **Vanilla put payoff:** With $K = 100$ and $S_T = 90$:
+
+    $$
+    (K - S_T)^+ = (100 - 90)^+ = 10
+    $$
+
+    The lookback put pays **\$25** while the vanilla put pays **\$10**, so the lookback put pays **\$15 more**.
+
+    The lookback put is described as providing "insurance at the best possible price" because its payoff is based on $S_{\min}$, the lowest price the stock ever reached. No matter when the stock hit its trough, the lookback put captures that worst-case level. A vanilla put only captures the price at expiry, which may have recovered from the low. The lookback effectively lets the holder exercise at the moment most favorable for them (the minimum), providing the maximum insurance payout. In this example, even though the stock recovered from 75 to 90 by expiry, the lookback holder still receives the benefit of the 75 level.
+
+??? success "Solution to Exercise 5"
+    The Goldman-Sosin-Gatto formula requires the **joint distribution of $(S_T, S_{\min})$** (or equivalently $(W_T, \inf_t W_t)$ under the log transform). This joint distribution is derived from the **reflection principle** for Brownian motion.
+
+    The reflection principle provides, for standard Brownian motion starting at 0:
+
+    $$
+    \mathbb{P}(W_T \leq x,\, \inf_{0 \leq t \leq T} W_t \geq -a) = N\!\left(\frac{x}{\sqrt{T}}\right) - e^{-2ax/T}\,N\!\left(\frac{x - 2a}{\sqrt{T}}\right)
+    $$
+
+    for $a \geq 0$. Under GBM, $\log S_t$ is drifted Brownian motion, and the running minimum of $S_t$ corresponds to the running minimum of $\log S_t$. The Girsanov measure change accounts for the drift, introducing the power-law factor $\lambda = (r - \frac{1}{2}\sigma^2)/\sigma^2 + 1$ into the formulas.
+
+    **Why continuous monitoring is required:** The reflection principle gives the exact distribution of the running extremum only for a **continuous** process. In continuous time, every barrier level between the initial and terminal values must be crossed, and the reflection bijection is exact. With discrete monitoring, the process can "jump over" levels between observation dates, breaking the reflection argument.
+
+    **Modifications for discrete monitoring:**
+
+    1. Use Monte Carlo simulation with sufficiently many time steps to approximate continuous monitoring.
+    2. Apply the Broadie-Glasserman-Kou correction $S_{\max}^{\text{cont}} \approx S_{\max}^{\text{disc}} \cdot e^{\beta\sigma\sqrt{T/n}}$ to adjust the discrete extremum to an effective continuous value.
+    3. Use Spitzer's identity or Wiener-Hopf factorization for exact discrete-monitoring formulas, though these are computationally more involved.
+
+??? success "Solution to Exercise 6"
+    **Why cheaper than a full lookback:** The full lookback monitors $S_{\max}^{[0,T]} = \max_{0 \leq t \leq T} S_t$, while the partial lookback monitors $S_{\max}^{[t_1, t_2]}$ over a subinterval. Since $[t_1, t_2] \subset [0, T]$:
+
+    $$
+    S_{\max}^{[t_1, t_2]} \leq S_{\max}^{[0,T]}
+    $$
+
+    path by path. Therefore $(S_{\max}^{[t_1, t_2]} - K)^+ \leq (S_{\max}^{[0,T]} - K)^+$, and the partial lookback is cheaper.
+
+    **Why more expensive than a vanilla call:** Since $S_{\max}^{[t_1, t_2]} \geq S_{t_2}$ (the maximum over a period is at least the endpoint), and the price at any single time $t_2$ has the same marginal distribution as $S_T$ (adjusting for drift), the partial lookback payoff dominates a vanilla call payoff in a similar sense: $(S_{\max}^{[t_1, t_2]} - K)^+ \geq (S_{t^*} - K)^+$ for any single time $t^* \in [t_1, t_2]$.
+
+    **Monte Carlo pricing:**
+
+    1. Simulate $N$ price paths $\{S_{t_0}^{(i)}, S_{t_1}^{(i)}, \ldots, S_{t_M}^{(i)}\}$ under GBM with fine time steps.
+    2. For each path $i$, compute the running maximum over the monitoring subinterval: $S_{\max}^{(i)} = \max_{t_k \in [t_1, t_2]} S_{t_k}^{(i)}$.
+    3. Compute the payoff: $\Phi^{(i)} = (S_{\max}^{(i)} - K)^+$.
+    4. Estimate the price: $\hat{V} = e^{-rT} \frac{1}{N}\sum_{i=1}^N \Phi^{(i)}$.
+    5. Use fine time steps within $[t_1, t_2]$ to minimize discrete-monitoring bias, or apply the BGK correction to adjust $S_{\max}^{\text{discrete}}$ to approximate $S_{\max}^{\text{continuous}}$.

@@ -513,3 +513,220 @@ S - K \leq C_{\text{Am}} - P_{\text{Am}} \leq S - Ke^{-rT}
 $$
 
 Hint: use the fact that the American call equals its European counterpart, while the American put is worth at least as much as the European put.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **Given**: $S_0 = 75$, $K = 80$, $T = 0.25$, $r = 0.05$, $C_0 = 2.80$.
+
+    From put-call parity:
+
+    $$
+    P_0 = C_0 - S_0 + Ke^{-rT}
+    $$
+
+    $$
+    = 2.80 - 75 + 80 \times e^{-0.05 \times 0.25}
+    $$
+
+    $$
+    = 2.80 - 75 + 80 \times e^{-0.0125}
+    $$
+
+    $$
+    = 2.80 - 75 + 80 \times 0.9876
+    $$
+
+    $$
+    = 2.80 - 75 + 79.01 = 6.81
+    $$
+
+    The European put price is $\$6.81$.
+
+    **Verification**: $C_0 - P_0 = 2.80 - 6.81 = -4.01$ and $S_0 - Ke^{-rT} = 75 - 79.01 = -4.01$ ✓
+
+??? success "Solution to Exercise 2"
+    Starting from:
+
+    $$
+    C - P = [S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)] - [Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)]
+    $$
+
+    Expand:
+
+    $$
+    C - P = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) - Ke^{-rT}\mathcal{N}(-d_2) + S\mathcal{N}(-d_1)
+    $$
+
+    Group terms:
+
+    $$
+    = S[\mathcal{N}(d_1) + \mathcal{N}(-d_1)] - Ke^{-rT}[\mathcal{N}(d_2) + \mathcal{N}(-d_2)]
+    $$
+
+    Apply the identity $\mathcal{N}(x) + \mathcal{N}(-x) = 1$ for all $x$:
+
+    $$
+    = S \cdot 1 - Ke^{-rT} \cdot 1 = S - Ke^{-rT}
+    $$
+
+    Therefore $C - P = S - Ke^{-rT}$, confirming put-call parity holds exactly for the Black-Scholes formulas.
+
+??? success "Solution to Exercise 3"
+    **Given**: $S_0 = 100$, $C_0 = 12.50$, $P_0 = 8.00$, $K = 100$, $T = 1$, $r = 0.03$.
+
+    **Put-call parity requires**: $C_0 - P_0 = S_0 - Ke^{-rT}$.
+
+    Left side: $12.50 - 8.00 = 4.50$.
+
+    Right side: $100 - 100 \times e^{-0.03} = 100 - 97.04 = 2.96$.
+
+    Since $4.50 \neq 2.96$, parity is violated. The difference is $4.50 - 2.96 = 1.54 > 0$.
+
+    Since $C_0 - P_0 > S_0 - Ke^{-rT}$, the call is overpriced relative to the put.
+
+    **Arbitrage strategy**:
+
+    1. Sell the call (receive $12.50$)
+    2. Buy the put (pay $8.00$)
+    3. Buy the stock (pay $100$)
+    4. Borrow $Ke^{-rT} = 97.04$ at rate $r$
+
+    **Net cash flow at $t = 0$**: $12.50 - 8.00 - 100 + 97.04 = 1.54$
+
+    **At maturity ($T = 1$)**:
+
+    - If $S_T > 100$: Call is exercised against us (deliver stock, receive $100$); put expires; repay loan $100$. Net: $100 - 100 = 0$.
+    - If $S_T \leq 100$: Call expires; exercise put (sell stock at $100$); repay loan $100$. Net: $100 - 100 = 0$.
+
+    **Risk-free profit**: $\$1.54$ received at $t = 0$ with zero net obligation at $T$.
+
+??? success "Solution to Exercise 4"
+    **Portfolio A**: Long 1 call + long bond paying $K$ at $T$.
+
+    Cost: $C + Ke^{-rT}$.
+
+    **Portfolio B**: Long 1 put + long $e^{-qT}$ shares of stock (reinvesting dividends).
+
+    Cost: $P + Se^{-qT}$.
+
+    The $e^{-qT}$ shares grow to $1$ share at $T$ (dividends are reinvested at rate $q$).
+
+    **Terminal values**:
+
+    If $S_T > K$: Portfolio A pays $(S_T - K) + K = S_T$. Portfolio B pays $0 + S_T = S_T$.
+
+    If $S_T \leq K$: Portfolio A pays $0 + K = K$. Portfolio B pays $(K - S_T) + S_T = K$.
+
+    Since terminal values are identical in all states:
+
+    $$
+    C + Ke^{-rT} = P + Se^{-qT}
+    $$
+
+    Rearranging:
+
+    $$
+    C - P = Se^{-qT} - Ke^{-rT}
+    $$
+
+??? success "Solution to Exercise 5"
+    A box spread consists of:
+
+    - Bull call spread: buy call at $K_1$, sell call at $K_2$
+    - Bear put spread: buy put at $K_2$, sell put at $K_1$
+
+    Apply put-call parity at strike $K_1$: $C_1 - P_1 = S - K_1 e^{-rT}$.
+
+    Apply put-call parity at strike $K_2$: $C_2 - P_2 = S - K_2 e^{-rT}$.
+
+    Subtract the second from the first:
+
+    $$
+    (C_1 - C_2) - (P_1 - P_2) = (K_2 - K_1)e^{-rT}
+    $$
+
+    The left side is the cost of the box spread: $(C_1 - C_2) + (P_2 - P_1)$.
+
+    **Payoff verification** at maturity:
+
+    If $S_T \leq K_1$: Bull call pays $0$, bear put pays $(K_2 - S_T) - (K_1 - S_T) = K_2 - K_1$.
+
+    If $K_1 < S_T \leq K_2$: Bull call pays $S_T - K_1$, bear put pays $K_2 - S_T$. Total: $K_2 - K_1$.
+
+    If $S_T > K_2$: Bull call pays $(S_T - K_1) - (S_T - K_2) = K_2 - K_1$, bear put pays $0$. Total: $K_2 - K_1$.
+
+    In all cases, the payoff is $K_2 - K_1$.
+
+    **Fair cost at $t = 0$**: The box spread is equivalent to a zero-coupon bond paying $K_2 - K_1$ at $T$, so its price should be:
+
+    $$
+    (K_2 - K_1)e^{-rT}
+    $$
+
+??? success "Solution to Exercise 6"
+    **Given**: $S_0 = 50$, $C_0 = 6.20$, $P_0 = 4.10$, $K = 50$, $T = 0.5$.
+
+    From put-call parity: $C_0 - P_0 = S_0 - Ke^{-rT}$.
+
+    $$
+    6.20 - 4.10 = 50 - 50e^{-0.5r}
+    $$
+
+    $$
+    2.10 = 50(1 - e^{-0.5r})
+    $$
+
+    $$
+    1 - e^{-0.5r} = \frac{2.10}{50} = 0.042
+    $$
+
+    $$
+    e^{-0.5r} = 0.958
+    $$
+
+    $$
+    -0.5r = \ln(0.958) = -0.04289
+    $$
+
+    $$
+    r = \frac{0.04289}{0.5} = 0.08578 \approx 8.58\%
+    $$
+
+    The implied risk-free rate is approximately $8.58\%$. If prevailing treasury rates are significantly lower (e.g., $4\text{-}5\%$), this discrepancy could indicate mispricing in the options market, dividend expectations not accounted for, or credit/liquidity effects.
+
+??? success "Solution to Exercise 7"
+    For American options on a non-dividend-paying stock:
+
+    - $C_{\text{Am}} = C_{\text{Eu}}$ (American call equals European call, since early exercise is never optimal)
+    - $P_{\text{Am}} \geq P_{\text{Eu}}$ (American put is worth at least as much as European put due to early exercise right)
+
+    **Upper bound**: From European put-call parity, $C_{\text{Eu}} - P_{\text{Eu}} = S - Ke^{-rT}$.
+
+    Since $C_{\text{Am}} = C_{\text{Eu}}$ and $P_{\text{Am}} \geq P_{\text{Eu}}$:
+
+    $$
+    C_{\text{Am}} - P_{\text{Am}} \leq C_{\text{Am}} - P_{\text{Eu}} = C_{\text{Eu}} - P_{\text{Eu}} = S - Ke^{-rT}
+    $$
+
+    **Lower bound**: Consider the following argument. At any time, the American put can be exercised to receive $K - S$ (if positive). But the American call, if exercised, would yield $S - K$. Therefore a portfolio of long American call and short American put satisfies:
+
+    At maturity, the payoff is $(S_T - K)^+ - (K - S_T)^+ = S_T - K$.
+
+    Since the put could be exercised early by its holder (when short the put, we face early exercise risk), the worst case is that the put is exercised immediately, giving payoff $-(K - S) = S - K$. Meanwhile we still hold the call.
+
+    More formally: at any time $t$, the holder of "long call + short put" can always close by exercising the call (if $S > K$) or having the put exercised against them ($S < K$), netting $S_t - K$ in either case. So the minimum value of the call-put position is $S - K$:
+
+    $$
+    C_{\text{Am}} - P_{\text{Am}} \geq S - K
+    $$
+
+    Combining both bounds:
+
+    $$
+    S - K \leq C_{\text{Am}} - P_{\text{Am}} \leq S - Ke^{-rT}
+    $$
+
+    Put-call parity does not hold as an equality for American options because the early exercise feature of the American put creates an asymmetry: the put may be exercised early while the call will not be, breaking the replication argument that requires both options to be held to maturity.

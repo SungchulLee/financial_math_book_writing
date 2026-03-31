@@ -202,3 +202,148 @@ $$
 ---
 
 **Exercise 6.** The geometric average Asian option serves as a control variate for pricing arithmetic average Asian options. Explain the control variate method: write the variance-reduced estimator $\hat{V}_{\text{arith}} = \hat{V}_{\text{arith,MC}} + (V_{\text{geom,exact}} - \hat{V}_{\text{geom,MC}})$, and explain why the geometric average is a better control variate than the vanilla European call for this purpose.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    We want to show $\mathbb{E}[(\bar{S} - K)^+] \leq \mathbb{E}[(S_T - K)^+]$ when $\bar{S}$ and $S_T$ have the same mean.
+
+    The function $f(x) = (x - K)^+$ is **convex**. By Jensen's inequality applied to convex functions: for any convex $f$ and any random variable $X$ that is a conditional expectation of another random variable $Y$,
+
+    $$
+    f(\mathbb{E}[Y \mid \mathcal{G}]) \leq \mathbb{E}[f(Y) \mid \mathcal{G}]
+    $$
+
+    The arithmetic average $\bar{S} = \frac{1}{n}\sum_{i=1}^n S_{t_i}$ can be compared with $S_T$ as follows. Consider the conditional expectation approach: we can write
+
+    $$
+    (\bar{S} - K)^+ \leq \frac{1}{n}\sum_{i=1}^n (S_{t_i} - K)^+
+    $$
+
+    by Jensen's inequality, since $(x - K)^+$ is convex and $\bar{S}$ is a convex combination of the $S_{t_i}$.
+
+    More directly, since $\bar{S}$ has lower variance than $S_T$ (averaging reduces variance) while both have the same mean under certain conditions, and since the call payoff $(x - K)^+$ is convex, a random variable with lower variance but the same mean produces a smaller expected value of a convex function. Formally, if $X$ and $Y$ have the same mean and $X$ is "less variable" than $Y$ in the convex order sense, then $\mathbb{E}[f(X)] \leq \mathbb{E}[f(Y)]$ for all convex $f$.
+
+    The convexity property used is that $(x - K)^+$ is convex in $x$: for any $\lambda \in [0,1]$ and any $x_1, x_2$,
+
+    $$
+    (\lambda x_1 + (1-\lambda)x_2 - K)^+ \leq \lambda(x_1 - K)^+ + (1-\lambda)(x_2 - K)^+
+    $$
+
+    Discounting both sides by $e^{-rT}$ and taking expectations under $\mathbb{Q}$ gives $C_{\text{Asian}} \leq C_{\text{vanilla}}$.
+
+??? success "Solution to Exercise 2"
+    Under GBM, $\log S_t = \log S_0 + (r - \frac{1}{2}\sigma^2)t + \sigma W_t$. We need to compute:
+
+    $$
+    \text{Var}\left(\frac{1}{T}\int_0^T \log S_t\, dt\right)
+    $$
+
+    Since $\log S_0$ and $(r - \frac{1}{2}\sigma^2)t$ are deterministic, the variance comes only from the stochastic part:
+
+    $$
+    \text{Var}\left(\frac{1}{T}\int_0^T \sigma W_t\, dt\right) = \frac{\sigma^2}{T^2}\,\text{Var}\left(\int_0^T W_t\, dt\right)
+    $$
+
+    We compute $\text{Var}\left(\int_0^T W_t\, dt\right)$. Since $\mathbb{E}[W_t] = 0$, we have $\mathbb{E}\left[\int_0^T W_t\, dt\right] = 0$, so:
+
+    $$
+    \text{Var}\left(\int_0^T W_t\, dt\right) = \mathbb{E}\left[\left(\int_0^T W_t\, dt\right)^2\right] = \int_0^T \int_0^T \mathbb{E}[W_s W_t]\, ds\, dt
+    $$
+
+    Using $\text{Cov}(W_s, W_t) = \min(s, t)$:
+
+    $$
+    \int_0^T \int_0^T \min(s,t)\, ds\, dt = 2\int_0^T \int_0^t s\, ds\, dt = 2\int_0^T \frac{t^2}{2}\, dt = \int_0^T t^2\, dt = \frac{T^3}{3}
+    $$
+
+    Therefore:
+
+    $$
+    \text{Var}\left(\frac{1}{T}\int_0^T \log S_t\, dt\right) = \frac{\sigma^2}{T^2} \cdot \frac{T^3}{3} = \frac{\sigma^2 T}{3}
+    $$
+
+    The continuous geometric average is $\bar{S}_{\text{geom}} = \exp\left(\frac{1}{T}\int_0^T \log S_t\, dt\right)$. Since $\frac{1}{T}\int_0^T \log S_t\, dt$ is normally distributed, $\bar{S}_{\text{geom}}$ is lognormal with variance parameter $\sigma^2 T / 3$.
+
+    The effective volatility for the geometric average satisfies $\hat{\sigma}^2 T = \sigma^2 T / 3$, giving:
+
+    $$
+    \hat{\sigma} = \frac{\sigma}{\sqrt{3}}
+    $$
+
+??? success "Solution to Exercise 3"
+    The observed fixings are $S_1 = 102, S_2 = 105, S_3 = 98, S_4 = 101, S_5 = 103, S_6 = 107$.
+
+    The partial average of observed fixings is:
+
+    $$
+    \bar{S}_{\text{observed}} = \frac{102 + 105 + 98 + 101 + 103 + 107}{6} = \frac{616}{6} \approx 102.67
+    $$
+
+    The full average at maturity will be:
+
+    $$
+    \bar{S} = \frac{1}{12}\left(\sum_{i=1}^{6} S_{t_i}^{\text{observed}} + \sum_{i=7}^{12} S_{t_i}^{\text{unknown}}\right) = \frac{616 + \sum_{i=7}^{12} S_{t_i}}{12}
+    $$
+
+    The Asian call payoff is:
+
+    $$
+    \left(\bar{S} - 100\right)^+ = \left(\frac{616 + \sum_{i=7}^{12} S_{t_i}}{12} - 100\right)^+ = \left(\frac{\sum_{i=7}^{12} S_{t_i} - 584}{12}\right)^+
+    $$
+
+    This simplifies to pricing an Asian call on the remaining 6 fixings with an **adjusted strike**. Define $\bar{S}_{\text{remaining}} = \frac{1}{6}\sum_{i=7}^{12} S_{t_i}$. Then:
+
+    $$
+    \text{Payoff} = \frac{6}{12}\left(\bar{S}_{\text{remaining}} - \frac{584}{6}\right)^+ = \frac{1}{2}\left(\bar{S}_{\text{remaining}} - 97.33\right)^+
+    $$
+
+    The pricing problem reduces to pricing an Asian call over the remaining 6 months with 6 fixings, an adjusted strike of $K^* \approx 97.33$, and a scaling factor of $1/2$. The initial spot for the remaining problem is $S_6 = 107$.
+
+??? success "Solution to Exercise 4"
+    **Why the arithmetic average is not lognormal:** Under GBM, each $S_{t_i}$ is lognormally distributed, meaning $\log S_{t_i}$ is normally distributed. However, the arithmetic average $\bar{S}_{\text{arith}} = \frac{1}{n}\sum_{i=1}^n S_{t_i}$ is a **sum of correlated lognormal** random variables. The sum of lognormal random variables is **not** lognormal because the lognormal distribution is not closed under addition. (It is closed under multiplication, which is why the geometric average remains lognormal.) The distribution of $\bar{S}_{\text{arith}}$ has no simple closed form.
+
+    **Moment-matching approximation:** We assume $\bar{S}_{\text{arith}}$ is approximately lognormal: $\bar{S}_{\text{arith}} \approx e^{Y}$ where $Y \sim N(\hat{\mu}, \hat{\sigma}^2)$.
+
+    The parameters are determined by matching the first two moments:
+
+    - First moment: $M_1 = \mathbb{E}^{\mathbb{Q}}[\bar{S}_{\text{arith}}] = \frac{1}{n}\sum_{i=1}^n S_0 e^{r t_i}$
+    - Second moment: $M_2 = \mathbb{E}^{\mathbb{Q}}[\bar{S}_{\text{arith}}^2] = \frac{1}{n^2}\sum_{i=1}^n \sum_{j=1}^n S_0^2 e^{(r + \sigma^2\min(t_i, t_j))(t_i + t_j - \min(t_i, t_j)) + r\min(t_i, t_j)}$
+
+    More precisely, $\mathbb{E}[S_{t_i} S_{t_j}] = S_0^2 \exp\left[r(t_i + t_j) + \sigma^2 \min(t_i, t_j)\right]$.
+
+    The matched lognormal parameters are:
+
+    $$
+    \hat{\sigma}^2 = \ln\left(\frac{M_2}{M_1^2}\right), \quad \hat{\mu} = \ln M_1 - \frac{1}{2}\hat{\sigma}^2
+    $$
+
+    The approximate Asian call price is then given by a Black-Scholes-like formula:
+
+    $$
+    C_{\text{Asian}} \approx e^{-rT}\left[e^{\hat{\mu} + \hat{\sigma}^2/2} N(\hat{d}_1) - K\, N(\hat{d}_2)\right]
+    $$
+
+    where $\hat{d}_1 = \frac{\hat{\mu} + \hat{\sigma}^2 - \ln K}{\hat{\sigma}}$ and $\hat{d}_2 = \hat{d}_1 - \hat{\sigma}$.
+
+??? success "Solution to Exercise 5"
+    **(a) Which option is more expensive?** In general, neither option dominates the other for all parameter values. However, for typical parameters, the **average-price call** $(\bar{S} - K)^+$ tends to be more expensive than the **average-strike call** $(S_T - \bar{S})^+$ for ATM options. The average-price call benefits when the average is high (upward trending market), while the average-strike call benefits when the terminal price significantly exceeds the average (late rally). The relative cost depends on the strike level, volatility, and interest rates.
+
+    **(b) Exposure to terminal price manipulation:** The **average-strike call** $(S_T - \bar{S})^+$ is exposed to manipulation of the terminal price $S_T$, since its payoff depends directly on $S_T$. A market participant could inflate $S_T$ near expiry to increase the payoff. The average-price call $(\bar{S} - K)^+$ is resistant to such manipulation because the average is computed over many observations, and manipulating a single observation has limited impact on $\bar{S}$.
+
+    **(c) Hedging scenario for average-strike call:** The average-strike call is appropriate for a company that plans to **sell an asset at a future date** and wants to ensure the selling price exceeds the average acquisition cost. For example, a commodity trader who has been accumulating inventory over the averaging period at an average cost of approximately $\bar{S}$ and plans to sell at the terminal date would benefit from the payoff $(S_T - \bar{S})^+$, which guarantees that the sale price exceeds the average cost. This is a natural hedge for a "buy-and-store" commodity strategy.
+
+??? success "Solution to Exercise 6"
+    **The control variate method:** On each Monte Carlo path $i$, compute both the arithmetic Asian payoff $\Phi_{\text{arith}}^{(i)}$ and the geometric Asian payoff $\Phi_{\text{geom}}^{(i)}$. The variance-reduced estimator is:
+
+    $$
+    \hat{V}_{\text{arith}} = \hat{V}_{\text{arith,MC}} + (V_{\text{geom,exact}} - \hat{V}_{\text{geom,MC}})
+    $$
+
+    where $\hat{V}_{\text{arith,MC}} = e^{-rT}\frac{1}{N}\sum_{i=1}^N \Phi_{\text{arith}}^{(i)}$ is the crude Monte Carlo estimate of the arithmetic Asian price, $\hat{V}_{\text{geom,MC}} = e^{-rT}\frac{1}{N}\sum_{i=1}^N \Phi_{\text{geom}}^{(i)}$ is the Monte Carlo estimate of the geometric Asian price, and $V_{\text{geom,exact}}$ is the known analytical price of the geometric Asian option.
+
+    This works because $V_{\text{geom,exact}} - \hat{V}_{\text{geom,MC}}$ estimates the Monte Carlo error. Since arithmetic and geometric Asian payoffs are computed on the same paths, their errors are highly correlated, so subtracting the known error in the geometric estimate also removes much of the error in the arithmetic estimate.
+
+    **Why the geometric average is a better control variate than the vanilla European call:** The geometric average $\bar{S}_{\text{geom}}$ is much more highly correlated with the arithmetic average $\bar{S}_{\text{arith}}$ than the terminal price $S_T$ is. Both averages depend on the same collection of intermediate prices $\{S_{t_1}, \ldots, S_{t_n}\}$ and differ only in whether they are combined by addition or multiplication. In contrast, $S_T$ depends only on the final price, ignoring the intermediate path. The variance reduction factor is approximately $1 - \rho^2$, where $\rho$ is the correlation between the exotic and control payoffs. Since $\rho_{\text{geom-arith}} \gg \rho_{\text{vanilla-arith}}$, the geometric control variate provides far greater variance reduction.

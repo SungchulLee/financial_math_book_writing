@@ -105,19 +105,24 @@ under $\mathbb{Q}$.
 <figure markdown="span">
   ![Girsanov measure change visualization](./image/girsanov_theorem_demo.png){ width="100%" }
   <figcaption>
-    <strong>Figure 1 — Girsanov's theorem visualized on 60 simulated paths
+    <strong>Figure 1 — Girsanov's theorem visualized on 200 simulated paths
     (μ = −1.5, σ = 1, T = 1).</strong>
-    <em>Top-left:</em> Paths under the physical measure ℙ with equal weights; the sample mean
-    (amber dashed) tracks the theoretical drift μt.
-    <em>Top-center:</em> The same paths reweighted by the Radon-Nikodym derivative
-    Z<sub>T</sub> = exp(−θW<sub>T</sub> − ½θ²T) — bright green = high weight,
-    dark red ≈ zero weight, making the measure change explicit.
-    <em>Top-right:</em> Sorted bar chart of relative Z<sub>T</sub> weights; the amber dashed
-    line marks equal weight (Z̄ = 1), confirming 𝔼<sup>ℙ</sup>[Z<sub>T</sub>] ≈ 1 (Novikov condition).
-    <em>Bottom-left/center:</em> Running means under ℙ (drifts at rate μ) vs. the
-    Z<sub>T</sub>-weighted mean under ℚ (collapses to zero), confirming drift removal.
-    <em>Bottom-right:</em> Histogram of Z<sub>T</sub> values — right-skewed lognormal distribution
-    centred near 1, consistent with the martingale property.
+    <em>Top-left:</em> Paths under the physical measure ℙ drawn with equal opacity; the amber
+    dashed line tracks the theoretical drift μt.
+    <em>Top-center:</em> The same paths under ℚ — opacity is proportional to the
+    Radon-Nikodym weight Z<sub>T</sub> = exp(−θW<sub>T</sub> − ½θ²T).
+    High-weight paths (those that drifted upward against μ) appear dark and prominent;
+    low-weight paths fade to near-invisible, making the measure change immediately visible.
+    <em>Top-right:</em> Sorted bar chart of relative Z<sub>T</sub> weights (alpha-coded);
+    the amber dashed line marks equal weight (Z̄ = 1), confirming
+    𝔼<sup>ℙ</sup>[Z<sub>T</sub>] ≈ 1 (Novikov condition).
+    <em>Bottom-left/center:</em> Running means under ℙ (red, drifting at rate μ) vs. the
+    Z<sub>T</sub>-weighted mean under ℚ (blue, collapsing to zero), confirming drift removal.
+    The shaded band shows the 10th–90th percentile range of paths under ℙ, illustrating
+    how the bulk of the distribution shifts downward while the reweighting selects the
+    upward-drifting minority.
+    <em>Bottom-right:</em> Histogram of Z<sub>T</sub> values (200 samples) — the
+    right-skewed lognormal shape centred near 1 is consistent with the martingale property.
   </figcaption>
 </figure>
 
@@ -393,8 +398,10 @@ Girsanov's theorem is indispensable because:
 
 ## Python: Simulating the Measure Change
 
-The following script reproduces Figure 1. It simulates drifted Brownian motion paths under $\mathbb{P}$,
+The following script reproduces Figure 1. It simulates 200 drifted Brownian motion paths under $\mathbb{P}$,
 computes the Radon-Nikodym weights $Z_T$, and visualizes the measure change in six panels.
+In the path panels, opacity encodes the weight: high-$Z_T$ paths appear dark and prominent,
+while low-$Z_T$ paths fade out, making the measure change immediately visible.
 
 **Dependencies:** `numpy`, `matplotlib`
 
@@ -409,13 +416,10 @@ and displays the measure change P → Q in six panels (reproduces Figure 1).
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
-from matplotlib.collections import LineCollection
-from matplotlib.cm import ScalarMappable
-from matplotlib.colors import Normalize
 
 # ── Parameters ────────────────────────────────────────────────────────────────
 RNG      = np.random.default_rng(42)
-N_PATHS  = 20        # number of simulated paths
+N_PATHS  = 200       # number of simulated paths
 N_STEPS  = 200       # discretisation steps
 T        = 1.0       # terminal time
 MU       = -1.5      # drift under P  (negative, as in the Wikipedia figure)
@@ -441,16 +445,15 @@ mean_P = X_P.mean(axis=0)
 mean_Q = (X_P * Z_T[:, None]).sum(axis=0) / Z_T.sum()
 
 # ── Figure layout ─────────────────────────────────────────────────────────────
-DARK_BG  = "#0d0d0d"
-PANEL_BG = "#141414"
-AMBER_C  = "#f5a623"
-BLUE_C   = "#4fb3d4"
-GRID_C   = "#2a2a2a"
+AMBER_C  = "#e08b00"
+BLUE_C   = "#2196b0"
+RED_C    = "#c0392b"
+GRID_C   = "#e5e5e5"
 
-fig = plt.figure(figsize=(16, 10), facecolor=DARK_BG)
+fig = plt.figure(figsize=(16, 10), facecolor="white")
 fig.suptitle(
     "Girsanov's Theorem  ·  Measure Change from  P  to  Q",
-    fontsize=16, color="white", fontfamily="serif", y=0.98
+    fontsize=16, color="#111", fontfamily="serif", y=0.98
 )
 gs = gridspec.GridSpec(2, 3, figure=fig,
                        hspace=0.42, wspace=0.35,
@@ -463,64 +466,57 @@ ax_mean = fig.add_subplot(gs[1, :2])  # running mean P vs Q
 ax_zd   = fig.add_subplot(gs[1, 2])   # Z_T histogram
 
 for ax in [ax_P, ax_Q, ax_wt, ax_mean, ax_zd]:
-    ax.set_facecolor(PANEL_BG)
+    ax.set_facecolor("white")
     for spine in ax.spines.values():
-        spine.set_color("#333")
-    ax.tick_params(colors="#888", labelsize=8)
-    ax.xaxis.label.set_color("#aaa")
-    ax.yaxis.label.set_color("#aaa")
-    ax.title.set_color("white")
-    ax.grid(color=GRID_C, linewidth=0.4, linestyle="--")
+        spine.set_color("#ccc")
+    ax.tick_params(colors="#444", labelsize=8)
+    ax.xaxis.label.set_color("#444")
+    ax.yaxis.label.set_color("#444")
+    ax.title.set_color("#111")
+    ax.grid(color=GRID_C, linewidth=0.5, linestyle="--")
 
-# ── Helper: draw paths coloured by weight ────────────────────────────────────
-def draw_paths(ax, paths, weights, title):
-    cmap = plt.cm.RdYlGn
-    norm = Normalize(vmin=0, vmax=weights.max())
-    for i in range(N_PATHS):
-        pts  = np.column_stack([t_grid, paths[i]])
-        segs = np.stack([pts[:-1], pts[1:]], axis=1)
-        lc   = LineCollection(segs,
-                              colors=[cmap(norm(weights[i]))] * len(segs),
-                              linewidths=0.8, alpha=0.85)
-        ax.add_collection(lc)
-    ax.set_xlim(0, T)
-    ax.set_ylim(paths.min() - 0.1, paths.max() + 0.1)
-    ax.set_title(title, fontsize=10, pad=6)
-    ax.set_xlabel("time t", fontsize=8)
-    sm = ScalarMappable(cmap=cmap, norm=norm)
-    sm.set_array([])
-    cbar = fig.colorbar(sm, ax=ax, fraction=0.04, pad=0.02)
-    cbar.ax.tick_params(labelsize=7, colors="#888")
-    cbar.set_label("Z_T weight", fontsize=7, color="#aaa")
+# ── Panel 1: paths under P — equal alpha, black lines ────────────────────────
+for i in range(N_PATHS):
+    ax_P.plot(t_grid, X_P[i], color="black", lw=0.5, alpha=0.25)
 
-# Panel 1 – Under P (equal weights)
-draw_paths(ax_P, X_P, np.ones(N_PATHS), "Paths under P  (drift mu={})".format(MU))
-ax_P.plot(t_grid, MU * t_grid, color=AMBER_C, lw=2, ls="--",
-          label="E^P[X_t] = {}t".format(MU))
-ax_P.legend(fontsize=7, loc="lower left", framealpha=0.3,
-            labelcolor="white", facecolor=PANEL_BG)
+ax_P.plot(t_grid, MU * t_grid, color=AMBER_C, lw=2.2, ls="--",
+          label="E^P[X_t] = {}t".format(MU), zorder=5)
+ax_P.set_xlim(0, T)
+ax_P.set_ylim(X_P.min() - 0.1, X_P.max() + 0.1)
+ax_P.set_title("Paths under P  (drift mu={})".format(MU), fontsize=10, pad=6)
+ax_P.set_xlabel("time t", fontsize=8)
+ax_P.legend(fontsize=7, loc="lower left", framealpha=0.6)
 
-# Panel 2 – Same paths reweighted by Z_T
-draw_paths(ax_Q, X_P, Z_norm, "Same paths reweighted by Z_T  (view under Q)")
-ax_Q.axhline(0, color=BLUE_C, lw=1.5, ls="--", label="E^Q[X_t] = 0")
-ax_Q.legend(fontsize=7, loc="upper right", framealpha=0.3,
-            labelcolor="white", facecolor=PANEL_BG)
+# ── Panel 2: same paths reweighted by Z_T — alpha ∝ Z_norm ──────────────────
+alpha_vals = Z_norm / Z_norm.max()
+alpha_vals = np.clip(alpha_vals, 0.02, 1.0)
 
-# Panel 3 – Weight bar chart
-sorted_idx  = np.argsort(Z_norm)
-bar_colors  = plt.cm.RdYlGn(Normalize()(Z_norm[sorted_idx]))
+for i in range(N_PATHS):
+    ax_Q.plot(t_grid, X_P[i], color="black", lw=0.5, alpha=float(alpha_vals[i]))
+
+ax_Q.axhline(0, color=BLUE_C, lw=1.8, ls="--", label="E^Q[X_t] = 0", zorder=5)
+ax_Q.set_xlim(0, T)
+ax_Q.set_ylim(X_P.min() - 0.1, X_P.max() + 0.1)
+ax_Q.set_title("Same paths reweighted by Z_T  (view under Q)", fontsize=10, pad=6)
+ax_Q.set_xlabel("time t", fontsize=8)
+ax_Q.legend(fontsize=7, loc="upper right", framealpha=0.6)
+
+# ── Panel 3: weight bar chart ─────────────────────────────────────────────────
+sorted_idx = np.argsort(Z_norm)
+bar_alphas = np.clip(Z_norm[sorted_idx] / Z_norm.max(), 0.08, 1.0)
+bar_colors = [(0.0, 0.0, 0.0, a) for a in bar_alphas]
 ax_wt.bar(np.arange(N_PATHS), Z_norm[sorted_idx],
           color=bar_colors, width=0.9, edgecolor="none")
-ax_wt.axhline(1.0, color=AMBER_C, lw=1, ls="--", label="Equal weight = 1")
+ax_wt.axhline(1.0, color=AMBER_C, lw=1.2, ls="--", label="Equal weight = 1")
 ax_wt.set_title("Radon-Nikodym weights  Z_T / mean(Z_T)", fontsize=10)
 ax_wt.set_xlabel("Path index (sorted)", fontsize=8)
 ax_wt.set_ylabel("Relative weight", fontsize=8)
-ax_wt.legend(fontsize=7, framealpha=0.3, labelcolor="white", facecolor=PANEL_BG)
+ax_wt.legend(fontsize=7, framealpha=0.6)
 
-# Panel 4 – Running mean comparison
-ax_mean.plot(t_grid, MU * t_grid, color="#e8473f", lw=2, ls="--",
+# ── Panel 4: running mean comparison ─────────────────────────────────────────
+ax_mean.plot(t_grid, MU * t_grid, color=RED_C, lw=2, ls="--",
              label="Theoretical E^P[X_t] = {}t".format(MU))
-ax_mean.plot(t_grid, mean_P, color="#e8473f", lw=1.5, alpha=0.7,
+ax_mean.plot(t_grid, mean_P, color=RED_C, lw=1.5, alpha=0.7,
              label="Sample mean under P")
 ax_mean.axhline(0, color=BLUE_C, lw=2, ls="--",
                 label="Theoretical E^Q[X_t] = 0  (drift removed)")
@@ -529,13 +525,12 @@ ax_mean.plot(t_grid, mean_Q, color=BLUE_C, lw=1.5, alpha=0.7,
 ax_mean.fill_between(t_grid,
                      np.percentile(X_P, 10, axis=0),
                      np.percentile(X_P, 90, axis=0),
-                     color="#e8473f", alpha=0.08, label="10-90th pct (P)")
+                     color=RED_C, alpha=0.08, label="10-90th pct (P)")
 ax_mean.set_xlim(0, T)
 ax_mean.set_title("Running mean: P-measure (drift mu) vs Q-measure (drift removed)", fontsize=10)
 ax_mean.set_xlabel("time t", fontsize=9)
 ax_mean.set_ylabel("X_t", fontsize=9)
-ax_mean.legend(fontsize=7.5, loc="lower left", framealpha=0.3,
-               labelcolor="white", facecolor=PANEL_BG, ncol=2)
+ax_mean.legend(fontsize=7.5, loc="lower left", framealpha=0.6, ncol=2)
 
 # Annotation box
 info = (
@@ -544,22 +539,22 @@ info = (
     "W_tilde = W_t + theta*t  is BM under Q"
 ).format(theta)
 ax_mean.text(0.62, 0.97, info, transform=ax_mean.transAxes,
-             fontsize=8, verticalalignment="top", color="#ccc",
+             fontsize=8, verticalalignment="top", color="#333",
              fontfamily="monospace",
-             bbox=dict(boxstyle="round,pad=0.5", facecolor="#1e1e1e",
-                       edgecolor="#444", alpha=0.9))
+             bbox=dict(boxstyle="round,pad=0.5", facecolor="#f5f5f5",
+                       edgecolor="#bbb", alpha=0.9))
 
-# Panel 5 – Z_T histogram
-ax_zd.hist(Z_T, bins=20, color=BLUE_C, edgecolor=DARK_BG, alpha=0.85, density=True)
-ax_zd.axvline(Z_T.mean(), color=AMBER_C, lw=1.5, ls="--",
+# ── Panel 5: Z_T histogram ────────────────────────────────────────────────────
+ax_zd.hist(Z_T, bins=40, color=BLUE_C, edgecolor="white", alpha=0.80, density=True)
+ax_zd.axvline(Z_T.mean(), color=AMBER_C, lw=1.8, ls="--",
               label="Mean Z_T = {:.3f}  (approx 1 by Novikov)".format(Z_T.mean()))
 ax_zd.set_title("Distribution of Z_T  (Radon-Nikodym derivative)", fontsize=9)
 ax_zd.set_xlabel("Z_T", fontsize=8)
 ax_zd.set_ylabel("Density", fontsize=8)
-ax_zd.legend(fontsize=7, framealpha=0.3, labelcolor="white", facecolor=PANEL_BG)
+ax_zd.legend(fontsize=7, framealpha=0.6)
 
 plt.savefig("./image/girsanov_theorem_demo.png", dpi=150,
-            bbox_inches="tight", facecolor=DARK_BG)
+            bbox_inches="tight", facecolor="white")
 plt.show()
 ```
 
@@ -607,3 +602,208 @@ Consider a two-dimensional Brownian motion $(W_t^1, W_t^2)$ and a Girsanov kerne
 
 **Exercise 7.**
 A derivative has payoff $\Phi(S_T) = S_T^2$ and the stock follows GBM with $\mu = 0.10$, $\sigma = 0.20$, $r = 0.03$, $T = 1$. Using the risk-neutral dynamics $dS_t = rS_t\,dt + \sigma S_t\,d\widetilde{W}_t$, compute $\mathbb{E}^{\mathbb{Q}}[S_T^2]$ and hence the price $V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[S_T^2]$. (Hint: find the distribution of $\ln S_T$ under $\mathbb{Q}$ and use the lognormal moment formula.)
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    With $\theta = 0.5$ constant and $T = 1$, the Radon-Nikodym derivative is:
+
+    $$
+    Z_T = \exp\!\left(-\theta W_T - \frac{1}{2}\theta^2 T\right) = \exp\!\left(-0.5\,W_1 - \frac{1}{2}(0.25)(1)\right) = \exp\!\left(-0.5\,W_1 - 0.125\right)
+    $$
+
+    **Novikov condition:** We need
+
+    $$
+    \mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(\frac{1}{2}\int_0^1 \theta^2\,ds\right)\right] = \exp\!\left(\frac{1}{2}(0.25)(1)\right) = e^{0.125} < \infty \quad \checkmark
+    $$
+
+    Since $\theta$ is constant, the Novikov condition holds trivially (the expectation is a finite constant).
+
+    **Shifted Brownian motion:** Under $\mathbb{Q}$ defined by $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_1} = Z_1$, the process
+
+    $$
+    \widetilde{W}_t := W_t + \theta t = W_t + 0.5\,t
+    $$
+
+    is a standard Brownian motion. That is, $\widetilde{W}_t$ has independent increments, $\widetilde{W}_0 = 0$, and $\widetilde{W}_t - \widetilde{W}_s \sim \mathcal{N}(0, t-s)$ under $\mathbb{Q}$.
+
+??? success "Solution to Exercise 2"
+    The SDE is $dX_t = 3\,dt + 2\,dW_t$ with $X_0 = 0$. To remove the drift, we need the Girsanov kernel:
+
+    $$
+    \theta = \frac{\mu}{\sigma} = \frac{3}{2} = 1.5
+    $$
+
+    Under $\mathbb{Q}$ defined by $Z_T = \exp(-1.5\,W_T - \frac{1}{2}(1.5)^2 T)$, the process $\widetilde{W}_t = W_t + 1.5\,t$ is a standard Brownian motion. Substituting $W_t = \widetilde{W}_t - 1.5\,t$:
+
+    $$
+    dX_t = 3\,dt + 2\left(d\widetilde{W}_t - 1.5\,dt\right) = 3\,dt + 2\,d\widetilde{W}_t - 3\,dt = 2\,d\widetilde{W}_t
+    $$
+
+    Under $\mathbb{Q}$, the SDE is $dX_t = 2\,d\widetilde{W}_t$, which has no drift. Since $X_0 = 0$:
+
+    $$
+    X_t = 2\widetilde{W}_t \sim \mathcal{N}(0, 4t)
+    $$
+
+    Under $\mathbb{Q}$, $X_t$ is normally distributed with mean $0$ and variance $4t$.
+
+??? success "Solution to Exercise 3"
+    The market price of risk is:
+
+    $$
+    \theta = \frac{\mu - r}{\sigma} = \frac{0.12 - 0.04}{0.25} = \frac{0.08}{0.25} = 0.32
+    $$
+
+    Under $\mathbb{Q}$, the stock dynamics become $dS_t = rS_t\,dt + \sigma S_t\,d\widetilde{W}_t = 0.04\,S_t\,dt + 0.25\,S_t\,d\widetilde{W}_t$.
+
+    The discounted stock price satisfies:
+
+    $$
+    d(e^{-rt}S_t) = -re^{-rt}S_t\,dt + e^{-rt}\,dS_t
+    $$
+
+    $$
+    = -0.04\,e^{-rt}S_t\,dt + e^{-rt}(0.04\,S_t\,dt + 0.25\,S_t\,d\widetilde{W}_t)
+    $$
+
+    $$
+    = e^{-rt}S_t(-0.04 + 0.04)\,dt + 0.25\,e^{-rt}S_t\,d\widetilde{W}_t
+    $$
+
+    $$
+    = 0.25\,e^{-rt}S_t\,d\widetilde{W}_t
+    $$
+
+    The $dt$ term vanishes, confirming that the discounted stock price $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale.
+
+??? success "Solution to Exercise 4"
+    In the Vasicek model, $dr_t = \kappa(\theta_{\text{lr}} - r_t)\,dt + \sigma\,dW_t$ with $\kappa = 0.3$, $\theta_{\text{lr}} = 0.05$ (long-run mean), $\sigma = 0.02$, and $\lambda = 0.2$.
+
+    The risk-neutral long-run mean is:
+
+    $$
+    \theta^* = \theta_{\text{lr}} - \frac{\lambda\sigma}{\kappa} = 0.05 - \frac{0.2 \times 0.02}{0.3} = 0.05 - \frac{0.004}{0.3} = 0.05 - 0.01\overline{3} \approx 0.0367
+    $$
+
+    When $\lambda > 0$, we have $\theta^* < \theta_{\text{lr}}$ because the correction term $\lambda\sigma/\kappa$ is positive.
+
+    **Economic interpretation:** A positive market price of interest rate risk $\lambda > 0$ means that investors demand compensation for bearing interest rate risk. Under the physical measure $\mathbb{P}$, interest rates are expected to revert to the higher level $\theta_{\text{lr}} = 5\%$. But the risk-neutral measure $\mathbb{Q}$ (used for pricing bonds and interest rate derivatives) incorporates this risk premium by lowering the effective long-run mean to $\theta^* \approx 3.67\%$. In other words, bond prices are priced as if rates revert to a lower equilibrium level, reflecting the fact that investors are willing to accept lower yields on bonds because they value the safety of fixed-income instruments.
+
+??? success "Solution to Exercise 5"
+    Under $\mathbb{Q}$, $\widetilde{W}_t = W_t + \int_0^t \theta_s\,ds$ is a standard Brownian motion by Girsanov's theorem. We verify the two properties for the increment $\widetilde{W}_t - \widetilde{W}_s$ where $0 \leq s < t$.
+
+    **Mean zero:** Since $\widetilde{W}_t$ is a $\mathbb{Q}$-martingale:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\widetilde{W}_t - \widetilde{W}_s \mid \mathcal{F}_s] = \mathbb{E}^{\mathbb{Q}}[\widetilde{W}_t \mid \mathcal{F}_s] - \widetilde{W}_s = \widetilde{W}_s - \widetilde{W}_s = 0
+    $$
+
+    Taking unconditional expectations: $\mathbb{E}^{\mathbb{Q}}[\widetilde{W}_t - \widetilde{W}_s] = 0$.
+
+    **Variance $t - s$:** Consider the process $M_u = \widetilde{W}_u^2 - u$ for $u \geq 0$. Since $\widetilde{W}$ is a Brownian motion under $\mathbb{Q}$, by Itô's lemma:
+
+    $$
+    d(\widetilde{W}_u^2) = 2\widetilde{W}_u\,d\widetilde{W}_u + du
+    $$
+
+    so $\widetilde{W}_u^2 - u$ is a $\mathbb{Q}$-martingale. Therefore:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\widetilde{W}_t^2 - t \mid \mathcal{F}_s] = \widetilde{W}_s^2 - s
+    $$
+
+    Rearranging:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\widetilde{W}_t^2 \mid \mathcal{F}_s] = \widetilde{W}_s^2 + (t - s)
+    $$
+
+    The conditional variance is:
+
+    $$
+    \mathrm{Var}^{\mathbb{Q}}(\widetilde{W}_t - \widetilde{W}_s \mid \mathcal{F}_s) = \mathbb{E}^{\mathbb{Q}}[(\widetilde{W}_t - \widetilde{W}_s)^2 \mid \mathcal{F}_s]
+    $$
+
+    Expanding:
+
+    $$
+    = \mathbb{E}^{\mathbb{Q}}[\widetilde{W}_t^2 - 2\widetilde{W}_t\widetilde{W}_s + \widetilde{W}_s^2 \mid \mathcal{F}_s] = \mathbb{E}^{\mathbb{Q}}[\widetilde{W}_t^2 \mid \mathcal{F}_s] - 2\widetilde{W}_s\mathbb{E}^{\mathbb{Q}}[\widetilde{W}_t \mid \mathcal{F}_s] + \widetilde{W}_s^2
+    $$
+
+    $$
+    = (\widetilde{W}_s^2 + t - s) - 2\widetilde{W}_s^2 + \widetilde{W}_s^2 = t - s
+    $$
+
+    This confirms that $\widetilde{W}_t - \widetilde{W}_s$ has mean zero and variance $t - s$ under $\mathbb{Q}$.
+
+??? success "Solution to Exercise 6"
+    For a two-dimensional Brownian motion $(W_t^1, W_t^2)$ with Girsanov kernel $\boldsymbol{\theta} = (\theta_1, \theta_2)$, the Radon-Nikodym derivative takes the vector form:
+
+    $$
+    Z_T = \exp\!\left(-\sum_{i=1}^{2}\int_0^T \theta_i\,dW_s^i - \frac{1}{2}\sum_{i=1}^{2}\int_0^T \theta_i^2\,ds\right)
+    $$
+
+    For constant kernels, this simplifies to:
+
+    $$
+    Z_T = \exp\!\left(-\theta_1 W_T^1 - \theta_2 W_T^2 - \frac{1}{2}(\theta_1^2 + \theta_2^2)T\right)
+    $$
+
+    The **multivariate Novikov condition** is:
+
+    $$
+    \mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(\frac{1}{2}\int_0^T \|\boldsymbol{\theta}_s\|^2\,ds\right)\right] = \mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(\frac{1}{2}\int_0^T (\theta_1^2 + \theta_2^2)\,ds\right)\right] < \infty
+    $$
+
+    Under $\mathbb{Q}$ defined by $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T} = Z_T$, the shifted processes are:
+
+    $$
+    \widetilde{W}_t^1 := W_t^1 + \int_0^t \theta_1\,ds, \qquad \widetilde{W}_t^2 := W_t^2 + \int_0^t \theta_2\,ds
+    $$
+
+    Each $\widetilde{W}_t^i$ is a standard Brownian motion under $\mathbb{Q}$ by the multivariate Girsanov theorem. To verify independence, we compute the cross-variation:
+
+    $$
+    \langle \widetilde{W}^1, \widetilde{W}^2 \rangle_t = \left\langle W^1 + \int_0^{\cdot} \theta_1\,ds,\; W^2 + \int_0^{\cdot} \theta_2\,ds \right\rangle_t = \langle W^1, W^2 \rangle_t = 0
+    $$
+
+    The cross-variation is zero because $(W_t^1, W_t^2)$ are independent under $\mathbb{P}$ (so $\langle W^1, W^2 \rangle_t = 0$) and the added drift terms have zero quadratic variation. By Lévy's characterization theorem, two continuous martingales with unit quadratic variation and zero cross-variation are independent Brownian motions. Therefore $\widetilde{W}_t^1$ and $\widetilde{W}_t^2$ are independent under $\mathbb{Q}$.
+
+??? success "Solution to Exercise 7"
+    Under $\mathbb{Q}$, the stock follows $dS_t = rS_t\,dt + \sigma S_t\,d\widetilde{W}_t$ with $r = 0.03$, $\sigma = 0.20$, $T = 1$. By Itô's lemma:
+
+    $$
+    \ln S_T = \ln S_0 + \left(r - \frac{\sigma^2}{2}\right)T + \sigma\widetilde{W}_T
+    $$
+
+    so $\ln S_T \sim \mathcal{N}\!\left(\ln S_0 + (r - \frac{\sigma^2}{2})T,\; \sigma^2 T\right)$ under $\mathbb{Q}$.
+
+    Substituting: $r - \frac{\sigma^2}{2} = 0.03 - 0.02 = 0.01$ and $\sigma^2 T = 0.04$.
+
+    For a lognormal random variable $S_T$ with $\ln S_T \sim \mathcal{N}(m, v^2)$, the $n$-th moment is:
+
+    $$
+    \mathbb{E}[S_T^n] = \exp\!\left(nm + \frac{n^2 v^2}{2}\right)
+    $$
+
+    Here $m = \ln S_0 + 0.01$ and $v^2 = 0.04$. For $n = 2$:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[S_T^2] = \exp\!\left(2(\ln S_0 + 0.01) + \frac{4 \times 0.04}{2}\right) = \exp(2\ln S_0 + 0.02 + 0.08)
+    $$
+
+    $$
+    = S_0^2 \exp(0.10)
+    $$
+
+    The price of the derivative is:
+
+    $$
+    V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[S_T^2] = e^{-0.03} \cdot S_0^2 \cdot e^{0.10} = S_0^2 \exp(0.07)
+    $$
+
+    Note that the price depends on $r$ and $\sigma$ but **not** on the physical drift $\mu = 0.10$. This is a direct consequence of Girsanov's theorem: the measure change removes $\mu$ from the pricing formula entirely.

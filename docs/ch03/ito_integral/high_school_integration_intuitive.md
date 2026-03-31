@@ -370,3 +370,204 @@ by evaluating the double integral $\int_0^T \int_0^T s^2 t^2 \min(s,t)\, ds\, dt
 ---
 
 **Exercise 7.** Prove that $\int_0^t B_s \, ds$ has the same distribution as $\int_0^t (t - s) \, dB_s$ by computing the mean and variance of both sides. Why does the representation $\int_0^t B_s\, ds = tB_t - \int_0^t s\, dB_s$ (integration by parts) make this plausible?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **Mean.** By Fubini's theorem and $\mathbb{E}[B_s^2] = s$:
+
+    $$
+    \mathbb{E}\!\left[\int_0^T B_s^2\, ds\right] = \int_0^T \mathbb{E}[B_s^2]\, ds = \int_0^T s\, ds = \frac{T^2}{2}
+    $$
+
+    **Variance.** We need $\mathbb{E}\!\left[\left(\int_0^T B_s^2\, ds\right)^2\right] - \left(\frac{T^2}{2}\right)^2$. Expand the square of the integral using Fubini:
+
+    $$
+    \mathbb{E}\!\left[\left(\int_0^T B_s^2\, ds\right)^2\right] = \int_0^T \int_0^T \mathbb{E}[B_s^2 B_u^2]\, ds\, du
+    $$
+
+    For jointly Gaussian variables with zero mean, $\mathbb{E}[B_s^2 B_u^2] = \mathbb{E}[B_s^2]\mathbb{E}[B_u^2] + 2(\mathbb{E}[B_s B_u])^2 = su + 2(\min(s,u))^2$. This follows from the Isserlis (Wick) theorem: $\mathbb{E}[X^2 Y^2] = (\mathbb{E}[X^2])(\mathbb{E}[Y^2]) + 2(\mathbb{E}[XY])^2$ for zero-mean jointly Gaussian $X, Y$. Therefore:
+
+    $$
+    \mathbb{E}\!\left[\left(\int_0^T B_s^2\, ds\right)^2\right] = \int_0^T \int_0^T su\, ds\, du + 2\int_0^T \int_0^T (\min(s,u))^2\, ds\, du
+    $$
+
+    The first integral is $\left(\int_0^T s\, ds\right)^2 = T^4/4$. For the second, by symmetry:
+
+    $$
+    2\int_0^T \int_0^T (\min(s,u))^2\, ds\, du = 4\int_0^T \int_0^u s^2\, ds\, du = 4\int_0^T \frac{u^3}{3}\, du = \frac{T^4}{3}
+    $$
+
+    So the second moment is $T^4/4 + T^4/3$. The variance is:
+
+    $$
+    \operatorname{Var}\!\left(\int_0^T B_s^2\, ds\right) = \frac{T^4}{4} + \frac{T^4}{3} - \frac{T^4}{4} = \frac{T^4}{3}
+    $$
+
+??? success "Solution to Exercise 2"
+    With $n = 10$, we have $\Delta t = 1/10$ and $\Delta B_k = \pm 1/\sqrt{10}$. The coin sequence $T, H, H, T, T, H, T, H, H, H$ gives increments $-,+,+,-,-,+,-,+,+,+$ (in units of $1/\sqrt{10}$).
+
+    The cumulative Brownian path values at $t_k = k/10$ are:
+
+    | $k$ | $\Delta B_k$ | $B_{t_k}$ |
+    |-----|-------------|-----------|
+    | 0 | | $0$ |
+    | 1 | $-1/\sqrt{10}$ | $-1/\sqrt{10}$ |
+    | 2 | $+1/\sqrt{10}$ | $0$ |
+    | 3 | $+1/\sqrt{10}$ | $1/\sqrt{10}$ |
+    | 4 | $-1/\sqrt{10}$ | $0$ |
+    | 5 | $-1/\sqrt{10}$ | $-1/\sqrt{10}$ |
+    | 6 | $+1/\sqrt{10}$ | $0$ |
+    | 7 | $-1/\sqrt{10}$ | $-1/\sqrt{10}$ |
+    | 8 | $+1/\sqrt{10}$ | $0$ |
+    | 9 | $+1/\sqrt{10}$ | $1/\sqrt{10}$ |
+    | 10 | $+1/\sqrt{10}$ | $2/\sqrt{10}$ |
+
+    The Riemann sum is:
+
+    $$
+    \sum_{k=0}^{9} B_{t_k} \Delta t = \frac{1}{10}\left(0 - \frac{1}{\sqrt{10}} + 0 + \frac{1}{\sqrt{10}} + 0 - \frac{1}{\sqrt{10}} + 0 - \frac{1}{\sqrt{10}} + 0 + \frac{1}{\sqrt{10}}\right)
+    $$
+
+    $$
+    = \frac{1}{10} \cdot \frac{-1}{\sqrt{10}} = \frac{-1}{10\sqrt{10}} \approx -0.0316
+    $$
+
+    The theoretical mean is $\mathbb{E}[\int_0^1 B_s\, ds] = 0$. Our single-path approximation of $-0.0316$ is close to zero, consistent with the theoretical mean.
+
+??? success "Solution to Exercise 3"
+    For the time integral $\int_0^t f(s, B_s)\, ds$, the integrator is $ds$, which is deterministic and smooth (it has bounded variation). For Riemann sums:
+
+    $$
+    \sum_{k} f(t_k^*, B_{t_k^*})(t_{k+1} - t_k)
+    $$
+
+    where $t_k^*$ is any evaluation point in $[t_k, t_{k+1}]$. Since $f(s, B_s(\omega))$ is a continuous function of $s$ for each fixed $\omega$, and the integrator $ds$ has bounded variation, the Riemann-Stieltjes theory guarantees convergence regardless of the evaluation point choice. The difference between evaluations at different points within a subinterval is bounded by the oscillation of $f$ times $\Delta t$, which vanishes as the mesh goes to zero.
+
+    For the stochastic integral $\int_0^t f(s, B_s)\, dB_s$, the integrator is $B_s$, which has infinite variation. The critical difference is that Brownian increments satisfy $(\Delta B_k)^2 \approx \Delta t$, so second-order terms do not vanish. Changing the evaluation point from left to midpoint introduces an additional contribution proportional to $\frac{1}{2}\sum_k f'(\cdot)(\Delta B_k)^2 \approx \frac{1}{2}\int f'(\cdot)\, ds$, which is the Stratonovich correction. The infinite variation of $B_s$ means that the integrand's value at slightly different points within the same subinterval leads to a macroscopic difference in the limit.
+
+??? success "Solution to Exercise 4"
+    We need to compute:
+
+    $$
+    \operatorname{Var}\!\left(\int_0^T s^2 B_s\, ds\right) = \int_0^T \int_0^T s^2 t^2\, \mathbb{E}[B_s B_t]\, ds\, dt = \int_0^T \int_0^T s^2 t^2 \min(s,t)\, ds\, dt
+    $$
+
+    By symmetry, this equals:
+
+    $$
+    2\int_0^T \int_0^t s^2 t^2 \cdot s\, ds\, dt = 2\int_0^T t^2 \int_0^t s^3\, ds\, dt = 2\int_0^T t^2 \cdot \frac{t^4}{4}\, dt = \frac{1}{2}\int_0^T t^6\, dt = \frac{T^7}{14}
+    $$
+
+??? success "Solution to Exercise 5"
+    Since $r_t = r_0 + \sigma B_t$:
+
+    $$
+    \int_0^T r_s\, ds = \int_0^T (r_0 + \sigma B_s)\, ds = r_0 T + \sigma \int_0^T B_s\, ds
+    $$
+
+    The random part is $\sigma \int_0^T B_s\, ds$. Since $\int_0^T B_s\, ds$ is the integral of a Gaussian process against a deterministic measure, it is Gaussian. (More precisely, it is the $L^2$ limit of Riemann sums, each of which is a finite linear combination of Gaussian random variables, and hence Gaussian. The limit of Gaussian random variables in $L^2$ is Gaussian.)
+
+    **Mean:**
+
+    $$
+    \mathbb{E}\!\left[\int_0^T r_s\, ds\right] = r_0 T + \sigma \int_0^T \mathbb{E}[B_s]\, ds = r_0 T
+    $$
+
+    **Variance:** Using the computation from Example 1 in the text (with $T$ replacing 1):
+
+    $$
+    \operatorname{Var}\!\left(\int_0^T B_s\, ds\right) = \int_0^T \int_0^T \min(s,t)\, ds\, dt = \frac{T^3}{3}
+    $$
+
+    Therefore:
+
+    $$
+    \operatorname{Var}\!\left(\int_0^T r_s\, ds\right) = \sigma^2 \cdot \frac{T^3}{3}
+    $$
+
+    In summary, $\int_0^T r_s\, ds \sim \mathcal{N}\!\left(r_0 T,\; \frac{\sigma^2 T^3}{3}\right)$.
+
+??? success "Solution to Exercise 6"
+    **Deterministic part.** Since $f(s) = e^{-\alpha s}$ does not depend on $B_s$:
+
+    $$
+    \int_0^T e^{-\alpha s}\, ds = \left[-\frac{1}{\alpha}e^{-\alpha s}\right]_0^T = \frac{1}{\alpha}(1 - e^{-\alpha T})
+    $$
+
+    This is the same for every Brownian path.
+
+    **Variance of $\int_0^T e^{-\alpha s} B_s\, ds$.** Using Fubini and $\mathbb{E}[B_s B_u] = \min(s,u)$:
+
+    $$
+    \operatorname{Var}\!\left(\int_0^T e^{-\alpha s} B_s\, ds\right) = \int_0^T \int_0^T e^{-\alpha s} e^{-\alpha u} \min(s,u)\, ds\, du
+    $$
+
+    By symmetry:
+
+    $$
+    = 2\int_0^T e^{-\alpha u} \int_0^u e^{-\alpha s} s\, ds\, du
+    $$
+
+    The inner integral $\int_0^u s e^{-\alpha s}\, ds$ is computed by integration by parts:
+
+    $$
+    \int_0^u s e^{-\alpha s}\, ds = \frac{1}{\alpha^2}\left(1 - e^{-\alpha u}(1 + \alpha u)\right)
+    $$
+
+    So the variance is:
+
+    $$
+    \frac{2}{\alpha^2}\int_0^T e^{-\alpha u}\left(1 - e^{-\alpha u}(1 + \alpha u)\right)\, du
+    $$
+
+    $$
+    = \frac{2}{\alpha^2}\left[\int_0^T e^{-\alpha u}\, du - \int_0^T e^{-2\alpha u}\, du - \alpha \int_0^T u e^{-2\alpha u}\, du\right]
+    $$
+
+    Evaluating each integral:
+
+    - $\int_0^T e^{-\alpha u}\, du = \frac{1}{\alpha}(1 - e^{-\alpha T})$
+    - $\int_0^T e^{-2\alpha u}\, du = \frac{1}{2\alpha}(1 - e^{-2\alpha T})$
+    - $\int_0^T u e^{-2\alpha u}\, du = \frac{1}{4\alpha^2}(1 - e^{-2\alpha T}(1 + 2\alpha T))$
+
+    Substituting:
+
+    $$
+    \operatorname{Var} = \frac{2}{\alpha^2}\left[\frac{1}{\alpha}(1 - e^{-\alpha T}) - \frac{1}{2\alpha}(1 - e^{-2\alpha T}) - \frac{1}{4\alpha}(1 - e^{-2\alpha T}(1 + 2\alpha T))\right]
+    $$
+
+    $$
+    = \frac{2}{\alpha^3}\left[1 - e^{-\alpha T} - \frac{3}{4}(1 - e^{-2\alpha T}) + \frac{T\alpha}{2} e^{-2\alpha T}\right]
+    $$
+
+    $$
+    = \frac{2}{\alpha^3}\left[\frac{1}{4} - e^{-\alpha T} + \frac{3}{4}e^{-2\alpha T} + \frac{\alpha T}{2}e^{-2\alpha T}\right]
+    $$
+
+??? success "Solution to Exercise 7"
+    **Mean of both sides.** The mean of $\int_0^t B_s\, ds$ is $\int_0^t \mathbb{E}[B_s]\, ds = 0$. The mean of $\int_0^t (t-s)\, dB_s$ is $0$ by the martingale property of the Ito integral.
+
+    **Variance of $\int_0^t B_s\, ds$.** From the text:
+
+    $$
+    \operatorname{Var}\!\left(\int_0^t B_s\, ds\right) = \int_0^t \int_0^t \min(s,u)\, ds\, du = \frac{t^3}{3}
+    $$
+
+    **Variance of $\int_0^t (t-s)\, dB_s$.** Since $H_s = t - s$ is deterministic, the Ito isometry gives:
+
+    $$
+    \operatorname{Var}\!\left(\int_0^t (t-s)\, dB_s\right) = \int_0^t (t-s)^2\, ds = \left[-\frac{(t-s)^3}{3}\right]_0^t = \frac{t^3}{3}
+    $$
+
+    Both integrals have mean zero and variance $t^3/3$. Moreover, $\int_0^t (t-s)\, dB_s$ is Gaussian (deterministic integrand), and $\int_0^t B_s\, ds$ is also Gaussian (as a continuous linear functional of a Gaussian process). Since a Gaussian distribution is determined by its mean and variance, the two have the same distribution.
+
+    **Why integration by parts makes this plausible.** From the identity $\int_0^t B_s\, ds = tB_t - \int_0^t s\, dB_s$, we can verify:
+
+    $$
+    tB_t - \int_0^t s\, dB_s = t\int_0^t dB_s - \int_0^t s\, dB_s = \int_0^t (t - s)\, dB_s
+    $$
+
+    using $B_t = \int_0^t dB_s$ and linearity of the Ito integral. This gives the exact identity $\int_0^t B_s\, ds = \int_0^t (t-s)\, dB_s$, which is stronger than merely having the same distribution — the two random variables are equal almost surely.

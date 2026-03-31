@@ -305,3 +305,194 @@ $$
 $$
 
 apply Gronwall's inequality to conclude that $\varphi(t) = 0$ for all $t \in [0,T]$. Then explain why this proves pathwise uniqueness, not merely uniqueness in law.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The coefficients are $b(t,x) = 3 + 2x$ and $\sigma(t,x) = 1 - x$. For any $x, y \in \mathbb{R}$:
+
+    $$
+    |b(t,x) - b(t,y)| = |2x - 2y| = 2|x - y|
+    $$
+
+    $$
+    |\sigma(t,x) - \sigma(t,y)| = |(1-x) - (1-y)| = |x - y|
+    $$
+
+    Therefore:
+
+    $$
+    |b(t,x) - b(t,y)| + |\sigma(t,x) - \sigma(t,y)| = 2|x-y| + |x-y| = 3|x-y|
+    $$
+
+    The global Lipschitz condition is satisfied with Lipschitz constant $K = 3$.
+
+??? success "Solution to Exercise 2"
+    **(a)** $\sigma(x) = \sin(x)$. By the mean value theorem, $|\sin(x) - \sin(y)| \leq |x - y|$ for all $x, y \in \mathbb{R}$, since $|\cos(\xi)| \leq 1$ for all $\xi$. So $\sigma$ is globally Lipschitz with $K = 1$.
+
+    **(b)** $\sigma(x) = |x|^{2/3}$. This is **not** globally Lipschitz. Near the origin, consider $x > 0$ and $y = 0$:
+
+    $$
+    \frac{|x^{2/3} - 0|}{|x - 0|} = x^{-1/3} \to +\infty \quad \text{as } x \to 0^+
+    $$
+
+    No finite constant $K$ can bound the ratio uniformly.
+
+    **(c)** $\sigma(x) = \dfrac{x}{1 + |x|}$. For any $x, y \in \mathbb{R}$, write $f(x) = x/(1+|x|)$. Since $f'(x) = 1/(1+|x|)^2$ for $x \neq 0$ and $|f'(x)| \leq 1$ everywhere, the mean value theorem gives $|f(x) - f(y)| \leq |x - y|$. So $\sigma$ is globally Lipschitz with $K = 1$.
+
+    **(d)** $\sigma(x) = x^2$. This is **not** globally Lipschitz. For $y = 0$:
+
+    $$
+    \frac{|x^2|}{|x|} = |x| \to +\infty \quad \text{as } |x| \to \infty
+    $$
+
+    The ratio grows without bound, so no finite Lipschitz constant exists.
+
+??? success "Solution to Exercise 3"
+    **Locally Lipschitz:** For any $R > 0$ and $|x|, |y| \leq R$:
+
+    $$
+    |b(x) - b(y)| = |{-x^3 + y^3}| = |x - y| \cdot |x^2 + xy + y^2| \leq |x-y| \cdot 3R^2
+    $$
+
+    so $b$ is Lipschitz on the ball of radius $R$ with constant $K_R = 3R^2$.
+
+    **Not globally Lipschitz:** Taking $y = 0$, the ratio $|b(x) - b(0)|/|x| = x^2 \to \infty$ as $|x| \to \infty$, so no single $K$ works for all $x \in \mathbb{R}$.
+
+    **Linear growth fails:** We need $|b(x)|^2 + |\sigma(x)|^2 \leq K^2(1 + |x|^2)$. Since $|b(x)|^2 = x^6$ and $|\sigma(x)|^2 = 1$:
+
+    $$
+    x^6 + 1 \leq K^2(1 + x^2)
+    $$
+
+    is impossible for large $|x|$, since the left side grows as $|x|^6$ while the right side grows as $|x|^2$.
+
+    **Implication:** Despite the failure of linear growth, the drift $b(x) = -x^3$ is dissipative (it pushes the solution toward the origin for large $|x|$). Local Lipschitz guarantees a unique local solution, and dissipativity prevents explosion. The solution to $dX_t = -X_t^3\,dt + dW_t$ exists globally and is unique, but this cannot be concluded from the standard existence-uniqueness theorem — a Lyapunov function argument is needed instead.
+
+??? success "Solution to Exercise 4"
+    Let $b$ and $\sigma$ satisfy the global Lipschitz condition. For any $t \in [0,T]$ and $x \in \mathbb{R}^d$, apply the Lipschitz bound with $y = 0$:
+
+    $$
+    |b(t,x) - b(t,0)| + |\sigma(t,x) - \sigma(t,0)| \leq K|x - 0| = K|x|
+    $$
+
+    By the triangle inequality:
+
+    $$
+    |b(t,x)| \leq |b(t,0)| + |b(t,x) - b(t,0)| \leq |b(t,0)| + K|x|
+    $$
+
+    $$
+    |\sigma(t,x)| \leq |\sigma(t,0)| + |\sigma(t,x) - \sigma(t,0)| \leq |\sigma(t,0)| + K|x|
+    $$
+
+    Adding these two inequalities:
+
+    $$
+    |b(t,x)| + |\sigma(t,x)| \leq \bigl(|b(t,0)| + |\sigma(t,0)|\bigr) + 2K|x| \leq M + 2K|x|
+    $$
+
+    where $M = \sup_{t \in [0,T]}(|b(t,0)| + |\sigma(t,0)|)$. To get the stated form, note that $M \leq (M + K)$ and $2K|x| \leq (M+K) \cdot 2|x|$. More directly, since $1 + |x| \geq 1$ and $1 + |x| \geq |x|$:
+
+    $$
+    M + 2K|x| \leq M(1 + |x|) + 2K(1+|x|) = (M + 2K)(1 + |x|)
+    $$
+
+    A tighter bound matching the stated form uses $|x| \leq 1 + |x|$ and $1 \leq 1 + |x|$:
+
+    $$
+    |b(t,x)| + |\sigma(t,x)| \leq M \cdot 1 + K|x| + K|x| \leq M(1+|x|) + K(1+|x|) = (M+K)(1+|x|)
+    $$
+
+    This holds because $|b(t,x)| \leq |b(t,0)| + K|x| \leq M + K|x|$ and similarly for $\sigma$, and the Lipschitz bound gives $K|x|$ for each separately (not $2K|x|$ when combined). Specifically:
+
+    $$
+    |b(t,x)| + |\sigma(t,x)| \leq M + K|x| \leq (M + K)(1 + |x|)
+    $$
+
+    where the last step uses $M \leq (M+K)$ and $K|x| \leq (M+K)|x|$.
+
+??? success "Solution to Exercise 5"
+    Take $\rho(u) = u^\alpha$ for $\alpha \in (0,1)$. The Yamada--Watanabe integral becomes:
+
+    $$
+    \int_0^\epsilon \frac{du}{\rho^2(u)} = \int_0^\epsilon u^{-2\alpha}\,du
+    $$
+
+    The integrand $u^{-2\alpha}$ is integrable near $0$ if and only if $-2\alpha > -1$, i.e., $\alpha < 1/2$. Conversely, the integral diverges if and only if $-2\alpha \leq -1$, i.e., $\alpha \geq 1/2$. Explicitly:
+
+    - If $2\alpha < 1$ (i.e., $\alpha < 1/2$):
+
+    $$
+    \int_0^\epsilon u^{-2\alpha}\,du = \frac{\epsilon^{1-2\alpha}}{1 - 2\alpha} < \infty
+    $$
+
+    - If $2\alpha = 1$ (i.e., $\alpha = 1/2$):
+
+    $$
+    \int_0^\epsilon u^{-1}\,du = \ln\epsilon - \ln 0 = +\infty
+    $$
+
+    - If $2\alpha > 1$ (i.e., $\alpha > 1/2$):
+
+    $$
+    \int_0^\epsilon u^{-2\alpha}\,du = \frac{u^{1-2\alpha}}{1-2\alpha}\Bigg|_0^\epsilon = +\infty
+    $$
+
+    since $1 - 2\alpha < 0$ and $u^{1-2\alpha} \to +\infty$ as $u \to 0^+$.
+
+    Therefore the Yamada--Watanabe condition holds if and only if $\alpha \geq 1/2$.
+
+    When $\alpha < 1/2$, the integral converges, so the Yamada--Watanabe theorem does not apply. Pathwise uniqueness may fail in this regime; indeed, for $dX_t = |X_t|^\alpha\,dW_t$ with $\alpha < 1/2$ and $X_0 = 0$, pathwise uniqueness is known to fail.
+
+??? success "Solution to Exercise 6"
+    The Vasicek model has $b(t,x) = \kappa(\theta - x) = \kappa\theta - \kappa x$ and $\sigma(t,x) = \sigma$ (constant).
+
+    **Lipschitz condition:** For any $x, y \in \mathbb{R}$:
+
+    $$
+    |b(t,x) - b(t,y)| = |\kappa\theta - \kappa x - \kappa\theta + \kappa y| = \kappa|x - y|
+    $$
+
+    $$
+    |\sigma(t,x) - \sigma(t,y)| = |\sigma - \sigma| = 0
+    $$
+
+    So the Lipschitz constant is $K = \kappa$.
+
+    **Linear growth condition:** We have $|b(t,0)| = \kappa\theta$ and $|\sigma(t,0)| = \sigma$, so $M = \kappa\theta + \sigma$. By the result of Exercise 4:
+
+    $$
+    |b(t,x)| + |\sigma(t,x)| \leq (M + K)(1 + |x|) = (\kappa\theta + \sigma + \kappa)(1 + |x|)
+    $$
+
+    confirming linear growth.
+
+    **Conclusion from the main theorem:** Since the coefficients are globally Lipschitz and satisfy linear growth, the main existence and uniqueness theorem guarantees that for any initial condition $X_0 = x_0$, there exists a unique strong solution $X_t \in C([0,T], \mathbb{R})$ a.s., with the moment bound:
+
+    $$
+    \mathbb{E}\!\left[\sup_{0 \leq t \leq T}|X_t|^2\right] \leq C(1 + |x_0|^2)e^{CT}
+    $$
+
+??? success "Solution to Exercise 7"
+    **Applying Gronwall's inequality:** The integral form of Gronwall's inequality states: if $\varphi : [0,T] \to [0,\infty)$ is a continuous function satisfying
+
+    $$
+    \varphi(t) \leq \alpha + \beta \int_0^t \varphi(s)\,ds
+    $$
+
+    for constants $\alpha \geq 0$ and $\beta > 0$, then $\varphi(t) \leq \alpha e^{\beta t}$ for all $t \in [0,T]$.
+
+    In our case, $\alpha = 0$ and $\beta = C$, so:
+
+    $$
+    \varphi(t) \leq 0 \cdot e^{Ct} = 0
+    $$
+
+    Since $\varphi(t) = \mathbb{E}[\sup_{s \leq t}|X_s - Y_s|^2] \geq 0$ by definition, we conclude $\varphi(t) = 0$ for all $t \in [0,T]$.
+
+    **Pathwise uniqueness, not merely uniqueness in law:** The conclusion $\mathbb{E}[\sup_{s \leq t}|X_s - Y_s|^2] = 0$ means that $\sup_{s \leq t}|X_s - Y_s|^2 = 0$ a.s. for each $t$. Taking $t = T$ gives $X_s = Y_s$ for all $s \in [0,T]$ a.s. (the sup over a compact interval of a continuous function being zero forces pointwise equality everywhere).
+
+    This is pathwise uniqueness because $X$ and $Y$ are defined on the **same** probability space with the **same** Brownian motion $W_t$, and we proved $X_t(\omega) = Y_t(\omega)$ for a.e. $\omega$. Uniqueness in law would only assert $\mathrm{Law}(X) = \mathrm{Law}(Y)$, which is a weaker statement — two processes can have the same distribution while taking different values on a common probability space.

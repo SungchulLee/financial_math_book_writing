@@ -246,3 +246,110 @@ The Greeks under the Merton jump-diffusion model inherit the series structure of
 ---
 
 **Exercise 5.** The Merton theta is generally more negative than the Black-Scholes theta. Explain this using the theta-gamma relationship: in Black-Scholes, $\Theta + \frac{1}{2}\sigma^2 S^2\Gamma + rS\Delta - rV = 0$. How does the additional jump term modify this relationship in the Merton model?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The ATM Black-Scholes delta for a call is approximately $\Delta_{\text{BS}}^{\text{ATM}} \approx N(d_1)$ where, for ATM options ($S_0 = K$), $d_1 \approx \frac{\sigma\sqrt{T}}{2} + \frac{r}{\sigma}\sqrt{T}$. For short maturities, the dominant term is $d_1 \approx \sigma\sqrt{T}/2$.
+
+    The key relationship is that increasing effective volatility decreases the ATM delta. Under Black-Scholes with $\sigma = 0.20$ and $T = 0.25$:
+
+    $$
+    d_1 \approx \frac{0.20 \times 0.5}{2} + \frac{0.05}{0.20}\times 0.5 = 0.05 + 0.125 = 0.175
+    $$
+
+    $$
+    \Delta_{\text{BS}} = N(0.175) \approx 0.569
+    $$
+
+    Under the Merton model, the effective volatility is $\sigma_{\text{eff}} = 0.30$. Replacing $\sigma$ by $\sigma_{\text{eff}}$:
+
+    $$
+    d_1 \approx \frac{0.30 \times 0.5}{2} + \frac{0.05}{0.30}\times 0.5 = 0.075 + 0.0833 = 0.158
+    $$
+
+    $$
+    \Delta_{\text{Merton}} \approx N(0.158) \approx 0.563
+    $$
+
+    The reduction is from approximately 0.569 to 0.563, about a 1% decrease. The actual Merton delta is computed as a Poisson-weighted average of Black-Scholes deltas at different volatilities $\sigma_n$, which spreads the probability mass more widely, further reducing the ATM sensitivity. The worked example in the text shows a more substantial reduction (from 0.554 to 0.518) because the full series average places weight on terms with even higher volatilities, amplifying the effect.
+
+??? success "Solution to Exercise 2"
+    **(a)** Taylor expand $V(SY)$ around $S$ with $SY = S + S(Y-1)$:
+
+    $$
+    V(SY) = V(S) + V'(S) \cdot S(Y-1) + \frac{1}{2}V''(S) \cdot S^2(Y-1)^2 + O((Y-1)^3)
+    $$
+
+    The hedging error is:
+
+    $$
+    \Delta\Pi = V(SY) - V(S) - \Delta_t S(Y-1)
+    $$
+
+    With $\Delta_t = V'(S) = \partial V/\partial S$:
+
+    $$
+    \Delta\Pi = V'(S) \cdot S(Y-1) + \frac{1}{2}V''(S) \cdot S^2(Y-1)^2 - V'(S) \cdot S(Y-1) + O((Y-1)^3)
+    $$
+
+    $$
+    = \frac{1}{2}V''(S) \cdot S^2(Y-1)^2 + O((Y-1)^3) = \frac{1}{2}\Gamma S^2(Y-1)^2 + O((Y-1)^3)
+    $$
+
+    **(b)** With $S = 100$, $\Gamma = 0.025$, $Y = 0.85$ (so $Y - 1 = -0.15$):
+
+    $$
+    \Delta\Pi \approx \frac{1}{2}(0.025)(100^2)(0.15)^2 = \frac{1}{2}(0.025)(10000)(0.0225) = \frac{1}{2}(5.625) = 2.8125
+    $$
+
+    The approximate hedging loss from the 15% downward jump is about \$2.81. This loss is always positive (regardless of jump direction) because it depends on $(Y-1)^2$, reflecting the convexity of the option value function.
+
+??? success "Solution to Exercise 3"
+    - **$\mathcal{V}_\sigma$ (diffusion vega):** Positive for ATM calls. Increasing the diffusion volatility increases the option value through the standard Black-Scholes mechanism. This dominates for **long-maturity** options where the diffusion component contributes most of the total variance.
+
+    - **$\mathcal{V}_\lambda$ (jump intensity vega):** Positive for ATM calls. More frequent jumps increase uncertainty, raising option values through higher effective volatility. This is most important for **short-maturity** options where jump effects dominate.
+
+    - **$\mathcal{V}_{\mu_J}$ (jump mean vega):** Negative for ATM calls (when $\mu_J < 0$). Making $\mu_J$ more negative shifts the return distribution leftward, which decreases call values (lower probability of ending in-the-money) and increases put values. The sign can reverse for deep OTM calls.
+
+    - **$\mathcal{V}_{\sigma_J}$ (jump volatility vega):** Positive for ATM calls. Larger jump size dispersion widens the distribution, increasing the option value through convexity. This is most relevant for **short-maturity** options.
+
+    For long-maturity options, $\mathcal{V}_\sigma$ dominates because the jump contribution to total variance becomes relatively smaller (jumps scale as $\lambda T$ while diffusion scales as $\sigma^2 T$, but the smile effects from jumps decay as $1/\sqrt{T}$). For short-maturity options, $\mathcal{V}_\lambda$ and $\mathcal{V}_{\sigma_J}$ become relatively more important because jumps dominate the smile shape.
+
+??? success "Solution to Exercise 4"
+    **(a) Using OTM puts to hedge jump risk:** Buy OTM puts at strikes below the current stock price (e.g., $K = 0.85 S_0$). These puts increase in value during large downward jumps, offsetting the loss on the short call from the jump-induced hedging error. The cost is the premium paid for the puts. The strike and quantity are chosen based on the expected jump size and intensity.
+
+    **(b) Delta-gamma hedging with a second option:** Choose a second option (e.g., a call at a different strike or maturity) and hold quantities $h_1$ (stock) and $h_2$ (second option) such that:
+
+    $$
+    h_1 + h_2\Delta_2 = \Delta_{\text{target}}, \qquad h_2\Gamma_2 = \Gamma_{\text{target}}
+    $$
+
+    By matching both delta and gamma, the portfolio is insensitive to both first-order and second-order price changes. This reduces the hedging error at moderate jumps from $O((Y-1)^2)$ to $O((Y-1)^3)$.
+
+    **(c) Why perfect replication is impossible:** The market is incomplete because there are two independent risk sources ($W_t$ and $N_t$) but only one traded asset (plus the bond). No dynamic trading strategy in the stock alone can replicate the payoff state-by-state across all possible jump outcomes. Even with a second option, the hedge is approximate because the jump size $Y$ is random and continuous-valued, requiring infinitely many instruments to span all possible outcomes. The residual risk is the unhedgeable jump component that requires risk premia or diversification.
+
+??? success "Solution to Exercise 5"
+    In the Black-Scholes model, the option price satisfies the PDE:
+
+    $$
+    \Theta_{\text{BS}} + \frac{1}{2}\sigma^2 S^2\Gamma_{\text{BS}} + rS\Delta_{\text{BS}} - rV_{\text{BS}} = 0
+    $$
+
+    This means $\Theta_{\text{BS}} = rV_{\text{BS}} - rS\Delta_{\text{BS}} - \frac{1}{2}\sigma^2 S^2\Gamma_{\text{BS}}$.
+
+    In the Merton model, the PIDE adds the jump integral term:
+
+    $$
+    \Theta_{\text{Merton}} + \frac{1}{2}\sigma^2 S^2\Gamma_{\text{Merton}} + (r - \lambda\bar{k})S\Delta_{\text{Merton}} - (r+\lambda)V_{\text{Merton}} + \lambda\int_0^{\infty}V(t, Sy)g(y)\,dy = 0
+    $$
+
+    Solving for theta:
+
+    $$
+    \Theta_{\text{Merton}} = (r+\lambda)V_{\text{Merton}} - (r - \lambda\bar{k})S\Delta_{\text{Merton}} - \frac{1}{2}\sigma^2 S^2\Gamma_{\text{Merton}} - \lambda\int_0^{\infty}V(t, Sy)g(y)\,dy
+    $$
+
+    Compared to Black-Scholes, the Merton theta has additional terms: $+\lambda V$ from the increased discounting (options lose value faster because jumps can occur), $+\lambda\bar{k}S\Delta$ from the drift adjustment, and $-\lambda\int V(Sy)g(y)\,dy$ from the expected jump payoff. For ATM calls, the net effect of these additional terms is to make $\Theta_{\text{Merton}}$ more negative than $\Theta_{\text{BS}}$, because the jump component adds time value that decays faster as the probability of beneficial jumps diminishes with shorter remaining time.

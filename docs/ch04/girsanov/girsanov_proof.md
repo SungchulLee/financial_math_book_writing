@@ -176,15 +176,42 @@ This matches the characteristic function of $\mathcal{N}(0, t)$, confirming that
 
 ## Key Insight: The Cancellation Mechanism
 
-The proof's elegance lies in a remarkable **cancellation**:
+The proof's elegance lies in a concrete $dt$-cancellation that occurs inside the Itô product rule for $\widetilde{W}_t Z_t$.
+
+Recall the two SDEs in play:
 
 $$
-Z_T \cdot \text{(drift from measure change)} = \text{(drift from } \theta \text{ term)}
+d\widetilde{W}_t = dW_t + \theta_t\,dt, \qquad dZ_t = -Z_t\theta_t\,dW_t
 $$
 
-These two sources of drift, coming from different places, exactly cancel when we change measures. This is not coincidental—it's built into the definition of $Z_t$.
+Itô's product rule gives:
 
-**Intuition:** The exponential martingale $Z_t$ is precisely constructed so that reweighting by $Z_T$ removes the drift $\theta$ from the Brownian motion. This is why Girsanov's theorem works so elegantly in practice.
+$$
+d(\widetilde{W}_t Z_t)
+= Z_t\,d\widetilde{W}_t + \widetilde{W}_t\,dZ_t + d\langle \widetilde{W}, Z \rangle_t
+$$
+
+Expanding each term:
+
+| Term | Expands to | $dt$ part | $dW_t$ part |
+|------|-----------|-----------|-------------|
+| $Z_t\,d\widetilde{W}_t$ | $Z_t\,dW_t + Z_t\theta_t\,dt$ | $+Z_t\theta_t\,dt$ | $Z_t\,dW_t$ |
+| $\widetilde{W}_t\,dZ_t$ | $-\widetilde{W}_t Z_t\theta_t\,dW_t$ | $0$ | $-\widetilde{W}_t Z_t\theta_t\,dW_t$ |
+| $d\langle \widetilde{W}, Z \rangle_t$ | $(dW_t)(-Z_t\theta_t\,dW_t) = -Z_t\theta_t\,dt$ | $-Z_t\theta_t\,dt$ | $0$ |
+
+Summing the $dt$ column: $+Z_t\theta_t\,dt - Z_t\theta_t\,dt = 0$.
+
+The two $dt$ contributions are:
+- **$+Z_t\theta_t\,dt$** comes from the drift $\theta_t\,dt$ baked into $\widetilde{W}_t = W_t + \int\theta\,ds$
+- **$-Z_t\theta_t\,dt$** comes from the cross-variation $d\langle \widetilde{W}, Z\rangle_t$, which is non-zero precisely because $Z_t$ was constructed with the $-\theta_t\,dW_t$ term
+
+These two cancel to give:
+
+$$
+d(\widetilde{W}_t Z_t) = \bigl(Z_t - \widetilde{W}_t Z_t \theta_t\bigr)\,dW_t
+$$
+
+No $dt$ term survives, so $\widetilde{W}_t Z_t$ is a $\mathbb{P}$-martingale, and $\widetilde{W}_t$ is a $\mathbb{Q}$-martingale. This cancellation is not coincidental — $Z_t$ is defined by $dZ_t = -Z_t\theta_t\,dW_t$ precisely so that its cross-variation with $\widetilde{W}_t$ kills the drift $\theta_t\,dt$ term.
 
 ---
 
@@ -240,3 +267,214 @@ Suppose the Novikov condition fails, meaning $\mathbb{E}^{\mathbb{P}}[\exp(\frac
 
 **Exercise 7.**
 Verify the characteristic function computation in Step 6: show that $\mathbb{E}^{\mathbb{Q}}[e^{i\lambda \widetilde{W}_t}] = e^{-\lambda^2 t / 2}$ for constant $\theta$. Start from the definition $\mathbb{E}^{\mathbb{Q}}[e^{i\lambda \widetilde{W}_t}] = \mathbb{E}^{\mathbb{P}}[e^{i\lambda \widetilde{W}_t} Z_T]$ and use the fact that $\widetilde{W}_t = W_t + \theta t$ and $Z_T = \exp(-\theta W_T - \frac{1}{2}\theta^2 T)$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Let $\theta$ be constant and $Z_t = \exp(-\theta W_t - \frac{1}{2}\theta^2 t)$. Write $Z_t = e^{f(W_t, t)}$ where $f(x, t) = -\theta x - \frac{1}{2}\theta^2 t$.
+
+    By Itô's lemma applied to $Z_t = e^{f(W_t, t)}$:
+
+    $$
+    dZ_t = \frac{\partial Z_t}{\partial t}\,dt + \frac{\partial Z_t}{\partial W_t}\,dW_t + \frac{1}{2}\frac{\partial^2 Z_t}{\partial W_t^2}\,(dW_t)^2
+    $$
+
+    Computing the partial derivatives:
+
+    $$
+    \frac{\partial Z_t}{\partial t} = -\frac{1}{2}\theta^2 Z_t, \qquad \frac{\partial Z_t}{\partial W_t} = -\theta Z_t, \qquad \frac{\partial^2 Z_t}{\partial W_t^2} = \theta^2 Z_t
+    $$
+
+    Substituting and using $(dW_t)^2 = dt$:
+
+    $$
+    dZ_t = -\frac{1}{2}\theta^2 Z_t\,dt + (-\theta Z_t)\,dW_t + \frac{1}{2}\theta^2 Z_t\,dt
+    $$
+
+    $$
+    = -\theta Z_t\,dW_t + \left(-\frac{1}{2}\theta^2 + \frac{1}{2}\theta^2\right)Z_t\,dt
+    $$
+
+    $$
+    = -\theta Z_t\,dW_t
+    $$
+
+    The $dt$ terms cancel exactly, leaving $dZ_t = -\theta Z_t\,dW_t$.
+
+    The absence of a $dt$ term means $Z_t$ has no drift, which is precisely the defining property of a local martingale. A process whose stochastic differential contains only $dW_t$ terms and no $dt$ terms is a local martingale because its conditional expectation satisfies $\mathbb{E}[Z_{t+h} - Z_t | \mathcal{F}_t] \approx 0$ (the Itô integral has zero expectation). The Novikov condition then promotes this local martingale to a true martingale.
+
+??? success "Solution to Exercise 2"
+    For constant $\theta$, the exponent is $X_t = -\theta W_t - \frac{1}{2}\theta^2 t$. Since $W_t \sim \mathcal{N}(0, t)$ under $\mathbb{P}$:
+
+    $$
+    -\theta W_t \sim \mathcal{N}(0, \theta^2 t)
+    $$
+
+    Therefore:
+
+    $$
+    X_t = -\theta W_t - \frac{1}{2}\theta^2 t \sim \mathcal{N}\!\left(-\frac{1}{2}\theta^2 t,\; \theta^2 t\right)
+    $$
+
+    with mean $\mu_X = -\frac{1}{2}\theta^2 t$ and variance $\sigma_X^2 = \theta^2 t$.
+
+    For a Gaussian random variable $Y \sim \mathcal{N}(\mu, \sigma^2)$, the moment generating function gives:
+
+    $$
+    \mathbb{E}[e^Y] = \exp\!\left(\mu + \frac{\sigma^2}{2}\right)
+    $$
+
+    Applying this to $Z_t = e^{X_t}$:
+
+    $$
+    \mathbb{E}^{\mathbb{P}}[Z_t] = \exp\!\left(-\frac{1}{2}\theta^2 t + \frac{\theta^2 t}{2}\right) = \exp(0) = 1
+    $$
+
+    This holds for all $t \geq 0$, confirming the unit expectation property of the exponential martingale.
+
+??? success "Solution to Exercise 3"
+    The change-of-measure formula states:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[X_t | \mathcal{F}_s] = \frac{\mathbb{E}^{\mathbb{P}}[X_t Z_T | \mathcal{F}_s]}{Z_s}
+    $$
+
+    The denominator is $Z_s$ rather than $Z_T$ because of the **tower property** combined with the **martingale property** of $Z_t$.
+
+    Since $Z_t$ is a $\mathbb{P}$-martingale, we have $\mathbb{E}^{\mathbb{P}}[Z_T | \mathcal{F}_s] = Z_s$. This is the key property that allows us to replace $Z_T$ by $Z_s$ in the denominator. Formally, the derivation proceeds as follows. For any $A \in \mathcal{F}_s$:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\mathbf{1}_A X_t] = \mathbb{E}^{\mathbb{P}}[\mathbf{1}_A X_t Z_T]
+    $$
+
+    We want to express $\mathbb{E}^{\mathbb{Q}}[X_t | \mathcal{F}_s]$ in terms of a $\mathbb{P}$-conditional expectation. The abstract Bayes formula for conditional expectations under a change of measure gives:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[X_t | \mathcal{F}_s] = \frac{\mathbb{E}^{\mathbb{P}}[X_t Z_T | \mathcal{F}_s]}{\mathbb{E}^{\mathbb{P}}[Z_T | \mathcal{F}_s]} = \frac{\mathbb{E}^{\mathbb{P}}[X_t Z_T | \mathcal{F}_s]}{Z_s}
+    $$
+
+    The final equality uses precisely the martingale property $\mathbb{E}^{\mathbb{P}}[Z_T | \mathcal{F}_s] = Z_s$. Without this property, the formula would not simplify, and the denominator would remain as the conditional expectation of $Z_T$, which would depend on the specific event and not factor out cleanly.
+
+??? success "Solution to Exercise 4"
+    Lévy's characterization requires **both** conditions:
+
+    1. **Continuity:** The process must have continuous sample paths.
+    2. **Unit quadratic variation:** $\langle M \rangle_t = t$.
+
+    Both are necessary because:
+
+    - A continuous martingale can have quadratic variation different from $t$. In that case, it is a time-changed Brownian motion but not a standard Brownian motion.
+    - A process with $\langle M \rangle_t = t$ that is not continuous could be a jump process.
+
+    **Example of a continuous martingale that is not Brownian:** Let $B_t$ be a standard Brownian motion and define $M_t = \sigma B_t$ for some constant $\sigma \neq 1$. Then $M_t$ is a continuous martingale (since $B_t$ is), but its quadratic variation is:
+
+    $$
+    \langle M \rangle_t = \sigma^2 \langle B \rangle_t = \sigma^2 t \neq t
+    $$
+
+    So $M_t$ is not a Brownian motion. It is a scaled Brownian motion with the wrong volatility.
+
+    Another example: let $M_t = B_{t^2}$ (Brownian motion evaluated at $t^2$). This is a continuous martingale (in a suitably defined filtration), but $\langle M \rangle_t = t^2 \neq t$, so it is not a standard Brownian motion. It can, however, be represented as a time-changed Brownian motion.
+
+??? success "Solution to Exercise 5"
+    The process $\widetilde{W}_t = W_t + \int_0^t \theta_s\,ds$ is the sum of a Brownian motion and a finite-variation process.
+
+    **Quadratic variation of the integral term:** Let $A_t = \int_0^t \theta_s\,ds$. This is a process of **bounded (finite) variation** on $[0, T]$ because, for any partition $0 = t_0 < t_1 < \cdots < t_n = T$:
+
+    $$
+    \sum_{k=0}^{n-1} |A_{t_{k+1}} - A_{t_k}| = \sum_{k=0}^{n-1} \left|\int_{t_k}^{t_{k+1}} \theta_s\,ds\right| \leq \int_0^T |\theta_s|\,ds < \infty
+    $$
+
+    A fundamental property of quadratic variation is that **any finite-variation process has zero quadratic variation**. This is because:
+
+    $$
+    \sum_{k=0}^{n-1} (A_{t_{k+1}} - A_{t_k})^2 \leq \max_k |A_{t_{k+1}} - A_{t_k}| \cdot \sum_{k=0}^{n-1} |A_{t_{k+1}} - A_{t_k}|
+    $$
+
+    As the partition mesh goes to zero, the maximum increment $\max_k |A_{t_{k+1}} - A_{t_k}| \to 0$ (by continuity of $A$), while the total variation sum remains bounded. Therefore the quadratic variation sum converges to zero: $\langle A \rangle_t = 0$.
+
+    For the quadratic variation of $\widetilde{W}_t$:
+
+    $$
+    \langle \widetilde{W} \rangle_t = \langle W + A \rangle_t = \langle W \rangle_t + 2\langle W, A \rangle_t + \langle A \rangle_t
+    $$
+
+    The cross-variation $\langle W, A \rangle_t = 0$ because $A$ has finite variation (the cross-variation of a continuous semimartingale with a finite-variation process is always zero). Since $\langle A \rangle_t = 0$ as well:
+
+    $$
+    \langle \widetilde{W} \rangle_t = \langle W \rangle_t = t
+    $$
+
+??? success "Solution to Exercise 6"
+    When the Novikov condition fails, the exponential process $Z_t = \exp(-\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds)$ is still a **non-negative local martingale** under $\mathbb{P}$ (this follows from the Itô computation $dZ_t = -Z_t\theta_t\,dW_t$, which has no drift term, regardless of whether the Novikov condition holds).
+
+    However, a non-negative local martingale is always a **supermartingale** (by Fatou's lemma), meaning:
+
+    $$
+    \mathbb{E}^{\mathbb{P}}[Z_T | \mathcal{F}_s] \leq Z_s
+    $$
+
+    In particular, $\mathbb{E}^{\mathbb{P}}[Z_T] \leq Z_0 = 1$. Without the Novikov condition, strict inequality can occur:
+
+    $$
+    \mathbb{E}^{\mathbb{P}}[Z_T] < 1
+    $$
+
+    This means the "measure" $\mathbb{Q}$ defined by $d\mathbb{Q}/d\mathbb{P} = Z_T$ satisfies $\mathbb{Q}(\Omega) = \mathbb{E}^{\mathbb{P}}[Z_T] < 1$, so $\mathbb{Q}$ is not a valid probability measure (it does not assign total mass 1 to the sample space). Some probability "leaks" to infinity.
+
+    Intuitively, when $\theta_s$ can become very large, the exponential martingale $Z_t$ can spend extended periods near zero, causing its expectation to drop below 1. The "lost mass" corresponds to paths along which $Z_t$ collapses toward zero. The Novikov condition prevents this by ensuring $\theta_s$ does not grow too fast, keeping $Z_t$ well-behaved enough to be a true martingale with unit expectation.
+
+??? success "Solution to Exercise 7"
+    We want to compute $\mathbb{E}^{\mathbb{Q}}[e^{i\lambda \widetilde{W}_t}]$ for constant $\theta$. By definition of the $\mathbb{Q}$-expectation:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[e^{i\lambda \widetilde{W}_t}] = \mathbb{E}^{\mathbb{P}}[e^{i\lambda \widetilde{W}_t} Z_T]
+    $$
+
+    Substituting $\widetilde{W}_t = W_t + \theta t$ and $Z_T = \exp(-\theta W_T - \frac{1}{2}\theta^2 T)$:
+
+    $$
+    = \mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(i\lambda(W_t + \theta t) - \theta W_T - \frac{1}{2}\theta^2 T\right)\right]
+    $$
+
+    $$
+    = e^{i\lambda\theta t - \frac{1}{2}\theta^2 T} \cdot \mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(i\lambda W_t - \theta W_T\right)\right]
+    $$
+
+    Since $W_T = W_t + (W_T - W_t)$ and $W_t$ is independent of $W_T - W_t$ under $\mathbb{P}$:
+
+    $$
+    = e^{i\lambda\theta t - \frac{1}{2}\theta^2 T} \cdot \mathbb{E}^{\mathbb{P}}\!\left[e^{(i\lambda - \theta)W_t}\right] \cdot \mathbb{E}^{\mathbb{P}}\!\left[e^{-\theta(W_T - W_t)}\right]
+    $$
+
+    Using the moment generating function of Gaussian variables, $W_t \sim \mathcal{N}(0, t)$ and $W_T - W_t \sim \mathcal{N}(0, T-t)$:
+
+    $$
+    \mathbb{E}^{\mathbb{P}}\!\left[e^{(i\lambda - \theta)W_t}\right] = \exp\!\left(\frac{(i\lambda - \theta)^2 t}{2}\right) = \exp\!\left(\frac{(-\lambda^2 - 2i\lambda\theta + \theta^2)t}{2}\right)
+    $$
+
+    $$
+    \mathbb{E}^{\mathbb{P}}\!\left[e^{-\theta(W_T - W_t)}\right] = \exp\!\left(\frac{\theta^2(T-t)}{2}\right)
+    $$
+
+    Combining all factors:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[e^{i\lambda\widetilde{W}_t}] = \exp\!\left(i\lambda\theta t - \frac{\theta^2 T}{2} + \frac{(-\lambda^2 - 2i\lambda\theta + \theta^2)t}{2} + \frac{\theta^2(T-t)}{2}\right)
+    $$
+
+    Collecting terms in the exponent:
+
+    $$
+    = i\lambda\theta t - \frac{\theta^2 T}{2} - \frac{\lambda^2 t}{2} - i\lambda\theta t + \frac{\theta^2 t}{2} + \frac{\theta^2 T}{2} - \frac{\theta^2 t}{2}
+    $$
+
+    The terms $i\lambda\theta t$ cancel, $-\frac{\theta^2 T}{2} + \frac{\theta^2 T}{2}$ cancel, and $\frac{\theta^2 t}{2} - \frac{\theta^2 t}{2}$ cancel, leaving:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[e^{i\lambda\widetilde{W}_t}] = e^{-\lambda^2 t/2}
+    $$
+
+    This is the characteristic function of $\mathcal{N}(0, t)$, confirming that $\widetilde{W}_t$ is a standard Brownian motion under $\mathbb{Q}$.

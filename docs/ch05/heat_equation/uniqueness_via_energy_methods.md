@@ -317,3 +317,172 @@ The energy method requires only integration by parts and does not need the expli
 
 **Exercise 7.**
 For the heat equation with a source term $\partial_t u = \frac{1}{2}\partial_{xx}u + f(x, t)$, the energy is no longer monotonically decreasing. Compute $E'(t)$ in this case and identify the additional term. Under what condition on $f$ does the energy still remain bounded?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Define $E(t) = \frac{1}{2}\int_a^b u(x,t)^2\,dx$ where $u$ solves $\partial_t u = \frac{1}{2}\partial_{xx}u$ with $u(t,a) = u(t,b) = 0$.
+
+    Differentiating under the integral sign:
+
+    $$
+    E'(t) = \int_a^b u\,\partial_t u\,dx = \int_a^b u \cdot \frac{1}{2}u_{xx}\,dx
+    $$
+
+    Integrate by parts: $\int_a^b u\,u_{xx}\,dx = [u\,u_x]_a^b - \int_a^b u_x^2\,dx$.
+
+    The boundary term vanishes because $u(t,a) = u(t,b) = 0$:
+
+    $$
+    [u\,u_x]_a^b = u(b,t)u_x(b,t) - u(a,t)u_x(a,t) = 0
+    $$
+
+    Therefore:
+
+    $$
+    E'(t) = -\frac{1}{2}\int_a^b u_x^2\,dx \leq 0
+    $$
+
+    since $u_x^2 \geq 0$. The energy is non-increasing. It is strictly decreasing unless $u_x \equiv 0$ on $[a,b]$, which combined with $u(a) = u(b) = 0$ forces $u \equiv 0$.
+
+??? success "Solution to Exercise 2"
+    Let $u$ and $v$ both solve the heat equation with the same initial data $u(0,x) = v(0,x) = f(x)$ and boundary data $u(t,a) = v(t,a)$, $u(t,b) = v(t,b)$.
+
+    Define $w = u - v$. By linearity, $w$ solves:
+
+    $$
+    \partial_t w = \frac{1}{2}\partial_{xx}w, \quad w(0,x) = 0, \quad w(t,a) = w(t,b) = 0
+    $$
+
+    Define the energy of the difference:
+
+    $$
+    E_w(t) = \frac{1}{2}\int_a^b w(x,t)^2\,dx
+    $$
+
+    **Step 1**: $E_w(0) = \frac{1}{2}\int_a^b 0^2\,dx = 0$.
+
+    **Step 2**: By the energy decay result (Exercise 1), $E_w'(t) \leq 0$ for all $t > 0$.
+
+    **Step 3**: Since $E_w(t) \geq 0$ (it is an integral of a squared function) and $E_w(0) = 0$ and $E_w$ is non-increasing, we must have $E_w(t) = 0$ for all $t \geq 0$.
+
+    **Step 4**: $E_w(t) = 0$ means $\int_a^b w^2\,dx = 0$. Since $w^2 \geq 0$ and continuous, this implies $w(x,t) = 0$ for all $x \in [a,b]$.
+
+    Therefore $u = v$ everywhere on $[a,b] \times [0,T]$.
+
+??? success "Solution to Exercise 3"
+    From Exercise 1, $E'(t) = -\frac{1}{2}\int_a^b u_x^2\,dx$. The Poincare inequality for functions vanishing at the endpoints states:
+
+    $$
+    \int_a^b u^2\,dx \leq \frac{(b-a)^2}{\pi^2}\int_a^b u_x^2\,dx
+    $$
+
+    Rearranging: $\int_a^b u_x^2\,dx \geq \frac{\pi^2}{(b-a)^2}\int_a^b u^2\,dx = \frac{2\pi^2}{(b-a)^2}E(t)$.
+
+    Substituting into the energy decay formula:
+
+    $$
+    E'(t) = -\frac{1}{2}\int_a^b u_x^2\,dx \leq -\frac{\pi^2}{(b-a)^2}E(t)
+    $$
+
+    This is the differential inequality $E'(t) \leq -\mu E(t)$ with $\mu = \pi^2/(b-a)^2$. By Gronwall's inequality (or direct comparison with $E(0)e^{-\mu t}$):
+
+    $$
+    E(t) \leq E(0)\,e^{-\pi^2 t/(b-a)^2}
+    $$
+
+    The energy decays exponentially with rate $\pi^2/(b-a)^2$. This rate is the first eigenvalue of $-\frac{d^2}{dx^2}$ on $(a,b)$ with Dirichlet conditions, corresponding to the slowest-decaying Fourier mode $\sin(\pi(x-a)/(b-a))$.
+
+??? success "Solution to Exercise 4"
+    For Neumann conditions $u_x(a,t) = u_x(b,t) = 0$, the energy dissipation still holds:
+
+    $$
+    E'(t) = \frac{1}{2}[u\,u_x]_a^b - \frac{1}{2}\int_a^b u_x^2\,dx = -\frac{1}{2}\int_a^b u_x^2\,dx \leq 0
+    $$
+
+    since the boundary term $u(b)u_x(b) - u(a)u_x(a) = 0$ by the Neumann conditions.
+
+    However, $E(t)$ does **not** decay to zero in general. The constant function $u(x,t) = c$ satisfies the heat equation, $u_x = 0$ (so the Neumann conditions hold), and has energy $E = c^2(b-a)/2 \neq 0$. This is the equilibrium solution.
+
+    The Poincare inequality must be modified: for Neumann conditions, one uses the **Poincare-Wirtinger inequality**:
+
+    $$
+    \int_a^b (u - \bar{u})^2\,dx \leq \frac{(b-a)^2}{\pi^2}\int_a^b u_x^2\,dx
+    $$
+
+    where $\bar{u} = \frac{1}{b-a}\int_a^b u\,dx$ is the spatial average. Note that $\bar{u}$ is conserved in time (by integrating the heat equation over $[a,b]$ and using Neumann conditions). The deviation $u - \bar{u}$ decays exponentially to zero, so:
+
+    $$
+    u(x,t) \to \bar{u}(0) = \frac{1}{b-a}\int_a^b f(x)\,dx \quad \text{as } t \to \infty
+    $$
+
+    The equilibrium is the spatial average of the initial data, representing uniform temperature.
+
+??? success "Solution to Exercise 5"
+    In barrier option pricing on a bounded domain $[B_l, B_u]$ (lower and upper barriers), the option price $V$ satisfies the heat equation (after appropriate transformations) with Dirichlet conditions $V = 0$ at both barriers (the option is knocked out).
+
+    By the energy method with the Poincare inequality, the $L^2$ energy of $V$ decays as:
+
+    $$
+    E(t) \leq E(0)\,e^{-\lambda_1 \cdot 2(T-t)}
+    $$
+
+    where $\lambda_1 = \frac{\pi^2}{2(B_u - B_l)^2}$ is the first eigenvalue of the operator $-\frac{1}{2}\partial_{xx}$ on the interval with Dirichlet conditions.
+
+    **Financial interpretation**: As $T - t \to \infty$ (very long time to expiry), the probability that Brownian motion has not hit either barrier becomes exponentially small, dominated by the slowest-decaying eigenmode. The option price decays exponentially with rate $\lambda_1$ because the particle (stock price) is almost certain to be knocked out.
+
+    The decay rate is faster for narrower barrier intervals (smaller $B_u - B_l$): the closer the barriers, the sooner the stock price hits one of them, and the faster the option price decays. Specifically, halving the distance between barriers quadruples the decay rate.
+
+??? success "Solution to Exercise 6"
+    The energy method proves uniqueness through three simple steps:
+
+    1. Define $E(t) = \frac{1}{2}\int u^2\,dx$
+    2. Show $E'(t) \leq 0$ via integration by parts
+    3. Conclude $E(0) = 0 \implies E(t) = 0$
+
+    The only analytic tool required is integration by parts. This is an advantage over the maximum principle for several reasons:
+
+    **Variable coefficients**: For $\partial_t u = \frac{1}{2}\partial_x(\sigma^2(x)\partial_x u) + \mu(x)\partial_x u$, the energy method adapts naturally. Integration by parts gives $E'(t) = -\frac{1}{2}\int \sigma^2 u_x^2\,dx + \text{drift terms}$, which can be controlled using weighted energies. The maximum principle requires uniform ellipticity and careful treatment of the drift, making it harder to apply.
+
+    **Systems of equations**: For coupled PDEs (e.g., multi-asset pricing), the maximum principle may fail entirely (component-wise maxima need not be controlled). Energy methods extend by defining $E = \frac{1}{2}\int |u|^2\,dx$ as the total energy of the vector-valued solution.
+
+    **Weak solutions**: The energy method only requires $u$ and $u_x$ to be in $L^2$ (Sobolev space $H^1$), not $C^2$. The maximum principle requires classical (twice differentiable) solutions. This makes energy methods the primary tool in modern PDE theory where solutions are understood in the weak (distributional) sense.
+
+    **No explicit solution needed**: The proof never uses the form of the solution, only the equation itself and integration by parts.
+
+??? success "Solution to Exercise 7"
+    For $\partial_t u = \frac{1}{2}\partial_{xx}u + f(x,t)$ with homogeneous Dirichlet conditions:
+
+    $$
+    E'(t) = \int_a^b u\,\partial_t u\,dx = \int_a^b u\left(\frac{1}{2}u_{xx} + f\right)dx
+    $$
+
+    Using integration by parts on the first term (as before):
+
+    $$
+    E'(t) = -\frac{1}{2}\int_a^b u_x^2\,dx + \int_a^b u\,f\,dx
+    $$
+
+    The additional term is $\int_a^b u\,f\,dx$, which represents the energy injected (or removed) by the source $f$.
+
+    **Bounding the energy**: Apply the Cauchy-Schwarz inequality to the source term:
+
+    $$
+    \int_a^b u\,f\,dx \leq \left(\int_a^b u^2\,dx\right)^{1/2}\left(\int_a^b f^2\,dx\right)^{1/2} = \sqrt{2E(t)}\,\|f(t)\|_{L^2}
+    $$
+
+    Using Young's inequality $ab \leq \frac{a^2}{2\epsilon} + \frac{\epsilon b^2}{2}$ and the Poincare inequality:
+
+    $$
+    E'(t) \leq -\frac{\pi^2}{(b-a)^2}E(t) + \frac{(b-a)^2}{2\pi^2}\|f(t)\|_{L^2}^2 + \frac{\pi^2}{2(b-a)^2}E(t) \cdot 2\epsilon
+    $$
+
+    For appropriate $\epsilon$, this gives a Gronwall inequality guaranteeing $E(t)$ remains bounded provided $\|f(t)\|_{L^2}$ is bounded. Specifically, if $\|f(t)\|_{L^2} \leq M$ for all $t$, then $E(t)$ grows at most linearly and is ultimately controlled by the balance between the dissipation rate and the source strength. In the simplest bound:
+
+    $$
+    E(t) \leq E(0) + M^2 \cdot \frac{(b-a)^2}{\pi^2}\left(1 - e^{-\pi^2 t/(b-a)^2}\right) \cdot \frac{(b-a)^2}{2\pi^2}
+    $$
+
+    The energy remains bounded for all time whenever $f \in L^\infty([0,T]; L^2(a,b))$.

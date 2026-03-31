@@ -482,3 +482,183 @@ Determine whether the market is arbitrage-free. If so, find the unique EMM and v
 **Exercise 6.** Consider a two-state market with $d = 2$ risky assets: $S^1_0 = 20$, $S^1_1 = (25, 16)$, $S^2_0 = 10$, $S^2_1 = (13, 8)$. Check whether $\operatorname{rank}(X) = n - 1 = 1$. If not, is one of the assets redundant? Find the EMM and price the claim $\Phi = (5, 0)$.
 
 ---
+
+
+## Solutions
+
+
+??? success "Solution to Exercise 1"
+    The payoff matrix is $2 \times 1$:
+
+    $$
+    X = \begin{pmatrix} 100 - 80 \\ 70 - 80 \end{pmatrix} = \begin{pmatrix} 20 \\ -10 \end{pmatrix}
+    $$
+
+    **Finding the EMM.** We need $q = (q_1, q_2)$ with $q_i > 0$, $q_1 + q_2 = 1$, and $X^T q = 0$:
+
+    $$
+    20q_1 - 10q_2 = 0 \implies 20q_1 = 10(1 - q_1) \implies 30q_1 = 10 \implies q_1 = \frac{1}{3}
+    $$
+
+    So $q_2 = 2/3$. The unique EMM is $\mathbb{Q} = (1/3, \, 2/3)$.
+
+    **Verification:** $\mathbb{E}^{\mathbb{Q}}[S^1_1] = (1/3)(100) + (2/3)(70) = 100/3 + 140/3 = 240/3 = 80 = S^1_0$. The martingale condition holds.
+
+    **Pricing the put option.** The put with strike $K = 85$ has payoff:
+
+    $$
+    \Phi(\omega_1) = \max(85 - 100, 0) = 0, \qquad \Phi(\omega_2) = \max(85 - 70, 0) = 15
+    $$
+
+    The no-arbitrage price is:
+
+    $$
+    V_0 = \mathbb{E}^{\mathbb{Q}}[\Phi] = \frac{1}{3} \cdot 0 + \frac{2}{3} \cdot 15 = 10
+    $$
+
+
+??? success "Solution to Exercise 2"
+    The payoff matrix is $3 \times 1$:
+
+    $$
+    X = \begin{pmatrix} 70 - 50 \\ 55 - 50 \\ 35 - 50 \end{pmatrix} = \begin{pmatrix} 20 \\ 5 \\ -15 \end{pmatrix}
+    $$
+
+    **Parameterizing EMMs.** From $X^T q = 0$: $20q_1 + 5q_2 - 15q_3 = 0$, i.e., $4q_1 + q_2 - 3q_3 = 0$, giving $q_2 = 3q_3 - 4q_1$.
+
+    From normalization: $q_1 + (3q_3 - 4q_1) + q_3 = 1$, so $-3q_1 + 4q_3 = 1$, giving $q_1 = (4q_3 - 1)/3$.
+
+    For $q_1 > 0$: $q_3 > 1/4$. For $q_2 > 0$: $q_2 = 3q_3 - 4(4q_3 - 1)/3 = (9q_3 - 16q_3 + 4)/3 = (4 - 7q_3)/3 > 0$, so $q_3 < 4/7$.
+
+    The family of EMMs is parameterized by $q_3 \in (1/4, \, 4/7)$:
+
+    $$
+    q_1 = \frac{4q_3 - 1}{3}, \quad q_2 = \frac{4 - 7q_3}{3}, \quad q_3 = q_3
+    $$
+
+    **Price interval for $\Phi = (0, 10, 0)$:**
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\Phi] = 10q_2 = \frac{10(4 - 7q_3)}{3}
+    $$
+
+    As $q_3$ ranges over $(1/4, 4/7)$:
+
+    - As $q_3 \to 1/4^+$: $\mathbb{E}^{\mathbb{Q}}[\Phi] \to 10(4 - 7/4)/3 = 10(9/4)/3 = 90/12 = 15/2 = 7.5$
+    - As $q_3 \to (4/7)^-$: $\mathbb{E}^{\mathbb{Q}}[\Phi] \to 10(4 - 4)/3 = 0$
+
+    The no-arbitrage price interval is $(0, \, 15/2)$.
+
+    **Is $\Phi$ attainable?** We need $c$ and $\theta$ such that $c \cdot \mathbf{1} + X\theta = \Phi$: $c + 20\theta = 0$, $c + 5\theta = 10$, $c - 15\theta = 0$. From the first and third: $c + 20\theta = 0$ and $c - 15\theta = 0$, giving $35\theta = 0$, so $\theta = 0$ and $c = 0$. But then $c + 5\theta = 0 \neq 10$. The system is inconsistent, so $\Phi$ is **not attainable**.
+
+
+??? success "Solution to Exercise 3"
+    The payoff matrix is
+
+    $$
+    X = \begin{pmatrix} 15 & 8 \\ -5 & 2 \\ -10 & -6 \end{pmatrix}
+    $$
+
+    **Solving $X^T q = 0$ with $\sum q_i = 1$:**
+
+    $$
+    15q_1 - 5q_2 - 10q_3 = 0 \quad \Longrightarrow \quad 3q_1 - q_2 - 2q_3 = 0 \quad \text{...(i)}
+    $$
+
+    $$
+    8q_1 + 2q_2 - 6q_3 = 0 \quad \Longrightarrow \quad 4q_1 + q_2 - 3q_3 = 0 \quad \text{...(ii)}
+    $$
+
+    Adding (i) and (ii): $7q_1 - 5q_3 = 0$, so $q_1 = 5q_3/7$.
+
+    From (i): $q_2 = 3q_1 - 2q_3 = 15q_3/7 - 2q_3 = q_3/7$.
+
+    Normalization: $5q_3/7 + q_3/7 + q_3 = (5 + 1 + 7)q_3/7 = 13q_3/7 = 1$, so $q_3 = 7/13$.
+
+    Therefore: $q_1 = 5/13$, $q_2 = 1/13$, $q_3 = 7/13$.
+
+    All components are strictly positive, so the market is **arbitrage-free**. The EMM is unique (two equations plus normalization fully determine three unknowns with $\operatorname{rank}(X) = 2 = n - 1$).
+
+    **Verification of the martingale condition:**
+
+    $$
+    X^T q = \begin{pmatrix} 15 \cdot \frac{5}{13} - 5 \cdot \frac{1}{13} - 10 \cdot \frac{7}{13} \\ 8 \cdot \frac{5}{13} + 2 \cdot \frac{1}{13} - 6 \cdot \frac{7}{13} \end{pmatrix} = \begin{pmatrix} \frac{75 - 5 - 70}{13} \\ \frac{40 + 2 - 42}{13} \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+    $$
+
+    Both assets satisfy the martingale condition under $\mathbb{Q}$.
+
+
+??? success "Solution to Exercise 4"
+    Let the original payoff matrix be $X_1 = (x_1, x_2, x_3)^T$ with $\operatorname{rank}(X_1) = 1$. The second asset's excess return column is $(a - S^2_0, \, b - S^2_0, \, c - S^2_0)^T$.
+
+    The augmented matrix is
+
+    $$
+    X = \begin{pmatrix} x_1 & a - S^2_0 \\ x_2 & b - S^2_0 \\ x_3 & c - S^2_0 \end{pmatrix}
+    $$
+
+    **Rank 2 condition.** The augmented matrix has $\operatorname{rank}(X) = 2$ if and only if the second column $(a - S^2_0, \, b - S^2_0, \, c - S^2_0)^T$ is not a scalar multiple of the first column $(x_1, x_2, x_3)^T$. That is, there is no $\lambda \in \mathbb{R}$ such that
+
+    $$
+    a - S^2_0 = \lambda x_1, \quad b - S^2_0 = \lambda x_2, \quad c - S^2_0 = \lambda x_3
+    $$
+
+    Equivalently, the payoff vector $(a, b, c)^T$ should not be of the form $S^2_0 \cdot \mathbf{1} + \lambda (x_1, x_2, x_3)^T$ -- i.e., the second asset's payoff must not be replicable by a portfolio of the numéraire and the first asset.
+
+    **Arbitrage-free condition.** Even with $\operatorname{rank}(X) = 2$, the market is arbitrage-free only if the system $X^T q = 0$, $\sum q_i = 1$ has a solution with all $q_i > 0$. This places a constraint on $S^2_0$: it must equal the risk-neutral expectation of the second asset's payoff under the unique EMM determined by the augmented system.
+
+    Specifically, the unique EMM assigns probabilities $q_i$ determined by both columns of $X$. The value $S^2_0$ must satisfy
+
+    $$
+    S^2_0 = q_1 a + q_2 b + q_3 c
+    $$
+
+    where $(q_1, q_2, q_3)$ is the unique solution to the system. If $S^2_0$ is set to any other value, no strictly positive solution exists and the market admits arbitrage.
+
+
+??? success "Solution to Exercise 5"
+    In Example 4, the payoff matrix has $\operatorname{rank}(X) = 2 = n - 1 = 2$, which is the rank condition for completeness. However, the market admits arbitrage because the system $X^T q = 0$ with $\sum q_i = 1$ and $q_i > 0$ has no solution -- it forces $q_1 = 0$.
+
+    **Why high rank alone is insufficient:** The rank condition $\operatorname{rank}(X) = n - 1$ is necessary for completeness, but completeness also requires no-arbitrage as a prerequisite. The Second FTAP states: "In an **arbitrage-free** market, completeness $\iff$ unique EMM." If no EMM exists at all, the market has arbitrage and the question of completeness is moot.
+
+    **What causes $q_1 = 0$:** The two columns of $X$ are
+
+    $$
+    X^{(1)} = (10, 5, -5)^T, \qquad X^{(2)} = (5, 2, -2)^T
+    $$
+
+    In states $\omega_2$ and $\omega_3$, the ratio $X^{(1)}_i / X^{(2)}_i$ is $5/2 = (-5)/(-2) = 2.5$ for both states. But in state $\omega_1$, the ratio is $10/5 = 2$. This means the linear combination $X^{(1)} - 2X^{(2)} = (0, 1, -1)^T$ is non-negative in states 2 and 3, while being zero in state 1. The further combination that makes states 2 and 3 net out forces state 1 to have the "free" profit. The system $X^T q = 0$ effectively requires $q_1(10 - 2 \cdot 5) = 0$, and since the coefficient $(10 - 2 \cdot 5) = 0$ is trivially satisfied, the additional constraint from the second equation forces $q_1 = 0$. The inconsistency in the return ratios across states makes it impossible to find a strictly positive pricing vector.
+
+
+??? success "Solution to Exercise 6"
+    The payoff matrix is $2 \times 2$:
+
+    $$
+    X = \begin{pmatrix} 25 - 20 & 13 - 10 \\ 16 - 20 & 8 - 10 \end{pmatrix} = \begin{pmatrix} 5 & 3 \\ -4 & -2 \end{pmatrix}
+    $$
+
+    **Rank check.** Computing the determinant: $5 \cdot (-2) - 3 \cdot (-4) = -10 + 12 = 2 \neq 0$. So $\operatorname{rank}(X) = 2$.
+
+    But for completeness we need $\operatorname{rank}(X) = n - 1 = 1$. Instead we have $\operatorname{rank}(X) = 2 > n - 1 = 1$. This means $\ker(X^T)$ has dimension $n - \operatorname{rank}(X) = 2 - 2 = 0$, so the only solution to $X^T q = 0$ is $q = 0$, which is not a valid probability vector.
+
+    Wait -- let us reconsider. With $n = 2$ states and $d = 2$ assets, $\operatorname{rank}(X) = 2$ means $\ker(X^T) = \{0\}$, so there is no non-zero $q$ with $X^T q = 0$. This would mean no EMM exists, suggesting arbitrage.
+
+    However, re-examining: $X^T q = 0$ means
+
+    $$
+    5q_1 - 4q_2 = 0, \qquad 3q_1 - 2q_2 = 0
+    $$
+
+    From the first: $q_1 = 4q_2/5$. Substituting into the second: $12q_2/5 - 2q_2 = 2q_2/5 = 0$, forcing $q_2 = 0$ and hence $q_1 = 0$. No EMM exists.
+
+    **Is one asset redundant?** Check if the columns are proportional: $(5, -4)^T$ vs $(3, -2)^T$. The ratios are $5/3 \neq (-4)/(-2) = 2$, so they are **not** proportional. Neither asset is redundant (neither can be replicated by the other).
+
+    **Finding the arbitrage.** Since $\operatorname{rank}(X) = 2 = n$, the map $\theta \mapsto X\theta$ is surjective from $\mathbb{R}^2$ to $\mathbb{R}^2$. We can find $\theta$ such that $X\theta = (1, 0)^T$ (profit in state 1 only):
+
+    $$
+    5\theta_1 + 3\theta_2 = 1, \qquad -4\theta_1 - 2\theta_2 = 0
+    $$
+
+    From the second: $\theta_2 = -2\theta_1$. Substituting: $5\theta_1 - 6\theta_1 = -\theta_1 = 1$, so $\theta_1 = -1$ and $\theta_2 = 2$. The portfolio $\theta = (-1, 2)$ yields payoff $(1, 0)^T$ -- a non-negative, non-zero payoff at zero cost. This is an arbitrage.
+
+    Since no EMM exists, pricing is not well-defined in this market. The claim $\Phi = (5, 0)$ cannot be given a no-arbitrage price.

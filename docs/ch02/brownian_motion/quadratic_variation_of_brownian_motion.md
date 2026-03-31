@@ -272,3 +272,113 @@ $$
 $$
 
 Explain why infinite total variation and finite quadratic variation can coexist.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    For the uniform partition $\Pi_n$ of $[0, T]$ with $\Delta t_i = T/n$, the increments $\Delta B_i = B_{t_{i+1}} - B_{t_i}$ are independent with $\Delta B_i \sim \mathcal{N}(0, T/n)$. By independence:
+
+    $$
+    \mathrm{Var}([B]_T^{(\Pi_n)}) = \sum_{i=0}^{n-1} \mathrm{Var}((\Delta B_i)^2)
+    $$
+
+    For $X \sim \mathcal{N}(0, \sigma^2)$, $\mathrm{Var}(X^2) = 2\sigma^4$. With $\sigma^2 = T/n$:
+
+    $$
+    \mathrm{Var}([B]_T^{(\Pi_n)}) = \sum_{i=0}^{n-1} 2\left(\frac{T}{n}\right)^2 = n \cdot \frac{2T^2}{n^2} = \frac{2T^2}{n}
+    $$
+
+    For Chebyshev's inequality with $T = 1$: $\mathbb{P}(|[B]_1^{(\Pi_n)} - 1| > 0.1) \leq \frac{\mathrm{Var}([B]_1^{(\Pi_n)})}{0.01} = \frac{2/n}{0.01} = \frac{200}{n}$. Setting this $\leq 0.05$:
+
+    $$
+    \frac{200}{n} \leq 0.05 \implies n \geq 4000
+    $$
+
+??? success "Solution to Exercise 2"
+    For $\Pi = \{0, T/4, T/2, 3T/4, T\}$ (four equal subintervals of length $T/4$):
+
+    $$
+    \mathrm{Var}([B]_T^{(\Pi)}) = 4 \cdot 2(T/4)^2 = 4 \cdot \frac{2T^2}{16} = \frac{T^2}{2}
+    $$
+
+    For $\Pi' = \{0, T/8, T/4, T/2, T\}$ (four subintervals of lengths $T/8, T/8, T/4, T/2$):
+
+    $$
+    \mathrm{Var}([B]_T^{(\Pi')}) = 2(T/8)^2 + 2(T/8)^2 + 2(T/4)^2 + 2(T/2)^2
+    $$
+
+    $$
+    = 2T^2\left(\frac{1}{64} + \frac{1}{64} + \frac{1}{16} + \frac{1}{4}\right) = 2T^2 \cdot \frac{1 + 1 + 4 + 16}{64} = 2T^2 \cdot \frac{22}{64} = \frac{11T^2}{16}
+    $$
+
+    Since $\frac{T^2}{2} = \frac{8T^2}{16} < \frac{11T^2}{16}$, the uniform partition $\Pi$ gives a tighter estimate. This is because $\mathrm{Var}([B]_T^{(\Pi)}) = 2\sum_i (\Delta t_i)^2$, which for a fixed number of subintervals summing to $T$ is minimized when all $\Delta t_i$ are equal (by the convexity of $x \mapsto x^2$).
+
+??? success "Solution to Exercise 3"
+    For $f(t) = \sin(2\pi t)$ on $[0, 1]$ with the uniform partition $\Pi_n$ ($\Delta t = 1/n$):
+
+    $$
+    V_2(f, \Pi_n) = \sum_{i=0}^{n-1} (\sin(2\pi(i+1)/n) - \sin(2\pi i/n))^2
+    $$
+
+    By the mean value theorem, $|\sin(2\pi(i+1)/n) - \sin(2\pi i/n)| \leq 2\pi \cdot (1/n)$, so each squared term is at most $(2\pi/n)^2$. Thus:
+
+    $$
+    V_2(f, \Pi_n) \leq n \cdot \frac{4\pi^2}{n^2} = \frac{4\pi^2}{n} \to 0
+    $$
+
+    More precisely, using a Riemann sum approximation:
+
+    $$
+    V_2(f, \Pi_n) \approx \sum_{i=0}^{n-1} (f'(t_i))^2 (\Delta t)^2 = \frac{1}{n} \sum_{i=0}^{n-1} (2\pi\cos(2\pi i/n))^2 \cdot \frac{1}{n} \to \frac{1}{n} \int_0^1 4\pi^2\cos^2(2\pi t)\,dt = \frac{2\pi^2}{n} \to 0
+    $$
+
+    **Contrast:** For Brownian motion, $[B]_1 = 1 > 0$. The smooth function has zero quadratic variation because its increments are $O(1/n)$, giving squared increments of $O(1/n^2)$ that sum to $O(1/n)$. Brownian increments are $O(1/\sqrt{n})$, giving squared increments of $O(1/n)$ that sum to $O(1)$.
+
+??? success "Solution to Exercise 4"
+    For $f(B_t) = B_t^3$, we have $f'(x) = 3x^2$ and $f''(x) = 6x$. By Itô's formula:
+
+    $$
+    d(B_t^3) = 3B_t^2\,dB_t + \frac{1}{2}\cdot 6B_t\,dt = 3B_t^2\,dB_t + 3B_t\,dt
+    $$
+
+    Integrating from $0$ to $T$:
+
+    $$
+    B_T^3 = 3\int_0^T B_t^2\,dB_t + 3\int_0^T B_t\,dt
+    $$
+
+    **Verification:** Taking expectations, $\mathbb{E}[B_T^3] = 3\mathbb{E}\left[\int_0^T B_t^2\,dB_t\right] + 3\int_0^T \mathbb{E}[B_t]\,dt$. The Itô integral has zero expectation (it is a martingale), and $\mathbb{E}[B_t] = 0$. Therefore $\mathbb{E}[B_T^3] = 0 + 0 = 0$, which is consistent with $B_T \sim \mathcal{N}(0, T)$ being symmetric (all odd moments vanish).
+
+??? success "Solution to Exercise 5"
+    With $\rho = 0.5$, the cross variation is:
+
+    $$
+    [B^{(1)}, B^{(2)}]_T = \rho T = 0.5T
+    $$
+
+    For $X_t = B_t^{(1)} + B_t^{(2)}$, the bilinearity of quadratic variation gives:
+
+    $$
+    [X]_T = [B^{(1)} + B^{(2)}]_T = [B^{(1)}]_T + 2[B^{(1)}, B^{(2)}]_T + [B^{(2)}]_T
+    $$
+
+    $$
+    = T + 2(0.5T) + T = T + T + T = 3T
+    $$
+
+    This can be verified by noting that $\text{Var}(X_t) = \text{Var}(B_t^{(1)}) + 2\text{Cov}(B_t^{(1)}, B_t^{(2)}) + \text{Var}(B_t^{(2)}) = t + 2\rho t + t = (2 + 2\rho)t = 3t$.
+
+??? success "Solution to Exercise 6"
+    For the uniform partition $\Pi_n$ with $\Delta t_i = T/n$, each $\Delta B_i \sim \mathcal{N}(0, T/n)$, so $|\Delta B_i| = \sqrt{T/n}\,|Z_i|$ where $Z_i \sim \mathcal{N}(0,1)$.
+
+    Since $\mathbb{E}[|Z|] = \sqrt{2/\pi}$ for $Z \sim \mathcal{N}(0,1)$:
+
+    $$
+    \mathbb{E}[V_1(B, \Pi_n)] = \sum_{i=0}^{n-1} \mathbb{E}[|\Delta B_i|] = n \cdot \sqrt{\frac{T}{n}} \cdot \sqrt{\frac{2}{\pi}} = \sqrt{\frac{2nT}{\pi}} \to \infty
+    $$
+
+    Since $\mathbb{E}[V_1(B, \Pi_n)] \to \infty$, the total variation $V_1(B) = \sup_\Pi V_1(B, \Pi) = +\infty$ a.s.
+
+    **Why infinite total variation and finite quadratic variation coexist:** The total variation sums $|\Delta B_i| \sim \sqrt{T/n}$, giving $n \cdot \sqrt{T/n} = \sqrt{nT} \to \infty$. The quadratic variation sums $(\Delta B_i)^2 \sim T/n$, giving $n \cdot T/n = T$ (constant). The key is the exponent: with $n$ terms each of size $n^{-1/2}$, the sum of first powers diverges ($n \cdot n^{-1/2} = n^{1/2}$) while the sum of squares converges ($n \cdot n^{-1} = 1$). This is a direct consequence of the $\sqrt{\Delta t}$ scaling of Brownian increments.

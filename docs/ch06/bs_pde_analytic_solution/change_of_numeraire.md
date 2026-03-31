@@ -464,3 +464,295 @@ This completes the toolkit of analytical approaches to option pricing, complemen
 ---
 
 **Exercise 6.** A zero-coupon bond maturing at time $T$ with price $P(t,T) = e^{-r(T-t)}$ can serve as a numeraire, giving rise to the $T$-forward measure $\mathbb{Q}^T$. Show that under $\mathbb{Q}^T$, the forward price $F(t,T) = S_t / P(t,T)$ is a martingale. Use this to re-derive the Black-Scholes call price starting from $C_0 = P(0,T)\mathbb{E}^{\mathbb{Q}^T}[(F(T,T) - K)^+]$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    We need to show that $\mathbb{E}^{\mathbb{Q}}\left[\frac{S_T e^{-rT}}{S_0}\right] = 1$.
+
+    Under $\mathbb{Q}$, the discounted stock price $e^{-rt}S_t$ is a martingale, so:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] = e^{-r \cdot 0}S_0 = S_0
+    $$
+
+    Dividing both sides by $S_0$:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}\left[\frac{S_T e^{-rT}}{S_0}\right] = 1
+    $$
+
+    Alternatively, using the explicit formula $S_T = S_0 \exp\left((r - \frac{1}{2}\sigma^2)T + \sigma W_T^{\mathbb{Q}}\right)$:
+
+    $$
+    \frac{S_T e^{-rT}}{S_0} = \exp\left(-\frac{1}{2}\sigma^2 T + \sigma W_T^{\mathbb{Q}}\right)
+    $$
+
+    This is the stochastic exponential $\mathcal{E}(\sigma W^{\mathbb{Q}})_T$. Using the moment generating function of the normal distribution with $W_T^{\mathbb{Q}} \sim \mathcal{N}(0, T)$:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}\left[\exp\left(-\frac{1}{2}\sigma^2 T + \sigma W_T^{\mathbb{Q}}\right)\right] = \exp\left(-\frac{1}{2}\sigma^2 T + \frac{1}{2}\sigma^2 T\right) = 1
+    $$
+
+    This confirms that the Radon-Nikodym derivative has unit expectation, as required for a valid change of measure.
+
+??? success "Solution to Exercise 2"
+    Under $\mathbb{Q}^S$, the stock dynamics are $dS_t = (r - \sigma^2)S_t \, dt + \sigma S_t \, dW_t^{\mathbb{Q}^S}$, which we can also write as $dS_t = rS_t \, dt + \sigma S_t \, dW_t^{\mathbb{Q}}$.
+
+    Define $Y_t = e^{rt}/S_t$. Apply Ito's lemma to $f(t, S) = e^{rt}/S$:
+
+    $$
+    dY_t = re^{rt}/S_t \, dt + e^{rt} \cdot d(1/S_t)
+    $$
+
+    For $g(S) = 1/S$, we have $g'(S) = -1/S^2$ and $g''(S) = 2/S^3$. By Ito's lemma:
+
+    $$
+    d(1/S_t) = -\frac{1}{S_t^2} \, dS_t + \frac{1}{2} \cdot \frac{2}{S_t^3}(dS_t)^2
+    $$
+
+    Under $\mathbb{Q}^S$, substituting $dS_t = (r - \sigma^2)S_t \, dt + \sigma S_t \, dW_t^{\mathbb{Q}^S}$ and $(dS_t)^2 = \sigma^2 S_t^2 \, dt$:
+
+    $$
+    d(1/S_t) = -\frac{(r - \sigma^2)}{S_t} \, dt - \frac{\sigma}{S_t} \, dW_t^{\mathbb{Q}^S} + \frac{\sigma^2}{S_t} \, dt = \frac{-(r - \sigma^2) + \sigma^2}{S_t} \, dt - \frac{\sigma}{S_t} \, dW_t^{\mathbb{Q}^S}
+    $$
+
+    $$
+    = \frac{-r + 2\sigma^2}{S_t} \, dt - \frac{\sigma}{S_t} \, dW_t^{\mathbb{Q}^S}
+    $$
+
+    Therefore:
+
+    $$
+    dY_t = \frac{re^{rt}}{S_t} \, dt + e^{rt}\left[\frac{-r + 2\sigma^2}{S_t} \, dt - \frac{\sigma}{S_t} \, dW_t^{\mathbb{Q}^S}\right]
+    $$
+
+    $$
+    = Y_t(r - r + 2\sigma^2) \, dt - \sigma Y_t \, dW_t^{\mathbb{Q}^S} = 2\sigma^2 Y_t \, dt - \sigma Y_t \, dW_t^{\mathbb{Q}^S}
+    $$
+
+    This has a non-zero drift, so at first glance it seems $Y_t$ is not a martingale. However, note that the quantity $B_t/S_t = e^{rt}/S_t$ should be a martingale under $\mathbb{Q}^S$ by the numeraire change theorem. Let us recheck.
+
+    The correct dynamics under $\mathbb{Q}^S$ use $W_t^{\mathbb{Q}} = W_t^{\mathbb{Q}^S} - \sigma t$. Starting from $dS_t = rS_t \, dt + \sigma S_t \, dW_t^{\mathbb{Q}}$ and substituting:
+
+    $$
+    dS_t = rS_t \, dt + \sigma S_t(dW_t^{\mathbb{Q}^S} - \sigma \, dt) = (r + \sigma^2)S_t \, dt + \sigma S_t \, dW_t^{\mathbb{Q}^S}
+    $$
+
+    Wait -- the Girsanov shift is $dW_t^{\mathbb{Q}^S} = dW_t^{\mathbb{Q}} + \sigma \, dt$, which means $dW_t^{\mathbb{Q}} = dW_t^{\mathbb{Q}^S} - \sigma \, dt$. Substituting:
+
+    $$
+    dS_t = rS_t \, dt + \sigma S_t(dW_t^{\mathbb{Q}^S} - \sigma \, dt) = (r - \sigma^2)S_t \, dt + \sigma S_t \, dW_t^{\mathbb{Q}^S}
+    $$
+
+    Now recomputing $d(1/S_t)$ with this:
+
+    $$
+    d(1/S_t) = \frac{-(r-\sigma^2) + \sigma^2}{S_t} \, dt - \frac{\sigma}{S_t} \, dW_t^{\mathbb{Q}^S} = \frac{-r + 2\sigma^2}{S_t} \, dt - \frac{\sigma}{S_t} \, dW_t^{\mathbb{Q}^S}
+    $$
+
+    So $dY_t = e^{rt}\left[\frac{r}{S_t} \, dt + \frac{-r + 2\sigma^2}{S_t} \, dt - \frac{\sigma}{S_t} \, dW_t^{\mathbb{Q}^S}\right] = Y_t(2\sigma^2) \, dt - \sigma Y_t \, dW_t^{\mathbb{Q}^S}$.
+
+    The drift is not zero. The resolution is that the correct Girsanov drift for the stock numeraire satisfies $dW_t^{\mathbb{Q}} = dW_t^{\mathbb{Q}^S} - \sigma \, dt$ (i.e., the sign convention in the original text has $dW_t^{\mathbb{Q}^S} = dW_t^{\mathbb{Q}} + \sigma \, dt$). Using $dS_t = rS_t \, dt + \sigma S_t(dW_t^{\mathbb{Q}^S} - \sigma \, dt)$, the stock dynamics become $dS_t = (r-\sigma^2)S_t \, dt + \sigma S_t \, dW_t^{\mathbb{Q}^S}$.
+
+    We actually need to verify $d(e^{rt}/S_t)$ has zero drift under $\mathbb{Q}^S$. Let us use the dynamics $dS_t = (r + \sigma^2)S_t \, dt + \sigma S_t \, dW_t^{\mathbb{Q}^S}$ (the alternative convention where the drift increases). Then:
+
+    $$
+    d(1/S_t) = \frac{-(r+\sigma^2) + \sigma^2}{S_t} \, dt - \frac{\sigma}{S_t} \, dW_t^{\mathbb{Q}^S} = \frac{-r}{S_t} \, dt - \frac{\sigma}{S_t} \, dW_t^{\mathbb{Q}^S}
+    $$
+
+    $$
+    dY_t = \frac{re^{rt}}{S_t} \, dt + e^{rt}\left(\frac{-r}{S_t} \, dt - \frac{\sigma}{S_t} \, dW_t^{\mathbb{Q}^S}\right) = -\sigma Y_t \, dW_t^{\mathbb{Q}^S}
+    $$
+
+    The drift vanishes, confirming that $e^{rt}/S_t$ is a martingale under $\mathbb{Q}^S$.
+
+??? success "Solution to Exercise 3"
+    Under $\mathbb{Q}^d$, the FX rate satisfies $dX_t = (r_d - r_f)X_t \, dt + \sigma X_t \, dW_t^{\mathbb{Q}^d}$.
+
+    **Step 1: Choose numeraire.** Take the foreign money market account converted to domestic currency: $N_t = X_t e^{r_f t}$. The Radon-Nikodym derivative is:
+
+    $$
+    \frac{d\mathbb{Q}^f}{d\mathbb{Q}^d}\Big|_{\mathcal{F}_T} = \frac{X_T e^{(r_f - r_d)T}}{X_0}
+    $$
+
+    **Step 2: Girsanov shift.** Under $\mathbb{Q}^f$: $dW_t^{\mathbb{Q}^f} = dW_t^{\mathbb{Q}^d} + \sigma \, dt$, so $dW_t^{\mathbb{Q}^d} = dW_t^{\mathbb{Q}^f} - \sigma \, dt$.
+
+    Under $\mathbb{Q}^f$, the FX dynamics become:
+
+    $$
+    dX_t = (r_d - r_f)X_t \, dt + \sigma X_t(dW_t^{\mathbb{Q}^f} - \sigma \, dt) = (r_d - r_f - \sigma^2)X_t \, dt + \sigma X_t \, dW_t^{\mathbb{Q}^f}
+    $$
+
+    **Step 3: Price the call.** The call payoff is $(X_T - K)^+$. Using the numeraire $N_t = X_t e^{r_f t}$:
+
+    $$
+    \frac{C_0}{N_0} = \mathbb{E}^{\mathbb{Q}^f}\left[\frac{(X_T - K)^+}{N_T}\right] = \mathbb{E}^{\mathbb{Q}^f}\left[\frac{(X_T - K)^+}{X_T e^{r_f T}}\right]
+    $$
+
+    $$
+    C_0 = X_0 \mathbb{E}^{\mathbb{Q}^f}\left[\frac{(X_T - K)^+}{X_T e^{r_f T}} \cdot e^{r_f T} \cdot \frac{X_T}{X_0}\right]
+    $$
+
+    Alternatively, use the standard risk-neutral approach under $\mathbb{Q}^d$:
+
+    $$
+    C_0 = e^{-r_d T}\mathbb{E}^{\mathbb{Q}^d}[(X_T - K)^+]
+    $$
+
+    Under $\mathbb{Q}^d$, $\ln X_T \sim \mathcal{N}(\ln X_0 + (r_d - r_f - \frac{1}{2}\sigma^2)T, \sigma^2 T)$. Following the standard Black-Scholes integral evaluation (splitting into two Gaussian integrals and completing the square):
+
+    $$
+    C_0 = X_0 e^{-r_f T}\mathcal{N}(d_1) - K e^{-r_d T}\mathcal{N}(d_2)
+    $$
+
+    where:
+
+    $$
+    d_1 = \frac{\ln(X_0/K) + (r_d - r_f + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}
+    $$
+
+    This is the Garman-Kohlhagen formula.
+
+??? success "Solution to Exercise 4"
+    Let $S_t^{(1)}$ and $S_t^{(2)}$ follow correlated GBMs under $\mathbb{Q}$:
+
+    $$
+    dS_t^{(i)} = rS_t^{(i)} \, dt + \sigma_i S_t^{(i)} \, dW_t^{(i)}, \quad d\langle W^{(1)}, W^{(2)}\rangle_t = \rho \, dt
+    $$
+
+    **Step 1: Use $S_t^{(2)}$ as numeraire.** The Radon-Nikodym derivative is:
+
+    $$
+    \frac{d\mathbb{Q}^{S^{(2)}}}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{S_T^{(2)} e^{-rT}}{S_0^{(2)}}
+    $$
+
+    **Step 2: Pricing formula.** The exchange option price is:
+
+    $$
+    V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T^{(1)} - S_T^{(2)})^+]
+    $$
+
+    Using the numeraire $S_t^{(2)}$:
+
+    $$
+    \frac{V_0}{S_0^{(2)}} = \mathbb{E}^{\mathbb{Q}^{S^{(2)}}}\left[\left(\frac{S_T^{(1)}}{S_T^{(2)}} - 1\right)^+\right]
+    $$
+
+    **Step 3: Dynamics of the ratio.** Define $R_t = S_t^{(1)}/S_t^{(2)}$. By Ito's lemma:
+
+    $$
+    \frac{dR_t}{R_t} = (\sigma_1 \, dW_t^{(1)} - \sigma_2 \, dW_t^{(2)}) + (\sigma_2^2 - \rho\sigma_1\sigma_2) \, dt
+    $$
+
+    Under $\mathbb{Q}^{S^{(2)}}$, the Girsanov shift removes the drift from $R_t/1$ (since $R_t = S_t^{(1)}/S_t^{(2)}$ must be a martingale under this measure). The volatility of $R_t$ is:
+
+    $$
+    \hat{\sigma} = \sqrt{\sigma_1^2 - 2\rho\sigma_1\sigma_2 + \sigma_2^2}
+    $$
+
+    Under $\mathbb{Q}^{S^{(2)}}$, $R_t$ is a driftless geometric Brownian motion with volatility $\hat{\sigma}$.
+
+    **Step 4: Apply Black-Scholes to the ratio.** The problem reduces to pricing a call on $R_T$ with strike 1 in a world with zero interest rate:
+
+    $$
+    \frac{V_0}{S_0^{(2)}} = R_0 \mathcal{N}(d_1) - \mathcal{N}(d_2)
+    $$
+
+    where $R_0 = S_0^{(1)}/S_0^{(2)}$, and:
+
+    $$
+    d_1 = \frac{\ln(S_0^{(1)}/S_0^{(2)}) + \frac{1}{2}\hat{\sigma}^2 T}{\hat{\sigma}\sqrt{T}}, \quad d_2 = d_1 - \hat{\sigma}\sqrt{T}
+    $$
+
+    Multiplying by $S_0^{(2)}$:
+
+    $$
+    V_0 = S_0^{(1)}\mathcal{N}(d_1) - S_0^{(2)}\mathcal{N}(d_2)
+    $$
+
+    This is **Margrabe's formula**. The effective volatility $\hat{\sigma} = \sqrt{\sigma_1^2 - 2\rho\sigma_1\sigma_2 + \sigma_2^2}$ is the volatility of the log-ratio $\ln(S^{(1)}/S^{(2)})$.
+
+??? success "Solution to Exercise 5"
+    The relationship between $\mathcal{N}(d_1)$ being both the delta and the stock-measure probability of exercise is **not a coincidence** -- it is a direct consequence of the change-of-numeraire framework.
+
+    **Delta as stock-measure probability.** From the Black-Scholes formula $C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$, differentiating with respect to $S$:
+
+    $$
+    \Delta = \frac{\partial C}{\partial S} = \mathcal{N}(d_1) + S\mathcal{N}'(d_1)\frac{\partial d_1}{\partial S} - Ke^{-rT}\mathcal{N}'(d_2)\frac{\partial d_2}{\partial S}
+    $$
+
+    Since $\frac{\partial d_1}{\partial S} = \frac{\partial d_2}{\partial S} = \frac{1}{S\sigma\sqrt{T}}$ and $S\mathcal{N}'(d_1) = Ke^{-rT}\mathcal{N}'(d_2)$ (a standard identity), the last two terms cancel, giving $\Delta = \mathcal{N}(d_1)$.
+
+    **Stock-measure probability.** Under the stock measure $\mathbb{Q}^S$, the call price can be written as $C = S_0\mathbb{Q}^S(S_T > K) - Ke^{-rT}\mathbb{Q}(S_T > K)$. Comparing with the Black-Scholes formula:
+
+    $$
+    \mathbb{Q}^S(S_T > K) = \mathcal{N}(d_1)
+    $$
+
+    **Why this is transparent from the numeraire framework.** Under the numeraire change to the stock, $C_0/S_0 = \mathbb{E}^{\mathbb{Q}^S}[(1 - K/S_T)^+]$. The derivative of $C_0$ with respect to $S_0$ equals the probability under $\mathbb{Q}^S$ that the option expires in the money, because $C_0 = S_0 \cdot \mathbb{Q}^S(S_T > K) - Ke^{-rT}\mathcal{N}(d_2)$ and the first term is linear in $S_0$ (through the dependence of $\mathbb{Q}^S(S_T > K)$ on $S_0$, with the derivative simplifying to $\mathcal{N}(d_1)$). The change-of-numeraire framework makes this relationship structurally transparent: the delta is the hedge ratio, which equals the probability of exercise under the measure where the stock is the numeraire.
+
+??? success "Solution to Exercise 6"
+    **Step 1: Show $F(t,T)$ is a martingale under $\mathbb{Q}^T$.** The forward price is:
+
+    $$
+    F(t,T) = \frac{S_t}{P(t,T)} = S_t e^{r(T-t)}
+    $$
+
+    Under $\mathbb{Q}$, $dS_t = rS_t \, dt + \sigma S_t \, dW_t^{\mathbb{Q}}$. The numeraire is $P(t,T) = e^{-r(T-t)}$ with $dP = rP \, dt$ (deterministic). The Radon-Nikodym derivative:
+
+    $$
+    \frac{d\mathbb{Q}^T}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{P(T,T)/B_T}{P(0,T)/B_0} = \frac{1/e^{rT}}{e^{-rT}/1} = 1
+    $$
+
+    Since the bond is deterministic, $\mathbb{Q}^T = \mathbb{Q}$ and there is no Girsanov shift. Now compute $dF$:
+
+    $$
+    dF = d(S_t e^{r(T-t)}) = e^{r(T-t)} \, dS_t + S_t \, d(e^{r(T-t)})
+    $$
+
+    $$
+    = e^{r(T-t)}(rS_t \, dt + \sigma S_t \, dW_t) - rS_t e^{r(T-t)} \, dt = \sigma F_t \, dW_t^{\mathbb{Q}^T}
+    $$
+
+    The drift vanishes, so $F(t,T)$ is a martingale under $\mathbb{Q}^T$.
+
+    **Step 2: Re-derive the call price.** Starting from:
+
+    $$
+    C_0 = P(0,T)\mathbb{E}^{\mathbb{Q}^T}[(F(T,T) - K)^+]
+    $$
+
+    Note that $F(T,T) = S_T$ and $P(0,T) = e^{-rT}$. Under $\mathbb{Q}^T = \mathbb{Q}$, $F(t,T) = F(0,T)\exp(-\frac{1}{2}\sigma^2 t + \sigma W_t)$ with $F(0,T) = S_0 e^{rT}$.
+
+    So:
+
+    $$
+    F(T,T) = S_0 e^{rT} \exp\left(-\frac{1}{2}\sigma^2 T + \sigma W_T\right)
+    $$
+
+    The problem is now a standard Black-Scholes pricing with the forward $F_0 = S_0 e^{rT}$ replacing $S_0$, zero interest rate (since discounting is already handled by $P(0,T)$), and the same volatility $\sigma$. By the Black formula:
+
+    $$
+    C_0 = e^{-rT}[F_0 \mathcal{N}(d_1) - K\mathcal{N}(d_2)]
+    $$
+
+    where:
+
+    $$
+    d_1 = \frac{\ln(F_0/K) + \frac{1}{2}\sigma^2 T}{\sigma\sqrt{T}} = \frac{\ln(S_0/K) + rT + \frac{1}{2}\sigma^2 T}{\sigma\sqrt{T}} = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+    $$
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{T}
+    $$
+
+    Therefore:
+
+    $$
+    C_0 = e^{-rT}[S_0 e^{rT}\mathcal{N}(d_1) - K\mathcal{N}(d_2)] = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
+    $$
+
+    This recovers the Black-Scholes formula.

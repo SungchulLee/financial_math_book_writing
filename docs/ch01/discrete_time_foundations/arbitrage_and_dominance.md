@@ -426,3 +426,187 @@ $$
 by answering: (a) Why does no-arbitrage imply no-dominance? (b) Why does no-dominance imply the LOP? (c) Give a one-sentence economic interpretation of each implication.
 
 ---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    We need to find $\boldsymbol{\phi} = (\phi_1, \phi_2)^\top$ satisfying $\mathbf{X}\,\boldsymbol{\phi} = \mathbf{P}$:
+
+    $$
+    \begin{cases} 1.04\,\phi_1 + 1.04\,\phi_2 = 1 \\ 30\,\phi_1 + 22\,\phi_2 = 25 \end{cases}
+    $$
+
+    From equation (1): $\phi_1 + \phi_2 = 1/1.04 \approx 0.9615$, so $\phi_2 = 0.9615 - \phi_1$.
+
+    Substituting into equation (2):
+
+    $$
+    30\,\phi_1 + 22(0.9615 - \phi_1) = 25
+    $$
+
+    $$
+    30\,\phi_1 + 21.1538 - 22\,\phi_1 = 25
+    $$
+
+    $$
+    8\,\phi_1 = 3.8462 \implies \phi_1 = 0.4808
+    $$
+
+    $$
+    \phi_2 = 0.9615 - 0.4808 = 0.4808
+    $$
+
+    More precisely, from equation (1): $\phi_1 + \phi_2 = 25/26$. From equation (2): $30\phi_1 + 22\phi_2 = 25$. Solving: $8\phi_1 = 25 - 22 \cdot (25/26) = 25 - 550/26 = (650 - 550)/26 = 100/26$, so $\phi_1 = 100/208 = 25/52$ and $\phi_2 = 25/26 - 25/52 = 25/52$.
+
+    Both state prices are strictly positive: $\phi_1 = 25/52 \approx 0.4808 > 0$ and $\phi_2 = 25/52 \approx 0.4808 > 0$.
+
+    Since a strictly positive state price vector exists, the market is **arbitrage-free**.
+
+??? success "Solution to Exercise 2"
+    Consider a market with $S = 2$ states and $N = 2$ assets with:
+
+    $$
+    \mathbf{X} = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}, \quad \mathbf{P} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+    $$
+
+    **The LOP holds:** The LOP requires that $\mathbf{X}^\top \boldsymbol{\theta} = \mathbf{X}^\top \boldsymbol{\eta}$ implies $\boldsymbol{\theta}^\top \mathbf{P} = \boldsymbol{\eta}^\top \mathbf{P}$. Since $\mathbf{P} = \mathbf{0}$, every portfolio has zero cost: $\boldsymbol{\theta}^\top \mathbf{P} = 0$ for all $\boldsymbol{\theta}$. So the LOP is trivially satisfied.
+
+    **A Type 1 arbitrage exists:** Take $\boldsymbol{\theta} = (1, 0)^\top$. Then:
+
+    - Cost: $\boldsymbol{\theta}^\top \mathbf{P} = 0$
+    - Payoff: $\mathbf{X}^\top \boldsymbol{\theta} = (1, 0)^\top \geq \mathbf{0}$ and $\neq \mathbf{0}$
+
+    This portfolio costs nothing and pays \$1 in state $\omega_1$ and \$0 in state $\omega_2$. It is a Type 1 arbitrage. Thus, the LOP does not imply no-arbitrage.
+
+??? success "Solution to Exercise 3"
+    We solve $\mathbf{X}\,\boldsymbol{\phi} = \mathbf{P}$:
+
+    $$
+    \begin{cases} 1.05\,\phi_1 + 1.05\,\phi_2 + 1.05\,\phi_3 = 1 \\ 20\,\phi_1 + 15\,\phi_2 + 10\,\phi_3 = 12 \\ 5\,\phi_1 + 3\,\phi_2 + 0\,\phi_3 = 2 \end{cases}
+    $$
+
+    From equation (1): $\phi_1 + \phi_2 + \phi_3 = 1/1.05 = 20/21$.
+
+    From equation (2): $20\phi_1 + 15\phi_2 + 10\phi_3 = 12$. Rewrite as $20\phi_1 + 15\phi_2 + 10\phi_3 = 12$.
+
+    Subtract $10 \times$ equation (1-simplified) from equation (2):
+
+    $$
+    10\phi_1 + 5\phi_2 = 12 - 10 \cdot \frac{20}{21} = 12 - \frac{200}{21} = \frac{252 - 200}{21} = \frac{52}{21} \quad \cdots \text{(i)}
+    $$
+
+    From equation (3): $5\phi_1 + 3\phi_2 = 2 \quad \cdots \text{(ii)}$.
+
+    From (i): $10\phi_1 + 5\phi_2 = 52/21$. From $2 \times$ (ii): $10\phi_1 + 6\phi_2 = 4$. Subtracting (i) from this:
+
+    $$
+    \phi_2 = 4 - \frac{52}{21} = \frac{84 - 52}{21} = \frac{32}{21}
+    $$
+
+    From (ii): $5\phi_1 = 2 - 3 \cdot (32/21) = 2 - 96/21 = (42 - 96)/21 = -54/21$, so $\phi_1 = -54/105 = -18/35$.
+
+    Since $\phi_1 = -18/35 < 0$, no strictly positive state price vector exists. By the Fundamental No-Arbitrage Characterization, the market **admits arbitrage**.
+
+    **Constructing the arbitrage portfolio:** Since $\phi_1 < 0$, state $\omega_1$ is "overpriced." We look for a portfolio that exploits this. We need $\boldsymbol{\theta}$ such that $\boldsymbol{\theta}^\top \mathbf{P} \leq 0$ and $\mathbf{X}^\top \boldsymbol{\theta} \geq \mathbf{0}$.
+
+    Try to replicate a payoff that is positive only in state $\omega_1$. Let us seek $\boldsymbol{\theta}$ such that $\mathbf{X}^\top \boldsymbol{\theta} = (1, 0, 0)^\top$:
+
+    $$
+    \begin{pmatrix} 1.05 & 20 & 5 \\ 1.05 & 15 & 3 \\ 1.05 & 10 & 0 \end{pmatrix} \begin{pmatrix} \theta_1 \\ \theta_2 \\ \theta_3 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+    $$
+
+    From row 3: $1.05\theta_1 + 10\theta_2 = 0$, so $\theta_1 = -10\theta_2/1.05$. From row 2: $1.05\theta_1 + 15\theta_2 + 3\theta_3 = 0$, substituting: $-10\theta_2 + 15\theta_2 + 3\theta_3 = 0$, so $5\theta_2 + 3\theta_3 = 0$, giving $\theta_3 = -5\theta_2/3$. From row 1: $1.05\theta_1 + 20\theta_2 + 5\theta_3 = 1$, substituting: $-10\theta_2 + 20\theta_2 - 25\theta_2/3 = 1$, so $10\theta_2 - 25\theta_2/3 = (30\theta_2 - 25\theta_2)/3 = 5\theta_2/3 = 1$, giving $\theta_2 = 3/5$.
+
+    Thus $\theta_1 = -10(3/5)/1.05 = -6/1.05 = -40/7$, $\theta_2 = 3/5$, $\theta_3 = -5(3/5)/3 = -1$.
+
+    The cost is:
+
+    $$
+    \boldsymbol{\theta}^\top \mathbf{P} = (-40/7)(1) + (3/5)(12) + (-1)(2) = -40/7 + 36/5 - 2
+    $$
+
+    $$
+    = \frac{-200 + 252 - 70}{35} = \frac{-18}{35} < 0
+    $$
+
+    The portfolio $\boldsymbol{\theta} = (-40/7,\; 3/5,\; -1)^\top$ has negative cost ($-18/35 \approx -\$0.514$) and payoff $(1, 0, 0)^\top \geq \mathbf{0}$. This is an arbitrage: the trader receives \$0.514 today and is guaranteed a non-negative payoff (specifically \$1 in state $\omega_1$ and \$0 otherwise).
+
+??? success "Solution to Exercise 4"
+    We have $\boldsymbol{\theta}^\top \mathbf{P} = 0$ and $\mathbf{X}^\top \boldsymbol{\theta} \geq \mathbf{0}$. Since $\boldsymbol{\phi} \gg \mathbf{0}$ and $\mathbf{P} = \mathbf{X}\,\boldsymbol{\phi}$:
+
+    $$
+    0 = \boldsymbol{\theta}^\top \mathbf{P} = \boldsymbol{\theta}^\top \mathbf{X}\,\boldsymbol{\phi} = \sum_{s=1}^{S} \phi_s \, (\mathbf{X}^\top \boldsymbol{\theta})_s
+    $$
+
+    Each term in this sum satisfies $\phi_s > 0$ and $(\mathbf{X}^\top \boldsymbol{\theta})_s \geq 0$, so every term is non-negative. A sum of non-negative terms equals zero if and only if every term is zero. Since $\phi_s > 0$ for all $s$, this requires:
+
+    $$
+    (\mathbf{X}^\top \boldsymbol{\theta})_s = 0 \quad \text{for all } s = 1, \ldots, S
+    $$
+
+    Therefore $\mathbf{X}^\top \boldsymbol{\theta} = \mathbf{0}$.
+
+    **Why this rules out Type 1 arbitrage:** A Type 1 arbitrage requires a portfolio with $\boldsymbol{\theta}^\top \mathbf{P} = 0$, $\mathbf{X}^\top \boldsymbol{\theta} \geq \mathbf{0}$, and $\mathbf{X}^\top \boldsymbol{\theta} \neq \mathbf{0}$. We have just shown that the first two conditions force $\mathbf{X}^\top \boldsymbol{\theta} = \mathbf{0}$, contradicting the third condition. Hence no Type 1 arbitrage can exist when strictly positive state prices exist.
+
+??? success "Solution to Exercise 5"
+    **Bond price:** $P_1 = 1$ (given implicitly by the payoff of $1.10$ and risk-free rate $r_f = 0.10$, so $P_1 = 1$). Actually, the bond price is not explicitly stated. Since the bond pays $1.10$ in both states and $1 + r_f = 1.10$, we have $P_1 = 1$.
+
+    **State prices from bond and Stock A:** Solve $\mathbf{X}\,\boldsymbol{\phi} = \mathbf{P}$:
+
+    $$
+    \begin{cases} 1.10\,\phi_1 + 1.10\,\phi_2 = 1 \\ 50\,\phi_1 + 35\,\phi_2 = 40 \end{cases}
+    $$
+
+    From equation (1): $\phi_1 + \phi_2 = 1/1.10 = 10/11$.
+
+    Subtract $35 \times$ equation (1-simplified) from equation (2):
+
+    $$
+    15\,\phi_1 = 40 - 35 \cdot \frac{10}{11} = 40 - \frac{350}{11} = \frac{440 - 350}{11} = \frac{90}{11}
+    $$
+
+    $$
+    \phi_1 = \frac{90}{165} = \frac{6}{11}
+    $$
+
+    $$
+    \phi_2 = \frac{10}{11} - \frac{6}{11} = \frac{4}{11}
+    $$
+
+    Both are strictly positive.
+
+    **Check Stock B:** The no-arbitrage price of Stock B should be:
+
+    $$
+    P_B^* = 20\,\phi_1 + 12\,\phi_2 = 20 \cdot \frac{6}{11} + 12 \cdot \frac{4}{11} = \frac{120 + 48}{11} = \frac{168}{11} \approx 15.27
+    $$
+
+    The observed price is $P_B = 15$, which is less than the no-arbitrage price of $\$15.27$. Stock B is **underpriced**, and an arbitrage exists.
+
+    **Constructing the arbitrage:** Buy Stock B (cheap) and sell the replicating portfolio. We need $\theta_1, \theta_A$ such that:
+
+    $$
+    \begin{pmatrix} 1.10 & 50 \\ 1.10 & 35 \end{pmatrix} \begin{pmatrix} \theta_1 \\ \theta_A \end{pmatrix} = \begin{pmatrix} 20 \\ 12 \end{pmatrix}
+    $$
+
+    From the difference of the two rows: $15\,\theta_A = 8$, so $\theta_A = 8/15$. From row 2: $1.10\,\theta_1 + 35(8/15) = 12$, so $1.10\,\theta_1 = 12 - 56/3 = (36 - 56)/3 = -20/3$, giving $\theta_1 = -20/(3 \times 1.10) = -200/33$.
+
+    The replicating portfolio costs: $(-200/33)(1) + (8/15)(40) = -200/33 + 320/15 = -200/33 + 704/33 = 504/33 = 168/11 \approx 15.27$.
+
+    Arbitrage portfolio: buy 1 unit of Stock B and sell the replicating portfolio. Specifically, $\boldsymbol{\theta}^* = (200/33,\; -8/15,\; 1)^\top$:
+
+    - Cost: $200/33 \cdot 1 - 8/15 \cdot 40 + 1 \cdot 15 = 200/33 - 320/15 + 15 = 200/33 - 704/33 + 495/33 = -9/33 = -3/11 \approx -\$0.27$
+    - Payoff in Boom: $(200/33)(1.10) - (8/15)(50) + 20 = 220/33 - 400/15 + 20 = 20/3 - 80/3 + 60/3 = 0$
+    - Payoff in Recession: $(200/33)(1.10) - (8/15)(35) + 12 = 20/3 - 56/3 + 36/3 = 0$
+
+    The trader receives $\$3/11 \approx \$0.27$ today with zero future liability -- a Type 2 arbitrage.
+
+??? success "Solution to Exercise 6"
+    **(a) No-arbitrage implies no-dominance:** Suppose portfolio $\boldsymbol{\theta}$ dominates portfolio $\boldsymbol{\eta}$: $\mathbf{X}^\top \boldsymbol{\theta} \geq \mathbf{X}^\top \boldsymbol{\eta}$ with strict inequality in some state, and $\boldsymbol{\theta}^\top \mathbf{P} \leq \boldsymbol{\eta}^\top \mathbf{P}$. Define $\boldsymbol{\alpha} = \boldsymbol{\theta} - \boldsymbol{\eta}$. Then $\mathbf{X}^\top \boldsymbol{\alpha} \geq \mathbf{0}$, $\mathbf{X}^\top \boldsymbol{\alpha} \neq \mathbf{0}$, and $\boldsymbol{\alpha}^\top \mathbf{P} \leq 0$. This is an arbitrage opportunity (Type 1 if $\boldsymbol{\alpha}^\top \mathbf{P} = 0$, Type 2 if $\boldsymbol{\alpha}^\top \mathbf{P} < 0$). So if no arbitrage exists, no dominance can exist.
+
+    **(b) No-dominance implies the LOP:** Suppose the LOP fails: there exist $\boldsymbol{\theta}, \boldsymbol{\eta}$ with $\mathbf{X}^\top \boldsymbol{\theta} = \mathbf{X}^\top \boldsymbol{\eta}$ but $\boldsymbol{\theta}^\top \mathbf{P} < \boldsymbol{\eta}^\top \mathbf{P}$. Then $\boldsymbol{\theta}$ has the same payoff as $\boldsymbol{\eta}$ in every state (so weakly better, and not strictly better in any state -- they are equal). However, consider: since $\boldsymbol{\theta}$ has the same payoff but lower cost, the LOP failure actually means $\boldsymbol{\alpha} = \boldsymbol{\theta} - \boldsymbol{\eta}$ gives $\mathbf{X}^\top \boldsymbol{\alpha} = \mathbf{0}$ and $\boldsymbol{\alpha}^\top \mathbf{P} < 0$. Now $\boldsymbol{\alpha}$ dominates $\mathbf{0}$: it costs less ($\boldsymbol{\alpha}^\top \mathbf{P} < 0$) and has non-negative payoff ($\mathbf{X}^\top \boldsymbol{\alpha} = \mathbf{0} \geq \mathbf{0}$). Actually, for dominance we need strict inequality in at least one payoff state, and here the payoff is identically zero. But $\boldsymbol{\alpha}$ is a Type 2 arbitrage (negative cost, non-negative payoff), and any arbitrage is a dominance violation. Specifically, $\boldsymbol{\alpha}$ dominates $\mathbf{0}$ because we can view the negative cost as a strictly better "payoff at $t = 0$." More precisely, if no-dominance holds, then for any $\boldsymbol{\alpha}$ with $\mathbf{X}^\top \boldsymbol{\alpha} \geq \mathbf{X}^\top \mathbf{0} = \mathbf{0}$, we must have $\boldsymbol{\alpha}^\top \mathbf{P} \geq 0$ (otherwise $\boldsymbol{\alpha}$ would dominate $\mathbf{0}$ in the extended sense including cost). In fact, no-dominance implies no-arbitrage in the finite setting, and no-arbitrage implies LOP, so the chain holds.
+
+    **(c) Economic interpretations:**
+
+    - *No-arbitrage $\implies$ no-dominance:* If you cannot get something for nothing, then you certainly cannot get a uniformly better investment for a lower price.
+    - *No-dominance $\implies$ LOP:* If no investment can be uniformly outperformed by a cheaper one, then two investments with identical payoffs must cost the same.

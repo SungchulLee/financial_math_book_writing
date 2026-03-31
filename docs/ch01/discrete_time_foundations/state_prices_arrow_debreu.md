@@ -424,3 +424,195 @@ when a risk-free bond exists. Interpret this result in terms of the relationship
 **Exercise 6.** Explain why the Breeden-Litzenberger formula $\phi(K) = e^{r_f T} \frac{\partial^2 C}{\partial K^2}$ implies that the call price $C(K)$ must be a convex function of the strike price $K$ in an arbitrage-free market. What would a violation of convexity imply about state prices?
 
 ---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **State prices:** Solve $\mathbf{X}\,\boldsymbol{\phi} = \mathbf{P}$:
+
+    $$
+    \begin{cases} \phi_1 + \phi_2 = 0.90 \\ 80\,\phi_1 + 50\,\phi_2 = 60 \end{cases}
+    $$
+
+    From equation (1): $\phi_2 = 0.90 - \phi_1$. Substituting into equation (2):
+
+    $$
+    80\,\phi_1 + 50(0.90 - \phi_1) = 60 \implies 30\,\phi_1 = 60 - 45 = 15 \implies \phi_1 = 0.50
+    $$
+
+    $$
+    \phi_2 = 0.90 - 0.50 = 0.40
+    $$
+
+    **Risk-neutral probabilities:** The risk-free rate satisfies $1/(1 + r_f) = \sum_s \phi_s = 0.90$, so $r_f = 1/0.90 - 1 = 10/9 - 1 = 1/9 \approx 0.1111$ (about $11.11\%$). Then:
+
+    $$
+    q_1 = \frac{\phi_1}{\sum_s \phi_s} = \frac{0.50}{0.90} = \frac{5}{9} \approx 0.5556
+    $$
+
+    $$
+    q_2 = \frac{\phi_2}{\sum_s \phi_s} = \frac{0.40}{0.90} = \frac{4}{9} \approx 0.4444
+    $$
+
+    **Stochastic discount factor:** With $p_1 = p_2 = 0.5$:
+
+    $$
+    m_1 = \frac{\phi_1}{p_1} = \frac{0.50}{0.50} = 1.00
+    $$
+
+    $$
+    m_2 = \frac{\phi_2}{p_2} = \frac{0.40}{0.50} = 0.80
+    $$
+
+    **Verification:** $P_2 = \mathbb{E}^{\mathbb{P}}[m \cdot X_2] = 0.5(1.00)(80) + 0.5(0.80)(50) = 40 + 20 = 60$. Correct.
+
+    Note that $m_2 < m_1$: the SDF is lower in the recession state, which is unusual. Typically the SDF is higher in bad states (reflecting higher marginal utility). Here the "recession" state has a lower SDF, which could occur if the economy has unusual risk preferences or if state $\omega_2$ is not truly the "bad" state in terms of aggregate consumption.
+
+??? success "Solution to Exercise 2"
+    Suppose a risk-free bond exists with payoff $X_{\text{rf},s} = 1$ for all $s = 1, \ldots, S$ and price $P_{\text{rf}}$. The fundamental pricing equation gives:
+
+    $$
+    P_{\text{rf}} = \sum_{s=1}^{S} \phi_s \cdot X_{\text{rf},s} = \sum_{s=1}^{S} \phi_s \cdot 1 = \sum_{s=1}^{S} \phi_s
+    $$
+
+    The risk-free bond has gross return $(1 + r_f)$, meaning:
+
+    $$
+    P_{\text{rf}} = \frac{1}{1 + r_f}
+    $$
+
+    (investing $P_{\text{rf}}$ today yields \$1 in every state, so the gross return is $1/P_{\text{rf}} = 1 + r_f$). Combining:
+
+    $$
+    \sum_{s=1}^{S} \phi_s = \frac{1}{1 + r_f}
+    $$
+
+    **Implication for risk-neutral probabilities:** Define $q_s = \phi_s (1 + r_f)$ for each $s$. Then:
+
+    $$
+    \sum_{s=1}^{S} q_s = (1 + r_f) \sum_{s=1}^{S} \phi_s = (1 + r_f) \cdot \frac{1}{1 + r_f} = 1
+    $$
+
+    Since $\phi_s > 0$ (no-arbitrage), we have $q_s > 0$ for all $s$. Therefore the $q_s$ form a valid probability measure. This is the risk-neutral measure $\mathbb{Q}$, and the state prices are precisely the discounted risk-neutral probabilities: $\phi_s = q_s / (1 + r_f)$.
+
+??? success "Solution to Exercise 3"
+    We solve the system $\mathbf{X}\,\boldsymbol{\phi} = \mathbf{P}$:
+
+    $$
+    \begin{cases} \phi_1 + \phi_2 + \phi_3 = 0.96 \\ 60\,\phi_1 + 50\,\phi_2 + 40\,\phi_3 = 48 \\ 10\,\phi_1 + 5\,\phi_2 + 0 \cdot \phi_3 = 4.80 \end{cases}
+    $$
+
+    Note that equation (2) equals $10 \times$ equation (1) plus $50\phi_1 + 40\phi_2 + 30\phi_3$... Let us solve directly.
+
+    Subtract $40 \times$ equation (1) from equation (2):
+
+    $$
+    20\,\phi_1 + 10\,\phi_2 = 48 - 38.4 = 9.6 \quad \cdots \text{(i)}
+    $$
+
+    So $2\phi_1 + \phi_2 = 0.96$.
+
+    From equation (3): $10\phi_1 + 5\phi_2 = 4.80$, so $2\phi_1 + \phi_2 = 0.96$ ... (ii).
+
+    Equations (i) and (ii) are identical: $2\phi_1 + \phi_2 = 0.96$. This means we have one free parameter. Let $\phi_1 = t$. Then $\phi_2 = 0.96 - 2t$ and from equation (1): $\phi_3 = 0.96 - t - (0.96 - 2t) = t$.
+
+    So $\boldsymbol{\phi} = (t,\; 0.96 - 2t,\; t)^\top$.
+
+    For strict positivity: $t > 0$, $0.96 - 2t > 0 \implies t < 0.48$, and $t > 0$. So $t \in (0, 0.48)$.
+
+    For example, choosing $t = 0.16$: $\boldsymbol{\phi} = (0.16,\; 0.64,\; 0.16)^\top$.
+
+    **Verification:** $\phi_1 + \phi_2 + \phi_3 = 0.16 + 0.64 + 0.16 = 0.96$. Check equation (2): $60(0.16) + 50(0.64) + 40(0.16) = 9.6 + 32 + 6.4 = 48$. Check equation (3): $10(0.16) + 5(0.64) = 1.6 + 3.2 = 4.8$. All correct.
+
+    All components are strictly positive for any $t \in (0, 0.48)$, confirming the market is arbitrage-free.
+
+    **Implied risk-free rate:**
+
+    $$
+    \frac{1}{1 + r_f} = \sum_{s=1}^{3} \phi_s = 0.96 \implies 1 + r_f = \frac{1}{0.96} = \frac{25}{24} \implies r_f = \frac{1}{24} \approx 4.167\%
+    $$
+
+    Note that the state prices are not unique (the market has 3 states but the system has only 2 independent equations from 3 assets), confirming the market is incomplete.
+
+??? success "Solution to Exercise 4"
+    The SDF is $m_s = \phi_s / p_s$. Taking the expectation under the physical measure $\mathbb{P}$:
+
+    $$
+    \mathbb{E}^{\mathbb{P}}[m] = \sum_{s=1}^{S} p_s \, m_s = \sum_{s=1}^{S} p_s \cdot \frac{\phi_s}{p_s} = \sum_{s=1}^{S} \phi_s
+    $$
+
+    When a risk-free bond exists (as shown in Exercise 2):
+
+    $$
+    \sum_{s=1}^{S} \phi_s = \frac{1}{1 + r_f}
+    $$
+
+    Therefore:
+
+    $$
+    \mathbb{E}^{\mathbb{P}}[m] = \frac{1}{1 + r_f}
+    $$
+
+    **Interpretation:** The expected value of the SDF under the physical measure equals the discount factor. This means the SDF "on average" discounts future payoffs at the risk-free rate. Applying the SDF pricing formula to the risk-free bond with constant payoff \$1:
+
+    $$
+    P_{\text{rf}} = \mathbb{E}^{\mathbb{P}}[m \cdot 1] = \mathbb{E}^{\mathbb{P}}[m] = \frac{1}{1 + r_f}
+    $$
+
+    This confirms that the time value of money (as captured by $r_f$) is embedded in the average level of the SDF. The SDF fluctuates around its mean $1/(1 + r_f)$, being higher in bad states and lower in good states. This state-dependence is what distinguishes risky asset pricing from riskless discounting.
+
+??? success "Solution to Exercise 5"
+    **Using the fundamental pricing equation:**
+
+    $$
+    P_{\Phi} = \phi_1 \cdot \Phi(\omega_1) + \phi_2 \cdot \Phi(\omega_2) = 0.35 \times 10 + 0.60 \times 3 = 3.50 + 1.80 = 5.30
+    $$
+
+    **Verification via risk-neutral pricing:** First, find the risk-free rate:
+
+    $$
+    \frac{1}{1 + r_f} = \phi_1 + \phi_2 = 0.35 + 0.60 = 0.95 \implies r_f = \frac{1}{0.95} - 1 = \frac{1}{19} \approx 5.263\%
+    $$
+
+    The risk-neutral probabilities are:
+
+    $$
+    q_1 = \frac{\phi_1}{0.95} = \frac{0.35}{0.95} = \frac{7}{19} \approx 0.3684
+    $$
+
+    $$
+    q_2 = \frac{\phi_2}{0.95} = \frac{0.60}{0.95} = \frac{12}{19} \approx 0.6316
+    $$
+
+    The risk-neutral expected payoff is:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\Phi] = q_1 \cdot 10 + q_2 \cdot 3 = \frac{7}{19} \cdot 10 + \frac{12}{19} \cdot 3 = \frac{70 + 36}{19} = \frac{106}{19}
+    $$
+
+    The discounted expected payoff is:
+
+    $$
+    P_{\Phi} = \frac{1}{1 + r_f} \cdot \mathbb{E}^{\mathbb{Q}}[\Phi] = 0.95 \times \frac{106}{19} = \frac{0.95 \times 106}{19} = \frac{100.7}{19} = 5.30
+    $$
+
+    Both methods give the same no-arbitrage price of **\$5.30**.
+
+??? success "Solution to Exercise 6"
+    The Breeden-Litzenberger formula states:
+
+    $$
+    \phi(K) = e^{r_f T} \frac{\partial^2 C}{\partial K^2}
+    $$
+
+    In an arbitrage-free market, state prices must be strictly positive: $\phi(K) > 0$ for all $K$ in the support of the asset's terminal distribution. Since $e^{r_f T} > 0$, positivity of $\phi(K)$ requires:
+
+    $$
+    \frac{\partial^2 C}{\partial K^2} > 0 \quad \text{for all } K
+    $$
+
+    This is precisely the condition that $C(K)$ is a **convex** function of $K$. (A twice-differentiable function is convex if and only if its second derivative is non-negative everywhere.)
+
+    **What a violation of convexity would imply:** If $C(K)$ were not convex at some strike $K_0$, then $\frac{\partial^2 C}{\partial K^2}\big|_{K_0} < 0$, which would give $\phi(K_0) < 0$. A negative state price means the market assigns a negative value to receiving \$1 in a particular state of the world. This is economically absurd and constitutes an arbitrage opportunity.
+
+    Concretely, a violation of convexity can be exploited via a **butterfly spread**: buy calls at strikes $K_0 - \Delta K$ and $K_0 + \Delta K$, and sell two calls at strike $K_0$. If $C(K)$ is locally concave at $K_0$, this butterfly spread has a negative cost (you receive a net premium) but a non-negative payoff in every state. This is a Type 2 arbitrage. Therefore, in an arbitrage-free market, call prices must be convex in the strike price.

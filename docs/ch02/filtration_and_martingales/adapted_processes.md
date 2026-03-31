@@ -281,3 +281,92 @@ Let $(X_n)_{n \ge 1}$ be i.i.d. coin flips with $X_n \in \{+1, -1\}$, $S_n = X_1
 - Is it adapted?
 - Is it predictable?
 - Justify each answer.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** If $X_t$ and $Y_t$ are adapted to $(\mathcal{F}_t)$, then $X_t$ is $\mathcal{F}_t$-measurable and $Y_t$ is $\mathcal{F}_t$-measurable for each $t$.
+
+    - $X_t + Y_t$: The sum of two $\mathcal{F}_t$-measurable functions is $\mathcal{F}_t$-measurable (since addition is a continuous, hence Borel measurable, function from $\mathbb{R}^2 \to \mathbb{R}$, and $(X_t, Y_t)$ is $\mathcal{F}_t$-measurable). Therefore $X_t + Y_t$ is adapted.
+
+    - $X_t \cdot Y_t$: Similarly, multiplication is a continuous function from $\mathbb{R}^2 \to \mathbb{R}$, so the product of two $\mathcal{F}_t$-measurable functions is $\mathcal{F}_t$-measurable. Therefore $X_t \cdot Y_t$ is adapted. $\square$
+
+    **(b)** For $t \ge 0$, $W_{t+1}$ is $\mathcal{F}_{t+1}^W$-measurable but we need to check $\mathcal{F}_t^W$-measurability. Since $W_{t+1} = W_t + (W_{t+1} - W_t)$ and $W_{t+1} - W_t$ is independent of $\mathcal{F}_t^W$ with distribution $N(0, 1)$, the random variable $W_{t+1}$ is not determined by information up to time $t$.
+
+    Formally: if $W_{t+1}$ were $\mathcal{F}_t^W$-measurable, then $W_{t+1} - W_t$ would also be $\mathcal{F}_t^W$-measurable (since $W_t$ is). But $W_{t+1} - W_t \sim N(0,1)$ is independent of $\mathcal{F}_t^W$ and non-constant, which is impossible for a random variable that is simultaneously measurable with respect to a $\sigma$-algebra and independent of it. $\square$
+
+    **(c)** The process $X_t = \int_0^t W_s \, ds$ depends only on the values $(W_s)_{0 \le s \le t}$. For each $t$, $X_t$ is a functional of $(W_s)_{s \le t}$. More precisely, $X_t$ can be approximated by Riemann sums $\sum_{k} W_{t_k}(t_{k+1} - t_k)$, where each $W_{t_k}$ is $\mathcal{F}_{t_k}^W \subseteq \mathcal{F}_t^W$-measurable. The limit of $\mathcal{F}_t^W$-measurable random variables is $\mathcal{F}_t^W$-measurable (measurability is preserved under pointwise limits). Since $\mathbb{E}[\int_0^t |W_s| \, ds] \le \int_0^t \mathbb{E}[|W_s|] \, ds = \int_0^t \sqrt{2s/\pi} \, ds < \infty$, the integral is well-defined and $X_t$ is $\mathcal{F}_t^W$-measurable for each $t$. $\square$
+
+??? success "Solution to Exercise 2"
+    **(a)** Fix $t > 0$. For each $n$, define the step-function approximation:
+
+    $$
+    X^n_s(\omega) = X_{(k-1)/2^n}(\omega) \quad \text{for } s \in ((k-1)/2^n, k/2^n] \cap [0, t]
+    $$
+
+    with $X^n_0(\omega) = X_0(\omega)$.
+
+    Each $X^n$ is $\mathcal{B}([0,t]) \otimes \mathcal{F}_t$-measurable: on the set $(s, \omega) \in ((k-1)/2^n, k/2^n] \times \Omega$, the value is $X_{(k-1)/2^n}(\omega)$, which is $\mathcal{F}_{(k-1)/2^n}$-measurable (by adaptedness) and hence $\mathcal{F}_t$-measurable. The indicator of $(k-1)/2^n < s \le k/2^n$ is $\mathcal{B}([0,t])$-measurable. So each piece is jointly measurable, and $X^n$ is a finite sum of such pieces.
+
+    By left-continuity of paths, $X^n_s(\omega) \to X_s(\omega)$ as $n \to \infty$ for each $(s, \omega)$: when $s > 0$, the points $(k-1)/2^n$ approach $s$ from below, and $X_{(k-1)/2^n} \to X_{s-} = X_s$ by left-continuity. The pointwise limit of jointly measurable functions is jointly measurable, so $X$ restricted to $[0, t] \times \Omega$ is $\mathcal{B}([0,t]) \otimes \mathcal{F}_t$-measurable. $\square$
+
+    **(b)** Constructing an explicit adapted process that is not progressively measurable requires set-theoretic constructions beyond ZFC. The general structure is: one constructs a process where $X_t(\omega)$ is $\mathcal{F}_t$-measurable for each fixed $t$ (pointwise measurability), but the joint map $(t, \omega) \mapsto X_t(\omega)$ fails to be $\mathcal{B}([0,t]) \otimes \mathcal{F}_t$-measurable. This can happen when the sample paths $t \mapsto X_t(\omega)$ are highly irregular (e.g., non-measurable as functions of $t$). Under the Continuum Hypothesis, one can construct such examples using well-orderings of $[0,1]$, but no explicit elementary construction is known in standard ZFC.
+
+    **(c)** Define the map $\phi: \Omega \to [0, t] \times \Omega$ by $\phi(\omega) = (\tau(\omega), \omega)$. On the event $\{\tau \le t\}$, $\phi$ maps into $[0, t] \times \Omega$.
+
+    Since $X$ is progressively measurable, the restriction of $(s, \omega) \mapsto X_s(\omega)$ to $[0, t] \times \Omega$ is $\mathcal{B}([0,t]) \otimes \mathcal{F}_t$-measurable.
+
+    The map $\omega \mapsto \tau(\omega)$ is $\mathcal{F}_t$-measurable on $\{\tau \le t\}$ (since $\tau$ is a stopping time), and $\omega \mapsto \omega$ is trivially $\mathcal{F}_t$-measurable. Thus the composition $X_\tau(\omega) \cdot \mathbf{1}_{\{\tau \le t\}}(\omega) = X(\tau(\omega), \omega) \cdot \mathbf{1}_{\{\tau \le t\}}(\omega)$ is $\mathcal{F}_t$-measurable, being the composition of a $\mathcal{B}([0,t]) \otimes \mathcal{F}_t$-measurable function with an $\mathcal{F}_t$-measurable map. $\square$
+
+??? success "Solution to Exercise 3"
+    **(a)** The predictable $\sigma$-algebra $\mathcal{P}$ is generated by sets $(s, t] \times F_s$ with $F_s \in \mathcal{F}_s$ and $\{0\} \times F_0$ with $F_0 \in \mathcal{F}_0$.
+
+    For $(s, t] \times F_s$: define the càdlàg adapted process $Y_u(\omega) = \mathbf{1}_{(s, t]}(u) \cdot \mathbf{1}_{F_s}(\omega)$. This process is zero for $u \le s$ and $u > t$, and equals $\mathbf{1}_{F_s}(\omega)$ for $u \in (s, t]$. It is right-continuous (constant on $(s, t]$, zero elsewhere with right-continuous jumps at $s$ and $t$) and adapted (for $u \le s$, $Y_u = 0$; for $u \in (s, t]$, $Y_u = \mathbf{1}_{F_s}$ is $\mathcal{F}_s \subseteq \mathcal{F}_u$-measurable). The set $(s, t] \times F_s = \{(\omega, u) : Y_u(\omega) = 1\}$ is in $\mathcal{O}$.
+
+    Since the generators of $\mathcal{P}$ lie in $\mathcal{O}$, and $\mathcal{P}$ is the smallest $\sigma$-algebra containing them, $\mathcal{P} \subseteq \mathcal{O}$. $\square$
+
+    **(b)** Let $(N_t)$ be a Poisson process with intensity $\lambda$, and $\tau_1$ its first jump time.
+
+    - *Adapted*: At time $t$, $X_t = \mathbf{1}_{\{t \ge \tau_1\}} = \mathbf{1}_{\{N_t \ge 1\}}$, which is $\sigma(N_s : s \le t)$-measurable. So $X$ is adapted.
+
+    - *Càdlàg and optional*: $X_t$ jumps from 0 to 1 at $t = \tau_1$ and is right-continuous (constant on $[0, \tau_1)$ and $[\tau_1, \infty)$). So $X$ is càdlàg adapted, hence optional.
+
+    - *Not predictable*: The stopping time $\tau_1$ is totally inaccessible: there is no increasing sequence of stopping times $\sigma_n < \tau_1$ with $\sigma_n \uparrow \tau_1$ a.s. (this is because $\tau_1 \sim \text{Exp}(\lambda)$ has no atoms, and the Poisson process has the "memoryless" property). A predictable process cannot jump at a totally inaccessible time — its jumps must occur at predictable stopping times. Since $X$ has a jump at the totally inaccessible time $\tau_1$, $X$ is not predictable.
+
+    **(c)** A continuous adapted process $X$ is in particular left-continuous (càglàd). The predictable $\sigma$-algebra $\mathcal{P}$ is generated by all càglàd adapted processes. Therefore every càglàd adapted process is $\mathcal{P}$-measurable (i.e., predictable). Since continuous implies càglàd, any continuous adapted process is predictable. $\square$
+
+??? success "Solution to Exercise 4"
+    **(a)** In discrete time, the predictable $\sigma$-algebra is generated by sets $\{n\} \times F_{n-1}$ where $F_{n-1} \in \mathcal{F}_{n-1}$ and $n \ge 1$.
+
+    ($\Rightarrow$) If $(H_n)_{n \ge 1}$ is predictable (measurable w.r.t. $\mathcal{P}$), then for each $n$, $H_n(\omega) = H(\{n\}, \omega)$ where $H$ is $\mathcal{P}$-measurable. Since $H_n$ is determined by the "slice" at time $n$ of a $\mathcal{P}$-measurable process, and $\mathcal{P}$ at time $n$ is generated by $\mathcal{F}_{n-1}$-measurable sets, $H_n$ is $\mathcal{F}_{n-1}$-measurable.
+
+    ($\Leftarrow$) If $H_n$ is $\mathcal{F}_{n-1}$-measurable for each $n$, define $H(\omega, n) = H_n(\omega)$. For any Borel set $B$, $\{(\omega, n) : H(\omega, n) \in B\} = \bigcup_{n \ge 1} \{H_n \in B\} \times \{n\}$, and each $\{H_n \in B\} \in \mathcal{F}_{n-1}$, so each piece is in $\mathcal{P}$. Hence $H$ is $\mathcal{P}$-measurable. $\square$
+
+    **(b)** Consider a stock $S_t$ that jumps from \$100 to \$150 at a totally inaccessible stopping time $\tau$. An adapted but non-predictable strategy: $H_t = \mathbf{1}_{\{t = \tau\}}$ (hold 1 share only at the exact moment of the jump).
+
+    At time $t$, we know whether $t = \tau$, so $H_t$ is adapted. But it is not predictable because we cannot know just before $\tau$ that the jump is about to occur ($\tau$ is totally inaccessible).
+
+    The "profit" is $H_\tau \cdot \Delta S_\tau = 1 \cdot 50 = \$50$, achieved with zero investment before the jump. This constitutes an arbitrage — a riskless profit from nothing.
+
+    The predictability requirement prevents this: a predictable strategy requires deciding holdings *before* observing the price change, so one cannot selectively hold shares only at the instant of a surprise jump.
+
+    **(c)** In the Black-Scholes model, asset prices follow geometric Brownian motion with continuous paths. For continuous processes, the hierarchy collapses: every continuous adapted process is automatically predictable, optional, and progressively measurable. Since both the price process and any continuous trading strategy are predictable, the distinction between "adapted" and "predictable" is moot. The subtle issues of predictability only arise when prices or strategies can jump.
+
+??? success "Solution to Exercise 5"
+    **(a)** We have $S_n = X_1 + \cdots + X_n$ and $\mathcal{F}_n = \sigma(X_1, \ldots, X_n)$. Since $S_n$ is a function of $(X_1, \ldots, X_n)$, it is $\sigma(X_1, \ldots, X_n) = \mathcal{F}_n$-measurable for each $n$. Also $S_0 = 0$ is $\mathcal{F}_0 = \{\emptyset, \Omega\}$-measurable (it's a constant). Hence $(S_n)_{n \ge 0}$ is adapted. $\square$
+
+    **(b)** $H_n = S_{n-1} = X_1 + \cdots + X_{n-1}$ for $n \ge 1$. This is a function of $(X_1, \ldots, X_{n-1})$, hence $\mathcal{F}_{n-1}$-measurable.
+
+    By the characterization in Exercise 4(a), $(H_n)$ is predictable. $\square$
+
+    Intuitively: the strategy "hold $S_{n-1}$ shares at time $n$" uses only information available at time $n - 1$.
+
+    **(c)** $Y_n = X_n$ for $n \ge 1$. For predictability, we need $X_n$ to be $\mathcal{F}_{n-1}$-measurable. But $X_n$ is independent of $\mathcal{F}_{n-1} = \sigma(X_1, \ldots, X_{n-1})$ and non-constant ($\mathbb{P}(X_n = +1) = \mathbb{P}(X_n = -1) = 1/2$). A non-constant random variable cannot be measurable with respect to a $\sigma$-algebra from which it is independent. Therefore $(Y_n)$ is **not** predictable.
+
+    **(d)** The process $Z_n = \mathbf{1}_{\{n \ge \tau\}}$.
+
+    - *Adapted*: At time $n$, we know whether $\tau \le n$ (since $\tau = \min\{k \ge 1 : S_k = 2\}$ and we have observed $S_1, \ldots, S_n$). So $Z_n = \mathbf{1}_{\{\tau \le n\}}$ is $\mathcal{F}_n$-measurable, and $Z$ is adapted. **Yes, adapted.**
+
+    - *Predictable*: We need $Z_n = \mathbf{1}_{\{\tau \le n\}}$ to be $\mathcal{F}_{n-1}$-measurable. Since $\{\tau \le n\} = \{\tau \le n - 1\} \cup \{\tau = n\}$ and $\{\tau \le n-1\} \in \mathcal{F}_{n-1}$, we need $\{\tau = n\} \in \mathcal{F}_{n-1}$. But $\{\tau = n\} = \{S_1 < 2, \ldots, S_{n-1} < 2, S_n = 2\}$. The condition $S_n = 2$ depends on $X_n$, which is independent of $\mathcal{F}_{n-1}$. So $\{\tau = n\} \notin \mathcal{F}_{n-1}$ in general (it depends on the future flip $X_n$). However, note that $\{\tau \le n\} = \{\tau \le n-1\} \cup \{\tau = n\}$. Since $\{\tau \le n-1\} \in \mathcal{F}_{n-1}$, the question reduces to whether $\mathbf{1}_{\{\tau = n\}}$ is $\mathcal{F}_{n-1}$-measurable. Since it is not, $Z_n$ is not $\mathcal{F}_{n-1}$-measurable, and $Z$ is **not predictable.**

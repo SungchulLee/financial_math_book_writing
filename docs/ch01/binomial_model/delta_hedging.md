@@ -499,3 +499,181 @@ is identical to the replication price $V_0 = \Delta S_0 + B$ where $\Delta = \fr
 ---
 
 **Exercise 6.** Explain why the physical probability $p$ of an up move does not appear in the delta-hedging derivation. Specifically, show that the hedge ratio $\Delta$ and the resulting option price $V_0$ are the same regardless of whether $p = 0.3$, $p = 0.5$, or $p = 0.9$. What role does $p$ play in the real world, and why is it irrelevant for pricing?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Given $S_0 = 60$, $u = 1.3$, $d = 0.75$, $r = 6\%$, $\Delta t = 1$, and $K = 65$.
+
+    **Stock prices at $\Delta t$:**
+
+    - Up: $S_u = 1.3 \times 60 = 78$
+    - Down: $S_d = 0.75 \times 60 = 45$
+
+    **Call payoffs:**
+
+    $$
+    H_u = (78 - 65)^+ = 13, \qquad H_d = (45 - 65)^+ = 0
+    $$
+
+    **Hedge ratio:**
+
+    $$
+    \Delta = \frac{H_u - H_d}{(u - d)S_0} = \frac{13 - 0}{(1.3 - 0.75) \times 60} = \frac{13}{33} = 0.3939
+    $$
+
+    **Hedged portfolio** (short 1 call, long $\Delta$ shares):
+
+    - Up state: $\Pi_{\Delta t}^{up} = 0.3939 \times 78 - 13 = 30.727 - 13 = 17.727$
+    - Down state: $\Pi_{\Delta t}^{down} = 0.3939 \times 45 - 0 = 17.727$
+
+    Both states give the same terminal value $\Pi_{\Delta t} = 17.727$ $\checkmark$
+
+    **Verification** ($\Pi_{\Delta t} = \Pi_0 \cdot e^{r\Delta t}$):
+
+    $$
+    \Pi_0 = e^{-0.06} \times 17.727 = 0.94176 \times 17.727 = 16.695
+    $$
+
+    $$
+    V_0 = \Delta S_0 - \Pi_0 = 0.3939 \times 60 - 16.695 = 23.636 - 16.695 = 6.94
+    $$
+
+    Check: $\Pi_0 \cdot e^{0.06} = 16.695 \times 1.06184 = 17.727$ $\checkmark$
+
+??? success "Solution to Exercise 2"
+    Given $H_u = 5$, $H_d = 20$, $S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$.
+
+    **Hedge ratio:**
+
+    $$
+    \Delta = \frac{H_u - H_d}{(u - d)S_0} = \frac{5 - 20}{0.3 \times 100} = \frac{-15}{30} = -0.5
+    $$
+
+    **Economic intuition:** $\Delta < 0$ because the derivative pays **more when the stock falls** ($H_d = 20 > H_u = 5$). This is a "put-like" payoff pattern. To hedge a short position in this derivative, you need to **short stock** (not buy it), because when the stock falls you owe a larger payoff, and the short stock position gains to offset it.
+
+    In practice, "short $\Delta = -0.5$ shares" means holding a **short position** of 0.5 shares. When paired with the short derivative position, if the stock falls, the short stock position gains value, offsetting the larger derivative payout. If the stock rises, the short stock position loses, but the derivative payout is smaller.
+
+??? success "Solution to Exercise 3"
+    We show the hedging formula equals the replication price. Start from the hedging formula:
+
+    $$
+    V_0 = e^{-r\Delta t}\left[\frac{e^{r\Delta t} - d}{u - d} H_u + \frac{u - e^{r\Delta t}}{u - d} H_d\right]
+    $$
+
+    Expand:
+
+    $$
+    V_0 = \frac{1}{u - d}\left[\frac{(e^{r\Delta t} - d)H_u + (u - e^{r\Delta t})H_d}{e^{r\Delta t}}\right]
+    $$
+
+    $$
+    = \frac{1}{u - d}\left[e^{-r\Delta t}(e^{r\Delta t} - d)H_u + e^{-r\Delta t}(u - e^{r\Delta t})H_d\right]
+    $$
+
+    $$
+    = \frac{1}{u - d}\left[(1 - de^{-r\Delta t})H_u + (ue^{-r\Delta t} - 1)H_d\right]
+    $$
+
+    Now compute $\Delta S_0 + B$ from the replication formulas:
+
+    $$
+    \Delta S_0 = \frac{H_u - H_d}{u - d}
+    $$
+
+    $$
+    B = e^{-r\Delta t}\frac{uH_d - dH_u}{u - d}
+    $$
+
+    $$
+    \Delta S_0 + B = \frac{H_u - H_d}{u - d} + \frac{e^{-r\Delta t}(uH_d - dH_u)}{u - d}
+    $$
+
+    $$
+    = \frac{(H_u - H_d) + e^{-r\Delta t}(uH_d - dH_u)}{u - d}
+    $$
+
+    $$
+    = \frac{H_u(1 - de^{-r\Delta t}) + H_d(-1 + ue^{-r\Delta t})}{u - d}
+    $$
+
+    $$
+    = \frac{(1 - de^{-r\Delta t})H_u + (ue^{-r\Delta t} - 1)H_d}{u - d}
+    $$
+
+    This is identical to the hedging formula above. $\square$
+
+??? success "Solution to Exercise 4"
+    A forward contract with forward price $F = 105.13$ has payoffs:
+
+    $$
+    H_u = uS_0 - F = 120 - 105.13 = 14.87, \qquad H_d = dS_0 - F = 90 - 105.13 = -15.13
+    $$
+
+    **Delta:**
+
+    $$
+    \Delta = \frac{H_u - H_d}{(u - d)S_0} = \frac{14.87 - (-15.13)}{0.3 \times 100} = \frac{30}{30} = 1
+    $$
+
+    **Why $\Delta = 1$:** A forward contract's payoff is $S_{\Delta t} - F$, which is **linear** in $S_{\Delta t}$ with slope 1. When the stock moves by $\delta S$, the forward payoff changes by exactly $\delta S$. The sensitivity of the forward to the stock is always 1 — holding 1 share perfectly hedges the forward.
+
+    This makes economic sense: a forward is a commitment to buy the stock, so its price exposure is identical to holding the stock itself. The constant $F$ simply shifts the payoff level but does not change the sensitivity to stock price movements.
+
+??? success "Solution to Exercise 5"
+    With $\Delta = 0.5$ per call and 100 calls:
+
+    **Total delta exposure:** $100 \times 0.5 = 50$
+
+    To delta-hedge, the investor should **short 50 shares** of the underlying stock. This offsets the positive delta of the long call position.
+
+    **Delta approximation for stock move from $S_0 = 100$ to $S_0' = 102$:**
+
+    $$
+    \delta S = 102 - 100 = 2
+    $$
+
+    $$
+    \delta V \approx \Delta \times \delta S = 0.5 \times 2 = 1 \text{ per call}
+    $$
+
+    For 100 calls:
+
+    $$
+    \delta V_{\text{total}} \approx 100 \times 1 = 100
+    $$
+
+    The estimated change in portfolio value is approximately \$100. This is a first-order approximation; the actual change also depends on the gamma (second-order term).
+
+??? success "Solution to Exercise 6"
+    The physical probability $p$ does not appear because the hedging argument is based on **eliminating risk in every state**, not on the likelihood of each state.
+
+    **Formal argument:** The hedge ratio is:
+
+    $$
+    \Delta = \frac{H_u - H_d}{(u - d)S_0}
+    $$
+
+    This depends only on the payoffs $(H_u, H_d)$ and the price factors $(u, d, S_0)$. The probability $p$ does not enter. The risk-free portfolio terminal value is:
+
+    $$
+    \Pi_{\Delta t} = \frac{dH_u - uH_d}{u - d}
+    $$
+
+    Again, no $p$. The no-arbitrage principle $\Pi_{\Delta t} = \Pi_0 e^{r\Delta t}$ then determines $V_0$ as:
+
+    $$
+    V_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)
+    $$
+
+    where $q = (e^{r\Delta t} - d)/(u - d)$. Since $q$ depends only on $(u, d, r, \Delta t)$, neither $\Delta$ nor $V_0$ depends on $p$. Whether $p = 0.3$, $p = 0.5$, or $p = 0.9$, the formulas are identical.
+
+    **Role of $p$ in the real world:** The physical probability $p$ determines:
+
+    - The **expected return** of the option position: $\mathbb{E}^{\mathbb{P}}[H] = pH_u + (1-p)H_d$
+    - The **probability of profit or loss** for unhedged positions
+    - **Risk measures** like VaR and CVaR
+
+    However, $p$ is irrelevant for pricing because the hedge works in **every** state. The option price is what it costs to set up the replicating portfolio, and this cost depends only on the structure of the market $(u, d, r)$, not on which outcome is more likely.

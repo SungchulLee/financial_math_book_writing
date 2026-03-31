@@ -422,3 +422,115 @@ $$
 ---
 
 **Exercise 7.** Consider two Ito integrals: $I_t = \int_0^t B_s\, dB_s$ and $J_t = \int_0^t s\, dB_s$. Using the Ito isometry, compute $\operatorname{Var}(I_1)$ and $\operatorname{Var}(J_1)$. Which integral has larger variance, and why does this make intuitive sense?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    With $n = 10$, $\Delta t = 1/10$, and $\Delta B_k = \pm 1/\sqrt{10}$. The coin sequence $T, H, T, T, H, H, H, T, H, T$ gives increments $-,+,-,-,+,+,+,-,+,-$ in units of $1/\sqrt{10}$.
+
+    Build the Brownian path:
+
+    | $k$ | Coin | $\Delta B_k$ | $B_{t_k}$ | $B_{t_k}^2$ | $B_{t_k}^2 \Delta B_k$ |
+    |-----|------|-------------|-----------|------------|----------------------|
+    | 0 | | | $0$ | $0$ | $0 \cdot (-1/\sqrt{10}) = 0$ |
+    | 1 | T | $-1/\sqrt{10}$ | $-1/\sqrt{10}$ | $1/10$ | $(1/10)(+1/\sqrt{10}) = 1/10^{3/2}$ |
+    | 2 | H | $+1/\sqrt{10}$ | $0$ | $0$ | $0 \cdot (-1/\sqrt{10}) = 0$ |
+    | 3 | T | $-1/\sqrt{10}$ | $-1/\sqrt{10}$ | $1/10$ | $(1/10)(-1/\sqrt{10}) = -1/10^{3/2}$ |
+    | 4 | T | $-1/\sqrt{10}$ | $-2/\sqrt{10}$ | $4/10$ | $(4/10)(+1/\sqrt{10}) = 4/10^{3/2}$ |
+    | 5 | H | $+1/\sqrt{10}$ | $-1/\sqrt{10}$ | $1/10$ | $(1/10)(+1/\sqrt{10}) = 1/10^{3/2}$ |
+    | 6 | H | $+1/\sqrt{10}$ | $0$ | $0$ | $0 \cdot (+1/\sqrt{10}) = 0$ |
+    | 7 | H | $+1/\sqrt{10}$ | $1/\sqrt{10}$ | $1/10$ | $(1/10)(-1/\sqrt{10}) = -1/10^{3/2}$ |
+    | 8 | T | $-1/\sqrt{10}$ | $0$ | $0$ | $0 \cdot (+1/\sqrt{10}) = 0$ |
+    | 9 | H | $+1/\sqrt{10}$ | $1/\sqrt{10}$ | $1/10$ | $(1/10)(-1/\sqrt{10}) = -1/10^{3/2}$ |
+
+    Note: the contribution column uses $B_{t_k}^2 \cdot \Delta B_{k}$ where $\Delta B_k$ is the increment from step $k$ to $k+1$.
+
+    The left-endpoint sum is:
+
+    $$
+    \sum_{k=0}^{9} B_{t_k}^2 \Delta B_k = \frac{1}{10^{3/2}}(0 + 1 + 0 - 1 + 4 + 1 + 0 - 1 + 0 - 1) = \frac{3}{10^{3/2}} \approx 0.0949
+    $$
+
+??? success "Solution to Exercise 2"
+    Since $H_t = t^2$ is deterministic, the expected P&L is zero by the martingale property:
+
+    $$
+    \mathbb{E}\!\left[\int_0^1 t^2\, dB_t\right] = 0
+    $$
+
+    The variance is given by the Ito isometry:
+
+    $$
+    \operatorname{Var}\!\left(\int_0^1 t^2\, dB_t\right) = \mathbb{E}\!\left[\int_0^1 t^4\, dt\right] = \int_0^1 t^4\, dt = \frac{1}{5}
+    $$
+
+??? success "Solution to Exercise 3"
+    The Ito integral uses left-endpoint evaluation because of the requirement that the trading position must be chosen **before** observing the next price increment. This is the **non-anticipativity** or **adaptedness** condition.
+
+    **Financial argument:** In a trading strategy, the number of shares $H_{t_k}$ held during the interval $(t_k, t_{k+1}]$ must be decided at time $t_k$, using only information available up to that point (past and present prices). It would be impossible — or constitute insider trading — to choose a position based on the future price change $B_{t_{k+1}} - B_{t_k}$.
+
+    Left-endpoint evaluation ensures that $H_{t_k}$ is $\mathcal{F}_{t_k}$-measurable and independent of the future increment $\Delta B_k$. This independence is what makes the cross terms vanish in the Ito isometry proof and gives the integral the martingale property ($\mathbb{E}[I_t] = 0$), reflecting the fair-game interpretation of trading against Brownian noise.
+
+    Midpoint or right-endpoint evaluation would use information from the future (specifically, $B_{t_{k+1}}$ or the midpoint value), breaking the independence structure. This is why the Stratonovich integral (midpoint) does not have the martingale property.
+
+??? success "Solution to Exercise 4"
+    Since $h(t) = e^{-t}$ is deterministic, the Ito isometry gives:
+
+    $$
+    \operatorname{Var}\!\left(\int_0^T e^{-t}\, dB_t\right) = \int_0^T e^{-2t}\, dt = \left[-\frac{1}{2}e^{-2t}\right]_0^T = \frac{1}{2}(1 - e^{-2T})
+    $$
+
+    Furthermore, since $h$ is deterministic, the integral is Gaussian:
+
+    $$
+    \int_0^T e^{-t}\, dB_t \sim \mathcal{N}\!\left(0,\; \frac{1 - e^{-2T}}{2}\right)
+    $$
+
+??? success "Solution to Exercise 5"
+    Apply Ito's formula to $f(x) = x^3/3$ with $X_t = B_t$. We have $f'(x) = x^2$ and $f''(x) = 2x$:
+
+    $$
+    d\!\left(\frac{B_t^3}{3}\right) = B_t^2\, dB_t + \frac{1}{2} \cdot 2B_t\, dt = B_t^2\, dB_t + B_t\, dt
+    $$
+
+    Integrating from $0$ to $t$:
+
+    $$
+    \frac{B_t^3}{3} = \int_0^t B_s^2\, dB_s + \int_0^t B_s\, ds
+    $$
+
+    Rearranging:
+
+    $$
+    \int_0^t B_s^2\, dB_s = \frac{1}{3}B_t^3 - \int_0^t B_s\, ds
+    $$
+
+??? success "Solution to Exercise 6"
+    In the coin-flip model, each increment is $\Delta B_k = \pm 1/\sqrt{n}$, so $(\Delta B_k)^2 = 1/n$ for every $k$. Therefore:
+
+    $$
+    \sum_{k=0}^{n-1} (\Delta B_k)^2 = \sum_{k=0}^{n-1} \frac{1}{n} = n \cdot \frac{1}{n} = 1
+    $$
+
+    With $n = 10$: $\sum_{k=0}^{9} (\Delta B_k)^2 = 10 \cdot \frac{1}{10} = 1$, which equals the theoretical value $t = 1$ exactly.
+
+    The sum is exactly equal to $1$ in this model because each squared increment is the deterministic constant $1/n$ (not random). In the coin-flip approximation, $|\Delta B_k| = 1/\sqrt{n}$ always, so the quadratic variation sum is $n \cdot (1/\sqrt{n})^2 = 1$ with zero variance. This is a special feature of the binary (Rademacher) approximation; for a Gaussian discretization, each $(\Delta B_k)^2$ would be random (chi-squared distributed), and the sum would only converge to $t$ in the limit.
+
+??? success "Solution to Exercise 7"
+    **Variance of $I_1 = \int_0^1 B_s\, dB_s$.** By the Ito isometry:
+
+    $$
+    \operatorname{Var}(I_1) = \mathbb{E}\!\left[\int_0^1 B_s^2\, ds\right] = \int_0^1 \mathbb{E}[B_s^2]\, ds = \int_0^1 s\, ds = \frac{1}{2}
+    $$
+
+    **Variance of $J_1 = \int_0^1 s\, dB_s$.** By the Ito isometry (deterministic integrand):
+
+    $$
+    \operatorname{Var}(J_1) = \int_0^1 s^2\, ds = \frac{1}{3}
+    $$
+
+    So $\operatorname{Var}(I_1) = 1/2 > 1/3 = \operatorname{Var}(J_1)$. The integral $I_1$ has **larger** variance.
+
+    **Intuitive explanation:** The variance is determined by $\mathbb{E}[\int_0^1 H_s^2\, ds]$. For $J_1$, the integrand is the deterministic function $H_s = s$, which grows linearly from $0$ to $1$. For $I_1$, the integrand is $H_s = B_s$, which is random with $\mathbb{E}[B_s^2] = s$. While the "average size" of both integrands grows with $s$, the key difference is that $\mathbb{E}[B_s^2] = s > s^2$ for $s \in (0,1)$. The random integrand $B_s$ is on average larger in magnitude than the deterministic integrand $s$ over $[0,1)$, so it amplifies Brownian fluctuations more, producing a larger variance.

@@ -967,3 +967,310 @@ The Feynman-Kac approach reveals that option pricing is fundamentally about comp
 ---
 
 **Exercise 7.** The discounted option value $e^{-rt}V(S_t, t)$ is a martingale under $\mathbb{Q}$. Use Ito's lemma to compute $d(e^{-rt}V)$ and show that the drift vanishes if and only if $V$ satisfies the Black-Scholes PDE. This provides an alternative proof of the Feynman-Kac connection.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    We need to verify that $V(S,t) = S$ satisfies both the Black-Scholes PDE and the Feynman-Kac representation.
+
+    **PDE verification.** With $V = S$: $\frac{\partial V}{\partial t} = 0$, $\frac{\partial V}{\partial S} = 1$, $\frac{\partial^2 V}{\partial S^2} = 0$. Substituting:
+
+    $$
+    0 + rS \cdot 1 + \frac{1}{2}\sigma^2 S^2 \cdot 0 - rS = rS - rS = 0
+    $$
+
+    The PDE is satisfied.
+
+    **Feynman-Kac verification.** We need $e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[S_T \mid S_t = S] = S$.
+
+    Under $\mathbb{Q}$, $S_T = S \exp\left((r - \frac{1}{2}\sigma^2)(T-t) + \sigma(W_T - W_t)\right)$. Taking the expectation:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[S_T \mid S_t = S] = S \exp\left((r - \frac{1}{2}\sigma^2)(T-t)\right) \cdot \mathbb{E}\left[\exp(\sigma(W_T - W_t))\right]
+    $$
+
+    Since $W_T - W_t \sim \mathcal{N}(0, T-t)$:
+
+    $$
+    \mathbb{E}[\exp(\sigma(W_T - W_t))] = \exp\left(\frac{1}{2}\sigma^2(T-t)\right)
+    $$
+
+    Therefore:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[S_T \mid S_t = S] = S \exp\left((r - \frac{1}{2}\sigma^2 + \frac{1}{2}\sigma^2)(T-t)\right) = Se^{r(T-t)}
+    $$
+
+    Discounting: $e^{-r(T-t)} \cdot Se^{r(T-t)} = S$. Both representations agree.
+
+??? success "Solution to Exercise 2"
+    Starting from the combined exponent $y - \frac{(y-m)^2}{2v^2}$, we proceed step by step.
+
+    **Step 1: Write as a single fraction.**
+
+    $$
+    y - \frac{(y-m)^2}{2v^2} = \frac{2v^2 y - (y-m)^2}{2v^2}
+    $$
+
+    **Step 2: Expand the numerator.**
+
+    $$
+    2v^2 y - (y-m)^2 = 2v^2 y - y^2 + 2ym - m^2
+    $$
+
+    $$
+    = -y^2 + 2y(m + v^2) - m^2
+    $$
+
+    **Step 3: Complete the square in $y$.**
+
+    $$
+    -y^2 + 2y(m+v^2) - m^2 = -\left[y^2 - 2y(m+v^2)\right] - m^2
+    $$
+
+    $$
+    = -\left[(y - (m+v^2))^2 - (m+v^2)^2\right] - m^2
+    $$
+
+    $$
+    = -(y - (m+v^2))^2 + (m+v^2)^2 - m^2
+    $$
+
+    **Step 4: Simplify the constant.**
+
+    $$
+    (m+v^2)^2 - m^2 = m^2 + 2mv^2 + v^4 - m^2 = 2mv^2 + v^4
+    $$
+
+    **Step 5: Substitute back.**
+
+    $$
+    y - \frac{(y-m)^2}{2v^2} = \frac{-(y-(m+v^2))^2 + 2mv^2 + v^4}{2v^2}
+    $$
+
+    $$
+    = -\frac{(y-(m+v^2))^2}{2v^2} + m + \frac{v^2}{2}
+    $$
+
+    **Step 6: Factor out the constant.** Therefore:
+
+    $$
+    \exp\left(y - \frac{(y-m)^2}{2v^2}\right) = \exp\left(m + \frac{v^2}{2}\right) \cdot \exp\left(-\frac{(y-(m+v^2))^2}{2v^2}\right)
+    $$
+
+    The second factor is the kernel of a Gaussian with mean $m + v^2$ and variance $v^2$, confirming that $I_1 = e^{m+v^2/2} \cdot \mathcal{N}\left(\frac{(m+v^2) - \ln K}{v}\right)$.
+
+??? success "Solution to Exercise 3"
+    The payoff is $\Phi(S_T) = S_T^2$. By Feynman-Kac:
+
+    $$
+    V(S,t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[S_T^2 \mid S_t = S]
+    $$
+
+    where $\tau = T - t$.
+
+    Under $\mathbb{Q}$, $S_T = S\exp\left((r - \frac{1}{2}\sigma^2)\tau + \sigma\sqrt{\tau}Z\right)$ with $Z \sim \mathcal{N}(0,1)$. Therefore:
+
+    $$
+    S_T^2 = S^2 \exp\left(2(r - \frac{1}{2}\sigma^2)\tau + 2\sigma\sqrt{\tau}Z\right)
+    $$
+
+    Taking the expectation:
+
+    $$
+    \mathbb{E}[S_T^2] = S^2 \exp\left(2(r - \frac{1}{2}\sigma^2)\tau\right) \cdot \mathbb{E}[\exp(2\sigma\sqrt{\tau}Z)]
+    $$
+
+    Using $\mathbb{E}[e^{aZ}] = e^{a^2/2}$ for $Z \sim \mathcal{N}(0,1)$:
+
+    $$
+    \mathbb{E}[\exp(2\sigma\sqrt{\tau}Z)] = \exp(2\sigma^2\tau)
+    $$
+
+    Therefore:
+
+    $$
+    \mathbb{E}[S_T^2] = S^2 \exp\left(2r\tau - \sigma^2\tau + 2\sigma^2\tau\right) = S^2 \exp\left((2r + \sigma^2)\tau\right)
+    $$
+
+    Discounting:
+
+    $$
+    V(S,t) = e^{-r\tau} \cdot S^2 e^{(2r+\sigma^2)\tau} = S^2 e^{(r+\sigma^2)\tau}
+    $$
+
+    One can verify this satisfies the Black-Scholes PDE: with $V = S^2 e^{(r+\sigma^2)\tau}$, computing $V_t = -(r+\sigma^2)V$, $V_S = 2Se^{(r+\sigma^2)\tau}$, $V_{SS} = 2e^{(r+\sigma^2)\tau}$, and substituting into $V_t + rSV_S + \frac{1}{2}\sigma^2 S^2 V_{SS} - rV = 0$ confirms the identity.
+
+??? success "Solution to Exercise 4"
+    **Backward equation** (Black-Scholes PDE for $V(S,t)$):
+
+    $$
+    \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0
+    $$
+
+    **Deriving the forward equation.** The transition density $p(S_T, T \mid S, t)$ satisfies the Kolmogorov forward (Fokker-Planck) equation with respect to $(S_T, T)$:
+
+    $$
+    \frac{\partial p}{\partial T} = -\frac{\partial}{\partial S_T}(rS_T \, p) + \frac{1}{2}\frac{\partial^2}{\partial S_T^2}(\sigma^2 S_T^2 \, p)
+    $$
+
+    **Verification.** The log-normal density is:
+
+    $$
+    p(S_T, T \mid S, t) = \frac{1}{S_T \sigma\sqrt{2\pi\tau}}\exp\left(-\frac{(\ln(S_T/S) - (r - \frac{\sigma^2}{2})\tau)^2}{2\sigma^2\tau}\right)
+    $$
+
+    Let $y = \ln S_T$, $m = \ln S + (r - \frac{\sigma^2}{2})\tau$, $v^2 = \sigma^2\tau$. The density in $y$-space is Gaussian: $q(y) = \frac{1}{\sqrt{2\pi v^2}}e^{-(y-m)^2/(2v^2)}$.
+
+    Taking derivatives of $q$ with respect to $T$ (noting $m$ and $v^2$ both depend on $T$), one can verify by direct computation that the forward equation is satisfied. The key steps involve:
+
+    - $\frac{\partial m}{\partial T} = r - \frac{\sigma^2}{2}$ and $\frac{\partial v^2}{\partial T} = \sigma^2$
+    - Converting derivatives with respect to $S_T$ to derivatives with respect to $y$ using $\frac{\partial}{\partial S_T} = \frac{1}{S_T}\frac{\partial}{\partial y}$
+    - Expanding the forward equation terms and verifying cancellation
+
+??? success "Solution to Exercise 5"
+    With time-dependent volatility $\sigma(t)$, the SDE under $\mathbb{Q}$ is:
+
+    $$
+    dS_s = rS_s \, ds + \sigma(s) S_s \, dW_s^{\mathbb{Q}}
+    $$
+
+    By Ito's lemma applied to $\ln S$:
+
+    $$
+    \ln S_T = \ln S_t + \int_t^T \left(r - \frac{\sigma^2(s)}{2}\right)ds + \int_t^T \sigma(s) \, dW_s
+    $$
+
+    The stochastic integral $\int_t^T \sigma(s) \, dW_s$ is Gaussian with mean 0 and variance $\int_t^T \sigma^2(s) \, ds$.
+
+    Define the **effective (total) variance**:
+
+    $$
+    \Sigma^2 = \int_t^T \sigma^2(s) \, ds
+    $$
+
+    and the **effective volatility**:
+
+    $$
+    \bar{\sigma} = \sqrt{\frac{1}{\tau}\int_t^T \sigma^2(s) \, ds}
+    $$
+
+    so that $\Sigma^2 = \bar{\sigma}^2 \tau$.
+
+    The distribution of $\ln S_T$ is:
+
+    $$
+    \ln S_T \mid S_t \sim \mathcal{N}\left(\ln S_t + r\tau - \frac{\Sigma^2}{2}, \, \Sigma^2\right)
+    $$
+
+    This is identical to the constant-volatility case with $\sigma^2\tau$ replaced by $\Sigma^2 = \int_t^T \sigma^2(s) \, ds$. The call price therefore takes the same functional form:
+
+    $$
+    C = S\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2)
+    $$
+
+    with:
+
+    $$
+    d_1 = \frac{\ln(S/K) + r\tau + \frac{1}{2}\bar{\sigma}^2\tau}{\bar{\sigma}\sqrt{\tau}} = \frac{\ln(S/K) + r\tau + \frac{1}{2}\Sigma^2}{\Sigma}
+    $$
+
+    $$
+    d_2 = d_1 - \bar{\sigma}\sqrt{\tau} = d_1 - \Sigma
+    $$
+
+??? success "Solution to Exercise 6"
+    The payoff is $\Phi(S_T) = \ln(S_T)$. By Feynman-Kac:
+
+    $$
+    V(S,t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[\ln S_T \mid S_t = S]
+    $$
+
+    Under $\mathbb{Q}$:
+
+    $$
+    \ln S_T = \ln S + (r - \frac{1}{2}\sigma^2)\tau + \sigma\sqrt{\tau}Z
+    $$
+
+    Taking the expectation ($\mathbb{E}[Z] = 0$):
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\ln S_T \mid S_t = S] = \ln S + (r - \frac{1}{2}\sigma^2)\tau
+    $$
+
+    Therefore:
+
+    $$
+    V(S,t) = e^{-r\tau}\left[\ln S + (r - \frac{1}{2}\sigma^2)\tau\right]
+    $$
+
+    **PDE verification.** Let $\tau = T - t$ and compute derivatives:
+
+    $$
+    \frac{\partial V}{\partial t} = re^{-r\tau}\left[\ln S + (r - \frac{1}{2}\sigma^2)\tau\right] + e^{-r\tau}(r - \frac{1}{2}\sigma^2)(-1)
+    $$
+
+    Wait, using $\frac{\partial \tau}{\partial t} = -1$:
+
+    $$
+    \frac{\partial V}{\partial t} = re^{-r\tau}\left[\ln S + (r-\frac{1}{2}\sigma^2)\tau\right] - e^{-r\tau}(r - \frac{1}{2}\sigma^2)
+    $$
+
+    $$
+    \frac{\partial V}{\partial S} = \frac{e^{-r\tau}}{S}, \quad \frac{\partial^2 V}{\partial S^2} = -\frac{e^{-r\tau}}{S^2}
+    $$
+
+    Substituting into the BS PDE:
+
+    $$
+    re^{-r\tau}[\ln S + (r-\frac{1}{2}\sigma^2)\tau] - e^{-r\tau}(r-\frac{1}{2}\sigma^2) + rS \cdot \frac{e^{-r\tau}}{S} + \frac{\sigma^2 S^2}{2}\cdot\left(-\frac{e^{-r\tau}}{S^2}\right) - re^{-r\tau}[\ln S + (r-\frac{1}{2}\sigma^2)\tau]
+    $$
+
+    Factoring out $e^{-r\tau}$:
+
+    $$
+    -(r-\frac{1}{2}\sigma^2) + r - \frac{1}{2}\sigma^2 = -r + \frac{1}{2}\sigma^2 + r - \frac{1}{2}\sigma^2 = 0
+    $$
+
+    The PDE is satisfied.
+
+??? success "Solution to Exercise 7"
+    Let $Y_t = e^{-rt}V(S_t, t)$. Apply the product rule (Ito's lemma for products):
+
+    $$
+    dY_t = -re^{-rt}V \, dt + e^{-rt} \, dV
+    $$
+
+    Apply Ito's lemma to $V(S_t, t)$:
+
+    $$
+    dV = \frac{\partial V}{\partial t} \, dt + \frac{\partial V}{\partial S} \, dS_t + \frac{1}{2}\frac{\partial^2 V}{\partial S^2}(dS_t)^2
+    $$
+
+    Under $\mathbb{Q}$, $dS_t = rS_t \, dt + \sigma S_t \, dW_t$ and $(dS_t)^2 = \sigma^2 S_t^2 \, dt$. Substituting:
+
+    $$
+    dV = \left[\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2}\right]dt + \sigma S\frac{\partial V}{\partial S} \, dW_t
+    $$
+
+    Therefore:
+
+    $$
+    dY_t = e^{-rt}\left[\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV\right]dt + e^{-rt}\sigma S\frac{\partial V}{\partial S} \, dW_t
+    $$
+
+    For $Y_t$ to be a martingale, the $dt$ coefficient (drift) must vanish:
+
+    $$
+    \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0
+    $$
+
+    This is exactly the Black-Scholes PDE. Conversely, if $V$ satisfies the PDE, then:
+
+    $$
+    dY_t = e^{-rt}\sigma S_t\frac{\partial V}{\partial S}(S_t, t) \, dW_t
+    $$
+
+    which has no drift, so $Y_t = e^{-rt}V(S_t,t)$ is a local martingale (and a martingale under standard integrability conditions). This provides an alternative derivation of the Feynman-Kac representation.

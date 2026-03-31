@@ -232,3 +232,125 @@ This derivation is fundamentally different from the replication approach. It beg
 ---
 
 **Exercise 5.** Suppose the stock pays a continuous dividend yield $q$. Repeat the change-of-numeraire derivation with $S_t$ as numeraire and show that the PDE becomes $\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + (r-q)S\frac{\partial V}{\partial S} - rV = 0$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Under $\mathbb{Q}$, the stock dynamics are $dS_t = rS_t\, dt + \sigma S_t\, dW_t^{\mathbb{Q}}$. The density process is $Z_t = S_t e^{-rt}/S_0$. Applying the product rule with $e^{-rt}/S_0$ (a deterministic, bounded-variation factor):
+
+    $$dZ_t = \frac{e^{-rt}}{S_0}\, dS_t + \frac{S_t}{S_0}\, d(e^{-rt})$$
+
+    Substituting the dynamics:
+
+    $$dZ_t = \frac{e^{-rt}}{S_0}\bigl(rS_t\, dt + \sigma S_t\, dW_t^{\mathbb{Q}}\bigr) - \frac{rS_t e^{-rt}}{S_0}\, dt$$
+
+    The $r\, dt$ terms cancel exactly:
+
+    $$dZ_t = \frac{\sigma S_t e^{-rt}}{S_0}\, dW_t^{\mathbb{Q}} = \sigma Z_t\, dW_t^{\mathbb{Q}}$$
+
+    Therefore $dZ_t / Z_t = \sigma\, dW_t^{\mathbb{Q}}$, which is driftless under $\mathbb{Q}$, confirming $Z_t$ is a $\mathbb{Q}$-local martingale.
+
+    Solving the SDE: $Z_t = Z_0 \exp\!\bigl(\sigma W_t^{\mathbb{Q}} - \frac{1}{2}\sigma^2 t\bigr)$. Since $Z_0 = S_0 e^0 / S_0 = 1$, we have $Z_t = \exp\!\bigl(\sigma W_t^{\mathbb{Q}} - \frac{1}{2}\sigma^2 t\bigr)$. This is a Doléans-Dade exponential martingale. Computing the expectation:
+
+    $$\mathbb{E}^{\mathbb{Q}}[Z_T] = \mathbb{E}^{\mathbb{Q}}\!\left[\exp\!\left(\sigma W_T^{\mathbb{Q}} - \frac{1}{2}\sigma^2 T\right)\right] = \exp\!\left(-\frac{1}{2}\sigma^2 T\right) \cdot \exp\!\left(\frac{1}{2}\sigma^2 T\right) = 1$$
+
+    where we used the moment generating function $\mathbb{E}[e^{aW_T}] = e^{a^2 T/2}$. Since $\mathbb{E}^{\mathbb{Q}}[Z_T] = 1$, the process $Z_t$ is a true $\mathbb{Q}$-martingale and defines a valid probability measure $\mathbb{Q}^S$.
+
+??? success "Solution to Exercise 2"
+    Under $\mathbb{Q}^S$, the stock dynamics are $dS_t = (r + \sigma^2)S_t\, dt + \sigma S_t\, dW_t^S$. The normalized price is $u_t = V(t, S_t)/S_t$. Apply Itô's formula to $u(t, S) = V(t, S)/S$. We need the partial derivatives:
+
+    $$\frac{\partial u}{\partial t} = \frac{1}{S}\frac{\partial V}{\partial t}$$
+
+    $$\frac{\partial u}{\partial S} = \frac{1}{S}\frac{\partial V}{\partial S} - \frac{V}{S^2}$$
+
+    $$\frac{\partial^2 u}{\partial S^2} = \frac{1}{S}\frac{\partial^2 V}{\partial S^2} - \frac{2}{S^2}\frac{\partial V}{\partial S} + \frac{2V}{S^3}$$
+
+    The Itô expansion of $u(t, S_t)$ gives:
+
+    $$du = \left(\frac{\partial u}{\partial t} + (r+\sigma^2)S\frac{\partial u}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 u}{\partial S^2}\right)dt + \sigma S \frac{\partial u}{\partial S}\, dW_t^S$$
+
+    Setting the drift to zero (the martingale condition under $\mathbb{Q}^S$):
+
+    $$\frac{\partial u}{\partial t} + (r+\sigma^2)S\frac{\partial u}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 u}{\partial S^2} = 0$$
+
+    Substituting the derivatives of $u$ in terms of $V$ and multiplying through by $S$:
+
+    $$\frac{\partial V}{\partial t} + (r+\sigma^2)\frac{\partial V}{\partial S} \cdot S - (r+\sigma^2)\frac{V}{S} \cdot S + \frac{1}{2}\sigma^2 S^2\!\left(\frac{1}{S}\frac{\partial^2 V}{\partial S^2} - \frac{2}{S^2}\frac{\partial V}{\partial S} + \frac{2V}{S^3}\right)\! S = 0$$
+
+    Simplifying:
+
+    $$\frac{\partial V}{\partial t} + \bigl[(r+\sigma^2) - \sigma^2\bigr]S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + \bigl[-(r+\sigma^2) + \sigma^2\bigr]V = 0$$
+
+    The $\sigma^2$ terms cancel in both brackets, yielding:
+
+    $$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0$$
+
+    This is the Black–Scholes PDE.
+
+??? success "Solution to Exercise 3"
+    The quantities $d_1$ and $d_2$ differ because they are computed under different probability measures, $\mathbb{Q}^S$ and $\mathbb{Q}$ respectively, and these measures assign different drifts to $\ln S_T$.
+
+    **Under $\mathbb{Q}$ (risk-neutral measure):** The stock dynamics are $dS_t = rS_t\, dt + \sigma S_t\, dW_t^{\mathbb{Q}}$. By Itô's formula applied to $\ln S_t$:
+
+    $$\ln S_T \mid \mathcal{F}_t \sim \mathcal{N}\!\left(\ln S_t + \left(r - \tfrac{1}{2}\sigma^2\right)\tau,\; \sigma^2\tau\right)$$
+
+    where $\tau = T - t$. The exercise probability under $\mathbb{Q}$ is:
+
+    $$\mathbb{Q}(S_T > K \mid \mathcal{F}_t) = N(d_2), \qquad d_2 = \frac{\ln(S_t/K) + (r - \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}$$
+
+    **Under $\mathbb{Q}^S$ (stock measure):** The stock dynamics are $dS_t = (r + \sigma^2)S_t\, dt + \sigma S_t\, dW_t^S$. Applying Itô's formula to $\ln S_t$:
+
+    $$\ln S_T \mid \mathcal{F}_t \sim \mathcal{N}\!\left(\ln S_t + \left(r + \tfrac{1}{2}\sigma^2\right)\tau,\; \sigma^2\tau\right)$$
+
+    The mean of $\ln S_T$ under $\mathbb{Q}^S$ is shifted upward by $\sigma^2\tau$ compared to $\mathbb{Q}$, because the Itô correction to the log gives $r + \sigma^2 - \frac{1}{2}\sigma^2 = r + \frac{1}{2}\sigma^2$. The exercise probability under $\mathbb{Q}^S$ is:
+
+    $$\mathbb{Q}^S(S_T > K \mid \mathcal{F}_t) = N(d_1), \qquad d_1 = \frac{\ln(S_t/K) + (r + \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}} = d_2 + \sigma\sqrt{\tau}$$
+
+    The difference $d_1 - d_2 = \sigma\sqrt{\tau}$ arises because the Radon–Nikodym derivative $d\mathbb{Q}^S/d\mathbb{Q} \propto S_T e^{-rT}$ up-weights paths where the stock ends high, shifting the mean of $\ln S_T$ upward and increasing the in-the-money probability.
+
+??? success "Solution to Exercise 4"
+    **Delta-hedging derivation:** Constructs a portfolio $\Pi = V - \Delta S$, applies Itô's formula under $\mathbb{P}$, chooses $\Delta = \partial V / \partial S$ to eliminate the $dW$ term, then invokes the no-arbitrage condition $d\Pi = r\Pi\, dt$. The key ingredients are: (i) a self-financing (or freeze-and-rebalance) portfolio construction, (ii) the ability to trade continuously, and (iii) the no-arbitrage principle.
+
+    **Change-of-numéraire derivation:** Chooses $S_t$ as numéraire, constructs the density process $Z_t = S_t e^{-rt}/S_0$, applies Girsanov's theorem to define $\mathbb{Q}^S$, and requires $V/S$ to be a $\mathbb{Q}^S$-martingale. No portfolio is constructed; the PDE emerges from setting the drift of the normalized price to zero.
+
+    The **key structural difference** is that the hedging argument in the classical approach is replaced by **Girsanov's theorem** in the change-of-numéraire approach. Specifically:
+
+    - In the delta-hedging approach, the choice $\Delta = V_S$ eliminates risk and removes the physical drift $\mu$ from the PDE. The no-arbitrage condition then determines the discount rate.
+    - In the change-of-numéraire approach, Girsanov's theorem absorbs the measure change from $\mathbb{Q}$ to $\mathbb{Q}^S$, modifying the stock drift from $r$ to $r + \sigma^2$. The martingale condition on $V/S$ then yields the PDE, and the $\sigma^2$ terms cancel when transforming back to $V$.
+
+    Both approaches implicitly rely on **completeness** (to ensure uniqueness of the pricing measure) and **no-arbitrage** (to ensure existence of the measure). However, the change-of-numéraire approach makes the measure-theoretic structure explicit—Girsanov's theorem is the mathematical tool that plays the role of the hedging argument.
+
+??? success "Solution to Exercise 5"
+    With a continuous dividend yield $q$, the stock price satisfies $dS_t = (r - q)S_t\, dt + \sigma S_t\, dW_t^{\mathbb{Q}}$ under the risk-neutral measure $\mathbb{Q}$. The total return process (reinvesting dividends) is $\tilde{S}_t = e^{qt} S_t$, and the money market account is $B_t = e^{rt}$.
+
+    **Density process.** Using $S_t$ as numéraire, the density from $\mathbb{Q}$ to $\mathbb{Q}^S$ is:
+
+    $$Z_t = \frac{\tilde{S}_t / \tilde{S}_0}{B_t / B_0} = \frac{e^{qt} S_t e^{-rt}}{S_0} = \frac{S_t e^{-(r-q)t}}{S_0}$$
+
+    Apply Itô's formula. Since $dS_t = (r-q)S_t\, dt + \sigma S_t\, dW_t^{\mathbb{Q}}$:
+
+    $$dZ_t = \frac{e^{-(r-q)t}}{S_0}\, dS_t - \frac{(r-q)S_t e^{-(r-q)t}}{S_0}\, dt = \sigma Z_t\, dW_t^{\mathbb{Q}}$$
+
+    The $(r-q)\, dt$ terms cancel, so $dZ_t/Z_t = \sigma\, dW_t^{\mathbb{Q}}$ and $Z_t$ is a $\mathbb{Q}$-martingale.
+
+    **Girsanov transformation.** Define $W_t^S = W_t^{\mathbb{Q}} - \sigma t$, which is a $\mathbb{Q}^S$-Brownian motion.
+
+    **Stock dynamics under $\mathbb{Q}^S$.** Substituting $dW_t^{\mathbb{Q}} = dW_t^S + \sigma\, dt$:
+
+    $$dS_t = (r - q)S_t\, dt + \sigma S_t(dW_t^S + \sigma\, dt) = (r - q + \sigma^2)S_t\, dt + \sigma S_t\, dW_t^S$$
+
+    **Martingale condition.** The normalized price $u = V/S$ must be a $\mathbb{Q}^S$-martingale. By Itô's formula, the drift of $u(t, S_t)$ must vanish:
+
+    $$\frac{\partial u}{\partial t} + (r - q + \sigma^2)S\frac{\partial u}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 u}{\partial S^2} = 0$$
+
+    **Transform back to $V$.** Substituting the derivatives of $u = V/S$ in terms of $V$ (identical to the non-dividend case) and multiplying through by $S$:
+
+    $$\frac{\partial V}{\partial t} + \bigl[(r - q + \sigma^2) - \sigma^2\bigr]S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + \bigl[-(r - q + \sigma^2) + \sigma^2\bigr]V = 0$$
+
+    The $\sigma^2$ terms cancel:
+
+    $$\frac{\partial V}{\partial t} + (r-q)S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0$$
+
+    This is the Black–Scholes PDE with continuous dividend yield $q$, where the drift coefficient is $r - q$ and the discounting term remains $-rV$.

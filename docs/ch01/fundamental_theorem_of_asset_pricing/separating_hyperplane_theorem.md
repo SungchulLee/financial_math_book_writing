@@ -360,3 +360,143 @@ Sketch $\mathcal{V}$ and $\mathbb{R}^2_{++}$ in $\mathbb{R}^2$. Find the separat
 **Exercise 7.** The Kreps-Yan theorem requires the cone $\mathcal{C}$ to satisfy $\mathcal{C} \cap L^\infty_+ = \{0\}$. Explain the financial meaning of this condition in terms of trading strategies. What does it correspond to in the language of arbitrage theory?
 
 ---
+
+
+## Solutions
+
+
+??? success "Solution to Exercise 1"
+    We need to find $p \in \mathbb{R}^2$ and $\alpha \in \mathbb{R}$ such that $p^T x \leq \alpha$ for all $x \in C$ and $p^T x \geq \alpha$ for all $x \in D$.
+
+    The sets $C$ and $D$ are separated along the $x$-axis. Choose the normal vector $p = (1, 0)^T$. For any $(x, y) \in C$, we have $x^2 + y^2 \leq 1$, so $x \leq 1$. For any $(x, y) \in D$, we have $x \geq 3$. Therefore
+
+    $$
+    p^T(x, y) = x \leq 1 < 3 \leq x = p^T(x, y)
+    $$
+
+    for all points in $C$ and $D$ respectively. Setting $\alpha = 2$ (or any value in $(1, 3)$), the hyperplane $\{(x, y) : x = 2\}$ separates $C$ and $D$.
+
+    The separation is **strict**: we have $p^T x \leq 1 < \alpha < 3 \leq p^T y$ for all $x \in C$ and $y \in D$, with a gap of width 2 between the sets. This is consistent with Theorem 2, since $C$ is closed and convex, and $D$ is closed and convex. In fact, $C$ is also compact (closed and bounded), so the hypotheses of Theorem 2 are satisfied.
+
+
+??? success "Solution to Exercise 2"
+    Consider the two sets in $\mathbb{R}^2$:
+
+    $$
+    C = \{(x, y) : y \leq 0\}, \qquad D = \{(x, y) : xy \geq 1, \; x > 0\}
+    $$
+
+    Both sets are closed and convex. They are disjoint: if $(x, y) \in C$ then $y \leq 0$, and if also $x > 0$ then $xy \leq 0 < 1$, so $(x, y) \notin D$.
+
+    However, they cannot be **strictly** separated. To see this, note that for any $\varepsilon > 0$, the points $(1/\varepsilon, 0) \in C$ and $(1/\varepsilon, \varepsilon) \in D$ are at distance $\varepsilon$ from each other. Thus
+
+    $$
+    \inf_{c \in C, \, d \in D} \|c - d\| = 0
+    $$
+
+    If strict separation existed, there would be $p \neq 0$ and $\alpha < \beta$ with $p^T c \leq \alpha < \beta \leq p^T d$ for all $c \in C$ and $d \in D$. This would imply $\|c - d\| \geq (\beta - \alpha)/\|p\| > 0$ for all $c \in C$ and $d \in D$, contradicting the zero infimal distance.
+
+    Neither set is compact: $C$ is an unbounded half-plane and $D$ is unbounded (it contains $(n, 1/n)$ for all $n \geq 1$). This confirms that the compactness hypothesis in Theorem 2 is necessary.
+
+
+??? success "Solution to Exercise 3"
+    With $n = 2$ states and $d = 1$ risky asset, the payoff matrix is
+
+    $$
+    X = \begin{pmatrix} 3 \\ -2 \end{pmatrix}
+    $$
+
+    The subspace $\mathcal{V} = \operatorname{Im}(X) = \{t(3, -2)^T : t \in \mathbb{R}\}$ is a line through the origin in $\mathbb{R}^2$ with slope $-2/3$. The positive orthant $\mathbb{R}^2_{++} = \{(v_1, v_2) : v_1 > 0, v_2 > 0\}$ is the open first quadrant.
+
+    Since the line $\mathcal{V}$ passes through the second and fourth quadrants (when $t > 0$: $v_1 = 3t > 0$ but $v_2 = -2t < 0$; when $t < 0$: $v_1 < 0$ but $v_2 > 0$), it does not intersect $\mathbb{R}^2_{++}$. Thus $\mathcal{V} \cap \mathbb{R}^2_{++} = \emptyset$ and the no-arbitrage condition holds.
+
+    To find the separating vector $q = (q_1, q_2)$ with $q_1, q_2 > 0$ and $X^T q = 0$:
+
+    $$
+    3q_1 - 2q_2 = 0 \implies q_1 = \frac{2}{3} q_2
+    $$
+
+    Choosing $q_2 = 3$ gives $q_1 = 2$, so $q = (2, 3)^T$. Both components are positive as required. Normalizing to a probability measure:
+
+    $$
+    \mathbb{Q}(\omega_1) = \frac{2}{5}, \qquad \mathbb{Q}(\omega_2) = \frac{3}{5}
+    $$
+
+    Since $\mathbb{P}(\omega_i) > 0$ for both states and $\mathbb{Q}(\omega_i) > 0$ for both states, we have $\mathbb{Q} \sim \mathbb{P}$. Verification of the martingale condition:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[S^1_1 - S^1_0] = \frac{2}{5} \cdot 3 + \frac{3}{5} \cdot (-2) = \frac{6}{5} - \frac{6}{5} = 0
+    $$
+
+    confirming that $\mathbb{Q}$ is an equivalent martingale measure.
+
+
+??? success "Solution to Exercise 4"
+    **Farkas' Lemma.** Let $A \in \mathbb{R}^{m \times n}$ and $b \in \mathbb{R}^m$. Exactly one of the following systems has a solution:
+
+    1. $Ax = b$ with $x \geq 0$
+    2. $A^T y \geq 0$ and $b^T y < 0$
+
+    **Application to the FTAP.** Suppose no $\theta \in \mathbb{R}^d$ satisfies $X\theta \geq 0$ with $X\theta \neq 0$. We must show there exists $q \in \mathbb{R}^n$ with $q_i > 0$ for all $i$ and $X^T q = 0$.
+
+    Write $\theta = \theta^+ - \theta^-$ where $\theta^+, \theta^- \geq 0$, and reformulate the payoff matrix as $\hat{X} = [X \mid -X]$, an $n \times 2d$ matrix. The no-arbitrage condition becomes: there is no $z \geq 0$ with $\hat{X}z \geq 0$ and $\hat{X}z \neq 0$.
+
+    Equivalently, $\hat{X}z \geq 0$ with $z \geq 0$ implies $\hat{X}z = 0$. This means for each state $i$, the system $\hat{X}z = e_i$ with $z \geq 0$ has no solution.
+
+    By Farkas' Lemma applied to $A = \hat{X}$ and $b = e_i$: since $\hat{X}z = e_i$ has no solution with $z \geq 0$, there exists $y^{(i)}$ with $\hat{X}^T y^{(i)} \geq 0$ and $e_i^T y^{(i)} < 0$, i.e., $y^{(i)}_i < 0$. The condition $\hat{X}^T y^{(i)} \geq 0$ means $X^T y^{(i)} \geq 0$ and $-X^T y^{(i)} \geq 0$, so $X^T y^{(i)} = 0$.
+
+    Now define $q = -\sum_{i=1}^n y^{(i)}$. Then $X^T q = -\sum_{i=1}^n X^T y^{(i)} = 0$, and $q_i = -\sum_{j=1}^n y^{(j)}_i \geq -y^{(i)}_i > 0$ for each $i$ (since $y^{(i)}_i < 0$). Therefore $q$ has all strictly positive components and satisfies $X^T q = 0$. Normalizing $q / \sum_k q_k$ gives the desired EMM.
+
+
+??? success "Solution to Exercise 5"
+    The Minkowski difference is $E = C - D = \{c - (3, 3) : c \in C\}$. Since $C = \{(x, y) : x + y \leq 2, \; x \geq 0, \; y \geq 0\}$, we compute
+
+    $$
+    E = \{(x - 3, \, y - 3) : x + y \leq 2, \; x \geq 0, \; y \geq 0\}
+    $$
+
+    Setting $u = x - 3$ and $v = y - 3$, the constraints become $u \geq -3$, $v \geq -3$, and $(u + 3) + (v + 3) \leq 2$, i.e., $u + v \leq -4$. So
+
+    $$
+    E = \{(u, v) : u + v \leq -4, \; u \geq -3, \; v \geq -3\}
+    $$
+
+    This is a triangle with vertices $(-3, -1)$, $(-1, -3)$, and $(-3, -3)$.
+
+    **Verifying $0 \notin E$:** For any $(u, v) \in E$, we have $u + v \leq -4 < 0$, so $(0, 0) \notin E$.
+
+    **Nearest point to the origin.** We minimize $u^2 + v^2$ subject to $u + v \leq -4$, $u \geq -3$, $v \geq -3$. The unconstrained minimizer on the hyperplane $u + v = -4$ is found by Lagrange multipliers: $\nabla(u^2 + v^2) = \lambda \nabla(u + v)$, giving $2u = \lambda = 2v$, so $u = v$. With $u + v = -4$: $u = v = -2$. Check: $-2 \geq -3$ (satisfied). So the nearest point is $x_0 = (-2, -2)$.
+
+    **Distance:** $\|x_0\| = \sqrt{4 + 4} = 2\sqrt{2}$.
+
+    **Separating direction.** The separating direction is $p = y - x_0 = (0, 0) - (-2, -2) = (2, 2)$, or equivalently $p = (1, 1)^T$.
+
+    Verification: for any $e = (u, v) \in E$, $p^T e = u + v \leq -4 < 0 = p^T(0, 0)$, confirming strict separation.
+
+
+??? success "Solution to Exercise 6"
+    In finite dimensions ($\mathbb{R}^n$), the proof of strict separation relies on the existence of a **nearest point** in a closed convex set to any point outside it. This existence is guaranteed by two properties: (1) the norm is continuous, and (2) closed bounded subsets of $\mathbb{R}^n$ are compact (Heine--Borel theorem), so the infimum of a continuous function over a closed set is attained.
+
+    In an infinite-dimensional Hilbert space such as $L^2(\Omega, \mathcal{F}, \mathbb{P})$, the nearest-point projection onto a **closed convex** set still exists and is unique, because $L^2$ is a Hilbert space and the parallelogram law guarantees that minimizing sequences are Cauchy. So, in fact, the nearest-point argument does **not** break down in $L^2$.
+
+    The real difficulty arises in non-reflexive Banach spaces such as $L^\infty$ or $L^1$. In $L^\infty$, a closed convex set need not have a nearest point to a given exterior point, because the unit ball in $L^\infty$ is not weakly compact in the norm topology. Minimizing sequences need not converge, and the infimal distance may not be attained.
+
+    The Hahn--Banach theorem bypasses the nearest-point construction entirely. It guarantees the existence of a separating continuous linear functional using an algebraic extension argument (via Zorn's lemma) rather than a metric/geometric one. This makes it applicable to any topological vector space, including $L^\infty$ where the nearest-point approach fails.
+
+    In the context of the FTAP, the relevant space is $L^\infty$ (bounded claims), and the Kreps--Yan theorem (a strengthened Hahn--Banach result) is needed to produce a strictly positive separating functional, which then becomes the equivalent (local) martingale measure.
+
+
+??? success "Solution to Exercise 7"
+    The cone $\mathcal{C}$ represents the set of terminal payoffs achievable by admissible zero-cost trading strategies (or more precisely, payoffs that are dominated by such terminal values). The condition $\mathcal{C} \cap L^\infty_+ = \{0\}$ means:
+
+    **The only bounded, non-negative payoff achievable at zero cost is identically zero.**
+
+    In the language of arbitrage theory, this is essentially the **no-arbitrage condition** for bounded claims. More precisely:
+
+    - A non-negative $X \in L^\infty_+$ with $X \in \mathcal{C}$ would mean there exists a zero-cost admissible strategy whose terminal payoff is non-negative everywhere and bounded. If $X \neq 0$, this constitutes an arbitrage (a risk-free profit from nothing).
+
+    - The condition $\mathcal{C} \cap L^\infty_+ = \{0\}$ therefore states that no such arbitrage exists for bounded payoffs.
+
+    Since $\mathcal{C}$ is taken to be a closed cone (closure accounts for limiting strategies), this condition is actually the **No Free Lunch with Vanishing Risk (NFLVR)** condition restricted to $L^\infty$. The closure ensures that not only are outright arbitrages excluded, but also approximate arbitrages that converge to a non-negative payoff.
+
+    The Kreps--Yan theorem then produces a strictly positive element $\mathbb{Q} \in L^1$ (with $d\mathbb{Q}/d\mathbb{P} > 0$ a.s.) such that $\mathbb{E}^{\mathbb{Q}}[X] \leq 0$ for all $X \in \mathcal{C}$. This $\mathbb{Q}$ is the equivalent (local) martingale measure, completing the connection between the no-arbitrage condition and the probabilistic structure of the FTAP.

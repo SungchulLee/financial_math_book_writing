@@ -143,3 +143,133 @@ These two identities give $\mathbb{E}[S_\tau] = 0$ and $\mathbb{E}[\tau] = \math
 ---
 
 **Exercise 6.** A process $\{X_n\}$ is called a **submartingale** if $\mathbb{E}[X_{n+1} \mid \mathcal{F}_n] \geq X_n$. Show that $|S_n|$ is a submartingale for the symmetric random walk. (Hint: use Jensen's inequality with the convex function $f(x) = |x|$.)
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    For the asymmetric walk, $\mathbb{E}[\xi_{n+1}] = 2p - 1 \neq 0$. Define $M_n = S_n - n(2p-1)$. Then:
+
+    $$
+    \mathbb{E}[M_{n+1} \mid \mathcal{F}_n] = \mathbb{E}[S_{n+1} - (n+1)(2p-1) \mid \mathcal{F}_n]
+    $$
+
+    $$
+    = S_n + \mathbb{E}[\xi_{n+1}] - (n+1)(2p-1) = S_n + (2p-1) - (n+1)(2p-1) = S_n - n(2p-1) = M_n
+    $$
+
+    So $\{M_n\}$ is a martingale. For the quadratic martingale, let $\sigma^2 = \text{Var}(\xi_i) = 4p(1-p)$. Consider $M_n^2 - n\sigma^2$:
+
+    $$
+    \mathbb{E}[M_{n+1}^2 \mid \mathcal{F}_n] = \mathbb{E}[(M_n + \eta_{n+1})^2 \mid \mathcal{F}_n]
+    $$
+
+    where $\eta_{n+1} = \xi_{n+1} - (2p-1)$ has mean 0 and variance $\sigma^2 = 4p(1-p)$. Expanding:
+
+    $$
+    = M_n^2 + 2M_n \cdot \mathbb{E}[\eta_{n+1}] + \mathbb{E}[\eta_{n+1}^2] = M_n^2 + \sigma^2
+    $$
+
+    Therefore $\mathbb{E}[M_{n+1}^2 - (n+1)\sigma^2 \mid \mathcal{F}_n] = M_n^2 + \sigma^2 - (n+1)\sigma^2 = M_n^2 - n\sigma^2$, confirming $M_n^2 - 4np(1-p)$ is a martingale.
+
+    These are the analogues of Propositions 1.1.3 and 1.1.4: the centred walk $M_n = S_n - n\mu$ replaces $S_n$, and the compensator $n\sigma^2 = 4np(1-p)$ replaces $n$.
+
+??? success "Solution to Exercise 2"
+    The stopping time $\tau = \min\{n : S_n = -a \text{ or } S_n = b\}$ is finite a.s. by recurrence, and bounded by the first hitting time of the boundary. Applying the Optional Stopping Theorem to $M_n = S_n^2 - n$:
+
+    $$
+    \mathbb{E}[M_\tau] = \mathbb{E}[M_0] = S_0^2 - 0 = 0
+    $$
+
+    Therefore $\mathbb{E}[S_\tau^2] = \mathbb{E}[\tau]$. At the stopping time, $S_\tau \in \{-a, b\}$, so:
+
+    $$
+    \mathbb{E}[S_\tau^2] = a^2 \cdot \mathbb{P}(S_\tau = -a) + b^2 \cdot \mathbb{P}(S_\tau = b)
+    $$
+
+    From the first martingale $\mathbb{E}[S_\tau] = 0$:
+
+    $$
+    -a \cdot \mathbb{P}(S_\tau = -a) + b \cdot \mathbb{P}(S_\tau = b) = 0
+    $$
+
+    With $\mathbb{P}(S_\tau = -a) + \mathbb{P}(S_\tau = b) = 1$, solving gives $\mathbb{P}(S_\tau = b) = a/(a+b)$ and $\mathbb{P}(S_\tau = -a) = b/(a+b)$. Therefore:
+
+    $$
+    \mathbb{E}[\tau] = a^2 \cdot \frac{b}{a+b} + b^2 \cdot \frac{a}{a+b} = \frac{ab(a+b)}{a+b} = ab
+    $$
+
+??? success "Solution to Exercise 3"
+    Let $Z_n = \left(\frac{1-p}{p}\right)^{S_n}$ and $r = \frac{1-p}{p}$. Then:
+
+    $$
+    \mathbb{E}[Z_{n+1} \mid \mathcal{F}_n] = \mathbb{E}[r^{S_{n+1}} \mid \mathcal{F}_n] = \mathbb{E}[r^{S_n + \xi_{n+1}} \mid \mathcal{F}_n] = r^{S_n} \cdot \mathbb{E}[r^{\xi_{n+1}}]
+    $$
+
+    Computing the expectation:
+
+    $$
+    \mathbb{E}[r^{\xi_{n+1}}] = p \cdot r + (1-p) \cdot r^{-1} = p \cdot \frac{1-p}{p} + (1-p) \cdot \frac{p}{1-p} = (1-p) + p = 1
+    $$
+
+    Therefore $\mathbb{E}[Z_{n+1} \mid \mathcal{F}_n] = r^{S_n} = Z_n$, so $\{Z_n\}$ is a martingale.
+
+    For $p = 1/2$: $r = (1-1/2)/(1/2) = 1$, so $Z_n = 1^{S_n} = 1$ for all $n$. The process is the constant martingale $Z_n = 1$, which is trivial (it carries no information about $S_n$).
+
+??? success "Solution to Exercise 4"
+    We have $S_{n+1}^2 - S_n^2 = (S_n + \xi_{n+1})^2 - S_n^2 = 2S_n\xi_{n+1} + \xi_{n+1}^2$. Since $\xi_{n+1}^2 = [S]_{n+1} - [S]_n = 1$:
+
+    $$
+    S_{n+1}^2 - [S]_{n+1} = S_n^2 + 2S_n\xi_{n+1} + 1 - ([S]_n + 1) = (S_n^2 - [S]_n) + 2S_n\xi_{n+1}
+    $$
+
+    Taking conditional expectations:
+
+    $$
+    \mathbb{E}[S_{n+1}^2 - [S]_{n+1} \mid \mathcal{F}_n] = S_n^2 - [S]_n + 2S_n \cdot \mathbb{E}[\xi_{n+1} \mid \mathcal{F}_n]
+    $$
+
+    Since $\xi_{n+1}$ is independent of $\mathcal{F}_n$ and $\mathbb{E}[\xi_{n+1}] = 0$:
+
+    $$
+    = S_n^2 - [S]_n + 0 = S_n^2 - [S]_n
+    $$
+
+    Since $[S]_n = n$ a.s., this gives $\mathbb{E}[S_{n+1}^2 - (n+1) \mid \mathcal{F}_n] = S_n^2 - n$, which is exactly the statement that $\{S_n^2 - n\}$ is a martingale (Proposition 1.1.4), derived without directly computing $\mathbb{E}[S_{n+1}^2 \mid \mathcal{F}_n]$.
+
+??? success "Solution to Exercise 5"
+    Define $E_n = e^{\lambda S_n}/(\cosh \lambda)^n$. Then:
+
+    $$
+    \mathbb{E}[E_{n+1} \mid \mathcal{F}_n] = \frac{e^{\lambda S_n}}{(\cosh\lambda)^{n+1}} \cdot \mathbb{E}[e^{\lambda \xi_{n+1}}] = \frac{e^{\lambda S_n}}{(\cosh\lambda)^{n+1}} \cdot \cosh\lambda = \frac{e^{\lambda S_n}}{(\cosh\lambda)^n} = E_n
+    $$
+
+    So $\{E_n\}$ is a martingale. Now apply the Optional Stopping Theorem to $\tau_a = \min\{n : S_n = a\}$. At the stopping time, $S_{\tau_a} = a$, so:
+
+    $$
+    \mathbb{E}[E_{\tau_a}] = E_0 = 1
+    $$
+
+    $$
+    \mathbb{E}\!\left[\frac{e^{\lambda a}}{(\cosh\lambda)^{\tau_a}}\right] = 1
+    $$
+
+    Therefore:
+
+    $$
+    \mathbb{E}[(\cosh\lambda)^{-\tau_a}] = e^{-\lambda a}
+    $$
+
+    This holds for $\lambda > 0$ under appropriate conditions ensuring the Optional Stopping Theorem applies (e.g., $\tau_a < \infty$ a.s. by recurrence, and the stopped process is uniformly integrable, which holds since $\cosh\lambda > 1$ for $\lambda > 0$ makes $E_{n \wedge \tau_a}$ bounded by $e^{\lambda a}$).
+
+??? success "Solution to Exercise 6"
+    Since $\{S_n\}$ is a martingale (for $p = 1/2$) and $f(x) = |x|$ is a convex function, Jensen's inequality for conditional expectations gives:
+
+    $$
+    \mathbb{E}[|S_{n+1}| \mid \mathcal{F}_n] \geq |\mathbb{E}[S_{n+1} \mid \mathcal{F}_n]| = |S_n|
+    $$
+
+    We also need to verify the other conditions: $|S_n|$ is adapted (since $S_n$ is adapted), and $\mathbb{E}[|S_n|] < \infty$ (since $\mathbb{E}[|S_n|] \leq \sqrt{\mathbb{E}[S_n^2]} = \sqrt{n} < \infty$).
+
+    Therefore $\{|S_n|\}$ satisfies $\mathbb{E}[|S_{n+1}| \mid \mathcal{F}_n] \geq |S_n|$, which is the submartingale condition.

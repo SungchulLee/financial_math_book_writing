@@ -302,3 +302,212 @@ Let $(W_t)$ be standard Brownian motion with natural filtration $(\mathcal{F}_t)
 (c) For $\lambda \in \mathbb{R}$, compute $\mathbb{E}[e^{\lambda W_t} \mid \mathcal{F}_s]$.
 
 *Hint*: Factor $e^{\lambda W_t} = e^{\lambda W_s} \cdot e^{\lambda(W_t - W_s)}$ and use independence and the moment generating function of a Gaussian.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** Since $X \sim \text{Uniform}[0,1]$ and $Y = \lfloor 2X \rfloor$, we have $Y = 0$ when $X \in [0, 1/2)$ and $Y = 1$ when $X \in [1/2, 1]$.
+
+    The conditional expectation $\mathbb{E}[X \mid Y]$ is constant on each atom of $\sigma(Y)$:
+
+    - On $\{Y = 0\}$: $\mathbb{E}[X \mid Y = 0] = \mathbb{E}[X \mid X \in [0, 1/2)] = \frac{1}{1/2}\int_0^{1/2} x\,dx = 2 \cdot \frac{1}{8} = \frac{1}{4}$
+
+    - On $\{Y = 1\}$: $\mathbb{E}[X \mid Y = 1] = \mathbb{E}[X \mid X \in [1/2, 1]] = \frac{1}{1/2}\int_{1/2}^{1} x\,dx = 2 \cdot \frac{3}{8} = \frac{3}{4}$
+
+    Therefore $\mathbb{E}[X \mid Y] = \frac{1}{4}\mathbf{1}_{\{Y=0\}} + \frac{3}{4}\mathbf{1}_{\{Y=1\}} = \frac{2Y + 1}{4}$.
+
+    **(b)** For jointly Gaussian $(X, Y)$ with mean zero, unit variance, and correlation $\rho$, the conditional distribution of $X$ given $Y = y$ is:
+
+    $$
+    X \mid Y = y \sim N(\rho y, 1 - \rho^2)
+    $$
+
+    Therefore $\mathbb{E}[X \mid Y = y] = \rho y$, so $\mathbb{E}[X \mid Y] = \rho Y$.
+
+    To verify: $\rho Y$ is $\sigma(Y)$-measurable. For the partial averaging condition, for any $B \in \mathcal{B}(\mathbb{R})$:
+
+    $$
+    \mathbb{E}[\rho Y \cdot \mathbf{1}_{\{Y \in B\}}] = \rho \mathbb{E}[Y \mathbf{1}_{\{Y \in B\}}]
+    $$
+
+    $$
+    \mathbb{E}[X \cdot \mathbf{1}_{\{Y \in B\}}] = \mathbb{E}[\mathbb{E}[X \mathbf{1}_{\{Y \in B\}} \mid Y]] = \mathbb{E}[\mathbf{1}_{\{Y \in B\}} \mathbb{E}[X \mid Y]] = \mathbb{E}[\rho Y \cdot \mathbf{1}_{\{Y \in B\}}]
+    $$
+
+    The two expressions match, confirming $\mathbb{E}[X \mid Y] = \rho Y$. $\square$
+
+    **(c)** Given $N$, $X \mid N \sim \text{Binomial}(N, p)$, so:
+
+    $$
+    \mathbb{E}[X \mid N] = Np
+    $$
+
+    By the tower property:
+
+    $$
+    \mathbb{E}[X] = \mathbb{E}[\mathbb{E}[X \mid N]] = \mathbb{E}[Np] = p\,\mathbb{E}[N] = p\lambda
+    $$
+
+??? success "Solution to Exercise 2"
+    **(a)** Let $\mathcal{H} \subseteq \mathcal{G}$ and let $Z = \mathbb{E}[\mathbb{E}[X \mid \mathcal{G}] \mid \mathcal{H}]$. We verify $Z = \mathbb{E}[X \mid \mathcal{H}]$ by checking the defining properties.
+
+    - *Measurability*: $Z$ is $\mathcal{H}$-measurable by definition of conditional expectation.
+
+    - *Partial averaging*: For any $H \in \mathcal{H}$, since $\mathcal{H} \subseteq \mathcal{G}$ we have $H \in \mathcal{G}$. Then:
+
+    $$
+    \int_H Z \, d\mathbb{P} = \int_H \mathbb{E}[X \mid \mathcal{G}] \, d\mathbb{P} = \int_H X \, d\mathbb{P}
+    $$
+
+    The first equality uses the definition of $Z$ as conditional expectation of $\mathbb{E}[X \mid \mathcal{G}]$ given $\mathcal{H}$ (partial averaging over $H \in \mathcal{H}$). The second uses the definition of $\mathbb{E}[X \mid \mathcal{G}]$ (partial averaging over $H \in \mathcal{G}$).
+
+    By uniqueness, $Z = \mathbb{E}[X \mid \mathcal{H}]$. $\square$
+
+    **(b)** The **law of total variance** states $\text{Var}(X) = \mathbb{E}[\text{Var}(X \mid Y)] + \text{Var}(\mathbb{E}[X \mid Y])$.
+
+    Start from $\text{Var}(X \mid Y) = \mathbb{E}[X^2 \mid Y] - (\mathbb{E}[X \mid Y])^2$. Taking expectations:
+
+    $$
+    \mathbb{E}[\text{Var}(X \mid Y)] = \mathbb{E}[X^2] - \mathbb{E}[(\mathbb{E}[X \mid Y])^2]
+    $$
+
+    Also, $\text{Var}(\mathbb{E}[X \mid Y]) = \mathbb{E}[(\mathbb{E}[X \mid Y])^2] - (\mathbb{E}[\mathbb{E}[X \mid Y]])^2 = \mathbb{E}[(\mathbb{E}[X \mid Y])^2] - (\mathbb{E}[X])^2$.
+
+    Adding:
+
+    $$
+    \mathbb{E}[\text{Var}(X \mid Y)] + \text{Var}(\mathbb{E}[X \mid Y]) = \mathbb{E}[X^2] - (\mathbb{E}[X])^2 = \text{Var}(X) \quad \square
+    $$
+
+    **(c)** From Exercise 1(c): $\mathbb{E}[X \mid N] = Np$ and $\text{Var}(X \mid N) = Np(1-p)$ (variance of $\text{Binomial}(N, p)$).
+
+    $$
+    \mathbb{E}[\text{Var}(X \mid N)] = \mathbb{E}[Np(1-p)] = p(1-p)\lambda
+    $$
+
+    $$
+    \text{Var}(\mathbb{E}[X \mid N]) = \text{Var}(Np) = p^2 \text{Var}(N) = p^2 \lambda
+    $$
+
+    Therefore:
+
+    $$
+    \text{Var}(X) = p(1-p)\lambda + p^2\lambda = p\lambda(1 - p + p) = p\lambda
+    $$
+
+??? success "Solution to Exercise 3"
+    **(a)** We must show that $Y \cdot \mathbb{E}[X \mid \mathcal{G}]$ satisfies the two defining properties of $\mathbb{E}[XY \mid \mathcal{G}]$, assuming $Y$ is bounded and $\mathcal{G}$-measurable.
+
+    - *Measurability*: Since $Y$ is $\mathcal{G}$-measurable and $\mathbb{E}[X \mid \mathcal{G}]$ is $\mathcal{G}$-measurable, their product $Y \cdot \mathbb{E}[X \mid \mathcal{G}]$ is $\mathcal{G}$-measurable.
+
+    - *Partial averaging*: For any $G \in \mathcal{G}$, the product $Y \cdot \mathbf{1}_G$ is $\mathcal{G}$-measurable and bounded. By the definition of conditional expectation:
+
+    $$
+    \int_G Y \cdot \mathbb{E}[X \mid \mathcal{G}] \, d\mathbb{P} = \mathbb{E}[Y \cdot \mathbf{1}_G \cdot \mathbb{E}[X \mid \mathcal{G}]]
+    $$
+
+    Since $Y \cdot \mathbf{1}_G$ is bounded and $\mathcal{G}$-measurable, the partial averaging property of $\mathbb{E}[X \mid \mathcal{G}]$ applied to the set $G$ with indicator weighted by $Y$ gives (by a standard approximation argument for bounded measurable functions):
+
+    $$
+    \mathbb{E}[Y \cdot \mathbf{1}_G \cdot \mathbb{E}[X \mid \mathcal{G}]] = \mathbb{E}[Y \cdot \mathbf{1}_G \cdot X] = \int_G XY \, d\mathbb{P}
+    $$
+
+    By uniqueness, $\mathbb{E}[XY \mid \mathcal{G}] = Y \cdot \mathbb{E}[X \mid \mathcal{G}]$. $\square$
+
+    **(b)** Since $Y$ is $\mathcal{G}$-measurable, $f(Y)$ is also $\mathcal{G}$-measurable for any Borel measurable $f$ (composition of measurable functions is measurable). Apply part (a) with $f(Y)$ in place of $Y$:
+
+    $$
+    \mathbb{E}[f(Y) \cdot X \mid \mathcal{G}] = f(Y) \cdot \mathbb{E}[X \mid \mathcal{G}]
+    $$
+
+    (The result for bounded $f(Y)$ follows directly from (a); for general $f$ with $f(Y) \cdot X \in L^1$, one extends by monotone class or truncation arguments.) $\square$
+
+??? success "Solution to Exercise 4"
+    **(a)** Since $\varphi$ is convex, for every $x_0 \in \mathbb{R}$ there exists a subgradient $a(x_0)$ such that:
+
+    $$
+    \varphi(y) \ge \varphi(x_0) + a(x_0)(y - x_0) \quad \text{for all } y \in \mathbb{R}
+    $$
+
+    Apply this with $x_0 = \mathbb{E}[X \mid \mathcal{G}](\omega)$ and $y = X(\omega)$:
+
+    $$
+    \varphi(X) \ge \varphi(\mathbb{E}[X \mid \mathcal{G}]) + a(\mathbb{E}[X \mid \mathcal{G}])(X - \mathbb{E}[X \mid \mathcal{G}])
+    $$
+
+    Take conditional expectations given $\mathcal{G}$. Since $\varphi(\mathbb{E}[X \mid \mathcal{G}])$ and $a(\mathbb{E}[X \mid \mathcal{G}])$ are $\mathcal{G}$-measurable:
+
+    $$
+    \mathbb{E}[\varphi(X) \mid \mathcal{G}] \ge \varphi(\mathbb{E}[X \mid \mathcal{G}]) + a(\mathbb{E}[X \mid \mathcal{G}]) \cdot \mathbb{E}[X - \mathbb{E}[X \mid \mathcal{G}] \mid \mathcal{G}]
+    $$
+
+    The last term is $a(\mathbb{E}[X \mid \mathcal{G}]) \cdot (\mathbb{E}[X \mid \mathcal{G}] - \mathbb{E}[X \mid \mathcal{G}]) = 0$. Therefore:
+
+    $$
+    \mathbb{E}[\varphi(X) \mid \mathcal{G}] \ge \varphi(\mathbb{E}[X \mid \mathcal{G}]) \quad \square
+    $$
+
+    **(b)** Apply conditional Jensen with $\varphi(x) = |x|$ (convex):
+
+    $$
+    |\mathbb{E}[X \mid \mathcal{G}]| \le \mathbb{E}[|X| \mid \mathcal{G}]
+    $$
+
+    For $L^p$ contractivity with $p \ge 1$, apply conditional Jensen with $\varphi(x) = |x|^p$:
+
+    $$
+    |\mathbb{E}[X \mid \mathcal{G}]|^p \le \mathbb{E}[|X|^p \mid \mathcal{G}]
+    $$
+
+    Taking expectations of both sides and using the tower property:
+
+    $$
+    \mathbb{E}[|\mathbb{E}[X \mid \mathcal{G}]|^p] \le \mathbb{E}[\mathbb{E}[|X|^p \mid \mathcal{G}]] = \mathbb{E}[|X|^p]
+    $$
+
+    Therefore $\|\mathbb{E}[X \mid \mathcal{G}]\|_{L^p} \le \|X\|_{L^p}$. $\square$
+
+??? success "Solution to Exercise 5"
+    **(a)** Write $W_t = W_s + (W_t - W_s)$ and expand:
+
+    $$
+    W_t^2 = W_s^2 + 2W_s(W_t - W_s) + (W_t - W_s)^2
+    $$
+
+    Taking conditional expectations and using that $W_t - W_s$ is independent of $\mathcal{F}_s$ with $\mathbb{E}[W_t - W_s] = 0$ and $\mathbb{E}[(W_t - W_s)^2] = t - s$:
+
+    $$
+    \mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + 2W_s \cdot 0 + (t - s) = W_s^2 + (t - s)
+    $$
+
+    **(b)** Expand $W_t^3 = (W_s + (W_t - W_s))^3$:
+
+    $$
+    W_t^3 = W_s^3 + 3W_s^2(W_t - W_s) + 3W_s(W_t - W_s)^2 + (W_t - W_s)^3
+    $$
+
+    Let $\Delta = W_t - W_s \sim N(0, t-s)$, independent of $\mathcal{F}_s$. The moments are $\mathbb{E}[\Delta] = 0$, $\mathbb{E}[\Delta^2] = t - s$, $\mathbb{E}[\Delta^3] = 0$ (by symmetry of the Gaussian).
+
+    $$
+    \mathbb{E}[W_t^3 \mid \mathcal{F}_s] = W_s^3 + 3W_s^2 \cdot 0 + 3W_s(t-s) + 0 = W_s^3 + 3(t-s)W_s
+    $$
+
+    **(c)** Factor $e^{\lambda W_t} = e^{\lambda W_s} \cdot e^{\lambda(W_t - W_s)}$. Since $e^{\lambda W_s}$ is $\mathcal{F}_s$-measurable and $W_t - W_s$ is independent of $\mathcal{F}_s$:
+
+    $$
+    \mathbb{E}[e^{\lambda W_t} \mid \mathcal{F}_s] = e^{\lambda W_s} \cdot \mathbb{E}[e^{\lambda(W_t - W_s)}]
+    $$
+
+    Since $W_t - W_s \sim N(0, t - s)$, the moment generating function gives:
+
+    $$
+    \mathbb{E}[e^{\lambda(W_t - W_s)}] = e^{\lambda^2(t-s)/2}
+    $$
+
+    Therefore:
+
+    $$
+    \mathbb{E}[e^{\lambda W_t} \mid \mathcal{F}_s] = e^{\lambda W_s + \lambda^2(t-s)/2}
+    $$

@@ -303,3 +303,146 @@ $$
 ---
 
 **Exercise 5.** Compare the LSM method with the binomial tree for pricing a single-asset American put with $S_0 = 100$, $K = 100$, $r = 5\%$, $\sigma = 30\%$, $T = 1$. Discuss the relative strengths of each method in terms of accuracy, computational cost, and ease of implementation. In what situation would you prefer LSM over a binomial tree?
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Consider an American put with 3 exercise dates $t_1, t_2, t_3 = T$ (equally spaced). Suppose we simulate $M$ stock price paths $\{S_{t_k}^{(m)}\}$.
+
+    **At $t_3 = T$ (maturity):** Set the cash flow for each path:
+
+    $$
+    \text{CF}^{(m)} = (K - S_T^{(m)})^+, \quad \tau^{(m)} = T
+    $$
+
+    No regression is needed at maturity since there is no continuation.
+
+    **At $t_2$:** Identify in-the-money paths: $\mathcal{I}_2 = \{m : K - S_{t_2}^{(m)} > 0\}$.
+
+    For each ITM path, compute the discounted future cash flow:
+
+    $$
+    Y^{(m)} = e^{-r(T - t_2)} \text{CF}^{(m)}, \quad m \in \mathcal{I}_2
+    $$
+
+    **Regression:** The dependent variable is $Y^{(m)}$ (discounted future payoff). The independent variable is $S_{t_2}^{(m)}$ (current stock price). Fit:
+
+    $$
+    \hat{C}(t_2, S) = \hat{\beta}_0 + \hat{\beta}_1 S + \hat{\beta}_2 S^2 + \hat{\beta}_3 S^3
+    $$
+
+    by ordinary least squares on the ITM paths.
+
+    **Exercise decision:** For each $m \in \mathcal{I}_2$, if $K - S_{t_2}^{(m)} \geq \hat{C}(t_2, S_{t_2}^{(m)})$, update: $\text{CF}^{(m)} = K - S_{t_2}^{(m)}$ and $\tau^{(m)} = t_2$.
+
+    **At $t_1$:** Repeat the same procedure. Identify $\mathcal{I}_1 = \{m : K - S_{t_1}^{(m)} > 0\}$. Compute discounted future cash flows $Y^{(m)} = e^{-r(\tau^{(m)} - t_1)}\text{CF}^{(m)}$ for $m \in \mathcal{I}_1$. Regress $Y$ on polynomial basis functions of $S_{t_1}$ to get $\hat{C}(t_1, S)$. Exercise if $K - S_{t_1}^{(m)} \geq \hat{C}(t_1, S_{t_1}^{(m)})$.
+
+    **Final price:** Discount all cash flows to time 0:
+
+    $$
+    \hat{V}_0 = \frac{1}{M}\sum_{m=1}^M e^{-r\tau^{(m)}} \text{CF}^{(m)}
+    $$
+
+??? success "Solution to Exercise 2"
+    The continuation value is approximated by:
+
+    $$
+    \hat{C}(S_{t_k}) = \sum_{j=0}^{P} a_j \phi_j(S_{t_k})
+    $$
+
+    where $P$ is the number of basis functions (not to be confused with the number of paths $M$).
+
+    **Trade-off between more basis functions and overfitting:**
+
+    - **Too few basis functions ($P$ small):** The regression underfits the true continuation value. The approximation $\hat{C}$ may be biased, leading to systematically wrong exercise decisions. For example, with only a constant and linear term ($P = 1$), the regression cannot capture the curvature of the continuation value near the exercise boundary.
+
+    - **More basis functions ($P$ moderate):** Better approximation of $\hat{C}$, more accurate exercise decisions, and a price closer to the true value.
+
+    - **Too many basis functions ($P$ large):** The regression fits noise in the simulated data rather than the true conditional expectation. Overfitting produces unstable coefficient estimates, especially in the tails where there are few ITM paths. The exercise decisions become erratic, potentially increasing the low bias.
+
+    Additionally, with large $P$, the design matrix $A$ becomes ill-conditioned (especially for monomial bases), causing numerical instability in the least-squares solve. Orthogonal polynomial bases (Laguerre, Chebyshev) mitigate this.
+
+    **Typical choice in practice:** $P = 3$ to $5$ polynomial terms (e.g., $1, S, S^2, S^3$) for single-asset options. Longstaff and Schwartz originally used $P = 2$ (three Laguerre polynomials). For multi-asset options, cross-terms are added (e.g., $S_1, S_2, S_1 S_2, S_1^2, S_2^2$), but the total number of basis functions should be kept moderate relative to the number of ITM paths.
+
+??? success "Solution to Exercise 3"
+    The LSM estimator uses a suboptimal exercise policy derived from estimated continuation values. This suboptimality guarantees a **lower bound** rather than an upper bound.
+
+    **Detailed argument:** Let $\tau^*$ be the true optimal stopping time and $\hat{\tau}$ be the stopping time produced by the LSM algorithm. By definition:
+
+    $$
+    V_{\text{true}} = \mathbb{E}\left[e^{-r\tau^*}\Phi(S_{\tau^*})\right] \geq \mathbb{E}\left[e^{-r\hat{\tau}}\Phi(S_{\hat{\tau}})\right]
+    $$
+
+    The inequality holds because $\tau^*$ is optimal (it maximizes the expected discounted payoff over all stopping times), while $\hat{\tau}$ is one particular stopping time. Any suboptimal exercise strategy yields an expected payoff that is less than or equal to the optimal one.
+
+    The LSM price is:
+
+    $$
+    \hat{V}_{\text{LSM}} = \frac{1}{M}\sum_{m=1}^M e^{-r\hat{\tau}^{(m)}}\Phi(S_{\hat{\tau}^{(m)}}^{(m)}) \approx \mathbb{E}\left[e^{-r\hat{\tau}}\Phi(S_{\hat{\tau}})\right] \leq V_{\text{true}}
+    $$
+
+    **Why not an upper bound?** An upper bound would require showing that the estimator overvalues the option. But the regression introduces errors in both directions:
+
+    - Sometimes it overestimates $\hat{C}$, causing the holder to continue when exercise is optimal (missed exercise opportunity, reducing value)
+    - Sometimes it underestimates $\hat{C}$, causing exercise when continuation is optimal (premature exercise, also reducing value)
+
+    Both types of errors lead to a **suboptimal** exercise policy, which by the definition of the optimal stopping problem, produces a value **below** the true price. The key is that using the same paths for both fitting the regression and making exercise decisions introduces a downward bias. This is sometimes called the "in-sample" bias.
+
+??? success "Solution to Exercise 4"
+    For a max-call on two assets with payoff $(\max(S_1, S_2) - K)^+$, the state at each exercise date is the pair $(S_1, S_2)$, which is two-dimensional.
+
+    **How LSM handles the two-dimensional state:**
+
+    1. **Path simulation:** Simulate $M$ correlated paths for both assets $(S_1^{(m)}, S_2^{(m)})$ using a bivariate geometric Brownian motion with correlation $\rho$:
+
+        $$
+        S_i^{(m)}(t_{k+1}) = S_i^{(m)}(t_k) \exp\left[\left(r - \frac{1}{2}\sigma_i^2\right)\Delta t + \sigma_i \sqrt{\Delta t}\, Z_i^{(m)}\right]
+        $$
+
+        where $Z_1$ and $Z_2$ are correlated standard normals with $\text{Corr}(Z_1, Z_2) = \rho$.
+
+    2. **ITM identification:** At each step $t_k$, identify ITM paths where $\max(S_1^{(m)}, S_2^{(m)}) > K$.
+
+    3. **Regression on two-dimensional basis:** The regression approximates $\hat{C}(t_k, S_1, S_2)$ using basis functions of **both** state variables.
+
+    **Recommended basis functions:** A polynomial basis up to degree 2 or 3 in two variables:
+
+    $$
+    \{1, \, S_1, \, S_2, \, S_1^2, \, S_2^2, \, S_1 S_2, \, S_1^3, \, S_2^3, \, S_1^2 S_2, \, S_1 S_2^2\}
+    $$
+
+    This gives 10 basis functions for a cubic expansion. Alternatively, one can use:
+
+    - $\max(S_1, S_2)$ and $\min(S_1, S_2)$ as state variables (exploiting the payoff structure)
+    - Laguerre or Chebyshev polynomials in the transformed variables for better conditioning
+    - The intrinsic value $(\max(S_1, S_2) - K)^+$ itself as an additional basis function
+
+    The rest of the algorithm (backward induction, exercise decision, final pricing) proceeds identically to the one-dimensional case. The advantage of LSM is that it scales linearly with the number of paths, regardless of the dimensionality of the state space, whereas tree and finite difference methods suffer from the curse of dimensionality.
+
+??? success "Solution to Exercise 5"
+    For a single-asset American put with $S_0 = 100$, $K = 100$, $r = 0.05$, $\sigma = 0.30$, $T = 1$:
+
+    **Accuracy:**
+
+    - **Binomial tree:** Converges to the true price at rate $O(1/\sqrt{N})$ with oscillatory behavior. With $N = 500$ steps, achieves 4th-decimal accuracy. The method is unbiased in the limit and has no systematic bias direction.
+    - **LSM:** Has a systematic **low bias** because the regression-based exercise policy is suboptimal. With $M = 100{,}000$ paths and $N = 50$ steps, typical accuracy is 2--3 decimal places. The Monte Carlo standard error is $O(1/\sqrt{M})$.
+
+    **Computational cost:**
+
+    - **Binomial tree:** $O(N^2)$ time and $O(N)$ space (array method). With $N = 1000$, this is about $10^6$ operations, essentially instantaneous.
+    - **LSM:** $O(MN)$ for path simulation plus $O(MNP)$ for regression. With $M = 100{,}000$ and $N = 50$, this is about $5 \times 10^6$ operations, plus the cost of $N$ least-squares solves. Significantly slower for single-asset problems.
+
+    **Ease of implementation:**
+
+    - **Binomial tree:** Very simple: a double loop with a $\max$ condition. About 20 lines of code.
+    - **LSM:** More involved: requires path simulation, regression setup, backward updating of cash flows and exercise times. About 40--50 lines of code.
+
+    **When to prefer LSM over binomial trees:** LSM is preferred when:
+
+    1. **Multiple underlyings:** For options on 2+ assets (basket options, spread options, rainbow options), trees suffer the curse of dimensionality ($O(N^d)$ nodes in $d$ dimensions). LSM scales as $O(MN)$ regardless of dimension.
+    2. **Path-dependent features:** Lookback, Asian, or barrier features combined with early exercise are naturally handled by LSM since it simulates full paths.
+    3. **Complex dynamics:** Stochastic volatility, jumps, or other non-standard models are easily incorporated into the simulation step, while tree construction becomes cumbersome.
+
+    For a single-asset vanilla American put, the binomial tree is clearly superior in both speed and accuracy.

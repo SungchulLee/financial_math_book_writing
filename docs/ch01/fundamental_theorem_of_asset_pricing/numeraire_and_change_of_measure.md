@@ -271,3 +271,194 @@ The numéraire framework shows that arbitrage-free pricing is invariant under th
 **Exercise 6.** Consider an exchange option $(S^1_T - S^2_T)^+$ in the Black-Scholes setting with $\sigma_1 = \sigma_2 = \sigma$ and $\rho = 1$ (perfect correlation). Show that Margrabe's formula reduces to $V_0 = \max(S^1_0 - S^2_0, 0)$. Interpret this result: why does the option have no time value when the two assets are perfectly correlated with the same volatility?
 
 ---
+
+
+## Solutions
+
+
+??? success "Solution to Exercise 1"
+    In the Black--Scholes model with deterministic interest rates, $P(t, T) = e^{-r(T-t)}$. The Radon--Nikodym derivative from $\mathbb{Q}$ (money market numéraire $N_t = e^{rt}$) to $\mathbb{Q}^T$ (zero-coupon bond numéraire $M_t = P(t, T)$) is
+
+    $$
+    \frac{d\mathbb{Q}^T}{d\mathbb{Q}}\bigg|_{\mathcal{F}_t} = \frac{M_t / M_0}{N_t / N_0} = \frac{P(t, T) / P(0, T)}{e^{rt} / 1} = \frac{P(t, T)}{P(0, T) \, e^{rt}}
+    $$
+
+    At $t = T$:
+
+    $$
+    \frac{d\mathbb{Q}^T}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{P(T, T)}{P(0, T) \, e^{rT}} = \frac{1}{P(0, T) \, e^{rT}}
+    $$
+
+    Since $P(0, T) = e^{-rT}$ in the deterministic rate model:
+
+    $$
+    \frac{d\mathbb{Q}^T}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{1}{e^{-rT} \cdot e^{rT}} = \frac{1}{1} = 1
+    $$
+
+    With $r = 0.05$ and $T = 1$: $P(0, 1) = e^{-0.05}$ and $e^{rT} = e^{0.05}$, so the Radon--Nikodym derivative is $1/(e^{-0.05} \cdot e^{0.05}) = 1$.
+
+    This result makes sense: when interest rates are deterministic, the zero-coupon bond is a deterministic function of time, so $P(t, T)/e^{rt}$ is deterministic. The change of numéraire from a deterministic money market account to a deterministic bond does not alter the measure. In the general expression, $d\mathbb{Q}^T/d\mathbb{Q} = 1/(P(0,T) \cdot e^{rT})$, valid for any $r$ and $T$.
+
+
+??? success "Solution to Exercise 2"
+    The effective volatility for Margrabe's formula is
+
+    $$
+    \sigma_R = \sqrt{\sigma_1^2 - 2\rho\sigma_1\sigma_2 + \sigma_2^2} = \sqrt{0.04 - 2(0.5)(0.2)(0.3) + 0.09} = \sqrt{0.04 - 0.06 + 0.09} = \sqrt{0.07}
+    $$
+
+    The ratio of initial prices is $R_0 = S^1_0 / S^2_0 = 50/48$. With $T = 0.5$:
+
+    $$
+    d_1 = \frac{\ln(50/48) + \frac{1}{2}(0.07)(0.5)}{\sqrt{0.07} \cdot \sqrt{0.5}} = \frac{\ln(1.04167) + 0.0175}{\sqrt{0.035}}
+    $$
+
+    Computing: $\ln(1.04167) \approx 0.04082$ and $\sqrt{0.035} \approx 0.18708$. Therefore
+
+    $$
+    d_1 = \frac{0.04082 + 0.0175}{0.18708} = \frac{0.05832}{0.18708} \approx 0.3118
+    $$
+
+    $$
+    d_2 = d_1 - \sigma_R\sqrt{T} = 0.3118 - 0.18708 \approx 0.1247
+    $$
+
+    Using the standard normal CDF: $\Phi(0.3118) \approx 0.6224$ and $\Phi(0.1247) \approx 0.5496$.
+
+    Margrabe's formula gives:
+
+    $$
+    V_0 = S^1_0 \, \Phi(d_1) - S^2_0 \, \Phi(d_2) = 50 \times 0.6224 - 48 \times 0.5496 = 31.12 - 26.38 \approx 4.74
+    $$
+
+    Note that no discounting or risk-free rate appears in Margrabe's formula -- the exchange option price depends only on the initial prices, the relative volatility $\sigma_R$, and the time to maturity.
+
+
+??? success "Solution to Exercise 3"
+    **Setup.** The bond pays $B_1 = 1.05$ in both states. The stock has $S_0 = 10$, $S_1(\omega_1) = 14$, $S_1(\omega_2) = 8$. The call payoff is $\Phi(\omega_1) = \max(14 - 10, 0) = 4$ and $\Phi(\omega_2) = \max(8 - 10, 0) = 0$.
+
+    **(a) Money market as numéraire.**
+    The numéraire is $N_0 = 1$, $N_1 = 1.05$. Discounted stock prices: $\tilde{S}_0 = 10$ and $\tilde{S}_1(\omega_1) = 14/1.05 = 40/3$, $\tilde{S}_1(\omega_2) = 8/1.05 = 160/21$.
+
+    The martingale condition $\mathbb{E}^{\mathbb{Q}^N}[\tilde{S}_1] = \tilde{S}_0$ gives:
+
+    $$
+    q_1 \cdot \frac{40}{3} + (1 - q_1) \cdot \frac{160}{21} = 10
+    $$
+
+    $$
+    q_1 \left(\frac{40}{3} - \frac{160}{21}\right) = 10 - \frac{160}{21} = \frac{210 - 160}{21} = \frac{50}{21}
+    $$
+
+    $$
+    q_1 \cdot \frac{280 - 160}{21} = q_1 \cdot \frac{120}{21} = \frac{50}{21} \implies q_1 = \frac{50}{120} = \frac{5}{12}
+    $$
+
+    The call price is:
+
+    $$
+    V_0 = \frac{1}{1.05} \mathbb{E}^{\mathbb{Q}^N}[\Phi] = \frac{1}{1.05}\left(\frac{5}{12} \cdot 4 + \frac{7}{12} \cdot 0\right) = \frac{1}{1.05} \cdot \frac{20}{12} = \frac{20}{12.6} = \frac{100}{63}
+    $$
+
+    **(b) Stock as numéraire.**
+    The numéraire is $M_t = S_t$, so $M_0 = 10$, $M_1(\omega_1) = 14$, $M_1(\omega_2) = 8$. The normalized bond: $B_1/S_1(\omega_1) = 1.05/14 = 3/40$ and $B_1/S_1(\omega_2) = 1.05/8 = 21/160$.
+
+    The martingale condition for the normalized bond: $\mathbb{E}^{\mathbb{Q}^M}[B_1/S_1] = B_0/S_0 = 1/10$.
+
+    $$
+    q'_1 \cdot \frac{3}{40} + (1 - q'_1) \cdot \frac{21}{160} = \frac{1}{10}
+    $$
+
+    $$
+    q'_1 \left(\frac{12}{160} - \frac{21}{160}\right) = \frac{1}{10} - \frac{21}{160} = \frac{16 - 21}{160} = -\frac{5}{160}
+    $$
+
+    $$
+    q'_1 \cdot \left(-\frac{9}{160}\right) = -\frac{5}{160} \implies q'_1 = \frac{5}{9}
+    $$
+
+    The call price under the stock numéraire is:
+
+    $$
+    V_0 = S_0 \cdot \mathbb{E}^{\mathbb{Q}^M}\!\left[\frac{\Phi}{S_1}\right] = 10 \left(\frac{5}{9} \cdot \frac{4}{14} + \frac{4}{9} \cdot \frac{0}{8}\right) = 10 \cdot \frac{5}{9} \cdot \frac{2}{7} = 10 \cdot \frac{10}{63} = \frac{100}{63}
+    $$
+
+    Both numéraires give the same price $V_0 = 100/63 \approx 1.587$, confirming pricing invariance.
+
+
+??? success "Solution to Exercise 4"
+    **Showing $L_0 = 1$:** By definition,
+
+    $$
+    L_t = \frac{M_t / M_0}{N_t / N_0}
+    $$
+
+    At $t = 0$: $L_0 = (M_0/M_0)/(N_0/N_0) = 1/1 = 1$.
+
+    **Showing $\mathbb{E}^{\mathbb{Q}^N}[L_T] = 1$:** Since $M_t/N_t$ is a $\mathbb{Q}^N$-martingale (both $M_t$ and $N_t$ are traded assets and $N_t$ is the numéraire), we have
+
+    $$
+    \mathbb{E}^{\mathbb{Q}^N}\!\left[\frac{M_T}{N_T}\right] = \frac{M_0}{N_0}
+    $$
+
+    Therefore
+
+    $$
+    \mathbb{E}^{\mathbb{Q}^N}[L_T] = \mathbb{E}^{\mathbb{Q}^N}\!\left[\frac{M_T/M_0}{N_T/N_0}\right] = \frac{N_0}{M_0} \cdot \mathbb{E}^{\mathbb{Q}^N}\!\left[\frac{M_T}{N_T}\right] = \frac{N_0}{M_0} \cdot \frac{M_0}{N_0} = 1
+    $$
+
+    **Why these two properties are necessary and sufficient:**
+
+    - $L_0 = 1$ ensures that the total probability under the new measure equals 1 at time 0 (normalization).
+    - $\mathbb{E}^{\mathbb{Q}^N}[L_T] = 1$ ensures that $\mathbb{Q}^M$ defined by $d\mathbb{Q}^M = L_T \, d\mathbb{Q}^N$ is a probability measure: $\mathbb{Q}^M(\Omega) = \mathbb{E}^{\mathbb{Q}^N}[L_T] = 1$.
+    - Together with $L_T > 0$ a.s. (which follows from $M_T > 0$ and $N_T > 0$), these conditions make $L_T$ a valid Radon--Nikodym derivative that defines an equivalent probability measure $\mathbb{Q}^M \sim \mathbb{Q}^N$.
+
+
+??? success "Solution to Exercise 5"
+    Under the money market numéraire $e^{rt}$, pricing a caplet on $L(T_{i-1}, T_i)$ requires computing
+
+    $$
+    V_0 = e^{-rT_i} \, \mathbb{E}^{\mathbb{Q}}\!\left[(L(T_{i-1}, T_i) - K)^+ \cdot \delta\right]
+    $$
+
+    where $\delta = T_i - T_{i-1}$ is the accrual period. Under $\mathbb{Q}$, the forward rate $L(T_{i-1}, T_i)$ is **not** a martingale -- it has a non-trivial drift that depends on the entire term structure of volatilities and correlations. This drift must be computed and modeled, making the expectation difficult to evaluate.
+
+    Under the $T_i$-**forward measure** $\mathbb{Q}^{T_i}$ (with numéraire $P(t, T_i)$), the pricing formula becomes
+
+    $$
+    V_0 = P(0, T_i) \, \mathbb{E}^{\mathbb{Q}^{T_i}}\!\left[(L(T_{i-1}, T_i) - K)^+ \cdot \delta\right]
+    $$
+
+    The key simplification is that $L(T_{i-1}, T_i)$ is a **martingale** under $\mathbb{Q}^{T_i}$. This is because the forward LIBOR rate can be written as
+
+    $$
+    L(t, T_{i-1}, T_i) = \frac{1}{\delta}\left(\frac{P(t, T_{i-1})}{P(t, T_i)} - 1\right)
+    $$
+
+    and the ratio $P(t, T_{i-1})/P(t, T_i)$ is a $\mathbb{Q}^{T_i}$-martingale (as the ratio of a traded asset to the numéraire). Since $L$ is a martingale under $\mathbb{Q}^{T_i}$, it is driftless, and if modeled as lognormal, the caplet price is given directly by a Black-type formula with no drift correction needed. This is the foundation of the LIBOR market model (BGM model).
+
+
+??? success "Solution to Exercise 6"
+    With $\sigma_1 = \sigma_2 = \sigma$ and $\rho = 1$, the effective volatility in Margrabe's formula is
+
+    $$
+    \sigma_R = \sqrt{\sigma_1^2 - 2\rho\sigma_1\sigma_2 + \sigma_2^2} = \sqrt{\sigma^2 - 2\sigma^2 + \sigma^2} = \sqrt{0} = 0
+    $$
+
+    With $\sigma_R = 0$, the quantities $d_1$ and $d_2$ become:
+
+    - If $R_0 = S^1_0/S^2_0 > 1$: $d_1 = d_2 = \ln(R_0)/(0) = +\infty$, so $\Phi(d_1) = \Phi(d_2) = 1$
+
+    - If $R_0 < 1$: $d_1 = d_2 = -\infty$, so $\Phi(d_1) = \Phi(d_2) = 0$
+
+    - If $R_0 = 1$: $d_1 = d_2 = 0/0$, which by continuity gives $\Phi(d_1) = \Phi(d_2) = 1/2$
+
+    Applying Margrabe's formula $V_0 = S^1_0 \Phi(d_1) - S^2_0 \Phi(d_2)$:
+
+    - If $S^1_0 > S^2_0$: $V_0 = S^1_0 - S^2_0$
+    - If $S^1_0 < S^2_0$: $V_0 = 0$
+    - If $S^1_0 = S^2_0$: $V_0 = S^1_0/2 - S^2_0/2 = 0$
+
+    Therefore $V_0 = \max(S^1_0 - S^2_0, 0)$, which is just the intrinsic value with zero time value.
+
+    **Interpretation:** When $\rho = 1$ and $\sigma_1 = \sigma_2$, the two assets are driven by the same Brownian motion with the same volatility, so $S^1_t/S^2_t$ is deterministic (it equals $S^1_0/S^2_0$ for all $t$). The ratio never changes, so there is no uncertainty about the relative value at maturity. The option is either surely in the money (if $S^1_0 > S^2_0$) or surely out of the money (if $S^1_0 \leq S^2_0$), and its value is simply the present value of the certain payoff. Since the exchange option payoff involves only the difference $S^1_T - S^2_T$ and both assets grow at the same rate, no discounting is needed, and the time value is exactly zero.

@@ -260,3 +260,142 @@ Just as the classical Fundamental Theorem of Calculus turns Riemann sums into an
 ---
 
 **Exercise 7.** The general strategy states: choose $f(t, x)$ with $f_x = g$, apply Itô's lemma, and rearrange. Show that this strategy can fail to produce a closed-form answer by attempting to compute $\int_0^t e^{B_s^2}\,dB_s$. Specifically, find $f(x)$ with $f'(x) = e^{x^2}$, compute $f''(x)$, and explain why the resulting correction integral $\frac{1}{2}\int_0^t f''(B_s)\,ds$ does not simplify the problem.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    Choose $f(x) = \frac{1}{4}x^4$, so that $f'(x) = x^3$. Then $f''(x) = 3x^2$. Applying Itô's lemma:
+
+    $$
+    d\!\left(\frac{B_t^4}{4}\right) = B_t^3\,dB_t + \frac{1}{2}(3B_t^2)\,dt
+    $$
+
+    Integrating from $0$ to $t$ (with $B_0 = 0$):
+
+    $$
+    \frac{B_t^4}{4} = \int_0^t B_s^3\,dB_s + \frac{3}{2}\int_0^t B_s^2\,ds
+    $$
+
+    Solving for the stochastic integral:
+
+    $$
+    \int_0^t B_s^3\,dB_s = \frac{1}{4}B_t^4 - \frac{3}{2}\int_0^t B_s^2\,ds
+    $$
+
+??? success "Solution to Exercise 2"
+    By definition, on $[0, T]$ with $t_i = iT/n$:
+
+    $$
+    \int_0^T B_s\,dB_s = \lim_{n\to\infty}\sum_{i=0}^{n-1}B_{t_i}(B_{t_{i+1}} - B_{t_i})
+    $$
+
+    Using $2xy = (x+y)^2 - x^2 - y^2$ with $x = B_{t_i}$, $y = B_{t_{i+1}} - B_{t_i}$:
+
+    $$
+    B_{t_i}(B_{t_{i+1}} - B_{t_i}) = \frac{1}{2}(B_{t_{i+1}}^2 - B_{t_i}^2) - \frac{1}{2}(B_{t_{i+1}} - B_{t_i})^2
+    $$
+
+    Summing: the first part telescopes to $\frac{1}{2}(B_T^2 - B_0^2) = \frac{1}{2}B_T^2$. The second part converges in $L^2$ to $\frac{1}{2}[B,B]_T = \frac{1}{2}T$. Therefore
+
+    $$
+    \int_0^T B_s\,dB_s = \frac{1}{2}B_T^2 - \frac{1}{2}T = \frac{1}{2}(B_T^2 - T)
+    $$
+
+??? success "Solution to Exercise 3"
+    For $f(t, b) = \frac{1}{3}t b^3$, compute:
+
+    - $f_t = \frac{1}{3}b^3$
+    - $f_b = tb^2$
+    - $f_{bb} = 2tb$
+
+    Itô's lemma gives:
+
+    $$
+    d\!\left(\frac{1}{3}tB_t^3\right) = \frac{1}{3}B_t^3\,dt + tB_t^2\,dB_t + \frac{1}{2}(2tB_t)\,dt
+    $$
+
+    Simplifying: $d\!\left(\frac{1}{3}tB_t^3\right) = \frac{1}{3}B_t^3\,dt + tB_t^2\,dB_t + tB_t\,dt$. Integrating from $0$ to $t$:
+
+    $$
+    \frac{1}{3}tB_t^3 = \int_0^s \frac{1}{3}B_u^3\,du + \int_0^t sB_s^2\,dB_s + \int_0^t sB_s\,ds
+    $$
+
+    Solving for the stochastic integral:
+
+    $$
+    \int_0^t s B_s^2\,dB_s = \frac{1}{3}tB_t^3 - \frac{1}{3}\int_0^t B_s^3\,ds - \int_0^t sB_s\,ds
+    $$
+
+??? success "Solution to Exercise 4"
+    **(a)** The antiderivative is $f(x) = \sin(x)$, since $f'(x) = \cos(x)$.
+
+    **(b)** We have $f''(x) = -\sin(x)$. Applying Itô's lemma to $f(B_t) = \sin(B_t)$:
+
+    $$
+    d(\sin(B_t)) = \cos(B_t)\,dB_t + \frac{1}{2}(-\sin(B_t))\,dt
+    $$
+
+    **(c)** Integrating from $0$ to $t$ (with $B_0 = 0$, so $\sin(B_0) = 0$):
+
+    $$
+    \sin(B_t) = \int_0^t \cos(B_s)\,dB_s - \frac{1}{2}\int_0^t \sin(B_s)\,ds
+    $$
+
+    Solving for the stochastic integral:
+
+    $$
+    \int_0^t \cos(B_s)\,dB_s = \sin(B_t) + \frac{1}{2}\int_0^t \sin(B_s)\,ds
+    $$
+
+??? success "Solution to Exercise 5"
+    The direct approach to $\int_0^1 B_s^2\,dB_s$ starts from
+
+    $$
+    \sum_{i=0}^{n-1}B_{t_i}^2(B_{t_{i+1}} - B_{t_i})
+    $$
+
+    To handle this, one would need to use an identity like $x^2 y = \frac{1}{3}[(x+y)^3 - x^3] - xy^2 - \frac{1}{3}y^3$ (or a similar algebraic decomposition), then apply Abel summation to telescoping sums, carefully track the quadratic variation terms, and take limits. This involves several pages of calculation and multiple convergence arguments.
+
+    The antiderivative method simply chooses $f(x) = \frac{1}{3}x^3$ with $f'(x) = x^2$ and $f''(x) = 2x$, applies Itô's lemma:
+
+    $$
+    d\!\left(\frac{B_t^3}{3}\right) = B_t^2\,dB_t + B_t\,dt
+    $$
+
+    and rearranges to get $\int_0^t B_s^2\,dB_s = \frac{1}{3}B_t^3 - \int_0^t B_s\,ds$ in three lines. The Itô correction $\frac{1}{2}f''(B_s)\,ds = B_s\,ds$ is the term that accounts for the quadratic variation contribution. Without it, the antiderivative evaluation $f(B_t) - f(B_0)$ would equal the stochastic integral plus an error — the correction term precisely fills this gap.
+
+??? success "Solution to Exercise 6"
+    For $f(b) = e^{-b}$: $f'(b) = -e^{-b}$ and $f''(b) = e^{-b}$. Applying Itô's lemma:
+
+    $$
+    d(e^{-B_t}) = -e^{-B_t}\,dB_t + \frac{1}{2}e^{-B_t}\,dt
+    $$
+
+    Integrating from $0$ to $t$ (with $B_0 = 0$, so $e^{-B_0} = 1$):
+
+    $$
+    e^{-B_t} - 1 = -\int_0^t e^{-B_s}\,dB_s + \frac{1}{2}\int_0^t e^{-B_s}\,ds
+    $$
+
+    Since $f'(x) = -e^{-x}$, the integrand we want is $e^{-B_s} = -f'(B_s)$. Rearranging:
+
+    $$
+    \int_0^t e^{-B_s}\,dB_s = 1 - e^{-B_t} + \frac{1}{2}\int_0^t e^{-B_s}\,ds
+    $$
+
+??? success "Solution to Exercise 7"
+    The antiderivative is $f(x) = \int_0^x e^{u^2}\,du$ (the imaginary error function, up to a constant — it has no elementary closed form). Then $f'(x) = e^{x^2}$ and $f''(x) = 2x\,e^{x^2}$. Itô's lemma gives:
+
+    $$
+    f(B_t) - f(0) = \int_0^t e^{B_s^2}\,dB_s + \frac{1}{2}\int_0^t 2B_s\,e^{B_s^2}\,ds
+    $$
+
+    Rearranging:
+
+    $$
+    \int_0^t e^{B_s^2}\,dB_s = f(B_t) - \int_0^t B_s\,e^{B_s^2}\,ds
+    $$
+
+    The right-hand side involves $f(B_t) = \int_0^{B_t} e^{u^2}\,du$ (no closed form) and the ordinary integral $\int_0^t B_s e^{B_s^2}\,ds$ (also no closed form). The strategy does not simplify the problem because neither the antiderivative $f$ nor the correction integral $\frac{1}{2}\int_0^t f''(B_s)\,ds$ can be evaluated in closed form. This illustrates that the antiderivative method, while systematic, is only as useful as the tractability of $f$ and its derivatives.

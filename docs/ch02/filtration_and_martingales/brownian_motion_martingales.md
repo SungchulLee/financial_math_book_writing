@@ -368,3 +368,150 @@ Prove **Lévy's characterization**: If $M_t$ is a continuous martingale with $M_
 (b) Verify this for $f(x) = x^2$ and $f(x) = e^{\theta x}$.
 
 (c) Explain the connection to the heat equation $\partial_t u = \frac{1}{2} \partial_{xx} u$.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **(a)** For $0 \le s < t$, factor $Z_t^\theta = Z_s^\theta \cdot Y$ where $Y = \exp(\theta(W_t - W_s) - \frac{\theta^2}{2}(t - s))$.
+
+    Since $W_t - W_s \sim N(0, t-s)$ is independent of $\mathcal{F}_s$ and $Z_s^\theta$ is $\mathcal{F}_s$-measurable:
+
+    $$
+    \mathbb{E}[Z_t^\theta \mid \mathcal{F}_s] = Z_s^\theta \cdot \mathbb{E}[Y]
+    $$
+
+    Computing $\mathbb{E}[Y]$: for $Z \sim N(0, t-s)$, $\mathbb{E}[e^{\theta Z}] = e^{\theta^2(t-s)/2}$. Therefore:
+
+    $$
+    \mathbb{E}[Y] = e^{\theta^2(t-s)/2} \cdot e^{-\theta^2(t-s)/2} = 1
+    $$
+
+    So $\mathbb{E}[Z_t^\theta \mid \mathcal{F}_s] = Z_s^\theta$, confirming $Z_t^\theta$ is a martingale. $\square$
+
+    **(b)** $\mathbb{E}[Z_t^\theta] = \mathbb{E}[Z_0^\theta] = e^{\theta \cdot 0 - 0} = 1$ (by the martingale property, or direct computation).
+
+    For the variance: $\text{Var}(Z_t^\theta) = \mathbb{E}[(Z_t^\theta)^2] - (\mathbb{E}[Z_t^\theta])^2 = \mathbb{E}[e^{2\theta W_t - \theta^2 t}] - 1$.
+
+    $$
+    \mathbb{E}[e^{2\theta W_t - \theta^2 t}] = e^{-\theta^2 t} \cdot \mathbb{E}[e^{2\theta W_t}] = e^{-\theta^2 t} \cdot e^{(2\theta)^2 t/2} = e^{-\theta^2 t + 2\theta^2 t} = e^{\theta^2 t}
+    $$
+
+    Therefore $\text{Var}(Z_t^\theta) = e^{\theta^2 t} - 1$.
+
+    **(c)** $\log Z_t^\theta = \theta W_t - \frac{\theta^2}{2}t$. By the law of the iterated logarithm, $|W_t| \le C\sqrt{t \log\log t}$ eventually a.s. for some constant, so $W_t/t \to 0$ a.s. Therefore:
+
+    $$
+    \frac{\log Z_t^\theta}{t} = \theta \frac{W_t}{t} - \frac{\theta^2}{2} \to -\frac{\theta^2}{2} < 0 \quad \text{a.s.}
+    $$
+
+    Since $\log Z_t^\theta \to -\infty$ a.s., $Z_t^\theta \to 0$ a.s. $\square$
+
+??? success "Solution to Exercise 2"
+    **(a)** Write $\exp(\theta W_t - \frac{\theta^2 t}{2})$ using the Taylor expansion of the exponential. Let $x = \theta W_t$ and $y = \frac{\theta^2 t}{2}$:
+
+    $$
+    e^{x - y} = e^x \cdot e^{-y} = \left(\sum_{k=0}^\infty \frac{(\theta W_t)^k}{k!}\right)\left(\sum_{j=0}^\infty \frac{(-\theta^2 t/2)^j}{j!}\right)
+    $$
+
+    Collecting terms by powers of $\theta$:
+
+    - $\theta^0$: $1$
+    - $\theta^1$: $W_t$
+    - $\theta^2$: $\frac{W_t^2}{2} - \frac{t}{2} = \frac{1}{2}(W_t^2 - t)$
+    - $\theta^3$: $\frac{W_t^3}{6} - \frac{tW_t}{2} = \frac{1}{6}(W_t^3 - 3tW_t)$
+    - $\theta^4$: $\frac{W_t^4}{24} - \frac{tW_t^2}{4} + \frac{t^2}{8} = \frac{1}{24}(W_t^4 - 6tW_t^2 + 3t^2)$
+
+    **(b)** The coefficient of $\theta^4$ is $\frac{1}{24}(W_t^4 - 6tW_t^2 + 3t^2) = \frac{1}{4!}H_4(W_t, t)$.
+
+    To verify it is a martingale, expand $W_t = W_s + \Delta$ where $\Delta = W_t - W_s \sim N(0, t-s)$:
+
+    Using the moments $\mathbb{E}[\Delta^k]$: $\mathbb{E}[\Delta] = 0$, $\mathbb{E}[\Delta^2] = t-s$, $\mathbb{E}[\Delta^3] = 0$, $\mathbb{E}[\Delta^4] = 3(t-s)^2$, one computes $\mathbb{E}[W_t^4 - 6tW_t^2 + 3t^2 \mid \mathcal{F}_s]$ and verifies it equals $W_s^4 - 6sW_s^2 + 3s^2$.
+
+    **(c)** The general pattern: the coefficient of $\theta^n/n!$ in $\exp(\theta W_t - \theta^2 t/2)$ is $H_n(W_t, t)$, the $n$-th Hermite polynomial martingale:
+
+    $$
+    H_n(W_t, t) = t^{n/2} H_n\left(\frac{W_t}{\sqrt{t}}\right) = \sum_{k=0}^{\lfloor n/2 \rfloor} \frac{(-1)^k n!}{k!(n-2k)!} W_t^{n-2k} t^k
+    $$
+
+??? success "Solution to Exercise 3"
+    **(a)** $\cosh(\theta W_t) = \frac{e^{\theta W_t} + e^{-\theta W_t}}{2}$. Therefore:
+
+    $$
+    Z_t = \cosh(\theta W_t) e^{-\theta^2 t/2} = \frac{1}{2}\left(e^{\theta W_t - \theta^2 t/2} + e^{-\theta W_t - \theta^2 t/2}\right)
+    $$
+
+    Each term is an exponential martingale: $e^{\theta W_t - \theta^2 t/2} = Z_t^\theta$ and $e^{-\theta W_t - (-\theta)^2 t/2} = e^{-\theta W_t - \theta^2 t/2} = Z_t^{-\theta}$. Since $Z_t = \frac{1}{2}(Z_t^\theta + Z_t^{-\theta})$ is the average of two martingales, it is a martingale. $\square$
+
+    **(b)** As shown above:
+
+    $$
+    Z_t = \frac{1}{2}\left(Z_t^\theta + Z_t^{-\theta}\right) = \frac{1}{2}\left(\exp\left(\theta W_t - \frac{\theta^2 t}{2}\right) + \exp\left(-\theta W_t - \frac{\theta^2 t}{2}\right)\right)
+    $$
+
+    **(c)** The $\sinh$ analogue: $\sinh(\theta W_t) e^{-\theta^2 t/2} = \frac{1}{2}(Z_t^\theta - Z_t^{-\theta})$.
+
+    Since it is the difference of two martingales (scaled by $1/2$), it is also a martingale:
+
+    $$
+    \widetilde{Z}_t = \sinh(\theta W_t) \exp\left(-\frac{\theta^2 t}{2}\right)
+    $$
+
+??? success "Solution to Exercise 4"
+    Assume $M_t$ is a continuous martingale with $M_0 = 0$ and $[M]_t = t$. We want to show $M_t$ is a standard Brownian motion.
+
+    Consider $Z_t^\theta = \exp(\theta M_t - \frac{\theta^2}{2}[M]_t) = \exp(\theta M_t - \frac{\theta^2 t}{2})$.
+
+    By the general theory of stochastic exponentials, $Z_t^\theta = \mathcal{E}(\theta M)_t$ is a local martingale. Since $[M]_t = t$ is deterministic and $M$ is continuous, $Z_t^\theta$ is in fact a true martingale (this can be verified using Novikov's condition: $\mathbb{E}[\exp(\frac{1}{2}\theta^2 [M]_T)] = \exp(\frac{\theta^2 T}{2}) < \infty$).
+
+    Therefore $\mathbb{E}[\exp(i\alpha M_t)] = \exp(-\frac{\alpha^2 t}{2})$ for all $\alpha \in \mathbb{R}$ (by evaluating the martingale property at $\theta = i\alpha$ via analytic continuation, or by direct computation using the martingale property of $Z_t^\theta$).
+
+    This is the characteristic function of $N(0, t)$, so $M_t \sim N(0, t)$.
+
+    For the joint distribution: by the martingale property and the fact that $[M]$ is deterministic, the increments $M_t - M_s$ are independent of $\mathcal{F}_s$ with distribution $N(0, t-s)$. This follows because $\exp(i\alpha(M_t - M_s)) \cdot \exp(\frac{\alpha^2(t-s)}{2})$ is a martingale, so $\mathbb{E}[\exp(i\alpha(M_t - M_s)) \mid \mathcal{F}_s] = \exp(-\frac{\alpha^2(t-s)}{2})$, which is the characteristic function of $N(0, t-s)$, independent of $\mathcal{F}_s$.
+
+    Therefore $M_t$ has stationary independent Gaussian increments, continuous paths, and $M_0 = 0$: it is a standard Brownian motion. $\square$
+
+??? success "Solution to Exercise 5"
+    **(a)** The **martingale problem for Brownian motion**: for any $f \in C^2(\mathbb{R})$, the process
+
+    $$
+    f(W_t) - \frac{1}{2}\int_0^t f''(W_s)\,ds
+    $$
+
+    is a local martingale. This follows from Ito's formula:
+
+    $$
+    f(W_t) = f(W_0) + \int_0^t f'(W_s)\,dW_s + \frac{1}{2}\int_0^t f''(W_s)\,ds
+    $$
+
+    The stochastic integral $\int_0^t f'(W_s)\,dW_s$ is a local martingale. Hence $f(W_t) - f(W_0) - \frac{1}{2}\int_0^t f''(W_s)\,ds = \int_0^t f'(W_s)\,dW_s$ is a local martingale.
+
+    **(b)** For $f(x) = x^2$: $f'(x) = 2x$, $f''(x) = 2$.
+
+    $$
+    W_t^2 - \frac{1}{2}\int_0^t 2\,ds = W_t^2 - t
+    $$
+
+    This is the martingale $W_t^2 - t$, confirming the result.
+
+    For $f(x) = e^{\theta x}$: $f'(x) = \theta e^{\theta x}$, $f''(x) = \theta^2 e^{\theta x}$.
+
+    $$
+    e^{\theta W_t} - \frac{\theta^2}{2}\int_0^t e^{\theta W_s}\,ds
+    $$
+
+    is a local martingale. This is consistent with the exponential martingale: $e^{\theta W_t - \theta^2 t/2}$ is a martingale, and the drift term $\frac{\theta^2}{2}e^{\theta W_s}$ is exactly what Ito's formula produces.
+
+    **(c)** The connection to the heat equation: if $u(x, t)$ solves $\partial_t u = \frac{1}{2}\partial_{xx} u$, then $u(W_t, T - t)$ is a local martingale for $0 \le t \le T$.
+
+    This follows from Ito's formula applied to $g(t) = u(W_t, T - t)$:
+
+    $$
+    dg = \partial_x u \cdot dW_t + \left(-\partial_t u + \frac{1}{2}\partial_{xx} u\right)dt = \partial_x u \cdot dW_t + 0 \cdot dt
+    $$
+
+    (using the PDE $\partial_t u = \frac{1}{2}\partial_{xx} u$). The drift vanishes, so $g(t)$ is a local martingale.
+
+    This is the Feynman-Kac connection: solutions of the heat equation can be represented as conditional expectations of Brownian functionals, and conversely, martingales of the form $f(W_t)$ with compensated drift are characterized by the generator equation $\frac{1}{2}f'' = 0$ (harmonic functions) for the drift-free case.

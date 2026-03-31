@@ -314,3 +314,142 @@ A barrier option on $[0, L]$ has its price given by the spectral expansion. Expl
 
 **Exercise 7.**
 For a non-self-adjoint operator $\mathcal{L} = \mu\partial_x + \frac{1}{2}\sigma^2\partial_{xx}$ with $\mu \neq 0$, the eigenfunctions are no longer orthogonal in the standard $L^2$ inner product. Explain how a change of variables (the "speed measure" or Liouville transformation) can symmetrize the operator, and why this is important for obtaining a well-behaved spectral decomposition.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The eigenvalue problem is $\frac{1}{2}\phi''(x) = -\lambda\,\phi(x)$ with $\phi(0) = \phi(\pi) = 0$.
+
+    The general solution of $\phi'' = -2\lambda\,\phi$ is $\phi(x) = A\sin(\sqrt{2\lambda}\,x) + B\cos(\sqrt{2\lambda}\,x)$. The boundary condition $\phi(0) = 0$ forces $B = 0$. The condition $\phi(\pi) = 0$ requires $\sin(\sqrt{2\lambda}\,\pi) = 0$, so $\sqrt{2\lambda}\,\pi = n\pi$ for $n = 1, 2, 3, \ldots$, giving
+
+    $$
+    \lambda_n = \frac{n^2}{2}
+    $$
+
+    The unnormalized eigenfunctions are $\sin(nx)$. To normalize, compute
+
+    $$
+    \int_0^{\pi} \sin^2(nx)\,dx = \frac{\pi}{2}
+    $$
+
+    so the normalized eigenfunctions are $\phi_n(x) = \sqrt{2/\pi}\,\sin(nx)$.
+
+    **Orthonormality check**: For $m \neq n$:
+
+    $$
+    \int_0^{\pi} \phi_m(x)\,\phi_n(x)\,dx = \frac{2}{\pi}\int_0^{\pi} \sin(mx)\sin(nx)\,dx = \frac{1}{\pi}\int_0^{\pi}[\cos((m-n)x) - \cos((m+n)x)]\,dx = 0
+    $$
+
+    since both $\sin((m-n)\pi)/(m-n)$ and $\sin((m+n)\pi)/(m+n)$ vanish for integer $m \neq n$. For $m = n$, we already computed $\int_0^{\pi}\phi_n^2\,dx = 1$. Therefore $\int_0^{\pi}\phi_m\,\phi_n\,dx = \delta_{mn}$.
+
+??? success "Solution to Exercise 2"
+    For $L = 1$ with Dirichlet conditions, the eigenvalues are $\lambda_n = n^2\pi^2/2$ and the normalized eigenfunctions are $\phi_n(x) = \sqrt{2}\sin(n\pi x)$. The Green's function is
+
+    $$
+    G(t, x; 0, y) = 2\sum_{n=1}^{\infty} e^{-n^2\pi^2 t/2}\sin(n\pi x)\sin(n\pi y)
+    $$
+
+    The first three terms are:
+
+    - $n = 1$: $2\,e^{-\pi^2 t/2}\sin(\pi x)\sin(\pi y)$, with decay rate $\pi^2/2 \approx 4.93$
+    - $n = 2$: $2\,e^{-2\pi^2 t}\sin(2\pi x)\sin(2\pi y)$, with decay rate $2\pi^2 \approx 19.74$
+    - $n = 3$: $2\,e^{-9\pi^2 t/2}\sin(3\pi x)\sin(3\pi y)$, with decay rate $9\pi^2/2 \approx 44.41$
+
+    **Convergence for large $t$**: The ratio of the $n$-th term to the first term is $e^{-(n^2-1)\pi^2 t/2}$. For example, at $t = 1$, the $n = 2$ term is smaller than the $n = 1$ term by a factor of $e^{-3\pi^2/2} \approx e^{-14.8} \approx 3.7 \times 10^{-7}$, and the $n = 3$ term by $e^{-4\cdot\pi^2} \approx 5.2 \times 10^{-18}$. The series converges extremely rapidly for $t \geq 1$, and a single term suffices to many decimal places.
+
+??? success "Solution to Exercise 3"
+    The spectral expansion $G(t, x; 0, y) = \sum_{n=1}^{\infty} e^{-\lambda_n t}\phi_n(x)\phi_n(y)$ shows that each mode decays as $e^{-\lambda_n t}$, with $0 < \lambda_1 < \lambda_2 < \cdots$. For large $t$, the exponentials with larger $\lambda_n$ are negligible, and
+
+    $$
+    G(t, x; 0, y) \approx e^{-\lambda_1 t}\,\phi_1(x)\,\phi_1(y)
+    $$
+
+    The smallest eigenvalue $\lambda_1$ determines the long-time decay rate because it is the slowest-decaying mode. All other modes are suppressed by at least a factor of $e^{-(\lambda_2 - \lambda_1)t}$ relative to the first.
+
+    **Double-barrier option context**: The price of a double-barrier (knock-out) option with barriers at $B_l$ and $B_u$ involves the Dirichlet Green's function on $[\log B_l, \log B_u]$. For large maturity $T$, the option price decays as
+
+    $$
+    V \sim C \cdot e^{-(\lambda_1 + r)T}
+    $$
+
+    where $\lambda_1 = \pi^2/(2L^2)$ with $L = \log(B_u/B_l)$, and $r$ is the discount rate. The principal eigenvalue $\lambda_1$ represents the rate at which the surviving probability leaks out through the barriers. As $T \to \infty$, essentially all paths have hit a barrier and been knocked out, so the option price decays to zero at rate $\lambda_1 + r$. A narrower barrier corridor (smaller $L$) gives a larger $\lambda_1$ and faster decay.
+
+??? success "Solution to Exercise 4"
+    On the free domain $\mathbb{R}$, the eigenvalue problem $\frac{1}{2}\phi'' = -\lambda\,\phi$ has no boundary conditions to impose, so all values $\lambda = \xi^2/2$ for $\xi \in \mathbb{R}$ are admissible. The "eigenfunctions" are $e^{i\xi x}$, which are not square-integrable (they don't belong to $L^2(\mathbb{R})$), but they form a complete set via the Fourier transform. The spectral expansion becomes an integral:
+
+    $$
+    G(t, x; 0, y) = \frac{1}{2\pi}\int_{-\infty}^{\infty} e^{i\xi(x-y)}\,e^{-\xi^2 t/2}\,d\xi
+    $$
+
+    To evaluate, complete the square in the exponent. Let $w = x - y$. The integral is
+
+    $$
+    \frac{1}{2\pi}\int_{-\infty}^{\infty} \exp\!\left(i\xi w - \frac{\xi^2 t}{2}\right)d\xi = \frac{1}{2\pi}\int_{-\infty}^{\infty} \exp\!\left(-\frac{t}{2}\!\left(\xi - \frac{iw}{t}\right)^2 - \frac{w^2}{2t}\right)d\xi
+    $$
+
+    The shift $\xi \to \xi + iw/t$ in the Gaussian integral (justified by contour deformation in the complex plane) gives
+
+    $$
+    \frac{1}{2\pi}\,e^{-w^2/(2t)}\int_{-\infty}^{\infty} e^{-t\xi^2/2}\,d\xi = \frac{1}{2\pi}\,e^{-w^2/(2t)} \cdot \sqrt{\frac{2\pi}{t}} = \frac{1}{\sqrt{2\pi t}}\,e^{-(x-y)^2/(2t)}
+    $$
+
+    This is the standard Gaussian heat kernel, confirming the consistency of the continuous spectral representation with the known free-space Green's function.
+
+??? success "Solution to Exercise 5"
+    The Sturm-Liouville problem is $-\frac{1}{2}\phi'' = \lambda\phi$ on $[0, 1]$ with $\phi'(0) = \phi'(1) = 0$.
+
+    The general solution is $\phi(x) = A\cos(\sqrt{2\lambda}\,x) + B\sin(\sqrt{2\lambda}\,x)$. The condition $\phi'(0) = 0$ gives $B\sqrt{2\lambda} = 0$, so $B = 0$ (assuming we also check $\lambda = 0$ separately). Then $\phi(x) = A\cos(\sqrt{2\lambda}\,x)$ and $\phi'(1) = -A\sqrt{2\lambda}\sin(\sqrt{2\lambda}) = 0$.
+
+    This requires $\sin(\sqrt{2\lambda}) = 0$, so $\sqrt{2\lambda} = n\pi$ for $n = 0, 1, 2, \ldots$
+
+    **Eigenvalues**:
+
+    $$
+    \lambda_n = \frac{n^2\pi^2}{2}, \quad n = 0, 1, 2, \ldots
+    $$
+
+    **Eigenfunctions** (normalized on $[0, 1]$):
+
+    $$
+    \phi_0(x) = 1, \quad \phi_n(x) = \sqrt{2}\cos(n\pi x) \text{ for } n \geq 1
+    $$
+
+    **Why $\lambda_0 = 0$ appears**: The constant function $\phi_0 = 1$ satisfies both the equation ($\phi_0'' = 0 = -2\lambda_0\,\phi_0$) and the Neumann conditions ($\phi_0' = 0$ everywhere). It exists because Neumann conditions do not pin the function value at any point, allowing a nonzero constant solution.
+
+    **Long-time behavior**: The Green's function is $G(t, x; 0, y) = 1 + 2\sum_{n=1}^{\infty} e^{-n^2\pi^2 t/2}\cos(n\pi x)\cos(n\pi y)$. As $t \to \infty$, all terms with $n \geq 1$ decay to zero, leaving $G \to 1$ (or $1/L$ on $[0, L]$). This means the distribution converges to the uniform distribution -- the system reaches thermal equilibrium. Total probability is conserved because the $\lambda_0 = 0$ mode does not decay.
+
+??? success "Solution to Exercise 6"
+    The barrier option price on $[0, L]$ has the spectral expansion
+
+    $$
+    V = e^{-r(T-t)}\sum_{n=1}^{\infty} a_n\,e^{-\lambda_n(T-t)}
+    $$
+
+    where $a_n$ are the Fourier coefficients of the payoff and $\lambda_n = n^2\pi^2/(2L^2)$.
+
+    **Large $T - t$ (long maturity)**: The exponential factors $e^{-\lambda_n(T-t)}$ decay rapidly for large $n$. The ratio of the $n$-th term to the first is $O(e^{-(n^2 - 1)\pi^2(T-t)/(2L^2)})$, which is exponentially small. Truncating after $N$ terms introduces an error of order $e^{-\lambda_{N+1}(T-t)}$, which is exponentially small in $T - t$. For example, keeping $N = 3$ terms with $T - t = 1$ and $L = 1$ gives errors below $10^{-20}$.
+
+    **Near maturity ($T - t$ small)**: When $T - t \to 0$, $e^{-\lambda_n(T-t)} \to 1$ for all $n$, so all modes contribute equally. The series converges slowly because the initial condition $\delta(x - y)$ (or the payoff function) has significant high-frequency content. Many terms are needed to resolve the sharp features of the payoff near maturity.
+
+    **Alternative for short maturities**: The **method of images** is much more efficient for short times. The image series converges rapidly because the Gaussian kernels from distant images have negligible overlap with the domain when $t$ is small (the process hasn't had time to reach the boundary). Typically, only 1-2 image pairs suffice for short maturities, whereas the spectral series may need hundreds of terms.
+
+??? success "Solution to Exercise 7"
+    The operator $\mathcal{L} = \mu\partial_x + \frac{1}{2}\sigma^2\partial_{xx}$ is not self-adjoint in the standard $L^2$ inner product because $\langle \mathcal{L}u, v \rangle \neq \langle u, \mathcal{L}v \rangle$ when $\mu \neq 0$. The eigenfunctions are not orthogonal in $L^2$, complicating the spectral expansion.
+
+    **The Liouville transformation**: Define the scale function $s(x) = \exp\!\left(-\int^x \frac{2\mu(z)}{\sigma^2(z)}\,dz\right)$ and the speed measure density $m(x) = \frac{2}{\sigma^2(x)\,s(x)}$. The substitution $\phi(x) = s(x)^{1/2}\,\psi(x)$ (or equivalently, working in the weighted space $L^2(m\,dx)$) transforms $\mathcal{L}$ into a self-adjoint Sturm-Liouville operator.
+
+    Concretely, in the weighted inner product $\langle f, g \rangle_m = \int f(x)\,g(x)\,m(x)\,dx$, the generator $\mathcal{L}$ becomes self-adjoint:
+
+    $$
+    \langle \mathcal{L}f, g \rangle_m = \langle f, \mathcal{L}g \rangle_m
+    $$
+
+    **Why this matters**: Self-adjointness guarantees:
+
+    1. **Real eigenvalues** -- essential for the exponential decay interpretation ($e^{-\lambda_n t}$ with real $\lambda_n$).
+    2. **Orthogonal eigenfunctions** (in $L^2(m\,dx)$) -- enabling clean decomposition of arbitrary functions and the completeness theorem.
+    3. **Spectral theorem** -- ensuring the eigenfunctions form a complete basis, so the Green's function expansion $G = \sum e^{-\lambda_n t}\phi_n(x)\phi_n(y)/m(y)$ converges and represents the full solution.
+
+    Without this symmetrization, one must use biorthogonal expansions (eigenfunctions of $\mathcal{L}$ and $\mathcal{L}^*$), which are technically more complex and may have poorer convergence properties.

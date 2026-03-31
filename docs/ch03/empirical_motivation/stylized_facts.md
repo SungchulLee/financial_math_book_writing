@@ -382,3 +382,185 @@ Using this formula, if $\kappa_1 = 8$ at daily frequency, compute the excess kur
 ---
 
 **Exercise 6.** You are given a time series of 2520 daily log returns (approximately 10 years). Describe step-by-step how you would test for each of the five stylized facts documented in this section. For each fact, state: (a) the specific quantity you would compute or the test you would run, (b) the null hypothesis, and (c) what outcome would confirm the presence of the stylized fact. You do not need to perform the computations; outline the methodology only.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    The excess kurtosis of a Student-$t$ distribution with $\nu > 4$ degrees of freedom is $6/(\nu - 4)$. Setting this equal to the empirical estimate:
+
+    $$
+    \frac{6}{\nu - 4} = 6 \implies \nu - 4 = 1 \implies \nu = 5
+    $$
+
+    For $\nu = 5$, the fourth moment exists because the $k$-th moment of the Student-$t$ exists if and only if $\nu > k$, and here $\nu = 5 > 4$. Therefore the fourth moment (and hence the kurtosis) is finite.
+
+    As $\nu \to 4^+$, we have $\nu - 4 \to 0^+$, so
+
+    $$
+    \kappa = \frac{6}{\nu - 4} \to +\infty
+    $$
+
+    The theoretical kurtosis diverges to infinity. At $\nu = 4$ exactly, the fourth moment ceases to exist, and for $\nu < 4$ the kurtosis is undefined. This boundary behaviour reflects the fact that heavier tails (smaller $\nu$) produce more extreme observations, inflating the fourth moment relative to the squared variance.
+
+??? success "Solution to Exercise 2"
+    The two conditions are not contradictory because they concern different aspects of the return process.
+
+    The condition $\operatorname{Corr}(r_t, r_{t-k}) = 0$ means that the **signed direction** of returns is unpredictable — the conditional mean is (approximately) zero. The condition $\operatorname{Corr}(r_t^2, r_{t-1}^2) = 0.25 > 0$ means that the **magnitude** of returns is predictable — the conditional variance varies over time and is autocorrelated.
+
+    A process can have zero conditional mean and non-constant conditional variance simultaneously. The GARCH(1,1) model provides exactly this structure:
+
+    $$
+    r_t = \sigma_t Z_t, \quad Z_t \sim \mathcal{N}(0,1), \quad \sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2
+    $$
+
+    **Verification that $\mathbb{E}[r_t \mid \mathcal{F}_{t-1}] = 0$:** Since $\sigma_t^2$ depends only on $r_{t-1}^2$ and $\sigma_{t-1}^2$, $\sigma_t$ is $\mathcal{F}_{t-1}$-measurable. Also $Z_t$ is independent of $\mathcal{F}_{t-1}$ by construction. Therefore:
+
+    $$
+    \mathbb{E}[r_t \mid \mathcal{F}_{t-1}] = \mathbb{E}[\sigma_t Z_t \mid \mathcal{F}_{t-1}] = \sigma_t \mathbb{E}[Z_t \mid \mathcal{F}_{t-1}] = \sigma_t \cdot 0 = 0
+    $$
+
+    **Verification that $\operatorname{Var}(r_t \mid \mathcal{F}_{t-1}) = \sigma_t^2$ varies over time:** Since the conditional mean is zero:
+
+    $$
+    \operatorname{Var}(r_t \mid \mathcal{F}_{t-1}) = \mathbb{E}[r_t^2 \mid \mathcal{F}_{t-1}] = \mathbb{E}[\sigma_t^2 Z_t^2 \mid \mathcal{F}_{t-1}] = \sigma_t^2 \mathbb{E}[Z_t^2] = \sigma_t^2
+    $$
+
+    Because $\sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2$ depends on the past squared return, the conditional variance changes over time. After a large $|r_{t-1}|$, $\sigma_t^2$ increases, making a large $|r_t|$ more likely (regardless of sign). This is precisely volatility clustering with unpredictable returns.
+
+??? success "Solution to Exercise 3"
+    **Step 1: Calibrate $C$ so that the power-law and Gaussian probabilities match at $x = 3\sigma$.**
+
+    The Gaussian probability at $x = 3\sigma = 0.03$:
+
+    $$
+    P_G(|r| > 3\sigma) \approx \frac{\sigma}{3\sigma\sqrt{2\pi}} e^{-9/2} = \frac{1}{3\sqrt{2\pi}} e^{-4.5} \approx \frac{0.01111}{0.1330} \approx 0.01111 \times \frac{1}{1} \approx 0.002700
+    $$
+
+    More precisely, $P(|Z| > 3) = 2\Phi(-3) \approx 2 \times 0.001350 = 0.002700$.
+
+    The power-law probability at $x = 3\sigma = 0.03$:
+
+    $$
+    P_{PL}(|r| > 0.03) = C \cdot (0.03)^{-4} = C \cdot \frac{1}{8.1 \times 10^{-7}} = \frac{C}{8.1 \times 10^{-7}}
+    $$
+
+    Setting equal: $C / (0.03)^4 = 0.002700$, so
+
+    $$
+    C = 0.002700 \times (0.03)^4 = 0.002700 \times 8.1 \times 10^{-7} = 2.187 \times 10^{-9}
+    $$
+
+    **Step 2: Compute both probabilities at $x = 5\sigma = 0.05$.**
+
+    Gaussian:
+
+    $$
+    P_G(|r| > 5\sigma) = 2\Phi(-5) \approx 5.73 \times 10^{-7}
+    $$
+
+    Power law:
+
+    $$
+    P_{PL}(|r| > 0.05) = C \cdot (0.05)^{-4} = \frac{2.187 \times 10^{-9}}{6.25 \times 10^{-6}} = 3.499 \times 10^{-4}
+    $$
+
+    **Step 3: Ratio.**
+
+    $$
+    \frac{P_{PL}}{P_G} = \frac{3.499 \times 10^{-4}}{5.73 \times 10^{-7}} \approx 611
+    $$
+
+    A $5\sigma$ event is roughly **600 times more likely** under the power-law tail than under the Gaussian. This demonstrates quantitatively why Gaussian risk models severely underestimate the frequency of extreme events.
+
+??? success "Solution to Exercise 4"
+    In the Heston model:
+
+    $$
+    dS_t = \mu S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^S
+    $$
+
+    $$
+    dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V
+    $$
+
+    with $\operatorname{Corr}(dW_t^S, dW_t^V) = \rho\,dt$.
+
+    When $\rho < 0$, the Brownian motions $W_t^S$ and $W_t^V$ are negatively correlated. This means that when $dW_t^S$ takes a large negative value (a negative price shock), $dW_t^V$ tends to take a large **positive** value.
+
+    Tracing through the mechanism with $\rho = -0.7$ and $dW_t^S \ll 0$:
+
+    1. **Price falls:** A large negative $dW_t^S$ causes $dS_t$ to be strongly negative (the diffusion term $\sqrt{V_t} S_t\,dW_t^S$ dominates), so the stock price drops sharply.
+
+    2. **Variance increases:** Because $\rho = -0.7$, when $dW_t^S$ is very negative, $dW_t^V$ tends to be positive (with correlation $-0.7$). The positive $dW_t^V$ feeds into the variance dynamics through the term $\xi\sqrt{V_t}\,dW_t^V > 0$, pushing $dV_t$ upward beyond what the mean-reversion term $\kappa(\theta - V_t)\,dt$ alone would produce.
+
+    3. **Result:** A negative return at time $t$ is associated with an increase in the variance process $V_t$. Since $\sigma_t = \sqrt{V_t}$, this means volatility rises after a price decline.
+
+    This is exactly the leverage effect: $\operatorname{Corr}(r_t, \sigma_{t+1}^2) < 0$. The negative correlation $\rho$ between the two driving Brownian motions is the continuous-time mechanism that generates the asymmetric volatility response observed empirically. A positive return (large positive $dW_t^S$) would tend to produce negative $dW_t^V$, decreasing variance — but the effect is weaker in magnitude for positive returns due to the asymmetric nature of the observed leverage effect, which additional model features (such as non-linear drift in $V_t$) can capture.
+
+??? success "Solution to Exercise 5"
+    If $r_1, r_2, \ldots, r_n$ are i.i.d. daily returns each with excess kurtosis $\kappa_1$ and variance $\sigma^2$, the $n$-day return is $R_n = \sum_{i=1}^n r_i$.
+
+    By the additivity of cumulants for independent random variables, the fourth cumulant of a sum of independent variables equals the sum of the fourth cumulants. The fourth cumulant is $\kappa_4 = \kappa_1 \sigma^4$ for each daily return, and $\operatorname{Var}(R_n) = n\sigma^2$. Therefore:
+
+    $$
+    \kappa_n = \frac{\text{fourth cumulant of } R_n}{(\operatorname{Var}(R_n))^2} = \frac{n \kappa_1 \sigma^4}{(n\sigma^2)^2} = \frac{n \kappa_1 \sigma^4}{n^2 \sigma^4} = \frac{\kappa_1}{n}
+    $$
+
+    With $\kappa_1 = 8$:
+
+    | Horizon | $n$ | $\kappa_n = 8/n$ |
+    |---|---|---|
+    | Weekly | 5 | $8/5 = 1.60$ |
+    | Monthly | 21 | $8/21 \approx 0.381$ |
+    | Quarterly | 63 | $8/63 \approx 0.127$ |
+
+    To find when $\kappa_n < 0.5$:
+
+    $$
+    \frac{8}{n} < 0.5 \implies n > 16
+    $$
+
+    The excess kurtosis drops below 0.5 at horizon $n = 17$ days (roughly 3.5 weeks). This confirms aggregational Gaussianity: as the horizon increases, the return distribution becomes progressively closer to Gaussian.
+
+??? success "Solution to Exercise 6"
+    **Fact 1: Heavy tails (leptokurtosis).**
+
+    (a) Compute the sample excess kurtosis $\hat{\kappa} = \frac{1}{T}\sum_{t=1}^T \left(\frac{r_t - \hat{\mu}}{\hat{\sigma}}\right)^4 - 3$. Alternatively, perform a Jarque–Bera test, which combines skewness and kurtosis into a single test statistic $\text{JB} = \frac{T}{6}\left(\hat{\gamma}_1^2 + \frac{(\hat{\kappa})^2}{4}\right)$.
+
+    (b) $H_0$: Returns are drawn from a Gaussian distribution, i.e., $\kappa = 0$.
+
+    (c) Reject if $\hat{\kappa}$ is significantly positive (excess kurtosis $\gg 0$). For $T = 2520$, the standard error is $\sqrt{24/2520} \approx 0.098$. Any $\hat{\kappa} > 0.19$ would be significant at 5%.
+
+    **Fact 2: Volatility clustering.**
+
+    (a) Compute the autocorrelation function (ACF) of squared returns $r_t^2$ for lags $k = 1, \ldots, 50$. Run Engle's ARCH test: regress $r_t^2$ on $r_{t-1}^2, \ldots, r_{t-p}^2$ and test whether all slope coefficients are jointly zero using an $F$-test or $TR^2 \sim \chi^2_p$.
+
+    (b) $H_0$: No ARCH effects, i.e., $\operatorname{Corr}(r_t^2, r_{t-k}^2) = 0$ for all $k \geq 1$ (constant conditional variance).
+
+    (c) Reject if the ARCH test $p$-value is below 0.05, or equivalently if the ACF of $r_t^2$ shows significant positive values at multiple lags.
+
+    **Fact 3: Leverage effect.**
+
+    (a) Compute the cross-correlation $\operatorname{Corr}(r_t, r_{t+k}^2)$ for forward lags $k = 1, 2, \ldots, 20$.
+
+    (b) $H_0$: No leverage effect, i.e., $\operatorname{Corr}(r_t, r_{t+k}^2) = 0$ for all $k \geq 1$.
+
+    (c) Confirm the leverage effect if these cross-correlations are significantly **negative** at short positive lags (typically $k = 1, \ldots, 5$), indicating that negative returns precede higher volatility.
+
+    **Fact 4: Absence of return autocorrelation.**
+
+    (a) Compute the ACF of signed returns $r_t$ for lags $k = 1, \ldots, 20$. Run the Ljung–Box test: $Q = T(T+2)\sum_{k=1}^{m}\frac{\hat{\rho}_k^2}{T-k}$, where $\hat{\rho}_k$ is the sample autocorrelation at lag $k$.
+
+    (b) $H_0$: Returns are serially uncorrelated, i.e., $\rho_k = 0$ for all tested lags.
+
+    (c) **Fail to reject** $H_0$ — the stylized fact is confirmed by the **absence** of significant autocorrelation. Expect fewer than 1–2 lags out of 20 to be significant (consistent with the 5% false positive rate).
+
+    **Fact 5: Aggregational Gaussianity.**
+
+    (a) Aggregate daily returns into weekly ($n = 5$), monthly ($n = 21$), and quarterly ($n = 63$) returns by summing log returns. Compute excess kurtosis at each horizon. Optionally, apply the Jarque–Bera test at each horizon.
+
+    (b) $H_0$: Returns at the given horizon are Gaussian ($\kappa = 0$, $\gamma_1 = 0$).
+
+    (c) Confirm aggregational Gaussianity if the excess kurtosis **decreases** monotonically with horizon, and the Jarque–Bera test becomes non-significant (fail to reject normality) at longer horizons such as monthly or quarterly.

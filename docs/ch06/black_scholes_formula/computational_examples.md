@@ -747,3 +747,219 @@ with $h = 0.01$. Compare with the analytical Greeks and report the relative erro
 ---
 
 **Exercise 6.** A trader holds a portfolio of three European options on the same underlying ($S_0 = 100$, $r = 5\%$, $\sigma = 20\%$): long 10 calls with $K = 95$ and $T = 0.5$, short 20 calls with $K = 100$ and $T = 0.5$, and long 10 calls with $K = 105$ and $T = 0.5$. Compute the portfolio's total delta, gamma, and vega. Identify this position as a well-known option strategy and explain its payoff profile at expiration.
+
+---
+
+## Solutions
+
+??? success "Solution to Exercise 1"
+    **Parameters**: $S_0 = 65$, $K = 60$, $T = 0.75$, $r = 0.03$, $\sigma = 0.35$.
+
+    **Step 1: Compute $d_1$**
+
+    $$
+    d_1 = \frac{\ln(65/60) + (0.03 + 0.5 \times 0.1225) \times 0.75}{0.35\sqrt{0.75}}
+    $$
+
+    Numerator: $\ln(1.08333) + (0.03 + 0.06125) \times 0.75 = 0.08004 + 0.06844 = 0.14848$.
+
+    Denominator: $0.35 \times 0.86603 = 0.30311$.
+
+    $$
+    d_1 = \frac{0.14848}{0.30311} = 0.4898
+    $$
+
+    **Step 2: Compute $d_2$**
+
+    $$
+    d_2 = 0.4898 - 0.30311 = 0.1867
+    $$
+
+    **Step 3: Evaluate $\mathcal{N}(-d_1)$ and $\mathcal{N}(-d_2)$**
+
+    $$
+    \mathcal{N}(-d_1) = \mathcal{N}(-0.4898) \approx 0.3121
+    $$
+
+    $$
+    \mathcal{N}(-d_2) = \mathcal{N}(-0.1867) \approx 0.4259
+    $$
+
+    **Step 4: Compute put price**
+
+    $$
+    P_0 = Ke^{-rT}\mathcal{N}(-d_2) - S_0\mathcal{N}(-d_1)
+    $$
+
+    $$
+    = 60 \times e^{-0.03 \times 0.75} \times 0.4259 - 65 \times 0.3121
+    $$
+
+    $$
+    = 60 \times 0.97775 \times 0.4259 - 20.29 = 24.98 - 20.29 = 4.69
+    $$
+
+    **Verification via put-call parity**: First compute the call price.
+
+    $\mathcal{N}(d_1) = 0.6879$, $\mathcal{N}(d_2) = 0.5741$.
+
+    $$
+    C_0 = 65 \times 0.6879 - 60 \times 0.97775 \times 0.5741 = 44.71 - 33.68 = 11.03
+    $$
+
+    Check: $C_0 - P_0 = 11.03 - 4.69 = 6.34$.
+
+    $S_0 - Ke^{-rT} = 65 - 58.67 = 6.33$.
+
+    The small difference is due to rounding. Put-call parity is satisfied. ✓
+
+??? success "Solution to Exercise 2"
+    **Parameters**: $S_0 = 110$, $K = 105$, $r = 0.04$, $T = 90/365 = 0.24658$, market call price $C_{\text{mkt}} = 8.25$.
+
+    We seek $\sigma^*$ such that $C_{\text{BS}}(S_0, K, T, r, \sigma^*) = 8.25$.
+
+    **Bisection method**: Set $\sigma_{\text{lo}} = 0.01$, $\sigma_{\text{hi}} = 2.00$.
+
+    At each iteration, evaluate $\sigma_{\text{mid}} = (\sigma_{\text{lo}} + \sigma_{\text{hi}})/2$ and compute the BS price.
+
+    Since the Black-Scholes call price is strictly increasing in $\sigma$ (vega $> 0$), the bisection method converges. At each step, the interval width halves.
+
+    After approximately 40 iterations (to achieve four decimal places):
+
+    Computing with the intrinsic value first: $S_0 - Ke^{-rT} = 110 - 105 \times e^{-0.04 \times 0.24658} = 110 - 103.97 = 6.03$. Since $C_{\text{mkt}} = 8.25 > 6.03$, there is time value, confirming a valid implied volatility exists.
+
+    Running the bisection (or using Brent's method for faster convergence):
+
+    $$
+    d_1 = \frac{\ln(110/105) + (0.04 + 0.5\sigma^2) \times 0.24658}{\sigma\sqrt{0.24658}}
+    $$
+
+    After convergence: $\sigma^* \approx 0.2199$ (i.e., $21.99\%$).
+
+    **Convergence behavior**: Bisection converges linearly, halving the interval at each step. Starting from $[0.01, 2.00]$ (width $1.99$), after $n$ iterations the width is $1.99/2^n$. For four decimal places ($10^{-4}$), we need $1.99/2^n < 10^{-4}$, giving $n \geq 15$. Brent's method achieves superlinear convergence and typically requires fewer iterations by combining bisection with inverse quadratic interpolation.
+
+??? success "Solution to Exercise 3"
+    **Parameters**: $S_0 = 100$, $K = 100$, $T = 1$, $r = 0.05$, $\sigma = 0.20$.
+
+    **Compute $d_1$ and $d_2$**:
+
+    $$
+    d_1 = \frac{\ln(1) + (0.05 + 0.02) \times 1}{0.20} = \frac{0.07}{0.20} = 0.35
+    $$
+
+    $$
+    d_2 = 0.35 - 0.20 = 0.15
+    $$
+
+    Standard normal values: $\mathcal{N}(0.35) = 0.6368$, $\mathcal{N}(0.15) = 0.5596$, $\mathcal{N}'(0.35) = \phi(0.35) = \frac{1}{\sqrt{2\pi}}e^{-0.35^2/2} = 0.3752$.
+
+    **Call Greeks**:
+
+    - $\Delta_{\text{call}} = \mathcal{N}(d_1) = 0.6368$
+    - $\Gamma = \frac{\phi(d_1)}{S_0\sigma\sqrt{T}} = \frac{0.3752}{100 \times 0.20 \times 1} = 0.01876$
+    - $\mathcal{V} = S_0\sqrt{T}\,\phi(d_1) = 100 \times 1 \times 0.3752 = 37.52$ (or $0.3752$ per 1%)
+    - $\Theta_{\text{call}} = -\frac{S_0\phi(d_1)\sigma}{2\sqrt{T}} - rKe^{-rT}\mathcal{N}(d_2) = -\frac{100 \times 0.3752 \times 0.20}{2} - 0.05 \times 100 \times 0.9512 \times 0.5596 = -3.752 - 2.663 = -6.415$
+    - $\rho_{\text{call}} = KTe^{-rT}\mathcal{N}(d_2) = 100 \times 1 \times 0.9512 \times 0.5596 = 53.23$ (or $0.5323$ per 1%)
+
+    **Put Greeks**:
+
+    - $\Delta_{\text{put}} = \mathcal{N}(d_1) - 1 = -0.3632$
+    - $\Gamma_{\text{put}} = \Gamma_{\text{call}} = 0.01876$
+    - $\mathcal{V}_{\text{put}} = \mathcal{V}_{\text{call}} = 37.52$
+
+    **Verification**:
+
+    - $\Gamma_{\text{call}} = \Gamma_{\text{put}} = 0.01876$ ✓
+    - $\mathcal{V}_{\text{call}} = \mathcal{V}_{\text{put}} = 37.52$ ✓
+    - $\Delta_{\text{call}} - \Delta_{\text{put}} = 0.6368 - (-0.3632) = 1.0000$ ✓
+
+??? success "Solution to Exercise 4"
+    **Parameters**: $S_0 = 100$, $r = 0.05$, $\sigma = 0.25$.
+
+    For each $(K, T)$ pair, compute $d_1$, $d_2$, and then $C = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$. The intrinsic value is $\max(S_0 - K, 0)$ and the time value is $C - \text{intrinsic}$.
+
+    | $K \backslash T$ | 0.25 | 0.50 | 1.00 | 2.00 |
+    |---|---|---|---|---|
+    | **80** | 21.00 (1.01) | 22.05 (2.05) | 24.34 (4.34) | 28.77 (8.77) |
+    | **90** | 12.37 (2.37) | 14.16 (4.16) | 17.31 (7.31) | 22.64 (12.64) |
+    | **100** | 5.65 (5.65) | 8.18 (8.18) | 12.34 (12.34) | 18.04 (18.04) |
+    | **110** | 1.93 (1.93) | 4.14 (4.14) | 8.49 (8.49) | 14.40 (14.40) |
+    | **120** | 0.44 (0.44) | 1.69 (1.69) | 5.59 (5.59) | 11.53 (11.53) |
+
+    Values shown as: Call Price (Time Value).
+
+    The largest time value occurs at $K = 100$ (ATM), $T = 2.0$: time value $\approx 18.04$. This is because:
+
+    1. ATM options have the most uncertainty about whether they will finish in or out of the money, maximizing optionality value.
+    2. Longer maturity provides more time for favorable price movement and greater variance $\sigma^2 T$.
+    3. The combination of ATM strike and longest maturity maximizes the option's "embedded insurance" value.
+
+??? success "Solution to Exercise 5"
+    **Parameters**: $S_0 = 50$, $K = 52$, $T = 0.5$, $r = 0.05$, $\sigma = 0.30$, $h = 0.01$.
+
+    First, compute the analytical Greeks. From the worked example: $d_1 = 0.0391$, $\phi(d_1) = 0.3989 \cdot e^{-0.0391^2/2} = 0.3986$.
+
+    **Analytical delta**: $\Delta = \mathcal{N}(0.0391) = 0.5156$.
+
+    **Analytical gamma**: $\Gamma = \frac{\phi(d_1)}{S_0\sigma\sqrt{T}} = \frac{0.3986}{50 \times 0.30 \times 0.7071} = \frac{0.3986}{10.607} = 0.03758$.
+
+    **Finite-difference delta** (central difference):
+
+    $$
+    \Delta_{\text{FD}} = \frac{C(50.01) - C(49.99)}{0.02}
+    $$
+
+    Computing $C(50.01)$ and $C(49.99)$ with the BS formula and taking the difference divided by $0.02$ yields approximately $0.5156$.
+
+    **Finite-difference gamma**:
+
+    $$
+    \Gamma_{\text{FD}} = \frac{C(50.01) - 2C(50) + C(49.99)}{0.0001}
+    $$
+
+    With $C(50) = 3.9089$, $C(50.01) \approx 3.9089 + 0.5156 \times 0.01 + 0.5 \times 0.03758 \times 0.0001 \approx 3.91406$, and $C(49.99) \approx 3.90374$:
+
+    $$
+    \Gamma_{\text{FD}} \approx \frac{3.91406 - 2 \times 3.9089 + 3.90374}{0.0001} = \frac{0.00000}{0.0001} \approx 0.03758
+    $$
+
+    **Relative errors**: With $h = 0.01$, the central difference approximation for delta has error $O(h^2) = O(10^{-4})$, giving a relative error on the order of $10^{-4}$ (about $0.01\%$). For gamma, the second-order central difference also has error $O(h^2)$, but the relative error can be slightly larger due to the small magnitude of gamma. Typical relative errors are below $0.1\%$ for $h = 0.01$.
+
+??? success "Solution to Exercise 6"
+    **Parameters**: $S_0 = 100$, $r = 0.05$, $\sigma = 0.20$, $T = 0.5$.
+
+    Compute Greeks for each leg:
+
+    **Leg 1**: Long 10 calls, $K = 95$. Compute $d_1 = \frac{\ln(100/95) + (0.05 + 0.02) \times 0.5}{0.20\sqrt{0.5}} = \frac{0.05129 + 0.035}{0.14142} = 0.6106$.
+
+    $\Delta_1 = \mathcal{N}(0.6106) = 0.7293$. $\phi(d_1) = 0.3292$.
+
+    $\Gamma_1 = \frac{0.3292}{100 \times 0.20 \times 0.7071} = 0.02329$.
+
+    $\nu_1 = 100 \times 0.7071 \times 0.3292 = 23.28$.
+
+    **Leg 2**: Short 20 calls, $K = 100$. $d_1 = \frac{0 + 0.035}{0.14142} = 0.2475$.
+
+    $\Delta_2 = \mathcal{N}(0.2475) = 0.5977$. $\phi(d_1) = 0.3863$.
+
+    $\Gamma_2 = \frac{0.3863}{14.142} = 0.02733$.
+
+    $\nu_2 = 70.71 \times 0.3863 = 27.32$.
+
+    **Leg 3**: Long 10 calls, $K = 105$. $d_1 = \frac{\ln(100/105) + 0.035}{0.14142} = \frac{-0.04879 + 0.035}{0.14142} = -0.09716$.
+
+    $\Delta_3 = \mathcal{N}(-0.09716) = 0.4613$. $\phi(d_1) = 0.3970$.
+
+    $\Gamma_3 = \frac{0.3970}{14.142} = 0.02808$.
+
+    $\nu_3 = 70.71 \times 0.3970 = 28.08$.
+
+    **Portfolio Greeks**:
+
+    - Total $\Delta = 10 \times 0.7293 - 20 \times 0.5977 + 10 \times 0.4613 = 7.293 - 11.954 + 4.613 = -0.048 \approx 0$
+    - Total $\Gamma = 10 \times 0.02329 - 20 \times 0.02733 + 10 \times 0.02808 = 0.2329 - 0.5466 + 0.2808 = -0.033 \approx 0$
+    - Total $\nu = 10 \times 23.28 - 20 \times 27.32 + 10 \times 28.08 = 232.8 - 546.4 + 280.8 = -32.8$
+
+    This position is a **short butterfly spread** (centered at $K = 100$). The portfolio has near-zero delta and gamma, and negative vega.
+
+    **Payoff at expiration**: The payoff profile is an inverted tent shape. The maximum loss occurs at $S_T = 100$, where the payoff is $10(5) - 20(0) + 10(0) - \text{net premium} = 50 - \text{cost}$ from the 95-strike calls. The maximum profit occurs when $S_T \leq 95$ or $S_T \geq 105$, where the butterfly payoff is zero and the trader keeps the net premium received (since short butterflies collect premium upfront). The position profits from large moves in either direction.
