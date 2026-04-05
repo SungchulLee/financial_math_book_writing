@@ -409,17 +409,238 @@ Swaptions and caps are connected via correlation:
 
 **Exercise 1.** Price a 2Y-into-3Y ATM payer swaption using Black's formula. The current forward swap rate is $S_0 = 4.5\%$, the swaption volatility is $\sigma = 18\%$, and the present value of the annuity is $A_0 = 2.72$ (with annual payments and discount factors consistent with a flat 4.5\% curve). Verify put-call parity by also pricing the receiver swaption.
 
+??? success "Solution to Exercise 1"
+
+    **Given:** 2Y-into-3Y ATM payer swaption, $S_0 = K = 0.045$, $\sigma = 0.18$, $A_0 = 2.72$, $T_0 = 2$.
+
+    Since $S_0 = K$ (ATM), $\ln(S_0/K) = 0$, so:
+
+    $$
+    d_1 = \frac{0 + \frac{1}{2}(0.18)^2 \times 2}{0.18\sqrt{2}} = \frac{\frac{1}{2}(0.0324)(2)}{0.18 \times 1.4142} = \frac{0.0324}{0.25456} = 0.12728
+    $$
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{T_0} = 0.12728 - 0.25456 = -0.12728
+    $$
+
+    $$
+    N(0.12728) = 0.5506, \qquad N(-0.12728) = 0.4494
+    $$
+
+    **Payer swaption:**
+
+    $$
+    V_{\text{payer}} = A_0[S_0 N(d_1) - K N(d_2)] = 2.72[0.045 \times 0.5506 - 0.045 \times 0.4494]
+    $$
+
+    $$
+    = 2.72 \times 0.045 \times (0.5506 - 0.4494) = 2.72 \times 0.045 \times 0.1012 = 0.01239
+    $$
+
+    The payer swaption price is approximately **1.239%** of notional (or 123.9 bps running on the annuity).
+
+    **Receiver swaption:**
+
+    $$
+    V_{\text{receiver}} = A_0[K N(-d_2) - S_0 N(-d_1)] = 2.72[0.045 \times 0.5506 - 0.045 \times 0.4494]
+    $$
+
+    $$
+    = 2.72 \times 0.045 \times (0.5506 - 0.4494) = 0.01239
+    $$
+
+    Since $K = S_0$, the ATM payer and receiver swaptions have **equal value**: $V_{\text{payer}} = V_{\text{receiver}} = 0.01239$.
+
+    **Put-call parity verification:**
+
+    $$
+    V_{\text{payer}} - V_{\text{receiver}} = 0.01239 - 0.01239 = 0
+    $$
+
+    The forward swap value is $A_0(S_0 - K) = 2.72 \times 0 = 0$, consistent with an ATM forward swap having zero value. Parity is verified.
+
 ---
 
 **Exercise 2.** Prove the put-call parity relation for swaptions: Payer Swaption $-$ Receiver Swaption $=$ Forward Swap. Start from the payoff definitions and show that the forward swap value at $T_0$ is $A(T_0)(S_{T_0} - K)$. Deduce that when $K = S_0$, the payer and receiver swaptions have equal value.
+
+??? success "Solution to Exercise 2"
+
+    **Payoff definitions:**
+
+    - Payer swaption payoff at $T_0$: $\max(A(T_0)(S_{T_0} - K), 0) = A(T_0)\max(S_{T_0} - K, 0)$
+    - Receiver swaption payoff at $T_0$: $\max(A(T_0)(K - S_{T_0}), 0) = A(T_0)\max(K - S_{T_0}, 0)$
+
+    **Difference:**
+
+    $$
+    \text{Payer} - \text{Receiver} = A(T_0)[\max(S_{T_0} - K, 0) - \max(K - S_{T_0}, 0)]
+    $$
+
+    Using the identity $\max(x,0) - \max(-x,0) = x$ for all real $x$:
+
+    $$
+    = A(T_0)(S_{T_0} - K)
+    $$
+
+    This is exactly the value at $T_0$ of a forward-starting payer swap with fixed rate $K$, since the swap value at $T_0$ is $\sum_{i=1}^n \delta_i P(T_0, T_i)(S_{T_0} - K) = A(T_0)(S_{T_0} - K)$.
+
+    **Present value at time 0:**
+
+    Since $A(T_0)(S_{T_0} - K)$ is the swap payoff at $T_0$, its time-0 value is:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_0^{T_0} r_s\,ds} A(T_0)(S_{T_0} - K)\right] = A_0(S_0 - K)
+    $$
+
+    The last equality follows because $S_t$ is a martingale under the annuity measure $\mathbb{Q}^A$ (with numéraire $A(t)$), so $\mathbb{E}^{\mathbb{Q}^A}[S_{T_0}] = S_0$, and changing back to the risk-neutral measure yields $A_0(S_0 - K)$.
+
+    **Deduction:** When $K = S_0$, the forward swap value is $A_0(S_0 - S_0) = 0$, so:
+
+    $$
+    V_{\text{payer}} - V_{\text{receiver}} = 0 \implies V_{\text{payer}} = V_{\text{receiver}}
+    $$
+
+    ATM payer and receiver swaptions have equal value.
 
 ---
 
 **Exercise 3.** Explain Jamshidian's trick in detail. For a 1Y-into-2Y payer swaption (annual payments) in the Hull-White model with $\lambda = 0.05$, $\sigma = 0.01$, and strike $K = 5\%$: (a) Write down the equation that determines $r^*$. (b) Explain why the decomposition into bond puts requires the bond price to be monotonic in $r$. (c) In what models does Jamshidian's trick fail, and why?
 
+??? success "Solution to Exercise 3"
+
+    **Jamshidian's trick in detail:**
+
+    In the Hull-White model, the short rate $r_t$ is the single state variable. Bond prices $P(T_0, T_i) = P(T_0, T_i, r_{T_0})$ are deterministic decreasing functions of $r_{T_0}$.
+
+    A payer swaption with strike $K$ pays $\max(1 - \sum_{i=1}^n c_i P(T_0, T_i), 0)$ at $T_0$, where $c_i = K\delta_i$ for $i < n$ and $c_n = 1 + K\delta_n$.
+
+    **(a) Equation for $r^*$:**
+
+    The critical rate $r^*$ satisfies:
+
+    $$
+    \sum_{i=1}^{2} c_i P(T_0, T_i, r^*) = 1
+    $$
+
+    For a 1Y-into-2Y swaption with annual payments and $K = 5\%$:
+
+    - $c_1 = 0.05$ at $T_1 = 2$ (coupon at year 2)
+    - $c_2 = 1.05$ at $T_2 = 3$ (coupon + principal at year 3)
+
+    So:
+
+    $$
+    0.05 \cdot P(1, 2, r^*) + 1.05 \cdot P(1, 3, r^*) = 1
+    $$
+
+    where $P(1, T_i, r^*) = A(T_i - 1)\exp(-B(T_i - 1)r^*)$ in the Hull-White model, with $A$ and $B$ determined by the model parameters $\kappa = 0.05$, $\sigma = 0.01$, and the initial yield curve.
+
+    **(b) Monotonicity requirement:**
+
+    The decomposition works because $P(T_0, T_i, r)$ is strictly decreasing in $r$ for each $T_i > T_0$. In the Hull-White model:
+
+    $$
+    \frac{\partial P}{\partial r} = -B(T_i - T_0) P < 0
+    $$
+
+    since $B(\tau) > 0$ for $\tau > 0$. This ensures:
+
+    - The function $r \mapsto \sum c_i P(T_0, T_i, r)$ is strictly decreasing
+    - There is a unique $r^*$ solving $\sum c_i P(T_0, T_i, r^*) = 1$
+    - The swaption is in the money precisely when $r_{T_0} < r^*$
+    - For each $i$: $P(T_0, T_i, r_{T_0}) > P(T_0, T_i, r^*)$ iff $r_{T_0} < r^*$
+
+    Therefore the swaption payoff equals $\sum c_i \max(K_i - P(T_0, T_i, r_{T_0}), 0)$ with $K_i = P(T_0, T_i, r^*)$, decomposing into bond puts.
+
+    **(c) Where Jamshidian fails:**
+
+    Jamshidian's trick fails in **multi-factor models** (e.g., two-factor Hull-White, the LIBOR market model). In a two-factor model, bond prices $P(T_0, T_i)$ depend on two state variables $(r_1, r_2)$. The exercise region $\{(r_1, r_2) : \sum c_i P(T_0, T_i, r_1, r_2) > 1\}$ is a two-dimensional set, not a simple half-line. Different bonds can be in or out of the money simultaneously, so the decomposition into individual bond options is no longer valid. In multi-factor models, numerical methods (Monte Carlo, PDE on a 2D grid) must be used directly.
+
 ---
 
 **Exercise 4.** An ATM swaption has the approximate value $V \approx A_0 \cdot S_0 \cdot \sigma\sqrt{T_0} \cdot \sqrt{2/\pi}$. For a 5Y-into-10Y ATM swaption with $S_0 = 3.5\%$, $A_0 = 8.2$, and $\sigma = 15\%$, compute the approximate price. Compare with the exact Black's formula result and discuss when the approximation breaks down.
+
+??? success "Solution to Exercise 4"
+
+    **Given:** 5Y-into-10Y ATM swaption, $S_0 = 0.035$, $A_0 = 8.2$, $\sigma = 0.15$, $T_0 = 5$.
+
+    **Approximate formula:**
+
+    $$
+    V \approx A_0 \cdot S_0 \cdot \sigma\sqrt{T_0} \cdot \sqrt{\frac{2}{\pi}}
+    $$
+
+    $$
+    = 8.2 \times 0.035 \times 0.15 \times \sqrt{5} \times \sqrt{0.6366}
+    $$
+
+    $$
+    = 8.2 \times 0.035 \times 0.15 \times 2.2361 \times 0.7979
+    $$
+
+    $$
+    = 8.2 \times 0.035 \times 0.15 \times 1.7841 = 8.2 \times 0.035 \times 0.26761
+    $$
+
+    $$
+    = 8.2 \times 0.009366 = 0.07680
+    $$
+
+    The approximate price is **7.68%** of the annuity, or about **0.0768** in dollar terms per unit notional.
+
+    **Exact Black's formula:**
+
+    With $K = S_0 = 0.035$:
+
+    $$
+    d_1 = \frac{\sigma\sqrt{T_0}}{2} = \frac{0.15 \times 2.2361}{2} = 0.16771
+    $$
+
+    $$
+    d_2 = -0.16771
+    $$
+
+    $$
+    N(0.16771) = 0.5666, \qquad N(-0.16771) = 0.4334
+    $$
+
+    $$
+    V_{\text{exact}} = 8.2 \times 0.035 \times (0.5666 - 0.4334) = 8.2 \times 0.035 \times 0.1332 = 0.03822
+    $$
+
+    Wait --- let me recompute. The exact formula gives:
+
+    $$
+    V_{\text{exact}} = A_0[S_0 N(d_1) - K N(d_2)] = 8.2[0.035 \times 0.5666 - 0.035 \times 0.4334]
+    $$
+
+    $$
+    = 8.2 \times 0.035 \times 0.1332 = 0.03822
+    $$
+
+    And the approximation gives $0.07680$. These should agree for ATM. Let me recheck the approximation formula.
+
+    The standard ATM approximation is $V \approx A_0 S_0 \sigma\sqrt{T_0/2\pi}$ (not $A_0 S_0 \sigma\sqrt{T_0}\sqrt{2/\pi}$). The correct version:
+
+    $$
+    N(d_1) - N(d_2) \approx \phi(0) \cdot 2d_1 = \frac{2}{\sqrt{2\pi}} \cdot \frac{\sigma\sqrt{T_0}}{2} = \frac{\sigma\sqrt{T_0}}{\sqrt{2\pi}}
+    $$
+
+    So:
+
+    $$
+    V \approx A_0 S_0 \frac{\sigma\sqrt{T_0}}{\sqrt{2\pi}} = 8.2 \times 0.035 \times \frac{0.15 \times 2.2361}{2.5066}
+    $$
+
+    $$
+    = 0.287 \times 0.13377 = 0.03839
+    $$
+
+    This matches the exact value of 0.03822 well (difference of 0.4%).
+
+    The approximate price is **3.84%** of the annuity factor, or approximately **0.0384** per unit notional.
+
+    **When the approximation breaks down:** The linearization $N(d_1) - N(d_2) \approx \sigma\sqrt{T_0}/\sqrt{2\pi}$ is accurate when $\sigma\sqrt{T_0}$ is small. Here $\sigma\sqrt{T_0} = 0.335$, which is moderate. For very long-dated swaptions or high volatility (e.g., $\sigma\sqrt{T_0} > 1$), the linear approximation deteriorates because $\phi(d)$ is no longer approximately constant over the interval $[d_2, d_1]$. Deep OTM/ITM swaptions also violate the approximation since it assumes $K \approx S_0$.
 
 ---
 
@@ -433,10 +654,150 @@ Swaptions and caps are connected via correlation:
 
 Describe the qualitative features of this matrix (term structure in expiry, term structure in tenor). Is a one-factor short-rate model likely to fit this matrix well? Justify your answer.
 
+??? success "Solution to Exercise 5"
+
+    **Qualitative features of the swaption matrix:**
+
+    *Term structure in expiry (reading down each column):* Volatility **decreases** with expiry for all tenors (e.g., 1Y tenor: 25% -> 20% -> 16%). This is typical: short-term rates are more uncertain over the near term than the long term, reflecting mean reversion of interest rates.
+
+    *Term structure in tenor (reading across each row):* Volatility **decreases** with swap tenor for all expiries (e.g., 1Y expiry: 25% -> 22% -> 19%). Longer swaps average over more forward rates, and this diversification reduces the effective volatility of the swap rate.
+
+    *Overall pattern:* The highest volatility is at the short-expiry, short-tenor corner (1Y x 1Y = 25%) and the lowest at the long-expiry, long-tenor corner (10Y x 10Y = 15%). The vol surface slopes downward in both directions.
+
+    **Can a one-factor model fit this matrix?**
+
+    A one-factor short-rate model (e.g., Hull-White) has limited ability to fit the full swaption matrix because:
+
+    1. **One-factor constraint:** With a single time-dependent volatility $\sigma(t)$, the model produces a specific relationship between caplet/swaption volatilities. The ratio of swaption vols across tenors is determined by the function $B(\tau) = (1-e^{-\kappa\tau})/\kappa$, which cannot be independently adjusted for each expiry-tenor pair.
+
+    2. **Tenor effect:** In a one-factor model, the swap rate volatility for a $T_0$-into-$n$-year swaption is approximately $\sigma \cdot B(n)/n$ (normalized by duration). The decrease in vol with tenor is captured by $B(n)/n$ being decreasing, but the **rate** of decrease is rigidly determined by $\kappa$.
+
+    3. **Expiry-tenor interaction:** The matrix shows that the vol decline along tenor is steeper for short expiries (25 -> 19 = 6pp for 1Y expiry) than for long expiries (16 -> 15 = 1pp for 10Y expiry). A one-factor model produces a more uniform pattern.
+
+    A one-factor model can be calibrated to match one row or one column reasonably well, but fitting the entire matrix simultaneously is generally poor. Multi-factor models or stochastic volatility models provide the additional degrees of freedom needed.
+
 ---
 
 **Exercise 6.** Compute the delta, vega, and gamma of a 3Y-into-5Y payer swaption with $K = S_0 = 4\%$, $\sigma = 20\%$, and $A_0 = 4.35$. If the swap rate increases by 50 bps, estimate the new swaption value using (a) delta only, and (b) delta plus gamma.
 
+??? success "Solution to Exercise 6"
+
+    **Given:** 3Y-into-5Y payer swaption, $K = S_0 = 0.04$ (ATM), $\sigma = 0.20$, $A_0 = 4.35$, $T_0 = 3$.
+
+    **Step 1: Compute $d_1$ and $d_2$.**
+
+    $$
+    d_1 = \frac{\sigma\sqrt{T_0}}{2} = \frac{0.20 \times \sqrt{3}}{2} = \frac{0.20 \times 1.7321}{2} = 0.17321
+    $$
+
+    $$
+    d_2 = -0.17321
+    $$
+
+    $$
+    N(0.17321) = 0.5688, \qquad \phi(0.17321) = 0.3930
+    $$
+
+    **Delta:**
+
+    $$
+    \Delta = A_0 \cdot N(d_1) = 4.35 \times 0.5688 = 2.4743
+    $$
+
+    **Vega:**
+
+    $$
+    \mathcal{V} = A_0 \cdot S_0\sqrt{T_0}\,\phi(d_1) = 4.35 \times 0.04 \times 1.7321 \times 0.3930 = 4.35 \times 0.02723 = 0.11845
+    $$
+
+    **Gamma:**
+
+    $$
+    \Gamma = \frac{A_0\,\phi(d_1)}{S_0\,\sigma\sqrt{T_0}} = \frac{4.35 \times 0.3930}{0.04 \times 0.20 \times 1.7321} = \frac{1.7096}{0.013857} = 123.37
+    $$
+
+    **Current swaption value:**
+
+    $$
+    V_0 = A_0 \cdot S_0 \cdot [N(d_1) - N(d_2)] = 4.35 \times 0.04 \times (0.5688 - 0.4312) = 4.35 \times 0.04 \times 0.1376 = 0.02394
+    $$
+
+    **If the swap rate increases by 50 bps** ($\Delta S = 0.005$):
+
+    **(a) Delta-only approximation:**
+
+    $$
+    \Delta V \approx \Delta \cdot \Delta S = 2.4743 \times 0.005 = 0.01237
+    $$
+
+    $$
+    V_{\text{new}} \approx 0.02394 + 0.01237 = 0.03631
+    $$
+
+    **(b) Delta + gamma approximation:**
+
+    $$
+    \Delta V \approx \Delta \cdot \Delta S + \frac{1}{2}\Gamma \cdot (\Delta S)^2 = 2.4743 \times 0.005 + \frac{1}{2} \times 123.37 \times (0.005)^2
+    $$
+
+    $$
+    = 0.01237 + 0.001542 = 0.01391
+    $$
+
+    $$
+    V_{\text{new}} \approx 0.02394 + 0.01391 = 0.03785
+    $$
+
+    The gamma correction adds about 1.5 bps, reflecting the convexity of the option payoff. The delta-plus-gamma estimate is more accurate for this 50 bp move.
+
 ---
 
 **Exercise 7.** A Bermudan swaption exercisable at years 1, 2, 3, 4, 5 into a swap paying until year 10 is worth more than the corresponding 1Y-into-9Y European swaption. Explain the source of the early exercise premium. Describe how you would price this Bermudan swaption using backward induction on a trinomial tree, specifying the exercise decision rule at each exercise date.
+
+??? success "Solution to Exercise 7"
+
+    **Source of the early exercise premium:**
+
+    A Bermudan swaption is worth more than any single European swaption because it provides **optionality at multiple exercise dates**. The holder can choose the optimal time to exercise based on the prevailing interest rate environment:
+
+    1. If rates move favorably early (e.g., swap rates rise significantly above the strike for a payer swaption), the holder can exercise early and lock in a valuable swap for a longer remaining tenor (e.g., exercising at year 1 gives a 9-year swap, which has more value than a 5-year swap from exercising at year 5).
+
+    2. If rates have not moved enough, the holder can wait and preserve the option for a later date. The ability to wait is itself valuable.
+
+    3. The early exercise premium reflects the value of this timing flexibility. It is highest when the yield curve is steep or when rates are volatile, as these conditions create more opportunities for profitable early exercise.
+
+    **Pricing via backward induction on a trinomial tree:**
+
+    **Step 1: Build the tree.** Construct a trinomial tree for the short rate $r_t$ over the interval $[0, 10]$ with time steps $\Delta t$ (e.g., $\Delta t = 0.5$ years). At each node $(i, j)$ (time step $i$, state $j$), the short rate is $r_{i,j}$, and three branches lead to nodes at step $i+1$.
+
+    **Step 2: Compute bond prices.** At each node, compute the zero-coupon bond prices $P(t_i, T_k, r_{i,j})$ for all relevant payment dates $T_k$ using the tree or analytical formulas.
+
+    **Step 3: Terminal values.** At the final time step ($t = 10$), the swap has expired and the swaption value is zero.
+
+    **Step 4: Backward induction.** Moving backward from $t = 10$ to $t = 0$:
+
+    - **At non-exercise dates:** The swaption value at node $(i,j)$ is the discounted expected value from the three successor nodes:
+
+        $$
+        V_{i,j} = e^{-r_{i,j}\Delta t}\left[p_u V_{i+1,j+1} + p_m V_{i+1,j} + p_d V_{i+1,j-1}\right]
+        $$
+
+        where $p_u, p_m, p_d$ are the trinomial probabilities.
+
+    - **At exercise dates** ($t = 1, 2, 3, 4, 5$): Compute the **exercise value** --- the value of the underlying swap from the exercise date to year 10:
+
+        $$
+        \text{ExVal}_{i,j} = \sum_{k} c_k P(t_i, T_k, r_{i,j}) - 1
+        $$
+
+        for a payer swaption (where $c_k$ are the swap cashflows). The swaption value is the **maximum** of the continuation value and the exercise value:
+
+        $$
+        V_{i,j} = \max(\text{ExVal}_{i,j},\; \text{ContVal}_{i,j})
+        $$
+
+        where $\text{ContVal}_{i,j}$ is the discounted expected value from successor nodes.
+
+    **Step 5: The exercise decision rule** at each exercise date is: exercise if and only if $\text{ExVal}_{i,j} > \text{ContVal}_{i,j}$. This defines an exercise boundary in the $(t, r)$ space.
+
+    **Step 6:** The value at the root node $(0, j_0)$ is the Bermudan swaption price. It should satisfy $V_{\text{Bermudan}} \geq V_{\text{European}}$ for every European swaption with the same strike whose expiry is one of the exercise dates.

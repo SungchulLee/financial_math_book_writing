@@ -385,13 +385,140 @@ A good calibration should be **stable across time**: small changes in market dat
 
 **Exercise 1.** Consider a market that quotes ATM cap flat volatilities of 22.0% for the 1Y cap (containing 3 quarterly caplets) and 24.5% for the 2Y cap (containing 7 quarterly caplets). Assume a flat forward curve at $F = 5.0\%$ and discount factors $P(0, T_i) = e^{-0.045 T_i}$. Describe in detail the bootstrap procedure to extract the marginal caplet volatility for the 1Y--2Y region. Explain under what conditions the residual price $R_k$ can become negative, and what this implies about the input data.
 
+??? success "Solution to Exercise 1"
+    **Bootstrap procedure for the 1Y--2Y region:**
+
+    **Step 1: Price the 1Y cap using the flat vol.**
+
+    The 1Y cap contains 3 quarterly caplets (fixing at 3M, 6M, 9M). With flat forward $F = 5.0\%$, strike $K = 5.0\%$ (ATM), and discount factors $P(0, T_i) = e^{-0.045 T_i}$, compute each caplet price using the Black formula:
+
+    $$
+    \text{Caplet}_i = \delta \cdot P(0, T_{i+1}) \cdot [F\,N(d_1) - K\,N(d_2)]
+    $$
+
+    where $\delta = 0.25$, $d_1 = \frac{\ln(F/K) + \frac{1}{2}\sigma^2 T_i}{\sigma\sqrt{T_i}} = \frac{1}{2}\sigma\sqrt{T_i}$ (since $F = K$), and $d_2 = d_1 - \sigma\sqrt{T_i}$.
+
+    Using $\sigma = 22.0\%$ for all three caplets, compute:
+
+    $$
+    C_{1Y} = \sum_{i=1}^{3} \text{Caplet}_i(22.0\%)
+    $$
+
+    **Step 2: Price the 2Y cap using the flat vol.**
+
+    The 2Y cap contains 7 quarterly caplets. Compute:
+
+    $$
+    C_{2Y} = \sum_{i=1}^{7} \text{Caplet}_i(24.5\%)
+    $$
+
+    **Step 3: Compute the residual for the marginal caplets.**
+
+    The marginal caplets are those in the 1Y--2Y region (caplets 4 through 7). The residual price is:
+
+    $$
+    R = C_{2Y}(24.5\%) - \sum_{i=1}^{3} \text{Caplet}_i(22.0\%)
+    $$
+
+    Here, the first 3 caplets are priced at their stripped volatility (22.0%), and the total 2Y cap is priced at the flat vol (24.5%).
+
+    **Step 4: Extract the marginal caplet volatility.**
+
+    Assuming a common marginal volatility $\sigma_{\text{marg}}$ for caplets 4--7:
+
+    $$
+    \sum_{i=4}^{7} \text{Caplet}_i(\sigma_{\text{marg}}) = R
+    $$
+
+    Since $R > 0$ and the Black caplet price is strictly increasing in $\sigma$, this has a unique solution found by bisection or Newton--Raphson. The marginal vol will be **higher** than 24.5% because the flat vol of 24.5% is an average over all 7 caplets, and the first 3 caplets have vol 22.0% < 24.5%.
+
+    **Conditions for negative residual $R_k$:**
+
+    $R_k < 0$ occurs when:
+
+    $$
+    C_{k}(\sigma_{\text{flat}}(T_k)) < \sum_{i=1}^{k-2}\text{Caplet}_i(\sigma_i)
+    $$
+
+    This means the longer cap is worth **less** than the sum of the already-stripped shorter caplets. This can happen if:
+
+    - The flat cap volatility **decreases** sharply from $T_{k-1}$ to $T_k$, making the longer cap too cheap to cover the previously determined caplet prices.
+    - There are **inconsistencies** in the market quotes (stale quotes, wide bid-ask spreads, or quotes from different sources).
+    - **Interpolation artifacts** when the input cap volatilities are interpolated between available maturities before stripping.
+
+    A negative residual means no positive caplet volatility can satisfy the equation, and the bootstrap fails. This signals that the input data must be cleaned, smoothed, or reconciled before stripping.
+
 ---
 
 **Exercise 2.** In the caplet bootstrap, the stripped caplet volatility $\sigma_{k-1}$ satisfies $\text{Caplet}_{k-1}(\sigma_{k-1}) = R_k$. Show that this equation has a unique solution for $\sigma_{k-1} > 0$ provided $R_k > 0$, by arguing that the Black caplet price is a strictly increasing, continuous function of volatility mapping $(0, \infty) \to (0, \text{intrinsic value})$.
 
+??? success "Solution to Exercise 2"
+    We need to show that $\text{Caplet}_{k-1}(\sigma) = R_k$ has a unique solution for $\sigma > 0$ when $R_k > 0$.
+
+    The Black formula for an ATM or general caplet is:
+
+    $$
+    \text{Caplet}(\sigma) = \delta \cdot P(0, T_k) \cdot \bigl[F\,N(d_1(\sigma)) - K\,N(d_2(\sigma))\bigr]
+    $$
+
+    where $d_1 = \frac{\ln(F/K) + \frac{1}{2}\sigma^2 T_{k-1}}{\sigma\sqrt{T_{k-1}}}$ and $d_2 = d_1 - \sigma\sqrt{T_{k-1}}$.
+
+    We establish the three properties needed for existence and uniqueness:
+
+    **Property 1: Continuity.** The Black caplet price is a continuous function of $\sigma$ on $(0, \infty)$, since $N(\cdot)$ is continuous and $d_1, d_2$ are continuous functions of $\sigma > 0$.
+
+    **Property 2: Strict monotonicity.** The derivative of the caplet price with respect to $\sigma$ is the **vega**:
+
+    $$
+    \frac{\partial\,\text{Caplet}}{\partial \sigma} = \delta \cdot P(0, T_k) \cdot F \cdot \sqrt{T_{k-1}} \cdot n(d_1) > 0
+    $$
+
+    where $n(\cdot)$ is the standard normal density, which is strictly positive. Therefore the caplet price is **strictly increasing** in $\sigma$.
+
+    **Property 3: Range.** As $\sigma \to 0^+$:
+
+    - If $F > K$: $d_1 \to +\infty$, $d_2 \to +\infty$, so $\text{Caplet} \to \delta \cdot P(0,T_k)(F - K)$ (intrinsic value).
+    - If $F = K$: $d_1 \to 0^+$, $d_2 \to 0^-$, so $\text{Caplet} \to 0$.
+    - If $F < K$: $d_1 \to -\infty$, $d_2 \to -\infty$, so $\text{Caplet} \to 0$.
+
+    As $\sigma \to +\infty$: $d_1 \to +\infty$ and $d_2 \to -\infty$, so $N(d_1) \to 1$ and $N(d_2) \to 0$, giving $\text{Caplet} \to \delta \cdot P(0, T_k) \cdot F$.
+
+    Therefore the caplet price maps $(0, \infty)$ onto $(L, \delta \cdot P(0,T_k) \cdot F)$ where $L = \max(0, \delta P(0,T_k)(F-K))$ is the intrinsic value (or 0 for OTM).
+
+    **Conclusion:** Since the caplet price is continuous, strictly increasing, and maps $(0, \infty)$ onto an interval containing all positive values up to $\delta P(0,T_k) F$, for any $R_k$ in this range (and in particular for any $R_k > 0$ less than the upper bound), the intermediate value theorem guarantees **existence** of a solution, and strict monotonicity guarantees **uniqueness**. Formally, the inverse function theorem applies: the map $\sigma \mapsto \text{Caplet}(\sigma)$ has a well-defined inverse on its range.
+
 ---
 
 **Exercise 3.** Suppose the swaption volatility cube reports $\sigma_{\text{swpn}}(2Y, 5Y, K_{\text{ATM}}) = 18.5\%$ and $\sigma_{\text{swpn}}(5Y, 5Y, K_{\text{ATM}}) = 16.0\%$. Explain why the ATM volatility typically decreases as the expiry lengthens for a fixed tenor. Relate your answer to the **humped term structure** of forward rate volatilities and the diversification effect across forward rates.
+
+??? success "Solution to Exercise 3"
+    **Why ATM swaption volatility decreases with expiry (fixed tenor):**
+
+    Consider two swaptions: $2\text{Y}\times 5\text{Y}$ (expiry 2Y, tenor 5Y) and $5\text{Y}\times 5\text{Y}$ (expiry 5Y, tenor 5Y). Both reference a 5-year swap, but the second has the option expiring 3 years later.
+
+    **Reason 1: Humped forward rate volatility.**
+
+    Forward rate volatilities are typically **humped**: they peak at intermediate maturities (2--5 years) and decline for longer maturities. The swaption volatility is approximately a weighted average of the forward rate volatilities in the swap's coverage period:
+
+    $$
+    \sigma_S^2 T_\alpha \approx \sum_{i,j} \frac{w_i w_j L_i L_j}{S^2}\rho_{ij}\int_0^{T_\alpha}\sigma_i(t)\sigma_j(t)\,dt
+    $$
+
+    For the $2\text{Y}\times 5\text{Y}$ swaption, the forward rate volatilities integrated over $[0, 2]$ are near their peak values. For the $5\text{Y}\times 5\text{Y}$ swaption, the integration extends to $[0, 5]$, where the later forward rates (which fix at years 5--10) contribute lower volatilities from the declining part of the hump. This pulls the average volatility down.
+
+    **Reason 2: Diversification across forward rates.**
+
+    The swap rate is a weighted average of forward rates: $S \approx \sum w_i L_i$. As the expiry increases, the instantaneous volatilities of the relevant forward rates are integrated over a longer horizon. Over this longer period, imperfect correlation between forward rates ($\rho_{ij} < 1$ for $i \neq j$) causes greater diversification. The variance of the swap rate benefits from more "averaging out" of idiosyncratic forward rate movements.
+
+    The variance of a sum of $n$ correlated variables is:
+
+    $$
+    \text{Var}(S) = \sum_{i,j} w_i w_j \sigma_i \sigma_j \rho_{ij}
+    $$
+
+    When $\rho_{ij} < 1$, the cross terms are reduced, and $\text{Var}(S) < (\sum w_i \sigma_i)^2$. This effect becomes more pronounced for longer-expiry swaptions because the relevant forward rates span a wider maturity range with lower average correlation.
+
+    **Combined effect:** Both the humped volatility term structure and the decorrelation across forward rates contribute to the observed pattern of declining ATM swaption volatility as expiry increases (for fixed tenor).
 
 ---
 
@@ -403,9 +530,103 @@ $$
 
 Derive the form of vega-weighted weights $w_i = 1/\mathcal{V}_i^2$ and explain why this choice ensures each instrument contributes equally in terms of **price error** rather than volatility error. What is the potential drawback of uniform weighting?
 
+??? success "Solution to Exercise 4"
+    **Derivation of vega-weighted weights:**
+
+    In the global calibration objective, the error for instrument $i$ is measured in volatility space: $\sigma_i^{\text{model}} - \sigma_i^{\text{mkt}}$. The corresponding **price error** is obtained via a first-order Taylor expansion:
+
+    $$
+    V_i^{\text{model}} - V_i^{\text{mkt}} \approx \mathcal{V}_i \cdot (\sigma_i^{\text{model}} - \sigma_i^{\text{mkt}})
+    $$
+
+    where $\mathcal{V}_i = \partial V_i / \partial \sigma_i$ is the vega of instrument $i$.
+
+    The sum of squared **price** errors is:
+
+    $$
+    \sum_i (V_i^{\text{model}} - V_i^{\text{mkt}})^2 \approx \sum_i \mathcal{V}_i^2 (\sigma_i^{\text{model}} - \sigma_i^{\text{mkt}})^2
+    $$
+
+    To make the objective function represent **equally weighted price errors**, we need:
+
+    $$
+    w_i \cdot (\sigma_i^{\text{model}} - \sigma_i^{\text{mkt}})^2 \propto \mathcal{V}_i^2 (\sigma_i^{\text{model}} - \sigma_i^{\text{mkt}})^2
+    $$
+
+    This gives $w_i = \mathcal{V}_i^2$.
+
+    Alternatively, if we want each instrument to contribute a unit price error for a unit vol error, we can normalize by $\mathcal{V}_i^2$: set $w_i = 1/\mathcal{V}_i^2$. Then:
+
+    $$
+    \sum_i \frac{1}{\mathcal{V}_i^2}(\sigma_i^{\text{model}} - \sigma_i^{\text{mkt}})^2 \approx \sum_i \left(\frac{V_i^{\text{model}} - V_i^{\text{mkt}}}{\mathcal{V}_i^2}\right) \cdot \mathcal{V}_i^2 = \sum_i \frac{(V_i^{\text{model}} - V_i^{\text{mkt}})^2}{\mathcal{V}_i^2}
+    $$
+
+    Wait --- let us be more precise. The standard approach is: to equalize **price** errors, use weights $w_i = \mathcal{V}_i^2$ so that the vol-space objective $\sum w_i (\Delta\sigma_i)^2 = \sum \mathcal{V}_i^2 (\Delta\sigma_i)^2 \approx \sum (\Delta V_i)^2$. Alternatively, to measure everything in **price** space with equal weight, minimize $\sum (\Delta V_i)^2$ directly, which in vol space becomes $\sum \mathcal{V}_i^2 (\Delta\sigma_i)^2$.
+
+    The notation $w_i = 1/\mathcal{V}_i^2$ is used when the objective is already in **price** space and one wants to convert to **volatility-space** errors with equal weight. The key point is that vega weighting ensures each instrument contributes proportionally to its price sensitivity, not just its vol error.
+
+    **Drawback of uniform weighting ($w_i = 1$ for all $i$):**
+
+    With uniform weights, a 1 bp vol error on a high-vega instrument (e.g., a 5Y ATM swaption with vega of \$50,000 per bp) is penalized equally to the same vol error on a low-vega instrument (e.g., a short-dated OTM caplet with vega of \$500 per bp). This means the optimizer may tolerate large price errors on liquid, high-vega instruments while fitting low-vega instruments precisely. The resulting calibration is biased toward instruments that are least important for hedging and pricing.
+
 ---
 
 **Exercise 5.** In the Hull--White one-factor model with piecewise-constant volatility $\sigma(t)$, explain why calibration to the full swaption matrix is fundamentally limited. In particular, show that all zero-coupon bond prices $P(t, T)$ can be written as functions of a single state variable $r(t)$, and argue why this implies that swaption correlations are perfectly correlated in this model.
+
+??? success "Solution to Exercise 5"
+    **Why the Hull--White one-factor model is limited for the full swaption matrix:**
+
+    In the Hull--White one-factor model, the short rate $r(t)$ is the sole state variable. The zero-coupon bond price has the affine form:
+
+    $$
+    P(t, T) = A(t, T) \, e^{-B(t,T) \, r(t)}
+    $$
+
+    where $B(t,T) = \frac{1-e^{-\kappa(T-t)}}{\kappa}$ and $A(t,T)$ is a deterministic function.
+
+    **All bond prices are functions of the single state variable $r(t)$:**
+
+    $$
+    P(t, T_1) = A(t,T_1)\,e^{-B(t,T_1)\,r(t)}, \quad P(t, T_2) = A(t,T_2)\,e^{-B(t,T_2)\,r(t)}
+    $$
+
+    Therefore any two bond prices $P(t,T_1)$ and $P(t, T_2)$ are related by a **deterministic, monotone** function of $r(t)$:
+
+    $$
+    \ln P(t, T_2) = \ln A(t,T_2) - B(t,T_2) \cdot r(t)
+    $$
+
+    $$
+    r(t) = \frac{\ln A(t,T_1) - \ln P(t,T_1)}{B(t,T_1)}
+    $$
+
+    Substituting, $P(t, T_2)$ is an explicit function of $P(t, T_1)$.
+
+    **Perfect correlation implication:**
+
+    Since all bond prices are deterministic functions of the single random variable $r(t)$, the increments $dP(t, T_i)$ are all driven by the same Brownian motion $dW(t)$. This means:
+
+    $$
+    \text{Corr}\bigl(dP(t, T_i), \, dP(t, T_j)\bigr) = \pm 1 \quad \text{for all } i, j
+    $$
+
+    In particular, forward rates $L_i(t)$ and $L_j(t)$ are **perfectly correlated** (correlation $+1$ in the one-factor case with positive $B$ functions).
+
+    **Consequence for the swaption matrix:**
+
+    A swap rate $S(t)$ is a weighted combination of forward rates. When all forward rates are perfectly correlated, the swaption volatility is:
+
+    $$
+    \sigma_S = \sum_i w_i \sigma_i
+    $$
+
+    (a simple weighted sum, not reduced by imperfect correlation). This rigid relationship between swaption volatilities and forward rate volatilities means:
+
+    - Once the caplet volatilities (and hence $\sigma_i$) are fixed, **all** swaption volatilities are determined.
+    - There are **no free parameters** to adjust swaption prices independently.
+    - The model-implied swaption matrix has a very specific structure that the market data generally violates.
+
+    In practice, the market's swaption volatilities are **lower** than what perfect correlation predicts (because forward rates are not perfectly correlated), and the one-factor model cannot reproduce this decorrelation effect. Calibrating to one column (e.g., co-terminal swaptions) typically produces errors of 2--5 bps on other columns.
 
 ---
 
@@ -417,6 +638,103 @@ $$
 
 consider 3 forward rates with $L_1(0) = L_2(0) = L_3(0) = 4\%$, equal weights $w_i = 1/3$, constant volatilities $\sigma_i = 20\%$, and exponential correlation $\rho_{ij} = e^{-\beta|i-j|}$. Compute the model swaption volatility $\sigma_S$ for $\beta = 0$ (perfect correlation) and $\beta = 0.3$. Verify that decorrelation reduces the swaption volatility.
 
+??? success "Solution to Exercise 6"
+    **Setup:** Three forward rates with $L_i(0) = 4\%$, equal weights $w_i = 1/3$, constant volatilities $\sigma_i = 20\%$, and exponential correlation $\rho_{ij} = e^{-\beta|i-j|}$. The swap rate is $S(0) = 4\%$ (equal to the forward rates since they are all the same). Let $T_\alpha$ be the swaption expiry.
+
+    Rebonato's formula gives:
+
+    $$
+    \sigma_S^2 T_\alpha = \sum_{i,j=1}^{3} \frac{w_i w_j L_i(0) L_j(0)}{S(0)^2}\rho_{ij}\int_0^{T_\alpha}\sigma_i(t)\sigma_j(t)\,dt
+    $$
+
+    Since $L_i(0) = S(0) = 4\%$, we have $\frac{w_i w_j L_i L_j}{S^2} = w_i w_j = \frac{1}{9}$.
+
+    Since $\sigma_i(t) = 20\%$ for all $i$ and $t$, the time integral is $\int_0^{T_\alpha}(0.20)^2\,dt = 0.04\,T_\alpha$.
+
+    Therefore:
+
+    $$
+    \sigma_S^2 T_\alpha = \frac{1}{9}\cdot 0.04\,T_\alpha \sum_{i,j=1}^{3}\rho_{ij}
+    $$
+
+    $$
+    \sigma_S^2 = \frac{0.04}{9}\sum_{i,j=1}^{3}\rho_{ij}
+    $$
+
+    The correlation matrix sum $\sum_{i,j}\rho_{ij}$ for the $3\times 3$ matrix with $\rho_{ij} = e^{-\beta|i-j|}$ is:
+
+    $$
+    \sum_{i,j}\rho_{ij} = 3 + 2\cdot 2\,e^{-\beta} + 2\,e^{-2\beta} = 3 + 4e^{-\beta} + 2e^{-2\beta}
+    $$
+
+    (The diagonal contributes 3, the off-diagonal pairs $(1,2)$, $(2,1)$, $(2,3)$, $(3,2)$ each contribute $e^{-\beta}$, and $(1,3)$, $(3,1)$ each contribute $e^{-2\beta}$.)
+
+    **Case $\beta = 0$ (perfect correlation):**
+
+    All $\rho_{ij} = 1$, so $\sum \rho_{ij} = 9$.
+
+    $$
+    \sigma_S^2 = \frac{0.04}{9}\times 9 = 0.04
+    $$
+
+    $$
+    \sigma_S = 0.20 = 20\%
+    $$
+
+    This confirms that with perfect correlation, the swaption volatility equals the common forward rate volatility.
+
+    **Case $\beta = 0.3$:**
+
+    $$
+    e^{-0.3} \approx 0.7408, \quad e^{-0.6} \approx 0.5488
+    $$
+
+    $$
+    \sum \rho_{ij} = 3 + 4(0.7408) + 2(0.5488) = 3 + 2.9632 + 1.0976 = 7.0608
+    $$
+
+    $$
+    \sigma_S^2 = \frac{0.04}{9}\times 7.0608 = 0.03138
+    $$
+
+    $$
+    \sigma_S = \sqrt{0.03138} \approx 0.1772 = 17.72\%
+    $$
+
+    **Verification:** $\sigma_S(0.3) = 17.72\% < 20\% = \sigma_S(0)$, confirming that **decorrelation reduces the swaption volatility**. This occurs because imperfect correlation ($\rho_{ij} < 1$) causes partial cancellation of forward rate movements in the swap rate, reducing the aggregate variance. The reduction from 20% to 17.72% (a drop of about 2.3 percentage points) is substantial, illustrating why correlation calibration is critical for swaption pricing.
+
 ---
 
 **Exercise 7.** A practitioner calibrates the LMM to caps on Monday and obtains caplet volatilities $\sigma_1 = 22\%$, $\sigma_2 = 25\%$, $\sigma_3 = 24\%$. On Tuesday, a single cap quote shifts by 0.5 bps. After re-calibration, $\sigma_2$ changes by 3\%. Discuss whether this behavior indicates a stable or unstable calibration. What regularization techniques could improve stability? How does the sequential two-step approach (strip caps, then fit correlations) help isolate the source of instability?
+
+??? success "Solution to Exercise 7"
+    **Diagnosis: unstable calibration.**
+
+    A 0.5 bp change in a single cap quote causing a 3% change (75 bps in absolute terms, from 25% to roughly 25.75% or 24.25%) in $\sigma_2$ is a **highly disproportionate** response. In a stable calibration, a 0.5 bp perturbation should produce a change of similar magnitude in the calibrated parameters. A 3% relative change signals:
+
+    - **Noise amplification in the bootstrap:** The sequential stripping procedure concentrates all the residual from a cap quote change into a single marginal caplet volatility. If caplet $i=2$ absorbs most of the residual from the perturbed cap, even a small input change gets magnified.
+    - **Ill-conditioning:** The sensitivity of $\sigma_2$ to the cap quote (the relevant element of the Jacobian) is very large, indicating that $\sigma_2$ is poorly determined by the available data.
+    - **Possible near-zero marginal vega:** If the marginal caplet has very small vega (e.g., it is deep OTM or very short-dated), the inverse relationship between price and volatility is steep, amplifying errors.
+
+    **Regularization techniques to improve stability:**
+
+    1. **Smoothness penalty:** Instead of exact caplet stripping, minimize:
+
+        $$
+        \sum_i (\sigma_i^{\text{model}} - \sigma_i^{\text{mkt}})^2 + \alpha \sum_i (\sigma_{i+1} - \sigma_i)^2
+        $$
+
+        The penalty $\alpha > 0$ discourages large jumps between adjacent caplet volatilities, preventing a single quote change from being absorbed entirely by one caplet.
+
+    2. **Parametric volatility (abcd):** Use a smooth 4-parameter function $\sigma_i(a, b, c, d)$ instead of free caplet volatilities. This constrains the volatility curve to a smooth family, where a small perturbation in one cap quote produces small, distributed changes across all parameters.
+
+    3. **Tikhonov regularization:** Add $\lambda\|\sigma - \sigma_{\text{prior}}\|^2$ to the objective, where $\sigma_{\text{prior}}$ is yesterday's calibrated volatilities. This anchors the parameters to their recent values, dampening day-to-day jumps.
+
+    **How the sequential two-step approach helps isolate instability:**
+
+    In the two-step approach:
+
+    - **Step 1 (cap stripping)** determines caplet volatilities independently of correlations. Any instability at this stage is clearly attributable to the cap data and the stripping methodology.
+    - **Step 2 (correlation fitting)** determines correlation parameters holding caplet volatilities fixed. Instability at this stage is attributable to the swaption data and the correlation model.
+
+    This separation allows the practitioner to diagnose *where* the instability originates. In the given example, the instability is in Step 1 (caplet stripping from caps), not in Step 2. The practitioner should therefore focus regularization efforts on the caplet stripping step --- using smoothness penalties or parametric forms --- rather than on the correlation model.

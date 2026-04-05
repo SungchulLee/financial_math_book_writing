@@ -309,46 +309,6 @@ $$
 **Exercise 1.**
 For a European put option under Black-Scholes dynamics, state the terminal condition $V(T, S)$ and the boundary conditions at $S = 0$ and as $S \to \infty$. Verify that the boundary condition at $S = 0$ is consistent with the degenerate PDE $\partial_t V = rV$ at that point.
 
----
-
-**Exercise 2.**
-Consider a down-and-out call option with barrier $B < K$ and strike $K$. Write the complete initial-boundary value problem: the Black-Scholes PDE on the domain $S \in (B, \infty)$, the terminal condition, and the Dirichlet boundary condition at $S = B$. What is the probabilistic interpretation of the Dirichlet condition?
-
----
-
-**Exercise 3.**
-The Hadamard well-posedness conditions require existence, uniqueness, and continuous dependence on data. Using the maximum principle, prove the continuous dependence estimate
-
-$$
-\|u_1 - u_2\|_\infty \leq \max(\|g_1 - g_2\|_\infty, \|h_1 - h_2\|_\infty)
-$$
-
-for two solutions $u_1$, $u_2$ of the parabolic IBVP with different terminal data $g_1$, $g_2$ and boundary data $h_1$, $h_2$.
-
----
-
-**Exercise 4.**
-Explain why the backward heat equation $\partial_t u + \frac{1}{2}\partial_{xx} u = 0$ with initial data $u(0, x) = f(x)$ solved forward in time is ill-posed. Construct a sequence of initial data $f_n(x) = \frac{1}{n}\sin(nx)$ such that $\|f_n\|_\infty \to 0$ but the solution at any $t > 0$ blows up. What does this say about the irreversibility of diffusion?
-
----
-
-**Exercise 5.**
-For an American put option, the free boundary $S^*(t)$ separates the continuation region from the exercise region. State the smooth-pasting condition at $S^*(t)$ and explain why both value matching and smooth pasting must hold simultaneously. What would happen to the hedging strategy if the delta were discontinuous across the exercise boundary?
-
----
-
-**Exercise 6.**
-At $S = 0$, the Black-Scholes PDE degenerates because $\frac{1}{2}\sigma^2 S^2 \to 0$. Explain why this means no boundary condition needs to be imposed at $S = 0$. Connect this to the probabilistic fact that geometric Brownian motion can never reach zero: $\mathbb{P}(S_t = 0 \text{ for some } t > 0) = 0$.
-
----
-
-**Exercise 7.**
-Compare Dirichlet, Neumann, and Robin boundary conditions in terms of their probabilistic meaning for a diffusion process. For a particle undergoing Brownian motion in the interval $(a, b)$, describe the behavior at the boundary under each condition: absorption (killing), reflection, and partial absorption with probability $\alpha$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The European put has payoff $g(S) = (K - S)^+$, so the **terminal condition** is:
 
@@ -378,6 +338,11 @@ Compare Dirichlet, Neumann, and Robin boundary conditions in terms of their prob
 
     confirming consistency with the degenerate PDE.
 
+---
+
+**Exercise 2.**
+Consider a down-and-out call option with barrier $B < K$ and strike $K$. Write the complete initial-boundary value problem: the Black-Scholes PDE on the domain $S \in (B, \infty)$, the terminal condition, and the Dirichlet boundary condition at $S = B$. What is the probabilistic interpretation of the Dirichlet condition?
+
 ??? success "Solution to Exercise 2"
     The complete initial-boundary value problem for the down-and-out call with barrier $B < K$ and strike $K$ is:
 
@@ -406,6 +371,17 @@ Compare Dirichlet, Neumann, and Robin boundary conditions in terms of their prob
     $$
 
     **Probabilistic interpretation of the Dirichlet condition**: The condition $V(t, B) = 0$ corresponds to the option being **killed** (knocked out) when the stock price hits the barrier $B$. In probabilistic terms, if $\tau_B = \inf\{s \geq t : S_s = B\}$ is the first hitting time of the barrier, then the option pays zero if $\tau_B \leq T$. The Dirichlet condition encodes this absorbing boundary: the diffusion is killed upon reaching $B$, and the discounted payoff from that point onward is zero.
+
+---
+
+**Exercise 3.**
+The Hadamard well-posedness conditions require existence, uniqueness, and continuous dependence on data. Using the maximum principle, prove the continuous dependence estimate
+
+$$
+\|u_1 - u_2\|_\infty \leq \max(\|g_1 - g_2\|_\infty, \|h_1 - h_2\|_\infty)
+$$
+
+for two solutions $u_1$, $u_2$ of the parabolic IBVP with different terminal data $g_1$, $g_2$ and boundary data $h_1$, $h_2$.
 
 ??? success "Solution to Exercise 3"
     Let $u_1$ and $u_2$ solve the parabolic IBVP with the same operator but different data:
@@ -444,6 +420,11 @@ Compare Dirichlet, Neumann, and Robin boundary conditions in terms of their prob
 
     This is the continuous dependence estimate, confirming well-posedness in the sense of Hadamard. $\square$
 
+---
+
+**Exercise 4.**
+Explain why the backward heat equation $\partial_t u + \frac{1}{2}\partial_{xx} u = 0$ with initial data $u(0, x) = f(x)$ solved forward in time is ill-posed. Construct a sequence of initial data $f_n(x) = \frac{1}{n}\sin(nx)$ such that $\|f_n\|_\infty \to 0$ but the solution at any $t > 0$ blows up. What does this say about the irreversibility of diffusion?
+
 ??? success "Solution to Exercise 4"
     Consider the backward heat equation $\partial_t u + \frac{1}{2}\partial_{xx} u = 0$ with initial data $u(0, x) = f(x)$, solved forward in time (i.e., for $t > 0$).
 
@@ -468,6 +449,11 @@ Compare Dirichlet, Neumann, and Robin boundary conditions in terms of their prob
     So the initial data converges to zero uniformly, but the solution blows up for any $t > 0$. This violates continuous dependence on data.
 
     **Connection to irreversibility of diffusion**: The heat equation (forward in time) smooths and loses information -- high-frequency details are exponentially damped. Reversing this process requires reconstructing those lost details, which amplifies any noise exponentially. This reflects the fundamental **thermodynamic irreversibility** of diffusion: you cannot "unmix" a diffused substance.
+
+---
+
+**Exercise 5.**
+For an American put option, the free boundary $S^*(t)$ separates the continuation region from the exercise region. State the smooth-pasting condition at $S^*(t)$ and explain why both value matching and smooth pasting must hold simultaneously. What would happen to the hedging strategy if the delta were discontinuous across the exercise boundary?
 
 ??? success "Solution to Exercise 5"
     For an American put with payoff $g(S) = (K - S)^+$, the free boundary $S^*(t)$ is the critical stock price below which immediate exercise is optimal.
@@ -498,6 +484,11 @@ Compare Dirichlet, Neumann, and Robin boundary conditions in terms of their prob
 
     The smooth-pasting condition ensures that the hedge ratio transitions continuously, making delta hedging implementable in practice.
 
+---
+
+**Exercise 6.**
+At $S = 0$, the Black-Scholes PDE degenerates because $\frac{1}{2}\sigma^2 S^2 \to 0$. Explain why this means no boundary condition needs to be imposed at $S = 0$. Connect this to the probabilistic fact that geometric Brownian motion can never reach zero: $\mathbb{P}(S_t = 0 \text{ for some } t > 0) = 0$.
+
 ??? success "Solution to Exercise 6"
     The Black-Scholes PDE for $V(t, S)$ is:
 
@@ -518,6 +509,11 @@ Compare Dirichlet, Neumann, and Robin boundary conditions in terms of their prob
     The boundary $S = 0$ is **never reached** by the diffusion. In the Feller classification, $S = 0$ is an **entrance boundary** (or natural boundary, depending on parameters): the process cannot reach it from the interior. Since no sample paths touch this boundary, no boundary condition is needed to determine the conditional expectation $\mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)}g(S_T) \mid S_t = S]$.
 
     In contrast, a finite barrier $B > 0$ is reachable by the diffusion with positive probability, so a Dirichlet condition at $S = B$ carries genuine information about what happens upon arrival.
+
+---
+
+**Exercise 7.**
+Compare Dirichlet, Neumann, and Robin boundary conditions in terms of their probabilistic meaning for a diffusion process. For a particle undergoing Brownian motion in the interval $(a, b)$, describe the behavior at the boundary under each condition: absorption (killing), reflection, and partial absorption with probability $\alpha$.
 
 ??? success "Solution to Exercise 7"
     Consider a particle undergoing standard Brownian motion $X_t$ in the interval $(a, b)$. The three boundary conditions correspond to distinct physical behaviors at the endpoints:

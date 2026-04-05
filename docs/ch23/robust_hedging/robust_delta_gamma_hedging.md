@@ -1117,13 +1117,178 @@ The robust delta-gamma framework provides a practical, theoretically sound appro
 
 **Exercise 1.** For a European call option with $S_0 = 100$, $K = 100$, $T = 0.25$, $r = 0$, and $\sigma = 0.20$, compute the Black-Scholes delta $\Delta$ and gamma $\Gamma$. If the stock price moves by $\Delta S = 5$, compute the hedging error from a pure delta hedge and show that the gamma correction $\frac{1}{2}\Gamma (\Delta S)^2$ accounts for most of this error.
 
+??? success "Solution to Exercise 1"
+
+    **Given**: $S_0 = 100$, $K = 100$, $T = 0.25$, $r = 0$, $\sigma = 0.20$.
+
+    **Step 1: Compute the Black-Scholes delta and gamma.**
+
+    With $r = 0$ and ATM ($S_0 = K$):
+
+    $$
+    d_1 = \frac{\ln(S_0/K) + \frac{1}{2}\sigma^2 T}{\sigma\sqrt{T}} = \frac{0 + \frac{1}{2}(0.04)(0.25)}{0.20 \times 0.50} = \frac{0.005}{0.10} = 0.05
+    $$
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{T} = 0.05 - 0.10 = -0.05
+    $$
+
+    Delta:
+
+    $$
+    \Delta = \Phi(d_1) = \Phi(0.05) \approx 0.5199
+    $$
+
+    Gamma:
+
+    $$
+    \Gamma = \frac{\phi(d_1)}{S_0 \sigma \sqrt{T}} = \frac{\phi(0.05)}{100 \times 0.20 \times 0.50}
+    $$
+
+    where $\phi(0.05) = \frac{1}{\sqrt{2\pi}}e^{-0.05^2/2} = 0.3989 \times e^{-0.00125} \approx 0.3984$.
+
+    $$
+    \Gamma = \frac{0.3984}{10.0} = 0.03984
+    $$
+
+    **Step 2: Hedging error from a pure delta hedge when $\Delta S = 5$.**
+
+    The exact option values:
+
+    - At $S = 100$: $C(100) = S_0[2\Phi(d_1) - 1] = 100 \times [2(0.5199) - 1] = 100 \times 0.0399 = 3.99$ (approximately, using ATM formula with $r=0$).
+    - At $S = 105$: Recompute $d_1 = \frac{\ln(105/100) + 0.005}{0.10} = \frac{0.04879 + 0.005}{0.10} = 0.5379$, so $C(105) \approx 105\Phi(0.5379) - 100\Phi(0.4379)$.
+
+    Using $\Phi(0.5379) \approx 0.7047$ and $\Phi(0.4379) \approx 0.6693$:
+
+    $$
+    C(105) \approx 105 \times 0.7047 - 100 \times 0.6693 = 73.99 - 66.93 = 7.06
+    $$
+
+    The delta hedge P&L when $S$ moves from 100 to 105:
+
+    $$
+    \text{Hedge P\&L} = \Delta \times \Delta S = 0.5199 \times 5 = 2.60
+    $$
+
+    Actual option value change:
+
+    $$
+    \Delta C = C(105) - C(100) = 7.06 - 3.99 = 3.07
+    $$
+
+    Hedging error from pure delta hedge:
+
+    $$
+    \text{Error} = \Delta C - \Delta \times \Delta S = 3.07 - 2.60 = 0.47
+    $$
+
+    **Step 3: Gamma correction.**
+
+    The gamma correction is:
+
+    $$
+    \frac{1}{2}\Gamma(\Delta S)^2 = \frac{1}{2} \times 0.03984 \times 25 = 0.498
+    $$
+
+    **Comparison**: The hedging error of $0.47$ is very close to the gamma correction of $0.498$. The small discrepancy arises from higher-order terms (speed, i.e., $\frac{1}{6}\frac{\partial^3 C}{\partial S^3}(\Delta S)^3$ and beyond). This confirms that gamma accounts for the dominant source of hedging error under a pure delta hedge, and delta-gamma hedging would reduce this error to $O((\Delta S)^3)$.
+
 ---
 
 **Exercise 2.** In the uncertain volatility model with $\sigma_t \in [\sigma_{\min}, \sigma_{\max}] = [0.15, 0.30]$, the robust price of a European call satisfies the Black-Scholes-Barenblatt PDE. Write down this PDE explicitly and explain why the worst-case volatility is $\sigma_{\max}$ when $\Gamma > 0$ and $\sigma_{\min}$ when $\Gamma < 0$. What is the financial intuition behind this "volatility switching" rule?
 
+??? success "Solution to Exercise 2"
+
+    **The Black-Scholes-Barenblatt (BSB) PDE.**
+
+    Under uncertain volatility $\sigma_t \in [\sigma_{\min}, \sigma_{\max}] = [0.15, 0.30]$, the robust super-replication price $V(S,t)$ satisfies:
+
+    $$
+    \frac{\partial V}{\partial t} + \frac{1}{2}\Sigma(\Gamma)^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
+    $$
+
+    where the effective (worst-case) volatility $\Sigma(\Gamma)$ is:
+
+    $$
+    \Sigma(\Gamma) = \begin{cases} \sigma_{\max} = 0.30 & \text{if } \Gamma = \frac{\partial^2 V}{\partial S^2} > 0 \\ \sigma_{\min} = 0.15 & \text{if } \Gamma = \frac{\partial^2 V}{\partial S^2} < 0 \end{cases}
+    $$
+
+    with terminal condition $V(S,T) = (S - K)^+$.
+
+    **Why worst-case volatility switches with the sign of gamma.**
+
+    The super-replication problem seeks the price $V$ such that the hedging portfolio dominates the payoff under **all** volatility scenarios. The PDE arises from the HJB equation:
+
+    $$
+    \frac{\partial V}{\partial t} + \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \left\{\frac{1}{2}\sigma^2 S^2 \Gamma\right\} + rSV_S - rV = 0
+    $$
+
+    The supremum selects the volatility that **maximizes** the instantaneous risk to the hedger:
+
+    - **When $\Gamma > 0$** (long gamma, convex payoff region): The term $\frac{1}{2}\sigma^2 S^2 \Gamma$ is positive and increasing in $\sigma$. Higher volatility makes the option more expensive (convexity benefit). Nature chooses $\sigma_{\max}$ to make the option as expensive as possible, forcing the hedger to hold more reserves.
+
+    - **When $\Gamma < 0$** (short gamma, concave payoff region): The term $\frac{1}{2}\sigma^2 S^2 \Gamma$ is negative and becomes more negative as $\sigma$ increases. But the supremum seeks to maximize, so nature chooses $\sigma_{\min}$ to make $\frac{1}{2}\sigma^2 S^2 |\Gamma|$ as small as possible (minimizing the benefit of being in a concave region). Equivalently, $\sigma_{\min}$ makes the negative gamma exposure as costly as possible.
+
+    **Financial intuition**: The hedger faces an adversary (nature) who picks the worst-case volatility at each instant. A long-gamma position benefits from high realized volatility (gamma scalping), so the adversary sets volatility high, making the hedge expensive. A short-gamma position benefits from low realized volatility, so the adversary sets volatility low, maximizing the hedger's losses. This "volatility switching" rule embodies the minimax principle of robust control.
+
 ---
 
 **Exercise 3.** Consider delta-gamma hedging a short position in an exotic option using the underlying stock and one vanilla option. Set up the system of equations for the hedge ratios $(\theta_S, \theta_{\text{vanilla}})$ that simultaneously neutralize delta and gamma exposure. Under what conditions is this system solvable, and what residual risks remain after delta-gamma hedging?
+
+??? success "Solution to Exercise 3"
+
+    **Setup**: Short an exotic option with value $V^{\text{exotic}}(S,t)$, hedging with the underlying stock and a vanilla option $O(S,t)$.
+
+    Denote:
+
+    - Exotic Greeks: $\Delta_E = \frac{\partial V^{\text{exotic}}}{\partial S}$, $\Gamma_E = \frac{\partial^2 V^{\text{exotic}}}{\partial S^2}$
+    - Vanilla Greeks: $\Delta_O = \frac{\partial O}{\partial S}$, $\Gamma_O = \frac{\partial^2 O}{\partial S^2}$
+    - Hedge positions: $\theta_S$ shares of stock, $\theta_O$ units of vanilla option
+
+    **Delta-neutral condition** (total portfolio delta equals zero):
+
+    $$
+    -\Delta_E + \theta_S + \theta_O \Delta_O = 0
+    $$
+
+    **Gamma-neutral condition** (total portfolio gamma equals zero):
+
+    $$
+    -\Gamma_E + \theta_O \Gamma_O = 0
+    $$
+
+    Note: stock has zero gamma, so only the option contributes.
+
+    **Solving the system.**
+
+    From the gamma-neutral condition:
+
+    $$
+    \theta_O = \frac{\Gamma_E}{\Gamma_O}
+    $$
+
+    Substituting into the delta-neutral condition:
+
+    $$
+    \theta_S = \Delta_E - \theta_O \Delta_O = \Delta_E - \frac{\Gamma_E}{\Gamma_O}\Delta_O
+    $$
+
+    **Solvability condition**: The system is solvable if and only if $\Gamma_O \neq 0$, i.e., the hedging option has nonzero gamma. This is satisfied by any option that is not at expiry and not deeply in/out of the money. In particular:
+
+    - A vanilla call or put with reasonable moneyness has $\Gamma_O > 0$.
+    - A forward contract has $\Gamma_O = 0$ and cannot be used for gamma hedging.
+
+    **Residual risks after delta-gamma hedging.**
+
+    Even with perfect delta-gamma neutrality, the following risks remain:
+
+    1. **Vega risk**: Sensitivity to volatility changes, $\mathcal{V} = \partial V / \partial \sigma$. The exotic and vanilla generally have different vegas, so the portfolio is not vega-neutral.
+    2. **Third-order risk (speed)**: $\frac{\partial^3 V}{\partial S^3}(\Delta S)^3$ terms become relevant for large moves.
+    3. **Cross-gamma (vanna)**: $\frac{\partial^2 V}{\partial S \partial \sigma}$ captures the interaction between spot and volatility moves.
+    4. **Theta mismatch**: Different time decays of the exotic and vanilla create P&L over time.
+    5. **Discrete rebalancing error**: In practice, the hedge is adjusted at discrete times, creating residual gamma exposure between rebalances.
+    6. **Model risk**: The Greeks themselves depend on the assumed model; misspecification introduces systematic hedging errors.
+
+    To also neutralize vega would require a third instrument (e.g., another option with a different strike or maturity), leading to a $3 \times 3$ system.
 
 ---
 
@@ -1135,14 +1300,268 @@ $$
 
 where $\phi$ is the position in a hedging option. Explain the trade-off between hedging accuracy and the width of the volatility uncertainty band.
 
+??? success "Solution to Exercise 4"
+
+    **Formulation**: The robust delta-gamma hedging problem is the minimax optimization:
+
+    $$
+    \min_{\Delta, \phi} \max_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \mathbb{E}_\sigma\left[\left(V_T - \Delta S_T - \phi C_T^{\text{hedge}} - V_0 + \Delta S_0 + \phi C_0^{\text{hedge}}\right)^2\right]
+    $$
+
+    **Interpretation**: The hedger (minimizer) chooses the delta position $\Delta$ and the option position $\phi$ to minimize the worst-case expected squared hedging error, where nature (maximizer) chooses the volatility $\sigma$ adversarially from the uncertainty band.
+
+    **Analysis of the trade-off.**
+
+    The hedging error over one period can be approximated by Taylor expansion:
+
+    $$
+    V_{t+\delta t} - V_t \approx \Delta_V \Delta S + \frac{1}{2}\Gamma_V (\Delta S)^2 + \Theta_V \delta t
+    $$
+
+    After delta-gamma hedging (subtracting $\Delta \cdot \Delta S + \phi \cdot \Delta O$):
+
+    $$
+    \text{Error} \approx \frac{1}{2}(\Gamma_V - \phi \Gamma_O)(\Delta S)^2 + (\Theta_V - \phi \Theta_O)\delta t + \text{vega terms}
+    $$
+
+    With perfect gamma neutralization ($\phi = \Gamma_V / \Gamma_O$), the dominant residual error comes from:
+
+    $$
+    \text{Error} \approx (\Theta_V - \phi \Theta_O)\delta t + (\mathcal{V}_V - \phi \mathcal{V}_O)\Delta\sigma + \text{higher order}
+    $$
+
+    The worst-case $\sigma$ enters through $\mathbb{E}_\sigma[(\Delta S)^2] = \sigma^2 S^2 \delta t$ and through the vega terms. As the uncertainty band $[\sigma_{\min}, \sigma_{\max}]$ widens:
+
+    - The worst-case $\mathbb{E}_\sigma[(\Delta S)^2]$ increases (wider range of possible moves), making gamma hedging more important.
+    - The vega mismatch $(\mathcal{V}_V - \phi \mathcal{V}_O)\Delta\sigma$ can be larger, as the range of $\Delta\sigma$ is wider.
+    - The optimal $\phi$ may deviate from the simple ratio $\Gamma_V/\Gamma_O$ to partially hedge vega at the cost of imperfect gamma neutralization.
+
+    **The fundamental trade-off**: With a narrow volatility band, delta-gamma hedging is nearly sufficient. With a wide band, the hedger must either:
+
+    (a) Accept larger residual vega risk (if only two instruments are available), or
+    (b) Add more hedging instruments to neutralize additional Greeks, increasing transaction costs, or
+    (c) Over-hedge gamma/vega to be robust, at the cost of efficiency when volatility is near the midpoint.
+
+    The minimax solution represents the optimal compromise: the hedge that performs best in the worst-case volatility scenario.
+
 ---
 
 **Exercise 5.** A trader holds a portfolio with delta $\Delta_P = 50$, gamma $\Gamma_P = -3$, and vega $\mathcal{V}_P = -200$. Available hedging instruments are the underlying stock ($\Delta = 1$, $\Gamma = 0$, $\mathcal{V} = 0$) and a vanilla call ($\Delta_C = 0.55$, $\Gamma_C = 0.025$, $\mathcal{V}_C = 18$). Compute the hedge ratios that neutralize delta and gamma. Is it possible to also neutralize vega with only two instruments? What additional instrument would be needed?
+
+??? success "Solution to Exercise 5"
+
+    **Given portfolio Greeks**: $\Delta_P = 50$, $\Gamma_P = -3$, $\mathcal{V}_P = -200$.
+
+    **Hedging instruments**:
+
+    - Stock: $\Delta_S = 1$, $\Gamma_S = 0$, $\mathcal{V}_S = 0$
+    - Vanilla call: $\Delta_C = 0.55$, $\Gamma_C = 0.025$, $\mathcal{V}_C = 18$
+
+    Let $n_S$ = number of shares of stock and $n_C$ = number of vanilla calls.
+
+    **Step 1: Gamma neutralization.**
+
+    The total portfolio gamma (including hedges) must be zero:
+
+    $$
+    \Gamma_P + n_C \Gamma_C = 0 \implies -3 + n_C \times 0.025 = 0 \implies n_C = \frac{3}{0.025} = 120
+    $$
+
+    We need to buy 120 vanilla calls.
+
+    **Step 2: Delta neutralization.**
+
+    After adding the calls, the total delta is:
+
+    $$
+    \Delta_P + n_S \Delta_S + n_C \Delta_C = 0 \implies 50 + n_S + 120 \times 0.55 = 0
+    $$
+
+    $$
+    50 + n_S + 66 = 0 \implies n_S = -116
+    $$
+
+    We need to short 116 shares of stock.
+
+    **Step 3: Check vega.**
+
+    The remaining portfolio vega is:
+
+    $$
+    \mathcal{V}_{\text{total}} = \mathcal{V}_P + n_C \mathcal{V}_C + n_S \mathcal{V}_S = -200 + 120 \times 18 + (-116) \times 0 = -200 + 2160 = 1960
+    $$
+
+    The vega is **not** neutralized --- in fact, it has flipped from $-200$ to $+1960$.
+
+    **Can we neutralize vega with two instruments?**
+
+    No. With two instruments (stock and one vanilla call), we have two degrees of freedom ($n_S, n_C$) and three constraints (delta, gamma, vega). The system is overdetermined:
+
+    $$
+    \begin{pmatrix} 1 & 0.55 \\ 0 & 0.025 \\ 0 & 18 \end{pmatrix} \begin{pmatrix} n_S \\ n_C \end{pmatrix} = \begin{pmatrix} -50 \\ 3 \\ 200 \end{pmatrix}
+    $$
+
+    The gamma equation forces $n_C = 120$, but then the vega equation requires $n_C = 200/18 = 11.1$, which contradicts. There is no solution satisfying all three constraints simultaneously.
+
+    **Additional instrument needed**: To neutralize all three Greeks, we need a third instrument --- for example, a second vanilla option $O_2$ with Greeks $(\Delta_2, \Gamma_2, \mathcal{V}_2)$ where $\Gamma_2$ and $\mathcal{V}_2$ are linearly independent of those of the first call. A natural choice would be:
+
+    - An option at a different strike (different gamma-to-vega ratio)
+    - An option at a different maturity (longer-dated options have higher vega relative to gamma)
+    - A variance swap (pure vega exposure with zero delta and near-zero gamma)
+
+    With three instruments, the system becomes $3 \times 3$ and is generically solvable.
 
 ---
 
 **Exercise 6.** Derive the leading-order hedging error for a delta-gamma hedge that is rebalanced at discrete intervals $\delta t$. Show that the error is of order $O((\delta t)^{3/2})$ for a delta-gamma hedge, compared to $O((\delta t)^{1/2})$ for a pure delta hedge. Explain why this makes gamma hedging especially valuable when rebalancing frequency is limited.
 
+??? success "Solution to Exercise 6"
+
+    **Pure delta hedge: error of order $O((\delta t)^{1/2})$.**
+
+    For a delta-hedged portfolio rebalanced at intervals $\delta t$, the hedging error over one period is dominated by the gamma term:
+
+    $$
+    \text{Error per step} = \frac{1}{2}\Gamma S^2 \left[(\Delta S)^2 - \sigma^2 S^2 \delta t\right]
+    $$
+
+    where $(\Delta S)^2 = \sigma^2 S^2 \delta t + O((\delta t)^{3/2})$ (from Brownian scaling). The variance of $(\Delta S)^2$ is:
+
+    $$
+    \text{Var}[(\Delta S)^2] = \mathbb{E}[(\Delta S)^4] - (\mathbb{E}[(\Delta S)^2])^2 = 3\sigma^4 S^4 (\delta t)^2 - \sigma^4 S^4 (\delta t)^2 = 2\sigma^4 S^4 (\delta t)^2
+    $$
+
+    The error per step has standard deviation $\sim \Gamma S^2 \sigma^2 \delta t$. Over $N = T/\delta t$ steps, the errors are approximately independent, so the total variance is:
+
+    $$
+    \text{Var}[\text{Total Error}] \approx N \times \frac{1}{4}\Gamma^2 S^4 \cdot 2\sigma^4 (\delta t)^2 = \frac{T}{\delta t} \times \frac{1}{2}\Gamma^2 S^4 \sigma^4 (\delta t)^2 = \frac{1}{2}\Gamma^2 S^4 \sigma^4 T \delta t
+    $$
+
+    Therefore $\text{RMSE} \sim (\delta t)^{1/2}$.
+
+    **Delta-gamma hedge: error of order $O((\delta t)^{3/2})$.**
+
+    With delta-gamma hedging, the second-order term $\frac{1}{2}\Gamma(\Delta S)^2$ is also neutralized. The residual error comes from third-order terms:
+
+    $$
+    \text{Error per step} \approx \frac{1}{6}\frac{\partial^3 V}{\partial S^3}(\Delta S)^3 + \text{cross terms involving } \Delta S \cdot \delta t
+    $$
+
+    The dominant term is $\frac{1}{6}\text{Speed} \cdot (\Delta S)^3$ where Speed $= \partial^3 V / \partial S^3$.
+
+    Since $\Delta S \sim \sigma S \sqrt{\delta t}$, we have $(\Delta S)^3 \sim \sigma^3 S^3 (\delta t)^{3/2}$. The expected value $\mathbb{E}[(\Delta S)^3] = 0$ (odd moment of Gaussian), so the mean error per step vanishes. The variance of $(\Delta S)^3$ is:
+
+    $$
+    \text{Var}[(\Delta S)^3] = \mathbb{E}[(\Delta S)^6] - 0 = 15\sigma^6 S^6 (\delta t)^3
+    $$
+
+    Over $N = T/\delta t$ steps:
+
+    $$
+    \text{Var}[\text{Total Error}] \approx N \times \frac{1}{36}\text{Speed}^2 S^6 \cdot 15\sigma^6 (\delta t)^3 \sim (\delta t)^2
+    $$
+
+    Therefore $\text{RMSE} \sim (\delta t)^1$. More carefully accounting for the cross-term $\frac{\partial^2 V}{\partial S \partial t}\Delta S \cdot \delta t \sim (\delta t)^{3/2}$, the error per step is $O((\delta t)^{3/2})$ and the total RMSE is $O(\delta t)$.
+
+    Actually, let us be more precise. The leading error per step after delta-gamma hedging is $O((\delta t)^{3/2})$, and over $N$ independent steps the total standard deviation is:
+
+    $$
+    \text{RMSE}_{\text{total}} \sim \sqrt{N} \times (\delta t)^{3/2} = \sqrt{T/\delta t} \times (\delta t)^{3/2} = \sqrt{T} \cdot (\delta t)
+    $$
+
+    So the total RMSE for a delta-gamma hedge scales as $O(\delta t)$, compared to $O(\sqrt{\delta t})$ for a pure delta hedge.
+
+    **Why this matters for limited rebalancing**: The improvement from $O(\sqrt{\delta t})$ to $O(\delta t)$ is dramatic when rebalancing is infrequent. For example, with weekly rebalancing ($\delta t \approx 1/52$):
+
+    - Delta-only RMSE $\propto \sqrt{1/52} \approx 0.139$
+    - Delta-gamma RMSE $\propto 1/52 \approx 0.019$
+
+    The delta-gamma hedge reduces the error by a factor of about 7. For monthly rebalancing ($\delta t \approx 1/12$):
+
+    - Delta-only RMSE $\propto \sqrt{1/12} \approx 0.289$
+    - Delta-gamma RMSE $\propto 1/12 \approx 0.083$
+
+    The ratio is about 3.5. Thus gamma hedging is especially valuable when rebalancing frequency is constrained --- precisely the regime encountered in practice due to transaction costs and operational limitations.
+
 ---
 
 **Exercise 7.** In the presence of both volatility uncertainty $\sigma \in [0.15, 0.30]$ and jump risk (Poisson jumps with intensity $\lambda \in [0, 0.5]$ and jump size $J \sim N(-0.05, 0.03^2)$), discuss how the robust delta-gamma hedging framework extends. What additional Greeks are relevant, and how does the worst-case scenario change when jumps are included?
+
+??? success "Solution to Exercise 7"
+
+    **Extended framework: volatility uncertainty plus jump risk.**
+
+    The underlying dynamics under the worst-case scenario are:
+
+    $$
+    \frac{dS_t}{S_{t^-}} = \mu\, dt + \sigma_t\, dW_t + J\, dN_t
+    $$
+
+    where $\sigma_t \in [0.15, 0.30]$, $N_t$ is a Poisson process with intensity $\lambda \in [0, 0.5]$, and jump size $J \sim N(-0.05, 0.03^2)$.
+
+    **Extended HJB equation.**
+
+    The robust pricing PDE becomes an integro-differential equation:
+
+    $$
+    \frac{\partial V}{\partial t} + \sup_{\sigma, \lambda} \left\{\frac{1}{2}\sigma^2 S^2 V_{SS} + \lambda \mathbb{E}_J[V(S(1+J), t) - V(S,t)] \right\} + rSV_S - (r + \lambda^* \bar{J})V = 0
+    $$
+
+    where the supremum is taken over all $\sigma \in [0.15, 0.30]$ and $\lambda \in [0, 0.5]$, and $\bar{J} = \mathbb{E}[J]$.
+
+    **Additional relevant Greeks.**
+
+    Beyond delta, gamma, and vega, the following become important:
+
+    1. **Jump delta** (sensitivity to jump occurrence):
+
+        $$
+        \Delta_J = V(S(1+\mathbb{E}[J]), t) - V(S, t)
+        $$
+
+        This measures the instantaneous P&L from an average-sized jump.
+
+    2. **Jump gamma** (curvature with respect to jump size):
+
+        $$
+        \Gamma_J = \frac{\partial^2}{\partial J^2}\mathbb{E}[V(S(1+J), t)]
+        $$
+
+    3. **Lambda sensitivity** (sensitivity to jump intensity):
+
+        $$
+        \frac{\partial V}{\partial \lambda} = \mathbb{E}_J[V(S(1+J), t) - V(S, t)] \cdot \frac{\partial V}{\partial (\lambda)}
+        $$
+
+    4. **Cross-Greeks**: $\frac{\partial^2 V}{\partial S \partial \sigma}$ (vanna), $\frac{\partial^2 V}{\partial S \partial \lambda}$ (sensitivity of delta to jump intensity).
+
+    **How worst-case changes with jumps.**
+
+    The worst-case scenario analysis becomes more complex:
+
+    **For a long-gamma position** (e.g., long call):
+
+    - Worst-case diffusive volatility: $\sigma = \sigma_{\max} = 0.30$ (as before)
+    - Worst-case jump intensity: Depends on the sign of the jump impact $\mathbb{E}_J[V(S(1+J)) - V(S)]$. For an ATM call with downward jumps ($\mathbb{E}[J] = -0.05$), a jump reduces the option value. The adversary maximizes loss by setting $\lambda = \lambda_{\max} = 0.5$.
+    - Combined effect: The worst case may involve both high diffusive volatility and frequent downward jumps.
+
+    **For a short-gamma position** (e.g., short straddle):
+
+    - Worst-case diffusive volatility: $\sigma = \sigma_{\min} = 0.15$ (as before, minimizing hedging benefit)
+    - Worst-case jump intensity: Jumps cause large instantaneous losses for a short-gamma position (the P&L is approximately $\frac{1}{2}\Gamma S^2 J^2$ per jump, which is negative when short gamma). So $\lambda = \lambda_{\max} = 0.5$.
+    - The presence of jumps makes the worst case significantly worse than pure volatility uncertainty alone.
+
+    **Hedging implications.**
+
+    Delta-gamma hedging with diffusive instruments (stock and vanilla options) is insufficient because:
+
+    1. Jumps create instantaneous P&L that cannot be offset by continuous trading.
+    2. The jump component $\mathbb{E}_J[V(S(1+J)) - V(S) - JS V_S - \frac{1}{2}J^2 S^2 V_{SS}]$ involves higher-order terms that delta-gamma neutrality does not eliminate.
+
+    **Additional hedges needed**:
+
+    - **OTM puts**: Provide convex protection against downward jumps.
+    - **OTM calls**: Protect against upward jumps (less critical given $\mathbb{E}[J] < 0$).
+    - **Variance swaps**: Hedge the combined diffusive and jump variance exposure.
+
+    The robust hedging cost increases substantially when jumps are included, because the adversary can now choose both the volatility and the jump intensity to maximize the hedger's losses. This underscores the limitations of delta-gamma hedging in jump-diffusion environments and motivates the use of options (especially tail options) as hedging instruments rather than relying solely on the stock.

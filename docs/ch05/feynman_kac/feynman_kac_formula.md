@@ -492,40 +492,6 @@ Each approach has advantages depending on dimensionality and problem structure.
 **Exercise 1.**
 State the Feynman-Kac formula for the special case $r = 0$, $f = 0$. Write the PDE and its probabilistic representation. For the SDE $dX_s = \sigma\,dW_s$ with $g(x) = x^4$, compute $u(t, x) = \mathbb{E}[X_T^4 | X_t = x]$ and verify your answer satisfies the PDE.
 
----
-
-**Exercise 2.**
-In the proof of the Feynman-Kac formula, the process $Y_s = e^{-\int_t^s r\,d\tau}u(s, X_s)$ is shown to be a martingale when $f = 0$. Explain which step in the proof ensures the $ds$ term vanishes, and why the Ito correction from the exponential and from $u(s, X_s)$ must both be accounted for.
-
----
-
-**Exercise 3.**
-For the expected exit time problem with $\mathcal{L} = \frac{1}{2}\frac{d^2}{dx^2}$, $a = 0$, $b = 1$, verify that $u(x) = x(1-x)$ satisfies $\frac{1}{2}u''(x) = -1$ with $u(0) = u(1) = 0$. What is the maximum expected exit time and where is it achieved?
-
----
-
-**Exercise 4.**
-Consider the converse Feynman-Kac theorem: define $u(t,x) = \mathbb{E}[e^{-r(T-t)}g(X_T) | X_t = x]$ where $dX_s = \mu X_s\,ds + \sigma X_s\,dW_s$ (geometric Brownian motion) and $g(x) = (x - K)^+$. Write the PDE that $u$ satisfies without solving it explicitly. This is the Black-Scholes PDE.
-
----
-
-**Exercise 5.**
-For the multidimensional Feynman-Kac formula with two assets $X_t = (S_t^1, S_t^2)$, write the generator $\mathcal{L}$ in terms of the drift vector $(\mu^1, \mu^2)$, the diffusion matrix $a^{ij} = \sum_\alpha \sigma^{i\alpha}\sigma^{j\alpha}$, and partial derivatives. Identify the cross-derivative term $a^{12}\partial^2 u / \partial x^1 \partial x^2$ and explain its financial significance.
-
----
-
-**Exercise 6.**
-Compare Monte Carlo and finite difference methods for computing the Feynman-Kac solution. For a European call option in the Black-Scholes model ($d = 1$), explain why finite differences are efficient. For a basket option on $d = 10$ stocks, explain why Monte Carlo is preferred. What is the "curse of dimensionality"?
-
----
-
-**Exercise 7.**
-The Feynman-Kac formula requires regularity conditions including uniform ellipticity ($\sigma^2(t,x) > 0$). Explain what goes wrong at $x = 0$ for the CEV model $dX_t = \sigma X_t^{\beta}\,dW_t$ with $\beta \in (0, 1)$, where $\sigma^2(t,x) = \sigma^2 x^{2\beta}$ vanishes at the origin. What type of solution (classical or viscosity) can still be obtained?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     With $r = 0$ and $f = 0$, the Feynman-Kac formula reduces to:
 
@@ -551,6 +517,11 @@ The Feynman-Kac formula requires regularity conditions including uniform ellipti
     u_t + \frac{1}{2}\sigma^2 u_{xx} = -6x^2\sigma^2 - 6\sigma^4(T-t) + \frac{1}{2}\sigma^2(12x^2 + 12\sigma^2(T-t)) = 0 \;\checkmark
     $$
 
+---
+
+**Exercise 2.**
+In the proof of the Feynman-Kac formula, the process $Y_s = e^{-\int_t^s r\,d\tau}u(s, X_s)$ is shown to be a martingale when $f = 0$. Explain which step in the proof ensures the $ds$ term vanishes, and why the Ito correction from the exponential and from $u(s, X_s)$ must both be accounted for.
+
 ??? success "Solution to Exercise 2"
     In the proof, we define $Y_s = e^{-\int_t^s r\,d\tau}u(s, X_s)$ and apply Ito's lemma to obtain:
 
@@ -567,6 +538,11 @@ The Feynman-Kac formula requires regularity conditions including uniform ellipti
 
     Together, the drift of $Y_s$ is $e^{-\int r\,d\tau}(\partial_s u + \mathcal{L}u - r\,u) = 0$ by the PDE, leaving only the martingale part.
 
+---
+
+**Exercise 3.**
+For the expected exit time problem with $\mathcal{L} = \frac{1}{2}\frac{d^2}{dx^2}$, $a = 0$, $b = 1$, verify that $u(x) = x(1-x)$ satisfies $\frac{1}{2}u''(x) = -1$ with $u(0) = u(1) = 0$. What is the maximum expected exit time and where is it achieved?
+
 ??? success "Solution to Exercise 3"
     With $a = 0$, $b = 1$, we need $u(x) = x(1-x)$ to satisfy $\frac{1}{2}u''(x) = -1$ with $u(0) = u(1) = 0$.
 
@@ -581,6 +557,11 @@ The Feynman-Kac formula requires regularity conditions including uniform ellipti
     **Maximum expected exit time**: Since $u(x) = x(1-x) = -(x - 1/2)^2 + 1/4$ is a downward-opening parabola, the maximum is at $x = 1/2$ with value $u(1/2) = 1/4$.
 
     The maximum expected exit time is $1/4$, achieved at the midpoint $x = 1/2$ of the interval $[0, 1]$. This makes intuitive sense: starting at the center maximizes the distance to both boundaries, so the Brownian motion takes the longest (in expectation) to exit.
+
+---
+
+**Exercise 4.**
+Consider the converse Feynman-Kac theorem: define $u(t,x) = \mathbb{E}[e^{-r(T-t)}g(X_T) | X_t = x]$ where $dX_s = \mu X_s\,ds + \sigma X_s\,dW_s$ (geometric Brownian motion) and $g(x) = (x - K)^+$. Write the PDE that $u$ satisfies without solving it explicitly. This is the Black-Scholes PDE.
 
 ??? success "Solution to Exercise 4"
     For geometric Brownian motion $dX_s = \mu X_s\,ds + \sigma X_s\,dW_s$, the infinitesimal generator is:
@@ -603,6 +584,11 @@ The Feynman-Kac formula requires regularity conditions including uniform ellipti
     \frac{\partial u}{\partial t} + rx\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2 u}{\partial x^2} - r\,u = 0
     $$
 
+---
+
+**Exercise 5.**
+For the multidimensional Feynman-Kac formula with two assets $X_t = (S_t^1, S_t^2)$, write the generator $\mathcal{L}$ in terms of the drift vector $(\mu^1, \mu^2)$, the diffusion matrix $a^{ij} = \sum_\alpha \sigma^{i\alpha}\sigma^{j\alpha}$, and partial derivatives. Identify the cross-derivative term $a^{12}\partial^2 u / \partial x^1 \partial x^2$ and explain its financial significance.
+
 ??? success "Solution to Exercise 5"
     For two correlated assets, the diffusion matrix has entries $a^{ij} = \sum_\alpha \sigma^{i\alpha}\sigma^{j\alpha}$. The generator is:
 
@@ -616,6 +602,11 @@ The Feynman-Kac formula requires regularity conditions including uniform ellipti
 
     **Financial significance of the cross-derivative term**: The term $a^{12}\frac{\partial^2 u}{\partial x^1 \partial x^2} = \rho\sigma_1\sigma_2 S^1 S^2\frac{\partial^2 u}{\partial S^1 \partial S^2}$ captures the effect of **correlation** between the two assets on the derivative price. When $\rho > 0$, the assets tend to move together, and this cross-sensitivity (sometimes called "cross-gamma") measures how the option value changes when both assets move simultaneously. For products like spread options, basket options, or quanto options, this correlation term is crucial and cannot be ignored.
 
+---
+
+**Exercise 6.**
+Compare Monte Carlo and finite difference methods for computing the Feynman-Kac solution. For a European call option in the Black-Scholes model ($d = 1$), explain why finite differences are efficient. For a basket option on $d = 10$ stocks, explain why Monte Carlo is preferred. What is the "curse of dimensionality"?
+
 ??? success "Solution to Exercise 6"
     **Monte Carlo**: Justified by writing $u(t,x) = \mathbb{E}[e^{-\int r\,ds}g(X_T) \mid X_t = x]$, we simulate $N$ independent paths of the SDE, compute the discounted payoff for each, and average. The error is $O(1/\sqrt{N})$ regardless of dimension.
 
@@ -626,6 +617,11 @@ The Feynman-Kac formula requires regularity conditions including uniform ellipti
     **Basket option ($d = 10$)**: Monte Carlo is strongly preferred. A finite difference grid with $N = 50$ points per dimension would require $50^{10} \approx 10^{17}$ grid points, which is computationally impossible. Monte Carlo, however, remains feasible: simulating $10^6$ paths of 10 correlated stocks is routine, with cost $O(10^6 \times 10 \times N_t)$.
 
     The **curse of dimensionality** refers to the exponential growth of grid-based methods with dimension $d$. The number of grid points scales as $N^d$, making PDE methods impractical for $d \geq 4$. Monte Carlo avoids this curse because its convergence rate $O(1/\sqrt{N})$ does not depend on $d$.
+
+---
+
+**Exercise 7.**
+The Feynman-Kac formula requires regularity conditions including uniform ellipticity ($\sigma^2(t,x) > 0$). Explain what goes wrong at $x = 0$ for the CEV model $dX_t = \sigma X_t^{\beta}\,dW_t$ with $\beta \in (0, 1)$, where $\sigma^2(t,x) = \sigma^2 x^{2\beta}$ vanishes at the origin. What type of solution (classical or viscosity) can still be obtained?
 
 ??? success "Solution to Exercise 7"
     In the CEV model $dX_t = \sigma X_t^{\beta}\,dW_t$ with $\beta \in (0, 1)$, the diffusion coefficient is $\sigma^2(t, x) = \sigma^2 x^{2\beta}$. At $x = 0$, this vanishes: $\sigma^2(t, 0) = 0$.

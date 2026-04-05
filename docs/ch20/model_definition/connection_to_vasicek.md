@@ -226,26 +226,238 @@ The Hull-White model generalizes Vasicek by replacing the constant drift $a\thet
 
 **Exercise 1.** Consider the Vasicek model with $a = 0.08$, $\theta_\infty = 0.05$, $\sigma = 0.015$. Compute the stationary mean and variance. What is the 95% confidence interval for the long-run short rate?
 
+??? success "Solution to Exercise 1"
+    The stationary distribution of the Vasicek model is $\mathcal{N}(\theta_\infty, \sigma^2/(2a))$.
+
+    **Stationary mean:** $\theta_\infty = 0.05$ (5%)
+
+    **Stationary variance:**
+
+    $$
+    \frac{\sigma^2}{2a} = \frac{(0.015)^2}{2 \times 0.08} = \frac{0.000225}{0.16} = 0.00140625
+    $$
+
+    **Stationary standard deviation:**
+
+    $$
+    \sqrt{0.00140625} \approx 0.03750
+    $$
+
+    **95% confidence interval:** Using the standard normal quantile $z_{0.025} = 1.96$:
+
+    $$
+    \theta_\infty \pm 1.96 \times \frac{\sigma}{\sqrt{2a}} = 0.05 \pm 1.96 \times 0.03750 = 0.05 \pm 0.0735
+    $$
+
+    The 95% confidence interval is approximately $[-0.0235, \; 0.1235]$, or $[-235 \text{ bps}, \; 1235 \text{ bps}]$.
+
+    Note that the interval includes negative rates, illustrating the Gaussian limitation of the Vasicek (and Hull-White) model. The lower bound of $-2.35\%$ is financially unrealistic for most historical environments, though negative rates have been observed in practice (e.g., European sovereign bonds post-2014).
+
 ---
 
 **Exercise 2.** Verify that substituting $\theta(t) = a\theta_\infty$ into the Hull-White solution $r_t = r_s e^{-a(t-s)} + \int_s^t e^{-a(t-u)}\theta(u)\,du + \sigma\int_s^t e^{-a(t-u)}dW_u$ yields the Vasicek solution. Evaluate the deterministic integral explicitly.
+
+??? success "Solution to Exercise 2"
+    Starting from the Hull-White solution with $\theta(u) = a\theta_\infty$:
+
+    $$
+    r_t = r_s e^{-a(t-s)} + \int_s^t e^{-a(t-u)} a\theta_\infty\,du + \sigma\int_s^t e^{-a(t-u)}dW_u
+    $$
+
+    Evaluate the deterministic integral by substituting $v = t - u$, so $du = -dv$:
+
+    $$
+    \int_s^t e^{-a(t-u)} a\theta_\infty\,du = a\theta_\infty \int_0^{t-s} e^{-av}\,dv = a\theta_\infty \left[-\frac{1}{a}e^{-av}\right]_0^{t-s} = \theta_\infty(1 - e^{-a(t-s)})
+    $$
+
+    Substituting back:
+
+    $$
+    r_t = r_s e^{-a(t-s)} + \theta_\infty(1 - e^{-a(t-s)}) + \sigma\int_s^t e^{-a(t-u)}dW_u
+    $$
+
+    Rearranging $r_s e^{-a(t-s)} + \theta_\infty - \theta_\infty e^{-a(t-s)}$:
+
+    $$
+    r_t = \theta_\infty + (r_s - \theta_\infty)e^{-a(t-s)} + \sigma\int_s^t e^{-a(t-u)}dW_u
+    $$
+
+    This is exactly the standard Vasicek solution.
 
 ---
 
 **Exercise 3.** Under the Vasicek model, the implied forward rate is $f^{\text{Vas}}(0,T) = \theta_\infty + (r_0 - \theta_\infty)e^{-aT} - \frac{\sigma^2}{2a^2}(1 - e^{-aT})^2$. Plot this curve for $a = 0.1$, $\theta_\infty = 0.04$, $\sigma = 0.01$, and $r_0 = 0.03$. Is it monotone? What is the asymptotic forward rate as $T \to \infty$?
 
+??? success "Solution to Exercise 3"
+    The Vasicek forward rate is
+
+    $$
+    f^{\text{Vas}}(0,T) = \theta_\infty + (r_0 - \theta_\infty)e^{-aT} - \frac{\sigma^2}{2a^2}(1 - e^{-aT})^2
+    $$
+
+    With $a = 0.1$, $\theta_\infty = 0.04$, $\sigma = 0.01$, $r_0 = 0.03$:
+
+    $$
+    f^{\text{Vas}}(0,T) = 0.04 + (0.03 - 0.04)e^{-0.1T} - \frac{0.0001}{0.02}(1 - e^{-0.1T})^2
+    $$
+
+    $$
+    = 0.04 - 0.01\,e^{-0.1T} - 0.005(1 - e^{-0.1T})^2
+    $$
+
+    Computing at several maturities:
+
+    | $T$ | $e^{-0.1T}$ | $f^{\text{Vas}}(0,T)$ |
+    |:---:|:---:|:---:|
+    | 0 | 1.000 | $0.04 - 0.01 - 0 = 0.030$ |
+    | 5 | 0.6065 | $0.04 - 0.006065 - 0.000774 = 0.03316$ |
+    | 10 | 0.3679 | $0.04 - 0.003679 - 0.001998 = 0.03432$ |
+    | 20 | 0.1353 | $0.04 - 0.001353 - 0.003739 = 0.03491$ |
+    | 50 | 0.00674 | $0.04 - 0.000067 - 0.004934 = 0.03500$ |
+    | $\infty$ | 0 | $0.04 - 0 - 0.005 = 0.035$ |
+
+    **Monotonicity:** The curve is monotonically increasing from $f(0,0) = r_0 = 0.03$ toward the asymptotic level. To verify, the derivative with respect to $T$ can be checked to be positive throughout (since $r_0 < \theta_\infty - \sigma^2/(2a^2)$, the dominant term $(r_0 - \theta_\infty)(-a)e^{-aT} > 0$ drives the curve upward).
+
+    **Asymptotic forward rate:**
+
+    $$
+    \lim_{T \to \infty} f^{\text{Vas}}(0,T) = \theta_\infty - \frac{\sigma^2}{2a^2} = 0.04 - 0.005 = 0.035
+    $$
+
+    The asymptotic forward rate is 3.5%, which is below $\theta_\infty = 4\%$ due to the convexity adjustment $\sigma^2/(2a^2) = 50$ bps.
+
 ---
 
 **Exercise 4.** A market has a humped forward curve $f^M(0,t) = 0.03 + 0.02t\,e^{-0.5t}$. Show that no choice of Vasicek parameters $(a, \theta_\infty, \sigma, r_0)$ can reproduce this curve exactly. Estimate the maximum fitting error in basis points for a best-fit Vasicek model.
+
+??? success "Solution to Exercise 4"
+    The market forward curve $f^M(0,t) = 0.03 + 0.02t\,e^{-0.5t}$ has a hump. To see this, compute $\frac{d}{dt}f^M(0,t) = 0.02 e^{-0.5t}(1 - 0.5t)$, which equals zero at $t^* = 2$, with $f^M(0,2) = 0.03 + 0.04 e^{-1} \approx 0.04472$. This is a genuine hump (the forward rate rises, peaks, then declines).
+
+    The Vasicek forward rate has the form
+
+    $$
+    f^{\text{Vas}}(0,T) = \theta_\infty + (r_0 - \theta_\infty)e^{-aT} - \frac{\sigma^2}{2a^2}(1 - e^{-aT})^2
+    $$
+
+    **Why exact reproduction is impossible:** The derivative $\frac{d}{dT}f^{\text{Vas}}(0,T)$ is
+
+    $$
+    \frac{d}{dT}f^{\text{Vas}}(0,T) = -a(r_0 - \theta_\infty)e^{-aT} - \frac{\sigma^2}{a}e^{-aT}(1 - e^{-aT})
+    $$
+
+    For this derivative to change sign (necessary for a hump), we need $(r_0 - \theta_\infty)$ and the convexity term to have opposite signs, but the convexity term $-\frac{\sigma^2}{a}e^{-aT}(1-e^{-aT})$ is always non-positive. If $r_0 < \theta_\infty$, the first term is positive and the second is negative, so a sign change is possible. However, the resulting hump is constrained to a specific parametric shape (a combination of $e^{-aT}$ and $e^{-2aT}$ terms), which cannot match the $t\,e^{-0.5t}$ shape of the market curve.
+
+    **Estimating the maximum fitting error:** The market curve has $f^M(0,0) = 0.03$ and $f^M(0,\infty) = 0.03$. The best-fit Vasicek must satisfy $f^{\text{Vas}}(0,0) = r_0$ and $f^{\text{Vas}}(0,\infty) = \theta_\infty - \sigma^2/(2a^2)$. Setting $r_0 = 0.03$ and the asymptotic rate to $0.03$ constrains $\theta_\infty = 0.03 + \sigma^2/(2a^2)$.
+
+    Near the hump at $t \approx 2$, $f^M(0,2) \approx 0.0447$. A Vasicek curve with $r_0 = 0.03$ and reasonable parameters will produce a forward rate near $0.03$--$0.035$ at $T=2$ (depending on parameters), giving a fitting error of at least 100--150 basis points near the hump peak.
 
 ---
 
 **Exercise 5.** Explain why the Hull-White model does not have a stationary distribution when $\theta(t)$ is time-dependent. Under what conditions on $\theta(t)$ would the Hull-White model have an approximate stationary distribution?
 
+??? success "Solution to Exercise 5"
+    The Vasicek model has a stationary distribution because its mean-reversion target $\theta_\infty$ is constant. Starting from any initial condition, the conditional mean $\mathbb{E}[r_t | r_s] = \theta_\infty + (r_s - \theta_\infty)e^{-a(t-s)}$ converges to $\theta_\infty$ as $t-s \to \infty$, regardless of $r_s$.
+
+    **Why Hull-White lacks stationarity:** In the Hull-White model, the conditional mean is
+
+    $$
+    \mathbb{E}[r_t | r_s] = r_s e^{-a(t-s)} + \int_s^t e^{-a(t-u)}\theta(u)\,du
+    $$
+
+    As $t \to \infty$, the first term vanishes, but the integral $\int_s^t e^{-a(t-u)}\theta(u)\,du$ depends on the future path of $\theta(u)$, which changes over time. Since $\theta(t)$ is calibrated to the initial forward curve and varies with $t$, the "target level" $\theta(t)/a$ is itself time-dependent. There is no fixed value to which $r_t$ converges in distribution, so no stationary distribution exists.
+
+    **Conditions for approximate stationarity:** The Hull-White model would have an approximate stationary distribution if $\theta(t)$ converges to a constant $\theta_\infty$ as $t \to \infty$. Specifically:
+
+    - If $\theta(t) \to a\theta_\infty$ sufficiently fast (e.g., the initial forward curve $f(0,t)$ converges to a constant $f_\infty$ and the convexity correction saturates), then for large $t$, the model behaves like a Vasicek model with long-run mean $\theta_\infty$.
+    - In practice, $\theta(t) = f'(0,t) + af(0,t) + \frac{\sigma^2}{2a}(1 - e^{-2at})$. If $f(0,t) \to f_\infty$ and $f'(0,t) \to 0$, then $\theta(t) \to af_\infty + \frac{\sigma^2}{2a}$, and the approximate stationary distribution is $\mathcal{N}(f_\infty + \frac{\sigma^2}{2a^2}, \; \frac{\sigma^2}{2a})$.
+
 ---
 
 **Exercise 6.** The Vasicek bond price formula involves $A^{\text{Vas}}(T) = (\theta_\infty - \frac{\sigma^2}{2a^2})(B(T) - T) - \frac{\sigma^2}{4a}B(T)^2$. Derive this from the Hull-White formula for $A(t,T)$ by setting $\theta(t) = a\theta_\infty$ and $t = 0$.
 
+??? success "Solution to Exercise 6"
+    Under the Vasicek model ($\theta(t) = a\theta_\infty$ constant), the Hull-White formula $A(t,T) = \ln\frac{P(0,T)}{P(0,t)} + B(t,T)f(0,t) + \frac{\sigma^2}{4a}B(t,T)^2(1 - e^{-2at})$ must reduce to the Vasicek formula when $t = 0$.
+
+    **Setting $t = 0$:** We have $B(0,T) = -(1 - e^{-aT})/a$, so $|B(0,T)| = B(T)$ in the standard notation. Also $P(0,0) = 1$, $f(0,0) = r_0$, and $e^{-2a \cdot 0} = 1$:
+
+    $$
+    A(0,T) = \ln P(0,T) + B(0,T) \cdot r_0 + \frac{\sigma^2}{4a}B(0,T)^2 \cdot 0
+    $$
+
+    Since $P(0,T) = e^{A^{\text{Vas}}(T) - B(T)r_0}$ (using the Vasicek formula with the sign convention $\hat{B} = -B(0,T) = B(T)$):
+
+    $$
+    A(0,T) = A^{\text{Vas}}(T) - B(T)r_0 - B(T)r_0 + 0
+    $$
+
+    Wait -- let us be more careful. Under the Hull-White convention, $P(0,T) = e^{A(0,T) + B(0,T)r_0}$, so $A(0,T) = \ln P(0,T) - B(0,T)r_0$.
+
+    Under Vasicek, $P^{\text{Vas}}(0,T) = e^{A^{\text{Vas}}(T) - B(T)r_0}$ where $B(T) = (1 - e^{-aT})/a$ and $B(0,T) = -B(T)$.
+
+    Setting $\theta(u) = a\theta_\infty$, start from the integral representation:
+
+    $$
+    A(0,T) = \int_0^T \theta(u) B(u,T)\,du + \frac{\sigma^2}{2}\int_0^T B(u,T)^2\,du
+    $$
+
+    With $B(u,T) = -(1 - e^{-a(T-u)})/a$ and $\theta(u) = a\theta_\infty$:
+
+    $$
+    \int_0^T a\theta_\infty \left(-\frac{1 - e^{-a(T-u)}}{a}\right) du = -\theta_\infty \int_0^T (1 - e^{-a(T-u)})\,du
+    $$
+
+    $$
+    = -\theta_\infty\left[T - \frac{1 - e^{-aT}}{a}\right] = -\theta_\infty(T - B(T)) = \theta_\infty(B(T) - T)
+    $$
+
+    For the second integral:
+
+    $$
+    \frac{\sigma^2}{2}\int_0^T \frac{(1 - e^{-a(T-u)})^2}{a^2}\,du
+    $$
+
+    Substituting $v = T - u$:
+
+    $$
+    = \frac{\sigma^2}{2a^2}\int_0^T (1 - e^{-av})^2\,dv = \frac{\sigma^2}{2a^2}\left[T - \frac{2(1 - e^{-aT})}{a} + \frac{1 - e^{-2aT}}{2a}\right]
+    $$
+
+    $$
+    = \frac{\sigma^2}{2a^2}\left[T - 2B(T) + \frac{1 - e^{-2aT}}{2a}\right]
+    $$
+
+    Using $B(T)^2 = (1-e^{-aT})^2/a^2$ and $\frac{1-e^{-2aT}}{2a} = \frac{(1-e^{-aT})(1+e^{-aT})}{2a}$, after simplification:
+
+    $$
+    A(0,T) = \theta_\infty(B(T) - T) + \frac{\sigma^2}{2a^2}(T - 2B(T)) + \frac{\sigma^2}{4a}B(T)^2
+    $$
+
+    Rearranging:
+
+    $$
+    A(0,T) = \left(\theta_\infty - \frac{\sigma^2}{2a^2}\right)(B(T) - T) - \frac{\sigma^2}{4a}B(T)^2
+    $$
+
+    This is precisely $A^{\text{Vas}}(T)$.
+
 ---
 
 **Exercise 7.** Discuss the trade-offs between using the Vasicek model and the Hull-White model for (a) long-horizon risk simulation, (b) pricing a 5-year cap, and (c) hedging a callable bond. In which cases is term structure consistency essential?
+
+??? success "Solution to Exercise 7"
+    **(a) Long-horizon risk simulation (e.g., 30-year projection):**
+
+    - **Vasicek is adequate.** For long-horizon simulation, the goal is to capture the statistical behavior of rates (mean reversion, volatility, distribution of paths) rather than to match today's market curve exactly. The Vasicek model's three constant parameters $(a, \theta_\infty, \sigma)$ provide a parsimonious description of rate dynamics. The stationary distribution $\mathcal{N}(\theta_\infty, \sigma^2/(2a))$ gives a meaningful long-run equilibrium.
+    - **Hull-White trade-off:** Over 30 years, the initial term structure becomes irrelevant (the memory of $\theta(t)$ fades), and the Hull-White model effectively behaves like Vasicek. The added complexity of $\theta(t)$ provides no benefit for long-horizon statistics.
+
+    **(b) Pricing a 5-year cap:**
+
+    - **Hull-White is essential.** A cap is a portfolio of caplets, and its price depends on the term structure of rates at each reset date. If the model does not match the initial term structure, cap prices will be inconsistent with observed bond prices, creating arbitrage opportunities. Hull-White's $\theta(t)$ ensures that the model reproduces market discount factors exactly, so caplet prices are consistent with the yield curve.
+    - **Vasicek trade-off:** Vasicek's three parameters cannot match the market yield curve, leading to systematic mispricing of caplets across different tenors. The fitting error translates directly into pricing error for the cap.
+
+    **(c) Hedging a callable bond:**
+
+    - **Hull-White is essential.** Hedging a callable bond requires computing sensitivities (delta, gamma) with respect to the yield curve. The hedge ratios depend on the model's bond prices matching the market at time zero. If the model misprices the underlying bonds, the hedges will be systematically biased.
+    - **Vasicek trade-off:** The callable bond's exercise boundary depends on the entire yield curve at each exercise date. Vasicek's inability to match the initial curve means the exercise boundary is incorrect, leading to wrong hedge ratios and P&L leakage.
+
+    **Summary:** Term structure consistency is essential for (b) and (c) -- any application involving relative pricing or hedging of derivatives against the observed yield curve. For (a), where the focus is on long-run statistical properties, the simpler Vasicek model suffices.

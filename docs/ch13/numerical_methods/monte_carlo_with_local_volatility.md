@@ -282,17 +282,107 @@ Monte Carlo simulation under local volatility requires careful treatment of the 
 
 **Exercise 1.** Write out the log-Euler discretization step for the local volatility SDE. Starting from $S_n = 100$, $\sigma_{\text{loc}}(100, t_n) = 0.25$, $r = 3\%$, $q = 1\%$, $\Delta t = 0.01$, and $Z_n = 0.5$, compute $S_{n+1}$ using the log-Euler scheme. Verify that $S_{n+1} > 0$ regardless of the value of $Z_n$.
 
+??? success "Solution to Exercise 1"
+    The log-Euler discretization step is:
+
+    $$
+    S_{n+1} = S_n \exp\left[\left(r - q - \frac{1}{2}\sigma_n^2\right)\Delta t + \sigma_n \sqrt{\Delta t}\, Z_n\right]
+    $$
+
+    where $\sigma_n = \sigma_{\text{loc}}(S_n, t_n)$.
+
+    With $S_n = 100$, $\sigma_n = 0.25$, $r = 0.03$, $q = 0.01$, $\Delta t = 0.01$, and $Z_n = 0.5$:
+
+    **Drift term:**
+
+    $$
+    r - q - \frac{1}{2}\sigma_n^2 = 0.03 - 0.01 - \frac{1}{2}(0.0625) = 0.02 - 0.03125 = -0.01125
+    $$
+
+    **Exponent:**
+
+    $$
+    (-0.01125)(0.01) + 0.25\sqrt{0.01}(0.5) = -0.0001125 + 0.25(0.1)(0.5) = -0.0001125 + 0.0125 = 0.0123875
+    $$
+
+    **Result:**
+
+    $$
+    S_{n+1} = 100 \exp(0.0123875) = 100 \times 1.01246 = 101.246
+    $$
+
+    **Positivity verification:** The log-Euler scheme computes $S_{n+1} = S_n \exp(\cdot)$. Since $S_n > 0$ and the exponential function is strictly positive for any real argument, $S_{n+1} > 0$ regardless of the value of $Z_n$. Even for extreme draws (e.g., $Z_n = -10$), the exponent becomes a large negative number, but $\exp(\text{large negative}) > 0$ always. This is the fundamental advantage of the log-Euler scheme over the direct Euler scheme, which can produce negative values when $\sigma \sqrt{\Delta t} |Z_n| > 1$.
+
 ---
 
 **Exercise 2.** The Milstein scheme for the local volatility SDE requires the derivative $\partial \sigma_{\text{loc}} / \partial S$. Suppose the local volatility surface is stored on a grid with spacing $\Delta S = 1$. Write the finite difference formula for $\partial \sigma_{\text{loc}} / \partial S$ at $(S_n, t_n)$ and estimate the additional computational cost per time step compared to the Euler scheme, for $N_{\text{paths}} = 10^5$.
+
+??? success "Solution to Exercise 2"
+    The centered finite difference for the spatial derivative of local volatility at $(S_n, t_n)$ with grid spacing $\Delta S = 1$ is:
+
+    $$
+    \frac{\partial \sigma_{\text{loc}}}{\partial S}\bigg|_{S_n, t_n} \approx \frac{\sigma_{\text{loc}}(S_n + 1, t_n) - \sigma_{\text{loc}}(S_n - 1, t_n)}{2}
+    $$
+
+    This requires two additional lookups of the local volatility surface: one at $S_n + 1$ and one at $S_n - 1$, both at the same time $t_n$.
+
+    **Computational cost comparison per time step:**
+
+    For the Euler scheme, each path requires one surface evaluation per time step: $\sigma_{\text{loc}}(S_n, t_n)$. The total cost per time step is $N_{\text{paths}}$ lookups.
+
+    For the Milstein scheme, each path requires three surface evaluations per time step: $\sigma_{\text{loc}}(S_n, t_n)$, $\sigma_{\text{loc}}(S_n + h, t_n)$, and $\sigma_{\text{loc}}(S_n - h, t_n)$. The total cost per time step is $3 N_{\text{paths}}$ lookups.
+
+    With $N_{\text{paths}} = 10^5$, the Euler scheme requires $10^5$ lookups per time step, while Milstein requires $3 \times 10^5$ lookups per time step. The additional cost is $2 \times 10^5$ lookups per time step, a factor of 3 increase in surface evaluation cost. Since surface interpolation often dominates the per-step cost in local volatility Monte Carlo, this represents a significant overhead. This is one reason why Milstein is seldom used for pricing (where weak convergence suffices and both schemes are $O(\Delta t)$), though it is valuable for applications requiring strong convergence.
 
 ---
 
 **Exercise 3.** Consider two interpolation methods for looking up $\sigma_{\text{loc}}(S_n, t_n)$ during simulation: bilinear interpolation ($C^0$ continuity) and bicubic spline interpolation ($C^2$ continuity). Explain how the lack of $C^1$ continuity in bilinear interpolation can affect simulated paths. In what type of exotic product would this difference be most significant?
 
+??? success "Solution to Exercise 3"
+    **Bilinear interpolation** ($C^0$ continuity) produces a local volatility function that is continuous but has discontinuous first derivatives along the grid lines of the stored surface. As a simulated path crosses a grid line in either the spot or time direction, the volatility experienced by the path changes slope abruptly.
+
+    **Effect on simulated paths:** The discontinuity in the volatility gradient means the drift adjustment $-\frac{1}{2}\sigma^2$ in the log-Euler scheme also has a kink. Over many small time steps, these kinks introduce a systematic discretization bias that is absent with smoother interpolation. The paths effectively experience a slightly different drift near each grid line.
+
+    **Bicubic spline interpolation** ($C^2$ continuity) eliminates these kinks, producing smooth volatility along each path. The gradient and curvature of the volatility surface are continuous, so the discretization error converges more smoothly with decreasing $\Delta t$.
+
+    **Where the difference is most significant:** The difference matters most for path-dependent exotic products where the payoff is sensitive to the realized path of the underlying, particularly:
+
+    - **Barrier options:** The payoff depends on whether the path crosses a specific level. Discontinuities in the volatility gradient near the barrier level can alter the probability of crossing, affecting the price.
+    - **Lookback options:** The payoff depends on the running maximum or minimum, which is sensitive to the local behavior of the path, including small-scale volatility fluctuations.
+    - **Autocallables and target redemption notes:** These products have path-dependent trigger conditions, and the kinks from bilinear interpolation can introduce artifacts in the trigger probability near grid lines.
+
+    For plain vanilla European options, where pricing depends only on the terminal distribution, the impact of $C^0$ versus $C^2$ interpolation is typically small.
+
 ---
 
 **Exercise 4.** A Monte Carlo simulation under local volatility with $10^5$ paths and 200 time steps produces a European call price of $\hat{C}_{\text{LV}} = 8.42$ with standard error 0.12. A parallel Black-Scholes simulation with the same paths yields $\hat{C}_{\text{BS}} = 8.15$, while the exact Black-Scholes price is $C_{\text{BS}}^{\text{exact}} = 8.20$. The estimated correlation between $\hat{C}_{\text{LV}}$ and $\hat{C}_{\text{BS}}$ is 0.97. Compute the control variate estimator $\hat{C}_{\text{CV}}$ and estimate the variance reduction factor.
+
+??? success "Solution to Exercise 4"
+    The control variate estimator is:
+
+    $$
+    \hat{C}_{\text{CV}} = \hat{C}_{\text{LV}} - \beta(\hat{C}_{\text{BS}} - C_{\text{BS}}^{\text{exact}})
+    $$
+
+    With correlation $\rho = 0.97$ between $\hat{C}_{\text{LV}}$ and $\hat{C}_{\text{BS}}$, the optimal $\beta$ is:
+
+    $$
+    \beta = \frac{\text{Cov}(\hat{C}_{\text{LV}}, \hat{C}_{\text{BS}})}{\text{Var}(\hat{C}_{\text{BS}})} = \rho \frac{\text{SD}(\hat{C}_{\text{LV}})}{\text{SD}(\hat{C}_{\text{BS}})}
+    $$
+
+    Since both simulations use the same number of paths, and assuming standard errors are proportional to standard deviations (both have the same $N_{\text{paths}}$), we can approximate $\beta \approx \rho \cdot \text{SE}_{\text{LV}} / \text{SE}_{\text{BS}}$. With similar variance structures, a reasonable approximation is $\beta \approx 1$ (since the local volatility and Black-Scholes prices are closely correlated and have similar magnitudes). Using $\beta = 1$ for simplicity:
+
+    $$
+    \hat{C}_{\text{CV}} = 8.42 - 1 \times (8.15 - 8.20) = 8.42 - (-0.05) = 8.47
+    $$
+
+    **Variance reduction factor:** The variance of the control variate estimator relative to the original is:
+
+    $$
+    \frac{\text{Var}(\hat{C}_{\text{CV}})}{\text{Var}(\hat{C}_{\text{LV}})} = 1 - \rho^2 = 1 - (0.97)^2 = 1 - 0.9409 = 0.0591
+    $$
+
+    The variance reduction factor is approximately $1/0.0591 \approx 16.9$, meaning the control variate reduces variance by roughly a factor of 17. Equivalently, the standard error is reduced by a factor of $\sqrt{16.9} \approx 4.1$, so the new standard error is approximately $0.12 / 4.1 \approx 0.029$.
 
 ---
 
@@ -304,6 +394,62 @@ $$
 
 Explain why steep local volatility gradients (large $|\partial \sigma_{\text{loc}} / \partial S|$) increase the bias. For a local volatility surface with a skew of $\partial \sigma_{\text{loc}} / \partial S = -0.003$ near the money, estimate whether $\Delta t = 1/250$ (daily steps) is sufficient for a one-year European option, or whether finer stepping is needed.
 
+??? success "Solution to Exercise 5"
+    The discretization bias formula:
+
+    $$
+    \text{bias} \approx -\frac{\Delta t}{12}\mathbb{E}\left[\int_0^T \left(\sigma_{\text{loc}} \frac{\partial \sigma_{\text{loc}}}{\partial S} S\right)^2 dt\right]
+    $$
+
+    shows that the bias is proportional to $(\sigma_{\text{loc}} \cdot (\partial \sigma_{\text{loc}} / \partial S) \cdot S)^2$. A steep local volatility gradient (large $|\partial \sigma_{\text{loc}} / \partial S|$) increases this quantity quadratically. Intuitively, when the local volatility changes rapidly with spot, the Euler discretization "freezes" the volatility at $\sigma_{\text{loc}}(S_n, t_n)$ for the entire time step, whereas the true process samples a range of volatilities as $S$ moves during $[t_n, t_{n+1}]$. The steeper the gradient, the worse this "freezing" approximation.
+
+    **Estimation for $\Delta t = 1/250$:** With $\partial \sigma_{\text{loc}} / \partial S = -0.003$ near ATM, $\sigma_{\text{loc}} \approx 0.20$ (typical), and $S \approx 100$:
+
+    $$
+    \sigma_{\text{loc}} \frac{\partial \sigma_{\text{loc}}}{\partial S} S = 0.20 \times (-0.003) \times 100 = -0.06
+    $$
+
+    $$
+    \left(\sigma_{\text{loc}} \frac{\partial \sigma_{\text{loc}}}{\partial S} S\right)^2 = 0.0036
+    $$
+
+    The bias per unit time is approximately:
+
+    $$
+    |\text{bias}| \approx \frac{\Delta t}{12} \times 0.0036 \times T = \frac{(1/250)}{12} \times 0.0036 \times 1 \approx 1.2 \times 10^{-6}
+    $$
+
+    This is extremely small compared to typical option prices (order of magnitude $\$1$--$\$10$). For a one-year European option, $\Delta t = 1/250$ (daily steps) is more than sufficient. Even with a moderate skew of $-0.003$ per unit spot, the discretization bias is negligible. Finer stepping would only be needed for much steeper gradients (e.g., near a barrier where $|\partial \sigma_{\text{loc}}/\partial S|$ can be an order of magnitude larger) or for very high-precision requirements.
+
 ---
 
 **Exercise 6.** Describe the adaptive time stepping rule $\Delta t_n = \min(\Delta t_{\max}, c / \sigma_{\text{loc}}^2(S_n, t_n))$. If the local volatility ranges from 10% to 60% across the grid, compute the ratio of the smallest to the largest time step size. What is the advantage of this approach over uniform time stepping for pricing a barrier option?
+
+??? success "Solution to Exercise 6"
+    The adaptive time stepping rule is:
+
+    $$
+    \Delta t_n = \min\left(\Delta t_{\max},\; \frac{c}{\sigma_{\text{loc}}^2(S_n, t_n)}\right)
+    $$
+
+    This sets the time step inversely proportional to the local variance, so that the "variance per step" $\sigma_n^2 \Delta t_n \approx c$ remains approximately constant across all steps.
+
+    **Ratio of smallest to largest time step:** When $\sigma_{\text{loc}}$ ranges from 10% to 60%, the time steps (assuming neither hits $\Delta t_{\max}$) are:
+
+    $$
+    \Delta t_{\text{large}} = \frac{c}{\sigma_{\min}^2} = \frac{c}{(0.10)^2} = \frac{c}{0.01} = 100c
+    $$
+
+    $$
+    \Delta t_{\text{small}} = \frac{c}{\sigma_{\max}^2} = \frac{c}{(0.60)^2} = \frac{c}{0.36} \approx 2.78c
+    $$
+
+    The ratio is:
+
+    $$
+    \frac{\Delta t_{\text{small}}}{\Delta t_{\text{large}}} = \frac{\sigma_{\min}^2}{\sigma_{\max}^2} = \frac{(0.10)^2}{(0.60)^2} = \frac{0.01}{0.36} = \frac{1}{36} \approx 0.028
+    $$
+
+    The smallest time step is 36 times smaller than the largest.
+
+    **Advantage for barrier option pricing:** Barrier options are particularly sensitive to the behavior of the local volatility near the barrier level. If the local volatility is high near the barrier (as often occurs for OTM barriers in skewed markets), the discretization error is concentrated there. With uniform time stepping, the step size is the same everywhere and must be small enough for the worst case (highest volatility region), wasting computational effort in low-volatility regions. Adaptive stepping automatically places more (smaller) steps when the path is in the high-volatility region near the barrier, where accuracy matters most, and uses fewer (larger) steps when the path is far from the barrier in low-volatility regions. This achieves the same accuracy as uniform stepping with significantly fewer total steps, reducing computational cost.

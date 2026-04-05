@@ -241,22 +241,195 @@ print(f"Final Delta: {new_delta + shares:.4f}")
 
 **Exercise 1.** A portfolio has $\Gamma = +3.0$ and $\Delta = +45$. An ATM put with $\Gamma_{\text{put}} = 0.04$ and $\Delta_{\text{put}} = -0.50$ is available for gamma hedging. Compute: (a) the number of puts to short for gamma neutrality; (b) the new portfolio delta after adding the puts; (c) the number of shares to trade for delta neutrality.
 
+??? success "Solution to Exercise 1"
+    The portfolio has $\Gamma = +3.0$ and $\Delta = +45$. The hedging put has $\Gamma_{\text{put}} = 0.04$ and $\Delta_{\text{put}} = -0.50$.
+
+    **(a) Number of puts to short for gamma neutrality:**
+
+    $$
+    n_{\text{put}} = -\frac{\Gamma_{\text{portfolio}}}{\Gamma_{\text{put}}} = -\frac{3.0}{0.04} = -75
+    $$
+
+    Short 75 puts.
+
+    **(b) New portfolio delta after adding the puts:**
+
+    $$
+    \Delta_{\text{new}} = 45 + (-75)(-0.50) = 45 + 37.5 = 82.5
+    $$
+
+    **(c) Shares to trade for delta neutrality.** Short 82.5 shares of the underlying:
+
+    $$
+    \Delta_{\text{final}} = 82.5 - 82.5 = 0
+    $$
+
+    The final portfolio is both gamma-neutral and delta-neutral.
+
 ---
 
 **Exercise 2.** Using the formula $\nu = \sigma S^2 \tau \Gamma$ in Black--Scholes, verify that gamma-hedging an ATM option with another ATM option at the same maturity automatically hedges vega. Why does this relationship break down when the hedging option has a different maturity?
+
+??? success "Solution to Exercise 2"
+    In Black--Scholes, the relationship is $\nu = \sigma S^2 \tau \Gamma$. For two ATM options at the same maturity $\tau$ and the same underlying $S$, both options share the same $\sigma$, $S$, and $\tau$.
+
+    If we gamma-hedge using Option B to neutralize Option A's gamma:
+
+    $$
+    n_B \Gamma_B = -\Gamma_A
+    $$
+
+    The resulting vega is:
+
+    $$
+    \nu_A + n_B \nu_B = \sigma S^2 \tau \Gamma_A + n_B \sigma S^2 \tau \Gamma_B = \sigma S^2 \tau (\Gamma_A + n_B \Gamma_B) = \sigma S^2 \tau \cdot 0 = 0
+    $$
+
+    So gamma-hedging automatically hedges vega when both options are at the same maturity.
+
+    **Why this breaks down for different maturities.** If the hedging option has maturity $\tau'$ instead of $\tau$, then $\nu_B = \sigma S^2 \tau' \Gamma_B$. The resulting vega after gamma-hedging is:
+
+    $$
+    \sigma S^2 \tau \Gamma_A + n_B \sigma S^2 \tau' \Gamma_B = \sigma S^2 (\tau \Gamma_A + \tau' n_B \Gamma_B) = \sigma S^2 (\tau - \tau') \Gamma_A \neq 0
+    $$
+
+    since $n_B \Gamma_B = -\Gamma_A$, giving $\sigma S^2 \tau \Gamma_A - \sigma S^2 \tau' \Gamma_A = \sigma S^2 (\tau - \tau')\Gamma_A$. The proportionality constant $\tau$ differs between the two options, so gamma neutrality no longer implies vega neutrality.
 
 ---
 
 **Exercise 3.** Solve the joint gamma-vega hedging system for: existing portfolio $\Gamma = +4$, $\nu = +200$; Option A: $\Gamma_A = 0.05$, $\nu_A = 3.0$; Option B: $\Gamma_B = 0.02$, $\nu_B = 5.0$. Find the positions $n_1$, $n_2$ in Options A and B that neutralize both gamma and vega.
 
+??? success "Solution to Exercise 3"
+    The system of equations is:
+
+    $$
+    \begin{cases} 0.05\,n_1 + 0.02\,n_2 = -4 \\ 3.0\,n_1 + 5.0\,n_2 = -200 \end{cases}
+    $$
+
+    From the first equation: $n_1 = \frac{-4 - 0.02\,n_2}{0.05} = -80 - 0.4\,n_2$.
+
+    Substituting into the second equation:
+
+    $$
+    3.0(-80 - 0.4\,n_2) + 5.0\,n_2 = -200
+    $$
+
+    $$
+    -240 - 1.2\,n_2 + 5.0\,n_2 = -200
+    $$
+
+    $$
+    3.8\,n_2 = 40 \implies n_2 = \frac{40}{3.8} \approx 10.526
+    $$
+
+    $$
+    n_1 = -80 - 0.4(10.526) = -80 - 4.211 \approx -84.211
+    $$
+
+    **Verification:**
+
+    - Gamma: $0.05(-84.211) + 0.02(10.526) = -4.211 + 0.211 = -4.0$ (neutralizes $\Gamma = +4$)
+    - Vega: $3.0(-84.211) + 5.0(10.526) = -252.63 + 52.63 = -200.0$ (neutralizes $\nu = +200$)
+
+    The trader should short approximately 84.2 units of Option A and go long approximately 10.5 units of Option B, then re-delta-hedge with shares.
+
 ---
 
 **Exercise 4.** A short gamma strategy sells 50 ATM calls ($\Gamma = -0.04$ per option, $\Theta = +0.08$ per option per day) and delta-hedges daily. Compute: (a) the portfolio gamma and daily theta income; (b) the breakeven daily move $|\Delta S|^*$ such that $\frac{1}{2}|\Gamma_{\text{port}}|(\Delta S^*)^2 = \Theta_{\text{port}} \cdot 1\text{ day}$; (c) the implied daily volatility corresponding to this breakeven move.
+
+??? success "Solution to Exercise 4"
+    The trader sells 50 ATM calls with per-option $\Gamma = -0.04$ and $\Theta = +0.08$/day.
+
+    **(a) Portfolio gamma and daily theta income:**
+
+    $$
+    \Gamma_{\text{port}} = 50 \times (-0.04) = -2.0
+    $$
+
+    $$
+    \Theta_{\text{port}} = 50 \times 0.08 = +4.0 \text{ per day}
+    $$
+
+    **(b) Breakeven daily move.** Setting gamma loss equal to theta income:
+
+    $$
+    \frac{1}{2}|\Gamma_{\text{port}}|(\Delta S^*)^2 = \Theta_{\text{port}}
+    $$
+
+    $$
+    \frac{1}{2}(2.0)(\Delta S^*)^2 = 4.0
+    $$
+
+    $$
+    (\Delta S^*)^2 = 4.0 \implies \Delta S^* = 2.0
+    $$
+
+    The breakeven daily move is $\$2.00$.
+
+    **(c) Implied daily volatility.** If the underlying is at $S = 100$ (typical for ATM), the breakeven move as a percentage is $2.0/100 = 2.0\%$. The annualized volatility corresponding to a daily move of $2\%$ is:
+
+    $$
+    \sigma_{\text{annual}} = 0.02 \times \sqrt{252} \approx 0.02 \times 15.87 \approx 31.7\%
+    $$
+
+    The strategy is profitable when the realized daily volatility is below $2\%$ (annualized $\approx 31.7\%$).
 
 ---
 
 **Exercise 5.** Explain why the order of operations matters: gamma-hedge first with options, then delta-hedge with shares. What goes wrong if you delta-hedge first and then gamma-hedge? Specifically, does adding options after delta-hedging with shares change the delta?
 
+??? success "Solution to Exercise 5"
+    **Order: gamma-hedge first, then delta-hedge.**
+
+    - Step 1 (gamma-hedge with options): Adding options changes both the gamma and the delta of the portfolio.
+    - Step 2 (delta-hedge with shares): Adding shares changes the delta but does not affect gamma (shares have $\Gamma = 0$).
+
+    This sequence works because the delta adjustment in Step 2 does not undo the gamma neutralization achieved in Step 1.
+
+    **What goes wrong in the reverse order:**
+
+    - Step 1 (delta-hedge with shares): The portfolio is delta-neutral but still has nonzero gamma.
+    - Step 2 (gamma-hedge with options): Adding options changes gamma toward zero, but also changes delta away from zero. The delta hedge from Step 1 is now invalidated.
+
+    The trader would need to go back and re-delta-hedge with shares, making the initial delta hedge redundant. If the trader does not re-delta-hedge after Step 2, the portfolio has the correct gamma but incorrect delta.
+
+    In summary: adding options always changes delta, so delta-hedging must come last. Adding shares never changes gamma, so the gamma hedge is preserved regardless of subsequent share trades.
+
 ---
 
 **Exercise 6.** A portfolio has the following Greeks: $\Delta = 100$, $\Gamma = 6.0$, $\nu = 350$, $\Theta = -1.20$/day. Only one hedging option is available with $\Delta_H = 0.55$, $\Gamma_H = 0.04$, $\nu_H = 2.8$. The trader can gamma-hedge but not simultaneously vega-hedge. Compute the position in the hedging option for gamma neutrality, the resulting net vega, and discuss whether the residual vega exposure is acceptable.
+
+??? success "Solution to Exercise 6"
+    The portfolio has $\Gamma = 6.0$ and the hedging option has $\Gamma_H = 0.04$, $\nu_H = 2.8$, $\Delta_H = 0.55$.
+
+    **Position for gamma neutrality:**
+
+    $$
+    n_H = -\frac{\Gamma_{\text{port}}}{\Gamma_H} = -\frac{6.0}{0.04} = -150
+    $$
+
+    Short 150 units of the hedging option.
+
+    **Resulting net vega:**
+
+    $$
+    \nu_{\text{new}} = 350 + (-150)(2.8) = 350 - 420 = -70
+    $$
+
+    The portfolio goes from long vega ($+350$) to short vega ($-70$). The gamma hedge overshoots the vega neutralization because the hedging option's vega-to-gamma ratio ($2.8/0.04 = 70$) exceeds the portfolio's vega-to-gamma ratio ($350/6.0 \approx 58.3$).
+
+    **Resulting delta (before share hedge):**
+
+    $$
+    \Delta_{\text{new}} = 100 + (-150)(0.55) = 100 - 82.5 = 17.5
+    $$
+
+    The trader then shorts 17.5 shares to restore delta neutrality.
+
+    **Acceptability of residual vega.** The residual $\nu = -70$ means the portfolio loses $\$70$ for each 1 percentage point increase in implied volatility. Whether this is acceptable depends on:
+
+    - The magnitude relative to the portfolio value and risk limits.
+    - The trader's view on volatility direction (if they expect vol to decline, short vega is tolerable).
+    - The volatility regime: in a low-vol environment, the risk of a vol spike may make this exposure unacceptable.
+
+    If the residual vega is too large, the trader needs a second hedging instrument to independently target vega, creating the two-instrument system required for joint gamma-vega neutralization.

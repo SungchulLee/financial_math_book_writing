@@ -296,22 +296,164 @@ The Barles-Souganidis theorem provides the definitive convergence guarantee for 
 
 **Exercise 1.** State the Barles-Souganidis theorem precisely. What are the four hypotheses, and what is the conclusion? Compare this to the Lax equivalence theorem and explain why the additional monotonicity condition is needed.
 
+??? success "Solution to Exercise 1"
+    **Barles-Souganidis Theorem** (1991): Consider the degenerate elliptic PDE $F(\tau, x, u, Du, D^2u) = 0$ on a domain $\Omega$ with boundary conditions. Assume:
+
+    1. A **comparison principle** holds for viscosity sub- and supersolutions of $F = 0$
+    2. The approximation scheme $S_h$ is **monotone**: if $u_h \leq v_h$ pointwise, then $S_h(\tau, x, t, u_h) \leq S_h(\tau, x, t, v_h)$
+    3. The scheme is **stable**: $\|u_h\|_\infty \leq C$ uniformly in $h$
+    4. The scheme is **consistent**: for every $\varphi \in C^\infty$, $S_h(\tau, y, \varphi + \xi, \varphi + \xi) \to F(\tau, x, \varphi, D\varphi, D^2\varphi)$ as $h \to 0$, $y \to x$, $\xi \to 0$
+
+    **Conclusion**: The numerical solution $u_h$ converges uniformly on compact subsets to the unique viscosity solution $u$ as $h \to 0$.
+
+    **Comparison with Lax equivalence**: The Lax equivalence theorem states that for **linear**, well-posed problems, consistency + stability $\Leftrightarrow$ convergence. The Barles-Souganidis theorem differs in two important ways:
+
+    - It requires the additional condition of **monotonicity**, which has no analog in the Lax framework
+    - The implication is one-directional ($\Rightarrow$, not $\Leftrightarrow$)
+
+    **Why monotonicity is needed**: Without monotonicity, a consistent and stable scheme can converge to the wrong weak solution. For nonlinear or degenerate PDEs, the notion of solution is not unique without specifying a selection criterion. The viscosity solution is selected by the comparison principle, and monotonicity is the discrete property that ensures the numerical scheme respects this selection. The Crank-Nicolson scheme demonstrates the failure: it is consistent and stable, but not monotone, and near payoff kinks it can converge to a function that violates the viscosity solution conditions. Monotonicity guarantees that the half-relaxed limits $\overline{u}$ and $\underline{u}$ inherit the sub/supersolution properties from the scheme, which is the essential step in the proof.
+
 ---
 
 **Exercise 2.** Verify each of the three Barles-Souganidis conditions for the explicit scheme with the CFL condition satisfied: (a) monotonicity from non-negative stencil coefficients, (b) stability from the discrete maximum principle, (c) consistency from Taylor expansion of the local truncation error.
+
+??? success "Solution to Exercise 2"
+    Consider the explicit scheme $u_j^{n+1} = a_j u_{j-1}^n + b_j u_j^n + c_j u_{j+1}^n$ applied to the Black-Scholes PDE with CFL condition satisfied.
+
+    **(a) Monotonicity**: Under the CFL condition, the stencil coefficients for the Black-Scholes discretization are
+
+    $$
+    a_j = \frac{\Delta\tau}{2}\left(\frac{\sigma^2 S_j^2}{(\Delta S)^2} - \frac{rS_j}{\Delta S}\right), \quad c_j = \frac{\Delta\tau}{2}\left(\frac{\sigma^2 S_j^2}{(\Delta S)^2} + \frac{rS_j}{\Delta S}\right)
+    $$
+
+    $$
+    b_j = 1 - a_j - c_j = 1 - \Delta\tau\left(\frac{\sigma^2 S_j^2}{(\Delta S)^2} + r\right)
+    $$
+
+    The CFL condition $\Delta\tau \leq (\Delta S)^2 / (\sigma^2 S_{\max}^2 + r(\Delta S)^2)$ ensures $b_j \geq 0$. With a sufficiently fine grid (or upwinding), $a_j \geq 0$ and $c_j \geq 0$. All coefficients are non-negative, so if $u^n \leq v^n$ pointwise, then $u^{n+1}_j = a_j u^n_{j-1} + b_j u^n_j + c_j u^n_{j+1} \leq a_j v^n_{j-1} + b_j v^n_j + c_j v^n_{j+1} = v^{n+1}_j$. The scheme is monotone.
+
+    **(b) Stability**: Since $a_j + b_j + c_j = 1$ and all coefficients are non-negative, the discrete maximum principle holds: $\min_j u_j^n \leq u_j^{n+1} \leq \max_j u_j^n$. For option pricing with non-negative payoff bounded by $C$, we get $0 \leq u_j^n \leq C$ for all $n$ and $j$. Thus $\|u_h\|_\infty \leq C$ independently of $h$.
+
+    **(c) Consistency**: For a smooth test function $\varphi(\tau, S)$, substitute into the scheme and Taylor-expand around $(\tau^n, S_j)$:
+
+    $$
+    \varphi_j^{n+1} = \varphi_j^n + \Delta\tau\, \varphi_\tau + O((\Delta\tau)^2)
+    $$
+
+    $$
+    a_j \varphi_{j-1}^n + b_j \varphi_j^n + c_j \varphi_{j+1}^n = \varphi_j^n + \Delta\tau\left(\frac{1}{2}\sigma^2 S_j^2 \varphi_{SS} + rS_j \varphi_S - r\varphi\right) + O(\Delta\tau \cdot \Delta S^2)
+    $$
+
+    The local truncation error is $\text{LTE} = O(\Delta\tau + (\Delta S)^2) \to 0$ as $h \to 0$, confirming consistency.
 
 ---
 
 **Exercise 3.** The Crank-Nicolson scheme fails the monotonicity condition because its amplification factor can be negative for high-frequency modes. Give a concrete example with specific parameter values where this failure produces visible oscillations in the numerical solution.
 
+??? success "Solution to Exercise 3"
+    Consider an American put option with $K = 100$, $\sigma = 0.4$, $r = 0.05$, $T = 1$. Use a uniform grid with $S_{\max} = 300$, $N_S = 100$ grid points ($\Delta S = 3$), and $N_\tau = 50$ time steps ($\Delta\tau = 0.02$).
+
+    The mesh ratio at $S = S_{\max} = 300$ is
+
+    $$
+    \lambda = \frac{\sigma^2 S_{\max}^2 \Delta\tau}{(\Delta S)^2} = \frac{0.16 \times 90000 \times 0.02}{9} = 32
+    $$
+
+    The Crank-Nicolson amplification factor for the highest frequency mode ($\theta = \pi$) is
+
+    $$
+    g(\pi) = \frac{1 - 2\lambda}{1 + 2\lambda} = \frac{1 - 64}{1 + 64} = \frac{-63}{65} \approx -0.969
+    $$
+
+    This is negative with magnitude close to 1, meaning high-frequency components are nearly preserved in amplitude but **reversed in sign** at each time step.
+
+    The put payoff $(K - S)^+$ has a kink at $S = K = 100$. This kink generates significant high-frequency Fourier components. Under Crank-Nicolson, these components are sign-reversed at each step, producing oscillations: the numerical solution alternates above and below the true value in a checkerboard pattern near $S = K$.
+
+    After applying the American constraint $u_j \leftarrow \max(u_j, (K - S_j)^+)$, the oscillations interact with the early exercise boundary. The spurious undershoots (negative oscillations) are clipped by the obstacle, but the overshoots remain, producing a jagged numerical free boundary and option values that are systematically too high near $S^*(\tau)$. The computed Greeks ($\Delta$ and $\Gamma$) exhibit visible sawtooth patterns that do not diminish under mesh refinement, demonstrating that the scheme does not converge to the viscosity solution near the non-smooth features.
+
 ---
 
 **Exercise 4.** The Godunov-type barrier states that monotone schemes are limited to first-order accuracy. Explain the practical resolution of this accuracy-monotonicity tradeoff: how does the Rannacher time-stepping strategy achieve effectively second-order accuracy while maintaining monotonicity where it matters?
+
+??? success "Solution to Exercise 4"
+    The Godunov-type barrier states that monotone linear schemes for second-order PDEs are limited to first-order accuracy ($O(h)$ in $L^\infty$). This creates a fundamental tension: monotonicity guarantees convergence but limits accuracy to $O(h)$, while higher-order schemes (like Crank-Nicolson, $O(h^2)$) sacrifice monotonicity.
+
+    The **Rannacher time-stepping** strategy resolves this tradeoff by exploiting the fact that monotonicity is only critical near non-smooth features of the solution. The strategy has two phases:
+
+    **Phase 1 (Implicit start)**: Perform 2--4 fully implicit (backward Euler) half-steps at the beginning of the time marching (near the terminal payoff). The fully implicit scheme is unconditionally monotone because the inverse of the resulting M-matrix has all non-negative entries. These monotone steps damp the high-frequency errors introduced by the payoff kink at $S = K$. After a few implicit steps, the numerical solution is effectively smooth.
+
+    **Phase 2 (Crank-Nicolson continuation)**: Switch to Crank-Nicolson for all remaining time steps. Since the solution is now smooth (the initial non-smoothness has been damped), Crank-Nicolson's lack of monotonicity does not cause problems --- it converges at second order for smooth solutions by the Lax equivalence theorem.
+
+    The combined scheme achieves effectively second-order accuracy ($O((\Delta\tau)^2 + (\Delta S)^2)$) overall because the implicit start introduces only $O(\Delta\tau)$ error over a fixed number of steps (which vanishes relative to the global $O((\Delta\tau)^2)$ error of Crank-Nicolson), while restoring the smoothness that Crank-Nicolson requires. The monotone initial phase ensures that the scheme respects the viscosity solution framework where it matters most (near the payoff kink), and the Crank-Nicolson continuation provides the desired accuracy.
 
 ---
 
 **Exercise 5.** For the American option obstacle problem with projection $u_j^{n+1} = \max(\text{time-step result}, \Phi_j)$, explain why the $\max$ operation preserves monotonicity. Specifically, show that if the time-stepping scheme is monotone and $u \leq v$ at all nodes, then $\max(u_j, \Phi_j) \leq \max(v_j, \Phi_j)$.
 
+??? success "Solution to Exercise 5"
+    We need to show that the $\max$ operation preserves monotonicity. Let the time-stepping scheme produce $\tilde{u}_j$ from input data $\{u_k\}$ and $\tilde{v}_j$ from input data $\{v_k\}$, where $u_k \leq v_k$ for all $k$.
+
+    **Monotonicity of time-stepping (by assumption)**: Since the underlying scheme is monotone and $u_k \leq v_k$ for all $k$:
+
+    $$
+    \tilde{u}_j \leq \tilde{v}_j \quad \text{for all } j
+    $$
+
+    **Monotonicity of $\max$**: We claim that for any fixed $\Phi_j$ and any $a \leq b$:
+
+    $$
+    \max(a, \Phi_j) \leq \max(b, \Phi_j)
+    $$
+
+    This follows by considering three cases:
+
+    - If $a \leq b \leq \Phi_j$: both sides equal $\Phi_j$, so $\Phi_j \leq \Phi_j$
+    - If $a \leq \Phi_j \leq b$: the left side is $\Phi_j$ and the right side is $b$, so $\Phi_j \leq b$
+    - If $\Phi_j \leq a \leq b$: the left side is $a$ and the right side is $b$, so $a \leq b$
+
+    In all cases, the inequality holds.
+
+    **Composition preserves monotonicity**: Applying both results, if $u_k \leq v_k$ for all $k$, then
+
+    $$
+    u_j^{n+1} = \max(\tilde{u}_j, \Phi_j) \leq \max(\tilde{v}_j, \Phi_j) = v_j^{n+1}
+    $$
+
+    Therefore the full American option scheme (monotone time-step followed by $\max$ projection) is monotone. Combined with stability (the projection does not increase the $L^\infty$ norm beyond $\max(\|u_h\|_\infty, \|\Phi\|_\infty)$) and consistency (the projection does not affect the truncation error in the continuation region), the Barles-Souganidis theorem guarantees convergence to the viscosity solution of the obstacle problem.
+
 ---
 
 **Exercise 6.** The Barles-Souganidis theorem guarantees convergence but does not provide a convergence rate. Why is this limitation important in practice? Describe how you would empirically determine the convergence rate of a monotone scheme for an American put option where no analytical solution is available.
+
+??? success "Solution to Exercise 6"
+    **Why the lack of a convergence rate matters**: The Barles-Souganidis theorem guarantees that $u_h \to u$ as $h \to 0$, but it does not tell us **how fast**. In practice, a financial engineer needs to know:
+
+    - How fine a grid is needed to achieve a desired accuracy (e.g., pricing to within \$0.01)
+    - How computational cost scales with accuracy requirements
+    - Whether Richardson extrapolation or other acceleration techniques are applicable
+
+    Without a theoretical rate, these questions cannot be answered a priori. The rate could be $O(h)$, $O(h^{1/2})$, or even $O(h^{1/4})$ depending on the regularity of the solution. For smooth European options, one typically observes $O(h)$ (first-order) convergence for monotone schemes, but for American options the free boundary introduces a regularity limitation that can degrade the rate.
+
+    **Empirical convergence rate determination**: Since no closed-form solution exists for the American put, the convergence rate is determined by a **self-convergence study**:
+
+    1. **Compute a reference solution** $u_{\text{ref}}$ on a very fine grid (e.g., $N = 8192$ spatial points and proportionally many time steps)
+
+    2. **Compute solutions on a sequence of coarsening grids**: $N = 64, 128, 256, 512, 1024, 2048$, with time steps refined proportionally to maintain the CFL condition ($\Delta\tau \propto (\Delta S)^2$ for explicit schemes, or $\Delta\tau \propto \Delta S$ for implicit)
+
+    3. **Measure the error** $e_N = \|u_N - u_{\text{ref}}\|_\infty$ (or at a specific point, e.g., $S = K$) for each grid
+
+    4. **Estimate the convergence rate** $p$ from consecutive error pairs:
+
+    $$
+    p \approx \frac{\log(e_N / e_{2N})}{\log 2}
+    $$
+
+    5. **Verify consistency**: The estimated $p$ should stabilize as $N$ increases. For a monotone scheme (implicit Euler) applied to the American put, one typically observes $p \approx 1$ (first-order convergence), consistent with the Godunov barrier
+
+    An alternative to the reference solution approach is to use the **ratio test**: compute $u_N$, $u_{2N}$, and $u_{4N}$, then estimate the rate from
+
+    $$
+    p \approx \frac{\log\bigl((u_N - u_{2N}) / (u_{2N} - u_{4N})\bigr)}{\log 2}
+    $$
+
+    This avoids the need for a reference solution and is the standard approach when no analytical benchmark is available.

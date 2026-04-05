@@ -486,67 +486,11 @@ The simulations in this chapter have verified these properties numerically:
 - Quadratic variation converges to $t$ as mesh refines
 - Covariance structure matches $\min(s, t)$
 
-### Exercises
+## Exercises
 
 #### Basic Properties
 
 1. Show that $\mathbb{E}[W_t] = 0$ and $\text{Var}(W_t) = t$ directly from the axiomatic definition.
-
-2. Compute $\mathbb{E}[W_s W_t]$ for $0 \le s \le t$ using the independent increments property.
-
-3. Deduce that $(W_t)_{t \ge 0}$ has stationary increments, i.e., $W_t - W_s \overset{d}{=} W_{t-s}$.
-
-#### Gaussian Increments
-
-Let $0 \le s < t$.
-
-4. Show that $W_t - W_s \sim \mathcal{N}(0, t - s)$ from the definition.
-
-5. Prove that $W_t - W_s$ is independent of $\mathcal{F}_s = \sigma(W_u : u \le s)$.
-
-6. Compute the characteristic function $\mathbb{E}[e^{i\lambda(W_t - W_s)}]$.
-
-#### Path Continuity
-
-7. Show that $\mathbb{E}[(W_t - W_s)^2] = |t - s|$.
-
-8. Use Kolmogorov's continuity theorem to justify the existence of a continuous modification. (Hint: Show $\mathbb{E}[|W_t - W_s|^4] = 3(t-s)^2$.)
-
-9. Why does Brownian motion fail to be differentiable almost surely? (Hint: Consider what differentiability would imply for $\mathbb{E}[(W_{t+h} - W_t)^2]/h^2$ as $h \to 0$.)
-
-#### Martingale Properties
-
-10. Show that $(W_t)_{t \ge 0}$ is a martingale with respect to its natural filtration.
-
-11. Show that $(W_t^2 - t)_{t \ge 0}$ is a martingale.
-
-12. Is $(W_t^3)_{t \ge 0}$ a martingale? Justify your answer by computing $\mathbb{E}[W_t^3 | \mathcal{F}_s]$. (Hint: use the Gaussian moments of $W_t - W_s$.)
-
-#### Covariation
-
-Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
-
-13. Compute the quadratic covariation $\langle W, \widetilde{W} \rangle_t$.
-
-14. What is $\langle W, \widetilde{W} \rangle_t$ if $\widetilde{W}_t = \rho W_t + \sqrt{1-\rho^2} B_t$, where $B_t$ is independent of $W_t$?
-
-15. Interpret the result in terms of correlation between the two processes.
-
-#### Challenge Problems (Optional Advanced)
-
-16. Show that Brownian motion has infinite total variation on any interval $[0, T]$ almost surely.
-
-17. Prove that Brownian motion is Hölder continuous of any order $\alpha < 1/2$, but of no order $\alpha \ge 1/2$.
-
-18. (Time Reversal) Let $\tilde{W}_t = W_T - W_{T-t}$ for $t \in [0, T]$. Show that $\tilde{W}$ is also a Brownian motion on $[0, T]$.
-
-19. (Exponential Martingale) Define $M_t := \exp\left( \lambda W_t - \frac{1}{2} \lambda^2 t \right)$ for $\lambda \in \mathbb{R}$. Show that $(M_t)_{t \ge 0}$ is a martingale and compute $\mathbb{E}[M_t]$. Explain why this is fundamental in stochastic calculus and mathematical finance (hint: Girsanov theorem, risk-neutral pricing).
-
-20. (Law of the Iterated Logarithm) The law of the iterated logarithm states that $\limsup_{t \to 0^+} \frac{W_t}{\sqrt{2 t \log \log (1/t)}} = 1$ a.s. Interpret this result in terms of path oscillation and explain why it is incompatible with differentiability.
-
-### Solutions
-
-#### Basic Properties
 
 ??? success "Solution to Exercise 1"
     From the axiomatic definition, $W_t - W_0 \sim \mathcal{N}(0, t - 0) = \mathcal{N}(0, t)$ (property (iii)), and $W_0 = 0$ a.s. (property (i)). Therefore $W_t \sim \mathcal{N}(0, t)$, which gives:
@@ -554,6 +498,10 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
     $$
     \mathbb{E}[W_t] = 0, \quad \text{Var}(W_t) = \mathbb{E}[W_t^2] - (\mathbb{E}[W_t])^2 = t - 0 = t
     $$
+
+---
+
+2. Compute $\mathbb{E}[W_s W_t]$ for $0 \le s \le t$ using the independent increments property.
 
 ??? success "Solution to Exercise 2"
     Assume $0 \le s \le t$. Write $W_t = W_s + (W_t - W_s)$, where $W_t - W_s$ is independent of $W_s$ (by property (ii), since $W_s = W_s - W_0$ and $W_t - W_s$ are increments over disjoint intervals).
@@ -570,6 +518,10 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
 
     Therefore $\mathbb{E}[W_s W_t] = \mathbb{E}[W_s^2] = s = \min(s, t)$.
 
+---
+
+3. Deduce that $(W_t)_{t \ge 0}$ has stationary increments, i.e., $W_t - W_s \overset{d}{=} W_{t-s}$.
+
 ??? success "Solution to Exercise 3"
     By property (iii), $W_t - W_s \sim \mathcal{N}(0, t-s)$ and $W_{t-s} - W_0 = W_{t-s} \sim \mathcal{N}(0, t-s)$. Since both are Gaussian with the same mean (0) and variance ($t - s$), they have the same distribution:
 
@@ -581,13 +533,29 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
 
 #### Gaussian Increments
 
+---
+
+#### Gaussian Increments
+
+Let $0 \le s < t$.
+
+4. Show that $W_t - W_s \sim \mathcal{N}(0, t - s)$ from the definition.
+
 ??? success "Solution to Exercise 4"
     This follows directly from property (iii) of the definition: for $0 \le s < t$, the increment $W_t - W_s \sim \mathcal{N}(0, t - s)$.
+
+---
+
+5. Prove that $W_t - W_s$ is independent of $\mathcal{F}_s = \sigma(W_u : u \le s)$.
 
 ??? success "Solution to Exercise 5"
     By property (ii), for any $0 \le t_0 < t_1 < \cdots < t_n$, the increments $W_{t_1} - W_{t_0}, W_{t_2} - W_{t_1}, \ldots$ are independent. In particular, $W_t - W_s$ is independent of $W_{s} - W_{0}, W_{s/2} - W_0, \ldots$ and all events in $\sigma(W_u : u \le s)$.
 
     More precisely, $W_t - W_s$ is independent of $\sigma(W_{t_1} - W_{t_0}, \ldots, W_{t_k} - W_{t_{k-1}})$ for any partition $0 = t_0 < t_1 < \cdots < t_k = s$. Since the $\sigma$-algebra $\mathcal{F}_s = \sigma(W_u : u \le s)$ is generated by such increments, $W_t - W_s$ is independent of $\mathcal{F}_s$.
+
+---
+
+6. Compute the characteristic function $\mathbb{E}[e^{i\lambda(W_t - W_s)}]$.
 
 ??? success "Solution to Exercise 6"
     Since $W_t - W_s \sim \mathcal{N}(0, t-s)$, the characteristic function is:
@@ -600,12 +568,22 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
 
 #### Path Continuity
 
+---
+
+#### Path Continuity
+
+7. Show that $\mathbb{E}[(W_t - W_s)^2] = |t - s|$.
+
 ??? success "Solution to Exercise 7"
     Since $W_t - W_s \sim \mathcal{N}(0, t-s)$:
 
     $$
     \mathbb{E}[(W_t - W_s)^2] = \text{Var}(W_t - W_s) + (\mathbb{E}[W_t - W_s])^2 = (t - s) + 0 = |t - s|
     $$
+
+---
+
+8. Use Kolmogorov's continuity theorem to justify the existence of a continuous modification. (Hint: Show $\mathbb{E}[|W_t - W_s|^4] = 3(t-s)^2$.)
 
 ??? success "Solution to Exercise 8"
     Kolmogorov's continuity theorem requires $\mathbb{E}[|X_t - X_s|^p] \le C|t-s|^{1+\beta}$ for some $p > 0$ and $\beta > 0$.
@@ -618,6 +596,10 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
 
     This gives $C = 3$, $\beta = 1$, $p = 4$. By Kolmogorov's theorem, $W$ has a continuous modification that is Hölder-$\alpha$ for any $\alpha < \beta/p = 1/4$. Taking larger $p$ (which is allowed since all Gaussian moments are finite) improves the bound to $\alpha < 1/2 - 1/p$, and letting $p \to \infty$ gives continuity with Hölder exponent up to (but not including) $1/2$.
 
+---
+
+9. Why does Brownian motion fail to be differentiable almost surely? (Hint: Consider what differentiability would imply for $\mathbb{E}[(W_{t+h} - W_t)^2]/h^2$ as $h \to 0$.)
+
 ??? success "Solution to Exercise 9"
     If $W$ were differentiable at some point $t$ with derivative $L$, then $W_{t+h} - W_t \approx Lh$ for small $h$, so:
 
@@ -629,6 +611,12 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
 
 #### Martingale Properties
 
+---
+
+#### Martingale Properties
+
+10. Show that $(W_t)_{t \ge 0}$ is a martingale with respect to its natural filtration.
+
 ??? success "Solution to Exercise 10"
     For $s \le t$, write $W_t = W_s + (W_t - W_s)$. Since $W_t - W_s$ is independent of $\mathcal{F}_s = \sigma(W_u : u \le s)$ and has mean zero:
 
@@ -637,6 +625,10 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
     $$
 
     Also, $\mathbb{E}[|W_t|] = \sqrt{2t/\pi} < \infty$ for all $t$, and $W_t$ is adapted to $\mathcal{F}_t$. So $(W_t)$ is a martingale.
+
+---
+
+11. Show that $(W_t^2 - t)_{t \ge 0}$ is a martingale.
 
 ??? success "Solution to Exercise 11"
     Write $W_t^2 = (W_s + (W_t - W_s))^2 = W_s^2 + 2W_s(W_t - W_s) + (W_t - W_s)^2$. Taking conditional expectations:
@@ -657,6 +649,10 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
 
     This confirms $(W_t^2 - t)$ is a martingale.
 
+---
+
+12. Is $(W_t^3)_{t \ge 0}$ a martingale? Justify your answer by computing $\mathbb{E}[W_t^3 | \mathcal{F}_s]$. (Hint: use the Gaussian moments of $W_t - W_s$.)
+
 ??? success "Solution to Exercise 12"
     $(W_t^3)$ is **not** a martingale. Compute $\mathbb{E}[W_t^3 | \mathcal{F}_s]$ by expanding $W_t = W_s + (W_t - W_s)$. Let $\Delta = W_t - W_s$:
 
@@ -674,6 +670,14 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
 
 #### Covariation
 
+---
+
+#### Covariation
+
+Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
+
+13. Compute the quadratic covariation $\langle W, \widetilde{W} \rangle_t$.
+
 ??? success "Solution to Exercise 13"
     If $W_t$ and $\widetilde{W}_t$ are independent Brownian motions, the cross variation is:
 
@@ -689,6 +693,10 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
 
     Therefore $\langle W, \widetilde{W} \rangle_t = 0$.
 
+---
+
+14. What is $\langle W, \widetilde{W} \rangle_t$ if $\widetilde{W}_t = \rho W_t + \sqrt{1-\rho^2} B_t$, where $B_t$ is independent of $W_t$?
+
 ??? success "Solution to Exercise 14"
     With $\widetilde{W}_t = \rho W_t + \sqrt{1-\rho^2} B_t$ where $B_t$ is independent of $W_t$:
 
@@ -702,6 +710,10 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
     \langle W, \widetilde{W} \rangle_t = \rho t
     $$
 
+---
+
+15. Interpret the result in terms of correlation between the two processes.
+
 ??? success "Solution to Exercise 15"
     The result $\langle W, \widetilde{W} \rangle_t = \rho t$ shows that the quadratic covariation per unit time equals the correlation $\rho$ between the two processes. This means:
 
@@ -712,6 +724,12 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
     In multi-asset finance, $\rho$ governs the diversification benefit: the portfolio variance depends on the cross variation between asset returns.
 
 #### Challenge Problems (Optional Advanced)
+
+---
+
+#### Challenge Problems (Optional Advanced)
+
+16. Show that Brownian motion has infinite total variation on any interval $[0, T]$ almost surely.
 
 ??? success "Solution to Exercise 16"
     For the uniform partition $\Pi_n$ of $[0, T]$ with $\Delta t = T/n$, each $|\Delta W_i| = |W_{t_{i+1}} - W_{t_i}|$ satisfies $\mathbb{E}[|\Delta W_i|] = \sqrt{2\Delta t/\pi} = \sqrt{2T/(\pi n)}$.
@@ -730,6 +748,10 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
 
     As $\|\Pi_n\| \to 0$: the numerator converges to $T$ in $L^2$ (quadratic variation), and the denominator converges to $0$ in probability (by Hölder continuity). Therefore $V_1(W, \Pi_n) \to \infty$ in probability, and $V_1(W) = \sup_\Pi V_1(W, \Pi) = +\infty$ a.s.
 
+---
+
+17. Prove that Brownian motion is Hölder continuous of any order $\alpha < 1/2$, but of no order $\alpha \ge 1/2$.
+
 ??? success "Solution to Exercise 17"
     **Hölder-$\alpha$ for $\alpha < 1/2$:** Since $W_t - W_s \sim \mathcal{N}(0, t-s)$, for any $p > 2$:
 
@@ -746,6 +768,10 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
     $$
 
     If $W$ were Hölder-$1/2$, we would have $|W_{t+h} - W_t| \le C\sqrt{h}$, so the limsup would be 0. The limsup being 1 contradicts this, so $W$ is not Hölder-$1/2$.
+
+---
+
+18. (Time Reversal) Let $\tilde{W}_t = W_T - W_{T-t}$ for $t \in [0, T]$. Show that $\tilde{W}$ is also a Brownian motion on $[0, T]$.
 
 ??? success "Solution to Exercise 18"
     Define $\tilde{W}_t = W_T - W_{T-t}$ for $t \in [0, T]$. We verify the four properties:
@@ -767,6 +793,10 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
     $$
 
     **(iv) Continuous paths:** $t \mapsto \tilde{W}_t = W_T - W_{T-t}$ is continuous since $W$ has continuous paths.
+
+---
+
+19. (Exponential Martingale) Define $M_t := \exp\left( \lambda W_t - \frac{1}{2} \lambda^2 t \right)$ for $\lambda \in \mathbb{R}$. Show that $(M_t)_{t \ge 0}$ is a martingale and compute $\mathbb{E}[M_t]$. Explain why this is fundamental in stochastic calculus and mathematical finance (hint: Girsanov theorem, risk-neutral pricing).
 
 ??? success "Solution to Exercise 19"
     Define $M_t = \exp(\lambda W_t - \frac{1}{2}\lambda^2 t)$. We show this is a martingale.
@@ -790,6 +820,10 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
     Also, $\mathbb{E}[M_t] = M_0 = e^0 = 1$ for all $t$.
 
     **Significance:** The exponential martingale is the Radon-Nikodym derivative used in the **Girsanov theorem** to change probability measures. In finance, it transforms the real-world measure $\mathbb{P}$ to the risk-neutral measure $\mathbb{Q}$ under which discounted asset prices are martingales, enabling arbitrage-free option pricing.
+
+---
+
+20. (Law of the Iterated Logarithm) The law of the iterated logarithm states that $\limsup_{t \to 0^+} \frac{W_t}{\sqrt{2 t \log \log (1/t)}} = 1$ a.s. Interpret this result in terms of path oscillation and explain why it is incompatible with differentiability.
 
 ??? success "Solution to Exercise 20"
     The law of the iterated logarithm states:

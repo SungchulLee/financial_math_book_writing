@@ -1,6 +1,8 @@
 # The Stochastic Exponential
 
-The **stochastic exponential** (or **Doléans-Dade exponential**) is the stochastic analogue of the ordinary exponential function. It is the fundamental tool for constructing Radon–Nikodym derivatives in measure change, and therefore central to Girsanov's theorem and risk-neutral pricing.
+In the [unifying framework](unifying_principle_controlling_local_martingales.md) of this section, the stochastic exponential is the **transformation enabling control** — it converts additive local martingales into multiplicative densities for measure change.
+
+The **stochastic exponential** (or **Doleans-Dade exponential**) is the stochastic analogue of the ordinary exponential function. It is the fundamental tool for constructing Radon-Nikodym derivatives in measure change, and therefore central to Girsanov's theorem and risk-neutral pricing.
 
 !!! info "Prerequisites"
     This section assumes familiarity with:
@@ -407,40 +409,6 @@ $$
 **Exercise 1.**
 Compute the stochastic exponential $\mathcal{E}(\sigma W)_t$ explicitly for $\sigma = 2$. Verify that $\mathbb{E}[\mathcal{E}(2W)_t] = 1$ using the moment generating function of the normal distribution. What is $\mathrm{Var}(\mathcal{E}(2W)_t)$?
 
----
-
-**Exercise 2.**
-Let $X_t = \int_0^t \sigma_s\,dW_s$ with $\sigma_s = s$. Write the explicit formula for $\mathcal{E}(X)_t$ and compute its quadratic variation $\langle \mathcal{E}(X) \rangle_t$. Verify Novikov's condition for finite $T$ and conclude that $\mathcal{E}(X)$ is a true martingale on $[0, T]$.
-
----
-
-**Exercise 3.**
-Apply Ito's lemma to $Z_t = e^{W_t}$ (without the correction) and show that $dZ_t = Z_t\,dW_t + \frac{1}{2}Z_t\,dt$. Then apply Ito's lemma to $\mathcal{E}(W)_t = e^{W_t - t/2}$ and show that the $dt$ term vanishes. Explain why the Ito correction $-\frac{1}{2}\langle W \rangle_t = -t/2$ is exactly what is needed to remove the drift.
-
----
-
-**Exercise 4.**
-Prove the multiplication rule $\mathcal{E}(X)_t \cdot \mathcal{E}(Y)_t = \mathcal{E}(X + Y + \langle X, Y \rangle)_t$ by applying the Ito product rule to $Z_t = \mathcal{E}(X)_t$ and $U_t = \mathcal{E}(Y)_t$. Identify where the covariation term $\langle X, Y \rangle$ enters.
-
----
-
-**Exercise 5.**
-In the Black-Scholes model, the stock price is $S_t = S_0 e^{(\mu - \sigma^2/2)t + \sigma W_t} = S_0 e^{\mu t} \mathcal{E}(\sigma W)_t$. Show that the discounted price $e^{-rt}S_t$ can be written as $S_0 e^{(\mu - r)t}\mathcal{E}(\sigma W)_t$ and explain why this is a martingale under $\mathbb{Q}$ but not under $\mathbb{P}$ (unless $\mu = r$).
-
----
-
-**Exercise 6.**
-For the Radon-Nikodym derivative $Z_t = \mathcal{E}(-\int_0^{\cdot}\theta_s\,dW_s)_t$, show that $1/Z_t$ is not equal to $\mathcal{E}(\int_0^{\cdot}\theta_s\,dW_s)_t$ in general. Compute the ratio explicitly and identify the extra multiplicative factor involving $\langle M \rangle_t$ where $M_t = \int_0^t \theta_s\,dW_s$.
-
----
-
-**Exercise 7.**
-Consider two independent Brownian motions $W_t^1$ and $W_t^2$ and define $X_t = \sigma_1 W_t^1 + \sigma_2 W_t^2$. Compute $\langle X \rangle_t$ and write $\mathcal{E}(X)_t$ explicitly. Then verify using the multiplication rule that $\mathcal{E}(\sigma_1 W^1)_t \cdot \mathcal{E}(\sigma_2 W^2)_t = \mathcal{E}(\sigma_1 W^1 + \sigma_2 W^2)_t$ (since $\langle W^1, W^2 \rangle = 0$).
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     For $\sigma = 2$:
 
@@ -465,6 +433,11 @@ Consider two independent Brownian motions $W_t^1$ and $W_t^2$ and define $X_t = 
     $$
     \mathrm{Var}(\mathcal{E}(2W)_t) = \mathbb{E}[\mathcal{E}(2W)_t^2] - (\mathbb{E}[\mathcal{E}(2W)_t])^2 = e^{4t} - 1
     $$
+
+---
+
+**Exercise 2.**
+Let $X_t = \int_0^t \sigma_s\,dW_s$ with $\sigma_s = s$. Write the explicit formula for $\mathcal{E}(X)_t$ and compute its quadratic variation $\langle \mathcal{E}(X) \rangle_t$. Verify Novikov's condition for finite $T$ and conclude that $\mathcal{E}(X)$ is a true martingale on $[0, T]$.
 
 ??? success "Solution to Exercise 2"
     With $X_t = \int_0^t s\,dW_s$, the quadratic variation is:
@@ -493,6 +466,11 @@ Consider two independent Brownian motions $W_t^1$ and $W_t^2$ and define $X_t = 
 
     Since $\sigma_s = s$ is deterministic, $\langle X \rangle_T = T^3/3$ is deterministic, and the exponential moment is trivially finite. By Novikov's theorem, $\mathcal{E}(X)$ is a true martingale on $[0, T]$ for any finite $T$.
 
+---
+
+**Exercise 3.**
+Apply Ito's lemma to $Z_t = e^{W_t}$ (without the correction) and show that $dZ_t = Z_t\,dW_t + \frac{1}{2}Z_t\,dt$. Then apply Ito's lemma to $\mathcal{E}(W)_t = e^{W_t - t/2}$ and show that the $dt$ term vanishes. Explain why the Ito correction $-\frac{1}{2}\langle W \rangle_t = -t/2$ is exactly what is needed to remove the drift.
+
 ??? success "Solution to Exercise 3"
     **Without correction**: Let $Z_t = e^{W_t}$. By Itô's lemma with $f(x) = e^x$:
 
@@ -515,6 +493,11 @@ Consider two independent Brownian motions $W_t^1$ and $W_t^2$ and define $X_t = 
     $$
 
     The $dt$ terms cancel exactly. The Itô correction $-\frac{1}{2}\langle W \rangle_t = -t/2$ compensates precisely for the second-order term $\frac{1}{2}f''(W_t)\,dt$ in Itô's formula, removing the drift and producing a martingale.
+
+---
+
+**Exercise 4.**
+Prove the multiplication rule $\mathcal{E}(X)_t \cdot \mathcal{E}(Y)_t = \mathcal{E}(X + Y + \langle X, Y \rangle)_t$ by applying the Ito product rule to $Z_t = \mathcal{E}(X)_t$ and $U_t = \mathcal{E}(Y)_t$. Identify where the covariation term $\langle X, Y \rangle$ enters.
 
 ??? success "Solution to Exercise 4"
     Let $Z_t = \mathcal{E}(X)_t$ and $U_t = \mathcal{E}(Y)_t$. By the Itô product rule:
@@ -545,6 +528,11 @@ Consider two independent Brownian motions $W_t^1$ and $W_t^2$ and define $X_t = 
 
     The covariation $\langle X, Y \rangle$ enters through the cross-term $d\langle Z, U \rangle_t$ in the Itô product rule — this is the stochastic calculus analogue of the fact that the product of two exponentials involves the sum of exponents, but with an additional correction from quadratic covariation.
 
+---
+
+**Exercise 5.**
+In the Black-Scholes model, the stock price is $S_t = S_0 e^{(\mu - \sigma^2/2)t + \sigma W_t} = S_0 e^{\mu t} \mathcal{E}(\sigma W)_t$. Show that the discounted price $e^{-rt}S_t$ can be written as $S_0 e^{(\mu - r)t}\mathcal{E}(\sigma W)_t$ and explain why this is a martingale under $\mathbb{Q}$ but not under $\mathbb{P}$ (unless $\mu = r$).
+
 ??? success "Solution to Exercise 5"
     The stock price is $S_t = S_0 e^{(\mu - \sigma^2/2)t + \sigma W_t} = S_0 e^{\mu t}\mathcal{E}(\sigma W)_t$. The discounted price is:
 
@@ -568,6 +556,11 @@ Consider two independent Brownian motions $W_t^1$ and $W_t^2$ and define $X_t = 
 
     The factor $e^{(\mu-r)t}$ cancels with $e^{-(\mu-r)t}$ from the Girsanov shift, and the discounted price becomes $S_0\mathcal{E}(\sigma W^{\mathbb{Q}})_t$, which is a $\mathbb{Q}$-martingale with unit expectation.
 
+---
+
+**Exercise 6.**
+For the Radon-Nikodym derivative $Z_t = \mathcal{E}(-\int_0^{\cdot}\theta_s\,dW_s)_t$, show that $1/Z_t$ is not equal to $\mathcal{E}(\int_0^{\cdot}\theta_s\,dW_s)_t$ in general. Compute the ratio explicitly and identify the extra multiplicative factor involving $\langle M \rangle_t$ where $M_t = \int_0^t \theta_s\,dW_s$.
+
 ??? success "Solution to Exercise 6"
     Let $M_t = -\int_0^t \theta_s\,dW_s$, so $Z_t = \mathcal{E}(M)_t = \exp(M_t - \frac{1}{2}\langle M \rangle_t)$ and $\langle M \rangle_t = \int_0^t \theta_s^2\,ds$.
 
@@ -586,6 +579,11 @@ Consider two independent Brownian motions $W_t^1$ and $W_t^2$ and define $X_t = 
     $$
 
     The extra factor is $\exp(\langle M \rangle_t) = \exp(\int_0^t \theta_s^2\,ds)$, which is always $\geq 1$. So $1/Z_t > \mathcal{E}(-M)_t$ unless $\theta \equiv 0$. This discrepancy arises because the reciprocal operation interacts with the Itô correction term: flipping the sign of $M$ changes the sign of the first-order term but not the sign of the quadratic variation, creating an asymmetry.
+
+---
+
+**Exercise 7.**
+Consider two independent Brownian motions $W_t^1$ and $W_t^2$ and define $X_t = \sigma_1 W_t^1 + \sigma_2 W_t^2$. Compute $\langle X \rangle_t$ and write $\mathcal{E}(X)_t$ explicitly. Then verify using the multiplication rule that $\mathcal{E}(\sigma_1 W^1)_t \cdot \mathcal{E}(\sigma_2 W^2)_t = \mathcal{E}(\sigma_1 W^1 + \sigma_2 W^2)_t$ (since $\langle W^1, W^2 \rangle = 0$).
 
 ??? success "Solution to Exercise 7"
     With $X_t = \sigma_1 W_t^1 + \sigma_2 W_t^2$ and $W^1, W^2$ independent:

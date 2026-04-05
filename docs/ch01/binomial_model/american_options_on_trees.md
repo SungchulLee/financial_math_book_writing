@@ -749,48 +749,6 @@ The left panel shows the early exercise boundary $S^*(t)$: the coral region belo
 
 **Exercise 1.** Consider a 2-period binomial model with $S_0 = 40$, $u = 1.2$, $d = 0.9$, $r = 4\%$, and $\Delta t = 0.5$. Price an American put with strike $K = 42$ using backward induction. At each node, clearly state whether the holder should exercise or continue. Compute the early exercise premium by comparing with the European put price.
 
----
-
-**Exercise 2.** Prove that for an American call on a non-dividend-paying stock, the continuation value at any pre-terminal node $(n,j)$ satisfies:
-
-$$
-C_{n,j} \geq S_{n,j} - Ke^{-r(N-n)\Delta t} > S_{n,j} - K
-$$
-
-Deduce that early exercise is never optimal. Where does the proof break down for an American put?
-
----
-
-**Exercise 3.** Using the 3-period tree from the worked example in the text ($S_0 = 100$, $\sigma = 30\%$, $r = 5\%$, $T = 1$, $N = 3$, $K = 100$), verify the supermartingale property of the discounted American put price process. Specifically, check at each node $(n,j)$ that:
-
-$$
-e^{-rn\Delta t} V_{n,j} \geq e^{-r(n+1)\Delta t}\left[q\,V_{n+1,j+1} + (1-q)\,V_{n+1,j}\right]
-$$
-
-Identify the node(s) where equality fails (strict supermartingale), and explain why.
-
----
-
-**Exercise 4.** Consider the same 3-period tree as in Exercise 3. The Snell envelope is the smallest supermartingale dominating the intrinsic value process. At node $(2,0)$, the intrinsic value $h_{2,0} = 29.17$ exceeds the continuation value $27.51$. Suppose you mistakenly used the European recursion (no exercise check). Show that the resulting discounted price process would violate the domination condition $U_n \geq h_n$ at node $(2,0)$.
-
----
-
-**Exercise 5.** Now consider a **dividend-paying** stock. Suppose the stock pays a continuous dividend yield $\delta = 3\%$. In the binomial model, the risk-neutral probability becomes $q = \frac{e^{(r-\delta)\Delta t} - d}{u - d}$. Using $S_0 = 100$, $K = 100$, $\sigma = 30\%$, $r = 5\%$, $\delta = 3\%$, $T = 1$, and $N = 3$, price both an American call and a European call. Is early exercise optimal for the American call at any node? Explain why dividends change the early exercise analysis for calls.
-
----
-
-**Exercise 6.** The smooth-pasting condition states that at the free boundary $S^*(t)$ in continuous time, $\frac{\partial P}{\partial S}(S^*(t), t) = -1$. On the 3-period tree from the text, approximate the "discrete smooth-pasting" at time step $n = 2$ by computing the finite difference:
-
-$$
-\frac{V_{2,1} - V_{2,0}}{S_{2,1} - S_{2,0}}
-$$
-
-Compare this to $-1$ and explain why perfect smooth-pasting only holds in the continuous-time limit.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Given $S_0 = 40$, $u = 1.2$, $d = 0.9$, $r = 4\%$, $\Delta t = 0.5$, $K = 42$.
 
@@ -855,6 +813,16 @@ Compare this to $-1$ and explain why perfect smooth-pasting only holds in the co
     P_0^{\text{Am}} - P_0^{\text{Eu}} = 3.525 - 3.313 = 0.212
     $$
 
+---
+
+**Exercise 2.** Prove that for an American call on a non-dividend-paying stock, the continuation value at any pre-terminal node $(n,j)$ satisfies:
+
+$$
+C_{n,j} \geq S_{n,j} - Ke^{-r(N-n)\Delta t} > S_{n,j} - K
+$$
+
+Deduce that early exercise is never optimal. Where does the proof break down for an American put?
+
 ??? success "Solution to Exercise 2"
     We prove that the continuation value of an American call at any pre-terminal node $(n,j)$ satisfies $C_{n,j} \geq S_{n,j} - Ke^{-r(N-n)\Delta t} > S_{n,j} - K$.
 
@@ -906,6 +874,16 @@ Compare this to $-1$ and explain why perfect smooth-pasting only holds in the co
 
     But $Ke^{-r\Delta t} < K$, so $Ke^{-r\Delta t} - S_{n,j} < K - S_{n,j} = h_{n,j}$. The inequality goes the **wrong way** — the bound is weaker than the intrinsic value, so we cannot conclude that continuation dominates.
 
+---
+
+**Exercise 3.** Using the 3-period tree from the worked example in the text ($S_0 = 100$, $\sigma = 30\%$, $r = 5\%$, $T = 1$, $N = 3$, $K = 100$), verify the supermartingale property of the discounted American put price process. Specifically, check at each node $(n,j)$ that:
+
+$$
+e^{-rn\Delta t} V_{n,j} \geq e^{-r(n+1)\Delta t}\left[q\,V_{n+1,j+1} + (1-q)\,V_{n+1,j}\right]
+$$
+
+Identify the node(s) where equality fails (strict supermartingale), and explain why.
+
 ??? success "Solution to Exercise 3"
     Using the 3-period tree from the text: $q = 0.5056$, $r\Delta t = 0.0167$, and American put values from the worked example.
 
@@ -939,6 +917,10 @@ Compare this to $-1$ and explain why perfect smooth-pasting only holds in the co
 
     At nodes where the holder continues (no exercise), equality holds in the supermartingale condition. At the exercise node $(2,0)$, the strict inequality reflects the early exercise premium.
 
+---
+
+**Exercise 4.** Consider the same 3-period tree as in Exercise 3. The Snell envelope is the smallest supermartingale dominating the intrinsic value process. At node $(2,0)$, the intrinsic value $h_{2,0} = 29.17$ exceeds the continuation value $27.51$. Suppose you mistakenly used the European recursion (no exercise check). Show that the resulting discounted price process would violate the domination condition $U_n \geq h_n$ at node $(2,0)$.
+
 ??? success "Solution to Exercise 4"
     At node $(2,0)$, the intrinsic value is $h_{2,0} = (100 - 70.83)^+ = 29.17$ and the continuation value from European recursion is $V_{2,0}^{\text{Eu}} = 27.51$.
 
@@ -963,6 +945,10 @@ Compare this to $-1$ and explain why perfect smooth-pasting only holds in the co
     $$
 
     This shows the European price process is **not** a supermartingale dominating the intrinsic value — it dips below the payoff at node $(2,0)$. The Snell envelope corrects this by replacing $27.51$ with $\max(29.17, 27.51) = 29.17$, restoring the domination property. This is precisely the role of the early exercise check in the American recursion.
+
+---
+
+**Exercise 5.** Now consider a **dividend-paying** stock. Suppose the stock pays a continuous dividend yield $\delta = 3\%$. In the binomial model, the risk-neutral probability becomes $q = \frac{e^{(r-\delta)\Delta t} - d}{u - d}$. Using $S_0 = 100$, $K = 100$, $\sigma = 30\%$, $r = 5\%$, $\delta = 3\%$, $T = 1$, and $N = 3$, price both an American call and a European call. Is early exercise optimal for the American call at any node? Explain why dividends change the early exercise analysis for calls.
 
 ??? success "Solution to Exercise 5"
     With $\delta = 3\%$, the risk-neutral probability becomes:
@@ -1016,6 +1002,16 @@ Compare this to $-1$ and explain why perfect smooth-pasting only holds in the co
     $$
 
     When $\delta > 0$, $e^{-\delta\Delta t}S_{n,j} < S_{n,j}$, so it is no longer guaranteed that $C_{n,j} > S_{n,j} - K$. For sufficiently high dividends or deep-in-the-money calls, early exercise can become optimal because the holder forfeits dividend income by not owning the stock.
+
+---
+
+**Exercise 6.** The smooth-pasting condition states that at the free boundary $S^*(t)$ in continuous time, $\frac{\partial P}{\partial S}(S^*(t), t) = -1$. On the 3-period tree from the text, approximate the "discrete smooth-pasting" at time step $n = 2$ by computing the finite difference:
+
+$$
+\frac{V_{2,1} - V_{2,0}}{S_{2,1} - S_{2,0}}
+$$
+
+Compare this to $-1$ and explain why perfect smooth-pasting only holds in the continuous-time limit.
 
 ??? success "Solution to Exercise 6"
     From the worked example: $V_{2,1} = 7.70$, $V_{2,0} = 29.17$ (exercise value), $S_{2,1} = 100.00$, $S_{2,0} = 70.83$.

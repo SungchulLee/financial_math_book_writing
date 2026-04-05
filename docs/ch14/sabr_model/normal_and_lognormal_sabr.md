@@ -270,22 +270,156 @@ Normal SABR ($\beta = 0$) and lognormal SABR ($\beta = 1$) represent the two fun
 
 **Exercise 1.** For normal SABR ($\beta = 0$), the forward dynamics are $dF_t = \sigma_t\,dW_t^{(1)}$. Show that $F_T | \int_0^T \sigma_s^2\,ds = I$ is Gaussian with mean $F_0$ and variance $I$. Why does this imply that the normal SABR can handle negative forwards naturally?
 
+??? success "Solution to Exercise 1"
+    With $\beta = 0$, the forward dynamics are $dF_t = \sigma_t\,dW_t^{(1)}$. Conditional on the entire volatility path (equivalently, conditional on $W^{(2)}$), the forward is driven solely by $W^{(1)}$. The stochastic integral:
+
+    $$
+    F_T = F_0 + \int_0^T \sigma_s\,dW_s^{(1)}
+    $$
+
+    Conditional on $\{\sigma_s : 0 \leq s \leq T\}$, the integrand is a deterministic function of $s$ (since $\sigma_s$ depends only on $W^{(2)}$, which is independent of $W^{(1)}$ after the Cholesky decomposition removes the correlated part). Using the Cholesky decomposition $W^{(1)} = \rho W^{(2)} + \sqrt{1-\rho^2}B$, the integral becomes a sum of a $W^{(2)}$-measurable term and a Gaussian term from $B$.
+
+    For the case $\rho = 0$ (or conditioning on the full $\sigma$ path), $\int_0^T \sigma_s\,dW_s^{(1)}$ conditional on $\sigma$ is Gaussian with mean zero and variance $I = \int_0^T \sigma_s^2\,ds$. Therefore:
+
+    $$
+    F_T \mid I \sim \mathcal{N}(F_0, I)
+    $$
+
+    Since the conditional distribution is Gaussian with mean $F_0$, the forward can take any real value including negative values. Specifically, the probability of $F_T < 0$ is:
+
+    $$
+    \mathbb{P}(F_T < 0 \mid I) = \Phi\!\left(\frac{-F_0}{\sqrt{I}}\right) > 0
+    $$
+
+    whenever $I > 0$. This is strictly positive for any non-degenerate volatility path, confirming that the normal SABR naturally accommodates negative forwards. There is no boundary issue at $F = 0$.
+
 ---
 
 **Exercise 2.** The ATM Bachelier (normal) implied volatility for $\beta = 0$ SABR is $\sigma_N^{\text{ATM}} = \alpha[1 + \frac{2-3\rho^2}{24}\nu^2 T]$. The ATM Black (lognormal) implied volatility for $\beta = 1$ SABR is $\sigma_B^{\text{ATM}} = \alpha[1 + \frac{2-3\rho^2}{24}\nu^2 T]$. Despite the identical form, these are fundamentally different quantities. For $\alpha = 80$ bps, $\rho = -0.2$, $\nu = 0.45$, $T = 1$, $F = 3\%$, compute both $\sigma_N$ and $\sigma_B$. Convert from Bachelier to Black using $\sigma_B \approx \sigma_N / F$ at ATM and verify consistency.
+
+??? success "Solution to Exercise 2"
+    With $\alpha = 80$ bps $= 0.008$, $\rho = -0.2$, $\nu = 0.45$, $T = 1$, $F = 3\% = 0.03$:
+
+    **Normal SABR** ($\beta = 0$): The ATM Bachelier vol is:
+
+    $$
+    \sigma_N^{\text{ATM}} = \alpha\left[1 + \frac{2-3\rho^2}{24}\nu^2 T\right] = 0.008\left[1 + \frac{2 - 3(0.04)}{24}(0.2025)\right]
+    $$
+
+    $$
+    = 0.008\left[1 + \frac{1.88}{24}(0.2025)\right] = 0.008\left[1 + 0.01586\right] = 0.008 \times 1.01586 = 0.008127
+    $$
+
+    So $\sigma_N = 81.27$ bps.
+
+    **Lognormal SABR** ($\beta = 1$): The correction has the same form but with an additional $\rho\nu\alpha/4$ term:
+
+    $$
+    \sigma_B^{\text{ATM}} = \alpha\left[1 + \left(\frac{\rho\nu\alpha}{4} + \frac{2-3\rho^2}{24}\nu^2\right)T\right]
+    $$
+
+    But here $\alpha = 0.008$ would be interpreted as a Black vol parameter, meaning $\alpha = 0.8\%$. This is an unrealistically low Black vol. For a fair comparison, we use $\alpha = 0.008$ as the normal vol parameter for $\beta = 0$ and convert.
+
+    Converting the normal ATM vol to Black: $\sigma_B \approx \sigma_N / F = 0.008127 / 0.03 = 0.2709 = 27.09\%$.
+
+    **Verification of consistency:** Under lognormal SABR with $\beta = 1$, setting $\alpha_{\text{LN}} = 0.2709$ should give the same option price. The ATM Black vol would be:
+
+    $$
+    \sigma_B^{\text{ATM}} \approx 0.2709\left[1 + \left(\frac{(-0.2)(0.45)(0.2709)}{4} + \frac{1.88}{24}(0.2025)\right)\right]
+    $$
+
+    $$
+    = 0.2709\left[1 + (-0.00610 + 0.01586)\right] = 0.2709 \times 1.00976 = 0.2736 = 27.36\%
+    $$
+
+    Converting back: $\sigma_N = 0.2736 \times 0.03 = 82.1$ bps, close to the 81.3 bps from the normal SABR. The small discrepancy arises from the $O(T)$ correction terms differing between the two conventions. The conversion $\sigma_B \approx \sigma_N / F$ is exact only at leading order.
 
 ---
 
 **Exercise 3.** The shifted SABR model uses dynamics $dF_t = \sigma_t(F_t + s)^\beta\,dW_t^{(1)}$. For a EUR swaption with forward rate $F = -0.2\%$ and shift $s = 3\%$, compute the shifted forward $\tilde{F} = F + s = 2.8\%$. Using $\beta = 0.5$, $\alpha = 0.012$, $\rho = 0.1$, $\nu = 0.4$, $T = 5$, compute the ATM implied volatility via the Hagan formula applied to $\tilde{F}$.
 
+??? success "Solution to Exercise 3"
+    With $F = -0.2\% = -0.002$, $s = 3\% = 0.03$, the shifted forward is:
+
+    $$
+    \tilde{F} = F + s = -0.002 + 0.030 = 0.028 = 2.8\%
+    $$
+
+    Using the Hagan ATM formula with $\beta = 0.5$, $\alpha = 0.012$, $\rho = 0.1$, $\nu = 0.4$, $T = 5$:
+
+    **Leading term:**
+
+    $$
+    \frac{\alpha}{\tilde{F}^{1-\beta}} = \frac{0.012}{0.028^{0.5}} = \frac{0.012}{0.16733} = 0.07170 = 7.17\%
+    $$
+
+    **Correction terms:**
+
+    $$
+    c_1 = \frac{(0.5)^2(0.012)^2}{24(0.028)^1} = \frac{3.6 \times 10^{-5}}{0.672} = 5.357 \times 10^{-5}
+    $$
+
+    $$
+    c_2 = \frac{(0.1)(0.5)(0.4)(0.012)}{4(0.028)^{0.5}} = \frac{2.4 \times 10^{-4}}{0.6693} = 3.585 \times 10^{-4}
+    $$
+
+    $$
+    c_3 = \frac{2 - 3(0.01)}{24}(0.16) = \frac{1.97}{24}(0.16) = 1.313 \times 10^{-2}
+    $$
+
+    Total correction: $\varepsilon = 5.357 \times 10^{-5} + 3.585 \times 10^{-4} + 1.313 \times 10^{-2} = 1.354 \times 10^{-2}$.
+
+    $$
+    \sigma_B^{\text{ATM}} = 0.07170 \times (1 + 0.01354 \times 5) = 0.07170 \times 1.06770 = 0.07655 = 7.66\%
+    $$
+
+    This is the shifted Black implied volatility, quoted against the shifted forward $\tilde{F} = 2.8\%$.
+
 ---
 
 **Exercise 4.** Explain why the choice between $\beta = 0$ and $\beta = 1$ affects the backbone dynamics. If the forward rate drops from 3% to 2%, by how much does the ATM Bachelier vol change under normal SABR ($\beta = 0$) versus lognormal SABR ($\beta = 1$)? Which model predicts a larger change in Black implied vol?
+
+??? success "Solution to Exercise 4"
+    Under **normal SABR** ($\beta = 0$), the ATM Bachelier vol is approximately $\sigma_N \approx \alpha$ (independent of $F$ to leading order). When $F$ drops from 3% to 2%, $\sigma_N$ remains essentially unchanged. Converting to Black vol: $\sigma_B \approx \sigma_N / F$, so at $F = 3\%$, $\sigma_B \approx \alpha / 0.03$, and at $F = 2\%$, $\sigma_B \approx \alpha / 0.02$. The Black vol increases by a factor of $3/2 = 1.5$, a 50% increase. The Bachelier vol barely changes.
+
+    Under **lognormal SABR** ($\beta = 1$), the ATM Black vol is approximately $\sigma_B \approx \alpha$ (independent of $F$ to leading order). When $F$ drops from 3% to 2%, $\sigma_B$ remains essentially unchanged. Converting to normal vol: $\sigma_N \approx \sigma_B \times F$, so at $F = 3\%$, $\sigma_N \approx 0.03\alpha$, and at $F = 2\%$, $\sigma_N \approx 0.02\alpha$. The normal vol decreases by one-third.
+
+    **Lognormal SABR predicts zero change in Black vol** for a forward move, while **normal SABR predicts a large change** in Black vol ($+50\%$ for a 1% drop from 3% to 2%). Normal SABR predicts the larger change in Black implied vol because the backbone $\sigma_B \approx \alpha / F$ is steep. This matches the empirical observation in interest rate markets that Black vol increases when rates fall --- the leverage effect seen in rates.
 
 ---
 
 **Exercise 5.** In post-2014 EUR markets, forward swap rates went negative. Explain why $\beta = 1$ SABR fails in this environment (the term $F^\beta$ is undefined for $F < 0$ when $\beta = 1$). Compare three solutions: (a) switching to $\beta = 0$; (b) using shifted SABR with $\beta = 0.5$; (c) using free-boundary SABR. What are the trade-offs for each approach?
 
+??? success "Solution to Exercise 5"
+    When $F < 0$ and $\beta = 1$, the diffusion coefficient is $\sigma_t F_t$. Since $F_t < 0$, this means $F_t^{\beta} = F_t$ is negative, but the term $F_t^1$ in the SDE is simply $F_t$, which is well-defined. However, the standard SABR formula uses $F^{\beta}$ as a **positive** local volatility scaling, and the derivation assumes $F > 0$. The Hagan formula involves terms like $(FK)^{(1-\beta)/2}$ which for $\beta = 1$ reduce to 1 and are fine, but for fractional $\beta > 0$, the term $F^{\beta}$ is undefined for $F < 0$ (a fractional power of a negative number is not real-valued).
+
+    **(a) Switching to $\beta = 0$:** The normal SABR dynamics $dF_t = \sigma_t\,dW_t^{(1)}$ have no $F$-dependence in the diffusion, so negative $F$ is handled naturally. **Trade-off**: The backbone becomes flat in normal vol (steep in Black vol), which may not match the dynamics of all markets. Also, the entire desk must switch quoting conventions.
+
+    **(b) Shifted SABR with $\beta = 0.5$:** Replace $F$ with $F + s$ where $s$ is large enough that $F + s > 0$ always. The CEV dynamics $d(F+s) = \sigma_t(F+s)^{0.5}\,dW_t^{(1)}$ are well-defined as long as $F > -s$. **Trade-off**: Requires choosing $s$ (a convention, not a parameter), and all SABR parameters change when $s$ changes, making comparison across institutions difficult. The backbone shape is intermediate between normal and lognormal.
+
+    **(c) Free-boundary SABR:** Solves the full 2D SABR PDE without restricting to $F > 0$, allowing the forward to pass through zero. **Trade-off**: Most complex to implement, no closed-form Hagan formula, requires numerical PDE or MC methods. However, it is the most theoretically consistent approach.
+
 ---
 
 **Exercise 6.** A swaption trader quotes the 10Y-10Y swaption smile in Bachelier (basis point) volatility. The ATM normal vol is 65 bps, and the forward rate is 2.5%. Convert to Black (lognormal) implied volatility using the approximation $\sigma_B \approx \sigma_N / F$. For a 50 bp OTM put (strike = 2.0%), is the conversion formula still accurate? Explain why the conversion becomes less reliable for deep OTM options.
+
+??? success "Solution to Exercise 6"
+    At ATM ($K = F = 2.5\%$), the conversion is:
+
+    $$
+    \sigma_B = \frac{\sigma_N}{F} = \frac{0.0065}{0.025} = 0.26 = 26\%
+    $$
+
+    For the 50 bp OTM put at $K = 2.0\%$, the more general conversion formula is:
+
+    $$
+    \sigma_N \approx \sigma_B \cdot (FK)^{1/2} \cdot \frac{\ln(F/K)}{F/K - 1} \cdot \frac{1}{1 + \frac{1}{24}\ln^2(F/K)}
+    $$
+
+    Here $F/K = 1.25$, $\ln(F/K) = 0.2231$, $(FK)^{1/2} = (5 \times 10^{-4})^{1/2} = 0.02236$. The simple ATM conversion $\sigma_B = \sigma_N / F$ is no longer accurate because:
+
+    1. The geometric mean $(FK)^{1/2} = 0.02236$ differs from $F = 0.025$
+    2. The ratio $\ln(F/K)/(F/K - 1) = 0.2231/0.25 = 0.8924$ departs from 1
+    3. The logarithmic correction factor contributes
+
+    For deep OTM options, the relationship between $\sigma_N$ and $\sigma_B$ becomes highly nonlinear because the Bachelier and Black models distribute probability mass very differently in the tails. The Black model assigns probability through a lognormal distribution (right-skewed, bounded below by zero), while the Bachelier model assigns probability through a Gaussian distribution (symmetric, unbounded). For OTM puts (low strikes), these tails diverge, making the simple $\sigma_B \approx \sigma_N / F$ conversion increasingly inaccurate. The error can reach several percentage points for strikes more than 100 bps from ATM.

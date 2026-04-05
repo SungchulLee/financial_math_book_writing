@@ -349,22 +349,194 @@ Recovering a density from its characteristic function is the gateway to Fourier-
 
 **Exercise 1.** Starting from the Fourier inversion formula $f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-iux}\phi(u)\,du$, use the conjugate symmetry $\phi(-u) = \overline{\phi(u)}$ (for real-valued $X$) to derive the real-valued form $f(x) = \frac{1}{\pi}\int_0^{\infty}\text{Re}[e^{-iux}\phi(u)]\,du$. Show each step of the simplification.
 
+??? success "Solution to Exercise 1"
+    Start from the full Fourier inversion formula:
+
+    $$
+    f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty} e^{-iux}\phi(u)\,du
+    $$
+
+    Split the integral into negative and positive halves:
+
+    $$
+    f(x) = \frac{1}{2\pi}\int_{-\infty}^{0} e^{-iux}\phi(u)\,du + \frac{1}{2\pi}\int_0^{\infty} e^{-iux}\phi(u)\,du
+    $$
+
+    In the first integral, substitute $u \to -u$ (so $du \to -du$ and the limits flip):
+
+    $$
+    \int_{-\infty}^{0} e^{-iux}\phi(u)\,du = \int_0^{\infty} e^{iux}\phi(-u)\,du
+    $$
+
+    Now apply the conjugate symmetry property. For a real-valued random variable $X$, we have $\phi(-u) = \overline{\phi(u)}$. Therefore:
+
+    $$
+    \int_0^{\infty} e^{iux}\overline{\phi(u)}\,du = \overline{\int_0^{\infty} e^{-iux}\phi(u)\,du}
+    $$
+
+    where the last step uses the fact that complex conjugation passes through the integral and $\overline{e^{iux}\overline{\phi(u)}} = e^{-iux}\phi(u)$.
+
+    Combining both halves:
+
+    $$
+    f(x) = \frac{1}{2\pi}\left[\overline{\int_0^{\infty} e^{-iux}\phi(u)\,du} + \int_0^{\infty} e^{-iux}\phi(u)\,du\right]
+    $$
+
+    Since $z + \bar{z} = 2\,\text{Re}[z]$ for any complex number $z$:
+
+    $$
+    f(x) = \frac{1}{2\pi}\cdot 2\,\text{Re}\!\left[\int_0^{\infty} e^{-iux}\phi(u)\,du\right] = \frac{1}{\pi}\int_0^{\infty}\text{Re}\!\left[e^{-iux}\phi(u)\right]du
+    $$
+
+    The last step moves Re inside the integral because the real part of an integral of a function equals the integral of the real part (by linearity).
+
 ---
 
 **Exercise 2.** Derive the Gil-Pelaez formula $F(x) = \frac{1}{2} - \frac{1}{\pi}\int_0^{\infty}\text{Im}[\frac{e^{-iux}\phi(u)}{u}]\,du$ starting from $F(x) = \int_{-\infty}^{x}f(y)\,dy$. Explain why the integrand decays as $O(|\phi(u)|/u)$ and why this improved decay (compared to the density inversion integrand) makes the Gil-Pelaez integral easier to evaluate numerically.
+
+??? success "Solution to Exercise 2"
+    Start from $F(x) = \int_{-\infty}^{x} f(y)\,dy$ and substitute the Fourier inversion of $f$:
+
+    $$
+    F(x) = \int_{-\infty}^{x}\frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-iuy}\phi(u)\,du\,dy
+    $$
+
+    Exchange the order of integration (justified for $\phi \in L^1$ or via regularization):
+
+    $$
+    F(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\phi(u)\int_{-\infty}^{x}e^{-iuy}\,dy\,du
+    $$
+
+    The inner integral evaluates (in the distributional sense, using a convergence factor $e^{-\varepsilon|y|}$) to:
+
+    $$
+    \int_{-\infty}^{x}e^{-iuy}\,dy = \pi\delta(u) + \frac{e^{-iux}}{iu}
+    $$
+
+    Substituting:
+
+    $$
+    F(x) = \frac{1}{2\pi}\left[\pi\phi(0) + \int_{-\infty}^{\infty}\frac{e^{-iux}\phi(u)}{iu}\,du\right] = \frac{1}{2} + \frac{1}{2\pi}\int_{-\infty}^{\infty}\frac{e^{-iux}\phi(u)}{iu}\,du
+    $$
+
+    since $\phi(0) = 1$. Now analyze the symmetry of the integrand $g(u) = e^{-iux}\phi(u)/(iu)$. Using $\phi(-u) = \overline{\phi(u)}$:
+
+    $$
+    g(-u) = \frac{e^{iux}\overline{\phi(u)}}{-iu} = -\frac{\overline{e^{-iux}\phi(u)}}{iu} = -\frac{\overline{g(u) \cdot iu}}{iu}
+    $$
+
+    The real part of $g(u)$ is odd: $\text{Re}[g(-u)] = -\text{Re}[g(u)]$, so it integrates to zero over $\mathbb{R}$. The imaginary part is even: $\text{Im}[g(-u)] = \text{Im}[g(u)]$. Therefore:
+
+    $$
+    \int_{-\infty}^{\infty}\frac{e^{-iux}\phi(u)}{iu}\,du = 2i\int_0^{\infty}\text{Im}\!\left[\frac{e^{-iux}\phi(u)}{iu}\right]du = -2\int_0^{\infty}\text{Im}\!\left[\frac{e^{-iux}\phi(u)}{u}\right]du
+    $$
+
+    Substituting back:
+
+    $$
+    F(x) = \frac{1}{2} - \frac{1}{\pi}\int_0^{\infty}\text{Im}\!\left[\frac{e^{-iux}\phi(u)}{u}\right]du
+    $$
+
+    **Why the integrand decays faster:** The density inversion integrand is $\text{Re}[e^{-iux}\phi(u)]$, which has magnitude $O(|\phi(u)|)$. The Gil--Pelaez integrand is $\text{Im}[e^{-iux}\phi(u)/u]$, which has magnitude $O(|\phi(u)|/u)$. The additional factor of $1/u$ accelerates the decay for large $u$, meaning the integral converges with fewer quadrature points and a smaller truncation limit $U$.
 
 ---
 
 **Exercise 3.** For the standard normal distribution with $\phi(u) = e^{-u^2/2}$, evaluate the Gil-Pelaez integrand $\text{Im}[e^{-iux}\phi(u)/u]$ at $x = 0$ and simplify. Explain why $F(0) = 1/2$ follows from the formula, and estimate the number of trapezoidal rule quadrature points needed on $[0, 20]$ to achieve $10^{-10}$ accuracy.
 
+??? success "Solution to Exercise 3"
+    At $x = 0$ with $\phi(u) = e^{-u^2/2}$, the Gil--Pelaez integrand becomes:
+
+    $$
+    \text{Im}\!\left[\frac{e^{-i\cdot 0\cdot u}\phi(u)}{u}\right] = \text{Im}\!\left[\frac{e^{-u^2/2}}{u}\right]
+    $$
+
+    Since $e^{-u^2/2}/u$ is purely real for real $u > 0$, its imaginary part is zero:
+
+    $$
+    \text{Im}\!\left[\frac{e^{-u^2/2}}{u}\right] = 0
+    $$
+
+    The Gil--Pelaez formula then gives:
+
+    $$
+    F(0) = \frac{1}{2} - \frac{1}{\pi}\int_0^{\infty} 0\,du = \frac{1}{2}
+    $$
+
+    This is consistent with $F(0) = \Phi(0) = 1/2$ by the symmetry of $N(0,1)$ about zero.
+
+    **Quadrature estimate:** For general $x$, the integrand is $e^{-u^2/2}\sin(ux)/u$, which is bounded by $|e^{-u^2/2}\sin(ux)/u| \leq e^{-u^2/2}|x|$ near $u = 0$ (using $|\sin(ux)/u| \leq |x|$) and decays as $e^{-u^2/2}/u$ for large $u$. On $[0, 20]$, the integrand at $u = 20$ has magnitude $\leq e^{-200}/20 \approx 10^{-88}$, so the truncation error from $[20, \infty)$ is negligible. For the trapezoidal rule with step size $h = 20/M$, the error for this smooth, rapidly decaying integrand is $O(e^{-c/h^2})$ (super-algebraic convergence for Gaussian decay). With $M \approx 50$--$80$ points, the trapezoidal rule achieves $10^{-10}$ accuracy; with $M = 100$ points there is a comfortable margin.
+
 ---
 
 **Exercise 4.** The COS density reconstruction uses $\hat{f}_N(x) = \sum_{k=0}^{N-1}{}' A_k\cos(k\pi(x-a)/(b-a))$ with $A_k$ computed from the characteristic function. For $N(0,1)$ on $[-10, 10]$, compute the reconstruction error $|\hat{f}_{64}(0) - f(0)|$ and $|\hat{f}_{64}(3) - f(3)|$. Explain why the error at $x = 3$ is comparable to the error at $x = 0$ despite the density being much smaller there.
+
+??? success "Solution to Exercise 4"
+    For $N(0, 1)$ on $[a, b] = [-10, 10]$, the coefficients are:
+
+    $$
+    F_k = \frac{1}{10}\,\text{Re}\!\left[e^{-k^2\pi^2/800}\cdot e^{ik\pi/2}\right]
+    $$
+
+    Note $e^{ik\pi/2} = i^k$, so $\text{Re}[i^k] = \cos(k\pi/2)$, which equals $1, 0, -1, 0$ for $k = 0, 1, 2, 3, \ldots$
+
+    At $x = 0$, the cosine basis functions are $\cos(k\pi(0 - (-10))/20) = \cos(k\pi/2)$, giving:
+
+    $$
+    \hat{f}_{64}(0) = \sum_{k=0}^{63}{}' F_k\cos(k\pi/2)
+    $$
+
+    Only even $k$ contribute (since $\cos(k\pi/2) = 0$ for odd $k$, and the coefficients $F_k = 0$ for odd $k$ by symmetry). The reconstruction error is the tail of the series:
+
+    $$
+    |\hat{f}_{64}(0) - f(0)| = \left|\sum_{k=64}^{\infty}{}' F_k\cos(k\pi/2)\right|
+    $$
+
+    Since $|F_k| \leq \frac{1}{10}e^{-k^2\pi^2/800}$, for $k = 64$: $|F_{64}| \leq \frac{1}{10}e^{-64^2\pi^2/800} = \frac{1}{10}e^{-50.5} \approx 10^{-23}$. The error at $x = 0$ is bounded by the geometric-like tail starting from this negligible value, so $|\hat{f}_{64}(0) - f(0)| < 10^{-15}$.
+
+    At $x = 3$, the cosine basis functions are $\cos(k\pi(3+10)/20) = \cos(13k\pi/20)$, and the error is:
+
+    $$
+    |\hat{f}_{64}(3) - f(3)| = \left|\sum_{k=64}^{\infty}{}' F_k\cos(13k\pi/20)\right|
+    $$
+
+    The same coefficient bound applies: $|F_k| \leq \frac{1}{10}e^{-k^2\pi^2/800}$, and $|\cos(13k\pi/20)| \leq 1$. Therefore the error is bounded by the same tail sum regardless of $x$. The error is comparable at $x = 3$ and $x = 0$ because the error depends on the truncated coefficient magnitudes (which are $x$-independent), not on the density value itself. The COS method approximates the entire density function uniformly, and the cosine coefficients decay based on the global smoothness of $f$, not on the local value of $f(x)$.
 
 ---
 
 **Exercise 5.** Compare the three density inversion approaches (Fourier inversion, Gil-Pelaez, COS reconstruction) for the Heston model. For each method, list the required inputs, the computational cost to evaluate the density at a single point, and the main source of numerical error. Which method would you choose for (a) evaluating $f(x)$ at a single point, (b) plotting $f(x)$ on a grid of 1000 points?
 
+??? success "Solution to Exercise 5"
+    **Fourier inversion integral:**
+
+    - *Inputs:* Characteristic function $\phi(u)$, evaluation point $x$, truncation limit $U$, number of quadrature points $M$.
+    - *Cost per point:* $O(M)$ evaluations of $\phi$ (one per quadrature node), each combined with $e^{-iux}$.
+    - *Main error source:* Truncation of the integral at $u = U$ (missing high-frequency content) and quadrature error. For oscillatory integrands at large $|x|$, accuracy degrades.
+
+    **Gil--Pelaez:**
+
+    - *Inputs:* Characteristic function $\phi(u)$, evaluation point $x$, truncation limit $U$, number of quadrature points $M$.
+    - *Cost per point:* $O(M)$ evaluations of $\phi$, similar to Fourier inversion.
+    - *Main error source:* Same truncation and quadrature errors, but the integrand decays as $O(|\phi(u)|/u)$, so fewer points suffice. Note: this gives the CDF, not the density directly.
+
+    **COS reconstruction:**
+
+    - *Inputs:* Characteristic function $\phi$, truncation interval $[a, b]$, number of terms $N$.
+    - *Cost per point:* $O(N)$ for the setup (computing $F_k$), then $O(N)$ per evaluation point (summing the cosine series).
+    - *Main error source:* Series truncation error (using $N$ terms instead of infinitely many) and domain truncation error.
+
+    **(a) Single-point evaluation:** Fourier inversion or Gil--Pelaez is most natural, since the COS method requires choosing $[a, b]$ and the setup cost of $N$ CF evaluations is comparable to the $M$ evaluations needed for direct quadrature. Gil--Pelaez is preferred if the CDF is needed.
+
+    **(b) Grid of 1000 points:** The COS method dominates. The $N$ CF evaluations are performed once, and then the cosine series is evaluated at all 1000 points for $O(1000 \cdot N)$ arithmetic operations with no additional CF evaluations. By contrast, Fourier inversion requires $O(1000 \cdot M)$ CF evaluations (one full quadrature per point). With $N = 128$ and $M = 500$, the COS method needs 128 CF evaluations vs. 500,000 for Fourier inversion---a factor of nearly 4000.
+
 ---
 
 **Exercise 6.** The COS reconstruction can produce negative density values near the boundaries of $[a, b]$, which is a truncation artifact. Explain why this occurs in terms of the Gibbs phenomenon for truncated cosine series. Propose two strategies to mitigate negative density values and discuss the tradeoff each introduces.
+
+---
+
+??? success "Solution to Exercise 6"
+    **Why negative values occur:** The COS reconstruction is a truncated cosine series $\hat{f}_N(x) = \sum_{k=0}^{N-1}{}' F_k\cos(k\pi(x-a)/(b-a))$. Like all truncated Fourier series, it suffers from the Gibbs phenomenon when the function being approximated has a discontinuity or is effectively discontinuous at the boundary. Even though $f$ is continuous, the truncation to $[a, b]$ creates a mismatch: $f(a) > 0$ and $f(b) > 0$ in general, but the cosine series implicitly assumes even periodic extension. The truncated series overshoots and undershoots near points where the function changes rapidly. With finitely many terms, these oscillations (Gibbs ripples) cannot fully cancel, and the undershoot can push the reconstruction below zero.
+
+    **Strategy 1: Widen the truncation interval.** Choose $[a, b]$ wide enough that $f(a)$ and $f(b)$ are essentially zero (e.g., $< 10^{-15}$). This eliminates the effective discontinuity at the boundary, removing the source of Gibbs oscillations. The tradeoff is that a wider interval increases $b - a$, which slows the convergence rate of the cosine series ($\varepsilon_2 \sim e^{-\beta N\pi/(b-a)}$), requiring more terms $N$ for the same accuracy.
+
+    **Strategy 2: Apply a spectral filter (e.g., Fejér or Lanczos sigma factors).** Multiply the $k$-th coefficient by a damping factor such as $\sigma_k = \sin(k\pi/N)/(k\pi/N)$ (Lanczos) or use the Cesàro mean (Fejér kernel). This smooths out the Gibbs oscillations and ensures non-negativity or near-non-negativity. The tradeoff is that filtering reduces the effective resolution of the series: the convergence rate degrades from exponential to algebraic (typically $O(1/N)$ for Fejér summation), so more terms may be needed to achieve the same accuracy in the interior of $[a, b]$ where the unfiltered series was already accurate.

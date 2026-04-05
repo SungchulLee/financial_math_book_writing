@@ -202,30 +202,6 @@ As $S_t$ approaches the barrier $H$, the option's delta and gamma exhibit extrem
 
 **Exercise 1.** Starting from the risk-neutral dynamics $dS_t = rS_t\,dt + \sigma S_t\,d\tilde{W}_t$, derive the log-price process $X_t = \log S_t$ using Ito's lemma. Verify that $X_t = x + \mu t + \sigma \tilde{W}_t$ where $\mu = r - \frac{1}{2}\sigma^2$ and $x = \log S_0$.
 
----
-
-**Exercise 2.** The up-and-out call formula is $C_{\text{UO}} = C_{\text{BS}}(S_0, K, T) - (S_0/H)^{2\lambda - 2} C_{\text{BS}}(H^2/S_0, K, T)$ with $\lambda = r/\sigma^2 + 1/2$. Verify the two limiting cases: (a) Show that as $H \to \infty$, $C_{\text{UO}} \to C_{\text{BS}}(S_0, K, T)$. (b) Show that as $H \to S_0^+$, $C_{\text{UO}} \to 0$. For part (b), you may assume $C_{\text{BS}}$ is continuous in its first argument.
-
----
-
-**Exercise 3.** Explain why the reflection principle cannot be applied directly to drifted Brownian motion $X_t = x + \mu t + \sigma W_t$ when $\mu \neq 0$. Describe the Girsanov-type measure change that removes the drift, and show that the Radon-Nikodym derivative produces the factor $(S_0/H)^{2\lambda - 2}$ in the pricing formula.
-
----
-
-**Exercise 4.** The "reflected spot price" $H^2/S_0$ appears as the first argument of $C_{\text{BS}}$ in the barrier correction term. (a) Show that $\log(H^2/S_0) = 2b - x$ where $b = \log H$ and $x = \log S_0$, confirming this is the image point of $x$ reflected about $b$. (b) For $S_0 = 100$ and $H = 120$, compute $H^2/S_0$ and interpret it geometrically in log-price space.
-
----
-
-**Exercise 5.** Using in-out parity, derive the up-and-in call formula $C_{\text{UI}} = (S_0/H)^{2\lambda - 2} C_{\text{BS}}(H^2/S_0, K, T)$. For $S_0 = 100$, $K = 100$, $H = 130$, $T = 1$, $r = 0.05$, $\sigma = 0.25$, compute $\lambda$ and the reflected spot price $H^2/S_0$, then explain qualitatively whether $C_{\text{UI}}$ is large or small relative to $C_{\text{BS}}$.
-
----
-
-**Exercise 6.** The Broadie-Glasserman correction for discrete monitoring adjusts the barrier as $H_{\text{adjusted}} = H \cdot e^{\pm \beta \sigma \sqrt{\Delta t}}$. Explain the sign convention: when should the $+$ sign be used versus the $-$ sign? Relate this to whether discrete monitoring makes a knock-out option more or less valuable compared to continuous monitoring.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Apply Ito's lemma to $f(S_t) = \log S_t$ with $dS_t = rS_t\,dt + \sigma S_t\,d\tilde{W}_t$.
 
@@ -257,6 +233,11 @@ As $S_t$ approaches the barrier $H$, the option's delta and gamma exhibit extrem
 
     This confirms the log-price process as stated.
 
+---
+
+
+**Exercise 2.** The up-and-out call formula is $C_{\text{UO}} = C_{\text{BS}}(S_0, K, T) - (S_0/H)^{2\lambda - 2} C_{\text{BS}}(H^2/S_0, K, T)$ with $\lambda = r/\sigma^2 + 1/2$. Verify the two limiting cases: (a) Show that as $H \to \infty$, $C_{\text{UO}} \to C_{\text{BS}}(S_0, K, T)$. (b) Show that as $H \to S_0^+$, $C_{\text{UO}} \to 0$. For part (b), you may assume $C_{\text{BS}}$ is continuous in its first argument.
+
 ??? success "Solution to Exercise 2"
     **(a) As $H \to \infty$:** We have $(S_0/H)^{2\lambda - 2} \to 0$ since $S_0/H \to 0$ and $2\lambda - 2 = 2r/\sigma^2 > 0$ (assuming $r > 0$). Also, $H^2/S_0 \to \infty$, so $C_{\text{BS}}(H^2/S_0, K, T)$ remains bounded (it grows at most linearly). Therefore the correction term vanishes:
 
@@ -273,6 +254,11 @@ As $S_t$ approaches the barrier $H$, the option's delta and gamma exhibit extrem
     $$
 
     This makes sense: when the barrier equals the current price, the option is immediately knocked out (since any upward movement triggers the barrier), so it is worthless.
+
+---
+
+
+**Exercise 3.** Explain why the reflection principle cannot be applied directly to drifted Brownian motion $X_t = x + \mu t + \sigma W_t$ when $\mu \neq 0$. Describe the Girsanov-type measure change that removes the drift, and show that the Radon-Nikodym derivative produces the factor $(S_0/H)^{2\lambda - 2}$ in the pricing formula.
 
 ??? success "Solution to Exercise 3"
     The reflection principle for **driftless** Brownian motion $B_t$ states that for a barrier at level $b$:
@@ -305,6 +291,11 @@ As $S_t$ approaches the barrier $H$, the option's delta and gamma exhibit extrem
 
     which is exactly the factor appearing in the pricing formula.
 
+---
+
+
+**Exercise 4.** The "reflected spot price" $H^2/S_0$ appears as the first argument of $C_{\text{BS}}$ in the barrier correction term. (a) Show that $\log(H^2/S_0) = 2b - x$ where $b = \log H$ and $x = \log S_0$, confirming this is the image point of $x$ reflected about $b$. (b) For $S_0 = 100$ and $H = 120$, compute $H^2/S_0$ and interpret it geometrically in log-price space.
+
 ??? success "Solution to Exercise 4"
     **(a)** Direct computation:
 
@@ -323,6 +314,11 @@ As $S_t$ approaches the barrier $H$, the option's delta and gamma exhibit extrem
     In log-price space: $x = \log 100 \approx 4.605$, $b = \log 120 \approx 4.787$, and $2b - x = 2(4.787) - 4.605 = 4.969 = \log 144$.
 
     Geometrically, in log-price space, the point $x = \log 100$ is reflected about the barrier $b = \log 120$. The distance from $x$ to $b$ is $b - x = 0.182$, and the image point is the same distance on the other side: $b + (b - x) = 4.969$. Converting back to price space: $e^{4.969} = 144$. The reflected spot price is "as far above the barrier as the actual price is below it" in the logarithmic metric.
+
+---
+
+
+**Exercise 5.** Using in-out parity, derive the up-and-in call formula $C_{\text{UI}} = (S_0/H)^{2\lambda - 2} C_{\text{BS}}(H^2/S_0, K, T)$. For $S_0 = 100$, $K = 100$, $H = 130$, $T = 1$, $r = 0.05$, $\sigma = 0.25$, compute $\lambda$ and the reflected spot price $H^2/S_0$, then explain qualitatively whether $C_{\text{UI}}$ is large or small relative to $C_{\text{BS}}$.
 
 ??? success "Solution to Exercise 5"
     By in-out parity: $C_{\text{UI}} + C_{\text{UO}} = C_{\text{BS}}$. Substituting the formula $C_{\text{UO}} = C_{\text{BS}}(S_0, K, T) - (S_0/H)^{2\lambda-2}C_{\text{BS}}(H^2/S_0, K, T)$:
@@ -348,6 +344,11 @@ As $S_t$ approaches the barrier $H$, the option's delta and gamma exhibit extrem
     Since $C_{\text{BS}}(169, 100, 1)$ is the price of a deep in-the-money call (spot 169, strike 100), it is approximately $169 - 100 e^{-0.05} \approx 169 - 95.12 \approx 73.88$.
 
     Thus $C_{\text{UI}} \approx 0.855 \times 73.88 \approx 63.2$. However, $C_{\text{BS}}(100, 100, 1) \approx 12.34$ (with $\sigma = 0.25$). Since in-out parity requires $C_{\text{UI}} \leq C_{\text{BS}}$, and the barrier at 130 is not too far above the current price, $C_{\text{UI}}$ is a moderate fraction of $C_{\text{BS}}$. Qualitatively, $C_{\text{UI}}$ is relatively large compared to $C_{\text{BS}}$ because the barrier at 130 is not extremely far from $S_0 = 100$, so there is a reasonable probability the stock reaches 130 during the year.
+
+---
+
+
+**Exercise 6.** The Broadie-Glasserman correction for discrete monitoring adjusts the barrier as $H_{\text{adjusted}} = H \cdot e^{\pm \beta \sigma \sqrt{\Delta t}}$. Explain the sign convention: when should the $+$ sign be used versus the $-$ sign? Relate this to whether discrete monitoring makes a knock-out option more or less valuable compared to continuous monitoring.
 
 ??? success "Solution to Exercise 6"
     **Sign convention:**

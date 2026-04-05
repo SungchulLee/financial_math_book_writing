@@ -297,40 +297,6 @@ $$
 **Exercise 1.**
 For the heat equation $\partial_t u = \frac{1}{2}\partial_{xx}u$ on $\mathbb{R}$, verify that the Green's function $G(t,x;0,y) = (2\pi t)^{-1/2}\exp(-(x-y)^2/(2t))$ satisfies the delta function initial condition: show that $\lim_{t \to 0^+} \int_{-\infty}^{\infty} G(t,x;0,y)f(y)\,dy = f(x)$ for continuous $f$.
 
----
-
-**Exercise 2.**
-The superposition principle states $u(t,x) = \int G(t,x;0,y)\,f(y)\,dy$. For $f(y) = e^{-y^2}$ and the free-space heat kernel, evaluate this integral explicitly using the convolution of Gaussians.
-
----
-
-**Exercise 3.**
-Explain why the Green's function $G(t,x;s,y)$ for a parabolic PDE satisfies the **semigroup property** $G(t,x;s,y) = \int G(t,x;r,z)\,G(r,z;s,y)\,dz$ for $s < r < t$. What is the probabilistic interpretation via the Chapman-Kolmogorov equation?
-
----
-
-**Exercise 4.**
-For the operator $\mathcal{L} = \mu(x)\partial_x + \frac{1}{2}\sigma^2(x)\partial_{xx}$, the Green's function satisfies $\partial_t G = \mathcal{L}_x G$ as a function of $(t,x)$ and $\partial_s G = -\mathcal{L}_y^* G$ as a function of $(s,y)$. Identify the adjoint operator $\mathcal{L}^*$ and explain why it involves the forward (Fokker-Planck) equation.
-
----
-
-**Exercise 5.**
-For geometric Brownian motion $dS_t = rS_t\,dt + \sigma S_t\,dW_t$, the log-transformation $X_t = \ln S_t$ gives $dX_t = (r - \sigma^2/2)\,dt + \sigma\,dW_t$. Write the Green's function for $X_t$ and explain how it is related to the lognormal transition density of $S_t$.
-
----
-
-**Exercise 6.**
-Explain the role of Green's functions in option pricing: the price of a European derivative with payoff $g(S_T)$ can be written as $V(t,S) = e^{-r(T-t)}\int G(T,y;t,\ln S)\,g(e^y)\,dy$. What is the financial interpretation of the Green's function as a "state price density"?
-
----
-
-**Exercise 7.**
-Consider the generator $\mathcal{L} = \frac{1}{2}\partial_{xx} - \frac{1}{2}\partial_x$ (Brownian motion with drift $-1/2$). Compute the Green's function by completing the square in the exponent, starting from the Gaussian kernel and incorporating the drift shift.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     We must show that $\lim_{t \to 0^+} \int_{-\infty}^{\infty} G(t,x;0,y)\,f(y)\,dy = f(x)$ for continuous $f$. Write
 
@@ -351,6 +317,11 @@ Consider the generator $\mathcal{L} = \frac{1}{2}\partial_{xx} - \frac{1}{2}\par
     $$
 
     This confirms the delta-function initial condition: $G(t, x; 0, y)$ acts as an approximate identity that selects the value $f(x)$ in the limit $t \to 0^+$.
+
+---
+
+**Exercise 2.**
+The superposition principle states $u(t,x) = \int G(t,x;0,y)\,f(y)\,dy$. For $f(y) = e^{-y^2}$ and the free-space heat kernel, evaluate this integral explicitly using the convolution of Gaussians.
 
 ??? success "Solution to Exercise 2"
     We need to evaluate
@@ -387,6 +358,11 @@ Consider the generator $\mathcal{L} = \frac{1}{2}\partial_{xx} - \frac{1}{2}\par
 
     This is a Gaussian that broadens over time: the initial width $1$ increases to $\sqrt{1+2t}$, which is the convolution of two Gaussians with variances $1$ (from $f$) and $t$ (from the heat kernel) giving total variance $(1+2t)/2$.
 
+---
+
+**Exercise 3.**
+Explain why the Green's function $G(t,x;s,y)$ for a parabolic PDE satisfies the **semigroup property** $G(t,x;s,y) = \int G(t,x;r,z)\,G(r,z;s,y)\,dz$ for $s < r < t$. What is the probabilistic interpretation via the Chapman-Kolmogorov equation?
+
 ??? success "Solution to Exercise 3"
     The semigroup property states that for $s < r < t$:
 
@@ -409,6 +385,11 @@ Consider the generator $\mathcal{L} = \frac{1}{2}\partial_{xx} - \frac{1}{2}\par
     $$
 
     This says: the probability of going from $y$ at time $s$ to $x$ at time $t$ equals the sum over all intermediate states $z$ at time $r$ of the probability of going $y \to z$ then $z \to x$. This follows from the Markov property (the future depends on the past only through the present) and the law of total probability.
+
+---
+
+**Exercise 4.**
+For the operator $\mathcal{L} = \mu(x)\partial_x + \frac{1}{2}\sigma^2(x)\partial_{xx}$, the Green's function satisfies $\partial_t G = \mathcal{L}_x G$ as a function of $(t,x)$ and $\partial_s G = -\mathcal{L}_y^* G$ as a function of $(s,y)$. Identify the adjoint operator $\mathcal{L}^*$ and explain why it involves the forward (Fokker-Planck) equation.
 
 ??? success "Solution to Exercise 4"
     Given $\mathcal{L} = \mu(x)\partial_x + \frac{1}{2}\sigma^2(x)\partial_{xx}$, the Green's function satisfies the **forward equation** $\partial_t G = \mathcal{L}_x G$ in the observation variables $(t, x)$.
@@ -434,6 +415,11 @@ Consider the generator $\mathcal{L} = \frac{1}{2}\partial_{xx} - \frac{1}{2}\par
 
     The adjoint equation $\partial_t p = \mathcal{L}^* p$ is exactly the **Fokker-Planck (forward) equation**: it describes how the probability density $p$ evolves over time. The terms $-\partial_x[\mu\,p]$ represent the advective flux (drift carries probability) and $\frac{1}{2}\partial_{xx}[\sigma^2 p]$ represents the diffusive flux (noise spreads probability). The adjoint structure ensures that probability is conserved: $\frac{d}{dt}\int p\,dx = 0$.
 
+---
+
+**Exercise 5.**
+For geometric Brownian motion $dS_t = rS_t\,dt + \sigma S_t\,dW_t$, the log-transformation $X_t = \ln S_t$ gives $dX_t = (r - \sigma^2/2)\,dt + \sigma\,dW_t$. Write the Green's function for $X_t$ and explain how it is related to the lognormal transition density of $S_t$.
+
 ??? success "Solution to Exercise 5"
     Under the log-transformation $X_t = \ln S_t$, Ito's formula gives
 
@@ -456,6 +442,11 @@ Consider the generator $\mathcal{L} = \frac{1}{2}\partial_{xx} - \frac{1}{2}\par
     $$
 
     This is the lognormal transition density. The log-space Green's function and the lognormal density are related by the Jacobian factor $1/S_T$ from the exponential change of variables.
+
+---
+
+**Exercise 6.**
+Explain the role of Green's functions in option pricing: the price of a European derivative with payoff $g(S_T)$ can be written as $V(t,S) = e^{-r(T-t)}\int G(T,y;t,\ln S)\,g(e^y)\,dy$. What is the financial interpretation of the Green's function as a "state price density"?
 
 ??? success "Solution to Exercise 6"
     The European derivative price under risk-neutral pricing is
@@ -480,6 +471,11 @@ Consider the generator $\mathcal{L} = \frac{1}{2}\partial_{xx} - \frac{1}{2}\par
     - The discount factor $e^{-r(T-t)}$ accounts for the time value of money.
 
     Thus, knowing the Green's function is equivalent to knowing all European option prices simultaneously.
+
+---
+
+**Exercise 7.**
+Consider the generator $\mathcal{L} = \frac{1}{2}\partial_{xx} - \frac{1}{2}\partial_x$ (Brownian motion with drift $-1/2$). Compute the Green's function by completing the square in the exponent, starting from the Gaussian kernel and incorporating the drift shift.
 
 ??? success "Solution to Exercise 7"
     The generator is $\mathcal{L} = \frac{1}{2}\partial_{xx} - \frac{1}{2}\partial_x$, corresponding to the SDE $dX_t = -\frac{1}{2}\,dt + dW_t$ (Brownian motion with drift $\mu = -1/2$).

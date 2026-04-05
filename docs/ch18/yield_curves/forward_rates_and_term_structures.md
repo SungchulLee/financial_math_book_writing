@@ -249,22 +249,198 @@ This does not indicate arbitrage but requires care in lognormal models.
 
 **Exercise 1.** Given zero rates $R(0,1) = 3.0\%$ and $R(0,2) = 3.5\%$ (continuously compounded), compute the forward rate $f(0; 1, 2)$. Verify by showing that investing at $R(0,1)$ for one year then at $f(0;1,2)$ for another year yields the same result as investing at $R(0,2)$ for two years.
 
+??? success "Solution to Exercise 1"
+    The continuously compounded forward rate over $[T_1, T_2]$ is:
+
+    $$
+    f_c(0; T_1, T_2) = \frac{z(0, T_2) \cdot T_2 - z(0, T_1) \cdot T_1}{T_2 - T_1}
+    $$
+
+    With $z(0, 1) = 0.03$, $z(0, 2) = 0.035$, $T_1 = 1$, $T_2 = 2$:
+
+    $$
+    f_c(0; 1, 2) = \frac{0.035 \times 2 - 0.03 \times 1}{2 - 1} = \frac{0.070 - 0.030}{1} = 0.040 = 4.0\%
+    $$
+
+    **Verification:** Investing at $z(0, 1) = 3\%$ for one year and then at $f_c(0; 1, 2) = 4\%$ for another year yields:
+
+    $$
+    e^{0.03 \times 1} \cdot e^{0.04 \times 1} = e^{0.03 + 0.04} = e^{0.07}
+    $$
+
+    Investing at $z(0, 2) = 3.5\%$ for two years yields:
+
+    $$
+    e^{0.035 \times 2} = e^{0.07}
+    $$
+
+    Both strategies produce $e^{0.07} \approx 1.07251$, confirming the no-arbitrage consistency.
+
+    Intuitively, the forward rate of 4.0% is higher than either zero rate because the upward-sloping zero curve requires the marginal (forward) rate over the second year to exceed the average rate over two years.
+
 ---
 
 **Exercise 2.** Derive the simply compounded forward rate $F(t; T_1, T_2) = \frac{1}{T_2 - T_1}\left(\frac{P(t,T_1)}{P(t,T_2)} - 1\right)$ from the no-arbitrage condition that prevents riskless profit from lending over $[t, T_2]$ versus lending over $[t, T_1]$ and rolling into a forward contract.
+
+??? success "Solution to Exercise 2"
+    Consider an investor at time $t$ with two strategies to deploy capital over $[t, T_2]$:
+
+    **Strategy A (Direct lending):** Lend \$1 from $t$ to $T_2$ at the spot rate. The amount received at $T_2$ is:
+
+    $$
+    \frac{1}{P(t, T_2)}
+    $$
+
+    since $P(t, T_2)$ is the price at $t$ of \$1 received at $T_2$.
+
+    **Strategy B (Roll-over with forward):** Lend \$1 from $t$ to $T_1$ at the spot rate, and simultaneously lock in a forward contract to lend the proceeds from $T_1$ to $T_2$ at rate $F(t; T_1, T_2)$. The amount received at $T_2$ is:
+
+    $$
+    \frac{1}{P(t, T_1)} \cdot \bigl[1 + F(t; T_1, T_2)(T_2 - T_1)\bigr]
+    $$
+
+    Both strategies are riskless (the forward rate is locked in at time $t$). By no-arbitrage, they must produce the same terminal amount:
+
+    $$
+    \frac{1}{P(t, T_2)} = \frac{1}{P(t, T_1)} \cdot \bigl[1 + F(t; T_1, T_2)(T_2 - T_1)\bigr]
+    $$
+
+    Rearranging:
+
+    $$
+    \frac{P(t, T_1)}{P(t, T_2)} = 1 + F(t; T_1, T_2)(T_2 - T_1)
+    $$
+
+    Solving for the forward rate:
+
+    $$
+    F(t; T_1, T_2) = \frac{1}{T_2 - T_1}\left(\frac{P(t, T_1)}{P(t, T_2)} - 1\right)
+    $$
+
+    If this condition were violated — say, $F$ were higher — one could borrow over $[t, T_2]$, lend over $[t, T_1]$, and enter the forward to lock in a riskless profit (arbitrage). The direction reverses if $F$ were lower.
 
 ---
 
 **Exercise 3.** If $P(0, T) = e^{-0.03T - 0.002T^2}$, compute the instantaneous forward rate $f(0, T) = -\frac{\partial}{\partial T}\ln P(0, T)$ and the zero rate $R(0,T)$. Show that the forward curve lies above the zero curve when the zero curve is upward-sloping.
 
+??? success "Solution to Exercise 3"
+    Given $P(0, T) = e^{-0.03T - 0.002T^2}$, we have $\ln P(0, T) = -0.03T - 0.002T^2$.
+
+    **Instantaneous forward rate:**
+
+    $$
+    f(0, T) = -\frac{\partial}{\partial T}\ln P(0, T) = -\frac{\partial}{\partial T}(-0.03T - 0.002T^2) = 0.03 + 0.004T
+    $$
+
+    **Zero rate:**
+
+    $$
+    R(0, T) = -\frac{\ln P(0, T)}{T} = \frac{0.03T + 0.002T^2}{T} = 0.03 + 0.002T
+    $$
+
+    **Comparison:** For any $T > 0$:
+
+    $$
+    f(0, T) - R(0, T) = (0.03 + 0.004T) - (0.03 + 0.002T) = 0.002T > 0
+    $$
+
+    So $f(0, T) > R(0, T)$ for all $T > 0$, confirming that the forward curve lies above the zero curve when the zero curve is upward-sloping.
+
+    This is a consequence of the general identity $f(t, T) = z(t, T) + (T - t)\frac{\partial z}{\partial T}$. When the zero curve slopes upward ($\frac{\partial z}{\partial T} > 0$), the second term is positive, so the forward rate exceeds the zero rate. Intuitively, the zero rate is the average of forward rates up to $T$, and if forward rates are increasing, the marginal (instantaneous) rate must exceed the average.
+
 ---
 
 **Exercise 4.** Prove the identity $R(t, T) = \frac{1}{T-t}\int_t^T f(t, u)\,du$: the zero rate is the average of the instantaneous forward rate curve over $[t, T]$.
+
+??? success "Solution to Exercise 4"
+    **Proof.** Starting from the definition $P(t, T) = e^{-z(t, T)(T - t)}$, take the logarithm:
+
+    $$
+    \ln P(t, T) = -z(t, T)(T - t)
+    $$
+
+    The instantaneous forward rate is:
+
+    $$
+    f(t, T) = -\frac{\partial}{\partial T}\ln P(t, T)
+    $$
+
+    Now integrate $f(t, u)$ over $u \in [t, T]$:
+
+    $$
+    \int_t^T f(t, u)\,du = -\int_t^T \frac{\partial}{\partial u}\ln P(t, u)\,du = -\bigl[\ln P(t, u)\bigr]_{u=t}^{u=T}
+    $$
+
+    $$
+    = -\ln P(t, T) + \ln P(t, t)
+    $$
+
+    Since $P(t, t) = 1$, we have $\ln P(t, t) = 0$, so:
+
+    $$
+    \int_t^T f(t, u)\,du = -\ln P(t, T) = z(t, T)(T - t)
+    $$
+
+    Dividing both sides by $(T - t)$:
+
+    $$
+    \frac{1}{T - t}\int_t^T f(t, u)\,du = z(t, T)
+    $$
+
+    This establishes that the zero rate is the arithmetic average of the instantaneous forward rate curve over $[t, T]$. $\blacksquare$
+
+    This identity has a natural interpretation: the zero rate for maturity $T$ represents the "average" cost of borrowing per unit time over $[t, T]$, while the forward rate $f(t, u)$ represents the marginal cost at each instant $u$. Averaging the marginal costs recovers the average cost.
 
 ---
 
 **Exercise 5.** An inverted yield curve has $R(0,1) = 5\%$ and $R(0,10) = 3.5\%$. Compute the forward rate $f(0; 1, 10)$ and show it is below $3.5\%$. What does this imply about market expectations for future short-term rates under the expectations hypothesis?
 
+??? success "Solution to Exercise 5"
+    With $R(0, 1) = 5\%$ and $R(0, 10) = 3.5\%$ (continuously compounded), the forward rate over $[1, 10]$ is:
+
+    $$
+    f_c(0; 1, 10) = \frac{R(0, 10) \times 10 - R(0, 1) \times 1}{10 - 1} = \frac{0.035 \times 10 - 0.05 \times 1}{9} = \frac{0.35 - 0.05}{9} = \frac{0.30}{9} \approx 3.333\%
+    $$
+
+    Indeed $f_c(0; 1, 10) = 3.333\% < 3.5\% = R(0, 10)$, so the forward rate is below the 10-year zero rate.
+
+    **Interpretation under the expectations hypothesis:** The expectations hypothesis posits that forward rates equal expected future spot rates:
+
+    $$
+    f_c(0; 1, 10) = \mathbb{E}[R(1, 10)]
+    $$
+
+    The forward rate of 3.333% being below even the current 10-year rate of 3.5% implies the market expects short-term rates to decline significantly from their current level of 5%. This is consistent with the inverted yield curve: the market anticipates that the central bank will cut rates in response to an expected economic slowdown. The average expected rate over years 1 through 10 is only 3.33%, well below the current short rate.
+
+    More granularly, if the forward curve $f(0, T)$ is monotonically declining from 5% at $T = 0$ to some value below 3.33% for large $T$ (such that the average over $[1, 10]$ equals 3.33%), the market is pricing in a substantial and sustained rate-cutting cycle.
+
 ---
 
 **Exercise 6.** Explain the difference between the forward rate $f(0; T, T+\Delta)$ and the expected future spot rate $\mathbb{E}[R(T, T+\Delta)]$. Under the expectations hypothesis they are equal. Under the liquidity premium hypothesis, which is larger and why?
+
+??? success "Solution to Exercise 6"
+    The forward rate $f(0; T, T + \Delta)$ is the rate implied by today's yield curve for lending/borrowing over the future period $[T, T + \Delta]$. It is derived purely from current discount factors:
+
+    $$
+    f(0; T, T + \Delta) = \frac{1}{\Delta}\left(\frac{P(0, T)}{P(0, T + \Delta)} - 1\right)
+    $$
+
+    The expected future spot rate $\mathbb{E}^{\mathbb{P}}[R(T, T + \Delta)]$ is the physical (real-world) expectation of what the interest rate will actually be over $[T, T + \Delta]$.
+
+    **Under the expectations hypothesis (EH):** The EH asserts:
+
+    $$
+    f(0; T, T + \Delta) = \mathbb{E}^{\mathbb{P}}[R(T, T + \Delta)]
+    $$
+
+    That is, forward rates are unbiased predictors of future spot rates. Under EH, the term structure reflects only rate expectations, with no risk premium.
+
+    **Under the liquidity premium hypothesis (LPH):** Borrowers prefer long-term fixed-rate funding while lenders prefer short-term lending (to maintain liquidity). This maturity mismatch creates a **liquidity premium** $L(T) > 0$ that increases with horizon:
+
+    $$
+    f(0; T, T + \Delta) = \mathbb{E}^{\mathbb{P}}[R(T, T + \Delta)] + L(T)
+    $$
+
+    The forward rate is **larger** than the expected future spot rate by the liquidity premium. This premium compensates long-term lenders for bearing duration risk: if rates rise unexpectedly, long-term bond prices fall, so investors demand extra return for holding longer maturities.
+
+    The LPH explains why the yield curve is typically upward-sloping even when rates are not expected to rise — the positive liquidity premium tilts the curve upward. Empirically, the term premium (a generalization of the liquidity premium) has been estimated at 1-2% for 10-year maturities relative to the short rate, though it varies with economic conditions.

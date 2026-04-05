@@ -662,107 +662,21 @@ Stochastic Processes (Brownian motion)
 
 The heat equation method demonstrates that these three perspectives are **mathematically equivalent**, each providing complementary insights into derivative pricing.
 
----
+### 5. **What the kernel really is**
 
-## QuantPie Derivation Summary
-
-### Three Key Transformations
-
-The Black-Scholes PDE is converted to the heat equation through three clever changes of variables:
+The Gaussian kernel $G(x,\tau;z)$ used throughout this derivation is exactly the **transition density** of Brownian motion with drift $(r - \frac{1}{2}\sigma^2)$ and diffusion coefficient $\sigma$. The convolution integral
 
 $$
-\begin{array}{ccc}
-\text{Original Variables} & \text{Transformed Variables} & \text{Purpose} \\
-\hline
-\tau = T - t & \text{Time to maturity} & \text{Convert backward problem to forward} \\
-x = \log S + (r - \frac{\sigma^2}{2})\tau & \text{Expected log-price} & \text{Remove drift, eliminate } S \text{ factors} \\
-F = Ve^{r\tau} & \text{Forward option value} & \text{Remove discounting term } -rV
-\end{array}
+F(x,\tau) = \int_{-\infty}^{\infty} \psi(z)\, G(x,\tau;z)\, dz
 $$
 
-### Transformation Details
-
-**Original BS PDE:**
-
-$$
-\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
-$$
-
-**After all transformations, the heat equation emerges:**
-
-$$
-\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2 \frac{\partial^2 F}{\partial x^2}
-$$
-
-The remarkable cancellation occurs because:
-1. The drift term $rS\frac{\partial V}{\partial S}$ exactly cancels the drift implicit in the $x$ transformation
-2. The discounting $-rV$ is eliminated by the forward value transformation $F = Ve^{r\tau}$
-
-This leaves only the diffusion term, which is the pure heat equation.
-
-### Solution Method: Green's Function and Superposition
-
-**For call option payoff** $\psi(x) = (e^x - K)^+$:
-
-$$
-F(x, \tau) = \int_{-\infty}^{\infty} \psi(z) \frac{1}{\sqrt{2\pi\sigma^2\tau}} \exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
-$$
-
-Split into two Gaussian integrals (one with $e^z$ in the integrand):
-
-$$
-F(x, \tau) = e^{x + \frac{\sigma^2\tau}{2}} \mathcal{N}(d_1) - K\mathcal{N}(d_2)
-$$
-
-**Transform back to original variables:**
-- Since $e^{x + \frac{\sigma^2\tau}{2}} = Se^{r\tau}$ and $V = Fe^{-r\tau}$:
-
-$$
-\boxed{V(S, t) = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)}
-$$
-
-where:
-
-$$
-d_1 = \frac{\log(S/K) + (r + \frac{\sigma^2}{2})(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}
-$$
-
-### Advantages of the Heat Equation Approach
-
-1. **Reduces complexity:** Variable coefficients become constant; terminal condition becomes initial condition
-2. **Leverages classical PDE theory:** Uses well-known Green's function and superposition principle
-3. **Reveals structure:** The Gaussian kernel connects to Brownian motion transition densities
-4. **Generalizable:** Extends to other parabolic PDEs and non-standard payoffs
+is therefore an **expectation**: the expected payoff under the risk-neutral measure. This is not a coincidence. The Feynman-Kac theorem (developed later in this chapter) establishes that solutions of parabolic PDEs are *always* expressible as such expectations. Put differently: the heat equation approach and the probabilistic approach compute exactly the same object --- the convolution *is* the expectation, and the Green's function *is* the transition density. Recognizing this equivalence is essential, because it means every PDE method in this chapter has a probabilistic counterpart, and vice versa. In the operator language of the introduction, the convolution with $G$ is the **kernel representation** of the pricing semigroup $\mathcal{P}_\tau = e^{\tau\mathcal{L}}$.
 
 ---
 
 ## Exercises
 
 **Exercise 1.** Verify that the Green's function $G(x,\tau;z) = \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right)$ satisfies the heat equation $\frac{\partial G}{\partial \tau} = \frac{1}{2}\sigma^2 \frac{\partial^2 G}{\partial x^2}$ by computing both sides explicitly and showing they are equal.
-
----
-
-**Exercise 2.** Derive the Black-Scholes put formula using the heat equation approach. Start from the initial condition $\psi(x) = (K - e^x)^+$ and evaluate the two resulting Gaussian integrals. Verify that your answer matches the put formula $P = Ke^{-r\tau}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)$.
-
----
-
-**Exercise 3.** In the transformation from the BS PDE to the heat equation, the first-order term cancels. Show this cancellation in detail: substitute the transformed derivatives into the PDE and verify that all $\frac{\partial V}{\partial x}$ terms cancel exactly.
-
----
-
-**Exercise 4.** The three transformations $(\tau, x, F)$ reduce the BS PDE to the heat equation with diffusivity $\kappa = \frac{1}{2}\sigma^2$. If we instead define $y = x / (\sigma\sqrt{2})$ and $F(y,\tau)$, show that we obtain the standard heat equation $\frac{\partial F}{\partial \tau} = \frac{\partial^2 F}{\partial y^2}$ with unit diffusivity. Express $d_1$ and $d_2$ in terms of $y$ and $\tau$.
-
----
-
-**Exercise 5.** Use the superposition integral to price a **digital call** with payoff $\psi(x) = \mathbf{1}_{\{e^x > K\}} = \mathbf{1}_{\{x > \ln K\}}$. Evaluate the resulting Gaussian integral and transform back to original variables to obtain $D_0 = e^{-rT}\mathcal{N}(d_2)$.
-
----
-
-**Exercise 6.** The heat equation approach requires the initial condition $\psi(x) = (e^x - K)^+$ to be integrable against the Green's function. Discuss what happens if the payoff grows faster than $e^{|x|}$ as $|x| \to \infty$. Give an example of a payoff for which the superposition integral diverges, and explain what this means financially.
-
----
-
-## Solutions
 
 ??? success "Solution to Exercise 1"
     The Green's function is $G(x,\tau;z) = \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right)$.
@@ -794,6 +708,9 @@ $$
     $$
 
     This equals $\frac{\partial G}{\partial \tau}$, confirming that $G$ satisfies the heat equation.
+
+---
+**Exercise 2.** Derive the Black-Scholes put formula using the heat equation approach. Start from the initial condition $\psi(x) = (K - e^x)^+$ and evaluate the two resulting Gaussian integrals. Verify that your answer matches the put formula $P = Ke^{-r\tau}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)$.
 
 ??? success "Solution to Exercise 2"
     For the European put, the initial condition is $\psi(x) = (K - e^x)^+ = K - e^x$ for $x < \ln K$ and $0$ for $x \geq \ln K$.
@@ -836,6 +753,9 @@ $$
 
     This matches the standard put formula.
 
+---
+**Exercise 3.** In the transformation from the BS PDE to the heat equation, the first-order term cancels. Show this cancellation in detail: substitute the transformed derivatives into the PDE and verify that all $\frac{\partial V}{\partial x}$ terms cancel exactly.
+
 ??? success "Solution to Exercise 3"
     The transformed derivatives yield the following first-order terms in the PDE:
 
@@ -852,6 +772,9 @@ $$
     $$
 
     The cancellation is exact. This happens because the transformation $x = \ln S + (r - \frac{1}{2}\sigma^2)\tau$ was specifically designed to incorporate the risk-neutral drift, thereby eliminating the convection (first-order) term from the PDE.
+
+---
+**Exercise 4.** The three transformations $(\tau, x, F)$ reduce the BS PDE to the heat equation with diffusivity $\kappa = \frac{1}{2}\sigma^2$. If we instead define $y = x / (\sigma\sqrt{2})$ and $F(y,\tau)$, show that we obtain the standard heat equation $\frac{\partial F}{\partial \tau} = \frac{\partial^2 F}{\partial y^2}$ with unit diffusivity. Express $d_1$ and $d_2$ in terms of $y$ and $\tau$.
 
 ??? success "Solution to Exercise 4"
     Define $y = x/(\sigma\sqrt{2})$. Then $x = \sigma\sqrt{2}\,y$ and:
@@ -870,7 +793,7 @@ $$
     \frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2 \cdot \frac{1}{2\sigma^2}\frac{\partial^2 F}{\partial y^2} = \frac{1}{2} \cdot \frac{1}{2}\frac{\partial^2 F}{\partial y^2}
     $$
 
-    Hmm, this gives $\frac{\partial F}{\partial \tau} = \frac{1}{4}\frac{\partial^2 F}{\partial y^2}$, not unit diffusivity. To get the standard heat equation $\frac{\partial F}{\partial \tau} = \frac{\partial^2 F}{\partial y^2}$, we need the rescaling $y = x/(\sigma\sqrt{\tau})$ or $y = x/\sigma$ with a time rescaling $\tilde{\tau} = \frac{1}{2}\sigma^2\tau$. With $\tilde{\tau} = \frac{1}{2}\sigma^2\tau$:
+    This gives $\frac{\partial F}{\partial \tau} = \frac{1}{4}\frac{\partial^2 F}{\partial y^2}$, not unit diffusivity. To obtain the standard form $\frac{\partial F}{\partial \tau} = \frac{\partial^2 F}{\partial y^2}$, introduce a time rescaling $\tilde{\tau} = \frac{1}{2}\sigma^2\tau$:
 
     $$
     \frac{\partial F}{\partial \tilde{\tau}} = \frac{1}{\frac{1}{2}\sigma^2}\frac{\partial F}{\partial \tau} = \frac{1}{\frac{1}{2}\sigma^2}\cdot\frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2} = \frac{\partial^2 F}{\partial x^2}
@@ -885,6 +808,9 @@ $$
     $$
     d_2 = \frac{x - \ln K}{\sigma\sqrt{\tau}} = \frac{x - \ln K}{\sqrt{2\tilde{\tau}}}
     $$
+
+---
+**Exercise 5.** Use the superposition integral to price a **digital call** with payoff $\psi(x) = \mathbf{1}_{\{e^x > K\}} = \mathbf{1}_{\{x > \ln K\}}$. Evaluate the resulting Gaussian integral and transform back to original variables to obtain $D_0 = e^{-rT}\mathcal{N}(d_2)$.
 
 ??? success "Solution to Exercise 5"
     The digital call payoff is $\psi(x) = \mathbf{1}_{\{x > \ln K\}}$. The superposition integral gives:
@@ -914,6 +840,9 @@ $$
     $$
 
     This is the price of a digital (cash-or-nothing) call paying \$1 if $S_T > K$.
+
+---
+**Exercise 6.** The heat equation approach requires the initial condition $\psi(x) = (e^x - K)^+$ to be integrable against the Green's function. Discuss what happens if the payoff grows faster than $e^{|x|}$ as $|x| \to \infty$. Give an example of a payoff for which the superposition integral diverges, and explain what this means financially.
 
 ??? success "Solution to Exercise 6"
     The superposition integral is $F(x,\tau) = \int_{-\infty}^{\infty}\psi(z)G(x,\tau;z)dz$ where $G$ is the Gaussian kernel with variance $\sigma^2\tau$.

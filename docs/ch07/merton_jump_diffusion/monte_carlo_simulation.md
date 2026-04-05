@@ -208,18 +208,161 @@ Monte Carlo simulation of the Merton jump-diffusion generates paths by sampling 
 
 **Exercise 1.** Implement the exact simulation algorithm for $S_T$ under the Merton model. For $S_0 = 100$, $K = 100$, $T = 0.5$, $r = 0.05$, $\sigma = 0.20$, $\lambda = 1.0$, $\mu_J = -0.08$, $\sigma_J = 0.25$, price a European call using $M = 50{,}000$ paths. Compare your Monte Carlo estimate with the Merton series formula result.
 
+??? success "Solution to Exercise 1"
+    **Algorithm.** For each path $m = 1, \ldots, 50000$:
+
+    1. Draw $Z \sim N(0, 1)$
+    2. Draw $n \sim \text{Poisson}(\lambda T) = \text{Poisson}(0.5)$
+    3. If $n > 0$, draw $J_1, \ldots, J_n \sim N(-0.08, 0.0625)$ and set $\mathcal{J} = \sum_{i=1}^n J_i$; else $\mathcal{J} = 0$
+    4. Compute $S_T^{(m)} = 100 \exp[(0.09758 - 0.02) \times 0.5 + 0.20\sqrt{0.5}\,Z + \mathcal{J}]$
+
+    where $\bar{k} = e^{-0.08 + 0.03125} - 1 \approx -0.04758$ and the drift term is $r - \lambda\bar{k} - \frac{1}{2}\sigma^2 = 0.05 + 0.04758 - 0.02 = 0.07758$.
+
+    The Monte Carlo call price estimator is:
+
+    $$
+    \hat{C} = e^{-0.05 \times 0.5} \cdot \frac{1}{50000}\sum_{m=1}^{50000}\max(S_T^{(m)} - 100, 0)
+    $$
+
+    The standard error is $\text{SE} = e^{-rT}\hat{\sigma}_{\text{payoff}}/\sqrt{50000}$.
+
+    For comparison, the Merton series formula gives an exact benchmark. The Monte Carlo estimate should agree with the series formula within approximately $\pm 2 \times \text{SE}$ (95% confidence interval). With $M = 50000$ paths, the standard error is typically around \$0.05--\$0.10, so the Monte Carlo and series formula estimates should differ by less than \$0.20.
+
 ---
+
 
 **Exercise 2.** Explain why the exact simulation algorithm produces unbiased samples while the Euler-Maruyama scheme introduces discretization bias. For what types of payoffs (European, path-dependent, barrier) is exact simulation sufficient, and when must you use the Euler scheme?
 
+??? success "Solution to Exercise 2"
+    **Why exact simulation is unbiased.** The exact simulation algorithm draws $S_T$ directly from its exact distribution using the closed-form solution:
+
+    $$
+    S_T = S_0 \exp\!\left[\left(r - \lambda\bar{k} - \frac{1}{2}\sigma^2\right)T + \sigma\sqrt{T}\,Z + \sum_{i=1}^{n}J_i\right]
+    $$
+
+    Since $Z$, $n$, and $\{J_i\}$ are sampled from their exact distributions, each $S_T^{(m)}$ is an exact draw from the terminal distribution. The Monte Carlo estimator $\hat{C} = e^{-rT}\frac{1}{M}\sum g(S_T^{(m)})$ is therefore unbiased for any payoff function $g$.
+
+    **Why Euler-Maruyama introduces bias.** The Euler scheme approximates the continuous-time SDE at discrete time points. Between grid points, the scheme assumes a locally linear (or log-linear) evolution, which is only exact for the geometric Brownian motion component. The discretization introduces a systematic error of order $O(\Delta t)$ in the weak sense (option prices).
+
+    **When each method is appropriate:**
+
+    - **European options**: Exact simulation is sufficient and preferred because the payoff depends only on $S_T$. No time stepping is needed.
+    - **Path-dependent options** (Asian, lookback): The Euler scheme is required because the payoff depends on intermediate values $S_{t_1}, S_{t_2}, \ldots, S_{t_N}$. Exact simulation gives only the terminal value.
+    - **Barrier options**: The Euler scheme is needed, but with care: the continuous-time barrier crossing between grid points must be accounted for (Brownian bridge correction) to avoid bias from discrete monitoring.
+
 ---
+
 
 **Exercise 3.** The antithetic variate method negates the Brownian increments $\{Z_k\}$ but keeps the same jump draws. Explain why the jump component limits the variance reduction factor compared to the pure diffusion case. Estimate the expected variance reduction for a European call when jumps contribute 40% of the total variance.
 
+??? success "Solution to Exercise 3"
+    **Why jumps limit variance reduction.** Antithetic variates replace $Z$ with $-Z$ for the Brownian component but keep the same Poisson draws $n$ and log-jump sizes $\{J_i\}$. The variance of the estimator decomposes as:
+
+    $$
+    \operatorname{Var}(\hat{C}_{\text{AV}}) = \frac{1}{4}\operatorname{Var}\bigl(g(S_T^+) + g(S_T^-)\bigr)
+    $$
+
+    If the payoff were a function of $Z$ alone (pure diffusion), the negative correlation between $g(S_T^+)$ and $g(S_T^-)$ would reduce the variance significantly. However, the jump component is common to both paths:
+
+    $$
+    S_T^{\pm} = S_0 \exp\!\left[\text{drift} \pm \sigma\sqrt{T}|Z| + \sum J_i\right]
+    $$
+
+    The jump sum $\sum J_i$ is identical in both paths, so the randomness from jumps is not reduced at all by the antithetic technique.
+
+    **Estimating variance reduction when jumps contribute 40% of total variance.** The total variance of $\ln S_T$ is $V_{\text{total}} = V_{\text{diff}} + V_{\text{jump}}$ where $V_{\text{jump}} = 0.4\,V_{\text{total}}$ and $V_{\text{diff}} = 0.6\,V_{\text{total}}$.
+
+    Antithetic variates eliminate (roughly) the variance from the diffusion component, reducing it by a factor close to $1 - \rho$ where $\rho \approx 1$ for the diffusion part. In the ideal case, the antithetic method eliminates the diffusion variance entirely, leaving only the jump variance:
+
+    $$
+    \text{Variance reduction ratio} \approx \frac{V_{\text{jump}}}{V_{\text{total}}} = 0.4
+    $$
+
+    So the variance is reduced to about 40% of the original (a 60% reduction). This is less than the nearly 100% reduction achievable for pure diffusion. In practice, the payoff nonlinearity reduces the efficiency further, giving a typical variance reduction of 30--50% as stated in the text.
+
 ---
+
 
 **Exercise 4.** Describe the control variate estimator $\hat{C}_{\text{CV}} = \hat{C}_{\text{exotic}} - \beta(\hat{C}_{\text{vanilla}} - C_{\text{Merton}})$ where $C_{\text{Merton}}$ is the exact series price. (a) Explain why the optimal $\beta^*$ equals $\text{Cov}(g_{\text{exotic}}, g_{\text{vanilla}})/\text{Var}(g_{\text{vanilla}})$. (b) For an Asian call under Merton dynamics, would you expect the European call or the geometric average Asian call to be a better control variate?
 
+??? success "Solution to Exercise 4"
+    **(a) Derivation of optimal $\beta^*$.** The control variate estimator is:
+
+    $$
+    \hat{C}_{\text{CV}} = \hat{C}_{\text{exotic}} - \beta(\hat{C}_{\text{vanilla}} - C_{\text{Merton}})
+    $$
+
+    Its variance is:
+
+    $$
+    \operatorname{Var}(\hat{C}_{\text{CV}}) = \operatorname{Var}(\hat{C}_{\text{exotic}}) - 2\beta\operatorname{Cov}(\hat{C}_{\text{exotic}}, \hat{C}_{\text{vanilla}}) + \beta^2\operatorname{Var}(\hat{C}_{\text{vanilla}})
+    $$
+
+    Minimizing over $\beta$ by taking the derivative and setting it to zero:
+
+    $$
+    \frac{d}{d\beta}\operatorname{Var}(\hat{C}_{\text{CV}}) = -2\operatorname{Cov}(\hat{C}_{\text{exotic}}, \hat{C}_{\text{vanilla}}) + 2\beta\operatorname{Var}(\hat{C}_{\text{vanilla}}) = 0
+    $$
+
+    $$
+    \beta^* = \frac{\operatorname{Cov}(\hat{C}_{\text{exotic}}, \hat{C}_{\text{vanilla}})}{\operatorname{Var}(\hat{C}_{\text{vanilla}})} = \frac{\operatorname{Cov}(g_{\text{exotic}}, g_{\text{vanilla}})}{\operatorname{Var}(g_{\text{vanilla}})}
+    $$
+
+    The minimum variance is:
+
+    $$
+    \operatorname{Var}(\hat{C}_{\text{CV}})^* = \operatorname{Var}(\hat{C}_{\text{exotic}})(1 - \rho^2)
+    $$
+
+    where $\rho$ is the correlation between the exotic and vanilla payoffs. Higher correlation means greater variance reduction.
+
+    **(b) Choice of control variate for an Asian call.** The geometric average Asian call has a closed-form price (under GBM, and approximately under jump-diffusion), making it a natural candidate. However, the European call is more commonly used because:
+
+    - Its exact Merton price is readily available from the series formula
+    - Its payoff $\max(S_T - K, 0)$ is highly correlated with the arithmetic Asian payoff since both depend on the terminal price and the overall path level
+
+    The geometric average Asian call would be a better control variate if its exact price is available, because its payoff structure (average of prices along the path) more closely resembles the arithmetic Asian payoff, yielding higher correlation $\rho$ and thus greater variance reduction. In practice, if a closed-form geometric Asian price is available under the Merton model, it should be preferred; otherwise, the European call with the exact Merton series price is the practical choice.
+
 ---
 
+
 **Exercise 5.** For the Euler-Maruyama scheme, explain the guideline $\lambda\Delta t \ll 1$. (a) What is the probability of two or more jumps in a single time step when $\lambda = 2$ and $\Delta t = 1/252$? (b) Why does the log-Euler scheme $S_{t+\Delta t} = S_t \exp[\ldots]$ preserve positivity while the additive Euler scheme can produce negative prices?
+
+??? success "Solution to Exercise 5"
+    The guideline $\lambda\Delta t \ll 1$ ensures that within each time step, the probability of more than one jump is negligible. This simplifies the simulation (at most zero or one jump per step) and avoids accumulation of discretization errors from multiple-jump steps.
+
+    **(a) Probability of two or more jumps.** For $\lambda = 2$ and $\Delta t = 1/252$, the expected jumps per step are $\lambda\Delta t = 2/252 \approx 0.00794$. The number of jumps follows $\text{Poisson}(0.00794)$:
+
+    $$
+    \mathbb{P}(n \geq 2) = 1 - \mathbb{P}(n = 0) - \mathbb{P}(n = 1)
+    $$
+
+    $$
+    \mathbb{P}(n = 0) = e^{-0.00794} \approx 0.99209
+    $$
+
+    $$
+    \mathbb{P}(n = 1) = 0.00794 \times e^{-0.00794} \approx 0.00788
+    $$
+
+    $$
+    \mathbb{P}(n \geq 2) = 1 - 0.99209 - 0.00788 \approx 0.0000315 \approx 3.15 \times 10^{-5}
+    $$
+
+    This is very small, so the guideline $\lambda\Delta t \ll 1$ is comfortably satisfied with daily time steps even for $\lambda = 2$.
+
+    **(b) Positivity of the log-Euler scheme.** The log-Euler update is:
+
+    $$
+    S_{t+\Delta t} = S_t \exp\!\left[\left(r - \lambda\bar{k} - \frac{1}{2}\sigma^2\right)\Delta t + \sigma\sqrt{\Delta t}\,Z + \mathcal{J}\right]
+    $$
+
+    Since $S_t > 0$ and the exponential function is always positive ($e^x > 0$ for all $x \in \mathbb{R}$), we have $S_{t+\Delta t} > 0$ regardless of the values of $Z$ and $\mathcal{J}$. Positivity is guaranteed by construction.
+
+    The additive Euler scheme updates as:
+
+    $$
+    S_{t+\Delta t} = S_t + S_t(r - \lambda\bar{k})\Delta t + S_t\sigma\sqrt{\Delta t}\,Z + S_t\sum(Y_i - 1)
+    $$
+
+    For a large negative draw of $Z$ (e.g., $Z = -5$) or a severe downward jump ($Y_i \ll 1$), the right-hand side can become negative. This is an artifact of the linear discretization that does not respect the multiplicative structure of geometric Brownian motion.

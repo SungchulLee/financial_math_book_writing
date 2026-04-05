@@ -235,50 +235,6 @@ This gives a probabilistic characterization of diffusions without requiring path
 
 **Exercise 1.** For the Ornstein--Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, write down the Dynkin martingale $M_t^f$ for $f(x) = x^2$. Express it explicitly as an Ito integral and verify that $\mathbb{E}[M_t^f] = 0$.
 
----
-
-**Exercise 2.** Consider geometric Brownian motion $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ on $(0, \infty)$. In Example 4, it was shown that $f(s) = s^{\alpha}$ with $\alpha = 1 - 2\mu/\sigma^2$ is $\mathcal{L}$-harmonic.
-
-(a) Verify directly that $\mathcal{L}(s^{\alpha}) = 0$ for this value of $\alpha$.
-
-(b) What does this imply about the process $S_t^{\alpha}$? Is it a true martingale or only a local martingale? (Hint: consider whether $\mathbb{E}[S_t^{\alpha}]$ remains constant.)
-
----
-
-**Exercise 3.** Let $W_t$ be standard Brownian motion and define $f(x, t) = e^{\theta x - \theta^2 t/2}$ for a constant $\theta$. Show that $\tilde{\mathcal{L}}f = 0$ where $\tilde{\mathcal{L}} = \partial_t + \frac{1}{2}\partial_{xx}$ is the extended generator. Conclude that $f(W_t, t)$ is a martingale (the exponential martingale).
-
----
-
-**Exercise 4.** Let $X_t$ be a continuous martingale with finite variation (i.e., $X_t$ has paths of bounded variation on every $[0, T]$). Prove that $X_t = X_0$ a.s. for all $t$. (Hint: use the fact that the quadratic variation $[X]_t = 0$ for finite-variation processes, and for a continuous local martingale, $[X]_t = 0$ implies $X_t$ is constant.) Explain why this result is crucial for the converse direction: martingale $\Rightarrow$ harmonic.
-
----
-
-**Exercise 5.** For standard Brownian motion in $\mathbb{R}^2$ with generator $\mathcal{L} = \frac{1}{2}\Delta = \frac{1}{2}(\partial_{xx} + \partial_{yy})$, verify that the following functions are $\mathcal{L}$-harmonic:
-
-(a) $f(x, y) = x^2 - y^2$
-
-(b) $f(x, y) = e^x \cos(y)$
-
-(c) $f(x, y) = \ln(x^2 + y^2)$ for $(x, y) \neq (0, 0)$
-
-For each, state what the harmonic property implies about $f(W_t^1, W_t^2)$ where $(W_t^1, W_t^2)$ is 2D Brownian motion.
-
----
-
-**Exercise 6.** Consider a diffusion $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$ where $\sigma(x) = 0$ for $x \in [1, 2]$ but $\sigma(x) > 0$ elsewhere. Explain why the equivalence $\mathcal{L}f = 0 \Leftrightarrow f(X_t)$ is a local martingale may fail in this setting. Which specific condition (non-degeneracy or irreducibility) is violated, and what is the consequence for the converse direction?
-
----
-
-**Exercise 7.** In the Stroock--Varadhan martingale problem, one requires $M_t^f = f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,ds$ to be a martingale for all $f \in C_c^\infty$.
-
-(a) Why is it sufficient to test only functions in $C_c^\infty$ (smooth with compact support) rather than all $C^2$ functions?
-
-(b) Give an intuitive explanation for why the martingale problem characterization uniquely determines the law of $X_t$ under non-degeneracy conditions.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The OU generator is $\mathcal{L}f = -\kappa x\,f'(x) + \frac{\sigma^2}{2}f''(x)$. For $f(x) = x^2$:
 
@@ -311,6 +267,14 @@ For each, state what the harmonic property implies about $f(W_t^1, W_t^2)$ where
     $$
 
     This is an Ito integral with respect to $W_t$, hence a local martingale. To verify $\mathbb{E}[M_t^f] = 0$, note that $\mathbb{E}\!\left[\int_0^t 4\sigma^2 X_s^2\,ds\right] < \infty$ for any finite $t$ (since $\mathbb{E}[X_s^2]$ is bounded on $[0,t]$ by the second moment formula), so the Ito integral is a true martingale with $\mathbb{E}[M_t^f] = 0$.
+
+---
+
+**Exercise 2.** Consider geometric Brownian motion $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ on $(0, \infty)$. In Example 4, it was shown that $f(s) = s^{\alpha}$ with $\alpha = 1 - 2\mu/\sigma^2$ is $\mathcal{L}$-harmonic.
+
+(a) Verify directly that $\mathcal{L}(s^{\alpha}) = 0$ for this value of $\alpha$.
+
+(b) What does this imply about the process $S_t^{\alpha}$? Is it a true martingale or only a local martingale? (Hint: consider whether $\mathbb{E}[S_t^{\alpha}]$ remains constant.)
 
 ??? success "Solution to Exercise 2"
     **(a)** The GBM generator is $\mathcal{L}f = \mu s\,f'(s) + \frac{\sigma^2 s^2}{2}f''(s)$. For $f(s) = s^\alpha$:
@@ -345,6 +309,10 @@ For each, state what the harmonic property implies about $f(W_t^1, W_t^2)$ where
 
     The exponent is $\left[\mu\alpha + \frac{\sigma^2}{2}\alpha(\alpha - 1)\right]t = 0$ by the calculation in part (a). Therefore $\mathbb{E}[S_t^\alpha] = s_0^\alpha$ for all $t$, confirming $S_t^\alpha$ is a **true martingale** (not merely a local martingale).
 
+---
+
+**Exercise 3.** Let $W_t$ be standard Brownian motion and define $f(x, t) = e^{\theta x - \theta^2 t/2}$ for a constant $\theta$. Show that $\tilde{\mathcal{L}}f = 0$ where $\tilde{\mathcal{L}} = \partial_t + \frac{1}{2}\partial_{xx}$ is the extended generator. Conclude that $f(W_t, t)$ is a martingale (the exponential martingale).
+
 ??? success "Solution to Exercise 3"
     The extended generator for BM is $\tilde{\mathcal{L}} = \partial_t + \frac{1}{2}\partial_{xx}$. For $f(x,t) = e^{\theta x - \theta^2 t/2}$:
 
@@ -364,6 +332,10 @@ For each, state what the harmonic property implies about $f(W_t^1, W_t^2)$ where
 
     Since $\tilde{\mathcal{L}}f = 0$, the process $f(W_t, t) = e^{\theta W_t - \theta^2 t/2}$ satisfies the Dynkin martingale condition: the drift in $df$ vanishes, and $f(W_t, t)$ is a local martingale. It is in fact a true martingale since $\mathbb{E}[e^{\theta W_t - \theta^2 t/2}] = e^{-\theta^2 t/2}\cdot e^{\theta^2 t/2} = 1$ for all $t$. This is the classical **exponential martingale** (also known as the Wald martingale or Doleans-Dade exponential).
 
+---
+
+**Exercise 4.** Let $X_t$ be a continuous martingale with finite variation (i.e., $X_t$ has paths of bounded variation on every $[0, T]$). Prove that $X_t = X_0$ a.s. for all $t$. (Hint: use the fact that the quadratic variation $[X]_t = 0$ for finite-variation processes, and for a continuous local martingale, $[X]_t = 0$ implies $X_t$ is constant.) Explain why this result is crucial for the converse direction: martingale $\Rightarrow$ harmonic.
+
 ??? success "Solution to Exercise 4"
     Let $X_t$ be a continuous martingale with paths of bounded variation on every $[0, T]$.
 
@@ -378,6 +350,18 @@ For each, state what the harmonic property implies about $f(W_t^1, W_t^2)$ where
     Alternatively, without invoking representation: $X_t - X_0$ is a continuous local martingale with $[X - X_0]_t = [X]_t = 0$. By the identity $\mathbb{E}[(X_t - X_s)^2 \mid \mathcal{F}_s] = \mathbb{E}[[X]_t - [X]_s \mid \mathcal{F}_s] = 0$, we get $X_t = X_s$ a.s. for all $s \leq t$, hence $X_t = X_0$ a.s.
 
     **Why this matters for the converse**: If $f(X_t)$ is a martingale, then $M_t = f(X_t) - f(X_0)$ is a martingale and also $M_t = f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,ds + \int_0^t (\mathcal{L}f)(X_s)\,ds$. The process $A_t = \int_0^t (\mathcal{L}f)(X_s)\,ds$ is continuous and of finite variation, and $M_t - A_t$ is a martingale by the Dynkin construction. So $A_t = M_t - (M_t - A_t)$ is a difference of two martingales, hence a martingale. Being both a continuous finite-variation process and a martingale, $A_t$ must be constant: $A_t = A_0 = 0$. This forces $\int_0^t (\mathcal{L}f)(X_s)\,ds = 0$ for all $t$, implying $\mathcal{L}f = 0$ along the paths of $X$.
+
+---
+
+**Exercise 5.** For standard Brownian motion in $\mathbb{R}^2$ with generator $\mathcal{L} = \frac{1}{2}\Delta = \frac{1}{2}(\partial_{xx} + \partial_{yy})$, verify that the following functions are $\mathcal{L}$-harmonic:
+
+(a) $f(x, y) = x^2 - y^2$
+
+(b) $f(x, y) = e^x \cos(y)$
+
+(c) $f(x, y) = \ln(x^2 + y^2)$ for $(x, y) \neq (0, 0)$
+
+For each, state what the harmonic property implies about $f(W_t^1, W_t^2)$ where $(W_t^1, W_t^2)$ is 2D Brownian motion.
 
 ??? success "Solution to Exercise 5"
     **(a)** $f(x,y) = x^2 - y^2$:
@@ -422,12 +406,24 @@ For each, state what the harmonic property implies about $f(W_t^1, W_t^2)$ where
 
     So $\ln((W_t^1)^2 + (W_t^2)^2) = \ln|B_t|^2 = 2\ln|B_t|$ (where $B_t$ is 2D BM) is a local martingale, provided $B_t \neq 0$. Since 2D BM is neighborhood-recurrent but point-recurrent only at the starting point, $\ln|B_t|$ is well-defined for $B_0 \neq 0$. This is the classical result that $\ln|B_t|$ is a local martingale for 2D BM.
 
+---
+
+**Exercise 6.** Consider a diffusion $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$ where $\sigma(x) = 0$ for $x \in [1, 2]$ but $\sigma(x) > 0$ elsewhere. Explain why the equivalence $\mathcal{L}f = 0 \Leftrightarrow f(X_t)$ is a local martingale may fail in this setting. Which specific condition (non-degeneracy or irreducibility) is violated, and what is the consequence for the converse direction?
+
 ??? success "Solution to Exercise 6"
     The condition violated is **non-degeneracy**. Since $\sigma(x) = 0$ for $x \in [1,2]$, the diffusion coefficient vanishes on an entire interval. Within $[1,2]$, the process follows the ODE $dX_t = \mu(X_t)\,dt$ with no randomness — it moves deterministically and cannot explore the region $[1,2]$ freely.
 
     The consequence for the converse direction: suppose $f(X_t)$ is a martingale. The argument that $\mathcal{L}f = 0$ relies on the process visiting all points in the state space. If $X_t$ starts outside $[1,2]$ and enters this interval, it moves deterministically through it, never "sampling" all points densely. So even if $f(X_t)$ is a martingale, we can only conclude $\mathcal{L}f(x) = 0$ for points $x$ actually visited by the process.
 
     Concretely, on $[1,2]$ the generator reduces to $\mathcal{L}f(x) = \mu(x)f'(x)$ (purely first-order). A function $f$ could satisfy $\mu(x)f'(x) \neq 0$ at some $x \in [1,2]$ that the process traverses only once (deterministically), yet $f(X_t)$ might still be a martingale globally because the non-zero generator contribution on $[1,2]$ is compensated by the behavior elsewhere. The equivalence $\mathcal{L}f = 0 \Leftrightarrow f(X_t)$ local martingale breaks down because the degenerate region prevents the process from being irreducible in the sense needed for the converse.
+
+---
+
+**Exercise 7.** In the Stroock--Varadhan martingale problem, one requires $M_t^f = f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,ds$ to be a martingale for all $f \in C_c^\infty$.
+
+(a) Why is it sufficient to test only functions in $C_c^\infty$ (smooth with compact support) rather than all $C^2$ functions?
+
+(b) Give an intuitive explanation for why the martingale problem characterization uniquely determines the law of $X_t$ under non-degeneracy conditions.
 
 ??? success "Solution to Exercise 7"
     **(a)** The space $C_c^\infty$ is sufficient because it is **dense** in the relevant function spaces (such as $C_0^2$ or $L^2$) and the generator is a local operator for diffusions. More precisely:

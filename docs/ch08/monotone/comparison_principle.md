@@ -235,22 +235,188 @@ The comparison principle is the cornerstone of viscosity solution theory. It gua
 
 **Exercise 1.** State the comparison principle for viscosity sub- and supersolutions. Prove the uniqueness corollary: if $u$ and $v$ are both viscosity solutions with the same boundary data, then $u = v$.
 
+??? success "Solution to Exercise 1"
+    **Comparison Principle**: Let $u$ be a viscosity subsolution and $v$ a viscosity supersolution of $u_\tau + F(\tau, x, u, Du, D^2u) = 0$ on $(0, T] \times \Omega$, where $F$ is degenerate elliptic and proper. If $u \leq v$ on the parabolic boundary (at $\tau = 0$ and on $\partial\Omega$), then
+
+    $$
+    u(\tau, x) \leq v(\tau, x) \quad \text{for all } (\tau, x) \in [0, T] \times \overline{\Omega}
+    $$
+
+    **Uniqueness corollary**: Let $u$ and $v$ both be viscosity solutions of the same PDE with the same boundary data $g$.
+
+    Since $u$ is a viscosity solution, it is in particular a viscosity **subsolution**. Since $v$ is a viscosity solution, it is in particular a viscosity **supersolution**. Both satisfy the same boundary data, so $u = g = v$ on the parabolic boundary, which gives $u \leq v$ on the boundary. By the comparison principle:
+
+    $$
+    u(\tau, x) \leq v(\tau, x) \quad \text{for all } (\tau, x)
+    $$
+
+    Now swap the roles: $v$ is also a viscosity subsolution, and $u$ is also a viscosity supersolution, with $v = g = u$ on the parabolic boundary. Applying the comparison principle again:
+
+    $$
+    v(\tau, x) \leq u(\tau, x) \quad \text{for all } (\tau, x)
+    $$
+
+    Combining both inequalities: $u = v$ everywhere. $\square$
+
 ---
 
 **Exercise 2.** For a European call, construct explicit sub- and supersolutions (barriers): $\underline{u}(S) = 0$ and $\overline{u}(S) = S$. Verify that $\underline{u}$ is a viscosity subsolution and $\overline{u}$ is a viscosity supersolution of the Black-Scholes PDE, and conclude that $0 \leq V(t, S) \leq S$.
+
+??? success "Solution to Exercise 2"
+    We verify that $\underline{u}(S) = 0$ is a viscosity subsolution and $\overline{u}(S) = S$ is a viscosity supersolution of the Black-Scholes PDE $V_t + \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S - rV = 0$.
+
+    **$\underline{u} = 0$ is a viscosity subsolution**: Since $\underline{u}$ is smooth ($C^\infty$), it suffices to check the PDE pointwise. Substituting $V = 0$:
+
+    $$
+    V_t + \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S - rV = 0 + 0 + 0 - 0 = 0 \leq 0
+    $$
+
+    So $\underline{u} = 0$ satisfies the subsolution inequality $\leq 0$.
+
+    **$\overline{u} = S$ is a viscosity supersolution**: Since $\overline{u}$ is smooth, substitute $V = S$: $V_t = 0$, $V_S = 1$, $V_{SS} = 0$. Then:
+
+    $$
+    V_t + \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S - rV = 0 + 0 + rS - rS = 0 \geq 0
+    $$
+
+    So $\overline{u} = S$ satisfies the supersolution inequality $\geq 0$.
+
+    **Boundary verification**: For a European call with payoff $\Phi(S) = (S - K)^+$:
+
+    - At $\tau = 0$: $0 \leq (S - K)^+ \leq S$ for all $S \geq 0$
+    - At $S = 0$: $V(t, 0) = 0$, and $0 \leq 0 \leq 0$
+    - As $S \to \infty$: $V \sim S$ and $0 \leq V \leq S$
+
+    Since $\underline{u} \leq V$ and $V \leq \overline{u}$ on the parabolic boundary, the comparison principle gives
+
+    $$
+    0 \leq V(t, S) \leq S \quad \text{for all } (t, S)
+    $$
+
+    This is the well-known no-arbitrage bound for European call prices.
 
 ---
 
 **Exercise 3.** The stability corollary states that small perturbations in boundary data produce small changes in the solution. If the terminal payoff is perturbed by $\epsilon$ (i.e., $\Phi_\epsilon(S) = (S - K)^+ + \epsilon$), bound the change in the option price using the comparison principle.
 
+??? success "Solution to Exercise 3"
+    Let $V$ be the viscosity solution with terminal data $\Phi(S) = (S - K)^+$ and $V_\epsilon$ the viscosity solution with perturbed data $\Phi_\epsilon(S) = (S - K)^+ + \epsilon$.
+
+    Define $w = V_\epsilon - \epsilon e^{-r(T-t)}$. We claim $w$ satisfies the Black-Scholes PDE with terminal data $(S-K)^+$.
+
+    Since the Black-Scholes PDE is linear, and $\epsilon e^{-r(T-t)}$ satisfies $\frac{\partial}{\partial t}(\epsilon e^{-r(T-t)}) - r(\epsilon e^{-r(T-t)}) = r\epsilon e^{-r(T-t)} - r\epsilon e^{-r(T-t)} = 0$, which means $\epsilon e^{-r(T-t)}$ is itself a solution of the PDE. By linearity, $w = V_\epsilon - \epsilon e^{-r(T-t)}$ is a viscosity solution with terminal data $\Phi_\epsilon - \epsilon = (S-K)^+$.
+
+    By uniqueness (from the comparison principle), $w = V$, so
+
+    $$
+    V_\epsilon = V + \epsilon e^{-r(T-t)}
+    $$
+
+    Therefore, the change in the option price is bounded by
+
+    $$
+    |V_\epsilon(t, S) - V(t, S)| = \epsilon e^{-r(T-t)} \leq \epsilon
+    $$
+
+    This shows that the option price depends continuously on the terminal data: an $\epsilon$-perturbation in the payoff produces at most an $\epsilon$-change in the price (discounted), confirming the stability guaranteed by the comparison principle.
+
 ---
 
 **Exercise 4.** Verify the four assumptions required for the comparison principle to hold for the Black-Scholes operator: degenerate ellipticity, properness, continuity, and growth conditions. For the properness condition, explain why $r \geq 0$ is essential.
+
+??? success "Solution to Exercise 4"
+    The comparison principle for the Black-Scholes operator requires four conditions. Writing the PDE as $F(\tau, S, V, V_S, V_{SS}) = -\frac{1}{2}\sigma^2 S^2 V_{SS} - rSV_S + rV = 0$ (after the change to backward time $\tau = T - t$, so $V_\tau = F$):
+
+    **1. Degenerate ellipticity**: We need $F(\tau, S, r, p, X) \leq F(\tau, S, r, p, Y)$ whenever $X \geq Y$ (i.e., $X - Y \geq 0$). The second-derivative term in $F$ is $-\frac{1}{2}\sigma^2 S^2 V_{SS}$. If $X \geq Y$, then
+
+    $$
+    -\tfrac{1}{2}\sigma^2 S^2 X \leq -\tfrac{1}{2}\sigma^2 S^2 Y
+    $$
+
+    since $\frac{1}{2}\sigma^2 S^2 \geq 0$. Thus $F(\ldots, X) \leq F(\ldots, Y)$. The condition holds because the diffusion coefficient is non-negative.
+
+    **2. Properness**: We need $F(\tau, S, r, p, X) \leq F(\tau, S, s, p, X)$ whenever $r \leq s$. The $u$-dependent term in $F$ is $+rV$ (where $r$ is the interest rate). So
+
+    $$
+    F(\ldots, r_1, \ldots) - F(\ldots, r_2, \ldots) = r \cdot r_1 - r \cdot r_2 = r(r_1 - r_2)
+    $$
+
+    If $r_1 \leq r_2$ and $r \geq 0$ (non-negative interest rate), then $r(r_1 - r_2) \leq 0$, confirming properness. This is why $r \geq 0$ is essential: if the interest rate were negative, the $+rV$ term would be decreasing in $V$, violating properness and potentially destroying uniqueness.
+
+    **3. Continuity**: The coefficients $\frac{1}{2}\sigma^2 S^2$, $rS$, and $r$ are all smooth (indeed polynomial or constant) functions of $S$. Thus $F$ is continuous in all its arguments.
+
+    **4. Growth conditions**: On the unbounded domain $S \in [0, \infty)$, we need to control the behavior at infinity. For European options, the solution grows at most linearly: $|V(\tau, S)| \leq C(1 + S)$ for some constant $C > 0$. This polynomial growth condition (here with $p = 1$) ensures that the doubling-of-variables argument in the comparison principle proof can be carried out, as the penalization terms dominate the solution growth at infinity.
 
 ---
 
 **Exercise 5.** The discrete comparison principle states: if $S_h[u] \leq S_h[v]$ at all nodes, then $u \leq v$ at all nodes. Show that the explicit scheme satisfies this property when all stencil coefficients are non-negative (monotone scheme).
 
+??? success "Solution to Exercise 5"
+    The explicit scheme is
+
+    $$
+    u_j^{n+1} = a_j u_{j-1}^n + b_j u_j^n + c_j u_{j+1}^n
+    $$
+
+    with $a_j, b_j, c_j \geq 0$ (monotone scheme). We show that the discrete comparison principle holds: if $S_h[u] \leq S_h[v]$ at all nodes (meaning $u$ is a discrete subsolution and $v$ is a discrete supersolution) and $u \leq v$ on the boundary, then $u \leq v$ everywhere.
+
+    Write the scheme as $S_h[u]_j^{n+1} = u_j^{n+1} - a_j u_{j-1}^n - b_j u_j^n - c_j u_{j+1}^n$. Define $w_j^n = v_j^n - u_j^n$. Then
+
+    $$
+    w_j^{n+1} = v_j^{n+1} - u_j^{n+1} + \bigl(S_h[v]_j^{n+1} - S_h[u]_j^{n+1}\bigr) - \bigl(S_h[v]_j^{n+1} - S_h[u]_j^{n+1}\bigr)
+    $$
+
+    More directly, suppose $u_j^n \leq v_j^n$ for all $j$ at time level $n$. Then at time level $n+1$, the time-stepped values satisfy:
+
+    $$
+    \tilde{v}_j^{n+1} - \tilde{u}_j^{n+1} = a_j(v_{j-1}^n - u_{j-1}^n) + b_j(v_j^n - u_j^n) + c_j(v_{j+1}^n - u_{j+1}^n)
+    $$
+
+    Since $v_k^n - u_k^n \geq 0$ for all $k$ and $a_j, b_j, c_j \geq 0$, each term on the right is non-negative. Therefore
+
+    $$
+    \tilde{v}_j^{n+1} - \tilde{u}_j^{n+1} \geq 0
+    $$
+
+    for all $j$. By induction over time levels (starting from the boundary where $u \leq v$ by assumption), we conclude $u_j^n \leq v_j^n$ for all $j$ and all $n$. This is precisely the discrete comparison principle, and it holds because the non-negative coefficients ensure that the ordering at one time level is propagated to the next.
+
 ---
 
 **Exercise 6.** The "doubling of variables" proof technique introduces a penalized supremum $\Phi_\alpha(\tau, x, \sigma, y) = u(\tau, x) - v(\sigma, y) - \frac{\alpha}{2}|x-y|^2 - \frac{\alpha}{2}(\tau - \sigma)^2$. Explain the role of the quadratic penalty terms: why do they force the supremum to occur near the diagonal $x = y$, $\tau = \sigma$?
+
+??? success "Solution to Exercise 6"
+    The penalized function is
+
+    $$
+    \Phi_\alpha(\tau, x, \sigma, y) = u(\tau, x) - v(\sigma, y) - \frac{\alpha}{2}|x - y|^2 - \frac{\alpha}{2}(\tau - \sigma)^2
+    $$
+
+    The quadratic penalty terms $\frac{\alpha}{2}|x - y|^2$ and $\frac{\alpha}{2}(\tau - \sigma)^2$ force the supremum to occur near the diagonal for the following reason.
+
+    Let $(\tau_\alpha, x_\alpha, \sigma_\alpha, y_\alpha)$ be a point where $\Phi_\alpha$ attains its supremum. By definition:
+
+    $$
+    \Phi_\alpha(\tau_\alpha, x_\alpha, \sigma_\alpha, y_\alpha) \geq \Phi_\alpha(\tau, x, \tau, x) = u(\tau, x) - v(\tau, x)
+    $$
+
+    for any $(\tau, x)$. In particular, taking the supremum over $(\tau, x)$:
+
+    $$
+    u(\tau_\alpha, x_\alpha) - v(\sigma_\alpha, y_\alpha) - \frac{\alpha}{2}|x_\alpha - y_\alpha|^2 - \frac{\alpha}{2}(\tau_\alpha - \sigma_\alpha)^2 \geq M
+    $$
+
+    where $M = \sup_{(\tau,x)}(u - v)(\tau, x) > 0$. Since $u$ and $v$ are bounded (say $|u|, |v| \leq C$):
+
+    $$
+    \frac{\alpha}{2}|x_\alpha - y_\alpha|^2 + \frac{\alpha}{2}(\tau_\alpha - \sigma_\alpha)^2 \leq u(\tau_\alpha, x_\alpha) - v(\sigma_\alpha, y_\alpha) - M \leq 2C - M
+    $$
+
+    This gives
+
+    $$
+    |x_\alpha - y_\alpha|^2 + (\tau_\alpha - \sigma_\alpha)^2 \leq \frac{2(2C - M)}{\alpha}
+    $$
+
+    As $\alpha \to \infty$, the right-hand side tends to zero, forcing $|x_\alpha - y_\alpha| \to 0$ and $|\tau_\alpha - \sigma_\alpha| \to 0$. Thus the supremum points converge to the diagonal $x = y$, $\tau = \sigma$.
+
+    The purpose of this construction is to convert the problem into one where the sub- and supersolution properties can be applied. On the diagonal, the penalized function reduces to $u(\tau, x) - v(\tau, x)$, so the supremum of $\Phi_\alpha$ converges to $M$. The penalty terms create smooth test functions that can be used to invoke the viscosity sub/supersolution definitions at the supremum point, which is the core of the contradiction argument.

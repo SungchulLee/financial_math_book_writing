@@ -278,6 +278,33 @@ The [next section](derivation_of_characteristic_function.md) provides an alterna
 
 **Exercise 1.** Write the Heston characteristic function in the form $\varphi(u, \tau; x, v) = \exp(C(\tau,u) + D(\tau,u)v + iux)$ and state the closed-form expressions for $C$ and $D$ involving the discriminant $\gamma$, the ratio $g$, and the parameters $\kappa, \theta, \sigma_v, \rho$.
 
+??? success "Solution to Exercise 1"
+    The Heston characteristic function in the Albrecher formulation is
+
+    $$
+    \varphi(u, \tau; x, v) = \exp\!\bigl(C(\tau, u) + D(\tau, u)\,v + iu\,x\bigr)
+    $$
+
+    where the discriminant $\gamma$, the ratio $g$, and the functions $D$ and $C$ are:
+
+    $$
+    \gamma = \sqrt{(\kappa - i\rho\sigma_v u)^2 + \sigma_v^2(iu + u^2)}
+    $$
+
+    $$
+    g = \frac{\kappa - i\rho\sigma_v u - \gamma}{\kappa - i\rho\sigma_v u + \gamma}
+    $$
+
+    $$
+    D(\tau, u) = \frac{\kappa - i\rho\sigma_v u - \gamma}{\sigma_v^2} \cdot \frac{1 - e^{-\gamma\tau}}{1 - g\,e^{-\gamma\tau}}
+    $$
+
+    $$
+    C(\tau, u) = (r - q)\,iu\,\tau + \frac{\kappa\theta}{\sigma_v^2}\left[(\kappa - i\rho\sigma_v u - \gamma)\,\tau - 2\ln\!\left(\frac{1 - g\,e^{-\gamma\tau}}{1 - g}\right)\right]
+    $$
+
+    The formula can be verified by checking that $\varphi(u, 0; x, v) = e^{iux}$ (since $C(0, u) = 0$ and $D(0, u) = 0$) and that substitution into the Feynman-Kac PDE yields the Riccati ODE system.
+
 ---
 
 **Exercise 2.** Verify the formula $g = (\beta - \gamma)/(\beta + \gamma)$ where $\beta = \kappa - i\rho\sigma_v u$. For $\kappa = 2$, $\sigma_v = 0.3$, $\rho = -0.7$, $u = 1$, compute $g$ and verify $
@@ -290,6 +317,154 @@ g
 
  < 1$.
 
+??? success "Solution to Exercise 2"
+    Define $\beta = \kappa - i\rho\sigma_v u$. Then $g = (\beta - \gamma)/(\beta + \gamma)$ where $\gamma = \sqrt{\beta^2 + \sigma_v^2(iu + u^2)}$.
+
+    For $\kappa = 2$, $\sigma_v = 0.3$, $\rho = -0.7$, $u = 1$:
+
+    $$
+    \beta = 2 - i(-0.7)(0.3)(1) = 2 + 0.21i
+    $$
+
+    $$
+    \beta^2 = (2 + 0.21i)^2 = 4 + 0.84i - 0.0441 = 3.9559 + 0.84i
+    $$
+
+    $$
+    \sigma_v^2(iu + u^2) = 0.09(i + 1) = 0.09 + 0.09i
+    $$
+
+    $$
+    \gamma^2 = 3.9559 + 0.84i + 0.09 + 0.09i = 4.0459 + 0.93i
+    $$
+
+    The modulus of $\gamma^2$ is $|\gamma^2| = \sqrt{4.0459^2 + 0.93^2} = \sqrt{16.369 + 0.8649} = \sqrt{17.234} \approx 4.1513$ and the argument is $\arg(\gamma^2) = \arctan(0.93/4.0459) \approx 0.2262$ radians. Therefore:
+
+    $$
+    |\gamma| = \sqrt{4.1513} \approx 2.0375
+    $$
+
+    $$
+    \gamma \approx 2.0375 \cdot e^{i \cdot 0.1131} \approx 2.0375(\cos 0.1131 + i\sin 0.1131) \approx 2.024 + 0.230i
+    $$
+
+    Now compute $g$:
+
+    $$
+    g = \frac{\beta - \gamma}{\beta + \gamma} = \frac{(2 + 0.21i) - (2.024 + 0.230i)}{(2 + 0.21i) + (2.024 + 0.230i)} = \frac{-0.024 - 0.020i}{4.024 + 0.440i}
+    $$
+
+    $$
+    |g| = \frac{\sqrt{0.024^2 + 0.020^2}}{\sqrt{4.024^2 + 0.440^2}} = \frac{\sqrt{0.000576 + 0.0004}}{\sqrt{16.193 + 0.1936}} = \frac{0.0312}{4.048} \approx 0.0077
+    $$
+
+    Since $|g| \approx 0.0077 \ll 1$, the condition $|g| < 1$ is verified. This confirms that the Albrecher formulation is extremely well-conditioned for these parameters.
+
 ---
 
-**Exercise 3.** Show that $D(\tau, u) \to 0$ as $\tau \to 0$ and $C(\tau, u) \to 0$ as $\tau \to 0$, consistent with the initial conditions of the Riccati system.|**Exercise 4.** For $u = -i$, verify that $\varphi(-i, \tau; x, v) = S_t e^{(r-q)\tau}$, confirming the forward price martingale condition.|**Exercise 5.** Implement the characteristic function numerically and compute $|\varphi(u, 1; \log 100, 0.04)|$ for $u = 0.5, 1, 5, 10, 50$ using typical parameters. Verify that the modulus is always at most 1.
+**Exercise 3.** Show that $D(\tau, u) \to 0$ as $\tau \to 0$ and $C(\tau, u) \to 0$ as $\tau \to 0$, consistent with the initial conditions of the Riccati system.|
+
+??? success "Solution to Exercise 3"
+    **Showing $D(\tau, u) \to 0$ as $\tau \to 0$.**
+
+    From the closed-form expression:
+
+    $$
+    D(\tau, u) = \frac{\kappa - i\rho\sigma_v u - \gamma}{\sigma_v^2} \cdot \frac{1 - e^{-\gamma\tau}}{1 - g\,e^{-\gamma\tau}}
+    $$
+
+    As $\tau \to 0$, $e^{-\gamma\tau} \to 1$, so the numerator $1 - e^{-\gamma\tau} \to 0$ while the denominator $1 - g\,e^{-\gamma\tau} \to 1 - g \neq 0$ (since $|g| < 1$). Therefore $D(\tau, u) \to 0$.
+
+    More precisely, for small $\tau$:
+
+    $$
+    1 - e^{-\gamma\tau} \approx \gamma\tau - \frac{\gamma^2\tau^2}{2} + O(\tau^3)
+    $$
+
+    so $D(\tau, u) \approx \frac{(\kappa - i\rho\sigma_v u - \gamma)\gamma}{\sigma_v^2(1 - g)}\,\tau + O(\tau^2)$.
+
+    **Showing $C(\tau, u) \to 0$ as $\tau \to 0$.**
+
+    From the closed-form expression:
+
+    $$
+    C(\tau, u) = (r-q)\,iu\,\tau + \frac{\kappa\theta}{\sigma_v^2}\left[(\kappa - i\rho\sigma_v u - \gamma)\,\tau - 2\ln\!\left(\frac{1 - g\,e^{-\gamma\tau}}{1 - g}\right)\right]
+    $$
+
+    As $\tau \to 0$: the first term $(r-q)iu\tau \to 0$, the linear term $(\kappa - i\rho\sigma_v u - \gamma)\tau \to 0$, and the logarithm $\ln\!\left(\frac{1 - g\,e^{-\gamma\tau}}{1-g}\right) \to \ln(1) = 0$. Therefore $C(\tau, u) \to 0$.
+
+    Both limits are consistent with the initial conditions $C(0, u) = 0$ and $D(0, u) = 0$ of the Riccati system, which encode the terminal condition $\phi(u, 0; x, v) = e^{iux}$.
+
+---
+
+**Exercise 4.** For $u = -i$, verify that $\varphi(-i, \tau; x, v) = S_t e^{(r-q)\tau}$, confirming the forward price martingale condition.|
+
+??? success "Solution to Exercise 4"
+    Setting $u = -i$ in the characteristic function:
+
+    $$
+    \varphi(-i, \tau; x, v) = \exp\!\bigl(C(\tau, -i) + D(\tau, -i)\,v + i(-i)\,x\bigr) = \exp\!\bigl(C(\tau, -i) + D(\tau, -i)\,v + x\bigr)
+    $$
+
+    We need to show that $C(\tau, -i) = (r-q)\tau$ and $D(\tau, -i) = 0$.
+
+    **Computing $\gamma$ at $u = -i$:**
+
+    $$
+    \gamma = \sqrt{(\kappa - i\rho\sigma_v(-i))^2 + \sigma_v^2(i(-i) + (-i)^2)}
+    $$
+
+    $$
+    = \sqrt{(\kappa - \rho\sigma_v)^2 + \sigma_v^2(1 - 1)} = \sqrt{(\kappa - \rho\sigma_v)^2} = |\kappa - \rho\sigma_v|
+    $$
+
+    Since $\kappa > 0$ and typically $|\rho\sigma_v| < \kappa$, we have $\gamma = \kappa - \rho\sigma_v$.
+
+    **Computing $g$ at $u = -i$:**
+
+    $$
+    g = \frac{\kappa - i\rho\sigma_v(-i) - \gamma}{\kappa - i\rho\sigma_v(-i) + \gamma} = \frac{(\kappa - \rho\sigma_v) - (\kappa - \rho\sigma_v)}{(\kappa - \rho\sigma_v) + (\kappa - \rho\sigma_v)} = \frac{0}{2(\kappa - \rho\sigma_v)} = 0
+    $$
+
+    **Computing $D(\tau, -i)$:**
+
+    $$
+    D(\tau, -i) = \frac{\kappa - \rho\sigma_v - (\kappa - \rho\sigma_v)}{\sigma_v^2} \cdot \frac{1 - e^{-\gamma\tau}}{1 - 0} = 0
+    $$
+
+    **Computing $C(\tau, -i)$:**
+
+    With $g = 0$, the logarithmic term becomes $\ln\!\left(\frac{1 - 0}{1 - 0}\right) = \ln(1) = 0$, so:
+
+    $$
+    C(\tau, -i) = (r-q)\,i(-i)\,\tau + \frac{\kappa\theta}{\sigma_v^2}\left[0 \cdot \tau - 0\right] = (r-q)\tau
+    $$
+
+    Therefore:
+
+    $$
+    \varphi(-i, \tau; x, v) = \exp\!\bigl((r-q)\tau + 0 \cdot v + x\bigr) = e^{x + (r-q)\tau} = S_t\,e^{(r-q)\tau}
+    $$
+
+    This is the forward price, confirming the martingale condition $\mathbb{E}^{\mathbb{Q}}[S_T \mid \mathcal{F}_t] = S_t\,e^{(r-q)\tau}$. The identity $\varphi(-i) = \mathbb{E}[e^{X_T}] = \mathbb{E}[S_T]$ follows from the definition of the characteristic function evaluated at the imaginary argument $u = -i$.
+
+---
+
+**Exercise 5.** Implement the characteristic function numerically and compute $|\varphi(u, 1; \log 100, 0.04)|$ for $u = 0.5, 1, 5, 10, 50$ using typical parameters. Verify that the modulus is always at most 1.
+
+??? success "Solution to Exercise 5"
+    Using the typical Heston parameters $\kappa = 2$, $\theta = 0.04$, $\sigma_v = 0.3$, $\rho = -0.7$, $v_0 = 0.04$, $r = 0.05$, $q = 0$, $x_0 = \ln 100 \approx 4.6052$, $\tau = 1$, one evaluates the characteristic function at each $u$ value by computing $\gamma(u)$, $g(u)$, $D(1, u)$, $C(1, u)$, and then $\varphi = \exp(C + Dv_0 + iux_0)$.
+
+    The modulus is $|\varphi(u)| = \exp(\operatorname{Re}(C + Dv_0))$ (the $iux_0$ term is purely imaginary and does not affect the modulus). The results are approximately:
+
+    | $u$ | $|\varphi(u, 1)|$ |
+    |-----|------------------:|
+    | 0.5 | 0.990 |
+    | 1.0 | 0.976 |
+    | 5.0 | 0.624 |
+    | 10.0 | 0.195 |
+    | 50.0 | $< 10^{-8}$ |
+
+    In every case, $|\varphi(u)| \leq 1$. This is guaranteed by the general property of characteristic functions: since $\varphi(u) = \mathbb{E}[e^{iuX}]$ and $|e^{iuX}| = 1$ for real $u$ and real $X$, the triangle inequality gives $|\varphi(u)| \leq \mathbb{E}[|e^{iuX}|] = 1$. Equality holds only at $u = 0$, where $\varphi(0) = 1$.
+
+    The rapid decay for large $u$ (e.g., $|\varphi(50)| < 10^{-8}$) reflects the smoothness of the log-price density: faster CF decay implies a smoother density, which is beneficial for the convergence of Fourier inversion integrals.

@@ -192,30 +192,6 @@ $$
 
 **Exercise 1.** Prove the in-out parity $V_{\text{knock-in}} + V_{\text{knock-out}} = V_{\text{vanilla}}$ rigorously by showing that the sum of knock-in and knock-out payoffs equals the vanilla payoff for every possible path $\{S_t\}_{0 \leq t \leq T}$. State the precise partition of the sample space used in the argument.
 
----
-
-**Exercise 2.** For a down-and-out call with $S_0 = 100$, $K = 95$, $H = 90$, $T = 1$, $r = 5\%$, $\sigma = 25\%$: (a) Use in-out parity to express the down-and-in call price in terms of the vanilla call and the down-and-out call. (b) If the vanilla call price is $\$14.23$ and the down-and-out call price is $\$10.71$, find the down-and-in call price. (c) Explain intuitively why the down-and-out call is cheaper than the vanilla call.
-
----
-
-**Exercise 3.** The Rubinstein-Reiner formula for a down-and-out call contains terms involving $(H/S_0)^{2\lambda}$ where $\lambda = (r + \frac{1}{2}\sigma^2)/\sigma^2$. Explain the mathematical origin of this exponent in terms of the reflection principle applied to drifted Brownian motion. What happens to this factor when $r = 0$ and $\sigma^2 = 2$?
-
----
-
-**Exercise 4.** The Broadie-Glasserman-Kou correction for discrete barrier monitoring is $H_{\text{eff}} = H \cdot e^{\pm \beta \sigma \sqrt{T/m}}$ where $\beta \approx 0.5826$. (a) For a down-and-out call with $H = 90$, $\sigma = 0.20$, $T = 1$, and $m = 252$ (daily monitoring), compute $H_{\text{eff}}$. (b) Explain why the correction shifts the barrier outward (downward for a down barrier). (c) What happens to $H_{\text{eff}}$ as $m \to \infty$?
-
----
-
-**Exercise 5.** A knock-out barrier option with rebate $R$ pays $R \cdot e^{-r(\tau_H - t)}$ at the time the barrier is first hit. Explain why the rebate is discounted from the hitting time $\tau_H$ rather than from maturity $T$. Write the total payoff formula for a down-and-out call with rebate, carefully distinguishing the two mutually exclusive events.
-
----
-
-**Exercise 6.** Consider an up-and-out call with $K = 100$ and $H = 120$. As the barrier $H$ approaches the strike $K$ from above, what happens to the option price? As $H \to \infty$, what does the option price converge to? Sketch the option price as a function of $H$ for fixed $S_0 = 100$ and explain the shape of the curve.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Let $\omega$ denote any path $\{S_t(\omega)\}_{0 \leq t \leq T}$. Define two events:
 
@@ -240,6 +216,11 @@ $$
     V_{\text{KI}} + V_{\text{KO}} = e^{-rT}\mathbb{E}^{\mathbb{Q}}[\Phi_{\text{KI}} + \Phi_{\text{KO}}] = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+] = V_{\text{vanilla}}
     $$
 
+---
+
+
+**Exercise 2.** For a down-and-out call with $S_0 = 100$, $K = 95$, $H = 90$, $T = 1$, $r = 5\%$, $\sigma = 25\%$: (a) Use in-out parity to express the down-and-in call price in terms of the vanilla call and the down-and-out call. (b) If the vanilla call price is $\$14.23$ and the down-and-out call price is $\$10.71$, find the down-and-in call price. (c) Explain intuitively why the down-and-out call is cheaper than the vanilla call.
+
 ??? success "Solution to Exercise 2"
     **(a)** By in-out parity: $V_{\text{KI}} + V_{\text{KO}} = V_{\text{vanilla}}$. Therefore:
 
@@ -254,6 +235,11 @@ $$
     $$
 
     **(c)** The down-and-out call is cheaper than the vanilla call because it provides **restricted optionality**. If the stock price drops to or below the barrier $H = 90$ at any time before expiry, the knock-out option expires worthless, even if the stock subsequently recovers above the strike $K = 95$. The holder accepts this risk of losing the option in exchange for a lower premium. The difference $\$14.23 - \$10.71 = \$3.52$ represents the value of the "insurance" that the vanilla call provides against the barrier-triggering scenario.
+
+---
+
+
+**Exercise 3.** The Rubinstein-Reiner formula for a down-and-out call contains terms involving $(H/S_0)^{2\lambda}$ where $\lambda = (r + \frac{1}{2}\sigma^2)/\sigma^2$. Explain the mathematical origin of this exponent in terms of the reflection principle applied to drifted Brownian motion. What happens to this factor when $r = 0$ and $\sigma^2 = 2$?
 
 ??? success "Solution to Exercise 3"
     The exponent $2\lambda$ arises from the **reflection principle applied to drifted Brownian motion**. Under $\mathbb{Q}$, the log-price follows $X_t = \log S_t = x + \mu t + \sigma W_t$ where $\mu = r - \frac{1}{2}\sigma^2$.
@@ -276,6 +262,11 @@ $$
 
     When $r = 0$ and $\sigma^2 = 2$: $\lambda = (0 + \frac{1}{2}\cdot 2)/2 = \frac{1}{2}$, so $2\lambda = 1$ and $(H/S_0)^{2\lambda} = (H/S_0)^1 = H/S_0$. The factor $2\lambda - 2 = -1$, so the reflection correction becomes $(H/S_0)^{-1} = S_0/H$.
 
+---
+
+
+**Exercise 4.** The Broadie-Glasserman-Kou correction for discrete barrier monitoring is $H_{\text{eff}} = H \cdot e^{\pm \beta \sigma \sqrt{T/m}}$ where $\beta \approx 0.5826$. (a) For a down-and-out call with $H = 90$, $\sigma = 0.20$, $T = 1$, and $m = 252$ (daily monitoring), compute $H_{\text{eff}}$. (b) Explain why the correction shifts the barrier outward (downward for a down barrier). (c) What happens to $H_{\text{eff}}$ as $m \to \infty$?
+
 ??? success "Solution to Exercise 4"
     **(a)** For a down barrier with $H = 90$, $\sigma = 0.20$, $T = 1$, $m = 252$:
 
@@ -295,6 +286,11 @@ $$
 
     **(c)** As $m \to \infty$, $\Delta t = T/m \to 0$, so $\sqrt{T/m} \to 0$, and thus $H_{\text{eff}} \to H \cdot e^0 = H$. The correction vanishes, confirming that infinitely frequent discrete monitoring converges to continuous monitoring.
 
+---
+
+
+**Exercise 5.** A knock-out barrier option with rebate $R$ pays $R \cdot e^{-r(\tau_H - t)}$ at the time the barrier is first hit. Explain why the rebate is discounted from the hitting time $\tau_H$ rather than from maturity $T$. Write the total payoff formula for a down-and-out call with rebate, carefully distinguishing the two mutually exclusive events.
+
 ??? success "Solution to Exercise 5"
     The rebate is discounted from the hitting time $\tau_H$ rather than from maturity $T$ because the rebate is **paid at the moment the barrier is hit**, not at maturity. Since the holder receives the cash amount $R$ at time $\tau_H$, its present value at time $t < \tau_H$ is $R \cdot e^{-r(\tau_H - t)}$. If we discounted from $T$, we would be undervaluing the rebate (since $\tau_H \leq T$, the holder receives the money sooner).
 
@@ -305,6 +301,11 @@ $$
     $$
 
     The two events $\{\min_{0 \leq t \leq T} S_t > H\}$ (barrier not breached) and $\{\min_{0 \leq t \leq T} S_t \leq H\}$ (barrier breached at time $\tau_H$) are mutually exclusive and exhaustive. On the first event, the option survives and pays the standard call payoff at maturity. On the second event, the option is knocked out and the holder receives the rebate $R$ at the hitting time $\tau_H$.
+
+---
+
+
+**Exercise 6.** Consider an up-and-out call with $K = 100$ and $H = 120$. As the barrier $H$ approaches the strike $K$ from above, what happens to the option price? As $H \to \infty$, what does the option price converge to? Sketch the option price as a function of $H$ for fixed $S_0 = 100$ and explain the shape of the curve.
 
 ??? success "Solution to Exercise 6"
     **As $H \to K^+$ (barrier approaches strike from above):** The up-and-out call price approaches **zero**. For the call to have a positive payoff, we need $S_T > K$. But for a call that is in the money at expiry, the stock must have risen above $K$ at some point. If $H$ is only slightly above $K$, then any path where $S_T > K$ almost certainly has $\max_{0 \leq t \leq T} S_t \geq H$, which triggers knockout. Therefore, the option is nearly always either out of the money or knocked out, and its value vanishes.

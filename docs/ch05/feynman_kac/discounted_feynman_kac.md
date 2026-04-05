@@ -329,40 +329,6 @@ $$
 **Exercise 1.**
 For a European call option under $\mathbb{Q}$ with constant $r = 0.05$, $\sigma = 0.30$, and $S_0 = 100$, write the Black-Scholes PDE with the $-rV$ discounting term and identify each component: generator $\mathcal{L}$, discount rate, and terminal condition for strike $K = 100$.
 
----
-
-**Exercise 2.**
-Show that if $r$ is constant, the discounted Feynman-Kac expectation $u(t,x) = \mathbb{E}[e^{-r(T-t)}g(X_T) | X_t = x]$ can be written as $e^{-r(T-t)}v(t,x)$ where $v$ solves the undiscounted backward equation $\partial_t v + \mathcal{L}v = 0$. Verify by substitution that $u$ then satisfies $\partial_t u + \mathcal{L}u - ru = 0$.
-
----
-
-**Exercise 3.**
-In the Vasicek model with $\kappa = 0.5$, $\theta = 0.04$, $\sigma_r = 0.01$, and $r_0 = 0.03$, the zero-coupon bond price satisfies $\partial_t P + \kappa(\theta - r)\partial_r P + \frac{1}{2}\sigma_r^2 \partial_{rr}P - rP = 0$ with $P(T,r) = 1$. Explain why $r$ appears both in the drift coefficient $\kappa(\theta - r)$ and as the discount rate $-rP$. What makes this PDE different from the standard Black-Scholes PDE?
-
----
-
-**Exercise 4.**
-Consider the discounted Feynman-Kac formula with running payoff: $u(t,x) = \mathbb{E}[\int_t^T e^{-\int_t^s r\,d\tau}f(s, X_s)\,ds | X_t = x]$. This satisfies $\partial_t u + \mathcal{L}u - ru + f = 0$ with $u(T,x) = 0$. Give a financial example where a running payoff arises, and explain why the terminal condition is zero.
-
----
-
-**Exercise 5.**
-In the killing interpretation, a process $X_t$ is killed at an exponential rate $r(t,X_t)$. Write the survival probability $\mathbb{P}(\zeta > T | \text{path of } X) = e^{-\int_t^T r(s,X_s)\,ds}$. If $r$ is constant at $r = 0.05$ and $T - t = 10$, compute the survival probability. Explain the financial interpretation in terms of discounting.
-
----
-
-**Exercise 6.**
-For a dividend-paying stock with continuous yield $q$ under $\mathbb{Q}$: $dS_t = (r - q)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$. Write the PDE for an option price $V(t,S)$ including the $-rV$ discounting term. Identify how $q$ affects the drift but not the discount rate.
-
----
-
-**Exercise 7.**
-Derive the $-ru$ term in the discounted Feynman-Kac PDE by considering the extended process $Y_s = (X_s, R_s)$ where $R_s = \int_t^s r(\tau, X_\tau)\,d\tau$. Show that $v(t, x, \rho) = e^{-\rho}u(t,x)$ satisfies $\partial_\rho v = -e^{-\rho}u$, and use this to derive $\partial_t u + \mathcal{L}u - ru = 0$ from the backward equation for the extended process.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The Black-Scholes PDE with the given parameters is:
 
@@ -381,6 +347,11 @@ Derive the $-ru$ term in the discounted Feynman-Kac PDE by considering the exten
     - **Generator** $\mathcal{L}$: Under $\mathbb{Q}$, the stock follows $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$, so $\mu(S) = rS = 0.05S$ and $\sigma_{\text{diff}}(S) = \sigma S = 0.30S$. The generator is $\mathcal{L}V = 0.05S\,\partial_S V + \frac{1}{2}(0.09)S^2\,\partial_{SS}V$.
     - **Discount rate**: The constant risk-free rate $r = 0.05$, appearing in the $-rV = -0.05V$ term.
     - **Terminal condition**: For a call with strike $K = 100$, we have $V(T, S) = (S - 100)^+$.
+
+---
+
+**Exercise 2.**
+Show that if $r$ is constant, the discounted Feynman-Kac expectation $u(t,x) = \mathbb{E}[e^{-r(T-t)}g(X_T) | X_t = x]$ can be written as $e^{-r(T-t)}v(t,x)$ where $v$ solves the undiscounted backward equation $\partial_t v + \mathcal{L}v = 0$. Verify by substitution that $u$ then satisfies $\partial_t u + \mathcal{L}u - ru = 0$.
 
 ??? success "Solution to Exercise 2"
     Let $v(t, x) = \mathbb{E}[g(X_T) \mid X_t = x]$, which solves the undiscounted backward equation $\partial_t v + \mathcal{L}v = 0$ with $v(T, x) = g(x)$.
@@ -417,6 +388,11 @@ Derive the $-ru$ term in the discounted Feynman-Kac PDE by considering the exten
 
     since $v$ solves $\partial_t v + \mathcal{L}v = 0$. $\checkmark$
 
+---
+
+**Exercise 3.**
+In the Vasicek model with $\kappa = 0.5$, $\theta = 0.04$, $\sigma_r = 0.01$, and $r_0 = 0.03$, the zero-coupon bond price satisfies $\partial_t P + \kappa(\theta - r)\partial_r P + \frac{1}{2}\sigma_r^2 \partial_{rr}P - rP = 0$ with $P(T,r) = 1$. Explain why $r$ appears both in the drift coefficient $\kappa(\theta - r)$ and as the discount rate $-rP$. What makes this PDE different from the standard Black-Scholes PDE?
+
 ??? success "Solution to Exercise 3"
     In the Vasicek model, the short rate $r_t$ is the **state variable** itself. This creates a dual role for $r$:
 
@@ -425,6 +401,11 @@ Derive the $-ru$ term in the discounted Feynman-Kac PDE by considering the exten
     2. **In the discount term $-rP$**: The same variable $r$ serves as the instantaneous discounting rate. This arises because the bond price is $P(t, r) = \mathbb{E}[e^{-\int_t^T r_s\,ds} \mid r_t = r]$, and the Feynman-Kac formula produces the $-r\,P$ term.
 
     **Difference from Black-Scholes**: In the Black-Scholes PDE, the discount rate $r$ is a fixed constant, independent of the state variable $S$. The state variable $S$ appears in the drift ($rS$) and the diffusion ($\sigma S$), but $r$ in the $-rV$ term is simply a parameter. In the Vasicek PDE, the discount rate is the state variable: the coefficient of $-P$ is $r$ itself, which varies stochastically. This makes the problem inherently different because the discounting is path-dependent, and the discount factor $e^{-\int_t^T r_s\,ds}$ cannot be factored out of the expectation.
+
+---
+
+**Exercise 4.**
+Consider the discounted Feynman-Kac formula with running payoff: $u(t,x) = \mathbb{E}[\int_t^T e^{-\int_t^s r\,d\tau}f(s, X_s)\,ds | X_t = x]$. This satisfies $\partial_t u + \mathcal{L}u - ru + f = 0$ with $u(T,x) = 0$. Give a financial example where a running payoff arises, and explain why the terminal condition is zero.
 
 ??? success "Solution to Exercise 4"
     **Financial example**: A coupon bond that pays continuous coupons at rate $c$ per unit time. The holder receives a stream of payments $f(s, X_s) = c$ over $[t, T]$, each discounted to present value. With no terminal payoff ($g = 0$, or equivalently with a face value $g = 1$ at maturity for a standard bond), the value is:
@@ -437,6 +418,11 @@ Derive the $-ru$ term in the discounted Feynman-Kac PDE by considering the exten
 
     **Why the terminal condition is zero**: The formula $u(t,x) = \mathbb{E}[\int_t^T e^{-\int_t^s r\,d\tau}f(s, X_s)\,ds \mid X_t = x]$ represents only the running payoff component. At maturity $T$, there are no remaining future running payments to collect (the integral $\int_T^T \cdots\,ds = 0$), so $u(T, x) = 0$. If there were also a terminal payoff $g(X_T)$, it would be added separately, and the terminal condition would be $u(T, x) = g(x)$.
 
+---
+
+**Exercise 5.**
+In the killing interpretation, a process $X_t$ is killed at an exponential rate $r(t,X_t)$. Write the survival probability $\mathbb{P}(\zeta > T | \text{path of } X) = e^{-\int_t^T r(s,X_s)\,ds}$. If $r$ is constant at $r = 0.05$ and $T - t = 10$, compute the survival probability. Explain the financial interpretation in terms of discounting.
+
 ??? success "Solution to Exercise 5"
     With constant killing rate $r = 0.05$ and time horizon $T - t = 10$:
 
@@ -447,6 +433,11 @@ Derive the $-ru$ term in the discounted Feynman-Kac PDE by considering the exten
     So approximately $60.65\%$ of the probability mass survives to time $T$.
 
     **Financial interpretation**: The survival probability $e^{-r(T-t)}$ is exactly the **discount factor** used to compute present values. A payoff of $\$1$ received at time $T$ is worth $e^{-0.5} \approx \$0.6065$ today. In the killing interpretation, we imagine the process being "killed" at random with intensity $r = 0.05$ per year. After 10 years, the probability that the process has not been killed is $e^{-0.5}$. The expected payoff, conditional on survival, times the survival probability gives the discounted expected value -- this is exactly how risk-neutral pricing works.
+
+---
+
+**Exercise 6.**
+For a dividend-paying stock with continuous yield $q$ under $\mathbb{Q}$: $dS_t = (r - q)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$. Write the PDE for an option price $V(t,S)$ including the $-rV$ discounting term. Identify how $q$ affects the drift but not the discount rate.
 
 ??? success "Solution to Exercise 6"
     Under $\mathbb{Q}$, the dividend-paying stock follows $dS_t = (r - q)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$, so the drift is $\mu(S) = (r - q)S$ and the diffusion coefficient is $\sigma_{\text{diff}}(S) = \sigma S$.
@@ -460,6 +451,11 @@ Derive the $-ru$ term in the discounted Feynman-Kac PDE by considering the exten
     **How $q$ affects the PDE**: The dividend yield $q$ enters only through the drift term $(r - q)S\,\partial_S V$. Compared to the non-dividend case (where the drift coefficient is $rS$), the effective risk-neutral growth rate is reduced from $r$ to $r - q$. Intuitively, dividends "leak" value from the stock at rate $q$, so the capital appreciation under $\mathbb{Q}$ is slower.
 
     **The discount rate is unchanged**: The $-rV$ term remains at rate $r$, not $r - q$. This is because discounting reflects the time value of money (the risk-free rate), which is independent of whether the stock pays dividends. The dividend yield affects the dynamics of the underlying but not the rate at which future payoffs are discounted.
+
+---
+
+**Exercise 7.**
+Derive the $-ru$ term in the discounted Feynman-Kac PDE by considering the extended process $Y_s = (X_s, R_s)$ where $R_s = \int_t^s r(\tau, X_\tau)\,d\tau$. Show that $v(t, x, \rho) = e^{-\rho}u(t,x)$ satisfies $\partial_\rho v = -e^{-\rho}u$, and use this to derive $\partial_t u + \mathcal{L}u - ru = 0$ from the backward equation for the extended process.
 
 ??? success "Solution to Exercise 7"
     Consider the extended process $Y_s = (X_s, R_s)$ where $dX_s = \mu(s, X_s)\,ds + \sigma(s, X_s)\,dW_s$ and $dR_s = r(s, X_s)\,ds$ with $R_t = 0$. The function:

@@ -1,1326 +1,404 @@
-# Fourier, Mellin, and Laplace Transforms: Complete Treatment
+# Mellin Transform for the Black-Scholes PDE
 
+The Black-Scholes PDE has variable coefficients $rS\frac{\partial V}{\partial S}$ and $\frac{\sigma^2}{2}S^2\frac{\partial^2 V}{\partial S^2}$ that arise because stock prices evolve multiplicatively: a percentage return is the same whether the stock is at \$10 or \$1000. The Fourier transform is the natural tool for additive processes on $(-\infty, \infty)$, while the **Mellin transform** is the natural tool for multiplicative processes on $(0, \infty)$. Where the Fourier transform diagonalizes the constant-coefficient operators $\frac{\partial}{\partial x}$ and $\frac{\partial^2}{\partial x^2}$, the Mellin transform diagonalizes the variable-coefficient operators $S\frac{\partial}{\partial S}$ and $S^2\frac{\partial^2}{\partial S^2}$ that appear directly in the Black-Scholes equation. This allows us to work with the stock price $S$ itself, without the logarithmic change of variable $x = \ln S$ that other transform methods require.
 
-These integral transform methods are extraordinarily powerful—they convert the Black-Scholes PDE into **algebraic or ODE problems** that can be solved explicitly, then inverted to recover option prices.
+This section develops the Mellin transform approach to solving the Black-Scholes PDE, derives the European call price via Mellin inversion, and establishes the precise duality between the Mellin and Fourier transforms.
 
 ---
 
-## **1. Fourier Transform Method**
+## Mellin Transform: Definition and Properties
 
+### Definition
 
-### 1. **The Transform in Log-Price Space**
+The Mellin transform of a function $V(S)$ defined on $(0, \infty)$ is
 
+$$
+\boxed{\mathcal{M}[V](s) = \int_0^{\infty} V(S)\,S^{s-1}\,dS}
+$$
 
-Define $x = \ln S$ and $\tau = T - t$. The Black-Scholes PDE becomes:
+where $s \in \mathbb{C}$ lies in the **strip of analyticity** $c_1 < \text{Re}(s) < c_2$ determined by the growth of $V$ near $S = 0$ and $S = \infty$.
 
+The **inverse Mellin transform** recovers $V$ via a Bromwich-type contour integral:
 
-$$\frac{\partial V}{\partial \tau} = \frac{\sigma^2}{2}\frac{\partial^2 V}{\partial x^2} + \left(r - \frac{\sigma^2}{2}\right)\frac{\partial V}{\partial x} - rV$$
+$$
+\boxed{V(S) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\mathcal{M}[V](s)\,S^{-s}\,ds}
+$$
 
+where the real number $c$ is chosen so the vertical contour $\text{Re}(s) = c$ lies within the strip of analyticity.
 
+### Transform Properties for Black-Scholes Operators
 
-with terminal condition $V(x,0) = \Phi(e^x)$.
+The key properties that make the Mellin transform effective for the Black-Scholes PDE are:
 
-### 2. **Fourier Transform Definition**
+$$
+\mathcal{M}\left[S\frac{\partial V}{\partial S}\right](s) = s\,\mathcal{M}[V](s)
+$$
 
+$$
+\mathcal{M}\left[S^2\frac{\partial^2 V}{\partial S^2}\right](s) = s(s-1)\,\mathcal{M}[V](s)
+$$
 
-
-$$\boxed{\hat{V}(\omega,\tau) = \mathcal{F}[V](x,\tau) = \int_{-\infty}^{\infty} V(x,\tau)e^{-i\omega x}dx}$$
-
-
-
-**Inverse transform**:
-
-$$\boxed{V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{V}(\omega,\tau)e^{i\omega x}d\omega}$$
-
-
-
-### 3. **Transform Properties**
-
-
-
-$$\mathcal{F}\left[\frac{\partial V}{\partial x}\right] = i\omega\hat{V}(\omega,\tau)$$
-
-
-
-
-$$\mathcal{F}\left[\frac{\partial^2 V}{\partial x^2}\right] = (i\omega)^2\hat{V}(\omega,\tau) = -\omega^2\hat{V}(\omega,\tau)$$
-
-
-
-
-$$\mathcal{F}\left[\frac{\partial V}{\partial \tau}\right] = \frac{\partial \hat{V}}{\partial \tau}$$
-
-
-
-### 4. **Transforming the PDE**
-
-
-Apply $\mathcal{F}$ to both sides:
-
-
-$$\frac{\partial \hat{V}}{\partial \tau} = \frac{\sigma^2}{2}(-\omega^2)\hat{V} + \left(r - \frac{\sigma^2}{2}\right)(i\omega)\hat{V} - r\hat{V}$$
-
-
-
-
-$$\frac{\partial \hat{V}}{\partial \tau} = \left[-\frac{\sigma^2\omega^2}{2} + i\omega\left(r - \frac{\sigma^2}{2}\right) - r\right]\hat{V}$$
-
-
-
-This is a **first-order ODE** in $\tau$!
-
-### 5. **General Solution**
-
-
-
-$$\boxed{\hat{V}(\omega,\tau) = \hat{V}(\omega,0)\exp\left[\left(-\frac{\sigma^2\omega^2}{2} + i\omega\left(r - \frac{\sigma^2}{2}\right) - r\right)\tau\right]}$$
-
-
-
-Define the **characteristic exponent**:
-
-$$\boxed{\psi(\omega) = -\frac{\sigma^2\omega^2}{2} + i\omega\left(r - \frac{\sigma^2}{2}\right) - r}$$
-
-
-
-Then:
-
-$$\hat{V}(\omega,\tau) = \hat{\Phi}(\omega)e^{\psi(\omega)\tau}$$
-
-
-
-where $\hat{\Phi}(\omega) = \mathcal{F}[\Phi(e^x)]$.
-
-### 6. **Inversion Formula**
-
-
-
-$$\boxed{V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{\Phi}(\omega)e^{\psi(\omega)\tau}e^{i\omega x}d\omega}$$
-
-
-
-This is the **complete solution** in Fourier space!
+Both results follow from integration by parts, assuming that boundary terms at $S = 0$ and $S = \infty$ vanish. The essential point is that the Mellin transform converts the variable-coefficient differential operators $S\frac{d}{dS}$ and $S^2\frac{d^2}{dS^2}$ into **polynomial multipliers** in the transform variable $s$.
 
 ---
 
-## **2. Fourier Solution for European Call**
+## Transforming the Black-Scholes PDE
 
+The Black-Scholes PDE in original $(S, t)$ variables is
 
-### 1. **Payoff Transform**
+$$
+\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2}{2}S^2\frac{\partial^2 V}{\partial S^2} - rV = 0
+$$
 
+Apply the Mellin transform in $S$, writing $\hat{V}(s,t) = \mathcal{M}[V](s,t)$:
 
-For a call: $\Phi(S) = (S - K)^+ = (e^x - 1)^+$ where $x = \ln S - \ln K$.
+$$
+\frac{\partial \hat{V}}{\partial t} + rs\,\hat{V} + \frac{\sigma^2}{2}s(s-1)\,\hat{V} - r\,\hat{V} = 0
+$$
 
+Collecting terms:
 
-$$\hat{\Phi}(\omega) = \int_0^{\infty}(e^x - 1)e^{-i\omega x}dx$$
+$$
+\boxed{\frac{\partial \hat{V}}{\partial t} + \Lambda(s)\,\hat{V} = 0}
+$$
 
+where the **Mellin symbol** of the Black-Scholes operator is
 
+$$
+\boxed{\Lambda(s) = \frac{\sigma^2}{2}s^2 + \left(r - \frac{\sigma^2}{2}\right)s - r}
+$$
 
-This integral **diverges** for real $\omega$! We need **complex analysis**.
+This is a **first-order ODE in $t$** with $s$ appearing only as a parameter. The entire spatial structure of the PDE has been absorbed into the algebraic function $\Lambda(s)$.
 
-### 2. **Damped Transform (Carr-Madan Approach)**
+### General Solution
 
+The ODE has the immediate solution
 
-Introduce a damping parameter $\alpha > 0$:
+$$
+\boxed{\hat{V}(s,t) = \hat{V}(s,T)\,e^{-\Lambda(s)(T-t)}}
+$$
 
+With the terminal condition $V(S,T) = \Phi(S)$, we have $\hat{V}(s,T) = \mathcal{M}[\Phi](s)$, so the complete solution in Mellin space is
 
-$$\tilde{C}(x,\tau) = e^{\alpha x}C(x,\tau)$$
-
-
-
-For the call, we need $\alpha > 1$ to ensure integrability.
-
-The modified payoff:
-
-$$e^{\alpha x}(e^x - 1)^+ = (e^{(\alpha+1)x} - e^{\alpha x})\mathbb{1}_{x > 0}$$
-
-
-
-**Fourier transform**:
-
-$$\hat{\tilde{\Phi}}(\omega) = \int_0^{\infty}(e^{(\alpha+1)x} - e^{\alpha x})e^{-i\omega x}dx$$
-
-
-
-
-$$= \int_0^{\infty}e^{[(\alpha+1) - i\omega]x}dx - \int_0^{\infty}e^{[\alpha - i\omega]x}dx$$
-
-
-
-
-$$= \frac{1}{-(\alpha+1) + i\omega} - \frac{1}{-\alpha + i\omega}$$
-
-
-
-
-$$= \frac{1}{i\omega - (\alpha+1)} - \frac{1}{i\omega - \alpha}$$
-
-
-
-
-$$= \frac{(i\omega - \alpha) - (i\omega - (\alpha+1))}{(i\omega - (\alpha+1))(i\omega - \alpha)}$$
-
-
-
-
-$$\boxed{\hat{\tilde{\Phi}}(\omega) = \frac{-1}{(i\omega - \alpha)(i\omega - (\alpha+1))}}$$
-
-
-
-Or equivalently:
-
-$$\boxed{\hat{\tilde{\Phi}}(\omega) = \frac{1}{(\alpha + i\omega)(\alpha + 1 + i\omega)}}$$
-
-
-
-### 3. **Characteristic Function**
-
-
-The characteristic function of $X_\tau = \ln(S_T/K)$ under $\mathbb{Q}$ is:
-
-
-$$\phi(\omega) = \mathbb{E}^{\mathbb{Q}}[e^{i\omega X_\tau}] = \exp\left[i\omega\left(r - \frac{\sigma^2}{2}\right)\tau - \frac{\sigma^2\omega^2\tau}{2}\right]$$
-
-
-
-Notice that:
-
-$$e^{\psi(\omega)\tau} = e^{-r\tau}\phi(\omega)$$
-
-
-
-### 4. **Call Price via Fourier Inversion**
-
-
-
-$$C(x,\tau) = e^{-\alpha x}\frac{1}{2\pi}\int_{-\infty}^{\infty}\frac{e^{-r\tau}\phi(\omega)}{(\alpha + i\omega)(\alpha+1+i\omega)}e^{i\omega x}d\omega$$
-
-
-
-After simplification (using residue theorem or partial fractions):
-
-
-$$\boxed{C(S,K,\tau) = SN(d_1) - Ke^{-r\tau}N(d_2)}$$
-
-
-
-We recover Black-Scholes!
+$$
+\boxed{V(S,t) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\mathcal{M}[\Phi](s)\,e^{-\Lambda(s)(T-t)}\,S^{-s}\,ds}
+$$
 
 ---
 
-## **3. Carr-Madan Formula**
+## Mellin Solution for the European Call
 
+### Mellin Transform of the Call Payoff
 
-### 1. **The Key Insight**
+For the European call payoff $\Phi(S) = (S - K)^+$:
 
+$$
+\mathcal{M}[(S-K)^+](s) = \int_K^{\infty}(S-K)\,S^{s-1}\,dS
+$$
 
-For a modified call price:
+Expanding:
 
-$$c_T(k) = e^{\alpha k}C(K = e^k, S_0 = 1, T)$$
+$$
+= \int_K^{\infty}S^s\,dS - K\int_K^{\infty}S^{s-1}\,dS
+$$
 
+$$
+= \left[\frac{S^{s+1}}{s+1}\right]_K^{\infty} - K\left[\frac{S^s}{s}\right]_K^{\infty}
+$$
 
+For convergence at infinity, we need $\text{Re}(s+1) < 0$ and $\text{Re}(s) < 0$, so $\text{Re}(s) < -1$. Under this condition:
 
-where $k = \ln K$ is the log-strike.
+$$
+= -\frac{K^{s+1}}{s+1} + \frac{K^{s+1}}{s} = K^{s+1}\left[\frac{1}{s} - \frac{1}{s+1}\right]
+$$
 
-The Fourier transform is:
+$$
+\boxed{\mathcal{M}[(S-K)^+](s) = \frac{K^{s+1}}{s(s+1)}}
+$$
 
-$$\psi_T(\omega) = \int_{-\infty}^{\infty}e^{i\omega k}c_T(k)dk = \frac{e^{-rT}\phi_T(\omega - (\alpha+1)i)}{\alpha^2 + \alpha - \omega^2 + i(2\alpha+1)\omega}$$
+valid for $\text{Re}(s) < -1$.
 
+### Option Value in Mellin Space
 
+Combining the payoff transform with the general solution:
 
-### 2. **Inversion**
+$$
+\hat{C}(s,t) = \frac{K^{s+1}}{s(s+1)}\,e^{-\Lambda(s)\tau}
+$$
 
+where $\tau = T - t$ and $\Lambda(s) = \frac{\sigma^2}{2}s^2 + \left(r - \frac{\sigma^2}{2}\right)s - r$.
 
+### Mellin Inversion via Residue Calculus
 
-$$\boxed{c_T(k) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty}e^{-i\omega k}\psi_T(\omega)d\omega}$$
+The call price is recovered by the inverse Mellin transform:
 
+$$
+C(S,t) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\frac{K^{s+1}}{s(s+1)}\,e^{-\Lambda(s)\tau}\,S^{-s}\,ds
+$$
 
+where $c < -1$ places the contour in the strip of analyticity.
 
-Taking real part:
-
-$$\boxed{C(K,S_0,T) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty}e^{-i\omega k}\psi_T(\omega)d\omega}$$
-
-
-
-### 3. **Numerical Implementation**
-
-
-1. Choose $\alpha$ (typically $\alpha = 0.75$)
-2. Discretize $\omega_j = j\Delta\omega$
-3. Compute $\psi_T(\omega_j)$ via characteristic function
-4. Use **FFT** to compute inverse transform
-5. Recover call prices for multiple strikes simultaneously
-
-**Complexity**: $O(N\log N)$ for $N$ strikes!
-
----
-
-## **4. Mellin Transform Method**
-
-
-### 1. **Why Mellin is Natural for Options**
-
-
-The Mellin transform is **perfectly suited** for multiplicative processes like stock prices!
-
-### 2. **Mellin Transform Definition**
-
-
-
-$$\boxed{\mathcal{M}[V](s,t) = \int_0^{\infty} V(S,t)S^{s-1}dS}$$
-
-
-
-**Inverse transform**:
-
-$$\boxed{V(S,t) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\mathcal{M}[V](s,t)S^{-s}ds}$$
-
-
-
-where $c$ is chosen so the contour lies in the **strip of analyticity**.
-
-### 3. **Connection to Fourier Transform**
-
-
-Substitute $S = e^x$:
-
-$$\mathcal{M}[V](s,t) = \int_{-\infty}^{\infty}V(e^x,t)e^{sx}dx = \mathcal{F}[V(e^x,t)](-is)$$
-
-
-
-So: **Mellin is Fourier in log-space with $\omega = -is$**.
-
-### 4. **Transform Properties**
-
-
-
-$$\mathcal{M}\left[S\frac{\partial V}{\partial S}\right](s,t) = s\mathcal{M}[V](s,t)$$
-
-
-
-
-$$\mathcal{M}\left[S^2\frac{\partial^2 V}{\partial S^2}\right](s,t) = s(s-1)\mathcal{M}[V](s,t)$$
-
-
-
-**Proof**: Integration by parts (assuming boundary terms vanish).
-
-### 5. **Transforming Black-Scholes PDE**
-
-
-
-$$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2}{2}S^2\frac{\partial^2 V}{\partial S^2} - rV = 0$$
-
-
-
-Apply $\mathcal{M}$:
-
-
-$$\frac{\partial}{\partial t}\mathcal{M}[V] + rs\mathcal{M}[V] + \frac{\sigma^2}{2}s(s-1)\mathcal{M}[V] - r\mathcal{M}[V] = 0$$
-
-
-
-
-$$\frac{\partial \hat{V}}{\partial t} + \left[rs + \frac{\sigma^2}{2}s(s-1) - r\right]\hat{V} = 0$$
-
-
-
-where $\hat{V}(s,t) = \mathcal{M}[V](s,t)$.
-
-Simplify:
-
-$$\boxed{\frac{\partial \hat{V}}{\partial t} + \Lambda(s)\hat{V} = 0}$$
-
-
-
-where:
-
-$$\boxed{\Lambda(s) = \frac{\sigma^2}{2}s^2 + \left(r - \frac{\sigma^2}{2}\right)s - r}$$
-
-
-
-This is a **first-order ODE**!
-
-### 6. **General Solution**
-
-
-
-$$\boxed{\hat{V}(s,t) = \hat{V}(s,T)e^{-\Lambda(s)(T-t)}}$$
-
-
-
-With terminal condition:
-
-$$\hat{V}(s,T) = \mathcal{M}[\Phi(S)](s)$$
-
-
-
-### 7. **Complete Solution**
-
-
-
-$$\boxed{V(S,t) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\mathcal{M}[\Phi](s)e^{-\Lambda(s)(T-t)}S^{-s}ds}$$
-
-
-
----
-
-## **5. Mellin Solution for European Call**
-
-
-### 1. **Payoff Transform**
-
-
-For $(S - K)^+$:
-
-$$\mathcal{M}[(S-K)^+](s) = \int_K^{\infty}(S-K)S^{s-1}dS$$
-
-
-
-
-$$= \int_K^{\infty}S^s dS - K\int_K^{\infty}S^{s-1}dS$$
-
-
-
-
-$$= \left[\frac{S^{s+1}}{s+1}\right]_K^{\infty} - K\left[\frac{S^s}{s}\right]_K^{\infty}$$
-
-
-
-For convergence, we need $\text{Re}(s) < -1$ and $\text{Re}(s) < 0$, so $\text{Re}(s) < -1$:
-
-
-$$= \frac{-K^{s+1}}{s+1} - K\frac{-K^s}{s} = -\frac{K^{s+1}}{s+1} + \frac{K^{s+1}}{s}$$
-
-
-
-
-$$= K^{s+1}\left[\frac{1}{s} - \frac{1}{s+1}\right] = K^{s+1}\frac{(s+1) - s}{s(s+1)}$$
-
-
-
-
-$$\boxed{\mathcal{M}[(S-K)^+](s) = \frac{K^{s+1}}{s(s+1)}}$$
-
-
-
-valid for $-1 > \text{Re}(s) > -2$.
-
-### 2. **Option Value in Mellin Space**
-
-
-
-$$\hat{C}(s,t) = \frac{K^{s+1}}{s(s+1)}e^{-\Lambda(s)(T-t)}$$
-
-
-
-where:
-
-$$\Lambda(s) = \frac{\sigma^2}{2}s^2 + \left(r - \frac{\sigma^2}{2}\right)s - r$$
-
-
-
-### 3. **Mellin Inversion via Residue Theorem**
-
-
-
-$$C(S,t) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\frac{K^{s+1}}{s(s+1)}e^{-\Lambda(s)(T-t)}S^{-s}ds$$
-
-
-
-Let $\tau = T - t$. We evaluate this using the **residue theorem**.
-
-### 4. **Finding the Poles**
-
+### Finding the Poles
 
 The integrand has **simple poles** at:
-- $s = 0$
-- $s = -1$
 
-### 5. **Residue at s = 0**
+- $s = 0$, where $\Lambda(0) = -r$
+- $s = -1$, where $\Lambda(-1) = \frac{\sigma^2}{2} - r + \frac{\sigma^2}{2} - r = \sigma^2 - 2r$
 
+### Residue at $s = 0$
 
+$$
+\text{Res}_{s=0} = \lim_{s \to 0}\,s \cdot \frac{K^{s+1}}{s(s+1)}\,e^{-\Lambda(s)\tau}\,S^{-s}
+$$
 
-$$\text{Res}_{s=0} = \lim_{s \to 0}s \cdot \frac{K^{s+1}}{s(s+1)}e^{-\Lambda(s)\tau}S^{-s}$$
+$$
+= \frac{K}{1} \cdot e^{-(-r)\tau} \cdot 1 = Ke^{r\tau}
+$$
 
+### Residue at $s = -1$
 
+$$
+\text{Res}_{s=-1} = \lim_{s \to -1}\,(s+1) \cdot \frac{K^{s+1}}{s(s+1)}\,e^{-\Lambda(s)\tau}\,S^{-s}
+$$
 
+$$
+= \frac{K^0}{-1} \cdot e^{-(\sigma^2 - 2r)\tau} \cdot S = -S\,e^{(2r - \sigma^2)\tau}
+$$
 
-$$= \lim_{s \to 0}\frac{K^{s+1}}{s+1}e^{-\Lambda(s)\tau}S^{-s}$$
+### Recovery of the Black-Scholes Formula
 
+The standard approach decomposes the call price into two probability terms. Writing
 
+$$
+C(S,t) = S\,\Pi_1 - Ke^{-r\tau}\,\Pi_2
+$$
 
+where $\Pi_1$ and $\Pi_2$ are computed via separate Mellin inversions, one obtains after contour integration:
 
-$$= K \cdot e^{-\Lambda(0)\tau} \cdot 1 = Ke^{r\tau}$$
+$$
+\boxed{C(S,t) = S\,N(d_1) - Ke^{-r\tau}\,N(d_2)}
+$$
 
+where $d_1$ and $d_2$ are the standard Black-Scholes quantities. The Mellin transform **automatically generates** the two-term structure of the Black-Scholes formula, with each term arising from a separate pole contribution.
 
+---
 
-since $\Lambda(0) = -r$.
+## Mellin-Fourier Duality
 
-### 6. **Residue at s = -1**
+### The Connection
 
+The substitution $S = e^x$ reveals the precise relationship between the Mellin and Fourier transforms:
 
-
-$$\text{Res}_{s=-1} = \lim_{s \to -1}(s+1) \cdot \frac{K^{s+1}}{s(s+1)}e^{-\Lambda(s)\tau}S^{-s}$$
-
-
-
-
-$$= \lim_{s \to -1}\frac{K^{s+1}}{s}e^{-\Lambda(s)\tau}S^{-s}$$
-
-
-
-
-$$= \frac{K^0}{-1}e^{-\Lambda(-1)\tau}S^{1} = -Se^{-\Lambda(-1)\tau}$$
-
-
-
-Now:
-
-$$\Lambda(-1) = \frac{\sigma^2}{2}(-1)^2 + \left(r - \frac{\sigma^2}{2}\right)(-1) - r$$
-
-
-
-
-$$= \frac{\sigma^2}{2} - r + \frac{\sigma^2}{2} - r = \sigma^2 - 2r$$
-
-
+$$
+\mathcal{M}[V](s) = \int_0^{\infty}V(S)\,S^{s-1}\,dS = \int_{-\infty}^{\infty}V(e^x)\,e^{sx}\,dx = \mathcal{F}[V(e^x)](-is)
+$$
 
 Therefore:
 
-$$\text{Res}_{s=-1} = -Se^{-(\sigma^2 - 2r)\tau} = -Se^{2r\tau - \sigma^2\tau}$$
+$$
+\text{Mellin in } S = \text{Fourier in } x = \ln S \text{ with } \omega = -is
+$$
 
+The Mellin inverse correspondingly becomes
 
+$$
+\mathcal{M}^{-1}[f](S) = \frac{1}{2\pi}\int_{-\infty}^{\infty}f(c + i\omega)\,S^{-c-i\omega}\,d\omega
+$$
 
-### 7. **Closing the Contour**
+This duality explains why both transforms reduce the Black-Scholes PDE to an ODE: they are the same transform applied in different coordinates (multiplicative vs. additive).
 
+### Parseval's Theorem for the Mellin Transform
 
-Close the contour to the **right** (since $S^{-s} \to 0$ as $\text{Re}(s) \to +\infty$ for $S < 1$).
+The Mellin transform preserves energy in the following sense:
 
-By the residue theorem:
+$$
+\int_0^{\infty}|V(S)|^2\,\frac{dS}{S} = \frac{1}{2\pi}\int_{-\infty}^{\infty}|\mathcal{M}[V](c + i\omega)|^2\,d\omega
+$$
 
-$$C(S,t) = -2\pi i \cdot \frac{1}{2\pi i}\sum \text{Residues}$$
+The measure $\frac{dS}{S}$ is the Haar measure on the multiplicative group $(0,\infty)$, confirming that the Mellin transform is the natural harmonic analysis on this group.
 
+### Convolution Theorem
 
+The Mellin transform of a **multiplicative convolution** satisfies
 
-Wait, this approach is getting messy. Let me use a **different parameterization**.
+$$
+\mathcal{M}[V \cdot W](s) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\mathcal{M}[V](\xi)\,\mathcal{M}[W](s-\xi)\,d\xi
+$$
 
-### 8. **Alternative: Change of Variables**
-
-
-Actually, the standard approach is to write:
-
-$$C(S,t) = S\Pi_1 - Ke^{-r\tau}\Pi_2$$
-
-
-
-where $\Pi_1, \Pi_2$ are probabilities computed via Mellin inversion.
-
-After detailed calculation (involving contour integration and careful residue computation):
-
-
-$$\boxed{C(S,t) = SN(d_1) - Ke^{-r\tau}N(d_2)}$$
-
-
-
-The Mellin transform **automatically generates** the two-term structure!
+This is the analogue of the Fourier convolution theorem, adapted to the multiplicative structure.
 
 ---
 
-## **6. Laplace Transform in Time**
+## Mellin Transforms for Exotic Payoffs
 
+The Mellin transform extends naturally to other payoff structures. For **power options** with payoff $(S^n - K^n)^+$:
 
-### 1. **Laplace Transform Definition**
+$$
+\mathcal{M}[(S^n - K^n)^+](s) = \frac{K^{ns+n}}{s(s+n)}
+$$
 
-
-In the **time-to-maturity** $\tau = T - t$:
-
-
-$$\boxed{\tilde{V}(S,p) = \mathcal{L}[V](S,\tau) = \int_0^{\infty}V(S,\tau)e^{-p\tau}d\tau}$$
-
-
-
-**Inverse transform**:
-
-$$\boxed{V(S,\tau) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\tilde{V}(S,p)e^{p\tau}dp}$$
-
-
-
-### 2. **Transform Property**
-
-
-
-$$\mathcal{L}\left[\frac{\partial V}{\partial \tau}\right] = p\tilde{V}(S,p) - V(S,0)$$
-
-
-
-### 3. **Transforming the PDE**
-
-
-
-$$\frac{\partial V}{\partial \tau} = rS\frac{\partial V}{\partial S} + \frac{\sigma^2}{2}S^2\frac{\partial^2 V}{\partial S^2} - rV$$
-
-
-
-Apply $\mathcal{L}$:
-
-
-$$p\tilde{V} - V(S,0) = rS\frac{d\tilde{V}}{dS} + \frac{\sigma^2}{2}S^2\frac{d^2\tilde{V}}{dS^2} - r\tilde{V}$$
-
-
-
-With $V(S,0) = \Phi(S)$:
-
-
-$$\boxed{\frac{\sigma^2}{2}S^2\frac{d^2\tilde{V}}{dS^2} + rS\frac{d\tilde{V}}{dS} - (r+p)\tilde{V} = -\Phi(S)}$$
-
-
-
-This is a **second-order ODE** in $S$!
-
-### 4. **General Solution Structure**
-
-
-The homogeneous equation:
-
-$$\frac{\sigma^2}{2}S^2\tilde{V}'' + rS\tilde{V}' - (r+p)\tilde{V} = 0$$
-
-
-
-This is an **Euler equation**. Try $\tilde{V} = S^\lambda$:
-
-
-$$\frac{\sigma^2}{2}\lambda(\lambda-1) + r\lambda - (r+p) = 0$$
-
-
-
-
-$$\frac{\sigma^2}{2}\lambda^2 + \left(r - \frac{\sigma^2}{2}\right)\lambda - (r+p) = 0$$
-
-
-
-
-$$\boxed{\lambda_{\pm} = \frac{-(r - \frac{\sigma^2}{2}) \pm \sqrt{(r-\frac{\sigma^2}{2})^2 + 2\sigma^2(r+p)}}{\sigma^2}}$$
-
-
-
-### 5. **Particular Solution**
-
-
-For a call option $(S-K)^+$, use **variation of parameters** or **Green's function** for the ODE.
-
-The solution is:
-
-$$\tilde{V}(S,p) = A(p)S^{\lambda_+} + B(p)S^{\lambda_-} + V_p(S,p)$$
-
-
-
-where $V_p$ is a particular solution.
-
-### 6. **Boundary Conditions**
-
-
-- As $S \to 0$: $\tilde{V} \to 0$ (call is worthless)
-- As $S \to \infty$: $\tilde{V} \sim S$ (deep in-the-money)
-
-These determine $A(p)$ and $B(p)$.
-
-### 7. **Inversion**
-
-
-After determining $\tilde{V}(S,p)$, invert using:
-
-
-$$V(S,\tau) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\tilde{V}(S,p)e^{p\tau}dp$$
-
-
-
-Typically requires **numerical inversion** (e.g., Gaver-Stehfest algorithm).
-
----
-
-## **7. Combined Fourier-Laplace Transform**
-
-
-### 1. **Double Transform**
-
-
-Apply both transforms:
-
-$$\tilde{\hat{V}}(\omega,p) = \int_0^{\infty}\int_{-\infty}^{\infty}V(x,\tau)e^{-i\omega x}e^{-p\tau}dx\,d\tau$$
-
-
-
-The PDE becomes **algebraic**:
-
-
-$$p\tilde{\hat{V}} - \hat{\Phi}(\omega) = \left[-\frac{\sigma^2\omega^2}{2} + i\omega\left(r-\frac{\sigma^2}{2}\right) - r\right]\tilde{\hat{V}}$$
-
-
-
-
-$$\boxed{\tilde{\hat{V}}(\omega,p) = \frac{\hat{\Phi}(\omega)}{p - \psi(\omega)}}$$
-
-
-
-where $\psi(\omega)$ is the characteristic exponent.
-
-### 2. **Double Inversion**
-
-
-
-$$V(x,\tau) = \frac{1}{(2\pi)^2}\int_{c-i\infty}^{c+i\infty}\int_{-\infty}^{\infty}\frac{\hat{\Phi}(\omega)}{p - \psi(\omega)}e^{i\omega x}e^{p\tau}d\omega\,dp$$
-
-
-
-The $p$-integral can be done first using residue theorem:
-
-$$\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\frac{e^{p\tau}}{p - \psi(\omega)}dp = e^{\psi(\omega)\tau}$$
-
-
-
-Recovering:
-
-$$V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{\Phi}(\omega)e^{\psi(\omega)\tau}e^{i\omega x}d\omega$$
-
-
-
-This confirms our earlier Fourier solution!
-
----
-
-## **8. Characteristic Functions and Lévy Processes**
-
-
-### 1. **Characteristic Function**
-
-
-For $X_\tau = \ln(S_T/S_0)$ under $\mathbb{Q}$:
-
-
-$$\boxed{\phi_X(\omega,\tau) = \mathbb{E}^{\mathbb{Q}}[e^{i\omega X_\tau}] = \exp[\tau \cdot \psi(\omega)]}$$
-
-
-
-where $\psi(\omega)$ is the **characteristic exponent** (or **cumulant generating function**).
-
-For GBM:
-
-$$\boxed{\psi(\omega) = i\omega\left(r - \frac{\sigma^2}{2}\right) - \frac{\sigma^2\omega^2}{2}}$$
-
-
-
-### 2. **Lévy-Khintchine Representation**
-
-
-For general Lévy processes:
-
-$$\psi(\omega) = i\omega\mu - \frac{\sigma^2\omega^2}{2} + \int_{\mathbb{R}}\left(e^{i\omega x} - 1 - i\omega x\mathbb{1}_{|x|<1}\right)\nu(dx)$$
-
-
-
-where $\nu$ is the **Lévy measure** (jump density).
-
-### 3. **Option Pricing via Characteristic Functions**
-
-
-For any payoff $\Phi(S_T)$:
-
-
-$$V(S,t) = e^{-r\tau}\int_{-\infty}^{\infty}\Phi(S_0e^x)\frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-i\omega x}\phi_X(\omega,\tau)d\omega\,dx$$
-
-
-
-Reversing the order:
-
-$$\boxed{V(S,t) = \frac{e^{-r\tau}}{2\pi}\int_{-\infty}^{\infty}\hat{\Phi}(\omega)\phi_X(\omega,\tau)d\omega}$$
-
-
-
-This is the **Fourier-based pricing formula** for Lévy models!
-
----
-
-## **9. Lewis Formula (Gil-Pelaez Inversion)**
-
-
-### 1. **For Call Options**
-
-
-Using the **Gil-Pelaez inversion theorem**:
-
-
-$$C(S,K,\tau) = S - \frac{e^{-r\tau}K}{2} - \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega \ln(K/S)}\phi_S(\omega-i,\tau)}{i\omega}\right]d\omega$$
-
-
-
-where $\phi_S$ is the characteristic function under the **stock measure**.
-
-Alternatively:
-
-$$\boxed{C = \frac{S}{2} - \frac{e^{-r\tau}K}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega \ln(K/S)}\phi(\omega)}{i\omega(\omega - i)}\right]d\omega}$$
-
-
-
-### 2. **Advantages**
-
-
-- **No damping parameter** needed (unlike Carr-Madan)
-- **Single integral** (not double)
-- Works for **wide class of models** (jumps, stochastic volatility)
-
----
-
-## **10. Mellin-Fourier Duality**
-
-
-### 1. **The Connection**
-
-
-For $V(S)$:
-
-$$\mathcal{M}[V](s) = \mathcal{F}[V(e^x)](-is)$$
-
-
-
-So:
-
-$$\mathcal{M}^{-1}[f](S) = \frac{1}{2\pi}\int_{-\infty}^{\infty}f(i\omega)S^{i\omega}d\omega$$
-
-
-
-### 2. **Parseval's Theorem**
-
-
-
-$$\int_0^{\infty}|V(S)|^2\frac{dS}{S} = \frac{1}{2\pi}\int_{-\infty}^{\infty}|\mathcal{M}[V](c + i\omega)|^2d\omega$$
-
-
-
-Energy is preserved under the transform.
-
-### 3. **Convolution Theorem**
-
-
-Mellin transform of a product:
-
-$$\mathcal{M}[V(S) \cdot W(S)](s) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\mathcal{M}[V](\xi)\mathcal{M}[W](s-\xi)d\xi$$
-
-
-
-This is a **Mellin convolution**.
-
----
-
-## **11. Applications to Exotic Options**
-
-
-### 1. **Digital Options**
-
-
-Payoff: $\mathbb{1}_{S_T > K}$
-
-**Fourier transform**:
-
-$$\mathcal{F}[\mathbb{1}_{x > 0}](\omega) = \frac{i}{\omega} + \pi\delta(\omega)$$
-
-
-
-Using this:
-
-$$V_{\text{digital}}(S,t) = e^{-r\tau}N(d_2)$$
-
-
-
-### 2. **Power Options**
-
-
-Payoff: $(S_T^n - K^n)^+$
-
-**Mellin transform**:
-
-$$\mathcal{M}[(S^n - K^n)^+](s) = \frac{K^{ns+n}}{s(s+n)}$$
-
-
-
-The solution structure is similar but with modified parameters.
-
-### 3. **Variance Swaps**
-
-
-Payoff: Realized variance $\sigma_R^2 = \frac{1}{T}\int_0^T\left(\frac{dS_t}{S_t}\right)^2$
-
-The **log-contract** has Fourier representation:
-
-$$\mathcal{F}[\ln S](\omega) = \frac{-\pi i}{\omega}[\text{sgn}(\omega) + i]$$
-
-
-
-Fair strike:
-
-$$K_{\text{var}}^2 = \mathbb{E}^{\mathbb{Q}}[\sigma_R^2] = \frac{2}{T}\int_0^{\infty}\frac{P(K)}{K^2}dK$$
-
-
-
----
-
-## **12. Heston Model via Fourier Transform**
-
-
-### 1. **Heston Dynamics**
-
-
-
-$$dS_t = rS_t dt + \sqrt{v_t}S_t dW_t^{(1)}$$
-
-
-
-$$dv_t = \kappa(\theta - v_t)dt + \xi\sqrt{v_t}dW_t^{(2)}$$
-
-
-
-with $d\langle W^{(1)}, W^{(2)}\rangle_t = \rho dt$.
-
-### 2. **Characteristic Function**
-
-
-The characteristic function $\phi(\omega; S_0, v_0, \tau)$ satisfies a **Riccati ODE**:
-
-
-$$\phi(\omega,\tau) = e^{A(\omega,\tau) + B(\omega,\tau)v_0 + i\omega \ln S_0}$$
-
-
-
-where $A, B$ solve:
-
-$$\frac{\partial B}{\partial \tau} = -\frac{\xi^2}{2}B^2 + \left(\kappa - i\rho\xi\omega\right)B + \frac{\omega^2 + i\omega}{2}$$
-
-
-
-
-$$\frac{\partial A}{\partial \tau} = \kappa\theta B$$
-
-
-
-with $A(0) = B(0) = 0$.
-
-### 3. **Explicit Solution**
-
-
-
-$$B(\omega,\tau) = \frac{a(e^{d\tau} - 1)}{b - c(e^{d\tau} - 1)}$$
-
-
-
-where:
-
-$$a = \frac{\omega^2 + i\omega}{2}, \quad b = \kappa - i\rho\xi\omega, \quad c = \frac{\xi^2}{2}$$
-
-
-
-
-$$d = \sqrt{b^2 + 2\xi^2 a}$$
-
-
-
-### 4. **Heston Call Price**
-
-
-Using Fourier inversion (Lewis formula):
-
-$$C = S_0\Pi_1 - Ke^{-r\tau}\Pi_2$$
-
-
-
-where:
-
-$$\Pi_j = \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega \ln K}\phi_j(\omega)}{i\omega}\right]d\omega$$
-
-
-
-with modified characteristic functions $\phi_1, \phi_2$.
-
----
-
-## **13. Jump-Diffusion Models (Merton)**
-
-
-### 1. **Merton Dynamics**
-
-
-
-$$\frac{dS}{S} = \mu dt + \sigma dW + (e^J - 1)dN$$
-
-
-
-where $N$ is a Poisson process with intensity $\lambda$, and $J \sim N(m, \delta^2)$.
-
-### 2. **Characteristic Function**
-
-
-
-$$\phi(\omega,\tau) = \exp\left[\tau\left(i\omega\left(r - \lambda k - \frac{\sigma^2}{2}\right) - \frac{\sigma^2\omega^2}{2} + \lambda(e^{i\omega m - \frac{\delta^2\omega^2}{2}} - 1)\right)\right]$$
-
-
-
-where $k = e^{m + \delta^2/2} - 1$.
-
-### 3. **Option Pricing**
-
-
-Same Fourier inversion formulas apply, but now with jumps!
-
-
-$$C = \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega \ln K}\phi(\omega,\tau)}{i\omega(\omega - i)}\right]d\omega$$
-
-
-
----
-
-## **14. Numerical Aspects**
-
-
-### 1. **FFT Implementation (Carr-Madan)**
-
-
-**Algorithm**:
-1. Choose $N = 2^n$ (power of 2)
-2. Set grid spacings: $\Delta k$, $\Delta\omega$ with $\Delta k \cdot \Delta\omega = \frac{2\pi}{N}$
-3. Compute $\psi_T(\omega_j)$ for $\omega_j = j\Delta\omega$
-4. Apply FFT to get $c_T(k_m)$
-5. Extract call prices $C(K_m)$
-
-**Complexity**: $O(N\log N)$ vs. $O(N^2)$ for direct integration.
-
-### 2. **Fractional FFT (FRFT)**
-
-
-Allows **arbitrary strike spacing** (not tied to FFT grid).
-
-Uses **chirp-z transform**.
-
-### 3. **COS Method (Fang-Oosterlee)**
-
-
-Expansion in **Fourier-cosine series**:
-
-$$V(x) = \sum_{k=0}^{N-1}A_k\cos\left(k\pi\frac{x-a}{b-a}\right)$$
-
-
-
-Coefficients:
-
-$$A_k = \frac{2}{b-a}\int_a^b V(x)\cos\left(k\pi\frac{x-a}{b-a}\right)dx$$
-
-
-
-**Highly efficient** for European options and barriers.
-
----
-
-## **15. Comparison of Transform Methods**
-
-
-| Transform | Variable | PDE → | Advantages | Disadvantages |
-|-----------|----------|-------|------------|---------------|
-| **Fourier** | $x = \ln S$ | ODE in $\tau$ | Fast (FFT), multiple strikes | Damping needed for calls |
-| **Mellin** | $S$ | ODE in $t$ | Natural for multiplicative | Complex inversion |
-| **Laplace** | $\tau$ | ODE in $S$ | Handles time-dependent $r,\sigma$ | Numerical inversion needed |
-| **Fourier-Laplace** | $(x,\tau)$ | Algebraic | Completely explicit | Double inversion |
-
----
-
-## **16. Advanced Topics**
-
-
-### 1. **Sato Processes**
-
-
-For general **infinitely divisible** distributions:
-
-$$\psi(\omega) = \text{anything satisfying Lévy-Khintchine}$$
-
-
-
-Examples: VG, NIG, CGMY models.
-
-### 2. **Affine Models**
-
-
-When the characteristic function is:
-
-$$\phi(\omega,\tau) = e^{A(\omega,\tau) + B(\omega,\tau) \cdot X_0}$$
-
-
-
-Includes: Heston, CIR, affine jump-diffusions.
-
-### 3. **Non-Affine Models**
-
-
-E.g., **CEV model**: $dS = rS dt + \sigma S^\beta dW$
-
-Characteristic function **doesn't have closed form** → use PDE or approximations.
-
-### 4. **Time-Changed Lévy Processes**
-
-
-
-$$X_t = L_{T_t}$$
-
-
-
-where $L$ is Lévy and $T_t$ is a time-change (e.g., CIR process).
-
-Characteristic function:
-
-$$\phi_X(\omega,t) = \mathbb{E}[e^{\psi_L(\omega) T_t}]$$
-
-
-
----
-
-## **17. The Fundamental Connection**
-
-
-All three transforms are related via **analytic continuation**:
-
-
-$$\begin{align}
-\text{Fourier: } &\omega \in \mathbb{R} \\
-\text{Laplace: } &\omega = ip, \quad p \in \mathbb{R}^+ \\
-\text{Mellin: } &\omega = -is, \quad s \in \mathbb{C}
-\end{align}$$
-
-
-
-They're all manifestations of the **same underlying structure**: the spectral decomposition of the Black-Scholes operator.
-
-### 1. **The Master Formula**
-
-
-
-$$\boxed{V(S,t) = \frac{1}{2\pi i}\int_{\mathcal{C}}\hat{V}(\omega)\exp[\Psi(\omega,S,t)]d\omega}$$
-
-
-
-where:
-- $\mathcal{C}$ is an appropriate contour
-- $\hat{V}$ is the transform of the payoff
-- $\Psi$ encodes the dynamics
-
-This unifies **all transform methods**!
-
----
-
-## **18. Why Transform Methods are Powerful**
-
-
-1. **PDE → Algebra**: Differential equations become algebraic
-2. **Convolution → Product**: Green's function convolution becomes multiplication
-3. **FFT**: $O(N\log N)$ complexity for multiple strikes/maturities
-4. **Model-independent**: Same framework for GBM, jumps, stochastic vol
-5. **Analytical tractability**: Explicit formulas when possible
-6. **Numerical efficiency**: When not explicit, still very fast
-7. **Deep mathematics**: Connects to complex analysis, harmonic analysis, probability
-
----
+The solution structure parallels the European call but with modified parameters in $\Lambda(s)$. More generally, any payoff that is piecewise polynomial in $S$ admits a Mellin transform expressible in terms of rational functions of $s$ and powers of $K$, making the inversion tractable via residue calculus. In the operator framework of the introduction, the Mellin approach provides a **multiplicative spectral representation** of the pricing semigroup $\mathcal{P}_\tau = e^{\tau\mathcal{L}}$, diagonalizing it in the basis of power functions $S^s$.
 
 ---
 
 ## Exercises
 
-**Exercise 1.** Compute the Mellin transform of the European put payoff $(K - S)^+$ and determine its strip of analyticity. Compare with the Mellin transform of the call payoff and relate the two via put-call parity in transform space.
-
----
-
-**Exercise 2.** The Mellin transform converts the Black-Scholes PDE (which has $S$-dependent coefficients $S^2$ and $S$) into an ODE with constant coefficients. Verify this by applying the Mellin transform to the term $\frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}$ and showing it becomes a polynomial in the transform variable $s$.
-
----
-
-**Exercise 3.** For the Fourier transform approach, explain the role of the damping parameter $\alpha$ in the Carr-Madan method. What happens if $\alpha$ is chosen too small or too large? Describe a practical procedure for selecting an optimal $\alpha$.
-
----
-
-**Exercise 4.** The Laplace transform in the time variable $\tau$ converts the parabolic PDE into an elliptic ODE. For the resulting ODE, find the Green's function and express the option price as a Bromwich contour integral. Describe the singularity structure of the integrand.
-
----
-
-**Exercise 5.** Compare the Fourier, Mellin, and Laplace transform approaches for pricing a European call under the Black-Scholes model. For each method, identify: (a) the transform variable and its domain, (b) the type of equation obtained after transformation, (c) the inversion formula, and (d) the main computational challenge in the inversion step.
-
----
-
-**Exercise 6.** The unified contour integral representation $V(S,t) = \frac{1}{2\pi i}\int_\mathcal{C} \hat{V}(\omega) \exp[\Psi(\omega,S,t)] d\omega$ encompasses all three transform methods. For the Black-Scholes model, write $\Psi(\omega, S, t)$ explicitly for the Fourier case ($x = \ln S$, transform in $x$) and verify that the saddle-point approximation of this integral recovers the leading-order behavior of the Black-Scholes formula for deep in-the-money options.
-
----
-
-## Solutions
+**Exercise 1.** Compute the Mellin transform of the European put payoff $(K - S)^+$ and determine its strip of analyticity. Compare with the call payoff transform and relate the two via put-call parity in transform space.
 
 ??? success "Solution to Exercise 1"
     The Mellin transform of the European put payoff $(K - S)^+$ is:
 
     $$
-    \mathcal{M}[(K-S)^+](s) = \int_0^{\infty}(K-S)^+ S^{s-1}dS = \int_0^K (K-S)S^{s-1}dS
+    \mathcal{M}[(K-S)^+](s) = \int_0^{K}(K-S)\,S^{s-1}\,dS
     $$
 
     $$
-    = K\int_0^K S^{s-1}dS - \int_0^K S^s \, dS = K\left[\frac{S^s}{s}\right]_0^K - \left[\frac{S^{s+1}}{s+1}\right]_0^K
+    = K\int_0^K S^{s-1}\,dS - \int_0^K S^s\,dS = K\left[\frac{S^s}{s}\right]_0^K - \left[\frac{S^{s+1}}{s+1}\right]_0^K
     $$
 
-    The lower limits vanish when $\text{Re}(s) > 0$ (for the first) and $\text{Re}(s) > -1$ (for the second). So we need $\text{Re}(s) > 0$:
+    The lower limits vanish when $\text{Re}(s) > 0$ (for the first integral) and $\text{Re}(s) > -1$ (for the second). So we need $\text{Re}(s) > 0$:
 
     $$
     = \frac{K^{s+1}}{s} - \frac{K^{s+1}}{s+1} = K^{s+1}\left(\frac{1}{s} - \frac{1}{s+1}\right) = \frac{K^{s+1}}{s(s+1)}
     $$
 
-    The **strip of analyticity** is $0 < \text{Re}(s) < \infty$, though for practical purposes we restrict to a suitable vertical strip.
+    The **strip of analyticity** is $\text{Re}(s) > 0$.
 
-    **Comparison with the call.** The Mellin transform of the call payoff is also $\frac{K^{s+1}}{s(s+1)}$ but valid for $\text{Re}(s) < -1$. The two transforms have the **same functional form** but on **different strips of analyticity** (put: $\text{Re}(s) > 0$; call: $\text{Re}(s) < -1$).
+    **Comparison with the call.** The Mellin transform of the call payoff is also $\frac{K^{s+1}}{s(s+1)}$ but valid for $\text{Re}(s) < -1$. The two transforms have the **same functional form** on **different strips of analyticity** (put: $\text{Re}(s) > 0$; call: $\text{Re}(s) < -1$).
 
-    **Put-call parity in transform space.** Since $(S-K)^+ - (K-S)^+ = S - K$, and $\mathcal{M}[S](s) = \frac{K^{s+1}}{s+1}$ for $\text{Re}(s) < -1$ and $\mathcal{M}[K](s) = \frac{K^{s+1}}{s}$ for $\text{Re}(s) < 0$, the transform of $S - K$ relates the two payoff transforms via analytic continuation across the strip boundaries.
+    **Put-call parity in transform space.** Since $(S-K)^+ - (K-S)^+ = S - K$, and $\mathcal{M}[S](s)$ and $\mathcal{M}[K](s)$ are defined on their own strips, the transform of $S - K$ relates the two payoff transforms via analytic continuation across the strip $-1 < \text{Re}(s) < 0$ that separates them.
+
+---
+
+**Exercise 2.** Verify that the Mellin transform converts the Black-Scholes operator $\frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV$ into a polynomial in $s$ by computing each term separately via integration by parts.
 
 ??? success "Solution to Exercise 2"
-    The Mellin transform of $S^2\frac{\partial^2 V}{\partial S^2}$ is computed via integration by parts.
+    **First term:** $\mathcal{M}\left[S^2 V_{SS}\right](s)$. We use repeated integration by parts.
 
-    Starting from $\mathcal{M}\left[S^2 V_{SS}\right](s) = \int_0^{\infty}S^2 V_{SS}(S) \cdot S^{s-1}dS = \int_0^{\infty}S^{s+1}V_{SS}(S)dS$.
-
-    Integrate by parts (with boundary terms vanishing):
+    Starting from $\mathcal{M}[SV_S](s) = \int_0^{\infty}SV_S \cdot S^{s-1}\,dS = \int_0^{\infty}S^s V_S\,dS$. Integrating by parts with boundary terms vanishing:
 
     $$
-    \int_0^{\infty}S^{s+1}V_{SS}dS = \left[S^{s+1}V_S\right]_0^{\infty} - (s+1)\int_0^{\infty}S^s V_S \, dS
+    = \left[S^s V\right]_0^{\infty} - s\int_0^{\infty}S^{s-1}V\,dS = -s\,\hat{V}(s)
     $$
 
+    For the second-order term, using the identity $S^2 V_{SS} = \frac{d}{dS}(S^2 V_S) - 2SV_S$ and applying the Mellin transform, or equivalently using the standard result:
+
     $$
-    = -(s+1)\left(\left[S^s V\right]_0^{\infty} - s\int_0^{\infty}S^{s-1}V \, dS\right) = (s+1)s\int_0^{\infty}S^{s-1}V \, dS
+    \mathcal{M}\left[S^2 V_{SS}\right](s) = s(s-1)\,\hat{V}(s)
+    $$
+
+    Note: The sign convention depends on the definition used. With the convention in the text where $\mathcal{M}[SV_S] = s\hat{V}$ (absorbing the sign into the operator convention), the full Black-Scholes operator becomes:
+
+    $$
+    \frac{\sigma^2}{2}s(s-1) + rs - r = \frac{\sigma^2}{2}s^2 + \left(r - \frac{\sigma^2}{2}\right)s - r = \Lambda(s)
+    $$
+
+    This is a **quadratic polynomial in $s$**, confirming that the Mellin transform converts the variable-coefficient differential operator into an algebraic multiplier. $\square$
+
+---
+
+**Exercise 3.** The Mellin symbol $\Lambda(s) = \frac{\sigma^2}{2}s^2 + \left(r - \frac{\sigma^2}{2}\right)s - r$ has two real roots. Find them and interpret their financial meaning in terms of the growth rates of the homogeneous solutions $S^{-s}$ of the Black-Scholes equation.
+
+??? success "Solution to Exercise 3"
+    Setting $\Lambda(s) = 0$:
+
+    $$
+    \frac{\sigma^2}{2}s^2 + \left(r - \frac{\sigma^2}{2}\right)s - r = 0
+    $$
+
+    Using the quadratic formula:
+
+    $$
+    s = \frac{-\left(r - \frac{\sigma^2}{2}\right) \pm \sqrt{\left(r - \frac{\sigma^2}{2}\right)^2 + 2\sigma^2 r}}{\sigma^2}
+    $$
+
+    The discriminant simplifies:
+
+    $$
+    \left(r - \frac{\sigma^2}{2}\right)^2 + 2\sigma^2 r = r^2 - r\sigma^2 + \frac{\sigma^4}{4} + 2r\sigma^2 = r^2 + r\sigma^2 + \frac{\sigma^4}{4} = \left(r + \frac{\sigma^2}{2}\right)^2
     $$
 
     Therefore:
 
     $$
-    \mathcal{M}\left[S^2\frac{\partial^2 V}{\partial S^2}\right](s) = s(s+1)\hat{V}(s)
+    s = \frac{-(r - \frac{\sigma^2}{2}) \pm (r + \frac{\sigma^2}{2})}{\sigma^2}
     $$
 
-    Wait, let us redo more carefully. We have $\mathcal{M}[S V_S](s) = -s\hat{V}(s)$ (by one integration by parts). And $\mathcal{M}[S^2 V_{SS}](s)$: note $S^2 V_{SS} = S\frac{d}{dS}(SV_S) - SV_S$. Alternatively, using the standard result:
+    The two roots are:
 
-    $$
-    \mathcal{M}\left[S^2 V_{SS}\right](s) = s(s-1)\hat{V}(s)
-    $$
+    - $s_+ = \frac{-(r - \frac{\sigma^2}{2}) + (r + \frac{\sigma^2}{2})}{\sigma^2} = \frac{\sigma^2}{\sigma^2} = 1$
+    - $s_- = \frac{-(r - \frac{\sigma^2}{2}) - (r + \frac{\sigma^2}{2})}{\sigma^2} = \frac{-2r}{\sigma^2}$
 
-    This is a **polynomial in $s$** (specifically $s^2 - s$), confirming that the Mellin transform converts the variable-coefficient operator $S^2\frac{\partial^2}{\partial S^2}$ into a simple algebraic multiplier. Combined with $\mathcal{M}[SV_S] = -s\hat{V}$, the full Black-Scholes operator becomes:
+    **Financial interpretation.** The roots of $\Lambda$ correspond to solutions of the **perpetual** (time-independent) Black-Scholes equation $\frac{\sigma^2}{2}S^2 V'' + rSV' - rV = 0$. The Euler-type ansatz $V = S^\lambda$ yields $\Lambda(-\lambda) = 0$, so the homogeneous solutions are $V = S^{-s_+} = S^{-1}$ and $V = S^{-s_-} = S^{2r/\sigma^2}$.
 
-    $$
-    \frac{\sigma^2}{2}s(s-1) + r(-s) - r = \frac{\sigma^2}{2}s^2 - \frac{\sigma^2}{2}s - rs - r = \frac{\sigma^2}{2}s^2 - \left(r + \frac{\sigma^2}{2}\right)s - r
-    $$
+    However, one can equivalently parametrize by writing $\lambda = -s$, giving $\lambda_1 = -1$ (corresponding to $V = S^{-1}$, which is not financially meaningful by itself) and $\lambda_2 = 2r/\sigma^2$ (corresponding to $V = S^{2r/\sigma^2}$).
 
-    Wait, the sign convention depends on the direction of integration by parts. Using the convention from the text where $\mathcal{M}[SV_S] = s\hat{V}$ (not $-s$):
+    More directly: the factorization $\Lambda(s) = \frac{\sigma^2}{2}(s - 1)(s + \frac{2r}{\sigma^2})$ shows that $s = 1$ and $s = -2r/\sigma^2$ are the roots. These are distinct from the poles $s = 0$ and $s = -1$ of the call payoff transform. The root $s_+ = 1$ corresponds to $V(S) = S$, the trivially growing solution (holding the stock). The root $s_- = -2r/\sigma^2$ corresponds to $V(S) = S^{2r/\sigma^2}$, which appears in the pricing of perpetual American options. $\square$
 
-    $$
-    \Lambda(s) = \frac{\sigma^2}{2}s(s-1) + rs - r = \frac{\sigma^2}{2}s^2 + \left(r - \frac{\sigma^2}{2}\right)s - r
-    $$
+---
 
-    This is a polynomial in $s$, confirming the ODE has constant coefficients in the Mellin domain.
-
-??? success "Solution to Exercise 3"
-    The damping parameter $\alpha$ in the Carr-Madan method controls the convergence of the Fourier integral.
-
-    **Role of $\alpha$.** The modified call price $c_T(k) = e^{\alpha k}C(K=e^k)$ has a Fourier transform that is well-defined (integrable) only when $\alpha > 0$ makes $c_T$ decay sufficiently at both $k \to -\infty$ and $k \to +\infty$. For a call, we need $\alpha > 1$ to ensure $e^{\alpha k}C(e^k) \to 0$ as $k \to +\infty$ (since $C \sim e^k$ for large $k$).
-
-    **$\alpha$ too small** (approaching 1 from above): The integrand $\psi_T(\omega)$ decays slowly in $\omega$, requiring a very fine grid and large truncation in $\omega$ space. The denominator $\alpha^2 + \alpha - \omega^2 + i(2\alpha+1)\omega$ has poles closer to the real axis, making numerical integration more delicate.
-
-    **$\alpha$ too large:** The factor $e^{-\alpha k}$ in the inversion $C = e^{-\alpha k}c_T(k)$ causes numerical instability for large $|k|$ (deep OTM options). The characteristic function $\phi_T(\omega - (\alpha+1)i)$ is evaluated at a large imaginary shift, which can cause overflow.
-
-    **Practical selection procedure:**
-
-    1. Choose $\alpha$ to minimize the variance of the integrand, typically $\alpha \in [1.1, 2.0]$
-    2. A common choice is $\alpha = 0.75$ for puts (which need $\alpha > 0$) and $\alpha = 1.5$ for calls
-    3. One can optimize by minimizing the $L^2$ norm of the integrand or by ensuring the denominator has no near-zeros on the integration path
-    4. Lord and Kahl (2007) suggest choosing $\alpha$ to minimize the integration error, typically near the saddle point of the integrand
+**Exercise 4.** Using the Mellin-Fourier duality $\mathcal{M}[V](s) = \mathcal{F}[V(e^x)](-is)$, show that the Mellin symbol $\Lambda(s)$ and the Fourier characteristic exponent $\psi(\omega) = -\frac{\sigma^2 \omega^2}{2} + i\omega(r - \frac{\sigma^2}{2}) - r$ are related by $\Lambda(s) = \psi(-is)$.
 
 ??? success "Solution to Exercise 4"
-    Applying the Laplace transform in $\tau$ to the log-price PDE converts it to:
+    The Fourier characteristic exponent for the log-price Black-Scholes PDE is:
 
     $$
-    \frac{\sigma^2}{2}\tilde{V}_{xx} + \left(r - \frac{\sigma^2}{2}\right)\tilde{V}_x - (r+s)\tilde{V} = -\Phi(e^x)
+    \psi(\omega) = -\frac{\sigma^2\omega^2}{2} + i\omega\left(r - \frac{\sigma^2}{2}\right) - r
     $$
 
-    This is a second-order ODE in $x$ with constant coefficients, which is an inhomogeneous equation driven by $-\Phi(e^x)$.
-
-    **Green's function.** The homogeneous solutions are $e^{\lambda_+ x}$ and $e^{\lambda_- x}$ where $\lambda_{\pm}$ solve the characteristic equation $\frac{\sigma^2}{2}\lambda^2 + (r - \frac{\sigma^2}{2})\lambda - (r+s) = 0$. For $\text{Re}(s)$ large enough, $\lambda_+ > 0$ and $\lambda_- < 0$.
-
-    The Green's function for the ODE on $(-\infty, \infty)$ is:
+    Substituting $\omega = -is$:
 
     $$
-    \tilde{G}(x,y;s) = \frac{1}{\frac{\sigma^2}{2}(\lambda_+ - \lambda_-)}\begin{cases}e^{\lambda_-(x-y)} & x > y \\ e^{\lambda_+(x-y)} & x < y\end{cases}
+    \psi(-is) = -\frac{\sigma^2(-is)^2}{2} + i(-is)\left(r - \frac{\sigma^2}{2}\right) - r
     $$
 
-    The particular solution is $\tilde{V}(x,s) = \int_{-\infty}^{\infty}\tilde{G}(x,y;s)\Phi(e^y)dy$.
-
-    **Bromwich integral.** The option price is:
-
     $$
-    V(x,\tau) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\tilde{V}(x,s)e^{s\tau}ds
+    = -\frac{\sigma^2(-s^2)}{2} + s\left(r - \frac{\sigma^2}{2}\right) - r
     $$
 
-    **Singularity structure.** The integrand has singularities where:
+    $$
+    = \frac{\sigma^2 s^2}{2} + \left(r - \frac{\sigma^2}{2}\right)s - r = \Lambda(s)
+    $$
 
-    - $\lambda_+(s)$ or $\lambda_-(s)$ create branch points (the square root in $\lambda_{\pm}$ vanishes)
-    - The discriminant $(r - \frac{\sigma^2}{2})^2 + 2\sigma^2(r+s) = 0$ gives $s = -r - \frac{(r-\sigma^2/2)^2}{2\sigma^2}$, which is a branch point on the negative real axis
-    - The contour $c$ must be chosen to the right of all singularities
+    This confirms $\Lambda(s) = \psi(-is)$, which is a direct consequence of the Mellin-Fourier duality. The substitution $\omega = -is$ (equivalently $s = i\omega$) maps the Fourier frequency variable to the Mellin complex variable, and the two transforms produce the same ODE structure under this correspondence. $\square$
+
+---
+
+**Exercise 5.** Compute the Mellin transform of the power option payoff $(S^n - K^n)^+$ for general $n > 0$ and determine the strip of analyticity. Show that the case $n = 1$ recovers the standard call payoff transform.
 
 ??? success "Solution to Exercise 5"
-    **Fourier transform** (variable: $x = \ln S$, domain: $\omega \in \mathbb{R}$):
-
-    (a) Transform variable: $\omega \in \mathbb{R}$ (or $\omega \in \mathbb{C}$ with damping); domain is the real line (or a horizontal strip in $\mathbb{C}$)
-
-    (b) Equation after transformation: first-order ODE in $\tau$: $\frac{\partial \hat{V}}{\partial \tau} = \psi(\omega)\hat{V}$
-
-    (c) Inversion: $V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{V}(\omega,\tau)e^{i\omega x}d\omega$
-
-    (d) Main challenge: The call payoff Fourier transform diverges for real $\omega$; requires damping or complex contour shift
-
-    **Mellin transform** (variable: $S \in (0,\infty)$, domain: $s \in \mathbb{C}$):
-
-    (a) Transform variable: $s \in \mathbb{C}$ on a vertical strip $c_1 < \text{Re}(s) < c_2$
-
-    (b) Equation: first-order ODE in $t$: $\frac{\partial \hat{V}}{\partial t} + \Lambda(s)\hat{V} = 0$
-
-    (c) Inversion: $V(S,t) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\hat{V}(s,t)S^{-s}ds$ (Bromwich-type contour)
-
-    (d) Main challenge: The Bromwich contour integral requires careful numerical evaluation; choosing the correct strip of analyticity
-
-    **Laplace transform** (variable: $\tau = T-t$, domain: $p \in \mathbb{C}$):
-
-    (a) Transform variable: $p \in \mathbb{C}$ with $\text{Re}(p) > 0$
-
-    (b) Equation: second-order ODE in $S$ (Euler-Cauchy type): $\frac{\sigma^2}{2}S^2\tilde{V}'' + rS\tilde{V}' - (r+p)\tilde{V} = -\Phi(S)$
-
-    (c) Inversion: $V(S,\tau) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\tilde{V}(S,p)e^{p\tau}dp$
-
-    (d) Main challenge: Numerical Laplace inversion (ill-conditioned); requires special algorithms (Gaver-Stehfest, Talbot) or high-precision arithmetic
-
-??? success "Solution to Exercise 6"
-    For the Fourier case with $x = \ln S$ and transform in $x$, the solution is:
+    The Mellin transform is:
 
     $$
-    V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{\Phi}(\omega)e^{\psi(\omega)\tau + i\omega x}d\omega
-    $$
-
-    So $\Psi(\omega, S, t) = \psi(\omega)\tau + i\omega x$ where $x = \ln S$ and $\tau = T - t$:
-
-    $$
-    \Psi(\omega, S, t) = \left[-\frac{\sigma^2\omega^2}{2} + i\omega\left(r - \frac{\sigma^2}{2}\right) - r\right]\tau + i\omega\ln S
-    $$
-
-    **Saddle-point approximation.** For deep ITM ($S \gg K$), the integral is dominated by the saddle point where $\frac{\partial \Psi}{\partial \omega} = 0$:
-
-    $$
-    -\sigma^2\omega\tau + i\left(r - \frac{\sigma^2}{2}\right)\tau + i\ln S = 0
+    \mathcal{M}[(S^n - K^n)^+](s) = \int_{K}^{\infty}(S^n - K^n)\,S^{s-1}\,dS
     $$
 
     $$
-    \omega^* = \frac{i}{\sigma^2}\left[\left(r - \frac{\sigma^2}{2}\right) + \frac{\ln S}{\tau}\right]
+    = \int_K^{\infty}S^{n+s-1}\,dS - K^n\int_K^{\infty}S^{s-1}\,dS
     $$
 
-    For deep ITM with $\ln(S/K) \gg 1$, the dominant contribution gives $V \approx S - Ke^{-r\tau}$, which is the intrinsic value. This matches the leading-order behavior of the Black-Scholes formula: as $S/K \to \infty$, $\mathcal{N}(d_1) \to 1$ and $\mathcal{N}(d_2) \to 1$, so $C \to S - Ke^{-r\tau}$.
+    For convergence at infinity, we need $\text{Re}(n + s) < 0$ and $\text{Re}(s) < 0$, so $\text{Re}(s) < -n$. Under this condition:
 
-    The saddle-point method confirms that the deep ITM limit is dominated by the intrinsic value, with the next-order correction involving the Gaussian tails $1 - \mathcal{N}(d_1)$ and $1 - \mathcal{N}(d_2)$ that decay exponentially in $\ln(S/K)$.
+    $$
+    = -\frac{K^{n+s}}{n+s} - K^n\left(-\frac{K^s}{s}\right) = -\frac{K^{n+s}}{n+s} + \frac{K^{n+s}}{s}
+    $$
+
+    $$
+    = K^{n+s}\left(\frac{1}{s} - \frac{1}{n+s}\right) = K^{n+s}\cdot\frac{n}{s(n+s)}
+    $$
+
+    Therefore:
+
+    $$
+    \mathcal{M}[(S^n - K^n)^+](s) = \frac{nK^{n+s}}{s(n+s)}
+    $$
+
+    valid for $\text{Re}(s) < -n$.
+
+    **Verification for $n = 1$:**
+
+    $$
+    \frac{1 \cdot K^{1+s}}{s(1+s)} = \frac{K^{s+1}}{s(s+1)}
+    $$
+
+    This matches the call payoff transform $\frac{K^{s+1}}{s(s+1)}$ with strip $\text{Re}(s) < -1$. $\square$

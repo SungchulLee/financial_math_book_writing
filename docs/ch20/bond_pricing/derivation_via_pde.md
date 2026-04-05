@@ -345,26 +345,219 @@ The PDE derivation of the Hull-White bond price proceeds by applying the Feynman
 
 **Exercise 1.** State the Feynman-Kac theorem precisely. Identify the functions $\mu(t,x)$, $\sigma(t,x)$, $c(t,x)$, and $g(x)$ that correspond to the Hull-White zero-coupon bond pricing problem.
 
+??? success "Solution to Exercise 1"
+    The Feynman-Kac theorem states: Let $X_t$ satisfy the SDE $dX_t = \mu(t,X_t)\,dt + \sigma(t,X_t)\,dW_t$, and define
+
+    $$
+    u(t,x) = \mathbb{E}\left[e^{-\int_t^T c(s,X_s)ds}\,g(X_T)\,\Big|\,X_t = x\right]
+    $$
+
+    Then, under suitable regularity conditions (Lipschitz drift and diffusion, polynomial growth of $g$), $u$ solves the PDE:
+
+    $$
+    \frac{\partial u}{\partial t} + \mu(t,x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(t,x)\frac{\partial^2 u}{\partial x^2} - c(t,x)\,u = 0
+    $$
+
+    with terminal condition $u(T,x) = g(x)$.
+
+    For the Hull-White zero-coupon bond pricing problem, the identifications are:
+
+    - **State process:** $X_t = r(t)$, the short rate
+    - **Drift:** $\mu(t,r) = \theta(t) - ar$, the Hull-White mean-reverting drift
+    - **Diffusion:** $\sigma(t,r) = \sigma$ (constant volatility)
+    - **Discount rate:** $c(t,r) = r$, since the discount factor is $e^{-\int_t^T r(s)ds}$
+    - **Terminal payoff:** $g(r) = 1$, since the bond pays one unit at maturity
+
+    Substituting these into the Feynman-Kac PDE yields:
+
+    $$
+    \frac{\partial P}{\partial t} + (\theta(t) - ar)\frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2\frac{\partial^2 P}{\partial r^2} - rP = 0, \qquad P(T,r) = 1
+    $$
+
 ---
 
 **Exercise 2.** The ODE for $B(\tau)$ is $\tilde{B}' + a\tilde{B} = -1$ with $\tilde{B}(0) = 0$. Solve this ODE using the method of variation of parameters instead of the integrating factor. Verify you obtain the same solution $B(\tau) = -(1 - e^{-a\tau})/a$.
+
+??? success "Solution to Exercise 2"
+    The ODE is $\tilde{B}' + a\tilde{B} = -1$ with $\tilde{B}(0) = 0$.
+
+    **Using variation of parameters:** First solve the homogeneous equation $\tilde{B}'_h + a\tilde{B}_h = 0$, which gives $\tilde{B}_h(\tau) = Ce^{-a\tau}$.
+
+    Assume the particular solution has the form $\tilde{B}_p(\tau) = C(\tau)e^{-a\tau}$. Substituting:
+
+    $$
+    C'(\tau)e^{-a\tau} - aC(\tau)e^{-a\tau} + aC(\tau)e^{-a\tau} = -1
+    $$
+
+    $$
+    C'(\tau)e^{-a\tau} = -1 \quad\Longrightarrow\quad C'(\tau) = -e^{a\tau}
+    $$
+
+    Integrating:
+
+    $$
+    C(\tau) = -\frac{e^{a\tau}}{a} + K
+    $$
+
+    The general solution is:
+
+    $$
+    \tilde{B}(\tau) = C(\tau)e^{-a\tau} = \left(-\frac{e^{a\tau}}{a} + K\right)e^{-a\tau} = -\frac{1}{a} + Ke^{-a\tau}
+    $$
+
+    Applying the initial condition $\tilde{B}(0) = 0$:
+
+    $$
+    0 = -\frac{1}{a} + K \quad\Longrightarrow\quad K = \frac{1}{a}
+    $$
+
+    Therefore:
+
+    $$
+    \tilde{B}(\tau) = -\frac{1}{a} + \frac{1}{a}e^{-a\tau} = -\frac{1 - e^{-a\tau}}{a}
+    $$
+
+    This matches the integrating factor solution.
 
 ---
 
 **Exercise 3.** Show that $B(\tau) \approx -\tau + \frac{a\tau^2}{2}$ for small $a\tau$ by Taylor expanding $e^{-a\tau}$. Use this to estimate the error in approximating $B(\tau) \approx -\tau$ (the Ho-Lee limit) when $a = 0.05$ and $\tau = 10$.
 
+??? success "Solution to Exercise 3"
+    Taylor expand $e^{-a\tau} = 1 - a\tau + \frac{(a\tau)^2}{2} - \frac{(a\tau)^3}{6} + \cdots$ :
+
+    $$
+    1 - e^{-a\tau} = a\tau - \frac{(a\tau)^2}{2} + \frac{(a\tau)^3}{6} - \cdots
+    $$
+
+    $$
+    B(\tau) = -\frac{1-e^{-a\tau}}{a} = -\tau + \frac{a\tau^2}{2} - \frac{a^2\tau^3}{6} + \cdots
+    $$
+
+    For small $a\tau$, keeping the first two terms: $B(\tau) \approx -\tau + \frac{a\tau^2}{2}$.
+
+    The Ho-Lee approximation is $B(\tau) \approx -\tau$, so the error is approximately $\frac{a\tau^2}{2}$.
+
+    **Numerical estimate for $a = 0.05$, $\tau = 10$:**
+
+    $$
+    \text{Error} \approx \frac{0.05 \times 100}{2} = 2.5
+    $$
+
+    Exact value: $B(10) = -\frac{1-e^{-0.5}}{0.05} = -\frac{0.3935}{0.05} = -7.869$. The Ho-Lee approximation gives $B(10) \approx -10$. The error is $|-10 - (-7.869)| = 2.131$, which is close to the estimate of 2.5. The quadratic correction $\frac{a\tau^2}{2} = 2.5$ slightly overestimates the true error because higher-order terms (negative) partially cancel.
+
+    The relative error is $\frac{2.131}{7.869} \approx 27\%$, indicating that the Ho-Lee approximation is poor for $a\tau = 0.5$.
+
 ---
 
 **Exercise 4.** Explain why the $A$-equation is a quadrature rather than a genuine ODE. What structural property of the Hull-White model makes this simplification possible, and how would the situation change for a model with state-dependent volatility (e.g., CIR)?
+
+??? success "Solution to Exercise 4"
+    The $A$-equation is a quadrature rather than a genuine ODE because the right-hand side depends only on $\tau$ (through the known function $B(\tau)$) and on $t$ (through $\theta(T-\tau)$), but not on $A$ itself:
+
+    $$
+    \frac{d\tilde{A}}{d\tau} = \theta(T-\tau)\,B(\tau) + \frac{1}{2}\sigma^2 B(\tau)^2
+    $$
+
+    The function $A$ does not appear on the right-hand side, so the equation can be solved by direct integration (quadrature) once $B(\tau)$ is known. There is no feedback from $A$ to its own derivative.
+
+    **Structural property:** This simplification occurs because the Hull-White model has constant (state-independent) volatility $\sigma$. The $B^2$ term in the PDE substitution comes from $\frac{1}{2}\sigma^2 B^2$, which is independent of $r$, and hence independent of $A$.
+
+    **CIR model comparison:** In the CIR model, $\sigma(r) = \sigma\sqrt{r}$, so $\frac{1}{2}\sigma^2 r \cdot B^2$ contributes a term proportional to $rB^2$ when substituting the ansatz. This $r$-dependent term mixes with the coefficient of $r$ in the separation, modifying the $B$-equation to a genuine (nonlinear) Riccati ODE:
+
+    $$
+    B'(\tau) = -aB - 1 + \frac{1}{2}\sigma^2 B^2
+    $$
+
+    The $B^2$ term makes the ODE nonlinear, and the $A$-equation also becomes more complex. However, $A$ is still determined by quadrature once $B$ is known, because even in CIR the ansatz $P = e^{A+Br}$ separates cleanly into $r$-dependent and $r$-independent parts.
 
 ---
 
 **Exercise 5.** Using the numerical example with $a = 0.05$, $\sigma = 0.01$, $f^M(0,t) = 0.03$, and $r(2) = 0.035$, compute $P(2, 12)$ step by step. Then recompute for $r(2) = 0.025$ and comment on the sensitivity of the bond price to the current short rate.
 
+??? success "Solution to Exercise 5"
+    Given: $a = 0.05$, $\sigma = 0.01$, $f^M(0,t) = 0.03$, $\tau = 10$.
+
+    **Case 1: $r(2) = 0.035$** (already computed in the text).
+
+    $$
+    B(2,12) = -\frac{1-e^{-0.5}}{0.05} \approx -7.869
+    $$
+
+    $$
+    \ln\frac{P^M(0,12)}{P^M(0,2)} = -0.03(12-0) + 0.03(2) = -0.36 + 0.06 = -0.30
+    $$
+
+    $$
+    B \cdot f^M(0,2) = -7.869 \times 0.03 = -0.2361
+    $$
+
+    $$
+    \frac{\sigma^2}{4a}B^2(1-e^{-2at}) = \frac{0.0001}{0.2} \times 61.92 \times (1-e^{-0.2}) = 0.0005 \times 61.92 \times 0.1813 \approx 0.00561
+    $$
+
+    $$
+    A(2,12) = -0.30 + (-0.2361) + 0.00561 = -0.5305
+    $$
+
+    $$
+    P(2,12) = e^{-0.5305 + (-7.869)(0.035)} = e^{-0.5305 - 0.2754} = e^{-0.8059} \approx 0.4466
+    $$
+
+    **Case 2: $r(2) = 0.025$.**
+
+    $A(2,12)$ is unchanged at $-0.5305$ (it does not depend on $r$).
+
+    $$
+    P(2,12) = e^{-0.5305 + (-7.869)(0.025)} = e^{-0.5305 - 0.1967} = e^{-0.7272} \approx 0.4833
+    $$
+
+    **Comparison:** When $r(2)$ drops from 0.035 to 0.025 (a decrease of 100 basis points), the bond price increases from 0.4466 to 0.4833, a change of $+0.0367$ or approximately $+8.2\%$. The sensitivity is $\frac{\Delta P}{\Delta r} \approx \frac{0.0367}{-0.01} = -3.67$, which is related to $B(2,12) \times P \approx -7.869 \times 0.465 \approx -3.66$, confirming the affine structure.
+
 ---
 
 **Exercise 6.** Verify the consistency check at $t = 0$: show that $P(0,T) = P^M(0,T)$ by substituting $t = 0$ into the complete bond price formula. Which terms simplify or vanish, and why?
 
+??? success "Solution to Exercise 6"
+    At $t = 0$, substitute into the complete bond price formula:
+
+    $$
+    P(0,T) = \frac{P^M(0,T)}{P^M(0,0)}\exp\left(B(0,T)[f^M(0,0) - r(0)] + \frac{\sigma^2}{4a}B(0,T)^2(1-e^{-2a\cdot 0})\right)
+    $$
+
+    **Terms that simplify or vanish:**
+
+    1. $P^M(0,0) = 1$: the price of a bond maturing immediately is 1.
+
+    2. $f^M(0,0) = r(0)$: the instantaneous forward rate at time zero equals the current short rate, so $f^M(0,0) - r(0) = 0$.
+
+    3. $1 - e^{-2a \cdot 0} = 1 - 1 = 0$: the convexity correction vanishes.
+
+    Therefore:
+
+    $$
+    P(0,T) = \frac{P^M(0,T)}{1}\exp(0 + 0) = P^M(0,T)
+    $$
+
+    The model exactly reproduces the market discount curve at $t = 0$. This verification confirms that the PDE derivation is consistent with the calibration requirement: the time-dependent drift $\theta(t)$ has been chosen precisely so that the $A(t,T)$ function absorbs the market term structure at the initial time.
+
 ---
 
 **Exercise 7.** Compare the PDE and expectation derivations from a computational perspective. For a model where closed-form solutions are not available, which approach (numerical PDE vs. Monte Carlo) would you prefer for computing bond prices? Discuss the trade-offs in terms of accuracy, computational cost, and dimensionality.
+
+??? success "Solution to Exercise 7"
+    **Numerical PDE (finite differences):**
+
+    - *Accuracy:* Deterministic error that decreases systematically with grid refinement. For smooth solutions (as in Hull-White), second-order schemes like Crank-Nicolson converge as $O(\Delta r^2 + \Delta t^2)$.
+    - *Cost:* Scales as $O(N_r \times N_t)$ where $N_r$ is the number of spatial grid points and $N_t$ is the number of time steps. Very efficient for one-factor models.
+    - *Dimensionality:* Cost grows exponentially with the number of factors (curse of dimensionality). A two-factor model (e.g., Heston) requires a 2D grid; three factors become prohibitively expensive.
+    - *Output:* Produces the bond price for all values of $r$ simultaneously (the entire price surface), which is useful for computing Greeks.
+
+    **Monte Carlo (expectation approach):**
+
+    - *Accuracy:* Statistical error decreasing as $O(1/\sqrt{N})$ where $N$ is the number of paths. Convergence is slow but dimension-independent.
+    - *Cost:* Scales as $O(N \times N_t \times d)$ where $d$ is the number of factors. Adding dimensions increases cost linearly, not exponentially.
+    - *Dimensionality:* Monte Carlo is the preferred method for high-dimensional problems (multi-factor models, path-dependent payoffs).
+    - *Output:* Produces the bond price at a single point $(t, r(t))$ per simulation. Computing the full price surface requires separate simulations.
+
+    **Recommendation:** For single-factor models like Hull-White, the PDE approach is strongly preferred: it is faster, more accurate, and provides the full price surface. For multi-factor models (two or more state variables) or path-dependent payoffs, Monte Carlo becomes the practical choice despite its slower convergence, because the PDE grid becomes infeasible in high dimensions.

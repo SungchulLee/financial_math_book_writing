@@ -342,30 +342,6 @@ for b, f1, f3 in zip(step_budgets, frac_1d, frac_3d):
 
 **Exercise 1.** Modify Simulation 1 to generate an asymmetric random walk with $p = 0.55$. Run 100 steps and plot the result. Compute the sample mean and compare it to the theoretical value $\mathbb{E}[S_{100}] = 100(2 \cdot 0.55 - 1) = 10$. Does the upward drift become visually apparent in a single path?
 
----
-
-**Exercise 2.** In Simulation 5, the fourth moment formula $\mathbb{E}[S_n^4] = 3n^2 - 2n$ is verified with 10,000 trials. Derive the theoretical standard error of the Monte Carlo estimate of $\mathbb{E}[S_n^4]$ at $n = 100$, and verify that the observed error in the simulation is within 2 standard errors. (Hint: you will need $\mathbb{E}[S_n^8]$ or an upper bound on it.)
-
----
-
-**Exercise 3.** Write a simulation to verify that the quadratic variation of the **scaled** random walk $S^{(n)}(t) = S_{\lfloor nt \rfloor}/\sqrt{n}$ converges to $t$ as $n$ increases. Use $t = 1$ and $n = 10, 100, 1000, 10000$. For each $n$, compute $[S^{(n)}]_1 = \lfloor n \rfloor / n$ and verify it equals 1 (or very close to 1 for non-integer $nt$).
-
----
-
-**Exercise 4.** Extend Simulation 6 to include $d = 2$. The 2D walk should use the four directions $\{\pm e_1, \pm e_2\}$ with equal probability $1/4$. Verify that the 2D return fraction approaches 1 (recurrence) but much more slowly than the 1D case. Plot all three dimensions on the same graph.
-
----
-
-**Exercise 5.** Write a simulation to estimate the distribution of the **maximum** of a symmetric random walk over $n = 1000$ steps: $M_n = \max_{0 \leq k \leq n} S_k$. Generate 10,000 paths and plot the histogram of $M_n / \sqrt{n}$. Compare your histogram to the theoretical distribution $\mathbb{P}(\max_{0 \leq t \leq 1} W_t \leq x) = 2\Phi(x) - 1$ for $x \geq 0$ (which follows from the reflection principle of Brownian motion).
-
----
-
-**Exercise 6.** Use Simulation 3 (scaled walk convergence) as a starting point. Generate 1000 paths of the scaled walk $W^{(n)}$ for $n = 500$ and compute the sample distribution of $W^{(n)}(0.5)$. Plot the histogram and overlay the theoretical density $\mathcal{N}(0, 0.5)$. This provides a visual verification of the CLT at the intermediate time $t = 0.5$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Modify the random step generation to use unequal probabilities:
 
@@ -376,6 +352,10 @@ for b, f1, f3 in zip(step_budgets, frac_1d, frac_3d):
     The theoretical mean is $\mathbb{E}[S_{100}] = 100(2 \cdot 0.55 - 1) = 10$ and standard deviation is $\sqrt{4 \cdot 100 \cdot 0.55 \cdot 0.45} = \sqrt{99} \approx 9.95$.
 
     In a single path, the drift may or may not be visually apparent: the expected position (10) is only about 1 standard deviation above 0, so a single realization could plausibly end negative. With multiple paths the upward trend becomes clear, but for a single path the noise-to-signal ratio at $n = 100$ is still significant.
+
+---
+
+**Exercise 2.** In Simulation 5, the fourth moment formula $\mathbb{E}[S_n^4] = 3n^2 - 2n$ is verified with 10,000 trials. Derive the theoretical standard error of the Monte Carlo estimate of $\mathbb{E}[S_n^4]$ at $n = 100$, and verify that the observed error in the simulation is within 2 standard errors. (Hint: you will need $\mathbb{E}[S_n^8]$ or an upper bound on it.)
 
 ??? success "Solution to Exercise 2"
     At $n = 100$, the theoretical fourth moment is $\mathbb{E}[S_{100}^4] = 3(100)^2 - 2(100) = 29800$. The standard error of the Monte Carlo estimate $\hat{\mu}_4 = \frac{1}{N}\sum_{j=1}^{N} S_{100,j}^4$ is:
@@ -389,6 +369,10 @@ for b, f1, f3 in zip(step_budgets, frac_1d, frac_3d):
     Then $\text{Var}(S_{100}^4) \approx 1.046 \times 10^{10} - (29800)^2 = 1.046 \times 10^{10} - 8.88 \times 10^8 \approx 9.57 \times 10^9$.
 
     With $N = 10000$: $\text{SE} \approx \sqrt{9.57 \times 10^9/10000} \approx \sqrt{957000} \approx 978$. So the 2-SE range around 29800 is approximately $[27844, 31756]$. The observed error (a few hundred) should be well within this range.
+
+---
+
+**Exercise 3.** Write a simulation to verify that the quadratic variation of the **scaled** random walk $S^{(n)}(t) = S_{\lfloor nt \rfloor}/\sqrt{n}$ converges to $t$ as $n$ increases. Use $t = 1$ and $n = 10, 100, 1000, 10000$. For each $n$, compute $[S^{(n)}]_1 = \lfloor n \rfloor / n$ and verify it equals 1 (or very close to 1 for non-integer $nt$).
 
 ??? success "Solution to Exercise 3"
     For $t = 1$ and integer $n$, the quadratic variation of the scaled walk is:
@@ -408,6 +392,10 @@ for b, f1, f3 in zip(step_budgets, frac_1d, frac_3d):
 
     Every output will be exactly 1.000000, because each $(xi_i/\sqrt{n})^2 = 1/n$, and there are $n$ terms, giving $n \cdot (1/n) = 1$.
 
+---
+
+**Exercise 4.** Extend Simulation 6 to include $d = 2$. The 2D walk should use the four directions $\{\pm e_1, \pm e_2\}$ with equal probability $1/4$. Verify that the 2D return fraction approaches 1 (recurrence) but much more slowly than the 1D case. Plot all three dimensions on the same graph.
+
 ??? success "Solution to Exercise 4"
     For the 2D walk, use step directions $\{(1,0), (-1,0), (0,1), (0,-1)\}$ each with probability $1/4$. The return fractions should show all three recurrence behaviors:
 
@@ -416,6 +404,10 @@ for b, f1, f3 in zip(step_budgets, frac_1d, frac_3d):
     - $d = 3$: fraction $\to F^{(3)}(1) \approx 0.341$ (plateaus well below 1).
 
     At a step budget of 5000: $d = 1$ should show $> 0.99$; $d = 2$ should show roughly $0.8$--$0.9$ (still climbing); $d = 3$ should show roughly $0.33$--$0.35$. The 2D case is the most informative: it is technically recurrent but returns so slowly that finite simulations may not clearly distinguish it from the transient case without very large step budgets.
+
+---
+
+**Exercise 5.** Write a simulation to estimate the distribution of the **maximum** of a symmetric random walk over $n = 1000$ steps: $M_n = \max_{0 \leq k \leq n} S_k$. Generate 10,000 paths and plot the histogram of $M_n / \sqrt{n}$. Compare your histogram to the theoretical distribution $\mathbb{P}(\max_{0 \leq t \leq 1} W_t \leq x) = 2\Phi(x) - 1$ for $x \geq 0$ (which follows from the reflection principle of Brownian motion).
 
 ??? success "Solution to Exercise 5"
     The simulation generates 10,000 paths of length $n = 1000$ and records $M_n = \max_{0 \leq k \leq n} S_k$ for each. The histogram of $M_n/\sqrt{n}$ should approximate the theoretical CDF:
@@ -431,6 +423,10 @@ for b, f1, f3 in zip(step_budgets, frac_1d, frac_3d):
     $$
 
     where $\phi$ is the standard normal density. This is a **half-normal distribution** (the distribution of $|Z|$ where $Z \sim \mathcal{N}(0,1)$). The histogram should show a distribution concentrated on $[0, \infty)$ with mode at 0 and right-skewed tail, matching $2\phi(x)$.
+
+---
+
+**Exercise 6.** Use Simulation 3 (scaled walk convergence) as a starting point. Generate 1000 paths of the scaled walk $W^{(n)}$ for $n = 500$ and compute the sample distribution of $W^{(n)}(0.5)$. Plot the histogram and overlay the theoretical density $\mathcal{N}(0, 0.5)$. This provides a visual verification of the CLT at the intermediate time $t = 0.5$.
 
 ??? success "Solution to Exercise 6"
     With $n = 500$ and $t = 0.5$: $S^{(n)}(0.5) = S_{\lfloor 250 \rfloor}/\sqrt{500} = S_{250}/\sqrt{500}$. By the CLT, $S_{250}/\sqrt{250} \approx \mathcal{N}(0,1)$, so $S_{250}/\sqrt{500} = (S_{250}/\sqrt{250}) \cdot \sqrt{250/500} \approx \mathcal{N}(0,1) \cdot (1/\sqrt{2})$, which gives $\mathcal{N}(0, 1/2) = \mathcal{N}(0, 0.5)$.

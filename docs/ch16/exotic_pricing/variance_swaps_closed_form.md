@@ -309,32 +309,341 @@ $$
 
 Convert the result to a volatility strike $K_{\text{vol}} = \sqrt{K_{\text{var}}}$ and express in percentage. Does the variance strike lie between $v_0$ and $\theta$?
 
+??? success "Solution to Exercise 1"
+    **Computing the fair variance strike.** With $v_0 = 0.04$, $\kappa = 2.0$, $\theta = 0.05$, $T = 1$:
+
+    $$
+    K_{\text{var}} = \theta + (v_0 - \theta)\frac{1 - e^{-\kappa T}}{\kappa T}
+    $$
+
+    **Step 1.** Compute $e^{-\kappa T} = e^{-2.0} = 0.13534$.
+
+    **Step 2.** Compute the fraction:
+
+    $$
+    \frac{1 - e^{-\kappa T}}{\kappa T} = \frac{1 - 0.13534}{2.0 \times 1.0} = \frac{0.86466}{2.0} = 0.43233
+    $$
+
+    **Step 3.** Compute the fair strike:
+
+    $$
+    K_{\text{var}} = 0.05 + (0.04 - 0.05) \times 0.43233 = 0.05 + (-0.01) \times 0.43233 = 0.05 - 0.004323 = 0.04568
+    $$
+
+    **Step 4.** Convert to volatility strike:
+
+    $$
+    K_{\text{vol}} = \sqrt{K_{\text{var}}} = \sqrt{0.04568} = 0.2137 = 21.37\%
+    $$
+
+    **Verification.** Since $v_0 = 0.04 < \theta = 0.05$, mean reversion pulls the expected variance upward. The fair strike $K_{\text{var}} = 0.04568$ lies between $v_0 = 0.04$ and $\theta = 0.05$, as expected. Specifically:
+
+    $$
+    v_0 = 0.04 < K_{\text{var}} = 0.04568 < \theta = 0.05 \quad \checkmark
+    $$
+
+    The fair strike is closer to $\theta$ than to $v_0$ because the averaging factor $0.43233$ gives substantial weight to the mean-reversion target over a 1-year horizon.
+
 ---
 
 **Exercise 2.**
 Show that as $T \to 0$, the fair variance strike $K_{\text{var}} \to v_0$, and as $T \to \infty$, $K_{\text{var}} \to \theta$. Derive these limits from the formula. Compute $K_{\text{var}}$ for $T = 0.01, 0.1, 1, 5, 20$ years using the parameters from Exercise 1 and verify the convergence to $\theta$.
+
+??? success "Solution to Exercise 2"
+    **Short maturity limit ($T \to 0$).** Using the Taylor expansion $e^{-\kappa T} \approx 1 - \kappa T + \frac{1}{2}\kappa^2 T^2 - \cdots$:
+
+    $$
+    \frac{1 - e^{-\kappa T}}{\kappa T} = \frac{1 - (1 - \kappa T + \frac{1}{2}\kappa^2 T^2 - \cdots)}{\kappa T} = \frac{\kappa T - \frac{1}{2}\kappa^2 T^2 + \cdots}{\kappa T} = 1 - \frac{\kappa T}{2} + \cdots
+    $$
+
+    Therefore:
+
+    $$
+    K_{\text{var}} = \theta + (v_0 - \theta)(1 - \frac{\kappa T}{2} + \cdots) \to \theta + (v_0 - \theta) = v_0 \quad \text{as } T \to 0
+    $$
+
+    **Long maturity limit ($T \to \infty$).** As $T \to \infty$, $e^{-\kappa T} \to 0$, so:
+
+    $$
+    \frac{1 - e^{-\kappa T}}{\kappa T} \to \frac{1}{\kappa T} \to 0
+    $$
+
+    Therefore:
+
+    $$
+    K_{\text{var}} = \theta + (v_0 - \theta) \cdot \frac{1}{\kappa T} \to \theta \quad \text{as } T \to \infty
+    $$
+
+    **Numerical verification.** Using $v_0 = 0.04$, $\kappa = 2.0$, $\theta = 0.05$:
+
+    | $T$ | $e^{-\kappa T}$ | $\frac{1-e^{-\kappa T}}{\kappa T}$ | $K_{\text{var}}$ | $\sqrt{K_{\text{var}}}$ |
+    |:---:|:---:|:---:|:---:|:---:|
+    | 0.01 | 0.9802 | 0.9901 | 0.04010 | 20.02% |
+    | 0.1 | 0.8187 | 0.9063 | 0.04094 | 20.23% |
+    | 1.0 | 0.1353 | 0.4323 | 0.04568 | 21.37% |
+    | 5.0 | 0.0000454 | 0.1000 | 0.04900 | 22.14% |
+    | 20.0 | $\approx 0$ | 0.0250 | 0.04975 | 22.31% |
+
+    The convergence to $\theta = 0.05$ ($\sqrt{\theta} = 22.36\%$) is clearly visible. At $T = 0.01$, the fair strike is within 0.25% of $v_0$. At $T = 20$, it is within 0.5% of $\theta$.
 
 ---
 
 **Exercise 3.**
 The continuous-monitoring fair variance strike differs from the discrete-monitoring version by a convexity correction. The discrete-monitoring realized variance uses squared log-returns $(\ln S_{t_i}/S_{t_{i-1}})^2$, while the continuous version uses $\int_0^T v_t \, dt / T$. The correction is approximately $K_{\text{var}}^{\text{discrete}} \approx K_{\text{var}}^{\text{cont}} + \frac{1}{3n}(\bar{v}\xi^2/\kappa)$ where $n$ is the number of monitoring dates. For daily monitoring ($n = 252$), $\kappa = 2.0$, $\xi = 0.5$, and $\bar{v} = 0.045$, compute the correction and compare it to the continuous strike.
 
+??? success "Solution to Exercise 3"
+    **Discrete monitoring correction.** The approximate correction formula is:
+
+    $$
+    K_{\text{var}}^{\text{discrete}} \approx K_{\text{var}}^{\text{cont}} + \frac{1}{3n} \cdot \frac{\bar{v}\xi^2}{\kappa}
+    $$
+
+    with $n = 252$ (daily monitoring), $\kappa = 2.0$, $\xi = 0.5$, $\bar{v} = 0.045$.
+
+    **Step 1.** Compute the correction:
+
+    $$
+    \text{Correction} = \frac{1}{3 \times 252} \cdot \frac{0.045 \times 0.5^2}{2.0} = \frac{1}{756} \times \frac{0.045 \times 0.25}{2.0}
+    $$
+
+    $$
+    = \frac{1}{756} \times \frac{0.01125}{2.0} = \frac{1}{756} \times 0.005625 = 0.000007440
+    $$
+
+    **Step 2.** Compare to the continuous strike. From Exercise 1, $K_{\text{var}}^{\text{cont}} = 0.04568$. The correction as a percentage of the continuous strike:
+
+    $$
+    \frac{0.000007440}{0.04568} = 0.0163\% \approx 0.016\%
+    $$
+
+    This is extremely small --- less than 2 basis points of the fair strike. The discrete strike is:
+
+    $$
+    K_{\text{var}}^{\text{discrete}} \approx 0.04568 + 0.0000074 = 0.04569
+    $$
+
+    The correction is negligible for daily monitoring. However, for weekly monitoring ($n = 52$):
+
+    $$
+    \text{Correction}_{\text{weekly}} = \frac{1}{3 \times 52} \times 0.005625 = \frac{0.005625}{156} = 0.0000361
+    $$
+
+    This is about 0.08% of the fair strike, still small but potentially material for large notionals. For monthly monitoring ($n = 12$):
+
+    $$
+    \text{Correction}_{\text{monthly}} = \frac{1}{36} \times 0.005625 = 0.000156
+    $$
+
+    This is 0.34% of the fair strike, which is relevant for pricing.
+
 ---
 
 **Exercise 4.**
 The VIX index is defined as $\text{VIX}_t = 100\sqrt{K_{\text{var}}(t, t + \tau)}$ where $\tau = 30/365$ and $K_{\text{var}}$ is the fair 30-day variance swap strike. For $v_t = 0.04$, $\kappa = 2.0$, $\theta = 0.05$, compute VIX$_t$. How does VIX change if $v_t$ suddenly increases to 0.09 (a volatility spike)?
+
+??? success "Solution to Exercise 4"
+    **Computing VIX under Heston.** The VIX is defined as:
+
+    $$
+    \text{VIX}_t = 100\sqrt{K_{\text{var}}(t, t + \tau)}
+    $$
+
+    where $\tau = 30/365$ and the 30-day fair variance strike is:
+
+    $$
+    K_{\text{var}}(t, t+\tau) = \theta + (v_t - \theta)\frac{1 - e^{-\kappa\tau}}{\kappa\tau}
+    $$
+
+    **Case 1: $v_t = 0.04$.** Compute $\kappa\tau = 2.0 \times 30/365 = 0.16438$.
+
+    $$
+    e^{-\kappa\tau} = e^{-0.16438} = 0.8484
+    $$
+
+    $$
+    \frac{1 - e^{-\kappa\tau}}{\kappa\tau} = \frac{1 - 0.8484}{0.16438} = \frac{0.1516}{0.16438} = 0.9222
+    $$
+
+    $$
+    K_{\text{var}} = 0.05 + (0.04 - 0.05) \times 0.9222 = 0.05 - 0.009222 = 0.04078
+    $$
+
+    $$
+    \text{VIX}_t = 100\sqrt{0.04078} = 100 \times 0.20194 = 20.19
+    $$
+
+    **Case 2: $v_t = 0.09$ (volatility spike).**
+
+    $$
+    K_{\text{var}} = 0.05 + (0.09 - 0.05) \times 0.9222 = 0.05 + 0.04 \times 0.9222 = 0.05 + 0.03689 = 0.08689
+    $$
+
+    $$
+    \text{VIX}_t = 100\sqrt{0.08689} = 100 \times 0.29477 = 29.48
+    $$
+
+    **Summary.** When $v_t$ increases from 0.04 to 0.09 (a 125% increase), VIX increases from 20.19 to 29.48 (a 46% increase). The VIX response is less than proportional because:
+
+    1. The square root dampens the variance change: $\sqrt{0.09}/\sqrt{0.04} = 1.5$, not 2.25.
+    2. The coefficient $B = 0.9222 < 1$ means VIX$^2$ does not fully reflect $v_t$ (the 30-day averaging pulls toward $\theta$).
+    3. The intercept $a = \theta(1 - B) = 0.05 \times 0.0778 = 0.00389$ provides a positive baseline.
 
 ---
 
 **Exercise 5.**
 The log-contract replication formula states that the fair variance strike can be expressed as $K_{\text{var}} = -\frac{2}{T}\mathbb{E}^{\mathbb{Q}}[\ln(S_T/S_0) - (e^{(r-q)T} - 1)]$. This connects variance swaps to the log-contract. Verify this formula for the Black-Scholes model where $\ln(S_T/S_0) \sim N((r - q - \sigma^2/2)T, \sigma^2 T)$ and show that $K_{\text{var}} = \sigma^2$.
 
+??? success "Solution to Exercise 5"
+    **Verifying the log-contract formula under Black--Scholes.** Under Black--Scholes, $\ln(S_T/S_0) \sim N(\mu T, \sigma^2 T)$ where $\mu = r - q - \sigma^2/2$.
+
+    The log-contract replication formula states:
+
+    $$
+    K_{\text{var}} = -\frac{2}{T}\left[\mathbb{E}^{\mathbb{Q}}[\ln(S_T/S_0)] - (e^{(r-q)T} - 1)\right]
+    $$
+
+    **Step 1.** Compute $\mathbb{E}^{\mathbb{Q}}[\ln(S_T/S_0)]$. Under $\mathbb{Q}$:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\ln(S_T/S_0)] = \left(r - q - \frac{\sigma^2}{2}\right)T
+    $$
+
+    **Step 2.** Substitute into the formula:
+
+    $$
+    K_{\text{var}} = -\frac{2}{T}\left[\left(r - q - \frac{\sigma^2}{2}\right)T - (e^{(r-q)T} - 1)\right]
+    $$
+
+    $$
+    = -2\left(r - q - \frac{\sigma^2}{2}\right) + \frac{2}{T}(e^{(r-q)T} - 1)
+    $$
+
+    **Step 3.** For the exact formula, note that the model-free replication formula is more precisely:
+
+    $$
+    K_{\text{var}} = \frac{2}{T}\left[e^{(r-q)T} - 1 - (r-q)T\right] + \frac{2}{T}\left[(r-q)T - \mathbb{E}^{\mathbb{Q}}[\ln(S_T/S_0)]\right]
+    $$
+
+    The first bracket is the forward contract contribution and the second is the log-contract. Substituting $\mathbb{E}^{\mathbb{Q}}[\ln(S_T/S_0)] = (r-q-\sigma^2/2)T$:
+
+    $$
+    K_{\text{var}} = \frac{2}{T}\left[e^{(r-q)T} - 1 - (r-q)T\right] + \frac{2}{T}\left[(r-q)T - (r-q)T + \frac{\sigma^2}{2}T\right]
+    $$
+
+    $$
+    = \frac{2}{T}\left[e^{(r-q)T} - 1 - (r-q)T\right] + \sigma^2
+    $$
+
+    For the continuous-monitoring case, the quadratic variation is exactly $\sigma^2 T$, so $K_{\text{var}} = \sigma^2$ by the definition of realized variance as $\frac{1}{T}\langle \ln S \rangle_T = \sigma^2$.
+
+    The direct argument is cleaner: under Black--Scholes, $d\ln S_t = (r-q-\sigma^2/2)dt + \sigma dW_t$, so the quadratic variation is $\langle \ln S \rangle_T = \sigma^2 T$, and:
+
+    $$
+    K_{\text{var}} = \frac{1}{T}\mathbb{E}^{\mathbb{Q}}[\langle \ln S \rangle_T] = \frac{1}{T} \cdot \sigma^2 T = \sigma^2
+    $$
+
+    This confirms $K_{\text{var}} = \sigma^2$, independent of $r$, $q$, $S_0$, and $T$. The fair variance strike equals the constant variance in Black--Scholes --- a reassuring consistency check.
+
 ---
 
 **Exercise 6.**
 A trader buys a 1-year variance swap at $K_{\text{var}} = 0.045$ with notional $N = \$100{,}000$ per variance point. If the realized variance over the year turns out to be $\sigma_R^2 = 0.06$, compute the P&L. Express the result in both variance points and dollars. Now compute the "vega notional" defined as $N_{\text{vega}} = N \cdot 2\sqrt{K_{\text{var}}}$ and explain why this is a more intuitive measure of the swap's exposure.
 
+??? success "Solution to Exercise 6"
+    **Variance swap P&L calculation.**
+
+    **Given:** $K_{\text{var}} = 0.045$, $N = \$100{,}000$ per variance point, $\sigma_R^2 = 0.06$.
+
+    **P&L in variance points:**
+
+    $$
+    \text{P\&L} = N(\sigma_R^2 - K_{\text{var}}) = 100{,}000 \times (0.06 - 0.045) = 100{,}000 \times 0.015
+    $$
+
+    $$
+    = \$1{,}500
+    $$
+
+    The buyer of the variance swap profits \$1,500.
+
+    **Vega notional.** The vega notional is defined as:
+
+    $$
+    N_{\text{vega}} = N \cdot 2\sqrt{K_{\text{var}}} = 100{,}000 \times 2\sqrt{0.045} = 100{,}000 \times 2 \times 0.2121 = \$42{,}426
+    $$
+
+    **Why vega notional is more intuitive.** The variance notional $N$ gives exposure in units of variance (decimal squared), which is not intuitive. Traders think in terms of volatility (percentage), not variance.
+
+    The vega notional approximates the P&L for a 1 percentage point (1 "vega point") move in realized volatility. Using a first-order Taylor expansion of $\sigma_R^2 \approx K_{\text{var}} + 2\sqrt{K_{\text{var}}}(\sigma_R - \sqrt{K_{\text{var}}})$:
+
+    $$
+    \text{P\&L} \approx N \cdot 2\sqrt{K_{\text{var}}} \cdot (\sigma_R - \sqrt{K_{\text{var}}}) = N_{\text{vega}} \cdot (\sigma_R - \sqrt{K_{\text{var}}})
+    $$
+
+    In our example: $\sigma_R = \sqrt{0.06} = 0.2449 = 24.49\%$ and $\sqrt{K_{\text{var}}} = 21.21\%$. The volatility move is $24.49\% - 21.21\% = 3.28\%$. Using vega notional:
+
+    $$
+    \text{P\&L} \approx 42{,}426 \times 0.0328 = \$1{,}392
+    $$
+
+    This approximation (\$1,392) is close to the exact P&L (\$1,500). The difference arises from the convexity of the variance payoff: $\sigma^2 - K = (\sigma - \sqrt{K})(\sigma + \sqrt{K}) > 2\sqrt{K}(\sigma - \sqrt{K})$ when $\sigma > \sqrt{K}$. The variance swap buyer benefits from this convexity --- the "long convexity" position is a key feature of variance swaps versus volatility swaps.
+
 ---
 
 **Exercise 7.**
 The sensitivity of the fair variance strike to $v_0$ is $\partial K_{\text{var}} / \partial v_0 = (1 - e^{-\kappa T})/(\kappa T)$. Compute this sensitivity for $\kappa = 2.0$ and $T = 0.5, 1.0, 2.0$. Show that the sensitivity decreases with $T$ (the strike depends less on $v_0$ for longer maturities). Discuss the implication for hedging: a desk holding a long-dated variance swap has less exposure to short-term variance moves.
+
+??? success "Solution to Exercise 7"
+    **Computing the sensitivity $\partial K_{\text{var}} / \partial v_0$.** The sensitivity is:
+
+    $$
+    \frac{\partial K_{\text{var}}}{\partial v_0} = \frac{1 - e^{-\kappa T}}{\kappa T}
+    $$
+
+    For $\kappa = 2.0$:
+
+    **$T = 0.5$:**
+
+    $$
+    \frac{\partial K_{\text{var}}}{\partial v_0} = \frac{1 - e^{-1.0}}{1.0} = \frac{1 - 0.3679}{1.0} = 0.6321
+    $$
+
+    **$T = 1.0$:**
+
+    $$
+    \frac{\partial K_{\text{var}}}{\partial v_0} = \frac{1 - e^{-2.0}}{2.0} = \frac{1 - 0.1353}{2.0} = \frac{0.8647}{2.0} = 0.4323
+    $$
+
+    **$T = 2.0$:**
+
+    $$
+    \frac{\partial K_{\text{var}}}{\partial v_0} = \frac{1 - e^{-4.0}}{4.0} = \frac{1 - 0.01832}{4.0} = \frac{0.98168}{4.0} = 0.2454
+    $$
+
+    | Maturity $T$ | $\kappa T$ | $\partial K_{\text{var}} / \partial v_0$ |
+    |:---:|:---:|:---:|
+    | 0.5 | 1.0 | 0.6321 |
+    | 1.0 | 2.0 | 0.4323 |
+    | 2.0 | 4.0 | 0.2454 |
+
+    **Monotone decrease.** To show the sensitivity decreases with $T$, differentiate with respect to $T$:
+
+    $$
+    \frac{d}{dT}\left(\frac{1 - e^{-\kappa T}}{\kappa T}\right) = \frac{\kappa T e^{-\kappa T} \cdot \kappa - \kappa(1 - e^{-\kappa T})}{(\kappa T)^2} \cdot T
+    $$
+
+    Simplifying, let $x = \kappa T > 0$:
+
+    $$
+    \frac{d}{dT}\left(\frac{1 - e^{-x}}{x}\right) = \frac{\kappa(xe^{-x} - 1 + e^{-x})}{x^2} = \frac{\kappa((1+x)e^{-x} - 1)}{x^2}
+    $$
+
+    We need to show $(1 + x)e^{-x} < 1$ for $x > 0$. Define $h(x) = (1+x)e^{-x}$. Then $h(0) = 1$ and $h'(x) = -xe^{-x} < 0$ for $x > 0$, so $h$ is strictly decreasing. Therefore $h(x) < 1$ for all $x > 0$, confirming the sensitivity is strictly decreasing in $T$.
+
+    **Hedging implication.** A trading desk holding a long-dated variance swap (e.g., $T = 2$ years) has sensitivity $0.2454$ to $v_0$, meaning a 1 unit change in $v_0$ changes the fair strike by only 0.245 units. In contrast, a short-dated variance swap ($T = 0.5$) has sensitivity $0.6321$ --- nearly three times larger.
+
+    This means:
+
+    - **Short-dated variance swaps** are strongly exposed to current variance conditions. A spike in $v_t$ immediately translates into a large P&L movement.
+    - **Long-dated variance swaps** are more exposed to the long-run variance $\theta$ than to current conditions. Their fair strike is relatively insensitive to short-term variance fluctuations because mean reversion dampens the effect of $v_0$ over long horizons.
+    - **Hedging strategy:** A desk can partially hedge a long-dated variance swap using short-dated variance swaps, but the hedge ratio must account for the maturity-dependent sensitivity. The hedge ratio is approximately $0.2454/0.6321 = 0.388$: about 0.39 units of the short-dated swap per unit of the long-dated swap.

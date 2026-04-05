@@ -176,30 +176,6 @@ where $\{\psi_p\}$ and $\{\phi_q\}$ are polynomial or other basis functions.
 
 **Exercise 1.** The Broadie-Glasserman-Kou correction shifts a down barrier from $H$ to $H_{\text{eff}} = H \exp(-\beta \sigma \sqrt{\Delta t})$ where $\beta \approx 0.5826$. (a) Derive the intuition for this correction using the Brownian bridge: given $S_{t_k} > H$ and $S_{t_{k+1}} > H$, what is the probability that $\min_{t_k \leq t \leq t_{k+1}} S_t \leq H$? (b) Verify numerically that for a down-and-out call with $H = 90$, $\sigma = 0.20$, $T = 1$, and $M = 50$ time steps, the correction moves the effective barrier to approximately $H_{\text{eff}} \approx 88.35$.
 
----
-
-**Exercise 2.** For the moment-matching approximation of arithmetic Asian options, derive the first moment $M_1 = \mathbb{E}^{\mathbb{Q}}[\bar{S}]$ for a discrete average with $n$ equally-spaced fixings under GBM. Show that $M_1 = \frac{S_0}{n} \sum_{i=1}^{n} e^{r t_i}$ and evaluate this sum in closed form as a geometric series.
-
----
-
-**Exercise 3.** The joint distribution of $(W_T, \max_{0 \leq t \leq T} W_t)$ is derived from the reflection principle. Starting from the reflection principle for standard Brownian motion, derive the formula $\mathbb{P}(\max_{0 \leq t \leq T} W_t \leq y, \; W_T \leq x) = N(x/\sqrt{T}) - e^{-2xy/T} N((x - 2y)/\sqrt{T})$ for $y \geq 0$, $x \leq y$. Verify that setting $y = \infty$ recovers $\mathbb{P}(W_T \leq x) = N(x/\sqrt{T})$.
-
----
-
-**Exercise 4.** For an American Asian put, the LSM regression at time $t_k$ must include both $S_{t_k}$ and the running average $\bar{S}_k$ as state variables. Write the regression model $C \approx \sum_{p,q} \alpha_{pq} S_{t_k}^p \bar{S}_k^q$ for polynomial degree 2. How many basis functions does this produce? Discuss the trade-off between using more basis functions and the risk of overfitting with a finite number of paths.
-
----
-
-**Exercise 5.** Compare three methods for pricing a down-and-out call: (a) naive Monte Carlo with discrete monitoring, (b) Monte Carlo with the BGK correction, and (c) the closed-form image method formula. For each method, state the convergence rate as a function of the number of time steps $M$ and/or paths $N$. Under what circumstances does each method have a practical advantage?
-
----
-
-**Exercise 6.** The Geman-Yor Laplace transform approach expresses the Asian option price through the Laplace transform in the strike variable. Explain conceptually why a Laplace transform in the time-to-maturity variable (rather than the strike) would also be useful. What are the main computational challenges in numerically inverting the Laplace transform, and name one algorithm commonly used for this inversion.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a) Brownian bridge intuition:** Given $S_{t_k} > H$ and $S_{t_{k+1}} > H$, the log-price between $t_k$ and $t_{k+1}$ is approximately a Brownian bridge connecting $\log S_{t_k}$ and $\log S_{t_{k+1}}$. The probability that a Brownian bridge $B_t$ connecting $a = \log(S_{t_k}/H)$ and $b = \log(S_{t_{k+1}}/H)$ (both positive) touches zero is:
 
@@ -227,6 +203,11 @@ where $\{\psi_p\}$ and $\{\phi_q\}$ are polynomial or other basis functions.
 
     This is approximately $88.35$ to $88.53$ depending on precision, confirming the stated value is in the right range. The effective barrier is shifted about $1.5$ to $1.7$ points below the nominal barrier $90$.
 
+---
+
+
+**Exercise 2.** For the moment-matching approximation of arithmetic Asian options, derive the first moment $M_1 = \mathbb{E}^{\mathbb{Q}}[\bar{S}]$ for a discrete average with $n$ equally-spaced fixings under GBM. Show that $M_1 = \frac{S_0}{n} \sum_{i=1}^{n} e^{r t_i}$ and evaluate this sum in closed form as a geometric series.
+
 ??? success "Solution to Exercise 2"
     Under GBM with risk-neutral dynamics, $S_{t_i} = S_0 \exp((r - \frac{1}{2}\sigma^2)t_i + \sigma W_{t_i})$. Taking expectations:
 
@@ -253,6 +234,11 @@ where $\{\psi_p\}$ and $\{\phi_q\}$ are polynomial or other basis functions.
     $$
 
     For small $rT/n$, $e^{rT/n} - 1 \approx rT/n$, so $M_1 \approx \frac{S_0}{n} \cdot \frac{e^{rT} - 1}{rT/n} = \frac{S_0(e^{rT} - 1)}{rT}$, which is the continuous-average limit.
+
+---
+
+
+**Exercise 3.** The joint distribution of $(W_T, \max_{0 \leq t \leq T} W_t)$ is derived from the reflection principle. Starting from the reflection principle for standard Brownian motion, derive the formula $\mathbb{P}(\max_{0 \leq t \leq T} W_t \leq y, \; W_T \leq x) = N(x/\sqrt{T}) - e^{-2xy/T} N((x - 2y)/\sqrt{T})$ for $y \geq 0$, $x \leq y$. Verify that setting $y = \infty$ recovers $\mathbb{P}(W_T \leq x) = N(x/\sqrt{T})$.
 
 ??? success "Solution to Exercise 3"
     Starting from the **reflection principle for standard Brownian motion**: for a path starting at $W_0 = 0$, if it reaches level $y > 0$ at some time $\tau \leq T$, reflecting the path after time $\tau$ about level $y$ produces a valid Brownian motion path. This gives the key identity:
@@ -313,6 +299,11 @@ where $\{\psi_p\}$ and $\{\phi_q\}$ are polynomial or other basis functions.
 
     which is simply $\mathbb{P}(W_T \leq x)$, as expected since the maximum is always finite.
 
+---
+
+
+**Exercise 4.** For an American Asian put, the LSM regression at time $t_k$ must include both $S_{t_k}$ and the running average $\bar{S}_k$ as state variables. Write the regression model $C \approx \sum_{p,q} \alpha_{pq} S_{t_k}^p \bar{S}_k^q$ for polynomial degree 2. How many basis functions does this produce? Discuss the trade-off between using more basis functions and the risk of overfitting with a finite number of paths.
+
 ??? success "Solution to Exercise 4"
     For polynomial degree 2 in both variables $S_{t_k}$ and $\bar{S}_k$, the basis functions are $\{S_{t_k}^p \bar{S}_k^q : 0 \leq p + q \leq 2,\, p \geq 0,\, q \geq 0\}$:
 
@@ -333,6 +324,11 @@ where $\{\psi_p\}$ and $\{\phi_q\}$ are polynomial or other basis functions.
     - **Bias-variance trade-off:** Fewer basis functions introduce approximation bias (underfitting) but lower variance. More basis functions reduce bias but increase variance.
     - **Practical rule:** The number of basis functions should be much smaller than $N$. For $N = 10{,}000$ paths, 6 to 10 basis functions typically works well. For $N = 100{,}000$, one can safely use 15 to 20 basis functions.
 
+---
+
+
+**Exercise 5.** Compare three methods for pricing a down-and-out call: (a) naive Monte Carlo with discrete monitoring, (b) Monte Carlo with the BGK correction, and (c) the closed-form image method formula. For each method, state the convergence rate as a function of the number of time steps $M$ and/or paths $N$. Under what circumstances does each method have a practical advantage?
+
 ??? success "Solution to Exercise 5"
     **(a) Naive Monte Carlo with discrete monitoring:** Convergence in the number of time steps is $O(1/\sqrt{M})$ due to the probability of missing barrier crossings between steps. Convergence in the number of paths is $O(1/\sqrt{N})$. The overall error is $O(1/\sqrt{M}) + O(1/\sqrt{N})$.
 
@@ -345,6 +341,11 @@ where $\{\psi_p\}$ and $\{\phi_q\}$ are polynomial or other basis functions.
     - **Image method** is best when applicable: simple single barriers, GBM, continuous monitoring. It is exact, instantaneous, and requires no simulation. However, it fails for time-dependent barriers, double barriers, discrete monitoring (without correction), and non-GBM models.
     - **BGK-corrected Monte Carlo** is best for discrete monitoring, complex payoffs, or non-standard barrier structures. It provides good accuracy with moderate $M$ (50-100 steps suffice).
     - **Naive Monte Carlo** is the fallback when BGK corrections are unavailable (e.g., time-dependent barriers, non-constant volatility). It requires very large $M$ to achieve acceptable accuracy.
+
+---
+
+
+**Exercise 6.** The Geman-Yor Laplace transform approach expresses the Asian option price through the Laplace transform in the strike variable. Explain conceptually why a Laplace transform in the time-to-maturity variable (rather than the strike) would also be useful. What are the main computational challenges in numerically inverting the Laplace transform, and name one algorithm commonly used for this inversion.
 
 ??? success "Solution to Exercise 6"
     **Laplace transform in time-to-maturity:** A Laplace transform in $T$ (time to maturity) is useful because the Asian option pricing PDE involves the integral $\int_0^T S_t\,dt$ as a state variable. Transforming in $T$ converts the pricing PDE from a time-dependent problem into an ODE in the Laplace variable, which is often easier to solve. The Laplace-transformed price can be expressed in terms of special functions (confluent hypergeometric/Whittaker functions), and the original price is recovered by numerical inversion.

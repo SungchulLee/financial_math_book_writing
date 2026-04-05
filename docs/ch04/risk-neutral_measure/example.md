@@ -2,6 +2,18 @@
 
 This section provides detailed worked examples of constructing the risk-neutral measure in various market models, from the basic Black-Scholes setting to multi-asset and interest rate models.
 
+!!! abstract "Taxonomy: completeness and uniqueness"
+
+    The relationship between the number of traded assets $n$ and the number of independent
+    Brownian motions $d$ determines the market structure:
+
+    - **Complete market** ($n = d$): the volatility matrix $\Sigma$ is square and invertible,
+      so $\boldsymbol{\theta}$ is **unique** and $\mathbb{Q}$ is the **unique** risk-neutral measure.
+    - **Incomplete market** ($n < d$): $\Sigma$ is underdetermined, leaving $d - n$ free
+      parameters in $\boldsymbol{\theta}$ and a **family** of risk-neutral measures.
+    - **Overdetermined** ($n > d$): the system is consistent only if no-arbitrage
+      constraints are satisfied; otherwise arbitrage exists.
+
 ---
 
 ## Example 1: Black-Scholes Model (Single Stock)
@@ -220,7 +232,7 @@ $$
 \theta = \frac{\mu_X - (r_d - r_f)}{\sigma_X} = 0
 $$
 
-No measure change needed! The FX market is already "risk-neutral" with respect to interest rate differentials.
+The no-arbitrage condition implies that the Girsanov kernel is $\theta = 0$, so the domestic risk-neutral measure already produces the correct drift.
 
 ### Risk-Neutral Dynamics
 
@@ -292,16 +304,20 @@ $$
 | Multi-stock | $n$ | $n$ | Yes | Yes |
 | Stoch. vol. | 1 | 2 | No | No |
 | FX | 1 | 1 | Yes | Yes |
-| Interest rate | 0 (bond) | 1 | No | No |
+| Interest rate | Many (bonds) | 1 | Often incomplete (state not directly spanned) | No |
 
 ---
 
 ## Key Takeaways
 
-1. **Complete markets**: $\theta$ is uniquely determined, one risk-neutral measure
-2. **Incomplete markets**: Multiple valid $\theta$, multiple risk-neutral measures
-3. **Calibration**: In practice, $\mathbb{Q}$ is inferred from market prices, not derived from $\mathbb{P}$
-4. **Volatility unchanged**: Only drift changes under measure transformation
+Across all examples, the same structural pattern emerges: the number of traded assets
+relative to the number of independent Brownian motions determines whether the
+risk-neutral measure is unique.
+
+1. **Complete markets** ($n = d$): $\boldsymbol{\theta}$ is uniquely determined, one risk-neutral measure.
+2. **Incomplete markets** ($n < d$): multiple valid $\boldsymbol{\theta}$, multiple risk-neutral measures; the extra degrees of freedom correspond to unhedgeable risk factors.
+3. **Calibration**: In practice, $\mathbb{Q}$ is inferred from market prices, not derived from $\mathbb{P}$.
+4. **Volatility unchanged**: Only drift changes under measure transformation.
 
 **The construction of $\mathbb{Q}$ is the mathematical foundation of derivative pricing.**
 
@@ -311,40 +327,6 @@ $$
 
 **Exercise 1.**
 In the Black-Scholes model with $\mu = 0.15$, $r = 0.03$, and $\sigma = 0.30$, compute the market price of risk $\theta$ and the Radon-Nikodym derivative $Z_1$ for a specific path where $W_1^{\mathbb{P}} = -0.5$. Is this path upweighted or downweighted under $\mathbb{Q}$?
-
----
-
-**Exercise 2.**
-A stock pays a continuous dividend yield $q = 0.02$ with $\mu = 0.08$, $\sigma = 0.20$, and $r = 0.05$. Verify that the market price of risk is the same as in the no-dividend case. Write the risk-neutral dynamics and check that the discounted reinvested-dividend process is a $\mathbb{Q}$-martingale.
-
----
-
-**Exercise 3.**
-For the two correlated stocks model, take $\mu_1 = 0.12$, $\mu_2 = 0.08$, $r = 0.03$, $\sigma_1 = 0.25$, $\sigma_2 = 0.30$, and $\rho = 0.4$. Solve for $\theta_1$ and $\theta_2$. Verify your answer by checking that both excess returns $\mu_i - r$ are reproduced by $\Sigma\boldsymbol{\theta}$.
-
----
-
-**Exercise 4.**
-In the Heston stochastic volatility model, explain why the volatility risk premium $\theta_2$ cannot be determined by no-arbitrage. If one practitioner sets $\theta_2 = 0$ and another sets $\theta_2 = -0.5\sqrt{V_t}$, write the risk-neutral variance dynamics under each choice. Which choice produces a lower long-run mean of variance under $\mathbb{Q}$?
-
----
-
-**Exercise 5.**
-In the FX example, the no-arbitrage condition implies $\mu_X = r_d - r_f$. Derive this condition by requiring the domestic-currency value of a foreign money market investment to grow at rate $r_d$ under $\mathbb{Q}$. What happens to the market price of risk if $\mu_X \neq r_d - r_f$?
-
----
-
-**Exercise 6.**
-In the Vasicek model with $\kappa = 0.5$, $\bar{r} = 0.04$, $\sigma = 0.01$, and constant market price of risk $\theta = 0.2$, compute $\bar{r}^* = \bar{r} - \sigma\theta/\kappa$. Using the risk-neutral dynamics, compute the zero-coupon bond price $P(0, T)$ for $T = 5$ with $r_0 = 0.03$.
-
----
-
-**Exercise 7.**
-Consider a market with 3 stocks and 2 Brownian motions. Write the system $\boldsymbol{\mu} - r\mathbf{1} = \Sigma\boldsymbol{\theta}$ where $\Sigma$ is $3 \times 2$. This is an overdetermined system. State the condition for a solution to exist and interpret it as a no-arbitrage condition. If the condition is violated, construct a specific arbitrage strategy.
-
----
-
-## Solutions
 
 ??? success "Solution to Exercise 1"
     With $\mu = 0.15$, $r = 0.03$, and $\sigma = 0.30$:
@@ -364,6 +346,11 @@ Consider a market with 3 stocks and 2 Brownian motions. Write the system $\bolds
     $$
 
     Since $Z_1 > 1$, this path is **upweighted** under $\mathbb{Q}$. Intuitively, $W_1^{\mathbb{P}} = -0.5$ corresponds to a below-average stock return. The risk-neutral measure overweights adverse outcomes (and underweights favorable ones), reflecting the risk adjustment embedded in $\mathbb{Q}$.
+
+---
+
+**Exercise 2.**
+A stock pays a continuous dividend yield $q = 0.02$ with $\mu = 0.08$, $\sigma = 0.20$, and $r = 0.05$. Verify that the market price of risk is the same as in the no-dividend case. Write the risk-neutral dynamics and check that the discounted reinvested-dividend process is a $\mathbb{Q}$-martingale.
 
 ??? success "Solution to Exercise 2"
     With dividends, the stock dynamics are $dS_t = (\mu - q)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}$. The discounted price for a dividend-paying stock must account for the reinvested dividends. Consider $\tilde{S}_t = e^{-rt}e^{qt}S_t \cdot e^{-qt} = e^{-rt}S_t$. More carefully, the total return from holding the stock includes dividends, so the relevant discounted process is $e^{-(r-q)t}S_t$ (or equivalently $e^{-rt}$ times the dividend-reinvested portfolio).
@@ -387,6 +374,11 @@ Consider a market with 3 stocks and 2 Brownian motions. Write the system $\bolds
     $$
 
     The drift vanishes, confirming $\tilde{S}_t$ is a $\mathbb{Q}$-martingale.
+
+---
+
+**Exercise 3.**
+For the two correlated stocks model, take $\mu_1 = 0.12$, $\mu_2 = 0.08$, $r = 0.03$, $\sigma_1 = 0.25$, $\sigma_2 = 0.30$, and $\rho = 0.4$. Solve for $\theta_1$ and $\theta_2$. Verify your answer by checking that both excess returns $\mu_i - r$ are reproduced by $\Sigma\boldsymbol{\theta}$.
 
 ??? success "Solution to Exercise 3"
     Given $\mu_1 = 0.12$, $\mu_2 = 0.08$, $r = 0.03$, $\sigma_1 = 0.25$, $\sigma_2 = 0.30$, $\rho = 0.4$:
@@ -414,6 +406,11 @@ Consider a market with 3 stocks and 2 Brownian motions. Write the system $\bolds
     $$
 
     This matches $\boldsymbol{\mu} - r\mathbf{1} = (0.09, 0.05)^{\top}$.
+
+---
+
+**Exercise 4.**
+In the Heston stochastic volatility model, explain why the volatility risk premium $\theta_2$ cannot be determined by no-arbitrage. If one practitioner sets $\theta_2 = 0$ and another sets $\theta_2 = -0.5\sqrt{V_t}$, write the risk-neutral variance dynamics under each choice. Which choice produces a lower long-run mean of variance under $\mathbb{Q}$?
 
 ??? success "Solution to Exercise 4"
     In the Heston model, $dS_t = \mu S_t\,dt + \sqrt{V_t}S_t\,dW_t^{1,\mathbb{P}}$ and $dV_t = \kappa(\bar{V} - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{2,\mathbb{P}}$. There are two Brownian motions but only one traded risky asset $S$. The no-arbitrage condition for $S$ determines $\theta_1 = (\mu - r)/\sqrt{V_t}$, but $\theta_2$ (associated with $W^2$) is unconstrained because no traded asset's return depends solely on $W^2$ in a way that pins down $\theta_2$. This is the hallmark of an incomplete market.
@@ -446,6 +443,11 @@ Consider a market with 3 stocks and 2 Brownian motions. Write the system $\bolds
 
     Assuming $\kappa > 0.5\xi$ (so mean reversion is maintained), $\bar{V}^* = \kappa\bar{V}/(\kappa - 0.5\xi) > \bar{V}$. Therefore, **Choice 2 produces a higher long-run mean** of variance under $\mathbb{Q}$, and Choice 1 produces the lower long-run mean $\bar{V}$.
 
+---
+
+**Exercise 5.**
+In the FX example, the no-arbitrage condition implies $\mu_X = r_d - r_f$. Derive this condition by requiring the domestic-currency value of a foreign money market investment to grow at rate $r_d$ under $\mathbb{Q}$. What happens to the market price of risk if $\mu_X \neq r_d - r_f$?
+
 ??? success "Solution to Exercise 5"
     The domestic-currency value of investing 1 unit of foreign currency in the foreign money market is $V_t = X_t e^{r_f t}$. By Itô's formula:
 
@@ -472,6 +474,11 @@ Consider a market with 3 stocks and 2 Brownian motions. Write the system $\bolds
     $$
 
     A Girsanov change of measure with this $\theta$ is required to construct $\mathbb{Q}$, and $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t$ absorbs the deviation. Under $\mathbb{Q}$, the FX dynamics always become $dX_t = (r_d - r_f)X_t\,dt + \sigma_X X_t\,dW_t^{\mathbb{Q}}$.
+
+---
+
+**Exercise 6.**
+In the Vasicek model with $\kappa = 0.5$, $\bar{r} = 0.04$, $\sigma = 0.01$, and constant market price of risk $\theta = 0.2$, compute $\bar{r}^* = \bar{r} - \sigma\theta/\kappa$. Using the risk-neutral dynamics, compute the zero-coupon bond price $P(0, T)$ for $T = 5$ with $r_0 = 0.03$.
 
 ??? success "Solution to Exercise 6"
     Given $\kappa = 0.5$, $\bar{r} = 0.04$, $\sigma = 0.01$, $\theta = 0.2$:
@@ -511,6 +518,11 @@ Consider a market with 3 stocks and 2 Brownian motions. Write the system $\bolds
     $$
     P(0,5) = 0.89280 \cdot e^{-1.83583 \cdot 0.03} = 0.89280 \cdot e^{-0.05507} = 0.89280 \cdot 0.94645 \approx 0.84498
     $$
+
+---
+
+**Exercise 7.**
+Consider a market with 3 stocks and 2 Brownian motions. Write the system $\boldsymbol{\mu} - r\mathbf{1} = \Sigma\boldsymbol{\theta}$ where $\Sigma$ is $3 \times 2$. This is an overdetermined system. State the condition for a solution to exist and interpret it as a no-arbitrage condition. If the condition is violated, construct a specific arbitrage strategy.
 
 ??? success "Solution to Exercise 7"
     With 3 stocks and 2 Brownian motions, each stock has dynamics $dS_t^i = \mu_i S_t^i\,dt + \sum_{j=1}^{2}\Sigma_{ij}S_t^i\,dW_t^{j,\mathbb{P}}$. The system is:

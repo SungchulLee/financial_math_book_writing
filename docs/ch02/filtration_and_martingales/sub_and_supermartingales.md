@@ -250,48 +250,6 @@ $$
 
 (c) Let $M_t$ be a martingale. For which values of $\alpha > 0$ is $|M_t|^\alpha$ a submartingale?
 
-### Exercise 2: Jensen Applications
-
-(a) Prove: if $M_t$ is a martingale with $\mathbb{E}[M_t^2] < \infty$ for all $t$, then $M_t^2$ is a submartingale.
-
-(b) Show that $(M_t - c)^+ = \max(M_t - c, 0)$ is a submartingale for any constant $c$. What is the financial interpretation?
-
-(c) Give an example of a martingale $M_t$ and a function $f$ such that $f(M_t)$ is a submartingale but not of the form $\varphi(M_t)$ for convex $\varphi$.
-
-### Exercise 3: Expected Value Monotonicity
-
-(a) Prove that if $X_t$ is a submartingale, then $t \mapsto \mathbb{E}[X_t]$ is non-decreasing.
-
-(b) Suppose $\mathbb{E}[X_t] = \mathbb{E}[X_0]$ for all $t$ in a submartingale. What can you conclude?
-
-(c) A process $(X_t)$ has $\mathbb{E}[X_t] \to L$ as $t \to \infty$. Must it converge a.s.? Provide an example or counterexample.
-
-### Exercise 4: Stopping
-
-(a) Prove that if $X_t$ is a supermartingale and $\tau$ is a bounded stopping time, then $\mathbb{E}[X_\tau] \le \mathbb{E}[X_0]$.
-
-(b) Suppose a gambler plays a supermartingale game (expected value decreases at each step). Prove that no bounded stopping time can make the game favorable in expectation.
-
-(c) Does the conclusion of (b) hold for unbounded stopping times? Construct a counterexample or prove it holds.
-
-### Exercise 5: Non-Negative Supermartingales
-
-(a) Let $Z_t = e^{\theta W_t - \theta^2 t/2}$ for $\theta \neq 0$. Verify $Z_t$ is a non-negative martingale with $Z_t \to 0$ a.s. Show this is consistent with the non-negative supermartingale convergence theorem.
-
-(b) Let $(X_t)$ be a non-negative supermartingale. Show that for any $\lambda > 0$:
-
-$$
-\lambda \cdot \mathbb{P}\left(\sup_{t \ge 0} X_t \ge \lambda\right) \le \mathbb{E}[X_0]
-$$
-
-*Hint*: Apply optional sampling to $\tau = \inf\{t : X_t \ge \lambda\}$.
-
-(c) Use (b) to bound $\mathbb{P}(\sup_{t \ge 0} e^{\theta W_t - \theta^2 t/2} \ge K)$ for $K > 1$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a)** Compute $\mathbb{E}[e^{W_t} \mid \mathcal{F}_s]$ for $s \le t$. Write $e^{W_t} = e^{W_s} \cdot e^{W_t - W_s}$.
 
@@ -329,6 +287,16 @@ $$
 
     So $|M_t|^\alpha$ is a supermartingale for $0 < \alpha < 1$.
 
+---
+
+### Exercise 2: Jensen Applications
+
+(a) Prove: if $M_t$ is a martingale with $\mathbb{E}[M_t^2] < \infty$ for all $t$, then $M_t^2$ is a submartingale.
+
+(b) Show that $(M_t - c)^+ = \max(M_t - c, 0)$ is a submartingale for any constant $c$. What is the financial interpretation?
+
+(c) Give an example of a martingale $M_t$ and a function $f$ such that $f(M_t)$ is a submartingale but not of the form $\varphi(M_t)$ for convex $\varphi$.
+
 ??? success "Solution to Exercise 2"
     **(a)** Since $M_t$ is a martingale with $\mathbb{E}[M_t^2] < \infty$, the function $\varphi(x) = x^2$ is convex. By conditional Jensen:
 
@@ -352,6 +320,16 @@ $$
 
     As a concrete example: the constant function $f \equiv 0$ gives a trivial martingale (hence submartingale), but this is $\varphi(M_t)$ with $\varphi \equiv 0$ (convex). The key point is that time-dependent submartingale transforms like $M_t^2 - t + t = M_t^2$ can be expressed as convex functions of $M_t$, so distinguishing these cases requires external randomness or time dependence in $f$.
 
+---
+
+### Exercise 3: Expected Value Monotonicity
+
+(a) Prove that if $X_t$ is a submartingale, then $t \mapsto \mathbb{E}[X_t]$ is non-decreasing.
+
+(b) Suppose $\mathbb{E}[X_t] = \mathbb{E}[X_0]$ for all $t$ in a submartingale. What can you conclude?
+
+(c) A process $(X_t)$ has $\mathbb{E}[X_t] \to L$ as $t \to \infty$. Must it converge a.s.? Provide an example or counterexample.
+
 ??? success "Solution to Exercise 3"
     **(a)** For a submartingale $X_t$ and $s \le t$:
 
@@ -367,6 +345,16 @@ $$
 
     **(c)** No, convergence of $\mathbb{E}[X_t]$ does not imply a.s. convergence. **Counterexample**: Let $X_n = (-1)^n$. Then $\mathbb{E}[X_n] = (-1)^n$ does not converge. Instead, let $X_n = \mathbf{1}_{A_n}$ where $A_n$ cycles through events of measure $1/2$: $A_n = [0, 1/2)$ for $n$ even and $A_n = [1/2, 1)$ for $n$ odd. Then $\mathbb{E}[X_n] = 1/2$ for all $n$ (converges to $1/2$), but $X_n(\omega)$ oscillates between 0 and 1 for every $\omega$, so there is no a.s. convergence.
 
+---
+
+### Exercise 4: Stopping
+
+(a) Prove that if $X_t$ is a supermartingale and $\tau$ is a bounded stopping time, then $\mathbb{E}[X_\tau] \le \mathbb{E}[X_0]$.
+
+(b) Suppose a gambler plays a supermartingale game (expected value decreases at each step). Prove that no bounded stopping time can make the game favorable in expectation.
+
+(c) Does the conclusion of (b) hold for unbounded stopping times? Construct a counterexample or prove it holds.
+
 ??? success "Solution to Exercise 4"
     **(a)** Let $\tau$ be a bounded stopping time with $\tau \le T$. Since $X_t$ is a supermartingale, the stopped process $X_{t \wedge \tau}$ is also a supermartingale. Therefore:
 
@@ -379,6 +367,22 @@ $$
     **(b)** For any bounded stopping time $\tau \le T$, part (a) gives $\mathbb{E}[X_\tau] \le \mathbb{E}[X_0]$. Since the expected value at any bounded stopping time is at most the starting value, no bounded stopping rule can make the game favorable (i.e., achieve $\mathbb{E}[X_\tau] > \mathbb{E}[X_0]$). $\square$
 
     **(c)** For unbounded stopping times, the conclusion can fail without additional conditions. **Counterexample**: Let $S_n$ be a symmetric random walk ($p = 1/2$), so $-S_n$ is also a martingale (hence a supermartingale). Define $\tau = \inf\{n : S_n = -1\}$. Then $\mathbb{P}(\tau < \infty) = 1$ and $S_\tau = -1$, so $\mathbb{E}[-S_\tau] = 1 > 0 = \mathbb{E}[-S_0]$. The supermartingale $-S_n$ has $\mathbb{E}[(-S)_\tau] > \mathbb{E}[(-S)_0]$, contradicting the inequality. This works because $\tau$ is unbounded ($\mathbb{E}[\tau] = \infty$).
+
+---
+
+### Exercise 5: Non-Negative Supermartingales
+
+(a) Let $Z_t = e^{\theta W_t - \theta^2 t/2}$ for $\theta \neq 0$. Verify $Z_t$ is a non-negative martingale with $Z_t \to 0$ a.s. Show this is consistent with the non-negative supermartingale convergence theorem.
+
+(b) Let $(X_t)$ be a non-negative supermartingale. Show that for any $\lambda > 0$:
+
+$$
+\lambda \cdot \mathbb{P}\left(\sup_{t \ge 0} X_t \ge \lambda\right) \le \mathbb{E}[X_0]
+$$
+
+*Hint*: Apply optional sampling to $\tau = \inf\{t : X_t \ge \lambda\}$.
+
+(c) Use (b) to bound $\mathbb{P}(\sup_{t \ge 0} e^{\theta W_t - \theta^2 t/2} \ge K)$ for $K > 1$.
 
 ??? success "Solution to Exercise 5"
     **(a)** $Z_t = e^{\theta W_t - \theta^2 t/2}$ is a positive martingale with $\mathbb{E}[Z_t] = 1$ (proved in the text on Brownian motion martingales).

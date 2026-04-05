@@ -246,18 +246,173 @@ The Merton jump-diffusion SDE extends geometric Brownian motion by adding a comp
 
 **Exercise 1.** Starting from the Merton jump-diffusion SDE $dS_t/S_{t^-} = (r - \lambda\bar{k})\,dt + \sigma\,dW_t + dJ_t$, verify the compensator $\bar{k} = e^{\mu_J + \sigma_J^2/2} - 1$ by computing $\mathbb{E}[Y_i - 1]$ where $\ln Y_i \sim N(\mu_J, \sigma_J^2)$. Show that the drift adjustment ensures $\mathbb{E}^{\mathbb{Q}}[dS_t/S_{t^-}] = r\,dt$.
 
+??? success "Solution to Exercise 1"
+    Since $\ln Y_i \sim N(\mu_J, \sigma_J^2)$, the random variable $Y_i = e^{\ln Y_i}$ is log-normally distributed. The expectation of a log-normal random variable is:
+
+    $$
+    \mathbb{E}[Y_i] = \mathbb{E}[e^{\ln Y_i}] = e^{\mu_J + \sigma_J^2/2}
+    $$
+
+    This follows from the moment generating function of the normal distribution: if $X \sim N(\mu, \sigma^2)$, then $\mathbb{E}[e^X] = e^{\mu + \sigma^2/2}$. Therefore:
+
+    $$
+    \bar{k} = \mathbb{E}[Y_i - 1] = e^{\mu_J + \sigma_J^2/2} - 1
+    $$
+
+    Now we verify the drift condition. The expected instantaneous return under $\mathbb{Q}$ is:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}\!\left[\frac{dS_t}{S_{t^-}}\right] = (r - \lambda\bar{k})\,dt + 0 + \mathbb{E}[dJ_t]
+    $$
+
+    The diffusion term has zero expectation since $\mathbb{E}[dW_t] = 0$. The compound Poisson term $J_t = \sum_{i=1}^{N_t}(Y_i - 1)$ has expected increment:
+
+    $$
+    \mathbb{E}[dJ_t] = \lambda\,\mathbb{E}[Y_i - 1]\,dt = \lambda\bar{k}\,dt
+    $$
+
+    Combining:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}\!\left[\frac{dS_t}{S_{t^-}}\right] = (r - \lambda\bar{k})\,dt + \lambda\bar{k}\,dt = r\,dt
+    $$
+
+    This confirms that $\mathbb{E}^{\mathbb{Q}}[dS_t/S_{t^-}] = r\,dt$, so the discounted price process $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale. The compensator $\lambda\bar{k}$ exactly offsets the expected contribution from jumps.
+
 ---
+
 
 **Exercise 2.** For parameters $S_0 = 100$, $r = 0.05$, $\sigma = 0.15$, $\lambda = 1.0$, $\mu_J = -0.08$, $\sigma_J = 0.25$: (a) Compute $\bar{k}$ and the adjusted drift $r - \lambda\bar{k}$. (b) Compute the annualized variance of log-returns $\sigma^2 + \lambda(\sigma_J^2 + \mu_J^2)$. (c) Compute the excess kurtosis over a one-year horizon and compare with the Gaussian value of zero.
 
+??? success "Solution to Exercise 2"
+    **(a) Compensator and adjusted drift.**
+
+    $$
+    \bar{k} = e^{\mu_J + \sigma_J^2/2} - 1 = e^{-0.08 + 0.25^2/2} - 1 = e^{-0.08 + 0.03125} - 1 = e^{-0.04875} - 1 \approx -0.04758
+    $$
+
+    $$
+    r - \lambda\bar{k} = 0.05 - 1.0 \times (-0.04758) = 0.05 + 0.04758 = 0.09758
+    $$
+
+    **(b) Annualized variance of log-returns.**
+
+    $$
+    \sigma^2 + \lambda(\sigma_J^2 + \mu_J^2) = 0.15^2 + 1.0(0.25^2 + 0.08^2) = 0.0225 + 1.0(0.0625 + 0.0064) = 0.0225 + 0.0689 = 0.0914
+    $$
+
+    The total annualized standard deviation is $\sqrt{0.0914} \approx 0.3023$, compared to $\sigma = 0.15$ from the diffusion alone. The jump component roughly doubles the effective volatility.
+
+    **(c) Excess kurtosis over one year ($t = 1$).**
+
+    The numerator of the excess kurtosis formula is:
+
+    $$
+    \lambda t(\mu_J^4 + 6\mu_J^2\sigma_J^2 + 3\sigma_J^4) = 1.0 \times 1 \times (0.08^4 + 6 \times 0.08^2 \times 0.25^2 + 3 \times 0.25^4)
+    $$
+
+    $$
+    = 4.096 \times 10^{-5} + 6 \times 0.0064 \times 0.0625 + 3 \times 0.00391
+    $$
+
+    $$
+    = 0.0000410 + 0.0024 + 0.01172 = 0.01416
+    $$
+
+    The denominator is:
+
+    $$
+    [\sigma^2 t + \lambda t(\sigma_J^2 + \mu_J^2)]^2 = (0.0914)^2 = 0.008354
+    $$
+
+    Therefore:
+
+    $$
+    \text{Excess kurtosis} = \frac{0.01416}{0.008354} \approx 1.695
+    $$
+
+    This is far from the Gaussian value of zero, confirming heavy tails in the return distribution. The kurtosis would be even larger at shorter horizons (e.g., for $t = 1/12$, excess kurtosis $\approx 1.695 \times 12 = 20.3$).
+
 ---
+
 
 **Exercise 3.** The explicit solution of the Merton SDE is $S_t = S_0 \exp[(r - \lambda\bar{k} - \frac{1}{2}\sigma^2)t + \sigma W_t] \prod_{i=1}^{N_t} Y_i$. Verify this by showing that conditional on $N_t = n$, the log-return $\ln(S_t/S_0)$ is normally distributed. State the conditional mean and variance.
 
+??? success "Solution to Exercise 3"
+    Conditional on $N_t = n$ jumps occurring in $[0, t]$, the log-return is:
+
+    $$
+    \ln\frac{S_t}{S_0} = \left(r - \lambda\bar{k} - \frac{1}{2}\sigma^2\right)t + \sigma W_t + \sum_{i=1}^{n}\ln Y_i
+    $$
+
+    Since $W_t \sim N(0, t)$ and $\ln Y_i \sim N(\mu_J, \sigma_J^2)$ are independent, the sum of independent normals is normal. The conditional mean is:
+
+    $$
+    \mathbb{E}\!\left[\ln\frac{S_t}{S_0}\;\Big|\;N_t = n\right] = \left(r - \lambda\bar{k} - \frac{1}{2}\sigma^2\right)t + n\mu_J
+    $$
+
+    The conditional variance is:
+
+    $$
+    \operatorname{Var}\!\left[\ln\frac{S_t}{S_0}\;\Big|\;N_t = n\right] = \sigma^2 t + n\sigma_J^2
+    $$
+
+    Therefore:
+
+    $$
+    \ln\frac{S_t}{S_0}\;\Big|\;N_t = n \;\sim\; N\!\left(\left(r - \lambda\bar{k} - \frac{1}{2}\sigma^2\right)t + n\mu_J,\;\sigma^2 t + n\sigma_J^2\right)
+    $$
+
+    This confirms that $S_t/S_0$ is conditionally log-normal, which is the structural property that enables the Merton series formula.
+
 ---
+
 
 **Exercise 4.** Explain why the skewness of the Merton log-return distribution scales as $T^{-1/2}$ for small $T$, and why this implies that short-maturity implied volatility smiles are steeper than long-maturity smiles. What does this imply about the term structure of the implied volatility skew?
 
+??? success "Solution to Exercise 4"
+    The skewness of the Merton log-return over horizon $T$ is:
+
+    $$
+    \text{Skew}(T) = \frac{\lambda T(\mu_J^3 + 3\mu_J\sigma_J^2)}{[\sigma^2 T + \lambda T(\sigma_J^2 + \mu_J^2)]^{3/2}}
+    $$
+
+    Factor out $T$ from numerator and denominator:
+
+    $$
+    = \frac{\lambda T \cdot c_3}{[T(\sigma^2 + \lambda(\sigma_J^2 + \mu_J^2))]^{3/2}} = \frac{\lambda T \cdot c_3}{T^{3/2}\cdot v^{3/2}} = \frac{\lambda c_3}{v^{3/2}} \cdot T^{-1/2}
+    $$
+
+    where $c_3 = \mu_J^3 + 3\mu_J\sigma_J^2$ and $v = \sigma^2 + \lambda(\sigma_J^2 + \mu_J^2)$ are constants independent of $T$.
+
+    Thus skewness scales as $T^{-1/2}$: it diverges as $T \to 0$ and decays for large $T$.
+
+    **Implication for implied volatility smiles.** The implied volatility smile is driven by the non-Gaussianity of the risk-neutral return distribution. At short maturities, the skewness is large in magnitude (strongly negative when $\mu_J < 0$), producing a steep implied volatility skew with OTM puts significantly more expensive than OTM calls. At long maturities, the central limit theorem effect causes the skewness to diminish (the sum of many jumps approaches normality), flattening the smile.
+
+    **Term structure of the skew.** This implies that the implied volatility skew (measured by the slope $\partial\sigma_{\text{imp}}/\partial K$) should be steepest at short maturities and flatten as maturity increases. This is indeed observed empirically in equity option markets and is a key success of the Merton model relative to Black-Scholes, which produces a flat smile at all maturities.
+
 ---
 
+
 **Exercise 5.** Compare the Merton jump-diffusion model with the Black-Scholes model by listing three empirical features of equity returns that the Merton model captures but Black-Scholes cannot. For each feature, identify which parameter(s) of the Merton model are responsible.
+
+??? success "Solution to Exercise 5"
+    Three empirical features captured by Merton but not by Black-Scholes:
+
+    **1. Excess kurtosis (heavy tails).** Equity return distributions exhibit kurtosis of 6--8, far exceeding the Gaussian value of 3. In the Merton model, the jump component generates excess kurtosis:
+
+    $$
+    \text{Excess kurtosis} = \frac{\lambda T(\mu_J^4 + 6\mu_J^2\sigma_J^2 + 3\sigma_J^4)}{[\sigma^2 T + \lambda T(\sigma_J^2 + \mu_J^2)]^2}
+    $$
+
+    The responsible parameters are $\lambda$ (jump frequency), $\mu_J$ (mean jump size), and $\sigma_J$ (jump size dispersion). Higher $\lambda$ and larger $|\mu_J|$ or $\sigma_J$ produce heavier tails.
+
+    **2. Negative skewness.** Large downward moves are more frequent than large upward moves. The Merton model produces negative skewness when $\mu_J < 0$:
+
+    $$
+    \text{Skewness} \propto \lambda(\mu_J^3 + 3\mu_J\sigma_J^2)
+    $$
+
+    The responsible parameter is primarily $\mu_J < 0$, which biases jumps downward.
+
+    **3. Implied volatility smile/skew.** Black-Scholes produces a flat implied volatility surface, contradicting the smile/skew observed in option markets. The Merton model generates a smile that steepens at short maturities because the non-Gaussianity of returns increases as $T \to 0$. The responsible parameters are $\lambda$ (determining the overall departure from log-normality), $\mu_J$ (controlling the asymmetry/skew of the smile), and $\sigma_J$ (controlling the curvature/convexity of the smile).

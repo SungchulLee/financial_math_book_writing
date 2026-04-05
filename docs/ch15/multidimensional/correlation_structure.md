@@ -210,22 +210,121 @@ The correlation structure of multidimensional affine processes is encoded in the
 
 **Exercise 1.** For the Heston model with covariance matrix $a(V) = V \begin{pmatrix} 1 & \rho\xi \\ \rho\xi & \xi^2 \end{pmatrix}$, compute the instantaneous correlation $\operatorname{Corr}(d\log S_t, dV_t) = \rho\xi\sqrt{V}/(\sqrt{V}\cdot\xi\sqrt{V}) = \rho$. Verify that the correlation is state-independent and equals $\rho$.
 
+??? success "Solution to Exercise 1"
+    The Heston covariance matrix is $a(V) = \alpha_1 V$ where
+
+    $$
+    \alpha_1 = \begin{pmatrix} 1 & \rho\xi \\ \rho\xi & \xi^2 \end{pmatrix}
+    $$
+
+    The individual variances and covariance are:
+
+    - $a_{11}(V) = V$ (variance of $d\log S_t$ is $V\,dt$)
+    - $a_{22}(V) = \xi^2 V$ (variance of $dV_t$ is $\xi^2 V\,dt$)
+    - $a_{12}(V) = \rho\xi V$ (covariance is $\rho\xi V\,dt$)
+
+    The instantaneous correlation is
+
+    $$
+    \operatorname{Corr}(d\log S_t, dV_t) = \frac{a_{12}(V)}{\sqrt{a_{11}(V) \cdot a_{22}(V)}} = \frac{\rho\xi V}{\sqrt{V \cdot \xi^2 V}} = \frac{\rho\xi V}{\xi V} = \rho
+    $$
+
+    The factor $V$ cancels exactly in numerator and denominator, confirming that the correlation is state-independent and equals the parameter $\rho$.
+
 ---
 
 **Exercise 2.** For a two-factor CIR model on $\mathbb{R}_+^2$ with independent components (no off-diagonal terms in $\alpha_1$ or $\alpha_2$), show that the instantaneous correlation between $X_t^{(1)}$ and $X_t^{(2)}$ is zero. Can a two-factor CIR model ever produce nonzero instantaneous correlation while maintaining admissibility?
+
+??? success "Solution to Exercise 2"
+    With independent components, $(\alpha_1)_{12} = (\alpha_1)_{21} = 0$ and $(\alpha_2)_{12} = (\alpha_2)_{21} = 0$. The off-diagonal covariance is
+
+    $$
+    a_{12}(x) = (a_0)_{12} + (\alpha_1)_{12}\,x^{(1)} + (\alpha_2)_{12}\,x^{(2)} = (a_0)_{12}
+    $$
+
+    By admissibility condition (A5), $(a_0)_{11} = (a_0)_{22} = 0$ for CIR components. Positive semi-definiteness of $a_0$ then requires $(a_0)_{12}^2 \leq (a_0)_{11}(a_0)_{22} = 0$, so $(a_0)_{12} = 0$. Hence $a_{12}(x) = 0$ identically, and the instantaneous correlation is zero.
+
+    **Can a two-factor CIR model produce nonzero correlation?** Yes, but only through state-dependent cross-terms. If $(\alpha_1)_{12} \neq 0$, then $a_{12}(x) = (\alpha_1)_{12}x^{(1)}$, which is nonzero when $x^{(1)} > 0$. However, admissibility requires $\alpha_1 \succeq 0$. Since $(\alpha_1)_{11} = \xi_1^2$ and $(\alpha_1)_{22} = 0$ (by condition A4, the diffusion of the second CIR component cannot depend on $x^{(1)}$), positive semi-definiteness forces $(\alpha_1)_{12} = 0$. By symmetry, $(\alpha_2)_{12} = 0$. Therefore, a two-factor CIR model on $\mathbb{R}_+^2$ with standard admissibility conditions **cannot** produce nonzero instantaneous correlation between the two components.
 
 ---
 
 **Exercise 3.** Consider a three-factor model on $\mathbb{R}_+ \times \mathbb{R}^2$ where the CIR component $V_t$ drives the diffusion of both Gaussian factors. Write the diffusion matrix $a(x) = a_0 + \alpha_1 V$ and compute the instantaneous correlation between the two Gaussian factors as a function of $V_t$. Is this correlation time-varying?
 
+??? success "Solution to Exercise 3"
+    Let the state be $(V_t, Y_t^{(1)}, Y_t^{(2)})^\top \in \mathbb{R}_+ \times \mathbb{R}^2$. The CIR component $V_t$ drives the diffusion of both Gaussian factors. The diffusion matrix is:
+
+    $$
+    a(x) = a_0 + \alpha_1 V
+    $$
+
+    where
+
+    $$
+    a_0 = \begin{pmatrix} 0 & 0 & 0 \\ 0 & \sigma_1^2 & \sigma_{12} \\ 0 & \sigma_{12} & \sigma_2^2 \end{pmatrix}, \qquad \alpha_1 = \begin{pmatrix} \xi^2 & \eta_1\xi & \eta_2\xi \\ \eta_1\xi & \eta_1^2 & \eta_1\eta_2 \\ \eta_2\xi & \eta_1\eta_2 & \eta_2^2 \end{pmatrix}
+    $$
+
+    The covariance between the two Gaussian factors is
+
+    $$
+    a_{23}(V) = \sigma_{12} + \eta_1\eta_2\,V
+    $$
+
+    Their variances are $a_{22}(V) = \sigma_1^2 + \eta_1^2 V$ and $a_{33}(V) = \sigma_2^2 + \eta_2^2 V$. The instantaneous correlation is
+
+    $$
+    \rho_{23}(V) = \frac{\sigma_{12} + \eta_1\eta_2\,V}{\sqrt{(\sigma_1^2 + \eta_1^2 V)(\sigma_2^2 + \eta_2^2 V)}}
+    $$
+
+    This correlation is **time-varying** (stochastic) because it depends on $V_t$, which is itself a stochastic process. As $V_t \to 0$, the correlation approaches $\sigma_{12}/(\sigma_1\sigma_2)$ (the constant Gaussian correlation). As $V_t \to \infty$, it approaches $\eta_1\eta_2/(|\eta_1||\eta_2|) = \operatorname{sign}(\eta_1\eta_2)$. The correlation interpolates between these limits as the volatility factor evolves.
+
 ---
 
 **Exercise 4.** Explain the leverage effect in the context of the Heston model: why does $\rho < 0$ imply that stock price declines are associated with volatility increases? Derive the covariance $\operatorname{Cov}(d\log S_t, dV_t) = \rho\xi V_t\,dt$ and interpret the state-dependence on $V_t$.
+
+??? success "Solution to Exercise 4"
+    In the Heston model, the covariance between $d\log S_t$ and $dV_t$ is the $(1,2)$ entry of $a(V_t)\,dt$:
+
+    $$
+    \operatorname{Cov}(d\log S_t, dV_t) = \rho\xi\,V_t\,dt
+    $$
+
+    **The leverage effect:** When $\rho < 0$, the covariance $\rho\xi V_t\,dt < 0$, meaning that negative innovations to $\log S_t$ (price declines) are associated with positive innovations to $V_t$ (volatility increases). Economically, when the stock price drops, the firm's leverage ratio (debt/equity) increases, making the equity riskier and increasing its volatility. This is the **leverage effect**.
+
+    **State-dependence on $V_t$:** The covariance is proportional to $V_t$, so the leverage coupling is stronger when volatility is already high. In high-volatility environments, a given price decline produces a larger volatility increase than the same decline would in a low-volatility environment. This amplification effect is consistent with the empirical observation that volatility clustering tends to intensify during market stress.
+
+    Note that while the covariance is state-dependent (proportional to $V_t$), the correlation itself is $\rho$, a constant. The varying covariance reflects the fact that both variables become more volatile when $V_t$ is large, but their linear dependence structure (as measured by correlation) remains fixed.
 
 ---
 
 **Exercise 5.** For the Dai-Singleton $A_1(3)$ model with one CIR factor and two Gaussian factors, what is the maximum number of free correlation parameters? Compare this to the three independent correlations in a general $3 \times 3$ correlation matrix, and explain why affine models have restricted correlation flexibility.
 
+??? success "Solution to Exercise 5"
+    The $A_1(3)$ model has state $(V_t, Y_t^{(1)}, Y_t^{(2)})^\top$ with $V_t \in \mathbb{R}_+$ (one CIR factor) and $Y_t^{(1)}, Y_t^{(2)} \in \mathbb{R}$ (two Gaussian factors).
+
+    The correlation structure involves three pairs: $(V, Y^{(1)})$, $(V, Y^{(2)})$, and $(Y^{(1)}, Y^{(2)})$. In a general $3 \times 3$ correlation matrix, there are 3 independent correlation parameters.
+
+    In the affine framework, the covariance is $a(x) = a_0 + \alpha_1 V$. The free correlation parameters are:
+
+    - $(a_0)_{23}$: the constant part of the covariance between the two Gaussian components (1 parameter)
+    - $(\alpha_1)_{12}$: the $V$-dependent covariance between $V$ and $Y^{(1)}$ (1 parameter)
+    - $(\alpha_1)_{13}$: the $V$-dependent covariance between $V$ and $Y^{(2)}$ (1 parameter)
+    - $(\alpha_1)_{23}$: the $V$-dependent covariance between $Y^{(1)}$ and $Y^{(2)}$ (1 parameter)
+
+    However, the matrix $\alpha_1$ must be positive semi-definite, and its rank is constrained. Since $(\alpha_1)_{11} = \xi^2$ and $\alpha_1 \succeq 0$, the off-diagonal entries are not all independently free --- they are constrained by $\det(\alpha_1) \geq 0$ and the $2 \times 2$ minor conditions.
+
+    The maximum number of free correlation-related parameters is **3** (from $(\alpha_1)_{12}$, $(\alpha_1)_{13}$, and $(a_0)_{23}$), but they are jointly constrained by positive semi-definiteness. In contrast, a general $3 \times 3$ correlation matrix has 3 free parameters with only the constraint that the matrix is positive definite. The affine model restricts these correlations because $(V, Y^{(1)})$ and $(V, Y^{(2)})$ correlations must arise through the single CIR factor, and the Gaussian-Gaussian correlation is the sum of a constant part and a $V$-dependent part, both constrained by the rank structure of $\alpha_1$.
+
 ---
 
 **Exercise 6.** In calibrating the Heston model to equity options, the correlation parameter $\rho$ primarily controls the skew of the implied volatility smile. Describe qualitatively how the implied volatility smile changes as $\rho$ varies from $-0.9$ to $0$. Why can't the affine structure generate a purely symmetric smile with $\rho = 0$ and still match observed market skews?
+
+??? success "Solution to Exercise 6"
+    **Effect of $\rho$ on the implied volatility smile:**
+
+    - **$\rho = -0.9$ (strongly negative):** The implied volatility surface exhibits a pronounced **negative skew**. Out-of-the-money puts (low strikes) have substantially higher implied volatility than out-of-the-money calls (high strikes). This is because price declines are strongly correlated with volatility increases, making large downward moves more likely under the risk-neutral measure.
+
+    - **$\rho = -0.5$ (moderately negative):** The skew is present but less extreme. The implied volatility curve still slopes downward from left to right, but the difference between low-strike and high-strike implied volatilities is smaller.
+
+    - **$\rho = 0$ (zero correlation):** The implied volatility smile is approximately **symmetric** around the at-the-money level. Volatility is stochastic but uncorrelated with returns, so large moves in either direction are equally likely to occur during high-volatility periods. The smile has curvature (due to the vol-of-vol parameter $\xi$) but no directional tilt.
+
+    **Why $\rho = 0$ cannot match observed skews:** Empirical equity implied volatility surfaces display a strong negative skew (the "volatility smirk"), with put options trading at significantly higher implied volatilities than calls. Setting $\rho = 0$ produces only curvature (a smile) but no skew (no asymmetry). The affine Heston model has no other mechanism to generate skew: the parameter $\rho$ is the sole driver of asymmetry. Other model features (mean-reversion speed $\kappa$, vol-of-vol $\xi$, long-run variance $\theta$) control the level and curvature of the smile but not its tilt. Therefore, $\rho = 0$ is incompatible with observed market data, and calibration always yields $\rho < 0$ for equity indices.

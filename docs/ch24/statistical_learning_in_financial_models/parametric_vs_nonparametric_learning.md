@@ -416,6 +416,31 @@ where $w$ is window size and $h$ is forecast horizon.
 
 (b) If the true conditional variance follows a regime-switching process, explain why the GARCH MLE converges to a pseudo-true parameter rather than the truth. What does this imply for risk forecasts?
 
+??? success "Solution to Exercise 1"
+    **(a)** The GARCH(1,1) model $\sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2$ has **3 parameters**: $\theta = (\omega, \alpha, \beta)$. Since this is a parametric model with a finite-dimensional parameter vector $\theta \in \mathbb{R}^3$, the convergence rate for estimating these parameters (via MLE or quasi-MLE) is the standard parametric rate:
+
+    $$
+    \|\hat{\theta} - \theta^*\| = O_p(n^{-1/2})
+    $$
+
+    This rate is independent of the dimension of the input and depends only on having $n$ observations and the regularity of the likelihood.
+
+    **(b)** If the true conditional variance follows a regime-switching process, e.g.,
+
+    $$
+    \sigma_t^2 = \begin{cases} \omega_1 + \alpha_1 r_{t-1}^2 + \beta_1 \sigma_{t-1}^2 & \text{in regime 1} \\ \omega_2 + \alpha_2 r_{t-1}^2 + \beta_2 \sigma_{t-1}^2 & \text{in regime 2} \end{cases}
+    $$
+
+    then the single-regime GARCH(1,1) is **misspecified**: the true DGP does not belong to $\mathcal{F}_{\text{param}}$. The MLE converges not to the true parameters but to the pseudo-true parameter:
+
+    $$
+    \theta^\dagger = \arg\min_{\theta \in \Theta} D_{\text{KL}}(\mathbb{P}^* \| \mathbb{P}^\theta)
+    $$
+
+    This pseudo-true parameter is the single-regime GARCH that is closest in KL divergence to the true regime-switching model. The approximation error $\|f(\cdot; \theta^\dagger) - f^*\|$ does **not** vanish as $n \to \infty$.
+
+    **Implications for risk forecasts:** The GARCH model will produce volatility estimates that are a weighted average of the two regimes. In the high-volatility regime, GARCH will **underestimate** risk (its estimate is pulled down by the low-regime component), and in the low-volatility regime, it will **overestimate** risk. This systematic bias is particularly dangerous for tail risk measures (VaR, Expected Shortfall), where underestimation in crisis periods leads to inadequate capital reserves.
+
 ---
 
 **Exercise 2.** For the Nadaraya–Watson kernel regression estimator with Gaussian kernel and bandwidth $h$, the bias is $O(h^2)$ and the variance is $O(1/(nh^d))$.
@@ -423,6 +448,65 @@ where $w$ is window size and $h$ is forecast horizon.
 (a) Derive the optimal bandwidth $h^*$ that minimizes the mean integrated squared error by balancing bias and variance.
 
 (b) Compute $h^*$ and the resulting MISE rate for $d = 1$ and $d = 10$ with $n = 1000$. Interpret the difference.
+
+??? success "Solution to Exercise 2"
+    **(a)** The mean integrated squared error (MISE) for the Nadaraya-Watson estimator is:
+
+    $$
+    \text{MISE}(h) = \int \left[\text{Bias}^2(x) + \text{Var}(x)\right] p(x) \, dx
+    $$
+
+    Using $\text{Bias}^2 = O(h^4)$ and $\text{Var} = O((nh^d)^{-1})$:
+
+    $$
+    \text{MISE}(h) = C_1 h^4 + \frac{C_2}{nh^d}
+    $$
+
+    To minimize, take the derivative with respect to $h$ and set it to zero:
+
+    $$
+    \frac{d}{dh}\text{MISE}(h) = 4C_1 h^3 - \frac{d \cdot C_2}{n h^{d+1}} = 0
+    $$
+
+    Solving for $h$:
+
+    $$
+    4C_1 h^3 = \frac{d \cdot C_2}{n h^{d+1}} \implies h^{4+d} = \frac{d \cdot C_2}{4 C_1 n}
+    $$
+
+    Therefore:
+
+    $$
+    h^* \propto n^{-1/(4+d)}
+    $$
+
+    Substituting back into the MISE expression:
+
+    $$
+    \text{MISE}^* = O\left(n^{-4/(4+d)}\right)
+    $$
+
+    **(b)** For $d = 1$ with $n = 1000$:
+
+    $$
+    h^* \propto 1000^{-1/5} = 1000^{-0.2} \approx 0.251
+    $$
+
+    $$
+    \text{MISE}^* = O(1000^{-4/5}) = O(1000^{-0.8}) \approx O(0.004)
+    $$
+
+    For $d = 10$ with $n = 1000$:
+
+    $$
+    h^* \propto 1000^{-1/14} = 1000^{-0.071} \approx 0.632
+    $$
+
+    $$
+    \text{MISE}^* = O(1000^{-4/14}) = O(1000^{-0.286}) \approx O(0.096)
+    $$
+
+    **Interpretation:** In one dimension, the MISE is approximately 0.004, indicating good estimation quality. In ten dimensions, the MISE is approximately 0.096---about 24 times larger. The optimal bandwidth $h^*$ in 10 dimensions is 0.632, meaning the "local" neighborhood spans 63% of the data range in each direction, which is hardly local at all. This illustrates the curse of dimensionality: with the same 1000 observations, moving from $d = 1$ to $d = 10$ drastically degrades nonparametric estimation quality.
 
 ---
 
@@ -436,6 +520,59 @@ $$
 
 (b) Why is it advantageous to model the volatility effect nonparametrically while keeping the dividend yield effect linear?
 
+??? success "Solution to Exercise 3"
+    **(a)** Robinson's differencing procedure for the partially linear model $R_{t+1} = \beta \cdot \text{DivYield}_t + f(\text{Volatility}_t) + \varepsilon_{t+1}$ proceeds in three steps.
+
+    **Step 1: Nonparametric regression of $R_{t+1}$ on $\text{Volatility}_t$.** Estimate $m_R(v) = \mathbb{E}[R_{t+1} | \text{Volatility}_t = v]$ using kernel regression (e.g., Nadaraya-Watson):
+
+    $$
+    \hat{m}_R(v) = \frac{\sum_t K_h(v - \text{Vol}_t) R_{t+1}}{\sum_t K_h(v - \text{Vol}_t)}
+    $$
+
+    **Step 2: Nonparametric regression of $\text{DivYield}_t$ on $\text{Volatility}_t$.** Similarly estimate $m_D(v) = \mathbb{E}[\text{DivYield}_t | \text{Volatility}_t = v]$:
+
+    $$
+    \hat{m}_D(v) = \frac{\sum_t K_h(v - \text{Vol}_t) \text{DivYield}_t}{\sum_t K_h(v - \text{Vol}_t)}
+    $$
+
+    **Step 3: OLS on residuals.** Compute the residuals:
+
+    $$
+    \tilde{R}_{t+1} = R_{t+1} - \hat{m}_R(\text{Vol}_t), \quad \tilde{D}_t = \text{DivYield}_t - \hat{m}_D(\text{Vol}_t)
+    $$
+
+    Then estimate $\beta$ by OLS:
+
+    $$
+    \hat{\beta} = \frac{\sum_t \tilde{D}_t \tilde{R}_{t+1}}{\sum_t \tilde{D}_t^2}
+    $$
+
+    The key insight is that by taking conditional expectations of the original equation:
+
+    $$
+    \mathbb{E}[R_{t+1} | \text{Vol}_t] = \beta \cdot \mathbb{E}[\text{DivYield}_t | \text{Vol}_t] + f(\text{Vol}_t) + 0
+    $$
+
+    Subtracting eliminates the nonparametric component $f$:
+
+    $$
+    R_{t+1} - \mathbb{E}[R_{t+1} | \text{Vol}_t] = \beta \left(\text{DivYield}_t - \mathbb{E}[\text{DivYield}_t | \text{Vol}_t]\right) + \varepsilon_{t+1}
+    $$
+
+    Under regularity conditions, $\hat{\beta}$ achieves $\sqrt{n}$-consistency because the nonparametric estimation errors in Steps 1 and 2 converge fast enough (at rate $n^{-2/(4+1)} = n^{-2/5}$) that they do not affect the asymptotic distribution of $\hat{\beta}$.
+
+    **(b)** There are several reasons to model the volatility effect nonparametrically while keeping dividend yield linear:
+
+    1. **Nonlinear volatility-return relationship:** The relationship between volatility and future returns is known to be nonlinear. At low volatility, expected returns may be moderate; at high volatility, there is a risk premium but also potential mean-reversion. A linear specification would miss these effects.
+
+    2. **Linear dividend yield predictability:** The dividend-price ratio is a well-established linear predictor of returns (Campbell and Shiller, 1988). Economic theory (the present-value identity) supports a log-linear relationship.
+
+    3. **Interpretability of $\beta$:** Keeping the dividend yield effect parametric yields a single interpretable coefficient $\beta$ that measures the marginal predictive effect of dividend yield, controlling for volatility.
+
+    4. **Data efficiency:** The parametric component is estimated at rate $\sqrt{n}$ regardless of the nonparametric component. If both were nonparametric, estimation would be slower and require more data.
+
+    5. **Avoiding the curse of dimensionality:** With two nonparametric components, we would need to estimate a bivariate surface, facing the curse of dimensionality. The semi-parametric approach reduces this to one parametric direction and one univariate nonparametric function.
+
 ---
 
 **Exercise 4.** You are estimating the Black–Scholes implied volatility surface from 200 observed option prices.
@@ -446,6 +583,47 @@ $$
 
 (c) Which approach would you recommend and why?
 
+??? success "Solution to Exercise 4"
+    **(a)** The SVI parameterization has 5 parameters per maturity slice: $(a, b, \rho, m, \sigma)$. With 4 maturities, the total number of parameters is:
+
+    $$
+    d = 5 \times 4 = 20
+    $$
+
+    Since this is a parametric model with $d = 20$ parameters, the convergence rate is the parametric rate:
+
+    $$
+    \|\hat{\theta} - \theta^*\| = O_p(n^{-1/2}) = O_p(200^{-1/2}) \approx O_p(0.071)
+    $$
+
+    **(b)** For the nonparametric kernel smoothing approach in the $(K, T)$ plane, we have $d = 2$ input dimensions. Using Stone's minimax rate with $\beta = 2$ (twice-differentiable functions):
+
+    $$
+    \text{MISE} = O\left(n^{-2\beta/(2\beta+d)}\right) = O\left(200^{-4/(4+2)}\right) = O\left(200^{-2/3}\right)
+    $$
+
+    Numerically:
+
+    $$
+    200^{-2/3} = (200)^{-0.667} \approx 0.029
+    $$
+
+    For comparison, the parametric rate gives $200^{-1} \approx 0.005$ for MSE (since parametric MSE is $O(n^{-1})$). The nonparametric rate is about 6 times worse.
+
+    **(c)** With only 200 observations, the **parametric SVI approach is preferable** for the following reasons:
+
+    1. **Better convergence rate:** The parametric rate $O(n^{-1})$ for MSE substantially outperforms the nonparametric rate $O(n^{-2/3})$ at $n = 200$.
+
+    2. **No-arbitrage constraints:** The SVI parameterization can be constrained to satisfy static no-arbitrage conditions (e.g., non-negative butterfly spreads, non-negative calendar spreads). The nonparametric estimator may produce arbitrage-violable surfaces.
+
+    3. **Extrapolation:** The SVI formula provides meaningful extrapolation to strikes and maturities not observed in the data. The kernel estimator degrades severely outside the data support.
+
+    4. **Smoothness:** The parametric surface is automatically smooth, while the nonparametric estimator may be noisy with only 200 data points spread across two dimensions.
+
+    5. **Parsimony:** 20 parameters for 200 observations gives a ratio of 1:10, which is reasonable. The nonparametric approach implicitly has an effective number of parameters comparable to $n$, leading to overfitting risk.
+
+    The main caveat is that if the SVI functional form is a poor approximation to the true surface, the parametric approach introduces misspecification bias that cannot be reduced with more data.
+
 ---
 
 **Exercise 5.** Compare AIC and BIC for selecting between a 3-factor and a 5-factor linear return model estimated on $n = 120$ monthly observations. If both models have log-likelihoods $\ell_3 = -340$ and $\ell_5 = -335$:
@@ -454,6 +632,75 @@ $$
 
 (b) Which model does each criterion select? Explain why they may disagree.
 
+??? success "Solution to Exercise 5"
+    **(a)** For the **3-factor model** ($d = 3$ parameters: intercept + 3 betas, so $d = 4$; but typically in this context $d$ counts the factor loadings plus intercept, so let us use $d = 3$ for factors + 1 for intercept = 4. However, the problem states $d = 3$ and $d = 5$ directly as model parameters):
+
+    With $d_3 = 3$ (including intercept: actually the problem states 3-factor and 5-factor, so the number of parameters is $d_3 = 4$ and $d_5 = 6$ respectively if we count the intercept. Let us follow the convention that a $k$-factor model has $k + 1$ parameters).
+
+    Actually, re-reading the problem, it says "3-factor" and "5-factor" models with log-likelihoods given. The standard convention is that a $k$-factor model has $d = k + 1$ parameters (intercept + $k$ slopes). So $d_3 = 4$ and $d_5 = 6$.
+
+    **AIC:**
+
+    $$
+    \text{AIC}_3 = -2(-340) + 2(4) = 680 + 8 = 688
+    $$
+
+    $$
+    \text{AIC}_5 = -2(-335) + 2(6) = 670 + 12 = 682
+    $$
+
+    **BIC:**
+
+    $$
+    \text{BIC}_3 = -2(-340) + 4 \log(120) = 680 + 4(4.787) = 680 + 19.15 = 699.15
+    $$
+
+    $$
+    \text{BIC}_5 = -2(-335) + 6 \log(120) = 670 + 6(4.787) = 670 + 28.72 = 698.72
+    $$
+
+    **(b)** Both criteria prefer lower values.
+
+    - **AIC selects the 5-factor model** ($\text{AIC}_5 = 682 < 688 = \text{AIC}_3$). The improvement in log-likelihood ($\Delta \ell = 5$) is large enough to justify the 2 additional parameters under AIC's penalty of $2 \times 2 = 4$.
+
+    - **BIC selects the 5-factor model** as well ($\text{BIC}_5 = 698.72 < 699.15 = \text{BIC}_3$), though the margin is very narrow.
+
+    In general, AIC and BIC can disagree because BIC penalizes complexity more heavily (penalty $d \log n$ vs. $2d$). For $n = 120$, $\log(120) \approx 4.79$, so BIC penalizes each additional parameter by about 4.79 vs. AIC's penalty of 2. Here the log-likelihood improvement of 5 per additional parameter is large enough that even BIC selects the 5-factor model, but barely. With a smaller improvement (e.g., $\ell_5 = -337$), BIC would select the 3-factor model while AIC might still prefer the 5-factor model. BIC is **consistent** (selects the true model as $n \to \infty$) while AIC tends to select slightly overfit models, but AIC is asymptotically efficient (minimizes prediction error).
+
 ---
 
 **Exercise 6.** Explain why nonparametric return prediction models frequently underperform simple linear models out-of-sample in finance, despite being more flexible. Your answer should reference the signal-to-noise ratio, the curse of dimensionality, and the bias–variance trade-off.
+
+??? success "Solution to Exercise 6"
+    Nonparametric models frequently underperform simple linear models out-of-sample in financial return prediction due to the interaction of three factors:
+
+    **1. Signal-to-noise ratio.** Financial returns have an extremely low signal-to-noise ratio. Daily equity returns exhibit $R^2 \approx 0.25\%$, meaning that the predictable component $\mu(X_t)$ is tiny relative to the noise $\varepsilon_{t+1}$:
+
+    $$
+    R_{t+1} = \underbrace{\mu(X_t)}_{\text{SNR} \approx 0.05} + \underbrace{\varepsilon_{t+1}}_{\sigma \approx 1\%}
+    $$
+
+    Any estimator's prediction error is $\text{MSE} = \text{Bias}^2 + \text{Variance} + \sigma^2$, and the irreducible error $\sigma^2$ dominates. The tiny signal means that even small amounts of variance in the estimator can overwhelm the bias reduction from using a more flexible model.
+
+    **2. Curse of dimensionality.** Nonparametric methods suffer convergence rates that degrade with input dimension $d$. By Stone's theorem, the minimax rate is:
+
+    $$
+    \text{MSE}_{\text{nonpar}} = O\left(n^{-2\beta/(2\beta + d)}\right)
+    $$
+
+    With typical financial predictors ($d = 5$ to $20$) and sample sizes ($n \approx 250$ to $5000$), the effective sample size is very small. For example, with $\beta = 2$, $d = 10$, and $n = 1000$, the effective sample size is $n_{\text{eff}} \approx 8$---far too few to reliably estimate any nonlinear structure.
+
+    By contrast, the parametric linear model achieves $\text{MSE}_{\text{param}} = O(n^{-1})$ regardless of $d$ (assuming correct specification or mild misspecification).
+
+    **3. Bias-variance trade-off.** In the decomposition $\text{MSE} = \text{Bias}^2 + \text{Variance}$:
+
+    - **Linear model:** Has potentially higher bias (if the true function is nonlinear) but very low variance due to few parameters. With $d + 1$ parameters and $n$ observations, variance is $O(d/n)$.
+    - **Nonparametric model:** Has lower bias (can approximate any smooth function) but much higher variance because it effectively estimates many local parameters.
+
+    When SNR is low, the bias from using a linear model is small in absolute terms (the nonlinear component of the signal is even smaller than the already-tiny linear signal). Meanwhile, the variance penalty of the nonparametric model is large. The net effect is:
+
+    $$
+    \text{MSE}_{\text{linear}} = \underbrace{\text{Bias}_{\text{linear}}^2}_{\text{small}} + \underbrace{\text{Var}_{\text{linear}}}_{\text{small}} < \underbrace{\text{Bias}_{\text{nonpar}}^2}_{\approx 0} + \underbrace{\text{Var}_{\text{nonpar}}}_{\text{large}} = \text{MSE}_{\text{nonpar}}
+    $$
+
+    In summary, the flexibility of nonparametric models is a liability in finance: the additional degrees of freedom fit noise rather than the weak signal, producing worse out-of-sample predictions. This is why simple linear models, ridge regression, and other heavily regularized approaches tend to dominate in empirical asset pricing.

@@ -393,42 +393,6 @@ The fundamental result: **a finite one-period market is arbitrage-free if and on
 
 **Exercise 1.** Consider a market with $S = 2$ states and $N = 2$ assets: a bond with price $P_1 = 1$ paying $1.04$ in both states, and a stock with price $P_2 = 25$ paying $X_{21} = 30$ in state $\omega_1$ and $X_{22} = 22$ in state $\omega_2$. Determine whether a strictly positive state price vector $\boldsymbol{\phi}$ exists. Is the market arbitrage-free?
 
----
-
-**Exercise 2.** Prove that the Law of One Price does not imply no-arbitrage by constructing a concrete example of a market (specify the payoff matrix $\mathbf{X}$ and price vector $\mathbf{P}$) that satisfies the LOP but admits a Type 1 arbitrage opportunity.
-
----
-
-**Exercise 3.** In a market with $S = 3$ states and $N = 3$ assets, the payoff matrix and price vector are
-
-$$
-\mathbf{X} = \begin{pmatrix} 1.05 & 1.05 & 1.05 \\ 20 & 15 & 10 \\ 5 & 3 & 0 \end{pmatrix}, \quad \mathbf{P} = \begin{pmatrix} 1 \\ 12 \\ 2 \end{pmatrix}
-$$
-
-Determine whether the market is arbitrage-free by solving for the state price vector. If an arbitrage exists, construct the arbitrage portfolio explicitly.
-
----
-
-**Exercise 4.** Let $\boldsymbol{\theta}$ be a portfolio in a one-period market satisfying $\boldsymbol{\theta}^\top \mathbf{P} = 0$ and $\mathbf{X}^\top \boldsymbol{\theta} \geq \mathbf{0}$. Suppose that strictly positive state prices $\boldsymbol{\phi} \gg \mathbf{0}$ exist with $\mathbf{P} = \mathbf{X}\,\boldsymbol{\phi}$. Show that $\mathbf{X}^\top \boldsymbol{\theta} = \mathbf{0}$, i.e., the payoff must be identically zero. Explain why this rules out Type 1 arbitrage.
-
----
-
-**Exercise 5.** A market has $S = 2$ states and $N = 3$ assets. The bond pays $1.10$ in both states. Stock A has price \$40 and pays \$50 in the boom and \$35 in the recession. Stock B has price \$15 and pays \$20 in the boom and \$12 in the recession. Find the state prices from the bond and Stock A alone. Then check whether Stock B's observed price is consistent with these state prices. If not, construct an arbitrage portfolio.
-
----
-
-**Exercise 6.** Explain the hierarchy
-
-$$
-\text{No-arbitrage} \implies \text{No-dominance} \implies \text{Law of One Price}
-$$
-
-by answering: (a) Why does no-arbitrage imply no-dominance? (b) Why does no-dominance imply the LOP? (c) Give a one-sentence economic interpretation of each implication.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     We need to find $\boldsymbol{\phi} = (\phi_1, \phi_2)^\top$ satisfying $\mathbf{X}\,\boldsymbol{\phi} = \mathbf{P}$:
 
@@ -462,6 +426,10 @@ by answering: (a) Why does no-arbitrage imply no-dominance? (b) Why does no-domi
 
     Since a strictly positive state price vector exists, the market is **arbitrage-free**.
 
+---
+
+**Exercise 2.** Prove that the Law of One Price does not imply no-arbitrage by constructing a concrete example of a market (specify the payoff matrix $\mathbf{X}$ and price vector $\mathbf{P}$) that satisfies the LOP but admits a Type 1 arbitrage opportunity.
+
 ??? success "Solution to Exercise 2"
     Consider a market with $S = 2$ states and $N = 2$ assets with:
 
@@ -477,6 +445,16 @@ by answering: (a) Why does no-arbitrage imply no-dominance? (b) Why does no-domi
     - Payoff: $\mathbf{X}^\top \boldsymbol{\theta} = (1, 0)^\top \geq \mathbf{0}$ and $\neq \mathbf{0}$
 
     This portfolio costs nothing and pays \$1 in state $\omega_1$ and \$0 in state $\omega_2$. It is a Type 1 arbitrage. Thus, the LOP does not imply no-arbitrage.
+
+---
+
+**Exercise 3.** In a market with $S = 3$ states and $N = 3$ assets, the payoff matrix and price vector are
+
+$$
+\mathbf{X} = \begin{pmatrix} 1.05 & 1.05 & 1.05 \\ 20 & 15 & 10 \\ 5 & 3 & 0 \end{pmatrix}, \quad \mathbf{P} = \begin{pmatrix} 1 \\ 12 \\ 2 \end{pmatrix}
+$$
+
+Determine whether the market is arbitrage-free by solving for the state price vector. If an arbitrage exists, construct the arbitrage portfolio explicitly.
 
 ??? success "Solution to Exercise 3"
     We solve $\mathbf{X}\,\boldsymbol{\phi} = \mathbf{P}$:
@@ -531,6 +509,10 @@ by answering: (a) Why does no-arbitrage imply no-dominance? (b) Why does no-domi
 
     The portfolio $\boldsymbol{\theta} = (-40/7,\; 3/5,\; -1)^\top$ has negative cost ($-18/35 \approx -\$0.514$) and payoff $(1, 0, 0)^\top \geq \mathbf{0}$. This is an arbitrage: the trader receives \$0.514 today and is guaranteed a non-negative payoff (specifically \$1 in state $\omega_1$ and \$0 otherwise).
 
+---
+
+**Exercise 4.** Let $\boldsymbol{\theta}$ be a portfolio in a one-period market satisfying $\boldsymbol{\theta}^\top \mathbf{P} = 0$ and $\mathbf{X}^\top \boldsymbol{\theta} \geq \mathbf{0}$. Suppose that strictly positive state prices $\boldsymbol{\phi} \gg \mathbf{0}$ exist with $\mathbf{P} = \mathbf{X}\,\boldsymbol{\phi}$. Show that $\mathbf{X}^\top \boldsymbol{\theta} = \mathbf{0}$, i.e., the payoff must be identically zero. Explain why this rules out Type 1 arbitrage.
+
 ??? success "Solution to Exercise 4"
     We have $\boldsymbol{\theta}^\top \mathbf{P} = 0$ and $\mathbf{X}^\top \boldsymbol{\theta} \geq \mathbf{0}$. Since $\boldsymbol{\phi} \gg \mathbf{0}$ and $\mathbf{P} = \mathbf{X}\,\boldsymbol{\phi}$:
 
@@ -547,6 +529,10 @@ by answering: (a) Why does no-arbitrage imply no-dominance? (b) Why does no-domi
     Therefore $\mathbf{X}^\top \boldsymbol{\theta} = \mathbf{0}$.
 
     **Why this rules out Type 1 arbitrage:** A Type 1 arbitrage requires a portfolio with $\boldsymbol{\theta}^\top \mathbf{P} = 0$, $\mathbf{X}^\top \boldsymbol{\theta} \geq \mathbf{0}$, and $\mathbf{X}^\top \boldsymbol{\theta} \neq \mathbf{0}$. We have just shown that the first two conditions force $\mathbf{X}^\top \boldsymbol{\theta} = \mathbf{0}$, contradicting the third condition. Hence no Type 1 arbitrage can exist when strictly positive state prices exist.
+
+---
+
+**Exercise 5.** A market has $S = 2$ states and $N = 3$ assets. The bond pays $1.10$ in both states. Stock A has price \$40 and pays \$50 in the boom and \$35 in the recession. Stock B has price \$15 and pays \$20 in the boom and \$12 in the recession. Find the state prices from the bond and Stock A alone. Then check whether Stock B's observed price is consistent with these state prices. If not, construct an arbitrage portfolio.
 
 ??? success "Solution to Exercise 5"
     **Bond price:** $P_1 = 1$ (given implicitly by the payoff of $1.10$ and risk-free rate $r_f = 0.10$, so $P_1 = 1$). Actually, the bond price is not explicitly stated. Since the bond pays $1.10$ in both states and $1 + r_f = 1.10$, we have $P_1 = 1$.
@@ -600,6 +586,16 @@ by answering: (a) Why does no-arbitrage imply no-dominance? (b) Why does no-domi
     - Payoff in Recession: $(200/33)(1.10) - (8/15)(35) + 12 = 20/3 - 56/3 + 36/3 = 0$
 
     The trader receives $\$3/11 \approx \$0.27$ today with zero future liability -- a Type 2 arbitrage.
+
+---
+
+**Exercise 6.** Explain the hierarchy
+
+$$
+\text{No-arbitrage} \implies \text{No-dominance} \implies \text{Law of One Price}
+$$
+
+by answering: (a) Why does no-arbitrage imply no-dominance? (b) Why does no-dominance imply the LOP? (c) Give a one-sentence economic interpretation of each implication.
 
 ??? success "Solution to Exercise 6"
     **(a) No-arbitrage implies no-dominance:** Suppose portfolio $\boldsymbol{\theta}$ dominates portfolio $\boldsymbol{\eta}$: $\mathbf{X}^\top \boldsymbol{\theta} \geq \mathbf{X}^\top \boldsymbol{\eta}$ with strict inequality in some state, and $\boldsymbol{\theta}^\top \mathbf{P} \leq \boldsymbol{\eta}^\top \mathbf{P}$. Define $\boldsymbol{\alpha} = \boldsymbol{\theta} - \boldsymbol{\eta}$. Then $\mathbf{X}^\top \boldsymbol{\alpha} \geq \mathbf{0}$, $\mathbf{X}^\top \boldsymbol{\alpha} \neq \mathbf{0}$, and $\boldsymbol{\alpha}^\top \mathbf{P} \leq 0$. This is an arbitrage opportunity (Type 1 if $\boldsymbol{\alpha}^\top \mathbf{P} = 0$, Type 2 if $\boldsymbol{\alpha}^\top \mathbf{P} < 0$). So if no arbitrage exists, no dominance can exist.

@@ -283,48 +283,6 @@ The Itô isometry is the central technical tool: it converts a stochastic proble
 
 **Exercise 1.** Let $H_t = \mathbf{1}_{(a,b]}(t)$ for $0 \le a < b \le T$. This is a simple process with a single nonzero piece. Compute $\int_0^T H_s\, dB_s$ directly from the definition for simple processes and verify the Ito isometry for this integrand.
 
----
-
-**Exercise 2.** Explain why the Riemann-Stieltjes integral $\int_0^T f(s)\, dB_s(\omega)$ cannot be defined pathwise for a continuous function $f$. In your answer, identify which property of Brownian motion causes the failure, and explain why finite variation of the integrator is essential for classical integration.
-
----
-
-**Exercise 3.** Let $H_t^{(n)} = \sum_{k=0}^{n-1} B_{t_k}\, \mathbf{1}_{(t_k, t_{k+1}]}(t)$ be a simple process approximating $H_t = B_t$ on a uniform partition of $[0,1]$. Compute
-
-$$
-\mathbb{E}\!\left[\int_0^1 (B_t - H_t^{(n)})^2\, dt\right]
-$$
-
-and show that it tends to zero as $n \to \infty$, verifying that simple processes are dense in $\mathcal{L}^2([0,1])$ for this particular integrand.
-
----
-
-**Exercise 4.** Using the Ito isometry for simple processes, show that if $H$ and $K$ are simple processes, then
-
-$$
-\mathbb{E}\!\left[\int_0^T H_s\, dB_s \cdot \int_0^T K_s\, dB_s\right] = \mathbb{E}\!\left[\int_0^T H_s K_s\, ds\right]
-$$
-
-*Hint*: Use the polarization identity $\langle X, Y \rangle = \frac{1}{4}(\|X+Y\|^2 - \|X-Y\|^2)$.
-
----
-
-**Exercise 5.** Verify the martingale property of the Ito integral for the simple process $H_t = c \cdot \mathbf{1}_{(0, T/2]}(t)$, where $c$ is a constant. Specifically, show that for $s < T/2 < t$, $\mathbb{E}[I_t \mid \mathcal{F}_s] = I_s$.
-
----
-
-**Exercise 6.** The construction extends the integral from simple processes to $\mathcal{L}^2([0,T])$ using completeness of $L^2(\Omega)$. Suppose $H^{(n)}$ and $\tilde{H}^{(n)}$ are two sequences of simple processes both converging to $H$ in $\mathcal{L}^2([0,T])$. Use the Ito isometry to prove that
-
-$$
-\int_0^T H_s^{(n)}\, dB_s \quad \text{and} \quad \int_0^T \tilde{H}_s^{(n)}\, dB_s
-$$
-
-converge to the same limit in $L^2(\Omega)$, so the extended integral is well defined.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The process $H_t = \mathbf{1}_{(a,b]}(t)$ is a simple process with a single nonzero piece, $H_0 = 1$ on $(a,b]$. By the definition for simple processes:
 
@@ -350,12 +308,26 @@ converge to the same limit in $L^2(\Omega)$, so the extended integral is well de
 
     Both sides equal $b - a$, confirming the Ito isometry.
 
+---
+
+**Exercise 2.** Explain why the Riemann-Stieltjes integral $\int_0^T f(s)\, dB_s(\omega)$ cannot be defined pathwise for a continuous function $f$. In your answer, identify which property of Brownian motion causes the failure, and explain why finite variation of the integrator is essential for classical integration.
+
 ??? success "Solution to Exercise 2"
     The Riemann-Stieltjes integral $\int_0^T f(s)\, dg(s)$ is defined as the limit of sums $\sum_k f(t_k^*)(g(t_{k+1}) - g(t_k))$ as the partition mesh tends to zero. A sufficient condition for this limit to exist is that $g$ has **bounded variation** on $[0,T]$.
 
     For Brownian motion $B_t(\omega)$, the total variation is almost surely infinite on every interval $[0,T]$. This is because $\mathbb{E}[\sum |B_{t_{k+1}} - B_{t_k}|] = n\sqrt{2T/(\pi n)} = \sqrt{2nT/\pi} \to \infty$, and the expected total variation diverging implies almost sure divergence.
 
     When the integrator has infinite variation, the Riemann-Stieltjes sums may not converge, or they may converge to different limits depending on the choice of evaluation points $t_k^*$. Finite variation is essential because it ensures that the oscillation of $g$ on each subinterval goes to zero fast enough that the choice of evaluation point within each subinterval becomes irrelevant in the limit. Without this, the sum $\sum f(t_k^*) \Delta g_k$ is sensitive to the exact location of $t_k^*$ within $[t_k, t_{k+1}]$, as demonstrated by the different values of the Ito and Stratonovich integrals.
+
+---
+
+**Exercise 3.** Let $H_t^{(n)} = \sum_{k=0}^{n-1} B_{t_k}\, \mathbf{1}_{(t_k, t_{k+1}]}(t)$ be a simple process approximating $H_t = B_t$ on a uniform partition of $[0,1]$. Compute
+
+$$
+\mathbb{E}\!\left[\int_0^1 (B_t - H_t^{(n)})^2\, dt\right]
+$$
+
+and show that it tends to zero as $n \to \infty$, verifying that simple processes are dense in $\mathcal{L}^2([0,1])$ for this particular integrand.
 
 ??? success "Solution to Exercise 3"
     On the uniform partition of $[0,1]$ with $n$ points, $t_k = k/n$ and $\Delta t = 1/n$. The simple process approximation is $H_t^{(n)} = B_{t_k}$ on $(t_k, t_{k+1}]$. We need:
@@ -371,6 +343,16 @@ converge to the same limit in $L^2(\Omega)$, so the extended integral is well de
     $$
 
     As $n \to \infty$, $\frac{1}{2n} \to 0$. This confirms that simple processes are dense in $\mathcal{L}^2([0,1])$ for the integrand $H_t = B_t$.
+
+---
+
+**Exercise 4.** Using the Ito isometry for simple processes, show that if $H$ and $K$ are simple processes, then
+
+$$
+\mathbb{E}\!\left[\int_0^T H_s\, dB_s \cdot \int_0^T K_s\, dB_s\right] = \mathbb{E}\!\left[\int_0^T H_s K_s\, ds\right]
+$$
+
+*Hint*: Use the polarization identity $\langle X, Y \rangle = \frac{1}{4}(\|X+Y\|^2 - \|X-Y\|^2)$.
 
 ??? success "Solution to Exercise 4"
     By the polarization identity, for any random variables $X, Y$ in $L^2$:
@@ -407,6 +389,10 @@ converge to the same limit in $L^2(\Omega)$, so the extended integral is well de
     \mathbb{E}\!\left[\int_0^T H_s\, dB_s \cdot \int_0^T K_s\, dB_s\right] = \mathbb{E}\!\left[\int_0^T H_s K_s\, ds\right]
     $$
 
+---
+
+**Exercise 5.** Verify the martingale property of the Ito integral for the simple process $H_t = c \cdot \mathbf{1}_{(0, T/2]}(t)$, where $c$ is a constant. Specifically, show that for $s < T/2 < t$, $\mathbb{E}[I_t \mid \mathcal{F}_s] = I_s$.
+
 ??? success "Solution to Exercise 5"
     The simple process is $H_t = c \cdot \mathbf{1}_{(0, T/2]}(t)$, so:
 
@@ -433,6 +419,16 @@ converge to the same limit in $L^2(\Omega)$, so the extended integral is well de
     $$
 
     This confirms $\mathbb{E}[I_t \mid \mathcal{F}_s] = I_s$.
+
+---
+
+**Exercise 6.** The construction extends the integral from simple processes to $\mathcal{L}^2([0,T])$ using completeness of $L^2(\Omega)$. Suppose $H^{(n)}$ and $\tilde{H}^{(n)}$ are two sequences of simple processes both converging to $H$ in $\mathcal{L}^2([0,T])$. Use the Ito isometry to prove that
+
+$$
+\int_0^T H_s^{(n)}\, dB_s \quad \text{and} \quad \int_0^T \tilde{H}_s^{(n)}\, dB_s
+$$
+
+converge to the same limit in $L^2(\Omega)$, so the extended integral is well defined.
 
 ??? success "Solution to Exercise 6"
     By linearity of the Ito integral for simple processes:

@@ -306,34 +306,6 @@ The next section on self-financing portfolios builds directly on the GBM dynamic
 
 **Exercise 1.** Let $S_t$ follow GBM with $S_0 = 50$, $\mu = 0.08$, and $\sigma = 0.30$. Compute $\mathbb{E}[S_2]$, $\text{Var}(S_2)$, and the probability $\mathbb{P}(S_2 > 75)$.
 
----
-
-**Exercise 2.** Starting from the GBM SDE $dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$, apply Ito's lemma to $f(S_t) = S_t^n$ (for integer $n \geq 2$) to derive the SDE satisfied by $S_t^n$. Use this to verify the formula for $\mathbb{E}[S_t^n]$ given in the text.
-
----
-
-**Exercise 3.** The coefficient of variation $\text{CV}(S_t) = \sqrt{e^{\sigma^2 t} - 1}$ depends only on $\sigma$ and $t$. Compute the CV for $\sigma = 0.20$ and $t \in \{0.25, 1, 5, 10\}$. At what time horizon $t^*$ does the CV equal 1 (i.e., the standard deviation equals the mean)? Express $t^*$ in terms of $\sigma$.
-
----
-
-**Exercise 4.** Show that under GBM, the median of $S_t$ is $S_0 \exp[(\mu - \frac{1}{2}\sigma^2)t]$, which is strictly less than the mean $\mathbb{E}[S_t] = S_0 e^{\mu t}$ whenever $\sigma > 0$. Explain intuitively why the mean exceeds the median for a log-normally distributed random variable.
-
----
-
-**Exercise 5.** A common critique of GBM is that it cannot produce the "volatility clustering" observed in real data. Explain precisely what property of the GBM log-returns $r_{t,h} = \ln(S_{t+h}/S_t)$ rules out volatility clustering. Propose a minimal modification to the GBM framework that could accommodate this phenomenon, and describe how it would alter the distribution of $S_t$.
-
----
-
-**Exercise 6.** Consider two stocks, $S_t^{(1)}$ and $S_t^{(2)}$, each following independent GBMs with the same parameters $\mu$ and $\sigma$ but different initial prices $S_0^{(1)} = 100$ and $S_0^{(2)} = 200$. Define the ratio $R_t = S_t^{(1)} / S_t^{(2)}$. Apply Ito's lemma to show that $R_t$ is also a GBM, determine its drift and volatility, and compute $\mathbb{E}[R_1]$.
-
----
-
-**Exercise 7.** On October 19, 1987, the S&P 500 fell approximately 20% in a single day. Assuming GBM with $\sigma = 0.20$ (annualized) and using $\Delta t = 1/252$ for one trading day, compute the probability of a daily log-return less than $\ln(0.80)$. Express your answer in terms of standard deviations from the mean. What does this imply about the adequacy of the GBM model for tail-risk assessment?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     With $S_0 = 50$, $\mu = 0.08$, $\sigma = 0.30$, and $t = 2$:
 
@@ -368,6 +340,9 @@ The next section on self-financing portfolios builds directly on the GBM dynamic
     $$
 
     There is approximately a 21.5% probability that the stock price exceeds 75 after two years.
+
+---
+**Exercise 2.** Starting from the GBM SDE $dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$, apply Ito's lemma to $f(S_t) = S_t^n$ (for integer $n \geq 2$) to derive the SDE satisfied by $S_t^n$. Use this to verify the formula for $\mathbb{E}[S_t^n]$ given in the text.
 
 ??? success "Solution to Exercise 2"
     Let $f(S_t) = S_t^n$. We compute the derivatives: $f'(x) = nx^{n-1}$ and $f''(x) = n(n-1)x^{n-2}$.
@@ -406,6 +381,9 @@ The next section on self-financing portfolios builds directly on the GBM dynamic
 
     which agrees with the formula in the text. $\square$
 
+---
+**Exercise 3.** The coefficient of variation $\text{CV}(S_t) = \sqrt{e^{\sigma^2 t} - 1}$ depends only on $\sigma$ and $t$. Compute the CV for $\sigma = 0.20$ and $t \in \{0.25, 1, 5, 10\}$. At what time horizon $t^*$ does the CV equal 1 (i.e., the standard deviation equals the mean)? Express $t^*$ in terms of $\sigma$.
+
 ??? success "Solution to Exercise 3"
     The coefficient of variation is $\text{CV}(S_t) = \sqrt{e^{\sigma^2 t} - 1}$.
 
@@ -428,6 +406,9 @@ The next section on self-financing portfolios builds directly on the GBM dynamic
 
     In general, $t^* = \frac{\ln 2}{\sigma^2}$. This shows that the standard deviation equals the mean only at very long horizons for typical equity volatilities, reflecting the exponential growth of GBM uncertainty over time.
 
+---
+**Exercise 4.** Show that under GBM, the median of $S_t$ is $S_0 \exp[(\mu - \frac{1}{2}\sigma^2)t]$, which is strictly less than the mean $\mathbb{E}[S_t] = S_0 e^{\mu t}$ whenever $\sigma > 0$. Explain intuitively why the mean exceeds the median for a log-normally distributed random variable.
+
 ??? success "Solution to Exercise 4"
     The median of a log-normal random variable $X$ with $\ln X \sim \mathcal{N}(m, v^2)$ is $e^m$ (since $\mathbb{P}(\ln X \leq m) = \Phi(0) = 0.5$).
 
@@ -446,6 +427,9 @@ The next section on self-financing portfolios builds directly on the GBM dynamic
     so the median is strictly less than the mean.
 
     **Intuition**: The log-normal distribution is right-skewed. A small number of very large outcomes (in the heavy right tail) pull the mean upward without affecting the median. More than half the sample paths end up below the mean, while the average is inflated by the few paths that reach very high values. This is the continuous-time manifestation of the asymmetry in compounding: the arithmetic mean return exceeds the geometric mean return, and most individual paths grow at the geometric rate $\mu - \frac{1}{2}\sigma^2$.
+
+---
+**Exercise 5.** A common critique of GBM is that it cannot produce the "volatility clustering" observed in real data. Explain precisely what property of the GBM log-returns $r_{t,h} = \ln(S_{t+h}/S_t)$ rules out volatility clustering. Propose a minimal modification to the GBM framework that could accommodate this phenomenon, and describe how it would alter the distribution of $S_t$.
 
 ??? success "Solution to Exercise 5"
     Under GBM, the log-returns $r_{t,h} = \ln(S_{t+h}/S_t) = (\mu - \frac{1}{2}\sigma^2)h + \sigma(W_{t+h} - W_t)$ are **independent** across non-overlapping intervals and have **constant variance** $\sigma^2 h$.
@@ -469,6 +453,9 @@ The next section on self-financing portfolios builds directly on the GBM dynamic
     $$
 
     where $v_t = \sigma_t^2$ is the instantaneous variance, $\kappa$ is the mean-reversion speed, $\theta$ is the long-run variance, $\xi$ is the volatility of volatility, and $W_t^{(1)}, W_t^{(2)}$ are (possibly correlated) Brownian motions. This model produces volatility clustering because $v_t$ is persistent (mean-reverting with autocorrelation), so periods of high variance tend to be followed by high variance. The distribution of $S_t$ is no longer log-normal; instead, it has fatter tails and the conditional distribution depends on the current volatility level.
+
+---
+**Exercise 6.** Consider two stocks, $S_t^{(1)}$ and $S_t^{(2)}$, each following independent GBMs with the same parameters $\mu$ and $\sigma$ but different initial prices $S_0^{(1)} = 100$ and $S_0^{(2)} = 200$. Define the ratio $R_t = S_t^{(1)} / S_t^{(2)}$. Apply Ito's lemma to show that $R_t$ is also a GBM, determine its drift and volatility, and compute $\mathbb{E}[R_1]$.
 
 ??? success "Solution to Exercise 6"
     Let $S_t^{(1)} = S_0^{(1)} e^{(\mu - \frac{1}{2}\sigma^2)t + \sigma W_t^{(1)}}$ and $S_t^{(2)} = S_0^{(2)} e^{(\mu - \frac{1}{2}\sigma^2)t + \sigma W_t^{(2)}}$, where $W_t^{(1)}$ and $W_t^{(2)}$ are independent Brownian motions.
@@ -514,6 +501,9 @@ The next section on self-financing portfolios builds directly on the GBM dynamic
     $$
 
     Note that $\mathbb{E}[R_1] = 0.5\,e^{\sigma^2} > 0.5 = R_0$, so the expected ratio grows over time due to the convexity effect (Jensen's inequality).
+
+---
+**Exercise 7.** On October 19, 1987, the S&P 500 fell approximately 20% in a single day. Assuming GBM with $\sigma = 0.20$ (annualized) and using $\Delta t = 1/252$ for one trading day, compute the probability of a daily log-return less than $\ln(0.80)$. Express your answer in terms of standard deviations from the mean. What does this imply about the adequacy of the GBM model for tail-risk assessment?
 
 ??? success "Solution to Exercise 7"
     Under GBM, the daily log-return over $\Delta t = 1/252$ is:

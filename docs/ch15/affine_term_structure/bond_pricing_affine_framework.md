@@ -273,26 +273,277 @@ The affine bond pricing formula $P(t, T) = \exp(A(\tau) + B(\tau)^\top X_t)$ fol
 
 **Exercise 1.** Consider the Vasicek model with parameters $\kappa = 0.8$, $\theta = 0.04$, $\sigma = 0.015$, and current short rate $r_0 = 0.06$. Compute the bond price $P(0, 3)$ and the continuously compounded 3-year yield $y(0, 3)$.
 
+??? success "Solution to Exercise 1"
+    With $\kappa = 0.8$, $\theta = 0.04$, $\sigma = 0.015$, $r_0 = 0.06$, and $\tau = 3$:
+
+    **Step 1: Compute $B(3)$.**
+
+    $$
+    B(3) = -\frac{1 - e^{-0.8 \times 3}}{0.8} = -\frac{1 - e^{-2.4}}{0.8} = -\frac{1 - 0.09072}{0.8} = -\frac{0.90928}{0.8} = -1.1366
+    $$
+
+    **Step 2: Compute $A(3)$.**
+
+    $$
+    A(3) = \left(\frac{\sigma^2}{2\kappa^2} - \theta\right)(B(3) + \tau) - \frac{\sigma^2}{4\kappa}B(3)^2
+    $$
+
+    $$
+    = \left(\frac{0.000225}{1.28} - 0.04\right)(-1.1366 + 3) - \frac{0.000225}{3.2}(1.1366)^2
+    $$
+
+    $$
+    = (0.0001758 - 0.04)(1.8634) - 0.0000703 \times 1.2919
+    $$
+
+    $$
+    = (-0.03982)(1.8634) - 0.0000908 = -0.07420 - 0.0000908 = -0.07429
+    $$
+
+    **Step 3: Compute $P(0, 3)$.**
+
+    $$
+    P(0, 3) = e^{A(3) + B(3) \cdot r_0} = e^{-0.07429 + (-1.1366)(0.06)} = e^{-0.07429 - 0.06820} = e^{-0.14249} = 0.8673
+    $$
+
+    **Step 4: Compute $y(0, 3)$.**
+
+    $$
+    y(0, 3) = -\frac{\ln P(0, 3)}{3} = -\frac{\ln 0.8673}{3} = -\frac{-0.14249}{3} = 0.04750 = 4.75\%
+    $$
+
+    The 3-year yield of 4.75% lies between the current short rate $r_0 = 6\%$ and the long-run mean $\theta = 4\%$, reflecting the mean-reverting pull of the Vasicek model.
+
 ---
 
 **Exercise 2.** Starting from the bond pricing Riccati equation $B'(\tau) = -\kappa B(\tau) - 1$ with $B(0) = 0$ (Vasicek case), verify that $B(\tau) \to -1/\kappa$ as $\tau \to \infty$. Explain the financial meaning of this saturation in terms of mean reversion.
+
+??? success "Solution to Exercise 2"
+    The Vasicek Riccati ODE for $B(\tau)$ is $B'(\tau) = -\kappa B(\tau) - 1$ with $B(0) = 0$. The solution is $B(\tau) = -(1 - e^{-\kappa\tau})/\kappa$.
+
+    **Limiting behavior as $\tau \to \infty$:**
+
+    $$
+    \lim_{\tau \to \infty} B(\tau) = \lim_{\tau \to \infty} -\frac{1 - e^{-\kappa\tau}}{\kappa} = -\frac{1 - 0}{\kappa} = -\frac{1}{\kappa}
+    $$
+
+    **Verification via the ODE:** At the steady state $B^* = -1/\kappa$, the ODE gives $B'(\infty) = -\kappa(-1/\kappa) - 1 = 1 - 1 = 0$, confirming that $B^* = -1/\kappa$ is a fixed point.
+
+    **Financial interpretation:** The saturation $|B(\tau)| \to 1/\kappa$ means that the sensitivity of the log bond price to the current short rate is bounded. This is a direct consequence of mean reversion: a shock to $r_t$ decays at rate $\kappa$, so the cumulative effect on the integrated discount factor $\int_t^T r_s\,ds$ is finite even as $T \to \infty$. Specifically, the impulse response of the short rate to a unit shock is $e^{-\kappa s}$, and the total integrated effect is $\int_0^\infty e^{-\kappa s}\,ds = 1/\kappa$, which equals the saturation level $|B(\infty)|$.
 
 ---
 
 **Exercise 3.** In the CIR model with $\kappa = 0.5$, $\theta = 0.05$, $\xi = 0.15$, compute $\gamma = \sqrt{\kappa^2 + 2\xi^2}$ and evaluate $B(10)$ and $A(10)$. Then determine the 10-year yield as a function of $r_0$.
 
+??? success "Solution to Exercise 3"
+    **Step 1: Compute $\gamma$.**
+
+    $$
+    \gamma = \sqrt{\kappa^2 + 2\xi^2} = \sqrt{0.25 + 2(0.0225)} = \sqrt{0.25 + 0.045} = \sqrt{0.295} = 0.5431
+    $$
+
+    **Step 2: Compute $B(10)$.**
+
+    $$
+    e^{\gamma \cdot 10} = e^{5.431} = 228.4
+    $$
+
+    $$
+    B(10) = \frac{-2(228.4 - 1)}{(0.5431 + 0.5)(228.4 - 1) + 2(0.5431)} = \frac{-2(227.4)}{1.0431 \times 227.4 + 1.0862}
+    $$
+
+    $$
+    = \frac{-454.8}{237.2 + 1.086} = \frac{-454.8}{238.3} = -1.908
+    $$
+
+    **Step 3: Compute $A(10)$.**
+
+    $$
+    A(10) = \frac{2\kappa\theta}{\xi^2}\ln\!\left(\frac{2\gamma\,e^{(\gamma+\kappa)\tau/2}}{(\gamma+\kappa)(e^{\gamma\tau}-1)+2\gamma}\right)
+    $$
+
+    $$
+    = \frac{2(0.5)(0.05)}{0.0225}\ln\!\left(\frac{2(0.5431)\,e^{(1.0431)(5)}}{238.3}\right)
+    $$
+
+    $$
+    = 2.222\,\ln\!\left(\frac{1.0862\,e^{5.216}}{238.3}\right) = 2.222\,\ln\!\left(\frac{1.0862 \times 184.5}{238.3}\right)
+    $$
+
+    $$
+    = 2.222\,\ln\!\left(\frac{200.4}{238.3}\right) = 2.222\,\ln(0.8411) = 2.222 \times (-0.1731) = -0.3846
+    $$
+
+    **Step 4: 10-year yield as a function of $r_0$.**
+
+    $$
+    y(0, 10) = -\frac{A(10)}{10} - \frac{B(10)}{10}\,r_0 = \frac{0.3846}{10} + \frac{1.908}{10}\,r_0 = 0.03846 + 0.1908\,r_0
+    $$
+
+    The yield is an affine function of the initial short rate $r_0$.
+
 ---
 
 **Exercise 4.** For a two-factor model with independent factors $X_t^{(1)}$ (Vasicek with $\kappa_1 = 0.5$, $\sigma_1 = 0.01$) and $X_t^{(2)}$ (CIR with $\kappa_2 = 0.3$, $\xi_2 = 0.1$), and short rate $r_t = X_t^{(1)} + X_t^{(2)}$, write the decoupled Riccati systems for $B_1(\tau)$ and $B_2(\tau)$. Show that the two-factor bond price is $P(t, T) = P_1(t, T) \cdot P_2(t, T)$, where $P_i$ are the one-factor bond prices.
+
+??? success "Solution to Exercise 4"
+    **Decoupled Riccati systems.** Since the factors are independent and the short rate is $r_t = X_t^{(1)} + X_t^{(2)}$, we have $\rho_0 = 0$, $\rho_1 = (1, 1)^\top$.
+
+    **Factor 1** (Vasicek with $\kappa_1 = 0.5$, $\sigma_1 = 0.01$): The Riccati ODE is linear:
+
+    $$
+    B_1'(\tau) = -\kappa_1 B_1(\tau) - 1, \quad B_1(0) = 0
+    $$
+
+    $$
+    B_1(\tau) = -\frac{1 - e^{-\kappa_1\tau}}{\kappa_1}
+    $$
+
+    $$
+    A_1'(\tau) = \frac{1}{2}\sigma_1^2 B_1(\tau)^2, \quad A_1(0) = 0
+    $$
+
+    (Note: $K_0^{(1)} = 0$ if we use $X_t^{(1)}$ centered; otherwise $A_1$ also picks up the drift term $\kappa_1\theta_1 B_1$.)
+
+    **Factor 2** (CIR with $\kappa_2 = 0.3$, $\xi_2 = 0.1$): The Riccati ODE is nonlinear:
+
+    $$
+    B_2'(\tau) = -\kappa_2 B_2(\tau) + \frac{1}{2}\xi_2^2 B_2(\tau)^2 - 1, \quad B_2(0) = 0
+    $$
+
+    with $\gamma_2 = \sqrt{\kappa_2^2 + 2\xi_2^2}$, solved by the CIR formula for $B_2(\tau)$.
+
+    **Factorization of the bond price.** Since the factors are independent:
+
+    $$
+    P(t, T) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T (X_s^{(1)} + X_s^{(2)})\,ds} \mid \mathcal{F}_t\right]
+    $$
+
+    By independence of $X^{(1)}$ and $X^{(2)}$, the expectation factors:
+
+    $$
+    = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T X_s^{(1)}\,ds} \mid \mathcal{F}_t\right] \cdot \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T X_s^{(2)}\,ds} \mid \mathcal{F}_t\right]
+    $$
+
+    $$
+    = P_1(t, T) \cdot P_2(t, T)
+    $$
+
+    where $P_i(t, T) = \exp(A_i(\tau) + B_i(\tau) X_t^{(i)})$ is the one-factor bond price for each component. The total bond price satisfies $A(\tau) = A_1(\tau) + A_2(\tau)$ and $B(\tau) = (B_1(\tau), B_2(\tau))^\top$.
 
 ---
 
 **Exercise 5.** Derive the Vasicek long rate $y(\infty) = \theta - \sigma^2 / (2\kappa^2)$ by computing $\lim_{\tau \to \infty} y(t, t+\tau)$ using the explicit expressions for $A(\tau)$ and $B(\tau)$. Under what condition on the parameters is the long rate negative?
 
+??? success "Solution to Exercise 5"
+    **Vasicek yield formula.** With $B(\tau) = -(1 - e^{-\kappa\tau})/\kappa$ and $A(\tau) = (\theta - \sigma^2/(2\kappa^2))(B(\tau) + \tau) - \sigma^2 B(\tau)^2/(4\kappa)$:
+
+    $$
+    y(t, t+\tau) = -\frac{A(\tau)}{\tau} - \frac{B(\tau)}{\tau}\,r_t
+    $$
+
+    **Factor loading term:**
+
+    $$
+    -\frac{B(\tau)}{\tau} = \frac{1 - e^{-\kappa\tau}}{\kappa\tau} \to 0 \quad \text{as } \tau \to \infty
+    $$
+
+    **Intercept term:** Define $\ell = \theta - \sigma^2/(2\kappa^2)$.
+
+    $$
+    -\frac{A(\tau)}{\tau} = -\frac{\ell(B(\tau) + \tau)}{\tau} + \frac{\sigma^2 B(\tau)^2}{4\kappa\tau}
+    $$
+
+    $$
+    = -\ell\frac{B(\tau)}{\tau} - \ell + \frac{\sigma^2 B(\tau)^2}{4\kappa\tau}
+    $$
+
+    As $\tau \to \infty$: $B(\tau)/\tau \to 0$, $B(\tau)^2/\tau \to 1/(\kappa^2 \tau) \to 0$, so
+
+    $$
+    \lim_{\tau \to \infty} y(t, t+\tau) = 0 - \ell + 0 + \ell \cdot 0 = -(-\theta + \sigma^2/(2\kappa^2)) = \theta - \frac{\sigma^2}{2\kappa^2}
+    $$
+
+    **Condition for negative long rate:** The long rate is negative when
+
+    $$
+    \theta - \frac{\sigma^2}{2\kappa^2} < 0 \quad \Longleftrightarrow \quad \sigma^2 > 2\kappa^2\theta \quad \Longleftrightarrow \quad \frac{\sigma}{\kappa} > \sqrt{2\theta}
+    $$
+
+    This occurs when volatility is high relative to mean reversion and the long-run mean. For example, with $\theta = 0.05$ and $\kappa = 0.1$, the long rate is negative if $\sigma > 0.1\sqrt{0.1} \approx 0.0316$.
+
 ---
 
 **Exercise 6.** Prove that the instantaneous forward rate $f(t, T) = -A'(\tau) - B'(\tau) X_t$ satisfies $f(t, t) = r(X_t)$ by evaluating $A'(0)$ and $B'(0)$ from the Riccati initial conditions.
 
+??? success "Solution to Exercise 6"
+    The forward rate at $\tau = T - t$ is $f(t, T) = -A'(\tau) - B'(\tau) X_t$.
+
+    **Step 1: Evaluate $A'(0)$ using the Riccati ODE.**
+
+    $$
+    A'(\tau) = F(B(\tau)) - \rho_0 = K_0^\top B(\tau) + \frac{1}{2}B(\tau)^\top H_0 B(\tau) - \rho_0
+    $$
+
+    At $\tau = 0$, with $B(0) = 0$:
+
+    $$
+    A'(0) = K_0^\top \cdot 0 + \frac{1}{2} \cdot 0^\top H_0 \cdot 0 - \rho_0 = -\rho_0
+    $$
+
+    **Step 2: Evaluate $B'(0)$ using the Riccati ODE.**
+
+    $$
+    B'(\tau) = R(B(\tau)) - \rho_1 = K_1^\top B(\tau) + \frac{1}{2}\sum_{i=1}^d (B^\top H_i B)\,e_i - \rho_1
+    $$
+
+    At $\tau = 0$, with $B(0) = 0$:
+
+    $$
+    B'(0) = K_1^\top \cdot 0 + 0 - \rho_1 = -\rho_1
+    $$
+
+    **Step 3: Compute $f(t, t)$.**
+
+    $$
+    f(t, t) = -A'(0) - B'(0)^\top X_t = -(-\rho_0) - (-\rho_1)^\top X_t = \rho_0 + \rho_1^\top X_t = r(X_t)
+    $$
+
+    This confirms the consistency condition: the instantaneous forward rate at the current date equals the short rate. $\square$
+
 ---
 
 **Exercise 7.** Consider the CIR bond pricing formula. Show that $P(t, T)$ is a **convex** function of $r_t$ by computing $\partial^2 P / \partial r_t^2$ and verifying it is positive. Interpret this convexity in terms of Jensen's inequality applied to the discount factor $e^{-\int_t^T r_s\,ds}$.
+
+??? success "Solution to Exercise 7"
+    The CIR bond price is $P(t, T) = \exp(A(\tau) + B(\tau) r_t)$ where $B(\tau) < 0$ for $\tau > 0$.
+
+    **Step 1: First derivative.**
+
+    $$
+    \frac{\partial P}{\partial r_t} = B(\tau)\,P(t, T)
+    $$
+
+    Since $B(\tau) < 0$ and $P > 0$, this is negative, confirming that bond prices decrease with higher rates.
+
+    **Step 2: Second derivative.**
+
+    $$
+    \frac{\partial^2 P}{\partial r_t^2} = B(\tau)^2\,P(t, T)
+    $$
+
+    Since $B(\tau)^2 > 0$ and $P(t, T) > 0$, we have $\partial^2 P / \partial r_t^2 > 0$ for all $\tau > 0$ and all $r_t \geq 0$. Therefore $P(t, T)$ is a **convex** function of $r_t$.
+
+    **Jensen's inequality interpretation.** The bond price is defined as
+
+    $$
+    P(t, T) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r_s\,ds} \;\Big|\; r_t\right]
+    $$
+
+    The function $r \mapsto e^{-\int_t^T r_s\,ds}$ is convex in the path of rates. By Jensen's inequality applied to this convex functional:
+
+    $$
+    \mathbb{E}\!\left[e^{-\int_t^T r_s\,ds}\right] \geq e^{-\mathbb{E}[\int_t^T r_s\,ds]}
+    $$
+
+    The left side is the bond price; the right side is the price that would obtain if rates followed their expected path with no randomness. The difference is the **convexity adjustment** --- it is always non-negative and increases with the volatility of rates. In the CIR model, this convexity is captured by the interplay between $A(\tau)$ (which includes the variance effect) and $B(\tau)$ (which is more negative than in a zero-volatility model). Bondholders benefit from rate volatility precisely because of this convexity effect.

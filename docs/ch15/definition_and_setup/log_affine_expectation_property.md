@@ -244,6 +244,32 @@ The log-affine expectation property states that $\log \mathbb{E}[e^{\langle u, X
 
 **Exercise 1.** For the CIR process $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$, identify the functions $F(u)$ and $R(u)$ in the generalized Riccati framework. Write down the ODE for $\psi(\tau)$ with initial condition $\psi(0) = u$ and verify that it is a scalar Riccati equation. Under what condition on $u$ does the moment generating function $\mathbb{E}[e^{uX_T} \mid X_0 = x]$ remain finite for all $T > 0$?
 
+??? success "Solution to Exercise 1"
+    For the CIR process $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$, we identify the drift and diffusion:
+
+    - Drift: $b(x) = \kappa\theta - \kappa x$, so $\kappa_0 = \kappa\theta$ and $\kappa_1 = -\kappa$
+    - Diffusion: $a(x) = \xi^2 x$, so $\sigma_0 = 0$ and $\sigma_1 = \xi^2$
+
+    The functions $F$ and $R$ are:
+
+    $$
+    F(u) = \kappa_0 u + \frac{1}{2}\sigma_0 u^2 = \kappa\theta\, u
+    $$
+
+    $$
+    R(u) = \kappa_1 u + \frac{1}{2}\sigma_1 u^2 = -\kappa u + \frac{1}{2}\xi^2 u^2
+    $$
+
+    The ODE for $\psi$ is:
+
+    $$
+    \psi'(\tau) = R(\psi(\tau)) = -\kappa\psi(\tau) + \frac{1}{2}\xi^2\psi(\tau)^2, \qquad \psi(0) = u
+    $$
+
+    This is a scalar Riccati equation because the right-hand side is quadratic in $\psi$ (the $\frac{1}{2}\xi^2\psi^2$ term arises from the state-dependent diffusion $\sigma_1 = \xi^2 \neq 0$).
+
+    **Finiteness condition**: The moment generating function $\mathbb{E}[e^{uX_T} \mid X_0 = x]$ remains finite for all $T > 0$ if and only if the solution $\psi(\tau, u)$ does not blow up in finite time. The Riccati equation has the equilibrium $\psi^* = 2\kappa/\xi^2$ (from $-\kappa\psi + \frac{1}{2}\xi^2\psi^2 = 0$). If $u < 2\kappa/\xi^2$, then $\psi(\tau)$ remains bounded for all $\tau > 0$, and the MGF is finite. If $u \geq 2\kappa/\xi^2$, then $\psi(\tau)$ blows up in finite time, and the MGF is infinite for sufficiently large $T$. Therefore, the condition is $u < 2\kappa/\xi^2$.
+
 ---
 
 **Exercise 2.** Starting from the backward Kolmogorov equation for the two-dimensional process $(X_t^{(1)}, X_t^{(2)})$ with independent Ornstein-Uhlenbeck components $dX_t^{(i)} = -\kappa_i X_t^{(i)}\,dt + \sigma_i\,dW_t^{(i)}$, verify the affine ansatz
@@ -254,9 +280,71 @@ $$
 
 by substituting into the PDE and showing that the system separates into three ODEs: one for $\phi$, one for $\psi_1$, and one for $\psi_2$.
 
+??? success "Solution to Exercise 2"
+    The two-dimensional process with independent OU components satisfies:
+
+    $$
+    dX_t^{(i)} = -\kappa_i X_t^{(i)}\,dt + \sigma_i\,dW_t^{(i)}, \qquad i = 1, 2
+    $$
+
+    The backward Kolmogorov equation for $g(\tau, x_1, x_2) = \mathbb{E}[e^{u_1 X_{t+\tau}^{(1)} + u_2 X_{t+\tau}^{(2)}} \mid X_t^{(1)} = x_1, X_t^{(2)} = x_2]$ is:
+
+    $$
+    \frac{\partial g}{\partial \tau} = -\kappa_1 x_1 \frac{\partial g}{\partial x_1} - \kappa_2 x_2 \frac{\partial g}{\partial x_2} + \frac{1}{2}\sigma_1^2 \frac{\partial^2 g}{\partial x_1^2} + \frac{1}{2}\sigma_2^2 \frac{\partial^2 g}{\partial x_2^2}
+    $$
+
+    Substituting the ansatz $g = \exp(\phi(\tau) + \psi_1(\tau)x_1 + \psi_2(\tau)x_2)$:
+
+    $$
+    \frac{\partial g}{\partial \tau} = (\phi' + \psi_1' x_1 + \psi_2' x_2)\,g
+    $$
+
+    $$
+    \frac{\partial g}{\partial x_i} = \psi_i\,g, \qquad \frac{\partial^2 g}{\partial x_i^2} = \psi_i^2\,g
+    $$
+
+    Substituting and dividing by $g$:
+
+    $$
+    \phi' + \psi_1' x_1 + \psi_2' x_2 = -\kappa_1 x_1 \psi_1 - \kappa_2 x_2 \psi_2 + \frac{1}{2}\sigma_1^2 \psi_1^2 + \frac{1}{2}\sigma_2^2 \psi_2^2
+    $$
+
+    Matching coefficients of $x_1$, $x_2$, and the constant term:
+
+    $$
+    \psi_1'(\tau) = -\kappa_1\psi_1(\tau), \qquad \psi_1(0) = u_1
+    $$
+
+    $$
+    \psi_2'(\tau) = -\kappa_2\psi_2(\tau), \qquad \psi_2(0) = u_2
+    $$
+
+    $$
+    \phi'(\tau) = \frac{1}{2}\sigma_1^2\psi_1(\tau)^2 + \frac{1}{2}\sigma_2^2\psi_2(\tau)^2, \qquad \phi(0) = 0
+    $$
+
+    The system separates into three ODEs as claimed. The $\psi_i$ equations are independent of each other and of $\phi$, while $\phi$ depends on $\psi_1$ and $\psi_2$ but can be obtained by quadrature after solving for them.
+
 ---
 
 **Exercise 3.** Prove that the characteristic function $\Phi_X(\tau, v, x) = \mathbb{E}[e^{iv X_T} \mid X_t = x]$ of any affine process satisfies $|\Phi_X(\tau, v, x)| \leq 1$ for all real $v$, and explain why the moment generating function $M_X(\tau, u, x) = \mathbb{E}[e^{uX_T} \mid X_t = x]$ for real $u > 0$ does not share this boundedness property.
+
+??? success "Solution to Exercise 3"
+    **Boundedness of the characteristic function**: For any real $v$, we have $|e^{ivX_T}| = 1$ for all outcomes of $X_T$. Therefore:
+
+    $$
+    |\Phi_X(\tau, v, x)| = |\mathbb{E}[e^{ivX_T} \mid X_t = x]| \leq \mathbb{E}[|e^{ivX_T}| \mid X_t = x] = \mathbb{E}[1 \mid X_t = x] = 1
+    $$
+
+    The first inequality is the modulus inequality for conditional expectations (or Jensen's inequality applied to the convex function $|\cdot|$).
+
+    **The MGF is not bounded**: For real $u > 0$, we have $e^{uX_T} \geq 1$ whenever $X_T \geq 0$, and $e^{uX_T} \to \infty$ as $X_T \to \infty$. For any process with unbounded support (e.g., a Gaussian or CIR process), $\mathbb{E}[e^{uX_T}]$ grows without bound as $u \to \infty$ or as $\tau \to \infty$ (for fixed $u$). Concretely, for the OU process with $X_T \mid X_t = x \sim \mathcal{N}(xe^{-\kappa\tau}, \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\tau}))$:
+
+    $$
+    M_X(\tau, u, x) = \exp\!\left(uxe^{-\kappa\tau} + \frac{\sigma^2 u^2}{4\kappa}(1 - e^{-2\kappa\tau})\right)
+    $$
+
+    This grows as $e^{cu^2}$ for large $u$, so $M_X$ is unbounded as a function of $u$.
 
 ---
 
@@ -266,9 +354,81 @@ $$
 \phi(\tau, u) = \frac{\sigma^2 u^2}{4\kappa}(1 - e^{-2\kappa\tau})
 $$
 
+??? success "Solution to Exercise 4"
+    **Semiflow for $\psi$**: We need to verify $\psi(t+s, u) = \psi(t, \psi(s, u))$ with $\psi(\tau, u) = ue^{-\kappa\tau}$.
+
+    Left-hand side:
+
+    $$
+    \psi(t+s, u) = ue^{-\kappa(t+s)}
+    $$
+
+    Right-hand side:
+
+    $$
+    \psi(t, \psi(s, u)) = \psi(t, ue^{-\kappa s}) = (ue^{-\kappa s})e^{-\kappa t} = ue^{-\kappa(t+s)}
+    $$
+
+    These are equal, so the semiflow equation holds.
+
+    **Semiflow for $\phi$**: We need to verify $\phi(t+s, u) = \phi(t, \psi(s, u)) + \phi(s, u)$ with $\phi(\tau, u) = \frac{\sigma^2 u^2}{4\kappa}(1 - e^{-2\kappa\tau})$.
+
+    Left-hand side:
+
+    $$
+    \phi(t+s, u) = \frac{\sigma^2 u^2}{4\kappa}(1 - e^{-2\kappa(t+s)})
+    $$
+
+    Right-hand side, first term:
+
+    $$
+    \phi(t, \psi(s, u)) = \frac{\sigma^2 (ue^{-\kappa s})^2}{4\kappa}(1 - e^{-2\kappa t}) = \frac{\sigma^2 u^2 e^{-2\kappa s}}{4\kappa}(1 - e^{-2\kappa t})
+    $$
+
+    Right-hand side, second term:
+
+    $$
+    \phi(s, u) = \frac{\sigma^2 u^2}{4\kappa}(1 - e^{-2\kappa s})
+    $$
+
+    Summing:
+
+    $$
+    \frac{\sigma^2 u^2}{4\kappa}\left[e^{-2\kappa s}(1 - e^{-2\kappa t}) + (1 - e^{-2\kappa s})\right] = \frac{\sigma^2 u^2}{4\kappa}\left[e^{-2\kappa s} - e^{-2\kappa(t+s)} + 1 - e^{-2\kappa s}\right]
+    $$
+
+    $$
+    = \frac{\sigma^2 u^2}{4\kappa}(1 - e^{-2\kappa(t+s)})
+    $$
+
+    This equals the left-hand side, confirming the companion semiflow equation.
+
 ---
 
 **Exercise 5.** Consider a process with drift $b(x) = \alpha x$ and diffusion $a(x) = \beta x^2$ for constants $\alpha, \beta > 0$. Attempt the affine ansatz $g(\tau, x) = \exp(\phi(\tau) + \psi(\tau)x)$ in the backward Kolmogorov equation and show explicitly where the separation into constant and linear terms in $x$ fails. What does this tell you about whether geometric Brownian motion (in the price variable $S_t$, not the log-price) is an affine process?
+
+??? success "Solution to Exercise 5"
+    With $b(x) = \alpha x$ and $a(x) = \beta x^2$, the backward Kolmogorov equation for $g(\tau, x) = \mathbb{E}[e^{uX_{t+\tau}} \mid X_t = x]$ is:
+
+    $$
+    \frac{\partial g}{\partial \tau} = \alpha x\frac{\partial g}{\partial x} + \frac{1}{2}\beta x^2 \frac{\partial^2 g}{\partial x^2}
+    $$
+
+    Trying the affine ansatz $g = \exp(\phi(\tau) + \psi(\tau)x)$:
+
+    $$
+    \frac{\partial g}{\partial x} = \psi\,g, \qquad \frac{\partial^2 g}{\partial x^2} = \psi^2\,g
+    $$
+
+    Substituting and dividing by $g$:
+
+    $$
+    \phi' + \psi' x = \alpha x\psi + \frac{1}{2}\beta x^2 \psi^2
+    $$
+
+    The right-hand side contains a term $\frac{1}{2}\beta\psi^2 x^2$ that is quadratic in $x$. The left-hand side is at most linear in $x$ (the term $\psi' x$). Since $\frac{1}{2}\beta\psi^2 x^2$ cannot be matched by any constant or linear term in $x$, the separation fails.
+
+    This demonstrates that geometric Brownian motion in the price variable $S_t$ (where $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ gives $b(S) = \mu S$ and $a(S) = \sigma^2 S^2$) is not an affine process. The quadratic dependence of the diffusion coefficient on the state variable violates the affine requirement that $a(x)$ be linear in $x$.
 
 ---
 
@@ -279,3 +439,32 @@ F(u) = \langle b_0, u \rangle + \tfrac{1}{2}\langle u, a_0 u \rangle, \qquad R_i
 $$
 
 Show that if all diffusion matrices $a_i = 0$ (pure Gaussian case with no state-dependent volatility), then the Riccati system for $\psi$ becomes a linear ODE system $\psi'(\tau) = B\psi(\tau)$ for an appropriate matrix $B$. Express $B$ in terms of the drift parameters $b_1, \ldots, b_d$.
+
+??? success "Solution to Exercise 6"
+    With $a_i = 0$ for all $i = 1, \ldots, d$ and no jumps, $R_i(u)$ simplifies to:
+
+    $$
+    R_i(u) = \langle b_i, u \rangle + \frac{1}{2}\langle u, a_i u \rangle = \langle b_i, u \rangle
+    $$
+
+    The $i$-th component of the Riccati system $\psi' = R(\psi)$ is:
+
+    $$
+    \psi_i'(\tau) = R_i(\psi(\tau)) = \langle b_i, \psi(\tau) \rangle = \sum_{j=1}^{d} (b_i)_j \psi_j(\tau)
+    $$
+
+    In vector form, this is:
+
+    $$
+    \psi'(\tau) = B\,\psi(\tau), \qquad \psi(0) = u
+    $$
+
+    where $B$ is the $d \times d$ matrix whose $i$-th row is $b_i^T$:
+
+    $$
+    B = \begin{pmatrix} b_1^T \\ b_2^T \\ \vdots \\ b_d^T \end{pmatrix}
+    $$
+
+    Equivalently, $B_{ij} = (b_i)_j$, where $(b_i)_j$ is the $j$-th component of the vector $b_i$. The solution is $\psi(\tau) = e^{B\tau}u$, a matrix exponential applied to the initial condition.
+
+    The quadratic terms $\frac{1}{2}\langle u, a_i u \rangle$ in $R_i$ are what make the Riccati system nonlinear. When $a_i = 0$, these terms vanish, and the ODE for $\psi$ becomes linear. This is the hallmark of the pure Gaussian (Ornstein-Uhlenbeck) case: the characteristic exponent is quadratic in $u$ and the Riccati equations are exactly solvable via matrix exponentials.

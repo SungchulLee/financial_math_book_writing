@@ -251,9 +251,73 @@ The quality of the local volatility surface depends critically on the quality of
 
 **Exercise 1.** Given a smooth call price surface with $C(100, 1) = 10.45$, $C(105, 1) = 7.80$, $C(95, 1) = 13.60$, $C(100, 0.9) = 9.90$, $C(100, 1.1) = 10.95$, and parameters $r = 3\%$, $q = 1\%$, compute the local volatility $\sigma_{\text{loc}}(100, 1)$ using Dupire's formula with centered finite differences. Use $\Delta K = 5$ and $\Delta T = 0.1$.
 
+??? success "Solution to Exercise 1"
+    Using Dupire's formula with centered finite differences:
+
+    $$
+    \sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + qC + (r-q)K\frac{\partial C}{\partial K}}{\frac{1}{2}K^2\frac{\partial^2 C}{\partial K^2}}
+    $$
+
+    **Time derivative** (centered, $\Delta T = 0.1$):
+
+    $$
+    \frac{\partial C}{\partial T}\bigg|_{100,1} \approx \frac{C(100, 1.1) - C(100, 0.9)}{1.1 - 0.9} = \frac{10.95 - 9.90}{0.2} = 5.25
+    $$
+
+    **First strike derivative** (centered, $\Delta K = 5$):
+
+    $$
+    \frac{\partial C}{\partial K}\bigg|_{100,1} \approx \frac{C(105, 1) - C(95, 1)}{105 - 95} = \frac{7.80 - 13.60}{10} = -0.58
+    $$
+
+    **Second strike derivative** (centered, $\Delta K = 5$):
+
+    $$
+    \frac{\partial^2 C}{\partial K^2}\bigg|_{100,1} \approx \frac{C(105, 1) - 2C(100, 1) + C(95, 1)}{(\Delta K)^2} = \frac{7.80 - 2(10.45) + 13.60}{25} = \frac{0.50}{25} = 0.02
+    $$
+
+    **Numerator:**
+
+    $$
+    \frac{\partial C}{\partial T} + qC + (r-q)K\frac{\partial C}{\partial K} = 5.25 + 0.01(10.45) + (0.03 - 0.01)(100)(-0.58)
+    $$
+
+    $$
+    = 5.25 + 0.1045 - 1.16 = 4.1945
+    $$
+
+    **Denominator:**
+
+    $$
+    \frac{1}{2}K^2 \frac{\partial^2 C}{\partial K^2} = \frac{1}{2}(100)^2(0.02) = 100
+    $$
+
+    **Local variance:**
+
+    $$
+    \sigma_{\text{loc}}^2(100, 1) = \frac{4.1945}{100} = 0.041945
+    $$
+
+    **Local volatility:**
+
+    $$
+    \sigma_{\text{loc}}(100, 1) = \sqrt{0.041945} \approx 0.2048 = 20.48\%
+    $$
+
 ---
 
 **Exercise 2.** The Gatheral-Jacquier formula expresses local volatility in terms of implied volatility derivatives. Explain why this formulation is often more numerically stable than differentiating call prices directly. Under what conditions does it avoid finite differences entirely?
+
+??? success "Solution to Exercise 2"
+    The Gatheral-Jacquier formula expresses $\sigma_{\text{loc}}^2$ directly in terms of implied volatility and its derivatives, rather than call price derivatives. This is more numerically stable for several reasons:
+
+    **Smoother input surface.** The implied volatility surface is much smoother than the call price surface. Call prices range from zero (deep OTM) to $S - Ke^{-rT}$ (deep ITM) with a steep gradient near ATM, whereas implied volatility typically varies by only a few percentage points across strikes. Differentiating a smoother function produces more stable derivatives.
+
+    **Better-conditioned denominator.** In the price-space Dupire formula, the denominator $\frac{1}{2}K^2 C_{KK}$ involves the second derivative of call prices, which can be extremely small deep OTM or ITM (where the risk-neutral density is near zero). In IV space, the denominator involves quantities related to the curvature of the smile, which are typically better behaved.
+
+    **Avoids differentiating near-zero quantities.** Deep OTM call prices are very small, making finite difference ratios of prices highly sensitive to noise. Implied volatilities remain well-defined and of moderate magnitude even for deep OTM options.
+
+    The formulation avoids finite differences entirely when the implied volatility surface is represented by an analytic parametrization such as SVI or SSVI. In that case, the derivatives $\partial \sigma_{\text{IV}}/\partial K$, $\partial^2 \sigma_{\text{IV}}/\partial K^2$, and $\partial \sigma_{\text{IV}}/\partial T$ can all be computed analytically from the parametric formulas, eliminating discretization error in the differentiation step completely.
 
 ---
 
@@ -265,18 +329,130 @@ $$
 
 Verify that when the total variance surface is flat ($w(y, T) = \sigma_0^2 T$, independent of $y$), the formula correctly gives $\sigma_{\text{loc}} = \sigma_0$.
 
+??? success "Solution to Exercise 3"
+    When $w(y, T) = \sigma_0^2 T$ (flat total variance, independent of $y$), all $y$-derivatives vanish:
+
+    $$
+    \frac{\partial w}{\partial y} = 0, \quad \frac{\partial^2 w}{\partial y^2} = 0
+    $$
+
+    and the time derivative is:
+
+    $$
+    \frac{\partial w}{\partial T} = \sigma_0^2
+    $$
+
+    Substituting into the total variance formulation of Dupire's formula:
+
+    $$
+    \sigma_{\text{loc}}^2 = \frac{\partial_T w}{\left(1 - \frac{y}{w}\partial_y w\right)^2 - \frac{1}{4}(\partial_y w)^2\left(\frac{1}{w} + \frac{1}{4}\right) + \frac{1}{2}\partial_{yy}w}
+    $$
+
+    The numerator becomes $\sigma_0^2$.
+
+    The denominator simplifies term by term:
+
+    - First term: $\left(1 - \frac{y}{w} \cdot 0\right)^2 = 1$
+    - Second term: $-\frac{1}{4}(0)^2(\cdots) = 0$
+    - Third term: $\frac{1}{2}(0) = 0$
+
+    So the denominator equals 1, and:
+
+    $$
+    \sigma_{\text{loc}}^2 = \frac{\sigma_0^2}{1} = \sigma_0^2
+    $$
+
+    Therefore $\sigma_{\text{loc}} = \sigma_0$, confirming that a flat implied volatility surface correctly yields a constant local volatility equal to the implied volatility. This is the expected result: when the market is consistent with Black-Scholes (flat smile, constant implied vol), the local volatility model recovers constant volatility.
+
 ---
 
 **Exercise 4.** Tikhonov regularization adds penalty terms $\lambda_1 \int\!\!\int (\partial_K \sigma_{\text{loc}})^2 \, dK\,dT + \lambda_2 \int\!\!\int (\partial_T \sigma_{\text{loc}})^2 \, dK\,dT$ to the objective function. Explain the effect of increasing $\lambda_1$ relative to $\lambda_2$. In what market scenario (e.g., steep skew vs flat skew, sparse vs dense maturities) would you choose a larger $\lambda_2$?
+
+??? success "Solution to Exercise 4"
+    The regularization penalty consists of two terms:
+
+    $$
+    \lambda_1 \int\!\!\int \left(\frac{\partial \sigma_{\text{loc}}}{\partial K}\right)^2 dK\,dT + \lambda_2 \int\!\!\int \left(\frac{\partial \sigma_{\text{loc}}}{\partial T}\right)^2 dK\,dT
+    $$
+
+    **Effect of $\lambda_1$:** Penalizes variation of $\sigma_{\text{loc}}$ across strikes. Increasing $\lambda_1$ forces the local volatility surface to be flatter in the strike direction, smoothing out the skew structure. A large $\lambda_1$ produces a surface that is nearly constant in $K$ at each time — essentially removing the smile from the local volatility.
+
+    **Effect of $\lambda_2$:** Penalizes variation of $\sigma_{\text{loc}}$ across maturities. Increasing $\lambda_2$ forces the local volatility to be flatter in the time direction, smoothing out the term structure. A large $\lambda_2$ produces a surface that changes slowly over time.
+
+    **Increasing $\lambda_1$ relative to $\lambda_2$** means penalizing strike variation more than time variation. This flattens the smile more aggressively while still allowing the term structure to vary. This is appropriate when the smile structure in the data is noisy but the term structure is reliable.
+
+    **When to choose a larger $\lambda_2$:** A larger $\lambda_2$ is appropriate when maturities are sparse (e.g., large gaps between available expiries such as 3M, 6M, 1Y). With sparse maturities, the time derivative $\partial C / \partial T$ is poorly estimated, causing oscillations in $\sigma_{\text{loc}}$ along the time axis. A larger $\lambda_2$ smooths these oscillations. In contrast, if the skew is steep (e.g., equity index options with pronounced put skew) but well-observed across many strikes, one would keep $\lambda_1$ small to preserve the genuine smile structure and increase $\lambda_2$ to stabilize the less reliable time direction.
 
 ---
 
 **Exercise 5.** After constructing a local volatility surface, the repricing test yields an RMSE of 2.5 implied volatility points. List three possible causes of this large repricing error and for each cause describe a corrective action.
 
+??? success "Solution to Exercise 5"
+    An RMSE of 2.5 implied volatility points is large (typical acceptable tolerance is below 0.5 vol points). Three possible causes and corrective actions:
+
+    **Cause 1: Insufficient smoothing of the input call price surface.**
+    If the smoothing step left too much noise in the call prices, the differentiation step produces a noisy local volatility surface. When this surface is used to reprice, the noise accumulates and the repriced prices deviate from market prices.
+    *Corrective action:* Increase the smoothing parameter $\lambda$ in the smoothing spline or tighten the SVI/SSVI fit tolerances. Use cross-validation to find a better balance between fit and smoothness.
+
+    **Cause 2: Arbitrage violations in the smoothed surface.**
+    If the interpolated call surface violates no-arbitrage conditions (negative $C_{KK}$, negative $C_T$, or monotonicity failure), Dupire's formula produces negative or infinite local volatility values at those points. Clamping or projecting these values introduces systematic error.
+    *Corrective action:* Enforce all three no-arbitrage constraints (strike monotonicity, strike convexity, calendar monotonicity) explicitly during the interpolation step. Use constrained optimization or arbitrage-free parametrizations (SSVI).
+
+    **Cause 3: Poor wing extrapolation.**
+    If the implied volatility or call price surface is extrapolated poorly beyond the range of observed strikes, the local volatility in the wings can be wildly inaccurate. Since option prices (especially for OTM puts on equity indices) have non-trivial wing contributions, errors in the wing local volatility affect repricing across a range of strikes.
+    *Corrective action:* Use a principled wing extrapolation method (e.g., SVI linear wings consistent with Lee's moment formula). Verify that the extrapolated local volatility is bounded and smooth, and test sensitivity of repriced prices to extrapolation assumptions.
+
 ---
 
 **Exercise 6.** Explain the coordinate transformation from $(K, T)$ to $(S, t)$ in the context of Dupire's formula. Why is it valid to set $\sigma_{\text{loc}}(S, t) = \sigma_{\text{loc}}(K = S, T = t)$? Under what circumstances does this simple relabeling fail, and what additional steps are needed?
 
+??? success "Solution to Exercise 6"
+    Dupire's formula produces $\sigma_{\text{loc}}(K, T)$, where $K$ is the strike and $T$ is the maturity of the European option used in the calibration. The PDE or Monte Carlo simulation requires $\sigma_{\text{loc}}(S, t)$, where $S$ is the spot price and $t$ is the calendar time.
+
+    **Why the relabeling $\sigma_{\text{loc}}(S, t) = \sigma_{\text{loc}}(K = S, T = t)$ is valid:**
+    Dupire's formula gives the local volatility at the point where the risk-neutral diffusion process reaches level $K$ at time $T$. By construction, $\sigma_{\text{loc}}(K, T)$ is the instantaneous volatility that the spot process $S_t$ has when $S_T = K$ at time $T$. Therefore, when we simulate the SDE forward and the process reaches level $S$ at time $t$, the correct volatility to use is $\sigma_{\text{loc}}(K = S, T = t)$. The strike variable in Dupire's output plays exactly the role of the future spot level.
+
+    **When this simple relabeling fails:**
+
+    - When the risk-free rate $r$ or dividend yield $q$ is not constant, the forward price $F(t, T)$ introduces a time-dependent drift that shifts the relationship between strike and spot. One must account for the forward mapping: $K$ in Dupire's formula corresponds to a forward-adjusted spot, not the raw spot.
+    - When discrete dividends are present, the spot process has jumps at dividend dates, and the local volatility surface in $(K, T)$ space must be adjusted to account for the known drop in spot at each ex-dividend date.
+    - For stochastic interest rate models, the discounting and drift depend on the rate process, complicating the correspondence.
+
+    In these cases, the additional step is to map through the forward price: first express Dupire's output in terms of the forward moneyness $K/F(0,T)$ and then invert using the time-dependent forward curve to recover $\sigma_{\text{loc}}(S, t)$ accounting for the deterministic drift components.
+
 ---
 
 **Exercise 7.** Using the SVI parametrization $w(y) = a + b(\rho(y-m) + \sqrt{(y-m)^2 + \sigma^2})$, compute the analytic first and second derivatives $\partial_y w$ and $\partial_{yy} w$. Verify that $\partial_{yy} w > 0$ for all $y$, which guarantees the butterfly no-arbitrage condition is not violated by the convexity term alone.
+
+??? success "Solution to Exercise 7"
+    Starting from the SVI parametrization:
+
+    $$
+    w(y) = a + b\left(\rho(y - m) + \sqrt{(y-m)^2 + \sigma^2}\right)
+    $$
+
+    **First derivative.** Let $u = y - m$. Then:
+
+    $$
+    \frac{\partial w}{\partial y} = b\left(\rho + \frac{u}{\sqrt{u^2 + \sigma^2}}\right) = b\left(\rho + \frac{y - m}{\sqrt{(y-m)^2 + \sigma^2}}\right)
+    $$
+
+    **Second derivative.** Differentiating the second term using the quotient/chain rule:
+
+    $$
+    \frac{\partial}{\partial y}\left(\frac{u}{\sqrt{u^2 + \sigma^2}}\right) = \frac{\sqrt{u^2 + \sigma^2} - u \cdot \frac{u}{\sqrt{u^2 + \sigma^2}}}{u^2 + \sigma^2} = \frac{u^2 + \sigma^2 - u^2}{(u^2 + \sigma^2)^{3/2}} = \frac{\sigma^2}{(u^2 + \sigma^2)^{3/2}}
+    $$
+
+    Therefore:
+
+    $$
+    \frac{\partial^2 w}{\partial y^2} = \frac{b\sigma^2}{\left((y-m)^2 + \sigma^2\right)^{3/2}}
+    $$
+
+    **Verification that $\partial_{yy} w > 0$ for all $y$:**
+
+    - $b > 0$ by assumption (SVI parameter constraint)
+    - $\sigma^2 > 0$ since $\sigma > 0$
+    - $((y-m)^2 + \sigma^2)^{3/2} > 0$ for all $y$, since the base is strictly positive
+
+    Therefore $\partial_{yy} w > 0$ for all $y$, unconditionally. This means the SVI parametrization always produces a strictly convex total variance slice in log-moneyness, which ensures that the contribution of the $\frac{1}{2}\partial_{yy}w$ term in the Durrleman condition is always positive. While this alone does not guarantee full absence of butterfly arbitrage (the other terms in Durrleman's condition must also be checked), it ensures the convexity term never causes a violation.

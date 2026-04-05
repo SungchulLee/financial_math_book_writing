@@ -730,9 +730,55 @@ $$
 
 Verify that a 1 percentage point increase in implied volatility (20% to 21%) changes the option price by approximately $\mathcal{V} \times 0.01$.
 
+??? success "Solution to Exercise 1"
+    We have $S_0 = 100$, $K = 100$, $T = 0.25$, $r = 0.05$, $q = 0$, and $\sigma = 0.20$.
+
+    First compute $d_1$:
+
+    $$
+    d_1 = \frac{\ln(100/100) + (0.05 + 0.02)\times 0.25}{0.20 \times 0.5} = \frac{0 + 0.0175}{0.10} = 0.175
+    $$
+
+    The standard normal density at $d_1 = 0.175$ is:
+
+    $$
+    \phi(0.175) = \frac{1}{\sqrt{2\pi}} e^{-0.175^2/2} = \frac{1}{\sqrt{2\pi}} e^{-0.0153} \approx 0.3945
+    $$
+
+    Since $q = 0$, the vega is:
+
+    $$
+    \mathcal{V}_{\text{BS}} = S_0 \,\phi(d_1)\,\sqrt{T} = 100 \times 0.3945 \times 0.5 = 19.73
+    $$
+
+    For a 1 percentage point increase ($\Delta\sigma = 0.01$):
+
+    $$
+    \Delta P \approx \mathcal{V} \times 0.01 = 19.73 \times 0.01 = 0.1973
+    $$
+
+    So the option price increases by approximately $\$0.20$ when implied volatility moves from 20% to 21%, confirming the linear approximation.
+
 ---
 
 **Exercise 2.** Using the same parameters as Exercise 1, compute vega at strikes $K = 85, 90, 95, 100, 105, 110, 115$. Plot the results and confirm that vega is maximized at or near ATM. At which strike does vega drop below half of the ATM value?
+
+??? success "Solution to Exercise 2"
+    Using $S_0 = 100$, $T = 0.25$, $r = 0.05$, $q = 0$, and $\sigma = 0.20$, we compute $d_1$ and vega at each strike.
+
+    The formula is $d_1 = \frac{\ln(S_0/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}}$ and $\mathcal{V} = S_0\,\phi(d_1)\sqrt{T}$.
+
+    | $K$ | $d_1$ | $\phi(d_1)$ | $\mathcal{V}$ |
+    |-----|-------|-------------|----------------|
+    | 85  | 1.80  | 0.079       | 3.95           |
+    | 90  | 1.28  | 0.176       | 8.78           |
+    | 95  | 0.73  | 0.307       | 15.34          |
+    | 100 | 0.175 | 0.394       | 19.73          |
+    | 105 | $-0.38$ | 0.370     | 18.50          |
+    | 110 | $-0.93$ | 0.258     | 12.91          |
+    | 115 | $-1.49$ | 0.131     | 6.56           |
+
+    Vega is maximized at $K = 100$ (ATM). Half of the ATM vega is $19.73/2 \approx 9.87$. From the table, vega drops below this threshold at $K = 90$ ($\mathcal{V} = 8.78$) and $K = 110$ ($\mathcal{V} = 12.91$). On the low side, the strike where vega first drops below half ATM is approximately $K = 90$.
 
 ---
 
@@ -744,18 +790,132 @@ $$
 
 Interpret the sign: if the spot increases by \$1 while volatility simultaneously increases by 1%, what is the approximate effect on the option's delta?
 
+??? success "Solution to Exercise 3"
+    We have $S_0 = K = 100$, $T = 0.5$, $r = 0.03$, $q = 0$, and $\sigma = 0.25$.
+
+    Compute $d_1$ and $d_2$:
+
+    $$
+    d_1 = \frac{\ln(1) + (0.03 + 0.03125)\times 0.5}{0.25\sqrt{0.5}} = \frac{0.030625}{0.17678} \approx 0.1733
+    $$
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{T} = 0.1733 - 0.17678 \approx -0.0035
+    $$
+
+    Vega:
+
+    $$
+    \mathcal{V} = 100 \times \phi(0.1733) \times \sqrt{0.5} \approx 100 \times 0.3940 \times 0.7071 \approx 27.86
+    $$
+
+    Vanna:
+
+    $$
+    \text{Vanna} = -\frac{\mathcal{V}\cdot d_2}{S\cdot\sigma\cdot\sqrt{T}} = -\frac{27.86 \times (-0.0035)}{100 \times 0.25 \times 0.7071} = \frac{0.0975}{17.678} \approx 0.0055
+    $$
+
+    The vanna is positive (small). If spot increases by $\$1$ ($\Delta S = 1$) while volatility simultaneously increases by 1% ($\Delta\sigma = 0.01$), the approximate effect on delta is:
+
+    $$
+    \Delta(\Delta) \approx \text{Vanna}\times\Delta\sigma = 0.0055 \times 0.01 \approx 0.000055
+    $$
+
+    The effect is negligible at ATM because $d_2 \approx 0$. For options further from ATM, vanna is larger and the cross-effect is more significant.
+
 ---
 
 **Exercise 4.** The volga (vomma) is given by $\text{Volga} = \mathcal{V} \cdot d_1 d_2 / \sigma$. (a) At ATM, show that $d_1 d_2 < 0$ for typical parameter values, so volga is negative. (b) For a deep OTM call with $K = 130$ (same parameters otherwise), show that $d_1 d_2 > 0$ and volga is positive. (c) Explain the economic meaning: why do OTM options benefit from "vol-of-vol"?
+
+??? success "Solution to Exercise 4"
+    **(a)** At ATM forward, we have approximately $d_1 \approx \sigma\sqrt{T}/2 > 0$ and $d_2 = d_1 - \sigma\sqrt{T} \approx -\sigma\sqrt{T}/2 < 0$. Therefore:
+
+    $$
+    d_1 d_2 \approx \frac{\sigma\sqrt{T}}{2}\times\left(-\frac{\sigma\sqrt{T}}{2}\right) = -\frac{\sigma^2 T}{4} < 0
+    $$
+
+    Since $\mathcal{V} > 0$ and $\sigma > 0$, the volga $\mathcal{V}\,d_1 d_2/\sigma < 0$ at ATM.
+
+    **(b)** For a deep OTM call with $K = 130$, using $S_0 = 100$, $T = 0.25$, $r = 0.05$, $\sigma = 0.20$:
+
+    $$
+    d_1 = \frac{\ln(100/130) + 0.0175}{0.10} = \frac{-0.2624 + 0.0175}{0.10} = -2.449
+    $$
+
+    $$
+    d_2 = -2.449 - 0.10 = -2.549
+    $$
+
+    Both $d_1 < 0$ and $d_2 < 0$, so $d_1 d_2 = (-2.449)(-2.549) = 6.24 > 0$ and volga is positive.
+
+    **(c)** OTM options benefit from vol-of-vol because their value is convex in volatility. When volatility is low, they are very cheap (near zero). When volatility is high, they gain significant value. This asymmetry means that random fluctuations in volatility (vol-of-vol) raise the expected payoff of OTM options, making their fair value higher than what a constant-volatility model would predict. Positive volga reflects this convexity premium.
 
 ---
 
 **Exercise 5.** A trading desk holds a portfolio with vega exposures: +\$200K in 1-month options and $-$\$150K in 6-month options. (a) Compute the parallel vega. (b) Compute the time-weighted vega $\mathcal{V}/\sqrt{T}$ for each bucket. (c) Is the portfolio at risk from a term structure steepening (short-dated vol up, long-dated vol down)? Explain.
 
+??? success "Solution to Exercise 5"
+    **(a)** Parallel vega is the sum of all vega exposures:
+
+    $$
+    \mathcal{V}_{\parallel} = +200{,}000 + (-150{,}000) = +\$50{,}000
+    $$
+
+    **(b)** Time-weighted vega $\mathcal{V}/\sqrt{T}$ for each bucket:
+
+    - 1-month bucket ($T = 1/12$): $\mathcal{V}/\sqrt{T} = 200{,}000/\sqrt{1/12} = 200{,}000 \times \sqrt{12} \approx 200{,}000 \times 3.464 = \$692{,}800$
+    - 6-month bucket ($T = 0.5$): $\mathcal{V}/\sqrt{T} = -150{,}000/\sqrt{0.5} = -150{,}000 \times 1.414 = -\$212{,}100$
+
+    **(c)** Yes, the portfolio is significantly at risk from term structure steepening. If short-dated vol rises by $\Delta\sigma_{\text{short}}$ and long-dated vol falls by $\Delta\sigma_{\text{long}}$:
+
+    $$
+    \text{P\&L} \approx 200{,}000\times\Delta\sigma_{\text{short}} - 150{,}000\times|\Delta\sigma_{\text{long}}|
+    $$
+
+    A steepening (short up, long down) produces gains from the long short-dated position and gains from the short long-dated position, so the portfolio profits from steepening. Conversely, a flattening (short down, long up) would produce losses on both legs.
+
 ---
 
 **Exercise 6.** In the Heston stochastic volatility model, identify three distinct "vegas": spot vol vega ($\partial P / \partial v_0$), long-run vol vega ($\partial P / \partial \theta$), and vol-of-vol vega ($\partial P / \partial \xi$). For a 1-year ATM option, which of these three sensitivities do you expect to be largest? Explain your reasoning based on the option's maturity relative to the mean-reversion time scale $1/\kappa$.
 
+??? success "Solution to Exercise 6"
+    In the Heston model, the variance follows $dv_t = \kappa(\theta - v_t)dt + \xi\sqrt{v_t}\,dW_t^v$. The three vegas are:
+
+    - **Spot vol vega** ($\partial P/\partial v_0$): Sensitivity to the current instantaneous variance. For a 1-year option, this is the most direct and largest sensitivity because the option's near-term payoff distribution depends immediately on the current variance level.
+    - **Long-run vol vega** ($\partial P/\partial \theta$): Sensitivity to the mean-reversion target. Its impact depends on how much time the option has for variance to revert. For a 1-year ATM option, if $1/\kappa$ is comparable to 1 year (e.g., $\kappa \approx 1$), then $\theta$ has moderate influence because variance partially reverts over the option's life.
+    - **Vol-of-vol vega** ($\partial P/\partial \xi$): Sensitivity to the volatility of the variance process. This primarily affects the smile shape (convexity/wings) rather than the ATM level, so it tends to be smaller for ATM options.
+
+    For a 1-year ATM option, the **spot vol vega** ($\partial P/\partial v_0$) is expected to be the largest. The current variance $v_0$ directly sets the volatility level over the near term and dominates the total integrated variance experienced by the option. The long-run vega becomes relatively more important only for very long-dated options (when $T \gg 1/\kappa$), and the vol-of-vol vega is more relevant for OTM options where smile curvature matters.
+
 ---
 
 **Exercise 7.** An option has price $P = 5.20$, vega $\mathcal{V} = 18.0$, and volga $\text{Volga} = 3.5$. If implied volatility jumps from 22% to 27% (a large 5 percentage point move), compare the first-order approximation $\Delta P \approx \mathcal{V} \cdot \Delta\sigma$ with the second-order approximation $\Delta P \approx \mathcal{V} \cdot \Delta\sigma + \frac{1}{2}\text{Volga} \cdot (\Delta\sigma)^2$. By what percentage does the first-order approximation underestimate the true price change?
+
+??? success "Solution to Exercise 7"
+    The volatility move is $\Delta\sigma = 0.27 - 0.22 = 0.05$.
+
+    **First-order approximation:**
+
+    $$
+    \Delta P_1 \approx \mathcal{V}\cdot\Delta\sigma = 18.0 \times 0.05 = 0.90
+    $$
+
+    **Second-order approximation:**
+
+    $$
+    \Delta P_2 \approx \mathcal{V}\cdot\Delta\sigma + \frac{1}{2}\text{Volga}\cdot(\Delta\sigma)^2 = 18.0\times 0.05 + \frac{1}{2}\times 3.5\times 0.05^2
+    $$
+
+    $$
+    = 0.90 + \frac{1}{2}\times 3.5 \times 0.0025 = 0.90 + 0.004375 = 0.904375
+    $$
+
+    The first-order approximation gives $\Delta P_1 = 0.90$ while the second-order gives $\Delta P_2 \approx 0.9044$.
+
+    The percentage underestimation by the first-order approximation (relative to the second-order estimate) is:
+
+    $$
+    \frac{0.9044 - 0.90}{0.9044}\times 100\% \approx 0.49\%
+    $$
+
+    The first-order approximation underestimates the price change by approximately 0.49%. The volga correction is small here because $(\Delta\sigma)^2 = 0.0025$ is modest, but for even larger vol moves or options with larger volga (e.g., deep OTM), the correction becomes more significant.

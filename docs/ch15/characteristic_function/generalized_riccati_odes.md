@@ -255,17 +255,110 @@ The generalized Riccati ODE system $\phi' = F(\psi)$, $\psi' = R(\psi)$ arises f
 
 **Exercise 1.** For a scalar affine diffusion with $\kappa_0 = 0.05$, $\kappa_1 = -0.5$, $\sigma_0 = 0$, and $\sigma_1 = 0.04$, write down the functions $F(w)$ and $R(w)$ explicitly. Classify the $\psi$-equation: is it linear, Riccati, or of jump-diffusion type? What financial model does this specification correspond to?
 
+??? success "Solution to Exercise 1"
+    With the given parameters, we have
+
+    $$
+    F(w) = \kappa_0 w + \frac{1}{2}\sigma_0 w^2 = 0.05w + 0 = 0.05w
+    $$
+
+    $$
+    R(w) = \kappa_1 w + \frac{1}{2}\sigma_1 w^2 = -0.5w + 0.02w^2
+    $$
+
+    The $\psi$-equation is $\psi' = -0.5\psi + 0.02\psi^2$, which is a genuine **Riccati equation** due to the quadratic term $0.02\psi^2$ arising from $\sigma_1 = 0.04 > 0$.
+
+    This specification corresponds to the **CIR (Cox-Ingersoll-Ross) model**: the drift is affine in $x$ with mean reversion ($\kappa_1 = -0.5 < 0$), the constant diffusion is zero ($\sigma_0 = 0$), and the state-dependent diffusion coefficient is $\sigma_1 = 0.04$, so $\sqrt{\sigma_1 x} = 0.2\sqrt{x}$. The dynamics are
+
+    $$
+    dX_t = (0.05 - 0.5 X_t)\,dt + 0.2\sqrt{X_t}\,dW_t
+    $$
+
+    which is a CIR process with $\kappa = 0.5$, $\theta = \kappa_0/\kappa = 0.1$, and $\xi = 0.2$.
+
 ---
 
 **Exercise 2.** Starting from the PDE for $g(\tau, x) = \mathbb{E}[e^{uX_{t+\tau}} \mid X_t = x]$ with a diffusion of the form $\sigma(x) = \sigma_0 + \sigma_1 x + \sigma_2 x^2$, attempt the exponential-affine ansatz and show that matching powers of $x$ produces three equations (for $x^0$, $x^1$, and $x^2$) but only two unknowns ($\phi'$ and $\psi'$), leading to an overdetermined system. What does this prove about the necessity of the affine structure?
+
+??? success "Solution to Exercise 2"
+    With $\sigma(x) = \sigma_0 + \sigma_1 x + \sigma_2 x^2$, the diffusion coefficient in the backward Kolmogorov PDE is $\frac{1}{2}\sigma(x) = \frac{1}{2}(\sigma_0 + \sigma_1 x + \sigma_2 x^2)$. Substituting $g = e^{\phi + \psi x}$ into the PDE:
+
+    $$
+    \phi' + \psi' x = (\kappa_0 + \kappa_1 x)\psi + \frac{1}{2}(\sigma_0 + \sigma_1 x + \sigma_2 x^2)\psi^2
+    $$
+
+    Expanding the right-hand side and collecting by powers of $x$:
+
+    - **$x^0$ terms:** $\kappa_0\psi + \frac{1}{2}\sigma_0\psi^2$
+    - **$x^1$ terms:** $\kappa_1\psi + \frac{1}{2}\sigma_1\psi^2$
+    - **$x^2$ terms:** $\frac{1}{2}\sigma_2\psi^2$
+
+    The left-hand side $\phi' + \psi' x$ has only $x^0$ and $x^1$ terms. Matching:
+
+    - $x^0$: $\phi' = \kappa_0\psi + \frac{1}{2}\sigma_0\psi^2$
+    - $x^1$: $\psi' = \kappa_1\psi + \frac{1}{2}\sigma_1\psi^2$
+    - $x^2$: $0 = \frac{1}{2}\sigma_2\psi^2$
+
+    The $x^2$ constraint requires $\sigma_2\psi^2 = 0$ for all $\tau$. Since $\psi(0) = u \neq 0$ in general, this forces $\sigma_2 = 0$. If $\sigma_2 \neq 0$, the system is overdetermined (three equations, two unknowns) with no consistent solution. This proves that the exponential-affine ansatz requires the diffusion coefficient to be affine in $x$; a quadratic or higher-order dependence on $x$ breaks the ansatz.
 
 ---
 
 **Exercise 3.** For the two-factor model in the worked example (Vasicek $r_t$ and CIR $V_t$, independent), solve the decoupled Riccati system explicitly. That is, write $\psi_1(\tau)$ in closed form (linear ODE) and $\psi_2(\tau)$ in closed form (scalar Riccati), then integrate $\phi(\tau) = \int_0^\tau F(\psi(s))\,ds$.
 
+??? success "Solution to Exercise 3"
+    **Component 1 (Vasicek, linear ODE):** $\psi_1'(\tau) = -\kappa_r\psi_1(\tau)$ with $\psi_1(0) = u_1$:
+
+    $$
+    \psi_1(\tau) = u_1 e^{-\kappa_r\tau}
+    $$
+
+    **Component 2 (CIR, scalar Riccati):** $\psi_2'(\tau) = -\kappa_V\psi_2(\tau) + \frac{\xi^2}{2}\psi_2(\tau)^2$ with $\psi_2(0) = u_2$. Using the standard CIR Riccati solution:
+
+    $$
+    \psi_2(\tau) = \frac{u_2\,e^{-\frac{1}{2}(\gamma_V + \kappa_V)\tau}}{\displaystyle 1 - \frac{u_2\xi^2}{2\gamma_V}(1 - e^{-\gamma_V\tau})}
+    $$
+
+    where $\gamma_V = \sqrt{\kappa_V^2 - \xi^2 u_2}$ (with appropriate branch choice depending on whether $u_2$ is real or complex).
+
+    **The $\phi$-function:** Integrate $\phi' = F(\psi) = \kappa_r\theta_r\psi_1 + \kappa_V\theta_V\psi_2 + \frac{1}{2}\sigma_r^2\psi_1^2$:
+
+    $$
+    \phi(\tau) = \int_0^\tau\!\left[\kappa_r\theta_r\,u_1 e^{-\kappa_r s} + \kappa_V\theta_V\,\psi_2(s) + \frac{\sigma_r^2}{2}u_1^2 e^{-2\kappa_r s}\right]ds
+    $$
+
+    The first and third integrals evaluate in closed form:
+
+    $$
+    \int_0^\tau \kappa_r\theta_r\,u_1 e^{-\kappa_r s}\,ds = \theta_r u_1(1 - e^{-\kappa_r\tau})
+    $$
+
+    $$
+    \int_0^\tau \frac{\sigma_r^2}{2}u_1^2 e^{-2\kappa_r s}\,ds = \frac{\sigma_r^2 u_1^2}{4\kappa_r}(1 - e^{-2\kappa_r\tau})
+    $$
+
+    The second integral $\int_0^\tau \kappa_V\theta_V\psi_2(s)\,ds$ yields the standard CIR logarithmic term:
+
+    $$
+    \kappa_V\theta_V\int_0^\tau \psi_2(s)\,ds = \frac{2\kappa_V\theta_V}{\xi^2}\log\!\left(\frac{1}{1 - \frac{u_2\xi^2}{2\gamma_V}(1 - e^{-\gamma_V\tau})}\right) + \text{(linear terms in } \tau\text{)}
+    $$
+
+    The full $\phi(\tau)$ is the sum of the Vasicek-type terms and the CIR-type logarithmic term, reflecting the independence of the two components.
+
 ---
 
 **Exercise 4.** Explain the hierarchical structure of the Riccati system: why is it that $\psi' = R(\psi)$ does not depend on $\phi$, but $\phi' = F(\psi)$ does depend on $\psi$? Relate this to the separation of the backward Kolmogorov PDE by powers of $x$.
+
+??? success "Solution to Exercise 4"
+    The separation of the backward Kolmogorov PDE by powers of $x$ produces:
+
+    - The **$x^0$ (constant) terms** must balance independently, giving the $\phi$-equation: $\phi' = F(\psi)$
+    - The **$x^1$ (linear) terms** must balance independently, giving the $\psi$-equation: $\psi' = R(\psi)$
+
+    The $\psi$-equation involves only $\psi$ because the coefficient of $x$ on the left-hand side ($\psi'$) must equal the coefficient of $x$ on the right-hand side, which involves only $\psi$ (through the drift coefficient $\kappa_1\psi$ and the diffusion coefficient $\frac{1}{2}\sigma_1\psi^2$). No term involving $\phi$ appears at the $x^1$ level because $\phi$ enters the ansatz $e^{\phi + \psi x}$ as a multiplicative factor independent of $x$---it contributes only to the $x^0$ level after dividing by $g$.
+
+    Conversely, the $\phi$-equation involves $\psi$ because the constant terms on the right-hand side include $\kappa_0\psi + \frac{1}{2}\sigma_0\psi^2$, both of which depend on $\psi$.
+
+    This hierarchical structure is a direct consequence of the affine structure of the drift and diffusion: since $b(x) = b_0 + b_1 x$ is at most linear in $x$, and $a(x) = a_0 + a_1 x$ is also at most linear, the product with the ansatz derivatives never produces terms of order higher than $x^1$. The linear terms give a self-contained equation for $\psi$, and the constant terms give an equation for $\phi$ that depends on the already-determined $\psi$.
 
 ---
 
@@ -277,6 +370,42 @@ $$
 
 and identify the domain of $w$ for which $R(w)$ is well-defined. What happens at $w = \eta$?
 
+??? success "Solution to Exercise 5"
+    The Levy measure is $m_1(dz) = \lambda\eta e^{-\eta z}\,dz$ on $\mathbb{R}_+$. The jump contribution to $R$ is
+
+    $$
+    \int_0^\infty (e^{wz} - 1)\lambda\eta e^{-\eta z}\,dz = \lambda\eta\int_0^\infty (e^{(w-\eta)z} - e^{-\eta z})\,dz
+    $$
+
+    For the integral to converge, we need $\operatorname{Re}(w) < \eta$. Evaluating:
+
+    $$
+    \lambda\eta\!\left[\frac{1}{\eta - w} - \frac{1}{\eta}\right] = \lambda\eta\cdot\frac{\eta - (\eta - w)}{\eta(\eta - w)} = \lambda\cdot\frac{w}{\eta - w} = \lambda\!\left(\frac{\eta}{\eta - w} - 1\right)
+    $$
+
+    Adding the drift and diffusion terms:
+
+    $$
+    R(w) = -\kappa w + \frac{\xi^2}{2}w^2 + \lambda\!\left(\frac{\eta}{\eta - w} - 1\right)
+    $$
+
+    **Domain:** $R(w)$ is well-defined for $w \in \mathbb{C}$ with $\operatorname{Re}(w) < \eta$ (ensuring convergence of the jump integral). In particular, for real $w$, the domain is $w < \eta$.
+
+    **At $w = \eta$:** The term $\frac{\eta}{\eta - w}$ has a pole, so $R(w) \to +\infty$ as $w \to \eta^-$. This singularity reflects the fact that the moment generating function $\mathbb{E}[e^{wJ}]$ for an exponential random variable $J \sim \text{Exp}(\eta)$ diverges at $w = \eta$. The jump component imposes an additional constraint on the admissible domain beyond those from the diffusion-driven Riccati dynamics.
+
 ---
 
 **Exercise 6.** In the Duffie-Pan-Singleton formulation, the discounted characteristic function satisfies $\frac{dB}{d\tau} = -r_1 + a_1^T B + \frac{1}{2}c_1^T B \odot B$. For a one-factor CIR model with $r_1 = 1$, $a_1 = -\kappa$, $c_1 = \xi^2$, write this as a scalar Riccati equation for $B(\tau)$ and verify that the initial condition $B(0) = iv$ is correct for the characteristic function and $B(0) = 0$ is correct for bond pricing.
+
+??? success "Solution to Exercise 6"
+    Substituting $r_1 = 1$, $a_1 = -\kappa$, $c_1 = \xi^2$ into $\frac{dB}{d\tau} = -r_1 + a_1 B + \frac{1}{2}c_1 B^2$:
+
+    $$
+    B'(\tau) = -1 - \kappa B(\tau) + \frac{\xi^2}{2}B(\tau)^2
+    $$
+
+    This is a scalar Riccati equation of the standard form $B' = \alpha + \beta B + \frac{1}{2}\gamma B^2$ with $\alpha = -1$, $\beta = -\kappa$, $\gamma = \xi^2$.
+
+    **Characteristic function initial condition ($B(0) = iv$):** At $\tau = 0$, the discounted characteristic function is $\varphi(X_t, t, t, u) = e^{A(0) + B(0)X_t} = e^{iuX_t}$, which requires $A(0) = 0$ and $B(0) = iu$. Writing $u = v$ gives $B(0) = iv$, confirming the initial condition.
+
+    **Bond pricing initial condition ($B(0) = 0$):** The zero-coupon bond price is $P(t, T) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r_s\,ds} \mid \mathcal{F}_t]$. At $\tau = 0$ (i.e., $T = t$), the bond price is $P(t,t) = 1 = e^{A(0) + B(0)r_t}$ for all $r_t$, which requires $A(0) = 0$ and $B(0) = 0$. There is no $e^{iuX_T}$ term because bond pricing involves only the discount factor, not a payoff depending on the terminal state.

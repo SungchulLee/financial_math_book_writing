@@ -170,30 +170,6 @@ $$\mathbb{E}[S_n^4] = n + 3n(n-1) = 3n^2 - 2n. \quad\square$$
 
 **Exercise 1.** For the asymmetric random walk with $p = 0.7$, compute $\mathbb{E}[S_{50}]$, $\text{Var}(S_{50})$, and $\mathbb{E}[S_{50}^2]$. After how many steps does the mean exceed $2$ standard deviations (i.e., find the smallest $n$ such that $\mathbb{E}[S_n] > 2\sqrt{\text{Var}(S_n)}$)?
 
----
-
-**Exercise 2.** Verify the fourth moment formula $\mathbb{E}[S_n^4] = 3n^2 - 2n$ for $n = 1$ and $n = 2$ by direct computation. For $n = 1$, $S_1 = \xi_1 \in \{-1, +1\}$, so $S_1^4 = 1$ always. For $n = 2$, enumerate all four equally likely outcomes of $(\xi_1, \xi_2)$ and compute $\mathbb{E}[S_2^4]$.
-
----
-
-**Exercise 3.** Show that $\text{Var}(S_n^2) = \mathbb{E}[S_n^4] - (\mathbb{E}[S_n^2])^2 = 2n^2 - 2n$ for the symmetric random walk. Then compute $\text{Var}(S_n^2 - n)$ and verify it equals $2n^2 - 2n$. (This is the variance of the quadratic martingale $M_n = S_n^2 - n$.)
-
----
-
-**Exercise 4.** For the general random walk ($p \neq 1/2$), the direct expansion gives $\mathbb{E}[S_n^2] = n + n(n-1)(2p-1)^2$. Derive $\mathbb{E}[S_n^2]$ independently using the identity $\mathbb{E}[S_n^2] = \text{Var}(S_n) + (\mathbb{E}[S_n])^2$ and the formulas for $\text{Var}(S_n)$ and $\mathbb{E}[S_n]$. Confirm both methods agree.
-
----
-
-**Exercise 5.** The diffusive scaling $\text{SD}(S_n) = \sqrt{n}$ says that after $n$ steps, typical displacement is of order $\sqrt{n}$. A gambler plays $n = 10{,}000$ fair coin-flip games. Using the normal approximation, estimate the probability that the gambler is ahead by more than $\$200$ (i.e., $\mathbb{P}(S_{10000} > 200)$). Is this a likely outcome?
-
----
-
-**Exercise 6.** Compute $\mathbb{E}[S_n^3]$ for the symmetric random walk by the index-counting method used for $\mathbb{E}[S_n^4]$. Show that $\mathbb{E}[S_n^3] = 0$ by arguing that all surviving terms in the expansion $\sum_{i,j,k} \mathbb{E}[\xi_i \xi_j \xi_k]$ vanish. Does this generalize: is $\mathbb{E}[S_n^k] = 0$ for all odd $k$? Why or why not?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     With $p = 0.7$, the drift per step is $\mu = 2(0.7) - 1 = 0.4$ and the step variance is $\sigma^2 = 4(0.7)(0.3) = 0.84$.
 
@@ -217,6 +193,10 @@ $$\mathbb{E}[S_n^4] = n + 3n(n-1) = 3n^2 - 2n. \quad\square$$
 
     Dividing by $n$: $0.16n > 3.36$, so $n > 21$. The smallest such $n$ is $n = 22$.
 
+---
+
+**Exercise 2.** Verify the fourth moment formula $\mathbb{E}[S_n^4] = 3n^2 - 2n$ for $n = 1$ and $n = 2$ by direct computation. For $n = 1$, $S_1 = \xi_1 \in \{-1, +1\}$, so $S_1^4 = 1$ always. For $n = 2$, enumerate all four equally likely outcomes of $(\xi_1, \xi_2)$ and compute $\mathbb{E}[S_2^4]$.
+
 ??? success "Solution to Exercise 2"
     **For $n = 1$:** $S_1 = \xi_1 \in \{-1,+1\}$, so $S_1^4 = 1$ always. Thus $\mathbb{E}[S_1^4] = 1$. The formula gives $3(1)^2 - 2(1) = 1$. Confirmed.
 
@@ -227,6 +207,10 @@ $$\mathbb{E}[S_n^4] = n + 3n(n-1) = 3n^2 - 2n. \quad\square$$
     $$
 
     The formula gives $3(2)^2 - 2(2) = 12 - 4 = 8$. Confirmed.
+
+---
+
+**Exercise 3.** Show that $\text{Var}(S_n^2) = \mathbb{E}[S_n^4] - (\mathbb{E}[S_n^2])^2 = 2n^2 - 2n$ for the symmetric random walk. Then compute $\text{Var}(S_n^2 - n)$ and verify it equals $2n^2 - 2n$. (This is the variance of the quadratic martingale $M_n = S_n^2 - n$.)
 
 ??? success "Solution to Exercise 3"
     We have $\mathbb{E}[S_n^2] = n$ and $\mathbb{E}[S_n^4] = 3n^2 - 2n$, so:
@@ -244,6 +228,10 @@ $$\mathbb{E}[S_n^4] = n + 3n(n-1) = 3n^2 - 2n. \quad\square$$
     since subtracting a constant does not change the variance. Therefore $\text{Var}(M_n) = 2n^2 - 2n$.
 
     As a check: $\text{Var}(M_n) = \mathbb{E}[M_n^2] - (\mathbb{E}[M_n])^2 = \mathbb{E}[(S_n^2 - n)^2] - 0^2 = \mathbb{E}[S_n^4] - 2n\mathbb{E}[S_n^2] + n^2 = (3n^2 - 2n) - 2n^2 + n^2 = 2n^2 - 2n$. Confirmed.
+
+---
+
+**Exercise 4.** For the general random walk ($p \neq 1/2$), the direct expansion gives $\mathbb{E}[S_n^2] = n + n(n-1)(2p-1)^2$. Derive $\mathbb{E}[S_n^2]$ independently using the identity $\mathbb{E}[S_n^2] = \text{Var}(S_n) + (\mathbb{E}[S_n])^2$ and the formulas for $\text{Var}(S_n)$ and $\mathbb{E}[S_n]$. Confirm both methods agree.
 
 ??? success "Solution to Exercise 4"
     From the formulas: $\mathbb{E}[S_n] = n(2p-1)$ and $\text{Var}(S_n) = 4np(1-p)$. Using $\mathbb{E}[S_n^2] = \text{Var}(S_n) + (\mathbb{E}[S_n])^2$:
@@ -270,6 +258,10 @@ $$\mathbb{E}[S_n^4] = n + 3n(n-1) = 3n^2 - 2n. \quad\square$$
 
     Both expressions are identical: $4np(1-p) + n^2(2p-1)^2 = 4np - 4np^2 + 4n^2p^2 - 4n^2p + n^2$, which matches the direct expansion.
 
+---
+
+**Exercise 5.** The diffusive scaling $\text{SD}(S_n) = \sqrt{n}$ says that after $n$ steps, typical displacement is of order $\sqrt{n}$. A gambler plays $n = 10{,}000$ fair coin-flip games. Using the normal approximation, estimate the probability that the gambler is ahead by more than $\$200$ (i.e., $\mathbb{P}(S_{10000} > 200)$). Is this a likely outcome?
+
 ??? success "Solution to Exercise 5"
     With $n = 10{,}000$ and $p = 1/2$: $\mathbb{E}[S_n] = 0$, $\text{Var}(S_n) = 10{,}000$, so $\text{SD}(S_n) = 100$. By the CLT:
 
@@ -278,6 +270,10 @@ $$\mathbb{E}[S_n^4] = n + 3n(n-1) = 3n^2 - 2n. \quad\square$$
     $$
 
     So there is approximately a 2.3% chance the gambler is ahead by more than \$200 after 10,000 games. This is **not** a likely outcome — it corresponds to a 2-standard-deviation event. Despite the large number of games, the typical displacement is only $\sqrt{10{,}000} = 100$ (the standard deviation), and being ahead by \$200 is twice that.
+
+---
+
+**Exercise 6.** Compute $\mathbb{E}[S_n^3]$ for the symmetric random walk by the index-counting method used for $\mathbb{E}[S_n^4]$. Show that $\mathbb{E}[S_n^3] = 0$ by arguing that all surviving terms in the expansion $\sum_{i,j,k} \mathbb{E}[\xi_i \xi_j \xi_k]$ vanish. Does this generalize: is $\mathbb{E}[S_n^k] = 0$ for all odd $k$? Why or why not?
 
 ??? success "Solution to Exercise 6"
     Expand $\mathbb{E}[S_n^3] = \sum_{i,j,k=1}^{n} \mathbb{E}[\xi_i \xi_j \xi_k]$. Since $\mathbb{E}[\xi_i] = 0$ and the $\xi_i$ are independent, $\mathbb{E}[\xi_i \xi_j \xi_k]$ is nonzero only when every distinct index appears an even number of times. With three index slots, the possible patterns are:

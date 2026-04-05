@@ -231,34 +231,6 @@ The partial integro-differential equation for Merton jump-diffusion pricing comb
 
 **Exercise 1.** Starting from the Merton PIDE in the original price variable $S$, perform the change of variable $x = \ln S$, $v(t,x) = V(t, e^x)$ to derive the log-price PIDE. Verify that the drift coefficient becomes $r - \lambda\bar{k} - \frac{1}{2}\sigma^2$ and that the integral term becomes a convolution $\lambda\int v(t, x+y)\,f(y)\,dy$ where $f$ is the $N(\mu_J, \sigma_J^2)$ density.
 
----
-
-**Exercise 2.** Consider the spatial discretization of the differential part on a uniform grid with spacing $\Delta x$. Write down the tridiagonal matrix $A$ that represents the discrete operator $\frac{1}{2}\sigma^2 \frac{v_{j+1} - 2v_j + v_{j-1}}{\Delta x^2} + \alpha\frac{v_{j+1} - v_{j-1}}{2\Delta x} - (r+\lambda)v_j$ where $\alpha = r - \lambda\bar{k} - \frac{1}{2}\sigma^2$. Express the sub-diagonal, diagonal, and super-diagonal entries in terms of $\sigma$, $\alpha$, $r$, $\lambda$, and $\Delta x$.
-
----
-
-**Exercise 3.** For the IMEX scheme with backward Euler ($\theta = 1$), the update at each time step is $(I - \Delta t\,\mathcal{D})v^k = v^{k+1} + \Delta t\,\mathcal{I}v^{k+1}$. Explain why treating $\mathcal{I}$ explicitly introduces a stability restriction $\Delta t \leq C/\lambda$, while treating $\mathcal{D}$ implicitly removes the parabolic CFL condition. What would happen to the computational cost if $\mathcal{I}$ were also treated implicitly?
-
----
-
-**Exercise 4.** The convolution $I_j = \lambda\int v(t, x_j + y)\,f(y)\,dy$ can be computed via the FFT. Explain why $\mathcal{F}[v * f] = \mathcal{F}[v] \cdot \mathcal{F}[f]$ holds, and why this reduces the cost from $O(J^2)$ (direct summation) to $O(J \log J)$. What care must be taken regarding the periodic extension assumption of the discrete Fourier transform?
-
----
-
-**Exercise 5.** For the worked example (European put with $S_0 = \$100$, $K = \$100$, $T = 0.5$, $\sigma = 0.20$, $\lambda = 1.0$, $\mu_J = -0.08$, $\sigma_J = 0.25$, $r = 0.05$), compute the compensator $\bar{k}$ and the adjusted drift $\alpha = r - \lambda\bar{k} - \frac{1}{2}\sigma^2$. Verify that $\Delta t \cdot \lambda = 0.005$ for $N_t = 100$ time steps, and explain why this satisfies the stability condition.
-
----
-
-**Exercise 6.** A European call payoff $\max(S - K, 0) = \max(e^x - K, 0)$ has a kink at $x = \ln K$. Explain why the convergence of the finite difference scheme degrades from $O(\Delta x^2)$ to $O(\Delta x)$ near this point. Describe two techniques to restore second-order convergence: (a) aligning a grid point with $x = \ln K$, and (b) smoothing the payoff by replacing the kink with a regularized approximation.
-
----
-
-**Exercise 7.** The PIDE framework extends to American options by adding the early exercise constraint $V(t, S) \geq \Phi(S)$ at each time step (where $\Phi$ is the intrinsic value). Describe how the penalty method modifies the IMEX scheme: at each time step, add a term $\rho\,\max(\Phi_j - v_j^k, 0)$ to the right-hand side with a large penalty parameter $\rho$. Explain why this forces $v_j^k \geq \Phi_j$ approximately, and what trade-off the choice of $\rho$ involves.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Starting from the PIDE in the original variable $S$:
 
@@ -291,6 +263,11 @@ The partial integro-differential equation for Merton jump-diffusion pricing comb
     $$
 
     The drift coefficient is indeed $r - \lambda\bar{k} - \frac{1}{2}\sigma^2$, and the integral is a convolution $\lambda(v * f)(x)$.
+
+---
+
+
+**Exercise 2.** Consider the spatial discretization of the differential part on a uniform grid with spacing $\Delta x$. Write down the tridiagonal matrix $A$ that represents the discrete operator $\frac{1}{2}\sigma^2 \frac{v_{j+1} - 2v_j + v_{j-1}}{\Delta x^2} + \alpha\frac{v_{j+1} - v_{j-1}}{2\Delta x} - (r+\lambda)v_j$ where $\alpha = r - \lambda\bar{k} - \frac{1}{2}\sigma^2$. Express the sub-diagonal, diagonal, and super-diagonal entries in terms of $\sigma$, $\alpha$, $r$, $\lambda$, and $\Delta x$.
 
 ??? success "Solution to Exercise 2"
     Define $\alpha = r - \lambda\bar{k} - \frac{1}{2}\sigma^2$. The discrete operator at grid point $j$ is:
@@ -325,12 +302,22 @@ The partial integro-differential equation for Merton jump-diffusion pricing comb
     A = \begin{pmatrix} b & c & & \\ a & b & c & \\ & \ddots & \ddots & \ddots \\ & & a & b \end{pmatrix}
     $$
 
+---
+
+
+**Exercise 3.** For the IMEX scheme with backward Euler ($\theta = 1$), the update at each time step is $(I - \Delta t\,\mathcal{D})v^k = v^{k+1} + \Delta t\,\mathcal{I}v^{k+1}$. Explain why treating $\mathcal{I}$ explicitly introduces a stability restriction $\Delta t \leq C/\lambda$, while treating $\mathcal{D}$ implicitly removes the parabolic CFL condition. What would happen to the computational cost if $\mathcal{I}$ were also treated implicitly?
+
 ??? success "Solution to Exercise 3"
     **Why implicit $\mathcal{D}$ removes the parabolic CFL:** The differential operator $\mathcal{D}$ is a discretization of a parabolic PDE (diffusion equation). Explicit treatment would require $\Delta t \leq \Delta x^2/(2\sigma^2)$ for stability, which becomes very restrictive as $\Delta x \to 0$. Implicit treatment (backward Euler or Crank-Nicolson) is unconditionally stable for parabolic equations because the eigenvalues of $(I - \theta\Delta t\,\mathcal{D})^{-1}$ remain bounded regardless of $\Delta t/\Delta x^2$.
 
     **Why explicit $\mathcal{I}$ introduces a CFL-like restriction:** The integral operator $\mathcal{I}$ has operator norm approximately $\lambda$ (since $\int f(y)\,dy = 1$ and the operator evaluates $v$ at shifted points with weight $\lambda$). Explicit treatment means the scheme amplifies the solution by a factor $(I + \Delta t\,\mathcal{I})$, whose spectral radius is approximately $1 + \lambda\Delta t$. For stability, we need this factor not to grow unboundedly, requiring $\lambda\Delta t \leq C$ for a moderate constant $C$ (typically $C \approx 1$).
 
     **Cost of implicit $\mathcal{I}$:** If $\mathcal{I}$ were treated implicitly, the system to solve at each time step would be $(I - \theta\Delta t\,\mathcal{D} - \Delta t\,\mathcal{I})v^k = b$. The operator $\mathcal{I}$ couples all grid points (it is a dense matrix from the convolution), so the system matrix is dense $J \times J$. Direct solution would cost $O(J^3)$ per time step (LU factorization of a dense matrix), or $O(J^2)$ per time step using iterative methods. This is vastly more expensive than the $O(J)$ cost of solving the tridiagonal system from the implicit $\mathcal{D}$ alone.
+
+---
+
+
+**Exercise 4.** The convolution $I_j = \lambda\int v(t, x_j + y)\,f(y)\,dy$ can be computed via the FFT. Explain why $\mathcal{F}[v * f] = \mathcal{F}[v] \cdot \mathcal{F}[f]$ holds, and why this reduces the cost from $O(J^2)$ (direct summation) to $O(J \log J)$. What care must be taken regarding the periodic extension assumption of the discrete Fourier transform?
 
 ??? success "Solution to Exercise 4"
     The convolution theorem states that the Fourier transform of a convolution equals the product of the Fourier transforms:
@@ -348,6 +335,11 @@ The partial integro-differential equation for Merton jump-diffusion pricing comb
     Direct summation of $I_j = \lambda\sum_l v_{j+l}f_l\Delta x$ for all $j$ costs $O(J^2)$ (each of $J$ grid points requires summing over $J$ terms). Using the FFT, each transform costs $O(J\log J)$, pointwise multiplication costs $O(J)$, and the inverse FFT costs $O(J\log J)$, for a total of $O(J\log J)$.
 
     **Care with periodic extension:** The discrete Fourier transform assumes the input is periodic with period $J\Delta x$. If $v$ is not periodic (it generally is not, since boundary values differ), the circular convolution introduces errors at the boundaries. To avoid this, **zero-padding** is used: extend the arrays $v$ and $f$ to length $2J$ (padding with zeros), compute the circular convolution on the extended grid, and extract the central $J$ values. This converts the circular convolution into a linear convolution, at the cost of doubling the array length (still $O(J\log J)$ overall).
+
+---
+
+
+**Exercise 5.** For the worked example (European put with $S_0 = \$100$, $K = \$100$, $T = 0.5$, $\sigma = 0.20$, $\lambda = 1.0$, $\mu_J = -0.08$, $\sigma_J = 0.25$, $r = 0.05$), compute the compensator $\bar{k}$ and the adjusted drift $\alpha = r - \lambda\bar{k} - \frac{1}{2}\sigma^2$. Verify that $\Delta t \cdot \lambda = 0.005$ for $N_t = 100$ time steps, and explain why this satisfies the stability condition.
 
 ??? success "Solution to Exercise 5"
     The compensator is:
@@ -372,6 +364,11 @@ The partial integro-differential equation for Merton jump-diffusion pricing comb
 
     This is much less than 1, well within the stability bound $\Delta t \leq C/\lambda$. The condition requires $\Delta t \cdot \lambda = O(1)$, so having $\Delta t \cdot \lambda = 0.005 \ll 1$ provides a large stability margin. This means the explicit treatment of the integral part will not cause numerical instabilities, and the overall IMEX scheme will be stable.
 
+---
+
+
+**Exercise 6.** A European call payoff $\max(S - K, 0) = \max(e^x - K, 0)$ has a kink at $x = \ln K$. Explain why the convergence of the finite difference scheme degrades from $O(\Delta x^2)$ to $O(\Delta x)$ near this point. Describe two techniques to restore second-order convergence: (a) aligning a grid point with $x = \ln K$, and (b) smoothing the payoff by replacing the kink with a regularized approximation.
+
 ??? success "Solution to Exercise 6"
     The European call payoff $g(x) = \max(e^x - K, 0)$ has a discontinuous first derivative (kink) at $x = \ln K$. The central difference approximation of $g''(x)$ involves a Dirac delta at the kink:
 
@@ -390,6 +387,11 @@ The partial integro-differential equation for Merton jump-diffusion pricing comb
     $$
 
     where $\epsilon = O(\Delta x)$ is a smoothing width. Alternatively, replace the terminal condition with the exact Black-Scholes price at a small residual maturity $\Delta t$ (which is smooth), and start the backward timestepping from $T - \Delta t$. Both approaches eliminate the kink and restore second-order convergence.
+
+---
+
+
+**Exercise 7.** The PIDE framework extends to American options by adding the early exercise constraint $V(t, S) \geq \Phi(S)$ at each time step (where $\Phi$ is the intrinsic value). Describe how the penalty method modifies the IMEX scheme: at each time step, add a term $\rho\,\max(\Phi_j - v_j^k, 0)$ to the right-hand side with a large penalty parameter $\rho$. Explain why this forces $v_j^k \geq \Phi_j$ approximately, and what trade-off the choice of $\rho$ involves.
 
 ??? success "Solution to Exercise 7"
     The penalty method modifies the IMEX time step by adding a penalty term that enforces the early exercise constraint. At each time step, the update becomes:

@@ -136,36 +136,6 @@ The scaled process $S^{(n)}(t)$ inherits this property at dyadic times, which pe
 
 **Exercise 1.** Let $S_n = \sum_{i=1}^n \xi_i$ be a symmetric random walk starting at $S_0 = 0$. Compute the probability $\mathbb{P}(S_4 = 2)$ by enumerating all paths of length 4 that end at position 2. Express your answer using the binomial coefficient.
 
----
-
-**Exercise 2.** For the asymmetric random walk with $p = 0.6$, compute $\mathbb{E}[S_{100}]$ and $\text{Var}(S_{100})$. After how many steps $n$ does the expected position $\mathbb{E}[S_n]$ exceed 3 standard deviations $3\sqrt{\text{Var}(S_n)}$? Interpret this result in terms of the drift dominating the fluctuations.
-
----
-
-**Exercise 3.** Prove the Markov property more carefully: show that for any bounded measurable function $g$,
-
-$$
-\mathbb{E}[g(S_{n+1}) \mid \mathcal{F}_n] = \frac{1}{2}g(S_n + 1) + \frac{1}{2}g(S_n - 1)
-$$
-
-in the symmetric case. Why does this imply that the conditional distribution of $S_{n+1}$ given all of the past depends only on $S_n$?
-
----
-
-**Exercise 4.** A random walk starts at $S_0 = 0$ and takes $n = 200$ steps with $p = 1/2$. Using the normal approximation (CLT), estimate the probability that $S_{200} > 20$. Compare your answer to the exact probability obtained from the binomial distribution.
-
----
-
-**Exercise 5.** Explain why the simple random walk $\{S_n\}$ on $\mathbb{Z}$ can visit only even positions at even times and only odd positions at odd times (the "parity" or "periodicity" property). What consequence does this have for $\mathbb{P}(S_n = 0)$ when $n$ is odd?
-
----
-
-**Exercise 6.** Consider a random walk that at each step moves $+2$ with probability $1/3$, $0$ with probability $1/3$, and $-1$ with probability $1/3$. Compute $\mathbb{E}[\xi_i]$ and $\text{Var}(\xi_i)$. Is this process a martingale? If not, what value of the probabilities would make it a martingale while keeping the same step sizes $\{+2, 0, -1\}$?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The walk $S_4 = 2$ requires exactly 3 steps of $+1$ and 1 step of $-1$ (since $3 - 1 = 2$). The number of paths of length 4 that have exactly 3 positive steps is $\binom{4}{3}$, and each path has probability $(1/2)^4$. Therefore:
 
@@ -178,6 +148,10 @@ in the symmetric case. Why does this imply that the conditional distribution of 
     $$
     \mathbb{P}(S_n = k) = \binom{n}{(n+k)/2} \left(\frac{1}{2}\right)^n
     $$
+
+---
+
+**Exercise 2.** For the asymmetric random walk with $p = 0.6$, compute $\mathbb{E}[S_{100}]$ and $\text{Var}(S_{100})$. After how many steps $n$ does the expected position $\mathbb{E}[S_n]$ exceed 3 standard deviations $3\sqrt{\text{Var}(S_n)}$? Interpret this result in terms of the drift dominating the fluctuations.
 
 ??? success "Solution to Exercise 2"
     With $p = 0.6$, the drift per step is $\mu = 2p - 1 = 0.2$ and the step variance is $4p(1-p) = 4(0.6)(0.4) = 0.96$.
@@ -200,6 +174,16 @@ in the symmetric case. Why does this imply that the conditional distribution of 
 
     **Interpretation:** For $n \leq 216$, the random fluctuations (of order $\sqrt{n}$) can plausibly mask the drift. Beyond $n = 217$, the linear drift dominates the $\sqrt{n}$ fluctuations, and the walk is almost certainly positive.
 
+---
+
+**Exercise 3.** Prove the Markov property more carefully: show that for any bounded measurable function $g$,
+
+$$
+\mathbb{E}[g(S_{n+1}) \mid \mathcal{F}_n] = \frac{1}{2}g(S_n + 1) + \frac{1}{2}g(S_n - 1)
+$$
+
+in the symmetric case. Why does this imply that the conditional distribution of $S_{n+1}$ given all of the past depends only on $S_n$?
+
 ??? success "Solution to Exercise 3"
     Since $S_{n+1} = S_n + \xi_{n+1}$ and $g$ is any bounded measurable function:
 
@@ -218,6 +202,10 @@ in the symmetric case. Why does this imply that the conditional distribution of 
     $$
     \mathbb{P}(S_{n+1} \in A \mid \mathcal{F}_n) = \mathbb{P}(S_{n+1} \in A \mid S_n)
     $$
+
+---
+
+**Exercise 4.** A random walk starts at $S_0 = 0$ and takes $n = 200$ steps with $p = 1/2$. Using the normal approximation (CLT), estimate the probability that $S_{200} > 20$. Compare your answer to the exact probability obtained from the binomial distribution.
 
 ??? success "Solution to Exercise 4"
     We have $n = 200$, $p = 1/2$, so $\mathbb{E}[S_{200}] = 0$ and $\text{Var}(S_{200}) = 200$. By the CLT, $S_{200}/\sqrt{200} \approx \mathcal{N}(0,1)$. Therefore:
@@ -240,6 +228,10 @@ in the symmetric case. Why does this imply that the conditional distribution of 
 
     The normal approximation with continuity correction gives $\mathbb{P}(S_{200} > 20) \approx \mathbb{P}(Z > 21/\sqrt{200}) \approx 0.069$, which is close to the exact value.
 
+---
+
+**Exercise 5.** Explain why the simple random walk $\{S_n\}$ on $\mathbb{Z}$ can visit only even positions at even times and only odd positions at odd times (the "parity" or "periodicity" property). What consequence does this have for $\mathbb{P}(S_n = 0)$ when $n$ is odd?
+
 ??? success "Solution to Exercise 5"
     At time $n$, the walk has taken $n$ steps each of size $\pm 1$, so $S_n = (\text{number of } +1 \text{ steps}) - (\text{number of } -1 \text{ steps})$. If $k$ steps are $+1$ and $n - k$ are $-1$, then $S_n = k - (n-k) = 2k - n$. Therefore $S_n$ and $n$ always have the same parity:
 
@@ -253,6 +245,10 @@ in the symmetric case. Why does this imply that the conditional distribution of 
     $$
 
     This is the periodicity property: the walk alternates between even and odd integers. It also explains why recurrence results are stated in terms of $u_{2n} = \mathbb{P}(S_{2n} = 0)$ — the walk can only return to 0 at even times.
+
+---
+
+**Exercise 6.** Consider a random walk that at each step moves $+2$ with probability $1/3$, $0$ with probability $1/3$, and $-1$ with probability $1/3$. Compute $\mathbb{E}[\xi_i]$ and $\text{Var}(\xi_i)$. Is this process a martingale? If not, what value of the probabilities would make it a martingale while keeping the same step sizes $\{+2, 0, -1\}$?
 
 ??? success "Solution to Exercise 6"
     Let $\mathbb{P}(\xi_i = +2) = \mathbb{P}(\xi_i = 0) = \mathbb{P}(\xi_i = -1) = 1/3$. Then:

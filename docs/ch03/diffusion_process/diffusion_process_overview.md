@@ -196,46 +196,6 @@ The stochastic integral term is a local martingale; the remaining term is finite
 
 **Exercise 1.** Let $X_t$ be a one-dimensional Itô diffusion with drift $b(x) = -\alpha x$ and diffusion coefficient $\sigma(x) = \beta$, where $\alpha, \beta > 0$ are constants. Write down the covariance matrix $a(x)$ and the infinitesimal generator $\mathcal{L}$. Apply $\mathcal{L}$ to the test function $f(x) = x^2$ and interpret the result.
 
----
-
-**Exercise 2.** Consider the two-dimensional diffusion $(X_t^1, X_t^2)$ satisfying
-
-$$
-\mathrm{d}X_t^1 = X_t^2\,\mathrm{d}t + \mathrm{d}W_t^1, \qquad \mathrm{d}X_t^2 = -X_t^1\,\mathrm{d}t + \mathrm{d}W_t^2.
-$$
-
-Compute the covariance matrix $a^{ij}$ and the quadratic covariation $\langle X^1, X^2 \rangle_t$. Is $a$ degenerate or non-degenerate?
-
----
-
-**Exercise 3.** Verify the semimartingale decomposition for the geometric Brownian motion $\mathrm{d}S_t = \mu S_t\,\mathrm{d}t + \sigma S_t\,\mathrm{d}W_t$. Identify the drift field $b(s)$, the diffusion coefficient $\sigma(s)$, and the covariance matrix $a(s)$. Write down the infinitesimal generator $\mathcal{L}$ and compute $\mathcal{L}f$ for $f(s) = \log s$.
-
----
-
-**Exercise 4.** Let $X_t$ be an Itô diffusion in $\mathbb{R}^d$ with generator $\mathcal{L}$. Using Itô's formula, show that for $f \in C^2(\mathbb{R}^d)$, the process
-
-$$
-M_t^f := f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,\mathrm{d}s
-$$
-
-is a local martingale. Under what additional condition on $f$ and $\sigma$ does $M_t^f$ become a true martingale?
-
----
-
-**Exercise 5.** For the gradient diffusion $\mathrm{d}X_t = -\nabla V(X_t)\,\mathrm{d}t + \sqrt{2}\,\mathrm{d}W_t$ with $V(x) = \frac{1}{2}k|x|^2$ in $\mathbb{R}^d$ (where $k > 0$), identify the drift, diffusion matrix, and generator. Verify that $\pi(x) \propto e^{-V(x)}$ is a Gaussian density and compute its mean and covariance.
-
----
-
-**Exercise 6.** Consider a one-dimensional diffusion with $b(x) = 0$ and $\sigma(x) = \sqrt{1 + x^2}$. Compute the covariance function $a(x)$ and write down the generator $\mathcal{L}$. Does this diffusion satisfy the standard Lipschitz condition? Does the linear growth condition hold?
-
----
-
-**Exercise 7.** Let $X_t$ be a $d$-dimensional Itô diffusion with constant drift $b \in \mathbb{R}^d$ and constant diffusion matrix $\sigma \in \mathbb{R}^{d \times m}$. Show that $X_t$ is a Gaussian process and compute $\mathbb{E}[X_t]$ and $\mathrm{Cov}(X_s, X_t)$ for $s \le t$ in terms of $b$, $a = \sigma\sigma^\top$, and the initial condition $X_0 = x_0$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The diffusion coefficient is $\sigma(x) = \beta$, so the covariance matrix is
 
@@ -263,6 +223,16 @@ is a local martingale. Under what additional condition on $f$ and $\sigma$ does 
 
     The term $-2\alpha\,\mathbb{E}[X_t^2]$ represents mean reversion pulling the second moment toward zero, while $\beta^2$ represents the constant injection of variance by the noise. At equilibrium, $\mathbb{E}[X_t^2] = \beta^2/(2\alpha)$.
 
+---
+
+**Exercise 2.** Consider the two-dimensional diffusion $(X_t^1, X_t^2)$ satisfying
+
+$$
+\mathrm{d}X_t^1 = X_t^2\,\mathrm{d}t + \mathrm{d}W_t^1, \qquad \mathrm{d}X_t^2 = -X_t^1\,\mathrm{d}t + \mathrm{d}W_t^2.
+$$
+
+Compute the covariance matrix $a^{ij}$ and the quadratic covariation $\langle X^1, X^2 \rangle_t$. Is $a$ degenerate or non-degenerate?
+
 ??? success "Solution to Exercise 2"
     The drift is $b(x) = (x^2, -x^1)^\top$ and the diffusion matrix is $\sigma = I_{2 \times 2}$ (the identity). Therefore
 
@@ -283,6 +253,10 @@ is a local martingale. Under what additional condition on $f$ and $\sigma$ does 
     $$
 
     The matrix $a = I$ is strictly positive definite (all eigenvalues equal $1$), so it is **non-degenerate**. The two components of the diffusion are driven by independent Brownian motions, despite the coupling in the drift.
+
+---
+
+**Exercise 3.** Verify the semimartingale decomposition for the geometric Brownian motion $\mathrm{d}S_t = \mu S_t\,\mathrm{d}t + \sigma S_t\,\mathrm{d}W_t$. Identify the drift field $b(s)$, the diffusion coefficient $\sigma(s)$, and the covariance matrix $a(s)$. Write down the infinitesimal generator $\mathcal{L}$ and compute $\mathcal{L}f$ for $f(s) = \log s$.
 
 ??? success "Solution to Exercise 3"
     For geometric Brownian motion $\mathrm{d}S_t = \mu S_t\,\mathrm{d}t + \sigma S_t\,\mathrm{d}W_t$, the coefficients are:
@@ -310,6 +284,16 @@ is a local martingale. Under what additional condition on $f$ and $\sigma$ does 
     $$
 
     This is a constant, confirming that $\log S_t - (\mu - \sigma^2/2)t$ is a local martingale — consistent with the well-known result $\log S_t = \log S_0 + (\mu - \sigma^2/2)t + \sigma W_t$.
+
+---
+
+**Exercise 4.** Let $X_t$ be an Itô diffusion in $\mathbb{R}^d$ with generator $\mathcal{L}$. Using Itô's formula, show that for $f \in C^2(\mathbb{R}^d)$, the process
+
+$$
+M_t^f := f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,\mathrm{d}s
+$$
+
+is a local martingale. Under what additional condition on $f$ and $\sigma$ does $M_t^f$ become a true martingale?
 
 ??? success "Solution to Exercise 4"
     By Itô's formula applied to $f \in C^2(\mathbb{R}^d)$ (taking $f$ time-independent):
@@ -340,6 +324,10 @@ is a local martingale. Under what additional condition on $f$ and $\sigma$ does 
 
     A sufficient condition is that $\nabla f$ is bounded (e.g. $f \in C_c^2(\mathbb{R}^d)$) and $\sigma$ satisfies the linear growth condition $|\sigma(x)| \le C(1 + |x|)$, combined with finite moments $\mathbb{E}[\sup_{s \le t}|X_s|^2] < \infty$.
 
+---
+
+**Exercise 5.** For the gradient diffusion $\mathrm{d}X_t = -\nabla V(X_t)\,\mathrm{d}t + \sqrt{2}\,\mathrm{d}W_t$ with $V(x) = \frac{1}{2}k|x|^2$ in $\mathbb{R}^d$ (where $k > 0$), identify the drift, diffusion matrix, and generator. Verify that $\pi(x) \propto e^{-V(x)}$ is a Gaussian density and compute its mean and covariance.
+
 ??? success "Solution to Exercise 5"
     For the gradient diffusion $\mathrm{d}X_t = -\nabla V(X_t)\,\mathrm{d}t + \sqrt{2}\,\mathrm{d}W_t$ with $V(x) = \frac{1}{2}k|x|^2$:
 
@@ -363,6 +351,10 @@ is a local martingale. Under what additional condition on $f$ and $\sigma$ does 
     - **Covariance:** $\mathrm{Cov}(X^i, X^j) = \frac{1}{k}\,\delta^{ij}$, i.e. $\Sigma = \frac{1}{k}I_d$
 
     This is verified by matching the exponent: $-\frac{k}{2}|x|^2 = -\frac{1}{2}x^\top(kI)x$, which is the exponent of $\mathcal{N}(0, k^{-1}I)$.
+
+---
+
+**Exercise 6.** Consider a one-dimensional diffusion with $b(x) = 0$ and $\sigma(x) = \sqrt{1 + x^2}$. Compute the covariance function $a(x)$ and write down the generator $\mathcal{L}$. Does this diffusion satisfy the standard Lipschitz condition? Does the linear growth condition hold?
 
 ??? success "Solution to Exercise 6"
     With $b(x) = 0$ and $\sigma(x) = \sqrt{1 + x^2}$, the covariance function is
@@ -388,6 +380,10 @@ is a local martingale. Under what additional condition on $f$ and $\sigma$ does 
     **Linear growth condition.** We need $|\sigma(x)| \le C(1 + |x|)$ for some constant $C$. Since $\sqrt{1 + x^2} \le 1 + |x|$ (squaring both sides: $1 + x^2 \le 1 + 2|x| + x^2$, which is true), the **linear growth condition holds** with $C = 1$.
 
     Therefore, by the standard existence and uniqueness theorem, the SDE $\mathrm{d}X_t = \sqrt{1+X_t^2}\,\mathrm{d}W_t$ has a unique strong solution.
+
+---
+
+**Exercise 7.** Let $X_t$ be a $d$-dimensional Itô diffusion with constant drift $b \in \mathbb{R}^d$ and constant diffusion matrix $\sigma \in \mathbb{R}^{d \times m}$. Show that $X_t$ is a Gaussian process and compute $\mathbb{E}[X_t]$ and $\mathrm{Cov}(X_s, X_t)$ for $s \le t$ in terms of $b$, $a = \sigma\sigma^\top$, and the initial condition $X_0 = x_0$.
 
 ??? success "Solution to Exercise 7"
     With constant $b$ and $\sigma$, the SDE $\mathrm{d}X_t = b\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ has the explicit solution

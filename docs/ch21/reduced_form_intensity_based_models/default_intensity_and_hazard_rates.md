@@ -357,22 +357,169 @@ $$
 
 **Exercise 1.** The default intensity $\lambda_t$ is defined heuristically as $\lambda_t \approx \mathbb{Q}(\tau \in (t, t+\Delta t] \mid \tau > t, \mathcal{F}_t) / \Delta t$. For constant intensity $\lambda = 3\%$, compute the probability of default in the next 6 months given survival to time $t$. Then compute the 5-year survival probability $S(0,5)$.
 
+??? success "Solution to Exercise 1"
+    We are given constant intensity $\lambda = 3\% = 0.03$.
+
+    **Probability of default in the next 6 months given survival to time $t$:**
+
+    For constant intensity, the conditional default probability over an interval of length $\Delta t = 0.5$ years is:
+
+    $$
+    \mathbb{Q}(\tau \in (t, t + 0.5] \mid \tau > t) = 1 - e^{-\lambda \cdot 0.5} = 1 - e^{-0.03 \times 0.5} = 1 - e^{-0.015}
+    $$
+
+    Computing:
+
+    $$
+    e^{-0.015} \approx 0.98511
+    $$
+
+    Therefore:
+
+    $$
+    \mathbb{Q}(\tau \in (t, t + 0.5] \mid \tau > t) \approx 1 - 0.98511 = 0.01489 \approx 1.49\%
+    $$
+
+    **5-year survival probability:**
+
+    $$
+    S(0,5) = e^{-\lambda \cdot 5} = e^{-0.03 \times 5} = e^{-0.15} \approx 0.8607
+    $$
+
+    The 5-year default probability is $1 - S(0,5) \approx 1 - 0.8607 = 0.1393 \approx 13.93\%$.
+
 ---
 
 **Exercise 2.** Explain the key difference between the structural approach and the reduced-form approach to credit risk modeling. Why does the reduced-form approach produce "surprise" defaults while the structural approach does not? What mathematical property of the default time distinguishes the two frameworks?
+
+??? success "Solution to Exercise 2"
+    **Key difference between structural and reduced-form approaches:**
+
+    In the **structural approach** (e.g., Merton 1974, Black-Cox 1976), default is an endogenous event triggered when the firm's asset value $V_t$ crosses a predetermined barrier $D$ (the default boundary). The default time is:
+
+    $$
+    \tau = \inf\{t \ge 0 : V_t \le D\}
+    $$
+
+    Since $V_t$ is a continuous diffusion process, as $V_t$ approaches $D$ from above, market participants can observe the firm getting closer to distress. The default time $\tau$ is a **predictable stopping time** -- there exists an announcing sequence of stopping times $\tau_n \uparrow \tau$ a.s. This means default can be "seen coming."
+
+    In the **reduced-form approach**, default is modeled as an exogenous event governed by an intensity process $\lambda_t$. The default time is constructed as $\tau = \inf\{t : \Lambda_t \ge E\}$ where $E \sim \text{Exp}(1)$ is independent of all market information. The key mathematical property is that $\tau$ is a **totally inaccessible stopping time** -- no announcing sequence exists.
+
+    **Why structural models do not produce surprise defaults:** Since $V_t$ follows a continuous path, it cannot jump over the barrier. As $V_t \to D$, the conditional probability of default in the next instant approaches 1, making default predictable. Mathematically, the first hitting time of a continuous process to a barrier is a predictable stopping time.
+
+    **Why reduced-form models produce surprise defaults:** The independence of $E$ from $\mathcal{F}_\infty$ means that no amount of market information can reveal the exact time $\tau$. Even knowing the entire intensity path $(\lambda_s)_{s \ge 0}$, the randomness of $E$ ensures default arrives as a genuine surprise. The conditional default probability in the next instant is $\lambda_t \, dt$, which is infinitesimal -- default never becomes "certain" at any moment.
 
 ---
 
 **Exercise 3.** The hazard rate function $h(t)$ for a deterministic intensity model is defined by $S(0,t) = e^{-\int_0^t h(s)\,ds}$. Given survival probabilities $S(0,1) = 0.98$, $S(0,3) = 0.93$, and $S(0,5) = 0.87$, compute the average hazard rates over the intervals $[0,1]$, $[0,3]$, and $[0,5]$. Is the hazard rate increasing or decreasing?
 
+??? success "Solution to Exercise 3"
+    Given the survival probabilities $S(0,1) = 0.98$, $S(0,3) = 0.93$, and $S(0,5) = 0.87$, we use $S(0,t) = e^{-\int_0^t h(s)\,ds}$ to extract the average hazard rate over each interval.
+
+    **Average hazard rate over $[0,1]$:**
+
+    $$
+    \bar{h}_{0,1} = -\frac{\ln S(0,1)}{1} = -\frac{\ln 0.98}{1} = -\frac{-0.02020}{1} = 0.02020 \approx 2.02\%
+    $$
+
+    **Average hazard rate over $[0,3]$:**
+
+    $$
+    \bar{h}_{0,3} = -\frac{\ln S(0,3)}{3} = -\frac{\ln 0.93}{3} = -\frac{-0.07257}{3} = 0.02419 \approx 2.42\%
+    $$
+
+    **Average hazard rate over $[0,5]$:**
+
+    $$
+    \bar{h}_{0,5} = -\frac{\ln S(0,5)}{5} = -\frac{\ln 0.87}{5} = -\frac{-0.13926}{5} = 0.02785 \approx 2.79\%
+    $$
+
+    **Is the hazard rate increasing or decreasing?**
+
+    The average hazard rates are increasing: $2.02\% < 2.42\% < 2.79\%$. This indicates that the hazard rate is **increasing** over time. We can also extract the marginal (forward) hazard rates for each sub-interval:
+
+    - Over $[0,1]$: $\bar{h} = 2.02\%$
+    - Over $[1,3]$: $\bar{h}_{1,3} = \frac{-\ln S(0,3) + \ln S(0,1)}{3-1} = \frac{\ln(0.98/0.93)}{2} = \frac{\ln 1.05376}{2} = \frac{0.05237}{2} = 2.62\%$
+    - Over $[3,5]$: $\bar{h}_{3,5} = \frac{-\ln S(0,5) + \ln S(0,3)}{5-3} = \frac{\ln(0.93/0.87)}{2} = \frac{\ln 1.06897}{2} = \frac{0.06670}{2} = 3.33\%$
+
+    The forward hazard rates $2.02\% < 2.62\% < 3.33\%$ confirm that the instantaneous hazard rate is increasing. This pattern is typical for investment-grade credits where the risk of deterioration grows with the time horizon.
+
 ---
 
 **Exercise 4.** Consider a piecewise-constant intensity: $\lambda(t) = 1\%$ for $t \in [0,2]$ and $\lambda(t) = 3\%$ for $t \in (2,5]$. Compute $S(0,2)$, $S(0,5)$, and the conditional survival probability $S(2,5 \mid \tau > 2)$. What is the default probability over $[0,5]$?
+
+??? success "Solution to Exercise 4"
+    Given piecewise-constant intensity: $\lambda(t) = 1\%$ for $t \in [0,2]$ and $\lambda(t) = 3\%$ for $t \in (2,5]$.
+
+    **Survival probability $S(0,2)$:**
+
+    $$
+    S(0,2) = \exp\left(-\int_0^2 \lambda(s)\,ds\right) = \exp(-0.01 \times 2) = e^{-0.02} \approx 0.9802
+    $$
+
+    **Survival probability $S(0,5)$:**
+
+    $$
+    S(0,5) = \exp\left(-\int_0^5 \lambda(s)\,ds\right) = \exp\left(-0.01 \times 2 - 0.03 \times 3\right) = e^{-0.02 - 0.09} = e^{-0.11} \approx 0.8958
+    $$
+
+    **Conditional survival probability $S(2,5 \mid \tau > 2)$:**
+
+    For deterministic intensity, the conditional survival probability given survival to time 2 is:
+
+    $$
+    \mathbb{Q}(\tau > 5 \mid \tau > 2) = \frac{S(0,5)}{S(0,2)} = \frac{e^{-0.11}}{e^{-0.02}} = e^{-0.09} \approx 0.9139
+    $$
+
+    Alternatively, this equals $\exp\left(-\int_2^5 \lambda(s)\,ds\right) = e^{-0.03 \times 3} = e^{-0.09} \approx 0.9139$.
+
+    **Default probability over $[0,5]$:**
+
+    $$
+    \mathbb{Q}(\tau \le 5) = 1 - S(0,5) = 1 - e^{-0.11} \approx 1 - 0.8958 = 0.1042 \approx 10.42\%
+    $$
 
 ---
 
 **Exercise 5.** A reduced-form model has intensity $\lambda_t = a + b\,r_t$ where $r_t$ is the short rate. Explain the economic rationale for making default intensity depend on the interest rate. If interest rates rise during a recession, what does this specification imply about the correlation between default risk and market conditions?
 
+??? success "Solution to Exercise 5"
+    **Economic rationale for $\lambda_t = a + b\,r_t$:**
+
+    Making default intensity depend on the interest rate captures the empirical relationship between monetary conditions and credit risk. The parameter $a > 0$ represents a baseline default intensity independent of rates, while $b$ captures the sensitivity of credit risk to interest rate levels.
+
+    **If $b > 0$ (positive dependence):** Higher interest rates correspond to higher default intensity. This is economically motivated by several channels:
+
+    1. **Debt service burden:** When rates rise, firms with floating-rate debt or those needing to refinance face higher borrowing costs, increasing the probability of financial distress.
+    2. **Economic tightening:** Central banks raise rates during inflationary or overheating episodes. If these rate hikes eventually trigger a recession, credit quality deteriorates.
+    3. **Discount rate effect:** Higher rates reduce the present value of future cash flows, potentially pushing leveraged firms closer to distress.
+
+    **Implications for recession scenarios:** If interest rates rise during a recession (e.g., due to inflation or central bank policy errors), the specification $\lambda_t = a + b\,r_t$ with $b > 0$ implies that default risk increases simultaneously with rising rates. This creates a **positive correlation** between interest rates and default intensity, which has important pricing implications:
+
+    - Defaultable bond prices fall by more than risk-free bonds (credit spread widens when rates rise)
+    - The joint expectation $\mathbb{E}[e^{-\int(r_s + \lambda_s)ds}]$ is lower than $\mathbb{E}[e^{-\int r_s ds}] \cdot \mathbb{E}[e^{-\int \lambda_s ds}]$ because the positive correlation makes high-$r$ and high-$\lambda$ scenarios more likely to occur together
+    - Risk-adjusted discount factors are lower than the product of separate discount factors: positive wrong-way risk
+
+    This specification is a simple affine model where the state variable is $X_t = r_t$, and the default-adjusted discount rate is $r_t + \lambda_t = (a + (1+b)\,r_t)$, which remains affine in $r_t$ and thus preserves tractability.
+
 ---
 
 **Exercise 6.** List five advantages of reduced-form (intensity-based) models over structural models for practical credit derivatives pricing. For each advantage, provide a specific example where the reduced-form approach is superior.
+
+??? success "Solution to Exercise 6"
+    **Five advantages of reduced-form models over structural models:**
+
+    **1. Analytical tractability and closed-form pricing.**
+    Reduced-form models, especially affine intensity models (e.g., CIR intensity), yield closed-form or semi-closed-form expressions for survival probabilities, defaultable bond prices, and CDS spreads via the Riccati ODE system. *Example:* Pricing a portfolio of CDS contracts across multiple maturities requires rapid evaluation. Under a CIR intensity model, each CDS spread is computed by evaluating explicit formulas involving $A(\tau)$ and $B(\tau)$. A structural model (e.g., Merton) requires numerical computation of option prices on firm value for each maturity.
+
+    **2. Direct calibration to market observables (CDS spreads, bond spreads).**
+    Reduced-form models parameterize default intensity, which maps directly to CDS spreads and survival probabilities observable in the market. *Example:* Bootstrapping piecewise-constant hazard rates from a CDS term structure (1Y, 3Y, 5Y, 7Y, 10Y) is a standard, fast procedure. Structural models require estimating unobservable firm value and asset volatility, making calibration to market credit spreads indirect and often ill-conditioned.
+
+    **3. Surprise default (totally inaccessible stopping time).**
+    Reduced-form models produce default as a genuine surprise event, consistent with the empirical observation that defaults often occur suddenly without a smooth warning signal. *Example:* The sudden default of Lehman Brothers in September 2008 or the Enron collapse in 2001 occurred with little advance warning from equity markets. Structural models, where default is a predictable stopping time, cannot reproduce such sudden jumps in default probability.
+
+    **4. Flexibility in incorporating multiple risk factors and correlations.**
+    The intensity can depend on any observable or latent state variables -- interest rates, equity prices, macroeconomic factors, or regime indicators. *Example:* In a multi-name credit portfolio, default correlation is naturally modeled by making each name's intensity depend on a common systematic factor $Z_t$: $\lambda_t^{(i)} = a_i + b_i Z_t$. This approach is tractable and widely used in CDO pricing. Structural models require specifying a correlation structure for firm asset values, which is harder to calibrate.
+
+    **5. Generality -- encompasses multiple default causes.**
+    The reduced-form framework does not require specifying a single mechanism for default. The intensity aggregates all possible causes of default into one quantity. *Example:* A sovereign entity may default due to political instability, fiscal crisis, external shocks, or contagion. Specifying a firm-value process for a sovereign is economically meaningless, but modeling sovereign default intensity as a function of macro variables (GDP growth, debt/GDP ratio) is natural and well-motivated.

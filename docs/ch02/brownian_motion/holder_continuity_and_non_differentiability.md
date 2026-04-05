@@ -313,27 +313,6 @@ plt.show()
 
 1. Show that if $f:[0,T]\to\mathbb{R}$ is Hölder-$\alpha$ with $\alpha > 1$, then $f$ must be constant. (Hint: For any $t, s$, write $|f(t)-f(s)| \leq C|t-s|^\alpha$ and let $s \to t$.)
 
-2. Let $W_t$ be Brownian motion. Use Kolmogorov's criterion with $p = 4$ to show that
-   $W$ is almost surely Hölder-$\alpha$ for $\alpha < 1/4$. (This is a weaker bound;
-   the optimal $1/2$ requires $p \to \infty$.)
-
-3. Show that the process $X_t = t$ has zero quadratic variation on $[0,T]$ but finite
-   (in fact linear) total variation. Contrast with Brownian motion.
-
-4. Let $f$ be Hölder-$\alpha$ with $\alpha > 1/2$. Show that $\sum_i (f(t_{i+1}) - f(t_i))^2 \to 0$ as the mesh $\|\Pi\| \to 0$, confirming zero quadratic variation for regular functions.
-
-5. Verify the infinite total variation of Brownian motion numerically: for $T = 1$
-   and increasing $n$, plot $\sum_{i=0}^{n-1}|W_{(i+1)/n} - W_{i/n}|$ as a function
-   of $n$ and confirm divergence.
-
-6. Suppose $f:[0,T]\to\mathbb{R}$ is differentiable at $t_0$ with $f'(t_0) = L$.
-   Show directly that for any partition $\Pi$ of $[t_0, t_0+\eta]$ with small $\eta$,
-   $\sum_i (f(t_{i+1}) - f(t_i))^2 \to 0$ as $\|\Pi\| \to 0$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Suppose $f:[0,T]\to\mathbb{R}$ is Hölder-$\alpha$ with $\alpha > 1$. Then there exists $C > 0$ such that for all $s, t \in [0,T]$:
 
@@ -348,6 +327,12 @@ plt.show()
     $$
 
     Since $\alpha > 1$, we have $1 - \alpha < 0$, so $n^{1-\alpha} \to 0$ as $n \to \infty$. Therefore $|f(t) - f(s)| = 0$ for all $s, t$, which means $f$ is constant.
+
+---
+
+2. Let $W_t$ be Brownian motion. Use Kolmogorov's criterion with $p = 4$ to show that
+   $W$ is almost surely Hölder-$\alpha$ for $\alpha < 1/4$. (This is a weaker bound;
+   the optimal $1/2$ requires $p \to \infty$.)
 
 ??? success "Solution to Exercise 2"
     We apply Kolmogorov's criterion with $p = 4$. For Brownian motion:
@@ -366,6 +351,11 @@ plt.show()
 
     This gives the weaker bound $\alpha < 1/4$. To recover the optimal bound $\alpha < 1/2$, one uses arbitrarily large $p$: with $p > 2$, $\mathbb{E}[|W_t - W_s|^p] = C_p |t-s|^{p/2}$, giving $\beta = p/2 - 1$ and $\alpha < (p/2-1)/p = 1/2 - 1/p$. Letting $p \to \infty$ yields $\alpha < 1/2$.
 
+---
+
+3. Show that the process $X_t = t$ has zero quadratic variation on $[0,T]$ but finite
+   (in fact linear) total variation. Contrast with Brownian motion.
+
 ??? success "Solution to Exercise 3"
     For $X_t = t$, the quadratic variation along a uniform partition $\Pi_n = \{0 = t_0 < t_1 < \cdots < t_n = T\}$ with $\Delta t_i = T/n$ is:
 
@@ -380,6 +370,10 @@ plt.show()
     $$
 
     **Contrast with Brownian motion:** For $X_t = t$, the quadratic variation is zero and the total variation is $T$ (finite). For Brownian motion, the quadratic variation is $T$ (finite, nonzero) and the total variation is $+\infty$. Brownian paths oscillate so much that they accumulate infinite path length, yet the squared increments sum to a finite quantity.
+
+---
+
+4. Let $f$ be Hölder-$\alpha$ with $\alpha > 1/2$. Show that $\sum_i (f(t_{i+1}) - f(t_i))^2 \to 0$ as the mesh $\|\Pi\| \to 0$, confirming zero quadratic variation for regular functions.
 
 ??? success "Solution to Exercise 4"
     Let $f$ be Hölder-$\alpha$ with $\alpha > 1/2$. Then $|f(t_{i+1}) - f(t_i)| \leq C|t_{i+1} - t_i|^\alpha = C(\Delta t_i)^\alpha$ for some constant $C$. Therefore:
@@ -396,6 +390,12 @@ plt.show()
 
     as $\|\Pi\| \to 0$ (since $2\alpha - 1 > 0$). Therefore the quadratic variation of any Hölder-$\alpha$ function with $\alpha > 1/2$ is zero.
 
+---
+
+5. Verify the infinite total variation of Brownian motion numerically: for $T = 1$
+   and increasing $n$, plot $\sum_{i=0}^{n-1}|W_{(i+1)/n} - W_{i/n}|$ as a function
+   of $n$ and confirm divergence.
+
 ??? success "Solution to Exercise 5"
     For a single Brownian path on $[0, T]$ with uniform partition $t_i = iT/n$, the total variation is:
 
@@ -410,6 +410,12 @@ plt.show()
     $$
 
     This grows as $\sqrt{n} \to \infty$. To verify numerically, simulate a Brownian path for increasing $n$ and plot $V_1(W, \Pi_n)$ vs $n$. The plot should show a curve growing like $\sqrt{n}$, confirming that the total variation diverges.
+
+---
+
+6. Suppose $f:[0,T]\to\mathbb{R}$ is differentiable at $t_0$ with $f'(t_0) = L$.
+   Show directly that for any partition $\Pi$ of $[t_0, t_0+\eta]$ with small $\eta$,
+   $\sum_i (f(t_{i+1}) - f(t_i))^2 \to 0$ as $\|\Pi\| \to 0$.
 
 ??? success "Solution to Exercise 6"
     Suppose $f$ is differentiable at $t_0$ with $f'(t_0) = L$. Then for any $\varepsilon > 0$, there exists $\delta > 0$ such that for all $|h| < \delta$:
@@ -427,8 +433,6 @@ plt.show()
     $$
 
     As $\|\Pi\| \to 0$, the right side tends to 0. Therefore $\sum_i (f(t_{i+1}) - f(t_i))^2 \to 0$, confirming zero quadratic variation at a point of differentiability.
-
----
 
 ## References
 

@@ -106,40 +106,6 @@ which is exactly the stated representation.
 **Exercise 1.**
 Consider the PDE $u_t + \frac{1}{2}\sigma^2 u_{xx} - ru + g(x) = 0$ with $u(T, x) = 0$ and constant $r$, $g(x) = 1$. Use the Feynman-Kac representation with running payoff to write $u(t, x)$ as an expectation. Evaluate explicitly for the process $dX_s = \sigma\,dW_s$.
 
----
-
-**Exercise 2.**
-A bond with continuous coupon payments at rate $c$ has value $V(t, r) = \mathbb{E}[\int_t^T e^{-\int_t^s r_u\,du}\,c\,ds + e^{-\int_t^T r_u\,du} | r_t = r]$. Write the PDE that $V$ satisfies. Identify the running payoff $g = c$, the terminal payoff $f = 1$, and the discounting rate.
-
----
-
-**Exercise 3.**
-In the proof sketch, the process $Y_s = Z_s u(X_s, s) + \int_t^s Z_\tau g(X_\tau, \tau)\,d\tau$ is claimed to be a local martingale. Show that when the PDE $u_t + \mathcal{L}u - ru + g = 0$ holds, the drift of $Y_s$ vanishes. Identify where the running payoff $g$ cancels.
-
----
-
-**Exercise 4.**
-A derivative pays a continuous dividend at rate $q S_t$ (proportional to the stock price) plus a terminal payoff $g(S_T)$. Write the Feynman-Kac representation with both running and terminal payoffs, and derive the corresponding PDE.
-
----
-
-**Exercise 5.**
-Show that the running payoff formula reduces to the discounted Feynman-Kac formula when $g = 0$ (no running payoff). Show that it reduces to a pure annuity-like formula when $f = 0$ (no terminal payoff) and $g$ is constant.
-
----
-
-**Exercise 6.**
-Consider $u_t + \mu u_x + \frac{1}{2}\sigma^2 u_{xx} + g(x, t) = 0$ (no discounting, $r = 0$) with $u(T, x) = 0$. Write the Feynman-Kac representation and verify that $u(t, x) = \mathbb{E}[\int_t^T g(X_s, s)\,ds | X_t = x]$. Compute explicitly for $g(x, t) = x$ and $dX_s = \mu\,ds + \sigma\,dW_s$.
-
----
-
-**Exercise 7.**
-In mathematical physics, the source term $g(x,t)$ represents heat generation at rate $g$ in a medium with thermal diffusivity $\sigma^2/2$. The killing term $-ru$ represents heat loss proportional to temperature. Give the financial analogues of each term and explain why the general Feynman-Kac formula with all terms ($\mathcal{L}u$, $-ru$, $f$, $g$) is needed for realistic derivative pricing.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The PDE is $u_t + \frac{1}{2}\sigma^2 u_{xx} - ru + 1 = 0$ with $u(T, x) = 0$. By Feynman-Kac with running payoff $g(x) = 1$, terminal payoff $f(x) = 0$, and constant discount rate $r$:
 
@@ -160,6 +126,11 @@ In mathematical physics, the source term $g(x,t)$ represents heat generation at 
     $$
     u_t + \frac{1}{2}\sigma^2 u_{xx} - ru + 1 = -e^{-r(T-t)} + 0 - (1 - e^{-r(T-t)}) + 1 = 0 \;\checkmark
     $$
+
+---
+
+**Exercise 2.**
+A bond with continuous coupon payments at rate $c$ has value $V(t, r) = \mathbb{E}[\int_t^T e^{-\int_t^s r_u\,du}\,c\,ds + e^{-\int_t^T r_u\,du} | r_t = r]$. Write the PDE that $V$ satisfies. Identify the running payoff $g = c$, the terminal payoff $f = 1$, and the discounting rate.
 
 ??? success "Solution to Exercise 2"
     The bond value includes both a running payoff (continuous coupons at rate $c$) and a terminal payoff (face value $1$ at maturity). By the Feynman-Kac formula:
@@ -186,6 +157,11 @@ In mathematical physics, the source term $g(x,t)$ represents heat generation at 
     \frac{\partial V}{\partial t} + \kappa(\theta - r)\frac{\partial V}{\partial r} + \frac{1}{2}\sigma_r^2\frac{\partial^2 V}{\partial r^2} - r\,V + c = 0
     $$
 
+---
+
+**Exercise 3.**
+In the proof sketch, the process $Y_s = Z_s u(X_s, s) + \int_t^s Z_\tau g(X_\tau, \tau)\,d\tau$ is claimed to be a local martingale. Show that when the PDE $u_t + \mathcal{L}u - ru + g = 0$ holds, the drift of $Y_s$ vanishes. Identify where the running payoff $g$ cancels.
+
 ??? success "Solution to Exercise 3"
     We compute $dY_s$ where $Y_s = Z_s\,u(X_s, s) + \int_t^s Z_\tau\,g(X_\tau, \tau)\,d\tau$ and $Z_s = e^{-\int_t^s r(X_u, u)\,du}$.
 
@@ -209,6 +185,11 @@ In mathematical physics, the source term $g(x,t)$ represents heat generation at 
 
     When the PDE $u_t + \mathcal{L}u - r\,u + g = 0$ holds, the drift vanishes. The cancellation occurs as follows: the PDE gives $u_t + \mathcal{L}u - r\,u = -g$, so the drift becomes $Z_s(-g + g) = 0$. The running payoff $g$ from the integral term exactly cancels the $-g$ arising from the PDE, leaving only the martingale part $Z_s\,\sigma\,u_x\,dW_s$.
 
+---
+
+**Exercise 4.**
+A derivative pays a continuous dividend at rate $q S_t$ (proportional to the stock price) plus a terminal payoff $g(S_T)$. Write the Feynman-Kac representation with both running and terminal payoffs, and derive the corresponding PDE.
+
 ??? success "Solution to Exercise 4"
     A stock paying continuous dividends at rate $qS_t$ generates a running cash flow. Under $\mathbb{Q}$, the stock follows $dS_t = (r - q)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$.
 
@@ -227,6 +208,11 @@ In mathematical physics, the source term $g(x,t)$ represents heat generation at 
     $$
 
     with $V(T, S) = g(S)$. The $+qS$ term is the source from the running dividend payments.
+
+---
+
+**Exercise 5.**
+Show that the running payoff formula reduces to the discounted Feynman-Kac formula when $g = 0$ (no running payoff). Show that it reduces to a pure annuity-like formula when $f = 0$ (no terminal payoff) and $g$ is constant.
 
 ??? success "Solution to Exercise 5"
     **Case $g = 0$ (no running payoff)**: The general formula becomes:
@@ -250,6 +236,11 @@ In mathematical physics, the source term $g(x,t)$ represents heat generation at 
     $$
 
     This is the present value of a **continuous annuity** paying $g$ per unit time for $(T - t)$ years at discount rate $r$. The formula recovers the standard annuity pricing formula from fixed-income mathematics.
+
+---
+
+**Exercise 6.**
+Consider $u_t + \mu u_x + \frac{1}{2}\sigma^2 u_{xx} + g(x, t) = 0$ (no discounting, $r = 0$) with $u(T, x) = 0$. Write the Feynman-Kac representation and verify that $u(t, x) = \mathbb{E}[\int_t^T g(X_s, s)\,ds | X_t = x]$. Compute explicitly for $g(x, t) = x$ and $dX_s = \mu\,ds + \sigma\,dW_s$.
 
 ??? success "Solution to Exercise 6"
     With $r = 0$ and $u(T, x) = 0$, the Feynman-Kac representation gives:
@@ -281,6 +272,11 @@ In mathematical physics, the source term $g(x,t)$ represents heat generation at 
     $$
 
     Terminal condition: $u(T, x) = x \cdot 0 + 0 = 0$. $\checkmark$
+
+---
+
+**Exercise 7.**
+In mathematical physics, the source term $g(x,t)$ represents heat generation at rate $g$ in a medium with thermal diffusivity $\sigma^2/2$. The killing term $-ru$ represents heat loss proportional to temperature. Give the financial analogues of each term and explain why the general Feynman-Kac formula with all terms ($\mathcal{L}u$, $-ru$, $f$, $g$) is needed for realistic derivative pricing.
 
 ??? success "Solution to Exercise 7"
     **Financial analogues of each physics term:**

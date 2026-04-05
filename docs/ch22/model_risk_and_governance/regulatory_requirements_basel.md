@@ -390,6 +390,114 @@ $$
 
 compute the asset correlation $\rho$, the capital charge $K$, the maturity adjustment $\text{MA}$, and the resulting risk-weighted assets.
 
+??? success "Solution to Exercise 1"
+    **IRB capital calculation for a corporate loan.**
+
+    **Given:** $\text{PD} = 2\% = 0.02$, $\text{LGD} = 40\% = 0.40$, $\text{EAD} = \$50$ million, $M = 4$ years.
+
+    **Step 1: Asset correlation $\rho$.**
+
+    $$
+    \rho = 0.12 \cdot \frac{1 - e^{-50 \cdot 0.02}}{1 - e^{-50}} + 0.24 \cdot \left(1 - \frac{1 - e^{-50 \cdot 0.02}}{1 - e^{-50}}\right)
+    $$
+
+    Since $e^{-50} \approx 0$ (effectively zero), we have $1 - e^{-50} \approx 1$. Therefore:
+
+    $$
+    \frac{1 - e^{-1.0}}{1 - e^{-50}} \approx 1 - e^{-1} = 1 - 0.36788 = 0.63212
+    $$
+
+    $$
+    \rho = 0.12 \times 0.63212 + 0.24 \times (1 - 0.63212)
+    $$
+
+    $$
+    = 0.12 \times 0.63212 + 0.24 \times 0.36788
+    $$
+
+    $$
+    = 0.07585 + 0.08829 = 0.1641
+    $$
+
+    **Step 2: Capital charge $K$.**
+
+    We need $\Phi^{-1}(\text{PD}) = \Phi^{-1}(0.02) \approx -2.0537$ and $\Phi^{-1}(0.999) \approx 3.0902$.
+
+    $$
+    K = \text{LGD} \cdot \Phi\!\left(\frac{\Phi^{-1}(\text{PD}) + \sqrt{\rho}\,\Phi^{-1}(0.999)}{\sqrt{1-\rho}}\right) - \text{LGD} \cdot \text{PD}
+    $$
+
+    Computing the argument of $\Phi$:
+
+    $$
+    \sqrt{\rho} = \sqrt{0.1641} = 0.4051
+    $$
+
+    $$
+    \sqrt{1 - \rho} = \sqrt{0.8359} = 0.9143
+    $$
+
+    $$
+    \frac{-2.0537 + 0.4051 \times 3.0902}{0.9143} = \frac{-2.0537 + 1.2518}{0.9143} = \frac{-0.8019}{0.9143} = -0.8771
+    $$
+
+    $$
+    \Phi(-0.8771) \approx 0.1902
+    $$
+
+    $$
+    K = 0.40 \times 0.1902 - 0.40 \times 0.02 = 0.07608 - 0.008 = 0.06808
+    $$
+
+    **Step 3: Maturity adjustment $\text{MA}$.**
+
+    First compute $b(\text{PD})$:
+
+    $$
+    b(\text{PD}) = (0.11852 - 0.05478 \cdot \ln(0.02))^2
+    $$
+
+    $$
+    \ln(0.02) = -3.9120
+    $$
+
+    $$
+    b = (0.11852 - 0.05478 \times (-3.9120))^2 = (0.11852 + 0.21434)^2 = (0.33286)^2 = 0.11080
+    $$
+
+    The maturity adjustment with $M = 4$:
+
+    $$
+    \text{MA} = \frac{1 + (M - 2.5) \cdot b}{1 - 1.5 \cdot b} = \frac{1 + 1.5 \times 0.11080}{1 - 1.5 \times 0.11080} = \frac{1 + 0.16620}{1 - 0.16620} = \frac{1.16620}{0.83380} = 1.3987
+    $$
+
+    **Step 4: Risk-weighted assets.**
+
+    $$
+    \text{RWA} = K \times 12.5 \times \text{EAD} \times \text{MA}
+    $$
+
+    $$
+    = 0.06808 \times 12.5 \times 50 \times 1.3987
+    $$
+
+    $$
+    = 0.06808 \times 12.5 \times 69.935
+    $$
+
+    $$
+    = 0.8510 \times 69.935 \approx \$59.5 \text{ million}
+    $$
+
+    **Summary:**
+
+    | Parameter | Value |
+    |-----------|-------|
+    | Asset correlation $\rho$ | 0.1641 |
+    | Capital charge $K$ | 6.81% |
+    | Maturity adjustment MA | 1.399 |
+    | RWA | ~\$59.5 million |
+
 ---
 
 **Exercise 2.** In the Vasicek single-factor model, the conditional default probability given the systematic factor $Z = z$ is
@@ -400,9 +508,107 @@ $$
 
 Show that $p(z)$ is decreasing in $z$ and increasing in $\rho$ (for fixed $z < 0$). Explain the economic intuition: why does higher asset correlation lead to a fatter tail in the portfolio loss distribution?
 
+??? success "Solution to Exercise 2"
+    **Monotonicity properties of the conditional default probability.**
+
+    **Part 1: $p(z)$ is decreasing in $z$.**
+
+    $$
+    p(z) = \Phi\!\left(\frac{\Phi^{-1}(\text{PD}) - \sqrt{\rho}\, z}{\sqrt{1-\rho}}\right)
+    $$
+
+    Since $\Phi$ is a monotonically increasing function, $p(z)$ is decreasing in $z$ if and only if the argument of $\Phi$ is decreasing in $z$. Taking the derivative of the argument with respect to $z$:
+
+    $$
+    \frac{\partial}{\partial z}\left(\frac{\Phi^{-1}(\text{PD}) - \sqrt{\rho}\, z}{\sqrt{1-\rho}}\right) = \frac{-\sqrt{\rho}}{\sqrt{1-\rho}} < 0
+    $$
+
+    since $\rho \in (0,1)$. Therefore the argument is strictly decreasing in $z$, and since $\Phi$ is strictly increasing, $p(z)$ is strictly decreasing in $z$. $\blacksquare$
+
+    **Interpretation:** When $z$ is large (favorable systematic environment), fewer obligors default. When $z$ is small or negative (adverse systematic shock), more obligors default.
+
+    **Part 2: $p(z)$ is increasing in $\rho$ for fixed $z < 0$.**
+
+    Define $g(\rho) = \frac{\Phi^{-1}(\text{PD}) - \sqrt{\rho}\, z}{\sqrt{1-\rho}}$ and compute $\frac{\partial g}{\partial \rho}$.
+
+    Let $d = \Phi^{-1}(\text{PD}) < 0$ (since $\text{PD} < 0.5$). Then:
+
+    $$
+    g(\rho) = \frac{d - \sqrt{\rho}\, z}{\sqrt{1-\rho}}
+    $$
+
+    Using the quotient rule:
+
+    $$
+    \frac{\partial g}{\partial \rho} = \frac{\left(-\frac{z}{2\sqrt{\rho}}\right)\sqrt{1-\rho} - (d - \sqrt{\rho}\,z)\left(-\frac{1}{2\sqrt{1-\rho}}\right)}{1-\rho}
+    $$
+
+    $$
+    = \frac{-\frac{z}{2\sqrt{\rho}}\sqrt{1-\rho} + \frac{d - \sqrt{\rho}\,z}{2\sqrt{1-\rho}}}{1-\rho}
+    $$
+
+    $$
+    = \frac{1}{2(1-\rho)}\left[-\frac{z\sqrt{1-\rho}}{\sqrt{\rho}} + \frac{d - \sqrt{\rho}\,z}{\sqrt{1-\rho}}\right]
+    $$
+
+    $$
+    = \frac{1}{2(1-\rho)}\left[\frac{-z(1-\rho) + \sqrt{\rho}(d - \sqrt{\rho}\,z)}{\sqrt{\rho}\sqrt{1-\rho}}\right]
+    $$
+
+    $$
+    = \frac{1}{2(1-\rho)^{3/2}\sqrt{\rho}}\left[-z + z\rho + d\sqrt{\rho} - \rho z\right]
+    $$
+
+    $$
+    = \frac{1}{2(1-\rho)^{3/2}\sqrt{\rho}}\left[-z + d\sqrt{\rho}\right]
+    $$
+
+    $$
+    = \frac{d\sqrt{\rho} - z}{2(1-\rho)^{3/2}\sqrt{\rho}}
+    $$
+
+    When $z < 0$, we have $-z > 0$, and since $d = \Phi^{-1}(\text{PD}) < 0$, we get $d\sqrt{\rho} < 0$. Thus the numerator is $d\sqrt{\rho} - z$, where $-z > 0$ and $d\sqrt{\rho} < 0$... actually we need to be more careful. We have $d\sqrt{\rho} - z$. Since $z < 0$, we have $-z > 0$, so $d\sqrt{\rho} - z = d\sqrt{\rho} + |z| > 0$ when $|z|$ is sufficiently large. In the regime of interest (stressed conditions where $z < 0$ and $|z|$ is large, i.e., the tail that matters for capital), the numerator is positive, so $\frac{\partial g}{\partial \rho} > 0$, meaning $p(z)$ is increasing in $\rho$.
+
+    More precisely, $\frac{\partial g}{\partial \rho} > 0$ whenever $z < d\sqrt{\rho}$. Since $d < 0$ and $z < 0$, this holds when $|z| > |d|\sqrt{\rho}$, which is the adverse tail relevant for capital ($z = \Phi^{-1}(0.001) \approx -3.09$, while $|d\sqrt{\rho}|$ is typically much smaller). $\blacksquare$
+
+    **Economic intuition:** Higher asset correlation $\rho$ means obligors are more exposed to the common systematic factor $Z$. When $Z$ takes an adverse value ($z < 0$), high correlation causes defaults to be more synchronized -- many firms default together. This creates a **fatter right tail** in the portfolio loss distribution: losses are typically small (in good times, few defaults), but when losses occur, they are catastrophic (in bad times, many defaults simultaneously).
+
+    In the Vasicek limit, the portfolio loss fraction equals $p(Z)$, which is a nonlinear function of the Gaussian systematic factor $Z$. Higher $\rho$ makes this function steeper -- small changes in $Z$ cause large changes in the default rate -- amplifying the tail of the loss distribution and increasing the 99.9th percentile capital requirement.
+
 ---
 
 **Exercise 3.** Under Basel III, a G-SIB has a CET1 ratio of 11.5%, with a countercyclical buffer set at 1.5% and a G-SIB surcharge of 2.0%. Determine whether this bank meets all capital requirements including the capital conservation buffer. If the bank's RWA is \$800 billion, compute the CET1 shortfall (if any) in dollar terms.
+
+??? success "Solution to Exercise 3"
+    **Capital adequacy assessment for a G-SIB.**
+
+    **Total CET1 requirement:**
+
+    | Component | Requirement |
+    |-----------|------------|
+    | Minimum CET1 | 4.5% |
+    | Capital conservation buffer | 2.5% |
+    | Countercyclical buffer | 1.5% |
+    | G-SIB surcharge | 2.0% |
+    | **Total** | **10.5%** |
+
+    **Assessment:**
+
+    The bank has a CET1 ratio of 11.5%, which exceeds the total requirement of 10.5%. Therefore, the bank **meets all capital requirements** including all buffers.
+
+    The surplus is $11.5\% - 10.5\% = 1.0\%$.
+
+    **Dollar terms:**
+
+    With RWA of \$800 billion:
+
+    - Required CET1 capital: $10.5\% \times \$800\text{B} = \$84$ billion
+    - Actual CET1 capital: $11.5\% \times \$800\text{B} = \$92$ billion
+    - Surplus: $\$92\text{B} - \$84\text{B} = \$8$ billion
+
+    There is **no shortfall**; the bank has an \$8 billion CET1 surplus above all requirements.
+
+    Note that if the bank's CET1 ratio were to fall into the buffer zone (between 4.5% and 10.5%), the bank would face **restrictions on distributions** (dividends, share buybacks, bonus payments) but would not technically violate minimum capital requirements. The hard minimum is 4.5%, while the buffers impose graduated distribution constraints.
 
 ---
 
@@ -414,6 +620,43 @@ $$
 
 treats these two positions differently, and why this is economically appropriate.
 
+??? success "Solution to Exercise 4"
+    **FRTB variable liquidity horizons: qualitative analysis.**
+
+    **Why FRTB replaces the uniform 10-day horizon:**
+
+    Under Basel II.5, all trading book positions were subject to a uniform 10-day VaR horizon. This was inappropriate because:
+
+    1. **Illiquid positions cannot be hedged or exited in 10 days.** Credit derivatives, structured products, and bespoke OTC instruments may take weeks or months to unwind. A 10-day horizon underestimates the risk of holding such positions during adverse markets.
+
+    2. **Liquid positions are overcapitalized.** Equity index futures trade with enormous liquidity and can be exited intraday. Applying a 10-day horizon to these positions overstates the actual risk.
+
+    3. **Uniform horizons create perverse incentives.** Banks are incentivized to hold illiquid, high-yielding positions because the capital charge does not reflect the true liquidation horizon.
+
+    **How the FRTB formula treats the two positions differently:**
+
+    Consider the portfolio with:
+
+    - Liquid equity index futures: assigned $P_1 = 10$ days
+    - Illiquid credit derivatives: assigned $P_2 = 120$ days
+
+    The FRTB aggregation formula is:
+
+    $$
+    \text{ES} = \sqrt{\left(\text{ES}_1(10)\right)^2 + \left(\text{ES}_2(120)\right)^2}
+    $$
+
+    Under a square-root-of-time scaling approximation, $\text{ES}_j(P_j) \propto \sqrt{P_j}$. So even if the two positions have the same 1-day ES, the credit derivative contributes $\sqrt{120/10} = \sqrt{12} \approx 3.46$ times more to the aggregate ES than the equity futures.
+
+    **Why this is economically appropriate:**
+
+    The key insight is that the **risk horizon should match the liquidation horizon**. During a stress event:
+
+    - The equity index futures can be closed out quickly (within days), limiting losses to approximately the 10-day ES.
+    - The credit derivatives may be stuck on the books for months, accumulating losses over the full 120-day period before they can be hedged or sold.
+
+    The FRTB formula captures this by assigning each risk factor its appropriate horizon, then aggregating under an independence assumption (the square-root-of-sum-of-squares structure). This ensures that illiquid positions receive capital charges commensurate with the actual risk of holding them through a stress period, while liquid positions are not overcapitalized.
+
 ---
 
 **Exercise 5.** The Basel IV output floor requires
@@ -424,9 +667,94 @@ $$
 
 A bank computes $\text{RWA}_{\text{internal}} = \$400$ billion and $\text{RWA}_{\text{standardized}} = \$620$ billion. Determine the binding RWA. By what percentage would the bank need to reduce its standardized RWA (holding internal RWA fixed) for the output floor to become non-binding?
 
+??? success "Solution to Exercise 5"
+    **Output floor analysis.**
+
+    **Given:** $\text{RWA}_{\text{internal}} = \$400$ billion, $\text{RWA}_{\text{standardized}} = \$620$ billion.
+
+    **Binding RWA:**
+
+    $$
+    \text{RWA}_{\text{floor}} = \max(\$400\text{B},\; 72.5\% \times \$620\text{B}) = \max(\$400\text{B},\; \$449.5\text{B}) = \$449.5 \text{ billion}
+    $$
+
+    The **output floor is binding** at \$449.5 billion, which exceeds the internal models RWA by \$49.5 billion ($12.4\%$ increase over internal RWA).
+
+    **Reduction needed for the floor to become non-binding:**
+
+    The floor becomes non-binding when:
+
+    $$
+    \text{RWA}_{\text{internal}} \geq 72.5\% \times \text{RWA}_{\text{standardized}}
+    $$
+
+    $$
+    \$400\text{B} \geq 0.725 \times \text{RWA}_{\text{standardized}}
+    $$
+
+    $$
+    \text{RWA}_{\text{standardized}} \leq \frac{\$400\text{B}}{0.725} = \$551.72 \text{ billion}
+    $$
+
+    The required reduction in standardized RWA:
+
+    $$
+    \Delta = \$620\text{B} - \$551.72\text{B} = \$68.28 \text{ billion}
+    $$
+
+    As a percentage:
+
+    $$
+    \frac{\$68.28\text{B}}{\$620\text{B}} \times 100\% = 11.01\%
+    $$
+
+    The bank would need to reduce its standardized RWA by approximately **11.0%** (from \$620B to \$551.7B) for the output floor to become non-binding, holding internal RWA fixed at \$400B.
+
 ---
 
 **Exercise 6.** A bank has total exposure of \$1.2 trillion, Tier 1 capital of \$40 billion, HQLA of \$250 billion, and projected 30-day net cash outflows of \$230 billion. Compute the leverage ratio, the LCR, and determine which of these two constraints is binding. Discuss why regulators impose a non-risk-based leverage ratio alongside risk-weighted capital requirements.
+
+??? success "Solution to Exercise 6"
+    **Leverage ratio, LCR, and binding constraint analysis.**
+
+    **Given:** Total exposure = \$1.2 trillion, Tier 1 capital = \$40 billion, HQLA = \$250 billion, 30-day net cash outflows = \$230 billion.
+
+    **Leverage ratio:**
+
+    $$
+    \text{Leverage Ratio} = \frac{\text{Tier 1 Capital}}{\text{Total Exposure}} = \frac{\$40\text{B}}{\$1{,}200\text{B}} = 3.33\%
+    $$
+
+    The minimum requirement is 3%. The bank meets this requirement with a surplus of $3.33\% - 3.0\% = 0.33\%$.
+
+    **Liquidity Coverage Ratio:**
+
+    $$
+    \text{LCR} = \frac{\text{HQLA}}{\text{Net Cash Outflows}} = \frac{\$250\text{B}}{\$230\text{B}} = 108.7\%
+    $$
+
+    The minimum requirement is 100%. The bank meets this requirement with a surplus of $108.7\% - 100\% = 8.7\%$.
+
+    **Which constraint is binding?**
+
+    Both constraints are met, but we assess which is closer to its limit:
+
+    - Leverage ratio surplus: $0.33/3.0 = 11\%$ above minimum
+    - LCR surplus: $8.7/100 = 8.7\%$ above minimum
+
+    The **LCR is the more binding constraint** (8.7% surplus vs. 11% surplus in relative terms). A moderate outflow shock could push the LCR below 100%.
+
+    However, both are relatively tight. In absolute terms, the leverage ratio has very thin headroom: the bank could sustain only a $\$40\text{B} \times (0.33\%/3.33\%) \approx \$4\text{B}$ reduction in Tier 1 capital before breaching the leverage ratio.
+
+    **Why regulators impose a non-risk-based leverage ratio alongside risk-weighted requirements:**
+
+    1. **Backstop against model risk.** Risk-weighted capital requirements depend on risk models that may underestimate risk. The leverage ratio is model-free -- it does not depend on risk weights, internal ratings, or any quantitative model. If models systematically understate risk (as happened pre-2008), the leverage ratio provides a hard floor on capital.
+
+    2. **Addressing low-risk-weight arbitrage.** Under risk-weighted frameworks, banks can accumulate large exposures in "low-risk" asset classes (e.g., sovereign bonds, AAA-rated securities) with little capital. The leverage ratio penalizes all exposures equally, preventing excessive balance sheet expansion even in ostensibly safe assets.
+
+    3. **Simplicity and transparency.** The leverage ratio is easy to compute, understand, and compare across institutions. It serves as a simple diagnostic tool for supervisors and market participants.
+
+    4. **Complementarity.** The risk-weighted ratio and the leverage ratio constrain banks from different angles. The risk-weighted ratio is more granular and risk-sensitive, while the leverage ratio is robust but blunt. Together, they provide a more resilient capital framework than either alone.
 
 ---
 
@@ -437,3 +765,58 @@ $$
 $$
 
 with $\rho = 0.5$. Suppose $\text{ES}_{\text{FC}} = \$800$ million and the five risk class ES values are \$300M, \$250M, \$200M, \$150M, and \$100M. Compute the IMCC. Explain the economic rationale for the weighted average: what happens in the limits $\rho = 0$ and $\rho = 1$, and why did the BCBS choose an intermediate value?
+
+??? success "Solution to Exercise 7"
+    **FRTB IMCC computation and economic rationale.**
+
+    **Computation:**
+
+    $$
+    \text{IMCC} = \rho \cdot \text{ES}_{\text{FC}} + (1 - \rho) \cdot \sum_{i=1}^{5} \text{ES}_{\text{RC},i}
+    $$
+
+    The sum of individual risk class ES values:
+
+    $$
+    \sum_{i=1}^{5} \text{ES}_{\text{RC},i} = 300 + 250 + 200 + 150 + 100 = \$1{,}000 \text{ million}
+    $$
+
+    With $\rho = 0.5$:
+
+    $$
+    \text{IMCC} = 0.5 \times 800 + 0.5 \times 1000 = 400 + 500 = \$900 \text{ million}
+    $$
+
+    **Economic rationale and limiting cases:**
+
+    The IMCC formula is a weighted average between two extreme approaches to aggregating risk across risk classes:
+
+    **Case $\rho = 1$: Full correlation recognition.**
+
+    $$
+    \text{IMCC} = \text{ES}_{\text{FC}} = \$800\text{M}
+    $$
+
+    This uses only the fully correlated ES, which accounts for diversification benefits across risk classes exactly as estimated by the bank's internal model. The capital charge is lowest because the model's estimated inter-class correlations (which typically imply diversification) are fully recognized.
+
+    The problem: banks' correlation estimates may be unreliable, especially during stress when correlations tend to increase toward 1. Trusting the fully correlated ES entirely may understate tail risk.
+
+    **Case $\rho = 0$: No correlation recognition (full add-up).**
+
+    $$
+    \text{IMCC} = \sum_{i=1}^{5} \text{ES}_{\text{RC},i} = \$1{,}000\text{M}
+    $$
+
+    This assumes no diversification across risk classes, treating each class independently and summing the ES values. The capital charge is highest, representing the most conservative assumption (perfect dependence in the tail).
+
+    The problem: this ignores genuine diversification and may lead to excessive capital charges, reducing banks' ability to intermediate risk efficiently.
+
+    **Why $\rho = 0.5$:**
+
+    The BCBS chose $\rho = 0.5$ as a compromise:
+
+    - It partially recognizes diversification benefits (through $\text{ES}_{\text{FC}}$), rewarding banks whose risk is genuinely diversified.
+    - It partially penalizes potential correlation underestimation (through the sum of individual ES values), providing a buffer against the well-documented tendency for correlations to spike during crises.
+    - The midpoint $\rho = 0.5$ reflects regulatory skepticism about the stability of cross-asset correlations while acknowledging that perfect dependence ($\rho = 0$) is also unrealistic.
+
+    In this example, the IMCC of \$900M sits between the optimistic \$800M (full diversification) and the conservative \$1,000M (no diversification), adding a \$100M buffer above the fully correlated estimate to account for correlation uncertainty.

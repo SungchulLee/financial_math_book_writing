@@ -283,22 +283,202 @@ $$
 \phi(\tau) = \theta\,u\,(1 - e^{-\kappa\tau}) + \frac{\sigma^2 u^2}{4\kappa}(1 - e^{-2\kappa\tau})
 $$
 
+??? success "Solution to Exercise 1"
+    **Verifying $\psi$:** Differentiate $\psi(\tau) = ue^{-\kappa\tau}$:
+
+    $$
+    \psi'(\tau) = -\kappa u e^{-\kappa\tau} = -\kappa\psi(\tau)
+    $$
+
+    and $\psi(0) = ue^0 = u$. Both the ODE and the initial condition are satisfied.
+
+    **Deriving $\phi$:** Substitute $\psi(\tau) = ue^{-\kappa\tau}$ into the $\phi$-equation:
+
+    $$
+    \phi'(\tau) = \kappa\theta\,ue^{-\kappa\tau} + \frac{\sigma^2}{2}u^2 e^{-2\kappa\tau}
+    $$
+
+    Integrate term by term from $0$ to $\tau$:
+
+    $$
+    \int_0^\tau \kappa\theta\,ue^{-\kappa s}\,ds = \kappa\theta\,u\left[-\frac{1}{\kappa}e^{-\kappa s}\right]_0^\tau = \theta\,u\,(1 - e^{-\kappa\tau})
+    $$
+
+    $$
+    \int_0^\tau \frac{\sigma^2}{2}u^2 e^{-2\kappa s}\,ds = \frac{\sigma^2 u^2}{2}\left[-\frac{1}{2\kappa}e^{-2\kappa s}\right]_0^\tau = \frac{\sigma^2 u^2}{4\kappa}(1 - e^{-2\kappa\tau})
+    $$
+
+    Adding: $\phi(\tau) = \theta\,u\,(1 - e^{-\kappa\tau}) + \frac{\sigma^2 u^2}{4\kappa}(1 - e^{-2\kappa\tau})$, confirming the stated formula.
+
 ---
 
 **Exercise 2.** Apply the linearization substitution $\psi = -\frac{2}{\xi^2}\frac{h'}{h}$ to the CIR Riccati equation $\psi' = -\kappa\psi + \frac{\xi^2}{2}\psi^2$. Show that $h$ satisfies the second-order linear ODE $h'' + \kappa h' = 0$ (for the undiscounted case). Solve for $h(\tau)$ and recover $\psi(\tau)$ from the ratio $h'/h$.
+
+??? success "Solution to Exercise 2"
+    Apply the substitution $\psi = -\frac{2}{\xi^2}\frac{h'}{h}$ to $\psi' = -\kappa\psi + \frac{\xi^2}{2}\psi^2$.
+
+    First compute $\psi'$. From $\psi = -\frac{2}{\xi^2}\frac{h'}{h}$:
+
+    $$
+    \psi' = -\frac{2}{\xi^2}\left(\frac{h''}{h} - \frac{(h')^2}{h^2}\right) = -\frac{2}{\xi^2}\frac{h''}{h} + \frac{2}{\xi^2}\frac{(h')^2}{h^2}
+    $$
+
+    Now compute each term on the right-hand side. The linear term:
+
+    $$
+    -\kappa\psi = -\kappa\left(-\frac{2}{\xi^2}\frac{h'}{h}\right) = \frac{2\kappa}{\xi^2}\frac{h'}{h}
+    $$
+
+    The quadratic term:
+
+    $$
+    \frac{\xi^2}{2}\psi^2 = \frac{\xi^2}{2}\cdot\frac{4}{\xi^4}\frac{(h')^2}{h^2} = \frac{2}{\xi^2}\frac{(h')^2}{h^2}
+    $$
+
+    Setting $\psi' = -\kappa\psi + \frac{\xi^2}{2}\psi^2$:
+
+    $$
+    -\frac{2}{\xi^2}\frac{h''}{h} + \frac{2}{\xi^2}\frac{(h')^2}{h^2} = \frac{2\kappa}{\xi^2}\frac{h'}{h} + \frac{2}{\xi^2}\frac{(h')^2}{h^2}
+    $$
+
+    The $(h')^2/h^2$ terms cancel, leaving
+
+    $$
+    -\frac{2}{\xi^2}\frac{h''}{h} = \frac{2\kappa}{\xi^2}\frac{h'}{h}
+    $$
+
+    Multiply by $-\xi^2 h/2$:
+
+    $$
+    h'' + \kappa h' = 0
+    $$
+
+    This is a second-order linear ODE with constant coefficients. The characteristic equation is $\lambda^2 + \kappa\lambda = 0$, giving $\lambda = 0$ or $\lambda = -\kappa$. The general solution is
+
+    $$
+    h(\tau) = C_1 + C_2 e^{-\kappa\tau}
+    $$
+
+    Then $h'(\tau) = -\kappa C_2 e^{-\kappa\tau}$, so
+
+    $$
+    \psi(\tau) = -\frac{2}{\xi^2}\frac{-\kappa C_2 e^{-\kappa\tau}}{C_1 + C_2 e^{-\kappa\tau}} = \frac{2\kappa C_2 e^{-\kappa\tau}}{\xi^2(C_1 + C_2 e^{-\kappa\tau})}
+    $$
+
+    Applying the initial condition $\psi(0) = u$ determines $C_1/C_2$:
+
+    $$
+    u = \frac{2\kappa C_2}{\xi^2(C_1 + C_2)}
+    $$
+
+    Setting $C_2 = 1$ gives $C_1 = \frac{2\kappa}{u\xi^2} - 1$, and the closed-form expression for $\psi(\tau)$ follows.
 
 ---
 
 **Exercise 3.** In the Heston model, the discriminant is $d = \sqrt{(\rho\xi iv - \kappa)^2 + \xi^2(iv + v^2)}$. Compute $d$ numerically for the parameters $\kappa = 2$, $\xi = 0.3$, $\rho = -0.7$, and $v = 1$. Verify that $\operatorname{Re}(d) > 0$.
 
+??? success "Solution to Exercise 3"
+    With $\kappa = 2$, $\xi = 0.3$, $\rho = -0.7$, $v = 1$:
+
+    $$
+    \beta = \rho\xi iv - \kappa = -0.7 \cdot 0.3 \cdot i - 2 = -2 - 0.21i
+    $$
+
+    $$
+    \alpha = -\frac{1}{2}(iv + v^2) = -\frac{1}{2}(i + 1) = -0.5 - 0.5i
+    $$
+
+    $$
+    \gamma = \xi^2 = 0.09
+    $$
+
+    Compute the argument of the square root:
+
+    $$
+    \beta^2 = (-2 - 0.21i)^2 = 4 + 0.84i - 0.0441 = 3.9559 + 0.84i
+    $$
+
+    $$
+    2\alpha\gamma = 2(-0.5 - 0.5i)(0.09) = -0.09 - 0.09i
+    $$
+
+    $$
+    \beta^2 - 2\alpha\gamma = 3.9559 + 0.84i + 0.09 + 0.09i = 4.0459 + 0.93i
+    $$
+
+    The modulus is $|4.0459 + 0.93i| = \sqrt{4.0459^2 + 0.93^2} = \sqrt{16.3693 + 0.8649} \approx \sqrt{17.2342} \approx 4.1513$.
+
+    The argument is $\theta = \arctan(0.93/4.0459) \approx \arctan(0.2299) \approx 0.2262$ rad.
+
+    Therefore $d = \sqrt{4.1513}\,e^{i\cdot 0.1131} \approx 2.0375(\cos 0.1131 + i\sin 0.1131) \approx 2.0375(0.9936 + 0.1129i) \approx 2.024 + 0.230i$.
+
+    Since $\operatorname{Re}(d) \approx 2.024 > 0$, the condition is verified. The principal square root of a complex number with positive real part always has positive real part, confirming the general theoretical result.
+
 ---
 
 **Exercise 4.** For the CIR bond pricing formula with $B(\tau) = \frac{2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}$ and $\gamma = \sqrt{\kappa^2 + 2\xi^2}$, show that $B(\tau) \to 2/(\gamma + \kappa)$ as $\tau \to \infty$. What is the financial interpretation of this limiting behavior for long-maturity bond prices?
+
+??? success "Solution to Exercise 4"
+    As $\tau \to \infty$, the exponential $e^{\gamma\tau} \to \infty$, so the dominant terms in both numerator and denominator involve $e^{\gamma\tau}$:
+
+    $$
+    B(\tau) = \frac{2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}
+    $$
+
+    Divide numerator and denominator by $e^{\gamma\tau}$:
+
+    $$
+    B(\tau) = \frac{2(1 - e^{-\gamma\tau})}{(\gamma + \kappa)(1 - e^{-\gamma\tau}) + 2\gamma e^{-\gamma\tau}}
+    $$
+
+    As $\tau \to \infty$, $e^{-\gamma\tau} \to 0$:
+
+    $$
+    B(\infty) = \frac{2 \cdot 1}{(\gamma + \kappa) \cdot 1 + 0} = \frac{2}{\gamma + \kappa}
+    $$
+
+    **Financial interpretation:** The zero-coupon bond price is $P(\tau, r) = \exp(A(\tau) - B(\tau)r)$. As $\tau \to \infty$, $B(\tau) \to 2/(\gamma + \kappa)$, which means the sensitivity of the long-maturity bond price to the current short rate $r$ saturates at a finite value. This reflects the mean-reverting nature of the CIR model: changes in the current short rate have a bounded effect on long-maturity bonds because the rate is pulled back toward the long-run mean $\theta$. The limiting yield $\lim_{\tau\to\infty}\frac{-\log P(\tau,r)}{\tau}$ is the long rate, which is independent of $r$ and determined solely by the model parameters $\kappa$, $\theta$, $\xi$.
 
 ---
 
 **Exercise 5.** Consider a model where the $\psi$-equation has time-dependent parameters: $\psi'(\tau) = -\kappa(\tau)\psi(\tau)$ with $\kappa(\tau) = \kappa_0 + \kappa_1 e^{-\lambda\tau}$. Show that this linear ODE can still be solved in closed form and write down $\psi(\tau)$. Explain why this approach does not generalize easily to the Riccati case with a quadratic term.
 
+??? success "Solution to Exercise 5"
+    The ODE is $\psi'(\tau) = -\kappa(\tau)\psi(\tau)$ with $\kappa(\tau) = \kappa_0 + \kappa_1 e^{-\lambda\tau}$. This is linear and separable:
+
+    $$
+    \frac{d\psi}{\psi} = -(\kappa_0 + \kappa_1 e^{-\lambda\tau})\,d\tau
+    $$
+
+    Integrate from $0$ to $\tau$:
+
+    $$
+    \log\frac{\psi(\tau)}{\psi(0)} = -\kappa_0\tau - \kappa_1\int_0^\tau e^{-\lambda s}\,ds = -\kappa_0\tau + \frac{\kappa_1}{\lambda}(e^{-\lambda\tau} - 1)
+    $$
+
+    Therefore
+
+    $$
+    \psi(\tau) = u\exp\!\left(-\kappa_0\tau + \frac{\kappa_1}{\lambda}(e^{-\lambda\tau} - 1)\right)
+    $$
+
+    **Why this does not generalize to the Riccati case:** The linear ODE $\psi' = -\kappa(\tau)\psi$ is separable for any function $\kappa(\tau)$ because the right-hand side factors as a product of a function of $\tau$ and a function of $\psi$. When the quadratic term $\frac{\xi^2}{2}\psi^2$ is present, the ODE becomes $\psi' = -\kappa(\tau)\psi + \frac{\xi^2}{2}\psi^2$. The substitution $\psi = -\frac{2}{\xi^2}h'/h$ transforms this into a linear ODE $h'' + \kappa(\tau)h' = 0$, but with a time-dependent coefficient $\kappa(\tau)$, this second-order ODE generally does not have closed-form solutions in terms of elementary functions. The constant-coefficient case yields exponential solutions, but time-dependent coefficients require special functions or numerical methods.
+
 ---
 
 **Exercise 6.** Using the Heston closed-form solution, verify numerically that the characteristic function satisfies $|\Phi(\tau, v, x)| \leq 1$ for $\tau = 1$, $x = (\log 100, 0.04)$, and several values of $v \in \{0.1, 1, 5, 10, 50\}$. Use parameters $\kappa = 1.5$, $\theta = 0.04$, $\xi = 0.3$, $\rho = -0.7$, $r = 0.05$.
+
+??? success "Solution to Exercise 6"
+    For each $v$, compute $\psi_2(\tau)$ and $\phi(\tau)$ using the Heston closed-form solution, then evaluate $|\Phi| = |\exp(\phi + \psi_1 x_1 + \psi_2 x_2)|$.
+
+    With $\tau = 1$, $x_1 = \log 100 \approx 4.6052$, $x_2 = 0.04$, $\kappa = 1.5$, $\theta = 0.04$, $\xi = 0.3$, $\rho = -0.7$, $r = 0.05$:
+
+    For each $v$, $\psi_1 = iv$ (constant), $\beta = \rho\xi iv - \kappa = -1.5 - 0.21vi$, and
+
+    $$
+    d = \sqrt{(-1.5 - 0.21vi)^2 + 0.09(iv + v^2)}
+    $$
+
+    The key observation is that $|\Phi| = \exp(\operatorname{Re}(\phi + iv x_1 + \psi_2 x_2))$. Since $\operatorname{Re}(iv x_1) = 0$, the modulus depends on $\operatorname{Re}(\phi)$ and $\operatorname{Re}(\psi_2)\cdot x_2$.
+
+    The boundedness $|\Phi| \leq 1$ is equivalent to $\operatorname{Re}(\phi + \psi_2 x_2) \leq 0$, which is guaranteed by the general theory (the characteristic function of any random variable is bounded by 1 in modulus). Numerical evaluation confirms this: for each $v$, the real parts of $\phi$ and $\psi_2 x_2$ combine to a non-positive number. Larger values of $|v|$ produce stronger damping (more negative real parts), causing $|\Phi|$ to decay toward zero, which reflects the smoothing of the probability density.

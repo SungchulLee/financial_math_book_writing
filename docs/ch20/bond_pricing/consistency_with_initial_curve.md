@@ -191,26 +191,247 @@ The Hull-White model achieves exact consistency with the market zero-coupon bond
 
 **Exercise 1.** Consider a market with forward rate $f^M(0,t) = 0.03 + 0.002t$ and Hull-White parameters $\lambda = 0.08$, $\sigma = 0.012$. Compute $\theta^{\mathbb{Q}}(t)$ at $t = 0$, $t = 5$, and $t = 20$. Verify that $\theta^{\mathbb{Q}}(0) = f^M(0,0) = 0.03$.
 
+??? success "Solution to Exercise 1"
+    The formula for $\theta^{\mathbb{Q}}(t)$ is:
+
+    $$
+    \theta^{\mathbb{Q}}(t) = f^M(0,t) + \frac{1}{\lambda}\frac{\partial f^M(0,t)}{\partial t} + \frac{\sigma^2}{2\lambda^2}(1 - e^{-2\lambda t})
+    $$
+
+    With $f^M(0,t) = 0.03 + 0.002t$, we have $\frac{\partial f^M}{\partial t} = 0.002$. Parameters: $\lambda = 0.08$, $\sigma = 0.012$.
+
+    Substituting:
+
+    $$
+    \theta^{\mathbb{Q}}(t) = (0.03 + 0.002t) + \frac{0.002}{0.08} + \frac{0.012^2}{2 \times 0.08^2}(1 - e^{-0.16t})
+    $$
+
+    $$
+    = (0.03 + 0.002t) + 0.025 + \frac{0.000144}{0.0128}(1 - e^{-0.16t})
+    $$
+
+    $$
+    = 0.055 + 0.002t + 0.01125(1 - e^{-0.16t})
+    $$
+
+    **At $t = 0$:**
+
+    $$
+    \theta^{\mathbb{Q}}(0) = 0.055 + 0 + 0.01125(1 - 1) = 0.055
+    $$
+
+    But wait -- we should verify that $\theta^{\mathbb{Q}}(0) = f^M(0,0) + \frac{1}{\lambda}\frac{\partial f^M}{\partial t} + 0 = 0.03 + 0.025 = 0.055$.
+
+    Note that $\theta^{\mathbb{Q}}(0) \neq f^M(0,0) = 0.03$ in general. The equality $\theta^{\mathbb{Q}}(0) = f^M(0,0)$ holds only when the slope correction vanishes (i.e., $\frac{\partial f^M}{\partial t} = 0$). Here the forward curve is upward-sloping, so $\theta^{\mathbb{Q}}(0) = 0.055 > 0.03$.
+
+    **At $t = 5$:**
+
+    $$
+    \theta^{\mathbb{Q}}(5) = 0.055 + 0.01 + 0.01125(1 - e^{-0.8}) = 0.065 + 0.01125(1 - 0.4493)
+    $$
+
+    $$
+    = 0.065 + 0.01125 \times 0.5507 = 0.065 + 0.006195 \approx 0.07120
+    $$
+
+    **At $t = 20$:**
+
+    $$
+    \theta^{\mathbb{Q}}(20) = 0.055 + 0.04 + 0.01125(1 - e^{-3.2}) = 0.095 + 0.01125(1 - 0.04076)
+    $$
+
+    $$
+    = 0.095 + 0.01125 \times 0.9592 = 0.095 + 0.01079 \approx 0.10579
+    $$
+
+    The verification that $\theta^{\mathbb{Q}}(0) = f^M(0,0)$ does not hold here because of the nonzero slope term. What is always true is that $\alpha(0) = f^M(0,0) = r(0)$, which ensures $P(0,T) = P^M(0,T)$.
+
 ---
 
 **Exercise 2.** Explain why the Vasicek model (constant $b$ instead of $\theta^{\mathbb{Q}}(t)$) generically fails to match the observed term structure. Give a specific numerical example where the Vasicek bond price at $t = 0$ differs from the market price.
+
+??? success "Solution to Exercise 2"
+    In the Vasicek model, the short rate follows $dr = a(b - r)dt + \sigma\,dW^{\mathbb{Q}}$ with constant $b$. The bond price is $P(0,T) = e^{A_V(T) - B(T)r(0)}$ where $B(T) = \frac{1-e^{-aT}}{a}$ and:
+
+    $$
+    A_V(T) = \left(b - \frac{\sigma^2}{2a^2}\right)(B(T) - T) - \frac{\sigma^2}{4a}B(T)^2
+    $$
+
+    This is determined entirely by the three constants $a$, $b$, $\sigma$ and the initial rate $r(0)$. For a generic market curve $P^M(0,T)$, the model-implied curve $P(0,T)$ will not match $P^M(0,T)$ at all maturities because the Vasicek formula has only three free parameters to fit an entire curve.
+
+    **Numerical example:** Let $a = 0.1$, $b = 0.05$, $\sigma = 0.01$, $r(0) = 0.04$. The Vasicek 10-year bond price:
+
+    $$
+    B(10) = \frac{1 - e^{-1}}{0.1} = \frac{0.6321}{0.1} = 6.321
+    $$
+
+    $$
+    A_V(10) = \left(0.05 - \frac{0.0001}{0.02}\right)(6.321 - 10) - \frac{0.0001}{0.4}(6.321)^2
+    $$
+
+    $$
+    = (0.05 - 0.005)(-3.679) - 0.00025 \times 39.95 = 0.045 \times (-3.679) - 0.009988
+    $$
+
+    $$
+    = -0.16556 - 0.00999 = -0.17555
+    $$
+
+    $$
+    P_V(0,10) = e^{-0.17555 - 6.321 \times 0.04} = e^{-0.17555 - 0.25284} = e^{-0.42839} \approx 0.6516
+    $$
+
+    If the market curve is flat at $f^M = 0.04$, then $P^M(0,10) = e^{-0.4} \approx 0.6703$. The Vasicek price $0.6516 \neq 0.6703$, a discrepancy of approximately 187 basis points in yield. This mismatch means that the model misprices even vanilla bonds before any derivatives are considered.
 
 ---
 
 **Exercise 3.** Show that the convexity correction term $\frac{\sigma^2}{2\lambda^2}(1 - e^{-2\lambda t})$ is monotonically increasing in $t$ and converges to $\frac{\sigma^2}{2\lambda^2}$ as $t \to \infty$. For $\lambda = 0.1$ and $\sigma = 0.015$, compute this asymptotic value and express it in basis points.
 
+??? success "Solution to Exercise 3"
+    Define $g(t) = \frac{\sigma^2}{2\lambda^2}(1 - e^{-2\lambda t})$. Its derivative is:
+
+    $$
+    g'(t) = \frac{\sigma^2}{2\lambda^2} \cdot 2\lambda\,e^{-2\lambda t} = \frac{\sigma^2}{\lambda}e^{-2\lambda t}
+    $$
+
+    Since $\sigma > 0$, $\lambda > 0$, and $e^{-2\lambda t} > 0$ for all $t$, we have $g'(t) > 0$ for all $t \geq 0$. Therefore $g(t)$ is monotonically increasing.
+
+    **Convergence as $t \to \infty$:** Since $e^{-2\lambda t} \to 0$:
+
+    $$
+    \lim_{t \to \infty} g(t) = \frac{\sigma^2}{2\lambda^2}(1 - 0) = \frac{\sigma^2}{2\lambda^2}
+    $$
+
+    **Numerical value:** With $\lambda = 0.1$ and $\sigma = 0.015$:
+
+    $$
+    \frac{\sigma^2}{2\lambda^2} = \frac{0.000225}{0.02} = 0.01125
+    $$
+
+    Converting to basis points: $0.01125 \times 10{,}000 = 112.5$ basis points. This means the long-run convexity correction pushes the mean reversion target approximately 113 basis points above the asymptotic forward rate.
+
 ---
 
 **Exercise 4.** Starting from $\lambda\theta^{\mathbb{Q}}(t) = \alpha'(t) + \lambda\alpha(t)$ and the definition $\alpha(t) = f^M(0,t) + \frac{\sigma^2}{2\lambda^2}(1 - e^{-\lambda t})^2$, derive the formula for $\theta^{\mathbb{Q}}(t)$ by computing $\alpha'(t)$ explicitly.
+
+??? success "Solution to Exercise 4"
+    Starting from:
+
+    $$
+    \alpha(t) = f^M(0,t) + \frac{\sigma^2}{2\lambda^2}(1 - e^{-\lambda t})^2
+    $$
+
+    Compute $\alpha'(t)$:
+
+    $$
+    \alpha'(t) = \frac{\partial f^M(0,t)}{\partial t} + \frac{\sigma^2}{2\lambda^2} \cdot 2(1 - e^{-\lambda t}) \cdot \lambda e^{-\lambda t}
+    $$
+
+    $$
+    = \frac{\partial f^M(0,t)}{\partial t} + \frac{\sigma^2}{\lambda}(1 - e^{-\lambda t})e^{-\lambda t}
+    $$
+
+    Now substitute into $\lambda\theta^{\mathbb{Q}}(t) = \alpha'(t) + \lambda\alpha(t)$:
+
+    $$
+    \lambda\theta^{\mathbb{Q}}(t) = \frac{\partial f^M}{\partial t} + \frac{\sigma^2}{\lambda}(1 - e^{-\lambda t})e^{-\lambda t} + \lambda f^M(0,t) + \frac{\sigma^2}{2\lambda}(1 - e^{-\lambda t})^2
+    $$
+
+    Divide by $\lambda$:
+
+    $$
+    \theta^{\mathbb{Q}}(t) = \frac{1}{\lambda}\frac{\partial f^M}{\partial t} + f^M(0,t) + \frac{\sigma^2}{\lambda^2}(1 - e^{-\lambda t})e^{-\lambda t} + \frac{\sigma^2}{2\lambda^2}(1 - e^{-\lambda t})^2
+    $$
+
+    Combine the last two terms by factoring out $\frac{\sigma^2}{2\lambda^2}(1 - e^{-\lambda t})$:
+
+    $$
+    \frac{\sigma^2}{\lambda^2}(1 - e^{-\lambda t})e^{-\lambda t} + \frac{\sigma^2}{2\lambda^2}(1 - e^{-\lambda t})^2 = \frac{\sigma^2}{2\lambda^2}(1 - e^{-\lambda t})\left[2e^{-\lambda t} + 1 - e^{-\lambda t}\right]
+    $$
+
+    $$
+    = \frac{\sigma^2}{2\lambda^2}(1 - e^{-\lambda t})(1 + e^{-\lambda t}) = \frac{\sigma^2}{2\lambda^2}(1 - e^{-2\lambda t})
+    $$
+
+    Therefore:
+
+    $$
+    \theta^{\mathbb{Q}}(t) = f^M(0,t) + \frac{1}{\lambda}\frac{\partial f^M(0,t)}{\partial t} + \frac{\sigma^2}{2\lambda^2}(1 - e^{-2\lambda t})
+    $$
+
+    which matches the stated formula.
 
 ---
 
 **Exercise 5.** Consider a flat forward rate $f^M(0,t) = r_0$. Show that the slope correction term $\frac{1}{\lambda}\frac{\partial f^M(0,t)}{\partial t}$ vanishes, so that $\theta^{\mathbb{Q}}(t) = r_0 + \frac{\sigma^2}{2\lambda^2}(1 - e^{-2\lambda t})$. Interpret why the mean reversion target exceeds the flat forward rate.
 
+??? success "Solution to Exercise 5"
+    With $f^M(0,t) = r_0$ (constant), the slope is $\frac{\partial f^M(0,t)}{\partial t} = 0$. Substituting:
+
+    $$
+    \theta^{\mathbb{Q}}(t) = r_0 + \frac{1}{\lambda} \cdot 0 + \frac{\sigma^2}{2\lambda^2}(1 - e^{-2\lambda t}) = r_0 + \frac{\sigma^2}{2\lambda^2}(1 - e^{-2\lambda t})
+    $$
+
+    **Interpretation:** Even with a flat forward curve, the mean reversion target $\theta^{\mathbb{Q}}(t)$ exceeds $r_0$. This is a convexity effect arising from Jensen's inequality. The bond price involves $\mathbb{E}[e^{-\int r\,ds}]$, and since the exponential is convex:
+
+    $$
+    \mathbb{E}[e^{-\int r\,ds}] \leq e^{-\mathbb{E}[\int r\,ds]}
+    $$
+
+    (actually for concave $-e^{-x}$ the inequality reverses, giving $\mathbb{E}[e^{-X}] > e^{-\mathbb{E}[X]}$). To match the market price $P^M(0,T) = e^{-r_0 T}$ despite this convexity, the model must push the expected short rate above $r_0$ so that the combined effect of higher expected rates and the convexity correction produces the correct bond price. The term $\frac{\sigma^2}{2\lambda^2}(1 - e^{-2\lambda t})$ is precisely the correction needed to offset the Jensen effect.
+
 ---
 
 **Exercise 6.** Prove that the consistency condition $P(0,T) = P^M(0,T)$ holds for all $T$ by directly substituting $t = 0$ into $P(t,T) = A(t,T)e^{-B(t,T)r(t)}$ and using $r(0) = f^M(0,0)$.
 
+??? success "Solution to Exercise 6"
+    From the general formula with $t = 0$:
+
+    $$
+    P(0,T) = A(0,T)e^{-B(0,T)r(0)}
+    $$
+
+    **Step 1:** At $t = 0$, $P^M(0,t) = P^M(0,0) = 1$.
+
+    **Step 2:** The factor $1 - e^{-2\lambda t}\big|_{t=0} = 1 - 1 = 0$, so the convexity correction vanishes.
+
+    **Step 3:** Substituting into $A(0,T)$:
+
+    $$
+    A(0,T) = \frac{P^M(0,T)}{1}\exp\left\{B(0,T)f^M(0,0) - \frac{\sigma^2}{4\lambda}B(0,T)^2 \cdot 0\right\} = P^M(0,T)\,e^{B(0,T)f^M(0,0)}
+    $$
+
+    **Step 4:** Since $r(0) = f^M(0,0)$ (the short rate at time zero equals the instantaneous forward rate):
+
+    $$
+    P(0,T) = P^M(0,T)\,e^{B(0,T)f^M(0,0)}\,e^{-B(0,T)r(0)} = P^M(0,T)\,e^{B(0,T)r(0) - B(0,T)r(0)} = P^M(0,T)
+    $$
+
+    This holds for every maturity $T > 0$, confirming exact consistency with the initial market curve.
+
 ---
 
 **Exercise 7.** Suppose you are given a discrete set of market zero-coupon bond prices $P^M(0, T_i)$ for $T_i = 1, 2, \ldots, 30$. Describe how you would construct $\theta^{\mathbb{Q}}(t)$ in practice. What interpolation or smoothing challenges arise when computing $\frac{\partial f^M(0,t)}{\partial t}$ from discrete data?
+
+??? success "Solution to Exercise 7"
+    **Practical construction of $\theta^{\mathbb{Q}}(t)$:**
+
+    1. **Interpolate the discount curve:** From the discrete bond prices $P^M(0,T_i)$, construct a smooth interpolation of $P^M(0,T)$ for all $T \in [0, 30]$. Common methods include cubic spline interpolation of zero rates or the Nelson-Siegel-Svensson parametric form.
+
+    2. **Extract forward rates:** Compute $f^M(0,t) = -\frac{\partial}{\partial t}\log P^M(0,t)$ by differentiating the interpolated curve.
+
+    3. **Compute the derivative:** Obtain $\frac{\partial f^M(0,t)}{\partial t}$ by differentiating $f^M$ a second time (which requires differentiating $\log P^M$ twice).
+
+    4. **Evaluate $\theta^{\mathbb{Q}}(t)$:** Substitute into the formula $\theta^{\mathbb{Q}}(t) = f^M(0,t) + \frac{1}{\lambda}\frac{\partial f^M}{\partial t} + \frac{\sigma^2}{2\lambda^2}(1 - e^{-2\lambda t})$.
+
+    **Interpolation and smoothing challenges:**
+
+    - *Amplification of noise:* Each differentiation amplifies noise in the data. Computing $f^M$ requires one derivative of $\log P^M$, and $\frac{\partial f^M}{\partial t}$ requires a second. Small errors in bond prices are magnified into large oscillations in $\theta^{\mathbb{Q}}(t)$.
+
+    - *Choice of interpolation method:* Linear interpolation of zero rates produces discontinuous forward rates and undefined $\frac{\partial f^M}{\partial t}$. Cubic splines ensure $C^2$ smoothness but can introduce spurious oscillations (Runge phenomenon). Monotone or tension splines can help.
+
+    - *Smoothing vs. fit trade-off:* Aggressive smoothing (e.g., Nelson-Siegel with few parameters) produces stable $\theta^{\mathbb{Q}}(t)$ but may not fit all market prices exactly. Fine-grained interpolation fits perfectly but yields noisy derivatives.
+
+    - *Boundary effects:* At the edges of the data ($T = 1$ and $T = 30$), extrapolation is needed, and derivatives are less reliable.
+
+    In practice, practitioners often use a smoothing spline with a regularization penalty on the second derivative, or the Svensson parametric form, to balance fidelity to market data with stability of $\theta^{\mathbb{Q}}(t)$.

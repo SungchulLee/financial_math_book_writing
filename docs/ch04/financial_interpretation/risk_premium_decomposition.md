@@ -12,17 +12,13 @@ Understanding this decomposition is essential for interpreting observed returns,
 calibrating models, and connecting economic intuition to the probabilistic
 machinery of Girsanov's theorem.
 
+!!! abstract "Core identity"
+    Risk premium is the wedge between how assets evolve ($\mathbb{P}$) and
+    how they are priced ($\mathbb{Q}$).
+
 ---
 
 ## The Single-Asset Decomposition
-
-### Intuition
-
-Under the physical measure $\mathbb{P}$, an asset's drift $\mu$ reflects both
-the time value of money and compensation for risk. Under the risk-neutral
-measure $\mathbb{Q}$, only the time value of money remains. The difference
-$\mu - r$ is the risk premium, and the market price of risk $\theta$ normalizes
-this premium by volatility.
 
 ### Setup and Derivation
 
@@ -45,7 +41,7 @@ $$
 \mu = r + \sigma\theta
 $$
 
-This identity has three components:
+This identity decomposes return into:
 
 | Component | Symbol | Interpretation |
 |-----------|--------|----------------|
@@ -56,6 +52,11 @@ This identity has three components:
 
 The risk premium $\sigma\theta = \mu - r$ is the excess return that investors
 demand for holding the risky asset instead of the risk-free bond.
+
+!!! note "Interpretation"
+    The risk premium is exactly what must be removed from the physical drift
+    to turn the physical measure into the pricing measure. It is not "extra
+    drift"---it is the cost of changing measure.
 
 ---
 
@@ -101,18 +102,14 @@ $$
 \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = \exp\left(-\theta W_T^{\mathbb{P}} - \frac{1}{2}\theta^2 T\right)
 $$
 
-A larger market price of risk $|\theta|$ means a more aggressive reweighting of
-paths. This is consistent with the economic intuition: the further the physical
-drift is from $r$, the more the probability measure must be tilted to remove
-the risk premium.
+A larger $|\theta|$ means more aggressive reweighting: the further $\mu$ is
+from $r$, the more the measure must be tilted.
 
 ---
 
 ## Different Measures, Different Drifts
 
-The same stochastic process $S_t$ has different drift rates under different
-probability measures. This is a consequence of the risk premium decomposition
-and the definition of each measure.
+The same process $S_t$ has different drifts under different measures:
 
 | Measure | Drift of $S_t$ | Interpretation |
 |---------|-----------------|----------------|
@@ -234,6 +231,14 @@ Empirical evidence shows that $\theta_t$ varies with:
 
 Time-varying risk premia are central to term structure models (e.g., the
 Vasicek and CIR models) and to explaining observed patterns in asset returns.
+
+!!! warning "The market price of risk is not directly observable"
+    In practice, $\theta_t$ cannot be read off from market data. It must be
+    inferred jointly with model assumptions---either estimated from historical
+    returns under $\mathbb{P}$ (where it is confounded with estimation error)
+    or extracted from option prices under $\mathbb{Q}$ (where it is absorbed
+    into the calibrated dynamics). This unobservability is a fundamental source
+    of model risk.
 
 ---
 
@@ -378,52 +383,6 @@ aspects of calibrating $\theta$ from market data, see
 **Exercise 1.**
 A stock has physical drift $\mu = 0.10$, volatility $\sigma = 0.30$, and the risk-free rate is $r = 0.02$. Compute the market price of risk $\theta$, the risk premium $\sigma\theta$, and write the Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T}$ for $T = 1$.
 
----
-
-**Exercise 2.**
-Starting from the $\mathbb{P}$-dynamics $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}$ and the Girsanov relation $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t$ (for constant $\theta$), derive the $\mathbb{Q}$-dynamics of $S_t$ and verify that the drift becomes $r$. Explain why the volatility $\sigma$ is unchanged under the measure change.
-
----
-
-**Exercise 3.**
-In the Vasicek model, the short rate follows $dr_t = \kappa(\bar{r} - r_t)\,dt + \sigma_r\,dW_t^{\mathbb{P}}$ with $\kappa = 0.5$, $\bar{r} = 0.04$, $\sigma_r = 0.01$, and market price of interest rate risk $\theta = 0.3$. Compute the risk-neutral long-run mean $\bar{r}^{\mathbb{Q}}$ and explain the economic intuition for why $\bar{r}^{\mathbb{Q}} < \bar{r}$ when $\theta > 0$.
-
----
-
-**Exercise 4.**
-Consider three assets driven by two independent Brownian motions with drift vector $\boldsymbol{\mu} = (0.08, 0.12, 0.06)^{\top}$, risk-free rate $r = 0.02$, and volatility matrix
-
-$$
-\Sigma = \begin{pmatrix} 0.20 & 0.10 \\ 0.15 & 0.25 \\ 0.10 & 0.05 \end{pmatrix}
-$$
-
-Determine whether the system $\boldsymbol{\mu} - r\mathbf{1} = \Sigma\boldsymbol{\theta}$ has a solution. If so, is it unique? If not, explain the no-arbitrage implication.
-
----
-
-**Exercise 5.**
-Prove that the Sharpe ratio $(\mu - r)/\sigma$ is the same for all assets in a single-factor complete market. Hint: use the risk premium decomposition and the fact that $\theta$ is unique in a complete market.
-
----
-
-**Exercise 6.**
-Consider a stock with time-varying market price of risk $\theta_t$ satisfying
-
-$$
-\int_0^T \theta_t^2\,dt < \infty \quad \text{a.s.}
-$$
-
-Write the Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T}$ in terms of $\theta_t$ and explain why the Novikov condition $\mathbb{E}^{\mathbb{P}}[\exp(\frac{1}{2}\int_0^T \theta_t^2\,dt)] < \infty$ is sufficient to guarantee that the stochastic exponential is a true martingale.
-
----
-
-**Exercise 7.**
-In the CAPM framework, asset $i$ has $\beta_i = 1.2$, the market expected return is $\mu_M = 0.09$, market volatility is $\sigma_M = 0.18$, and $r = 0.03$. Compute the expected return $\mu_i$ using the CAPM relation, determine the market price of risk $\theta_M$, and express asset $i$'s risk premium in the form $\sigma_i \rho_{iM} \theta_M$ given that $\sigma_i = 0.24$ and $\rho_{iM} = 0.9$. Verify consistency with the CAPM formula.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The market price of risk is
 
@@ -450,6 +409,11 @@ In the CAPM framework, asset $i$ has $\beta_i = 1.2$, the market expected return
     $$
 
     This stochastic exponential reweights paths: those with positive $W_1^{\mathbb{P}}$ (above-average returns) are downweighted, and those with negative $W_1^{\mathbb{P}}$ (below-average returns) are upweighted, effectively removing the risk premium from the drift.
+
+---
+
+**Exercise 2.**
+Starting from the $\mathbb{P}$-dynamics $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}$ and the Girsanov relation $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t$ (for constant $\theta$), derive the $\mathbb{Q}$-dynamics of $S_t$ and verify that the drift becomes $r$. Explain why the volatility $\sigma$ is unchanged under the measure change.
 
 ??? success "Solution to Exercise 2"
     Starting from the $\mathbb{P}$-dynamics:
@@ -484,6 +448,11 @@ In the CAPM framework, asset $i$ has $\beta_i = 1.2$, the market expected return
 
     The volatility $\sigma$ is unchanged because it is the diffusion coefficient, which is determined by the quadratic variation $\langle S \rangle_t = \sigma^2 S_t^2\,dt$. Quadratic variation is a path-by-path property: it depends on the sample paths of the process, not on the probability weights assigned to those paths. Since $\mathbb{P}$ and $\mathbb{Q}$ are equivalent measures defined on the same sample space with the same paths, the quadratic variation---and hence the volatility---is identical under both measures.
 
+---
+
+**Exercise 3.**
+In the Vasicek model, the short rate follows $dr_t = \kappa(\bar{r} - r_t)\,dt + \sigma_r\,dW_t^{\mathbb{P}}$ with $\kappa = 0.5$, $\bar{r} = 0.04$, $\sigma_r = 0.01$, and market price of interest rate risk $\theta = 0.3$. Compute the risk-neutral long-run mean $\bar{r}^{\mathbb{Q}}$ and explain the economic intuition for why $\bar{r}^{\mathbb{Q}} < \bar{r}$ when $\theta > 0$.
+
 ??? success "Solution to Exercise 3"
     The risk-neutral long-run mean in the Vasicek model is
 
@@ -496,6 +465,17 @@ In the CAPM framework, asset $i$ has $\beta_i = 1.2$, the market expected return
     **Economic intuition:** A positive market price of interest rate risk $\theta > 0$ means investors demand compensation for bearing interest rate risk. Under $\mathbb{P}$, the short rate mean-reverts to a higher level $\bar{r} = 0.04$ because this level includes the risk premium.
 
     Under $\mathbb{Q}$, the risk premium is removed, so the long-run mean is lower. The risk-neutral measure reweights scenarios such that higher interest rate paths are downweighted (their excess return above the risk-free rate is stripped away). This lower risk-neutral mean shifts the yield curve: bond prices, which are expectations of discounted payoffs under $\mathbb{Q}$, are computed using this lower long-run mean, effectively embedding the term premium into the yield curve.
+
+---
+
+**Exercise 4.**
+Consider three assets driven by two independent Brownian motions with drift vector $\boldsymbol{\mu} = (0.08, 0.12, 0.06)^{\top}$, risk-free rate $r = 0.02$, and volatility matrix
+
+$$
+\Sigma = \begin{pmatrix} 0.20 & 0.10 \\ 0.15 & 0.25 \\ 0.10 & 0.05 \end{pmatrix}
+$$
+
+Determine whether the system $\boldsymbol{\mu} - r\mathbf{1} = \Sigma\boldsymbol{\theta}$ has a solution. If so, is it unique? If not, explain the no-arbitrage implication.
 
 ??? success "Solution to Exercise 4"
     The system is $\boldsymbol{\mu} - r\mathbf{1} = \Sigma\boldsymbol{\theta}$, which gives
@@ -540,6 +520,11 @@ In the CAPM framework, asset $i$ has $\beta_i = 1.2$, the market expected return
 
     **No-arbitrage implication:** The inconsistency means that the three excess returns are not compatible with any single market price of risk vector. This implies an **arbitrage opportunity** exists: the three assets' risk premia are inconsistent with the assumption of two independent risk factors. One can construct a portfolio of the three assets that has zero exposure to both Brownian motions but earns a positive excess return, violating no-arbitrage.
 
+---
+
+**Exercise 5.**
+Prove that the Sharpe ratio $(\mu - r)/\sigma$ is the same for all assets in a single-factor complete market. Hint: use the risk premium decomposition and the fact that $\theta$ is unique in a complete market.
+
 ??? success "Solution to Exercise 5"
     In a single-factor complete market, there is one Brownian motion and one risky asset, so $n = d = 1$. Each asset $i$ has dynamics
 
@@ -563,6 +548,17 @@ In the CAPM framework, asset $i$ has $\beta_i = 1.2$, the market expected return
 
     This is the continuous-time analogue of the result from CAPM: in equilibrium, all assets on the capital market line have the same Sharpe ratio, equal to the market price of risk. The uniqueness of $\theta$ in a complete market is what enforces this equality.
 
+---
+
+**Exercise 6.**
+Consider a stock with time-varying market price of risk $\theta_t$ satisfying
+
+$$
+\int_0^T \theta_t^2\,dt < \infty \quad \text{a.s.}
+$$
+
+Write the Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T}$ in terms of $\theta_t$ and explain why the Novikov condition $\mathbb{E}^{\mathbb{P}}[\exp(\frac{1}{2}\int_0^T \theta_t^2\,dt)] < \infty$ is sufficient to guarantee that the stochastic exponential is a true martingale.
+
 ??? success "Solution to Exercise 6"
     For a time-varying market price of risk $\theta_t$, the Radon-Nikodym derivative is given by the stochastic exponential
 
@@ -581,6 +577,11 @@ In the CAPM framework, asset $i$ has $\beta_i = 1.2$, the market expected return
     $$
 
     then $Z_t$ is a true martingale on $[0, T]$. The intuition is as follows: The quadratic variation of $M$ is $\langle M \rangle_T = \int_0^T \theta_t^2\,dt$, which controls how fast the local martingale $M_t$ can fluctuate. If the exponential moment of $\langle M \rangle_T / 2$ is finite, the fluctuations of $M_t$ are sufficiently controlled to prevent mass from leaking to infinity. Specifically, the condition ensures that $Z_t$ cannot drift systematically downward in expectation (which would happen if paths with very large $|M_t|$ values carried too much weight), guaranteeing $\mathbb{E}[Z_T] = 1$.
+
+---
+
+**Exercise 7.**
+In the CAPM framework, asset $i$ has $\beta_i = 1.2$, the market expected return is $\mu_M = 0.09$, market volatility is $\sigma_M = 0.18$, and $r = 0.03$. Compute the expected return $\mu_i$ using the CAPM relation, determine the market price of risk $\theta_M$, and express asset $i$'s risk premium in the form $\sigma_i \rho_{iM} \theta_M$ given that $\sigma_i = 0.24$ and $\rho_{iM} = 0.9$. Verify consistency with the CAPM formula.
 
 ??? success "Solution to Exercise 7"
     **CAPM expected return:** Using $\mu_i - r = \beta_i(\mu_M - r)$:

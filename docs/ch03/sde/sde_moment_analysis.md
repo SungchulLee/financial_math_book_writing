@@ -494,62 +494,6 @@ When computing moments for a new SDE:
 
 (c) Compute the fourth central moment $\mathbb{E}[(X_5 - \mathbb{E}[X_5])^4]$.
 
----
-
-**Exercise 2.** For GBM with $\mu = 0.08$, $\sigma = 0.3$, and $S_0 = 50$:
-
-(a) Compute $\mathbb{E}[S_2]$ and $\operatorname{Var}[S_2]$.
-
-(b) Compute $\mathbb{E}[S_2^3]$ using the general power moment formula.
-
-(c) Is $\mathbb{E}[S_t]$ increasing or decreasing in $\sigma$? Is the median $S_0 e^{(\mu - \sigma^2/2)t}$ increasing or decreasing in $\sigma$? Explain the difference.
-
----
-
-**Exercise 3.** For the Vasicek model $dr_t = 0.8(0.05 - r_t)\,dt + 0.02\,dW_t$ with $r_0 = 0.03$:
-
-(a) Compute $\mathbb{E}[r_1]$ and $\operatorname{Var}[r_1]$.
-
-(b) Find the stationary mean and variance.
-
-(c) Compute the autocorrelation $\rho(s, t)$ in the stationary regime for $|t - s| = 2$.
-
----
-
-**Exercise 4.** For the CIR model $dr_t = 0.5(0.04 - r_t)\,dt + 0.1\sqrt{r_t}\,dW_t$ with $r_0 = 0.04$:
-
-(a) Verify whether the Feller condition $2a\theta \geq \sigma^2$ is satisfied.
-
-(b) Compute $\mathbb{E}[r_t]$ for general $t$.
-
-(c) Compute the long-term variance $\lim_{t \to \infty} \operatorname{Var}[r_t]$ and compare it with the Vasicek long-term variance using the same $a$, $\theta$, and $\sigma$.
-
----
-
-**Exercise 5.** Use Itô isometry to compute the variance of the stochastic integral
-
-$$
-I_t = \int_0^t s\,e^{-s}\,dW_s
-$$
-
----
-
-**Exercise 6.** Consider the SDE $dX_t = -\alpha X_t\,dt + \sigma X_t\,dW_t$ with $X_0 > 0$.
-
-(a) Derive an ODE for $m(t) = \mathbb{E}[X_t]$ by taking expectations of the SDE.
-
-(b) Solve the ODE to find $m(t)$.
-
-(c) Apply Itô's lemma to $X_t^2$ to derive an ODE for $\mathbb{E}[X_t^2]$, then compute $\operatorname{Var}[X_t]$.
-
----
-
-**Exercise 7.** The skewness of GBM at time $t$ is given by $(e^{\sigma^2 t} + 2)\sqrt{e^{\sigma^2 t} - 1}$. Compute the skewness for $\sigma = 0.2$ at $t = 1$ and $t = 10$. Explain why the distribution becomes more skewed over longer time horizons in terms of the multiplicative noise structure.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The SDE is $dX_t = 2\,dt + 3\,dW_t$ with $X_0 = 1$, so $X_t = 1 + 2t + 3W_t$.
 
@@ -576,6 +520,16 @@ $$
     $$
     \mathbb{E}[(X_5 - \mathbb{E}[X_5])^4] = 3 \times 45^2 = 3 \times 2025 = 6075
     $$
+
+---
+
+**Exercise 2.** For GBM with $\mu = 0.08$, $\sigma = 0.3$, and $S_0 = 50$:
+
+(a) Compute $\mathbb{E}[S_2]$ and $\operatorname{Var}[S_2]$.
+
+(b) Compute $\mathbb{E}[S_2^3]$ using the general power moment formula.
+
+(c) Is $\mathbb{E}[S_t]$ increasing or decreasing in $\sigma$? Is the median $S_0 e^{(\mu - \sigma^2/2)t}$ increasing or decreasing in $\sigma$? Explain the difference.
 
 ??? success "Solution to Exercise 2"
     GBM with $\mu = 0.08$, $\sigma = 0.3$, $S_0 = 50$.
@@ -608,6 +562,16 @@ $$
 
     The difference arises because GBM has multiplicative noise. Higher volatility makes the distribution more right-skewed: rare large upward moves (which drive the mean) become more extreme, while the typical outcome (the median) actually decreases. The mean remains constant because the increased probability mass in the right tail exactly compensates the reduction in the center of the distribution.
 
+---
+
+**Exercise 3.** For the Vasicek model $dr_t = 0.8(0.05 - r_t)\,dt + 0.02\,dW_t$ with $r_0 = 0.03$:
+
+(a) Compute $\mathbb{E}[r_1]$ and $\operatorname{Var}[r_1]$.
+
+(b) Find the stationary mean and variance.
+
+(c) Compute the autocorrelation $\rho(s, t)$ in the stationary regime for $|t - s| = 2$.
+
 ??? success "Solution to Exercise 3"
     Vasicek model: $a = 0.8$, $\theta = 0.05$, $\sigma = 0.02$, $r_0 = 0.03$.
 
@@ -634,6 +598,16 @@ $$
     $$
     \rho = e^{-0.8 \times 2} = e^{-1.6} \approx 0.2019
     $$
+
+---
+
+**Exercise 4.** For the CIR model $dr_t = 0.5(0.04 - r_t)\,dt + 0.1\sqrt{r_t}\,dW_t$ with $r_0 = 0.04$:
+
+(a) Verify whether the Feller condition $2a\theta \geq \sigma^2$ is satisfied.
+
+(b) Compute $\mathbb{E}[r_t]$ for general $t$.
+
+(c) Compute the long-term variance $\lim_{t \to \infty} \operatorname{Var}[r_t]$ and compare it with the Vasicek long-term variance using the same $a$, $\theta$, and $\sigma$.
 
 ??? success "Solution to Exercise 4"
     CIR model: $a = 0.5$, $\theta = 0.04$, $\sigma = 0.1$, $r_0 = 0.04$.
@@ -668,6 +642,14 @@ $$
 
     The CIR variance ($4 \times 10^{-4}$) is smaller than the Vasicek variance ($0.01$) by a factor of $\theta = 0.04$. This reflects the state-dependent volatility: when $r_t$ is near $\theta = 0.04$, the CIR diffusion coefficient $\sigma\sqrt{r_t} = 0.1 \times 0.2 = 0.02$ is much smaller than the constant Vasicek diffusion $\sigma = 0.1$, producing significantly less variability.
 
+---
+
+**Exercise 5.** Use Itô isometry to compute the variance of the stochastic integral
+
+$$
+I_t = \int_0^t s\,e^{-s}\,dW_s
+$$
+
 ??? success "Solution to Exercise 5"
     By Ito isometry, for a deterministic integrand $f(s)$:
 
@@ -690,6 +672,16 @@ $$
     $$
     = \frac{1}{4}\left[1 - e^{-2t}(2t^2 + 2t + 1)\right]
     $$
+
+---
+
+**Exercise 6.** Consider the SDE $dX_t = -\alpha X_t\,dt + \sigma X_t\,dW_t$ with $X_0 > 0$.
+
+(a) Derive an ODE for $m(t) = \mathbb{E}[X_t]$ by taking expectations of the SDE.
+
+(b) Solve the ODE to find $m(t)$.
+
+(c) Apply Itô's lemma to $X_t^2$ to derive an ODE for $\mathbb{E}[X_t^2]$, then compute $\operatorname{Var}[X_t]$.
 
 ??? success "Solution to Exercise 6"
     The SDE is $dX_t = -\alpha X_t\,dt + \sigma X_t\,dW_t$ with $X_0 > 0$.
@@ -733,6 +725,10 @@ $$
     $$
     \operatorname{Var}[X_t] = \mathbb{E}[X_t^2] - (\mathbb{E}[X_t])^2 = X_0^2 e^{-2\alpha t}(e^{\sigma^2 t} - 1)
     $$
+
+---
+
+**Exercise 7.** The skewness of GBM at time $t$ is given by $(e^{\sigma^2 t} + 2)\sqrt{e^{\sigma^2 t} - 1}$. Compute the skewness for $\sigma = 0.2$ at $t = 1$ and $t = 10$. Explain why the distribution becomes more skewed over longer time horizons in terms of the multiplicative noise structure.
 
 ??? success "Solution to Exercise 7"
     The skewness formula is $\operatorname{Skew}(S_t) = (e^{\sigma^2 t} + 2)\sqrt{e^{\sigma^2 t} - 1}$.

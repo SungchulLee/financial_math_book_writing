@@ -260,62 +260,6 @@ The argument has four logical layers:
 
 **Exercise 1.** Consider the SDE $dX_t = \alpha\,dt + \beta\,dW_t$ with constant coefficients and $X_0 = x_0$. Compute the Picard iterates $X_t^{(0)}$, $X_t^{(1)}$, and $X_t^{(2)}$ explicitly, and verify that all iterates coincide with the exact solution $X_t = x_0 + \alpha t + \beta W_t$.
 
----
-
-**Exercise 2.** For the linear SDE $dX_t = \alpha X_t\,dt + \beta X_t\,dW_t$, the first Picard iterate is
-
-$$
-X_t^{(1)} = x_0(1 + \alpha t + \beta W_t)
-$$
-
-Compute $\mathbb{E}[|X_t^{(1)} - X_t^{(0)}|^2]$ and verify that it matches the bound $e_0(t) \leq C(K)(1 + |x_0|^2)\,t$ from Step 1 of the convergence analysis.
-
----
-
-**Exercise 3.** Prove the recursive estimate in detail. Starting from
-
-$$
-X_t^{(n+1)} - X_t^{(n)} = \int_0^t \bigl[b(s, X_s^{(n)}) - b(s, X_s^{(n-1)})\bigr]\,ds + \int_0^t \bigl[\sigma(s, X_s^{(n)}) - \sigma(s, X_s^{(n-1)})\bigr]\,dW_s
-$$
-
-apply (a) the inequality $(a+b)^2 \leq 2a^2 + 2b^2$, (b) Cauchy--Schwarz to the drift integral, (c) Doob's maximal inequality followed by the Ito isometry to the stochastic integral, and (d) the Lipschitz condition, to arrive at
-
-$$
-e_n(t) \leq C \int_0^t e_{n-1}(s)\,ds
-$$
-
-Identify the constant $C$ in terms of the Lipschitz constant $K$ and the time horizon $T$.
-
----
-
-**Exercise 4.** The factorial decay $e_n(t) \leq (Ct)^n e_0(T)/n!$ is proved by induction. Use this bound to show that
-
-$$
-\sum_{n=0}^{\infty} \sup_{0 \leq t \leq T} \sqrt{e_n(t)} < \infty
-$$
-
-Explain why this summability implies that $\{X^{(n)}\}$ is a Cauchy sequence in the space $L^2(\Omega; C([0,T], \mathbb{R}^d))$.
-
----
-
-**Exercise 5.** Consider the Ornstein--Uhlenbeck SDE $dX_t = -\kappa X_t\,dt + \nu\,dW_t$ with $X_0 = x_0$. Compute the first three Picard iterates $X_t^{(0)}, X_t^{(1)}, X_t^{(2)}$ and verify that they match the Taylor expansion (in powers of $\kappa$) of the known exact solution
-
-$$
-X_t = x_0 e^{-\kappa t} + \nu \int_0^t e^{-\kappa(t-s)}\,dW_s
-$$
-
----
-
-**Exercise 6.** In the ODE setting, Picard iteration for $\dot{x} = f(t,x)$ converges in the supremum norm. In the SDE setting, convergence is measured in the $L^2$-supremum norm $\|X\| = \mathbb{E}[\sup_{t \leq T}|X_t|^2]^{1/2}$. Explain why the supremum norm alone is insufficient for SDEs. Specifically, what goes wrong if one tries to bound $\sup_{s \leq t}|X_s^{(n+1)} - X_s^{(n)}|$ pathwise without taking expectations?
-
----
-
-**Exercise 7.** Let $X_t$ and $Y_t$ be two solutions of the same SDE with $X_0 = Y_0 = x_0$ under global Lipschitz conditions. Define $\varphi(t) = \mathbb{E}[\sup_{s \leq t}|X_s - Y_s|^2]$. Show that $\varphi$ satisfies $\varphi(t) \leq C \int_0^t \varphi(s)\,ds$ and $\varphi(0) = 0$. State Gronwall's inequality and use it to conclude $\varphi(t) = 0$ for all $t \in [0,T]$. Why is this stronger than the conclusion one would get from the Picard convergence argument alone?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The coefficients are $b(t,x) = \alpha$ and $\sigma(t,x) = \beta$, both constant (independent of $x$).
 
@@ -344,6 +288,16 @@ $$
     $$
 
     This coincides with the exact solution $X_t = x_0 + \alpha t + \beta W_t$, which can be verified directly by taking differentials: $dX_t = \alpha\,dt + \beta\,dW_t$.
+
+---
+
+**Exercise 2.** For the linear SDE $dX_t = \alpha X_t\,dt + \beta X_t\,dW_t$, the first Picard iterate is
+
+$$
+X_t^{(1)} = x_0(1 + \alpha t + \beta W_t)
+$$
+
+Compute $\mathbb{E}[|X_t^{(1)} - X_t^{(0)}|^2]$ and verify that it matches the bound $e_0(t) \leq C(K)(1 + |x_0|^2)\,t$ from Step 1 of the convergence analysis.
 
 ??? success "Solution to Exercise 2"
     We have $X_t^{(0)} = x_0$ and $X_t^{(1)} = x_0(1 + \alpha t + \beta W_t)$, so:
@@ -377,6 +331,22 @@ $$
     $$
 
     where the last inequality uses $\alpha^2 T + \beta^2 \leq K^2(T+1)$ and absorbing constants. This confirms the Step 1 bound.
+
+---
+
+**Exercise 3.** Prove the recursive estimate in detail. Starting from
+
+$$
+X_t^{(n+1)} - X_t^{(n)} = \int_0^t \bigl[b(s, X_s^{(n)}) - b(s, X_s^{(n-1)})\bigr]\,ds + \int_0^t \bigl[\sigma(s, X_s^{(n)}) - \sigma(s, X_s^{(n-1)})\bigr]\,dW_s
+$$
+
+apply (a) the inequality $(a+b)^2 \leq 2a^2 + 2b^2$, (b) Cauchy--Schwarz to the drift integral, (c) Doob's maximal inequality followed by the Ito isometry to the stochastic integral, and (d) the Lipschitz condition, to arrive at
+
+$$
+e_n(t) \leq C \int_0^t e_{n-1}(s)\,ds
+$$
+
+Identify the constant $C$ in terms of the Lipschitz constant $K$ and the time horizon $T$.
 
 ??? success "Solution to Exercise 3"
     Starting from the difference:
@@ -427,6 +397,16 @@ $$
 
     where $C = 4K^2(T + 2)$.
 
+---
+
+**Exercise 4.** The factorial decay $e_n(t) \leq (Ct)^n e_0(T)/n!$ is proved by induction. Use this bound to show that
+
+$$
+\sum_{n=0}^{\infty} \sup_{0 \leq t \leq T} \sqrt{e_n(t)} < \infty
+$$
+
+Explain why this summability implies that $\{X^{(n)}\}$ is a Cauchy sequence in the space $L^2(\Omega; C([0,T], \mathbb{R}^d))$.
+
 ??? success "Solution to Exercise 4"
     Using the factorial decay bound $e_n(t) \leq (Ct)^n e_0(T)/n!$:
 
@@ -455,6 +435,14 @@ $$
     $$
 
     Since $\sum_n \sqrt{e_n(T)} < \infty$, the partial sums form a Cauchy sequence. Completeness of $L^2(\Omega; C([0,T], \mathbb{R}^d))$ then guarantees convergence to a limit $X$.
+
+---
+
+**Exercise 5.** Consider the Ornstein--Uhlenbeck SDE $dX_t = -\kappa X_t\,dt + \nu\,dW_t$ with $X_0 = x_0$. Compute the first three Picard iterates $X_t^{(0)}, X_t^{(1)}, X_t^{(2)}$ and verify that they match the Taylor expansion (in powers of $\kappa$) of the known exact solution
+
+$$
+X_t = x_0 e^{-\kappa t} + \nu \int_0^t e^{-\kappa(t-s)}\,dW_s
+$$
 
 ??? success "Solution to Exercise 5"
     The OU SDE is $dX_t = -\kappa X_t\,dt + \nu\,dW_t$ with $b(t,x) = -\kappa x$ and $\sigma(t,x) = \nu$.
@@ -503,6 +491,10 @@ $$
 
     Using integration by parts, $\int_0^t (t-s)\,dW_s = tW_t - \int_0^t s\,dW_s$ and $\int_0^t s\,dW_s = tW_t - \int_0^t W_s\,ds$, so $\int_0^t(t-s)\,dW_s = \int_0^t W_s\,ds$. Therefore the first-order stochastic correction is $-\kappa\nu\int_0^t W_s\,ds$, matching $X_t^{(2)}$.
 
+---
+
+**Exercise 6.** In the ODE setting, Picard iteration for $\dot{x} = f(t,x)$ converges in the supremum norm. In the SDE setting, convergence is measured in the $L^2$-supremum norm $\|X\| = \mathbb{E}[\sup_{t \leq T}|X_t|^2]^{1/2}$. Explain why the supremum norm alone is insufficient for SDEs. Specifically, what goes wrong if one tries to bound $\sup_{s \leq t}|X_s^{(n+1)} - X_s^{(n)}|$ pathwise without taking expectations?
+
 ??? success "Solution to Exercise 6"
     In the ODE setting, $\sup_{s \leq t}|x_s^{(n+1)} - x_s^{(n)}|$ is a deterministic quantity that can be bounded directly using the Lipschitz condition and Cauchy--Schwarz for ordinary integrals.
 
@@ -521,6 +513,10 @@ $$
     $$
 
     followed by the **Ito isometry** to convert $\mathbb{E}[|M_t|^2]$ into an ordinary integral. Both tools operate at the level of $L^2$ expectations, not individual paths. This is why the convergence metric must be $\|X\| = \mathbb{E}[\sup_{t \leq T}|X_t|^2]^{1/2}$ rather than the pathwise supremum norm.
+
+---
+
+**Exercise 7.** Let $X_t$ and $Y_t$ be two solutions of the same SDE with $X_0 = Y_0 = x_0$ under global Lipschitz conditions. Define $\varphi(t) = \mathbb{E}[\sup_{s \leq t}|X_s - Y_s|^2]$. Show that $\varphi$ satisfies $\varphi(t) \leq C \int_0^t \varphi(s)\,ds$ and $\varphi(0) = 0$. State Gronwall's inequality and use it to conclude $\varphi(t) = 0$ for all $t \in [0,T]$. Why is this stronger than the conclusion one would get from the Picard convergence argument alone?
 
 ??? success "Solution to Exercise 7"
     **Deriving the integral inequality:** Define $Z_t = X_t - Y_t$. Since both solve the same SDE with $X_0 = Y_0 = x_0$:

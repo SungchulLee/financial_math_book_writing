@@ -2,6 +2,15 @@
 
 The **$T$-forward measure** is a probability measure that uses the zero-coupon bond $P(t,T)$ as numéraire. It is particularly useful for pricing interest rate derivatives where the payoff occurs at a specific future date $T$.
 
+The central advantage of the forward measure is that it **removes the randomness of
+discounting**. Under the risk-neutral measure $\mathbb{Q}$, pricing requires computing
+$\mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r_s\,ds}\,\Phi_T]$, where the stochastic discount
+factor and the payoff may be correlated. The forward measure absorbs this stochastic
+discount factor into the probability weighting, so that pricing reduces to a simple
+expectation $P(t,T)\,\mathbb{E}^{\mathbb{Q}^T}[\Phi_T]$ with a deterministic prefactor.
+In this sense, the forward measure makes the payoff maturity $T$ the natural reference
+point.
+
 ---
 
 ## Definition
@@ -82,13 +91,16 @@ $$
 
 Under $\mathbb{Q}$: $W_t^{\mathbb{Q}}$ is Brownian motion.
 
-Under $\mathbb{Q}^T$:
+The change of numéraire from $B_t$ to $P(t,T)$ induces a new measure under which
+bond-denominated price processes are martingales. The Radon-Nikodym derivative
+depends on the bond dynamics, and the corresponding Girsanov kernel is the bond
+volatility $\sigma_P(t,T)$. Consequently:
 
 $$
 W_t^{\mathbb{Q}^T} = W_t^{\mathbb{Q}} - \int_0^t \sigma_P(s,T)\,ds
 $$
 
-is Brownian motion, where $\sigma_P(t,T)$ is the volatility of the bond:
+is Brownian motion, where $\sigma_P(t,T)$ is defined through the bond dynamics:
 
 $$
 \frac{dP(t,T)}{P(t,T)} = r_t\,dt + \sigma_P(t,T)\,dW_t^{\mathbb{Q}}
@@ -96,19 +108,27 @@ $$
 
 ### Asset Dynamics
 
-If under $\mathbb{Q}$:
+If under $\mathbb{Q}$ the asset and bond are driven by (possibly correlated) diffusions
+with volatilities $\sigma_S$ and $\sigma_P(t,T)$ and instantaneous correlation
+$\rho_{S,P}$, then the asset dynamics change from
 
 $$
-\frac{dS_t}{S_t} = r_t\,dt + \sigma_S\,dW_t^{\mathbb{Q}}
+\frac{dS_t}{S_t} = r_t\,dt + \sigma_S\,dW_t^{S,\mathbb{Q}}
 $$
 
-then under $\mathbb{Q}^T$:
+to
 
 $$
-\frac{dS_t}{S_t} = (r_t + \sigma_S\sigma_P(t,T))\,dt + \sigma_S\,dW_t^{\mathbb{Q}^T}
+\frac{dS_t}{S_t} = \bigl(r_t + \sigma_S\,\sigma_P(t,T)\,\rho_{S,P}\bigr)\,dt + \sigma_S\,dW_t^{S,\mathbb{Q}^T}
 $$
 
-The drift changes by the covariance between $S$ and $P$.
+The drift acquires the extra term $\sigma_S\,\sigma_P(t,T)\,\rho_{S,P}$, which is
+precisely the **instantaneous covariance** between the asset return $dS/S$ and the bond
+return $dP/P$.
+This covariance correction arises because the Girsanov shift from $\mathbb{Q}$ to
+$\mathbb{Q}^T$ is driven by the bond volatility $\sigma_P(t,T)$: the change of
+numéraire tilts probabilities in proportion to the bond's own diffusion, and every
+correlated diffusion picks up a corresponding drift adjustment.
 
 ---
 
@@ -265,6 +285,11 @@ $$
 | Advantage | Eliminates stochastic discounting |
 | Use case | Interest rate derivatives |
 
+All forward measures $\mathbb{Q}^{T_1}, \mathbb{Q}^{T_2}, \ldots$ and the risk-neutral
+measure $\mathbb{Q}$ are **equivalent** --- they agree on which events are possible and
+differ only in how they weight outcomes. The choice among them is a matter of
+computational convenience, not of economic content.
+
 **The forward measure transforms the problem of stochastic discounting into a problem of computing a simple expectation, making it indispensable for interest rate modeling.**
 
 ---
@@ -273,40 +298,6 @@ $$
 
 **Exercise 1.**
 Write the Radon-Nikodym derivative $d\mathbb{Q}^T / d\mathbb{Q}|_{\mathcal{F}_t}$ in terms of $P(t,T)$, $P(0,T)$, and $B_t$. Verify that at $t = T$, this expression simplifies to $e^{-\int_0^T r_s\,ds} / P(0,T)$. Explain why $\mathbb{E}^{\mathbb{Q}}[d\mathbb{Q}^T / d\mathbb{Q}|_{\mathcal{F}_T}] = 1$.
-
----
-
-**Exercise 2.**
-A forward contract on a stock $S$ for delivery at $T$ has payoff $S_T - K$ at maturity. Using the forward measure, show that the value at time $t$ is $V_t = P(t,T)(F(t,T) - K)$ where $F(t,T) = S_t / P(t,T)$. Determine the forward price $K^*$ that makes the contract initially worth zero.
-
----
-
-**Exercise 3.**
-In the Vasicek model with $\kappa = 0.3$, $\bar{r} = 0.05$, $\sigma_r = 0.02$, and $B(t,T) = (1 - e^{-\kappa(T-t)})/\kappa$, compute the bond volatility $\sigma_P(t,T) = -B(t,T)\sigma_r$ for $T - t = 5$. Write the drift adjustment for the short rate under $\mathbb{Q}^T$.
-
----
-
-**Exercise 4.**
-A caplet with strike $K = 0.05$ on the LIBOR rate $L(T; T, T+\delta)$ with $\delta = 0.25$ pays $\delta(L_T - K)^+$ at $T + \delta$. If $L(0; T, T+\delta) = 0.048$ and the forward LIBOR volatility is $\sigma_L = 0.20$, use Black's formula to price the caplet under $\mathbb{Q}^{T+\delta}$. Assume $P(0, T+\delta) = 0.92$.
-
----
-
-**Exercise 5.**
-Explain why the forward price $F(t,T) = S_t / P(t,T)$ is a $\mathbb{Q}^T$-martingale but not a $\mathbb{Q}$-martingale in general. What is the drift of $F(t,T)$ under the standard risk-neutral measure $\mathbb{Q}$?
-
----
-
-**Exercise 6.**
-For two different maturities $T_1 < T_2$, write the Radon-Nikodym derivative $d\mathbb{Q}^{T_2}/d\mathbb{Q}^{T_1}|_{\mathcal{F}_t}$ and explain why the measures $\mathbb{Q}^{T_1}$ and $\mathbb{Q}^{T_2}$ differ. In which financial applications does the choice between these measures matter?
-
----
-
-**Exercise 7.**
-Consider the exchange option with payoff $(S_T^1 - S_T^2)^+$. Using $S_t^2$ as numeraire, derive Margrabe's formula. Explain why the interest rate $r$ does not appear in the final formula, and identify the relevant volatility parameter $\sigma$ in terms of $\sigma_1$, $\sigma_2$, and $\rho$.
-
----
-
-## Solutions
 
 ??? success "Solution to Exercise 1"
     By definition:
@@ -335,6 +326,11 @@ Consider the exchange option with payoff $(S_T^1 - S_T^2)^+$. Using $S_t^2$ as n
 
     This confirms the Radon-Nikodym derivative is properly normalized.
 
+---
+
+**Exercise 2.**
+A forward contract on a stock $S$ for delivery at $T$ has payoff $S_T - K$ at maturity. Using the forward measure, show that the value at time $t$ is $V_t = P(t,T)(F(t,T) - K)$ where $F(t,T) = S_t / P(t,T)$. Determine the forward price $K^*$ that makes the contract initially worth zero.
+
 ??? success "Solution to Exercise 2"
     The forward contract pays $\Phi_T = S_T - K$ at time $T$. Under the $T$-forward measure:
 
@@ -360,6 +356,11 @@ Consider the exchange option with payoff $(S_T^1 - S_T^2)^+$. Using $S_t^2$ as n
     P(0,T)(F(0,T) - K^*) = 0 \implies K^* = F(0,T) = \frac{S_0}{P(0,T)}
     $$
 
+---
+
+**Exercise 3.**
+In the Vasicek model with $\kappa = 0.3$, $\bar{r} = 0.05$, $\sigma_r = 0.02$, and $B(t,T) = (1 - e^{-\kappa(T-t)})/\kappa$, compute the bond volatility $\sigma_P(t,T) = -B(t,T)\sigma_r$ for $T - t = 5$. Write the drift adjustment for the short rate under $\mathbb{Q}^T$.
+
 ??? success "Solution to Exercise 3"
     With $\kappa = 0.3$, $\sigma_r = 0.02$, and $T - t = 5$:
 
@@ -380,6 +381,11 @@ Consider the exchange option with payoff $(S_T^1 - S_T^2)^+$. Using $S_t^2$ as n
     $$
 
     The drift adjustment is $-\sigma_r^2 B(t,T) = -(0.02)^2 \cdot 2.58957 = -0.001036$ (evaluated at $T - t = 5$). This term shifts the short rate drift downward, reflecting the convexity adjustment arising from the correlation between the bond price and the short rate.
+
+---
+
+**Exercise 4.**
+A caplet with strike $K = 0.05$ on the LIBOR rate $L(T; T, T+\delta)$ with $\delta = 0.25$ pays $\delta(L_T - K)^+$ at $T + \delta$. If $L(0; T, T+\delta) = 0.048$ and the forward LIBOR volatility is $\sigma_L = 0.20$, use Black's formula to price the caplet under $\mathbb{Q}^{T+\delta}$. Assume $P(0, T+\delta) = 0.92$.
 
 ??? success "Solution to Exercise 4"
     Given: $K = 0.05$, $\delta = 0.25$, $L_0 = L(0;T,T+\delta) = 0.048$, $\sigma_L = 0.20$, $P(0,T+\delta) = 0.92$, and maturity $T$ (we need $T$ to compute $d_1, d_2$; we take $T = 1$ as a typical assumption).
@@ -416,6 +422,11 @@ Consider the exchange option with payoff $(S_T^1 - S_T^2)^+$. Using $S_t^2$ as n
 
     The caplet price is approximately $0.0686\%$ of notional, or about $6.86$ basis points.
 
+---
+
+**Exercise 5.**
+Explain why the forward price $F(t,T) = S_t / P(t,T)$ is a $\mathbb{Q}^T$-martingale but not a $\mathbb{Q}$-martingale in general. What is the drift of $F(t,T)$ under the standard risk-neutral measure $\mathbb{Q}$?
+
 ??? success "Solution to Exercise 5"
     Under $\mathbb{Q}$, the discounted price $S_t/B_t$ is a martingale, where $B_t = e^{\int_0^t r_s\,ds}$. The forward price is $F(t,T) = S_t/P(t,T)$. Writing $F(t,T) = (S_t/B_t) \cdot (B_t/P(t,T))$, note that $S_t/B_t$ is a $\mathbb{Q}$-martingale but $B_t/P(t,T)$ is a stochastic process (not constant), so their product $F(t,T)$ is generally **not** a $\mathbb{Q}$-martingale.
 
@@ -441,6 +452,11 @@ Consider the exchange option with payoff $(S_T^1 - S_T^2)^+$. Using $S_t^2$ as n
 
     The drift $\sigma_P(\sigma_P - \sigma_S)$ is generally nonzero, confirming $F$ is not a $\mathbb{Q}$-martingale. Under $\mathbb{Q}^T$, this drift vanishes by construction (the Girsanov shift absorbs it), making $F$ a $\mathbb{Q}^T$-martingale.
 
+---
+
+**Exercise 6.**
+For two different maturities $T_1 < T_2$, write the Radon-Nikodym derivative $d\mathbb{Q}^{T_2}/d\mathbb{Q}^{T_1}|_{\mathcal{F}_t}$ and explain why the measures $\mathbb{Q}^{T_1}$ and $\mathbb{Q}^{T_2}$ differ. In which financial applications does the choice between these measures matter?
+
 ??? success "Solution to Exercise 6"
     The Radon-Nikodym derivative between the two forward measures is:
 
@@ -455,6 +471,11 @@ Consider the exchange option with payoff $(S_T^1 - S_T^2)^+$. Using $S_t^2$ as n
     - **Interest rate caps**: Each caplet with reset at $T_i$ is priced under $\mathbb{Q}^{T_{i+1}}$, so different caplets in the same cap use different forward measures.
     - **LIBOR Market Models (BGM)**: Forward LIBOR rates for different tenors are martingales under different forward measures, requiring careful measure changes when computing joint distributions.
     - **Convexity adjustments**: When a rate observed under one measure must be priced under another (e.g., CMS rates), the measure change introduces a convexity correction.
+
+---
+
+**Exercise 7.**
+Consider the exchange option with payoff $(S_T^1 - S_T^2)^+$. Using $S_t^2$ as numeraire, derive Margrabe's formula. Explain why the interest rate $r$ does not appear in the final formula, and identify the relevant volatility parameter $\sigma$ in terms of $\sigma_1$, $\sigma_2$, and $\rho$.
 
 ??? success "Solution to Exercise 7"
     The exchange option has payoff $(S_T^1 - S_T^2)^+$. Using $N_t = S_t^2$ as numéraire, define the measure $\mathbb{Q}^{S^2}$ under which $S_t^1/S_t^2$ is a martingale.

@@ -252,46 +252,6 @@ The $-t/2$ correction is exactly the quadratic variation of $W$ on $[0,t]$. In o
 
 **Exercise 1.** Let $f(t) = t^2$ on $[0,1]$. For a uniform partition with $n$ subintervals, compute the quadratic variation sum $Q(f, \Pi) = \sum_{k=1}^n (f(t_k) - f(t_{k-1}))^2$ explicitly. Show that $Q(f, \Pi) \to 0$ as $n \to \infty$, confirming that smooth functions have zero quadratic variation.
 
----
-
-**Exercise 2.** Using the identity $\operatorname{Var}((\Delta W_k)^2) = 2(\Delta t_k)^2$ for a Gaussian increment, show that
-
-$$
-\operatorname{Var}(Q(W, \Pi)) = 2 \sum_{k=1}^n (\Delta t_k)^2
-$$
-
-For a uniform partition with $n$ subintervals on $[0,T]$, evaluate this expression and verify it tends to zero as $n \to \infty$.
-
----
-
-**Exercise 3.** Let $X_t = \mu t + \sigma W_t$ be Brownian motion with drift. Compute the quadratic variation $[X]_t$. Does the drift $\mu t$ contribute to the quadratic variation? Justify your answer.
-
----
-
-**Exercise 4.** Let $M_t = \int_0^t s\, dW_s$. Compute the quadratic variation $[M]_t$ and use it to verify that $M_t^2 - [M]_t$ is a martingale by computing $\mathbb{E}[M_t^2 - [M]_t]$.
-
----
-
-**Exercise 5.** Using the Ito multiplication table, compute $(dX_t)^2$ for the Ornstein-Uhlenbeck process $dX_t = -\theta X_t\, dt + \sigma\, dW_t$. What is $[X]_t$?
-
----
-
-**Exercise 6.** Prove that if a process $A_t$ has bounded total variation on $[0,T]$, then $[A]_T = 0$. *Hint*: Bound $\sum_k (\Delta A_k)^2 \le \max_k |\Delta A_k| \cdot \sum_k |\Delta A_k|$ and argue that $\max_k |\Delta A_k| \to 0$ for a continuous finite-variation process.
-
----
-
-**Exercise 7.** Apply Ito's formula to $f(x) = x^4$ with $X_t = W_t$ to derive
-
-$$
-W_t^4 = 4\int_0^t W_s^3\, dW_s + 6\int_0^t W_s^2\, ds
-$$
-
-Use this identity and the Ito isometry to compute $\mathbb{E}\!\left[\left(\int_0^t W_s^3\, dW_s\right)^2\right]$. *Hint*: You will need $\mathbb{E}[W_s^6] = 15s^3$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     On a uniform partition $t_k = k/n$, $\Delta t = 1/n$, and $f(t_k) = (k/n)^2$. The increments are:
 
@@ -319,6 +279,16 @@ Use this identity and the Ito isometry to compute $\mathbb{E}\!\left[\left(\int_
 
     This confirms that the smooth function $f(t) = t^2$ has zero quadratic variation.
 
+---
+
+**Exercise 2.** Using the identity $\operatorname{Var}((\Delta W_k)^2) = 2(\Delta t_k)^2$ for a Gaussian increment, show that
+
+$$
+\operatorname{Var}(Q(W, \Pi)) = 2 \sum_{k=1}^n (\Delta t_k)^2
+$$
+
+For a uniform partition with $n$ subintervals on $[0,T]$, evaluate this expression and verify it tends to zero as $n \to \infty$.
+
 ??? success "Solution to Exercise 2"
     Since $\Delta W_k \sim \mathcal{N}(0, \Delta t_k)$ and increments are independent:
 
@@ -340,6 +310,10 @@ Use this identity and the Ito isometry to compute $\mathbb{E}\!\left[\left(\int_
     \operatorname{Var}(Q(W, \Pi)) = 2\sum_{k=1}^n \frac{T^2}{n^2} = 2n \cdot \frac{T^2}{n^2} = \frac{2T^2}{n} \to 0 \quad \text{as } n \to \infty
     $$
 
+---
+
+**Exercise 3.** Let $X_t = \mu t + \sigma W_t$ be Brownian motion with drift. Compute the quadratic variation $[X]_t$. Does the drift $\mu t$ contribute to the quadratic variation? Justify your answer.
+
 ??? success "Solution to Exercise 3"
     Write $X_t = \mu t + \sigma W_t$. The increment is $\Delta X_k = \mu \Delta t_k + \sigma \Delta W_k$. The quadratic variation sum is:
 
@@ -358,6 +332,10 @@ Use this identity and the Ito isometry to compute $\mathbb{E}\!\left[\left(\int_
     - $\sum_k (\Delta W_k)^2 \to t$ in $L^2$
 
     Therefore $[X]_t = \sigma^2 t$. The drift $\mu t$ does **not** contribute to the quadratic variation, because the drift increments $\mu \Delta t_k$ are of order $\Delta t_k$, so their squares $\mu^2 (\Delta t_k)^2$ are of order $(\Delta t_k)^2$ and vanish when summed.
+
+---
+
+**Exercise 4.** Let $M_t = \int_0^t s\, dW_s$. Compute the quadratic variation $[M]_t$ and use it to verify that $M_t^2 - [M]_t$ is a martingale by computing $\mathbb{E}[M_t^2 - [M]_t]$.
 
 ??? success "Solution to Exercise 4"
     Since $M_t = \int_0^t s\, dW_s$, the quadratic variation is:
@@ -380,6 +358,10 @@ Use this identity and the Ito isometry to compute $\mathbb{E}\!\left[\left(\int_
 
     for all $t$, which is consistent with $M_t^2 - [M]_t$ being a martingale (a martingale starting at zero has constant expectation equal to zero).
 
+---
+
+**Exercise 5.** Using the Ito multiplication table, compute $(dX_t)^2$ for the Ornstein-Uhlenbeck process $dX_t = -\theta X_t\, dt + \sigma\, dW_t$. What is $[X]_t$?
+
 ??? success "Solution to Exercise 5"
     The OU process has $dX_t = -\theta X_t\, dt + \sigma\, dW_t$. Using the multiplication rules:
 
@@ -401,6 +383,10 @@ Use this identity and the Ito isometry to compute $\mathbb{E}\!\left[\left(\int_
 
     Therefore $d[X]_t = \sigma^2\, dt$, giving $[X]_t = \sigma^2 t$.
 
+---
+
+**Exercise 6.** Prove that if a process $A_t$ has bounded total variation on $[0,T]$, then $[A]_T = 0$. *Hint*: Bound $\sum_k (\Delta A_k)^2 \le \max_k |\Delta A_k| \cdot \sum_k |\Delta A_k|$ and argue that $\max_k |\Delta A_k| \to 0$ for a continuous finite-variation process.
+
 ??? success "Solution to Exercise 6"
     Let $V = \sup_\Pi \sum_k |A_{t_k} - A_{t_{k-1}}| < \infty$ be the total variation of $A$ on $[0,T]$. For any partition $\Pi$:
 
@@ -415,6 +401,16 @@ Use this identity and the Ito isometry to compute $\mathbb{E}\!\left[\left(\int_
     $$
 
     Therefore $[A]_T = 0$.
+
+---
+
+**Exercise 7.** Apply Ito's formula to $f(x) = x^4$ with $X_t = W_t$ to derive
+
+$$
+W_t^4 = 4\int_0^t W_s^3\, dW_s + 6\int_0^t W_s^2\, ds
+$$
+
+Use this identity and the Ito isometry to compute $\mathbb{E}\!\left[\left(\int_0^t W_s^3\, dW_s\right)^2\right]$. *Hint*: You will need $\mathbb{E}[W_s^6] = 15s^3$.
 
 ??? success "Solution to Exercise 7"
     Apply Ito's formula to $f(x) = x^4$ with $X_t = W_t$. We have $f'(x) = 4x^3$ and $f''(x) = 12x^2$:

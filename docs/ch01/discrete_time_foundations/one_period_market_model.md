@@ -265,30 +265,6 @@ The one-period market model provides the minimal mathematical setting in which t
 
 **Exercise 1.** Consider a one-period market with $S = 3$ states $\Omega = \{\omega_1, \omega_2, \omega_3\}$ and $N = 2$ assets: a risk-free bond with $r_f = 0.03$ and a stock with price $P_2 = 40$. The stock payoffs are $X_{21} = 55$, $X_{22} = 42$, $X_{23} = 30$. Write down the price vector $\mathbf{P}$, the payoff matrix $\mathbf{X}$, and the discount factor $\beta$.
 
----
-
-**Exercise 2.** In the Boom-Recession example from this section, suppose the stock payoff in the Boom state changes to $\$70$ while everything else remains the same. Compute the new expected stock payoff under $\mathbb{P}$ and the new expected gross return. Is the risk premium larger or smaller than in the original example?
-
----
-
-**Exercise 3.** Prove that if the risk-free rate satisfies $r_f > 0$, then the discount factor satisfies $0 < \beta < 1$. What happens when $r_f = 0$? What happens when $-1 < r_f < 0$?
-
----
-
-**Exercise 4.** Consider a one-period model with $S = 4$ states and $N = 3$ assets (one risk-free bond and two risky stocks). Determine the maximum possible rank of the payoff matrix $\mathbf{X} \in \mathbb{R}^{3 \times 4}$. Under what condition on the rank is the market complete?
-
----
-
-**Exercise 5.** In a one-period model with $S$ states and $N$ assets, suppose one of the risky assets has a payoff that is identical in every state: $X_{j1} = X_{j2} = \cdots = X_{jS} = c$ for some constant $c > 0$. Show that if $c \neq (1 + r_f) P_j$, then an arbitrage opportunity exists.
-
----
-
-**Exercise 6.** A one-period market has $\Omega = \{\omega_1, \omega_2\}$ with $p_1 = 0.7$, $p_2 = 0.3$, and $r_f = 0.10$. The market contains a bond and a stock with $P_2 = 20$, $X_{21} = 28$, $X_{22} = 16$. Write the complete model specification $(\Omega, \mathbb{P}, N, \mathbf{P}, \mathbf{X}, r_f)$. Compute the expected return on the stock and the risk premium over the risk-free rate.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The risk-free bond has price $P_1 = 1$ (by convention) and pays $1 + r_f = 1.03$ in every state. The stock has price $P_2 = 40$.
 
@@ -309,6 +285,10 @@ The one-period market model provides the minimal mathematical setting in which t
     $$
     \beta = \frac{1}{1 + r_f} = \frac{1}{1.03} \approx 0.9709
     $$
+
+---
+
+**Exercise 2.** In the Boom-Recession example from this section, suppose the stock payoff in the Boom state changes to $\$70$ while everything else remains the same. Compute the new expected stock payoff under $\mathbb{P}$ and the new expected gross return. Is the risk premium larger or smaller than in the original example?
 
 ??? success "Solution to Exercise 2"
     With the new stock payoff of \$70 in the Boom state and \$40 in the Recession state (unchanged), the expected stock payoff under $\mathbb{P}$ is:
@@ -331,6 +311,10 @@ The one-period market model provides the minimal mathematical setting in which t
 
     In the original example, the expected net return was $10\%$ and the risk premium was $5\%$. The new risk premium of $11\%$ is **larger** than the original $5\%$. This makes sense: the upside payoff increased (from \$65 to \$70) while the downside remained unchanged (\$40), increasing the spread between boom and recession payoffs, and thus the expected return.
 
+---
+
+**Exercise 3.** Prove that if the risk-free rate satisfies $r_f > 0$, then the discount factor satisfies $0 < \beta < 1$. What happens when $r_f = 0$? What happens when $-1 < r_f < 0$?
+
 ??? success "Solution to Exercise 3"
     Suppose $r_f > 0$. Then $1 + r_f > 1 > 0$, so the discount factor is:
 
@@ -344,6 +328,10 @@ The one-period market model provides the minimal mathematical setting in which t
 
     **When $-1 < r_f < 0$:** We have $0 < 1 + r_f < 1$, so $\beta = 1/(1 + r_f) > 1$. A dollar tomorrow is worth more than a dollar today. This corresponds to a negative interest rate environment, where holding cash is penalized or deflation is expected.
 
+---
+
+**Exercise 4.** Consider a one-period model with $S = 4$ states and $N = 3$ assets (one risk-free bond and two risky stocks). Determine the maximum possible rank of the payoff matrix $\mathbf{X} \in \mathbb{R}^{3 \times 4}$. Under what condition on the rank is the market complete?
+
 ??? success "Solution to Exercise 4"
     The payoff matrix $\mathbf{X} \in \mathbb{R}^{3 \times 4}$ has 3 rows and 4 columns. By the rank inequality:
 
@@ -354,6 +342,10 @@ The one-period market model provides the minimal mathematical setting in which t
     so the maximum possible rank is $3$.
 
     The market is complete when every contingent claim in $\mathbb{R}^S = \mathbb{R}^4$ can be replicated. This requires $\operatorname{rank}(\mathbf{X}) = S = 4$. However, since the maximum rank is $3 < 4$, **the market cannot be complete with only 3 assets and 4 states**, regardless of the specific payoff values. At least one more linearly independent asset is needed.
+
+---
+
+**Exercise 5.** In a one-period model with $S$ states and $N$ assets, suppose one of the risky assets has a payoff that is identical in every state: $X_{j1} = X_{j2} = \cdots = X_{jS} = c$ for some constant $c > 0$. Show that if $c \neq (1 + r_f) P_j$, then an arbitrage opportunity exists.
 
 ??? success "Solution to Exercise 5"
     Suppose asset $j$ has constant payoff $X_{js} = c > 0$ for all $s = 1, \ldots, S$, and $c \neq (1 + r_f)P_j$.
@@ -377,6 +369,10 @@ The one-period market model provides the minimal mathematical setting in which t
     **Case 2: $c < (1 + r_f)P_j$.** Reverse the strategy: sell $1$ unit of asset $j$ and buy $c/(1 + r_f)$ units of the bond. The cost is $c/(1 + r_f) - P_j < 0$ and the payoff is $0$ in every state. Again a Type 2 arbitrage.
 
     In both cases, an arbitrage opportunity exists.
+
+---
+
+**Exercise 6.** A one-period market has $\Omega = \{\omega_1, \omega_2\}$ with $p_1 = 0.7$, $p_2 = 0.3$, and $r_f = 0.10$. The market contains a bond and a stock with $P_2 = 20$, $X_{21} = 28$, $X_{22} = 16$. Write the complete model specification $(\Omega, \mathbb{P}, N, \mathbf{P}, \mathbf{X}, r_f)$. Compute the expected return on the stock and the risk premium over the risk-free rate.
 
 ??? success "Solution to Exercise 6"
     **Complete model specification:**

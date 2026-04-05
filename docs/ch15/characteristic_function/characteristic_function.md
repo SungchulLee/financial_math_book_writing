@@ -224,6 +224,43 @@ The characteristic function of an affine process has the exponential-affine form
 
 **Exercise 1.** For the Vasicek model with $\kappa_0 = \kappa\theta$, $\kappa_1 = -\kappa$, $\sigma_0 = \sigma^2$, $\sigma_1 = 0$, verify the Hermitian symmetry property $\Phi(\tau, -v, x) = \overline{\Phi(\tau, v, x)}$ by showing that $\phi(\tau, -iv) = \overline{\phi(\tau, iv)}$ and $\psi(\tau, -iv) = \overline{\psi(\tau, iv)}$.
 
+??? success "Solution to Exercise 1"
+    For the Vasicek model we have $\psi(\tau) = iv\,e^{-\kappa\tau}$ and
+
+    $$
+    \phi(\tau, iv) = i\theta v(1 - e^{-\kappa\tau}) - \frac{\sigma^2 v^2}{4\kappa}(1 - e^{-2\kappa\tau})
+    $$
+
+    **Checking $\psi$:** Replace $v$ by $-v$:
+
+    $$
+    \psi(\tau, -iv) = -iv\,e^{-\kappa\tau}
+    $$
+
+    The complex conjugate of $\psi(\tau, iv) = iv\,e^{-\kappa\tau}$ is $\overline{iv\,e^{-\kappa\tau}} = -iv\,e^{-\kappa\tau}$ since $e^{-\kappa\tau}$ is real. Hence $\psi(\tau, -iv) = \overline{\psi(\tau, iv)}$.
+
+    **Checking $\phi$:** Replace $v$ by $-v$:
+
+    $$
+    \phi(\tau, -iv) = -i\theta v(1 - e^{-\kappa\tau}) - \frac{\sigma^2 v^2}{4\kappa}(1 - e^{-2\kappa\tau})
+    $$
+
+    The complex conjugate of $\phi(\tau, iv)$ is
+
+    $$
+    \overline{\phi(\tau, iv)} = -i\theta v(1 - e^{-\kappa\tau}) - \frac{\sigma^2 v^2}{4\kappa}(1 - e^{-2\kappa\tau})
+    $$
+
+    since all terms multiplying $i$ are real. Hence $\phi(\tau, -iv) = \overline{\phi(\tau, iv)}$.
+
+    **Conclusion:** Since $\Phi(\tau, v, x) = \exp(\phi(\tau, iv) + \psi(\tau, iv)\,x)$, we have
+
+    $$
+    \Phi(\tau, -v, x) = \exp(\phi(\tau, -iv) + \psi(\tau, -iv)\,x) = \exp(\overline{\phi(\tau, iv)} + \overline{\psi(\tau, iv)}\,x) = \overline{\Phi(\tau, v, x)}
+    $$
+
+    confirming Hermitian symmetry.
+
 ---
 
 **Exercise 2.** Starting from the characteristic function of the OU process
@@ -234,13 +271,84 @@ $$
 
 use the Fourier inversion formula to recover the conditional density $f(\tau, y, x)$ and verify that it is Gaussian with mean $xe^{-\kappa\tau}$ and variance $\frac{\sigma^2}{2\kappa}(1-e^{-2\kappa\tau})$.
 
+??? success "Solution to Exercise 2"
+    The Fourier inversion formula gives
+
+    $$
+    f(\tau, y, x) = \frac{1}{2\pi}\int_{-\infty}^{\infty} e^{-ivy}\,\Phi(\tau, v, x)\,dv
+    $$
+
+    Substituting the OU characteristic function:
+
+    $$
+    f(\tau, y, x) = \frac{1}{2\pi}\int_{-\infty}^{\infty} \exp\!\left(-ivy + ive^{-\kappa\tau}x - \frac{\sigma^2 v^2}{4\kappa}(1-e^{-2\kappa\tau})\right)dv
+    $$
+
+    Define $\mu_\tau = xe^{-\kappa\tau}$ and $\sigma_\tau^2 = \frac{\sigma^2}{2\kappa}(1-e^{-2\kappa\tau})$. The exponent becomes
+
+    $$
+    iv(\mu_\tau - y) - \frac{\sigma_\tau^2}{2}v^2
+    $$
+
+    Complete the square in $v$:
+
+    $$
+    -\frac{\sigma_\tau^2}{2}\!\left(v - \frac{i(\mu_\tau - y)}{\sigma_\tau^2}\right)^2 - \frac{(\mu_\tau - y)^2}{2\sigma_\tau^2}
+    $$
+
+    The integral over $v$ of $\exp\!\left(-\frac{\sigma_\tau^2}{2}(v - c)^2\right)$ for any constant $c$ equals $\sqrt{2\pi/\sigma_\tau^2}$ by contour deformation (Gaussian integral). Therefore
+
+    $$
+    f(\tau, y, x) = \frac{1}{2\pi}\sqrt{\frac{2\pi}{\sigma_\tau^2}}\exp\!\left(-\frac{(y - \mu_\tau)^2}{2\sigma_\tau^2}\right) = \frac{1}{\sqrt{2\pi\sigma_\tau^2}}\exp\!\left(-\frac{(y - \mu_\tau)^2}{2\sigma_\tau^2}\right)
+    $$
+
+    This is the density of $N(\mu_\tau, \sigma_\tau^2)$ with mean $xe^{-\kappa\tau}$ and variance $\frac{\sigma^2}{2\kappa}(1-e^{-2\kappa\tau})$, confirming the Gaussian transition density.
+
 ---
 
 **Exercise 3.** For the CIR process, the discriminant is $\gamma = \sqrt{\kappa^2 - 2\xi^2 iv}$. Compute $|\gamma|^2$ as a function of $v$ and verify that $\operatorname{Re}(\gamma) > 0$ for all real $v$ when the principal square root is used. Why is this positivity condition necessary for the stability of the closed-form solution?
 
+??? success "Solution to Exercise 3"
+    Write $\gamma = \sqrt{\kappa^2 - 2\xi^2 iv}$. Setting $w = \kappa^2 - 2\xi^2 iv$, we have $w = \kappa^2 - 2\xi^2 iv$, so $\operatorname{Re}(w) = \kappa^2 > 0$ and $\operatorname{Im}(w) = -2\xi^2 v$.
+
+    The modulus is
+
+    $$
+    |w| = \sqrt{\kappa^4 + 4\xi^4 v^2}
+    $$
+
+    For the principal square root $\gamma = \sqrt{w}$, we have $|\gamma|^2 = |w| = \sqrt{\kappa^4 + 4\xi^4 v^2}$.
+
+    To verify $\operatorname{Re}(\gamma) > 0$: write $w = |w|e^{i\theta}$ where $\theta = \arg(w) = \arctan(-2\xi^2 v / \kappa^2)$. Since $\operatorname{Re}(w) = \kappa^2 > 0$, we have $\theta \in (-\pi/2, \pi/2)$. The principal square root gives $\gamma = \sqrt{|w|}\,e^{i\theta/2}$ with $\theta/2 \in (-\pi/4, \pi/4)$, so $\operatorname{Re}(\gamma) = \sqrt{|w|}\cos(\theta/2) > 0$ for all real $v$.
+
+    **Why positivity is necessary:** The closed-form solution involves denominators of the form $\gamma - c(1 - e^{-\gamma\tau})$ and exponentials $e^{-\gamma\tau}$. If $\operatorname{Re}(\gamma) < 0$, the term $e^{-\gamma\tau}$ would grow exponentially with $\tau$, causing numerical instability and potential division by zero. The condition $\operatorname{Re}(\gamma) > 0$ ensures that $e^{-\gamma\tau} \to 0$ as $\tau \to \infty$, keeping the closed-form solution stable and well-behaved for all maturities.
+
 ---
 
 **Exercise 4.** Consider the discounted characteristic function $\mathbb{E}[e^{-\int_t^T r_s\,ds + ivX_T} \mid X_t = x]$ for the CIR short-rate model. How does the Riccati ODE for $\psi$ change compared to the undiscounted case? Write down the modified ODE and identify the new discriminant.
+
+??? success "Solution to Exercise 4"
+    In the CIR short-rate model, $r_t = X_t$ with $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$. For the undiscounted characteristic function, the $\psi$-ODE is
+
+    $$
+    \psi' = -\kappa\psi + \frac{\xi^2}{2}\psi^2, \qquad \psi(0) = iv
+    $$
+
+    For the discounted characteristic function $\mathbb{E}[e^{-\int_t^T r_s\,ds + ivX_T} \mid X_t = x]$, the short rate $r(x) = x$ means $\rho_0 = 0$ and $\rho_1 = 1$. The discounting adds $-\rho_1 = -1$ to the $\psi$-equation (from the $-r_1$ term in the DPS formulation). The modified ODE becomes
+
+    $$
+    \tilde{\psi}' = -1 - \kappa\tilde{\psi} + \frac{\xi^2}{2}\tilde{\psi}^2, \qquad \tilde{\psi}(0) = iv
+    $$
+
+    This is a full Riccati equation $\tilde{\psi}' = \alpha + \beta\tilde{\psi} + \frac{1}{2}\gamma\tilde{\psi}^2$ with $\alpha = -1$, $\beta = -\kappa$, and $\gamma = \xi^2$.
+
+    The new discriminant is
+
+    $$
+    \tilde{\gamma} = \sqrt{\beta^2 - 2\alpha\gamma} = \sqrt{\kappa^2 + 2\xi^2}
+    $$
+
+    Compared to the undiscounted case (where the discriminant for the characteristic function is $\gamma = \sqrt{\kappa^2 - 2\xi^2 iv}$ depending on $v$), the discounted bond-pricing discriminant $\sqrt{\kappa^2 + 2\xi^2}$ is a real positive constant independent of $v$. The discounting term introduces a constant $\alpha = -1$ that shifts the Riccati equation from a homogeneous to an inhomogeneous form.
 
 ---
 
@@ -252,10 +360,83 @@ $$
 
 and verify that you recover the Black-Scholes formula.
 
+??? success "Solution to Exercise 5"
+    Under arithmetic Brownian motion $dX_t = \mu\,dt + \sigma\,dW_t$, the transition density is $X_T \mid X_t = x \sim N(x + \mu\tau, \sigma^2\tau)$. The call price on $e^{X_T}$ with strike $K$ is
+
+    $$
+    C = e^{-r\tau}\int_{-\infty}^{\infty}(e^y - K)^+ f(y)\,dy
+    $$
+
+    where $f(y)$ is the density of $N(x + \mu\tau, \sigma^2\tau)$. The integral is nonzero only for $y > \log K$:
+
+    $$
+    C = e^{-r\tau}\!\left[\int_{\log K}^{\infty} e^y f(y)\,dy - K\int_{\log K}^{\infty} f(y)\,dy\right]
+    $$
+
+    Let $m = x + \mu\tau$ and $s^2 = \sigma^2\tau$.
+
+    **Second integral:** $\int_{\log K}^{\infty} f(y)\,dy = \Phi_N\!\left(\frac{m - \log K}{s}\right)$ where $\Phi_N$ is the standard normal CDF.
+
+    **First integral:** Using the identity $e^y f(y) = e^{m + s^2/2}\,\tilde{f}(y)$ where $\tilde{f}$ is the density of $N(m + s^2, s^2)$:
+
+    $$
+    \int_{\log K}^{\infty} e^y f(y)\,dy = e^{m + s^2/2}\,\Phi_N\!\left(\frac{m + s^2 - \log K}{s}\right)
+    $$
+
+    Identifying $S_t = e^x$, $e^{m + s^2/2} = e^{x + \mu\tau + \sigma^2\tau/2}$, and setting $\mu = r - \sigma^2/2$ (risk-neutral drift of the log-price), we get $e^{m+s^2/2} = S_t e^{r\tau}$. Define
+
+    $$
+    d_1 = \frac{x + r\tau + \sigma^2\tau/2 - \log K}{\sigma\sqrt{\tau}}, \qquad d_2 = d_1 - \sigma\sqrt{\tau}
+    $$
+
+    Then
+
+    $$
+    C = S_t\,\Phi_N(d_1) - Ke^{-r\tau}\,\Phi_N(d_2)
+    $$
+
+    which is the Black-Scholes formula.
+
 ---
 
 **Exercise 6.** Explain why the characteristic function of any affine process is continuous in the frequency variable $v$ but the moment generating function may not be continuous in $u$ across the boundary of the admissible set. Illustrate with the CIR process, identifying the critical value $u^*$ at which continuity breaks down.
 
+??? success "Solution to Exercise 6"
+    The characteristic function is defined for $u = iv$ with any $v \in \mathbb{R}^d$, and we have $|\mathbb{E}[e^{i\langle v, X_T\rangle}]| \leq \mathbb{E}[|e^{i\langle v, X_T\rangle}|] = 1$. This bound holds regardless of the model and for all $\tau \geq 0$. Therefore, the Riccati solution with initial data $\psi(0) = iv$ can never blow up, and the map $v \mapsto \Phi(\tau, v, x)$ is defined for all $v \in \mathbb{R}^d$. Moreover, since $|e^{i\langle v, X_T\rangle}|$ is bounded and the integrand is dominated, the dominated convergence theorem ensures that $v \mapsto \Phi(\tau, v, x)$ is continuous.
+
+    The moment generating function, on the other hand, requires $\mathbb{E}[e^{\langle u, X_T\rangle}] < \infty$ for real $u$, which may fail. For the CIR process, $\mathbb{E}[e^{uX_T}]$ exists only when $u$ is below a critical threshold $u^* = 2\kappa/\xi^2$. At $u = u^*$, the equilibrium of the Riccati ODE $\psi' = -\kappa\psi + \frac{\xi^2}{2}\psi^2$ is $\psi^* = 2\kappa/\xi^2$, and for $u > u^*$, the quadratic term dominates, driving $\psi(\tau) \to \infty$ in finite time $T^*(u)$. This finite-time explosion of the Riccati solution is reflected in the divergence of the moment generating function.
+
+    Continuity fails at the boundary $u = u^*$ because $\lim_{\tau\to\infty}\psi(\tau, u^*) = u^*$ (finite), but $\lim_{u \downarrow u^*} T^*(u) < \infty$. The transition from global to finite-time existence is discontinuous in the sense that the MGF goes from finite (for $u < u^*$) to infinite (for $u > u^*$) at the critical value.
+
 ---
 
 **Exercise 7.** For a two-dimensional affine process with independent Gaussian and CIR components, write the joint conditional characteristic function $\mathbb{E}[e^{iv_1 X_T^{(1)} + iv_2 X_T^{(2)}} \mid X_t = x]$ as a product of two one-dimensional characteristic functions. Under what conditions on the diffusion matrix does this factorization hold?
+
+??? success "Solution to Exercise 7"
+    Let $X_t = (X_t^{(1)}, X_t^{(2)})$ where $X^{(1)}$ is Gaussian and $X^{(2)}$ is CIR. The joint characteristic function is
+
+    $$
+    \mathbb{E}\!\left[e^{iv_1 X_T^{(1)} + iv_2 X_T^{(2)}} \mid X_t = x\right] = \exp\!\left(\phi(\tau, iv) + \psi_1(\tau, iv_1)\,x_1 + \psi_2(\tau, iv_2)\,x_2\right)
+    $$
+
+    When the components are independent, the Riccati system decouples. Each $\psi_j$ depends only on the corresponding $u_j$:
+
+    $$
+    \psi_1'(\tau) = R_1(\psi_1(\tau)), \qquad \psi_2'(\tau) = R_2(\psi_2(\tau))
+    $$
+
+    and $\phi$ splits as $\phi = \phi_1 + \phi_2$ where $\phi_j' = F_j(\psi_j)$. The joint characteristic function factors as
+
+    $$
+    \Phi(\tau, v, x) = \Phi_1(\tau, v_1, x_1)\cdot\Phi_2(\tau, v_2, x_2)
+    $$
+
+    where $\Phi_1$ is the Gaussian characteristic function and $\Phi_2$ is the CIR characteristic function.
+
+    **Condition for factorization:** The factorization holds if and only if the diffusion matrix $a(x)$ has no cross terms coupling the two components. Specifically, if
+
+    $$
+    a(x) = \begin{pmatrix} a_{11}(x_1) & 0 \\ 0 & a_{22}(x_2) \end{pmatrix}
+    $$
+
+    so that the covariance between $dX^{(1)}$ and $dX^{(2)}$ is zero, i.e., the Brownian motions driving the two components are uncorrelated. In affine terms, this means the matrices $a_0, a_1, a_2$ are all diagonal, and the drift vectors $b_1, b_2$ have no cross-component entries (the drift of $X^{(1)}$ does not depend on $X^{(2)}$ and vice versa). If correlation $\rho \neq 0$ is introduced between the driving Brownian motions, the off-diagonal terms in $a(x)$ couple the $\psi$-equations, and the factorization breaks down.

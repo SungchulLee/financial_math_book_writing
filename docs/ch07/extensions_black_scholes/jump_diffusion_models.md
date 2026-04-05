@@ -305,30 +305,6 @@ $$
 
 **Exercise 1.** In Merton's jump-diffusion model, the drift adjustment term is $-\lambda\kappa$ where $\kappa = e^{\mu_J + \sigma_J^2/2} - 1$. (a) Show that this adjustment ensures $\mathbb{E}^{\mathbb{Q}}[dS_t/S_{t^-}] = r\,dt$. (b) For $\lambda = 1$, $\mu_J = -0.05$, $\sigma_J = 0.10$, compute $\kappa$ and the compensated drift $r - \lambda\kappa$ when $r = 0.05$.
 
----
-
-**Exercise 2.** Merton's formula expresses the option price as a Poisson-weighted sum of Black-Scholes prices: $C = \sum_{n=0}^{\infty} \frac{e^{-\lambda'T}(\lambda'T)^n}{n!} C_{\text{BS}}(S, K, T, r_n, \sigma_n)$. (a) Interpret this formula: conditioning on $n$ jumps, what is the effective volatility and risk-free rate? (b) In practice, how many terms of the series are needed for convergence? Estimate for $\lambda' T = 3$. (c) Why does this formula not extend to path-dependent options?
-
----
-
-**Exercise 3.** Compare the PIDE for jump-diffusion pricing with the standard Black-Scholes PDE. Identify the additional integral term and explain its financial interpretation as the expected change in option value due to jumps. Why does this integral term make the equation non-local?
-
----
-
-**Exercise 4.** The Kou double-exponential model uses asymmetric jump sizes: upward jumps with parameter $\eta_1$ and downward jumps with parameter $\eta_2$. Explain why this asymmetry is important for fitting equity option markets. How does the ratio $p/(1-p)$ (probability of upward vs. downward jump) affect the implied volatility skew?
-
----
-
-**Exercise 5.** Explain why jump-diffusion models lead to incomplete markets. Identify the unhedgeable risk component and describe why delta hedging alone is insufficient. What additional instruments could be used to hedge jump risk, and how does this relate to the non-uniqueness of the risk-neutral measure?
-
----
-
-**Exercise 6.** The SVJ (stochastic volatility plus jumps) model combines Heston dynamics with Merton-style jumps. Write the SDE system for this model and explain which market phenomena each component captures. Why might the SVJ model provide a better fit to the entire implied volatility surface (both short and long maturities) than either Heston or Merton alone?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a)** Under $\mathbb{Q}$, the stock dynamics are
 
@@ -358,6 +334,11 @@ $$
 
     The drift is higher than $r$ because the negative expected jump ($\kappa < 0$) must be compensated by a higher continuous drift to ensure the overall expected return equals $r$.
 
+---
+
+
+**Exercise 2.** Merton's formula expresses the option price as a Poisson-weighted sum of Black-Scholes prices: $C = \sum_{n=0}^{\infty} \frac{e^{-\lambda'T}(\lambda'T)^n}{n!} C_{\text{BS}}(S, K, T, r_n, \sigma_n)$. (a) Interpret this formula: conditioning on $n$ jumps, what is the effective volatility and risk-free rate? (b) In practice, how many terms of the series are needed for convergence? Estimate for $\lambda' T = 3$. (c) Why does this formula not extend to path-dependent options?
+
 ??? success "Solution to Exercise 2"
     **(a)** Conditioning on exactly $n$ jumps occurring during $[0, T]$, the total variance of the log-price is
 
@@ -377,6 +358,11 @@ $$
 
     **(c)** Merton's formula relies on conditioning on the number of jumps and then computing the expectation of a European payoff with Gaussian log-returns. For path-dependent options (barriers, lookbacks, Asians), the payoff depends on the entire trajectory $\{S_t : 0 \leq t \leq T\}$, not just the terminal value $S_T$. Knowing the number of jumps does not reduce the path-dependent problem to a Black-Scholes problem because the timing and ordering of jumps along the path matters. Therefore, path-dependent options require Monte Carlo simulation or PIDE methods.
 
+---
+
+
+**Exercise 3.** Compare the PIDE for jump-diffusion pricing with the standard Black-Scholes PDE. Identify the additional integral term and explain its financial interpretation as the expected change in option value due to jumps. Why does this integral term make the equation non-local?
+
 ??? success "Solution to Exercise 3"
     The Black-Scholes PDE is
 
@@ -394,6 +380,11 @@ $$
 
     This integral term makes the equation **non-local** because the value of $V$ at point $S$ depends on the values of $V$ at all other points $Sy$ (for every possible jump size $y$). In the standard Black-Scholes PDE, the equation at each point involves only local information (derivatives at that point). The jump integral requires knowledge of $V$ across the entire spatial domain simultaneously, which is why it is called an integro-differential equation and why standard finite difference methods must be augmented with quadrature for the integral.
 
+---
+
+
+**Exercise 4.** The Kou double-exponential model uses asymmetric jump sizes: upward jumps with parameter $\eta_1$ and downward jumps with parameter $\eta_2$. Explain why this asymmetry is important for fitting equity option markets. How does the ratio $p/(1-p)$ (probability of upward vs. downward jump) affect the implied volatility skew?
+
 ??? success "Solution to Exercise 4"
     In equity markets, downward price moves (crashes) tend to be larger and more frequent than upward moves of the same magnitude. The Kou double-exponential model captures this through asymmetric jump parameters:
 
@@ -410,6 +401,11 @@ $$
 
     The combination of asymmetric jump rates ($\eta_1 \neq \eta_2$) and asymmetric probabilities ($p \neq 0.5$) gives the Kou model enough flexibility to match the observed skew across different strikes.
 
+---
+
+
+**Exercise 5.** Explain why jump-diffusion models lead to incomplete markets. Identify the unhedgeable risk component and describe why delta hedging alone is insufficient. What additional instruments could be used to hedge jump risk, and how does this relate to the non-uniqueness of the risk-neutral measure?
+
 ??? success "Solution to Exercise 5"
     Jump-diffusion models lead to incomplete markets because they introduce a source of risk that cannot be hedged with continuous trading in the underlying asset. Specifically:
 
@@ -420,6 +416,11 @@ $$
     **Additional hedging instruments**: To hedge jump risk, one can trade options on the same underlying. For instance, holding a portfolio of the stock and one option allows matching two risk exposures (diffusion and one aspect of jump risk). More generally, since jump risk involves an entire distribution of possible jump sizes, perfectly hedging all jump risk requires a continuum of traded options. In practice, trading a few liquid options (at different strikes) provides partial jump hedging.
 
     **Relation to non-uniqueness of $\mathbb{Q}$**: With more risk sources than traded assets, the market price of jump risk is not determined by no-arbitrage. Different choices of the risk-neutral jump intensity $\lambda^{\mathbb{Q}}$ and jump size distribution $\nu^{\mathbb{Q}}$ give different equivalent martingale measures, each consistent with no-arbitrage. Calibration to liquid option prices implicitly selects a particular $\mathbb{Q}$ by fixing $\lambda^{\mathbb{Q}}$ and $\nu^{\mathbb{Q}}$.
+
+---
+
+
+**Exercise 6.** The SVJ (stochastic volatility plus jumps) model combines Heston dynamics with Merton-style jumps. Write the SDE system for this model and explain which market phenomena each component captures. Why might the SVJ model provide a better fit to the entire implied volatility surface (both short and long maturities) than either Heston or Merton alone?
 
 ??? success "Solution to Exercise 6"
     The SVJ model combines Heston stochastic volatility with Merton-style jumps:

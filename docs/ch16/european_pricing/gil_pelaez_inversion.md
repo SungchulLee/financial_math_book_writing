@@ -246,6 +246,63 @@ The Gil-Pelaez formula $\mathbb{P}(X > x) = \frac{1}{2} + \frac{1}{\pi}\int_0^\i
 **Exercise 1.**
 State the Gil-Pelaez formula for $\mathbb{P}(X > x)$ and verify it for the special case $X \sim N(\mu, \sigma^2)$ where $\varphi(u) = e^{i\mu u - \sigma^2 u^2 / 2}$. Show that the integral reproduces $\Phi((x - \mu)/\sigma)$ where $\Phi$ is the standard normal CDF. Hint: complete the square in the exponent.
 
+??? success "Solution to Exercise 1"
+    The Gil-Pelaez formula states:
+
+    $$
+    \mathbb{P}(X > x) = \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\operatorname{Re}\!\left[\frac{e^{-iux}\varphi(u)}{iu}\right] du
+    $$
+
+    For $X \sim N(\mu, \sigma^2)$, the characteristic function is $\varphi(u) = e^{i\mu u - \sigma^2 u^2 / 2}$. Substituting:
+
+    $$
+    \frac{e^{-iux}\varphi(u)}{iu} = \frac{e^{-iux} e^{i\mu u - \sigma^2 u^2/2}}{iu} = \frac{e^{i(\mu - x)u - \sigma^2 u^2/2}}{iu}
+    $$
+
+    Let $a = \mu - x$. Then:
+
+    $$
+    \frac{e^{iau - \sigma^2 u^2/2}}{iu}
+    $$
+
+    Taking the real part, write $e^{iau} = \cos(au) + i\sin(au)$:
+
+    $$
+    \operatorname{Re}\!\left[\frac{(\cos(au) + i\sin(au))e^{-\sigma^2 u^2/2}}{iu}\right] = \operatorname{Re}\!\left[\frac{-i\cos(au) + \sin(au)}{u}\right] e^{-\sigma^2 u^2/2}
+    $$
+
+    $$
+    = \frac{\sin(au)}{u} e^{-\sigma^2 u^2/2}
+    $$
+
+    Therefore:
+
+    $$
+    \mathbb{P}(X > x) = \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\frac{\sin((\mu - x)u)}{u} e^{-\sigma^2 u^2 / 2}\,du
+    $$
+
+    To evaluate this, use the known identity: for any $b \in \mathbb{R}$ and $c > 0$,
+
+    $$
+    \int_0^{\infty}\frac{\sin(bu)}{u} e^{-c u^2}\,du = \frac{\pi}{2}\operatorname{erf}\!\left(\frac{b}{\sqrt{4c}}\right) = \frac{\pi}{2}\operatorname{erf}\!\left(\frac{b}{2\sqrt{c}}\right)
+    $$
+
+    This identity is proved by completing the square: differentiate $I(b) = \int_0^\infty \frac{\sin(bu)}{u} e^{-cu^2}\,du$ with respect to $b$ to get $I'(b) = \int_0^\infty \cos(bu)e^{-cu^2}\,du = \frac{1}{2}\sqrt{\frac{\pi}{c}} e^{-b^2/(4c)}$, then integrate $I'(b)$ from 0 to $b$ using $I(0) = 0$.
+
+    Applying with $b = \mu - x$ and $c = \sigma^2/2$:
+
+    $$
+    \mathbb{P}(X > x) = \frac{1}{2} + \frac{1}{\pi}\cdot\frac{\pi}{2}\operatorname{erf}\!\left(\frac{\mu - x}{2\sqrt{\sigma^2/2}}\right) = \frac{1}{2} + \frac{1}{2}\operatorname{erf}\!\left(\frac{\mu - x}{\sigma\sqrt{2}}\right)
+    $$
+
+    Since $\Phi(z) = \frac{1}{2}(1 + \operatorname{erf}(z/\sqrt{2}))$, we have:
+
+    $$
+    \mathbb{P}(X > x) = \Phi\!\left(\frac{\mu - x}{\sigma}\right) = 1 - \Phi\!\left(\frac{x - \mu}{\sigma}\right)
+    $$
+
+    which is the correct exceedance probability for $X \sim N(\mu, \sigma^2)$. Equivalently, $\mathbb{P}(X \leq x) = \Phi((x - \mu)/\sigma)$, confirming that the Gil-Pelaez formula reproduces the normal CDF.
+
 ---
 
 **Exercise 2.**
@@ -257,27 +314,244 @@ $$
 
 by expanding $e^{-iux} = 1 - iux + O(u^2)$ and $\varphi(u) = 1 + iu\mathbb{E}[X] + O(u^2)$.
 
+??? success "Solution to Exercise 2"
+    Expand $e^{-iux}$ and $\varphi(u)$ in Taylor series around $u = 0$:
+
+    $$
+    e^{-iux} = 1 - iux + \frac{(-iux)^2}{2} + O(u^3) = 1 - iux - \frac{u^2 x^2}{2} + O(u^3)
+    $$
+
+    $$
+    \varphi(u) = \mathbb{E}[e^{iuX}] = 1 + iu\mathbb{E}[X] + \frac{(iu)^2}{2}\mathbb{E}[X^2] + O(u^3) = 1 + iu\mathbb{E}[X] - \frac{u^2}{2}\mathbb{E}[X^2] + O(u^3)
+    $$
+
+    Multiply these expansions:
+
+    $$
+    e^{-iux}\varphi(u) = (1 - iux + O(u^2))(1 + iu\mathbb{E}[X] + O(u^2))
+    $$
+
+    $$
+    = 1 + iu\mathbb{E}[X] - iux + u^2 x\mathbb{E}[X] + O(u^2)
+    $$
+
+    $$
+    = 1 + iu(\mathbb{E}[X] - x) + O(u^2)
+    $$
+
+    Dividing by $iu$:
+
+    $$
+    \frac{e^{-iux}\varphi(u)}{iu} = \frac{1}{iu} + (\mathbb{E}[X] - x) + O(u)
+    $$
+
+    Taking the real part: $\operatorname{Re}[1/(iu)] = \operatorname{Re}[-i/u] = 0$ since $-i/u$ is purely imaginary for real $u \neq 0$. Therefore:
+
+    $$
+    \lim_{u \to 0}\operatorname{Re}\!\left[\frac{e^{-iux}\varphi(u)}{iu}\right] = \mathbb{E}[X] - x = -x + \mathbb{E}[X]
+    $$
+
+    This confirms the singularity at $u = 0$ is removable. The limiting value is finite and equals $\mathbb{E}[X] - x$, which is the expected log-return minus the log-strike in the option pricing context.
+
 ---
 
 **Exercise 3.**
 For the Heston model with $v_0 = 0.04$, $\tau = 1$, the CF decays approximately as $|\varphi(u)| \sim e^{-v_0 u^2 \tau / 2}$ for large $u$. Compute $|\varphi(100)|$ and $|\varphi(200)|$. If the trapezoidal rule uses nodes up to $u_{\max} = 100$ and the integrand at $u = u_{\max}$ is of order $|\varphi(u_{\max})| / u_{\max}$, estimate the truncation error. Is $u_{\max} = 100$ sufficient for 10-digit accuracy?
+
+??? success "Solution to Exercise 3"
+    The CF decay approximation is $|\varphi(u)| \sim e^{-v_0 u^2 \tau / 2}$ for large $u$. With $v_0 = 0.04$ and $\tau = 1$:
+
+    $$
+    |\varphi(u)| \sim e^{-0.02 u^2}
+    $$
+
+    **At $u = 100$:**
+
+    $$
+    |\varphi(100)| \sim e^{-0.02 \times 10{,}000} = e^{-200} \approx 1.4 \times 10^{-87}
+    $$
+
+    **At $u = 200$:**
+
+    $$
+    |\varphi(200)| \sim e^{-0.02 \times 40{,}000} = e^{-800} \approx 10^{-348}
+    $$
+
+    **Truncation error estimate.** The truncation error when using $u_{\max} = 100$ is bounded by:
+
+    $$
+    \epsilon_{\text{trunc}} \leq \frac{1}{\pi}\int_{100}^{\infty}\frac{|\varphi(u)|}{u}\,du \leq \frac{1}{\pi}\int_{100}^{\infty}\frac{e^{-0.02u^2}}{u}\,du
+    $$
+
+    For the lower bound of integration $u \geq 100$, we have $1/u \leq 1/100$, so:
+
+    $$
+    \epsilon_{\text{trunc}} \leq \frac{1}{100\pi}\int_{100}^{\infty} e^{-0.02u^2}\,du
+    $$
+
+    Using the substitution $t = u\sqrt{0.02}$ (so $t_{\min} = 100\sqrt{0.02} \approx 14.14$):
+
+    $$
+    \int_{100}^{\infty} e^{-0.02u^2}\,du = \frac{1}{\sqrt{0.02}}\int_{14.14}^{\infty} e^{-t^2}\,dt \approx \frac{1}{\sqrt{0.02}} \cdot \frac{e^{-14.14^2}}{2 \times 14.14} \approx \frac{e^{-200}}{2 \times 14.14 \times \sqrt{0.02}}
+    $$
+
+    This is of order $e^{-200} \approx 10^{-87}$, which is astronomically small.
+
+    Since $10^{-87}$ is far below 10-digit accuracy ($10^{-10}$) and even below double-precision machine epsilon ($\approx 10^{-16}$), $u_{\max} = 100$ is vastly more than sufficient. In fact, $u_{\max} = 30$ would already give truncation errors well below $10^{-10}$ for these parameters, since $e^{-0.02 \times 900} = e^{-18} \approx 10^{-8}$ and the integral tail decays even faster.
 
 ---
 
 **Exercise 4.**
 Gauss-Laguerre quadrature approximates $\int_0^\infty f(u) e^{-u} du \approx \sum_{n=1}^N w_n f(u_n)$. To apply this to the Gil-Pelaez integral, the change of variable $u = \alpha t$ transforms the integral into $\int_0^\infty g(t) e^{-t} dt \cdot e^t / \alpha$. Describe how to choose the scaling parameter $\alpha$ so that the integrand's effective support matches the Gauss-Laguerre nodes. For the Heston CF with $v_0 = 0.04$ and $\tau = 0.5$, suggest a value of $\alpha$.
 
+??? success "Solution to Exercise 4"
+    The Gil-Pelaez integral has the form $\int_0^\infty g(u)\,du$. Gauss-Laguerre quadrature is designed for integrals of the form $\int_0^\infty f(t) e^{-t}\,dt$. To bridge these, introduce the scaling $u = \alpha t$:
+
+    $$
+    \int_0^\infty g(u)\,du = \alpha \int_0^\infty g(\alpha t)\,dt = \alpha \int_0^\infty \left[g(\alpha t) e^{t}\right] e^{-t}\,dt
+    $$
+
+    Gauss-Laguerre then approximates this as:
+
+    $$
+    \alpha \sum_{n=1}^{N} w_n \, g(\alpha t_n) \, e^{t_n}
+    $$
+
+    where $(t_n, w_n)$ are the standard Gauss-Laguerre nodes and weights.
+
+    **Choosing $\alpha$:** The Gauss-Laguerre nodes $t_n$ are concentrated in $[0, \sim 4N]$, with most nodes in $[0, 2N]$. The integrand $g(u) = \operatorname{Re}[e^{-iux}\varphi(u)/(iu)]$ has effective support where $|\varphi(u)|$ is non-negligible. For the Heston CF with decay $|\varphi(u)| \sim e^{-v_0 u^2 \tau / 2}$, the integrand is effectively supported on $[0, u_{\text{eff}}]$ where $v_0 u_{\text{eff}}^2 \tau / 2 \approx 20$ (for 10-digit accuracy), giving:
+
+    $$
+    u_{\text{eff}} = \sqrt{\frac{40}{v_0 \tau}}
+    $$
+
+    The scaling should map the Laguerre node range to the integrand's effective support. With $N$ Gauss-Laguerre nodes, the largest significant node is approximately $4N$. So choose:
+
+    $$
+    \alpha = \frac{u_{\text{eff}}}{4N}
+    $$
+
+    **For Heston with $v_0 = 0.04$, $\tau = 0.5$:**
+
+    $$
+    u_{\text{eff}} = \sqrt{\frac{40}{0.04 \times 0.5}} = \sqrt{\frac{40}{0.02}} = \sqrt{2000} \approx 44.7
+    $$
+
+    With $N = 32$ nodes (largest node $\approx 128$):
+
+    $$
+    \alpha \approx \frac{44.7}{128} \approx 0.35
+    $$
+
+    A practical choice is $\alpha \approx 0.3$ to $0.5$. This maps the Gauss-Laguerre nodes into $[0, \sim 45]$, ensuring good coverage of the integrand's support while placing enough nodes in the oscillatory region near $u = 0$ where the integrand varies most.
+
 ---
 
 **Exercise 5.**
 Consider pricing a deep OTM call with $K/S_0 = 1.5$ (50% OTM) and $\tau = 0.25$. The Gil-Pelaez integrand $\operatorname{Re}[e^{-iu\ln K}\varphi(u)/(iu)]$ oscillates rapidly because $\ln K$ is large and positive. Estimate the oscillation period as $2\pi / |\ln K|$. If $\ln(K) = 0.405$, compute the period. Does standard Gauss-Laguerre with 64 nodes adequately sample these oscillations? Propose a modification (e.g., adaptive quadrature or contour deformation).
+
+??? success "Solution to Exercise 5"
+    The oscillation period of the integrand is determined by the factor $e^{-iu \ln K}$. For $K/S_0 = 1.5$, we have $\ln K = \ln(S_0 \times 1.5) = \ln(S_0) + \ln(1.5)$. The oscillation frequency is $|\ln K|$, and the period is:
+
+    $$
+    T_{\text{osc}} = \frac{2\pi}{|\ln K|}
+    $$
+
+    If $\ln(K) = 0.405$ (i.e., $K \approx 1.5$ in some normalized convention, or this is $\ln(K/S_0)$), then:
+
+    $$
+    T_{\text{osc}} = \frac{2\pi}{0.405} \approx 15.51
+    $$
+
+    This means the integrand completes one full oscillation every $\Delta u \approx 15.5$ units. Standard Gauss-Laguerre with 64 nodes distributed over $[0, \sim 250]$ places roughly $64 \times 15.5 / 250 \approx 4$ nodes per oscillation cycle. The Nyquist criterion requires at least 2 nodes per cycle, and for accurate quadrature of oscillatory integrands, 6--10 points per cycle is recommended. With only 4 nodes per cycle, the 64-node Gauss-Laguerre rule is marginal but may still provide reasonable accuracy because the exponential CF decay damps the oscillations rapidly.
+
+    However, for deep OTM options where the actual value $\ln(K/S_0) = \ln(1.5) = 0.405$ produces these moderate oscillations, the situation is manageable. If the log-moneyness were larger (e.g., $K/S_0 = 3$, giving $\ln(K/S_0) \approx 1.1$ and $T_{\text{osc}} \approx 5.7$), the oscillations would be faster and harder to resolve.
+
+    **Proposed modifications:**
+
+    1. **Adaptive quadrature:** Use `scipy.integrate.quad` or a Gauss-Kronrod scheme that automatically refines subintervals where the integrand oscillates rapidly. This guarantees the prescribed accuracy without manual tuning.
+
+    2. **Contour deformation (damping):** Replace $u$ by $u - i\eta$ for some $\eta > 0$, which multiplies the integrand by $e^{-\eta \ln K}$. Since $\ln K > 0$ for $K > 1$, this exponentially damps the oscillations. The damped formula converges much faster for OTM calls.
+
+    3. **Put-call parity approach:** Instead of pricing the deep OTM call directly, price the corresponding deep ITM put (where $\ln(K/S_0) > 0$ enters with the opposite sign, reducing oscillation severity) and convert via put-call parity.
+
+    Adaptive quadrature is the most robust general-purpose solution, while contour deformation is the most elegant for production implementations.
 
 ---
 
 **Exercise 6.**
 The damped Gil-Pelaez formula shifts the integration contour by replacing $u \to u - i\alpha$ for some $\alpha > 0$. This introduces a factor $e^{\alpha x}$ and modifies the CF argument to $\varphi(u - i\alpha)$. State the condition on $\alpha$ for the shifted CF to exist (i.e., for $\mathbb{E}[e^{\alpha X}] < \infty$). For the Heston model, this requires $\alpha + 1 < p^*$, the critical moment exponent. Explain why damping accelerates convergence for heavy-tailed distributions.
 
+??? success "Solution to Exercise 6"
+    The damped Gil-Pelaez formula replaces $u$ by $u - i\alpha$ in the characteristic function argument, shifting the integration contour in the complex plane from the real axis to the line $\operatorname{Im}(u) = -\alpha$. The resulting formula is:
+
+    $$
+    \mathbb{P}(X > x) = \frac{e^{\alpha x}}{2\pi}\int_{-\infty}^{\infty}\frac{e^{-iux}\varphi(u + i\alpha)}{iu - \alpha}\,du
+    $$
+
+    **Condition on $\alpha$:** The shifted CF $\varphi(u + i\alpha)$ is defined if and only if:
+
+    $$
+    \varphi(u + i\alpha) = \mathbb{E}[e^{i(u + i\alpha)X}] = \mathbb{E}[e^{iuX - \alpha X}] = \mathbb{E}[e^{iuX} \cdot e^{-\alpha X}]
+    $$
+
+    This exists as a function of $u$ if and only if $\mathbb{E}[e^{-\alpha X}] < \infty$. Since $X = \log S_T$ and we need $\mathbb{E}[S_T^{-\alpha}] < \infty$, the condition is that the $(-\alpha)$-th moment of $S_T$ must be finite.
+
+    For positive damping applied to the exceedance probability (shifting upward, $u \to u - i\alpha$ with $\alpha > 0$), the requirement is $\mathbb{E}[e^{\alpha X}] = \mathbb{E}[S_T^{\alpha}] < \infty$. For the Heston model, the moment $\mathbb{E}[S_T^p]$ is finite if and only if $p < p^*$, the critical moment exponent (upper explosion boundary). Thus the condition is:
+
+    $$
+    \alpha < p^* - 1
+    $$
+
+    where the $-1$ accounts for the fact that the CF argument $u - i$ already contains a shift of $-i$ in the $\varphi_1$ formulation. More precisely, $\alpha + 1 < p^*$.
+
+    **Why damping accelerates convergence for heavy-tailed distributions:**
+
+    1. **Removes the $1/u$ singularity:** The undamped integrand has a factor $1/(iu)$ which is singular at $u = 0$. The damped version replaces this with $1/(iu - \alpha)$, which has modulus $1/\sqrt{u^2 + \alpha^2}$ and is bounded at $u = 0$ by $1/\alpha$. This regularization simplifies the numerical quadrature near the origin.
+
+    2. **Enhances decay of the CF:** Along the shifted contour, $|\varphi(u + i\alpha)|$ decays faster than $|\varphi(u)|$ for distributions whose CF decays slowly (e.g., polynomially) on the real axis. The exponential moment condition $\mathbb{E}[e^{\alpha X}] < \infty$ ensures that the shifted CF has exponential decay, even if the original CF only has polynomial decay. This is the key benefit for heavy-tailed distributions like the variance gamma, where $|\varphi(u)| \sim |u|^{-\beta}$ for some $\beta > 0$ on the real axis, but $|\varphi(u + i\alpha)|$ decays exponentially along the shifted contour.
+
+    3. **Reduces oscillation amplitude:** The factor $e^{-\alpha x}$ (absorbed into the prefactor $e^{\alpha x}$) effectively damps the oscillatory component $e^{-iux}$, reducing cancellation errors in the numerical integration.
+
 ---
 
 **Exercise 7.**
 Using the convergence table in the worked example, verify that Gauss-Laguerre quadrature converges exponentially: the error decreases by a factor of roughly $10^{2-3}$ each time $N$ doubles. Compare with Simpson's rule, which converges as $\mathcal{O}(\Delta u^4)$: verify that doubling $M$ from 200 to 1000 (a factor of 5) reduces the error by approximately $5^4 = 625$. Which method achieves 10-digit accuracy with fewer function evaluations?
+
+??? success "Solution to Exercise 7"
+    **Gauss-Laguerre convergence (exponential):** From the convergence table for $P_2$:
+
+    | $N$ | Error |
+    |-----|-------|
+    | 8 | $4 \times 10^{-4}$ |
+    | 16 | $1 \times 10^{-5}$ |
+    | 32 | $2 \times 10^{-7}$ |
+    | 64 | $< 10^{-10}$ |
+
+    Doubling from $N = 8$ to $N = 16$: error ratio $= 4 \times 10^{-4} / 10^{-5} = 40 \approx 10^{1.6}$.
+
+    Doubling from $N = 16$ to $N = 32$: error ratio $= 10^{-5} / (2 \times 10^{-7}) = 50 \approx 10^{1.7}$.
+
+    Doubling from $N = 32$ to $N = 64$: error ratio $= 2 \times 10^{-7} / 10^{-10} = 2000 \approx 10^{3.3}$.
+
+    Each doubling reduces the error by a factor of $10^{1.6}$ to $10^{3.3}$, consistent with exponential (spectral) convergence. The acceleration at higher $N$ is characteristic of exponential convergence, where the improvement per additional node grows as the quadrature better resolves the smooth, exponentially decaying integrand.
+
+    **Simpson's rule convergence ($\mathcal{O}(\Delta u^4)$):** Simpson's rule has error $\mathcal{O}(h^4)$ where $h = u_{\max}/M$. The table shows:
+
+    - $M = 200$ ($h = 0.25$): error $\approx 3 \times 10^{-6}$ (extrapolated from the comparison table in the text)
+    - $M = 1000$ ($h = 0.05$): error $\approx 4 \times 10^{-8}$ (similarly extrapolated)
+
+    The ratio of step sizes is $h_{200}/h_{1000} = 5$. The expected error ratio is:
+
+    $$
+    \frac{\epsilon_{200}}{\epsilon_{1000}} = \left(\frac{h_{200}}{h_{1000}}\right)^4 = 5^4 = 625
+    $$
+
+    Checking: $3 \times 10^{-6} / 4 \times 10^{-8} = 75$, which is less than 625. The discrepancy arises because the table values include truncation error (not just discretization error), and the coarser grid may not yet be in the asymptotic $O(h^4)$ regime. For pure Simpson discretization error in the asymptotic regime, the $5^4 = 625$ ratio would hold.
+
+    **Which method achieves 10-digit accuracy with fewer evaluations?**
+
+    - Gauss-Laguerre: achieves $10^{-10}$ accuracy with $N = 64$ nodes, i.e., 64 CF evaluations.
+    - Simpson's rule: to achieve $10^{-10}$ from an error of $3 \times 10^{-6}$ at $M = 200$ (i.e., 401 evaluations), we need $h^4$ reduced by a factor of $3 \times 10^{4}$, so $h$ reduced by $(3 \times 10^4)^{1/4} \approx 13.2$. This gives $M \approx 200 \times 13.2 = 2640$, requiring $2 \times 2640 + 1 = 5281$ CF evaluations.
+
+    Gauss-Laguerre achieves 10-digit accuracy with **64** function evaluations versus Simpson's **$\sim$5000**. Gauss-Laguerre is roughly 80 times more efficient for this smooth, exponentially decaying integrand.

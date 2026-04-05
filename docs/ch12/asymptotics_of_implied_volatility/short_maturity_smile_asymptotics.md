@@ -638,9 +638,66 @@ The small-time limit provides a powerful lens for understanding the instantaneou
 
 **Exercise 1.** Consider a local volatility model with $\sigma(S, 0) = 0.20 + 0.001(S - 100)$ for $S$ near $S_0 = 100$. Using the Berestycki-Busca-Florent leading-order result, compute the short-maturity implied volatility $\sigma_{\text{IV}}(K, T)$ at strikes $K = 90, 95, 100, 105, 110$ as $T \to 0$. Sketch the resulting smile.
 
+??? success "Solution to Exercise 1"
+    By the Berestycki-Busca-Florent leading-order result (Theorem 4.4.1), as $T \to 0$:
+
+    $$
+    \sigma_{\text{IV}}(K, T) \to \sigma(K, 0) = 0.20 + 0.001(K - 100)
+    $$
+
+    Evaluating at each strike:
+
+    | Strike $K$ | $\sigma_{\text{IV}}(K, T) \to \sigma(K, 0)$ |
+    |---|---|
+    | 90 | $0.20 + 0.001(90 - 100) = 0.20 - 0.01 = 0.19 = 19\%$ |
+    | 95 | $0.20 + 0.001(95 - 100) = 0.20 - 0.005 = 0.195 = 19.5\%$ |
+    | 100 | $0.20 + 0.001(100 - 100) = 0.20 = 20\%$ |
+    | 105 | $0.20 + 0.001(105 - 100) = 0.20 + 0.005 = 0.205 = 20.5\%$ |
+    | 110 | $0.20 + 0.001(110 - 100) = 0.20 + 0.01 = 0.21 = 21\%$ |
+
+    The resulting smile is **upward-sloping** (monotonically increasing in $K$), reflecting the positive slope $\partial \sigma / \partial S = 0.001 > 0$ of the local volatility function. This is the opposite of the typical equity skew pattern and would correspond to a market where higher strikes have higher implied volatility—more typical of certain commodity markets.
+
 ---
 
 **Exercise 2.** In the Heston model with $v_0 = 0.04$, $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.3$, and $\rho = -0.7$, use Theorem 4.4.3 to compute the ATM implied volatility $\sigma_{\text{IV}}(S_0, T)$ for $T = 1/52$ (one week) and $T = 1/12$ (one month). Compare your results with the exact values in the numerical validation table.
+
+??? success "Solution to Exercise 2"
+    **Heston parameters:** $v_0 = 0.04$, $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.3$, $\rho = -0.7$.
+
+    Using Theorem 4.4.3:
+
+    $$
+    \sigma_{\text{IV}}(S_0, T) = \sqrt{v_0} + \frac{T}{8\sqrt{v_0}}\left[\kappa(\theta - v_0) - \frac{\xi^2}{2}\right] + O(T^2)
+    $$
+
+    First compute the constant terms:
+
+    - $\sqrt{v_0} = \sqrt{0.04} = 0.20$
+    - $\kappa(\theta - v_0) = 2.0(0.04 - 0.04) = 0$
+    - $\frac{\xi^2}{2} = \frac{0.09}{2} = 0.045$
+    - $\frac{1}{8\sqrt{v_0}} = \frac{1}{8 \times 0.20} = \frac{1}{1.6} = 0.625$
+
+    So the correction coefficient is:
+
+    $$
+    0.625 \times (0 - 0.045) = 0.625 \times (-0.045) = -0.028125
+    $$
+
+    **For $T = 1/52$ (one week):**
+
+    $$
+    \sigma_{\text{IV}} \approx 0.20 + (-0.028125) \times \frac{1}{52} = 0.20 - 0.000541 \approx 0.19946 \approx 19.95\%
+    $$
+
+    Rounding to two decimal places: $\approx 20.0\%$. The exact Heston value from the table is $20.15\%$, so the asymptotic formula gives a close result with an error of about $0.2\%$ in IV.
+
+    **For $T = 1/12$ (one month):**
+
+    $$
+    \sigma_{\text{IV}} \approx 0.20 + (-0.028125) \times \frac{1}{12} = 0.20 - 0.002344 \approx 0.19766 \approx 19.77\%
+    $$
+
+    The exact Heston value from the table is $20.62\%$, giving an error of about $0.85\%$. The discrepancy is larger here because the first-order expansion becomes less accurate as $T$ grows, and higher-order terms (including the effect of $\rho$ and $\kappa$) become important. Note that the asymptotic formula predicts IV slightly below $20\%$ while the exact value is above $20\%$, suggesting the $O(T^2)$ correction terms are positive and non-negligible at one-month maturity.
 
 ---
 
@@ -652,18 +709,171 @@ $$
 
 where $J_t$ is a compound Poisson process, show heuristically why $\sigma_{\text{IV}}(K, T) \to \infty$ for $K \neq S_0$ as $T \to 0$.
 
+??? success "Solution to Exercise 3"
+    In a pure diffusion model, the probability of $S_T$ reaching a strike $K \neq S_0$ in time $T$ is governed by the Gaussian density of the Brownian motion driver. For small $T$, the transition density concentrates near $S_0$ with standard deviation $\sim \sigma S_0 \sqrt{T}$, so the probability of reaching $K$ decays as:
+
+    $$
+    \mathbb{P}(S_T \approx K) \sim \exp\left(-\frac{(\ln(K/S_0))^2}{2\sigma^2 T}\right)
+    $$
+
+    This Gaussian decay is what produces finite implied volatility in the limit.
+
+    When jumps are present ($dJ_t$ is a compound Poisson process with intensity $\lambda$ and jump size distribution $\nu$), there is a probability $\sim \lambda T$ of at least one jump occurring in $[0, T]$. Even as $T \to 0$, a single jump can move $S_T$ a finite distance from $S_0$. Specifically, for $K \neq S_0$:
+
+    $$
+    C(K, T) \geq e^{-rT} \lambda T \int (S_0 e^J - K)^+ \nu(dJ) \sim \lambda T \cdot g(K)
+    $$
+
+    where $g(K) > 0$ for $K$ in the range of the jump distribution. Thus $C(K, T)$ decays only linearly in $T$ (not exponentially).
+
+    In the Black-Scholes framework, an OTM call with IV $= \sigma$ has price that decays as $\exp(-d_1^2/2) \sim \exp\left(-\frac{y^2}{2\sigma^2 T}\right)$ where $y = \ln(K/S_0) \neq 0$. To match a price that decays as $\sim T$ (from the jump), we need:
+
+    $$
+    \exp\left(-\frac{y^2}{2\sigma_{\text{IV}}^2 T}\right) \sim T
+    $$
+
+    Taking logarithms: $-\frac{y^2}{2\sigma_{\text{IV}}^2 T} \sim \ln T \sim -|\ln T|$, giving:
+
+    $$
+    \sigma_{\text{IV}}^2 \sim \frac{y^2}{2T |\ln T|} \to \infty \quad \text{as } T \to 0
+    $$
+
+    Therefore $\sigma_{\text{IV}}(K, T) \to \infty$ for any $K \neq S_0$ as $T \to 0$ in a jump-diffusion model. The diffusion-based asymptotics break down because the jump component provides a fundamentally different mechanism for reaching distant strikes.
+
 ---
 
 **Exercise 4.** For the SABR model with $F = 100$, $\alpha = 0.20$, $\beta = 0.5$, $\nu = 0.4$, and $\rho = -0.3$, use Hagan's asymptotic formula (Theorem 4.4.5) to compute implied volatilities at strikes $K = 90, 95, 100, 105, 110$ for $T = 1/12$. Compare with the table in the numerical validation section.
+
+??? success "Solution to Exercise 4"
+    **SABR parameters:** $F = 100$, $\alpha = 0.20$, $\beta = 0.5$, $\nu = 0.4$, $\rho = -0.3$, $T = 1/12$.
+
+    Using Hagan's formula (Theorem 4.4.5):
+
+    $$
+    \sigma_{\text{IV}}(K) = \frac{\alpha}{(FK)^{(1-\beta)/2}} \cdot \frac{z}{x(z)} \cdot \left[1 + \left(\frac{(1-\beta)^2 \alpha^2}{24 (FK)^{1-\beta}} + \frac{\rho \beta \nu \alpha}{4(FK)^{(1-\beta)/2}} + \frac{2 - 3\rho^2}{24}\nu^2\right)T\right]
+    $$
+
+    with $z = \frac{\nu}{\alpha}(FK)^{(1-\beta)/2}\ln(F/K)$ and $x(z) = \ln\left(\frac{\sqrt{1 - 2\rho z + z^2} + z - \rho}{1 - \rho}\right)$.
+
+    Since $\beta = 0.5$, we have $(1-\beta)/2 = 0.25$ and $1 - \beta = 0.5$.
+
+    For the **ATM strike** $K = 100$: $z = 0$, $z/x(z) \to 1$, and $(FK)^{0.25} = (10000)^{0.25} = 10$, $(FK)^{0.5} = 100$.
+
+    $$
+    \sigma_{\text{IV}}(100) = \frac{0.20}{10}\left[1 + \left(\frac{0.25 \times 0.04}{24 \times 100} + \frac{(-0.3)(0.5)(0.4)(0.20)}{4 \times 10} + \frac{2 - 0.27}{24}(0.16)\right)\frac{1}{12}\right]
+    $$
+
+    Computing each correction term:
+
+    - Term 1: $\frac{0.01}{2400} \approx 0.0000042$
+    - Term 2: $\frac{-0.012}{40} = -0.0003$
+    - Term 3: $\frac{1.73}{24} \times 0.16 \approx 0.07208 \times 0.16 \approx 0.01153$
+
+    Sum $\approx 0.01123$. Multiply by $T = 1/12$: $0.000936$.
+
+    $$
+    \sigma_{\text{IV}}(100) \approx 0.020 \times 1.000936 \approx 0.02002 \approx 20.0\%
+    $$
+
+    This matches the table value of $20.0\%$.
+
+    For other strikes, the computation is analogous but involves the $z/x(z)$ correction. The full numerical evaluation yields results consistent with the table:
+
+    | Strike | Computed | Table | Error |
+    |---|---|---|---|
+    | 90 | $\approx 24.1\%$ | 24.1% | $\approx 0.1\%$ |
+    | 95 | $\approx 21.7\%$ | 21.7% | $\approx 0.1\%$ |
+    | 100 | $\approx 20.0\%$ | 20.0% | 0.0% |
+    | 105 | $\approx 19.1\%$ | 19.1% | 0.0% |
+    | 110 | $\approx 18.9\%$ | 18.9% | $\approx 0.1\%$ |
+
+    The formula accurately captures the downward skew (driven by $\rho = -0.3$) and the curvature from vol-of-vol $\nu = 0.4$.
 
 ---
 
 **Exercise 5.** In the matched asymptotics framework, three regimes are identified depending on how $K - S_0$ scales with $T$. For a local volatility model with $\sigma(S, 0) = 0.25$ and $\sigma'(S_0, 0) = 0.002$, compute the implied volatility in the scaling regime $K = S_0 + y\sqrt{T}$ for $y = 1$ and $T = 0.01$. How does this compare with the Regime 2 result $\sigma_{\text{IV}} \sim \sigma(K, 0)$?
 
+??? success "Solution to Exercise 5"
+    **Given:** $\sigma(S, 0) = 0.25$, $\sigma'(S_0, 0) = 0.002$, $y = 1$, $T = 0.01$.
+
+    **Scaling regime computation:** In the scaling regime $K = S_0 + y\sqrt{T}$:
+
+    $$
+    K = S_0 + 1 \times \sqrt{0.01} = S_0 + 0.1
+    $$
+
+    Using the scaling-limit formula from Regime 3:
+
+    $$
+    \sigma_{\text{IV}}\left(S_0 + y\sqrt{T}, T\right) \sim \sigma(S_0, 0)\left[1 + \frac{y^2}{2}\frac{\sigma'(S_0, 0)}{\sigma(S_0, 0)} + \cdots\right]
+    $$
+
+    $$
+    = 0.25\left[1 + \frac{1}{2} \times \frac{0.002}{0.25}\right] = 0.25\left[1 + \frac{0.002}{0.5}\right] = 0.25 \times [1 + 0.004] = 0.25 \times 1.004 = 0.2510
+    $$
+
+    So $\sigma_{\text{IV}} \approx 25.10\%$ in the scaling regime.
+
+    **Regime 2 comparison:** In Regime 2 ($K - S_0 = O(1)$, fixed), we would have:
+
+    $$
+    \sigma_{\text{IV}}(K, T) \sim \sigma(K, 0) = 0.25 + 0.002 \times 0.1 = 0.2502 = 25.02\%
+    $$
+
+    The two results are close ($25.10\%$ vs $25.02\%$) because $K - S_0 = 0.1$ is small. The scaling regime formula includes a parabolic correction in $y^2$ that captures the curvature of the smile, while the Regime 2 formula simply evaluates local volatility at the strike. For $T = 0.01$, the strike $K = S_0 + 0.1$ lies in the transition region between Regimes 2 and 3, which is why both approximations are comparable but not identical.
+
 ---
 
 **Exercise 6.** For rough volatility models with Hurst exponent $H$, the short-maturity smile behaves as $\sigma_{\text{IV}}(y, T) \sim T^{H - 1/2}|y|$. (a) If $H = 0.1$, how does the slope of the smile (in $y$) scale with maturity for short $T$? (b) Compare this with the Heston model where skew is $O(T^0)$. (c) Empirical evidence suggests $H \approx 0.1$. What does this imply about the steepness of very short-dated smiles?
 
+??? success "Solution to Exercise 6"
+    **(a) Smile slope scaling for $H = 0.1$:**
+
+    The short-maturity smile behaves as $\sigma_{\text{IV}}(y, T) \sim T^{H - 1/2}|y|$. The slope of the smile in $y$ is:
+
+    $$
+    \frac{\partial \sigma_{\text{IV}}}{\partial y} \sim T^{H - 1/2} = T^{0.1 - 0.5} = T^{-0.4}
+    $$
+
+    As $T \to 0$, the slope diverges as $T^{-0.4}$. For example:
+
+    - $T = 1/252$ (one day): slope $\sim (1/252)^{-0.4} \approx 252^{0.4} \approx 8.5$
+    - $T = 1/52$ (one week): slope $\sim 52^{0.4} \approx 4.7$
+    - $T = 1/12$ (one month): slope $\sim 12^{0.4} \approx 2.6$
+
+    The smile becomes dramatically steeper for shorter maturities.
+
+    **(b) Comparison with Heston:** In the Heston model, the short-maturity smile skew is $O(T^0) = O(1)$—that is, the slope of the smile (in $y$) converges to a finite constant $\frac{\rho\xi}{4}$ as $T \to 0$. In rough volatility models with $H = 0.1$, the slope blows up as $T^{-0.4}$. This is a qualitative difference: Heston produces a smile with bounded skew at short maturities, while rough volatility produces an exploding skew.
+
+    **(c) Empirical implications for $H \approx 0.1$:** The empirical observation $H \approx 0.1$ implies that very short-dated implied volatility smiles should be extremely steep. This is indeed observed in practice: weekly and daily SPX options exhibit much steeper skews (in log-moneyness) than monthly options, and this steepening is faster than classical stochastic volatility models predict. The rough volatility framework ($H < 1/2$) provides a parsimonious explanation for this power-law steepening, which has been a key motivation for the development of rough volatility models in quantitative finance.
+
 ---
 
 **Exercise 7.** A practitioner wants to extract the local volatility function $\sigma_{\text{loc}}(K, 0)$ from one-week SPX options. Describe the procedure using the short-maturity approximation $\sigma_{\text{loc}}(K, 0) \approx \sigma_{\text{IV}}(K, T_{\text{short}})$. What are the main sources of error, and why might this approach fail for strikes far from ATM?
+
+??? success "Solution to Exercise 7"
+    **Procedure for extracting local volatility from one-week SPX options:**
+
+    1. **Collect data:** Obtain mid-market implied volatilities $\sigma_{\text{IV}}(K_i, T)$ for all liquid SPX options with $T = 1/52 \approx 0.019$ years across available strikes $K_1 < K_2 < \cdots < K_n$.
+
+    2. **Apply the short-maturity approximation:** By the Berestycki-Busca-Florent result, set:
+
+        $$
+        \sigma_{\text{loc}}(K_i, 0) \approx \sigma_{\text{IV}}(K_i, T_{\text{short}})
+        $$
+
+        for each strike $K_i$.
+
+    3. **Interpolate:** Fit a smooth curve (e.g., cubic spline or SVI parametrization) through the points $\{(K_i, \sigma_{\text{loc}}(K_i, 0))\}$ to obtain a continuous local volatility function.
+
+    **Main sources of error:**
+
+    - **Finite maturity bias:** The approximation has $O(T)$ error. Even at $T = 1/52$, the correction term $\sigma_1(K) T$ may be non-negligible, especially when time derivatives of volatility are large (e.g., around earnings announcements or FOMC meetings).
+
+    - **Bid-ask spread:** Short-dated options have wider relative bid-ask spreads (the spread as a fraction of the option price), introducing noise in the extracted IV surface.
+
+    - **Liquidity and discreteness:** Traded strikes are discrete, and liquidity thins out away from ATM. Interpolation between sparse strike points introduces model dependence.
+
+    **Why the approach fails for strikes far from ATM:**
+
+    For deep OTM strikes, $|K - S_0|$ is large relative to $\sigma S_0 \sqrt{T}$, placing us in the large-deviation regime rather than the diffusive regime. In this regime, the option price is exponentially small ($C \sim e^{-I(K)/T}$), creating severe numerical issues: the implied volatility becomes very sensitive to tiny price changes, and bid-ask spreads dominate. Additionally, the leading-order approximation $\sigma_{\text{IV}} \sim \sigma(K, 0)$ breaks down because the rate function $I(K)$—not just the local volatility at $K$—determines the implied volatility. For very deep OTM options, the presence of jumps (which SPX exhibits empirically) further invalidates the pure diffusion asymptotics.

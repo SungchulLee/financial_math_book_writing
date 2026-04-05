@@ -216,34 +216,6 @@ The Bates model combines Heston stochastic volatility with Merton jumps, inherit
 
 **Exercise 1.** Show that the Bates model reduces to the Heston model when $\lambda = 0$. Specifically, verify that the Bates SDE simplifies to the standard Heston SDE and that $\phi_{\text{Bates}}(u) = \phi_{\text{Heston}}(u)$ when the jump intensity vanishes.
 
----
-
-**Exercise 2.** Show that the Bates model reduces to the Merton model when $\xi = 0$ and $v_t = \sigma^2$ (constant variance). What happens to the Heston characteristic function $\phi_{\text{Heston}}(u)$ in this limit, and what does the product $\phi_{\text{Bates}}(u)$ simplify to?
-
----
-
-**Exercise 3.** The jump component of the characteristic function is $\phi_{\text{Jump}}(u) = \exp[\lambda T(e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2} - 1) - iu\lambda\bar{k}T]$. Verify that $\phi_{\text{Jump}}(0) = 1$ and compute $-i\phi_{\text{Jump}}'(0)$ to find $\mathbb{E}[\ln(S_T/S_0)]$ contributed by the jump component alone.
-
----
-
-**Exercise 4.** Consider the Bates model with parameters $v_0 = 0.04$, $\kappa = 2$, $\theta = 0.04$, $\xi = 0.3$, $\rho = -0.7$, $\lambda = 0.5$, $\mu_J = -0.10$, $\sigma_J = 0.15$. Compute the compensator $\bar{k} = e^{\mu_J + \sigma_J^2/2} - 1$ and the adjusted drift $r - \lambda\bar{k}$ for $r = 0.05$. Explain the economic role of the drift adjustment.
-
----
-
-**Exercise 5.** The factorization $\phi_{\text{Bates}} = \phi_{\text{Heston}} \cdot \phi_{\text{Jump}}$ relies on the independence of the Brownian motions $(W^{(1)}, W^{(2)})$ from the Poisson process $N_t$. Give a counterexample scenario where the jump process and the variance process are correlated (as in the SVJJ model), and explain why the characteristic function would no longer factorize in this case.
-
----
-
-**Exercise 6.** The Merton model's implied volatility smile amplitude decays as $1/\sqrt{T}$ for long maturities. Starting from the CLT applied to $N_T \sim \text{Poisson}(\lambda T)$ jumps, explain why the per-unit-time jump contribution to total variance becomes negligible relative to the diffusion component as $T \to \infty$. Contrast this with the Heston model, where the stochastic volatility generates a persistent smile.
-
----
-
-**Exercise 7.** A practitioner calibrates both the Heston model (5 parameters) and the Bates model (8 parameters) to the same set of 30 market option prices. The Heston fit achieves an implied volatility RMSE of 0.8%, while the Bates fit achieves 0.3%. Discuss the trade-offs: is the improved fit worth the additional parameters? Address overfitting risk, identifiability of parameters, and how you would use out-of-sample testing to evaluate the models.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     When $\lambda = 0$, the jump component vanishes entirely. In the Bates SDE:
 
@@ -269,6 +241,11 @@ The Bates model combines Heston stochastic volatility with Merton jumps, inherit
     \phi_{\text{Bates}}(u) = \phi_{\text{Heston}}(u) \cdot 1 = \phi_{\text{Heston}}(u)
     $$
 
+---
+
+
+**Exercise 2.** Show that the Bates model reduces to the Merton model when $\xi = 0$ and $v_t = \sigma^2$ (constant variance). What happens to the Heston characteristic function $\phi_{\text{Heston}}(u)$ in this limit, and what does the product $\phi_{\text{Bates}}(u)$ simplify to?
+
 ??? success "Solution to Exercise 2"
     When $\xi = 0$ and $v_t = \sigma^2$ (constant), the variance process becomes deterministic:
 
@@ -291,6 +268,11 @@ The Bates model combines Heston stochastic volatility with Merton jumps, inherit
     $$
 
     Multiplying by the jump factor gives $\phi_{\text{Bates}}(u) = \exp[iu(r - \tfrac{1}{2}\sigma^2)T - \tfrac{1}{2}\sigma^2 u^2 T + \lambda T(e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2} - 1) - iu\lambda\bar{k}T]$, which is the Merton characteristic function.
+
+---
+
+
+**Exercise 3.** The jump component of the characteristic function is $\phi_{\text{Jump}}(u) = \exp[\lambda T(e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2} - 1) - iu\lambda\bar{k}T]$. Verify that $\phi_{\text{Jump}}(0) = 1$ and compute $-i\phi_{\text{Jump}}'(0)$ to find $\mathbb{E}[\ln(S_T/S_0)]$ contributed by the jump component alone.
 
 ??? success "Solution to Exercise 3"
     **Verification that $\phi_{\text{Jump}}(0) = 1$:** Substituting $u = 0$:
@@ -319,6 +301,11 @@ The Bates model combines Heston stochastic volatility with Merton jumps, inherit
 
     This is the contribution of the jump component to $\mathbb{E}[\ln(S_T/S_0)]$. Since $\bar{k} = e^{\mu_J + \sigma_J^2/2} - 1$, this equals $\lambda T(\mu_J - e^{\mu_J + \sigma_J^2/2} + 1)$.
 
+---
+
+
+**Exercise 4.** Consider the Bates model with parameters $v_0 = 0.04$, $\kappa = 2$, $\theta = 0.04$, $\xi = 0.3$, $\rho = -0.7$, $\lambda = 0.5$, $\mu_J = -0.10$, $\sigma_J = 0.15$. Compute the compensator $\bar{k} = e^{\mu_J + \sigma_J^2/2} - 1$ and the adjusted drift $r - \lambda\bar{k}$ for $r = 0.05$. Explain the economic role of the drift adjustment.
+
 ??? success "Solution to Exercise 4"
     With $\mu_J = -0.10$ and $\sigma_J = 0.15$:
 
@@ -334,12 +321,22 @@ The Bates model combines Heston stochastic volatility with Merton jumps, inherit
 
     The economic role of the drift adjustment is to ensure the discounted stock price $e^{-rt}S_t$ is a martingale under $\mathbb{Q}$. Without the $-\lambda\bar{k}$ adjustment, jumps would on average lower the stock price (since $\bar{k} < 0$ for these parameters), giving the stock a higher expected return than the risk-free rate. The positive correction $-\lambda\bar{k} = +0.04244$ increases the continuous drift to compensate for the average downward drag from jumps, maintaining the no-arbitrage condition $\mathbb{E}^{\mathbb{Q}}[S_T] = S_0 e^{rT}$.
 
+---
+
+
+**Exercise 5.** The factorization $\phi_{\text{Bates}} = \phi_{\text{Heston}} \cdot \phi_{\text{Jump}}$ relies on the independence of the Brownian motions $(W^{(1)}, W^{(2)})$ from the Poisson process $N_t$. Give a counterexample scenario where the jump process and the variance process are correlated (as in the SVJJ model), and explain why the characteristic function would no longer factorize in this case.
+
 ??? success "Solution to Exercise 5"
     In the SVJJ model, the jump process $N_t$ simultaneously affects both the price and the variance. At a jump time $T_i$, the price jumps by $(Y_i - 1)$ and the variance jumps by $J_v^{(i)}$, where the jump sizes may be correlated (e.g., $J_v^{(i)}$ could depend on $Y_i$, or $N_t$ could trigger both jumps simultaneously).
 
     **Counterexample:** Suppose $N_t$ is a single Poisson process, and at each jump time, the variance jumps by $J_v = -\beta\ln Y$ (variance spikes up when the price drops, since $\ln Y < 0$ for a crash). Then $v_{T_i} = v_{T_i^-} + J_v^{(i)}$ and $S_{T_i} = S_{T_i^-} \cdot Y_i$, where $J_v$ and $\ln Y$ are dependent.
 
     The factorization $\phi_{\text{Bates}} = \phi_{\text{Heston}} \cdot \phi_{\text{Jump}}$ relies on the independence of the Brownian motions $(W^{(1)}, W^{(2)})$ from the Poisson process $N_t$. When variance jumps are correlated with price jumps, the conditional characteristic function of the variance process $v_t$ (given the jump history) depends on the price jumps, and vice versa. The joint characteristic function cannot be separated into a product of independent factors because the jump sizes in the price and variance equations are coupled. One must instead solve a system of Riccati ODEs that couple the price and variance jump contributions, yielding a more complex (non-factorized) characteristic function.
+
+---
+
+
+**Exercise 6.** The Merton model's implied volatility smile amplitude decays as $1/\sqrt{T}$ for long maturities. Starting from the CLT applied to $N_T \sim \text{Poisson}(\lambda T)$ jumps, explain why the per-unit-time jump contribution to total variance becomes negligible relative to the diffusion component as $T \to \infty$. Contrast this with the Heston model, where the stochastic volatility generates a persistent smile.
 
 ??? success "Solution to Exercise 6"
     At time $T$, the number of jumps $N_T \sim \text{Poisson}(\lambda T)$. By the law of large numbers, $N_T/T \to \lambda$ as $T \to \infty$. By the CLT, the jump sum $\sum_{i=1}^{N_T}\ln Y_i$ has variance $\lambda T(\sigma_J^2 + \mu_J^2)$, which grows linearly with $T$, just like the diffusion variance $\sigma^2 T$.
@@ -353,6 +350,11 @@ The Bates model combines Heston stochastic volatility with Merton jumps, inherit
     This is constant in $T$, meaning the jump and diffusion contributions to per-unit-time variance are both constant. However, the higher cumulants (skewness, kurtosis) that generate the smile decay: the skewness scales as $T^{-1/2}$ and excess kurtosis as $T^{-1}$. As $T \to \infty$, the CLT applied to the sum of $N_T \approx \lambda T$ independent log-normal jumps makes the total jump contribution approximately Gaussian. A Gaussian plus a Gaussian (diffusion) is Gaussian, which produces a flat implied volatility smile. Thus the Merton smile amplitude vanishes for long maturities.
 
     In contrast, the Heston model generates a persistent smile because the stochastic volatility process $v_t$ does not average out over time. The instantaneous variance $v_t$ fluctuates around its long-run mean $\theta$, and the correlation $\rho < 0$ between returns and variance creates a leverage effect that produces skew at all maturities. The vol-of-vol $\xi$ ensures that the variance of variance remains positive indefinitely, sustaining the smile.
+
+---
+
+
+**Exercise 7.** A practitioner calibrates both the Heston model (5 parameters) and the Bates model (8 parameters) to the same set of 30 market option prices. The Heston fit achieves an implied volatility RMSE of 0.8%, while the Bates fit achieves 0.3%. Discuss the trade-offs: is the improved fit worth the additional parameters? Address overfitting risk, identifiability of parameters, and how you would use out-of-sample testing to evaluate the models.
 
 ??? success "Solution to Exercise 7"
     The Bates fit (RMSE 0.3%) is substantially better than Heston (0.8%), but several trade-offs must be considered:

@@ -412,9 +412,57 @@ The existence of the implied volatility smile—variation of $\sigma_{\text{IV}}
 
 **Exercise 1.** For a European call with $S = 100$, $K = 105$, $T = 0.5$, and $r = 3\%$, compute the admissible price interval $(C_{\text{intrinsic}}, S)$. Explain why a market price of $C_{\text{market}} = 101$ would not admit an implied volatility.
 
+??? success "Solution to Exercise 1"
+    With $S = 100$, $K = 105$, $T = 0.5$, and $r = 0.03$:
+
+    $$
+    C_{\text{intrinsic}} = \max(S - K e^{-rT}, 0) = \max(100 - 105 e^{-0.015}, 0)
+    $$
+
+    Computing $K e^{-rT} = 105 \times e^{-0.015} \approx 105 \times 0.98511 = 103.437$.
+
+    Since $100 - 103.437 = -3.437 < 0$, the intrinsic value is zero and the admissible interval is:
+
+    $$
+    (C_{\text{intrinsic}}, S) = (0, 100)
+    $$
+
+    A market price of $C_{\text{market}} = 101$ exceeds the upper bound $S = 100$. This violates the static no-arbitrage bound because one could sell the call for $\$101$ and buy the stock for $\$100$, pocketing $\$1$ immediately. At maturity, the obligation from the short call is $\max(S_T - 105, 0)$, which is always less than or equal to $S_T$ (the value of the long stock). Since $\min(S_T, 105) \geq 0$, the net payoff at maturity is non-negative. This is a riskless arbitrage, so no implied volatility can rationalize such a price. Formally, $C_{\text{BS}}(\sigma) < S = 100$ for all finite $\sigma$, and $\lim_{\sigma \to \infty} C_{\text{BS}} = 100 < 101$, so the equation $C_{\text{BS}}(\sigma) = 101$ has no solution.
+
 ---
 
 **Exercise 2.** Starting from the Black-Scholes formula $C_{\text{BS}} = S\Phi(d_1) - Ke^{-rT}\Phi(d_2)$, verify analytically that $\lim_{\sigma \to \infty} C_{\text{BS}} = S$ by showing $d_1 \to +\infty$ and $d_2 \to -\infty$. Which term in $d_1$ dominates as $\sigma \to \infty$?
+
+??? success "Solution to Exercise 2"
+    Starting from the Black-Scholes formula, examine $d_1$ and $d_2$ as $\sigma \to \infty$:
+
+    $$
+    d_1 = \frac{\ln(S/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}} = \frac{\ln(S/K) + rT}{\sigma\sqrt{T}} + \frac{\sigma\sqrt{T}}{2}
+    $$
+
+    The first term $\frac{\ln(S/K) + rT}{\sigma\sqrt{T}} \to 0$ as $\sigma \to \infty$ (numerator is constant, denominator diverges). The second term $\frac{\sigma\sqrt{T}}{2} \to +\infty$. Therefore $d_1 \to +\infty$, and the **dominant term** is $\frac{\sigma\sqrt{T}}{2}$.
+
+    For $d_2$:
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{T} = \frac{\ln(S/K) + rT}{\sigma\sqrt{T}} - \frac{\sigma\sqrt{T}}{2}
+    $$
+
+    The dominant term is $-\frac{\sigma\sqrt{T}}{2} \to -\infty$, so $d_2 \to -\infty$.
+
+    Taking the limits of the CDF values:
+
+    $$
+    \Phi(d_1) \to \Phi(+\infty) = 1, \qquad \Phi(d_2) \to \Phi(-\infty) = 0
+    $$
+
+    Substituting into Black-Scholes:
+
+    $$
+    \lim_{\sigma \to \infty} C_{\text{BS}} = S \cdot 1 - K e^{-rT} \cdot 0 = S
+    $$
+
+    Economically, at infinite volatility the probability that $S_T > K$ approaches 1 (via $\Phi(d_2) \to 0$ for the exercise probability seems contradictory, but the effect is that the expected value of $S_T$ conditional on the option being ITM grows without bound). The option becomes equivalent to holding the stock.
 
 ---
 
@@ -426,18 +474,101 @@ $$
 
 For an ATM option ($S = K = 100$) with $T = 1$, $r = 0$, and $\sigma_{\text{IV}} = 0.25$, compute $d_1$, evaluate $\phi(d_1)$, and find $d\sigma_{\text{IV}}/dC$. Interpret the result: how much does implied volatility change per \$1 change in the option price?
 
+??? success "Solution to Exercise 3"
+    With $S = K = 100$, $T = 1$, $r = 0$, and $\sigma_{\text{IV}} = 0.25$:
+
+    $$
+    d_1 = \frac{\ln(100/100) + (0 + 0.25^2/2) \cdot 1}{0.25 \cdot 1} = \frac{0 + 0.03125}{0.25} = 0.125
+    $$
+
+    Evaluating the standard normal density:
+
+    $$
+    \phi(d_1) = \phi(0.125) = \frac{1}{\sqrt{2\pi}} e^{-0.125^2/2} = \frac{1}{\sqrt{2\pi}} e^{-0.0078125}
+    $$
+
+    $$
+    \approx 0.39894 \times 0.99221 = 0.39584
+    $$
+
+    The derivative of implied volatility with respect to price:
+
+    $$
+    \frac{d\sigma_{\text{IV}}}{dC} = \frac{1}{S \phi(d_1) \sqrt{T}} = \frac{1}{100 \times 0.39584 \times 1} = \frac{1}{39.584} \approx 0.02526
+    $$
+
+    **Interpretation:** For each $\$1$ increase in the call option price, the implied volatility increases by approximately $0.0253$, or about $2.53$ volatility points. Equivalently, vega is approximately $\$39.58$ per volatility point, meaning a 1 percentage point increase in implied volatility raises the option price by about $\$0.3958$.
+
 ---
 
 **Exercise 4.** Explain conceptually why the Black-Scholes pricing map $\mathcal{C}: \sigma \mapsto C_{\text{BS}}(\sigma)$ is a diffeomorphism from $(0, \infty)$ to $(C_{\text{intrinsic}}, S)$. State the three properties (monotonicity, continuity, range) required for this, and identify where each is used in the proof of Theorem 4.1.1.
+
+??? success "Solution to Exercise 4"
+    The Black-Scholes pricing map $\mathcal{C}: (0, \infty) \to (C_{\text{intrinsic}}, S)$ is a diffeomorphism because it satisfies three properties:
+
+    **1. Continuity:** $C_{\text{BS}}(\sigma)$ is a composition of smooth functions (exponentials, the normal CDF, logarithms), so it is continuous (in fact $C^\infty$) on $(0, \infty)$. This is used in the proof of Theorem 4.1.1 to invoke the **Intermediate Value Theorem**: for any target price in the image, there exists a $\sigma$ mapping to it.
+
+    **2. Strict monotonicity:** Proposition 4.1.1 shows $\partial C_{\text{BS}}/\partial \sigma = S\phi(d_1)\sqrt{T} > 0$ for all $\sigma > 0$. This ensures **injectivity** (one-to-one): distinct volatilities produce distinct prices, so the inverse is well-defined. In the proof, this guarantees **uniqueness** of the solution.
+
+    **3. Range characterization:** Proposition 4.1.2 establishes $\lim_{\sigma \to 0^+} C_{\text{BS}} = C_{\text{intrinsic}}$ and $\lim_{\sigma \to \infty} C_{\text{BS}} = S$. Combined with continuity and monotonicity, the image of $(0, \infty)$ is exactly $(C_{\text{intrinsic}}, S)$. This ensures **surjectivity** (onto): every admissible price has a preimage. In the proof, this guarantees **existence** of the solution.
+
+    Together, these properties establish that $\mathcal{C}$ is a smooth bijection with smooth inverse (since vega is everywhere nonzero, the Inverse Function Theorem gives smoothness of $\mathcal{C}^{-1}$), making it a diffeomorphism.
 
 ---
 
 **Exercise 5.** A trader observes two call options on the same stock with the same maturity $T = 0.25$ but different strikes: $K_1 = 95$ with $C_1 = 9.50$ and $K_2 = 105$ with $C_2 = 3.20$. Both options have $S = 100$ and $r = 2\%$. (a) Verify that both prices lie in their respective admissible intervals. (b) Which option do you expect to have higher implied volatility if the smile has negative skew? Explain without computing.
 
+??? success "Solution to Exercise 5"
+    **(a)** Check that both prices lie in their admissible intervals.
+
+    For $K_1 = 95$: $C_{\text{intrinsic}} = \max(100 - 95 e^{-0.005}, 0) = \max(100 - 94.526, 0) = 5.474$ and $S = 100$. Since $5.474 < 9.50 < 100$, the price is admissible.
+
+    For $K_2 = 105$: $C_{\text{intrinsic}} = \max(100 - 105 e^{-0.005}, 0) = \max(100 - 104.476, 0) = 0$ and $S = 100$. Since $0 < 3.20 < 100$, the price is admissible.
+
+    Both implied volatilities exist.
+
+    **(b)** With negative skew (also called the volatility skew), implied volatility decreases as strike increases. This is the typical pattern observed in equity markets, where lower-strike (OTM put) options command higher implied volatilities than higher-strike (OTM call) options.
+
+    Under negative skew, the $K_1 = 95$ option (lower strike, ITM call / OTM put equivalent) would have **higher implied volatility** than the $K_2 = 105$ option (higher strike, OTM call).
+
+    Intuitively, the negative skew reflects the market pricing in a higher probability of large downward moves relative to the log-normal model. The lower-strike option is more sensitive to this left-tail risk, so the market "charges" a higher implied volatility to compensate. This is consistent with the empirical observation that equity returns exhibit negative skewness and excess kurtosis, features not captured by the symmetric log-normal distribution.
+
 ---
 
 **Exercise 6.** Compare and contrast three numerical methods for computing implied volatility: Newton-Raphson, Brent's method, and bisection. For each method, state (a) the convergence rate, (b) whether it requires vega evaluation, and (c) under what conditions it might fail or be preferred. Why is Brent's method often used in production systems?
 
+??? success "Solution to Exercise 6"
+    **Newton-Raphson:**
+
+    (a) Convergence rate: **Quadratic** — the number of correct digits roughly doubles per iteration.
+    (b) Requires vega: **Yes** — the iteration formula is $\sigma_{n+1} = \sigma_n - (C_{\text{BS}}(\sigma_n) - C_{\text{market}}) / \mathcal{V}(\sigma_n)$.
+    (c) Can fail if the initial guess is poor (vega near zero for deep OTM/ITM options near expiry), causing large overshoots or division by near-zero. Preferred when a good initial guess is available and speed is critical.
+
+    **Brent's method:**
+
+    (a) Convergence rate: **Superlinear** (between linear and quadratic in practice), combining inverse quadratic interpolation with bisection fallback.
+    (b) Requires vega: **No** — it is a derivative-free method using only function evaluations.
+    (c) Requires a valid bracketing interval $[\sigma_{\text{lo}}, \sigma_{\text{hi}}]$ where the function changes sign. Essentially never fails given a proper bracket. Preferred in **production systems** because it is robust, guaranteed to converge, and avoids the cost and potential numerical issues of computing vega. It handles edge cases (deep OTM, near-expiry) gracefully without special-case logic.
+
+    **Bisection:**
+
+    (a) Convergence rate: **Linear** — gains approximately one binary digit per iteration (halves the interval each step).
+    (b) Requires vega: **No** — only function evaluations needed.
+    (c) Never fails given a valid bracket, but converges slowly (about 50 iterations for machine precision from a typical starting bracket). Preferred only as a fallback or for verification, not for high-throughput computation.
+
+    Brent's method is often used in production because it combines the robustness guarantee of bisection (always converges within the bracket) with the speed of interpolation methods, all without requiring derivative computation.
+
 ---
 
 **Exercise 7.** If the underlying truly followed geometric Brownian motion with constant volatility $\sigma = 0.20$, what would the implied volatility surface $\sigma_{\text{IV}}(K, T)$ look like? In practice, $\sigma_{\text{IV}}$ varies with $K$ and $T$. List three market phenomena that cause deviations from the flat surface, and for each, describe qualitatively how it affects the shape of $\sigma_{\text{IV}}(K)$ at a fixed maturity.
+
+??? success "Solution to Exercise 7"
+    If the underlying truly followed GBM with constant volatility $\sigma = 0.20$, then for every strike $K$ and maturity $T$, the Black-Scholes price with $\sigma = 0.20$ would exactly match the market price. Inverting would recover $\sigma_{\text{IV}}(K, T) = 0.20$ everywhere. The implied volatility surface would be **perfectly flat** at $0.20$ across all strikes and maturities.
+
+    Three market phenomena causing deviations from the flat surface:
+
+    **1. Leverage effect and crash risk (causes negative skew):** Equity markets exhibit an asymmetric response to large moves: crashes are more sudden and severe than rallies. Investors demand higher premiums for downside protection (OTM puts), inflating implied volatility at low strikes relative to high strikes. At fixed maturity, $\sigma_{\text{IV}}(K)$ is **decreasing** in $K$, producing the characteristic downward-sloping "skew" seen in equity index options.
+
+    **2. Fat tails / excess kurtosis (causes the smile):** Real asset returns have heavier tails than the normal distribution assumed by Black-Scholes. Both deep ITM and deep OTM options are more likely to finish in-the-money than the log-normal model predicts. This raises implied volatilities at both extreme strikes relative to ATM, producing a **U-shaped "smile"** in $\sigma_{\text{IV}}(K)$. This is especially prominent in currency options and short-dated equity options.
+
+    **3. Stochastic volatility and mean reversion (causes term structure):** Realized volatility is not constant but varies over time, with periods of high and low volatility. Stochastic volatility models (e.g., Heston) predict that the smile flattens as maturity increases due to the mean-reversion of variance. At fixed maturity, the effect on $\sigma_{\text{IV}}(K)$ is to produce a **more pronounced smile for short maturities** (high curvature) that gradually flattens for longer maturities. The vol-of-vol parameter controls the overall curvature, while the correlation between the asset and its volatility process controls the skew direction.

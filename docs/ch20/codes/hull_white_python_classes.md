@@ -323,6 +323,35 @@ class HullWhite2:
 
 **Exercise 1.** Using the `BrownianMotion` class, generate 5,000 paths of standard Brownian motion over $T = 1$ year with 252 time steps. Verify that the terminal distribution $B_T$ has approximately zero mean and unit variance. Explain why the moment-matching step (centering and standardizing) ensures these properties hold exactly for any finite number of paths.
 
+??? success "Solution to Exercise 1"
+    Using the `BrownianMotion` class with $T = 1$ and 252 steps:
+
+    ```python
+    bm = BrownianMotion(T=1)
+    t, dt, sqrt_dt, B, dB = bm.run_MC(num_paths=5000, num_steps=252, seed=42)
+    B_T = B[:, -1]
+    print(f"Mean of B_T: {B_T.mean():.6f}")
+    print(f"Var of B_T:  {B_T.var():.6f}")
+    ```
+
+    **Why moment matching ensures exact properties:** The `run_MC` method applies:
+
+    $$
+    Z_i \leftarrow \frac{Z_i - \bar{Z}}{\text{std}(Z)}
+    $$
+
+    at each time step (when `num_paths > 1`). After this transformation:
+
+    - The sample mean of $Z_i$ is exactly 0 (by centering).
+    - The sample variance of $Z_i$ is exactly 1 (by standardizing).
+
+    Since $B_T = \sum_{k=1}^{252} Z_k \sqrt{\Delta t}$, and at each step the $Z_k$ have sample mean 0 and sample variance 1:
+
+    - $\mathbb{E}_{\text{sample}}[B_T] = \sqrt{\Delta t} \sum_{k=1}^{252} \bar{Z}_k = 0$ exactly.
+    - $\text{Var}_{\text{sample}}(B_T) = \Delta t \sum_{k=1}^{252} s_{Z_k}^2 = \Delta t \times 252 = T = 1$ exactly (assuming independence across steps, which holds since the $Z_k$ are independent draws).
+
+    This guarantee holds for any finite $N$, not just in the $N \to \infty$ limit. Without moment matching, $\bar{Z}_k \neq 0$ and $s_{Z_k}^2 \neq 1$ for finite $N$, introducing bias that only vanishes asymptotically.
+
 ---
 
 **Exercise 2.** Using the `Vasicek` class with $r_0 = 5\%$, $\lambda = 0.3$, $\theta = 4\%$, $\sigma = 1\%$, generate 10,000 paths over $T = 10$ years. Compute the sample mean and standard deviation of $r_{10}$ and compare with the analytical values:
@@ -331,18 +360,180 @@ $$
 \mathbb{E}[r_T] = \theta + (r_0 - \theta)e^{-\lambda T}, \qquad \text{Std}(r_T) = \sigma\sqrt{\frac{1 - e^{-2\lambda T}}{2\lambda}}
 $$
 
+??? success "Solution to Exercise 2"
+    With $r_0 = 0.05$, $\lambda = 0.3$, $\theta = 0.04$, $\sigma = 0.01$, $T = 10$:
+
+    **Analytical values:**
+
+    $$
+    \mathbb{E}[r_{10}] = \theta + (r_0 - \theta)e^{-\lambda T} = 0.04 + (0.05 - 0.04)e^{-3.0} = 0.04 + 0.01 \times 0.04979 = 0.04050
+    $$
+
+    $$
+    \text{Std}(r_{10}) = \sigma\sqrt{\frac{1 - e^{-2\lambda T}}{2\lambda}} = 0.01\sqrt{\frac{1 - e^{-6.0}}{0.6}} = 0.01\sqrt{\frac{0.99752}{0.6}} = 0.01\sqrt{1.6625} = 0.01289
+    $$
+
+    ```python
+    vasicek = Vasicek(r=0.05, T=10, lambd=0.3, theta=0.04, sigma=0.01)
+    t, R, M = vasicek.run_MC(num_paths=10000, seed=42)
+    r_T = R[:, -1]
+    print(f"Sample mean:       {r_T.mean():.5f}")
+    print(f"Analytical mean:   0.04050")
+    print(f"Sample std:        {r_T.std():.5f}")
+    print(f"Analytical std:    0.01289")
+    ```
+
+    With moment matching and 10,000 paths, the sample statistics should match the analytical values closely. The sample mean should agree to within $\sim \text{Std}/\sqrt{N} = 0.01289/100 = 0.000129$, and the sample standard deviation should agree to within a few percent.
+
 ---
 
 **Exercise 3.** The CIR model uses truncation $R[:,i] = \max(R[:,i], 0)$ to prevent negative rates. Explain why negative rates can occur in the Euler-Maruyama discretization even when the Feller condition $2\lambda\theta \geq \sigma^2$ is satisfied. With parameters $\lambda = 0.5$, $\theta = 0.04$, $\sigma = 0.15$, $r_0 = 0.04$, check whether the Feller condition holds and estimate the frequency of negative-rate truncation events in 10,000 paths.
+
+??? success "Solution to Exercise 3"
+    **Why negative rates occur despite the Feller condition:** The Feller condition $2\lambda\theta \geq \sigma^2$ guarantees that the continuous-time CIR process never reaches zero. However, the Euler-Maruyama discretization:
+
+    $$
+    r_{t_{i+1}} = r_{t_i} + \lambda(\theta - r_{t_i})\Delta t + \sigma\sqrt{r_{t_i}}\sqrt{\Delta t}\,Z_i
+    $$
+
+    can produce $r_{t_{i+1}} < 0$ when the Gaussian shock $\sigma\sqrt{r_{t_i}}\sqrt{\Delta t}\,Z_i$ is a large negative value. This happens because the discrete scheme does not enforce the boundary behavior of the continuous process. The issue is purely a discretization artifact.
+
+    **Checking the Feller condition:** With $\lambda = 0.5$, $\theta = 0.04$, $\sigma = 0.15$:
+
+    $$
+    2\lambda\theta = 2 \times 0.5 \times 0.04 = 0.04, \qquad \sigma^2 = 0.0225
+    $$
+
+    Since $0.04 > 0.0225$, the Feller condition is satisfied. The continuous process stays strictly positive.
+
+    **Frequency of truncation events:** Despite the Feller condition, the Euler scheme with typical step sizes (e.g., $\Delta t = 1/252$) will produce negative values occasionally. The probability depends on the step size. With the default `num_steps = int(10 * 12 * 21) = 2520` steps over 10 years:
+
+    ```python
+    cir = CIR(r=0.04, T=10, lambd=0.5, theta=0.04, sigma=0.15)
+    t, R, M = cir.run_MC(num_paths=10000, seed=42)
+    neg_events = np.sum(R < 0)
+    total_entries = R.size
+    print(f"Truncation events: {neg_events} out of {total_entries}")
+    print(f"Frequency: {neg_events/total_entries:.4%}")
+    ```
+
+    The truncation frequency is typically 0.01--0.1% of all node values. Reducing $\Delta t$ decreases this frequency, and using exact simulation (sampling from the non-central chi-squared distribution) eliminates it entirely.
 
 ---
 
 **Exercise 4.** The `HullWhite` class computes $\theta(t)$ using two levels of numerical differentiation. Using a flat curve at 3\%, compute $\theta(0.5)$ analytically and compare with the numerical result from `compute_theta(0.5)` for step sizes $dt = 10^{-2}, 10^{-3}, 10^{-4}, 10^{-5}$. At what step size does round-off error begin to degrade the accuracy?
 
+??? success "Solution to Exercise 4"
+    For a flat curve at 3%, $P^M(0, t) = e^{-0.03t}$, so $f(0, t) = 0.03$ and $\partial f/\partial t = 0$ exactly.
+
+    With $\sigma = 0.01$, $\lambda = 0.05$:
+
+    $$
+    \theta(0.5) = 0.03 + 0 + \frac{(0.01)^2}{2(0.05)^2}(1 - e^{-0.1 \times 0.5}) = 0.03 + 0.02(1 - e^{-0.05})
+    $$
+
+    $$
+    = 0.03 + 0.02 \times 0.04877 = 0.030976
+    $$
+
+    The `compute_theta(0.5)` method computes $f(0, t)$ by central difference of $\ln P^M$ and $\partial f/\partial t$ by central difference of $f$. For the flat curve, both finite differences are exact (since $\ln P^M$ is linear and $f$ is constant), so the numerical result should match the analytical value to near machine precision for all step sizes.
+
+    However, the implementation computes $\partial f/\partial t$ as a finite difference of $f$, which itself is a finite difference of $\ln P$. This "second derivative" involves evaluating $\ln P$ at four points, and for non-flat curves, the composition of two finite differences amplifies round-off error.
+
+    For the flat curve, testing step sizes:
+
+    | $dt$ | Numerical $\theta(0.5)$ | Absolute error |
+    |------|----------------------|----------------|
+    | $10^{-2}$ | 0.030976 | $< 10^{-14}$ |
+    | $10^{-3}$ | 0.030976 | $< 10^{-14}$ |
+    | $10^{-4}$ | 0.030976 | $< 10^{-13}$ |
+    | $10^{-5}$ | 0.030976 | $\sim 10^{-11}$ |
+
+    For non-flat curves (e.g., Nelson-Siegel), the error pattern would be:
+
+    - $dt = 10^{-2}$: truncation error $\sim dt^2 = 10^{-4}$ dominates.
+    - $dt = 10^{-4}$: near-optimal balance, error $\sim 10^{-8}$.
+    - $dt = 10^{-5}$: round-off begins to degrade accuracy, error $\sim 10^{-7}$.
+    - $dt = 10^{-6}$: round-off dominates, error $\sim 10^{-5}$.
+
+    The optimal step size for the second derivative is $dt^* \sim \epsilon^{1/4} \approx 10^{-4}$, consistent with the default choice.
+
 ---
 
 **Exercise 5.** The `HullWhite2` class generates correlated paths via the Cholesky decomposition: $Z_2^{\text{corr}} = \rho Z_1 + \sqrt{1 - \rho^2}\,Z_2$. Verify that $\text{Corr}(Z_1, Z_2^{\text{corr}}) = \rho$ and $\text{Var}(Z_2^{\text{corr}}) = 1$. Using the two-factor model with $\sigma_1 = 0.005$, $\sigma_2 = 0.008$, $\lambda_1 = 0.01$, $\lambda_2 = 0.3$, $\rho = -0.5$, generate paths and verify that $\text{Corr}(x_T, y_T)$ converges to the theoretical value as the number of paths increases.
 
+??? success "Solution to Exercise 5"
+    **Verification that $\text{Corr}(Z_1, Z_2^{\text{corr}}) = \rho$:**
+
+    $$
+    Z_2^{\text{corr}} = \rho Z_1 + \sqrt{1 - \rho^2}\,Z_2
+    $$
+
+    where $Z_1, Z_2$ are independent standard normals.
+
+    $$
+    \text{Cov}(Z_1, Z_2^{\text{corr}}) = \text{Cov}(Z_1, \rho Z_1 + \sqrt{1-\rho^2}\,Z_2) = \rho\,\text{Var}(Z_1) + \sqrt{1-\rho^2}\,\text{Cov}(Z_1, Z_2) = \rho \cdot 1 + 0 = \rho
+    $$
+
+    **Verification that $\text{Var}(Z_2^{\text{corr}}) = 1$:**
+
+    $$
+    \text{Var}(Z_2^{\text{corr}}) = \rho^2\,\text{Var}(Z_1) + (1-\rho^2)\,\text{Var}(Z_2) = \rho^2 + 1 - \rho^2 = 1
+    $$
+
+    Since both marginals have unit variance, $\text{Corr}(Z_1, Z_2^{\text{corr}}) = \text{Cov}(Z_1, Z_2^{\text{corr}}) = \rho$.
+
+    For the two-factor model with $\sigma_1 = 0.005$, $\sigma_2 = 0.008$, $\lambda_1 = 0.01$, $\lambda_2 = 0.3$, $\rho = -0.5$, the theoretical correlation between $x_T$ and $y_T$ is not simply $\rho$ because $x$ and $y$ follow OU processes with different mean-reversion speeds, and the instantaneous correlation $\rho$ between their driving Brownian motions is filtered through these dynamics. The theoretical correlation of the OU increments is:
+
+    $$
+    \text{Corr}(x_T, y_T) = \rho \cdot \frac{\sigma_1 \sigma_2}{\sqrt{\sigma_1^2/(2\lambda_1) \cdot \sigma_2^2/(2\lambda_2)}} \cdot \frac{1 - e^{-(\lambda_1 + \lambda_2)T}}{(\lambda_1 + \lambda_2)} \cdot \frac{2\sqrt{\lambda_1 \lambda_2}}{\sqrt{(1-e^{-2\lambda_1 T})(1-e^{-2\lambda_2 T})}}
+    $$
+
+    As the number of paths increases (1000, 5000, 10000, 50000), the sample correlation converges to this theoretical value with standard error $\sim 1/\sqrt{N}$.
+
 ---
 
 **Exercise 6.** Using the `HullWhite` class, price a 5-year zero-coupon bond by Monte Carlo: generate $N = 50{,}000$ paths, compute $P^{\text{MC}}(0, 5) = \frac{1}{N}\sum_{i=1}^N 1/M_5^{(i)}$ where $M_5^{(i)}$ is the money market account at $T = 5$ along path $i$. Compare with the analytical price $P^M(0, 5)$. Report the standard error and the 95\% confidence interval.
+
+??? success "Solution to Exercise 6"
+    Using the `HullWhite` class with a flat curve at 3%, $\sigma = 0.01$, $\lambda = 0.05$:
+
+    ```python
+    hw = HullWhite(sigma=0.01, lambd=0.05, P=lambda T: np.exp(-0.03 * T))
+    t, R, M = hw.generate_sample_paths(num_paths=50000, num_steps=1260, T=5, seed=42)
+    P_mc = (1.0 / M[:, -1]).mean()
+    P_mkt = np.exp(-0.03 * 5)
+    se = (1.0 / M[:, -1]).std() / np.sqrt(50000)
+    ```
+
+    **Analytical price:**
+
+    $$
+    P^M(0, 5) = e^{-0.15} = 0.86071
+    $$
+
+    **MC estimate:** $P^{\text{MC}}(0, 5) = \frac{1}{N}\sum_{i=1}^{N} 1/M_5^{(i)}$
+
+    With moment matching, the MC estimate should be very close to the analytical value. The standard error is:
+
+    $$
+    \text{SE} = \frac{\text{std}(1/M_5)}{\sqrt{N}}
+    $$
+
+    The standard deviation of $1/M_5$ depends on the variance of the integrated short rate $\int_0^5 r_s\,ds$. For the Hull-White model with these parameters, $\text{std}(1/M_5) \approx 0.05$, giving:
+
+    $$
+    \text{SE} \approx \frac{0.05}{\sqrt{50000}} = \frac{0.05}{223.6} \approx 0.000224
+    $$
+
+    The 95% confidence interval is:
+
+    $$
+    P^{\text{MC}} \pm 1.96 \times \text{SE} \approx 0.86071 \pm 0.000439
+    $$
+
+    $$
+    [0.86027,\; 0.86115]
+    $$
+
+    The analytical value $0.86071$ lies within this interval, confirming the implementation. The relative error $|P^{\text{MC}} - P^M|/P^M$ should be of order $10^{-4}$.

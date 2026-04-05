@@ -140,6 +140,7 @@ nav:
         - 4 Measure Change:
             - Chapter Overview: ch04/index.md
             - 4.1 Martingale Theory:
+                - "The Unifying Principle: Controlling Local Martingales": ch04/martingale_foundations/unifying_principle_controlling_local_martingales.md
                 - Local Martingale: ch04/martingale_foundations/local_martingale.md
                 - Martingale and No-Arbitrage: ch04/martingale_foundations/martingale_and_no_arbitrage.md
                 - Risk-Neutral Valuation Principle: ch04/martingale_foundations/risk_neutral_valuation_principle.md
@@ -158,6 +159,7 @@ nav:
                 - Numéraire and Measure Change: ch04/risk-neutral_measure/numeraire_and_measure_change.md
                 - Forward Measure: ch04/risk-neutral_measure/forward_measure.md
             - 4.4 Financial Insights:
+                - Financial Insights Intro: ch04/financial_interpretation/intro.md
                 - Pricing vs Hedging: ch04/financial_interpretation/pricing_vs_hedging.md
                 - Physical vs Risk-Neutral World: ch04/financial_interpretation/physical_vs_risk_neutral_world.md
                 - Risk Premium Decomposition: ch04/financial_interpretation/risk_premium_decomposition.md
@@ -236,16 +238,19 @@ nav:
                 - Historical Context: ch06/black_scholes_model/historical_context.md
                 - Geometric Brownian Motion as Asset Price Model: ch06/black_scholes_model/gbm_as_asset_price_model.md
                 - Self-Financing Portfolios: ch06/black_scholes_model/self_financing_portfolios.md
-            - 6.2 Black-Scholes Partial Differential Equation Derivation:
+            - 6.2 Black-Scholes PDE Derivation:
+                - One Equation, Five Perspectives: ch06/bs_pde_derivation/one_equation_five_perspectives.md
                 - Delta Hedging: ch06/bs_pde_derivation/delta_hedging.md
+                - Replication: ch06/bs_pde_derivation/replication.md
                 - Risk-Neutral Measure: ch06/bs_pde_derivation/risk_neutral_measure.md
                 - Change of Numéraire: ch06/bs_pde_derivation/change_of_numeraire.md
                 - Equilibrium Derivation: ch06/bs_pde_derivation/equilibrium.md
-            - 6.3 Black-Scholes Partial Differential Equation Structure:
+            - 6.3 Black-Scholes PDE Structure:
                 - Discounting and Killing: ch06/bs_pde_structure/discounting_and_killing_term.md
                 - Greeks from Partial Differential Equation: ch06/bs_pde_structure/greeks_from_pde.md
                 - Boundary Conditions: ch06/bs_pde_structure/terminal_and_boundary_conditions.md
             - 6.4 Black-Scholes Analytic Solutions:
+                - BS Analytic Solutions Introduction: ch06/bs_pde_analytic_solution/intro.md
                 - Heat Equation: ch06/bs_pde_analytic_solution/heat_equation.md
                 - Separation of Variables: ch06/bs_pde_analytic_solution/separation_of_variables.md
                 - Similarity Solutions: ch06/bs_pde_analytic_solution/similarity_solutions.md

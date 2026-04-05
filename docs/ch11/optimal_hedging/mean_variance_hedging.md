@@ -275,22 +275,178 @@ Mean-variance hedging is a **global** criterion: it minimizes the total hedging 
 
 **Exercise 1.** In the basis risk model with $dS_t = 0.08 S_t\,dt + 0.20 S_t\,dW_t^1$ and $dY_t = 0.10 Y_t\,dt + 0.30 Y_t(\rho\,dW_t^1 + \sqrt{1-\rho^2}\,dW_t^2)$, the minimum-variance hedge ratio for a call on $Y$ is $\xi_t^* = \rho(\sigma_Y/\sigma_S)(Y_t/S_t)(\partial C/\partial Y)$. For $\rho = 0.8$, $S_0 = Y_0 = 100$, and $\Delta_Y = \partial C/\partial Y = 0.55$, compute the optimal number of shares of $S$ to hold. What happens to $\xi^*$ as $\rho \to 0$?
 
+??? success "Solution to Exercise 1"
+    We are given $\rho = 0.8$, $\sigma_Y = 0.30$, $\sigma_S = 0.20$, $S_0 = Y_0 = 100$, and $\Delta_Y = 0.55$. The minimum-variance hedge ratio is:
+
+    $$
+    \xi^* = \rho \cdot \frac{\sigma_Y}{\sigma_S} \cdot \frac{Y_0}{S_0} \cdot \Delta_Y
+    $$
+
+    Substituting:
+
+    $$
+    \xi^* = 0.8 \times \frac{0.30}{0.20} \times \frac{100}{100} \times 0.55 = 0.8 \times 1.5 \times 1.0 \times 0.55 = 0.66
+    $$
+
+    The agent should hold **0.66 shares** of $S$ per unit of the claim on $Y$.
+
+    As $\rho \to 0$, the hedge ratio $\xi^* \to 0$. This is intuitive: when the correlation between $S$ and $Y$ vanishes, trading $S$ provides no information about or exposure to $Y$, so the optimal hedge involves no position in $S$ at all. The assets become independent, and hedging with $S$ is futile.
+
 ---
 
 **Exercise 2.** The hedgeable fraction of a claim's variance in the basis risk model is $\rho^2$. For correlations $\rho = 0.5, 0.7, 0.8, 0.9, 0.95$, compute both the hedgeable fraction and the residual variance $(1-\rho^2)\operatorname{Var}(H)$. If $\operatorname{Var}(H) = 100$, at what correlation level does the residual standard deviation fall below $\$3$?
+
+??? success "Solution to Exercise 2"
+    The hedgeable fraction is $\rho^2$ and the residual variance is $(1 - \rho^2)\operatorname{Var}(H)$. With $\operatorname{Var}(H) = 100$:
+
+    | $\rho$ | $\rho^2$ (hedgeable) | $1 - \rho^2$ (residual fraction) | Residual variance | Residual std dev |
+    |:---|:---|:---|:---|:---|
+    | 0.50 | 0.250 | 0.750 | 75.0 | 8.66 |
+    | 0.70 | 0.490 | 0.510 | 51.0 | 7.14 |
+    | 0.80 | 0.640 | 0.360 | 36.0 | 6.00 |
+    | 0.90 | 0.810 | 0.190 | 19.0 | 4.36 |
+    | 0.95 | 0.9025 | 0.0975 | 9.75 | 3.12 |
+
+    We need the residual standard deviation to fall below $\$3$, so:
+
+    $$
+    \sqrt{(1 - \rho^2) \times 100} < 3 \implies (1 - \rho^2) \times 100 < 9 \implies \rho^2 > 0.91 \implies \rho > \sqrt{0.91} \approx 0.954
+    $$
+
+    The correlation must exceed approximately **0.954** for the residual standard deviation to fall below $\$3$.
 
 ---
 
 **Exercise 3.** The orthogonality condition for the mean-variance optimal hedge states $\mathbb{E}[(H - c^* - G_T(\xi^*))(c + G_T(\xi))] = 0$ for all $c, \xi$. Explain why setting $\xi = 0$ gives $c^* = \mathbb{E}[H]$ when $\tilde{S}$ is a $\mathbb{P}$-martingale. What is the economic interpretation of this condition --- why must the hedging error be uncorrelated with every tradeable payoff?
 
+??? success "Solution to Exercise 3"
+    Setting $\xi = 0$ in the orthogonality condition:
+
+    $$
+    \mathbb{E}\!\left[(H - c^* - G_T(\xi^*)) \cdot c\right] = 0 \quad \text{for all } c \in \mathbb{R}
+    $$
+
+    Since $c$ is an arbitrary constant, this requires:
+
+    $$
+    \mathbb{E}[H - c^* - G_T(\xi^*)] = 0
+    $$
+
+    When $\tilde{S}$ is a $\mathbb{P}$-martingale, the stochastic integral $G_T(\xi) = \int_0^T \xi_t\,d\tilde{S}_t$ is also a martingale (under integrability conditions), so $\mathbb{E}[G_T(\xi^*)] = 0$. Therefore:
+
+    $$
+    \mathbb{E}[H] - c^* = 0 \implies c^* = \mathbb{E}[H]
+    $$
+
+    **Economic interpretation:** The orthogonality condition states that the hedging error $\varepsilon = H - c^* - G_T(\xi^*)$ must be uncorrelated with every tradeable payoff $c + G_T(\xi)$. If it were correlated, one could construct a modified strategy that exploits this correlation to reduce the mean-squared error further, contradicting the optimality of $(c^*, \xi^*)$.
+
+    In financial terms, this means the residual risk after optimal hedging is **purely idiosyncratic** relative to the traded instruments. No linear combination of traded assets can explain any remaining variation in the hedging error. This is the financial analogue of the residual in an OLS regression being orthogonal to the regressors.
+
 ---
 
 **Exercise 4.** In the Heston model with $|\rho| = 0.7$, the unhedgeable component $L_T^H$ captures volatility risk. If $\mathbb{E}[(L_T^H)^2] = (1 - \rho^2) \cdot \operatorname{Var}(H)$ approximately, and $\operatorname{Var}(H) = 64$ for an ATM call, compute the minimum hedging error standard deviation achievable by trading the stock alone. How much additional variance reduction would a variance swap (adding a second traded instrument) provide if it has correlation $0.95$ with the volatility factor?
+
+??? success "Solution to Exercise 4"
+    With $|\rho| = 0.7$ and $\operatorname{Var}(H) = 64$:
+
+    $$
+    \mathbb{E}[(L_T^H)^2] = (1 - \rho^2)\operatorname{Var}(H) = (1 - 0.49) \times 64 = 0.51 \times 64 = 32.64
+    $$
+
+    The minimum hedging error standard deviation from trading the stock alone is:
+
+    $$
+    \sqrt{32.64} \approx 5.71
+    $$
+
+    Now suppose we add a variance swap with correlation $0.95$ with the volatility factor. The volatility factor corresponds to $W^2$ (the orthogonal Brownian motion). The stock hedges the $W^1$ component (with effectiveness $\rho^2 = 0.49$), leaving $1 - \rho^2 = 0.51$ of the variance unhedged.
+
+    The unhedged variance is $(1 - \rho^2)\operatorname{Var}(H) = 32.64$. The variance swap, correlated at $0.95$ with the volatility factor, can hedge a fraction $0.95^2 = 0.9025$ of this remaining unhedged variance. Therefore the additional variance reduction is:
+
+    $$
+    0.9025 \times 32.64 \approx 29.46
+    $$
+
+    The new residual variance is:
+
+    $$
+    32.64 - 29.46 = 3.18
+    $$
+
+    The new residual standard deviation is $\sqrt{3.18} \approx 1.78$. The variance swap reduces the residual standard deviation from approximately $\$5.71$ to approximately $\$1.78$, a dramatic improvement. The total hedgeable fraction of variance rises from $49\%$ to approximately $95\%$.
 
 ---
 
 **Exercise 5.** The Follmer-Schweizer decomposition writes $H = H_0 + \int_0^T \xi_t^H\,d\tilde{S}_t + L_T^H$. In a complete market ($L_T^H = 0$), this reduces to the replicating strategy. For a European call in the Black-Scholes model with $S_0 = 100$, $K = 100$, $\sigma = 0.20$, $r = 0.05$, $T = 1$, identify $H_0$ (the optimal initial capital) and $\xi_t^*$ (the hedging strategy). Verify that $H_0$ equals the Black-Scholes price.
 
+??? success "Solution to Exercise 5"
+    In the Black-Scholes model with $S_0 = 100$, $K = 100$, $\sigma = 0.20$, $r = 0.05$, $T = 1$, the market is complete, so $L_T^H = 0$ and the FS decomposition reduces to:
+
+    $$
+    H = H_0 + \int_0^T \xi_t^H\,d\tilde{S}_t
+    $$
+
+    **Identifying $H_0$:** The optimal initial capital is the Black-Scholes price of the call:
+
+    $$
+    H_0 = e^{-rT}\,\text{BS}(S_0, K, T, \sigma, r)
+    $$
+
+    Computing the Black-Scholes price:
+
+    $$
+    d_1 = \frac{\ln(S_0/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}} = \frac{0 + (0.05 + 0.02) \times 1}{0.20} = \frac{0.07}{0.20} = 0.35
+    $$
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{T} = 0.35 - 0.20 = 0.15
+    $$
+
+    Using standard normal values: $N(0.35) \approx 0.6368$ and $N(0.15) \approx 0.5596$.
+
+    $$
+    C = S_0\,N(d_1) - K e^{-rT}N(d_2) = 100 \times 0.6368 - 100 \times e^{-0.05} \times 0.5596
+    $$
+
+    $$
+    C = 63.68 - 100 \times 0.9512 \times 0.5596 = 63.68 - 53.23 = 10.45
+    $$
+
+    So $H_0 \approx \$10.45$ (the discounted Black-Scholes price of the call).
+
+    **Identifying $\xi_t^*$:** The hedging strategy is the Black-Scholes delta:
+
+    $$
+    \xi_t^* = \frac{\partial C}{\partial S}(t, S_t) = N(d_1(t, S_t))
+    $$
+
+    where $d_1(t, S_t) = \frac{\ln(S_t/K) + (r + \sigma^2/2)(T - t)}{\sigma\sqrt{T - t}}$.
+
+    **Verification:** In a complete market, the FS decomposition initial value $H_0$ equals $\mathbb{E}^{\mathbb{Q}}[\tilde{H}]$, which is precisely the discounted risk-neutral expectation --- the Black-Scholes price. The hedging error is zero ($L_T^H = 0$) because the claim is perfectly replicable.
+
 ---
 
 **Exercise 6.** The variance-optimal measure $\mathbb{Q}^*$ minimizes $\mathbb{E}[(d\mathbb{Q}/d\mathbb{P})^2]$ over all equivalent martingale measures. In a model where $d\tilde{S}_t = \sigma\tilde{S}_t\,dW_t + \alpha\sigma^2\tilde{S}_t\,dt$ (with $\alpha = (\mu - r)/\sigma^2$), the density of $\mathbb{Q}^*$ involves the stochastic exponential $\mathcal{E}(-\alpha\sigma\,W)_T$. For $\mu = 0.08$, $r = 0.03$, $\sigma = 0.25$, $T = 1$, compute the Sharpe ratio $\lambda = (\mu - r)/\sigma$ and the mean-variance tradeoff $\hat{K}_T = \lambda^2 T$. What is the economic interpretation of $\hat{K}_T$?
+
+??? success "Solution to Exercise 6"
+    The Sharpe ratio is:
+
+    $$
+    \lambda = \frac{\mu - r}{\sigma} = \frac{0.08 - 0.03}{0.25} = \frac{0.05}{0.25} = 0.20
+    $$
+
+    The mean-variance tradeoff is:
+
+    $$
+    \hat{K}_T = \lambda^2 T = 0.20^2 \times 1 = 0.04
+    $$
+
+    **Economic interpretation:** The mean-variance tradeoff $\hat{K}_T$ measures the **maximum Sharpe ratio squared** accumulated over the trading horizon. It quantifies the reward-to-risk ratio available from optimally investing in the risky asset.
+
+    Specifically, $\hat{K}_T = \lambda^2 T$ represents:
+
+    - The squared Sharpe ratio multiplied by the time horizon, reflecting the cumulative opportunity cost of risk.
+    - In the Merton portfolio problem, the maximum expected log-return per unit variance achievable by continuous trading over $[0, T]$.
+    - It appears in the density of the variance-optimal measure: $d\mathbb{Q}^*/d\mathbb{P} \propto \mathcal{E}(-\lambda W)_T$, and $\hat{K}_T$ determines how far $\mathbb{Q}^*$ deviates from $\mathbb{P}$. A larger $\hat{K}_T$ means a larger Girsanov drift removal, and the variance-optimal measure differs more from the physical measure.
+
+    When $\hat{K}_T$ is deterministic (as here, since all parameters are constant), the local risk minimization and variance-optimal hedging strategies coincide. The value $\hat{K}_T = 0.04$ indicates a relatively modest reward-to-risk ratio, consistent with the moderate Sharpe ratio of $0.20$.

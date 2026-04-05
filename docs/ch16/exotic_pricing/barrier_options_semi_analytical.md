@@ -283,32 +283,204 @@ Compared to a Black--Scholes model with the same ATM volatility ($\sigma = 0.20$
 **Exercise 1.**
 State the in-out parity for barrier options: $V_{\text{in}} + V_{\text{out}} = V_{\text{vanilla}}$. A European vanilla call with $K = 100$ is worth \$8.50 under Heston. A down-and-out call with barrier $B = 85$ is priced at \$7.20. Compute the down-and-in call price. Explain why the DOC is cheaper than the vanilla: what scenarios does the barrier eliminate?
 
+??? success "Solution to Exercise 1"
+    **In-out parity.** By the partition $\{\tau_B > T\} \cup \{\tau_B \leq T\} = \Omega$:
+
+    $$
+    V_{\text{DIC}} = V_{\text{vanilla}} - V_{\text{DOC}} = \$8.50 - \$7.20 = \$1.30
+    $$
+
+    **Why the DOC is cheaper than the vanilla.** The down-and-out call has payoff $(S_T - K)^+ \mathbf{1}_{\{\tau_B > T\}}$, which is zero whenever the stock touches or crosses $B = 85$ during the option's life. The vanilla call has payoff $(S_T - K)^+$ regardless of the path.
+
+    The scenarios eliminated by the barrier are those where the stock drops to \$85 or below at any point before maturity. Crucially, some of these paths subsequently **recover** and finish above the strike $K = 100$, producing a positive payoff for the vanilla call but zero for the DOC. The price difference $\$8.50 - \$7.20 = \$1.30$ represents the expected discounted value of exactly these "touch and recover" scenarios.
+
+    Under Heston with $\rho = -0.7$, the probability of touching $B = 85$ is enhanced relative to Black--Scholes: when the stock drops toward the barrier, negative correlation causes variance to increase, accelerating further downward movement. This makes the DOC relatively cheaper (and the DIC relatively more expensive) than in a constant-volatility model.
+
 ---
 
 **Exercise 2.**
 Under Black-Scholes, the reflection principle yields a closed-form for continuously monitored barrier options because the log-price $\ln S_t$ is a Brownian motion with drift. Explain why the reflection principle fails under Heston. Specifically, consider a down-and-out call with barrier $B < S_0$: the reflected path at $\ln B$ does not have the same law as the original process because the variance state $v_t$ at the hitting time is random and affects the post-reflection dynamics.
+
+??? success "Solution to Exercise 2"
+    **Why the reflection principle fails under Heston.**
+
+    In Black--Scholes, the log-price follows $X_t = X_0 + \mu t + \sigma W_t$ where $\mu = r - q - \sigma^2/2$ is a constant drift. The reflection principle for Brownian motion states: for a barrier at level $b = \ln B$, the law of the first passage time and the post-reflection dynamics are fully characterized by the symmetry of the Brownian motion about the barrier. Specifically, for $W_t$ hitting level $l$, the reflected process $2l - W_t$ has the same law as $W_t$ for paths that have crossed $l$.
+
+    Under Heston, $X_t = \ln S_t$ satisfies:
+
+    $$
+    dX_t = \left(r - q - \frac{v_t}{2}\right) dt + \sqrt{v_t} \, dW_t^{(1)}
+    $$
+
+    The reflection principle fails for two specific reasons:
+
+    **1. Variance state at hitting time is random.** Suppose the path first hits the barrier $b$ at time $\tau_B$. At this instant, $v_{\tau_B}$ is a random variable whose distribution depends on the entire path history. The reflected path starting from $b$ at time $\tau_B$ would need to continue with variance dynamics initialized at $v_{\tau_B}$. However, the reflection operation on $X_t$ (replacing $X_t$ with $2b - X_t$ for $t > \tau_B$) does not correspondingly reflect or reset the variance process. The variance process $v_t$ continues its CIR dynamics independently of whether $X_t$ has been reflected. This means the reflected process $(2b - X_t, v_t)$ does not have the same joint law as the original process $(X_t, v_t)$.
+
+    **2. Correlation entangles the two dimensions.** Since $dW_t^{(1)}$ and $dW_t^{(2)}$ have correlation $\rho$, the variance process $v_t$ is statistically linked to the direction of $X_t$. With $\rho < 0$, a downward move in $X_t$ (toward the barrier) tends to coincide with an increase in $v_t$. After reflection, the "upward" move in $2b - X_t$ would be paired with increasing variance --- the opposite of the natural leverage effect. This asymmetry means the reflected path does not have the same distributional properties as the unreflected path.
+
+    In summary, the reflection principle requires that the process has the same distributional structure on both sides of the barrier, which holds for drifted Brownian motion (a one-dimensional Markov process with translation-invariant dynamics) but not for the two-dimensional Heston process where the second component ($v_t$) breaks the symmetry.
 
 ---
 
 **Exercise 3.**
 A discretely monitored down-and-out call checks the barrier only at dates $t_1, \ldots, t_m$. The Broadie-Glasserman-Kou continuity correction shifts the barrier to $B e^{-\beta\sigma\sqrt{\Delta t}}$ where $\beta = \zeta(1/2)/\sqrt{2\pi} \approx 0.5826$ and $\sigma$ is the effective volatility. For $B = 90$, $\sigma = 20\%$, and daily monitoring ($\Delta t = 1/252$), compute the adjusted barrier. By how many dollars does the correction shift the barrier?
 
+??? success "Solution to Exercise 3"
+    **Computing the adjusted barrier.** The Broadie--Glasserman--Kou continuity correction for a down-and-out barrier is:
+
+    $$
+    B_{\text{adj}} = B \exp(-\beta \sigma \sqrt{\Delta t})
+    $$
+
+    with $\beta \approx 0.5826$, $B = 90$, $\sigma = 0.20$, and $\Delta t = 1/252$.
+
+    **Step 1.** Compute $\sqrt{\Delta t}$:
+
+    $$
+    \sqrt{\Delta t} = \sqrt{1/252} = \frac{1}{\sqrt{252}} \approx \frac{1}{15.875} \approx 0.06300
+    $$
+
+    **Step 2.** Compute the exponent:
+
+    $$
+    \beta \sigma \sqrt{\Delta t} = 0.5826 \times 0.20 \times 0.06300 = 0.5826 \times 0.01260 = 0.007341
+    $$
+
+    **Step 3.** Compute the adjusted barrier:
+
+    $$
+    B_{\text{adj}} = 90 \times e^{-0.007341} \approx 90 \times (1 - 0.007341 + \cdots) \approx 90 \times 0.99268 = 89.341
+    $$
+
+    **Shift in dollars:**
+
+    $$
+    B - B_{\text{adj}} = 90 - 89.341 = \$0.659
+    $$
+
+    The correction shifts the barrier **downward** by approximately \$0.66. This makes the knock-out less likely (since the stock must reach a lower level to trigger the barrier), which compensates for the fact that in the continuous-monitoring limit, the stock can cross the barrier between discrete monitoring dates. The shift is small relative to the barrier level (0.73%), but its effect on the option price can be significant --- as seen in the numerical example, uncorrected Monte Carlo overestimates the DOC price by 5.5%, while the corrected version reduces the bias to match the standard error.
+
 ---
 
 **Exercise 4.**
 An up-and-out call with $K = 100$, $B = 130$, $T = 1$ is priced under Heston. If $\rho = -0.7$ (strong negative correlation), explain qualitatively why the UOC is less likely to be knocked out compared to the case $\rho = 0$. Hint: negative $\rho$ means large upward moves in $S$ tend to coincide with decreasing variance, which limits the magnitude of subsequent upward moves.
+
+??? success "Solution to Exercise 4"
+    **Effect of negative $\rho$ on up-and-out call knock-out probability.**
+
+    For an up-and-out call with $B = 130$, the option is knocked out when $S_t$ reaches 130. Consider what happens when the stock price rises toward the barrier:
+
+    **Case $\rho = 0$ (zero correlation):** The variance process $v_t$ evolves independently of the stock price. When $S_t$ approaches 130, the variance $v_t$ is at its unconditional (mean-reverting) level, providing no additional dampening or amplification of the stock's upward movement.
+
+    **Case $\rho = -0.7$ (negative correlation):** When $S_t$ rises significantly (moving toward $B = 130$), the negative correlation implies that $dW_t^{(1)} > 0$ (positive stock return) tends to coincide with $dW_t^{(2)} < 0$ (negative variance shock). This causes the variance $v_t$ to **decrease** as the stock rises. Lower variance means:
+
+    1. **Smaller subsequent moves:** With reduced $v_t$, the instantaneous volatility $\sqrt{v_t}$ is lower, making large further upward moves less likely.
+    2. **Self-limiting dynamics:** The rise in $S_t$ triggers a decline in volatility, which constrains further upside. The stock effectively "runs out of steam" as it approaches the barrier.
+    3. **Reduced barrier crossing probability:** The probability of $S_t$ reaching 130 is lower because the volatility decreases precisely when the stock is close to the barrier.
+
+    Conversely, with positive $\rho$, rising stock prices would increase variance, creating momentum that makes barrier crossings more likely.
+
+    The net effect is that with $\rho = -0.7$, the UOC is **less likely to be knocked out** than with $\rho = 0$, making the UOC more valuable. This is the opposite of the effect on down-and-out options, where negative $\rho$ increases the knock-out probability (falling stock prices increase variance, accelerating the drop toward the barrier).
 
 ---
 
 **Exercise 5.**
 Monte Carlo pricing of barrier options suffers from **barrier bias**: the simulated path may cross the barrier between monitoring dates without being detected. For a continuously monitored barrier, the Brownian bridge correction estimates the probability of crossing the barrier between two consecutive simulated points. Describe the correction: given $S_n$ and $S_{n+1}$ both above the barrier $B$, the probability of the minimum of the Brownian bridge falling below $B$ is approximately $\exp(-2\ln(S_n/B)\ln(S_{n+1}/B) / (v_n \Delta t))$. Explain why this correction is only approximate under Heston.
 
+??? success "Solution to Exercise 5"
+    **Brownian bridge correction for barrier Monte Carlo.**
+
+    Given simulated values $S_n$ and $S_{n+1}$ at consecutive time steps, both above the barrier $B$, we need to estimate the probability that the **continuous path** between these two points crossed the barrier. Under Black--Scholes (constant volatility $\sigma$), the log-price between $t_n$ and $t_{n+1}$ is a Brownian bridge given the endpoints.
+
+    **The correction.** For a Brownian bridge from $\ln S_n$ to $\ln S_{n+1}$ over an interval of length $\Delta t$, the probability that the minimum falls below $\ln B$ is:
+
+    $$
+    P(\min_{t \in [t_n, t_{n+1}]} X_t < \ln B \mid X_{t_n} = \ln S_n, X_{t_{n+1}} = \ln S_{n+1}) = \exp\!\left(-\frac{2\ln(S_n/B)\ln(S_{n+1}/B)}{v_n \Delta t}\right)
+    $$
+
+    where $v_n$ is the variance (volatility squared) used in the log-price dynamics over $[t_n, t_{n+1}]$.
+
+    **Implementation.** For each simulated interval where both endpoints are above $B$:
+
+    1. Compute $p_n = \exp(-2\ln(S_n/B)\ln(S_{n+1}/B)/(v_n \Delta t))$
+    2. With probability $p_n$, declare the path knocked out (barrier crossed between monitoring dates)
+    3. This can be implemented by generating a uniform random variable $U_n \sim \text{Uniform}(0,1)$ and knocking out if $U_n < p_n$
+
+    **Why this is only approximate under Heston.** The correction relies on three assumptions that hold under Black--Scholes but not under Heston:
+
+    1. **Constant volatility within the interval.** The formula assumes the log-price follows a Brownian motion with constant diffusion $\sqrt{v_n}$ between $t_n$ and $t_{n+1}$. Under Heston, $v_t$ varies continuously within the interval. Using a single value $v_n$ (e.g., the simulated variance at $t_n$) is an approximation.
+
+    2. **Brownian bridge property.** The exact distribution of the minimum of the log-price between two points requires the path to be a Brownian bridge, which holds only when the diffusion coefficient is constant. Under Heston, the path conditional on its endpoints is not a standard Brownian bridge because the drift and diffusion depend on the time-varying $v_t$.
+
+    3. **Independence of the variance path.** The barrier crossing probability depends on the variance path $\{v_s : s \in [t_n, t_{n+1}]\}$, not just the endpoint value $v_n$. The correction ignores this path dependence.
+
+    Despite these limitations, the Brownian bridge correction significantly reduces the barrier bias in practice, especially when the time step $\Delta t$ is small enough that $v_t$ changes little within each interval.
+
 ---
 
 **Exercise 6.**
 Compare the sensitivity of a down-and-out call to the Heston parameter $\xi$ (vol-of-vol) versus the vanilla call. The DOC has additional sensitivity because $\xi$ affects the probability of hitting the barrier. For $B = 85$, $K = 100$, $S_0 = 100$, $v_0 = 0.04$, argue that increasing $\xi$ increases the probability of large variance excursions, which increases the probability of $S_t$ dropping below $B$, thereby decreasing the DOC price.
 
+??? success "Solution to Exercise 6"
+    **Sensitivity of DOC to $\xi$ versus vanilla.**
+
+    **Vanilla call sensitivity to $\xi$.** The European call price depends on $\xi$ through the shape of the implied volatility smile. Increasing $\xi$ increases the kurtosis of the log-return distribution (heavier tails and a more peaked center), which raises OTM option prices but has a more modest effect on ATM options. For an ATM vanilla call, the sensitivity $\partial V_{\text{call}} / \partial \xi$ is relatively small.
+
+    **DOC sensitivity to $\xi$.** The down-and-out call has **additional sensitivity** to $\xi$ through the knock-out probability. The DOC price depends on $\xi$ through two channels:
+
+    1. **Terminal distribution effect** (same as vanilla): $\xi$ affects the distribution of $S_T$, modifying the expected payoff conditional on survival.
+
+    2. **Barrier crossing probability** (unique to DOC): $\xi$ controls the magnitude of variance excursions. Increasing $\xi$ increases the probability of large variance spikes, which in turn increases the probability of $S_t$ dropping below $B$.
+
+    **The argument.** Consider increasing $\xi$ from $\xi_1$ to $\xi_2 > \xi_1$:
+
+    - Higher $\xi$ means the CIR process $v_t$ has larger fluctuations around its mean-reverting level $\theta$.
+    - Large upward variance excursions ($v_t \gg \theta$) are more probable. During these episodes, the stock price has high instantaneous volatility $\sqrt{v_t}$, making large downward moves more likely.
+    - With $\rho = -0.7$, these high-variance episodes are positively correlated with downward stock moves (leverage effect). A variance spike increases the probability of $S_t$ falling rapidly toward or below $B = 85$.
+    - The probability $\mathbb{P}(\tau_B \leq T)$ therefore increases with $\xi$, reducing the DOC price.
+
+    Formally, using in-out parity: $V_{\text{DOC}} = V_{\text{call}} - V_{\text{DIC}}$. Since $V_{\text{DIC}}$ increases with $\xi$ (higher knock-in probability times higher expected recovery payoff), and $V_{\text{call}}$ is relatively insensitive to $\xi$ at ATM, the DOC price decreases.
+
+    The DOC has a larger absolute sensitivity $|\partial V / \partial \xi|$ than the vanilla because the barrier channel amplifies the effect of vol-of-vol. This makes barrier options particularly challenging to hedge with respect to higher-order volatility risks.
+
 ---
 
 **Exercise 7.**
 The semi-analytical approach prices continuously monitored barriers using the characteristic function of the "killed" process (the process stopped at the barrier). This requires computing $\mathbb{E}[e^{iu\ln S_T} \mathbf{1}\{\tau_B > T\}]$ where $\tau_B$ is the first hitting time of the barrier. Explain conceptually how this differs from the standard Heston CF $\mathbb{E}[e^{iu\ln S_T}]$. Why is the killed CF not available in the same closed form as the standard Heston CF?
+
+??? success "Solution to Exercise 7"
+    **Standard Heston CF versus killed CF.**
+
+    **The standard Heston CF** is:
+
+    $$
+    \phi(u) = \mathbb{E}^{\mathbb{Q}}[e^{iu \ln S_T}]
+    $$
+
+    This is an unconditional expectation over **all possible paths** of $(S_t, v_t)$ from time 0 to $T$. The Heston PDE for $\phi$ is defined on the entire domain $\{(x, v) : x \in \mathbb{R}, v > 0\}$ with no boundary condition on $x$. The affine structure of the Heston model allows this PDE to be reduced to the Riccati ODE system, yielding the well-known exponential-affine solution $\phi(u) = \exp(C(\tau, u) + D(\tau, u) v_0 + iu x_0)$.
+
+    **The killed CF** is:
+
+    $$
+    \phi_{\text{surv}}(u) = \mathbb{E}^{\mathbb{Q}}[e^{iu \ln S_T} \mathbf{1}_{\{\tau_B > T\}}]
+    $$
+
+    This includes only paths that **never cross the barrier** during $[0, T]$. The indicator function $\mathbf{1}_{\{\tau_B > T\}}$ restricts the integration to the subset of paths that remain in the domain $\{x > b\}$ for all $t \leq T$.
+
+    **Key conceptual difference.** The killed CF corresponds to the solution of the same Heston PDE but on the **restricted domain** $\Omega = \{(x, v) : x > b, v > 0\}$ with an **absorbing boundary condition** at $x = b$:
+
+    $$
+    \phi_{\text{surv}}(u, \tau; b, v) = 0 \quad \text{for all } v > 0, \tau > 0
+    $$
+
+    **Why the killed CF has no closed form.** The closed-form Heston CF arises because the exponential-affine ansatz $\phi = \exp(C + Dv + iux)$ satisfies the PDE on the unrestricted domain, reducing it to ODEs for $C$ and $D$. When we impose the absorbing boundary $\phi(u, \tau; b, v) = 0$, this ansatz **cannot satisfy the boundary condition**: the exponential function $\exp(C + Dv + iub)$ is generally non-zero, so there is no choice of $C, D$ that makes it vanish at $x = b$ for all $v$ and $\tau$ simultaneously.
+
+    To satisfy the absorbing boundary, the solution must be represented as a **superposition** (integral or series) of exponential-affine functions, not a single one. Specifically, one can write:
+
+    $$
+    \phi_{\text{surv}}(u, \tau; x, v) = \phi(u, \tau; x, v) - \phi_{\text{cross}}(u, \tau; x, v)
+    $$
+
+    where $\phi_{\text{cross}}$ accounts for paths that crossed $b$. Computing $\phi_{\text{cross}}$ requires solving a boundary value problem in two spatial dimensions $(x, v)$, which does not reduce to a finite-dimensional ODE system. This is fundamentally because the barrier condition on $x$ couples the spatial dimensions in a way that the affine structure alone cannot disentangle.
+
+    In practice, $\phi_{\text{surv}}$ is computed either by numerical PDE methods (finite differences on the restricted domain) or by approximation techniques such as series expansions in eigenfunction bases adapted to the absorbing boundary.

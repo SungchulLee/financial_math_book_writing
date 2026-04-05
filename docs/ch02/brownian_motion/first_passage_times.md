@@ -378,22 +378,6 @@ appears directly in the option price formula.
 
 1. Compute $\mathbb{P}(\tau_1 \leq 1)$, $\mathbb{P}(\tau_1 \leq 4)$, and $\mathbb{P}(\tau_2 \leq 4)$ using the CDF formula.
 
-2. Verify that $\int_0^\infty f_{\tau_a}(t)\,dt = 1$ by the substitution $u = a/\sqrt{t}$.
-
-3. Show that $\mathbb{E}[\tau_a^{1/2}] < \infty$ by direct integration against the Lévy density.
-
-4. Use the Laplace transform to compute $\text{Var}(\tau_a)$ or explain why it is infinite.
-
-5. Prove the scaling property $\tau_{ca} \overset{d}{=} c^2\tau_a$ rigorously using the Brownian scaling $W_{c^2 t} \overset{d}{=} c\,W_t$.
-
-6. Verify directly that the Lévy density $f_{\tau_a}(t) = \frac{a}{\sqrt{2\pi t^3}}e^{-a^2/(2t)}$ satisfies the PDE $\frac{\partial f}{\partial a} = -\frac{1}{2}\frac{\partial^2 f}{\partial t^2} \cdot \frac{t}{a}$... Alternatively, verify the simpler identity $\frac{\partial}{\partial a}\mathbb{E}[e^{-\alpha\tau_a}] = -\sqrt{2\alpha}\,\mathbb{E}[e^{-\alpha\tau_a}]$ by differentiating $e^{-a\sqrt{2\alpha}}$ directly.
-
-7. For a Brownian motion with drift $\mu$, $X_t = W_t + \mu t$, the Laplace transform of the first passage time to $a > 0$ is $\mathbb{E}[e^{-\alpha\tau_a}] = e^{-a(\sqrt{2\alpha+\mu^2} - \mu)}$. Verify this reduces to $e^{-a\sqrt{2\alpha}}$ when $\mu = 0$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Using the CDF formula $\mathbb{P}(\tau_a \leq t) = 2\Phi(-a/\sqrt{t})$:
 
@@ -417,6 +401,10 @@ appears directly in the option price formula.
 
     Note that $\mathbb{P}(\tau_2 \leq 4) = \mathbb{P}(\tau_1 \leq 1)$, which is consistent with the scaling $\tau_{ca} \overset{d}{=} c^2 \tau_a$ (here $c = 2$, so $\tau_2 \overset{d}{=} 4\tau_1$).
 
+---
+
+2. Verify that $\int_0^\infty f_{\tau_a}(t)\,dt = 1$ by the substitution $u = a/\sqrt{t}$.
+
 ??? success "Solution to Exercise 2"
     We verify $\int_0^\infty f_{\tau_a}(t)\,dt = 1$ using the substitution $u = a/\sqrt{t}$.
 
@@ -437,6 +425,10 @@ appears directly in the option price formula.
     $$
     = \frac{2}{\sqrt{2\pi}} \cdot \sqrt{\frac{\pi}{2}} = \frac{2\sqrt{\pi}}{\sqrt{2\pi} \cdot \sqrt{2}} = \frac{2\sqrt{\pi}}{2\sqrt{\pi}} = 1
     $$
+
+---
+
+3. Show that $\mathbb{E}[\tau_a^{1/2}] < \infty$ by direct integration against the Lévy density.
 
 ??? success "Solution to Exercise 3"
     We compute $\mathbb{E}[\tau_a^{1/2}] = \int_0^\infty t^{1/2} f_{\tau_a}(t)\,dt$ using the Lévy density:
@@ -467,6 +459,10 @@ appears directly in the option price formula.
 
     This shows $\mathbb{E}[\tau_a^{-1/2}] < \infty$. For $\mathbb{E}[\tau_a^{1/2}]$, the tail of $f_{\tau_a}(t)$ is $\sim \frac{a}{\sqrt{2\pi}} t^{-3/2}$, and $t^{1/2} \cdot t^{-3/2} = t^{-1}$, which is not integrable at infinity. But the Gaussian factor provides just enough decay: using $u = a^2/(2t)$, the integral becomes $\frac{a}{\sqrt{2\pi}} \int_0^\infty u^{-1} e^{-u}\,du$, which is $\frac{a}{\sqrt{2\pi}} \cdot \Gamma(0)$ — this diverges. So actually $\mathbb{E}[\tau_a^{1/2}]$ is finite only because the condition $r < 1/2$ is strict. In fact, $\mathbb{E}[\tau_a^r] < \infty$ iff $r < 1/2$, so $r = 1/2$ is the borderline case. To show finiteness for $r < 1/2$, take any such $r$. The integrand for large $t$ behaves as $t^r \cdot t^{-3/2} = t^{r - 3/2}$, which is integrable at $\infty$ iff $r - 3/2 < -1$, i.e., $r < 1/2$. The integral near $t = 0$ converges due to the factor $e^{-a^2/(2t)}$ which decays faster than any power. Hence $\mathbb{E}[\tau_a^r] < \infty$ for all $r < 1/2$.
 
+---
+
+4. Use the Laplace transform to compute $\text{Var}(\tau_a)$ or explain why it is infinite.
+
 ??? success "Solution to Exercise 4"
     From the Laplace transform $\mathbb{E}[e^{-\alpha\tau_a}] = e^{-a\sqrt{2\alpha}}$, moments are obtained by differentiation:
 
@@ -479,6 +475,10 @@ appears directly in the option price formula.
     For the variance: $\text{Var}(\tau_a) = \mathbb{E}[\tau_a^2] - (\mathbb{E}[\tau_a])^2$. Since $\mathbb{E}[\tau_a] = \infty$, the variance is automatically $\infty$.
 
     Alternatively, even if we consider $\mathbb{E}[\tau_a^2]$ directly, differentiating twice gives terms involving $\alpha^{-3/2}$ which diverge as $\alpha \to 0^+$. Therefore $\text{Var}(\tau_a) = \infty$.
+
+---
+
+5. Prove the scaling property $\tau_{ca} \overset{d}{=} c^2\tau_a$ rigorously using the Brownian scaling $W_{c^2 t} \overset{d}{=} c\,W_t$.
 
 ??? success "Solution to Exercise 5"
     By the scaling property of Brownian motion, $\{W_{c^2 t}\}_{t \geq 0} \overset{d}{=} \{c\,W_t\}_{t \geq 0}$ as processes. Define $\widetilde{W}_t = W_{c^2 t}/c$, which is a standard Brownian motion.
@@ -497,6 +497,10 @@ appears directly in the option price formula.
 
     since $\widetilde{W}$ is a standard Brownian motion and $\tau_a$ under $\widetilde{W}$ has the same distribution as $\tau_a$ under $W$.
 
+---
+
+6. Verify directly that the Lévy density $f_{\tau_a}(t) = \frac{a}{\sqrt{2\pi t^3}}e^{-a^2/(2t)}$ satisfies the PDE $\frac{\partial f}{\partial a} = -\frac{1}{2}\frac{\partial^2 f}{\partial t^2} \cdot \frac{t}{a}$... Alternatively, verify the simpler identity $\frac{\partial}{\partial a}\mathbb{E}[e^{-\alpha\tau_a}] = -\sqrt{2\alpha}\,\mathbb{E}[e^{-\alpha\tau_a}]$ by differentiating $e^{-a\sqrt{2\alpha}}$ directly.
+
 ??? success "Solution to Exercise 6"
     We verify the identity $\frac{\partial}{\partial a}\mathbb{E}[e^{-\alpha\tau_a}] = -\sqrt{2\alpha}\,\mathbb{E}[e^{-\alpha\tau_a}]$.
 
@@ -507,6 +511,10 @@ appears directly in the option price formula.
     $$
 
     This confirms the identity. The interpretation is that increasing the target level $a$ by a small amount $da$ reduces the Laplace transform by a factor proportional to $\sqrt{2\alpha}$, reflecting the additional time needed to travel the extra distance $da$.
+
+---
+
+7. For a Brownian motion with drift $\mu$, $X_t = W_t + \mu t$, the Laplace transform of the first passage time to $a > 0$ is $\mathbb{E}[e^{-\alpha\tau_a}] = e^{-a(\sqrt{2\alpha+\mu^2} - \mu)}$. Verify this reduces to $e^{-a\sqrt{2\alpha}}$ when $\mu = 0$.
 
 ??? success "Solution to Exercise 7"
     For Brownian motion with drift $\mu$, $X_t = W_t + \mu t$, the Laplace transform of the first passage time to $a > 0$ is:
@@ -522,8 +530,6 @@ appears directly in the option price formula.
     $$
 
     This matches the formula for standard Brownian motion. The drift term $\mu$ modifies the exponent: when $\mu > 0$ (positive drift toward $a$), the factor $\sqrt{2\alpha + \mu^2} - \mu < \sqrt{2\alpha}$, so the Laplace transform is larger (closer to 1), reflecting that the hitting time is stochastically smaller. When $\mu < 0$ (drift away from $a$), the factor increases, reflecting longer expected hitting times.
-
----
 
 ## References
 

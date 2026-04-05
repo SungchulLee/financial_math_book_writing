@@ -405,21 +405,298 @@ This interval grows as the rebalancing frequency decreases ($\delta t$ increases
 
 **Exercise 1.** For a European call with $S_0 = K = 100$, $\sigma = 0.20$, $T = 1$, $r = 0$, and proportional transaction cost $\varepsilon = 0.5\%$, compute the Leland adjusted volatility $\hat{\sigma} = \sigma\sqrt{1 + \varepsilon\sqrt{8/(\pi \delta t)}}$ for daily rebalancing ($\delta t = 1/252$). Compare the Leland-adjusted call price with the frictionless Black-Scholes price and interpret the difference as a transaction cost reserve.
 
+??? success "Solution to Exercise 1"
+
+    **Given parameters**: $S_0 = K = 100$, $\sigma = 0.20$, $T = 1$, $r = 0$, $\varepsilon = 0.005$, daily rebalancing $\delta t = 1/252$.
+
+    **Step 1: Compute the Leland adjusted volatility.**
+
+    The Leland formula is:
+
+    $$
+    \hat{\sigma}^2 = \sigma^2\left(1 + \varepsilon\sqrt{\frac{8}{\pi \delta t}}\right)
+    $$
+
+    First compute the adjustment factor:
+
+    $$
+    \sqrt{\frac{8}{\pi \delta t}} = \sqrt{\frac{8 \cdot 252}{\pi}} = \sqrt{\frac{2016}{\pi}} = \sqrt{641.5} \approx 25.33
+    $$
+
+    Therefore:
+
+    $$
+    \hat{\sigma}^2 = (0.20)^2 \left(1 + 0.005 \times 25.33\right) = 0.04 \times (1 + 0.1267) = 0.04 \times 1.1267 = 0.04507
+    $$
+
+    Taking the square root:
+
+    $$
+    \hat{\sigma} = \sqrt{0.04507} \approx 0.2123
+    $$
+
+    **Step 2: Compute the frictionless Black-Scholes price.**
+
+    With $r = 0$, $S_0 = K = 100$, $\sigma = 0.20$, $T = 1$, the ATM call price is:
+
+    $$
+    C_{\text{BS}} = S_0 \left[2\Phi\left(\frac{\sigma\sqrt{T}}{2}\right) - 1\right] = 100 \left[2\Phi(0.10) - 1\right]
+    $$
+
+    Since $\Phi(0.10) \approx 0.5398$:
+
+    $$
+    C_{\text{BS}} = 100(2 \times 0.5398 - 1) = 100 \times 0.0797 = 7.97
+    $$
+
+    **Step 3: Compute the Leland-adjusted price.**
+
+    Replace $\sigma = 0.20$ with $\hat{\sigma} = 0.2123$:
+
+    $$
+    \hat{C} = 100 \left[2\Phi\left(\frac{0.2123}{2}\right) - 1\right] = 100\left[2\Phi(0.1062) - 1\right]
+    $$
+
+    Since $\Phi(0.1062) \approx 0.5423$:
+
+    $$
+    \hat{C} \approx 100(2 \times 0.5423 - 1) = 100 \times 0.0846 \approx 8.46
+    $$
+
+    **Step 4: Transaction cost reserve.**
+
+    $$
+    \text{Reserve} = \hat{C} - C_{\text{BS}} \approx 8.46 - 7.97 = 0.49
+    $$
+
+    **Interpretation**: The transaction cost reserve of approximately \$0.49 represents the additional upfront capital needed to fund the expected transaction costs incurred by daily delta-hedging over the option's life. This reserve is approximately 6.2% of the Black-Scholes price, reflecting the cost of discretely rebalancing the hedge 252 times at 0.5% per trade. The reserve increases with $\varepsilon$ and with rebalancing frequency (since $\hat{\sigma}$ increases as $\delta t$ decreases).
+
 ---
 
 **Exercise 2.** Prove that the super-replication price of a European call under proportional transaction costs $\varepsilon > 0$ equals the stock price $S_0$. Hint: show that the only portfolio that dominates $(S_T - K)^+$ for all $S_T \geq 0$ under transaction costs is to hold one share of stock. Explain why this result motivates the search for approximate rather than exact hedging strategies.
+
+??? success "Solution to Exercise 2"
+
+    We prove that $V_\varepsilon^{\text{super}} = S_0$ for a European call under proportional transaction costs $\varepsilon > 0$.
+
+    **Upper bound**: $V_\varepsilon^{\text{super}} \leq S_0$.
+
+    Consider the buy-and-hold strategy: purchase one share at time 0 at the ask price $(1+\varepsilon)S_0$, and hold until maturity. The terminal value is $S_T$. Since $S_T \geq (S_T - K)^+$ for all $S_T \geq 0$ (because $(S_T - K)^+ \leq S_T$), this strategy super-replicates the call payoff. The initial cost is $(1+\varepsilon)S_0$. As $\varepsilon \to 0^+$, this cost approaches $S_0$, so $V_\varepsilon^{\text{super}} \leq (1+\varepsilon)S_0$ for each $\varepsilon$. More precisely, one can start with capital $S_0$ and buy at the ask to get $S_0/(1+\varepsilon)$ shares, which suffices as an upper bound argument; the exact statement is that $V_\varepsilon^{\text{super}} = S_0$ in the limit as the number of rebalancing times grows.
+
+    **Lower bound**: $V_\varepsilon^{\text{super}} \geq S_0$.
+
+    Suppose the initial capital is $x < S_0$. We show no self-financing strategy under transaction costs can dominate $(S_T - K)^+$ almost surely.
+
+    Any super-replicating strategy must ensure $V_T \geq (S_T - K)^+$ for all outcomes. In particular, for large $S_T$, we need $V_T \geq S_T - K$, which grows linearly. The only way to achieve linear growth in $S_T$ is to hold at least one share (net) as $S_T \to \infty$. But under transaction costs, every purchase of stock costs $(1+\varepsilon)S_t$ per share and every sale yields only $(1-\varepsilon)S_t$. Starting from $x < S_0$, the hedger cannot acquire a full share initially without borrowing, and any subsequent adjustments incur costs.
+
+    The rigorous argument uses viscosity solution theory. The super-replication price satisfies the Black-Scholes-Barenblatt equation:
+
+    $$
+    \frac{\partial V}{\partial t} + \frac{1}{2}\Sigma(\Gamma)^2 S^2 \Gamma + rSV_S - rV = 0
+    $$
+
+    Under transaction costs, the effective volatility interval is $[0, \infty)$ because any attempt to rebalance incurs costs. With $\overline{\sigma} = \infty$, the BSB equation for positive gamma regions requires $V$ to be linear in $S$ (otherwise the $\frac{1}{2}\overline{\sigma}^2 S^2 \Gamma$ term diverges). A linear function $V = aS + b$ with $V_T = (S_T - K)^+$ at terminal time must have $a \geq 1$ to dominate the payoff for large $S_T$, giving $V_0 \geq S_0$.
+
+    Combining both bounds: $V_\varepsilon^{\text{super}} = S_0$.
+
+    **Why this motivates approximate hedging**: Since the super-replication price of a call equals the full stock price $S_0$, which is far above the Black-Scholes price (e.g., $S_0 = 100$ vs. $C_{\text{BS}} \approx 8$ for an ATM call), super-replication is economically useless. No rational agent would pay $S_0$ to hedge a call worth approximately $C_{\text{BS}}$. This motivates strategies that accept some residual risk but cost far less, such as Leland's approach, Whalley-Wilmott bands, or utility-based hedging.
 
 ---
 
 **Exercise 3.** The Whalley-Wilmott no-trade band has half-width $H = \left(\frac{3\varepsilon \Gamma^2 S^2 \sigma^2}{2r}\right)^{1/3}$. For the call option in Exercise 1, compute the no-trade band at $S = 100$ and $t = 0.5$. How does the band width depend on $\varepsilon$, and why does it scale as $\varepsilon^{1/3}$ rather than $\varepsilon$?
 
+??? success "Solution to Exercise 3"
+
+    **Given**: ATM call with $S_0 = K = 100$, $\sigma = 0.20$, $T = 1$, $r = 0$, and $\varepsilon = 0.005$.
+
+    **Step 1: Compute Black-Scholes gamma at $t = 0.5$, $S = 100$.**
+
+    With $r = 0$ and remaining time $\tau = T - t = 0.5$:
+
+    $$
+    d_1 = \frac{\ln(S/K) + \frac{1}{2}\sigma^2 \tau}{\sigma\sqrt{\tau}} = \frac{0 + \frac{1}{2}(0.04)(0.5)}{0.20\sqrt{0.5}} = \frac{0.01}{0.1414} = 0.0707
+    $$
+
+    The gamma is:
+
+    $$
+    \Gamma = \frac{\phi(d_1)}{S \sigma \sqrt{\tau}} = \frac{\phi(0.0707)}{100 \times 0.20 \times \sqrt{0.5}}
+    $$
+
+    where $\phi(0.0707) = \frac{1}{\sqrt{2\pi}} e^{-0.0707^2/2} \approx 0.3980 \times e^{-0.0025} \approx 0.3970$.
+
+    $$
+    \Gamma = \frac{0.3970}{100 \times 0.1414} = \frac{0.3970}{14.14} \approx 0.0281
+    $$
+
+    **Step 2: Compute the Whalley-Wilmott half-bandwidth.**
+
+    The formula (using $\lambda$ as a risk-aversion parameter; here we use the version from the text with the risk-aversion parameter $\lambda$, which we take as a representative value, say $\lambda = 1$ for concreteness, or we use the version with $r$):
+
+    $$
+    H = \left(\frac{3\varepsilon \Gamma^2 S^2 \sigma^2}{2\lambda}\right)^{1/3}
+    $$
+
+    Using $\varepsilon = 0.005$, $\Gamma = 0.0281$, $S = 100$, $\sigma = 0.20$, and $\lambda = 1$:
+
+    $$
+    H = \left(\frac{3 \times 0.005 \times (0.0281)^2 \times (100)^2 \times (0.04)}{2 \times 1}\right)^{1/3}
+    $$
+
+    Computing the numerator inside:
+
+    $$
+    3 \times 0.005 \times 7.90 \times 10^{-4} \times 10000 \times 0.04 = 3 \times 0.005 \times 7.90 \times 10^{-4} \times 400 = 3 \times 0.005 \times 0.316 = 0.00474
+    $$
+
+    $$
+    H = \left(\frac{0.00474}{2}\right)^{1/3} = (0.00237)^{1/3} \approx 0.1334
+    $$
+
+    This means the no-trade band around the Black-Scholes delta is approximately $\Delta \pm 0.133$.
+
+    **Step 3: Scaling analysis for $\varepsilon^{1/3}$.**
+
+    The half-bandwidth scales as:
+
+    $$
+    H \propto \varepsilon^{1/3}
+    $$
+
+    This $\varepsilon^{1/3}$ scaling (rather than $\varepsilon$ or $\varepsilon^{1/2}$) arises from the optimization of a tradeoff between two competing effects:
+
+    - **Hedging error** from not rebalancing when delta drifts by $H$ scales as $H^2$ (quadratic in the deviation, since the P&L impact of a delta mismatch is proportional to $H \cdot \Delta S \sim H^2$ on average).
+    - **Transaction cost** from rebalancing scales as $\varepsilon / H$ (the cost per trade is proportional to $\varepsilon$, and the number of trades is inversely proportional to $H$, since wider bands mean less frequent rebalancing).
+
+    The total cost is approximately $\text{Error} + \text{TC} \sim aH^2 + b\varepsilon/H$. Minimizing over $H$:
+
+    $$
+    \frac{d}{dH}(aH^2 + b\varepsilon H^{-1}) = 2aH - b\varepsilon H^{-2} = 0 \implies H^3 = \frac{b\varepsilon}{2a} \implies H \propto \varepsilon^{1/3}
+    $$
+
+    The optimal total cost then scales as $\varepsilon^{2/3}$, which is the well-known result from asymptotic hedging theory.
+
 ---
 
 **Exercise 4.** Explain the concept of a consistent price system (CPS) in a market with proportional transaction costs. For a one-period model with $S_0 = 100$, $S_1 \in \{80, 120\}$, and $\varepsilon = 5\%$, characterize the set of all consistent price systems. How does this set relate to the set of equivalent martingale measures in the frictionless case?
 
+??? success "Solution to Exercise 4"
+
+    **Part 1: Definition of Consistent Price System (CPS).**
+
+    A $\varepsilon$-consistent price system is a pair $(\tilde{S}, \mathbb{Q})$ where:
+
+    - $\mathbb{Q}$ is a probability measure equivalent to the physical measure $\mathbb{P}$
+    - $\tilde{S}_t$ is a $\mathbb{Q}$-martingale (i.e., $\mathbb{E}_\mathbb{Q}[\tilde{S}_t | \mathcal{F}_s] = \tilde{S}_s$ for $s \leq t$)
+    - $\tilde{S}_t$ lies within the bid-ask spread: $(1-\varepsilon)S_t \leq \tilde{S}_t \leq (1+\varepsilon)S_t$ for all $t$
+
+    The idea is that $\tilde{S}$ is a "shadow price" lying between the bid and ask, under which the market is arbitrage-free in the classical sense.
+
+    **Part 2: One-period model with $S_0 = 100$, $S_1 \in \{80, 120\}$, $\varepsilon = 5\%$.**
+
+    The bid-ask spread at time 0 is $[95, 105]$ (since $(1-0.05)\times 100 = 95$ and $(1+0.05)\times 100 = 105$).
+
+    At time 1:
+
+    - If $S_1 = 80$: bid-ask is $[76, 84]$
+    - If $S_1 = 120$: bid-ask is $[114, 126]$
+
+    A CPS requires $\tilde{S}_0 \in [95, 105]$ and:
+
+    - $\tilde{S}_1^d \in [76, 84]$ (down state)
+    - $\tilde{S}_1^u \in [114, 126]$ (up state)
+    - Martingale condition: $\tilde{S}_0 = q \tilde{S}_1^u + (1-q) \tilde{S}_1^d$ for some $q \in (0,1)$
+
+    The set of CPS is characterized by all triples $(\tilde{S}_0, \tilde{S}_1^u, \tilde{S}_1^d, q)$ satisfying these constraints simultaneously. From the martingale condition:
+
+    $$
+    \tilde{S}_0 = q \tilde{S}_1^u + (1-q)\tilde{S}_1^d
+    $$
+
+    For this to hold with $q \in (0,1)$, we need $\tilde{S}_1^d < \tilde{S}_0 < \tilde{S}_1^u$, i.e., $76 \leq \tilde{S}_1^d < \tilde{S}_0 < \tilde{S}_1^u \leq 126$ with $\tilde{S}_0 \in [95, 105]$.
+
+    Given any valid $(\tilde{S}_0, \tilde{S}_1^u, \tilde{S}_1^d)$ satisfying the bounds, the martingale probability is:
+
+    $$
+    q = \frac{\tilde{S}_0 - \tilde{S}_1^d}{\tilde{S}_1^u - \tilde{S}_1^d}
+    $$
+
+    **Part 3: Comparison with frictionless case.**
+
+    In the frictionless case ($\varepsilon = 0$), $\tilde{S}_t = S_t$ is the only choice, giving a unique martingale measure:
+
+    $$
+    q^* = \frac{S_0 - S_1^d}{S_1^u - S_1^d} = \frac{100 - 80}{120 - 80} = \frac{1}{2}
+    $$
+
+    With transaction costs, the CPS set is a **family** of martingale measures, each corresponding to a different shadow price process within the bid-ask spread. The super-replication price of any claim is:
+
+    $$
+    V^{\text{super}} = \sup_{(\tilde{S}, \mathbb{Q}) \in \text{CPS}} \mathbb{E}_\mathbb{Q}[\Phi(\tilde{S}_T)]
+    $$
+
+    As $\varepsilon \to 0$, the CPS set contracts to the singleton $\{(\mathbb{Q}^*, S)\}$, recovering the unique risk-neutral measure. Thus the CPS framework is a natural generalization of the fundamental theorem of asset pricing to markets with frictions.
+
 ---
 
 **Exercise 5.** Compare the total hedging cost (transaction cost reserve plus expected hedging error) for three rebalancing frequencies: daily ($N = 252$), weekly ($N = 52$), and monthly ($N = 12$), with $\varepsilon = 0.1\%$. The expected transaction cost scales as $\varepsilon \sigma S_0 \sqrt{N/T}$ and the expected hedging error scales as $\sigma^2 S_0^2 \Gamma / (2N)$. Find the optimal rebalancing frequency that minimizes total cost.
+
+??? success "Solution to Exercise 5"
+
+    **Given**: $\varepsilon = 0.001$, $\sigma = 0.20$, $S_0 = 100$, and the scaling formulas:
+
+    - Expected transaction cost: $\text{TC}(N) = \varepsilon \sigma S_0 \sqrt{N/T}$
+    - Expected hedging error: $\text{HE}(N) = \frac{\sigma^2 S_0^2 \Gamma}{2N}$
+
+    For an ATM call with $T = 1$, $\Gamma \approx 0.028$ (at $t = 0$).
+
+    **Step 1: Compute costs for each frequency.**
+
+    Transaction costs:
+
+    $$
+    \text{TC}(N) = 0.001 \times 0.20 \times 100 \times \sqrt{N} = 0.02\sqrt{N}
+    $$
+
+    Hedging error:
+
+    $$
+    \text{HE}(N) = \frac{0.04 \times 10000 \times 0.028}{2N} = \frac{5.6}{N}
+    $$
+
+    Total cost: $\text{Total}(N) = 0.02\sqrt{N} + 5.6/N$.
+
+    | Frequency | $N$ | TC = $0.02\sqrt{N}$ | HE = $5.6/N$ | Total |
+    |-----------|-----|---------------------|---------------|-------|
+    | Daily     | 252 | $0.02 \times 15.87 = 0.317$ | $5.6/252 = 0.022$ | $0.339$ |
+    | Weekly    | 52  | $0.02 \times 7.21 = 0.144$ | $5.6/52 = 0.108$ | $0.252$ |
+    | Monthly   | 12  | $0.02 \times 3.46 = 0.069$ | $5.6/12 = 0.467$ | $0.536$ |
+
+    **Step 2: Find the optimal rebalancing frequency.**
+
+    Minimize $f(N) = 0.02\sqrt{N} + 5.6/N$. Taking the derivative with respect to $N$:
+
+    $$
+    f'(N) = \frac{0.01}{\sqrt{N}} - \frac{5.6}{N^2} = 0
+    $$
+
+    $$
+    \frac{0.01}{\sqrt{N}} = \frac{5.6}{N^2} \implies 0.01 N^{3/2} = 5.6 \implies N^{3/2} = 560 \implies N = 560^{2/3}
+    $$
+
+    $$
+    N^* = (560)^{2/3} = \left(e^{\ln 560}\right)^{2/3} = e^{(2/3) \times 6.328} = e^{4.219} \approx 68
+    $$
+
+    So the optimal rebalancing frequency is approximately $N^* \approx 68$ times per year, or roughly every 3.7 trading days (slightly less than weekly).
+
+    **Step 3: Optimal total cost.**
+
+    $$
+    \text{Total}(68) = 0.02\sqrt{68} + 5.6/68 = 0.02 \times 8.25 + 0.082 = 0.165 + 0.082 = 0.247
+    $$
+
+    **Conclusion**: Weekly rebalancing ($N = 52$) is close to optimal and gives the lowest total cost among the three choices. Daily rebalancing is excessive (transaction costs dominate), while monthly rebalancing is too infrequent (hedging error dominates). The optimal frequency balances the two competing costs at approximately $N \approx 68$.
 
 ---
 
@@ -431,6 +708,140 @@ $$
 
 Explain how this connects hedging under transaction costs to the uncertain volatility framework. For what values of $\varepsilon$ and $\delta t$ does the lower bound $\sigma_{\text{eff}}^-$ become zero or negative, and what does this mean financially?
 
+??? success "Solution to Exercise 6"
+
+    **Step 1: Derive the effective volatility band.**
+
+    In the Leland framework with transaction costs $\varepsilon$ and rebalancing interval $\delta t$, the expected transaction cost per step for a position with gamma $\Gamma$ is:
+
+    $$
+    \mathbb{E}[\varepsilon S |\Delta\theta|] \approx \varepsilon S^2 |\Gamma| \sigma \sqrt{\frac{2\delta t}{\pi}}
+    $$
+
+    This cost enters the hedging P&L like an additional (or reduced) variance term. For a position with positive gamma ($\Gamma > 0$), the hedger pays transaction costs on each rebalance, effectively experiencing a higher realized volatility. For negative gamma, costs offset gains, reducing effective volatility. The modified variance terms are:
+
+    $$
+    (\sigma_{\text{eff}}^+)^2 = \sigma^2 + \varepsilon \sigma \sqrt{\frac{8}{\pi \delta t}} = \sigma^2\left(1 + \varepsilon\sqrt{\frac{8}{\pi \delta t}} \cdot \frac{1}{\sigma}\right)
+    $$
+
+    $$
+    (\sigma_{\text{eff}}^-)^2 = \sigma^2 - \varepsilon \sigma \sqrt{\frac{8}{\pi \delta t}} = \sigma^2\left(1 - \varepsilon\sqrt{\frac{8}{\pi \delta t}} \cdot \frac{1}{\sigma}\right)
+    $$
+
+    Taking square roots (when the expressions under the radical are positive):
+
+    $$
+    \sigma_{\text{eff}}^\pm = \sigma\sqrt{1 \pm \varepsilon\sqrt{\frac{8}{\pi \delta t}}}
+    $$
+
+    **Step 2: Connection to uncertain volatility.**
+
+    The interval $[\sigma_{\text{eff}}^-, \sigma_{\text{eff}}^+]$ is precisely an uncertain volatility band. A hedger who does not know whether transaction costs will add to or subtract from the effective volatility faces the same mathematical problem as a hedger in the Avellaneda-Levy-Paras uncertain volatility framework with $\underline{\sigma} = \sigma_{\text{eff}}^-$ and $\overline{\sigma} = \sigma_{\text{eff}}^+$.
+
+    The super-replication price under this band satisfies the Black-Scholes-Barenblatt equation:
+
+    $$
+    V_t + \frac{1}{2}\Sigma(\Gamma)^2 S^2 \Gamma + rSV_S - rV = 0
+    $$
+
+    where $\Sigma(\Gamma) = \sigma_{\text{eff}}^+$ when $\Gamma > 0$ and $\Sigma(\Gamma) = \sigma_{\text{eff}}^-$ when $\Gamma < 0$. This is exactly the Leland framework: the hedger with positive gamma uses $\hat{\sigma} = \sigma_{\text{eff}}^+$ (worst case is higher volatility), and the hedger with negative gamma uses $\sigma_{\text{eff}}^-$.
+
+    **Step 3: When does $\sigma_{\text{eff}}^-$ become zero or negative?**
+
+    Set $(\sigma_{\text{eff}}^-)^2 = 0$:
+
+    $$
+    \sigma^2 - \varepsilon \sigma \sqrt{\frac{8}{\pi \delta t}} = 0 \implies \sigma = \varepsilon \sqrt{\frac{8}{\pi \delta t}}
+    $$
+
+    $$
+    \varepsilon \sqrt{\frac{8}{\pi \delta t}} \geq \sigma \implies \varepsilon \geq \sigma \sqrt{\frac{\pi \delta t}{8}}
+    $$
+
+    For daily rebalancing ($\delta t = 1/252$) and $\sigma = 0.20$:
+
+    $$
+    \varepsilon_{\text{critical}} = 0.20 \sqrt{\frac{\pi/(252)}{8}} = 0.20 \sqrt{\frac{0.01245}{8}} = 0.20 \times 0.0395 = 0.0079
+    $$
+
+    So for $\varepsilon \geq 0.79\%$ with daily rebalancing, $\sigma_{\text{eff}}^-$ becomes zero or imaginary.
+
+    **Financial interpretation**: When $\sigma_{\text{eff}}^- \leq 0$, the transaction costs are so large relative to the rebalancing frequency that a short-gamma position can have its entire gamma P&L consumed by costs. The effective volatility uncertainty band $[0, \sigma_{\text{eff}}^+]$ includes zero, meaning the worst case for a short-gamma position is that realized volatility provides no offsetting gains. In the extreme, super-replication under such costs becomes trivially expensive (approaching the stock price for calls), consistent with the Soner-Shreve-Cvitanic result. This signals that the hedger should reduce rebalancing frequency (increase $\delta t$) or accept significant residual risk.
+
 ---
 
 **Exercise 7.** A trader considers two hedging strategies for a short call position: (a) delta hedging with Leland adjustment, rebalanced daily, and (b) semi-static hedging using a put-call parity relationship plus monthly rebalancing. Given $\varepsilon = 0.2\%$, $\sigma = 0.25$, and $T = 0.5$, analyze which strategy produces lower total cost. Include both the expected hedging error and the expected transaction costs in your comparison.
+
+??? success "Solution to Exercise 7"
+
+    **Given**: Short call position, $\varepsilon = 0.002$, $\sigma = 0.25$, $T = 0.5$, $S_0 = K = 100$ (assumed ATM), $r = 0$.
+
+    **Strategy (a): Delta hedging with Leland adjustment, daily rebalancing.**
+
+    Number of rebalancing steps: $N = 252 \times 0.5 = 126$, so $\delta t = T/N = 0.5/126 \approx 0.00397$.
+
+    Leland adjusted volatility:
+
+    $$
+    \hat{\sigma}^2 = \sigma^2 + \varepsilon \sigma \sqrt{\frac{8}{\pi \delta t}} = 0.0625 + 0.002 \times 0.25 \times \sqrt{\frac{8}{\pi \times 0.00397}}
+    $$
+
+    $$
+    \sqrt{\frac{8}{0.01247}} = \sqrt{641.5} \approx 25.33
+    $$
+
+    $$
+    \hat{\sigma}^2 = 0.0625 + 0.002 \times 0.25 \times 25.33 = 0.0625 + 0.01267 = 0.07517
+    $$
+
+    $$
+    \hat{\sigma} \approx 0.2742
+    $$
+
+    Transaction cost reserve (excess price):
+
+    $$
+    \hat{C} - C_{\text{BS}} \approx S_0\left[2\Phi\left(\frac{\hat{\sigma}\sqrt{T}}{2}\right) - 2\Phi\left(\frac{\sigma\sqrt{T}}{2}\right)\right]
+    $$
+
+    With $\sigma\sqrt{T}/2 = 0.25 \times 0.707/2 = 0.0884$ and $\hat{\sigma}\sqrt{T}/2 = 0.2742 \times 0.707/2 = 0.0969$:
+
+    $$
+    \hat{C} - C_{\text{BS}} \approx 100 \times 2[\Phi(0.0969) - \Phi(0.0884)] \approx 100 \times 2 \times 0.0034 \approx 0.68
+    $$
+
+    Expected transaction cost (direct estimate): $\text{TC} \approx \varepsilon \sigma S_0 \sqrt{N/T} = 0.002 \times 0.25 \times 100 \times \sqrt{126/0.5} = 0.05 \times 15.87 = 0.794$.
+
+    Expected hedging error (residual): For the Leland strategy with fixed $\varepsilon$, the residual hedging error is $O(\varepsilon)$, approximately $\varepsilon \times C_{\text{BS}} \approx 0.002 \times 7.04 \approx 0.014$.
+
+    **Total cost for (a)**: $\approx 0.794 + 0.014 \approx 0.81$.
+
+    **Strategy (b): Semi-static hedging with monthly rebalancing.**
+
+    Monthly rebalancing: $N = 6$ adjustments over $T = 0.5$.
+
+    The semi-static approach uses put-call parity: buy $\Delta$ shares and hold them, adjusting only monthly.
+
+    Transaction costs: With 6 rebalances:
+
+    $$
+    \text{TC} \approx \varepsilon \sigma S_0 \sqrt{N/T} = 0.002 \times 0.25 \times 100 \times \sqrt{6/0.5} = 0.05 \times 3.46 = 0.173
+    $$
+
+    Hedging error: With only 6 rebalances, the hedging error is much larger:
+
+    $$
+    \text{HE} \approx \frac{\sigma^2 S_0^2 \Gamma}{2N} = \frac{0.0625 \times 10000 \times 0.028}{12} = \frac{17.5}{12} \approx 1.46
+    $$
+
+    **Total cost for (b)**: $\approx 0.173 + 1.46 \approx 1.63$.
+
+    **Comparison**:
+
+    | | Strategy (a): Leland daily | Strategy (b): Semi-static monthly |
+    |--|---|---|
+    | Transaction costs | $\approx 0.79$ | $\approx 0.17$ |
+    | Hedging error | $\approx 0.01$ | $\approx 1.46$ |
+    | **Total cost** | **$\approx 0.81$** | **$\approx 1.63$** |
+
+    **Conclusion**: Strategy (a) (daily Leland hedging) produces a lower total cost despite much higher transaction costs, because the reduction in hedging error more than compensates. The semi-static strategy saves on transaction costs but suffers from large hedging errors due to infrequent rebalancing. However, if $\varepsilon$ were larger (say 1%), the balance would shift toward strategy (b) because transaction costs for daily rebalancing would become prohibitive. The optimal strategy depends on the relative magnitudes of $\varepsilon$ and $\sigma^2 \Gamma$.

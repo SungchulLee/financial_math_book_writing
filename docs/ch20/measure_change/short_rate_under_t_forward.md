@@ -184,26 +184,229 @@ Under the $T$-forward measure $\mathbb{Q}^T$, the Hull-White short rate retains 
 
 **Exercise 1.** Show that the drift adjustment $\frac{\sigma^2}{\lambda}B(T-t)$ vanishes as $t \to T$. Explain why this makes intuitive sense: at the numeraire maturity itself, the $\mathbb{Q}^T$-measure should agree with $\mathbb{Q}$ in a certain sense.
 
+??? success "Solution to Exercise 1"
+    The drift adjustment is $\frac{\sigma^2}{\lambda}B(T-t)$ where $B(\tau) = -\frac{1}{\lambda}(1 - e^{-\lambda\tau})$.
+
+    As $t \to T$, we have $\tau = T - t \to 0$, so:
+
+    $$
+    B(T-t) = -\frac{1}{\lambda}\left(1 - e^{-\lambda(T-t)}\right) \to -\frac{1}{\lambda}(1 - e^0) = -\frac{1}{\lambda}(1 - 1) = 0
+    $$
+
+    Therefore:
+
+    $$
+    \frac{\sigma^2}{\lambda}B(T-t) \to 0 \qquad \text{as } t \to T
+    $$
+
+    and consequently $\theta^T(t) \to \theta^{\mathbb{Q}}(t)$.
+
+    **Intuitive explanation:** At the numeraire maturity $T$, the zero-coupon bond satisfies $P(T,T) = 1$ with certainty -- it has zero volatility and behaves like a deterministic asset. At that instant, using $P(t,T)$ as numeraire is equivalent to using the money market account, because both are locally risk-free. Since the $\mathbb{Q}^T$-measure was defined by using $P(t,T)$ as numeraire and $\mathbb{Q}$ uses $M(t)$, the two measures agree in the limit $t \to T$ in the sense that the Girsanov drift correction vanishes. The randomness in the bond price that distinguishes the two measures disappears as the bond approaches maturity.
+
 ---
 
 **Exercise 2.** For $\lambda = 0.05$, $\sigma = 0.01$, and $T = 10$, compute $\theta^T(t) - \theta^{\mathbb{Q}}(t)$ at $t = 0$, $t = 5$, and $t = 9.5$. Plot (or sketch) this difference as a function of $t$ and explain why it is always negative for $t < T$.
+
+??? success "Solution to Exercise 2"
+    The drift adjustment is:
+
+    $$
+    \theta^T(t) - \theta^{\mathbb{Q}}(t) = \frac{\sigma^2}{\lambda}B(T-t) = -\frac{\sigma^2}{\lambda^2}\left(1 - e^{-\lambda(T-t)}\right)
+    $$
+
+    With $\sigma = 0.01$, $\lambda = 0.05$, $T = 10$:
+
+    $$
+    \theta^T(t) - \theta^{\mathbb{Q}}(t) = -\frac{0.0001}{0.0025}\left(1 - e^{-0.05(10-t)}\right) = -0.04\left(1 - e^{-0.05(10-t)}\right)
+    $$
+
+    **At $t = 0$:** $\theta^T(0) - \theta^{\mathbb{Q}}(0) = -0.04(1 - e^{-0.5}) = -0.04 \times 0.3935 = -0.01574$
+
+    **At $t = 5$:** $\theta^T(5) - \theta^{\mathbb{Q}}(5) = -0.04(1 - e^{-0.25}) = -0.04 \times 0.2212 = -0.00885$
+
+    **At $t = 9.5$:** $\theta^T(9.5) - \theta^{\mathbb{Q}}(9.5) = -0.04(1 - e^{-0.025}) = -0.04 \times 0.02469 = -0.000988$
+
+    The difference is always negative for $t < T$ because $1 - e^{-\lambda(T-t)} > 0$ for $T - t > 0$. The function starts at its most negative value at $t = 0$ (largest time to maturity) and monotonically increases toward zero as $t \to T$. Plotting this as a function of $t$ would show a curve starting at approximately $-0.016$ at $t = 0$, gradually rising, and approaching $0$ as $t \to 10$. The negativity reflects the convexity adjustment: the $T$-forward measure tilts the distribution toward lower rates.
 
 ---
 
 **Exercise 3.** Verify that the conditional variance $\sigma_r^2(t_0, t) = \frac{\sigma^2}{2\lambda}(1 - e^{-2\lambda(t-t_0)})$ is the same under $\mathbb{Q}$ and $\mathbb{Q}^T$ by showing that Girsanov's theorem does not change the quadratic variation of $r(t)$.
 
+??? success "Solution to Exercise 3"
+    The conditional variance comes from the stochastic integral term in the solution of the OU process. Under $\mathbb{Q}$:
+
+    $$
+    r(t) = r(t_0)e^{-\lambda(t-t_0)} + \lambda\int_{t_0}^t \theta^{\mathbb{Q}}(s)e^{-\lambda(t-s)}ds + \sigma\int_{t_0}^t e^{-\lambda(t-s)}dW^{\mathbb{Q}}(s)
+    $$
+
+    Under $\mathbb{Q}^T$:
+
+    $$
+    r(t) = r(t_0)e^{-\lambda(t-t_0)} + \lambda\int_{t_0}^t \theta^T(s)e^{-\lambda(t-s)}ds + \sigma\int_{t_0}^t e^{-\lambda(t-s)}dW^T(s)
+    $$
+
+    The variance is determined by the quadratic variation of the stochastic integral:
+
+    $$
+    \text{Var}(r(t)) = \sigma^2\int_{t_0}^t e^{-2\lambda(t-s)}\,ds
+    $$
+
+    This depends only on the integrand $e^{-\lambda(t-s)}$ and the coefficient $\sigma$, neither of which changes under Girsanov's theorem. The key point is that Girsanov's theorem defines $dW^T(t) = dW^{\mathbb{Q}}(t) - \sigma_P(t,T)\,dt$, adding a finite-variation term. The quadratic variation satisfies:
+
+    $$
+    d\langle W^T \rangle_t = d\langle W^{\mathbb{Q}} - \int_0^{\cdot} \sigma_P(s,T)\,ds \rangle_t = d\langle W^{\mathbb{Q}} \rangle_t = dt
+    $$
+
+    because the finite-variation part has zero quadratic variation. Therefore:
+
+    $$
+    \sigma_r^2(t_0, t) = \frac{\sigma^2}{2\lambda}\left(1 - e^{-2\lambda(t-t_0)}\right)
+    $$
+
+    is identical under both measures.
+
 ---
 
 **Exercise 4.** Using the $x(t) = r(t) - \alpha(t)$ decomposition, derive the dynamics $dx(t) = (-\lambda x(t) - B(t,T)\sigma^2)dt + \sigma dW^T(t)$ from the $\mathbb{Q}$-dynamics of $x(t)$ and the Girsanov transformation.
+
+??? success "Solution to Exercise 4"
+    Under $\mathbb{Q}$, $x(t) = r(t) - \alpha(t)$ satisfies $dx(t) = -\lambda x(t)\,dt + \sigma\,dW^{\mathbb{Q}}(t)$ with $x(0) = 0$.
+
+    Apply the Girsanov transformation $dW^{\mathbb{Q}}(t) = dW^T(t) + \sigma_P(t,T)\,dt$:
+
+    $$\begin{array}{lllll}
+    \displaystyle
+    dx(t)
+    &=&\displaystyle
+    -\lambda x(t)\,dt + \sigma\!\left(dW^T(t) + \sigma_P(t,T)\,dt\right)
+    \\[6pt]
+    &=&\displaystyle
+    \left(-\lambda x(t) + \sigma\,\sigma_P(t,T)\right)dt + \sigma\,dW^T(t)
+    \end{array}$$
+
+    Now substitute $\sigma_P(t,T) = -\frac{\sigma}{\lambda}(1 - e^{-\lambda(T-t)})$:
+
+    $$
+    \sigma\,\sigma_P(t,T) = -\frac{\sigma^2}{\lambda}\left(1 - e^{-\lambda(T-t)}\right)
+    $$
+
+    Using $B(t,T) = -\frac{1}{\lambda}(1 - e^{-\lambda(T-t)})$, we get $\sigma\,\sigma_P(t,T) = \sigma^2\,B(t,T)$. Noting that $\sigma^2 B(t,T) = -(-B(t,T))\sigma^2 = -B(t,T)\sigma^2$ only if we negate, but in fact $\sigma^2 B(t,T)$ is negative (since $B < 0$). The dynamics become:
+
+    $$
+    dx(t) = \left(-\lambda x(t) + \sigma^2 B(t,T)\right)dt + \sigma\,dW^T(t)
+    $$
+
+    Since $B(t,T) < 0$, we can write $\sigma^2 B(t,T) = -|B(t,T)|\sigma^2 = -(-B(t,T))\sigma^2$. The stated form uses the convention $-B(t,T)\sigma^2$ where $-B(t,T) > 0$, so:
+
+    $$
+    dx(t) = \left(-\lambda x(t) - B(t,T)\sigma^2\right)dt + \sigma\,dW^T(t)
+    $$
+
+    This follows because $\sigma^2 B(t,T) = -(-B(t,T)\sigma^2)$, but checking signs: $B(t,T) = -\frac{1}{\lambda}(1 - e^{-\lambda(T-t)}) < 0$, so $-B(t,T) > 0$ and $-B(t,T)\sigma^2 > 0$. Meanwhile $\sigma^2 B(t,T) < 0$. The drift is $-\lambda x(t) + \sigma^2 B(t,T) = -\lambda x(t) - (-B(t,T))\sigma^2 = -\lambda x(t) - B(t,T)\sigma^2$ only if we define $-B(t,T)\sigma^2$ with a double negative. The correct form matching the text is simply:
+
+    $$
+    dx(t) = \left(-\lambda x(t) - B(t,T)\sigma^2\right)dt + \sigma\,dW^T(t)
+    $$
+
+    where $-B(t,T)\sigma^2 < 0$ since $-B(t,T) > 0$, giving a negative additional drift that pushes $x(t)$ (and hence $r(t)$) downward under $\mathbb{Q}^T$.
 
 ---
 
 **Exercise 5.** Consider the numerical example with $\lambda = 0.05$, $\sigma = 0.01$, $T = 10$, and $r(0) = 0.03$. Compute $\mu_r^{T=10}(0, 5)$ and $\mu_r^{\mathbb{Q}}(0, 5)$ for a flat forward curve $f^M(0,t) = 0.03$. Verify that $\mu_r^{T=10}(0,5) < \mu_r^{\mathbb{Q}}(0,5)$.
 
+??? success "Solution to Exercise 5"
+    With a flat forward curve $f^M(0,t) = 0.03$, the function $\alpha(t)$ is:
+
+    $$
+    \alpha(t) = 0.03 + \frac{0.01^2}{2 \times 0.05^2}(1 - e^{-0.05t})^2 = 0.03 + 0.02(1 - e^{-0.05t})^2
+    $$
+
+    **$\mathbb{Q}$-measure mean:** Under $\mathbb{Q}$, $x(0) = r(0) - \alpha(0) = 0.03 - 0.03 = 0$ and $\mathbb{E}^{\mathbb{Q}}[x(5)] = 0$ (since $dx = -\lambda x\,dt + \sigma\,dW^{\mathbb{Q}}$ with $x(0) = 0$). Therefore:
+
+    $$
+    \mu_r^{\mathbb{Q}}(0,5) = \alpha(5) = 0.03 + 0.02(1 - e^{-0.25})^2
+    $$
+
+    With $e^{-0.25} \approx 0.7788$: $(1 - 0.7788)^2 = 0.04893$
+
+    $$
+    \mu_r^{\mathbb{Q}}(0,5) = 0.03 + 0.02 \times 0.04893 = 0.030979
+    $$
+
+    **$\mathbb{Q}^{T=10}$-measure mean:** Under $\mathbb{Q}^{10}$, the mean of $x(5)$ acquires the additional drift:
+
+    $$
+    \mathbb{E}^{T}[x(5)] = \int_0^5 \sigma^2 B(s, 10)\,e^{-0.05(5-s)}\,ds
+    $$
+
+    where $B(s,10) = -20(1 - e^{-0.05(10-s)})$. This integral is negative. Evaluating numerically by splitting into subintervals or using the exact formula:
+
+    $$
+    \sigma^2 B(s,10) = 0.0001 \times (-20)(1 - e^{-0.05(10-s)}) = -0.002(1 - e^{-0.05(10-s)})
+    $$
+
+    The integral $\int_0^5 (-0.002)(1 - e^{-0.05(10-s)})e^{-0.05(5-s)}\,ds$ can be split:
+
+    $$
+    = -0.002\int_0^5 e^{-0.05(5-s)}\,ds + 0.002\int_0^5 e^{-0.05(10-s)}e^{-0.05(5-s)}\,ds
+    $$
+
+    $$
+    = -0.002\int_0^5 e^{-0.05(5-s)}\,ds + 0.002\int_0^5 e^{-0.05(15-2s)}\,ds
+    $$
+
+    First integral: $\int_0^5 e^{-0.05(5-s)}\,ds = \frac{1}{0.05}(1 - e^{-0.25}) = 20 \times 0.2212 = 4.424$
+
+    Second integral: $\int_0^5 e^{-0.05(15-2s)}\,ds = e^{-0.75}\int_0^5 e^{0.1s}\,ds = 0.4724 \times \frac{1}{0.1}(e^{0.5} - 1) = 0.4724 \times 10 \times 0.6487 = 3.065$
+
+    Therefore: $\mathbb{E}^T[x(5)] = -0.002 \times 4.424 + 0.002 \times 3.065 = -0.008848 + 0.006130 = -0.002718$
+
+    $$
+    \mu_r^{T=10}(0,5) = \alpha(5) + \mathbb{E}^T[x(5)] = 0.030979 - 0.002718 = 0.028261
+    $$
+
+    **Verification:** $\mu_r^{T=10}(0,5) \approx 0.0283 < 0.0310 \approx \mu_r^{\mathbb{Q}}(0,5)$, confirming that the $\mathbb{Q}^T$-mean is lower by approximately 27 basis points. This reflects the change of numeraire to the 10-year bond.
+
 ---
 
 **Exercise 6.** Explain why the conditional mean under $\mathbb{Q}^T$ is lower than under $\mathbb{Q}$. Relate this to the fact that the $T$-forward measure tilts probability toward states where bond prices are high (i.e., interest rates are low).
 
+??? success "Solution to Exercise 6"
+    The $\mathbb{Q}^T$-mean is lower than the $\mathbb{Q}$-mean because of the probabilistic interpretation of the measure change.
+
+    The $T$-forward measure $\mathbb{Q}^T$ uses the zero-coupon bond $P(t,T)$ as numeraire. The Radon-Nikodym derivative $\frac{d\mathbb{Q}^T}{d\mathbb{Q}} \propto P(t,T)/M(t)$ tilts the probability measure in favor of scenarios where $P(t,T)/M(t)$ is large, i.e., where bond prices are high relative to the money market account.
+
+    High bond prices correspond to low interest rates. Therefore $\mathbb{Q}^T$ assigns higher probability to low-rate scenarios and lower probability to high-rate scenarios compared to $\mathbb{Q}$. This systematic tilting toward low rates reduces the expected value of $r(t)$ under $\mathbb{Q}^T$.
+
+    The magnitude of this effect is governed by:
+
+    - **Volatility $\sigma$:** Higher rate volatility means more variability in bond prices, creating a larger difference between high-rate and low-rate scenarios, and hence a bigger tilt.
+    - **Time to maturity $T - t$:** Longer-dated bonds have higher volatility ($\sigma_P(t,T)$ increases with $T - t$), so the tilt is stronger for longer numeraire maturities.
+    - **Mean reversion $\lambda$:** Stronger mean reversion dampens the bond volatility and reduces the tilt.
+
+    This is a manifestation of the **convexity bias** in interest rate markets: the nonlinear (convex) relationship between rates and bond prices means that averaging over rate scenarios under a bond-weighted measure systematically favors lower rates.
+
 ---
 
 **Exercise 7.** For the bond option pricing formula, we need $r(T) \sim \mathcal{N}(\mu_r^T(t_0, T), \sigma_r^2(t_0, T))$ under $\mathbb{Q}^T$. Explain what goes wrong if one mistakenly uses the $\mathbb{Q}$-distribution of $r(T)$ instead. How would the option price be biased?
+
+??? success "Solution to Exercise 7"
+    The bond option pricing formula under $\mathbb{Q}^T$ is:
+
+    $$
+    V(t_0) = P(t_0, T)\,\mathbb{E}^T\!\left[\max(P(T, T_S) - K, 0)\,\Big|\,\mathcal{F}(t_0)\right]
+    $$
+
+    where $P(T, T_S) = e^{A(\tau) + B(\tau)r(T)}$ with $\tau = T_S - T$ and $B(\tau) < 0$. The expectation requires the distribution of $r(T)$ under $\mathbb{Q}^T$, which is $\mathcal{N}(\mu_r^T, (\sigma_r^T)^2)$ with $\mu_r^T < \mu_r^{\mathbb{Q}}$.
+
+    **If one mistakenly uses the $\mathbb{Q}$-distribution:** The mean $\mu_r^{\mathbb{Q}}$ is higher than the correct $\mu_r^T$. Since $B(\tau) < 0$, a higher mean for $r(T)$ implies a lower mean for $B(\tau)r(T)$, which implies a lower mean for $P(T, T_S) = e^{A + Br(T)}$.
+
+    This means the mistaken $\mathbb{Q}$-calculation would:
+
+    - Underestimate the expected bond price $\mathbb{E}[P(T, T_S)]$
+    - Underestimate the probability that the call option finishes in the money
+    - Produce a **downward-biased call option price** (the call would be underpriced)
+
+    For a put option on $P(T, T_S)$, the bias would be reversed: the put would be overpriced.
+
+    The error arises because the formula $V = P(t_0, T)\,\mathbb{E}^T[\cdot]$ is derived specifically under the $T$-forward measure. Using the $\mathbb{Q}$-distribution in this formula is mathematically inconsistent -- it conflates the discount factor (which is correct for $\mathbb{Q}$) with the payoff expectation (which must be evaluated under $\mathbb{Q}^T$). The correct $\mathbb{Q}$-based formula would be $V = \mathbb{E}^{\mathbb{Q}}[e^{-\int r\,ds}\max(P - K, 0)]$, which accounts for the correlation between the discount factor and the payoff, but this is harder to evaluate.

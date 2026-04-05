@@ -244,22 +244,166 @@ The plot shows theta income accelerating as expiry approaches — the short opti
 
 **Exercise 1.** An ATM call with $S = K = 100$, $\sigma = 0.20$, $r = 0.03$ has price $C = \$4.50$ at $\tau = 0.25$ and $C = \$3.80$ at $\tau = 0.20$. Estimate the average daily theta over this 12.6-trading-day interval. Compare with the instantaneous theta from the Black--Scholes formula at $\tau = 0.25$.
 
+??? success "Solution to Exercise 1"
+    The call price drops from $C = \$4.50$ at $\tau = 0.25$ to $C = \$3.80$ at $\tau = 0.20$. The time interval is $\Delta\tau = 0.25 - 0.20 = 0.05$ years, which corresponds to $0.05 \times 252 = 12.6$ trading days.
+
+    **Average daily theta:**
+
+    $$
+    \bar{\Theta}_{\text{daily}} = \frac{C(\tau = 0.20) - C(\tau = 0.25)}{\Delta\tau / (1/252)} = \frac{3.80 - 4.50}{12.6} = \frac{-0.70}{12.6} \approx -\$0.0556 \text{ per day}
+    $$
+
+    **Instantaneous theta from Black--Scholes at $\tau = 0.25$.** Using the ATM approximation:
+
+    $$
+    \Theta_{\text{ATM}} \approx -\frac{S\sigma}{2\sqrt{2\pi\tau}}
+    $$
+
+    With $S = 100$, $\sigma = 0.20$, $\tau = 0.25$:
+
+    $$
+    \Theta_{\text{annual}} \approx -\frac{100 \times 0.20}{2\sqrt{2\pi \times 0.25}} = -\frac{20}{2\sqrt{1.5708}} = -\frac{20}{2 \times 1.2533} = -\frac{20}{2.5066} \approx -7.979 \text{ per year}
+    $$
+
+    Converting to daily (dividing by 252):
+
+    $$
+    \Theta_{\text{daily}} \approx \frac{-7.979}{252} \approx -\$0.0317 \text{ per day}
+    $$
+
+    The average theta over the interval ($-\$0.056$/day) is larger in magnitude than the instantaneous theta at $\tau = 0.25$ ($-\$0.032$/day) because theta accelerates as $\tau$ decreases, so the average over $[0.20, 0.25]$ reflects the higher decay rates near $\tau = 0.20$.
+
 ---
 
 **Exercise 2.** A calendar spread consists of selling a 1-month ATM call and buying a 3-month ATM call at $K = 100$. Using the theta formula $\Theta_{\text{ATM}} \approx -\frac{S\sigma}{2\sqrt{2\pi\tau}}$, compute the net theta of this spread for $\sigma = 0.20$. Under what conditions does the spread earn positive net theta?
+
+??? success "Solution to Exercise 2"
+    Using the ATM theta approximation $\Theta_{\text{ATM}} \approx -\frac{S\sigma}{2\sqrt{2\pi\tau}}$ with $S = 100$ and $\sigma = 0.20$:
+
+    **Short 1-month call** ($\tau_1 = 1/12$): the trader earns the negative of the long theta, so
+
+    $$
+    \Theta_{\text{short}} = +\frac{100 \times 0.20}{2\sqrt{2\pi/12}} = +\frac{20}{2\sqrt{0.5236}} = +\frac{20}{2 \times 0.7236} = +\frac{20}{1.4472} \approx +13.82 \text{ per year}
+    $$
+
+    **Long 3-month call** ($\tau_2 = 3/12 = 0.25$):
+
+    $$
+    \Theta_{\text{long}} = -\frac{20}{2\sqrt{2\pi \times 0.25}} = -\frac{20}{2.5066} \approx -7.98 \text{ per year}
+    $$
+
+    **Net theta of the calendar spread:**
+
+    $$
+    \Theta_{\text{net}} = 13.82 + (-7.98) = +5.84 \text{ per year} \approx +\$0.023 \text{ per day}
+    $$
+
+    The spread earns positive net theta because the short-dated option decays faster than the long-dated option. This positive net theta occurs when both options are near the money. If the underlying moves far from the strike, both options become deep ITM or deep OTM, their thetas converge toward zero, and the differential decay advantage disappears.
 
 ---
 
 **Exercise 3.** Theta acceleration near expiry scales as $1/\sqrt{\tau}$. Compute the ratio $\Theta(\tau = 1\text{ day})/\Theta(\tau = 30\text{ days})$ for an ATM option. A short-dated option writer earns more theta per day --- explain why this does not constitute a "free lunch" by discussing the corresponding gamma risk.
 
+??? success "Solution to Exercise 3"
+    The ATM theta scales as $\Theta \propto -1/\sqrt{\tau}$, so:
+
+    $$
+    \frac{|\Theta(\tau = 1\text{ day})|}{|\Theta(\tau = 30\text{ days})|} = \frac{1/\sqrt{1/252}}{1/\sqrt{30/252}} = \frac{\sqrt{30/252}}{\sqrt{1/252}} = \sqrt{\frac{30}{1}} = \sqrt{30} \approx 5.48
+    $$
+
+    The 1-day option decays approximately 5.5 times faster per day than the 30-day option.
+
+    **Why this is not a free lunch.** The gamma of an ATM option also scales as $\Gamma \propto 1/\sqrt{\tau}$ (in fact, $\Gamma_{\text{ATM}} \propto 1/(S\sigma\sqrt{\tau})$). So the short-dated option has gamma that is $\sqrt{30} \approx 5.5$ times larger as well. The gamma-theta tradeoff is preserved: the higher theta income earned by selling the short-dated option is exactly offset by the higher gamma risk. A single large move near expiry can wipe out many days of accumulated theta, and the probability of such a move (relative to the option's remaining life) is not negligible. The short-dated option seller earns more theta per day but faces proportionally more rebalancing cost and tail risk.
+
 ---
 
 **Exercise 4.** For a short ATM call position that is delta-hedged, the daily P&L is approximately $|\Theta|\Delta t - \frac{1}{2}|\Gamma|(\Delta S)^2$. If $\Theta = -0.08$/day and $\Gamma = 0.04$ per option, and the trader is short 100 options, compute the net daily P&L for realized daily moves of $|\Delta S| = 0$, $1$, $2$, and $3$ dollars. What is the breakeven daily move?
+
+??? success "Solution to Exercise 4"
+    The trader is short 100 ATM calls with $\Theta = -0.08$/day and $\Gamma = 0.04$ per option. Since the position is short, the portfolio-level values are:
+
+    $$
+    \Theta_{\text{port}} = 100 \times 0.08 = +8.0 \text{ per day}
+    $$
+
+    $$
+    |\Gamma_{\text{port}}| = 100 \times 0.04 = 4.0
+    $$
+
+    The daily P&L formula is:
+
+    $$
+    \text{P\&L} = |\Theta_{\text{port}}| - \frac{1}{2}|\Gamma_{\text{port}}|(\Delta S)^2 = 8.0 - \frac{1}{2}(4.0)(\Delta S)^2 = 8.0 - 2.0(\Delta S)^2
+    $$
+
+    | $|\Delta S|$ | Gamma cost | Net P&L |
+    |:---:|:---:|:---:|
+    | $0$ | $0$ | $+\$8.00$ |
+    | $1$ | $2.0$ | $+\$6.00$ |
+    | $2$ | $8.0$ | $\$0.00$ |
+    | $3$ | $18.0$ | $-\$10.00$ |
+
+    **Breakeven daily move:**
+
+    $$
+    2.0(\Delta S^*)^2 = 8.0 \implies (\Delta S^*)^2 = 4.0 \implies \Delta S^* = \$2.00
+    $$
+
+    Any daily move exceeding $\$2.00$ causes a net loss.
 
 ---
 
 **Exercise 5.** A trader wants to construct a theta-neutral portfolio using ATM options at $\tau_1 = 1$ month and $\tau_2 = 6$ months. If $\Theta_1 = -0.12$/day and $\Theta_2 = -0.04$/day per option, how many of each option should the trader hold (long or short) to achieve net theta $\approx 0$ with 100 options at the shorter maturity? What is the resulting gamma exposure?
 
+??? success "Solution to Exercise 5"
+    The trader holds 100 short options at $\tau_1 = 1$ month with $\Theta_1 = -0.12$/day per option (short position earns $+0.12$/day per option). To achieve net theta $\approx 0$, they need to go long options at $\tau_2 = 6$ months with $\Theta_2 = -0.04$/day per option.
+
+    Net theta condition:
+
+    $$
+    -100 \times \Theta_1 + n_2 \times \Theta_2 = 0
+    $$
+
+    Note: shorting 100 options at maturity 1 gives portfolio theta $= -100 \times (-0.12) = +12.0$/day. Going long $n_2$ options at maturity 2 gives portfolio theta contribution $= n_2 \times (-0.04)$/day.
+
+    $$
+    +12.0 + n_2(-0.04) = 0 \implies n_2 = \frac{12.0}{0.04} = 300
+    $$
+
+    The trader should go long 300 options at the 6-month maturity.
+
+    **Resulting gamma exposure.** ATM gamma scales as $\Gamma \propto 1/(S\sigma\sqrt{\tau})$. Let $\Gamma_1$ and $\Gamma_2$ denote the per-option gammas. Since $\Theta_{\text{ATM}} \approx -\frac{1}{2}\sigma^2 S^2 \Gamma$ (in annual terms), we have $\Gamma \propto |\Theta|/(\sigma^2 S^2)$. The ratio of gammas is:
+
+    $$
+    \frac{\Gamma_1}{\Gamma_2} = \frac{|\Theta_1|}{|\Theta_2|} = \frac{0.12}{0.04} = 3
+    $$
+
+    The net gamma is:
+
+    $$
+    \Gamma_{\text{net}} = -100\Gamma_1 + 300\Gamma_2 = -100\Gamma_1 + 300 \times \frac{\Gamma_1}{3} = -100\Gamma_1 + 100\Gamma_1 = 0
+    $$
+
+    In this idealized case (same $\sigma$, $S$, $K$), the theta-neutral portfolio is also gamma-neutral. This is a consequence of the $\Theta$-$\Gamma$ proportionality in Black--Scholes. In practice, differences in moneyness, implied vol levels, or skew effects would create residual gamma.
+
 ---
 
 **Exercise 6.** Using the Python theta visualization code, add a plot showing the **daily theta P&L** of a calendar spread (short 1-month call, long 6-month call) as a function of the underlying price $S$ at inception. Identify the spot range where the spread earns positive daily theta and explain why the spread loses money when $S$ moves far from the strike.
+
+??? success "Solution to Exercise 6"
+    This is a computational exercise. The key idea is to compute the net theta of the calendar spread as a function of the spot price $S$.
+
+    For each value of $S$, compute the Black--Scholes theta of both legs:
+
+    - Short 1-month call at $K = 100$: $\Theta_{\text{short}}(S) = -\Theta_{\text{BS}}(S, K, \tau_1)$ (positive, since we are short)
+    - Long 6-month call at $K = 100$: $\Theta_{\text{long}}(S) = \Theta_{\text{BS}}(S, K, \tau_2)$ (negative)
+
+    The net daily theta is $\Theta_{\text{net}}(S) = \Theta_{\text{short}}(S) + \Theta_{\text{long}}(S)$.
+
+    **Expected shape.** The net theta is positive (earning) near $S = K = 100$ because the short-dated option has higher absolute theta than the long-dated option when both are near the money. As $S$ moves far from $K$ in either direction:
+
+    - Both options become deep ITM or deep OTM.
+    - The extrinsic value of both options shrinks toward zero.
+    - Both thetas approach zero, and the net theta also approaches zero or may turn slightly negative.
+
+    The positive-theta region is approximately $S \in [85, 115]$ for typical parameters. Outside this range, the spread provides negligible theta income. The spread loses money when $S$ moves far from the strike because the long 6-month option loses more value (in absolute terms) than the short 1-month option, as the longer-dated option has more extrinsic value exposed to the spot move. Additionally, far from the strike, the short option may already be worthless, so no further theta income accrues from it while the long option continues to bleed.

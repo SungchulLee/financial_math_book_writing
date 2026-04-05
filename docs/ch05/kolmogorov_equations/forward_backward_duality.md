@@ -346,46 +346,6 @@ This symmetry between test functions and densities underlies much of diffusion t
 **Exercise 1.**
 For the generator $\mathcal{L} = \mu(x)\partial_x + \frac{\sigma^2(x)}{2}\partial_{xx}$, derive the adjoint $\mathcal{L}^*$ by integrating $\int f(x)(\mathcal{L}g)(x)\,dx$ by parts twice. Identify the boundary terms that must vanish for the duality relation to hold.
 
----
-
-**Exercise 2.**
-For standard Brownian motion ($\mu = 0$, $\sigma = 1$), verify that $\mathcal{L} = \mathcal{L}^* = \frac{1}{2}\partial_{xx}$. Explain why the operator is self-adjoint in this case. For Brownian motion with constant drift $\mu \neq 0$, show that $\mathcal{L} \neq \mathcal{L}^*$ and describe how the drift term changes sign under the adjoint.
-
----
-
-**Exercise 3.**
-Consider the Ornstein-Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$. Write out the generator $\mathcal{L}$ and its adjoint $\mathcal{L}^*$ explicitly. Verify that the stationary density $\pi(x) \propto \exp(-\kappa x^2/\sigma^2)$ satisfies $\mathcal{L}^* \pi = 0$.
-
----
-
-**Exercise 4.**
-The transition density $p(x, t \mid x_0, t_0)$ satisfies both the forward equation in $(x, t)$ and the backward equation in $(x_0, t_0)$. For Brownian motion with drift, verify this explicitly using the Gaussian transition density
-
-$$
-p(x, t \mid x_0, t_0) = \frac{1}{\sigma\sqrt{2\pi(t - t_0)}} \exp\left(-\frac{(x - x_0 - \mu(t - t_0))^2}{2\sigma^2(t - t_0)}\right)
-$$
-
-by checking that it satisfies both $\partial_t p = \mathcal{L}_x^* p$ and $\partial_{t_0} p + \mathcal{L}_{x_0} p = 0$.
-
----
-
-**Exercise 5.**
-Suppose you want to compute $\mathbb{E}[g(X_T)]$ for a specific payoff $g$ and a specific starting point $x_0$. Describe the backward approach (solve one PDE with terminal condition $g$, evaluate at $x_0$) and the forward approach (solve one PDE with initial condition $\delta(x - x_0)$, integrate against $g$). Under what circumstances is each approach more computationally efficient?
-
----
-
-**Exercise 6.**
-The detailed balance condition states $\pi(x)p(y, t \mid x, 0) = \pi(y)p(x, t \mid y, 0)$. For the Ornstein-Uhlenbeck process, verify that detailed balance holds by using the explicit Gaussian transition density and the Gaussian stationary distribution. Explain the physical meaning: the probability flux from $x$ to $y$ equals the flux from $y$ to $x$ when weighted by $\pi$.
-
----
-
-**Exercise 7.**
-For the OU process, the eigenvalues of $\mathcal{L}$ are $\lambda_n = n\kappa$ and the eigenfunctions are Hermite polynomials $H_n(x)$. Using the spectral expansion $p(x, t \mid x_0, 0) = \pi(x)\sum_{n=0}^{\infty} e^{-\lambda_n t} H_n(x)H_n(x_0)$, explain why the transition density converges to the stationary density $\pi(x)$ as $t \to \infty$. What is the rate of convergence, and which eigenvalue determines it?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     We compute $\int f(x)(\mathcal{L}g)(x)\,dx$ where $\mathcal{L}g = \mu(x)g'(x) + \frac{\sigma^2(x)}{2}g''(x)$.
 
@@ -421,6 +381,11 @@ For the OU process, the eigenvalues of $\mathcal{L}$ are $\lambda_n = n\kappa$ a
 
     These vanish when $f$ and $g$ (along with their derivatives) decay sufficiently fast at $\pm\infty$, or when working with compactly supported test functions.
 
+---
+
+**Exercise 2.**
+For standard Brownian motion ($\mu = 0$, $\sigma = 1$), verify that $\mathcal{L} = \mathcal{L}^* = \frac{1}{2}\partial_{xx}$. Explain why the operator is self-adjoint in this case. For Brownian motion with constant drift $\mu \neq 0$, show that $\mathcal{L} \neq \mathcal{L}^*$ and describe how the drift term changes sign under the adjoint.
+
 ??? success "Solution to Exercise 2"
     For standard Brownian motion ($\mu = 0$, $\sigma = 1$):
 
@@ -443,6 +408,11 @@ For the OU process, the eigenvalues of $\mathcal{L}$ are $\lambda_n = n\kappa$ a
     $$
 
     Since $\mathcal{L}f = \mu f' + \frac{1}{2}f''$ and $\mathcal{L}^*f = -\mu f' + \frac{1}{2}f''$, we see $\mathcal{L} \neq \mathcal{L}^*$. The **drift term changes sign** under the adjoint (from $+\mu f'$ to $-\mu f'$), while the diffusion term is unchanged. Physically, taking the adjoint reverses the direction of advection: if probability flows to the right in the forward equation, the backward equation "looks" from the right.
+
+---
+
+**Exercise 3.**
+Consider the Ornstein-Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$. Write out the generator $\mathcal{L}$ and its adjoint $\mathcal{L}^*$ explicitly. Verify that the stationary density $\pi(x) \propto \exp(-\kappa x^2/\sigma^2)$ satisfies $\mathcal{L}^* \pi = 0$.
 
 ??? success "Solution to Exercise 3"
     For the OU process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, we have $\mu(x) = -\kappa x$ and $\sigma(x) = \sigma$ (constant).
@@ -476,6 +446,17 @@ For the OU process, the eigenvalues of $\mathcal{L}$ are $\lambda_n = n\kappa$ a
     $$
     = \pi\left[\kappa - \frac{2\kappa^2 x^2}{\sigma^2} + \frac{2\kappa^2 x^2}{\sigma^2} - \kappa\right] = 0
     $$
+
+---
+
+**Exercise 4.**
+The transition density $p(x, t \mid x_0, t_0)$ satisfies both the forward equation in $(x, t)$ and the backward equation in $(x_0, t_0)$. For Brownian motion with drift, verify this explicitly using the Gaussian transition density
+
+$$
+p(x, t \mid x_0, t_0) = \frac{1}{\sigma\sqrt{2\pi(t - t_0)}} \exp\left(-\frac{(x - x_0 - \mu(t - t_0))^2}{2\sigma^2(t - t_0)}\right)
+$$
+
+by checking that it satisfies both $\partial_t p = \mathcal{L}_x^* p$ and $\partial_{t_0} p + \mathcal{L}_{x_0} p = 0$.
 
 ??? success "Solution to Exercise 4"
     The transition density for Brownian motion with drift is:
@@ -520,6 +501,11 @@ For the OU process, the eigenvalues of $\mathcal{L}$ are $\lambda_n = n\kappa$ a
     = p\left[\frac{1}{2\tau} - \frac{z^2}{2\sigma^2\tau^2} - \frac{\mu z}{\sigma^2\tau} + \frac{\mu z}{\sigma^2\tau} + \frac{z^2}{2\sigma^2\tau^2} - \frac{1}{2\tau}\right] = 0 \;\checkmark
     $$
 
+---
+
+**Exercise 5.**
+Suppose you want to compute $\mathbb{E}[g(X_T)]$ for a specific payoff $g$ and a specific starting point $x_0$. Describe the backward approach (solve one PDE with terminal condition $g$, evaluate at $x_0$) and the forward approach (solve one PDE with initial condition $\delta(x - x_0)$, integrate against $g$). Under what circumstances is each approach more computationally efficient?
+
 ??? success "Solution to Exercise 5"
     **Backward approach**: Solve the PDE $\partial_t v + \mathcal{L}v = 0$ with terminal condition $v(T, x) = g(x)$. This gives $v(t, x) = \mathbb{E}[g(X_T) \mid X_t = x]$, and evaluating at $(t, x) = (0, x_0)$ gives $v(0, x_0) = \mathbb{E}[g(X_T) \mid X_0 = x_0]$.
 
@@ -536,6 +522,11 @@ For the OU process, the eigenvalues of $\mathcal{L}$ are $\lambda_n = n\kappa$ a
     - **More efficient when**: We have a fixed starting point $x_0$ but need to evaluate many different payoffs $g$ (e.g., pricing an entire book of options on the same underlying, all starting from the same spot price).
 
     In summary: backward is efficient for "one payoff, many starting points," while forward is efficient for "one starting point, many payoffs."
+
+---
+
+**Exercise 6.**
+The detailed balance condition states $\pi(x)p(y, t \mid x, 0) = \pi(y)p(x, t \mid y, 0)$. For the Ornstein-Uhlenbeck process, verify that detailed balance holds by using the explicit Gaussian transition density and the Gaussian stationary distribution. Explain the physical meaning: the probability flux from $x$ to $y$ equals the flux from $y$ to $x$ when weighted by $\pi$.
 
 ??? success "Solution to Exercise 6"
     The OU process has transition density:
@@ -585,6 +576,11 @@ For the OU process, the eigenvalues of $\mathcal{L}$ are $\lambda_n = n\kappa$ a
     This expression is **symmetric in $x$ and $y$**, so swapping $x \leftrightarrow y$ gives the same result. Therefore $\pi(x)p(y,t \mid x, 0) = \pi(y)p(x, t \mid y, 0)$, confirming detailed balance.
 
     **Physical meaning**: In the stationary regime, if a particle is at position $x$ (drawn from $\pi$), the probability of transitioning to $y$ in time $t$ equals the probability that a particle starting at $y$ transitions to $x$ in the same time. There is no net probability current between any pair of states — the system is in thermodynamic equilibrium.
+
+---
+
+**Exercise 7.**
+For the OU process, the eigenvalues of $\mathcal{L}$ are $\lambda_n = n\kappa$ and the eigenfunctions are Hermite polynomials $H_n(x)$. Using the spectral expansion $p(x, t \mid x_0, 0) = \pi(x)\sum_{n=0}^{\infty} e^{-\lambda_n t} H_n(x)H_n(x_0)$, explain why the transition density converges to the stationary density $\pi(x)$ as $t \to \infty$. What is the rate of convergence, and which eigenvalue determines it?
 
 ??? success "Solution to Exercise 7"
     The spectral expansion is:

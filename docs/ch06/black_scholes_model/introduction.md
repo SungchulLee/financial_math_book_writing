@@ -432,30 +432,6 @@ Understanding the Black-Scholes model---its derivation, assumptions, and limitat
 
 **Exercise 1.** Verify that $V(S,t) = S$ and $V(S,t) = e^{r(t-T)}$ both satisfy the Black-Scholes PDE. Then show that the linear combination $V(S,t) = aS + be^{r(t-T)}$ also satisfies the PDE for any constants $a$ and $b$. What financial instrument does this represent?
 
----
-
-**Exercise 2.** In the binomial model, the risk-neutral probability is $p = \frac{e^{r\Delta t} - d}{u - d}$. Using the CRR parameterization $u = e^{\sigma\sqrt{\Delta t}}$ and $d = e^{-\sigma\sqrt{\Delta t}}$, show that as $\Delta t \to 0$, the binomial model converges to the Black-Scholes model by verifying that the binomial stock price distribution converges to a log-normal distribution.
-
----
-
-**Exercise 3.** Explain why the Black-Scholes option price does not depend on the expected return $\mu$ of the stock. Construct a simple argument using two investors who agree on $\sigma$ but disagree on $\mu$ to show that they must nonetheless agree on the option price, provided no arbitrage exists.
-
----
-
-**Exercise 4.** The Black-Scholes PDE is $\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0$. Identify the type of this PDE (elliptic, parabolic, or hyperbolic) by examining its principal part. What is the financial significance of this classification?
-
----
-
-**Exercise 5.** Consider two options on the same underlying stock ($S_0 = 100$, $\sigma = 30\%$, $r = 5\%$): a European call with $K = 100$ and $T = 0.5$, and a European call with $K = 100$ and $T = 2$. Without computing exact prices, use the properties described in this section to determine which option has a higher price and explain why.
-
----
-
-**Exercise 6.** List three derivative instruments that the standard Black-Scholes model cannot price directly and explain what feature of each instrument violates the Black-Scholes framework. For each, name a specific model extension or numerical method that can handle it.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **Verification that $V(S,t) = S$ satisfies the BS PDE**:
 
@@ -490,6 +466,9 @@ Understanding the Black-Scholes model---its derivation, assumptions, and limitat
     $$
 
     **Financial interpretation**: The portfolio $V = aS + be^{r(t-T)}$ represents $a$ shares of the stock plus $b$ units of a zero-coupon bond with face value 1 maturing at time $T$ (since $e^{r(t-T)}$ is the value at time $t$ of receiving \$1 at time $T$). This is a static portfolio of the two fundamental traded assets in the Black-Scholes market. At maturity, the payoff is $aS_T + b$, which is a linear function of the stock price --- a forward-like payoff.
+
+---
+**Exercise 2.** In the binomial model, the risk-neutral probability is $p = \frac{e^{r\Delta t} - d}{u - d}$. Using the CRR parameterization $u = e^{\sigma\sqrt{\Delta t}}$ and $d = e^{-\sigma\sqrt{\Delta t}}$, show that as $\Delta t \to 0$, the binomial model converges to the Black-Scholes model by verifying that the binomial stock price distribution converges to a log-normal distribution.
 
 ??? success "Solution to Exercise 2"
     In the CRR binomial model, $u = e^{\sigma\sqrt{\Delta t}}$, $d = e^{-\sigma\sqrt{\Delta t}} = 1/u$, and $\Delta t = T/n$.
@@ -536,6 +515,9 @@ Understanding the Black-Scholes model---its derivation, assumptions, and limitat
 
     which is exactly the distribution of $\ln(S_T/S_0)$ under the risk-neutral measure in the Black-Scholes model. $\square$
 
+---
+**Exercise 3.** Explain why the Black-Scholes option price does not depend on the expected return $\mu$ of the stock. Construct a simple argument using two investors who agree on $\sigma$ but disagree on $\mu$ to show that they must nonetheless agree on the option price, provided no arbitrage exists.
+
 ??? success "Solution to Exercise 3"
     Suppose two investors, Alice and Bob, agree on $\sigma$ but disagree on $\mu$: Alice believes $\mu = \mu_A$ and Bob believes $\mu = \mu_B$ with $\mu_A \neq \mu_B$.
 
@@ -546,6 +528,9 @@ Understanding the Black-Scholes model---its derivation, assumptions, and limitat
     If $C^* > C_{\text{BS}}$, both investors can sell the option at $C^*$, buy the replicating portfolio for $C_{\text{BS}}$, and pocket $C^* - C_{\text{BS}} > 0$ as a riskless profit (since the replicating portfolio exactly offsets the option at maturity). If $C^* < C_{\text{BS}}$, both reverse the trade.
 
     Since both investors agree that the replication cost is $C_{\text{BS}}$ (which is independent of $\mu$), and both reject arbitrage, they must agree that the fair option price is $C^* = C_{\text{BS}}$. The parameter $\mu$ enters neither the hedging strategy nor the replication cost, so disagreement about $\mu$ is irrelevant to the option price.
+
+---
+**Exercise 4.** The Black-Scholes PDE is $\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0$. Identify the type of this PDE (elliptic, parabolic, or hyperbolic) by examining its principal part. What is the financial significance of this classification?
 
 ??? success "Solution to Exercise 4"
     The Black-Scholes PDE is:
@@ -562,6 +547,9 @@ Understanding the Black-Scholes model---its derivation, assumptions, and limitat
 
     **Financial significance**: Parabolic PDEs describe diffusion processes --- the same class as the heat equation $u_t = \kappa u_{xx}$. In fact, the Black-Scholes PDE can be transformed into the heat equation by a suitable change of variables. Parabolic equations propagate information in one direction (backward in time from the terminal condition), which is exactly what derivative pricing requires: given the known payoff at maturity $T$, we solve backward to find the current price. The parabolic character also ensures well-posedness: given appropriate boundary and terminal conditions, the solution exists and is unique, which guarantees a unique arbitrage-free price.
 
+---
+**Exercise 5.** Consider two options on the same underlying stock ($S_0 = 100$, $\sigma = 30\%$, $r = 5\%$): a European call with $K = 100$ and $T = 0.5$, and a European call with $K = 100$ and $T = 2$. Without computing exact prices, use the properties described in this section to determine which option has a higher price and explain why.
+
 ??? success "Solution to Exercise 5"
     Both options are European calls on the same underlying with the same strike $K = 100$. The key parameters are $S_0 = 100$, $\sigma = 30\%$, $r = 5\%$.
 
@@ -574,6 +562,9 @@ Understanding the Black-Scholes model---its derivation, assumptions, and limitat
     3. **Formal bound**: For European calls on non-dividend-paying stocks, $C \geq S_0 - Ke^{-rT}$. This lower bound is $100 - 97.53 = 2.47$ for the short-dated option and $100 - 90.48 = 9.52$ for the long-dated option.
 
     4. **Monotonicity in $T$**: For a European call on a non-dividend-paying stock, the Black-Scholes price is strictly increasing in $T$ (theta of a European call is negative, meaning value decreases as time passes, equivalently value is higher when more time remains). This follows because both $d_1$ and the discounting effect work in favor of longer maturities.
+
+---
+**Exercise 6.** List three derivative instruments that the standard Black-Scholes model cannot price directly and explain what feature of each instrument violates the Black-Scholes framework. For each, name a specific model extension or numerical method that can handle it.
 
 ??? success "Solution to Exercise 6"
     **1. American put option**:

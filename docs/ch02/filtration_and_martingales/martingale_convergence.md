@@ -329,28 +329,6 @@ Let $M_n$ be a submartingale and let $U_N^{[a,b]}$ denote the number of upcrossi
 
 (c) Explain why the condition involves $M_n^+$ rather than $|M_n|$.
 
-### Exercise 2: Uniform Integrability
-
-(a) Prove that a family $\{X_\alpha\}$ is uniformly integrable if and only if it is $L^1$-bounded and satisfies: for all $\epsilon > 0$, there exists $\delta > 0$ such that $\mathbb{P}(A) < \delta$ implies $\sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_A] < \epsilon$.
-
-(b) Show that $\{W_t : t \le T\}$ is uniformly integrable for any $T < \infty$.
-
-(c) Show that $\{e^{W_t - t/2} : t \ge 0\}$ is **not** uniformly integrable.
-
-### Exercise 3: Backward Martingales
-
-Let $X_1, X_2, \ldots$ be i.i.d. with $\mathbb{E}[X_1] = \mu$ and $\mathbb{E}|X_1| < \infty$. Let $\bar{X}_n = \frac{1}{n}\sum_{k=1}^n X_k$.
-
-(a) Define $\mathcal{F}_n = \sigma(S_n, S_{n+1}, \ldots)$ where $S_k = X_1 + \cdots + X_k$. Show this is a decreasing sequence of $\sigma$-algebras.
-
-(b) Prove that $(\bar{X}_n, \mathcal{F}_n)_{n \geq 1}$ is a backward martingale.
-
-(c) Use backward martingale convergence to prove the strong law of large numbers: $\bar{X}_n \to \mu$ a.s.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a)** **Doob's upcrossing inequality**: If $\{X_n\}_{n=0}^N$ is a submartingale and $a < b$, then:
 
@@ -374,6 +352,16 @@ Let $X_1, X_2, \ldots$ be i.i.d. with $\mathbb{E}[X_1] = \mu$ and $\mathbb{E}|X_
 
     For a general martingale, $\mathbb{E}[M_n^+] = \mathbb{E}[M_n^-] + \mathbb{E}[M_n]$, and if $\mathbb{E}[M_n] = \mathbb{E}[M_0]$ is constant, then $\sup_n \mathbb{E}[M_n^+] < \infty$ is equivalent to $\sup_n \mathbb{E}[|M_n|] < \infty$.
 
+---
+
+### Exercise 2: Uniform Integrability
+
+(a) Prove that a family $\{X_\alpha\}$ is uniformly integrable if and only if it is $L^1$-bounded and satisfies: for all $\epsilon > 0$, there exists $\delta > 0$ such that $\mathbb{P}(A) < \delta$ implies $\sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_A] < \epsilon$.
+
+(b) Show that $\{W_t : t \le T\}$ is uniformly integrable for any $T < \infty$.
+
+(c) Show that $\{e^{W_t - t/2} : t \ge 0\}$ is **not** uniformly integrable.
+
 ??? success "Solution to Exercise 2"
     **(a)** ($\Rightarrow$) Assume $\{X_\alpha\}$ is UI. Then $\sup_\alpha \mathbb{E}[|X_\alpha|] < \infty$ (taking $K = 0$ in the definition).
 
@@ -396,6 +384,18 @@ Let $X_1, X_2, \ldots$ be i.i.d. with $\mathbb{E}[X_1] = \mu$ and $\mathbb{E}|X_
     **(b)** $\sup_{t \le T} \mathbb{E}[W_t^2] = T < \infty$. Since $p = 2 > 1$ and the family is $L^2$-bounded, it is UI. $\square$
 
     **(c)** As shown in Exercise 1(b): $Z_t = e^{W_t - t/2} \to 0$ a.s. but $\mathbb{E}[Z_t] = 1$, so $\mathbb{E}[Z_t] \not\to \mathbb{E}[\lim Z_t] = 0$. By Vitali's theorem, this failure of $L^1$ convergence despite a.s. convergence implies the family is not UI. $\square$
+
+---
+
+### Exercise 3: Backward Martingales
+
+Let $X_1, X_2, \ldots$ be i.i.d. with $\mathbb{E}[X_1] = \mu$ and $\mathbb{E}|X_1| < \infty$. Let $\bar{X}_n = \frac{1}{n}\sum_{k=1}^n X_k$.
+
+(a) Define $\mathcal{F}_n = \sigma(S_n, S_{n+1}, \ldots)$ where $S_k = X_1 + \cdots + X_k$. Show this is a decreasing sequence of $\sigma$-algebras.
+
+(b) Prove that $(\bar{X}_n, \mathcal{F}_n)_{n \geq 1}$ is a backward martingale.
+
+(c) Use backward martingale convergence to prove the strong law of large numbers: $\bar{X}_n \to \mu$ a.s.
 
 ??? success "Solution to Exercise 3"
     **(a)** Define $\mathcal{F}_n = \sigma(S_n, S_{n+1}, \ldots)$ where $S_k = X_1 + \cdots + X_k$.

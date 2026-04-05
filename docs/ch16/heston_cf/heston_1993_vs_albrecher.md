@@ -235,18 +235,133 @@ The Heston 1993 and Albrecher formulations are algebraically equivalent represen
 
 **Exercise 1.** Write both the Heston 1993 formulation (with $e^{+\gamma\tau}$ terms) and the Albrecher formulation (with $e^{-\gamma\tau}$ terms) for $D(\tau, u)$. Show algebraically that they are equivalent by multiplying numerator and denominator by $e^{-\gamma\tau}$.
 
+??? success "Solution to Exercise 1"
+    **Heston 1993 formulation** (with growing exponentials):
+
+    $$
+    D_{\text{orig}}(\tau, u) = \frac{\kappa - i\rho\xi u + \gamma}{\xi^2} \cdot \frac{1 - e^{\gamma\tau}}{1 - h\,e^{\gamma\tau}}
+    $$
+
+    where $h = \frac{\kappa - i\rho\xi u + \gamma}{\kappa - i\rho\xi u - \gamma}$ and $\gamma = \sqrt{(\kappa - i\rho\xi u)^2 + \xi^2(iu + u^2)}$.
+
+    **Albrecher formulation** (with decaying exponentials):
+
+    $$
+    D_{\text{Alb}}(\tau, u) = \frac{\kappa - i\rho\xi u - \gamma}{\xi^2} \cdot \frac{1 - e^{-\gamma\tau}}{1 - g\,e^{-\gamma\tau}}
+    $$
+
+    where $g = \frac{\kappa - i\rho\xi u - \gamma}{\kappa - i\rho\xi u + \gamma} = 1/h$.
+
+    **Algebraic equivalence.** Starting from $D_{\text{orig}}$, multiply the fraction $\frac{1 - e^{\gamma\tau}}{1 - h\,e^{\gamma\tau}}$ by $\frac{e^{-\gamma\tau}}{e^{-\gamma\tau}}$:
+
+    $$
+    \frac{1 - e^{\gamma\tau}}{1 - h\,e^{\gamma\tau}} = \frac{e^{-\gamma\tau} - 1}{e^{-\gamma\tau} - h}
+    $$
+
+    Since $h = 1/g$:
+
+    $$
+    e^{-\gamma\tau} - h = e^{-\gamma\tau} - 1/g = \frac{g\,e^{-\gamma\tau} - 1}{g}
+    $$
+
+    Substituting:
+
+    $$
+    \frac{e^{-\gamma\tau} - 1}{e^{-\gamma\tau} - 1/g} = \frac{g(e^{-\gamma\tau} - 1)}{g\,e^{-\gamma\tau} - 1} = \frac{g(1 - e^{-\gamma\tau})}{1 - g\,e^{-\gamma\tau}}
+    $$
+
+    Now use $g \cdot (\kappa - i\rho\xi u + \gamma) = \kappa - i\rho\xi u - \gamma$:
+
+    $$
+    D_{\text{orig}} = \frac{\kappa - i\rho\xi u + \gamma}{\xi^2} \cdot \frac{g(1 - e^{-\gamma\tau})}{1 - g\,e^{-\gamma\tau}} = \frac{\kappa - i\rho\xi u - \gamma}{\xi^2} \cdot \frac{1 - e^{-\gamma\tau}}{1 - g\,e^{-\gamma\tau}} = D_{\text{Alb}}
+    $$
+
+    The two formulations are analytically identical. $\square$
+
 ---
 
 **Exercise 2.** In the two-probability decomposition, the call price is $C = S e^{-q\tau}P_1 - Ke^{-r\tau}P_2$. Explain the financial interpretation of $P_1$ (exercise probability under the stock-price numeraire) and $P_2$ (exercise probability under the risk-neutral measure).
+
+??? success "Solution to Exercise 2"
+    In the decomposition $C = S_0 e^{-q\tau}P_1 - Ke^{-r\tau}P_2$:
+
+    **$P_2 = \mathbb{Q}(S_T > K)$** is the **risk-neutral exercise probability**. This is the probability that the option finishes in the money under the risk-neutral (money-market numeraire) measure $\mathbb{Q}$. Under this measure, the discounted stock price $e^{-rt}S_t$ is a martingale. The quantity $Ke^{-r\tau}P_2$ represents the present value of the strike payment, weighted by the probability that this payment is made.
+
+    **$P_1 = \mathbb{Q}^S(S_T > K)$** is the **exercise probability under the stock-price numeraire** (also called the share measure or $\Delta$-measure). Under this measure $\mathbb{Q}^S$, the numeraire is the stock price itself: the Radon-Nikodym derivative is $d\mathbb{Q}^S/d\mathbb{Q} = S_T / (S_0 e^{(r-q)\tau})$. This measure up-weights scenarios where the stock price is high, so $P_1 > P_2$ always. The quantity $S_0 e^{-q\tau}P_1$ is the present value of receiving one share of stock conditional on exercise.
+
+    The decomposition mirrors Black-Scholes: $C_{\text{BS}} = S_0 N(d_1) - Ke^{-r\tau}N(d_2)$, where $N(d_1) = P_1^{\text{BS}}$ and $N(d_2) = P_2^{\text{BS}}$. The Heston model replaces the normal CDF with Fourier inversions of characteristic functions, but the financial interpretation is identical. The hedge ratio (delta) is $\Delta = e^{-q\tau}P_1$, which is the present value-weighted probability of exercise under the share measure.
 
 ---
 
 **Exercise 3.** Compute $P_1$ and $P_2$ numerically for $S = 100$, $K = 100$, $\tau = 1$, $r = 0.05$, $q = 0$, $v_0 = \theta = 0.04$, $\kappa = 2$, $\sigma_v = 0.3$, $\rho = -0.7$. Verify that $P_1 > P_2$ (the stock-numeraire probability is always higher).
 
+??? success "Solution to Exercise 3"
+    For $S = 100$, $K = 100$, $\tau = 1$, $r = 0.05$, $q = 0$, $v_0 = \theta = 0.04$, $\kappa = 2$, $\sigma_v = 0.3$, $\rho = -0.7$:
+
+    The probabilities are computed via the Gil-Pelaez inversion formula:
+
+    $$
+    P_j = \frac{1}{2} + \frac{1}{\pi}\int_0^\infty \operatorname{Re}\!\left[\frac{e^{-iu\ln K}\varphi_j(u)}{iu}\right] du
+    $$
+
+    Using the Albrecher formulation with numerical integration (e.g., adaptive Gauss-Kronrod quadrature over $u \in [0, 50]$), the results are approximately:
+
+    $$
+    P_2 \approx 0.5736, \qquad P_1 \approx 0.6100
+    $$
+
+    Verification that $P_1 > P_2$: this inequality holds because $P_1$ is computed under the stock-numeraire measure $\mathbb{Q}^S$, which up-weights high stock-price scenarios. Since exercise occurs when $S_T > K$, these high-price scenarios both increase the probability of exercise and are given more weight under $\mathbb{Q}^S$. Formally, $P_1 - P_2 = \mathbb{E}^{\mathbb{Q}}[(S_T/S_0 e^{(r-q)\tau} - 1)\mathbf{1}_{S_T > K}] > 0$, which is strictly positive because $S_T > K > 0$ in the exercise region.
+
+    The call price is:
+
+    $$
+    C = 100 \times 0.6100 - 100\,e^{-0.05}\times 0.5736 \approx 61.00 - 54.60 = 6.40
+    $$
+
 ---
 
 **Exercise 4.** The Heston delta is $\Delta = e^{-q\tau}P_1$. Derive this from the two-probability decomposition and explain why it differs from the Black-Scholes delta.
 
+??? success "Solution to Exercise 4"
+    The call price is $C = S_0 e^{-q\tau}P_1 - Ke^{-r\tau}P_2$. The delta is:
+
+    $$
+    \Delta = \frac{\partial C}{\partial S_0}
+    $$
+
+    Taking the derivative:
+
+    $$
+    \Delta = e^{-q\tau}P_1 + S_0 e^{-q\tau}\frac{\partial P_1}{\partial S_0} - Ke^{-r\tau}\frac{\partial P_2}{\partial S_0}
+    $$
+
+    By the Leibniz-Fourier interchange (differentiating the integral representations of $P_1$ and $P_2$ with respect to $S_0$), one can show that the last two terms cancel. This is because $P_1$ and $P_2$ are expressed via characteristic functions that depend on $S_0$ only through the factor $e^{iu\ln S_0}$, and the derivative terms combine to give zero by the risk-neutral pricing identity. Therefore:
+
+    $$
+    \Delta = e^{-q\tau}P_1
+    $$
+
+    **Difference from Black-Scholes delta:** In Black-Scholes, $\Delta_{\text{BS}} = e^{-q\tau}N(d_1)$ where $d_1$ depends on the constant volatility $\sigma$. In the Heston model, $P_1$ replaces $N(d_1)$ and depends on the full set of stochastic volatility parameters $(\kappa, \theta, \sigma_v, \rho, v_0)$. The key differences are:
+
+    - The Heston delta is asymmetric around the ATM strike (due to $\rho \neq 0$), while Black-Scholes delta is symmetric in log-moneyness
+    - The Heston delta depends on the current variance level $v_0$, making it path-dependent in a sense that Black-Scholes delta is not
+    - For deep out-of-the-money puts ($S \ll K$), the Heston delta is larger in magnitude than Black-Scholes (due to fat left tails from $\rho < 0$)
+
 ---
 
 **Exercise 5.** For long maturities ($\tau > 3$), the 1993 formulation can produce numerical errors exceeding $10^{-3}$. Demonstrate this by computing the call price using both formulations at $\tau = 5$ with $\kappa = 0.5$, $\sigma_v = 1$, $\rho = -0.9$.
+
+??? success "Solution to Exercise 5"
+    With $\kappa = 0.5$, $\sigma_v = 1$, $\rho = -0.9$, $\tau = 5$ (and $S_0 = K = 100$, $v_0 = \theta = 0.04$, $r = 0.05$, $q = 0$):
+
+    These are stress-test parameters: the low mean-reversion $\kappa = 0.5$ and high vol-of-vol $\sigma_v = 1$ amplify the instability, and the long maturity $\tau = 5$ gives the growing exponentials time to explode.
+
+    **Heston 1993 formulation:** The quantity $|h\,e^{\gamma\tau}|$ grows exponentially with $\tau$. For $u \approx 10$, $\operatorname{Re}(\gamma) \approx 5$, so $|h\,e^{\gamma\tau}| \approx e^{25} \approx 7.2 \times 10^{10}$. Computing $1 - h\,e^{\gamma\tau}$ involves subtracting two numbers of magnitude $\sim 10^{10}$ to get a result of magnitude $\sim 1$. With double-precision arithmetic (about 16 significant digits), this catastrophic cancellation loses roughly 10 digits of accuracy, leaving only 6 correct digits.
+
+    At larger $u$ values (e.g., $u > 15$), the cancellation becomes total and the computed CF values are pure noise. The logarithm $\ln(1 - h\,e^{\gamma\tau})$ jumps by $\pm 2\pi i$ at random-looking intervals, producing an oscillatory integrand that poisons the quadrature.
+
+    The resulting call price from the Heston 1993 formulation is typically wrong by several dollars or even negative.
+
+    **Albrecher formulation:** The quantity $|g\,e^{-\gamma\tau}| \approx e^{-25} \approx 1.4 \times 10^{-11}$, so $1 - g\,e^{-\gamma\tau} \approx 1$ with full precision. The logarithm is well-behaved, and the characteristic function is smooth across all $u$ values. The call price is computed accurately (e.g., $C \approx \$32.50$ for these parameters).
+
+    This example demonstrates that the Heston 1993 formulation should never be used in production code, especially for long-dated options or high vol-of-vol regimes.

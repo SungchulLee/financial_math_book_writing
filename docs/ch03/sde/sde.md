@@ -225,56 +225,6 @@ This section develops SDE theory and methods across the following pages:
 
 (d) $dX_t = \sin(t)\,dt + e^{-t}\,dW_t$
 
----
-
-**Exercise 2.** Write the integral formulation corresponding to the SDE
-
-$$
-dX_t = (X_t + t)\,dt + X_t^2\,dW_t, \qquad X_0 = 1
-$$
-
-Explain why the differential notation is only shorthand and not a statement about derivatives.
-
----
-
-**Exercise 3.** Consider the Ornstein–Uhlenbeck process $dX_t = 2(5 - X_t)\,dt + 3\,dW_t$ with $X_0 = 0$.
-
-(a) What is the long-term mean $\mathbb{E}[X_t]$ as $t \to \infty$?
-
-(b) What is the long-term variance $\operatorname{Var}[X_t]$ as $t \to \infty$?
-
-(c) Write down the stationary distribution.
-
----
-
-**Exercise 4.** For geometric Brownian motion $dS_t = 0.05\,S_t\,dt + 0.2\,S_t\,dW_t$ with $S_0 = 100$:
-
-(a) Write down the explicit solution.
-
-(b) Compute $\mathbb{E}[S_1]$ and $\operatorname{Var}[S_1]$.
-
-(c) Explain why the exponent contains $\mu - \sigma^2/2$ rather than $\mu$.
-
----
-
-**Exercise 5.** Classify each SDE into one of the four structural categories (additive noise, multiplicative noise, mean reversion, state-dependent diffusion) and state which solution technique you would try first.
-
-(a) $dY_t = -0.5\,Y_t\,dt + 0.1\,dW_t$
-
-(b) $dY_t = r\,Y_t\,dt + \sigma Y_t\,dW_t$
-
-(c) $dY_t = \alpha(\beta - Y_t)\,dt + \gamma\sqrt{Y_t}\,dW_t$
-
-(d) $dY_t = (2t + 1)\,dt + 4\,dW_t$
-
----
-
-**Exercise 6.** Explain in your own words why an SDE produces a **family of random paths** rather than a single deterministic trajectory. How does this differ from an ordinary differential equation with the same drift term?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a)** $dX_t = 3\,dt + 2\,dW_t$
 
@@ -300,6 +250,16 @@ Explain why the differential notation is only shorthand and not a statement abou
     - Diffusion: $\sigma(t, X_t) = e^{-t}$
     - **Additive noise** — neither coefficient depends on $X_t$; both depend only on time.
 
+---
+
+**Exercise 2.** Write the integral formulation corresponding to the SDE
+
+$$
+dX_t = (X_t + t)\,dt + X_t^2\,dW_t, \qquad X_0 = 1
+$$
+
+Explain why the differential notation is only shorthand and not a statement about derivatives.
+
 ??? success "Solution to Exercise 2"
     The integral formulation is
 
@@ -308,6 +268,16 @@ Explain why the differential notation is only shorthand and not a statement abou
     $$
 
     The differential notation $dX_t = (X_t + t)\,dt + X_t^2\,dW_t$ is shorthand because Brownian motion $W_t$ is continuous but **nowhere differentiable** with probability one. The expression $dW_t$ is not a derivative in the classical sense — it is the increment of a process whose sample paths have infinite variation on every interval. The symbol $dW_t/dt$ does not exist. The only rigorous interpretation is through the integral equation above, where the second integral is an **Ito stochastic integral**.
+
+---
+
+**Exercise 3.** Consider the Ornstein–Uhlenbeck process $dX_t = 2(5 - X_t)\,dt + 3\,dW_t$ with $X_0 = 0$.
+
+(a) What is the long-term mean $\mathbb{E}[X_t]$ as $t \to \infty$?
+
+(b) What is the long-term variance $\operatorname{Var}[X_t]$ as $t \to \infty$?
+
+(c) Write down the stationary distribution.
 
 ??? success "Solution to Exercise 3"
     The OU process is $dX_t = 2(5 - X_t)\,dt + 3\,dW_t$ with parameters $a = 2$, $\theta = 5$, $\sigma = 3$.
@@ -329,6 +299,16 @@ Explain why the differential notation is only shorthand and not a statement abou
     $$
     X_\infty \sim \mathcal{N}\!\left(5,\; \frac{9}{4}\right)
     $$
+
+---
+
+**Exercise 4.** For geometric Brownian motion $dS_t = 0.05\,S_t\,dt + 0.2\,S_t\,dW_t$ with $S_0 = 100$:
+
+(a) Write down the explicit solution.
+
+(b) Compute $\mathbb{E}[S_1]$ and $\operatorname{Var}[S_1]$.
+
+(c) Explain why the exponent contains $\mu - \sigma^2/2$ rather than $\mu$.
 
 ??? success "Solution to Exercise 4"
     The GBM SDE is $dS_t = 0.05\,S_t\,dt + 0.2\,S_t\,dW_t$ with $\mu = 0.05$, $\sigma = 0.2$, $S_0 = 100$.
@@ -353,6 +333,18 @@ Explain why the differential notation is only shorthand and not a statement abou
 
     **(c)** The exponent contains $\mu - \sigma^2/2$ rather than $\mu$ because of the **Ito correction**. When we apply Ito's lemma to $\log S_t$, the second-order term $\frac{1}{2}\sigma^2 S_t^2 \cdot (-1/S_t^2) = -\sigma^2/2$ appears in the drift of the log process. This arises from the fundamental identity $(dW_t)^2 = dt$ in stochastic calculus, which produces a non-negligible correction absent in ordinary calculus. The log-price grows at rate $\mu - \sigma^2/2$ (the drift of $\log S_t$), while the expected price level grows at rate $\mu$ because the convexity of the exponential function adds back the $\sigma^2/2$ factor when taking expectations.
 
+---
+
+**Exercise 5.** Classify each SDE into one of the four structural categories (additive noise, multiplicative noise, mean reversion, state-dependent diffusion) and state which solution technique you would try first.
+
+(a) $dY_t = -0.5\,Y_t\,dt + 0.1\,dW_t$
+
+(b) $dY_t = r\,Y_t\,dt + \sigma Y_t\,dW_t$
+
+(c) $dY_t = \alpha(\beta - Y_t)\,dt + \gamma\sqrt{Y_t}\,dW_t$
+
+(d) $dY_t = (2t + 1)\,dt + 4\,dW_t$
+
 ??? success "Solution to Exercise 5"
     **(a)** $dY_t = -0.5\,Y_t\,dt + 0.1\,dW_t$
 
@@ -373,6 +365,10 @@ Explain why the differential notation is only shorthand and not a statement abou
 
     - This is **additive noise** — both coefficients depend only on time, not on $Y_t$.
     - Technique: **direct integration**.
+
+---
+
+**Exercise 6.** Explain in your own words why an SDE produces a **family of random paths** rather than a single deterministic trajectory. How does this differ from an ordinary differential equation with the same drift term?
 
 ??? success "Solution to Exercise 6"
     An SDE produces a family of random paths rather than a single trajectory because the Brownian motion term $\sigma(t, X_t)\,dW_t$ introduces randomness at every instant. Each realization of the Brownian motion $W_t(\omega)$ corresponds to a different sample path of the solution $X_t(\omega)$.

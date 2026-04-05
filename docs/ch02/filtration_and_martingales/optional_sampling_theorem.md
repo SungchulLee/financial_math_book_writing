@@ -320,50 +320,6 @@ Let $\tau = \inf\{t : W_t \notin (-1, 1)\}$.
 
 (c) Find $\mathbb{P}(W_\tau = 1)$.
 
-### Exercise 2: Gambler's Ruin
-
-A gambler starts with $\$k$ and bets $\$1$ on each fair coin flip. They stop when they reach $\$0$ or $\$N$.
-
-(a) Model this as a martingale problem and find the probability of reaching $\$N$.
-
-(b) Find the expected number of bets.
-
-(c) Generalize to an unfair coin with $\mathbb{P}(\text{heads}) = p \neq 1/2$.
-
-### Exercise 3: Wald's Identities
-
-Let $S_n = \sum_{k=1}^n X_k$ where $X_k$ are i.i.d. with $\mathbb{E}[X_1] = 0$ and $\text{Var}(X_1) = \sigma^2$. Let $\tau$ be a stopping time with $\mathbb{E}[\tau] < \infty$.
-
-(a) Prove Wald's first identity: $\mathbb{E}[S_\tau] = 0$.
-
-(b) Prove Wald's second identity: $\mathbb{E}[S_\tau^2] = \sigma^2 \mathbb{E}[\tau]$.
-
-(c) Apply these to the symmetric random walk stopped at $\pm a$.
-
-### Exercise 4: Laplace Transform of Hitting Times
-
-Let $\tau_a = \inf\{t : W_t = a\}$ for $a > 0$.
-
-(a) Apply optional sampling to $\exp(\theta W_t - \frac{\theta^2 t}{2})$ with $\theta = \sqrt{2\lambda}$ to derive $\mathbb{E}[e^{-\lambda \tau_a}] = e^{-a\sqrt{2\lambda}}$.
-
-(b) Invert the Laplace transform to find the density of $\tau_a$.
-
-(c) Show that $\mathbb{E}[\tau_a] = \infty$ despite $\mathbb{P}(\tau_a < \infty) = 1$.
-
-### Exercise 5: First Passage with Drift
-
-Let $X_t = W_t + \mu t$ (Brownian motion with drift $\mu > 0$). Let $\tau_a = \inf\{t : X_t = a\}$ for $a > 0$.
-
-(a) Find a martingale involving $X_t$ by exponential tilting.
-
-(b) Use optional sampling to find $\mathbb{E}[e^{-\lambda \tau_a}]$.
-
-(c) Find $\mathbb{P}(\tau_a < \infty)$ for $\mu < 0$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Let $\tau = \inf\{t : W_t \notin (-1, 1)\}$.
 
@@ -392,6 +348,18 @@ Let $X_t = W_t + \mu t$ (Brownian motion with drift $\mu > 0$). Let $\tau_a = \i
     $$
 
     Alternatively, from (a): $\mathbb{E}[W_\tau] = 1 \cdot p + (-1)(1 - p) = 2p - 1 = 0$, giving $p = 1/2$.
+
+---
+
+### Exercise 2: Gambler's Ruin
+
+A gambler starts with $\$k$ and bets $\$1$ on each fair coin flip. They stop when they reach $\$0$ or $\$N$.
+
+(a) Model this as a martingale problem and find the probability of reaching $\$N$.
+
+(b) Find the expected number of bets.
+
+(c) Generalize to an unfair coin with $\mathbb{P}(\text{heads}) = p \neq 1/2$.
 
 ??? success "Solution to Exercise 2"
     **(a)** Let $S_n$ be the gambler's wealth, starting at $S_0 = k$, with absorbing barriers at 0 and $N$. For a fair coin ($p = 1/2$), $S_n$ is a martingale.
@@ -434,6 +402,18 @@ Let $X_t = W_t + \mu t$ (Brownian motion with drift $\mu > 0$). Let $\tau_a = \i
     p_k = \frac{(q/p)^k - 1}{(q/p)^N - 1}
     $$
 
+---
+
+### Exercise 3: Wald's Identities
+
+Let $S_n = \sum_{k=1}^n X_k$ where $X_k$ are i.i.d. with $\mathbb{E}[X_1] = 0$ and $\text{Var}(X_1) = \sigma^2$. Let $\tau$ be a stopping time with $\mathbb{E}[\tau] < \infty$.
+
+(a) Prove Wald's first identity: $\mathbb{E}[S_\tau] = 0$.
+
+(b) Prove Wald's second identity: $\mathbb{E}[S_\tau^2] = \sigma^2 \mathbb{E}[\tau]$.
+
+(c) Apply these to the symmetric random walk stopped at $\pm a$.
+
 ??? success "Solution to Exercise 3"
     **(a)** Since $\mathbb{E}[X_k] = 0$, $S_n$ is a martingale. The increments $|X_k|$ are i.i.d. with $\mathbb{E}[\tau] < \infty$. By Wald's first identity (optional sampling for martingales with bounded increments and $\mathbb{E}[\tau] < \infty$, which can be justified since $|S_{n+1} - S_n| = |X_{n+1}|$ is integrable):
 
@@ -456,6 +436,18 @@ Let $X_t = W_t + \mu t$ (Brownian motion with drift $\mu > 0$). Let $\tau_a = \i
     - By Wald's first identity: $\mathbb{E}[S_\tau] = 0$ (consistent with symmetry: $\mathbb{P}(S_\tau = a) = \mathbb{P}(S_\tau = -a) = 1/2$).
 
     - By Wald's second identity: $\mathbb{E}[S_\tau^2] = \mathbb{E}[\tau]$. Since $|S_\tau| = a$ (the walk exits at $\pm a$), $\mathbb{E}[S_\tau^2] = a^2$, so $\mathbb{E}[\tau] = a^2$.
+
+---
+
+### Exercise 4: Laplace Transform of Hitting Times
+
+Let $\tau_a = \inf\{t : W_t = a\}$ for $a > 0$.
+
+(a) Apply optional sampling to $\exp(\theta W_t - \frac{\theta^2 t}{2})$ with $\theta = \sqrt{2\lambda}$ to derive $\mathbb{E}[e^{-\lambda \tau_a}] = e^{-a\sqrt{2\lambda}}$.
+
+(b) Invert the Laplace transform to find the density of $\tau_a$.
+
+(c) Show that $\mathbb{E}[\tau_a] = \infty$ despite $\mathbb{P}(\tau_a < \infty) = 1$.
 
 ??? success "Solution to Exercise 4"
     **(a)** Apply optional sampling to $Z_t = \exp(\sqrt{2\lambda}\,W_t - \lambda t)$ at $\tau_a \wedge T$:
@@ -490,6 +482,18 @@ Let $X_t = W_t + \mu t$ (Brownian motion with drift $\mu > 0$). Let $\tau_a = \i
 
     Alternatively, from the density: $\mathbb{E}[\tau_a] = \int_0^\infty t \cdot \frac{a}{\sqrt{2\pi t^3}} e^{-a^2/(2t)}\,dt = \int_0^\infty \frac{a}{\sqrt{2\pi t}} e^{-a^2/(2t)}\,dt$. The substitution $u = a^2/(2t)$ gives $dt = -a^2/(2u^2)\,du$, and the integral diverges at $t \to \infty$ (equivalently $u \to 0$). $\square$
 
+---
+
+### Exercise 5: First Passage with Drift
+
+Let $X_t = W_t + \mu t$ (Brownian motion with drift $\mu > 0$). Let $\tau_a = \inf\{t : X_t = a\}$ for $a > 0$.
+
+(a) Find a martingale involving $X_t$ by exponential tilting.
+
+(b) Use optional sampling to find $\mathbb{E}[e^{-\lambda \tau_a}]$.
+
+(c) Find $\mathbb{P}(\tau_a < \infty)$ for $\mu < 0$.
+
 ??? success "Solution to Exercise 5"
     **(a)** Let $X_t = W_t + \mu t$ with $\mu > 0$. The exponential martingale for Brownian motion with drift is obtained by exponential tilting. Define:
 
@@ -522,6 +526,18 @@ Let $X_t = W_t + \mu t$ (Brownian motion with drift $\mu > 0$). Let $\tau_a = \i
     $$
 
     With negative drift, Brownian motion drifts to $-\infty$, and the probability of ever reaching level $a > 0$ is strictly less than 1.
+
+---
+
+### Exercise 6: Two-Sided Exit
+
+Let $\tau = \inf\{t : W_t \notin (-a, b)\}$ where $a, b > 0$.
+
+(a) Find $\mathbb{P}(W_\tau = b)$.
+
+(b) Find $\mathbb{E}[\tau]$.
+
+(c) Find $\mathbb{E}[e^{-\lambda \tau}]$.
 
 ??? success "Solution to Exercise 6"
     Let $\tau = \inf\{t : W_t \notin (-a, b)\}$ where $a, b > 0$ and $W_0 = 0$.
@@ -603,13 +619,3 @@ Let $X_t = W_t + \mu t$ (Brownian motion with drift $\mu > 0$). Let $\tau_a = \i
     $$
 
     This can be verified by noting it equals 1 when $\lambda = 0$ and satisfies the ODE $\frac{1}{2}u'' = \lambda u$ on $(-a, b)$ with boundary conditions $u(-a) = u(b) = 1$.
-
-### Exercise 6: Two-Sided Exit
-
-Let $\tau = \inf\{t : W_t \notin (-a, b)\}$ where $a, b > 0$.
-
-(a) Find $\mathbb{P}(W_\tau = b)$.
-
-(b) Find $\mathbb{E}[\tau]$.
-
-(c) Find $\mathbb{E}[e^{-\lambda \tau}]$.

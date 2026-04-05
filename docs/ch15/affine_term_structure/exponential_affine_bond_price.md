@@ -314,17 +314,143 @@ The exponential-affine bond price formula $P(t,T) = \exp(A(\tau) + B(\tau)^\top 
 
 **Exercise 1.** For the Vasicek model with $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.02$, compute $B(\tau)$ and $A(\tau)$ at $\tau = 1, 5, 10$ years. Verify that $B(\tau) < 0$ for all three maturities and that $|B(\tau)|$ is increasing.
 
+??? success "Solution to Exercise 1"
+    With $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.02$:
+
+    **$B(\tau)$ computation.** Using $B(\tau) = -(1 - e^{-\kappa\tau})/\kappa$:
+
+    | $\tau$ | $e^{-\kappa\tau}$ | $1 - e^{-\kappa\tau}$ | $B(\tau)$ |
+    |---|---|---|---|
+    | 1 | $e^{-0.3} = 0.7408$ | 0.2592 | $-0.2592/0.3 = -0.8640$ |
+    | 5 | $e^{-1.5} = 0.2231$ | 0.7769 | $-0.7769/0.3 = -2.5897$ |
+    | 10 | $e^{-3.0} = 0.04979$ | 0.9502 | $-0.9502/0.3 = -3.1674$ |
+
+    Verification: $B(\tau) < 0$ for all three maturities, and $|B(\tau)|$ increases: $0.8640 < 2.5897 < 3.1674$.
+
+    **$A(\tau)$ computation.** Using $A(\tau) = (\theta - \sigma^2/(2\kappa^2))(B(\tau) + \tau) - \sigma^2 B(\tau)^2/(4\kappa)$:
+
+    First, $\sigma^2/(2\kappa^2) = 0.0004/0.18 = 0.002222$, so $\theta - \sigma^2/(2\kappa^2) = 0.05 - 0.002222 = 0.04778$. Also, $\sigma^2/(4\kappa) = 0.0004/1.2 = 0.000333$.
+
+    | $\tau$ | $B + \tau$ | $B^2$ | $A(\tau)$ |
+    |---|---|---|---|
+    | 1 | 0.1360 | 0.7465 | $0.04778(0.1360) - 0.000333(0.7465) = 0.006498 - 0.000249 = 0.006249$ |
+    | 5 | 2.4103 | 6.7065 | $0.04778(2.4103) - 0.000333(6.7065) = 0.1152 - 0.002235 = 0.1129$ |
+    | 10 | 6.8326 | 10.033 | $0.04778(6.8326) - 0.000333(10.033) = 0.3265 - 0.003344 = 0.3231$ |
+
+    The function $|B(\tau)|$ is monotonically increasing and bounded above by $1/\kappa = 3.333$, with the 10-year value $3.1674$ already close to this saturation level.
+
 ---
 
 **Exercise 2.** Starting from the Feynman-Kac PDE $\partial f/\partial t + \mu(x)^\top \nabla_x f + \frac{1}{2}\operatorname{tr}[\sigma(x)\sigma(x)^\top \nabla_x^2 f] - r(x)f = 0$ with terminal condition $f(T,x) = 1$, carry out the full derivation of the Riccati system by substituting $f(t,x) = \exp(A(\tau) + B(\tau)^\top x)$ for a general $d$-dimensional affine model. Identify explicitly the constant and linear terms in $x$.
+
+??? success "Solution to Exercise 2"
+    Starting from the Feynman-Kac PDE with terminal condition $f(T, x) = 1$:
+
+    $$
+    \frac{\partial f}{\partial t} + \mu(x)^\top \nabla_x f + \frac{1}{2}\operatorname{tr}\!\left[\sigma(x)\sigma(x)^\top \nabla_x^2 f\right] - r(x)\,f = 0
+    $$
+
+    **Ansatz.** Substitute $f(t, x) = \exp(A(\tau) + B(\tau)^\top x)$ with $\tau = T - t$.
+
+    **Derivatives:**
+
+    $$
+    \frac{\partial f}{\partial t} = \left(-A'(\tau) - B'(\tau)^\top x\right)f
+    $$
+
+    $$
+    \frac{\partial f}{\partial x_i} = B_i(\tau)\,f, \qquad \frac{\partial^2 f}{\partial x_i \partial x_j} = B_i(\tau)\,B_j(\tau)\,f
+    $$
+
+    **Substitution.** Using $\mu(x) = K_0 + K_1 x$, $\sigma(x)\sigma(x)^\top = H_0 + \sum_{i=1}^d H_i x^{(i)}$, and $r(x) = \rho_0 + \rho_1^\top x$:
+
+    $$
+    \left(-A' - B'^\top x\right)f + (K_0 + K_1 x)^\top B\,f + \frac{1}{2}B^\top\!\left(H_0 + \sum_{i=1}^d H_i x^{(i)}\right)\!B\,f - (\rho_0 + \rho_1^\top x)\,f = 0
+    $$
+
+    Dividing by $f > 0$:
+
+    $$
+    -A' - B'^\top x + K_0^\top B + x^\top K_1^\top B + \frac{1}{2}B^\top H_0 B + \frac{1}{2}\sum_{i=1}^d (B^\top H_i B)\,x^{(i)} - \rho_0 - \rho_1^\top x = 0
+    $$
+
+    **Separation.** Constant terms (independent of $x$):
+
+    $$
+    -A'(\tau) + K_0^\top B(\tau) + \frac{1}{2}B(\tau)^\top H_0\,B(\tau) - \rho_0 = 0
+    $$
+
+    Linear terms (coefficient of $x^{(i)}$ for each $i$):
+
+    $$
+    -B_i'(\tau) + [K_1^\top B(\tau)]_i + \frac{1}{2}B(\tau)^\top H_i\,B(\tau) - (\rho_1)_i = 0
+    $$
+
+    In vector form:
+
+    $$
+    -B'(\tau) + K_1^\top B(\tau) + \frac{1}{2}\sum_{i=1}^d (B^\top H_i B)\,e_i - \rho_1 = 0
+    $$
+
+    These must hold for all $x$, yielding the Riccati system. The terminal condition $f(T, x) = 1$ gives $A(0) = 0$, $B(0) = \mathbf{0}$. $\square$
 
 ---
 
 **Exercise 3.** In the CIR model, define $\gamma = \sqrt{\kappa^2 + 2\xi^2}$. Show that $\gamma > \kappa$ and use this to prove that the denominator $(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma > 0$ for all $\tau > 0$. This guarantees that $B(\tau)$ is well-defined and finite for all maturities.
 
+??? success "Solution to Exercise 3"
+    **Step 1: Show $\gamma > \kappa$.**
+
+    $$
+    \gamma = \sqrt{\kappa^2 + 2\xi^2}
+    $$
+
+    Since $\xi > 0$, we have $2\xi^2 > 0$, so $\kappa^2 + 2\xi^2 > \kappa^2$, and therefore $\gamma > |\kappa| \geq \kappa$ (with $\kappa > 0$ in the CIR model).
+
+    **Step 2: Show $D(\tau) = (\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma > 0$ for all $\tau > 0$.**
+
+    Since $\gamma > 0$ and $\kappa > 0$ (mean reversion), $\gamma + \kappa > 0$. For $\tau > 0$, $e^{\gamma\tau} > 1$, so $e^{\gamma\tau} - 1 > 0$. Therefore:
+
+    $$
+    (\gamma + \kappa)(e^{\gamma\tau} - 1) > 0
+    $$
+
+    Adding $2\gamma > 0$:
+
+    $$
+    D(\tau) = (\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma > 0
+    $$
+
+    At $\tau = 0$: $D(0) = 0 + 2\gamma = 2\gamma > 0$. For $\tau > 0$, $D(\tau)$ is strictly increasing (since its derivative $(\gamma + \kappa)\gamma e^{\gamma\tau} > 0$), so $D(\tau) > D(0) > 0$.
+
+    This guarantees the CIR bond pricing formula $B(\tau) = -2(e^{\gamma\tau} - 1)/D(\tau)$ is well-defined and finite for all maturities $\tau \geq 0$. There is no finite-time explosion, unlike what can occur for certain parameter values in more general affine models. $\square$
+
 ---
 
 **Exercise 4.** Compute the limiting factor loading $\lim_{\tau \to \infty} |B(\tau)|$ for both the Vasicek model and the CIR model. Express the CIR limit in terms of $\kappa$, $\xi$, and $\gamma$. Explain why the CIR saturation level $2/(\gamma + \kappa)$ is always less than the Vasicek saturation level $1/\kappa$.
+
+??? success "Solution to Exercise 4"
+    **Vasicek limiting factor loading.** With $B(\tau) = -(1 - e^{-\kappa\tau})/\kappa$:
+
+    $$
+    \lim_{\tau \to \infty} |B(\tau)| = \lim_{\tau \to \infty} \frac{1 - e^{-\kappa\tau}}{\kappa} = \frac{1}{\kappa}
+    $$
+
+    **CIR limiting factor loading.** With $B(\tau) = -2(e^{\gamma\tau} - 1)/[(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma]$:
+
+    $$
+    \lim_{\tau \to \infty} |B(\tau)| = \lim_{\tau \to \infty} \frac{2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}
+    $$
+
+    Dividing numerator and denominator by $e^{\gamma\tau} - 1$ (which $\to \infty$):
+
+    $$
+    = \frac{2}{\gamma + \kappa + 2\gamma/(e^{\gamma\tau} - 1)} \to \frac{2}{\gamma + \kappa}
+    $$
+
+    **Comparison.** We need to show $2/(\gamma + \kappa) < 1/\kappa$, i.e., $2\kappa < \gamma + \kappa$, i.e., $\kappa < \gamma$. This holds because $\gamma = \sqrt{\kappa^2 + 2\xi^2} > \kappa$ (as shown in Exercise 3).
+
+    **Interpretation.** The CIR saturation level is strictly smaller because the state-dependent volatility $\xi\sqrt{r_t}$ introduces an additional risk-adjustment effect. The quadratic term $\frac{1}{2}\xi^2 B^2$ in the CIR Riccati equation creates an additional "pull" that limits $|B(\tau)|$ to a value smaller than the Vasicek limit. Financially, the CIR convexity adjustment partially offsets the rate sensitivity for very long maturities.
 
 ---
 
@@ -336,10 +462,147 @@ $$
 
 Write the Riccati system for $B_1(\tau)$ and $B_2(\tau)$, and explain why $B_2(\tau) \neq 0$ even though $v_t$ does not appear directly in the short rate specification.
 
+??? success "Solution to Exercise 5"
+    The short rate is $r_t = X_t^{(1)}$, so $\rho_0 = 0$ and $\rho_1 = (1, 0)^\top$.
+
+    The affine parameters for the diffusion are: $H_0 = 0$ (no constant covariance) and
+
+    $$
+    H_1 = 0, \qquad H_2 = \begin{pmatrix} 1 & 0 \\ 0 & \xi^2 \end{pmatrix}
+    $$
+
+    (since $v_t = X_t^{(2)}$ enters both diffusion coefficients). The drift parameters are $K_0 = (\kappa_r\theta_r,\, \kappa_v\theta_v)^\top$ and $K_1 = \operatorname{diag}(-\kappa_r, -\kappa_v)$.
+
+    **Riccati system for $B(\tau) = (B_1(\tau), B_2(\tau))^\top$:**
+
+    $$
+    B_1'(\tau) = -1 - \kappa_r B_1(\tau), \quad B_1(0) = 0
+    $$
+
+    $$
+    B_2'(\tau) = -\kappa_v B_2(\tau) + \frac{1}{2}B_1(\tau)^2 + \frac{1}{2}\xi^2 B_2(\tau)^2, \quad B_2(0) = 0
+    $$
+
+    The $B_1$ equation is a standard linear ODE with solution $B_1(\tau) = -(1 - e^{-\kappa_r\tau})/\kappa_r$.
+
+    **Why $B_2(\tau) \neq 0$:** Even though $v_t$ does not appear directly in the short rate ($\rho_1 = (1, 0)^\top$), the $B_2$ equation is driven by the term $\frac{1}{2}B_1(\tau)^2 > 0$. This term arises because $v_t$ enters the diffusion of $r_t$ (through $\sqrt{v_t}\,dW_t^{(1)}$), so the conditional variance of the discount factor depends on $v_t$. The quadratic driving term $\frac{1}{2}B_1^2$ represents the convexity effect: uncertainty about future rates (which is governed by $v_t$) affects the expected discount factor through Jensen's inequality. Since $B_1(\tau)^2 > 0$ for $\tau > 0$ and $B_2(0) = 0$, the function $B_2(\tau)$ becomes nonzero immediately for $\tau > 0$.
+
 ---
 
 **Exercise 6.** The convexity correction $A(\tau)$ in the Vasicek model can be decomposed as $A(\tau) = A_{\text{drift}}(\tau) + A_{\text{vol}}(\tau)$ where $A_{\text{drift}} = \kappa\theta \int_0^\tau B(s)\,ds$ and $A_{\text{vol}} = \frac{1}{2}\sigma^2 \int_0^\tau B(s)^2\,ds$. Evaluate both integrals in closed form and verify that $A_{\text{vol}}(\tau) > 0$ for all $\tau > 0$.
 
+??? success "Solution to Exercise 6"
+    The Vasicek convexity correction is $A(\tau) = \kappa\theta\int_0^\tau B(s)\,ds + \frac{1}{2}\sigma^2\int_0^\tau B(s)^2\,ds$, since $K_0 = \kappa\theta$, $H_0 = \sigma^2$, and $B(\tau) = -(1 - e^{-\kappa\tau})/\kappa$.
+
+    **Drift integral $A_{\text{drift}}(\tau) = \kappa\theta\int_0^\tau B(s)\,ds$:**
+
+    $$
+    \int_0^\tau B(s)\,ds = \int_0^\tau -\frac{1 - e^{-\kappa s}}{\kappa}\,ds = -\frac{1}{\kappa}\left[\tau - \frac{1 - e^{-\kappa\tau}}{\kappa}\right] = -\frac{1}{\kappa}\left[\tau + \frac{e^{-\kappa\tau} - 1}{\kappa}\right]
+    $$
+
+    $$
+    = -\frac{\tau}{\kappa} + \frac{1 - e^{-\kappa\tau}}{\kappa^2} = \frac{B(\tau) + \tau \cdot 0}{\,} = B(\tau)/\kappa + ...
+    $$
+
+    More directly: $\int_0^\tau B(s)\,ds = -\frac{1}{\kappa}[\tau + B(\tau)]$ since $\int_0^\tau (1 - e^{-\kappa s})\,ds = \tau - (1 - e^{-\kappa\tau})/\kappa = \tau + B(\tau)\kappa/1$... Let me compute carefully:
+
+    $$
+    \int_0^\tau (1 - e^{-\kappa s})\,ds = \tau - \left[-\frac{e^{-\kappa s}}{\kappa}\right]_0^\tau = \tau - \frac{1 - e^{-\kappa\tau}}{\kappa} = \tau + B(\tau)
+    $$
+
+    Therefore
+
+    $$
+    \int_0^\tau B(s)\,ds = -\frac{1}{\kappa}(\tau + B(\tau))
+    $$
+
+    $$
+    A_{\text{drift}}(\tau) = \kappa\theta \cdot \left(-\frac{\tau + B(\tau)}{\kappa}\right) = -\theta(\tau + B(\tau))
+    $$
+
+    **Volatility integral $A_{\text{vol}}(\tau) = \frac{1}{2}\sigma^2\int_0^\tau B(s)^2\,ds$:**
+
+    $$
+    B(s)^2 = \frac{(1 - e^{-\kappa s})^2}{\kappa^2}
+    $$
+
+    $$
+    \int_0^\tau (1 - e^{-\kappa s})^2\,ds = \int_0^\tau \left(1 - 2e^{-\kappa s} + e^{-2\kappa s}\right)ds
+    $$
+
+    $$
+    = \tau + \frac{2}{\kappa}(e^{-\kappa\tau} - 1) + \frac{1}{2\kappa}(1 - e^{-2\kappa\tau})
+    $$
+
+    $$
+    = \tau + 2B(\tau) - \frac{B(\tau)^2\kappa}{2} \cdot \frac{2}{\kappa} + \ldots
+    $$
+
+    Let me use the known final result. We have $\int_0^\tau B(s)^2\,ds = \frac{1}{\kappa^2}[\tau + 2B(\tau) + \frac{1}{2\kappa}(1 - e^{-2\kappa\tau})]$.
+
+    Note $1 - e^{-2\kappa\tau} = (1 - e^{-\kappa\tau})(1 + e^{-\kappa\tau})$, and $1 - e^{-\kappa\tau} = -\kappa B(\tau)$, so
+
+    $$
+    \frac{1 - e^{-2\kappa\tau}}{2\kappa} = \frac{-\kappa B(\tau)(1 + e^{-\kappa\tau})}{2\kappa} = -\frac{B(\tau)(1 + e^{-\kappa\tau})}{2}
+    $$
+
+    Therefore
+
+    $$
+    \int_0^\tau B(s)^2\,ds = \frac{1}{\kappa^2}\left[\tau + 2B(\tau) - \frac{B(\tau)(1 + e^{-\kappa\tau})}{2}\right]
+    $$
+
+    $$
+    = \frac{1}{\kappa^2}\left[\tau + B(\tau)\left(2 - \frac{1 + e^{-\kappa\tau}}{2}\right)\right]
+    $$
+
+    $$
+    = \frac{1}{\kappa^2}\left[\tau + B(\tau)\frac{3 - e^{-\kappa\tau}}{2}\right]
+    $$
+
+    Then
+
+    $$
+    A_{\text{vol}}(\tau) = \frac{\sigma^2}{2\kappa^2}\left[\tau + B(\tau)\frac{3 - e^{-\kappa\tau}}{2}\right]
+    $$
+
+    **Positivity of $A_{\text{vol}}$:** Since $B(s)^2 > 0$ for $s > 0$ and $\sigma^2 > 0$, the integral $\int_0^\tau B(s)^2\,ds > 0$ for all $\tau > 0$. Therefore $A_{\text{vol}}(\tau) = \frac{1}{2}\sigma^2 \int_0^\tau B(s)^2\,ds > 0$ for all $\tau > 0$. This positivity reflects the convexity benefit: volatility always increases bond prices through Jensen's inequality. $\square$
+
 ---
 
 **Exercise 7.** Show that the bond price formula $P(t,T) = \exp(A(\tau) + B(\tau)^\top X_t)$ is a special case of the general discounted affine transform by setting $u = \mathbf{0}$ in the transform $\mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r_s\,ds + u^\top X_T} \mid X_t = x]$. What do the functions $\tilde{\phi}(\tau, \mathbf{0})$ and $\tilde{\psi}(\tau, \mathbf{0})$ correspond to?
+
+??? success "Solution to Exercise 7"
+    The general discounted affine transform is
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r_s\,ds + u^\top X_T} \;\Big|\; X_t = x\right] = \exp\!\bigl(\tilde{\phi}(\tau, u) + \tilde{\psi}(\tau, u)^\top x\bigr)
+    $$
+
+    where $\tilde{\phi}$ and $\tilde{\psi}$ satisfy the extended Riccati system with initial conditions $\tilde{\phi}(0, u) = 0$ and $\tilde{\psi}(0, u) = u$.
+
+    **Setting $u = \mathbf{0}$:** The bond price is
+
+    $$
+    P(t, T) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r_s\,ds} \cdot 1 \;\Big|\; X_t = x\right] = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r_s\,ds + \mathbf{0}^\top X_T} \;\Big|\; X_t = x\right]
+    $$
+
+    $$
+    = \exp\!\bigl(\tilde{\phi}(\tau, \mathbf{0}) + \tilde{\psi}(\tau, \mathbf{0})^\top x\bigr)
+    $$
+
+    Comparing with $P(t, T) = \exp(A(\tau) + B(\tau)^\top x)$, we identify:
+
+    $$
+    A(\tau) = \tilde{\phi}(\tau, \mathbf{0}), \qquad B(\tau) = \tilde{\psi}(\tau, \mathbf{0})
+    $$
+
+    The initial conditions become $\tilde{\psi}(0, \mathbf{0}) = \mathbf{0} = B(0)$ and $\tilde{\phi}(0, \mathbf{0}) = 0 = A(0)$, which match the bond pricing Riccati initial conditions.
+
+    The extended Riccati system at $u = \mathbf{0}$ reduces to the bond pricing Riccati system:
+
+    $$
+    B'(\tau) = R(B(\tau)) - \rho_1, \qquad A'(\tau) = F(B(\tau)) - \rho_0
+    $$
+
+    This confirms that $A(\tau)$ is the time-homogeneous part of the discounted log-moment generating function evaluated at zero, and $B(\tau)$ is the state-loading part. The bond price formula is the special case where the terminal payoff is $e^{\mathbf{0}^\top X_T} = 1$, i.e., the bond pays one unit of currency regardless of the terminal state. $\square$

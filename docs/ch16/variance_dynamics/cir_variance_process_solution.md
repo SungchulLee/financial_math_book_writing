@@ -239,22 +239,175 @@ The [next section](variance_process_moments.md) derives explicit formulas for th
 
 **Exercise 1.** For CIR parameters $\kappa = 2$, $\theta = 0.04$, $\sigma_v = 0.3$, $v_0 = 0.06$, and $\tau = 1$, compute the non-central chi-squared parameters: scale $c$, degrees of freedom $\delta = 4\kappa\theta/\sigma_v^2$, and non-centrality $\lambda = 4\kappa v_0 e^{-\kappa\tau}/(\sigma_v^2(1 - e^{-\kappa\tau}))$.
 
+??? success "Solution to Exercise 1"
+    We are given $\kappa = 2$, $\theta = 0.04$, $\sigma_v = 0.3$, $v_0 = 0.06$, and $\tau = 1$.
+
+    **Scale parameter:**
+
+    $$
+    c = \frac{\sigma_v^2(1 - e^{-\kappa\tau})}{4\kappa} = \frac{0.09(1 - e^{-2})}{8} = \frac{0.09 \times 0.8647}{8} = \frac{0.07782}{8} = 0.009728
+    $$
+
+    **Degrees of freedom:**
+
+    $$
+    \delta = \frac{4\kappa\theta}{\sigma_v^2} = \frac{4 \times 2 \times 0.04}{0.09} = \frac{0.32}{0.09} = 3.556
+    $$
+
+    Since $\delta > 2$, the Feller condition $2\kappa\theta \geq \sigma_v^2$ is satisfied ($0.16 > 0.09$), and the variance process remains strictly positive.
+
+    **Non-centrality parameter:**
+
+    $$
+    \lambda = \frac{4\kappa v_0 e^{-\kappa\tau}}{\sigma_v^2(1 - e^{-\kappa\tau})} = \frac{4 \times 2 \times 0.06 \times e^{-2}}{0.09 \times (1 - e^{-2})} = \frac{0.48 \times 0.1353}{0.09 \times 0.8647} = \frac{0.06495}{0.07782} = 0.8346
+    $$
+
+    The transition distribution is therefore $v_T \mid v_0 \sim \frac{c}{2}\,\chi^2_{3.556}(0.8346)$, or equivalently $v_T/c \sim \chi^2_{3.556}(0.8346)$.
+
 ---
 
 **Exercise 2.** Using the parameters from Exercise 1, compute $\mathbb{E}[v_T \mid v_0]$ using both the direct formula $\theta + (v_0 - \theta)e^{-\kappa\tau}$ and the non-central chi-squared mean formula $c(\delta + \lambda)$. Verify they agree.
+
+??? success "Solution to Exercise 2"
+    Using the parameters from Exercise 1: $\kappa = 2$, $\theta = 0.04$, $v_0 = 0.06$, $\tau = 1$.
+
+    **Method 1: Direct formula.**
+
+    $$
+    \mathbb{E}[v_T \mid v_0] = \theta + (v_0 - \theta)e^{-\kappa\tau} = 0.04 + (0.06 - 0.04)e^{-2} = 0.04 + 0.02 \times 0.1353 = 0.04 + 0.002707 = 0.04271
+    $$
+
+    **Method 2: Non-central chi-squared mean formula.**
+
+    The mean of $\chi^2_\delta(\lambda)$ is $\delta + \lambda$, and $v_T = c \cdot X$ where $X \sim \chi^2_\delta(\lambda)$, so:
+
+    $$
+    \mathbb{E}[v_T \mid v_0] = c(\delta + \lambda) = 0.009728 \times (3.556 + 0.8346) = 0.009728 \times 4.390 = 0.04271
+    $$
+
+    The two methods agree: $\mathbb{E}[v_T \mid v_0] = 0.04271$. This is between $v_0 = 0.06$ and $\theta = 0.04$, consistent with mean reversion pulling the elevated variance back toward the long-run level over one year.
 
 ---
 
 **Exercise 3.** The Laplace transform of the CIR transition density is $\mathbb{E}[e^{-uv_T} \mid v_t] = \exp(\tilde{\phi}(\tau, -u) + \tilde{\psi}(\tau, -u)v_t)$. For bond pricing ($u = 1$, $v = r$), relate this to the zero-coupon bond price formula.
 
+??? success "Solution to Exercise 3"
+    The Laplace transform of the CIR process using the non-central chi-squared representation is:
+
+    $$
+    \mathbb{E}\!\left[e^{-u\,v_T} \,\middle|\, v_t\right] = \left(\frac{1}{1 + 2cu}\right)^{\delta/2} \exp\!\left(-\frac{\lambda\,cu}{1 + 2cu}\right)
+    $$
+
+    For a zero-coupon bond price in the CIR interest rate model, the short rate $r_t$ replaces $v_t$, and the bond price is:
+
+    $$
+    P(t,T) = \mathbb{E}^{\mathbb{Q}}\!\left[\exp\!\left(-\int_t^T r_s\,ds\right) \,\middle|\, r_t\right]
+    $$
+
+    This is *not* the same as $\mathbb{E}[e^{-r_T}|r_t]$ (which sets $u = 1$ for the terminal value). However, the affine structure of the CIR process ensures that the bond price also has an exponential-affine form:
+
+    $$
+    P(t,T) = \exp\!\left(A(\tau) - B(\tau)\,r_t\right)
+    $$
+
+    where $A(\tau)$ and $B(\tau)$ satisfy Riccati ODEs. The function $B(\tau)$ satisfies:
+
+    $$
+    B(\tau) = \frac{2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}
+    $$
+
+    with $\gamma = \sqrt{\kappa^2 + 2\sigma_v^2}$, and $A(\tau)$ is:
+
+    $$
+    A(\tau) = \frac{2\kappa\theta}{\sigma_v^2}\ln\!\left(\frac{2\gamma\,e^{(\kappa + \gamma)\tau/2}}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}\right)
+    $$
+
+    The connection is that both the Laplace transform of $v_T$ and the bond price exploit the affine property: the exponent is always of the form $\alpha(\tau) + \beta(\tau)v_t$ (linear in $v_t$). For the Laplace transform at the terminal point ($u = 1$), we get the conditional moment generating function evaluated at $-1$. For the bond price, the integrated exponential functional leads to the Riccati system. Both are consequences of the same affine structure of the CIR diffusion.
+
 ---
 
 **Exercise 4.** Describe the Broadie-Kaya exact simulation algorithm for the CIR process. What is the key step that requires sampling from a non-central chi-squared distribution, and why does this produce unbiased samples?
+
+??? success "Solution to Exercise 4"
+    The Broadie-Kaya (2006) exact simulation algorithm for the CIR variance process proceeds as follows:
+
+    **Step 1.** Given the current variance $v_t$ at time $t$, compute the non-central chi-squared parameters for time $T = t + \Delta t$:
+
+    - Scale: $c = \sigma_v^2(1 - e^{-\kappa\Delta t})/(4\kappa)$
+    - Degrees of freedom: $\delta = 4\kappa\theta/\sigma_v^2$
+    - Non-centrality: $\lambda = 4\kappa v_t e^{-\kappa\Delta t}/(\sigma_v^2(1 - e^{-\kappa\Delta t}))$
+
+    **Step 2.** Sample $X \sim \chi^2_\delta(\lambda)$ from the non-central chi-squared distribution. This is the key step. One standard approach:
+
+    - If $\delta > 1$: Sample $Z \sim N(0,1)$ and $Y \sim \chi^2_{\delta-1}$ (central chi-squared). Then $X = (Z + \sqrt{\lambda})^2 + Y$.
+    - If $\delta \leq 1$: Sample $N \sim \text{Poisson}(\lambda/2)$, then $X \sim \chi^2_{\delta + 2N}$ (central chi-squared with random degrees of freedom).
+
+    **Step 3.** Set $v_T = c \cdot X$.
+
+    **Why this is unbiased:** The non-central chi-squared distribution is the *exact* conditional distribution of $v_T/c$ given $v_t$. Every sample drawn from this distribution is a draw from the true transition kernel of the CIR process. There is no time-discretization error because we are sampling from the exact solution, not from a discrete-time approximation. By contrast, Euler discretization introduces bias of order $O(\Delta t)$ and can produce negative variance values, requiring ad hoc corrections (such as absorption or reflection at zero) that distort the distribution.
+
+    The exact sampling approach guarantees that the marginal distribution at each time step is correct, regardless of the step size $\Delta t$. This is particularly valuable for long time steps and for processes near the Feller boundary where Euler schemes are unreliable.
 
 ---
 
 **Exercise 5.** As $\tau \to \infty$, the CIR process converges to a Gamma stationary distribution. Compute the shape parameter $\alpha = 2\kappa\theta/\sigma_v^2$ and rate parameter $\beta = 2\kappa/\sigma_v^2$ for the parameters in Exercise 1. What is the stationary mean and variance?
 
+??? success "Solution to Exercise 5"
+    Using $\kappa = 2$, $\theta = 0.04$, $\sigma_v = 0.3$:
+
+    **Shape parameter:**
+
+    $$
+    \alpha = \frac{2\kappa\theta}{\sigma_v^2} = \frac{2 \times 2 \times 0.04}{0.09} = \frac{0.16}{0.09} = 1.778
+    $$
+
+    **Rate parameter:**
+
+    $$
+    \beta = \frac{2\kappa}{\sigma_v^2} = \frac{4}{0.09} = 44.44
+    $$
+
+    So the stationary distribution is $v_\infty \sim \text{Gamma}(1.778, 44.44)$.
+
+    **Stationary mean:**
+
+    $$
+    \mathbb{E}[v_\infty] = \frac{\alpha}{\beta} = \frac{1.778}{44.44} = 0.04 = \theta
+    $$
+
+    **Stationary variance:**
+
+    $$
+    \text{Var}(v_\infty) = \frac{\alpha}{\beta^2} = \frac{1.778}{1975.1} = 0.0009003
+    $$
+
+    Equivalently, using the direct formula:
+
+    $$
+    \text{Var}(v_\infty) = \frac{\theta\sigma_v^2}{2\kappa} = \frac{0.04 \times 0.09}{4} = 0.0009
+    $$
+
+    The stationary standard deviation is $\sqrt{0.0009} = 0.03$, which is 75% of the mean (coefficient of variation = 0.75). This indicates substantial variability in the long-run variance.
+
+    Note that since $\delta = 2\alpha = 3.556 > 2$, the Feller condition is satisfied, confirming that the process remains strictly positive in the stationary regime.
+
 ---
 
 **Exercise 6.** When the Feller condition is violated ($\delta < 2$), the non-central chi-squared distribution has a point mass at zero. For $\kappa = 1$, $\theta = 0.02$, $\sigma_v = 0.5$, compute $\delta$ and explain why $\mathbb{P}(v_T = 0 \mid v_0) > 0$ for sufficiently large $T$.
+
+??? success "Solution to Exercise 6"
+    For $\kappa = 1$, $\theta = 0.02$, $\sigma_v = 0.5$:
+
+    **Degrees of freedom:**
+
+    $$
+    \delta = \frac{4\kappa\theta}{\sigma_v^2} = \frac{4 \times 1 \times 0.02}{0.25} = \frac{0.08}{0.25} = 0.32
+    $$
+
+    **Feller condition check:** The Feller condition requires $2\kappa\theta \geq \sigma_v^2$, i.e., $0.04 \geq 0.25$, which is clearly violated. The Feller ratio is $2\kappa\theta/\sigma_v^2 = 0.16 \ll 1$.
+
+    **Why $\mathbb{P}(v_T = 0 \mid v_0) > 0$ for large $T$:** When $\delta < 2$, the non-central chi-squared density $f_{\chi^2_\delta(\lambda)}(x)$ has a singularity at $x = 0$. More precisely, for $\delta < 1$ (as in this case with $\delta = 0.32$), the density diverges as $x \to 0^+$, and the CDF satisfies $F_{\chi^2_\delta(\lambda)}(0) > 0$ when $\lambda > 0$ (via the Poisson mixture representation, the $k=0$ term contributes $e^{-\lambda/2}F_{\chi^2_\delta}(0)$, and for $\delta < 2$, $\chi^2_\delta$ has positive mass near zero).
+
+    As $T \to \infty$, the non-centrality parameter $\lambda = 4\kappa v_0 e^{-\kappa T}/(\sigma_v^2(1 - e^{-\kappa T})) \to 0$. In this limit, $v_T/c \to \chi^2_\delta(0) = \chi^2_\delta$, which is a central chi-squared with $\delta = 0.32$ degrees of freedom. For the central $\chi^2_\delta$ with $\delta < 1$, the density diverges at zero as $x^{\delta/2 - 1} = x^{-0.84}$, concentrating significant probability mass near zero.
+
+    Physically, this means the vol-of-vol $\sigma_v$ is large relative to the mean-reverting drift near zero. Near $v = 0$, the drift is $\kappa\theta = 0.02$ (pulling away from zero), but the diffusion coefficient is $\sigma_v\sqrt{v}$, which, although it vanishes at zero, is large enough relative to the drift for small $v$ (when $\delta < 2$) that the process can reach the boundary. Once at zero, the process immediately reflects back (since $\kappa\theta > 0$), but the boundary is accessible. In simulation, this requires special handling to ensure the non-negativity constraint is maintained.

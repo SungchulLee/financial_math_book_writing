@@ -214,22 +214,151 @@ The canonical representation of affine processes resolves the inherent redundanc
 
 **Exercise 1.** Consider a one-factor Vasicek model $dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t$ with short rate $r_t = X_t$. Apply the affine transformation $\tilde{X}_t = cX_t + d$ for constants $c > 0$ and $d$. Derive the SDE for $\tilde{X}_t$ and show it is still Vasicek with transformed parameters. Express $\tilde{\kappa}$, $\tilde{\theta}$, $\tilde{\sigma}$ in terms of the original parameters and $c$, $d$.
 
+??? success "Solution to Exercise 1"
+    Starting from $dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t$ with $r_t = X_t$, define $\tilde{X}_t = cX_t + d$. Then $X_t = (\tilde{X}_t - d)/c$ and
+
+    $$
+    d\tilde{X}_t = c\,dX_t = c\bigl[\kappa(\theta - X_t)\,dt + \sigma\,dW_t\bigr]
+    $$
+
+    Substituting $X_t = (\tilde{X}_t - d)/c$:
+
+    $$
+    d\tilde{X}_t = c\,\kappa\!\left(\theta - \frac{\tilde{X}_t - d}{c}\right)dt + c\sigma\,dW_t = \kappa\bigl(c\theta + d - \tilde{X}_t\bigr)\,dt + c\sigma\,dW_t
+    $$
+
+    This can be written as
+
+    $$
+    d\tilde{X}_t = \tilde{\kappa}(\tilde{\theta} - \tilde{X}_t)\,dt + \tilde{\sigma}\,dW_t
+    $$
+
+    with transformed parameters:
+
+    $$
+    \tilde{\kappa} = \kappa, \qquad \tilde{\theta} = c\theta + d, \qquad \tilde{\sigma} = c\sigma
+    $$
+
+    The mean-reversion speed $\kappa$ is invariant under the transformation. The long-run mean shifts by the affine map, and the volatility scales by $c$. The short rate $r_t = X_t = (\tilde{X}_t - d)/c$, so the transformed short-rate loading is $\tilde{\rho}_1 = 1/c$ and $\tilde{\rho}_0 = -d/c$. Both parametrizations produce the same bond prices and yield curves.
+
 ---
 
 **Exercise 2.** For the $A_0(2)$ family (two Gaussian factors), count the number of free parameters in the unrestricted model (drift $b_0 \in \mathbb{R}^2$, $B \in \mathbb{R}^{2 \times 2}$, $a_0 \in \mathbb{S}^2_+$, $\rho_0 \in \mathbb{R}$, $\rho_1 \in \mathbb{R}^2$). Then count the degrees of freedom in the transformation group (invertible $C \in \mathbb{R}^{2 \times 2}$ and $c \in \mathbb{R}^2$). How many parameters remain after canonical normalization?
+
+??? success "Solution to Exercise 2"
+    **Unrestricted parameter count:**
+
+    - Drift: $b_0 \in \mathbb{R}^2$ (2 parameters), $B \in \mathbb{R}^{2 \times 2}$ (4 parameters)
+    - Diffusion: $a_0 \in \mathbb{S}^2_+$ symmetric (3 parameters: two diagonal, one off-diagonal)
+    - Short rate: $\rho_0 \in \mathbb{R}$ (1 parameter), $\rho_1 \in \mathbb{R}^2$ (2 parameters)
+
+    Total unrestricted parameters: $2 + 4 + 3 + 1 + 2 = 12$.
+
+    **Degrees of freedom in the transformation group:**
+
+    - $C \in \mathbb{R}^{2 \times 2}$ invertible: 4 parameters
+    - $c \in \mathbb{R}^2$: 2 parameters
+
+    Total degrees of freedom: $4 + 2 = 6$.
+
+    **Parameters after canonical normalization:** The canonical form uses the 6 degrees of freedom to impose 6 constraints (e.g., normalizing $a_0$ to the identity matrix uses 3, putting $B$ in Jordan form uses 1, fixing $\rho_1$ components uses 2). The remaining free parameters are
+
+    $$
+    12 - 6 = 6
+    $$
+
+    So the canonical $A_0(2)$ model has 6 free parameters.
 
 ---
 
 **Exercise 3.** Explain why two different parametrizations of an affine model that are related by an invertible affine state transformation produce identical bond prices, yield curves, and option prices. Show this explicitly for the zero-coupon bond price $P(t,T) = e^{A(\tau) + B(\tau)^\top x}$ by computing how $A$ and $B$ transform.
 
+??? success "Solution to Exercise 3"
+    Under the transformation $\tilde{X}_t = CX_t + c$, the bond price must remain unchanged because it represents an observable market price. The original bond price is
+
+    $$
+    P(t,T) = \exp\!\bigl(A(\tau) + B(\tau)^\top X_t\bigr)
+    $$
+
+    Substituting $X_t = C^{-1}(\tilde{X}_t - c)$:
+
+    $$
+    P(t,T) = \exp\!\bigl(A(\tau) + B(\tau)^\top C^{-1}(\tilde{X}_t - c)\bigr) = \exp\!\bigl(\underbrace{A(\tau) - B(\tau)^\top C^{-1}c}_{\tilde{A}(\tau)} + \underbrace{(C^{-1})^\top B(\tau)}_{\tilde{B}(\tau)}{}^\top \tilde{X}_t\bigr)
+    $$
+
+    The transformed coefficients are:
+
+    $$
+    \tilde{A}(\tau) = A(\tau) - B(\tau)^\top C^{-1}c, \qquad \tilde{B}(\tau) = (C^{-1})^\top B(\tau)
+    $$
+
+    The bond price $P(t,T)$ is identical in both representations because $\tilde{A}(\tau) + \tilde{B}(\tau)^\top \tilde{X}_t = A(\tau) + B(\tau)^\top X_t$. Since bond prices determine yields ($y(t,T) = -\log P(t,T)/\tau$), and option prices are expectations of payoffs under the risk-neutral measure (which is also preserved by invertible linear transformations of the state), all observable quantities are identical.
+
 ---
 
 **Exercise 4.** The canonical form for the CIR process normalizes $\xi = 1$ (or equivalently $a_1 = 1$). Given an arbitrary CIR process with parameters $(\kappa, \theta, \xi)$, find the transformation $\tilde{X}_t = cX_t$ that achieves $\tilde{\xi} = 1$ and express the canonical parameters $(\tilde{\kappa}, \tilde{\theta})$ in terms of the originals.
+
+??? success "Solution to Exercise 4"
+    The general CIR process is $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$ with diffusion coefficient $\alpha_1 = \xi^2$. To achieve $\tilde{\alpha}_1 = 1$ (i.e., $\tilde{\xi} = 1$), apply $\tilde{X}_t = cX_t$.
+
+    Then $dX_t = d\tilde{X}_t / c$ and the diffusion of $\tilde{X}_t$ is
+
+    $$
+    \tilde{\sigma}(\tilde{X}) = c \cdot \xi\sqrt{X_t} = c\xi\sqrt{\tilde{X}_t/c} = \xi\sqrt{c}\sqrt{\tilde{X}_t}
+    $$
+
+    Setting $\xi\sqrt{c} = 1$ gives $c = 1/\xi^2$. The transformation is
+
+    $$
+    \tilde{X}_t = \frac{X_t}{\xi^2}
+    $$
+
+    The transformed SDE is
+
+    $$
+    d\tilde{X}_t = \frac{1}{\xi^2}\bigl[\kappa(\theta - \xi^2\tilde{X}_t)\,dt + \xi\sqrt{\xi^2\tilde{X}_t}\,dW_t\bigr] = \kappa\!\left(\frac{\theta}{\xi^2} - \tilde{X}_t\right)dt + \sqrt{\tilde{X}_t}\,dW_t
+    $$
+
+    The canonical parameters are:
+
+    $$
+    \tilde{\kappa} = \kappa, \qquad \tilde{\theta} = \frac{\theta}{\xi^2}, \qquad \tilde{\xi} = 1
+    $$
+
+    The canonical CIR model has only two free parameters ($\tilde{\kappa}$ and $\tilde{\theta}$) instead of three, reflecting the one degree of freedom removed by the scaling transformation.
 
 ---
 
 **Exercise 5.** For the $A_1(2)$ model (one CIR, one Gaussian), the Dai-Singleton canonical form fixes certain entries of the drift matrix $B$ and the diffusion matrices. List the normalization constraints and count the remaining free parameters. Compare this to the number of parameters in the most general unconstrained $A_1(2)$ specification.
 
+??? success "Solution to Exercise 5"
+    The $A_1(2)$ model has state $(V_t, Y_t) \in \mathbb{R}_+ \times \mathbb{R}$ with one CIR component and one Gaussian component. The full parameter set is:
+
+    - Drift: $b_0 \in \mathbb{R}^2$ (2), $B \in \mathbb{R}^{2 \times 2}$ (4)
+    - Diffusion: $a_0 \in \mathbb{S}^2_+$ with $(a_0)_{11} = 0$ by admissibility (2 free: $(a_0)_{12}$, $(a_0)_{22}$), $\alpha_1 \in \mathbb{S}^2_+$ (3), $\alpha_2 = 0$ by A3 (0)
+    - Short rate: $\rho_0$ (1), $\rho_1 \in \mathbb{R}^2$ (2)
+
+    Accounting for additional admissibility constraints ($(a_0)_{11} = 0$ forces $(a_0)_{12} = 0$ for positive semi-definiteness unless more structure is present), the unconstrained count is approximately $2 + 4 + 2 + 3 + 1 + 2 = 14$.
+
+    The Dai-Singleton canonical form imposes the following normalization constraints:
+
+    1. $(\alpha_1)_{11} = 1$ (unit CIR diffusion)
+    2. $(a_0)_{22} = 1$ (unit Gaussian diffusion)
+    3. $(b_0)_2 = 0$ (center the Gaussian component)
+    4. $\rho_1^{(1)} = 1$ (unit loading of CIR factor on short rate)
+    5. Additional constraints on $B$ to remove rotational freedom
+
+    These 6 constraints ($= d^2 + d = 4 + 2$) reduce the parameter space to approximately $14 - 6 = 8$ free parameters. The most general unconstrained $A_1(2)$ specification has 14 parameters (before admissibility), so the canonical form achieves a significant reduction, with all remaining parameters being economically meaningful and statistically identifiable.
+
 ---
 
 **Exercise 6.** Explain why the identification problem is more severe for affine term structure models (where only bond prices are observed) than for models where the state vector itself is observed. How does the canonical representation help in maximum likelihood estimation of affine term structure models?
+
+??? success "Solution to Exercise 6"
+    **Why the identification problem is more severe for term structure models:**
+
+    When the state vector $X_t$ is directly observed (e.g., in a physical sciences application), different parametrizations produce different state trajectories, so the likelihood function distinguishes them. The transformation $\tilde{X}_t = CX_t + c$ changes the observed data, breaking the observational equivalence.
+
+    In affine term structure models, the state vector $X_t$ is **latent** (unobserved). Only bond prices $P(t,T) = e^{A(\tau) + B(\tau)^\top X_t}$ or yields $y(t,T) = -A(\tau)/\tau - B(\tau)^\top X_t/\tau$ are observed. As shown in Exercise 3, the transformation $\tilde{X}_t = CX_t + c$ changes the state representation but preserves all bond prices identically. Therefore, the likelihood of observed bond prices is **identical** for any two parameter sets related by an affine state transformation. The likelihood surface has ridges of constant value along the orbits of the transformation group, making optimization ill-conditioned or impossible without normalization.
+
+    **How the canonical representation helps:** The canonical form selects exactly one representative from each equivalence class of observationally indistinguishable models. This eliminates the ridges in the likelihood surface, making the optimization problem well-posed. In maximum likelihood estimation, the canonical constraints are imposed as hard constraints, reducing the parameter space to the minimal set of identifiable parameters. The resulting estimates are unique (up to the usual statistical uncertainty), and standard errors, confidence intervals, and likelihood ratio tests are meaningful because each point in the canonical parameter space corresponds to a distinct distribution of observables.

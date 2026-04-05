@@ -294,40 +294,6 @@ The fundamental solution is the Gaussian kernel - the transition density of diff
 **Exercise 1.**
 Write the one-dimensional heat equation $\partial_t u = \frac{1}{2}\partial_{xx}u$ and verify that $u(x, t) = e^{-\alpha^2 t/2}\sin(\alpha x)$ is a solution for any constant $\alpha$. What initial condition does this correspond to?
 
----
-
-**Exercise 2.**
-Use the superposition formula $u(x, t) = \int_{-\infty}^{\infty}u(x_0, 0)\,G(x, t; x_0)\,dx_0$ to solve the heat equation with initial condition $u(x, 0) = e^{-x^2}$. Express your answer in closed form.
-
----
-
-**Exercise 3.**
-The heat equation describes the diffusion of heat. In one dimension, if heat is initially concentrated at $x = 0$, describe qualitatively how the temperature profile evolves over time. Relate this to the spreading Gaussian kernel.
-
----
-
-**Exercise 4.**
-Classify the heat equation $\partial_t u = D\,\partial_{xx}u$ in terms of the PDE classification (parabolic, elliptic, hyperbolic). Explain why the parabolic type is associated with diffusion rather than wave propagation.
-
----
-
-**Exercise 5.**
-Consider the heat equation on a finite interval $[0, L]$ with $u(0, t) = u(L, t) = 0$. Using separation of variables $u(x, t) = X(x)T(t)$, find the general solution as a Fourier sine series. What happens to the solution as $t \to \infty$?
-
----
-
-**Exercise 6.**
-The diffusion coefficient $D = \sigma^2/2$ determines the rate of spreading. For $D = 0.045$ (corresponding to $\sigma = 0.30$), compute the standard deviation of the Gaussian kernel after $t = 1$ year and $t = 4$ years. Verify that the standard deviation grows as $\sqrt{t}$.
-
----
-
-**Exercise 7.**
-Explain why the heat equation is a good model for option pricing through the Black-Scholes PDE. After the change of variables that transforms the Black-Scholes PDE into the heat equation, what do the spatial variable, time variable, and initial condition represent in financial terms?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The one-dimensional heat equation is:
 
@@ -356,6 +322,11 @@ Explain why the heat equation is a good model for option pricing through the Bla
     $$
 
     The initial condition is $u(x,0) = \sin(\alpha x)$. This is a single Fourier mode that decays exponentially in time at rate $\alpha^2/2$. Higher-frequency modes (larger $\alpha$) decay faster, which is the smoothing property of the heat equation.
+
+---
+
+**Exercise 2.**
+Use the superposition formula $u(x, t) = \int_{-\infty}^{\infty}u(x_0, 0)\,G(x, t; x_0)\,dx_0$ to solve the heat equation with initial condition $u(x, 0) = e^{-x^2}$. Express your answer in closed form.
 
 ??? success "Solution to Exercise 2"
     Using the superposition formula with $u(x_0, 0) = e^{-x_0^2}$ and $G(x,t;x_0) = (4\pi D t)^{-1/2}\exp(-(x-x_0)^2/(4Dt))$ with $D = 1/2$:
@@ -386,6 +357,11 @@ Explain why the heat equation is a good model for option pricing through the Bla
 
     At $t = 0$: $u(x,0) = e^{-x^2}$, confirming the initial condition. The solution is a Gaussian that broadens over time, with variance growing from $1/2$ to $(2t+1)/2$.
 
+---
+
+**Exercise 3.**
+The heat equation describes the diffusion of heat. In one dimension, if heat is initially concentrated at $x = 0$, describe qualitatively how the temperature profile evolves over time. Relate this to the spreading Gaussian kernel.
+
 ??? success "Solution to Exercise 3"
     At $t = 0$, the heat is concentrated at $x = 0$, represented by the Dirac delta $\delta(x)$ (or approximately by a very narrow, tall Gaussian).
 
@@ -397,6 +373,11 @@ Explain why the heat equation is a good model for option pricing through the Bla
     - The profile remains symmetric about $x = 0$
 
     Physically, heat flows from hot regions to cold regions. The initial concentration spreads outward in both directions. The spreading is self-similar: the profile at any time is just a rescaled version of the profile at any other time, with the characteristic width proportional to $\sqrt{t}$.
+
+---
+
+**Exercise 4.**
+Classify the heat equation $\partial_t u = D\,\partial_{xx}u$ in terms of the PDE classification (parabolic, elliptic, hyperbolic). Explain why the parabolic type is associated with diffusion rather than wave propagation.
 
 ??? success "Solution to Exercise 4"
     The heat equation $\partial_t u = D\,\partial_{xx}u$ has the form $Au_{xx} + 2Bu_{xt} + Cu_{tt} + \text{lower order} = 0$ where we identify $A = D$, $B = 0$, $C = 0$ (there is no $u_{tt}$ term). The discriminant is:
@@ -413,6 +394,11 @@ Explain why the heat equation is a good model for option pricing through the Bla
     - **Elliptic** equations ($B^2 - AC < 0$, e.g., Laplace's equation) describe equilibrium states with no time evolution
 
     The heat equation describes an irreversible process: initial irregularities are smoothed out and cannot be recovered, reflecting the dissipative nature of diffusion.
+
+---
+
+**Exercise 5.**
+Consider the heat equation on a finite interval $[0, L]$ with $u(0, t) = u(L, t) = 0$. Using separation of variables $u(x, t) = X(x)T(t)$, find the general solution as a Fourier sine series. What happens to the solution as $t \to \infty$?
 
 ??? success "Solution to Exercise 5"
     Using separation of variables $u(x,t) = X(x)T(t)$, substitute into $\partial_t u = \frac{1}{2}\partial_{xx}u$:
@@ -439,6 +425,11 @@ Explain why the heat equation is a good model for option pricing through the Bla
 
     **As $t \to \infty$**: Every exponential $e^{-n^2\pi^2 t/(2L^2)} \to 0$. The $n = 1$ mode decays slowest, so the solution approaches zero, with the decay rate dominated by $e^{-\pi^2 t/(2L^2)}$. Physically, the heat leaks out through the fixed-temperature boundaries until the rod reaches equilibrium at $u = 0$.
 
+---
+
+**Exercise 6.**
+The diffusion coefficient $D = \sigma^2/2$ determines the rate of spreading. For $D = 0.045$ (corresponding to $\sigma = 0.30$), compute the standard deviation of the Gaussian kernel after $t = 1$ year and $t = 4$ years. Verify that the standard deviation grows as $\sqrt{t}$.
+
 ??? success "Solution to Exercise 6"
     The standard deviation of the Gaussian kernel at time $t$ is $\sigma_{\text{kernel}} = \sqrt{2Dt}$. With $D = 0.045$:
 
@@ -455,6 +446,11 @@ Explain why the heat equation is a good model for option pricing through the Bla
     $$
 
     **Verification of $\sqrt{t}$ growth**: The ratio of standard deviations is $0.60/0.30 = 2 = \sqrt{4/1} = \sqrt{t_2/t_1}$, confirming that the standard deviation grows as $\sqrt{t}$. Doubling the standard deviation requires quadrupling the time, which is the hallmark of diffusive (rather than ballistic) spreading.
+
+---
+
+**Exercise 7.**
+Explain why the heat equation is a good model for option pricing through the Black-Scholes PDE. After the change of variables that transforms the Black-Scholes PDE into the heat equation, what do the spatial variable, time variable, and initial condition represent in financial terms?
 
 ??? success "Solution to Exercise 7"
     The Black-Scholes PDE for a European option with price $V(S,t)$ is:

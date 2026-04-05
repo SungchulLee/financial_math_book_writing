@@ -220,22 +220,122 @@ Multi-factor affine models in the $A_m(d)$ classification combine $m$ CIR-type a
 
 **Exercise 1.** For the $A_0(3)$ model (three Gaussian factors), write the most general drift structure $b(x) = b_0 + Bx$ with a full $3 \times 3$ matrix $B$. How many free parameters does this model have (counting drift, diffusion, and short rate parameters)?
 
+??? success "Solution to Exercise 1"
+    For the $A_0(3)$ model, all three factors $X_1, X_2, X_3 \in \mathbb{R}$ are Gaussian. The drift structure is:
+
+    $$
+    b(\mathbf{X}) = b_0 + B\mathbf{X} = \begin{pmatrix} b_{0,1} \\ b_{0,2} \\ b_{0,3} \end{pmatrix} + \begin{pmatrix} B_{11} & B_{12} & B_{13} \\ B_{21} & B_{22} & B_{23} \\ B_{31} & B_{32} & B_{33} \end{pmatrix} \begin{pmatrix} X_1 \\ X_2 \\ X_3 \end{pmatrix}
+    $$
+
+    **Drift parameters**: $b_0$ has 3 free parameters and $B$ is a full $3 \times 3$ matrix with 9 free parameters, giving 12 drift parameters.
+
+    **Diffusion parameters**: Since $m = 0$ (no CIR components), the diffusion is constant: $a(\mathbf{X}) = a_0$. The matrix $a_0$ is a $3 \times 3$ symmetric positive semi-definite matrix with $3(3+1)/2 = 6$ free parameters.
+
+    **Short rate parameters**: $r(\mathbf{X}) = \rho_0 + \rho_1^\top \mathbf{X}$ gives 1 scalar $\rho_0$ and 3 components of $\rho_1$, for 4 parameters.
+
+    **Total**: $12 + 6 + 4 = 22$ free parameters. However, without loss of generality, one can normalize the model by rotating the state vector (since the factors are latent). The rotation group $O(3)$ has 3 degrees of freedom, and one can also rescale and shift each factor (3 scales, 3 shifts). This removes up to 9 parameters, leaving approximately 13 identifiable parameters in a canonical form. The exact count depends on the normalization convention chosen.
+
 ---
 
 **Exercise 2.** Consider the $A_1(2)$ model with one CIR factor $X_1 \geq 0$ and one Gaussian factor $X_2 \in \mathbb{R}$. If the short rate is $r_t = X_t^{(1)} + X_t^{(2)}$, write down the bond pricing Riccati system for $B_1(\tau)$ and $B_2(\tau)$. Under what condition on the drift matrix $B$ do these two equations decouple?
+
+??? success "Solution to Exercise 2"
+    For the $A_1(2)$ model with $r_t = X_t^{(1)} + X_t^{(2)}$, the short rate coefficients are $\rho_0 = 0$ and $\rho_1 = (1, 1)^\top$. The drift matrix is:
+
+    $$
+    B = \begin{pmatrix} -\kappa_1 & \beta_{12} \\ \beta_{21} & -\kappa_2 \end{pmatrix}
+    $$
+
+    The diffusion matrices are $\alpha_1 = \text{diag}(\xi_1^2, 0)$ (CIR component) and $\alpha_0 = \text{diag}(0, \sigma_2^2)$ (Gaussian constant diffusion).
+
+    The Riccati system for $\mathbf{B}(\tau) = (B_1(\tau), B_2(\tau))^\top$ is:
+
+    $$
+    B_1'(\tau) = -\kappa_1 B_1 + \beta_{21} B_2 + \frac{1}{2}\xi_1^2 B_1^2 - 1
+    $$
+
+    $$
+    B_2'(\tau) = \beta_{12} B_1 - \kappa_2 B_2 + \frac{1}{2}\sigma_2^2 B_2^2 - 1
+    $$
+
+    with $B_1(0) = B_2(0) = 0$.
+
+    These equations decouple when $\beta_{12} = 0$ and $\beta_{21} = 0$, i.e., when the drift matrix $B$ is diagonal. In that case, the $B_1$-equation depends only on $B_1$ (a scalar Riccati) and the $B_2$-equation depends only on $B_2$ (also a scalar Riccati), each solvable independently with the standard CIR or Vasicek closed-form solutions.
 
 ---
 
 **Exercise 3.** Explain why the $A_0(d)$ models (purely Gaussian) can produce negative interest rates while the $A_d(d)$ models (purely CIR) guarantee non-negative rates. What is the trade-off in terms of the volatility structure?
 
+??? success "Solution to Exercise 3"
+    **$A_0(d)$ models (purely Gaussian)**: All factors follow Ornstein-Uhlenbeck processes with constant diffusion. The transition densities are Gaussian, so each $X_t^{(i)}$ can take any value in $\mathbb{R}$. Since the short rate $r_t = \rho_0 + \rho_1^\top \mathbf{X}_t$ is a linear combination of Gaussian variables, it is itself Gaussian and can become negative with positive probability. The probability of negative rates depends on the parameters but is never zero.
+
+    **$A_d(d)$ models (purely CIR)**: All factors are CIR-type with state space $\mathbb{R}^d_+$. Under the Feller condition ($2\kappa_i\theta_i \geq \xi_i^2$ for each factor), each $X_t^{(i)} > 0$ almost surely. If the short rate is $r_t = \rho_0 + \sum_i \rho_{1,i} X_t^{(i)}$ with $\rho_0 \geq 0$ and $\rho_{1,i} \geq 0$, then $r_t \geq 0$ at all times.
+
+    **The trade-off**: Gaussian models ($A_0(d)$) have constant volatility, meaning the conditional variance of each factor does not depend on the current level. This is analytically convenient but fails to capture the empirical observation that interest rate volatility increases with the rate level. CIR models ($A_d(d)$) have level-dependent volatility ($\sigma \propto \sqrt{X}$), which matches empirical observations better but at the cost of non-Gaussian transition densities (non-central chi-squared) and more complex Riccati equations.
+
 ---
 
 **Exercise 4.** For a two-factor CIR model ($A_2(2)$) with independent factors and short rate $r_t = X_t^{(1)} + X_t^{(2)}$, show that the bond price factors as $P(t,T) = P_1(t,T) \cdot P_2(t,T)$ where each $P_i$ is the bond price from a single-factor CIR model. Under what conditions does this factorization break down?
+
+??? success "Solution to Exercise 4"
+    With independent factors ($B$ diagonal, $\beta_{12} = \beta_{21} = 0$) and $r_t = X_t^{(1)} + X_t^{(2)}$, the bond price is:
+
+    $$
+    P(t, T) = \mathbb{E}\!\left[\exp\!\left(-\int_t^T (X_s^{(1)} + X_s^{(2)})\,ds\right) \bigg| \mathcal{F}_t\right]
+    $$
+
+    Since $X^{(1)}$ and $X^{(2)}$ are independent:
+
+    $$
+    = \mathbb{E}\!\left[\exp\!\left(-\int_t^T X_s^{(1)}\,ds\right)\bigg| X_t^{(1)}\right] \cdot \mathbb{E}\!\left[\exp\!\left(-\int_t^T X_s^{(2)}\,ds\right)\bigg| X_t^{(2)}\right]
+    $$
+
+    $$
+    = P_1(t, T) \cdot P_2(t, T)
+    $$
+
+    where $P_i(t, T) = e^{A_i(\tau) + B_i(\tau) X_t^{(i)}}$ is the single-factor CIR bond price for factor $i$. The total bond price is:
+
+    $$
+    P(t, T) = \exp\!\left(A_1(\tau) + A_2(\tau) + B_1(\tau) X_t^{(1)} + B_2(\tau) X_t^{(2)}\right)
+    $$
+
+    This factorization breaks down when:
+
+    1. **The drift matrix $B$ has off-diagonal elements** ($\beta_{12} \neq 0$ or $\beta_{21} \neq 0$), creating drift coupling between factors
+    2. **The driving Brownian motions are correlated**, introducing cross-terms in the diffusion matrix
+    3. **The short rate has cross-product terms** (e.g., $r_t = X_t^{(1)} X_t^{(2)}$, though this would also break the affine structure)
+
+    In any of these cases, the joint expectation cannot be factored into a product of marginal expectations.
 
 ---
 
 **Exercise 5.** The Dai-Singleton classification restricts the matrix $\Lambda$ in the market price of risk to ensure affine closure. For the $A_1(2)$ model, state the restriction and explain its origin: why can the Gaussian component have an unrestricted market price of risk while the CIR component cannot?
 
+??? success "Solution to Exercise 5"
+    In the $A_1(2)$ model, the market price of risk $\Lambda_t$ must preserve the affine structure when changing from the physical measure $\mathbb{P}$ to the risk-neutral measure $\mathbb{Q}$. Dai and Singleton (2000) show that $\Lambda_t$ must be of the form:
+
+    $$
+    \Lambda_t = \sqrt{S_t}\,\lambda
+    $$
+
+    where $S_t = \text{diag}(\alpha_0 + \alpha_1 X_t^{(1)})$ is the instantaneous covariance matrix and $\lambda$ is a vector of constants.
+
+    For the **Gaussian component** ($X_t^{(2)}$): The diffusion is constant ($\sigma_2$), so the market price of risk $\lambda_2$ can be any constant. Under $\mathbb{Q}$, the drift shifts from $\kappa_2^{\mathbb{P}}(\theta_2^{\mathbb{P}} - X_t^{(2)})$ to $\kappa_2^{\mathbb{Q}}(\theta_2^{\mathbb{Q}} - X_t^{(2)})$, where $\kappa_2^{\mathbb{Q}}$ and $\theta_2^{\mathbb{Q}}$ are free parameters. The affine structure is preserved for any constant shift.
+
+    For the **CIR component** ($X_t^{(1)} \geq 0$): The diffusion is $\xi_1\sqrt{X_t^{(1)}}$, so the market price of risk enters as $\lambda_1 \sqrt{X_t^{(1)}}$. Under Girsanov, the drift changes by $-\sigma(X_t) \Lambda_t \propto X_t^{(1)}$. This shifts the mean-reversion speed: $\kappa_1^{\mathbb{Q}} = \kappa_1^{\mathbb{P}} + \lambda_1 \xi_1$. The new drift $\kappa_1^{\mathbb{Q}}(\theta_1^{\mathbb{Q}} - X_t^{(1)})$ is still affine. However, $\lambda_1$ must be such that $\kappa_1^{\mathbb{Q}} > 0$ and $\theta_1^{\mathbb{Q}} > 0$ (admissibility). A more general (non-constant) $\lambda_1$ would introduce non-affine terms in the drift, destroying the tractability. This is why the CIR component's market price of risk is restricted to the "extended affine" form, where only level-proportional risk prices preserve the affine closure.
+
 ---
 
 **Exercise 6.** A three-factor model with $d = 3$ and $m = 1$ (one CIR factor) can capture level, slope, and curvature of the yield curve. Describe qualitatively which factor controls which aspect of the yield curve, and explain why at least three factors are needed for a realistic model.
+
+??? success "Solution to Exercise 6"
+    Principal component analysis of yield curve movements reveals three dominant factors explaining approximately 99% of the total variance:
+
+    **Factor 1 --- Level** (explains ~85% of variance): A CIR or Gaussian factor with slow mean reversion ($\kappa_1$ small). This factor shifts the entire yield curve up or down in parallel. When this factor increases, all yields rise by approximately the same amount. In a three-factor model, this is typically the dominant factor, often modeled as a CIR process to ensure non-negativity.
+
+    **Factor 2 --- Slope** (explains ~10% of variance): A Gaussian factor with moderate mean reversion ($\kappa_2$ medium). This factor tilts the yield curve: when it increases, short rates rise more than long rates (or long rates fall relative to short rates), steepening or flattening the curve. The loading $B_2(\tau)$ has opposite signs at short and long maturities.
+
+    **Factor 3 --- Curvature** (explains ~4% of variance): A Gaussian factor with fast mean reversion ($\kappa_3$ large). This factor creates or removes a hump in the yield curve. Its loading $B_3(\tau)$ is largest at intermediate maturities and small at both short and long maturities, producing a butterfly-shaped effect.
+
+    **Why three factors are necessary**: A single factor can only produce monotone yield curves (upward or downward sloping). Two factors can generate monotone and humped curves, but cannot independently control the short end, the long end, and the intermediate maturities. Three factors are the minimum needed to reproduce the level-slope-curvature dynamics observed empirically, including humped, S-shaped, and double-humped yield curves. In practice, the first three principal components are stable across markets and time periods, making the three-factor specification a robust choice.

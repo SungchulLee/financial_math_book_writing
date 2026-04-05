@@ -232,34 +232,6 @@ The next section develops **Itô's lemma**—the chain rule of stochastic calcul
 
 **Exercise 1.** Let $X_t = 3 + 2t + 5B_t$. Identify the drift coefficient $\mu_t$, the diffusion coefficient $\sigma_t$, and the initial value $X_0$. Compute $\mathbb{E}[X_t]$, $\operatorname{Var}(X_t)$, and the quadratic variation $[X,X]_t$.
 
----
-
-**Exercise 2.** Let $dX_t = \alpha X_t\, dt + \sigma X_t\, dB_t$ with $X_0 = 1$. Is $X_t$ a martingale? A supermartingale? Justify your answer using the martingale characterization theorem for Ito processes.
-
----
-
-**Exercise 3.** Let $X_t$ be an Ito process with $dX_t = \mu_t\, dt + \sigma_t\, dB_t$. Using the heuristic multiplication rules $(dt)^2 = 0$, $dB_t \cdot dt = 0$, and $(dB_t)^2 = dt$, compute $(dX_t)^2$ and verify that it equals $\sigma_t^2\, dt$, consistent with $d[X,X]_t = \sigma_t^2\, dt$.
-
----
-
-**Exercise 4.** Consider the Ornstein-Uhlenbeck process $dX_t = -\theta X_t\, dt + \sigma\, dB_t$ with $X_0 = x_0$. Write down the explicit Doob-Meyer decomposition $X_t = M_t + A_t$, identifying the local martingale part $M_t$ and the finite-variation part $A_t$. Compute the quadratic variation $[X,X]_t$.
-
----
-
-**Exercise 5.** Let $X_t = t B_t$. Use the integration by parts identity $d(tB_t) = B_t\, dt + t\, dB_t$ to write $X_t$ in integral form. Identify $\mu_t$ and $\sigma_t$, and determine whether $X_t$ is a martingale.
-
----
-
-**Exercise 6.** Let $dX_t = \mu_t\, dt + \sigma_t\, dB_t$ and $dY_t = \nu_t\, dt + \rho_t\, dB_t$, where both processes are driven by the same Brownian motion. Using the multiplication rules, show that the quadratic covariation satisfies $d[X,Y]_t = \sigma_t \rho_t\, dt$.
-
----
-
-**Exercise 7.** For the geometric Brownian motion $S_t = S_0 \exp\!\left((\mu - \frac{\sigma^2}{2})t + \sigma B_t\right)$, verify that $\mathbb{E}[S_t] = S_0 e^{\mu t}$ and $\operatorname{Var}(S_t) = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)$. Why does the drift of $\log S_t$ differ from $\mu$?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The process is $X_t = 3 + 2t + 5B_t$. In integral form:
 
@@ -279,6 +251,10 @@ The next section develops **Itô's lemma**—the chain rule of stochastic calcul
 
     **Quadratic variation:** $[X,X]_t = \int_0^t \sigma_s^2\, ds = \int_0^t 25\, ds = 25t$.
 
+---
+
+**Exercise 2.** Let $dX_t = \alpha X_t\, dt + \sigma X_t\, dB_t$ with $X_0 = 1$. Is $X_t$ a martingale? A supermartingale? Justify your answer using the martingale characterization theorem for Ito processes.
+
 ??? success "Solution to Exercise 2"
     The SDE is $dX_t = \alpha X_t\, dt + \sigma X_t\, dB_t$ with drift coefficient $\mu_t = \alpha X_t$.
 
@@ -288,6 +264,10 @@ The next section develops **Itô's lemma**—the chain rule of stochastic calcul
     - If $\alpha > 0$: $\mu_t = \alpha X_t > 0$ a.e., so $X_t$ is a **submartingale** (not a supermartingale).
     - If $\alpha < 0$: $\mu_t = \alpha X_t < 0$ a.e. (since $X_t > 0$), so $X_t$ is a **supermartingale**.
     - If $\alpha = 0$: $X_t$ is a **martingale**.
+
+---
+
+**Exercise 3.** Let $X_t$ be an Ito process with $dX_t = \mu_t\, dt + \sigma_t\, dB_t$. Using the heuristic multiplication rules $(dt)^2 = 0$, $dB_t \cdot dt = 0$, and $(dB_t)^2 = dt$, compute $(dX_t)^2$ and verify that it equals $\sigma_t^2\, dt$, consistent with $d[X,X]_t = \sigma_t^2\, dt$.
 
 ??? success "Solution to Exercise 3"
     Starting from $dX_t = \mu_t\, dt + \sigma_t\, dB_t$, we compute:
@@ -309,6 +289,10 @@ The next section develops **Itô's lemma**—the chain rule of stochastic calcul
     $$
 
     This is consistent with $d[X,X]_t = \sigma_t^2\, dt$, or equivalently $[X,X]_t = \int_0^t \sigma_s^2\, ds$. The drift term contributes nothing to the quadratic variation.
+
+---
+
+**Exercise 4.** Consider the Ornstein-Uhlenbeck process $dX_t = -\theta X_t\, dt + \sigma\, dB_t$ with $X_0 = x_0$. Write down the explicit Doob-Meyer decomposition $X_t = M_t + A_t$, identifying the local martingale part $M_t$ and the finite-variation part $A_t$. Compute the quadratic variation $[X,X]_t$.
 
 ??? success "Solution to Exercise 4"
     The OU process $dX_t = -\theta X_t\, dt + \sigma\, dB_t$ with $X_0 = x_0$ has the Doob-Meyer decomposition $X_t = M_t + A_t$ where:
@@ -335,6 +319,10 @@ The next section develops **Itô's lemma**—the chain rule of stochastic calcul
     [X,X]_t = \int_0^t \sigma^2\, ds = \sigma^2 t
     $$
 
+---
+
+**Exercise 5.** Let $X_t = t B_t$. Use the integration by parts identity $d(tB_t) = B_t\, dt + t\, dB_t$ to write $X_t$ in integral form. Identify $\mu_t$ and $\sigma_t$, and determine whether $X_t$ is a martingale.
+
 ??? success "Solution to Exercise 5"
     From $d(tB_t) = B_t\, dt + t\, dB_t$, integrating from $0$ to $t$:
 
@@ -355,6 +343,10 @@ The next section develops **Itô's lemma**—the chain rule of stochastic calcul
     - $\sigma_t = t$ (diffusion coefficient)
 
     **Martingale check:** Since $\mu_t = B_t \neq 0$ a.e. for $t > 0$, $X_t = tB_t$ is **not** a martingale. We can verify directly: $\mathbb{E}[tB_t \mid \mathcal{F}_s] = tB_s \neq sB_s$ for $t \neq s$.
+
+---
+
+**Exercise 6.** Let $dX_t = \mu_t\, dt + \sigma_t\, dB_t$ and $dY_t = \nu_t\, dt + \rho_t\, dB_t$, where both processes are driven by the same Brownian motion. Using the multiplication rules, show that the quadratic covariation satisfies $d[X,Y]_t = \sigma_t \rho_t\, dt$.
 
 ??? success "Solution to Exercise 6"
     Compute $d[X,Y]_t$ using the multiplication rules. The increments are:
@@ -382,6 +374,10 @@ The next section develops **Itô's lemma**—the chain rule of stochastic calcul
     $$
 
     Therefore $d[X,Y]_t = \sigma_t \rho_t\, dt$, or equivalently $[X,Y]_t = \int_0^t \sigma_s \rho_s\, ds$.
+
+---
+
+**Exercise 7.** For the geometric Brownian motion $S_t = S_0 \exp\!\left((\mu - \frac{\sigma^2}{2})t + \sigma B_t\right)$, verify that $\mathbb{E}[S_t] = S_0 e^{\mu t}$ and $\operatorname{Var}(S_t) = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)$. Why does the drift of $\log S_t$ differ from $\mu$?
 
 ??? success "Solution to Exercise 7"
     **Mean.** Let $Z_t = (\mu - \sigma^2/2)t + \sigma B_t$, so $S_t = S_0 e^{Z_t}$. Since $B_t \sim \mathcal{N}(0, t)$, we have $Z_t \sim \mathcal{N}((\mu - \sigma^2/2)t,\; \sigma^2 t)$. Using the moment generating function of a Gaussian:

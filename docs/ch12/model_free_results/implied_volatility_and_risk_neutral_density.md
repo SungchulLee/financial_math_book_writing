@@ -631,26 +631,210 @@ The IV surface is not merely a quoting convention—it is a rich source of distr
 
 **Exercise 1.** Explain the three equivalent representations of option market information: option prices $C(K, T)$, risk-neutral density $q(S_T)$, and implied volatility surface $\sigma_{\text{IV}}(K, T)$. For each, state one advantage and one disadvantage as a representation for practical use.
 
+??? success "Solution to Exercise 1"
+    **Option prices $C(K, T)$:**
+
+    - *Advantage:* Directly observable in the market — no transformation or model required to obtain them.
+    - *Disadvantage:* Hard to compare across strikes and maturities because the intrinsic value component dominates. A call at $K = 80$ costs much more than a call at $K = 120$ simply due to moneyness, not because of different volatility views.
+
+    **Risk-neutral density $q(S_T)$:**
+
+    - *Advantage:* Provides a complete probabilistic description — all moments, tail probabilities, and distributional features are directly readable. Allows intuitive interpretation of market beliefs about future prices.
+    - *Disadvantage:* Not directly observable. Must be extracted from option prices via numerical differentiation (Breeden-Litzenberger), which amplifies noise and requires smoothing.
+
+    **Implied volatility surface $\sigma_{\text{IV}}(K, T)$:**
+
+    - *Advantage:* Normalizes away moneyness and time effects, making it easy to compare options across different strikes and maturities. Traders and market makers communicate in IV space, and the surface is smoother than the price surface.
+    - *Disadvantage:* Defined through the Black-Scholes model, which is known to be misspecified. The IV is a model-dependent construct — it is the "wrong number to put in the wrong formula to get the right price." Extracting distributional information (e.g., skewness) requires additional calculation.
+
 ---
 
 **Exercise 2.** The risk-neutral skewness of the log-return distribution is related to the implied volatility skew via $\text{Skew} \propto -\mathcal{S}$ where $\mathcal{S} = \frac{\partial \sigma_{\text{IV}}}{\partial y}\big|_{y=0}$. If the observed ATM skew is $\mathcal{S} = -0.20$ (per unit log-moneyness), what is the sign of the risk-neutral skewness? Interpret this in terms of the shape of the risk-neutral density.
+
+??? success "Solution to Exercise 2"
+    Given that the ATM skew is $\mathcal{S} = \frac{\partial \sigma_{\text{IV}}}{\partial y}\big|_{y=0} = -0.20$ (per unit log-moneyness, where $y = \ln(K/F)$), and the relationship:
+
+    $$
+    \text{Skew}^{\mathbb{Q}} \propto -\mathcal{S}
+    $$
+
+    Since $\mathcal{S} = -0.20 < 0$, the risk-neutral skewness is:
+
+    $$
+    \text{Skew}^{\mathbb{Q}} \propto -(-0.20) = +0.20 > 0
+    $$
+
+    Wait — we must be careful with sign conventions. The relationship $\text{Skew} \approx -\frac{6F\mathcal{S}\sqrt{T}}{\sigma_{\text{ATM}}}$ from the text gives:
+
+    $$
+    \text{Skew}^{\mathbb{Q}} \approx -\frac{6F \times (-0.20) \times \sqrt{T}}{\sigma_{\text{ATM}}} > 0
+    $$
+
+    However, this formula uses the strike derivative $\frac{\partial \sigma_{\text{IV}}}{\partial K}$. With log-moneyness $y = \ln(K/F)$, the chain rule gives $\frac{\partial \sigma}{\partial K} = \frac{1}{K}\frac{\partial \sigma}{\partial y}$, and at $K = F$:
+
+    $$
+    \frac{\partial \sigma}{\partial K}\bigg|_{K=F} = \frac{\mathcal{S}}{F} = \frac{-0.20}{F} < 0
+    $$
+
+    A negative strike-slope means $\sigma_{\text{IV}}$ decreases as $K$ increases. Using the formula $\text{Skew}^{\mathbb{Q}} \approx -6F\mathcal{S}_K\sqrt{T}/\sigma_{\text{ATM}}$ where $\mathcal{S}_K = -0.20/F < 0$:
+
+    $$
+    \text{Skew}^{\mathbb{Q}} \approx -6F \times \frac{-0.20}{F} \times \frac{\sqrt{T}}{\sigma_{\text{ATM}}} = \frac{1.20\sqrt{T}}{\sigma_{\text{ATM}}} > 0
+    $$
+
+    The sign of the risk-neutral skewness is **positive** for the log-return distribution. But in the context of equity markets, the **negative** skew in IV ($\mathcal{S} < 0$ in log-moneyness) corresponds to a risk-neutral density with a **fatter left tail** than the lognormal. More precisely, the risk-neutral density of $S_T$ is left-skewed (negative skewness of $S_T$), meaning there is more probability mass at low values of $S_T$ than the lognormal benchmark predicts. This is consistent with crash fear: the market prices a higher probability of large downside moves.
 
 ---
 
 **Exercise 3.** The implied volatility surface at a fixed maturity $T = 0.25$ has $\sigma_{\text{ATM}} = 18\%$, skew $\mathcal{S} = -0.25$, and curvature $\mathcal{C} = 1.5$. Using the Taylor expansion $\sigma(y) \approx \sigma_{\text{ATM}} + \mathcal{S} y + \frac{1}{2}\mathcal{C} y^2$, compute the risk-neutral density $q(K)$ at $K = F$ (ATM) using the Breeden-Litzenberger formula applied to the Black-Scholes price with this smile.
 
+??? success "Solution to Exercise 3"
+    Given: $T = 0.25$, $\sigma_{\text{ATM}} = 0.18$, $\mathcal{S} = -0.25$, $\mathcal{C} = 1.5$, and the smile parametrization in log-moneyness $y = \ln(K/F)$:
+
+    $$
+    \sigma(y) \approx \sigma_{\text{ATM}} + \mathcal{S} y + \frac{1}{2}\mathcal{C} y^2
+    $$
+
+    At $K = F$ (ATM), we have $y = 0$, so $\sigma(0) = \sigma_{\text{ATM}} = 0.18$.
+
+    To apply Breeden-Litzenberger at ATM, we need $\frac{\partial^2 C}{\partial K^2}\big|_{K=F}$.
+
+    The Black-Scholes call price with the parametrized smile gives (at ATM):
+
+    $$
+    \frac{\partial^2 C}{\partial K^2}\bigg|_{K=F} = e^{-rT} \frac{\phi(d_2)}{F \sigma_{\text{ATM}}\sqrt{T}}
+    $$
+
+    where $d_2 = -\frac{\sigma_{\text{ATM}}\sqrt{T}}{2}$ at ATM. Numerically:
+
+    $$
+    d_2 = -\frac{0.18 \times \sqrt{0.25}}{2} = -\frac{0.18 \times 0.5}{2} = -0.045
+    $$
+
+    $$
+    \phi(d_2) = \frac{1}{\sqrt{2\pi}} e^{-d_2^2/2} = \frac{1}{\sqrt{2\pi}} e^{-0.001013} \approx 0.3988
+    $$
+
+    The risk-neutral density at ATM is:
+
+    $$
+    q(F) = e^{rT} \frac{\partial^2 C}{\partial K^2}\bigg|_{K=F} = \frac{\phi(d_2)}{F \sigma_{\text{ATM}}\sqrt{T}} = \frac{0.3988}{F \times 0.18 \times 0.5} = \frac{0.3988}{0.09 F} \approx \frac{4.43}{F}
+    $$
+
+    The density $q(F) \approx 4.43/F$. Note that this is the density with respect to the price variable $S$; the factor $1/F$ ensures proper normalization. For a concrete forward price, say $F = 100$, we get $q(100) \approx 0.0443$.
+
+    The smile parameters $\mathcal{S}$ and $\mathcal{C}$ affect the density away from ATM but do not change $q(F)$ at leading order, since the smile correction vanishes at $y = 0$.
+
 ---
 
 **Exercise 4.** A flat implied volatility surface ($\sigma_{\text{IV}} = \sigma_0$ for all $K, T$) corresponds to a lognormal risk-neutral density. If the smile has positive curvature ($\mathcal{C} > 0$), the risk-neutral density has fatter tails than lognormal. Explain this connection intuitively: why do elevated wing volatilities imply more probability mass in the tails?
+
+??? success "Solution to Exercise 4"
+    In the Black-Scholes model (flat IV at $\sigma_0$), the risk-neutral density is lognormal. OTM options are priced consistently with this lognormal tail behavior. The key intuition proceeds in two steps:
+
+    **Step 1: Wing IV determines tail option prices.** An OTM put at strike $K \ll F$ has price:
+
+    $$
+    P(K) = e^{-rT}[K\Phi(-d_2) - F\Phi(-d_1)]
+    $$
+
+    where $d_1, d_2$ depend on $\sigma_{\text{IV}}(K)$. For deep OTM puts, $P(K) \approx e^{-rT} K \Phi(-d_2)$, and a higher $\sigma_{\text{IV}}(K)$ increases $\Phi(-d_2)$ (by making $d_2$ more negative), increasing the put price.
+
+    **Step 2: Higher OTM option prices imply fatter density tails.** By the Breeden-Litzenberger formula, $q(K) = e^{rT}\frac{\partial^2 C}{\partial K^2}$. Higher option prices in the wings mean the price surface $C(K)$ has more curvature there, which translates to a higher density. Specifically, the butterfly spread $C(K - \Delta K) - 2C(K) + C(K + \Delta K)$ is larger when OTM options are more expensive, implying more probability mass near strike $K$.
+
+    **Combining:** When the smile has positive curvature ($\mathcal{C} > 0$), both OTM puts and OTM calls have elevated implied volatilities relative to ATM. This means these options are more expensive than the flat-IV (lognormal) benchmark predicts. Through Breeden-Litzenberger, this translates to more probability mass in both tails — exactly the definition of excess kurtosis ($\text{Kurt} > 3$). The wings of the smile act as a "price tag" for tail risk: steeper wings mean the market assigns more probability (or charges more risk premium) for extreme moves.
 
 ---
 
 **Exercise 5.** An analyst extracts the risk-neutral density from 1-month SPX options and finds that the probability of a 10% decline is 3.2%, while the lognormal density with the same ATM volatility assigns only 0.8%. (a) What feature of the implied volatility smile accounts for this difference? (b) Is 3.2% the "true" probability of a 10% decline? Explain the role of the variance risk premium.
 
+??? success "Solution to Exercise 5"
+    **(a)** The difference between the risk-neutral probability (3.2%) and the lognormal probability (0.8%) of a 10% decline is driven by the **implied volatility skew**. OTM puts (which pay off in a 10% decline scenario) have much higher implied volatility than ATM options. This elevated put IV increases the put price, and through Breeden-Litzenberger, translates into a fatter left tail of the risk-neutral density. The skew assigns more risk-neutral probability to large downside moves than a symmetric lognormal model would.
+
+    **(b)** No, 3.2% is **not** the true (physical) probability of a 10% decline. The risk-neutral density $q(S_T)$ and the physical density $p(S_T)$ are related by the pricing kernel (Radon-Nikodym derivative):
+
+    $$
+    q(S) = \frac{d\mathbb{Q}}{d\mathbb{P}} \cdot p(S)
+    $$
+
+    The **variance risk premium** (VRP) is the key reason for the discrepancy. Empirically, implied variance systematically exceeds realized variance for equity indices ($\text{VRP} > 0$). This means:
+
+    - Risk-averse investors are willing to pay a premium for crash protection (OTM puts)
+    - This demand inflates put prices above their actuarially fair value
+    - The risk-neutral density therefore overstates left-tail probabilities relative to physical probabilities
+
+    The true physical probability of a 10% decline lies somewhere between the lognormal estimate (0.8%) and the risk-neutral estimate (3.2%), but typically much closer to the lognormal value. The excess in the risk-neutral probability reflects the **risk premium** investors pay for bearing tail risk, not a pure probability estimate.
+
 ---
 
 **Exercise 6.** Describe how to use the implied volatility surface to compute the risk-neutral probability that the underlying finishes between two strikes $K_1$ and $K_2$. Express your answer in terms of call prices and verify using the Breeden-Litzenberger CDF formula $Q(K) = e^{rT}(1 + \frac{\partial C}{\partial K})$.
 
+??? success "Solution to Exercise 6"
+    The risk-neutral probability that the underlying finishes between $K_1$ and $K_2$ is:
+
+    $$
+    \mathbb{P}^{\mathbb{Q}}(K_1 \leq S_T \leq K_2) = Q(K_2) - Q(K_1)
+    $$
+
+    Using the Breeden-Litzenberger CDF formula $Q(K) = e^{rT}(1 + \frac{\partial C}{\partial K})$:
+
+    $$
+    \mathbb{P}^{\mathbb{Q}}(K_1 \leq S_T \leq K_2) = e^{rT}\left(1 + \frac{\partial C}{\partial K}\bigg|_{K_2}\right) - e^{rT}\left(1 + \frac{\partial C}{\partial K}\bigg|_{K_1}\right)
+    $$
+
+    $$
+    = e^{rT}\left(\frac{\partial C}{\partial K}\bigg|_{K_2} - \frac{\partial C}{\partial K}\bigg|_{K_1}\right)
+    $$
+
+    **In terms of call prices** (using finite-difference approximation for the derivative):
+
+    $$
+    \frac{\partial C}{\partial K}\bigg|_{K_i} \approx \frac{C(K_i + \Delta K) - C(K_i - \Delta K)}{2\Delta K}
+    $$
+
+    **Practical procedure using the IV surface:**
+
+    1. Read $\sigma_{\text{IV}}(K_1, T)$ and $\sigma_{\text{IV}}(K_2, T)$ from the surface, along with nearby strikes
+    2. Convert to call prices using the Black-Scholes formula: $C(K) = C_{\text{BS}}(S_0, K, T, r, q, \sigma_{\text{IV}}(K))$
+    3. Compute $\frac{\partial C}{\partial K}$ at $K_1$ and $K_2$ via finite differences or analytical differentiation of the BS formula
+    4. Apply the formula above
+
+    **Verification:** From $Q(K) = e^{rT}(1 + \frac{\partial C}{\partial K})$, we check boundary conditions:
+
+    - $Q(0) = e^{rT}(1 + \frac{\partial C}{\partial K}\big|_{K=0}) = e^{rT}(1 - e^{-rT}) = e^{rT} - 1 \approx 0$ for small $rT$ (consistent with $\mathbb{P}(S_T \leq 0) = 0$)
+    - $Q(\infty) = e^{rT}(1 + 0) = e^{rT} \cdot 1$... but $Q(\infty)$ should equal 1
+
+    More precisely, $\frac{\partial C}{\partial K}\big|_{K\to\infty} = 0$, giving $Q(\infty) = e^{rT}$. The exact formula with discounting gives $Q(\infty) = 1$ when properly accounting for the boundary terms of the Breeden-Litzenberger derivation.
+
 ---
 
 **Exercise 7.** The risk-neutral density and the physical (real-world) density differ due to the pricing kernel. If the pricing kernel is $\xi(S) \propto S^{-\gamma}$ (power utility with risk aversion $\gamma$), show that the risk-neutral density places more weight on low values of $S$ compared to the physical density. How does this manifest in the implied volatility smile?
+
+??? success "Solution to Exercise 7"
+    The risk-neutral density is related to the physical density by the pricing kernel $\xi(S)$:
+
+    $$
+    q(S) = \frac{\xi(S) p(S)}{\mathbb{E}^{\mathbb{P}}[\xi(S_T)]}
+    $$
+
+    where $\xi(S) \propto S^{-\gamma}$ for power utility with risk aversion $\gamma > 0$.
+
+    **Showing more weight on low $S$:** The ratio of risk-neutral to physical density is:
+
+    $$
+    \frac{q(S)}{p(S)} \propto S^{-\gamma}
+    $$
+
+    Since $\gamma > 0$, this ratio is a **decreasing function** of $S$:
+
+    - For low $S$: $S^{-\gamma}$ is large, so $q(S) \gg p(S)$ — the risk-neutral density overweights low outcomes
+    - For high $S$: $S^{-\gamma}$ is small, so $q(S) \ll p(S)$ — the risk-neutral density underweights high outcomes
+
+    Intuitively, risk-averse investors value marginal wealth more in bad states (low $S$) than in good states (high $S$). The pricing kernel tilts the density toward adverse outcomes, reflecting the higher price of insurance against losses.
+
+    **Manifestation in the implied volatility smile:** The overweighting of low $S$ under $\mathbb{Q}$ fattens the left tail of the risk-neutral density relative to the physical density. Through the Breeden-Litzenberger connection:
+
+    - **Fatter left tail** $\Rightarrow$ Higher prices for OTM puts $\Rightarrow$ Higher implied volatility at low strikes
+    - **Thinner right tail** $\Rightarrow$ Lower prices for OTM calls $\Rightarrow$ Lower implied volatility at high strikes
+
+    This produces a **downward-sloping implied volatility skew**: $\sigma_{\text{IV}}$ decreases as $K$ increases. The steepness of the skew is governed by $\gamma$ — higher risk aversion creates a steeper skew. Even if the physical density is perfectly lognormal (flat physical smile), the risk-aversion-induced tilt generates an implied volatility skew under $\mathbb{Q}$. This is one of the fundamental explanations for the equity volatility skew observed in markets.

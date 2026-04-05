@@ -229,10 +229,74 @@ Variance reduction techniques improve Monte Carlo efficiency by factors of 10--5
 **Exercise 1.**
 Antithetic variates negate both $Z_1$ and $Z_2$ to create the mirror path. Show that for the log-price under constant variance ($v_t = v_0$ for all $t$), the antithetic terminal value is $\ln\tilde{S}_T = 2\ln S_0 + 2(r - q - v_0/2)T - \ln S_T$, so $\tilde{S}_T = S_0^2 e^{2(r-q-v_0/2)T}/S_T$. For a call payoff $g(S_T) = (S_T - K)^+$, explain why the correlation between $g(S_T)$ and $g(\tilde{S}_T)$ is strongly negative, leading to effective variance reduction.
 
+??? success "Solution to Exercise 1"
+    Under constant variance $v_t = v_0$, the log-price follows:
+
+    $$
+    \ln S_T = \ln S_0 + (r - q - v_0/2)T + \sqrt{v_0}\,W_T^{(1)}
+    $$
+
+    The antithetic path uses $-W_T^{(1)}$:
+
+    $$
+    \ln\tilde{S}_T = \ln S_0 + (r - q - v_0/2)T - \sqrt{v_0}\,W_T^{(1)}
+    $$
+
+    Adding the two:
+
+    $$
+    \ln S_T + \ln\tilde{S}_T = 2\ln S_0 + 2(r - q - v_0/2)T
+    $$
+
+    Therefore:
+
+    $$
+    \ln\tilde{S}_T = 2\ln S_0 + 2(r - q - v_0/2)T - \ln S_T
+    $$
+
+    Exponentiating:
+
+    $$
+    \tilde{S}_T = \exp\!\left(2\ln S_0 + 2(r - q - v_0/2)T - \ln S_T\right) = \frac{S_0^2 e^{2(r-q-v_0/2)T}}{S_T}
+    $$
+
+    **Negative correlation of call payoffs:** For the call payoff $g(S) = (S - K)^+$, consider the relationship between $S_T$ and $\tilde{S}_T = C/S_T$ where $C = S_0^2 e^{2(r-q-v_0/2)T}$ is a constant. This is a **decreasing** function: when $S_T$ is large, $\tilde{S}_T = C/S_T$ is small, and vice versa.
+
+    When $S_T > K$ (the original path finishes in the money), $\tilde{S}_T = C/S_T < C/K$. For typical ATM parameters, $C/K$ is close to $K$ (since $C \approx K^2$), so $\tilde{S}_T$ is near or below $K$, and the antithetic path finishes near or out of the money.
+
+    Conversely, when $S_T \ll K$ (original path deep OTM), $\tilde{S}_T = C/S_T \gg K$, and the antithetic path finishes deep ITM.
+
+    This creates a strong **negative correlation** between $g(S_T)$ and $g(\tilde{S}_T)$: large payoffs on one path pair with small or zero payoffs on the antithetic. Since $\text{Cov}(g, \tilde{g}) < 0$, the antithetic estimator's variance $\frac{1}{2}(\sigma_g^2 + \text{Cov}(g, \tilde{g}))$ is significantly less than $\sigma_g^2$, producing effective variance reduction.
+
 ---
 
 **Exercise 2.**
 The variance of the antithetic estimator is $\text{Var}(\hat{V}_{\text{anti}}) = \frac{1}{M}\cdot\frac{\sigma_g^2 + \text{Cov}(g, \tilde{g})}{2}$. If $\text{Cov}(g, \tilde{g}) = -0.8\sigma_g^2$, compute the variance reduction factor $\sigma_g^2/\text{Var}(\hat{V}_{\text{anti}} \cdot M) = 2/(1 + \text{Corr}(g, \tilde{g}))$. How many naive paths would be needed to match the precision of $M = 10{,}000$ antithetic paths?
+
+??? success "Solution to Exercise 2"
+    Given $\text{Cov}(g, \tilde{g}) = -0.8\sigma_g^2$, the correlation is $\text{Corr}(g, \tilde{g}) = -0.8$.
+
+    The variance of the antithetic estimator (per-path contribution) is:
+
+    $$
+    \text{Var}\!\left(\frac{g + \tilde{g}}{2}\right) = \frac{\sigma_g^2 + \text{Cov}(g, \tilde{g})}{2} = \frac{\sigma_g^2 - 0.8\sigma_g^2}{2} = \frac{0.2\sigma_g^2}{2} = 0.1\sigma_g^2
+    $$
+
+    The variance reduction factor is:
+
+    $$
+    \frac{\sigma_g^2}{0.1\sigma_g^2} = 10
+    $$
+
+    Equivalently, using the formula $\text{factor} = 2/(1 + \text{Corr}(g, \tilde{g}))$:
+
+    $$
+    \frac{2}{1 + (-0.8)} = \frac{2}{0.2} = 10
+    $$
+
+    **Equivalent naive paths:** $M = 10{,}000$ antithetic paths produce the same precision as $10 \times 10{,}000 = 100{,}000$ naive paths.
+
+    Note that each antithetic "path" actually requires simulating two trajectories (original and mirror), so the computational cost is $2M = 20{,}000$ path simulations. The effective speedup is therefore $100{,}000 / 20{,}000 = 5$, which is still substantial. The factor of 10 in variance corresponds to a factor of $\sqrt{10} \approx 3.16$ in standard error.
 
 ---
 
@@ -245,22 +309,156 @@ $$
 
 where $\bar{v} = \frac{1}{T}\int_0^T v_s\,ds$. Is this ratio close to 1 for typical Heston parameters?
 
+??? success "Solution to Exercise 3"
+    The control volatility $\bar{\sigma}$ should maximize the correlation $\rho_{g,C}$ between the Heston payoff $g(S_T^{\text{Heston}})$ and the Black-Scholes payoff $g(S_T^{\text{BS}})$. The two terminal prices are driven by the same Brownian path $W^{(1)}$, but differ in how volatility enters:
+
+    - Heston: $\ln S_T = \ln S_0 + (r-q)T - \frac{1}{2}\int_0^T v_s\,ds + \int_0^T \sqrt{v_s}\,dW_s^{(1)}$
+    - Black-Scholes: $\ln S_T^{\text{BS}} = \ln S_0 + (r-q-\bar{\sigma}^2/2)T + \bar{\sigma}\,W_T^{(1)}$
+
+    For an ATM call, the payoff is most sensitive to the total "effective volatility" experienced over $[0,T]$. In the Heston model, this is $\sqrt{\frac{1}{T}\int_0^T v_s\,ds}$, while in Black-Scholes it is the constant $\bar{\sigma}$. Setting $\bar{\sigma}$ equal to the Heston ATM implied volatility aligns the two distributions' centers as closely as possible, maximizing the probability that both payoffs are in the money (or out of the money) on the same paths.
+
+    **Heuristic estimate of** $\rho_{g,C}$: The call payoff depends primarily on the terminal stock price, which in turn depends on the integrated variance $\bar{v} = \frac{1}{T}\int_0^T v_s\,ds$. With $\bar{\sigma}^2 \approx \mathbb{E}[\bar{v}]$, the correlation is related to:
+
+    $$
+    \rho_{g,C} \approx \frac{\mathbb{E}[\bar{v}]}{\sqrt{\mathbb{E}[\bar{v}^2]}}
+    $$
+
+    By Jensen's inequality (since $\sqrt{\cdot}$ is concave), this ratio satisfies:
+
+    $$
+    \frac{\mathbb{E}[\bar{v}]}{\sqrt{\mathbb{E}[\bar{v}^2]}} = \frac{1}{\sqrt{1 + \text{CV}^2(\bar{v})}}
+    $$
+
+    where $\text{CV}(\bar{v}) = \text{Std}(\bar{v})/\mathbb{E}[\bar{v}]$ is the coefficient of variation of the integrated variance.
+
+    For typical Heston parameters ($v_0 = 0.04$, $\theta = 0.04$, $\xi = 0.3$, $\kappa = 1.5$), the mean integrated variance is approximately $\theta = 0.04$ and its standard deviation is relatively small (of order $\xi\sqrt{\theta/(2\kappa)} \approx 0.3\sqrt{0.04/3} \approx 0.035$). So $\text{CV} \approx 0.035/0.04 \approx 0.87$ for the instantaneous variance, but the time averaging in $\bar{v}$ reduces this substantially (by roughly $1/\sqrt{T \cdot 2\kappa} \approx 1/\sqrt{3}$), giving $\text{CV}(\bar{v}) \approx 0.5$.
+
+    This yields $\rho_{g,C} \approx 1/\sqrt{1 + 0.25} \approx 0.89$. The actual correlation is typically in the range 0.95--0.99 for ATM options, somewhat higher than this rough estimate because the call payoff is less sensitive to variance fluctuations than the heuristic suggests. The ratio is indeed close to 1 for typical parameters, confirming that the Black-Scholes control is highly effective.
+
 ---
 
 **Exercise 4.**
 The optimal control variate coefficient is $\beta^* = \text{Cov}(g, C)/\text{Var}(C)$. In the worked example, the control variate reduces the standard error from $\$0.15$ to $\$0.02$, a factor of 7.5 in standard error (factor of $\approx 56$ in variance). Compute $\rho_{g,C}$ from the variance reduction formula $1 - \rho_{g,C}^2 = 1/56$. Is this correlation value realistic for a Black-Scholes control on an ATM Heston call?
+
+??? success "Solution to Exercise 4"
+    The variance reduction formula gives:
+
+    $$
+    1 - \rho_{g,C}^2 = \frac{\text{Var}(\hat{V}_{\text{cv}})}{\text{Var}(\hat{V})} = \frac{1}{56}
+    $$
+
+    Solving for $\rho_{g,C}$:
+
+    $$
+    \rho_{g,C}^2 = 1 - \frac{1}{56} = \frac{55}{56} \approx 0.9821
+    $$
+
+    $$
+    \rho_{g,C} = \sqrt{0.9821} \approx 0.991
+    $$
+
+    **Is this realistic?** Yes, a correlation of $0.991$ between the Heston and Black-Scholes payoffs for an ATM call is entirely plausible. The two models share the same underlying Brownian motion $W^{(1)}$ driving the stock price. The only difference is that Heston has stochastic volatility while Black-Scholes has constant volatility. For ATM options:
+
+    - The call payoff is primarily determined by whether the terminal stock price exceeds the strike, which is driven by the same Brownian realization in both models.
+    - The volatility difference between the models affects the magnitude of the payoff but rarely changes its sign (ITM vs OTM).
+    - Setting $\bar{\sigma}$ to the Heston implied vol aligns the distributions so that the mean payoffs are nearly identical.
+
+    Correlations above 0.99 are routinely observed in practice for ATM options with moderate Heston parameters. The correlation decreases for OTM options (where the payoff is more sensitive to the tail of the distribution, which is where the models differ most) and for longer maturities (where variance randomness accumulates).
 
 ---
 
 **Exercise 5.**
 For a deep OTM call ($K = 150$, $S_0 = 100$), most naive Monte Carlo paths finish out of the money. The importance sampling shift $\mu^* = [\ln(K/S_0) - (r - q - \bar{v}/2)T]/T$ centers the log-price distribution around $\ln K$. With $r = 0.05$, $\bar{v} = 0.04$, $T = 1$, compute $\mu^*$. What fraction of shifted paths finish in the money versus the fraction under the original measure? Estimate the variance reduction factor for this OTM option.
 
+??? success "Solution to Exercise 5"
+    With $K = 150$, $S_0 = 100$, $r = 0.05$, $\bar{v} = 0.04$, $T = 1$:
+
+    $$
+    \mu^* = \frac{\ln(150/100) - (0.05 - 0 - 0.02) \times 1}{1} = \frac{\ln(1.5) - 0.03}{1} = \frac{0.4055 - 0.03}{1} = 0.3755
+    $$
+
+    **Fraction of paths finishing ITM:**
+
+    Under the **original measure** $\mathbb{Q}$: $\ln S_T \sim N(\ln 100 + 0.03, \, 0.04)$, so $\ln S_T \sim N(4.6352, 0.04)$ with standard deviation $\sqrt{0.04} = 0.2$. The probability of finishing ITM:
+
+    $$
+    \mathbb{P}(S_T > 150) = \mathbb{P}\!\left(\ln S_T > \ln 150\right) = \mathbb{P}\!\left(Z > \frac{5.0106 - 4.6352}{0.2}\right) = \mathbb{P}(Z > 1.877) \approx 0.030
+    $$
+
+    Only about 3% of paths finish in the money.
+
+    Under the **shifted measure** $\tilde{\mathbb{Q}}$: The drift is increased by $\mu^* = 0.3755$, so $\ln S_T \sim N(4.6352 + 0.3755, 0.04) = N(5.0107, 0.04)$. The probability of finishing ITM:
+
+    $$
+    \mathbb{P}(\ln S_T > 5.0106) = \mathbb{P}\!\left(Z > \frac{5.0106 - 5.0107}{0.2}\right) = \mathbb{P}(Z > -0.0005) \approx 0.500
+    $$
+
+    Approximately 50% of shifted paths finish in the money, as intended.
+
+    **Variance reduction estimate:** Under the original measure, about 97% of paths contribute zero payoff and are "wasted." The effective sample size is roughly $0.03M$. Under importance sampling, about 50% of paths contribute to the estimator, giving an effective sample size of roughly $0.5M$. The variance reduction factor is approximately:
+
+    $$
+    \text{factor} \approx \frac{0.5}{0.03} \approx 17
+    $$
+
+    In practice, the reduction factor for deep OTM options is often larger (10--100) because the likelihood ratio reweighting concentrates the estimator on the most informative paths. The exact factor depends on the relationship between the variance of the likelihood-reweighted payoff and the variance of the original payoff, but the order of magnitude is correct.
+
 ---
 
 **Exercise 6.**
 The warning about variance explosion in importance sampling states that poorly chosen shifts can increase variance. Consider an extreme shift $\mu = 3\mu^*$ (three times the optimal). The likelihood ratio $\exp(-\mu W_T/\sqrt{\bar{v}} - \mu^2 T/(2\bar{v}))$ has very heavy tails. Compute the effective sample size $\text{ESS} = (\sum w_m)^2/\sum w_m^2$ for $M = 1{,}000$ paths and explain why ESS $\ll M$ indicates the estimator is unreliable. What is the maximum safe drift shift as a rule of thumb?
 
+??? success "Solution to Exercise 6"
+    With an extreme shift $\mu = 3\mu^*$, the log-price distribution is shifted far beyond the strike. The likelihood ratio for each path is:
+
+    $$
+    w_m = \exp\!\left(-\frac{\mu}{\sqrt{\bar{v}}} W_T^{(1),(m)} - \frac{\mu^2}{2\bar{v}} T\right)
+    $$
+
+    With $\mu = 3 \times 0.3755 = 1.127$, $\bar{v} = 0.04$, $T = 1$:
+
+    $$
+    \frac{\mu}{\sqrt{\bar{v}}} = \frac{1.127}{0.2} = 5.633, \qquad \frac{\mu^2}{2\bar{v}} = \frac{1.270}{0.08} = 15.87
+    $$
+
+    The likelihood ratio becomes $w_m = \exp(-5.633 W_T^{(m)} - 15.87)$. Since $W_T^{(m)}$ under the shifted measure has mean $\mu T/\sqrt{\bar{v}} = 5.633$ and standard deviation 1, the exponent $-5.633 W_T^{(m)} - 15.87$ has:
+
+    - Mean: $-5.633 \times 5.633 - 15.87 = -31.73 - 15.87 = -47.6$
+    - Standard deviation: $5.633$
+
+    The weights are approximately $\exp(-47.6 + 5.633 Z)$ where $Z \sim N(0,1)$. A $+3\sigma$ event gives weight $\exp(-47.6 + 16.9) = \exp(-30.7) \approx 4.6 \times 10^{-14}$, while a $-3\sigma$ event gives weight $\exp(-47.6 - 16.9) = \exp(-64.5) \approx 10^{-28}$.
+
+    The effective sample size (ESS) measures the number of paths effectively contributing:
+
+    $$
+    \text{ESS} = \frac{\left(\sum_{m=1}^M w_m\right)^2}{\sum_{m=1}^M w_m^2}
+    $$
+
+    When the weights vary enormously (spanning many orders of magnitude), a few paths with the largest weights dominate both sums. With $M = 1{,}000$ paths and weights varying over $10^{14}$ orders of magnitude, the ESS is typically on the order of $1$--$10$, meaning $\text{ESS} \ll M = 1{,}000$. The estimator effectively relies on just a handful of paths, making it unreliable with enormous variance.
+
+    **Rule of thumb for safe drift shifts:** The optimal shift $\mu^*$ is calibrated so that roughly half the paths contribute to the estimator. Shifts much beyond $\mu^*$ push too many paths into the irrelevant region and create extreme likelihood ratios. A safe rule is to keep $\mu \leq 1.5\mu^*$. Beyond this, the ESS should be monitored: if $\text{ESS} < M/5$, the shift is too aggressive and should be reduced. Some practitioners also use a soft cap: if any single weight exceeds $10\%$ of the total weight sum, the estimator is deemed unreliable.
+
 ---
 
 **Exercise 7.**
 The combined estimator uses antithetic variates with a Black-Scholes control variate. In the worked example, this achieves a reduction factor of 278. Decompose this into the antithetic contribution and the control variate contribution. If antithetic variates alone give a factor of 3 and control variates alone give a factor of 56, explain why the combined factor ($278 \approx 3 \times 93$) exceeds the product of individual factors. Hint: the antithetic averaging smooths the payoff, increasing the correlation with the control variate.
+
+??? success "Solution to Exercise 7"
+    The combined reduction factor of 278 decomposes as follows. If the individual factors were independent, the combined factor would be approximately the product $3 \times 56 = 168$. However, the observed factor of 278 is larger, which indicates a **synergistic interaction** between the two techniques.
+
+    **Decomposition:** Let $\sigma_{\text{naive}}^2$ be the naive variance, $\sigma_{\text{anti}}^2 = \sigma_{\text{naive}}^2/3$ the antithetic variance, and $\sigma_{\text{cv}}^2 = \sigma_{\text{naive}}^2/56$ the control variate variance. The combined variance is $\sigma_{\text{combined}}^2 = \sigma_{\text{naive}}^2/278$.
+
+    - Antithetic contribution to the combined method: factor $= 278/93 = 2.99 \approx 3$ (consistent with antithetic alone)
+    - Control variate contribution on the antithetic-averaged payoff: factor $= 93$
+
+    The control variate factor improves from 56 (applied to the raw payoff) to 93 (applied to the antithetic-averaged payoff). This is the synergy.
+
+    **Why the synergy occurs:** The antithetic averaging replaces the payoff $g(S_T)$ with the smoothed payoff $\bar{g} = [g(S_T) + g(\tilde{S}_T)]/2$. This smoothed payoff has several properties that enhance the control variate:
+
+    1. **Reduced kurtosis:** The raw call payoff has a kink at $S_T = K$ (the max function). Antithetic averaging smooths this kink: $\bar{g}$ is closer to a linear function of $\ln S_T$ near the strike, because the antithetic path fills in the gaps. A smoother payoff is better approximated by the Black-Scholes control, increasing $|\rho_{\bar{g}, C}|$.
+
+    2. **Higher correlation with BS control:** The raw correlation is $\rho_{g,C} \approx 0.991$ (from Exercise 4), giving a control variate factor of $1/(1 - 0.991^2) = 56$. The antithetic-averaged payoff has a higher correlation with the antithetic-averaged BS control, say $\rho_{\bar{g},\bar{C}} \approx 0.9946$, giving a factor of $1/(1 - 0.9946^2) \approx 93$.
+
+    3. **Variance stabilization:** Antithetic averaging reduces the variance of the payoff, particularly in the tails. The control variate is most effective when the residual variance (after removing the control) is small. By first reducing the variance through antithetic averaging, the control variate operates on a less noisy signal and achieves higher proportional reduction.
+
+    The lesson is that variance reduction techniques are not merely additive---they interact, and the optimal strategy applies them in the right order: antithetic averaging first (to smooth the payoff), then control variates (to exploit the enhanced correlation).

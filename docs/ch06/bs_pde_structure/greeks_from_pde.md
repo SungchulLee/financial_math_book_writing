@@ -302,30 +302,6 @@ $$
 
 **Exercise 1.** Starting from the Black-Scholes PDE $\Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2 \Gamma = rV$, show that for a long call position, theta must be negative when gamma is positive. Provide the financial intuition for why positive convexity (gamma) comes at the cost of time decay (theta).
 
----
-
-**Exercise 2.** Compute the delta, gamma, theta, vega, and rho for a European call with $S = 100$, $K = 100$, $T = 0.5$, $r = 5\%$, $\sigma = 20\%$. Verify that the PDE relationship $\Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2 \Gamma = rV$ holds numerically.
-
----
-
-**Exercise 3.** Show that gamma is the same for calls and puts with the same strike and maturity by differentiating the put-call parity relation $C - P = S - Ke^{-rT}$ twice with respect to $S$. Similarly, show that vega is the same for calls and puts.
-
----
-
-**Exercise 4.** For a portfolio consisting of $n_1$ calls at strike $K_1$ and $n_2$ calls at strike $K_2$, derive the conditions on $n_1$ and $n_2$ such that the portfolio is both delta-neutral and gamma-neutral. Explain why such a portfolio still has nonzero theta.
-
----
-
-**Exercise 5.** Charm is defined as $\frac{\partial \Delta}{\partial t} = \frac{\partial^2 V}{\partial S \partial t}$. By differentiating the PDE $\Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2 \Gamma = rV$ with respect to $S$, derive a relationship between charm, speed ($\frac{\partial \Gamma}{\partial S}$), and other Greeks.
-
----
-
-**Exercise 6.** A trader holds a delta-hedged call position. Explain how gamma risk arises between rebalancing times and estimate the P&L over a time step $\Delta t$ in terms of gamma and the realized stock move $\Delta S$. When does the trader profit from gamma, and when does the theta cost dominate?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     From the Black-Scholes PDE in Greek notation:
 
@@ -346,6 +322,9 @@ $$
     More precisely, for an at-the-money call where $r$ is small relative to $\sigma^2$, the approximation $\Theta \approx -\frac{1}{2}\sigma^2 S^2 \Gamma$ shows clearly that positive gamma forces negative theta.
 
     **Financial intuition**: A long gamma position benefits from large moves in either direction (convexity profit). This is a valuable feature and cannot be obtained for free. The cost of maintaining this convexity is time decay: each day that passes without a sufficiently large move, the option loses value. This is the **theta-gamma tradeoff** — the holder pays a daily "insurance premium" (theta) in exchange for profiting from large price swings (gamma).
+
+---
+**Exercise 2.** Compute the delta, gamma, theta, vega, and rho for a European call with $S = 100$, $K = 100$, $T = 0.5$, $r = 5\%$, $\sigma = 20\%$. Verify that the PDE relationship $\Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2 \Gamma = rV$ holds numerically.
 
 ??? success "Solution to Exercise 2"
     Given: $S = 100$, $K = 100$, $T - t = 0.5$, $r = 0.05$, $\sigma = 0.20$.
@@ -402,6 +381,9 @@ $$
 
     And $rV = 0.05 \times 6.88 \approx 0.344$. The two sides agree (up to rounding), confirming the PDE relationship.
 
+---
+**Exercise 3.** Show that gamma is the same for calls and puts with the same strike and maturity by differentiating the put-call parity relation $C - P = S - Ke^{-rT}$ twice with respect to $S$. Similarly, show that vega is the same for calls and puts.
+
 ??? success "Solution to Exercise 3"
     **Gamma**: Put-call parity states:
 
@@ -433,6 +415,9 @@ $$
 
     **Intuition**: Put-call parity shows that calls and puts differ only by a forward contract $S - Ke^{-r(T-t)}$, which is linear in $S$ and independent of $\sigma$. All second-order effects in $S$ (gamma) and all volatility sensitivity (vega) come from the nonlinear "optionality" component, which is identical for calls and puts.
 
+---
+**Exercise 4.** For a portfolio consisting of $n_1$ calls at strike $K_1$ and $n_2$ calls at strike $K_2$, derive the conditions on $n_1$ and $n_2$ such that the portfolio is both delta-neutral and gamma-neutral. Explain why such a portfolio still has nonzero theta.
+
 ??? success "Solution to Exercise 4"
     Let the portfolio be $\Pi = n_1 C_1 + n_2 C_2$ where $C_i$ is a call at strike $K_i$ with Greeks $\Delta_i$ and $\Gamma_i$.
 
@@ -461,6 +446,9 @@ $$
     $$
 
     With $\Delta_\Pi = 0$ and $\Gamma_\Pi = 0$, this reduces to $\Theta_\Pi = r V_\Pi$. As long as the portfolio has nonzero value ($V_\Pi \neq 0$), theta must be nonzero. The portfolio earns (or pays) the risk-free rate on its value, which manifests as theta.
+
+---
+**Exercise 5.** Charm is defined as $\frac{\partial \Delta}{\partial t} = \frac{\partial^2 V}{\partial S \partial t}$. By differentiating the PDE $\Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2 \Gamma = rV$ with respect to $S$, derive a relationship between charm, speed ($\frac{\partial \Gamma}{\partial S}$), and other Greeks.
 
 ??? success "Solution to Exercise 5"
     Starting from the Black-Scholes PDE in Greek form:
@@ -493,6 +481,9 @@ $$
     $$
 
     This shows that charm (the rate at which delta changes over time) is determined by gamma and speed. For an ATM option where speed is small, charm is approximately $-(r + \sigma^2)S\Gamma$, meaning delta drifts over time at a rate proportional to gamma.
+
+---
+**Exercise 6.** A trader holds a delta-hedged call position. Explain how gamma risk arises between rebalancing times and estimate the P&L over a time step $\Delta t$ in terms of gamma and the realized stock move $\Delta S$. When does the trader profit from gamma, and when does the theta cost dominate?
 
 ??? success "Solution to Exercise 6"
     A trader holds a delta-hedged call: long one call $C(t,S)$ and short $\Delta$ shares. The portfolio value is $\Pi = C - \Delta S$, which is delta-neutral at time $t$.

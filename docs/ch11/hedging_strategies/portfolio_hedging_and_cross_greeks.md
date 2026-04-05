@@ -278,22 +278,174 @@ In practice, the hedging priority for a multi-asset book is:
 
 **Exercise 1.** For a portfolio with delta vector $\boldsymbol{\Delta} = (30, -20)^T$ and gamma matrix $\boldsymbol{\Gamma} = \begin{pmatrix} 2.0 & 0.5 \\ 0.5 & 1.5 \end{pmatrix}$, compute the delta-hedged P&L from a simultaneous move $\delta S_1 = +3$, $\delta S_2 = -2$. Decompose the P&L into contributions from $\Gamma_{11}$, $\Gamma_{22}$, and $\Gamma_{12}$.
 
+??? success "Solution to Exercise 1"
+    The delta-hedged P&L from second-order terms is:
+
+    $$
+    \delta\Pi_{\text{hedged}} \approx \frac{1}{2}\,\delta\mathbf{S}^T \boldsymbol{\Gamma}\,\delta\mathbf{S} = \frac{1}{2}\begin{pmatrix} 3 & -2 \end{pmatrix}\begin{pmatrix} 2.0 & 0.5 \\ 0.5 & 1.5 \end{pmatrix}\begin{pmatrix} 3 \\ -2 \end{pmatrix}
+    $$
+
+    First compute $\boldsymbol{\Gamma}\,\delta\mathbf{S}$:
+
+    $$
+    \begin{pmatrix} 2.0 & 0.5 \\ 0.5 & 1.5 \end{pmatrix}\begin{pmatrix} 3 \\ -2 \end{pmatrix} = \begin{pmatrix} 2.0(3) + 0.5(-2) \\ 0.5(3) + 1.5(-2) \end{pmatrix} = \begin{pmatrix} 5.0 \\ -1.5 \end{pmatrix}
+    $$
+
+    Then:
+
+    $$
+    \delta\Pi_{\text{hedged}} = \frac{1}{2}\begin{pmatrix} 3 & -2 \end{pmatrix}\begin{pmatrix} 5.0 \\ -1.5 \end{pmatrix} = \frac{1}{2}(15.0 + 3.0) = \frac{1}{2}(18.0) = 9.0
+    $$
+
+    **Decomposition by component:**
+
+    - From $\Gamma_{11}$: $\frac{1}{2}\Gamma_{11}(\delta S_1)^2 = \frac{1}{2}(2.0)(3)^2 = 9.0$
+    - From $\Gamma_{22}$: $\frac{1}{2}\Gamma_{22}(\delta S_2)^2 = \frac{1}{2}(1.5)(-2)^2 = 3.0$
+    - From $\Gamma_{12}$: $\Gamma_{12}\,\delta S_1\,\delta S_2 = 0.5(3)(-2) = -3.0$
+
+    (The cross-gamma term appears twice in the sum due to symmetry: $\Gamma_{12}\delta S_1\delta S_2 + \Gamma_{21}\delta S_2\delta S_1 = 2 \times 0.5 \times 3 \times (-2) = -6.0$, but in the quadratic form this is already captured as $\Gamma_{12}\delta S_1\delta S_2 = -3.0$ with the factor of 2 from symmetry included.)
+
+    **Total:** $9.0 + 3.0 + (-3.0) = 9.0$, confirming the matrix computation.
+
+    The cross-gamma reduces the P&L by $\$3.00$ because the assets moved in opposite directions ($\delta S_1 > 0$, $\delta S_2 < 0$) while $\Gamma_{12} > 0$.
+
 ---
 
 **Exercise 2.** A basket call on $B = 0.6S_1 + 0.4S_2$ has gamma $\frac{\partial^2 C}{\partial B^2} = 0.03$. Compute the cross-gamma $\Gamma_{12} = w_1 w_2 \frac{\partial^2 C}{\partial B^2}$ and the diagonal gammas $\Gamma_{11}$ and $\Gamma_{22}$. Verify that the gamma matrix is positive semidefinite.
+
+??? success "Solution to Exercise 2"
+    For a basket call on $B = w_1 S_1 + w_2 S_2$ with $w_1 = 0.6$, $w_2 = 0.4$, and $\frac{\partial^2 C}{\partial B^2} = 0.03$:
+
+    **Cross-gamma:**
+
+    $$
+    \Gamma_{12} = w_1 w_2 \frac{\partial^2 C}{\partial B^2} = (0.6)(0.4)(0.03) = 0.0072
+    $$
+
+    **Diagonal gammas:**
+
+    $$
+    \Gamma_{11} = w_1^2 \frac{\partial^2 C}{\partial B^2} = (0.6)^2(0.03) = 0.0108
+    $$
+
+    $$
+    \Gamma_{22} = w_2^2 \frac{\partial^2 C}{\partial B^2} = (0.4)^2(0.03) = 0.0048
+    $$
+
+    **Positive semidefiniteness.** The gamma matrix is:
+
+    $$
+    \boldsymbol{\Gamma} = \frac{\partial^2 C}{\partial B^2}\begin{pmatrix} w_1^2 & w_1 w_2 \\ w_1 w_2 & w_2^2 \end{pmatrix} = 0.03\begin{pmatrix} 0.36 & 0.24 \\ 0.24 & 0.16 \end{pmatrix}
+    $$
+
+    This is a rank-1 matrix: $\boldsymbol{\Gamma} = 0.03\,\mathbf{w}\mathbf{w}^T$ where $\mathbf{w} = (0.6, 0.4)^T$. A rank-1 outer product $\mathbf{w}\mathbf{w}^T$ is always positive semidefinite (its eigenvalues are $\|\mathbf{w}\|^2 > 0$ and $0$). Multiplying by the positive scalar $0.03$ preserves positive semidefiniteness.
+
+    Alternatively, verify: $\det(\boldsymbol{\Gamma}) = 0.03^2(0.36 \times 0.16 - 0.24^2) = 0.0009(0.0576 - 0.0576) = 0$, and $\operatorname{tr}(\boldsymbol{\Gamma}) = 0.03(0.36 + 0.16) = 0.0156 > 0$. Both eigenvalues are non-negative, confirming positive semidefiniteness.
 
 ---
 
 **Exercise 3.** Full gamma neutralization for $d = 3$ assets requires $d(d+1)/2 = 6$ hedging instruments. If only 3 single-asset options are available (one per underlying), which gamma matrix entries can be neutralized and which remain unhedged? Describe the residual risk.
 
+??? success "Solution to Exercise 3"
+    For $d = 3$ assets, the gamma matrix has $3(3+1)/2 = 6$ independent entries: $\Gamma_{11}$, $\Gamma_{22}$, $\Gamma_{33}$, $\Gamma_{12}$, $\Gamma_{13}$, $\Gamma_{23}$.
+
+    With 3 single-asset options (one per underlying), each option $l$ has a gamma matrix with only one nonzero entry: $\Gamma_{ll}^{(l)} \neq 0$ and all other entries zero (since single-asset options have zero cross-gamma).
+
+    **What can be neutralized:** The three diagonal entries $\Gamma_{11}$, $\Gamma_{22}$, $\Gamma_{33}$ can each be independently neutralized by choosing appropriate positions in the corresponding single-asset options.
+
+    **What remains unhedged:** The three cross-gamma entries $\Gamma_{12}$, $\Gamma_{13}$, $\Gamma_{23}$ cannot be affected by single-asset options at all. These entries remain at their original values.
+
+    **Residual risk.** The unhedged cross-gammas create P&L exposure to correlated moves:
+
+    $$
+    \delta\Pi_{\text{residual}} \approx \Gamma_{12}\,\delta S_1\,\delta S_2 + \Gamma_{13}\,\delta S_1\,\delta S_3 + \Gamma_{23}\,\delta S_2\,\delta S_3
+    $$
+
+    This residual risk is driven by the realized correlations between the assets. To hedge it, the trader would need multi-asset derivatives (e.g., basket options, spread options, or correlation swaps) that generate nonzero off-diagonal gamma entries.
+
 ---
 
 **Exercise 4.** The correlation P&L is $\frac{1}{2}\sum_{i \neq j}\Gamma_{ij}S_iS_j\sigma_i\sigma_j(\rho_{ij}^{\text{realized}} - \rho_{ij}^{\text{model}})\,\delta t$. For a two-asset portfolio with $\Gamma_{12} = 0.5$, $S_1 = S_2 = 100$, $\sigma_1 = \sigma_2 = 0.20$, compute the daily P&L impact if the realized correlation is $\rho^{\text{real}} = 0.8$ while the model assumes $\rho^{\text{model}} = 0.6$.
+
+??? success "Solution to Exercise 4"
+    The correlation P&L formula for two assets (the sum over $i \neq j$ gives two terms $\Gamma_{12}$ and $\Gamma_{21}$, which are equal):
+
+    $$
+    \text{P\&L}_{\text{corr}} = \Gamma_{12} S_1 S_2 \sigma_1 \sigma_2 (\rho^{\text{real}} - \rho^{\text{model}})\,\delta t
+    $$
+
+    (The factor of $\frac{1}{2}$ in the sum and the two symmetric terms combine to give a single factor of 1.)
+
+    Substituting $\Gamma_{12} = 0.5$, $S_1 = S_2 = 100$, $\sigma_1 = \sigma_2 = 0.20$, $\rho^{\text{real}} = 0.8$, $\rho^{\text{model}} = 0.6$, and $\delta t = 1/252$:
+
+    $$
+    \text{P\&L}_{\text{corr}} = 0.5 \times 100 \times 100 \times 0.20 \times 0.20 \times (0.8 - 0.6) \times \frac{1}{252}
+    $$
+
+    $$
+    = 0.5 \times 10000 \times 0.04 \times 0.2 \times \frac{1}{252}
+    $$
+
+    $$
+    = 0.5 \times 80 \times \frac{1}{252} = \frac{40}{252} \approx \$0.159 \text{ per day}
+    $$
+
+    The positive cross-gamma combined with realized correlation exceeding the model correlation produces a small daily gain. Over a month (21 trading days), this would accumulate to approximately $\$3.33$. While small in absolute terms, this systematic bias compounds and represents a genuine model risk if the correlation mismatch persists.
 
 ---
 
 **Exercise 5.** Using the worked example portfolio ($\boldsymbol{\Gamma} = \begin{pmatrix} 3.44 & 0.16 \\ 0.16 & -1.30 \end{pmatrix}$), compute the variance of the delta-hedged P&L over one day assuming $\sigma_1 = 0.25$, $\sigma_2 = 0.30$, $\rho_{12} = 0.5$, $S_1 = 100$, $S_2 = 80$. Which term dominates: the diagonal gammas or the cross-gamma?
 
+??? success "Solution to Exercise 5"
+    From the worked example: $\boldsymbol{\Gamma} = \begin{pmatrix} 3.44 & 0.16 \\ 0.16 & -1.30 \end{pmatrix}$, $\sigma_1 = 0.25$, $\sigma_2 = 0.30$, $\rho_{12} = 0.5$, $S_1 = 100$, $S_2 = 80$, $\delta t = 1/252$.
+
+    Using the two-asset variance formula, define the dollar-gamma quantities:
+
+    - $a_1 = \Gamma_{11}S_1^2\sigma_1^2 = 3.44 \times 100^2 \times 0.25^2 = 3.44 \times 10000 \times 0.0625 = 2150$
+    - $a_2 = \Gamma_{22}S_2^2\sigma_2^2 = (-1.30) \times 80^2 \times 0.30^2 = -1.30 \times 6400 \times 0.09 = -748.8$
+    - $a_{12} = \Gamma_{12}S_1 S_2 \sigma_1\sigma_2 = 0.16 \times 100 \times 80 \times 0.25 \times 0.30 = 0.16 \times 600 = 96$
+
+    The variance of the hedged P&L (dropping the $(\delta t)^2$ factor and restoring it at the end):
+
+    $$
+    \operatorname{Var}(\delta\Pi_{\text{hedged}}) \approx \left[\frac{1}{2}a_1^2 + 2\rho_{12}^2 a_1 a_2 \cdot \frac{1}{2} + \frac{1}{2}a_2^2 + 2a_{12}^2(1+\rho_{12}^2)\right]\frac{(\delta t)^2}{4}
+    $$
+
+    Using the simplified version for the dominant contributions:
+
+    - $\frac{1}{2}a_1^2 = \frac{1}{2}(2150)^2 = 2{,}311{,}250$
+    - $\frac{1}{2}a_2^2 = \frac{1}{2}(748.8)^2 = 280{,}351$
+    - $2a_{12}^2(1+\rho_{12}^2) = 2(96)^2(1+0.25) = 2(9216)(1.25) = 23{,}040$
+    - Cross term: $2\rho_{12}^2 \cdot \frac{1}{2} \cdot a_1 \cdot a_2 = 0.25 \times 2150 \times (-748.8) = -402{,}480$ (this represents the $\Gamma_{11}\Gamma_{22}$ interaction)
+
+    The $\Gamma_{11}$ diagonal term ($\sim 2.3M$) clearly dominates, followed by the $\Gamma_{22}$ term ($\sim 280K$). The cross-gamma contribution ($\sim 23K$) is relatively small, roughly $1\%$ of the total variance. This is expected because $|\Gamma_{12}| = 0.16$ is much smaller than $|\Gamma_{11}| = 3.44$ and $|\Gamma_{22}| = 1.30$.
+
+    The diagonal gammas dominate the hedging error variance.
+
 ---
 
 **Exercise 6.** A risk manager sets limits of $|\Gamma_{ii}S_i^2/2| \leq \$500$ per asset and $|\Gamma_{ij}S_iS_j| \leq \$200$ per pair. For the worked example portfolio, check which limits are satisfied and which are breached. Propose a partial hedging plan that brings all exposures within limits using the fewest instruments.
+
+??? success "Solution to Exercise 6"
+    From the worked example: $\boldsymbol{\Gamma} = \begin{pmatrix} 3.44 & 0.16 \\ 0.16 & -1.30 \end{pmatrix}$, $S_1 = 100$, $S_2 = 80$.
+
+    **Check diagonal gamma limits ($|\Gamma_{ii}S_i^2/2| \leq \$500$):**
+
+    - Asset 1: $|\Gamma_{11}S_1^2/2| = |3.44 \times 100^2 / 2| = |3.44 \times 5000| = \$17{,}200$ --- **breached** (exceeds $\$500$ by a factor of $34\times$)
+    - Asset 2: $|\Gamma_{22}S_2^2/2| = |-1.30 \times 80^2 / 2| = 1.30 \times 3200 = \$4{,}160$ --- **breached** (exceeds $\$500$ by a factor of $8.3\times$)
+
+    **Check cross-gamma limit ($|\Gamma_{ij}S_iS_j| \leq \$200$):**
+
+    - Pair (1,2): $|\Gamma_{12}S_1 S_2| = |0.16 \times 100 \times 80| = \$1{,}280$ --- **breached** (exceeds $\$200$ by a factor of $6.4\times$)
+
+    All three limits are breached.
+
+    **Partial hedging plan.** To bring all exposures within limits using the fewest instruments:
+
+    1. **Hedge $\Gamma_{11}$ with a single-asset option on asset 1.** Target residual $|\Gamma_{11}^{\text{res}}| \leq 2 \times 500 / 100^2 = 0.10$. Need to reduce $\Gamma_{11}$ from $3.44$ to at most $0.10$, requiring an option position contributing $\Gamma \approx -3.34$.
+
+    2. **Hedge $\Gamma_{22}$ with a single-asset option on asset 2.** Target residual $|\Gamma_{22}^{\text{res}}| \leq 2 \times 500 / 80^2 = 0.156$. Need to reduce $|\Gamma_{22}|$ from $1.30$ to at most $0.156$, requiring an option position contributing $\Gamma \approx +1.14$.
+
+    3. **Hedge $\Gamma_{12}$ with a multi-asset instrument** (e.g., a basket or spread option on assets 1 and 2). Target residual $|\Gamma_{12}^{\text{res}}| \leq 200 / (100 \times 80) = 0.025$. Need to reduce $\Gamma_{12}$ from $0.16$ to at most $0.025$.
+
+    This requires a minimum of **3 instruments**: one single-asset option per underlying plus one multi-asset derivative. After adding these instruments, re-delta-hedge both underlyings with shares. If the multi-asset instrument is unavailable, the first two instruments (single-asset options) bring the two diagonal exposures within limits, leaving only the cross-gamma breach, which may be accepted as residual risk given its smaller relative magnitude.

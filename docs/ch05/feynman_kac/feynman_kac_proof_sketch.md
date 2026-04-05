@@ -340,40 +340,6 @@ is the martingale. The $-f$ from the PDE cancels the $+f$ from the integral term
 **Exercise 1.**
 In Direction 1 (PDE to Expectation), the key step is showing that $Y_s = D(t,s)\,u(s, X_s)$ is a martingale when $u$ solves the PDE. Apply Ito's lemma to $D(t,s)\,u(s, X_s)$ for constant $r$ and verify that the drift vanishes when $\partial_t u + \mathcal{L}u - ru = 0$.
 
----
-
-**Exercise 2.**
-In Direction 2 (Expectation to PDE), the starting point is $u(t,x) = \mathbb{E}[D(t,T)g(X_T) | X_t = x]$. Using the Markov property, show that $u(t, X_t)$ can be expressed as a conditional expectation and hence $D(t,s)u(s, X_s)$ is a martingale. Conclude that the drift of this process must be zero.
-
----
-
-**Exercise 3.**
-In the proof, the integrability condition ensures that the local martingale $Y_s$ is a true martingale. Give an example where the stochastic integral $\int_t^s D\,\sigma\,u_x\,dW$ might fail to be a true martingale, and explain the consequence for the Feynman-Kac representation.
-
----
-
-**Exercise 4.**
-For the case $r = 0$ and $f = 0$, the Feynman-Kac proof simplifies to showing that $u(s, X_s)$ is a martingale. Carry out this simplified proof for $dX_s = \sigma\,dW_s$ and $g(x) = x^2$, verifying each step explicitly.
-
----
-
-**Exercise 5.**
-The running payoff extension involves the process $Y_s = D(t,s)u(s,X_s) + \int_t^s D(t,\tau)f(\tau, X_\tau)\,d\tau$. Show that the $+f$ from the integral and the $-f$ from the PDE cancel in the drift of $Y_s$, leaving $Y_s$ as a martingale.
-
----
-
-**Exercise 6.**
-Explain why the Feynman-Kac proof requires $u \in C^{1,2}$ (once differentiable in $t$, twice in $x$). What goes wrong with the Ito lemma application if $u$ is only continuous? In this case, what weaker concept of solution (viscosity solution) can be used?
-
----
-
-**Exercise 7.**
-Summarize the Feynman-Kac proof in one sentence for each of the five steps: (1) define the process, (2) apply Ito's lemma, (3) use the PDE, (4) conclude martingale property, (5) evaluate at boundary times. Then explain why step (3) is the crucial one that connects the PDE to probability.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     For constant $r$, we have $D(t, s) = e^{-r(s-t)}$ and $Y_s = e^{-r(s-t)}u(s, X_s)$.
 
@@ -403,6 +369,11 @@ Summarize the Feynman-Kac proof in one sentence for each of the five steps: (1) 
 
     which is a pure stochastic integral against $dW$ with no drift -- confirming $Y_s$ is a (local) martingale. $\checkmark$
 
+---
+
+**Exercise 2.**
+In Direction 2 (Expectation to PDE), the starting point is $u(t,x) = \mathbb{E}[D(t,T)g(X_T) | X_t = x]$. Using the Markov property, show that $u(t, X_t)$ can be expressed as a conditional expectation and hence $D(t,s)u(s, X_s)$ is a martingale. Conclude that the drift of this process must be zero.
+
 ??? success "Solution to Exercise 2"
     Define $u(t, x) = \mathbb{E}[D(t, T)\,g(X_T) \mid X_t = x]$. By the **Markov property** of $X_t$, the conditional expectation at time $s > t$ can be expressed as:
 
@@ -424,6 +395,11 @@ Summarize the Feynman-Kac proof in one sentence for each of the five steps: (1) 
 
     Since $M_s$ is a martingale and (assuming $u \in C^{1,2}$) Ito's lemma gives $dM_s = D(t,s)[\partial_s u + \mathcal{L}u - r\,u]\,ds + (\text{martingale})$, the drift must be zero. Therefore $\partial_s u + \mathcal{L}u - r\,u = 0$.
 
+---
+
+**Exercise 3.**
+In the proof, the integrability condition ensures that the local martingale $Y_s$ is a true martingale. Give an example where the stochastic integral $\int_t^s D\,\sigma\,u_x\,dW$ might fail to be a true martingale, and explain the consequence for the Feynman-Kac representation.
+
 ??? success "Solution to Exercise 3"
     The integrability condition ensures that $\mathbb{E}[\int_t^T (D\,\sigma\,u_x)^2\,ds] < \infty$, which guarantees that the stochastic integral $\int_t^s D\,\sigma\,u_x\,dW$ is a true martingale (not merely a local martingale).
 
@@ -436,6 +412,11 @@ Summarize the Feynman-Kac proof in one sentence for each of the five steps: (1) 
     $$
 
     with strict inequality possible. The Feynman-Kac representation would give only a lower bound for the PDE solution, and the probabilistic formula would not recover the full PDE solution. This is related to the phenomenon of **bubbles** in mathematical finance, where the discounted price process is a strict local martingale.
+
+---
+
+**Exercise 4.**
+For the case $r = 0$ and $f = 0$, the Feynman-Kac proof simplifies to showing that $u(s, X_s)$ is a martingale. Carry out this simplified proof for $dX_s = \sigma\,dW_s$ and $g(x) = x^2$, verifying each step explicitly.
 
 ??? success "Solution to Exercise 4"
     With $r = 0$, $f = 0$, $dX_s = \sigma\,dW_s$, and $g(x) = x^2$:
@@ -459,6 +440,11 @@ Summarize the Feynman-Kac proof in one sentence for each of the five steps: (1) 
     **Step 4**: $Y_s = u(s, X_s)$ is a martingale (it equals $X_s^2 + \sigma^2(T - s)$, which is the well-known result that $W_s^2 - s$ is a martingale, rescaled).
 
     **Step 5**: $Y_t = u(t, x) = x^2 + \sigma^2(T - t)$ and $Y_T = u(T, X_T) = X_T^2$. By the martingale property: $u(t, x) = \mathbb{E}[X_T^2 \mid X_t = x] = x^2 + \sigma^2(T - t)$. $\checkmark$
+
+---
+
+**Exercise 5.**
+The running payoff extension involves the process $Y_s = D(t,s)u(s,X_s) + \int_t^s D(t,\tau)f(\tau, X_\tau)\,d\tau$. Show that the $+f$ from the integral and the $-f$ from the PDE cancel in the drift of $Y_s$, leaving $Y_s$ as a martingale.
 
 ??? success "Solution to Exercise 5"
     Define $Y_s = D(t,s)\,u(s, X_s) + \int_t^s D(t, \tau)\,f(\tau, X_\tau)\,d\tau$. We compute $dY_s$:
@@ -487,12 +473,22 @@ Summarize the Feynman-Kac proof in one sentence for each of the five steps: (1) 
 
     The cancellation occurs precisely because the PDE includes $+f$ as a source term, and the integral $\int_t^s D\,f\,d\tau$ contributes $+D\,f\,ds$ to $dY_s$. These combine with the $-f$ implicit in the PDE (since $\partial_t u + \mathcal{L}u - r\,u = -f$) to make the total drift zero. Therefore $Y_s$ is a (local) martingale.
 
+---
+
+**Exercise 6.**
+Explain why the Feynman-Kac proof requires $u \in C^{1,2}$ (once differentiable in $t$, twice in $x$). What goes wrong with the Ito lemma application if $u$ is only continuous? In this case, what weaker concept of solution (viscosity solution) can be used?
+
 ??? success "Solution to Exercise 6"
     Ito's lemma states: if $u \in C^{1,2}$ and $X_s$ is an Ito process, then $u(s, X_s)$ is also an Ito process with specific drift and diffusion terms. The formula requires computing $\partial_s u$, $\partial_x u$, and $\partial_{xx}u$, so $u$ must be at least $C^{1,2}$ (once continuously differentiable in $t$, twice in $x$).
 
     **If $u$ is only continuous**: Ito's lemma cannot be applied, because the chain rule for stochastic calculus fundamentally requires second-order spatial derivatives. Without $u_{xx}$, we cannot write $du(s, X_s)$ and cannot identify the drift term that must vanish. The entire martingale argument breaks down at Step 2.
 
     **Viscosity solutions**: When classical solutions do not exist (e.g., when $g(x) = (x - K)^+$ has a kink, or when the diffusion coefficient degenerates), we use **viscosity solutions**. A continuous function $u$ is a viscosity solution if, for every smooth test function $\varphi$ that touches $u$ from above (or below) at a point $(t_0, x_0)$, the PDE inequality $\partial_t \varphi + \mathcal{L}\varphi - r\,\varphi \leq 0$ (or $\geq 0$) holds at that point. This definition replaces the pointwise PDE with a family of inequalities involving smooth approximations, avoiding the need for $u$ to be differentiable. Viscosity solution theory provides existence and uniqueness under much weaker conditions than classical theory.
+
+---
+
+**Exercise 7.**
+Summarize the Feynman-Kac proof in one sentence for each of the five steps: (1) define the process, (2) apply Ito's lemma, (3) use the PDE, (4) conclude martingale property, (5) evaluate at boundary times. Then explain why step (3) is the crucial one that connects the PDE to probability.
 
 ??? success "Solution to Exercise 7"
     **(1) Define the process**: Construct $Y_s = D(t,s)\,u(s, X_s)$, the product of the stochastic discount factor and the PDE solution evaluated along the SDE path.

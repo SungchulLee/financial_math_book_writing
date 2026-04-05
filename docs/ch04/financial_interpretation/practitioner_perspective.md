@@ -13,9 +13,19 @@ Understanding the practitioner perspective is essential for any quantitative
 finance student, because the mathematical framework is a **tool**, not an
 end in itself. Its value lies in the practical decisions it informs.
 
+!!! abstract "Guiding principle"
+    Practitioners do not trust models---they use them to **structure risk and
+    monitor deviations**. The goal is not to find the "correct" model but to
+    choose one that prices liquid instruments consistently, produces stable
+    hedge ratios, and makes model risk transparent and manageable.
+
 ---
 
 ## Calibration vs Estimation
+
+!!! abstract "Core idea"
+    Pricing models are fitted to market prices ($\mathbb{Q}$), not historical
+    data ($\mathbb{P}$).
 
 ### The Two Approaches
 
@@ -86,6 +96,10 @@ $$
 
 ## Model Risk
 
+!!! abstract "Core idea"
+    Different models calibrated to the same market data select different
+    risk-neutral measures---and can disagree on exotic prices.
+
 ### What Is Model Risk
 
 **Model risk** is the risk of financial loss arising from using an incorrect
@@ -142,6 +156,10 @@ bounds in incomplete markets.
 
 ## Hedging in Practice vs Theory
 
+!!! abstract "Core idea"
+    Perfect hedging is a theoretical limit. In practice, discrete rebalancing
+    and uncertain volatility generate P&L driven by the gamma exposure.
+
 ### The Theoretical Ideal
 
 In the Black-Scholes framework, perfect hedging requires:
@@ -169,7 +187,7 @@ $$
 where $\Gamma_{t_k} = \partial^2 V / \partial S^2$ is the gamma and
 $\Delta W_k = W_{t_{k+1}} - W_{t_k}$.
 
-This expression reveals several important facts:
+This decomposition shows:
 
 1. **The P&L is proportional to gamma.** Positions with high gamma (near
    the money, near expiry) have the largest hedging errors.
@@ -244,6 +262,9 @@ Practitioners use several approaches to manage the hedging tradeoff:
 
 ## The Implied Volatility Surface
 
+!!! abstract "Core idea"
+    The volatility surface *is* the market's risk-neutral distribution.
+
 ### From Theory to Market Reality
 
 The Black-Scholes model assumes constant volatility, predicting a flat implied
@@ -264,7 +285,7 @@ Key features of the empirical surface include:
 ### What the Surface Tells the Practitioner
 
 The implied volatility surface is the market's representation of the
-risk-neutral measure $\mathbb{Q}$. Each point on the surface encodes a
+risk-neutral measure $\mathbb{Q}$. Each slice of the surface *defines* a
 marginal distribution:
 
 $$
@@ -325,8 +346,7 @@ starting options.
 
 ## The Gap Between Theory and Practice
 
-The following table summarizes the key differences between the theoretical
-framework and practical implementation:
+The key differences between theory and practice:
 
 | Theoretical Assumption | Practical Reality |
 |---|---|
@@ -346,14 +366,19 @@ it provides:
 - A **benchmark** against which model risk can be measured.
 - A **conceptual framework** for understanding what drives derivative prices.
 
+!!! tip "Trader translation"
+    - Price with implied vol ($\mathbb{Q}$).
+    - Make money with realized vol ($\mathbb{P}$).
+
 !!! quote "A practitioner's view"
     "All models are wrong, but some are useful." --- George E. P. Box
 
-    The risk-neutral pricing framework is not a description of reality. It is a
-    tool that translates the complex problem of derivative valuation into a
-    tractable mathematical structure. Its value lies not in its literal truth
-    but in the discipline and consistency it brings to pricing and risk
-    management.
+    Models are not used because they are true---they are used because they are
+    **consistent**. The risk-neutral pricing framework is not a description of
+    reality. It is a tool that translates the complex problem of derivative
+    valuation into a tractable mathematical structure. Its value lies not in its
+    literal truth but in the discipline and consistency it brings to pricing and
+    risk management.
 
 ---
 
@@ -387,64 +412,6 @@ conditions under which the framework breaks down entirely, see
 **Exercise 1.**
 A stock has physical drift $\mu = 0.15$, volatility $\sigma = 0.25$, and the risk-free rate is $r = 0.04$. A desk calibrates a Black-Scholes model to at-the-money implied volatility and obtains $\sigma_{\mathrm{imp}} = 0.22$. Explain why the calibrated volatility differs from the physical volatility, and state which volatility should be used for pricing a European call option under $\mathbb{Q}$.
 
----
-
-**Exercise 2.**
-Given the calibration objective
-
-$$
-\hat{\boldsymbol{\alpha}} = \arg\min_{\boldsymbol{\alpha}} \sum_{i=1}^{N} w_i\!\left(C_i^{\mathrm{model}}(\boldsymbol{\alpha}) - C_i^{\mathrm{mkt}}\right)^2
-$$
-
-suppose two different parameter vectors $\boldsymbol{\alpha}_1$ and $\boldsymbol{\alpha}_2$ both achieve the global minimum of the objective for a set of vanilla options. Explain why the prices of an exotic barrier option may still differ under $\boldsymbol{\alpha}_1$ and $\boldsymbol{\alpha}_2$, and relate this to the concept of market incompleteness.
-
----
-
-**Exercise 3.**
-A delta-hedged short call position has gamma $\Gamma = 0.04$ and current stock price $S = 100$. Over one day ($\Delta t = 1/252$), the realized stock return produces $(\Delta W)^2 = 0.006$ while the model predicts $\sigma^2 \Delta t = 0.0004$. Compute the approximate P&L from the gamma P&L formula
-
-$$
-\text{P\&L} \approx \frac{1}{2}\Gamma\,S^2\left[(\Delta W)^2 - \sigma^2 \Delta t\right]
-$$
-
-and determine whether the position gained or lost money.
-
----
-
-**Exercise 4.**
-Transaction costs at rate $\kappa$ per dollar traded produce a total hedging cost that scales as $\kappa\,\sigma\,S_0\,\sqrt{T / \Delta t}$, while the hedging error scales as $\Gamma\,\sigma^2\,S_0^2\,\sqrt{\Delta t}$. By minimizing the sum of these two costs with respect to $\Delta t$, derive an expression for the optimal rebalancing interval in terms of $\kappa$, $\sigma$, $\Gamma$, and $S_0$.
-
----
-
-**Exercise 5.**
-Using the Breeden-Litzenberger formula
-
-$$
-\frac{\partial^2 C}{\partial K^2}\bigg|_{K=k} = e^{-rT}\,q(k, T)
-$$
-
-explain why the risk-neutral density $q(k, T)$ can be extracted from a sufficiently smooth implied volatility surface. If the implied volatility smile is symmetric around the at-the-money strike, what does this imply about the skewness of the risk-neutral distribution?
-
----
-
-**Exercise 6.**
-Consider the Dupire local volatility formula
-
-$$
-\sigma_{\mathrm{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + rK\frac{\partial C}{\partial K}}{\frac{1}{2}K^2\frac{\partial^2 C}{\partial K^2}}
-$$
-
-Suppose call prices $C(K, T)$ are given by the Black-Scholes formula with constant implied volatility $\sigma_0$. Show that the local volatility surface reduces to $\sigma_{\mathrm{loc}}(K, T) = \sigma_0$ for all $K$ and $T$.
-
----
-
-**Exercise 7.**
-A desk calibrates three models (Black-Scholes, local volatility, and Heston stochastic volatility) to the same set of vanilla option prices. For a down-and-out call with barrier $B$, the model prices are $V_{\mathrm{BS}} = 4.82$, $V_{\mathrm{LV}} = 5.41$, and $V_{\mathrm{Heston}} = 5.18$. Compute the model risk as defined by $\sup_{\mathcal{M}} V^{\mathcal{M}} - \inf_{\mathcal{M}} V^{\mathcal{M}}$. Explain why barrier options are particularly sensitive to model choice compared to vanilla options.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The physical volatility $\sigma = 0.25$ is estimated from historical returns under $\mathbb{P}$ and describes how the stock actually moves over time. The implied volatility $\sigma_{\mathrm{imp}} = 0.22$ is extracted from option market prices and reflects the risk-neutral distribution under $\mathbb{Q}$.
 
@@ -456,12 +423,34 @@ A desk calibrates three models (Black-Scholes, local volatility, and Heston stoc
 
     For pricing a European call under $\mathbb{Q}$, the practitioner should use the **implied volatility** $\sigma_{\mathrm{imp}} = 0.22$, because this is the market-consistent $\mathbb{Q}$-measure input. Using the physical volatility $\sigma = 0.25$ would produce a price inconsistent with the market, creating an apparent arbitrage against the desk's own book.
 
+---
+
+**Exercise 2.**
+Given the calibration objective
+
+$$
+\hat{\boldsymbol{\alpha}} = \arg\min_{\boldsymbol{\alpha}} \sum_{i=1}^{N} w_i\!\left(C_i^{\mathrm{model}}(\boldsymbol{\alpha}) - C_i^{\mathrm{mkt}}\right)^2
+$$
+
+suppose two different parameter vectors $\boldsymbol{\alpha}_1$ and $\boldsymbol{\alpha}_2$ both achieve the global minimum of the objective for a set of vanilla options. Explain why the prices of an exotic barrier option may still differ under $\boldsymbol{\alpha}_1$ and $\boldsymbol{\alpha}_2$, and relate this to the concept of market incompleteness.
+
 ??? success "Solution to Exercise 2"
     Both $\boldsymbol{\alpha}_1$ and $\boldsymbol{\alpha}_2$ achieve the global minimum of the calibration objective for vanilla options, so they fit the same set of vanilla prices perfectly (or equally well). However, vanilla option prices determine only the **marginal distributions** of $S_T$ at each maturity $T$ (via the Breeden-Litzenberger formula). They do not uniquely determine the **dynamics** of $S_t$ along the path.
 
     A barrier option's payoff depends on whether the stock price hits the barrier $B$ at any time during the life of the option. This is a path-dependent event that depends on the **joint distribution** of $(S_t)_{0 \leq t \leq T}$, not just on the terminal distribution $S_T$. Two different parameter vectors $\boldsymbol{\alpha}_1$ and $\boldsymbol{\alpha}_2$ can produce the same marginal distributions at each maturity but different path dynamics (e.g., different local volatility surfaces, different correlation structures between spot and volatility, different jump intensities along the path).
 
     This is directly related to market incompleteness: vanilla options alone do not span all contingent claims. The exotic barrier option lies outside the span of the calibration instruments, so its price is not uniquely determined by no-arbitrage and the vanilla surface. Each parameter vector $\boldsymbol{\alpha}_j$ implicitly selects a different risk-neutral measure from the family of measures consistent with the vanilla prices, and these measures can disagree on the value of path-dependent claims.
+
+---
+
+**Exercise 3.**
+A delta-hedged short call position has gamma $\Gamma = 0.04$ and current stock price $S = 100$. Over one day ($\Delta t = 1/252$), the realized stock return produces $(\Delta W)^2 = 0.006$ while the model predicts $\sigma^2 \Delta t = 0.0004$. Compute the approximate P&L from the gamma P&L formula
+
+$$
+\text{P\&L} \approx \frac{1}{2}\Gamma\,S^2\left[(\Delta W)^2 - \sigma^2 \Delta t\right]
+$$
+
+and determine whether the position gained or lost money.
 
 ??? success "Solution to Exercise 3"
     Applying the gamma P&L formula:
@@ -486,7 +475,17 @@ A desk calibrates three models (Black-Scholes, local volatility, and Heston stoc
 
     The P&L is approximately $+\$1.12$.
 
-    Since the position is a **short** call that is delta-hedged, the positive P&L means the position **gained** money. The realized squared increment $(\Delta W)^2 = 0.006$ greatly exceeds the model's expected variance $\sigma^2\Delta t = 0.0004$, meaning realized volatility was much higher than implied volatility over this interval. For a short gamma position, this would normally cause a loss, but the formula gives the P&L from the perspective of the **hedger** who holds the gamma exposure: the large realized move generated profit from the gamma term because the actual move was much larger than what the model predicted. The trader who is short gamma and long the delta hedge profits from the rebalancing gains that exceed the theta decay embedded in the model.
+    The formula computes the gamma P&L of the **hedged book** (option plus delta hedge). The positive sign means the combined position gained \$1.12 over this interval. However, the sign must be interpreted carefully relative to the option position:
+
+    - The **short call** has negative gamma ($-\Gamma < 0$). When realized volatility greatly exceeds implied volatility, a short gamma position **loses** money: large moves hurt the short option holder.
+    - The **delta hedge** partially offsets this, but the net gamma P&L of $+\$1.12$ here reflects the perspective of a **long gamma** hedger (the formula uses $\Gamma > 0$, corresponding to a long option position).
+
+    For the **short call** holder, the gamma P&L has the opposite sign: $-\$1.12$. The position **lost** money because realized volatility far exceeded implied volatility. This is the standard result: short gamma positions lose when markets move more than the model predicts.
+
+---
+
+**Exercise 4.**
+Transaction costs at rate $\kappa$ per dollar traded produce a total hedging cost that scales as $\kappa\,\sigma\,S_0\,\sqrt{T / \Delta t}$, while the hedging error scales as $\Gamma\,\sigma^2\,S_0^2\,\sqrt{\Delta t}$. By minimizing the sum of these two costs with respect to $\Delta t$, derive an expression for the optimal rebalancing interval in terms of $\kappa$, $\sigma$, $\Gamma$, and $S_0$.
 
 ??? success "Solution to Exercise 4"
     The total cost to minimize is
@@ -519,6 +518,17 @@ A desk calibrates three models (Black-Scholes, local volatility, and Heston stoc
 
     The optimal rebalancing interval increases with transaction costs $\kappa$ (hedge less frequently when trading is expensive) and decreases with gamma $\Gamma$, volatility $\sigma$, and stock price $S_0$ (hedge more frequently when the hedging error is large).
 
+---
+
+**Exercise 5.**
+Using the Breeden-Litzenberger formula
+
+$$
+\frac{\partial^2 C}{\partial K^2}\bigg|_{K=k} = e^{-rT}\,q(k, T)
+$$
+
+explain why the risk-neutral density $q(k, T)$ can be extracted from a sufficiently smooth implied volatility surface. If the implied volatility smile is symmetric around the at-the-money strike, what does this imply about the skewness of the risk-neutral distribution?
+
 ??? success "Solution to Exercise 5"
     The Breeden-Litzenberger formula states that the risk-neutral density is the second derivative of call prices with respect to strike:
 
@@ -531,6 +541,17 @@ A desk calibrates three models (Black-Scholes, local volatility, and Heston stoc
     **Symmetric smile and skewness:** If the implied volatility smile is symmetric around the at-the-money strike $K = S_0 e^{rT}$ (i.e., $\sigma_{\mathrm{imp}}(K_0 + \delta, T) = \sigma_{\mathrm{imp}}(K_0 - \delta, T)$ for all $\delta$), then the risk-neutral density $q(k, T)$ is symmetric around its central value. A symmetric density has **zero skewness**.
 
     In equity markets, the implied volatility smile is typically asymmetric (a "skew" with higher implied volatility for low strikes), reflecting a negatively skewed risk-neutral distribution. The left tail is fatter than the right, consistent with crash risk being priced by the market. A symmetric smile would imply no such asymmetry.
+
+---
+
+**Exercise 6.**
+Consider the Dupire local volatility formula
+
+$$
+\sigma_{\mathrm{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + rK\frac{\partial C}{\partial K}}{\frac{1}{2}K^2\frac{\partial^2 C}{\partial K^2}}
+$$
+
+Suppose call prices $C(K, T)$ are given by the Black-Scholes formula with constant implied volatility $\sigma_0$. Show that the local volatility surface reduces to $\sigma_{\mathrm{loc}}(K, T) = \sigma_0$ for all $K$ and $T$.
 
 ??? success "Solution to Exercise 6"
     Under constant implied volatility $\sigma_0$, the Black-Scholes call price is
@@ -572,6 +593,11 @@ A desk calibrates three models (Black-Scholes, local volatility, and Heston stoc
     $$
 
     Therefore $\sigma_{\mathrm{loc}}(K, T) = \sigma_0$ for all $K$ and $T$, confirming that when the implied volatility surface is flat, the local volatility surface is also flat and equal to $\sigma_0$. This is consistent with the fact that Black-Scholes is the special case of the local volatility model with constant local volatility.
+
+---
+
+**Exercise 7.**
+A desk calibrates three models (Black-Scholes, local volatility, and Heston stochastic volatility) to the same set of vanilla option prices. For a down-and-out call with barrier $B$, the model prices are $V_{\mathrm{BS}} = 4.82$, $V_{\mathrm{LV}} = 5.41$, and $V_{\mathrm{Heston}} = 5.18$. Compute the model risk as defined by $\sup_{\mathcal{M}} V^{\mathcal{M}} - \inf_{\mathcal{M}} V^{\mathcal{M}}$. Explain why barrier options are particularly sensitive to model choice compared to vanilla options.
 
 ??? success "Solution to Exercise 7"
     The model risk is

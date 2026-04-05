@@ -337,58 +337,6 @@ $$
 **Exercise 1.**
 For Brownian motion with drift $dX_t = \mu\,dt + \sigma\,dW_t$, compute $\mathbb{E}[X_t^3 \mid X_0 = x_0]$ using the explicit solution $X_t = x_0 + \mu t + \sigma W_t$. Verify your answer by checking that $u(t, x) = \mathbb{E}_x[X_t^3]$ satisfies the backward equation $\partial_t u = \mu\partial_x u + \frac{\sigma^2}{2}\partial_{xx} u$.
 
----
-
-**Exercise 2.**
-For geometric Brownian motion $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$, derive the variance formula
-
-$$
-\text{Var}(S_t \mid S_0 = s_0) = s_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)
-$$
-
-by first computing $\mathbb{E}[S_t^2]$ using the moment-generating function of the normal distribution. Why does the variance grow exponentially even though $\log S_t$ has variance that grows only linearly?
-
----
-
-**Exercise 3.**
-For the Ornstein-Uhlenbeck process $dX_t = -\kappa(X_t - \theta)\,dt + \sigma\,dW_t$, use the explicit solution
-
-$$
-X_t = \theta + (x_0 - \theta)e^{-\kappa t} + \sigma\int_0^t e^{-\kappa(t-s)}\,dW_s
-$$
-
-to derive the conditional mean $m(t) = \theta + (x_0 - \theta)e^{-\kappa t}$ and variance $v(t) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})$. Verify that the variance saturates at $\sigma^2/(2\kappa)$ as $t \to \infty$.
-
----
-
-**Exercise 4.**
-The CIR process $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$ has conditional mean $\mathbb{E}[X_t \mid X_0 = x_0] = \theta + (x_0 - \theta)e^{-\kappa t}$, identical to the OU process. Explain why the means coincide despite the processes being quite different. Compute the conditional variance of the CIR process and compare it to the OU variance.
-
----
-
-**Exercise 5.**
-The Feller condition $2\kappa\theta \geq \xi^2$ ensures that the CIR process stays strictly positive. Interpret this condition in terms of the balance between mean reversion (pulling toward $\theta > 0$) and volatility (pushing toward zero). What happens to the transition density near $x = 0$ when the Feller condition is violated?
-
----
-
-**Exercise 6.**
-For the GBM transition density under the risk-neutral measure ($\mu \to r$), derive the Black-Scholes call price by evaluating
-
-$$
-C(0, s_0) = e^{-rT}\int_K^{\infty}(S - K)\,p^{\mathbb{Q}}(T, S \mid 0, s_0)\,dS
-$$
-
-Show that the integral splits into two terms involving the cumulative normal distribution $\Phi$, yielding $C = s_0\Phi(d_1) - Ke^{-rT}\Phi(d_2)$.
-
----
-
-**Exercise 7.**
-All four processes discussed (BM with drift, GBM, OU, CIR) are affine processes: their characteristic functions have the form $\mathbb{E}[e^{i\xi X_t}] = \exp(A(t, \xi) + B(t, \xi)x_0)$. For the OU process, compute the characteristic function by using the Gaussian transition density and verify the exponential-affine form. Identify $A(t, \xi)$ and $B(t, \xi)$ explicitly.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The explicit solution is $X_t = x_0 + \mu t + \sigma W_t$. We compute:
 
@@ -428,6 +376,17 @@ All four processes discussed (BM with drift, GBM, OU, CIR) are affine processes:
 
     This equals $\partial_t u$. $\checkmark$
 
+---
+
+**Exercise 2.**
+For geometric Brownian motion $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$, derive the variance formula
+
+$$
+\text{Var}(S_t \mid S_0 = s_0) = s_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)
+$$
+
+by first computing $\mathbb{E}[S_t^2]$ using the moment-generating function of the normal distribution. Why does the variance grow exponentially even though $\log S_t$ has variance that grows only linearly?
+
 ??? success "Solution to Exercise 2"
     For GBM, $S_t = s_0\exp((\mu - \sigma^2/2)t + \sigma W_t)$. Therefore:
 
@@ -448,6 +407,17 @@ All four processes discussed (BM with drift, GBM, OU, CIR) are affine processes:
     $$
 
     **Why the variance grows exponentially despite linear variance growth in log-space**: The variance of $\log S_t$ is $\sigma^2 t$, which grows linearly. However, the exponential map $S_t = e^{Y_t}$ is a convex transformation. By Jensen's inequality and the properties of the lognormal distribution, the variance of $e^Y$ depends on $e^{\text{Var}(Y)}$, not $\text{Var}(Y)$ itself. Specifically, $\text{Var}(e^Y) = e^{2\mu_Y + \sigma_Y^2}(e^{\sigma_Y^2} - 1)$. As $\sigma_Y^2 = \sigma^2 t$ grows linearly, the factor $e^{\sigma^2 t}$ causes exponential growth of $\text{Var}(S_t)$. This reflects the right-skewness and heavy right tail of the lognormal distribution: extreme upward moves contribute disproportionately to the variance.
+
+---
+
+**Exercise 3.**
+For the Ornstein-Uhlenbeck process $dX_t = -\kappa(X_t - \theta)\,dt + \sigma\,dW_t$, use the explicit solution
+
+$$
+X_t = \theta + (x_0 - \theta)e^{-\kappa t} + \sigma\int_0^t e^{-\kappa(t-s)}\,dW_s
+$$
+
+to derive the conditional mean $m(t) = \theta + (x_0 - \theta)e^{-\kappa t}$ and variance $v(t) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})$. Verify that the variance saturates at $\sigma^2/(2\kappa)$ as $t \to \infty$.
 
 ??? success "Solution to Exercise 3"
     From the explicit solution:
@@ -482,6 +452,11 @@ All four processes discussed (BM with drift, GBM, OU, CIR) are affine processes:
 
     This makes physical sense: mean reversion (strength $\kappa$) confines the process, preventing the variance from growing without bound. Stronger mean reversion (larger $\kappa$) gives a smaller asymptotic variance, while larger noise ($\sigma$) increases it.
 
+---
+
+**Exercise 4.**
+The CIR process $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$ has conditional mean $\mathbb{E}[X_t \mid X_0 = x_0] = \theta + (x_0 - \theta)e^{-\kappa t}$, identical to the OU process. Explain why the means coincide despite the processes being quite different. Compute the conditional variance of the CIR process and compare it to the OU variance.
+
 ??? success "Solution to Exercise 4"
     **Why the conditional means coincide**: The conditional mean $\mathbb{E}[X_t \mid X_0 = x_0]$ depends only on the drift term of the SDE, since the stochastic integral always has zero mean. Both the OU process $dX_t = -\kappa(X_t - \theta)\,dt + \sigma\,dW_t$ and the CIR process $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$ have the same drift structure $\kappa(\theta - X_t)$. The mean satisfies the ODE:
 
@@ -511,6 +486,11 @@ All four processes discussed (BM with drift, GBM, OU, CIR) are affine processes:
 
     **Comparison**: The OU variance $v_{OU}(t) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})$ depends only on $\sigma$ and $\kappa$, not on $x_0$. The CIR variance depends on $x_0$ because the diffusion coefficient $\xi\sqrt{X_t}$ is state-dependent: starting from a larger $x_0$ means more noise initially. As $t \to \infty$, both variances converge to their stationary values: $\sigma^2/(2\kappa)$ for OU and $\theta\xi^2/(2\kappa)$ for CIR.
 
+---
+
+**Exercise 5.**
+The Feller condition $2\kappa\theta \geq \xi^2$ ensures that the CIR process stays strictly positive. Interpret this condition in terms of the balance between mean reversion (pulling toward $\theta > 0$) and volatility (pushing toward zero). What happens to the transition density near $x = 0$ when the Feller condition is violated?
+
 ??? success "Solution to Exercise 5"
     The Feller condition $2\kappa\theta \geq \xi^2$ balances two competing forces:
 
@@ -526,6 +506,17 @@ All four processes discussed (BM with drift, GBM, OU, CIR) are affine processes:
     $$
 
     If $q < 0$ (Feller condition violated), the density diverges as $x \to 0^+$, meaning there is a significant probability mass concentrated near zero. The process touches zero with positive probability, though it is instantaneously reflected back. In the extreme case where $q \leq -1$ (i.e., $2\kappa\theta \leq 0$), the density becomes non-integrable and the process is absorbed at zero.
+
+---
+
+**Exercise 6.**
+For the GBM transition density under the risk-neutral measure ($\mu \to r$), derive the Black-Scholes call price by evaluating
+
+$$
+C(0, s_0) = e^{-rT}\int_K^{\infty}(S - K)\,p^{\mathbb{Q}}(T, S \mid 0, s_0)\,dS
+$$
+
+Show that the integral splits into two terms involving the cumulative normal distribution $\Phi$, yielding $C = s_0\Phi(d_1) - Ke^{-rT}\Phi(d_2)$.
 
 ??? success "Solution to Exercise 6"
     Under the risk-neutral measure, $S_T$ has transition density:
@@ -569,6 +560,11 @@ All four processes discussed (BM with drift, GBM, OU, CIR) are affine processes:
     $$
 
     This is the **Black-Scholes formula**. $\checkmark$
+
+---
+
+**Exercise 7.**
+All four processes discussed (BM with drift, GBM, OU, CIR) are affine processes: their characteristic functions have the form $\mathbb{E}[e^{i\xi X_t}] = \exp(A(t, \xi) + B(t, \xi)x_0)$. For the OU process, compute the characteristic function by using the Gaussian transition density and verify the exponential-affine form. Identify $A(t, \xi)$ and $B(t, \xi)$ explicitly.
 
 ??? success "Solution to Exercise 7"
     The OU process has transition density $X_t \mid X_0 = x_0 \sim N(m(t), v(t))$ where $m(t) = \theta + (x_0 - \theta)e^{-\kappa t}$ and $v(t) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})$.

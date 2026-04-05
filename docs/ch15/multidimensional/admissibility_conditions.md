@@ -206,22 +206,120 @@ The Duffie-Filipovic-Schachermayer admissibility conditions are the algebraic co
 
 **Exercise 1.** For the Heston model on $D = \mathbb{R}_+ \times \mathbb{R}$ (variance $V_t$ and log-price $X_t$), verify all four admissibility conditions (A1)--(A4). Pay particular attention to condition (A2): identify which entries of the diffusion matrices $a_0$ and $\alpha_1$ must be zero for the variance component.
 
+??? success "Solution to Exercise 1"
+    The Heston model on $D = \mathbb{R}_+ \times \mathbb{R}$ has state $(V_t, X_t)$ where $V_t \geq 0$ is the variance (CIR-type, index $i = 1$) and $X_t = \log S_t \in \mathbb{R}$ is the log-price (Gaussian, index $j = 2$). The affine parameters are:
+
+    $$
+    a_0 = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}, \qquad \alpha_1 = \begin{pmatrix} \xi^2 & \rho\xi \\ \rho\xi & 1 \end{pmatrix}, \qquad \alpha_2 = 0
+    $$
+
+    **Checking (A1):** $a_0 = 0$ is trivially symmetric positive semi-definite. Satisfied.
+
+    **Checking (A2):** For $i = 1$ (the CIR component), $\alpha_1$ must be symmetric positive semi-definite. It is symmetric by inspection. Its eigenvalues are non-negative iff
+
+    $$
+    \det(\alpha_1) = \xi^2 \cdot 1 - (\rho\xi)^2 = \xi^2(1 - \rho^2) \geq 0
+    $$
+
+    which holds for $|\rho| \leq 1$. Satisfied.
+
+    **Checking (A3):** For $j = 2$ (the Gaussian component), $\alpha_2 = 0$. Satisfied.
+
+    **Checking (A4):** For the CIR component $i = 1$ and any other CIR component $k \in I$ with $k \neq 1$: there are no other CIR components (only one CIR factor), so (A4) is vacuously satisfied. Additionally, $(a_0)_{11} = 0$ satisfies (A5), ensuring the diffusion of the variance component vanishes at the boundary $V_t = 0$.
+
 ---
 
 **Exercise 2.** Construct a two-dimensional affine process on $D = \mathbb{R}_+^2$ (two CIR components) that violates condition (A1) for the second component. Explain what goes wrong: why does the process leave the state space?
+
+??? success "Solution to Exercise 2"
+    Consider a two-dimensional affine process on $D = \mathbb{R}_+^2$ with state $(X_t^{(1)}, X_t^{(2)})$. Suppose we attempt a specification where the diffusion matrix for the second component has a nonzero constant part, violating condition (A5) for $i = 2$:
+
+    $$
+    a_0 = \begin{pmatrix} 0 & 0 \\ 0 & \epsilon \end{pmatrix}, \qquad \alpha_1 = \begin{pmatrix} \xi_1^2 & 0 \\ 0 & 0 \end{pmatrix}, \qquad \alpha_2 = \begin{pmatrix} 0 & 0 \\ 0 & \xi_2^2 \end{pmatrix}
+    $$
+
+    with $\epsilon > 0$. This violates $(a_0)_{22} = \epsilon > 0$ (condition A5 requires $(a_0)_{22} = 0$ for the CIR component $i = 2$).
+
+    **What goes wrong:** At the boundary $X_t^{(2)} = 0$, the instantaneous variance of the second component is
+
+    $$
+    a_{22}(x)\big|_{x^{(2)}=0} = (a_0)_{22} + (\alpha_2)_{22} \cdot 0 = \epsilon > 0
+    $$
+
+    The diffusion does not vanish at the boundary. The second component behaves locally like $dX_t^{(2)} \approx \mu_2\,dt + \sqrt{\epsilon}\,dW_t$ near zero. By the support theorem for diffusions, the Brownian motion pushes $X_t^{(2)}$ below zero with positive probability in any short time interval. The process leaves $D = \mathbb{R}_+^2$.
 
 ---
 
 **Exercise 3.** Consider a proposed model on $\mathbb{R}_+$ with drift $b(x) = -\alpha$ (constant, $\alpha > 0$) and diffusion $a(x) = \xi^2 x$. Check condition (A1): is $b_0 = -\alpha \geq 0$ satisfied? What happens to the process when it reaches $x = 0$?
 
+??? success "Solution to Exercise 3"
+    The proposed model on $\mathbb{R}_+$ has $b_0 = -\alpha$ (with $\alpha > 0$) and diffusion $a(x) = \xi^2 x$. The drift is $\mu(x) = -\alpha + 0 \cdot x = -\alpha$, so $b_0 = -\alpha < 0$.
+
+    **Checking condition (B1):** We need $(b_0)_1 \geq 0$, but $(b_0)_1 = -\alpha < 0$. This is violated.
+
+    **What happens at $x = 0$:** The diffusion vanishes ($a(0) = 0$), so the process evolves deterministically near zero. At $x = 0$, the drift is $\mu(0) = -\alpha < 0$, which pushes the process into negative territory. Starting from any $x_0 > 0$, the process will eventually reach a neighborhood of zero, and once there, the negative drift drives $X_t$ below zero. The process cannot remain in $\mathbb{R}_+$, confirming that $b_0 \geq 0$ is necessary for admissibility.
+
 ---
 
 **Exercise 4.** The admissibility condition (A3) requires that jumps preserve the state space: $m_i$ is supported on $D - e_i$. For a one-dimensional CIR-type process on $\mathbb{R}_+$, what does this imply about the support of the jump size distribution? Can jumps be negative?
+
+??? success "Solution to Exercise 4"
+    The exercise references condition (A3) as a jump condition, but the notation differs from the theorem statement. For a one-dimensional CIR-type process on $\mathbb{R}_+$, the jump compensator is $m(x, dz) = m_0(dz) + x\,m_1(dz)$.
+
+    **Condition (C1):** $m_0$ must be supported on $D = \mathbb{R}_+ = [0, \infty)$. This means the state-independent jump size distribution can only produce non-negative jumps: $z \geq 0$ under $m_0$. Otherwise, starting at $x = 0$, a negative jump would send the process below zero.
+
+    **Condition (C3):** $m_1(\{z : z < -1\}) = 0$. The state-dependent jumps (with intensity proportional to $x$) cannot have size below $-1$. This means jumps can be negative, but bounded below by $-1$.
+
+    **Can jumps be negative?** Under $m_0$: no, all jumps must be non-negative. Under $m_1$: yes, but only in the range $z \in [-1, 0)$. When $x > 0$, a jump of size $z \in [-1, 0)$ moves the state to $x + z$. Since $x \geq 0$ and $z \geq -1$, we need additional conditions to ensure $x + z \geq 0$. For small $x$, the condition $z \geq -1$ alone is not sufficient; finer integrability conditions on $m_1$ near $z = 0$ ensure that the jump activity near zero is compatible with state space invariance.
 
 ---
 
 **Exercise 5.** For a three-factor model on $D = \mathbb{R}_+^2 \times \mathbb{R}$ with a correlated diffusion between the first CIR component and the Gaussian component, write down the diffusion matrix $a(x) = a_0 + \alpha_1 x_1 + \alpha_2 x_2$ and identify which cross-terms are permitted by condition (A2). Can the two CIR components have correlated Brownian motions?
 
+??? success "Solution to Exercise 5"
+    The state space is $D = \mathbb{R}_+^2 \times \mathbb{R}$ with state $(V_1, V_2, Y)^\top$ where $V_1, V_2 \geq 0$ are CIR components (indices $I = \{1, 2\}$) and $Y \in \mathbb{R}$ is Gaussian (index $J = \{3\}$).
+
+    The diffusion matrix is $a(x) = a_0 + \alpha_1 x_1 + \alpha_2 x_2$ (since $\alpha_3 = 0$ by condition A3). The admissibility conditions constrain:
+
+    **For $a_0$:** $(a_0)_{11} = (a_0)_{22} = 0$ (condition A5), and $(a_0)_{33} \geq 0$ (the constant Gaussian diffusion). The off-diagonal entries $(a_0)_{12} = (a_0)_{21}$ must be zero as well (since the diagonal entries are zero, positive semi-definiteness forces the off-diagonals involving CIR rows to vanish). So
+
+    $$
+    a_0 = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & \sigma^2 \end{pmatrix}
+    $$
+
+    **For $\alpha_1$:** Must be symmetric positive semi-definite. By condition (A4), $(\alpha_1)_{22} = 0$ (the diffusion of the second CIR component cannot depend on $x_1$). So
+
+    $$
+    \alpha_1 = \begin{pmatrix} \xi_1^2 & 0 & \eta_1\xi_1 \\ 0 & 0 & 0 \\ \eta_1\xi_1 & 0 & \eta_1^2 \end{pmatrix}
+    $$
+
+    which has rank at most 1 (the cross-term between the first CIR component and the Gaussian component is $\eta_1\xi_1$, encoding their correlation driven by $V_1$).
+
+    **For $\alpha_2$:** Similarly, $(\alpha_2)_{11} = 0$ (condition A4), giving
+
+    $$
+    \alpha_2 = \begin{pmatrix} 0 & 0 & 0 \\ 0 & \xi_2^2 & \eta_2\xi_2 \\ 0 & \eta_2\xi_2 & \eta_2^2 \end{pmatrix}
+    $$
+
+    **Can the two CIR components have correlated Brownian motions?** The covariance between $V_1$ and $V_2$ is $a_{12}(x) = (a_0)_{12} + (\alpha_1)_{12}x_1 + (\alpha_2)_{12}x_2 = 0 + 0 + 0 = 0$. The admissibility conditions force $a_{12}(x) = 0$ identically. Therefore, the two CIR components cannot have correlated Brownian motions in this affine framework. Their diffusions are necessarily independent.
+
 ---
 
 **Exercise 6.** Prove that condition (A1) is necessary for state space invariance. That is, if $(b_0)_i < 0$ for some CIR-type component $i$, construct a scenario (starting state near the boundary $x_i = 0$) where the drift pushes $x_i$ negative, violating $x_i \geq 0$.
+
+??? success "Solution to Exercise 6"
+    Suppose $(b_0)_i < 0$ for some CIR-type component $i \in I$. Consider starting the process at the point $x_0 \in D$ where $x_0^{(i)} = 0$ and $x_0^{(j)} = 0$ for all $j \in I$ and $x_0^{(j)} = 0$ for all $j \in J$.
+
+    At this point, the drift of the $i$-th component is
+
+    $$
+    \mu_i(x_0) = (b_0)_i + \sum_{j=1}^d B_{ij} x_0^{(j)} = (b_0)_i < 0
+    $$
+
+    By the necessity of vanishing boundary diffusion (conditions A4, A5, already proved), the diffusion at the boundary satisfies $a_{ii}(x_0) = 0$. With zero diffusion and strictly negative drift at $x_0$, the process evolves locally as
+
+    $$
+    X_t^{(i)} \approx x_0^{(i)} + \mu_i(x_0)\,t = (b_0)_i \cdot t < 0 \quad \text{for } t > 0
+    $$
+
+    The process immediately enters the region $X_t^{(i)} < 0$, violating the state space constraint $X_t^{(i)} \geq 0$. More rigorously, since the diffusion is continuous and vanishes at the boundary, the drift dominates for small $t$. By the comparison theorem for SDEs, $X_t^{(i)} \leq (b_0)_i\,t < 0$ for small $t > 0$, proving that the process leaves $D$. This establishes the necessity of $(b_0)_i \geq 0$ for state space invariance. $\square$

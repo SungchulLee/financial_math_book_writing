@@ -289,26 +289,245 @@ For American option pricing with $d$ exercise features, the neural network appro
 
 **Exercise 1.** Consider a single-hidden-layer network $g_N(x) = \sum_{i=1}^N c_i \sigma(w_i x + b_i)$ with ReLU activation $\sigma(z) = \max(0,z)$ and $x \in \mathbb{R}$. Show that $g_N$ is a piecewise linear function with at most $N+1$ linear pieces. Sketch $g_3(x)$ for specific choices of $w_i, b_i, c_i$ and verify the piecewise linear structure. How does this relate to the universal approximation theorem?
 
+??? success "Solution to Exercise 1"
+    **Piecewise linear structure of a ReLU network.**
+
+    Each ReLU neuron $c_i \sigma(w_i x + b_i) = c_i \max(0, w_i x + b_i)$ is a piecewise linear function with a single "kink" (breakpoint) at $x = -b_i / w_i$. To the left of the kink, the output is 0 (if $w_i > 0$) or $c_i(w_i x + b_i)$ (if $w_i < 0$); to the right, it is $c_i(w_i x + b_i)$ or 0, respectively.
+
+    The sum $g_N(x) = \sum_{i=1}^N c_i \max(0, w_i x + b_i)$ is a sum of $N$ piecewise linear functions. Each neuron introduces at most one breakpoint at $x = -b_i/w_i$. Therefore, the $N$ neurons produce at most $N$ distinct breakpoints, partitioning $\mathbb{R}$ into at most $N + 1$ intervals. On each interval, every $\max(0, w_i x + b_i)$ is linear in $x$, so $g_N$ is linear on each interval. Hence $g_N$ is piecewise linear with at most $N + 1$ pieces.
+
+    **Sketch for $N = 3$.** Choose $w_1 = 1, b_1 = 1, c_1 = 2$; $w_2 = 1, b_2 = 0, c_2 = -3$; $w_3 = 1, b_3 = -1, c_3 = 2$. Then:
+
+    $$
+    g_3(x) = 2\max(0, x+1) - 3\max(0, x) + 2\max(0, x-1)
+    $$
+
+    The breakpoints are at $x = -1, 0, 1$, creating 4 linear pieces:
+
+    - $x < -1$: all ReLUs inactive, $g_3(x) = 0$
+    - $-1 \le x < 0$: only first ReLU active, $g_3(x) = 2(x+1) = 2x + 2$
+    - $0 \le x < 1$: first two active, $g_3(x) = 2(x+1) - 3x = -x + 2$
+    - $x \ge 1$: all active, $g_3(x) = 2(x+1) - 3x + 2(x-1) = x$
+
+    This creates a "hat" shape, confirming the piecewise linear structure with $N + 1 = 4$ pieces.
+
+    **Connection to universal approximation.** The universal approximation theorem guarantees that for any continuous $f$ on a compact set and any $\varepsilon > 0$, there exists $N$ large enough that $g_N$ approximates $f$ within $\varepsilon$. For ReLU networks, this works because piecewise linear functions with sufficiently many pieces can approximate any continuous function arbitrarily well on a compact interval (a consequence of uniform continuity). As $N \to \infty$, the partition becomes arbitrarily fine and the piecewise linear approximation converges uniformly.
+
 ---
 
 **Exercise 2.** Compute the total number of parameters $\dim(\theta)$ for a feedforward network with input dimension $d = 10$, three hidden layers of widths $n_1 = 50$, $n_2 = 50$, $n_3 = 20$, and output dimension 1. Use the formula $\dim(\theta) = \sum_{\ell=1}^{L+1} n_\ell(n_{\ell-1} + 1)$. If 5,000 training samples are available, discuss whether the model is overparameterized and what regularization strategies might help.
+
+??? success "Solution to Exercise 2"
+    **Parameter count.** The network has input $n_0 = 10$, hidden layers $n_1 = 50$, $n_2 = 50$, $n_3 = 20$, and output $n_4 = 1$. Using the formula:
+
+    $$
+    \dim(\theta) = \sum_{\ell=1}^{4} n_\ell(n_{\ell-1} + 1)
+    $$
+
+    Computing each layer:
+
+    - Layer 1: $n_1(n_0 + 1) = 50 \times 11 = 550$
+    - Layer 2: $n_2(n_1 + 1) = 50 \times 51 = 2{,}550$
+    - Layer 3: $n_3(n_2 + 1) = 20 \times 51 = 1{,}020$
+    - Layer 4 (output): $n_4(n_3 + 1) = 1 \times 21 = 21$
+
+    $$
+    \dim(\theta) = 550 + 2{,}550 + 1{,}020 + 21 = 4{,}141
+    $$
+
+    **Overparameterization discussion.** With $n = 5{,}000$ training samples and $N = 4{,}141$ parameters, the ratio $n/N \approx 1.21$. This is near the interpolation threshold, meaning the model is close to overparameterized (or mildly overparameterized). In classical statistics, a rule of thumb is to have at least 5--10 observations per parameter for reliable estimation.
+
+    **Regularization strategies:**
+
+    1. **$L^2$ regularization (weight decay):** Add a penalty $\lambda \|\theta\|_2^2$ to the loss. This shrinks weights toward zero, reducing effective model complexity. Equivalent to a Gaussian prior on the parameters.
+
+    2. **$L^1$ regularization (Lasso):** Add $\lambda \|\theta\|_1$. This encourages sparsity, effectively pruning unnecessary connections.
+
+    3. **Dropout:** Randomly set a fraction of neuron outputs to zero during training. This prevents co-adaptation of neurons and acts as an implicit ensemble method.
+
+    4. **Early stopping:** Monitor validation loss and stop training when it begins to increase. This limits the effective number of training iterations, controlling model complexity.
+
+    5. **Reduce architecture:** Consider smaller hidden layers (e.g., $n_1 = n_2 = 30$, $n_3 = 10$) to bring the parameter count below 2,000, giving a healthier $n/N$ ratio.
+
+    6. **Data augmentation:** Generate additional training samples via Monte Carlo simulation if a model is available, or apply symmetry-based augmentations.
 
 ---
 
 **Exercise 3.** Barron's theorem states that for functions $f \in \mathcal{B}_C$ (with finite Fourier moment $C_f$), a single-hidden-layer network with $N$ neurons achieves $L^2$ error $O(C_f^2/N)$. Explain why this rate is independent of the input dimension $d$. For a basket option pricing function $V(S_1, \ldots, S_d)$, argue heuristically why $V$ might have finite Barron norm. What would it mean for the pricing function to have infinite Barron norm?
 
+??? success "Solution to Exercise 3"
+    **Why the Barron rate is dimension-independent.**
+
+    The Barron condition requires the Fourier moment $C_f = \int_{\mathbb{R}^d} \|\omega\|_1 |\hat{f}(\omega)| \, d\omega < \infty$. The key is that this is a condition on the *function* $f$, not on the input dimension per se. The approximation rate $O(C_f^2 / N)$ depends only on $C_f$ and the number of neurons $N$.
+
+    The proof works by representing $f$ as an expectation over random neurons:
+
+    $$
+    f(x) = \mathbb{E}_{(\omega, \phi) \sim \rho}[a(\omega, \phi) \, \sigma(\omega^\top x + \phi)]
+    $$
+
+    An $N$-neuron network is an empirical average of $N$ i.i.d. samples from this distribution. By the law of large numbers, the $L^2$ approximation error is:
+
+    $$
+    \mathbb{E}\|f - g_N\|^2 \leq \frac{\text{Var}(a \cdot \sigma(\omega^\top x + \phi))}{N} \leq \frac{C_f^2}{N}
+    $$
+
+    The variance bound $C_f^2$ comes from bounding the second moment of the random feature representation. Crucially, dimension $d$ enters only through $C_f$, not through the rate $1/N$. If $C_f$ is finite and bounded independently of $d$ (or grows mildly), the rate remains $O(1/N)$.
+
+    **Why a basket option pricing function might have finite Barron norm.**
+
+    The basket option price is:
+
+    $$
+    V(S_1, \ldots, S_d) = e^{-rT} \mathbb{E}^{\mathbb{Q}}\!\left[\left(\frac{1}{d}\sum_{i=1}^d S_T^{(i)} - K\right)^{\!+}\right]
+    $$
+
+    The payoff depends on the *average* $\bar{S} = \frac{1}{d}\sum S_T^{(i)}$. Under GBM, the joint distribution of $S_T^{(i)}$ is log-normal. The pricing function inherits the smoothness of the log-normal density convolved with the payoff. Since the Fourier transform of a log-normal density decays exponentially, and the call payoff has a Fourier transform that decays polynomially, the Barron norm $C_f$ is finite. Moreover, the averaging effect ($1/d$ times the sum) concentrates the distribution as $d$ grows, which can actually *reduce* $C_f$ with increasing dimension.
+
+    **If $C_f$ were infinite,** the function would not be in the Barron class, and the dimension-independent rate would not apply. The approximation would fall back to classical Sobolev rates $O(N^{-s/d})$, exhibiting the curse of dimensionality. Functions with infinite Barron norm include those with very rough behavior or highly oscillatory features that give the Fourier transform heavy tails.
+
 ---
 
 **Exercise 4.** The classical minimax approximation rate for Sobolev functions is $N^{-s/d}$ where $s$ is the smoothness and $d$ is the dimension. For $d = 50$ and $s = 2$, compute the number of parameters $N$ needed to achieve $\varepsilon = 1\%$ accuracy. Compare this to the Barron rate $O(1/N)$ which gives $N = O(1/\varepsilon) = 100$. This comparison illustrates why neural networks can be effective in high-dimensional finance.
+
+??? success "Solution to Exercise 4"
+    **Classical minimax rate computation.**
+
+    The minimax rate is $N^{-s/d}$ where $s = 2$ (smoothness) and $d = 50$ (dimension). To achieve accuracy $\varepsilon = 0.01$:
+
+    $$
+    N^{-s/d} = N^{-2/50} = N^{-1/25} \leq 0.01
+    $$
+
+    Solving for $N$:
+
+    $$
+    N^{-1/25} \leq 0.01 \implies N^{1/25} \geq 100 \implies N \geq 100^{25}
+    $$
+
+    Computing $100^{25} = (10^2)^{25} = 10^{50}$.
+
+    So $N \geq 10^{50}$ parameters are needed. This is an astronomically large number, far exceeding the number of atoms in the observable universe ($\approx 10^{80}$, but the number of parameters needed is $10^{50}$, which is still completely infeasible for any computer).
+
+    **Barron rate comparison.**
+
+    Under the Barron rate $O(C_f^2 / N)$, achieving $\varepsilon = 0.01$ requires:
+
+    $$
+    \frac{C_f^2}{N} \leq (0.01)^2 = 10^{-4} \implies N \geq 10^4 C_f^2
+    $$
+
+    If $C_f = O(1)$ (independent of $d$), then $N \approx 10{,}000$ neurons suffice, or even $N = 100$ if we only need $L^2$ error of order $0.01$ (since the rate is $C_f^2/N$ for the squared $L^2$ error, so $C_f / \sqrt{N} \lesssim 0.01$ gives $N \geq C_f^2 \times 10^4$).
+
+    **The comparison:** $10^{50}$ (classical) versus $\sim 10^4$ (Barron) -- a difference of 46 orders of magnitude. This vividly illustrates why neural networks can be effective for high-dimensional financial problems. The classical curse of dimensionality makes the exponent $s/d = 2/50 = 0.04$ devastatingly small, while the Barron rate entirely avoids dependence on $d$.
 
 ---
 
 **Exercise 5.** The error decomposition is: $\mathbb{E}[\|f^* - \hat{f}_n\|^2] \le \text{Approximation error} + \text{Estimation error}$. Describe the bias-variance tradeoff: how does increasing network size $N$ affect each term? For a fixed sample size $n = 10{,}000$, sketch qualitatively how the total error varies with $N$, identifying the optimal network size. What practical technique (e.g., cross-validation, early stopping) would you use to select $N$?
 
+??? success "Solution to Exercise 5"
+    **Bias-variance tradeoff in neural network approximation.**
+
+    The error decomposition is:
+
+    $$
+    \mathbb{E}[\|f^* - \hat{f}_n\|^2] \leq \underbrace{\inf_{f \in \mathcal{F}_N}\|f^* - f\|^2}_{\text{Approximation error (bias}^2\text{)}} + \underbrace{\mathbb{E}[\|\hat{f}_n - f_N^*\|^2]}_{\text{Estimation error (variance)}}
+    $$
+
+    **Effect of increasing $N$ on each term:**
+
+    - *Approximation error* (bias$^2$): **Decreases** as $N$ grows. Larger networks can represent a richer class of functions $\mathcal{F}_N$, so the best-in-class approximation $f_N^*$ gets closer to $f^*$. By Barron's theorem, this decreases as $O(1/N)$ for Barron-class functions.
+
+    - *Estimation error* (variance): **Increases** as $N$ grows relative to $n$. More parameters require more data to estimate reliably. The covering number bound gives estimation error of order $O(\sqrt{NL\log(n)/n})$, which grows with $N$.
+
+    **Qualitative sketch for $n = 10{,}000$:**
+
+    - For very small $N$ (say $N = 10$): high approximation error (underfitting), low estimation error. Total error is large.
+    - For moderate $N$ (say $N = 500$): approximation error has decreased substantially, estimation error is still manageable. Total error is at or near its minimum.
+    - For very large $N$ (say $N = 50{,}000 > n$): approximation error is near zero, but estimation error dominates (overfitting). Total error increases again.
+
+    The total error curve is U-shaped in $N$, with the minimum at the optimal $N^*$ that balances bias and variance.
+
+    **Practical techniques for selecting $N$:**
+
+    1. **Cross-validation:** Split the data into training and validation sets. Train networks of various sizes, select $N$ that minimizes validation error. $k$-fold cross-validation gives a more robust estimate.
+
+    2. **Early stopping:** Train a large network but monitor validation loss. Stop when validation loss begins to increase. This effectively limits the model's complexity without explicitly choosing $N$.
+
+    3. **Regularization path:** Fix a large $N$ and vary the regularization strength $\lambda$. Larger $\lambda$ constrains the effective model complexity. Select $\lambda$ via cross-validation.
+
+    4. **Information criteria:** Use AIC or BIC: $\text{BIC} = n\log(\hat{\sigma}^2) + N\log(n)$, though these are less reliable for neural networks than for linear models.
+
 ---
 
 **Exercise 6.** The depth separation result (Telgarsky 2016) shows that deep narrow networks can express functions requiring exponential width in shallow networks. Provide an intuitive explanation using the concept of hierarchical composition. In option pricing, the price depends on Greeks, which depend on volatility, which depends on market features. Explain how a 3-layer network might efficiently capture this compositional structure, while a 1-layer network would need exponentially many neurons.
 
+??? success "Solution to Exercise 6"
+    **Depth separation via hierarchical composition.**
+
+    The key insight from Telgarsky (2016) is that deep networks can represent highly oscillatory functions through iterated composition. Consider a simple sawtooth function $s(x)$ that maps $[0,1] \to [0,1]$ with two linear pieces. Composing $s$ with itself $k$ times gives $s^{\circ k}(x)$, which has $2^k$ linear pieces. A depth-$k$ ReLU network can compute $s^{\circ k}$ with $O(k)$ neurons (by representing each composition as one layer), but a depth-2 network needs $\Omega(2^k)$ neurons to represent the same function (since a shallow network's number of linear pieces is limited by its width).
+
+    **Option pricing as hierarchical composition.**
+
+    Consider the chain: market features $\to$ volatility $\to$ Greeks $\to$ option price. Schematically:
+
+    $$
+    \text{Price} = f_3 \circ f_2 \circ f_1(\text{features})
+    $$
+
+    where:
+
+    - $f_1$: maps raw market features (spreads, order flow, momentum signals) to volatility-related quantities. This involves nonlinear aggregation of high-frequency information.
+    - $f_2$: maps volatility state to Greeks (Delta, Gamma, Vega). For instance, $\Delta = \Phi(d_1)$ where $d_1$ depends nonlinearly on volatility.
+    - $f_3$: maps Greeks and market state to the option price. This involves integration and portfolio aggregation.
+
+    **3-layer network efficiency.** A 3-layer network naturally mirrors this hierarchy:
+
+    - Layer 1 learns features analogous to $f_1$ (volatility extraction)
+    - Layer 2 learns transformations analogous to $f_2$ (Greeks computation)
+    - Layer 3 learns the final mapping analogous to $f_3$ (pricing)
+
+    Each layer needs only $O(n)$ neurons where $n$ is the intermediate dimension, so the total parameter count is $O(n^2 \times 3) = O(n^2)$.
+
+    **1-layer network inefficiency.** A single-hidden-layer network must approximate the composed function $f_3 \circ f_2 \circ f_1$ directly. Since this composition can create highly nonlinear decision boundaries, the shallow network needs enough neurons to tile the input space finely. If each $f_\ell$ is a function on $\mathbb{R}^n$ with $O(n)$ complexity, the composition can have complexity that grows as $O(n^3)$ or worse, requiring exponentially many neurons (in the depth) to approximate the same function.
+
+    In concrete terms: if volatility depends on 10 features through a function with 100 linear regions, and Greeks depend on volatility through another 100-region function, the composition has up to $100 \times 100 = 10{,}000$ effective regions. A 2-layer network represents this with $O(100 + 100) = O(200)$ neurons, while a 1-layer network may need $O(10{,}000)$ neurons.
+
 ---
 
 **Exercise 7.** A neural network is used to approximate the implied volatility surface $\sigma_{\text{imp}}(K, T)$. The network must satisfy no-arbitrage constraints: total implied variance $\sigma_{\text{imp}}^2 T$ must be non-decreasing in $T$, and the option price must be convex in $K$. Discuss how these constraints relate to partial derivatives $\partial(\sigma^2 T)/\partial T \ge 0$ and $\partial^2 V/\partial K^2 \ge 0$. How can the network architecture be designed to enforce these constraints, and how does this connect to the function approximation theory?
+
+??? success "Solution to Exercise 7"
+    **No-arbitrage constraints as derivative conditions.**
+
+    *Calendar spread constraint:* The total implied variance $w(K,T) = \sigma_{\text{imp}}^2(K,T) \cdot T$ must be non-decreasing in $T$ for fixed $K$. This ensures that calendar spreads (buying a longer-dated option, selling a shorter-dated one at the same strike) have non-negative value. Mathematically:
+
+    $$
+    \frac{\partial w}{\partial T} = \frac{\partial(\sigma_{\text{imp}}^2 T)}{\partial T} = \sigma_{\text{imp}}^2 + 2\sigma_{\text{imp}} T \frac{\partial \sigma_{\text{imp}}}{\partial T} \geq 0
+    $$
+
+    *Butterfly spread constraint:* The option price $V(K)$ must be convex in $K$ (for fixed $T$). This ensures that butterfly spreads have non-negative value. By the Breeden-Litzenberger formula:
+
+    $$
+    \frac{\partial^2 V}{\partial K^2} = e^{-rT} p(K) \geq 0
+    $$
+
+    where $p(K)$ is the risk-neutral density, which must be non-negative.
+
+    **Architectural enforcement.**
+
+    *Monotonicity in $T$ for total variance:* Design the network to output the total variance as a cumulative sum. Let $\hat{w}_\theta(K, T) = w_0(K) + \int_0^T \text{softplus}(\mathcal{N}_\theta(K, s)) \, ds$, where $\text{softplus}(z) = \log(1 + e^z) > 0$. Since the integrand is strictly positive, $\hat{w}$ is strictly increasing in $T$, guaranteeing the calendar spread condition. In practice, discretize as:
+
+    $$
+    w_\theta(K, T_j) = w_\theta(K, T_{j-1}) + \text{softplus}(\mathcal{N}_\theta(K, T_j)) \cdot \Delta T_j
+    $$
+
+    *Convexity in $K$:* One approach is to parameterize the second derivative of $V$ with respect to $K$ as the square of a network output: $\partial^2 V/\partial K^2 = [\mathcal{N}_\theta(K, T)]^2 \geq 0$. Then integrate twice to recover $V$. Alternatively, use an input-convex neural network (ICNN) architecture where weights connecting to the $K$ input are constrained to be non-negative and activations are convex. Specifically, for layers:
+
+    $$
+    h^{(\ell+1)} = \sigma(W_z^{(\ell)} h^{(\ell)} + W_K^{(\ell)} K + b^{(\ell)})
+    $$
+
+    if $W_z^{(\ell)} \geq 0$ (elementwise) and $\sigma$ is convex and non-decreasing, the output is convex in $K$.
+
+    **Connection to function approximation theory.** The universal approximation theorem guarantees that neural networks can approximate any continuous function, but it says nothing about preserving structural properties like monotonicity or convexity. By constraining the architecture, we restrict the hypothesis class $\mathcal{F}_N$ to the subset of functions satisfying the no-arbitrage constraints. The key theoretical question is whether this restricted class retains universal approximation power for the set of *arbitrage-free* volatility surfaces. For ICNN architectures, it has been shown that they are universal approximators within the class of convex functions, so no expressive power is lost relative to the target class. Similarly, monotone networks are universal within the class of monotone functions. Thus the constrained architecture matches the structure of the problem without sacrificing approximation quality.

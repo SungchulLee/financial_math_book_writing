@@ -268,26 +268,6 @@ $$
 
 **Exercise 1.** Write down the linear complementarity problem (LCP) for an American put: state the PDE inequality, the exercise constraint, and the complementarity condition. Explain why the three conditions together uniquely determine the American put price and the free boundary.
 
----
-
-**Exercise 2.** In the penalty method, the variational inequality is approximated by $\frac{\partial V}{\partial t} + \mathcal{L}V + \lambda \max(g(S) - V, 0) = 0$ where $g(S) = (K-S)^+$ is the payoff. Explain the role of the penalty parameter $\lambda$: what happens as $\lambda \to \infty$, and what is the trade-off between large $\lambda$ (accuracy) and numerical conditioning?
-
----
-
-**Exercise 3.** Describe the PSOR (projected successive over-relaxation) algorithm for solving the discretized American option LCP. At each grid point, what is the projection step, and how does it enforce the early-exercise constraint?
-
----
-
-**Exercise 4.** For the Crank-Nicolson scheme applied to the American put PDE, explain why the standard time-stepping must be modified to handle the early-exercise constraint. Describe how the projection is applied after each implicit solve.
-
----
-
-**Exercise 5.** Compare the penalty method and PSOR in terms of: (a) accuracy of the free boundary approximation, (b) computational cost per time step, (c) ease of implementation, and (d) sensitivity to parameter choices. Which method would you recommend for a production pricing system, and why?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The linear complementarity problem (LCP) for an American put with payoff $g(S) = (K - S)^+$ consists of three conditions that must hold simultaneously for all $(S, t) \in (0, \infty) \times [0, T)$:
 
@@ -317,6 +297,11 @@ $$
 
     **Why uniqueness:** The three conditions together specify the problem completely. The exercise constraint partitions the domain into two regions. In the continuation region ($V > g$), the complementarity condition forces the PDE to hold exactly, giving a well-posed boundary-value problem. In the exercise region ($V = g$), the value is determined. The free boundary $S^*(t)$ is determined by the requirement that both conditions transition smoothly (smooth pasting). Standard results from the theory of variational inequalities guarantee existence and uniqueness of the solution.
 
+---
+
+
+**Exercise 2.** In the penalty method, the variational inequality is approximated by $\frac{\partial V}{\partial t} + \mathcal{L}V + \lambda \max(g(S) - V, 0) = 0$ where $g(S) = (K-S)^+$ is the payoff. Explain the role of the penalty parameter $\lambda$: what happens as $\lambda \to \infty$, and what is the trade-off between large $\lambda$ (accuracy) and numerical conditioning?
+
 ??? success "Solution to Exercise 2"
     The penalty method replaces the variational inequality with the penalized PDE:
 
@@ -341,6 +326,11 @@ $$
     - **Large $\lambda$ (poor conditioning):** The penalized system becomes stiff. The penalty term introduces coefficients of order $\lambda$ into the discrete equations, leading to large condition numbers. Iterative solvers converge slowly, and direct solvers may suffer from round-off errors. The system $(L + \lambda P)\mathbf{u} = \mathbf{f}$ has eigenvalues of order $\lambda$ in the exercise region and $O(1)$ in the continuation region.
 
     The practical recommendation is $\lambda \sim 10^6$--$10^8$, which gives $O(1/\lambda) \sim 10^{-6}$--$10^{-8}$ penalty error, well below typical discretization errors of $O(h^2 + \Delta t^2)$ for Crank-Nicolson with mesh sizes $h, \Delta t \sim 10^{-2}$--$10^{-3}$.
+
+---
+
+
+**Exercise 3.** Describe the PSOR (projected successive over-relaxation) algorithm for solving the discretized American option LCP. At each grid point, what is the projection step, and how does it enforce the early-exercise constraint?
 
 ??? success "Solution to Exercise 3"
     The PSOR algorithm solves the LCP: $L\mathbf{u} \geq \mathbf{f}$, $\mathbf{u} \geq \boldsymbol{\Phi}$, with complementarity $(L\mathbf{u} - \mathbf{f})^T(\mathbf{u} - \boldsymbol{\Phi}) = 0$.
@@ -369,6 +359,11 @@ $$
 
     The iterations continue until $\|\mathbf{u}^{(k+1)} - \mathbf{u}^{(k)}\|_\infty < \varepsilon$ (convergence). Typically 5--20 iterations per time step suffice with $\omega \approx 1.2$--$1.5$.
 
+---
+
+
+**Exercise 4.** For the Crank-Nicolson scheme applied to the American put PDE, explain why the standard time-stepping must be modified to handle the early-exercise constraint. Describe how the projection is applied after each implicit solve.
+
 ??? success "Solution to Exercise 4"
     The Crank-Nicolson scheme for the Black-Scholes PDE is:
 
@@ -394,6 +389,11 @@ $$
     **Limitation of simple projection:** Applying the projection after the full Crank-Nicolson step can introduce a splitting error of $O(\Delta t)$, reducing the overall scheme from second-order to first-order accuracy near the free boundary. This is because the PDE and the constraint are solved separately rather than simultaneously.
 
     **Better approach:** Use PSOR or the penalty method to solve the constrained system directly within each implicit step. This maintains the full accuracy of the Crank-Nicolson discretization by treating the PDE and the constraint as a coupled system.
+
+---
+
+
+**Exercise 5.** Compare the penalty method and PSOR in terms of: (a) accuracy of the free boundary approximation, (b) computational cost per time step, (c) ease of implementation, and (d) sensitivity to parameter choices. Which method would you recommend for a production pricing system, and why?
 
 ??? success "Solution to Exercise 5"
     **(a) Accuracy of free boundary approximation:**

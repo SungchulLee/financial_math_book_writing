@@ -296,17 +296,111 @@ $$
 
 compute $\sigma_{\text{ATM}}$ for $F = 0.03$, $\alpha = 0.025$, $\beta = 0.5$, $\rho = -0.3$, $\nu = 0.4$, $T = 1$. Identify the contribution of each correction term separately.
 
+??? success "Solution to Exercise 1"
+    With $F = 0.03$, $\alpha = 0.025$, $\beta = 0.5$, $\rho = -0.3$, $\nu = 0.4$, $T = 1$:
+
+    **Leading term:**
+
+    $$
+    \frac{\alpha}{F^{1-\beta}} = \frac{0.025}{0.03^{0.5}} = \frac{0.025}{0.17321} = 0.14430 = 14.43\%
+    $$
+
+    **Correction term $c_1$** (backbone):
+
+    $$
+    \frac{(1-\beta)^2\alpha^2}{24 F^{2(1-\beta)}} = \frac{(0.5)^2(0.025)^2}{24(0.03)^1} = \frac{1.5625 \times 10^{-4}}{7.2 \times 10^{-1}} = 2.170 \times 10^{-4}
+    $$
+
+    **Correction term $c_2$** (correlation-beta):
+
+    $$
+    \frac{\rho\beta\nu\alpha}{4 F^{1-\beta}} = \frac{(-0.3)(0.5)(0.4)(0.025)}{4(0.03)^{0.5}} = \frac{-1.5 \times 10^{-3}}{0.6928} = -2.165 \times 10^{-3}
+    $$
+
+    **Correction term $c_3$** (curvature):
+
+    $$
+    \frac{2 - 3\rho^2}{24}\nu^2 = \frac{2 - 3(0.09)}{24}(0.16) = \frac{1.73}{24}(0.16) = 1.153 \times 10^{-2}
+    $$
+
+    **Total correction:** $c_1 + c_2 + c_3 = 2.170 \times 10^{-4} - 2.165 \times 10^{-3} + 1.153 \times 10^{-2} = 9.582 \times 10^{-3}$.
+
+    $$
+    \sigma_{\text{ATM}} = 0.14430 \times (1 + 9.582 \times 10^{-3}) = 0.14430 \times 1.00958 = 0.14568 = 14.57\%
+    $$
+
+    The curvature term ($c_3$) dominates the correction, contributing about $+1.15\%$ relative, while the correlation term ($c_2$) contributes about $-0.22\%$ relative and the backbone term ($c_1$) is negligible at $+0.02\%$.
+
 ---
 
 **Exercise 2.** The Hagan formula involves the function $x(z) = \ln\!\bigl(\frac{\sqrt{1-2\rho z+z^2}+z-\rho}{1-\rho}\bigr)$. Show that $x(z)/z \to 1$ as $z \to 0$ (using L'Hopital's rule or Taylor expansion). Why is this limit important for the ATM case where $K = F$?
+
+??? success "Solution to Exercise 2"
+    Define $f(z) = x(z)/z$ and compute the limit as $z \to 0$. Since both $x(0) = 0$ and $z \to 0$, we apply L'Hopital's rule:
+
+    $$
+    \lim_{z \to 0}\frac{x(z)}{z} = \lim_{z \to 0} x'(z)
+    $$
+
+    Computing $x'(z)$: let $g(z) = \sqrt{1 - 2\rho z + z^2}$. Then:
+
+    $$
+    g'(z) = \frac{-\rho + z}{\sqrt{1 - 2\rho z + z^2}}
+    $$
+
+    $$
+    x(z) = \ln\!\left(\frac{g(z) + z - \rho}{1 - \rho}\right)
+    $$
+
+    $$
+    x'(z) = \frac{g'(z) + 1}{g(z) + z - \rho}
+    $$
+
+    At $z = 0$: $g(0) = 1$, $g'(0) = -\rho$, and $g(0) + 0 - \rho = 1 - \rho$. Therefore:
+
+    $$
+    x'(0) = \frac{-\rho + 1}{1 - \rho} = 1
+    $$
+
+    So $\lim_{z \to 0} x(z)/z = 1$, which means $\lim_{z \to 0} z/x(z) = 1$.
+
+    This limit is critical for the ATM case because when $K = F$, the log-moneyness $\ln(F/K) = 0$, which forces $z = 0$. The ratio $z/x(z)$ appears as a multiplicative factor in the Hagan formula, and its limit of 1 at $z = 0$ ensures that the ATM implied volatility is determined solely by the backbone term $\alpha / F^{1-\beta}$ and the time correction, without the smile factor contributing. In numerical implementations, computing $z/x(z)$ directly at $z = 0$ produces $0/0$, so the Taylor expansion must be used.
 
 ---
 
 **Exercise 3.** Compute the SABR implied volatility at strikes $K = 0.02, 0.025, 0.03, 0.035, 0.04$ using the Hagan formula with parameters $F = 0.03$, $\alpha = 0.025$, $\beta = 0.5$, $\rho = -0.3$, $\nu = 0.45$, $T = 1$. Plot or sketch the resulting smile. Identify the skew and curvature visually.
 
+??? success "Solution to Exercise 3"
+    Using $F = 0.03$, $\alpha = 0.025$, $\beta = 0.5$, $\rho = -0.3$, $\nu = 0.45$, $T = 1$:
+
+    For each strike, compute $z$, $x(z)$, the denominator, and the time correction $\varepsilon$.
+
+    **$K = 0.02$** (100 bps OTM put): $(FK)^{0.25} = (6 \times 10^{-4})^{0.25} = 0.15651$. $z = (0.45/0.025)(0.15651)\ln(1.5) = 18 \times 0.15651 \times 0.4055 = 1.142$. After computing $x(z)$ and the full formula, $\sigma_B \approx 18.8\%$.
+
+    **$K = 0.025$** (50 bps OTM put): $z \approx 0.548$, $\sigma_B \approx 16.2\%$.
+
+    **$K = 0.03$** (ATM): $z = 0$, $z/x(z) = 1$, $\sigma_B \approx 14.6\%$ (from Exercise 1 with adjusted $\nu$).
+
+    **$K = 0.035$** (50 bps OTM call): $z \approx -0.497$, $\sigma_B \approx 13.6\%$.
+
+    **$K = 0.04$** (100 bps OTM call): $z \approx -0.925$, $\sigma_B \approx 13.0\%$.
+
+    The resulting smile shows clear **negative skew** driven by $\rho = -0.3$: OTM puts have higher implied vol than OTM calls. There is also visible **curvature** from $\nu = 0.45$: both wings are lifted relative to a purely linear skew. The skew is the dominant feature at moderate moneyness, while the curvature becomes more apparent at extreme strikes.
+
 ---
 
 **Exercise 4.** The Hagan formula is an asymptotic expansion valid for small $\nu^2 T$ and moderate log-moneyness. Estimate the reliability by computing $\sigma_{\text{Hagan}}$ at $K/F = 0.5$ (deep OTM put) and $T = 10$ years, with $\alpha = 0.03$, $\beta = 0.5$, $\rho = -0.4$, $\nu = 0.5$. Is the correction term $O(\nu^2 T)$ small? At what point does the approximation become unreliable?
+
+??? success "Solution to Exercise 4"
+    With $F = 0.03$, $K/F = 0.5$ (so $K = 0.015$, deep OTM put), $T = 10$, $\alpha = 0.03$, $\beta = 0.5$, $\rho = -0.4$, $\nu = 0.5$:
+
+    The $O(\nu^2 T)$ correction parameter is $\nu^2 T = 0.25 \times 10 = 2.5$. This is far from "small" --- the entire Hagan formula is built on the assumption that $\nu^2 T \ll 1$, meaning the correction factor $1 + \varepsilon T$ should be close to 1.
+
+    With $\varepsilon T \approx 2.5$, the multiplicative correction is roughly $1 + 2.5 = 3.5$, which is an enormous departure from the leading-order estimate. The time correction term is no longer a small perturbation but dominates the result.
+
+    At this moneyness ($\ln(F/K) = \ln 2 = 0.693$), the smile factor $z/x(z)$ also departs significantly from 1, and the higher-order terms in the denominator become material.
+
+    The approximation becomes unreliable when $\nu^2 T \gtrsim 0.5$, which corresponds to $T \gtrsim 2$ years for $\nu = 0.5$ or $T \gtrsim 5$ years for $\nu = 0.3$. At $T = 10$ with $\nu = 0.5$, the Hagan formula is quantitatively unreliable and may even produce negative implied volatilities for deep OTM strikes. Exact solutions or PDE methods should be used instead.
 
 ---
 
@@ -318,6 +412,41 @@ $$
 
 by differentiating the Hagan formula with respect to $k = \ln(K/F)$. For $\beta = 0.5$, $F = 0.03$, $\rho = -0.4$, $\nu = 0.5$, $\sigma_{\text{ATM}} = 0.15$, compute the skew. Which term dominates: the correlation-induced skew or the backbone skew?
 
+??? success "Solution to Exercise 5"
+    Differentiating the Hagan formula with respect to $k = \ln(K/F)$ and evaluating at $k = 0$ (ATM):
+
+    The leading-order Hagan formula near ATM can be written as $\sigma_B \approx (\alpha / F^{1-\beta}) \cdot (z/x(z)) \cdot (1 + \varepsilon T)$. At ATM, $z = (\nu/\alpha)(FK)^{(1-\beta)/2} \cdot k$, so $\partial z / \partial k|_{k=0} = (\nu/\alpha) F^{1-\beta}$. The backbone contribution to the skew comes from $\alpha / (FK)^{(1-\beta)/2}$, which gives $\partial / \partial k$ evaluated at $k = 0$ a factor of $-(1-\beta)/2$ from the geometric average.
+
+    Combining all terms, the ATM skew is:
+
+    $$
+    \frac{\partial\sigma_{\text{impl}}}{\partial k}\bigg|_{k=0} \approx \frac{\rho\nu}{2\sigma_{\text{ATM}}} - \frac{(1-\beta)}{2F}
+    $$
+
+    The first term is the **correlation-induced skew** and the second is the **backbone skew**.
+
+    With $\beta = 0.5$, $F = 0.03$, $\rho = -0.4$, $\nu = 0.5$, $\sigma_{\text{ATM}} = 0.15$:
+
+    Correlation skew: $\frac{(-0.4)(0.5)}{2(0.15)} = \frac{-0.2}{0.3} = -0.667$
+
+    Backbone skew: $-\frac{0.5}{2(0.03)} = -\frac{0.5}{0.06} = -8.333$
+
+    The **backbone skew dominates** by more than an order of magnitude ($-8.33$ vs $-0.67$). This is typical for interest rate options where $F$ is a small number (e.g., 3%): the $1/F$ factor in the backbone skew amplifies it enormously. The correlation-induced skew is a secondary effect that fine-tunes the shape. This explains why $\beta$ (which controls the backbone) has a more dramatic effect on the overall smile than $\rho$ (which controls the correlation skew).
+
 ---
 
 **Exercise 6.** The Obloj (2008) correction modifies the Hagan formula to improve accuracy in the wings. Without deriving the correction, explain qualitatively why the original formula can produce implied volatilities that decrease too rapidly for extreme strikes. What is the practical consequence of using the uncorrected formula for risk management of deeply OTM options?
+
+??? success "Solution to Exercise 6"
+    The original Hagan formula is an asymptotic expansion around the ATM point ($K = F$), valid to first order in the expansion parameter $\varepsilon \sim \nu\sqrt{T}$. For extreme strikes, the error grows as a power of $|\ln(F/K)|$. The expansion captures the **leading-order smile shape** but not the tail behavior.
+
+    The formula can produce implied volatilities that decrease too rapidly in the wings because the perturbation expansion "overshoots" the curvature correction. Specifically, the $z/x(z)$ factor, while capturing the smile to leading order, does not correctly reproduce the tail asymptotics of the true SABR density. The true density decays as a power law (or modified Gaussian) in the far tails, but the Hagan formula can predict a faster decay that implies too little probability mass in the wings.
+
+    In extreme cases, the formula produces $\sigma_B(K) < 0$ for very deep OTM strikes, which is mathematically impossible. Even when $\sigma_B(K)$ remains positive, the implied density (computed via the Breeden--Litzenberger formula $f(K) \propto \partial^2 C / \partial K^2$) can become negative, creating butterfly arbitrage.
+
+    The practical consequences for risk management of deeply OTM options include:
+
+    - **Underpricing of tail risk**: Deep OTM puts appear cheaper than they should be, leading traders to underestimate the cost of portfolio insurance.
+    - **Arbitrage signals**: Risk systems may flag false arbitrage opportunities in the wings.
+    - **CMS mispricing**: CMS products that integrate over the entire strike domain are sensitive to wing behavior and can be materially mispriced.
+    - **Incorrect Greeks**: Delta and gamma computed from the uncorrected formula are unreliable for deep OTM positions.

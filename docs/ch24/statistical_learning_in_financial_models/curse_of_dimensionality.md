@@ -432,13 +432,180 @@ Computation depends only on $n$, not $D$. But generalization still depends on ef
 
 **Exercise 1.** Compute the ratio of the volume of a $d$-dimensional hypersphere of radius $1/2$ to the unit hypercube for $d = 3, 15, 50$. At what dimension does this ratio first drop below $10^{-3}$?
 
+??? success "Solution to Exercise 1"
+    The volume of a $d$-dimensional hypersphere of radius $r = 1/2$ is:
+
+    $$
+    V_d(1/2) = \frac{\pi^{d/2}}{\Gamma(d/2 + 1)} \left(\frac{1}{2}\right)^d
+    $$
+
+    The unit hypercube has volume $1^d = 1$. The ratio is:
+
+    $$
+    \text{Ratio}(d) = \frac{\pi^{d/2}}{2^d \, \Gamma(d/2 + 1)}
+    $$
+
+    **For $d = 3$:**
+
+    $$
+    \text{Ratio}(3) = \frac{\pi^{3/2}}{2^3 \, \Gamma(5/2)} = \frac{\pi^{3/2}}{8 \cdot \frac{3\sqrt{\pi}}{4}} = \frac{\pi^{3/2}}{6\sqrt{\pi}} = \frac{\pi}{6} \approx 0.5236
+    $$
+
+    **For $d = 15$:**
+
+    Using the formula with $\Gamma(15/2 + 1) = \Gamma(9.5)$. We can compute $\Gamma(9.5) = 8.5 \times 7.5 \times 6.5 \times 5.5 \times 4.5 \times 3.5 \times 2.5 \times 1.5 \times \Gamma(0.5)$. We have $\Gamma(0.5) = \sqrt{\pi}$, so:
+
+    $$
+    \Gamma(9.5) = 8.5 \times 7.5 \times 6.5 \times 5.5 \times 4.5 \times 3.5 \times 2.5 \times 1.5 \times \sqrt{\pi} \approx 119292.46 \times \sqrt{\pi} \approx 211,600
+    $$
+
+    $$
+    \text{Ratio}(15) = \frac{\pi^{7.5}}{2^{15} \times 211600} \approx \frac{7109.6}{32768 \times 211600} \approx \frac{7109.6}{6.93 \times 10^9} \approx 1.03 \times 10^{-6}
+    $$
+
+    **For $d = 50$:**
+
+    The ratio becomes astronomically small. Using Stirling's approximation $\Gamma(n+1) \approx \sqrt{2\pi n}(n/e)^n$:
+
+    $$
+    \Gamma(26) = 25! \approx 1.55 \times 10^{25}
+    $$
+
+    $$
+    \text{Ratio}(50) = \frac{\pi^{25}}{2^{50} \times 25!} \approx \frac{2.64 \times 10^{12}}{1.13 \times 10^{15} \times 1.55 \times 10^{25}} \approx 1.51 \times 10^{-28}
+    $$
+
+    **First dimension where ratio drops below $10^{-3}$:** From the table in the text, $\text{Ratio}(10) \approx 0.00249$, which is just above $10^{-3}$. We need to check $d = 11$:
+
+    $$
+    \text{Ratio}(11) = \frac{\pi^{5.5}}{2^{11} \times \Gamma(6.5)} = \frac{\pi^{5.5}}{2048 \times 287.89}
+    $$
+
+    With $\pi^{5.5} \approx 555.5$ and $\Gamma(6.5) = 5.5 \times 4.5 \times 3.5 \times 2.5 \times 1.5 \times \Gamma(0.5) = 5.5 \times 4.5 \times 3.5 \times 2.5 \times 1.5 \times \sqrt{\pi} \approx 287.89$:
+
+    $$
+    \text{Ratio}(11) \approx \frac{555.5}{2048 \times 287.89} \approx \frac{555.5}{589,762} \approx 9.4 \times 10^{-4} < 10^{-3}
+    $$
+
+    The ratio first drops below $10^{-3}$ at **$d = 11$**.
+
 ---
 
 **Exercise 2.** For $n = 500$ uniformly distributed points in $[0,1]^d$, estimate the expected nearest-neighbor distance $\mathbb{E}[\min_i \|x - X_i\|] \asymp n^{-1/d}$ for $d = 2, 10, 50, 100$. At what dimension does this distance exceed half the diameter of the space?
 
+??? success "Solution to Exercise 2"
+    The expected nearest-neighbor distance for $n$ uniform points in $[0,1]^d$ scales as:
+
+    $$
+    \mathbb{E}[\min_i \|x - X_i\|] \asymp n^{-1/d}
+    $$
+
+    For $n = 500$:
+
+    **$d = 2$:**
+
+    $$
+    500^{-1/2} = \frac{1}{\sqrt{500}} \approx 0.0447
+    $$
+
+    **$d = 10$:**
+
+    $$
+    500^{-1/10} = 500^{-0.1} = e^{-0.1 \ln 500} = e^{-0.621} \approx 0.537
+    $$
+
+    **$d = 50$:**
+
+    $$
+    500^{-1/50} = 500^{-0.02} = e^{-0.02 \ln 500} = e^{-0.124} \approx 0.883
+    $$
+
+    **$d = 100$:**
+
+    $$
+    500^{-1/100} = 500^{-0.01} = e^{-0.01 \ln 500} = e^{-0.0621} \approx 0.940
+    $$
+
+    The diameter of $[0,1]^d$ under the Euclidean norm is $\sqrt{d}$, so half the diameter is $\sqrt{d}/2$.
+
+    | $d$ | NN distance | Half diameter $\sqrt{d}/2$ | NN dist / Half diam |
+    |-----|-------------|---------------------------|---------------------|
+    | 2 | 0.045 | 0.707 | 0.063 |
+    | 10 | 0.537 | 1.581 | 0.340 |
+    | 50 | 0.883 | 3.536 | 0.250 |
+    | 100 | 0.940 | 5.0 | 0.188 |
+
+    However, the nearest-neighbor distance $n^{-1/d}$ is measured per coordinate (since we are in $[0,1]^d$). The Euclidean nearest-neighbor distance scales as $n^{-1/d} \cdot \sqrt{d}$ (roughly). So the relevant comparison is:
+
+    $$
+    \text{NN distance (Euclidean)} \approx n^{-1/d} \cdot \sqrt{d}
+    $$
+
+    $$
+    \text{Half diameter} = \frac{\sqrt{d}}{2}
+    $$
+
+    The ratio is $2 n^{-1/d}$. This exceeds 1 (i.e., NN distance exceeds half the diameter) when:
+
+    $$
+    2 n^{-1/d} > 1 \implies n^{-1/d} > 0.5 \implies n < 2^d
+    $$
+
+    For $n = 500$: $2^d > 500$ when $d > \log_2 500 \approx 8.97$, so **for $d \geq 9$**, the expected nearest-neighbor distance exceeds half the diameter. This confirms that even with 500 points, local methods become meaningless in moderate dimensions because the "nearest" neighbor is nearly as far away as the most distant point.
+
 ---
 
 **Exercise 3.** Using Stone's minimax rate $n^{-2\beta/(2\beta+d)}$, compute the effective sample size $n_{\text{eff}} = n^{(2\beta+1)/(2\beta+d)}$ for $\beta = 1$ (Lipschitz functions) with $n = 10{,}000$ observations in dimensions $d = 1, 5, 20, 100$. Interpret the results for a portfolio with 100 risk factors.
+
+??? success "Solution to Exercise 3"
+    The effective sample size is:
+
+    $$
+    n_{\text{eff}} = n^{(2\beta + 1)/(2\beta + d)}
+    $$
+
+    For $\beta = 1$ (Lipschitz functions, $2\beta = 2$) and $n = 10{,}000$:
+
+    $$
+    n_{\text{eff}} = 10000^{3/(2+d)}
+    $$
+
+    **$d = 1$:**
+
+    $$
+    n_{\text{eff}} = 10000^{3/3} = 10000
+    $$
+
+    Full sample is effective.
+
+    **$d = 5$:**
+
+    $$
+    n_{\text{eff}} = 10000^{3/7} = 10000^{0.4286} = e^{0.4286 \times \ln 10000} = e^{0.4286 \times 9.2103} = e^{3.948} \approx 52.3
+    $$
+
+    **$d = 20$:**
+
+    $$
+    n_{\text{eff}} = 10000^{3/22} = 10000^{0.1364} = e^{0.1364 \times 9.2103} = e^{1.256} \approx 3.51
+    $$
+
+    **$d = 100$:**
+
+    $$
+    n_{\text{eff}} = 10000^{3/102} = 10000^{0.0294} = e^{0.0294 \times 9.2103} = e^{0.271} \approx 1.31
+    $$
+
+    | $d$ | $n_{\text{eff}}$ |
+    |-----|-----------------|
+    | 1 | 10,000 |
+    | 5 | 52.3 |
+    | 20 | 3.5 |
+    | 100 | 1.3 |
+
+    **Interpretation for a portfolio with 100 risk factors:** With $d = 100$ risk factors and $n = 10{,}000$ observations (about 40 years of daily data), the effective sample size is only 1.3. This means that nonparametric estimation is essentially impossible---there is barely more information than a single observation in one dimension. Any attempt to estimate a nonlinear function of 100 risk factors nonparametrically is futile with this sample size.
+
+    This explains why practitioners use parametric factor models (e.g., linear factor models with $k \ll d$ factors), impose structure like sparsity or additivity, or perform dimensionality reduction via PCA before applying nonparametric methods. Without such structural assumptions, the curse of dimensionality makes learning from data completely infeasible at the scale of typical financial problems.
 
 ---
 
@@ -450,10 +617,137 @@ Computation depends only on $n$, not $D$. But generalization still depends on ef
 
 (c) Explain why the smallest sample eigenvalues are biased downward and how Ledoit–Wolf shrinkage addresses this.
 
+??? success "Solution to Exercise 4"
+    **(a)** A symmetric covariance matrix of dimension $n = 200$ has:
+
+    $$
+    \frac{n(n+1)}{2} = \frac{200 \times 201}{2} = 20{,}100 \text{ free parameters}
+    $$
+
+    With $T = 250$ daily observations, we have 250 data points to estimate 20,100 parameters. The ratio of parameters to observations is $20{,}100 / 250 = 80.4$, which is extremely underdetermined.
+
+    **(b)** The ratio $\gamma = n/T = 200/250 = 0.8$.
+
+    Under the Marchenko-Pastur distribution, when the true covariance is $I$ (identity), the sample eigenvalues are supported on:
+
+    $$
+    [\lambda_-, \lambda_+] = [(1 - \sqrt{\gamma})^2, (1 + \sqrt{\gamma})^2]
+    $$
+
+    With $\gamma = 0.8$:
+
+    $$
+    \sqrt{\gamma} = \sqrt{0.8} \approx 0.8944
+    $$
+
+    $$
+    \lambda_- = (1 - 0.8944)^2 = (0.1056)^2 \approx 0.0112
+    $$
+
+    $$
+    \lambda_+ = (1 + 0.8944)^2 = (1.8944)^2 \approx 3.589
+    $$
+
+    So the sample eigenvalues spread over $[0.011, 3.589]$, even though the true eigenvalues are all equal to 1.
+
+    **(c)** The smallest sample eigenvalues are biased **downward** toward $\lambda_- \approx 0.011$, far below the true value of 1. Similarly, the largest eigenvalues are biased **upward** toward $\lambda_+ \approx 3.59$, far above the true value.
+
+    This systematic distortion has severe consequences:
+
+    - **Overestimation of extreme eigenvalues** leads to overestimation of the variance explained by principal components, creating spurious "factors."
+    - **Underestimation of small eigenvalues** leads to ill-conditioning of the sample covariance: $\text{cond}(S) \approx \lambda_+/\lambda_- = 3.59/0.011 \approx 326$, while the true condition number is 1.
+    - **Portfolio optimization** that inverts the covariance matrix amplifies errors: portfolios load heavily on directions with artificially small eigenvalues.
+
+    **Ledoit-Wolf shrinkage** addresses this by pulling eigenvalues toward a common target:
+
+    $$
+    \hat{\Sigma}_{\text{LW}} = (1-\alpha)S + \alpha \mu I
+    $$
+
+    This shrinks the large eigenvalues downward and the small eigenvalues upward, toward the target $\mu$ (typically the average eigenvalue). The optimal shrinkage intensity $\alpha$ is analytically determined to minimize expected Frobenius loss:
+
+    $$
+    \alpha^* = \arg\min_\alpha \mathbb{E}\|\hat{\Sigma}_{\text{LW}} - \Sigma\|_F^2
+    $$
+
+    When $\gamma = n/T$ is large, $\alpha^*$ is large (heavy shrinkage), reflecting the greater estimation error. The shrunk covariance matrix has a condition number much closer to the truth, stabilizing downstream applications like portfolio optimization.
+
 ---
 
 **Exercise 5.** Suppose returns satisfy a sparse linear model with $s = 5$ truly relevant predictors out of $d = 500$ candidates. Using the LASSO oracle bound $\|\hat{\beta} - \beta^*\|_2^2 \leq C \frac{s \log d}{n} \sigma^2$, determine the minimum sample size $n$ needed to achieve $\|\hat{\beta} - \beta^*\|_2^2 \leq 0.01\,\sigma^2$.
 
+??? success "Solution to Exercise 5"
+    Using the LASSO oracle bound:
+
+    $$
+    \|\hat{\beta} - \beta^*\|_2^2 \leq C \frac{s \log d}{n} \sigma^2
+    $$
+
+    We want $\|\hat{\beta} - \beta^*\|_2^2 \leq 0.01 \, \sigma^2$. Setting the bound equal to the target:
+
+    $$
+    C \frac{s \log d}{n} \sigma^2 = 0.01 \, \sigma^2
+    $$
+
+    Solving for $n$ (and canceling $\sigma^2$):
+
+    $$
+    n = \frac{C \cdot s \log d}{0.01} = 100 \, C \cdot s \log d
+    $$
+
+    With $s = 5$ and $d = 500$:
+
+    $$
+    \log d = \log 500 \approx 6.215
+    $$
+
+    $$
+    n = 100 \, C \times 5 \times 6.215 = 3107.5 \, C
+    $$
+
+    The constant $C$ depends on the restricted eigenvalue conditions and is typically of order 1 in well-conditioned settings. Taking $C = 1$:
+
+    $$
+    n \geq 3108
+    $$
+
+    With a more conservative $C = 2$ (common in practical bounds):
+
+    $$
+    n \geq 6215
+    $$
+
+    **Interpretation:** To achieve estimation error of $0.01 \sigma^2$ with 5 relevant predictors out of 500 candidates, we need roughly 3,000 to 6,000 observations. For monthly financial data, this corresponds to 25 to 50 years---a substantial requirement.
+
+    The key insight is that the effective dimension under sparsity is $s \log d = 5 \times 6.2 \approx 31$, not $d = 500$. The $\log d$ factor is the price paid for searching over $d$ candidates to find the $s$ relevant ones. This is dramatically better than the nonparametric rate, which would require $n \asymp \varepsilon^{-(2\beta + d)/\beta}$---an astronomically large sample size for $d = 500$.
+
 ---
 
 **Exercise 6.** Explain why Cover's theorem (random labelings become linearly separable in high dimensions) does not contradict the curse of dimensionality for generalization. Specifically, distinguish between training error and test error in high dimensions and relate this to the concept of overfitting in financial return prediction.
+
+??? success "Solution to Exercise 6"
+    Cover's theorem states that for $n$ points in general position in $\mathbb{R}^d$, the fraction of possible binary labelings that are linearly separable is $\frac{1}{2^{n-1}} \sum_{k=0}^{d-1} \binom{n-1}{k}$. When $d > n$, this equals 1: **any** labeling is linearly separable.
+
+    This does **not** contradict the curse of dimensionality for the following reasons:
+
+    **1. Training error vs. test error.** Cover's theorem concerns **training error**: it says that in high dimensions, we can always find a linear classifier that perfectly separates the training data (zero training error), regardless of whether the labels contain any genuine pattern or are pure noise. However, achieving zero training error on noise is the definition of **overfitting**. The test error (generalization error) on new data will be no better than random guessing when the labels are truly random.
+
+    **2. Capacity without generalization.** The fact that $2^{n-1}$ possible labelings are all separable means the linear classifier in $\mathbb{R}^d$ (with $d > n$) has massive capacity---it can "memorize" any training set. By standard learning theory (VC dimension), the gap between training and test error grows with model capacity:
+
+    $$
+    R_{\text{test}} \leq R_{\text{train}} + O\left(\sqrt{\frac{\text{VC-dim}}{n}}\right)
+    $$
+
+    For a linear classifier in $\mathbb{R}^d$, $\text{VC-dim} = d + 1$. When $d \gg n$, this bound is vacuous ($> 1$), meaning zero training error provides no guarantee about test performance.
+
+    **3. Connection to financial return prediction.** In finance, consider predicting the sign of next-month returns ($Y_t = \pm 1$) using $d = 500$ stock characteristics with $n = 120$ monthly observations. Since $d > n$, Cover's theorem guarantees we can find a linear classifier that perfectly predicts the sign of training returns. This might produce an impressive in-sample accuracy of 100%.
+
+    However, with an $R^2 \approx 0.25\%$ for monthly returns, the signal is negligible. The perfect in-sample fit is entirely spurious---it has memorized the noise. Out-of-sample, the classifier will have approximately 50% accuracy (no better than a coin flip).
+
+    **4. The curse remains.** The curse of dimensionality is about generalization, not fitting. In high dimensions:
+
+    - Data is sparse (empty space phenomenon)
+    - All points are approximately equidistant (distance concentration)
+    - The sample covariance is severely distorted (Marchenko-Pastur)
+
+    These phenomena all degrade the ability to **generalize**, even though they do not prevent fitting the training data. Cover's theorem is about the latter; the curse of dimensionality is about the former. They are not in contradiction---they describe different aspects (training vs. testing) of the same high-dimensional learning problem.

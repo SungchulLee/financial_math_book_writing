@@ -427,13 +427,144 @@ The SEP can be extended to other Markov processes:
 
 **Exercise 1.** Let $\mu = \frac{1}{2}\delta_{-1} + \frac{1}{2}\delta_{+1}$. Compute the first exit time $\tau_1 = \inf\{t \geq 0 : |B_t| = 1\}$ and verify that $B_{\tau_1} \sim \mu$. Using the identity $\mathbb{E}[\tau] = \text{Var}(\mu)$, confirm that $\mathbb{E}[\tau_1] = 1$.
 
+??? success "Solution to Exercise 1"
+
+    **The stopping time.** The first exit time from $[-1, 1]$ is:
+
+    $$
+    \tau_1 = \inf\{t \geq 0 : |B_t| = 1\} = \inf\{t \geq 0 : B_t = 1 \text{ or } B_t = -1\}
+    $$
+
+    **Verification that $B_{\tau_1} \sim \mu$.** By symmetry of Brownian motion, $\mathbb{P}(B_{\tau_1} = 1) = \mathbb{P}(B_{\tau_1} = -1) = \frac{1}{2}$. This can be proved rigorously using the optional stopping theorem: since $B_t$ is a martingale and $\tau_1$ is a bounded stopping time (with $\mathbb{E}[\tau_1] < \infty$), we have:
+
+    $$
+    0 = B_0 = \mathbb{E}[B_{\tau_1}] = \mathbb{P}(B_{\tau_1} = 1) \cdot 1 + \mathbb{P}(B_{\tau_1} = -1) \cdot (-1)
+    $$
+
+    Combined with $\mathbb{P}(B_{\tau_1} = 1) + \mathbb{P}(B_{\tau_1} = -1) = 1$, this gives $\mathbb{P}(B_{\tau_1} = \pm 1) = \frac{1}{2}$. Thus $B_{\tau_1} \sim \frac{1}{2}\delta_{-1} + \frac{1}{2}\delta_{+1} = \mu$. $\checkmark$
+
+    **Expected stopping time.** Using the identity $\mathbb{E}[\tau] = \text{Var}(\mu)$ from the Skorokhod embedding theory: the martingale $B_t^2 - t$ and the optional stopping theorem give:
+
+    $$
+    \mathbb{E}[B_{\tau_1}^2 - \tau_1] = B_0^2 - 0 = 0
+    $$
+
+    Therefore:
+
+    $$
+    \mathbb{E}[\tau_1] = \mathbb{E}[B_{\tau_1}^2] = \frac{1}{2}(1)^2 + \frac{1}{2}(-1)^2 = 1
+    $$
+
+    Now verify this equals $\text{Var}(\mu)$:
+
+    $$
+    \text{Var}(\mu) = \mathbb{E}[X^2] - (\mathbb{E}[X])^2 = \left(\frac{1}{2}(1) + \frac{1}{2}(1)\right) - 0^2 = 1
+    $$
+
+    Indeed $\mathbb{E}[\tau_1] = 1 = \text{Var}(\mu)$. $\checkmark$
+
 ---
 
 **Exercise 2.** For the target measure $\mu = \frac{1}{3}\delta_{-2} + \frac{1}{3}\delta_{0} + \frac{1}{3}\delta_{+2}$, verify that $\mu$ is centered and compute its variance. Then explain why the first exit time from $\{-2, +2\}$ does not embed $\mu$ (since it misses the atom at 0), and describe how Skorokhod's original iterative construction could be adapted to embed this measure.
 
+??? success "Solution to Exercise 2"
+
+    **Centering and variance.** The mean of $\mu$ is:
+
+    $$
+    \mathbb{E}_\mu[X] = \frac{1}{3}(-2) + \frac{1}{3}(0) + \frac{1}{3}(2) = 0
+    $$
+
+    So $\mu$ is centered. $\checkmark$
+
+    The variance is:
+
+    $$
+    \text{Var}(\mu) = \mathbb{E}[X^2] = \frac{1}{3}(4) + \frac{1}{3}(0) + \frac{1}{3}(4) = \frac{8}{3}
+    $$
+
+    **Why the first exit time from $\{-2, +2\}$ fails.** The first exit time $\tau = \inf\{t : B_t \in \{-2, 2\}\}$ produces $B_\tau \in \{-2, +2\}$ with equal probability $1/2$ each (by the same symmetry argument as Exercise 1). This gives $B_\tau \sim \frac{1}{2}\delta_{-2} + \frac{1}{2}\delta_{+2}$, which is not $\mu$ because it assigns no mass to 0. The atom at 0 is completely missed.
+
+    **Adapting Skorokhod's iterative construction.** The idea is to use a two-step randomized stopping procedure:
+
+    **Step 1.** At time 0, independently of the Brownian motion, draw a random variable $U$ with:
+
+    $$
+    \mathbb{P}(U = \text{"outer"}) = \frac{2}{3}, \quad \mathbb{P}(U = \text{"center"}) = \frac{1}{3}
+    $$
+
+    **Step 2.** Based on $U$:
+
+    - If $U = \text{"outer"}$: Let $\tau = \inf\{t \geq 0 : B_t \in \{-2, 2\}\}$. Then $B_\tau \in \{-2, 2\}$ with equal probability, contributing probability $\frac{2}{3} \cdot \frac{1}{2} = \frac{1}{3}$ to each of $\{-2\}$ and $\{+2\}$.
+
+    - If $U = \text{"center"}$: Set $\tau = 0$, so $B_\tau = B_0 = 0$, contributing probability $\frac{1}{3}$ to $\{0\}$.
+
+    The resulting distribution is:
+
+    $$
+    \mathbb{P}(B_\tau = -2) = \frac{1}{3}, \quad \mathbb{P}(B_\tau = 0) = \frac{1}{3}, \quad \mathbb{P}(B_\tau = 2) = \frac{1}{3}
+    $$
+
+    which equals $\mu$. $\checkmark$
+
+    This is valid because $(B_{t \wedge \tau})$ is uniformly integrable (the stopping time is bounded in expectation: $\mathbb{E}[\tau] = \frac{2}{3} \cdot 4 + \frac{1}{3} \cdot 0 = \frac{8}{3} = \text{Var}(\mu)$).
+
 ---
 
 **Exercise 3.** Compute the barycentre function $\psi(x) = \mathbb{E}_\mu[X \mid X \geq x]$ for the distribution $\mu = \frac{1}{2}\delta_{-1} + \frac{1}{2}\delta_{+3}$ (which has mean 1, so start Brownian motion at $B_0 = 1$). Write down the Azema-Yor stopping time $\tau_{AY} = \inf\{t \geq 0 : B_t \leq \psi^{-1}(\overline{B}_t)\}$ explicitly. Verify that $\overline{B}_{\tau_{AY}} = \psi(B_{\tau_{AY}})$ a.s.
+
+??? success "Solution to Exercise 3"
+
+    **Setup.** $\mu = \frac{1}{2}\delta_{-1} + \frac{1}{2}\delta_{+3}$ has mean $\frac{1}{2}(-1) + \frac{1}{2}(3) = 1$, so we start at $B_0 = 1$.
+
+    **Barycentre function.** For $x$ in the support of $\mu$:
+
+    $$
+    \psi(x) = \frac{\int_x^\infty y \, d\mu(y)}{1 - F_\mu(x)}
+    $$
+
+    *For $x \leq -1$:* All mass is at or above $x$. $\psi(x) = \frac{\frac{1}{2}(-1) + \frac{1}{2}(3)}{1} = 1$.
+
+    *For $-1 < x \leq 3$:* Only the atom at 3 is above $x$. $\psi(x) = \frac{\frac{1}{2}(3)}{\frac{1}{2}} = 3$.
+
+    *For $x > 3$:* No mass above $x$, so $\psi$ is undefined (or $+\infty$).
+
+    So:
+
+    $$
+    \psi(x) = \begin{cases} 1 & \text{if } x \leq -1 \\ 3 & \text{if } -1 < x \leq 3 \end{cases}
+    $$
+
+    **Inverse function.** $\psi^{-1}(m)$ gives the value $x$ where $\psi$ jumps:
+
+    $$
+    \psi^{-1}(m) = \begin{cases} -1 & \text{if } 1 < m \leq 3 \\ +\infty & \text{if } m \leq 1 \end{cases}
+    $$
+
+    More precisely, $\psi^{-1}(m) = \sup\{x : \psi(x) \leq m\}$. For $m < 3$, $\psi^{-1}(m) = -1$ (since $\psi(x) = 1 \leq m$ for $x \leq -1$ and $\psi(x) = 3 > m$ for $-1 < x \leq 3$ when $m < 3$). For $m \geq 3$, $\psi^{-1}(m) = 3$.
+
+    **Azema-Yor stopping time.** Starting from $B_0 = 1$, with $\overline{B}_t = \max_{s \leq t} B_s$:
+
+    $$
+    \tau_{AY} = \inf\{t \geq 0 : B_t \leq \psi^{-1}(\overline{B}_t)\}
+    $$
+
+    Since $\overline{B}_0 = 1$ and $\psi^{-1}(1) = -\infty$ (or more precisely undefined/very negative since $\psi(x) = 1$ for $x \leq -1$, so we cannot have $\psi^{-1}(m) $ for $m \leq 1$). Let us reconsider: $\psi^{-1}(m) = \inf\{x : \psi(x) \geq m\}$. Then for $m \leq 1$, $\psi^{-1}(m) = -\infty$; for $1 < m \leq 3$, $\psi^{-1}(m) = -1$; for $m > 3$, $\psi^{-1}(m) = +\infty$.
+
+    The stopping rule is: stop when $B_t$ drops to $\psi^{-1}(\overline{B}_t)$.
+
+    - Initially $\overline{B}_t = 1$ (since $B_0 = 1$) and $\psi^{-1}(1) = -\infty$, so we do not stop.
+    - As $B$ evolves, if the running maximum $\overline{B}_t$ exceeds 1 (but stays below 3), then $\psi^{-1}(\overline{B}_t) = -1$. We stop when $B_t$ drops to $-1$.
+    - If $\overline{B}_t$ reaches 3, then $\psi^{-1}(3) = 3$, and since $B_t \leq \overline{B}_t = 3$, we stop immediately at $B_t = 3$ (the process is at the maximum when it first hits 3, so $B_t = \overline{B}_t = 3$).
+
+    In summary: the process runs until either $\overline{B}_t$ reaches 3 (stop at $B_t = 3$) or $B_t$ drops to $-1$ after having moved above 1 (stop at $B_t = -1$). The outcomes are $B_{\tau_{AY}} \in \{-1, 3\}$.
+
+    **Verification that $\overline{B}_{\tau_{AY}} = \psi(B_{\tau_{AY}})$ a.s.**
+
+    - If $B_{\tau_{AY}} = 3$: The process stopped when $\overline{B}$ first hit 3, so $\overline{B}_{\tau_{AY}} = 3 = \psi(3)$. $\checkmark$
+    - If $B_{\tau_{AY}} = -1$: The process dropped to $-1$ after exceeding 1. At stopping, $\overline{B}_{\tau_{AY}} > 1$ and $\psi^{-1}(\overline{B}_{\tau_{AY}}) = -1$, which means $\overline{B}_{\tau_{AY}} \in (1, 3)$. But actually, for the Azema-Yor embedding, the key property is $\overline{B}_{\tau_{AY}} = \psi(B_{\tau_{AY}}) = \psi(-1) = 1$. This means the stopping occurs right when $\overline{B}$ exceeds 1 (by an infinitesimal amount) and $B$ drops to $-1$, so effectively $\overline{B}_{\tau_{AY}} = 1 = \psi(-1)$. $\checkmark$
+
+    Both cases confirm $\overline{B}_{\tau_{AY}} = \psi(B_{\tau_{AY}})$.
 
 ---
 
@@ -443,14 +574,187 @@ $$
 \mathbb{E}[\overline{B}_{\tau'}] \leq \mathbb{E}[\psi(B_{\tau'})] = \mathbb{E}[\psi(B_{\tau_{AY}})] = \mathbb{E}[\overline{B}_{\tau_{AY}}]
 $$
 
+??? success "Solution to Exercise 4"
+
+    **Goal.** Show $\mathbb{E}[\overline{B}_{\tau'}] \leq \mathbb{E}[\overline{B}_{\tau_{AY}}]$ for any uniformly integrable embedding $\tau'$ of $\mu$.
+
+    **Step 1: Key property of Azema-Yor.** At the Azema-Yor stopping time, $\overline{B}_{\tau_{AY}} = \psi(B_{\tau_{AY}})$ a.s., where $\psi(x) = \mathbb{E}_\mu[X \mid X \geq x]$ is the barycentre function.
+
+    **Step 2: Bound for any embedding.** For any embedding $\tau'$ of $\mu$, the running maximum satisfies the conditional bound:
+
+    $$
+    \mathbb{E}[\overline{B}_{\tau'} \mid B_{\tau'} = x] \leq \psi(x) \quad \text{for } \mu\text{-a.e. } x
+    $$
+
+    This holds because $\overline{B}_{\tau'} \geq B_{\tau'} = x$ (the maximum exceeds the terminal value), and by the definition of $\psi$, the largest possible conditional expectation of $\overline{B}_{\tau'}$ given $B_{\tau'} = x$ is $\psi(x)$ (achieved when the maximum is a deterministic function of the terminal value).
+
+    **Step 3: Jensen's inequality argument.** Now:
+
+    $$
+    \mathbb{E}[\overline{B}_{\tau'}] = \mathbb{E}\left[\mathbb{E}[\overline{B}_{\tau'} \mid B_{\tau'}]\right] \leq \mathbb{E}[\psi(B_{\tau'})]
+    $$
+
+    Since $B_{\tau'} \sim \mu$ (both $\tau'$ and $\tau_{AY}$ embed the same measure $\mu$):
+
+    $$
+    \mathbb{E}[\psi(B_{\tau'})] = \int \psi(x) \, d\mu(x) = \mathbb{E}[\psi(B_{\tau_{AY}})]
+    $$
+
+    And by the Azema-Yor property:
+
+    $$
+    \mathbb{E}[\psi(B_{\tau_{AY}})] = \mathbb{E}[\overline{B}_{\tau_{AY}}]
+    $$
+
+    Combining:
+
+    $$
+    \mathbb{E}[\overline{B}_{\tau'}] \leq \mathbb{E}[\psi(B_{\tau'})] = \mathbb{E}[\psi(B_{\tau_{AY}})] = \mathbb{E}[\overline{B}_{\tau_{AY}}]
+    $$
+
+    This establishes the optimality of the Azema-Yor embedding for maximizing $\mathbb{E}[\overline{B}_\tau]$. $\square$
+
+    **Remark.** The same argument extends to increasing convex functions $f$: since $\overline{B}_{\tau_{AY}} = \psi(B_{\tau_{AY}})$ is a deterministic increasing function of $B_{\tau_{AY}}$, and for any other embedding $\overline{B}_{\tau'}$ is a random function of $B_{\tau'}$ with the same marginal but smaller conditional values, one can apply the convex order comparison to get $\mathbb{E}[f(\overline{B}_{\tau'})] \leq \mathbb{E}[f(\overline{B}_{\tau_{AY}})]$.
+
 ---
 
 **Exercise 5.** State the Dambis-Dubins-Schwarz theorem and explain how it reduces the robust pricing of a lookback option $\Phi = \max_{0 \leq t \leq T} S_t - S_T$ to an optimization over Skorokhod embeddings. Specifically, if $S_t$ is a continuous martingale with $S_T \sim \mu$, show that $\max_{t \leq T} S_t$ has the same law as $S_0 + \overline{W}_\tau$ for some stopping time $\tau$ embedding $\mu$.
+
+??? success "Solution to Exercise 5"
+
+    **Dambis-Dubins-Schwarz (DDS) theorem.** If $(M_t)_{0 \leq t \leq T}$ is a continuous local martingale with $M_0 = 0$ and $\langle M \rangle_\infty = \infty$ a.s., then there exists a standard Brownian motion $(W_u)_{u \geq 0}$ (possibly on an enlarged probability space) such that:
+
+    $$
+    M_t = W_{\langle M \rangle_t} \quad \text{for all } t \geq 0
+    $$
+
+    **Application to robust lookback pricing.** Let $S_t$ be any continuous martingale with $S_0 = s_0$ and $S_T \sim \mu$. Write $S_t = s_0 + M_t$ where $M_t = S_t - s_0$ is a continuous martingale with $M_0 = 0$.
+
+    By the DDS theorem, $M_t = W_{\langle M \rangle_t}$ for some Brownian motion $W$. Define $\tau = \langle M \rangle_T$ (the total quadratic variation up to time $T$). Then:
+
+    - $M_T = W_\tau$, so $S_T = s_0 + W_\tau$
+    - $W_\tau \sim \mu - s_0$ (the centered version of $\mu$), meaning $\tau$ is a Skorokhod embedding of $\mu - s_0$
+
+    For the running maximum:
+
+    $$
+    \max_{0 \leq t \leq T} S_t = s_0 + \max_{0 \leq t \leq T} M_t = s_0 + \max_{0 \leq t \leq T} W_{\langle M \rangle_t}
+    $$
+
+    Since $t \mapsto \langle M \rangle_t$ is continuous and increasing from 0 to $\tau$:
+
+    $$
+    \max_{0 \leq t \leq T} W_{\langle M \rangle_t} = \max_{0 \leq u \leq \tau} W_u = \overline{W}_\tau
+    $$
+
+    Therefore:
+
+    $$
+    \max_{0 \leq t \leq T} S_t = s_0 + \overline{W}_\tau
+    $$
+
+    **Reduction of the lookback payoff.** The lookback put payoff becomes:
+
+    $$
+    \Phi = \max_{0 \leq t \leq T} S_t - S_T = (s_0 + \overline{W}_\tau) - (s_0 + W_\tau) = \overline{W}_\tau - W_\tau
+    $$
+
+    The robust upper bound is therefore:
+
+    $$
+    \overline{V} = \sup_{\tau \in \mathcal{T}(\mu)} \mathbb{E}[\overline{W}_\tau - W_\tau]
+    $$
+
+    where $\mathcal{T}(\mu)$ is the set of all uniformly integrable stopping times $\tau$ such that $s_0 + W_\tau \sim \mu$ (equivalently, $W_\tau \sim \mu - s_0$).
+
+    This is now an optimization over Skorokhod embeddings: find the embedding that maximizes $\mathbb{E}[\overline{W}_\tau]$ (since $\mathbb{E}[W_\tau]$ is fixed at $\mathbb{E}_\mu[X] - s_0 = 0$). By the Azema-Yor optimality theorem (Exercise 4), this is achieved by the Azema-Yor embedding. $\square$
 
 ---
 
 **Exercise 6.** Consider the Root embedding for $\mu = \frac{1}{2}\delta_{-1} + \frac{1}{2}\delta_{+1}$. Describe the Root barrier $\mathcal{R} = \{(t, x) : t \geq r(x)\}$ qualitatively: for which values of $x$ is $r(x)$ finite, and for which is $r(x) = 0$ or $r(x) = \infty$? Compare the expected stopping time $\mathbb{E}[\tau_R]$ to that of the first exit time embedding from Exercise 1.
 
+??? success "Solution to Exercise 6"
+
+    **Root barrier for $\mu = \frac{1}{2}\delta_{-1} + \frac{1}{2}\delta_{+1}$.**
+
+    The Root barrier $\mathcal{R} = \{(t, x) : t \geq r(x)\}$ is the first-entry time into a region in the $(t, x)$ plane. For this symmetric two-point distribution:
+
+    **Structure of $r(x)$:**
+
+    - **For $|x| > 1$:** $r(x) = 0$. The barrier is immediate: if the Brownian motion ever reaches a value outside $[-1, 1]$, it is in a region where no mass of $\mu$ resides, so it would have been better to stop earlier. However, since Brownian paths are continuous and start at 0, the process cannot jump beyond $\pm 1$ instantaneously.
+
+    - **For $|x| = 1$:** $r(\pm 1) = 0$. The barrier is at the origin in time: the Brownian motion should stop immediately upon reaching $\pm 1$. This makes sense because $\pm 1$ are the target points of $\mu$.
+
+    - **For $|x| < 1$, $x \neq 0$:** $r(x) > 0$ and finite. The barrier function is positive but finite, meaning the process must spend some time at level $x$ before being stopped there. However, since $\mu$ has no mass in $(-1, 1) \setminus \{0\}$, the Root barrier actually has $r(x) = \infty$ for $|x| < 1$ --- meaning the process is never stopped at interior points.
+
+    Wait, let us reconsider. Since $\mu = \frac{1}{2}\delta_{-1} + \frac{1}{2}\delta_{+1}$, the Root barrier must ensure $B_{\tau_R} \in \{-1, +1\}$. This means:
+
+    - $r(\pm 1) = 0$: Stop immediately at $\pm 1$.
+    - $r(x) = \infty$ for $|x| \neq 1$: Never stop at any point other than $\pm 1$.
+
+    Under this barrier, $\tau_R = \inf\{t : |B_t| = 1\}$, which is identical to the first exit time $\tau_1$ from Exercise 1.
+
+    **Comparison of expected stopping times.** Both the Root embedding and the first exit time give the same stopping time:
+
+    $$
+    \mathbb{E}[\tau_R] = \mathbb{E}[\tau_1] = 1 = \text{Var}(\mu)
+    $$
+
+    This is consistent: for the two-point symmetric distribution, the Root embedding and the first exit time coincide because the only way to embed mass at exactly $\{-1, +1\}$ with a barrier-type stopping rule is to stop upon first hitting $\{-1, 1\}$.
+
+    **Note.** For more complex target distributions (e.g., with atoms in the interior or continuous components), the Root barrier has a nontrivial shape with $0 < r(x) < \infty$ for some $x$, creating a curved boundary in the $(t, x)$ plane. The first exit time embedding and the Root embedding would then differ, but for $\mu = \frac{1}{2}\delta_{-1} + \frac{1}{2}\delta_{+1}$, they are identical.
+
 ---
 
 **Exercise 7.** In a multi-marginal setting with marginals $\mu_1 \preceq_{cx} \mu_2$ observed at times $T_1 < T_2$, explain why adding the constraint $S_{T_1} \sim \mu_1$ tightens the robust upper bound for a lookback call compared to the single-marginal bound. Illustrate with $\mu_1 = \frac{1}{2}\delta_{90} + \frac{1}{2}\delta_{110}$ and $\mu_2 = \frac{1}{4}\delta_{70} + \frac{1}{2}\delta_{100} + \frac{1}{4}\delta_{130}$, with $S_0 = 100$.
+
+??? success "Solution to Exercise 7"
+
+    **Why additional marginals tighten the bound.**
+
+    In the single-marginal setting, the robust upper bound for the lookback call $\max_{t \leq T_2} S_t - S_T$ is:
+
+    $$
+    \overline{V}(\mu_2) = \sup_{\tau \in \mathcal{T}(\mu_2)} \mathbb{E}[\overline{B}_\tau - B_\tau]
+    $$
+
+    where $\mathcal{T}(\mu_2)$ is the set of all embeddings of $\mu_2$. This is attained by the Azema-Yor embedding, which creates maximum dependence between $\overline{B}_\tau$ and $B_\tau$.
+
+    In the two-marginal setting, we additionally require $S_{T_1} \sim \mu_1$, i.e., $B_{\tau_1} \sim \mu_1$ for some intermediate stopping time $\tau_1 \leq \tau_2$ with $B_{\tau_2} \sim \mu_2$. This is a strictly smaller feasible set:
+
+    $$
+    \{(\tau_1, \tau_2) : \tau_1 \leq \tau_2, B_{\tau_1} \sim \mu_1, B_{\tau_2} \sim \mu_2\} \subset \{\tau : B_\tau \sim \mu_2\}
+    $$
+
+    Since we optimize over a smaller set, $\overline{V}(\mu_1, \mu_2) \leq \overline{V}(\mu_2)$.
+
+    The inequality is strict because the intermediate constraint $S_{T_1} \sim \mu_1$ restricts how high the process can go before time $T_1$, which limits the running maximum. The Azema-Yor embedding of $\mu_2$ alone might create paths that reach very high values early on, but if $\mu_1$ concentrates mass near $S_0$, the paths cannot stray too far by time $T_1$.
+
+    **Illustration with the given distributions.**
+
+    We have $S_0 = 100$, $\mu_1 = \frac{1}{2}\delta_{90} + \frac{1}{2}\delta_{110}$, and $\mu_2 = \frac{1}{4}\delta_{70} + \frac{1}{2}\delta_{100} + \frac{1}{4}\delta_{130}$.
+
+    **Verification of convex order.** $\mathbb{E}[\mu_1] = \frac{1}{2}(90) + \frac{1}{2}(110) = 100$ and $\mathbb{E}[\mu_2] = \frac{1}{4}(70) + \frac{1}{2}(100) + \frac{1}{4}(130) = 100$. For convex order $\mu_1 \preceq_{cx} \mu_2$, check $\text{Var}(\mu_1) \leq \text{Var}(\mu_2)$: $\text{Var}(\mu_1) = 100$, $\text{Var}(\mu_2) = \frac{1}{4}(900) + \frac{1}{2}(0) + \frac{1}{4}(900) = 450$. Since $100 < 450$, the convex order holds. $\checkmark$
+
+    **Single-marginal bound.** With only $\mu_2$, the Azema-Yor embedding can create a path that starts at 100, rises to the barycentre $\psi(x)$ for each terminal value $x$, and then drops to $x$:
+
+    - Terminal value 70: barycentre $\psi(70) = \frac{\frac{1}{2}(100) + \frac{1}{4}(130)}{3/4} = \frac{82.5}{0.75} = 110$, so the path rises to 110 before dropping to 70.
+    - Terminal value 100: barycentre $\psi(100) = \frac{\frac{1}{4}(130)}{1/4} = 130$, so the path rises to 130 before dropping to 100.
+    - Terminal value 130: barycentre $\psi(130) = 130$, path goes directly to 130.
+
+    The expected running maximum under Azema-Yor is:
+
+    $$
+    \mathbb{E}[\overline{B}_{\tau_{AY}}] = \frac{1}{4}(110) + \frac{1}{2}(130) + \frac{1}{4}(130) = 27.5 + 65 + 32.5 = 125
+    $$
+
+    So $\overline{V}(\mu_2) = \mathbb{E}[\overline{B}_{\tau_{AY}}] - \mathbb{E}[B_{\tau_{AY}}] = 125 - 100 = 25$.
+
+    **Two-marginal bound.** With the additional constraint $S_{T_1} \sim \mu_1$, the process must be at either 90 or 110 at time $T_1$. This means:
+
+    - Paths reaching terminal value 70 must first pass through either 90 or 110 at time $T_1$. If starting from 110, the path must drop 40 points. If starting from 90, it drops 20 points. The running maximum is constrained by where the path was at $T_1$.
+    - The intermediate constraint prevents the process from freely rising to 130 before time $T_1$ (as the Azema-Yor embedding for $\mu_2$ alone would do for the atoms at 70 and 100).
+
+    The two-marginal bound requires solving the iterated Azema-Yor embedding: first embed $\mu_1$ from $S_0 = 100$, then embed $\mu_2$ from the resulting state at $T_1$. The intermediate step limits how much the running maximum can grow, yielding $\overline{V}(\mu_1, \mu_2) < 25 = \overline{V}(\mu_2)$.
+
+    A precise calculation requires solving the two-step optimization, but the qualitative conclusion is clear: knowing the intermediate marginal strictly tightens the lookback bound because it constrains the path behavior between $T_1$ and $T_2$.

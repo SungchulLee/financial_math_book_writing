@@ -397,42 +397,6 @@ This introductory section established the one-period framework. The subsequent s
 
 **Exercise 1.** Consider a one-period binomial model with $S_0 = 80$, $u = 1.25$, $d = 0.85$, $r = 0.03$, and $\Delta t = 1$. Verify that the no-arbitrage condition $d < e^{r\Delta t} < u$ is satisfied. Compute the risk-neutral probability $q$ and confirm that $q \in (0, 1)$.
 
----
-
-**Exercise 2.** Prove that if $e^{r\Delta t} = u$, an arbitrage portfolio exists. Construct the portfolio explicitly, compute its cost and payoff in each state, and identify it as a Type 1 or Type 2 arbitrage.
-
----
-
-**Exercise 3.** In the one-period binomial model, show that the discounted stock price $\tilde{S}_{\Delta t} = e^{-r\Delta t} S_{\Delta t}$ is a $\mathbb{Q}$-martingale by verifying
-
-$$
-\mathbb{E}^{\mathbb{Q}}[\tilde{S}_{\Delta t}] = S_0
-$$
-
-directly from the definition of $q$.
-
----
-
-**Exercise 4.** A stock has $S_0 = 50$, $u = 1.15$, $d = 0.90$, and $r = 0.06$ with $\Delta t = 0.5$. Compute the risk-neutral probability $q$. Then price a European call with strike $K = 52$ and a European put with strike $K = 52$ using the formula $V_0 = e^{-r\Delta t}(q H_u + (1 - q) H_d)$. Verify that put-call parity holds.
-
----
-
-**Exercise 5.** The risk-neutral probability $q = (e^{r\Delta t} - d)/(u - d)$ depends only on $(u, d, r, \Delta t)$ and not on the physical probability $p$. Explain intuitively why the physical probability is irrelevant for derivative pricing in the binomial model. What role does $p$ play in practice?
-
----
-
-**Exercise 6.** In the convex hull interpretation, the no-arbitrage condition is equivalent to $S_0$ lying in the interior of the interval between the discounted future stock values. Show that this condition can be written as
-
-$$
-\frac{dS_0}{e^{r\Delta t}} < S_0 < \frac{uS_0}{e^{r\Delta t}}
-$$
-
-and explain why the interior (strict inequalities) is necessary for the risk-neutral probability to be a valid probability measure.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     We have $S_0 = 80$, $u = 1.25$, $d = 0.85$, $r = 0.03$, and $\Delta t = 1$.
 
@@ -452,6 +416,10 @@ and explain why the interior (strict inequalities) is necessary for the risk-neu
 
     Since $0 < 0.4511 < 1$, we confirm $q \in (0,1)$.
 
+---
+
+**Exercise 2.** Prove that if $e^{r\Delta t} = u$, an arbitrage portfolio exists. Construct the portfolio explicitly, compute its cost and payoff in each state, and identify it as a Type 1 or Type 2 arbitrage.
+
 ??? success "Solution to Exercise 2"
     We must show that if $e^{r\Delta t} = u$, an arbitrage exists. Consider the portfolio: short 1 share of stock and invest $S_0$ in the bank account.
 
@@ -465,6 +433,16 @@ and explain why the interior (strict inequalities) is necessary for the risk-neu
     since $u > d$.
 
     This portfolio satisfies: (1) $V_0 = 0$, (2) $V_{\Delta t} \geq 0$ in all states, and (3) $V_{\Delta t} > 0$ with positive probability (in the down state). This is a **Type 1 arbitrage** (zero cost, non-negative payoff, positive probability of profit).
+
+---
+
+**Exercise 3.** In the one-period binomial model, show that the discounted stock price $\tilde{S}_{\Delta t} = e^{-r\Delta t} S_{\Delta t}$ is a $\mathbb{Q}$-martingale by verifying
+
+$$
+\mathbb{E}^{\mathbb{Q}}[\tilde{S}_{\Delta t}] = S_0
+$$
+
+directly from the definition of $q$.
 
 ??? success "Solution to Exercise 3"
     We need to verify $\mathbb{E}^{\mathbb{Q}}[\tilde{S}_{\Delta t}] = S_0$ where $\tilde{S}_{\Delta t} = e^{-r\Delta t} S_{\Delta t}$.
@@ -486,6 +464,10 @@ and explain why the interior (strict inequalities) is necessary for the risk-neu
     $$
 
     This confirms the martingale property.
+
+---
+
+**Exercise 4.** A stock has $S_0 = 50$, $u = 1.15$, $d = 0.90$, and $r = 0.06$ with $\Delta t = 0.5$. Compute the risk-neutral probability $q$. Then price a European call with strike $K = 52$ and a European put with strike $K = 52$ using the formula $V_0 = e^{-r\Delta t}(q H_u + (1 - q) H_d)$. Verify that put-call parity holds.
 
 ??? success "Solution to Exercise 4"
     Given $S_0 = 50$, $u = 1.15$, $d = 0.90$, $r = 0.06$, $\Delta t = 0.5$.
@@ -529,6 +511,10 @@ and explain why the interior (strict inequalities) is necessary for the risk-neu
     S_0 - Ke^{-r\Delta t} = 50 - 52 \times e^{-0.03} = 50 - 50.463 = -0.463 \quad \checkmark
     $$
 
+---
+
+**Exercise 5.** The risk-neutral probability $q = (e^{r\Delta t} - d)/(u - d)$ depends only on $(u, d, r, \Delta t)$ and not on the physical probability $p$. Explain intuitively why the physical probability is irrelevant for derivative pricing in the binomial model. What role does $p$ play in practice?
+
 ??? success "Solution to Exercise 5"
     The risk-neutral probability $q = (e^{r\Delta t} - d)/(u - d)$ depends only on the model parameters $(u, d, r, \Delta t)$ and not on $p$ because the pricing formula is derived from **no-arbitrage** (replication or hedging), not from expected returns under the physical measure.
 
@@ -540,6 +526,16 @@ and explain why the interior (strict inequalities) is necessary for the risk-neu
     These equations involve only $u$, $d$, $r$, and the payoffs $H_u$, $H_d$. The probability $p$ of reaching each state never appears because the portfolio must replicate in **both** states simultaneously, regardless of which is more likely.
 
     **Role of $p$ in practice:** The physical probability $p$ is relevant for risk management (computing VaR, expected P&L), portfolio optimization, and forecasting actual returns. It determines the real-world distribution of gains and losses but is irrelevant for arbitrage-free pricing.
+
+---
+
+**Exercise 6.** In the convex hull interpretation, the no-arbitrage condition is equivalent to $S_0$ lying in the interior of the interval between the discounted future stock values. Show that this condition can be written as
+
+$$
+\frac{dS_0}{e^{r\Delta t}} < S_0 < \frac{uS_0}{e^{r\Delta t}}
+$$
+
+and explain why the interior (strict inequalities) is necessary for the risk-neutral probability to be a valid probability measure.
 
 ??? success "Solution to Exercise 6"
     The discounted future stock values are $\frac{uS_0}{e^{r\Delta t}}$ and $\frac{dS_0}{e^{r\Delta t}}$. The condition $d < e^{r\Delta t} < u$ is equivalent to:

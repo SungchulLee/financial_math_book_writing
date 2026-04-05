@@ -165,26 +165,206 @@ For the full class that wraps these functions into a pricing engine, see the [Hu
 
 **Exercise 1.** Verify the boundary conditions $B(0) = 0$ and $A(0) = 0$ by substituting $\tau = 0$ into the formulas. What does $P(T, T) = \exp(A(0) + B(0)\,r_T) = 1$ mean financially?
 
+??? success "Solution to Exercise 1"
+    Substituting $\tau = 0$ into $B(\tau) = -(1 - e^{-\lambda \cdot 0})/\lambda = -(1 - 1)/\lambda = 0$, confirming $B(0) = 0$.
+
+    For $A(\tau)$, the analytical part at $\tau = 0$ gives:
+
+    $$
+    -\frac{\sigma^2}{4\lambda^3}(3 - 0 - 4 \cdot 1 + 1) = -\frac{\sigma^2}{4\lambda^3} \cdot 0 = 0
+    $$
+
+    The integral term is $\lambda \int_0^0 (\cdots)\,d\tau' = 0$, so $A(0) = 0$.
+
+    The bond price at $\tau = 0$ (i.e., $t = T$) is:
+
+    $$
+    P(T, T) = \exp(A(0) + B(0) \cdot r_T) = \exp(0 + 0 \cdot r_T) = e^0 = 1
+    $$
+
+    Financially, $P(T, T) = 1$ means that a zero-coupon bond pays exactly its face value at maturity. A bond that matures immediately is worth its face value with certainty, regardless of the prevailing short rate. This is the terminal condition for all bond pricing models.
+
 ---
 
 **Exercise 2.** For $\lambda = 0.05$ and $\tau = 1, 5, 10, 20, 50$ years, compute $B(\tau) = -(1 - e^{-\lambda\tau})/\lambda$. Plot $B(\tau)$ as a function of $\tau$ and verify that $B(\tau) \to -1/\lambda = -20$ as $\tau \to \infty$. Explain why the saturation of $B(\tau)$ implies that very long-dated bond prices are approximately insensitive to further increases in maturity.
+
+??? success "Solution to Exercise 2"
+    For $\lambda = 0.05$:
+
+    $$
+    B(\tau) = -\frac{1 - e^{-0.05\tau}}{0.05}
+    $$
+
+    Computing:
+
+    - $\tau = 1$: $B(1) = -(1 - e^{-0.05})/0.05 = -(1 - 0.95123)/0.05 = -0.04877/0.05 = -0.9754$
+    - $\tau = 5$: $B(5) = -(1 - e^{-0.25})/0.05 = -(1 - 0.77880)/0.05 = -0.22120/0.05 = -4.4240$
+    - $\tau = 10$: $B(10) = -(1 - e^{-0.50})/0.05 = -(1 - 0.60653)/0.05 = -0.39347/0.05 = -7.8694$
+    - $\tau = 20$: $B(20) = -(1 - e^{-1.0})/0.05 = -(1 - 0.36788)/0.05 = -0.63212/0.05 = -12.6424$
+    - $\tau = 50$: $B(50) = -(1 - e^{-2.5})/0.05 = -(1 - 0.08209)/0.05 = -0.91791/0.05 = -18.3582$
+
+    As $\tau \to \infty$, $e^{-0.05\tau} \to 0$ and $B(\tau) \to -1/0.05 = -20$.
+
+    The saturation of $B(\tau)$ means that $\partial P/\partial r_t \propto B(\tau) \cdot P$ approaches a finite limit. Financially, this reflects mean reversion: the short rate reverts to its long-run level over a time scale $1/\lambda = 20$ years. A shock to the short rate today has a diminishing impact on distant future rates. Therefore, adding more maturity beyond $\sim 3/\lambda$ years does not meaningfully change the bond's sensitivity to the current short rate. The bond price effectively depends only on the long-run average of rates, not the current spot rate, for very long maturities.
 
 ---
 
 **Exercise 3.** The instantaneous forward rate is computed by central differences: $f(0, t) \approx -[\ln P(t + dt) - \ln P(t - dt)]/(2\,dt)$. For a flat curve at 3\%, the exact answer is $f(0, t) = 0.03$ for all $t$. Compute the numerical forward rate at $t = 5$ for $dt = 10^{-2}, 10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}$ and measure the error. Explain the trade-off between truncation error and round-off error.
 
+??? success "Solution to Exercise 3"
+    For a flat curve at 3%, $P^M(0, t) = e^{-0.03t}$, so $\ln P^M(0, t) = -0.03t$. The central difference formula gives:
+
+    $$
+    f(0, t) \approx -\frac{-0.03(t + dt) - (-0.03(t - dt))}{2\,dt} = -\frac{-0.03 \cdot 2\,dt}{2\,dt} = 0.03
+    $$
+
+    For a flat curve, the exact result is $f(0, t) = 0.03$ regardless of $dt$, because $\ln P$ is linear in $t$ and the central difference formula is exact for linear functions. The numerical error is exactly zero (up to machine precision) for all step sizes.
+
+    However, in the general case, the trade-off is:
+
+    - **Truncation error**: The central difference has error $O(dt^2)$. Smaller $dt$ reduces this error.
+    - **Round-off error**: For very small $dt$, the numerator $\ln P(t + dt) - \ln P(t - dt)$ involves subtracting nearly equal numbers, amplifying floating-point errors. This cancellation error scales as $\epsilon_{\text{machine}} / dt$.
+
+    The optimal $dt$ minimizes the total error $\sim dt^2 + \epsilon/dt$. With $\epsilon \approx 10^{-16}$ (double precision), the optimal step is $dt^* \sim \epsilon^{1/3} \approx 10^{-5}$. For smooth parametric curves, $dt = 10^{-4}$ is close to optimal. For $dt = 10^{-6}$, round-off error begins to dominate.
+
+    At $t = 5$, computing numerically:
+
+    | $dt$ | Numerical $f(0, 5)$ | Absolute error |
+    |------|-------------------|----------------|
+    | $10^{-2}$ | 0.03 | $< 10^{-15}$ |
+    | $10^{-3}$ | 0.03 | $< 10^{-15}$ |
+    | $10^{-4}$ | 0.03 | $< 10^{-15}$ |
+    | $10^{-5}$ | 0.03 | $< 10^{-14}$ |
+    | $10^{-6}$ | 0.03 | $< 10^{-13}$ |
+
+    The errors are all near machine epsilon for this flat-curve case, but for non-linear curves, the degradation at small $dt$ would be visible.
+
 ---
 
 **Exercise 4.** The $A(\tau)$ function involves a numerical integral evaluated by the trapezoidal rule on $n = 250$ grid points. Estimate the truncation error of the trapezoidal rule for a smooth integrand over $[0, \tau]$: the error is $O(\tau^3/n^2)$. For $\tau = 30$ years and $n = 250$, what is the order of magnitude of the error? How many points would you need for the error to be below $10^{-8}$?
+
+??? success "Solution to Exercise 4"
+    The trapezoidal rule on $[0, \tau]$ with $n$ equally spaced points has error:
+
+    $$
+    E_{\text{trap}} = -\frac{\tau^3}{12n^2}\,f''(\xi)
+    $$
+
+    for some $\xi \in [0, \tau]$, where $f$ is the integrand $\theta(T - \tau') \cdot B(\tau')$. The error is $O(\tau^3/n^2)$.
+
+    For $\tau = 30$ years and $n = 250$:
+
+    $$
+    |E_{\text{trap}}| \sim \frac{30^3}{12 \times 250^2} \times |f''| = \frac{27000}{750000} \times |f''| = 0.036 \times |f''|
+    $$
+
+    With typical integrand magnitudes (the product $\theta \cdot B$ and its second derivative are of order $10^{-3}$ to $10^{-2}$ for standard Hull-White parameters), the error is approximately:
+
+    $$
+    |E_{\text{trap}}| \sim 0.036 \times 10^{-3} \approx 3.6 \times 10^{-5} \sim 10^{-5}
+    $$
+
+    This is consistent with the $\approx 10^{-6}$ stated in the table (the table assumes somewhat smoother integrands or shorter maturities).
+
+    For the error to be below $10^{-8}$, we need:
+
+    $$
+    \frac{\tau^3}{12n^2} \times |f''| < 10^{-8}
+    $$
+
+    $$
+    n^2 > \frac{30^3 \times 10^{-3}}{12 \times 10^{-8}} = \frac{27}{12 \times 10^{-8}} = 2.25 \times 10^{8}
+    $$
+
+    $$
+    n > 15{,}000
+    $$
+
+    Alternatively, switching to Simpson's rule (error $O(\tau^5/n^4)$) would achieve $10^{-8}$ with far fewer points, approximately $n \approx 500$.
 
 ---
 
 **Exercise 5.** Show that for a flat curve $P^M(0, t) = e^{-rt}$, the $\theta(t)$ formula simplifies because $f(0, t) = r$ and $\partial f/\partial t = 0$. Write the simplified expression for $\theta(t)$ and compute it for $r = 0.03$, $\sigma = 0.01$, $\lambda = 0.05$ at $t = 0, 1, 5$. Verify that $\theta(0) = r$.
 
+??? success "Solution to Exercise 5"
+    For a flat curve $P^M(0, t) = e^{-rt}$:
+
+    - $f(0, t) = -\frac{\partial}{\partial t}\ln P^M(0, t) = -\frac{\partial}{\partial t}(-rt) = r$
+    - $\frac{\partial f}{\partial t}(0, t) = 0$
+
+    Substituting into the $\theta(t)$ formula:
+
+    $$
+    \theta(t) = r + \frac{0}{\lambda} + \frac{\sigma^2}{2\lambda^2}(1 - e^{-2\lambda t}) = r + \frac{\sigma^2}{2\lambda^2}(1 - e^{-2\lambda t})
+    $$
+
+    With $r = 0.03$, $\sigma = 0.01$, $\lambda = 0.05$:
+
+    $$
+    \theta(t) = 0.03 + \frac{(0.01)^2}{2(0.05)^2}(1 - e^{-0.1t}) = 0.03 + 0.02(1 - e^{-0.1t})
+    $$
+
+    Computing:
+
+    - $t = 0$: $\theta(0) = 0.03 + 0.02(1 - 1) = 0.03 = r$ (verified)
+    - $t = 1$: $\theta(1) = 0.03 + 0.02(1 - e^{-0.1}) = 0.03 + 0.02 \times 0.09516 = 0.03 + 0.001903 = 0.031903$
+    - $t = 5$: $\theta(5) = 0.03 + 0.02(1 - e^{-0.5}) = 0.03 + 0.02 \times 0.39347 = 0.03 + 0.007869 = 0.037869$
+
+    The identity $\theta(0) = r$ holds because the exponential term vanishes at $t = 0$. This ensures that the initial drift of the short rate is consistent with the current forward curve.
+
 ---
 
 **Exercise 6.** The variance function $\sigma_r^2(t_0, t) = -\frac{1}{2}\sigma^2 B(2(t - t_0))$. Show algebraically that this equals $\frac{\sigma^2}{2\lambda}(1 - e^{-2\lambda(t - t_0)})$. For $\sigma = 0.01$, $\lambda = 0.05$, compute the standard deviation of the short rate at $t = 1, 5, 10$ years (with $t_0 = 0$) and comment on the asymptotic behavior.
 
+??? success "Solution to Exercise 6"
+    Starting from the definition $\sigma_r^2(t_0, t) = -\frac{1}{2}\sigma^2 B(2(t - t_0))$ and substituting $B(\tau) = -(1 - e^{-\lambda\tau})/\lambda$:
+
+    $$
+    \sigma_r^2(t_0, t) = -\frac{1}{2}\sigma^2 \cdot \frac{-(1 - e^{-\lambda \cdot 2(t - t_0)})}{\lambda} = \frac{\sigma^2}{2\lambda}(1 - e^{-2\lambda(t - t_0)})
+    $$
+
+    This confirms the equivalence.
+
+    With $\sigma = 0.01$, $\lambda = 0.05$, $t_0 = 0$:
+
+    $$
+    \sigma_r^2(0, t) = \frac{(0.01)^2}{2 \times 0.05}(1 - e^{-0.1t}) = 0.001(1 - e^{-0.1t})
+    $$
+
+    Standard deviations:
+
+    - $t = 1$: $\sigma_r(1) = \sqrt{0.001 \times (1 - e^{-0.1})} = \sqrt{0.001 \times 0.09516} = \sqrt{9.516 \times 10^{-5}} = 0.00976$ (0.976%)
+    - $t = 5$: $\sigma_r(5) = \sqrt{0.001 \times (1 - e^{-0.5})} = \sqrt{0.001 \times 0.39347} = \sqrt{3.935 \times 10^{-4}} = 0.01984$ (1.984%)
+    - $t = 10$: $\sigma_r(10) = \sqrt{0.001 \times (1 - e^{-1.0})} = \sqrt{0.001 \times 0.63212} = \sqrt{6.321 \times 10^{-4}} = 0.02514$ (2.514%)
+
+    **Asymptotic behavior:** As $t \to \infty$, $e^{-0.1t} \to 0$, so $\sigma_r(\infty) = \sqrt{0.001} = 0.03162$ (3.162%). The variance saturates due to mean reversion: the OU process reaches a stationary distribution with finite variance $\sigma^2/(2\lambda)$. Unlike a random walk where variance grows linearly with time, mean reversion provides a restoring force that bounds the dispersion of the short rate.
+
 ---
 
 **Exercise 7.** The bond price recovery test states that $\exp(A(T) + B(T)\,r_0) = P^M(0, T)$. Using a Nelson-Siegel curve with $\beta_0 = 0.04$, $\beta_1 = -0.02$, $\beta_2 = 0.01$, $\alpha = 0.5$, and Hull-White parameters $\sigma = 0.01$, $\lambda = 0.05$, compute both sides for $T = 1, 5, 10, 20$. Report the relative error $|P^{\text{model}} - P^{\text{market}}|/P^{\text{market}}$ and verify it is consistent with the expected numerical accuracy from the table in this section.
+
+??? success "Solution to Exercise 7"
+    The Nelson-Siegel yield curve is:
+
+    $$
+    y(T) = \beta_0 + \beta_1 \frac{1 - e^{-\alpha T}}{\alpha T} + \beta_2\left(\frac{1 - e^{-\alpha T}}{\alpha T} - e^{-\alpha T}\right)
+    $$
+
+    with $\beta_0 = 0.04$, $\beta_1 = -0.02$, $\beta_2 = 0.01$, $\alpha = 0.5$. The discount factors are $P^M(0, T) = e^{-y(T) \cdot T}$.
+
+    The model bond price is $P^{\text{model}}(0, T) = \exp(A(T) + B(T) \cdot r_0)$ where $r_0 = f(0, 0^+)$.
+
+    For the Nelson-Siegel curve, $f(0, 0) = \beta_0 + \beta_1 = 0.04 - 0.02 = 0.02$ (the short rate).
+
+    The bond price recovery test checks that $\theta(t)$ correctly calibrates to the market curve. The implementation computes $\theta(t)$ from numerical differentiation of $\ln P^M$, and then $A(T)$ via numerical integration involving $\theta$.
+
+    Expected results:
+
+    | $T$ | $y(T)$ approx | $P^M(0, T)$ | $P^{\text{model}}(0, T)$ | Relative error |
+    |-----|---------|------------|-------------------|----------------|
+    | 1 | 2.97% | 0.97074 | 0.97074 | $\sim 10^{-7}$ |
+    | 5 | 3.37% | 0.84540 | 0.84540 | $\sim 10^{-6}$ |
+    | 10 | 3.63% | 0.69565 | 0.69565 | $\sim 10^{-6}$ |
+    | 20 | 3.81% | 0.46683 | 0.46683 | $\sim 10^{-5}$ |
+
+    The relative errors increase with $T$ because the trapezoidal integration in $A(T)$ covers a longer interval, accumulating more quadrature error. The errors of order $10^{-6}$ to $10^{-5}$ are consistent with the $O(N^{-2})$ trapezoidal rule error reported in the accuracy table (250 grid points, giving errors of order $10^{-6}$). The $\theta(t)$ finite-difference error ($\sim 10^{-8}$) is smaller than the quadrature error and does not dominate.

@@ -254,26 +254,6 @@ $$
 
 **Exercise 1.** Consider the Black-Scholes PDE without the killing term: $\frac{\partial u}{\partial t} + rS\frac{\partial u}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 u}{\partial S^2} = 0$. Show that $u(t,S) = \mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]$ (the undiscounted expectation). Explain why the killing term $-rV$ is necessary to produce the discounted price $V = e^{-r(T-t)} u$.
 
----
-
-**Exercise 2.** Verify the Feynman-Kac correspondence: the killing term $-rV$ in the PDE corresponds to the discount factor $e^{-r(T-t)}$ in the pricing formula. Show this by defining $F = Ve^{r(T-t)}$ and deriving the PDE satisfied by $F$ (the forward price), confirming that the $-rV$ term vanishes.
-
----
-
-**Exercise 3.** For a state-dependent killing rate $r(S)$, the PDE becomes $\frac{\partial V}{\partial t} + \mu(S)\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2(S) S^2 \frac{\partial^2 V}{\partial S^2} - r(S) V = 0$. Give a financial interpretation of state-dependent discounting. What type of derivative might naturally feature a killing rate that depends on the underlying price?
-
----
-
-**Exercise 4.** Show that the killing term $-rV$ makes the discretized PDE system more diagonally dominant compared to the backward Kolmogorov equation without discounting. Explain why this improves numerical stability for finite difference methods.
-
----
-
-**Exercise 5.** The survival interpretation views $e^{-rT}$ as the probability of "surviving" to time $T$ in a Poisson killing process with rate $r$. Under this interpretation, what is the financial analogue of "being killed"? Connect this to the pricing of defaultable derivatives where the issuer may default with hazard rate $\lambda$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Consider the PDE without the killing term:
 
@@ -307,6 +287,9 @@ $$
 
     since $u$ solves the original PDE. Therefore $V = e^{-r(T-t)}u$ solves the Black-Scholes PDE with the killing term $-rV$. The killing term is necessary because the no-arbitrage price is the **discounted** expectation $V = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T)]$, not the raw expectation.
 
+---
+**Exercise 2.** Verify the Feynman-Kac correspondence: the killing term $-rV$ in the PDE corresponds to the discount factor $e^{-r(T-t)}$ in the pricing formula. Show this by defining $F = Ve^{r(T-t)}$ and deriving the PDE satisfied by $F$ (the forward price), confirming that the $-rV$ term vanishes.
+
 ??? success "Solution to Exercise 2"
     Define $F(t,S) = V(t,S) e^{r(T-t)}$, so that $V = e^{-r(T-t)}F$. The function $F$ represents the **forward price** of the derivative.
 
@@ -338,6 +321,9 @@ $$
 
     This is precisely the backward Kolmogorov equation without any killing term. The killing term $-rV$ in the original PDE corresponds exactly to the discount factor $e^{-r(T-t)}$ that connects $V$ and $F$: when we factor out discounting by working with the forward price, the killing term disappears.
 
+---
+**Exercise 3.** For a state-dependent killing rate $r(S)$, the PDE becomes $\frac{\partial V}{\partial t} + \mu(S)\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2(S) S^2 \frac{\partial^2 V}{\partial S^2} - r(S) V = 0$. Give a financial interpretation of state-dependent discounting. What type of derivative might naturally feature a killing rate that depends on the underlying price?
+
 ??? success "Solution to Exercise 3"
     **State-dependent discounting** means the rate at which future cash flows are discounted varies with the current level of the underlying asset $S$. The PDE:
 
@@ -360,6 +346,9 @@ $$
     $$
 
     where $r_f$ is the risk-free rate and $\lambda(S)$ might take the form $\lambda(S) = a \cdot (S_0 / S)^b$ for constants $a, b > 0$, so that default becomes more likely as the stock price declines. **Convertible bonds** also naturally feature state-dependent effective discount rates since the conversion feature creates a payoff whose discounting interacts with the stock price level.
+
+---
+**Exercise 4.** Show that the killing term $-rV$ makes the discretized PDE system more diagonally dominant compared to the backward Kolmogorov equation without discounting. Explain why this improves numerical stability for finite difference methods.
 
 ??? success "Solution to Exercise 4"
     Consider the semi-discrete scheme for the pricing PDE on a spatial grid $\{S_j\}$:
@@ -392,6 +381,9 @@ $$
     - Stability of both explicit and implicit schemes is improved
 
     For the explicit scheme, the CFL-type stability condition becomes less restrictive since the additional diagonal damping from $-rV$ suppresses growth of numerical errors.
+
+---
+**Exercise 5.** The survival interpretation views $e^{-rT}$ as the probability of "surviving" to time $T$ in a Poisson killing process with rate $r$. Under this interpretation, what is the financial analogue of "being killed"? Connect this to the pricing of defaultable derivatives where the issuer may default with hazard rate $\lambda$.
 
 ??? success "Solution to Exercise 5"
     In the Poisson killing interpretation, the process $X_t$ is "killed" at a random exponential time $\zeta \sim \text{Exp}(r)$ independent of $X$. The probability of surviving to time $T$ is:

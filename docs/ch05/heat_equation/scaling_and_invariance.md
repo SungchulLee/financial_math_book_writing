@@ -232,40 +232,6 @@ $$
 **Exercise 1.**
 Verify the parabolic scaling: if $u(x, t)$ solves $\partial_t u = \frac{1}{2}\partial_{xx}u$, show that $v(x, t) = u(\lambda x, \lambda^2 t)$ also solves the same equation for any $\lambda > 0$.
 
----
-
-**Exercise 2.**
-The similarity variable $\eta = x/\sqrt{t}$ reduces the heat equation to an ODE. Seek solutions of the form $u(x, t) = f(\eta)$ with $\eta = x/\sqrt{t}$. Show that $f$ satisfies $f'' + \eta f' = 0$ and identify the solution in terms of the error function.
-
----
-
-**Exercise 3.**
-Brownian scaling states $B_{\lambda^2 t} \overset{d}{=} \lambda B_t$. Use this to show that the standard deviation of $B_t$ grows as $\sqrt{t}$, not linearly in $t$. Explain why this $\sqrt{t}$ scaling is characteristic of diffusion processes and distinguishes them from ballistic motion.
-
----
-
-**Exercise 4.**
-The diffusion length $\ell \sim \sigma\sqrt{t}$ determines how far a Brownian particle wanders in time $t$. For a stock with $\sigma = 0.25$, compute the diffusion length after 1 day ($t = 1/252$), 1 month ($t = 1/12$), and 1 year ($t = 1$). How does this relate to option pricing?
-
----
-
-**Exercise 5.**
-Show that the fundamental solution $G(t, x) = (2\pi t)^{-1/2}\exp(-x^2/(2t))$ is a self-similar function: $G(t, x) = t^{-1/2}\Phi(x/\sqrt{t})$ for some function $\Phi$. Identify $\Phi$ explicitly.
-
----
-
-**Exercise 6.**
-The wave equation $\partial_{tt}u = c^2\partial_{xx}u$ has scaling $x \mapsto \lambda x$, $t \mapsto \lambda t$ (linear scaling). Compare this with the parabolic scaling $x \mapsto \lambda x$, $t \mapsto \lambda^2 t$ of the heat equation. Explain the physical difference: waves propagate at constant speed $c$, while diffusion spreads as $\sqrt{t}$.
-
----
-
-**Exercise 7.**
-In option pricing, the Black-Scholes formula depends on $\sigma\sqrt{T-t}$ rather than $\sigma(T-t)$ or $\sigma(T-t)^2$. Explain how this $\sqrt{T-t}$ dependence is a direct consequence of parabolic scaling and why it determines the shape of the implied volatility surface as a function of maturity.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Let $u(x,t)$ solve $\partial_t u = \frac{1}{2}\partial_{xx}u$ and define $v(x,t) = u(\lambda x, \lambda^2 t)$.
 
@@ -294,6 +260,11 @@ In option pricing, the Black-Scholes formula depends on $\sigma\sqrt{T-t}$ rathe
     $$
 
     since $u$ solves the heat equation. Therefore $v$ also solves $\partial_t v = \frac{1}{2}\partial_{xx}v$.
+
+---
+
+**Exercise 2.**
+The similarity variable $\eta = x/\sqrt{t}$ reduces the heat equation to an ODE. Seek solutions of the form $u(x, t) = f(\eta)$ with $\eta = x/\sqrt{t}$. Show that $f$ satisfies $f'' + \eta f' = 0$ and identify the solution in terms of the error function.
 
 ??? success "Solution to Exercise 2"
     Seeking solutions $u(x,t) = f(\eta)$ with $\eta = x/\sqrt{t}$:
@@ -334,6 +305,11 @@ In option pricing, the Black-Scholes formula depends on $\sigma\sqrt{T-t}$ rathe
 
     This solution describes the diffusion of a step function initial condition and is related to the cumulative distribution function of the normal distribution.
 
+---
+
+**Exercise 3.**
+Brownian scaling states $B_{\lambda^2 t} \overset{d}{=} \lambda B_t$. Use this to show that the standard deviation of $B_t$ grows as $\sqrt{t}$, not linearly in $t$. Explain why this $\sqrt{t}$ scaling is characteristic of diffusion processes and distinguishes them from ballistic motion.
+
 ??? success "Solution to Exercise 3"
     From Brownian scaling, $B_{\lambda^2 t} \overset{d}{=} \lambda B_t$. Taking $\lambda^2 t = T$ (so $\lambda = \sqrt{T/t}$):
 
@@ -350,6 +326,11 @@ In option pricing, the Black-Scholes formula depends on $\sigma\sqrt{T-t}$ rathe
     The standard deviation grows as $\sqrt{T}$, not linearly.
 
     **Why $\sqrt{t}$ characterizes diffusion**: In ballistic (deterministic) motion with velocity $v$, displacement grows linearly: $x = vt$. In diffusion, each step is random and independent. After $n$ independent steps of typical size $\delta$, the net displacement has standard deviation $\delta\sqrt{n}$ by the central limit theorem (the random walk). Since $n \propto t$, displacement grows as $\sqrt{t}$. This sub-linear growth is the hallmark of diffusion: doubling the time does not double the spread, it only increases it by a factor of $\sqrt{2}$.
+
+---
+
+**Exercise 4.**
+The diffusion length $\ell \sim \sigma\sqrt{t}$ determines how far a Brownian particle wanders in time $t$. For a stock with $\sigma = 0.25$, compute the diffusion length after 1 day ($t = 1/252$), 1 month ($t = 1/12$), and 1 year ($t = 1$). How does this relate to option pricing?
 
 ??? success "Solution to Exercise 4"
     The diffusion length is $\ell = \sigma\sqrt{t}$ with $\sigma = 0.25$.
@@ -380,6 +361,11 @@ In option pricing, the Black-Scholes formula depends on $\sigma\sqrt{T-t}$ rathe
 
     **Relation to option pricing**: The diffusion length $\sigma\sqrt{t}$ directly determines the width of the distribution of log-returns. In the Black-Scholes model, the quantity $d_1$ and $d_2$ in the pricing formula involve $\sigma\sqrt{T-t}$, which measures how far the stock can wander by expiry. Options with longer maturity have larger diffusion lengths, making them more valuable (all else equal), and the time value of an option scales approximately as $\sqrt{T-t}$, not linearly in $T-t$.
 
+---
+
+**Exercise 5.**
+Show that the fundamental solution $G(t, x) = (2\pi t)^{-1/2}\exp(-x^2/(2t))$ is a self-similar function: $G(t, x) = t^{-1/2}\Phi(x/\sqrt{t})$ for some function $\Phi$. Identify $\Phi$ explicitly.
+
 ??? success "Solution to Exercise 5"
     The fundamental solution is:
 
@@ -401,6 +387,11 @@ In option pricing, the Black-Scholes formula depends on $\sigma\sqrt{T-t}$ rathe
 
     This is the standard normal density. The self-similar structure $G(t,x) = t^{-1/2}\Phi(x/\sqrt{t})$ confirms that the heat kernel at any time $t$ is just a rescaled version of the standard normal density, stretched horizontally by $\sqrt{t}$ and compressed vertically by $1/\sqrt{t}$ to preserve unit total mass.
 
+---
+
+**Exercise 6.**
+The wave equation $\partial_{tt}u = c^2\partial_{xx}u$ has scaling $x \mapsto \lambda x$, $t \mapsto \lambda t$ (linear scaling). Compare this with the parabolic scaling $x \mapsto \lambda x$, $t \mapsto \lambda^2 t$ of the heat equation. Explain the physical difference: waves propagate at constant speed $c$, while diffusion spreads as $\sqrt{t}$.
+
 ??? success "Solution to Exercise 6"
     **Wave equation scaling**: If $u(x,t)$ solves $u_{tt} = c^2 u_{xx}$, then $v(x,t) = u(\lambda x, \lambda t)$ also solves it, because:
 
@@ -418,6 +409,11 @@ In option pricing, the Black-Scholes formula depends on $\sigma\sqrt{T-t}$ rathe
     - Diffusion: The characteristic length is $x/\sqrt{t} = \text{const}$ (the similarity variable). A disturbance at the origin reaches position $x$ at time $t \propto x^2$. Doubling the distance quadruples the time. Diffusion slows down at large distances because particles must perform many random steps to drift far from the origin.
 
     This fundamental difference explains why sound travels across a room in milliseconds (wave propagation), while the scent of perfume takes minutes to diffuse across the same distance (diffusion).
+
+---
+
+**Exercise 7.**
+In option pricing, the Black-Scholes formula depends on $\sigma\sqrt{T-t}$ rather than $\sigma(T-t)$ or $\sigma(T-t)^2$. Explain how this $\sqrt{T-t}$ dependence is a direct consequence of parabolic scaling and why it determines the shape of the implied volatility surface as a function of maturity.
 
 ??? success "Solution to Exercise 7"
     In the Black-Scholes model, after transforming to log-price coordinates $x = \log(S/K)$ and time-to-maturity $\tau = T - t$, the option pricing PDE reduces to the heat equation with diffusion coefficient $\sigma^2/2$. The solution involves the heat kernel evaluated at the similarity variable:

@@ -622,52 +622,6 @@ $$
 
 satisfies the Fokker-Planck equation $\partial_t p = -\mu\partial_x p + \frac{\sigma^2}{2}\partial_{xx} p$ by computing both sides explicitly.
 
----
-
-**Exercise 2.**
-Write the Fokker-Planck equation in the continuity form $\partial_t p + \partial_x J = 0$ and identify the probability current $J$ for the Ornstein-Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$. At stationarity ($\partial_t p = 0$), show that $J = 0$ and use this to derive the stationary density.
-
----
-
-**Exercise 3.**
-For constant coefficients, solve the Fokker-Planck equation using the Fourier transform. Starting from $\partial_t \hat{p} = (-ik\mu - \frac{\sigma^2 k^2}{2})\hat{p}$ with initial condition $\hat{p}(k, 0) = e^{-ikx_0}$, find $\hat{p}(k, t)$ and verify that the inverse transform yields the Gaussian transition density.
-
----
-
-**Exercise 4.**
-For geometric Brownian motion $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$, expand the Fokker-Planck equation
-
-$$
-\frac{\partial p}{\partial t} = -\frac{\partial}{\partial S}(\mu S\,p) + \frac{\sigma^2}{2}\frac{\partial^2}{\partial S^2}(S^2\,p)
-$$
-
-using the product rule. Identify the effective drift and the "spurious drift" terms that arise from the state-dependent diffusion coefficient.
-
----
-
-**Exercise 5.**
-The general formula for the stationary density of a one-dimensional diffusion is
-
-$$
-p_\infty(x) \propto \frac{1}{\sigma^2(x)}\exp\left(\int^x \frac{2\mu(z)}{\sigma^2(z)}\,dz\right)
-$$
-
-Apply this formula to the CIR process $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$ and show that the stationary density is a Gamma distribution. What condition on the parameters ensures the density is normalizable?
-
----
-
-**Exercise 6.**
-On a bounded domain $[a, b]$ with homogeneous boundary conditions, the Fokker-Planck solution can be expanded in eigenfunctions: $p(x, t) = \sum_n c_n \phi_n(x) e^{-\lambda_n t}$. For the heat equation on $[0, L]$ with absorbing boundaries, identify the eigenvalues $\lambda_n$ and eigenfunctions $\phi_n$. What is the long-time behavior of $p(x, t)$?
-
----
-
-**Exercise 7.**
-The score function is defined as $s(x, t) = \nabla_x \log p(x, t)$. For a Gaussian density $p(x, t) = \frac{1}{\sqrt{2\pi v(t)}}\exp(-(x - m(t))^2/(2v(t)))$, compute the score function explicitly. Explain why the reverse-time SDE uses the score to denoise: the drift $-g^2(t)\nabla_x \log p$ points toward regions of higher probability density.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The Fokker-Planck equation for constant coefficients is $\partial_t p = -\mu\partial_x p + \frac{\sigma^2}{2}\partial_{xx}p$. Let
 
@@ -698,6 +652,11 @@ The score function is defined as $s(x, t) = \nabla_x \log p(x, t)$. For a Gaussi
     $$
 
     Both sides are equal, confirming the Gaussian density satisfies the Fokker-Planck equation. $\checkmark$
+
+---
+
+**Exercise 2.**
+Write the Fokker-Planck equation in the continuity form $\partial_t p + \partial_x J = 0$ and identify the probability current $J$ for the Ornstein-Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$. At stationarity ($\partial_t p = 0$), show that $J = 0$ and use this to derive the stationary density.
 
 ??? success "Solution to Exercise 2"
     For the OU process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, we have $\mu(x) = -\kappa x$ and $\sigma(x) = \sigma$.
@@ -742,6 +701,11 @@ The score function is defined as $s(x, t) = \nabla_x \log p(x, t)$. For a Gaussi
 
     This is $N(0, \sigma^2/(2\kappa))$.
 
+---
+
+**Exercise 3.**
+For constant coefficients, solve the Fokker-Planck equation using the Fourier transform. Starting from $\partial_t \hat{p} = (-ik\mu - \frac{\sigma^2 k^2}{2})\hat{p}$ with initial condition $\hat{p}(k, 0) = e^{-ikx_0}$, find $\hat{p}(k, t)$ and verify that the inverse transform yields the Gaussian transition density.
+
 ??? success "Solution to Exercise 3"
     For constant coefficients, the Fokker-Planck equation in Fourier space is:
 
@@ -775,6 +739,17 @@ The score function is defined as $s(x, t) = \nabla_x \log p(x, t)$. For a Gaussi
 
     This is the Gaussian transition density. $\checkmark$
 
+---
+
+**Exercise 4.**
+For geometric Brownian motion $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$, expand the Fokker-Planck equation
+
+$$
+\frac{\partial p}{\partial t} = -\frac{\partial}{\partial S}(\mu S\,p) + \frac{\sigma^2}{2}\frac{\partial^2}{\partial S^2}(S^2\,p)
+$$
+
+using the product rule. Identify the effective drift and the "spurious drift" terms that arise from the state-dependent diffusion coefficient.
+
 ??? success "Solution to Exercise 4"
     For GBM, $\mu(S) = \mu S$ and $\sigma^2(S) = \sigma^2 S^2$. Expanding the Fokker-Planck equation:
 
@@ -801,6 +776,17 @@ The score function is defined as $s(x, t) = \nabla_x \log p(x, t)$. For a Gaussi
     - **Standard diffusion**: $\frac{\sigma^2 S^2}{2}\partial_{SS}p$ — this is the usual second-order diffusion term.
     - **Effective drift on $p$**: $(2\sigma^2 - \mu)S\partial_S p$ — this combines the physical drift $-\mu S$ with additional terms from differentiating $\sigma^2 S^2$.
     - **Spurious drift terms**: The $\sigma^2 p$ and $2\sigma^2 S\partial_S p$ contributions arise because $\sigma(S) = \sigma S$ depends on $S$. When the diffusion coefficient varies in space, differentiating $\sigma^2(S)p$ produces extra terms beyond $\frac{\sigma^2(S)}{2}\partial_{SS}p$. The term $\sigma^2 p$ is analogous to a zeroth-order "source" or "sink" of probability, while $2\sigma^2 S\partial_S p$ acts as an additional advective flux. These spurious drift effects cause probability mass to flow from high-volatility regions (large $S$) toward low-volatility regions.
+
+---
+
+**Exercise 5.**
+The general formula for the stationary density of a one-dimensional diffusion is
+
+$$
+p_\infty(x) \propto \frac{1}{\sigma^2(x)}\exp\left(\int^x \frac{2\mu(z)}{\sigma^2(z)}\,dz\right)
+$$
+
+Apply this formula to the CIR process $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$ and show that the stationary density is a Gamma distribution. What condition on the parameters ensures the density is normalizable?
 
 ??? success "Solution to Exercise 5"
     For the CIR process, $\mu(x) = \kappa(\theta - x)$ and $\sigma^2(x) = \xi^2 x$. The general stationary density formula gives:
@@ -835,6 +821,11 @@ The score function is defined as $s(x, t) = \nabla_x \log p(x, t)$. For a Gaussi
 
     Since $\kappa, \theta > 0$, this is always satisfied. The stronger Feller condition $2\kappa\theta \geq \xi^2$ (i.e., $\alpha \geq 1$) ensures the density is bounded at the origin.
 
+---
+
+**Exercise 6.**
+On a bounded domain $[a, b]$ with homogeneous boundary conditions, the Fokker-Planck solution can be expanded in eigenfunctions: $p(x, t) = \sum_n c_n \phi_n(x) e^{-\lambda_n t}$. For the heat equation on $[0, L]$ with absorbing boundaries, identify the eigenvalues $\lambda_n$ and eigenfunctions $\phi_n$. What is the long-time behavior of $p(x, t)$?
+
 ??? success "Solution to Exercise 6"
     On $[0, L]$ with absorbing (Dirichlet) boundaries $p(0, t) = p(L, t) = 0$, the heat equation $\partial_t p = \frac{1}{2}\partial_{xx}p$ is solved by separation of variables.
 
@@ -865,6 +856,11 @@ The score function is defined as $s(x, t) = \nabla_x \log p(x, t)$. For a Gaussi
     $$
 
     The density decays exponentially to zero at rate $\lambda_1 = \pi^2/(2L^2)$. This makes physical sense: with absorbing boundaries, all probability is eventually absorbed, so $p \to 0$. There is no stationary distribution (the eigenvalue $\lambda_0 = 0$ does not appear because $\sin(0) = 0$ fails to satisfy the boundary conditions nontrivially).
+
+---
+
+**Exercise 7.**
+The score function is defined as $s(x, t) = \nabla_x \log p(x, t)$. For a Gaussian density $p(x, t) = \frac{1}{\sqrt{2\pi v(t)}}\exp(-(x - m(t))^2/(2v(t)))$, compute the score function explicitly. Explain why the reverse-time SDE uses the score to denoise: the drift $-g^2(t)\nabla_x \log p$ points toward regions of higher probability density.
 
 ??? success "Solution to Exercise 7"
     For the Gaussian density $p(x, t) = \frac{1}{\sqrt{2\pi v(t)}}\exp\left(-\frac{(x - m(t))^2}{2v(t)}\right)$:

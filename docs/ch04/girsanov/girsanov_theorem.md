@@ -3,6 +3,9 @@
 
 Girsanov's theorem is one of the most powerful tools in mathematical finance. It describes how a change of probability measure modifies the drift of a stochastic process while preserving its Brownian structure. This is essential for pricing derivatives via risk-neutral measures.
 
+!!! note "Standing assumptions"
+    All processes in this section are defined on a filtered probability space $(\Omega, \mathcal{F}, \{\mathcal{F}_t\}, \mathbb{P})$ satisfying the usual conditions, and all measure changes are between equivalent probability measures. In financial applications, the Girsanov kernel $\theta_t$ is often denoted $\lambda_t$ and called the **market price of risk**.
+
 ---
 
 ## Setting and Assumptions
@@ -54,7 +57,7 @@ $$
 }
 $$
 
-For any random variable $X$, the relationship between expectations under the two measures is:
+For any $\mathcal{F}_T$-measurable random variable $X$ with $\mathbb{E}^{\mathbb{P}}[|X| \cdot Z_T] < \infty$, the relationship between expectations under the two measures is:
 
 $$
 \mathbb{E}^{\mathbb{Q}}[X] = \mathbb{E}^{\mathbb{P}}[X \cdot Z_T]
@@ -90,7 +93,7 @@ under $\mathbb{Q}$.
 
 ---
 
-## Interpretation: The Drift Removal Mechanism
+## Interpretation: How the Drift Term Changes
 
 | Perspective | Under $\mathbb{P}$ (Original Measure) | Under $\mathbb{Q}$ (New Measure) |
 |-------------|--------------------------------------|--------------------------------|
@@ -100,7 +103,7 @@ under $\mathbb{Q}$.
 | Information structure | Same filtration | Same filtration |
 | Volatility | Unchanged | Unchanged |
 
-**Key insight:** The theorem shows that drift can be removed by reweighting paths via a change of measure. The drift is not a fundamental property of the process—it's an artifact of how we assign probabilities to outcomes.
+**Key insight:** The theorem shows that drift can be removed by reweighting paths via a change of measure. The drift term in an SDE representation can change under equivalent measure change — it reflects how we assign probabilities to outcomes, not just the pathwise behavior.
 
 <figure markdown="span">
   ![Girsanov measure change visualization](./image/girsanov_theorem_demo.png){ width="100%" }
@@ -128,7 +131,7 @@ under $\mathbb{Q}$.
 
 ---
 
-## Connection to SDEs: Removing Drift
+## Connection to SDEs: Changing the Drift Term
 
 **Original SDE under $\mathbb{P}$:**
 
@@ -162,7 +165,7 @@ $$
 = \sigma(t)\,d\widetilde{W}_t
 $$
 
-**Result:** The drift has been completely removed under $\mathbb{Q}$!
+**Result:** The drift term in this representation is removed under $\mathbb{Q}$.
 
 ---
 
@@ -234,7 +237,7 @@ $$
 dX_t = \mu\,dt + \sigma\left(d\widetilde{W}_t - \frac{\mu}{\sigma}dt\right) = 0\,dt + \sigma\,d\widetilde{W}_t = \sigma\,d\widetilde{W}_t
 $$
 
-The drift has been **completely removed** under $\mathbb{Q}$!
+The drift term in this representation has been removed under $\mathbb{Q}$.
 
 **Under $\mathbb{Q}$:**
 
@@ -350,33 +353,33 @@ where the expectation is under the **risk-neutral measure** $\mathbb{Q}$.
 **Original process under $\mathbb{P}$:**
 
 $$
-dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t
+dr_t = \kappa(\bar{r} - r_t)\,dt + \sigma\,dW_t
 $$
 
 where:
-- $\theta$ = long-run mean interest rate
+- $\bar{r}$ = long-run mean interest rate
 - $\kappa$ = mean reversion speed
 - $\sigma$ = volatility
 
 **Typical market price of risk:** $\lambda$ (constant or time-dependent)
 
-**Choose Girsanov kernel:** $\theta = \lambda$
+**Girsanov kernel:** $\lambda$ (constant market price of interest rate risk)
 
 **Under the risk-neutral measure $\mathbb{Q}$:**
 
 Define $\widetilde{W}_t = W_t + \lambda t$
 
 $$
-dr_t = [\kappa(\theta - r_t) - \lambda\sigma]\,dt + \sigma\,d\widetilde{W}_t
+dr_t = [\kappa(\bar{r} - r_t) - \lambda\sigma]\,dt + \sigma\,d\widetilde{W}_t
 $$
 
 The effective "long-run mean" becomes:
 
 $$
-\theta^* = \theta - \frac{\lambda}{\kappa}
+\bar{r}^* = \bar{r} - \frac{\lambda\sigma}{\kappa}
 $$
 
-**Financial interpretation:** The market price of interest rate risk ($\lambda$) shifts the equilibrium level of rates from $\theta$ to $\theta^*$. The real-world view ($\mathbb{P}$) and the pricing view ($\mathbb{Q}$) differ precisely by this market price.
+**Financial interpretation:** The market price of interest rate risk ($\lambda$) shifts the equilibrium level of rates from $\bar{r}$ to $\bar{r}^*$. The real-world view ($\mathbb{P}$) and the pricing view ($\mathbb{Q}$) differ precisely by this market price.
 
 ---
 
@@ -573,40 +576,6 @@ plt.show()
 **Exercise 1.**
 Let $W_t$ be a standard Brownian motion under $\mathbb{P}$ and let $\theta = 0.5$ (constant). Write the explicit form of the Radon-Nikodym derivative $Z_T$ for $T = 1$, verify that the Novikov condition holds, and define the shifted Brownian motion $\widetilde{W}_t$ under $\mathbb{Q}$.
 
----
-
-**Exercise 2.**
-Consider an SDE $dX_t = 3\,dt + 2\,dW_t$ under $\mathbb{P}$, with $X_0 = 0$. Determine the Girsanov kernel $\theta$ that removes the drift entirely. Write the SDE for $X_t$ under the new measure $\mathbb{Q}$ and describe the distribution of $X_t$ under $\mathbb{Q}$.
-
----
-
-**Exercise 3.**
-In the geometric Brownian motion example, a stock has parameters $\mu = 0.12$, $\sigma = 0.25$, and $r = 0.04$. Compute the market price of risk $\theta$. Then write the discounted stock price dynamics $d(e^{-rt}S_t)$ under $\mathbb{Q}$ and verify that the $dt$ term vanishes.
-
----
-
-**Exercise 4.**
-In the Vasicek model under $\mathbb{P}$, $dr_t = 0.3(0.05 - r_t)\,dt + 0.02\,dW_t$ with market price of interest rate risk $\lambda = 0.2$. Compute the risk-neutral long-run mean $\theta^*$. Explain why $\theta^* < \theta$ when $\lambda > 0$ and interpret this economically.
-
----
-
-**Exercise 5.**
-Girsanov's theorem states that $\widetilde{W}_t = W_t + \int_0^t \theta_s\,ds$ is a Brownian motion under $\mathbb{Q}$. Show that for any two times $0 \leq s < t$, the increment $\widetilde{W}_t - \widetilde{W}_s$ has mean zero and variance $t - s$ under $\mathbb{Q}$.
-
----
-
-**Exercise 6.**
-Consider a two-dimensional Brownian motion $(W_t^1, W_t^2)$ and a Girsanov kernel $\boldsymbol{\theta} = (\theta_1, \theta_2)$. Write the vector form of the Radon-Nikodym derivative $Z_T$ and state the multivariate Novikov condition. Define the shifted Brownian motions $\widetilde{W}_t^1$ and $\widetilde{W}_t^2$ under $\mathbb{Q}$ and verify they are independent.
-
----
-
-**Exercise 7.**
-A derivative has payoff $\Phi(S_T) = S_T^2$ and the stock follows GBM with $\mu = 0.10$, $\sigma = 0.20$, $r = 0.03$, $T = 1$. Using the risk-neutral dynamics $dS_t = rS_t\,dt + \sigma S_t\,d\widetilde{W}_t$, compute $\mathbb{E}^{\mathbb{Q}}[S_T^2]$ and hence the price $V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[S_T^2]$. (Hint: find the distribution of $\ln S_T$ under $\mathbb{Q}$ and use the lognormal moment formula.)
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     With $\theta = 0.5$ constant and $T = 1$, the Radon-Nikodym derivative is:
 
@@ -630,6 +599,11 @@ A derivative has payoff $\Phi(S_T) = S_T^2$ and the stock follows GBM with $\mu 
 
     is a standard Brownian motion. That is, $\widetilde{W}_t$ has independent increments, $\widetilde{W}_0 = 0$, and $\widetilde{W}_t - \widetilde{W}_s \sim \mathcal{N}(0, t-s)$ under $\mathbb{Q}$.
 
+---
+
+**Exercise 2.**
+Consider an SDE $dX_t = 3\,dt + 2\,dW_t$ under $\mathbb{P}$, with $X_0 = 0$. Determine the Girsanov kernel $\theta$ that removes the drift entirely. Write the SDE for $X_t$ under the new measure $\mathbb{Q}$ and describe the distribution of $X_t$ under $\mathbb{Q}$.
+
 ??? success "Solution to Exercise 2"
     The SDE is $dX_t = 3\,dt + 2\,dW_t$ with $X_0 = 0$. To remove the drift, we need the Girsanov kernel:
 
@@ -650,6 +624,11 @@ A derivative has payoff $\Phi(S_T) = S_T^2$ and the stock follows GBM with $\mu 
     $$
 
     Under $\mathbb{Q}$, $X_t$ is normally distributed with mean $0$ and variance $4t$.
+
+---
+
+**Exercise 3.**
+In the geometric Brownian motion example, a stock has parameters $\mu = 0.12$, $\sigma = 0.25$, and $r = 0.04$. Compute the market price of risk $\theta$. Then write the discounted stock price dynamics $d(e^{-rt}S_t)$ under $\mathbb{Q}$ and verify that the $dt$ term vanishes.
 
 ??? success "Solution to Exercise 3"
     The market price of risk is:
@@ -680,6 +659,11 @@ A derivative has payoff $\Phi(S_T) = S_T^2$ and the stock follows GBM with $\mu 
 
     The $dt$ term vanishes, confirming that the discounted stock price $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale.
 
+---
+
+**Exercise 4.**
+In the Vasicek model under $\mathbb{P}$, $dr_t = 0.3(0.05 - r_t)\,dt + 0.02\,dW_t$ with market price of interest rate risk $\lambda = 0.2$. Compute the risk-neutral long-run mean $\theta^*$. Explain why $\theta^* < \theta$ when $\lambda > 0$ and interpret this economically.
+
 ??? success "Solution to Exercise 4"
     In the Vasicek model, $dr_t = \kappa(\theta_{\text{lr}} - r_t)\,dt + \sigma\,dW_t$ with $\kappa = 0.3$, $\theta_{\text{lr}} = 0.05$ (long-run mean), $\sigma = 0.02$, and $\lambda = 0.2$.
 
@@ -692,6 +676,11 @@ A derivative has payoff $\Phi(S_T) = S_T^2$ and the stock follows GBM with $\mu 
     When $\lambda > 0$, we have $\theta^* < \theta_{\text{lr}}$ because the correction term $\lambda\sigma/\kappa$ is positive.
 
     **Economic interpretation:** A positive market price of interest rate risk $\lambda > 0$ means that investors demand compensation for bearing interest rate risk. Under the physical measure $\mathbb{P}$, interest rates are expected to revert to the higher level $\theta_{\text{lr}} = 5\%$. But the risk-neutral measure $\mathbb{Q}$ (used for pricing bonds and interest rate derivatives) incorporates this risk premium by lowering the effective long-run mean to $\theta^* \approx 3.67\%$. In other words, bond prices are priced as if rates revert to a lower equilibrium level, reflecting the fact that investors are willing to accept lower yields on bonds because they value the safety of fixed-income instruments.
+
+---
+
+**Exercise 5.**
+Girsanov's theorem states that $\widetilde{W}_t = W_t + \int_0^t \theta_s\,ds$ is a Brownian motion under $\mathbb{Q}$. Show that for any two times $0 \leq s < t$, the increment $\widetilde{W}_t - \widetilde{W}_s$ has mean zero and variance $t - s$ under $\mathbb{Q}$.
 
 ??? success "Solution to Exercise 5"
     Under $\mathbb{Q}$, $\widetilde{W}_t = W_t + \int_0^t \theta_s\,ds$ is a standard Brownian motion by Girsanov's theorem. We verify the two properties for the increment $\widetilde{W}_t - \widetilde{W}_s$ where $0 \leq s < t$.
@@ -740,6 +729,11 @@ A derivative has payoff $\Phi(S_T) = S_T^2$ and the stock follows GBM with $\mu 
 
     This confirms that $\widetilde{W}_t - \widetilde{W}_s$ has mean zero and variance $t - s$ under $\mathbb{Q}$.
 
+---
+
+**Exercise 6.**
+Consider a two-dimensional Brownian motion $(W_t^1, W_t^2)$ and a Girsanov kernel $\boldsymbol{\theta} = (\theta_1, \theta_2)$. Write the vector form of the Radon-Nikodym derivative $Z_T$ and state the multivariate Novikov condition. Define the shifted Brownian motions $\widetilde{W}_t^1$ and $\widetilde{W}_t^2$ under $\mathbb{Q}$ and verify they are independent.
+
 ??? success "Solution to Exercise 6"
     For a two-dimensional Brownian motion $(W_t^1, W_t^2)$ with Girsanov kernel $\boldsymbol{\theta} = (\theta_1, \theta_2)$, the Radon-Nikodym derivative takes the vector form:
 
@@ -772,6 +766,11 @@ A derivative has payoff $\Phi(S_T) = S_T^2$ and the stock follows GBM with $\mu 
     $$
 
     The cross-variation is zero because $(W_t^1, W_t^2)$ are independent under $\mathbb{P}$ (so $\langle W^1, W^2 \rangle_t = 0$) and the added drift terms have zero quadratic variation. By Lévy's characterization theorem, two continuous martingales with unit quadratic variation and zero cross-variation are independent Brownian motions. Therefore $\widetilde{W}_t^1$ and $\widetilde{W}_t^2$ are independent under $\mathbb{Q}$.
+
+---
+
+**Exercise 7.**
+A derivative has payoff $\Phi(S_T) = S_T^2$ and the stock follows GBM with $\mu = 0.10$, $\sigma = 0.20$, $r = 0.03$, $T = 1$. Using the risk-neutral dynamics $dS_t = rS_t\,dt + \sigma S_t\,d\widetilde{W}_t$, compute $\mathbb{E}^{\mathbb{Q}}[S_T^2]$ and hence the price $V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[S_T^2]$. (Hint: find the distribution of $\ln S_T$ under $\mathbb{Q}$ and use the lognormal moment formula.)
 
 ??? success "Solution to Exercise 7"
     Under $\mathbb{Q}$, the stock follows $dS_t = rS_t\,dt + \sigma S_t\,d\widetilde{W}_t$ with $r = 0.03$, $\sigma = 0.20$, $T = 1$. By Itô's lemma:

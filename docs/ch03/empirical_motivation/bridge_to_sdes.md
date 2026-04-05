@@ -348,50 +348,6 @@ Chapter 2.
 
 **Exercise 1.** Starting from the discrete model $\log S_{n+1} - \log S_n = \mu\,\Delta t + \sigma\sqrt{\Delta t}\cdot Z_n$ with $Z_n \sim \mathcal{N}(0,1)$ i.i.d., derive the mean and variance of the log-price $\log S_N$ after $N$ steps. Show that $\operatorname{Var}(\log S_N) = \sigma^2 N\Delta t = \sigma^2 T$ where $T = N\Delta t$, confirming that variance scales linearly with total time regardless of the step size $\Delta t$.
 
----
-
-**Exercise 2.** Donsker's theorem states that the rescaled random walk $W^{(\Delta t)}(t) = \sqrt{\Delta t}\sum_{i=1}^{\lfloor t/\Delta t\rfloor} Z_i$ converges in distribution to Brownian motion. Suppose the $Z_i$ are i.i.d. with $\mathbb{E}[Z_i] = 0$, $\operatorname{Var}(Z_i) = 1$, but $Z_i$ follows a Rademacher distribution ($P(Z_i = +1) = P(Z_i = -1) = 1/2$) rather than a Gaussian. Does Donsker's theorem still apply? What is the limiting process? Explain why this universality result is important for the use of Brownian motion in finance.
-
----
-
-**Exercise 3.** For standard Brownian motion $W_t$, verify from the defining properties that:
-
-(a) $\mathbb{E}[W_t] = 0$ for all $t \geq 0$,
-
-(b) $\operatorname{Var}(W_t) = t$,
-
-(c) $\operatorname{Cov}(W_s, W_t) = \min(s, t)$ for $s, t \geq 0$.
-
-For part (c), use the decomposition $W_t = (W_t - W_s) + W_s$ and the independent-increments property.
-
----
-
-**Exercise 4.** Consider the general SDE $dX_t = \mu(X_t,t)\,dt + \sigma(X_t,t)\,dW_t$. For each of the following models, identify the drift function $\mu(x,t)$ and diffusion function $\sigma(x,t)$, and state whether the diffusion is additive or multiplicative:
-
-(a) Geometric Brownian Motion: $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$
-
-(b) Ornstein–Uhlenbeck: $dX_t = \kappa(\theta - X_t)\,dt + \sigma\,dW_t$
-
-(c) Cox–Ingersoll–Ross: $dr_t = \kappa(\theta - r_t)\,dt + \xi\sqrt{r_t}\,dW_t$
-
----
-
-**Exercise 5.** The Itô integral uses left-endpoint evaluation: $\sum_i \sigma(X_{t_i}, t_i)(W_{t_{i+1}} - W_{t_i})$. Explain why using right-endpoint evaluation $\sigma(X_{t_{i+1}}, t_{i+1})$ instead would violate the non-anticipativity requirement. What practical consequence does this have for the martingale property of the Itô integral? Specifically, show that $\mathbb{E}\!\left[\sigma(X_{t_i}, t_i)(W_{t_{i+1}} - W_{t_i}) \mid \mathcal{F}_{t_i}\right] = 0$ when $\sigma(X_{t_i}, t_i)$ is $\mathcal{F}_{t_i}$-measurable, and explain why this fails if $\sigma(X_{t_{i+1}}, t_{i+1})$ is used.
-
----
-
-**Exercise 6.** The heuristic first-order expansion of the discrete model gives
-
-$$
-S(t+\Delta t) - S(t) \approx \mu\,S(t)\,\Delta t + \sigma\,S(t)\,\sqrt{\Delta t}\cdot Z
-$$
-
-The second-order expansion includes the additional term $\frac{1}{2}\sigma^2 S(t)\,\Delta t$. Show that this extra term is $O(\Delta t)$ and therefore the same order as the drift $\mu\,S(t)\,\Delta t$. Explain why ignoring it changes the drift coefficient of the limiting SDE, and identify the resulting $-\sigma^2/2$ correction in the GBM solution $S_t = S_0\exp[(\mu - \sigma^2/2)t + \sigma W_t]$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     After $N$ steps, the log-price is:
 
@@ -421,6 +377,10 @@ The second-order expansion includes the additional term $\frac{1}{2}\sigma^2 S(t
 
     The variance depends only on the total time $T = N\Delta t$, not on the individual values of $N$ and $\Delta t$. Whether we use $N = 252$ steps of $\Delta t = 1/252$ or $N = 25200$ steps of $\Delta t = 1/25200$, the variance is $\sigma^2 T$ in both cases. This confirms that the variance of the log-price scales linearly with total time, independent of the discretisation — a necessary consistency condition for the continuous-time limit to be well-defined.
 
+---
+
+**Exercise 2.** Donsker's theorem states that the rescaled random walk $W^{(\Delta t)}(t) = \sqrt{\Delta t}\sum_{i=1}^{\lfloor t/\Delta t\rfloor} Z_i$ converges in distribution to Brownian motion. Suppose the $Z_i$ are i.i.d. with $\mathbb{E}[Z_i] = 0$, $\operatorname{Var}(Z_i) = 1$, but $Z_i$ follows a Rademacher distribution ($P(Z_i = +1) = P(Z_i = -1) = 1/2$) rather than a Gaussian. Does Donsker's theorem still apply? What is the limiting process? Explain why this universality result is important for the use of Brownian motion in finance.
+
 ??? success "Solution to Exercise 2"
     Yes, Donsker's theorem still applies. The theorem requires only that the $Z_i$ are i.i.d. with $\mathbb{E}[Z_i] = 0$ and $\operatorname{Var}(Z_i) = 1$. The Rademacher distribution satisfies both conditions:
 
@@ -435,6 +395,18 @@ The second-order expansion includes the additional term $\frac{1}{2}\sigma^2 S(t
     The limiting process is **standard Brownian motion** $W_t$, the same limit as for Gaussian increments.
 
     This universality is important for finance because it means the choice of Brownian motion as the canonical noise process does not depend on the specific distribution of individual price shocks. Real daily returns are non-Gaussian (heavy-tailed, skewed), yet the rescaled cumulative return process still converges to Brownian motion as the time step shrinks, provided the increments have finite variance. This justifies using the SDE framework $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ as a continuous-time model regardless of the precise distributional form of discrete-time returns. The only requirement is finite variance — when this fails (e.g., for stable distributions with $\alpha < 2$), the limit is no longer Brownian motion but a Levy process, requiring a different framework.
+
+---
+
+**Exercise 3.** For standard Brownian motion $W_t$, verify from the defining properties that:
+
+(a) $\mathbb{E}[W_t] = 0$ for all $t \geq 0$,
+
+(b) $\operatorname{Var}(W_t) = t$,
+
+(c) $\operatorname{Cov}(W_s, W_t) = \min(s, t)$ for $s, t \geq 0$.
+
+For part (c), use the decomposition $W_t = (W_t - W_s) + W_s$ and the independent-increments property.
 
 ??? success "Solution to Exercise 3"
     **(a)** By property 3 (Gaussian increments), $W_t = W_t - W_0 \sim \mathcal{N}(0, t - 0) = \mathcal{N}(0, t)$. Therefore:
@@ -473,6 +445,16 @@ The second-order expansion includes the additional term $\frac{1}{2}\sigma^2 S(t
 
     By symmetry ($\operatorname{Cov}(W_s, W_t) = \operatorname{Cov}(W_t, W_s)$), the result holds for $s > t$ as well, giving $\operatorname{Cov}(W_s, W_t) = \min(s, t)$ for all $s, t \geq 0$.
 
+---
+
+**Exercise 4.** Consider the general SDE $dX_t = \mu(X_t,t)\,dt + \sigma(X_t,t)\,dW_t$. For each of the following models, identify the drift function $\mu(x,t)$ and diffusion function $\sigma(x,t)$, and state whether the diffusion is additive or multiplicative:
+
+(a) Geometric Brownian Motion: $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$
+
+(b) Ornstein–Uhlenbeck: $dX_t = \kappa(\theta - X_t)\,dt + \sigma\,dW_t$
+
+(c) Cox–Ingersoll–Ross: $dr_t = \kappa(\theta - r_t)\,dt + \xi\sqrt{r_t}\,dW_t$
+
 ??? success "Solution to Exercise 4"
     **(a) Geometric Brownian Motion:** $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$
 
@@ -491,6 +473,10 @@ The second-order expansion includes the additional term $\frac{1}{2}\sigma^2 S(t
     - Drift: $\mu(x, t) = \kappa(\theta - x)$ (mean-reverting toward $\theta$, same structure as OU)
     - Diffusion: $\sigma(x, t) = \xi\sqrt{x}$
     - The diffusion is **multiplicative** because $\sigma(x,t) = \xi\sqrt{x}$ depends on the state $x$. This square-root diffusion ensures that the volatility of the interest rate decreases as $r_t$ approaches zero, which helps keep $r_t$ non-negative (under the Feller condition $2\kappa\theta \geq \xi^2$).
+
+---
+
+**Exercise 5.** The Itô integral uses left-endpoint evaluation: $\sum_i \sigma(X_{t_i}, t_i)(W_{t_{i+1}} - W_{t_i})$. Explain why using right-endpoint evaluation $\sigma(X_{t_{i+1}}, t_{i+1})$ instead would violate the non-anticipativity requirement. What practical consequence does this have for the martingale property of the Itô integral? Specifically, show that $\mathbb{E}\!\left[\sigma(X_{t_i}, t_i)(W_{t_{i+1}} - W_{t_i}) \mid \mathcal{F}_{t_i}\right] = 0$ when $\sigma(X_{t_i}, t_i)$ is $\mathcal{F}_{t_i}$-measurable, and explain why this fails if $\sigma(X_{t_{i+1}}, t_{i+1})$ is used.
 
 ??? success "Solution to Exercise 5"
     **Non-anticipativity with left-endpoint evaluation.** When the integrand is $\sigma(X_{t_i}, t_i)$, it depends only on the state at time $t_i$. The increment $W_{t_{i+1}} - W_{t_i}$ is the Brownian motion increment over the interval $(t_i, t_{i+1}]$. By the independent-increments property, $W_{t_{i+1}} - W_{t_i}$ is independent of $\mathcal{F}_{t_i}$ (the information available up to time $t_i$). Since $\sigma(X_{t_i}, t_i)$ is $\mathcal{F}_{t_i}$-measurable, the integrand is determined **before** the increment is realised — this is non-anticipativity.
@@ -516,6 +502,16 @@ The second-order expansion includes the additional term $\frac{1}{2}\sigma^2 S(t
     $$
 
     in general. The non-zero conditional expectation introduces a systematic drift, destroying the martingale property of the stochastic integral. This is the essential difference between Ito and Stratonovich integration.
+
+---
+
+**Exercise 6.** The heuristic first-order expansion of the discrete model gives
+
+$$
+S(t+\Delta t) - S(t) \approx \mu\,S(t)\,\Delta t + \sigma\,S(t)\,\sqrt{\Delta t}\cdot Z
+$$
+
+The second-order expansion includes the additional term $\frac{1}{2}\sigma^2 S(t)\,\Delta t$. Show that this extra term is $O(\Delta t)$ and therefore the same order as the drift $\mu\,S(t)\,\Delta t$. Explain why ignoring it changes the drift coefficient of the limiting SDE, and identify the resulting $-\sigma^2/2$ correction in the GBM solution $S_t = S_0\exp[(\mu - \sigma^2/2)t + \sigma W_t]$.
 
 ??? success "Solution to Exercise 6"
     Starting from the discrete multiplicative model:

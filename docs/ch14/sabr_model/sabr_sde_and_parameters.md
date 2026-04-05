@@ -258,26 +258,203 @@ The SABR model is defined by a driftless CEV forward process coupled with a logn
 
 **Exercise 1.** Write down the SABR SDE system for the special case $\beta = 0$ (normal SABR). Show that the forward $F_t$ can become negative. Compute the expected value $\mathbb{E}[F_T]$ and explain why it equals $F_0$ (the martingale property).
 
+??? success "Solution to Exercise 1"
+    For $\beta = 0$, the SABR SDE system becomes:
+
+    $$
+    dF_t = \sigma_t\,dW_t^{(1)}
+    $$
+
+    $$
+    d\sigma_t = \nu\sigma_t\,dW_t^{(2)}
+    $$
+
+    $$
+    d\langle W^{(1)}, W^{(2)}\rangle_t = \rho\,dt
+    $$
+
+    The forward follows arithmetic Brownian motion with stochastic volatility. Since the diffusion coefficient $\sigma_t$ does not depend on $F_t$, there is no mechanism preventing $F_t$ from becoming negative. Specifically, conditional on the volatility path, $F_T - F_0 = \int_0^T \sigma_s\,dW_s^{(1)}$ is a Gaussian random variable (a stochastic integral of a predictable process against Brownian motion), which takes negative values with positive probability whenever $\int_0^T \sigma_s^2\,ds > 0$.
+
+    For the expected value, since $F_t$ has **no drift**, $F_t$ is a local martingale. The stochastic integral $\int_0^t \sigma_s\,dW_s^{(1)}$ has zero expectation (it is a true martingale for integrable $\sigma$), so:
+
+    $$
+    \mathbb{E}[F_T] = F_0 + \mathbb{E}\!\left[\int_0^T \sigma_s\,dW_s^{(1)}\right] = F_0 + 0 = F_0
+    $$
+
+    This is the martingale property: the expected forward at any future time equals the current forward. It holds because the forward measure eliminates drift from the forward dynamics, and the stochastic integral has zero expectation.
+
 ---
 
 **Exercise 2.** Using the Cholesky decomposition $W_t^{(2)} = \rho\,B_t^{(1)} + \sqrt{1-\rho^2}\,B_t^{(2)}$, verify that $\text{Var}[W_t^{(2)}] = t$ and $\text{Cov}[W_t^{(1)}, W_t^{(2)}] = \rho t$. For $\rho = -0.65$, compute the fraction of the volatility shock $dW^{(2)}$ that is correlated with the forward shock $dW^{(1)}$ versus the orthogonal component.
+
+??? success "Solution to Exercise 2"
+    Using $W_t^{(2)} = \rho\,B_t^{(1)} + \sqrt{1-\rho^2}\,B_t^{(2)}$ where $B^{(1)}$ and $B^{(2)}$ are independent standard Brownian motions:
+
+    **Variance of $W_t^{(2)}$:**
+
+    $$
+    \text{Var}[W_t^{(2)}] = \text{Var}[\rho\,B_t^{(1)} + \sqrt{1-\rho^2}\,B_t^{(2)}]
+    $$
+
+    $$
+    = \rho^2\,\text{Var}[B_t^{(1)}] + (1-\rho^2)\,\text{Var}[B_t^{(2)}] + 2\rho\sqrt{1-\rho^2}\,\text{Cov}[B_t^{(1)}, B_t^{(2)}]
+    $$
+
+    Since $B^{(1)}$ and $B^{(2)}$ are independent, the covariance term vanishes, and $\text{Var}[B_t^{(i)}] = t$, giving:
+
+    $$
+    \text{Var}[W_t^{(2)}] = \rho^2 t + (1-\rho^2)t = t
+    $$
+
+    **Covariance of $W_t^{(1)}$ and $W_t^{(2)}$:**
+
+    $$
+    \text{Cov}[W_t^{(1)}, W_t^{(2)}] = \text{Cov}[B_t^{(1)}, \rho\,B_t^{(1)} + \sqrt{1-\rho^2}\,B_t^{(2)}]
+    $$
+
+    $$
+    = \rho\,\text{Var}[B_t^{(1)}] + \sqrt{1-\rho^2}\,\text{Cov}[B_t^{(1)}, B_t^{(2)}] = \rho\,t
+    $$
+
+    For $\rho = -0.65$, the volatility shock decomposes as:
+
+    $$
+    dW^{(2)} = -0.65\,dB^{(1)} + \sqrt{1 - 0.4225}\,dB^{(2)} = -0.65\,dB^{(1)} + 0.7599\,dB^{(2)}
+    $$
+
+    The fraction correlated with $dW^{(1)} = dB^{(1)}$ is $|\rho| = 0.65$, or 65% of the volatility shock variance comes from the same source as the forward shock. The orthogonal component has coefficient $\sqrt{1 - \rho^2} = 0.7599$, contributing $1 - \rho^2 = 57.75\%$ of the variance. In other words, 42.25% of the variance of $dW^{(2)}$ is explained by $dW^{(1)}$, and the remaining 57.75% is independent.
 
 ---
 
 **Exercise 3.** The volatility process $\sigma_t = \alpha\exp(-\nu^2 t/2 + \nu W_t^{(2)})$ is a geometric Brownian motion. For $\alpha = 0.03$, $\nu = 0.5$, compute the expected value, variance, and 95th percentile of $\sigma_T$ at $T = 1$ and $T = 5$. Explain why the absence of mean reversion makes the SABR model less suitable for multi-expiry calibration.
 
+??? success "Solution to Exercise 3"
+    The volatility $\sigma_t = \alpha\exp(-\nu^2 t/2 + \nu W_t^{(2)})$ is lognormally distributed since $-\nu^2 t/2 + \nu W_t^{(2)} \sim \mathcal{N}(-\nu^2 t/2, \nu^2 t)$.
+
+    With $\alpha = 0.03$ and $\nu = 0.5$:
+
+    **Expected value** (independent of $t$):
+
+    $$
+    \mathbb{E}[\sigma_t] = \alpha\,\exp\!\left(-\frac{\nu^2 t}{2} + \frac{\nu^2 t}{2}\right) = \alpha = 0.03
+    $$
+
+    **Variance:**
+
+    $$
+    \text{Var}(\sigma_t) = \alpha^2(e^{\nu^2 t} - 1)
+    $$
+
+    At $T = 1$: $\text{Var}(\sigma_1) = (0.03)^2(e^{0.25} - 1) = 9 \times 10^{-4} \times 0.2840 = 2.556 \times 10^{-4}$, so $\text{Std}(\sigma_1) = 0.01599$.
+
+    At $T = 5$: $\text{Var}(\sigma_5) = (0.03)^2(e^{1.25} - 1) = 9 \times 10^{-4} \times 2.4903 = 2.241 \times 10^{-3}$, so $\text{Std}(\sigma_5) = 0.04734$.
+
+    **95th percentile:** Since $\ln(\sigma_t/\alpha) \sim \mathcal{N}(-\nu^2 t/2, \nu^2 t)$, the 95th percentile is:
+
+    $$
+    \sigma_t^{95\%} = \alpha\exp(-\nu^2 t/2 + 1.645\nu\sqrt{t})
+    $$
+
+    At $T = 1$: $\sigma_1^{95\%} = 0.03\exp(-0.125 + 1.645 \times 0.5) = 0.03\exp(0.6975) = 0.03 \times 2.009 = 0.06026$.
+
+    At $T = 5$: $\sigma_5^{95\%} = 0.03\exp(-0.625 + 1.645 \times 1.118) = 0.03\exp(1.214) = 0.03 \times 3.367 = 0.1010$.
+
+    The 95th percentile at $T = 5$ is more than triple the initial value, illustrating how the lognormal volatility distribution spreads dramatically over time. Without mean reversion, the distribution becomes extremely diffuse at long horizons, meaning SABR parameters calibrated at one expiry will not produce realistic volatility distributions at much longer expiries. This is why per-expiry calibration is necessary and multi-expiry consistency is poor.
+
 ---
 
 **Exercise 4.** The backbone relationship is $\sigma_{\text{ATM}} \approx \alpha / F^{1-\beta}$. For $\alpha = 0.04$ and $F = 3\%$, compute $\sigma_{\text{ATM}}$ for $\beta = 0, 0.5, 1.0$. If the forward drops from 3% to 2%, recompute $\sigma_{\text{ATM}}$ for each $\beta$. Which value of $\beta$ produces the largest change in ATM vol for a given forward move?
+
+??? success "Solution to Exercise 4"
+    Using $\sigma_{\text{ATM}} \approx \alpha / F^{1-\beta}$ with $\alpha = 0.04$:
+
+    **At $F = 3\% = 0.03$:**
+
+    - $\beta = 0$: $\sigma_{\text{ATM}} = 0.04 / 0.03^1 = 1.333$ (133.3%)
+    - $\beta = 0.5$: $\sigma_{\text{ATM}} = 0.04 / 0.03^{0.5} = 0.04 / 0.1732 = 0.2309$ (23.09%)
+    - $\beta = 1.0$: $\sigma_{\text{ATM}} = 0.04 / 0.03^{0} = 0.04$ (4.0%)
+
+    **At $F = 2\% = 0.02$:**
+
+    - $\beta = 0$: $\sigma_{\text{ATM}} = 0.04 / 0.02 = 2.000$ (200.0%), change = +66.7%
+    - $\beta = 0.5$: $\sigma_{\text{ATM}} = 0.04 / 0.02^{0.5} = 0.04 / 0.1414 = 0.2828$ (28.28%), change = +5.19%
+    - $\beta = 1.0$: $\sigma_{\text{ATM}} = 0.04$ (4.0%), change = 0%
+
+    **$\beta = 0$ produces the largest change** in ATM vol for a given forward move. The backbone slope is $-(1-\beta)\alpha / F^{2-\beta}$, which is steepest when $\beta = 0$: the Black implied volatility scales as $1/F$, so any decrease in $F$ causes a dramatic increase in implied volatility. For $\beta = 1$, the backbone is flat and ATM vol does not change at all with the forward. This is why $\beta = 0$ is used for negative-rate environments: it produces the strongest negative correlation between rates and Black vol, which matches market observations.
 
 ---
 
 **Exercise 5.** Explain the moment explosion property: $\mathbb{E}[\sigma_t^n] = \alpha^n\exp(n(n-1)\nu^2 t/2)$. For $\alpha = 0.03$, $\nu = 0.5$, compute $\mathbb{E}[\sigma_1^2]$ and $\mathbb{E}[\sigma_1^4]$. At what maturity $T^*$ does the fourth moment exceed $10^6 \cdot \alpha^4$? What are the implications for Monte Carlo simulation convergence?
 
+??? success "Solution to Exercise 5"
+    The moment formula is:
+
+    $$
+    \mathbb{E}[\sigma_t^n] = \alpha^n \exp\!\left(\frac{n(n-1)}{2}\nu^2 t\right)
+    $$
+
+    This follows because $\sigma_t = \alpha\exp(-\nu^2 t/2 + \nu W_t)$ and $\sigma_t^n = \alpha^n \exp(-n\nu^2 t/2 + n\nu W_t)$. Taking the expectation and using $\mathbb{E}[\exp(\theta W_t)] = \exp(\theta^2 t/2)$:
+
+    $$
+    \mathbb{E}[\sigma_t^n] = \alpha^n \exp\!\left(-\frac{n\nu^2 t}{2} + \frac{n^2\nu^2 t}{2}\right) = \alpha^n \exp\!\left(\frac{n(n-1)}{2}\nu^2 t\right)
+    $$
+
+    With $\alpha = 0.03$, $\nu = 0.5$:
+
+    $$
+    \mathbb{E}[\sigma_1^2] = (0.03)^2 \exp\!\left(\frac{2 \times 1}{2} \times 0.25 \times 1\right) = 9 \times 10^{-4} \times e^{0.25} = 9 \times 10^{-4} \times 1.284 = 1.156 \times 10^{-3}
+    $$
+
+    $$
+    \mathbb{E}[\sigma_1^4] = (0.03)^4 \exp\!\left(\frac{4 \times 3}{2} \times 0.25 \times 1\right) = 8.1 \times 10^{-7} \times e^{1.5} = 8.1 \times 10^{-7} \times 4.482 = 3.630 \times 10^{-6}
+    $$
+
+    For the fourth moment to exceed $10^6 \cdot \alpha^4 = 10^6 \times 8.1 \times 10^{-7} = 0.81$:
+
+    $$
+    \alpha^4 \exp(6 \times 0.25 \times T^*) = 0.81
+    $$
+
+    $$
+    8.1 \times 10^{-7} \exp(1.5\,T^*) = 0.81
+    $$
+
+    $$
+    \exp(1.5\,T^*) = 10^6
+    $$
+
+    $$
+    T^* = \frac{6\ln 10}{1.5} = \frac{13.816}{1.5} = 9.21 \text{ years}
+    $$
+
+    For Monte Carlo simulation, moment explosion means that a small number of paths with very high volatility realizations dominate the sample average, causing extremely high variance in estimators and slow convergence. Variance reduction techniques (such as control variates) are essential for long-dated simulations.
+
 ---
 
 **Exercise 6.** The SABR model has four parameters but only three are typically calibrated ($\alpha, \rho, \nu$) while $\beta$ is fixed. Explain the identifiability issue: why can't $\beta$ and $\alpha$ be simultaneously determined from smile data alone? (Hint: consider how $\alpha$ and $\beta$ jointly affect the ATM implied volatility through $\sigma_{\text{ATM}} \approx \alpha/F^{1-\beta}$.)
 
+??? success "Solution to Exercise 6"
+    The ATM implied volatility is approximately $\sigma_{\text{ATM}} \approx \alpha / F^{1-\beta}$. If we change $\beta$ while simultaneously adjusting $\alpha$ to keep $\alpha / F^{1-\beta}$ fixed, the ATM implied volatility remains unchanged. Concretely, two parameter pairs $(\alpha_1, \beta_1)$ and $(\alpha_2, \beta_2)$ produce the same ATM vol whenever:
+
+    $$
+    \frac{\alpha_1}{F^{1-\beta_1}} = \frac{\alpha_2}{F^{1-\beta_2}} \quad \Longleftrightarrow \quad \alpha_2 = \alpha_1 \cdot F^{\beta_2 - \beta_1}
+    $$
+
+    The smile data alone (especially near ATM) cannot distinguish between these parameter combinations because they produce nearly identical implied volatilities near the money. The off-the-money behavior differs slightly through the correction terms in the Hagan formula, but these differences are typically within bid-ask spreads for reasonable ranges of $\beta$.
+
+    This is a classic **identifiability problem**: the likelihood surface in the $(\alpha, \beta)$ plane has a ridge along the curve $\alpha \propto F^{1-\beta}$, making the joint determination of $\alpha$ and $\beta$ ill-conditioned. The standard solution is to **fix $\beta$ by convention** (e.g., $\beta = 0.5$ for USD swaptions), which collapses the ridge to a single point and allows $\alpha$ to be uniquely determined from the ATM quote.
+
 ---
 
 **Exercise 7.** Compare the SABR and Heston models by identifying which feature of the implied volatility surface each model is better equipped to capture. Specifically, for each of the following, state which model performs better and why: (a) single-expiry smile fitting; (b) term structure of ATM volatility; (c) calibration speed; (d) handling negative rates; (e) consistency across expiries.
+
+??? success "Solution to Exercise 7"
+    **(a) Single-expiry smile fitting:** **SABR performs better.** The Hagan closed-form formula allows instant evaluation, and 3 free parameters ($\alpha, \rho, \nu$) provide sufficient flexibility to fit the smile at a single expiry. Heston requires numerical Fourier inversion (slower) and has 5 parameters that are harder to calibrate to a single expiry without overfitting or instability.
+
+    **(b) Term structure of ATM volatility:** **Heston performs better.** The mean-reversion parameter $\kappa$ in Heston drives the ATM vol toward the long-run level $\theta$, naturally producing a term structure. SABR has no mean reversion, so the ATM vol is approximately $\alpha / F^{1-\beta}$ at all maturities, requiring independent calibration per expiry.
+
+    **(c) Calibration speed:** **SABR performs better.** The Hagan formula is algebraic (microseconds per evaluation), while Heston requires numerical integration of the characteristic function (milliseconds per evaluation). For a swaption cube with thousands of smiles, SABR calibration is orders of magnitude faster.
+
+    **(d) Handling negative rates:** **SABR performs better.** With $\beta = 0$ (normal SABR), the forward follows arithmetic Brownian motion and can go negative naturally. Heston is formulated for positive asset prices (geometric Brownian motion with CIR variance) and cannot handle negative forwards without modification.
+
+    **(e) Consistency across expiries:** **Heston performs better.** Heston is a global model with a single set of parameters that applies across all expiries simultaneously. The mean reversion, long-run variance, and vol-of-vol jointly determine the smile at every maturity. SABR requires independent calibration at each expiry, creating dynamic inconsistency between expiries.

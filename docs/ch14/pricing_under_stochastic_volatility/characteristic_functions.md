@@ -309,13 +309,116 @@ def heston_cf(u, S0, V0, kappa, theta, xi, rho, r, q, tau):
 
 **Exercise 1.** The characteristic function of a standard normal random variable $Z \sim \mathcal{N}(0,1)$ is $\varphi_Z(u) = e^{-u^2/2}$. Using the moment-generating property $\mathbb{E}[Z^n] = i^{-n}\varphi_Z^{(n)}(0)$, verify that $\mathbb{E}[Z] = 0$, $\mathbb{E}[Z^2] = 1$, $\mathbb{E}[Z^3] = 0$, and $\mathbb{E}[Z^4] = 3$ by computing successive derivatives of $\varphi_Z(u)$ at $u = 0$.
 
+??? success "Solution to Exercise 1"
+    We need to compute successive derivatives of $\varphi_Z(u) = e^{-u^2/2}$ and evaluate at $u = 0$.
+
+    **First moment ($n=1$):** We compute $\varphi_Z'(u) = -u\,e^{-u^2/2}$, so
+
+    $$
+    \mathbb{E}[Z] = \frac{1}{i}\varphi_Z'(0) = \frac{1}{i}\cdot 0 = 0
+    $$
+
+    **Second moment ($n=2$):** We compute $\varphi_Z''(u) = (u^2 - 1)e^{-u^2/2}$, so $\varphi_Z''(0) = -1$ and
+
+    $$
+    \mathbb{E}[Z^2] = \frac{1}{i^2}\varphi_Z''(0) = \frac{-1}{-1} = 1
+    $$
+
+    **Third moment ($n=3$):** We compute $\varphi_Z'''(u) = (-u^3 + 3u)e^{-u^2/2}$, so $\varphi_Z'''(0) = 0$ and
+
+    $$
+    \mathbb{E}[Z^3] = \frac{1}{i^3}\varphi_Z'''(0) = 0
+    $$
+
+    **Fourth moment ($n=4$):** We compute $\varphi_Z^{(4)}(u) = (u^4 - 6u^2 + 3)e^{-u^2/2}$, so $\varphi_Z^{(4)}(0) = 3$ and
+
+    $$
+    \mathbb{E}[Z^4] = \frac{1}{i^4}\varphi_Z^{(4)}(0) = \frac{3}{1} = 3
+    $$
+
+    These match the known moments of the standard normal: mean 0, variance 1, skewness 0, and kurtosis 3.
+
 ---
 
 **Exercise 2.** Write the Black–Scholes characteristic function for $X_T = \log S_T$ with parameters $S_0 = 100$, $r = 3\%$, $q = 1\%$, $\sigma = 25\%$, and $T = 0.5$. Verify the martingale condition $\varphi(-i) = e^{(r-q)T}$ by substituting $u = -i$ into your formula.
 
+??? success "Solution to Exercise 2"
+    The Black-Scholes CF for $X_T = \log S_T$ is
+
+    $$
+    \varphi(u) = \exp\!\left(iu\!\left[\log S_0 + (r - q - \tfrac{\sigma^2}{2})T\right] - \frac{\sigma^2 u^2 T}{2}\right)
+    $$
+
+    Substituting the given parameters $S_0 = 100$, $r = 0.03$, $q = 0.01$, $\sigma = 0.25$, $T = 0.5$:
+
+    $$
+    \varphi(u) = \exp\!\left(iu\!\left[\log 100 + (0.03 - 0.01 - 0.03125)\cdot 0.5\right] - \frac{0.0625\,u^2\cdot 0.5}{2}\right)
+    $$
+
+    Simplifying: $0.03 - 0.01 - 0.03125 = -0.01125$ and $(-0.01125)(0.5) = -0.005625$, so
+
+    $$
+    \varphi(u) = \exp\!\left(iu[\log 100 - 0.005625] - 0.015625\,u^2\right)
+    $$
+
+    **Martingale check:** Substitute $u = -i$, so $iu = 1$ and $u^2 = -1$:
+
+    $$
+    \varphi(-i) = \exp\!\left(\log 100 - 0.005625 + 0.015625\right) = \exp(\log 100 + 0.01)
+    $$
+
+    Meanwhile $(r - q)T = (0.03 - 0.01)(0.5) = 0.01$, so
+
+    $$
+    e^{(r-q)T} \cdot S_0 = 100\,e^{0.01}
+    $$
+
+    Since $\varphi(-i) = \mathbb{E}[e^{X_T}] = \mathbb{E}[S_T]$ and we need $\mathbb{E}[S_T] = S_0\,e^{(r-q)T}$, we verify:
+
+    $$
+    \varphi(-i) = e^{\log 100 + 0.01} = 100\,e^{0.01} = S_0\,e^{(r-q)T}
+    $$
+
+    The martingale condition is satisfied.
+
 ---
 
 **Exercise 3.** The Heston characteristic function involves the discriminant $d = \sqrt{(\kappa - \rho\xi iu)^2 + \xi^2(iu + u^2)}$. For $\kappa = 2$, $\xi = 0.4$, $\rho = -0.7$: (a) compute $d$ at $u = 0$ and verify it equals $\kappa$; (b) compute $d$ at $u = 5$ and $u = 20$, showing that $\text{Re}(d) > 0$; (c) explain why the choice of branch for the complex square root affects the result and how the Lord-Kahl formulation addresses this.
+
+??? success "Solution to Exercise 3"
+    **(a)** At $u = 0$:
+
+    $$
+    d = \sqrt{(\kappa - \rho\xi\cdot i\cdot 0)^2 + \xi^2(i\cdot 0 + 0^2)} = \sqrt{\kappa^2} = \kappa = 2
+    $$
+
+    **(b)** At $u = 5$, with $\kappa = 2$, $\xi = 0.4$, $\rho = -0.7$:
+
+    The argument under the square root is
+
+    $$
+    (\kappa - \rho\xi\,iu)^2 + \xi^2(iu + u^2) = (2 + 0.28\cdot 5i)^2 + 0.16(5i + 25)
+    $$
+
+    $$
+    = (2 + 1.4i)^2 + 0.16(25 + 5i) = (4 - 1.96 + 5.6i) + (4 + 0.8i) = 6.04 + 6.4i
+    $$
+
+    So $d = \sqrt{6.04 + 6.4i}$. Writing $6.04 + 6.4i$ in polar form: $|z| = \sqrt{6.04^2 + 6.4^2} = \sqrt{36.48 + 40.96} = \sqrt{77.44} \approx 8.80$. The angle is $\arg(z) = \arctan(6.4/6.04) \approx 0.815$ rad. Then $d \approx \sqrt{8.80}\,e^{i\cdot 0.4075} \approx 2.967\,(\cos 0.4075 + i\sin 0.4075) \approx 2.73 + 1.18i$. Since $\text{Re}(d) \approx 2.73 > 0$, the condition is satisfied.
+
+    At $u = 20$:
+
+    $$
+    (\kappa - \rho\xi\,iu)^2 + \xi^2(iu + u^2) = (2 + 5.6i)^2 + 0.16(20i + 400)
+    $$
+
+    $$
+    = (4 - 31.36 + 22.4i) + (64 + 3.2i) = 36.64 + 25.6i
+    $$
+
+    Here $|z| = \sqrt{36.64^2 + 25.6^2} \approx \sqrt{1998.4} \approx 44.7$. The principal square root gives $\text{Re}(d) \approx \sqrt{44.7}\cos(\tfrac{1}{2}\arctan(25.6/36.64)) > 0$.
+
+    **(c)** The complex square root is a multi-valued function with two branches differing by a sign. If we choose the wrong branch (e.g., $\text{Re}(d) < 0$), the exponential $e^{d\tau}$ can grow rather than decay, causing the CF to blow up for large $\tau$. The Lord-Kahl formulation resolves this by: (i) enforcing the convention $\text{Re}(d) > 0$; and (ii) tracking the winding number of the complex logarithm $\ln(1 - ge^{-d\tau})$ along the integration path in $u$, adding $2\pi i$ corrections when discontinuities are crossed. This avoids the "little Heston trap" where the standard formulation produces discontinuous CF values.
 
 ---
 
@@ -327,9 +430,45 @@ $$
 
 For a standard normal with $\varphi(u) = e^{-u^2/2}$, evaluate $F_X(0)$ and verify it equals $1/2$. Then set $x = 1.96$ and compute the integral numerically (using, e.g., the trapezoidal rule with $\Delta u = 0.01$ and $u_{\max} = 50$) to verify that $F_X(1.96) \approx 0.975$.
 
+??? success "Solution to Exercise 4"
+    **Evaluating $F_X(0)$:** Substitute $x = 0$ and $\varphi(u) = e^{-u^2/2}$:
+
+    $$
+    F_X(0) = \frac{1}{2} - \frac{1}{\pi}\int_0^{\infty}\text{Re}\!\left[\frac{e^{-i\cdot 0\cdot u}\cdot e^{-u^2/2}}{iu}\right]du = \frac{1}{2} - \frac{1}{\pi}\int_0^{\infty}\text{Re}\!\left[\frac{e^{-u^2/2}}{iu}\right]du
+    $$
+
+    Since $\frac{1}{iu} = \frac{-i}{u}$ is purely imaginary, $\text{Re}\!\left[\frac{e^{-u^2/2}}{iu}\right] = 0$. Therefore $F_X(0) = \frac{1}{2}$, as expected for a symmetric distribution.
+
+    **Numerical evaluation at $x = 1.96$:** We compute
+
+    $$
+    F_X(1.96) = \frac{1}{2} - \frac{1}{\pi}\int_0^{50}\text{Re}\!\left[\frac{e^{-i\cdot 1.96\cdot u}\cdot e^{-u^2/2}}{iu}\right]du
+    $$
+
+    Using the trapezoidal rule with $\Delta u = 0.01$ and $u_{\max} = 50$, we discretize:
+
+    $$
+    \int_0^{50} g(u)\,du \approx \Delta u\!\left[\frac{g(0)}{2} + \sum_{n=1}^{4999} g(n\Delta u) + \frac{g(50)}{2}\right]
+    $$
+
+    Note that $g(0) = \lim_{u\to 0}\text{Re}\!\left[\frac{e^{-1.96iu}\cdot e^{-u^2/2}}{iu}\right]$. By L'Hopital's rule (or Taylor expansion), as $u \to 0$: $e^{-1.96iu} \approx 1 - 1.96iu$, so $\frac{e^{-1.96iu}}{iu} \approx \frac{1}{iu} - 1.96$. The real part of $\frac{1}{iu}$ is zero, so $g(0) = -1.96$. Applying the trapezoidal sum numerically yields
+
+    $$
+    F_X(1.96) \approx 0.975
+    $$
+
+    confirming $\Phi(1.96) \approx 0.975$, consistent with the well-known 97.5th percentile of the standard normal.
+
 ---
 
 **Exercise 5.** Analytic continuation of the characteristic function to complex arguments is essential for Fourier pricing. Explain why the Carr-Madan formula evaluates $\varphi(u - i(\alpha + 1))$ rather than $\varphi(u)$. If the critical moment for the Heston model is $n^*(T) = 3.5$, what is the maximum allowable damping parameter $\alpha$? What happens numerically if $\alpha$ is chosen too large?
+
+??? success "Solution to Exercise 5"
+    The Carr-Madan formula evaluates $\varphi(u - i(\alpha + 1))$ rather than $\varphi(u)$ because the call price $C(K)$ as a function of log-strike $k = \log K$ is not square-integrable: as $k \to -\infty$ (i.e., $K \to 0$), $C(K) \to S_0 e^{-qT}$, which does not decay. The damping factor $e^{\alpha k}$ is introduced to force the modified call $c(k) = e^{\alpha k}C(e^k)$ to be square-integrable (it vanishes as $k \to -\infty$ for $\alpha > 0$). Taking the Fourier transform of $c(k)$ and substituting the payoff integral produces $\varphi(u - i(\alpha+1))$ in the numerator, because multiplying by $e^{\alpha k}$ in the spatial domain shifts the argument by $-i\alpha$ in the frequency domain, and the call payoff itself introduces an additional shift of $-i$.
+
+    **Maximum damping parameter:** The CF evaluation $\varphi(u - i(\alpha+1))$ requires the moment $\mathbb{E}[S_T^{\alpha+1}] < \infty$. If $n^*(T) = 3.5$, then we need $\alpha + 1 < n^*(T) = 3.5$, so $\alpha < 2.5$. The maximum allowable value is $\alpha_{\max} = 2.5$ (exclusive).
+
+    **Numerical consequences of choosing $\alpha$ too large:** If $\alpha + 1 \geq n^*(T)$, the moment $\mathbb{E}[S_T^{\alpha+1}]$ does not exist. Numerically, the CF $\varphi(u - i(\alpha+1))$ will blow up for $u$ near zero (or become extremely large), producing overflow, NaN, or wildly oscillating and inaccurate prices. The integrand fails to decay, making the Fourier integral divergent.
 
 ---
 
@@ -341,6 +480,25 @@ $$
 
 For a model with critical right moment $n^* = 4$ and $T = 1$, compute the asymptotic implied volatility at log-moneyness $k = 2$ (far OTM call). Repeat for $k = -2$ (far OTM put) assuming the critical left moment is also $n^* = 4$. Compare with typical Black-Scholes implied volatilities.
 
+??? success "Solution to Exercise 6"
+    For the right wing ($k = 2$, far OTM call) with $n^* = 4$ and $T = 1$:
+
+    $$
+    \sigma_{\text{impl}}^2(2, 1) \sim \frac{2\cdot|2|}{1}\!\left(1 - \frac{1}{4}\cdot(+1)\right) = 4\cdot\frac{3}{4} = 3
+    $$
+
+    so $\sigma_{\text{impl}}(2, 1) \sim \sqrt{3} \approx 1.732$, i.e., about 173%.
+
+    For the left wing ($k = -2$, far OTM put) with critical left moment $n^* = 4$:
+
+    $$
+    \sigma_{\text{impl}}^2(-2, 1) \sim \frac{2\cdot 2}{1}\!\left(1 - \frac{1}{4}\cdot(-1)\right) = 4\cdot\frac{5}{4} = 5
+    $$
+
+    so $\sigma_{\text{impl}}(-2, 1) \sim \sqrt{5} \approx 2.236$, i.e., about 224%.
+
+    **Comparison:** Typical Black-Scholes implied volatilities for equity options are 15%--40%. These asymptotic values (173% and 224%) are extreme, but they describe the far wings at log-moneyness $|k| = 2$ (corresponding to strikes roughly $e^2 \approx 7.4$ times or $e^{-2} \approx 0.14$ times the spot). In practice, market quotes rarely extend to such extremes. The asymmetry between the wings (put wing steeper than call wing when left and right critical moments are equal) arises from the $\text{sgn}(k)$ term, reflecting that the left tail contributes differently than the right tail.
+
 ---
 
 **Exercise 7.** The Variance Gamma (VG) model has characteristic function
@@ -350,3 +508,28 @@ $$
 $$
 
 Show that the characteristic function is well-defined (the base of the power is positive) for all real $u$ when $\sigma > 0$ and $\nu > 0$. Compare the tail behavior of $|\varphi_{\text{VG}}(u)|$ as $|u| \to \infty$ with that of the Black-Scholes CF $|\varphi_{\text{BS}}(u)| = e^{-\sigma^2 u^2 T/2}$. Which decays faster, and what does this imply about the smoothness of the respective densities?
+
+??? success "Solution to Exercise 7"
+    **Well-definedness:** The base of the power is
+
+    $$
+    h(u) = 1 - iu\theta\nu + \frac{\sigma^2\nu u^2}{2}
+    $$
+
+    For real $u$, the real part is $\text{Re}[h(u)] = 1 + \frac{\sigma^2\nu u^2}{2}$ and the imaginary part is $\text{Im}[h(u)] = -u\theta\nu$. Since $\sigma > 0$ and $\nu > 0$, we have $\text{Re}[h(u)] \geq 1 > 0$ for all real $u$. A complex number with strictly positive real part is nonzero and lies in the right half-plane, so the principal value of the complex power $h(u)^{-\tau/\nu}$ is well-defined and continuous for all real $u$.
+
+    **Tail behavior:** The modulus of the VG CF for large $|u|$ satisfies
+
+    $$
+    |h(u)|^{-\tau/\nu} = \left(|h(u)|^2\right)^{-\tau/(2\nu)}
+    $$
+
+    where $|h(u)|^2 = \left(1 + \frac{\sigma^2\nu u^2}{2}\right)^2 + u^2\theta^2\nu^2 \sim \frac{\sigma^4\nu^2 u^4}{4}$ as $|u| \to \infty$. Therefore
+
+    $$
+    |\varphi_{\text{VG}}(u)| \sim C|u|^{-2\tau/\nu}
+    $$
+
+    which is polynomial decay. In contrast, $|\varphi_{\text{BS}}(u)| = e^{-\sigma^2 u^2 T/2}$ decays as a Gaussian in $u$, which is much faster.
+
+    **Implications for density smoothness:** By Fourier analysis, faster decay of the CF corresponds to greater smoothness of the density. The Gaussian decay of the BS characteristic function means the log-normal density is infinitely differentiable (in fact, analytic). The polynomial decay of the VG characteristic function means the VG density is less smooth -- it is finitely differentiable, with the number of derivatives depending on $\tau/\nu$. In particular, the VG density can have heavier tails and sharper features than the log-normal density.

@@ -335,46 +335,6 @@ $$
 
 *Hint*: Use Fubini's theorem and $\mathbb{E}[B_s^2] = s$, $\mathbb{E}[B_s^4] = 3s^2$.
 
----
-
-**Exercise 2.** Using the coin-flip approximation with $n = 10$ and the sequence $T, H, H, T, T, H, T, H, H, H$, compute the discrete Riemann sum approximation to
-
-$$
-\int_0^1 B_s \, ds
-$$
-
-Compare your answer with the theoretical mean of this integral.
-
----
-
-**Exercise 3.** Explain why the Riemann sum approximation to $\int_0^t f(s, B_s)\, ds$ converges to the same limit regardless of whether the integrand is evaluated at the left endpoint, midpoint, or right endpoint of each subinterval. Why does this property fail for stochastic integrals of the form $\int_0^t f(s, B_s)\, dB_s$?
-
----
-
-**Exercise 4.** Compute the variance of
-
-$$
-\int_0^T s^2 B_s \, ds
-$$
-
-by evaluating the double integral $\int_0^T \int_0^T s^2 t^2 \min(s,t)\, ds\, dt$.
-
----
-
-**Exercise 5.** In the short-rate model, the discount factor is $D(0,T) = \exp\!\left(-\int_0^T r_s\, ds\right)$, where $r_t = r_0 + \sigma B_t$ for constants $r_0 > 0$ and $\sigma > 0$. Show that $\int_0^T r_s\, ds$ is Gaussian and find its mean and variance.
-
----
-
-**Exercise 6.** Let $f(s) = e^{-\alpha s}$ for a constant $\alpha > 0$. Show that the integral $\int_0^T f(s) \, ds$ is deterministic and compute its value. Then consider the integral $\int_0^T f(s) B_s \, ds$ and compute its variance.
-
----
-
-**Exercise 7.** Prove that $\int_0^t B_s \, ds$ has the same distribution as $\int_0^t (t - s) \, dB_s$ by computing the mean and variance of both sides. Why does the representation $\int_0^t B_s\, ds = tB_t - \int_0^t s\, dB_s$ (integration by parts) make this plausible?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **Mean.** By Fubini's theorem and $\mathbb{E}[B_s^2] = s$:
 
@@ -405,6 +365,16 @@ by evaluating the double integral $\int_0^T \int_0^T s^2 t^2 \min(s,t)\, ds\, dt
     $$
     \operatorname{Var}\!\left(\int_0^T B_s^2\, ds\right) = \frac{T^4}{4} + \frac{T^4}{3} - \frac{T^4}{4} = \frac{T^4}{3}
     $$
+
+---
+
+**Exercise 2.** Using the coin-flip approximation with $n = 10$ and the sequence $T, H, H, T, T, H, T, H, H, H$, compute the discrete Riemann sum approximation to
+
+$$
+\int_0^1 B_s \, ds
+$$
+
+Compare your answer with the theoretical mean of this integral.
 
 ??? success "Solution to Exercise 2"
     With $n = 10$, we have $\Delta t = 1/10$ and $\Delta B_k = \pm 1/\sqrt{10}$. The coin sequence $T, H, H, T, T, H, T, H, H, H$ gives increments $-,+,+,-,-,+,-,+,+,+$ (in units of $1/\sqrt{10}$).
@@ -437,6 +407,10 @@ by evaluating the double integral $\int_0^T \int_0^T s^2 t^2 \min(s,t)\, ds\, dt
 
     The theoretical mean is $\mathbb{E}[\int_0^1 B_s\, ds] = 0$. Our single-path approximation of $-0.0316$ is close to zero, consistent with the theoretical mean.
 
+---
+
+**Exercise 3.** Explain why the Riemann sum approximation to $\int_0^t f(s, B_s)\, ds$ converges to the same limit regardless of whether the integrand is evaluated at the left endpoint, midpoint, or right endpoint of each subinterval. Why does this property fail for stochastic integrals of the form $\int_0^t f(s, B_s)\, dB_s$?
+
 ??? success "Solution to Exercise 3"
     For the time integral $\int_0^t f(s, B_s)\, ds$, the integrator is $ds$, which is deterministic and smooth (it has bounded variation). For Riemann sums:
 
@@ -447,6 +421,16 @@ by evaluating the double integral $\int_0^T \int_0^T s^2 t^2 \min(s,t)\, ds\, dt
     where $t_k^*$ is any evaluation point in $[t_k, t_{k+1}]$. Since $f(s, B_s(\omega))$ is a continuous function of $s$ for each fixed $\omega$, and the integrator $ds$ has bounded variation, the Riemann-Stieltjes theory guarantees convergence regardless of the evaluation point choice. The difference between evaluations at different points within a subinterval is bounded by the oscillation of $f$ times $\Delta t$, which vanishes as the mesh goes to zero.
 
     For the stochastic integral $\int_0^t f(s, B_s)\, dB_s$, the integrator is $B_s$, which has infinite variation. The critical difference is that Brownian increments satisfy $(\Delta B_k)^2 \approx \Delta t$, so second-order terms do not vanish. Changing the evaluation point from left to midpoint introduces an additional contribution proportional to $\frac{1}{2}\sum_k f'(\cdot)(\Delta B_k)^2 \approx \frac{1}{2}\int f'(\cdot)\, ds$, which is the Stratonovich correction. The infinite variation of $B_s$ means that the integrand's value at slightly different points within the same subinterval leads to a macroscopic difference in the limit.
+
+---
+
+**Exercise 4.** Compute the variance of
+
+$$
+\int_0^T s^2 B_s \, ds
+$$
+
+by evaluating the double integral $\int_0^T \int_0^T s^2 t^2 \min(s,t)\, ds\, dt$.
 
 ??? success "Solution to Exercise 4"
     We need to compute:
@@ -460,6 +444,10 @@ by evaluating the double integral $\int_0^T \int_0^T s^2 t^2 \min(s,t)\, ds\, dt
     $$
     2\int_0^T \int_0^t s^2 t^2 \cdot s\, ds\, dt = 2\int_0^T t^2 \int_0^t s^3\, ds\, dt = 2\int_0^T t^2 \cdot \frac{t^4}{4}\, dt = \frac{1}{2}\int_0^T t^6\, dt = \frac{T^7}{14}
     $$
+
+---
+
+**Exercise 5.** In the short-rate model, the discount factor is $D(0,T) = \exp\!\left(-\int_0^T r_s\, ds\right)$, where $r_t = r_0 + \sigma B_t$ for constants $r_0 > 0$ and $\sigma > 0$. Show that $\int_0^T r_s\, ds$ is Gaussian and find its mean and variance.
 
 ??? success "Solution to Exercise 5"
     Since $r_t = r_0 + \sigma B_t$:
@@ -489,6 +477,10 @@ by evaluating the double integral $\int_0^T \int_0^T s^2 t^2 \min(s,t)\, ds\, dt
     $$
 
     In summary, $\int_0^T r_s\, ds \sim \mathcal{N}\!\left(r_0 T,\; \frac{\sigma^2 T^3}{3}\right)$.
+
+---
+
+**Exercise 6.** Let $f(s) = e^{-\alpha s}$ for a constant $\alpha > 0$. Show that the integral $\int_0^T f(s) \, ds$ is deterministic and compute its value. Then consider the integral $\int_0^T f(s) B_s \, ds$ and compute its variance.
 
 ??? success "Solution to Exercise 6"
     **Deterministic part.** Since $f(s) = e^{-\alpha s}$ does not depend on $B_s$:
@@ -546,6 +538,10 @@ by evaluating the double integral $\int_0^T \int_0^T s^2 t^2 \min(s,t)\, ds\, dt
     $$
     = \frac{2}{\alpha^3}\left[\frac{1}{4} - e^{-\alpha T} + \frac{3}{4}e^{-2\alpha T} + \frac{\alpha T}{2}e^{-2\alpha T}\right]
     $$
+
+---
+
+**Exercise 7.** Prove that $\int_0^t B_s \, ds$ has the same distribution as $\int_0^t (t - s) \, dB_s$ by computing the mean and variance of both sides. Why does the representation $\int_0^t B_s\, ds = tB_t - \int_0^t s\, dB_s$ (integration by parts) make this plausible?
 
 ??? success "Solution to Exercise 7"
     **Mean of both sides.** The mean of $\int_0^t B_s\, ds$ is $\int_0^t \mathbb{E}[B_s]\, ds = 0$. The mean of $\int_0^t (t-s)\, dB_s$ is $0$ by the martingale property of the Ito integral.

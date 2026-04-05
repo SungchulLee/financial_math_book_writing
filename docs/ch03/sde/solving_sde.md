@@ -370,80 +370,6 @@ $$
 
 Write down the distribution of $X_t$.
 
----
-
-**Exercise 2.** Solve the geometric Brownian motion SDE
-
-$$
-dV_t = rV_t\,dt + \sigma V_t\,dW_t, \qquad V_0 = V_0
-$$
-
-by applying Itô's lemma to $Y_t = \ln V_t$. Show all steps of the transformation, including the Itô correction term.
-
----
-
-**Exercise 3.** Consider the linear SDE
-
-$$
-dX_t = (2 - 3X_t)\,dt + 4\,dW_t, \qquad X_0 = 0
-$$
-
-(a) Identify the mean-reversion speed $a$, long-term mean $\theta$, and volatility $\sigma$.
-
-(b) Solve using the integrating factor method. Write the integrating factor explicitly.
-
-(c) Compute $\mathbb{E}[X_t]$ and $\operatorname{Var}[X_t]$.
-
----
-
-**Exercise 4.** Consider the SDE with state-dependent diffusion
-
-$$
-dX_t = \mu X_t\,dt + \sigma X_t^\beta\,dW_t, \qquad \beta \neq 1
-$$
-
-(a) What is the Lamperti transform $h(x) = \int^x \frac{1}{\sigma s^\beta}\,ds$ for this SDE?
-
-(b) Apply Itô's lemma to $Y_t = h(X_t)$ and verify that the diffusion coefficient of $Y_t$ is constant.
-
----
-
-**Exercise 5.** Solve the Vasicek model
-
-$$
-dr_t = 0.5(0.04 - r_t)\,dt + 0.01\,dW_t, \qquad r_0 = 0.03
-$$
-
-(a) Write the explicit solution for $r_t$.
-
-(b) Find the stationary distribution.
-
-(c) Compute $\mathbb{E}[r_1]$ and $\operatorname{Var}[r_1]$.
-
----
-
-**Exercise 6.** Consider the SDE $dX_t = X_t^2\,dt + X_t^2\,dW_t$. Attempt to apply each of the four standard techniques (direct integration, log transform, integrating factor, Lamperti transform). Explain why none of them reduces this equation to a standard solvable form.
-
----
-
-**Exercise 7.** Verify that the solution to the time-varying linear SDE
-
-$$
-dX_t = [-a(t)X_t + b(t)]\,dt + c(t)\,dW_t
-$$
-
-is given by
-
-$$
-X_t = \Phi(t)\!\left[X_0 + \int_0^t \Phi(s)^{-1} b(s)\,ds + \int_0^t \Phi(s)^{-1} c(s)\,dW_s\right]
-$$
-
-where $\Phi(t) = \exp\!\left(-\int_0^t a(u)\,du\right)$. Apply Itô's product rule to $\Phi(t)^{-1} X_t$ to derive the result.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The SDE $dX_t = (3t^2 + 1)\,dt + e^{-t}\,dW_t$ has coefficients that depend only on time (not on $X_t$), so we solve by direct integration:
 
@@ -458,6 +384,16 @@ where $\Phi(t) = \exp\!\left(-\int_0^t a(u)\,du\right)$. Apply Itô's product ru
     $$
     X_t \sim \mathcal{N}\!\left(2 + t^3 + t,\; \frac{1 - e^{-2t}}{2}\right)
     $$
+
+---
+
+**Exercise 2.** Solve the geometric Brownian motion SDE
+
+$$
+dV_t = rV_t\,dt + \sigma V_t\,dW_t, \qquad V_0 = V_0
+$$
+
+by applying Itô's lemma to $Y_t = \ln V_t$. Show all steps of the transformation, including the Itô correction term.
 
 ??? success "Solution to Exercise 2"
     Let $Y_t = \ln V_t$. We apply Ito's lemma with $f(V) = \ln V$, so $f'(V) = 1/V$ and $f''(V) = -1/V^2$.
@@ -500,6 +436,20 @@ where $\Phi(t) = \exp\!\left(-\int_0^t a(u)\,du\right)$. Apply Itô's product ru
 
     The Ito correction term $-\sigma^2/2$ arises from the second derivative $f''(V) = -1/V^2$ combined with the quadratic variation $(dV_t)^2 = \sigma^2 V_t^2\,dt$.
 
+---
+
+**Exercise 3.** Consider the linear SDE
+
+$$
+dX_t = (2 - 3X_t)\,dt + 4\,dW_t, \qquad X_0 = 0
+$$
+
+(a) Identify the mean-reversion speed $a$, long-term mean $\theta$, and volatility $\sigma$.
+
+(b) Solve using the integrating factor method. Write the integrating factor explicitly.
+
+(c) Compute $\mathbb{E}[X_t]$ and $\operatorname{Var}[X_t]$.
+
 ??? success "Solution to Exercise 3"
     The SDE $dX_t = (2 - 3X_t)\,dt + 4\,dW_t$ is an Ornstein-Uhlenbeck process.
 
@@ -539,6 +489,18 @@ where $\Phi(t) = \exp\!\left(-\int_0^t a(u)\,du\right)$. Apply Itô's product ru
     \operatorname{Var}[X_t] = 16 \int_0^t e^{-6(t-s)}\,ds = 16 \cdot \frac{1 - e^{-6t}}{6} = \frac{8}{3}(1 - e^{-6t})
     $$
 
+---
+
+**Exercise 4.** Consider the SDE with state-dependent diffusion
+
+$$
+dX_t = \mu X_t\,dt + \sigma X_t^\beta\,dW_t, \qquad \beta \neq 1
+$$
+
+(a) What is the Lamperti transform $h(x) = \int^x \frac{1}{\sigma s^\beta}\,ds$ for this SDE?
+
+(b) Apply Itô's lemma to $Y_t = h(X_t)$ and verify that the diffusion coefficient of $Y_t$ is constant.
+
 ??? success "Solution to Exercise 4"
     **(a)** The Lamperti transform requires $h'(x) = 1/\sigma(x) = 1/(\sigma x^\beta)$. Integrating:
 
@@ -572,6 +534,20 @@ where $\Phi(t) = \exp\!\left(-\int_0^t a(u)\,du\right)$. Apply Itô's product ru
 
     which in terms of $Y_t$ becomes a (generally nonlinear) function of $Y_t$, but the diffusion is constant as required.
 
+---
+
+**Exercise 5.** Solve the Vasicek model
+
+$$
+dr_t = 0.5(0.04 - r_t)\,dt + 0.01\,dW_t, \qquad r_0 = 0.03
+$$
+
+(a) Write the explicit solution for $r_t$.
+
+(b) Find the stationary distribution.
+
+(c) Compute $\mathbb{E}[r_1]$ and $\operatorname{Var}[r_1]$.
+
 ??? success "Solution to Exercise 5"
     The Vasicek model $dr_t = 0.5(0.04 - r_t)\,dt + 0.01\,dW_t$ has $a = 0.5$, $\theta = 0.04$, $\sigma = 0.01$, $r_0 = 0.03$.
 
@@ -598,6 +574,10 @@ where $\Phi(t) = \exp\!\left(-\int_0^t a(u)\,du\right)$. Apply Itô's product ru
     $$
     \operatorname{Var}[r_1] = \frac{0.0001}{1.0}(1 - e^{-1.0}) = 0.0001 \times 0.6321 \approx 6.321 \times 10^{-5}
     $$
+
+---
+
+**Exercise 6.** Consider the SDE $dX_t = X_t^2\,dt + X_t^2\,dW_t$. Attempt to apply each of the four standard techniques (direct integration, log transform, integrating factor, Lamperti transform). Explain why none of them reduces this equation to a standard solvable form.
 
 ??? success "Solution to Exercise 6"
     We attempt each standard technique on $dX_t = X_t^2\,dt + X_t^2\,dW_t$:
@@ -627,6 +607,22 @@ where $\Phi(t) = \exp\!\left(-\int_0^t a(u)\,du\right)$. Apply Itô's product ru
     Since $X_t = -1/Y_t$, we get $dY_t = (1 + 1/Y_t)\,dt + dW_t$. The diffusion is now constant, but the drift contains the nonlinear term $1/Y_t$, which does not correspond to any standard solvable form.
 
     None of the four techniques reduces this SDE to a known explicitly solvable equation. Numerical methods or PDE approaches would be needed.
+
+---
+
+**Exercise 7.** Verify that the solution to the time-varying linear SDE
+
+$$
+dX_t = [-a(t)X_t + b(t)]\,dt + c(t)\,dW_t
+$$
+
+is given by
+
+$$
+X_t = \Phi(t)\!\left[X_0 + \int_0^t \Phi(s)^{-1} b(s)\,ds + \int_0^t \Phi(s)^{-1} c(s)\,dW_s\right]
+$$
+
+where $\Phi(t) = \exp\!\left(-\int_0^t a(u)\,du\right)$. Apply Itô's product rule to $\Phi(t)^{-1} X_t$ to derive the result.
 
 ??? success "Solution to Exercise 7"
     Define $Z_t = \Phi(t)^{-1} X_t$ where $\Phi(t)^{-1} = \exp\!\left(\int_0^t a(u)\,du\right)$.

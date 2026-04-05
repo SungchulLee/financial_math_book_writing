@@ -279,13 +279,79 @@ The state space $D = \mathbb{R}^m_+ \times \mathbb{R}^{d-m}$ partitions the stat
 
 **Exercise 1.** Consider a three-factor affine model with state space $D = \mathbb{R}^2_+ \times \mathbb{R}$. The first two components are CIR-type and the third is Gaussian. Write down the most general admissible drift vector $b(x) = b_0 + b_1 x_1 + b_2 x_2 + b_3 x_3$ specifying which entries of $b_0$ must be non-negative according to condition (A1).
 
+??? success "Solution to Exercise 1"
+    The state space is $D = \mathbb{R}^2_+ \times \mathbb{R}$, so $m = 2$ and $d = 3$. The CIR-type components are $x_1$ and $x_2$ (both non-negative), and $x_3$ is Gaussian.
+
+    The drift vector has the general form $b(x) = b_0 + b_1 x_1 + b_2 x_2 + b_3 x_3$, where $b_0, b_1, b_2, b_3 \in \mathbb{R}^3$.
+
+    Condition **(A1)** requires that for each CIR-type component $i \in \{1, 2\}$, we have $(b_0)_i \geq 0$. This ensures that the drift pushes the process away from the boundary when $x_i = 0$. Specifically:
+
+    - $(b_0)_1 \geq 0$: the constant part of the drift in the first component must be non-negative
+    - $(b_0)_2 \geq 0$: the constant part of the drift in the second component must be non-negative
+
+    There is **no sign restriction** on $(b_0)_3$, since $x_3$ lives on all of $\mathbb{R}$ and has no boundary to protect.
+
+    For example, in a concrete three-factor model where $x_1$ and $x_2$ are independent CIR processes with parameters $(\kappa_i, \theta_i, \xi_i)$ and $x_3$ is an OU process with parameter $(\kappa_3, \theta_3, \sigma_3)$:
+
+    $$
+    b_0 = \begin{pmatrix} \kappa_1\theta_1 \\ \kappa_2\theta_2 \\ \kappa_3\theta_3 \end{pmatrix}
+    $$
+
+    Here $(b_0)_1 = \kappa_1\theta_1 \geq 0$ and $(b_0)_2 = \kappa_2\theta_2 \geq 0$ since $\kappa_i > 0$ and $\theta_i > 0$, while $(b_0)_3 = \kappa_3\theta_3$ can be any real number.
+
 ---
 
 **Exercise 2.** For the Heston model on $D = \mathbb{R}_+ \times \mathbb{R}$ (variance $V_t$ and log-price $\log S_t$), write down the diffusion matrix $a(x) = a_0 + a_1 x_1$ explicitly. Verify that condition (A2) is satisfied: the $(1,1)$ entry of $a_0$ is zero and the only nonzero contribution to the $(1,1)$ entry comes from $a_1$.
 
+??? success "Solution to Exercise 2"
+    In the Heston model, $V_t$ is CIR-type ($x_1 = V_t \in \mathbb{R}_+$) and $\log S_t$ is Gaussian-type ($x_2 = \log S_t \in \mathbb{R}$). The dynamics are:
+
+    $$
+    dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{(1)}
+    $$
+
+    $$
+    d\log S_t = \left(\mu - \frac{1}{2}V_t\right)dt + \sqrt{V_t}\left(\rho\,dW_t^{(1)} + \sqrt{1-\rho^2}\,dW_t^{(2)}\right)
+    $$
+
+    The instantaneous covariance matrix of $(dV_t, d\log S_t)$ is:
+
+    $$
+    a(x) = V_t \begin{pmatrix} \xi^2 & \rho\xi \\ \rho\xi & 1 \end{pmatrix}
+    $$
+
+    In the affine decomposition $a(x) = a_0 + a_1 x_1$:
+
+    $$
+    a_0 = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}, \qquad a_1 = \begin{pmatrix} \xi^2 & \rho\xi \\ \rho\xi & 1 \end{pmatrix}
+    $$
+
+    **Checking (A2)**: The $(1,1)$ entry of $a_0$ is $(a_0)_{11} = 0$, as required. The only nonzero contribution to the $(1,1)$ entry of $a(x)$ comes from $a_1$ through the term $(a_1)_{11} \cdot x_1 = \xi^2 V_t$, which vanishes when $V_t = 0$. Condition (A2) is satisfied.
+
+    Note that $a_1$ is positive semidefinite since its determinant is $\xi^2 \cdot 1 - (\rho\xi)^2 = \xi^2(1 - \rho^2) \geq 0$ for $|\rho| \leq 1$.
+
 ---
 
 **Exercise 3.** Let $(X_t)_{t \geq 0}$ be a compound Poisson process with jump intensity $\lambda$ and jump sizes distributed as $Z \sim \text{Exp}(1)$ on $\mathbb{R}_+$. Show that $X_t$ is stochastically continuous by computing $\mathbb{P}(\|X_t - X_0\| > \varepsilon)$ and verifying it tends to zero as $t \to 0$. Is this process path-continuous?
+
+??? success "Solution to Exercise 3"
+    Let $X_t$ be a compound Poisson process with intensity $\lambda$ and $\text{Exp}(1)$ jump sizes, starting at $X_0 = 0$. Then $X_t = \sum_{k=1}^{N_t} Z_k$ where $N_t \sim \text{Poisson}(\lambda t)$ and $Z_k \sim \text{Exp}(1)$ are i.i.d.
+
+    For $\varepsilon > 0$:
+
+    $$
+    \mathbb{P}(\|X_t - X_0\| > \varepsilon) = \mathbb{P}(X_t > \varepsilon) \leq \mathbb{P}(N_t \geq 1) = 1 - e^{-\lambda t}
+    $$
+
+    As $t \to 0$:
+
+    $$
+    1 - e^{-\lambda t} \to 0
+    $$
+
+    Therefore $\mathbb{P}(\|X_t - X_0\| > \varepsilon) \to 0$ as $t \to 0$, confirming stochastic continuity.
+
+    **Path continuity**: The process is **not** path-continuous. The sample paths of a compound Poisson process are piecewise constant with finitely many jumps on any bounded interval. At each jump time, the path has a discontinuity of random size $Z_k > 0$. This illustrates that stochastic continuity (a property of transition probabilities) is strictly weaker than path continuity (a property of sample paths).
 
 ---
 
@@ -297,14 +363,122 @@ $$
 
 that the initial conditions $\phi(0, u) = 0$ and $\psi(0, u) = u$ are the only ones consistent with the semigroup property $P_0 = \text{Id}$.
 
+??? success "Solution to Exercise 4"
+    Setting $s = 0$ in the semiflow equations:
+
+    $$
+    \psi(t + 0, u) = \psi(t, \psi(0, u)) \implies \psi(t, u) = \psi(t, \psi(0, u))
+    $$
+
+    This requires $\psi(0, u) = u$ for all $u$, since $\psi(t, \cdot)$ must act as the identity when composed with $\psi(0, \cdot)$.
+
+    Similarly, setting $s = 0$ in the $\phi$ equation:
+
+    $$
+    \phi(t + 0, u) = \phi(t, \psi(0, u)) + \phi(0, u) \implies \phi(t, u) = \phi(t, u) + \phi(0, u)
+    $$
+
+    This forces $\phi(0, u) = 0$ for all $u$.
+
+    Now setting $t = 0$:
+
+    $$
+    \psi(0 + s, u) = \psi(0, \psi(s, u)) = \psi(s, u)
+    $$
+
+    This is automatically satisfied by $\psi(0, u) = u$. And:
+
+    $$
+    \phi(0 + s, u) = \phi(0, \psi(s, u)) + \phi(s, u) = 0 + \phi(s, u) = \phi(s, u)
+    $$
+
+    This is also automatically satisfied. The semigroup property $P_0 = \text{Id}$ means $P_0 f(x) = f(x)$ for all $f$, and applied to $f(x) = e^{\langle u, x \rangle}$:
+
+    $$
+    e^{\phi(0, u) + \langle \psi(0, u), x \rangle} = e^{\langle u, x \rangle}
+    $$
+
+    Matching terms: $\phi(0, u) = 0$ and $\psi(0, u) = u$. These are the unique initial conditions consistent with $P_0 = \text{Id}$.
+
 ---
 
 **Exercise 5.** Consider a candidate affine process on $D = \mathbb{R}_+$ with drift $b(x) = -\alpha$ (constant, $\alpha > 0$) and diffusion $a(x) = \sigma^2 x$. Does this specification satisfy the admissibility conditions? If not, identify which condition fails and explain the financial consequence (what happens to the process at the boundary $x = 0$?).
+
+??? success "Solution to Exercise 5"
+    The candidate has $b(x) = b_0 + b_1 x$ with $b_0 = -\alpha < 0$ and diffusion $a(x) = \sigma^2 x$.
+
+    **Condition (A1)** requires $(b_0)_1 \geq 0$ for the CIR-type component on $\mathbb{R}_+$. Here $(b_0)_1 = -\alpha < 0$, so **(A1) fails**.
+
+    **Financial consequence**: When $x = 0$ (the boundary), the drift is $b(0) = -\alpha < 0$, pushing the process in the negative direction. Since the diffusion $a(0) = 0$ vanishes at the boundary, there is no stochastic fluctuation to counteract the negative drift. The process is deterministically pushed below zero, exiting the state space $\mathbb{R}_+$.
+
+    In financial terms, if $x$ represents a variance or interest rate that must be non-negative, this specification allows the variable to become negative, which is economically meaningless. A well-posed CIR-type model requires $b_0 = \kappa\theta \geq 0$ (positive mean-reversion level times speed), ensuring that the drift is non-negative at the origin.
 
 ---
 
 **Exercise 6.** For the two-factor CIR model on $D = \mathbb{R}^2_+$ with independent components $dX_t^{(i)} = \kappa_i(\theta_i - X_t^{(i)})\,dt + \xi_i\sqrt{X_t^{(i)}}\,dW_t^{(i)}$, write down the $2 \times 2$ diffusion matrix $a(x) = a_0 + a_1 x_1 + a_2 x_2$ and verify all four admissibility conditions. Under what parameter constraints does the Feller condition $2\kappa_i\theta_i \geq \xi_i^2$ hold for each component?
 
+??? success "Solution to Exercise 6"
+    With independent CIR components, the diffusion matrix is diagonal. Since $(dV^{(1)}, dV^{(2)})$ have volatilities $\xi_1\sqrt{x_1}$ and $\xi_2\sqrt{x_2}$ respectively:
+
+    $$
+    a(x) = a_0 + a_1 x_1 + a_2 x_2
+    $$
+
+    where:
+
+    $$
+    a_0 = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}, \qquad a_1 = \begin{pmatrix} \xi_1^2 & 0 \\ 0 & 0 \end{pmatrix}, \qquad a_2 = \begin{pmatrix} 0 & 0 \\ 0 & \xi_2^2 \end{pmatrix}
+    $$
+
+    **Checking admissibility**:
+
+    **(A1)**: The drift is $b(x) = b_0 + b_1 x_1 + b_2 x_2$ with $b_0 = (\kappa_1\theta_1, \kappa_2\theta_2)^T$. Since $\kappa_i > 0$ and $\theta_i > 0$, both $(b_0)_1 = \kappa_1\theta_1 \geq 0$ and $(b_0)_2 = \kappa_2\theta_2 \geq 0$. Satisfied.
+
+    **(A2)**: $(a_0)_{11} = 0$ and $(a_0)_{22} = 0$. For $i = 1$: $(a_2)_{11} = 0$, so the only contribution to $(a(x))_{11}$ is $(a_1)_{11} x_1 = \xi_1^2 x_1$. For $i = 2$: $(a_1)_{22} = 0$, so the only contribution to $(a(x))_{22}$ is $(a_2)_{22} x_2 = \xi_2^2 x_2$. Satisfied.
+
+    **(A3)**: No jumps, so trivially satisfied.
+
+    **(A4)**: No jumps, so trivially satisfied.
+
+    **Feller condition**: The standard Feller condition for the $i$-th CIR component is:
+
+    $$
+    2\kappa_i\theta_i \geq \xi_i^2
+    $$
+
+    When this holds, the origin $x_i = 0$ is unattainable, meaning the process never reaches zero. If $2\kappa_i\theta_i < \xi_i^2$, the process can touch zero but is instantaneously reflected back. Both conditions require $\kappa_i > 0$, $\theta_i > 0$, and $\xi_i > 0$, with the Feller condition being the additional quantitative constraint on the relative strength of mean reversion versus volatility.
+
 ---
 
 **Exercise 7.** The regularity theorem states that $F(u) = \langle b_0, u \rangle + \frac{1}{2}\langle u, a_0 u \rangle + \int_{D \setminus \{0\}} (e^{\langle u, z \rangle} - 1)\,m_0(dz)$. For a one-dimensional affine process on $\mathbb{R}_+$ with no diffusion ($a_0 = a_1 = 0$) but with a Poisson jump component $m_0(dz) = \lambda \cdot \mu e^{-\mu z}\,dz$ (exponential jumps), compute $F(u)$ explicitly and determine the domain of $u$ for which $F(u)$ is well-defined.
+
+??? success "Solution to Exercise 7"
+    With $a_0 = 0$ (no diffusion from the constant part), the formula reduces to:
+
+    $$
+    F(u) = b_0 \cdot u + \int_0^{\infty} (e^{uz} - 1)\,\lambda\mu e^{-\mu z}\,dz
+    $$
+
+    Computing the integral:
+
+    $$
+    \int_0^{\infty} (e^{uz} - 1)\lambda\mu e^{-\mu z}\,dz = \lambda\mu\left[\int_0^{\infty} e^{(u-\mu)z}\,dz - \int_0^{\infty} e^{-\mu z}\,dz\right]
+    $$
+
+    The first integral converges if and only if $\operatorname{Re}(u - \mu) < 0$, i.e., $\operatorname{Re}(u) < \mu$. In that case:
+
+    $$
+    \int_0^{\infty} e^{(u-\mu)z}\,dz = \frac{1}{\mu - u}
+    $$
+
+    The second integral gives $\frac{1}{\mu}$. Therefore:
+
+    $$
+    F(u) = b_0 u + \lambda\mu\left(\frac{1}{\mu - u} - \frac{1}{\mu}\right) = b_0 u + \lambda\mu \cdot \frac{u}{\mu(\mu - u)}
+    $$
+
+    $$
+    = b_0 u + \frac{\lambda u}{\mu - u}
+    $$
+
+    **Domain**: $F(u)$ is well-defined for $\operatorname{Re}(u) < \mu$. For real $u$, this means $u < \mu$. At $u = \mu$, the integral diverges because the exponential damping from $e^{-\mu z}$ is exactly canceled by $e^{uz}$. For the characteristic function ($u = iv$, $v \in \mathbb{R}$), we have $\operatorname{Re}(iv) = 0 < \mu$, so $F$ is always well-defined on the imaginary axis.

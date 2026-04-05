@@ -1,5 +1,7 @@
 # Martingales and No-Arbitrage
 
+In the [unifying framework](unifying_principle_controlling_local_martingales.md) of this section, no-arbitrage is the **requirement that demands control** — it is the economic reason we must upgrade local martingales to true martingales.
+
 This section develops the deep connection between **no-arbitrage** and **martingale pricing**. The central insight of modern asset pricing theory is that absence of arbitrage is equivalent to the existence of a probability measure under which discounted prices are martingales.
 
 !!! info "Prerequisites"
@@ -153,13 +155,13 @@ For $\mu > r$, the discounted price drifts upward on average. This creates **exp
 
 Expected profit is not the same as arbitrage (which requires riskless profit). However, drift enables arbitrage through limiting arguments:
 
-**Intuition**: Consider a strategy that takes a small position when the drift is favorable and scales it up. In continuous time, one can construct sequences of such strategies where:
+**Heuristic argument** (full proof via Delbaen-Schachermayer FTAP): Consider a strategy that takes a small position when the drift is favorable and scales it up. In continuous time, one can construct sequences of such strategies where:
 
 - The expected gain remains positive
 - The variance of the gain shrinks to zero
 - The probability of loss vanishes
 
-This is precisely what NFLVR rules out.
+This is precisely what NFLVR rules out. The rigorous statement is given by the Fundamental Theorem of Asset Pricing (Delbaen and Schachermayer, 1994), which establishes that NFLVR holds if and only if there exists an equivalent local martingale measure.
 
 ### The Key Insight
 
@@ -484,8 +486,7 @@ $$
 
 ## Exercises
 
-### Exercise 1: Self-Financing Condition
-
+**Exercise 1.**
 Let $V_t = \phi_t S_t + \psi_t B_t$ be a portfolio value.
 
 (a) Apply the product rule to $d(\phi_t S_t)$ and $d(\psi_t B_t)$, then use the self-financing condition $dV_t = \phi_t\,dS_t + \psi_t\,dB_t$ to show:
@@ -495,44 +496,6 @@ S_t\,d\phi_t + B_t\,d\psi_t = 0
 $$
 
 (b) Interpret this condition economically: what does it say about rebalancing the portfolio?
-
-### Exercise 2: Discounted Gains Process
-
-Show that for a self-financing strategy, the discounted portfolio value satisfies:
-
-$$
-\tilde{V}_t = \tilde{V}_0 + \int_0^t \phi_s\,d\tilde{S}_s
-$$
-
-*Hint*: Use Itô's product rule on $\tilde{V}_t = V_t/B_t = V_t \cdot B_t^{-1}$.
-
-### Exercise 3: Supermartingale Argument
-
-Let $G_t$ be a local martingale with $G_t \geq -M$ for some $M > 0$.
-
-(a) Define $H_t = G_t + M$. Show that $H_t$ is a non-negative local martingale.
-
-(b) Use the fact that non-negative local martingales are supermartingales to conclude $\mathbb{E}[H_T] \leq H_0$.
-
-(c) Deduce that $\mathbb{E}[G_T] \leq G_0$.
-
-(d) If additionally $G_T \geq 0$ a.s. and $G_0 = 0$, show that $G_T = 0$ a.s.
-
-### Exercise 4: Market Price of Risk
-
-In the Black–Scholes model with $\mu = 0.10$, $r = 0.02$, $\sigma = 0.20$:
-
-(a) Compute the market price of risk $\theta$.
-
-(b) Write down the Radon–Nikodym derivative $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T}$ for $T = 1$.
-
-(c) Verify Novikov's condition is satisfied.
-
-(d) Under $\mathbb{Q}$, what is the drift of $S_t$?
-
----
-
-## Solutions
 
 ??? success "Solution to Exercise 1"
     **(a)** By the product rule:
@@ -558,6 +521,17 @@ In the Black–Scholes model with $\mu = 0.10$, $r = 0.02$, $\sigma = 0.20$:
     $$
 
     **(b)** This says that any rebalancing of the portfolio must be self-funding: if you buy more stock (increasing $\phi_t$), you must finance it by selling bonds (decreasing $\psi_t$), and vice versa. The total cost of rebalancing at current prices is zero — no external cash is injected or withdrawn.
+
+---
+
+**Exercise 2.**
+Show that for a self-financing strategy, the discounted portfolio value satisfies:
+
+$$
+\tilde{V}_t = \tilde{V}_0 + \int_0^t \phi_s\,d\tilde{S}_s
+$$
+
+*Hint*: Use Itô's product rule on $\tilde{V}_t = V_t/B_t = V_t \cdot B_t^{-1}$.
 
 ??? success "Solution to Exercise 2"
     Define $\tilde{V}_t = V_t / B_t = V_t \cdot B_t^{-1}$. By Itô's product rule:
@@ -598,6 +572,19 @@ In the Black–Scholes model with $\mu = 0.10$, $r = 0.02$, $\sigma = 0.20$:
     \tilde{V}_t = \tilde{V}_0 + \int_0^t \phi_s\,d\tilde{S}_s
     $$
 
+---
+
+**Exercise 3.**
+Let $G_t$ be a local martingale with $G_t \geq -M$ for some $M > 0$.
+
+(a) Define $H_t = G_t + M$. Show that $H_t$ is a non-negative local martingale.
+
+(b) Use the fact that non-negative local martingales are supermartingales to conclude $\mathbb{E}[H_T] \leq H_0$.
+
+(c) Deduce that $\mathbb{E}[G_T] \leq G_0$.
+
+(d) If additionally $G_T \geq 0$ a.s. and $G_0 = 0$, show that $G_T = 0$ a.s.
+
 ??? success "Solution to Exercise 3"
     **(a)** Since $G_t \geq -M$, we have $H_t = G_t + M \geq 0$. Since $G_t$ is a local martingale with localizing sequence $\{\tau_n\}$, the stopped process $G_{t \wedge \tau_n}$ is a martingale. Then $H_{t \wedge \tau_n} = G_{t \wedge \tau_n} + M$ is also a martingale (adding a constant preserves the martingale property). Hence $H_t$ is a non-negative local martingale.
 
@@ -616,6 +603,19 @@ In the Black–Scholes model with $\mu = 0.10$, $r = 0.02$, $\sigma = 0.20$:
     $$
 
     **(d)** If $G_T \geq 0$ a.s. and $G_0 = 0$, then from part (c): $\mathbb{E}[G_T] \leq 0$. But $G_T \geq 0$ a.s. implies $\mathbb{E}[G_T] \geq 0$. Together: $\mathbb{E}[G_T] = 0$. Since $G_T \geq 0$ a.s. and has zero expectation, we conclude $G_T = 0$ almost surely.
+
+---
+
+**Exercise 4.**
+In the Black–Scholes model with $\mu = 0.10$, $r = 0.02$, $\sigma = 0.20$:
+
+(a) Compute the market price of risk $\theta$.
+
+(b) Write down the Radon–Nikodym derivative $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T}$ for $T = 1$.
+
+(c) Verify Novikov's condition is satisfied.
+
+(d) Under $\mathbb{Q}$, what is the drift of $S_t$?
 
 ??? success "Solution to Exercise 4"
     **(a)** The market price of risk is:
@@ -645,3 +645,101 @@ In the Black–Scholes model with $\mu = 0.10$, $r = 0.02$, $\sigma = 0.20$:
     $$
 
     The physical drift $\mu = 0.10$ has been replaced by the risk-free rate $r = 0.02$.
+
+---
+
+**Exercise 5.**
+A discrete-time market has two periods and a stock that can go up by factor $u = 1.3$ or down by factor $d = 0.8$ each period. The risk-free rate per period is $R = 0.05$.
+
+(a) Compute the risk-neutral probability $q = (1 + R - d)/(u - d)$.
+
+(b) The stock starts at $S_0 = 100$. Compute the discounted stock price $\tilde{S}_t = S_t / (1+R)^t$ at all nodes of the tree.
+
+(c) Verify that $\tilde{S}_t$ is a martingale under $\mathbb{Q}$: check $\mathbb{E}^{\mathbb{Q}}[\tilde{S}_1 \mid S_0] = \tilde{S}_0$ and $\mathbb{E}^{\mathbb{Q}}[\tilde{S}_2 \mid S_1] = \tilde{S}_1$ at each node.
+
+??? success "Solution to Exercise 5"
+    **(a)** The risk-neutral probability is
+
+    $$
+    q = \frac{1 + R - d}{u - d} = \frac{1.05 - 0.8}{1.3 - 0.8} = \frac{0.25}{0.50} = 0.5
+    $$
+
+    **(b)** The stock prices at each node are:
+
+    - $t = 0$: $S_0 = 100$, so $\tilde{S}_0 = 100$.
+    - $t = 1$: $S_1^u = 130$, $\tilde{S}_1^u = 130 / 1.05 \approx 123.81$. $S_1^d = 80$, $\tilde{S}_1^d = 80 / 1.05 \approx 76.19$.
+    - $t = 2$: $S_2^{uu} = 169$, $\tilde{S}_2^{uu} = 169 / 1.05^2 \approx 153.29$. $S_2^{ud} = 104$, $\tilde{S}_2^{ud} = 104 / 1.1025 \approx 94.33$. $S_2^{dd} = 64$, $\tilde{S}_2^{dd} = 64 / 1.1025 \approx 58.05$.
+
+    **(c)** At $t = 0$:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\tilde{S}_1] = q \cdot \tilde{S}_1^u + (1-q) \cdot \tilde{S}_1^d = 0.5 \times \frac{130}{1.05} + 0.5 \times \frac{80}{1.05} = \frac{0.5 \times 210}{1.05} = \frac{105}{1.05} = 100 = \tilde{S}_0 \;\checkmark
+    $$
+
+    At $t = 1$, node $u$:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\tilde{S}_2 \mid S_1 = 130] = 0.5 \times \frac{169}{1.1025} + 0.5 \times \frac{104}{1.1025} = \frac{0.5 \times 273}{1.1025} = \frac{136.5}{1.1025} = \frac{130}{1.05} = \tilde{S}_1^u \;\checkmark
+    $$
+
+    At $t = 1$, node $d$:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[\tilde{S}_2 \mid S_1 = 80] = 0.5 \times \frac{104}{1.1025} + 0.5 \times \frac{64}{1.1025} = \frac{0.5 \times 168}{1.1025} = \frac{84}{1.1025} = \frac{80}{1.05} = \tilde{S}_1^d \;\checkmark
+    $$
+
+    The discounted stock price is a $\mathbb{Q}$-martingale at every node.
+
+---
+
+**Exercise 6.**
+Consider a market with one traded stock driven by two independent Brownian motions:
+
+$$
+dS_t = \mu S_t\,dt + \sigma_1 S_t\,dW_t^1 + \sigma_2 S_t\,dW_t^2
+$$
+
+with risk-free rate $r$.
+
+(a) Write the risk premium equation $\mu - r = \sigma_1\theta_1 + \sigma_2\theta_2$ and explain why it defines a line in $(\theta_1, \theta_2)$ space.
+
+(b) Is this market complete or incomplete? Justify by counting assets and sources of risk.
+
+(c) Pick two specific points on the line from (a) and explain why they define two different equivalent martingale measures, each producing a different price for a claim $\Phi(W_T^2)$ that depends only on the second Brownian motion.
+
+??? success "Solution to Exercise 6"
+    **(a)** Under $\mathbb{Q}^{\boldsymbol{\theta}}$, the discounted stock must have zero drift. The Girsanov shift $W_t^{i,\mathbb{Q}} = W_t^{i,\mathbb{P}} + \theta_i t$ removes the drift when
+
+    $$
+    \mu - r = \sigma_1\theta_1 + \sigma_2\theta_2
+    $$
+
+    This is one linear equation in two unknowns $(\theta_1, \theta_2)$, so the solution set is a line in $\mathbb{R}^2$ (an affine subspace of dimension 1).
+
+    **(b)** The market is **incomplete**: there is one traded risky asset but two independent sources of randomness ($d = 2 > n = 1$). The volatility matrix $\Sigma = (\sigma_1, \sigma_2)$ is $1 \times 2$ with rank 1, so the system $\mu - r = \Sigma\boldsymbol{\theta}$ is underdetermined. By the Second Fundamental Theorem, the equivalent martingale measure is not unique, confirming incompleteness.
+
+    **(c)** Choose $\theta_1 = 0$, giving $\theta_2 = (\mu - r)/\sigma_2$. Alternatively, choose $\theta_2 = 0$, giving $\theta_1 = (\mu - r)/\sigma_1$. Both satisfy the risk premium equation, so both define valid ELMMs.
+
+    For a claim $\Phi(W_T^2)$: under the first measure ($\theta_1 = 0$, $\theta_2 = (\mu-r)/\sigma_2$), the risk-neutral $W^{2,\mathbb{Q}}$ has a nontrivial Girsanov shift, so $W_T^{2,\mathbb{P}} = W_T^{2,\mathbb{Q}} - \theta_2 T$ and the price depends on $\theta_2$. Under the second measure ($\theta_1 = (\mu-r)/\sigma_1$, $\theta_2 = 0$), the second Brownian motion is unchanged: $W^{2,\mathbb{Q}} = W^{2,\mathbb{P}}$, and the claim is priced using the original distribution of $W_T^2$.
+
+    These two prices differ because $\Phi(W_T^2)$ has exposure to the non-traded factor $W^2$, and each ELMM reweights this factor differently. This is the pricing ambiguity inherent in incomplete markets.
+
+---
+
+**Exercise 7.**
+Explain why the admissibility condition $G_t(\phi) \geq -M$ is necessary to rule out arbitrage. Consider the following "doubling strategy" in discrete time: at each step $k$, bet $2^k$ on a fair coin flip. If you win, stop. If you lose, double the bet.
+
+(a) Show that this strategy has zero initial cost, always eventually wins, and produces a guaranteed profit of 1 unit.
+
+(b) Explain why the gains process $G_t$ of this strategy is unbounded below.
+
+(c) Relate this to the admissibility requirement in continuous time: why does the supermartingale argument from the text fail without a lower bound on $G_t$?
+
+??? success "Solution to Exercise 7"
+    **(a)** At step $k$, the bet is $2^k$ on a fair coin. If the first win occurs at step $n$, the cumulative losses from steps $0, \ldots, n-1$ are $1 + 2 + \cdots + 2^{n-1} = 2^n - 1$. The win at step $n$ pays $2^n$. Net profit: $2^n - (2^n - 1) = 1$. Since the coin is fair and independent, the probability of never winning is $\lim_{n \to \infty} (1/2)^n = 0$. The strategy eventually wins with probability 1, costing nothing to enter and guaranteeing a profit of 1. This is an apparent arbitrage.
+
+    **(b)** Before winning, the cumulative loss after $n$ steps is $-(2^n - 1)$. This is unbounded: $G_n \leq -(2^n - 1) \to -\infty$ as $n \to \infty$. There is no finite $M$ such that $G_t \geq -M$ for all $t$. The strategy requires the ability to borrow arbitrary amounts.
+
+    **(c)** The supermartingale argument in the text proceeds as follows: if $G_t \geq -M$, then $H_t = G_t + M \geq 0$ is a non-negative local martingale, hence a supermartingale, and $\mathbb{E}[G_T] \leq 0$. This rules out $G_T \geq 0$ with $\mathbb{P}(G_T > 0) > 0$.
+
+    Without admissibility, we cannot form the non-negative process $H_t$. The gains process $G_t$ is a local martingale (under the fair-coin measure), but since it is not bounded below, it is not a supermartingale: $\mathbb{E}[G_T]$ may not be $\leq 0$, and in fact the strategy achieves $G_T = 1$ a.s. The supermartingale inequality fails precisely because the unbounded losses allow probability mass to leak through the negative tail, circumventing the no-arbitrage conclusion. Admissibility is therefore not a technical nicety but an economic necessity: it restricts attention to strategies with bounded credit exposure.

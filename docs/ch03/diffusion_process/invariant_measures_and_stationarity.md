@@ -166,52 +166,6 @@ where the first equality uses $\frac{\mathrm{d}}{\mathrm{d}t}P_t f = \mathcal{L}
 
 **Exercise 1.** Consider the one-dimensional Ornstein–Uhlenbeck process $\mathrm{d}X_t = -\theta X_t\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ with $\theta > 0$. Using the stationary Fokker–Planck equation $\mathcal{L}^*\pi = 0$, show that the invariant density is Gaussian with mean $0$ and variance $\sigma^2/(2\theta)$.
 
----
-
-**Exercise 2.** Let $V(x) = \frac{1}{4}x^4 - \frac{1}{2}x^2$ (a double-well potential) on $\mathbb{R}$. Consider the gradient diffusion $\mathrm{d}X_t = -V'(X_t)\,\mathrm{d}t + \sqrt{2}\,\mathrm{d}W_t$. Write down the invariant density $\pi(x)$ (up to a normalising constant). Sketch $\pi(x)$ and identify the locations of its maxima. Is this process reversible?
-
----
-
-**Exercise 3.** Construct a Lyapunov function $V(x) = 1 + |x|^2$ for the diffusion $\mathrm{d}X_t = -X_t\,\mathrm{d}t + \mathrm{d}W_t$ in $\mathbb{R}^d$. Verify the Foster–Lyapunov criterion $\mathcal{L}V(x) \le -\alpha V(x) + K\,\mathbf{1}_C(x)$ by computing $\mathcal{L}V$, and find explicit constants $\alpha > 0$, $K < \infty$, and a compact set $C$.
-
----
-
-**Exercise 4.** Consider the two-dimensional diffusion
-
-$$
-\mathrm{d}X_t^1 = -X_t^1\,\mathrm{d}t + X_t^2\,\mathrm{d}t + \mathrm{d}W_t^1, \qquad \mathrm{d}X_t^2 = -X_t^1\,\mathrm{d}t - X_t^2\,\mathrm{d}t + \mathrm{d}W_t^2.
-$$
-
-Find the invariant measure (hint: try a Gaussian ansatz). Is this process reversible? Justify your answer by checking whether $\mathcal{L}$ is self-adjoint in $L^2(\pi)$.
-
----
-
-**Exercise 5.** Prove that reversibility (detailed balance) implies invariance. That is, show that if for all bounded measurable $f, g$ and all $t \ge 0$,
-
-$$
-\int f(x)\,(P_t g)(x)\,\pi(\mathrm{d}x) = \int g(x)\,(P_t f)(x)\,\pi(\mathrm{d}x),
-$$
-
-then $\pi P_t = \pi$.
-
----
-
-**Exercise 6.** Give an example of a diffusion that has an invariant measure but is **not** reversible. (Hint: consider adding a non-gradient drift component to a gradient diffusion.) Verify invariance directly and explain why detailed balance fails.
-
----
-
-**Exercise 7.** Suppose a one-dimensional diffusion $\mathrm{d}X_t = b(X_t)\,\mathrm{d}t + \sigma(X_t)\,\mathrm{d}W_t$ on an interval $(l, r)$ has generator $\mathcal{L}f = b\,f' + \frac{1}{2}\sigma^2 f''$. Using the stationary Fokker–Planck equation, show that any invariant density must satisfy
-
-$$
-\pi(x) = \frac{C}{\sigma^2(x)}\exp\!\left(\int^x \frac{2\,b(y)}{\sigma^2(y)}\,\mathrm{d}y\right)
-$$
-
-for some normalising constant $C > 0$. Apply this formula to recover the invariant density of the OU process from Exercise 1.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The OU process has $b(x) = -\theta x$ and $\sigma(x) = \sigma$ (constant), so $a(x) = \sigma^2$. The generator is
 
@@ -257,6 +211,10 @@ for some normalising constant $C > 0$. Apply this formula to recover the invaria
 
     This is a Gaussian density $\mathcal{N}(0, \sigma^2/(2\theta))$ with mean $0$ and variance $\sigma^2/(2\theta)$.
 
+---
+
+**Exercise 2.** Let $V(x) = \frac{1}{4}x^4 - \frac{1}{2}x^2$ (a double-well potential) on $\mathbb{R}$. Consider the gradient diffusion $\mathrm{d}X_t = -V'(X_t)\,\mathrm{d}t + \sqrt{2}\,\mathrm{d}W_t$. Write down the invariant density $\pi(x)$ (up to a normalising constant). Sketch $\pi(x)$ and identify the locations of its maxima. Is this process reversible?
+
 ??? success "Solution to Exercise 2"
     With $V(x) = \frac{1}{4}x^4 - \frac{1}{2}x^2$ and the gradient diffusion $\mathrm{d}X_t = -V'(X_t)\,\mathrm{d}t + \sqrt{2}\,\mathrm{d}W_t$, the invariant density is
 
@@ -281,6 +239,10 @@ for some normalising constant $C > 0$. Apply this formula to recover the invaria
     $$
 
     which follows by integration by parts.
+
+---
+
+**Exercise 3.** Construct a Lyapunov function $V(x) = 1 + |x|^2$ for the diffusion $\mathrm{d}X_t = -X_t\,\mathrm{d}t + \mathrm{d}W_t$ in $\mathbb{R}^d$. Verify the Foster–Lyapunov criterion $\mathcal{L}V(x) \le -\alpha V(x) + K\,\mathbf{1}_C(x)$ by computing $\mathcal{L}V$, and find explicit constants $\alpha > 0$, $K < \infty$, and a compact set $C$.
 
 ??? success "Solution to Exercise 3"
     The diffusion is $\mathrm{d}X_t = -X_t\,\mathrm{d}t + \mathrm{d}W_t$ in $\mathbb{R}^d$, with $b(x) = -x$ and $a = I_d$. The Lyapunov function is $V(x) = 1 + |x|^2$.
@@ -318,6 +280,16 @@ for some normalising constant $C > 0$. Apply this formula to recover the invaria
     For $|x|^2 \ge d + 1$, the left side is $\le 0$ and the inequality holds without the indicator. Choose $C = \{x : |x|^2 \le d + 1\}$ (a compact ball) and $K = d + 1$. Then for $x \in C$: $-|x|^2 + d + 1 \le d + 1 = K$, so the inequality holds.
 
     Therefore the Foster–Lyapunov criterion is satisfied with $\alpha = 1$, $K = d + 1$, and $C = \{x : |x| \le \sqrt{d+1}\}$.
+
+---
+
+**Exercise 4.** Consider the two-dimensional diffusion
+
+$$
+\mathrm{d}X_t^1 = -X_t^1\,\mathrm{d}t + X_t^2\,\mathrm{d}t + \mathrm{d}W_t^1, \qquad \mathrm{d}X_t^2 = -X_t^1\,\mathrm{d}t - X_t^2\,\mathrm{d}t + \mathrm{d}W_t^2.
+$$
+
+Find the invariant measure (hint: try a Gaussian ansatz). Is this process reversible? Justify your answer by checking whether $\mathcal{L}$ is self-adjoint in $L^2(\pi)$.
 
 ??? success "Solution to Exercise 4"
     The drift is $b(x) = (-x^1 + x^2,\, -x^1 - x^2)^\top$ and $a = I_2$. Try a Gaussian invariant measure $\pi \sim \mathcal{N}(0, \Sigma)$ with $\Sigma = \text{diag}(\sigma_1^2, \sigma_2^2)$ or more generally a symmetric positive definite matrix.
@@ -384,6 +356,16 @@ for some normalising constant $C > 0$. Apply this formula to recover the invaria
 
     So the process is **not reversible**. The antisymmetric part of $B$ (the rotation component $\begin{pmatrix}0&1\\-1&0\end{pmatrix}$) generates a probability current that circulates around the origin, breaking detailed balance.
 
+---
+
+**Exercise 5.** Prove that reversibility (detailed balance) implies invariance. That is, show that if for all bounded measurable $f, g$ and all $t \ge 0$,
+
+$$
+\int f(x)\,(P_t g)(x)\,\pi(\mathrm{d}x) = \int g(x)\,(P_t f)(x)\,\pi(\mathrm{d}x),
+$$
+
+then $\pi P_t = \pi$.
+
 ??? success "Solution to Exercise 5"
     Assume detailed balance holds: for all bounded measurable $f, g$ and $t \ge 0$,
 
@@ -406,6 +388,10 @@ for some normalising constant $C > 0$. Apply this formula to recover the invaria
     $$
 
     Therefore $\int f\,\mathrm{d}\pi = \int P_t f\,\mathrm{d}\pi$ for all bounded measurable $f$, which is exactly $\pi P_t = \pi$. $\square$
+
+---
+
+**Exercise 6.** Give an example of a diffusion that has an invariant measure but is **not** reversible. (Hint: consider adding a non-gradient drift component to a gradient diffusion.) Verify invariance directly and explain why detailed balance fails.
 
 ??? success "Solution to Exercise 6"
     Consider the two-dimensional diffusion
@@ -441,6 +427,16 @@ for some normalising constant $C > 0$. Apply this formula to recover the invaria
     $$
 
     This antisymmetric part breaks the self-adjointness of $\mathcal{L}$, so detailed balance fails. Physically, the rotational drift induces a probability current circulating around the origin.
+
+---
+
+**Exercise 7.** Suppose a one-dimensional diffusion $\mathrm{d}X_t = b(X_t)\,\mathrm{d}t + \sigma(X_t)\,\mathrm{d}W_t$ on an interval $(l, r)$ has generator $\mathcal{L}f = b\,f' + \frac{1}{2}\sigma^2 f''$. Using the stationary Fokker–Planck equation, show that any invariant density must satisfy
+
+$$
+\pi(x) = \frac{C}{\sigma^2(x)}\exp\!\left(\int^x \frac{2\,b(y)}{\sigma^2(y)}\,\mathrm{d}y\right)
+$$
+
+for some normalising constant $C > 0$. Apply this formula to recover the invariant density of the OU process from Exercise 1.
 
 ??? success "Solution to Exercise 7"
     The generator is $\mathcal{L}f = bf' + \frac{1}{2}\sigma^2 f''$. The adjoint operator $\mathcal{L}^*$ acts on densities as

@@ -684,6 +684,53 @@ Entropy penalization provides an elegant and tractable framework for robust deci
 
 **Exercise 1.** Let $P$ and $Q$ be two Gaussian measures on $\mathbb{R}$ with $P = N(\mu_1, \sigma_1^2)$ and $Q = N(\mu_2, \sigma_2^2)$. Derive the closed-form expression for the Kullback-Leibler divergence $D_{\text{KL}}(P \| Q)$. Verify that $D_{\text{KL}}(P \| Q) = 0$ if and only if $\mu_1 = \mu_2$ and $\sigma_1 = \sigma_2$.
 
+??? success "Solution to Exercise 1"
+    We need to compute $D_{\text{KL}}(P \| Q)$ where $P = N(\mu_1, \sigma_1^2)$ and $Q = N(\mu_2, \sigma_2^2)$.
+
+    By definition:
+
+    $$
+    D_{\text{KL}}(P \| Q) = \mathbb{E}_P\left[\log \frac{dP}{dQ}\right]
+    $$
+
+    The densities are $p(x) = \frac{1}{\sqrt{2\pi}\sigma_1}\exp\left(-\frac{(x-\mu_1)^2}{2\sigma_1^2}\right)$ and $q(x) = \frac{1}{\sqrt{2\pi}\sigma_2}\exp\left(-\frac{(x-\mu_2)^2}{2\sigma_2^2}\right)$.
+
+    The log-ratio is:
+
+    $$
+    \log \frac{p(x)}{q(x)} = \log\frac{\sigma_2}{\sigma_1} - \frac{(x-\mu_1)^2}{2\sigma_1^2} + \frac{(x-\mu_2)^2}{2\sigma_2^2}
+    $$
+
+    Taking the expectation under $P$ (so $X \sim N(\mu_1, \sigma_1^2)$):
+
+    - $\mathbb{E}_P\left[\log\frac{\sigma_2}{\sigma_1}\right] = \log\frac{\sigma_2}{\sigma_1}$
+    - $\mathbb{E}_P\left[\frac{(X-\mu_1)^2}{2\sigma_1^2}\right] = \frac{1}{2}$
+    - For the third term, write $(X - \mu_2)^2 = (X - \mu_1 + \mu_1 - \mu_2)^2 = (X-\mu_1)^2 + 2(X-\mu_1)(\mu_1-\mu_2) + (\mu_1-\mu_2)^2$, so $\mathbb{E}_P\left[\frac{(X-\mu_2)^2}{2\sigma_2^2}\right] = \frac{\sigma_1^2 + (\mu_1 - \mu_2)^2}{2\sigma_2^2}$
+
+    Combining:
+
+    $$
+    D_{\text{KL}}(P \| Q) = \log\frac{\sigma_2}{\sigma_1} - \frac{1}{2} + \frac{\sigma_1^2 + (\mu_1 - \mu_2)^2}{2\sigma_2^2}
+    $$
+
+    This can be rewritten as:
+
+    $$
+    D_{\text{KL}}(P \| Q) = \log\frac{\sigma_2}{\sigma_1} + \frac{\sigma_1^2 + (\mu_1 - \mu_2)^2}{2\sigma_2^2} - \frac{1}{2}
+    $$
+
+    **Verification that $D_{\text{KL}} = 0$ iff $\mu_1 = \mu_2$ and $\sigma_1 = \sigma_2$:**
+
+    If $\mu_1 = \mu_2$ and $\sigma_1 = \sigma_2$, then $D_{\text{KL}} = \log 1 + \frac{\sigma_1^2}{2\sigma_1^2} - \frac{1}{2} = 0 + \frac{1}{2} - \frac{1}{2} = 0$.
+
+    Conversely, suppose $D_{\text{KL}} = 0$. Define $r = \sigma_1/\sigma_2$ and $\delta = (\mu_1 - \mu_2)/\sigma_2$. Then:
+
+    $$
+    D_{\text{KL}} = -\log r + \frac{r^2 + \delta^2}{2} - \frac{1}{2} = -\log r + \frac{r^2 - 1}{2} + \frac{\delta^2}{2}
+    $$
+
+    The function $g(r) = -\log r + \frac{r^2 - 1}{2}$ satisfies $g'(r) = -1/r + r = (r^2-1)/r$, so $g$ has a unique minimum at $r = 1$ with $g(1) = 0$, and $g(r) > 0$ for $r \neq 1$. Since $\delta^2 \geq 0$, we need both $g(r) = 0$ (i.e., $r = 1$, so $\sigma_1 = \sigma_2$) and $\delta = 0$ (i.e., $\mu_1 = \mu_2$). $\blacksquare$
+
 ---
 
 **Exercise 2.** Consider the multiplier preference value function
@@ -693,6 +740,35 @@ V(f) = -\theta \log \mathbb{E}_{P_0}[e^{-u(f)/\theta}]
 $$
 
 with $u(x) = x$ (linear utility) and $f \sim N(\mu, \sigma^2)$ under $P_0$. Compute $V(f)$ explicitly and show that it equals $\mu - \sigma^2/(2\theta)$. Interpret the correction term as a penalty for uncertainty.
+
+??? success "Solution to Exercise 2"
+    With $u(x) = x$ and $f \sim N(\mu, \sigma^2)$ under $P_0$, the multiplier preference value is:
+
+    $$
+    V(f) = -\theta \log \mathbb{E}_{P_0}[e^{-f/\theta}]
+    $$
+
+    Since $f \sim N(\mu, \sigma^2)$, the random variable $-f/\theta \sim N(-\mu/\theta, \sigma^2/\theta^2)$.
+
+    Using the moment generating function of a Gaussian: if $Z \sim N(m, s^2)$, then $\mathbb{E}[e^Z] = e^{m + s^2/2}$.
+
+    Therefore:
+
+    $$
+    \mathbb{E}_{P_0}[e^{-f/\theta}] = \exp\left(-\frac{\mu}{\theta} + \frac{\sigma^2}{2\theta^2}\right)
+    $$
+
+    Taking the logarithm and multiplying by $-\theta$:
+
+    $$
+    V(f) = -\theta\left(-\frac{\mu}{\theta} + \frac{\sigma^2}{2\theta^2}\right) = \mu - \frac{\sigma^2}{2\theta}
+    $$
+
+    **Interpretation of the correction term:** The term $-\sigma^2/(2\theta)$ is a penalty for uncertainty. It reduces the value below the expected payoff $\mu$ by an amount proportional to the variance $\sigma^2$ and inversely proportional to $\theta$.
+
+    - When $\theta$ is large (weak robustness concern), the penalty is small and $V(f) \approx \mu$.
+    - When $\theta$ is small (strong robustness concern), the penalty is large, reflecting the decision-maker's fear that the true distribution could place more weight on low outcomes.
+    - The correction has the same form as a mean-variance objective with risk aversion coefficient $1/(2\theta)$, consistent with the connection between multiplier preferences and exponential utility with risk aversion $1/\theta$. $\blacksquare$
 
 ---
 
@@ -704,6 +780,53 @@ $$
 
 Hint: use the exponentially tilted measure $dP^*/dQ = e^{\theta X}/\mathbb{E}_Q[e^{\theta X}]$ and verify it achieves the supremum.
 
+??? success "Solution to Exercise 3"
+    We prove the variational formula:
+
+    $$
+    \log \mathbb{E}_Q[e^{\theta X}] = \sup_{P \ll Q}\left\{\theta \mathbb{E}_P[X] - D_{\text{KL}}(P \| Q)\right\}
+    $$
+
+    **Step 1: Upper bound.** For any $P \ll Q$ with Radon-Nikodym derivative $M = dP/dQ$:
+
+    $$
+    \theta \mathbb{E}_P[X] - D_{\text{KL}}(P \| Q) = \mathbb{E}_Q[M \cdot \theta X] - \mathbb{E}_Q[M \log M]
+    $$
+
+    $$
+    = \mathbb{E}_Q[M(\theta X - \log M)]
+    $$
+
+    By the log-sum inequality (or by Jensen's inequality applied to $\log$):
+
+    $$
+    \mathbb{E}_Q[M(\theta X - \log M)] = \mathbb{E}_Q\left[M \log\frac{e^{\theta X}}{M}\right] \leq \log \mathbb{E}_Q\left[M \cdot \frac{e^{\theta X}}{M}\right] = \log \mathbb{E}_Q[e^{\theta X}]
+    $$
+
+    where the inequality is Jensen's: $\mathbb{E}_P[\log Y] \leq \log \mathbb{E}_P[Y]$ applied with $Y = e^{\theta X}/M$ under measure $P$. This establishes the upper bound.
+
+    **Step 2: The bound is achieved.** Define the exponentially tilted measure:
+
+    $$
+    \frac{dP^*}{dQ} = M^* = \frac{e^{\theta X}}{\mathbb{E}_Q[e^{\theta X}]}
+    $$
+
+    Note that $M^* \geq 0$ and $\mathbb{E}_Q[M^*] = 1$, so $P^*$ is a valid probability measure with $P^* \ll Q$.
+
+    Compute the KL divergence:
+
+    $$
+    D_{\text{KL}}(P^* \| Q) = \mathbb{E}_{P^*}[\log M^*] = \mathbb{E}_{P^*}\left[\theta X - \log \mathbb{E}_Q[e^{\theta X}]\right] = \theta \mathbb{E}_{P^*}[X] - \log \mathbb{E}_Q[e^{\theta X}]
+    $$
+
+    Therefore:
+
+    $$
+    \theta \mathbb{E}_{P^*}[X] - D_{\text{KL}}(P^* \| Q) = \log \mathbb{E}_Q[e^{\theta X}]
+    $$
+
+    Since $P^*$ achieves the upper bound, the supremum equals $\log \mathbb{E}_Q[e^{\theta X}]$. $\blacksquare$
+
 ---
 
 **Exercise 4.** In the robust portfolio choice problem with Gaussian returns $R \sim N(\mu, \Sigma)$ under $P_0$, the optimal portfolio is
@@ -713,6 +836,43 @@ w^* = \frac{1}{\lambda + \kappa(\eta)} \Sigma^{-1} \mu
 $$
 
 Suppose there are $n = 2$ assets with $\mu = (0.08, 0.12)^\top$, $\Sigma = \begin{pmatrix} 0.04 & 0.01 \\ 0.01 & 0.09 \end{pmatrix}$, and $\lambda = 3$. Compute the standard mean-variance optimal portfolio ($\kappa = 0$) and the robust portfolio with $\kappa(\eta) = 2$. Compare leverage and diversification in the two portfolios.
+
+??? success "Solution to Exercise 4"
+    **Standard mean-variance portfolio ($\kappa = 0$):**
+
+    $$
+    w^*_{\text{MV}} = \frac{1}{\lambda}\Sigma^{-1}\mu
+    $$
+
+    First compute $\Sigma^{-1}$. With $\Sigma = \begin{pmatrix} 0.04 & 0.01 \\ 0.01 & 0.09 \end{pmatrix}$, the determinant is $\det(\Sigma) = 0.04 \times 0.09 - 0.01^2 = 0.0036 - 0.0001 = 0.0035$.
+
+    $$
+    \Sigma^{-1} = \frac{1}{0.0035}\begin{pmatrix} 0.09 & -0.01 \\ -0.01 & 0.04 \end{pmatrix} = \begin{pmatrix} 25.714 & -2.857 \\ -2.857 & 11.429 \end{pmatrix}
+    $$
+
+    Now $\Sigma^{-1}\mu = \begin{pmatrix} 25.714 \times 0.08 + (-2.857) \times 0.12 \\ (-2.857) \times 0.08 + 11.429 \times 0.12 \end{pmatrix} = \begin{pmatrix} 2.0571 - 0.3429 \\ -0.2286 + 1.3714 \end{pmatrix} = \begin{pmatrix} 1.7143 \\ 1.1429 \end{pmatrix}$
+
+    With $\lambda = 3$:
+
+    $$
+    w^*_{\text{MV}} = \frac{1}{3}\begin{pmatrix} 1.7143 \\ 1.1429 \end{pmatrix} = \begin{pmatrix} 0.5714 \\ 0.3810 \end{pmatrix}
+    $$
+
+    Total investment: $0.5714 + 0.3810 = 0.9524$ (leverage ratio close to 1).
+
+    **Robust portfolio ($\kappa(\eta) = 2$):**
+
+    $$
+    w^*_{\text{robust}} = \frac{1}{\lambda + \kappa(\eta)}\Sigma^{-1}\mu = \frac{1}{3 + 2}\begin{pmatrix} 1.7143 \\ 1.1429 \end{pmatrix} = \frac{1}{5}\begin{pmatrix} 1.7143 \\ 1.1429 \end{pmatrix} = \begin{pmatrix} 0.3429 \\ 0.2286 \end{pmatrix}
+    $$
+
+    Total investment: $0.3429 + 0.2286 = 0.5714$.
+
+    **Comparison:**
+
+    - **Leverage**: The standard portfolio invests 95.24% in risky assets; the robust portfolio invests only 57.14%. Robustness reduces leverage by 40%.
+    - **Diversification**: Both portfolios have the same relative weights between assets (the ratio $w_1/w_2 = 1.5$ is identical), because the robustness correction scales both positions uniformly. The robust portfolio does not change the diversification profile; it simply shrinks all positions proportionally.
+    - **Interpretation**: The entropy budget $\eta$ introduces an effective additional risk aversion $\kappa(\eta) = 2$, making the investor behave as if they had $\lambda_{\text{eff}} = 5$ instead of $\lambda = 3$. $\blacksquare$
 
 ---
 
@@ -724,6 +884,47 @@ $$
 
 for all $\lambda \in [0,1]$. Then give an explicit counterexample showing that positive homogeneity fails, i.e., find $\alpha > 0$ and $X$ such that $\rho_\beta(\alpha X) \neq \alpha \rho_\beta(X)$.
 
+??? success "Solution to Exercise 5"
+    **Part 1: Convexity.**
+
+    We use Holder's inequality. For $\lambda \in [0,1]$, define $p = 1/\lambda$ and $q = 1/(1-\lambda)$ (conjugate exponents with $1/p + 1/q = 1$). By Holder's inequality:
+
+    $$
+    \mathbb{E}[e^{\beta(\lambda X + (1-\lambda)Y)}] = \mathbb{E}[e^{\beta\lambda X} \cdot e^{\beta(1-\lambda)Y}] \leq \left(\mathbb{E}[e^{\beta X}]\right)^{\lambda} \left(\mathbb{E}[e^{\beta Y}]\right)^{1-\lambda}
+    $$
+
+    Taking $\frac{1}{\beta}\log$ of both sides:
+
+    $$
+    \rho_\beta(\lambda X + (1-\lambda)Y) = \frac{1}{\beta}\log \mathbb{E}[e^{\beta(\lambda X + (1-\lambda)Y)}]
+    $$
+
+    $$
+    \leq \frac{1}{\beta}\left(\lambda \log \mathbb{E}[e^{\beta X}] + (1-\lambda)\log \mathbb{E}[e^{\beta Y}]\right) = \lambda \rho_\beta(X) + (1-\lambda)\rho_\beta(Y)
+    $$
+
+    This establishes convexity.
+
+    **Part 2: Counterexample for positive homogeneity.**
+
+    Positive homogeneity requires $\rho_\beta(\alpha X) = \alpha \rho_\beta(X)$ for all $\alpha > 0$.
+
+    Let $X \sim N(0,1)$ and $\beta = 1$. Then:
+
+    $$
+    \rho_1(X) = \log \mathbb{E}[e^X] = \log e^{0 + 1/2} = \frac{1}{2}
+    $$
+
+    For $\alpha = 2$:
+
+    $$
+    \rho_1(2X) = \log \mathbb{E}[e^{2X}] = \log e^{0 + 4/2} = 2
+    $$
+
+    But $\alpha \rho_1(X) = 2 \times \frac{1}{2} = 1 \neq 2$.
+
+    Indeed, for general $\alpha$: $\rho_1(\alpha X) = \alpha^2/2$ while $\alpha \rho_1(X) = \alpha/2$. These are equal only when $\alpha = 1$ (or $\alpha = 0$). The entropic risk measure scales quadratically in $\alpha$ rather than linearly, confirming that positive homogeneity fails. $\blacksquare$
+
 ---
 
 **Exercise 6.** Consider the continuous-time robust HJB equation
@@ -734,6 +935,73 @@ $$
 
 For the one-dimensional case with $dX_t = (aX_t + bu_t)dt + \sigma dW_t$, running cost $\ell(x,u) = qx^2 + ru^2$, and a candidate quadratic value function $V(t,x) = \alpha(t)x^2 + \beta(t)$, derive the Riccati ODE that $\alpha(t)$ must satisfy. How does the robustness parameter $\theta$ modify the standard LQR Riccati equation?
 
+??? success "Solution to Exercise 6"
+    **Setup:** One-dimensional dynamics $dX_t = (aX_t + bu_t)dt + \sigma dW_t$, running cost $\ell(x,u) = qx^2 + ru^2$, and candidate $V(t,x) = \alpha(t)x^2 + \beta(t)$.
+
+    **Compute the derivatives of $V$:**
+
+    $$
+    V_t = \dot{\alpha}(t)x^2 + \dot{\beta}(t), \quad V_x = 2\alpha(t)x, \quad V_{xx} = 2\alpha(t)
+    $$
+
+    **Substitute into the robust HJB equation:**
+
+    $$
+    V_t + \sup_u\left\{(ax + bu)\cdot 2\alpha x + \frac{1}{2}\sigma^2 \cdot 2\alpha + qx^2 + ru^2 - \frac{\sigma^2(2\alpha x)^2}{2\theta}\right\} = 0
+    $$
+
+    Simplifying:
+
+    $$
+    \dot{\alpha}x^2 + \dot{\beta} + \sup_u\left\{2\alpha a x^2 + 2\alpha b x u + \sigma^2\alpha + qx^2 + ru^2 - \frac{2\sigma^2\alpha^2 x^2}{\theta}\right\} = 0
+    $$
+
+    **Optimize over $u$:** Taking the first-order condition in $u$:
+
+    $$
+    2\alpha b x + 2ru = 0 \implies u^* = -\frac{\alpha b}{r}x
+    $$
+
+    **Substitute $u^*$ back:**
+
+    $$
+    2\alpha b x \cdot \left(-\frac{\alpha b}{r}x\right) + r\left(\frac{\alpha b}{r}\right)^2 x^2 = -\frac{2\alpha^2 b^2}{r}x^2 + \frac{\alpha^2 b^2}{r}x^2 = -\frac{\alpha^2 b^2}{r}x^2
+    $$
+
+    Collecting all $x^2$ terms and constant terms separately:
+
+    **$x^2$ terms:**
+
+    $$
+    \dot{\alpha} + 2\alpha a + q - \frac{\alpha^2 b^2}{r} - \frac{2\sigma^2\alpha^2}{\theta} = 0
+    $$
+
+    **Constant terms:**
+
+    $$
+    \dot{\beta} + \sigma^2\alpha = 0
+    $$
+
+    Therefore $\alpha(t)$ satisfies the **Riccati ODE**:
+
+    $$
+    \dot{\alpha}(t) = \frac{\alpha^2 b^2}{r} + \frac{2\sigma^2\alpha^2}{\theta} - 2a\alpha - q
+    $$
+
+    or equivalently:
+
+    $$
+    \dot{\alpha}(t) = \alpha^2\left(\frac{b^2}{r} + \frac{2\sigma^2}{\theta}\right) - 2a\alpha - q
+    $$
+
+    **Comparison with standard LQR:** The standard (non-robust) Riccati equation is:
+
+    $$
+    \dot{\alpha}(t) = \frac{\alpha^2 b^2}{r} - 2a\alpha - q
+    $$
+
+    The robustness parameter $\theta$ adds the term $\frac{2\sigma^2\alpha^2}{\theta}$ to the quadratic coefficient. This makes the coefficient of $\alpha^2$ larger: $\frac{b^2}{r} + \frac{2\sigma^2}{\theta} > \frac{b^2}{r}$, which drives $\alpha(t)$ to a larger steady-state value. A larger $\alpha$ means the value function assigns greater cost to deviations from zero, leading to more aggressive (conservative) control. As $\theta \to \infty$, the additional term vanishes and we recover the standard LQR. As $\theta \to 0^+$, the robustness correction dominates, reflecting extreme concern about model misspecification. $\blacksquare$
+
 ---
 
 **Exercise 7.** An insurer sets premiums using the worst-case expected loss:
@@ -743,3 +1011,90 @@ $$
 $$
 
 Suppose losses follow an exponential distribution with rate $\lambda = 0.01$ under the reference model $P_0$, so $\mathbb{E}_{P_0}[\text{Loss}] = 100$. Using the dual representation, show that the robust premium equals $-\theta \log \mathbb{E}_{P_0}[e^{-\text{Loss}/\theta}]$ for an appropriate $\theta$ related to $\eta$. Compute the robust premium numerically for $\theta = 50$ and compare it to the actuarially fair premium of $100$.
+
+??? success "Solution to Exercise 7"
+    **Step 1: Dual representation.**
+
+    The robust premium is:
+
+    $$
+    \text{Premium} = \sup_{P: D_{\text{KL}}(P \| P_0) \leq \eta} \mathbb{E}_P[\text{Loss}]
+    $$
+
+    By the variational formula (proved in Exercise 3), for any $\theta > 0$:
+
+    $$
+    \sup_{P \ll P_0}\left\{\mathbb{E}_P[\text{Loss}] - \frac{1}{\theta'}D_{\text{KL}}(P \| P_0)\right\} = \frac{1}{\theta'}\log \mathbb{E}_{P_0}[e^{\theta' \cdot \text{Loss}}]
+    $$
+
+    where we set $\theta' = 1$ for later convenience. By Lagrangian duality, the entropy-constrained problem:
+
+    $$
+    \sup_{P: D_{\text{KL}}(P \| P_0) \leq \eta}\mathbb{E}_P[\text{Loss}]
+    $$
+
+    has the dual:
+
+    $$
+    \inf_{\theta > 0}\left\{\theta\eta + \theta\log \mathbb{E}_{P_0}[e^{\text{Loss}/\theta}]\right\}
+    $$
+
+    However, by a sign-adjusted variational formula, noting that we are maximizing $\mathbb{E}_P[\text{Loss}]$ (not minimizing $-\text{Loss}$), the worst-case expected loss under the entropy constraint equals:
+
+    $$
+    \text{Premium} = \theta\eta + \theta\log \mathbb{E}_{P_0}[e^{\text{Loss}/\theta}]
+    $$
+
+    at the optimal $\theta$ satisfying the complementary slackness condition $D_{\text{KL}}(P^* \| P_0) = \eta$.
+
+    Equivalently, from the multiplier perspective with the sup formulation, the robust premium for fixed $\theta$ satisfies:
+
+    $$
+    \text{Premium}(\theta) = \theta \log \mathbb{E}_{P_0}[e^{\text{Loss}/\theta}]
+    $$
+
+    (up to the constant $\theta\eta$ absorbed into the choice of $\theta$).
+
+    **Step 2: Compute for exponential losses with $\theta = 50$.**
+
+    Under $P_0$, $\text{Loss} \sim \text{Exp}(\lambda)$ with $\lambda = 0.01$. The MGF of an exponential random variable is:
+
+    $$
+    \mathbb{E}_{P_0}[e^{s \cdot \text{Loss}}] = \frac{\lambda}{\lambda - s} \quad \text{for } s < \lambda
+    $$
+
+    With $s = 1/\theta = 1/50 = 0.02$: but $s = 0.02 > \lambda = 0.01$, so the MGF diverges, meaning $\mathbb{E}_{P_0}[e^{\text{Loss}/\theta}] = +\infty$.
+
+    This is the correct and important result: the exponential distribution has a thin tail such that the MGF exists only for $s < \lambda$. For $\theta = 50$, we have $1/\theta = 0.02 > 0.01 = \lambda$, so the moment generating function is infinite.
+
+    Instead, we use the dual formulation with the opposite sign. The insurer wants the worst-case expected loss, which can be written using the entropic risk measure:
+
+    $$
+    \rho_\theta(\text{Loss}) = \theta \log \mathbb{E}_{P_0}[e^{\text{Loss}/\theta}]
+    $$
+
+    Since this is infinite for $\theta = 50$, we need $\theta < 1/\lambda = 100$. Let us work with the well-defined regime $\theta > 100$ (i.e., $1/\theta < \lambda$):
+
+    $$
+    \mathbb{E}_{P_0}[e^{\text{Loss}/\theta}] = \frac{0.01}{0.01 - 1/\theta} = \frac{1}{1 - 100/\theta}
+    $$
+
+    Actually, to use the multiplier preferences with minimization (worst case for the insurer means maximizing expected loss), we compute:
+
+    $$
+    \text{Robust Premium} = \theta \log\left(\frac{1}{1 - 1/(\lambda\theta)}\right) = -\theta\log\left(1 - \frac{1}{\lambda\theta}\right)
+    $$
+
+    for $\theta > 1/\lambda = 100$.
+
+    For $\theta = 200$: $\text{Premium} = -200\log(1 - 1/2) = 200\log 2 \approx 138.63$.
+
+    For $\theta = 500$: $\text{Premium} = -500\log(1 - 1/5) = -500\log(0.8) = 500 \times 0.22314 \approx 111.57$.
+
+    For $\theta = 1000$: $\text{Premium} = -1000\log(1 - 1/10) = -1000\log(0.9) \approx 105.36$.
+
+    As $\theta \to \infty$: $-\theta\log(1 - 1/(\lambda\theta)) \approx \theta \cdot \frac{1}{\lambda\theta} = 1/\lambda = 100$, recovering the actuarially fair premium.
+
+    For $\theta = 50 < 100$, the MGF diverges, meaning the worst-case expected loss is infinite under the multiplier formulation. This makes financial sense: with $\theta = 50$, the entropy penalty is weak enough that the adversary can tilt the distribution toward extremely heavy tails, making the expected loss unbounded. The insurer must choose $\theta > 100$ (i.e., a sufficiently strong penalty) for the problem to be well-posed with exponential losses.
+
+    **Comparison with the actuarially fair premium:** At any finite well-posed $\theta > 100$, the robust premium exceeds 100, reflecting the loading for model uncertainty. The markup $-\theta\log(1 - 1/(\lambda\theta)) - 100$ decreases as $\theta$ increases (less robustness concern), approaching zero as $\theta \to \infty$. $\blacksquare$

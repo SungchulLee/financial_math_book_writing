@@ -325,30 +325,6 @@ Each stage resolved a specific mathematical limitation of its predecessor while 
 
 **Exercise 1.** Using Bachelier's arithmetic Brownian motion model $S_t = S_0 + \sigma W_t$ with $S_0 = 50$ and $\sigma = 10$ (annualized), compute the probability that the stock price is negative after 5 years. Compare this with the probability under GBM with the same $S_0$ and $\sigma / S_0 = 0.20$ as the volatility parameter.
 
----
-
-**Exercise 2.** Bachelier's call pricing formula is $C = (S_0 - K)\Phi\!\left(\frac{S_0 - K}{\sigma\sqrt{T}}\right) + \sigma\sqrt{T}\,\phi\!\left(\frac{S_0 - K}{\sigma\sqrt{T}}\right)$. Derive this formula by computing $\mathbb{E}[(S_T - K)^+]$ directly, using the fact that $S_T \sim \mathcal{N}(S_0, \sigma^2 T)$ under Bachelier's model.
-
----
-
-**Exercise 3.** Boness's formula has $\mu$ where the Black-Scholes formula has $r$. If a stock has expected return $\mu = 12\%$, risk-free rate $r = 4\%$, $S_0 = 100$, $K = 100$, $T = 1$, and $\sigma = 25\%$, compute the call price under both Boness's formula and the Black-Scholes formula. What is the percentage difference? Explain why the Black-Scholes price is the correct arbitrage-free price regardless of $\mu$.
-
----
-
-**Exercise 4.** The hedging argument shows that in a portfolio $\Pi = V - \Delta S$, choosing $\Delta = \partial V / \partial S$ eliminates the $dW_t$ term. Starting from $dV = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}dt$, carry out the full derivation to arrive at the Black-Scholes PDE. Identify precisely where the drift $\mu$ cancels and explain the economic reason for this cancellation.
-
----
-
-**Exercise 5.** Harrison and Kreps (1979) established that absence of arbitrage is equivalent to the existence of an equivalent martingale measure. In the Black-Scholes market with one stock and one bond, explain why the market is complete (i.e., every contingent claim is replicable) and why this implies the risk-neutral measure $\mathbb{Q}$ is unique. What would change if the market had two independent sources of randomness but only one risky asset?
-
----
-
-**Exercise 6.** The volatility smile emerged after the 1987 crash. Before the crash, implied volatilities across strikes were approximately flat. Explain what "implied volatility" means in terms of the Black-Scholes formula, and discuss why a non-flat implied volatility surface is inconsistent with the constant-$\sigma$ assumption of GBM. Name two post-1987 models from the table in the text and briefly describe how each addresses the smile phenomenon.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Under Bachelier's ABM with $S_t = S_0 + \sigma W_t$, we have $S_t \sim \mathcal{N}(S_0, \sigma^2 t)$ with $S_0 = 50$ and $\sigma = 10$.
 
@@ -369,6 +345,9 @@ Each stage resolved a specific mathematical limitation of its predecessor while 
     Since $S_t = S_0 \exp(\cdot) > 0$ always, $\mathbb{P}(S_5 < 0) = 0$ under GBM, for any parameter values. The exponential function guarantees strict positivity of paths.
 
     This demonstrates the fundamental advantage of GBM over ABM: while both models capture randomness in price evolution, only GBM rules out the economically meaningless scenario of negative stock prices.
+
+---
+**Exercise 2.** Bachelier's call pricing formula is $C = (S_0 - K)\Phi\!\left(\frac{S_0 - K}{\sigma\sqrt{T}}\right) + \sigma\sqrt{T}\,\phi\!\left(\frac{S_0 - K}{\sigma\sqrt{T}}\right)$. Derive this formula by computing $\mathbb{E}[(S_T - K)^+]$ directly, using the fact that $S_T \sim \mathcal{N}(S_0, \sigma^2 T)$ under Bachelier's model.
 
 ??? success "Solution to Exercise 2"
     Under Bachelier's model, $S_T \sim \mathcal{N}(S_0, \sigma^2 T)$, so $S_T = S_0 + \sigma\sqrt{T}\,Z$ where $Z \sim \mathcal{N}(0,1)$.
@@ -419,6 +398,9 @@ Each stage resolved a specific mathematical limitation of its predecessor while 
 
     which is precisely Bachelier's formula. $\square$
 
+---
+**Exercise 3.** Boness's formula has $\mu$ where the Black-Scholes formula has $r$. If a stock has expected return $\mu = 12\%$, risk-free rate $r = 4\%$, $S_0 = 100$, $K = 100$, $T = 1$, and $\sigma = 25\%$, compute the call price under both Boness's formula and the Black-Scholes formula. What is the percentage difference? Explain why the Black-Scholes price is the correct arbitrage-free price regardless of $\mu$.
+
 ??? success "Solution to Exercise 3"
     The Black-Scholes formula for a European call is $C = S_0\,\Phi(d_1) - Ke^{-rT}\,\Phi(d_2)$ with:
 
@@ -453,6 +435,9 @@ Each stage resolved a specific mathematical limitation of its predecessor while 
     The percentage difference is $(16.10 - 11.83)/11.83 \approx 36\%$. Boness's formula significantly overprices the call.
 
     **Why the Black-Scholes price is correct**: The Black-Scholes price is the arbitrage-free price because the option can be replicated by a self-financing portfolio of stock and bonds that costs $C_{\text{BS}}$ to set up. The replicating argument shows that the drift $\mu$ cancels when the portfolio is delta-hedged: the hedged portfolio is risk-free and must earn rate $r$ by no-arbitrage. Any price different from $C_{\text{BS}}$ creates an arbitrage opportunity regardless of $\mu$. Boness's formula gives the wrong price because it discounts at $\mu$ instead of $r$, conflating the stock's risk premium with the relevant discount rate for a replicable (and hence risk-free) payoff.
+
+---
+**Exercise 4.** The hedging argument shows that in a portfolio $\Pi = V - \Delta S$, choosing $\Delta = \partial V / \partial S$ eliminates the $dW_t$ term. Starting from $dV = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}dt$, carry out the full derivation to arrive at the Black-Scholes PDE. Identify precisely where the drift $\mu$ cancels and explain the economic reason for this cancellation.
 
 ??? success "Solution to Exercise 4"
     Starting from the Ito expansion of the option price:
@@ -495,6 +480,9 @@ Each stage resolved a specific mathematical limitation of its predecessor while 
 
     **Economic reason for the cancellation**: Once the portfolio is hedged, its return is deterministic regardless of which direction the stock moves. A risk-free portfolio must earn the risk-free rate $r$ by no-arbitrage. The expected return $\mu$ is irrelevant because the hedge eliminates the stock's risk, and with it, any compensation for bearing that risk.
 
+---
+**Exercise 5.** Harrison and Kreps (1979) established that absence of arbitrage is equivalent to the existence of an equivalent martingale measure. In the Black-Scholes market with one stock and one bond, explain why the market is complete (i.e., every contingent claim is replicable) and why this implies the risk-neutral measure $\mathbb{Q}$ is unique. What would change if the market had two independent sources of randomness but only one risky asset?
+
 ??? success "Solution to Exercise 5"
     **Implied volatility** is the value of $\sigma$ that, when substituted into the Black-Scholes formula, produces a model price equal to the observed market price. Formally, given a market price $C_{\text{mkt}}$ for a European call with known $S_0, K, T, r$, the implied volatility $\sigma_{\text{imp}}$ solves:
 
@@ -511,6 +499,9 @@ Each stage resolved a specific mathematical limitation of its predecessor while 
     1. **Heston stochastic volatility model (1993)**: Models volatility as a separate mean-reverting stochastic process ($dv_t = \kappa(\theta - v_t)dt + \xi\sqrt{v_t}dW_t^{(2)}$) correlated with the stock price. The random volatility produces fatter tails in the return distribution, and negative correlation between stock returns and volatility generates the downside skew. Admits a semi-analytical (Fourier-based) pricing formula.
 
     2. **Dupire local volatility model (1994)**: Replaces constant $\sigma$ with a deterministic function $\sigma(S, t)$ of the stock price and time. The local volatility surface is uniquely determined by the observed market option prices via Dupire's formula. This model exactly reproduces the entire implied volatility surface by construction, but it lacks the dynamics of stochastic volatility (e.g., it does not produce realistic forward smile dynamics).
+
+---
+**Exercise 6.** The volatility smile emerged after the 1987 crash. Before the crash, implied volatilities across strikes were approximately flat. Explain what "implied volatility" means in terms of the Black-Scholes formula, and discuss why a non-flat implied volatility surface is inconsistent with the constant-$\sigma$ assumption of GBM. Name two post-1987 models from the table in the text and briefly describe how each addresses the smile phenomenon.
 
 ??? success "Solution to Exercise 6"
     Under Bachelier's model, $C = (S_0 - K)\Phi(d) + \sigma\sqrt{T}\,\phi(d)$ where $d = (S_0 - K)/(\sigma\sqrt{T})$.

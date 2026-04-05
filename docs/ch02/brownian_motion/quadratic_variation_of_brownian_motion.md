@@ -247,36 +247,6 @@ The next section turns to the **Reflection Principle**, which exploits the symme
 
 **Exercise 1.** Let $\Pi_n$ be the uniform partition of $[0, T]$ into $n$ equal subintervals. Compute $\mathrm{Var}([B]_T^{(\Pi_n)})$ explicitly and show that $\mathrm{Var}([B]_T^{(\Pi_n)}) = 2T^2/n$. Using Chebyshev's inequality, find the smallest $n$ such that $\mathbb{P}(|[B]_T^{(\Pi_n)} - T| > 0.1) \leq 0.05$ when $T = 1$.
 
----
-
-**Exercise 2.** Consider a non-uniform partition $\Pi = \{0, T/4, T/2, 3T/4, T\}$ (four subintervals of equal length $T/4$) and a partition $\Pi' = \{0, T/8, T/4, T/2, T\}$ (four subintervals of unequal length). Compute $\mathrm{Var}([B]_T^{(\Pi)})$ and $\mathrm{Var}([B]_T^{(\Pi')})$. Which partition gives a tighter estimate of $T$, and why?
-
----
-
-**Exercise 3.** Let $f(t) = \sin(2\pi t)$ for $t \in [0, 1]$. Compute the quadratic variation $V_2(f, \Pi_n)$ along the uniform partition $\Pi_n$ with $n$ subintervals and verify that $V_2(f, \Pi_n) \to 0$ as $n \to \infty$. Contrast this with the result $[B]_1 = 1$ for Brownian motion.
-
----
-
-**Exercise 4.** Using the multiplication table for stochastic differentials ($dB_t \cdot dB_t = dt$, $dB_t \cdot dt = 0$, $dt \cdot dt = 0$), apply Ito's formula to $f(B_t) = B_t^3$. Verify your answer by checking that $\mathbb{E}[B_T^3] = 0$ is consistent with the Ito integral representation you obtain.
-
----
-
-**Exercise 5.** Let $B^{(1)}$ and $B^{(2)}$ be two Brownian motions with correlation $\rho = 0.5$. Compute the cross variation $[B^{(1)}, B^{(2)}]_T$. Define $X_t = B_t^{(1)} + B_t^{(2)}$ and compute $[X]_T$ using the bilinearity of quadratic variation: $[X]_T = [B^{(1)}]_T + 2[B^{(1)}, B^{(2)}]_T + [B^{(2)}]_T$.
-
----
-
-**Exercise 6.** Prove that Brownian motion has infinite total variation on $[0, T]$ almost surely. Specifically, show that for the uniform partition $\Pi_n$:
-
-$$
-\mathbb{E}[V_1(B, \Pi_n)] = \sum_{i=0}^{n-1} \mathbb{E}[|\Delta B_i|] = n \cdot \sqrt{\frac{2T}{\pi n}} = \sqrt{\frac{2nT}{\pi}} \to \infty
-$$
-
-Explain why infinite total variation and finite quadratic variation can coexist.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     For the uniform partition $\Pi_n$ of $[0, T]$ with $\Delta t_i = T/n$, the increments $\Delta B_i = B_{t_{i+1}} - B_{t_i}$ are independent with $\Delta B_i \sim \mathcal{N}(0, T/n)$. By independence:
 
@@ -296,6 +266,10 @@ Explain why infinite total variation and finite quadratic variation can coexist.
     \frac{200}{n} \leq 0.05 \implies n \geq 4000
     $$
 
+---
+
+**Exercise 2.** Consider a non-uniform partition $\Pi = \{0, T/4, T/2, 3T/4, T\}$ (four subintervals of equal length $T/4$) and a partition $\Pi' = \{0, T/8, T/4, T/2, T\}$ (four subintervals of unequal length). Compute $\mathrm{Var}([B]_T^{(\Pi)})$ and $\mathrm{Var}([B]_T^{(\Pi')})$. Which partition gives a tighter estimate of $T$, and why?
+
 ??? success "Solution to Exercise 2"
     For $\Pi = \{0, T/4, T/2, 3T/4, T\}$ (four equal subintervals of length $T/4$):
 
@@ -314,6 +288,10 @@ Explain why infinite total variation and finite quadratic variation can coexist.
     $$
 
     Since $\frac{T^2}{2} = \frac{8T^2}{16} < \frac{11T^2}{16}$, the uniform partition $\Pi$ gives a tighter estimate. This is because $\mathrm{Var}([B]_T^{(\Pi)}) = 2\sum_i (\Delta t_i)^2$, which for a fixed number of subintervals summing to $T$ is minimized when all $\Delta t_i$ are equal (by the convexity of $x \mapsto x^2$).
+
+---
+
+**Exercise 3.** Let $f(t) = \sin(2\pi t)$ for $t \in [0, 1]$. Compute the quadratic variation $V_2(f, \Pi_n)$ along the uniform partition $\Pi_n$ with $n$ subintervals and verify that $V_2(f, \Pi_n) \to 0$ as $n \to \infty$. Contrast this with the result $[B]_1 = 1$ for Brownian motion.
 
 ??? success "Solution to Exercise 3"
     For $f(t) = \sin(2\pi t)$ on $[0, 1]$ with the uniform partition $\Pi_n$ ($\Delta t = 1/n$):
@@ -336,6 +314,10 @@ Explain why infinite total variation and finite quadratic variation can coexist.
 
     **Contrast:** For Brownian motion, $[B]_1 = 1 > 0$. The smooth function has zero quadratic variation because its increments are $O(1/n)$, giving squared increments of $O(1/n^2)$ that sum to $O(1/n)$. Brownian increments are $O(1/\sqrt{n})$, giving squared increments of $O(1/n)$ that sum to $O(1)$.
 
+---
+
+**Exercise 4.** Using the multiplication table for stochastic differentials ($dB_t \cdot dB_t = dt$, $dB_t \cdot dt = 0$, $dt \cdot dt = 0$), apply Ito's formula to $f(B_t) = B_t^3$. Verify your answer by checking that $\mathbb{E}[B_T^3] = 0$ is consistent with the Ito integral representation you obtain.
+
 ??? success "Solution to Exercise 4"
     For $f(B_t) = B_t^3$, we have $f'(x) = 3x^2$ and $f''(x) = 6x$. By Itô's formula:
 
@@ -350,6 +332,10 @@ Explain why infinite total variation and finite quadratic variation can coexist.
     $$
 
     **Verification:** Taking expectations, $\mathbb{E}[B_T^3] = 3\mathbb{E}\left[\int_0^T B_t^2\,dB_t\right] + 3\int_0^T \mathbb{E}[B_t]\,dt$. The Itô integral has zero expectation (it is a martingale), and $\mathbb{E}[B_t] = 0$. Therefore $\mathbb{E}[B_T^3] = 0 + 0 = 0$, which is consistent with $B_T \sim \mathcal{N}(0, T)$ being symmetric (all odd moments vanish).
+
+---
+
+**Exercise 5.** Let $B^{(1)}$ and $B^{(2)}$ be two Brownian motions with correlation $\rho = 0.5$. Compute the cross variation $[B^{(1)}, B^{(2)}]_T$. Define $X_t = B_t^{(1)} + B_t^{(2)}$ and compute $[X]_T$ using the bilinearity of quadratic variation: $[X]_T = [B^{(1)}]_T + 2[B^{(1)}, B^{(2)}]_T + [B^{(2)}]_T$.
 
 ??? success "Solution to Exercise 5"
     With $\rho = 0.5$, the cross variation is:
@@ -369,6 +355,16 @@ Explain why infinite total variation and finite quadratic variation can coexist.
     $$
 
     This can be verified by noting that $\text{Var}(X_t) = \text{Var}(B_t^{(1)}) + 2\text{Cov}(B_t^{(1)}, B_t^{(2)}) + \text{Var}(B_t^{(2)}) = t + 2\rho t + t = (2 + 2\rho)t = 3t$.
+
+---
+
+**Exercise 6.** Prove that Brownian motion has infinite total variation on $[0, T]$ almost surely. Specifically, show that for the uniform partition $\Pi_n$:
+
+$$
+\mathbb{E}[V_1(B, \Pi_n)] = \sum_{i=0}^{n-1} \mathbb{E}[|\Delta B_i|] = n \cdot \sqrt{\frac{2T}{\pi n}} = \sqrt{\frac{2nT}{\pi}} \to \infty
+$$
+
+Explain why infinite total variation and finite quadratic variation can coexist.
 
 ??? success "Solution to Exercise 6"
     For the uniform partition $\Pi_n$ with $\Delta t_i = T/n$, each $\Delta B_i \sim \mathcal{N}(0, T/n)$, so $|\Delta B_i| = \sqrt{T/n}\,|Z_i|$ where $Z_i \sim \mathcal{N}(0,1)$.

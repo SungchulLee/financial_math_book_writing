@@ -542,26 +542,193 @@ $$
 
 explain the role of each term in the numerator. What happens to $\sigma_{\text{loc}}^2$ if $\frac{\partial^2 C}{\partial K^2} \to 0$? Why does this indicate a problem with the input data?
 
+??? success "Solution to Exercise 1"
+    The Dupire formula is:
+
+    $$
+    \sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + (r - q) K \frac{\partial C}{\partial K} + q C}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}}
+    $$
+
+    **Role of each numerator term:**
+
+    - $\frac{\partial C}{\partial T}$: This is the **time value decay** (negative of theta) of the call option. It captures how the option value changes as maturity increases, reflecting the additional variance accumulated over a longer horizon. This is the dominant term and represents the rate at which option value grows with maturity due to increased uncertainty.
+
+    - $(r - q) K \frac{\partial C}{\partial K}$: This is the **drift correction**. Under the risk-neutral measure, the underlying drifts at rate $r - q$. The term $\frac{\partial C}{\partial K}$ is related to the digital option payoff (the probability of finishing ITM). This correction accounts for the fact that the forward price shifts over time, which affects where the density is centered.
+
+    - $qC$: This is the **dividend correction**. A continuous dividend yield $q$ reduces the forward price and affects the present value of the option. When $q > 0$, the call is worth less due to dividend leakage, and this term compensates for that effect in the local volatility extraction.
+
+    **What happens when $\frac{\partial^2 C}{\partial K^2} \to 0$:** The denominator $\frac{1}{2}K^2 \frac{\partial^2 C}{\partial K^2}$ approaches zero, causing $\sigma_{\text{loc}}^2 \to \infty$. By the Breeden-Litzenberger formula, $\frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)$, so a vanishing second derivative means the risk-neutral density is near zero at that strike. This occurs deep in the wings where very few paths of the underlying are expected to reach. The divergence of local volatility indicates that the input call price surface lacks sufficient curvature (information) at that strike, making the local volatility extraction numerically unstable. In practice, this signals either sparse data, noisy quotes, or extrapolation artifacts in the wings.
+
 ---
 
 **Exercise 2.** For a flat implied volatility surface $\sigma_{\text{IV}}(K, T) = \sigma_0$ (constant), show that Dupire's formula yields $\sigma_{\text{loc}}(K, T) = \sigma_0$ for all $(K, T)$. This verifies that the Black-Scholes model is the unique local volatility model with flat smile.
+
+??? success "Solution to Exercise 2"
+    If $\sigma_{\text{IV}}(K, T) = \sigma_0$ for all $(K, T)$, then the call price is given by the Black-Scholes formula:
+
+    $$
+    C(K, T) = S_0 e^{-qT}\Phi(d_1) - K e^{-rT}\Phi(d_2)
+    $$
+
+    with $d_1 = \frac{\ln(S_0/K) + (r - q + \sigma_0^2/2)T}{\sigma_0\sqrt{T}}$ and $d_2 = d_1 - \sigma_0\sqrt{T}$.
+
+    The Black-Scholes call satisfies the PDE:
+
+    $$
+    \frac{\partial C}{\partial T} + (r - q)S\frac{\partial C}{\partial S} + \frac{1}{2}\sigma_0^2 S^2 \frac{\partial^2 C}{\partial S^2} - rC = 0
+    $$
+
+    Rewriting in terms of strike derivatives (using the duality between spot and strike), the numerator of Dupire's formula evaluates to:
+
+    $$
+    \frac{\partial C}{\partial T} + (r - q)K\frac{\partial C}{\partial K} + qC = \frac{1}{2}\sigma_0^2 K^2 \frac{\partial^2 C}{\partial K^2}
+    $$
+
+    This follows from the forward PDE (Dupire equation) satisfied by Black-Scholes prices. Substituting into Dupire's formula:
+
+    $$
+    \sigma_{\text{loc}}^2(K, T) = \frac{\frac{1}{2}\sigma_0^2 K^2 \frac{\partial^2 C}{\partial K^2}}{\frac{1}{2}K^2 \frac{\partial^2 C}{\partial K^2}} = \sigma_0^2
+    $$
+
+    Therefore $\sigma_{\text{loc}}(K, T) = \sigma_0$ for all $(K, T)$. This confirms that the Black-Scholes model (constant volatility) is the unique local volatility model that produces a flat implied volatility surface.
 
 ---
 
 **Exercise 3.** Given call prices $C(K, T)$ on a discrete grid, describe how to numerically compute all partial derivatives needed for Dupire's formula. Use centered finite differences: $\frac{\partial C}{\partial T} \approx \frac{C(K, T + \Delta T) - C(K, T - \Delta T)}{2\Delta T}$ and similar expressions for strike derivatives. What grid spacing issues arise for deep OTM options?
 
+??? success "Solution to Exercise 3"
+    The partial derivatives needed for Dupire's formula are $\frac{\partial C}{\partial T}$, $\frac{\partial C}{\partial K}$, and $\frac{\partial^2 C}{\partial K^2}$.
+
+    **Time derivative** (centered finite difference):
+
+    $$
+    \frac{\partial C}{\partial T}\bigg|_{(K_i, T_j)} \approx \frac{C(K_i, T_{j+1}) - C(K_i, T_{j-1})}{T_{j+1} - T_{j-1}}
+    $$
+
+    For boundary maturities ($j = 1$ or $j = n$), use forward or backward differences.
+
+    **First strike derivative** (centered finite difference):
+
+    $$
+    \frac{\partial C}{\partial K}\bigg|_{(K_i, T_j)} \approx \frac{C(K_{i+1}, T_j) - C(K_{i-1}, T_j)}{K_{i+1} - K_{i-1}}
+    $$
+
+    **Second strike derivative** (centered finite difference):
+
+    $$
+    \frac{\partial^2 C}{\partial K^2}\bigg|_{(K_i, T_j)} \approx \frac{C(K_{i+1}, T_j) - 2C(K_i, T_j) + C(K_{i-1}, T_j)}{(\Delta K)^2}
+    $$
+
+    For non-uniform strike spacing, use the generalized formula:
+
+    $$
+    \frac{\partial^2 C}{\partial K^2}\bigg|_{K_i} \approx \frac{2}{K_{i+1} - K_{i-1}}\left(\frac{C(K_{i+1}) - C(K_i)}{K_{i+1} - K_i} - \frac{C(K_i) - C(K_{i-1})}{K_i - K_{i-1}}\right)
+    $$
+
+    **Grid spacing issues for deep OTM options:**
+
+    1. **Sparse strikes:** Deep OTM strikes are often widely spaced, reducing finite-difference accuracy.
+    2. **Small option prices:** Deep OTM options have prices near zero, so relative errors in quotes are large. Finite differences amplify these errors.
+    3. **Denominator instability:** $\frac{\partial^2 C}{\partial K^2} \approx 0$ in the wings, causing $\sigma_{\text{loc}}^2$ to blow up (division by near-zero).
+    4. **Time derivative noise:** For deep OTM options, $C(K, T)$ changes slowly with $T$, making $\frac{\partial C}{\partial T}$ difficult to estimate reliably.
+    5. **Bid-ask contamination:** Deep OTM options have wide bid-ask spreads relative to their midprice, introducing substantial noise into the finite-difference estimates.
+
 ---
 
 **Exercise 4.** The forward Kolmogorov (Fokker-Planck) equation for the local volatility model is $\frac{\partial p}{\partial t} = -\frac{\partial}{\partial S}[(r-q)Sp] + \frac{1}{2}\frac{\partial^2}{\partial S^2}[\sigma_{\text{loc}}^2 S^2 p]$. Explain why this is a "forward" equation (evolving in maturity $T$), and contrast it with the "backward" Black-Scholes PDE. Why is the forward equation more natural for calibration from market data?
+
+??? success "Solution to Exercise 4"
+    The **forward Kolmogorov equation** (Fokker-Planck) evolves the probability density $p(S, T)$ forward in the maturity variable $T$:
+
+    $$
+    \frac{\partial p}{\partial T} = -\frac{\partial}{\partial S}[(r-q)Sp] + \frac{1}{2}\frac{\partial^2}{\partial S^2}[\sigma_{\text{loc}}^2 S^2 p]
+    $$
+
+    Given an initial condition $p(S, 0) = \delta(S - S_0)$, this PDE determines the density at any future time $T > 0$. It is a "forward" equation because it propagates information from the known initial state into the future.
+
+    The **backward Black-Scholes PDE** evolves the option price backward from the terminal condition:
+
+    $$
+    \frac{\partial C}{\partial t} + (r-q)S\frac{\partial C}{\partial S} + \frac{1}{2}\sigma_{\text{loc}}^2 S^2 \frac{\partial^2 C}{\partial S^2} - rC = 0
+    $$
+
+    Given a terminal condition $C(S, T) = \max(S - K, 0)$ at maturity, this PDE determines the price at earlier times $t < T$. It propagates information backward from the known payoff.
+
+    **Why the forward equation is more natural for calibration:** Market data consists of option prices at various maturities $T_1 < T_2 < \cdots$ observed today ($t = 0$). Calibration seeks $\sigma_{\text{loc}}(S, t)$ that reproduces these prices. The forward equation takes the current spot as given and evolves the density to each maturity, directly producing the quantities (marginal densities) that determine call prices via $C(K, T) = e^{-rT}\int_K^\infty (S - K)p(S, T) \, dS$. One forward solve gives prices for all strikes at a given maturity. In contrast, the backward PDE must be solved separately for each strike $K$, requiring many backward solves. Thus the forward equation provides a more efficient framework for calibrating $\sigma_{\text{loc}}$ to the entire option surface.
 
 ---
 
 **Exercise 5.** Consider a local volatility surface $\sigma_{\text{loc}}(S, t) = 0.20 + 0.001(S - 100)$ at $t = 0$. Compute the local volatility at $S = 90, 100, 110$. What does this imply about the short-maturity implied volatility smile? Is the smile upward-sloping, downward-sloping, or U-shaped?
 
+??? success "Solution to Exercise 5"
+    The local volatility function is $\sigma_{\text{loc}}(S, 0) = 0.20 + 0.001(S - 100)$.
+
+    Evaluating at each spot level:
+
+    - $S = 90$: $\sigma_{\text{loc}}(90, 0) = 0.20 + 0.001(90 - 100) = 0.20 - 0.01 = 0.19$ (19%)
+    - $S = 100$: $\sigma_{\text{loc}}(100, 0) = 0.20 + 0.001(100 - 100) = 0.20$ (20%)
+    - $S = 110$: $\sigma_{\text{loc}}(110, 0) = 0.20 + 0.001(110 - 100) = 0.20 + 0.01 = 0.21$ (21%)
+
+    **Short-maturity implied volatility smile:** For small $T$, the implied volatility approaches the local volatility:
+
+    $$
+    \sigma_{\text{IV}}(K, T) \approx \sigma_{\text{loc}}(K, 0) \quad \text{as } T \to 0
+    $$
+
+    Since $\sigma_{\text{loc}}$ is linearly increasing in $S$, the short-maturity implied volatility smile is:
+
+    $$
+    \sigma_{\text{IV}}(K) \approx 0.20 + 0.001(K - 100)
+    $$
+
+    This is an **upward-sloping** (monotonically increasing) smile: higher strikes have higher implied volatility. This is the opposite of the typical equity skew pattern. Such a pattern might be seen in commodity markets where higher prices are associated with supply disruptions and increased uncertainty. The smile is neither U-shaped nor downward-sloping; it is a simple linear tilt.
+
 ---
 
 **Exercise 6.** Dupire's formula can also be expressed in terms of implied volatility rather than call prices. State the version involving $\sigma_{\text{IV}}$, $\frac{\partial \sigma_{\text{IV}}}{\partial T}$, and $\frac{\partial \sigma_{\text{IV}}}{\partial K}$. Why is this "implied volatility form" of Dupire's equation useful in practice despite being more complex?
 
+??? success "Solution to Exercise 6"
+    Dupire's formula expressed in terms of implied volatility is:
+
+    $$
+    \sigma_{\text{loc}}^2(K, T) = \frac{\sigma_{\text{IV}}^2 + 2\sigma_{\text{IV}} T \frac{\partial \sigma_{\text{IV}}}{\partial T} + 2(r - q) K T \sigma_{\text{IV}} \frac{\partial \sigma_{\text{IV}}}{\partial K}}{\left(1 + K d_1 \sqrt{T} \frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2 + \sigma_{\text{IV}} K^2 T \left(\frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2} - d_1 \sqrt{T} \left(\frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2\right)}
+    $$
+
+    where $d_1 = \frac{\ln(S_0/K) + (r - q + \sigma_{\text{IV}}^2/2)T}{\sigma_{\text{IV}}\sqrt{T}}$.
+
+    **Why this form is useful in practice:**
+
+    1. **Direct input from market data:** Market participants quote and interpolate implied volatilities, not call prices. The IV-based Dupire formula avoids the intermediate step of converting IV to prices and then differentiating prices.
+
+    2. **Better numerical stability:** Implied volatility surfaces are smoother and better behaved than price surfaces. Derivatives of IV are more stable than derivatives of option prices, especially in the wings where prices are near zero.
+
+    3. **Standard interpolation tools:** Practitioners use well-established IV parametrizations (SVI, SSVI, SABR) that provide analytical expressions for $\frac{\partial \sigma_{\text{IV}}}{\partial K}$, $\frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2}$, and $\frac{\partial \sigma_{\text{IV}}}{\partial T}$. Plugging these directly into the IV-based Dupire formula avoids numerical differentiation entirely.
+
+    4. **Interpretability:** The formula makes the contribution of each smile feature explicit — the ATM level ($\sigma_{\text{IV}}^2$), the term structure slope ($\frac{\partial \sigma_{\text{IV}}}{\partial T}$), the skew ($\frac{\partial \sigma_{\text{IV}}}{\partial K}$), and the curvature ($\frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2}$) each have a clear role.
+
 ---
 
 **Exercise 7.** Explain why the local volatility model perfectly calibrates to all vanilla European option prices (existence and uniqueness of $\sigma_{\text{loc}}$), yet may produce unrealistic dynamics for exotic options. Specifically, discuss the forward smile problem: what does the local volatility model predict for the implied volatility smile of a forward-starting option, and how does this compare to market observations?
+
+??? success "Solution to Exercise 7"
+    **Perfect calibration to vanillas:** Dupire's formula establishes a one-to-one mapping between an arbitrage-free call price surface $C(K, T)$ and a local volatility function $\sigma_{\text{loc}}(S, t)$. Given any complete, arbitrage-free set of European option prices, there exists a unique continuous diffusion:
+
+    $$
+    dS_t = (r - q)S_t \, dt + \sigma_{\text{loc}}(S_t, t) S_t \, dW_t
+    $$
+
+    that reproduces all vanilla prices exactly. This is guaranteed by Theorem 4.2.3 (uniqueness of local volatility). The calibration is exact by construction — there is no optimization or residual error.
+
+    **Failure for exotic options:** Despite perfect vanilla calibration, the local volatility model produces incorrect dynamics for exotic options because it imposes a specific, deterministic relationship between the spot level and instantaneous volatility. The key issues are:
+
+    1. **Smile dynamics:** The local volatility model generates **sticky-strike** dynamics: as the spot moves, the implied volatility at a fixed strike remains approximately constant. Markets, however, exhibit behavior closer to **sticky-delta** (the smile translates with the spot). This means the model predicts the wrong P&L for delta-hedged exotic positions.
+
+    2. **Spot-vol correlation:** In reality, volatility is stochastic and exhibits a negative correlation with spot (the leverage effect). Local volatility captures the average effect but not the stochastic component, leading to incorrect pricing of path-dependent payoffs.
+
+    **The forward smile problem:** A forward-starting option is struck relative to the spot at a future date $t_1$, with payoff $\max(S_T / S_{t_1} - k, 0)$. Its price depends on the conditional (forward) density $q(S_T \mid S_{t_1})$.
+
+    - **Local volatility prediction:** As $t_1 \to T$, the forward smile flattens and approaches a flat Black-Scholes-like smile. This occurs because the local volatility model's deterministic vol function leaves less and less room for smile generation over a shrinking time window.
+
+    - **Market observation:** Empirically, forward smiles remain pronounced even for short forward windows. Equity markets consistently show a persistent skew in forward-starting options.
+
+    This discrepancy arises because the local volatility model attributes all smile effects to the spot level dependence of volatility, whereas in reality, stochastic volatility and jumps generate smile independently of where the spot is. Stochastic local volatility (SLV) models address this by combining local volatility calibration with a stochastic volatility component that preserves realistic forward smile dynamics.

@@ -162,40 +162,6 @@ $\square$
 
 (c) $(\mu\,dt + \sigma\,dW_t)^2$ for constants $\mu$ and $\sigma$
 
----
-
-**Exercise 2.** Let $f(x) = e^x$. Write out all five terms of the second-order Taylor expansion for $f(t, W_t + dW_t) - f(t, W_t)$, apply the multiplication table term by term, and derive Itô's formula for $d(e^{W_t})$.
-
----
-
-**Exercise 3.** Explain why $(dt \cdot dW_t) = 0$ by analyzing the order of magnitude. Specifically, if $dW_t = O(\sqrt{dt})$, show that $dt \cdot dW_t = O((dt)^{3/2})$, and explain why this vanishes faster than $dt$.
-
----
-
-**Exercise 4.** Apply the derivation of Section 3 to the function $f(t, x) = \sin(x)$. Compute $f_t$, $f_x$, $f_{xx}$, substitute into the five-term Taylor expansion, apply the multiplication table, and write the resulting Itô formula for $d(\sin(W_t))$.
-
----
-
-**Exercise 5.** Consider a general Itô process $dX_t = \mu_t\,dt + \sigma_t\,dW_t$.
-
-(a) Expand $(dX_t)^2 = (\mu_t\,dt + \sigma_t\,dW_t)^2$ into four terms.
-
-(b) Apply the multiplication table to each term and show that $(dX_t)^2 = \sigma_t^2\,dt$.
-
-(c) Use this to write the second-order Taylor term $\frac{1}{2}f_{xx}(dX_t)^2$ for a general $C^2$ function $f$.
-
----
-
-**Exercise 6.** Let $f(x) = x^3$. Derive $d(W_t^3)$ by writing out the full five-term Taylor expansion and applying the multiplication table. Verify that your result matches what you would obtain from applying Itô's formula directly.
-
----
-
-**Exercise 7.** Suppose two independent Brownian motions $W_t^1$ and $W_t^2$ are given. Using the multiplication table extended to two independent Brownian motions (where $dW_t^1 \cdot dW_t^2 = 0$), compute $(dW_t^1 + dW_t^2)^2$ and interpret the result.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a)** $(3\,dt)(2\,dW_t) = 6\,dt\,dW_t = 6 \cdot 0 = 0$ since $dt\,dW_t = 0$ by the multiplication table.
 
@@ -215,6 +181,10 @@ $\square$
 
     Only the Brownian component survives when squaring an Itô differential.
 
+---
+
+**Exercise 2.** Let $f(x) = e^x$. Write out all five terms of the second-order Taylor expansion for $f(t, W_t + dW_t) - f(t, W_t)$, apply the multiplication table term by term, and derive Itô's formula for $d(e^{W_t})$.
+
 ??? success "Solution to Exercise 2"
     For $f(x) = e^x$ (no explicit time dependence), we have $f_t = 0$, $f_{tt} = 0$, $f_{tx} = 0$, and $f_x = e^x$, $f_{xx} = e^x$. The five-term expansion is
 
@@ -230,6 +200,10 @@ $\square$
 
     The Itô correction $\frac{1}{2}e^{W_t}\,dt$ arises from the positive curvature of $e^x$ (since $f''(x) = e^x > 0$).
 
+---
+
+**Exercise 3.** Explain why $(dt \cdot dW_t) = 0$ by analyzing the order of magnitude. Specifically, if $dW_t = O(\sqrt{dt})$, show that $dt \cdot dW_t = O((dt)^{3/2})$, and explain why this vanishes faster than $dt$.
+
 ??? success "Solution to Exercise 3"
     If $dW_t = O(\sqrt{dt})$, then
 
@@ -238,6 +212,10 @@ $\square$
     $$
 
     Since $3/2 > 1$, this product vanishes faster than $dt$ as $dt \to 0$. Formally, $\frac{dt \cdot dW_t}{dt} = O((dt)^{1/2}) \to 0$, so $dt \cdot dW_t = o(dt)$. In the Taylor expansion, any term that is $o(dt)$ makes zero contribution in the infinitesimal limit and is therefore set to zero in the Itô multiplication table.
+
+---
+
+**Exercise 4.** Apply the derivation of Section 3 to the function $f(t, x) = \sin(x)$. Compute $f_t$, $f_x$, $f_{xx}$, substitute into the five-term Taylor expansion, apply the multiplication table, and write the resulting Itô formula for $d(\sin(W_t))$.
 
 ??? success "Solution to Exercise 4"
     For $f(t, x) = \sin(x)$: $f_t = 0$, $f_x = \cos(x)$, $f_{tt} = 0$, $f_{tx} = 0$, $f_{xx} = -\sin(x)$. The five-term expansion gives
@@ -253,6 +231,16 @@ $\square$
     $$
 
     The Itô correction $-\frac{1}{2}\sin(W_t)\,dt$ arises from the negative curvature of $\sin(x)$ at points where $\sin(x) > 0$.
+
+---
+
+**Exercise 5.** Consider a general Itô process $dX_t = \mu_t\,dt + \sigma_t\,dW_t$.
+
+(a) Expand $(dX_t)^2 = (\mu_t\,dt + \sigma_t\,dW_t)^2$ into four terms.
+
+(b) Apply the multiplication table to each term and show that $(dX_t)^2 = \sigma_t^2\,dt$.
+
+(c) Use this to write the second-order Taylor term $\frac{1}{2}f_{xx}(dX_t)^2$ for a general $C^2$ function $f$.
 
 ??? success "Solution to Exercise 5"
     **(a)** Expanding $(dX_t)^2 = (\mu_t\,dt + \sigma_t\,dW_t)^2$:
@@ -277,6 +265,10 @@ $\square$
 
     This is the Itô correction for a general Itô process: it depends only on the diffusion coefficient $\sigma_t$ and the second derivative of $f$.
 
+---
+
+**Exercise 6.** Let $f(x) = x^3$. Derive $d(W_t^3)$ by writing out the full five-term Taylor expansion and applying the multiplication table. Verify that your result matches what you would obtain from applying Itô's formula directly.
+
 ??? success "Solution to Exercise 6"
     For $f(x) = x^3$: $f_t = 0$, $f_x = 3x^2$, $f_{xx} = 6x$, $f_{tt} = f_{tx} = 0$. The five-term expansion:
 
@@ -291,6 +283,10 @@ $\square$
     $$
 
     Verification via Itô's formula: $df(B_t) = f'(B_t)\,dB_t + \frac{1}{2}f''(B_t)\,dt = 3W_t^2\,dW_t + \frac{1}{2}(6W_t)\,dt = 3W_t^2\,dW_t + 3W_t\,dt$. The results match.
+
+---
+
+**Exercise 7.** Suppose two independent Brownian motions $W_t^1$ and $W_t^2$ are given. Using the multiplication table extended to two independent Brownian motions (where $dW_t^1 \cdot dW_t^2 = 0$), compute $(dW_t^1 + dW_t^2)^2$ and interpret the result.
 
 ??? success "Solution to Exercise 7"
     Expanding $(dW_t^1 + dW_t^2)^2$:

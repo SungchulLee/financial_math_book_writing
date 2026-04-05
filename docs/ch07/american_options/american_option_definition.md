@@ -161,26 +161,6 @@ $$
 
 **Exercise 1.** An American call option on a non-dividend-paying stock has $S_0 = 100$, $K = 95$, $r = 5\%$, $\sigma = 25\%$, and $T = 1$. Compute the European call price using the Black-Scholes formula and explain why the American call has the same value (i.e., early exercise is never optimal). What property of the call payoff is essential for this result?
 
----
-
-**Exercise 2.** State the optimal stopping formulation for an American put: $V(t,S) = \sup_{\tau \in [t,T]} \mathbb{E}^{\mathbb{Q}}[e^{-r(\tau-t)}(K - S_\tau)^+ \mid S_t = S]$. Explain the economic meaning of the supremum over stopping times $\tau$ and why this makes the pricing problem harder than for European options.
-
----
-
-**Exercise 3.** Prove that the American option price is always at least as large as the European option price with the same parameters: $V_{\text{Am}} \geq V_{\text{Eu}}$. Define the early exercise premium $\epsilon = V_{\text{Am}} - V_{\text{Eu}}$ and explain why $\epsilon = 0$ for calls on non-dividend-paying stocks.
-
----
-
-**Exercise 4.** A Bermudan put can be exercised at times $t_1 = 0.25$, $t_2 = 0.5$, $t_3 = 0.75$, and $T = 1$, with $K = 100$, $r = 5\%$, $\sigma = 30\%$. Explain qualitatively how the Bermudan put price relates to the European and American put prices. As the number of exercise dates increases, what does the Bermudan price converge to?
-
----
-
-**Exercise 5.** The variational inequality for an American put is $\min(-\mathcal{L}V, \, V - (K-S)^+) = 0$ where $\mathcal{L}$ is the Black-Scholes operator. Interpret each of the two conditions: (a) $-\mathcal{L}V = 0$ and (b) $V = (K-S)^+$. In which region of the $(S,t)$ plane does each condition hold?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Using the Black-Scholes formula for a European call with $S_0 = 100$, $K = 95$, $r = 0.05$, $\sigma = 0.25$, $T = 1$:
 
@@ -210,6 +190,11 @@ $$
 
     The strict inequality holds because $r > 0$ and $T - t > 0$, so $e^{-r(T-t)} < 1$. Since the option value strictly exceeds the exercise payoff at every $t < T$, the holder never benefits from exercising early. The essential property is that the call payoff $(S - K)^+$ is **convex** in $S$, and the present value of the strike $Ke^{-r(T-t)}$ is strictly less than $K$ for positive rates.
 
+---
+
+
+**Exercise 2.** State the optimal stopping formulation for an American put: $V(t,S) = \sup_{\tau \in [t,T]} \mathbb{E}^{\mathbb{Q}}[e^{-r(\tau-t)}(K - S_\tau)^+ \mid S_t = S]$. Explain the economic meaning of the supremum over stopping times $\tau$ and why this makes the pricing problem harder than for European options.
+
 ??? success "Solution to Exercise 2"
     The optimal stopping formulation is:
 
@@ -222,6 +207,11 @@ $$
     **Why this is harder than European pricing:** For a European option, there is no optimization: the exercise time is fixed at $T$, so the price is simply $\mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)}(K - S_T)^+]$. This is a single expectation that can be computed via the Feynman-Kac theorem or closed-form formulas.
 
     For the American put, the $\sup$ over $\tau$ introduces an **optimization layer** on top of the expectation. The optimal $\tau^*$ depends on the solution itself (exercise when the option value equals the intrinsic value), creating a **fixed-point problem**. This transforms a linear PDE into a free-boundary problem (variational inequality), which generally has no closed-form solution.
+
+---
+
+
+**Exercise 3.** Prove that the American option price is always at least as large as the European option price with the same parameters: $V_{\text{Am}} \geq V_{\text{Eu}}$. Define the early exercise premium $\epsilon = V_{\text{Am}} - V_{\text{Eu}}$ and explain why $\epsilon = 0$ for calls on non-dividend-paying stocks.
 
 ??? success "Solution to Exercise 3"
     **Proof that $V_{\text{Am}} \geq V_{\text{Eu}}$:**
@@ -248,6 +238,11 @@ $$
 
     so the continuation value always dominates the exercise value, and the $\sup$ in the American price is attained at $\tau = T$.
 
+---
+
+
+**Exercise 4.** A Bermudan put can be exercised at times $t_1 = 0.25$, $t_2 = 0.5$, $t_3 = 0.75$, and $T = 1$, with $K = 100$, $r = 5\%$, $\sigma = 30\%$. Explain qualitatively how the Bermudan put price relates to the European and American put prices. As the number of exercise dates increases, what does the Bermudan price converge to?
+
 ??? success "Solution to Exercise 4"
     **Ordering of prices:** By the no-arbitrage ordering:
 
@@ -271,6 +266,11 @@ $$
     $$
 
     This convergence is monotone from below, since adding more exercise dates can only increase the option value. In practice, with weekly or daily exercise dates, the Bermudan price is virtually indistinguishable from the American price.
+
+---
+
+
+**Exercise 5.** The variational inequality for an American put is $\min(-\mathcal{L}V, \, V - (K-S)^+) = 0$ where $\mathcal{L}$ is the Black-Scholes operator. Interpret each of the two conditions: (a) $-\mathcal{L}V = 0$ and (b) $V = (K-S)^+$. In which region of the $(S,t)$ plane does each condition hold?
 
 ??? success "Solution to Exercise 5"
     The variational inequality $\min\left(-\mathcal{L}V, \, V - (K-S)^+\right) = 0$ encodes two conditions, exactly one of which holds as an equality at each point $(S, t)$:

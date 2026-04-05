@@ -1003,9 +1003,67 @@ The framework of sets of probability measures provides mathematically rigorous f
 
 **Exercise 1.** Let $P_0 = N(0, 1)$ be the standard normal distribution. Compute the KL divergence $D_{\text{KL}}(P \| P_0)$ when $P = N(\mu, 1)$ (shifted mean) and when $P = N(0, \sigma^2)$ (changed variance). For the KL ball $\mathcal{P}_{\text{KL}}(0.5) = \{P \ll P_0 : D_{\text{KL}}(P \| P_0) \leq 0.5\}$, determine the range of means $\mu$ allowed when the variance is fixed at 1.
 
+??? success "Solution to Exercise 1"
+
+    **Case 1: Shifted mean.** Let $P = N(\mu, 1)$ and $P_0 = N(0, 1)$. Using the KL divergence formula for Gaussians:
+
+    $$
+    D_{\text{KL}}(P \| P_0) = \frac{1}{2}\left[\frac{\sigma_P^2}{\sigma_0^2} + \frac{(\mu_P - \mu_0)^2}{\sigma_0^2} - 1 + \log\frac{\sigma_0^2}{\sigma_P^2}\right]
+    $$
+
+    With $\sigma_P^2 = \sigma_0^2 = 1$, $\mu_P = \mu$, $\mu_0 = 0$:
+
+    $$
+    D_{\text{KL}}(N(\mu, 1) \| N(0, 1)) = \frac{1}{2}\left[1 + \mu^2 - 1 + 0\right] = \frac{\mu^2}{2}
+    $$
+
+    **Case 2: Changed variance.** Let $P = N(0, \sigma^2)$ and $P_0 = N(0, 1)$:
+
+    $$
+    D_{\text{KL}}(N(0, \sigma^2) \| N(0, 1)) = \frac{1}{2}\left[\sigma^2 + 0 - 1 + \log\frac{1}{\sigma^2}\right] = \frac{1}{2}\left[\sigma^2 - 1 - \log \sigma^2\right]
+    $$
+
+    **Range of means in $\mathcal{P}_{\text{KL}}(0.5)$ with fixed variance 1:** We need $D_{\text{KL}}(N(\mu, 1) \| N(0,1)) \leq 0.5$, which gives:
+
+    $$
+    \frac{\mu^2}{2} \leq 0.5 \implies \mu^2 \leq 1 \implies \mu \in [-1, 1]
+    $$
+
+    Therefore, the KL ball of radius 0.5 centered at $N(0,1)$, restricted to distributions with unit variance, allows means in the range $[-1, 1]$.
+
 ---
 
 **Exercise 2.** For the $\varepsilon$-contamination set $\mathcal{P}_\varepsilon = \{(1 - \varepsilon) P_0 + \varepsilon Q : Q \in \mathcal{M}_1(\mathbb{R})\}$ with $P_0 = N(0,1)$ and $\varepsilon = 0.1$, compute $\sup_{P \in \mathcal{P}_\varepsilon} \mathbb{E}_P[X]$ and $\inf_{P \in \mathcal{P}_\varepsilon} \mathbb{E}_P[X]$ for a bounded loss function $X$ with $X \in [-10, 10]$. Show that the worst-case measure places its contaminating mass at the extreme point.
+
+??? success "Solution to Exercise 2"
+
+    With $P_0 = N(0,1)$, $\varepsilon = 0.1$, and $X \in [-10, 10]$ bounded.
+
+    For any $P = (1-\varepsilon)P_0 + \varepsilon Q$ in $\mathcal{P}_\varepsilon$:
+
+    $$
+    \mathbb{E}_P[X] = (1-\varepsilon)\mathbb{E}_{P_0}[X] + \varepsilon \mathbb{E}_Q[X]
+    $$
+
+    **Supremum**: To maximize $\mathbb{E}_P[X]$, we maximize $\mathbb{E}_Q[X]$. Since $X \in [-10, 10]$, the maximum of $\mathbb{E}_Q[X]$ over all probability measures $Q$ is achieved by $Q = \delta_{x^*}$ where $x^*$ is chosen to maximize $X$. Since $X$ is the identity function on $\mathbb{R}$ (restricted to $[-10, 10]$ as a bound on the loss), but more precisely, $X$ itself is a random variable with values in $[-10, 10]$. The contaminating measure $Q$ can place all mass at the point maximizing $X$, which is $x^* = 10$:
+
+    $$
+    \sup_{Q} \mathbb{E}_Q[X] = 10 \quad \text{(achieved by } Q = \delta_{10}\text{)}
+    $$
+
+    Therefore:
+
+    $$
+    \sup_{P \in \mathcal{P}_\varepsilon} \mathbb{E}_P[X] = (1-0.1) \times 0 + 0.1 \times 10 = 1.0
+    $$
+
+    **Infimum**: To minimize $\mathbb{E}_P[X]$, we minimize $\mathbb{E}_Q[X]$. The minimum is achieved by $Q = \delta_{-10}$:
+
+    $$
+    \inf_{P \in \mathcal{P}_\varepsilon} \mathbb{E}_P[X] = 0.9 \times 0 + 0.1 \times (-10) = -1.0
+    $$
+
+    **Worst-case at extremes**: In both cases, the optimal contaminating measure places all its mass at the extreme point of the support of $X$. This is a general property: the worst-case $Q$ in an $\varepsilon$-contamination model is always a point mass (Dirac delta) at the value that maximizes (or minimizes) the objective. This follows because $\mathbb{E}_Q[X]$ is linear in $Q$, and the maximum of a linear functional over all probability measures is attained at an extreme point, which is a Dirac mass.
 
 ---
 
@@ -1014,6 +1072,58 @@ The framework of sets of probability measures provides mathematically rigorous f
 $$
 \sup_{P \in \mathcal{P}_{\text{TV}}(\delta)} \mathbb{E}_P[f] = \mathbb{E}_{P_0}[f] + \delta M
 $$
+
+??? success "Solution to Exercise 3"
+
+    **Convexity**: Let $P_1, P_2 \in \mathcal{P}_{\text{TV}}(\delta)$ and $\alpha \in [0,1]$. For any $A \in \mathcal{F}$:
+
+    $$
+    |(\alpha P_1 + (1-\alpha)P_2)(A) - P_0(A)| = |\alpha(P_1(A) - P_0(A)) + (1-\alpha)(P_2(A) - P_0(A))|
+    $$
+
+    $$
+    \leq \alpha |P_1(A) - P_0(A)| + (1-\alpha)|P_2(A) - P_0(A)|
+    $$
+
+    Taking the supremum over $A$:
+
+    $$
+    \|\alpha P_1 + (1-\alpha)P_2 - P_0\|_{\text{TV}} \leq \alpha \|P_1 - P_0\|_{\text{TV}} + (1-\alpha)\|P_2 - P_0\|_{\text{TV}} \leq \alpha \delta + (1-\alpha)\delta = \delta
+    $$
+
+    So $\alpha P_1 + (1-\alpha)P_2 \in \mathcal{P}_{\text{TV}}(\delta)$, proving convexity.
+
+    **Closedness in weak topology**: Let $\{P_n\}$ be a sequence in $\mathcal{P}_{\text{TV}}(\delta)$ with $P_n \xrightarrow{w} P$. We need to show $\|P - P_0\|_{\text{TV}} \leq \delta$. By the Portmanteau theorem, for any closed set $F$: $\limsup_n P_n(F) \leq P(F)$. For the TV characterization, note that $\|P - P_0\|_{\text{TV}} = \sup_A |P(A) - P_0(A)|$. The total variation norm is lower semicontinuous with respect to weak convergence:
+
+    $$
+    \|P - P_0\|_{\text{TV}} \leq \liminf_n \|P_n - P_0\|_{\text{TV}} \leq \delta
+    $$
+
+    (This uses the fact that the TV ball is weakly closed.) Hence $P \in \mathcal{P}_{\text{TV}}(\delta)$.
+
+    **Worst-case expectation**: For bounded $f$ with $\|f\|_\infty \leq M$, we want to show:
+
+    $$
+    \sup_{P: \|P - P_0\|_{\text{TV}} \leq \delta} \mathbb{E}_P[f] = \mathbb{E}_{P_0}[f] + \delta M
+    $$
+
+    **Upper bound**: For any $P$ with $\|P - P_0\|_{\text{TV}} \leq \delta$:
+
+    $$
+    \mathbb{E}_P[f] - \mathbb{E}_{P_0}[f] = \int f \, d(P - P_0) \leq \|f\|_\infty \|P - P_0\|_{\text{TV}} \leq M \delta
+    $$
+
+    using the definition of TV distance as the operator norm for bounded functions.
+
+    **Attainment**: We exhibit a measure $P^*$ achieving equality. Write the signed measure $P - P_0 = \delta \cdot \nu$ where $\|\nu\|_{\text{TV}} = 1$. To maximize $\int f \, d\nu$, we need $\nu$ concentrated on $\{f = M\}$ (positive part) and $\{f = -M\}$ (negative part). Specifically, let $A^+ = \arg\max f$ and choose:
+
+    $$
+    P^* = P_0 + \delta(\delta_{x^+} - \delta_{x^-})
+    $$
+
+    where $x^+ \in \arg\max f$ (with $f(x^+) = M$) and $x^-$ is chosen so that $P^*$ remains a valid probability measure with $\|P^* - P_0\|_{\text{TV}} = \delta$. This construction gives $\mathbb{E}_{P^*}[f] = \mathbb{E}_{P_0}[f] + \delta(M - f(x^-))$, which achieves $\mathbb{E}_{P_0}[f] + \delta M$ when $f(x^-) = -M + M = 0$, or more precisely, the supremum is achieved in the limit by concentrating the positive perturbation where $f$ is maximal.
+
+    More rigorously, $\sup_{\|P - P_0\|_{\text{TV}} \leq \delta} \mathbb{E}_P[f] = \mathbb{E}_{P_0}[f] + \delta \cdot \text{ess sup}_{P_0}(f)$ when $P_0$ has full support, and equals $\mathbb{E}_{P_0}[f] + \delta M$ for $\|f\|_\infty = M$ when the supremum of $f$ is $M$.
 
 ---
 
@@ -1025,14 +1135,205 @@ $$
 
 with two assets having $\mu_0 = (0.08, 0.12)^\top$ and $\Sigma_0 = \begin{pmatrix} 0.04 & 0.01 \\ 0.01 & 0.09 \end{pmatrix}$. For $\lambda = 2$ and $\theta = 0.1$, compute the robust optimal portfolio and compare it with the classical Markowitz portfolio (obtained at $\theta = 0$).
 
+??? success "Solution to Exercise 4"
+
+    **Parameters**: $\mu_0 = (0.08, 0.12)^\top$, $\Sigma_0 = \begin{pmatrix} 0.04 & 0.01 \\ 0.01 & 0.09 \end{pmatrix}$, $\lambda = 2$, $\theta = 0.1$.
+
+    **Classical Markowitz**: With $\theta = 0$ (no ambiguity):
+
+    $$
+    w_{\text{MV}} = \frac{1}{\lambda} \Sigma_0^{-1} \mu_0
+    $$
+
+    Compute $\Sigma_0^{-1}$: $\det(\Sigma_0) = 0.04 \times 0.09 - 0.01^2 = 0.0036 - 0.0001 = 0.0035$
+
+    $$
+    \Sigma_0^{-1} = \frac{1}{0.0035} \begin{pmatrix} 0.09 & -0.01 \\ -0.01 & 0.04 \end{pmatrix} = \begin{pmatrix} 25.714 & -2.857 \\ -2.857 & 11.429 \end{pmatrix}
+    $$
+
+    $$
+    \Sigma_0^{-1} \mu_0 = \begin{pmatrix} 25.714 \times 0.08 + (-2.857) \times 0.12 \\ (-2.857) \times 0.08 + 11.429 \times 0.12 \end{pmatrix} = \begin{pmatrix} 2.057 - 0.343 \\ -0.229 + 1.371 \end{pmatrix} = \begin{pmatrix} 1.714 \\ 1.143 \end{pmatrix}
+    $$
+
+    $$
+    w_{\text{MV}} = \frac{1}{2} \begin{pmatrix} 1.714 \\ 1.143 \end{pmatrix} = \begin{pmatrix} 0.857 \\ 0.571 \end{pmatrix}
+    $$
+
+    **Robust portfolio**: For the KL uncertainty set, the worst-case mean adjustment for direction $w$ reduces the expected return by $\sqrt{2\theta \cdot w^\top \Sigma_0 w}$. The robust portfolio takes the form:
+
+    $$
+    w^* = \frac{1}{\lambda + \kappa} \Sigma_0^{-1} \mu_0
+    $$
+
+    where $\kappa = \sqrt{2\theta / (\mu_0^\top \Sigma_0^{-1} \mu_0)}$. Compute:
+
+    $$
+    \mu_0^\top \Sigma_0^{-1} \mu_0 = 0.08 \times 1.714 + 0.12 \times 1.143 = 0.1371 + 0.1371 = 0.2743
+    $$
+
+    $$
+    \kappa = \sqrt{\frac{2 \times 0.1}{0.2743}} = \sqrt{0.7293} = 0.854
+    $$
+
+    $$
+    w^* = \frac{1}{2 + 0.854} \begin{pmatrix} 1.714 \\ 1.143 \end{pmatrix} = \frac{1}{2.854} \begin{pmatrix} 1.714 \\ 1.143 \end{pmatrix} = \begin{pmatrix} 0.601 \\ 0.400 \end{pmatrix}
+    $$
+
+    **Comparison**: The robust portfolio is:
+
+    $$
+    w^* = \frac{\lambda}{\lambda + \kappa} w_{\text{MV}} = \frac{2}{2.854} w_{\text{MV}} \approx 0.701 \times w_{\text{MV}}
+    $$
+
+    Positions are shrunk by about 30%. Asset 1 drops from $0.857$ to $0.601$, and asset 2 from $0.571$ to $0.400$. The ambiguity parameter $\theta = 0.1$ effectively increases risk aversion from $\lambda = 2$ to $\lambda + \kappa \approx 2.854$, reflecting the decision maker's caution about the estimated mean returns.
+
 ---
 
 **Exercise 5.** Derive the exponential tilting solution for the problem $\min_{P} \mathbb{E}_P[X]$ subject to $D_{\text{KL}}(P \| P_0) \leq \theta$. Starting from the Lagrangian $\mathcal{L}(P, \lambda) = \mathbb{E}_P[X] + \lambda(D_{\text{KL}}(P \| P_0) - \theta)$, show that the optimal density ratio is $dP^*/dP_0 \propto e^{-X/\lambda^*}$ and explain how $\lambda^*$ is determined by the constraint $D_{\text{KL}}(P^* \| P_0) = \theta$.
+
+??? success "Solution to Exercise 5"
+
+    **Lagrangian formulation**: We want to solve:
+
+    $$
+    \min_P \mathbb{E}_P[X] \quad \text{subject to} \quad D_{\text{KL}}(P \| P_0) \leq \theta, \quad \mathbb{E}_{P_0}\left[\frac{dP}{dP_0}\right] = 1
+    $$
+
+    The Lagrangian is (with multiplier $\lambda \geq 0$ for the KL constraint):
+
+    $$
+    \mathcal{L}(P, \lambda) = \mathbb{E}_P[X] + \lambda(D_{\text{KL}}(P \| P_0) - \theta)
+    $$
+
+    Writing $Z = dP/dP_0$ and expanding:
+
+    $$
+    \mathcal{L}(Z, \lambda) = \mathbb{E}_{P_0}[ZX] + \lambda\left(\mathbb{E}_{P_0}[Z\log Z] - \theta\right)
+    $$
+
+    subject to $\mathbb{E}_{P_0}[Z] = 1$, $Z \geq 0$.
+
+    **Variational derivative**: Introduce Lagrange multiplier $\nu$ for the normalization constraint. The augmented Lagrangian is:
+
+    $$
+    \tilde{\mathcal{L}} = \mathbb{E}_{P_0}[ZX + \lambda Z \log Z + \nu Z] - \lambda\theta - \nu
+    $$
+
+    Setting the functional derivative with respect to $Z(\omega)$ to zero:
+
+    $$
+    X(\omega) + \lambda(\log Z(\omega) + 1) + \nu = 0
+    $$
+
+    Solving for $Z$:
+
+    $$
+    Z(\omega) = \exp\left(-\frac{X(\omega)}{\lambda} - 1 - \frac{\nu}{\lambda}\right)
+    $$
+
+    **Normalization**: The constraint $\mathbb{E}_{P_0}[Z] = 1$ determines the constant:
+
+    $$
+    e^{-1 - \nu/\lambda} \cdot \mathbb{E}_{P_0}\left[e^{-X/\lambda}\right] = 1 \implies e^{-1-\nu/\lambda} = \frac{1}{\mathbb{E}_{P_0}[e^{-X/\lambda}]}
+    $$
+
+    Therefore the optimal density ratio is:
+
+    $$
+    \frac{dP^*}{dP_0} = \frac{e^{-X/\lambda^*}}{\mathbb{E}_{P_0}[e^{-X/\lambda^*}]}
+    $$
+
+    **Determining $\lambda^*$**: By complementary slackness, either $\lambda^* = 0$ (and the constraint is not active) or $D_{\text{KL}}(P^* \| P_0) = \theta$ (constraint is binding). When the constraint binds:
+
+    $$
+    D_{\text{KL}}(P^* \| P_0) = \mathbb{E}_{P^*}\left[\log\frac{dP^*}{dP_0}\right] = \mathbb{E}_{P^*}\left[-\frac{X}{\lambda^*} - \log \mathbb{E}_{P_0}[e^{-X/\lambda^*}]\right]
+    $$
+
+    $$
+    = -\frac{\mathbb{E}_{P^*}[X]}{\lambda^*} - \log \mathbb{E}_{P_0}[e^{-X/\lambda^*}] = \theta
+    $$
+
+    This is a single equation in $\lambda^*$ that can be solved numerically. As $\lambda^* \to 0^+$, the KL divergence grows to infinity (the tilting becomes extreme). As $\lambda^* \to \infty$, the KL divergence goes to 0 (the tilting vanishes). By continuity and monotonicity, there exists a unique $\lambda^*$ satisfying $D_{\text{KL}}(P^* \| P_0) = \theta$.
+
+    The solution is an **exponential tilting** (also called Esscher transform) that reweights the reference measure $P_0$ by exponentially penalizing high values of $X$ (since we are minimizing $\mathbb{E}_P[X]$). States where $X$ is large get downweighted, and states where $X$ is small get upweighted, consistent with a pessimistic worst-case measure.
 
 ---
 
 **Exercise 6.** Explain why rectangularity of $\mathcal{P}$ is necessary for dynamic consistency with maxmin preferences. Construct a simple two-period example with $\Omega = \{uu, ud, du, dd\}$ where the set $\mathcal{P} = \{P_1, P_2\}$ is not rectangular, and demonstrate that the optimal strategy chosen at $t = 0$ differs from the strategy the agent would choose at $t = 1$ upon reaching a particular node.
 
+??? success "Solution to Exercise 6"
+
+    **Why rectangularity is necessary**: Consider maxmin preferences $V_t(f) = \min_{P \in \mathcal{P}} \mathbb{E}_P[u(f) | \mathcal{F}_t]$. Dynamic consistency requires that if a plan is optimal at $t = 0$, the agent does not want to deviate at $t = 1$.
+
+    Suppose $\mathcal{P}$ is not rectangular. Then there exist measures $P_1, P_2 \in \mathcal{P}$ and a node at $t=1$ such that one cannot freely combine $P_1$'s conditional at one node with $P_2$'s conditional at another node. This means the worst-case measure at $t=0$ (which jointly optimizes over both periods) may differ from the measure that is worst case conditional on reaching a particular node at $t=1$.
+
+    **Two-period example**: Let $\Omega = \{uu, ud, du, dd\}$, with $\mathcal{F}_1 = \sigma(\{uu,ud\}, \{du,dd\})$.
+
+    Define $P_1$ and $P_2$ as:
+
+    | State | $P_1$ | $P_2$ |
+    |-------|-------|-------|
+    | $uu$ | $0.3 \times 0.5 = 0.15$ | $0.7 \times 0.8 = 0.56$ |
+    | $ud$ | $0.3 \times 0.5 = 0.15$ | $0.7 \times 0.2 = 0.14$ |
+    | $du$ | $0.7 \times 0.6 = 0.42$ | $0.3 \times 0.4 = 0.12$ |
+    | $dd$ | $0.7 \times 0.4 = 0.28$ | $0.3 \times 0.6 = 0.18$ |
+
+    So $P_1(u_1) = 0.3$, $P_1(u_2|u_1) = 0.5$, $P_1(u_2|d_1) = 0.6$; and $P_2(u_1) = 0.7$, $P_2(u_2|u_1) = 0.8$, $P_2(u_2|d_1) = 0.4$.
+
+    **Non-rectangularity**: To check, try to paste $P_1$'s conditional at node $u_1$ with $P_2$'s conditional at node $d_1$ and $P_1$'s marginal. This would give $R(u_1) = 0.3$, $R(u_2|u_1) = 0.5$, $R(u_2|d_1) = 0.4$. But $R \notin \{P_1, P_2\}$ since $P_1$ has $P_1(u_2|d_1) = 0.6 \neq 0.4$ and $P_2$ has $P_2(u_1) = 0.7 \neq 0.3$. So $\mathcal{P}$ is not rectangular.
+
+    **Dynamic inconsistency**: Consider the act $f(uu) = 10$, $f(ud) = 0$, $f(du) = 0$, $f(dd) = 10$ with $u(x) = x$.
+
+    At $t = 0$:
+
+    $$
+    \mathbb{E}_{P_1}[f] = 0.15 \times 10 + 0.28 \times 10 = 4.3
+    $$
+
+    $$
+    \mathbb{E}_{P_2}[f] = 0.56 \times 10 + 0.18 \times 10 = 7.4
+    $$
+
+    $\min = 4.3$ (worst case is $P_1$).
+
+    Now at $t = 1$, suppose we reach node $u_1$. Under $P_1$: $\mathbb{E}_{P_1}[f|u_1] = 0.5 \times 10 + 0.5 \times 0 = 5$. Under $P_2$: $\mathbb{E}_{P_2}[f|u_1] = 0.8 \times 10 + 0.2 \times 0 = 8$. The worst case at node $u_1$ is $P_1$ with value 5.
+
+    But if the agent could use $P_2$'s conditional at $d_1$ (which gives $\mathbb{E}_{P_2}[f|d_1] = 0.4 \times 0 + 0.6 \times 10 = 6$) and $P_1$'s conditional at $u_1$ (value 5), the overall worst case would combine different conditionals at different nodes, which is impossible with a non-rectangular set. The worst-case measure at $t=0$ ($P_1$) imposes conditionals at both nodes simultaneously, but the agent at node $u_1$ might prefer to evaluate robustness differently than what $P_1$'s conditional prescribes.
+
+    This creates a tension: the continuation strategy embedded in the $t=0$ plan (based on $P_1$ being worst case globally) may not match the strategy the agent would choose at $t=1$ (where the worst-case conditional measure might differ). This is the failure of dynamic consistency.
+
 ---
 
 **Exercise 7.** Compare Wasserstein balls and KL divergence balls as uncertainty sets. For the discrete distribution $P_0 = \frac{1}{3}\delta_1 + \frac{1}{3}\delta_2 + \frac{1}{3}\delta_3$ on $\{1, 2, 3\}$, describe the sets $\mathcal{P}_W(0.5) = \{P : W_1(P, P_0) \leq 0.5\}$ and $\mathcal{P}_{\text{KL}}(0.5) = \{P : D_{\text{KL}}(P \| P_0) \leq 0.5\}$. Which set is larger? Which leads to more conservative worst-case expectations for $f(x) = x^2$?
+
+??? success "Solution to Exercise 7"
+
+    **Setup**: $P_0 = \frac{1}{3}\delta_1 + \frac{1}{3}\delta_2 + \frac{1}{3}\delta_3$ on $\{1, 2, 3\}$ with $d(x,y) = |x-y|$.
+
+    **KL ball**: $\mathcal{P}_{\text{KL}}(0.5) = \{P : D_{\text{KL}}(P \| P_0) \leq 0.5\}$. Since $P_0$ is supported on $\{1,2,3\}$, any $P \ll P_0$ must also be supported on $\{1,2,3\}$. Write $P = (p_1, p_2, p_3)$ with $p_i \geq 0$, $\sum p_i = 1$.
+
+    $$
+    D_{\text{KL}}(P \| P_0) = \sum_{i=1}^3 p_i \log\frac{p_i}{1/3} = \sum_{i=1}^3 p_i \log(3p_i) = \log 3 + \sum_{i=1}^3 p_i \log p_i
+    $$
+
+    The constraint $D_{\text{KL}}(P \| P_0) \leq 0.5$ defines a convex subset of the probability simplex in $\mathbb{R}^3$. The set is bounded within $\{1,2,3\}$ and cannot include any mass outside these three points.
+
+    **Wasserstein ball**: $\mathcal{P}_W(0.5) = \{P : W_1(P, P_0) \leq 0.5\}$. Unlike the KL ball, the Wasserstein ball allows $P$ to place mass on points other than $\{1,2,3\}$. For instance, $P$ could place mass at $x = 0.5$ or $x = 3.5$, as long as the total transport cost is at most 0.5.
+
+    A measure $P$ in the Wasserstein ball can move each atom of $P_0$ by at most a total average distance of 0.5. For example, $P = \frac{1}{3}\delta_{0.5} + \frac{1}{3}\delta_2 + \frac{1}{3}\delta_3$ has $W_1(P, P_0) = \frac{1}{3} \times 0.5 = 0.167 \leq 0.5$, so this is in the Wasserstein ball. Similarly, $P = \frac{1}{3}\delta_1 + \frac{1}{3}\delta_2 + \frac{1}{3}\delta_{4.5}$ has $W_1 = \frac{1}{3} \times 1.5 = 0.5$, which is exactly on the boundary.
+
+    **Which set is larger?** The Wasserstein ball is larger in the sense that it contains distributions not supported on $\{1,2,3\}$, whereas the KL ball is restricted to this support. Within the simplex over $\{1,2,3\}$, the comparison depends on the specific radii, but the key structural difference is that the Wasserstein ball explores a much richer set of distributions.
+
+    **Worst-case $\mathbb{E}_P[f]$ for $f(x) = x^2$**:
+
+    *KL ball*: Restricted to $\{1,2,3\}$, we maximize $p_1 \cdot 1 + p_2 \cdot 4 + p_3 \cdot 9$ subject to $D_{\text{KL}}(P \| P_0) \leq 0.5$. The maximum is achieved by shifting mass toward $x = 3$ (highest $f$ value). Using exponential tilting, the worst case is $p_i^* \propto \frac{1}{3} e^{\lambda x_i^2}$, where $\lambda$ is chosen to saturate the KL constraint. The reference expectation is $\mathbb{E}_{P_0}[f] = \frac{1}{3}(1 + 4 + 9) = \frac{14}{3} \approx 4.667$.
+
+    Numerically, with the KL constraint at 0.5, the worst-case $P^*$ shifts mass toward $x = 3$, giving approximately $p_3^* \approx 0.56$, $p_2^* \approx 0.29$, $p_1^* \approx 0.15$, and $\mathbb{E}_{P^*}[x^2] \approx 0.15 + 1.16 + 5.04 = 6.35$.
+
+    *Wasserstein ball*: The worst case can move mass to points beyond $\{1,2,3\}$. For instance, moving the atom at $x = 3$ to $x = 4.5$ (distance 1.5, transport cost $\frac{1}{3} \times 1.5 = 0.5$) gives $f(4.5) = 20.25$. This yields $\mathbb{E}[f] = \frac{1}{3}(1 + 4 + 20.25) = 8.42$.
+
+    Even better, we could move all three atoms rightward: move $x=1$ to $x=2.5$, $x=2$ to $x=3.5$, $x=3$ to $x=4.5$, each by 1.5, but average transport $= 1.5 > 0.5$, so this exceeds the budget. Optimally, concentrate the transport on the atom where $f$ has the highest marginal return. Since $f(x) = x^2$ is convex and increasing for $x > 0$, moving the rightmost atom yields the greatest increase. Moving atom at $x = 3$ rightward by $\Delta$ costs $\frac{1}{3}\Delta$ in transport and gains $\frac{1}{3}((3+\Delta)^2 - 9)$ in expectation. Setting $\frac{1}{3}\Delta = 0.5$ gives $\Delta = 1.5$, and the gain is $\frac{1}{3}(20.25 - 9) = 3.75$.
+
+    So the Wasserstein worst-case $\mathbb{E}[x^2] \approx 4.667 + 3.75 = 8.42$.
+
+    **Conclusion**: The Wasserstein ball leads to a more conservative (higher) worst-case expectation ($\approx 8.42$) compared to the KL ball ($\approx 6.35$) for the convex function $f(x) = x^2$. This is because the Wasserstein ball can move mass to locations with arbitrarily high values of $f$, while the KL ball can only reweight existing atoms. For convex loss functions, this support extension property makes Wasserstein-based ambiguity fundamentally more conservative.

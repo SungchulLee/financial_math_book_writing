@@ -1105,9 +1105,111 @@ The interplay between misspecification and estimation error is central to statis
 
 **Exercise 1.** Consider a true data-generating process $P^*$ that is a mixture of two normals: $P^* = 0.7 \cdot N(0.05, 0.04) + 0.3 \cdot N(-0.10, 0.09)$. A practitioner fits a single Gaussian model $P_\theta = N(\mu, \sigma^2)$. Compute the pseudo-true parameter $\theta^* = \arg\min_\theta D_{\text{KL}}(P^* \| P_\theta)$ and the misspecification error. Explain why the fitted model fails to capture the left tail of $P^*$.
 
+??? success "Solution to Exercise 1"
+
+    The true distribution is $P^* = 0.7 \cdot N(0.05, 0.04) + 0.3 \cdot N(-0.10, 0.09)$.
+
+    **Step 1: Compute the moments of $P^*$.** The mean is:
+
+    $$
+    \mu^* = 0.7 \times 0.05 + 0.3 \times (-0.10) = 0.035 - 0.030 = 0.005
+    $$
+
+    The second moment is:
+
+    $$
+    \mathbb{E}[X^2] = 0.7(0.04 + 0.05^2) + 0.3(0.09 + 0.10^2) = 0.7(0.0425) + 0.3(0.10) = 0.02975 + 0.03 = 0.05975
+    $$
+
+    So the variance is $\sigma^{*2} = 0.05975 - 0.005^2 = 0.059725$.
+
+    **Step 2: Find the pseudo-true parameter.** For a Gaussian model $P_\theta = N(\mu, \sigma^2)$, the KL divergence $D_{\text{KL}}(P^* \| P_\theta)$ is minimized when $P_\theta$ matches the first two moments of $P^*$ (this is a well-known property of the Gaussian family as the maximum entropy distribution for given mean and variance).
+
+    The pseudo-true parameters are:
+
+    $$
+    \mu_0 = \mu^* = 0.005, \quad \sigma_0^2 = \sigma^{*2} = 0.059725
+    $$
+
+    **Step 3: Compute the misspecification error.** The KL divergence is:
+
+    $$
+    D_{\text{KL}}(P^* \| P_{\theta_0}) = \int p^*(x) \log\frac{p^*(x)}{p_{\theta_0}(x)} \, dx = -H(P^*) - \int p^*(x) \log p_{\theta_0}(x) \, dx
+    $$
+
+    Since $P_{\theta_0} = N(\mu_0, \sigma_0^2)$ matches the mean and variance of $P^*$:
+
+    $$
+    \int p^*(x) \log p_{\theta_0}(x) \, dx = -\frac{1}{2}\log(2\pi\sigma_0^2) - \frac{1}{2\sigma_0^2}\mathbb{E}_{P^*}[(X - \mu_0)^2] = -\frac{1}{2}\log(2\pi\sigma_0^2) - \frac{1}{2}
+    $$
+
+    Therefore $D_{\text{KL}}(P^* \| P_{\theta_0}) = -H(P^*) + \frac{1}{2}\log(2\pi e \sigma_0^2)$, where $H(P^*)$ is the differential entropy of the mixture.
+
+    The entropy of a Gaussian with variance $\sigma_0^2$ is $H_{\text{Gauss}} = \frac{1}{2}\log(2\pi e \sigma_0^2)$, and since a Gaussian maximizes entropy for given variance, we have $H(P^*) \leq H_{\text{Gauss}}$, so $D_{\text{KL}}(P^* \| P_{\theta_0}) \geq 0$. The misspecification error is strictly positive because $P^*$ is bimodal while $P_{\theta_0}$ is unimodal.
+
+    **Step 4: Left tail failure.** The left tail of $P^*$ is heavier than that of $P_{\theta_0}$ because the mixture component $N(-0.10, 0.09)$ contributes significant mass in the far left. The fitted Gaussian, while matching the overall variance, distributes its tails symmetrically. In particular:
+
+    $$
+    P^*(X < -0.5) \gg P_{\theta_0}(X < -0.5)
+    $$
+
+    This is because the mixture's second component (with mean $-0.10$ and standard deviation $0.3$) places substantial probability at extreme negative values. The single Gaussian cannot capture this asymmetric, heavy-tailed structure, leading to systematic underestimation of left-tail risk.
+
 ---
 
 **Exercise 2.** For a correctly specified model $P^* = P_{\theta_0}$ with $n = 100$ observations, the MLE $\hat{\theta}_n$ has asymptotic variance $I(\theta_0)^{-1}/n$. Compute the estimation error contribution to the total pricing error $|V(\hat{\theta}_n) - V(\theta_0)|$ using the delta method when $V(\theta) = \text{BS}(S_0, K, \sigma(\theta), T)$ is a Black-Scholes call price. Express the result in terms of the vega and the Fisher information.
+
+??? success "Solution to Exercise 2"
+
+    **Setup**: The model is correctly specified, so $P^* = P_{\theta_0}$, $\hat{\theta}_n$ is the MLE with $n = 100$, and $V(\theta) = \text{BS}(S_0, K, \sigma(\theta), T)$ is a Black-Scholes call price.
+
+    **Delta method**: For a smooth function $V(\theta)$ of the parameter, the pricing error satisfies:
+
+    $$
+    V(\hat{\theta}_n) - V(\theta_0) \approx \nabla_\theta V(\theta_0)^\top (\hat{\theta}_n - \theta_0)
+    $$
+
+    The variance of this pricing error is:
+
+    $$
+    \text{Var}(V(\hat{\theta}_n) - V(\theta_0)) \approx \nabla_\theta V(\theta_0)^\top \text{Var}(\hat{\theta}_n) \nabla_\theta V(\theta_0)
+    $$
+
+    **Single-parameter case ($\theta = \sigma$)**: If the only uncertain parameter is volatility, then $\nabla_\sigma V = \mathcal{V}$ (the Black-Scholes vega), and in the well-specified case:
+
+    $$
+    \text{Var}(\hat{\sigma}_n) = \frac{1}{n \cdot I(\sigma_0)}
+    $$
+
+    where $I(\sigma_0)$ is the Fisher information for the volatility parameter.
+
+    Therefore the estimation error contribution to the pricing error is:
+
+    $$
+    |V(\hat{\sigma}_n) - V(\sigma_0)| \approx |\mathcal{V}(\sigma_0)| \cdot |\hat{\sigma}_n - \sigma_0|
+    $$
+
+    with standard deviation:
+
+    $$
+    \text{sd}(V(\hat{\sigma}_n) - V(\sigma_0)) \approx \frac{|\mathcal{V}(\sigma_0)|}{\sqrt{n \cdot I(\sigma_0)}}
+    $$
+
+    For $n = 100$:
+
+    $$
+    \text{sd}(\text{pricing error}) = \frac{|\mathcal{V}(\sigma_0)|}{10 \sqrt{I(\sigma_0)}}
+    $$
+
+    **Interpretation**: The pricing error is proportional to the vega (sensitivity of the option price to volatility) and inversely proportional to $\sqrt{n I(\sigma_0)}$. Options with high vega (e.g., ATM options with long maturity) are most sensitive to estimation error. The Fisher information $I(\sigma_0)$ captures how informative the data is about $\sigma$: higher $I(\sigma_0)$ means more precise estimation and smaller pricing error.
+
+    **Multi-parameter extension**: If $\theta = (\mu, \sigma)^\top$, the pricing error variance is:
+
+    $$
+    \text{Var}(V(\hat{\theta}_n) - V(\theta_0)) = \frac{1}{n} \nabla_\theta V(\theta_0)^\top I(\theta_0)^{-1} \nabla_\theta V(\theta_0)
+    $$
+
+    Since the Black-Scholes call price under the risk-neutral measure does not depend on $\mu$, we have $\partial V / \partial \mu = 0$ in the risk-neutral framework, and the result reduces to the vega-based formula above.
 
 ---
 
@@ -1119,18 +1221,233 @@ $$
 
 In which regime (small $n$ vs. large $n$) does each term dominate? Illustrate with a concrete example of fitting a geometric Brownian motion to data with stochastic volatility.
 
+??? success "Solution to Exercise 3"
+
+    **Decomposition**: The total model risk in pricing a derivative $V$ is:
+
+    $$
+    |V(\hat{\theta}_n) - V^*| \leq \underbrace{|V(\theta^*) - V^*|}_{\text{misspecification}} + \underbrace{|V(\hat{\theta}_n) - V(\theta^*)|}_{\text{estimation}}
+    $$
+
+    where $V^*$ is the true price, $\theta^*$ is the pseudo-true parameter, and $\hat{\theta}_n$ is the MLE.
+
+    **Asymptotic behavior**:
+
+    - **Misspecification error** $|V(\theta^*) - V^*| = O(1)$: This is a fixed bias that does not vanish with sample size. It reflects the structural inability of the model to capture the true dynamics.
+
+    - **Estimation error** $|V(\hat{\theta}_n) - V(\theta^*)| = O_p(n^{-1/2})$: By the delta method and asymptotic normality of the MLE, this vanishes as $n \to \infty$.
+
+    **Regime analysis**:
+
+    - **Small $n$**: Estimation error dominates. With few observations, parameter estimates are noisy, and $|V(\hat{\theta}_n) - V(\theta^*)|$ is large. The misspecification error may be relatively small in comparison. Using a simpler model (lower misspecification within a simpler class, or equivalently, less estimation error) may be preferable.
+
+    - **Large $n$**: Misspecification error dominates. The estimation error shrinks to zero, but the structural bias remains. Increasing sample size does not help reduce total error; only improving the model specification can help.
+
+    **Concrete example: GBM fitted to Heston data.** Suppose the true dynamics follow the Heston model:
+
+    $$
+    dS_t = \mu S_t \, dt + \sqrt{v_t} S_t \, dW_t^1, \quad dv_t = \kappa(\bar{v} - v_t) \, dt + \xi \sqrt{v_t} \, dW_t^2
+    $$
+
+    and we fit a GBM: $dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$ (constant volatility).
+
+    The pseudo-true $\sigma^*$ is essentially the average integrated volatility: $\sigma^{*2} \approx \bar{v}$. The misspecification error arises because:
+
+    1. The GBM cannot produce the implied volatility smile (different strikes are mispriced systematically).
+    2. For an OTM put, the GBM underestimates the true price because it misses the fat left tail generated by stochastic volatility and leverage effect ($\rho < 0$).
+
+    With $n = 50$ daily returns, estimation error in $\hat{\sigma}$ might be $\pm 5\%$, leading to pricing errors of order $\mathcal{V} \times 0.05$. With $n = 5000$, estimation error drops to $\pm 0.5\%$, but the misspecification bias (e.g., 10-15% for deep OTM puts) persists.
+
 ---
 
 **Exercise 4.** The sandwich (Huber-White) variance estimator provides valid standard errors under model misspecification. For a quasi-MLE $\hat{\theta}$, the sandwich variance is $\hat{V} = A^{-1} B (A^{-1})^\top$ where $A = -\frac{1}{n}\sum_{i=1}^n \nabla^2 \ell_i(\hat{\theta})$ and $B = \frac{1}{n}\sum_{i=1}^n \nabla \ell_i(\hat{\theta}) \nabla \ell_i(\hat{\theta})^\top$. Explain why $A \neq B$ indicates misspecification and how this affects confidence intervals compared to the standard MLE variance $A^{-1}/n$.
+
+??? success "Solution to Exercise 4"
+
+    **Sandwich estimator**: The sandwich (Huber-White) variance is:
+
+    $$
+    \hat{V} = A^{-1} B (A^{-1})^\top
+    $$
+
+    where:
+
+    $$
+    A = -\frac{1}{n}\sum_{i=1}^n \nabla^2 \ell_i(\hat{\theta}), \quad B = \frac{1}{n}\sum_{i=1}^n \nabla \ell_i(\hat{\theta}) \nabla \ell_i(\hat{\theta})^\top
+    $$
+
+    **Why $A \neq B$ indicates misspecification**: Under correct specification, the information matrix equality holds:
+
+    $$
+    -\mathbb{E}[\nabla^2 \ell(\theta_0)] = \mathbb{E}[\nabla \ell(\theta_0) \nabla \ell(\theta_0)^\top]
+    $$
+
+    This is because $\mathbb{E}[\nabla \ell] = 0$ under the true model, and differentiating this identity gives $\mathbb{E}[\nabla^2 \ell] + \mathbb{E}[\nabla \ell \nabla \ell^\top] = 0$. So $A = B$ in population when well-specified.
+
+    When misspecified, the score $\nabla \ell(\theta_0)$ does not integrate to zero under $P^*$ in the same way, and the second Bartlett identity fails. Therefore $A \neq B$, and the discrepancy $\|A - B\|$ is a measure of the degree of misspecification.
+
+    **Impact on confidence intervals**: The standard MLE variance uses $A^{-1}/n$ (equivalent to the inverse Fisher information). The correct asymptotic variance under misspecification is $A^{-1}BA^{-1}/n$.
+
+    - If $B > A$ (in the matrix ordering sense), then $A^{-1}BA^{-1} > A^{-1}$, meaning the standard CI is **too narrow**. This leads to **under-coverage**: the nominal 95% CI may have actual coverage well below 95%, giving false confidence in the estimates.
+
+    - If $B < A$, the standard CI is too wide (conservative), which is less dangerous but still inefficient.
+
+    In practice, misspecification typically increases variance relative to the well-specified case, so standard CIs tend to be anti-conservative. The sandwich estimator corrects this by using the empirically observed score variability rather than the theoretically expected variability under the assumed model.
 
 ---
 
 **Exercise 5.** A modeler compares Black-Scholes (1 parameter: $\sigma$) against Heston (5 parameters) for pricing a set of 20 vanilla options. Using AIC, derive the penalty for each model and explain when the simpler Black-Scholes model might be preferred despite higher in-sample calibration error. How does this relate to the bias-variance trade-off?
 
+??? success "Solution to Exercise 5"
+
+    **AIC for Black-Scholes (BS)**: With 1 parameter ($d_{\text{BS}} = 1$), fitting 20 options:
+
+    $$
+    \text{AIC}_{\text{BS}} = -2\sum_{i=1}^{20} \log p_{\hat{\sigma}}(V_i^{\text{obs}}) + 2 \times 1
+    $$
+
+    The penalty term is $2d = 2$.
+
+    **AIC for Heston**: With 5 parameters ($d_H = 5$: $v_0, \kappa, \bar{v}, \xi, \rho$):
+
+    $$
+    \text{AIC}_H = -2\sum_{i=1}^{20} \log p_{\hat{\theta}_H}(V_i^{\text{obs}}) + 2 \times 5
+    $$
+
+    The penalty term is $2d = 10$.
+
+    **When BS might be preferred**: The AIC difference is:
+
+    $$
+    \text{AIC}_{\text{BS}} - \text{AIC}_H = \underbrace{-2(\mathcal{L}_{\text{BS}} - \mathcal{L}_H)}_{\text{fit difference}} + \underbrace{(2 - 10)}_{\text{penalty difference}}
+    $$
+
+    BS is preferred (lower AIC) when $\text{AIC}_{\text{BS}} < \text{AIC}_H$, i.e.:
+
+    $$
+    -2(\mathcal{L}_{\text{BS}} - \mathcal{L}_H) < 8
+    $$
+
+    $$
+    \mathcal{L}_H - \mathcal{L}_{\text{BS}} < 4
+    $$
+
+    This occurs when the Heston model's improvement in log-likelihood over BS is less than 4. With only 20 options, Heston's 4 extra parameters may not sufficiently improve the fit to justify the complexity penalty.
+
+    **Connection to bias-variance trade-off**:
+
+    - **Bias (misspecification)**: BS has higher bias since it cannot capture the volatility smile. Heston has lower bias as it models stochastic volatility.
+
+    - **Variance (estimation error)**: BS has lower estimation variance since it has only 1 parameter estimated from 20 data points. Heston has higher variance since 5 parameters must be estimated from the same 20 data points, with a ratio of $d/n = 5/20 = 0.25$ (high).
+
+    - **Total error**: $\text{MSE} = \text{Bias}^2 + \text{Variance}$. For small datasets ($n = 20$), the variance reduction from using BS may outweigh its bias increase, making the simpler model preferable. AIC formalizes this trade-off through the penalty $2d$.
+
+    This is why, in practice, traders sometimes use Black-Scholes with a volatility smile adjustment rather than calibrating a full stochastic volatility model when the dataset is small.
+
 ---
 
 **Exercise 6.** Consider the White (1982) information matrix test for misspecification. The null hypothesis is $H_0: A = B$ (where $A$ and $B$ are defined as in Exercise 4). Describe how to implement this test for a GARCH(1,1) model fitted to daily returns, and interpret rejection of $H_0$ in terms of what aspects of the return distribution the GARCH model fails to capture.
 
+??? success "Solution to Exercise 6"
+
+    **White's information matrix test**: The null hypothesis is $H_0: A(\theta_0) = B(\theta_0)$, where:
+
+    $$
+    A(\theta_0) = -\mathbb{E}_{P^*}[\nabla^2 \ell(\theta_0)], \quad B(\theta_0) = \mathbb{E}_{P^*}[\nabla \ell(\theta_0) \nabla \ell(\theta_0)^\top]
+    $$
+
+    Under correct specification, $A = B$ (the information matrix equality).
+
+    **Implementation for GARCH(1,1)**: The GARCH(1,1) model is:
+
+    $$
+    r_t = \mu + \varepsilon_t, \quad \varepsilon_t = \sigma_t z_t, \quad \sigma_t^2 = \omega + \alpha \varepsilon_{t-1}^2 + \beta \sigma_{t-1}^2
+    $$
+
+    with parameters $\theta = (\mu, \omega, \alpha, \beta)^\top$ and $z_t \sim N(0,1)$.
+
+    **Step 1**: Estimate $\hat{\theta}$ by MLE.
+
+    **Step 2**: Compute for each observation $t$:
+
+    $$
+    s_t = \nabla_\theta \ell_t(\hat{\theta}), \quad H_t = \nabla^2_\theta \ell_t(\hat{\theta})
+    $$
+
+    where $\ell_t(\theta) = -\frac{1}{2}\log(2\pi) - \frac{1}{2}\log\sigma_t^2 - \frac{r_t - \mu)^2}{2\sigma_t^2}$.
+
+    **Step 3**: Form the sample estimates:
+
+    $$
+    \hat{A} = -\frac{1}{n}\sum_{t=1}^n H_t, \quad \hat{B} = \frac{1}{n}\sum_{t=1}^n s_t s_t^\top
+    $$
+
+    **Step 4**: Vectorize $\hat{A} - \hat{B}$ (taking unique elements due to symmetry; for $d = 4$ parameters, there are $d(d+1)/2 = 10$ unique elements). Construct the test statistic:
+
+    $$
+    T = n \cdot \text{vech}(\hat{A} - \hat{B})^\top \hat{\Omega}^{-1} \text{vech}(\hat{A} - \hat{B})
+    $$
+
+    where $\hat{\Omega}$ is a consistent estimate of the asymptotic covariance of $\text{vech}(\hat{A} - \hat{B})$.
+
+    Under $H_0$: $T \xrightarrow{d} \chi^2_{10}$.
+
+    **Step 5**: Reject $H_0$ if $T > \chi^2_{10, \alpha}$.
+
+    **Interpretation of rejection**: Rejection of $H_0$ (i.e., $A \neq B$) indicates that the GARCH(1,1) model with Gaussian innovations is misspecified. Common reasons include:
+
+    - **Non-normal innovations**: Returns may have heavier tails than Gaussian (Student-$t$ or GED innovations would be more appropriate). This manifests as excess kurtosis in standardized residuals $\hat{z}_t = \hat{\varepsilon}_t / \hat{\sigma}_t$.
+
+    - **Asymmetric volatility response**: GARCH(1,1) treats positive and negative shocks symmetrically, while empirically negative returns increase volatility more (leverage effect). This is captured by GJR-GARCH or EGARCH models.
+
+    - **Long memory in volatility**: GARCH(1,1) has exponentially decaying autocorrelation in $\sigma_t^2$, while realized volatility often exhibits long memory (slow hyperbolic decay), suggesting FIGARCH or rough volatility models.
+
+    - **Regime changes**: The assumption of constant parameters $(\omega, \alpha, \beta)$ may fail during structural breaks or regime switches.
+
 ---
 
 **Exercise 7.** In a simulation study, generate $n = 500$ observations from a stochastic volatility model (Heston) and fit both a Black-Scholes model and a Heston model. For each fitted model, compute the pricing error for an out-of-the-money put option ($K = 0.9 S_0$). Decompose the Black-Scholes error into misspecification and estimation components. For the Heston model, argue that the misspecification error is zero and all error comes from estimation. Under what conditions might the misspecified Black-Scholes model produce a smaller total error?
+
+??? success "Solution to Exercise 7"
+
+    **Setup**: The true DGP is Heston with parameters $(\kappa, \bar{v}, v_0, \xi, \rho, \mu)$. We observe $n = 500$ returns and fit:
+
+    - **Model A** (BS): $dS_t = \hat{\mu} S_t \, dt + \hat{\sigma} S_t \, dW_t$ (1 parameter for pricing: $\hat{\sigma}$)
+    - **Model B** (Heston): All 5 parameters estimated
+
+    **Black-Scholes error decomposition**: The total pricing error for an OTM put ($K = 0.9 S_0$) is:
+
+    $$
+    |V_{\text{BS}}(\hat{\sigma}) - V^*| \leq \underbrace{|V_{\text{BS}}(\sigma^*) - V^*|}_{\text{misspecification}} + \underbrace{|V_{\text{BS}}(\hat{\sigma}) - V_{\text{BS}}(\sigma^*)|}_{\text{estimation}}
+    $$
+
+    - **Misspecification**: $V_{\text{BS}}(\sigma^*)$ uses the pseudo-true volatility $\sigma^* = \sqrt{\bar{v}}$ (approximately). For an OTM put, BS systematically underprices because it cannot capture the left-skew in the return distribution generated by negative $\rho$ (leverage effect). The implied volatility smile means that the OTM put's market-implied volatility exceeds $\sigma^*$. This error is $O(1)$ and does not vanish with more data.
+
+    - **Estimation**: $|V_{\text{BS}}(\hat{\sigma}) - V_{\text{BS}}(\sigma^*)| \approx |\mathcal{V}| \cdot |\hat{\sigma} - \sigma^*|$. With $n = 500$, $|\hat{\sigma} - \sigma^*| = O_p(n^{-1/2}) \approx O_p(0.045)$. This is relatively small.
+
+    **Heston error decomposition**: Since the true DGP is Heston, the model is correctly specified:
+
+    $$
+    |V_H(\hat{\theta}) - V^*| = \underbrace{|V_H(\theta^*) - V^*|}_{= 0} + |V_H(\hat{\theta}) - V_H(\theta^*)|
+    $$
+
+    The misspecification error is exactly zero. All error comes from estimation. However, with 5 parameters and $n = 500$, the estimation error may be substantial because:
+
+    - Parameters like $\xi$ (vol-of-vol) and $\rho$ (correlation) are hard to estimate precisely from return data alone.
+    - The pricing function $V_H(\theta)$ may have high sensitivity to certain parameters (e.g., $\xi$ affects the smile shape strongly).
+    - The estimation error is $O_p(n^{-1/2})$ but with a potentially large constant due to the high-dimensional Fisher information structure.
+
+    **When BS might win**: The misspecified BS can produce smaller total error when:
+
+    $$
+    \underbrace{|V_{\text{BS}}(\sigma^*) - V^*|}_{\text{BS misspecification}} + \underbrace{O_p(n^{-1/2})}_{\text{BS estimation}} < \underbrace{O_p(\sqrt{5/n})}_{\text{Heston estimation}}
+    $$
+
+    This can happen when:
+
+    1. **The option is near ATM**: BS misspecification error is small for near-ATM options where the smile effect is minimal.
+    2. **Heston parameters are poorly identified**: When $\kappa$ and $\bar{v}$ are confounded, or when $\xi$ is difficult to estimate, the Heston estimation error is inflated.
+    3. **Small $n$ or short observation period**: With limited data, the 5-parameter Heston model overfits, producing larger out-of-sample errors than the parsimonious BS model.
+    4. **Low vol-of-vol regime**: When $\xi$ is small, the Heston model is close to BS, so misspecification is mild but Heston's extra parameters add unnecessary estimation noise.
+
+    This exemplifies the bias-variance trade-off: BS has higher bias but lower variance, while Heston has zero bias but higher variance. For small to moderate $n$, the simpler model can be preferred overall.

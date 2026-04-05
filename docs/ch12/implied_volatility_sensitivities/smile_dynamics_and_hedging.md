@@ -673,26 +673,157 @@ Effective volatility hedging requires understanding and managing all these dimen
 
 **Exercise 1.** A delta-hedged option portfolio has $\Gamma = 0.05$, $\mathcal{V} = 15.0$, $\text{Vanna} = -0.12$, $\text{Volga} = 2.5$, and $\Theta = -0.08$. The spot moves $\Delta S = -3$ and implied volatility moves $\Delta\sigma = +0.015$ over one day ($\Delta t = 1/252$). Compute the full second-order P&L decomposition and identify which term contributes the most.
 
+??? success "Solution to Exercise 1"
+    We compute each term in the P&L decomposition using the given Greeks and market moves.
+
+    **Given:** $\Gamma = 0.05$, $\mathcal{V} = 15.0$, $\text{Vanna} = -0.12$, $\text{Volga} = 2.5$, $\Theta = -0.08$, $\Delta S = -3$, $\Delta\sigma = +0.015$, $\Delta t = 1/252$.
+
+    The full second-order P&L is:
+
+    $$
+    \text{P\&L} = \Theta\,\Delta t + \tfrac{1}{2}\Gamma(\Delta S)^2 + \mathcal{V}\,\Delta\sigma + \text{Vanna}\,\Delta S\,\Delta\sigma + \tfrac{1}{2}\text{Volga}\,(\Delta\sigma)^2
+    $$
+
+    Computing each term:
+
+    - **Theta:** $\Theta\,\Delta t = -0.08 \times (1/252) = -0.000317$
+    - **Gamma:** $\frac{1}{2}\Gamma(\Delta S)^2 = \frac{1}{2}\times 0.05 \times 9 = +0.225$
+    - **Vega:** $\mathcal{V}\,\Delta\sigma = 15.0 \times 0.015 = +0.225$
+    - **Vanna:** $\text{Vanna}\,\Delta S\,\Delta\sigma = -0.12 \times (-3)\times 0.015 = +0.0054$
+    - **Volga:** $\frac{1}{2}\text{Volga}\,(\Delta\sigma)^2 = \frac{1}{2}\times 2.5 \times 0.000225 = +0.000281$
+
+    **Total P&L:**
+
+    $$
+    \text{P\&L} \approx -0.000317 + 0.225 + 0.225 + 0.0054 + 0.000281 \approx +0.4554
+    $$
+
+    The two dominant contributors are the **gamma P&L** ($+0.225$) and the **vega P&L** ($+0.225$), each contributing roughly equally and together accounting for nearly all of the total. Theta, vanna, and volga are comparatively negligible. In this scenario, the portfolio benefits from both the realized large spot move (gamma) and the concurrent rise in implied volatility (vega).
+
 ---
 
 **Exercise 2.** Explain the difference between a static smile and a dynamic smile. In the context of the Heston model, describe how each of the parameters $\rho$, $\xi$, and $\kappa$ affects the dynamics of the smile when the spot price decreases by 5%.
+
+??? success "Solution to Exercise 2"
+    A **static smile** assumes the implied volatility surface is fixed except for deterministic time decay. It does not change in response to spot movements or volatility regime shifts. A **dynamic smile** evolves as a function of spot price, variance, and other state variables, capturing real-market behavior.
+
+    In the **Heston model**, the dynamics are governed by:
+
+    $$
+    dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^v, \quad d\langle W^S, W^v\rangle = \rho\,dt
+    $$
+
+    When the spot decreases by 5%:
+
+    - **$\rho$ (spot-vol correlation):** With $\rho < 0$ (typical for equities), a spot decrease is associated with an increase in $v_t$. This shifts the entire smile upward and steepens the skew, because the negative correlation amplifies the leverage effect: falling prices coincide with rising volatility.
+    - **$\xi$ (vol-of-vol):** A larger $\xi$ means $v_t$ responds more violently to the Brownian shock $dW_t^v$. When spot drops and vol rises (via $\rho < 0$), a high $\xi$ amplifies the variance increase, making the smile shift more dramatic and increasing the curvature (wings) of the smile.
+    - **$\kappa$ (mean-reversion speed):** A larger $\kappa$ dampens the effect of spot-driven volatility changes because variance reverts more quickly to $\theta$. With high $\kappa$, the initial vol spike after a 5% spot drop is partially absorbed, and the smile shift is more transient. With low $\kappa$, the volatility increase persists longer and the dynamic smile effects are more pronounced.
 
 ---
 
 **Exercise 3.** The "true" delta under smile dynamics is $\Delta_{\text{true}} = \Delta_{\text{BS}} + \mathcal{V} \cdot \Sigma_S$, where $\Sigma_S = \partial \sigma_{\text{IV}}(K)/\partial S$. For an ATM call with $\Delta_{\text{BS}} = 0.55$, $\mathcal{V} = 20$, and $\Sigma_S = -0.003$ (implied by leverage effect), compute $\Delta_{\text{true}}$. How many additional shares should the hedger hold compared to the Black-Scholes delta?
 
+??? success "Solution to Exercise 3"
+    The true delta under smile dynamics is:
+
+    $$
+    \Delta_{\text{true}} = \Delta_{\text{BS}} + \mathcal{V}\cdot\Sigma_S
+    $$
+
+    Substituting $\Delta_{\text{BS}} = 0.55$, $\mathcal{V} = 20$, and $\Sigma_S = -0.003$:
+
+    $$
+    \Delta_{\text{true}} = 0.55 + 20 \times (-0.003) = 0.55 - 0.06 = 0.49
+    $$
+
+    The true delta is 0.49, compared to the Black-Scholes delta of 0.55. The hedger should hold $0.49 - 0.55 = -0.06$ additional shares per option compared to the Black-Scholes delta, meaning 6 fewer shares per 100 options.
+
+    The negative $\Sigma_S$ reflects the leverage effect: when spot rises, IV tends to fall, which partially offsets the price increase. The correct hedge therefore requires a smaller position in the underlying.
+
 ---
 
 **Exercise 4.** Compare the forward smile behavior of local volatility models versus stochastic volatility models. (a) Why does the local volatility model produce a forward smile that flattens over time? (b) Why is this inconsistent with empirical observations? (c) How do stochastic volatility models improve upon this?
+
+??? success "Solution to Exercise 4"
+    **(a)** In the local volatility model, the local volatility surface $\sigma_{\text{loc}}(S,t)$ is calibrated to match today's implied volatility surface exactly. The forward smile (the smile of forward-starting options) is determined by the future local volatility values along paths. Since $\sigma_{\text{loc}}(S,t)$ is a fixed deterministic function, the dispersion of future paths narrows as time progresses. For a forward-start option beginning at $T_1$, the effective volatility variation across strikes is driven only by the local vol surface in $[T_1, T_2]$. As $T_1$ increases, the conditional distribution of $S_{T_1}$ concentrates (by the law of large numbers for the diffusion), so the relevant portion of the local vol surface is traversed in a narrower range, producing a flatter forward smile.
+
+    **(b)** Empirically, the volatility smile is persistent: the skew observed in short-dated options reappears in forward-start options and in the realized smiles of future option chains. The local volatility prediction of a flattening forward smile contradicts this stylized fact. Market participants consistently observe that forward skew remains steep, especially in equity indices.
+
+    **(c)** Stochastic volatility models (e.g., Heston) introduce an additional random factor $v_t$ that evolves independently of the diffusion. Even conditioned on future time $T_1$, the variance $v_{T_1}$ remains random, so the forward smile retains curvature and skew. The correlation $\rho$ between spot and variance ensures that skew persists in the forward smile. This matches empirical observations far better than local volatility.
 
 ---
 
 **Exercise 5.** A portfolio is long a 1-year ATM call (vega = \$25.5 at ATM, zero at 25-delta) and short a 6-month 25-delta put (vega = \$0 at ATM, \$12.3 at 25-delta). Construct a hedge using a 6-month ATM straddle and a 6-month 25-delta risk reversal. Set up the linear system to solve for the hedge ratios that neutralize both ATM vega and 25-delta vega exposures.
 
+??? success "Solution to Exercise 5"
+    The portfolio exposures are:
+
+    | | ATM vega | 25-delta vega |
+    |---|---------|---------------|
+    | Long 1Y ATM call | $+25.5$ | $0$ |
+    | Short 6M 25D put | $0$ | $-12.3$ |
+    | **Portfolio** | $+25.5$ | $-12.3$ |
+
+    Let the hedge instruments have the following vega profiles. Denote the 6M ATM straddle vega at ATM as $\mathcal{V}_{\text{str}}^{\text{ATM}}$ and at 25-delta as $\mathcal{V}_{\text{str}}^{25}$, and the 6M 25D risk reversal vega at ATM as $\mathcal{V}_{\text{RR}}^{\text{ATM}}$ and at 25-delta as $\mathcal{V}_{\text{RR}}^{25}$.
+
+    Let $h_1$ = number of straddles and $h_2$ = number of risk reversals. The linear system to neutralize both exposures is:
+
+    $$
+    \begin{pmatrix} \mathcal{V}_{\text{str}}^{\text{ATM}} & \mathcal{V}_{\text{RR}}^{\text{ATM}} \\ \mathcal{V}_{\text{str}}^{25} & \mathcal{V}_{\text{RR}}^{25} \end{pmatrix} \begin{pmatrix} h_1 \\ h_2 \end{pmatrix} = \begin{pmatrix} -25.5 \\ +12.3 \end{pmatrix}
+    $$
+
+    The right-hand side is the negative of the portfolio exposures. In a typical setup, the ATM straddle has large ATM vega and small 25-delta vega, while the risk reversal has small ATM vega but significant 25-delta vega. This makes the matrix well-conditioned, and the system has a unique solution $h_1, h_2$ that simultaneously neutralizes both vega buckets.
+
 ---
 
 **Exercise 6.** Define dynamic consistency for a volatility model. Explain why local volatility models fail the dynamic consistency test in practice. What diagnostic tool (involving the forward smile) can be used to detect dynamic inconsistency?
 
+??? success "Solution to Exercise 6"
+    A volatility model is **dynamically consistent** if, after calibrating to today's implied volatility surface and evolving the model forward in time, the resulting implied volatility surface at a future date matches what the market would produce upon recalibration. Formally, the model's predicted future smile should be consistent with the smile that would be calibrated from future option prices.
+
+    **Local volatility models fail** dynamic consistency because:
+
+    - The local vol surface $\sigma_{\text{loc}}(S,t)$ is fixed at calibration. When the market evolves and the model is recalibrated, a different $\sigma_{\text{loc}}$ surface is obtained.
+    - The model predicts that forward smiles flatten over time (as discussed in Exercise 4), but empirical recalibration produces persistent skew.
+    - Daily recalibration produces a sequence of different local vol surfaces, each inconsistent with the previous day's model evolution.
+
+    **Diagnostic tool:** The **forward smile** serves as a key diagnostic. One computes the model-implied forward smile (the implied volatility surface of forward-starting options) and compares it to:
+
+    1. Historically realized future smiles, and
+    2. The market-implied forward smile extracted from calendar spread prices.
+
+    If the model's forward smile flattens significantly faster than observed in the market, the model is dynamically inconsistent. Stochastic volatility models generally produce forward smiles that are closer to market observations, though they are not perfectly consistent either.
+
 ---
 
 **Exercise 7.** Using the empirical data for SPX (vol-spot beta $\approx -2.0$ and skew-spot beta $\approx -0.4$), estimate the change in ATM implied volatility and skew when the SPX drops by 3%. If a trader holds a portfolio that is vega-neutral but has positive skew exposure, will the portfolio gain or lose money? Explain.
+
+??? success "Solution to Exercise 7"
+    The vol-spot beta relates ATM IV changes to log-spot changes:
+
+    $$
+    \Delta\sigma_{\text{ATM}} \approx \text{(vol-spot beta)} \times \frac{\Delta S}{S}
+    $$
+
+    For a 3% drop ($\Delta S/S = -0.03$):
+
+    $$
+    \Delta\sigma_{\text{ATM}} \approx (-2.0)\times(-0.03) = +0.06 = +6\%
+    $$
+
+    ATM implied volatility rises by approximately 6 percentage points.
+
+    The skew-spot beta relates skew changes to log-spot changes:
+
+    $$
+    \Delta(\text{skew}) \approx (-0.4)\times(-0.03) = +0.012
+    $$
+
+    The skew steepens by approximately 1.2 percentage points (becomes more negative in the conventional sense that OTM put IVs rise more than ATM).
+
+    For the trader who is vega-neutral but has positive skew exposure:
+
+    - **Vega-neutral:** The parallel rise of 6% in ATM vol does not directly affect the portfolio (net vega is zero).
+    - **Positive skew exposure:** The portfolio benefits when skew steepens. Since the 3% spot drop causes the skew to steepen (OTM put IVs rise more than ATM IVs), the positive skew position **gains money**.
+
+    The P&L from the skew move is approximately proportional to the skew exposure times $\Delta(\text{skew}) = +0.012$. The portfolio profits because the skew steepening is in the direction that benefits a long skew position.

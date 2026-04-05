@@ -1,1030 +1,500 @@
-# Separation of Variables: Complete Mathematical Treatment
+# Separation of Variables
 
-
-Separation of variables is a **classical technique** for solving PDEs by reducing them to ordinary differential equations. While powerful, its application to Black-Scholes reveals both the **elegance and limitations** of this method.
+The heat equation derivation solved the Black-Scholes PDE by transforming it into a known equation with a known Green's function. Separation of variables takes a different classical approach: instead of transforming the PDE, it **decomposes the solution** into a product of functions, each depending on a single variable. For the Black--Scholes equation on unbounded domains, this decomposition leads naturally to the Fourier integral rather than a discrete eigenfunction series. For vanilla options on unbounded domains, the method reduces to the Fourier transform --- the discrete eigenvalues become a continuous spectrum and the series becomes an integral. The method is therefore most effective on **bounded domains** (barrier options), where it yields genuine spectral expansions, and provides valuable **spectral intuition** for understanding solution structure more broadly.
 
 ---
 
-## **1. General Theory of Separation of Variables**
+## 1. General Theory of Separation of Variables
 
-
-### 1. **The Method**
-
+### 1.1 The Method
 
 For a PDE in two variables, assume the solution has the **product form**:
 
-$$\boxed{u(x,t) = X(x)T(t)}$$
-
-
+$$
+u(x,t) = X(x) T(t)
+$$
 
 Substitute into the PDE and separate variables to obtain:
 
-$$\frac{\text{function of } t \text{ only}}{\text{function of } x \text{ only}} = \text{constant}$$
-
-
+$$
+\frac{\text{function of } t \text{ only}}{\text{function of } x \text{ only}} = \text{constant}
+$$
 
 This yields **two ODEs** that can be solved independently.
 
-### 2. **The Separation Constant**
-
+### 1.2 The Separation Constant
 
 The constant $\lambda$ (separation constant) is determined by:
+
 1. **Boundary conditions** in space
-2. **Self-adjoint operators** → real eigenvalues
-3. **Sturm-Liouville theory** → orthogonal eigenfunctions
+2. **Self-adjoint operators** giving real eigenvalues
+3. **Sturm--Liouville theory** giving orthogonal eigenfunctions
 
-### 3. **General Solution**
-
+### 1.3 General Solution
 
 The general solution is a **superposition** of separated solutions:
 
-$$\boxed{u(x,t) = \sum_{n=0}^{\infty} c_n X_n(x)T_n(t)}$$
+$$
+u(x,t) = \sum_{n=0}^{\infty} c_n X_n(x) T_n(t)
+$$
 
-
-
-where coefficients $c_n$ are determined by initial/terminal conditions.
-
----
-
-## **2. Black-Scholes PDE Setup**
-
-
-### 1. **The Equation**
-
-
-
-$$\boxed{\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV = 0}$$
-
-
-
-Terminal condition: $V(S,T) = \Phi(S)$
-
-### 2. **Obstacle: Infinite Domain**
-
-
-The stock price domain is $S \in (0, \infty)$ — **semi-infinite**.
-
-Standard separation of variables works best on **finite intervals** $[a,b]$ where boundary conditions at both ends provide:
-- Discrete eigenvalues $\lambda_n$
-- Orthogonal eigenfunctions
-- Fourier series expansions
-
-For infinite domains, we get:
-- **Continuous spectrum** instead of discrete
-- **Fourier transforms** instead of Fourier series
-- More complex analysis required
+where coefficients $c_n$ are determined by initial or terminal conditions.
 
 ---
 
-## **3. Logarithmic Transformation**
+## 2. Black--Scholes PDE Setup
 
+### 2.1 The Equation
 
-### 1. **Change to Log-Price**
+$$
+\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV = 0
+$$
 
+Terminal condition: $V(S,T) = \Phi(S)$.
+
+### 2.2 Domain Considerations
+
+The stock price domain is $S \in (0, \infty)$, which is semi-infinite. Standard separation of variables requires a **finite interval** $[a,b]$ where boundary conditions at both ends provide discrete eigenvalues and orthogonal eigenfunctions.
+
+On infinite domains, the discrete spectrum is replaced by a continuous spectrum, and Fourier series give way to Fourier transforms. Separation of variables is therefore **most naturally suited to bounded-domain problems** such as barrier options.
+
+---
+
+## 3. Logarithmic Transformation
+
+### 3.1 Change to Log-Price
 
 Define $x = \ln S$ and $\tau = T - t$. The PDE becomes:
 
-$$\boxed{\frac{\partial V}{\partial \tau} = \frac{\sigma^2}{2}\frac{\partial^2 V}{\partial x^2} + \left(r - \frac{\sigma^2}{2}\right)\frac{\partial V}{\partial x} - rV}$$
-
-
+$$
+\frac{\partial V}{\partial \tau} = \frac{\sigma^2}{2}\frac{\partial^2 V}{\partial x^2} + \left(r - \frac{\sigma^2}{2}\right)\frac{\partial V}{\partial x} - rV
+$$
 
 Domain: $x \in (-\infty, \infty)$ with initial condition $V(x,0) = \Phi(e^x)$.
 
-### 2. **Separation Ansatz**
+### 3.2 Separation Ansatz
 
+Try $V(x,\tau) = X(x)T(\tau)$. Substituting and dividing by $X(x)T(\tau)$:
 
-Try:
+$$
+\frac{T'(\tau)}{T(\tau)} = \frac{\frac{\sigma^2}{2}X''(x) + \left(r-\frac{\sigma^2}{2}\right)X'(x) - rX(x)}{X(x)} = -\lambda
+$$
 
-$$V(x,\tau) = X(x)T(\tau)$$
-
-
-
-Substituting:
-
-$$X(x)T'(\tau) = \frac{\sigma^2}{2}X''(x)T(\tau) + \left(r - \frac{\sigma^2}{2}\right)X'(x)T(\tau) - rX(x)T(\tau)$$
-
-
-
-Divide by $X(x)T(\tau)$:
-
-$$\boxed{\frac{T'(\tau)}{T(\tau)} = \frac{\frac{\sigma^2}{2}X''(x) + (r-\frac{\sigma^2}{2})X'(x) - rX(x)}{X(x)} = -\lambda}$$
-
-
-
-### 3. **Two ODEs**
-
+### 3.3 Two ODEs
 
 **Time equation**:
 
-$$\boxed{T'(\tau) + \lambda T(\tau) = 0}$$
+$$
+T'(\tau) + \lambda T(\tau) = 0
+$$
 
+Solution: $T(\tau) = C e^{-\lambda\tau}$.
 
+**Space equation**:
 
-Solution: $T(\tau) = C e^{-\lambda\tau}$
-
-**Space equation** (Sturm-Liouville form):
-
-$$\boxed{\frac{\sigma^2}{2}X''(x) + \left(r - \frac{\sigma^2}{2}\right)X'(x) + (\lambda - r)X(x) = 0}$$
-
-
-
----
-
-## **4. The Spatial Eigenvalue Problem**
-
-
-### 1. **Standard Form**
-
-
-Rewrite as:
-
-$$\frac{\sigma^2}{2}X''(x) + \left(r - \frac{\sigma^2}{2}\right)X'(x) + (\lambda - r)X(x) = 0$$
-
-
-
-This is a **second-order linear ODE with constant coefficients**.
-
-### 2. **Characteristic Equation**
-
-
-Try $X(x) = e^{\mu x}$:
-
-$$\frac{\sigma^2}{2}\mu^2 + \left(r - \frac{\sigma^2}{2}\right)\mu + (\lambda - r) = 0$$
-
-
-
-Solve for $\mu$:
-
-$$\mu = \frac{-\left(r - \frac{\sigma^2}{2}\right) \pm \sqrt{\left(r-\frac{\sigma^2}{2}\right)^2 - 2\sigma^2(\lambda-r)}}{\sigma^2}$$
-
-
-
-
-$$\boxed{\mu_{\pm} = \frac{1}{\sigma^2}\left[-\left(r - \frac{\sigma^2}{2}\right) \pm \sqrt{\left(r-\frac{\sigma^2}{2}\right)^2 - 2\sigma^2(\lambda-r)}\right]}$$
-
-
-
-### 3. **Simplification**
-
-
-Let $k = \frac{2r}{\sigma^2}$ (as before). Then:
-
-$$\mu_{\pm} = \frac{1}{2}\left[-(k-1) \pm \sqrt{(k-1)^2 + 4(\lambda/\frac{\sigma^2}{2} - k)}\right]$$
-
-
-
-
-$$= \frac{1}{2}\left[-(k-1) \pm \sqrt{(k-1)^2 - 4k + 4\lambda/\frac{\sigma^2}{2}}\right]$$
-
-
-
-
-$$= \frac{1}{2}\left[-(k-1) \pm \sqrt{(k+1)^2 - 4(k+1) + 4\lambda/\frac{\sigma^2}{2}}\right]$$
-
-
-
-This is getting messy. Let's denote:
-
-$$\boxed{\Delta^2 = \left(r-\frac{\sigma^2}{2}\right)^2 - 2\sigma^2(\lambda-r)}$$
-
-
-
-Then:
-
-$$\mu_{\pm} = \frac{-\left(r-\frac{\sigma^2}{2}\right) \pm \Delta}{\sigma^2}$$
-
-
+$$
+\frac{\sigma^2}{2}X''(x) + \left(r - \frac{\sigma^2}{2}\right)X'(x) + (\lambda - r)X(x) = 0
+$$
 
 ---
 
-## **5. The Problem: Continuous Spectrum**
+## 4. The Spatial Eigenvalue Problem
 
+### 4.1 Characteristic Equation
 
-### 1. **Boundary Conditions**
+The space equation is a second-order linear ODE with constant coefficients. Substituting $X(x) = e^{\mu x}$:
 
+$$
+\frac{\sigma^2}{2}\mu^2 + \left(r - \frac{\sigma^2}{2}\right)\mu + (\lambda - r) = 0
+$$
 
-For $x \in (-\infty, \infty)$, we need:
-- $V$ bounded as $x \to -\infty$ (as $S \to 0$)
-- $V$ bounded as $x \to \infty$ (as $S \to \infty$)
+Define the discriminant:
 
-### 2. **Issue with Exponential Solutions**
+$$
+\Delta^2 = \left(r - \frac{\sigma^2}{2}\right)^2 - 2\sigma^2(\lambda - r)
+$$
 
+Then the characteristic roots are:
 
-If $\lambda$ is such that $\Delta$ is **real**:
+$$
+\mu_{\pm} = \frac{-\left(r-\frac{\sigma^2}{2}\right) \pm \Delta}{\sigma^2}
+$$
 
-$$X(x) = A e^{\mu_+ x} + B e^{\mu_- x}$$
+### 4.2 Nature of Solutions
 
+If $\Delta^2 > 0$ (real roots), the solutions are exponentials $X(x) = Ae^{\mu_+ x} + Be^{\mu_- x}$.
 
+If $\Delta^2 < 0$ (complex roots), the solutions are oscillatory, involving sine and cosine functions modulated by an exponential envelope.
 
-For boundedness:
-- If $\mu_+ > 0$: need $A = 0$ to avoid explosion as $x \to \infty$
-- If $\mu_- < 0$: need $B = 0$ to avoid explosion as $x \to -\infty$
+### 4.3 Continuous Spectrum on Unbounded Domains
 
-But this leaves only trivial solutions unless we're very careful about $\lambda$.
-
-### 3. **Continuous Spectrum**
-
-
-For an infinite domain, there are **no discrete eigenvalues** in general. Instead:
-- $\lambda$ ranges over a **continuous set** (the spectrum)
-- "Eigenfunctions" are **generalized functions** (distributions)
-- The sum $\sum_n$ becomes an **integral** (Fourier transform)
-
-This is why **Fourier transform** is more natural than separation of variables for Black-Scholes!
+For $x \in (-\infty, \infty)$, boundedness requirements leave no nontrivial solutions for discrete $\lambda$ values. The eigenvalue parameter ranges over a continuous set, and the discrete sum $\sum_n$ is replaced by a Fourier integral. This is precisely why the **Fourier transform** is the natural tool for vanilla Black--Scholes on the full real line.
 
 ---
 
-## **6. Case with Barriers: Finite Domain**
+## 5. Bounded Domains: Barrier Options
 
+Separation of variables becomes fully effective when the domain is finite, as occurs naturally for barrier options.
 
-### 1. **Down-and-Out Option**
-
+### 5.1 Down-and-Out Option
 
 Consider a barrier option with $S \in [B, S_{\max}]$ where $B$ is a knock-out barrier.
 
 In log-space: $x \in [x_B, x_{\max}]$ where $x_B = \ln B$.
 
 **Boundary conditions**:
+
 - $V(x_B, \tau) = 0$ (knocked out)
-- $V(x_{\max}, \tau) = $ something appropriate (e.g., $\sim S - K$)
+- $V(x_{\max}, \tau) = $ appropriate asymptotic value
 
-### 2. **Discrete Eigenvalues**
+### 5.2 Discrete Eigenvalues
 
+The spatial ODE
 
-Now the spatial ODE:
+$$
+\frac{\sigma^2}{2}X''(x) + \left(r - \frac{\sigma^2}{2}\right)X'(x) + (\lambda - r)X(x) = 0
+$$
 
-$$\frac{\sigma^2}{2}X''(x) + \left(r - \frac{\sigma^2}{2}\right)X'(x) + (\lambda - r)X(x) = 0$$
+with $X(x_B) = X(x_{\max}) = 0$ now has **discrete eigenvalues** $\lambda_n$.
 
+### 5.3 Sturm--Liouville Problem
 
+This is a Sturm--Liouville eigenvalue problem $\mathcal{L}X = \lambda X$ with the operator:
 
-with $X(x_B) = X(x_{\max}) = 0$ has **discrete eigenvalues** $\lambda_n$.
+$$
+\mathcal{L} = -\frac{\sigma^2}{2}\frac{d^2}{dx^2} - \left(r - \frac{\sigma^2}{2}\right)\frac{d}{dx} + r
+$$
 
-### 3. **Sturm-Liouville Problem**
+### 5.4 Self-Adjoint Form
 
+To obtain a self-adjoint formulation, introduce the weight function:
 
-This is a **Sturm-Liouville problem**:
+$$
+w(x) = \exp\left[\frac{2r - \sigma^2}{\sigma^2}x\right]
+$$
 
-$$\mathcal{L}X = \lambda X$$
+The weighted inner product
 
+$$
+\langle f, g \rangle = \int_{x_B}^{x_{\max}} f(x) g(x) w(x)\,dx
+$$
 
-
-with the operator:
-
-$$\mathcal{L} = -\frac{\sigma^2}{2}\frac{d^2}{dx^2} - \left(r - \frac{\sigma^2}{2}\right)\frac{d}{dx} + r$$
-
-
-
-### 4. **Self-Adjoint Form**
-
-
-To make it self-adjoint, use the weight function:
-
-$$w(x) = \exp\left[\frac{2(r-\frac{\sigma^2}{2})}{\sigma^2}x\right] = \exp\left[\frac{2r - \sigma^2}{\sigma^2}x\right]$$
-
-
-
-The weighted inner product:
-
-$$\langle f, g \rangle = \int_{x_B}^{x_{\max}} f(x)g(x)w(x)dx$$
-
-
-
-makes $\mathcal{L}$ self-adjoint.
+makes $\mathcal{L}$ self-adjoint, guaranteeing real eigenvalues and orthogonal eigenfunctions.
 
 ---
 
-## **7. Eigenfunction Expansion (Bounded Domain)**
+## 6. Eigenfunction Expansion on Bounded Domains
 
+### 6.1 Complete Orthogonal System
 
-### 1. **Complete Orthogonal System**
+For the Sturm--Liouville problem with homogeneous boundary conditions:
 
-
-For the Sturm-Liouville problem with boundary conditions, we get:
 - Eigenvalues: $0 < \lambda_1 < \lambda_2 < \lambda_3 < \cdots$
 - Eigenfunctions: $X_n(x)$ satisfying $\mathcal{L}X_n = \lambda_n X_n$
 - **Orthogonality**: $\langle X_m, X_n \rangle = 0$ for $m \neq n$
 
-### 2. **General Solution**
+### 6.2 General Solution
 
+$$
+V(x,\tau) = \sum_{n=1}^{\infty} c_n X_n(x) e^{-\lambda_n \tau}
+$$
 
-
-$$\boxed{V(x,\tau) = \sum_{n=1}^{\infty} c_n X_n(x)e^{-\lambda_n\tau}}$$
-
-
-
-### 3. **Determining Coefficients**
-
+### 6.3 Determining Coefficients
 
 At $\tau = 0$ (terminal condition):
 
-$$V(x,0) = \Phi(e^x) = \sum_{n=1}^{\infty} c_n X_n(x)$$
-
-
+$$
+V(x,0) = \Phi(e^x) = \sum_{n=1}^{\infty} c_n X_n(x)
+$$
 
 By orthogonality:
 
-$$\boxed{c_n = \frac{\langle \Phi(e^x), X_n(x) \rangle}{\langle X_n, X_n \rangle} = \frac{\int_{x_B}^{x_{\max}} \Phi(e^x)X_n(x)w(x)dx}{\int_{x_B}^{x_{\max}} X_n^2(x)w(x)dx}}$$
-
-
-
-### 4. **Example: Symmetric Case**
-
-
-For $x \in [-L, L]$ with symmetric boundary conditions, eigenfunctions might be:
-
-$$X_n(x) \propto \sin\left(\frac{n\pi(x+L)}{2L}\right) \cdot \text{(weight factor)}$$
-
-
-
-or more complex depending on drift and boundary conditions.
+$$
+c_n = \frac{\langle \Phi(e^x), X_n(x) \rangle}{\langle X_n, X_n \rangle} = \frac{\int_{x_B}^{x_{\max}} \Phi(e^x) X_n(x) w(x)\,dx}{\int_{x_B}^{x_{\max}} X_n^2(x) w(x)\,dx}
+$$
 
 ---
 
-## **8. Explicit Example: Simplified Case**
+## 7. Explicit Example: Heat Equation on a Bounded Interval
 
+### 7.1 Setup
 
-### 1. **No Drift, No Discount**
+Consider the simplified equation:
 
-
-Consider the simplified equation (for illustration):
-
-$$\frac{\partial V}{\partial \tau} = \frac{\sigma^2}{2}\frac{\partial^2 V}{\partial x^2}$$
-
-
+$$
+\frac{\partial V}{\partial \tau} = \frac{\sigma^2}{2}\frac{\partial^2 V}{\partial x^2}
+$$
 
 on $x \in [0, L]$ with $V(0,\tau) = V(L,\tau) = 0$.
 
-### 2. **Separation**
+### 7.2 Separation
 
+Setting $V(x,\tau) = X(x)T(\tau)$ gives:
 
+$$
+\frac{T'}{\frac{\sigma^2}{2}T} = \frac{X''}{X} = -\lambda
+$$
 
-$$V(x,\tau) = X(x)T(\tau)$$
+### 7.3 Spatial Problem
 
-
-
-gives:
-
-$$\frac{T'}{\frac{\sigma^2}{2}T} = \frac{X''}{X} = -\lambda$$
-
-
-
-### 3. **Spatial Problem**
-
-
-
-$$X'' + \lambda X = 0, \quad X(0) = X(L) = 0$$
-
-
+$$
+X'' + \lambda X = 0, \quad X(0) = X(L) = 0
+$$
 
 Eigenvalues:
 
-$$\boxed{\lambda_n = \left(\frac{n\pi}{L}\right)^2, \quad n = 1,2,3,\ldots}$$
-
-
+$$
+\lambda_n = \left(\frac{n\pi}{L}\right)^2, \quad n = 1, 2, 3, \ldots
+$$
 
 Eigenfunctions:
 
-$$\boxed{X_n(x) = \sin\left(\frac{n\pi x}{L}\right)}$$
+$$
+X_n(x) = \sin\left(\frac{n\pi x}{L}\right)
+$$
 
+### 7.4 Temporal Solution
 
+$$
+T_n(\tau) = e^{-\frac{\sigma^2}{2}\left(\frac{n\pi}{L}\right)^2 \tau}
+$$
 
-### 4. **Temporal Solution**
+### 7.5 General Solution
 
-
-
-$$T_n(\tau) = e^{-\frac{\sigma^2}{2}\lambda_n\tau} = e^{-\frac{\sigma^2}{2}\left(\frac{n\pi}{L}\right)^2\tau}$$
-
-
-
-### 5. **General Solution**
-
-
-
-$$\boxed{V(x,\tau) = \sum_{n=1}^{\infty} c_n \sin\left(\frac{n\pi x}{L}\right)e^{-\frac{\sigma^2}{2}\left(\frac{n\pi}{L}\right)^2\tau}}$$
-
-
+$$
+V(x,\tau) = \sum_{n=1}^{\infty} c_n \sin\left(\frac{n\pi x}{L}\right) e^{-\frac{\sigma^2}{2}\left(\frac{n\pi}{L}\right)^2 \tau}
+$$
 
 with:
 
-$$c_n = \frac{2}{L}\int_0^L \Phi(e^x)\sin\left(\frac{n\pi x}{L}\right)dx$$
-
-
+$$
+c_n = \frac{2}{L}\int_0^L \Phi(e^x) \sin\left(\frac{n\pi x}{L}\right) dx
+$$
 
 ---
 
-## **9. Connection to Fourier Transform**
+## 8. Connection to Fourier Transform
 
-
-### 1. **Limit as Domain → ∞**
-
+### 8.1 Limit as the Domain Grows
 
 As $L \to \infty$, the discrete spectrum becomes continuous:
 
-$$\lambda_n = \left(\frac{n\pi}{L}\right)^2 \to \omega^2 \quad (\text{continuous } \omega)$$
-
-
+$$
+\lambda_n = \left(\frac{n\pi}{L}\right)^2 \to \omega^2 \quad (\text{continuous } \omega)
+$$
 
 The sum becomes an integral:
 
-$$\sum_{n=1}^{\infty} \to \int_{-\infty}^{\infty} d\omega$$
+$$
+\sum_{n=1}^{\infty} \to \int_{-\infty}^{\infty} d\omega
+$$
 
+The eigenfunctions become complex exponentials:
 
+$$
+\sin\left(\frac{n\pi x}{L}\right) \to e^{i\omega x}
+$$
 
-The eigenfunctions become:
+### 8.2 Fourier Transform Representation
 
-$$\sin\left(\frac{n\pi x}{L}\right) \to e^{i\omega x} \quad \text{(complex exponentials)}$$
+$$
+V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty} \hat{V}(\omega, 0)\, e^{-\frac{\sigma^2 \omega^2 \tau}{2}}\, e^{i\omega x}\, d\omega
+$$
 
+This recovers the Fourier transform solution.
 
+### 8.3 Unified Perspective
 
-### 2. **Fourier Transform Representation**
+Separation of variables on **finite domains** yields Fourier series (discrete).
+Separation of variables on **infinite domains** yields Fourier transforms (continuous).
 
-
-
-$$\boxed{V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{V}(\omega,0)e^{-\frac{\sigma^2\omega^2\tau}{2}}e^{i\omega x}d\omega}$$
-
-
-
-This is exactly the **Fourier transform solution** we discussed earlier!
-
-### 3. **Philosophical Point**
-
-
-Separation of variables on **finite domains** → Fourier series (discrete)
-Separation of variables on **infinite domains** → Fourier transform (continuous)
-
----
-
-## **10. Why Separation of Variables is Less Used**
-
-
-### 1. **Limitations**
-
-
-1. **Infinite domain**: Requires moving to continuous spectrum → Fourier transforms
-2. **Non-constant coefficients**: If $\sigma = \sigma(S,t)$, separation fails
-3. **Path-dependent options**: Asian, lookback → need more state variables
-4. **Boundary complexity**: Non-homogeneous or time-dependent boundaries complicate analysis
-
-### 2. **When It Works Well**
-
-
-1. **Bounded domains**: Options with barriers on both sides
-2. **Simple geometries**: Rectangular domains in multi-dimensional problems
-3. **Homogeneous boundary conditions**: Zero at boundaries
-4. **Pedagogical purposes**: Teaching the structure of solutions
-
-### 3. **Alternative Methods**
-
-
-For most practical problems:
-- **Fourier/Laplace transforms**: Handle infinite domains naturally
-- **Green's functions**: Direct integral representation
-- **Feynman-Kac**: Probabilistic approach
-- **Numerical methods**: Finite differences, finite elements
+The two are related by a limiting process, and the Fourier transform solution of Black--Scholes is, in this sense, the continuous-spectrum version of separation of variables.
 
 ---
 
-## **11. Multi-Dimensional Separation**
+## 9. Multi-Dimensional Separation
 
-
-### 1. **Two-Asset Option**
-
+### 9.1 Two-Asset Option
 
 For $V(S_1, S_2, t)$ satisfying:
 
-$$\frac{\partial V}{\partial t} + \mathcal{L}_1 V + \mathcal{L}_2 V + \rho\sigma_1\sigma_2 S_1 S_2\frac{\partial^2 V}{\partial S_1 \partial S_2} - rV = 0$$
+$$
+\frac{\partial V}{\partial t} + \mathcal{L}_1 V + \mathcal{L}_2 V + \rho\sigma_1\sigma_2 S_1 S_2\frac{\partial^2 V}{\partial S_1 \partial S_2} - rV = 0
+$$
 
+the **mixed derivative term** prevents simple separation unless $\rho = 0$.
 
+### 9.2 Uncorrelated Case
 
-### 2. **Separation Ansatz**
+With $\rho = 0$, one can separate:
 
+$$
+\frac{\mathcal{L}_1 V_1}{V_1} = -\lambda_1, \quad \frac{\mathcal{L}_2 V_2}{V_2} = -\lambda_2, \quad \frac{T'}{T} = -(\lambda_1 + \lambda_2 - r)
+$$
 
-Try:
+giving:
 
-$$V(S_1, S_2, t) = V_1(S_1)V_2(S_2)T(t)$$
+$$
+V(S_1, S_2, t) = \sum_{m,n} c_{mn} X_m(S_1) Y_n(S_2)\, e^{-(\lambda_m + \lambda_n - r)(T-t)}
+$$
 
+### 9.3 Correlated Case
 
-
-The **mixed derivative term** $\frac{\partial^2 V}{\partial S_1 \partial S_2}$ prevents simple separation unless $\rho = 0$ (uncorrelated assets).
-
-### 3. **Uncorrelated Case (ρ = 0)**
-
-
-With $\rho = 0$:
-
-$$\frac{T'}{T} + \frac{\mathcal{L}_1 V_1}{V_1} + \frac{\mathcal{L}_2 V_2}{V_2} - r = 0$$
-
-
-
-Can separate:
-
-$$\frac{\mathcal{L}_1 V_1}{V_1} = -\lambda_1, \quad \frac{\mathcal{L}_2 V_2}{V_2} = -\lambda_2, \quad \frac{T'}{T} = -(\lambda_1 + \lambda_2 - r)$$
-
-
-
-This gives:
-
-$$\boxed{V(S_1,S_2,t) = \sum_{m,n}c_{mn}X_m(S_1)Y_n(S_2)e^{-(\lambda_m + \lambda_n - r)(T-t)}}$$
-
-
-
-### 4. **Correlated Case (ρ ≠ 0)**
-
-
-Need to **diagonalize** the covariance matrix first via rotation/principal components, then separate in the new coordinates.
+When $\rho \neq 0$, diagonalize the covariance matrix via rotation (principal components) to decouple the variables, then apply separation in the transformed coordinates.
 
 ---
 
-## **12. Time-Dependent Separation**
+## 10. Barrier Options via Separation
 
-
-### 1. **Modified Ansatz**
-
-
-For time-dependent coefficients $r(t), \sigma(t)$, standard separation $V = X(S)T(t)$ fails.
-
-Try **generalized separation**:
-
-$$V(S,t) = \sum_{n=0}^{\infty}T_n(t)X_n(S)$$
-
-
-
-where $X_n$ are **fixed eigenfunctions** but $T_n(t)$ satisfy **coupled ODEs**.
-
-### 2. **WKB Approximation**
-
-
-For slowly varying coefficients, use **WKB (Wentzel-Kramers-Brillouin) method**:
-
-$$V(S,t) \sim e^{i\theta(S,t)/\epsilon}A(S,t)$$
-
-
-
-where $\theta$ satisfies the **eikonal equation** and $A$ satisfies a transport equation.
-
-This is beyond standard separation but related in spirit.
-
----
-
-## **13. Relationship to Spectral Methods**
-
-
-### 1. **Spectral Expansion**
-
-
-The separation of variables solution:
-
-$$V(x,\tau) = \sum_{n=1}^{\infty}c_n X_n(x)e^{-\lambda_n\tau}$$
-
-
-
-is a **spectral expansion** in the eigenfunctions of the spatial operator.
-
-### 2. **Numerical Spectral Methods**
-
-
-**Galerkin Method**:
-1. Choose basis functions $\{\phi_n\}$ (eigenfunctions or other complete set)
-2. Approximate: $V_N(x,\tau) = \sum_{n=1}^N c_n(\tau)\phi_n(x)$
-3. Project PDE onto finite-dimensional space
-4. Solve system of ODEs for $c_n(\tau)$
-
-**Advantage**: Exponential convergence for smooth solutions
-
-**Disadvantage**: Requires smooth payoffs; boundary treatment is delicate
-
-### 3. **Chebyshev/Legendre Polynomials**
-
-
-For bounded domains $[a,b]$, use:
-- **Chebyshev polynomials** $T_n(x)$ on $[-1,1]$
-- **Legendre polynomials** $P_n(x)$ on $[-1,1]$
-- Transform domain via $x = \frac{2S - (a+b)}{b-a}$
-
-Excellent for **smooth problems** with **spectral accuracy** ($O(e^{-cN})$ error).
-
----
-
-## **14. Similarity Solutions**
-
-
-### 1. **Self-Similar Ansatz**
-
-
-For scale-invariant problems, try:
-
-$$V(S,t) = S^\alpha f(\xi), \quad \xi = \frac{\ln(S/K)}{\sigma\sqrt{T-t}}$$
-
-
-
-This reduces the PDE to an **ODE** in $\xi$.
-
-### 2. **Connection to Separation**
-
-
-Similarity solutions are a **special case** of separation where the separation constant is chosen to match the scale invariance.
-
-### 3. **Heat Equation Example**
-
-
-For $u_t = u_{xx}$:
-
-$$u(x,t) = t^{-1/2}f\left(\frac{x}{\sqrt{t}}\right)$$
-
-
-
-reduces to:
-
-$$f'' + \frac{\xi}{2}f' + \frac{1}{2}f = 0$$
-
-
-
-Solution: $f(\xi) = e^{-\xi^2/4}$ (Gaussian!)
-
-### 4. **Black-Scholes Similarity**
-
-
-The Black-Scholes formula has the similarity structure:
-
-$$C(S,K,T,r,\sigma) = S \cdot \Pi_1(d_1) - Ke^{-rT}\Pi_2(d_2)$$
-
-
-
-where $d_1, d_2$ depend only on:
-
-$$\frac{\ln(S/K)}{\sigma\sqrt{T}}, \quad r\sqrt{T}, \quad \sigma\sqrt{T}$$
-
-
-
-These are **dimensionless combinations** (similarity variables).
-
----
-
-## **15. Operator Theory Perspective**
-
-
-### 1. **The Black-Scholes Operator**
-
-
-Define:
-
-$$\boxed{\mathcal{L} = \frac{\sigma^2}{2}\frac{\partial^2}{\partial x^2} + \left(r-\frac{\sigma^2}{2}\right)\frac{\partial}{\partial x} - r}$$
-
-
-
-The PDE is:
-
-$$\frac{\partial V}{\partial \tau} = \mathcal{L}V$$
-
-
-
-### 2. **Spectral Decomposition**
-
-
-The operator $\mathcal{L}$ has:
-- **Spectrum**: $\sigma(\mathcal{L})$ (set of eigenvalues)
-- **Eigenfunctions**: $\mathcal{L}\phi_\lambda = \lambda\phi_\lambda$
-- **Semigroup**: $e^{\tau\mathcal{L}}$ is the solution operator
-
-### 3. **Functional Calculus**
-
-
-The solution is:
-
-$$\boxed{V(\cdot, \tau) = e^{\tau\mathcal{L}}V(\cdot, 0)}$$
-
-
-
-For discrete spectrum:
-
-$$e^{\tau\mathcal{L}} = \sum_{n=1}^{\infty}e^{\tau\lambda_n}P_n$$
-
-
-
-where $P_n$ projects onto the $n$-th eigenspace.
-
-For continuous spectrum:
-
-$$e^{\tau\mathcal{L}} = \int_{\sigma(\mathcal{L})}e^{\tau\lambda}dE(\lambda)$$
-
-
-
-where $E(\lambda)$ is the **spectral measure** (Fourier transform).
-
----
-
-## **16. Practical Example: Box Spread**
-
-
-### 1. **Setup**
-
-
-Consider a bounded domain $S \in [S_L, S_U]$ (box spread: long call spread + short put spread).
-
-**Boundary conditions**:
-- $V(S_L, t) = A$ (constant)
-- $V(S_U, t) = B$ (constant)
-
-### 2. **Modified Problem**
-
-
-Define $W(S,t) = V(S,t) - A - \frac{B-A}{S_U - S_L}(S - S_L)$ so:
-- $W(S_L,t) = 0$
-- $W(S_U,t) = 0$
-
-Now $W$ satisfies a **homogeneous** boundary value problem.
-
-### 3. **Eigenfunction Expansion**
-
-
-
-$$W(S,t) = \sum_{n=1}^{\infty}c_n(t)\phi_n(S)$$
-
-
-
-where $\phi_n$ are eigenfunctions of:
-
-$$\mathcal{L}\phi_n = \lambda_n\phi_n$$
-
-
-
-with $\phi_n(S_L) = \phi_n(S_U) = 0$.
-
-### 4. **Time Evolution**
-
-
-
-$$c_n(t) = c_n(T)e^{-\lambda_n(T-t)}$$
-
-
-
-where $c_n(T)$ comes from projecting the payoff:
-
-$$c_n(T) = \frac{\int_{S_L}^{S_U}[\Phi(S) - A - \frac{B-A}{S_U-S_L}(S-S_L)]\phi_n(S)w(S)dS}{\int_{S_L}^{S_U}\phi_n^2(S)w(S)dS}$$
-
-
-
----
-
-## **17. Computational Aspects**
-
-
-### 1. **Computing Eigenvalues**
-
-
-For the Sturm-Liouville problem:
-
-$$-\frac{\sigma^2}{2}X'' - (r-\frac{\sigma^2}{2})X' + rX = \lambda X$$
-
-
-
-with boundary conditions, use:
-
-**Shooting method**:
-1. Guess $\lambda$
-2. Integrate ODE from $x_L$ to $x_R$
-3. Check if boundary condition at $x_R$ is satisfied
-4. Iterate to find $\lambda$ where it is
-
-**Finite differences**:
-1. Discretize: $X_j \approx X(x_j)$
-2. Matrix eigenvalue problem: $\mathbf{A}\mathbf{X} = \lambda\mathbf{X}$
-3. Use standard eigenvalue solvers (QR algorithm, etc.)
-
-### 2. **Computing Coefficients**
-
-
-The projection:
-
-$$c_n = \frac{\langle \Phi, \phi_n \rangle}{\langle \phi_n, \phi_n \rangle}$$
-
-
-
-requires **numerical integration** (Gaussian quadrature).
-
-### 3. **Series Truncation**
-
-
-In practice, truncate:
-
-$$V(x,\tau) \approx \sum_{n=1}^{N}c_n\phi_n(x)e^{-\lambda_n\tau}$$
-
-
-
-**Error estimate**:
-
-$$\left|V - V_N\right| \leq \sum_{n=N+1}^{\infty}|c_n|e^{-\lambda_n\tau} \leq Ce^{-\lambda_{N+1}\tau}$$
-
-
-
-The exponential decay in $\tau$ means **rapid convergence** away from $\tau = 0$.
-
----
-
-## **18. Barrier Options via Separation**
-
-
-### 1. **Down-and-Out Call**
-
+### 10.1 Down-and-Out Call
 
 Domain: $S \in [B, \infty)$ with $V(B,t) = 0$.
 
-**Problem**: Semi-infinite domain, but with one boundary condition.
+Since the domain is semi-infinite, approximate by $S \in [B, S_{\max}]$ for large $S_{\max}$, with:
 
-### 2. **Truncation**
-
-
-Approximate by $S \in [B, S_{\max}]$ for large $S_{\max}$, with:
 - $V(B,t) = 0$ (knock-out)
-- $V(S_{\max}, t) = S_{\max} - K$ (deep ITM)
+- $V(S_{\max}, t) = S_{\max} - K$ (deep in-the-money)
 
-Now standard separation applies.
+Standard eigenfunction expansion then applies on the truncated domain.
 
-### 3. **Comparison with Method of Images**
+### 10.2 Comparison with Method of Images
 
+The **method of images** gives the exact price:
 
-The **method of images** gives:
+$$
+V(S,t) = C_{\text{BS}}(S,t) - \left(\frac{B}{S}\right)^{2r/\sigma^2} C_{\text{BS}}\left(\frac{B^2}{S}, t\right)
+$$
 
-$$V(S,t) = C_{\text{BS}}(S,t) - \left(\frac{B}{S}\right)^{2r/\sigma^2}C_{\text{BS}}\left(\frac{B^2}{S}, t\right)$$
-
-
-
-This is **exact** and more elegant than truncated eigenfunction expansion.
-
-**Lesson**: For problems with analytical solutions via other methods, separation of variables is often less efficient.
+This closed-form result is simpler than a truncated eigenfunction series, illustrating that for problems admitting analytical solutions via other techniques, separation of variables may not be the most efficient route.
 
 ---
 
-## **19. Advanced Topics**
+## 11. Practical Example: Box Spread
 
+### 11.1 Setup
 
-### 1. **Non-Self-Adjoint Operators**
+Consider a bounded domain $S \in [S_L, S_U]$ with constant boundary conditions:
 
+- $V(S_L, t) = A$
+- $V(S_U, t) = B$
 
-If the operator is not self-adjoint, we need:
-- **Bi-orthogonal systems**: left and right eigenfunctions
-- **Generalized eigenfunctions**: in the sense of distributions
-- **Resolvent theory**: $(L - \lambda I)^{-1}$ analysis
+### 11.2 Reduction to Homogeneous Boundaries
 
-### 2. **Degenerate Operators**
+Define $W(S,t) = V(S,t) - A - \frac{B-A}{S_U - S_L}(S - S_L)$ so that $W(S_L,t) = W(S_U,t) = 0$.
 
+Now $W$ satisfies a homogeneous boundary value problem amenable to eigenfunction expansion.
 
-Near $S = 0$, the Black-Scholes operator degenerates ($\sigma^2 S^2 \to 0$).
+### 11.3 Eigenfunction Expansion
 
-This changes the **type** of the equation (parabolic → first-order) and affects:
-- Boundary conditions needed
-- Regularity of eigenfunctions
-- Completeness of the eigenfunction system
+$$
+W(S,t) = \sum_{n=1}^{\infty} c_n(t) \phi_n(S)
+$$
 
-### 3. **Fractional Laplacian**
+where $\phi_n$ are eigenfunctions of $\mathcal{L}\phi_n = \lambda_n \phi_n$ with $\phi_n(S_L) = \phi_n(S_U) = 0$, and:
 
+$$
+c_n(t) = c_n(T) e^{-\lambda_n(T-t)}
+$$
 
-For **Lévy processes** (jumps), the spatial operator is:
-
-$$\mathcal{L} = \int_{\mathbb{R}}[f(x+y) - f(x) - yf'(x)\mathbb{1}_{|y|<1}]\nu(dy)$$
-
-
-
-This is **non-local** (integral operator), so standard separation of variables doesn't directly apply.
-
-Eigenfunctions exist but are more exotic (related to special functions).
+The terminal coefficients $c_n(T)$ are obtained by projecting the payoff onto the eigenbasis.
 
 ---
 
-## **20. Summary: When to Use Separation of Variables**
+## 12. Computational Aspects
 
+### 12.1 Computing Eigenvalues
 
-### 1. **Advantages**
+For the Sturm--Liouville problem with boundary conditions, two standard numerical approaches are available.
 
+**Shooting method**:
 
-| **Situation** | **Why It Works** |
-|---------------|------------------|
-| Bounded domains | Discrete spectrum, Fourier series |
-| Homogeneous BCs | Simplifies eigenvalue problem |
-| Pedagogical | Reveals structure of solution |
-| Theoretical | Connects to spectral theory |
+1. Guess $\lambda$
+2. Integrate the ODE from $x_L$ to $x_R$
+3. Check whether the boundary condition at $x_R$ is satisfied
+4. Iterate to find $\lambda$ values for which it is
 
-### 2. **Disadvantages**
+**Finite difference discretization**:
 
+1. Discretize: $X_j \approx X(x_j)$
+2. Obtain a matrix eigenvalue problem: $\mathbf{A}\mathbf{X} = \lambda\mathbf{X}$
+3. Solve with standard eigenvalue algorithms
 
-| **Situation** | **Why It Fails/Struggles** |
-|---------------|----------------------------|
-| Infinite domains | Continuous spectrum → Fourier transform better |
-| Non-separable operators | Mixed derivatives with $\rho \neq 0$ |
-| Time-dependent coefficients | Standard separation doesn't work |
-| Complex boundaries | Non-homogeneous or time-dependent BCs |
-| Path-dependent options | Need more state variables |
+### 12.2 Computing Coefficients
 
-### 3. **The Verdict**
+The projection $c_n = \frac{\langle \Phi, \phi_n \rangle}{\langle \phi_n, \phi_n \rangle}$ requires numerical integration (e.g., Gaussian quadrature).
 
+### 12.3 Series Truncation
 
-For **Black-Scholes** specifically:
-- **Infinite domain** ($S \in (0,\infty)$) makes discrete separation impractical
-- **Fourier/Laplace transforms** are the natural extension
-- **Green's function** method is more direct
-- **Feynman-Kac** is most elegant probabilistically
+In practice, truncate the expansion:
 
-For **bounded domains** (barriers):
-- Separation works but **method of images** is often simpler
-- **Numerical methods** (FD, FEM) are more flexible
+$$
+V(x,\tau) \approx \sum_{n=1}^{N} c_n \phi_n(x) e^{-\lambda_n \tau}
+$$
 
-### 4. **Historical Role**
+**Error estimate**:
 
+$$
+\left|V - V_N\right| \leq \sum_{n=N+1}^{\infty} |c_n| e^{-\lambda_n \tau} \leq C e^{-\lambda_{N+1} \tau}
+$$
 
-Separation of variables was crucial **historically**:
-1. **19th century**: Fourier, Sturm-Liouville theory
-2. **Early 20th century**: Heat/wave equations in physics
-3. **Modern era**: Absorbed into spectral theory, functional analysis
-
-For **modern quantitative finance**:
-- Transform methods (Fourier, Laplace, Mellin)
-- Probabilistic methods (Feynman-Kac, martingales)
-- Numerical PDE solvers
-
-dominate practical applications.
+The exponential decay in $\tau$ ensures **rapid convergence** away from $\tau = 0$.
 
 ---
 
-## **21. The Deep Structure**
+## 13. Four Representations of the Solution Operator
 
+The various solution methods for linear parabolic PDEs are different representations of the same object:
 
-### 1. **Unified View**
-
-
-All these methods are **related**:
-
-
-$$\begin{align}
-&\text{Separation (finite)} \longleftrightarrow \text{Fourier series} \\
+$$
+\begin{align}
+&\text{Separation (finite domain)} \longleftrightarrow \text{Fourier series} \\
 &\quad\downarrow \text{(limit } L \to \infty) \\
-&\text{Separation (infinite)} \longleftrightarrow \text{Fourier transform} \\
+&\text{Separation (infinite domain)} \longleftrightarrow \text{Fourier transform} \\
 &\quad\downarrow \text{(Green's function)} \\
 &\text{Fundamental solution} \longleftrightarrow \text{Heat kernel} \\
 &\quad\downarrow \text{(probabilistic)} \\
-&\text{Transition density} \longleftrightarrow \text{Feynman-Kac}
-\end{align}$$
+&\text{Transition density} \longleftrightarrow \text{Feynman--Kac}
+\end{align}
+$$
 
+For the solution operator $e^{\tau\mathcal{L}}$ applied to initial data $V_0$:
 
-
-They're all **different manifestations** of the spectral decomposition of the heat operator.
-
-### 2. **The Fundamental Insight**
-
-
-
-$$\boxed{e^{\tau\mathcal{L}}V_0 = \begin{cases}
-\sum_{n}e^{\tau\lambda_n}\langle V_0, \phi_n\rangle\phi_n & \text{(discrete)} \\
-\int e^{\tau\lambda}\langle V_0, \phi_\lambda\rangle\phi_\lambda d\lambda & \text{(continuous)} \\
-\int G(x,y,\tau)V_0(y)dy & \text{(Green's function)} \\
+$$
+e^{\tau\mathcal{L}} V_0 = \begin{cases}
+\displaystyle\sum_{n} e^{\tau\lambda_n} \langle V_0, \phi_n \rangle \phi_n & \text{(discrete spectrum)} \\[6pt]
+\displaystyle\int e^{\tau\lambda} \langle V_0, \phi_\lambda \rangle \phi_\lambda\, d\lambda & \text{(continuous spectrum)} \\[6pt]
+\displaystyle\int G(x, y, \tau) V_0(y)\, dy & \text{(Green's function)} \\[6pt]
 \mathbb{E}[V_0(X_\tau)] & \text{(probabilistic)}
-\end{cases}}$$
+\end{cases}
+$$
 
+These are four representations of the **same solution operator**. The choice among them depends on the problem:
 
-
-These are **four representations** of the **same solution operator**!
-
-### 3. **Choosing the Right Tool**
-
-
-- **Discrete spectrum** (barriers) → Separation/Fourier series
-- **Continuous spectrum** (no barriers) → Fourier transform
-- **Non-smooth payoffs** → Green's function
-- **Exotic options** → Feynman-Kac/Monte Carlo
-- **American options** → Free boundary/viscosity solutions
-
-The art is knowing which representation to use for each problem.
+- **Discrete spectrum** (barrier options) --- eigenfunction expansion / Fourier series
+- **Continuous spectrum** (vanilla options) --- Fourier transform
+- **Non-smooth payoffs** --- Green's function convolution
+- **Exotic / path-dependent options** --- Feynman--Kac / Monte Carlo
 
 ---
+
+## 14. Summary
+
+Separation of variables for the Black--Scholes PDE is **most effective on bounded domains** with homogeneous boundary conditions, where it yields a discrete eigenfunction expansion with exponentially convergent series. For vanilla options on unbounded domains, the method leads naturally to continuous-spectrum representations (Fourier transforms), which are handled more directly by transform techniques.
+
+| Situation | Method of choice |
+|-----------|-----------------|
+| Bounded domain, homogeneous BCs | Eigenfunction expansion |
+| Unbounded domain | Fourier / Laplace transform |
+| Non-constant or time-dependent coefficients | Numerical PDE methods |
+| Path-dependent options | Feynman--Kac / Monte Carlo |
+
+For barrier options specifically, the eigenfunction approach competes with the method of images (when available) and numerical PDE solvers. Its main value lies in providing **structural insight**: it reveals how the spectrum of the spatial operator governs the time decay of each mode, and it connects finite-domain Fourier series to infinite-domain Fourier transforms through a single limiting process. In the operator framework of the introduction, the eigenfunction expansion represents the pricing semigroup $\mathcal{P}_\tau = e^{\tau\mathcal{L}}$ through its **spectral decomposition** on bounded domains.
 
 ---
 
 ## Exercises
 
 **Exercise 1.** For the heat equation $\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2 \frac{\partial^2 F}{\partial x^2}$ on the domain $x \in (a, b)$ with $F(a, \tau) = F(b, \tau) = 0$ (a double-barrier knock-out option), apply separation of variables to show that the eigenvalues are $\lambda_n = -\frac{1}{2}\sigma^2 \left(\frac{n\pi}{b-a}\right)^2$ for $n = 1, 2, \ldots$ and the eigenfunctions are $\sin\left(\frac{n\pi(x-a)}{b-a}\right)$.
-
----
-
-**Exercise 2.** Using the eigenvalue decomposition from Exercise 1, write the solution for a European call option knocked out at barriers $S = B_l$ and $S = B_u$ (with $B_l < K < B_u$) as a Fourier sine series. Discuss the convergence rate of this series for smooth vs. non-smooth initial conditions.
-
----
-
-**Exercise 3.** Explain why separation of variables with a discrete spectrum arises naturally for barrier options (bounded domain) but not for vanilla European options (unbounded domain). What replaces the discrete eigenvalue sum in the unbounded case?
-
----
-
-**Exercise 4.** Consider the Black-Scholes PDE after the change of variables to the heat equation. Substitute $F(x,\tau) = X(x)T(\tau)$ and derive the two ODEs. Solve each ODE explicitly, identifying the separation constant $\lambda$.
-
----
-
-**Exercise 5.** The four equivalent representations of the solution operator -- eigenfunction expansion, Fourier integral, Green's function, and probabilistic expectation -- are all listed in the summary. For a European call on the domain $x \in (-\infty, \infty)$, verify that the Green's function representation (convolution with Gaussian) and the Fourier transform representation yield the same answer.
-
----
-
-**Exercise 6.** For a down-and-out call with barrier at $S = B$ (where $B < K$), describe how the method of images can be used instead of separation of variables to satisfy the boundary condition $V(B, t) = 0$. What is the "image" solution, and how does the final formula relate to the standard Black-Scholes price?
-
----
-
-## Solutions
 
 ??? success "Solution to Exercise 1"
     On $x \in (a,b)$ with $F(a,\tau) = F(b,\tau) = 0$, substitute $F(x,\tau) = X(x)T(\tau)$:
@@ -1063,6 +533,9 @@ The art is knowing which representation to use for each problem.
     X_n(x) = \sin\left(\frac{n\pi(x-a)}{b-a}\right)
     $$
 
+---
+**Exercise 2.** Using the eigenvalue decomposition from Exercise 1, write the solution for a European call option knocked out at barriers $S = B_l$ and $S = B_u$ (with $B_l < K < B_u$) as a Fourier sine series. Discuss the convergence rate of this series for smooth vs. non-smooth initial conditions.
+
 ??? success "Solution to Exercise 2"
     Using the eigenvalue decomposition, the solution for a double-barrier knock-out call in log-price space $x = \ln S$, with barriers at $x_l = \ln B_l$ and $x_u = \ln B_u$:
 
@@ -1084,6 +557,9 @@ The art is knowing which representation to use for each problem.
 
     **Convergence rate:** For a smooth initial condition (e.g., the payoff is $C^{\infty}$), the Fourier sine coefficients $c_n$ decay as $O(n^{-k})$ for any $k$, giving spectral (super-polynomial) convergence. For the call payoff, which has a kink at $S = K$ (i.e., $\Phi''$ has a delta function), $c_n \sim O(n^{-2})$. This means the series converges as $O(1/N^2)$ for $N$ terms when $\tau = 0$, but for $\tau > 0$, the exponential decay $e^{-cn^2\tau}$ dramatically accelerates convergence.
 
+---
+**Exercise 3.** Explain why separation of variables with a discrete spectrum arises naturally for barrier options (bounded domain) but not for vanilla European options (unbounded domain). What replaces the discrete eigenvalue sum in the unbounded case?
+
 ??? success "Solution to Exercise 3"
     **Bounded domain (barrier options).** When barriers at $B_l$ and $B_u$ bound the stock price, the log-price domain $[\ln B_l, \ln B_u]$ is finite. The spatial operator with homogeneous Dirichlet boundary conditions has a **discrete spectrum**: eigenvalues $\lambda_1 < \lambda_2 < \cdots$ accumulating at $-\infty$, with corresponding eigenfunctions forming a complete orthonormal basis. The solution is a Fourier sine series (discrete sum).
 
@@ -1096,6 +572,9 @@ The art is knowing which representation to use for each problem.
     $$
 
     This is the Fourier transform solution. The discrete-to-continuous transition is a manifestation of the general principle in spectral theory: as the domain $[a,b] \to (-\infty,\infty)$, the eigenvalue spacing $\Delta\lambda \sim \pi^2/(b-a)^2 \to 0$ and the sum becomes an integral.
+
+---
+**Exercise 4.** Consider the Black--Scholes PDE after the change of variables to the heat equation. Substitute $F(x,\tau) = X(x)T(\tau)$ and derive the two ODEs. Solve each ODE explicitly, identifying the separation constant $\lambda$.
 
 ??? success "Solution to Exercise 4"
     Starting from the heat equation $\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2}$, substitute $F(x,\tau) = X(x)T(\tau)$:
@@ -1126,6 +605,9 @@ The art is knowing which representation to use for each problem.
 
     On the infinite domain, boundedness requires $\lambda \geq 0$, and $k$ ranges continuously over $\mathbb{R}$, recovering the Fourier transform representation. The separation constant $\lambda = \frac{\sigma^2 k^2}{2}$ parametrizes the continuous spectrum.
 
+---
+**Exercise 5.** The four equivalent representations of the solution operator -- eigenfunction expansion, Fourier integral, Green's function, and probabilistic expectation -- are listed in the summary. For a European call on the domain $x \in (-\infty, \infty)$, verify that the Green's function representation (convolution with Gaussian) and the Fourier transform representation yield the same answer.
+
 ??? success "Solution to Exercise 5"
     **Green's function representation.** The solution is:
 
@@ -1155,16 +637,19 @@ The art is knowing which representation to use for each problem.
 
     Applying the inverse Fourier transform of the product $\hat{\Phi}\cdot\hat{G}$ gives the convolution $\Phi * G$, confirming both representations are identical.
 
+---
+**Exercise 6.** For a down-and-out call with barrier at $S = B$ (where $B < K$), describe how the method of images can be used instead of separation of variables to satisfy the boundary condition $V(B, t) = 0$. What is the "image" solution, and how does the final formula relate to the standard Black--Scholes price?
+
 ??? success "Solution to Exercise 6"
     **Method of images.** The idea is to construct a solution that automatically satisfies $V(B,t) = 0$ by adding an "image" solution that cancels the original at $S = B$.
 
-    Start with the standard Black-Scholes call price $C_{\text{BS}}(S,K,\tau)$. The "image" of a point source at $S$ reflected in the barrier $B$ is $B^2/S$ (in the stock price domain). The image solution is:
+    Start with the standard Black--Scholes call price $C_{\text{BS}}(S,K,\tau)$. The "image" of a point source at $S$ reflected in the barrier $B$ is $B^2/S$ (in the stock price domain). The image solution is:
 
     $$
     V_{\text{image}}(S,t) = \left(\frac{B}{S}\right)^{2r/\sigma^2 - 1}C_{\text{BS}}\left(\frac{B^2}{S}, K, \tau\right)
     $$
 
-    The power $\left(\frac{B}{S}\right)^{2r/\sigma^2 - 1}$ is chosen so that $V_{\text{image}}$ also satisfies the Black-Scholes PDE (this exponent arises from the drift term in the PDE).
+    The power $\left(\frac{B}{S}\right)^{2r/\sigma^2 - 1}$ is chosen so that $V_{\text{image}}$ also satisfies the Black--Scholes PDE (this exponent arises from the drift term in the PDE).
 
     **Down-and-out call price:**
 

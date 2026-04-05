@@ -412,9 +412,99 @@ where $\lambda_j$ is the variance of the $j$-th principal component.
 
 **Exercise 1.** Consider a 5-year zero-coupon bond priced at par yield 4\%, with key rates at 2Y, 5Y, and 10Y. Using the triangular shift functions defined in this section, determine which key rate shifts affect this bond's price. Compute the key rate durations at 2Y, 5Y, and 10Y. Verify that their sum equals the modified duration.
 
+??? success "Solution to Exercise 1"
+
+    A 5-year zero-coupon bond has a single cashflow at maturity $T = 5$. With key rates at 2Y, 5Y, and 10Y:
+
+    **Which shifts affect the bond?**
+
+    The bond's cashflow is at $T = 5$, which coincides with the 5Y key rate. We examine each shift function:
+
+    - **2Y shift** $s_1(T)$: The triangular function centered at 2Y is nonzero for $T \in [0, 5]$ (since 5Y is the next key rate). At $T = 5$: $s_1(5) = 0$ (the shift has decayed to zero by the 5Y point). For $T$ between 2Y and 5Y, $s_1(T) = (5 - T)/(5 - 2) = (5 - T)/3$. At $T = 5$: $s_1 = 0$. So the 2Y shift does **not** affect the bond price (since the cashflow is exactly at $T = 5$, where $s_1 = 0$).
+
+    - **5Y shift** $s_2(T)$: The triangular function centered at 5Y. At $T = 5$: $s_2(5) = 1$. The bond's only cashflow is at this point, so the 5Y shift fully affects the bond.
+
+    - **10Y shift** $s_3(T)$: The triangular function centered at 10Y. At $T = 5$: since 5Y is the key rate before 10Y, $s_3(5) = (5 - 5)/(10 - 5) = 0$. So the 10Y shift does not affect the bond.
+
+    **Key rate durations:**
+
+    For a zero-coupon bond priced as $P = e^{-y(5) \cdot 5}$:
+
+    When we shift key rate $k$ by $\Delta y$, the yield at maturity $T = 5$ changes by $\Delta y \cdot s_k(5)$.
+
+    $$
+    \text{KRD}_{2Y} = -\frac{1}{P}\frac{\partial P}{\partial y_{2Y}} = 5 \times s_1(5) = 5 \times 0 = 0
+    $$
+
+    $$
+    \text{KRD}_{5Y} = 5 \times s_2(5) = 5 \times 1 = 5
+    $$
+
+    $$
+    \text{KRD}_{10Y} = 5 \times s_3(5) = 5 \times 0 = 0
+    $$
+
+    **Verification:**
+
+    $$
+    \sum_k \text{KRD}_k = 0 + 5 + 0 = 5 = T = D_{\text{mod}} \checkmark
+    $$
+
+    The modified duration of a 5-year zero-coupon bond is 5 years, and it is entirely concentrated at the 5Y key rate. This makes intuitive sense: the bond's sensitivity is localized at its maturity point on the curve.
+
 ---
 
 **Exercise 2.** Show that the triangular shift functions satisfy the partition of unity property $\sum_{k=1}^{K} s_k(T) = 1$ for any maturity $T$. Using this result, prove that $\sum_{k=1}^{K} \text{KRD}_k = D_{\text{mod}}$ for any bond or portfolio.
+
+??? success "Solution to Exercise 2"
+
+    **Partition of unity:** Consider any maturity $T$ with $\tau_{k-1} \leq T \leq \tau_k$ for some $k$ (i.e., $T$ lies between consecutive key rates). By the definition of the triangular shift functions:
+
+    - $s_{k-1}(T) = (\tau_k - T)/(\tau_k - \tau_{k-1})$ (the declining part of the triangle centered at $\tau_{k-1}$)
+    - $s_k(T) = (T - \tau_{k-1})/(\tau_k - \tau_{k-1})$ (the rising part of the triangle centered at $\tau_k$)
+    - $s_j(T) = 0$ for all $j \neq k-1, k$
+
+    Therefore:
+
+    $$
+    \sum_{j=1}^K s_j(T) = s_{k-1}(T) + s_k(T) = \frac{\tau_k - T}{\tau_k - \tau_{k-1}} + \frac{T - \tau_{k-1}}{\tau_k - \tau_{k-1}} = \frac{\tau_k - \tau_{k-1}}{\tau_k - \tau_{k-1}} = 1
+    $$
+
+    At the boundary cases: for $T \leq \tau_1$, $s_1(T) = 1$ and all others are 0. For $T \geq \tau_K$, $s_K(T) = 1$ and all others are 0. In both cases the sum is 1.
+
+    **Proof that $\sum_k \text{KRD}_k = D_{\text{mod}}$:**
+
+    A parallel shift of magnitude $\Delta y$ at all key rates simultaneously produces a yield curve change:
+
+    $$
+    \Delta y(T) = \Delta y \cdot \sum_{k=1}^K s_k(T) = \Delta y \cdot 1 = \Delta y
+    $$
+
+    for all $T$ (by partition of unity). This is a uniform parallel shift.
+
+    The total price change under this shift is:
+
+    $$
+    \Delta P = \sum_{k=1}^K \frac{\partial P}{\partial y_k} \Delta y = -P \sum_{k=1}^K \text{KRD}_k \cdot \Delta y
+    $$
+
+    But under a parallel shift $\Delta y$, the price change is also:
+
+    $$
+    \Delta P = -P \cdot D_{\text{mod}} \cdot \Delta y
+    $$
+
+    Equating:
+
+    $$
+    -P \sum_k \text{KRD}_k \cdot \Delta y = -P \cdot D_{\text{mod}} \cdot \Delta y
+    $$
+
+    Dividing by $-P \cdot \Delta y$:
+
+    $$
+    \sum_{k=1}^K \text{KRD}_k = D_{\text{mod}} \qquad \blacksquare
+    $$
 
 ---
 
@@ -425,6 +515,50 @@ where $\lambda_j$ is the variance of the $j$-th principal component.
 | KR-DV01 | \$3,200 | \$8,500 | \$15,000 | \$2,300 |
 
 Suppose the yield curve steepens: the 2Y rate falls by 25 bps, the 5Y rate is unchanged, the 10Y rate rises by 15 bps, and the 30Y rate rises by 30 bps. Compute the portfolio P\&L. What would the P\&L be under a parallel shift of $+10$ bps?
+
+??? success "Solution to Exercise 3"
+
+    **Given KR-DV01 profile (per \$100M notional):**
+
+    | Key Rate | 2Y | 5Y | 10Y | 30Y |
+    |---|---|---|---|---|
+    | KR-DV01 | \$3,200 | \$8,500 | \$15,000 | \$2,300 |
+
+    **Scenario 1: Curve steepening.**
+
+    $\Delta y_{2Y} = -25$ bps $= -0.0025$, $\Delta y_{5Y} = 0$, $\Delta y_{10Y} = +15$ bps $= +0.0015$, $\Delta y_{30Y} = +30$ bps $= +0.0030$.
+
+    $$
+    \text{P\&L} = -\sum_k \text{KR-DV01}_k \cdot \frac{\Delta y_k}{0.0001}
+    $$
+
+    (Since KR-DV01 is the dollar change per 1 bp, we multiply by the number of bps.)
+
+    $$
+    \text{P\&L} = -[3{,}200 \times (-25) + 8{,}500 \times 0 + 15{,}000 \times 15 + 2{,}300 \times 30]
+    $$
+
+    $$
+    = -[-80{,}000 + 0 + 225{,}000 + 69{,}000]
+    $$
+
+    $$
+    = -[214{,}000] = -\$214{,}000
+    $$
+
+    The portfolio **loses \$214,000** under this steepening scenario. The 2Y rally contributes a gain (\$80K), but the 10Y and 30Y sell-off causes larger losses (\$225K + \$69K).
+
+    **Scenario 2: Parallel shift of +10 bps.**
+
+    $$
+    \text{P\&L} = -[3{,}200 \times 10 + 8{,}500 \times 10 + 15{,}000 \times 10 + 2{,}300 \times 10]
+    $$
+
+    $$
+    = -[32{,}000 + 85{,}000 + 150{,}000 + 23{,}000] = -290{,}000
+    $$
+
+    The portfolio **loses \$290,000** under a 10 bp parallel shift. This is consistent with the total DV01 being \$29,000 per bp.
 
 ---
 
@@ -438,13 +572,137 @@ Suppose the yield curve steepens: the 2Y rate falls by 25 bps, the 5Y rate is un
 
 Explain why the 5Y bucket cannot be fully hedged with these three instruments.
 
+??? success "Solution to Exercise 4"
+
+    **Matrix formulation:** We need to solve $Ah = b$ where:
+
+    $$
+    A = \begin{pmatrix} 190 & 0 & 0 \\ 0 & 10 & 0 \\ 0 & 870 & 20 \\ 0 & 0 & 2{,}500 \end{pmatrix}, \qquad b = \begin{pmatrix} 3{,}200 \\ 8{,}500 \\ 15{,}000 \\ 2{,}300 \end{pmatrix}, \qquad h = \begin{pmatrix} h_{\text{2Y}} \\ h_{\text{10Y}} \\ h_{\text{30Y}} \end{pmatrix}
+    $$
+
+    (Note: $A$ is $4 \times 3$ and $b$ is $4 \times 1$, so the system is overdetermined.)
+
+    **Solve row by row where possible:**
+
+    **Row 1 (2Y bucket):** $190 h_{\text{2Y}} = 3{,}200 \implies h_{\text{2Y}} = 3{,}200/190 = 16.84$ (\$M notional)
+
+    **Row 4 (30Y bucket):** $2{,}500 h_{\text{30Y}} = 2{,}300 \implies h_{\text{30Y}} = 2{,}300/2{,}500 = 0.92$ (\$M notional)
+
+    **Row 3 (10Y bucket):** $870 h_{\text{10Y}} + 20 h_{\text{30Y}} = 15{,}000$
+
+    $870 h_{\text{10Y}} + 20(0.92) = 15{,}000$
+
+    $870 h_{\text{10Y}} = 15{,}000 - 18.4 = 14{,}981.6$
+
+    $h_{\text{10Y}} = 17.22$ (\$M notional)
+
+    **Row 2 (5Y bucket):** $10 h_{\text{10Y}} = 8{,}500$?
+
+    $10 \times 17.22 = 172.2 \neq 8{,}500$
+
+    **The 5Y bucket cannot be hedged.** With the three instruments chosen, the 5Y KR-DV01 of the hedge is only $10 \times 17.22 = \$172$ (from the small 5Y exposure of the 10Y swap), far short of the required \$8,500.
+
+    **Why:** None of the three hedging instruments has significant KR-DV01 at the 5Y point. The 2Y swap has zero exposure at 5Y. The 10Y swap has only \$10 per \$1M notional at 5Y (a tiny spillover). The 30Y swap also has zero at 5Y. To hedge the 5Y bucket, one needs a **5Y swap** (or an instrument with concentrated 5Y exposure) as an additional hedging instrument. This illustrates that $K$ key rate buckets generally require $K$ hedging instruments with distinct KR-DV01 profiles.
+
 ---
 
 **Exercise 5.** Suppose the first three principal components of yield curve changes are PC$_1 = (1, 1, 1, 1)$, PC$_2 = (-1, -0.3, 0.3, 1)$, PC$_3 = (1, -1, -1, 1)$ at key rates 2Y, 5Y, 10Y, 30Y. For the portfolio in Exercise 3, compute the PC durations $D_{\text{PC},1}$, $D_{\text{PC},2}$, $D_{\text{PC},3}$. Interpret each: which yield curve movements pose the greatest risk?
 
+??? success "Solution to Exercise 5"
+
+    **Given PCs** at key rates (2Y, 5Y, 10Y, 30Y):
+
+    - PC$_1 = (1, 1, 1, 1)$ (level)
+    - PC$_2 = (-1, -0.3, 0.3, 1)$ (slope)
+    - PC$_3 = (1, -1, -1, 1)$ (curvature)
+
+    **KR-DV01 profile:** $(3{,}200, \; 8{,}500, \; 15{,}000, \; 2{,}300)$.
+
+    **PC durations:**
+
+    $$
+    D_{\text{PC},j} = \sum_{k=1}^{4} \text{KR-DV01}_k \cdot \text{PC}_j(\tau_k)
+    $$
+
+    **PC$_1$ (Level):**
+
+    $$
+    D_{\text{PC},1} = 3{,}200(1) + 8{,}500(1) + 15{,}000(1) + 2{,}300(1) = 29{,}000
+    $$
+
+    **PC$_2$ (Slope):**
+
+    $$
+    D_{\text{PC},2} = 3{,}200(-1) + 8{,}500(-0.3) + 15{,}000(0.3) + 2{,}300(1)
+    $$
+
+    $$
+    = -3{,}200 - 2{,}550 + 4{,}500 + 2{,}300 = 1{,}050
+    $$
+
+    **PC$_3$ (Curvature):**
+
+    $$
+    D_{\text{PC},3} = 3{,}200(1) + 8{,}500(-1) + 15{,}000(-1) + 2{,}300(1)
+    $$
+
+    $$
+    = 3{,}200 - 8{,}500 - 15{,}000 + 2{,}300 = -18{,}000
+    $$
+
+    **Interpretation:**
+
+    - **$D_{\text{PC},1} = 29{,}000$:** The portfolio has significant exposure to level moves. A 1 bp parallel shift causes a \$29,000 P&L (this equals the total DV01).
+
+    - **$D_{\text{PC},2} = 1{,}050$:** The portfolio has moderate exposure to slope (steepening/flattening). A 1-unit steepening move (short rates fall, long rates rise) causes a \$1,050 loss. This is relatively small, meaning the portfolio is roughly balanced between short-end and long-end exposure.
+
+    - **$D_{\text{PC},3} = -18{,}000$:** The portfolio has very large exposure to curvature. A positive curvature move (wings up, belly down) causes a \$18,000 gain. The negative sign means the portfolio benefits from a "butterfly" move where the 5Y and 10Y rates fall relative to the wings. This large curvature exposure arises because the portfolio has concentrated exposure at the 5Y and 10Y points (\$8,500 + \$15,000 = \$23,500) relative to the wings (2Y + 30Y = \$5,500).
+
+    **Greatest risk:** The level factor (PC$_1$) poses the greatest absolute risk due to the \$29,000 DV01, and it also has the highest variance (80--90% of yield curve variation). The curvature factor (PC$_3$) has a large duration (\$18,000) but lower variance, so its risk contribution depends on the eigenvalue $\lambda_3$.
+
 ---
 
 **Exercise 6.** A 10-year interest rate cap has key rate DV01 distributed across maturities 1Y through 10Y, unlike a 10-year swap which concentrates its exposure near the 10Y point. Explain qualitatively why this difference arises. How would you construct a bucket hedge for the cap using swaps of tenors 2Y, 5Y, and 10Y?
+
+??? success "Solution to Exercise 6"
+
+    **Why the cap has distributed KR-DV01:**
+
+    A 10-year interest rate cap consists of individual caplets, each referencing a different forward rate and paying at a different future date. Caplet $i$ depends on the forward rate $F(T_i, T_{i+1})$ and the discount factor $P(0, T_{i+1})$, both of which are sensitive to yields near maturity $T_{i+1}$.
+
+    - The caplet paying at year 2 is sensitive to yields near the 2Y point
+    - The caplet paying at year 5 is sensitive to yields near the 5Y point
+    - The caplet paying at year 10 is sensitive to yields near the 10Y point
+
+    Each caplet contributes KR-DV01 at its own maturity, so the total cap KR-DV01 is spread across all maturities from year 1 to year 10.
+
+    In contrast, a 10-year par swap has a fixed leg behaving like a 10-year bond (concentrated KR-DV01 at the 10Y point) and a floating leg with near-zero duration. The net KR-DV01 is heavily concentrated at the 10Y key rate.
+
+    **Constructing a bucket hedge:**
+
+    The cap's KR-DV01 profile might look like:
+
+    | Key Rate | Cap KR-DV01 |
+    |---|---|
+    | 2Y | \$1,500 |
+    | 5Y | \$3,000 |
+    | 10Y | \$2,500 |
+
+    To hedge with 2Y, 5Y, and 10Y swaps, set up the system $Ah = b$:
+
+    Each swap has concentrated KR-DV01 near its maturity. Assuming:
+
+    - 2Y swap: KR-DV01$_{2Y}$ = \$195/\$1M notional
+    - 5Y swap: KR-DV01$_{5Y}$ = \$475/\$1M notional
+    - 10Y swap: KR-DV01$_{10Y}$ = \$880/\$1M notional
+
+    The hedge ratios are approximately:
+
+    - $h_{2Y} = 1{,}500/195 = \$7.7$M (pay fixed in 2Y swap)
+    - $h_{5Y} = 3{,}000/475 = \$6.3$M (pay fixed in 5Y swap)
+    - $h_{10Y} = 2{,}500/880 = \$2.8$M (pay fixed in 10Y swap)
+
+    This distributes the hedging notional across multiple tenors, reflecting the cap's distributed risk profile. Compare with a naive duration hedge using only a 10Y swap, which would leave the 2Y and 5Y buckets unhedged.
 
 ---
 
@@ -455,3 +713,99 @@ $$
 $$
 
 For a two-key-rate system (2Y, 10Y) with KR-DV01$_{\text{2Y}} = \$5{,}000$ and KR-DV01$_{\text{10Y}} = \$20{,}000$, yield volatilities $\sigma_{\text{2Y}} = 90$ bps/year and $\sigma_{\text{10Y}} = 70$ bps/year, and correlation $\rho = 0.85$, compute the annualized P\&L standard deviation. Compare with the result assuming perfect correlation ($\rho = 1$).
+
+??? success "Solution to Exercise 7"
+
+    **Given:** KR-DV01$_{2Y} = \$5{,}000$, KR-DV01$_{10Y} = \$20{,}000$, $\sigma_{2Y} = 90$ bps $= 0.0090$, $\sigma_{10Y} = 70$ bps $= 0.0070$, $\rho = 0.85$.
+
+    **Covariance matrix:**
+
+    $$
+    \text{Cov}(\Delta y_{2Y}, \Delta y_{2Y}) = \sigma_{2Y}^2 = (0.0090)^2 = 8.1 \times 10^{-5}
+    $$
+
+    $$
+    \text{Cov}(\Delta y_{10Y}, \Delta y_{10Y}) = \sigma_{10Y}^2 = (0.0070)^2 = 4.9 \times 10^{-5}
+    $$
+
+    $$
+    \text{Cov}(\Delta y_{2Y}, \Delta y_{10Y}) = \rho \sigma_{2Y}\sigma_{10Y} = 0.85 \times 0.0090 \times 0.0070 = 5.355 \times 10^{-5}
+    $$
+
+    **Variance of P&L:**
+
+    Note: since the P&L is $-\sum_k \text{KR-DV01}_k \cdot \Delta y_k / 0.0001$ (converting bps to yield), but KR-DV01 is already in dollars per bp, we can work directly with bp changes. Let $d_k = \text{KR-DV01}_k$ in \$/bp:
+
+    $$
+    \text{P\&L} = -d_{2Y} \cdot \Delta y_{2Y}^{(\text{bp})} - d_{10Y} \cdot \Delta y_{10Y}^{(\text{bp})}
+    $$
+
+    where $\Delta y^{(\text{bp})}$ is in basis points. Then:
+
+    $$
+    \text{Var}(\text{P\&L}) = d_{2Y}^2 \sigma_{2Y}^2 + d_{10Y}^2 \sigma_{10Y}^2 + 2 d_{2Y} d_{10Y} \rho \sigma_{2Y}\sigma_{10Y}
+    $$
+
+    with $\sigma$ in bp: $\sigma_{2Y} = 90$ bp, $\sigma_{10Y} = 70$ bp.
+
+    $$
+    \text{Var} = (5{,}000)^2(90)^2 + (20{,}000)^2(70)^2 + 2(5{,}000)(20{,}000)(0.85)(90)(70)
+    $$
+
+    $$
+    = 25 \times 10^6 \times 8{,}100 + 400 \times 10^6 \times 4{,}900 + 200 \times 10^6 \times 0.85 \times 6{,}300
+    $$
+
+    $$
+    = 202.5 \times 10^9 + 1{,}960 \times 10^9 + 1{,}071 \times 10^9
+    $$
+
+    $$
+    = 3{,}233.5 \times 10^9
+    $$
+
+    $$
+    \text{Std}(\text{P\&L}) = \sqrt{3{,}233.5 \times 10^9} = \$56{,}864/\text{year}
+    $$
+
+    Wait, let me be more careful with units. KR-DV01 is \$/bp. The yields have annual volatility in bps. So:
+
+    $$
+    \text{P\&L} = d_{2Y} \times \Delta y_{2Y} + d_{10Y} \times \Delta y_{10Y}
+    $$
+
+    where $d_k$ is in \$/bp and $\Delta y_k$ is in bp. The variance:
+
+    $$
+    \text{Var} = 5000^2 \times 90^2 + 20000^2 \times 70^2 + 2 \times 5000 \times 20000 \times 0.85 \times 90 \times 70
+    $$
+
+    $$
+    = 2.025 \times 10^{11} + 1.96 \times 10^{12} + 1.071 \times 10^{12}
+    $$
+
+    $$
+    = 0.2025 \times 10^{12} + 1.96 \times 10^{12} + 1.071 \times 10^{12} = 3.2335 \times 10^{12}
+    $$
+
+    $$
+    \sigma_{\text{P\&L}} = \sqrt{3.2335 \times 10^{12}} = 1{,}798{,}194
+    $$
+
+    So the annualized P&L standard deviation is approximately **\$1,798,000** (or \$1.80M).
+
+    **With perfect correlation ($\rho = 1$):**
+
+    $$
+    \text{Var}_{\rho=1} = (d_{2Y}\sigma_{2Y} + d_{10Y}\sigma_{10Y})^2 = (5000 \times 90 + 20000 \times 70)^2
+    $$
+
+    $$
+    = (450{,}000 + 1{,}400{,}000)^2 = (1{,}850{,}000)^2 = 3.4225 \times 10^{12}
+    $$
+
+    $$
+    \sigma_{\text{P\&L}}^{\rho=1} = 1{,}850{,}000 = \$1{,}850{,}000
+    $$
+
+    **Comparison:** With $\rho = 0.85$, the P&L standard deviation is \$1.80M; with $\rho = 1$, it is \$1.85M. Perfect correlation gives a **higher** P&L volatility because the two risk factors move in lockstep, amplifying the total exposure. The diversification benefit from imperfect correlation reduces the portfolio risk by approximately \$50K (about 3%). The small difference arises because both positions are long-duration (same sign), so correlation between the key rates increases rather than decreases total risk.

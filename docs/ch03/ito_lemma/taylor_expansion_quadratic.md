@@ -372,58 +372,6 @@ Unlike deterministic calculus, the squared increment does **not** vanish. This i
 
 **Exercise 1.** Let $f(x) = \cos(x)$. Compute the second-order Taylor approximation around $x_0 = 0$ and use it to approximate $\cos(0.3)$. Compare with the exact value and compute the absolute error.
 
----
-
-**Exercise 2.** For the function $f(t, b) = e^t \sin(b)$, compute all partial derivatives up to second order at the expansion point $(t_0, b_0) = (0, 0)$. Write the full second-order Taylor expansion.
-
----
-
-**Exercise 3.** Consider $f(x) = \sqrt{1 + x}$ expanded around $x_0 = 0$.
-
-(a) Write the second-order Taylor approximation.
-
-(b) Compute the linear approximation error and the quadratic approximation error at $x = 0.2$.
-
-(c) Verify that the quadratic approximation error is roughly proportional to $(\Delta x)^3$ by comparing errors at $x = 0.1$ and $x = 0.2$.
-
----
-
-**Exercise 4.** In the two-variable expansion
-
-$$
-\Delta f \approx f_t \Delta t + f_b \Delta b + \frac{1}{2}f_{tt}(\Delta t)^2 + \frac{1}{2}f_{bb}(\Delta b)^2 + f_{tb}\Delta t \Delta b
-$$
-
-explain why, for a deterministic variable $b$ with $\Delta b = O(\Delta t)$, all three second-order terms are $O((\Delta t)^2)$ and can be dropped. Then explain why, when $b = B_t$ is a Brownian motion with $\Delta B_t = O(\sqrt{\Delta t})$, the term $\frac{1}{2}f_{bb}(\Delta B_t)^2$ is $O(\Delta t)$ and must be retained.
-
----
-
-**Exercise 5.** The Hessian matrix of $f(t, b) = t^2 b + e^b$ at $(t_0, b_0) = (1, 0)$ is
-
-$$
-H = \begin{pmatrix} f_{tt} & f_{tb} \\ f_{bt} & f_{bb} \end{pmatrix}
-$$
-
-Compute $H$ at $(1, 0)$ and write the full quadratic Taylor expansion of $f$ around this point.
-
----
-
-**Exercise 6.** For a Brownian motion with time step $\Delta t$, consider the three second-order products $(\Delta t)^2$, $\Delta t \cdot \Delta B_t$, and $(\Delta B_t)^2$. State the order of each in terms of powers of $\Delta t$, and identify which ones survive in the limit $\Delta t \to 0$ (i.e., which are $O(\Delta t)$ rather than $o(\Delta t)$).
-
----
-
-**Exercise 7.** Simulate a Brownian path with $N = 5000$ steps over $[0, 1]$. For the function $f(x) = x^3$, compute $f(B_T) - f(B_0)$ along the path. Then compute the sum
-
-$$
-\sum_{i=0}^{N-1}\left[f'(B_{t_i})\Delta B_i + \frac{1}{2}f''(B_{t_i})(\Delta B_i)^2\right]
-$$
-
-Verify numerically that this sum closely approximates $f(B_T) - f(B_0)$, confirming that the quadratic correction term is essential.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The second-order Taylor approximation of $f(x) = \cos(x)$ around $x_0 = 0$ requires $f(0) = 1$, $f'(0) = -\sin(0) = 0$, and $f''(0) = -\cos(0) = -1$:
 
@@ -438,6 +386,10 @@ Verify numerically that this sum closely approximates $f(B_T) - f(B_0)$, confirm
     $$
 
     The exact value is $\cos(0.3) = 0.95534\ldots$, so the absolute error is approximately $|0.955 - 0.95534| \approx 0.00034$. This small error confirms the accuracy of the quadratic approximation for small increments.
+
+---
+
+**Exercise 2.** For the function $f(t, b) = e^t \sin(b)$, compute all partial derivatives up to second order at the expansion point $(t_0, b_0) = (0, 0)$. Write the full second-order Taylor expansion.
 
 ??? success "Solution to Exercise 2"
     Compute all partial derivatives of $f(t, b) = e^t \sin(b)$ at $(0, 0)$:
@@ -457,6 +409,16 @@ Verify numerically that this sum closely approximates $f(B_T) - f(B_0)$, confirm
 
     That is, $f(t, b) \approx b(1 + t)$.
 
+---
+
+**Exercise 3.** Consider $f(x) = \sqrt{1 + x}$ expanded around $x_0 = 0$.
+
+(a) Write the second-order Taylor approximation.
+
+(b) Compute the linear approximation error and the quadratic approximation error at $x = 0.2$.
+
+(c) Verify that the quadratic approximation error is roughly proportional to $(\Delta x)^3$ by comparing errors at $x = 0.1$ and $x = 0.2$.
+
 ??? success "Solution to Exercise 3"
     **(a)** For $f(x) = \sqrt{1 + x}$, we have $f(0) = 1$, $f'(x) = \frac{1}{2}(1+x)^{-1/2}$ so $f'(0) = \frac{1}{2}$, and $f''(x) = -\frac{1}{4}(1+x)^{-3/2}$ so $f''(0) = -\frac{1}{4}$. The second-order Taylor approximation is
 
@@ -473,6 +435,16 @@ Verify numerically that this sum closely approximates $f(B_T) - f(B_0)$, confirm
 
     **(c)** At $x = 0.1$: exact value $\sqrt{1.1} = 1.04881\ldots$, quadratic approximation $1 + 0.05 - 0.00125 = 1.04875$, error $\approx 0.00006$. At $x = 0.2$: error $\approx 0.00044$. The ratio is $0.00044 / 0.00006 \approx 7.3 \approx 2^3 = 8$, consistent with the error being proportional to $(\Delta x)^3$ (since $0.2/0.1 = 2$ and $2^3 = 8$).
 
+---
+
+**Exercise 4.** In the two-variable expansion
+
+$$
+\Delta f \approx f_t \Delta t + f_b \Delta b + \frac{1}{2}f_{tt}(\Delta t)^2 + \frac{1}{2}f_{bb}(\Delta b)^2 + f_{tb}\Delta t \Delta b
+$$
+
+explain why, for a deterministic variable $b$ with $\Delta b = O(\Delta t)$, all three second-order terms are $O((\Delta t)^2)$ and can be dropped. Then explain why, when $b = B_t$ is a Brownian motion with $\Delta B_t = O(\sqrt{\Delta t})$, the term $\frac{1}{2}f_{bb}(\Delta B_t)^2$ is $O(\Delta t)$ and must be retained.
+
 ??? success "Solution to Exercise 4"
     For a deterministic variable $b$ with $\Delta b = O(\Delta t)$, the three second-order terms scale as:
 
@@ -483,6 +455,16 @@ Verify numerically that this sum closely approximates $f(B_T) - f(B_0)$, confirm
     All three are $O((\Delta t)^2)$, which is negligible compared to the first-order terms $O(\Delta t)$, so they can be dropped.
 
     When $b = B_t$ is a Brownian motion, $\Delta B_t = O(\sqrt{\Delta t})$, so $(\Delta B_t)^2 = O(\Delta t)$. The term $\frac{1}{2}f_{bb}(\Delta B_t)^2 = O(\Delta t)$ is the same order as the first-order terms $f_t\Delta t$ and $f_b\Delta B_t$, and therefore must be retained. The other two second-order terms remain $O((\Delta t)^{3/2})$ or higher and still vanish.
+
+---
+
+**Exercise 5.** The Hessian matrix of $f(t, b) = t^2 b + e^b$ at $(t_0, b_0) = (1, 0)$ is
+
+$$
+H = \begin{pmatrix} f_{tt} & f_{tb} \\ f_{bt} & f_{bb} \end{pmatrix}
+$$
+
+Compute $H$ at $(1, 0)$ and write the full quadratic Taylor expansion of $f$ around this point.
 
 ??? success "Solution to Exercise 5"
     For $f(t, b) = t^2 b + e^b$, compute derivatives:
@@ -511,6 +493,10 @@ Verify numerically that this sum closely approximates $f(B_T) - f(B_0)$, confirm
     f(t, b) \approx 1 + 2b + 2(t-1)b + \frac{1}{2}b^2
     $$
 
+---
+
+**Exercise 6.** For a Brownian motion with time step $\Delta t$, consider the three second-order products $(\Delta t)^2$, $\Delta t \cdot \Delta B_t$, and $(\Delta B_t)^2$. State the order of each in terms of powers of $\Delta t$, and identify which ones survive in the limit $\Delta t \to 0$ (i.e., which are $O(\Delta t)$ rather than $o(\Delta t)$).
+
 ??? success "Solution to Exercise 6"
     The three second-order products and their orders are:
 
@@ -519,6 +505,16 @@ Verify numerically that this sum closely approximates $f(B_T) - f(B_0)$, confirm
     - $(\Delta B_t)^2 = O(\Delta t)$: this is exactly $O(\Delta t)$, so it **survives**
 
     Only $(\Delta B_t)^2$ survives in the limit $\Delta t \to 0$. This is the term that gives rise to the Itô correction.
+
+---
+
+**Exercise 7.** Simulate a Brownian path with $N = 5000$ steps over $[0, 1]$. For the function $f(x) = x^3$, compute $f(B_T) - f(B_0)$ along the path. Then compute the sum
+
+$$
+\sum_{i=0}^{N-1}\left[f'(B_{t_i})\Delta B_i + \frac{1}{2}f''(B_{t_i})(\Delta B_i)^2\right]
+$$
+
+Verify numerically that this sum closely approximates $f(B_T) - f(B_0)$, confirming that the quadratic correction term is essential.
 
 ??? success "Solution to Exercise 7"
     For $f(x) = x^3$, we have $f'(x) = 3x^2$ and $f''(x) = 6x$. The sum

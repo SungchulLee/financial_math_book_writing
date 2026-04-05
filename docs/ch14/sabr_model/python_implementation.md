@@ -313,6 +313,37 @@ The Python implementation of the SABR model centers on three components: the Hag
 
 **Exercise 1.** The Hagan formula involves the ratio $z/x(z)$ where $x(z) = \ln((\sqrt{1 - 2\rho z + z^2} + z - \rho)/(1 - \rho))$. Compute $z/x(z)$ numerically for $\rho = -0.3$ and $z = 0.5$. Then compute it for $z = 10^{-8}$ and verify that the Taylor expansion $z/x(z) \approx 1$ is appropriate for small $|z|$.
 
+??? success "Solution to Exercise 1"
+    For $\rho = -0.3$ and $z = 0.5$, we compute step by step:
+
+    $$
+    \sqrt{1 - 2\rho z + z^2} = \sqrt{1 - 2(-0.3)(0.5) + 0.25} = \sqrt{1 + 0.3 + 0.25} = \sqrt{1.55} \approx 1.2450
+    $$
+
+    $$
+    x(z) = \ln\!\left(\frac{1.2450 + 0.5 - (-0.3)}{1 - (-0.3)}\right) = \ln\!\left(\frac{2.0450}{1.3}\right) = \ln(1.5731) \approx 0.4530
+    $$
+
+    $$
+    \frac{z}{x(z)} = \frac{0.5}{0.4530} \approx 1.1038
+    $$
+
+    This ratio exceeds 1, which means the implied volatility is boosted above the backbone level --- the smile effect.
+
+    For $z = 10^{-8}$, we can verify the Taylor expansion. The function $x(z)$ near $z = 0$ satisfies $x(0) = 0$ and $x'(0) = 1$ (by L'Hopital's rule or direct expansion). The Taylor expansion gives
+
+    $$
+    x(z) = z + \frac{\rho}{2}z^2 + O(z^3)
+    $$
+
+    so that
+
+    $$
+    \frac{z}{x(z)} = \frac{1}{1 + \rho z/2 + O(z^2)} = 1 - \frac{\rho}{2}z + O(z^2)
+    $$
+
+    For $z = 10^{-8}$, the correction $\rho z/2 \approx 1.5 \times 10^{-9}$ is well below machine epsilon ($\approx 10^{-16}$ for double precision), so $z/x(z) \approx 1$ to full floating-point accuracy. Direct computation of $x(z)$ for such small $z$ would involve $\ln(1 + \epsilon)$ where $\epsilon \approx 10^{-8}$, which suffers from catastrophic cancellation. The Taylor approximation $z/x(z) = 1$ is therefore both accurate and numerically necessary for $|z| < 10^{-7}$.
+
 ---
 
 **Exercise 2.** The ATM-first calibration determines $\alpha$ by solving $\sigma_B^{\text{Hagan}}(\alpha, \rho, \nu) = \sigma_B^{\text{ATM}}$ using Newton's method. Write the Newton iteration formula explicitly:
@@ -323,18 +354,174 @@ $$
 
 For $F = 0.03$, $\beta = 0.5$, $\sigma_B^{\text{ATM}} = 0.22$, $\rho = -0.25$, and $\nu = 0.35$, compute the initial guess $\alpha_0 = \sigma_B^{\text{ATM}} \cdot F^{1-\beta}$.
 
+??? success "Solution to Exercise 2"
+    The ATM Hagan formula (simplified for $K = F$) is
+
+    $$
+    \sigma_B^{\mathrm{ATM}} = \frac{\alpha}{F^{1-\beta}}\left[1 + \left(\frac{(1-\beta)^2\alpha^2}{24 F^{2(1-\beta)}} + \frac{\rho\beta\nu\alpha}{4 F^{1-\beta}} + \frac{(2-3\rho^2)\nu^2}{24}\right)T\right]
+    $$
+
+    Define $f(\alpha) = \sigma_B^{\mathrm{ATM}}(\alpha) - \sigma_B^{\mathrm{market}}$. Newton's iteration is
+
+    $$
+    \alpha_{k+1} = \alpha_k - \frac{f(\alpha_k)}{f'(\alpha_k)} = \alpha_k - \frac{\sigma_B^{\mathrm{Hagan}}(\alpha_k) - \sigma_B^{\mathrm{ATM}}}{\partial\sigma_B^{\mathrm{Hagan}}/\partial\alpha\big|_{\alpha_k}}
+    $$
+
+    The derivative is
+
+    $$
+    \frac{\partial\sigma_B^{\mathrm{ATM}}}{\partial\alpha} = \frac{1}{F^{1-\beta}}\left[1 + \left(\frac{3(1-\beta)^2\alpha^2}{24 F^{2(1-\beta)}} + \frac{\rho\beta\nu}{4 F^{1-\beta}} + \frac{(2-3\rho^2)\nu^2}{24}\right)T\right] + \text{higher-order terms}
+    $$
+
+    Note that $\partial/\partial\alpha$ of $\alpha^2/(24 F^{2(1-\beta)})$ gives $2\alpha/(24 F^{2(1-\beta)})$, so the $\alpha^2$ term in the bracket contributes with a factor of 3 instead of 1 when differentiating the product $\alpha \times [1 + \cdots \alpha^2 \cdots]$.
+
+    For the initial guess with $F = 0.03$, $\beta = 0.5$, and $\sigma_B^{\mathrm{ATM}} = 0.22$:
+
+    $$
+    \alpha_0 = \sigma_B^{\mathrm{ATM}} \cdot F^{1-\beta} = 0.22 \times (0.03)^{0.5} = 0.22 \times 0.1732 = 0.03811
+    $$
+
+    This initial guess corresponds to setting the bracket to 1 (ignoring the $O(T)$ correction). It is typically within 5--10% of the true $\alpha$, so Newton's method converges in 3--5 iterations.
+
 ---
 
 **Exercise 3.** In the Monte Carlo implementation, the volatility is simulated exactly: $\sigma_{n+1} = \sigma_n \exp(-\frac{1}{2}\nu^2\Delta t + \nu\sqrt{\Delta t}\,W_2)$. Show that this is the exact solution to $d\sigma_t = \nu\sigma_t\,dW_t^{(2)}$ over the interval $[t_n, t_{n+1}]$. Why does this eliminate the need for a positivity floor on $\sigma$?
+
+??? success "Solution to Exercise 3"
+    The SDE for the volatility is $d\sigma_t = \nu\sigma_t\,dW_t^{(2)}$, which is a geometric Brownian motion with zero drift. By Ito's lemma, applying $f(\sigma) = \ln\sigma$:
+
+    $$
+    d\ln\sigma_t = \frac{1}{\sigma_t}\,d\sigma_t - \frac{1}{2\sigma_t^2}(d\sigma_t)^2 = \nu\,dW_t^{(2)} - \frac{1}{2}\nu^2\,dt
+    $$
+
+    Integrating from $t_n$ to $t_{n+1} = t_n + \Delta t$:
+
+    $$
+    \ln\sigma_{t_{n+1}} - \ln\sigma_{t_n} = -\frac{1}{2}\nu^2\Delta t + \nu(W_{t_{n+1}}^{(2)} - W_{t_n}^{(2)})
+    $$
+
+    Since $W_{t_{n+1}}^{(2)} - W_{t_n}^{(2)} \sim \mathcal{N}(0, \Delta t) = \sqrt{\Delta t}\,Z$ where $Z \sim \mathcal{N}(0,1)$:
+
+    $$
+    \sigma_{t_{n+1}} = \sigma_{t_n}\exp\!\left(-\frac{1}{2}\nu^2\Delta t + \nu\sqrt{\Delta t}\,Z\right)
+    $$
+
+    This is exactly the update used in the implementation: `sigma *= np.exp(-0.5 * nu**2 * dt + nu * np.sqrt(dt) * W2)`.
+
+    This formula is the **exact** solution of the SDE over the interval $[t_n, t_{n+1}]$, not an Euler approximation. As a consequence:
+
+    - There is **no discretization error** in the volatility path.
+    - Since $\sigma_{t_{n+1}} = \sigma_{t_n} \exp(\cdot)$ and the exponential function is always positive, $\sigma_{t_{n+1}} > 0$ automatically whenever $\sigma_{t_n} > 0$. No positivity floor is needed.
+
+    By contrast, an Euler scheme $\sigma_{t_{n+1}} = \sigma_{t_n} + \nu\sigma_{t_n}\sqrt{\Delta t}\,Z$ could in principle produce negative values for large negative $Z$ (though the probability is exponentially small for reasonable $\Delta t$). The exact scheme eliminates this possibility entirely.
 
 ---
 
 **Exercise 4.** The implementation uses `np.maximum(F + dF, 0)` to enforce the absorbing boundary. Discuss the bias this introduces: does it overestimate or underestimate the absorption probability? How would you implement the more accurate chi-squared-based absorption test described in the Monte Carlo section?
 
+??? success "Solution to Exercise 4"
+    The `np.maximum(F + dF, 0)` absorbing boundary introduces a **downward bias** in the forward and therefore **overestimates** the absorption probability. Here is why:
+
+    The true SABR dynamics have an absorbing boundary at $F = 0$ (for $\beta < 1$). The exact absorption occurs when a continuous path first hits zero. In the Euler scheme, the forward is updated discretely:
+
+    $$
+    F_{n+1} = F_n + \sigma_n F_n^\beta \sqrt{\Delta t}\,W_1
+    $$
+
+    The `np.maximum(..., 0)` clamp sets $F_{n+1} = 0$ whenever the discrete step overshoots to a negative value. However, the continuous path might have:
+
+    1. **Crossed zero and returned positive** between $t_n$ and $t_{n+1}$: The Euler scheme absorbs the path, but the continuous path would survive. This overestimates absorption.
+    2. **Hit zero between $t_n$ and $t_{n+1}$ but the Euler step remains positive**: The scheme misses the absorption entirely.
+
+    The net effect for typical parameters (small $\Delta t$, moderate $\beta$) is that the simple clamp **overestimates** absorption, leading to option prices that are slightly too low (since absorbed paths contribute zero payoff).
+
+    A more accurate approach uses the **chi-squared bridge** technique. For the CEV process with $d\tilde{F} = \sigma \tilde{F}^\beta\,dW$, the transition density is related to the noncentral chi-squared distribution. Conditional on $F_n$ and $F_{n+1}$ (both positive), the probability that the continuous path hit zero in between can be computed exactly using the formula
+
+    $$
+    \mathbb{P}\!\left(\min_{t_n \leq t \leq t_{n+1}} F_t = 0 \;\middle|\; F_{t_n}, F_{t_{n+1}}\right)
+    $$
+
+    which has a known closed-form expression involving noncentral chi-squared CDFs (see Chen and Glasserman, 2008). Implementation steps:
+
+    1. Simulate $F_{n+1}$ from the noncentral chi-squared transition density (not Euler).
+    2. Draw a uniform $U \sim \text{Uniform}(0,1)$.
+    3. If $U <$ the bridge absorption probability, set $F_{n+1} = 0$ (absorbed).
+    4. Otherwise, keep $F_{n+1}$ as simulated.
+
+    This approach is exact for the conditional absorption probability and eliminates the discretization bias.
+
 ---
 
 **Exercise 5.** Design a validation test for the SABR implementation that checks the Black-Scholes limit ($\beta = 1$, $\nu = 0$). In this limit, the SABR model reduces to geometric Brownian motion with constant volatility $\alpha$. Write a test that compares the Hagan formula output, the Monte Carlo price, and the exact Black-Scholes price for an ATM call with $F = 0.05$, $T = 1$, and $\alpha = 0.20$. What tolerances should you use for each comparison?
 
+??? success "Solution to Exercise 5"
+    In the Black--Scholes limit ($\beta = 1$, $\nu = 0$), the SABR dynamics reduce to
+
+    $$
+    dF_t = \alpha F_t\,dW_t
+    $$
+
+    which is geometric Brownian motion with constant volatility $\alpha$. The Hagan formula should give $\sigma_B(K) = \alpha$ for all strikes, and option prices should match the exact Black formula.
+
+    **Test design**:
+
+    Setup: $F = 0.05$, $T = 1$, $\alpha = 0.20$, $\beta = 1$, $\rho = 0$, $\nu = 0$ (or $\nu = 10^{-6}$ to avoid division-by-zero issues), $K = F = 0.05$ (ATM call).
+
+    ```python
+    import numpy as np
+    from scipy.stats import norm
+
+    def black_call(F, K, T, sigma):
+        """Exact Black formula for a call on a forward."""
+        d1 = (np.log(F / K) + 0.5 * sigma**2 * T) / (sigma * np.sqrt(T))
+        d2 = d1 - sigma * np.sqrt(T)
+        return F * norm.cdf(d1) - K * norm.cdf(d2)
+
+    model = SABRModel(F=0.05, beta=1.0)
+    alpha, rho, nu = 0.20, 0.0, 1e-6
+    K, T = 0.05, 1.0
+
+    # Test 1: Hagan implied vol == alpha
+    vol_hagan = model._hagan_implied_vol(K, T, alpha, rho, nu)
+    assert abs(vol_hagan - alpha) < 1e-6, f"Hagan vol {vol_hagan} != alpha {alpha}"
+
+    # Test 2: Hagan price == Black price
+    price_hagan = model.call_price_hagan(K, T, 0.0, alpha, rho, nu)
+    price_black = black_call(0.05, 0.05, 1.0, 0.20)
+    assert abs(price_hagan - price_black) < 1e-8, "Hagan price != Black price"
+
+    # Test 3: MC price ≈ Black price
+    F_terminal, _ = model.simulate_paths(T, alpha, rho, nu,
+                                          num_paths=500000, num_steps=200)
+    payoffs = np.maximum(F_terminal - K, 0)
+    price_mc = np.mean(payoffs)
+    se = np.std(payoffs) / np.sqrt(len(payoffs))
+    assert abs(price_mc - price_black) < 3 * se, "MC price outside 3-sigma"
+    ```
+
+    **Tolerances**:
+
+    - **Hagan vs exact $\alpha$**: Tolerance $10^{-6}$ (the error arises only from the $\nu = 10^{-6}$ approximation and floating-point arithmetic).
+    - **Hagan price vs Black price**: Tolerance $10^{-8}$ (both are deterministic calculations using the same formula in this limit).
+    - **MC price vs Black price**: Use a statistical tolerance of 3 standard errors. For 500,000 paths with $F = 0.05$, $\sigma = 0.20$, $T = 1$, the ATM call price is approximately $F \cdot \sigma\sqrt{T}/(2\sqrt{2\pi}) \approx 0.004$, and the standard error is roughly $0.004/\sqrt{500000} \approx 5.7 \times 10^{-6}$, so the tolerance is about $1.7 \times 10^{-5}$.
+
 ---
 
 **Exercise 6.** The calibration function uses bounds $\rho \in (-0.999, 0.999)$ and $\nu \in (0.01, 2.0)$. Explain why each bound is necessary. What numerical problems arise if $\rho$ is allowed to reach exactly $\pm 1$? What happens to the Hagan formula if $\nu = 0$, and why is a small positive lower bound used instead?
+
+??? success "Solution to Exercise 6"
+    **Bounds on $\rho \in (-0.999, 0.999)$**:
+
+    The correlation parameter $\rho$ appears in the Hagan formula in several places that become singular as $|\rho| \to 1$:
+
+    1. The function $x(z) = \ln((\sqrt{1-2\rho z + z^2} + z - \rho)/(1-\rho))$ has the denominator $(1-\rho)$. When $\rho = 1$, this denominator is zero and the logarithm diverges for any $z > 0$. The ratio $z/x(z)$ requires a separate limiting formula.
+    2. The geodesic distance on the SABR manifold involves the factor $1/(1-\rho^2)$, which diverges as $|\rho| \to 1$. Geometrically, at $|\rho| = 1$ the two Brownian motions are perfectly (anti-)correlated, and the two-dimensional diffusion degenerates to a one-dimensional process on a curve within the $(F, \sigma)$ plane.
+    3. The Cholesky decomposition used in Monte Carlo ($W_2 = \rho W_1 + \sqrt{1-\rho^2}\,Z_2$) has $\sqrt{1-\rho^2} = 0$ at $|\rho| = 1$, so the second Brownian motion loses all independent randomness.
+
+    Using bounds $\pm 0.999$ keeps the optimizer away from these singularities while still allowing near-perfect correlation when the data demands it.
+
+    **Bounds on $\nu \in (0.01, 2.0)$**:
+
+    *Lower bound*: When $\nu = 0$, the SABR model reduces to the CEV model with constant $\sigma = \alpha$. The Hagan formula is valid in this limit, but the $z/x(z)$ factor involves the ratio $0/0$ (since $z = (\nu/\alpha)(FK)^{(1-\beta)/2}\ln(F/K)$ is proportional to $\nu$, and $x(z) \to 0$ as $z \to 0$). While the limit $z/x(z) \to 1$ is well-defined analytically, the numerical computation of $x(z) = \ln(\cdots)$ for $z \approx 0$ suffers from catastrophic cancellation. Using $\nu \geq 0.01$ avoids this numerical issue. If the true best-fit $\nu$ is smaller than 0.01, the model is effectively CEV and should be calibrated as such.
+
+    *Upper bound*: The Hagan formula is a short-time asymptotic expansion with error $O(\nu^2 T)$. For $\nu > 2$, the expansion parameter $\nu^2 T$ exceeds 4 even for $T = 1$, making the approximation unreliable. The upper bound prevents the optimizer from exploring parameter regions where the Hagan formula produces meaningless results. In practice, $\nu > 1$ is already unusual for most markets.

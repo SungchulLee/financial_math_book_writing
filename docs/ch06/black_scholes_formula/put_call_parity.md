@@ -478,46 +478,6 @@ Put-call parity is more fundamental than any specific pricing model—it follows
 
 **Exercise 1.** A stock trades at $S_0 = 75$. A European call with $K = 80$, $T = 0.25$, and $r = 5\%$ is priced at $C_0 = 2.80$. Using put-call parity, determine the price of the corresponding European put.
 
----
-
-**Exercise 2.** Verify put-call parity algebraically for the Black-Scholes formulas. Starting from $C - P = [S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)] - [Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)]$, use the identity $\mathcal{N}(x) + \mathcal{N}(-x) = 1$ to show that $C - P = S - Ke^{-rT}$.
-
----
-
-**Exercise 3.** The following prices are observed: $S_0 = 100$, $C_0 = 12.50$, $P_0 = 8.00$, $K = 100$, $T = 1$, $r = 3\%$. Check whether put-call parity holds. If it does not, describe the arbitrage strategy and compute the risk-free profit.
-
----
-
-**Exercise 4.** Derive put-call parity for a stock paying continuous dividends at rate $q$:
-
-$$
-C - P = Se^{-qT} - Ke^{-rT}
-$$
-
-Construct the two replicating portfolios and show their terminal values are identical.
-
----
-
-**Exercise 5.** A box spread consists of buying a bull call spread ($K_1$, $K_2$) and buying a bear put spread ($K_1$, $K_2$). Show that its payoff at maturity is always $K_2 - K_1$, regardless of $S_T$, by using put-call parity applied at both strikes. What should the box spread cost at time $0$?
-
----
-
-**Exercise 6.** Using put-call parity, derive the implied risk-free rate from the following market data: $S_0 = 50$, $C_0 = 6.20$, $P_0 = 4.10$, $K = 50$, $T = 0.5$. Solve for $r$ and compare with prevailing treasury rates.
-
----
-
-**Exercise 7.** Explain why put-call parity does not hold exactly for American options. Show that for American options on a non-dividend-paying stock, the following inequality holds:
-
-$$
-S - K \leq C_{\text{Am}} - P_{\text{Am}} \leq S - Ke^{-rT}
-$$
-
-Hint: use the fact that the American call equals its European counterpart, while the American put is worth at least as much as the European put.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **Given**: $S_0 = 75$, $K = 80$, $T = 0.25$, $r = 0.05$, $C_0 = 2.80$.
 
@@ -547,6 +507,9 @@ Hint: use the fact that the American call equals its European counterpart, while
 
     **Verification**: $C_0 - P_0 = 2.80 - 6.81 = -4.01$ and $S_0 - Ke^{-rT} = 75 - 79.01 = -4.01$ ✓
 
+---
+**Exercise 2.** Verify put-call parity algebraically for the Black-Scholes formulas. Starting from $C - P = [S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)] - [Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)]$, use the identity $\mathcal{N}(x) + \mathcal{N}(-x) = 1$ to show that $C - P = S - Ke^{-rT}$.
+
 ??? success "Solution to Exercise 2"
     Starting from:
 
@@ -573,6 +536,9 @@ Hint: use the fact that the American call equals its European counterpart, while
     $$
 
     Therefore $C - P = S - Ke^{-rT}$, confirming put-call parity holds exactly for the Black-Scholes formulas.
+
+---
+**Exercise 3.** The following prices are observed: $S_0 = 100$, $C_0 = 12.50$, $P_0 = 8.00$, $K = 100$, $T = 1$, $r = 3\%$. Check whether put-call parity holds. If it does not, describe the arbitrage strategy and compute the risk-free profit.
 
 ??? success "Solution to Exercise 3"
     **Given**: $S_0 = 100$, $C_0 = 12.50$, $P_0 = 8.00$, $K = 100$, $T = 1$, $r = 0.03$.
@@ -603,6 +569,15 @@ Hint: use the fact that the American call equals its European counterpart, while
 
     **Risk-free profit**: $\$1.54$ received at $t = 0$ with zero net obligation at $T$.
 
+---
+**Exercise 4.** Derive put-call parity for a stock paying continuous dividends at rate $q$:
+
+$$
+C - P = Se^{-qT} - Ke^{-rT}
+$$
+
+Construct the two replicating portfolios and show their terminal values are identical.
+
 ??? success "Solution to Exercise 4"
     **Portfolio A**: Long 1 call + long bond paying $K$ at $T$.
 
@@ -631,6 +606,9 @@ Hint: use the fact that the American call equals its European counterpart, while
     $$
     C - P = Se^{-qT} - Ke^{-rT}
     $$
+
+---
+**Exercise 5.** A box spread consists of buying a bull call spread ($K_1$, $K_2$) and buying a bear put spread ($K_1$, $K_2$). Show that its payoff at maturity is always $K_2 - K_1$, regardless of $S_T$, by using put-call parity applied at both strikes. What should the box spread cost at time $0$?
 
 ??? success "Solution to Exercise 5"
     A box spread consists of:
@@ -666,6 +644,9 @@ Hint: use the fact that the American call equals its European counterpart, while
     (K_2 - K_1)e^{-rT}
     $$
 
+---
+**Exercise 6.** Using put-call parity, derive the implied risk-free rate from the following market data: $S_0 = 50$, $C_0 = 6.20$, $P_0 = 4.10$, $K = 50$, $T = 0.5$. Solve for $r$ and compare with prevailing treasury rates.
+
 ??? success "Solution to Exercise 6"
     **Given**: $S_0 = 50$, $C_0 = 6.20$, $P_0 = 4.10$, $K = 50$, $T = 0.5$.
 
@@ -696,6 +677,15 @@ Hint: use the fact that the American call equals its European counterpart, while
     $$
 
     The implied risk-free rate is approximately $8.58\%$. If prevailing treasury rates are significantly lower (e.g., $4\text{-}5\%$), this discrepancy could indicate mispricing in the options market, dividend expectations not accounted for, or credit/liquidity effects.
+
+---
+**Exercise 7.** Explain why put-call parity does not hold exactly for American options. Show that for American options on a non-dividend-paying stock, the following inequality holds:
+
+$$
+S - K \leq C_{\text{Am}} - P_{\text{Am}} \leq S - Ke^{-rT}
+$$
+
+Hint: use the fact that the American call equals its European counterpart, while the American put is worth at least as much as the European put.
 
 ??? success "Solution to Exercise 7"
     For American options on a non-dividend-paying stock:

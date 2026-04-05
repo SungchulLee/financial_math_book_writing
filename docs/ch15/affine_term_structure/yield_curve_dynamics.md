@@ -212,22 +212,182 @@ In an affine term structure model, the continuously compounded yield is $y(t,T) 
 
 **Exercise 1.** For the Vasicek model with $B(\tau) = \frac{1}{\kappa}(e^{-\kappa\tau} - 1)$, compute the factor loading $b(\tau) = -B(\tau)/\tau$ and plot it as a function of $\tau$ for $\kappa = 0.5$. Show that $b(\tau) \to 1$ as $\tau \to 0$ and $b(\tau) \to 0$ as $\tau \to \infty$. Interpret these limits.
 
+??? success "Solution to Exercise 1"
+    The Vasicek factor loading is $b(\tau) = -B(\tau)/\tau = (1 - e^{-\kappa\tau})/(\kappa\tau)$.
+
+    With $\kappa = 0.5$:
+
+    | $\tau$ | $e^{-0.5\tau}$ | $1 - e^{-0.5\tau}$ | $b(\tau) = \frac{1 - e^{-0.5\tau}}{0.5\tau}$ |
+    |---|---|---|---|
+    | 0.01 | 0.99501 | 0.00499 | $0.00499/0.005 = 0.9980$ |
+    | 0.1 | 0.95123 | 0.04877 | $0.04877/0.05 = 0.9754$ |
+    | 1 | 0.60653 | 0.39347 | $0.39347/0.5 = 0.7869$ |
+    | 5 | 0.08209 | 0.91791 | $0.91791/2.5 = 0.3672$ |
+    | 10 | 0.00674 | 0.99326 | $0.99326/5.0 = 0.1987$ |
+    | 30 | $\approx 0$ | $\approx 1$ | $1/15 = 0.0667$ |
+
+    **Limit as $\tau \to 0$:** Using L'Hopital's rule,
+
+    $$
+    \lim_{\tau \to 0} \frac{1 - e^{-\kappa\tau}}{\kappa\tau} = \lim_{\tau \to 0} \frac{\kappa e^{-\kappa\tau}}{\kappa} = 1
+    $$
+
+    This means that the shortest-maturity yields have unit sensitivity to the short rate: a 1 basis point increase in $r_t$ raises the overnight yield by exactly 1 basis point.
+
+    **Limit as $\tau \to \infty$:** Since $e^{-\kappa\tau} \to 0$, $b(\tau) = (1 - e^{-\kappa\tau})/(\kappa\tau) \to 1/(\kappa\tau) \to 0$.
+
+    This means very long yields are insensitive to the current short rate because mean reversion pulls $r_t$ back to $\theta$. The current level of $r_t$ has negligible impact on the average rate over a very long horizon.
+
 ---
 
 **Exercise 2.** Derive the instantaneous forward rate $f(t, T) = -\frac{\partial}{\partial T}\log P(t, T) = -A'(\tau) - B'(\tau)^\top X_t$ for the Vasicek model. Verify that $f(t, t) = r_t$ (the short rate) by evaluating at $\tau = 0$.
+
+??? success "Solution to Exercise 2"
+    For the Vasicek model, $A(\tau) = (\theta - \sigma^2/(2\kappa^2))(B(\tau) + \tau) - \sigma^2 B(\tau)^2/(4\kappa)$ and $B(\tau) = -(1 - e^{-\kappa\tau})/\kappa$.
+
+    **Computing $A'(\tau)$:**
+
+    $$
+    A'(\tau) = \kappa\theta\,B(\tau) + \frac{1}{2}\sigma^2 B(\tau)^2
+    $$
+
+    (from the Riccati ODE with $K_0 = \kappa\theta$, $H_0 = \sigma^2$).
+
+    **Computing $B'(\tau)$:**
+
+    $$
+    B'(\tau) = -e^{-\kappa\tau}
+    $$
+
+    (differentiating $B(\tau) = -(1 - e^{-\kappa\tau})/\kappa$).
+
+    **Forward rate:**
+
+    $$
+    f(t, T) = -A'(\tau) - B'(\tau)\,r_t = -\kappa\theta\,B(\tau) - \frac{1}{2}\sigma^2 B(\tau)^2 + e^{-\kappa\tau}\,r_t
+    $$
+
+    **Verification at $\tau = 0$:** With $B(0) = 0$ and $e^{0} = 1$:
+
+    $$
+    f(t, t) = -\kappa\theta \cdot 0 - \frac{1}{2}\sigma^2 \cdot 0 + 1 \cdot r_t = r_t
+    $$
+
+    This confirms that the instantaneous forward rate at the current date equals the short rate. $\square$
 
 ---
 
 **Exercise 3.** Using the affine yield formula $y(t, \tau) = a(\tau) + b(\tau)^\top X_t$ with $a(\tau) = -A(\tau)/\tau$ and $b(\tau) = -B(\tau)/\tau$, apply Ito's lemma to derive $dy(t, \tau)$ for a one-factor model. Express the drift and volatility of the yield in terms of $b(\tau)$, the state dynamics, and the Riccati solution $B(\tau)$.
 
+??? success "Solution to Exercise 3"
+    For a one-factor model, $y(t, T) = a(\tau) + b(\tau) X_t$ with $\tau = T - t$ and $a(\tau) = -A(\tau)/\tau$, $b(\tau) = -B(\tau)/\tau$.
+
+    At a **fixed** maturity date $T$, define $g(t, X_t) = a(T-t) + b(T-t)X_t$. The partial derivatives are:
+
+    $$
+    \frac{\partial g}{\partial t} = -a'(\tau) - b'(\tau) X_t
+    $$
+
+    $$
+    \frac{\partial g}{\partial X} = b(\tau), \qquad \frac{\partial^2 g}{\partial X^2} = 0
+    $$
+
+    By Ito's lemma (noting that the second derivative in $X$ vanishes):
+
+    $$
+    dy = \left(-a'(\tau) - b'(\tau) X_t + b(\tau)\,\mu(X_t)\right)dt + b(\tau)\,\sigma(X_t)\,dW_t
+    $$
+
+    Substituting the affine drift $\mu(X_t) = K_0 + K_1 X_t$:
+
+    **Drift:**
+
+    $$
+    \mu_y = -a'(\tau) + b(\tau) K_0 + \bigl(b(\tau) K_1 - b'(\tau)\bigr) X_t
+    $$
+
+    **Volatility:**
+
+    $$
+    \sigma_y = b(\tau)\,\sigma(X_t)
+    $$
+
+    Now $b(\tau) = -B(\tau)/\tau$ and $b'(\tau) = (-B'(\tau)\tau + B(\tau))/\tau^2$. Using the Riccati equation $B'(\tau) = -\rho_1 + K_1 B(\tau) + \frac{1}{2}H_1 B(\tau)^2$ (one-factor), we can substitute to express the drift entirely in terms of $B(\tau)$ and the model parameters.
+
 ---
 
 **Exercise 4.** For a two-factor model with $X_t = (X_t^{(1)}, X_t^{(2)})^\top$ and factor loadings $b_1(\tau)$ and $b_2(\tau)$, explain the level-slope-curvature interpretation: if $b_1(\tau) \approx 1$ for all $\tau$ (flat loading) and $b_2(\tau)$ is monotonically decreasing from 1 to 0, which factor controls the level and which controls the slope of the yield curve?
+
+??? success "Solution to Exercise 4"
+    In a two-factor model, $y(t, T) = a(\tau) + b_1(\tau) X_t^{(1)} + b_2(\tau) X_t^{(2)}$.
+
+    **Factor 1** with $b_1(\tau) \approx 1$ for all $\tau$ (flat loading): A unit increase in $X_t^{(1)}$ shifts the entire yield curve up by approximately 1 basis point at every maturity. This is a **level** factor --- it produces parallel shifts of the yield curve. For $b_1(\tau)$ to be approximately constant, the factor $X_t^{(1)}$ must have very slow mean reversion ($\kappa_1 \approx 0$), so that the effect of a shock persists across all horizons.
+
+    **Factor 2** with $b_2(\tau)$ monotonically decreasing from $b_2(0^+) = 1$ to $b_2(\infty) = 0$: A unit increase in $X_t^{(2)}$ raises short-term yields by approximately 1 basis point but has a diminishing effect at longer maturities, and essentially no effect on very long yields. This is a **slope** factor --- it tilts the yield curve by moving short rates relative to long rates. The monotonic decay of $b_2(\tau)$ reflects mean reversion: shocks to $X_t^{(2)}$ are expected to revert, so they affect the near-term more than the distant future.
+
+    **Summary:**
+
+    - $X_t^{(1)}$ (flat loading) $\to$ **level** factor
+    - $X_t^{(2)}$ (decaying loading) $\to$ **slope** factor
+
+    To capture curvature (humped loading, peaking at intermediate maturities), a third factor is needed, which is why three-factor models are standard in practice.
 
 ---
 
 **Exercise 5.** Compute the convexity of a zero-coupon bond in the Vasicek model: $\frac{\partial^2}{\partial r^2}\log P(t,T) = B(\tau)^2$. How does convexity depend on maturity $\tau$? Why is convexity always non-negative in one-factor affine models?
 
+??? success "Solution to Exercise 5"
+    The Vasicek bond price is $P(t, T) = e^{A(\tau) + B(\tau) r_t}$ with $B(\tau) = -(1 - e^{-\kappa\tau})/\kappa$.
+
+    **Note on the exercise statement:** The quantity $\frac{\partial^2}{\partial r^2}\log P = 0$ since $\log P$ is linear in $r$. The exercise refers to the convexity of the **bond price** $P$ itself (not $\log P$). Differentiating $P = e^{A + Br}$:
+
+    $$
+    \frac{\partial P}{\partial r} = B(\tau)\,P, \qquad \frac{\partial^2 P}{\partial r^2} = B(\tau)^2\,P
+    $$
+
+    The **dollar convexity** $\frac{\partial^2 P}{\partial r^2} = B(\tau)^2 P > 0$ for all $\tau > 0$, confirming convexity of the bond price in $r$.
+
+    **Maturity dependence:** The convexity per unit of bond price is $B(\tau)^2 = (1 - e^{-\kappa\tau})^2/\kappa^2$, which increases monotonically from $0$ (at $\tau = 0$) toward $1/\kappa^2$ (as $\tau \to \infty$). Longer-maturity bonds have greater convexity.
+
+    **Why convexity is always non-negative:** In any one-factor affine model, $P(t, T) = e^{A(\tau) + B(\tau) r_t}$, so
+
+    $$
+    \frac{\partial^2 P}{\partial r_t^2} = B(\tau)^2 e^{A(\tau) + B(\tau) r_t} = B(\tau)^2 P(t, T) \geq 0
+    $$
+
+    This is non-negative because it is a product of a square and a positive exponential. The exponential-affine form guarantees that the bond price is a convex (or at worst linear, if $B = 0$) function of the short rate. Convexity vanishes only at $\tau = 0$ (where $B(0) = 0$).
+
 ---
 
 **Exercise 6.** The Nelson-Siegel yield curve model parametrizes yields as $y(\tau) = \beta_0 + \beta_1\frac{1 - e^{-\lambda\tau}}{\lambda\tau} + \beta_2(\frac{1 - e^{-\lambda\tau}}{\lambda\tau} - e^{-\lambda\tau})$. Show that the Vasicek factor loading $b(\tau) = \frac{1 - e^{-\kappa\tau}}{\kappa\tau}$ matches the Nelson-Siegel slope factor. Does any affine model generate the curvature factor as well?
+
+??? success "Solution to Exercise 6"
+    The Nelson-Siegel yield curve model is
+
+    $$
+    y(\tau) = \beta_0 + \beta_1 \frac{1 - e^{-\lambda\tau}}{\lambda\tau} + \beta_2\!\left(\frac{1 - e^{-\lambda\tau}}{\lambda\tau} - e^{-\lambda\tau}\right)
+    $$
+
+    The three loading functions are:
+
+    - **Level**: $L_0(\tau) = 1$ (constant)
+    - **Slope**: $L_1(\tau) = \frac{1 - e^{-\lambda\tau}}{\lambda\tau}$
+    - **Curvature**: $L_2(\tau) = \frac{1 - e^{-\lambda\tau}}{\lambda\tau} - e^{-\lambda\tau}$
+
+    **Matching the Vasicek factor loading.** The Vasicek yield factor loading is
+
+    $$
+    b(\tau) = \frac{1 - e^{-\kappa\tau}}{\kappa\tau}
+    $$
+
+    Setting $\lambda = \kappa$, this is **identical** to the Nelson-Siegel slope factor $L_1(\tau)$. Both decay from 1 at $\tau = 0$ to 0 as $\tau \to \infty$, with the decay rate governed by the mean-reversion speed.
+
+    **Can an affine model generate the curvature factor?** The Nelson-Siegel curvature loading is
+
+    $$
+    L_2(\tau) = \frac{1 - e^{-\lambda\tau}}{\lambda\tau} - e^{-\lambda\tau}
+    $$
+
+    This is a humped function: $L_2(0) = 0$, $L_2(\tau)$ increases to a maximum at intermediate $\tau$, then decays to 0 as $\tau \to \infty$.
+
+    No single-factor affine model generates this loading, because the Vasicek loading $b(\tau) = (1 - e^{-\kappa\tau})/(\kappa\tau)$ is monotonically decreasing (no hump). However, a **two-factor Gaussian model** with mean-reversion speeds $\kappa_1$ and $\kappa_2$ produces loadings $b_1(\tau)$ and $b_2(\tau)$, and a linear combination $c_1 b_1(\tau) + c_2 b_2(\tau)$ with appropriate signs can produce a humped shape. Specifically, Christensen, Diebold, and Rudebusch (2011) showed that the "Arbitrage-Free Nelson-Siegel" (AFNS) model --- a three-factor $A_0(3)$ Gaussian affine model with specific parameter restrictions --- generates exactly the Nelson-Siegel level, slope, and curvature loadings, with the curvature factor arising from the difference of two exponential-decay loadings with different speeds.

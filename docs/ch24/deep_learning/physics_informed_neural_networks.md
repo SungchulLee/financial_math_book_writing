@@ -290,21 +290,227 @@ $$
 
 Explain why constant coefficients (as opposed to the $S^2$ factor in the original coordinates) improve the conditioning of the PINN. If $\sigma = 0.2$, $r = 0.03$, and the network outputs $u_\theta = 10.0$ with derivatives $\partial u_\theta/\partial t = -0.5$, $\partial u_\theta/\partial x = 8.0$, $\partial^2 u_\theta/\partial x^2 = -3.0$ at a point, compute the residual $\mathcal{R}_\theta$.
 
+??? success "Solution to Exercise 1"
+    **PINN residual in log-price coordinates.**
+
+    In log-price coordinates $x = \log S$, the Black-Scholes PDE becomes:
+
+    $$
+    \mathcal{R}_\theta(t, x) = \frac{\partial u_\theta}{\partial t} + \frac{1}{2}\sigma^2 \frac{\partial^2 u_\theta}{\partial x^2} + \left(r - \frac{\sigma^2}{2}\right)\frac{\partial u_\theta}{\partial x} - ru_\theta
+    $$
+
+    **Why constant coefficients improve conditioning.**
+
+    In the original $(t, S)$ coordinates, the PDE is:
+
+    $$
+    \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0
+    $$
+
+    The coefficient $\frac{1}{2}\sigma^2 S^2$ varies by many orders of magnitude across the domain (e.g., from $0.02 \times 1^2 = 0.02$ at $S = 1$ to $0.02 \times 10{,}000^2 = 2 \times 10^6$ at $S = 10{,}000$). This means the PDE residual magnitude depends strongly on where it is evaluated, making the PINN loss highly non-uniform: collocation points at large $S$ dominate the loss while points at small $S$ contribute almost nothing.
+
+    In log-price coordinates, all coefficients are constants ($\sigma^2/2$, $r - \sigma^2/2$, and $r$). The PDE residual has comparable magnitude everywhere in the domain, so all collocation points contribute roughly equally to the loss. This improves:
+
+    - Gradient balancing (no single region dominates optimization)
+    - Numerical stability (no large/small coefficient ratios)
+    - Sampling efficiency (uniform collocation is effective)
+
+    **Computing the residual at the given point.**
+
+    With $\sigma = 0.2$, $r = 0.03$, and the network outputs $u_\theta = 10.0$, $\partial u_\theta/\partial t = -0.5$, $\partial u_\theta/\partial x = 8.0$, $\partial^2 u_\theta/\partial x^2 = -3.0$:
+
+    $$
+    \mathcal{R}_\theta = (-0.5) + \frac{1}{2}(0.04)(-3.0) + (0.03 - 0.02)(8.0) - (0.03)(10.0)
+    $$
+
+    Computing each term:
+
+    - $\partial u_\theta / \partial t = -0.5$
+    - $\frac{1}{2}\sigma^2 \cdot \partial^2 u_\theta/\partial x^2 = 0.02 \times (-3.0) = -0.06$
+    - $(r - \sigma^2/2) \cdot \partial u_\theta/\partial x = 0.01 \times 8.0 = 0.08$
+    - $-r \cdot u_\theta = -0.03 \times 10.0 = -0.30$
+
+    $$
+    \mathcal{R}_\theta = -0.5 - 0.06 + 0.08 - 0.30 = -0.78
+    $$
+
+    The residual $\mathcal{R}_\theta = -0.78$ is nonzero, indicating that the network does not yet satisfy the PDE at this point. The squared residual contribution to the loss from this point is $(-0.78)^2 = 0.6084$.
+
 ---
 
 **Exercise 2.** Design a hard-constrained PINN ansatz for a European put option with terminal condition $V(T, S) = (K - S)^+$ and boundary conditions $V(t, 0) = Ke^{-r(T-t)}$ and $V(t, \infty) = 0$. Your ansatz should have the form $u_\theta(t, S) = A(t, S) + B(t, S) \cdot \mathcal{N}_\theta(t, S)$ where $A$ satisfies the boundary conditions and $B$ vanishes on the boundary. Verify that your ansatz satisfies all three boundary/terminal conditions exactly.
+
+??? success "Solution to Exercise 2"
+    **Designing the hard-constrained ansatz for a European put.**
+
+    We need $u_\theta(t, S)$ satisfying:
+
+    1. Terminal condition: $u_\theta(T, S) = (K - S)^+$
+    2. Boundary at $S = 0$: $u_\theta(t, 0) = Ke^{-r(T-t)}$
+    3. Boundary at $S \to \infty$: $u_\theta(t, \infty) = 0$
+
+    **Construction.** Use the ansatz:
+
+    $$
+    u_\theta(t, S) = A(t, S) + B(t, S) \cdot \mathcal{N}_\theta(t, S)
+    $$
+
+    Choose $A(t, S)$ to satisfy all boundary/terminal conditions, and $B(t, S)$ to vanish on the boundary so that $\mathcal{N}_\theta$ does not affect boundary values.
+
+    Set:
+
+    $$
+    A(t, S) = e^{-r(T-t)}(K - S)^+
+    $$
+
+    This satisfies:
+
+    - $A(T, S) = (K - S)^+$ (terminal condition)
+    - $A(t, 0) = e^{-r(T-t)} K$ (boundary at $S = 0$)
+    - $A(t, S) = 0$ for $S \geq K$ (in particular, $A(t, \infty) = 0$)
+
+    Set:
+
+    $$
+    B(t, S) = (T - t) \cdot S \cdot e^{-S/S_{\max}}
+    $$
+
+    where $S_{\max}$ is a large constant defining the practical upper boundary. This vanishes on all boundaries:
+
+    - $B(T, S) = 0$ (factor $T - t = 0$)
+    - $B(t, 0) = 0$ (factor $S = 0$)
+    - $B(t, S) \to 0$ as $S \to \infty$ (exponential decay)
+
+    **Verification:**
+
+    1. *Terminal condition ($t = T$):* $u_\theta(T, S) = A(T, S) + 0 \cdot \mathcal{N}_\theta(T, S) = (K - S)^+$. Satisfied exactly.
+
+    2. *Boundary at $S = 0$:* $u_\theta(t, 0) = A(t, 0) + 0 \cdot \mathcal{N}_\theta(t, 0) = Ke^{-r(T-t)}$. Satisfied exactly.
+
+    3. *Boundary at $S \to \infty$:* $u_\theta(t, \infty) = A(t, \infty) + B(t, \infty) \cdot \mathcal{N}_\theta(t, \infty) = 0 + 0 = 0$, provided $\mathcal{N}_\theta$ is bounded (which neural networks with bounded weights are). Satisfied exactly.
+
+    With this ansatz, the PINN loss only contains the PDE residual term (boundary and terminal losses are zero by construction), and all network capacity is devoted to learning the interior solution.
 
 ---
 
 **Exercise 3.** The PINN loss has three components with weights $\lambda_{\text{PDE}}$, $\lambda_{\text{BC}}$, and $\lambda_{\text{data}}$. Explain the effect of setting $\lambda_{\text{PDE}} \gg \lambda_{\text{BC}}$ versus $\lambda_{\text{BC}} \gg \lambda_{\text{PDE}}$. In the extreme case $\lambda_{\text{PDE}} = 0$, what does the PINN reduce to? In the extreme $\lambda_{\text{data}} = 0$, what does it reduce to? Describe the adaptive weighting strategy and why it balances gradient magnitudes.
 
+??? success "Solution to Exercise 3"
+    **Effect of extreme weight settings.**
+
+    *Case $\lambda_{\text{PDE}} \gg \lambda_{\text{BC}}$:* The optimization strongly penalizes PDE violations but weakly penalizes boundary/terminal condition errors. The network will learn a function that approximately satisfies the PDE everywhere but may not match the terminal condition (payoff) or boundary values. This is problematic because the PDE alone has infinitely many solutions -- the boundary/terminal conditions select the unique financial solution.
+
+    *Case $\lambda_{\text{BC}} \gg \lambda_{\text{PDE}}$:* The network matches the payoff and boundary conditions accurately but may violate the PDE in the interior. The solution will be correct at the boundaries but may be inaccurate for intermediate times and prices. In the extreme, if the PDE is completely ignored, the network simply interpolates between boundary conditions without any dynamics.
+
+    *Case $\lambda_{\text{PDE}} = 0$:* The PINN reduces to a standard supervised learning problem: the network is trained only on boundary/terminal data and any observed prices. With no PDE constraint, the network is a pure interpolator with no physical law guiding the solution in the interior. This is equivalent to a standard neural network regression.
+
+    *Case $\lambda_{\text{data}} = 0$:* The PINN becomes a pure PDE solver -- no market data is used, and the solution comes entirely from the PDE and boundary conditions. This is the "unsupervised" or "physics-only" mode. The network discovers the PDE solution from the differential equation and boundary conditions alone, similar to how a finite-difference method works but without a mesh.
+
+    **Adaptive weighting strategy.**
+
+    The problem with fixed weights is that different loss components may have vastly different gradient magnitudes. If $\|\nabla_\theta \mathcal{L}_{\text{PDE}}\| \gg \|\nabla_\theta \mathcal{L}_{\text{BC}}\|$, the optimizer primarily reduces the PDE loss while the boundary loss stagnates (or vice versa).
+
+    The adaptive strategy adjusts:
+
+    $$
+    \lambda_i^{(k+1)} = \frac{\max_i \|\nabla_\theta \mathcal{L}_i\|_2}{\|\nabla_\theta \mathcal{L}_i\|_2} \cdot \lambda_i^{(k)}
+    $$
+
+    This increases the weight of the component with the smallest gradient and decreases the weight of the component with the largest gradient. After the update, all components have comparable gradient magnitudes, ensuring that each gradient step makes progress on all loss terms simultaneously.
+
+    The balancing ensures that no single loss component dominates the optimization, leading to more uniform convergence across the PDE residual, boundary conditions, and data fit.
+
 ---
 
 **Exercise 4.** A PINN is used to solve the Heston PDE with 3 inputs $(t, S, v)$. The PDE residual involves second-order derivatives $\partial^2 V/\partial S^2$, $\partial^2 V/\partial v^2$, and the mixed derivative $\partial^2 V/\partial S \partial v$. Explain how automatic differentiation computes these quantities through the neural network. Compare the computational cost to finite differences on a $(t, S, v)$ grid with $M$ points per dimension, noting that the PINN avoids the $O(M^3)$ grid storage.
 
+??? success "Solution to Exercise 4"
+    **Automatic differentiation for the Heston PDE.**
+
+    The neural network $u_\theta(t, S, v)$ is a composition of affine transformations and activation functions. Automatic differentiation (autodiff) computes derivatives by applying the chain rule through the computational graph.
+
+    For first derivatives:
+
+    $$
+    \frac{\partial u_\theta}{\partial S} = \frac{\partial u_\theta}{\partial h^{(L)}} \cdot \frac{\partial h^{(L)}}{\partial h^{(L-1)}} \cdots \frac{\partial h^{(1)}}{\partial S}
+    $$
+
+    This is computed in one backward pass through the network (standard backpropagation). The result is exact up to floating-point precision -- no finite-difference approximation is needed.
+
+    For second derivatives, we differentiate the first derivative:
+
+    $$
+    \frac{\partial^2 u_\theta}{\partial S^2} = \frac{\partial}{\partial S}\left(\frac{\partial u_\theta}{\partial S}\right)
+    $$
+
+    This requires a second backward pass through the graph that computed $\partial u_\theta / \partial S$. Modern autodiff frameworks (PyTorch, JAX, TensorFlow) support this natively via `torch.autograd.grad` with `create_graph=True`.
+
+    The mixed derivative $\partial^2 u_\theta / \partial S \partial v$ is computed similarly: first compute $\partial u_\theta / \partial S$, then differentiate with respect to $v$.
+
+    **Computational cost.** For a network with $P$ parameters and $L$ layers, each derivative computation costs $O(P)$ (one backward pass). The Heston PDE residual requires:
+
+    - $\partial u/\partial t$: $O(P)$
+    - $\partial u/\partial S$: $O(P)$
+    - $\partial u/\partial v$: $O(P)$
+    - $\partial^2 u/\partial S^2$: $O(P)$ (second backward pass)
+    - $\partial^2 u/\partial v^2$: $O(P)$
+    - $\partial^2 u/\partial S \partial v$: $O(P)$
+
+    Total per collocation point: $O(6P)$. For $N_r$ collocation points: $O(6P \cdot N_r)$.
+
+    **Comparison to finite differences on a $(t, S, v)$ grid.**
+
+    With $M$ points per dimension, the grid has $M^3$ points. Storing the solution requires $O(M^3)$ memory. At each time step, solving the implicit system requires $O(M^3)$ operations (with sparse solvers).
+
+    For $M = 100$: $M^3 = 10^6$ grid points. For $M = 1{,}000$: $M^3 = 10^9$ points. This is feasible for 3D but becomes prohibitive for higher dimensions.
+
+    The PINN avoids grid storage entirely: memory is $O(P + N_r)$ where $P$ is the network parameter count and $N_r$ is the number of collocation points. Both are independent of the dimensionality scaling $M^d$. For the Heston model ($d = 3$ including time), the advantage is modest, but for higher-dimensional problems (multi-factor stochastic volatility, multi-asset PDEs), the PINN's polynomial scaling is decisive.
+
 ---
 
 **Exercise 5.** The spectral bias of neural networks means that low-frequency components of the PDE solution are learned first, while high-frequency components (e.g., the payoff kink at $S = K$) converge slowly. For a call option with $K = 100$, the payoff $(S - K)^+$ has a discontinuity in the first derivative at $S = 100$. Discuss: (a) why smooth activations ($\tanh$) are preferred over ReLU for PINNs, (b) how Fourier feature layers can accelerate learning of sharp features, and (c) how residual-based adaptive refinement concentrates collocation points near $S = K$.
+
+??? success "Solution to Exercise 5"
+    **(a) Why smooth activations are preferred over ReLU for PINNs.**
+
+    PINNs require computing second (and sometimes higher) derivatives of the network output. The PDE residual involves $\partial^2 u_\theta / \partial x^2$, which requires the activation function to be twice differentiable.
+
+    - **ReLU:** $\sigma(z) = \max(0, z)$ has $\sigma'(z) = \mathbf{1}_{z > 0}$ (a step function) and $\sigma''(z) = 0$ everywhere except at $z = 0$ where it is undefined. A ReLU network is piecewise linear, so its second derivative is zero almost everywhere. This means the PDE residual $\mathcal{R}_\theta$ cannot capture the diffusion term $\frac{1}{2}\sigma^2 \partial^2 u/\partial x^2$, which is identically zero for a piecewise linear function. The PINN would fail to enforce the PDE.
+
+    - **$\tanh$:** Infinitely differentiable with $\tanh''(z) = -2\tanh(z)(1 - \tanh^2(z))$, which is smooth and nonzero. All derivatives are well-defined and informative.
+
+    - **Swish:** $\sigma(z) = z/(1 + e^{-z})$ is also smooth with nonzero second derivative.
+
+    Smooth activations produce smooth network outputs, whose second derivatives provide meaningful PDE residuals that guide training.
+
+    **(b) How Fourier feature layers accelerate learning of sharp features.**
+
+    The spectral bias means that the network first learns low-frequency modes of the solution and slowly converges to high-frequency features. A Fourier feature layer maps the input $x$ to:
+
+    $$
+    \gamma(x) = [\sin(2\pi b_1 x), \cos(2\pi b_1 x), \ldots, \sin(2\pi b_k x), \cos(2\pi b_k x)]
+    $$
+
+    where $b_1, \ldots, b_k$ are frequency parameters (often sampled from a Gaussian distribution). This mapping:
+
+    - Projects the input into a higher-dimensional space where high-frequency patterns become linearly separable
+    - Allows the first hidden layer to immediately represent oscillatory functions, bypassing the spectral bias
+    - The standard deviation of the frequency distribution $b_j \sim \mathcal{N}(0, \sigma_b^2)$ controls the frequency range: larger $\sigma_b$ enables higher frequencies
+
+    For the call option payoff kink at $S = K$ (or $x = \log K$ in log-coordinates), the Fourier features allow the network to represent the sharp transition rapidly, rather than slowly building it through many training epochs.
+
+    **(c) Residual-based adaptive refinement near $S = K$.**
+
+    The payoff kink causes the PDE solution to have high curvature near $S = K$, especially for short maturities. The PDE residual $|\mathcal{R}_\theta(t, S)|$ will be largest in this region because the network struggles to satisfy the PDE where the solution changes rapidly.
+
+    The adaptive refinement algorithm:
+
+    1. Initially, uniform collocation points are used. After some training, the residual is large near $S = K$ and small elsewhere.
+    2. Evaluate $|\mathcal{R}_\theta|$ on a fine evaluation grid.
+    3. Sample new collocation points with probability proportional to $|\mathcal{R}_\theta|$. This places many more points near $S = K$ where the error is highest.
+    4. Retrain with the enriched point set. The increased density near the kink forces the network to reduce the residual there.
+
+    This is analogous to adaptive mesh refinement in finite elements, but without the complexity of mesh management. The result is that computational effort concentrates where it is most needed, dramatically improving convergence for non-smooth features.
 
 ---
 
@@ -316,6 +522,88 @@ $$
 
 is zero in both the continuation region (PDE holds, $u \ge h$) and the exercise region ($u = h$). Why does minimizing $\sum |\mathcal{R}_\theta|^2$ simultaneously determine the price and the exercise boundary? Compare this to the finite-difference penalty method.
 
+??? success "Solution to Exercise 6"
+    **How the penalty method handles the American option free boundary.**
+
+    The American option value $V(t, S)$ satisfies the linear complementarity problem:
+
+    $$
+    \min\!\left(-\frac{\partial V}{\partial t} - \mathcal{L}_{\text{BS}}V, \; V - h(S)\right) = 0
+    $$
+
+    This means at every $(t, S)$, exactly one of two conditions holds:
+
+    - *Continuation region:* The PDE holds ($\frac{\partial V}{\partial t} + \mathcal{L}_{\text{BS}}V = 0$) and $V > h(S)$.
+    - *Exercise region:* The option is at intrinsic value ($V = h(S)$) and the PDE inequality holds ($\frac{\partial V}{\partial t} + \mathcal{L}_{\text{BS}}V \leq 0$).
+
+    The PINN residual $\mathcal{R}_\theta = \max(\frac{\partial u_\theta}{\partial t} + \mathcal{L}_{\text{BS}}u_\theta, \; h(S) - u_\theta)$ is designed so that $\mathcal{R}_\theta = 0$ when and only when the linear complementarity conditions are satisfied:
+
+    - If $u_\theta > h(S)$ (continuation), then $h(S) - u_\theta < 0$, so $\mathcal{R}_\theta = \max(\text{PDE residual}, \text{negative number}) = \text{PDE residual}$ if $\text{PDE residual} \geq 0$. Setting this to zero enforces the PDE.
+    - If $u_\theta = h(S)$ (exercise), then $h(S) - u_\theta = 0$ and the PDE inequality ensures $\frac{\partial u}{\partial t} + \mathcal{L}_{\text{BS}}u \leq 0$, so $\mathcal{R}_\theta = \max(\text{non-positive}, 0) = 0$.
+
+    **Why minimizing $\sum|\mathcal{R}_\theta|^2$ determines both price and boundary.**
+
+    The loss $\sum_{j} |\mathcal{R}_\theta(t_j, S_j)|^2$ forces $\mathcal{R}_\theta \approx 0$ at all collocation points. This simultaneously:
+
+    - Enforces the PDE in the continuation region (collocation points where $u_\theta > h$)
+    - Enforces the early exercise constraint in the exercise region (collocation points where $u_\theta \approx h$)
+    - Determines the exercise boundary: it is the curve $(t, S^*(t))$ where the network transitions from PDE-holding to exercise-constraint-holding behavior
+
+    The exercise boundary emerges implicitly from the optimization. No explicit tracking or parameterization of $S^*(t)$ is needed -- it is defined by where the network's behavior switches from one regime to the other.
+
+    **Comparison to finite-difference penalty method.**
+
+    The finite-difference penalty method also reformulates the complementarity as a penalized PDE:
+
+    $$
+    \frac{\partial V}{\partial t} + \mathcal{L}_{\text{BS}}V + \frac{1}{\epsilon}\max(h(S) - V, 0) = 0
+    $$
+
+    where $1/\epsilon$ is a large penalty parameter. As $\epsilon \to 0$, the solution converges to the American option price. This requires:
+
+    - Choosing $\epsilon$ (too large: inaccurate; too small: stiff system, slow convergence)
+    - A spatial grid for $S$ (curse of dimensionality for multi-asset)
+    - Iterative solution of the nonlinear system at each time step
+
+    The PINN approach avoids grid construction and directly enforces the $\max$ condition through the loss, without needing to tune a penalty parameter. However, the $\max$ operator in the PINN residual is non-smooth, which can make optimization harder. In practice, a smooth approximation like $\max(a, b) \approx \frac{1}{2}(a + b + \sqrt{(a-b)^2 + \epsilon^2})$ is often used.
+
 ---
 
 **Exercise 7.** A PINN is trained on the Black-Scholes PDE with 5,000 interior collocation points, 1,000 terminal condition points, and 200 observed market prices of European options at various strikes and maturities. After training, the PDE residual loss is $10^{-5}$ and the data loss is $10^{-3}$. Discuss whether the PINN is correctly calibrated. How could the PINN be used to extrapolate option prices to strikes and maturities not observed in the market? What ensures that the extrapolated prices are arbitrage-free?
+
+??? success "Solution to Exercise 7"
+    **Assessing calibration quality.**
+
+    The PDE residual loss of $10^{-5}$ is small, indicating that the network output nearly satisfies the Black-Scholes PDE throughout the domain. This is good -- the solution is physically consistent.
+
+    The data loss of $10^{-3}$ is two orders of magnitude larger, meaning the network does not perfectly match observed market prices. This needs interpretation:
+
+    - If the data loss corresponds to price errors of $\sqrt{10^{-3}} \approx 0.032$ (in appropriate units), this may or may not be acceptable depending on the price scale. For options priced around \$10, this is a 0.3% error, which is reasonable. For options priced around \$0.10, this is a 32% error, which is unacceptable.
+
+    - The discrepancy between PDE and data losses suggests the model (Black-Scholes with constant $\sigma$) may not perfectly fit market prices. Real markets exhibit a volatility smile, which a constant-$\sigma$ Black-Scholes PINN cannot capture. The PINN correctly solves the PDE but the PDE itself (with constant $\sigma$) is inconsistent with market prices.
+
+    - To improve calibration, one could: (1) use a more flexible PDE (e.g., local volatility or Heston), (2) increase $\lambda_{\text{data}}$ to force better data fit at the expense of PDE satisfaction, or (3) make $\sigma$ a learnable parameter or function.
+
+    **Extrapolation to unobserved strikes and maturities.**
+
+    Once trained, the PINN $u_\theta(t, S)$ can be evaluated at any $(t, S)$, including strikes and maturities not present in the training data. This is extrapolation in the $(K, T)$ space.
+
+    The PINN extrapolates by:
+
+    1. Satisfying the PDE everywhere (including in unobserved regions), which constrains the solution through the dynamics
+    2. Matching the terminal condition (payoff), which anchors the solution at maturity
+    3. Matching observed prices where available, which calibrates the model
+
+    In regions without data, the PDE residual loss alone determines the network output. The solution is the unique function satisfying both the PDE and the boundary conditions, which is well-posed for parabolic PDEs.
+
+    **What ensures arbitrage-free extrapolation.**
+
+    The extrapolated prices are arbitrage-free because:
+
+    1. *PDE consistency:* The Black-Scholes PDE is derived from no-arbitrage arguments. Any function satisfying the PDE (with correct boundary conditions) is the price of a self-financing replicating portfolio, which is arbitrage-free by construction.
+
+    2. *Terminal condition:* The payoff function $(S - K)^+$ is convex in $S$ (for calls), and the PDE preserves convexity backward in time. So $V(t, \cdot)$ is convex in $S$ for all $t < T$, ensuring positive butterfly spreads.
+
+    3. *Time monotonicity:* The PDE ensures that total variance increases with maturity (for the constant-$\sigma$ case, $\sigma^2(T - t)$ is monotonically decreasing backward in time), preventing calendar spread arbitrage.
+
+    However, these guarantees rely on the PINN solving the PDE accurately (small PDE residual). If the PDE residual is not sufficiently small, the network may produce slight arbitrage violations. Hard enforcement of boundary conditions (as in Exercise 2) strengthens these guarantees. Additionally, if the model is misspecified (constant $\sigma$ when the market exhibits a smile), the extrapolated prices may be internally consistent but economically incorrect -- they satisfy Black-Scholes arbitrage constraints but not the market's actual dynamics.

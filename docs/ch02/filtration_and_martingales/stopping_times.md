@@ -283,38 +283,6 @@ Determine which of the following are stopping times. Justify your answers.
 
 (e) $\tau = \inf\{t \ge 1 : W_t = W_{t-1}\}$
 
-### Exercise 2: Operations on Stopping Times
-
-Let $\sigma$ and $\tau$ be stopping times.
-
-(a) Prove that $\sigma \wedge \tau$ is a stopping time.
-
-(b) Prove that $\sigma + \tau$ is a stopping time (assuming both are finite a.s.).
-
-(c) Give a counterexample showing that $\sigma - \tau$ need not be a stopping time.
-
-### Exercise 3: The σ-Algebra F_τ
-
-Let $\tau = \inf\{t : W_t = 1\}$.
-
-(a) Show that $W_\tau$ is $\mathcal{F}_\tau$-measurable.
-
-(b) Is $W_{\tau + 1}$ $\mathcal{F}_\tau$-measurable?
-
-(c) Describe $\mathcal{F}_\tau$ in words.
-
-### Exercise 4: Strong Markov Property
-
-(a) State the strong Markov property for Brownian motion.
-
-(b) Let $\tau_a = \inf\{t : W_t = a\}$. Use the strong Markov property to show that $\tau_a + \tau_b \circ \theta_{\tau_a}$ has the same distribution as $\tau_{a+b}$, where $\theta$ is the shift operator.
-
-(c) Derive the reflection principle: $\mathbb{P}(\sup_{s \le t} W_s \ge a) = 2\mathbb{P}(W_t \ge a)$ for $a > 0$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a)** $\tau = \inf\{t \ge 0 : W_t = 1\}$ is a **stopping time**. This is the first hitting time of the closed set $\{1\}$ by the continuous adapted process $W_t$. By the general result for first hitting times of closed sets by continuous processes, $\tau$ is a stopping time.
 
@@ -325,6 +293,18 @@ Let $\tau = \inf\{t : W_t = 1\}$.
     **(d)** $\tau = \inf\{t \ge 0 : \int_0^t W_s\,ds \ge 1\}$ is a **stopping time**. The process $Y_t = \int_0^t W_s\,ds$ is adapted and continuous (as the integral of a continuous adapted process). Therefore $\tau$ is the first hitting time of the closed set $[1, \infty)$ by the continuous adapted process $Y_t$, hence a stopping time.
 
     **(e)** $\tau = \inf\{t \ge 1 : W_t = W_{t-1}\}$ is a **stopping time**. Define $Y_t = W_t - W_{t-1}$ for $t \ge 1$. Then $Y_t$ is adapted to $(\mathcal{F}_t)$ (since both $W_t$ and $W_{t-1}$ are $\mathcal{F}_t$-measurable for $t \ge 1$) and has continuous paths. The time $\tau = \inf\{t \ge 1 : Y_t = 0\}$ is the first hitting time of 0 by the continuous adapted process $Y_t$ starting at time 1, hence a stopping time.
+
+---
+
+### Exercise 2: Operations on Stopping Times
+
+Let $\sigma$ and $\tau$ be stopping times.
+
+(a) Prove that $\sigma \wedge \tau$ is a stopping time.
+
+(b) Prove that $\sigma + \tau$ is a stopping time (assuming both are finite a.s.).
+
+(c) Give a counterexample showing that $\sigma - \tau$ need not be a stopping time.
 
 ??? success "Solution to Exercise 2"
     **(a)** For any $t \ge 0$:
@@ -345,6 +325,18 @@ Let $\tau = \inf\{t : W_t = 1\}$.
 
     **(c)** Let $\sigma = \tau = \inf\{t : W_t = 1\}$. Then $\sigma - \tau = 0$ is trivially a stopping time. For a non-trivial example: let $\sigma = 2$ (deterministic) and $\tau = \inf\{t : W_t = 1\}$. Then $\sigma - \tau = 2 - \tau$. The event $\{2 - \tau \le t\} = \{\tau \ge 2 - t\}$ for $t \le 2$, which is $\{\tau < 2 - t\}^c$. For small $t$, $\{\tau \ge 2 - t\}$ depends on whether Brownian motion has hit 1 by time $2 - t$, which requires looking at the path up to time $2 - t > t$ (for $t < 1$). This is not necessarily in $\mathcal{F}_t$. Hence $\sigma - \tau$ need not be a stopping time.
 
+---
+
+### Exercise 3: The σ-Algebra F_τ
+
+Let $\tau = \inf\{t : W_t = 1\}$.
+
+(a) Show that $W_\tau$ is $\mathcal{F}_\tau$-measurable.
+
+(b) Is $W_{\tau + 1}$ $\mathcal{F}_\tau$-measurable?
+
+(c) Describe $\mathcal{F}_\tau$ in words.
+
 ??? success "Solution to Exercise 3"
     **(a)** Let $\tau = \inf\{t : W_t = 1\}$. The random variable $W_\tau = 1$ (by continuity of Brownian paths, the process equals 1 at the hitting time). A constant is measurable with respect to any $\sigma$-algebra, so $W_\tau$ is $\mathcal{F}_\tau$-measurable.
 
@@ -353,6 +345,16 @@ Let $\tau = \inf\{t : W_t = 1\}$.
     **(b)** $W_{\tau + 1}$ is **not** $\mathcal{F}_\tau$-measurable. By the strong Markov property, $\widetilde{W}_s = W_{\tau + s} - W_\tau$ is a Brownian motion independent of $\mathcal{F}_\tau$. Therefore $W_{\tau + 1} = W_\tau + \widetilde{W}_1 = 1 + \widetilde{W}_1$, and $\widetilde{W}_1 \sim N(0, 1)$ is independent of $\mathcal{F}_\tau$. Since $W_{\tau + 1}$ depends on the independent increment $\widetilde{W}_1$, it is not $\mathcal{F}_\tau$-measurable.
 
     **(c)** $\mathcal{F}_\tau$ consists of all events whose occurrence can be determined by knowing the path of Brownian motion up to and including the first time it hits 1. Formally, $\mathcal{F}_\tau = \sigma(W_{t \wedge \tau} : t \ge 0)$ — it contains all information about the Brownian path up to the hitting time, but no information about the path after hitting 1. It encodes the shape of the path on $[0, \tau]$, the value of $\tau$ itself, and all events determined by these.
+
+---
+
+### Exercise 4: Strong Markov Property
+
+(a) State the strong Markov property for Brownian motion.
+
+(b) Let $\tau_a = \inf\{t : W_t = a\}$. Use the strong Markov property to show that $\tau_a + \tau_b \circ \theta_{\tau_a}$ has the same distribution as $\tau_{a+b}$, where $\theta$ is the shift operator.
+
+(c) Derive the reflection principle: $\mathbb{P}(\sup_{s \le t} W_s \ge a) = 2\mathbb{P}(W_t \ge a)$ for $a > 0$.
 
 ??? success "Solution to Exercise 4"
     **(a)** The **strong Markov property for Brownian motion**: Let $W$ be a standard Brownian motion and $\tau$ a stopping time with $\tau < \infty$ a.s. Then the process $\widetilde{W}_t := W_{\tau + t} - W_\tau$, $t \ge 0$, is a standard Brownian motion independent of $\mathcal{F}_\tau$.

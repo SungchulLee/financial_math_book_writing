@@ -264,30 +264,6 @@ $$
 
 **Exercise 1.** In the Black-Scholes model, the market is complete because there is one source of randomness and one traded asset (plus the bond). In the Heston model, there are two sources of randomness but still only one traded risky asset. (a) Explain why this leads to incompleteness. (b) If variance swaps were liquidly traded, would the Heston market become complete? Justify your answer.
 
----
-
-**Exercise 2.** The superhedging price $\overline{\pi}(H) = \inf\{x : \exists \theta \text{ s.t. } x + \int_0^T \theta_t\,dS_t \geq H \text{ a.s.}\}$ is the cost of the cheapest portfolio that dominates the payoff. (a) Explain why the superhedging price is always at least as large as any arbitrage-free price. (b) Why is the superhedging price often impractically large for insurance products? (c) How does the subhedging price provide a lower bound?
-
----
-
-**Exercise 3.** The utility indifference price $\pi^U(H)$ satisfies $\sup_\theta \mathbb{E}[U(X_T^{x-\pi^U}+H)] = \sup_\theta \mathbb{E}[U(X_T^x)]$. For exponential utility $U(x) = -e^{-\gamma x}$: (a) Show that the indifference price is independent of the investor's initial wealth $x$. (b) Explain why the indifference price lies in the no-arbitrage interval $[\underline{\pi}, \overline{\pi}]$. (c) What happens to $\pi^U$ as $\gamma \to 0$ (risk-neutral investor) and as $\gamma \to \infty$ (infinitely risk-averse)?
-
----
-
-**Exercise 4.** For the Heston model, the market price of volatility risk $\lambda(t, v_t)$ is not determined by no-arbitrage. (a) Describe how calibration to market option prices implicitly selects a specific $\lambda$. (b) Explain why two different calibrated Heston models (with different parameters but identical vanilla fits) can give different prices for exotic options. (c) How does this relate to the concept of "model risk"?
-
----
-
-**Exercise 5.** List the four pricing measure selection criteria discussed: minimal martingale, variance-optimal, utility indifference, and entropy minimization. For each, (a) state the defining principle, (b) give one advantage, and (c) describe a situation where that criterion would be preferred.
-
----
-
-**Exercise 6.** The FTAP (Fundamental Theorem of Asset Pricing) states that the market is complete if and only if there exists exactly one equivalent martingale measure. Using this theorem, prove that adding a liquidly traded variance swap to the Heston model makes the market complete. How many equivalent martingale measures exist before and after adding this instrument?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a)** In the Heston model, the dynamics under the risk-neutral measure are
 
@@ -301,6 +277,11 @@ $$
     with $\text{Corr}(dW^{(1)}, dW^{(2)}) = \rho$. There are two independent sources of randomness ($W^{(1)}$ and $W^{(2)}$) but only one traded risky asset $S$ (plus the risk-free bond). To replicate an arbitrary contingent claim, we need as many tradeable assets as independent risk factors. Since we have 2 risk factors but only 1 risky asset, we cannot span the full space of contingent claims. Specifically, the volatility risk driven by $W^{(2)}$ cannot be hedged using $S$ alone, making the market incomplete.
 
     **(b)** Yes, adding a liquidly traded variance swap would make the Heston market complete. A variance swap pays the realized variance $\int_0^T v_t\,dt$ and is directly sensitive to the variance process $v_t$. With $S$ and the variance swap, we now have two traded instruments whose prices are driven by the two independent Brownian motions $W^{(1)}$ and $W^{(2)}$. The stock $S$ is primarily exposed to $W^{(1)}$ (and partially to $W^{(2)}$ through correlation), while the variance swap is exposed to $W^{(2)}$. Together, they span the full risk space: any contingent claim can be replicated by dynamically trading $S$, the variance swap, and the bond. With two independent risk factors and two independent traded instruments, the market becomes complete, and the equivalent martingale measure becomes unique.
+
+---
+
+
+**Exercise 2.** The superhedging price $\overline{\pi}(H) = \inf\{x : \exists \theta \text{ s.t. } x + \int_0^T \theta_t\,dS_t \geq H \text{ a.s.}\}$ is the cost of the cheapest portfolio that dominates the payoff. (a) Explain why the superhedging price is always at least as large as any arbitrage-free price. (b) Why is the superhedging price often impractically large for insurance products? (c) How does the subhedging price provide a lower bound?
 
 ??? success "Solution to Exercise 2"
     **(a)** The superhedging price satisfies $x + \int_0^T \theta_t\,dS_t \geq H$ almost surely for some strategy $\theta$. For any equivalent martingale measure $\mathbb{Q} \in \mathcal{Q}$, taking expectations under $\mathbb{Q}$:
@@ -320,6 +301,11 @@ $$
     **(b)** For insurance products, the payoff $H$ can take extreme values (e.g., catastrophic losses), and the superhedging strategy must cover the worst-case scenario with probability one. This requires enough capital to cover even the most extreme realizations of $H$, making the superhedging price very conservative and impractically expensive. For example, superhedging a put option in a jump-diffusion model requires hedging against arbitrarily large downward jumps, leading to a superhedging price close to the strike price itself.
 
     **(c)** The subhedging price is $\underline{\pi}(H) = \sup\{x : \exists \theta \text{ s.t. } x + \int_0^T \theta_t\,dS_t \leq H \text{ a.s.}\}$. By an analogous argument, for any $\mathbb{Q} \in \mathcal{Q}$, taking expectations yields $x \leq \mathbb{E}^{\mathbb{Q}}[e^{-rT}H]$, so $\underline{\pi}(H) \leq \inf_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}[e^{-rT}H]$. With duality, equality holds and $\underline{\pi}(H)$ equals the lower bound of the no-arbitrage interval, providing the minimum price a seller should accept.
+
+---
+
+
+**Exercise 3.** The utility indifference price $\pi^U(H)$ satisfies $\sup_\theta \mathbb{E}[U(X_T^{x-\pi^U}+H)] = \sup_\theta \mathbb{E}[U(X_T^x)]$. For exponential utility $U(x) = -e^{-\gamma x}$: (a) Show that the indifference price is independent of the investor's initial wealth $x$. (b) Explain why the indifference price lies in the no-arbitrage interval $[\underline{\pi}, \overline{\pi}]$. (c) What happens to $\pi^U$ as $\gamma \to 0$ (risk-neutral investor) and as $\gamma \to \infty$ (infinitely risk-averse)?
 
 ??? success "Solution to Exercise 3"
     **(a)** For exponential utility $U(x) = -e^{-\gamma x}$, the indifference price $\pi^U$ satisfies
@@ -354,12 +340,22 @@ $$
 
     As $\gamma \to \infty$ (infinitely risk-averse investor), the investor demands full protection against the worst case. The indifference price for a buyer converges to the superhedging price: $\pi^U \to \overline{\pi}(H)$. This is because an infinitely risk-averse agent only accepts positions that are hedged with certainty.
 
+---
+
+
+**Exercise 4.** For the Heston model, the market price of volatility risk $\lambda(t, v_t)$ is not determined by no-arbitrage. (a) Describe how calibration to market option prices implicitly selects a specific $\lambda$. (b) Explain why two different calibrated Heston models (with different parameters but identical vanilla fits) can give different prices for exotic options. (c) How does this relate to the concept of "model risk"?
+
 ??? success "Solution to Exercise 4"
     **(a)** Calibrating the Heston model to market option prices means choosing parameters $(\kappa, \theta, \xi, \rho, v_0)$ so that model prices match observed vanilla option prices across strikes and maturities. Once these parameters are fixed, the dynamics under $\mathbb{Q}$ are fully specified, including the drift of the variance process. Since the drift under $\mathbb{Q}$ incorporates the market price of volatility risk $\lambda$, calibration implicitly determines $\lambda$ through the relationship between the $\mathbb{P}$-drift and the $\mathbb{Q}$-drift. Specifically, if under $\mathbb{P}$ we have $dv_t = [\kappa(\theta - v_t) - \lambda(t,v_t)]\,dt + \xi\sqrt{v_t}\,dW_t^{(2),\mathbb{P}}$, then matching market prices fixes the $\mathbb{Q}$-drift $\kappa(\theta - v_t)$ and hence implicitly determines $\lambda$.
 
     **(b)** Two Heston models with different parameters $(\kappa_1, \theta_1, \xi_1, \rho_1, v_{0,1})$ and $(\kappa_2, \theta_2, \xi_2, \rho_2, v_{0,2})$ can produce identical prices for all vanilla options (European calls and puts across all strikes and maturities). However, exotic options depend on the full joint distribution of $(S_t, v_t)$ over the path, not just marginal distributions at fixed times. Different parameter sets imply different dynamics for the variance process, leading to different path-dependent behaviors. For example, a barrier option or a cliquet depends on the joint evolution, which differs between the two calibrated models.
 
     **(c)** This is a manifestation of **model risk**: the risk that the chosen model, even when calibrated to liquid instruments, gives incorrect prices for illiquid or exotic products. In incomplete markets, multiple martingale measures are consistent with observed vanilla prices, and each gives a different exotic price. The spread between these prices quantifies model risk.
+
+---
+
+
+**Exercise 5.** List the four pricing measure selection criteria discussed: minimal martingale, variance-optimal, utility indifference, and entropy minimization. For each, (a) state the defining principle, (b) give one advantage, and (c) describe a situation where that criterion would be preferred.
 
 ??? success "Solution to Exercise 5"
     **1. Minimal Martingale Measure**
@@ -385,6 +381,11 @@ $$
     - **(a) Principle**: Choose $\mathbb{Q}^{\text{ent}}$ to minimize the relative entropy (Kullback-Leibler divergence) $H(\mathbb{Q}|\mathbb{P}) = \mathbb{E}^{\mathbb{Q}}[\log(d\mathbb{Q}/d\mathbb{P})]$.
     - **(b) Advantage**: Stays as close as possible to the physical measure in an information-theoretic sense, making the least distortion to the real-world probabilities.
     - **(c) Preferred when**: Pricing in models where one wants to remain close to historical/statistical estimates, such as in credit derivatives or emerging market products where the physical measure is estimated from data.
+
+---
+
+
+**Exercise 6.** The FTAP (Fundamental Theorem of Asset Pricing) states that the market is complete if and only if there exists exactly one equivalent martingale measure. Using this theorem, prove that adding a liquidly traded variance swap to the Heston model makes the market complete. How many equivalent martingale measures exist before and after adding this instrument?
 
 ??? success "Solution to Exercise 6"
     **Before adding the variance swap**: The Heston model has two sources of randomness ($W^{(1)}$ and $W^{(2)}$) but only one traded risky asset $S$. By the Second Fundamental Theorem of Asset Pricing, the market is complete if and only if $|\mathcal{Q}| = 1$. Since there is one "free" parameter (the market price of volatility risk $\lambda$), there are infinitely many equivalent martingale measures $\mathbb{Q} \in \mathcal{Q}$.

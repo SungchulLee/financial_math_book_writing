@@ -533,46 +533,6 @@ $$
 
 by analyzing the rate at which $\mathcal{N}(d_1) \to 1$ as $S \to \infty$. What does this tell you about the delta of a deep in-the-money call?
 
----
-
-**Exercise 2.** For an at-the-money call ($S = K$) with $r = 0$, use the Taylor expansion of $\mathcal{N}(x)$ around $x = 0$ to show that the call price satisfies
-
-$$
-C \approx \frac{S \sigma \sqrt{T}}{\sqrt{2\pi}}
-$$
-
-for small $T$. Compute the percentage error of this approximation relative to the exact Black-Scholes price when $S = K = 100$, $\sigma = 0.25$, $r = 0$, and $T = 0.01$.
-
----
-
-**Exercise 3.** Consider the put price $P$ as $\sigma \to \infty$. Show from the Black-Scholes formula (not from put-call parity) that $P \to Ke^{-rT}$. Explain the financial intuition: why should the put attain its maximum theoretical value when volatility is infinite?
-
----
-
-**Exercise 4.** Examine the behavior of the Black-Scholes call price as $r \to -\infty$ (negative interest rates). Determine $\lim_{r \to -\infty} d_1$, $\lim_{r \to -\infty} d_2$, and $\lim_{r \to -\infty} C$. Is the result consistent with the economic interpretation of a very negative interest rate?
-
----
-
-**Exercise 5.** The summary table states that as $T \to \infty$, the put price satisfies $P \to 0$. However, this assumes $r > 0$. What happens to $\lim_{T \to \infty} P$ when $r = 0$? Prove your answer by carefully analyzing $d_1$ and $d_2$ in this special case.
-
----
-
-**Exercise 6.** Using the ATM approximation $C_{\text{ATM}} \approx 0.4 \, S \sigma \sqrt{T}$, derive an approximate formula for the ATM implied volatility $\sigma_{\text{impl}}$ given a market price $C_{\text{mkt}}$ of an at-the-money call. Apply your formula to find the approximate implied volatility when $S = 50$, $T = 0.25$, and $C_{\text{mkt}} = 2.00$.
-
----
-
-**Exercise 7.** Consider the ratio of a European put to a European call, $P/C$, for a fixed strike $K$ and maturity $T$. Determine
-
-$$
-\lim_{\sigma \to 0^+} \frac{P(S, K, T, r, \sigma)}{C(S, K, T, r, \sigma)}
-$$
-
-for the three cases $S > Ke^{-rT}$, $S < Ke^{-rT}$, and $S = Ke^{-rT}$. Discuss why the $S = Ke^{-rT}$ case requires careful treatment.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     We need to show $\lim_{S \to \infty} C/S = 1$. From the Black-Scholes formula:
 
@@ -597,6 +557,15 @@ for the three cases $S > Ke^{-rT}$, $S < Ke^{-rT}$, and $S = Ke^{-rT}$. Discuss 
     $$
 
     For the delta interpretation: since $\Delta = \frac{\partial C}{\partial S} = \mathcal{N}(d_1)$ and $d_1 \to +\infty$ as $S \to \infty$, we get $\Delta \to 1$. This means a deep in-the-money call behaves like holding the stock itself, with a one-to-one response to stock price changes.
+
+---
+**Exercise 2.** For an at-the-money call ($S = K$) with $r = 0$, use the Taylor expansion of $\mathcal{N}(x)$ around $x = 0$ to show that the call price satisfies
+
+$$
+C \approx \frac{S \sigma \sqrt{T}}{\sqrt{2\pi}}
+$$
+
+for small $T$. Compute the percentage error of this approximation relative to the exact Black-Scholes price when $S = K = 100$, $\sigma = 0.25$, $r = 0$, and $T = 0.01$.
 
 ??? success "Solution to Exercise 2"
     With $S = K$ and $r = 0$, we have:
@@ -639,6 +608,9 @@ for the three cases $S > Ke^{-rT}$, $S < Ke^{-rT}$, and $S = Ke^{-rT}$. Discuss 
 
     Percentage error: $\frac{|0.9974 - 0.9974|}{0.9974} \approx 0.003\%$, which is negligible for small $T$.
 
+---
+**Exercise 3.** Consider the put price $P$ as $\sigma \to \infty$. Show from the Black-Scholes formula (not from put-call parity) that $P \to Ke^{-rT}$. Explain the financial intuition: why should the put attain its maximum theoretical value when volatility is infinite?
+
 ??? success "Solution to Exercise 3"
     The Black-Scholes put formula is:
 
@@ -663,6 +635,9 @@ for the three cases $S > Ke^{-rT}$, $S < Ke^{-rT}$, and $S = Ke^{-rT}$. Discuss 
     $$
 
     **Financial intuition**: When volatility is infinite, the stock price at maturity is essentially unpredictable, with arbitrarily large swings in either direction. The put holder benefits from downward moves (payoff $K - S_T$ when $S_T < K$), and with infinite volatility, the probability of the stock finishing near zero becomes significant. The maximum payoff of a put is $K$ (when $S_T = 0$), and with infinite volatility, the expected discounted payoff approaches $Ke^{-rT}$. This is the theoretical maximum value for a European put: the present value of the strike, corresponding to the scenario where the stock is almost certainly worthless at expiration.
+
+---
+**Exercise 4.** Examine the behavior of the Black-Scholes call price as $r \to -\infty$ (negative interest rates). Determine $\lim_{r \to -\infty} d_1$, $\lim_{r \to -\infty} d_2$, and $\lim_{r \to -\infty} C$. Is the result consistent with the economic interpretation of a very negative interest rate?
 
 ??? success "Solution to Exercise 4"
     As $r \to -\infty$:
@@ -703,6 +678,9 @@ for the three cases $S > Ke^{-rT}$, $S < Ke^{-rT}$, and $S = Ke^{-rT}$. Discuss 
 
     **Economic interpretation**: A very negative interest rate means cash is extremely expensive to hold, and the present value of the strike $Ke^{-rT} \to +\infty$. The forward price $Se^{rT} \to 0$, meaning the stock is expected to lose nearly all its value under the risk-neutral measure. The option to buy the stock at any positive strike is worthless because the stock itself becomes worthless in forward terms. This is consistent: no rational agent would pay for the right to buy an asset whose risk-neutral expected value vanishes.
 
+---
+**Exercise 5.** The summary table states that as $T \to \infty$, the put price satisfies $P \to 0$. However, this assumes $r > 0$. What happens to $\lim_{T \to \infty} P$ when $r = 0$? Prove your answer by carefully analyzing $d_1$ and $d_2$ in this special case.
+
 ??? success "Solution to Exercise 5"
     When $r = 0$, the stock price dynamics under $\mathbb{Q}$ are $dS_t = \sigma S_t dW_t$ (pure martingale).
 
@@ -730,6 +708,9 @@ for the three cases $S > Ke^{-rT}$, $S < Ke^{-rT}$, and $S = Ke^{-rT}$. Discuss 
 
     This contrasts with the $r > 0$ case where $P \to 0$. The difference arises because when $r = 0$, there is no discounting: $Ke^{-rT} = K$ for all $T$. The put's maximum payoff is $K$ (when $S_T = 0$), and with infinite time, the stock—being a martingale under $\mathbb{Q}$ when $r = 0$—has a positive probability of approaching zero. In fact, geometric Brownian motion with zero drift almost surely reaches arbitrarily small values over infinite time, so the put captures nearly its full payoff value $K$.
 
+---
+**Exercise 6.** Using the ATM approximation $C_{\text{ATM}} \approx 0.4 \, S \sigma \sqrt{T}$, derive an approximate formula for the ATM implied volatility $\sigma_{\text{impl}}$ given a market price $C_{\text{mkt}}$ of an at-the-money call. Apply your formula to find the approximate implied volatility when $S = 50$, $T = 0.25$, and $C_{\text{mkt}} = 2.00$.
+
 ??? success "Solution to Exercise 6"
     From the ATM approximation $C_{\text{ATM}} \approx 0.4\, S \sigma \sqrt{T}$, we solve for $\sigma$:
 
@@ -750,6 +731,15 @@ for the three cases $S > Ke^{-rT}$, $S < Ke^{-rT}$, and $S = Ke^{-rT}$. Discuss 
     $$
 
     The approximate implied volatility is $20\%$.
+
+---
+**Exercise 7.** Consider the ratio of a European put to a European call, $P/C$, for a fixed strike $K$ and maturity $T$. Determine
+
+$$
+\lim_{\sigma \to 0^+} \frac{P(S, K, T, r, \sigma)}{C(S, K, T, r, \sigma)}
+$$
+
+for the three cases $S > Ke^{-rT}$, $S < Ke^{-rT}$, and $S = Ke^{-rT}$. Discuss why the $S = Ke^{-rT}$ case requires careful treatment.
 
 ??? success "Solution to Exercise 7"
     **Case 1: $S > Ke^{-rT}$ (forward price above strike)**

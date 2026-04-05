@@ -845,36 +845,6 @@ The binomial-to-Black–Scholes limit demonstrates the **unity of option pricing
 
 **Exercise 1.** For the CRR parameterization with $\sigma = 0.25$ and $\Delta t = 0.01$, compute $u$, $d$, and $q$ (with $r = 0.03$). Verify that $q \to \frac{1}{2}$ as $\Delta t \to 0$ by also computing $q$ for $\Delta t = 0.001$ and $\Delta t = 0.0001$.
 
----
-
-**Exercise 2.** Derive the Ito correction term from the discrete model. Starting from the one-step log-return $\ln R_i = \pm \sigma\sqrt{\Delta t}$ with risk-neutral probabilities, show that:
-
-$$
-\mathbb{E}^{\mathbb{Q}}[\ln R_i] = \left(r - \frac{1}{2}\sigma^2\right)\Delta t + O(\Delta t^{3/2})
-$$
-
-by carefully expanding $q$ to second order in $\sqrt{\Delta t}$. Identify at which step Jensen's inequality plays a role.
-
----
-
-**Exercise 3.** Using the Black-Scholes formula, compute the European call price for $S_0 = 100$, $K = 100$, $r = 0.05$, $\sigma = 0.20$, and $T = 1$. Then compute the CRR binomial price for $n = 10, 50, 100, 500$. Verify empirically that the error $|C_n - C_{BS}|$ decreases as $O(1/n)$.
-
----
-
-**Exercise 4.** Show that the Jarrow-Rudd parameterization $u = e^{(r - \sigma^2/2)\Delta t + \sigma\sqrt{\Delta t}}$, $d = e^{(r - \sigma^2/2)\Delta t - \sigma\sqrt{\Delta t}}$ yields $q = \frac{1}{2}$ exactly (not just in the limit). Verify that this parameterization also satisfies $\text{Var}(\ln(S_{i+1}/S_i)) = \sigma^2 \Delta t + O(\Delta t^2)$.
-
----
-
-**Exercise 5.** In the Taylor expansion approach to deriving the Black-Scholes PDE, the key step involves computing $q(uS - S)^2 + (1-q)(dS - S)^2$. Show explicitly that this equals $S^2 \sigma^2 \Delta t + O(\Delta t^{3/2})$. Why is the $\Delta t$ (not $(\Delta t)^2$) scaling of this second-order term crucial for the emergence of the diffusion term $\frac{1}{2}\sigma^2 S^2 V_{SS}$ in the PDE?
-
----
-
-**Exercise 6.** A common interview question: explain intuitively why the drift of the log-price under the risk-neutral measure is $r - \frac{1}{2}\sigma^2$ rather than $r$. Your answer should reference (a) the concavity of the logarithm, (b) Jensen's inequality, and (c) the distinction between arithmetic and geometric means. Illustrate with a numerical example where $r = 0$ and $\sigma = 0.5$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Given $\sigma = 0.25$, $r = 0.03$.
 
@@ -929,6 +899,16 @@ by carefully expanding $q$ to second order in $\sqrt{\Delta t}$. Identify at whi
     | $0.0001$ | $0.49992$ |
 
     As $\Delta t \to 0$, $q \to 0.5$, confirming the theoretical result.
+
+---
+
+**Exercise 2.** Derive the Ito correction term from the discrete model. Starting from the one-step log-return $\ln R_i = \pm \sigma\sqrt{\Delta t}$ with risk-neutral probabilities, show that:
+
+$$
+\mathbb{E}^{\mathbb{Q}}[\ln R_i] = \left(r - \frac{1}{2}\sigma^2\right)\Delta t + O(\Delta t^{3/2})
+$$
+
+by carefully expanding $q$ to second order in $\sqrt{\Delta t}$. Identify at which step Jensen's inequality plays a role.
 
 ??? success "Solution to Exercise 2"
     The one-step log-return is $\ln R_i = \sigma\sqrt{\Delta t}$ with probability $q$ and $\ln R_i = -\sigma\sqrt{\Delta t}$ with probability $1-q$.
@@ -995,6 +975,10 @@ by carefully expanding $q$ to second order in $\sqrt{\Delta t}$. Identify at whi
 
     The gap between $\mathbb{E}[\ln R_i]$ and $r\Delta t$ is precisely $-\frac{1}{2}\sigma^2\Delta t$, which is the discrete Ito correction.
 
+---
+
+**Exercise 3.** Using the Black-Scholes formula, compute the European call price for $S_0 = 100$, $K = 100$, $r = 0.05$, $\sigma = 0.20$, and $T = 1$. Then compute the CRR binomial price for $n = 10, 50, 100, 500$. Verify empirically that the error $|C_n - C_{BS}|$ decreases as $O(1/n)$.
+
 ??? success "Solution to Exercise 3"
     Given $S_0 = 100$, $K = 100$, $r = 0.05$, $\sigma = 0.20$, $T = 1$.
 
@@ -1026,6 +1010,10 @@ by carefully expanding $q$ to second order in $\sqrt{\Delta t}$. Identify at whi
     | 500 | $\approx 10.446$ | $\approx 0.004$ | $\approx 2.0$ |
 
     The product $n \times |C_n - C_{BS}|$ is approximately constant, confirming $O(1/n)$ convergence. As $n$ increases by a factor of 10, the error decreases by approximately a factor of 10. Note that odd/even oscillations cause some variability in the exact error, but the overall $O(1/n)$ trend is clear.
+
+---
+
+**Exercise 4.** Show that the Jarrow-Rudd parameterization $u = e^{(r - \sigma^2/2)\Delta t + \sigma\sqrt{\Delta t}}$, $d = e^{(r - \sigma^2/2)\Delta t - \sigma\sqrt{\Delta t}}$ yields $q = \frac{1}{2}$ exactly (not just in the limit). Verify that this parameterization also satisfies $\text{Var}(\ln(S_{i+1}/S_i)) = \sigma^2 \Delta t + O(\Delta t^2)$.
 
 ??? success "Solution to Exercise 4"
     **Jarrow-Rudd parameterization:**
@@ -1122,6 +1110,10 @@ by carefully expanding $q$ to second order in $\sqrt{\Delta t}$. Identify at whi
 
     This holds exactly (not just to $O(\Delta t^2)$) because $q = 1/2$ means the mean of the $\pm\sigma\sqrt{\Delta t}$ part is zero.
 
+---
+
+**Exercise 5.** In the Taylor expansion approach to deriving the Black-Scholes PDE, the key step involves computing $q(uS - S)^2 + (1-q)(dS - S)^2$. Show explicitly that this equals $S^2 \sigma^2 \Delta t + O(\Delta t^{3/2})$. Why is the $\Delta t$ (not $(\Delta t)^2$) scaling of this second-order term crucial for the emergence of the diffusion term $\frac{1}{2}\sigma^2 S^2 V_{SS}$ in the PDE?
+
 ??? success "Solution to Exercise 5"
     We need to compute $q(uS - S)^2 + (1-q)(dS - S)^2$ and show it equals $S^2\sigma^2\Delta t + O(\Delta t^{3/2})$.
 
@@ -1172,6 +1164,10 @@ by carefully expanding $q$ to second order in $\sqrt{\Delta t}$. Identify at whi
     This is $O(\Delta t)$, the same order as the time derivative $\frac{\partial V}{\partial t}\Delta t$ and the drift term $rS\frac{\partial V}{\partial S}\Delta t$. When we divide the entire recursion by $\Delta t$ and take $\Delta t \to 0$, all three terms survive and produce the three terms of the Black-Scholes PDE: $V_t + \frac{1}{2}\sigma^2S^2V_{SS} + rSV_S$.
 
     If the second-order term scaled as $(\Delta t)^2$ instead of $\Delta t$, it would vanish in the limit, and there would be no diffusion term — the PDE would reduce to a first-order transport equation, losing all volatility dependence. The $\Delta t$ scaling of the quadratic variation is the discrete analog of the fundamental property $(dW_t)^2 = dt$ from stochastic calculus.
+
+---
+
+**Exercise 6.** A common interview question: explain intuitively why the drift of the log-price under the risk-neutral measure is $r - \frac{1}{2}\sigma^2$ rather than $r$. Your answer should reference (a) the concavity of the logarithm, (b) Jensen's inequality, and (c) the distinction between arithmetic and geometric means. Illustrate with a numerical example where $r = 0$ and $\sigma = 0.5$.
 
 ??? success "Solution to Exercise 6"
     **The key insight:** Under the risk-neutral measure, the stock price satisfies $\mathbb{E}^{\mathbb{Q}}[S_T] = S_0 e^{rT}$, so the expected **arithmetic** return is $r$. However, the drift of the **log-price** $\ln S_T$ is $r - \frac{1}{2}\sigma^2$, which is less than $r$. The discrepancy is $-\frac{1}{2}\sigma^2$.

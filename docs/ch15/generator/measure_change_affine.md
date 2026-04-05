@@ -258,26 +258,137 @@ The closure property of affine processes under measure change is the key to thei
 
 **Exercise 1.** For the Vasicek model under $\mathbb{P}$ with parameters $\kappa^{\mathbb{P}} = 0.5$, $\theta^{\mathbb{P}} = 0.06$, $\sigma = 0.02$, and a constant market price of risk $\lambda = 0.3$, compute the risk-neutral parameters $\kappa^{\mathbb{Q}}$ and $\theta^{\mathbb{Q}}$. Verify that the diffusion coefficient $\sigma$ is unchanged under the measure change.
 
+??? success "Solution to Exercise 1"
+    From the Vasicek parameter transformation formulas:
+
+    - $\kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} = 0.5$ (mean-reversion speed is unchanged)
+    - $\theta^{\mathbb{Q}} = \theta^{\mathbb{P}} - \frac{\sigma\lambda}{\kappa^{\mathbb{P}}} = 0.06 - \frac{0.02 \times 0.3}{0.5} = 0.06 - 0.012 = 0.048$
+    - $\sigma^{\mathbb{Q}} = \sigma^{\mathbb{P}} = 0.02$ (diffusion coefficient is unchanged)
+
+    The risk-neutral parameters are $\kappa^{\mathbb{Q}} = 0.5$, $\theta^{\mathbb{Q}} = 0.048$, and $\sigma^{\mathbb{Q}} = 0.02$. The diffusion coefficient $\sigma$ is unchanged because the Girsanov theorem only modifies the drift of the Brownian motion, not its quadratic variation. The volatility $\sigma$ enters the diffusion matrix $a = \sigma^2$, which is invariant under the measure change.
+
 ---
 
 **Exercise 2.** For the CIR model, the standard market price of risk is $\lambda(r) = \lambda_1 \sqrt{r}/\xi$. Show that the measure change produces risk-neutral parameters with $\kappa^{\mathbb{Q}}\theta^{\mathbb{Q}} = \kappa^{\mathbb{P}}\theta^{\mathbb{P}}$. Explain why this invariance of the product $\kappa\theta$ guarantees that the Feller condition is preserved under the measure change.
+
+??? success "Solution to Exercise 2"
+    Under $\mathbb{P}$, the CIR dynamics are $dr_t = \kappa^{\mathbb{P}}(\theta^{\mathbb{P}} - r_t)\,dt + \xi\sqrt{r_t}\,dW_t^{\mathbb{P}}$. The market price of risk $\lambda(r) = \lambda_1\sqrt{r}/\xi$ gives $\sigma(r)\lambda(r) = \xi\sqrt{r}\cdot\lambda_1\sqrt{r}/\xi = \lambda_1 r$. The risk-neutral drift is
+
+    $$
+    \mu^{\mathbb{Q}}(r) = \kappa^{\mathbb{P}}(\theta^{\mathbb{P}} - r) - \lambda_1 r = \kappa^{\mathbb{P}}\theta^{\mathbb{P}} - (\kappa^{\mathbb{P}} + \lambda_1)r
+    $$
+
+    Rewriting in mean-reverting form: $\mu^{\mathbb{Q}}(r) = (\kappa^{\mathbb{P}} + \lambda_1)\!\left(\frac{\kappa^{\mathbb{P}}\theta^{\mathbb{P}}}{\kappa^{\mathbb{P}} + \lambda_1} - r\right)$, so $\kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \lambda_1$ and $\theta^{\mathbb{Q}} = \frac{\kappa^{\mathbb{P}}\theta^{\mathbb{P}}}{\kappa^{\mathbb{P}} + \lambda_1}$. Therefore
+
+    $$
+    \kappa^{\mathbb{Q}}\theta^{\mathbb{Q}} = (\kappa^{\mathbb{P}} + \lambda_1)\cdot\frac{\kappa^{\mathbb{P}}\theta^{\mathbb{P}}}{\kappa^{\mathbb{P}} + \lambda_1} = \kappa^{\mathbb{P}}\theta^{\mathbb{P}}
+    $$
+
+    The Feller condition requires $2\kappa\theta \geq \xi^2$. Since $\kappa^{\mathbb{Q}}\theta^{\mathbb{Q}} = \kappa^{\mathbb{P}}\theta^{\mathbb{P}}$, the product $\kappa\theta$ is the same under both measures, so $2\kappa^{\mathbb{Q}}\theta^{\mathbb{Q}} \geq \xi^2$ if and only if $2\kappa^{\mathbb{P}}\theta^{\mathbb{P}} \geq \xi^2$. The Feller condition is automatically preserved.
 
 ---
 
 **Exercise 3.** Explain why a market price of risk of the form $\lambda(x) = \lambda_0 + \Lambda x$ with a general (non-diagonal) matrix $\Lambda$ can break the affine structure for CIR-type components. Show explicitly that the cross-term $\alpha_i x^{(i)} \Lambda x$ produces a quadratic dependence on $x$ that cannot be absorbed into a linear drift.
 
+??? success "Solution to Exercise 3"
+    For a CIR-type component $i$, the diffusion matrix contribution is $\alpha_i x^{(i)}$, so the drift transformation involves the term
+
+    $$
+    -\alpha_i x^{(i)} (\lambda_0 + \Lambda x) = -\alpha_i\lambda_0 x^{(i)} - \alpha_i x^{(i)} \Lambda x
+    $$
+
+    The first term $-\alpha_i\lambda_0 x^{(i)}$ is linear in $x$ and can be absorbed into the drift matrix $B^{\mathbb{Q}}$. However, the second term $-\alpha_i x^{(i)} \Lambda x$ is **quadratic** in $x$: it involves the product $x^{(i)} \cdot (\Lambda x)_j$ for each $j$.
+
+    If $\Lambda$ is non-diagonal, say $\Lambda_{ij} \neq 0$ for $j \neq i$, then the term $-\alpha_i x^{(i)} \Lambda_{ij} x^{(j)}$ introduces a product $x^{(i)} x^{(j)}$ into the drift. This cannot be written as an affine function of $x$, breaking the affine structure.
+
+    For the affine structure to be preserved, the cross-terms must vanish. When restricted to CIR-type components, this requires $\alpha_i (\Lambda x)$ to depend only on $x^{(i)}$ (not on other state variables). If each $\alpha_i$ is a scalar times a matrix that acts only on the $i$-th coordinate, then $\Lambda$ must be diagonal on the CIR subspace: $\Lambda_{ij} = 0$ for $i \neq j$ when both $i$ and $j$ are CIR-type indices. This is the completely affine restriction of Dai and Singleton (2000).
+
 ---
 
 **Exercise 4.** For the Esscher transform with parameter $\theta \in \mathbb{R}$, applied to a one-dimensional OU process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, compute the drift of $X_t$ under the new measure $\mathbb{Q}^\theta$. Show that $X_t$ remains an OU process under $\mathbb{Q}^\theta$ with modified parameters $\kappa^{\mathbb{Q}} = \kappa - \sigma^2\theta$ and unchanged diffusion $\sigma$.
+
+??? success "Solution to Exercise 4"
+    The OU process has $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, so $\mu(x) = -\kappa x$ and $a = \sigma^2$ (constant diffusion). The Esscher Radon-Nikodym derivative is $\frac{d\mathbb{Q}^\theta}{d\mathbb{P}}\big|_{\mathcal{F}_t} = \frac{e^{\theta X_t}}{\mathbb{E}[e^{\theta X_t}]}$. By Girsanov's theorem, the drift under $\mathbb{Q}^\theta$ is $\mu^{\mathbb{Q}}(x) = \mu^{\mathbb{P}}(x) + a\theta = -\kappa x + \sigma^2\theta$. Under $\mathbb{Q}^\theta$, the dynamics become
+
+    $$
+    dX_t = (-\kappa X_t + \sigma^2\theta)\,dt + \sigma\,dW_t^{\mathbb{Q}}
+    $$
+
+    Defining $\kappa^{\mathbb{Q}} = \kappa - \sigma^2\theta$ and rearranging, the original OU process (which mean-reverts to 0 under $\mathbb{P}$) now mean-reverts to $\sigma^2\theta/\kappa^{\mathbb{Q}}$ under $\mathbb{Q}^\theta$:
+
+    $$
+    dX_t = (\kappa - \sigma^2\theta)\!\left(\frac{\sigma^2\theta}{\kappa - \sigma^2\theta} - X_t\right)dt + \sigma\,dW_t^{\mathbb{Q}}
+    $$
+
+    This is still an OU process with $\kappa^{\mathbb{Q}} = \kappa - \sigma^2\theta$ and unchanged diffusion $\sigma^{\mathbb{Q}} = \sigma$, confirming that the Esscher transform preserves the OU (affine) structure.
 
 ---
 
 **Exercise 5.** Consider an affine jump-diffusion with compound Poisson jumps having exponential jump sizes with parameter $\eta$ under $\mathbb{P}$. Under the Esscher transform $m^{\mathbb{Q}}(dz) = e^{\gamma z}m^{\mathbb{P}}(dz)$, show that the jump sizes under $\mathbb{Q}$ are still exponentially distributed, but with parameter $\eta - \gamma$ (provided $\gamma < \eta$). What is the new jump intensity?
 
+??? success "Solution to Exercise 5"
+    Under $\mathbb{P}$, the jump size density is $f^{\mathbb{P}}(z) = \eta e^{-\eta z}\mathbf{1}_{z > 0}$ and the jump measure is $m^{\mathbb{P}}(dz) = \lambda\eta e^{-\eta z}\mathbf{1}_{z > 0}\,dz$. Under the Esscher transform with parameter $\gamma$:
+
+    $$
+    m^{\mathbb{Q}}(dz) = e^{\gamma z}m^{\mathbb{P}}(dz) = \lambda\eta e^{(\gamma - \eta)z}\mathbf{1}_{z > 0}\,dz = \lambda\eta e^{-(\eta - \gamma)z}\mathbf{1}_{z > 0}\,dz
+    $$
+
+    For this to be a valid measure, we need $\eta - \gamma > 0$, i.e., $\gamma < \eta$. To identify the new intensity and jump size distribution, normalize:
+
+    $$
+    \lambda^{\mathbb{Q}} = \int_0^\infty m^{\mathbb{Q}}(dz) = \lambda\eta\int_0^\infty e^{-(\eta - \gamma)z}\,dz = \frac{\lambda\eta}{\eta - \gamma}
+    $$
+
+    The jump size density under $\mathbb{Q}$ is
+
+    $$
+    f^{\mathbb{Q}}(z) = \frac{m^{\mathbb{Q}}(dz)/dz}{\lambda^{\mathbb{Q}}} = \frac{\lambda\eta e^{-(\eta - \gamma)z}}{\lambda\eta/(\eta - \gamma)} = (\eta - \gamma)e^{-(\eta - \gamma)z}\mathbf{1}_{z > 0}
+    $$
+
+    This is an exponential distribution with parameter $\eta^{\mathbb{Q}} = \eta - \gamma$. The new jump intensity is $\lambda^{\mathbb{Q}} = \lambda\eta/(\eta - \gamma) > \lambda$ (jumps become more frequent), while the new mean jump size is $1/(\eta - \gamma) > 1/\eta$ (jumps become larger on average). Both effects are intuitive: the exponential tilting $e^{\gamma z}$ upweights larger jumps.
+
 ---
 
 **Exercise 6.** In the essentially affine specification of Duffee (2002), the Gaussian components of the state vector can have unrestricted market prices of risk while CIR components are restricted to the completely affine form. For a two-factor model with one Gaussian factor $X_1$ and one CIR factor $X_2$, write down the most general essentially affine market price of risk $\lambda(x)$ and identify which parameters are free and which are constrained.
 
+??? success "Solution to Exercise 6"
+    In the two-factor model, $X_1$ is Gaussian (Vasicek-type) with constant diffusion $a_{11} = \sigma_1^2$, and $X_2$ is CIR-type with state-dependent diffusion $a_{22} = \xi^2 X_2$. The cross-diffusion is zero: $a_{12} = a_{21} = 0$.
+
+    The essentially affine market price of risk allows unrestricted specification for the Gaussian component but restricts the CIR component to the completely affine form:
+
+    $$
+    \lambda(x) = \begin{pmatrix} \lambda_{10} + \Lambda_{11}x_1 + \Lambda_{12}x_2 \\ \lambda_{20}\sqrt{x_2}/\xi \end{pmatrix}
+    $$
+
+    The Gaussian component $\lambda_1(x) = \lambda_{10} + \Lambda_{11}x_1 + \Lambda_{12}x_2$ is fully general (affine in $x$). Since the diffusion for $X_1$ is constant ($\sigma_1^2$), the product $a_{11}\lambda_1(x) = \sigma_1^2(\lambda_{10} + \Lambda_{11}x_1 + \Lambda_{12}x_2)$ remains affine in $x$, so no quadratic terms arise.
+
+    The CIR component $\lambda_2(x) = \lambda_{20}\sqrt{x_2}/\xi$ is restricted so that $\sigma_2(x)\lambda_2(x) = \xi\sqrt{x_2}\cdot\lambda_{20}\sqrt{x_2}/\xi = \lambda_{20}x_2$, which is linear in $x_2$ only. A general affine $\lambda_2(x) = \lambda_{20} + \Lambda_{21}x_1 + \Lambda_{22}x_2$ would produce terms like $\xi^2 x_2(\Lambda_{21}x_1) = \xi^2\Lambda_{21}x_1 x_2$, which is quadratic.
+
+    Free parameters: $\lambda_{10}$, $\Lambda_{11}$, $\Lambda_{12}$ (three parameters for the Gaussian component) and $\lambda_{20}$ (one parameter for the CIR component). Constrained: $\Lambda_{21} = 0$ and $\Lambda_{22}$ must take the specific completely affine form. This gives four free parameters total, compared to only two in the completely affine specification.
+
 ---
 
 **Exercise 7.** Suppose you calibrate a CIR model to the yield curve and obtain risk-neutral parameters $\kappa^{\mathbb{Q}} = 0.8$, $\theta^{\mathbb{Q}} = 0.05$, $\xi = 0.15$. From time-series estimation, you find $\kappa^{\mathbb{P}} = 0.3$ and $\theta^{\mathbb{P}} = 0.07$. Compute the implied market price of risk parameter $\lambda_1$ and verify that $\kappa^{\mathbb{P}}\theta^{\mathbb{P}} = \kappa^{\mathbb{Q}}\theta^{\mathbb{Q}}$.
+
+??? success "Solution to Exercise 7"
+    From the CIR parameter transformation: $\kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \lambda_1$, so
+
+    $$
+    \lambda_1 = \kappa^{\mathbb{Q}} - \kappa^{\mathbb{P}} = 0.8 - 0.3 = 0.5
+    $$
+
+    Now verify the invariance of $\kappa\theta$:
+
+    $$
+    \kappa^{\mathbb{P}}\theta^{\mathbb{P}} = 0.3 \times 0.07 = 0.021
+    $$
+
+    $$
+    \kappa^{\mathbb{Q}}\theta^{\mathbb{Q}} = 0.8 \times 0.05 = 0.040
+    $$
+
+    These are **not** equal: $0.021 \neq 0.040$. This means the estimated parameters are inconsistent with the standard CIR market price of risk specification $\lambda(r) = \lambda_1\sqrt{r}/\xi$, which requires $\kappa^{\mathbb{P}}\theta^{\mathbb{P}} = \kappa^{\mathbb{Q}}\theta^{\mathbb{Q}}$.
+
+    From $\kappa^{\mathbb{Q}} = 0.8$ and the invariance constraint, the implied $\theta^{\mathbb{Q}}$ should be $\kappa^{\mathbb{P}}\theta^{\mathbb{P}}/\kappa^{\mathbb{Q}} = 0.021/0.8 = 0.02625$, not $0.05$. Alternatively, from $\theta^{\mathbb{Q}} = 0.05$, the implied $\kappa^{\mathbb{Q}}$ should be $0.021/0.05 = 0.42$, not $0.8$.
+
+    The discrepancy indicates that either the cross-sectional calibration ($\kappa^{\mathbb{Q}}, \theta^{\mathbb{Q}}$) or the time-series estimation ($\kappa^{\mathbb{P}}, \theta^{\mathbb{P}}$) contains estimation error, or the simple one-parameter market price of risk specification is inadequate for this data.

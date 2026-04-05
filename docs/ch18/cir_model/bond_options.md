@@ -208,26 +208,207 @@ The CIR model provides closed-form European bond option prices through the non-c
 
 **Exercise 1.** For CIR parameters $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.1$, compute $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$. Then compute the bond price functions $A(4)$ and $B(4)$ for a 4-year zero-coupon bond. Given a strike $K = 0.80$, find the critical rate $r^* = \frac{1}{B(4)}\ln\frac{A(4)}{K}$.
 
+??? success "Solution to Exercise 1"
+
+    We are given $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.1$.
+
+    **Step 1: Compute $\gamma$.**
+
+    $$
+    \gamma = \sqrt{\kappa^2 + 2\sigma^2} = \sqrt{0.25 + 0.02} = \sqrt{0.27} \approx 0.5196
+    $$
+
+    **Step 2: Compute $B(4)$.**
+
+    First, $e^{\gamma \cdot 4} = e^{0.5196 \times 4} = e^{2.0785} \approx 7.991$.
+
+    $$
+    B(4) = \frac{2(e^{\gamma \cdot 4} - 1)}{(\gamma + \kappa)(e^{\gamma \cdot 4} - 1) + 2\gamma} = \frac{2(7.991 - 1)}{(0.5196 + 0.5)(7.991 - 1) + 2(0.5196)}
+    $$
+
+    $$
+    = \frac{2 \times 6.991}{1.0196 \times 6.991 + 1.0392} = \frac{13.982}{7.128 + 1.039} = \frac{13.982}{8.167} \approx 1.712
+    $$
+
+    **Step 3: Compute $A(4)$.**
+
+    Let $D(4) = (\gamma + \kappa)(e^{\gamma \cdot 4} - 1) + 2\gamma = 8.167$ (from above). The exponent is $2\kappa\theta/\sigma^2 = 2(0.5)(0.06)/0.01 = 6$.
+
+    $$
+    A(4) = \left(\frac{2\gamma \, e^{(\kappa + \gamma) \cdot 4/2}}{D(4)}\right)^6 = \left(\frac{1.0392 \times e^{2.0392}}{8.167}\right)^6
+    $$
+
+    $$
+    = \left(\frac{1.0392 \times 7.684}{8.167}\right)^6 = \left(\frac{7.986}{8.167}\right)^6 \approx (0.9778)^6 \approx 0.8742
+    $$
+
+    **Step 4: Compute $r^*$.**
+
+    $$
+    r^* = \frac{1}{B(4)} \ln \frac{A(4)}{K} = \frac{1}{1.712} \ln \frac{0.8742}{0.80} = \frac{1}{1.712} \ln(1.0928) = \frac{0.0887}{1.712} \approx 0.0518
+    $$
+
+    The critical rate is approximately $r^* \approx 5.18\%$.
+
 ---
 
 **Exercise 2.** Explain the economic meaning of the critical rate $r^*$. If $r_T < r^*$, why is the call option on the bond exercised? How does the critical rate change if the strike $K$ increases? What happens in the limiting case $K \to 0$ and $K \to 1$?
+
+??? success "Solution to Exercise 2"
+
+    The critical rate $r^*$ is the short rate at option expiry $T$ that makes the underlying bond price exactly equal to the strike: $P(T,S) = K$. It translates the bond-price strike into the rate domain.
+
+    **Why the call is exercised when $r_T < r^*$:** The bond price $P(T,S) = A(S-T)e^{-B(S-T)r_T}$ is a **decreasing** function of $r_T$. When $r_T < r^*$, the bond price exceeds $K$, so the call payoff $(P(T,S) - K)^+ > 0$ and the option is exercised.
+
+    **Effect of increasing $K$:** From $r^* = \frac{1}{B(S-T)}\ln\frac{A(S-T)}{K}$, increasing $K$ decreases the ratio $A(S-T)/K$, which decreases $\ln(A(S-T)/K)$, and therefore decreases $r^*$. A higher strike means the bond price must be even higher (rates must be even lower) for exercise, so the exercise region shrinks.
+
+    **Limiting case $K \to 0$:** Then $\ln(A/K) \to +\infty$, so $r^* \to +\infty$. The call is almost always exercised since virtually any rate satisfies $r_T < r^*$.
+
+    **Limiting case $K \to 1$:** Since $P(T,S) \leq 1$ for positive rates, and $A(S-T) < 1$ for $S - T > 0$, we have $A/K < 1$, so $\ln(A/K) < 0$ and $r^* < 0$. Since the CIR process is non-negative, $r_T < r^* < 0$ is impossible, and the call is never exercised. The option is worthless.
 
 ---
 
 **Exercise 3.** The CIR call option formula involves two non-central chi-squared CDF evaluations with different parameters $\lambda_1$ and $\lambda_2$. Explain the role of each term by analogy with the Black-Scholes formula $C = S\,\Phi(d_1) - Ke^{-rT}\Phi(d_2)$. Which CIR term corresponds to the "delta-weighted asset value" and which to the "discounted strike probability"?
 
+??? success "Solution to Exercise 3"
+
+    The Black-Scholes call formula is $C = S\,\Phi(d_1) - Ke^{-rT}\Phi(d_2)$, where:
+
+    - The first term $S\,\Phi(d_1)$ is the delta-weighted asset value --- the present value of the asset conditional on exercise, weighted by the probability of exercise under the stock-numeraire measure.
+    - The second term $Ke^{-rT}\Phi(d_2)$ is the discounted strike times the risk-neutral exercise probability.
+
+    In the CIR bond option formula:
+
+    $$
+    C(t) = P(t,S)\,\chi^2(x_1;\,d,\,\lambda_1) - K\,P(t,T)\,\chi^2(x_2;\,d,\,\lambda_2)
+    $$
+
+    - **First term** $P(t,S)\,\chi^2(x_1; d, \lambda_1)$: This is the analogue of $S\,\Phi(d_1)$. Here $P(t,S)$ plays the role of the underlying asset price $S$, and $\chi^2(x_1; d, \lambda_1)$ is the exercise probability under a measure change that uses $P(t,S)$ as numeraire (the $S$-forward measure). The parameter shift from $\lambda_2$ to $\lambda_1$ (which involves $B(S-T)$) reflects this additional measure change, analogous to the shift from $d_2$ to $d_1$ in Black-Scholes.
+
+    - **Second term** $K\,P(t,T)\,\chi^2(x_2; d, \lambda_2)$: This is the analogue of $Ke^{-rT}\Phi(d_2)$. Here $K\,P(t,T)$ is the present value of the strike, and $\chi^2(x_2; d, \lambda_2)$ is the exercise probability under the $T$-forward measure $\mathbb{Q}^T$.
+
+    The key structural parallel is that both formulas decompose the call price into "asset leg minus strike leg," each weighted by an exercise probability under a different numeraire measure.
+
 ---
 
 **Exercise 4.** Verify put-call parity for CIR bond options. Starting from $C(t) - P_{\text{put}}(t) = P(t,S) - K\,P(t,T)$, use the call formula involving $\chi^2(x_1; d, \lambda_1)$ and $\chi^2(x_2; d, \lambda_2)$ to derive the put formula. Show that the complementary probabilities $1 - \chi^2(\cdot)$ appear naturally.
+
+??? success "Solution to Exercise 4"
+
+    Starting from the call formula:
+
+    $$
+    C(t) = P(t,S)\,\chi^2(x_1; d, \lambda_1) - K\,P(t,T)\,\chi^2(x_2; d, \lambda_2)
+    $$
+
+    Put-call parity states:
+
+    $$
+    C(t) - P_{\text{put}}(t) = P(t,S) - K\,P(t,T)
+    $$
+
+    Solving for the put:
+
+    $$
+    P_{\text{put}}(t) = C(t) - P(t,S) + K\,P(t,T)
+    $$
+
+    $$
+    = P(t,S)\,\chi^2(x_1; d, \lambda_1) - K\,P(t,T)\,\chi^2(x_2; d, \lambda_2) - P(t,S) + K\,P(t,T)
+    $$
+
+    Regrouping:
+
+    $$
+    = K\,P(t,T)\left[1 - \chi^2(x_2; d, \lambda_2)\right] - P(t,S)\left[1 - \chi^2(x_1; d, \lambda_1)\right]
+    $$
+
+    The complementary probabilities $1 - \chi^2(\cdot)$ appear naturally because the put is exercised when $r_T > r^*$ (the complement of the call exercise event $r_T < r^*$). This is exactly the put formula stated in the section, confirming that put-call parity holds for CIR bond options.
 
 ---
 
 **Exercise 5.** In the zero-volatility limit $\sigma \to 0$, the CIR model becomes deterministic with $r_t = \theta + (r_0 - \theta)e^{-\kappa t}$. For $\kappa = 0.5$, $\theta = 0.06$, $r_0 = 0.05$, compute $r_T$ at $T = 1$ year. Then compute $P(T, S)$ for $S = 5$ directly (using the deterministic forward rate) and determine whether a call with strike $K = 0.80$ would be exercised.
 
+??? success "Solution to Exercise 5"
+
+    With $\sigma = 0$, the CIR SDE becomes the ODE $dr_t = \kappa(\theta - r_t)\,dt$ with solution:
+
+    $$
+    r_t = \theta + (r_0 - \theta)e^{-\kappa t}
+    $$
+
+    For $\kappa = 0.5$, $\theta = 0.06$, $r_0 = 0.05$, at $T = 1$:
+
+    $$
+    r_1 = 0.06 + (0.05 - 0.06)e^{-0.5} = 0.06 - 0.01 \times 0.6065 = 0.06 - 0.006065 = 0.053935
+    $$
+
+    To compute $P(T,S) = P(1,5)$, we need $\int_1^5 r_s\,ds$ with the deterministic rate path $r_s = 0.06 + (0.053935 - 0.06)e^{-0.5(s-1)}$:
+
+    $$
+    \int_1^5 r_s\,ds = \int_1^5 \left[0.06 - 0.006065\,e^{-0.5(s-1)}\right]ds
+    $$
+
+    $$
+    = 0.06 \times 4 - 0.006065 \times \frac{1 - e^{-2}}{0.5} = 0.24 - 0.006065 \times 1.7293 = 0.24 - 0.01049 = 0.22951
+    $$
+
+    Therefore:
+
+    $$
+    P(1,5) = e^{-0.22951} \approx 0.7948
+    $$
+
+    Since $P(1,5) \approx 0.7948 < K = 0.80$, the call with strike $K = 0.80$ would **not** be exercised. In the deterministic case, the rate is too high for the bond price to exceed the strike.
+
 ---
 
 **Exercise 6.** For the at-the-money forward case $K = P(t,S)/P(t,T)$, show that the critical rate $r^*$ satisfies $B(S-T)\,r^* = \ln A(S-T) - \ln K$. Express $r^*$ in terms of the model yield $R(t,T,S) = -\ln P(t,S)/(S-T) + \ln P(t,T)/(S-T)$ and the functions $A$, $B$. What does the ATM condition imply about the relative magnitudes of $\lambda_1$ and $\lambda_2$?
 
+??? success "Solution to Exercise 6"
+
+    At the money forward, $K = P(t,S)/P(t,T)$. The critical rate satisfies:
+
+    $$
+    B(S-T)\,r^* = \ln A(S-T) - \ln K = \ln A(S-T) - \ln\frac{P(t,S)}{P(t,T)}
+    $$
+
+    Since $P(t,S) = A(S-t)e^{-B(S-t)r_t}$ and $P(t,T) = A(T-t)e^{-B(T-t)r_t}$:
+
+    $$
+    \ln\frac{P(t,S)}{P(t,T)} = \ln\frac{A(S-t)}{A(T-t)} - [B(S-t) - B(T-t)]r_t
+    $$
+
+    The model yield spread is $R(t,T,S) = \frac{\ln P(t,T) - \ln P(t,S)}{S-T}$, so $\ln(P(t,S)/P(t,T)) = -(S-T)R(t,T,S)$.
+
+    Substituting back:
+
+    $$
+    r^* = \frac{\ln A(S-T) + (S-T)R(t,T,S)}{B(S-T)}
+    $$
+
+    **Relative magnitudes of $\lambda_1$ and $\lambda_2$:** Recall
+
+    $$
+    \lambda_1 = \frac{2\phi^2 r_t e^{\gamma(T-t)}}{\phi + \psi + B(S-T)}, \qquad \lambda_2 = \frac{2\phi^2 r_t e^{\gamma(T-t)}}{\phi + \psi}
+    $$
+
+    Since $B(S-T) > 0$, the denominator of $\lambda_1$ is larger than that of $\lambda_2$, so $\lambda_1 < \lambda_2$. At the ATM forward condition, the two chi-squared CDFs have similar magnitudes (analogous to $\Phi(d_1) \approx \Phi(d_2)$ in Black-Scholes ATM), but they are not exactly equal because the non-central chi-squared distribution is not symmetric and the parameter shift affects the distribution shape.
+
 ---
 
 **Exercise 7.** The non-central chi-squared CDF can be numerically unstable for large non-centrality parameters $\lambda$. For $d = 12$, $\lambda = 500$, explain why the series representation $\chi^2(x; d, \lambda) = \sum_{k=0}^{\infty} e^{-\lambda/2}\frac{(\lambda/2)^k}{k!}\,F_{\chi^2(d+2k)}(x)$ converges slowly. What alternative numerical methods (saddle-point approximation, Gaussian approximation) could be used, and under what conditions are they accurate?
+
+??? success "Solution to Exercise 7"
+
+    The series $\chi^2(x; d, \lambda) = \sum_{k=0}^{\infty} e^{-\lambda/2}\frac{(\lambda/2)^k}{k!}\,F_{\chi^2(d+2k)}(x)$ is a Poisson-weighted sum where the weights are $w_k = e^{-\lambda/2}(\lambda/2)^k/k!$.
+
+    For $\lambda = 500$, the Poisson mean is $\lambda/2 = 250$. The weights $w_k$ are negligible for $k$ far from 250. Specifically, most of the probability mass concentrates around $k \approx 250 \pm \sqrt{250} \approx 250 \pm 16$. The series thus requires summing $O(\sqrt{\lambda})$ terms with significant weight, which means roughly 30--50 terms are needed. However, each term involves evaluating a central chi-squared CDF $F_{\chi^2(d+2k)}(x)$ with very large degrees of freedom ($d + 2k \approx 512$), and computing the Poisson weights for large $k$ involves factorials that overflow standard floating-point arithmetic without careful use of log-space computation.
+
+    **Alternative methods:**
+
+    1. **Gaussian (normal) approximation:** For large $\lambda$, the non-central chi-squared is approximately normal: $\chi^2(d, \lambda) \approx \mathcal{N}(d + \lambda,\, 2(d + 2\lambda))$. For $d = 12$, $\lambda = 500$: mean $\approx 512$, variance $\approx 2024$. This approximation is accurate when $\lambda \gg d$, with error $O(1/\sqrt{\lambda})$.
+
+    2. **Saddle-point approximation:** This uses the cumulant generating function of the non-central chi-squared to produce a more accurate approximation than the Gaussian. The saddle-point method is accurate to $O(1/\lambda)$ and handles the skewness of the distribution, making it superior to the normal approximation for tail probabilities.
+
+    The Gaussian approximation is accurate for central quantiles when $\lambda \gg 1$. The saddle-point approximation is preferable for tail probabilities (deep in- or out-of-the-money options) where the normal approximation's symmetry assumption introduces larger errors.

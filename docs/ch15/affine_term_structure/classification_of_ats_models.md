@@ -232,25 +232,138 @@ The Dai-Singleton $A_m(d)$ classification organizes the entire family of $d$-dim
 (b) A two-factor model where both state variables have diffusion proportional to $\sqrt{X_t^{(i)}}$.
 (c) A three-factor model with one CIR-type component and two Gaussian components.
 
+??? success "Solution to Exercise 1"
+    **(a)** Three factors, all with constant diffusion coefficients, means no state variable enters the conditional covariance. Hence $m = 0$ and $d = 3$: the model belongs to $A_0(3)$. This is a three-factor Gaussian (Vasicek-type) model.
+
+    **(b)** Two factors, both with diffusion proportional to $\sqrt{X_t^{(i)}}$, means both state variables enter the covariance with nonzero coefficients. Hence $m = 2$ and $d = 2$: the model belongs to $A_2(2)$. This is a two-factor square-root (CIR-type) model, such as the Longstaff-Schwartz (1992) specification.
+
+    **(c)** Three factors with one CIR-type component and two Gaussian components means exactly one state variable enters the covariance. Hence $m = 1$ and $d = 3$: the model belongs to $A_1(3)$. This is the most widely used specification in empirical term structure work, as it allows one stochastic volatility factor alongside two level/slope factors.
+
 ---
 
 **Exercise 2.** For the maximal $A_2(3)$ model, count the total number of parameters in the matrices $K_0$, $K_1$, $H_0$, $H_1$, $H_2$, $\rho_0$, $\rho_1$ (accounting for symmetry of the $H$ matrices and the admissibility constraints). Then compute the number of free parameters in the essential model after removing the $d^2 + d = 12$ normalization degrees of freedom.
+
+??? success "Solution to Exercise 2"
+    **Maximal $A_2(3)$ parameter count.** The state space is $\mathbb{R}_+^2 \times \mathbb{R}$.
+
+    - $K_0 \in \mathbb{R}^3$: 3 parameters
+    - $K_1 \in \mathbb{R}^{3 \times 3}$: 9 parameters
+    - $H_0 \in \mathbb{R}^{3 \times 3}$ symmetric: by admissibility, the first $2 \times 2$ block is zero, and the $(3,3)$ entry is positive. Additionally, the off-diagonal entries coupling CIR and Gaussian components are constrained. The Gaussian block is $1 \times 1$, giving 1 free entry, and cross-terms between CIR and Gaussian components contribute at most 2 entries. Total for $H_0$: at most 3 parameters.
+    - $H_1 \in \mathbb{R}^{3 \times 3}$ symmetric: only the $(1,1)$ entry is nonzero (by canonical form). Total: 1 parameter.
+    - $H_2 \in \mathbb{R}^{3 \times 3}$ symmetric: only the $(2,2)$ entry is nonzero. Total: 1 parameter.
+    - $\rho_0 \in \mathbb{R}$: 1 parameter
+    - $\rho_1 \in \mathbb{R}^3$: 3 parameters
+
+    Total in the maximal model: $3 + 9 + 3 + 1 + 1 + 1 + 3 = 21$ parameters.
+
+    The normalization group has $d^2 + d = 9 + 3 = 12$ degrees of freedom.
+
+    Essential model: $21 - 12 = 9$ free parameters.
 
 ---
 
 **Exercise 3.** State the admissibility conditions on $K_0$ and $K_1$ for the canonical $A_1(2)$ model with state space $\mathbb{R}_+ \times \mathbb{R}$. In particular, explain why $(K_0)_1 \geq 0$ is required but there is no sign restriction on $(K_0)_2$.
 
+??? success "Solution to Exercise 3"
+    In the canonical $A_1(2)$ model, the state space is $D = \mathbb{R}_+ \times \mathbb{R}$, where $X_t^{(1)} \geq 0$ (CIR-type) and $X_t^{(2)} \in \mathbb{R}$ (Gaussian).
+
+    **Admissibility conditions on $K_0$:**
+
+    - $(K_0)_1 \geq 0$: This ensures the drift of the first component pushes it away from the boundary at zero. Since $dX_t^{(1)} = ((K_0)_1 + (K_1)_{11}X_t^{(1)} + (K_1)_{12}X_t^{(2)})\,dt + \ldots$, the constant term $(K_0)_1$ must be non-negative so that when $X_t^{(1)}$ approaches zero, the drift remains non-negative (assuming $(K_1)_{12} X_t^{(2)}$ is controlled). This is the Feller-type boundary non-attainment condition.
+    - $(K_0)_2$ has **no sign restriction**: The second component lives on $\mathbb{R}$, so its drift can push it in either direction. There is no boundary to protect.
+
+    **Admissibility conditions on $K_1$:**
+
+    - $(K_1)_{11}$ is typically negative (mean reversion of the CIR component), but the admissibility requirement is only that the overall drift keeps $X_t^{(1)} \geq 0$.
+    - $(K_1)_{12}$: The cross-effect of $X_t^{(2)}$ on the drift of $X_t^{(1)}$ must be constrained. Since $X_t^{(2)}$ can be negative, a large positive $(K_1)_{12}$ could make the drift of $X_t^{(1)}$ negative. In the canonical form, $(K_1)_{12} = 0$ or is constrained to prevent the first component from reaching zero with positive probability.
+    - $(K_1)_{21}$ and $(K_1)_{22}$ are unrestricted (they govern the Gaussian component).
+
 ---
 
 **Exercise 4.** Consider an $A_0(2)$ model (two-factor Vasicek). The covariance matrix $\Sigma \Sigma^\top = H_0$ is constant. Show that the Riccati ODE for $B(\tau) \in \mathbb{R}^2$ is linear, and solve it explicitly when $K_1 = \operatorname{diag}(-\kappa_1, -\kappa_2)$ with $\kappa_1 \neq \kappa_2$.
+
+??? success "Solution to Exercise 4"
+    In the $A_0(2)$ model, $H_1 = H_2 = 0$, so the covariance is the constant matrix $H_0 = \Sigma\Sigma^\top$. The Riccati ODE for $B(\tau) = (B_1(\tau), B_2(\tau))^\top$ is
+
+    $$
+    \frac{dB}{d\tau} = -\rho_1 + K_1^\top B(\tau), \quad B(0) = \mathbf{0}
+    $$
+
+    since the quadratic terms $B^\top H_i B$ vanish for $i \geq 1$. This is a **linear** ODE system.
+
+    With $K_1 = \operatorname{diag}(-\kappa_1, -\kappa_2)$ and $\rho_1 = (\rho_{1,1}, \rho_{1,2})^\top$:
+
+    $$
+    B_1'(\tau) = -\rho_{1,1} - \kappa_1 B_1(\tau), \quad B_1(0) = 0
+    $$
+
+    $$
+    B_2'(\tau) = -\rho_{1,2} - \kappa_2 B_2(\tau), \quad B_2(0) = 0
+    $$
+
+    These are two decoupled first-order linear ODEs. Solving each:
+
+    $$
+    B_1(\tau) = -\frac{\rho_{1,1}}{\kappa_1}(1 - e^{-\kappa_1\tau})
+    $$
+
+    $$
+    B_2(\tau) = -\frac{\rho_{1,2}}{\kappa_2}(1 - e^{-\kappa_2\tau})
+    $$
+
+    When $\kappa_1 \neq \kappa_2$, the two components decay at different rates, producing different maturity profiles for the factor loadings. The decoupling occurs because $K_1$ is diagonal and there are no quadratic terms.
 
 ---
 
 **Exercise 5.** Explain why the Heston stochastic volatility model, when formulated as a term structure model on the state $(r_t, v_t)$, belongs to the class $A_1(2)$ and not $A_2(2)$. Which of the two state variables enters the conditional covariance with a nonzero coefficient?
 
+??? success "Solution to Exercise 5"
+    The Heston stochastic volatility model, formulated as a term structure model, has state $(r_t, v_t)$ where $v_t$ is the variance process. The dynamics are:
+
+    $$
+    dr_t = \mu_r(r_t, v_t)\,dt + \sqrt{v_t}\,dW_t^{(1)}
+    $$
+
+    $$
+    dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
+    $$
+
+    The instantaneous covariance matrix is
+
+    $$
+    \Sigma(X_t)\Sigma(X_t)^\top = \begin{pmatrix} v_t & \rho\xi v_t \\ \rho\xi v_t & \xi^2 v_t \end{pmatrix} = v_t \begin{pmatrix} 1 & \rho\xi \\ \rho\xi & \xi^2 \end{pmatrix}
+    $$
+
+    This means $H_0 = 0$ (no constant covariance term) and $H_1 = 0$ (the first state variable $r_t$ does not enter the covariance). Only $H_2 \neq 0$ (the second state variable $v_t$ enters the covariance). Hence exactly $m = 1$ state variable drives the conditional variance, so the model belongs to $A_1(2)$.
+
+    It is **not** $A_2(2)$ because $r_t$ does not appear in the diffusion matrix. The variance $v_t$ is the sole state variable that enters the conditional covariance with a nonzero coefficient.
+
 ---
 
 **Exercise 6.** Let $X_t$ be an $A_1(1)$ process (CIR) and define $\tilde{X}_t = cX_t + d$ for constants $c > 0$ and $d \in \mathbb{R}$. Show that $\tilde{X}_t$ is still an affine process by computing its drift and diffusion. Is $\tilde{X}_t$ still in the $A_1(1)$ class? What constraints on $c$ and $d$ preserve the state space $\mathbb{R}_+$?
+
+??? success "Solution to Exercise 6"
+    Apply Ito's lemma to $\tilde{X}_t = cX_t + d$ where $X_t$ follows the CIR dynamics $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$:
+
+    $$
+    d\tilde{X}_t = c\,dX_t = c\kappa(\theta - X_t)\,dt + c\xi\sqrt{X_t}\,dW_t
+    $$
+
+    Substituting $X_t = (\tilde{X}_t - d)/c$:
+
+    $$
+    d\tilde{X}_t = c\kappa\!\left(\theta - \frac{\tilde{X}_t - d}{c}\right)dt + c\xi\sqrt{\frac{\tilde{X}_t - d}{c}}\,dW_t
+    $$
+
+    $$
+    = \kappa(c\theta + d - \tilde{X}_t)\,dt + \xi\sqrt{c(\tilde{X}_t - d)}\,dW_t
+    $$
+
+    **Is $\tilde{X}_t$ affine?** The drift is $\tilde{K}_0 + \tilde{K}_1 \tilde{X}_t$ with $\tilde{K}_0 = \kappa(c\theta + d)$ and $\tilde{K}_1 = -\kappa$, which is affine. The diffusion squared is $\xi^2 c(\tilde{X}_t - d) = -\xi^2 cd + \xi^2 c\,\tilde{X}_t$. This is affine in $\tilde{X}_t$, so $\tilde{X}_t$ is indeed an affine process.
+
+    **Is it still $A_1(1)$?** The covariance $\tilde{H}_0 + \tilde{H}_1 \tilde{X}_t$ has $\tilde{H}_0 = -\xi^2 cd$ and $\tilde{H}_1 = \xi^2 c$. Since $c > 0$, we have $\tilde{H}_1 > 0$, so the state variable enters the diffusion: the model remains in the $A_1(1)$ class.
+
+    **State space constraints.** For $\tilde{X}_t$ to live on $\mathbb{R}_+$, we need $\tilde{X}_t = cX_t + d \geq 0$ whenever $X_t \geq 0$. Since $c > 0$, this requires $d \geq 0$. Additionally, the constant covariance $\tilde{H}_0 = -\xi^2 cd$ must satisfy $\tilde{H}_0 \leq 0$ (so that total variance is non-negative at $\tilde{X}_t = 0$). With $c > 0$, this requires $d \geq 0$, consistent with the previous constraint. If $d > 0$, the state space shifts to $[d, \infty)$ rather than $[0, \infty)$, so to preserve $D = \mathbb{R}_+$, one needs $d = 0$. The constraint is therefore $c > 0$ and $d = 0$ (scaling only, no translation).
 
 ---
 
@@ -258,3 +371,14 @@ The Dai-Singleton $A_m(d)$ classification organizes the entire family of $d$-dim
 (a) the admissibility constraints on the correlation structure in $A_3(3)$,
 (b) the econometric challenges of estimating a larger parameter space, and
 (c) scenarios where the $A_1(3)$ model might actually provide a better fit.
+
+??? success "Solution to Exercise 7"
+    **(a) Admissibility constraints on $A_3(3)$.** In the $A_3(3)$ class, all three state variables are CIR-type, living on $\mathbb{R}_+^3$. The covariance matrix $\sum_{i=1}^3 H_i X_t^{(i)}$ must be positive semi-definite for all $(X_t^{(1)}, X_t^{(2)}, X_t^{(3)}) \in \mathbb{R}_+^3$. This imposes severe restrictions on the off-diagonal entries of $H_i$: the cross-correlations between factors are tightly constrained, often forced to zero in the canonical form. By contrast, $A_1(3)$ has two Gaussian factors with a constant covariance block $H_0$ that can have arbitrary (positive definite) off-diagonal terms, allowing much richer correlation structure among the Gaussian components.
+
+    **(b) Econometric challenges.** Even though $A_3(3)$ has more stochastic volatility, it does not necessarily have more free parameters after admissibility constraints are imposed. However, the likelihood function involves non-central chi-squared distributions for all three factors (rather than normal distributions for two of them in $A_1(3)$), making maximum likelihood estimation significantly more expensive. Furthermore, the larger number of nonlinear Riccati equations increases the computational cost of bond pricing and calibration. Overfitting is also a concern: more volatility factors can fit noise in the training sample without improving out-of-sample prediction.
+
+    **(c) Scenarios where $A_1(3)$ provides a better fit.** The $A_1(3)$ model is preferable when:
+
+    - **Yield data is approximately normally distributed**: If the empirical distribution of yield changes is close to Gaussian, the two Gaussian factors in $A_1(3)$ provide a natural match, while the three square-root factors in $A_3(3)$ impose asymmetry that may not be present in the data.
+    - **The correlation structure matters**: The unrestricted correlation among the Gaussian factors in $A_1(3)$ can better capture the joint dynamics of level, slope, and curvature, which are empirically correlated. The $A_3(3)$ model's admissibility constraints may force correlations that are inconsistent with the data.
+    - **Negative rates are observed**: $A_3(3)$ forces all state variables to be non-negative, making it impossible to fit environments with negative short rates (as observed in Europe and Japan). The Gaussian factors in $A_1(3)$ can accommodate negative rates naturally.

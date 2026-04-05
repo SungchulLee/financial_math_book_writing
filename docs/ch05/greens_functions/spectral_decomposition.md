@@ -285,40 +285,6 @@ $$
 **Exercise 1.**
 For the operator $\mathcal{L} = \frac{1}{2}\partial_{xx}$ on $[0, \pi]$ with Dirichlet conditions, verify that $\phi_n(x) = \sqrt{2/\pi}\sin(nx)$ are eigenfunctions with eigenvalues $\lambda_n = n^2/2$. Check orthonormality: $\int_0^{\pi}\phi_m(x)\phi_n(x)\,dx = \delta_{mn}$.
 
----
-
-**Exercise 2.**
-Using the spectral decomposition, write the Green's function for the heat equation on $[0, L]$ with Dirichlet conditions as $G(t,x;0,y) = \sum_{n=1}^{\infty}e^{-\lambda_n t}\phi_n(x)\phi_n(y)$. For $L = 1$, compute the first three terms and discuss how quickly the series converges for large $t$.
-
----
-
-**Exercise 3.**
-Explain why the smallest eigenvalue $\lambda_1$ determines the long-time decay rate of the Green's function. In a double-barrier option context, relate $\lambda_1$ to the rate at which the option price decays toward zero as maturity $T \to \infty$.
-
----
-
-**Exercise 4.**
-For the free domain $\mathbb{R}$, the eigenvalue problem has a continuous spectrum rather than a discrete one. The Fourier transform replaces the eigenfunction expansion: $G(t,x;0,y) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{i\xi(x-y)}e^{-\xi^2 t/2}\,d\xi$. Verify this gives the Gaussian kernel by evaluating the integral.
-
----
-
-**Exercise 5.**
-Consider the Sturm-Liouville problem $-\frac{1}{2}\phi'' = \lambda\phi$ on $[0, 1]$ with Neumann conditions $\phi'(0) = \phi'(1) = 0$. Find the eigenfunctions and eigenvalues. Why does $\lambda_0 = 0$ appear, and what does it mean for the long-time behavior of the Green's function?
-
----
-
-**Exercise 6.**
-A barrier option on $[0, L]$ has its price given by the spectral expansion. Explain why truncating the series after $N$ terms gives exponentially good approximation for large $T - t$, but poor approximation near maturity. What alternative method is better for short maturities?
-
----
-
-**Exercise 7.**
-For a non-self-adjoint operator $\mathcal{L} = \mu\partial_x + \frac{1}{2}\sigma^2\partial_{xx}$ with $\mu \neq 0$, the eigenfunctions are no longer orthogonal in the standard $L^2$ inner product. Explain how a change of variables (the "speed measure" or Liouville transformation) can symmetrize the operator, and why this is important for obtaining a well-behaved spectral decomposition.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The eigenvalue problem is $\frac{1}{2}\phi''(x) = -\lambda\,\phi(x)$ with $\phi(0) = \phi(\pi) = 0$.
 
@@ -344,6 +310,11 @@ For a non-self-adjoint operator $\mathcal{L} = \mu\partial_x + \frac{1}{2}\sigma
 
     since both $\sin((m-n)\pi)/(m-n)$ and $\sin((m+n)\pi)/(m+n)$ vanish for integer $m \neq n$. For $m = n$, we already computed $\int_0^{\pi}\phi_n^2\,dx = 1$. Therefore $\int_0^{\pi}\phi_m\,\phi_n\,dx = \delta_{mn}$.
 
+---
+
+**Exercise 2.**
+Using the spectral decomposition, write the Green's function for the heat equation on $[0, L]$ with Dirichlet conditions as $G(t,x;0,y) = \sum_{n=1}^{\infty}e^{-\lambda_n t}\phi_n(x)\phi_n(y)$. For $L = 1$, compute the first three terms and discuss how quickly the series converges for large $t$.
+
 ??? success "Solution to Exercise 2"
     For $L = 1$ with Dirichlet conditions, the eigenvalues are $\lambda_n = n^2\pi^2/2$ and the normalized eigenfunctions are $\phi_n(x) = \sqrt{2}\sin(n\pi x)$. The Green's function is
 
@@ -358,6 +329,11 @@ For a non-self-adjoint operator $\mathcal{L} = \mu\partial_x + \frac{1}{2}\sigma
     - $n = 3$: $2\,e^{-9\pi^2 t/2}\sin(3\pi x)\sin(3\pi y)$, with decay rate $9\pi^2/2 \approx 44.41$
 
     **Convergence for large $t$**: The ratio of the $n$-th term to the first term is $e^{-(n^2-1)\pi^2 t/2}$. For example, at $t = 1$, the $n = 2$ term is smaller than the $n = 1$ term by a factor of $e^{-3\pi^2/2} \approx e^{-14.8} \approx 3.7 \times 10^{-7}$, and the $n = 3$ term by $e^{-4\cdot\pi^2} \approx 5.2 \times 10^{-18}$. The series converges extremely rapidly for $t \geq 1$, and a single term suffices to many decimal places.
+
+---
+
+**Exercise 3.**
+Explain why the smallest eigenvalue $\lambda_1$ determines the long-time decay rate of the Green's function. In a double-barrier option context, relate $\lambda_1$ to the rate at which the option price decays toward zero as maturity $T \to \infty$.
 
 ??? success "Solution to Exercise 3"
     The spectral expansion $G(t, x; 0, y) = \sum_{n=1}^{\infty} e^{-\lambda_n t}\phi_n(x)\phi_n(y)$ shows that each mode decays as $e^{-\lambda_n t}$, with $0 < \lambda_1 < \lambda_2 < \cdots$. For large $t$, the exponentials with larger $\lambda_n$ are negligible, and
@@ -375,6 +351,11 @@ For a non-self-adjoint operator $\mathcal{L} = \mu\partial_x + \frac{1}{2}\sigma
     $$
 
     where $\lambda_1 = \pi^2/(2L^2)$ with $L = \log(B_u/B_l)$, and $r$ is the discount rate. The principal eigenvalue $\lambda_1$ represents the rate at which the surviving probability leaks out through the barriers. As $T \to \infty$, essentially all paths have hit a barrier and been knocked out, so the option price decays to zero at rate $\lambda_1 + r$. A narrower barrier corridor (smaller $L$) gives a larger $\lambda_1$ and faster decay.
+
+---
+
+**Exercise 4.**
+For the free domain $\mathbb{R}$, the eigenvalue problem has a continuous spectrum rather than a discrete one. The Fourier transform replaces the eigenfunction expansion: $G(t,x;0,y) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{i\xi(x-y)}e^{-\xi^2 t/2}\,d\xi$. Verify this gives the Gaussian kernel by evaluating the integral.
 
 ??? success "Solution to Exercise 4"
     On the free domain $\mathbb{R}$, the eigenvalue problem $\frac{1}{2}\phi'' = -\lambda\,\phi$ has no boundary conditions to impose, so all values $\lambda = \xi^2/2$ for $\xi \in \mathbb{R}$ are admissible. The "eigenfunctions" are $e^{i\xi x}$, which are not square-integrable (they don't belong to $L^2(\mathbb{R})$), but they form a complete set via the Fourier transform. The spectral expansion becomes an integral:
@@ -396,6 +377,11 @@ For a non-self-adjoint operator $\mathcal{L} = \mu\partial_x + \frac{1}{2}\sigma
     $$
 
     This is the standard Gaussian heat kernel, confirming the consistency of the continuous spectral representation with the known free-space Green's function.
+
+---
+
+**Exercise 5.**
+Consider the Sturm-Liouville problem $-\frac{1}{2}\phi'' = \lambda\phi$ on $[0, 1]$ with Neumann conditions $\phi'(0) = \phi'(1) = 0$. Find the eigenfunctions and eigenvalues. Why does $\lambda_0 = 0$ appear, and what does it mean for the long-time behavior of the Green's function?
 
 ??? success "Solution to Exercise 5"
     The Sturm-Liouville problem is $-\frac{1}{2}\phi'' = \lambda\phi$ on $[0, 1]$ with $\phi'(0) = \phi'(1) = 0$.
@@ -420,6 +406,11 @@ For a non-self-adjoint operator $\mathcal{L} = \mu\partial_x + \frac{1}{2}\sigma
 
     **Long-time behavior**: The Green's function is $G(t, x; 0, y) = 1 + 2\sum_{n=1}^{\infty} e^{-n^2\pi^2 t/2}\cos(n\pi x)\cos(n\pi y)$. As $t \to \infty$, all terms with $n \geq 1$ decay to zero, leaving $G \to 1$ (or $1/L$ on $[0, L]$). This means the distribution converges to the uniform distribution -- the system reaches thermal equilibrium. Total probability is conserved because the $\lambda_0 = 0$ mode does not decay.
 
+---
+
+**Exercise 6.**
+A barrier option on $[0, L]$ has its price given by the spectral expansion. Explain why truncating the series after $N$ terms gives exponentially good approximation for large $T - t$, but poor approximation near maturity. What alternative method is better for short maturities?
+
 ??? success "Solution to Exercise 6"
     The barrier option price on $[0, L]$ has the spectral expansion
 
@@ -434,6 +425,11 @@ For a non-self-adjoint operator $\mathcal{L} = \mu\partial_x + \frac{1}{2}\sigma
     **Near maturity ($T - t$ small)**: When $T - t \to 0$, $e^{-\lambda_n(T-t)} \to 1$ for all $n$, so all modes contribute equally. The series converges slowly because the initial condition $\delta(x - y)$ (or the payoff function) has significant high-frequency content. Many terms are needed to resolve the sharp features of the payoff near maturity.
 
     **Alternative for short maturities**: The **method of images** is much more efficient for short times. The image series converges rapidly because the Gaussian kernels from distant images have negligible overlap with the domain when $t$ is small (the process hasn't had time to reach the boundary). Typically, only 1-2 image pairs suffice for short maturities, whereas the spectral series may need hundreds of terms.
+
+---
+
+**Exercise 7.**
+For a non-self-adjoint operator $\mathcal{L} = \mu\partial_x + \frac{1}{2}\sigma^2\partial_{xx}$ with $\mu \neq 0$, the eigenfunctions are no longer orthogonal in the standard $L^2$ inner product. Explain how a change of variables (the "speed measure" or Liouville transformation) can symmetrize the operator, and why this is important for obtaining a well-behaved spectral decomposition.
 
 ??? success "Solution to Exercise 7"
     The operator $\mathcal{L} = \mu\partial_x + \frac{1}{2}\sigma^2\partial_{xx}$ is not self-adjoint in the standard $L^2$ inner product because $\langle \mathcal{L}u, v \rangle \neq \langle u, \mathcal{L}v \rangle$ when $\mu \neq 0$. The eigenfunctions are not orthogonal in $L^2$, complicating the spectral expansion.

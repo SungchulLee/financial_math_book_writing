@@ -208,26 +208,283 @@ The trinomial tree for the Black-Karasinski model operates in log-rate space, wh
 
 **Exercise 1.** Given $\sigma = 0.15$ and $\Delta t = 0.02$ year, compute the log-rate spacing $\Delta x = \sigma\sqrt{3\Delta t}$. If $a = 0.08$, compute $j_{\max} = \lceil 0.184/(a\Delta t) \rceil$. How many total nodes exist at a single time step, and what are the minimum and maximum short rates $r_{\min} = e^{-j_{\max}\Delta x}$ and $r_{\max} = e^{j_{\max}\Delta x}$?
 
+??? success "Solution to Exercise 1"
+    With $\sigma = 0.15$ and $\Delta t = 0.02$:
+
+    **Log-rate spacing**:
+
+    $$
+    \Delta x = \sigma\sqrt{3\Delta t} = 0.15\sqrt{3 \times 0.02} = 0.15\sqrt{0.06} = 0.15 \times 0.24495 = 0.03674
+    $$
+
+    **Maximum node index** with $a = 0.08$:
+
+    $$
+    j_{\max} = \left\lceil\frac{0.184}{a\,\Delta t}\right\rceil = \left\lceil\frac{0.184}{0.08 \times 0.02}\right\rceil = \left\lceil\frac{0.184}{0.0016}\right\rceil = \lceil 115 \rceil = 115
+    $$
+
+    **Total nodes at a single time step**: $2j_{\max} + 1 = 2 \times 115 + 1 = 231$ nodes.
+
+    **Rate range**: The log-rate at node $j$ is $x_j = j \cdot \Delta x$, so the short rate is $r_j = e^{j \cdot \Delta x}$:
+
+    $$
+    r_{\min} = e^{-j_{\max} \cdot \Delta x} = e^{-115 \times 0.03674} = e^{-4.225} = 0.01462 \approx 1.46\%
+    $$
+
+    $$
+    r_{\max} = e^{+j_{\max} \cdot \Delta x} = e^{+4.225} = 68.37 \approx 6{,}837\%
+    $$
+
+    The tree covers an extremely wide range of rates, from about 1.5% to nearly 6,800%, ensuring that even extreme tail events are captured. In practice, most of the probability mass is concentrated in a much narrower range near the central nodes.
+
 ---
 
 **Exercise 2.** At a node with $j = 0$ (central node), show that the standard branching probabilities simplify to $p_u = \frac{1}{6} + \frac{\theta(t_k)^2\Delta t^2}{2\Delta x^2} + \frac{\theta(t_k)\Delta t}{2\Delta x}$, $p_m = \frac{2}{3} - \frac{\theta(t_k)^2\Delta t^2}{\Delta x^2}$, and $p_d = \frac{1}{6} + \frac{\theta(t_k)^2\Delta t^2}{2\Delta x^2} - \frac{\theta(t_k)\Delta t}{2\Delta x}$. For $\theta(t_k) = -0.30$, $\Delta t = 0.01$, $\Delta x = 0.03464$, verify these are all positive.
+
+??? success "Solution to Exercise 2"
+    At the central node $j = 0$, the conditional drift simplifies because $x_j = 0 \cdot \Delta x = 0$:
+
+    $$
+    \mu_0 = \theta(t_k) - a \cdot 0 \cdot \Delta x = \theta(t_k)
+    $$
+
+    Substituting into the standard branching formulas:
+
+    $$
+    p_u = \frac{1}{6} + \frac{(\theta(t_k)\Delta t)^2}{2\Delta x^2} + \frac{\theta(t_k)\Delta t}{2\Delta x}
+    $$
+
+    $$
+    p_m = \frac{2}{3} - \frac{(\theta(t_k)\Delta t)^2}{\Delta x^2}
+    $$
+
+    $$
+    p_d = \frac{1}{6} + \frac{(\theta(t_k)\Delta t)^2}{2\Delta x^2} - \frac{\theta(t_k)\Delta t}{2\Delta x}
+    $$
+
+    **Numerical verification** with $\theta(t_k) = -0.30$, $\Delta t = 0.01$, $\Delta x = 0.03464$:
+
+    $$
+    \theta \Delta t = -0.003, \qquad (\theta \Delta t)^2 = 9 \times 10^{-6}
+    $$
+
+    $$
+    \frac{(\theta \Delta t)^2}{2\Delta x^2} = \frac{9 \times 10^{-6}}{2 \times 0.001200} = \frac{9 \times 10^{-6}}{0.002400} = 0.003750
+    $$
+
+    $$
+    \frac{(\theta \Delta t)^2}{\Delta x^2} = 0.007500
+    $$
+
+    $$
+    \frac{\theta \Delta t}{2\Delta x} = \frac{-0.003}{0.06928} = -0.04330
+    $$
+
+    Computing:
+
+    $$
+    p_u = 0.16667 + 0.003750 + (-0.04330) = 0.12712
+    $$
+
+    $$
+    p_m = 0.66667 - 0.007500 = 0.65917
+    $$
+
+    $$
+    p_d = 0.16667 + 0.003750 + 0.04330 = 0.21372
+    $$
+
+    **Verification**: $p_u + p_m + p_d = 0.12712 + 0.65917 + 0.21372 = 1.00001 \approx 1$ (rounding). All probabilities are positive: $p_u = 0.127 > 0$, $p_m = 0.659 > 0$, $p_d = 0.214 > 0$.
 
 ---
 
 **Exercise 3.** Derive the three equations that determine the branching probabilities $p_u$, $p_m$, $p_d$ for standard branching. Specifically, let the successor nodes be at $x_j + \Delta x$, $x_j$, and $x_j - \Delta x$. Write the mean-matching equation, the variance-matching equation, and the probability-summing equation. Solve the $3 \times 3$ system to obtain the formulas given in the text.
 
+??? success "Solution to Exercise 3"
+    The three matching equations for standard branching with successor nodes at $x_j + \Delta x$, $x_j$, $x_j - \Delta x$ are:
+
+    **Mean-matching**: The expected displacement must equal the drift times $\Delta t$:
+
+    $$
+    p_u(\Delta x) + p_m(0) + p_d(-\Delta x) = \mu_j \Delta t
+    $$
+
+    $$
+    p_u - p_d = \frac{\mu_j \Delta t}{\Delta x} \tag{1}
+    $$
+
+    **Variance-matching**: The second moment must equal $\sigma^2 \Delta t + (\mu_j \Delta t)^2$ (variance plus squared mean):
+
+    $$
+    p_u(\Delta x)^2 + p_m(0)^2 + p_d(\Delta x)^2 = \sigma^2 \Delta t + (\mu_j \Delta t)^2
+    $$
+
+    $$
+    (p_u + p_d)\Delta x^2 = \sigma^2 \Delta t + (\mu_j \Delta t)^2 \tag{2}
+    $$
+
+    **Probability sum**:
+
+    $$
+    p_u + p_m + p_d = 1 \tag{3}
+    $$
+
+    **Solving the system**: From (1), $p_u = p_d + \frac{\mu_j \Delta t}{\Delta x}$. From (2):
+
+    $$
+    p_u + p_d = \frac{\sigma^2 \Delta t + (\mu_j \Delta t)^2}{\Delta x^2}
+    $$
+
+    With $\Delta x^2 = 3\sigma^2 \Delta t$:
+
+    $$
+    p_u + p_d = \frac{\sigma^2 \Delta t + (\mu_j \Delta t)^2}{3\sigma^2 \Delta t} = \frac{1}{3} + \frac{(\mu_j \Delta t)^2}{\Delta x^2}
+    $$
+
+    Combining with $p_u - p_d = \mu_j \Delta t / \Delta x$:
+
+    $$
+    p_u = \frac{1}{2}\left[\frac{1}{3} + \frac{(\mu_j \Delta t)^2}{\Delta x^2} + \frac{\mu_j \Delta t}{\Delta x}\right] = \frac{1}{6} + \frac{(\mu_j \Delta t)^2}{2\Delta x^2} + \frac{\mu_j \Delta t}{2\Delta x}
+    $$
+
+    $$
+    p_d = \frac{1}{2}\left[\frac{1}{3} + \frac{(\mu_j \Delta t)^2}{\Delta x^2} - \frac{\mu_j \Delta t}{\Delta x}\right] = \frac{1}{6} + \frac{(\mu_j \Delta t)^2}{2\Delta x^2} - \frac{\mu_j \Delta t}{2\Delta x}
+    $$
+
+    From (3):
+
+    $$
+    p_m = 1 - p_u - p_d = 1 - \frac{1}{3} - \frac{(\mu_j \Delta t)^2}{\Delta x^2} = \frac{2}{3} - \frac{(\mu_j \Delta t)^2}{\Delta x^2}
+    $$
+
+    These match the formulas given in the text.
+
 ---
 
 **Exercise 4.** The Arrow-Debreu price $Q(k+1, j')$ is defined recursively. Suppose at time $t_1$ (one step after $t_0$) the standard branching from the root node $(t_0, 0)$ produces nodes $j' \in \{-1, 0, 1\}$ with probabilities $p_d$, $p_m$, $p_u$. With $r_0 = e^{x_0} = 0.05$ and $\Delta t = 0.5$ year, compute $Q(1, -1)$, $Q(1, 0)$, and $Q(1, 1)$, and verify that $\sum_{j'} Q(1, j') = e^{-r_0 \Delta t}$.
+
+??? success "Solution to Exercise 4"
+    At time $t_0$, the single root node has Arrow-Debreu price $Q(0, 0) = 1$ and log rate $x_0$ with $r_0 = e^{x_0} = 0.05$. Standard branching from this node produces successor nodes $j' \in \{-1, 0, 1\}$ at time $t_1$.
+
+    The forward propagation formula is
+
+    $$
+    Q(1, j') = Q(0, 0) \cdot p_{0 \to j'} \cdot e^{-r_0 \Delta t}
+    $$
+
+    The one-period discount factor is
+
+    $$
+    e^{-r_0 \Delta t} = e^{-0.05 \times 0.5} = e^{-0.025} = 0.97531
+    $$
+
+    The Arrow-Debreu prices at $t_1$ are:
+
+    $$
+    Q(1, +1) = 1 \cdot p_u \cdot 0.97531 = 0.97531\,p_u
+    $$
+
+    $$
+    Q(1, 0) = 1 \cdot p_m \cdot 0.97531 = 0.97531\,p_m
+    $$
+
+    $$
+    Q(1, -1) = 1 \cdot p_d \cdot 0.97531 = 0.97531\,p_d
+    $$
+
+    **Verification**: Summing all Arrow-Debreu prices:
+
+    $$
+    \sum_{j'} Q(1, j') = 0.97531(p_u + p_m + p_d) = 0.97531 \times 1 = 0.97531 = e^{-r_0 \Delta t}
+    $$
+
+    This confirms the identity: the sum of Arrow-Debreu prices at $t_1$ equals the one-period discount factor from the root, which is the model's one-period bond price. This must equal the market discount factor $P^{\text{mkt}}(0, t_1) = e^{-r_0 \Delta t}$ for the calibration condition to hold at the first step. (At the first step, $\theta(t_0)$ is the only unknown and is chosen to make this equality hold.)
 
 ---
 
 **Exercise 5.** Explain why the calibration of $\theta(t_k)$ is a nonlinear root-finding problem. What specifically makes the equation $\sum_j Q(k+1, j) = P^{\text{mkt}}(0, t_{k+1})$ nonlinear in $\theta(t_k)$? Would Newton's method or bisection be more robust for this problem, and why?
 
+??? success "Solution to Exercise 5"
+    The calibration equation $\sum_j Q(k+1, j) = P^{\text{mkt}}(0, t_{k+1})$ is nonlinear in $\theta(t_k)$ because the branching probabilities $p_u(j)$, $p_m(j)$, $p_d(j)$ at each node $j$ depend on the drift $\mu_j = \theta(t_k) - ax_j$, and this dependence is **quadratic** in $\theta(t_k)$:
+
+    $$
+    p_u = \frac{1}{6} + \frac{(\mu_j \Delta t)^2}{2\Delta x^2} + \frac{\mu_j \Delta t}{2\Delta x}
+    $$
+
+    The term $(\mu_j \Delta t)^2 = [(\theta_k - ax_j)\Delta t]^2$ contains $\theta_k^2$, making each probability a quadratic polynomial in $\theta_k$. When these probabilities multiply the Arrow-Debreu prices $Q(k, j)$ and the exponential discount factors $e^{-e^{x_j}\Delta t}$ (which do not depend on $\theta_k$), and the products are summed over $j$, the result is a quadratic function of $\theta_k$.
+
+    **Bisection vs. Newton**: Bisection is more robust because:
+
+    1. It requires only function evaluations (no derivatives), which are straightforward to compute.
+    2. The function is monotonically decreasing (as argued in Exercise 4 of the Python implementation section), so bisection is guaranteed to converge given valid brackets.
+    3. Newton's method requires the derivative $\partial(\sum_j Q(k+1,j))/\partial\theta_k$, which involves differentiating all branching probabilities with respect to $\theta_k$ --- analytically feasible but more complex to implement.
+    4. Newton can fail if the initial guess is poor or if the function has inflection points near the root.
+
+    In practice, Brent's method (as used in `scipy.optimize.brentq`) combines the reliability of bisection with the speed of interpolation, providing superlinear convergence while guaranteeing convergence. This is the standard choice in production implementations.
+
 ---
 
 **Exercise 6.** For a European call option on a zero-coupon bond with expiry $t_K = 1$ year, strike $K = 0.95$, on a bond maturing at $T = 2$ years, describe the two-pass backward induction procedure. In the first pass, what terminal condition is set at $T$, and how far back is the induction performed? In the second pass, what values are set at $t_K$, and how is the option payoff computed at each node?
 
+??? success "Solution to Exercise 6"
+    The European call on a ZCB requires a **two-pass backward induction**.
+
+    **First pass (bond price computation)**:
+
+    1. At time $T = 2$ years (bond maturity), set $V^{\text{bond}}(T, x_j) = 1$ for all nodes $j$.
+    2. Roll backward from $T = 2$ to $t_K = 1$ (option expiry), using
+
+        $$
+        V^{\text{bond}}(t_k, x_j) = e^{-e^{x_j}\Delta t}\left[p_u V^{\text{bond}}(t_{k+1}, j_u) + p_m V^{\text{bond}}(t_{k+1}, j_m) + p_d V^{\text{bond}}(t_{k+1}, j_d)\right]
+        $$
+
+    3. At $t_K = 1$, store $V^{\text{bond}}(t_K, x_j)$ at each node $j$. This is the bond price $P(1, 2; x_j)$ at each node.
+
+    **Second pass (option pricing)**:
+
+    1. At option expiry $t_K = 1$, compute the option payoff at each node:
+
+        $$
+        V^{\text{opt}}(t_K, x_j) = \max\!\left(V^{\text{bond}}(t_K, x_j) - K, 0\right) = \max\!\left(P(1, 2; x_j) - 0.95, 0\right)
+        $$
+
+    2. Roll backward from $t_K = 1$ to $t_0 = 0$:
+
+        $$
+        V^{\text{opt}}(t_k, x_j) = e^{-e^{x_j}\Delta t}\left[p_u V^{\text{opt}}(t_{k+1}, j_u) + p_m V^{\text{opt}}(t_{k+1}, j_m) + p_d V^{\text{opt}}(t_{k+1}, j_d)\right]
+        $$
+
+    3. Read $V^{\text{opt}}(0, x_0)$ as the European call price.
+
+    The first pass rolls backward from $T$ to $t_K$ only (not to time 0), since the bond price is needed only at the option expiry nodes. The second pass rolls backward from $t_K$ to 0, using the option payoff computed from the first-pass bond prices.
+
 ---
 
 **Exercise 7.** A Bermudan swaption allows exercise at annual dates $t_1, t_2, \ldots, t_5$ into a 5-year swap. At each exercise date, the holder compares the exercise value (swap value) with the continuation value. Write the backward induction equation that incorporates the early exercise decision. Explain why trinomial trees have an advantage over Monte Carlo for this product, and what role the node-by-node comparison plays in avoiding the need for regression-based continuation value estimation.
+
+??? success "Solution to Exercise 7"
+    At each exercise date $t_k \in \{t_1, t_2, \ldots, t_5\}$ and each node $(t_k, x_j)$, the Bermudan swaption holder decides whether to exercise. The backward induction equation is
+
+    $$
+    V(t_k, x_j) = \max\!\left(h(t_k, x_j),\; e^{-e^{x_j}\Delta t}\left[p_u V(t_{k+1}, j_u) + p_m V(t_{k+1}, j_m) + p_d V(t_{k+1}, j_d)\right]\right)
+    $$
+
+    where $h(t_k, x_j)$ is the exercise value: the value of entering into the underlying swap at node $(t_k, x_j)$. This swap value is computed by a separate backward induction of the swap's fixed and floating legs from the swap maturity back to $t_k$.
+
+    At non-exercise dates (time steps between exercise dates), the standard continuation-only formula applies:
+
+    $$
+    V(t_k, x_j) = e^{-e^{x_j}\Delta t}\left[p_u V(t_{k+1}, j_u) + p_m V(t_{k+1}, j_m) + p_d V(t_{k+1}, j_d)\right]
+    $$
+
+    **Why trees have an advantage over Monte Carlo**:
+
+    1. **Exact continuation value**: On a tree, the continuation value at each node is computed exactly (to within the tree discretization error) by backward induction. At node $(t_k, x_j)$, the discounted expected value $e^{-r_j\Delta t}[p_u V_{j_u} + p_m V_{j_m} + p_d V_{j_d}]$ uses the already-computed future option values, which are exact on the tree grid. There is no estimation error in the continuation value.
+
+    2. **No regression needed**: Monte Carlo methods for early exercise (e.g., Longstaff-Schwartz) must estimate the continuation value at each exercise date by regressing future discounted payoffs on basis functions of the current state. This regression introduces estimation error, basis function selection risk, and potential bias (the exercise boundary is only approximately optimal). Trees bypass this entirely.
+
+    3. **Node-by-node comparison**: The $\max(h, \text{continuation})$ comparison is performed independently at each node, using exact values on both sides. This produces the optimal exercise policy for the discretized tree. In Monte Carlo, the comparison is between the exact exercise value and an estimated (noisy) continuation value, leading to suboptimal exercise decisions and biased prices (the Longstaff-Schwartz estimator is biased low).
+
+    4. **Computational efficiency**: For a one-factor model like BK, the tree has $O(N)$ nodes per time step, and backward induction is $O(N^2)$ total. Monte Carlo for Bermudan exercise requires $O(M \times N)$ with additional regression cost at each exercise date, and typically requires $M \gg N$ paths for adequate precision. The tree is generally faster and more accurate for one-factor problems.
+
+    The main limitation of trees is dimensionality: for multi-factor models, trees become impractical (exponential growth in nodes), and Monte Carlo with Longstaff-Schwartz becomes necessary. But for the one-factor BK model, the trinomial tree is the natural and preferred method for Bermudan swaptions.

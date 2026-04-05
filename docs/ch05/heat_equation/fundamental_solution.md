@@ -240,40 +240,6 @@ The fundamental solution:
 **Exercise 1.**
 Verify that $G(t, x) = (2\pi t)^{-1/2}\exp(-x^2/(2t))$ satisfies $\partial_t G = \frac{1}{2}\partial_{xx}G$ by computing both sides explicitly and showing they are equal.
 
----
-
-**Exercise 2.**
-Show that $\int_{-\infty}^{\infty}G(t, x)\,dx = 1$ for all $t > 0$. Interpret this result probabilistically: it says the total probability is conserved, consistent with $G$ being the transition density of Brownian motion.
-
----
-
-**Exercise 3.**
-The convolution formula $u(t, x) = \int_{-\infty}^{\infty}G(t, x-y)\,f(y)\,dy$ gives the solution to the heat equation with initial condition $u(0, x) = f(x)$. Compute $u(t, x)$ for $f(y) = 1$ (constant initial data) and verify the result makes physical sense.
-
----
-
-**Exercise 4.**
-Show that the heat kernel satisfies the semigroup property: $\int_{-\infty}^{\infty}G(t-s, x-z)\,G(s, z-y)\,dz = G(t, x-y)$ for $0 < s < t$. (Hint: this is the convolution of two Gaussians.) What is the probabilistic interpretation?
-
----
-
-**Exercise 5.**
-Compute $\lim_{t \to 0^+}G(t, x)$ for $x \neq 0$ and $x = 0$ separately. Explain why $G(t, x) \to \delta(x)$ in the distributional sense as $t \to 0^+$, even though $G(t, 0) \to \infty$.
-
----
-
-**Exercise 6.**
-The heat kernel exhibits instantaneous smoothing: for any initial condition $f \in L^1(\mathbb{R})$, the solution $u(t, x) = \int G(t, x-y)f(y)\,dy$ is $C^{\infty}$ for $t > 0$. Explain intuitively why convolution with a Gaussian produces a smooth function, regardless of how rough $f$ is.
-
----
-
-**Exercise 7.**
-For the diffusion equation with coefficient $D$, the fundamental solution is $G_D(t, x) = (4\pi D t)^{-1/2}\exp(-x^2/(4Dt))$. Identify the relationship between $D$ and the notation used in this text (where $D = \sigma^2/2$). For a stock with $\sigma = 0.30$, compute $D$ and the standard deviation $\sqrt{2Dt}$ of the kernel after one year.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     We need to verify that $G(t,x) = (2\pi t)^{-1/2}\exp(-x^2/(2t))$ satisfies $\partial_t G = \frac{1}{2}\partial_{xx}G$.
 
@@ -309,6 +275,11 @@ For the diffusion equation with coefficient $D$, the fundamental solution is $G_
 
     This equals $\partial_t G = G\left(-\frac{1}{2t} + \frac{x^2}{2t^2}\right)$, confirming that $\partial_t G = \frac{1}{2}\partial_{xx}G$.
 
+---
+
+**Exercise 2.**
+Show that $\int_{-\infty}^{\infty}G(t, x)\,dx = 1$ for all $t > 0$. Interpret this result probabilistically: it says the total probability is conserved, consistent with $G$ being the transition density of Brownian motion.
+
 ??? success "Solution to Exercise 2"
     We compute the integral using the substitution $z = x/\sqrt{t}$, so $dx = \sqrt{t}\,dz$:
 
@@ -319,6 +290,11 @@ For the diffusion equation with coefficient $D$, the fundamental solution is $G_
     The last integral is the integral of the standard normal density over $\mathbb{R}$, which equals $1$.
 
     **Probabilistic interpretation**: Since $G(t,x)$ is the probability density function of $B_t \sim N(0,t)$, the integral $\int G(t,x)\,dx = 1$ simply states that the total probability is $1$. The particle must be somewhere at every time $t > 0$, so the density integrates to unity.
+
+---
+
+**Exercise 3.**
+The convolution formula $u(t, x) = \int_{-\infty}^{\infty}G(t, x-y)\,f(y)\,dy$ gives the solution to the heat equation with initial condition $u(0, x) = f(x)$. Compute $u(t, x)$ for $f(y) = 1$ (constant initial data) and verify the result makes physical sense.
 
 ??? success "Solution to Exercise 3"
     For constant initial data $f(y) = 1$:
@@ -336,6 +312,11 @@ For the diffusion equation with coefficient $D$, the fundamental solution is $G_
     by the normalization property of the heat kernel (Exercise 2).
 
     **Physical interpretation**: If the temperature is uniformly $1$ everywhere at time $0$, it remains uniformly $1$ for all time. There are no temperature gradients to drive diffusion, so nothing changes. This is consistent with the fact that $u = 1$ trivially satisfies $\partial_t u = 0 = \frac{1}{2}\partial_{xx}u$.
+
+---
+
+**Exercise 4.**
+Show that the heat kernel satisfies the semigroup property: $\int_{-\infty}^{\infty}G(t-s, x-z)\,G(s, z-y)\,dz = G(t, x-y)$ for $0 < s < t$. (Hint: this is the convolution of two Gaussians.) What is the probabilistic interpretation?
 
 ??? success "Solution to Exercise 4"
     We need to show that the convolution of two Gaussians yields another Gaussian:
@@ -372,6 +353,11 @@ For the diffusion equation with coefficient $D$, the fundamental solution is $G_
 
     **Probabilistic interpretation**: The semigroup property reflects the fact that Brownian increments are independent: $B_t - B_0 = (B_t - B_s) + (B_s - B_0)$ where $B_t - B_s \sim N(0, t-s)$ and $B_s \sim N(0,s)$ are independent. The sum of two independent normals is normal with variance $(t-s)+s = t$, giving $B_t \sim N(0,t)$.
 
+---
+
+**Exercise 5.**
+Compute $\lim_{t \to 0^+}G(t, x)$ for $x \neq 0$ and $x = 0$ separately. Explain why $G(t, x) \to \delta(x)$ in the distributional sense as $t \to 0^+$, even though $G(t, 0) \to \infty$.
+
 ??? success "Solution to Exercise 5"
     **For $x \neq 0$**: The exponential dominates:
 
@@ -401,6 +387,11 @@ For the diffusion equation with coefficient $D$, the fundamental solution is $G_
 
     So the mass outside any neighborhood of $0$ vanishes, while the total mass remains $1$. This is precisely the defining property of convergence to the Dirac delta in the distributional sense.
 
+---
+
+**Exercise 6.**
+The heat kernel exhibits instantaneous smoothing: for any initial condition $f \in L^1(\mathbb{R})$, the solution $u(t, x) = \int G(t, x-y)f(y)\,dy$ is $C^{\infty}$ for $t > 0$. Explain intuitively why convolution with a Gaussian produces a smooth function, regardless of how rough $f$ is.
+
 ??? success "Solution to Exercise 6"
     Convolution with a Gaussian produces a smooth function because the Gaussian kernel $G(t,\cdot)$ is itself infinitely differentiable ($C^\infty$), and derivatives can be passed under the integral:
 
@@ -413,6 +404,11 @@ For the diffusion equation with coefficient $D$, the fundamental solution is $G_
     **Intuitive explanation**: Convolution is a weighted average. The Gaussian kernel assigns smooth, bell-shaped weights centered at $x$. Even if $f$ has jumps, kinks, or other irregularities, the weighted average "averages them out." The output inherits the smoothness of the kernel, not of $f$.
 
     In physical terms, diffusion instantaneously mixes the initial data over all nearby points. After any positive time, each point's value depends on the initial data over an entire neighborhood, smoothing out any local irregularities.
+
+---
+
+**Exercise 7.**
+For the diffusion equation with coefficient $D$, the fundamental solution is $G_D(t, x) = (4\pi D t)^{-1/2}\exp(-x^2/(4Dt))$. Identify the relationship between $D$ and the notation used in this text (where $D = \sigma^2/2$). For a stock with $\sigma = 0.30$, compute $D$ and the standard deviation $\sqrt{2Dt}$ of the kernel after one year.
 
 ??? success "Solution to Exercise 7"
     The general diffusion equation $\partial_t u = D\,\partial_{xx}u$ has fundamental solution $G_D(t,x) = (4\pi D t)^{-1/2}\exp(-x^2/(4Dt))$.

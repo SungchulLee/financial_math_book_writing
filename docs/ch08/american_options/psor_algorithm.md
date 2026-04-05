@@ -257,22 +257,197 @@ The PSOR algorithm applies with $L = I + \frac{\Delta\tau}{2}A$ and $\mathbf{q} 
 
 **Exercise 1.** For the SOR iteration with $\omega = 1$ (Gauss-Seidel), write out one full sweep of the PSOR algorithm for the worked example with $L$, $\mathbf{q}$, and $\boldsymbol{\Phi}$ as given. Start from $\mathbf{u}^{(0)} = \boldsymbol{\Phi}$ and compute $\mathbf{u}^{(1)}$.
 
+??? success "Solution to Exercise 1"
+    With $\omega = 1$ (Gauss-Seidel), the PSOR update becomes:
+
+    $$
+    \tilde{u}_j^{(1)} = \frac{1}{l_{jj}}\left(q_j - \sum_{i < j} l_{ji}\,u_i^{(1)} - \sum_{i > j} l_{ji}\,u_i^{(0)}\right)
+    $$
+
+    Starting from $\mathbf{u}^{(0)} = \boldsymbol{\Phi} = (60, 20, 0)^T$ with the given $L$, $\mathbf{q}$:
+
+    **For $j = 1$:**
+
+    $$
+    \tilde{u}_1^{(1)} = \frac{1}{1.08}\left(58.0 - (-0.03)(20) - 0\right) = \frac{58.0 + 0.6}{1.08} = \frac{58.6}{1.08} \approx 54.26
+    $$
+
+    Since $54.26 < 60 = \Phi_1$, project: $u_1^{(1)} = 60$.
+
+    **For $j = 2$:**
+
+    $$
+    \tilde{u}_2^{(1)} = \frac{1}{1.12}\left(18.0 - (-0.05)(60) - (-0.06)(0)\right) = \frac{18.0 + 3.0}{1.12} = \frac{21.0}{1.12} \approx 18.75
+    $$
+
+    Since $18.75 < 20 = \Phi_2$, project: $u_2^{(1)} = 20$.
+
+    **For $j = 3$:**
+
+    $$
+    \tilde{u}_3^{(1)} = \frac{1}{1.15}\left(2.0 - (-0.07)(20)\right) = \frac{2.0 + 1.4}{1.15} = \frac{3.4}{1.15} \approx 2.96
+    $$
+
+    Since $2.96 > 0 = \Phi_3$, no projection needed: $u_3^{(1)} = 2.96$.
+
+    After one Gauss-Seidel sweep: $\mathbf{u}^{(1)} = (60, 20, 2.96)^T$.
+
+    Note: Compared with the $\omega = 1.2$ case in the text (which gave $u_3^{(1)} = 3.55$), the Gauss-Seidel result $u_3^{(1)} = 2.96$ is closer to the initial guess $u_3^{(0)} = 0$. The over-relaxation accelerates convergence by taking a larger step.
+
 ---
 
 **Exercise 2.** The optimal relaxation parameter satisfies $\omega^* = 2/(1 + \sqrt{1 - \rho(G_1)^2})$. If the spectral radius of the Gauss-Seidel iteration matrix is $\rho(G_1) = 0.98$, compute $\omega^*$. How many iterations per time step would you expect with Gauss-Seidel versus optimal SOR?
+
+??? success "Solution to Exercise 2"
+    Given $\rho(G_1) = 0.98$, the optimal relaxation parameter is:
+
+    $$
+    \omega^* = \frac{2}{1 + \sqrt{1 - \rho(G_1)^2}} = \frac{2}{1 + \sqrt{1 - 0.98^2}} = \frac{2}{1 + \sqrt{1 - 0.9604}} = \frac{2}{1 + \sqrt{0.0396}}
+    $$
+
+    $$
+    \sqrt{0.0396} \approx 0.199
+    $$
+
+    $$
+    \omega^* = \frac{2}{1.199} \approx 1.668
+    $$
+
+    **Iteration count estimates:**
+
+    For Gauss-Seidel ($\omega = 1$), the error after $k$ iterations decays as $\rho(G_1)^k = 0.98^k$. To reduce the error by a factor of $10^{-6}$:
+
+    $$
+    0.98^k = 10^{-6} \implies k = \frac{-6\ln 10}{\ln 0.98} \approx \frac{-13.82}{-0.0202} \approx 684 \text{ iterations}
+    $$
+
+    For optimal SOR ($\omega = \omega^*$), the spectral radius is $\rho(G_{\omega^*}) = \omega^* - 1 \approx 0.668$. The same reduction requires:
+
+    $$
+    0.668^k = 10^{-6} \implies k = \frac{-6\ln 10}{\ln 0.668} \approx \frac{-13.82}{-0.404} \approx 34 \text{ iterations}
+    $$
+
+    Optimal SOR requires roughly 34 iterations compared to 684 for Gauss-Seidel --- a factor of 20 speedup. For the more typical tolerance requirements in option pricing (reduce error by $10^{-3}$), the counts would be approximately 342 for Gauss-Seidel and 17 for optimal SOR.
 
 ---
 
 **Exercise 3.** Explain why the projection step $u_j^{(k+1)} = \max(\tilde{u}_j^{(k+1)}, \Phi_j)$ ensures the complementarity condition at convergence. Specifically, show that at a converged solution, each grid point satisfies either $u_j = \Phi_j$ (exercise) or $(L\mathbf{u})_j = q_j$ (PDE satisfied), but not both with strict inequality simultaneously.
 
+??? success "Solution to Exercise 3"
+    At convergence, $\mathbf{u}^{(k+1)} = \mathbf{u}^{(k)} = \mathbf{u}^*$. The PSOR iteration gives for each $j$:
+
+    $$
+    \tilde{u}_j^* = (1 - \omega)u_j^* + \frac{\omega}{l_{jj}}\left(q_j - \sum_{i \neq j} l_{ji}u_i^*\right) = u_j^* + \frac{\omega}{l_{jj}}\left(q_j - (L\mathbf{u}^*)_j\right)
+    $$
+
+    Define the residual $r_j = q_j - (L\mathbf{u}^*)_j$. Then $\tilde{u}_j^* = u_j^* + \frac{\omega}{l_{jj}} r_j$.
+
+    The projection gives $u_j^* = \max(\tilde{u}_j^*, \Phi_j)$, so at convergence:
+
+    $$
+    u_j^* = \max\!\left(u_j^* + \frac{\omega}{l_{jj}} r_j,\; \Phi_j\right)
+    $$
+
+    **Case 1: $u_j^* > \Phi_j$ (continuation).** Since $u_j^*$ is strictly above $\Phi_j$, for the max to return $u_j^*$ we need $u_j^* + \frac{\omega}{l_{jj}} r_j = u_j^*$, which gives $r_j = 0$, i.e., $(L\mathbf{u}^*)_j = q_j$. The PDE is satisfied exactly.
+
+    **Case 2: $u_j^* = \Phi_j$ (exercise).** The max condition gives $\Phi_j = \max(\Phi_j + \frac{\omega}{l_{jj}} r_j, \Phi_j)$, which requires $\frac{\omega}{l_{jj}} r_j \leq 0$. Since $\omega > 0$ and $l_{jj} > 0$, this means $r_j \leq 0$, i.e., $(L\mathbf{u}^*)_j \geq q_j$. The PDE residual is non-negative.
+
+    **Complementarity:** In Case 1, $(L\mathbf{u}^* - \mathbf{q})_j = 0$ and $u_j^* - \Phi_j > 0$, so the product is $0$. In Case 2, $u_j^* - \Phi_j = 0$, so the product is $0$ regardless. Thus $(L\mathbf{u}^* - \mathbf{q})_j (u_j^* - \Phi_j) = 0$ for all $j$.
+
+    The two cases are mutually exclusive: if $u_j^* > \Phi_j$ then $(L\mathbf{u}^*)_j = q_j$ exactly; if $u_j^* = \Phi_j$ then $(L\mathbf{u}^*)_j \geq q_j$. Both inequalities cannot be strict simultaneously, which is the complementarity condition.
+
 ---
 
 **Exercise 4.** The stopping criterion $\|\mathbf{u}^{(k+1)} - \mathbf{u}^{(k)}\|_\infty < \varepsilon$ measures the change between iterations. An alternative is the LCP residual $\max_j \min((L\mathbf{u} - \mathbf{q})_j, u_j - \Phi_j)$. Explain why the residual criterion is more reliable and give an example where the change criterion might stop too early.
+
+??? success "Solution to Exercise 4"
+    **Why the residual criterion is more reliable:**
+
+    The change criterion $\|\mathbf{u}^{(k+1)} - \mathbf{u}^{(k)}\|_\infty < \varepsilon$ measures how much the iterate moves, but a small change does not guarantee the LCP conditions are satisfied. The LCP residual directly measures violation of the complementarity conditions.
+
+    The residual criterion checks:
+
+    $$
+    \max_j \min\!\left((L\mathbf{u} - \mathbf{q})_j,\; u_j - \Phi_j\right) < \varepsilon
+    $$
+
+    This is zero if and only if the LCP is satisfied: for each $j$, at least one of the two quantities is non-positive (i.e., near zero or satisfying its inequality).
+
+    **Example where the change criterion stops too early:**
+
+    Suppose the relaxation parameter $\omega$ is poorly chosen (e.g., close to 2), causing the iterates to oscillate slowly. The differences $\|\mathbf{u}^{(k+1)} - \mathbf{u}^{(k)}\|$ might become small while the iterates are still far from the true solution --- the iteration is "stalling" rather than converging.
+
+    Concretely, consider a grid point near the free boundary where $u_j^{(k)}$ alternates between $\Phi_j + \delta$ and $\Phi_j + \delta + \epsilon$ for small $\delta > 0$. The change $\epsilon$ may be below the tolerance, but the residual $(L\mathbf{u} - \mathbf{q})_j$ could still be of order $\delta$, which is much larger. The change criterion would declare convergence prematurely, while the residual criterion would correctly identify that the solution is not yet accurate.
+
+    Another scenario: if the initial guess is close to the solution in the continuation region but incorrectly classifies a point near the boundary, the change criterion may be satisfied after one iteration (small change), but the LCP residual at the misclassified point would be large.
 
 ---
 
 **Exercise 5.** For the Crank-Nicolson variant of PSOR, the matrix becomes $L = I + \frac{\Delta\tau}{2}A$ and $\mathbf{q} = (I - \frac{\Delta\tau}{2}A)\mathbf{u}^n$. Verify that $L$ is still an M-matrix, ensuring PSOR convergence. What care must be taken with the right-hand side computation?
 
+??? success "Solution to Exercise 5"
+    For the Crank-Nicolson variant, $L = I + \frac{\Delta\tau}{2}A$ and $\mathbf{q} = (I - \frac{\Delta\tau}{2}A)\mathbf{u}^n$.
+
+    **M-matrix verification for $L = I + \frac{\Delta\tau}{2}A$:**
+
+    The matrix $A$ arising from the Black-Scholes discretization has:
+
+    - Positive diagonal entries $a_{jj} > 0$
+    - Non-positive off-diagonal entries $a_{jk} \leq 0$ for $j \neq k$ (on a sufficiently fine grid)
+
+    For $L = I + \frac{\Delta\tau}{2}A$:
+
+    - **Positive diagonal:** $L_{jj} = 1 + \frac{\Delta\tau}{2}a_{jj} > 1 > 0$ since $a_{jj} > 0$.
+    - **Non-positive off-diagonal:** $L_{jk} = \frac{\Delta\tau}{2}a_{jk} \leq 0$ for $j \neq k$.
+    - **Diagonal dominance:** The row sum is $L_{jj} + \sum_{k \neq j} L_{jk} = 1 + \frac{\Delta\tau}{2}(a_{jj} + \sum_{k \neq j} a_{jk}) = 1 + \frac{\Delta\tau}{2}r > 0$
+
+    (where $r$ is the risk-free rate, since the row sums of $A$ equal $r$ for the Black-Scholes discretization). Therefore $L$ is strictly diagonally dominant with positive diagonal and non-positive off-diagonal, so $L$ is an M-matrix. PSOR convergence is guaranteed for $\omega \in (0, 2)$.
+
+    **Care with the right-hand side:**
+
+    The matrix $I - \frac{\Delta\tau}{2}A$ appearing in $\mathbf{q}$ is *not* an M-matrix (it has positive off-diagonal entries). This means $\mathbf{q}$ can have components that are larger or smaller than $\mathbf{u}^n$ depending on the local solution curvature. Near the free boundary, this can produce $q_j$ values that cause the unconstrained solution to dip below the payoff, requiring the projection step.
+
+    Additionally, on coarse grids or with large $\Delta\tau$, the matrix $I - \frac{\Delta\tau}{2}A$ may not be non-negative, leading to spurious oscillations in $\mathbf{q}$ near the strike. Rannacher time-stepping (using a few implicit Euler steps at the start) mitigates this by ensuring smooth initial data before switching to Crank-Nicolson.
+
 ---
 
 **Exercise 6.** Compare the computational cost of PSOR with $K_{\text{iter}} = 10$ iterations per time step against a single tridiagonal solve (as in the penalty method). For $m = 200$ interior points and $N = 100$ time steps, compute the total operation count for each method. Under what conditions does the penalty method become more efficient?
+
+??? success "Solution to Exercise 6"
+    **PSOR cost:**
+
+    Each PSOR sweep through $m$ grid points costs approximately $3m$ operations (one multiply-add for the lower sum, one for the upper sum, and the update/projection). With $K_{\text{iter}} = 10$ iterations per time step:
+
+    $$
+    \text{PSOR cost per time step} = 10 \times 3m = 30m
+    $$
+
+    $$
+    \text{PSOR total cost} = 30m \times N = 30 \times 200 \times 100 = 600{,}000 \text{ operations}
+    $$
+
+    **Penalty method cost:**
+
+    The penalty method uses Newton iteration, each requiring one tridiagonal solve. A tridiagonal solve on $m$ unknowns costs approximately $5m$ operations (Thomas algorithm: forward elimination and back substitution). With 3 Newton iterations per time step (a typical count):
+
+    $$
+    \text{Penalty cost per time step} = 3 \times 5m = 15m
+    $$
+
+    $$
+    \text{Penalty total cost} = 15m \times N = 15 \times 200 \times 100 = 300{,}000 \text{ operations}
+    $$
+
+    **Comparison:** The penalty method is about 2x faster than PSOR for these parameters ($300{,}000$ vs $600{,}000$).
+
+    **When does the penalty method become more efficient?**
+
+    The penalty method is more efficient when $N_{\text{Newton}} \times 5m < K_{\text{iter}} \times 3m$, i.e., when $5N_{\text{Newton}} < 3K_{\text{iter}}$, or $K_{\text{iter}} > \frac{5}{3}N_{\text{Newton}}$.
+
+    With $N_{\text{Newton}} = 3$: the penalty method is faster when $K_{\text{iter}} > 5$ PSOR iterations.
+
+    Since PSOR typically needs 5-20 iterations, the penalty method is usually competitive or faster. The penalty method becomes especially advantageous when:
+
+    - The grid is fine (large $m$), causing PSOR to need more iterations.
+    - The relaxation parameter $\omega$ is not well-tuned, increasing $K_{\text{iter}}$.
+    - Higher dimensions are used, where PSOR is less natural but the penalty term adds negligible cost to existing PDE solvers.

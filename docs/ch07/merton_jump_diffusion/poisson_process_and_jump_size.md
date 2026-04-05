@@ -314,22 +314,214 @@ The Poisson process provides the counting mechanism for jump arrivals, with inte
 
 **Exercise 1.** Prove that the inter-arrival times of a Poisson process with intensity $\lambda$ are exponentially distributed with parameter $\lambda$. Use the definition $\tau_1 = \inf\{t > 0 : N_t \geq 1\}$ and the fact that $\mathbb{P}(N_t = 0) = e^{-\lambda t}$ to derive $\mathbb{P}(\tau_1 > t) = e^{-\lambda t}$.
 
+??? success "Solution to Exercise 1"
+    The first jump time is $\tau_1 = \inf\{t > 0 : N_t \geq 1\}$. We need to show $\mathbb{P}(\tau_1 > t) = e^{-\lambda t}$.
+
+    The event $\{\tau_1 > t\}$ is the same as $\{N_t = 0\}$ (no jumps have occurred by time $t$). Using the Poisson distribution:
+
+    $$
+    \mathbb{P}(\tau_1 > t) = \mathbb{P}(N_t = 0) = \frac{(\lambda t)^0}{0!}e^{-\lambda t} = e^{-\lambda t}
+    $$
+
+    This is the survival function of the exponential distribution with parameter $\lambda$. The CDF is:
+
+    $$
+    \mathbb{P}(\tau_1 \leq t) = 1 - e^{-\lambda t}, \quad t \geq 0
+    $$
+
+    Differentiating gives the density:
+
+    $$
+    f_{\tau_1}(t) = \lambda e^{-\lambda t}, \quad t \geq 0
+    $$
+
+    which is exactly the $\text{Exp}(\lambda)$ density. The mean waiting time is $\mathbb{E}[\tau_1] = 1/\lambda$.
+
+    For subsequent inter-arrival times $\tau_i = T_i - T_{i-1}$, the independent and stationary increments of the Poisson process imply that $N_{T_{i-1}+s} - N_{T_{i-1}}$ is independent of $\mathcal{F}_{T_{i-1}}$ and has the same Poisson distribution as $N_s$. Applying the same argument shows $\tau_i \sim \text{Exp}(\lambda)$, and the $\{\tau_i\}$ are mutually independent.
+
 ---
+
 
 **Exercise 2.** Derive the moment generating function of the compound Poisson process $J_t = \sum_{i=1}^{N_t} Z_i$ by conditioning on $N_t$. Starting from $M_{J_t}(u) = \mathbb{E}[e^{uJ_t}] = \sum_{n=0}^{\infty} \mathbb{E}[e^{u\sum Z_i}] \mathbb{P}(N_t = n)$, show that $M_{J_t}(u) = \exp(\lambda t(M_Z(u) - 1))$.
 
+??? success "Solution to Exercise 2"
+    Starting from the definition:
+
+    $$
+    M_{J_t}(u) = \mathbb{E}[e^{uJ_t}] = \mathbb{E}\!\left[\exp\!\left(u\sum_{i=1}^{N_t}Z_i\right)\right]
+    $$
+
+    Conditioning on $N_t$:
+
+    $$
+    = \sum_{n=0}^{\infty}\mathbb{E}\!\left[\exp\!\left(u\sum_{i=1}^{n}Z_i\right)\right]\mathbb{P}(N_t = n)
+    $$
+
+    Since $Z_1, Z_2, \ldots$ are i.i.d. and independent of $N_t$:
+
+    $$
+    \mathbb{E}\!\left[\exp\!\left(u\sum_{i=1}^{n}Z_i\right)\right] = \prod_{i=1}^{n}\mathbb{E}[e^{uZ_i}] = [M_Z(u)]^n
+    $$
+
+    with the convention that the empty product ($n = 0$) equals 1. Substituting:
+
+    $$
+    M_{J_t}(u) = \sum_{n=0}^{\infty}[M_Z(u)]^n \cdot \frac{(\lambda t)^n}{n!}e^{-\lambda t}
+    $$
+
+    $$
+    = e^{-\lambda t}\sum_{n=0}^{\infty}\frac{[\lambda t \cdot M_Z(u)]^n}{n!}
+    $$
+
+    The sum is the Taylor series of the exponential function:
+
+    $$
+    = e^{-\lambda t} \cdot e^{\lambda t \, M_Z(u)} = \exp\!\bigl(\lambda t(M_Z(u) - 1)\bigr)
+    $$
+
+    This is the MGF of the compound Poisson process. The key step is recognizing that conditioning on $N_t$ reduces the problem to the product of i.i.d. MGFs, and the Poisson sum of powers of $M_Z(u)$ telescopes via the exponential series.
+
 ---
+
 
 **Exercise 3.** For the log-normal jump multiplier $Y$ with $\ln Y \sim N(\mu_J, \sigma_J^2)$, compute $\mathbb{E}[Y]$, $\mathbb{E}[Y^2]$, and $\text{Var}(Y)$ in terms of $\mu_J$ and $\sigma_J$. Verify your formulas numerically for $\mu_J = -0.10$ and $\sigma_J = 0.30$.
 
+??? success "Solution to Exercise 3"
+    Since $\ln Y \sim N(\mu_J, \sigma_J^2)$, we use the log-normal moment formula: if $X \sim N(\mu, \sigma^2)$, then $\mathbb{E}[e^{kX}] = e^{k\mu + k^2\sigma^2/2}$.
+
+    **First moment:**
+
+    $$
+    \mathbb{E}[Y] = \mathbb{E}[e^{\ln Y}] = e^{\mu_J + \sigma_J^2/2}
+    $$
+
+    **Second moment:**
+
+    $$
+    \mathbb{E}[Y^2] = \mathbb{E}[e^{2\ln Y}] = e^{2\mu_J + 2\sigma_J^2}
+    $$
+
+    **Variance:**
+
+    $$
+    \operatorname{Var}(Y) = \mathbb{E}[Y^2] - (\mathbb{E}[Y])^2 = e^{2\mu_J + 2\sigma_J^2} - e^{2\mu_J + \sigma_J^2} = e^{2\mu_J + \sigma_J^2}(e^{\sigma_J^2} - 1)
+    $$
+
+    **Numerical verification** with $\mu_J = -0.10$ and $\sigma_J = 0.30$:
+
+    $$
+    \mathbb{E}[Y] = e^{-0.10 + 0.045} = e^{-0.055} \approx 0.9465
+    $$
+
+    $$
+    \mathbb{E}[Y^2] = e^{-0.20 + 0.18} = e^{-0.02} \approx 0.9802
+    $$
+
+    $$
+    \operatorname{Var}(Y) = e^{-0.20 + 0.09}(e^{0.09} - 1) = e^{-0.11}(1.09417 - 1) = 0.8958 \times 0.09417 \approx 0.08436
+    $$
+
+    Alternatively, verifying via $\operatorname{Var}(Y) = \mathbb{E}[Y^2] - (\mathbb{E}[Y])^2 = 0.9802 - 0.9465^2 = 0.9802 - 0.8959 = 0.0843$, which is consistent.
+
 ---
+
 
 **Exercise 4.** Using the variance decomposition $\text{Var}(J_t) = \mathbb{E}[N_t]\text{Var}(Z_1) + \text{Var}(N_t)(\mathbb{E}[Z_1])^2$, derive the jump variance $\text{Var}(\mathcal{J}_t) = \lambda t(\sigma_J^2 + \mu_J^2)$ where $\mathcal{J}_t = \sum_{i=1}^{N_t} \ln Y_i$. Identify the two sources of randomness contributing to this variance.
 
+??? success "Solution to Exercise 4"
+    Let $\mathcal{J}_t = \sum_{i=1}^{N_t}\ln Y_i$ where $\ln Y_i \sim N(\mu_J, \sigma_J^2)$. We apply the law of total variance:
+
+    $$
+    \operatorname{Var}(\mathcal{J}_t) = \mathbb{E}[\operatorname{Var}(\mathcal{J}_t \mid N_t)] + \operatorname{Var}(\mathbb{E}[\mathcal{J}_t \mid N_t])
+    $$
+
+    **First term (within-jump variance).** Given $N_t = n$, $\mathcal{J}_t = \sum_{i=1}^n \ln Y_i$ is a sum of $n$ independent $N(\mu_J, \sigma_J^2)$ variables, so $\operatorname{Var}(\mathcal{J}_t \mid N_t = n) = n\sigma_J^2$. Therefore:
+
+    $$
+    \mathbb{E}[\operatorname{Var}(\mathcal{J}_t \mid N_t)] = \mathbb{E}[N_t \sigma_J^2] = \lambda t \, \sigma_J^2
+    $$
+
+    This represents the randomness from the **jump sizes** (even if we knew exactly how many jumps occurred, the sizes are random).
+
+    **Second term (between-jump variance).** Given $N_t = n$, $\mathbb{E}[\mathcal{J}_t \mid N_t = n] = n\mu_J$. Therefore:
+
+    $$
+    \operatorname{Var}(\mathbb{E}[\mathcal{J}_t \mid N_t]) = \operatorname{Var}(N_t \mu_J) = \mu_J^2 \operatorname{Var}(N_t) = \lambda t \, \mu_J^2
+    $$
+
+    This represents the randomness from the **number of jumps** (even if each jump had fixed size $\mu_J$, the random count $N_t$ introduces variance).
+
+    **Total:**
+
+    $$
+    \operatorname{Var}(\mathcal{J}_t) = \lambda t \, \sigma_J^2 + \lambda t \, \mu_J^2 = \lambda t(\sigma_J^2 + \mu_J^2)
+    $$
+
+    The two sources of randomness are:
+
+    1. **Jump size variability** ($\lambda t \sigma_J^2$): uncertainty in how large each jump is
+    2. **Jump count variability** ($\lambda t \mu_J^2$): uncertainty in how many jumps occur
+
 ---
+
 
 **Exercise 5.** For $\lambda = 0.5$ and $T = 1$ year, compute the probabilities $\mathbb{P}(N_T = 0)$, $\mathbb{P}(N_T = 1)$, $\mathbb{P}(N_T = 2)$, and $\mathbb{P}(N_T \geq 3)$. What fraction of simulated paths will exhibit no jumps at all? How does this affect the computational efficiency of Monte Carlo simulation?
 
+??? success "Solution to Exercise 5"
+    For $\lambda = 0.5$ and $T = 1$, $N_T \sim \text{Poisson}(0.5)$.
+
+    $$
+    \mathbb{P}(N_T = 0) = e^{-0.5} \approx 0.6065
+    $$
+
+    $$
+    \mathbb{P}(N_T = 1) = 0.5 \times e^{-0.5} \approx 0.3033
+    $$
+
+    $$
+    \mathbb{P}(N_T = 2) = \frac{0.5^2}{2} \times e^{-0.5} = 0.125 \times e^{-0.5} \approx 0.0758
+    $$
+
+    $$
+    \mathbb{P}(N_T \geq 3) = 1 - \mathbb{P}(N_T = 0) - \mathbb{P}(N_T = 1) - \mathbb{P}(N_T = 2) \approx 1 - 0.6065 - 0.3033 - 0.0758 = 0.0144
+    $$
+
+    **About 60.7% of simulated paths will have no jumps at all.** This means roughly three out of five Monte Carlo paths behave exactly like geometric Brownian motion.
+
+    **Implications for computational efficiency:**
+
+    - The majority of paths require no jump sampling, reducing the computational cost
+    - However, the paths that do contain jumps are responsible for the heavy tails and skewness, so they carry disproportionate importance for option pricing
+    - For deep OTM options, the relevant payoff events are concentrated in the jump paths. With only 39.4% of paths containing jumps, and only a fraction of those producing extreme outcomes, plain Monte Carlo may be inefficient
+    - Variance reduction techniques (importance sampling, stratified sampling by $N_T$) can improve efficiency by ensuring adequate representation of jump paths
+
 ---
 
+
 **Exercise 6.** The compensated Poisson process $\tilde{N}_t = N_t - \lambda t$ is a martingale. Verify that $\mathbb{E}[\tilde{N}_t] = 0$ and compute $\text{Var}(\tilde{N}_t)$. Explain the role of the compensated Poisson process in the stochastic calculus for jump processes, drawing an analogy with the role of Brownian motion in continuous stochastic calculus.
+
+??? success "Solution to Exercise 6"
+    **Mean.** Since $\mathbb{E}[N_t] = \lambda t$:
+
+    $$
+    \mathbb{E}[\tilde{N}_t] = \mathbb{E}[N_t - \lambda t] = \mathbb{E}[N_t] - \lambda t = \lambda t - \lambda t = 0
+    $$
+
+    **Variance.** Since $\lambda t$ is a constant:
+
+    $$
+    \operatorname{Var}(\tilde{N}_t) = \operatorname{Var}(N_t - \lambda t) = \operatorname{Var}(N_t) = \lambda t
+    $$
+
+    **Role in stochastic calculus.** The compensated Poisson process $\tilde{N}_t = N_t - \lambda t$ is the jump analogue of Brownian motion $W_t$. The key parallels are:
+
+    | Property | Brownian motion $W_t$ | Compensated Poisson $\tilde{N}_t$ |
+    |----------|----------------------|----------------------------------|
+    | Mean | $\mathbb{E}[W_t] = 0$ | $\mathbb{E}[\tilde{N}_t] = 0$ |
+    | Martingale | Yes | Yes |
+    | Independent increments | Yes | Yes |
+    | Stationary increments | Yes | Yes |
+    | Quadratic variation | $\langle W \rangle_t = t$ | $\langle \tilde{N} \rangle_t = \lambda t$ |
+    | Paths | Continuous | Piecewise constant with jumps |
+
+    Just as $dW_t$ is the fundamental building block for continuous stochastic integrals, $d\tilde{N}_t = dN_t - \lambda\,dt$ is the fundamental building block for jump integrals. Integrating a predictable process $H_t$ against $d\tilde{N}_t$ produces a martingale (under integrability conditions), analogous to the Ito integral $\int H_s\,dW_s$ being a martingale. The compensator $\lambda t$ plays the role of the "drift removal" that turns the counting process into a centered process suitable for stochastic integration.

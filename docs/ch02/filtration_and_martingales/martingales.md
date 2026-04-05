@@ -241,38 +241,6 @@ Determine whether each process is a martingale, submartingale, supermartingale, 
 
 (e) $M_t = W_t^4 - 6tW_t^2 + 3t^2$
 
-### Exercise 2: The Doob Martingale
-
-Let $X \in L^1(\mathcal{F})$ and define $M_t = \mathbb{E}[X \mid \mathcal{F}_t]$.
-
-(a) Prove that $(M_t)$ is a martingale using the tower property.
-
-(b) Show that if $X = W_T$ for some $T > 0$, then $M_t = W_{t \wedge T}$.
-
-(c) Find $M_t$ when $X = W_T^2$ for $t \le T$.
-
-### Exercise 3: Transforms of Martingales
-
-(a) Prove that if $M_t$ is a martingale and $\varphi$ is a convex function with $\mathbb{E}|\varphi(M_t)| < \infty$, then $\varphi(M_t)$ is a submartingale.
-
-(b) Deduce that $|W_t|$, $W_t^2$, and $(W_t)^+$ are all submartingales.
-
-(c) Is $\log(1 + W_t^2)$ a submartingale? Prove or disprove.
-
-### Exercise 4: Discrete Martingales
-
-Let $\xi_1, \xi_2, \ldots$ be i.i.d. with $\mathbb{P}(\xi_i = 1) = p$ and $\mathbb{P}(\xi_i = -1) = 1-p$.
-
-(a) For what value of $p$ is $S_n = \sum_{k=1}^n \xi_k$ a martingale?
-
-(b) For general $p \in (0,1)$, find a function $f$ such that $f(S_n, n)$ is a martingale.
-
-(c) Show that $M_n = \left(\frac{1-p}{p}\right)^{S_n}$ is a martingale when $p \neq 1/2$. *(Note: This also holds trivially when $p = 1/2$ since the ratio equals 1.)*
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a)** $M_t = W_t^2 - t$ is a **martingale**. This was proved in the text: $\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + (t - s)$, so $\mathbb{E}[W_t^2 - t \mid \mathcal{F}_s] = W_s^2 - s$.
 
@@ -310,6 +278,18 @@ Let $\xi_1, \xi_2, \ldots$ be i.i.d. with $\mathbb{P}(\xi_i = 1) = p$ and $\math
 
     **(e)** $M_t = W_t^4 - 6tW_t^2 + 3t^2$ is a **martingale**. This is the fourth Hermite polynomial martingale $H_4(W_t, t)$. One can verify directly by expanding $(W_s + \Delta)^4$ and computing the conditional expectation, using $\mathbb{E}[\Delta] = 0$, $\mathbb{E}[\Delta^2] = t-s$, $\mathbb{E}[\Delta^3] = 0$, $\mathbb{E}[\Delta^4] = 3(t-s)^2$.
 
+---
+
+### Exercise 2: The Doob Martingale
+
+Let $X \in L^1(\mathcal{F})$ and define $M_t = \mathbb{E}[X \mid \mathcal{F}_t]$.
+
+(a) Prove that $(M_t)$ is a martingale using the tower property.
+
+(b) Show that if $X = W_T$ for some $T > 0$, then $M_t = W_{t \wedge T}$.
+
+(c) Find $M_t$ when $X = W_T^2$ for $t \le T$.
+
 ??? success "Solution to Exercise 2"
     **(a)** For $s \le t$, by the tower property:
 
@@ -337,6 +317,16 @@ Let $\xi_1, \xi_2, \ldots$ be i.i.d. with $\mathbb{P}(\xi_i = 1) = p$ and $\math
 
     Therefore $M_t = W_t^2 + T - t$ for $t \le T$.
 
+---
+
+### Exercise 3: Transforms of Martingales
+
+(a) Prove that if $M_t$ is a martingale and $\varphi$ is a convex function with $\mathbb{E}|\varphi(M_t)| < \infty$, then $\varphi(M_t)$ is a submartingale.
+
+(b) Deduce that $|W_t|$, $W_t^2$, and $(W_t)^+$ are all submartingales.
+
+(c) Is $\log(1 + W_t^2)$ a submartingale? Prove or disprove.
+
 ??? success "Solution to Exercise 3"
     **(a)** By conditional Jensen's inequality with convex $\varphi$:
 
@@ -361,6 +351,18 @@ Let $\xi_1, \xi_2, \ldots$ be i.i.d. with $\mathbb{P}(\xi_i = 1) = p$ and $\math
     $$
 
     The drift $\frac{1 - W_t^2}{(1 + W_t^2)^2}$ changes sign, so $\log(1 + W_t^2)$ is **neither** a submartingale nor a supermartingale in general.
+
+---
+
+### Exercise 4: Discrete Martingales
+
+Let $\xi_1, \xi_2, \ldots$ be i.i.d. with $\mathbb{P}(\xi_i = 1) = p$ and $\mathbb{P}(\xi_i = -1) = 1-p$.
+
+(a) For what value of $p$ is $S_n = \sum_{k=1}^n \xi_k$ a martingale?
+
+(b) For general $p \in (0,1)$, find a function $f$ such that $f(S_n, n)$ is a martingale.
+
+(c) Show that $M_n = \left(\frac{1-p}{p}\right)^{S_n}$ is a martingale when $p \neq 1/2$. *(Note: This also holds trivially when $p = 1/2$ since the ratio equals 1.)*
 
 ??? success "Solution to Exercise 4"
     **(a)** $S_n$ is a martingale when $\mathbb{E}[\xi_i] = 0$, i.e., $p \cdot 1 + (1-p) \cdot (-1) = 2p - 1 = 0$, so $p = 1/2$.

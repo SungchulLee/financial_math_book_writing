@@ -243,22 +243,163 @@ Affine jump-diffusions extend the continuous affine framework by adding compound
 
 **Exercise 1.** For the Merton jump-diffusion model $d\log S_t = (r - \frac{1}{2}\sigma^2 - \lambda\bar{k})\,dt + \sigma\,dW_t + J_t\,dN_t$ where $J_t \sim N(\mu_J, \sigma_J^2)$ and $N_t$ is Poisson with intensity $\lambda$, identify the affine parameters and compute $F(u)$ and $R(u)$. Verify that $R(u) = 0$ (no state-dependent jumps).
 
+??? success "Solution to Exercise 1"
+    The Merton jump-diffusion has a single state variable $X_t = \log S_t$ on $\mathbb{R}$. The dynamics under the risk-neutral measure are
+
+    $$
+    d(\log S_t) = \left(r - \tfrac{1}{2}\sigma^2 - \lambda\bar{k}\right)dt + \sigma\,dW_t + J_t\,dN_t
+    $$
+
+    where $J_t \sim N(\mu_J, \sigma_J^2)$, $N_t$ is Poisson with constant intensity $\lambda$, and $\bar{k} = e^{\mu_J + \sigma_J^2/2} - 1$.
+
+    **Affine parameters.** The state is one-dimensional ($d = 1$, $m = 0$, so $X_t \in \mathbb{R}$):
+
+    - Drift: $b_0 = r - \frac{1}{2}\sigma^2 - \lambda\bar{k}$, $B = 0$ (no state-dependent drift)
+    - Diffusion: $a_0 = \sigma^2$, $\alpha_1 = 0$ (constant diffusion, no CIR-type component)
+    - Jumps: $\lambda_0 = \lambda$ (constant intensity), $\lambda_1 = 0$ (no state-dependent intensity), $\nu_0(dz) = N(\mu_J, \sigma_J^2)$
+
+    **Computing $F(u)$ and $R(u)$.** From the Riccati system:
+
+    $$
+    R(u) = B^\top u + \frac{1}{2}\alpha_1 u^2 + \lambda_1\!\left(\hat{\nu}_1(u) - 1\right) = 0 + 0 + 0 = 0
+    $$
+
+    This confirms $R(u) = 0$ --- there is no state-dependent component.
+
+    $$
+    F(u) = b_0 u + \frac{1}{2}a_0 u^2 + \lambda_0\!\left(\hat{\nu}_0(u) - 1\right)
+    $$
+
+    $$
+    = \left(r - \tfrac{1}{2}\sigma^2 - \lambda\bar{k}\right)u + \frac{1}{2}\sigma^2 u^2 + \lambda\!\left(e^{\mu_J u + \sigma_J^2 u^2/2} - 1\right)
+    $$
+
+    Since $R(u) = 0$, we have $\psi(\tau, u) = u$ for all $\tau$, and $\phi(\tau, u) = F(u)\cdot\tau$. The characteristic function is therefore
+
+    $$
+    \mathbb{E}\!\left[e^{u\log S_T}\right] = \exp\!\left(F(u)\,\tau + u\,\log S_t\right)
+    $$
+
+    which is the well-known Merton formula.
+
 ---
 
 **Exercise 2.** For the Bates model (Heston + Merton jumps in the log-price), write the extended Riccati system. Show that the jump contribution adds $\lambda(\exp(\mu_J u + \frac{1}{2}\sigma_J^2 u^2) - 1)$ to the $\phi$-equation (or the appropriate component). How does this modify the characteristic function compared to pure Heston?
+
+??? success "Solution to Exercise 2"
+    The Bates model has state $X_t = (V_t, \log S_t)^\top$ with $\psi = (\psi_1, \psi_2)^\top$ and initial conditions $\psi_1(0) = u_1$, $\psi_2(0) = u_2$. For option pricing, typically $u_1 = 0$ and $u_2 = iu$ for $u \in \mathbb{R}$.
+
+    **The extended Riccati system.** Since $\log S_t$ is a Gaussian-type component ($m = 1$, only $V_t$ is CIR-type):
+
+    $$
+    \frac{d\psi_2}{d\tau} = R_2(\psi) = 0 \implies \psi_2(\tau) = u_2
+    $$
+
+    $$
+    \frac{d\psi_1}{d\tau} = R_1(\psi) = -\kappa\psi_1 - \frac{1}{2}u_2 + \frac{1}{2}\!\left(\xi^2\psi_1^2 + 2\rho\xi u_2\psi_1 + u_2^2\right)
+    $$
+
+    $$
+    \frac{d\phi}{d\tau} = F(\psi) = \kappa\theta\psi_1 + (r - \lambda\bar{k})u_2 + \lambda\!\left(e^{\mu_J u_2 + \sigma_J^2 u_2^2/2} - 1\right)
+    $$
+
+    **Comparison with pure Heston.** The equation for $\psi_1$ is identical to the Heston Riccati equation --- it contains no jump terms because $\lambda_1 = 0$ (the jump intensity is constant, not state-dependent). The jump contribution
+
+    $$
+    \lambda\!\left(\exp\!\left(\mu_J u_2 + \tfrac{1}{2}\sigma_J^2 u_2^2\right) - 1\right)
+    $$
+
+    appears only in the $\phi$-equation. This means:
+
+    - The factor loading $\psi_1(\tau, u)$ on the variance is unchanged from Heston.
+    - The scalar intercept $\phi(\tau, u)$ receives an additive correction linear in $\tau$ from the jump term.
+    - The characteristic function of the Bates model is the Heston characteristic function multiplied by $\exp(\lambda\tau(e^{\mu_J u_2 + \sigma_J^2 u_2^2/2} - 1 - \bar{k}u_2))$, which is precisely the Merton jump correction factor.
 
 ---
 
 **Exercise 3.** Consider a jump-diffusion on $\mathbb{R}_+$ with exponentially distributed jumps: $m_1(dz) = \lambda\eta e^{-\eta z}\,dz$ for $z > 0$. Compute the jump contribution to $R(u)$ as $\lambda(\frac{\eta}{\eta - u} - 1)$ and determine the domain of $u$ for which this expression is finite. What happens at $u = \eta$?
 
+??? success "Solution to Exercise 3"
+    The jump size distribution is exponential on $(0, \infty)$ with density $\nu_1(dz) = \eta e^{-\eta z}\,dz$ for $z > 0$. The jump contribution to $R(u)$ involves the MGF:
+
+    $$
+    \hat{\nu}_1(u) = \int_0^\infty e^{uz}\,\eta e^{-\eta z}\,dz = \eta\int_0^\infty e^{-(\ \eta - u)z}\,dz = \frac{\eta}{\eta - u}
+    $$
+
+    This integral converges if and only if $\operatorname{Re}(\eta - u) > 0$, i.e., $\operatorname{Re}(u) < \eta$. The jump contribution to $R(u)$ is therefore
+
+    $$
+    \lambda\!\left(\frac{\eta}{\eta - u} - 1\right) = \lambda\,\frac{u}{\eta - u}
+    $$
+
+    **Domain.** The expression is well-defined for $\operatorname{Re}(u) < \eta$. At $u = \eta$, the MGF $\hat{\nu}_1(u) = \eta/(\eta - u) \to \infty$, which means the exponential moment $\mathbb{E}[e^{\eta Z}]$ is infinite. This corresponds to the fact that the exponential distribution has a moment generating function that diverges at its rate parameter.
+
+    For the Riccati ODE to have a well-defined solution, the trajectory $\psi(\tau)$ must remain in the domain $\operatorname{Re}(\psi) < \eta$. If the ODE drives $\psi$ toward $\eta$, the solution blows up in finite time --- this is the moment explosion phenomenon, which places constraints on the maturity $T$ and the transform variable $u$ for which the characteristic function is finite.
+
 ---
 
 **Exercise 4.** Explain why log-normal jump sizes (Merton model) produce heavier tails than double-exponential jump sizes (Kou model) for extreme returns. Which distribution generates a steeper short-maturity implied volatility smile? Justify your answer in terms of the moment generating functions of the two distributions.
+
+??? success "Solution to Exercise 4"
+    **Log-normal jumps (Merton).** The jump size $Z \sim N(\mu_J, \sigma_J^2)$ has a Gaussian distribution with tails decaying as $\exp(-z^2/(2\sigma_J^2))$. However, the return impact is $e^Z - 1$, so extremely large returns correspond to large $|Z|$. The log-normal distribution of $e^Z$ has **all polynomial moments finite but super-exponential tails** in the return space: $\mathbb{P}(e^Z > x) \sim \exp(-(\ln x)^2/(2\sigma_J^2))$, which decays slowly (sub-exponentially) for large $x$.
+
+    **Double-exponential jumps (Kou).** The jump size has density $p\eta_1 e^{-\eta_1 z}\mathbf{1}_{z > 0} + (1-p)\eta_2 e^{\eta_2 z}\mathbf{1}_{z < 0}$, so the tails decay as $e^{-\eta_1 z}$ for positive jumps and $e^{\eta_2 z}$ for negative jumps. These are **exponential tails**, which decay faster than the log-normal tails for extreme values.
+
+    Since log-normal jump sizes produce heavier tails than double-exponential jump sizes, the Merton model generates more probability mass in the extreme tails of the return distribution. For short-maturity options, this means:
+
+    - **Merton (log-normal)** produces a steeper short-maturity implied volatility smile, especially in the deep out-of-the-money wings, because the heavier tails assign more probability to extreme moves.
+    - **Kou (double-exponential)** produces a more moderate smile with wings that flatten more quickly.
+
+    This can also be seen from the MGFs. The log-normal MGF $\hat{\nu}(u) = e^{\mu_J u + \sigma_J^2 u^2/2}$ grows as $e^{u^2}$ for large $|u|$ (superexponential in $u$), while the double-exponential MGF $\hat{\nu}(u) = p\eta_1/(\eta_1 - u) + (1-p)\eta_2/(\eta_2 + u)$ is rational in $u$ (polynomial growth). The faster growth of the log-normal MGF reflects heavier tails in the jump size distribution.
 
 ---
 
 **Exercise 5.** For a self-exciting (Hawkes-type) jump process where the jump intensity $\lambda(X_t) = \lambda_0 + \lambda_1 X_t$ depends affinely on the state, verify that the jump contribution to $R_j(u)$ is $\lambda_1 \int(e^{uz} - 1)\nu(dz)$. Why does affine intensity preserve the affine structure, while a nonlinear intensity (e.g., $\lambda(x) = \lambda_0 + \lambda_2 x^2$) would break it?
 
+??? success "Solution to Exercise 5"
+    The affine jump-diffusion framework requires that the jump compensator be affine in the state:
+
+    $$
+    \nu(X_t, dz, dt) = \left(\lambda_0\,\nu_0(dz) + \sum_i \lambda_i X_t^{(i)}\,\nu_i(dz)\right)dt
+    $$
+
+    With $\lambda(X_t) = \lambda_0 + \lambda_1 X_t$ (affine intensity), the jump contribution to the generator acting on $e^{u^\top x}$ is
+
+    $$
+    \int \left(e^{u^\top(x+z)} - e^{u^\top x}\right)\lambda(x)\,\nu(dz) = e^{u^\top x}\,\lambda(x)\!\left(\int e^{u^\top z}\nu(dz) - 1\right)
+    $$
+
+    $$
+    = e^{u^\top x}\!\left(\lambda_0 + \lambda_1 x\right)\!\left(\hat{\nu}(u) - 1\right)
+    $$
+
+    This is $e^{u^\top x}$ times a function that is **affine in $x$**: the constant part $\lambda_0(\hat{\nu}(u) - 1)$ enters $F(u)$, and the linear part $\lambda_1(\hat{\nu}(u) - 1)$ enters $R_j(u)$.
+
+    Specifically, $R_j(u)$ receives the additive jump contribution
+
+    $$
+    \lambda_1\!\left(\int e^{u^\top z}\nu(dz) - 1\right) = \lambda_1\!\left(\hat{\nu}(u) - 1\right)
+    $$
+
+    which depends on $u$ (through $\hat{\nu}$) but not on $x$. This is exactly the form required for the Riccati system to close.
+
+    **Why nonlinear intensity breaks the structure.** If $\lambda(x) = \lambda_0 + \lambda_2 x^2$, then the generator produces $e^{u^\top x} \cdot (\lambda_0 + \lambda_2 x^2)(\hat{\nu}(u) - 1)$. The $x^2$ term means the coefficient of $e^{u^\top x}$ is quadratic, not affine, in $x$. This cannot be absorbed into the Riccati system $\frac{d\psi}{d\tau} = R(\psi)$ because $R(\psi)$ must be independent of $x$. The exponential-affine ansatz $\exp(\phi + \psi^\top x)$ fails to satisfy the Kolmogorov backward equation, and no finite-dimensional ODE system determines the characteristic function.
+
 ---
 
 **Exercise 6.** Compare the computational cost of evaluating the characteristic function for (i) pure Heston, (ii) Bates (Heston + Merton jumps), and (iii) Heston with double-exponential (Kou) jumps. In each case, is the Riccati system solvable in closed form, or is numerical ODE integration required?
+
+??? success "Solution to Exercise 6"
+    **(i) Pure Heston.** The Riccati system consists of a scalar ODE for $\psi_1(\tau)$ (quadratic in $\psi_1$) and a quadrature for $\phi(\tau)$. The ODE for $\psi_1$ has a **closed-form solution** in terms of exponentials:
+
+    $$
+    \psi_1(\tau) = \frac{(iu - u^2)(1 - e^{-d\tau})}{2d - (d + \gamma)(1 - e^{-d\tau})}
+    $$
+
+    where $d = \sqrt{\gamma^2 + \xi^2(iu - u^2)}$ and $\gamma = \kappa - \rho\xi iu$. The function $\phi$ is also available in closed form. Cost: a few elementary function evaluations (exponentials, square root). Extremely fast.
+
+    **(ii) Bates (Heston + Merton jumps).** The ODE for $\psi_1$ is identical to pure Heston --- jumps do not affect it because the jump intensity is constant ($\lambda_1 = 0$). The jump contribution adds $\lambda(e^{\mu_J u_2 + \sigma_J^2 u_2^2/2} - 1)$ to the $\phi$ equation, which is still integrated in **closed form** (it adds a term linear in $\tau$). Cost: essentially the same as Heston, plus one exponential evaluation for the jump MGF. Negligible additional cost.
+
+    **(iii) Heston + Kou (double-exponential) jumps.** If the jumps are only in the log-price with constant intensity (as in the Bates-Kou variant), the situation is similar to case (ii): the $\psi_1$ ODE is unchanged, and the jump contribution to $\phi$ is $\lambda(p\eta_1/(\eta_1 - u_2) + (1-p)\eta_2/(\eta_2 + u_2) - 1)$, which is a rational function of $u_2$ and adds a term linear in $\tau$. This is also **closed form**. Cost: comparable to Bates.
+
+    **Summary.** All three models admit closed-form characteristic functions when the jumps are in the log-price with constant intensity, because the jump term modifies only $\phi$ (not $\psi_1$) and the MGF of the jump distribution can be evaluated analytically. Numerical ODE integration would be required only if (a) the jump intensity were state-dependent ($\lambda_1 \neq 0$), making the $\psi_1$ ODE non-standard, or (b) the jump size distribution had no closed-form MGF. In terms of computational cost, all three are fast (sub-millisecond per characteristic function evaluation), with Heston being marginally the cheapest.

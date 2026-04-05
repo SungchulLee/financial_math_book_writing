@@ -299,30 +299,6 @@ $$
 
 **Exercise 1.** Price an American put with $S_0 = 100$, $K = 100$, $r = 5\%$, $\sigma = 30\%$, $T = 1$ using a 3-step CRR binomial tree. At each node, show the stock price, the European put value, and the American put value. Identify the nodes where early exercise is optimal.
 
----
-
-**Exercise 2.** In the binomial tree for an American put, the value at each node is $V = \max\left(\text{payoff}, \, e^{-r\Delta t}[pV_u + (1-p)V_d]\right)$. Explain the role of the $\max$ operation and why it is absent in European option pricing. What would happen if you omitted it?
-
----
-
-**Exercise 3.** The convergence of the binomial tree to the continuous-time price is $O(1/\sqrt{N})$ but oscillatory. Explain the source of these oscillations for American puts and describe the Richardson extrapolation technique that can improve convergence.
-
----
-
-**Exercise 4.** Modify the binomial tree to price an American call on a stock paying a discrete dividend $D$ at time $t_d$. Explain the adjustment to the stock price at the ex-dividend node and how early exercise just before the dividend date is handled.
-
----
-
-**Exercise 5.** From your 3-step binomial tree in Exercise 1, extract the early exercise boundary by identifying the critical stock price $S^*$ at each time step below which exercise is optimal. Plot these values and comment on whether the boundary is increasing or decreasing in time to maturity.
-
----
-
-**Exercise 6.** Compare the American put price from an $N$-step binomial tree with the European put price (from the same tree) for $N = 10, 50, 100, 500$. Compute the early exercise premium $\epsilon_N = V_{\text{Am}}^{(N)} - V_{\text{Eu}}^{(N)}$ and discuss how it behaves as $N$ increases.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     With $S_0 = 100$, $K = 100$, $r = 0.05$, $\sigma = 0.30$, $T = 1$, and $N = 3$:
 
@@ -383,6 +359,11 @@ $$
 
     **Early exercise is optimal** at node $(n=2, j=0)$ where $S = 70.72$ and the intrinsic value $29.28$ exceeds the continuation value $27.63$.
 
+---
+
+
+**Exercise 2.** In the binomial tree for an American put, the value at each node is $V = \max\left(\text{payoff}, \, e^{-r\Delta t}[pV_u + (1-p)V_d]\right)$. Explain the role of the $\max$ operation and why it is absent in European option pricing. What would happen if you omitted it?
+
 ??? success "Solution to Exercise 2"
     In European option pricing, the value at each node is simply the discounted risk-neutral expectation of future values:
 
@@ -401,6 +382,11 @@ $$
     **Why it is absent for European options:** European options can only be exercised at maturity, so there is no exercise decision at intermediate nodes. The holder must continue regardless.
 
     **What happens if $\max$ is omitted:** Omitting the $\max$ from the American pricing formula would compute the European price instead. The resulting value would be lower than the true American price because it ignores the early-exercise right. Specifically, at nodes where $\Phi(S_{n,j})$ exceeds the continuation value, the algorithm would assign the smaller continuation value, missing the additional early-exercise premium.
+
+---
+
+
+**Exercise 3.** The convergence of the binomial tree to the continuous-time price is $O(1/\sqrt{N})$ but oscillatory. Explain the source of these oscillations for American puts and describe the Richardson extrapolation technique that can improve convergence.
 
 ??? success "Solution to Exercise 3"
     **Source of oscillations:** The CRR tree imposes a recombining lattice with nodes at $S_0 u^j d^{n-j}$. For a given $N$, the strike $K$ generally does not fall exactly on a node at any time step. Whether the nearest node is slightly above or below $K$ affects the computed payoff and exercise decisions, causing the price to oscillate between odd and even $N$.
@@ -422,6 +408,11 @@ $$
     $$
 
     In practice, Richardson extrapolation using the same-parity values (e.g., $V(N)$ and $V(2N)$) significantly reduces oscillation and typically yields fourth-decimal accuracy with $N \sim 100$--$200$.
+
+---
+
+
+**Exercise 4.** Modify the binomial tree to price an American call on a stock paying a discrete dividend $D$ at time $t_d$. Explain the adjustment to the stock price at the ex-dividend node and how early exercise just before the dividend date is handled.
 
 ??? success "Solution to Exercise 4"
     **Discrete dividend adjustment:** Suppose the stock pays a dividend $D$ at time $t_d$, which falls at step $n_d$ in the tree. At the ex-dividend date, the stock price drops by $D$:
@@ -449,6 +440,11 @@ $$
 
     At all other nodes, the standard backward induction with the $\max$ operator applies unchanged.
 
+---
+
+
+**Exercise 5.** From your 3-step binomial tree in Exercise 1, extract the early exercise boundary by identifying the critical stock price $S^*$ at each time step below which exercise is optimal. Plot these values and comment on whether the boundary is increasing or decreasing in time to maturity.
+
 ??? success "Solution to Exercise 5"
     Using the results from Exercise 1 (3-step tree with $S_0 = 100$, $K = 100$, $r = 0.05$, $\sigma = 0.30$, $T = 1$):
 
@@ -461,6 +457,11 @@ $$
     - **$n = 0$ ($t = 0$):** Exercise is not optimal at $S = 100$ (intrinsic $= 0$).
 
     The boundary $S^*(t)$ is **increasing** as time approaches maturity (i.e., as time to maturity decreases, $S^*(t)$ rises toward $K$). At maturity, $S^*(T) = K = 100$, and for earlier times the boundary is lower. This makes economic sense: with more time remaining, the option has greater time value, so the stock must be deeper in the money (lower $S$) to justify early exercise. As maturity approaches, even moderately in-the-money puts should be exercised because the remaining time value is small.
+
+---
+
+
+**Exercise 6.** Compare the American put price from an $N$-step binomial tree with the European put price (from the same tree) for $N = 10, 50, 100, 500$. Compute the early exercise premium $\epsilon_N = V_{\text{Am}}^{(N)} - V_{\text{Eu}}^{(N)}$ and discuss how it behaves as $N$ increases.
 
 ??? success "Solution to Exercise 6"
     Using the CRR binomial tree for both American and European puts with $S_0 = 100$, $K = 100$, $r = 0.05$, $\sigma = 0.20$, $T = 1$:

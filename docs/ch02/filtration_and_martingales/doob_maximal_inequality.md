@@ -293,42 +293,6 @@ $$
 
 (c) Compare your bound in (b) with the exact value from the reflection principle.
 
-### Exercise 2: L^p Bounds
-
-Let $M_t$ be a martingale with $\mathbb{E}[|M_T|^4] = C$.
-
-(a) Use Doob's inequality to bound $\mathbb{E}[\sup_{t \le T} |M_t|^4]$.
-
-(b) What happens to the constant as $p \to 1$?
-
-(c) State and prove Doob's $L^1$ weak inequality.
-
-### Exercise 3: Convergence Application
-
-Let $M_n$ be a discrete martingale with $\sup_n \mathbb{E}[M_n^2] < \infty$.
-
-(a) Use Doob's inequality to show $\sup_n |M_n| < \infty$ a.s.
-
-(b) Deduce that $M_n$ converges a.s.
-
-(c) Give an example where $\sup_n \mathbb{E}[|M_n|] < \infty$ but $M_n$ does not converge in $L^1$.
-
-### Exercise 4: Maximum of Brownian Motion
-
-Let $M_t = \sup_{s \le t} W_s$.
-
-(a) Prove that $M_t - W_t \ge 0$ and is increasing in $t$.
-
-(b) Show that $M_t$ and $M_t - W_t$ each have the same distribution as $|W_t|$.
-
-*Hint*: Use the reflection principle. The process $W'_t = W_t - 2(W_t - M_t)^+ = 2M_t - W_t$ (reflecting $W$ at its running maximum) is also a Brownian motion. Show $M_t = \sup_{s\le t}W'_s$ and use symmetry.
-
-(c) Use this to find $\mathbb{P}(M_t \ge a, W_t \le b)$ for $a > b$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a)** Brownian motion $W_t$ is a martingale, so $|W_t|$ is a non-negative submartingale. By Doob's $L^2$ inequality (with $p = 2$):
 
@@ -351,6 +315,18 @@ Let $M_t = \sup_{s \le t} W_s$.
     The Chebyshev-type bound is tighter: $1/9$.
 
     **(c)** The exact value from the reflection principle: $\mathbb{P}(\sup_{t \le 1} W_t \ge 3) = 2\mathbb{P}(W_1 \ge 3) = 2\Phi(-3) \approx 2 \times 0.00135 = 0.0027$. By symmetry, $\mathbb{P}(\sup_{t \le 1} |W_t| \ge 3) \le 2 \times 0.0027 = 0.0054$ (this is not exact for the absolute value, but gives the right order). The exact value is approximately $0.0054$, far smaller than the bounds of $1/9 \approx 0.111$ or $4/9 \approx 0.444$. The Doob bounds are correct but conservative.
+
+---
+
+### Exercise 2: L^p Bounds
+
+Let $M_t$ be a martingale with $\mathbb{E}[|M_T|^4] = C$.
+
+(a) Use Doob's inequality to bound $\mathbb{E}[\sup_{t \le T} |M_t|^4]$.
+
+(b) What happens to the constant as $p \to 1$?
+
+(c) State and prove Doob's $L^1$ weak inequality.
 
 ??? success "Solution to Exercise 2"
     **(a)** By Doob's $L^p$ inequality with $p = 4$:
@@ -379,6 +355,18 @@ Let $M_t = \sup_{s \le t} W_s$.
     \mathbb{E}[X_T \cdot \mathbf{1}_{\{X_T^* \ge \lambda\}}] \ge \mathbb{E}[X_\tau \cdot \mathbf{1}_{\{X_T^* \ge \lambda\}}] \ge \lambda \cdot \mathbb{P}(X_T^* \ge \lambda) \quad \square
     $$
 
+---
+
+### Exercise 3: Convergence Application
+
+Let $M_n$ be a discrete martingale with $\sup_n \mathbb{E}[M_n^2] < \infty$.
+
+(a) Use Doob's inequality to show $\sup_n |M_n| < \infty$ a.s.
+
+(b) Deduce that $M_n$ converges a.s.
+
+(c) Give an example where $\sup_n \mathbb{E}[|M_n|] < \infty$ but $M_n$ does not converge in $L^1$.
+
 ??? success "Solution to Exercise 3"
     **(a)** By Doob's $L^2$ inequality:
 
@@ -397,6 +385,20 @@ Let $M_t = \sup_{s \le t} W_s$.
     By the convergence theorem, $M_n \to M_\infty$ a.s. Since eventually some $\xi_i = 0$, $M_\infty = 0$ a.s.
 
     But $\mathbb{E}[M_n] = 1 \not\to 0 = \mathbb{E}[M_\infty]$, so $M_n$ does not converge in $L^1$. The family $\{M_n\}$ is not uniformly integrable: the expectation is carried by the event $\{\xi_1 = \cdots = \xi_n = 2\}$ of probability $(1/2)^n$, where $M_n = 2^n$.
+
+---
+
+### Exercise 4: Maximum of Brownian Motion
+
+Let $M_t = \sup_{s \le t} W_s$.
+
+(a) Prove that $M_t - W_t \ge 0$ and is increasing in $t$.
+
+(b) Show that $M_t$ and $M_t - W_t$ each have the same distribution as $|W_t|$.
+
+*Hint*: Use the reflection principle. The process $W'_t = W_t - 2(W_t - M_t)^+ = 2M_t - W_t$ (reflecting $W$ at its running maximum) is also a Brownian motion. Show $M_t = \sup_{s\le t}W'_s$ and use symmetry.
+
+(c) Use this to find $\mathbb{P}(M_t \ge a, W_t \le b)$ for $a > b$.
 
 ??? success "Solution to Exercise 4"
     **(a)** Let $M_t = \sup_{s \le t} W_s$. Since $W_t \le M_t$ always and $M_t$ is the running maximum, $M_t - W_t \ge 0$.

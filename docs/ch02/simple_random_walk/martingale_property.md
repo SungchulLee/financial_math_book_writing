@@ -124,30 +124,6 @@ These two identities give $\mathbb{E}[S_\tau] = 0$ and $\mathbb{E}[\tau] = \math
 
 **Exercise 1.** For the asymmetric random walk with $p \neq 1/2$, show that the process $M_n = S_n - n(2p-1)$ is a martingale. Then show that $M_n^2 - 4np(1-p)$ is also a martingale. What are the analogues of Propositions 1.1.3 and 1.1.4 for the centred walk?
 
----
-
-**Exercise 2.** Let $\{S_n\}$ be a symmetric random walk. Use the Optional Stopping Theorem applied to the martingale $M_n = S_n^2 - n$ and the stopping time $\tau = \min\{n : S_n = -a \text{ or } S_n = b\}$ (with $a, b > 0$) to show that $\mathbb{E}[\tau] = ab$.
-
----
-
-**Exercise 3.** Prove that the exponential process $Z_n = \left(\frac{1-p}{p}\right)^{S_n}$ is a martingale for any $p \in (0,1)$. For $p = 1/2$, what does this process simplify to, and why is it trivial?
-
----
-
-**Exercise 4.** Show that the discrete quadratic variation $[S]_n = n$ implies that the process $S_n^2 - [S]_n = S_n^2 - n$ is a martingale. In other words, derive Proposition 1.1.4 from Proposition 1.1.5 without directly computing $\mathbb{E}[S_{n+1}^2 \mid \mathcal{F}_n]$. (Hint: write $S_{n+1}^2 - S_n^2 = 2S_n \xi_{n+1} + \xi_{n+1}^2$ and use $\xi_{n+1}^2 = [S]_{n+1} - [S]_n = 1$.)
-
----
-
-**Exercise 5.** Let $\lambda \in \mathbb{R}$ and define $E_n = e^{\lambda S_n} / (\cosh \lambda)^n$. Prove that $\{E_n\}$ is a martingale. Use this to derive the MGF of the hitting time $\tau_a = \min\{n \geq 0 : S_n = a\}$ for $a > 0$: show that $\mathbb{E}[(\cosh \lambda)^{-\tau_a}] = e^{-\lambda a}$ for $\lambda > 0$ (under appropriate stopping conditions).
-
----
-
-**Exercise 6.** A process $\{X_n\}$ is called a **submartingale** if $\mathbb{E}[X_{n+1} \mid \mathcal{F}_n] \geq X_n$. Show that $|S_n|$ is a submartingale for the symmetric random walk. (Hint: use Jensen's inequality with the convex function $f(x) = |x|$.)
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     For the asymmetric walk, $\mathbb{E}[\xi_{n+1}] = 2p - 1 \neq 0$. Define $M_n = S_n - n(2p-1)$. Then:
 
@@ -175,6 +151,10 @@ These two identities give $\mathbb{E}[S_\tau] = 0$ and $\mathbb{E}[\tau] = \math
 
     These are the analogues of Propositions 1.1.3 and 1.1.4: the centred walk $M_n = S_n - n\mu$ replaces $S_n$, and the compensator $n\sigma^2 = 4np(1-p)$ replaces $n$.
 
+---
+
+**Exercise 2.** Let $\{S_n\}$ be a symmetric random walk. Use the Optional Stopping Theorem applied to the martingale $M_n = S_n^2 - n$ and the stopping time $\tau = \min\{n : S_n = -a \text{ or } S_n = b\}$ (with $a, b > 0$) to show that $\mathbb{E}[\tau] = ab$.
+
 ??? success "Solution to Exercise 2"
     The stopping time $\tau = \min\{n : S_n = -a \text{ or } S_n = b\}$ is finite a.s. by recurrence, and bounded by the first hitting time of the boundary. Applying the Optional Stopping Theorem to $M_n = S_n^2 - n$:
 
@@ -200,6 +180,10 @@ These two identities give $\mathbb{E}[S_\tau] = 0$ and $\mathbb{E}[\tau] = \math
     \mathbb{E}[\tau] = a^2 \cdot \frac{b}{a+b} + b^2 \cdot \frac{a}{a+b} = \frac{ab(a+b)}{a+b} = ab
     $$
 
+---
+
+**Exercise 3.** Prove that the exponential process $Z_n = \left(\frac{1-p}{p}\right)^{S_n}$ is a martingale for any $p \in (0,1)$. For $p = 1/2$, what does this process simplify to, and why is it trivial?
+
 ??? success "Solution to Exercise 3"
     Let $Z_n = \left(\frac{1-p}{p}\right)^{S_n}$ and $r = \frac{1-p}{p}$. Then:
 
@@ -216,6 +200,10 @@ These two identities give $\mathbb{E}[S_\tau] = 0$ and $\mathbb{E}[\tau] = \math
     Therefore $\mathbb{E}[Z_{n+1} \mid \mathcal{F}_n] = r^{S_n} = Z_n$, so $\{Z_n\}$ is a martingale.
 
     For $p = 1/2$: $r = (1-1/2)/(1/2) = 1$, so $Z_n = 1^{S_n} = 1$ for all $n$. The process is the constant martingale $Z_n = 1$, which is trivial (it carries no information about $S_n$).
+
+---
+
+**Exercise 4.** Show that the discrete quadratic variation $[S]_n = n$ implies that the process $S_n^2 - [S]_n = S_n^2 - n$ is a martingale. In other words, derive Proposition 1.1.4 from Proposition 1.1.5 without directly computing $\mathbb{E}[S_{n+1}^2 \mid \mathcal{F}_n]$. (Hint: write $S_{n+1}^2 - S_n^2 = 2S_n \xi_{n+1} + \xi_{n+1}^2$ and use $\xi_{n+1}^2 = [S]_{n+1} - [S]_n = 1$.)
 
 ??? success "Solution to Exercise 4"
     We have $S_{n+1}^2 - S_n^2 = (S_n + \xi_{n+1})^2 - S_n^2 = 2S_n\xi_{n+1} + \xi_{n+1}^2$. Since $\xi_{n+1}^2 = [S]_{n+1} - [S]_n = 1$:
@@ -237,6 +225,10 @@ These two identities give $\mathbb{E}[S_\tau] = 0$ and $\mathbb{E}[\tau] = \math
     $$
 
     Since $[S]_n = n$ a.s., this gives $\mathbb{E}[S_{n+1}^2 - (n+1) \mid \mathcal{F}_n] = S_n^2 - n$, which is exactly the statement that $\{S_n^2 - n\}$ is a martingale (Proposition 1.1.4), derived without directly computing $\mathbb{E}[S_{n+1}^2 \mid \mathcal{F}_n]$.
+
+---
+
+**Exercise 5.** Let $\lambda \in \mathbb{R}$ and define $E_n = e^{\lambda S_n} / (\cosh \lambda)^n$. Prove that $\{E_n\}$ is a martingale. Use this to derive the MGF of the hitting time $\tau_a = \min\{n \geq 0 : S_n = a\}$ for $a > 0$: show that $\mathbb{E}[(\cosh \lambda)^{-\tau_a}] = e^{-\lambda a}$ for $\lambda > 0$ (under appropriate stopping conditions).
 
 ??? success "Solution to Exercise 5"
     Define $E_n = e^{\lambda S_n}/(\cosh \lambda)^n$. Then:
@@ -262,6 +254,10 @@ These two identities give $\mathbb{E}[S_\tau] = 0$ and $\mathbb{E}[\tau] = \math
     $$
 
     This holds for $\lambda > 0$ under appropriate conditions ensuring the Optional Stopping Theorem applies (e.g., $\tau_a < \infty$ a.s. by recurrence, and the stopped process is uniformly integrable, which holds since $\cosh\lambda > 1$ for $\lambda > 0$ makes $E_{n \wedge \tau_a}$ bounded by $e^{\lambda a}$).
+
+---
+
+**Exercise 6.** A process $\{X_n\}$ is called a **submartingale** if $\mathbb{E}[X_{n+1} \mid \mathcal{F}_n] \geq X_n$. Show that $|S_n|$ is a submartingale for the symmetric random walk. (Hint: use Jensen's inequality with the convex function $f(x) = |x|$.)
 
 ??? success "Solution to Exercise 6"
     Since $\{S_n\}$ is a martingale (for $p = 1/2$) and $f(x) = |x|$ is a convex function, Jensen's inequality for conditional expectations gives:

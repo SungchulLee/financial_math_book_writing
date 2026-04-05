@@ -309,9 +309,40 @@ Interpolation and smoothing form the critical preprocessing step for local volat
 
 **Exercise 1.** Suppose call prices are observed at strikes $K = 90, 95, 100, 105, 110$ with values $C = 12.50, 8.80, 5.90, 3.70, 2.10$. Compute the centered second difference $C_{KK}$ at $K = 100$ using the standard formula. If the prices have noise of $\epsilon = \$0.03$, estimate the noise-to-signal ratio in $C_{KK}$.
 
+??? success "Solution to Exercise 1"
+    The centered second difference at $K = 100$ with $\Delta K = 5$ is:
+
+    $$
+    C_{KK}(100) \approx \frac{C(105) - 2C(100) + C(95)}{(\Delta K)^2} = \frac{3.70 - 2(5.90) + 8.80}{25} = \frac{0.70}{25} = 0.028
+    $$
+
+    The noise in the second difference is amplified by the division by $(\Delta K)^2$. Each price has noise $\epsilon = 0.03$. The second difference involves three prices, so the worst-case noise in the numerator is $4\epsilon$ (since $\text{Var}(C_{i+1} - 2C_i + C_{i-1}) = (1 + 4 + 1)\epsilon^2 = 6\epsilon^2$, giving standard deviation $\sqrt{6}\epsilon$). A simpler upper-bound estimate uses $4\epsilon$ for the numerator noise:
+
+    $$
+    \text{noise in } C_{KK} \approx \frac{4 \times 0.03}{25} = 0.0048
+    $$
+
+    The noise-to-signal ratio is:
+
+    $$
+    \frac{0.0048}{0.028} \approx 0.17
+    $$
+
+    So the noise is approximately 17% of the signal, which is already problematic. With a tighter strike grid ($\Delta K = 2$, say), the noise would scale as $4\epsilon / (\Delta K)^2 = 0.12/4 = 0.03$, and for a similar signal magnitude, the ratio would be even worse. This demonstrates why smoothing is essential before applying Dupire's formula.
+
 ---
 
 **Exercise 2.** State and interpret the three no-arbitrage conditions (strike monotonicity, strike convexity, calendar monotonicity) for European call prices. For each condition, describe the specific arbitrage strategy that would be available if the condition were violated.
+
+??? success "Solution to Exercise 2"
+    **Condition 1: Strike monotonicity ($\partial C / \partial K \leq 0$).**
+    Call prices must decrease as the strike increases, since a higher strike makes it harder for the option to finish in the money. If this were violated and $C(K_1) < C(K_2)$ with $K_1 < K_2$, then buy the cheap low-strike call and sell the expensive high-strike call. At expiry the payoff is $(S - K_1)^+ - (S - K_2)^+$, which is always non-negative (a bull call spread), and the initial cost is negative — a riskless profit.
+
+    **Condition 2: Strike convexity ($\partial^2 C / \partial K^2 \geq 0$).**
+    Call prices must be convex in strike. By the Breeden-Litzenberger result, $C_{KK} = e^{-rT}q(K)$ where $q(K)$ is the risk-neutral density, so convexity is equivalent to non-negative probabilities. If convexity is violated at some strike $K$, the butterfly spread with strikes $K - \Delta K$, $K$, $K + \Delta K$ has negative cost: buy one call at each wing and sell two at the center. The payoff at expiry is non-negative (a tent function), but the net premium received is positive — a riskless profit.
+
+    **Condition 3: Calendar monotonicity ($\partial C / \partial T \geq 0$).**
+    Call prices (equivalently, total implied variance $\sigma^2 T$) must be non-decreasing in maturity at each strike. A longer-dated option has all the exercise opportunities of a shorter-dated one plus more. If $C(K, T_1) > C(K, T_2)$ with $T_1 < T_2$, then buy the cheap long-dated call and sell the expensive short-dated call. At $T_1$, if the short call is exercised, the long call can be sold for at least its intrinsic value, covering the obligation. The initial cash inflow is positive — a calendar spread arbitrage.
 
 ---
 
@@ -320,6 +351,52 @@ Interpolation and smoothing form the critical preprocessing step for local volat
 (a) The total implied variance $w(y)$ at log-moneyness $y = -0.2$, $y = 0$, and $y = 0.2$.
 
 (b) The wing slopes $b(1 + \rho)$ and $b(1 - \rho)$, and verify that Lee's moment formula constraint $b(1 + |\rho|) \leq 2$ is satisfied.
+
+??? success "Solution to Exercise 3"
+    **(a)** The SVI formula is $w(y) = a + b(\rho(y - m) + \sqrt{(y-m)^2 + \sigma^2})$.
+
+    With $a = 0.04$, $b = 0.15$, $\rho = -0.3$, $m = 0$, $\sigma = 0.1$:
+
+    At $y = -0.2$:
+
+    $$
+    w(-0.2) = 0.04 + 0.15\left(-0.3(-0.2) + \sqrt{(-0.2)^2 + 0.01}\right) = 0.04 + 0.15\left(0.06 + \sqrt{0.05}\right)
+    $$
+
+    $$
+    = 0.04 + 0.15(0.06 + 0.2236) = 0.04 + 0.15(0.2836) = 0.04 + 0.04254 = 0.08254
+    $$
+
+    At $y = 0$:
+
+    $$
+    w(0) = 0.04 + 0.15\left(0 + \sqrt{0 + 0.01}\right) = 0.04 + 0.15(0.1) = 0.04 + 0.015 = 0.055
+    $$
+
+    At $y = 0.2$:
+
+    $$
+    w(0.2) = 0.04 + 0.15\left(-0.3(0.2) + \sqrt{0.04 + 0.01}\right) = 0.04 + 0.15(-0.06 + 0.2236)
+    $$
+
+    $$
+    = 0.04 + 0.15(0.1636) = 0.04 + 0.02454 = 0.06454
+    $$
+
+    The skew is visible: $w(-0.2) > w(0.2)$, consistent with a negative $\rho$ producing higher implied variance on the downside.
+
+    **(b)** The wing slopes are:
+
+    - Right wing: $b(1 + \rho) = 0.15(1 + (-0.3)) = 0.15 \times 0.7 = 0.105$
+    - Left wing: $b(1 - \rho) = 0.15(1 - (-0.3)) = 0.15 \times 1.3 = 0.195$
+
+    Lee's moment formula requires $b(1 + |\rho|) \leq 2$:
+
+    $$
+    b(1 + |\rho|) = 0.15(1 + 0.3) = 0.195 \leq 2 \quad \checkmark
+    $$
+
+    The constraint is satisfied with a wide margin.
 
 ---
 
@@ -331,10 +408,104 @@ $$
 
 What happens in the limits $\lambda \to 0$ and $\lambda \to \infty$? How does leave-one-out cross-validation select $\lambda$ in a data-driven manner?
 
+??? success "Solution to Exercise 4"
+    The smoothing spline objective is:
+
+    $$
+    \min_{\hat{\sigma}} \left\{\sum_{i=1}^m w_i (\hat{\sigma}(K_i) - \sigma_i)^2 + \lambda \int (\hat{\sigma}''(K))^2 \, dK \right\}
+    $$
+
+    The first term measures fidelity to the data and the second penalizes curvature (roughness). The parameter $\lambda$ controls the tradeoff:
+
+    **When $\lambda \to 0$:** The penalty vanishes and the objective reduces to minimizing the weighted sum of squared residuals with no smoothness constraint. The solution is the interpolating spline that passes exactly through every data point ($\hat{\sigma}(K_i) = \sigma_i$). This captures all noise in the data (overfitting).
+
+    **When $\lambda \to \infty$:** The curvature penalty dominates, forcing $\hat{\sigma}''(K) \to 0$ everywhere. The solution approaches the weighted least-squares linear fit to the data — maximum smoothness but potentially poor fit to genuine smile curvature (underfitting).
+
+    **Leave-one-out cross-validation (LOOCV)** selects $\lambda$ by measuring out-of-sample prediction error. For each candidate $\lambda$, the LOOCV score is:
+
+    $$
+    \text{CV}(\lambda) = \frac{1}{m}\sum_{i=1}^m \left(\frac{\hat{\sigma}(K_i) - \sigma_i}{1 - h_{ii}(\lambda)}\right)^2
+    $$
+
+    where $h_{ii}$ is the $i$-th diagonal of the hat matrix (the smoother matrix). This formula efficiently computes the average squared leave-one-out residual without actually refitting $m$ times. The $\lambda$ that minimizes $\text{CV}(\lambda)$ balances underfitting (large bias from too much smoothing) against overfitting (large variance from fitting noise), without requiring external knowledge of the noise level.
+
 ---
 
 **Exercise 5.** Consider implied volatilities at two maturities: $\sigma_{\text{IV}}(K, T_1) = 20\%$ with $T_1 = 0.25$ and $\sigma_{\text{IV}}(K, T_2) = 22\%$ with $T_2 = 1.0$. Compute the total variances $w(T_1)$ and $w(T_2)$, verify the calendar monotonicity condition, and compute the forward variance $\sigma_{\text{fwd}}^2(T_1, T_2)$. What implied volatility does linear interpolation in total variance assign to $T = 0.5$?
 
+??? success "Solution to Exercise 5"
+    **Total variances:**
+
+    $$
+    w(T_1) = \sigma_{\text{IV}}^2(K, T_1) \cdot T_1 = (0.20)^2 \times 0.25 = 0.04 \times 0.25 = 0.01
+    $$
+
+    $$
+    w(T_2) = \sigma_{\text{IV}}^2(K, T_2) \cdot T_2 = (0.22)^2 \times 1.0 = 0.0484 \times 1.0 = 0.0484
+    $$
+
+    **Calendar monotonicity check:** $w(T_2) = 0.0484 > w(T_1) = 0.01$, so total variance is increasing in maturity. The calendar constraint is satisfied.
+
+    **Forward variance:**
+
+    $$
+    \sigma_{\text{fwd}}^2(T_1, T_2) = \frac{w(T_2) - w(T_1)}{T_2 - T_1} = \frac{0.0484 - 0.01}{1.0 - 0.25} = \frac{0.0384}{0.75} = 0.0512
+    $$
+
+    So $\sigma_{\text{fwd}}(T_1, T_2) = \sqrt{0.0512} \approx 22.63\%$.
+
+    **Linear interpolation at $T = 0.5$:**
+
+    $$
+    w(0.5) = w(0.25) + \frac{0.5 - 0.25}{1.0 - 0.25}(w(1.0) - w(0.25)) = 0.01 + \frac{0.25}{0.75}(0.0484 - 0.01)
+    $$
+
+    $$
+    = 0.01 + \frac{1}{3}(0.0384) = 0.01 + 0.0128 = 0.0228
+    $$
+
+    The implied volatility at $T = 0.5$:
+
+    $$
+    \sigma_{\text{IV}}(K, 0.5) = \sqrt{\frac{w(0.5)}{0.5}} = \sqrt{\frac{0.0228}{0.5}} = \sqrt{0.0456} \approx 21.35\%
+    $$
+
 ---
 
 **Exercise 6.** Describe the complete seven-step practical workflow for transforming raw market option data into a smooth call price surface suitable for Dupire's formula. For each step, identify the primary source of error and the quality metric used to assess it.
+
+??? success "Solution to Exercise 6"
+    **Step 1: Data cleaning.**
+    Remove stale quotes, filter by bid-ask spread width, and use mid-prices.
+    *Primary error:* Stale or erroneous quotes contaminating the dataset.
+    *Quality metric:* Percentage of quotes removed; comparison of mid-price consistency across nearby strikes.
+
+    **Step 2: Convert to implied volatility.**
+    Invert the Black-Scholes formula for each market price.
+    *Primary error:* Root-finding inaccuracy for deep OTM options where vega is very small, and put-call parity violations if puts and calls imply different volatilities.
+    *Quality metric:* Put-call parity residuals; verify that re-pricing from IV recovers the original price within tolerance.
+
+    **Step 3: Interpolate in strike.**
+    For each maturity, fit an SVI curve or smoothing spline to the IV data across strikes, enforcing the butterfly (convexity) constraint.
+    *Primary error:* Overfitting (capturing noise, producing wiggly smile) or underfitting (missing genuine skew/kurtosis structure).
+    *Quality metric:* RMSE of fit to market IVs; cross-validation score; number of butterfly constraint violations.
+
+    **Step 4: Interpolate in maturity.**
+    For each strike, interpolate total variance $w(T) = \sigma_{\text{IV}}^2 T$ across maturities, enforcing calendar monotonicity.
+    *Primary error:* Large maturity gaps causing inaccurate interpolation; violation of calendar monotonicity.
+    *Quality metric:* $\partial w / \partial T \geq 0$ at all grid points; smoothness of the forward variance curve.
+
+    **Step 5: Extrapolate wings.**
+    Extend the surface beyond observed strikes using linear-in-total-variance tails or parametric models consistent with Lee's moment formula.
+    *Primary error:* Arbitrary wing behavior that produces unbounded or negative local volatility at extreme strikes.
+    *Quality metric:* Boundedness of local volatility in the wings; consistency with Lee's moment bounds $\limsup_{|y|\to\infty} w(y)/|y| \leq 2$.
+
+    **Step 6: Convert to call prices.**
+    Apply the Black-Scholes formula with the smoothed $\sigma_{\text{IV}}(K,T)$ to produce $\hat{C}(K,T)$.
+    *Primary error:* Propagation of IV interpolation errors into price space.
+    *Quality metric:* $|\hat{C}(K_i, T_j) - C_{\text{mkt}}(K_i, T_j)|$ at observed points; bid-ask containment.
+
+    **Step 7: Validate.**
+    Check that $\hat{C}_{KK} > 0$, $\hat{C}_T > 0$, and $-1 < e^{rT}\hat{C}_K < 0$ at all grid points.
+    *Primary error:* Residual arbitrage violations that would produce negative or infinite local volatility.
+    *Quality metric:* Count of grid points with any arbitrage violation; range of $\sigma_{\text{loc}}^2$ values computed via Dupire's formula.

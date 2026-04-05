@@ -620,26 +620,237 @@ The formula forms the foundation for model-free results in option pricing, estab
 
 **Exercise 1.** Starting from the risk-neutral pricing formula $C(K, T) = e^{-rT} \int_K^\infty (S - K) q(S) \, dS$, derive the Breeden-Litzenberger formula $q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}$ by differentiating twice with respect to $K$. State clearly which differentiation rule you use at each step.
 
+??? success "Solution to Exercise 1"
+    Starting from the risk-neutral pricing formula:
+
+    $$
+    C(K, T) = e^{-rT} \int_K^\infty (S - K) q(S) \, dS
+    $$
+
+    **First derivative.** Apply the Leibniz integral rule to differentiate with respect to the lower limit $K$ and the integrand:
+
+    $$
+    \frac{\partial C}{\partial K} = e^{-rT} \left[ \underbrace{-(K - K) q(K)}_{\text{boundary term } = 0} + \int_K^\infty \frac{\partial}{\partial K}(S - K) q(S) \, dS \right]
+    $$
+
+    The boundary term vanishes because the integrand $(S - K)$ evaluates to zero at $S = K$. The partial derivative of the integrand gives $-1$, so:
+
+    $$
+    \frac{\partial C}{\partial K} = -e^{-rT} \int_K^\infty q(S) \, dS = -e^{-rT} \mathbb{P}^{\mathbb{Q}}(S_T > K)
+    $$
+
+    **Second derivative.** Differentiate again with respect to $K$ using the fundamental theorem of calculus:
+
+    $$
+    \frac{\partial^2 C}{\partial K^2} = -e^{-rT} \frac{d}{dK} \int_K^\infty q(S) \, dS = -e^{-rT} \cdot (-q(K)) = e^{-rT} q(K)
+    $$
+
+    Solving for the density:
+
+    $$
+    q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}
+    $$
+
+    This is the Breeden-Litzenberger formula. The first step used the Leibniz rule for differentiating an integral with a variable limit, and the second step used the fundamental theorem of calculus.
+
 ---
 
 **Exercise 2.** Three call options with the same maturity $T = 0.5$ and $r = 3\%$ have prices $C(95) = 10.20$, $C(100) = 7.50$, $C(105) = 5.30$. Using the finite-difference approximation $q(K) \approx e^{rT} \frac{C(K - \Delta K) - 2C(K) + C(K + \Delta K)}{(\Delta K)^2}$ with $\Delta K = 5$, estimate the risk-neutral density $q(100)$. Verify that $q(100) > 0$.
+
+??? success "Solution to Exercise 2"
+    Given $T = 0.5$, $r = 0.03$, $C(95) = 10.20$, $C(100) = 7.50$, $C(105) = 5.30$, and $\Delta K = 5$, apply the finite-difference approximation:
+
+    $$
+    q(100) \approx e^{rT} \frac{C(95) - 2C(100) + C(105)}{(\Delta K)^2}
+    $$
+
+    Compute the numerator of the finite difference:
+
+    $$
+    C(95) - 2C(100) + C(105) = 10.20 - 2(7.50) + 5.30 = 10.20 - 15.00 + 5.30 = 0.50
+    $$
+
+    Compute the denominator:
+
+    $$
+    (\Delta K)^2 = 25
+    $$
+
+    Compute the discount factor:
+
+    $$
+    e^{rT} = e^{0.03 \times 0.5} = e^{0.015} \approx 1.01511
+    $$
+
+    Therefore:
+
+    $$
+    q(100) \approx 1.01511 \times \frac{0.50}{25} = 1.01511 \times 0.02 \approx 0.02030
+    $$
+
+    Since $q(100) \approx 0.0203 > 0$, the non-negativity condition is satisfied, confirming no butterfly arbitrage at this strike.
 
 ---
 
 **Exercise 3.** The cumulative distribution function is given by $Q(K) = e^{rT}(1 + \frac{\partial C}{\partial K})$. If the call price function is $C(K) = e^{-rT}(F - K + \sigma_0 \sqrt{T} \phi(d))$ for some approximation near ATM, show that $Q(F) \approx 0.5$ (the probability of finishing in the money is near 50% for an ATM option).
 
+??? success "Solution to Exercise 3"
+    The CDF is given by $Q(K) = e^{rT}(1 + \frac{\partial C}{\partial K})$. We need to show that $Q(F) \approx 0.5$ for an ATM option (where $K = F$, the forward price).
+
+    From the first derivative result in the Breeden-Litzenberger derivation:
+
+    $$
+    \frac{\partial C}{\partial K} = -e^{-rT} \mathbb{P}^{\mathbb{Q}}(S_T > K)
+    $$
+
+    At $K = F$ (at-the-money forward):
+
+    $$
+    Q(F) = e^{rT}\left(1 + \frac{\partial C}{\partial K}\bigg|_{K=F}\right) = e^{rT}\left(1 - e^{-rT}\mathbb{P}^{\mathbb{Q}}(S_T > F)\right) = e^{rT} - \mathbb{P}^{\mathbb{Q}}(S_T > F)
+    $$
+
+    Alternatively, directly:
+
+    $$
+    Q(F) = \mathbb{P}^{\mathbb{Q}}(S_T \leq F)
+    $$
+
+    For a distribution that is approximately symmetric around the forward (in particular, the lognormal distribution with small $\sigma\sqrt{T}$), we have $\mathbb{P}^{\mathbb{Q}}(S_T \leq F) \approx 0.5$. More precisely, in the Black-Scholes model:
+
+    $$
+    Q(F) = \Phi(d_2)\big|_{K=F} = \Phi\left(\frac{\sigma\sqrt{T}}{2}\right)
+    $$
+
+    Wait — correcting: $d_2 = \frac{\ln(F/K) + (-\sigma^2/2)T}{\sigma\sqrt{T}}$. At $K = F$, $\ln(F/F) = 0$, so $d_2 = -\frac{\sigma\sqrt{T}}{2}$. Thus:
+
+    $$
+    Q(F) = \Phi\left(-\frac{\sigma_0\sqrt{T}}{2}\right)
+    $$
+
+    For small $\sigma_0\sqrt{T}$, $\Phi(-\sigma_0\sqrt{T}/2) \approx 0.5 - \frac{\sigma_0\sqrt{T}}{2\sqrt{2\pi}} \approx 0.5$. The deviation from $0.5$ is of order $\sigma_0\sqrt{T}$, which is small for short maturities or moderate volatility. Hence $Q(F) \approx 0.5$.
+
 ---
 
 **Exercise 4.** Using the Breeden-Litzenberger formula, explain why the butterfly spread $C(K - \Delta K) - 2C(K) + C(K + \Delta K) \geq 0$ is equivalent to the non-negativity of the risk-neutral density. What economic interpretation does a negative density have, and why is it inconsistent with no-arbitrage?
+
+??? success "Solution to Exercise 4"
+    The butterfly spread cost is:
+
+    $$
+    B(K, \Delta K) = C(K - \Delta K) - 2C(K) + C(K + \Delta K)
+    $$
+
+    As $\Delta K \to 0$, this approaches:
+
+    $$
+    B(K, \Delta K) \approx \frac{\partial^2 C}{\partial K^2} (\Delta K)^2
+    $$
+
+    By the Breeden-Litzenberger formula, $\frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)$, so:
+
+    $$
+    B(K, \Delta K) \approx e^{-rT} q(K) (\Delta K)^2
+    $$
+
+    **Equivalence:** The butterfly spread price is non-negative ($B \geq 0$) if and only if $\frac{\partial^2 C}{\partial K^2} \geq 0$, which is equivalent to $q(K) \geq 0$.
+
+    **Economic interpretation of a negative density:** If $q(K) < 0$ at some strike $K$, then $B(K, \Delta K) < 0$, meaning the butterfly spread has a negative cost. Since the butterfly payoff is always non-negative (it pays $(K - |S_T - K|)^+ / \Delta K \geq 0$ approximately), buying it for a negative price yields a guaranteed non-negative payoff for a positive cash inflow. This is a pure arbitrage: risk-free profit with no initial investment. Such a situation is inconsistent with the no-arbitrage assumption, which requires that any claim with non-negative payoff must have a non-negative price.
 
 ---
 
 **Exercise 5.** Suppose the risk-neutral density extracted from SPX options is bimodal (two peaks). What does this indicate about the market's view of future price distribution? Provide a market scenario (such as a pending binary event) that would produce a bimodal risk-neutral density.
 
+??? success "Solution to Exercise 5"
+    A **bimodal** risk-neutral density has two distinct peaks, meaning the market assigns elevated probability to two separate price regions while assigning lower probability to intermediate prices.
+
+    **Interpretation:** The market expects the underlying to end up near one of two distinct levels, with relatively low probability of finishing in between. This indicates the market is pricing a **binary outcome** — an event whose resolution will push the price decisively in one of two directions.
+
+    **Market scenario:** Consider a pharmaceutical company awaiting FDA approval for a key drug:
+
+    - **Approval (positive outcome):** The stock jumps to approximately \$120 (first peak)
+    - **Rejection (negative outcome):** The stock drops to approximately \$60 (second peak)
+    - **Current price:** \$90
+
+    The risk-neutral density would show peaks near \$60 and \$120 with a trough near \$90. Other examples include pending merger announcements (deal closes vs. falls apart), election outcomes affecting regulated industries, and central bank rate decisions with two likely scenarios.
+
+    In the implied volatility space, a bimodal density corresponds to an unusually pronounced smile with very high wing volatilities and a relatively low ATM volatility, creating a deep U-shape.
+
 ---
 
 **Exercise 6.** Derive the relationship $\frac{\partial C}{\partial K} = -e^{-rT} \mathbb{P}^{\mathbb{Q}}(S_T > K)$ from the risk-neutral pricing formula. Use this to show that the call delta with respect to strike gives the (discounted) complement of the CDF. Verify that $\frac{\partial C}{\partial K} \to 0$ as $K \to 0$ and $\frac{\partial C}{\partial K} \to -e^{-rT}$ as $K \to \infty$.
 
+??? success "Solution to Exercise 6"
+    Starting from the risk-neutral call pricing formula:
+
+    $$
+    C(K, T) = e^{-rT} \int_K^\infty (S - K) q(S) \, dS
+    $$
+
+    Differentiate with respect to $K$ using the Leibniz rule:
+
+    $$
+    \frac{\partial C}{\partial K} = e^{-rT} \left[-(K - K)q(K) + \int_K^\infty (-1) q(S) \, dS\right] = -e^{-rT} \int_K^\infty q(S) \, dS
+    $$
+
+    Since $\int_K^\infty q(S) \, dS = \mathbb{P}^{\mathbb{Q}}(S_T > K)$:
+
+    $$
+    \frac{\partial C}{\partial K} = -e^{-rT} \mathbb{P}^{\mathbb{Q}}(S_T > K)
+    $$
+
+    This shows the call delta with respect to strike equals the discounted complement of the CDF. Equivalently, $-e^{rT}\frac{\partial C}{\partial K} = 1 - Q(K)$, the survival function.
+
+    **Boundary verification:**
+
+    As $K \to 0$: Every positive terminal value exceeds $K = 0$, so $\mathbb{P}^{\mathbb{Q}}(S_T > 0) = 1$ (assuming $S_T > 0$ a.s.). But the call at $K = 0$ is just the forward itself, $C(0) = e^{-rT}F$, and $\frac{\partial C}{\partial K}\big|_{K=0} = -e^{-rT}(1) = -e^{-rT}$.
+
+    Correction: Re-examining, we note from the formula $\frac{\partial C}{\partial K} = -e^{-rT}\mathbb{P}^{\mathbb{Q}}(S_T > K)$. As $K \to 0^+$, $\mathbb{P}^{\mathbb{Q}}(S_T > K) \to 1$, so $\frac{\partial C}{\partial K} \to -e^{-rT}$.
+
+    As $K \to \infty$: $\mathbb{P}^{\mathbb{Q}}(S_T > K) \to 0$, so $\frac{\partial C}{\partial K} \to 0$.
+
+    These match the economic intuition: a deep ITM call ($K \to 0$) loses exactly $e^{-rT}$ per unit increase in strike (it behaves like a short bond minus strike), while a deep OTM call ($K \to \infty$) is insensitive to strike changes.
+
 ---
 
 **Exercise 7.** The Breeden-Litzenberger formula requires the second derivative $\frac{\partial^2 C}{\partial K^2}$, but market data provides prices at discrete strikes. Compare three numerical methods for estimating this derivative: (a) centered finite differences, (b) fitting a smooth parametric curve (such as SVI) and differentiating analytically, (c) kernel smoothing. Discuss the tradeoff between accuracy and robustness to noise for each method.
+
+??? success "Solution to Exercise 7"
+    **(a) Centered finite differences:**
+
+    $$
+    \frac{\partial^2 C}{\partial K^2}\bigg|_{K_i} \approx \frac{C(K_{i-1}) - 2C(K_i) + C(K_{i+1})}{(\Delta K)^2}
+    $$
+
+    - **Accuracy:** Second-order accurate $O((\Delta K)^2)$ for smooth functions. Uses only three adjacent data points.
+    - **Robustness:** Very sensitive to noise. Numerical differentiation amplifies errors: if option prices have noise of magnitude $\epsilon$, the second derivative estimate has noise of order $\epsilon / (\Delta K)^2$. With $\Delta K = 5$ and $\epsilon = \$0.05$, the noise in the density estimate is $0.05/25 = 0.002$, which can be comparable to the density value itself.
+    - **Tradeoff:** Simple and unbiased for smooth data, but unreliable with noisy market quotes.
+
+    **(b) Parametric curve fitting (e.g., SVI):**
+
+    Fit a smooth parametric model such as the SVI (Stochastic Volatility Inspired) parametrization to the implied volatility data:
+
+    $$
+    \sigma_{\text{IV}}^2(k) = a + b\left[\rho(k - m) + \sqrt{(k - m)^2 + s^2}\right]
+    $$
+
+    where $k = \ln(K/F)$. Convert to call prices and differentiate analytically.
+
+    - **Accuracy:** Provides smooth analytical derivatives. The accuracy depends on how well the parametric form matches the true smile shape. If the model is correct, accuracy is excellent.
+    - **Robustness:** Highly robust to noise because the fit averages over many data points. However, model misspecification introduces systematic bias — the extracted density inherits the shape constraints of the parametric family.
+    - **Tradeoff:** Most robust to noise but introduces model dependence. The density can only take shapes permitted by the parametric family.
+
+    **(c) Kernel smoothing:**
+
+    Smooth the call prices using a kernel regression:
+
+    $$
+    \hat{C}(K) = \frac{\sum_i K_h(K - K_i) C(K_i)}{\sum_i K_h(K - K_i)}
+    $$
+
+    where $K_h$ is a kernel function with bandwidth $h$, then differentiate the smoothed function.
+
+    - **Accuracy:** Non-parametric, so no model bias. Accuracy depends on bandwidth selection: too small preserves noise, too large over-smooths and flattens the density.
+    - **Robustness:** Intermediate between (a) and (b). More robust than raw finite differences but less constrained than parametric fits. Does not automatically enforce no-arbitrage conditions (may produce negative densities).
+    - **Tradeoff:** Flexible and fairly robust, but requires careful bandwidth tuning. The bias-variance tradeoff is controlled by bandwidth: larger $h$ reduces variance but increases bias.
+
+    **Summary:** Method (a) is best for dense, clean data. Method (b) is best for sparse, noisy data where the parametric form is trusted. Method (c) offers a middle ground with no parametric assumptions but requires bandwidth selection.

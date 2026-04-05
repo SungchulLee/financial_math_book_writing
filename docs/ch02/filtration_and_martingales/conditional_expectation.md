@@ -265,48 +265,6 @@ This connection is the foundation of martingale theory and is developed fully in
 
 (c) Let $N \sim \text{Poisson}(\lambda)$ and $X \mid N \sim \text{Binomial}(N, p)$. Compute $\mathbb{E}[X \mid N]$ and then $\mathbb{E}[X]$ using the tower property.
 
-### Exercise 2: Tower Property
-
-(a) Let $\mathcal{H} \subseteq \mathcal{G}$. Prove the tower property directly from the definition.
-
-(b) Use the tower property to show $\text{Var}(X) = \mathbb{E}[\text{Var}(X \mid Y)] + \text{Var}(\mathbb{E}[X \mid Y])$.
-
-(c) Apply (b) to the setup of Exercise 1(c) to compute $\text{Var}(X)$.
-
-### Exercise 3: Taking Out What Is Known
-
-(a) Prove the "taking out what is known" property for bounded $\mathcal{G}$-measurable $Y$.
-
-*Hint*: Verify measurability and check the partial averaging condition using the definition of conditional expectation.
-
-(b) Use this property to show: if $f$ is Borel measurable and $Y$ is $\mathcal{G}$-measurable, then $\mathbb{E}[f(Y) \cdot X \mid \mathcal{G}] = f(Y) \cdot \mathbb{E}[X \mid \mathcal{G}]$.
-
-### Exercise 4: Conditional Jensen
-
-(a) Prove Jensen's inequality for conditional expectations: if $\varphi$ is convex and $X, \varphi(X) \in L^1$, then $\varphi(\mathbb{E}[X \mid \mathcal{G}]) \le \mathbb{E}[\varphi(X) \mid \mathcal{G}]$.
-
-*Hint*: Use the supporting hyperplane characterization of convexity: $\varphi(y) \ge \varphi(x) + \varphi'(x)(y - x)$ for all $x, y$ (where $\varphi'$ is a subgradient).
-
-(b) Deduce that $|\mathbb{E}[X \mid \mathcal{G}]| \le \mathbb{E}[|X| \mid \mathcal{G}]$ and use this to prove $L^p$ contractivity.
-
-### Exercise 5: Brownian Motion
-
-Let $(W_t)$ be standard Brownian motion with natural filtration $(\mathcal{F}_t)$.
-
-(a) Compute $\mathbb{E}[W_t^2 \mid \mathcal{F}_s]$ for $s \le t$.
-
-(b) Compute $\mathbb{E}[W_t^3 \mid \mathcal{F}_s]$ for $s \le t$.
-
-*Hint*: Write $W_t = W_s + (W_t - W_s)$ and expand. Use the moments of $W_t - W_s \sim N(0, t-s)$.
-
-(c) For $\lambda \in \mathbb{R}$, compute $\mathbb{E}[e^{\lambda W_t} \mid \mathcal{F}_s]$.
-
-*Hint*: Factor $e^{\lambda W_t} = e^{\lambda W_s} \cdot e^{\lambda(W_t - W_s)}$ and use independence and the moment generating function of a Gaussian.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a)** Since $X \sim \text{Uniform}[0,1]$ and $Y = \lfloor 2X \rfloor$, we have $Y = 0$ when $X \in [0, 1/2)$ and $Y = 1$ when $X \in [1/2, 1]$.
 
@@ -349,6 +307,16 @@ Let $(W_t)$ be standard Brownian motion with natural filtration $(\mathcal{F}_t)
     $$
     \mathbb{E}[X] = \mathbb{E}[\mathbb{E}[X \mid N]] = \mathbb{E}[Np] = p\,\mathbb{E}[N] = p\lambda
     $$
+
+---
+
+### Exercise 2: Tower Property
+
+(a) Let $\mathcal{H} \subseteq \mathcal{G}$. Prove the tower property directly from the definition.
+
+(b) Use the tower property to show $\text{Var}(X) = \mathbb{E}[\text{Var}(X \mid Y)] + \text{Var}(\mathbb{E}[X \mid Y])$.
+
+(c) Apply (b) to the setup of Exercise 1(c) to compute $\text{Var}(X)$.
 
 ??? success "Solution to Exercise 2"
     **(a)** Let $\mathcal{H} \subseteq \mathcal{G}$ and let $Z = \mathbb{E}[\mathbb{E}[X \mid \mathcal{G}] \mid \mathcal{H}]$. We verify $Z = \mathbb{E}[X \mid \mathcal{H}]$ by checking the defining properties.
@@ -397,6 +365,16 @@ Let $(W_t)$ be standard Brownian motion with natural filtration $(\mathcal{F}_t)
     \text{Var}(X) = p(1-p)\lambda + p^2\lambda = p\lambda(1 - p + p) = p\lambda
     $$
 
+---
+
+### Exercise 3: Taking Out What Is Known
+
+(a) Prove the "taking out what is known" property for bounded $\mathcal{G}$-measurable $Y$.
+
+*Hint*: Verify measurability and check the partial averaging condition using the definition of conditional expectation.
+
+(b) Use this property to show: if $f$ is Borel measurable and $Y$ is $\mathcal{G}$-measurable, then $\mathbb{E}[f(Y) \cdot X \mid \mathcal{G}] = f(Y) \cdot \mathbb{E}[X \mid \mathcal{G}]$.
+
 ??? success "Solution to Exercise 3"
     **(a)** We must show that $Y \cdot \mathbb{E}[X \mid \mathcal{G}]$ satisfies the two defining properties of $\mathbb{E}[XY \mid \mathcal{G}]$, assuming $Y$ is bounded and $\mathcal{G}$-measurable.
 
@@ -423,6 +401,16 @@ Let $(W_t)$ be standard Brownian motion with natural filtration $(\mathcal{F}_t)
     $$
 
     (The result for bounded $f(Y)$ follows directly from (a); for general $f$ with $f(Y) \cdot X \in L^1$, one extends by monotone class or truncation arguments.) $\square$
+
+---
+
+### Exercise 4: Conditional Jensen
+
+(a) Prove Jensen's inequality for conditional expectations: if $\varphi$ is convex and $X, \varphi(X) \in L^1$, then $\varphi(\mathbb{E}[X \mid \mathcal{G}]) \le \mathbb{E}[\varphi(X) \mid \mathcal{G}]$.
+
+*Hint*: Use the supporting hyperplane characterization of convexity: $\varphi(y) \ge \varphi(x) + \varphi'(x)(y - x)$ for all $x, y$ (where $\varphi'$ is a subgradient).
+
+(b) Deduce that $|\mathbb{E}[X \mid \mathcal{G}]| \le \mathbb{E}[|X| \mid \mathcal{G}]$ and use this to prove $L^p$ contractivity.
 
 ??? success "Solution to Exercise 4"
     **(a)** Since $\varphi$ is convex, for every $x_0 \in \mathbb{R}$ there exists a subgradient $a(x_0)$ such that:
@@ -468,6 +456,22 @@ Let $(W_t)$ be standard Brownian motion with natural filtration $(\mathcal{F}_t)
     $$
 
     Therefore $\|\mathbb{E}[X \mid \mathcal{G}]\|_{L^p} \le \|X\|_{L^p}$. $\square$
+
+---
+
+### Exercise 5: Brownian Motion
+
+Let $(W_t)$ be standard Brownian motion with natural filtration $(\mathcal{F}_t)$.
+
+(a) Compute $\mathbb{E}[W_t^2 \mid \mathcal{F}_s]$ for $s \le t$.
+
+(b) Compute $\mathbb{E}[W_t^3 \mid \mathcal{F}_s]$ for $s \le t$.
+
+*Hint*: Write $W_t = W_s + (W_t - W_s)$ and expand. Use the moments of $W_t - W_s \sim N(0, t-s)$.
+
+(c) For $\lambda \in \mathbb{R}$, compute $\mathbb{E}[e^{\lambda W_t} \mid \mathcal{F}_s]$.
+
+*Hint*: Factor $e^{\lambda W_t} = e^{\lambda W_s} \cdot e^{\lambda(W_t - W_s)}$ and use independence and the moment generating function of a Gaussian.
 
 ??? success "Solution to Exercise 5"
     **(a)** Write $W_t = W_s + (W_t - W_s)$ and expand:

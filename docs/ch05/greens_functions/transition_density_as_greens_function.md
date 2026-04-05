@@ -284,40 +284,6 @@ $$
 **Exercise 1.**
 For the SDE $dX_t = \mu\,dt + \sigma\,dW_t$ (Brownian motion with drift), write the transition density $p(t, x | s, y)$ explicitly. Verify it satisfies the forward (Fokker-Planck) equation $\partial_t p = -\mu\partial_x p + \frac{1}{2}\sigma^2\partial_{xx}p$ by direct differentiation.
 
----
-
-**Exercise 2.**
-Explain the identification $p(t, x | s, y) = G(t, x; s, y)$ in words: the probability density of the diffusion at $(t, x)$ starting from $(s, y)$ equals the PDE response at $(t, x)$ to a unit impulse at $(s, y)$. Why does the delta-function initial condition of the Green's function correspond to a point-mass initial distribution for the diffusion?
-
----
-
-**Exercise 3.**
-The transition density satisfies the backward equation $\partial_s p + \mu(y)\partial_y p + \frac{1}{2}\sigma^2(y)\partial_{yy}p = 0$ as a function of $(s, y)$. Explain the financial significance: the backward equation tells how the option price depends on the current state, while the forward equation describes the evolution of the probability distribution.
-
----
-
-**Exercise 4.**
-For geometric Brownian motion $dS_t = rS_t\,dt + \sigma S_t\,dW_t$, the transition density of $S_T | S_t = S$ is lognormal. Write this density explicitly and verify that $\mathbb{E}[e^{-r(T-t)}g(S_T) | S_t = S] = \int e^{-r(T-t)}g(y)p(T, y | t, S)\,dy$ recovers the risk-neutral pricing formula.
-
----
-
-**Exercise 5.**
-The Chapman-Kolmogorov equation $p(t, x | s, y) = \int p(t, x | r, z)\,p(r, z | s, y)\,dz$ expresses the semigroup property of transition densities. Verify this for the Gaussian transition density of standard Brownian motion by computing the convolution of two Gaussians.
-
----
-
-**Exercise 6.**
-For a killed diffusion (absorbing boundary at $B$), the transition density becomes $p_B(t, x | s, y) < p(t, x | s, y)$ because paths that hit $B$ are removed. Explain why $\int p_B(t, x | s, y)\,dx < 1$ and relate the "missing mass" to the first-passage probability $\mathbb{P}(\tau_B \leq t | X_s = y)$.
-
----
-
-**Exercise 7.**
-Show that the option pricing formula $V(t, S) = e^{-r(T-t)}\int g(y)\,p(T, y | t, S)\,dy$ is a special case of the Feynman-Kac formula with $r$ constant and $f = 0$. Identify the Green's function in this representation and explain why it encodes all the information needed for European option pricing.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     For $dX_t = \mu\,dt + \sigma\,dW_t$ with constant $\mu$ and $\sigma$, the process is Gaussian with $X_t \mid X_s = y \sim N(y + \mu(t-s),\, \sigma^2(t-s))$. The transition density is
 
@@ -339,6 +305,11 @@ Show that the option pricing formula $V(t, S) = e^{-r(T-t)}\int g(y)\,p(T, y | t
 
     Adding: $-\mu\,\partial_x p + \frac{1}{2}\sigma^2\,\partial_{xx}p = p\,(\mu w/(\sigma^2\tau) + w^2/(2\sigma^2\tau^2) - 1/(2\tau)) = \partial_t p$. $\checkmark$
 
+---
+
+**Exercise 2.**
+Explain the identification $p(t, x | s, y) = G(t, x; s, y)$ in words: the probability density of the diffusion at $(t, x)$ starting from $(s, y)$ equals the PDE response at $(t, x)$ to a unit impulse at $(s, y)$. Why does the delta-function initial condition of the Green's function correspond to a point-mass initial distribution for the diffusion?
+
 ??? success "Solution to Exercise 2"
     The identification $p(t, x \mid s, y) = G(t, x; s, y)$ says that two seemingly different objects are the same function:
 
@@ -347,6 +318,11 @@ Show that the option pricing formula $V(t, S) = e^{-r(T-t)}\int g(y)\,p(T, y | t
     - **Analytical side**: $G(t, x; s, y)$ is the solution of the PDE $\partial_t G = \mathcal{L}_x G$ with initial condition $G(s, x; s, y) = \delta(x - y)$. This is the PDE response to a point source.
 
     The delta-function initial condition $G(s, x; s, y) = \delta(x - y)$ corresponds to a point-mass initial distribution because both encode the same information: the system starts with certainty at position $y$. For the diffusion, "starting at $y$" means $X_s = y$ with probability $1$, which is a point mass $\delta_y$ in distribution space. For the PDE, a delta-function source $\delta(x - y)$ means all the "mass" (heat, probability) is concentrated at the single point $y$ at time $s$. As time evolves, both the probability distribution and the PDE solution spread out from this initial point in the same way, because the Kolmogorov equations (derived from the SDE) are exactly the PDEs that the Green's function satisfies.
+
+---
+
+**Exercise 3.**
+The transition density satisfies the backward equation $\partial_s p + \mu(y)\partial_y p + \frac{1}{2}\sigma^2(y)\partial_{yy}p = 0$ as a function of $(s, y)$. Explain the financial significance: the backward equation tells how the option price depends on the current state, while the forward equation describes the evolution of the probability distribution.
 
 ??? success "Solution to Exercise 3"
     The backward equation $\partial_s p + \mu(y)\,\partial_y p + \frac{1}{2}\sigma^2(y)\,\partial_{yy}p = 0$ describes how the transition density varies as a function of the starting state $(s, y)$, with the destination $(t, x)$ held fixed.
@@ -366,6 +342,11 @@ Show that the option pricing formula $V(t, S) = e^{-r(T-t)}\int g(y)\,p(T, y | t
     - Computing quantities like value-at-risk that depend on the full distribution
 
     In summary: the backward equation is the "pricing equation" (how value depends on current state), while the forward equation is the "distribution equation" (how probabilities evolve over time).
+
+---
+
+**Exercise 4.**
+For geometric Brownian motion $dS_t = rS_t\,dt + \sigma S_t\,dW_t$, the transition density of $S_T | S_t = S$ is lognormal. Write this density explicitly and verify that $\mathbb{E}[e^{-r(T-t)}g(S_T) | S_t = S] = \int e^{-r(T-t)}g(y)p(T, y | t, S)\,dy$ recovers the risk-neutral pricing formula.
 
 ??? success "Solution to Exercise 4"
     Under $dS_t = rS_t\,dt + \sigma S_t\,dW_t$, the log-price $X_t = \ln S_t$ satisfies $dX_t = (r - \sigma^2/2)\,dt + \sigma\,dW_t$ by Ito's formula. Given $S_t = S$, we have $X_t = \ln S$ and
@@ -400,6 +381,11 @@ Show that the option pricing formula $V(t, S) = e^{-r(T-t)}\int g(y)\,p(T, y | t
 
     This recovers the Black-Scholes formula $V = S\,\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)$, confirming that the risk-neutral pricing integral with the lognormal transition density yields the correct result.
 
+---
+
+**Exercise 5.**
+The Chapman-Kolmogorov equation $p(t, x | s, y) = \int p(t, x | r, z)\,p(r, z | s, y)\,dz$ expresses the semigroup property of transition densities. Verify this for the Gaussian transition density of standard Brownian motion by computing the convolution of two Gaussians.
+
 ??? success "Solution to Exercise 5"
     For standard Brownian motion, the transition density is $p(t, x \mid s, y) = (2\pi(t-s))^{-1/2}\exp(-(x-y)^2/(2(t-s)))$. The Chapman-Kolmogorov equation requires
 
@@ -431,6 +417,11 @@ Show that the option pricing formula $V(t, S) = e^{-r(T-t)}\int g(y)\,p(T, y | t
 
     This result reflects the fact that the sum of independent Gaussian increments is Gaussian with variance equal to the sum of the variances.
 
+---
+
+**Exercise 6.**
+For a killed diffusion (absorbing boundary at $B$), the transition density becomes $p_B(t, x | s, y) < p(t, x | s, y)$ because paths that hit $B$ are removed. Explain why $\int p_B(t, x | s, y)\,dx < 1$ and relate the "missing mass" to the first-passage probability $\mathbb{P}(\tau_B \leq t | X_s = y)$.
+
 ??? success "Solution to Exercise 6"
     For a killed diffusion with absorbing boundary at $B$, a path is removed (killed) the first time it hits $B$. The transition density $p_B(t, x \mid s, y)$ accounts only for surviving paths:
 
@@ -459,6 +450,11 @@ Show that the option pricing formula $V(t, S) = e^{-r(T-t)}\int g(y)\,p(T, y | t
     $$
 
     In the barrier option context, $1 - \int p_B\,dx$ is the knock-out probability -- the probability that the option has been deactivated by time $t$. The option price involves only the surviving density, which is why barrier options are always worth less than their vanilla counterparts.
+
+---
+
+**Exercise 7.**
+Show that the option pricing formula $V(t, S) = e^{-r(T-t)}\int g(y)\,p(T, y | t, S)\,dy$ is a special case of the Feynman-Kac formula with $r$ constant and $f = 0$. Identify the Green's function in this representation and explain why it encodes all the information needed for European option pricing.
 
 ??? success "Solution to Exercise 7"
     The **Feynman-Kac formula** states that the solution to

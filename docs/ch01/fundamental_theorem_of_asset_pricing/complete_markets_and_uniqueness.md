@@ -378,32 +378,6 @@ Together with the [First FTAP](fundamental_theorem_of_asset_pricing.md), these r
 
 **Exercise 1.** Consider a one-period market with $n = 3$ states and $d = 1$ risky asset. The excess return vector is $X = (8, 0, -4)^T$. Show that the market is incomplete and parameterize the full family of EMMs. What is the no-arbitrage price interval for the claim $\Phi = (3, 1, 0)^T$?
 
----
-
-**Exercise 2.** In a market with $n = 4$ states and $d = 3$ risky assets, the payoff matrix has rank 3. Is the market complete? Justify your answer using the rank condition. How many EMMs exist?
-
----
-
-**Exercise 3.** Prove that in a complete, arbitrage-free market, the replication cost of any contingent claim $\Phi$ equals $\mathbb{E}^{\mathbb{Q}}[\Phi]$, where $\mathbb{Q}$ is the unique EMM. Start from the decomposition $\Phi = c \cdot \mathbf{1} + X\theta$ and use the martingale property of $X$ under $\mathbb{Q}$.
-
----
-
-**Exercise 4.** An incomplete market has $n = 3$ states and $d = 1$ risky asset with $S^1_0 = 50$ and $S^1_1 = (65, 50, 40)$. A new asset with payoffs $S^2_1 = (10, 5, 0)$ is introduced at price $S^2_0 = a$. For which values of $a$ does the augmented market remain arbitrage-free? For which value of $a$ does the augmented market become complete?
-
----
-
-**Exercise 5.** Suppose the stochastic volatility model has two Brownian motions $(W^1_t, W^2_t)$ driving the stock price $S_t$ and its volatility $\sigma_t$, but only $S_t$ is traded. Explain why this market is incomplete using the counting rule ($d < m$). How many independent sources of risk remain unhedgeable?
-
----
-
-**Exercise 6.** In an incomplete market, the no-arbitrage price of a non-attainable claim $\Phi$ lies in the interval $[\inf_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}[\Phi/S^0_T], \sup_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}[\Phi/S^0_T]]$. Show that for an attainable claim, the infimum and supremum coincide, so the price is unique even in an incomplete market.
-
----
-
-
-## Solutions
-
-
 ??? success "Solution to Exercise 1"
     The payoff matrix is $3 \times 1$:
 
@@ -435,6 +409,9 @@ Together with the [First FTAP](fundamental_theorem_of_asset_pricing.md), these r
 
     Remarkably, the price is constant across all EMMs: $\pi(\Phi) = 1$. Despite the market being incomplete, this particular claim has a unique no-arbitrage price. This occurs because $\Phi - 1 \cdot \mathbf{1} = (2, 0, -1)^T = \frac{1}{4}(8, 0, -4)^T = \frac{1}{4}X$, so $\Phi$ is attainable with $\theta = 1/4$ and initial cost $c = 1$.
 
+---
+
+**Exercise 2.** In a market with $n = 4$ states and $d = 3$ risky assets, the payoff matrix has rank 3. Is the market complete? Justify your answer using the rank condition. How many EMMs exist?
 
 ??? success "Solution to Exercise 2"
     With $n = 4$ states and $d = 3$ risky assets, the payoff matrix $X$ is $4 \times 3$ with $\operatorname{rank}(X) = 3$.
@@ -443,6 +420,9 @@ Together with the [First FTAP](fundamental_theorem_of_asset_pricing.md), these r
 
     The dimension of $\ker(X^T)$ is $n - \operatorname{rank}(X) = 4 - 3 = 1$. Intersecting this one-dimensional kernel with the affine hyperplane $\{\sum q_i = 1\}$ gives a single point. If this point lies in the interior of the simplex (all $q_i > 0$), then the EMM is unique and exactly **one** EMM exists. The market is both arbitrage-free and complete.
 
+---
+
+**Exercise 3.** Prove that in a complete, arbitrage-free market, the replication cost of any contingent claim $\Phi$ equals $\mathbb{E}^{\mathbb{Q}}[\Phi]$, where $\mathbb{Q}$ is the unique EMM. Start from the decomposition $\Phi = c \cdot \mathbf{1} + X\theta$ and use the martingale property of $X$ under $\mathbb{Q}$.
 
 ??? success "Solution to Exercise 3"
     If $\Phi$ is attainable, there exist $c \in \mathbb{R}$ and $\theta \in \mathbb{R}^d$ such that
@@ -471,6 +451,9 @@ Together with the [First FTAP](fundamental_theorem_of_asset_pricing.md), these r
 
     for every EMM $\mathbb{Q}$. The replication cost $c$ is the unique no-arbitrage price, and it equals the risk-neutral expectation regardless of which EMM is chosen. $\square$
 
+---
+
+**Exercise 4.** An incomplete market has $n = 3$ states and $d = 1$ risky asset with $S^1_0 = 50$ and $S^1_1 = (65, 50, 40)$. A new asset with payoffs $S^2_1 = (10, 5, 0)$ is introduced at price $S^2_0 = a$. For which values of $a$ does the augmented market remain arbitrage-free? For which value of $a$ does the augmented market become complete?
 
 ??? success "Solution to Exercise 4"
     The original payoff matrix is $X_1 = (15, -5, -10)^T$ with the excess returns for the first asset. The excess returns for the second asset are $S^2_1 - S^2_0 = (10 - a, \, 5 - a, \, 0 - a)$.
@@ -505,6 +488,9 @@ Together with the [First FTAP](fundamental_theorem_of_asset_pricing.md), these r
 
     The market becomes **complete** for any $a$ in this range (since $\operatorname{rank}(X) = 2 = n - 1$ when the second column is not proportional to the first, which holds for $a \neq 5$ in general; one should verify linear independence for the specific value).
 
+---
+
+**Exercise 5.** Suppose the stochastic volatility model has two Brownian motions $(W^1_t, W^2_t)$ driving the stock price $S_t$ and its volatility $\sigma_t$, but only $S_t$ is traded. Explain why this market is incomplete using the counting rule ($d < m$). How many independent sources of risk remain unhedgeable?
 
 ??? success "Solution to Exercise 5"
     The stochastic volatility model has $m = 2$ independent sources of randomness (Brownian motions $W^1_t$ and $W^2_t$) but only $d = 1$ traded risky asset ($S_t$). The counting rule states that completeness requires $d \geq m$. Since $d = 1 < 2 = m$, the market is **incomplete**.
@@ -513,6 +499,9 @@ Together with the [First FTAP](fundamental_theorem_of_asset_pricing.md), these r
 
     In a stochastic volatility model, the unhedgeable risk is typically the **volatility risk**: changes in $\sigma_t$ driven by the Brownian motion that is not (or only partially) correlated with the stock's Brownian motion. This is why the EMM is not unique -- different choices of the "market price of volatility risk" correspond to different equivalent martingale measures, and each assigns a different price to volatility-sensitive derivatives.
 
+---
+
+**Exercise 6.** In an incomplete market, the no-arbitrage price of a non-attainable claim $\Phi$ lies in the interval $[\inf_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}[\Phi/S^0_T], \sup_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}[\Phi/S^0_T]]$. Show that for an attainable claim, the infimum and supremum coincide, so the price is unique even in an incomplete market.
 
 ??? success "Solution to Exercise 6"
     Let $\Phi$ be attainable: $\Phi = c \cdot \mathbf{1} + X\theta$ for some $c \in \mathbb{R}$ and $\theta \in \mathbb{R}^d$. For any EMM $\mathbb{Q}$ with weight vector $q$ (satisfying $X^T q = 0$ and $\mathbf{1}^T q = 1$), with $S^0_T = 1$ (normalized numéraire):

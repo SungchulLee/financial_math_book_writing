@@ -303,22 +303,305 @@ which yields portfolios robust to model uncertainty.
 
 **Exercise 1.** A monetary risk measure satisfies monotonicity and translation invariance. State each axiom formally. Verify that the worst-case risk measure $\rho(X) = -\text{ess inf}(X)$ is monetary. Is it also coherent?
 
+??? success "Solution to Exercise 1"
+
+    **Formal axioms.** A risk measure $\rho:\mathcal{X}\to\mathbb{R}$ on a space $\mathcal{X}$ of financial positions (with the loss convention) is monetary if:
+
+    1. **Monotonicity:** For all $X, Y \in \mathcal{X}$, if $X \le Y$ a.s., then $\rho(X) \le \rho(Y)$.
+    2. **Translation invariance (cash invariance):** For all $X \in \mathcal{X}$ and $c \in \mathbb{R}$, $\rho(X + c) = \rho(X) + c$.
+
+    **Verification for the worst-case risk measure.** Recall that under the loss convention used in this chapter, the worst-case risk measure is
+
+    $$
+    \rho(X) = \operatorname{ess\,sup}(X)
+    $$
+
+    (Note: the exercise writes $\rho(X) = -\operatorname{ess\,inf}(X)$. Under the loss convention where $X$ represents losses, we have $-\operatorname{ess\,inf}(X) = \operatorname{ess\,sup}(-X)$. Both formulations define the worst-case measure depending on sign conventions. We verify the axioms for $\rho(X) = -\operatorname{ess\,inf}(X)$.)
+
+    *Monotonicity:* If $X \le Y$ a.s., then $\inf X \ge \inf Y$ does **not** hold in general, but $-\operatorname{ess\,inf}(X) \le -\operatorname{ess\,inf}(Y)$ needs care with the sign convention. Under the convention that $X$ represents gains (positive = good), $\rho(X) = -\operatorname{ess\,inf}(X)$ is the worst-case measure for gains, and monotonicity in that convention reads: $X \ge Y$ a.s. $\Rightarrow$ $\rho(X) \le \rho(Y)$. Equivalently, using the loss convention of this chapter with $\rho(X) = \operatorname{ess\,sup}(X)$:
+
+    If $X \le Y$ a.s., then $\operatorname{ess\,sup}(X) \le \operatorname{ess\,sup}(Y)$, since the supremum operator preserves order. Hence monotonicity holds.
+
+    *Translation invariance:* For any $c \in \mathbb{R}$,
+
+    $$
+    \rho(X + c) = \operatorname{ess\,sup}(X + c) = \operatorname{ess\,sup}(X) + c = \rho(X) + c
+    $$
+
+    so translation invariance holds. Thus $\rho$ is monetary.
+
+    **Is it coherent?** We verify positive homogeneity and subadditivity.
+
+    *Positive homogeneity:* For $\lambda > 0$,
+
+    $$
+    \rho(\lambda X) = \operatorname{ess\,sup}(\lambda X) = \lambda \operatorname{ess\,sup}(X) = \lambda \rho(X)
+    $$
+
+    *Subadditivity:* For any $X, Y$,
+
+    $$
+    \rho(X + Y) = \operatorname{ess\,sup}(X + Y) \le \operatorname{ess\,sup}(X) + \operatorname{ess\,sup}(Y) = \rho(X) + \rho(Y)
+    $$
+
+    since the essential supremum is subadditive. Therefore $\rho$ is coherent. Its dual representation corresponds to $\mathcal{Q} = \mathcal{M}_1$ (the set of all probability measures absolutely continuous w.r.t. $\mathbb{P}$), making it the most conservative coherent risk measure.
+
 ---
 
 **Exercise 2.** Show that VaR at level $\alpha$ satisfies monotonicity and translation invariance (hence is monetary) but fails subadditivity. Construct an explicit example with two positions $X$ and $Y$ where $\text{VaR}_\alpha(X + Y) > \text{VaR}_\alpha(X) + \text{VaR}_\alpha(Y)$.
+
+??? success "Solution to Exercise 2"
+
+    **Monotonicity of VaR.** Let $\text{VaR}_\alpha(X) = \inf\{x : \mathbb{P}(X \le x) \ge \alpha\}$. If $X \le Y$ a.s., then for every $x$,
+
+    $$
+    \mathbb{P}(Y \le x) \le \mathbb{P}(X \le x)
+    $$
+
+    because $\{Y \le x\} \subseteq \{X \le x\}$ a.s. Hence if $\mathbb{P}(X \le x) \ge \alpha$, it follows that $\mathbb{P}(Y \le x) \ge \alpha$ is harder to achieve. More precisely, the quantile function $F_X^{-1}(\alpha) \le F_Y^{-1}(\alpha)$ when $X \le Y$ a.s., so $\text{VaR}_\alpha(X) \le \text{VaR}_\alpha(Y)$.
+
+    **Translation invariance.** For any $c \in \mathbb{R}$,
+
+    $$
+    \text{VaR}_\alpha(X + c) = \inf\{x : \mathbb{P}(X + c \le x) \ge \alpha\} = \inf\{x : \mathbb{P}(X \le x - c) \ge \alpha\}
+    $$
+
+    Substituting $x' = x - c$, this equals $\inf\{x' + c : \mathbb{P}(X \le x') \ge \alpha\} = \text{VaR}_\alpha(X) + c$.
+
+    Hence VaR is monetary.
+
+    **Failure of subadditivity -- explicit counterexample.** Let $\Omega = \{\omega_1, \omega_2, \ldots, \omega_{100}\}$ with uniform probability $\mathbb{P}(\omega_i) = 1/100$. Define two positions $X$ and $Y$ as follows:
+
+    - $X(\omega_i) = 0$ for $i = 1, \ldots, 99$, and $X(\omega_{100}) = 100$
+    - $Y(\omega_i) = 0$ for $i = 1, \ldots, 99$, and $Y(\omega_{99}) = 100$, with the events $\{X = 100\}$ and $\{Y = 100\}$ disjoint
+
+    More precisely, let $X$ and $Y$ be designed so that they each have a single large loss occurring in different states:
+
+    - $X(\omega_i) = \begin{cases} 100 & i = 100 \\ 0 & \text{otherwise}\end{cases}$
+    - $Y(\omega_i) = \begin{cases} 100 & i = 99 \\ 0 & \text{otherwise}\end{cases}$
+
+    At level $\alpha = 0.95$:
+
+    $$
+    \text{VaR}_{0.95}(X) = 0, \quad \text{VaR}_{0.95}(Y) = 0
+    $$
+
+    since $\mathbb{P}(X \le 0) = 99/100 = 0.99 \ge 0.95$ and similarly for $Y$.
+
+    Now consider $X + Y$:
+
+    $$
+    (X+Y)(\omega_i) = \begin{cases} 100 & i = 99 \text{ or } i = 100 \\ 0 & \text{otherwise}\end{cases}
+    $$
+
+    We have $\mathbb{P}(X + Y \le 0) = 98/100 = 0.98 \ge 0.95$, so $\text{VaR}_{0.95}(X+Y) = 0$.
+
+    This particular example does not violate subadditivity. Let us refine it with more states. Consider $\alpha = 0.95$ and a sample space with $n = 20$ equally likely states. Define:
+
+    - $X(\omega_i) = \begin{cases} 100 & i = 20 \\ 0 & \text{otherwise}\end{cases}$
+    - $Y(\omega_i) = \begin{cases} 100 & i = 19 \\ 0 & \text{otherwise}\end{cases}$
+
+    Then $\mathbb{P}(X \le 0) = 19/20 = 0.95 \ge 0.95$, so $\text{VaR}_{0.95}(X) = 0$. Similarly $\text{VaR}_{0.95}(Y) = 0$.
+
+    For $X + Y$: $\mathbb{P}(X+Y \le 0) = 18/20 = 0.90 < 0.95$. Hence $\text{VaR}_{0.95}(X+Y) = 100$.
+
+    Therefore:
+
+    $$
+    \text{VaR}_{0.95}(X + Y) = 100 > 0 = \text{VaR}_{0.95}(X) + \text{VaR}_{0.95}(Y)
+    $$
+
+    This demonstrates the failure of subadditivity. Diversification (combining $X$ and $Y$) actually increases VaR because the two rare losses, while individually below the quantile threshold, jointly push the combined loss above it.
 
 ---
 
 **Exercise 3.** A convex risk measure satisfies monotonicity, translation invariance, and convexity: $\rho(\lambda X + (1-\lambda)Y) \le \lambda\rho(X) + (1-\lambda)\rho(Y)$. Show that every coherent risk measure is convex, but not vice versa. Provide an example of a convex but not coherent risk measure (hint: the entropic risk measure).
 
+??? success "Solution to Exercise 3"
+
+    **Every coherent risk measure is convex.** A coherent risk measure satisfies positive homogeneity and subadditivity. For $\lambda \in [0,1]$:
+
+    $$
+    \rho(\lambda X + (1-\lambda)Y) \le \rho(\lambda X) + \rho((1-\lambda)Y) = \lambda\rho(X) + (1-\lambda)\rho(Y)
+    $$
+
+    where the inequality uses subadditivity, and the equality uses positive homogeneity (applied with scalars $\lambda$ and $1-\lambda$). This is exactly the convexity condition.
+
+    **Not every convex risk measure is coherent.** The entropic risk measure provides a counterexample. Define:
+
+    $$
+    \rho_\gamma(X) = \frac{1}{\gamma}\log\mathbb{E}[e^{\gamma X}]
+    $$
+
+    for $\gamma > 0$.
+
+    *Convexity:* By Hölder's inequality (or the log-convexity of the exponential moment generating function), for $\lambda \in [0,1]$:
+
+    $$
+    \mathbb{E}[e^{\gamma(\lambda X + (1-\lambda)Y)}] = \mathbb{E}[e^{\gamma\lambda X} \cdot e^{\gamma(1-\lambda)Y}]
+    $$
+
+    By Hölder's inequality with conjugate exponents $p = 1/\lambda$ and $q = 1/(1-\lambda)$:
+
+    $$
+    \mathbb{E}[e^{\gamma\lambda X} \cdot e^{\gamma(1-\lambda)Y}] \le \left(\mathbb{E}[e^{\gamma X}]\right)^\lambda \left(\mathbb{E}[e^{\gamma Y}]\right)^{1-\lambda}
+    $$
+
+    Taking $\frac{1}{\gamma}\log$ of both sides:
+
+    $$
+    \rho_\gamma(\lambda X + (1-\lambda)Y) \le \lambda \rho_\gamma(X) + (1-\lambda)\rho_\gamma(Y)
+    $$
+
+    So $\rho_\gamma$ is convex.
+
+    *Failure of positive homogeneity:* Consider a constant $\lambda > 0$ with $\lambda \ne 1$. For any non-degenerate random variable $X$:
+
+    $$
+    \rho_\gamma(\lambda X) = \frac{1}{\gamma}\log\mathbb{E}[e^{\gamma\lambda X}] = \frac{1}{\gamma}\log\mathbb{E}[e^{(\gamma\lambda) X}]
+    $$
+
+    If positive homogeneity held, we would need $\rho_\gamma(\lambda X) = \lambda \rho_\gamma(X)$, i.e.,
+
+    $$
+    \frac{1}{\gamma}\log\mathbb{E}[e^{\gamma\lambda X}] = \frac{\lambda}{\gamma}\log\mathbb{E}[e^{\gamma X}]
+    $$
+
+    This fails in general. For example, let $X \sim N(0,1)$ and compute:
+
+    $$
+    \rho_\gamma(\lambda X) = \frac{1}{\gamma}\log e^{\gamma^2\lambda^2/2} = \frac{\gamma\lambda^2}{2}
+    $$
+
+    $$
+    \lambda\rho_\gamma(X) = \lambda \cdot \frac{\gamma}{2} = \frac{\gamma\lambda}{2}
+    $$
+
+    These are equal only when $\lambda = 1$. Since positive homogeneity fails, $\rho_\gamma$ is not coherent.
+
 ---
 
 **Exercise 4.** The dual representation of a coherent risk measure is $\rho(X) = \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^{\mathbb{Q}}[-X]$ for some set of probability measures $\mathcal{Q}$. For Expected Shortfall at level $\alpha$, describe the set $\mathcal{Q}$ explicitly. Why does this representation have the interpretation of "worst-case expected loss"?
+
+??? success "Solution to Exercise 4"
+
+    **Dual representation of Expected Shortfall.** The coherent dual representation is:
+
+    $$
+    \text{ES}_\alpha(X) = \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^{\mathbb{Q}}[-X]
+    $$
+
+    For Expected Shortfall at level $\alpha$, the set $\mathcal{Q}$ is:
+
+    $$
+    \mathcal{Q} = \left\{\mathbb{Q} \ll \mathbb{P} \;\bigg|\; \frac{d\mathbb{Q}}{d\mathbb{P}} \le \frac{1}{1-\alpha}\right\}
+    $$
+
+    That is, $\mathcal{Q}$ consists of all probability measures $\mathbb{Q}$ absolutely continuous with respect to $\mathbb{P}$ whose Radon-Nikodym derivative is bounded above by $\frac{1}{1-\alpha}$.
+
+    **Why this set?** The constraint $\frac{d\mathbb{Q}}{d\mathbb{P}} \le \frac{1}{1-\alpha}$ means that $\mathbb{Q}$ can place at most $\frac{1}{1-\alpha}$ times as much weight on any event as $\mathbb{P}$ does. The extremal measure in $\mathcal{Q}$ that achieves the supremum concentrates all its extra weight on the worst $(1-\alpha)$ fraction of outcomes. Specifically, the maximizing $\mathbb{Q}^*$ has:
+
+    $$
+    \frac{d\mathbb{Q}^*}{d\mathbb{P}} = \frac{1}{1-\alpha} \mathbf{1}_{\{X \ge \text{VaR}_\alpha(X)\}}
+    $$
+
+    (with an appropriate adjustment at the boundary if the distribution has an atom at $\text{VaR}_\alpha$). Under this $\mathbb{Q}^*$:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}^*}[X] = \frac{1}{1-\alpha}\mathbb{E}[X \cdot \mathbf{1}_{\{X \ge \text{VaR}_\alpha(X)\}}] = \text{ES}_\alpha(X)
+    $$
+
+    **Worst-case expected loss interpretation.** The representation $\text{ES}_\alpha(X) = \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^{\mathbb{Q}}[X]$ says that ES is the worst-case expected loss over all probability models in $\mathcal{Q}$. Each $\mathbb{Q} \in \mathcal{Q}$ can be viewed as a "stress scenario" that reweights the probability of different outcomes. The constraint $\frac{d\mathbb{Q}}{d\mathbb{P}} \le \frac{1}{1-\alpha}$ limits how extreme these stress scenarios can be -- the adversary cannot place arbitrarily large weight on bad outcomes. The worst-case adversary concentrates attention on the tail, yielding the average loss in the worst $(1-\alpha)$ fraction of scenarios, which is precisely the definition of Expected Shortfall.
 
 ---
 
 **Exercise 5.** Verify that the entropic risk measure $\rho_\theta(X) = \frac{1}{\theta}\ln\mathbb{E}[e^{-\theta X}]$ satisfies monotonicity and translation invariance. Show that it is convex but not positively homogeneous (hence not coherent). What role does the parameter $\theta$ play as a risk aversion coefficient?
 
+??? success "Solution to Exercise 5"
+
+    We verify each property for $\rho_\theta(X) = \frac{1}{\theta}\ln\mathbb{E}[e^{-\theta X}]$.
+
+    **Note on convention.** The exercise uses $\rho_\theta(X) = \frac{1}{\theta}\ln\mathbb{E}[e^{-\theta X}]$ with a negative sign in the exponent. This corresponds to a gain convention where $X$ represents gains. Under the loss convention used earlier in the chapter ($\rho_\gamma(X) = \frac{1}{\gamma}\log\mathbb{E}[e^{\gamma X}]$), the formulas are equivalent with appropriate sign adjustments. We verify the properties as stated.
+
+    **Monotonicity.** If $X \le Y$ a.s., then $-\theta X \ge -\theta Y$ a.s. (for $\theta > 0$), so $e^{-\theta X} \ge e^{-\theta Y}$ a.s. Hence $\mathbb{E}[e^{-\theta X}] \ge \mathbb{E}[e^{-\theta Y}]$, and since $\ln$ is increasing and $1/\theta > 0$:
+
+    $$
+    \rho_\theta(X) = \frac{1}{\theta}\ln\mathbb{E}[e^{-\theta X}] \ge \frac{1}{\theta}\ln\mathbb{E}[e^{-\theta Y}] = \rho_\theta(Y)
+    $$
+
+    Under the gain convention, this says higher gains lead to lower risk, which is the correct direction: $X \le Y \Rightarrow \rho_\theta(X) \ge \rho_\theta(Y)$.
+
+    **Translation invariance.** For $c \in \mathbb{R}$:
+
+    $$
+    \rho_\theta(X + c) = \frac{1}{\theta}\ln\mathbb{E}[e^{-\theta(X+c)}] = \frac{1}{\theta}\ln\left(e^{-\theta c}\mathbb{E}[e^{-\theta X}]\right) = \frac{1}{\theta}\left(-\theta c + \ln\mathbb{E}[e^{-\theta X}]\right) = \rho_\theta(X) - c
+    $$
+
+    This is translation invariance under the gain convention: adding a sure gain $c$ reduces risk by $c$.
+
+    **Convexity.** For $\lambda \in [0,1]$, by Hölder's inequality with exponents $1/\lambda$ and $1/(1-\lambda)$:
+
+    $$
+    \mathbb{E}[e^{-\theta(\lambda X + (1-\lambda)Y)}] = \mathbb{E}\left[(e^{-\theta X})^\lambda (e^{-\theta Y})^{1-\lambda}\right] \le \left(\mathbb{E}[e^{-\theta X}]\right)^\lambda \left(\mathbb{E}[e^{-\theta Y}]\right)^{1-\lambda}
+    $$
+
+    Taking $\frac{1}{\theta}\ln$:
+
+    $$
+    \rho_\theta(\lambda X + (1-\lambda)Y) \le \lambda\,\rho_\theta(X) + (1-\lambda)\,\rho_\theta(Y)
+    $$
+
+    **Failure of positive homogeneity.** Let $X \sim N(0,1)$ and $\lambda = 2$. Then:
+
+    $$
+    \rho_\theta(2X) = \frac{1}{\theta}\ln\mathbb{E}[e^{-2\theta X}] = \frac{1}{\theta}\ln e^{2\theta^2} = 2\theta
+    $$
+
+    $$
+    2\,\rho_\theta(X) = \frac{2}{\theta}\ln\mathbb{E}[e^{-\theta X}] = \frac{2}{\theta}\ln e^{\theta^2/2} = \theta
+    $$
+
+    Since $2\theta \ne \theta$ for $\theta > 0$, positive homogeneity fails. Therefore $\rho_\theta$ is convex but not coherent.
+
+    **Role of $\theta$ as risk aversion.** The parameter $\theta > 0$ controls the degree of risk aversion:
+
+    - As $\theta \to 0^+$, a Taylor expansion gives $\rho_\theta(X) \to -\mathbb{E}[X]$ (risk-neutral assessment).
+    - As $\theta \to \infty$, $\rho_\theta(X) \to -\operatorname{ess\,inf}(X)$ (worst-case assessment).
+    - For intermediate $\theta$, the exponential weighting $e^{-\theta X}$ penalizes large losses (small $X$) more heavily, with the penalty increasing in $\theta$.
+
+    The entropic risk measure is directly linked to exponential utility: an agent with utility $U(w) = -e^{-\theta w}$ computes their certainty equivalent via $\rho_\theta$, so $\theta$ is literally the Arrow-Pratt coefficient of absolute risk aversion.
+
 ---
 
 **Exercise 6.** Explain the hierarchy: monetary $\supset$ convex $\supset$ coherent risk measures. For each level, provide a representative example and state which additional axioms are required. Why did the Artzner et al. (1999) coherence axioms become the standard framework for regulatory risk measurement?
+
+??? success "Solution to Exercise 6"
+
+    **The hierarchy.** The three classes form a strict chain of inclusions:
+
+    $$
+    \text{Coherent} \subsetneq \text{Convex} \subsetneq \text{Monetary}
+    $$
+
+    **Level 1: Monetary risk measures.** Axioms required: (i) monotonicity, (ii) translation invariance. Representative example: **Value-at-Risk** $\text{VaR}_\alpha(X) = \inf\{x : \mathbb{P}(X \le x) \ge \alpha\}$. VaR satisfies monotonicity and translation invariance but fails convexity (and hence subadditivity) as shown in Exercise 2.
+
+    **Level 2: Convex risk measures.** Additional axiom beyond monetary: (iii) convexity: $\rho(\lambda X + (1-\lambda)Y) \le \lambda\rho(X) + (1-\lambda)\rho(Y)$. Representative example: **Entropic risk measure** $\rho_\gamma(X) = \frac{1}{\gamma}\log\mathbb{E}[e^{\gamma X}]$. It satisfies monotonicity, translation invariance, and convexity, but fails positive homogeneity (hence is not coherent), as shown in Exercise 5.
+
+    **Level 3: Coherent risk measures.** Additional axioms beyond monetary: (iii) positive homogeneity: $\rho(\lambda X) = \lambda\rho(X)$ for $\lambda > 0$, and (iv) subadditivity: $\rho(X+Y) \le \rho(X) + \rho(Y)$. (These together imply convexity.) Representative example: **Expected Shortfall** $\text{ES}_\alpha(X) = \frac{1}{1-\alpha}\int_\alpha^1 \text{VaR}_u(X)\,du$.
+
+    **Why each inclusion is strict:**
+
+    - VaR is monetary but not convex $\Rightarrow$ monetary $\supsetneq$ convex.
+    - The entropic risk measure is convex but not coherent $\Rightarrow$ convex $\supsetneq$ coherent.
+
+    **Why coherence became the regulatory standard.** The Artzner et al. (1999) axioms became the standard for several reasons:
+
+    1. **Subadditivity captures diversification.** Regulators want risk measures that reward diversification: the risk of a combined portfolio should not exceed the sum of individual risks. VaR's failure of subadditivity means it can penalize diversification, which is economically perverse.
+
+    2. **Positive homogeneity ensures proportionality.** Doubling a position should double its risk. This makes capital requirements scale linearly with position size, which is intuitive and operationally simple.
+
+    3. **Dual representation provides robustness.** The representation $\rho(X) = \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^{\mathbb{Q}}[X]$ means coherent risk measures can be interpreted as worst-case expected losses under model uncertainty. This aligns with the regulatory goal of conservatism and robustness.
+
+    4. **Basel III/IV adopted ES.** Partly motivated by the theoretical advantages of coherence, the Basel Committee replaced VaR with Expected Shortfall as the primary market risk measure in the Fundamental Review of the Trading Book (FRTB), explicitly citing the subadditivity failure of VaR.
+
+    5. **Mathematical tractability.** Coherent risk measures have cleaner dual representations (no penalty function), which simplifies optimization, capital allocation (via the Euler allocation), and hedging computations.

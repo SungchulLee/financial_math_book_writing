@@ -954,22 +954,395 @@ g-Expectations represent a cornerstone of modern mathematical finance, providing
 
 **Exercise 1.** For a linear generator $g(t, y, z) = \mu y + \lambda z$, show that the g-expectation reduces to a standard expectation under a change of measure. Specifically, prove that $\mathcal{E}_g[\xi] = \mathbb{E}_\mathbb{Q}[e^{-\mu T}\xi]$ where $\mathbb{Q}$ is the measure with Girsanov kernel $\lambda$.
 
+??? success "Solution to Exercise 1"
+
+    **Goal.** Show that for the linear generator $g(t, y, z) = \mu y + \lambda z$, we have $\mathcal{E}_g[\xi] = E_\mathbb{Q}[e^{-\mu T}\xi]$ where $\mathbb{Q}$ is the measure with Girsanov kernel $\lambda$.
+
+    **Step 1: Write the BSDE.** The BSDE is:
+
+    $$
+    -dY_t = (\mu Y_t + \lambda Z_t) \, dt - Z_t \, dW_t, \quad Y_T = \xi
+    $$
+
+    **Step 2: Change of measure.** Define $\mathbb{Q}$ by the Radon-Nikodym derivative:
+
+    $$
+    \frac{d\mathbb{Q}}{dP}\bigg|_{\mathcal{F}_T} = \mathcal{E}\left(\int_0^T \lambda \, dW_s\right) = \exp\left(\lambda W_T - \frac{\lambda^2}{2}T\right)
+    $$
+
+    By Girsanov's theorem, $\tilde{W}_t = W_t - \lambda t$ is a $\mathbb{Q}$-Brownian motion. Thus $dW_t = d\tilde{W}_t + \lambda \, dt$, and the BSDE becomes:
+
+    $$
+    -dY_t = (\mu Y_t + \lambda Z_t) \, dt - Z_t(d\tilde{W}_t + \lambda \, dt) = \mu Y_t \, dt - Z_t \, d\tilde{W}_t
+    $$
+
+    **Step 3: Solve under $\mathbb{Q}$.** Define $\hat{Y}_t = e^{\mu t} Y_t$. By the product rule:
+
+    $$
+    d\hat{Y}_t = \mu e^{\mu t} Y_t \, dt + e^{\mu t} \, dY_t = \mu e^{\mu t} Y_t \, dt + e^{\mu t}(-\mu Y_t \, dt + Z_t \, d\tilde{W}_t) = e^{\mu t} Z_t \, d\tilde{W}_t
+    $$
+
+    So $\hat{Y}_t$ is a $\mathbb{Q}$-local martingale. Under integrability conditions ($E_\mathbb{Q}[\int_0^T e^{2\mu t}|Z_t|^2 \, dt] < \infty$), it is a true $\mathbb{Q}$-martingale. Taking $\mathbb{Q}$-expectations:
+
+    $$
+    e^{\mu t} Y_t = E_\mathbb{Q}[e^{\mu T} Y_T | \mathcal{F}_t] = E_\mathbb{Q}[e^{\mu T} \xi | \mathcal{F}_t]
+    $$
+
+    Therefore:
+
+    $$
+    Y_t = E_\mathbb{Q}[e^{-\mu(T-t)} \xi | \mathcal{F}_t]
+    $$
+
+    At $t = 0$:
+
+    $$
+    \mathcal{E}_g[\xi] = Y_0 = E_\mathbb{Q}[e^{-\mu T} \xi]
+    $$
+
+    This shows that the g-expectation with a linear generator reduces to a standard discounted expectation under a changed measure. The parameter $\mu$ acts as a discount rate and $\lambda$ as a Girsanov drift adjustment (market price of risk). $\square$
+
 ---
 
 **Exercise 2.** Prove that the g-expectation $\mathcal{E}_g[\xi] = Y_0$ where $(Y, Z)$ solves $-dY_t = g(t, Y_t, Z_t) \, dt - Z_t \, dW_t$ with $Y_T = \xi$ satisfies monotonicity: if $\xi_1 \leq \xi_2$ a.s., then $\mathcal{E}_g[\xi_1] \leq \mathcal{E}_g[\xi_2]$. Use the comparison theorem for BSDEs.
+
+??? success "Solution to Exercise 2"
+
+    **Goal.** Prove monotonicity: $\xi_1 \leq \xi_2$ a.s. implies $\mathcal{E}_g[\xi_1] \leq \mathcal{E}_g[\xi_2]$.
+
+    **Step 1: Set up.** Let $(Y^1_t, Z^1_t)$ solve the BSDE with terminal condition $\xi_1$, and $(Y^2_t, Z^2_t)$ solve the BSDE with terminal condition $\xi_2$, both with the same generator $g$:
+
+    $$
+    Y^i_t = \xi_i + \int_t^T g(s, Y^i_s, Z^i_s) \, ds - \int_t^T Z^i_s \, dW_s, \quad i = 1, 2
+    $$
+
+    We need to show $Y^1_0 \leq Y^2_0$.
+
+    **Step 2: Difference process.** Define $\Delta Y_t = Y^1_t - Y^2_t$ and $\Delta Z_t = Z^1_t - Z^2_t$. Then:
+
+    $$
+    \Delta Y_t = (\xi_1 - \xi_2) + \int_t^T [g(s, Y^1_s, Z^1_s) - g(s, Y^2_s, Z^2_s)] \, ds - \int_t^T \Delta Z_s \, dW_s
+    $$
+
+    **Step 3: Linearization.** Since $g$ is Lipschitz, we can write:
+
+    $$
+    g(s, Y^1_s, Z^1_s) - g(s, Y^2_s, Z^2_s) = \alpha_s \Delta Y_s + \beta_s \cdot \Delta Z_s
+    $$
+
+    where $\alpha_s$ and $\beta_s$ are bounded adapted processes (by the Lipschitz property, $|\alpha_s| \leq K$ and $|\beta_s| \leq K$). This linearization follows from the mean value theorem applied componentwise.
+
+    **Step 4: Apply Ito's formula.** Consider $(\Delta Y_t)^+ = \max(\Delta Y_t, 0)$. We apply the comparison argument more directly. Define the measure $\tilde{\mathbb{Q}}$ via:
+
+    $$
+    \frac{d\tilde{\mathbb{Q}}}{dP}\bigg|_{\mathcal{F}_T} = \mathcal{E}\left(\int_0^T \beta_s \, dW_s\right)
+    $$
+
+    Under $\tilde{\mathbb{Q}}$, define $\tilde{W}_t = W_t - \int_0^t \beta_s \, ds$. The difference satisfies:
+
+    $$
+    d(\Delta Y_t) = -\alpha_t \Delta Y_t \, dt + \Delta Z_t \, d\tilde{W}_t
+    $$
+
+    **Step 5: Solve.** Define $\Phi_t = \exp(\int_0^t \alpha_s \, ds)$. Then $\Phi_t \Delta Y_t$ is a $\tilde{\mathbb{Q}}$-martingale:
+
+    $$
+    d(\Phi_t \Delta Y_t) = \Phi_t \Delta Z_t \, d\tilde{W}_t
+    $$
+
+    Taking $\tilde{\mathbb{Q}}$-expectations:
+
+    $$
+    \Delta Y_0 = E_{\tilde{\mathbb{Q}}}\left[\exp\left(\int_0^T \alpha_s \, ds\right)(\xi_1 - \xi_2)\right]
+    $$
+
+    **Step 6: Conclude.** Since $\xi_1 \leq \xi_2$ a.s., we have $\xi_1 - \xi_2 \leq 0$ a.s. The exponential factor $\exp(\int_0^T \alpha_s \, ds) > 0$. Therefore:
+
+    $$
+    \Delta Y_0 = E_{\tilde{\mathbb{Q}}}\left[\Phi_T (\xi_1 - \xi_2)\right] \leq 0
+    $$
+
+    which gives $Y^1_0 \leq Y^2_0$, i.e., $\mathcal{E}_g[\xi_1] \leq \mathcal{E}_g[\xi_2]$. $\square$
 
 ---
 
 **Exercise 3.** The generator $g(z) = \frac{1}{2}\overline{\sigma}^2 z^+ - \frac{1}{2}\underline{\sigma}^2 z^-$ (where $z^+ = \max(z, 0)$ and $z^- = \max(-z, 0)$) corresponds to the uncertain volatility model. Show that the resulting g-expectation is sublinear: $\mathcal{E}_g[\xi_1 + \xi_2] \leq \mathcal{E}_g[\xi_1] + \mathcal{E}_g[\xi_2]$. What financial interpretation does sublinearity have for derivative pricing?
 
+??? success "Solution to Exercise 3"
+
+    **Goal.** Show that the g-expectation with generator $g(z) = \frac{1}{2}\overline{\sigma}^2 z^+ - \frac{1}{2}\underline{\sigma}^2 z^-$ is sublinear.
+
+    **Step 1: Representation as supremum.** The generator $g(z) = \frac{1}{2}\overline{\sigma}^2 z^+ - \frac{1}{2}\underline{\sigma}^2 z^-$ can be rewritten as:
+
+    $$
+    g(z) = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \frac{1}{2}\sigma^2 z
+    $$
+
+    To verify: if $z \geq 0$, the supremum is attained at $\sigma = \overline{\sigma}$, giving $\frac{1}{2}\overline{\sigma}^2 z = \frac{1}{2}\overline{\sigma}^2 z^+$. If $z < 0$, the supremum is attained at $\sigma = \underline{\sigma}$ (minimizing $|\sigma^2 z|$ when $z < 0$), giving $\frac{1}{2}\underline{\sigma}^2 z = -\frac{1}{2}\underline{\sigma}^2 z^-$.
+
+    **Step 2: Verify sublinearity of $g$.** The function $g$ is convex and positively homogeneous:
+
+    - **Convexity**: $g$ is the supremum of linear functions $z \mapsto \frac{1}{2}\sigma^2 z$, hence convex.
+    - **Positive homogeneity**: $g(\lambda z) = \lambda g(z)$ for $\lambda > 0$, since $(\lambda z)^+ = \lambda z^+$ and $(\lambda z)^- = \lambda z^-$.
+
+    **Step 3: From generator properties to g-expectation sublinearity.** We use the representation theorem for g-expectations with convex, positively homogeneous generators. Such a g-expectation admits the dual representation:
+
+    $$
+    \mathcal{E}_g[\xi] = \sup_{\mathbb{Q} \in \mathcal{Q}} E_\mathbb{Q}[\xi]
+    $$
+
+    where $\mathcal{Q}$ is the set of probability measures corresponding to volatility choices $\sigma_t \in [\underline{\sigma}, \overline{\sigma}]$.
+
+    **Step 4: Prove sublinearity from the representation.** For any $\xi_1, \xi_2$:
+
+    $$
+    \mathcal{E}_g[\xi_1 + \xi_2] = \sup_{\mathbb{Q} \in \mathcal{Q}} E_\mathbb{Q}[\xi_1 + \xi_2] = \sup_{\mathbb{Q} \in \mathcal{Q}} \{E_\mathbb{Q}[\xi_1] + E_\mathbb{Q}[\xi_2]\}
+    $$
+
+    Since the supremum of a sum is at most the sum of suprema:
+
+    $$
+    \sup_{\mathbb{Q} \in \mathcal{Q}} \{E_\mathbb{Q}[\xi_1] + E_\mathbb{Q}[\xi_2]\} \leq \sup_{\mathbb{Q}_1 \in \mathcal{Q}} E_{\mathbb{Q}_1}[\xi_1] + \sup_{\mathbb{Q}_2 \in \mathcal{Q}} E_{\mathbb{Q}_2}[\xi_2] = \mathcal{E}_g[\xi_1] + \mathcal{E}_g[\xi_2]
+    $$
+
+    The inequality is strict in general because the worst-case measure for $\xi_1 + \xi_2$ need not be the same as the individual worst-case measures for $\xi_1$ and $\xi_2$ separately.
+
+    **Financial interpretation of sublinearity.** Sublinearity means that the robust price of a portfolio is at most the sum of the robust prices of its components:
+
+    $$
+    V^{\text{sup}}(\xi_1 + \xi_2) \leq V^{\text{sup}}(\xi_1) + V^{\text{sup}}(\xi_2)
+    $$
+
+    This has the interpretation of a **diversification benefit**: when pricing two derivatives together, the worst-case volatility scenario for the combined position may differ from the individual worst cases, leading to a lower combined price. For example, if $\xi_1$ has positive gamma and $\xi_2$ has negative gamma, the combined position may have reduced gamma exposure, narrowing the volatility uncertainty premium.
+
+    From a risk measure perspective ($\rho(\xi) = \mathcal{E}_g[-\xi]$), sublinearity of $\mathcal{E}_g$ corresponds to subadditivity of $\rho$, which is one of the axioms of coherent risk measures and expresses the principle that diversification should not increase risk. $\square$
+
 ---
 
 **Exercise 4.** The conditional g-expectation $\mathcal{E}_g[\xi | \mathcal{F}_t] = Y_t$ satisfies the tower property: $\mathcal{E}_g[\mathcal{E}_g[\xi | \mathcal{F}_s] | \mathcal{F}_t] = \mathcal{E}_g[\xi | \mathcal{F}_t]$ for $t \leq s$. Prove this using the uniqueness of BSDE solutions, and explain why this property is essential for dynamic risk management.
+
+??? success "Solution to Exercise 4"
+
+    **Goal.** Prove the tower property $\mathcal{E}_g[\mathcal{E}_g[\xi | \mathcal{F}_s] | \mathcal{F}_t] = \mathcal{E}_g[\xi | \mathcal{F}_t]$ for $t \leq s$ using uniqueness of BSDE solutions.
+
+    **Step 1: Define the processes.** Let $(Y_r, Z_r)_{r \in [0,T]}$ be the unique solution to the BSDE:
+
+    $$
+    Y_r = \xi + \int_r^T g(u, Y_u, Z_u) \, du - \int_r^T Z_u \, dW_u
+    $$
+
+    By definition, $\mathcal{E}_g[\xi | \mathcal{F}_r] = Y_r$ for all $r \in [0, T]$.
+
+    In particular, $\mathcal{E}_g[\xi | \mathcal{F}_s] = Y_s$.
+
+    **Step 2: Consider the auxiliary BSDE.** Now consider the BSDE on $[0, s]$ with terminal condition $Y_s$ at time $s$. Let $(\tilde{Y}_r, \tilde{Z}_r)_{r \in [0,s]}$ solve:
+
+    $$
+    \tilde{Y}_r = Y_s + \int_r^s g(u, \tilde{Y}_u, \tilde{Z}_u) \, du - \int_r^s \tilde{Z}_u \, dW_u
+    $$
+
+    By definition of the conditional g-expectation:
+
+    $$
+    \mathcal{E}_g[\mathcal{E}_g[\xi | \mathcal{F}_s] | \mathcal{F}_t] = \mathcal{E}_g[Y_s | \mathcal{F}_t] = \tilde{Y}_t
+    $$
+
+    **Step 3: Show $\tilde{Y}_r = Y_r$ on $[0, s]$.** Observe that the restriction of $(Y_r, Z_r)$ to $r \in [0, s]$ satisfies:
+
+    $$
+    Y_r = Y_s + \int_r^s g(u, Y_u, Z_u) \, du - \int_r^s Z_u \, dW_u
+    $$
+
+    This is exactly a BSDE on $[0, s]$ with terminal condition $Y_s$ and generator $g$. By the uniqueness of BSDE solutions (Pardoux-Peng theorem), the solution to this BSDE is unique. Since both $(Y_r, Z_r)_{r \in [0,s]}$ and $(\tilde{Y}_r, \tilde{Z}_r)_{r \in [0,s]}$ solve the same BSDE on $[0, s]$ with the same terminal condition $Y_s$, we conclude:
+
+    $$
+    \tilde{Y}_r = Y_r, \quad \tilde{Z}_r = Z_r \quad \text{for all } r \in [0, s]
+    $$
+
+    **Step 4: Conclude.** In particular, at $r = t$:
+
+    $$
+    \mathcal{E}_g[\mathcal{E}_g[\xi | \mathcal{F}_s] | \mathcal{F}_t] = \tilde{Y}_t = Y_t = \mathcal{E}_g[\xi | \mathcal{F}_t]
+    $$
+
+    This completes the proof. $\square$
+
+    **Why the tower property is essential for dynamic risk management.** The tower property (also called time consistency or dynamic consistency) means that the risk assessment at time $t$ obtained by first evaluating risk at an intermediate time $s$ and then evaluating that assessment at $t$ is identical to directly evaluating risk at $t$. This is essential because:
+
+    1. **Consistent decision-making**: Without time consistency, a risk manager might assess a position as acceptable at time $t$, but after re-evaluating at time $s > t$, find it unacceptable (or vice versa). This leads to contradictory decisions and the possibility of dynamic arbitrage against the risk measure.
+
+    2. **Bellman principle**: Time consistency is the stochastic analog of Bellman's principle of optimality. It ensures that optimal hedging strategies computed at different times are mutually consistent, which is necessary for dynamic programming approaches.
+
+    3. **Regulatory compliance**: Regulators require that risk measures used for capital calculations be dynamically consistent --- otherwise, capital requirements could be manipulated by choosing the evaluation time strategically.
+
+    4. **Multi-period hedging**: In practice, hedging is done over multiple periods. Time consistency ensures that the hedging strategy derived from the g-expectation at each rebalancing time is consistent with the overall objective.
 
 ---
 
 **Exercise 5.** Consider the quadratic generator $g(t, y, z) = -ry + \frac{\beta}{2}|z|^2$ arising from exponential utility. Solve the BSDE explicitly for a terminal condition $\xi = (S_T - K)^+$ under geometric Brownian motion and show that the g-expectation gives the indifference price of the option. How does $\beta$ affect the price relative to the Black-Scholes price?
 
+??? success "Solution to Exercise 5"
+
+    **Goal.** Analyze the BSDE with quadratic generator $g(t, y, z) = -ry + \frac{\beta}{2}|z|^2$ for terminal condition $\xi = (S_T - K)^+$ under geometric Brownian motion.
+
+    **Step 1: Connection to exponential utility.** The quadratic generator $g(t, y, z) = -ry + \frac{\beta}{2}|z|^2$ arises from exponential utility indifference pricing with risk aversion parameter $\beta > 0$ (here we use the convention that $\beta = \gamma$, the Arrow-Pratt coefficient of absolute risk aversion). The BSDE is:
+
+    $$
+    -dY_t = \left(-rY_t + \frac{\beta}{2}|Z_t|^2\right) dt - Z_t \, dW_t, \quad Y_T = (S_T - K)^+
+    $$
+
+    **Step 2: Exponential transformation.** This is a quadratic BSDE that can be solved by the Cole-Hopf transformation. Define:
+
+    $$
+    \hat{Y}_t = e^{-\beta Y_t}
+    $$
+
+    By Ito's formula:
+
+    $$
+    d\hat{Y}_t = -\beta e^{-\beta Y_t} \, dY_t + \frac{\beta^2}{2} e^{-\beta Y_t} |Z_t|^2 \, dt
+    $$
+
+    Substituting the BSDE dynamics:
+
+    $$
+    d\hat{Y}_t = -\beta e^{-\beta Y_t}\left[\left(rY_t - \frac{\beta}{2}|Z_t|^2\right)dt + Z_t \, dW_t\right] + \frac{\beta^2}{2} e^{-\beta Y_t}|Z_t|^2 \, dt
+    $$
+
+    $$
+    = \beta r Y_t e^{-\beta Y_t} \, dt - \beta e^{-\beta Y_t} Z_t \, dW_t
+    $$
+
+    The $|Z_t|^2$ terms cancel (this is the key simplification of the Cole-Hopf transform for quadratic BSDEs).
+
+    **Step 3: Linear BSDE for $\hat{Y}_t$.** Defining $\hat{Z}_t = -\beta e^{-\beta Y_t} Z_t$, we get:
+
+    $$
+    d\hat{Y}_t = \beta r Y_t \hat{Y}_t (-1/\beta \log \hat{Y}_t) \, dt + \hat{Z}_t \, dW_t
+    $$
+
+    This simplifies (using $Y_t = -\frac{1}{\beta}\log \hat{Y}_t$) to:
+
+    $$
+    d\hat{Y}_t = -r \log(\hat{Y}_t) \hat{Y}_t \, dt + \hat{Z}_t \, dW_t
+    $$
+
+    This is generally nonlinear in $\hat{Y}$. However, the key result is that the g-expectation gives the **indifference price**, which is the value $p$ satisfying:
+
+    $$
+    \sup_\pi E[-e^{-\beta(X_T^\pi)}] = \sup_\pi E[-e^{-\beta(X_T^\pi - p + (S_T - K)^+)}]
+    $$
+
+    **Step 4: Indifference price formula.** For exponential utility, the indifference price has the well-known representation:
+
+    $$
+    p = -\frac{1}{\beta}\log E_{\mathbb{Q}^*}\left[e^{-\beta (S_T - K)^+}\right] + \frac{1}{\beta}\log E_{\mathbb{Q}^*}[1]
+    $$
+
+    where $\mathbb{Q}^*$ is the minimal entropy martingale measure. Under geometric Brownian motion $dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$ with the unique risk-neutral measure $\mathbb{Q}$ (complete market), this simplifies to:
+
+    $$
+    p = \mathcal{E}_g[(S_T - K)^+] = -\frac{1}{\beta}\log E_\mathbb{Q}\left[e^{-\beta(S_T - K)^+}\right]
+    $$
+
+    **Step 5: Effect of $\beta$ on the price.** The indifference price $p$ relates to the Black-Scholes price $C_{\text{BS}} = E_\mathbb{Q}[(S_T - K)^+]$ as follows:
+
+    - **$\beta \to 0$ (risk-neutral)**: By L'Hopital's rule or Taylor expansion:
+
+    $$
+    p = -\frac{1}{\beta}\log E_\mathbb{Q}[e^{-\beta(S_T-K)^+}] \to E_\mathbb{Q}[(S_T-K)^+] = C_{\text{BS}}
+    $$
+
+    - **$\beta > 0$ (risk-averse seller)**: By Jensen's inequality, $E[e^{-\beta X}] \geq e^{-\beta E[X]}$, so:
+
+    $$
+    p = -\frac{1}{\beta}\log E_\mathbb{Q}[e^{-\beta(S_T-K)^+}] \leq -\frac{1}{\beta}(-\beta E_\mathbb{Q}[(S_T-K)^+]) = C_{\text{BS}}
+    $$
+
+    Wait --- this gives $p \leq C_{\text{BS}}$, which reflects the **buyer's** indifference price. For the **seller's** indifference price, one needs to account for the short position, and the price is:
+
+    $$
+    p^{\text{sell}} = \frac{1}{\beta}\log E_\mathbb{Q}[e^{\beta(S_T-K)^+}] \geq C_{\text{BS}}
+    $$
+
+    So higher risk aversion $\beta$ increases the seller's price above the Black-Scholes price and decreases the buyer's price below it, creating a bid-ask spread: $[p^{\text{buy}}, p^{\text{sell}}] \supseteq [C_{\text{BS}}, C_{\text{BS}}]$, with the spread widening as $\beta$ increases.
+
+    - **$\beta \to \infty$ (infinite risk aversion)**: $p^{\text{sell}} \to \sup_\omega (S_T(\omega) - K)^+ = \infty$ (super-replication), reflecting extreme conservatism. $\square$
+
 ---
 
 **Exercise 6.** A coherent risk measure $\rho(\xi) = \mathcal{E}_g[-\xi]$ can be defined via g-expectations. For the generator $g(z) = \theta|z|$ (entropic-type), compute $\rho(\xi)$ for a Gaussian random variable $\xi \sim N(\mu, \sigma^2)$ and show that $\rho(\xi) = -\mu + \theta\sigma$. Compare this with the CVaR risk measure and discuss the advantages of the g-expectation-based approach for dynamic risk measurement.
+
+??? success "Solution to Exercise 6"
+
+    **Goal.** For $g(z) = \theta|z|$ and $\xi \sim N(\mu, \sigma^2)$, compute $\rho(\xi) = \mathcal{E}_g[-\xi]$ and show $\rho(\xi) = -\mu + \theta\sigma$.
+
+    **Step 1: Dual representation.** The generator $g(z) = \theta|z|$ is convex and positively homogeneous in $z$. Therefore the g-expectation admits the dual representation:
+
+    $$
+    \mathcal{E}_g[X] = \sup_{\mathbb{Q} \in \mathcal{Q}_\theta} E_\mathbb{Q}[X]
+    $$
+
+    where $\mathcal{Q}_\theta$ is the set of probability measures $\mathbb{Q}$ with Girsanov kernel $q_t$ satisfying $|q_t| \leq \theta$ a.s. These are the measures with bounded density process:
+
+    $$
+    \frac{d\mathbb{Q}}{dP}\bigg|_{\mathcal{F}_T} = \mathcal{E}\left(\int_0^T q_t \, dW_t\right), \quad |q_t| \leq \theta
+    $$
+
+    **Step 2: Compute $\rho(\xi)$.** We have $\rho(\xi) = \mathcal{E}_g[-\xi]$. Using the dual representation:
+
+    $$
+    \rho(\xi) = \sup_{\mathbb{Q} \in \mathcal{Q}_\theta} E_\mathbb{Q}[-\xi]
+    $$
+
+    **Step 3: Gaussian case.** Let $\xi = \mu + \sigma W_T / \sqrt{T}$ (so $\xi \sim N(\mu, \sigma^2)$ under $P$ when $W_T \sim N(0, T)$ with $T = 1$ for simplicity). Under $\mathbb{Q}$ with constant kernel $q_t = q$:
+
+    $$
+    W_T = \tilde{W}_T + qT
+    $$
+
+    where $\tilde{W}_T$ is a $\mathbb{Q}$-Brownian motion. So:
+
+    $$
+    \xi = \mu + \sigma(\tilde{W}_1 + q) = (\mu + \sigma q) + \sigma \tilde{W}_1
+    $$
+
+    Under $\mathbb{Q}$, $\xi \sim N(\mu + \sigma q, \sigma^2)$. Therefore:
+
+    $$
+    E_\mathbb{Q}[-\xi] = -(\mu + \sigma q)
+    $$
+
+    **Step 4: Optimize.** Maximizing over $|q| \leq \theta$:
+
+    $$
+    \rho(\xi) = \sup_{|q| \leq \theta} \{-\mu - \sigma q\} = -\mu + \sigma \sup_{|q| \leq \theta} \{-q\} = -\mu + \sigma \cdot \theta
+    $$
+
+    The supremum is attained at $q = -\theta$ (since we maximize $-\sigma q$ with $\sigma > 0$, we choose $q$ as negative as possible). Therefore:
+
+    $$
+    \boxed{\rho(\xi) = -\mu + \theta\sigma}
+    $$
+
+    **Step 5: Comparison with CVaR.** The Conditional Value-at-Risk (CVaR) at level $\alpha$ for $\xi \sim N(\mu, \sigma^2)$ is:
+
+    $$
+    \text{CVaR}_\alpha(\xi) = -\mu + \sigma \frac{\phi(\Phi^{-1}(\alpha))}{\alpha}
+    $$
+
+    where $\phi$ is the standard normal density and $\Phi$ is the standard normal CDF. Setting $\theta_\alpha = \phi(\Phi^{-1}(\alpha))/\alpha$, we see that $\rho(\xi) = \text{CVaR}_\alpha(\xi)$ when $\theta = \theta_\alpha$.
+
+    For example, at $\alpha = 5\%$: $\theta_{0.05} = \phi(\Phi^{-1}(0.05))/0.05 = \phi(-1.645)/0.05 \approx 0.1031/0.05 \approx 2.063$.
+
+    So the g-expectation risk measure with $\theta \approx 2.063$ coincides with CVaR at the 5% level for Gaussian random variables.
+
+    **Step 6: Advantages of g-expectation approach for dynamic risk measurement.**
+
+    1. **Dynamic consistency (tower property)**: The g-expectation-based risk measure $\rho_t(\xi) = \mathcal{E}_g[-\xi | \mathcal{F}_t]$ automatically satisfies the tower property $\rho_s(\rho_t(\xi)) = \rho_s(\xi)$ for $s \leq t$. CVaR, when naively extended to dynamic settings, generally violates time consistency, meaning that a position deemed acceptable today might be rejected tomorrow, or vice versa. This can lead to regulatory arbitrage.
+
+    2. **Built-in coherence**: The g-expectation risk measure inherits all coherence axioms (monotonicity, translation invariance, positive homogeneity, subadditivity) directly from the properties of the generator, without needing to verify them separately.
+
+    3. **Constructive computation via BSDEs**: The risk measure can be computed by solving a BSDE, which provides both the risk value and the hedging strategy (through $Z_t$). CVaR computation typically requires separate optimization and does not naturally produce hedging strategies.
+
+    4. **Flexibility**: Different generators $g$ produce different risk measures, allowing the framework to capture various attitudes toward risk and ambiguity in a unified manner. $\square$

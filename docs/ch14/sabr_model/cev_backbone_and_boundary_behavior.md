@@ -248,22 +248,111 @@ The CEV backbone, defined by the relationship $\sigma_{\text{ATM}} \approx \alph
 
 **Exercise 1.** For the CEV process $dF_t = \alpha F_t^\beta\,dW_t$ with $\beta = 0.5$, $\alpha = 0.04$, and $F_0 = 0.03$, compute the local volatility $\sigma_{\text{loc}}(F) = \alpha F^{0.5}$ at $F = 0.01, 0.03, 0.05$. Verify that the elasticity of the instantaneous variance with respect to $F$ is the constant $2\beta = 1$.
 
+??? success "Solution to Exercise 1"
+    The local volatility function is $\sigma_{\text{loc}}(F) = \alpha F^{0.5} = 0.04\,F^{0.5}$.
+
+    At $F = 0.01$: $\sigma_{\text{loc}} = 0.04 \times 0.01^{0.5} = 0.04 \times 0.1 = 0.004$.
+
+    At $F = 0.03$: $\sigma_{\text{loc}} = 0.04 \times 0.03^{0.5} = 0.04 \times 0.1732 = 0.006928$.
+
+    At $F = 0.05$: $\sigma_{\text{loc}} = 0.04 \times 0.05^{0.5} = 0.04 \times 0.2236 = 0.008944$.
+
+    To verify the constant elasticity, the instantaneous variance is $V(F) = \alpha^2 F^{2\beta} = (0.04)^2 F$. The elasticity is:
+
+    $$
+    \frac{\partial\log V}{\partial\log F} = \frac{F}{V}\frac{dV}{dF} = \frac{F}{\alpha^2 F^{2\beta}} \cdot 2\beta\alpha^2 F^{2\beta - 1} = 2\beta = 1
+    $$
+
+    This confirms that the elasticity of the instantaneous variance with respect to $F$ is the constant $2\beta = 1$, independent of the level of $F$.
+
 ---
 
 **Exercise 2.** The backbone formula $\sigma_{\text{ATM}} \approx \alpha/F^{1-\beta}$ predicts how ATM implied volatility changes with the forward. For $\alpha = 0.04$, plot (or compute) $\sigma_{\text{ATM}}$ as a function of $F \in [0.01, 0.05]$ for $\beta = 0, 0.5, 1.0$. Which $\beta$ produces the steepest response? Explain why the backbone contributes to the skew even when $\rho = 0$.
+
+??? success "Solution to Exercise 2"
+    Using $\sigma_{\text{ATM}} \approx \alpha / F^{1-\beta}$ with $\alpha = 0.04$:
+
+    For **$\beta = 0$**: $\sigma_{\text{ATM}} = 0.04 / F$. At $F = 0.01$: $4.00$ (400%); at $F = 0.03$: $1.333$ (133%); at $F = 0.05$: $0.80$ (80%).
+
+    For **$\beta = 0.5$**: $\sigma_{\text{ATM}} = 0.04 / F^{0.5}$. At $F = 0.01$: $0.40$ (40%); at $F = 0.03$: $0.231$ (23.1%); at $F = 0.05$: $0.179$ (17.9%).
+
+    For **$\beta = 1.0$**: $\sigma_{\text{ATM}} = 0.04$ for all $F$ (flat backbone).
+
+    **$\beta = 0$ produces the steepest response** since the backbone slope is $-(1-\beta)\alpha / F^{2-\beta}$, which for $\beta = 0$ gives $-\alpha / F^2$, the largest in magnitude.
+
+    The backbone contributes to skew even when $\rho = 0$ because the Black implied volatility is a nonlinear function of the forward level through $\alpha / F^{1-\beta}$. When $\beta < 1$, a lower forward implies a higher ATM vol, which in turn means the implied volatility at a fixed strike $K < F$ is elevated relative to strikes $K > F$. This is a **structural skew** that arises purely from the CEV dynamics, independent of any stochastic volatility or forward-volatility correlation.
 
 ---
 
 **Exercise 3.** Using Feller's boundary classification, the boundary at $F = 0$ is absorbing for $\beta < 1$ and unattainable for $\beta \geq 1$. Explain intuitively why: as $F \to 0$, the diffusion coefficient $\alpha F^\beta$ vanishes, but the drift is zero. For $\beta = 0.5$, is the "pull" from the diffusion toward zero strong enough to reach it? Compare with $\beta = 0$ (normal model) where $F = 0$ is attained with positive probability.
 
+??? success "Solution to Exercise 3"
+    For $\beta = 0.5$, the diffusion coefficient is $\alpha F^{0.5}$, which vanishes as $F \to 0$ but does so "slowly" (like $\sqrt{F}$). This means the forward decelerates as it approaches zero. However, the question is whether the deceleration is sufficient to prevent reaching zero. By Feller's classification, $\beta = 0.5$ falls in the range $[1/2, 1)$, so the boundary at $F = 0$ is an **exit boundary** --- the forward can reach zero in finite time and is absorbed there. Intuitively, even though the diffusion coefficient shrinks, the random fluctuations are still strong enough (relative to the vanishing drift of zero) to push $F$ down to zero with positive probability.
+
+    For $\beta = 0$ (normal model), the situation is qualitatively different: the diffusion coefficient $\alpha$ is **constant** regardless of $F$. The forward is simply a Brownian motion (with stochastic time change), and Brownian motion crosses every level (including zero) infinitely often. There is no special boundary behavior --- $F = 0$ is not absorbing but rather a level that the process crosses freely. The forward can and does become negative, which is the defining feature of the normal model.
+
+    The distinction is: for $\beta = 0.5$, the forward reaches zero and stays there (absorption); for $\beta = 0$, the forward passes through zero and continues to negative values.
+
 ---
 
 **Exercise 4.** The probability of absorption at zero for the CEV process has important pricing implications: if $\mathbb{P}(F_T = 0) = p > 0$, then $\mathbb{E}[F_T] = F_0(1-p) < F_0$ (mass leakage). For a European put with strike $K$, the put price includes a contribution $Ke^{-rT}\mathbb{P}(F_T = 0)$ from the absorbed mass. Explain why ignoring absorption leads to systematic underpricing of deep OTM puts.
+
+??? success "Solution to Exercise 4"
+    When $\mathbb{P}(F_T = 0) = p > 0$, the terminal distribution of $F_T$ has a point mass of size $p$ at zero plus a continuous density on $(0, \infty)$. A European put with strike $K > 0$ pays $(K - F_T)^+$. This payoff equals $K$ on the event $\{F_T = 0\}$ and $(K - F_T)^+$ on $\{F_T > 0\}$.
+
+    The correctly priced put is therefore:
+
+    $$
+    P = e^{-rT}\left[K \cdot p + \mathbb{E}[(K - F_T)^+ \mathbf{1}_{\{F_T > 0\}}]\right]
+    $$
+
+    The term $Ke^{-rT}p$ represents the contribution from absorbed paths. If one ignores absorption (sets $p = 0$), only the continuous density contributes, and the first term is missing. This leads to **systematic underpricing of deep OTM puts**, particularly at low strikes where the absorption contribution $Ke^{-rT}p$ is a significant fraction of the total put price.
+
+    The underpricing is most severe for:
+
+    - Low forwards (higher $p$)
+    - Long maturities (higher $p$)
+    - High volatility (higher $p$)
+    - Strikes near zero (where $Ke^{-rT}p \approx Ke^{-rT}p$ is a large fraction of the small total put price)
 
 ---
 
 **Exercise 5.** Compare the CEV model ($\nu = 0$) with the full SABR model ($\nu > 0$). The CEV model produces skew through the backbone but no smile curvature. Show that for $\beta = 0.5$, $\alpha = 0.04$, $F = 0.03$, the CEV implied volatility is a monotonically decreasing function of strike $K$ when $\beta < 1$. Explain why adding stochastic volatility ($\nu > 0$) is necessary to produce curvature (both wings lifting).
 
+??? success "Solution to Exercise 5"
+    For the CEV model ($\nu = 0$) with $\beta = 0.5$, the implied volatility depends on strike through the backbone and the CEV transition density. The ATM backbone gives $\sigma_{\text{ATM}} \approx \alpha / F^{0.5}$. For a strike $K < F$, the "effective" backbone at the geometric mean $(FK)^{0.5}$ gives a higher implied volatility than at $K > F$.
+
+    More precisely, the Hagan formula with $\nu = 0$ reduces to the leading term:
+
+    $$
+    \sigma_B(K) \approx \frac{\alpha}{(FK)^{(1-\beta)/2}} \cdot \frac{1}{1 + \frac{(1-\beta)^2}{24}\ln^2(F/K)} \cdot \left[1 + \frac{(1-\beta)^2\alpha^2}{24(FK)^{1-\beta}}T\right]
+    $$
+
+    The dominant factor is $\alpha / (FK)^{(1-\beta)/2}$. For $\beta = 0.5$, this is $\alpha / (FK)^{0.25}$. When $K$ decreases, $(FK)^{0.25}$ decreases, so $\sigma_B(K)$ increases. When $K$ increases, $(FK)^{0.25}$ increases, so $\sigma_B(K)$ decreases. The implied volatility is therefore a **monotonically decreasing function** of $K$ --- a pure skew with no smile curvature.
+
+    Adding stochastic volatility ($\nu > 0$) introduces the $z/x(z)$ smile factor, which lifts both wings relative to ATM. This creates **curvature**: both low and high strikes have elevated implied volatility compared to the CEV-only prediction. The curvature arises because stochastic volatility creates heavier tails in the forward distribution --- both very low and very high outcomes become more probable. This is why the vol-of-vol parameter $\nu$ controls the **curvature** of the smile.
+
 ---
 
 **Exercise 6.** The scaling property of SABR states that if $(F_t, \sigma_t)$ is a solution with forward $F_0$ and initial vol $\alpha$, then $(\lambda F_t, \lambda^{1-\beta}\sigma_t)$ is a solution with forward $\lambda F_0$ and vol $\lambda^{1-\beta}\alpha$. Verify this by substituting into the SDE. What does this imply about the implied volatility smile as a function of log-moneyness $\ln(K/F)$?
+
+??? success "Solution to Exercise 6"
+    Define $\tilde{F}_t = \lambda F_t$ and $\tilde{\sigma}_t = \lambda^{1-\beta}\sigma_t$. Substituting into the forward SDE:
+
+    $$
+    d\tilde{F}_t = \lambda\,dF_t = \lambda\,\sigma_t F_t^{\beta}\,dW_t^{(1)} = \lambda\,\frac{\tilde{\sigma}_t}{\lambda^{1-\beta}}\left(\frac{\tilde{F}_t}{\lambda}\right)^{\beta}dW_t^{(1)}
+    $$
+
+    $$
+    = \frac{\lambda}{\lambda^{1-\beta}\lambda^{\beta}}\,\tilde{\sigma}_t\,\tilde{F}_t^{\beta}\,dW_t^{(1)} = \tilde{\sigma}_t\,\tilde{F}_t^{\beta}\,dW_t^{(1)}
+    $$
+
+    For the volatility SDE:
+
+    $$
+    d\tilde{\sigma}_t = \lambda^{1-\beta}\,d\sigma_t = \lambda^{1-\beta}\,\nu\sigma_t\,dW_t^{(2)} = \nu\,\tilde{\sigma}_t\,dW_t^{(2)}
+    $$
+
+    So $(\tilde{F}_t, \tilde{\sigma}_t)$ satisfies the same SABR SDE system with initial conditions $\tilde{F}_0 = \lambda F_0$ and $\tilde{\sigma}_0 = \lambda^{1-\beta}\alpha$, confirming the scaling property.
+
+    For the implied volatility, the Black implied vol is defined through $C = C_{\text{Black}}(F, K, T, \sigma_B)$. Under scaling, both $F$ and $K$ scale by $\lambda$, so $\ln(K/F) = \ln(\lambda K / \lambda F)$ is **invariant**. The SABR implied volatility $\sigma_B \approx \alpha / (FK)^{(1-\beta)/2} \cdot z/x(z)$ also scales consistently: $\alpha$ scales by $\lambda^{1-\beta}$ and $(FK)^{(1-\beta)/2}$ scales by $\lambda^{1-\beta}$, so $\sigma_B$ is invariant under the scaling. This means the **implied volatility smile, when expressed as a function of log-moneyness $\ln(K/F)$, is invariant** under rescaling of the forward level (for fixed $\beta$).

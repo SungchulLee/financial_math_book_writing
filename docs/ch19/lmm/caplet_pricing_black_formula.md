@@ -281,26 +281,347 @@ $$
 
 **Exercise 1.** A caplet on 3-month LIBOR has the following parameters: $L_i(0) = 3.8\%$, $K = 4.0\%$, $\sigma_i^{\text{Black}} = 24\%$, $T_i = 2$ years, $\delta_i = 0.25$, and $P(0, T_{i+1}) = 0.925$. Compute $d_1$, $d_2$, and the caplet price. Is this caplet in-the-money or out-of-the-money?
 
+??? success "Solution to Exercise 1"
+    **Parameters:** $L_i(0) = 0.038$, $K = 0.040$, $\sigma_i^{\text{Black}} = 0.24$, $T_i = 2$, $\delta_i = 0.25$, $P(0, T_{i+1}) = 0.925$.
+
+    **Step 1: Integrated volatility.**
+
+    $$
+    v_i = \sigma_i^{\text{Black}}\sqrt{T_i} = 0.24 \times \sqrt{2} = 0.24 \times 1.4142 = 0.33941
+    $$
+
+    **Step 2: Compute $d_1$.**
+
+    $$
+    d_1 = \frac{\ln(L_i(0)/K) + \frac{1}{2}v_i^2}{v_i} = \frac{\ln(0.038/0.040) + \frac{1}{2}(0.33941)^2}{0.33941}
+    $$
+
+    $$
+    \ln(0.038/0.040) = \ln(0.95) = -0.05129
+    $$
+
+    $$
+    \frac{1}{2}v_i^2 = \frac{1}{2}(0.11520) = 0.05760
+    $$
+
+    $$
+    d_1 = \frac{-0.05129 + 0.05760}{0.33941} = \frac{0.00631}{0.33941} = 0.01859
+    $$
+
+    **Step 3: Compute $d_2$.**
+
+    $$
+    d_2 = d_1 - v_i = 0.01859 - 0.33941 = -0.32082
+    $$
+
+    **Step 4: Normal CDF values.**
+
+    $$
+    N(0.01859) \approx 0.5074, \qquad N(-0.32082) \approx 0.3742
+    $$
+
+    **Step 5: Caplet price.**
+
+    $$
+    \text{Caplet}_i = \delta_i\,P(0, T_{i+1})\bigl[L_i(0)\,N(d_1) - K\,N(d_2)\bigr]
+    $$
+
+    $$
+    = 0.25 \times 0.925 \times \bigl[0.038 \times 0.5074 - 0.040 \times 0.3742\bigr]
+    $$
+
+    $$
+    = 0.23125 \times \bigl[0.01928 - 0.01497\bigr] = 0.23125 \times 0.00431
+    $$
+
+    $$
+    \text{Caplet}_i \approx 0.000997 = 0.0997\%\text{ of notional}
+    $$
+
+    **In-the-money or out-of-the-money?** Since $L_i(0) = 3.8\% < K = 4.0\%$, the caplet is **out-of-the-money**. The forward rate is below the strike, so the caplet would not be exercised if rates remained at their current level.
+
 ---
 
 **Exercise 2.** The market quotes flat cap volatilities for 2Y, 3Y, and 5Y caps as 19.5%, 20.2%, and 21.0% respectively, with annual caplets. Describe the bootstrapping procedure to extract spot caplet volatilities from these flat cap quotes. If the 2Y caplet vol is 19.5%, what equation determines the 3Y spot caplet vol?
+
+??? success "Solution to Exercise 2"
+    **Bootstrapping procedure for spot caplet volatilities:**
+
+    The idea is to decompose cap prices into individual caplet prices and extract the volatility of each caplet sequentially.
+
+    **Step 1:** The 2Y cap consists of a single annual caplet (paying at year 2 based on the 1Y-2Y forward rate). Therefore:
+
+    $$
+    \sigma_1^{\text{spot}} = \sigma^{\text{flat}}_{2Y} = 19.5\%
+    $$
+
+    **Step 2:** The 3Y cap consists of two annual caplets (the 1Y-2Y caplet and the 2Y-3Y caplet). The 3Y cap price satisfies:
+
+    $$
+    C_{3Y} = \text{Caplet}_1(\sigma_1^{\text{spot}}) + \text{Caplet}_2(\sigma_2^{\text{spot}})
+    $$
+
+    We also know that $C_{3Y}$ can be computed using the flat volatility:
+
+    $$
+    C_{3Y} = \text{Caplet}_1(20.2\%) + \text{Caplet}_2(20.2\%)
+    $$
+
+    Since $\sigma_1^{\text{spot}} = 19.5\%$ is already known, we solve for $\sigma_2^{\text{spot}}$ from:
+
+    $$
+    \text{Caplet}_2(\sigma_2^{\text{spot}}) = C_{3Y} - \text{Caplet}_1(\sigma_1^{\text{spot}})
+    $$
+
+    $$
+    = \bigl[\text{Caplet}_1(20.2\%) + \text{Caplet}_2(20.2\%)\bigr] - \text{Caplet}_1(19.5\%)
+    $$
+
+    The right-hand side is computable from Black's formula with known inputs. Then $\sigma_2^{\text{spot}}$ is found by inverting Black's formula for the second caplet.
+
+    **Step 3:** Similarly, for the 5Y cap, which adds caplets at years 3-4 and 4-5:
+
+    $$
+    C_{5Y} = \sum_{i=1}^{4}\text{Caplet}_i(\sigma_i^{\text{spot}})
+    $$
+
+    Since $\sigma_1^{\text{spot}}$ and $\sigma_2^{\text{spot}}$ are known, and the 5Y cap price is computed from the flat vol of 21.0%, we can extract $\sigma_3^{\text{spot}}$ and $\sigma_4^{\text{spot}}$. However, with annual caplets and no intermediate cap quotes between 3Y and 5Y, additional assumptions or interpolation may be needed to separate the two individual caplet volatilities.
+
+    In practice, if cap quotes are available at every annual maturity (2Y, 3Y, 4Y, 5Y, ...), each additional maturity provides one equation for one unknown caplet volatility.
 
 ---
 
 **Exercise 3.** Show that in the LMM, the Black caplet formula is exact (not an approximation). Specifically, explain why the forward rate $L_i(t)$ is exactly lognormal under $\mathbb{Q}^{T_{i+1}}$, even though $L_i(t)$ interacts with other forward rates under the terminal measure. What property of the $T_{i+1}$-forward measure makes this possible?
 
+??? success "Solution to Exercise 3"
+    **Why the Black caplet formula is exact in the LMM:**
+
+    In the LMM, the forward LIBOR rate $L_i(t)$ is specified to follow:
+
+    $$
+    \frac{dL_i(t)}{L_i(t)} = \sigma_i(t)\,dW_i^{T_{i+1}}(t)
+    $$
+
+    under the $T_{i+1}$-forward measure $\mathbb{Q}^{T_{i+1}}$. This is **exactly** geometric Brownian motion with zero drift, making $L_i(T_i)$ **exactly lognormal**:
+
+    $$
+    L_i(T_i) = L_i(0)\exp\left(-\frac{1}{2}v_i^2 + v_i Z\right), \quad Z \sim N(0,1), \quad v_i^2 = \int_0^{T_i}\sigma_i(t)^2\,dt
+    $$
+
+    The caplet price is:
+
+    $$
+    \text{Caplet}_i = P(0, T_{i+1})\,\mathbb{E}^{\mathbb{Q}^{T_{i+1}}}\bigl[\delta_i\max(L_i(T_i) - K, 0)\bigr]
+    $$
+
+    Since $L_i(T_i)$ is exactly lognormal, this expectation is computed exactly by the Black--Scholes lognormal integral, yielding Black's formula without any approximation.
+
+    **The key property** that makes this possible is the **measure choice**: under $\mathbb{Q}^{T_{i+1}}$, the forward rate $L_i(t)$ is a martingale. This is its **natural measure** --- the measure associated with its payment date.
+
+    Even though under other measures (terminal, spot), $L_i(t)$ interacts with other forward rates through state-dependent drifts, the caplet depends only on the marginal distribution of $L_i(T_i)$. By pricing under $\mathbb{Q}^{T_{i+1}}$, all cross-rate interactions are absorbed into the measure change, and $L_i$ evolves independently with pure lognormal dynamics.
+
+    This is fundamentally different from the Hull--White or other short-rate models, where the forward rate is a derived (nonlinear) function of the state variable, and its distribution must be computed through additional transformations.
+
 ---
 
 **Exercise 4.** Derive the caplet vega $\mathcal{V}_i = \delta_i P(0, T_{i+1}) L_i(0) \sqrt{T_i}\,\phi(d_1)$ by differentiating the Black caplet formula with respect to $\sigma_i^{\text{Black}}$. Use this to estimate the price change of the caplet in Exercise 1 if the volatility increases by 1 percentage point (from 24% to 25%).
+
+??? success "Solution to Exercise 4"
+    **Deriving the caplet vega:**
+
+    The caplet price is $\text{Caplet}_i = \delta_i P(0,T_{i+1})\bigl[L_i(0)N(d_1) - KN(d_2)\bigr]$, where $d_1 = [\ln(L_i(0)/K) + \frac{1}{2}\sigma^2 T_i]/(\sigma\sqrt{T_i})$ and $d_2 = d_1 - \sigma\sqrt{T_i}$, with $\sigma = \sigma_i^{\text{Black}}$.
+
+    Differentiating with respect to $\sigma$:
+
+    $$
+    \mathcal{V}_i = \delta_i P(0,T_{i+1})\left[L_i(0)\phi(d_1)\frac{\partial d_1}{\partial\sigma} - K\phi(d_2)\frac{\partial d_2}{\partial\sigma}\right]
+    $$
+
+    We use the key identity $L_i(0)\phi(d_1) = K\phi(d_2)$ (which holds because $d_1 - d_2 = \sigma\sqrt{T_i}$ and $\phi(d_1)/\phi(d_2) = \exp(-\frac{1}{2}(d_1^2 - d_2^2)) = K/L_i(0) \cdot \exp(\text{terms})$ --- more precisely, from $L_i(0)e^{-d_1^2/2} = Ke^{-d_2^2/2}$, which follows from $d_1^2 - d_2^2 = (d_1+d_2)\sigma\sqrt{T_i} = 2\ln(L_i(0)/K)$).
+
+    Using $L_i(0)\phi(d_1) = K\phi(d_2)$:
+
+    $$
+    \mathcal{V}_i = \delta_i P(0,T_{i+1}) L_i(0)\phi(d_1)\left(\frac{\partial d_1}{\partial\sigma} - \frac{\partial d_2}{\partial\sigma}\right)
+    $$
+
+    Since $d_2 = d_1 - \sigma\sqrt{T_i}$:
+
+    $$
+    \frac{\partial d_1}{\partial\sigma} - \frac{\partial d_2}{\partial\sigma} = \frac{\partial d_1}{\partial\sigma} - \frac{\partial d_1}{\partial\sigma} + \sqrt{T_i} = \sqrt{T_i}
+    $$
+
+    Therefore:
+
+    $$
+    \boxed{\mathcal{V}_i = \delta_i\,P(0, T_{i+1})\,L_i(0)\,\sqrt{T_i}\,\phi(d_1)}
+    $$
+
+    **Numerical estimate for Exercise 1 parameters:** Using $L_i(0) = 0.038$, $T_i = 2$, $d_1 = 0.01859$, $\phi(0.01859) \approx 0.3989$:
+
+    $$
+    \mathcal{V}_i = 0.25 \times 0.925 \times 0.038 \times \sqrt{2} \times 0.3989 = 0.25 \times 0.925 \times 0.038 \times 1.4142 \times 0.3989
+    $$
+
+    $$
+    = 0.25 \times 0.925 \times 0.02143 = 0.004957
+    $$
+
+    For a 1 percentage point increase in volatility ($\Delta\sigma = 0.01$):
+
+    $$
+    \Delta\text{Caplet} \approx \mathcal{V}_i \times \Delta\sigma = 0.004957 \times 0.01 = 0.00004957
+    $$
+
+    This is approximately 0.005% of notional, or about \$49.57 per \$1,000,000 notional. The caplet price increases from approximately 0.0997% to approximately 0.1047% of notional.
 
 ---
 
 **Exercise 5.** Put-call parity for caplets and floorlets states that $\text{Caplet} - \text{Floorlet} = \delta_i P(0, T_{i+1})(L_i(0) - K)$. Verify this identity algebraically using the Black formulas for caplets and floorlets. Then compute the floorlet price corresponding to Exercise 1.
 
+??? success "Solution to Exercise 5"
+    **Algebraic verification of put--call parity:**
+
+    The Black caplet formula is:
+
+    $$
+    \text{Caplet}_i = \delta_i P(0,T_{i+1})\bigl[L_i(0)N(d_1) - KN(d_2)\bigr]
+    $$
+
+    The Black floorlet formula is:
+
+    $$
+    \text{Floorlet}_i = \delta_i P(0,T_{i+1})\bigl[KN(-d_2) - L_i(0)N(-d_1)\bigr]
+    $$
+
+    Computing the difference:
+
+    $$
+    \text{Caplet}_i - \text{Floorlet}_i = \delta_i P(0,T_{i+1})\bigl[L_i(0)N(d_1) - KN(d_2) - KN(-d_2) + L_i(0)N(-d_1)\bigr]
+    $$
+
+    Using $N(x) + N(-x) = 1$:
+
+    $$
+    = \delta_i P(0,T_{i+1})\bigl[L_i(0)(N(d_1) + N(-d_1)) - K(N(d_2) + N(-d_2))\bigr]
+    $$
+
+    $$
+    = \delta_i P(0,T_{i+1})\bigl[L_i(0) \cdot 1 - K \cdot 1\bigr] = \delta_i P(0,T_{i+1})(L_i(0) - K)
+    $$
+
+    This confirms the put--call parity identity.
+
+    **Floorlet price for Exercise 1:** Using the parity:
+
+    $$
+    \text{Floorlet}_i = \text{Caplet}_i - \delta_i P(0,T_{i+1})(L_i(0) - K)
+    $$
+
+    $$
+    = 0.000997 - 0.25 \times 0.925 \times (0.038 - 0.040)
+    $$
+
+    $$
+    = 0.000997 - 0.23125 \times (-0.002) = 0.000997 + 0.000463 = 0.001460
+    $$
+
+    The floorlet is worth approximately 0.146% of notional, which is larger than the caplet (0.0997%) because the floorlet is in-the-money ($K = 4\% > L_i(0) = 3.8\%$).
+
 ---
 
 **Exercise 6.** A trader observes that the ATM caplet implied volatility for 1-year expiry is 18% while the 10-year expiry is 24%. The forward rates are roughly constant at 4%. Compare the caplet prices per unit notional and per basis point of vega at the two maturities. Which caplet is more sensitive to volatility changes in absolute terms?
 
+??? success "Solution to Exercise 6"
+    **1-year expiry caplet ($T_i = 1$):**
+
+    $$
+    v_1 = 0.18 \times \sqrt{1} = 0.18
+    $$
+
+    At-the-money: $K = L_i(0) = 0.04$, so $\ln(L_i(0)/K) = 0$.
+
+    $$
+    d_1 = \frac{0 + \frac{1}{2}(0.18)^2}{0.18} = \frac{0.0162}{0.18} = 0.09, \qquad d_2 = 0.09 - 0.18 = -0.09
+    $$
+
+    $$
+    N(0.09) = 0.5359, \quad N(-0.09) = 0.4641
+    $$
+
+    Caplet price (per unit notional, with $\delta = 0.25$ and $P(0, T_{i+1}) \approx 0.96$):
+
+    $$
+    \text{Caplet}_1 = 0.25 \times 0.96 \times 0.04 \times [0.5359 - 0.4641] = 0.24 \times 0.04 \times 0.0718 = 0.000689
+    $$
+
+    Vega:
+
+    $$
+    \mathcal{V}_1 = 0.25 \times 0.96 \times 0.04 \times \sqrt{1} \times \phi(0.09) = 0.24 \times 0.04 \times 0.3973 = 0.003814
+    $$
+
+    **10-year expiry caplet ($T_i = 10$):**
+
+    $$
+    v_{10} = 0.24 \times \sqrt{10} = 0.7589
+    $$
+
+    $$
+    d_1 = \frac{0 + \frac{1}{2}(0.7589)^2}{0.7589} = \frac{0.2880}{0.7589} = 0.3795, \qquad d_2 = 0.3795 - 0.7589 = -0.3795
+    $$
+
+    $$
+    N(0.3795) = 0.6479, \quad N(-0.3795) = 0.3521
+    $$
+
+    Caplet price (with $P(0, T_{i+1}) \approx 0.67$):
+
+    $$
+    \text{Caplet}_{10} = 0.25 \times 0.67 \times 0.04 \times [0.6479 - 0.3521] = 0.1675 \times 0.04 \times 0.2958 = 0.001982
+    $$
+
+    Vega:
+
+    $$
+    \mathcal{V}_{10} = 0.25 \times 0.67 \times 0.04 \times \sqrt{10} \times \phi(0.3795) = 0.1675 \times 0.04 \times 3.1623 \times 0.3709 = 0.007861
+    $$
+
+    **Comparison:**
+
+    - The 10-year caplet price is about 2.9 times the 1-year price
+    - The 10-year vega is about 2.1 times the 1-year vega
+    - **The 10-year caplet is more sensitive to volatility changes in absolute terms** because vega scales with $\sqrt{T_i}$: longer maturities have more time for volatility to affect the outcome, increasing the absolute price sensitivity
+
 ---
 
 **Exercise 7.** The SABR model extends Black's formula to capture the volatility smile. In the SABR framework, the ATM Black volatility is approximately $\sigma^{\text{Black}}(K = F) \approx \alpha / F^{1-\beta}$, where $\alpha$ is the initial stochastic vol level and $\beta$ controls the backbone. For $\beta = 0.5$, $\alpha = 0.03$, and $F = 4\%$, compute the approximate ATM Black vol. How does this compare to the Bachelier (normal) vol $\sigma_N \approx \alpha\,F^\beta$?
+
+??? success "Solution to Exercise 7"
+    **ATM Black volatility in the SABR model:**
+
+    The ATM approximation is $\sigma^{\text{Black}}(K = F) \approx \alpha / F^{1-\beta}$.
+
+    With $\beta = 0.5$, $\alpha = 0.03$, $F = 0.04$:
+
+    $$
+    \sigma^{\text{Black}} \approx \frac{\alpha}{F^{1-\beta}} = \frac{0.03}{(0.04)^{0.5}} = \frac{0.03}{0.2} = 0.15 = 15\%
+    $$
+
+    **Bachelier (normal) volatility:**
+
+    The ATM normal vol approximation is $\sigma_N \approx \alpha\,F^\beta$:
+
+    $$
+    \sigma_N \approx \alpha\,F^\beta = 0.03 \times (0.04)^{0.5} = 0.03 \times 0.2 = 0.006 = 0.6\% = 60\text{ bps}
+    $$
+
+    **Comparison and interpretation:**
+
+    The Black (lognormal) volatility is 15% and the Bachelier (normal) volatility is 60 basis points. These are different expressions of the same underlying stochastic process:
+
+    - Black vol describes proportional (percentage) moves: a 15% lognormal vol means the forward rate moves by about 15% of its level per year
+    - Normal vol describes absolute moves: a 60 bps normal vol means the forward rate moves by about 60 basis points per year
+    - **Consistency check:** $\sigma_N \approx \sigma^{\text{Black}} \times F = 0.15 \times 0.04 = 0.006$, confirming $\sigma_N = 60$ bps
+
+    The SABR parameter $\beta$ interpolates between the normal model ($\beta = 0$, where $\sigma^{\text{Black}} = \alpha/F$ diverges as $F \to 0$) and the lognormal model ($\beta = 1$, where $\sigma^{\text{Black}} = \alpha$ is constant in $F$). With $\beta = 0.5$, the model produces a "square-root" backbone, where ATM Black vol scales as $F^{-0.5}$ --- this captures the empirical observation that Black vol tends to increase as rates decrease.

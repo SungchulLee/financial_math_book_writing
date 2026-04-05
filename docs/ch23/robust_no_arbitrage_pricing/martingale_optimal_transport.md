@@ -966,13 +966,116 @@ This interdisciplinary framework continues to drive research at the intersection
 
 **Exercise 1.** Let $\mu = \delta_{100}$ (point mass at 100) and $\nu = \frac{1}{2}\delta_{80} + \frac{1}{2}\delta_{120}$. Write down all martingale couplings $\pi \in \mathcal{M}(\mu, \nu)$ and verify the martingale condition $\int y \, d\pi(y|x) = x$. Is the martingale coupling unique in this case?
 
+??? success "Solution to Exercise 1"
+
+    Since $\mu = \delta_{100}$ is a point mass at 100, a coupling $\pi \in \Pi(\mu, \nu)$ must have first marginal concentrated at $x = 100$. Therefore $\pi$ has the form:
+
+    $$
+    \pi = \delta_{100} \otimes \kappa
+    $$
+
+    where $\kappa$ is a probability measure on $\{80, 120\}$ with $\kappa = \frac{1}{2}\delta_{80} + \frac{1}{2}\delta_{120}$ (to match the second marginal $\nu$).
+
+    So the unique coupling is:
+
+    $$
+    \pi\bigl(\{(100, 80)\}\bigr) = \frac{1}{2}, \quad \pi\bigl(\{(100, 120)\}\bigr) = \frac{1}{2}
+    $$
+
+    **Martingale verification.** We check $\int y \, d\pi(y | x = 100) = x = 100$:
+
+    $$
+    \int y \, d\pi(y | 100) = \frac{1}{2}(80) + \frac{1}{2}(120) = 40 + 60 = 100 \;\checkmark
+    $$
+
+    **Uniqueness.** Yes, the martingale coupling is unique in this case. Since $\mu$ is a point mass, the first marginal constraint forces all mass to originate at $x = 100$. The second marginal constraint forces $\kappa = \nu = \frac{1}{2}\delta_{80} + \frac{1}{2}\delta_{120}$. The martingale condition $\mathbb{E}[Y|X=100] = 100$ is automatically satisfied since $\mathbb{E}_\nu[Y] = 100$. There is no freedom in choosing the coupling; it is uniquely determined.
+
 ---
 
 **Exercise 2.** Verify Strassen's theorem for the measures $\mu = \delta_{100}$ and $\nu = \frac{1}{3}\delta_{70} + \frac{1}{3}\delta_{100} + \frac{1}{3}\delta_{130}$. Specifically, check that $\mu \preceq_c \nu$ by showing that $\int f \, d\mu \leq \int f \, d\nu$ for $f(x) = |x - a|$ for several values of $a$, and construct an explicit martingale coupling.
 
+??? success "Solution to Exercise 2"
+
+    **Convex order verification.** We need $\int f \, d\mu \leq \int f \, d\nu$ for all convex $f$, where $\mu = \delta_{100}$ and $\nu = \frac{1}{3}\delta_{70} + \frac{1}{3}\delta_{100} + \frac{1}{3}\delta_{130}$.
+
+    First, note $\int x \, d\nu = \frac{1}{3}(70 + 100 + 130) = 100 = \int x \, d\mu$, so the means match.
+
+    For $f(x) = |x - a|$ (convex):
+
+    $$
+    \int f \, d\mu = |100 - a|
+    $$
+
+    $$
+    \int f \, d\nu = \frac{1}{3}|70 - a| + \frac{1}{3}|100 - a| + \frac{1}{3}|130 - a|
+    $$
+
+    *Case $a = 70$:* $\int f \, d\mu = 30$. $\int f \, d\nu = \frac{1}{3}(0 + 30 + 60) = 30$. So $30 \leq 30$. $\checkmark$
+
+    *Case $a = 100$:* $\int f \, d\mu = 0$. $\int f \, d\nu = \frac{1}{3}(30 + 0 + 30) = 20$. So $0 \leq 20$. $\checkmark$
+
+    *Case $a = 130$:* $\int f \, d\mu = 30$. $\int f \, d\nu = \frac{1}{3}(60 + 30 + 0) = 30$. So $30 \leq 30$. $\checkmark$
+
+    *Case $a = 85$:* $\int f \, d\mu = 15$. $\int f \, d\nu = \frac{1}{3}(15 + 15 + 45) = 25$. So $15 \leq 25$. $\checkmark$
+
+    Since the means match and $\nu$ is "more spread out" than the point mass $\mu$, Jensen's inequality guarantees $\mu \preceq_c \nu$.
+
+    **Explicit martingale coupling.** We need $\pi$ on $\{100\} \times \{70, 100, 130\}$ with:
+
+    - First marginal: $\pi_1 = \delta_{100}$
+    - Second marginal: $\pi_2 = \frac{1}{3}\delta_{70} + \frac{1}{3}\delta_{100} + \frac{1}{3}\delta_{130}$
+    - Martingale: $\mathbb{E}[Y | X = 100] = 100$
+
+    The coupling is uniquely determined:
+
+    $$
+    \pi = \frac{1}{3}\delta_{(100, 70)} + \frac{1}{3}\delta_{(100, 100)} + \frac{1}{3}\delta_{(100, 130)}
+    $$
+
+    Verification: $\mathbb{E}[Y | X = 100] = \frac{1}{3}(70 + 100 + 130) = 100$. $\checkmark$
+
 ---
 
 **Exercise 3.** Consider the MOT problem with $\mu = \delta_{100}$, $\nu$ determined by call prices at strikes $K \in \{90, 100, 110\}$, and cost function $c(x, y) = (y - x)^2$. Set up the discretized linear program (with state space $\{90, 100, 110\}$ for $S_T$) and solve for both the minimum and maximum expected squared return. Interpret the extremal measures financially.
+
+??? success "Solution to Exercise 3"
+
+    **Setup.** We have $\mu = \delta_{100}$, the state space for $S_T$ is $\{90, 100, 110\}$, and the cost is $c(x, y) = (y - x)^2$.
+
+    Let $\pi_j = \pi(\{100\} \times \{s_j\})$ for $s_1 = 90$, $s_2 = 100$, $s_3 = 110$. We need call prices to determine $\nu$, but the exercise asks us to set up and solve the LP. We treat $(\pi_1, \pi_2, \pi_3)$ as the probabilities assigned to the three terminal states.
+
+    **Constraints:**
+
+    - Normalization: $\pi_1 + \pi_2 + \pi_3 = 1$
+    - Martingale: $90\pi_1 + 100\pi_2 + 110\pi_3 = 100$
+    - Non-negativity: $\pi_1, \pi_2, \pi_3 \geq 0$
+
+    From the martingale constraint: $90\pi_1 + 100\pi_2 + 110\pi_3 = 100$. Combined with $\pi_1 + \pi_2 + \pi_3 = 1$, we get:
+
+    $$
+    90\pi_1 + 100(1 - \pi_1 - \pi_3) + 110\pi_3 = 100
+    $$
+
+    $$
+    -10\pi_1 + 10\pi_3 = 0 \implies \pi_1 = \pi_3
+    $$
+
+    So the feasible set is parameterized by $p = \pi_1 = \pi_3 \in [0, 1/2]$, with $\pi_2 = 1 - 2p$.
+
+    **Objective.** The expected squared return is:
+
+    $$
+    \mathbb{E}[c] = (90 - 100)^2 \pi_1 + (100 - 100)^2 \pi_2 + (110 - 100)^2 \pi_3 = 100p + 0 + 100p = 200p
+    $$
+
+    **Minimum:** $p = 0$, giving $\pi = (0, 1, 0)$, i.e., $S_T = 100$ a.s., with $\mathbb{E}[c] = 0$. This is the degenerate model with zero volatility.
+
+    **Maximum:** $p = 1/2$, giving $\pi = (1/2, 0, 1/2)$, i.e., $S_T \in \{90, 110\}$ with equal probability, with $\mathbb{E}[c] = 100$. This is the model with maximum volatility.
+
+    **Financial interpretation:**
+
+    - The minimum ($\pi = \delta_{(100, 100)}$) corresponds to a model with no uncertainty: the stock stays at 100 with certainty. The squared return is zero.
+    - The maximum ($\pi = \frac{1}{2}\delta_{(100, 90)} + \frac{1}{2}\delta_{(100, 110)}$) corresponds to a model with maximum binary uncertainty: the stock either drops to 90 or rises to 110 with equal probability. This maximizes the variance of returns and represents the worst-case scenario for variance risk.
 
 ---
 
@@ -984,14 +1087,182 @@ $$
 
 where $\phi^*$ is the convex conjugate of $\phi$. Explain why this identity does not directly apply in the martingale optimal transport setting.
 
+??? success "Solution to Exercise 4"
+
+    **Deriving the identity.** For $c(x,y) = |x - y|^2 = x^2 - 2xy + y^2$, the Kantorovich problem is:
+
+    $$
+    W_2^2(\mu, \nu) = \inf_{\pi \in \Pi(\mu, \nu)} \int (x^2 - 2xy + y^2) \, d\pi(x, y)
+    $$
+
+    Since the marginals are fixed:
+
+    $$
+    \int x^2 \, d\pi = \int x^2 \, d\mu, \quad \int y^2 \, d\pi = \int y^2 \, d\nu
+    $$
+
+    Therefore:
+
+    $$
+    W_2^2(\mu, \nu) = \int x^2 \, d\mu + \int y^2 \, d\nu - 2 \sup_{\pi \in \Pi(\mu, \nu)} \int xy \, d\pi(x,y)
+    $$
+
+    By Kantorovich duality, $\sup_{\pi} \int xy \, d\pi = \sup_\phi \left\{\int \phi \, d\mu + \int \phi^* \, d\nu\right\}$ where $\phi^*(y) = \sup_x \{xy - \phi(x)\}$ is the convex conjugate of $\phi$. This follows because the dual constraint $\phi(x) + \psi(y) \leq xy$ with $\psi = \phi^*$ characterizes the optimal potentials. Thus:
+
+    $$
+    W_2^2(\mu, \nu) = \int x^2 \, d\mu + \int y^2 \, d\nu - 2 \sup_\phi \left\{\int \phi \, d\mu + \int \phi^* \, d\nu\right\}
+    $$
+
+    **Why this fails for MOT.** In classical optimal transport, the set $\Pi(\mu, \nu)$ of all couplings with given marginals is used. In MOT, we restrict to $\mathcal{M}(\mu, \nu) \subset \Pi(\mu, \nu)$, the subset of martingale couplings satisfying $\int y \, d\pi(y|x) = x$.
+
+    The identity above relies on the fact that $\int x^2 \, d\pi$ and $\int y^2 \, d\pi$ depend only on marginals. While this remains true under the martingale constraint, the crucial difference is that:
+
+    1. The **dual structure changes**: The martingale constraint introduces an additional linear constraint $\int y \, d\pi(y|x) = x$, which modifies the dual problem. Instead of the $c$-transform, one must use a **martingale $c$-transform** involving convex minorants.
+
+    2. The **feasible set is smaller**: $\mathcal{M}(\mu, \nu) \subseteq \Pi(\mu, \nu)$, so the infimum over martingale couplings is generally larger than over all couplings. The decomposition $W_2^2 = \text{const} - 2\sup \int xy \, d\pi$ does not directly apply because the supremum is now over a restricted set.
+
+    3. The **dual variables have different structure**: In MOT, the dual involves not just potentials $\phi, \psi$ but also a "slope" term reflecting the martingale constraint: $\phi(x) + \psi(y) + h(x)(y - x) \leq c(x,y)$ for some function $h$.
+
 ---
 
 **Exercise 5.** For a forward start call with payoff $(S_{T_2} - S_{T_1})^+$ and marginals $\mu_1$ (at $T_1$) and $\mu_2$ (at $T_2$) both lognormal with means 100 and volatilities $\sigma_1 = 0.15$ and $\sigma_2 = 0.20$ respectively, explain qualitatively why the MOT upper bound is attained by a coupling that maximizes the negative dependence between $S_{T_1}$ and $S_{T_2} - S_{T_1}$. What financial scenario does this worst-case model represent?
+
+??? success "Solution to Exercise 5"
+
+    **Qualitative argument for the MOT upper bound.**
+
+    The forward start call has payoff $(S_{T_2} - S_{T_1})^+$. This payoff is large when $S_{T_2}$ is large relative to $S_{T_1}$, or equivalently, when $S_{T_1}$ is small and $S_{T_2}$ is large.
+
+    **Why maximum negative dependence attains the upper bound.**
+
+    Consider the decomposition $S_{T_2} - S_{T_1} = (S_{T_2} - S_{T_1})$, where both $S_{T_1}$ and $S_{T_2}$ have fixed marginals. The payoff $(S_{T_2} - S_{T_1})^+$ is a convex function of the difference. By the martingale constraint, $\mathbb{E}[S_{T_2} | S_{T_1}] = S_{T_1}$, so the increment $S_{T_2} - S_{T_1}$ has conditional mean zero.
+
+    To maximize $\mathbb{E}[(S_{T_2} - S_{T_1})^+]$, we want to maximize the conditional variance of $S_{T_2} - S_{T_1}$ (by Jensen's inequality applied to the convex function $(\cdot)^+$). This is achieved by creating maximum negative dependence between $S_{T_1}$ and the increment $S_{T_2} - S_{T_1}$:
+
+    - When $S_{T_1}$ is low, the conditional distribution of $S_{T_2}$ should be as spread out as possible (high conditional variance), making the increment $S_{T_2} - S_{T_1}$ likely to be large and positive.
+    - When $S_{T_1}$ is high, $S_{T_2}$ can be concentrated near $S_{T_1}$ (since the payoff is already zero when $S_{T_2} < S_{T_1}$).
+
+    In terms of the joint distribution of $(S_{T_1}, S_{T_2})$, this means making $S_{T_1}$ and $S_{T_2} - S_{T_1}$ negatively dependent: small $S_{T_1}$ is paired with large upward moves.
+
+    **Financial scenario.** The worst-case model represents a market where:
+
+    - Stocks that have declined by time $T_1$ (low $S_{T_1}$) experience large upward rebounds by $T_2$, creating large forward-start call payoffs.
+    - Stocks that have risen by time $T_1$ (high $S_{T_1}$) remain flat or decline, contributing nothing to the payoff.
+
+    This is a "mean-reversion on steroids" scenario, where past losers become future winners with the maximum possible magnitude. For a volatility trader, this represents the worst-case scenario for forward-starting options: the implied volatility at the reset date $T_1$ is highest precisely when the forward start option is most "in danger" (i.e., when the reset strike is lowest).
+
+    With lognormal marginals at both dates (means 100, $\sigma_1 = 0.15$, $\sigma_2 = 0.20$), the MOT upper bound is strictly larger than any single-model price because no standard model (e.g., Black-Scholes) achieves the extremal negative dependence structure.
 
 ---
 
 **Exercise 6.** Describe the Sinkhorn algorithm for entropic regularization of the classical optimal transport problem. Then explain the key modification needed to incorporate the martingale constraint $\sum_j s_j^T \pi_{ij} = s_i^0 \sum_j \pi_{ij}$. Why does entropic regularization improve numerical stability compared to the standard LP formulation?
 
+??? success "Solution to Exercise 6"
+
+    **Standard Sinkhorn algorithm (classical OT).**
+
+    Given discrete marginals $\mu = (\mu_1, \ldots, \mu_{N_0})$ and $\nu = (\nu_1, \ldots, \nu_{N_T})$, cost matrix $c_{ij}$, and regularization parameter $\varepsilon > 0$, the entropic OT problem is:
+
+    $$
+    \min_{\pi \geq 0} \sum_{i,j} c_{ij} \pi_{ij} + \varepsilon \sum_{i,j} \pi_{ij}(\log \pi_{ij} - 1)
+    $$
+
+    subject to $\sum_j \pi_{ij} = \mu_i$ and $\sum_i \pi_{ij} = \nu_j$.
+
+    The Sinkhorn algorithm exploits the fact that the optimal $\pi$ has the form $\pi_{ij} = u_i K_{ij} v_j$ where $K_{ij} = e^{-c_{ij}/\varepsilon}$:
+
+    1. Initialize $v_j^{(0)} = 1$ for all $j$.
+    2. Iterate for $k = 0, 1, 2, \ldots$:
+
+        $$
+        u_i^{(k+1)} = \frac{\mu_i}{\sum_j K_{ij} v_j^{(k)}}, \quad v_j^{(k+1)} = \frac{\nu_j}{\sum_i K_{ij} u_i^{(k+1)}}
+        $$
+
+    3. The optimal coupling is $\pi_{ij}^* = u_i^* K_{ij} v_j^*$.
+
+    This alternates between projecting onto the first marginal constraint and the second marginal constraint.
+
+    **Modification for the martingale constraint.** The martingale constraint $\sum_j s_j^T \pi_{ij} = s_i^0 \sum_j \pi_{ij} = s_i^0 \mu_i$ introduces an additional linear constraint beyond the two marginal constraints.
+
+    The key modification is to add a **third projection step** that enforces the martingale condition. After the standard Sinkhorn updates for both marginals, project the current iterate onto the martingale subspace:
+
+    $$
+    \pi_{ij} \leftarrow \pi_{ij} \cdot \exp\left(\lambda_i (s_j^T - s_i^0)\right)
+    $$
+
+    where $\lambda_i$ is a Lagrange multiplier chosen so that $\sum_j s_j^T \pi_{ij} = s_i^0 \mu_i$. This three-step iteration alternates:
+
+    (a) Project onto first marginal ($u$-update)
+
+    (b) Project onto second marginal ($v$-update)
+
+    (c) Project onto martingale constraint ($\lambda$-update)
+
+    Each step corresponds to a Bregman projection with respect to the KL divergence, and the iteration converges to the unique solution of the entropy-regularized MOT problem.
+
+    **Why entropic regularization improves stability.** The standard LP formulation of MOT has several numerical issues:
+
+    1. **Degeneracy**: LP solutions are at vertices of the feasible polytope, which are sparse and may not be unique, causing solver instability.
+    2. **Sensitivity**: Small changes in the data (marginals, cost) can cause the LP solution to jump between vertices.
+    3. **Scalability**: LP solvers have complexity $O(N^3)$ or worse.
+
+    Entropic regularization addresses all three issues:
+
+    - The entropy term makes the objective strictly convex, guaranteeing a **unique** solution.
+    - The solution $\pi^*$ is **smooth** (fully supported), avoiding degeneracy and sensitivity.
+    - The Sinkhorn algorithm has complexity $O(N^2)$ per iteration and converges exponentially fast.
+    - As $\varepsilon \to 0$, the regularized solution converges to the true MOT solution.
+
 ---
 
 **Exercise 7.** Consider two assets with marginal distributions $\mu_1$ (uniform on $[80, 120]$) and $\mu_2$ (uniform on $[90, 110]$), both with mean 100. For the basket call payoff $g = \left(\frac{1}{2}S_T^{(1)} + \frac{1}{2}S_T^{(2)} - 100\right)^+$, formulate the multi-dimensional MOT problem. Use the Frechet-Hoeffding bounds to argue that the upper bound is attained when the two assets are comonotonic, and compute the resulting bound explicitly.
+
+??? success "Solution to Exercise 7"
+
+    **MOT formulation.** The multi-dimensional MOT problem is:
+
+    $$
+    \overline{V} = \sup_{\pi \in \mathcal{M}(\mu_1, \mu_2)} \int \left(\frac{1}{2}s_1 + \frac{1}{2}s_2 - 100\right)^+ d\pi(s_1, s_2)
+    $$
+
+    where $\mathcal{M}(\mu_1, \mu_2)$ is the set of joint distributions on $\mathbb{R}^2_+$ with marginals $\mu_1$ (uniform on $[80, 120]$) and $\mu_2$ (uniform on $[90, 110]$), such that the martingale constraint is satisfied for each asset individually. Since we treat this as a single-period problem starting from $S_0^{(i)} = 100$, the martingale constraint requires $\mathbb{E}_\pi[S_T^{(i)}] = 100$, which is already satisfied by both uniform marginals.
+
+    **Frechet-Hoeffding upper bound.** The Frechet-Hoeffding upper bound on the coupling is the comonotonic coupling:
+
+    $$
+    \pi^{\text{upper}}(A \times B) = \min\{\mu_1(A), \mu_2(B)\}
+    $$
+
+    For continuous marginals, this corresponds to $S_T^{(2)} = F_{\mu_2}^{-1}(F_{\mu_1}(S_T^{(1)}))$, i.e., both assets are driven by the same underlying randomness.
+
+    **Why comonotonicity attains the upper bound.** The basket payoff $g = \left(\frac{1}{2}S_T^{(1)} + \frac{1}{2}S_T^{(2)} - 100\right)^+$ is a convex function of $(S_T^{(1)}, S_T^{(2)})$, and it is increasing in both arguments. For convex, coordinatewise increasing functions, the expectation is maximized by the comonotonic coupling (this is a consequence of the rearrangement inequality / comonotonic improvement theorem).
+
+    **Explicit computation under comonotonicity.** Under the comonotonic coupling, let $U \sim \text{Uniform}(0, 1)$ and set:
+
+    $$
+    S_T^{(1)} = 80 + 40U, \quad S_T^{(2)} = 90 + 20U
+    $$
+
+    The basket value is:
+
+    $$
+    B = \frac{1}{2}(80 + 40U) + \frac{1}{2}(90 + 20U) = \frac{1}{2}(170 + 60U) = 85 + 30U
+    $$
+
+    The payoff is:
+
+    $$
+    g = (85 + 30U - 100)^+ = (30U - 15)^+ = 30\left(U - \frac{1}{2}\right)^+
+    $$
+
+    Computing the expectation:
+
+    $$
+    \overline{V} = \mathbb{E}[g] = 30 \int_0^1 \left(u - \frac{1}{2}\right)^+ du = 30 \int_{1/2}^1 \left(u - \frac{1}{2}\right) du
+    $$
+
+    $$
+    = 30 \left[\frac{(u - 1/2)^2}{2}\right]_{1/2}^{1} = 30 \cdot \frac{(1/2)^2}{2} = 30 \cdot \frac{1}{8} = 3.75
+    $$
+
+    Therefore $\overline{V} = 3.75$.

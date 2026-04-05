@@ -237,30 +237,6 @@ $$
 
 **Exercise 1.** Starting from the Black-Scholes PDE with $\sigma$ replaced by $\sigma_{\text{loc}}(t, S)$, derive the Dupire forward equation $\frac{\partial C}{\partial T} = \frac{1}{2}\sigma_{\text{loc}}^2(T,K)K^2 \frac{\partial^2 C}{\partial K^2} - rK\frac{\partial C}{\partial K}$. Explain why this is called a "forward" equation and how it differs from the standard "backward" Black-Scholes PDE.
 
----
-
-**Exercise 2.** Dupire's inversion formula is $\sigma_{\text{loc}}^2(T,K) = \frac{\partial_T C + rK \partial_K C}{\frac{1}{2}K^2 \partial_{KK} C}$. (a) Verify that the denominator $\frac{1}{2}K^2 \partial_{KK} C$ is always positive for arbitrage-free call prices (relate $\partial_{KK} C$ to the risk-neutral density). (b) Under what conditions on the call price surface could the numerator be negative, and what would this imply?
-
----
-
-**Exercise 3.** In the CEV model $\sigma_{\text{loc}}(S) = \sigma_0 S^{\beta - 1}$, the parameter $\beta$ controls the leverage effect. (a) Show that for $\beta < 1$, volatility increases as the stock price decreases. (b) For $\beta = 0.5$, $\sigma_0 = 2$, and $S = 100$, compute $\sigma_{\text{loc}}$. (c) Explain why $\beta = 1$ recovers the Black-Scholes model.
-
----
-
-**Exercise 4.** The local volatility surface is computed from market data via numerical differentiation. Explain why this procedure is ill-posed (sensitive to small data perturbations). Describe the Tikhonov regularization approach $\min \sum_{ij} (C^{\text{model}}_{ij} - C^{\text{market}}_{ij})^2 + \lambda \int |\nabla \sigma_{\text{loc}}|^2 \, dT \, dK$ and the role of the penalty parameter $\lambda$.
-
----
-
-**Exercise 5.** Local volatility models predict that the implied volatility smile "flattens" as time progresses (sticky strike behavior), while market data shows the smile persists (closer to sticky delta behavior). Explain this difference. Why does this make local volatility unreliable for pricing forward-starting options and cliquets?
-
----
-
-**Exercise 6.** Describe the full calibration procedure for a local volatility model: (a) interpolation of the implied volatility surface from market quotes, (b) application of Dupire's formula, and (c) pricing of an exotic option. At each step, identify the main numerical challenges and potential sources of error.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The **backward** Black-Scholes PDE describes how the option price $V(t, S)$ evolves backward in time from the terminal condition $V(T, S) = \Phi(S)$:
 
@@ -289,6 +265,11 @@ $$
 
     The forward equation is computationally advantageous when pricing many vanillas (different strikes and maturities) under the same model, as it computes the entire surface in one pass.
 
+---
+
+
+**Exercise 2.** Dupire's inversion formula is $\sigma_{\text{loc}}^2(T,K) = \frac{\partial_T C + rK \partial_K C}{\frac{1}{2}K^2 \partial_{KK} C}$. (a) Verify that the denominator $\frac{1}{2}K^2 \partial_{KK} C$ is always positive for arbitrage-free call prices (relate $\partial_{KK} C$ to the risk-neutral density). (b) Under what conditions on the call price surface could the numerator be negative, and what would this imply?
+
 ??? success "Solution to Exercise 2"
     **(a)** The second derivative of the call price with respect to strike is related to the risk-neutral density:
 
@@ -301,6 +282,11 @@ $$
     This positivity is also a necessary condition for the absence of butterfly arbitrage: if $\partial_{KK}C < 0$ at some strike, one could construct a butterfly spread (buy calls at $K \pm \Delta K$, sell two calls at $K$) that yields a non-negative payoff at negative cost, an arbitrage.
 
     **(b)** The numerator is $\partial_T C + rK\partial_K C$. For arbitrage-free call prices, this must be non-negative. Economically, $\partial_T C > 0$ for European calls (longer maturity is worth more, holding strike fixed) and $\partial_K C < 0$ (higher strike means lower call value), but $rK\partial_K C$ is negative. If $r$ is large enough or $\partial_K C$ is sufficiently negative, the numerator could in principle become negative at some $(T, K)$. A negative numerator would imply $\sigma_{\text{loc}}^2 < 0$, which is impossible. This would indicate a violation of **calendar spread arbitrage** in the input prices: a longer-dated call should be worth at least as much as a shorter-dated call after accounting for the financing cost. If the input data violates this, the local volatility surface is not well-defined, signaling that the interpolated call price surface must be corrected before applying Dupire's formula.
+
+---
+
+
+**Exercise 3.** In the CEV model $\sigma_{\text{loc}}(S) = \sigma_0 S^{\beta - 1}$, the parameter $\beta$ controls the leverage effect. (a) Show that for $\beta < 1$, volatility increases as the stock price decreases. (b) For $\beta = 0.5$, $\sigma_0 = 2$, and $S = 100$, compute $\sigma_{\text{loc}}$. (c) Explain why $\beta = 1$ recovers the Black-Scholes model.
 
 ??? success "Solution to Exercise 3"
     **(a)** For $\beta < 1$, the local volatility is $\sigma_{\text{loc}}(S) = \sigma_0 S^{\beta - 1}$. Since $\beta - 1 < 0$, we have
@@ -321,6 +307,11 @@ $$
 
     **(c)** For $\beta = 1$: $\sigma_{\text{loc}}(S) = \sigma_0 S^{1-1} = \sigma_0 S^0 = \sigma_0$, a constant independent of $S$. This is exactly the Black-Scholes assumption of constant volatility. The SDE becomes $dS_t = rS_t\,dt + \sigma_0 S_t\,dW_t$, which is the geometric Brownian motion of Black-Scholes.
 
+---
+
+
+**Exercise 4.** The local volatility surface is computed from market data via numerical differentiation. Explain why this procedure is ill-posed (sensitive to small data perturbations). Describe the Tikhonov regularization approach $\min \sum_{ij} (C^{\text{model}}_{ij} - C^{\text{market}}_{ij})^2 + \lambda \int |\nabla \sigma_{\text{loc}}|^2 \, dT \, dK$ and the role of the penalty parameter $\lambda$.
+
 ??? success "Solution to Exercise 4"
     Dupire's formula $\sigma_{\text{loc}}^2(T, K) = \frac{\partial_T C + rK\partial_K C}{\frac{1}{2}K^2\partial_{KK}C}$ requires computing partial derivatives of the call price surface $C(T, K)$. In practice, $C$ is observed only at discrete strikes and maturities with bid-ask noise. The procedure is **ill-posed** because:
 
@@ -340,6 +331,11 @@ $$
     - **Large $\lambda$**: Produces a smooth $\sigma_{\text{loc}}$ but may not fit the data well.
     - **Optimal $\lambda$**: Balances fit quality against smoothness, typically chosen via cross-validation or the L-curve method.
 
+---
+
+
+**Exercise 5.** Local volatility models predict that the implied volatility smile "flattens" as time progresses (sticky strike behavior), while market data shows the smile persists (closer to sticky delta behavior). Explain this difference. Why does this make local volatility unreliable for pricing forward-starting options and cliquets?
+
 ??? success "Solution to Exercise 5"
     **Sticky strike vs. sticky delta**:
 
@@ -351,6 +347,11 @@ $$
     In reality, the smile **persists** because volatility is itself stochastic: the future smile shape is random, not deterministic. Stochastic volatility models capture this by allowing $v_t$ to fluctuate, which maintains the smile's shape and level over time.
 
     **Implications for forward-starting options and cliquets**: These products depend critically on the **forward smile** -- the shape of the implied volatility smile at future dates. A forward-starting option, for example, has a strike set at a future date relative to the then-prevailing spot. Its price depends on what the smile looks like at that future date. Local volatility predicts the forward smile will be much flatter than today's smile, leading to systematic underpricing of these products. Cliquets (sequences of forward-starting options) amplify this error across multiple reset dates, making local volatility unreliable for their pricing. Stochastic volatility models, which produce persistent forward smiles, give more accurate prices for these products.
+
+---
+
+
+**Exercise 6.** Describe the full calibration procedure for a local volatility model: (a) interpolation of the implied volatility surface from market quotes, (b) application of Dupire's formula, and (c) pricing of an exotic option. At each step, identify the main numerical challenges and potential sources of error.
 
 ??? success "Solution to Exercise 6"
     **(a) Interpolation of the implied volatility surface**:

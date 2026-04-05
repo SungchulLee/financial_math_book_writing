@@ -249,6 +249,15 @@ In the next chapter we turn to the main **solution techniques** themselves: dire
 
 (d) Euler–Maruyama simulation with $10^6$ sample paths gives $\widehat{\mathbb{E}}[X_T] = 3.14 \pm 0.02$.
 
+??? success "Solution to Exercise 1"
+    **(a)** $S_t = S_0 \exp[(\mu - \sigma^2/2)t + \sigma W_t]$ — this is an **explicit pathwise solution**. The process is written as a deterministic function of time, the initial condition, and the Brownian motion path.
+
+    **(b)** The transition density of $r_t$ satisfies the Fokker-Planck equation — this is a **PDE/generator characterization**. The process is described indirectly through the partial differential equation governing its probability density.
+
+    **(c)** $r_t$ follows a noncentral chi-squared distribution with known parameters — this is a **distributional characterization**. The full law of $r_t$ is specified, even though no simple pathwise formula may exist.
+
+    **(d)** Euler-Maruyama simulation with $10^6$ sample paths gives $\widehat{\mathbb{E}}[X_T] = 3.14 \pm 0.02$ — this is **numerical solvability**. The SDE is studied through Monte Carlo simulation rather than analytical formulas.
+
 ---
 
 **Exercise 2.** For the SDE $dX_t = \alpha X_t(1 - X_t)\,dt + \sigma X_t(1 - X_t)\,dW_t$:
@@ -258,53 +267,6 @@ In the next chapter we turn to the main **solution techniques** themselves: dire
 (b) Suggest a transformation that might simplify the diffusion coefficient.
 
 (c) Is a closed-form pathwise solution likely? Justify your reasoning.
-
----
-
-**Exercise 3.** Consider the three canonical transformations:
-
-| Transformation | Target structure |
-|---|---|
-| $Y_t = \log X_t$ | ? |
-| $Y_t = e^{at}(X_t - \theta)$ | ? |
-| $Y_t = \int^{X_t} \frac{dx}{\sigma(x)}$ | ? |
-
-Fill in the "Target structure" column by describing what type of SDE each transformation is designed to simplify.
-
----
-
-**Exercise 4.** The SABR model for forward rates is
-
-$$
-dF_t = \sigma_t F_t^\beta\,dW_t^{(1)}, \qquad d\sigma_t = \alpha\,\sigma_t\,dW_t^{(2)}
-$$
-
-with $\langle dW_t^{(1)}, dW_t^{(2)} \rangle = \rho\,dt$.
-
-(a) Does this model admit an elementary closed-form pathwise solution? Why or why not?
-
-(b) Which of the four senses of solvability (pathwise, distributional, PDE, numerical) are available for this model?
-
----
-
-**Exercise 5.** Explain why the Feynman–Kac formula creates a connection between SDEs and PDEs. Specifically, if $u(t,x) = \mathbb{E}[\phi(X_T) \mid X_t = x]$ for an SDE with drift $b(x)$ and diffusion $\sigma(x)$, write down the PDE that $u$ satisfies and explain why this is useful when direct simulation is expensive.
-
----
-
-**Exercise 6.** A colleague proposes modeling a stock price with the SDE $dS_t = \mu\,dt + \sigma\,dW_t$ (Brownian motion with drift) instead of geometric Brownian motion. Identify at least two problems with this choice from a modeling perspective, referring to the structural classification discussed in this chapter.
-
----
-
-## Solutions
-
-??? success "Solution to Exercise 1"
-    **(a)** $S_t = S_0 \exp[(\mu - \sigma^2/2)t + \sigma W_t]$ — this is an **explicit pathwise solution**. The process is written as a deterministic function of time, the initial condition, and the Brownian motion path.
-
-    **(b)** The transition density of $r_t$ satisfies the Fokker-Planck equation — this is a **PDE/generator characterization**. The process is described indirectly through the partial differential equation governing its probability density.
-
-    **(c)** $r_t$ follows a noncentral chi-squared distribution with known parameters — this is a **distributional characterization**. The full law of $r_t$ is specified, even though no simple pathwise formula may exist.
-
-    **(d)** Euler-Maruyama simulation with $10^6$ sample paths gives $\widehat{\mathbb{E}}[X_T] = 3.14 \pm 0.02$ — this is **numerical solvability**. The SDE is studied through Monte Carlo simulation rather than analytical formulas.
 
 ??? success "Solution to Exercise 2"
     **(a)** The diffusion coefficient is $\sigma(X_t) = \sigma X_t(1 - X_t)$, which depends on the state $X_t$ in a nonlinear way. This is **state-dependent diffusion** (neither purely additive nor simply multiplicative in the standard sense).
@@ -319,12 +281,38 @@ with $\langle dW_t^{(1)}, dW_t^{(2)} \rangle = \rho\,dt$.
 
     **(c)** A closed-form pathwise solution is **unlikely**. The drift $\alpha X_t(1 - X_t)$ is nonlinear (logistic growth), and after the Lamperti transform the resulting drift in $Y_t$ will generally be a complicated nonlinear function of $Y_t$. Standard transformation techniques are unlikely to reduce this to a directly integrable form. One would typically resort to numerical simulation, PDE methods, or moment analysis.
 
+---
+
+**Exercise 3.** Consider the three canonical transformations:
+
+| Transformation | Target structure |
+|---|---|
+| $Y_t = \log X_t$ | ? |
+| $Y_t = e^{at}(X_t - \theta)$ | ? |
+| $Y_t = \int^{X_t} \frac{dx}{\sigma(x)}$ | ? |
+
+Fill in the "Target structure" column by describing what type of SDE each transformation is designed to simplify.
+
 ??? success "Solution to Exercise 3"
     | Transformation | Target structure |
     |---|---|
     | $Y_t = \log X_t$ | Removes **multiplicative noise**: if $dX_t = \mu X_t\,dt + \sigma X_t\,dW_t$, then $Y_t = \log X_t$ satisfies an SDE with **additive (constant) diffusion** coefficient, namely $dY_t = (\mu - \sigma^2/2)\,dt + \sigma\,dW_t$ |
     | $Y_t = e^{at}(X_t - \theta)$ | Eliminates **linear mean-reverting drift**: if $dX_t = a(\theta - X_t)\,dt + \sigma\,dW_t$, then $Y_t$ satisfies a **driftless SDE** $dY_t = \sigma e^{at}\,dW_t$ that can be integrated directly |
     | $Y_t = \int^{X_t} \frac{dx}{\sigma(x)}$ | Normalizes **state-dependent diffusion** to unit (constant) diffusion coefficient — this is the **Lamperti transform**, converting the SDE to one where only the drift remains state-dependent |
+
+---
+
+**Exercise 4.** The SABR model for forward rates is
+
+$$
+dF_t = \sigma_t F_t^\beta\,dW_t^{(1)}, \qquad d\sigma_t = \alpha\,\sigma_t\,dW_t^{(2)}
+$$
+
+with $\langle dW_t^{(1)}, dW_t^{(2)} \rangle = \rho\,dt$.
+
+(a) Does this model admit an elementary closed-form pathwise solution? Why or why not?
+
+(b) Which of the four senses of solvability (pathwise, distributional, PDE, numerical) are available for this model?
 
 ??? success "Solution to Exercise 4"
     **(a)** The SABR model does **not** admit an elementary closed-form pathwise solution. Several factors prevent this:
@@ -341,6 +329,10 @@ with $\langle dW_t^{(1)}, dW_t^{(2)} \rangle = \rho\,dt$.
     - **PDE:** The Kolmogorov backward equation for the two-dimensional diffusion $(F_t, \sigma_t)$ can be written down and solved numerically or asymptotically.
     - **Numerical:** Monte Carlo simulation is straightforward and is the standard approach for pricing under SABR. Euler-Maruyama or more specialized schemes can be applied to the coupled system.
 
+---
+
+**Exercise 5.** Explain why the Feynman–Kac formula creates a connection between SDEs and PDEs. Specifically, if $u(t,x) = \mathbb{E}[\phi(X_T) \mid X_t = x]$ for an SDE with drift $b(x)$ and diffusion $\sigma(x)$, write down the PDE that $u$ satisfies and explain why this is useful when direct simulation is expensive.
+
 ??? success "Solution to Exercise 5"
     For an SDE $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$, consider the function $u(t, x) = \mathbb{E}[\phi(X_T) \mid X_t = x]$. By the Feynman-Kac formula, $u$ satisfies the backward PDE
 
@@ -351,6 +343,10 @@ with $\langle dW_t^{(1)}, dW_t^{(2)} \rangle = \rho\,dt$.
     with terminal condition $u(T, x) = \phi(x)$.
 
     This connection is useful because it provides two complementary approaches to the same problem. When Monte Carlo simulation is expensive (high-dimensional expectations, path-dependent payoffs, need for full solution surface), one can instead solve the PDE numerically using finite difference or finite element methods. Conversely, when PDE methods are expensive (high-dimensional state spaces), Monte Carlo simulation of the SDE provides an efficient alternative. The Feynman-Kac formula guarantees that both approaches compute the same quantity, and it forms the mathematical foundation of the Black-Scholes equation, where the option price satisfies a PDE derived from the underlying GBM dynamics.
+
+---
+
+**Exercise 6.** A colleague proposes modeling a stock price with the SDE $dS_t = \mu\,dt + \sigma\,dW_t$ (Brownian motion with drift) instead of geometric Brownian motion. Identify at least two problems with this choice from a modeling perspective, referring to the structural classification discussed in this chapter.
 
 ??? success "Solution to Exercise 6"
     **Problem 1: Non-positivity.** Brownian motion with drift $S_t = S_0 + \mu t + \sigma W_t$ is a Gaussian process. Since a Gaussian random variable takes all real values with positive probability, $S_t < 0$ occurs with positive probability for any $t > 0$. Stock prices cannot be negative, so this model is structurally inconsistent with the fundamental constraint of limited liability.

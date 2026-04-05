@@ -329,42 +329,6 @@ For quantitative finance, its most important consequence is the proof of the FTA
 
 **Exercise 1.** Let $C = \{(x, y) \in \mathbb{R}^2 : x^2 + y^2 \leq 1\}$ (the unit disk) and $D = \{(x, y) \in \mathbb{R}^2 : x \geq 3\}$ (a half-plane). Find explicitly a separating hyperplane $p^T x = \alpha$ that separates $C$ and $D$. Is the separation strict or weak?
 
----
-
-**Exercise 2.** Give an example of two disjoint closed convex sets in $\mathbb{R}^2$ that cannot be strictly separated. Verify that at least one of the sets is not compact, confirming that the hypotheses of Theorem 2 are necessary.
-
----
-
-**Exercise 3.** In the FTAP proof, the attainable payoff subspace is $\mathcal{V} = \operatorname{Im}(X)$ and the target set is $\mathbb{R}^n_{++}$. Suppose $n = 2$ and
-
-$$
-X = \begin{pmatrix} 3 \\ -2 \end{pmatrix}
-$$
-
-Sketch $\mathcal{V}$ and $\mathbb{R}^2_{++}$ in $\mathbb{R}^2$. Find the separating vector $q$ with $q_1, q_2 > 0$ satisfying $X^T q = 0$, and verify that it defines an equivalent martingale measure.
-
----
-
-**Exercise 4.** State Farkas' Lemma and use it (instead of the Separating Hyperplane Theorem) to show: if there is no $\theta \in \mathbb{R}^d$ with $X\theta \geq 0$ and $X\theta \neq 0$, then there exists $q \in \mathbb{R}^n$ with $q_i > 0$ for all $i$ such that $X^T q = 0$.
-
----
-
-**Exercise 5.** Consider the Minkowski difference $E = C - D$ used in the proof of Theorem 2. Let $C = \{(x,y) : x + y \leq 2,\; x \geq 0,\; y \geq 0\}$ and $D = \{(3, 3)\}$ (a single point). Compute $E$ explicitly, verify $0 \notin E$, and find the nearest point of $E$ to the origin. Use this to construct the separating direction $p$.
-
----
-
-**Exercise 6.** Explain why the Hahn-Banach theorem is needed in infinite-dimensional settings by describing what fails in the finite-dimensional proof when $\mathbb{R}^n$ is replaced by $L^2(\Omega, \mathcal{F}, \mathbb{P})$. In particular, why can the nearest-point argument break down for a closed convex set in an infinite-dimensional Hilbert space?
-
----
-
-**Exercise 7.** The Kreps-Yan theorem requires the cone $\mathcal{C}$ to satisfy $\mathcal{C} \cap L^\infty_+ = \{0\}$. Explain the financial meaning of this condition in terms of trading strategies. What does it correspond to in the language of arbitrage theory?
-
----
-
-
-## Solutions
-
-
 ??? success "Solution to Exercise 1"
     We need to find $p \in \mathbb{R}^2$ and $\alpha \in \mathbb{R}$ such that $p^T x \leq \alpha$ for all $x \in C$ and $p^T x \geq \alpha$ for all $x \in D$.
 
@@ -378,6 +342,9 @@ Sketch $\mathcal{V}$ and $\mathbb{R}^2_{++}$ in $\mathbb{R}^2$. Find the separat
 
     The separation is **strict**: we have $p^T x \leq 1 < \alpha < 3 \leq p^T y$ for all $x \in C$ and $y \in D$, with a gap of width 2 between the sets. This is consistent with Theorem 2, since $C$ is closed and convex, and $D$ is closed and convex. In fact, $C$ is also compact (closed and bounded), so the hypotheses of Theorem 2 are satisfied.
 
+---
+
+**Exercise 2.** Give an example of two disjoint closed convex sets in $\mathbb{R}^2$ that cannot be strictly separated. Verify that at least one of the sets is not compact, confirming that the hypotheses of Theorem 2 are necessary.
 
 ??? success "Solution to Exercise 2"
     Consider the two sets in $\mathbb{R}^2$:
@@ -398,6 +365,15 @@ Sketch $\mathcal{V}$ and $\mathbb{R}^2_{++}$ in $\mathbb{R}^2$. Find the separat
 
     Neither set is compact: $C$ is an unbounded half-plane and $D$ is unbounded (it contains $(n, 1/n)$ for all $n \geq 1$). This confirms that the compactness hypothesis in Theorem 2 is necessary.
 
+---
+
+**Exercise 3.** In the FTAP proof, the attainable payoff subspace is $\mathcal{V} = \operatorname{Im}(X)$ and the target set is $\mathbb{R}^n_{++}$. Suppose $n = 2$ and
+
+$$
+X = \begin{pmatrix} 3 \\ -2 \end{pmatrix}
+$$
+
+Sketch $\mathcal{V}$ and $\mathbb{R}^2_{++}$ in $\mathbb{R}^2$. Find the separating vector $q$ with $q_1, q_2 > 0$ satisfying $X^T q = 0$, and verify that it defines an equivalent martingale measure.
 
 ??? success "Solution to Exercise 3"
     With $n = 2$ states and $d = 1$ risky asset, the payoff matrix is
@@ -430,6 +406,9 @@ Sketch $\mathcal{V}$ and $\mathbb{R}^2_{++}$ in $\mathbb{R}^2$. Find the separat
 
     confirming that $\mathbb{Q}$ is an equivalent martingale measure.
 
+---
+
+**Exercise 4.** State Farkas' Lemma and use it (instead of the Separating Hyperplane Theorem) to show: if there is no $\theta \in \mathbb{R}^d$ with $X\theta \geq 0$ and $X\theta \neq 0$, then there exists $q \in \mathbb{R}^n$ with $q_i > 0$ for all $i$ such that $X^T q = 0$.
 
 ??? success "Solution to Exercise 4"
     **Farkas' Lemma.** Let $A \in \mathbb{R}^{m \times n}$ and $b \in \mathbb{R}^m$. Exactly one of the following systems has a solution:
@@ -447,6 +426,9 @@ Sketch $\mathcal{V}$ and $\mathbb{R}^2_{++}$ in $\mathbb{R}^2$. Find the separat
 
     Now define $q = -\sum_{i=1}^n y^{(i)}$. Then $X^T q = -\sum_{i=1}^n X^T y^{(i)} = 0$, and $q_i = -\sum_{j=1}^n y^{(j)}_i \geq -y^{(i)}_i > 0$ for each $i$ (since $y^{(i)}_i < 0$). Therefore $q$ has all strictly positive components and satisfies $X^T q = 0$. Normalizing $q / \sum_k q_k$ gives the desired EMM.
 
+---
+
+**Exercise 5.** Consider the Minkowski difference $E = C - D$ used in the proof of Theorem 2. Let $C = \{(x,y) : x + y \leq 2,\; x \geq 0,\; y \geq 0\}$ and $D = \{(3, 3)\}$ (a single point). Compute $E$ explicitly, verify $0 \notin E$, and find the nearest point of $E$ to the origin. Use this to construct the separating direction $p$.
 
 ??? success "Solution to Exercise 5"
     The Minkowski difference is $E = C - D = \{c - (3, 3) : c \in C\}$. Since $C = \{(x, y) : x + y \leq 2, \; x \geq 0, \; y \geq 0\}$, we compute
@@ -473,6 +455,9 @@ Sketch $\mathcal{V}$ and $\mathbb{R}^2_{++}$ in $\mathbb{R}^2$. Find the separat
 
     Verification: for any $e = (u, v) \in E$, $p^T e = u + v \leq -4 < 0 = p^T(0, 0)$, confirming strict separation.
 
+---
+
+**Exercise 6.** Explain why the Hahn-Banach theorem is needed in infinite-dimensional settings by describing what fails in the finite-dimensional proof when $\mathbb{R}^n$ is replaced by $L^2(\Omega, \mathcal{F}, \mathbb{P})$. In particular, why can the nearest-point argument break down for a closed convex set in an infinite-dimensional Hilbert space?
 
 ??? success "Solution to Exercise 6"
     In finite dimensions ($\mathbb{R}^n$), the proof of strict separation relies on the existence of a **nearest point** in a closed convex set to any point outside it. This existence is guaranteed by two properties: (1) the norm is continuous, and (2) closed bounded subsets of $\mathbb{R}^n$ are compact (Heine--Borel theorem), so the infimum of a continuous function over a closed set is attained.
@@ -485,6 +470,9 @@ Sketch $\mathcal{V}$ and $\mathbb{R}^2_{++}$ in $\mathbb{R}^2$. Find the separat
 
     In the context of the FTAP, the relevant space is $L^\infty$ (bounded claims), and the Kreps--Yan theorem (a strengthened Hahn--Banach result) is needed to produce a strictly positive separating functional, which then becomes the equivalent (local) martingale measure.
 
+---
+
+**Exercise 7.** The Kreps-Yan theorem requires the cone $\mathcal{C}$ to satisfy $\mathcal{C} \cap L^\infty_+ = \{0\}$. Explain the financial meaning of this condition in terms of trading strategies. What does it correspond to in the language of arbitrage theory?
 
 ??? success "Solution to Exercise 7"
     The cone $\mathcal{C}$ represents the set of terminal payoffs achievable by admissible zero-cost trading strategies (or more precisely, payoffs that are dominated by such terminal values). The condition $\mathcal{C} \cap L^\infty_+ = \{0\}$ means:

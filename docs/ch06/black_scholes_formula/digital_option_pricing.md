@@ -124,46 +124,6 @@ where $\phi$ is the standard normal density. Near expiry ($T \to 0$) and near th
 
 **Exercise 1.** Derive the price of a digital call option that pays an amount $Q$ (instead of $1$) at maturity if $S_T > K$. Express the result in terms of $d_2$ and verify that your formula reduces to the standard result when $Q = 1$.
 
----
-
-**Exercise 2.** Show that the digital call price $D_0 = e^{-rT}\Phi(d_2)$ can be recovered by differentiating the Black-Scholes call price with respect to the strike:
-
-$$
-D_0 = -\frac{\partial C_0}{\partial K}
-$$
-
-Carry out the differentiation explicitly, using the relationship $\frac{\partial d_1}{\partial K} = \frac{\partial d_2}{\partial K} = -\frac{1}{K \sigma \sqrt{T}}$ and the identity $S_0 \phi(d_1) = K e^{-rT} \phi(d_2)$.
-
----
-
-**Exercise 3.** A digital call and a digital put on the same underlying with the same strike and maturity have prices $D_0^{\text{call}}$ and $D_0^{\text{put}}$. Prove that their sum equals $e^{-rT}$. What is the financial interpretation of this identity?
-
----
-
-**Exercise 4.** Compute the gamma of a digital call option. Show that the gamma is:
-
-$$
-\Gamma_{\text{digital}} = -e^{-rT} \frac{\phi(d_2) \, d_1}{S_0^2 \sigma^2 T}
-$$
-
-At what value of $S_0$ (in terms of $K$, $r$, $\sigma$, $T$) does the digital call gamma equal zero?
-
----
-
-**Exercise 5.** Consider a **double digital option** (also called a digital range option) that pays $1$ at maturity if $K_1 < S_T < K_2$ for $K_1 < K_2$. Express the price of this option in terms of the standard normal CDF $\Phi$. Compute its price when $S_0 = 100$, $K_1 = 95$, $K_2 = 105$, $r = 5\%$, $\sigma = 20\%$, and $T = 0.5$.
-
----
-
-**Exercise 6.** A trader replicates a digital call by constructing a **call spread**: buying a call at strike $K - \epsilon$ and selling a call at strike $K$, then scaling by $1/\epsilon$. Show that in the limit $\epsilon \to 0$, this replicating portfolio converges to the digital call payoff. What practical difficulties arise for small but nonzero $\epsilon$?
-
----
-
-**Exercise 7.** The digital call delta $\Delta_{\text{digital}} = e^{-rT} \frac{\phi(d_2)}{S_0 \sigma \sqrt{T}}$ diverges as $T \to 0$ when $S_0 = K$. Compute the delta explicitly for $S_0 = K = 100$, $\sigma = 25\%$, $r = 3\%$, and $T \in \{1, 0.1, 0.01, 0.001\}$. Discuss why this behavior makes near-expiry digital options extremely difficult to delta-hedge in practice.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The digital call paying $1$ at maturity has price $D_0 = e^{-rT}\Phi(d_2)$. By linearity of expectation, a digital call paying $Q$ has price:
 
@@ -178,6 +138,15 @@ At what value of $S_0$ (in terms of $K$, $r$, $\sigma$, $T$) does the digital ca
     $$
 
     When $Q = 1$: $D_0^{(1)} = e^{-rT}\Phi(d_2)$, which is the standard result. ✓
+
+---
+**Exercise 2.** Show that the digital call price $D_0 = e^{-rT}\Phi(d_2)$ can be recovered by differentiating the Black-Scholes call price with respect to the strike:
+
+$$
+D_0 = -\frac{\partial C_0}{\partial K}
+$$
+
+Carry out the differentiation explicitly, using the relationship $\frac{\partial d_1}{\partial K} = \frac{\partial d_2}{\partial K} = -\frac{1}{K \sigma \sqrt{T}}$ and the identity $S_0 \phi(d_1) = K e^{-rT} \phi(d_2)$.
 
 ??? success "Solution to Exercise 2"
     The Black-Scholes call price is $C_0 = S_0\Phi(d_1) - Ke^{-rT}\Phi(d_2)$.
@@ -218,6 +187,9 @@ At what value of $S_0$ (in terms of $K$, $r$, $\sigma$, $T$) does the digital ca
     D_0 = e^{-rT}\Phi(d_2) = -\frac{\partial C_0}{\partial K}
     $$
 
+---
+**Exercise 3.** A digital call and a digital put on the same underlying with the same strike and maturity have prices $D_0^{\text{call}}$ and $D_0^{\text{put}}$. Prove that their sum equals $e^{-rT}$. What is the financial interpretation of this identity?
+
 ??? success "Solution to Exercise 3"
     The digital call price is $D_0^{\text{call}} = e^{-rT}\Phi(d_2)$ and the digital put price is $D_0^{\text{put}} = e^{-rT}\Phi(-d_2)$.
 
@@ -234,6 +206,15 @@ At what value of $S_0$ (in terms of $K$, $r$, $\sigma$, $T$) does the digital ca
     $$
 
     **Financial interpretation**: Holding both a digital call and a digital put with the same strike guarantees a payment of $1$ at maturity regardless of where $S_T$ ends up (either $S_T > K$ or $S_T \leq K$ must hold). This is equivalent to holding a zero-coupon bond that pays $1$ at time $T$, whose present value is $e^{-rT}$.
+
+---
+**Exercise 4.** Compute the gamma of a digital call option. Show that the gamma is:
+
+$$
+\Gamma_{\text{digital}} = -e^{-rT} \frac{\phi(d_2) \, d_1}{S_0^2 \sigma^2 T}
+$$
+
+At what value of $S_0$ (in terms of $K$, $r$, $\sigma$, $T$) does the digital call gamma equal zero?
 
 ??? success "Solution to Exercise 4"
     The digital call delta is:
@@ -278,6 +259,9 @@ At what value of $S_0$ (in terms of $K$, $r$, $\sigma$, $T$) does the digital ca
 
     At this stock price, the digital call delta reaches its maximum (or minimum), and the gamma changes sign.
 
+---
+**Exercise 5.** Consider a **double digital option** (also called a digital range option) that pays $1$ at maturity if $K_1 < S_T < K_2$ for $K_1 < K_2$. Express the price of this option in terms of the standard normal CDF $\Phi$. Compute its price when $S_0 = 100$, $K_1 = 95$, $K_2 = 105$, $r = 5\%$, $\sigma = 20\%$, and $T = 0.5$.
+
 ??? success "Solution to Exercise 5"
     The double digital pays $1$ if $K_1 < S_T < K_2$. This can be decomposed as:
 
@@ -317,6 +301,9 @@ At what value of $S_0$ (in terms of $K$, $r$, $\sigma$, $T$) does the digital ca
 
     The double digital option is worth approximately $\$0.27$.
 
+---
+**Exercise 6.** A trader replicates a digital call by constructing a **call spread**: buying a call at strike $K - \epsilon$ and selling a call at strike $K$, then scaling by $1/\epsilon$. Show that in the limit $\epsilon \to 0$, this replicating portfolio converges to the digital call payoff. What practical difficulties arise for small but nonzero $\epsilon$?
+
 ??? success "Solution to Exercise 6"
     The call spread replicating portfolio has payoff:
 
@@ -344,6 +331,9 @@ At what value of $S_0$ (in terms of $K$, $r$, $\sigma$, $T$) does the digital ca
     2. The hedge requires frequent rebalancing near the strike, with large position sizes amplifying transaction costs.
     3. The payoff is not exactly $0$ or $1$ in the region $(K-\epsilon, K]$, creating basis risk.
     4. Near expiry, the gamma of the call spread becomes extremely large, making delta-hedging unstable.
+
+---
+**Exercise 7.** The digital call delta $\Delta_{\text{digital}} = e^{-rT} \frac{\phi(d_2)}{S_0 \sigma \sqrt{T}}$ diverges as $T \to 0$ when $S_0 = K$. Compute the delta explicitly for $S_0 = K = 100$, $\sigma = 25\%$, $r = 3\%$, and $T \in \{1, 0.1, 0.01, 0.001\}$. Discuss why this behavior makes near-expiry digital options extremely difficult to delta-hedge in practice.
 
 ??? success "Solution to Exercise 7"
     With $S_0 = K = 100$, $\sigma = 0.25$, $r = 0.03$:

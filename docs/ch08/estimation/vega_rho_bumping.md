@@ -292,22 +292,130 @@ Vega and rho require additional PDE solves beyond the base case, making them mor
 
 **Exercise 1.** A base PDE solve gives $V(\sigma = 0.20) = 10.45$. Bumped solves give $V(\sigma = 0.21) = 11.23$ and $V(\sigma = 0.19) = 9.69$. Compute the central difference vega and the forward difference vega. Which is more accurate, and by how much?
 
+??? success "Solution to Exercise 1"
+    Given $V(\sigma = 0.20) = 10.45$, $V(\sigma = 0.21) = 11.23$, $V(\sigma = 0.19) = 9.69$.
+
+    **Central difference vega** ($\delta\sigma = 0.01$):
+
+    $$
+    \mathcal{V}_{\text{central}} = \frac{V(0.21) - V(0.19)}{2 \times 0.01} = \frac{11.23 - 9.69}{0.02} = \frac{1.54}{0.02} = 77.0
+    $$
+
+    **Forward difference vega** ($\delta\sigma = 0.01$):
+
+    $$
+    \mathcal{V}_{\text{forward}} = \frac{V(0.21) - V(0.20)}{0.01} = \frac{11.23 - 10.45}{0.01} = \frac{0.78}{0.01} = 78.0
+    $$
+
+    The central difference estimate is $77.0$ and the forward difference estimate is $78.0$. They differ by $1.0$.
+
+    The central difference is more accurate because its truncation error is $O((\delta\sigma)^2)$ while the forward difference has error $O(\delta\sigma)$. Specifically, the forward difference error is approximately $\frac{1}{2}\frac{\partial^2 V}{\partial\sigma^2}\delta\sigma$, while the central difference error is approximately $\frac{1}{6}\frac{\partial^3 V}{\partial\sigma^3}(\delta\sigma)^2$. For $\delta\sigma = 0.01$, the central difference error is roughly $(\delta\sigma)$ times smaller, i.e., about 100 times smaller. The difference of $1.0$ between the two estimates is primarily the first-order bias in the forward difference.
+
 ---
 
 **Exercise 2.** The optimal bump size for central differences scales as $\delta p \sim \varepsilon_{\text{FDM}}^{1/3}$. If the FDM solution has accuracy $\varepsilon_{\text{FDM}} = 10^{-6}$, compute the optimal $\delta\sigma$ for vega estimation. What bump size is optimal if $\varepsilon_{\text{FDM}} = 10^{-3}$?
+
+??? success "Solution to Exercise 2"
+    The optimal bump size for central differences scales as:
+
+    $$
+    (\delta p)^* \sim \varepsilon_{\text{FDM}}^{1/3}
+    $$
+
+    **Case 1: $\varepsilon_{\text{FDM}} = 10^{-6}$**
+
+    $$
+    (\delta\sigma)^* \sim (10^{-6})^{1/3} = 10^{-2} = 0.01
+    $$
+
+    This matches the standard practical recommendation of a 1 percentage point volatility bump.
+
+    **Case 2: $\varepsilon_{\text{FDM}} = 10^{-3}$**
+
+    $$
+    (\delta\sigma)^* \sim (10^{-3})^{1/3} = 10^{-1} = 0.1
+    $$
+
+    With a coarser FDM solution ($\varepsilon = 10^{-3}$), the optimal bump is much larger --- $0.1$ or 10 percentage points. A smaller bump would cause the cancellation error $\varepsilon_{\text{FDM}}/\delta\sigma$ to dominate, making the vega estimate noisy and unreliable.
+
+    This illustrates an important principle: the bump size must be matched to the accuracy of the underlying PDE solver. Using a high-accuracy bump ($\delta\sigma = 0.01$) with a low-accuracy solver ($\varepsilon = 10^{-3}$) would give a cancellation error of $10^{-3}/10^{-2} = 0.1$, which could be unacceptably large relative to the true vega.
 
 ---
 
 **Exercise 3.** When bumping the interest rate $r$ to compute rho, three things change in the PDE: the drift term, the discount term, and the boundary conditions. Explain what happens to the rho estimate if you update the PDE coefficients but forget to update the boundary condition $V(t, S_{\max}) = S_{\max} - Ke^{-r(T-t)}$.
 
+??? success "Solution to Exercise 3"
+    When bumping $r$ to $r + \delta r$, the PDE coefficients change:
+
+    - Drift: $rS \to (r+\delta r)S$
+    - Discount: $rV \to (r+\delta r)V$
+    - Boundary: $V(t, S_{\max}) = S_{\max} - Ke^{-r(T-t)} \to S_{\max} - Ke^{-(r+\delta r)(T-t)}$
+
+    If the boundary condition is **not** updated, the solver uses the **old** boundary value $S_{\max} - Ke^{-r(T-t)}$ instead of the correct bumped value $S_{\max} - Ke^{-(r+\delta r)(T-t)}$. The difference is:
+
+    $$
+    Ke^{-r(T-t)} - Ke^{-(r+\delta r)(T-t)} = Ke^{-r(T-t)}(1 - e^{-\delta r(T-t)}) \approx K\delta r(T-t)e^{-r(T-t)}
+    $$
+
+    This boundary error propagates inward from $S_{\max}$ and contaminates the solution. The effect is most severe for **deep in-the-money calls** (or deep out-of-the-money puts), where the option value near $S_{\max}$ is large and the boundary condition contribution to the price is significant.
+
+    The resulting rho estimate will be biased: it will underestimate the true rho because the boundary value does not respond to the rate change. The error is proportional to $K(T-t)e^{-r(T-t)}$, which is precisely the analytical rho of the boundary payoff. For at-the-money options far from the boundary, the error may be small, but for robust implementation, all three components (drift, discount, boundary) must be updated consistently.
+
 ---
 
 **Exercise 4.** Vomma (the second derivative of price with respect to volatility) can be computed from the same three PDE solutions used for vega: $\text{Vomma} = (V(\sigma + \delta\sigma) - 2V(\sigma) + V(\sigma - \delta\sigma))/(\delta\sigma)^2$. Using the values from Exercise 1, compute vomma. If the analytical vomma for this option is approximately $75$, assess the accuracy of the estimate.
+
+??? success "Solution to Exercise 4"
+    Using the values from Exercise 1: $V(\sigma = 0.21) = 11.23$, $V(\sigma = 0.20) = 10.45$, $V(\sigma = 0.19) = 9.69$, $\delta\sigma = 0.01$.
+
+    $$
+    \text{Vomma} = \frac{V(\sigma + \delta\sigma) - 2V(\sigma) + V(\sigma - \delta\sigma)}{(\delta\sigma)^2}
+    $$
+
+    $$
+    = \frac{11.23 - 2(10.45) + 9.69}{(0.01)^2} = \frac{11.23 - 20.90 + 9.69}{0.0001} = \frac{0.02}{0.0001} = 200
+    $$
+
+    The analytical vomma is approximately $75$. The numerical estimate of $200$ is significantly larger, indicating poor accuracy.
+
+    The discrepancy arises because vomma is a **second derivative** with respect to the bump parameter, and the central second difference amplifies errors by $1/(\delta\sigma)^2$. With $\delta\sigma = 0.01$, even small errors in the PDE solutions (say $\varepsilon \sim 10^{-3}$) produce an amplified error of order $\varepsilon/(\delta\sigma)^2 = 10^{-3}/(10^{-4}) = 10$, which is comparable to the vomma itself. A larger bump size (e.g., $\delta\sigma = 0.02$ or $0.05$) or a finer FDM grid would be needed for reliable vomma estimates.
 
 ---
 
 **Exercise 5.** The vega-gamma relationship $\mathcal{V} \approx \sigma S^2 T \Gamma$ provides a cross-check. For an ATM call with $S = 100$, $\sigma = 0.25$, $T = 0.5$, and $\Gamma = 0.032$ (from the FDM grid), estimate vega using this relationship. Compare to the bumped estimate if $V(\sigma + 0.01) = 8.15$ and $V(\sigma - 0.01) = 7.35$.
 
+??? success "Solution to Exercise 5"
+    Using the vega-gamma relationship $\mathcal{V} \approx \sigma S^2 T \Gamma$ with $S = 100$, $\sigma = 0.25$, $T = 0.5$, $\Gamma = 0.032$:
+
+    $$
+    \mathcal{V}_{\text{approx}} = 0.25 \times 100^2 \times 0.5 \times 0.032 = 0.25 \times 10000 \times 0.5 \times 0.032 = 40.0
+    $$
+
+    **Bumped estimate** with $V(\sigma + 0.01) = 8.15$ and $V(\sigma - 0.01) = 7.35$:
+
+    $$
+    \mathcal{V}_{\text{bumped}} = \frac{8.15 - 7.35}{2 \times 0.01} = \frac{0.80}{0.02} = 40.0
+    $$
+
+    The two estimates agree exactly at $\mathcal{V} = 40.0$, providing a strong cross-check. This confirms the consistency between the spatial Greek (gamma from the grid) and the parameter Greek (vega from bumping). In practice, small discrepancies between the two estimates indicate either grid resolution issues or that the ATM approximation in the vega-gamma relationship is not perfectly applicable (e.g., for options away from the money).
+
 ---
 
 **Exercise 6.** A complete set of Greeks requires 5 PDE solves (base + 2 vega bumps + 2 rho bumps). If each PDE solve takes 0.1 seconds with $M = 500$ and $N = 200$, what is the total time for all Greeks? Propose a strategy to reduce this cost by sharing computations across bumped solves.
+
+??? success "Solution to Exercise 6"
+    **Total time:** 5 PDE solves at 0.1 seconds each gives:
+
+    $$
+    \text{Total time} = 5 \times 0.1 = 0.5 \text{ seconds}
+    $$
+
+    **Strategies to reduce cost:**
+
+    1. **Share the LU factorization.** For the implicit and Crank-Nicolson schemes, each time step requires solving a tridiagonal system $(I - \theta\Delta\tau A)\mathbf{u}^{n+1} = \mathbf{b}$. When bumping $\sigma$, the matrix $A$ changes (because the diffusion coefficient $\frac{1}{2}\sigma^2 S^2$ changes), so the factorization cannot be directly reused. However, when bumping $r$, the changes to $A$ are smaller (only the drift and discount terms change), and if using the Sherman-Morrison formula or a rank-1 update to the existing factorization, the cost per solve can be reduced.
+
+    2. **Use forward differences instead of central differences.** This reduces the total solves from 5 to 3 (base + 1 vega bump + 1 rho bump), cutting the time to 0.3 seconds. The accuracy drops from $O((\delta p)^2)$ to $O(\delta p)$, but for many applications this is acceptable.
+
+    3. **Parallelize the bumped solves.** The 4 bumped PDE solves are independent of each other and of the base solve (once the grid and boundary conditions are set up). On a machine with 4+ cores, all bumped solves can run simultaneously, reducing wall-clock time from 0.5 seconds to approximately 0.2 seconds (base solve + one round of parallel bumped solves).
+
+    4. **Reuse the base solution as an initial guess.** For iterative solvers (relevant for higher-dimensional problems), the bumped solution is close to the base solution. Starting the iterative solve from the base solution reduces the number of iterations needed for convergence.

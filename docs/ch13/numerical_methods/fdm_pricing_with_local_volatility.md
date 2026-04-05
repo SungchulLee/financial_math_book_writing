@@ -345,17 +345,128 @@ $$
 
 Show each step of the chain rule computation explicitly.
 
+??? success "Solution to Exercise 1"
+    We start with the local volatility PDE in $S$-space:
+
+    $$
+    \frac{\partial V}{\partial t} + \frac{1}{2}\sigma_{\text{loc}}^2(S, t) S^2 \frac{\partial^2 V}{\partial S^2} + (r - q) S \frac{\partial V}{\partial S} - rV = 0
+    $$
+
+    Set $x = \ln S$, so $S = e^x$, and define $U(x, t) = V(e^x, t)$.
+
+    **First derivative.** By the chain rule with $\frac{dx}{dS} = \frac{1}{S}$:
+
+    $$
+    \frac{\partial V}{\partial S} = \frac{\partial U}{\partial x}\frac{dx}{dS} = \frac{1}{S}\frac{\partial U}{\partial x}
+    $$
+
+    **Second derivative.** Differentiating again:
+
+    $$
+    \frac{\partial^2 V}{\partial S^2} = \frac{\partial}{\partial S}\left(\frac{1}{S}\frac{\partial U}{\partial x}\right) = -\frac{1}{S^2}\frac{\partial U}{\partial x} + \frac{1}{S}\frac{\partial}{\partial S}\left(\frac{\partial U}{\partial x}\right)
+    $$
+
+    For the second term, apply the chain rule again:
+
+    $$
+    \frac{\partial}{\partial S}\left(\frac{\partial U}{\partial x}\right) = \frac{1}{S}\frac{\partial^2 U}{\partial x^2}
+    $$
+
+    Therefore:
+
+    $$
+    \frac{\partial^2 V}{\partial S^2} = \frac{1}{S^2}\left(\frac{\partial^2 U}{\partial x^2} - \frac{\partial U}{\partial x}\right)
+    $$
+
+    **Time derivative.** Since the transformation is purely spatial, $\frac{\partial V}{\partial t} = \frac{\partial U}{\partial t}$.
+
+    **Substitution.** Inserting into the PDE:
+
+    $$
+    \frac{\partial U}{\partial t} + \frac{1}{2}\sigma_{\text{loc}}^2 S^2 \cdot \frac{1}{S^2}\left(\frac{\partial^2 U}{\partial x^2} - \frac{\partial U}{\partial x}\right) + (r-q)S \cdot \frac{1}{S}\frac{\partial U}{\partial x} - rU = 0
+    $$
+
+    Simplifying:
+
+    $$
+    \frac{\partial U}{\partial t} + \frac{1}{2}\sigma_{\text{loc}}^2(e^x, t)\frac{\partial^2 U}{\partial x^2} + \left(r - q - \frac{1}{2}\sigma_{\text{loc}}^2(e^x, t)\right)\frac{\partial U}{\partial x} - rU = 0
+    $$
+
+    Reading off the coefficients:
+
+    $$
+    a(x,t) = \frac{1}{2}\sigma_{\text{loc}}^2(e^x, t), \quad b(x,t) = r - q - a(x,t), \quad c = -r
+    $$
+
+    which confirms the stated result.
+
 ---
 
 **Exercise 2.** Consider a local volatility surface $\sigma_{\text{loc}}(S, t) = 0.3$ for $S < 100$ and $\sigma_{\text{loc}}(S, t) = 0.15$ for $S \geq 100$. Using a uniform grid in log-space with $\Delta x = 0.01$, compute the explicit scheme CFL time step constraint $\Delta t_{\max}$ at both $S = 80$ and $S = 120$. Which region dictates the global stability constraint?
+
+??? success "Solution to Exercise 2"
+    The CFL stability condition for the explicit scheme is:
+
+    $$
+    \Delta t \leq \frac{(\Delta x)^2}{\sigma_{\text{loc}}^2(e^{x_j}, t) + 2r(\Delta x)^2}
+    $$
+
+    With $\Delta x = 0.01$ and assuming a small $r$ (the term $2r(\Delta x)^2$ is negligible since $2r(0.01)^2 \ll \sigma^2$ for any reasonable $r$), the constraint simplifies to approximately:
+
+    $$
+    \Delta t_{\max} \approx \frac{(\Delta x)^2}{\sigma_{\text{loc}}^2}
+    $$
+
+    **At $S = 80$ (where $\sigma_{\text{loc}} = 0.3$):**
+
+    $$
+    \Delta t_{\max}(S=80) \approx \frac{(0.01)^2}{(0.3)^2} = \frac{10^{-4}}{0.09} \approx 1.11 \times 10^{-3}
+    $$
+
+    **At $S = 120$ (where $\sigma_{\text{loc}} = 0.15$):**
+
+    $$
+    \Delta t_{\max}(S=120) \approx \frac{(0.01)^2}{(0.15)^2} = \frac{10^{-4}}{0.0225} \approx 4.44 \times 10^{-3}
+    $$
+
+    The region $S < 100$ with $\sigma_{\text{loc}} = 0.3$ dictates the global stability constraint, since it produces the smaller $\Delta t_{\max}$. The global time step must satisfy $\Delta t \leq 1.11 \times 10^{-3}$, meaning the high-volatility region forces the entire grid to use approximately four times as many time steps as the low-volatility region would require on its own.
 
 ---
 
 **Exercise 3.** Write out the tridiagonal matrix $\mathbf{A}^n$ for the fully implicit scheme on a grid with $M = 4$ interior points. Specify all entries in terms of $\alpha_j^n$, $\delta_j^n$, and $\gamma_j^n$. What boundary condition modifications are needed in the first and last rows for a European call?
 
+??? success "Solution to Exercise 3"
+    For $M = 4$ interior points ($j = 1, 2, 3, 4$), the fully implicit scheme at each time step requires solving:
+
+    $$
+    -\alpha_j^n U_{j-1}^n + (1 + \delta_j^n) U_j^n - \gamma_j^n U_{j+1}^n = U_j^{n+1}
+    $$
+
+    The tridiagonal matrix $\mathbf{A}^n$ is:
+
+    $$
+    \mathbf{A}^n = \begin{pmatrix} 1+\delta_1^n & -\gamma_1^n & 0 & 0 \\ -\alpha_2^n & 1+\delta_2^n & -\gamma_2^n & 0 \\ 0 & -\alpha_3^n & 1+\delta_3^n & -\gamma_3^n \\ 0 & 0 & -\alpha_4^n & 1+\delta_4^n \end{pmatrix}
+    $$
+
+    The system is $\mathbf{A}^n \mathbf{U}^n = \mathbf{U}^{n+1} + \mathbf{d}^n$, where $\mathbf{d}^n$ incorporates boundary conditions.
+
+    **Boundary modifications for a European call:**
+
+    - At the lower boundary ($j = 0$, where $S_{\min} \approx 0$): the Dirichlet condition $U_0^n \approx 0$ means the term $\alpha_1^n U_0^n = 0$, so no modification is needed in the first row — the boundary term vanishes.
+    - At the upper boundary ($j = 5$, where $S_{\max} \gg K$): the condition $U_5^n = S_{\max}e^{-q(T-t^n)} - Ke^{-r(T-t^n)}$ is known. The term $\gamma_4^n U_5^n$ must be moved to the right-hand side, so the boundary correction vector has $d_4^n = \gamma_4^n U_5^n$ and all other entries zero.
+
 ---
 
 **Exercise 4.** Explain why Rannacher time-stepping (2--4 initial fully implicit steps followed by Crank-Nicolson) eliminates spurious oscillations near payoff discontinuities while preserving second-order convergence. What property of the fully implicit scheme causes it to damp oscillations, and why does switching to Crank-Nicolson after the initial steps not reintroduce them?
+
+??? success "Solution to Exercise 4"
+    **Why Rannacher smoothing works:**
+
+    The Crank-Nicolson scheme has second-order accuracy $O((\Delta t)^2 + (\Delta x)^2)$ but is only weakly $L$-stable — it does not fully damp high-frequency components in the solution. When the terminal condition has a discontinuity (digital payoff) or a kink (call/put payoff), the initial data contains high-frequency Fourier modes. Crank-Nicolson's trapezoidal time stepping assigns an amplification factor close to $-1$ for the highest-frequency modes, causing them to oscillate rather than decay. These oscillations manifest as spurious wiggles near the discontinuity.
+
+    **The fully implicit scheme** (backward Euler) is $L$-stable: its amplification factor for high-frequency modes is close to zero. This means it aggressively damps all high-frequency components within just a few time steps. After 2--4 implicit steps, the oscillatory modes introduced by the non-smooth terminal condition have been reduced to negligible levels, and the remaining solution is smooth.
+
+    **Switching to Crank-Nicolson does not reintroduce oscillations** because the oscillations originate from the non-smooth terminal data. Once the implicit steps have smoothed the solution, the data at subsequent time levels is smooth and does not excite new high-frequency modes. Crank-Nicolson then operates on smooth data, where it achieves its full second-order accuracy. The few initial implicit steps ($O(1)$ in number) contribute only $O(\Delta t)$ total error, which does not degrade the overall $O((\Delta t)^2)$ convergence rate.
 
 ---
 
@@ -373,10 +484,113 @@ $$
 
 Then derive the corresponding formula for $\Gamma = \partial^2 V / \partial S^2$ in terms of $U$ and $x$.
 
+??? success "Solution to Exercise 5"
+    Starting from $V(S, t) = U(\ln S, t)$, differentiate with respect to $S$:
+
+    $$
+    \frac{\partial V}{\partial S} = \frac{\partial U}{\partial x}\frac{dx}{dS} = \frac{1}{S}\frac{\partial U}{\partial x}
+    $$
+
+    So $\Delta = \frac{1}{S}\frac{\partial U}{\partial x}$. Using a centered difference for $\partial U / \partial x$ at the final time level ($n = 0$):
+
+    $$
+    \frac{\partial U}{\partial x}\bigg|_{x_j} \approx \frac{U_{j+1}^0 - U_{j-1}^0}{2\Delta x}
+    $$
+
+    Therefore:
+
+    $$
+    \Delta \approx \frac{U_{j+1}^0 - U_{j-1}^0}{2\Delta x \cdot e^{x_j}}
+    $$
+
+    since $S = e^{x_j}$.
+
+    For gamma, differentiate delta with respect to $S$:
+
+    $$
+    \Gamma = \frac{\partial^2 V}{\partial S^2} = \frac{\partial}{\partial S}\left(\frac{1}{S}\frac{\partial U}{\partial x}\right) = -\frac{1}{S^2}\frac{\partial U}{\partial x} + \frac{1}{S^2}\frac{\partial^2 U}{\partial x^2} = \frac{1}{S^2}\left(\frac{\partial^2 U}{\partial x^2} - \frac{\partial U}{\partial x}\right)
+    $$
+
+    Substituting centered finite differences:
+
+    $$
+    \frac{\partial^2 U}{\partial x^2}\bigg|_{x_j} \approx \frac{U_{j+1}^0 - 2U_j^0 + U_{j-1}^0}{(\Delta x)^2}
+    $$
+
+    $$
+    \frac{\partial U}{\partial x}\bigg|_{x_j} \approx \frac{U_{j+1}^0 - U_{j-1}^0}{2\Delta x}
+    $$
+
+    Therefore:
+
+    $$
+    \Gamma \approx \frac{1}{e^{2x_j}}\left(\frac{U_{j+1}^0 - 2U_j^0 + U_{j-1}^0}{(\Delta x)^2} - \frac{U_{j+1}^0 - U_{j-1}^0}{2\Delta x}\right)
+    $$
+
 ---
 
 **Exercise 6.** A convergence study for a European put under local volatility shows prices of 5.4321, 5.4189, 5.4156, and 5.4148 on grids of $100 \times 50$, $200 \times 100$, $400 \times 200$, and $800 \times 400$ (spatial $\times$ temporal). Compute the Richardson ratios and determine the observed order of convergence. Estimate the extrapolated exact price.
 
+??? success "Solution to Exercise 6"
+    The prices on successive grids are: $P_1 = 5.4321$, $P_2 = 5.4189$, $P_3 = 5.4156$, $P_4 = 5.4148$.
+
+    **Successive differences:**
+
+    $$
+    P_1 - P_2 = 0.0132, \quad P_2 - P_3 = 0.0033, \quad P_3 - P_4 = 0.0008
+    $$
+
+    **Richardson ratios** (ratio of consecutive differences):
+
+    $$
+    R_1 = \frac{P_1 - P_2}{P_2 - P_3} = \frac{0.0132}{0.0033} = 4.00
+    $$
+
+    $$
+    R_2 = \frac{P_2 - P_3}{P_3 - P_4} = \frac{0.0033}{0.0008} = 4.125
+    $$
+
+    Both ratios are approximately 4, which indicates **second-order convergence**. When both $\Delta x$ and $\Delta t$ are halved simultaneously, the error scales as $O((\Delta x)^2 + (\Delta t)^2)$, and the ratio of errors on successive grids is $2^2 = 4$.
+
+    **Richardson extrapolation** using the two finest grids:
+
+    $$
+    P^* \approx P_4 + \frac{P_4 - P_3}{4 - 1} = 5.4148 + \frac{-0.0008}{3} \approx 5.4148 - 0.0003 = 5.4145
+    $$
+
+    The extrapolated exact price is approximately $5.4145$.
+
 ---
 
 **Exercise 7.** For the sinh-based non-uniform grid $x_j = x_c + d \sinh((\xi_j - \xi_c)/\alpha)$, explain how the parameter $\alpha$ controls the grid concentration. If you need the grid spacing at the center $x_c$ to be approximately $\Delta x_{\text{center}} = 0.002$ and the grid spans $[-2, 2]$ in log-space with $M = 200$ points, estimate an appropriate value of $\alpha$.
+
+??? success "Solution to Exercise 7"
+    The sinh-based grid is $x_j = x_c + d\sinh((\xi_j - \xi_c)/\alpha)$, where $\xi_j$ is a uniform grid.
+
+    **How $\alpha$ controls concentration:** The local grid spacing in $x$ is:
+
+    $$
+    \Delta x_j = \frac{dx}{d\xi}\Delta\xi = \frac{d}{\alpha}\cosh\left(\frac{\xi_j - \xi_c}{\alpha}\right)\Delta\xi
+    $$
+
+    At the center ($\xi_j = \xi_c$), $\cosh(0) = 1$, so $\Delta x_{\text{center}} = (d/\alpha)\Delta\xi$. Away from the center, $\cosh$ grows exponentially, so the grid spacing increases. A smaller $\alpha$ makes $\cosh$ grow faster, concentrating more points near the center and spacing them further apart in the wings. A larger $\alpha$ produces a more uniform grid.
+
+    **Estimating $\alpha$:** The uniform grid $\xi$ spans an interval $[\xi_{\min}, \xi_{\max}]$ with $M = 200$ points, giving $\Delta\xi = (\xi_{\max} - \xi_{\min}) / 200$. The $x$-grid spans $[-2, 2]$ (total width 4). The grid boundaries satisfy $x_{\max} - x_c = d\sinh((\xi_{\max} - \xi_c)/\alpha) = 2$.
+
+    For simplicity, let the $\xi$-grid span $[-1, 1]$ with $\xi_c = 0$, so $\Delta\xi = 2/200 = 0.01$ and $d\sinh(1/\alpha) = 2$.
+
+    At the center: $\Delta x_{\text{center}} = (d/\alpha)(0.01) = 0.002$, giving $d/\alpha = 0.2$.
+
+    From the boundary condition: $d\sinh(1/\alpha) = 2$, so $d = 2/\sinh(1/\alpha)$.
+
+    Substituting into $d/\alpha = 0.2$:
+
+    $$
+    \frac{2}{\alpha\sinh(1/\alpha)} = 0.2
+    $$
+
+    $$
+    \alpha\sinh(1/\alpha) = 10
+    $$
+
+    Let $u = 1/\alpha$. Then $\sinh(u)/u = 10$. Solving numerically: $\sinh(u) \approx (e^u - e^{-u})/2$. Trying $u \approx 3.5$: $\sinh(3.5)/3.5 \approx 16.54/3.5 \approx 4.73$. Trying $u \approx 4.5$: $\sinh(4.5)/4.5 \approx 45.0/4.5 = 10.0$. So $u \approx 4.5$, giving $\alpha \approx 1/4.5 \approx 0.22$.

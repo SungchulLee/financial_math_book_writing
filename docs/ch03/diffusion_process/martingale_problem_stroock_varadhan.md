@@ -158,40 +158,6 @@ $$
 
 is a martingale when $X_t$ is an Ornstein–Uhlenbeck process.
 
----
-
-**Exercise 2.** Using the test function $f(x) = x^i x^j$ in the martingale problem formulation, derive the identity $\mathrm{d}\langle X^i, X^j \rangle_t = a^{ij}(X_t)\,\mathrm{d}t$. Explain the localisation argument needed since $f(x) = x^i x^j$ is not in $C_c^\infty(\mathbb{R}^d)$.
-
----
-
-**Exercise 3.** Consider $d = 1$ with $b = 0$ and $\sigma(x) = |x|^\alpha$ for $\alpha \in (0,1)$. For which values of $\alpha$ does the Yamada–Watanabe criterion guarantee pathwise uniqueness of the SDE $\mathrm{d}X_t = |X_t|^\alpha\,\mathrm{d}W_t$? For the remaining values, explain why uniqueness in law (well-posedness of the martingale problem) may still hold or fail.
-
----
-
-**Exercise 4.** State the conditions of the Stroock–Varadhan theorem. For each condition (bounded measurable $b$, bounded continuous $a$, uniform ellipticity), give a concrete one-dimensional example where the condition is violated and describe what goes wrong (non-existence, non-uniqueness, or both).
-
----
-
-**Exercise 5.** Show that if $X_t$ is a strong solution to the SDE $\mathrm{d}X_t^i = b^i(X_t)\,\mathrm{d}t + \sigma^{i\alpha}(X_t)\,\mathrm{d}W_t^\alpha$ and $f \in C_c^\infty(\mathbb{R}^d)$, then the stochastic integral
-
-$$
-\int_0^t \frac{\partial f}{\partial x_i}(X_s)\,\sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^\alpha
-$$
-
-is a true martingale (not merely a local martingale). What integrability condition on $\nabla f$ and $\sigma$ is used?
-
----
-
-**Exercise 6.** Explain the relationship between pathwise uniqueness, uniqueness in law, and well-posedness of the martingale problem. State the Yamada–Watanabe theorem and use it to show that pathwise uniqueness implies uniqueness in law but not vice versa. Give a concrete example where uniqueness in law holds but pathwise uniqueness fails.
-
----
-
-**Exercise 7.** Let $\mathcal{L}_1$ and $\mathcal{L}_2$ be two generators with the same $a^{ij}$ but different drifts $b_1^i \ne b_2^i$. Suppose both martingale problems are well-posed. Can the two solutions have the same law? Justify your answer by considering the martingale $M_t^f$ for a suitable choice of test function $f$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     With $b(x) = -\theta x$ and $a(x) = \sigma^2$, the generator is
 
@@ -214,6 +180,10 @@ is a true martingale (not merely a local martingale). What integrability conditi
     $$
 
     To see this: integrating the SDE $\mathrm{d}X_s = -\theta X_s\,\mathrm{d}s + \sigma\,\mathrm{d}W_s$ from $0$ to $t$ gives $X_t - X_0 = -\theta\int_0^t X_s\,\mathrm{d}s + \sigma W_t$, which rearranges to $M_t^f = \sigma W_t$. Since $\sigma W_t$ is a martingale (in fact a Brownian motion scaled by $\sigma$), $M_t^f$ is indeed a martingale.
+
+---
+
+**Exercise 2.** Using the test function $f(x) = x^i x^j$ in the martingale problem formulation, derive the identity $\mathrm{d}\langle X^i, X^j \rangle_t = a^{ij}(X_t)\,\mathrm{d}t$. Explain the localisation argument needed since $f(x) = x^i x^j$ is not in $C_c^\infty(\mathbb{R}^d)$.
 
 ??? success "Solution to Exercise 2"
     Take $f(x) = x^i x^j$. Then $\partial_k f = \delta^{ik}x^j + \delta^{jk}x^i$ and $\partial_k\partial_l f = \delta^{ik}\delta^{jl} + \delta^{jk}\delta^{il}$. The generator gives
@@ -244,6 +214,10 @@ is a true martingale (not merely a local martingale). What integrability conditi
 
     **Localisation argument:** The function $f(x) = x^ix^j$ is not in $C_c^\infty(\mathbb{R}^d)$. To make the argument rigorous, choose $\chi_n \in C_c^\infty(\mathbb{R}^d)$ with $\chi_n(x) = 1$ for $|x| \le n$, $\chi_n(x) = 0$ for $|x| \ge n+1$, and $0 \le \chi_n \le 1$. Apply the martingale problem to $f_n(x) = \chi_n(x)\,x^ix^j \in C_c^\infty$. For paths that remain in $\{|x| \le n\}$ up to time $t$, $f_n$ and $f$ agree, so the martingale property holds on the event $\{\sup_{s \le t}|X_s| \le n\}$. Letting $n \to \infty$ (using that the process does not explode under the assumed conditions) extends the identity to all paths.
 
+---
+
+**Exercise 3.** Consider $d = 1$ with $b = 0$ and $\sigma(x) = |x|^\alpha$ for $\alpha \in (0,1)$. For which values of $\alpha$ does the Yamada–Watanabe criterion guarantee pathwise uniqueness of the SDE $\mathrm{d}X_t = |X_t|^\alpha\,\mathrm{d}W_t$? For the remaining values, explain why uniqueness in law (well-posedness of the martingale problem) may still hold or fail.
+
 ??? success "Solution to Exercise 3"
     The SDE is $\mathrm{d}X_t = |X_t|^\alpha\,\mathrm{d}W_t$ with $b = 0$ and $\sigma(x) = |x|^\alpha$.
 
@@ -259,6 +233,10 @@ is a true martingale (not merely a local martingale). What integrability conditi
 
     For $\alpha \in (0, 1/2)$: pathwise uniqueness **fails**. The classical example is Tanaka's SDE — both $X_t \equiv 0$ and a non-trivial solution coexist when $X_0 = 0$. However, uniqueness in law (well-posedness of the martingale problem) is a separate question. For $\alpha \in (0, 1/2)$ the covariance matrix $a(x) = |x|^{2\alpha}$ vanishes at $x = 0$, violating uniform ellipticity, so the Stroock–Varadhan theorem does not directly apply. In fact, uniqueness in law also fails for $\alpha \in (0, 1/2)$ with initial condition $x_0 = 0$, since both the zero solution and the non-trivial solution define different laws on path space.
 
+---
+
+**Exercise 4.** State the conditions of the Stroock–Varadhan theorem. For each condition (bounded measurable $b$, bounded continuous $a$, uniform ellipticity), give a concrete one-dimensional example where the condition is violated and describe what goes wrong (non-existence, non-uniqueness, or both).
+
 ??? success "Solution to Exercise 4"
     The Stroock–Varadhan theorem requires:
 
@@ -271,6 +249,16 @@ is a true martingale (not merely a local martingale). What integrability conditi
     **Violation of continuity of $a$:** Take $d = 1$, $b = 0$, $a(x) = \mathbf{1}_{x \ge 0} + 2\cdot\mathbf{1}_{x < 0}$ (discontinuous at $x = 0$). With a discontinuous diffusion coefficient $\sigma(x) = \sqrt{a(x)}$, the martingale problem may have **multiple solutions** because paths crossing $x = 0$ can have different local behaviors depending on how the discontinuity is resolved.
 
     **Violation of uniform ellipticity:** Take $d = 1$, $b = 0$, $a(x) = x^2$ (so $\sigma(x) = |x|$). The SDE is $\mathrm{d}X_t = |X_t|\,\mathrm{d}W_t$. At $x = 0$, the diffusion coefficient vanishes. Both $X \equiv 0$ and non-trivial solutions exist from $X_0 = 0$, so **uniqueness fails** (non-uniqueness of solutions to the martingale problem).
+
+---
+
+**Exercise 5.** Show that if $X_t$ is a strong solution to the SDE $\mathrm{d}X_t^i = b^i(X_t)\,\mathrm{d}t + \sigma^{i\alpha}(X_t)\,\mathrm{d}W_t^\alpha$ and $f \in C_c^\infty(\mathbb{R}^d)$, then the stochastic integral
+
+$$
+\int_0^t \frac{\partial f}{\partial x_i}(X_s)\,\sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^\alpha
+$$
+
+is a true martingale (not merely a local martingale). What integrability condition on $\nabla f$ and $\sigma$ is used?
 
 ??? success "Solution to Exercise 5"
     Given: $X$ solves the SDE, and $f \in C_c^\infty(\mathbb{R}^d)$. The stochastic integral is
@@ -301,6 +289,10 @@ is a true martingale (not merely a local martingale). What integrability conditi
 
     The key integrability condition is: $\nabla f$ is **bounded and compactly supported** (guaranteed by $f \in C_c^\infty$), and $\sigma$ is **locally bounded** (guaranteed by continuity, or more generally by measurability and local boundedness).
 
+---
+
+**Exercise 6.** Explain the relationship between pathwise uniqueness, uniqueness in law, and well-posedness of the martingale problem. State the Yamada–Watanabe theorem and use it to show that pathwise uniqueness implies uniqueness in law but not vice versa. Give a concrete example where uniqueness in law holds but pathwise uniqueness fails.
+
 ??? success "Solution to Exercise 6"
     **Pathwise uniqueness:** Two solutions $X, Y$ on the **same** probability space with the **same** Brownian motion $W$ and the same initial condition satisfy $X_t = Y_t$ for all $t \ge 0$ a.s.
 
@@ -311,6 +303,10 @@ is a true martingale (not merely a local martingale). What integrability conditi
     **Yamada–Watanabe theorem:** If the SDE has pathwise uniqueness and a weak solution exists, then a **strong** solution exists and is unique. Consequently, pathwise uniqueness implies uniqueness in law (since all solutions must have the same law as the unique strong solution on any given probability space). The converse is false.
 
     **Counterexample (uniqueness in law holds, pathwise uniqueness fails):** Consider the SDE $\mathrm{d}X_t = \mathrm{sgn}(X_t)\,\mathrm{d}W_t$ with $X_0 = 0$ in $d = 1$. By Tanaka's formula, if $X_t$ solves this SDE, then $|X_t|$ is a reflecting Brownian motion. The law of $X_t$ is determined: $X_t$ has the same law as a standard Brownian motion (since $\mathrm{d}\langle X \rangle_t = \mathrm{d}t$, Lévy's characterisation gives that $X$ is a BM). So uniqueness in law holds. However, both $X_t = W_t$ and $X_t = -W_t$ solve the SDE on the same probability space (since $\mathrm{sgn}(W_t)\,\mathrm{d}W_t$ and $\mathrm{sgn}(-W_t)\,\mathrm{d}W_t$ both yield Brownian motions), so pathwise uniqueness fails.
+
+---
+
+**Exercise 7.** Let $\mathcal{L}_1$ and $\mathcal{L}_2$ be two generators with the same $a^{ij}$ but different drifts $b_1^i \ne b_2^i$. Suppose both martingale problems are well-posed. Can the two solutions have the same law? Justify your answer by considering the martingale $M_t^f$ for a suitable choice of test function $f$.
 
 ??? success "Solution to Exercise 7"
     **No, the two solutions cannot have the same law** (assuming $b_1 \ne b_2$ on a set of positive measure for the law of $X$).

@@ -160,46 +160,6 @@ The 1D formula is recovered by setting $d = m = 1$, $b^1 = \mu$, $\sigma^{11} = 
 
 **Exercise 1.** Let $d = 2$, $m = 2$, with $dX_t^1 = \sigma_1\,dW_t^1$ and $dX_t^2 = \sigma_2\,dW_t^2$ (two independent Brownian motions, no drift). Compute the diffusion matrix $a^{ij} = \sigma^{i\alpha}\sigma^{j\alpha}$ and verify that it is diagonal.
 
----
-
-**Exercise 2.** Let $f(x^1, x^2) = x^1 x^2$ with the same setup as Exercise 1. Apply the multidimensional Itô formula to compute $d(X_t^1 X_t^2)$. Show that the Itô correction term vanishes because the two processes are driven by independent Brownian motions.
-
----
-
-**Exercise 3.** Now suppose $dX_t^1 = \sigma_1\,dW_t^1$ and $dX_t^2 = \sigma_2\,dW_t^1$ (both driven by the **same** Brownian motion). Compute the diffusion matrix $a^{ij}$ and the quadratic covariation $d\langle X^1, X^2 \rangle_t$. Apply the multidimensional Itô formula to $f(x^1, x^2) = x^1 x^2$ and identify the Itô correction.
-
----
-
-**Exercise 4.** Let $X_t = (X_t^1, X_t^2)$ be a 2D process with
-
-$$
-dX_t^1 = dW_t^1, \qquad dX_t^2 = dW_t^1 + dW_t^2
-$$
-
-where $W^1$ and $W^2$ are independent. Compute the $2 \times 2$ diffusion matrix $a^{ij} = (\sigma\sigma^T)^{ij}$ and verify that it is positive definite.
-
----
-
-**Exercise 5.** For the setting in Example 1 (norm squared), let $d = 3$, $m = 3$, with $dX_t^i = \mu^i\,dt + dW_t^i$ for $i = 1, 2, 3$ (independent standard Brownian motions with constant drifts). Compute $d|X_t|^2$ explicitly. What is the Itô correction term $\operatorname{tr}(\sigma\sigma^T)$ in this case?
-
----
-
-**Exercise 6.** Consider a 2D geometric Brownian motion:
-
-$$
-dS_t^1 = \mu_1 S_t^1\,dt + \sigma_1 S_t^1\,dW_t^1, \qquad dS_t^2 = \mu_2 S_t^2\,dt + \sigma_2 S_t^2\,dW_t^2
-$$
-
-with independent Brownian motions. Apply the multidimensional Itô formula to $f(x^1, x^2) = \log(x^1) + \log(x^2) = \log(x^1 x^2)$ to derive the SDE for $\log(S_t^1 S_t^2)$.
-
----
-
-**Exercise 7.** The infinitesimal generator is defined as $(\mathcal{L}f)(t, x) = b^i f_i + \frac{1}{2}a^{ij}f_{ij}$. For $d = 2$, $m = 1$, with $dX_t^1 = \sigma_1\,dW_t$ and $dX_t^2 = \sigma_2\,dW_t$ (same Brownian motion, no drift), compute $\mathcal{L}f$ for $f(x^1, x^2) = (x^1)^2 + (x^2)^2$. Verify your answer by applying the multidimensional Itô formula directly and reading off the $dt$ coefficient.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The diffusion matrix is $\sigma = \begin{pmatrix} \sigma_1 & 0 \\ 0 & \sigma_2 \end{pmatrix}$ (each component driven by its own independent Brownian motion). The diffusion matrix $a^{ij} = \sigma^{i\alpha}\sigma^{j\alpha}$ is computed by summing over $\alpha = 1, 2$:
 
@@ -209,6 +169,10 @@ with independent Brownian motions. Apply the multidimensional Itô formula to $f
     - $a^{22} = \sigma^{21}\sigma^{21} + \sigma^{22}\sigma^{22} = 0 + \sigma_2^2 = \sigma_2^2$
 
     So $a = \begin{pmatrix} \sigma_1^2 & 0 \\ 0 & \sigma_2^2 \end{pmatrix}$, which is diagonal. This confirms that independent Brownian drivers produce a diagonal diffusion matrix — the two components have no quadratic covariation.
+
+---
+
+**Exercise 2.** Let $f(x^1, x^2) = x^1 x^2$ with the same setup as Exercise 1. Apply the multidimensional Itô formula to compute $d(X_t^1 X_t^2)$. Show that the Itô correction term vanishes because the two processes are driven by independent Brownian motions.
 
 ??? success "Solution to Exercise 2"
     For $f(x^1, x^2) = x^1 x^2$: $f_1 = x^2$, $f_2 = x^1$, $f_{11} = 0$, $f_{22} = 0$, $f_{12} = f_{21} = 1$. From Exercise 1, $a^{ij}$ is diagonal with $a^{12} = 0$. No drift ($b^i = 0$). The Itô correction is:
@@ -224,6 +188,10 @@ with independent Brownian motions. Apply the multidimensional Itô formula to $f
     $$
 
     The Itô correction vanishes because $d\langle X^1, X^2\rangle_t = 0$ — the two processes are driven by independent Brownian motions.
+
+---
+
+**Exercise 3.** Now suppose $dX_t^1 = \sigma_1\,dW_t^1$ and $dX_t^2 = \sigma_2\,dW_t^1$ (both driven by the **same** Brownian motion). Compute the diffusion matrix $a^{ij}$ and the quadratic covariation $d\langle X^1, X^2 \rangle_t$. Apply the multidimensional Itô formula to $f(x^1, x^2) = x^1 x^2$ and identify the Itô correction.
 
 ??? success "Solution to Exercise 3"
     Now $\sigma = \begin{pmatrix} \sigma_1 \\ \sigma_2 \end{pmatrix}$ (a $2 \times 1$ matrix, since $m = 1$). The diffusion matrix is:
@@ -252,6 +220,16 @@ with independent Brownian motions. Apply the multidimensional Itô formula to $f
 
     The Itô correction $\sigma_1\sigma_2\,dt$ is non-zero because both processes share the same Brownian motion.
 
+---
+
+**Exercise 4.** Let $X_t = (X_t^1, X_t^2)$ be a 2D process with
+
+$$
+dX_t^1 = dW_t^1, \qquad dX_t^2 = dW_t^1 + dW_t^2
+$$
+
+where $W^1$ and $W^2$ are independent. Compute the $2 \times 2$ diffusion matrix $a^{ij} = (\sigma\sigma^T)^{ij}$ and verify that it is positive definite.
+
 ??? success "Solution to Exercise 4"
     The diffusion matrix is $\sigma = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}$ (rows correspond to $X^1, X^2$; columns to $W^1, W^2$). The diffusion matrix is:
 
@@ -260,6 +238,10 @@ with independent Brownian motions. Apply the multidimensional Itô formula to $f
     $$
 
     To verify positive definiteness, check that both eigenvalues are positive. The determinant is $1 \cdot 2 - 1 \cdot 1 = 1 > 0$ and the trace is $3 > 0$, so both eigenvalues are positive. Alternatively, $\det(a) = 1 > 0$ and $a^{11} = 1 > 0$, confirming positive definiteness by Sylvester's criterion.
+
+---
+
+**Exercise 5.** For the setting in Example 1 (norm squared), let $d = 3$, $m = 3$, with $dX_t^i = \mu^i\,dt + dW_t^i$ for $i = 1, 2, 3$ (independent standard Brownian motions with constant drifts). Compute $d|X_t|^2$ explicitly. What is the Itô correction term $\operatorname{tr}(\sigma\sigma^T)$ in this case?
 
 ??? success "Solution to Exercise 5"
     With $dX_t^i = \mu^i\,dt + dW_t^i$ for $i = 1, 2, 3$, the diffusion matrix is $\sigma = I_{3\times 3}$ (the identity), so $a = \sigma\sigma^T = I$. For $f(x) = |x|^2 = (x^1)^2 + (x^2)^2 + (x^3)^2$:
@@ -275,6 +257,16 @@ with independent Brownian motions. Apply the multidimensional Itô formula to $f
     $$
 
     The Itô correction contributes $+3\,dt$ to the drift, reflecting the fact that three independent Brownian motions each contribute $+1\,dt$ through their quadratic variation.
+
+---
+
+**Exercise 6.** Consider a 2D geometric Brownian motion:
+
+$$
+dS_t^1 = \mu_1 S_t^1\,dt + \sigma_1 S_t^1\,dW_t^1, \qquad dS_t^2 = \mu_2 S_t^2\,dt + \sigma_2 S_t^2\,dW_t^2
+$$
+
+with independent Brownian motions. Apply the multidimensional Itô formula to $f(x^1, x^2) = \log(x^1) + \log(x^2) = \log(x^1 x^2)$ to derive the SDE for $\log(S_t^1 S_t^2)$.
 
 ??? success "Solution to Exercise 6"
     For $f(x^1, x^2) = \log(x^1) + \log(x^2)$:
@@ -295,6 +287,10 @@ with independent Brownian motions. Apply the multidimensional Itô formula to $f
     $$
 
     This is the sum of the individual log-dynamics: $d\log(S_t^1) + d\log(S_t^2)$, each with its own convexity adjustment $-\sigma_i^2/2$.
+
+---
+
+**Exercise 7.** The infinitesimal generator is defined as $(\mathcal{L}f)(t, x) = b^i f_i + \frac{1}{2}a^{ij}f_{ij}$. For $d = 2$, $m = 1$, with $dX_t^1 = \sigma_1\,dW_t$ and $dX_t^2 = \sigma_2\,dW_t$ (same Brownian motion, no drift), compute $\mathcal{L}f$ for $f(x^1, x^2) = (x^1)^2 + (x^2)^2$. Verify your answer by applying the multidimensional Itô formula directly and reading off the $dt$ coefficient.
 
 ??? success "Solution to Exercise 7"
     With $d = 2$, $m = 1$, $b^i = 0$, $\sigma^{11} = \sigma_1$, $\sigma^{21} = \sigma_2$:

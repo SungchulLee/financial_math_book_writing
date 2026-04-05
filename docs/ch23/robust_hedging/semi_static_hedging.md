@@ -866,17 +866,250 @@ The semi-static framework provides a practical, cost-effective approach to deriv
 
 **Exercise 1.** Using the Carr-Madan static replication formula, express the payoff of a variance swap $g(S_T) = -2\log(S_T/F)$ as a portfolio of European puts and calls. Write out the explicit weights $g''(K) = 2/K^2$ and explain why the replication uses out-of-the-money puts for $K < F$ and out-of-the-money calls for $K > F$.
 
+??? success "Solution to Exercise 1"
+
+    **The payoff**: A variance swap pays the realized variance minus a fixed strike. The log-contract payoff $g(S_T) = -2\log(S_T/F)$ is the key building block, where $F = S_0 e^{rT}$ is the forward price.
+
+    **Step 1: Apply the Carr-Madan decomposition.**
+
+    For any twice-differentiable $g$:
+
+    $$
+    g(S_T) = g(F) + g'(F)(S_T - F) + \int_0^F g''(K)(K - S_T)^+\, dK + \int_F^\infty g''(K)(S_T - K)^+\, dK
+    $$
+
+    Compute the derivatives of $g(x) = -2\log(x/F)$:
+
+    $$
+    g'(x) = -\frac{2}{x}, \qquad g''(x) = \frac{2}{x^2}
+    $$
+
+    Evaluate at $x = F$:
+
+    $$
+    g(F) = -2\log(F/F) = 0, \qquad g'(F) = -\frac{2}{F}
+    $$
+
+    Substituting:
+
+    $$
+    -2\log\frac{S_T}{F} = 0 - \frac{2}{F}(S_T - F) + \int_0^F \frac{2}{K^2}(K - S_T)^+\, dK + \int_F^\infty \frac{2}{K^2}(S_T - K)^+\, dK
+    $$
+
+    **Step 2: Identify the portfolio.**
+
+    The decomposition gives the following **static portfolio**:
+
+    | Component | Instrument | Quantity |
+    |-----------|-----------|----------|
+    | Cash | Zero-coupon bond | $g(F) = 0$ |
+    | Linear | Forward contract | $g'(F) = -2/F$ units |
+    | Puts ($K < F$) | Put at strike $K$ | $g''(K)\, dK = \frac{2}{K^2}\, dK$ |
+    | Calls ($K > F$) | Call at strike $K$ | $g''(K)\, dK = \frac{2}{K^2}\, dK$ |
+
+    **Step 3: Why OTM options are used.**
+
+    For $K < F$: The put $(K - S_T)^+$ is out-of-the-money (OTM) since the forward is $F > K$. These puts are cheaper than ITM calls at the same strike and have the same payoff structure.
+
+    For $K > F$: The call $(S_T - K)^+$ is out-of-the-money. These calls are cheaper than ITM puts at the same strike.
+
+    Using OTM options is preferred because:
+
+    1. **Liquidity**: OTM options are more liquid than ITM options in most markets.
+    2. **Bid-ask spreads**: OTM options typically have tighter relative spreads.
+    3. **Model sensitivity**: OTM option prices are more directly informative about tail risk.
+    4. **No duplication**: By put-call parity, $P(K) = C(K) - (F-K)e^{-rT}$ for $K < F$, so using puts below $F$ and calls above $F$ avoids redundancy with the linear (forward) component.
+
+    The weights $2/K^2$ decrease with strike, meaning deep OTM options receive the most weight per unit strike width, reflecting the logarithmic nature of the variance payoff.
+
 ---
 
 **Exercise 2.** Consider an up-and-out call with strike $K = 100$ and barrier $H = 120$. Under the Black-Scholes model with constant volatility, describe the semi-static hedging strategy that uses a static portfolio of vanilla calls plus a dynamic adjustment at the barrier. Specifically, show that at the moment the barrier is first hit, the static portfolio should be liquidated and its proceeds invested in bonds.
+
+??? success "Solution to Exercise 2"
+
+    **Setup**: Up-and-out call with $K = 100$, barrier $H = 120$, under Black-Scholes with constant $\sigma$.
+
+    **Step 1: Static replication using put-call symmetry.**
+
+    Under Black-Scholes, the reflection principle gives the up-and-out call price:
+
+    $$
+    C^{\text{UO}}(S_0, K, H) = C(S_0, K) - \left(\frac{H}{S_0}\right)^{2\mu} C\left(\frac{H^2}{S_0}, K\right)
+    $$
+
+    where $\mu = (r - \frac{1}{2}\sigma^2)/\sigma^2$. This means the initial static portfolio is:
+
+    - **Long** 1 vanilla call with strike $K = 100$
+    - **Short** $(H/S_0)^{2\mu}$ vanilla calls with strike $K = 100$ evaluated at spot $H^2/S_0$
+
+    **Step 2: Semi-static hedging strategy.**
+
+    The semi-static approach works as follows:
+
+    **Before barrier is hit** ($S_t < H$ for all $t$):
+
+    - Hold the static portfolio established at time 0.
+    - The portfolio value tracks the up-and-out call value as long as $S_t$ remains below $H$.
+
+    **At the moment the barrier is first hit** ($\tau = \inf\{t : S_t \geq H\}$):
+
+    - The up-and-out call becomes worthless: $C^{\text{UO}} = 0$.
+    - The static portfolio at $S_\tau = H$ has value:
+
+    $$
+    V_\tau = C(H, K) - \left(\frac{H}{S_0}\right)^{2\mu} C\left(\frac{H^2}{S_0}, K\right)\bigg|_{S=H}
+    $$
+
+    Under the Black-Scholes reflection principle, these two terms are equal when $S = H$, so $V_\tau = 0$ exactly at the barrier.
+
+    **Action at barrier hit**: Liquidate the entire option portfolio. Since $V_\tau = 0$ (under the model), the liquidation produces zero proceeds. Invest any small residual in the risk-free bond.
+
+    **After barrier hit**: The exotic option is dead (knocked out), so no further hedging is needed. The bond position generates risk-free returns until maturity.
+
+    **At maturity** ($t = T$):
+
+    - If barrier was never hit: the static portfolio pays $(S_T - K)^+ - (H/S_0)^{2\mu}(S_T - K)^+ \cdot \text{adjustment}$, which equals the up-and-out call payoff.
+    - If barrier was hit at time $\tau$: the portfolio was liquidated at zero cost, matching the zero payoff of the knocked-out option.
+
+    **Key insight**: This is a **semi-static** strategy because it requires only one dynamic action (liquidation at the barrier), with the rest being a static hold. Under the Black-Scholes model with constant volatility, this replication is exact.
 
 ---
 
 **Exercise 3.** Compare the total hedging cost (including transaction costs) of three strategies for a barrier option: (a) continuous delta hedging, (b) semi-static hedging with adjustment at the barrier only, and (c) purely static replication using vanilla options. If proportional transaction costs are $\varepsilon = 0.1\%$ and the option has 1 year to maturity with daily rebalancing for strategy (a), estimate which strategy is cheapest.
 
+??? success "Solution to Exercise 3"
+
+    **Setup**: Barrier option, $T = 1$ year, $\varepsilon = 0.1\%$ proportional transaction costs.
+
+    **Strategy (a): Continuous delta hedging (daily rebalancing).**
+
+    With $N = 252$ daily rebalances:
+
+    - **Transaction costs**: Each rebalance trades $|\Delta\theta_i|$ shares. For a barrier option, delta changes rapidly near the barrier, leading to large turnover. Estimated:
+
+    $$
+    \text{TC}_a \approx \varepsilon \cdot \sigma S_0 \sqrt{N/T} = 0.001 \times 0.20 \times 100 \times \sqrt{252} = 0.02 \times 15.87 = 0.317
+    $$
+
+    However, barrier options have higher gamma near the barrier, so the actual cost is typically 2-3 times higher than for vanilla options:
+
+    $$
+    \text{TC}_a \approx 0.6 \text{ to } 0.9
+    $$
+
+    - **Hedging error**: Small for daily rebalancing, approximately $O(1/\sqrt{N}) \approx 0.06$.
+    - **Total cost**: $\approx 0.7 - 1.0$.
+
+    **Strategy (b): Semi-static hedging with adjustment at barrier only.**
+
+    - **Transaction costs**: Initial setup (buying the static portfolio) costs $\varepsilon$ times the notional of the options purchased. For a portfolio of 2-3 vanilla options, this is approximately:
+
+    $$
+    \text{TC}_b \approx \varepsilon \times (\text{total option notional}) \approx 0.001 \times 2 \times C_{\text{BS}} \approx 0.001 \times 2 \times 8 = 0.016
+    $$
+
+    Plus one potential adjustment at the barrier:
+
+    $$
+    \text{TC}_{\text{barrier}} \approx 0.001 \times C(H, K) \approx 0.001 \times 20 = 0.02
+    $$
+
+    Total: $\text{TC}_b \approx 0.04$.
+
+    - **Hedging error**: Under the Black-Scholes model, the semi-static hedge is exact. Under model misspecification (stochastic volatility, jumps), the error is model-dependent, typically:
+
+    $$
+    \text{HE}_b \approx 0.5 \text{ to } 1.5 \text{ (percent of option value)}
+    $$
+
+    - **Total cost**: $\approx 0.04 + 0.5 = 0.54$ (optimistic) to $0.04 + 1.5 = 1.54$ (pessimistic).
+
+    **Strategy (c): Purely static replication.**
+
+    - **Transaction costs**: Only the initial setup:
+
+    $$
+    \text{TC}_c \approx 0.001 \times 2 \times 8 = 0.016
+    $$
+
+    - **Hedging error**: No adjustment at the barrier, so if the static portfolio does not perfectly offset at $S = H$, there is a persistent error. For barrier options, static replication without model-specific adjustments can have significant error:
+
+    $$
+    \text{HE}_c \approx 1.0 \text{ to } 3.0
+    $$
+
+    - **Total cost**: $\approx 0.016 + 2.0 = 2.02$ (typical).
+
+    **Comparison**:
+
+    | Strategy | Transaction Costs | Hedging Error | Total |
+    |----------|------------------|---------------|-------|
+    | (a) Continuous delta | $\approx 0.8$ | $\approx 0.06$ | $\approx 0.86$ |
+    | (b) Semi-static | $\approx 0.04$ | $\approx 0.5-1.5$ | $\approx 0.5-1.5$ |
+    | (c) Purely static | $\approx 0.02$ | $\approx 2.0$ | $\approx 2.0$ |
+
+    **Conclusion**: Strategy (b) (semi-static) is likely the cheapest, with total cost in the range \$0.5--\$1.5, compared to \$0.86 for continuous delta hedging. The semi-static approach dramatically reduces transaction costs while maintaining reasonable hedging accuracy through the single adjustment at the barrier. The purely static approach is cheapest in terms of transaction costs but suffers from large hedging errors.
+
 ---
 
 **Exercise 4.** For a forward start option with payoff $(S_T / S_{T_1} - 1)^+$, design a semi-static hedging strategy. The static component should be established at time $0$ and the dynamic adjustment should occur at time $T_1$ when the strike becomes known. What vanilla instruments are needed at each time, and how do the required positions depend on $S_{T_1}$?
+
+??? success "Solution to Exercise 4"
+
+    **Forward start option payoff**: $(S_T / S_{T_1} - 1)^+ = \frac{1}{S_{T_1}}(S_T - S_{T_1})^+$.
+
+    This is a call option whose strike $K = S_{T_1}$ is set at the future time $T_1$.
+
+    **Semi-static hedging strategy.**
+
+    **Phase 1: Time 0 to $T_1$ (before strike is known).**
+
+    At time 0, we do not know the strike, but we know the payoff structure. The forward start call has the property that under the Black-Scholes model, its value at time 0 is:
+
+    $$
+    V_0 = \mathbb{E}\left[e^{-rT}\frac{1}{S_{T_1}}(S_T - S_{T_1})^+\right]
+    $$
+
+    By the scaling property of GBM, $S_T/S_{T_1}$ conditional on $\mathcal{F}_{T_1}$ is independent of $S_{T_1}$, so:
+
+    $$
+    V_0 = e^{-rT} \mathbb{E}\left[\frac{(S_T - S_{T_1})^+}{S_{T_1}}\right] = e^{-rT_1} C_{\text{BS}}(1, 1, T-T_1, \sigma, r)
+    $$
+
+    where $C_{\text{BS}}(1, 1, \tau, \sigma, r)$ is the Black-Scholes price of a unit-strike call on a unit-spot asset with time to maturity $\tau = T - T_1$.
+
+    **Static component at time 0**: Since the value depends on the **ratio** $S_T/S_{T_1}$, the initial hedge should be proportional to the current spot. Hold:
+
+    - Cash: $V_0$ in the risk-free bond
+    - No stock position needed initially (delta is approximately zero for the ratio payoff)
+
+    Alternatively, if ATM options maturing at $T_1$ and $T$ are available, establish positions that capture the forward volatility.
+
+    **Phase 2: At time $T_1$ (strike becomes known).**
+
+    When $S_{T_1}$ is observed, the forward start option becomes a standard call with:
+
+    - Strike: $K = S_{T_1}$
+    - Remaining maturity: $T - T_1$
+    - Current spot: $S_{T_1}$
+
+    **Dynamic adjustment at $T_1$**: Liquidate any positions from Phase 1 and establish:
+
+    - **Vanilla call**: Buy $1/S_{T_1}$ units of a call with strike $K = S_{T_1}$ and maturity $T$. This has payoff $\frac{1}{S_{T_1}}(S_T - S_{T_1})^+$, which is exactly the forward start payoff.
+    - **Delta hedge**: Optionally, set up a delta hedge $\theta_{T_1} = \frac{1}{S_{T_1}}\Delta_{\text{BS}}(S_{T_1}, S_{T_1}, T-T_1)$ shares.
+
+    **Phase 3: Time $T_1$ to $T$ (after strike is known).**
+
+    The position is a standard vanilla call, which can be held statically until maturity (if exact strike options are available) or delta-hedged dynamically.
+
+    **Dependence on $S_{T_1}$**: The number of calls to purchase, $1/S_{T_1}$, depends inversely on the realized spot at $T_1$. If $S_{T_1}$ is high, fewer calls are needed (each worth more); if $S_{T_1}$ is low, more calls are needed. The total cost of the calls at time $T_1$ is:
+
+    $$
+    \text{Cost} = \frac{1}{S_{T_1}} \times C_{\text{BS}}(S_{T_1}, S_{T_1}, T-T_1) = C_{\text{BS}}(1, 1, T-T_1)
+    $$
+
+    which is independent of $S_{T_1}$ (by homogeneity of the Black-Scholes formula). This confirms the strategy is self-financing if $V_0$ is set correctly.
 
 ---
 
@@ -888,10 +1121,240 @@ $$
 
 Explain why separating the problem into static and dynamic components simplifies the optimization.
 
+??? success "Solution to Exercise 5"
+
+    **Formulation**: Given target payoff $\Phi$, static positions $\alpha_i$ in vanillas $\{V_i\}_{i=1}^N$, and dynamic strategy $\theta_t$:
+
+    $$
+    \min_{\alpha, \theta}\; \mathbb{E}\left[\left(\Phi - \sum_{i=1}^N \alpha_i V_i(S_T) - \int_0^T \theta_t\, dS_t\right)^2\right]
+    $$
+
+    **Step 1: Orthogonal decomposition.**
+
+    Define the residual payoff after the static component:
+
+    $$
+    R \equiv \Phi - \sum_{i=1}^N \alpha_i V_i(S_T)
+    $$
+
+    The objective becomes:
+
+    $$
+    \min_{\alpha, \theta}\; \mathbb{E}\left[\left(R - \int_0^T \theta_t\, dS_t\right)^2\right]
+    $$
+
+    The stochastic integral $\int_0^T \theta_t\, dS_t$ lies in the space of martingale gains (assuming $S$ is a martingale under the pricing measure, i.e., $r = 0$). This space is orthogonal to any constant, so:
+
+    $$
+    \mathbb{E}\left[\left(R - \int_0^T \theta_t\, dS_t\right)^2\right] = (\mathbb{E}[R])^2 + \text{Var}\left(R - \int_0^T \theta_t\, dS_t\right)
+    $$
+
+    **Step 2: Separation principle.**
+
+    The optimization separates into two independent problems:
+
+    **(a) Static optimization**: Choose $\alpha$ to minimize the "unhedgeable" component of $R$. Specifically, the optimal $\alpha$ should make $R$ as close as possible to the span of martingale gains:
+
+    $$
+    \min_\alpha\; \min_\theta\; \mathbb{E}\left[\left(\Phi - \sum_i \alpha_i V_i - \int_0^T \theta_t\, dS_t\right)^2\right]
+    $$
+
+    **(b) Dynamic optimization**: Given $\alpha$, choose $\theta$ to minimize the variance of the residual $R - \int_0^T \theta_t\, dS_t$. This is the **mean-variance hedging** problem, whose solution is the Galtchouk-Kunita-Watanabe (GKW) projection:
+
+    $$
+    \theta_t^* = \frac{d\langle M^R, S\rangle_t}{d\langle S, S\rangle_t}
+    $$
+
+    where $M^R$ is the martingale part of $\mathbb{E}[R | \mathcal{F}_t]$.
+
+    **Why the separation simplifies the optimization.**
+
+    1. **Dimensionality reduction**: The static component is a finite-dimensional optimization over $\alpha \in \mathbb{R}^N$ (just $N$ parameters), while the dynamic component is an infinite-dimensional optimization over the process $\theta$. The GKW projection has a closed-form solution given $R$, so the dynamic part is solved analytically once $\alpha$ is fixed.
+
+    2. **Convexity**: The full problem is jointly convex in $(\alpha, \theta)$, and the separation exploits the block structure. The static problem can be solved via linear regression of $\Phi$ on $\{V_i(S_T)\}$, and the dynamic problem reduces to computing conditional expectations.
+
+    3. **Practical implementation**: The static positions $\alpha_i$ are set at time 0 and held to maturity (no rebalancing needed), while the dynamic component $\theta_t$ is updated over time. This clean separation makes the strategy operationally feasible: the expensive part (options trading) is done once, and only stock trading is done dynamically.
+
+    4. **Robustness**: The static component provides a model-free payoff at maturity (since $\sum_i \alpha_i V_i(S_T)$ depends only on $S_T$), while the dynamic component absorbs path-dependent risk. Errors in the dynamic component affect only the residual, not the static base.
+
 ---
 
 **Exercise 6.** A semi-static hedge for a double barrier option $\mathbb{1}\{L \leq S_t \leq H, \forall t\}$ involves adjustments at each barrier touch. In a discrete monitoring setting (daily), describe the adjustment protocol: what positions are modified when $S_t$ crosses $L$ or $H$, and how does the strategy differ from continuous monitoring? Discuss the model risk arising from the discrete vs. continuous monitoring discrepancy.
 
+??? success "Solution to Exercise 6"
+
+    **Setup**: Double barrier option with payoff $\mathbb{1}\{L \leq S_t \leq H, \forall t\}$, discrete daily monitoring.
+
+    **Adjustment protocol.**
+
+    **Initial static portfolio**: Establish positions in vanilla options that approximate the double-no-touch payoff. A common approach uses a portfolio of calls and puts at strikes near $L$ and $H$:
+
+    - Long a tight put spread near $L$ (approximates digital put at $L$)
+    - Long a tight call spread near $H$ (approximates digital call at $H$)
+    - Cash position to fund the payoff if neither barrier is hit
+
+    **Daily monitoring protocol**:
+
+    At each monitoring time $t_i$ ($i = 1, \ldots, N$):
+
+    **Case 1: $S_{t_i}$ crosses the upper barrier ($S_{t_i} \geq H$).**
+
+    - The option is knocked out: payoff becomes 0.
+    - **Action**: Liquidate all static option positions and the dynamic stock hedge.
+    - Invest proceeds in risk-free bonds.
+    - No further hedging required.
+
+    **Case 2: $S_{t_i}$ crosses the lower barrier ($S_{t_i} \leq L$).**
+
+    - The option is knocked out: payoff becomes 0.
+    - **Action**: Same as Case 1 --- liquidate all positions.
+
+    **Case 3: $S_{t_i}$ is near the upper barrier ($H - \epsilon < S_{t_i} < H$).**
+
+    - The option is at risk of knockout.
+    - **Action**: Increase the short delta position (the option delta becomes very negative near $H$). Adjust the static put spread to provide more protection. Tighten the rebalancing threshold.
+
+    **Case 4: $S_{t_i}$ is near the lower barrier ($L < S_{t_i} < L + \epsilon$).**
+
+    - Similar to Case 3 but mirrored.
+    - **Action**: Increase the long delta position. Adjust the static call spread.
+
+    **Case 5: $S_{t_i}$ is well between barriers ($L + \epsilon \leq S_{t_i} \leq H - \epsilon$).**
+
+    - The option is far from knockout; low urgency.
+    - **Action**: Minimal or no adjustment. Maintain existing positions.
+
+    **Discrete vs. continuous monitoring: key differences.**
+
+    1. **Barrier breach detection**: Under continuous monitoring, the barrier is hit as soon as $S_t$ touches $L$ or $H$. Under discrete monitoring, $S_t$ could cross the barrier and return between observation times. The discrete barrier option is therefore **more valuable** (less likely to knock out) than the continuous version.
+
+    2. **Continuity correction**: The discrete barrier option price can be approximated by the continuous barrier price with a shifted barrier (Broadie-Glasserman-Kou, 1997):
+
+        $$
+        H_{\text{eff}} = H \cdot e^{\beta \sigma \sqrt{\delta t}}, \qquad L_{\text{eff}} = L \cdot e^{-\beta \sigma \sqrt{\delta t}}
+        $$
+
+        where $\beta \approx 0.5826$ and $\delta t = T/N$ is the monitoring interval. The effective barriers are shifted outward, reflecting the reduced knockout probability.
+
+    3. **Hedging gap risk**: Between monitoring dates, the stock may breach the barrier without triggering knockout. The hedger faces "gap risk" --- the possibility that $S$ jumps through the barrier between observations. This is unhedgeable with discrete monitoring.
+
+    **Model risk from the discrepancy.**
+
+    The primary model risks are:
+
+    - **Overshoot risk**: If the static hedge is calibrated to continuous barriers but the contract has discrete barriers, the hedge systematically over-protects (too conservative), wasting hedging capital.
+    - **Undershoot risk**: If the hedge is calibrated to discrete barriers but realized dynamics include jumps or fast moves, the stock may breach the true continuous path barrier between monitoring times, creating unhedged losses.
+    - **Gamma spike timing**: The sharp gamma increase near barriers occurs at slightly different spot levels for discrete vs. continuous monitoring, causing systematic hedging error if the wrong barrier specification is used.
+
 ---
 
 **Exercise 7.** Prove that for any European payoff $g(S_T)$ that is twice differentiable, the Carr-Madan static replication is exact and model-free. Then explain why path-dependent payoffs generally cannot be perfectly replicated statically and require the dynamic component. Give an example of a path-dependent payoff for which the semi-static hedge achieves exact replication under specific model assumptions but not model-free.
+
+??? success "Solution to Exercise 7"
+
+    **Part 1: Proof that Carr-Madan static replication is exact and model-free for European payoffs.**
+
+    **Theorem**: For any twice-differentiable function $g: \mathbb{R}_+ \to \mathbb{R}$ and any fixed point $F > 0$:
+
+    $$
+    g(x) = g(F) + g'(F)(x - F) + \int_0^F g''(K)(K - x)^+\, dK + \int_F^\infty g''(K)(x - K)^+\, dK
+    $$
+
+    for all $x > 0$.
+
+    **Proof**: Define the right-hand side as $h(x)$ and show $h(x) = g(x)$ for all $x > 0$.
+
+    **Case 1: $x \geq F$.** Then $(K - x)^+ = 0$ for $K \leq x$ (in particular for $K \leq F$), and $(x - K)^+ = x - K$ for $K \leq x$. So:
+
+    $$
+    h(x) = g(F) + g'(F)(x - F) + 0 + \int_F^x g''(K)(x - K)\, dK + 0
+    $$
+
+    (The integral from $x$ to $\infty$ vanishes because $(x-K)^+ = 0$ for $K > x$.)
+
+    Integrate by parts: Let $u = g''(K)$, $dv = (x-K)\, dK$. Actually, it is easier to use the fundamental theorem of calculus directly. Note:
+
+    $$
+    \int_F^x g''(K)(x - K)\, dK = \int_F^x g''(K) \int_K^x d\ell\, dK = \int_F^x \int_F^\ell g''(K)\, dK\, d\ell
+    $$
+
+    by Fubini's theorem (switching order of integration). The inner integral is:
+
+    $$
+    \int_F^\ell g''(K)\, dK = g'(\ell) - g'(F)
+    $$
+
+    So:
+
+    $$
+    \int_F^x g''(K)(x-K)\, dK = \int_F^x [g'(\ell) - g'(F)]\, d\ell = [g(x) - g(F)] - g'(F)(x - F)
+    $$
+
+    Therefore:
+
+    $$
+    h(x) = g(F) + g'(F)(x-F) + g(x) - g(F) - g'(F)(x-F) = g(x)
+    $$
+
+    **Case 2: $x < F$.** By symmetric argument using $(K - x)^+ = K - x$ for $K \geq x$ and $(x - K)^+ = 0$ for $K \geq x$:
+
+    $$
+    h(x) = g(F) + g'(F)(x - F) + \int_x^F g''(K)(K - x)\, dK
+    $$
+
+    By the same Fubini argument:
+
+    $$
+    \int_x^F g''(K)(K-x)\, dK = [g(F) - g(x)] - g'(x)(F - x)
+    $$
+
+    Wait, let us redo this carefully:
+
+    $$
+    \int_x^F g''(K)(K-x)\, dK = \int_x^F \int_x^K d\ell\, g''(K)\, dK = \int_x^F \int_\ell^F g''(K)\, dK\, d\ell = \int_x^F [g'(F) - g'(\ell)]\, d\ell
+    $$
+
+    $$
+    = g'(F)(F - x) - [g(F) - g(x)] = g'(F)(F-x) - g(F) + g(x)
+    $$
+
+    So:
+
+    $$
+    h(x) = g(F) + g'(F)(x - F) + g'(F)(F - x) - g(F) + g(x) = g(x)
+    $$
+
+    This proves the identity for all $x > 0$. Setting $x = S_T$ and taking expectations under any pricing measure:
+
+    $$
+    \mathbb{E}[g(S_T)] = g(F)\cdot 1 + g'(F)\cdot \mathbb{E}[S_T - F] + \int_0^F g''(K) P(K)\, dK + \int_F^\infty g''(K) C(K)\, dK
+    $$
+
+    where $P(K)$ and $C(K)$ are put and call prices. This holds for **any** model (any probability measure on $S_T$), making the replication **model-free**. $\square$
+
+    **Part 2: Why path-dependent payoffs cannot be statically replicated.**
+
+    A static portfolio of European options pays $\sum_i \alpha_i V_i(S_T)$ at maturity --- a function of $S_T$ only. A path-dependent payoff $\Phi((S_t)_{0 \leq t \leq T})$ depends on the entire trajectory, not just the terminal value. Two paths with the same $S_T$ but different histories (e.g., one that hit a barrier and one that did not) produce different payoffs from $\Phi$ but identical payoffs from any static portfolio.
+
+    Formally, if $\omega_1$ and $\omega_2$ are two paths with $S_T(\omega_1) = S_T(\omega_2)$ but $\Phi(\omega_1) \neq \Phi(\omega_2)$, then no function $f(S_T)$ can satisfy $f(S_T) = \Phi$ for both paths simultaneously. Therefore, $\Phi$ cannot be replicated by any static portfolio of European instruments.
+
+    The dynamic component $\int_0^T \theta_t\, dS_t$ is needed precisely because it depends on the **entire path** through the integrand $\theta_t$ (which can be adapted to the filtration), allowing it to distinguish between paths with the same terminal value but different histories.
+
+    **Part 3: Example of semi-static exact replication under model assumptions.**
+
+    **Up-and-out call**: $\Phi = (S_T - K)^+ \mathbb{1}\{M_T < H\}$ where $M_T = \max_{t \leq T} S_t$.
+
+    Under **Black-Scholes with constant volatility**, the reflection principle gives an exact semi-static replication:
+
+    - **Static portfolio**: Long call at $K$, short $(H/S_0)^{2\mu}$ calls at strike $K$ (evaluated at reflected spot $H^2/S_0$).
+    - **Dynamic action**: Liquidate at the barrier hit time $\tau$ (if it occurs).
+
+    This is **exact under Black-Scholes** because the reflection principle holds perfectly with constant volatility, ensuring the static portfolio value is zero at $S = H$.
+
+    However, this replication is **not model-free** because:
+
+    1. Under **stochastic volatility**, the reflection principle fails (the symmetry between the original and reflected process breaks down), and the static portfolio has nonzero value at the barrier.
+    2. Under **jump diffusion**, the stock can jump through the barrier, and the static hedge at barrier touch has the wrong value.
+    3. Under **local volatility** $\sigma(S,t)$, the reflection symmetry requires a specific relationship between $\sigma(S,t)$ and $\sigma(H^2/S, t)$ that is generally not satisfied.
+
+    Thus, the up-and-out call is a canonical example of a path-dependent payoff admitting exact semi-static replication under a specific model but requiring model-dependent corrections (additional dynamic adjustments) in general.

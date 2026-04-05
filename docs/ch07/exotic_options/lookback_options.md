@@ -164,30 +164,6 @@ $$
 
 **Exercise 1.** Prove the price ordering $V_{\text{vanilla call}} \leq V_{\text{fixed-strike lookback call}}$ by showing that $(S_{\max} - K)^+ \geq (S_T - K)^+$ for every path. Under what condition on the path does equality hold?
 
----
-
-**Exercise 2.** A floating-strike lookback call has payoff $S_T - S_{\min}$, which is always non-negative. Explain why this payoff is never zero (assuming continuous paths and $\sigma > 0$), and why this property makes floating-strike lookbacks particularly expensive. Estimate the option value as a multiple of the vanilla call price for typical parameters.
-
----
-
-**Exercise 3.** For discrete monitoring with $n$ observation dates, explain why $S_{\max}^{\text{discrete}} \leq S_{\max}^{\text{continuous}}$. Derive the Broadie-Glasserman-Kou correction $S_{\max}^{\text{continuous}} \approx S_{\max}^{\text{discrete}} \cdot e^{\beta \sigma \sqrt{T/n}}$ and compute the correction factor for $\sigma = 0.25$, $T = 1$, $n = 52$ (weekly monitoring).
-
----
-
-**Exercise 4.** Consider a fixed-strike lookback put with payoff $(K - S_{\min})^+$ where $K = 100$ and suppose $S_{\min} = 75$ over the option's life. Compare this payoff with a vanilla put that expires with $S_T = 90$. Which option pays more and by how much? Explain why the lookback put is sometimes described as providing "insurance at the best possible price."
-
----
-
-**Exercise 5.** The Goldman-Sosin-Gatto formula for floating-strike lookback calls involves the joint distribution of $(S_T, S_{\min})$. Explain the connection between this joint distribution and the reflection principle for Brownian motion. Why does the analytical formula require continuous monitoring, and what modifications are needed for discrete monitoring?
-
----
-
-**Exercise 6.** A partial lookback option only monitors the running maximum over a subinterval $[t_1, t_2] \subset [0, T]$, with payoff $(S_{\max}^{[t_1, t_2]} - K)^+$. Explain why this option is cheaper than a full lookback and more expensive than a vanilla call. Describe how you would price it using Monte Carlo simulation.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     For any path $\omega$, we have $S_{\max}(\omega) = \max_{0 \leq t \leq T} S_t(\omega) \geq S_T(\omega)$ since the maximum over the entire path is at least as large as the terminal value.
 
@@ -205,6 +181,11 @@ $$
 
     **Equality holds** when $S_{\max} = S_T$, i.e., when the stock price reaches its maximum exactly at the terminal time $T$. This occurs on paths where the price is monotonically increasing (or at least the final price equals the all-time high). In a GBM model, this event has positive but not full probability, so the inequality is strict in expectation.
 
+---
+
+
+**Exercise 2.** A floating-strike lookback call has payoff $S_T - S_{\min}$, which is always non-negative. Explain why this payoff is never zero (assuming continuous paths and $\sigma > 0$), and why this property makes floating-strike lookbacks particularly expensive. Estimate the option value as a multiple of the vanilla call price for typical parameters.
+
 ??? success "Solution to Exercise 2"
     The payoff $S_T - S_{\min}$ is always non-negative since $S_{\min} = \min_{0 \leq t \leq T} S_t \leq S_T$.
 
@@ -213,6 +194,11 @@ $$
     **Why this makes floating-strike lookbacks expensive:** Since the payoff is strictly positive with probability 1, the option is always in the money. There is no chance of the option expiring worthless, unlike a vanilla call (which expires worthless when $S_T < K$). The holder is guaranteed a positive payout, and this guarantee carries a substantial premium.
 
     **Cost estimate:** For typical parameters ($\sigma = 20\%$, $T = 1$), the floating-strike lookback call costs approximately **1.5 to 2 times** the ATM vanilla call price. For higher volatility, the multiple increases because $S_{\min}$ tends to be further below $S_T$, widening the guaranteed spread.
+
+---
+
+
+**Exercise 3.** For discrete monitoring with $n$ observation dates, explain why $S_{\max}^{\text{discrete}} \leq S_{\max}^{\text{continuous}}$. Derive the Broadie-Glasserman-Kou correction $S_{\max}^{\text{continuous}} \approx S_{\max}^{\text{discrete}} \cdot e^{\beta \sigma \sqrt{T/n}}$ and compute the correction factor for $\sigma = 0.25$, $T = 1$, $n = 52$ (weekly monitoring).
 
 ??? success "Solution to Exercise 3"
     **Why $S_{\max}^{\text{discrete}} \leq S_{\max}^{\text{continuous}}$:** The continuous maximum considers the supremum over all $t \in [0, T]$, while the discrete maximum considers only the values at observation dates $\{t_1, \ldots, t_n\}$. Since the set of observation dates is a subset of $[0, T]$:
@@ -243,6 +229,11 @@ $$
 
     The correction factor is $e^{0.02020} \approx 1.0204$, meaning the continuous maximum is approximately **2.04% higher** than the discrete weekly maximum.
 
+---
+
+
+**Exercise 4.** Consider a fixed-strike lookback put with payoff $(K - S_{\min})^+$ where $K = 100$ and suppose $S_{\min} = 75$ over the option's life. Compare this payoff with a vanilla put that expires with $S_T = 90$. Which option pays more and by how much? Explain why the lookback put is sometimes described as providing "insurance at the best possible price."
+
 ??? success "Solution to Exercise 4"
     **Fixed-strike lookback put payoff:** With $K = 100$ and $S_{\min} = 75$:
 
@@ -259,6 +250,11 @@ $$
     The lookback put pays **\$25** while the vanilla put pays **\$10**, so the lookback put pays **\$15 more**.
 
     The lookback put is described as providing "insurance at the best possible price" because its payoff is based on $S_{\min}$, the lowest price the stock ever reached. No matter when the stock hit its trough, the lookback put captures that worst-case level. A vanilla put only captures the price at expiry, which may have recovered from the low. The lookback effectively lets the holder exercise at the moment most favorable for them (the minimum), providing the maximum insurance payout. In this example, even though the stock recovered from 75 to 90 by expiry, the lookback holder still receives the benefit of the 75 level.
+
+---
+
+
+**Exercise 5.** The Goldman-Sosin-Gatto formula for floating-strike lookback calls involves the joint distribution of $(S_T, S_{\min})$. Explain the connection between this joint distribution and the reflection principle for Brownian motion. Why does the analytical formula require continuous monitoring, and what modifications are needed for discrete monitoring?
 
 ??? success "Solution to Exercise 5"
     The Goldman-Sosin-Gatto formula requires the **joint distribution of $(S_T, S_{\min})$** (or equivalently $(W_T, \inf_t W_t)$ under the log transform). This joint distribution is derived from the **reflection principle** for Brownian motion.
@@ -278,6 +274,11 @@ $$
     1. Use Monte Carlo simulation with sufficiently many time steps to approximate continuous monitoring.
     2. Apply the Broadie-Glasserman-Kou correction $S_{\max}^{\text{cont}} \approx S_{\max}^{\text{disc}} \cdot e^{\beta\sigma\sqrt{T/n}}$ to adjust the discrete extremum to an effective continuous value.
     3. Use Spitzer's identity or Wiener-Hopf factorization for exact discrete-monitoring formulas, though these are computationally more involved.
+
+---
+
+
+**Exercise 6.** A partial lookback option only monitors the running maximum over a subinterval $[t_1, t_2] \subset [0, T]$, with payoff $(S_{\max}^{[t_1, t_2]} - K)^+$. Explain why this option is cheaper than a full lookback and more expensive than a vanilla call. Describe how you would price it using Monte Carlo simulation.
 
 ??? success "Solution to Exercise 6"
     **Why cheaper than a full lookback:** The full lookback monitors $S_{\max}^{[0,T]} = \max_{0 \leq t \leq T} S_t$, while the partial lookback monitors $S_{\max}^{[t_1, t_2]}$ over a subinterval. Since $[t_1, t_2] \subset [0, T]$:

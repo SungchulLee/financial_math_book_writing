@@ -240,22 +240,192 @@ The Carr--Madan FFT method provides simultaneous option pricing across a grid of
 
 **Exercise 1.** The European call price $C(k)$ as a function of log-strike $k = \ln K$ is not square-integrable because $C(k) \to S_0 e^{-qT}$ as $k \to -\infty$. Verify this by showing that $\int_{-\infty}^{0}|C(k)|^2\,dk = \infty$ for $C(k) \approx S_0 e^{-qT}$ (constant) on $(-\infty, 0]$. Explain why the damping factor $e^{\alpha k}$ resolves this issue.
 
+??? success "Solution to Exercise 1"
+    For $C(k) \approx S_0 e^{-qT}$ (a positive constant) on $(-\infty, 0]$, consider the integral:
+
+    $$
+    \int_{-\infty}^{0} |C(k)|^2\,dk \approx (S_0 e^{-qT})^2 \int_{-\infty}^{0} dk = \infty
+    $$
+
+    The integrand is a positive constant, and we integrate over a semi-infinite interval, so the integral diverges. Therefore $C(k) \notin L^2(\mathbb{R})$ and the Fourier transform of $C(k)$ does not exist in the $L^2$ sense.
+
+    The damping factor $e^{\alpha k}$ with $\alpha > 0$ resolves this because the modified function $c_T(k) = e^{\alpha k} C(k)$ satisfies:
+
+    $$
+    \int_{-\infty}^{0} |c_T(k)|^2\,dk \approx (S_0 e^{-qT})^2 \int_{-\infty}^{0} e^{2\alpha k}\,dk = (S_0 e^{-qT})^2 \cdot \frac{1}{2\alpha} < \infty
+    $$
+
+    For $k \to +\infty$, the call value $C(k) \to 0$ faster than any exponential for reasonable models, so $e^{\alpha k} C(k) \to 0$ as well. Thus $c_T \in L^2(\mathbb{R})$ and its Fourier transform exists.
+
 ---
 
 **Exercise 2.** Derive the Carr-Madan formula $\psi_T(u) = \frac{e^{-rT}\phi_T(u - (\alpha+1)i)}{(\alpha + iu)(\alpha + 1 + iu)}$ by evaluating the inner integral $\int_{-\infty}^{x}e^{(\alpha + iu)k}(e^x - e^k)\,dk$. Show each step of the integration and verify the denominator simplification.
+
+??? success "Solution to Exercise 2"
+    We evaluate the inner integral by splitting it into two parts:
+
+    $$
+    I = \int_{-\infty}^{x} e^{(\alpha + iu)k}(e^x - e^k)\,dk = e^x \int_{-\infty}^{x} e^{(\alpha + iu)k}\,dk - \int_{-\infty}^{x} e^{(\alpha + 1 + iu)k}\,dk
+    $$
+
+    For the first integral, since $\text{Re}(\alpha + iu) = \alpha > 0$, the exponential vanishes as $k \to -\infty$:
+
+    $$
+    e^x \int_{-\infty}^{x} e^{(\alpha + iu)k}\,dk = e^x \cdot \frac{e^{(\alpha + iu)x}}{\alpha + iu} = \frac{e^{(\alpha + 1 + iu)x}}{\alpha + iu}
+    $$
+
+    For the second integral, since $\text{Re}(\alpha + 1 + iu) = \alpha + 1 > 0$:
+
+    $$
+    \int_{-\infty}^{x} e^{(\alpha + 1 + iu)k}\,dk = \frac{e^{(\alpha + 1 + iu)x}}{\alpha + 1 + iu}
+    $$
+
+    Subtracting:
+
+    $$
+    I = e^{(\alpha + 1 + iu)x}\left(\frac{1}{\alpha + iu} - \frac{1}{\alpha + 1 + iu}\right) = e^{(\alpha + 1 + iu)x} \cdot \frac{(\alpha + 1 + iu) - (\alpha + iu)}{(\alpha + iu)(\alpha + 1 + iu)}
+    $$
+
+    $$
+    = \frac{e^{(\alpha + 1 + iu)x}}{(\alpha + iu)(\alpha + 1 + iu)}
+    $$
+
+    Substituting back into the outer integral:
+
+    $$
+    \psi_T(u) = \frac{e^{-rT}}{(\alpha + iu)(\alpha + 1 + iu)} \int_{-\infty}^{\infty} e^{(\alpha + 1 + iu)x} f(x)\,dx = \frac{e^{-rT}\,\phi_T(u - (\alpha + 1)i)}{(\alpha + iu)(\alpha + 1 + iu)}
+    $$
+
+    The last step uses $\phi_T(u - (\alpha+1)i) = \mathbb{E}[e^{i(u - (\alpha+1)i)\ln S_T}] = \mathbb{E}[e^{iu\ln S_T + (\alpha+1)\ln S_T}] = \int e^{(\alpha+1+iu)x} f(x)\,dx$.
+
+    For the denominator simplification:
+
+    $$
+    (\alpha + iu)(\alpha + 1 + iu) = \alpha(\alpha + 1) + i\alpha u + iu\alpha + iu + i^2 u^2
+    $$
+
+    $$
+    = \alpha^2 + \alpha + 2i\alpha u + iu - u^2 = \alpha^2 + \alpha - u^2 + iu(2\alpha + 1)
+    $$
 
 ---
 
 **Exercise 3.** The integrability condition requires $\mathbb{E}[S_T^{\alpha+1}] < \infty$. For the Black-Scholes model with $\ln S_T \sim N(\mu, \sigma^2 T)$, show that $\mathbb{E}[S_T^p] = \exp(p\mu + p^2\sigma^2 T/2)$, which is finite for all $p$. For the Heston model, explain why there exists a finite upper bound $u^*$ such that $\mathbb{E}[S_T^p] = \infty$ for $p > u^*$, and what this implies for the choice of $\alpha$.
 
+??? success "Solution to Exercise 3"
+    **Black--Scholes model.** Here $\ln S_T \sim N(\mu_T, \sigma^2 T)$ where $\mu_T = \ln S_0 + (r - \sigma^2/2)T$. The $p$-th moment is:
+
+    $$
+    \mathbb{E}[S_T^p] = \mathbb{E}[e^{p \ln S_T}] = \int_{-\infty}^{\infty} e^{px} \frac{1}{\sqrt{2\pi\sigma^2 T}} \exp\!\left(-\frac{(x - \mu_T)^2}{2\sigma^2 T}\right) dx
+    $$
+
+    Completing the square in the exponent: $px - \frac{(x-\mu_T)^2}{2\sigma^2 T} = -\frac{(x - \mu_T - p\sigma^2 T)^2}{2\sigma^2 T} + p\mu_T + \frac{p^2 \sigma^2 T}{2}$.
+
+    The remaining integral is a Gaussian integral equal to 1, so:
+
+    $$
+    \mathbb{E}[S_T^p] = \exp\!\left(p\mu_T + \frac{p^2 \sigma^2 T}{2}\right)
+    $$
+
+    This is finite for all $p \in \mathbb{R}$ because the exponential of any finite number is finite. Therefore all $\alpha > 0$ are valid for the Carr--Madan damping parameter.
+
+    **Heston model.** The characteristic function $\phi_T(u) = \exp(C(u,T) + D(u,T) v_0 + iu\ln S_0)$ involves the Riccati solution $D(u,T)$ which satisfies an ODE. For complex arguments $u - (\alpha+1)i$, the function $D$ contains a discriminant $d = \sqrt{(\rho\sigma_v iu - \kappa)^2 + \sigma_v^2(iu + u^2)}$ that becomes singular at a critical value $u^*$. When $p = \alpha + 1$ exceeds $u^*$, the Riccati ODE explodes in finite time, meaning $D(-ip, T) \to \infty$ and $\mathbb{E}[S_T^p] = \infty$.
+
+    The explosion point $u^*$ depends on the Heston parameters $(\kappa, \theta, \sigma_v, \rho)$ and the maturity $T$. For the damping parameter, we need $\alpha + 1 < u^*$, so $\alpha < u^* - 1$. Typical values of $u^*$ are in the range 3--10, which is why $\alpha \in (0.5, 2)$ is commonly recommended.
+
 ---
 
 **Exercise 4.** The FFT grid relation $\Delta k = 2\pi/(N\eta)$ links the log-strike spacing to the frequency spacing $\eta$ and the grid size $N$. For $N = 4096$ and $\eta = 0.25$, compute $\Delta k$ and the total log-strike range $N\Delta k$. Convert the log-strike range to a strike range centered at $K = 100$ and determine the minimum and maximum strikes on the grid.
+
+??? success "Solution to Exercise 4"
+    With $N = 4096$ and $\eta = 0.25$:
+
+    $$
+    \Delta k = \frac{2\pi}{N\eta} = \frac{2\pi}{4096 \times 0.25} = \frac{2\pi}{1024} \approx 0.006136
+    $$
+
+    The total log-strike range is:
+
+    $$
+    N \cdot \Delta k = 4096 \times 0.006136 \approx 25.13
+    $$
+
+    The log-strike grid is centered around $k = 0$ (corresponding to $K = S_0$), ranging from $k_{\min} = -N\Delta k / 2 \approx -12.57$ to $k_{\max} = N\Delta k / 2 \approx 12.57$.
+
+    Converting to strikes with $K = S_0 e^k$ where $S_0 = 100$:
+
+    $$
+    K_{\min} = 100 \cdot e^{-12.57} \approx 100 \times 3.47 \times 10^{-6} \approx 0.000347
+    $$
+
+    $$
+    K_{\max} = 100 \cdot e^{12.57} \approx 100 \times 288{,}325 \approx 28{,}832{,}500
+    $$
+
+    The practical range of meaningful option prices is much narrower. Near $K = 100$ (i.e., $k \approx 0$), the strike spacing is approximately:
+
+    $$
+    \Delta K \approx K \cdot \Delta k = 100 \times 0.006136 \approx 0.614
+    $$
+
+    So near ATM, strikes are spaced roughly $\$0.61$ apart, which is sufficiently fine for calibration purposes.
 
 ---
 
 **Exercise 5.** Simpson's rule weights $w_j = \frac{\eta}{3}(3 + (-1)^{j+1} - \delta_j)$ improve the discretization from $O(\eta^2)$ to $O(\eta^4)$. Write out the first six weights $w_0, w_1, \ldots, w_5$ explicitly and verify they match the standard Simpson's $1/3$ rule pattern $\{1, 4, 2, 4, 2, 4, \ldots\}/3 \cdot \eta$.
 
+??? success "Solution to Exercise 5"
+    The Simpson weights formula is $w_j = \frac{\eta}{3}(3 + (-1)^{j+1} - \delta_j)$ where $\delta_j = 1$ if $j = 0$ and $0$ otherwise.
+
+    For $j = 0$: $w_0 = \frac{\eta}{3}(3 + (-1)^{1} - 1) = \frac{\eta}{3}(3 - 1 - 1) = \frac{\eta}{3}$
+
+    For $j = 1$: $w_1 = \frac{\eta}{3}(3 + (-1)^{2} - 0) = \frac{\eta}{3}(3 + 1) = \frac{4\eta}{3}$
+
+    For $j = 2$: $w_2 = \frac{\eta}{3}(3 + (-1)^{3} - 0) = \frac{\eta}{3}(3 - 1) = \frac{2\eta}{3}$
+
+    For $j = 3$: $w_3 = \frac{\eta}{3}(3 + (-1)^{4} - 0) = \frac{\eta}{3}(3 + 1) = \frac{4\eta}{3}$
+
+    For $j = 4$: $w_4 = \frac{\eta}{3}(3 + (-1)^{5} - 0) = \frac{\eta}{3}(3 - 1) = \frac{2\eta}{3}$
+
+    For $j = 5$: $w_5 = \frac{\eta}{3}(3 + (-1)^{6} - 0) = \frac{\eta}{3}(3 + 1) = \frac{4\eta}{3}$
+
+    Collecting the weights:
+
+    $$
+    (w_0, w_1, w_2, w_3, w_4, w_5) = \frac{\eta}{3}(1, 4, 2, 4, 2, 4)
+    $$
+
+    This matches the standard Simpson's $1/3$ rule pattern $\{1, 4, 2, 4, 2, 4, \ldots\} \cdot \eta/3$. The pattern is: weight 1 at the first endpoint, then alternating 4 and 2 for interior points. (The last point in a full Simpson rule would have weight 1, but in the FFT context the grid is treated as open-ended.)
+
 ---
 
 **Exercise 6.** Compare the Carr-Madan FFT and COS methods for a calibration problem with 50 market-observed strikes and 1000 optimizer iterations. For each method, estimate the total number of characteristic function evaluations and total arithmetic operations. Under what circumstances would COS (with shared $F_k$) be competitive with Carr-Madan for calibration?
+
+---
+
+??? success "Solution to Exercise 6"
+    **Setup:** 50 market strikes, 1000 optimizer iterations.
+
+    **Carr--Madan FFT:** Each iteration requires one FFT with $N = 4096$ CF evaluations, plus $O(N \log N) = O(4096 \times 12) \approx 49{,}152$ arithmetic operations for the FFT, plus interpolation to the 50 market strikes ($O(50)$ operations). Total over 1000 iterations:
+
+    - CF evaluations: $1000 \times 4096 = 4{,}096{,}000$
+    - FFT operations: $1000 \times 49{,}152 \approx 49{,}152{,}000$
+
+    **COS method:** The density coefficients $F_k$ are shared across strikes (each requires $N$ CF evaluations). For each iteration: $N = 128$ CF evaluations (shared) plus $50 \times 128 = 6{,}400$ multiply-add operations to assemble prices at 50 strikes. Total over 1000 iterations:
+
+    - CF evaluations: $1000 \times 128 = 128{,}000$
+    - Arithmetic operations: $1000 \times 6{,}400 = 6{,}400{,}000$
+
+    **Lewis formula:** Each strike requires an independent integral with $M = 200$ CF evaluations. Total per iteration: $50 \times 200 = 10{,}000$ CF evaluations. Over 1000 iterations:
+
+    - CF evaluations: $1000 \times 10{,}000 = 10{,}000{,}000$
+
+    **Comparison:**
+
+    | Method | Total CF evaluations | Total arithmetic operations |
+    |---|---|---|
+    | Carr--Madan FFT | 4,096,000 | $\approx 49{,}000{,}000$ |
+    | COS ($N = 128$) | 128,000 | $\approx 6{,}400{,}000$ |
+    | Lewis ($M = 200$) | 10,000,000 | $\approx 10{,}000{,}000$ |
+
+    COS with shared $F_k$ is competitive with---and in fact superior to---Carr--Madan for calibration when the number of market strikes is moderate (50 here). The COS method uses 32 times fewer CF evaluations. COS becomes competitive whenever $M_{\text{strikes}} \times N_{\text{cos}} < N_{\text{fft}}$, i.e., $50 \times 128 = 6{,}400 < 4{,}096$. Since $6{,}400 > 4{,}096$, the CF evaluation count per iteration for COS is actually higher for the arithmetic, but the CF evaluations are far fewer (128 vs 4096). The crossover occurs when $M_{\text{strikes}} > N_{\text{fft}} / N_{\text{cos}} = 4096 / 128 = 32$ for arithmetic operations. For fewer than 32 strikes, COS is superior even in arithmetic; for more strikes, the COS arithmetic cost grows but the CF evaluation savings remain substantial since CF evaluations are typically the computational bottleneck.

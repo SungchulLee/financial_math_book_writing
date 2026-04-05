@@ -174,40 +174,6 @@ Dividing by $\widetilde{p} > 0$ and expanding $\partial_{x_j}(a^{ij}\widetilde{p
 
 **Exercise 1.** Let $\mathrm{d}X_t = \mu\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ on $[0, T]$ with $X_0 = x_0$, where $\mu, \sigma$ are constants. The density of $X_t$ is $p(t, x) = \phi(x;\, x_0 + \mu t,\, \sigma^2 t)$ (Gaussian). Compute the score $\partial_x \log p(t, x)$ and substitute into the reversed drift formula to derive the SDE for $\widetilde{X}_t = X_{T-t}$. Show that $\widetilde{X}$ has a Brownian bridge-type drift.
 
----
-
-**Exercise 2.** Consider the Ornstein–Uhlenbeck process $\mathrm{d}X_t = -\theta X_t\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ with $\theta > 0$, started from the invariant distribution $X_0 \sim \mathcal{N}(0, \sigma^2/(2\theta))$. Show that the reversed drift $\widetilde{b}(t, x)$ equals the forward drift $b(x) = -\theta x$, confirming reversibility. What property of the OU process makes this work?
-
----
-
-**Exercise 3.** Let $\mathrm{d}X_t = b(X_t)\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ with constant $\sigma > 0$ and a smooth density $p(t, x) > 0$. Starting from the forward Fokker–Planck equation
-
-$$
-\partial_t p = -\partial_x(b\,p) + \frac{\sigma^2}{2}\,\partial_x^2 p,
-$$
-
-derive the reversed drift formula $\widetilde{b}(t, x) = -b(T-t, x) + \sigma^2\,\partial_x \log p(T-t, x)$ by requiring that the reversed density $\widetilde{p}(t, x) = p(T-t, x)$ satisfies its own Fokker–Planck equation.
-
----
-
-**Exercise 4.** Explain why the reversed Brownian motion $\widetilde{W}_t$ is adapted to the backward filtration $\widetilde{\mathcal{F}}_t = \sigma(X_s : T - t \le s \le T)$ and is generally **not** adapted to the forward filtration $(\mathcal{F}_t)$. Why does this distinction matter when writing the reversed SDE?
-
----
-
-**Exercise 5.** Consider a two-dimensional diffusion with constant diffusion matrix $a = I$ (the $2 \times 2$ identity) and drift $b(x_1, x_2) = (-x_1 + x_2,\, -x_1 - x_2)^\top$. Suppose the process is started from its invariant distribution. Is this process reversible? Compute the reversed drift $\widetilde{b}$ and compare it to $b$.
-
----
-
-**Exercise 6.** In the context of score-based generative models, the forward process is often taken as $\mathrm{d}X_t = -\frac{1}{2}\beta(t)\,X_t\,\mathrm{d}t + \sqrt{\beta(t)}\,\mathrm{d}W_t$ for a noise schedule $\beta(t) > 0$. Write down the reversed SDE using the time-reversal formula. Identify the score term $\nabla_x \log p(t, x)$ that must be learned. Why does the forward process eventually converge to an (approximately) standard Gaussian as $t \to \infty$?
-
----
-
-**Exercise 7.** Explain the connection between time reversal and Doob's $h$-transform. Specifically, for a diffusion with constant $a$ and forward drift $b$, show that the reversed measure on path space can be obtained by an $h$-transform with $h(t, x) = p(T - t, x)$, where $p$ is the forward density. Verify that $h$ is a space-time harmonic function for the adjoint operator.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     With $X_0 = x_0$, the density of $X_t$ is Gaussian: $p(t, x) = \phi(x;\, x_0 + \mu t,\, \sigma^2 t)$, where $\phi(x; m, v) = (2\pi v)^{-1/2}\exp(-(x-m)^2/(2v))$.
 
@@ -249,6 +215,10 @@ derive the reversed drift formula $\widetilde{b}(t, x) = -b(T-t, x) + \sigma^2\,
 
     This is a **Brownian bridge drift**: $\widetilde{X}_0 = X_T \sim \mathcal{N}(x_0 + \mu T, \sigma^2 T)$ and the drift pulls $\widetilde{X}_t$ toward $x_0$ as $t \to T$, so $\widetilde{X}_T = x_0 = X_0$. The process is a Brownian bridge from the forward endpoint back to the forward starting point.
 
+---
+
+**Exercise 2.** Consider the Ornstein–Uhlenbeck process $\mathrm{d}X_t = -\theta X_t\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ with $\theta > 0$, started from the invariant distribution $X_0 \sim \mathcal{N}(0, \sigma^2/(2\theta))$. Show that the reversed drift $\widetilde{b}(t, x)$ equals the forward drift $b(x) = -\theta x$, confirming reversibility. What property of the OU process makes this work?
+
 ??? success "Solution to Exercise 2"
     The OU process has $b(x) = -\theta x$, $a = \sigma^2$. Started from the invariant distribution $X_0 \sim \pi = \mathcal{N}(0, \sigma^2/(2\theta))$, the process is stationary, so $p(t, x) = \pi(x)$ for all $t$.
 
@@ -267,6 +237,16 @@ derive the reversed drift formula $\widetilde{b}(t, x) = -b(T-t, x) + \sigma^2\,
     Therefore $\widetilde{b}(t, x) = -\theta x = b(x)$, confirming that the reversed drift equals the forward drift.
 
     **What makes this work:** The OU process is a **gradient diffusion** — the drift $b(x) = -\theta x = -\nabla V(x)$ with $V(x) = \frac{\theta}{2}x^2$ and constant diffusion $\sigma$. Gradient diffusions with constant noise are **reversible** (satisfy detailed balance) with respect to their invariant measure $\pi \propto e^{-V}$. Reversibility means $(X_t)_{0 \le t \le T} \stackrel{d}{=} (X_{T-t})_{0 \le t \le T}$ when started from $\pi$, which forces $\widetilde{b} = b$. The key property is the self-adjointness of $\mathcal{L}$ in $L^2(\pi)$.
+
+---
+
+**Exercise 3.** Let $\mathrm{d}X_t = b(X_t)\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ with constant $\sigma > 0$ and a smooth density $p(t, x) > 0$. Starting from the forward Fokker–Planck equation
+
+$$
+\partial_t p = -\partial_x(b\,p) + \frac{\sigma^2}{2}\,\partial_x^2 p,
+$$
+
+derive the reversed drift formula $\widetilde{b}(t, x) = -b(T-t, x) + \sigma^2\,\partial_x \log p(T-t, x)$ by requiring that the reversed density $\widetilde{p}(t, x) = p(T-t, x)$ satisfies its own Fokker–Planck equation.
 
 ??? success "Solution to Exercise 3"
     The forward Fokker–Planck equation for $p(t,x)$ is
@@ -313,6 +293,10 @@ derive the reversed drift formula $\widetilde{b}(t, x) = -b(T-t, x) + \sigma^2\,
 
     This completes the derivation of the reversed drift formula. $\square$
 
+---
+
+**Exercise 4.** Explain why the reversed Brownian motion $\widetilde{W}_t$ is adapted to the backward filtration $\widetilde{\mathcal{F}}_t = \sigma(X_s : T - t \le s \le T)$ and is generally **not** adapted to the forward filtration $(\mathcal{F}_t)$. Why does this distinction matter when writing the reversed SDE?
+
 ??? success "Solution to Exercise 4"
     The reversed process $\widetilde{X}_t = X_{T-t}$ is defined by "reading the path backwards." The reversed Brownian motion $\widetilde{W}_t$ is constructed via the Doob–Meyer decomposition of $\widetilde{X}_t$ as a semimartingale with respect to the backward filtration.
 
@@ -321,6 +305,10 @@ derive the reversed drift formula $\widetilde{b}(t, x) = -b(T-t, x) + \sigma^2\,
     $\widetilde{W}_t$ is adapted to $\widetilde{\mathcal{F}}_t$ because it is constructed from the martingale part of $\widetilde{X}$ in the backward decomposition. However, $\widetilde{W}_t$ is generally **not** adapted to the forward filtration $\mathcal{F}_t = \sigma(X_s : 0 \le s \le t)$ because knowing the path from $0$ to $t$ does not determine the reversed martingale increments (which depend on the path from $T-t$ to $T$).
 
     **Why this matters:** The reversed SDE $\mathrm{d}\widetilde{X}_t = \widetilde{b}\,\mathrm{d}t + \sigma\,\mathrm{d}\widetilde{W}_t$ is an Itô equation with respect to $(\widetilde{\mathcal{F}}_t)$, not $(\mathcal{F}_t)$. If one mistakenly uses the forward filtration, the stochastic integral $\int \sigma\,\mathrm{d}\widetilde{W}$ is not well-defined (the integrand must be adapted to the filtration of the driving Brownian motion). Conflating the two filtrations leads to incorrect applications of Itô's formula and erroneous drift calculations.
+
+---
+
+**Exercise 5.** Consider a two-dimensional diffusion with constant diffusion matrix $a = I$ (the $2 \times 2$ identity) and drift $b(x_1, x_2) = (-x_1 + x_2,\, -x_1 - x_2)^\top$. Suppose the process is started from its invariant distribution. Is this process reversible? Compute the reversed drift $\widetilde{b}$ and compare it to $b$.
 
 ??? success "Solution to Exercise 5"
     The drift is $b(x) = (-x^1 + x^2,\, -x^1 - x^2)^\top$, written as $b(x) = Bx$ with $B = \begin{pmatrix}-1&1\\-1&-1\end{pmatrix}$, and $a = I$.
@@ -351,6 +339,10 @@ derive the reversed drift formula $\widetilde{b}(t, x) = -b(T-t, x) + \sigma^2\,
 
     Comparing: $b(x) = Bx$ and $\widetilde{b}(x) = B^\top x$. Since $B \ne B^\top$, the reversed drift differs from the forward drift, confirming non-reversibility. The reversed process has the rotation component flipped (clockwise instead of counterclockwise).
 
+---
+
+**Exercise 6.** In the context of score-based generative models, the forward process is often taken as $\mathrm{d}X_t = -\frac{1}{2}\beta(t)\,X_t\,\mathrm{d}t + \sqrt{\beta(t)}\,\mathrm{d}W_t$ for a noise schedule $\beta(t) > 0$. Write down the reversed SDE using the time-reversal formula. Identify the score term $\nabla_x \log p(t, x)$ that must be learned. Why does the forward process eventually converge to an (approximately) standard Gaussian as $t \to \infty$?
+
 ??? success "Solution to Exercise 6"
     The forward SDE is $\mathrm{d}X_t = -\frac{1}{2}\beta(t)X_t\,\mathrm{d}t + \sqrt{\beta(t)}\,\mathrm{d}W_t$, with time-dependent $b(t,x) = -\frac{1}{2}\beta(t)x$, $\sigma(t) = \sqrt{\beta(t)}$, and $a(t) = \beta(t)$.
 
@@ -375,6 +367,10 @@ derive the reversed drift formula $\widetilde{b}(t, x) = -b(T-t, x) + \sigma^2\,
     $$
 
     As $t \to \infty$, the first term (the "signal") decays to zero provided $\int_0^\infty \beta(s)\,\mathrm{d}s = \infty$. The variance of the second term (the "noise") converges to $\int_0^\infty \beta(s)e^{-\int_s^\infty \beta(r)\,\mathrm{d}r}\,\mathrm{d}s = 1$. Therefore $X_t \to \mathcal{N}(0, I)$ in distribution as $t \to \infty$. The noise schedule $\beta(t)$ controls the rate at which the data distribution is destroyed and replaced by standard Gaussian noise.
+
+---
+
+**Exercise 7.** Explain the connection between time reversal and Doob's $h$-transform. Specifically, for a diffusion with constant $a$ and forward drift $b$, show that the reversed measure on path space can be obtained by an $h$-transform with $h(t, x) = p(T - t, x)$, where $p$ is the forward density. Verify that $h$ is a space-time harmonic function for the adjoint operator.
 
 ??? success "Solution to Exercise 7"
     **Doob's $h$-transform** for a diffusion with generator $\mathcal{L}$ and a positive function $h > 0$ defines a new process with generator

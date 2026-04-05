@@ -512,36 +512,6 @@ See [Multi-Period Binomial Model](multi_period_binomial_model.md) for complete d
 
 **Exercise 1.** Consider a one-period binomial model with $S_0 = 50$, $u = 1.3$, $d = 0.8$, $r = 3\%$, and $\Delta t = 1$. Compute the risk-neutral probability $q$ and verify that $0 < q < 1$. Then price a European call with strike $K = 55$ using the risk-neutral pricing formula.
 
----
-
-**Exercise 2.** In the standard one-period binomial model, prove that the risk-neutral pricing formula $V_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)$ is a **linear** functional of the payoff vector $(H_u, H_d)$. That is, show that for any payoffs $H^{(1)}$, $H^{(2)}$ and scalars $\alpha$, $\beta$:
-
-$$
-V_0(\alpha H^{(1)} + \beta H^{(2)}) = \alpha V_0(H^{(1)}) + \beta V_0(H^{(2)})
-$$
-
-Explain why this property is economically important for pricing portfolios of derivatives.
-
----
-
-**Exercise 3.** A **straddle** consists of a long call and a long put with the same strike $K$. Using the parameters $S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$, and $K = 105$, compute the risk-neutral price of the straddle in two ways: (a) by pricing the straddle payoff directly, and (b) by summing the individual call and put prices. Verify that both methods agree.
-
----
-
-**Exercise 4.** Prove that in the one-period binomial model, the risk-neutral probability $q$ satisfies $0 < q < 1$ if and only if the no-arbitrage condition $d < e^{r\Delta t} < u$ holds. What happens to the pricing formula if $q \leq 0$ or $q \geq 1$?
-
----
-
-**Exercise 5.** A digital put pays $\$1$ if the stock finishes below the strike and $\$0$ otherwise. Using the same parameters as in the text ($S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$, $K = 105$), compute the digital put price. Show that the sum of the digital call price and the digital put price equals $e^{-r\Delta t}$, and explain why this identity must hold.
-
----
-
-**Exercise 6.** Suppose a one-period binomial model has $S_0 = 100$, $u = 1.15$, $d = 0.85$, $r = 2\%$, and $\Delta t = 0.5$. An exotic derivative pays $H = S_{\Delta t}^2 / S_0$ in both states. Compute the risk-neutral price $V_0$ and the replicating portfolio $(\Delta, B)$. Verify that the replication price equals the risk-neutral price.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Given $S_0 = 50$, $u = 1.3$, $d = 0.8$, $r = 3\%$, $\Delta t = 1$.
 
@@ -567,6 +537,16 @@ Explain why this property is economically important for pricing portfolios of de
     C_0 = e^{-0.03}(0.4609 \times 10 + 0.5391 \times 0) = 0.97045 \times 4.609 = 4.47
     $$
 
+---
+
+**Exercise 2.** In the standard one-period binomial model, prove that the risk-neutral pricing formula $V_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)$ is a **linear** functional of the payoff vector $(H_u, H_d)$. That is, show that for any payoffs $H^{(1)}$, $H^{(2)}$ and scalars $\alpha$, $\beta$:
+
+$$
+V_0(\alpha H^{(1)} + \beta H^{(2)}) = \alpha V_0(H^{(1)}) + \beta V_0(H^{(2)})
+$$
+
+Explain why this property is economically important for pricing portfolios of derivatives.
+
 ??? success "Solution to Exercise 2"
     The risk-neutral pricing formula is $V_0(H) = e^{-r\Delta t}(qH_u + (1-q)H_d)$. For payoffs $H^{(1)} = (H_u^{(1)}, H_d^{(1)})$ and $H^{(2)} = (H_u^{(2)}, H_d^{(2)})$ and scalars $\alpha, \beta$:
 
@@ -587,6 +567,10 @@ Explain why this property is economically important for pricing portfolios of de
     $$
 
     **Economic importance:** Linearity means that a portfolio of derivatives can be priced by summing the individual prices. This allows traders to decompose complex payoffs into simpler components (calls, puts, digitals), price each piece separately, and sum. It also implies that hedging a portfolio is equivalent to hedging each component, and that there are no "portfolio effects" in arbitrage-free pricing.
+
+---
+
+**Exercise 3.** A **straddle** consists of a long call and a long put with the same strike $K$. Using the parameters $S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$, and $K = 105$, compute the risk-neutral price of the straddle in two ways: (a) by pricing the straddle payoff directly, and (b) by summing the individual call and put prices. Verify that both methods agree.
 
 ??? success "Solution to Exercise 3"
     With $S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$, $K = 105$, and $q = 0.5043$.
@@ -620,6 +604,10 @@ Explain why this property is economically important for pricing portfolios of de
 
     Note: in this particular example, the straddle pays 15 in both states, making it equivalent to a deterministic payoff. Its price equals $15 \times e^{-r\Delta t}$, which is just the present value of \$15.
 
+---
+
+**Exercise 4.** Prove that in the one-period binomial model, the risk-neutral probability $q$ satisfies $0 < q < 1$ if and only if the no-arbitrage condition $d < e^{r\Delta t} < u$ holds. What happens to the pricing formula if $q \leq 0$ or $q \geq 1$?
+
 ??? success "Solution to Exercise 4"
     The risk-neutral probability is $q = \frac{e^{r\Delta t} - d}{u - d}$.
 
@@ -644,6 +632,10 @@ Explain why this property is economically important for pricing portfolios of de
 
     In both cases, the pricing formula breaks down because no equivalent martingale measure exists.
 
+---
+
+**Exercise 5.** A digital put pays $\$1$ if the stock finishes below the strike and $\$0$ otherwise. Using the same parameters as in the text ($S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$, $K = 105$), compute the digital put price. Show that the sum of the digital call price and the digital put price equals $e^{-r\Delta t}$, and explain why this identity must hold.
+
 ??? success "Solution to Exercise 5"
     A digital put pays $H_u = 0$ (stock above strike) and $H_d = 1$ (stock below strike), with $K = 105$.
 
@@ -664,6 +656,10 @@ Explain why this property is economically important for pricing portfolios of de
     (The small difference is due to rounding.) $\checkmark$
 
     **Why this must hold:** A portfolio of one digital call and one digital put pays \$1 in **every** state (if the stock is above the strike, the digital call pays 1; if below, the digital put pays 1). This combined payoff is equivalent to a zero-coupon bond paying \$1 at maturity. By no-arbitrage, its price must equal $e^{-r\Delta t}$, the discount factor.
+
+---
+
+**Exercise 6.** Suppose a one-period binomial model has $S_0 = 100$, $u = 1.15$, $d = 0.85$, $r = 2\%$, and $\Delta t = 0.5$. An exotic derivative pays $H = S_{\Delta t}^2 / S_0$ in both states. Compute the risk-neutral price $V_0$ and the replicating portfolio $(\Delta, B)$. Verify that the replication price equals the risk-neutral price.
 
 ??? success "Solution to Exercise 6"
     Given $S_0 = 100$, $u = 1.15$, $d = 0.85$, $r = 2\%$, $\Delta t = 0.5$.

@@ -382,32 +382,6 @@ $$
 
 Find all probability vectors $q = (q_1, q_2, q_3)$ with $q_i > 0$ and $\sum q_i = 1$ satisfying $X^T q = 0$. Is the market arbitrage-free? Is it complete?
 
----
-
-**Exercise 2.** Prove the easy direction of the First FTAP in detail: if an equivalent martingale measure $\mathbb{Q}$ exists, then no arbitrage opportunity exists. Your proof should explicitly use the strict positivity of the Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}$.
-
----
-
-**Exercise 3.** In the proof of the First FTAP (Direction 2), the argument constructs a vector $q^* \in \bar{\Delta}_n$ with $X^T q^* = 0$ but possibly $q^*_i = 0$ for some $i$. Explain why the convex combination $q_\varepsilon = (1 - \varepsilon) q^* + \varepsilon p$ does not immediately solve the problem, and describe the iterative refinement used to upgrade $q^*$ to an interior point of the simplex.
-
----
-
-**Exercise 4.** In the Black-Scholes model with $dS_t = \mu S_t\, dt + \sigma S_t\, dW_t$ and constant risk-free rate $r$, compute the market price of risk $\lambda = (\mu - r)/\sigma$. Show that $W^{\mathbb{Q}}_t = W_t + \lambda t$ is a $\mathbb{Q}$-Brownian motion and verify that $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale.
-
----
-
-**Exercise 5.** A one-period market has $n = 4$ states and $d = 2$ risky assets. What is the dimension of $\ker(X^T)$? How many free parameters does the set of EMMs have? How many additional risky assets (with linearly independent payoffs) would be needed to make the market complete?
-
----
-
-**Exercise 6.** Explain the distinction between "no arbitrage" (NA) and "no free lunch with vanishing risk" (NFLVR) in continuous-time models. Why is NFLVR strictly stronger than NA? Provide an intuitive description of a "free lunch with vanishing risk" that is not an outright arbitrage.
-
----
-
-
-## Solutions
-
-
 ??? success "Solution to Exercise 1"
     We need $q = (q_1, q_2, q_3)$ with $q_i > 0$, $\sum q_i = 1$, and $X^T q = 0$. The system $X^T q = 0$ gives two equations:
 
@@ -435,6 +409,9 @@ Find all probability vectors $q = (q_1, q_2, q_3)$ with $q_i > 0$ and $\sum q_i 
 
     Verification: $\operatorname{rank}(X) = 2 = n - 1 = 3 - 1$, confirming completeness by the rank condition.
 
+---
+
+**Exercise 2.** Prove the easy direction of the First FTAP in detail: if an equivalent martingale measure $\mathbb{Q}$ exists, then no arbitrage opportunity exists. Your proof should explicitly use the strict positivity of the Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}$.
 
 ??? success "Solution to Exercise 2"
     Let $\mathbb{Q}$ be an EMM with Radon--Nikodym derivative $Z = d\mathbb{Q}/d\mathbb{P}$, so $Z(\omega) > 0$ for all $\omega$ (since $\mathbb{Q} \sim \mathbb{P}$). The discounted price process $\tilde{S}^i_t = S^i_t / S^0_t$ is a $\mathbb{Q}$-martingale, meaning for any strategy $\theta$:
@@ -457,6 +434,9 @@ Find all probability vectors $q = (q_1, q_2, q_3)$ with $q_i > 0$ and $\sum q_i 
 
     But the martingale property requires $\mathbb{E}^{\mathbb{Q}}[\tilde{V}_T(\theta)] = 0$. This is a contradiction, so no arbitrage can exist. $\square$
 
+---
+
+**Exercise 3.** In the proof of the First FTAP (Direction 2), the argument constructs a vector $q^* \in \bar{\Delta}_n$ with $X^T q^* = 0$ but possibly $q^*_i = 0$ for some $i$. Explain why the convex combination $q_\varepsilon = (1 - \varepsilon) q^* + \varepsilon p$ does not immediately solve the problem, and describe the iterative refinement used to upgrade $q^*$ to an interior point of the simplex.
 
 ??? success "Solution to Exercise 3"
     The convex combination $q_\varepsilon = (1 - \varepsilon)q^* + \varepsilon p$ has all strictly positive components (since $p_i > 0$ and $\varepsilon > 0$), but it satisfies
@@ -477,6 +457,9 @@ Find all probability vectors $q = (q_1, q_2, q_3)$ with $q_i > 0$ and $\sum q_i 
 
     satisfies $X^T q^{**} = 0$ and has support $I \cup I^c$, which is strictly larger than $I$. If $q^{**}$ still has zero components, repeat the procedure. Since $|\Omega| = n$ is finite, after at most $n$ iterations the support covers all states, yielding $q \in \operatorname{int}(\Delta_n)$ with $X^T q = 0$.
 
+---
+
+**Exercise 4.** In the Black-Scholes model with $dS_t = \mu S_t\, dt + \sigma S_t\, dW_t$ and constant risk-free rate $r$, compute the market price of risk $\lambda = (\mu - r)/\sigma$. Show that $W^{\mathbb{Q}}_t = W_t + \lambda t$ is a $\mathbb{Q}$-Brownian motion and verify that $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale.
 
 ??? success "Solution to Exercise 4"
     In the Black--Scholes model, $dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$ with constant $\mu$, $\sigma$, and risk-free rate $r$. The market price of risk is
@@ -515,6 +498,9 @@ Find all probability vectors $q = (q_1, q_2, q_3)$ with $q_i > 0$ and $\sum q_i 
 
     The process $\tilde{S}_t$ is a driftless Ito process (a local martingale) under $\mathbb{Q}$. Since $\tilde{S}_t = S_0 \exp(\sigma W^{\mathbb{Q}}_t - \sigma^2 t/2)$, it is a geometric Brownian motion with zero drift, which is a true martingale (as it is a positive exponential martingale with $\mathbb{E}^{\mathbb{Q}}[\tilde{S}_t] = S_0$ for all $t$). This confirms that $e^{-rt} S_t$ is a $\mathbb{Q}$-martingale.
 
+---
+
+**Exercise 5.** A one-period market has $n = 4$ states and $d = 2$ risky assets. What is the dimension of $\ker(X^T)$? How many free parameters does the set of EMMs have? How many additional risky assets (with linearly independent payoffs) would be needed to make the market complete?
 
 ??? success "Solution to Exercise 5"
     The payoff matrix $X$ is $n \times d = 4 \times 2$. The kernel of $X^T$ has dimension
@@ -539,6 +525,9 @@ Find all probability vectors $q = (q_1, q_2, q_3)$ with $q_i > 0$ and $\sum q_i 
 
     additional risky asset with a payoff vector that is linearly independent of the existing two columns. This would bring $\operatorname{rank}(X) = 3 = n - 1$, making $\dim(\ker(X^T)) = 1$ and the EMM unique.
 
+---
+
+**Exercise 6.** Explain the distinction between "no arbitrage" (NA) and "no free lunch with vanishing risk" (NFLVR) in continuous-time models. Why is NFLVR strictly stronger than NA? Provide an intuitive description of a "free lunch with vanishing risk" that is not an outright arbitrage.
 
 ??? success "Solution to Exercise 6"
     **No Arbitrage (NA)** requires that no single admissible self-financing strategy $\theta$ can achieve $V_0(\theta) = 0$, $V_T(\theta) \geq 0$ a.s., and $\mathbb{P}(V_T(\theta) > 0) > 0$. This rules out exact risk-free profits.

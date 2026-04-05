@@ -1,6 +1,8 @@
 # Black–Scholes PDE via Change of Numéraire
 
 
+This derivation removes the physical drift $\mu$ by **unit normalization**: expressing prices in units of the stock (rather than currency) shifts the drift under Girsanov's theorem, and the martingale condition in the new units produces the PDE. This is not about pricing differently—it is about changing the unit of account and observing that the pricing equation is invariant.
+
 The Black–Scholes PDE can be derived without any delta-hedging or replication argument. Instead, one chooses the **stock as numéraire**, constructs the associated martingale measure via Girsanov's theorem, and imposes the condition that the normalized option price is a martingale. The PDE then emerges from setting the drift of this martingale to zero.
 
 This derivation is conceptually distinct from the classical approaches (self-financing replication, risk-neutral pricing with the money market numéraire) and demonstrates the power of the [change-of-numéraire framework](../../ch01/fundamental_theorem_of_asset_pricing/numeraire_and_change_of_measure.md). The fact that a different numéraire and a different measure yield the same PDE is a concrete manifestation of pricing invariance.
@@ -9,7 +11,7 @@ This derivation is conceptually distinct from the classical approaches (self-fin
 ## Setup
 
 
-We work in the standard Black–Scholes model. Under the physical measure $\mathbb{P}$:
+We work in the standard Black–Scholes model on a filtered probability space $(\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \ge 0}, \mathbb{P})$ satisfying the usual conditions. Under the physical measure $\mathbb{P}$:
 
 $$dS_t = \mu S_t\, dt + \sigma S_t\, dW_t$$
 
@@ -17,7 +19,7 @@ with constant parameters $\mu, \sigma > 0$, and a money market account $B_t = e^
 
 $$dS_t = rS_t\, dt + \sigma S_t\, dW^{\mathbb{Q}}_t$$
 
-We take the **stock** $S_t$ as numéraire and derive the associated measure $\mathbb{Q}^S$, the stock dynamics under $\mathbb{Q}^S$, and ultimately the Black–Scholes PDE.
+We take the **stock** $S_t$ as numéraire. This is valid because $S_t$ is strictly positive and pays no dividends, so its discounted price $S_t e^{-rt}$ is a $\mathbb{Q}$-martingale. (When the stock pays dividends, the ex-dividend price alone is not a valid numéraire; one must use the total return process instead—see Exercise 5.) We derive the associated measure $\mathbb{Q}^S$, the stock dynamics under $\mathbb{Q}^S$, and ultimately the Black–Scholes PDE.
 
 
 ## Step 1: Density Process and Girsanov Transformation
@@ -43,7 +45,7 @@ Therefore
 
 $$\frac{dZ_t}{Z_t} = \sigma\, dW^{\mathbb{Q}}_t$$
 
-This is a driftless geometric Brownian motion: $Z_t = \mathcal{E}(\sigma W^{\mathbb{Q}})_t = \exp(\sigma W^{\mathbb{Q}}_t - \frac{1}{2}\sigma^2 t)$. Since $\mathbb{E}^{\mathbb{Q}}[Z_T] = 1$, the process $Z_t$ is a true martingale and defines a valid probability measure.
+This is a driftless geometric Brownian motion: $Z_t = \exp(\sigma W^{\mathbb{Q}}_t - \frac{1}{2}\sigma^2 t)$, the exponential martingale associated with the constant integrand $\sigma$. Since $\sigma$ is constant, $Z_t$ is a true $\mathbb{Q}$-martingale (not merely a local martingale) and defines a valid probability measure.
 
 ### Girsanov Transformation
 
@@ -61,7 +63,7 @@ Substitute $dW^{\mathbb{Q}}_t = dW^S_t + \sigma\, dt$:
 
 $$dS_t = rS_t\, dt + \sigma S_t\bigl(dW^S_t + \sigma\, dt\bigr) = (r + \sigma^2)S_t\, dt + \sigma S_t\, dW^S_t$$
 
-Under $\mathbb{Q}^S$, the stock drift increases from $r$ to $r + \sigma^2$. This is natural: the density $Z_T \propto S_T e^{-rT}$ up-weights paths where the stock performs well, increasing its expected growth rate.
+Under $\mathbb{Q}^S$, the stock drift increases from $r$ to $r + \sigma^2$. This is natural: the density $Z_T \propto S_T e^{-rT}$ up-weights high-$S_T$ paths, increasing the drift under the new measure.
 
 ### Verification: B_t / S_t Is a Q^S-Martingale
 
@@ -83,21 +85,25 @@ The drift vanishes identically. Therefore
 
 $$d\!\left(\frac{B_t}{S_t}\right) = -\frac{\sigma B_t}{S_t}\, dW^S_t$$
 
-confirming $B_t / S_t$ is a $\mathbb{Q}^S$-martingale. $\checkmark$
+This driftless SDE shows $B_t/S_t$ is a local $\mathbb{Q}^S$-martingale. To confirm it is a true martingale, solve explicitly: $B_t/S_t = (B_0/S_0)\exp(-\sigma W_t^S - \frac{1}{2}\sigma^2 t)$, which is a Doléans-Dade exponential with constant integrand $-\sigma$. Since $\sigma$ is constant, $\mathbb{E}^{\mathbb{Q}^S}[B_t/S_t] = B_0/S_0$ for all $t$ (by the moment generating function of a Gaussian), so the process is a true $\mathbb{Q}^S$-martingale. $\checkmark$
 
 
 ## Step 3: The Martingale Condition for the Normalized Price
 
 
-Let $V(S, t)$ denote the option price as a function of the stock price and time. Under $\mathbb{Q}^S$, the normalized price
+*Under $\mathbb{Q}^S$, any traded asset price normalized by $S_t$ is a martingale.*
 
-$$u(S, t) = \frac{V(S, t)}{S}$$
+Let $V(t, S)$ denote the option price as a function of time and the stock price. We assume $V \in C^{1,2}([0,T) \times (0,\infty))$ with at most polynomial growth. (The PDE holds on $[0,T) \times (0,\infty)$; the terminal condition $V(T, S) = \Phi(S)$ is imposed separately, since typical payoffs such as $(S - K)^+$ are not $C^2$.) These conditions are sufficient for Itô's formula to apply and, in the Black–Scholes setting, for the resulting local martingale to be a true martingale—polynomial growth of $V$ combined with the known moment bounds for GBM (see, e.g., Karatzas and Shreve, 1991, §3.3) provides the needed integrability. Under $\mathbb{Q}^S$, the normalized price
 
-must be a martingale. By Itô's formula applied to the process $u(S_t, t)$, the martingale condition requires the drift to vanish:
+$$u(t, S) = \frac{V(t, S)}{S}$$
+
+must be a martingale. We are not "forcing" a martingale—this is a consequence of no-arbitrage under the chosen numéraire: any no-arbitrage price, when denominated in units of the numéraire, must be a martingale under the associated measure.
+
+By Itô's formula applied to $u(t, S_t)$, the process $u$ is first a local $\mathbb{Q}^S$-martingale. The polynomial growth condition on $V$, combined with known moment bounds for GBM, provides sufficient integrability in the Black–Scholes setting (using known moment bounds for GBM), so in this model the local martingale is a true martingale. The martingale condition requires the drift to vanish:
 
 $$\frac{\partial u}{\partial t} + \mathcal{L}^S u = 0$$
 
-where $\mathcal{L}^S$ is the **infinitesimal generator** of $S_t$ under $\mathbb{Q}^S$:
+where the generator $\mathcal{L}^S$ is:
 
 $$\mathcal{L}^S = (r + \sigma^2)S\, \frac{\partial}{\partial S} + \frac{1}{2}\sigma^2 S^2\, \frac{\partial^2}{\partial S^2}$$
 
@@ -105,9 +111,14 @@ This gives the **PDE for the normalized price**:
 
 $$\frac{\partial u}{\partial t} + (r + \sigma^2)S\, \frac{\partial u}{\partial S} + \frac{1}{2}\sigma^2 S^2\, \frac{\partial^2 u}{\partial S^2} = 0 \qquad (\star)$$
 
+!!! tip "Intuition: changing units"
+    The Radon–Nikodym derivative $Z_T \propto S_T$ reweights paths according to the terminal stock value, tilting the probability measure toward high-$S_T$ outcomes. In this tilted frame, normalized prices $V/S$ are driftless (martingales), and the stock drift shifts to $r + \sigma^2$. When we convert back to $V$, the extra Itô terms cancel exactly with the drift shift. The precise content is the change-of-numéraire theorem, which guarantees the PDE for $V$ is the same regardless of numéraire.
+
 
 ## Step 4: Transform Back to V
 
+
+The PDE $(\star)$ governs the normalized price $u = V/S$ under the stock measure. Now we translate this back into a PDE for the option price $V$ itself, by expressing the derivatives of $u$ in terms of $V$ and substituting.
 
 Since $V = S \cdot u$, express the derivatives of $u$ in terms of $V$:
 
@@ -117,17 +128,7 @@ $$\frac{\partial u}{\partial S} = \frac{1}{S}\frac{\partial V}{\partial S} - \fr
 
 $$\frac{\partial^2 u}{\partial S^2} = \frac{1}{S}\frac{\partial^2 V}{\partial S^2} - \frac{2}{S^2}\frac{\partial V}{\partial S} + \frac{2V}{S^3}$$
 
-Substitute into $(\star)$. We group the contributions of each term:
-
-**First-order term:**
-
-$$(r + \sigma^2)S \cdot \frac{\partial u}{\partial S} = (r + \sigma^2)S\left(\frac{1}{S}\frac{\partial V}{\partial S} - \frac{V}{S^2}\right) = (r + \sigma^2)\frac{\partial V}{\partial S} - (r + \sigma^2)\frac{V}{S}$$
-
-**Second-order term:**
-
-$$\frac{1}{2}\sigma^2 S^2 \cdot \frac{\partial^2 u}{\partial S^2} = \frac{1}{2}\sigma^2 S^2\left(\frac{1}{S}\frac{\partial^2 V}{\partial S^2} - \frac{2}{S^2}\frac{\partial V}{\partial S} + \frac{2V}{S^3}\right) = \frac{1}{2}\sigma^2 S\frac{\partial^2 V}{\partial S^2} - \sigma^2\frac{\partial V}{\partial S} + \frac{\sigma^2 V}{S}$$
-
-**Assemble the PDE** (after multiplying the time-derivative term $\frac{1}{S}\frac{\partial V}{\partial t}$ by $S$, i.e., multiplying the entire equation $(\star)$ through by $S$):
+Substitute into $(\star)$ and multiply through by $S$. Collecting terms:
 
 $$\frac{\partial V}{\partial t} + \underbrace{\bigl[(r + \sigma^2) - \sigma^2\bigr]}_{= \, r} S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} + \underbrace{\bigl[-(r + \sigma^2) + \sigma^2\bigr]}_{= \, -r} V = 0$$
 
@@ -135,7 +136,7 @@ The $\sigma^2$ terms from the stock-measure drift and the Itô correction cancel
 
 $$\boxed{\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0}$$
 
-This is the **Black–Scholes PDE**—derived without any replication or hedging argument.
+This is the **Black–Scholes PDE**—derived without explicitly constructing a replicating portfolio or hedging argument. (The underlying arbitrage-free pricing theory still relies on completeness and replication in the background; the point is that the *derivation method* avoids them.)
 
 !!! note "Pricing invariance"
     The normalized price $u = V/S$ satisfies a PDE with drift coefficient $r + \sigma^2$ (reflecting the stock-measure dynamics), but the option price $V$ itself satisfies the standard Black–Scholes PDE with drift coefficient $r$ (the risk-neutral drift). The cancellation of $\sigma^2$ in the transformation is exact and guaranteed by the change-of-numéraire theorem: different numéraires give different PDEs for the normalized price, but the same PDE for $V$.
@@ -191,6 +192,16 @@ The Black–Scholes formula emerges with a transparent probabilistic interpretat
 ## Summary of the Derivation
 
 
+The following diagram summarizes the logical flow:
+
+```mermaid
+flowchart LR
+    A["Money-market frame<br/>(numéraire B, measure Q)<br/>drift = r"] -->|"Radon–Nikodym<br/>Z = Se⁻ʳᵗ/S₀"| B["Stock frame<br/>(numéraire S, measure Q^S)<br/>drift = r + σ²"]
+    B --> C["Martingale condition<br/>u = V/S has zero drift"]
+    C --> D["PDE for u"]
+    D -->|"transform back (× S)<br/>σ² terms cancel"| E["Black–Scholes PDE<br/>(invariant)"]
+```
+
 The logical structure is:
 
 1. **Choose numéraire**: take $N_t = S_t$ (the stock).
@@ -200,7 +211,7 @@ The logical structure is:
 5. **Impose the martingale condition**: $u = V/S$ satisfies $\partial_t u + \mathcal{L}^S u = 0$.
 6. **Transform back to $V$**: the $\sigma^2$ terms cancel, yielding the Black–Scholes PDE.
 
-This derivation is fundamentally different from the replication approach. It begins with measure theory (Girsanov's theorem, Radon–Nikodym derivatives) rather than self-financing portfolios, and obtains the PDE from a martingale condition rather than a hedging argument. The fact that both approaches yield the same equation reflects the deep connection between no-arbitrage pricing and martingale theory established by the [FTAP](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md).
+This derivation differs from the replication approach in *method*: it begins with measure theory (Girsanov's theorem, Radon–Nikodym derivatives) rather than self-financing portfolios, and obtains the PDE from a martingale condition rather than a hedging argument. Both approaches ultimately rest on the same theoretical foundations: **no-arbitrage** guarantees the existence of an equivalent martingale measure, and **completeness** (which in Black–Scholes is equivalent to the ability to replicate) guarantees its uniqueness and hence the uniqueness of the price. The fact that both approaches yield the same equation reflects this deep connection, established by the [FTAP](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md).
 
 
 ## References
@@ -209,6 +220,8 @@ This derivation is fundamentally different from the replication approach. It beg
 
 - Shreve, S. E. (2004). *Stochastic Calculus for Finance II: Continuous-Time Models.* Springer.
 
+- Karatzas, I. and Shreve, S. E. (1991). *Brownian Motion and Stochastic Calculus.* 2nd edition, Springer.
+
 - Björk, T. (2009). *Arbitrage Theory in Continuous Time.* 3rd edition, Oxford University Press.
 
 ---
@@ -216,26 +229,6 @@ This derivation is fundamentally different from the replication approach. It beg
 ## Exercises
 
 **Exercise 1.** Verify that the density process $Z_t = S_t e^{-rt}/S_0$ is a $\mathbb{Q}$-martingale by showing that $dZ_t / Z_t = \sigma \, dW_t^{\mathbb{Q}}$ (i.e., the drift vanishes under $\mathbb{Q}$). Compute $\mathbb{E}^{\mathbb{Q}}[Z_T]$ and confirm it equals 1.
-
----
-
-**Exercise 2.** Under the stock measure $\mathbb{Q}^S$, the process $u_t = V(t, S_t)/S_t$ is a martingale. Apply Ito's lemma to $u_t$ using the stock dynamics under $\mathbb{Q}^S$ and show that setting the drift of $u_t$ to zero yields the Black-Scholes PDE for $V$.
-
----
-
-**Exercise 3.** Explain why $d_1 \neq d_2$ in the Black-Scholes formula from the change-of-numeraire perspective. Under $\mathbb{Q}^S$, what is the distribution of $\ln S_T$, and how does it differ from the distribution under $\mathbb{Q}$?
-
----
-
-**Exercise 4.** The change-of-numeraire approach does not require constructing a self-financing portfolio. Compare the logical structure of this derivation with the delta-hedging derivation. In particular, identify which assumption (no-arbitrage, completeness, or Girsanov's theorem) plays the role that the hedging argument plays in the classical approach.
-
----
-
-**Exercise 5.** Suppose the stock pays a continuous dividend yield $q$. Repeat the change-of-numeraire derivation with $S_t$ as numeraire and show that the PDE becomes $\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + (r-q)S\frac{\partial V}{\partial S} - rV = 0$.
-
----
-
-## Solutions
 
 ??? success "Solution to Exercise 1"
     Under $\mathbb{Q}$, the stock dynamics are $dS_t = rS_t\, dt + \sigma S_t\, dW_t^{\mathbb{Q}}$. The density process is $Z_t = S_t e^{-rt}/S_0$. Applying the product rule with $e^{-rt}/S_0$ (a deterministic, bounded-variation factor):
@@ -257,6 +250,10 @@ This derivation is fundamentally different from the replication approach. It beg
     $$\mathbb{E}^{\mathbb{Q}}[Z_T] = \mathbb{E}^{\mathbb{Q}}\!\left[\exp\!\left(\sigma W_T^{\mathbb{Q}} - \frac{1}{2}\sigma^2 T\right)\right] = \exp\!\left(-\frac{1}{2}\sigma^2 T\right) \cdot \exp\!\left(\frac{1}{2}\sigma^2 T\right) = 1$$
 
     where we used the moment generating function $\mathbb{E}[e^{aW_T}] = e^{a^2 T/2}$. Since $\mathbb{E}^{\mathbb{Q}}[Z_T] = 1$, the process $Z_t$ is a true $\mathbb{Q}$-martingale and defines a valid probability measure $\mathbb{Q}^S$.
+
+---
+
+**Exercise 2.** Under the stock measure $\mathbb{Q}^S$, the process $u_t = V(t, S_t)/S_t$ is a martingale. Apply Ito's lemma to $u_t$ using the stock dynamics under $\mathbb{Q}^S$ and show that setting the drift of $u_t$ to zero yields the Black-Scholes PDE for $V$.
 
 ??? success "Solution to Exercise 2"
     Under $\mathbb{Q}^S$, the stock dynamics are $dS_t = (r + \sigma^2)S_t\, dt + \sigma S_t\, dW_t^S$. The normalized price is $u_t = V(t, S_t)/S_t$. Apply Itô's formula to $u(t, S) = V(t, S)/S$. We need the partial derivatives:
@@ -289,6 +286,10 @@ This derivation is fundamentally different from the replication approach. It beg
 
     This is the Black–Scholes PDE.
 
+---
+
+**Exercise 3.** Explain why $d_1 \neq d_2$ in the Black-Scholes formula from the change-of-numeraire perspective. Under $\mathbb{Q}^S$, what is the distribution of $\ln S_T$, and how does it differ from the distribution under $\mathbb{Q}$?
+
 ??? success "Solution to Exercise 3"
     The quantities $d_1$ and $d_2$ differ because they are computed under different probability measures, $\mathbb{Q}^S$ and $\mathbb{Q}$ respectively, and these measures assign different drifts to $\ln S_T$.
 
@@ -310,6 +311,10 @@ This derivation is fundamentally different from the replication approach. It beg
 
     The difference $d_1 - d_2 = \sigma\sqrt{\tau}$ arises because the Radon–Nikodym derivative $d\mathbb{Q}^S/d\mathbb{Q} \propto S_T e^{-rT}$ up-weights paths where the stock ends high, shifting the mean of $\ln S_T$ upward and increasing the in-the-money probability.
 
+---
+
+**Exercise 4.** The change-of-numeraire approach does not require constructing a self-financing portfolio. Compare the logical structure of this derivation with the delta-hedging derivation. In particular, identify which assumption (no-arbitrage, completeness, or Girsanov's theorem) plays the role that the hedging argument plays in the classical approach.
+
 ??? success "Solution to Exercise 4"
     **Delta-hedging derivation:** Constructs a portfolio $\Pi = V - \Delta S$, applies Itô's formula under $\mathbb{P}$, chooses $\Delta = \partial V / \partial S$ to eliminate the $dW$ term, then invokes the no-arbitrage condition $d\Pi = r\Pi\, dt$. The key ingredients are: (i) a self-financing (or freeze-and-rebalance) portfolio construction, (ii) the ability to trade continuously, and (iii) the no-arbitrage principle.
 
@@ -322,35 +327,70 @@ This derivation is fundamentally different from the replication approach. It beg
 
     Both approaches implicitly rely on **completeness** (to ensure uniqueness of the pricing measure) and **no-arbitrage** (to ensure existence of the measure). However, the change-of-numéraire approach makes the measure-theoretic structure explicit—Girsanov's theorem is the mathematical tool that plays the role of the hedging argument.
 
-??? success "Solution to Exercise 5"
-    With a continuous dividend yield $q$, the stock price satisfies $dS_t = (r - q)S_t\, dt + \sigma S_t\, dW_t^{\mathbb{Q}}$ under the risk-neutral measure $\mathbb{Q}$. The total return process (reinvesting dividends) is $\tilde{S}_t = e^{qt} S_t$, and the money market account is $B_t = e^{rt}$.
+---
 
-    **Density process.** Using $S_t$ as numéraire, the density from $\mathbb{Q}$ to $\mathbb{Q}^S$ is:
+**Exercise 5.** Suppose the stock pays a continuous dividend yield $q$. The ex-dividend stock price alone is not a valid numéraire (its discounted price is not a $\mathbb{Q}$-martingale). Instead, use the **total return process** $\tilde{S}_t = e^{qt}S_t$ as numéraire, normalize by $\tilde{S}_t$, and show that the Black–Scholes PDE becomes $\frac{\partial V}{\partial t} + (r-q)S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0$.
+
+??? success "Solution to Exercise 5"
+    With a continuous dividend yield $q$, the stock price satisfies $dS_t = (r - q)S_t\, dt + \sigma S_t\, dW_t^{\mathbb{Q}}$ under $\mathbb{Q}$. The total return process $\tilde{S}_t = e^{qt} S_t$ satisfies $d\tilde{S}_t = r\tilde{S}_t\, dt + \sigma\tilde{S}_t\, dW_t^{\mathbb{Q}}$, so its discounted price $\tilde{S}_t e^{-rt}$ is a $\mathbb{Q}$-martingale, making $\tilde{S}_t$ a valid numéraire.
+
+    **Density process.** The density from $\mathbb{Q}$ to $\mathbb{Q}^{\tilde{S}}$ is:
 
     $$Z_t = \frac{\tilde{S}_t / \tilde{S}_0}{B_t / B_0} = \frac{e^{qt} S_t e^{-rt}}{S_0} = \frac{S_t e^{-(r-q)t}}{S_0}$$
 
-    Apply Itô's formula. Since $dS_t = (r-q)S_t\, dt + \sigma S_t\, dW_t^{\mathbb{Q}}$:
+    Since $dZ_t/Z_t = \sigma\, dW_t^{\mathbb{Q}}$ (the $(r-q)\, dt$ terms cancel), $Z_t$ is a $\mathbb{Q}$-martingale.
 
-    $$dZ_t = \frac{e^{-(r-q)t}}{S_0}\, dS_t - \frac{(r-q)S_t e^{-(r-q)t}}{S_0}\, dt = \sigma Z_t\, dW_t^{\mathbb{Q}}$$
+    **Girsanov transformation.** Define $W_t^{\tilde{S}} = W_t^{\mathbb{Q}} - \sigma t$, a $\mathbb{Q}^{\tilde{S}}$-Brownian motion.
 
-    The $(r-q)\, dt$ terms cancel, so $dZ_t/Z_t = \sigma\, dW_t^{\mathbb{Q}}$ and $Z_t$ is a $\mathbb{Q}$-martingale.
+    **Stock dynamics under $\mathbb{Q}^{\tilde{S}}$.** Substituting $dW_t^{\mathbb{Q}} = dW_t^{\tilde{S}} + \sigma\, dt$:
 
-    **Girsanov transformation.** Define $W_t^S = W_t^{\mathbb{Q}} - \sigma t$, which is a $\mathbb{Q}^S$-Brownian motion.
+    $$dS_t = (r - q + \sigma^2)S_t\, dt + \sigma S_t\, dW_t^{\tilde{S}}$$
 
-    **Stock dynamics under $\mathbb{Q}^S$.** Substituting $dW_t^{\mathbb{Q}} = dW_t^S + \sigma\, dt$:
+    **Martingale condition.** The normalized price under the numéraire $\tilde{S}_t$ is $u = V/\tilde{S}_t = e^{-qt}V/S$. This must be a $\mathbb{Q}^{\tilde{S}}$-martingale. We compute the partial derivatives of $u(t, S) = e^{-qt}V(t,S)/S$:
 
-    $$dS_t = (r - q)S_t\, dt + \sigma S_t(dW_t^S + \sigma\, dt) = (r - q + \sigma^2)S_t\, dt + \sigma S_t\, dW_t^S$$
+    $$\frac{\partial u}{\partial t} = e^{-qt}\!\left(\frac{1}{S}\frac{\partial V}{\partial t} - \frac{qV}{S}\right)$$
 
-    **Martingale condition.** The normalized price $u = V/S$ must be a $\mathbb{Q}^S$-martingale. By Itô's formula, the drift of $u(t, S_t)$ must vanish:
+    $$\frac{\partial u}{\partial S} = e^{-qt}\!\left(\frac{1}{S}\frac{\partial V}{\partial S} - \frac{V}{S^2}\right)$$
 
-    $$\frac{\partial u}{\partial t} + (r - q + \sigma^2)S\frac{\partial u}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 u}{\partial S^2} = 0$$
+    $$\frac{\partial^2 u}{\partial S^2} = e^{-qt}\!\left(\frac{1}{S}\frac{\partial^2 V}{\partial S^2} - \frac{2}{S^2}\frac{\partial V}{\partial S} + \frac{2V}{S^3}\right)$$
 
-    **Transform back to $V$.** Substituting the derivatives of $u = V/S$ in terms of $V$ (identical to the non-dividend case) and multiplying through by $S$:
+    Setting the drift of $u(t, S_t)$ to zero, factoring out $e^{-qt}$, and multiplying through by $S$:
 
-    $$\frac{\partial V}{\partial t} + \bigl[(r - q + \sigma^2) - \sigma^2\bigr]S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + \bigl[-(r - q + \sigma^2) + \sigma^2\bigr]V = 0$$
+    $$\frac{\partial V}{\partial t} - qV + \bigl[(r-q+\sigma^2) - \sigma^2\bigr]S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} + \bigl[-(r-q+\sigma^2) + \sigma^2\bigr]V = 0$$
 
-    The $\sigma^2$ terms cancel:
+    Collecting the $V$ terms: $-q - (r-q) = -r$. The $\sigma^2$ terms cancel in both brackets, yielding:
 
     $$\frac{\partial V}{\partial t} + (r-q)S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0$$
 
-    This is the Black–Scholes PDE with continuous dividend yield $q$, where the drift coefficient is $r - q$ and the discounting term remains $-rV$.
+    This is the Black–Scholes PDE with continuous dividend yield $q$. The discounting coefficient is $-rV$ (not $-(r-q)V$) because the extra $-qV$ from differentiating $e^{-qt}$ in the normalization combines with $-(r-q)V$ from the spatial terms to produce $-rV$.
+
+---
+
+**Exercise 6.** Price a European call option directly using the stock measure $\mathbb{Q}^S$. Show that the call price can be written as $C = S\,\mathbb{Q}^S(S_T > K) - Ke^{-r\tau}\,\mathbb{Q}(S_T > K)$, evaluate both probabilities using the distributions of $\ln S_T$ under each measure, and verify that the result is $C = S\,\mathcal{N}(d_1) - Ke^{-r\tau}\,\mathcal{N}(d_2)$.
+
+??? success "Solution to Exercise 6"
+    The risk-neutral pricing formula for a European call with $\tau = T - t$ is:
+
+    $$C = e^{-r\tau}\,\mathbb{E}^{\mathbb{Q}}\!\left[(S_T - K)^+\right] = e^{-r\tau}\,\mathbb{E}^{\mathbb{Q}}\!\left[S_T \mathbf{1}_{\{S_T > K\}}\right] - Ke^{-r\tau}\,\mathbb{Q}(S_T > K)$$
+
+    **Second term.** Under $\mathbb{Q}$, $\ln S_T \sim \mathcal{N}\!\left(\ln S + (r - \tfrac{1}{2}\sigma^2)\tau,\; \sigma^2\tau\right)$. Writing $\ln S_T = \ln S + (r - \tfrac{1}{2}\sigma^2)\tau + \sigma\sqrt{\tau}\,Z$ with $Z \sim \mathcal{N}(0,1)$:
+
+    $$\mathbb{Q}(S_T > K) = \mathbb{Q}\!\left(Z > \frac{\ln(K/S) - (r - \tfrac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}\right) = \mathcal{N}(d_2)$$
+
+    where $d_2 = \frac{\ln(S/K) + (r - \tfrac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}$.
+
+    **First term via change of numéraire.** Using the density $Z_T = S_T e^{-rT}/S_0$:
+
+    $$e^{-r\tau}\,\mathbb{E}^{\mathbb{Q}}\!\left[S_T \mathbf{1}_{\{S_T > K\}}\right] = S\,\mathbb{E}^{\mathbb{Q}^S}\!\left[\mathbf{1}_{\{S_T > K\}}\right] = S\,\mathbb{Q}^S(S_T > K)$$
+
+    Under $\mathbb{Q}^S$, the stock dynamics are $dS_t = (r + \sigma^2)S_t\,dt + \sigma S_t\,dW_t^S$, so $\ln S_T \sim \mathcal{N}\!\left(\ln S + (r + \tfrac{1}{2}\sigma^2)\tau,\; \sigma^2\tau\right)$. Therefore:
+
+    $$\mathbb{Q}^S(S_T > K) = \mathcal{N}(d_1)$$
+
+    where $d_1 = \frac{\ln(S/K) + (r + \tfrac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}} = d_2 + \sigma\sqrt{\tau}$.
+
+    **Combining:**
+
+    $$C = S\,\mathcal{N}(d_1) - Ke^{-r\tau}\,\mathcal{N}(d_2)$$
+
+    This is the Black–Scholes call formula. The change-of-numéraire viewpoint makes the structure transparent: $\mathcal{N}(d_1)$ is the probability of finishing in the money under $\mathbb{Q}^S$ (the stock measure), while $\mathcal{N}(d_2)$ is the same probability under $\mathbb{Q}$ (the money-market measure). The two $d$-values differ by $\sigma\sqrt{\tau}$ because the stock drift is $\sigma^2$ higher under $\mathbb{Q}^S$.

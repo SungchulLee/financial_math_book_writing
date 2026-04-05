@@ -126,40 +126,6 @@ by the ordinary Markov property at the deterministic time $k/2^n$.
 
 **Exercise 1.** Let $(W_t)_{t \ge 0}$ be a standard Brownian motion and define $\tau_a = \inf\{t \ge 0 : W_t = a\}$ for $a > 0$. Using the strong Markov property, show that $B_t := W_{\tau_a + t} - a$ is a standard Brownian motion independent of $\mathcal{F}_{\tau_a}$. Explain why the ordinary Markov property at a fixed time is insufficient for this conclusion.
 
----
-
-**Exercise 2.** Let $D = (-1, 1) \subset \mathbb{R}$ and let $W_t$ be a standard Brownian motion started at $x \in D$. Define the exit time $\tau_D = \inf\{t \ge 0 : W_t \notin D\}$. Using the strong Markov property and the fact that $f(x) = x$ is harmonic, compute $\mathbb{E}^x[W_{\tau_D}]$. Then use $g(x) = x^2 - t$ (which satisfies $\mathcal{L}g = 0$ for BM) to find $\mathbb{E}^x[\tau_D]$.
-
----
-
-**Exercise 3.** Let $\tau$ be a stopping time with $\mathbb{P}(\tau < \infty) = 1$. Define the discrete approximation $\tau_n = \lceil 2^n \tau \rceil / 2^n$. Show that $\tau_n$ is a stopping time, $\tau_n \ge \tau$, and $\tau_n \downarrow \tau$ as $n \to \infty$. Explain why right-continuity of the filtration $(\mathcal{F}_t)$ is needed in Step 3 of the proof to conclude $\bigcap_n \mathcal{F}_{\tau_n} = \mathcal{F}_\tau$.
-
----
-
-**Exercise 4.** Give an example of a Markov process that satisfies the ordinary Markov property at all fixed times but fails the strong Markov property at some stopping time. (Hint: consider a process whose transition mechanism depends on the time parameter in a discontinuous way.)
-
----
-
-**Exercise 5.** Using the reflection principle (which follows from the strong Markov property), compute
-
-$$
-\mathbb{P}\!\left(\max_{0 \le s \le t} W_s \ge a,\; W_t \le b\right)
-$$
-
-for $a > 0$ and $b < a$, where $W$ is a standard Brownian motion. Express your answer in terms of the standard normal CDF $\Phi$.
-
----
-
-**Exercise 6.** Let $X_t$ solve $\mathrm{d}X_t = -\theta X_t\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ with $\theta > 0$ (Ornstein–Uhlenbeck process). Let $\tau = \inf\{t \ge 0 : X_t = c\}$ for some level $c$. Explain why the strong Markov property guarantees that the post-$\tau$ process $(X_{\tau + t})_{t \ge 0}$, conditioned on $\mathcal{F}_\tau$, behaves like an OU process started from $c$. What property of the OU semigroup (related to Feller continuity) is needed?
-
----
-
-**Exercise 7.** Explain the distinction between the strong Markov property and the optional sampling theorem. Construct a scenario involving a submartingale $Y_t$ and a stopping time $\tau$ where the optional sampling theorem applies but the strong Markov property is not relevant, and vice versa.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Let $\tau_a = \inf\{t \ge 0 : W_t = a\}$ with $a > 0$. Define $B_t := W_{\tau_a + t} - W_\tau = W_{\tau_a + t} - a$.
 
@@ -168,6 +134,10 @@ for $a > 0$ and $b < a$, where $W$ is a standard Brownian motion. Express your a
     To verify the defining properties: (1) $B_0 = 0$; (2) for $0 \le s < t$, the increment $B_t - B_s = W_{\tau_a + t} - W_{\tau_a + s}$ is independent of $\mathcal{F}_{\tau_a + s}$ (and hence of $\mathcal{F}_{\tau_a}$) and is $\mathcal{N}(0, t-s)$; (3) $B$ has continuous paths since $W$ does.
 
     **Why the ordinary Markov property is insufficient:** The ordinary Markov property holds at **fixed** (deterministic) times $s$. But $\tau_a$ is a **random** time that depends on the entire trajectory of $W$ up to the moment it hits $a$. The event $\{\tau_a = t\}$ belongs to $\mathcal{F}_t$ and depends on the path history, so we cannot simply apply the Markov property at a fixed time. We need the extension to stopping times — the strong Markov property — which requires right-continuity of the filtration.
+
+---
+
+**Exercise 2.** Let $D = (-1, 1) \subset \mathbb{R}$ and let $W_t$ be a standard Brownian motion started at $x \in D$. Define the exit time $\tau_D = \inf\{t \ge 0 : W_t \notin D\}$. Using the strong Markov property and the fact that $f(x) = x$ is harmonic, compute $\mathbb{E}^x[W_{\tau_D}]$. Then use $g(x) = x^2 - t$ (which satisfies $\mathcal{L}g = 0$ for BM) to find $\mathbb{E}^x[\tau_D]$.
 
 ??? success "Solution to Exercise 2"
     **Computing $\mathbb{E}^x[W_{\tau_D}]$:** The function $f(x) = x$ is harmonic for Brownian motion ($\mathcal{L}f = \frac{1}{2}f'' = 0$), so $M_t = W_{t \wedge \tau_D}$ is a martingale (by the optional sampling theorem / strong Markov property). Since $W$ exits $D = (-1,1)$ at either $-1$ or $+1$:
@@ -196,6 +166,10 @@ for $a > 0$ and $b < a$, where $W$ is a standard Brownian motion. Express your a
     \mathbb{E}^x[\tau_D] = 1 - x^2
     $$
 
+---
+
+**Exercise 3.** Let $\tau$ be a stopping time with $\mathbb{P}(\tau < \infty) = 1$. Define the discrete approximation $\tau_n = \lceil 2^n \tau \rceil / 2^n$. Show that $\tau_n$ is a stopping time, $\tau_n \ge \tau$, and $\tau_n \downarrow \tau$ as $n \to \infty$. Explain why right-continuity of the filtration $(\mathcal{F}_t)$ is needed in Step 3 of the proof to conclude $\bigcap_n \mathcal{F}_{\tau_n} = \mathcal{F}_\tau$.
+
 ??? success "Solution to Exercise 3"
     **$\tau_n$ is a stopping time:** For any $t \ge 0$, the event $\{\tau_n \le t\} = \{\lceil 2^n \tau \rceil / 2^n \le t\} = \{\tau \le \lfloor 2^n t \rfloor / 2^n\}$. Since $\lfloor 2^n t \rfloor / 2^n$ is a deterministic value and $\tau$ is a stopping time, $\{\tau \le \lfloor 2^n t \rfloor / 2^n\} \in \mathcal{F}_{\lfloor 2^n t \rfloor / 2^n} \subseteq \mathcal{F}_t$. So $\tau_n$ is a stopping time.
 
@@ -204,6 +178,10 @@ for $a > 0$ and $b < a$, where $W$ is a standard Brownian motion. Express your a
     **$\tau_n \downarrow \tau$:** We have $\tau_n - \tau \le 1/2^n$ since $\lceil k \rceil - k < 1$ for any real $k$. Therefore $\tau_n \to \tau$ as $n \to \infty$.
 
     **Why right-continuity is needed:** We have $\mathcal{F}_{\tau_n} \supseteq \mathcal{F}_\tau$ for all $n$ (since $\tau_n \ge \tau$), so $\bigcap_n \mathcal{F}_{\tau_n} \supseteq \mathcal{F}_\tau$. For the reverse inclusion, we need $\bigcap_n \mathcal{F}_{\tau_n} \subseteq \mathcal{F}_\tau$. Since $\tau_n \downarrow \tau$, the stopped $\sigma$-algebras satisfy $\bigcap_n \mathcal{F}_{\tau_n} = \mathcal{F}_{\tau+}$ (the right-limit $\sigma$-algebra). Right-continuity of the filtration means $\mathcal{F}_{\tau+} = \mathcal{F}_\tau$, which gives $\bigcap_n \mathcal{F}_{\tau_n} = \mathcal{F}_\tau$. Without right-continuity, $\mathcal{F}_{\tau+}$ could be strictly larger than $\mathcal{F}_\tau$, and the backward martingale convergence argument in Step 3 would not yield the strong Markov property at $\tau$.
+
+---
+
+**Exercise 4.** Give an example of a Markov process that satisfies the ordinary Markov property at all fixed times but fails the strong Markov property at some stopping time. (Hint: consider a process whose transition mechanism depends on the time parameter in a discontinuous way.)
 
 ??? success "Solution to Exercise 4"
     Consider the following process on $\mathbb{R}$. Let $\xi$ be a uniform random variable on $[0,1]$, and define
@@ -219,6 +197,16 @@ for $a > 0$ and $b < a$, where $W$ is a standard Brownian motion. Express your a
     A cleaner example: let $(Y_t)_{t \ge 0}$ be defined as follows. Let $U \sim \text{Uniform}(0,1)$ and set $Y_t = 0$ for $t \le U$, and for $t > U$ define $Y_t$ to follow one of two deterministic trajectories depending on the **fractional part** of $U$ in a fine way that is invisible at fixed times but revealed at the jump time $\tau = U$.
 
     More concretely, a classical counterexample uses a **non-Feller** Markov chain in continuous time. Let the state space be $\{0,1,2\}$ with transition rates that depend on time in a discontinuous manner: from state $0$, the process jumps to state $1$ at rate $q(t) = \mathbf{1}_{\mathbb{Q}}(t)$ and to state $2$ at rate $1 - q(t)$. At any fixed time $t$, the transition probabilities are well-defined and the Markov property holds. But at the stopping time $\tau = \inf\{t : X_t \ne 0\}$, the jump destination reveals whether $\tau$ is rational or irrational — information not determined by $X_\tau$ alone — so the strong Markov property fails.
+
+---
+
+**Exercise 5.** Using the reflection principle (which follows from the strong Markov property), compute
+
+$$
+\mathbb{P}\!\left(\max_{0 \le s \le t} W_s \ge a,\; W_t \le b\right)
+$$
+
+for $a > 0$ and $b < a$, where $W$ is a standard Brownian motion. Express your answer in terms of the standard normal CDF $\Phi$.
 
 ??? success "Solution to Exercise 5"
     For $a > 0$ and $b < a$, define $\tau_a = \inf\{s : W_s = a\}$. By the strong Markov property, $(W_{\tau_a + s} - a)_{s \ge 0}$ is a standard BM independent of $\mathcal{F}_{\tau_a}$.
@@ -255,6 +243,10 @@ for $a > 0$ and $b < a$, where $W$ is a standard Brownian motion. Express your a
 
     where $\Phi$ is the standard normal CDF.
 
+---
+
+**Exercise 6.** Let $X_t$ solve $\mathrm{d}X_t = -\theta X_t\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ with $\theta > 0$ (Ornstein–Uhlenbeck process). Let $\tau = \inf\{t \ge 0 : X_t = c\}$ for some level $c$. Explain why the strong Markov property guarantees that the post-$\tau$ process $(X_{\tau + t})_{t \ge 0}$, conditioned on $\mathcal{F}_\tau$, behaves like an OU process started from $c$. What property of the OU semigroup (related to Feller continuity) is needed?
+
 ??? success "Solution to Exercise 6"
     The Ornstein–Uhlenbeck process $\mathrm{d}X_t = -\theta X_t\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ with $\theta > 0$ has coefficients $b(x) = -\theta x$ and $\sigma(x) = \sigma$ that are globally Lipschitz with linear growth. By the standard existence and uniqueness theorem, the SDE has a unique strong solution.
 
@@ -267,6 +259,10 @@ for $a > 0$ and $b < a$, where $W$ is a standard Brownian motion. Express your a
     $$
 
     The post-$\tau$ process $(X_{\tau+t})_{t \ge 0}$, conditioned on $\mathcal{F}_\tau$, behaves as an OU process started from $c$, independent of the pre-$\tau$ history. The key property is **Feller continuity** of the semigroup — the continuity $x \mapsto P_t f(x)$ ensures the restart argument works at the random location $X_\tau = c$.
+
+---
+
+**Exercise 7.** Explain the distinction between the strong Markov property and the optional sampling theorem. Construct a scenario involving a submartingale $Y_t$ and a stopping time $\tau$ where the optional sampling theorem applies but the strong Markov property is not relevant, and vice versa.
 
 ??? success "Solution to Exercise 7"
     **The strong Markov property** concerns the **conditional law** of the future process given $\mathcal{F}_\tau$: it states $\mathbb{E}[\varphi(X_{\tau+t}) \mid \mathcal{F}_\tau] = \mathbb{E}^{X_\tau}[\varphi(X_t)]$. It is a property of **Markov processes** and applies to the full path after $\tau$.

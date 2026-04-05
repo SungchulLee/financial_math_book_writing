@@ -265,26 +265,216 @@ The Hull-White drift function $\theta(t) = f'(0,t) + af(0,t) + \frac{\sigma^2}{2
 
 **Exercise 1.** For a flat forward curve $f(0,t) = 0.04$ with $a = 0.10$ and $\sigma = 0.015$, compute $\theta(t)$ at $t = 0, 1, 5, 20$. Verify that $\theta(0) = a \times 0.04 = 0.004$ and identify the asymptotic value $\theta(\infty)$.
 
+??? success "Solution to Exercise 1"
+    With $f(0,t) = 0.04$, $a = 0.10$, $\sigma = 0.015$:
+
+    $$
+    \theta(t) = f'(0,t) + a\,f(0,t) + \frac{\sigma^2}{2a}(1 - e^{-2at})
+    $$
+
+    Since $f(0,t) = 0.04$ is constant, $f'(0,t) = 0$.
+
+    $$
+    \theta(t) = 0.10 \times 0.04 + \frac{(0.015)^2}{2 \times 0.10}(1 - e^{-0.20t}) = 0.004 + 0.001125(1 - e^{-0.20t})
+    $$
+
+    **At $t = 0$:** $\theta(0) = 0.004 + 0.001125 \times 0 = 0.004 = a \times 0.04$. Verified.
+
+    **At $t = 1$:** $e^{-0.20} = 0.8187$, so $\theta(1) = 0.004 + 0.001125 \times 0.1813 = 0.004 + 0.000204 = 0.004204$.
+
+    **At $t = 5$:** $e^{-1.0} = 0.3679$, so $\theta(5) = 0.004 + 0.001125 \times 0.6321 = 0.004 + 0.000711 = 0.004711$.
+
+    **At $t = 20$:** $e^{-4.0} = 0.01832$, so $\theta(20) = 0.004 + 0.001125 \times 0.98168 = 0.004 + 0.001104 = 0.005104$.
+
+    **Asymptotic value:** As $t \to \infty$, $e^{-2at} \to 0$:
+
+    $$
+    \theta(\infty) = 0.004 + 0.001125 = 0.005125 = ar_0 + \frac{\sigma^2}{2a}
+    $$
+
+    | $t$ | $\theta(t)$ |
+    |:---:|:---:|
+    | 0 | 0.00400 |
+    | 1 | 0.00420 |
+    | 5 | 0.00471 |
+    | 20 | 0.00510 |
+    | $\infty$ | 0.00513 |
+
 ---
 
 **Exercise 2.** Explain why the convexity correction $\frac{\sigma^2}{2a}(1 - e^{-2at})$ is needed in the formula for $\theta(t)$. Relate it to Jensen's inequality and the difference between $\mathbb{E}[e^{-X}]$ and $e^{-\mathbb{E}[X]}$ for a Gaussian $X$.
+
+??? success "Solution to Exercise 2"
+    The convexity correction arises from the nonlinearity of the exponential function in bond pricing.
+
+    The bond price is:
+
+    $$
+    P(0,T) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_0^T r_s\,ds}\right]
+    $$
+
+    The integrated short rate $X = \int_0^T r_s\,ds$ is Gaussian. By Jensen's inequality, since $g(x) = e^{-x}$ is convex:
+
+    $$
+    \mathbb{E}[e^{-X}] > e^{-\mathbb{E}[X]}
+    $$
+
+    For a Gaussian $X \sim \mathcal{N}(\mu_X, \sigma_X^2)$, the exact relationship is:
+
+    $$
+    \mathbb{E}[e^{-X}] = e^{-\mu_X + \frac{1}{2}\sigma_X^2}
+    $$
+
+    The gap between $\mathbb{E}[e^{-X}]$ and $e^{-\mathbb{E}[X]}$ is the factor $e^{\frac{1}{2}\sigma_X^2}$, which is always greater than 1.
+
+    This means the model forward rate $f^{\text{model}}(0,t) = -\frac{d}{dt}\ln P(0,t)$ equals $\mathbb{E}[r_t]$ minus a variance correction. To ensure $f^{\text{model}}(0,t) = f^M(0,t)$, the drift $\theta(t)$ must push $\mathbb{E}[r_t]$ above $f^M(0,t)$ by exactly the convexity correction. This is the term $\frac{\sigma^2}{2a}(1 - e^{-2at})$, which grows from 0 to $\frac{\sigma^2}{2a}$ as $t$ increases, reflecting the growing cumulative variance of the integrated short rate.
 
 ---
 
 **Exercise 3.** Consider a Nelson-Siegel forward curve with $\beta_0 = 0.05$, $\beta_1 = -0.02$, $\beta_2 = 0.03$, and $\lambda_{\text{NS}} = 0.5$. Compute $\theta(t)$ for the Hull-White model with $a = 0.05$ and $\sigma = 0.01$ at $t = 2$ and $t = 10$.
 
+??? success "Solution to Exercise 3"
+    The Nelson-Siegel forward curve is $f(0,t) = \beta_0 + \beta_1 e^{-\lambda_{\text{NS}} t} + \beta_2 \lambda_{\text{NS}} t\,e^{-\lambda_{\text{NS}} t}$ with $\beta_0 = 0.05$, $\beta_1 = -0.02$, $\beta_2 = 0.03$, $\lambda_{\text{NS}} = 0.5$.
+
+    Its derivative is:
+
+    $$
+    f'(0,t) = -\beta_1 \lambda_{\text{NS}} e^{-\lambda_{\text{NS}} t} + \beta_2 \lambda_{\text{NS}} e^{-\lambda_{\text{NS}} t}(1 - \lambda_{\text{NS}} t)
+    $$
+
+    $$
+    = e^{-0.5t}\!\left[(-(-0.02))(0.5) + (0.03)(0.5)(1 - 0.5t)\right] = e^{-0.5t}\!\left[0.01 + 0.015(1 - 0.5t)\right]
+    $$
+
+    $$
+    = e^{-0.5t}(0.025 - 0.0075t)
+    $$
+
+    Hull-White parameters: $a = 0.05$, $\sigma = 0.01$.
+
+    **At $t = 2$:**
+
+    $f(0,2) = 0.05 + (-0.02)e^{-1} + 0.03 \times 0.5 \times 2 \times e^{-1} = 0.05 - 0.007358 + 0.011036 = 0.05368$
+
+    $f'(0,2) = e^{-1}(0.025 - 0.015) = 0.3679 \times 0.01 = 0.003679$
+
+    Convexity: $\frac{(0.01)^2}{0.10}(1 - e^{-0.20}) = 0.001 \times 0.1813 = 0.000181$
+
+    $$
+    \theta(2) = 0.003679 + 0.05 \times 0.05368 + 0.000181 = 0.003679 + 0.002684 + 0.000181 = 0.006544
+    $$
+
+    **At $t = 10$:**
+
+    $f(0,10) = 0.05 + (-0.02)e^{-5} + 0.03 \times 0.5 \times 10 \times e^{-5} = 0.05 - 0.000135 + 0.001012 = 0.05088$
+
+    $f'(0,10) = e^{-5}(0.025 - 0.075) = 0.006738 \times (-0.05) = -0.000337$
+
+    Convexity: $\frac{(0.01)^2}{0.10}(1 - e^{-1.0}) = 0.001 \times 0.6321 = 0.000632$
+
+    $$
+    \theta(10) = -0.000337 + 0.05 \times 0.05088 + 0.000632 = -0.000337 + 0.002544 + 0.000632 = 0.002839
+    $$
+
 ---
 
 **Exercise 4.** Suppose the forward curve is given at discrete points $f(0, t_i)$ for $i = 0, 1, \ldots, 30$ (annual spacing). Describe two methods for computing $f'(0, t_i)$: (i) central finite differences, (ii) fitting a smooth curve first. Discuss the advantages of each approach.
+
+??? success "Solution to Exercise 4"
+    **Method (i): Central finite differences.** Given discrete forward rates $f(0, t_i)$ at annual spacing $\Delta t = 1$:
+
+    $$
+    f'(0, t_i) \approx \frac{f(0, t_{i+1}) - f(0, t_{i-1})}{2\Delta t} = \frac{f(0, t_{i+1}) - f(0, t_{i-1})}{2}
+    $$
+
+    At the boundaries, use forward/backward differences: $f'(0, t_0) \approx \frac{f(0,t_1) - f(0,t_0)}{\Delta t}$.
+
+    *Advantages:* Simple to implement, no parametric assumptions. *Disadvantages:* Amplifies noise in the data (differentiation is an ill-posed operation). If the bootstrapped $f(0,t_i)$ has noise of magnitude $\epsilon$, the finite difference has error $O(\epsilon/\Delta t)$, which can be large. The resulting $\theta(t)$ may be oscillatory or even negative.
+
+    **Method (ii): Smooth curve fitting.** Fit a parametric model (e.g., Nelson-Siegel or Svensson) or a smoothing spline to the forward rates, then differentiate analytically:
+
+    $$
+    f'(0,t) = \frac{d}{dt}f_{\text{fitted}}(0,t)
+    $$
+
+    *Advantages:* Produces a smooth $\theta(t)$ that avoids spurious oscillations. The derivative is as smooth as the fitted curve. For Nelson-Siegel, the derivative is available in closed form.
+
+    *Disadvantages:* Introduces model risk from the parametric choice. The fit may not exactly reproduce all market prices, introducing small calibration errors. Overfitting (too many parameters) can reintroduce noise, while underfitting (too few parameters) misses genuine curve features.
+
+    In practice, method (ii) is strongly preferred because the derivative $f'(0,t)$ directly enters $\theta(t)$ and thus the short rate simulation. An oscillatory $\theta(t)$ creates artificial mean-reversion targets, leading to unrealistic short rate paths.
 
 ---
 
 **Exercise 5.** Show that in the Ho-Lee limit ($a \to 0$), the formula reduces to $\theta(t) = f'(0,t) + \sigma^2 t$. Verify that this is consistent with the Ho-Lee model $dr_t = \theta(t)\,dt + \sigma\,dW_t$.
 
+??? success "Solution to Exercise 5"
+    In the Ho-Lee limit $a \to 0$, we take limits of each term.
+
+    **Term 1:** $f'(0,t)$ is independent of $a$, so it remains $f'(0,t)$.
+
+    **Term 2:** $a \cdot f(0,t) \to 0$ as $a \to 0$.
+
+    **Term 3:** Using the Taylor expansion $e^{-2at} \approx 1 - 2at + 2a^2t^2 - \cdots$ for small $a$:
+
+    $$
+    \frac{\sigma^2}{2a}(1 - e^{-2at}) = \frac{\sigma^2}{2a}\!\left[2at - 2a^2t^2 + \cdots\right] = \sigma^2 t - \sigma^2 a t^2 + \cdots \to \sigma^2 t
+    $$
+
+    Therefore:
+
+    $$
+    \theta(t) \to f'(0,t) + 0 + \sigma^2 t = f'(0,t) + \sigma^2 t
+    $$
+
+    **Consistency with Ho-Lee:** The Ho-Lee model is $dr_t = \theta(t)\,dt + \sigma\,dW_t$ (no mean reversion). Its forward rate is $f^{\text{HL}}(0,t) = r_0 + \int_0^t \theta(s)\,ds - \frac{1}{2}\sigma^2 t^2$. Setting $f^{\text{HL}}(0,t) = f^M(0,t)$ and differentiating:
+
+    $$
+    \theta(t) = f'(0,t) + \sigma^2 t
+    $$
+
+    which matches the $a \to 0$ limit of the Hull-White formula. The $\sigma^2 t$ term is the Ho-Lee convexity correction, which grows linearly without bound (since there is no mean reversion to limit the variance growth).
+
 ---
 
 **Exercise 6.** Verify the exact fit by substituting $\theta(t)$ into $P(0,T) = \exp(A(0,T) - \hat{B}(0,T)r_0)$ and showing that $P(0,T) = P^M(0,T)$. Which terms cancel and why?
 
+??? success "Solution to Exercise 6"
+    The Hull-White bond price at $t = 0$ is $P(0,T) = e^{A(0,T) - \hat{B}(0,T)r_0}$ where $\hat{B}(0,T) = \frac{1-e^{-aT}}{a}$.
+
+    The function $A(0,T)$ is determined by $\theta(t)$. From the derivation, $A(0,T)$ is constructed so that when $\theta(t) = f'(0,t) + af(0,t) + \frac{\sigma^2}{2a}(1-e^{-2at})$:
+
+    $$
+    A(0,T) = \ln P^M(0,T) + \hat{B}(0,T) r_0
+    $$
+
+    Substituting into the bond price formula:
+
+    $$
+    P(0,T) = \exp\!\left(\ln P^M(0,T) + \hat{B}(0,T) r_0 - \hat{B}(0,T) r_0\right) = P^M(0,T)
+    $$
+
+    The $\hat{B}(0,T) r_0$ terms cancel exactly, leaving $P(0,T) = P^M(0,T)$.
+
+    **Why the cancellation occurs:** The bond price formula has the form $e^{A - \hat{B}r_0}$. The function $A$ is derived by integrating $\theta(t)$ (which depends on $f(0,t) = -\partial_t \ln P^M(0,t)$) through the Riccati equations. The $\theta$ formula is chosen precisely so that $A$ absorbs the market term structure $\ln P^M(0,T)$ and leaves a residual $\hat{B}r_0$ that cancels with the $-\hat{B}r_0$ from the short rate dependence. This is the defining property that makes $\theta(t)$ unique.
+
 ---
 
 **Exercise 7.** Discuss the practical challenges of computing $\theta(t)$ from real market data. What happens when the bootstrapped forward curve has kinks or discontinuities? How do these affect the stability of the short rate simulation?
+
+??? success "Solution to Exercise 7"
+    **Kinks in the forward curve:** If the bootstrapped forward curve $f(0,t)$ has kinks (discontinuities in $f'(0,t)$), then $f'(0,t)$ has jumps. Since $\theta(t) = f'(0,t) + af(0,t) + \frac{\sigma^2}{2a}(1-e^{-2at})$, $\theta(t)$ inherits these jumps. This causes:
+
+    - Abrupt changes in the mean-reversion target $\theta(t)/a$, creating artificial regime changes in the simulated short rate
+    - Discontinuities in the conditional mean $\mathbb{E}[r_t | r_0]$, which may produce unrealistic yield curve dynamics
+
+    **Discontinuities in $f(0,t)$:** If $f(0,t)$ itself is discontinuous (e.g., from a piecewise-constant bootstrap), then $f'(0,t)$ contains Dirac delta functions, making $\theta(t)$ undefined at jump points. In discrete implementations, this manifests as extremely large values of $\theta$ near the discontinuity, causing numerical instability.
+
+    **Practical mitigations:**
+
+    - Smooth the forward curve before computing $\theta(t)$: fit Nelson-Siegel, Svensson, or cubic splines
+    - Use monotone or tension splines that avoid spurious oscillations
+    - Verify that the smoothed curve reproduces market prices within bid-ask tolerances
+    - Monitor $\theta(t)$ for sign changes or extreme values as a diagnostic
+    - For Monte Carlo, test that simulated bond prices $\hat{P}(0,T) = \mathbb{E}[e^{-\int_0^T r_s\,ds}]$ match $P^M(0,T)$ to within acceptable error
+
+    The fundamental tension is that differentiation amplifies noise while calibration requires exact derivatives. A smooth parametric curve resolves this but introduces parametric model risk.

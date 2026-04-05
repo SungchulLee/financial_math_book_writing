@@ -259,22 +259,147 @@ The CFL condition is a necessary evil for explicit schemes. Its severity for the
 
 **Exercise 1.** For the advection equation $u_t + cu_x = 0$ with $c = 2$, $\Delta x = 0.1$, and $\Delta t = 0.04$, compute the Courant number $\nu = |c|\Delta t/\Delta x$. Is the CFL condition satisfied? What is the maximum allowable $\Delta t$?
 
+??? success "Solution to Exercise 1"
+    The Courant number is:
+
+    $$
+    \nu = \frac{|c|\Delta t}{\Delta x} = \frac{2 \times 0.04}{0.1} = \frac{0.08}{0.1} = 0.8
+    $$
+
+    Since $\nu = 0.8 \leq 1$, the CFL condition **is satisfied**.
+
+    The maximum allowable $\Delta t$ is obtained by setting $\nu = 1$:
+
+    $$
+    \Delta t_{\max} = \frac{\Delta x}{|c|} = \frac{0.1}{2} = 0.05
+    $$
+
 ---
 
 **Exercise 2.** For the Black-Scholes PDE in original coordinates with $\sigma = 0.25$, $S_{\max} = 400$, and $M = 200$ ($\Delta S = 2$), compute the CFL restriction on $\Delta\tau$. How many time steps are needed for $T = 1$? Repeat the calculation in log-price coordinates with the same number of spatial points and compare.
+
+??? success "Solution to Exercise 2"
+    **In original coordinates** with $\sigma = 0.25$, $S_{\max} = 400$, $M = 200$, so $\Delta S = S_{\max}/M = 400/200 = 2$:
+
+    $$
+    \Delta\tau \leq \frac{(\Delta S)^2}{\sigma^2 S_{\max}^2} = \frac{(2)^2}{(0.25)^2 \times (400)^2} = \frac{4}{0.0625 \times 160{,}000} = \frac{4}{10{,}000} = 4 \times 10^{-4}
+    $$
+
+    Time steps needed for $T = 1$:
+
+    $$
+    N \geq \frac{1}{4 \times 10^{-4}} = 2{,}500
+    $$
+
+    **In log-price coordinates** with the same $M = 200$ spatial points. The log-price range is $[x_{\min}, x_{\max}] = [\ln(S_{\min}), \ln(S_{\max})]$. Taking $S_{\min} \approx S_{\max}e^{-x_{\text{range}}}$ and using a comparable range, we get $\Delta x = (\ln S_{\max} - \ln S_{\min})/M$. For a typical range $\ln(400) - \ln(0.01) \approx 10.6$, we get $\Delta x \approx 10.6/200 = 0.053$. The CFL condition is:
+
+    $$
+    \Delta\tau \leq \frac{(\Delta x)^2}{\sigma^2} = \frac{(0.053)^2}{(0.25)^2} = \frac{2.81 \times 10^{-3}}{0.0625} \approx 0.045
+    $$
+
+    Time steps needed:
+
+    $$
+    N \geq \frac{1}{0.045} \approx 23
+    $$
+
+    The log-price formulation requires roughly 100 times fewer time steps (23 vs. 2,500), because the CFL bound is independent of $S_{\max}$.
 
 ---
 
 **Exercise 3.** The explicit scheme coefficients for the Black-Scholes PDE are $a_j = \frac{\Delta\tau}{2}(\sigma^2 j^2 - rj)$, $b_j = 1 - \Delta\tau(\sigma^2 j^2 + r)$, $c_j = \frac{\Delta\tau}{2}(\sigma^2 j^2 + rj)$. Rewrite the scheme as a convex combination of neighboring values and show that non-negativity of all three coefficients is equivalent to the CFL condition plus $j \geq r/\sigma^2$.
 
+??? success "Solution to Exercise 3"
+    The explicit scheme is $u_j^{n+1} = a_j u_{j-1}^n + b_j u_j^n + c_j u_{j+1}^n$ with:
+
+    $$
+    a_j = \frac{\Delta\tau}{2}(\sigma^2 j^2 - rj), \quad b_j = 1 - \Delta\tau(\sigma^2 j^2 + r), \quad c_j = \frac{\Delta\tau}{2}(\sigma^2 j^2 + rj)
+    $$
+
+    Note that $a_j + b_j + c_j = 1 - r\Delta\tau$. After accounting for the $-ru$ term (which gives a factor $(1-r\Delta\tau)$ per step), the scheme is a convex combination if all three coefficients are non-negative.
+
+    **Non-negativity of $c_j$**: Since $c_j = \frac{\Delta\tau}{2}(\sigma^2 j^2 + rj)$ and $j \geq 1$, $r > 0$, $\sigma > 0$, we always have $c_j > 0$.
+
+    **Non-negativity of $a_j$**: We need $\sigma^2 j^2 - rj \geq 0$, i.e., $j(\sigma^2 j - r) \geq 0$. For $j \geq 1$, this requires $j \geq r/\sigma^2$.
+
+    **Non-negativity of $b_j$**: We need $1 - \Delta\tau(\sigma^2 j^2 + r) \geq 0$, i.e.:
+
+    $$
+    \Delta\tau \leq \frac{1}{\sigma^2 j^2 + r}
+    $$
+
+    The most restrictive constraint occurs at $j = M$ (the largest node):
+
+    $$
+    \Delta\tau \leq \frac{1}{\sigma^2 M^2 + r}
+    $$
+
+    This is precisely the CFL condition. Thus, non-negativity of all three coefficients requires both the CFL condition ($b_j \geq 0$ for all $j$) and $j \geq r/\sigma^2$ ($a_j \geq 0$). The latter condition means that for small $j$ (near $S = 0$), the coefficient $a_j$ can be negative regardless of $\Delta\tau$. This is a convection-related issue, not a CFL issue, and is remedied by upwind differencing at affected nodes.
+
 ---
 
 **Exercise 4.** For the accuracy-matched time step strategy with Crank-Nicolson, the error is $O((\Delta\tau)^2 + (\Delta S)^2)$. If $M = 200$ and $S_{\max} = 300$ (so $\Delta S = 1.5$), what value of $N$ balances the temporal and spatial errors? Compare this to the CFL-required $N$ for the explicit scheme.
+
+??? success "Solution to Exercise 4"
+    With $M = 200$ and $S_{\max} = 300$, the spatial step is $\Delta S = 300/200 = 1.5$.
+
+    For Crank-Nicolson, the error is $O((\Delta\tau)^2 + (\Delta S)^2)$. Balancing temporal and spatial errors:
+
+    $$
+    (\Delta\tau)^2 \sim (\Delta S)^2 \implies \Delta\tau \sim \Delta S = 1.5
+    $$
+
+    This gives $N = T/\Delta\tau = 1/1.5 \approx 1$, which is unrealistically coarse. A more practical interpretation is that for a given target accuracy $\epsilon$, we need $(\Delta S)^2 \sim \epsilon$ and $(\Delta\tau)^2 \sim \epsilon$. With $\Delta S = 1.5$, $(\Delta S)^2 = 2.25$, so we want $(\Delta\tau)^2 \approx 2.25$, giving $\Delta\tau \approx 1.5$ and $N \approx 1$.
+
+    In practice, one typically takes $N \sim M$, so $N \approx 200$ with $\Delta\tau = 1/200 = 0.005$. This ensures both errors are of comparable magnitude at fine resolution.
+
+    **Comparison to explicit CFL**: The explicit scheme requires:
+
+    $$
+    \Delta\tau \leq \frac{(\Delta S)^2}{\sigma^2 S_{\max}^2}
+    $$
+
+    With $\sigma = 0.3$: $\Delta\tau \leq (1.5)^2 / ((0.3)^2 \times (300)^2) = 2.25/8100 \approx 2.78 \times 10^{-4}$, requiring $N \geq 3{,}600$. Crank-Nicolson needs only about 200 time steps for comparable accuracy, a factor of 18 fewer.
 
 ---
 
 **Exercise 5.** Explain the "explicit scheme trap": why does doubling the spatial resolution ($M \to 2M$) increase the total computational cost of the explicit scheme by a factor of 8, while the implicit scheme's cost only increases by a factor of 4?
 
+??? success "Solution to Exercise 5"
+    **Why work scales as $8\times$ for explicit**: Let the original grid have $M$ spatial points and $N$ time steps. The CFL condition requires $N = O(M^2)$ since $\Delta\tau \leq C(\Delta S)^2$ and $\Delta S = S_{\max}/M$. The cost per time step is $O(M)$ (one pass through the grid), so total cost is $O(M \cdot N) = O(M \cdot M^2) = O(M^3)$.
+
+    When we double $M \to 2M$:
+
+    - $\Delta S$ is halved, so the CFL condition forces $\Delta\tau \to \Delta\tau/4$ (since $\Delta\tau \propto (\Delta S)^2$)
+    - The number of time steps becomes $4N$
+    - The cost per step doubles to $O(2M)$
+    - Total cost: $O(2M \cdot 4N) = 8 \cdot O(MN)$
+
+    Hence doubling spatial resolution increases work by a factor of 8.
+
+    **Why work scales as $4\times$ for implicit**: The implicit scheme is unconditionally stable, so $N$ is chosen for accuracy, not stability. With accuracy-matched time stepping, $N \sim M$ (or $N$ is held fixed). Cost per step is $O(M)$ (tridiagonal solve). Total cost: $O(M \cdot N) = O(M^2)$.
+
+    When $M \to 2M$:
+
+    - $N \to 2N$ (to maintain accuracy matching)
+    - Cost per step: $O(2M)$
+    - Total cost: $O(2M \cdot 2N) = 4 \cdot O(MN)$
+
+    Hence doubling spatial resolution increases work by a factor of 4.
+
 ---
 
 **Exercise 6.** The Rannacher start strategy uses 2-4 implicit steps followed by Crank-Nicolson. If the implicit steps use the same $\Delta\tau$ as the Crank-Nicolson steps, what fraction of the total computation time is spent on implicit steps when $N = 200$? Does this overhead significantly affect efficiency?
+
+??? success "Solution to Exercise 6"
+    With $N = 200$ total time steps and 4 implicit (Rannacher) steps at the start, followed by 196 Crank-Nicolson steps:
+
+    The fraction of steps that are implicit is:
+
+    $$
+    \frac{4}{200} = 0.02 = 2\%
+    $$
+
+    Both the implicit and Crank-Nicolson steps require solving a tridiagonal system at each step, which has cost $O(M)$. The per-step cost is essentially the same for both methods (the only difference is the right-hand side assembly, which is trivial). Therefore, the implicit steps account for approximately 2% of the total computation time.
+
+    This overhead is negligible and does not significantly affect efficiency. The benefit — restoring smooth second-order convergence for non-smooth payoffs — far outweighs the cost. Even with the most conservative choice of 4 implicit half-steps (where each Crank-Nicolson step is replaced by two implicit half-steps), the overhead would be $8/204 \approx 4\%$, still negligible.

@@ -2,6 +2,15 @@
 
 Changing the **numéraire** (unit of account) provides a powerful and elegant framework for derivative pricing. Each choice of numéraire corresponds to a different equivalent martingale measure, and selecting the right numéraire often dramatically simplifies pricing formulas.
 
+The risk-neutral measure $\mathbb{Q}$ uses the money market account $B_t$ as numéraire.
+But there is nothing special about $B_t$: any strictly positive traded asset can serve as
+the unit of value. Changing the numéraire is equivalent to **changing the unit in which
+all prices are measured**. Just as switching from dollars to euros does not alter the
+economic content of a trade, switching from $B_t$ to a bond $P(t,T)$ or a stock $S_t$
+does not change which strategies are arbitrage-free --- it only changes the probability
+measure under which relative prices are martingales. Choosing the right unit often
+turns a difficult pricing problem into a simple one.
+
 ---
 
 ## The Numéraire Concept
@@ -29,13 +38,19 @@ $$
 
 ## The Fundamental Theorem for Numéraires
 
-**Theorem**: Let $N_t$ be any positive traded asset (numéraire). There exists a probability measure $\mathbb{Q}^N$ equivalent to $\mathbb{P}$ such that for **any** traded asset $S_t$:
+**Theorem**: Let $N_t$ be any positive traded asset (numéraire). There exists (under the absence of arbitrage in the sense of NFLVR and the Fundamental Theorem of Asset Pricing) a probability measure $\mathbb{Q}^N$ equivalent to $\mathbb{P}$ such that for **any** traded asset $S_t$:
 
 $$
 \boxed{
 \frac{S_t}{N_t} \text{ is a } \mathbb{Q}^N\text{-martingale}
 }
 $$
+
+The intuition is direct: if $N_t$ is the unit of value, then no-arbitrage requires every
+asset price expressed in that unit to have zero expected excess return --- that is,
+zero drift, which is exactly the martingale property. If this were not true, one could
+construct a trading strategy that generates profit in units of the numéraire without
+risk, violating no-arbitrage.
 
 ### General Pricing Formula
 
@@ -61,7 +76,12 @@ $$
 }
 $$
 
-**Interpretation**: The likelihood ratio is the relative performance of the two numéraires.
+**Interpretation**: The likelihood ratio equals the relative performance of the two
+numéraires. Paths on which $N$ outperforms $M$ receive higher weight under
+$\mathbb{Q}^N$ than under $\mathbb{Q}^M$, and vice versa. A one-step intuition: if the
+only traded assets are $M$ and $N$, then $N_t / M_t$ must be a $\mathbb{Q}^M$-martingale.
+Multiplying by $M_0 / N_0$ produces the Radon-Nikodym derivative $Z_T$, which is
+therefore itself a $\mathbb{Q}^M$-martingale with expectation 1.
 
 ### Special Case: Money Market to Bond
 
@@ -233,6 +253,17 @@ This leads to Black's model for swaptions.
 
 ## Summary
 
+!!! abstract "The master pricing principle"
+
+    All derivative pricing reduces to three steps:
+
+    1. **Choose** a numéraire $N_t$.
+    2. **Find** the associated measure $\mathbb{Q}^N$ under which $S_t / N_t$ is a martingale.
+    3. **Price**: $V_t = N_t\,\mathbb{E}^{\mathbb{Q}^N}[\Phi_T / N_T \mid \mathcal{F}_t]$.
+
+    Everything else --- Black-Scholes, Black's formula, Margrabe, caplet pricing --- is a
+    particular choice of convenience.
+
 $$
 \boxed{
 V_t = N_t \cdot \mathbb{E}^{\mathbb{Q}^N}\left[\frac{\Phi_T}{N_T} \;\middle|\; \mathcal{F}_t\right]
@@ -246,6 +277,10 @@ $$
 | Measure change formula | $d\mathbb{Q}^N/d\mathbb{Q}^M = (N_T/N_0)/(M_T/M_0)$ |
 | Right numéraire simplifies pricing | Choose to make payoff simple |
 
+All numéraire-induced measures are **equivalent** to one another and to $\mathbb{P}$:
+they agree on which events are possible and differ only in how they weight outcomes.
+The choice of numéraire is a choice of perspective, not of economic content.
+
 **Numéraire techniques are essential for interest rate derivatives, FX options, and multi-asset problems.**
 
 ---
@@ -254,40 +289,6 @@ $$
 
 **Exercise 1.**
 Verify the change-of-numeraire formula: if $M_t = B_t$ (money market) and $N_t = P(t,T)$ (zero-coupon bond), write $d\mathbb{Q}^T / d\mathbb{Q}|_{\mathcal{F}_T}$ and show that it equals $e^{-\int_0^T r_s\,ds} / P(0,T)$. Confirm that this is a valid Radon-Nikodym derivative by showing its $\mathbb{Q}$-expectation is 1.
-
----
-
-**Exercise 2.**
-Under the stock measure $\mathbb{Q}^S$ (numeraire $N_t = S_t$), a European put option with payoff $(K - S_T)^+$ has price $V_t = S_t \cdot \mathbb{E}^{\mathbb{Q}^S}[(K/S_T - 1)^+ | \mathcal{F}_t]$. Explain why this formulation is useful, and describe how the distribution of $1/S_T$ under $\mathbb{Q}^S$ differs from the distribution of $S_T$ under $\mathbb{Q}$.
-
----
-
-**Exercise 3.**
-For Black's formula, a call on a forward contract has price $C_t = P(t,T)[F_t\Phi(d_1) - K\Phi(d_2)]$. Verify that as $\sigma_F \to 0$, the formula reduces to $C_t = P(t,T)\max(F_t - K, 0)$. What is the interpretation of this limit?
-
----
-
-**Exercise 4.**
-In the exchange option (Margrabe's formula), the price is $V_t = S_t^1\Phi(d_1) - S_t^2\Phi(d_2)$. Explain why the risk-free rate $r$ does not appear. Compute $V_0$ for $S_0^1 = 100$, $S_0^2 = 95$, $\sigma_1 = 0.20$, $\sigma_2 = 0.25$, $\rho = 0.5$, and $T = 1$.
-
----
-
-**Exercise 5.**
-Under the money market numeraire, $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$. Under the stock measure, $dS_t = (r + \sigma^2)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}^S}$. Derive the drift change $r \to r + \sigma^2$ using the Girsanov kernel implicit in the numeraire change from $B_t$ to $S_t$.
-
----
-
-**Exercise 6.**
-The annuity numeraire is $A(t) = \sum_{i=1}^n \tau_i P(t, T_i)$. Under the swap measure $\mathbb{Q}^A$, the swap rate $S(t) = (P(t,T_0) - P(t,T_n))/A(t)$ is a martingale. Explain why this makes Black's model applicable to swaptions. What assumption about the swap rate distribution is needed?
-
----
-
-**Exercise 7.**
-Consider a quanto option: a European call on a foreign stock $S_t^f$ with strike $K$, where the payoff $(S_T^f - K)^+$ is paid in domestic currency. The relevant numeraire is the foreign money market account converted to domestic currency: $N_t = B_t^f X_t$. Write the pricing formula under the corresponding measure and explain what "quanto adjustment" is needed for the drift of $S_t^f$.
-
----
-
-## Solutions
 
 ??? success "Solution to Exercise 1"
     With $M_t = B_t$ and $N_t = P(t,T)$, the change-of-numéraire formula gives:
@@ -314,6 +315,11 @@ Consider a quanto option: a European call on a foreign stock $S_t^f$ with strike
     \mathbb{E}^{\mathbb{Q}}\!\left[\frac{e^{-\int_0^T r_s\,ds}}{P(0,T)}\right] = \frac{1}{P(0,T)} \cdot P(0,T) = 1
     $$
 
+---
+
+**Exercise 2.**
+Under the stock measure $\mathbb{Q}^S$ (numeraire $N_t = S_t$), a European put option with payoff $(K - S_T)^+$ has price $V_t = S_t \cdot \mathbb{E}^{\mathbb{Q}^S}[(K/S_T - 1)^+ | \mathcal{F}_t]$. Explain why this formulation is useful, and describe how the distribution of $1/S_T$ under $\mathbb{Q}^S$ differs from the distribution of $S_T$ under $\mathbb{Q}$.
+
 ??? success "Solution to Exercise 2"
     Under the stock measure $\mathbb{Q}^S$ with numéraire $N_t = S_t$, the price of any claim $\Phi_T$ is $V_t = S_t \cdot \mathbb{E}^{\mathbb{Q}^S}[\Phi_T/S_T \mid \mathcal{F}_t]$. For a put with payoff $(K - S_T)^+$:
 
@@ -330,6 +336,11 @@ Consider a quanto option: a European call on a foreign stock $S_t^f$ with strike
     $$
 
     Therefore $1/S_T$ under $\mathbb{Q}^S$ has a log-normal distribution with parameters $(-\ln S_0 - (r + \sigma^2/2)T, \sigma^2 T)$, which differs from the distribution of $S_T$ under $\mathbb{Q}$ by both the sign and the drift adjustment.
+
+---
+
+**Exercise 3.**
+For Black's formula, a call on a forward contract has price $C_t = P(t,T)[F_t\Phi(d_1) - K\Phi(d_2)]$. Verify that as $\sigma_F \to 0$, the formula reduces to $C_t = P(t,T)\max(F_t - K, 0)$. What is the interpretation of this limit?
 
 ??? success "Solution to Exercise 3"
     As $\sigma_F \to 0$: $d_1 = [\ln(F_t/K) + \frac{1}{2}\sigma_F^2(T-t)]/(\sigma_F\sqrt{T-t})$.
@@ -349,6 +360,11 @@ Consider a quanto option: a European call on a foreign stock $S_t^f$ with strike
     **Case 3: $F_t = K$.** Then $d_1 = \frac{1}{2}\sigma_F\sqrt{T-t} \to 0$ and $\Phi(d_1) \to 1/2$, $\Phi(d_2) \to 1/2$, giving $C_t \to 0$.
 
     In all cases, $C_t \to P(t,T)\max(F_t - K, 0)$. The interpretation is that with zero volatility, the forward price is deterministic, so the option value is simply the discounted intrinsic value. There is no time value when there is no uncertainty.
+
+---
+
+**Exercise 4.**
+In the exchange option (Margrabe's formula), the price is $V_t = S_t^1\Phi(d_1) - S_t^2\Phi(d_2)$. Explain why the risk-free rate $r$ does not appear. Compute $V_0$ for $S_0^1 = 100$, $S_0^2 = 95$, $\sigma_1 = 0.20$, $\sigma_2 = 0.25$, $\rho = 0.5$, and $T = 1$.
 
 ??? success "Solution to Exercise 4"
     The interest rate $r$ does not appear because the exchange option payoff $(S_T^1 - S_T^2)^+$ can be replicated by a portfolio that is long asset 1 and short asset 2. Both assets grow at the same risk-free rate $r$ under $\mathbb{Q}$, and this common growth cancels in the ratio $S_t^1/S_t^2$. Using $S^2$ as numéraire eliminates $r$ entirely.
@@ -372,6 +388,11 @@ Consider a quanto option: a European call on a foreign stock $S_t^f$ with strike
     $$
     V_0 = 100 \cdot 0.6325 - 95 \cdot 0.5435 = 63.25 - 51.63 = 11.62
     $$
+
+---
+
+**Exercise 5.**
+Under the money market numeraire, $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$. Under the stock measure, $dS_t = (r + \sigma^2)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}^S}$. Derive the drift change $r \to r + \sigma^2$ using the Girsanov kernel implicit in the numeraire change from $B_t$ to $S_t$.
 
 ??? success "Solution to Exercise 5"
     Under $\mathbb{Q}$ (numéraire $B_t$), $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$. Changing to the stock measure $\mathbb{Q}^S$ (numéraire $S_t$), the Radon-Nikodym derivative is:
@@ -400,6 +421,11 @@ Consider a quanto option: a European call on a foreign stock $S_t^f$ with strike
 
     The drift shifts from $r$ to $r + \sigma^2$, which is the convexity adjustment arising from the nonlinearity of the numéraire change.
 
+---
+
+**Exercise 6.**
+The annuity numeraire is $A(t) = \sum_{i=1}^n \tau_i P(t, T_i)$. Under the swap measure $\mathbb{Q}^A$, the swap rate $S(t) = (P(t,T_0) - P(t,T_n))/A(t)$ is a martingale. Explain why this makes Black's model applicable to swaptions. What assumption about the swap rate distribution is needed?
+
 ??? success "Solution to Exercise 6"
     Under the swap measure $\mathbb{Q}^A$ with numéraire $A(t) = \sum_{i=1}^n \tau_i P(t,T_i)$, the price of a swaption (option to enter a swap) with payoff $A(T_0)(S(T_0) - K)^+$ at time $T_0$ is:
 
@@ -414,6 +440,11 @@ Consider a quanto option: a European call on a foreign stock $S_t^f$ with strike
     $$
 
     The key assumption is that the swap rate $S(t)$ follows a geometric Brownian motion (log-normal distribution) under $\mathbb{Q}^A$. This is the standard market model assumption for swaptions, analogous to assuming log-normality of the forward rate for caplets. In practice, implied volatility smiles indicate deviations from this assumption.
+
+---
+
+**Exercise 7.**
+Consider a quanto option: a European call on a foreign stock $S_t^f$ with strike $K$, where the payoff $(S_T^f - K)^+$ is paid in domestic currency. The relevant numeraire is the foreign money market account converted to domestic currency: $N_t = B_t^f X_t$. Write the pricing formula under the corresponding measure and explain what "quanto adjustment" is needed for the drift of $S_t^f$.
 
 ??? success "Solution to Exercise 7"
     The quanto option pays $(S_T^f - K)^+$ in domestic currency. Under the domestic risk-neutral measure $\mathbb{Q}^d$ with numéraire $B_t^d$:

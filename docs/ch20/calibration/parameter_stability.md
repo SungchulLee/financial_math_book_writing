@@ -153,26 +153,195 @@ Parameter stability and identifiability are critical for the practical use of ca
 
 **Exercise 1.** The ratio $R_\lambda = \frac{\text{std}(\Delta\lambda)/\bar{\lambda}}{\text{std}(\Delta\sigma_{\text{market}})/\bar{\sigma}_{\text{market}}}$ measures parameter amplification. If $R_\lambda = 5$, what does this mean in practical terms? If market volatilities move by 1% on a given day, how much would you expect $\lambda$ to change?
 
+??? success "Solution to Exercise 1"
+    If $R_\lambda = 5$, this means that the relative variation in $\lambda$ is 5 times larger than the relative variation in market volatilities. In practical terms, $\lambda$ amplifies market noise by a factor of 5: market volatilities might fluctuate by a small amount, but $\lambda$ fluctuates proportionally 5 times as much.
+
+    Concretely, if market volatilities move by 1% on a given day (i.e., $\Delta\sigma_{\text{market}}/\bar{\sigma}_{\text{market}} = 0.01$), then the expected relative change in $\lambda$ is:
+
+    $$
+    \frac{\Delta\lambda}{\bar{\lambda}} \approx R_\lambda \times \frac{\Delta\sigma_{\text{market}}}{\bar{\sigma}_{\text{market}}} = 5 \times 0.01 = 0.05 = 5\%
+    $$
+
+    So if $\bar{\lambda} = 0.05$, a 1% market move could cause $\lambda$ to change by approximately $0.05 \times 5\% = 0.0025$, moving from 0.05 to 0.0475 or 0.0525. This is a substantial day-to-day variation that creates problems for hedging (because Greeks depend on $\lambda$, changing $\lambda$ changes hedge ratios), P&L attribution (parameter changes produce unexplained P&L), and risk management (VaR and other risk measures become noisy).
+
+    A value of $R_\lambda = 5$ strongly suggests that $\lambda$ is poorly identified and regularization is needed to stabilize it.
+
 ---
 
 **Exercise 2.** The Fisher information matrix is $I = J^{\top}WJ$ where $J$ is the Jacobian of model volatilities with respect to parameters. For a two-parameter model, $I$ is $2 \times 2$. Describe what a large condition number $\kappa(I)$ implies geometrically about the shape of the objective function near the optimum. Draw a contour plot that illustrates this.
+
+??? success "Solution to Exercise 2"
+    The Fisher information matrix $I = J^\top W J$ is a $2 \times 2$ positive semi-definite matrix. Its eigenvalues $\lambda_{\max}$ and $\lambda_{\min}$ (not to be confused with the Hull-White parameter $\lambda$) and corresponding eigenvectors describe the curvature of the objective function near the optimum.
+
+    **Geometric interpretation of large $\kappa(I)$**: The contours of the objective function $f(\lambda, \sigma) = \text{const}$ near the optimum are approximately ellipses. The eigenvalues of $I$ determine the curvature along the principal axes:
+
+    - The eigenvector corresponding to $\lambda_{\max}$ points in the direction of greatest curvature --- the objective function increases rapidly in this direction. The parameters are tightly constrained along this axis.
+    - The eigenvector corresponding to $\lambda_{\min}$ points in the direction of least curvature --- the objective function increases slowly. The parameters are poorly constrained along this axis.
+
+    When $\kappa = \lambda_{\max}/\lambda_{\min} \gg 1$, the elliptical contours are highly elongated: very narrow in the $\lambda_{\max}$ direction and very wide in the $\lambda_{\min}$ direction. This produces a long, narrow valley in the objective function landscape.
+
+    The contour plot would show: at the center, the minimum; surrounding it, thin elongated ellipses with the long axis oriented along the poorly-identified parameter direction (typically close to the $\lambda$ axis). Moving along the long axis barely changes the objective value, meaning the optimizer can wander significantly in that direction without increasing the error. This is the geometric manifestation of poor identifiability: many parameter values along the valley floor produce nearly identical model prices.
+
+    For the Hull-White calibration, the long axis of the valley typically aligns with the $\lambda$ direction (or a $\lambda$-dominated linear combination of $\lambda$ and $\sigma$), reflecting the fact that $\lambda$ is less well-identified than $\sigma$.
 
 ---
 
 **Exercise 3.** Explain why $\lambda$ is less well-identified than $\sigma$ from cap data. In particular, show that for short-dated caplets ($\lambda\delta_k \ll 1$), the bond price volatility $\sigma_P$ is approximately independent of $\lambda$, making those instruments uninformative about $\lambda$.
 
+??? success "Solution to Exercise 3"
+    The bond price volatility for a caplet is
+
+    $$
+    \sigma_P(T_{k-1}, T_k) = \frac{\sigma}{\lambda}(1 - e^{-\lambda\delta_k})\sqrt{\frac{1 - e^{-2\lambda T_{k-1}}}{2\lambda}}
+    $$
+
+    For short-dated caplets where $\lambda\delta_k \ll 1$, we expand the first factor:
+
+    $$
+    \frac{1 - e^{-\lambda\delta_k}}{\lambda} = \delta_k - \frac{\lambda\delta_k^2}{2} + \frac{\lambda^2\delta_k^3}{6} - \cdots \approx \delta_k\left(1 - \frac{\lambda\delta_k}{2} + \cdots\right)
+    $$
+
+    The leading term $\delta_k$ is independent of $\lambda$, and the correction is of order $\lambda\delta_k/2$. For typical values ($\lambda = 0.05$, $\delta_k = 0.5$), the correction is only $0.05 \times 0.5/2 = 1.25\%$ of the leading term.
+
+    Similarly, if $\lambda T_{k-1}$ is also small (short-maturity caplets):
+
+    $$
+    \frac{1 - e^{-2\lambda T_{k-1}}}{2\lambda} \approx T_{k-1}\left(1 - \lambda T_{k-1} + \cdots\right)
+    $$
+
+    Combining, for short-dated caplets:
+
+    $$
+    \sigma_P \approx \sigma \cdot \delta_k \cdot \sqrt{T_{k-1}}
+    $$
+
+    which is independent of $\lambda$. The implied caplet volatility $\sigma_k^{\text{HW}} \propto \sigma_P$ is therefore also approximately independent of $\lambda$.
+
+    Since $\partial \sigma_k^{\text{HW}}/\partial \lambda \approx 0$ for short-dated caplets, these instruments provide essentially no information about $\lambda$. The Jacobian row for a short-dated caplet has the form $({\approx}0, \;\partial\sigma_k/\partial\sigma)$, pointing almost entirely in the $\sigma$-direction. Only long-dated caplets, where $(1-e^{-\lambda\delta_k})/\lambda$ deviates significantly from $\delta_k$, provide meaningful sensitivity to $\lambda$.
+
+    In contrast, $\sigma$ is well-identified because $\sigma_P$ is exactly proportional to $\sigma$ (for any fixed $\lambda$), so $\partial \sigma_k^{\text{HW}}/\partial \sigma > 0$ for all maturities. The overall level of the caplet volatility curve immediately determines $\sigma$.
+
 ---
 
 **Exercise 4.** Tikhonov regularization adds the penalty $\mu_\lambda(\lambda - \lambda_{\text{prior}})^2 + \mu_\sigma(\sigma - \sigma_{\text{prior}})^2$ to the objective. Derive the regularized first-order conditions and show that the regularized solution is a weighted average of the unconstrained optimum and the prior, with weights determined by $\mu$.
+
+??? success "Solution to Exercise 4"
+    The regularized objective is
+
+    $$
+    F(\lambda, \sigma) = f(\lambda, \sigma) + \mu_\lambda(\lambda - \lambda_{\text{prior}})^2 + \mu_\sigma(\sigma - \sigma_{\text{prior}})^2
+    $$
+
+    The first-order conditions are:
+
+    $$
+    \frac{\partial F}{\partial \lambda} = \frac{\partial f}{\partial \lambda} + 2\mu_\lambda(\lambda - \lambda_{\text{prior}}) = 0
+    $$
+
+    $$
+    \frac{\partial F}{\partial \sigma} = \frac{\partial f}{\partial \sigma} + 2\mu_\sigma(\sigma - \sigma_{\text{prior}}) = 0
+    $$
+
+    Let $(\lambda_{\text{unc}}, \sigma_{\text{unc}})$ denote the unconstrained optimum where $\partial f/\partial \lambda = \partial f/\partial \sigma = 0$. Locally approximating $f$ as quadratic near $(\lambda_{\text{unc}}, \sigma_{\text{unc}})$:
+
+    $$
+    f(\lambda, \sigma) \approx f_0 + \frac{1}{2}H_{\lambda\lambda}(\lambda - \lambda_{\text{unc}})^2 + \frac{1}{2}H_{\sigma\sigma}(\sigma - \sigma_{\text{unc}})^2 + H_{\lambda\sigma}(\lambda - \lambda_{\text{unc}})(\sigma - \sigma_{\text{unc}})
+    $$
+
+    where $H$ is the Hessian of $f$. Ignoring the cross term for simplicity ($H_{\lambda\sigma} = 0$), the first-order conditions become:
+
+    $$
+    H_{\lambda\lambda}(\lambda^* - \lambda_{\text{unc}}) + 2\mu_\lambda(\lambda^* - \lambda_{\text{prior}}) = 0
+    $$
+
+    Solving:
+
+    $$
+    \lambda^* = \frac{H_{\lambda\lambda}\,\lambda_{\text{unc}} + 2\mu_\lambda\,\lambda_{\text{prior}}}{H_{\lambda\lambda} + 2\mu_\lambda}
+    $$
+
+    This is a weighted average of the unconstrained optimum $\lambda_{\text{unc}}$ and the prior $\lambda_{\text{prior}}$:
+
+    $$
+    \lambda^* = \underbrace{\frac{H_{\lambda\lambda}}{H_{\lambda\lambda} + 2\mu_\lambda}}_{w_{\text{data}}}\,\lambda_{\text{unc}} + \underbrace{\frac{2\mu_\lambda}{H_{\lambda\lambda} + 2\mu_\lambda}}_{w_{\text{prior}}}\,\lambda_{\text{prior}}
+    $$
+
+    The weights $w_{\text{data}} + w_{\text{prior}} = 1$ are determined by the ratio of the data curvature $H_{\lambda\lambda}$ to the regularization strength $2\mu_\lambda$:
+
+    - When $\mu_\lambda \to 0$: $w_{\text{data}} \to 1$, and $\lambda^* \to \lambda_{\text{unc}}$ (no regularization effect)
+    - When $\mu_\lambda \to \infty$: $w_{\text{prior}} \to 1$, and $\lambda^* \to \lambda_{\text{prior}}$ (parameter frozen at prior)
+    - When $\mu_\lambda = H_{\lambda\lambda}/2$: equal weight to data and prior
+
+    The same analysis applies to $\sigma^*$ with $H_{\sigma\sigma}$ and $\mu_\sigma$. The regularized solution shrinks each parameter toward its prior value, with the amount of shrinkage determined by the ratio of regularization strength to data informativeness (Hessian curvature).
 
 ---
 
 **Exercise 5.** Describe the L-curve method for choosing the regularization strength $\mu$. Plot schematically the regularization penalty versus the data-fit residual as $\mu$ varies from $0$ to $\infty$. Where is the optimal $\mu$ located on this curve, and why?
 
+??? success "Solution to Exercise 5"
+    **The L-curve method** plots two quantities as the regularization strength $\mu$ varies:
+
+    - Horizontal axis: the data-fit residual $\|f(\lambda^*(\mu), \sigma^*(\mu))\|$ (how well the model fits the market data)
+    - Vertical axis: the regularization penalty $\|(\lambda^*(\mu) - \lambda_{\text{prior}}, \sigma^*(\mu) - \sigma_{\text{prior}})\|$ (how far the parameters deviate from the prior)
+
+    **Schematic behavior:**
+
+    - At $\mu = 0$ (no regularization): The data-fit residual is minimized (bottom of the horizontal axis), but the regularization penalty is large because the parameters are free to move far from the prior.
+    - At $\mu \to \infty$ (infinite regularization): The parameters are frozen at the prior, so the regularization penalty is zero (bottom of the vertical axis), but the data-fit residual is large because the model cannot adapt to the current market.
+    - For intermediate $\mu$: The curve traces an L-shape (when plotted on log-log scale), with the vertical part (large $\mu$, penalty decreasing rapidly) connecting to the horizontal part (small $\mu$, residual decreasing rapidly).
+
+    **Optimal $\mu$**: Located at the "elbow" of the L-curve, where the curve has maximum curvature. At this point:
+
+    - Reducing $\mu$ further (moving right along the curve) would decrease the data-fit residual only slightly but increase the penalty substantially (parameters start to become noisy)
+    - Increasing $\mu$ further (moving up along the curve) would decrease the penalty only slightly but increase the residual substantially (parameters become too rigid)
+
+    The elbow represents the optimal bias-variance trade-off: the parameters are as close to the prior as possible (stable) while still fitting the market data adequately. Numerically, the elbow can be found by maximizing the curvature of the L-curve, or by locating the point where the second derivative of the curve (parameterized by $\mu$) changes sign.
+
 ---
 
 **Exercise 6.** In the two-factor model, swapping $(\lambda_1, \sigma_1) \leftrightarrow (\lambda_2, \sigma_2)$ gives the same model. Explain why this label symmetry creates identifiability problems. How does the convention $\lambda_1 < \lambda_2$ resolve the issue, and what constraint would you impose in the optimizer?
 
+??? success "Solution to Exercise 6"
+    In the two-factor Hull-White model, the short rate is $r(t) = x_1(t) + x_2(t) + \varphi(t)$ where each factor satisfies $dx_i = -\lambda_i x_i\,dt + \sigma_i\,dW_i$ with $\langle dW_1, dW_2\rangle = \rho\,dt$. The model is parameterized by $(\lambda_1, \sigma_1, \lambda_2, \sigma_2, \rho)$.
+
+    **Label symmetry**: Swapping $(\lambda_1, \sigma_1) \leftrightarrow (\lambda_2, \sigma_2)$ (and swapping $W_1 \leftrightarrow W_2$) produces the exact same model. The sum $r(t) = x_1(t) + x_2(t) + \varphi(t)$ is symmetric in the two factors. All observable quantities (bond prices, option prices, yield curve dynamics) are invariant under this swap.
+
+    **Identifiability problem**: This symmetry means that for every parameter set $(\lambda_1, \sigma_1, \lambda_2, \sigma_2, \rho)$, there exists a second parameter set $(\lambda_2, \sigma_2, \lambda_1, \sigma_1, \rho)$ that produces identical model outputs. The mapping from parameters to observables is 2-to-1, violating injectivity. The optimizer may oscillate between these two equivalent solutions, or converge to one arbitrarily, creating apparent instability when comparing calibrations across different days or starting points.
+
+    **Resolution via the convention $\lambda_1 < \lambda_2$**: This breaks the symmetry by assigning a label to each factor:
+
+    - Factor 1 (slow-reverting, $\lambda_1$ small): Drives long-term yield curve movements
+    - Factor 2 (fast-reverting, $\lambda_2$ large): Drives short-term, transient rate dynamics
+
+    **Implementation in the optimizer**: Impose the constraint $\lambda_1 < \lambda_2$ (or equivalently $\lambda_1 \leq \lambda_2$) directly in the optimization. Using L-BFGS-B or a similar bounded optimizer, set the constraint as:
+
+    $$
+    0 < \lambda_1 \leq \lambda_2
+    $$
+
+    Alternatively, reparameterize as $\lambda_1 = \ell_1$ and $\lambda_2 = \ell_1 + \exp(\ell_2)$ where $\ell_1, \ell_2$ are unconstrained, which automatically enforces $\lambda_2 > \lambda_1$. This eliminates the symmetry and ensures the optimizer converges to a unique, consistently-labeled solution.
+
 ---
 
 **Exercise 7.** Temporal smoothing jointly optimizes parameters across multiple days with the penalty $\mu\sum_{t=2}^T[(\lambda_t - \lambda_{t-1})^2 + (\sigma_t - \sigma_{t-1})^2]$. Discuss the trade-offs of this approach: what happens when $\mu$ is too large? Too small? How does the computational cost scale with the number of days $T$?
+
+??? success "Solution to Exercise 7"
+    **Temporal smoothing** jointly optimizes $(\lambda_1, \sigma_1, \ldots, \lambda_T, \sigma_T)$ by minimizing
+
+    $$
+    \sum_{t=1}^{T} f_t(\lambda_t, \sigma_t) + \mu \sum_{t=2}^{T}\left[(\lambda_t - \lambda_{t-1})^2 + (\sigma_t - \sigma_{t-1})^2\right]
+    $$
+
+    **When $\mu$ is too large**: The penalty term dominates, forcing $\lambda_t \approx \lambda_{t-1}$ and $\sigma_t \approx \sigma_{t-1}$ for all $t$. In the extreme, all parameters are nearly identical: $\lambda_1 \approx \lambda_2 \approx \cdots \approx \lambda_T$. The model becomes unresponsive to genuine market regime changes. If the market experiences a structural shift (e.g., a central bank policy change that alters the mean-reversion of rates), the smoothed parameters adapt too slowly, leading to persistent mispricing. The parameter path has low variance (stable) but high bias (lagging the market).
+
+    **When $\mu$ is too small**: The smoothing penalty is negligible, and each day's parameters are determined independently by $f_t$ alone (equivalent to daily recalibration without regularization). The parameter path is noisy, with $\lambda_t$ jumping from day to day due to amplification of small market data perturbations. The path has low bias (tracks the market closely) but high variance (noisy, causing hedging instability).
+
+    **Optimal $\mu$**: Balances the bias-variance trade-off. The parameters respond to sustained market trends but filter out day-to-day noise.
+
+    **Computational cost**: The optimization has $2T$ decision variables ($\lambda_t$ and $\sigma_t$ for each day). The objective function requires $T$ separate calibration evaluations (one per day), each involving pricing multiple instruments. The smoothing penalty adds $O(T)$ quadratic terms, which are cheap to evaluate.
+
+    - **Evaluation cost**: $O(T \times n)$ where $n$ is the number of instruments per day
+    - **Gradient cost**: The smoothing penalty couples adjacent days, creating a banded structure in the Hessian (each $(\lambda_t, \sigma_t)$ interacts only with $(\lambda_{t-1}, \sigma_{t-1})$ and $(\lambda_{t+1}, \sigma_{t+1})$). Exploiting this banded structure, gradient computation is $O(T)$.
+    - **Total optimization cost**: Scales linearly in $T$ per iteration if the banded structure is exploited, but the number of iterations may increase with $T$. For large $T$ (e.g., 250 trading days per year, multi-year histories), the problem can become expensive, motivating sliding-window approaches where only the most recent $T_{\text{window}}$ days are jointly optimized.
+
+    In practice, the sliding-window variant with $T_{\text{window}} = 20$--60 trading days is common, providing sufficient smoothing without the full computational burden of the global problem.

@@ -273,26 +273,203 @@ Basin hopping combines local optimization with random perturbations and Metropol
 
 **Exercise 1.** In DE/rand/1, the mutant vector is $V_i = \Theta_{r_1} + F(\Theta_{r_2} - \Theta_{r_3})$. Explain geometrically why the difference vector $\Theta_{r_2} - \Theta_{r_3}$ provides a self-adaptive step size: when the population is spread out, the differences are large, and when it has converged, the differences are small. How does this compare to a fixed-step random perturbation?
 
+??? success "Solution to Exercise 1"
+    The difference vector $\Theta_{r_2} - \Theta_{r_3}$ captures the current scale and orientation of the population distribution, creating a self-adaptive perturbation mechanism.
+
+    **When the population is spread out** (early generations), the randomly selected individuals $\Theta_{r_2}$ and $\Theta_{r_3}$ are far apart, so $\|\Theta_{r_2} - \Theta_{r_3}\|$ is large. The mutant vector $V_i = \Theta_{r_1} + F(\Theta_{r_2} - \Theta_{r_3})$ takes a large step, enabling broad exploration of the parameter space. In a 5-dimensional Heston parameter space, these large differences probe distant regions and can jump between basins of attraction.
+
+    **When the population has converged** (late generations), most individuals cluster near the best solution. The difference $\|\Theta_{r_2} - \Theta_{r_3}\|$ becomes small, and the mutant vector stays close to the base vector $\Theta_{r_1}$. This naturally transitions DE from exploration to local refinement without any explicit schedule.
+
+    **Directional adaptation.** Beyond magnitude, the difference vector also adapts its direction to the landscape geometry. If the population is elongated along a valley (e.g., along the $(\kappa, \theta)$ ridge in Heston calibration), then randomly sampled difference vectors preferentially point along the valley floor. This is because the population density is higher along the valley direction, making it more likely that $\Theta_{r_2} - \Theta_{r_3}$ aligns with the valley axis. The search thus naturally follows the contours of the objective landscape.
+
+    **Comparison with fixed-step perturbation.** A fixed-step method, such as adding Gaussian noise $\mathcal{N}(0, \sigma^2 I)$ to each individual, requires the user to specify $\sigma$. If $\sigma$ is too large, the search overshoots in late stages; if too small, it fails to explore in early stages. Typical remedies (cooling schedules, adaptive step sizes) must be manually tuned. DE's difference-vector mechanism provides this adaptation for free, with the population itself serving as a sampling distribution that evolves with the search. This is the key reason DE is effective without extensive parameter tuning.
+
 ---
 
 **Exercise 2.** For Heston calibration with $d = 5$ parameters and recommended $NP = 30$, $g_{\max} = 200$, compute the total number of objective function evaluations. If each evaluation takes 0.5 ms (using FFT-based pricing), estimate the total wall time. How does this change if evaluations can be parallelized across 8 cores?
+
+??? success "Solution to Exercise 2"
+    **Total function evaluations.** Each generation evaluates the objective for all $NP$ trial vectors. With $NP = 30$ and $g_{\max} = 200$:
+
+    $$
+    N_{\text{eval}} = NP \times g_{\max} = 30 \times 200 = 6{,}000
+    $$
+
+    Note: the initial population also requires $NP = 30$ evaluations, giving a total of $6{,}030$, but the initial evaluation is often counted within the first generation.
+
+    **Serial wall time.** At 0.5 ms per evaluation:
+
+    $$
+    T_{\text{serial}} = 6{,}000 \times 0.5 \text{ ms} = 3{,}000 \text{ ms} = 3.0 \text{ s}
+    $$
+
+    **Parallel wall time with 8 cores.** Within each generation, the $NP = 30$ evaluations are independent (each trial vector is evaluated against the objective using only the current generation's target vectors). With 8 cores, each generation requires $\lceil 30 / 8 \rceil = 4$ batches, or $4 \times 0.5 = 2.0$ ms per generation:
+
+    $$
+    T_{\text{parallel}} = 200 \times 4 \times 0.5 \text{ ms} = 400 \text{ ms} = 0.4 \text{ s}
+    $$
+
+    This is a speedup factor of $3.0 / 0.4 = 7.5$, close to the ideal factor of 8. The slight loss is due to the uneven division $30 / 8 = 3.75$, meaning some cores idle during the last batch.
+
+    In practice, overheads from memory allocation, communication, and synchronization reduce the speedup somewhat, but the embarrassingly parallel structure of DE makes it highly amenable to multi-core execution. For larger population sizes (e.g., $NP = 64$) that divide evenly into the core count, the parallelization efficiency approaches 100%.
 
 ---
 
 **Exercise 3.** Compare DE/rand/1 and DE/best/1 mutation strategies. The former uses a random base vector while the latter uses the current best. Discuss the exploration-exploitation trade-off for each. For a Heston calibration landscape with 3 local minima of similar depth, which strategy is more likely to find the global minimum and why?
 
+??? success "Solution to Exercise 3"
+    **DE/rand/1** uses a random base vector: $V_i = \Theta_{r_1} + F(\Theta_{r_2} - \Theta_{r_3})$.
+
+    - *Exploration:* High. The base vector $\Theta_{r_1}$ is chosen uniformly at random from the population, so the search is not biased toward any particular region. The mutant can be generated from any part of the population, maintaining diversity.
+    - *Exploitation:* Moderate. There is no explicit mechanism to concentrate the search near promising regions. Convergence toward the best solution occurs only through the selection operator, which gradually eliminates poor individuals.
+
+    **DE/best/1** uses the best individual as the base vector: $V_i = \Theta_{\text{best}} + F(\Theta_{r_1} - \Theta_{r_2})$.
+
+    - *Exploration:* Low to moderate. All mutant vectors are centered around $\Theta_{\text{best}}$, heavily biasing the search toward the neighborhood of the current best solution. The difference vector provides some exploration, but the base point is fixed.
+    - *Exploitation:* High. By anchoring all mutations at the best solution, the algorithm intensively searches the region near the current best, rapidly refining the solution.
+
+    **For a landscape with 3 local minima of similar depth:**
+    DE/rand/1 is more likely to find the global minimum. The reason is that DE/best/1's bias toward the current best creates a positive feedback loop: once the population begins to cluster around one local minimum (even if it is not the global one), almost all mutations explore that region, and the population collapses before other basins are explored. With 3 local minima of similar depth, the first basin found is essentially random, and there is roughly a $1/3$ probability of it being the global one.
+
+    DE/rand/1, by contrast, maintains population diversity longer. Even if some individuals converge to one basin, others remain scattered and can explore the other basins. The random base vector means that mutations originate from all parts of the parameter space, not just the current best region.
+
+    Quantitatively, for a population of $NP = 30$ and a 5D parameter space with 3 equidistant basins, DE/rand/1 might achieve 80--90% success rate (finding the global minimum) after 200 generations, while DE/best/1 might achieve only 40--60%. The hybrid DE/current-to-best/1 strategy, which balances both, typically achieves an intermediate success rate of 70--80%.
+
 ---
 
 **Exercise 4.** The crossover rate $CR$ controls how many components of the trial vector come from the mutant. For a separable objective $\mathcal{L}(\Theta) = \sum_k g_k(\Theta_k)$, argue that small $CR$ (e.g., $CR = 0.1$) is appropriate. For the Heston objective where $\kappa$ and $\bar{v}$ are strongly coupled, explain why large $CR$ (e.g., $CR = 0.9$) is preferred.
+
+??? success "Solution to Exercise 4"
+    **Separable objective: small $CR$ is appropriate.**
+    For a separable objective $\mathcal{L}(\Theta) = \sum_k g_k(\Theta_k)$, each parameter $\Theta_k$ can be optimized independently. With small $CR$ (e.g., $CR = 0.1$), the trial vector inherits only about 1 mutant component (the mandatory $k_{\text{rand}}$ plus roughly $0.1 \times d$ additional components). This means each trial differs from its parent in essentially one dimension, allowing the algorithm to optimize each parameter axis independently.
+
+    If $CR$ were large for a separable objective, the trial vector would inherit many mutant components simultaneously. A simultaneous change in multiple independent dimensions is unlikely to improve all of them at once -- even if the mutation improves dimensions 1, 3, and 4, it might worsen dimensions 2 and 5. The trial would then be rejected by selection despite containing some beneficial changes, slowing convergence.
+
+    **Heston objective: large $CR$ is preferred.**
+    In the Heston model, the parameters $\kappa$ and $\theta$ are strongly coupled because the stationary variance is $\theta$ and the rate of reversion is $\kappa$. The product $\kappa\theta$ appears in the Feller condition and largely determines the long-term behavior. Similarly, $\sigma_v$ and $\rho$ jointly control the smile shape -- changing one without adjusting the other typically worsens the fit.
+
+    With small $CR$, the algorithm changes one parameter at a time, which fails to navigate the curved ridge in the $(\kappa, \theta)$ plane. Moving along the ridge requires simultaneous, coordinated changes in both parameters. Large $CR$ (e.g., $CR = 0.9$) ensures that the trial vector inherits most components from the mutant, preserving the correlation structure of the difference vector.
+
+    Specifically, if $\Theta_{r_2}$ and $\Theta_{r_3}$ both lie near the $(\kappa, \theta)$ ridge but at different positions, their difference $\Theta_{r_2} - \Theta_{r_3}$ naturally points along the ridge. With large $CR$, this correlated perturbation is preserved in the trial vector, enabling efficient movement along the valley. With small $CR$, only one component of this correlated perturbation would be inherited, losing the directional adaptation.
 
 ---
 
 **Exercise 5.** In the JADE adaptive DE variant, the mutation factor $\mu_F$ is updated using the Lehmer mean of successful values: $\mu_F^{(g+1)} = (1-c)\mu_F^{(g)} + c \cdot \sum F_i^2 / \sum F_i$. Show that the Lehmer mean is always greater than or equal to the arithmetic mean. Why is this bias toward larger $F$ values beneficial for maintaining exploration?
 
+??? success "Solution to Exercise 5"
+    **Showing the Lehmer mean exceeds the arithmetic mean.**
+    Let $\{F_i\}_{i \in S_g}$ be the successful mutation factors. The Lehmer mean is
+
+    $$
+    L = \frac{\sum_{i \in S_g} F_i^2}{\sum_{i \in S_g} F_i}
+    $$
+
+    and the arithmetic mean is
+
+    $$
+    A = \frac{\sum_{i \in S_g} F_i}{|S_g|}
+    $$
+
+    To show $L \geq A$, consider the Cauchy-Schwarz inequality applied to the vectors $(F_1, \ldots, F_n)$ and $(1, \ldots, 1)$ where $n = |S_g|$:
+
+    $$
+    \left( \sum_i F_i \right)^2 \leq n \sum_i F_i^2
+    $$
+
+    Dividing both sides by $n \sum_i F_i$ (positive since $F_i > 0$):
+
+    $$
+    \frac{\sum_i F_i}{n} \leq \frac{\sum_i F_i^2}{\sum_i F_i}
+    $$
+
+    which is exactly $A \leq L$. Equality holds if and only if all $F_i$ are equal.
+
+    Alternatively, one can write
+
+    $$
+    L - A = \frac{\sum_i F_i^2}{\sum_i F_i} - \frac{\sum_i F_i}{n} = \frac{n \sum_i F_i^2 - (\sum_i F_i)^2}{n \sum_i F_i} = \frac{\sum_{i<j}(F_i - F_j)^2}{n \sum_i F_i} \geq 0
+    $$
+
+    where the last step uses the identity $n \sum F_i^2 - (\sum F_i)^2 = \sum_{i<j}(F_i - F_j)^2$.
+
+    **Why the bias toward larger $F$ is beneficial.**
+    The Lehmer mean gives more weight to larger $F$ values than the arithmetic mean. This is beneficial for maintaining exploration because:
+
+    1. **Successful large $F$ values carry more information.** A trial that succeeds with a large $F$ made a significant improvement by taking a bold step. This suggests that the landscape still has substantial structure to exploit at that scale, and the algorithm should maintain the ability to take such steps.
+    2. **Small $F$ successes may be trivial.** A trial with very small $F$ barely differs from its parent and might succeed simply because the change was negligible. Overweighting these would prematurely shrink the step size.
+    3. **Preventing premature convergence.** If the arithmetic mean were used instead, $\mu_F$ would decrease more rapidly as the population converges (since converged populations tend to produce small successful $F$ values). The Lehmer mean's upward bias counteracts this tendency, maintaining a larger average step size and allowing the algorithm to escape shallow local minima even in later generations.
+
 ---
 
 **Exercise 6.** A hybrid DE-LM strategy runs DE for 50 generations followed by Levenberg-Marquardt. On S&P 500 data, this achieves an objective of 0.0010 with 98% success rate in 12 seconds, while multi-start LM with 20 starts achieves 0.0012 with 90% success rate in 15 seconds. Analyze the cost-effectiveness of each approach. Under what conditions would you prefer multi-start LM over the hybrid?
 
+??? success "Solution to Exercise 6"
+    **Cost-effectiveness analysis.**
+
+    *Hybrid DE-LM:*
+
+    - Objective: 0.0010
+    - Success rate: 98%
+    - Time: 12 s
+    - Expected objective per run: $0.98 \times 0.0010 + 0.02 \times 0.0010 \times (1.10) \approx 0.00100$ (since even "failures" are within 10%)
+    - Cost per unit quality: $12 / 0.98 \approx 12.2$ s per successful run
+
+    *Multi-start LM ($N = 20$):*
+
+    - Objective: 0.0012 (20% worse)
+    - Success rate: 90%
+    - Time: 15 s
+    - Cost per unit quality: $15 / 0.90 \approx 16.7$ s per successful run
+
+    The hybrid is superior in both objective quality and cost-effectiveness. Per second of computation, the hybrid achieves a better objective more reliably.
+
+    **Scalability analysis.** Multi-start LM scales as $N \times T_{\text{LM}}$, and each restart is independent, making it trivially parallelizable. With 20 cores, the 20 starts run in $T_{\text{LM}} \approx 0.75$ s (one LM run). The hybrid requires sequential DE generations (partially parallelizable per generation) plus one LM run, giving less parallel speedup.
+
+    **When multi-start LM is preferable:**
+
+    1. **Massively parallel hardware.** With $\geq 20$ cores, multi-start LM completes in the time of a single LM run ($< 1$ s), while the hybrid cannot parallelize its sequential DE generations as effectively. When wall-clock time is the binding constraint and abundant parallelism is available, multi-start LM wins.
+    2. **Mildly multi-modal landscapes.** If the objective has only 2--3 well-separated local minima (common for Heston), even $N = 10$ random starts have a high probability of sampling at least one point in each basin. The advantage of DE's systematic exploration diminishes.
+    3. **Warm-starting from previous calibration.** If yesterday's parameters provide a good starting point, a single LM run (or a few starts centered nearby) suffices. The global search phase of DE is unnecessary when the landscape is known from prior calibration.
+    4. **Implementation simplicity.** Multi-start LM requires only an LM implementation plus a loop with random initialization. DE requires implementing mutation, crossover, selection, constraint handling, and adaptive parameter logic -- significantly more code to maintain.
+
 ---
 
 **Exercise 7.** Design a termination criterion for DE that balances computational cost against solution quality. Specifically, define a population convergence metric $\sigma_{\text{pop}}^{(g)} = \max_i \|\Theta_i^{(g)} - \Theta_{\text{best}}^{(g)}\|$ and a stagnation counter. Propose specific thresholds for $\sigma_{\text{pop}}$ and the stagnation limit for Heston calibration with the parameter bounds given in this section. Justify your choices.
+
+??? success "Solution to Exercise 7"
+    **Proposed termination criterion.**
+    The termination uses three conditions evaluated jointly at each generation:
+
+    *Condition 1: Population convergence.*
+
+    $$
+    \sigma_{\text{pop}}^{(g)} = \max_i \|\Theta_i^{(g)} - \Theta_{\text{best}}^{(g)}\| < \varepsilon_{\text{pop}}
+    $$
+
+    *Condition 2: Stagnation.* Let $n_{\text{stag}}$ count the number of consecutive generations with no improvement in the best objective. Terminate if $n_{\text{stag}} > N_{\text{stag}}$.
+
+    *Condition 3: Maximum generations.* Terminate if $g > g_{\max}$.
+
+    The algorithm terminates when **any** of the three conditions is satisfied.
+
+    **Threshold calibration for Heston.**
+    The Heston parameter bounds given in the section are:
+
+    $$
+    v_0 \in [0.001, 0.5], \;\; \kappa \in [0.1, 10], \;\; \theta \in [0.001, 0.5], \;\; \sigma_v \in [0.01, 2.0], \;\; \rho \in [-0.999, -0.01]
+    $$
+
+    The diameter of the parameter space in the $\ell^\infty$ norm is $\max(0.499, 9.9, 0.499, 1.99, 0.989) = 9.9$ (dominated by $\kappa$). In the $\ell^2$ norm, the maximum distance between any two feasible points is
+
+    $$
+    \sqrt{0.499^2 + 9.9^2 + 0.499^2 + 1.99^2 + 0.989^2} \approx 10.3
+    $$
+
+    **Proposed thresholds:**
+
+    - $\varepsilon_{\text{pop}} = 10^{-3}$. This is approximately $10^{-4}$ times the diameter of the parameter space. At this scale, all individuals agree on each parameter to within a fraction of its range (e.g., $\kappa$ to within $0.001$ out of a range of $9.9$). Since the subsequent LM phase will refine the solution, the DE phase does not need to converge to full precision -- only to within the basin of the global minimum.
+    - $N_{\text{stag}} = 30$ generations. With $NP = 30$, each generation evaluates 30 trial vectors. After 30 stagnant generations ($30 \times 30 = 900$ evaluations with no improvement), it is very likely that the population has found the best accessible basin. Setting $N_{\text{stag}} = 30$ allows DE sufficient opportunity to escape a suboptimal basin through random mutations while avoiding wasted computation once convergence is genuinely achieved.
+    - $g_{\max} = 200$. This is a hard safety limit ensuring the algorithm terminates in bounded time ($200 \times 30 = 6{,}000$ evaluations). On most Heston calibration problems, either the population convergence or stagnation criterion triggers well before generation 200.
+
+    **Justification for the combined criterion.**
+    Using only $\sigma_{\text{pop}}$ would miss cases where the population has collapsed to a suboptimal local minimum (all individuals are close together but not at the global best). Adding the stagnation counter catches cases where the population is spread out but not making progress (e.g., stuck on a flat plateau near the Feller boundary). The maximum generation limit ensures termination even in pathological cases. Together, the three conditions provide robust termination that balances computation time against solution quality for production Heston calibration.

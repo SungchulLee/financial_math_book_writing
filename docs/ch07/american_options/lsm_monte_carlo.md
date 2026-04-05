@@ -288,26 +288,6 @@ $$
 
 **Exercise 1.** Describe the LSM algorithm step by step for an American put with 3 exercise dates. At each exercise date, explain what regression is performed, what the dependent and independent variables are, and how the exercise decision is made.
 
----
-
-**Exercise 2.** In LSM, the continuation value at time $t_k$ is approximated as $\hat{C}(S_{t_k}) = \sum_{j=0}^{M} a_j \phi_j(S_{t_k})$ where $\phi_j$ are basis functions. Common choices include polynomials, Laguerre polynomials, and Chebyshev polynomials. Discuss the trade-off between using more basis functions (larger $M$) and the risk of overfitting. What is a typical choice of $M$ in practice?
-
----
-
-**Exercise 3.** LSM produces a low-biased estimate of the American option price (i.e., $\hat{V}_{\text{LSM}} \leq V_{\text{true}}$). Explain why the suboptimal exercise strategy identified by the regression leads to a lower bound rather than an upper bound.
-
----
-
-**Exercise 4.** For a max-call option on two assets with payoff $(\max(S_1, S_2) - K)^+$, explain how LSM handles the two-dimensional state space. What basis functions would you use for the regression at each exercise date?
-
----
-
-**Exercise 5.** Compare the LSM method with the binomial tree for pricing a single-asset American put with $S_0 = 100$, $K = 100$, $r = 5\%$, $\sigma = 30\%$, $T = 1$. Discuss the relative strengths of each method in terms of accuracy, computational cost, and ease of implementation. In what situation would you prefer LSM over a binomial tree?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Consider an American put with 3 exercise dates $t_1, t_2, t_3 = T$ (equally spaced). Suppose we simulate $M$ stock price paths $\{S_{t_k}^{(m)}\}$.
 
@@ -345,6 +325,11 @@ $$
     \hat{V}_0 = \frac{1}{M}\sum_{m=1}^M e^{-r\tau^{(m)}} \text{CF}^{(m)}
     $$
 
+---
+
+
+**Exercise 2.** In LSM, the continuation value at time $t_k$ is approximated as $\hat{C}(S_{t_k}) = \sum_{j=0}^{M} a_j \phi_j(S_{t_k})$ where $\phi_j$ are basis functions. Common choices include polynomials, Laguerre polynomials, and Chebyshev polynomials. Discuss the trade-off between using more basis functions (larger $M$) and the risk of overfitting. What is a typical choice of $M$ in practice?
+
 ??? success "Solution to Exercise 2"
     The continuation value is approximated by:
 
@@ -365,6 +350,11 @@ $$
     Additionally, with large $P$, the design matrix $A$ becomes ill-conditioned (especially for monomial bases), causing numerical instability in the least-squares solve. Orthogonal polynomial bases (Laguerre, Chebyshev) mitigate this.
 
     **Typical choice in practice:** $P = 3$ to $5$ polynomial terms (e.g., $1, S, S^2, S^3$) for single-asset options. Longstaff and Schwartz originally used $P = 2$ (three Laguerre polynomials). For multi-asset options, cross-terms are added (e.g., $S_1, S_2, S_1 S_2, S_1^2, S_2^2$), but the total number of basis functions should be kept moderate relative to the number of ITM paths.
+
+---
+
+
+**Exercise 3.** LSM produces a low-biased estimate of the American option price (i.e., $\hat{V}_{\text{LSM}} \leq V_{\text{true}}$). Explain why the suboptimal exercise strategy identified by the regression leads to a lower bound rather than an upper bound.
 
 ??? success "Solution to Exercise 3"
     The LSM estimator uses a suboptimal exercise policy derived from estimated continuation values. This suboptimality guarantees a **lower bound** rather than an upper bound.
@@ -389,6 +379,11 @@ $$
     - Sometimes it underestimates $\hat{C}$, causing exercise when continuation is optimal (premature exercise, also reducing value)
 
     Both types of errors lead to a **suboptimal** exercise policy, which by the definition of the optimal stopping problem, produces a value **below** the true price. The key is that using the same paths for both fitting the regression and making exercise decisions introduces a downward bias. This is sometimes called the "in-sample" bias.
+
+---
+
+
+**Exercise 4.** For a max-call option on two assets with payoff $(\max(S_1, S_2) - K)^+$, explain how LSM handles the two-dimensional state space. What basis functions would you use for the regression at each exercise date?
 
 ??? success "Solution to Exercise 4"
     For a max-call on two assets with payoff $(\max(S_1, S_2) - K)^+$, the state at each exercise date is the pair $(S_1, S_2)$, which is two-dimensional.
@@ -420,6 +415,11 @@ $$
     - The intrinsic value $(\max(S_1, S_2) - K)^+$ itself as an additional basis function
 
     The rest of the algorithm (backward induction, exercise decision, final pricing) proceeds identically to the one-dimensional case. The advantage of LSM is that it scales linearly with the number of paths, regardless of the dimensionality of the state space, whereas tree and finite difference methods suffer from the curse of dimensionality.
+
+---
+
+
+**Exercise 5.** Compare the LSM method with the binomial tree for pricing a single-asset American put with $S_0 = 100$, $K = 100$, $r = 5\%$, $\sigma = 30\%$, $T = 1$. Discuss the relative strengths of each method in terms of accuracy, computational cost, and ease of implementation. In what situation would you prefer LSM over a binomial tree?
 
 ??? success "Solution to Exercise 5"
     For a single-asset American put with $S_0 = 100$, $K = 100$, $r = 0.05$, $\sigma = 0.30$, $T = 1$:

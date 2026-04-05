@@ -256,40 +256,6 @@ $\square$
 
 **Exercise 1.** Let $X_t = t$ and $Y_t = W_t^2$. Compute $dY_t$ using Itô's lemma, then apply the product rule to compute $d(tW_t^2)$. Write the result in the form $(\cdots)\,dt + (\cdots)\,dW_t$.
 
----
-
-**Exercise 2.** Let $X_t$ and $Y_t$ both satisfy $dX_t = dY_t = \sigma\,dW_t$ (pure diffusion, no drift), with $X_0 = x_0$ and $Y_0 = y_0$. Use the product rule to compute $d(X_t Y_t)$. Identify the quadratic covariation term $d[X, Y]_t$ and verify that it equals $\sigma^2\,dt$.
-
----
-
-**Exercise 3.** Derive the stochastic integration by parts formula for $\int_0^t W_s^2\,dW_s$ by choosing $X_s = W_s$ and $Y_s = W_s$, applying the product rule to $d(W_s \cdot W_s)$, and solving for the integral. Verify that your result matches Example 4 from the [Applications](ito_calculus_applications.md) page.
-
----
-
-**Exercise 4.** Let $dX_t = \mu X_t\,dt + \sigma X_t\,dW_t$ (geometric Brownian motion). Use the quotient rule to compute $d(1/X_t)$, and show that $1/X_t$ also follows a geometric Brownian motion SDE. Identify its drift and diffusion coefficients.
-
----
-
-**Exercise 5.** Let $X_t = e^{W_t}$ and $Y_t = e^{-W_t}$. Compute $dX_t$ and $dY_t$ using Itô's lemma. Then use the product rule to compute $d(X_t Y_t)$. Since $X_t Y_t = 1$ for all $t$, verify that $d(X_t Y_t) = 0$ and confirm that the classical terms and the correction term cancel exactly.
-
----
-
-**Exercise 6.** Consider the Ornstein--Uhlenbeck SDE: $dX_t = -\theta X_t\,dt + \sigma\,dW_t$. Let $Y_t = e^{\theta t}$ (deterministic). Apply the product rule to $Z_t = X_t Y_t$ and show that $dZ_t = \sigma e^{\theta t}\,dW_t$. Explain why the quadratic covariation $d[X, Y]_t$ vanishes.
-
----
-
-**Exercise 7.** Let $dX_t = a_t\,dt + b_t\,dW_t$ and $dY_t = c_t\,dt + e_t\,dW_t$. Starting from the product rule $d(X_t Y_t) = X_t\,dY_t + Y_t\,dX_t + d[X,Y]_t$, derive the formula for $d(X_t^2)$ by setting $Y_t = X_t$. Show that
-
-$$
-d(X_t^2) = 2X_t\,dX_t + b_t^2\,dt
-$$
-
-and interpret the term $b_t^2\,dt$ as the Itô correction.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     First compute $dY_t$ for $Y_t = W_t^2$ using Itô's lemma: $dY_t = 2W_t\,dW_t + dt$.
 
@@ -304,6 +270,10 @@ and interpret the term $b_t^2\,dt$ as the Itô correction.
     $$
     d(tW_t^2) = t(2W_t\,dW_t + dt) + W_t^2\,dt = (t + W_t^2)\,dt + 2tW_t\,dW_t
     $$
+
+---
+
+**Exercise 2.** Let $X_t$ and $Y_t$ both satisfy $dX_t = dY_t = \sigma\,dW_t$ (pure diffusion, no drift), with $X_0 = x_0$ and $Y_0 = y_0$. Use the product rule to compute $d(X_t Y_t)$. Identify the quadratic covariation term $d[X, Y]_t$ and verify that it equals $\sigma^2\,dt$.
 
 ??? success "Solution to Exercise 2"
     With $dX_t = dY_t = \sigma\,dW_t$, the diffusion coefficients are $b_t = e_t = \sigma$. The quadratic covariation is:
@@ -323,6 +293,10 @@ and interpret the term $b_t^2\,dt$ as the Itô correction.
     $$
 
     The covariation $d[X,Y]_t = \sigma^2\,dt$ is verified: both processes have the same diffusion coefficient $\sigma$ and are driven by the same Brownian motion.
+
+---
+
+**Exercise 3.** Derive the stochastic integration by parts formula for $\int_0^t W_s^2\,dW_s$ by choosing $X_s = W_s$ and $Y_s = W_s$, applying the product rule to $d(W_s \cdot W_s)$, and solving for the integral. Verify that your result matches Example 4 from the [Applications](ito_calculus_applications.md) page.
 
 ??? success "Solution to Exercise 3"
     First, apply the product rule with $X_s = Y_s = W_s$ to get $d(W_t^2) = 2W_t\,dW_t + dt$, which gives $\int_0^t W_s\,dW_s = \frac{1}{2}(W_t^2 - t)$.
@@ -351,6 +325,10 @@ and interpret the term $b_t^2\,dt$ as the Itô correction.
 
     This matches Example 4 from the Applications page.
 
+---
+
+**Exercise 4.** Let $dX_t = \mu X_t\,dt + \sigma X_t\,dW_t$ (geometric Brownian motion). Use the quotient rule to compute $d(1/X_t)$, and show that $1/X_t$ also follows a geometric Brownian motion SDE. Identify its drift and diffusion coefficients.
+
 ??? success "Solution to Exercise 4"
     For $dX_t = \mu X_t\,dt + \sigma X_t\,dW_t$, use the quotient rule with $X_t$ in the numerator replaced by the constant $1$ (i.e., compute $d(1/X_t)$). Equivalently, apply Itô's lemma to $g(x) = 1/x$:
 
@@ -369,6 +347,10 @@ and interpret the term $b_t^2\,dt$ as the Itô correction.
     $$
 
     So $1/X_t$ follows a geometric Brownian motion SDE with drift $-\mu + \sigma^2$ and diffusion $-\sigma$. The Itô correction $+\sigma^2$ in the drift arises from the positive curvature of $1/x$.
+
+---
+
+**Exercise 5.** Let $X_t = e^{W_t}$ and $Y_t = e^{-W_t}$. Compute $dX_t$ and $dY_t$ using Itô's lemma. Then use the product rule to compute $d(X_t Y_t)$. Since $X_t Y_t = 1$ for all $t$, verify that $d(X_t Y_t) = 0$ and confirm that the classical terms and the correction term cancel exactly.
 
 ??? success "Solution to Exercise 5"
     For $X_t = e^{W_t}$, Itô's lemma gives $dX_t = e^{W_t}\,dW_t + \frac{1}{2}e^{W_t}\,dt$.
@@ -401,6 +383,10 @@ and interpret the term $b_t^2\,dt$ as the Itô correction.
 
     The $dW_t$ terms cancel ($-dW_t + dW_t = 0$), and the $dt$ terms cancel ($\frac{1}{2} + \frac{1}{2} - 1 = 0$). This confirms $d(X_tY_t) = 0$, consistent with $X_tY_t = e^{W_t}e^{-W_t} = 1$.
 
+---
+
+**Exercise 6.** Consider the Ornstein--Uhlenbeck SDE: $dX_t = -\theta X_t\,dt + \sigma\,dW_t$. Let $Y_t = e^{\theta t}$ (deterministic). Apply the product rule to $Z_t = X_t Y_t$ and show that $dZ_t = \sigma e^{\theta t}\,dW_t$. Explain why the quadratic covariation $d[X, Y]_t$ vanishes.
+
 ??? success "Solution to Exercise 6"
     For $Z_t = X_t Y_t = X_t e^{\theta t}$ with $Y_t = e^{\theta t}$ deterministic ($dY_t = \theta e^{\theta t}\,dt$):
 
@@ -417,6 +403,16 @@ and interpret the term $b_t^2\,dt$ as the Itô correction.
     $$
 
     The drift terms cancel, leaving $dZ_t = \sigma e^{\theta t}\,dW_t$. The quadratic covariation $d[X,Y]_t$ vanishes because $Y_t = e^{\theta t}$ is a deterministic function of time with no stochastic component (its diffusion coefficient is zero).
+
+---
+
+**Exercise 7.** Let $dX_t = a_t\,dt + b_t\,dW_t$ and $dY_t = c_t\,dt + e_t\,dW_t$. Starting from the product rule $d(X_t Y_t) = X_t\,dY_t + Y_t\,dX_t + d[X,Y]_t$, derive the formula for $d(X_t^2)$ by setting $Y_t = X_t$. Show that
+
+$$
+d(X_t^2) = 2X_t\,dX_t + b_t^2\,dt
+$$
+
+and interpret the term $b_t^2\,dt$ as the Itô correction.
 
 ??? success "Solution to Exercise 7"
     Setting $Y_t = X_t$ in the product rule: $dX_t = a_t\,dt + b_t\,dW_t$, so the diffusion coefficients for both "copies" are $b_t$. The covariation is $d[X, X]_t = b_t^2\,dt$:

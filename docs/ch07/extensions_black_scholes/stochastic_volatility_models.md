@@ -278,30 +278,6 @@ $$
 
 **Exercise 1.** In the Heston model, the variance process $dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}$ is a CIR process. (a) Verify the Feller condition $2\kappa\theta \geq \xi^2$ for the parameter set $\kappa = 2$, $\theta = 0.04$, $\xi = 0.3$. (b) When the Feller condition is violated, what happens to the variance process at $v = 0$? (c) Compute the long-run mean and variance of $v_t$ in terms of $\kappa$, $\theta$, and $\xi$.
 
----
-
-**Exercise 2.** The Heston PDE for option price $V(t, S, v)$ contains a mixed derivative term $\rho\xi v S \frac{\partial^2 V}{\partial S \partial v}$. (a) Explain the financial origin of this term in terms of the correlation between stock and volatility shocks. (b) Why does this term vanish when $\rho = 0$? (c) Describe the computational challenge this mixed derivative introduces for finite difference methods and how ADI (Alternating Direction Implicit) schemes address it.
-
----
-
-**Exercise 3.** The Heston model has five parameters: $v_0, \kappa, \theta, \xi, \rho$. Describe the effect of each parameter on the implied volatility surface. Specifically: (a) Which parameter controls the ATM volatility level? (b) Which parameter controls the skew? (c) Which parameter controls the smile convexity (curvature)? (d) Which parameters determine the term structure?
-
----
-
-**Exercise 4.** Explain why stochastic volatility models lead to incomplete markets. Specifically, identify the two sources of randomness and the single traded asset. What is the volatility risk premium $\lambda(t, v_t)$, and why is it not determined by no-arbitrage alone? Describe how calibration to option prices implicitly selects a specific risk-neutral measure.
-
----
-
-**Exercise 5.** Compare local volatility and stochastic volatility models by filling in a comparison table covering: (a) number of risk factors, (b) market completeness, (c) quality of smile fit, (d) forward smile behavior, (e) calibration stability, and (f) hedging performance. Explain why the forward smile behavior is a critical distinguishing factor for pricing exotic options.
-
----
-
-**Exercise 6.** Write pseudocode for an Euler discretization of the Heston model. Generate correlated Brownian increments $dW_1$ and $dW_2$ from independent standard normals. Discuss the issue of negative variance and compare the truncation scheme $v_{i+1} = \max(v_{i+1}, 0)$ with the reflection scheme $v_{i+1} = |v_{i+1}|$. Which scheme introduces less bias?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a)** The Feller condition requires $2\kappa\theta \geq \xi^2$. For $\kappa = 2$, $\theta = 0.04$, $\xi = 0.3$:
 
@@ -329,6 +305,11 @@ $$
     \text{Var}(v_\infty) = \frac{\alpha}{\beta^2} = \frac{2\kappa\theta/\xi^2}{(2\kappa/\xi^2)^2} = \frac{\theta\xi^2}{2\kappa}
     $$
 
+---
+
+
+**Exercise 2.** The Heston PDE for option price $V(t, S, v)$ contains a mixed derivative term $\rho\xi v S \frac{\partial^2 V}{\partial S \partial v}$. (a) Explain the financial origin of this term in terms of the correlation between stock and volatility shocks. (b) Why does this term vanish when $\rho = 0$? (c) Describe the computational challenge this mixed derivative introduces for finite difference methods and how ADI (Alternating Direction Implicit) schemes address it.
+
 ??? success "Solution to Exercise 2"
     **(a)** The mixed derivative term $\rho\xi v S \frac{\partial^2 V}{\partial S \partial v}$ arises from the covariation between the stock price and variance processes. By Ito's lemma applied to $V(t, S_t, v_t)$:
 
@@ -342,6 +323,11 @@ $$
 
     **(c)** The mixed derivative $\partial_{Sv}V$ introduces a **cross-diffusion** term that couples the $S$ and $v$ directions. Standard finite difference methods for 2D PDEs (like simple explicit or implicit schemes) handle terms in each direction separately. The mixed derivative creates off-diagonal entries in the discretization matrix that prevent straightforward tridiagonal factorization. **ADI (Alternating Direction Implicit)** schemes address this by splitting each time step into sub-steps: one implicit in the $S$-direction (treating $v$ explicitly) and one implicit in the $v$-direction (treating $S$ explicitly). The mixed derivative is handled either by adding it to one of the sub-steps explicitly or by using a specialized splitting (e.g., the Craig-Sneyd or Hundsdorfer-Verwer schemes) that distributes the cross term appropriately. This preserves the efficiency of solving tridiagonal systems while maintaining stability.
 
+---
+
+
+**Exercise 3.** The Heston model has five parameters: $v_0, \kappa, \theta, \xi, \rho$. Describe the effect of each parameter on the implied volatility surface. Specifically: (a) Which parameter controls the ATM volatility level? (b) Which parameter controls the skew? (c) Which parameter controls the smile convexity (curvature)? (d) Which parameters determine the term structure?
+
 ??? success "Solution to Exercise 3"
     **(a) ATM volatility level**: $v_0$ (the initial variance) primarily determines the current ATM implied volatility. At short maturities, ATM implied vol $\approx \sqrt{v_0}$. The long-term level $\theta$ also affects ATM volatility for longer maturities (ATM vol tends toward $\sqrt{\theta}$ as $T \to \infty$).
 
@@ -350,6 +336,11 @@ $$
     **(c) Smile convexity (curvature)**: $\xi$ (vol-of-vol) controls the convexity or curvature of the smile. Larger $\xi$ means more randomness in the variance, which increases the probability of extreme variance realizations. This fattens both tails of the return distribution, producing a more pronounced smile (higher implied vol for both deep OTM puts and deep OTM calls). When $\xi = 0$, the variance is deterministic, and the smile disappears.
 
     **(d) Term structure**: $\kappa$ (mean-reversion speed) and $\theta$ (long-run variance) jointly determine the term structure. $\kappa$ controls how quickly the variance reverts to $\theta$. A high $\kappa$ means the smile flattens rapidly with maturity (fast mean reversion erases the effect of $v_0 \neq \theta$). A low $\kappa$ means the smile shape persists across maturities. $\theta$ sets the level to which the term structure converges for long maturities.
+
+---
+
+
+**Exercise 4.** Explain why stochastic volatility models lead to incomplete markets. Specifically, identify the two sources of randomness and the single traded asset. What is the volatility risk premium $\lambda(t, v_t)$, and why is it not determined by no-arbitrage alone? Describe how calibration to option prices implicitly selects a specific risk-neutral measure.
 
 ??? success "Solution to Exercise 4"
     **Sources of randomness**: The Heston model has two Brownian motions, $W^{(1)}$ (driving the stock) and $W^{(2)}$ (driving the variance). These represent two independent sources of risk.
@@ -368,6 +359,11 @@ $$
 
     **Calibration selects a measure**: When we calibrate the Heston model to market option prices, we determine the $\mathbb{Q}$-drift $\kappa(\theta - v_t)$. This implicitly fixes $\lambda$ through the relationship between $\mathbb{P}$ and $\mathbb{Q}$ dynamics. Different option price datasets (or different calibration objectives) can lead to different $\lambda$ functions, corresponding to different equivalent martingale measures. Each such measure is consistent with no-arbitrage but produces potentially different prices for non-vanilla derivatives.
 
+---
+
+
+**Exercise 5.** Compare local volatility and stochastic volatility models by filling in a comparison table covering: (a) number of risk factors, (b) market completeness, (c) quality of smile fit, (d) forward smile behavior, (e) calibration stability, and (f) hedging performance. Explain why the forward smile behavior is a critical distinguishing factor for pricing exotic options.
+
 ??? success "Solution to Exercise 5"
     | Aspect | Local Volatility | Stochastic Volatility |
     |--------|-----------------|----------------------|
@@ -385,6 +381,11 @@ $$
     - **Barrier options**: The probability of hitting a barrier depends on the distribution of paths, which is influenced by how volatility evolves as the spot moves.
 
     Local volatility predicts that the forward smile flattens, so it underprices options whose value increases with forward smile richness (like cliquets). Stochastic volatility preserves the forward smile because the future variance is random: there is always uncertainty about future volatility, maintaining the smile's shape. This makes stochastic volatility more reliable for exotic pricing, even though its vanilla fit may be slightly less precise.
+
+---
+
+
+**Exercise 6.** Write pseudocode for an Euler discretization of the Heston model. Generate correlated Brownian increments $dW_1$ and $dW_2$ from independent standard normals. Discuss the issue of negative variance and compare the truncation scheme $v_{i+1} = \max(v_{i+1}, 0)$ with the reflection scheme $v_{i+1} = |v_{i+1}|$. Which scheme introduces less bias?
 
 ??? success "Solution to Exercise 6"
     **Pseudocode for Euler discretization of the Heston model**:

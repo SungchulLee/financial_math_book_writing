@@ -669,9 +669,39 @@ Understanding these benchmarks enables more nuanced analysis of actual market dy
 
 **Exercise 1.** Under the sticky strike assumption, the implied volatility at a fixed strike $K$ does not change when the spot moves. If an ATM call option ($K = S_0 = 100$) has $\sigma_{\text{IV}} = 22\%$ and the spot rises to $S = 103$, what is the implied volatility at $K = 100$ under sticky strike? What is the implied volatility at the new ATM strike ($K = 103$) if the smile has skew $\frac{\partial \sigma}{\partial k} = -15\%$?
 
+??? success "Solution to Exercise 1"
+    Under sticky strike, $\partial\sigma_{\text{IV}}(K)/\partial S = 0$, so the implied volatility at any fixed strike is unchanged when spot moves.
+
+    When spot rises from $S_0 = 100$ to $S = 103$, the IV at $K = 100$ remains $\sigma_{\text{IV}}(K=100) = 22\%$.
+
+    For the new ATM strike $K = 103$, we use the smile. The log-moneyness of $K = 103$ relative to the original forward is:
+
+    $$
+    k = \ln(K/F) = \ln(103/F)
+    $$
+
+    Under sticky strike, the smile function $\sigma(K)$ is fixed. The new ATM strike $K \approx 103$ was originally an OTM call. With skew $\partial\sigma/\partial k = -15\%$ and log-moneyness $k = \ln(103/100) \approx 0.03$:
+
+    $$
+    \sigma_{\text{IV}}(K=103) \approx 22\% + (-15\%)\times 0.03 = 22\% - 0.45\% = 21.55\%
+    $$
+
+    The new ATM implied volatility is approximately 21.55%, lower than the original 22% because the smile is downward-sloping and the ATM point has shifted to higher strikes.
+
 ---
 
 **Exercise 2.** Under the sticky delta assumption, the implied volatility at a fixed delta level is unchanged when spot moves. If the 25-delta put has $\sigma_{\text{IV}} = 27\%$ when $S_0 = 100$, what is its implied volatility when the spot moves to $S = 105$? In absolute strike space, does the $K$ corresponding to the 25-delta put increase or decrease?
+
+??? success "Solution to Exercise 2"
+    Under sticky delta, the IV at a fixed delta level does not change when spot moves. The 25-delta put has $\sigma_{\text{IV}} = 27\%$ at $S_0 = 100$, and this remains $27\%$ when spot moves to $S = 105$.
+
+    In absolute strike space, the strike corresponding to the 25-delta put **increases** when spot rises. This is because the 25-delta put strike scales approximately with the forward price:
+
+    $$
+    K_{25\Delta P} \approx F \cdot e^{-c}
+    $$
+
+    for some constant $c > 0$ that depends on volatility and maturity. When $S$ increases from 100 to 105, $F$ increases proportionally, so $K_{25\Delta P}$ also increases. The entire smile has effectively shifted to the right in strike space, maintaining the same shape in delta space.
 
 ---
 
@@ -683,18 +713,110 @@ $$
 
 with $\Delta_{\text{BS}} = 0.569$ and $\mathcal{V} = 19.73$. Compare with the Black-Scholes delta (sticky strike delta).
 
+??? success "Solution to Exercise 3"
+    We are given $\Delta_{\text{BS}} = 0.569$, $\mathcal{V} = 19.73$, and $\partial\sigma/\partial k = -0.20$.
+
+    Under sticky moneyness, the IV at a fixed strike changes when spot moves because log-moneyness $k = \ln(K/F)$ changes. The sensitivity of IV to spot at fixed strike is:
+
+    $$
+    \frac{\partial \sigma}{\partial S}\bigg|_{K} = \frac{\partial \sigma}{\partial k}\cdot\frac{\partial k}{\partial S} = \frac{\partial \sigma}{\partial k}\cdot\left(-\frac{1}{S}\right) = (-0.20)\times\left(-\frac{1}{100}\right) = +0.002
+    $$
+
+    The total delta under sticky moneyness:
+
+    $$
+    \Delta_{\text{total}} = \Delta_{\text{BS}} + \mathcal{V}\cdot\frac{\partial\sigma}{\partial S} = 0.569 + 19.73\times 0.002 = 0.569 + 0.039 = 0.608
+    $$
+
+    Compared to the Black-Scholes delta (which equals the sticky strike delta, $\Delta_{\text{SS}} = 0.569$), the sticky moneyness delta is higher by 0.039, or about 6.9%. The positive adjustment arises because, under sticky moneyness, when spot rises the fixed strike becomes more in-the-money in moneyness terms, and the negative skew pushes IV higher at that fixed strike, amplifying the price increase.
+
 ---
 
 **Exercise 4.** The skew stickiness ratio (SSR) is defined as the ratio of the actual ATM IV change to the predicted change under sticky strike. If the SSR for an equity index is 0.5, and the smile has $\frac{\partial \sigma}{\partial k} = -18\%$, determine the actual delta adjustment relative to the full sticky-moneyness adjustment. Where does this place the true dynamics on the spectrum from sticky strike to sticky moneyness?
+
+??? success "Solution to Exercise 4"
+    The SSR of 0.5 means the actual ATM IV change is 50% of what sticky moneyness predicts.
+
+    Under sticky moneyness, the full delta adjustment is:
+
+    $$
+    \mathcal{V}\cdot\frac{\partial\sigma}{\partial S} = \mathcal{V}\cdot\left(-\frac{1}{S}\right)\cdot\frac{\partial\sigma}{\partial k}
+    $$
+
+    The actual delta adjustment is:
+
+    $$
+    \text{Actual adjustment} = \text{SSR}\times\mathcal{V}\cdot\frac{\partial\sigma}{\partial S} = 0.5\times\mathcal{V}\cdot\frac{\partial\sigma}{\partial S}
+    $$
+
+    This places the true dynamics exactly halfway between sticky strike (SSR = 0, no adjustment) and sticky moneyness (SSR = 1, full adjustment).
+
+    With $\partial\sigma/\partial k = -0.18$, the full adjustment per unit spot move is $\mathcal{V}\times 0.18/S$. The actual adjustment is $0.5\times\mathcal{V}\times 0.18/S = \mathcal{V}\times 0.09/S$.
+
+    An SSR of 0.5 is in the middle of the empirical range (0.3--0.6 for SPX), consistent with the observation that equity index dynamics lie between the two extremes, influenced by both local volatility effects (sticky strike) and stochastic volatility effects (sticky moneyness/delta).
 
 ---
 
 **Exercise 5.** Explain why FX markets naturally align with the sticky delta assumption while equity markets tend toward sticky strike behavior. Discuss the role of quoting conventions (delta-quoted vs. strike-quoted) in this distinction.
 
+??? success "Solution to Exercise 5"
+    **FX markets** naturally align with sticky delta because:
+
+    - FX options are quoted at fixed delta levels (10-delta, 25-delta, ATM-delta). Market makers post bid/offer at these delta points, so the market convention itself anchors IV to delta rather than strike.
+    - FX spot-vol correlation is often near zero (e.g., EUR/USD), meaning the smile shifts symmetrically with spot, consistent with sticky delta.
+    - There is no strong directional leverage effect in major FX pairs, unlike equities.
+
+    **Equity markets** tend toward sticky strike because:
+
+    - Equity options are listed at fixed absolute strikes (e.g., $K = 90, 95, 100, \ldots$). Traders monitor IV at these specific strikes.
+    - The local volatility framework, which produces sticky strike behavior, captures short-term equity dynamics reasonably well.
+    - However, the leverage effect (negative spot-vol correlation) means the actual behavior deviates from pure sticky strike over longer horizons.
+
+    The quoting convention plays a reinforcing role: when market makers anchor quotes to fixed deltas (FX) versus fixed strikes (equities), the respective sticky assumption becomes a self-fulfilling approximation over short horizons, because hedging and market-making activity tends to stabilize IV in whichever coordinate the market uses.
+
 ---
 
 **Exercise 6.** In the SABR model, the backbone parameter $\beta$ interpolates between sticky strike ($\beta = 1$) and sticky delta ($\beta = 0$) behavior. For intermediate $\beta = 0.5$ with $F = 100$, $\alpha = 0.20$, $\nu = 0.3$, and $\rho = -0.4$, qualitatively describe how the smile shifts when the forward moves from 100 to 105. Is the behavior closer to sticky strike or sticky delta?
 
+??? success "Solution to Exercise 6"
+    In the SABR model with $\beta = 0.5$, the dynamics are:
+
+    $$
+    dF_t = \alpha_t F_t^{0.5}\,dW_t^F
+    $$
+
+    When $F$ moves from 100 to 105, the effective local volatility depends on $F^{0.5}$. The ATM volatility scales approximately as $\alpha\,F^{\beta - 1} = \alpha\,F^{-0.5}$.
+
+    At $F = 100$: effective vol $\propto \alpha/\sqrt{100} = \alpha/10$.
+
+    At $F = 105$: effective vol $\propto \alpha/\sqrt{105} \approx \alpha/10.247$.
+
+    The ATM vol decreases slightly as $F$ increases, which means the smile partially shifts in strike space. Under pure sticky strike ($\beta = 1$), ATM vol would be independent of $F$. Under pure sticky delta ($\beta = 0$, normal model), ATM vol would shift fully.
+
+    With $\beta = 0.5$, the behavior is intermediate but closer to sticky strike than sticky delta. The negative $\rho = -0.4$ adds a negative skew, so when $F$ rises, the left wing steepens somewhat. The overall shift is moderate: the smile moves partially to the right but not as much as sticky delta would predict, placing the dynamics roughly midway between the two extremes but leaning toward sticky strike.
+
 ---
 
 **Exercise 7.** A hedger must choose between using $\Delta_{\text{BS}}$ (sticky strike) and the adjusted delta (sticky delta) for an equity index call spread. The portfolio is long an ATM call and short a 110-strike call, both with $T = 0.5$ years. Under which assumption is the net delta larger? Describe a scenario analysis comparing P&L under both assumptions when the index falls by 5% with a concurrent 3% rise in ATM implied volatility.
+
+??? success "Solution to Exercise 7"
+    The portfolio is long an ATM call ($K = 100$) and short a 110-strike call, both with $T = 0.5$. The net delta of a call spread is positive since $\Delta(K=100) > \Delta(K=110)$.
+
+    **Under sticky strike** ($\partial\sigma/\partial S = 0$):
+
+    $$
+    \Delta_{\text{net}}^{\text{SS}} = \Delta_{\text{BS}}(K=100) - \Delta_{\text{BS}}(K=110)
+    $$
+
+    **Under sticky delta**, the total delta for each leg includes the smile adjustment $\mathcal{V}\cdot\partial\sigma/\partial S$. For typical equity negative skew ($\partial\sigma/\partial S < 0$), the adjustment is negative for each option. The OTM call ($K = 110$) has smaller vega than the ATM call, so the magnitude of the negative adjustment is smaller for the short leg. Hence:
+
+    $$
+    \Delta_{\text{net}}^{\text{SD}} = [\Delta_{\text{BS}}(100) + \mathcal{V}_{100}\cdot\Sigma_S] - [\Delta_{\text{BS}}(110) + \mathcal{V}_{110}\cdot\Sigma_S]
+    $$
+
+    Since $\mathcal{V}_{100} > \mathcal{V}_{110}$ and $\Sigma_S < 0$, the long leg is reduced more than the short leg. Therefore $\Delta_{\text{net}}^{\text{SD}} < \Delta_{\text{net}}^{\text{SS}}$, meaning the **net delta is larger under sticky strike**.
+
+    **Scenario analysis (index falls 5%, ATM IV rises 3%):**
+
+    - Under sticky strike: IV at both strikes is unchanged, so P&L is purely from delta and gamma effects. The call spread loses on the downside ($\Delta > 0$), partially offset by gamma.
+    - Under sticky delta: IV at fixed strikes increases (spot down pushes up IV at each strike due to negative skew). The long ATM call gains from vega (higher IV increases its value), and the short 110-call also increases in value (a loss on the short position). Since $\mathcal{V}_{100} > \mathcal{V}_{110}$, the net vega effect is positive, partially offsetting the directional loss. The P&L under sticky delta is less negative than under sticky strike because the vol increase provides a cushion via the net long vega of the call spread.

@@ -231,26 +231,6 @@ The Greeks under the Merton jump-diffusion model inherit the series structure of
 
 **Exercise 1.** The Merton delta is $\Delta_{\text{Merton}} = \sum_{n=0}^{\infty} w_n \Delta_{\text{BS}}^{(n)}$. Explain why $\Delta_{\text{Merton}}^{\text{ATM}} < \Delta_{\text{BS}}^{\text{ATM}}$ by relating the ATM delta to the effective volatility. For $\sigma = 0.20$ and $\sigma_{\text{eff}} = 0.30$ (including jump contribution), estimate the reduction in ATM call delta for $T = 0.25$.
 
----
-
-**Exercise 2.** At a jump time, the hedging error of a delta-hedged portfolio is $\Delta\Pi = V(S_{t^-}Y) - V(S_{t^-}) - \Delta_t S_{t^-}(Y-1)$. (a) Show that this error is approximately $\frac{1}{2}\Gamma S^2(Y-1)^2$ for small jumps (Taylor expand to second order). (b) For $S = 100$, $\Gamma = 0.025$, and a 15% downward jump ($Y = 0.85$), compute the approximate hedging loss.
-
----
-
-**Exercise 3.** Unlike Black-Scholes, the Merton model has four vega sensitivities: $\mathcal{V}_\sigma$, $\mathcal{V}_\lambda$, $\mathcal{V}_{\mu_J}$, $\mathcal{V}_{\sigma_J}$. For an ATM call, explain qualitatively whether each vega is positive or negative, and which one dominates for long-maturity options versus short-maturity options.
-
----
-
-**Exercise 4.** Describe a hedging strategy for a short call position under the Merton model that goes beyond delta hedging. Specifically: (a) How would you use OTM puts to hedge jump risk? (b) How would adding a second option allow delta-gamma hedging? (c) Why is perfect replication impossible?
-
----
-
-**Exercise 5.** The Merton theta is generally more negative than the Black-Scholes theta. Explain this using the theta-gamma relationship: in Black-Scholes, $\Theta + \frac{1}{2}\sigma^2 S^2\Gamma + rS\Delta - rV = 0$. How does the additional jump term modify this relationship in the Merton model?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The ATM Black-Scholes delta for a call is approximately $\Delta_{\text{BS}}^{\text{ATM}} \approx N(d_1)$ where, for ATM options ($S_0 = K$), $d_1 \approx \frac{\sigma\sqrt{T}}{2} + \frac{r}{\sigma}\sqrt{T}$. For short maturities, the dominant term is $d_1 \approx \sigma\sqrt{T}/2$.
 
@@ -275,6 +255,11 @@ The Greeks under the Merton jump-diffusion model inherit the series structure of
     $$
 
     The reduction is from approximately 0.569 to 0.563, about a 1% decrease. The actual Merton delta is computed as a Poisson-weighted average of Black-Scholes deltas at different volatilities $\sigma_n$, which spreads the probability mass more widely, further reducing the ATM sensitivity. The worked example in the text shows a more substantial reduction (from 0.554 to 0.518) because the full series average places weight on terms with even higher volatilities, amplifying the effect.
+
+---
+
+
+**Exercise 2.** At a jump time, the hedging error of a delta-hedged portfolio is $\Delta\Pi = V(S_{t^-}Y) - V(S_{t^-}) - \Delta_t S_{t^-}(Y-1)$. (a) Show that this error is approximately $\frac{1}{2}\Gamma S^2(Y-1)^2$ for small jumps (Taylor expand to second order). (b) For $S = 100$, $\Gamma = 0.025$, and a 15% downward jump ($Y = 0.85$), compute the approximate hedging loss.
 
 ??? success "Solution to Exercise 2"
     **(a)** Taylor expand $V(SY)$ around $S$ with $SY = S + S(Y-1)$:
@@ -307,6 +292,11 @@ The Greeks under the Merton jump-diffusion model inherit the series structure of
 
     The approximate hedging loss from the 15% downward jump is about \$2.81. This loss is always positive (regardless of jump direction) because it depends on $(Y-1)^2$, reflecting the convexity of the option value function.
 
+---
+
+
+**Exercise 3.** Unlike Black-Scholes, the Merton model has four vega sensitivities: $\mathcal{V}_\sigma$, $\mathcal{V}_\lambda$, $\mathcal{V}_{\mu_J}$, $\mathcal{V}_{\sigma_J}$. For an ATM call, explain qualitatively whether each vega is positive or negative, and which one dominates for long-maturity options versus short-maturity options.
+
 ??? success "Solution to Exercise 3"
     - **$\mathcal{V}_\sigma$ (diffusion vega):** Positive for ATM calls. Increasing the diffusion volatility increases the option value through the standard Black-Scholes mechanism. This dominates for **long-maturity** options where the diffusion component contributes most of the total variance.
 
@@ -317,6 +307,11 @@ The Greeks under the Merton jump-diffusion model inherit the series structure of
     - **$\mathcal{V}_{\sigma_J}$ (jump volatility vega):** Positive for ATM calls. Larger jump size dispersion widens the distribution, increasing the option value through convexity. This is most relevant for **short-maturity** options.
 
     For long-maturity options, $\mathcal{V}_\sigma$ dominates because the jump contribution to total variance becomes relatively smaller (jumps scale as $\lambda T$ while diffusion scales as $\sigma^2 T$, but the smile effects from jumps decay as $1/\sqrt{T}$). For short-maturity options, $\mathcal{V}_\lambda$ and $\mathcal{V}_{\sigma_J}$ become relatively more important because jumps dominate the smile shape.
+
+---
+
+
+**Exercise 4.** Describe a hedging strategy for a short call position under the Merton model that goes beyond delta hedging. Specifically: (a) How would you use OTM puts to hedge jump risk? (b) How would adding a second option allow delta-gamma hedging? (c) Why is perfect replication impossible?
 
 ??? success "Solution to Exercise 4"
     **(a) Using OTM puts to hedge jump risk:** Buy OTM puts at strikes below the current stock price (e.g., $K = 0.85 S_0$). These puts increase in value during large downward jumps, offsetting the loss on the short call from the jump-induced hedging error. The cost is the premium paid for the puts. The strike and quantity are chosen based on the expected jump size and intensity.
@@ -330,6 +325,11 @@ The Greeks under the Merton jump-diffusion model inherit the series structure of
     By matching both delta and gamma, the portfolio is insensitive to both first-order and second-order price changes. This reduces the hedging error at moderate jumps from $O((Y-1)^2)$ to $O((Y-1)^3)$.
 
     **(c) Why perfect replication is impossible:** The market is incomplete because there are two independent risk sources ($W_t$ and $N_t$) but only one traded asset (plus the bond). No dynamic trading strategy in the stock alone can replicate the payoff state-by-state across all possible jump outcomes. Even with a second option, the hedge is approximate because the jump size $Y$ is random and continuous-valued, requiring infinitely many instruments to span all possible outcomes. The residual risk is the unhedgeable jump component that requires risk premia or diversification.
+
+---
+
+
+**Exercise 5.** The Merton theta is generally more negative than the Black-Scholes theta. Explain this using the theta-gamma relationship: in Black-Scholes, $\Theta + \frac{1}{2}\sigma^2 S^2\Gamma + rS\Delta - rV = 0$. How does the additional jump term modify this relationship in the Merton model?
 
 ??? success "Solution to Exercise 5"
     In the Black-Scholes model, the option price satisfies the PDE:

@@ -145,52 +145,6 @@ The **Fokker-Planck equation** is the **forward Kolmogorov equation** - it descr
 **Exercise 1.**
 Write the Fokker-Planck equation for the Ornstein-Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dB_t$. Verify that the stationary density $p_\infty(x) \propto \exp(-\kappa x^2/\sigma^2)$ satisfies $\mathcal{L}^* p_\infty = 0$.
 
----
-
-**Exercise 2.**
-Starting from the general Fokker-Planck equation for $dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dB_t$, derive the Fokker-Planck equation for geometric Brownian motion $dS_t = \mu S_t\,dt + \sigma S_t\,dB_t$ by identifying $\mu(S) = \mu S$ and $\sigma(S) = \sigma S$. Expand all derivatives using the product rule.
-
----
-
-**Exercise 3.**
-For the CIR process $dr_t = \kappa(\theta - r_t)\,dt + \sqrt{\gamma r_t}\,dB_t$, write down the Fokker-Planck equation. Determine the stationary density by solving $\mathcal{L}^* p_\infty = 0$ and identify it as a Gamma distribution. Under what condition on $\kappa$, $\theta$, and $\gamma$ is $p_\infty$ integrable?
-
----
-
-**Exercise 4.**
-Using the Fokker-Planck derivation via Ito's lemma and test functions, show that for any smooth test function $f$ with compact support and any diffusion process $X_t$:
-
-$$
-\frac{d}{dt}\mathbb{E}[f(X_t)] = \mathbb{E}\left[\mu(X_t)f'(X_t) + \frac{1}{2}\sigma^2(X_t)f''(X_t)\right]
-$$
-
-Explain how integration by parts transfers the derivatives from $f$ to $p$.
-
----
-
-**Exercise 5.**
-For geometric Brownian motion with drift $\mu$ and volatility $\sigma$, verify that the log-normal density
-
-$$
-p(y, t) = \frac{1}{\sigma\sqrt{2\pi t}} \exp\left(-\frac{(y - (\mu - \sigma^2/2)t)^2}{2\sigma^2 t}\right)
-$$
-
-(where $y = \ln S$) satisfies the Fokker-Planck equation in log-space. What is the Fokker-Planck equation in the original $S$ variable?
-
----
-
-**Exercise 6.**
-Explain why the Fokker-Planck equation for the Ornstein-Uhlenbeck process has a well-defined stationary distribution while standard Brownian motion does not. Relate this to the sign of the mean-reversion parameter $\kappa$ and the behavior of the probability current $J(x) = \mu(x)p - \frac{1}{2}\partial_x[\sigma^2 p]$ at stationarity.
-
----
-
-**Exercise 7.**
-In the table comparing forward and backward equations, the forward equation describes the evolution of density while the backward equation describes PDE solutions for expected values. For a European call option with payoff $g(S_T) = (S_T - K)^+$, explain which equation you would use to find the option price and which you would use to find the terminal distribution of $S_T$. How are the two approaches connected via the identity $\mathbb{E}[g(X_T)] = \int g(x)\,p(x, T)\,dx$?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The Ornstein-Uhlenbeck process has $\mu(x) = -\kappa x$ and $\sigma(x) = \sigma$ (constant). The Fokker-Planck equation is:
 
@@ -225,6 +179,11 @@ In the table comparing forward and backward equations, the forward equation desc
     $$
 
     Thus $p_\infty(x) \propto \exp(-\kappa x^2/\sigma^2)$ is indeed the stationary density, which is a Gaussian $N(0, \sigma^2/(2\kappa))$.
+
+---
+
+**Exercise 2.**
+Starting from the general Fokker-Planck equation for $dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dB_t$, derive the Fokker-Planck equation for geometric Brownian motion $dS_t = \mu S_t\,dt + \sigma S_t\,dB_t$ by identifying $\mu(S) = \mu S$ and $\sigma(S) = \sigma S$. Expand all derivatives using the product rule.
 
 ??? success "Solution to Exercise 2"
     For GBM, $\mu(S) = \mu S$ and $\sigma(S) = \sigma S$. Substituting into the general Fokker-Planck equation:
@@ -269,6 +228,11 @@ In the table comparing forward and backward equations, the forward equation desc
     = (\sigma^2 - \mu)p + (2\sigma^2 - \mu)S\frac{\partial p}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 p}{\partial S^2}
     $$
 
+---
+
+**Exercise 3.**
+For the CIR process $dr_t = \kappa(\theta - r_t)\,dt + \sqrt{\gamma r_t}\,dB_t$, write down the Fokker-Planck equation. Determine the stationary density by solving $\mathcal{L}^* p_\infty = 0$ and identify it as a Gamma distribution. Under what condition on $\kappa$, $\theta$, and $\gamma$ is $p_\infty$ integrable?
+
 ??? success "Solution to Exercise 3"
     For the CIR process, $\mu(r) = \kappa(\theta - r)$ and $\sigma(r) = \sqrt{\gamma r}$, so $\sigma^2(r) = \gamma r$. The Fokker-Planck equation is:
 
@@ -309,6 +273,17 @@ In the table comparing forward and backward equations, the forward equation desc
     $$
 
     This is automatically satisfied when $\kappa, \theta, \gamma > 0$. However, for $p_\infty(r)$ to be integrable near $r = 0$ (so the density does not blow up too fast), we need $\alpha = 2\kappa\theta/\gamma > 0$. The stronger **Feller condition** $2\kappa\theta \geq \gamma$ (i.e., $\alpha \geq 1$) ensures the density is bounded at the origin.
+
+---
+
+**Exercise 4.**
+Using the Fokker-Planck derivation via Ito's lemma and test functions, show that for any smooth test function $f$ with compact support and any diffusion process $X_t$:
+
+$$
+\frac{d}{dt}\mathbb{E}[f(X_t)] = \mathbb{E}\left[\mu(X_t)f'(X_t) + \frac{1}{2}\sigma^2(X_t)f''(X_t)\right]
+$$
+
+Explain how integration by parts transfers the derivatives from $f$ to $p$.
 
 ??? success "Solution to Exercise 4"
     For a general diffusion $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dB_t$, apply Ito's lemma to a smooth test function $f$ with compact support:
@@ -351,6 +326,17 @@ In the table comparing forward and backward equations, the forward equation desc
 
     The net effect is that each derivative on $f$ is transferred to the product of the coefficient and $p$, with a sign change per integration by parts. This transforms the generator $\mathcal{L}$ acting on $f$ into the adjoint $\mathcal{L}^*$ acting on $p$.
 
+---
+
+**Exercise 5.**
+For geometric Brownian motion with drift $\mu$ and volatility $\sigma$, verify that the log-normal density
+
+$$
+p(y, t) = \frac{1}{\sigma\sqrt{2\pi t}} \exp\left(-\frac{(y - (\mu - \sigma^2/2)t)^2}{2\sigma^2 t}\right)
+$$
+
+(where $y = \ln S$) satisfies the Fokker-Planck equation in log-space. What is the Fokker-Planck equation in the original $S$ variable?
+
 ??? success "Solution to Exercise 5"
     In log-space with $y = \ln S$, Ito's lemma gives $dY_t = (\mu - \sigma^2/2)\,dt + \sigma\,dB_t$. This is Brownian motion with drift $\tilde{\mu} = \mu - \sigma^2/2$ and diffusion coefficient $\sigma$, so the Fokker-Planck equation in log-space is:
 
@@ -384,6 +370,11 @@ In the table comparing forward and backward equations, the forward equation desc
     \frac{\partial p}{\partial t} = -\frac{\partial}{\partial S}[\mu S \cdot p] + \frac{1}{2}\frac{\partial^2}{\partial S^2}[\sigma^2 S^2 \cdot p]
     $$
 
+---
+
+**Exercise 6.**
+Explain why the Fokker-Planck equation for the Ornstein-Uhlenbeck process has a well-defined stationary distribution while standard Brownian motion does not. Relate this to the sign of the mean-reversion parameter $\kappa$ and the behavior of the probability current $J(x) = \mu(x)p - \frac{1}{2}\partial_x[\sigma^2 p]$ at stationarity.
+
 ??? success "Solution to Exercise 6"
     **Ornstein-Uhlenbeck process**: The Fokker-Planck equation is $\partial_t p = \kappa\partial_x(xp) + \frac{\sigma^2}{2}\partial_{xx}p$. The drift $\mu(x) = -\kappa x$ with $\kappa > 0$ pushes probability mass back toward zero. The probability current is:
 
@@ -399,6 +390,11 @@ In the table comparing forward and backward equations, the forward equation desc
 
     - When $\kappa > 0$, the drift $-\kappa x$ creates a restoring force that balances diffusion, producing a normalizable stationary density.
     - When there is no drift, diffusion spreads probability mass indefinitely, and the variance grows as $t$ without bound.
+
+---
+
+**Exercise 7.**
+In the table comparing forward and backward equations, the forward equation describes the evolution of density while the backward equation describes PDE solutions for expected values. For a European call option with payoff $g(S_T) = (S_T - K)^+$, explain which equation you would use to find the option price and which you would use to find the terminal distribution of $S_T$. How are the two approaches connected via the identity $\mathbb{E}[g(X_T)] = \int g(x)\,p(x, T)\,dx$?
 
 ??? success "Solution to Exercise 7"
     **Option pricing (backward equation)**: To find the option price $V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ \mid S_t = S]$, we use the **backward Kolmogorov equation** (or equivalently the Black-Scholes PDE):

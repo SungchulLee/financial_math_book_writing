@@ -281,22 +281,169 @@ The COS method fails or degrades when its three foundational assumptions are vio
 
 **Exercise 1.** The COS method requires three conditions for exponential convergence: smoothness of the density, rapid decay of the CF, and adequate truncation. For a model where the density has a kink (e.g., a barrier option density), which condition is violated? What is the resulting convergence rate, and how many COS terms would be needed for $10^{-4}$ accuracy if $|A_k| = O(k^{-2})$?
 
+??? success "Solution to Exercise 1"
+    The smoothness condition is violated. A barrier option density (or more precisely, the product of the density with the barrier payoff) has a **kink** (discontinuity in the first derivative) at the barrier level. This means the function being expanded in a cosine series is not $C^\infty$; it has only $p = 1$ continuous derivatives (continuous but with a discontinuous first derivative).
+
+    By the algebraic convergence theorem, if $f$ has $p$ continuous derivatives but $f^{(p)}$ has a discontinuity, then $|A_k| = O(k^{-(p+1)})$ and the COS pricing error is $O(N^{-p})$.
+
+    For a kink ($p = 1$): $|A_k| = O(k^{-2})$, so the COS series error is $O(N^{-1})$.
+
+    To achieve $10^{-4}$ accuracy with $|A_k| = O(k^{-2})$, we need the truncation error of the series to satisfy:
+
+    $$
+    \sum_{k=N}^{\infty} |A_k| \approx \int_N^{\infty} k^{-2}\,dk = \frac{1}{N} < 10^{-4}
+    $$
+
+    This requires $N > 10^4 = 10{,}000$ terms. This is far more than the 64--256 terms typical for smooth densities, illustrating why payoff discontinuities severely degrade COS performance. In practice, payoff smoothing or Richardson extrapolation is essential.
+
 ---
 
 **Exercise 2.** For the CGMY model with $Y = 1.8$, the worked example shows algebraic convergence: $N = 64$ gives error $\approx 0.21$, while $N = 512$ gives error $\approx 1.2 \times 10^{-4}$. Estimate the convergence order $p$ in $\varepsilon \sim N^{-p}$ by fitting $\log(\varepsilon)$ vs $\log(N)$ using two data points. Compare this to the exponential convergence for CGMY with $Y = 0.5$.
+
+??? success "Solution to Exercise 2"
+    Using the data points $(N_1, \varepsilon_1) = (64, 0.21)$ and $(N_2, \varepsilon_2) = (512, 1.2 \times 10^{-4})$:
+
+    The model is $\varepsilon \sim C N^{-p}$, so $\log \varepsilon = \log C - p\log N$.
+
+    $$
+    p = \frac{\log \varepsilon_1 - \log \varepsilon_2}{\log N_2 - \log N_1} = \frac{\log(0.21) - \log(1.2 \times 10^{-4})}{\log 512 - \log 64}
+    $$
+
+    Computing the numerator:
+
+    $$
+    \log(0.21) - \log(1.2 \times 10^{-4}) = \log\!\left(\frac{0.21}{1.2 \times 10^{-4}}\right) = \log(1750) \approx 3.2430
+    $$
+
+    Computing the denominator:
+
+    $$
+    \log 512 - \log 64 = \log(512/64) = \log 8 \approx 0.9031
+    $$
+
+    Therefore:
+
+    $$
+    p \approx \frac{3.2430}{0.9031} \approx 3.59
+    $$
+
+    So the convergence is approximately $O(N^{-3.6})$, which is algebraic (polynomial) convergence.
+
+    **Comparison with $Y = 0.5$:** The text states that CGMY with $Y = 0.5$ achieves $10^{-8}$ accuracy with $N = 128$ and $L = 10$. This is exponential convergence: the error decreases as $e^{-cN}$ for some $c > 0$. With exponential convergence, doubling $N$ from 64 to 128 typically reduces the error by many orders of magnitude simultaneously (e.g., from $10^{-4}$ to $10^{-8}$). In contrast, the algebraic convergence for $Y = 1.8$ requires going from $N = 64$ all the way to $N = 1024$ just to get from error $0.21$ to error $10^{-5}$---a reduction that exponential convergence would achieve with far fewer terms.
 
 ---
 
 **Exercise 3.** The Heston characteristic function involves $\gamma = \sqrt{(\kappa - i\rho\sigma_v u)^2 + \sigma_v^2(iu + u^2)}$. Explain why the principal branch of the complex square root can produce a discontinuous $\phi(u)$ along the real $u$-axis. Describe the "little Heston trap" fix (Albrecher et al., 2007) and why it resolves the branch-cut problem.
 
+??? success "Solution to Exercise 3"
+    The Heston CF involves $\gamma = \sqrt{(\kappa - i\rho\sigma_v u)^2 + \sigma_v^2(iu + u^2)}$, where the argument of the square root is a complex-valued function of the real variable $u$.
+
+    **Why a discontinuity arises:** As $u$ varies continuously along the real axis, the complex argument $z(u) = (\kappa - i\rho\sigma_v u)^2 + \sigma_v^2(iu + u^2)$ traces a curve in the complex plane. The principal branch of $\sqrt{z}$ has a branch cut along the negative real axis ($\arg z = \pm\pi$). If $z(u)$ crosses the negative real axis as $u$ varies, $\arg(z)$ jumps from $+\pi$ to $-\pi$ (or vice versa), causing $\sqrt{z}$ to jump discontinuously. This discontinuity in $\gamma(u)$ propagates to $\phi(u)$, producing a discontinuous characteristic function. Since the COS coefficients $F_k = \frac{2}{b-a}\operatorname{Re}[\phi(k\pi/(b-a))\cdots]$ sample $\phi$ at discrete points, a discontinuity in $\phi$ destroys the exponential decay of $|F_k|$ and hence the exponential convergence of the COS method.
+
+    **The "little Heston trap" fix:** Albrecher et al. (2007) observe that the Heston CF can be written in two mathematically equivalent forms. The standard form uses:
+
+    $$
+    g = \frac{\kappa - i\rho\sigma_v u - \gamma}{\kappa - i\rho\sigma_v u + \gamma}
+    $$
+
+    The "little Heston trap" formulation uses $g^* = 1/g$:
+
+    $$
+    g^* = \frac{\kappa - i\rho\sigma_v u + \gamma}{\kappa - i\rho\sigma_v u - \gamma}
+    $$
+
+    and rearranges the CF formula so that the exponential terms involve $(1 - g^* e^{-\gamma T})$ instead of $(1 - ge^{-\gamma T})$. The key insight is that $|g^*| > 1$ (while $|g| < 1$), so $g^* e^{-\gamma T}$ is better behaved numerically, and the overall expression avoids the branch-cut crossing. Specifically, the reformulation ensures that the complex argument of the logarithm/exponential in the CF never crosses the branch cut, making $\phi(u)$ continuous along the real $u$-axis.
+
+    **Resolution:** By using the little Heston trap formulation, $\phi(u)$ is continuous and smooth in $u$, restoring exponential convergence of the COS method.
+
 ---
 
 **Exercise 4.** Heavy-tailed distributions (e.g., stable processes with polynomial tails) cause the cumulant-based truncation rule to fail because $c_4$ may be infinite. Propose a quantile-based truncation rule as an alternative: given a target truncation error $\epsilon$, describe how to find $a$ and $b$ such that $F(a) < \epsilon$ and $1 - F(b) < \epsilon$ using the Gil-Pelaez formula for the CDF.
+
+??? success "Solution to Exercise 4"
+    For heavy-tailed distributions where $c_4$ may be infinite (e.g., stable processes with index $\alpha < 4$), the cumulant-based truncation formula breaks down. We propose using the Gil-Pelaez inversion formula to find quantile-based bounds.
+
+    **Gil-Pelaez formula for the CDF:**
+
+    $$
+    F(x) = \frac{1}{2} - \frac{1}{\pi}\int_0^{\infty}\operatorname{Im}\!\left[\frac{e^{-iux}\phi(u)}{u}\right]du
+    $$
+
+    **Quantile-based truncation algorithm:**
+
+    1. Choose a target truncation error $\epsilon$ (e.g., $\epsilon = 10^{-10}$).
+    2. Find $a$ such that $F(a) < \epsilon$: use bisection on $x$ with $F(x)$ evaluated via the Gil-Pelaez integral. Start with $a_0 = c_1 - 10\sqrt{c_2}$ (if $c_2$ exists) or a rough initial guess, and halve/double until $F(a) < \epsilon$.
+    3. Find $b$ such that $1 - F(b) < \epsilon$: similarly, use bisection to find $b$ with $F(b) > 1 - \epsilon$.
+
+    **Practical considerations:**
+
+    - The Gil-Pelaez integral itself requires numerical quadrature, but it only needs to be evaluated at a few candidate values of $x$ during the bisection, so the cost is modest.
+    - For the integrand $\operatorname{Im}[e^{-iux}\phi(u)/u]$, the decay rate as $u \to \infty$ is governed by $|\phi(u)|$. For heavy-tailed densities, $|\phi(u)|$ decays slowly, so the integral may need a large upper limit or adaptive quadrature.
+    - An alternative is to use the tail asymptotics: if $f(x) \sim C|x|^{-(1+\alpha)}$ for large $|x|$, then $F(a) \approx C|a|^{-\alpha}/\alpha$ and $1 - F(b) \approx C b^{-\alpha}/\alpha$, giving $a \approx -(C/(\alpha\epsilon))^{1/\alpha}$ and $b \approx (C/(\alpha\epsilon))^{1/\alpha}$. This provides a direct formula when the tail index $\alpha$ is known.
+
+    This approach guarantees that the truncation error is below $\epsilon$ regardless of whether the cumulants exist, making it universally applicable.
 
 ---
 
 **Exercise 5.** Oscillatory characteristic functions arise in jump-diffusion models with concentrated jumps ($\sigma_J$ small). For the Merton model with $\lambda = 10$, $\mu_J = 0.01$, and $\sigma_J = 0.001$, the jump CF oscillates with frequency approximately $\lambda T \mu_J / \sigma_J$. Estimate this frequency for $T = 1$ and compute the Nyquist condition $N > 2\mu_J/(b-a) \cdot \lambda T / \sigma_J^2$ to determine the minimum $N$ needed to resolve the oscillations on an interval with $b - a = 4$.
 
+??? success "Solution to Exercise 5"
+    For the Merton model with $\lambda = 10$, $\mu_J = 0.01$, $\sigma_J = 0.001$, and $T = 1$:
+
+    The jump CF is $\phi_{\text{jump}}(u) = \exp(\lambda T[e^{i\mu_J u - \sigma_J^2 u^2/2} - 1])$. The inner exponential $e^{i\mu_J u}$ oscillates with angular frequency $\mu_J$ in $u$-space. With $\lambda T = 10$ expected jumps and very concentrated jump sizes ($\sigma_J = 0.001$), the CF oscillates rapidly.
+
+    **Oscillation frequency estimate:** The dominant oscillation in $\phi(u)$ comes from the term $e^{i\lambda T \mu_J u}$ (the leading-order contribution from the jump component for small $\sigma_J$). The angular frequency in $u$-space is approximately:
+
+    $$
+    \omega_{\text{osc}} = \lambda T \mu_J = 10 \times 1 \times 0.01 = 0.1 \text{ (radians per unit } u\text{)}
+    $$
+
+    The spatial frequency (cycles per unit $u$) is $\omega_{\text{osc}}/(2\pi) \approx 0.0159$.
+
+    **Nyquist condition:** The COS method samples $\phi(u)$ at $u_k = k\pi/(b-a)$. The spacing in $u$ is $\Delta u = \pi/(b-a)$. To resolve oscillations with angular frequency $\omega_{\text{osc}}$, the Nyquist criterion requires:
+
+    $$
+    \Delta u < \frac{\pi}{\omega_{\text{osc}} \cdot (b-a)/(2\pi)} \implies N > \frac{2\omega_{\text{osc}}(b-a)}{\pi}
+    $$
+
+    More directly, using the given formula $N > 2\mu_J/(b-a) \cdot \lambda T / \sigma_J^2$:
+
+    $$
+    N > \frac{2 \times 0.01}{4} \times \frac{10}{0.000001} = 0.005 \times 10^7 = 50{,}000
+    $$
+
+    This is an enormous number of terms, making the COS method impractical for this parameter regime. The extremely small $\sigma_J$ creates near-Dirac jump sizes, producing extremely rapid oscillations in the CF.
+
+    In practice, this regime requires either exponential tilting (damping the CF by evaluating $\phi(u + i\eta)$ for suitable $\eta > 0$) or switching to the Carr-Madan FFT with damping, which handles oscillatory CFs more gracefully.
+
 ---
 
 **Exercise 6.** The diagnostic checklist includes six checks. Apply all six to the following scenario: a COS price under the Heston model that changes by $0.05$ when $N$ is doubled from 128 to 256, and changes by $0.02$ when $[a, b]$ is widened by 20%. Identify the likely failure mode, propose the appropriate remedy, and describe how you would verify the fix.
+
+---
+
+??? success "Solution to Exercise 6"
+    **Applying the six diagnostic checks:**
+
+    **Check 1: CF evaluates without NaN.** Evaluate $\phi_{\text{Heston}}(u)$ at $u = 0, 10, 100, 1000$. If all values are finite, this check passes. If NaN appears at large $u$, the branch-cut or overflow issue is the cause. Assume this check passes (the problem statement does not mention NaN).
+
+    **Check 2: $|\phi(u)|$ decays for large $u$.** Plot $|\phi(u)|$ vs $u$. For the Heston model, $|\phi(u)|$ should decay exponentially. If it decays only as a power law or shows oscillation, this indicates a problem. Given the Heston model, this check likely passes unless there is a branch-cut issue.
+
+    **Check 3: Price converges as $N$ increases.** The price changes by $0.05$ when $N$ doubles from 128 to 256. For a well-converged COS calculation, the change should be negligible (e.g., $< 10^{-6}$). **This check FAILS.** The COS series has not converged at $N = 128$.
+
+    **Check 4: Price stable under $[a,b]$ widening.** The price changes by $0.02$ when $[a, b]$ is widened by 20%. **This check FAILS.** The truncation interval is too narrow, and significant probability mass lies outside $[a, b]$.
+
+    **Check 5: Density non-negative.** Evaluate $f_{\text{COS}}(x)$ on a grid in $[a, b]$. If negative values appear, the cosine expansion has not converged. Given the convergence problems above, negative densities near the boundaries are likely. **This check may fail.**
+
+    **Check 6: Put-call parity satisfied.** Compute $C - P$ and compare to $e^{-qT}S_0 - e^{-rT}K$. If the COS prices for call and put are both inaccurate, put-call parity may still hold (since both prices have similar truncation errors), but it may be violated if the truncation asymmetrically affects the two payoffs.
+
+    **Likely failure mode:** The combination of failed checks 3 and 4 points to **truncation error** as the primary issue (Failure Mode 1), possibly compounded by a **branch-cut discontinuity** in the Heston CF (Failure Mode 5). The $0.02$ change under widening confirms that the interval $[a, b]$ is capturing too little of the density. The $0.05$ change under $N$ doubling could be a secondary effect (insufficient terms for the wider effective support) or could indicate a CF evaluation problem.
+
+    **Proposed remedy:**
+
+    1. First, check for the Heston branch-cut issue by switching to the "little Heston trap" formulation.
+    2. Increase $L$ from 10 to 20 (or higher) in the truncation formula.
+    3. Recompute with $N = 256$ and $N = 512$ using the wider interval.
+    4. If the price stabilizes (change $< 10^{-6}$ between consecutive $N$ values), the fix is confirmed.
+
+    **Verification:** After applying the fix, rerun all six checks. The price should change by less than $10^{-6}$ when $N$ doubles and less than $10^{-8}$ when $[a, b]$ is widened. Put-call parity should hold to machine precision, and the recovered density should be non-negative everywhere.

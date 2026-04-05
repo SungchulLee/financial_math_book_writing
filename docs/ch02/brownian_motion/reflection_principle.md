@@ -623,55 +623,13 @@ The reflection principle is a fundamental tool for analyzing path-dependent prop
 - **Optimal stopping** (advanced): American option pricing
 - **Local time** (advanced): Fine structure of hitting times
 
-### Exercises
+## Exercises
 
 #### Reflection Principle
 
 Let $M_t := \sup_{0 \le s \le t} W_s$.
 
 1. Use the reflection principle to compute $\mathbb{P}(M_t \ge a)$ for $a > 0$.
-
-2. Deduce the distribution of $M_t$ (find the CDF and PDF).
-
-3. Compute $\mathbb{P}(|W_t| \ge a)$ using symmetry.
-
-4. Show that the joint density integrates to 1: $\int_0^\infty \int_{-\infty}^m f_{M_t, W_t}(m, w) \, dw \, dm = 1$.
-
-#### Hitting Times
-
-Define the stopping time $\tau_a := \inf\{ t \ge 0 : W_t = a \}$ for $a > 0$.
-
-5. Show that $\mathbb{P}(\tau_a < \infty) = 1$ using the reflection principle.
-
-6. Compute $\mathbb{E}[\tau_a]$, or explain why it is infinite. (Hint: Use the Laplace transform.)
-
-7. Discuss how the recurrence of Brownian motion is reflected in these results.
-
-8. Verify that $\int_0^\infty f_{\tau_a}(t) \, dt = 1$ for the Lévy distribution $f_{\tau_a}(t) = \frac{a}{\sqrt{2\pi t^3}} e^{-a^2/(2t)}$.
-
-#### Joint Distribution
-
-9. Show that $\mathbb{P}(\tau_a = \tau_b) = 0$ for $a \neq b$, $a, b > 0$. (Hint: Suppose $\tau_a = \tau_b = \tau$. Then $W_\tau = a$ and $W_\tau = b$ simultaneously. Why is this impossible when $a \neq b$?)
-
-10. Compute $\mathbb{E}[M_T | W_T = w]$ using the conditional density $f_{M_t|W_t}(m|w)$.
-
-#### Laplace Transform
-
-11. Verify the Laplace transform formula $\mathbb{E}[e^{-\alpha \tau_a}] = e^{-a\sqrt{2\alpha}}$ by direct integration:
-
-$$\int_0^\infty e^{-\alpha t} f_{\tau_a}(t) \, dt$$
-
-12. Use the Laplace transform to show that $\mathbb{E}[\tau_a^{1/2}] < \infty$ but $\mathbb{E}[\tau_a] = \infty$.
-
-#### Applications
-
-13. For a knock-in barrier option that activates when the asset first hits level $B > S_0$, derive the activation probability by time $T$ using the reflection principle.
-
-14. (Drawdown) The drawdown at time $t$ is $DD_t = M_t - W_t$. Using the joint density, compute $\mathbb{P}(DD_T > d)$ for fixed $d > 0$.
-
-### Solutions
-
-#### Reflection Principle
 
 ??? success "Solution to Exercise 1"
     By the reflection principle (Theorem 1.6.1), for $a > 0$:
@@ -694,6 +652,10 @@ $$\int_0^\infty e^{-\alpha t} f_{\tau_a}(t) \, dt$$
 
     Since $\mathbb{P}(W_t = a) = 0$ for continuous distributions.
 
+---
+
+2. Deduce the distribution of $M_t$ (find the CDF and PDF).
+
 ??? success "Solution to Exercise 2"
     **CDF:** From Exercise 1, for $a > 0$:
 
@@ -711,6 +673,10 @@ $$\int_0^\infty e^{-\alpha t} f_{\tau_a}(t) \, dt$$
 
     for $a > 0$, and $f_{M_t}(a) = 0$ for $a < 0$. This is twice the density of $|W_t|$, which makes sense since $M_t \overset{d}{=} |W_t|$ (a consequence of the reflection principle).
 
+---
+
+3. Compute $\mathbb{P}(|W_t| \ge a)$ using symmetry.
+
 ??? success "Solution to Exercise 3"
     By symmetry of Brownian motion, $W_t \overset{d}{=} -W_t$, so $\mathbb{P}(W_t \ge a) = \mathbb{P}(W_t \le -a) = \mathbb{P}(-W_t \ge a)$.
 
@@ -719,6 +685,10 @@ $$\int_0^\infty e^{-\alpha t} f_{\tau_a}(t) \, dt$$
     $$
 
     for $a > 0$. Note this equals $\mathbb{P}(M_t \ge a)$ from Exercise 1, confirming $M_t \overset{d}{=} |W_t|$.
+
+---
+
+4. Show that the joint density integrates to 1: $\int_0^\infty \int_{-\infty}^m f_{M_t, W_t}(m, w) \, dw \, dm = 1$.
 
 ??? success "Solution to Exercise 4"
     We need to show $\int_0^\infty \int_{-\infty}^m f_{M_t, W_t}(m, w)\,dw\,dm = 1$ where:
@@ -749,6 +719,14 @@ $$\int_0^\infty e^{-\alpha t} f_{\tau_a}(t) \, dt$$
 
 #### Hitting Times
 
+---
+
+#### Hitting Times
+
+Define the stopping time $\tau_a := \inf\{ t \ge 0 : W_t = a \}$ for $a > 0$.
+
+5. Show that $\mathbb{P}(\tau_a < \infty) = 1$ using the reflection principle.
+
 ??? success "Solution to Exercise 5"
     By the reflection principle, $\mathbb{P}(\tau_a \le t) = \mathbb{P}(M_t \ge a) = 2\Phi(-a/\sqrt{t})$.
 
@@ -759,6 +737,10 @@ $$\int_0^\infty e^{-\alpha t} f_{\tau_a}(t) \, dt$$
     $$
 
     Therefore Brownian motion hits every positive level with probability 1. By symmetry ($-W_t$ is also a Brownian motion), it also hits every negative level with probability 1.
+
+---
+
+6. Compute $\mathbb{E}[\tau_a]$, or explain why it is infinite. (Hint: Use the Laplace transform.)
 
 ??? success "Solution to Exercise 6"
     The density of $\tau_a$ is $f_{\tau_a}(t) = \frac{a}{\sqrt{2\pi t^3}} e^{-a^2/(2t)}$.
@@ -771,6 +753,10 @@ $$\int_0^\infty e^{-\alpha t} f_{\tau_a}(t) \, dt$$
 
     **Via Laplace transform:** $\mathbb{E}[\tau_a] = -\frac{d}{d\alpha}\mathbb{E}[e^{-\alpha\tau_a}]\big|_{\alpha=0} = \frac{a}{\sqrt{2\alpha}}e^{-a\sqrt{2\alpha}}\big|_{\alpha \to 0^+} = \infty$.
 
+---
+
+7. Discuss how the recurrence of Brownian motion is reflected in these results.
+
 ??? success "Solution to Exercise 7"
     These results display a paradoxical property of recurrence for Brownian motion:
 
@@ -778,6 +764,10 @@ $$\int_0^\infty e^{-\alpha t} f_{\tau_a}(t) \, dt$$
     - $\mathbb{E}[\tau_a] = \infty$: Despite certain hitting, the **average** time is infinite. This occurs because the Lévy distribution has a heavy tail $f_{\tau_a}(t) \sim t^{-3/2}$, meaning there are rare paths that wander far from $a$ for an extremely long time before finally hitting it.
 
     The recurrence is weaker than for, say, a random walk on $\mathbb{Z}$: Brownian motion in $\mathbb{R}$ is recurrent (returns to every neighborhood of every point) but not positive recurrent (expected return time is infinite). In higher dimensions ($d \ge 3$), Brownian motion is transient and $\mathbb{P}(\tau_a < \infty) < 1$ for suitable definitions of "hitting."
+
+---
+
+8. Verify that $\int_0^\infty f_{\tau_a}(t) \, dt = 1$ for the Lévy distribution $f_{\tau_a}(t) = \frac{a}{\sqrt{2\pi t^3}} e^{-a^2/(2t)}$.
 
 ??? success "Solution to Exercise 8"
     We verify $\int_0^\infty f_{\tau_a}(t)\,dt = 1$ where $f_{\tau_a}(t) = \frac{a}{\sqrt{2\pi t^3}} e^{-a^2/(2t)}$.
@@ -796,10 +786,20 @@ $$\int_0^\infty e^{-\alpha t} f_{\tau_a}(t) \, dt$$
 
 #### Joint Distribution
 
+---
+
+#### Joint Distribution
+
+9. Show that $\mathbb{P}(\tau_a = \tau_b) = 0$ for $a \neq b$, $a, b > 0$. (Hint: Suppose $\tau_a = \tau_b = \tau$. Then $W_\tau = a$ and $W_\tau = b$ simultaneously. Why is this impossible when $a \neq b$?)
+
 ??? success "Solution to Exercise 9"
     Suppose $\tau_a = \tau_b = \tau$ for some realization. At time $\tau$, continuity of Brownian paths requires $W_\tau = a$ (since $\tau = \tau_a$) and $W_\tau = b$ (since $\tau = \tau_b$). But $a \neq b$, so $W_\tau$ cannot equal both simultaneously.
 
     More rigorously, without loss of generality assume $0 < a < b$. Then $\tau_a \le \tau_b$ a.s. (the path must hit $a$ before reaching $b$ since it starts at $0$ and is continuous). The event $\{\tau_a = \tau_b\}$ requires $W_{\tau_a} = b$, but $W_{\tau_a} = a \neq b$. Therefore $\{\tau_a = \tau_b\}$ is contained in a null set, and $\mathbb{P}(\tau_a = \tau_b) = 0$.
+
+---
+
+10. Compute $\mathbb{E}[M_T | W_T = w]$ using the conditional density $f_{M_t|W_t}(m|w)$.
 
 ??? success "Solution to Exercise 10"
     Using $f_{M_t|W_t}(m|w) = \frac{2(2m-w)}{t} e^{-2m(m-w)/t}$ for $m \ge \max(w, 0)$:
@@ -828,6 +828,14 @@ $$\int_0^\infty e^{-\alpha t} f_{\tau_a}(t) \, dt$$
 
 #### Laplace Transform
 
+---
+
+#### Laplace Transform
+
+11. Verify the Laplace transform formula $\mathbb{E}[e^{-\alpha \tau_a}] = e^{-a\sqrt{2\alpha}}$ by direct integration:
+
+$$\int_0^\infty e^{-\alpha t} f_{\tau_a}(t) \, dt$$
+
 ??? success "Solution to Exercise 11"
     We compute $\int_0^\infty e^{-\alpha t} f_{\tau_a}(t)\,dt = \frac{a}{\sqrt{2\pi}}\int_0^\infty t^{-3/2} e^{-\alpha t - a^2/(2t)}\,dt$.
 
@@ -843,6 +851,10 @@ $$\int_0^\infty e^{-\alpha t} f_{\tau_a}(t) \, dt$$
     \frac{a}{\sqrt{2\pi}} \cdot \sqrt{\frac{\pi}{a^2/2}} \cdot e^{-2\sqrt{\alpha \cdot a^2/2}} = \frac{a}{\sqrt{2\pi}} \cdot \frac{\sqrt{2\pi}}{a} \cdot e^{-a\sqrt{2\alpha}} = e^{-a\sqrt{2\alpha}}
     $$
 
+---
+
+12. Use the Laplace transform to show that $\mathbb{E}[\tau_a^{1/2}] < \infty$ but $\mathbb{E}[\tau_a] = \infty$.
+
 ??? success "Solution to Exercise 12"
     From $\mathbb{E}[e^{-\alpha\tau_a}] = e^{-a\sqrt{2\alpha}}$, the behavior near $\alpha = 0$ encodes the moments.
 
@@ -853,6 +865,12 @@ $$\int_0^\infty e^{-\alpha t} f_{\tau_a}(t) \, dt$$
     The Laplace transform makes this transparent: expanding $e^{-a\sqrt{2\alpha}} \approx 1 - a\sqrt{2\alpha} + \cdots$ near $\alpha = 0$, the leading correction is $\sqrt{\alpha}$, not $\alpha$. If $\mathbb{E}[\tau_a]$ were finite, we would need $e^{-a\sqrt{2\alpha}} \approx 1 - \alpha\mathbb{E}[\tau_a] + \cdots$, but the $\sqrt{\alpha}$ singularity prevents this.
 
 #### Applications
+
+---
+
+#### Applications
+
+13. For a knock-in barrier option that activates when the asset first hits level $B > S_0$, derive the activation probability by time $T$ using the reflection principle.
 
 ??? success "Solution to Exercise 13"
     A knock-in barrier option activates when the asset first hits level $B > S_0$. Under the Black-Scholes model $S_t = S_0 e^{(r - \sigma^2/2)t + \sigma W_t}$, the barrier is hit by time $T$ if:
@@ -874,6 +892,10 @@ $$\int_0^\infty e^{-\alpha t} f_{\tau_a}(t) \, dt$$
     $$
 
     With drift $\mu = (r - \sigma^2/2)/\sigma$, the Girsanov-adjusted formula gives a more complex expression involving both $\Phi(-a/\sqrt{T})$ and correction terms from the drift.
+
+---
+
+14. (Drawdown) The drawdown at time $t$ is $DD_t = M_t - W_t$. Using the joint density, compute $\mathbb{P}(DD_T > d)$ for fixed $d > 0$.
 
 ??? success "Solution to Exercise 14"
     The drawdown $DD_T = M_T - W_T$ where $M_T = \sup_{0 \le s \le T} W_s$. We want $\mathbb{P}(DD_T > d) = \mathbb{P}(M_T - W_T > d)$.

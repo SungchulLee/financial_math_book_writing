@@ -263,22 +263,138 @@ Exact solutions exist for two special cases of the SABR model. For normal SABR (
 
 **Exercise 1.** For normal SABR ($\beta = 0$) with zero correlation ($\rho = 0$), the forward conditional on the integrated variance is $F_T | I \sim \mathcal{N}(F_0, I)$ where $I = \int_0^T \sigma_s^2\,ds$. Write the European call price as a mixture: $C = e^{-rT}\mathbb{E}_{I}[\text{BS}_N(F_0, K, I)]$ where $\text{BS}_N$ is the Bachelier formula. Explain why this reduces option pricing to computing the distribution of $I$.
 
+??? success "Solution to Exercise 1"
+    For $\beta = 0$, $\rho = 0$, the forward is $F_T = F_0 + \int_0^T \sigma_s\,dW_s^{(1)}$. Conditional on the integrated variance $I = \int_0^T \sigma_s^2\,ds$ (and noting that $W^{(1)}$ is independent of $W^{(2)}$ when $\rho = 0$, so $I$ is independent of $W^{(1)}$):
+
+    $$
+    F_T \mid I \sim \mathcal{N}(F_0, I)
+    $$
+
+    The European call price conditional on $I$ is the Bachelier formula:
+
+    $$
+    \mathbb{E}[(F_T - K)^+ \mid I] = (F_0 - K)\Phi\!\left(\frac{F_0 - K}{\sqrt{I}}\right) + \sqrt{I}\,\phi\!\left(\frac{F_0 - K}{\sqrt{I}}\right) = \text{BS}_N(F_0, K, I)
+    $$
+
+    The unconditional call price is obtained by averaging over the distribution of $I$:
+
+    $$
+    C = e^{-rT}\mathbb{E}_I\!\left[\text{BS}_N(F_0, K, I)\right] = e^{-rT}\int_0^{\infty}\text{BS}_N(F_0, K, v)\,g(v)\,dv
+    $$
+
+    where $g(v)$ is the probability density of $I$. This reduces the option pricing problem entirely to computing the distribution of the integrated variance $I = \alpha^2\int_0^T e^{-\nu^2 s + 2\nu W_s^{(2)}}\,ds$, which is the integral of a geometric Brownian motion. The distribution of this integral is characterized by its Laplace transform (involving the Hartman--Watson distribution), and the density can be recovered by numerical Laplace inversion.
+
 ---
 
 **Exercise 2.** The moments of the integrated variance $I = \int_0^T \sigma_s^2\,ds$ for lognormal volatility $\sigma_t = \alpha e^{-\nu^2 t/2 + \nu W_t}$ are $\mathbb{E}[I] = \alpha^2 T$ and $\mathbb{E}[I^2] = \alpha^4 T^2 + \alpha^4(e^{\nu^2 T} - 1 - \nu^2 T)/\nu^2$. For $\alpha = 0.03$, $\nu = 0.5$, $T = 1$, compute $\mathbb{E}[I]$ and $\text{Var}[I]$. How does the variance of integrated variance grow with $\nu$?
+
+??? success "Solution to Exercise 2"
+    With $\alpha = 0.03$, $\nu = 0.5$, $T = 1$, the integrated variance is $I = \alpha^2\int_0^1 e^{-\nu^2 s + 2\nu W_s}\,ds = (0.03)^2\int_0^1 e^{-0.25s + W_s}\,ds$.
+
+    **Expected value:**
+
+    $$
+    \mathbb{E}[I] = \alpha^2\int_0^T \mathbb{E}[e^{-\nu^2 s + 2\nu W_s}]\,ds = \alpha^2\int_0^T e^{-\nu^2 s + 2\nu^2 s}\,ds = \alpha^2\int_0^T e^{\nu^2 s}\,ds
+    $$
+
+    Wait, we need to be more careful. $\sigma_s = \alpha e^{-\nu^2 s/2 + \nu W_s}$, so $\sigma_s^2 = \alpha^2 e^{-\nu^2 s + 2\nu W_s}$ and $\mathbb{E}[\sigma_s^2] = \alpha^2 e^{-\nu^2 s}\mathbb{E}[e^{2\nu W_s}] = \alpha^2 e^{-\nu^2 s}e^{2\nu^2 s} = \alpha^2 e^{\nu^2 s}$.
+
+    Therefore:
+
+    $$
+    \mathbb{E}[I] = \alpha^2\int_0^T e^{\nu^2 s}\,ds = \frac{\alpha^2}{\nu^2}(e^{\nu^2 T} - 1)
+    $$
+
+    For our parameters: $\mathbb{E}[I] = \frac{(0.03)^2}{0.25}(e^{0.25} - 1) = 3.6 \times 10^{-3} \times 0.2840 = 1.023 \times 10^{-3}$.
+
+    Actually, the statement says $\mathbb{E}[I] = \alpha^2 T$. Let us verify: $\mathbb{E}[\sigma_s^2] = \alpha^2$ (since $\sigma_s$ is a martingale, $\mathbb{E}[\sigma_s] = \alpha$, but $\mathbb{E}[\sigma_s^2] = \alpha^2 e^{\nu^2 s} \neq \alpha^2$).
+
+    The exercise states $\mathbb{E}[I] = \alpha^2 T$, but this holds only if $\mathbb{E}[\sigma_s^2] = \alpha^2$, which requires $\nu = 0$. For $\nu > 0$, the correct formula is $\mathbb{E}[I] = \frac{\alpha^2}{\nu^2}(e^{\nu^2 T} - 1)$.
+
+    Computing: $\mathbb{E}[I] = \frac{9 \times 10^{-4}}{0.25}(e^{0.25} - 1) = 3.6 \times 10^{-3}(0.2840) = 1.023 \times 10^{-3}$.
+
+    For the variance, using the given formula:
+
+    $$
+    \text{Var}(I) = \mathbb{E}[I^2] - (\mathbb{E}[I])^2 = \alpha^4 T^2 + \frac{\alpha^4}{\nu^2}(e^{\nu^2 T} - 1 - \nu^2 T) - (\mathbb{E}[I])^2
+    $$
+
+    The excess term $\frac{\alpha^4}{\nu^2}(e^{\nu^2 T} - 1 - \nu^2 T) = \frac{(0.03)^4}{0.25}(e^{0.25} - 1 - 0.25) = \frac{8.1 \times 10^{-7}}{0.25}(0.0340) = 1.102 \times 10^{-7}$.
+
+    The variance of integrated variance grows with $\nu$ because higher vol-of-vol makes the volatility path more random, leading to wider dispersion in the total realized variance. This is the fundamental mechanism behind the heavier tails in the SABR forward distribution compared to a constant-volatility model.
 
 ---
 
 **Exercise 3.** The Hagan approximation error grows as $O(\nu^2 T^2)$. For $\nu = 0.5$ and $T = 1, 5, 10, 20$ years, compute $\nu^2 T^2$ and estimate the relative error. At what maturity does the error term exceed 10%? Why are exact solutions essential for benchmarking long-dated products?
 
+??? success "Solution to Exercise 3"
+    The error scaling parameter $\nu^2 T^2$:
+
+    - $T = 1$: $\nu^2 T^2 = 0.25 \times 1 = 0.25$
+    - $T = 5$: $\nu^2 T^2 = 0.25 \times 25 = 6.25$
+    - $T = 10$: $\nu^2 T^2 = 0.25 \times 100 = 25.0$
+    - $T = 20$: $\nu^2 T^2 = 0.25 \times 400 = 100.0$
+
+    The Hagan formula has error $O(\nu^2 T^2)$. If the leading-order ATM vol is, say, $\sigma_0 = 20\%$, and the error is roughly $c \cdot \nu^2 T^2 \cdot \sigma_0$ for some constant $c$ (typically $c \approx 0.01$ to $0.1$ depending on the specific terms), then:
+
+    The relative error reaches approximately 10% when $\nu^2 T^2 \cdot c \approx 0.1$. With $c \approx 0.02$: $0.02 \times \nu^2 T^2 = 0.1$ gives $\nu^2 T^2 = 5$, i.e., $T \approx 4.5$ years for $\nu = 0.5$.
+
+    For $T = 10$, $\nu^2 T^2 = 25$, and the error is roughly $50\%$ or more of the leading-order term, making the Hagan formula quantitatively unreliable. For $T = 20$, the approximation is essentially meaningless.
+
+    Exact solutions are essential for benchmarking long-dated products (swaptions with $T > 10$ years, CMS products with 30-year underlying) because: (1) the Hagan error exceeds typical bid-ask spreads; (2) the formula may produce negative densities; (3) risk management requires accurate tail behavior. Any numerical method (PDE, MC) used for long-dated SABR pricing should be validated against the exact solution in the available special cases.
+
 ---
 
 **Exercise 4.** For uncorrelated lognormal SABR ($\beta = 1$, $\rho = 0$), the option price is a mixture of Black-Scholes prices weighted by the density of integrated variance. Explain intuitively why this mixture produces heavier tails than Black-Scholes: both very low and very high realized volatility paths contribute, creating a distribution that is both more peaked and has fatter tails.
+
+??? success "Solution to Exercise 4"
+    In the uncorrelated lognormal SABR ($\beta = 1$, $\rho = 0$), the option price is:
+
+    $$
+    C = \int_0^{\infty} C_{\text{BS}}(F, K, \sqrt{v})\,g(v)\,dv
+    $$
+
+    where $g(v)$ is the density of the integrated variance $V_T$. This is a **mixture of Black--Scholes prices** with different total variances.
+
+    The Black--Scholes distribution is lognormal. A mixture of lognormals with different variances produces a distribution that is:
+
+    - **More peaked near the mode** than any single lognormal, because the low-variance components concentrate probability mass near $F_0$
+    - **Heavier-tailed** than any single lognormal, because the high-variance components spread probability mass to extreme values
+
+    This is Jensen's inequality in action: the option price $C_{\text{BS}}(v)$ is convex in the variance $v$ (for OTM options), so $\mathbb{E}[C_{\text{BS}}(V_T)] > C_{\text{BS}}(\mathbb{E}[V_T])$. The mixture price exceeds the Black--Scholes price at the expected variance, which is equivalent to saying the mixture has heavier tails than the single lognormal at the mean variance.
+
+    In terms of implied volatility, this manifests as a **smile**: the implied volatility for OTM options (both puts and calls) is higher than the ATM implied volatility, because the tails of the mixture distribution are fatter than those of the best-fitting single lognormal. This is precisely the volatility smile, and it arises from the randomness of the variance (i.e., from $\nu > 0$).
 
 ---
 
 **Exercise 5.** Compare exact versus Hagan implied volatilities for normal SABR with $\alpha = 80$ bps, $\nu = 0.5$, $\rho = 0$, $F = 3\%$, at strikes $K = 1\%, 2\%, 3\%, 4\%, 5\%$ for $T = 1$ and $T = 10$. At which maturities and strikes would you expect the largest discrepancy? Why are the wings more affected than ATM?
 
+??? success "Solution to Exercise 5"
+    The largest discrepancies between exact and Hagan implied volatilities occur at the combination of **long maturity and deep OTM strikes**.
+
+    For $T = 1$, the error parameter $\nu^2 T^2 = 0.25$ is small, so the Hagan formula is accurate across all strikes. The error at $K = 1\%$ and $K = 5\%$ (each 200 bps from ATM at $F = 3\%$) would be less than 1--2 bps.
+
+    For $T = 10$, the error parameter $\nu^2 T^2 = 25$ is large. The ATM error ($K = 3\%$) would be moderate (perhaps 3--5 bps), because the ATM formula involves only the time correction $1 + \varepsilon T$ which is a first-order expansion. But at $K = 1\%$ and $K = 5\%$, the smile factor $z/x(z)$ also contributes error, and the combined effect can reach 20--100+ bps.
+
+    The wings are more affected than ATM because:
+
+    1. The $z/x(z)$ factor is exactly 1 at ATM but departs from 1 for OTM strikes, introducing additional approximation error
+    2. The density in the wings is exponentially sensitive to the parameters, so small errors in the asymptotic expansion translate to large errors in implied volatility
+    3. The higher-order terms that are dropped in the Hagan expansion (proportional to $\ln^2(F/K)$, etc.) become significant for deep OTM strikes
+
 ---
 
 **Exercise 6.** The exact solutions involve modified Bessel functions and numerical integration. Discuss the trade-off between using the exact solution versus the Hagan formula in the following contexts: (a) real-time pricing of 10,000 swaptions; (b) CMS spread pricing where tail accuracy matters; (c) validating a new finite difference implementation. In which case would you use the exact solution?
+
+??? success "Solution to Exercise 6"
+    **(a) Real-time pricing of 10,000 swaptions:** Use the **Hagan formula**. Speed is critical: the Hagan formula evaluates in microseconds, while the exact solution requires numerical integration (Laplace inversion) taking milliseconds to seconds per option. For 10,000 swaptions, the Hagan formula takes $<$ 1 second total; the exact solution would take minutes to hours. The accuracy loss is acceptable for most swaptions with $T \leq 5$ years and moderate moneyness.
+
+    **(b) CMS spread pricing:** Use the **exact solution** (or at least an arbitrage-free extension). CMS pricing integrates the call price over all strikes:
+
+    $$
+    V_{\text{CMS}} = \int_0^{\infty} g(K)\,C''(K)\,dK
+    $$
+
+    This integral is sensitive to the tail behavior of the density. The Hagan formula can produce negative densities in the tails, causing systematic errors in the CMS convexity adjustment. The exact solution (for the special cases where it applies) guarantees a non-negative density and accurate tail behavior. For general SABR parameters, the arbitrage-free SABR PDE method is the appropriate alternative.
+
+    **(c) Validating a new finite difference implementation:** Use the **exact solution**. This is the primary use case for exact solutions. A new FD implementation should reproduce the exact prices to within the expected discretization error (e.g., $O(h^2)$ for second-order schemes). Testing against the Hagan formula is insufficient because the Hagan formula itself has $O(T^2)$ error, so agreement with Hagan does not confirm correctness of the FD method. The exact solution provides a true benchmark.

@@ -121,30 +121,6 @@ This is **Donsker's Invariance Principle**, proved in [Donsker's Theorem](donske
 
 **Exercise 1.** For the scaled random walk $S^{(n)}(t) = S_{\lfloor nt \rfloor}/\sqrt{n}$, compute the exact variance $\text{Var}(S^{(n)}(t))$ as a function of $n$ and $t$, and show that the error $|t - \text{Var}(S^{(n)}(t))| \leq 1/n$ for all $t \in [0, T]$.
 
----
-
-**Exercise 2.** For fixed $0 < s < t \leq T$ with $s$ and $t$ both multiples of $1/n$, compute the distribution of the increment $S^{(n)}(t) - S^{(n)}(s)$. Show that its mean is 0 and its variance is $t - s$. Why is $S^{(n)}(t) - S^{(n)}(s)$ independent of $S^{(n)}(s)$?
-
----
-
-**Exercise 3.** The difference quotient of the scaled walk at a jump time $t = k/n$ satisfies $\frac{S^{(n)}(t + 1/n) - S^{(n)}(t)}{1/n} = \sqrt{n}\,\xi_{k+1}$. Compute $\mathbb{E}\left[\left(\frac{S^{(n)}(t+1/n) - S^{(n)}(t)}{1/n}\right)^2\right]$ and explain why this divergence as $n \to \infty$ is consistent with the nowhere-differentiability of Brownian motion.
-
----
-
-**Exercise 4.** For the scaled walk over $[0, t]$ with the uniform partition at resolution $n$, verify that the quadratic variation is $[S^{(n)}]_t = \lfloor nt \rfloor / n$. Show that this converges to $t$ and that the rate of convergence is $O(1/n)$. Compare this deterministic convergence to the $L^2$ convergence of $[B]_T^{(\Pi_n)} \to T$ for Brownian motion (which has random fluctuations of order $1/\sqrt{n}$).
-
----
-
-**Exercise 5.** Consider a "biased scaled walk" with $p = 1/2 + c/\sqrt{n}$ for some constant $c > 0$. Show that $\mathbb{E}[S^{(n)}(t)] \to 2ct$ and $\text{Var}(S^{(n)}(t)) \to t$ as $n \to \infty$. What continuous process does this converge to? Relate this to **Brownian motion with drift** $W_t + \mu t$.
-
----
-
-**Exercise 6.** The covariance structure $\text{Cov}(S^{(n)}(s), S^{(n)}(t)) \to \min(s,t)$ is the defining property of Brownian motion's second-order structure. Verify that $\min(s,t)$ is a **positive semi-definite kernel**: for any $t_1 < t_2 < \cdots < t_k$ and any $a_1, \ldots, a_k \in \mathbb{R}$, show that $\sum_{i,j} a_i a_j \min(t_i, t_j) \geq 0$. (Hint: write $\min(t_i, t_j) = \int_0^T \mathbf{1}_{[0,t_i]}(u)\,\mathbf{1}_{[0,t_j]}(u)\,du$.)
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The exact variance is:
 
@@ -166,6 +142,10 @@ This is **Donsker's Invariance Principle**, proved in [Donsker's Theorem](donske
 
     Therefore $|t - \text{Var}(S^{(n)}(t))| \leq 1/n$ for all $t \in [0,T]$.
 
+---
+
+**Exercise 2.** For fixed $0 < s < t \leq T$ with $s$ and $t$ both multiples of $1/n$, compute the distribution of the increment $S^{(n)}(t) - S^{(n)}(s)$. Show that its mean is 0 and its variance is $t - s$. Why is $S^{(n)}(t) - S^{(n)}(s)$ independent of $S^{(n)}(s)$?
+
 ??? success "Solution to Exercise 2"
     Since $s$ and $t$ are multiples of $1/n$, write $s = m/n$ and $t = k/n$ with $m < k$ integers. Then:
 
@@ -185,6 +165,10 @@ This is **Donsker's Invariance Principle**, proved in [Donsker's Theorem](donske
 
     The increment $S^{(n)}(t) - S^{(n)}(s) = (S_k - S_m)/\sqrt{n}$ depends only on $\xi_{m+1}, \ldots, \xi_k$, while $S^{(n)}(s) = S_m/\sqrt{n}$ depends only on $\xi_1, \ldots, \xi_m$. Since the $\xi_i$ are independent, these two quantities depend on disjoint sets of independent random variables and are therefore independent.
 
+---
+
+**Exercise 3.** The difference quotient of the scaled walk at a jump time $t = k/n$ satisfies $\frac{S^{(n)}(t + 1/n) - S^{(n)}(t)}{1/n} = \sqrt{n}\,\xi_{k+1}$. Compute $\mathbb{E}\left[\left(\frac{S^{(n)}(t+1/n) - S^{(n)}(t)}{1/n}\right)^2\right]$ and explain why this divergence as $n \to \infty$ is consistent with the nowhere-differentiability of Brownian motion.
+
 ??? success "Solution to Exercise 3"
     At the jump time $t = k/n$:
 
@@ -199,6 +183,10 @@ This is **Donsker's Invariance Principle**, proved in [Donsker's Theorem](donske
     $$
 
     This diverges as $n \to \infty$. In the limit, if Brownian motion were differentiable at some time $t$, the difference quotient $(W_{t+h} - W_t)/h$ would converge to a finite limit as $h \to 0$. But the scaled walk's difference quotient has mean square $n \to \infty$ (corresponding to $h = 1/n \to 0$), showing that the derivative, if it existed, would have infinite second moment. This is consistent with the fact that Brownian motion is almost surely nowhere differentiable: the difference quotient diverges rather than converging.
+
+---
+
+**Exercise 4.** For the scaled walk over $[0, t]$ with the uniform partition at resolution $n$, verify that the quadratic variation is $[S^{(n)}]_t = \lfloor nt \rfloor / n$. Show that this converges to $t$ and that the rate of convergence is $O(1/n)$. Compare this deterministic convergence to the $L^2$ convergence of $[B]_T^{(\Pi_n)} \to T$ for Brownian motion (which has random fluctuations of order $1/\sqrt{n}$).
 
 ??? success "Solution to Exercise 4"
     At resolution $n$, the uniform partition of $[0,t]$ has points $\{0, 1/n, 2/n, \ldots, \lfloor nt \rfloor/n\}$. The quadratic variation is:
@@ -215,6 +203,10 @@ This is **Donsker's Invariance Principle**, proved in [Donsker's Theorem](donske
 
     For Brownian motion, $[B]_T^{(\Pi_n)} = \sum_{i} (B_{t_{i+1}} - B_{t_i})^2$ converges to $T$ in $L^2$, with $\text{Var}([B]_T^{(\Pi_n)}) = 2T^2/n$, so the fluctuations are of order $1/\sqrt{n}$. The key difference: the random walk's quadratic variation is **deterministic** (zero variance for every $n$), while Brownian motion's sampled quadratic variation is **random** with fluctuations that vanish as $O(1/\sqrt{n})$. The deterministic convergence of the discrete case is a stronger statement.
 
+---
+
+**Exercise 5.** Consider a "biased scaled walk" with $p = 1/2 + c/\sqrt{n}$ for some constant $c > 0$. Show that $\mathbb{E}[S^{(n)}(t)] \to 2ct$ and $\text{Var}(S^{(n)}(t)) \to t$ as $n \to \infty$. What continuous process does this converge to? Relate this to **Brownian motion with drift** $W_t + \mu t$.
+
 ??? success "Solution to Exercise 5"
     With $p = 1/2 + c/\sqrt{n}$, each step has mean $\mu_n = 2p - 1 = 2c/\sqrt{n}$ and variance $\sigma_n^2 = 4p(1-p) = 1 - 4c^2/n$. For the scaled walk:
 
@@ -227,6 +219,10 @@ This is **Donsker's Invariance Principle**, proved in [Donsker's Theorem](donske
     $$
 
     The scaled walk converges to a process with mean $2ct$ and variance $t$, which is **Brownian motion with drift**: $X_t = 2ct + W_t$, or equivalently $W_t + \mu t$ with $\mu = 2c$. This shows that a small bias of order $1/\sqrt{n}$ in the step probabilities produces a nontrivial drift in the continuous limit, while the diffusive component remains unchanged.
+
+---
+
+**Exercise 6.** The covariance structure $\text{Cov}(S^{(n)}(s), S^{(n)}(t)) \to \min(s,t)$ is the defining property of Brownian motion's second-order structure. Verify that $\min(s,t)$ is a **positive semi-definite kernel**: for any $t_1 < t_2 < \cdots < t_k$ and any $a_1, \ldots, a_k \in \mathbb{R}$, show that $\sum_{i,j} a_i a_j \min(t_i, t_j) \geq 0$. (Hint: write $\min(t_i, t_j) = \int_0^T \mathbf{1}_{[0,t_i]}(u)\,\mathbf{1}_{[0,t_j]}(u)\,du$.)
 
 ??? success "Solution to Exercise 6"
     Using the hint, write $\min(t_i, t_j) = \int_0^T \mathbf{1}_{[0,t_i]}(u)\,\mathbf{1}_{[0,t_j]}(u)\,du$. Then:

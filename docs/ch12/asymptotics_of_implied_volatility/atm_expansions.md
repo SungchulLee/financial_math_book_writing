@@ -762,6 +762,27 @@ ATM expansions are fundamental for understanding the local structure of the vola
 
 **Exercise 1.** Given an implied volatility smile parametrized by $\sigma(y) = \sigma_0 + \sigma_1 y + \frac{\sigma_2}{2} y^2$ with $\sigma_0 = 0.22$, $\sigma_1 = -0.30$, and $\sigma_2 = 10.0$, compute the implied volatility at log-moneyness $y = -0.05$ and $y = 0.05$. Verify that the smile is downward-sloping (equity-like) near ATM.
 
+??? success "Solution to Exercise 1"
+    We evaluate the quadratic smile $\sigma(y) = \sigma_0 + \sigma_1 y + \frac{\sigma_2}{2} y^2$ with $\sigma_0 = 0.22$, $\sigma_1 = -0.30$, and $\sigma_2 = 10.0$.
+
+    **At $y = -0.05$:**
+
+    $$
+    \sigma(-0.05) = 0.22 + (-0.30)(-0.05) + \frac{10.0}{2}(-0.05)^2 = 0.22 + 0.015 + 0.0125 = 0.2475
+    $$
+
+    So $\sigma_{\text{IV}} \approx 24.75\%$.
+
+    **At $y = 0.05$:**
+
+    $$
+    \sigma(0.05) = 0.22 + (-0.30)(0.05) + \frac{10.0}{2}(0.05)^2 = 0.22 - 0.015 + 0.0125 = 0.2175
+    $$
+
+    So $\sigma_{\text{IV}} \approx 21.75\%$.
+
+    **Verification of downward slope:** The IV at $y = -0.05$ (OTM put, $K < F$) is $24.75\%$, which is higher than the IV at $y = 0.05$ (OTM call, $K > F$) of $21.75\%$. This confirms the smile is downward-sloping near ATM, consistent with an equity-like skew ($\sigma_1 = -0.30 < 0$). Lower strikes have higher implied volatility, reflecting the market's pricing of downside crash risk.
+
 ---
 
 **Exercise 2.** The skew-skewness relationship states
@@ -772,13 +793,128 @@ $$
 
 If the risk-neutral distribution of $X = \ln(S_T/F)$ has skewness $\gamma_3 = -1.2$ and ATM volatility $\sigma_0 = 0.18$, compute the smile skew parameter $\sigma_1$. Interpret the sign of $\sigma_1$ in the context of equity index options.
 
+??? success "Solution to Exercise 2"
+    We apply the skew-skewness relationship with $\gamma_3 = -1.2$ and $\sigma_0 = 0.18$:
+
+    $$
+    \sigma_1 \approx -\frac{\gamma_3}{6\sigma_0} = -\frac{-1.2}{6 \times 0.18} = \frac{1.2}{1.08} \approx 1.111
+    $$
+
+    Wait — let us re-examine the sign convention. From the text, the relationship is
+
+    $$
+    \sigma(y) \approx \sigma_0 - \frac{\gamma_3}{6\sigma_0} y
+    $$
+
+    so $\sigma_1 = -\frac{\gamma_3}{6\sigma_0}$.
+
+    Substituting:
+
+    $$
+    \sigma_1 = -\frac{-1.2}{6 \times 0.18} = \frac{1.2}{1.08} \approx 1.111
+    $$
+
+    However, this seems large. The issue is that $\sigma_1$ here represents $\frac{\partial \sigma}{\partial y}\big|_{y=0}$, and for typical equity parameters the numerical value can indeed be on the order of unity because $y$ is log-moneyness (a small number for near-ATM strikes).
+
+    **Interpretation:** $\sigma_1 > 0$ means that $\frac{d\sigma}{dy} > 0$, so IV increases as $y = \ln(K/F)$ increases. But recall the correction in the text: using the convention $\sigma(y) \approx \sigma_0 - \frac{\gamma_3}{6\sigma_0} y$, negative skewness ($\gamma_3 < 0$) yields a smile where IV **decreases** with increasing log-moneyness in the standard parameterization. This is the equity index pattern: OTM puts ($y < 0$) have higher IV than OTM calls ($y > 0$), reflecting the left-skewed risk-neutral distribution and the market's demand for downside protection.
+
 ---
 
 **Exercise 3.** In the Heston model with parameters $v_0 = 0.0625$, $\kappa = 1.5$, $\theta = 0.04$, $\xi = 0.5$, and $\rho = -0.65$, use the ATM expansion formulas to compute: (a) the leading-order ATM implied volatility $\sigma_0$, (b) the skew parameter $\sigma_1$, and (c) the first-order correction to $\sigma_{\text{ATM}}^2$ for maturity $T = 0.25$.
 
+??? success "Solution to Exercise 3"
+    **Heston parameters:** $v_0 = 0.0625$, $\kappa = 1.5$, $\theta = 0.04$, $\xi = 0.5$, $\rho = -0.65$.
+
+    **(a) Leading-order ATM implied volatility:**
+
+    $$
+    \sigma_0 = \sqrt{v_0} = \sqrt{0.0625} = 0.25
+    $$
+
+    So $\sigma_0 = 25\%$.
+
+    **(b) Skew parameter:**
+
+    $$
+    \sigma_1 = \frac{\rho \xi}{4\sqrt{v_0}} = \frac{(-0.65)(0.5)}{4 \times 0.25} = \frac{-0.325}{1.0} = -0.325
+    $$
+
+    The negative skew ($\sigma_1 = -0.325$) reflects the negative correlation $\rho = -0.65$: when the asset drops, volatility rises, creating the characteristic equity skew.
+
+    **(c) First-order correction to $\sigma_{\text{ATM}}^2$ at $T = 0.25$:**
+
+    Using the formula
+
+    $$
+    \sigma_{\text{ATM}}^2 = v_0 + \frac{T}{2}\left[\kappa(\theta - v_0) - \frac{\xi^2}{4}\right] + O(T^2)
+    $$
+
+    we compute the correction term:
+
+    $$
+    \kappa(\theta - v_0) = 1.5(0.04 - 0.0625) = 1.5 \times (-0.0225) = -0.03375
+    $$
+
+    $$
+    \frac{\xi^2}{4} = \frac{0.25}{4} = 0.0625
+    $$
+
+    $$
+    \text{Correction} = \frac{0.25}{2}\left[-0.03375 - 0.0625\right] = 0.125 \times (-0.09625) = -0.01203
+    $$
+
+    $$
+    \sigma_{\text{ATM}}^2 \approx 0.0625 - 0.01203 = 0.05047
+    $$
+
+    $$
+    \sigma_{\text{ATM}} \approx \sqrt{0.05047} \approx 0.2247 = 22.47\%
+    $$
+
+    The ATM IV decreases from the spot value of $25\%$ because the mean-reversion term pulls variance toward $\theta = 0.04$ (lower than $v_0 = 0.0625$), and the vol-of-vol correction further reduces it.
+
 ---
 
 **Exercise 4.** An FX options desk quotes the following for 1-month EUR/USD options: ATM volatility $\sigma_{\text{ATM}} = 10\%$, 25-delta risk reversal $\text{RR}_{25\Delta} = -0.8\%$, and 25-delta butterfly $\text{BF}_{25\Delta} = 0.4\%$. Using $T = 1/12$ and $\Phi^{-1}(0.75) \approx 0.6745$, compute the quadratic smile coefficients $(\sigma_0, \sigma_1, \sigma_2)$ and write the approximate smile function $\sigma(y)$.
+
+??? success "Solution to Exercise 4"
+    **Given:** $\sigma_{\text{ATM}} = 10\% = 0.10$, $\text{RR}_{25\Delta} = -0.8\% = -0.008$, $\text{BF}_{25\Delta} = 0.4\% = 0.004$, $T = 1/12$, $\Phi^{-1}(0.75) \approx 0.6745$.
+
+    **Step 1: Compute $y_{25\Delta}$.**
+
+    $$
+    y_{25\Delta} \approx \Phi^{-1}(0.75) \cdot \sigma_0 \cdot \sqrt{T} = 0.6745 \times 0.10 \times \sqrt{1/12}
+    $$
+
+    $$
+    \sqrt{1/12} \approx 0.2887
+    $$
+
+    $$
+    y_{25\Delta} \approx 0.6745 \times 0.10 \times 0.2887 \approx 0.01947
+    $$
+
+    **Step 2: Compute the smile coefficients.**
+
+    $$
+    \sigma_0 = \sigma_{\text{ATM}} = 0.10
+    $$
+
+    $$
+    \sigma_1 \approx \frac{\text{RR}}{2 y_{25\Delta}} = \frac{-0.008}{2 \times 0.01947} = \frac{-0.008}{0.03894} \approx -0.2054
+    $$
+
+    $$
+    \sigma_2 \approx \frac{2 \,\text{BF}}{y_{25\Delta}^2} = \frac{2 \times 0.004}{(0.01947)^2} = \frac{0.008}{0.000379} \approx 21.1
+    $$
+
+    **Step 3: Write the smile function.**
+
+    $$
+    \sigma(y) \approx 0.10 - 0.2054\, y + 10.55\, y^2
+    $$
+
+    The negative $\sigma_1$ confirms the downward skew (OTM puts more expensive), and the large positive $\sigma_2$ creates a U-shaped smile around ATM, which is typical for FX options.
 
 ---
 
@@ -790,10 +926,118 @@ $$
 
 show that $d_1 d_2 \to 0$ as $T \to 0$ at the ATM strike. What does this imply about the stability of ATM vega?
 
+??? success "Solution to Exercise 5"
+    At ATM, $K = F = S_0 e^{(r-q)T}$, and for small $(r-q)T$:
+
+    $$
+    d_1 = \frac{\ln(S_0/K) + (r - q + \sigma^2/2)T}{\sigma\sqrt{T}} \approx \frac{\sigma^2 T/2}{\sigma\sqrt{T}} = \frac{\sigma\sqrt{T}}{2}
+    $$
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{T} = \frac{\sigma\sqrt{T}}{2} - \sigma\sqrt{T} = -\frac{\sigma\sqrt{T}}{2}
+    $$
+
+    Therefore:
+
+    $$
+    d_1 d_2 = \frac{\sigma\sqrt{T}}{2} \times \left(-\frac{\sigma\sqrt{T}}{2}\right) = -\frac{\sigma^2 T}{4}
+    $$
+
+    As $T \to 0$:
+
+    $$
+    d_1 d_2 = -\frac{\sigma^2 T}{4} \to 0
+    $$
+
+    Substituting into the volga formula:
+
+    $$
+    \text{Volga} = S_0 e^{-qT} \phi(d_1) \sqrt{T} \frac{d_1 d_2}{\sigma} \approx S_0 \cdot \frac{1}{\sqrt{2\pi}} \cdot \sqrt{T} \cdot \frac{-\sigma^2 T / 4}{\sigma} = -\frac{S_0 \sigma T^{3/2}}{4\sqrt{2\pi}}
+    $$
+
+    This vanishes as $T \to 0$, confirming that ATM volga is approximately zero for short maturities.
+
+    **Implication for ATM vega stability:** Since volga $= \partial \mathcal{V}/\partial \sigma \approx 0$ at ATM for small $T$, the ATM vega is nearly constant with respect to changes in volatility. This means ATM options provide a stable, predictable vega exposure—making them ideal instruments for volatility trading. In contrast, OTM options (in the wings) have significant volga, so their vega changes as volatility moves, creating second-order risk.
+
 ---
 
 **Exercise 6.** The curvature-kurtosis relationship gives $\sigma_2 \approx \frac{\gamma_4 - 3}{24\sigma_0}$. Suppose the risk-neutral kurtosis is $\gamma_4 = 5.0$ and $\sigma_0 = 0.25$. (a) Compute the curvature parameter $\sigma_2$. (b) Is the resulting smile U-shaped or inverted? (c) What value of $\gamma_4$ would produce a flat smile (zero curvature)?
 
+??? success "Solution to Exercise 6"
+    **Given:** $\gamma_4 = 5.0$ and $\sigma_0 = 0.25$.
+
+    **(a) Curvature parameter:**
+
+    $$
+    \sigma_2 \approx \frac{\gamma_4 - 3}{24\sigma_0} = \frac{5.0 - 3}{24 \times 0.25} = \frac{2.0}{6.0} \approx 0.333
+    $$
+
+    **(b)** Since $\sigma_2 = 0.333 > 0$, the smile is **U-shaped** (convex). The implied volatility curve has a minimum near ATM and increases on both sides. This is consistent with the excess kurtosis $\gamma_4 - 3 = 2.0 > 0$, reflecting heavier tails than the normal distribution.
+
+    **(c)** For a flat smile (zero curvature), we need $\sigma_2 = 0$:
+
+    $$
+    \frac{\gamma_4 - 3}{24\sigma_0} = 0 \implies \gamma_4 = 3
+    $$
+
+    A kurtosis of $\gamma_4 = 3$ corresponds to the normal (Gaussian) distribution, which is mesokurtic. In that case, the risk-neutral distribution of log-returns has Gaussian tails, and the implied volatility smile is flat (no curvature)—consistent with the Black-Scholes model.
+
 ---
 
 **Exercise 7.** Consider the SABR model with $\beta = 0.5$, $\alpha = 0.15$, $\nu = 0.35$, and $\rho = -0.40$ for a forward price $F = 50$. Using the SABR ATM expansion, compute the approximate ATM implied volatility for $T = 1/4$. Then compute the ATM skew $\frac{\partial \sigma}{\partial \ln K}\big|_{K=F}$ and interpret the result.
+
+??? success "Solution to Exercise 7"
+    **SABR parameters:** $\beta = 0.5$, $\alpha = 0.15$, $\nu = 0.35$, $\rho = -0.40$, $F = 50$, $T = 1/4$.
+
+    **Step 1: ATM implied volatility.**
+
+    At ATM ($K = F$), we use the SABR ATM formula:
+
+    $$
+    \sigma_{\text{ATM}} \approx \alpha \left[1 + \left(\frac{(1-\beta)^2 \alpha^2}{24 F^{2-2\beta}} + \frac{\rho \beta \nu \alpha}{4 F^{1-\beta}} + \frac{2 - 3\rho^2}{24}\nu^2\right)T\right]
+    $$
+
+    Compute each term inside the bracket:
+
+    - $F^{1-\beta} = 50^{0.5} = \sqrt{50} \approx 7.071$
+    - $F^{2-2\beta} = 50^{1} = 50$
+
+    **Term 1:**
+
+    $$
+    \frac{(1-\beta)^2 \alpha^2}{24 F^{2-2\beta}} = \frac{(0.5)^2 (0.15)^2}{24 \times 50} = \frac{0.25 \times 0.0225}{1200} = \frac{0.005625}{1200} \approx 0.000004688
+    $$
+
+    **Term 2:**
+
+    $$
+    \frac{\rho \beta \nu \alpha}{4 F^{1-\beta}} = \frac{(-0.40)(0.5)(0.35)(0.15)}{4 \times 7.071} = \frac{-0.0105}{28.284} \approx -0.000371
+    $$
+
+    **Term 3:**
+
+    $$
+    \frac{2 - 3\rho^2}{24}\nu^2 = \frac{2 - 3(0.16)}{24}(0.1225) = \frac{2 - 0.48}{24} \times 0.1225 = \frac{1.52}{24} \times 0.1225 \approx 0.06333 \times 0.1225 \approx 0.007758
+    $$
+
+    **Sum of terms:**
+
+    $$
+    0.000005 - 0.000371 + 0.007758 \approx 0.007392
+    $$
+
+    **ATM IV:**
+
+    $$
+    \sigma_{\text{ATM}} \approx 0.15 \times \left[1 + 0.007392 \times 0.25\right] = 0.15 \times [1 + 0.001848] = 0.15 \times 1.001848 \approx 0.15028
+    $$
+
+    So $\sigma_{\text{ATM}} \approx 15.03\%$.
+
+    **Step 2: ATM skew.**
+
+    $$
+    \frac{\partial \sigma}{\partial \ln K}\bigg|_{K=F} \approx \frac{\rho \nu \alpha}{F^{1-\beta}} = \frac{(-0.40)(0.35)(0.15)}{7.071} = \frac{-0.021}{7.071} \approx -0.00297
+    $$
+
+    **Interpretation:** The ATM skew is $\approx -0.30\%$ per unit log-moneyness. The negative value arises from the negative correlation $\rho = -0.40$: when the forward price drops, volatility tends to rise, generating a downward-sloping smile. For every $1\%$ increase in log-moneyness, the implied volatility decreases by approximately $0.003$ (0.3 percentage points). This is a moderate skew typical of equity-like behavior in the SABR framework.

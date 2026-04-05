@@ -252,64 +252,6 @@ $$
 
 Verify that the coefficients satisfy the global Lipschitz condition and identify the Lipschitz constant $K$.
 
----
-
-**Exercise 2.** Determine which of the following diffusion coefficients $\sigma(x)$ satisfy the global Lipschitz condition on $\mathbb{R}$. For those that do, give the Lipschitz constant; for those that do not, explain why.
-
-(a) $\sigma(x) = \sin(x)$
-
-(b) $\sigma(x) = |x|^{2/3}$
-
-(c) $\sigma(x) = \dfrac{x}{1 + |x|}$
-
-(d) $\sigma(x) = x^2$
-
----
-
-**Exercise 3.** Let $b(x) = -x^3$ and $\sigma(x) = 1$. Show that $b$ is locally Lipschitz but not globally Lipschitz. Then verify that the linear growth condition fails for $b$. What does this imply about the solution to $dX_t = -X_t^3\,dt + dW_t$?
-
----
-
-**Exercise 4.** Prove that the global Lipschitz condition implies the linear growth condition. Specifically, show that if
-
-$$
-|b(t,x) - b(t,y)| + |\sigma(t,x) - \sigma(t,y)| \leq K|x - y|
-$$
-
-for all $x, y \in \mathbb{R}^d$, and $M := \sup_{t \in [0,T]}\bigl(|b(t,0)| + |\sigma(t,0)|\bigr) < \infty$, then
-
-$$
-|b(t,x)| + |\sigma(t,x)| \leq (M + K)(1 + |x|)
-$$
-
----
-
-**Exercise 5.** Consider the diffusion coefficient $\sigma(x) = |x|^\alpha$ for $x \in \mathbb{R}$ and $\alpha \in (0,1)$. Show that $\sigma$ satisfies the Yamada--Watanabe condition by verifying that $\rho(u) = u^\alpha$ gives
-
-$$
-\int_0^\epsilon \frac{du}{\rho^2(u)} = \int_0^\epsilon u^{-2\alpha}\,du = +\infty
-$$
-
-if and only if $\alpha \geq \tfrac{1}{2}$. What happens when $\alpha < \tfrac{1}{2}$?
-
----
-
-**Exercise 6.** The Vasicek model is $dX_t = \kappa(\theta - X_t)\,dt + \sigma\,dW_t$ with $\kappa, \sigma > 0$. Compute the Lipschitz constant $K$ for the pair $(b, \sigma)$ and verify the linear growth condition. Then state what the main existence and uniqueness theorem guarantees about the solution.
-
----
-
-**Exercise 7.** Let $X_t$ and $Y_t$ be two strong solutions of $dZ_t = b(t,Z_t)\,dt + \sigma(t,Z_t)\,dW_t$ with $X_0 = Y_0$, where the coefficients are globally Lipschitz with constant $K$. Define $\varphi(t) = \mathbb{E}[\sup_{s \leq t}|X_s - Y_s|^2]$. Starting from the estimate
-
-$$
-\varphi(t) \leq C \int_0^t \varphi(s)\,ds
-$$
-
-apply Gronwall's inequality to conclude that $\varphi(t) = 0$ for all $t \in [0,T]$. Then explain why this proves pathwise uniqueness, not merely uniqueness in law.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The coefficients are $b(t,x) = 3 + 2x$ and $\sigma(t,x) = 1 - x$. For any $x, y \in \mathbb{R}$:
 
@@ -328,6 +270,18 @@ apply Gronwall's inequality to conclude that $\varphi(t) = 0$ for all $t \in [0,
     $$
 
     The global Lipschitz condition is satisfied with Lipschitz constant $K = 3$.
+
+---
+
+**Exercise 2.** Determine which of the following diffusion coefficients $\sigma(x)$ satisfy the global Lipschitz condition on $\mathbb{R}$. For those that do, give the Lipschitz constant; for those that do not, explain why.
+
+(a) $\sigma(x) = \sin(x)$
+
+(b) $\sigma(x) = |x|^{2/3}$
+
+(c) $\sigma(x) = \dfrac{x}{1 + |x|}$
+
+(d) $\sigma(x) = x^2$
 
 ??? success "Solution to Exercise 2"
     **(a)** $\sigma(x) = \sin(x)$. By the mean value theorem, $|\sin(x) - \sin(y)| \leq |x - y|$ for all $x, y \in \mathbb{R}$, since $|\cos(\xi)| \leq 1$ for all $\xi$. So $\sigma$ is globally Lipschitz with $K = 1$.
@@ -350,6 +304,10 @@ apply Gronwall's inequality to conclude that $\varphi(t) = 0$ for all $t \in [0,
 
     The ratio grows without bound, so no finite Lipschitz constant exists.
 
+---
+
+**Exercise 3.** Let $b(x) = -x^3$ and $\sigma(x) = 1$. Show that $b$ is locally Lipschitz but not globally Lipschitz. Then verify that the linear growth condition fails for $b$. What does this imply about the solution to $dX_t = -X_t^3\,dt + dW_t$?
+
 ??? success "Solution to Exercise 3"
     **Locally Lipschitz:** For any $R > 0$ and $|x|, |y| \leq R$:
 
@@ -370,6 +328,20 @@ apply Gronwall's inequality to conclude that $\varphi(t) = 0$ for all $t \in [0,
     is impossible for large $|x|$, since the left side grows as $|x|^6$ while the right side grows as $|x|^2$.
 
     **Implication:** Despite the failure of linear growth, the drift $b(x) = -x^3$ is dissipative (it pushes the solution toward the origin for large $|x|$). Local Lipschitz guarantees a unique local solution, and dissipativity prevents explosion. The solution to $dX_t = -X_t^3\,dt + dW_t$ exists globally and is unique, but this cannot be concluded from the standard existence-uniqueness theorem — a Lyapunov function argument is needed instead.
+
+---
+
+**Exercise 4.** Prove that the global Lipschitz condition implies the linear growth condition. Specifically, show that if
+
+$$
+|b(t,x) - b(t,y)| + |\sigma(t,x) - \sigma(t,y)| \leq K|x - y|
+$$
+
+for all $x, y \in \mathbb{R}^d$, and $M := \sup_{t \in [0,T]}\bigl(|b(t,0)| + |\sigma(t,0)|\bigr) < \infty$, then
+
+$$
+|b(t,x)| + |\sigma(t,x)| \leq (M + K)(1 + |x|)
+$$
 
 ??? success "Solution to Exercise 4"
     Let $b$ and $\sigma$ satisfy the global Lipschitz condition. For any $t \in [0,T]$ and $x \in \mathbb{R}^d$, apply the Lipschitz bound with $y = 0$:
@@ -414,6 +386,16 @@ apply Gronwall's inequality to conclude that $\varphi(t) = 0$ for all $t \in [0,
 
     where the last step uses $M \leq (M+K)$ and $K|x| \leq (M+K)|x|$.
 
+---
+
+**Exercise 5.** Consider the diffusion coefficient $\sigma(x) = |x|^\alpha$ for $x \in \mathbb{R}$ and $\alpha \in (0,1)$. Show that $\sigma$ satisfies the Yamada--Watanabe condition by verifying that $\rho(u) = u^\alpha$ gives
+
+$$
+\int_0^\epsilon \frac{du}{\rho^2(u)} = \int_0^\epsilon u^{-2\alpha}\,du = +\infty
+$$
+
+if and only if $\alpha \geq \tfrac{1}{2}$. What happens when $\alpha < \tfrac{1}{2}$?
+
 ??? success "Solution to Exercise 5"
     Take $\rho(u) = u^\alpha$ for $\alpha \in (0,1)$. The Yamada--Watanabe integral becomes:
 
@@ -447,6 +429,10 @@ apply Gronwall's inequality to conclude that $\varphi(t) = 0$ for all $t \in [0,
 
     When $\alpha < 1/2$, the integral converges, so the Yamada--Watanabe theorem does not apply. Pathwise uniqueness may fail in this regime; indeed, for $dX_t = |X_t|^\alpha\,dW_t$ with $\alpha < 1/2$ and $X_0 = 0$, pathwise uniqueness is known to fail.
 
+---
+
+**Exercise 6.** The Vasicek model is $dX_t = \kappa(\theta - X_t)\,dt + \sigma\,dW_t$ with $\kappa, \sigma > 0$. Compute the Lipschitz constant $K$ for the pair $(b, \sigma)$ and verify the linear growth condition. Then state what the main existence and uniqueness theorem guarantees about the solution.
+
 ??? success "Solution to Exercise 6"
     The Vasicek model has $b(t,x) = \kappa(\theta - x) = \kappa\theta - \kappa x$ and $\sigma(t,x) = \sigma$ (constant).
 
@@ -475,6 +461,16 @@ apply Gronwall's inequality to conclude that $\varphi(t) = 0$ for all $t \in [0,
     $$
     \mathbb{E}\!\left[\sup_{0 \leq t \leq T}|X_t|^2\right] \leq C(1 + |x_0|^2)e^{CT}
     $$
+
+---
+
+**Exercise 7.** Let $X_t$ and $Y_t$ be two strong solutions of $dZ_t = b(t,Z_t)\,dt + \sigma(t,Z_t)\,dW_t$ with $X_0 = Y_0$, where the coefficients are globally Lipschitz with constant $K$. Define $\varphi(t) = \mathbb{E}[\sup_{s \leq t}|X_s - Y_s|^2]$. Starting from the estimate
+
+$$
+\varphi(t) \leq C \int_0^t \varphi(s)\,ds
+$$
+
+apply Gronwall's inequality to conclude that $\varphi(t) = 0$ for all $t \in [0,T]$. Then explain why this proves pathwise uniqueness, not merely uniqueness in law.
 
 ??? success "Solution to Exercise 7"
     **Applying Gronwall's inequality:** The integral form of Gronwall's inequality states: if $\varphi : [0,T] \to [0,\infty)$ is a continuous function satisfying

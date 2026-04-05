@@ -163,26 +163,206 @@ Variance reduction is essential for efficient Monte Carlo pricing in the Hull-Wh
 
 **Exercise 1.** Show that the antithetic estimator $\hat{V}_{\text{anti}} = \frac{1}{N}\sum_{k=1}^N \frac{\hat{V}^{(k)} + \hat{V}^{(k,-)}}{2}$ is unbiased. Then prove that $\text{Var}(\hat{V}_{\text{anti}}) \leq \text{Var}(\hat{V}_{\text{std}})$ when the payoff is a monotone function of the short rate path.
 
+??? success "Solution to Exercise 1"
+    **Unbiasedness:** Since $Z$ and $-Z$ have the same distribution ($\mathcal{N}(0,1)$ is symmetric), the discounted payoffs $\hat{V}^{(k)}$ and $\hat{V}^{(k,-)}$ have the same expectation:
+
+    $$
+    \mathbb{E}[\hat{V}^{(k,-)}] = \mathbb{E}[\hat{V}^{(k)}] = \mathbb{E}[\hat{V}]
+    $$
+
+    Therefore
+
+    $$
+    \mathbb{E}[\hat{V}_{\text{anti}}] = \frac{1}{N}\sum_{k=1}^N \mathbb{E}\!\left[\frac{\hat{V}^{(k)} + \hat{V}^{(k,-)}}{2}\right] = \frac{1}{N}\sum_{k=1}^N \mathbb{E}[\hat{V}] = \mathbb{E}[\hat{V}]
+    $$
+
+    so the estimator is unbiased.
+
+    **Variance reduction for monotone payoffs:** Let $Y^{(k)} = (\hat{V}^{(k)} + \hat{V}^{(k,-)})/2$. Since the $Y^{(k)}$ are i.i.d.:
+
+    $$
+    \text{Var}(\hat{V}_{\text{anti}}) = \frac{1}{N}\text{Var}(Y)
+    $$
+
+    Now $\text{Var}(Y) = \frac{1}{4}[\text{Var}(\hat{V}) + \text{Var}(\hat{V}^{(-)}) + 2\text{Cov}(\hat{V}, \hat{V}^{(-)})]$. Since $\text{Var}(\hat{V}^{(-)}) = \text{Var}(\hat{V})$:
+
+    $$
+    \text{Var}(Y) = \frac{1}{2}\text{Var}(\hat{V}) + \frac{1}{2}\text{Cov}(\hat{V}, \hat{V}^{(-)})
+    $$
+
+    The standard estimator using $2N$ paths has variance $\frac{1}{2N}\text{Var}(\hat{V})$. The antithetic estimator uses $N$ pairs ($2N$ total payoff evaluations) and has variance $\frac{1}{N}\text{Var}(Y) = \frac{1}{2N}\text{Var}(\hat{V}) + \frac{1}{2N}\text{Cov}(\hat{V}, \hat{V}^{(-)})$.
+
+    For a monotone payoff $g$, when the short rate path increases (high $Z$'s), the payoff moves one way; for the antithetic path (low $Z$'s = $-Z$), the rate decreases and the payoff moves the opposite way. This negative correlation gives $\text{Cov}(\hat{V}, \hat{V}^{(-)}) < 0$, so
+
+    $$
+    \text{Var}(\hat{V}_{\text{anti}}) < \frac{1}{2N}\text{Var}(\hat{V}) = \text{Var}(\hat{V}_{\text{std}})
+    $$
+
+    where $\hat{V}_{\text{std}}$ is the standard estimator with the same $2N$ evaluations.
+
 ---
 
 **Exercise 2.** For a caplet with payoff $\max(l_k - K, 0)$ where $l_k$ is a decreasing function of $r_{T_{k-1}}$, explain why antithetic variates are effective. For a straddle with payoff $|l_k - K|$, explain why antithetic variates provide little benefit.
+
+??? success "Solution to Exercise 2"
+    **Caplet:** The payoff is $\max(\ell_k - K, 0)$ where $\ell_k$ is a decreasing function of $r_{T_{k-1}}$ (higher rates mean higher discount rates, lower bond prices, and thus higher LIBOR rates --- actually $\ell_k$ is an increasing function of $r_{T_{k-1}}$ via $\ell_k = (1/P(T_{k-1},T_k) - 1)/\delta_k$ and $P$ is decreasing in $r$). More precisely, since $P(T_{k-1}, T_k)$ is decreasing in $r_{T_{k-1}}$, $\ell_k = (1/P - 1)/\delta$ is increasing in $r_{T_{k-1}}$. The caplet payoff is therefore a monotone increasing function of $r_{T_{k-1}}$.
+
+    When $Z$ is replaced by $-Z$, the simulated rate path shifts lower, making $\ell_k$ smaller and the caplet payoff smaller. The original and antithetic payoffs are negatively correlated: $\text{Cov}(\hat{V}, \hat{V}^{(-)}) < 0$. This gives effective variance reduction.
+
+    **Straddle:** The straddle payoff $|\ell_k - K|$ is a V-shaped function: it increases for both $\ell_k > K$ and $\ell_k < K$. When $Z$ is replaced by $-Z$, the rate moves in the opposite direction, but the payoff may move in the same direction (e.g., if the original path gives $\ell_k > K$, the antithetic may give $\ell_k < K$, and both payoffs $|\ell_k - K|$ may be similar in magnitude). The covariance $\text{Cov}(\hat{V}, \hat{V}^{(-)}) \approx 0$ because the payoff is approximately symmetric around $K$, providing little variance reduction.
 
 ---
 
 **Exercise 3.** The control variate estimator uses $C^{(k)} = 1/M^{(k)}(T)$ with known expectation $P(0,T)$. Derive the optimal coefficient $\beta^* = \text{Cov}(\hat{V}, C)/\text{Var}(C)$ by minimizing $\text{Var}(\hat{V} - \beta(C - P(0,T)))$ over $\beta$. If $\rho = \text{Corr}(\hat{V}, C) = 0.95$, what is the variance reduction factor?
 
+??? success "Solution to Exercise 3"
+    The variance of the control variate estimator for a single path is
+
+    $$
+    \text{Var}(\hat{V} - \beta(C - P(0,T))) = \text{Var}(\hat{V}) - 2\beta\,\text{Cov}(\hat{V}, C) + \beta^2\,\text{Var}(C)
+    $$
+
+    This is a quadratic function of $\beta$. Taking the derivative and setting it to zero:
+
+    $$
+    \frac{d}{d\beta}\text{Var} = -2\,\text{Cov}(\hat{V}, C) + 2\beta\,\text{Var}(C) = 0
+    $$
+
+    Solving:
+
+    $$
+    \beta^* = \frac{\text{Cov}(\hat{V}, C)}{\text{Var}(C)}
+    $$
+
+    Substituting $\beta^*$ back:
+
+    $$
+    \text{Var}(\hat{V}_{\text{CV}}) = \text{Var}(\hat{V}) - \frac{[\text{Cov}(\hat{V}, C)]^2}{\text{Var}(C)} = \text{Var}(\hat{V})\!\left(1 - \frac{[\text{Cov}(\hat{V}, C)]^2}{\text{Var}(\hat{V})\,\text{Var}(C)}\right) = (1 - \rho^2)\,\text{Var}(\hat{V})
+    $$
+
+    For $\rho = 0.95$:
+
+    $$
+    1 - \rho^2 = 1 - 0.9025 = 0.0975
+    $$
+
+    The variance reduction factor is $0.0975$, meaning the variance is reduced by approximately 90.25%. This is equivalent to a roughly $10\times$ increase in the effective number of paths.
+
 ---
 
 **Exercise 4.** For a Bermudan swaption priced by Monte Carlo, the European swaption (with analytic price via Jamshidian) serves as a control variate. Explain why the correlation between the Bermudan and European payoffs is high, and estimate the expected variance reduction factor.
+
+??? success "Solution to Exercise 4"
+    The Bermudan swaption differs from the European swaption only by having additional exercise opportunities. On most paths, the optimal exercise date for the Bermudan swaption coincides with the European exercise date (the first allowed exercise date), because early exercise is optimal only on a subset of paths.
+
+    The payoffs are highly correlated because:
+
+    1. Both depend on the same underlying swap value, driven by the same short rate path.
+    2. The Bermudan payoff equals the European payoff on paths where early exercise is not optimal (which is the majority of paths).
+    3. On paths where early exercise is optimal, the Bermudan payoff is strictly larger but still correlated with the terminal swap value.
+
+    Typical correlations between Bermudan and European swaption payoffs are $\rho \approx 0.95$--$0.99$.
+
+    **Expected variance reduction:** Using $\rho = 0.97$ as a representative value:
+
+    $$
+    1 - \rho^2 = 1 - 0.9409 = 0.0591
+    $$
+
+    The variance is reduced by approximately 94%, equivalent to a $\sim 17\times$ increase in effective paths. This makes the European swaption an exceptionally effective control variate for Bermudan swaption pricing.
 
 ---
 
 **Exercise 5.** Importance sampling for a deep out-of-the-money caplet shifts the mean of $r_T$ toward the strike $K$. The likelihood ratio per time step is $\exp(-\theta_{\text{IS}} Z_i + \frac{1}{2}\theta_{\text{IS}}^2)$. Derive this formula by computing the Radon-Nikodym derivative between $\mathcal{N}(\theta_{\text{IS}}, 1)$ and $\mathcal{N}(0,1)$ for a single normal draw.
 
+??? success "Solution to Exercise 5"
+    Let $Z \sim \mathcal{N}(0, 1)$ under the original measure, and $\tilde{Z} = Z - \theta_{\text{IS}} \sim \mathcal{N}(-\theta_{\text{IS}}, 1)$ under the original measure (equivalently, $Z = \tilde{Z} + \theta_{\text{IS}}$ where $\tilde{Z} \sim \mathcal{N}(0, 1)$ under the importance sampling measure).
+
+    Under the importance sampling measure, $Z \sim \mathcal{N}(\theta_{\text{IS}}, 1)$. The densities are:
+
+    $$
+    f(z) = \frac{1}{\sqrt{2\pi}}e^{-z^2/2} \quad (\text{original})
+    $$
+
+    $$
+    h(z) = \frac{1}{\sqrt{2\pi}}e^{-(z - \theta_{\text{IS}})^2/2} \quad (\text{importance sampling})
+    $$
+
+    The Radon-Nikodym derivative (likelihood ratio) is
+
+    $$
+    \frac{f(z)}{h(z)} = \frac{e^{-z^2/2}}{e^{-(z-\theta_{\text{IS}})^2/2}} = \exp\!\left(-\frac{z^2}{2} + \frac{(z - \theta_{\text{IS}})^2}{2}\right)
+    $$
+
+    Expanding the exponent:
+
+    $$
+    -\frac{z^2}{2} + \frac{z^2 - 2z\theta_{\text{IS}} + \theta_{\text{IS}}^2}{2} = -z\theta_{\text{IS}} + \frac{\theta_{\text{IS}}^2}{2}
+    $$
+
+    Therefore
+
+    $$
+    \frac{f(z)}{h(z)} = \exp\!\left(-\theta_{\text{IS}}\,z + \frac{\theta_{\text{IS}}^2}{2}\right)
+    $$
+
+    When sampling $Z_i \sim \mathcal{N}(\theta_{\text{IS}}, 1)$ at each time step, the per-step likelihood ratio is $\exp(-\theta_{\text{IS}} Z_i + \frac{1}{2}\theta_{\text{IS}}^2)$, and the total likelihood ratio over $N$ steps is the product $\prod_{i=1}^N \exp(-\theta_{\text{IS}} Z_i + \frac{1}{2}\theta_{\text{IS}}^2)$.
+
 ---
 
 **Exercise 6.** Stratified sampling partitions the first standard normal draw into $K$ equal-probability strata. For $K = 10$ strata and $N = 1000$ total paths (100 per stratum), describe the sampling procedure. Why is the stratified estimator guaranteed to have variance no larger than the unstratified estimator?
 
+??? success "Solution to Exercise 6"
+    **Stratified sampling procedure with $K = 10$ strata and $N = 1000$ paths:**
+
+    1. Partition the unit interval $[0, 1]$ into $K = 10$ equal strata: $[0, 0.1)$, $[0.1, 0.2)$, $\ldots$, $[0.9, 1.0]$.
+    2. Allocate $n_j = 1000/10 = 100$ paths to each stratum $j$.
+    3. For stratum $j$ ($j = 1, \ldots, 10$):
+        - Draw $n_j = 100$ uniform samples $U_1, \ldots, U_{100} \sim \text{Uniform}((j-1)/10,\; j/10)$
+        - Transform to normal: $Z_i = \Phi^{-1}(U_i)$, giving samples from the $j$-th quantile range of $\mathcal{N}(0,1)$
+        - Use $Z_i$ as the first time step's normal draw; all subsequent time steps use unstratified standard normal draws
+        - Simulate each path and compute the discounted payoff $\hat{V}^{(j,i)}$
+    4. The stratified estimator is $\hat{V}_{\text{strat}} = \frac{1}{10}\sum_{j=1}^{10}\frac{1}{100}\sum_{i=1}^{100}\hat{V}^{(j,i)}$
+
+    **Why variance is guaranteed to decrease:** The total variance decomposes as
+
+    $$
+    \text{Var}(\hat{V}) = \mathbb{E}[\text{Var}(\hat{V} \mid J)] + \text{Var}(\mathbb{E}[\hat{V} \mid J])
+    $$
+
+    where $J$ is the stratum index. The stratified estimator eliminates the between-stratum variance $\text{Var}(\mathbb{E}[\hat{V} \mid J])$ by sampling equally from each stratum, so
+
+    $$
+    \text{Var}(\hat{V}_{\text{strat}}) = \frac{1}{K}\sum_{j=1}^{K}\frac{\text{Var}_j(\hat{V})}{n_j} \leq \frac{1}{N}\mathbb{E}[\text{Var}(\hat{V} \mid J)] \leq \frac{1}{N}\text{Var}(\hat{V})
+    $$
+
+    The inequality is strict whenever the stratum means $\mathbb{E}[\hat{V} \mid J]$ differ across strata.
+
 ---
 
 **Exercise 7.** Describe a combined variance reduction strategy using antithetic variates, control variates (with ZCB as control), and stratification on the first time step. In what order should these techniques be applied? Estimate the total variance reduction factor if each technique independently reduces variance by 50%.
+
+??? success "Solution to Exercise 7"
+    **Combined strategy and application order:**
+
+    1. **Stratification (applied first):** Partition the first normal draw $Z_1$ into $K$ equal-probability strata. Within each stratum, draw the first time step's $Z_1$ from the restricted range. This ensures representative coverage of the first factor driving rate movements.
+
+    2. **Antithetic variates (applied second):** Within each stratum, for each path driven by $(Z_1, Z_2, \ldots, Z_N)$, generate the antithetic path $(-Z_1, -Z_2, \ldots, -Z_N)$. Note: the antithetic $-Z_1$ will fall in a different stratum, so in practice, pair paths within each stratum or pair strata symmetrically (stratum $j$ with stratum $K+1-j$).
+
+    3. **Control variates (applied last):** After computing the stratified-antithetic estimator, apply the control variate correction using the ZCB discount factor:
+
+        $$
+        \hat{V}_{\text{combined}} = \hat{V}_{\text{strat+anti}} - \beta^*\!\left(\bar{C}_{\text{strat+anti}} - P(0, T)\right)
+        $$
+
+        where $\beta^*$ is estimated from the same simulation.
+
+    **Order rationale:** Stratification and antithetic variates modify the sampling procedure and must be applied during path generation. Control variates are a post-processing correction applied to the computed payoffs.
+
+    **Total variance reduction factor:** If each technique independently reduces variance by 50% (factor of 0.5), and the techniques operate on approximately independent sources of variance, the combined factor is approximately
+
+    $$
+    0.5 \times 0.5 \times 0.5 = 0.125
+    $$
+
+    This means the combined strategy reduces variance by about 87.5%, equivalent to an $8\times$ increase in effective paths. In practice, the techniques are not perfectly independent (e.g., control variates may partially capture the same variance as antithetic variates), so the actual combined reduction may be somewhat less than the multiplicative product, but it is still substantially better than any single technique alone.

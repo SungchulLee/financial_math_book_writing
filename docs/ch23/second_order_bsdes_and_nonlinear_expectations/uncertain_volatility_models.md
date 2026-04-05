@@ -993,6 +993,60 @@ The UVM framework represents a cornerstone of robust quantitative finance, provi
 
 **Exercise 1.** Consider the Black-Scholes-Barenblatt equation for an uncertain volatility model with $\sigma \in [\underline{\sigma}, \overline{\sigma}] = [0.15, 0.30]$. For a European call with $S_0 = K = 100$ and $T = 1$, the robust price satisfies $V^{\text{sup}} = \text{BS}(S_0, K, \overline{\sigma}, T)$ since $\Gamma > 0$ for a call. Compute $V^{\text{sup}}$ and $V^{\text{sub}} = \text{BS}(S_0, K, \underline{\sigma}, T)$ and interpret the bid-ask spread.
 
+??? success "Solution to Exercise 1"
+
+    **Goal.** Compute the super-replication and sub-replication prices for a European call with $S_0 = K = 100$, $T = 1$, $r = 0$, $\underline{\sigma} = 0.15$, $\overline{\sigma} = 0.30$.
+
+    **Step 1: Gamma of a European call.** The European call has payoff $\Phi(S) = (S - K)^+$. The Black-Scholes gamma is:
+
+    $$
+    \Gamma = \frac{\partial^2 C}{\partial S^2} = \frac{\phi(d_1)}{S \sigma \sqrt{T}} > 0
+    $$
+
+    where $\phi$ is the standard normal density and $d_1 = \frac{\ln(S/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}}$. Since $\phi > 0$ everywhere and $S, \sigma, T > 0$, we have $\Gamma > 0$ everywhere in the domain.
+
+    **Step 2: Worst-case volatility.** The BSB equation selects the volatility that maximizes $\frac{1}{2}\sigma^2 S^2 \Gamma$. Since $\Gamma > 0$, this is maximized by choosing $\sigma = \overline{\sigma}$. The super-replication price uses $\overline{\sigma}$ uniformly.
+
+    For the sub-replication (buyer's) price, the worst case from the buyer's perspective is the minimum payoff expectation, achieved with $\sigma = \underline{\sigma}$.
+
+    **Step 3: Compute prices using Black-Scholes formula.** With $r = 0$, the Black-Scholes call price is:
+
+    $$
+    C(S_0, K, \sigma, T) = S_0 \Phi(d_1) - K\Phi(d_2)
+    $$
+
+    where $d_1 = \frac{\sigma\sqrt{T}}{2}$ and $d_2 = -\frac{\sigma\sqrt{T}}{2}$ (since $S_0 = K$ and $r = 0$).
+
+    **Super-replication price** ($\sigma = \overline{\sigma} = 0.30$):
+
+    $$
+    d_1 = \frac{0.30}{2} = 0.15, \quad d_2 = -0.15
+    $$
+
+    $$
+    V^{\text{sup}} = 100[\Phi(0.15) - \Phi(-0.15)] = 100[0.5596 - 0.4404] = 100 \times 0.1192 \approx \$11.92
+    $$
+
+    **Sub-replication price** ($\sigma = \underline{\sigma} = 0.15$):
+
+    $$
+    d_1 = \frac{0.15}{2} = 0.075, \quad d_2 = -0.075
+    $$
+
+    $$
+    V^{\text{sub}} = 100[\Phi(0.075) - \Phi(-0.075)] = 100[0.5299 - 0.4701] = 100 \times 0.0598 \approx \$5.98
+    $$
+
+    **Step 4: Bid-ask spread.**
+
+    $$
+    \text{Spread} = V^{\text{sup}} - V^{\text{sub}} \approx \$11.92 - \$5.98 = \$5.94
+    $$
+
+    **Interpretation.** The spread of approximately $\$5.94$ (about 50% of the mid-price) reflects the substantial volatility uncertainty. The seller, who is short gamma, faces the worst case at $\overline{\sigma} = 0.30$ and must charge at least $\$11.92$. The buyer, who is long gamma, benefits from high volatility, so the worst case for the buyer (lowest value of the long call position) is at $\underline{\sigma} = 0.15$, giving a maximum willingness to pay of $\$5.98$.
+
+    Any price in $[\$5.98, \$11.92]$ is arbitrage-free under the uncertain volatility model. The wide spread illustrates why volatility uncertainty is economically significant: doubling the volatility range from $[0.15, 0.30]$ roughly doubles the bid-ask spread. $\square$
+
 ---
 
 **Exercise 2.** Write down the Black-Scholes-Barenblatt PDE for the superhedging price:
@@ -1003,18 +1057,380 @@ $$
 
 where $a^*(S,t) = \overline{\sigma}^2$ if $\Gamma > 0$ and $a^*(S,t) = \underline{\sigma}^2$ if $\Gamma < 0$. For a butterfly spread payoff $(S - K_1)^+ - 2(S - K_2)^+ + (S - K_3)^+$ with $K_1 < K_2 < K_3$, describe how the worst-case volatility switches as a function of $S$, and explain why the BSB equation becomes a free-boundary problem.
 
+??? success "Solution to Exercise 2"
+
+    **Goal.** Describe the worst-case volatility for a butterfly spread and explain why the BSB equation becomes a free-boundary problem.
+
+    **Step 1: Butterfly spread payoff.** The butterfly spread has payoff:
+
+    $$
+    \Phi(S) = (S - K_1)^+ - 2(S - K_2)^+ + (S - K_3)^+
+    $$
+
+    with $K_1 < K_2 < K_3$. This payoff is piecewise linear:
+
+    $$
+    \Phi(S) = \begin{cases} 0 & S \leq K_1 \\ S - K_1 & K_1 < S \leq K_2 \\ K_3 - S & K_2 < S \leq K_3 \\ 0 & S > K_3 \end{cases}
+    $$
+
+    (assuming $K_2 = (K_1 + K_3)/2$ for a symmetric butterfly).
+
+    **Step 2: Gamma of the butterfly.** The butterfly is the sum of three call options with different signs. The gamma of each call is positive. Therefore:
+
+    $$
+    \Gamma_{\text{butterfly}} = \Gamma_{K_1} - 2\Gamma_{K_2} + \Gamma_{K_3}
+    $$
+
+    The gamma of a call is concentrated near its strike (peaked at $S = K$). The butterfly gamma has the following structure:
+
+    - **$S \ll K_1$ or $S \gg K_3$**: All gammas are small, $\Gamma_{\text{butterfly}} \approx 0$
+    - **$S$ near $K_1$**: $\Gamma_{K_1}$ dominates, so $\Gamma_{\text{butterfly}} > 0$
+    - **$S$ near $K_2$**: $-2\Gamma_{K_2}$ dominates, so $\Gamma_{\text{butterfly}} < 0$
+    - **$S$ near $K_3$**: $\Gamma_{K_3}$ dominates, so $\Gamma_{\text{butterfly}} > 0$
+
+    **Step 3: Worst-case volatility switching.** The BSB equation prescribes:
+
+    $$
+    a^*(S, t) = \begin{cases} \overline{\sigma}^2 & \text{if } \Gamma(t, S) > 0 \\ \underline{\sigma}^2 & \text{if } \Gamma(t, S) < 0 \end{cases}
+    $$
+
+    For the butterfly:
+
+    - **Near $K_1$ and $K_3$** (wings): $\Gamma > 0$, so worst-case $\sigma = \overline{\sigma}$
+    - **Near $K_2$** (body): $\Gamma < 0$, so worst-case $\sigma = \underline{\sigma}$
+    - **Transition regions**: $\Gamma$ changes sign at two points $S^*(t) \in (K_1, K_2)$ and $S^{**}(t) \in (K_2, K_3)$
+
+    **Step 4: Free-boundary problem.** The BSB equation becomes a free-boundary problem because the locations $S^*(t)$ and $S^{**}(t)$ where $\Gamma = 0$ (and thus where the volatility switches) are not known a priori --- they must be determined as part of the solution. Specifically:
+
+    On each side of the free boundaries, $V$ satisfies a different linear PDE:
+
+    $$
+    \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\overline{\sigma}^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0 \quad \text{where } \Gamma > 0
+    $$
+
+    $$
+    \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\underline{\sigma}^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0 \quad \text{where } \Gamma < 0
+    $$
+
+    At the free boundaries $S = S^*(t)$ and $S = S^{**}(t)$:
+
+    - $\Gamma(t, S^*(t)) = 0$ and $\Gamma(t, S^{**}(t)) = 0$ (continuity of gamma at the boundary)
+    - $V$ and $\partial V / \partial S$ are continuous across the boundary (smooth pasting conditions)
+
+    The free boundaries evolve in time and must be tracked numerically. This is why the BSB equation is fundamentally harder than the standard Black-Scholes PDE: it is a coupled system of two linear PDEs with moving interfaces, rather than a single linear PDE on the whole domain. $\square$
+
 ---
 
 **Exercise 3.** Prove that the gamma of a European call is always positive: $\Gamma = \partial^2 C / \partial S^2 > 0$. Then show that for a digital call payoff $\mathbb{1}\{S_T > K\}$, the gamma changes sign near the strike (positive for $S < K$, negative for $S > K$). What is the worst-case volatility for pricing the digital call, and why does it differ from the call option case?
+
+??? success "Solution to Exercise 3"
+
+    **Goal.** Prove $\Gamma > 0$ for a European call, analyze the digital call gamma, and determine worst-case volatility.
+
+    **Part 1: Gamma of a European call is always positive.**
+
+    The Black-Scholes call price is $C(S) = S\Phi(d_1) - Ke^{-rT}\Phi(d_2)$ where:
+
+    $$
+    d_1 = \frac{\ln(S/K) + (r + \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}
+    $$
+
+    Computing the gamma:
+
+    $$
+    \Gamma = \frac{\partial^2 C}{\partial S^2} = \frac{\partial}{\partial S}\left[\Phi(d_1) + S\phi(d_1)\frac{\partial d_1}{\partial S}\right]
+    $$
+
+    Using the fact that $\frac{\partial d_1}{\partial S} = \frac{1}{S\sigma\sqrt{T-t}}$ and the identity $S\phi(d_1) = Ke^{-r(T-t)}\phi(d_2)$, the gamma simplifies to:
+
+    $$
+    \Gamma = \frac{\phi(d_1)}{S\sigma\sqrt{T-t}}
+    $$
+
+    Since $\phi(d_1) = \frac{1}{\sqrt{2\pi}}e^{-d_1^2/2} > 0$ for all $d_1 \in \mathbb{R}$, and $S, \sigma, \sqrt{T-t} > 0$, we conclude:
+
+    $$
+    \Gamma > 0 \quad \text{for all } S > 0, \; t < T
+    $$
+
+    $\square$
+
+    **Part 2: Gamma of a digital call.**
+
+    The digital (binary) call has payoff $\Phi(S) = \mathbb{1}_{\{S > K\}}$. Its Black-Scholes price is:
+
+    $$
+    V_{\text{dig}}(S) = e^{-r(T-t)}\Phi(d_2)
+    $$
+
+    The delta is:
+
+    $$
+    \Delta_{\text{dig}} = \frac{\partial V_{\text{dig}}}{\partial S} = e^{-r(T-t)}\phi(d_2) \cdot \frac{1}{S\sigma\sqrt{T-t}}
+    $$
+
+    The gamma is:
+
+    $$
+    \Gamma_{\text{dig}} = \frac{\partial^2 V_{\text{dig}}}{\partial S^2} = \frac{\partial \Delta_{\text{dig}}}{\partial S}
+    $$
+
+    Computing this derivative:
+
+    $$
+    \Gamma_{\text{dig}} = e^{-r(T-t)} \frac{\phi(d_2)}{S^2\sigma^2(T-t)}\left(-d_1\right)
+    $$
+
+    (using $\frac{\partial d_2}{\partial S} = \frac{1}{S\sigma\sqrt{T-t}}$ and $\phi'(d_2) = -d_2 \phi(d_2)$, combined with the product rule). The sign of $\Gamma_{\text{dig}}$ is determined by $-d_1$:
+
+    $$
+    \Gamma_{\text{dig}} \propto -d_1
+    $$
+
+    - **$S < K$ (out of the money)**: $d_1 < 0$ (approximately, for short maturities), so $\Gamma_{\text{dig}} > 0$
+    - **$S > K$ (in the money)**: $d_1 > 0$, so $\Gamma_{\text{dig}} < 0$
+    - **$S = K$ (at the money)**: $d_1 = \sigma\sqrt{T-t}/2 > 0$, so gamma is slightly negative at the money
+
+    More precisely, $\Gamma_{\text{dig}} = 0$ when $d_1 = 0$, i.e., at $S^* = K\exp(-(r + \sigma^2/2)(T-t))$, which is slightly below $K$.
+
+    **Part 3: Worst-case volatility for the digital call.**
+
+    Since $\Gamma_{\text{dig}}$ changes sign, the worst-case volatility in the BSB equation also switches:
+
+    - **$S < S^*$** (where $\Gamma_{\text{dig}} > 0$): worst-case $\sigma = \overline{\sigma}$
+    - **$S > S^*$** (where $\Gamma_{\text{dig}} < 0$): worst-case $\sigma = \underline{\sigma}$
+
+    This differs fundamentally from the European call, where $\Gamma > 0$ everywhere leads to a single worst-case volatility $\overline{\sigma}$. For the digital call, the super-replication price is determined by a switching volatility that depends on the current stock price relative to $S^*$. The seller of a digital call faces different risks on each side of the strike:
+
+    - Below the strike (positive gamma region): the seller benefits from lower volatility, so the worst case is $\overline{\sigma}$
+    - Above the strike (negative gamma region): the seller benefits from higher volatility, so the worst case is $\underline{\sigma}$
+
+    The digital call's super-replication price must be computed by solving the full BSB equation with this switching volatility, and the result is strictly higher than the Black-Scholes price at any single volatility in $(\underline{\sigma}, \overline{\sigma})$. $\square$
 
 ---
 
 **Exercise 4.** Implement a finite difference scheme for the BSB equation on a grid with $N_S = 100$ spatial points and $N_t = 250$ time steps. At each node, the scheme must select the worst-case volatility based on the sign of $\Gamma$. Describe the algorithm and discuss convergence: why is the BSB equation harder to solve numerically than the standard Black-Scholes PDE?
 
+??? success "Solution to Exercise 4"
+
+    **Goal.** Describe a finite difference scheme for the BSB equation and discuss convergence.
+
+    **Step 1: Grid setup.** Define:
+
+    - Time grid: $t_i = i\Delta t$ for $i = 0, 1, \ldots, N_t$, with $\Delta t = T/N_t$
+    - Space grid: $S_j = S_{\min} + j\Delta S$ for $j = 0, 1, \ldots, N_S$, with $\Delta S = (S_{\max} - S_{\min})/N_S$
+    - Denote $V_j^i \approx V(t_i, S_j)$
+
+    **Step 2: Terminal condition.** At $i = N_t$ (time $T$):
+
+    $$
+    V_j^{N_t} = \Phi(S_j) \quad \text{for all } j
+    $$
+
+    **Step 3: Backward iteration (explicit scheme).** For $i = N_t - 1, N_t - 2, \ldots, 0$:
+
+    First, compute the discrete gamma at each node:
+
+    $$
+    \Gamma_j^{i+1} = \frac{V_{j+1}^{i+1} - 2V_j^{i+1} + V_{j-1}^{i+1}}{(\Delta S)^2}
+    $$
+
+    Select the worst-case volatility:
+
+    $$
+    \sigma_j^{i+1} = \begin{cases} \overline{\sigma} & \text{if } \Gamma_j^{i+1} > 0 \\ \underline{\sigma} & \text{if } \Gamma_j^{i+1} < 0 \\ \frac{\overline{\sigma} + \underline{\sigma}}{2} & \text{if } \Gamma_j^{i+1} = 0 \end{cases}
+    $$
+
+    Update the value using the explicit finite difference scheme:
+
+    $$
+    V_j^i = V_j^{i+1} + \Delta t \left[rS_j \frac{V_{j+1}^{i+1} - V_{j-1}^{i+1}}{2\Delta S} + \frac{1}{2}(\sigma_j^{i+1})^2 S_j^2 \Gamma_j^{i+1} - rV_j^{i+1}\right]
+    $$
+
+    **Step 4: Boundary conditions.** At $j = 0$ ($S = S_{\min} \approx 0$): $V_0^i \approx e^{-r(T-t_i)}\Phi(0)$.
+
+    At $j = N_S$ ($S = S_{\max}$): Apply an asymptotic condition, e.g., for a call: $V_{N_S}^i \approx S_{\max} - Ke^{-r(T-t_i)}$.
+
+    **Step 5: Full algorithm.**
+
+    ```
+    1. Initialize: V[j, N_t] = Phi(S[j]) for all j
+    2. For i = N_t-1 down to 0:
+       a. Compute Gamma[j] for j = 1, ..., N_S-1
+       b. Select sigma[j] based on sign(Gamma[j])
+       c. Compute V[j, i] using explicit update formula
+       d. Apply boundary conditions at j = 0 and j = N_S
+    3. Output: V[j*, 0] where S[j*] = S_0
+    ```
+
+    **Step 6: Convergence discussion.**
+
+    The BSB equation is harder to solve numerically than the standard Black-Scholes PDE for several reasons:
+
+    1. **Nonlinearity and monotone schemes**: The coefficient $\sigma^2(S,t)$ depends on the solution itself (through the sign of $\Gamma$). The Barles-Souganidis theorem guarantees convergence of numerical schemes to the viscosity solution provided the scheme is (a) monotone, (b) consistent, and (c) stable. Monotonicity requires that $V_j^i$ is an increasing function of the neighboring values $V_{j\pm 1}^{i+1}$, which imposes a CFL-type condition:
+
+    $$
+    \Delta t \leq \frac{(\Delta S)^2}{\overline{\sigma}^2 S_{\max}^2 + rS_{\max}\Delta S}
+    $$
+
+    2. **Volatility switching instability**: Near the free boundary where $\Gamma = 0$, the discrete gamma $\Gamma_j^{i+1}$ may oscillate in sign due to numerical noise, causing the volatility to flip between $\overline{\sigma}$ and $\underline{\sigma}$ erratically. This can slow convergence or cause instability. Remedies include smoothing the gamma near zero or using implicit schemes.
+
+    3. **Non-smooth solutions**: The BSB solution may have discontinuous second derivatives at the free boundary where $\Gamma = 0$. Standard finite difference convergence theory assumes smooth solutions, so the convergence rate degrades near discontinuities. Typical convergence is $O(\Delta S + \Delta t)$ for monotone schemes, versus $O((\Delta S)^2 + \Delta t)$ for the standard Black-Scholes PDE with smooth solutions.
+
+    4. **Implicit vs explicit**: An implicit scheme avoids the CFL condition but requires solving a nonlinear system at each time step (because $\sigma$ depends on the unknown $\Gamma$). Policy iteration (solving a linear system with fixed $\sigma$, then updating $\sigma$, and repeating) is an effective approach.
+
+    5. **Convergence to viscosity solution**: The monotone scheme converges to the unique viscosity solution of the BSB equation, but the rate may be only $O(\sqrt{\Delta t})$ due to the low regularity of the solution. $\square$
+
 ---
 
 **Exercise 5.** The uncertain volatility model can be connected to 2BSDEs. Show that the superhedging price $V_t$ satisfies the 2BSDE $-dY_t = f(t, Y_t, Z_t, \Gamma_t) \, dt - Z_t \, dW_t$ where the generator $f$ depends on the uncertain volatility through $\Gamma_t$. What is the explicit form of the generator $f$ for the uncertain volatility model?
 
+??? success "Solution to Exercise 5"
+
+    **Goal.** Show that the superhedging price satisfies a 2BSDE and identify the generator.
+
+    **Step 1: Setup.** Consider a stock $S_t$ under risk-neutral dynamics with uncertain volatility:
+
+    $$
+    dS_t = rS_t \, dt + \sigma_t S_t \, dW_t, \quad \sigma_t \in [\underline{\sigma}, \overline{\sigma}]
+    $$
+
+    The superhedging price of a claim $\Phi(S_T)$ is:
+
+    $$
+    V_t = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} E^\sigma\left[e^{-r(T-t)}\Phi(S_T) \bigg| \mathcal{F}_t\right]
+    $$
+
+    **Step 2: 2BSDE formulation.** Define $Y_t = e^{-rt}V_t$ (the discounted superhedging price). By the dynamic programming principle, $(Y_t, Z_t)$ satisfies:
+
+    $$
+    -dY_t = f(t, Y_t, Z_t, \hat{a}_t) \, dt - Z_t \, dW_t
+    $$
+
+    where $\hat{a}_t = \sigma_t^2$ is the uncertain instantaneous variance and $Z_t = e^{-rt}\sigma_t S_t \frac{\partial V}{\partial S}$.
+
+    **Step 3: Derive the generator.** Apply Ito's formula to $Y_t = e^{-rt}V(t, S_t)$:
+
+    $$
+    dY_t = e^{-rt}\left[-rV + \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma_t^2 S^2 \frac{\partial^2 V}{\partial S^2}\right]dt + e^{-rt}\sigma_t S \frac{\partial V}{\partial S} \, dW_t
+    $$
+
+    Identifying $Z_t = e^{-rt}\sigma_t S_t \frac{\partial V}{\partial S}$ and $\Gamma_t = \frac{\partial^2 V}{\partial S^2}$, the BSDE dynamics require:
+
+    $$
+    f(t, Y_t, Z_t, \hat{a}_t) = -\left[-rV + \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\hat{a}_t S^2 \Gamma_t\right]e^{-rt}
+    $$
+
+    The BSB equation (which $V$ satisfies) states that:
+
+    $$
+    \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\hat{a}_t^* S^2 \Gamma_t - rV = 0
+    $$
+
+    where $\hat{a}_t^* = \arg\sup_{\hat{a} \in [\underline{\sigma}^2, \overline{\sigma}^2]} \frac{1}{2}\hat{a} S^2 \Gamma_t$ is the worst-case variance.
+
+    **Step 4: Explicit generator.** The generator of the 2BSDE for the uncertain volatility model is:
+
+    $$
+    f(t, y, z, \hat{a}) = -ry + \sup_{\hat{a} \in [\underline{\sigma}^2, \overline{\sigma}^2]} \frac{1}{2}\hat{a} \cdot \Gamma_t S_t^2 e^{-rt}
+    $$
+
+    Equivalently, working directly with the undiscounted value process $V_t$ and expressing the generator in terms of the gamma $\Gamma_t$:
+
+    $$
+    f(t, V, Z, \Gamma) = -rV + rS\frac{\partial V}{\partial S} + G(\Gamma S^2)
+    $$
+
+    where:
+
+    $$
+    G(x) = \sup_{\hat{a} \in [\underline{\sigma}^2, \overline{\sigma}^2]} \frac{1}{2}\hat{a} \cdot x = \frac{1}{2}\overline{\sigma}^2 x^+ - \frac{1}{2}\underline{\sigma}^2 x^-
+    $$
+
+    Since $\Gamma S^2$ has the same sign as $\Gamma$, the generator explicitly becomes:
+
+    $$
+    f(t, V, Z, \Gamma) = -rV + rS\frac{\partial V}{\partial S} + \frac{1}{2}\overline{\sigma}^2 S^2 \Gamma^+ - \frac{1}{2}\underline{\sigma}^2 S^2 \Gamma^-
+    $$
+
+    This is the 2BSDE generator for the uncertain volatility model. The dependence on $\Gamma$ (the second-order process) makes this a genuine 2BSDE, not a standard BSDE. The supremum over $\hat{a}$ encodes the adversarial choice of volatility by nature, selecting the worst case for the hedger at each instant. $\square$
+
 ---
 
 **Exercise 6.** For a portfolio of vanilla options with both positive and negative gamma regions, the worst-case volatility in the UVM switches between $\underline{\sigma}$ and $\overline{\sigma}$ depending on the portfolio gamma. Consider a risk reversal (long OTM call, short OTM put). Determine which volatility is worst-case in each moneyness region and explain why the robust price of the risk reversal depends on the correlation between the volatility switching and the stock price level.
+
+??? success "Solution to Exercise 6"
+
+    **Goal.** Analyze the worst-case volatility for a risk reversal and explain the role of the volatility-stock price correlation.
+
+    **Step 1: Risk reversal structure.** A risk reversal consists of:
+
+    - Long one OTM call with strike $K_C > S_0$
+    - Short one OTM put with strike $K_P < S_0$
+
+    The combined payoff is:
+
+    $$
+    \Phi(S) = (S - K_C)^+ - (K_P - S)^+
+    $$
+
+    **Step 2: Gamma analysis of each component.**
+
+    The **long call** has gamma:
+
+    $$
+    \Gamma_{\text{call}} = \frac{\phi(d_1^C)}{S\sigma\sqrt{T-t}} > 0
+    $$
+
+    concentrated near $S = K_C$.
+
+    The **short put** has gamma:
+
+    $$
+    \Gamma_{\text{put}} = -\frac{\phi(d_1^P)}{S\sigma\sqrt{T-t}} < 0
+    $$
+
+    (negative because we are short the put), concentrated near $S = K_P$.
+
+    **Step 3: Portfolio gamma by region.**
+
+    $$
+    \Gamma_{\text{RR}}(S) = \Gamma_{\text{call}}(S) + \Gamma_{\text{short put}}(S)
+    $$
+
+    - **$S \ll K_P$ (deep OTM)**: Both gammas are small, but the short put gamma dominates since $S$ is closer to $K_P$. $\Gamma_{\text{RR}} < 0$.
+
+    - **$S \approx K_P$ (near put strike)**: The short put gamma is at its most negative. $\Gamma_{\text{RR}} < 0$ (strongly negative).
+
+    - **$K_P < S < K_C$ (between strikes)**: Both gammas are moderate. Near the midpoint, $\Gamma_{\text{RR}}$ could be either sign depending on the relative distances. Typically $\Gamma_{\text{RR}} \approx 0$ or slightly positive/negative.
+
+    - **$S \approx K_C$ (near call strike)**: The long call gamma dominates. $\Gamma_{\text{RR}} > 0$ (strongly positive).
+
+    - **$S \gg K_C$ (deep ITM)**: Both gammas are small, but the long call gamma dominates. $\Gamma_{\text{RR}} > 0$ (weakly).
+
+    **Step 4: Worst-case volatility assignment.**
+
+    Applying the BSB rule $\sigma^* = \overline{\sigma}$ where $\Gamma > 0$ and $\sigma^* = \underline{\sigma}$ where $\Gamma < 0$:
+
+    | Stock price region | Portfolio gamma | Worst-case $\sigma$ |
+    |---|---|---|
+    | $S \leq K_P$ (near/below put strike) | $\Gamma < 0$ | $\underline{\sigma}$ |
+    | $K_P < S < S^*$ (between strikes, put side) | $\Gamma < 0$ | $\underline{\sigma}$ |
+    | $S^* < S < K_C$ (between strikes, call side) | $\Gamma > 0$ | $\overline{\sigma}$ |
+    | $S \geq K_C$ (near/above call strike) | $\Gamma > 0$ | $\overline{\sigma}$ |
+
+    where $S^*$ is the point between $K_P$ and $K_C$ where $\Gamma_{\text{RR}} = 0$.
+
+    **Step 5: Why the robust price depends on the correlation between volatility switching and stock price.**
+
+    The worst-case volatility is $\underline{\sigma}$ when $S$ is low (near $K_P$) and $\overline{\sigma}$ when $S$ is high (near $K_C$). This means nature's worst-case strategy introduces a **positive correlation between volatility and stock price**: high volatility when $S$ is high, low volatility when $S$ is low.
+
+    This matters because:
+
+    1. **Path-dependent worst case**: The worst-case volatility depends on where $S$ is at each instant. If $S$ moves toward $K_C$, the worst-case volatility increases (to $\overline{\sigma}$), amplifying the stock's upward movements and increasing the expected call payoff. If $S$ moves toward $K_P$, the worst-case volatility decreases (to $\underline{\sigma}$), damping the stock's downward movements and reducing the put's payoff recovery for the seller.
+
+    2. **Asymmetric risk amplification**: The positive correlation between $\sigma$ and $S$ is the worst case for the risk reversal seller because it amplifies losses on both sides: the long call becomes more expensive (high vol when $S$ is high) and the short put protection weakens (low vol when $S$ is low, so $S$ is less likely to recover from a drop).
+
+    3. **Comparison with Black-Scholes**: In Black-Scholes with constant $\sigma$, the risk reversal price is simply $C(K_C, \sigma) - P(K_P, \sigma)$. In the UVM, the effective volatility differs by region, and the super-replication price is strictly higher than the Black-Scholes price at any single $\sigma \in (\underline{\sigma}, \overline{\sigma})$ because the switching strategy is adversarial.
+
+    4. **Connection to skew**: The worst-case volatility pattern (low vol for low $S$, high vol for high $S$) is the opposite of the typical equity implied volatility skew (where IV increases as $S$ decreases). This means the UVM worst case for a risk reversal is particularly conservative, as it assumes a volatility regime that contradicts the empirical skew pattern. This highlights that the UVM provides model-free bounds that do not exploit empirical regularities in the smile. $\square$

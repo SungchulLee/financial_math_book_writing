@@ -245,26 +245,160 @@ The smile dynamics under local volatility have a distinctive and empirically tes
 
 **Exercise 1.** Define sticky strike and sticky delta smile dynamics. For each regime, state what happens to the implied volatility of a fixed-strike call option when the spot price increases by \$1. Which regime does the local volatility model produce, and why?
 
+??? success "Solution to Exercise 1"
+    **Sticky strike:** The implied volatility of a fixed-strike option is a function of the absolute strike $K$ only and does not change when the spot moves. When the spot increases by \$1, the implied volatility at a fixed strike $K$ remains unchanged: $\Delta\sigma_{\text{imp}}(K) = 0$. However, the ATM implied volatility changes because the ATM strike shifts to $S_0 + 1$, where the smile has a different value.
+
+    **Sticky delta:** The implied volatility of a fixed-moneyness option (e.g., 25-delta put) does not change when the spot moves. Equivalently, the smile is a function of $K/S_0$ rather than $K$. When the spot increases by \$1, the entire smile translates to the right by \$1, and the implied volatility at any fixed strike $K$ changes by approximately $\partial_K \sigma_{\text{imp}} \cdot \Delta S$.
+
+    **For a fixed-strike call when spot increases by \$1:**
+
+    - Under sticky strike: $\Delta\sigma_{\text{imp}}(K) = 0$
+    - Under sticky delta: $\Delta\sigma_{\text{imp}}(K) \approx -\frac{\partial \sigma_{\text{imp}}}{\partial K} \cdot 1$ (for negative skew, this is positive -- vol at fixed $K$ increases as spot rises past it, because the option becomes more OTM put-like in moneyness)
+
+    **The local volatility model produces sticky strike behavior.** This is because the BBF approximation gives $\partial_{S_0}\sigma_{\text{imp}} \approx \partial_K \sigma_{\text{imp}}$, which means a unit increase in spot changes implied vol at fixed strike by approximately $\partial_K \sigma_{\text{imp}}$. Since the implied vol changes by the same amount whether the strike decreases or the spot increases, the smile is effectively anchored to absolute strike levels. This arises because local volatility is a deterministic function of $S$ and $t$ -- there is no independent randomness in volatility, so the spot uniquely determines the volatility.
+
 ---
 
 **Exercise 2.** Under sticky strike dynamics, the ATM implied volatility changes by approximately $2(\partial_K \sigma_{\text{imp}}) \cdot \Delta S$ when spot moves by $\Delta S$. For an equity index with implied volatility skew $\partial_K \sigma_{\text{imp}} = -0.0008$ per unit of $K$ and a spot move of $\Delta S = +5$, compute the change in ATM implied volatility. Is this increase or decrease consistent with the empirical "leverage effect"?
+
+??? success "Solution to Exercise 2"
+    Under sticky strike (local volatility) dynamics, the ATM implied volatility changes by:
+
+    $$
+    \Delta\sigma_{\text{imp}}^{\text{ATM}} \approx 2 \frac{\partial \sigma_{\text{imp}}}{\partial K}\bigg|_{K=S_0} \cdot \Delta S
+    $$
+
+    With $\partial_K \sigma_{\text{imp}} = -0.0008$ and $\Delta S = +5$:
+
+    $$
+    \Delta\sigma_{\text{imp}}^{\text{ATM}} \approx 2(-0.0008)(5) = -0.008
+    $$
+
+    The ATM implied volatility decreases by 0.8 percentage points (e.g., from $20\%$ to $19.2\%$).
+
+    **Yes, this is consistent with the leverage effect.** The leverage effect is the empirical observation that equity volatility tends to increase when stock prices fall and decrease when stock prices rise. Here, a \$5 spot increase produces a decrease in ATM implied volatility, which matches this stylized fact. The negative skew ($\partial_K \sigma_{\text{imp}} < 0$) encodes the leverage effect: lower strikes (associated with price declines) carry higher implied volatility. The local volatility model reproduces this directionally, though it overstates the magnitude (the factor of 2 makes the response too aggressive compared to empirical data).
 
 ---
 
 **Exercise 3.** Compute the local volatility delta for a European call with the following data: $S_0 = 100$, $K = 105$ (5% OTM), $T = 1.0$, $\sigma_{\text{imp}} = 0.18$, $\partial_K \sigma_{\text{imp}} = -0.0010$, Black-Scholes delta $\Delta_{\text{BS}} = 0.42$, and Black-Scholes vega $\text{Vega}_{\text{BS}} = 35.2$. How much does the smile adjustment change the delta relative to Black-Scholes?
 
+??? success "Solution to Exercise 3"
+    The local volatility delta is:
+
+    $$
+    \Delta_{\text{LV}} = \Delta_{\text{BS}} + \text{Vega}_{\text{BS}} \cdot \frac{\partial \sigma_{\text{imp}}}{\partial K}
+    $$
+
+    Substituting the given values:
+
+    $$
+    \Delta_{\text{LV}} = 0.42 + 35.2 \times (-0.0010) = 0.42 - 0.0352 = 0.3848
+    $$
+
+    **The smile adjustment reduces the delta by $0.0352$**, a relative change of $0.0352/0.42 \approx 8.4\%$ compared to the Black-Scholes delta.
+
+    The reduction occurs because the negative implied vol skew means that when the spot rises, the implied volatility at the fixed strike $K = 105$ decreases (the option moves further OTM and into a lower-vol region). This vol decrease partially offsets the directional gain from the spot increase, so the effective sensitivity to spot is lower than the Black-Scholes delta computed at constant volatility.
+
 ---
 
 **Exercise 4.** The local volatility model implies a spot-volatility correlation of $\rho_{S, \sigma}^{\text{LV}} = -1$ for equity indices. Empirical values are typically $-0.5$ to $-0.8$. Explain why the local volatility model produces $|\rho| = 1$, and discuss the practical hedging consequences when the true correlation is only $-0.7$.
+
+??? success "Solution to Exercise 4"
+    **Why local volatility produces $|\rho| = 1$:** In the local volatility model, the instantaneous volatility is $\sigma_{\text{loc}}(S_t, t)$, a deterministic function of spot and time. There is no independent source of randomness driving the volatility -- it is completely determined by the spot path. Therefore, if you know $dS_t$, you know $d\sigma_{\text{loc}}$ exactly (via the chain rule). The implied volatility, being a functional of the local volatility surface and the spot level, also moves deterministically with spot. This means:
+
+    $$
+    d\sigma_{\text{imp}}^{\text{ATM}} \approx 2(\partial_K \sigma_{\text{imp}}) \cdot dS
+    $$
+
+    The ATM vol change is a deterministic (negative) multiple of the spot change, giving $\rho_{S,\sigma}^{\text{LV}} = -1$.
+
+    **Hedging consequences when the true correlation is $-0.7$:** If the hedger uses the local volatility delta $\Delta_{\text{LV}} = \Delta_{\text{BS}} + \text{Vega} \cdot \partial_K \sigma_{\text{imp}}$, the smile adjustment term assumes $|\rho| = 1$. But if the true spot-vol correlation is only $-0.7$, only $70\%$ of the assumed vol change actually occurs in response to a spot move. The hedger over-corrects for the smile effect.
+
+    The delta error is:
+
+    $$
+    \Delta_{\text{error}} = \text{Vega} \cdot \partial_K \sigma_{\text{imp}} \cdot (1 - 0.7) = 0.3 \cdot \text{Vega} \cdot \partial_K \sigma_{\text{imp}}
+    $$
+
+    This produces systematic hedging P&L leakage: the hedger holds too little delta (for negative skew), and each spot move generates a small but persistent loss. Over many rebalancing periods, this bias accumulates and can materially affect the total hedging P&L.
 
 ---
 
 **Exercise 5.** The backbone of the implied volatility surface is $\Sigma(S) = \sigma_{\text{imp}}(K = S, T; S)$. Under local volatility, the backbone slope is approximately $d\Sigma/dS \approx 2 \partial_K \sigma_{\text{imp}}|_{K=S_0}$. If the implied volatility skew at $K = S_0$ is $-0.0012$ per unit, compute the backbone slope and interpret it: by how many volatility points does ATM implied volatility change for a \$10 move in the spot?
 
+??? success "Solution to Exercise 5"
+    The backbone slope under local volatility is:
+
+    $$
+    \frac{d\Sigma}{dS} \approx 2\frac{\partial \sigma_{\text{imp}}}{\partial K}\bigg|_{K = S_0}
+    $$
+
+    With $\partial_K \sigma_{\text{imp}}|_{K=S_0} = -0.0012$:
+
+    $$
+    \frac{d\Sigma}{dS} \approx 2(-0.0012) = -0.0024
+    $$
+
+    **Interpretation:** For a \$10 move in the spot:
+
+    $$
+    \Delta\sigma_{\text{imp}}^{\text{ATM}} \approx -0.0024 \times 10 = -0.024
+    $$
+
+    The ATM implied volatility changes by $-2.4$ percentage points (e.g., from $20\%$ to $17.6\%$) for a \$10 spot increase. Conversely, a \$10 spot decrease would increase ATM implied volatility by $2.4$ percentage points.
+
+    This backbone slope of $-0.24\%$ of vol per \$1 of spot means the local volatility model predicts a strong inverse relationship between spot and ATM vol. In practice, empirical backbone slopes are typically flatter (e.g., $-0.15\%$ to $-0.18\%$ per \$1 for equity indices), reflecting the fact that real markets exhibit behavior between sticky strike and sticky delta.
+
 ---
 
 **Exercise 6.** A hedger uses the local volatility delta $\Delta_{\text{LV}} = \Delta_{\text{BS}} + \text{Vega} \cdot \partial_K \sigma_{\text{imp}}$ but the true market dynamics are sticky delta (so the correct delta is $\Delta_{\text{BS}}$). The position has $\text{Vega} = 50$ and $\partial_K \sigma_{\text{imp}} = -0.001$. Compute the daily P&L leakage from the delta mismatch if the stock moves by $\Delta S = \pm 2$ each day.
 
+??? success "Solution to Exercise 6"
+    The hedger's delta error from the smile adjustment is:
+
+    $$
+    \Delta_{\text{error}} = \text{Vega} \cdot \partial_K \sigma_{\text{imp}} = 50 \times (-0.001) = -0.05
+    $$
+
+    The hedger holds $0.05$ fewer shares than the correct delta. When the stock moves by $\Delta S$, the P&L from this delta mismatch is:
+
+    $$
+    \text{P\&L}_{\text{error}} = -\Delta_{\text{error}} \cdot \Delta S = -(-0.05) \cdot \Delta S = 0.05 \cdot \Delta S
+    $$
+
+    Wait -- we need to be more careful. The hedger uses $\Delta_{\text{LV}} = \Delta_{\text{BS}} - 0.05$, but the correct delta (under sticky delta) is $\Delta_{\text{BS}}$. The hedge portfolio holds $\Delta_{\text{LV}}$ shares but should hold $\Delta_{\text{BS}}$ shares. The hedger is short $0.05$ shares relative to the correct hedge.
+
+    The daily P&L leakage from the mismatch is:
+
+    $$
+    \text{P\&L}_{\text{leakage}} = (\Delta_{\text{BS}} - \Delta_{\text{LV}}) \cdot \Delta S = 0.05 \cdot \Delta S
+    $$
+
+    For $\Delta S = +2$: P&L leakage $= 0.05 \times 2 = \$0.10$ (the hedger loses because they are short delta).
+
+    For $\Delta S = -2$: P&L leakage $= 0.05 \times (-2) = -\$0.10$ (the hedger gains).
+
+    On any individual day, the P&L leakage is $\pm\$0.10$ depending on the direction of the move. However, if the position has negative gamma (typical for option sellers), the directional bias means the losses from the delta mismatch do not cancel over time. The expected daily P&L impact is zero only if moves are symmetric and independent. In practice, the systematic mispricing of smile dynamics leads to a persistent bias in the hedging P&L that accumulates over the life of the option.
+
 ---
 
 **Exercise 7.** Compare the smile dynamics predictions of local volatility, the Heston stochastic volatility model, and SABR. For each model, state: (a) the smile regime (sticky strike, sticky delta, or intermediate), (b) the implied spot-vol correlation, and (c) the qualitative behavior of the forward smile.
+
+??? success "Solution to Exercise 7"
+    **(a) Smile regime:**
+
+    - **Local volatility:** Sticky strike. The implied vol at a fixed strike does not change when spot moves; the smile is anchored to absolute strike levels. This follows from $\partial_{S_0}\sigma_{\text{imp}} \approx \partial_K \sigma_{\text{imp}}$.
+    - **Heston:** Intermediate, closer to sticky delta. The stochastic volatility evolves semi-independently of spot (modulated by the correlation $\rho$), so the smile partially moves with spot. The exact behavior depends on $\rho$ and the vol-of-vol $\xi$.
+    - **SABR:** Close to sticky delta for the standard parameterization with $\beta < 1$. The SABR model was specifically designed to produce realistic smile dynamics, and its backbone is flatter than local volatility.
+
+    **(b) Implied spot-vol correlation:**
+
+    - **Local volatility:** $\rho_{S,\sigma} = -1$ (for negative equity skew). The volatility is a deterministic function of spot, so spot and vol are perfectly correlated.
+    - **Heston:** $\rho_{S,\sigma} = \rho$ (the model parameter), typically in the range $-0.5$ to $-0.9$ for equities. The correlation is a free parameter that can be calibrated to market data.
+    - **SABR:** $\rho_{S,\sigma} = \rho$ (the model parameter). Like Heston, the correlation between the forward and its volatility is an input to the model.
+
+    **(c) Forward smile behavior:**
+
+    - **Local volatility:** The forward smile is too flat. As time progresses and the spot moves, the local volatility model predicts that the future implied volatility smile will be much flatter than today's smile. This is the well-known "flattening of the forward smile" under local volatility.
+    - **Heston:** The forward smile is persistent. The stochastic nature of volatility ensures that the smile regenerates itself over time, because the vol-of-vol parameter $\xi > 0$ continually produces new curvature.
+    - **SABR:** The forward smile is also persistent, similar to Heston. The stochastic volatility component ensures that the smile does not flatten excessively. This is one of the primary advantages of SABR over pure local volatility in pricing forward-starting and cliquet products.

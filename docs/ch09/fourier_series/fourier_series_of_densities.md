@@ -225,22 +225,236 @@ The Fourier series representation of probability densities connects the characte
 
 **Exercise 1.** For a random variable $X \sim N(\mu, \sigma^2)$, the characteristic function is $\phi(u) = e^{i\mu u - \sigma^2 u^2/2}$. Verify the Fourier inversion theorem by computing $f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-iux}\phi(u)\,du$ and showing that the result is $\frac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/(2\sigma^2)}$. (Hint: complete the square in the exponent.)
 
+??? success "Solution to Exercise 1"
+    We verify the Fourier inversion theorem for $X \sim N(\mu, \sigma^2)$ with $\phi(u) = e^{i\mu u - \sigma^2 u^2/2}$.
+
+    Compute:
+
+    $$
+    f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-iux}\phi(u)\,du = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-iux}\cdot e^{i\mu u - \sigma^2 u^2/2}\,du
+    $$
+
+    Combine the exponents:
+
+    $$
+    -iux + i\mu u - \frac{\sigma^2 u^2}{2} = -\frac{\sigma^2}{2}\left(u^2 - \frac{2i(\mu - x)}{\sigma^2}u\right)
+    $$
+
+    Complete the square in $u$:
+
+    $$
+    u^2 - \frac{2i(\mu - x)}{\sigma^2}u = \left(u - \frac{i(\mu - x)}{\sigma^2}\right)^2 + \frac{(\mu - x)^2}{\sigma^4}
+    $$
+
+    Substituting back:
+
+    $$
+    f(x) = \frac{1}{2\pi}\exp\!\left(-\frac{(\mu - x)^2}{2\sigma^2}\right)\int_{-\infty}^{\infty}\exp\!\left(-\frac{\sigma^2}{2}\left(u - \frac{i(\mu-x)}{\sigma^2}\right)^2\right)du
+    $$
+
+    The integral is a Gaussian integral along a shifted contour $u - i(\mu-x)/\sigma^2$. By Cauchy's theorem (the integrand is entire and decays in the appropriate directions), the contour can be shifted back to the real line:
+
+    $$
+    \int_{-\infty}^{\infty}\exp\!\left(-\frac{\sigma^2}{2}w^2\right)dw = \sqrt{\frac{2\pi}{\sigma^2}}
+    $$
+
+    Therefore:
+
+    $$
+    f(x) = \frac{1}{2\pi}\cdot\sqrt{\frac{2\pi}{\sigma^2}}\cdot\exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right) = \frac{1}{\sigma\sqrt{2\pi}}\exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+    $$
+
+    This is indeed the $N(\mu, \sigma^2)$ density. $\square$
+
 ---
 
 **Exercise 2.** Derive the cosine coefficient formula $A_k = \frac{2}{b-a}\,\text{Re}[\phi(k\pi/(b-a))\,e^{-ik\pi a/(b-a)}]$ starting from the definition $A_k = \frac{2}{b-a}\int_a^b f(x)\cos(k\pi(x-a)/(b-a))\,dx$. Identify the step where the assumption that $f$ is supported on $[a, b]$ is used, and write the expression for the error when $f$ has mass outside $[a, b]$.
+
+??? success "Solution to Exercise 2"
+    Starting from the definition:
+
+    $$
+    A_k = \frac{2}{b-a}\int_a^b f(x)\cos\!\left(\frac{k\pi(x-a)}{b-a}\right)dx
+    $$
+
+    **Step 1:** Write the cosine as the real part of a complex exponential:
+
+    $$
+    \cos\!\left(\frac{k\pi(x-a)}{b-a}\right) = \text{Re}\!\left[e^{ik\pi(x-a)/(b-a)}\right]
+    $$
+
+    **Step 2:** Substitute and use linearity of $\text{Re}$:
+
+    $$
+    A_k = \frac{2}{b-a}\,\text{Re}\!\left[\int_a^b f(x)\,e^{ik\pi(x-a)/(b-a)}\,dx\right]
+    $$
+
+    **Step 3:** Factor out the phase:
+
+    $$
+    e^{ik\pi(x-a)/(b-a)} = e^{ik\pi x/(b-a)}\cdot e^{-ik\pi a/(b-a)}
+    $$
+
+    So:
+
+    $$
+    A_k = \frac{2}{b-a}\,\text{Re}\!\left[e^{-ik\pi a/(b-a)}\int_a^b f(x)\,e^{ik\pi x/(b-a)}\,dx\right]
+    $$
+
+    **Step 4 (key step using the support assumption):** If $f$ is supported on $[a, b]$, then $f(x) = 0$ for $x \notin [a, b]$, so:
+
+    $$
+    \int_a^b f(x)\,e^{ik\pi x/(b-a)}\,dx = \int_{-\infty}^{\infty} f(x)\,e^{ik\pi x/(b-a)}\,dx = \phi\!\left(\frac{k\pi}{b-a}\right)
+    $$
+
+    where $\phi(u) = \int_{-\infty}^{\infty}e^{iux}f(x)\,dx$ is the characteristic function. This substitution yields:
+
+    $$
+    A_k = \frac{2}{b-a}\,\text{Re}\!\left[\phi\!\left(\frac{k\pi}{b-a}\right)e^{-ik\pi a/(b-a)}\right]
+    $$
+
+    **Error when $f$ has mass outside $[a, b]$:** The integral over $[a, b]$ differs from $\phi(k\pi/(b-a))$ by the missing tails:
+
+    $$
+    \varepsilon_k = \frac{2}{b-a}\,\text{Re}\!\left[e^{-ik\pi a/(b-a)}\int_{\mathbb{R}\setminus[a,b]}f(x)\,e^{ik\pi x/(b-a)}\,dx\right]
+    $$
+
+    This truncation error satisfies:
+
+    $$
+    |\varepsilon_k| \leq \frac{2}{b-a}\int_{\mathbb{R}\setminus[a,b]}f(x)\,dx = \frac{2}{b-a}\,P(X \notin [a, b])
+    $$
 
 ---
 
 **Exercise 3.** For $X \sim N(0, 1)$ on $[a, b] = [-10, 10]$, compute $A_0$, $A_1$, $A_2$, and $A_3$ using the CF-based formula. Verify that odd-indexed coefficients vanish (i.e., $A_1 = A_3 = 0$) and explain this in terms of the symmetry of the standard normal density and the symmetric placement of the interval.
 
+??? success "Solution to Exercise 3"
+    For $X \sim N(0,1)$, $\phi(u) = e^{-u^2/2}$, on $[a, b] = [-10, 10]$ (so $b - a = 20$).
+
+    The formula is:
+
+    $$
+    A_k = \frac{2}{20}\,\text{Re}\!\left[\phi\!\left(\frac{k\pi}{20}\right)e^{-ik\pi(-10)/20}\right] = \frac{1}{10}\,\text{Re}\!\left[e^{-k^2\pi^2/800}\cdot e^{ik\pi/2}\right]
+    $$
+
+    Note that $e^{ik\pi/2} = i^k$, so:
+
+    - $k = 0$: $i^0 = 1$, so $A_0 = \frac{1}{10}\,\text{Re}[e^0 \cdot 1] = \frac{1}{10} = 0.1$
+    - $k = 1$: $i^1 = i$, so $A_1 = \frac{1}{10}e^{-\pi^2/800}\,\text{Re}[i] = 0$
+    - $k = 2$: $i^2 = -1$, so $A_2 = \frac{1}{10}e^{-4\pi^2/800}\,\text{Re}[-1] = -\frac{1}{10}e^{-\pi^2/200} \approx -0.0952$
+    - $k = 3$: $i^3 = -i$, so $A_3 = \frac{1}{10}e^{-9\pi^2/800}\,\text{Re}[-i] = 0$
+
+    **Odd-indexed coefficients vanish.** For odd $k$, $i^k$ is purely imaginary ($\pm i$), so $\text{Re}[i^k] = 0$, making $A_k = 0$.
+
+    **Symmetry explanation:** The standard normal density is symmetric about $x = 0$: $f(x) = f(-x)$. The interval $[-10, 10]$ is symmetrically placed. The cosine basis functions $\cos(k\pi(x + 10)/20)$ with odd $k$ are antisymmetric about $x = 0$ (since $\cos(k\pi(x+10)/20) = \cos(k\pi/2 + k\pi x/20)$, and for odd $k$, $\cos(k\pi/2) = 0$ and the function is odd in $x$). Therefore, the integral of a symmetric density times an antisymmetric cosine function vanishes for odd $k$.
+
 ---
 
 **Exercise 4.** The truncation error for the cosine coefficients is $\varepsilon_k = \frac{2}{b-a}\,\text{Re}[e^{-ik\pi a/(b-a)}\int_{\mathbb{R}\setminus[a,b]}f(x)e^{ik\pi x/(b-a)}\,dx]$. For the standard normal with $[a, b] = [-5, 5]$, bound $|\varepsilon_k|$ using $P(|X| > 5) \approx 5.7 \times 10^{-7}$. Is this bound tight enough for practical pricing applications? What happens if you use $[a, b] = [-3, 3]$ instead?
+
+??? success "Solution to Exercise 4"
+    The truncation error for coefficient $A_k$ is:
+
+    $$
+    |\varepsilon_k| \leq \frac{2}{b-a}\int_{\mathbb{R}\setminus[a,b]}f(x)\,dx = \frac{2}{b-a}\,P(|X| > 5)
+    $$
+
+    **For $[a, b] = [-5, 5]$:** With $P(|X| > 5) \approx 5.7 \times 10^{-7}$ and $b - a = 10$:
+
+    $$
+    |\varepsilon_k| \leq \frac{2}{10}\cdot 5.7 \times 10^{-7} = 1.14 \times 10^{-7}
+    $$
+
+    This is an error of order $10^{-7}$ per coefficient. For pricing applications requiring $10^{-6}$ to $10^{-8}$ accuracy, this is marginally acceptable. The bound may not be tight---the actual error could be smaller since the integral involves an oscillatory integrand $f(x)e^{ik\pi x/(b-a)}$ over the tails, which may partially cancel.
+
+    **For $[a, b] = [-3, 3]$:** Now $P(|X| > 3) \approx 2.7 \times 10^{-3}$ and $b - a = 6$:
+
+    $$
+    |\varepsilon_k| \leq \frac{2}{6}\cdot 2.7 \times 10^{-3} = 9.0 \times 10^{-4}
+    $$
+
+    This is only $10^{-3}$ accuracy per coefficient---far too large for practical pricing. With $N$ terms, the cumulative truncation error can be even larger.
+
+    **Conclusion:** The interval $[-5, 5]$ is adequate for moderate accuracy but the interval $[-10, 10]$ (with $P(|X| > 10) \approx 10^{-23}$) is preferred for high-precision work. The cumulant-based rule with $L = 10$ standard deviations ensures the truncation error is negligible compared to the series truncation error.
 
 ---
 
 **Exercise 5.** The duality table states that convolution of densities corresponds to multiplication of characteristic functions. If $X_1$ and $X_2$ are independent with CFs $\phi_1$ and $\phi_2$, and $Y = X_1 + X_2$ has CF $\phi_Y = \phi_1 \cdot \phi_2$, explain how the cosine coefficients of the density of $Y$ relate to those of $X_1$ and $X_2$. Why is it generally easier to work in the frequency domain for sums of independent random variables?
 
+??? success "Solution to Exercise 5"
+    If $Y = X_1 + X_2$ with $X_1, X_2$ independent, then $\phi_Y(u) = \phi_1(u)\cdot\phi_2(u)$.
+
+    The cosine coefficients of the density of $Y$ on $[a, b]$ are:
+
+    $$
+    A_k^Y = \frac{2}{b-a}\,\text{Re}\!\left[\phi_Y\!\left(\frac{k\pi}{b-a}\right)e^{-ik\pi a/(b-a)}\right] = \frac{2}{b-a}\,\text{Re}\!\left[\phi_1\!\left(\frac{k\pi}{b-a}\right)\phi_2\!\left(\frac{k\pi}{b-a}\right)e^{-ik\pi a/(b-a)}\right]
+    $$
+
+    The relationship is **not** a simple product $A_k^Y = A_k^{X_1}\cdot A_k^{X_2}$ because the cosine coefficients involve taking the real part and a phase factor. However, in the complex exponential form, the relationship is cleaner: if $c_n^Y$, $c_n^{X_1}$, $c_n^{X_2}$ denote the complex Fourier coefficients relative to the same interval, then:
+
+    $$
+    c_n^Y \approx \frac{1}{L}\phi_Y(2\pi n/L) = \frac{1}{L}\phi_1(2\pi n/L)\cdot\phi_2(2\pi n/L)
+    $$
+
+    This is proportional to the product of characteristic function values, but not simply $c_n^{X_1}\cdot c_n^{X_2}$ (the latter would require a convolution theorem for the discretized coefficients).
+
+    **Why the frequency domain is easier:** In the time domain, computing the density of $Y = X_1 + X_2$ requires the convolution integral $f_Y(x) = \int f_1(y)f_2(x - y)\,dy$, which is an $O(N^2)$ computation when discretized. In the frequency domain, $\phi_Y = \phi_1 \cdot \phi_2$ is a pointwise multiplication---$O(N)$ operations. This is the fundamental computational advantage: convolution in the time domain becomes multiplication in the frequency domain. For sums of multiple independent variables ($Y = X_1 + \cdots + X_m$), the time-domain approach requires $m - 1$ nested convolutions, while the frequency domain requires only $m$ pointwise multiplications of characteristic functions.
+
 ---
 
 **Exercise 6.** For the log-normal density (Black-Scholes model with $\sigma = 0.2$, $T = 1$, $r = 0.05$), compute the first four cumulants of the log-price $X = \ln S_T$. Use these to determine the truncation interval $[a, b] = [c_1 - L\sqrt{c_2}, c_1 + L\sqrt{c_2}]$ with $L = 10$. Estimate the truncation error $P(X \notin [a, b])$ and verify it is negligible.
+
+---
+
+??? success "Solution to Exercise 6"
+    Under Black--Scholes, the log-price is $X = \ln S_T = \ln S_0 + (r - \sigma^2/2)T + \sigma\sqrt{T}\,Z$ where $Z \sim N(0,1)$.
+
+    With $\sigma = 0.2$, $T = 1$, $r = 0.05$, and taking $S_0 = 1$ (so $\ln S_0 = 0$):
+
+    $$
+    X \sim N\!\left(\mu_X,\; \sigma_X^2\right)
+    $$
+
+    where $\mu_X = (r - \sigma^2/2)T = 0.05 - 0.02 = 0.03$ and $\sigma_X^2 = \sigma^2 T = 0.04$.
+
+    **Cumulants of the normal distribution $N(\mu_X, \sigma_X^2)$:**
+
+    - $c_1 = \mu_X = 0.03$ (mean)
+    - $c_2 = \sigma_X^2 = 0.04$ (variance)
+    - $c_3 = 0$ (the normal distribution has zero skewness, so the third cumulant vanishes)
+    - $c_4 = 0$ (the normal distribution has zero excess kurtosis, so the fourth cumulant vanishes)
+
+    **Truncation interval:** Using the simplified formula $[a, b] = [c_1 - L\sqrt{c_2},\; c_1 + L\sqrt{c_2}]$ with $L = 10$:
+
+    $$
+    \sqrt{c_2} = \sqrt{0.04} = 0.2
+    $$
+
+    $$
+    a = 0.03 - 10 \times 0.2 = 0.03 - 2.0 = -1.97
+    $$
+
+    $$
+    b = 0.03 + 10 \times 0.2 = 0.03 + 2.0 = 2.03
+    $$
+
+    So $[a, b] = [-1.97, 2.03]$.
+
+    **Truncation error:** We need $P(X \notin [-1.97, 2.03])$. Standardizing:
+
+    $$
+    P(X < -1.97) = P\!\left(Z < \frac{-1.97 - 0.03}{0.2}\right) = P(Z < -10) \approx 7.6 \times 10^{-24}
+    $$
+
+    $$
+    P(X > 2.03) = P\!\left(Z > \frac{2.03 - 0.03}{0.2}\right) = P(Z > 10) \approx 7.6 \times 10^{-24}
+    $$
+
+    Total truncation error:
+
+    $$
+    P(X \notin [-1.97, 2.03]) \approx 1.5 \times 10^{-23}
+    $$
+
+    This is far below machine precision ($\approx 10^{-16}$), confirming that the truncation error is completely negligible for any practical pricing computation. The COS method's error is entirely dominated by the series truncation, not the interval truncation.

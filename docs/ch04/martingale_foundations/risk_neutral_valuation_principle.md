@@ -1,5 +1,7 @@
 # Risk-Neutral Valuation Principle
 
+In the [unifying framework](unifying_principle_controlling_local_martingales.md) of this section, risk-neutral valuation is the **payoff of achieving control** — once local martingales have been upgraded to true martingales under $\mathbb{Q}$, pricing reduces to computing expectations.
+
 The **risk-neutral valuation principle** is the central pricing formula of mathematical finance. It states that the price of any derivative equals the discounted expected payoff under the risk-neutral measure, not the physical measure.
 
 !!! info "Prerequisites"
@@ -13,7 +15,7 @@ The **risk-neutral valuation principle** is the central pricing formula of mathe
 
 ## The Fundamental Pricing Formula
 
-In an arbitrage-free market, the time-$t$ price of a contingent claim with payoff $\Phi(X_T)$ at maturity $T$ is:
+This formula works because control succeeded: local martingales have been upgraded to true martingales under $\mathbb{Q}$, so the conditional expectation below is well-defined and yields a unique price. In an arbitrage-free market, the time-$t$ price of a contingent claim with payoff $\Phi(X_T)$ at maturity $T$ is:
 
 $$
 \boxed{
@@ -362,46 +364,6 @@ $$
 **Exercise 1.**
 A stock follows $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$ under the risk-neutral measure with $r = 0.05$, $\sigma = 0.30$, $S_0 = 100$, and $T = 0.5$. Compute the risk-neutral price of a European put option with strike $K = 95$ using the Black-Scholes formula. Verify that put-call parity holds.
 
----
-
-**Exercise 2.**
-A digital (binary) call option pays $\$1$ if $S_T > K$ and nothing otherwise. Derive its price under risk-neutral valuation and show that it equals $e^{-rT}\Phi(d_2)$. What happens to the price as $\sigma \to 0$?
-
----
-
-**Exercise 3.**
-Explain why the risk-neutral valuation formula uses $\mathbb{Q}$ rather than $\mathbb{P}$. Specifically, show that computing $e^{-rT}\mathbb{E}^{\mathbb{P}}[\Phi(S_T)]$ does not in general yield a no-arbitrage price. Under what special condition on the payoff $\Phi$ would the two computations agree?
-
----
-
-**Exercise 4.**
-Derive the risk-neutral valuation formula from no-arbitrage in five steps: (i) apply the FTAP to get the martingale property of discounted prices, (ii) extend to derivative prices, (iii) apply the martingale property, (iv) use the terminal condition, and (v) rearrange. At which step does the assumption of market completeness enter?
-
----
-
-**Exercise 5.**
-Consider a stochastic interest rate model where $r_t$ follows the Vasicek process. The price of a zero-coupon bond is $P(t, T) = \mathbb{E}^{\mathbb{Q}}[\exp(-\int_t^T r_s\,ds) | \mathcal{F}_t]$. Explain why this is a direct application of the risk-neutral valuation principle with payoff $\Phi = 1$. Why is the discount factor inside the expectation rather than outside when $r_t$ is stochastic?
-
----
-
-**Exercise 6.**
-In an incomplete market, two equivalent martingale measures $\mathbb{Q}_1$ and $\mathbb{Q}_2$ both exist. For a non-traded claim with payoff $\Phi(X_T)$, show that the two measures can give different prices $V_0^{(1)} \neq V_0^{(2)}$, both consistent with no-arbitrage. Explain the economic meaning of the pricing interval $[\underline{V}, \overline{V}]$.
-
----
-
-**Exercise 7.**
-Show that the Black-Scholes PDE
-
-$$
-\frac{\partial V}{\partial t} + rx\frac{\partial V}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2 V}{\partial x^2} - rV = 0
-$$
-
-is equivalent to the risk-neutral valuation formula via the Feynman-Kac theorem. Identify the generator $\mathcal{L}^{\mathbb{Q}}$, the discount rate, and the terminal condition. Explain why the PDE contains $r$ (not $\mu$) in the drift term.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     With $r = 0.05$, $\sigma = 0.30$, $S_0 = 100$, $T = 0.5$, $K = 95$:
 
@@ -431,6 +393,11 @@ is equivalent to the risk-neutral valuation formula via the Feynman-Kac theorem.
 
     **Verification of put-call parity**: $C - P = 12.30 - 4.93 = 7.37$ and $S_0 - Ke^{-rT} = 100 - 92.63 = 7.37$. The parity holds.
 
+---
+
+**Exercise 2.**
+A digital (binary) call option pays $\$1$ if $S_T > K$ and nothing otherwise. Derive its price under risk-neutral valuation and show that it equals $e^{-rT}\Phi(d_2)$. What happens to the price as $\sigma \to 0$?
+
 ??? success "Solution to Exercise 2"
     The digital call pays $\Phi_{\text{digital}} = \mathbf{1}_{S_T > K}$. By risk-neutral valuation:
 
@@ -452,6 +419,11 @@ is equivalent to the risk-neutral valuation formula via the Feynman-Kac theorem.
 
     **As $\sigma \to 0$**: The stock becomes deterministic with $S_T = S_0 e^{rT}$. If $S_0 e^{rT} > K$ (i.e., the option is in-the-money at the forward), then $d_2 \to +\infty$ and $\Phi(d_2) \to 1$, giving $V_0 \to e^{-rT}$. If $S_0 e^{rT} < K$, then $d_2 \to -\infty$ and $V_0 \to 0$. If $S_0 e^{rT} = K$, $d_2 \to 0$ and $V_0 \to e^{-rT}/2$. The price converges to the discounted deterministic payoff.
 
+---
+
+**Exercise 3.**
+Explain why the risk-neutral valuation formula uses $\mathbb{Q}$ rather than $\mathbb{P}$. Specifically, show that computing $e^{-rT}\mathbb{E}^{\mathbb{P}}[\Phi(S_T)]$ does not in general yield a no-arbitrage price. Under what special condition on the payoff $\Phi$ would the two computations agree?
+
 ??? success "Solution to Exercise 3"
     Under $\mathbb{P}$, $S_T = S_0 \exp((\mu - \sigma^2/2)T + \sigma W_T^{\mathbb{P}})$, so:
 
@@ -471,6 +443,11 @@ is equivalent to the risk-neutral valuation formula via the Feynman-Kac theorem.
 
     The two computations agree when $\Phi$ is a **constant** payoff: $\Phi(S_T) = c$. Then $e^{-rT}\mathbb{E}^{\mathbb{Q}}[c] = e^{-rT}\mathbb{E}^{\mathbb{P}}[c] = ce^{-rT}$, since a constant is independent of the measure. More generally, the two agree if $\Phi(S_T)$ is $\mathcal{F}_0$-measurable (deterministic payoff), so the expectation does not depend on the probability measure at all.
 
+---
+
+**Exercise 4.**
+Derive the risk-neutral valuation formula from no-arbitrage in five steps: (i) apply the FTAP to get the martingale property of discounted prices, (ii) extend to derivative prices, (iii) apply the martingale property, (iv) use the terminal condition, and (v) rearrange. At which step does the assumption of market completeness enter?
+
 ??? success "Solution to Exercise 4"
     **(i)** The FTAP states that NFLVR holds if and only if there exists $\mathbb{Q} \sim \mathbb{P}$ such that the discounted traded asset $\tilde{S}_t = e^{-\int_0^t r_s\,ds}S_t$ is a $\mathbb{Q}$-martingale.
 
@@ -488,6 +465,11 @@ is equivalent to the risk-neutral valuation formula via the Feynman-Kac theorem.
 
     **Market completeness enters at step (ii)**: the argument that $\tilde{V}_t$ is a $\mathbb{Q}$-martingale requires the derivative to be **replicable**. In an incomplete market, the claim may not be replicable, and different equivalent martingale measures give different prices. Completeness (equivalently, uniqueness of $\mathbb{Q}$) ensures a unique no-arbitrage price.
 
+---
+
+**Exercise 5.**
+Consider a stochastic interest rate model where $r_t$ follows the Vasicek process. The price of a zero-coupon bond is $P(t, T) = \mathbb{E}^{\mathbb{Q}}[\exp(-\int_t^T r_s\,ds) | \mathcal{F}_t]$. Explain why this is a direct application of the risk-neutral valuation principle with payoff $\Phi = 1$. Why is the discount factor inside the expectation rather than outside when $r_t$ is stochastic?
+
 ??? success "Solution to Exercise 5"
     A zero-coupon bond pays $\Phi = 1$ at time $T$. The risk-neutral valuation formula gives:
 
@@ -500,6 +482,11 @@ is equivalent to the risk-neutral valuation formula via the Feynman-Kac theorem.
     The discount factor $e^{-\int_t^T r_s\,ds}$ must be **inside** the expectation because it is **random** when $r_t$ is stochastic. The integral $\int_t^T r_s\,ds$ depends on the future path of $r_s$, which is unknown at time $t$. If we wrote $e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[1]$, we would be treating the discount factor as deterministic, which is only valid when $r$ is constant.
 
     Under the Vasicek model, $r_t$ is an Ornstein–Uhlenbeck process under $\mathbb{Q}$, and $\int_t^T r_s\,ds$ is Gaussian (as a linear functional of a Gaussian process). The expectation can be computed in closed form, yielding the affine bond price formula $P(t,T) = \exp(A(T-t) - B(T-t)r_t)$ for explicit functions $A$ and $B$.
+
+---
+
+**Exercise 6.**
+In an incomplete market, two equivalent martingale measures $\mathbb{Q}_1$ and $\mathbb{Q}_2$ both exist. For a non-traded claim with payoff $\Phi(X_T)$, show that the two measures can give different prices $V_0^{(1)} \neq V_0^{(2)}$, both consistent with no-arbitrage. Explain the economic meaning of the pricing interval $[\underline{V}, \overline{V}]$.
 
 ??? success "Solution to Exercise 6"
     Let $\mathbb{Q}_1$ and $\mathbb{Q}_2$ be two equivalent martingale measures. The two prices are:
@@ -519,6 +506,17 @@ is equivalent to the risk-neutral valuation formula via the Feynman-Kac theorem.
     $$
 
     where $\mathcal{M}$ is the set of all equivalent martingale measures. Any price within $[\underline{V}, \overline{V}]$ is consistent with no-arbitrage. The bounds $\underline{V}$ and $\overline{V}$ correspond to superhedging prices: $\overline{V}$ is the minimum cost to super-replicate $\Phi(X_T)$ (seller's price), and $\underline{V}$ is the maximum price a buyer would pay while maintaining no-arbitrage (buyer's price).
+
+---
+
+**Exercise 7.**
+Show that the Black-Scholes PDE
+
+$$
+\frac{\partial V}{\partial t} + rx\frac{\partial V}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2 V}{\partial x^2} - rV = 0
+$$
+
+is equivalent to the risk-neutral valuation formula via the Feynman-Kac theorem. Identify the generator $\mathcal{L}^{\mathbb{Q}}$, the discount rate, and the terminal condition. Explain why the PDE contains $r$ (not $\mu$) in the drift term.
 
 ??? success "Solution to Exercise 7"
     The Black-Scholes PDE is:

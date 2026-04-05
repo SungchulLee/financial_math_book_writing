@@ -554,34 +554,6 @@ See [FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_
 
 **Exercise 1.** In the one-period binomial model with $S_0 = 80$, $u = 1.25$, $d = 0.85$, $r = 4\%$, and $\Delta t = 1$, find the replicating portfolio $(\Delta, B)$ and the price of a European put with strike $K = 85$. Verify the replication by checking that the portfolio payoff matches the put payoff in both states.
 
----
-
-**Exercise 2.** Prove that in the one-period binomial model, the stock and bond payoff vectors are linearly independent if and only if $u \neq d$. What would happen to the replication problem if $u = d$?
-
----
-
-**Exercise 3.** Using the parameters from the text ($S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$), compute the state prices $\psi_u$ and $\psi_d$. Verify that (a) $\psi_u u + \psi_d d = 1$, (b) $\psi_u + \psi_d = e^{-r\Delta t}$, and (c) a European call with strike $K = 105$ priced via state prices gives the same result as the stock-bond replication method.
-
----
-
-**Exercise 4.** A **bear spread** consists of a long put with strike $K_2$ and a short put with strike $K_1$, where $K_1 < K_2$. Using the state price method with $S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$, $K_1 = 95$, and $K_2 = 110$, compute the bear spread price. Then verify your answer by pricing each put separately and taking the difference.
-
----
-
-**Exercise 5.** Suppose a derivative pays $H_u = 10$ in the up state and $H_d = 25$ in the down state. Using the standard parameters ($S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$), compute the replicating portfolio. Interpret the sign of $\Delta$ and explain why the replicating portfolio is long or short the stock.
-
----
-
-**Exercise 6.** Consider a one-period binomial model where a third asset (a call option with known market price $C_0^{\text{mkt}}$) is also traded. Show that if $C_0^{\text{mkt}}$ differs from the no-arbitrage price $C_0 = \psi_u H_u + \psi_d H_d$, then an arbitrage portfolio can be constructed using the stock, bond, and call. Describe the arbitrage strategy explicitly for $C_0^{\text{mkt}} > C_0$.
-
----
-
-**Exercise 7.** Derive the state price formulas $\psi_u = e^{-r\Delta t} q$ and $\psi_d = e^{-r\Delta t}(1-q)$ directly from the two consistency conditions $\psi_u u + \psi_d d = 1$ and $\psi_u + \psi_d = e^{-r\Delta t}$, without using the replication argument. That is, solve the $2 \times 2$ linear system for $\psi_u$ and $\psi_d$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Given $S_0 = 80$, $u = 1.25$, $d = 0.85$, $r = 4\%$, $\Delta t = 1$, and $K = 85$.
 
@@ -617,6 +589,10 @@ See [FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_
     - Up state: $\Delta \cdot uS_0 + B \cdot e^{r\Delta t} = -0.53125 \times 100 + 51.04 \times 1.04081 = -53.125 + 53.125 = 0 = H_u$ $\checkmark$
     - Down state: $\Delta \cdot dS_0 + B \cdot e^{r\Delta t} = -0.53125 \times 68 + 51.04 \times 1.04081 = -36.125 + 53.125 = 17 = H_d$ $\checkmark$
 
+---
+
+**Exercise 2.** Prove that in the one-period binomial model, the stock and bond payoff vectors are linearly independent if and only if $u \neq d$. What would happen to the replication problem if $u = d$?
+
 ??? success "Solution to Exercise 2"
     The stock payoff vector is $(uS_0, dS_0)$ and the bond payoff vector is $(e^{r\Delta t}, e^{r\Delta t})$.
 
@@ -625,6 +601,10 @@ See [FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_
     **Conversely**, if $u \neq d$, then $uS_0 \neq dS_0$ while $e^{r\Delta t} = e^{r\Delta t}$, so the stock payoff vector cannot be a multiple of the bond payoff vector. The two vectors are linearly independent.
 
     **If $u = d$:** The stock payoff is the same in both states, so $S_{\Delta t} = uS_0$ deterministically. The stock becomes equivalent to a scaled bond, and the two assets span only a one-dimensional subspace of $\mathbb{R}^2$. Replication of a general payoff $(H_u, H_d)$ with $H_u \neq H_d$ is impossible because no portfolio can distinguish between the two states.
+
+---
+
+**Exercise 3.** Using the parameters from the text ($S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$), compute the state prices $\psi_u$ and $\psi_d$. Verify that (a) $\psi_u u + \psi_d d = 1$, (b) $\psi_u + \psi_d = e^{-r\Delta t}$, and (c) a European call with strike $K = 105$ priced via state prices gives the same result as the stock-bond replication method.
 
 ??? success "Solution to Exercise 3"
     With $S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$, we have $q = \frac{e^{0.05} - 0.9}{1.2 - 0.9} = \frac{0.15127}{0.3} = 0.5043$.
@@ -653,6 +633,10 @@ See [FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_
 
     Replication method: $\Delta = 0.5$, $B = -42.80$, $V_0 = 50 - 42.80 = 7.20$ $\checkmark$
 
+---
+
+**Exercise 4.** A **bear spread** consists of a long put with strike $K_2$ and a short put with strike $K_1$, where $K_1 < K_2$. Using the state price method with $S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$, $K_1 = 95$, and $K_2 = 110$, compute the bear spread price. Then verify your answer by pricing each put separately and taking the difference.
+
 ??? success "Solution to Exercise 4"
     With the standard parameters, $\psi_u = 0.4797$ and $\psi_d = 0.4716$.
 
@@ -678,6 +662,10 @@ See [FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_
     V_0 = \psi_u \times 0 + \psi_d \times 15 = 0.4716 \times 15 = 7.07 \quad \checkmark
     $$
 
+---
+
+**Exercise 5.** Suppose a derivative pays $H_u = 10$ in the up state and $H_d = 25$ in the down state. Using the standard parameters ($S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$), compute the replicating portfolio. Interpret the sign of $\Delta$ and explain why the replicating portfolio is long or short the stock.
+
 ??? success "Solution to Exercise 5"
     Given $H_u = 10$, $H_d = 25$, with $S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$.
 
@@ -699,6 +687,10 @@ See [FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_
 
     **Interpretation of $\Delta < 0$:** The derivative pays **more** in the down state ($H_d = 25$) than in the up state ($H_u = 10$). It behaves like a put-like instrument whose value increases when the stock falls. To replicate it, we must **short** 0.5 shares of stock (so the stock leg gains when the stock falls) and **lend** \$66.58 (the positive cash position provides the base payoff level).
 
+---
+
+**Exercise 6.** Consider a one-period binomial model where a third asset (a call option with known market price $C_0^{\text{mkt}}$) is also traded. Show that if $C_0^{\text{mkt}}$ differs from the no-arbitrage price $C_0 = \psi_u H_u + \psi_d H_d$, then an arbitrage portfolio can be constructed using the stock, bond, and call. Describe the arbitrage strategy explicitly for $C_0^{\text{mkt}} > C_0$.
+
 ??? success "Solution to Exercise 6"
     The no-arbitrage price of the call is $C_0 = \psi_u H_u + \psi_d H_d$. If $C_0^{\text{mkt}} \neq C_0$, we can construct an arbitrage.
 
@@ -719,6 +711,10 @@ See [FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_
     The replicating portfolio exactly offsets the call obligation in every state, so the terminal net payoff is zero. The initial profit $C_0^{\text{mkt}} - C_0 > 0$ is a riskless arbitrage.
 
     Investing this profit in the bank account yields $(C_0^{\text{mkt}} - C_0)e^{r\Delta t} > 0$ at maturity with zero risk.
+
+---
+
+**Exercise 7.** Derive the state price formulas $\psi_u = e^{-r\Delta t} q$ and $\psi_d = e^{-r\Delta t}(1-q)$ directly from the two consistency conditions $\psi_u u + \psi_d d = 1$ and $\psi_u + \psi_d = e^{-r\Delta t}$, without using the replication argument. That is, solve the $2 \times 2$ linear system for $\psi_u$ and $\psi_d$.
 
 ??? success "Solution to Exercise 7"
     We solve the system:

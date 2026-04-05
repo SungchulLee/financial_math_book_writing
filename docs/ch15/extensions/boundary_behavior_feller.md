@@ -231,22 +231,128 @@ The Feller classification determines the boundary behavior of CIR-type component
 
 **Exercise 1.** For the CIR process $dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t$ with $\kappa = 2$, $\theta = 0.04$, $\xi = 0.3$, check whether the Feller condition $2\kappa\theta \geq \xi^2$ is satisfied. Interpret the result: can the variance reach zero?
 
+??? success "Solution to Exercise 1"
+    We compute $2\kappa\theta$ and $\xi^2$ directly:
+
+    $$
+    2\kappa\theta = 2 \times 2 \times 0.04 = 0.16
+    $$
+
+    $$
+    \xi^2 = 0.3^2 = 0.09
+    $$
+
+    Since $0.16 \geq 0.09$, the Feller condition $2\kappa\theta \geq \xi^2$ is satisfied. Equivalently, $\nu = 2\kappa\theta / \xi^2 = 0.16 / 0.09 \approx 1.78 > 1$.
+
+    **Interpretation.** Because $\nu > 1$, the boundary $V = 0$ is an entrance boundary. The inward drift $\kappa\theta = 0.08$ at $V = 0$ dominates the diffusion intensity $\xi^2/2 = 0.045$, so the mean-reverting force is strong enough to prevent the variance from ever reaching zero. The process $V_t$ stays strictly positive for all $t > 0$ almost surely.
+
 ---
 
 **Exercise 2.** Repeat Exercise 1 with $\xi = 0.5$. Now the Feller condition is violated. Explain qualitatively what happens when $V_t$ hits zero: is the process absorbed at zero or reflected? What is the implication for the transition density at $V = 0$?
+
+??? success "Solution to Exercise 2"
+    With $\xi = 0.5$, we have $\xi^2 = 0.25$, while $2\kappa\theta = 0.16$ remains unchanged. Now $0.16 < 0.25$, so the Feller condition is violated. The dimension parameter is $\nu = 0.16/0.25 = 0.64 < 1$.
+
+    **What happens at zero.** Since $0 < \nu < 1$, the boundary $V = 0$ is classified as a regular boundary with instant reflection. The process reaches zero in finite time with positive probability, but it is **not absorbed**: the mean-reverting drift $\kappa\theta > 0$ immediately pushes the process away from zero. The process touches zero and is instantly reflected back into $(0, \infty)$.
+
+    **Implication for the transition density.** When $\nu < 1$, the transition measure of $V_T$ (conditional on $V_t > 0$) is no longer a purely continuous density on $(0, \infty)$. Instead, it is a mixture:
+
+    $$
+    \mathbb{P}(V_T \in \cdot \mid V_t = v) = p_0(t, T, v)\,\delta_0(\cdot) + p(t, T, v, \cdot)\,dy
+    $$
+
+    where $p_0 > 0$ is a positive probability mass at $V_T = 0$ and $p(t, T, v, y)$ is a continuous density on $(0, \infty)$. The atom at zero complicates likelihood-based estimation because the density is no longer everywhere positive on the interior.
 
 ---
 
 **Exercise 3.** The Feller condition can be written as $\nu := 2\kappa\theta/\xi^2 \geq 1$, where $\nu$ is the dimension parameter of the non-central chi-squared distribution of $V_T$ (conditional on $V_t$). For the CIR process, express the conditional distribution of $V_T$ in terms of $\nu$ and explain why $\nu < 1$ implies a probability mass at $V_T = 0$.
 
+??? success "Solution to Exercise 3"
+    The conditional distribution of $V_T$ given $V_t = v$ is a scaled non-central chi-squared distribution. Specifically, define $c_\tau = 2\kappa / (\xi^2(1 - e^{-\kappa\tau}))$ where $\tau = T - t$. Then
+
+    $$
+    2c_\tau V_T \mid V_t = v \;\sim\; \chi^2(2\nu,\; 2c_\tau v\,e^{-\kappa\tau})
+    $$
+
+    where $\chi^2(2\nu, \lambda)$ denotes the non-central chi-squared distribution with $2\nu$ degrees of freedom and non-centrality parameter $\lambda = 2c_\tau v\,e^{-\kappa\tau}$.
+
+    When $\nu \geq 1$ (equivalently $2\nu \geq 2$), the $\chi^2(2\nu, \lambda)$ distribution has a continuous density on $(0, \infty)$ that vanishes at zero, so $V_T > 0$ almost surely.
+
+    When $\nu < 1$ (equivalently $2\nu < 2$), the density of $\chi^2(2\nu, \lambda)$ diverges as $y \to 0^+$ and has a **probability mass at zero**:
+
+    $$
+    \mathbb{P}(\chi^2(2\nu, \lambda) = 0) = e^{-\lambda/2} > 0
+    $$
+
+    This mass at zero corresponds to the event $V_T = 0$. Intuitively, with fewer than two effective degrees of freedom, the chi-squared random variable can equal zero, reflecting the fact that the diffusion is strong enough relative to the drift to push the process all the way to the boundary.
+
 ---
 
 **Exercise 4.** For the Euler discretization of the CIR process, $\hat{V}_{n+1} = \hat{V}_n + \kappa(\theta - \hat{V}_n)\Delta t + \xi\sqrt{\hat{V}_n}\sqrt{\Delta t}\,Z_{n+1}$, explain why negative values of $\hat{V}_{n+1}$ can occur even when the Feller condition holds. Describe two common remedies: absorption ($\hat{V}_{n+1} = \max(\hat{V}_{n+1}, 0)$) and reflection ($\hat{V}_{n+1} = |\hat{V}_{n+1}|$).
+
+??? success "Solution to Exercise 4"
+    Starting from the Euler scheme $\hat{V}_{n+1} = \hat{V}_n + \kappa(\theta - \hat{V}_n)\Delta t + \xi\sqrt{\hat{V}_n}\sqrt{\Delta t}\,Z_{n+1}$ with $Z_{n+1} \sim N(0,1)$, note that even when $\hat{V}_n > 0$, the Gaussian increment $Z_{n+1}$ is unbounded below. We get $\hat{V}_{n+1} < 0$ whenever
+
+    $$
+    Z_{n+1} < -\frac{\hat{V}_n + \kappa(\theta - \hat{V}_n)\Delta t}{\xi\sqrt{\hat{V}_n \Delta t}}
+    $$
+
+    Since the right-hand side is finite for any $\hat{V}_n > 0$ and $\Delta t > 0$, and the Gaussian distribution has support on all of $\mathbb{R}$, there is always a positive probability of a negative outcome. This happens even when the Feller condition holds because the Euler scheme approximates the continuous dynamics with a discrete step of finite size --- the continuous process never goes negative, but the discrete approximation can "overshoot" the boundary in a single step.
+
+    **Absorption (full truncation).** Replace $\hat{V}_{n+1}$ by $\max(\hat{V}_{n+1}, 0)$. Any negative realization is set to zero. This is simple to implement but introduces a systematic positive bias: the truncated process has a higher mean than the true process near the boundary. The scheme converges as $\Delta t \to 0$ but with a slower convergence rate than the standard Euler scheme.
+
+    **Reflection.** Replace $\hat{V}_{n+1}$ by $|\hat{V}_{n+1}|$. When the scheme produces a negative value $-\epsilon$, it is reflected to $+\epsilon$. This preserves the magnitude of the overshoot and is motivated by the reflecting boundary behavior of the true CIR process when the Feller condition is violated. Reflection also converges as $\Delta t \to 0$ and tends to produce less bias than absorption, but it can be less stable for very large step sizes.
 
 ---
 
 **Exercise 5.** The scale function $s(x)$ and speed measure $m(x)$ of a one-dimensional diffusion classify the boundary behavior. For the CIR process, compute $s(x) = \exp(-\int^x \frac{2\kappa(\theta - y)}{\xi^2 y}\,dy)$ and determine the integrability of $s(x)$ near $x = 0$. How does this relate to the Feller condition?
 
+??? success "Solution to Exercise 5"
+    The scale function derivative is obtained from
+
+    $$
+    s'(x) = \exp\!\left(-\int^x \frac{2\mu(y)}{\sigma^2(y)}\,dy\right) = \exp\!\left(-\int^x \frac{2\kappa(\theta - y)}{\xi^2 y}\,dy\right)
+    $$
+
+    Computing the integral inside the exponential:
+
+    $$
+    \int \frac{2\kappa(\theta - y)}{\xi^2 y}\,dy = \frac{2\kappa\theta}{\xi^2}\ln y - \frac{2\kappa}{\xi^2}y
+    $$
+
+    Therefore
+
+    $$
+    s'(x) = x^{-2\kappa\theta/\xi^2}\,e^{2\kappa x/\xi^2} = x^{-\nu}\,e^{2\kappa x/\xi^2}
+    $$
+
+    where $\nu = 2\kappa\theta/\xi^2$.
+
+    **Integrability near $x = 0$.** Near $x = 0$, the exponential factor $e^{2\kappa x/\xi^2} \to 1$, so $s'(x) \sim x^{-\nu}$. Integrating from $0$ to some $c > 0$:
+
+    $$
+    \int_0^c s'(x)\,dx \sim \int_0^c x^{-\nu}\,dx
+    $$
+
+    This integral converges if and only if $-\nu > -1$, i.e., $\nu < 1$, which means $2\kappa\theta < \xi^2$ (Feller condition violated).
+
+    - When **$\nu \geq 1$** (Feller condition holds): $\int_0^c s'(x)\,dx = \infty$, meaning $s(0^+) = -\infty$. The boundary $x = 0$ is not reachable in natural scale --- it is an entrance boundary.
+    - When **$\nu < 1$** (Feller condition violated): $\int_0^c s'(x)\,dx < \infty$, meaning $s(0^+)$ is finite. The boundary is reachable in finite time --- it is a regular boundary.
+
+    Thus the integrability of the scale function near the origin is directly equivalent to the Feller condition.
+
 ---
 
 **Exercise 6.** In the multidimensional setting (e.g., the Heston model), the Feller condition applies to each CIR-type component independently. For a two-factor model on $\mathbb{R}_+^2$ where $V_t^{(1)}$ satisfies the Feller condition but $V_t^{(2)}$ does not, describe the behavior of the process near the boundary $V_t^{(2)} = 0$ while $V_t^{(1)} > 0$. Does the overall model remain well-defined?
+
+??? success "Solution to Exercise 6"
+    In the two-factor model on $\mathbb{R}_+^2$, each component $V_t^{(i)}$ satisfies its own CIR-type dynamics with parameters $(\kappa_i, \theta_i, \xi_i)$ and its own Feller condition $2\kappa_i\theta_i \geq \xi_i^2$.
+
+    **Behavior near $V_t^{(2)} = 0$ while $V_t^{(1)} > 0$.** Since $V_t^{(1)}$ satisfies the Feller condition, it remains strictly positive for all time, so the process never approaches the corner $(0, 0)$. Meanwhile, $V_t^{(2)}$ violates the Feller condition, so it reaches the boundary $V^{(2)} = 0$ in finite time with positive probability. At this boundary, the diffusion of the second component vanishes but the drift $\kappa_2\theta_2 > 0$ immediately pushes $V_t^{(2)}$ back into the interior. The process touches the face $\{V^{(2)} = 0, V^{(1)} > 0\}$ and is instantly reflected.
+
+    **Well-posedness.** The overall model remains well-defined. Each CIR-type component is individually well-posed:
+
+    - If the Feller condition holds, the component stays strictly positive and has a smooth transition density on $(0, \infty)$.
+    - If the Feller condition is violated but $\kappa_i\theta_i > 0$, the component has a reflecting boundary at zero and is still a well-defined strong solution to the SDE. The transition measure has an atom at zero but the process is not absorbed.
+
+    The fact that one component touches zero does not affect the well-posedness of the other components (assuming the cross-component coupling preserves the affine structure, e.g., the drift of $V^{(1)}$ at $V^{(2)} = 0$ remains nonnegative). The overall process lives on $\mathbb{R}_+^2$ and is a valid affine process, with a transition measure that is smooth in the $V^{(1)}$ direction but has a possible atom at zero in the $V^{(2)}$ direction. The Riccati ODE system and Fourier pricing machinery remain fully valid regardless of whether individual components satisfy the Feller condition.

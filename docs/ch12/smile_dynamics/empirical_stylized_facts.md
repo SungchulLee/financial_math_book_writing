@@ -408,26 +408,183 @@ A good model should capture:
 
 **Exercise 1.** The leverage effect is quantified by $\Delta\sigma_{\text{ATM}} \approx \beta \cdot \frac{\Delta S}{S}$ with $\beta \approx -2.0$ for the S&P 500. If the SPX drops 4% in one day, estimate the change in ATM implied volatility. If ATM IV was 16% before the move, what is the new ATM IV?
 
+??? success "Solution to Exercise 1"
+    Using the leverage effect relationship $\Delta\sigma_{\text{ATM}} \approx \beta \cdot \frac{\Delta S}{S}$ with $\beta = -2.0$:
+
+    $$
+    \Delta\sigma_{\text{ATM}} \approx (-2.0) \times (-0.04) = 0.08 = 8\%
+    $$
+
+    So ATM implied volatility increases by approximately 8 percentage points. Starting from $\sigma_{\text{ATM}} = 16\%$:
+
+    $$
+    \sigma_{\text{ATM}}^{\text{new}} = 16\% + 8\% = 24\%
+    $$
+
+    The new ATM IV is approximately 24%. This is consistent with empirical observations: a 4% daily decline in SPX (a large but not extreme move) roughly pushes vol from a calm regime into an elevated regime. Note that this linear approximation may overestimate the effect for very large moves, as the relationship is only approximately linear.
+
 ---
 
 **Exercise 2.** The asymmetry $|\beta_{\text{down}}| > |\beta_{\text{up}}|$ means volatility responds more strongly to down moves than up moves. Propose a simple piecewise-linear model for the spot-vol relationship: $\Delta\sigma = \beta_+ \frac{\Delta S}{S}$ for $\Delta S > 0$ and $\Delta\sigma = \beta_- \frac{\Delta S}{S}$ for $\Delta S < 0$ with $|\beta_-| > |\beta_+|$. Using $\beta_+ = -1.0$ and $\beta_- = -3.0$, compute $\Delta\sigma$ for (a) $\Delta S/S = +3\%$ and (b) $\Delta S/S = -3\%$.
+
+??? success "Solution to Exercise 2"
+    The piecewise-linear model is:
+
+    $$
+    \Delta\sigma =
+    \begin{cases}
+    \beta_+ \dfrac{\Delta S}{S} & \text{if } \Delta S > 0 \\[6pt]
+    \beta_- \dfrac{\Delta S}{S} & \text{if } \Delta S < 0
+    \end{cases}
+    $$
+
+    with $\beta_+ = -1.0$ and $\beta_- = -3.0$.
+
+    **(a)** For $\Delta S / S = +3\%$:
+
+    $$
+    \Delta\sigma = (-1.0) \times 0.03 = -0.03 = -3\%
+    $$
+
+    ATM vol decreases by 3 percentage points when the spot rises 3%.
+
+    **(b)** For $\Delta S / S = -3\%$:
+
+    $$
+    \Delta\sigma = (-3.0) \times (-0.03) = 0.09 = 9\%
+    $$
+
+    ATM vol increases by 9 percentage points when the spot drops 3%.
+
+    The asymmetry is stark: a 3% down move produces a vol change three times larger than a 3% up move of the same magnitude. This captures the empirical observation that markets exhibit a much stronger volatility response to negative returns ("crashophobia"), driven by increased hedging demand for downside protection.
 
 ---
 
 **Exercise 3.** Implied volatility exhibits mean reversion with a characteristic half-life of 2-4 weeks for equity indices. If the current ATM IV is 35% (elevated due to a crisis) and the long-run mean is 18%, use the mean-reversion model $\sigma(t) = \sigma_\infty + (\sigma_0 - \sigma_\infty)e^{-\lambda t}$ with half-life 3 weeks ($\lambda = \ln 2 / 3$ per week) to predict ATM IV in 1 week, 4 weeks, and 12 weeks.
 
+??? success "Solution to Exercise 3"
+    The mean-reversion model is $\sigma(t) = \sigma_\infty + (\sigma_0 - \sigma_\infty)e^{-\lambda t}$ with $\sigma_0 = 35\%$, $\sigma_\infty = 18\%$, and $\lambda = \ln 2 / 3 \approx 0.2310$ per week.
+
+    **At $t = 1$ week:**
+
+    $$
+    \sigma(1) = 18 + (35 - 18)e^{-0.2310 \times 1} = 18 + 17 \times e^{-0.2310} = 18 + 17 \times 0.7937 \approx 31.49\%
+    $$
+
+    **At $t = 4$ weeks:**
+
+    $$
+    \sigma(4) = 18 + 17 \times e^{-0.2310 \times 4} = 18 + 17 \times e^{-0.9241} = 18 + 17 \times 0.3969 \approx 24.75\%
+    $$
+
+    **At $t = 12$ weeks:**
+
+    $$
+    \sigma(12) = 18 + 17 \times e^{-0.2310 \times 12} = 18 + 17 \times e^{-2.7726} = 18 + 17 \times 0.0625 \approx 19.06\%
+    $$
+
+    After 12 weeks (approximately 3 months), ATM IV has nearly reverted to its long-run level. The half-life of 3 weeks means that after 3 weeks, the excess vol above the mean ($17\%$) is halved to $8.5\%$, giving $\sigma(3) \approx 26.5\%$. After four half-lives (12 weeks), only $1/16$ of the excess remains.
+
 ---
 
 **Exercise 4.** The skew-spot beta measures how the slope of the smile changes with spot: $\frac{d(\text{skew})}{d(\log S)} \approx -0.4$ for SPX. If the current 25-delta skew is 6 vol points and the spot drops 5%, estimate the new skew. What does this steepening mean for the price of OTM puts relative to ATM options?
+
+??? success "Solution to Exercise 4"
+    The skew-spot beta is $\frac{d(\text{skew})}{d(\log S)} \approx -0.4$. With a 5% spot decline, $\Delta \log S \approx -0.05$:
+
+    $$
+    \Delta(\text{skew}) \approx (-0.4) \times (-0.05) = +0.02 = +2 \text{ vol points}
+    $$
+
+    The new skew is:
+
+    $$
+    \text{Skew}_{\text{new}} = 6 + 2 = 8 \text{ vol points}
+    $$
+
+    **Economic interpretation of skew steepening:** A steeper skew means that OTM puts have become relatively more expensive compared to ATM options. Specifically:
+
+    - The 25-delta put implied volatility has increased by more than the ATM vol.
+    - The risk-neutral distribution has developed a fatter left tail, reflecting higher market-implied crash probability.
+    - Protective put demand has increased as the market drops, bidding up downside protection.
+    - Hedgers and portfolio insurers increase put buying during selloffs, reinforcing the skew steepening.
+
+    For traders, this means that the cost of downside hedging via OTM puts rises disproportionately during market declines, a self-reinforcing dynamic.
 
 ---
 
 **Exercise 5.** Term structure inversion is a hallmark of crisis periods. Describe the mechanism by which a sudden spike in short-term uncertainty (e.g., a flash crash) inverts the volatility term structure. Why does the long end of the term structure respond less dramatically than the short end?
 
+??? success "Solution to Exercise 5"
+    **Mechanism of term structure inversion:** Under normal conditions, the volatility term structure is upward sloping because longer-dated options incorporate more uncertainty. A sudden spike in short-term uncertainty (e.g., a flash crash) dramatically increases short-dated implied volatility while leaving long-dated vol relatively unchanged, inverting the term structure.
+
+    The specific mechanism is:
+
+    1. A flash crash causes an immediate spike in realized volatility and demand for short-dated hedging instruments.
+    2. Short-dated options (1-week to 1-month) see their implied volatility surge as gamma hedging demand intensifies and market makers widen spreads.
+    3. The VIX (which reflects roughly 30-day implied vol) spikes sharply.
+
+    **Why the long end responds less:** Long-dated implied volatility is anchored by several factors:
+
+    - **Mean reversion:** The market expects elevated volatility to revert over time, so the long-dated vol reflects the average expected vol over a long horizon, not the current spike.
+    - **Structural sellers:** Pension funds and insurers systematically sell long-dated vol (e.g., covered call strategies), providing a dampening effect.
+    - **Information content:** A flash crash is typically viewed as a short-lived liquidity event, not a permanent shift in fundamentals. Long-dated options price in the expectation that conditions will normalize.
+    - **Variance convexity:** The long-dated total variance $w(T) = \sigma^2 T$ is a weighted average over the entire horizon. A brief spike in short-term vol has a diluted effect on the long-dated average.
+
+    The inversion typically resolves within 1-4 weeks as short-term vol decays and the term structure re-steepens.
+
 ---
 
 **Exercise 6.** The volatility smile exhibits "stickiness" that lies between sticky strike and sticky delta. The skew stickiness ratio (SSR) for SPX is approximately 0.4-0.6. Define the SSR and explain how it relates to the spot-vol beta $\beta$. If SSR = 0.5 and the smile skew is 20% per unit log-moneyness, compute the effective spot-vol sensitivity $\Sigma_S = \frac{\partial \sigma_{\text{IV}}}{\partial S}$ for $S = 100$.
 
+??? success "Solution to Exercise 6"
+    **Definition of the SSR:** The skew stickiness ratio is defined as:
+
+    $$
+    \text{SSR} = \frac{\Delta \sigma_{\text{ATM}}}{\Delta \sigma_{\text{ATM}}^{\text{sticky-strike}}}
+    $$
+
+    where $\Delta \sigma_{\text{ATM}}^{\text{sticky-strike}}$ is the ATM vol change that would occur under the sticky-strike assumption (i.e., the smile does not move, and the ATM vol changes only because the ATM point slides along the fixed smile).
+
+    **Relationship to the spot-vol beta $\beta$:** Under sticky strike, the change in ATM vol when spot moves is determined entirely by the skew slope $s$:
+
+    $$
+    \Delta \sigma_{\text{ATM}}^{\text{sticky-strike}} = s \cdot \frac{\Delta S}{S}
+    $$
+
+    where $s = \frac{\partial \sigma}{\partial \log K}\big|_{K=S}$ is the skew slope (negative for equities). The actual ATM vol change is $\Delta \sigma_{\text{ATM}} = \beta \cdot \frac{\Delta S}{S}$. Therefore:
+
+    $$
+    \text{SSR} = \frac{\beta}{s}
+    $$
+
+    Since $\beta < 0$ and $s < 0$ for equities, $\text{SSR} > 0$. SSR = 0 means the smile is perfectly sticky-strike ($\beta = 0$, ATM vol does not move with spot beyond the slide effect). SSR = 1 means sticky-delta (the entire smile shifts with spot).
+
+    **Computing $\Sigma_S$:** The smile skew in log-moneyness is $s = \frac{\partial \sigma}{\partial \log(K/S)} = -20\%$ per unit log-moneyness (negative because we express it as a slope in the strike direction). With SSR = 0.5:
+
+    $$
+    \beta = \text{SSR} \times s = 0.5 \times (-0.20) = -0.10
+    $$
+
+    The effective spot-vol sensitivity is:
+
+    $$
+    \Sigma_S = \frac{\partial \sigma_{\text{IV}}}{\partial S} = \frac{\beta}{S} = \frac{-0.10}{100} = -0.001
+    $$
+
+    This means that for each 1-point increase in the spot price (from $S = 100$), ATM implied volatility decreases by 0.1 percentage points (10 basis points of vol).
+
 ---
 
 **Exercise 7.** List five key stylized facts of implied volatility dynamics for equity indices. For each, state (a) the qualitative observation, (b) a typical quantitative value, and (c) which model class (local vol, Heston, SABR, rough vol) best captures it. Identify which stylized fact is hardest for standard models to reproduce.
+
+??? success "Solution to Exercise 7"
+    | Stylized Fact | (a) Qualitative Observation | (b) Typical Value (SPX) | (c) Best Model Class |
+    |---|---|---|---|
+    | **Leverage effect** | Vol rises when spot falls; negative spot-vol correlation | $\beta \approx -2.0$; $\rho_{S,\sigma} \approx -0.75$ | Heston / SABR (via $\rho < 0$) |
+    | **Volatility clustering** | Periods of high vol followed by high vol, and low by low | GARCH $\alpha + \beta \approx 0.99$ | Rough vol (long memory via $H < 0.5$) |
+    | **Mean reversion** | Vol reverts to a long-run level after spikes | Half-life 2-3 weeks; long-run level 15-18% | Heston (via $\kappa$, $\theta$) |
+    | **Skew persistence** | Forward smile maintains non-zero skew over time | 25-delta skew $\approx$ 5-8 vol points, persists months ahead | SABR / Bergomi |
+    | **Term structure reactivity** | Short-dated vol responds more to spot shocks than long-dated vol | $\beta_{\text{1M}} \approx -2.5$; $\beta_{\text{1Y}} \approx -1.5$ | Rough vol / multi-factor stochastic vol |
+
+    **Hardest stylized fact to reproduce:** Volatility clustering with the correct degree of long memory is the most challenging for standard models. Classical stochastic volatility models (Heston, SABR) generate exponential autocorrelation decay, while empirical vol exhibits power-law decay consistent with long memory. The rough volatility framework (with Hurst parameter $H \approx 0.1$) captures this long-memory behavior, but at the cost of losing the Markov property, complicating calibration and simulation. The simultaneous reproduction of both long memory and realistic forward smile dynamics remains an active area of research.

@@ -260,18 +260,165 @@ The Ito formula for jump-diffusion processes extends the classical Ito formula b
 
 **Exercise 1.** Apply the Ito formula for jump processes to $f(S) = \ln S$ in the Merton model to derive $d(\ln S_t) = (r - \lambda\bar{k} - \frac{1}{2}\sigma^2)\,dt + \sigma\,dW_t + \ln Y\,dN_t$. Carefully separate the continuous and jump parts, and explain why there is no second-order jump correction (unlike the $\frac{1}{2}\sigma^2$ term from the diffusion).
 
+??? success "Solution to Exercise 1"
+    We apply the Ito formula for jump processes to $f(S) = \ln S$ with $f'(S) = 1/S$ and $f''(S) = -1/S^2$.
+
+    **Continuous part.** Between jumps, $S_t$ satisfies $dS_t^c = S_{t^-}(r - \lambda\bar{k})\,dt + S_{t^-}\sigma\,dW_t$. The standard Ito formula gives:
+
+    $$
+    d(\ln S_t)^{\text{cont}} = \frac{1}{S_{t^-}}\,dS_t^c + \frac{1}{2}\left(-\frac{1}{S_{t^-}^2}\right)(dS_t^c)^2
+    $$
+
+    Since $(dS_t^c)^2 = S_{t^-}^2\sigma^2\,dt$, we obtain:
+
+    $$
+    d(\ln S_t)^{\text{cont}} = (r - \lambda\bar{k})\,dt + \sigma\,dW_t - \frac{1}{2}\sigma^2\,dt = \left(r - \lambda\bar{k} - \frac{1}{2}\sigma^2\right)dt + \sigma\,dW_t
+    $$
+
+    **Jump part.** At each jump time $T_i$, the price jumps from $S_{T_i^-}$ to $S_{T_i} = S_{T_i^-} \cdot Y_i$. The jump contribution to $\ln S$ is:
+
+    $$
+    \ln S_{T_i} - \ln S_{T_i^-} = \ln(S_{T_i^-} Y_i) - \ln S_{T_i^-} = \ln Y_i
+    $$
+
+    **Combined.** Assembling both parts:
+
+    $$
+    d(\ln S_t) = \left(r - \lambda\bar{k} - \frac{1}{2}\sigma^2\right)dt + \sigma\,dW_t + \ln Y\,dN_t
+    $$
+
+    **Why no second-order jump correction.** The continuous Ito correction $\frac{1}{2}\sigma^2$ arises because Brownian motion has nonzero quadratic variation: infinitely many infinitesimal increments accumulate to produce a finite second-order effect via $(dW_t)^2 = dt$. For jumps, each discontinuity is a finite, isolated event (jumps occur one at a time with probability one). The full nonlinear change $f(X_s) - f(X_{s^-})$ is computed exactly as a finite difference, so no Taylor approximation is needed and no second-order correction term appears.
+
 ---
+
 
 **Exercise 2.** Apply the Ito formula for jump processes to $f(S) = S^2$. (a) Compute the continuous part $d(S_t^2)^{\text{cont}}$ using $f'(S) = 2S$ and $f''(S) = 2$. (b) Compute the jump part $S_{T_i}^2 - S_{T_i^-}^2 = S_{T_i^-}^2(Y_i^2 - 1)$. (c) Combine both parts and write the full SDE for $S_t^2$.
 
+??? success "Solution to Exercise 2"
+    We apply the Ito formula to $f(S) = S^2$ with $f'(S) = 2S$ and $f''(S) = 2$.
+
+    **(a) Continuous part.** The continuous part of the SDE is $dS_t^c = S_{t^-}(r - \lambda\bar{k})\,dt + S_{t^-}\sigma\,dW_t$, so $(dS_t^c)^2 = S_{t^-}^2\sigma^2\,dt$. Then:
+
+    $$
+    d(S_t^2)^{\text{cont}} = 2S_{t^-}\,dS_t^c + \frac{1}{2}(2)(dS_t^c)^2
+    $$
+
+    $$
+    = 2S_{t^-} \cdot S_{t^-}\bigl[(r - \lambda\bar{k})\,dt + \sigma\,dW_t\bigr] + S_{t^-}^2\sigma^2\,dt
+    $$
+
+    $$
+    = S_{t^-}^2\bigl[2(r - \lambda\bar{k}) + \sigma^2\bigr]\,dt + 2S_{t^-}^2\sigma\,dW_t
+    $$
+
+    **(b) Jump part.** At jump time $T_i$, $S_{T_i} = S_{T_i^-} Y_i$, so:
+
+    $$
+    S_{T_i}^2 - S_{T_i^-}^2 = (S_{T_i^-} Y_i)^2 - S_{T_i^-}^2 = S_{T_i^-}^2(Y_i^2 - 1)
+    $$
+
+    **(c) Combined SDE.** Adding the continuous and jump parts:
+
+    $$
+    d(S_t^2) = S_{t^-}^2\bigl[2(r - \lambda\bar{k}) + \sigma^2\bigr]\,dt + 2S_{t^-}^2\sigma\,dW_t + S_{t^-}^2(Y^2 - 1)\,dN_t
+    $$
+
+    Note: the jump correction involves $f(SY) - f(S) = S^2(Y^2 - 1)$, which differs from $f'(S) \cdot S(Y - 1) = 2S^2(Y - 1)$. The difference $S^2(Y^2 - 1) - 2S^2(Y - 1) = S^2(Y - 1)^2$ captures the nonlinear effect of jumps on the squared price.
+
 ---
+
 
 **Exercise 3.** Explain the key structural difference between the continuous Ito correction ($\frac{1}{2}\sigma^2 f''$) and the jump correction ($f(X_s) - f(X_{s^-})$). Why does the continuous part require a Taylor approximation to second order while the jump part uses the exact finite difference?
 
+??? success "Solution to Exercise 3"
+    **Continuous Ito correction.** In the standard Ito formula, the correction $\frac{1}{2}\sigma^2 f''(X_t)\,dt$ arises from the quadratic variation of Brownian motion. Over an infinitesimal interval $dt$, the increment $dW_t$ is of order $\sqrt{dt}$, so $(dW_t)^2 = dt$ in the mean-square limit. Since $X_t$ accumulates infinitely many such infinitesimal increments on any bounded interval, the second-order Taylor term does not vanish and must be retained. This is a genuinely stochastic phenomenon with no counterpart in ordinary calculus.
+
+    **Jump correction.** At each jump time, the process makes a single finite jump $\Delta X_s = X_s - X_{s^-}$. The change in $f$ is:
+
+    $$
+    f(X_s) - f(X_{s^-})
+    $$
+
+    This is an exact finite difference that can be computed directly without any Taylor expansion. Since jumps arrive one at a time (the probability of simultaneous jumps is zero for a Poisson process), each individual jump contribution is a well-defined finite quantity. There is no accumulation of infinitesimal jump increments, and hence no need for a limiting argument or a second-order correction.
+
+    **Structural difference.** The continuous correction is an aggregate effect of infinitely many infinitesimal random increments whose second-order contributions sum to a finite quantity. The jump correction is a pointwise exact evaluation at finitely many (random) times. This distinction is the fundamental reason why the continuous Ito formula requires $f \in C^2$ while the jump correction only requires $f$ to be measurable.
+
 ---
+
 
 **Exercise 4.** Using the compensated jump decomposition, write $\ln S_t = \ln S_0 + (r - \frac{1}{2}\sigma^2 - \lambda\bar{k} + \lambda\mu_J)t + \sigma W_t + (\sum_{i=1}^{N_t}\ln Y_i - \lambda\mu_J t)$. Verify that the last two terms form a martingale by showing that their expectation is zero. Why is this decomposition useful for pricing and risk management?
 
+??? success "Solution to Exercise 4"
+    Starting from the log-price formula:
+
+    $$
+    \ln S_t = \ln S_0 + \left(r - \lambda\bar{k} - \frac{1}{2}\sigma^2\right)t + \sigma W_t + \sum_{i=1}^{N_t}\ln Y_i
+    $$
+
+    we add and subtract $\lambda\mu_J t$ (where $\mu_J = \mathbb{E}[\ln Y_i]$):
+
+    $$
+    \ln S_t = \ln S_0 + \left(r - \frac{1}{2}\sigma^2 - \lambda\bar{k} + \lambda\mu_J\right)t + \sigma W_t + \left(\sum_{i=1}^{N_t}\ln Y_i - \lambda\mu_J t\right)
+    $$
+
+    **Verifying the martingale property.** Define $M_t = \sum_{i=1}^{N_t}\ln Y_i - \lambda\mu_J t$. We compute its expectation:
+
+    $$
+    \mathbb{E}[M_t] = \mathbb{E}\!\left[\sum_{i=1}^{N_t}\ln Y_i\right] - \lambda\mu_J t
+    $$
+
+    By the tower property, $\mathbb{E}\!\left[\sum_{i=1}^{N_t}\ln Y_i\right] = \mathbb{E}[N_t]\cdot\mathbb{E}[\ln Y_i] = \lambda t \cdot \mu_J$. Therefore:
+
+    $$
+    \mathbb{E}[M_t] = \lambda t \mu_J - \lambda\mu_J t = 0
+    $$
+
+    More generally, for $s < t$, the conditional expectation $\mathbb{E}[M_t - M_s \mid \mathcal{F}_s] = 0$ follows from the independent and stationary increments of the compound Poisson process and the Poisson process. Hence $M_t$ is a martingale.
+
+    **Why this is useful.** The decomposition separates $\ln S_t$ into a deterministic drift and two independent martingale components ($\sigma W_t$ and $M_t$). This is essential for:
+
+    - **Pricing**: martingale components vanish under expectation, simplifying risk-neutral valuation
+    - **Hedging**: the two independent sources of randomness (diffusion and jump) require separate hedging strategies
+    - **Risk management**: the variance of log-returns decomposes cleanly into diffusion and jump contributions
+
 ---
 
+
 **Exercise 5.** The proof of the Ito formula for jump processes works by splitting $[0, t]$ at jump times and applying the standard Ito formula on each continuous segment. Carry out this argument explicitly for a single jump time $T_1$: write $f(t, X_t) - f(0, X_0) = [f(T_1^-, X_{T_1^-}) - f(0, X_0)] + [f(T_1, X_{T_1}) - f(T_1, X_{T_1^-})] + [f(t, X_t) - f(T_1, X_{T_1})]$ and identify the continuous Ito terms and the jump term.
+
+??? success "Solution to Exercise 5"
+    Assume there is exactly one jump at time $T_1 \in (0, t)$. We write:
+
+    $$
+    f(t, X_t) - f(0, X_0) = \underbrace{[f(T_1^-, X_{T_1^-}) - f(0, X_0)]}_{\text{(I)}} + \underbrace{[f(T_1, X_{T_1}) - f(T_1, X_{T_1^-})]}_{\text{(II)}} + \underbrace{[f(t, X_t) - f(T_1, X_{T_1})]}_{\text{(III)}}
+    $$
+
+    **Term (I): Continuous Ito formula on $[0, T_1)$.** On this interval, $X$ has no jumps and evolves as a continuous Ito process. By the standard Ito formula:
+
+    $$
+    f(T_1^-, X_{T_1^-}) - f(0, X_0) = \int_0^{T_1}\left(\frac{\partial f}{\partial s} + \mu\frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 f}{\partial x^2}\right)ds + \int_0^{T_1}\sigma\frac{\partial f}{\partial x}\,dW_s
+    $$
+
+    This contains the drift, the $\frac{1}{2}\sigma^2 f''$ correction, and the diffusion martingale term.
+
+    **Term (II): Jump contribution.** At time $T_1$, the process jumps from $X_{T_1^-}$ to $X_{T_1} = X_{T_1^-} + \gamma(T_1, X_{T_1^-})Z_1$. The contribution is the exact finite difference:
+
+    $$
+    f(T_1, X_{T_1}) - f(T_1, X_{T_1^-})
+    $$
+
+    This is the jump term. No Taylor approximation is used; the full nonlinear change in $f$ is recorded.
+
+    **Term (III): Continuous Ito formula on $(T_1, t]$.** After the jump, $X$ again evolves continuously. By the standard Ito formula:
+
+    $$
+    f(t, X_t) - f(T_1, X_{T_1}) = \int_{T_1}^{t}\left(\frac{\partial f}{\partial s} + \mu\frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 f}{\partial x^2}\right)ds + \int_{T_1}^{t}\sigma\frac{\partial f}{\partial x}\,dW_s
+    $$
+
+    **Combining all three terms.** Adding (I), (II), and (III):
+
+    $$
+    f(t, X_t) - f(0, X_0) = \int_0^{t}\left(\frac{\partial f}{\partial s} + \mu\frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 f}{\partial x^2}\right)ds + \int_0^{t}\sigma\frac{\partial f}{\partial x}\,dW_s + [f(T_1, X_{T_1}) - f(T_1, X_{T_1^-})]
+    $$
+
+    The continuous integrals from (I) and (III) combine into a single integral over $[0, t]$ (the integrands are well-defined at $T_1$ since we use left limits), and the jump term appears as an isolated additive correction. This is precisely the Ito formula for jump processes applied to the case of a single jump.

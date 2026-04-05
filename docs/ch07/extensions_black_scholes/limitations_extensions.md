@@ -610,30 +610,6 @@ The evolution from Black-Scholes to modern models illustrates the progression of
 
 **Exercise 1.** The S&P 500 implied volatility surface shows a pronounced skew: OTM puts trade at higher implied volatility than OTM calls. Explain why the Black-Scholes assumption of constant volatility is inconsistent with this observation. Which model extension (local volatility, stochastic volatility, or jump-diffusion) would you choose to capture this feature, and why?
 
----
-
-**Exercise 2.** The kurtosis of S&P 500 daily returns is approximately 6-8, compared to 3 for a normal distribution. (a) Explain what excess kurtosis implies about the frequency of extreme events. (b) Show that the Merton jump-diffusion model can produce excess kurtosis by considering the unconditional return distribution as a mixture. (c) Estimate the probability of a 4-standard-deviation move under a normal distribution versus a Merton model with $\lambda = 1$, $\mu_J = -0.05$, $\sigma_J = 0.10$.
-
----
-
-**Exercise 3.** The Leland model adjusts volatility for transaction costs as $\sigma_{\text{adj}} = \sigma\sqrt{1 + \sqrt{2/\pi} \cdot k/(\sigma\sqrt{\Delta t})}$. (a) For $\sigma = 0.20$, $k = 0.005$ (0.5% round-trip cost), and daily rehedging ($\Delta t = 1/252$), compute $\sigma_{\text{adj}}$. (b) Explain why the adjusted volatility is always higher than the true volatility. (c) What happens to $\sigma_{\text{adj}}$ as $\Delta t \to 0$, and what does this imply about continuous hedging with transaction costs?
-
----
-
-**Exercise 4.** Explain why the Black-Scholes model remains the industry standard despite its well-documented limitations. Discuss at least three specific roles the model plays in modern practice (e.g., quoting conventions, benchmarking, risk management) that do not require the model to be "correct."
-
----
-
-**Exercise 5.** For a European call with $S_0 = 100$, $K = 90$ (deep ITM), $T = 0.25$ (3 months), the market implied volatility is 25%, while for $K = 110$ (deep OTM) it is 22%. (a) Compute the Black-Scholes prices using each implied volatility. (b) Explain the "model selection hierarchy" from Level 1 (BS with strike-dependent implied vol) to Level 3 (stochastic volatility). (c) For which applications does Level 1 suffice, and when must one move to Level 3?
-
----
-
-**Exercise 6.** In the Heston stochastic volatility model, the correlation $\rho$ between the stock and variance Brownian motions is typically negative for equities ($\rho \approx -0.7$). Explain the economic mechanism (leverage effect) behind this negative correlation, and describe how it produces a volatility skew in implied volatility. What would the implied volatility surface look like if $\rho = 0$?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The Black-Scholes assumption of constant volatility implies that all European options on the same underlying with the same maturity should have the same implied volatility, regardless of strike price. The pronounced skew in S&P 500 options directly contradicts this: OTM puts at lower strikes have implied volatilities of 25-30%, while OTM calls at higher strikes have implied volatilities of 18-20%. If $\sigma$ were constant, the implied volatility surface would be perfectly flat.
 
@@ -644,6 +620,11 @@ The evolution from Black-Scholes to modern models illustrates the progression of
     - **Jump-diffusion** models generate skew through asymmetric downward jumps and are effective for short-maturity smiles, but they do not capture volatility clustering or the term structure of the smile as well as stochastic volatility.
 
     For a model that captures both the static skew shape and its realistic dynamic behavior, stochastic volatility is preferred.
+
+---
+
+
+**Exercise 2.** The kurtosis of S&P 500 daily returns is approximately 6-8, compared to 3 for a normal distribution. (a) Explain what excess kurtosis implies about the frequency of extreme events. (b) Show that the Merton jump-diffusion model can produce excess kurtosis by considering the unconditional return distribution as a mixture. (c) Estimate the probability of a 4-standard-deviation move under a normal distribution versus a Merton model with $\lambda = 1$, $\mu_J = -0.05$, $\sigma_J = 0.10$.
 
 ??? success "Solution to Exercise 2"
     **(a)** Excess kurtosis (kurtosis greater than 3) means the return distribution has heavier tails than the normal distribution. With kurtosis of 6-8, extreme events (large positive or negative returns) occur far more frequently than a Gaussian model predicts. The distribution has more probability mass in the tails and at the center, with less in the intermediate region. This implies that "five-sigma" or "six-sigma" events, which should be extraordinarily rare under normality, are observed relatively often in financial markets.
@@ -665,6 +646,11 @@ The evolution from Black-Scholes to modern models illustrates the progression of
     **(c)** Under a normal distribution with $\sigma_{\text{daily}} \approx 0.01$ (1% daily vol), a 4-standard-deviation move ($|r| > 0.04$) has probability $\Pr(|Z| > 4) \approx 6.3 \times 10^{-5}$, or about 0.006% of days (roughly once every 63 years).
 
     Under the Merton model with $\lambda = 1$ (one jump per year on average), $\mu_J = -0.05$, $\sigma_J = 0.10$, and daily time step $\Delta t = 1/252$: The probability of at least one jump in a day is $\lambda \Delta t \approx 0.004$. When a jump occurs, the additional log-return is $N(-0.05, 0.01)$, contributing roughly $\pm 10\%$ moves. The probability of a 4% move is substantially higher because even a single jump can contribute 5-15% in magnitude. Numerically, the probability of $|r| > 4\%$ under the Merton model is approximately 0.1-0.3%, which is 15-50 times more frequent than the Gaussian prediction.
+
+---
+
+
+**Exercise 3.** The Leland model adjusts volatility for transaction costs as $\sigma_{\text{adj}} = \sigma\sqrt{1 + \sqrt{2/\pi} \cdot k/(\sigma\sqrt{\Delta t})}$. (a) For $\sigma = 0.20$, $k = 0.005$ (0.5% round-trip cost), and daily rehedging ($\Delta t = 1/252$), compute $\sigma_{\text{adj}}$. (b) Explain why the adjusted volatility is always higher than the true volatility. (c) What happens to $\sigma_{\text{adj}}$ as $\Delta t \to 0$, and what does this imply about continuous hedging with transaction costs?
 
 ??? success "Solution to Exercise 3"
     **(a)** With $\sigma = 0.20$, $k = 0.005$, and $\Delta t = 1/252$:
@@ -693,6 +679,11 @@ The evolution from Black-Scholes to modern models illustrates the progression of
 
     so $\sigma_{\text{adj}} \to \infty$. This means the total transaction costs explode when hedging continuously with proportional costs. Continuous rebalancing requires infinitely many trades, each incurring a cost, and the total cost diverges. This is a fundamental result: the Black-Scholes perfect hedging strategy, which requires continuous trading, is not feasible in the presence of transaction costs. In practice, one must hedge at discrete intervals, accepting some hedging error to keep transaction costs finite.
 
+---
+
+
+**Exercise 4.** Explain why the Black-Scholes model remains the industry standard despite its well-documented limitations. Discuss at least three specific roles the model plays in modern practice (e.g., quoting conventions, benchmarking, risk management) that do not require the model to be "correct."
+
 ??? success "Solution to Exercise 4"
     Despite its well-documented limitations, Black-Scholes remains the industry standard for several reasons:
 
@@ -703,6 +694,11 @@ The evolution from Black-Scholes to modern models illustrates the progression of
     **3. Risk management (Greeks)**: The Black-Scholes Greeks ($\Delta$, $\Gamma$, $\Theta$, $\mathcal{V}$, $\rho$) provide the foundational language for risk management. Even when traders use more sophisticated models, they often translate risk sensitivities into Black-Scholes equivalent Greeks. The simple, intuitive relationships (e.g., delta hedging, gamma scalping, theta decay) provide actionable hedging guidance. The Greeks framework extends naturally to more complex models but originated with Black-Scholes.
 
     **Additional roles**: Black-Scholes also serves as a teaching tool that builds intuition for no-arbitrage pricing, risk-neutral valuation, and dynamic replication. Its closed-form solution allows rapid computation for real-time trading and is used for back-of-the-envelope calculations. Regulatory frameworks often reference Black-Scholes or its Greeks for margin requirements and capital calculations.
+
+---
+
+
+**Exercise 5.** For a European call with $S_0 = 100$, $K = 90$ (deep ITM), $T = 0.25$ (3 months), the market implied volatility is 25%, while for $K = 110$ (deep OTM) it is 22%. (a) Compute the Black-Scholes prices using each implied volatility. (b) Explain the "model selection hierarchy" from Level 1 (BS with strike-dependent implied vol) to Level 3 (stochastic volatility). (c) For which applications does Level 1 suffice, and when must one move to Level 3?
 
 ??? success "Solution to Exercise 5"
     **(a)** Using $r = 0.05$, $T = 0.25$, and $S_0 = 100$:
@@ -750,6 +746,11 @@ The evolution from Black-Scholes to modern models illustrates the progression of
     - **Level 3 (Stochastic volatility)**: Use Heston, SABR, or similar models. Captures realistic smile dynamics (persistence, leverage effect), produces better hedging strategies, and gives more reliable exotic prices.
 
     **(c)** Level 1 suffices for quoting and trading vanilla options, real-time risk monitoring, and quick pricing. One must move to Level 3 for pricing path-dependent exotics (barriers, cliquets, forward-starting options), computing accurate hedging ratios that account for smile dynamics, and any application where forward volatility or smile evolution matters.
+
+---
+
+
+**Exercise 6.** In the Heston stochastic volatility model, the correlation $\rho$ between the stock and variance Brownian motions is typically negative for equities ($\rho \approx -0.7$). Explain the economic mechanism (leverage effect) behind this negative correlation, and describe how it produces a volatility skew in implied volatility. What would the implied volatility surface look like if $\rho = 0$?
 
 ??? success "Solution to Exercise 6"
     The **leverage effect** refers to the economic mechanism linking stock price declines to volatility increases. Two main explanations exist:

@@ -272,22 +272,212 @@ where $\mathcal{L}_d$ is the multi-dimensional Black-Scholes operator. The penal
 
 **Exercise 1.** For the penalty method with $\rho = 10^6$, estimate the penalty approximation error $O(1/\rho)$. If the discretization error is $O(h^2)$ with $h = 0.01$, is the penalty error negligible? What value of $\rho$ would balance the penalty and discretization errors?
 
+??? success "Solution to Exercise 1"
+    **Penalty approximation error with $\rho = 10^6$:**
+
+    The error bound is $|V - V^\rho| \leq C/\rho$. For $\rho = 10^6$:
+
+    $$
+    |V - V^\rho| \leq \frac{C}{10^6} \sim O(10^{-6})
+    $$
+
+    (assuming the constant $C$ is of order unity, which is typical for option prices of order $\$1$-$\$100$).
+
+    **Comparison with discretization error:**
+
+    The spatial discretization error is $O(h^2) = O(0.01^2) = O(10^{-4})$. Since $10^{-6} \ll 10^{-4}$, the penalty error is indeed negligible compared to the discretization error.
+
+    **Balancing the errors:**
+
+    To balance the penalty error and discretization error, we set:
+
+    $$
+    \frac{C}{\rho} = h^2 = 10^{-4}
+    $$
+
+    $$
+    \rho = \frac{C}{h^2} = \frac{C}{10^{-4}} = 10^4 C
+    $$
+
+    For $C \sim O(1)$, this gives $\rho \approx 10^4$. Using $\rho$ much larger than $10^4$ does not improve the overall accuracy since the spatial error dominates. The choice $\rho = 10^6$ is two orders of magnitude beyond what is needed, which is safe but may unnecessarily worsen conditioning.
+
 ---
 
 **Exercise 2.** Write out one iteration of Newton's method for the penalty system at a single time step. Given $\mathbf{u}^{(0)} = \mathbf{u}^n = (58, 18, 2)^T$ with $\boldsymbol{\Phi} = (60, 20, 0)^T$ and $\rho = 10^4$, compute the indicator matrix $P$ and describe qualitatively how the Newton step adjusts the solution.
+
+??? success "Solution to Exercise 2"
+    **Setting up Newton's method:**
+
+    The residual is $F(\mathbf{u}) = (I + \Delta\tau A)\mathbf{u} + \Delta\tau\rho\,\mathbf{p}(\mathbf{u}) - \mathbf{u}^n$ where $p_j(u_j) = \min(u_j - \Phi_j, 0)$.
+
+    Starting from $\mathbf{u}^{(0)} = \mathbf{u}^n = (58, 18, 2)^T$ with $\boldsymbol{\Phi} = (60, 20, 0)^T$ and $\rho = 10^4$:
+
+    **Compute the indicator matrix $P$:**
+
+    - $u_1^{(0)} = 58 < 60 = \Phi_1$: $P_{11} = 1$
+    - $u_2^{(0)} = 18 < 20 = \Phi_2$: $P_{22} = 1$
+    - $u_3^{(0)} = 2 > 0 = \Phi_3$: $P_{33} = 0$
+
+    So $P = \operatorname{diag}(1, 1, 0)$.
+
+    **The Jacobian:**
+
+    $$
+    J = I + \Delta\tau A + \Delta\tau\rho\, P
+    $$
+
+    With $\Delta\tau\rho = 0.01 \times 10^4 = 100$, the diagonal entries $J_{11}$ and $J_{22}$ each receive an additional $+100$, making them very large (of order 101). The entry $J_{33}$ is unaffected.
+
+    **Qualitative effect of the Newton step:**
+
+    The residual at $\mathbf{u}^{(0)}$ has large components at $j = 1, 2$ because $p_1 = 58 - 60 = -2$ and $p_2 = 18 - 20 = -2$. The penalty contributions are $\Delta\tau\rho \times (-2) = -200$ at each of these components.
+
+    The Newton step $\delta\mathbf{u} = -J^{-1}F$ adjusts the solution to approximately satisfy the penalized system. Because $J_{11}$ and $J_{22}$ are dominated by the $\Delta\tau\rho$ term, the Newton correction drives $u_1$ and $u_2$ very close to $\Phi_1 = 60$ and $\Phi_2 = 20$ respectively. Specifically:
+
+    $$
+    \delta u_j \approx -\frac{F_j}{J_{jj}} \approx -\frac{\Delta\tau\rho(u_j - \Phi_j)}{\Delta\tau\rho} = \Phi_j - u_j
+    $$
+
+    So $u_1^{(1)} \approx 60$ and $u_2^{(1)} \approx 20$ (pinned to the payoff). For $j = 3$, the penalty term is zero, and the Newton step adjusts $u_3$ according to the unconstrained PDE, giving $u_3^{(1)} \approx 2.05$.
 
 ---
 
 **Exercise 3.** The penalty function $(x)^- = \min(x, 0)$ has a discontinuous derivative at $x = 0$. Describe the smoothed penalty function $p(x) = -\frac{1}{2}(\sqrt{x^2 + \epsilon^2} - x)$ and explain how it approximates $(x)^-$. For what choice of $\epsilon$ relative to $\rho$ does the smoothing not affect the overall penalty accuracy?
 
+??? success "Solution to Exercise 3"
+    **The smoothed penalty function:**
+
+    $$
+    p(x) = -\frac{1}{2}\left(\sqrt{x^2 + \epsilon^2} - x\right)
+    $$
+
+    **Behavior:**
+
+    - For $x \gg \epsilon$: $\sqrt{x^2 + \epsilon^2} \approx |x| = x$, so $p(x) \approx -\frac{1}{2}(x - x) = 0$. The penalty vanishes (continuation region).
+    - For $x \ll -\epsilon$: $\sqrt{x^2 + \epsilon^2} \approx |x| = -x$, so $p(x) \approx -\frac{1}{2}(-x - x) = x$. This matches $(x)^- = x$ for $x < 0$ (exercise region).
+    - For $x = 0$: $p(0) = -\frac{\epsilon}{2}$, which is close to $0 = (0)^-$ when $\epsilon$ is small.
+
+    The smoothed function is $C^\infty$ everywhere (the square root is smooth since $x^2 + \epsilon^2 > 0$) and approximates $(x)^-$ with maximum error $O(\epsilon)$:
+
+    $$
+    |p(x) - (x)^-| \leq \frac{\epsilon}{2}
+    $$
+
+    Its derivative is:
+
+    $$
+    p'(x) = -\frac{1}{2}\left(\frac{x}{\sqrt{x^2 + \epsilon^2}} - 1\right)
+    $$
+
+    which is continuous everywhere, enabling classical Newton convergence (quadratic rate).
+
+    **Choice of $\epsilon$ relative to $\rho$:**
+
+    The smoothing introduces an additional error of $O(\epsilon)$ in the penalty function. Combined with the penalty approximation error $O(1/\rho)$, the total error is $O(1/\rho + \epsilon)$.
+
+    To ensure the smoothing does not degrade the penalty accuracy, choose $\epsilon$ so that $\epsilon \lesssim 1/\rho$, i.e.:
+
+    $$
+    \epsilon = O(1/\rho)
+    $$
+
+    For example, $\epsilon = 1/\rho$. With this choice, the total approximation error remains $O(1/\rho)$, and the smoothed penalty function is well-conditioned for Newton's method.
+
 ---
 
 **Exercise 4.** The condition number of the Jacobian scales as $\kappa(J) \sim \rho\Delta\tau$ in the exercise region. For $\rho = 10^8$ and $\Delta\tau = 0.01$, estimate $\kappa(J)$. At what point does the conditioning become problematic for double-precision floating-point arithmetic?
+
+??? success "Solution to Exercise 4"
+    **Condition number estimate:**
+
+    With $\rho = 10^8$ and $\Delta\tau = 0.01$:
+
+    $$
+    \kappa(J) \sim \rho\,\Delta\tau = 10^8 \times 0.01 = 10^6
+    $$
+
+    The largest diagonal entries (in the exercise region) are of order $1 + \Delta\tau\rho = 1 + 10^6 \approx 10^6$. The smallest entries (in the continuation region) are of order $1 + \Delta\tau\,a_{jj} \approx O(1)$. The ratio gives $\kappa(J) \sim 10^6$.
+
+    **When does conditioning become problematic?**
+
+    In double-precision floating-point arithmetic (IEEE 754), approximately 15-16 significant decimal digits are available ($\epsilon_{\text{machine}} \approx 10^{-16}$). The effective accuracy of a linear solve is roughly:
+
+    $$
+    \text{relative error} \sim \kappa(J) \times \epsilon_{\text{machine}}
+    $$
+
+    - $\kappa = 10^6$: relative error $\sim 10^{-10}$. This is still very accurate --- no problem.
+    - $\kappa = 10^8$ (e.g., $\rho = 10^{10}$, $\Delta\tau = 0.01$): relative error $\sim 10^{-8}$. Starting to lose accuracy but still adequate for most applications.
+    - $\kappa = 10^{12}$: relative error $\sim 10^{-4}$. Only 4 significant digits --- problematic for accurate pricing.
+    - $\kappa = 10^{16}$: relative error $\sim 1$. Complete loss of accuracy.
+
+    The conditioning becomes practically problematic when $\rho\,\Delta\tau \gtrsim 10^{10}$, i.e., when the condition number exceeds approximately $10^{10}$. For $\Delta\tau = 0.01$, this corresponds to $\rho \gtrsim 10^{12}$.
+
+    In practice, the rule of thumb is to choose $\rho$ so that $\kappa(J) \lesssim 10^{8}$ to maintain at least 8 significant digits. For $\Delta\tau = 0.01$, this means $\rho \lesssim 10^{10}$, which is far beyond the range needed for practical accuracy.
 
 ---
 
 **Exercise 5.** Compare the penalty method and PSOR for pricing an American put. If the penalty method uses 3 Newton iterations per time step (each costing one tridiagonal solve) and PSOR uses 12 iterations per time step (each costing one sweep), which method is faster per time step? Consider that a tridiagonal solve costs approximately $5M$ operations and a PSOR sweep costs approximately $3M$ operations.
 
+??? success "Solution to Exercise 5"
+    **Penalty method cost per time step:**
+
+    Each Newton iteration requires one tridiagonal solve costing approximately $5M$ operations. With 3 Newton iterations:
+
+    $$
+    C_{\text{penalty}} = 3 \times 5M = 15M
+    $$
+
+    **PSOR cost per time step:**
+
+    Each PSOR sweep costs approximately $3M$ operations. With 12 iterations:
+
+    $$
+    C_{\text{PSOR}} = 12 \times 3M = 36M
+    $$
+
+    **Comparison:**
+
+    $$
+    \frac{C_{\text{PSOR}}}{C_{\text{penalty}}} = \frac{36M}{15M} = 2.4
+    $$
+
+    PSOR is approximately 2.4 times more expensive per time step than the penalty method for these parameters.
+
+    **Per time step:** The penalty method requires $15M$ operations and PSOR requires $36M$ operations. The penalty method is faster by a factor of 2.4.
+
+    However, the comparison is not purely about operation count:
+
+    - The tridiagonal solve in the penalty method requires $O(M)$ *sequential* operations (forward and back substitution). PSOR sweeps are also sequential but have simpler per-element operations.
+    - The penalty method introduces an approximation error $O(1/\rho)$ that PSOR does not have.
+    - On modern hardware, memory access patterns may matter more than raw operation counts. Both methods have similar memory access patterns (sequential sweeps through the grid).
+
+    Overall, the penalty method with Newton iteration is the faster approach when $K_{\text{iter}} > \frac{5}{3}N_{\text{Newton}} = \frac{5}{3}(3) = 5$ PSOR iterations would be needed. Since 12 well exceeds 5, the penalty method wins comfortably here.
+
 ---
 
 **Exercise 6.** The penalty method extends naturally to multi-dimensional problems. For a two-asset American option with a 2D spatial grid of size $M \times M$, the penalty term does not change the sparsity structure of the discretization matrix. Explain why this is a significant advantage over PSOR, which is less natural in higher dimensions.
+
+??? success "Solution to Exercise 6"
+    **Why the penalty method's sparsity preservation is advantageous in higher dimensions:**
+
+    For a two-asset American option on an $M \times M$ grid, the unknowns are $\{u_{i,j}\}$ for $i, j = 1, \ldots, M$, giving $M^2$ total unknowns. The discretization of the 2D Black-Scholes operator produces a sparse matrix $A$ with a banded structure (5-point or 9-point stencil, depending on the treatment of cross-derivative terms).
+
+    **Penalty method in 2D:**
+
+    The penalty term $\rho\,\mathbf{p}(\mathbf{u})$ is a *diagonal* perturbation: the indicator $P_{(i,j),(i,j)} = 1$ if $u_{i,j} < \Phi_{i,j}$. Adding this to the Jacobian $J = I + \Delta\tau A + \Delta\tau\rho P$ preserves the sparsity structure of $A$ exactly. Standard 2D PDE solvers (ADI splitting, multigrid, sparse direct solvers) can be applied without modification --- only the diagonal entries change in the exercise region.
+
+    **PSOR in 2D:**
+
+    PSOR requires a componentwise sweep through all $M^2$ unknowns, updating each one using its neighbors. In 1D, the natural ordering of grid points makes this straightforward. In 2D:
+
+    - The sweep ordering (row-by-row, column-by-column, red-black) affects convergence.
+    - The optimal $\omega$ is harder to determine analytically.
+    - Convergence deteriorates: the spectral radius of the Gauss-Seidel iteration for 2D problems is $\rho(G_1) \approx 1 - c/M^2$, requiring $O(M^2)$ iterations per time step.
+    - Multigrid acceleration is possible but adds significant implementation complexity.
+
+    **Significance:**
+
+    The penalty method leverages the full power of existing multi-dimensional PDE solvers. For example, ADI (Alternating Direction Implicit) methods split the 2D operator into 1D sweeps, each requiring tridiagonal solves. The penalty term integrates seamlessly: in each ADI sub-step, the diagonal entries are modified for exercise-region points. The total cost per time step is $O(M^2)$ (a few tridiagonal solves of size $M$, repeated $M$ times), compared to $O(M^2 \times K_{\text{iter}})$ for PSOR with potentially large $K_{\text{iter}}$.
+
+    This advantage grows with dimension: in $d$ dimensions with $M$ points per dimension, the penalty method cost scales as $O(M^d)$ per Newton step (same as an unconstrained PDE solve), while PSOR cost scales as $O(M^d \times K_{\text{iter}})$ with $K_{\text{iter}}$ potentially growing with $M$.

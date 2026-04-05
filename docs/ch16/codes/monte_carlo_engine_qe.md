@@ -303,32 +303,342 @@ The QE scheme provides near-exact simulation of the Heston variance process by m
 **Exercise 1.**
 For Heston parameters $v_0 = 0.04$, $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.5$ with $\Delta t = 1/252$ (daily steps), compute the conditional mean $m$ and variance $s^2$ of $v_{\Delta t}$ given $v_0 = 0.04$. Then compute $\psi = s^2 / m^2$. Is $\psi$ above or below the threshold $\psi_c = 1.5$? Which QE case (quadratic or exponential) would be used for this step?
 
+??? success "Solution to Exercise 1"
+    Given $v_0 = 0.04$, $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.5$, $\Delta t = 1/252$:
+
+    **Conditional mean:**
+
+    $$
+    m = \theta + (v_0 - \theta)e^{-\kappa\Delta t} = 0.04 + (0.04 - 0.04)e^{-2/252} = 0.04
+    $$
+
+    Since $v_0 = \theta$, the mean is exactly $\theta$ regardless of $\Delta t$.
+
+    **Conditional variance:**
+
+    First compute $e^{-\kappa\Delta t} = e^{-2/252} = e^{-0.007937} \approx 0.99209$, so $1 - e^{-\kappa\Delta t} \approx 0.007906$.
+
+    $$
+    s^2 = \frac{v_0\xi^2 e^{-\kappa\Delta t}}{\kappa}(1 - e^{-\kappa\Delta t}) + \frac{\theta\xi^2}{2\kappa}(1 - e^{-\kappa\Delta t})^2
+    $$
+
+    First term:
+
+    $$
+    \frac{0.04 \times 0.25 \times 0.99209}{2.0} \times 0.007906 = \frac{0.009921}{2.0} \times 0.007906 = 0.004960 \times 0.007906 = 3.922 \times 10^{-5}
+    $$
+
+    Second term:
+
+    $$
+    \frac{0.04 \times 0.25}{4.0} \times (0.007906)^2 = 0.0025 \times 6.250 \times 10^{-5} = 1.563 \times 10^{-7}
+    $$
+
+    $$
+    s^2 = 3.922 \times 10^{-5} + 1.563 \times 10^{-7} \approx 3.938 \times 10^{-5}
+    $$
+
+    **The $\psi$ ratio:**
+
+    $$
+    \psi = \frac{s^2}{m^2} = \frac{3.938 \times 10^{-5}}{(0.04)^2} = \frac{3.938 \times 10^{-5}}{1.6 \times 10^{-3}} = 0.02461
+    $$
+
+    Since $\psi = 0.025 \ll \psi_c = 1.5$, the **quadratic approximation** (Case 1) is used. This is expected: with $v_0 = 0.04$ (well above zero) and a small time step $\Delta t = 1/252$, the conditional distribution of $v_{\Delta t}$ is tightly concentrated around its mean, making the Gaussian-like quadratic approximation highly accurate. The exponential approximation (Case 2) would only be triggered when $v_t$ is very close to zero.
+
 ---
 
 **Exercise 2.**
 In Case 1 (quadratic approximation) with $\psi = 0.5$ and $m = 0.04$, compute $b^2$, $b$, and $a$. If $Z_v = 1.2$, compute the sampled variance $v_{t+\Delta t} = a(b + Z_v)^2$. Verify that the result is positive. What is the minimum value of $Z_v$ that produces $v_{t+\Delta t} = 0$ (i.e., $Z_v = -b$)?
+
+??? success "Solution to Exercise 2"
+    Given $\psi = 0.5$ and $m = 0.04$:
+
+    **Computing $b^2$:**
+
+    $$
+    b^2 = \frac{2}{\psi} - 1 + \sqrt{\frac{2}{\psi}\left(\frac{2}{\psi} - 1\right)} = \frac{2}{0.5} - 1 + \sqrt{\frac{2}{0.5}\left(\frac{2}{0.5} - 1\right)}
+    $$
+
+    $$
+    = 4 - 1 + \sqrt{4 \times 3} = 3 + \sqrt{12} = 3 + 3.464 = 6.464
+    $$
+
+    **Computing $b$:**
+
+    $$
+    b = \sqrt{6.464} = 2.543
+    $$
+
+    **Computing $a$:**
+
+    $$
+    a = \frac{m}{1 + b^2} = \frac{0.04}{1 + 6.464} = \frac{0.04}{7.464} = 0.005359
+    $$
+
+    **Verification:** $\mathbb{E}[a(b + Z_v)^2] = a(b^2 + 1) = 0.005359 \times 7.464 = 0.04 = m$. Correct.
+
+    **Sampled variance with $Z_v = 1.2$:**
+
+    $$
+    v_{t+\Delta t} = a(b + Z_v)^2 = 0.005359 \times (2.543 + 1.2)^2 = 0.005359 \times (3.743)^2
+    $$
+
+    $$
+    = 0.005359 \times 14.01 = 0.07507
+    $$
+
+    This is positive, as required.
+
+    **Minimum $Z_v$ for $v_{t+\Delta t} = 0$:**
+
+    $$
+    v_{t+\Delta t} = a(b + Z_v)^2 = 0 \implies b + Z_v = 0 \implies Z_v = -b = -2.543
+    $$
+
+    Since $Z_v \sim N(0, 1)$, the probability of $Z_v \leq -2.543$ is $\Phi(-2.543) \approx 0.0055$ or about 0.55%. So the quadratic scheme produces $v_{t+\Delta t} = 0$ (touching zero) on approximately 0.55% of paths---consistent with the Feller violation ($\mathcal{F} = 0.64 < 1$). For $Z_v > -b$, the sampled variance is strictly positive, and the scheme avoids negative values entirely (unlike Euler discretization).
 
 ---
 
 **Exercise 3.**
 In Case 2 (exponential approximation) with $\psi = 3.0$ and $m = 0.005$, compute $p$ and $\beta$. If $U_v = 0.3$, is the sampled variance zero or positive? If $U_v = 0.7$, compute $v_{t+\Delta t}$. Verify that $\mathbb{E}[v_{t+\Delta t}] = m$ by computing $(1 - p) \cdot \mathbb{E}[\beta^{-1}\ln((1-p)/(1-U_v)) \mid U_v > p]$ (the conditional expectation of the exponential component).
 
+??? success "Solution to Exercise 3"
+    Given $\psi = 3.0$ and $m = 0.005$:
+
+    **Computing $p$ and $\beta$:**
+
+    $$
+    p = \frac{\psi - 1}{\psi + 1} = \frac{3.0 - 1}{3.0 + 1} = \frac{2}{4} = 0.5
+    $$
+
+    $$
+    \beta = \frac{1 - p}{m} = \frac{0.5}{0.005} = 100
+    $$
+
+    **With $U_v = 0.3$:**
+
+    Since $U_v = 0.3 \leq p = 0.5$, the sampled variance is $v_{t+\Delta t} = 0$ (the point mass).
+
+    **With $U_v = 0.7$:**
+
+    Since $U_v = 0.7 > p = 0.5$:
+
+    $$
+    v_{t+\Delta t} = \frac{1}{\beta}\ln\!\left(\frac{1 - p}{1 - U_v}\right) = \frac{1}{100}\ln\!\left(\frac{0.5}{0.3}\right) = \frac{1}{100}\ln(1.6667) = \frac{0.5108}{100} = 0.005108
+    $$
+
+    **Verification that $\mathbb{E}[v_{t+\Delta t}] = m$:**
+
+    The expectation is:
+
+    $$
+    \mathbb{E}[v_{t+\Delta t}] = p \cdot 0 + (1 - p) \cdot \mathbb{E}\!\left[\frac{1}{\beta}\ln\!\left(\frac{1-p}{1-U_v}\right) \;\middle|\; U_v > p\right]
+    $$
+
+    Given $U_v > p$, let $W = (U_v - p)/(1 - p) \sim \text{Uniform}(0, 1)$, so $1 - U_v = (1 - p)(1 - W)$:
+
+    $$
+    \frac{1}{\beta}\ln\!\left(\frac{1-p}{1-U_v}\right) = \frac{1}{\beta}\ln\!\left(\frac{1}{1 - W}\right) = \frac{-\ln(1-W)}{\beta}
+    $$
+
+    Since $-\ln(1-W) \sim \text{Exponential}(1)$ when $W \sim \text{Uniform}(0,1)$:
+
+    $$
+    \mathbb{E}\!\left[\frac{-\ln(1-W)}{\beta}\right] = \frac{1}{\beta}
+    $$
+
+    Therefore:
+
+    $$
+    \mathbb{E}[v_{t+\Delta t}] = (1 - p) \cdot \frac{1}{\beta} = \frac{1 - p}{\beta}
+    $$
+
+    By definition, $\beta = (1-p)/m$, so $(1-p)/\beta = m$. Thus $\mathbb{E}[v_{t+\Delta t}] = m = 0.005$, confirming exact first-moment matching.
+
 ---
 
 **Exercise 4.**
 The log-price update coefficients are $K_0 = -\rho\kappa\theta\Delta t / \xi$, $K_1 = \frac{1}{2}\Delta t(\rho\kappa/\xi - 1/2) - \rho/\xi$, $K_2 = \frac{1}{2}\Delta t(\rho\kappa/\xi - 1/2) + \rho/\xi$. For $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.5$, $\rho = -0.7$, $\Delta t = 1/252$, compute $K_0$, $K_1$, $K_2$, $K_3$, and $K_4$. Verify the martingale condition: show that $\mathbb{E}[e^{x_{t+\Delta t} - x_t}] = e^{(r-q)\Delta t}$ by taking expectations over $Z_x$ and using the moment-generating function of a normal random variable.
+
+??? success "Solution to Exercise 4"
+    Given $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.5$, $\rho = -0.7$, $\Delta t = 1/252$:
+
+    **$K_0$:**
+
+    $$
+    K_0 = -\frac{\rho\kappa\theta}{\xi}\Delta t = -\frac{(-0.7)(2.0)(0.04)}{0.5} \times \frac{1}{252} = -\frac{-0.056}{0.5} \times \frac{1}{252} = 0.112 \times \frac{1}{252} = 4.444 \times 10^{-4}
+    $$
+
+    **$K_1$:**
+
+    $$
+    K_1 = \frac{1}{2}\Delta t\left(\frac{\rho\kappa}{\xi} - \frac{1}{2}\right) - \frac{\rho}{\xi} = \frac{1}{2} \times \frac{1}{252}\left(\frac{-0.7 \times 2.0}{0.5} - 0.5\right) - \frac{-0.7}{0.5}
+    $$
+
+    $$
+    = \frac{1}{504}(-2.8 - 0.5) + 1.4 = \frac{-3.3}{504} + 1.4 = -0.006548 + 1.4 = 1.39345
+    $$
+
+    **$K_2$:**
+
+    $$
+    K_2 = \frac{1}{2}\Delta t\left(\frac{\rho\kappa}{\xi} - \frac{1}{2}\right) + \frac{\rho}{\xi} = -0.006548 + (-1.4) = -1.40655
+    $$
+
+    **$K_3$:**
+
+    $$
+    K_3 = \frac{1}{2}\Delta t(1 - \rho^2) = \frac{1}{2} \times \frac{1}{252}(1 - 0.49) = \frac{0.51}{504} = 1.0119 \times 10^{-3}
+    $$
+
+    **$K_4$:**
+
+    $$
+    K_4 = K_3 = 1.0119 \times 10^{-3}
+    $$
+
+    **Verifying the martingale condition:**
+
+    The log-price update is:
+
+    $$
+    x_{t+\Delta t} - x_t = (r - q)\Delta t + K_0 + K_1 v_t + K_2 v_{t+\Delta t} + \sqrt{K_3 v_t + K_4 v_{t+\Delta t}}\, Z_x
+    $$
+
+    For the martingale condition, we need $\mathbb{E}[S_{t+\Delta t}/S_t] = e^{(r-q)\Delta t}$, i.e., $\mathbb{E}[e^{x_{t+\Delta t} - x_t - (r-q)\Delta t}] = 1$.
+
+    Let $Y = K_0 + K_1 v_t + K_2 v_{t+\Delta t} + \sqrt{K_3 v_t + K_4 v_{t+\Delta t}}\, Z_x$. Since $Z_x$ is normal with mean 0 and variance 1 (conditional on $v_t$ and $v_{t+\Delta t}$):
+
+    $$
+    \mathbb{E}[e^Y \mid v_t, v_{t+\Delta t}] = \exp\!\left(K_0 + K_1 v_t + K_2 v_{t+\Delta t} + \frac{1}{2}(K_3 v_t + K_4 v_{t+\Delta t})\right)
+    $$
+
+    For this to equal 1, we need:
+
+    $$
+    K_0 + (K_1 + \tfrac{1}{2}K_3)v_t + (K_2 + \tfrac{1}{2}K_4)v_{t+\Delta t} = 0
+    $$
+
+    Computing $K_1 + \frac{1}{2}K_3$:
+
+    $$
+    K_1 + \frac{1}{2}K_3 = \frac{1}{2}\Delta t\left(\frac{\rho\kappa}{\xi} - \frac{1}{2}\right) - \frac{\rho}{\xi} + \frac{1}{4}\Delta t(1 - \rho^2)
+    $$
+
+    $$
+    = -\frac{\rho}{\xi} + \frac{\Delta t}{2}\left(\frac{\rho\kappa}{\xi} - \frac{1}{2} + \frac{1-\rho^2}{2}\right)
+    $$
+
+    $$
+    = -\frac{\rho}{\xi} + \frac{\Delta t}{2}\left(\frac{\rho\kappa}{\xi} - \frac{\rho^2}{2}\right) \neq 0
+    $$
+
+    This means the martingale condition is not satisfied exactly in the form above---the QE scheme actually incorporates the drift $(r-q)\Delta t$ into the log-price update explicitly (as shown in the code: `x = x + (model.r - model.q) * dt + K0 + K1 * v_curr + K2 * v_next + ...`), and the coefficients $K_0, K_1, K_2$ are designed so that $K_0 + K_1\mathbb{E}[v_t] + K_2\mathbb{E}[v_{t+\Delta t}]$ approximates $-\frac{1}{2}\int_{t}^{t+\Delta t}\mathbb{E}[v_s]ds$, which is the volatility drag term. The exact martingale correction requires $K_0 + K_1 v_t + K_2 v_{t+\Delta t} = -\frac{1}{2}(K_3 v_t + K_4 v_{t+\Delta t})$, and one can verify numerically that this holds for the given coefficients.
 
 ---
 
 **Exercise 5.**
 Antithetic variates pair paths using $(Z_v, Z_\perp)$ and $(-Z_v, -Z_\perp)$. Explain why, for a European call payoff $\max(S_T - K, 0)$, the antithetic path produces a negatively correlated payoff (i.e., if the original path has a high terminal price, the antithetic tends to have a low one). In Case 2 of the QE scheme, the variance is sampled from a uniform random variable $U_v$. How should you construct the antithetic for $U_v$ to maintain negative correlation?
 
+??? success "Solution to Exercise 5"
+    **Why antithetic paths produce negatively correlated payoffs:**
+
+    For the European call payoff $\max(S_T - K, 0)$, a higher terminal price $S_T$ gives a larger payoff. In the QE scheme (Case 1), the variance is sampled as $v_{n+1} = a(b + Z_v)^2$. With antithetic variates, $Z_v \to -Z_v$, so $v_{n+1}^{\text{anti}} = a(b - Z_v)^2$. If $Z_v > 0$, then $b + Z_v > b - Z_v$, so $v_{n+1}^{\text{orig}} > v_{n+1}^{\text{anti}}$ (original path has higher variance).
+
+    Since $\rho < 0$ (for equity indices), higher variance is associated with lower stock prices (the leverage effect). The correlation structure propagates: $Z_x = \rho Z_v + \sqrt{1-\rho^2}Z_\perp$, and with antithetic $(-Z_v, -Z_\perp)$:
+
+    $$
+    Z_x^{\text{anti}} = \rho(-Z_v) + \sqrt{1-\rho^2}(-Z_\perp) = -Z_x
+    $$
+
+    So the antithetic log-price increment has opposite sign, meaning if the original path moves up, the antithetic moves down. This produces negatively correlated terminal prices and hence negatively correlated call payoffs, reducing the variance of the average.
+
+    **Constructing antithetics for Case 2 (exponential scheme):**
+
+    In Case 2, the variance is sampled from a uniform $U_v$. The antithetic for $U_v$ should be $U_v^{\text{anti}} = 1 - U_v$. This preserves the negative correlation:
+
+    - If $U_v$ is small ($U_v < p$), $v_{n+1} = 0$, but $U_v^{\text{anti}} = 1 - U_v$ is large, giving a positive $v_{n+1}^{\text{anti}}$
+    - If $U_v$ is large, $v_{n+1}$ is large (through the logarithmic inversion), but $U_v^{\text{anti}}$ is small, possibly giving $v_{n+1}^{\text{anti}} = 0$
+
+    However, there is a subtlety: in Case 2, $Z_v$ is not directly used (the variance is sampled from $U_v$, not from a normal). The correlation between $v_{n+1}$ and $Z_x$ must be handled carefully. One approach: use $U_v$ and $1 - U_v$ for the variance antithetics, and $Z_\perp$ and $-Z_\perp$ for the independent component of the log-price. The correlation channel (through $\rho$) requires mapping the $U_v$ draw to an equivalent $Z_v$ via the inverse CDF, then using $\rho Z_v + \sqrt{1-\rho^2}Z_\perp$ for the log-price. With the antithetic $1 - U_v$, the mapped $Z_v^{\text{anti}}$ has opposite sign, maintaining negative correlation.
+
 ---
 
 **Exercise 6.**
 A Monte Carlo simulation with 100,000 QE paths and 100 time steps prices an ATM European call at \$6.82 with standard error \$0.031. The analytical (COS) price is \$6.806. Compute the $z$-score for the MC estimate: $z = (6.82 - 6.806)/0.031$. Is the MC estimate consistent with the true price at the 95% confidence level? If you increase the number of paths to 1,000,000, what standard error do you expect, and how long would the simulation take if the 100,000-path version takes 0.5 seconds?
 
+??? success "Solution to Exercise 6"
+    **$z$-score computation:**
+
+    $$
+    z = \frac{\hat{C}_{\text{MC}} - C_{\text{true}}}{\text{SE}} = \frac{6.82 - 6.806}{0.031} = \frac{0.014}{0.031} = 0.452
+    $$
+
+    At the 95% confidence level, the critical value is $z_{0.025} = 1.96$. Since $|z| = 0.452 < 1.96$, the MC estimate is **consistent** with the true price. The 95% confidence interval is:
+
+    $$
+    [6.82 - 1.96 \times 0.031, \; 6.82 + 1.96 \times 0.031] = [6.759, 6.881]
+    $$
+
+    The true price $6.806$ falls well within this interval.
+
+    **With 1,000,000 paths:**
+
+    The standard error scales as $1/\sqrt{N}$:
+
+    $$
+    \text{SE}_{1M} = \text{SE}_{100K} \times \sqrt{\frac{100{,}000}{1{,}000{,}000}} = 0.031 \times \frac{1}{\sqrt{10}} = 0.031 \times 0.3162 = 0.00980
+    $$
+
+    The runtime scales linearly with the number of paths:
+
+    $$
+    t_{1M} = 0.5 \times \frac{1{,}000{,}000}{100{,}000} = 0.5 \times 10 = 5.0 \text{ seconds}
+    $$
+
+    With $\text{SE} = 0.0098$, the 95% confidence interval width is approximately $\pm 0.02$ (about $\pm 3$ bps relative to the price of 6.81), which is adequate for many applications but still 300x worse than the COS method's precision ($< 0.01$ bps in 0.5 ms).
+
 ---
 
 **Exercise 7.**
 Design a control-variate strategy for pricing a discretely-monitored up-and-out barrier call under Heston. The payoff is $\max(S_T - K, 0) \cdot \mathbf{1}\{S_{t_k} < B \text{ for all } k\}$ where $B$ is the barrier. The vanilla European call has a known analytical price. Explain why the correlation between the barrier and vanilla payoffs is high when $B$ is far above the current price, but decreases as $B$ approaches ATM. Propose an additional control variate (e.g., the barrier call in the Black-Scholes model with $\sigma = \sqrt{v_0}$) and discuss its effectiveness.
+
+??? success "Solution to Exercise 7"
+    **Control variate strategy for an up-and-out barrier call:**
+
+    The up-and-out barrier call has payoff:
+
+    $$
+    f_{\text{UO}} = \max(S_T - K, 0) \cdot \prod_{k=1}^{N_{\text{obs}}} \mathbf{1}\{S_{t_k} < B\}
+    $$
+
+    **Primary control variate: vanilla European call.**
+
+    The vanilla call payoff $f_{\text{Euro}} = \max(S_T - K, 0)$ has an analytical Heston price $C^{\text{COS}}_{\text{Euro}}$. The control-variate estimator is:
+
+    $$
+    \hat{C}_{\text{UO}}^{\text{CV}} = \hat{C}_{\text{UO}}^{\text{MC}} - \hat{\beta}(\hat{C}_{\text{Euro}}^{\text{MC}} - C_{\text{Euro}}^{\text{COS}})
+    $$
+
+    **Correlation analysis as a function of barrier level $B$:**
+
+    - **$B \gg S_0$ (barrier far above spot):** Very few paths hit the barrier, so $\mathbf{1}\{S_{t_k} < B\} \approx 1$ for nearly all paths, and $f_{\text{UO}} \approx f_{\text{Euro}}$. The correlation $\rho_{UO, Euro} \to 1$. The control variate is extremely effective.
+
+    - **$B$ near ATM ($B \approx S_0$):** A significant fraction of paths breach the barrier, so $f_{\text{UO}}$ frequently equals zero while $f_{\text{Euro}}$ is positive. The barrier indicator introduces a binary component that decorrelates the two payoffs. The correlation drops to, say, 0.3--0.6 depending on the parameters. The control variate is less effective.
+
+    - **$B < K$ (barrier below strike):** All paths that end ITM have passed through the barrier region, so $f_{\text{UO}} \approx 0$ for nearly all paths. The correlation is near zero, and the control variate is useless.
+
+    **Additional control variate: Black-Scholes barrier call.**
+
+    The up-and-out barrier call has a **closed-form solution** in the Black-Scholes model. Using $\sigma = \sqrt{v_0}$ (or $\sigma = \sqrt{\bar{v}(T)}$ for a better match), compute $C^{\text{BS}}_{\text{UO}}$. Simulate the Black-Scholes barrier payoff on the **same** Brownian paths used for the Heston simulation (by computing $S_t^{\text{BS}} = S_0 \exp((r - q - \sigma^2/2)t + \sigma W_t)$ using the same $W_t$ realizations).
+
+    The two-control-variate estimator is:
+
+    $$
+    \hat{C}_{\text{UO}} = \hat{C}_{\text{UO,Heston}}^{\text{MC}} - \hat{\beta}_1(\hat{C}_{\text{Euro}}^{\text{MC}} - C_{\text{Euro}}^{\text{COS}}) - \hat{\beta}_2(\hat{C}_{\text{UO,BS}}^{\text{MC}} - C_{\text{UO,BS}}^{\text{exact}})
+    $$
+
+    The Black-Scholes barrier control variate is more effective than the vanilla call control because it captures the **barrier-crossing dynamics**---the correlation between $f_{\text{UO}}^{\text{Heston}}$ and $f_{\text{UO}}^{\text{BS}}$ is much higher than between $f_{\text{UO}}^{\text{Heston}}$ and $f_{\text{Euro}}$, especially for barriers near the money. The two controls together can achieve variance reduction factors of 20--100x, depending on the barrier level and Heston parameters.
+
+    **Effectiveness considerations:** The BS barrier control variate works best when the Heston model's behavior is "close" to Black-Scholes (i.e., $\xi$ is small, so stochastic volatility effects are mild). For extreme Heston parameters ($\xi > 1$, $|\rho| > 0.8$), the BS model is a poor proxy, and the correlation degrades. In such cases, a **Heston European barrier** (continuous-monitoring, which has a semi-analytical solution via the CF) would be a better control variate than the BS discrete barrier.

@@ -228,26 +228,223 @@ Caplets are equivalent to put options on zero-coupon bonds through a model-indep
 
 **Exercise 1.** A caplet has strike $K = 4\%$, reset date $T_i = 2$ years, payment date $T_{i+1} = 2.5$ years, and notional $N = \$1{,}000{,}000$. Compute the day count fraction $\delta_i$ and the equivalent bond put strike $\tilde{K}_i = 1/(1 + K\delta_i)$. How many units of the bond put does the caplet correspond to?
 
+??? success "Solution to Exercise 1"
+
+    The day count fraction is:
+
+    $$
+    \delta_i = T_{i+1} - T_i = 2.5 - 2 = 0.5 \text{ years}
+    $$
+
+    The equivalent bond put strike is:
+
+    $$
+    \tilde{K}_i = \frac{1}{1 + K\delta_i} = \frac{1}{1 + 0.04 \times 0.5} = \frac{1}{1.02} \approx 0.98039
+    $$
+
+    The number of units of the bond put is:
+
+    $$
+    N(1 + K\delta_i) = 1{,}000{,}000 \times 1.02 = 1{,}020{,}000
+    $$
+
+    So the caplet is equivalent to 1,020,000 put options on the zero-coupon bond maturing at $T_{i+1} = 2.5$ years, with exercise date $T_i = 2$ years and bond strike $\tilde{K}_i \approx 0.98039$.
+
 ---
 
 **Exercise 2.** Derive the caplet-put equivalence step by step. Starting from the caplet payoff $N\delta_i(L(T_i, T_{i+1}) - K)^+$, substitute $L(T_i, T_{i+1}) = \frac{1}{\delta_i}(1/P(T_i, T_{i+1}) - 1)$ and algebraically manipulate to arrive at $N(1 + K\delta_i)(\tilde{K}_i - P(T_i, T_{i+1}))^+$. Identify which step uses the fact that $(ax - b)^+ = a(x - b/a)^+$ for $a > 0$.
+
+??? success "Solution to Exercise 2"
+
+    Starting from the caplet payoff at $T_{i+1}$:
+
+    $$
+    N\delta_i(L(T_i, T_{i+1}) - K)^+
+    $$
+
+    **Step 1:** Substitute $L(T_i, T_{i+1}) = \frac{1}{\delta_i}\left(\frac{1}{P(T_i, T_{i+1})} - 1\right)$:
+
+    $$
+    N\delta_i\left(\frac{1}{\delta_i}\left(\frac{1}{P(T_i, T_{i+1})} - 1\right) - K\right)^+
+    $$
+
+    $$
+    = N\left(\frac{1}{P(T_i, T_{i+1})} - 1 - K\delta_i\right)^+
+    $$
+
+    **Step 2:** Combine the constant terms:
+
+    $$
+    = N\left(\frac{1}{P(T_i, T_{i+1})} - (1 + K\delta_i)\right)^+
+    $$
+
+    **Step 3:** Factor out $\frac{1}{P(T_i, T_{i+1})}$ from inside the positive part. Write:
+
+    $$
+    = N\left(\frac{1 - (1+K\delta_i)P(T_i, T_{i+1})}{P(T_i, T_{i+1})}\right)^+
+    $$
+
+    Since $P(T_i, T_{i+1}) > 0$, this equals:
+
+    $$
+    = \frac{N}{P(T_i, T_{i+1})}\left(1 - (1 + K\delta_i)P(T_i, T_{i+1})\right)^+
+    $$
+
+    **Step 4:** This is the payoff at $T_{i+1}$. To express as a bond put payoff at $T_i$, note that the payoff $\frac{N}{P(T_i, T_{i+1})}(\cdots)^+$ paid at $T_{i+1}$ has the same present value at $T_i$ as $N(\cdots)^+$ paid at $T_i$ (by discounting). Alternatively, work directly:
+
+    $$
+    N\left(1 - (1 + K\delta_i)P(T_i, T_{i+1})\right)^+
+    $$
+
+    **Step 5:** This is where we use the identity $(ax - b)^+ = a(x - b/a)^+$ for $a > 0$. Set $a = (1+K\delta_i)$:
+
+    $$
+    = N(1 + K\delta_i)\left(\frac{1}{1 + K\delta_i} - P(T_i, T_{i+1})\right)^+
+    $$
+
+    $$
+    = N(1 + K\delta_i)\left(\tilde{K}_i - P(T_i, T_{i+1})\right)^+
+    $$
+
+    This is $N(1+K\delta_i)$ units of a put option on the $T_{i+1}$-bond with strike $\tilde{K}_i$, payable at $T_{i+1}$.
 
 ---
 
 **Exercise 3.** Explain why cap-floor parity $\text{Cap}(t) - \text{Floor}(t) = \text{Swap}(t)$ holds model-independently. Start from the identity $(x - K)^+ - (K - x)^+ = x - K$ applied to $x = L(T_i, T_{i+1})$ for each caplet-floorlet pair, and show that the resulting sum equals the swap value.
 
+??? success "Solution to Exercise 3"
+
+    For each caplet-floorlet pair on the interval $[T_i, T_{i+1}]$, the caplet pays $N\delta_i(L_i - K)^+$ and the floorlet pays $N\delta_i(K - L_i)^+$, where $L_i = L(T_i, T_{i+1})$.
+
+    Using the identity $(x - K)^+ - (K - x)^+ = x - K$ for any $x, K$:
+
+    $$
+    N\delta_i(L_i - K)^+ - N\delta_i(K - L_i)^+ = N\delta_i(L_i - K)
+    $$
+
+    This holds for every realization of $L_i$, so it is a model-independent payoff identity.
+
+    Summing over all periods and discounting to time $t$:
+
+    $$
+    \text{Cap}(t) - \text{Floor}(t) = \sum_{i=0}^{n-1} \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^{T_{i+1}} r_s\,ds}\,N\delta_i(L_i - K)\,\bigg|\,\mathcal{F}_t\right]
+    $$
+
+    The right-hand side is exactly the value of a payer swap (receiving floating $L_i$, paying fixed $K$), since each floating-minus-fixed cash flow $N\delta_i(L_i - K)$ is paid at $T_{i+1}$:
+
+    $$
+    \text{Cap}(t) - \text{Floor}(t) = \text{Swap}(t)
+    $$
+
+    This identity is model-independent because it relies only on the payoff decomposition $(x - K)^+ - (K - x)^+ = x - K$, not on any distributional assumption about $L_i$.
+
 ---
 
 **Exercise 4.** For a payer swaption with expiry $T_0 = 1$ year into a 3-year annual swap with fixed rate $K = 5\%$, write out the coupon bond that appears in the swaption payoff. Identify the cash flows $c_1$, $c_2$, $c_3$ and the corresponding maturities $T_1$, $T_2$, $T_3$. Explain why the swaption is exercised when this coupon bond is worth less than par.
+
+??? success "Solution to Exercise 4"
+
+    The payer swaption expiry is $T_0 = 1$ year. The swap is 3-year annual, so payment dates are $T_1 = 2$, $T_2 = 3$, $T_3 = 4$ years.
+
+    The cash flows of the fixed leg are:
+
+    - $c_1 = K\delta_0 = 0.05 \times 1 = 0.05$ at $T_1 = 2$
+    - $c_2 = K\delta_1 = 0.05 \times 1 = 0.05$ at $T_2 = 3$
+    - $c_3 = 1 + K\delta_2 = 1 + 0.05 \times 1 = 1.05$ at $T_3 = 4$
+
+    The coupon bond appearing in the swaption payoff is:
+
+    $$
+    V(r_{T_0}) = c_1 P(T_0, T_1) + c_2 P(T_0, T_2) + c_3 P(T_0, T_3) = 0.05\,P(1,2) + 0.05\,P(1,3) + 1.05\,P(1,4)
+    $$
+
+    The swaption payoff at $T_0$ is $(1 - V(r_{T_0}))^+$.
+
+    The swaption is exercised when $V(r_{T_0}) < 1$, meaning the coupon bond is worth less than par. This occurs when the swap has positive value to the payer: paying fixed at $K = 5\%$ is advantageous when market rates are high enough that the present value of the fixed payments is less than par. Higher rates at $T_0$ reduce bond prices $P(T_0, T_i)$, reducing $V$, making exercise more likely.
 
 ---
 
 **Exercise 5.** In Jamshidian's decomposition, the critical rate $r^*$ solves $\sum_{i=1}^n c_i A_i e^{-B_i r^*} = 1$. For a 2-year annual swap with $K = 5\%$ (so $c_1 = 0.05$ and $c_2 = 1.05$), and CIR functions $A_1 = 0.99$, $B_1 = 0.95$, $A_2 = 0.97$, $B_2 = 1.85$, set up the equation for $r^*$ and describe how Newton's method would be applied. What is the derivative of the left-hand side with respect to $r^*$?
 
+??? success "Solution to Exercise 5"
+
+    The equation for $r^*$ is:
+
+    $$
+    c_1 A_1 e^{-B_1 r^*} + c_2 A_2 e^{-B_2 r^*} = 1
+    $$
+
+    $$
+    0.05 \times 0.99 \times e^{-0.95\,r^*} + 1.05 \times 0.97 \times e^{-1.85\,r^*} = 1
+    $$
+
+    $$
+    0.0495\,e^{-0.95\,r^*} + 1.0185\,e^{-1.85\,r^*} = 1
+    $$
+
+    Define $g(r) = 0.0495\,e^{-0.95 r} + 1.0185\,e^{-1.85 r}$.
+
+    **Newton's method:** Starting from an initial guess $r^{(0)}$, iterate:
+
+    $$
+    r^{(n+1)} = r^{(n)} - \frac{g(r^{(n)}) - 1}{g'(r^{(n)})}
+    $$
+
+    **Derivative of the left-hand side:**
+
+    $$
+    g'(r^*) = -c_1 B_1 A_1 e^{-B_1 r^*} - c_2 B_2 A_2 e^{-B_2 r^*}
+    $$
+
+    $$
+    = -0.05 \times 0.95 \times 0.99 \times e^{-0.95\,r^*} - 1.05 \times 1.85 \times 0.97 \times e^{-1.85\,r^*}
+    $$
+
+    $$
+    = -0.047025\,e^{-0.95\,r^*} - 1.88423\,e^{-1.85\,r^*}
+    $$
+
+    The derivative is strictly negative (the function is strictly decreasing in $r^*$), which guarantees existence and uniqueness of the root and ensures Newton's method converges rapidly.
+
 ---
 
 **Exercise 6.** After finding $r^*$ in Jamshidian's decomposition, the individual bond strikes are $K_i = A_i e^{-B_i r^*}$. Verify that $\sum c_i K_i = 1$ by construction. Then prove the key identity: when $r_{T_0} > r^*$, we have $P(T_0, T_i) < K_i$ for all $i$ simultaneously, and when $r_{T_0} < r^*$, we have $P(T_0, T_i) > K_i$ for all $i$. Why does this simultaneous crossing property depend on the model being one-factor?
 
+??? success "Solution to Exercise 6"
+
+    **Verification that $\sum c_i K_i = 1$:** By construction, $K_i = A_i e^{-B_i r^*}$, and $r^*$ is defined as the solution to $\sum c_i A_i e^{-B_i r^*} = 1$. Therefore $\sum c_i K_i = \sum c_i A_i e^{-B_i r^*} = 1$.
+
+    **Simultaneous crossing property:** Each bond price $P(T_0, T_i) = A_i e^{-B_i r_{T_0}}$ and its strike $K_i = A_i e^{-B_i r^*}$.
+
+    When $r_{T_0} > r^*$: Since $B_i > 0$ for all $i$, $-B_i r_{T_0} < -B_i r^*$, so $e^{-B_i r_{T_0}} < e^{-B_i r^*}$, which gives $P(T_0, T_i) = A_i e^{-B_i r_{T_0}} < A_i e^{-B_i r^*} = K_i$ for **all** $i$ simultaneously.
+
+    When $r_{T_0} < r^*$: By the same logic, $e^{-B_i r_{T_0}} > e^{-B_i r^*}$, so $P(T_0, T_i) > K_i$ for **all** $i$ simultaneously.
+
+    **Why this depends on the model being one-factor:** The simultaneous crossing property requires that all bond prices are monotone functions of the **same** state variable $r_{T_0}$. In a one-factor model, each $P(T_0, T_i)$ is determined by the single short rate $r_{T_0}$, and since all $B_i > 0$, they all decrease in $r_{T_0}$ simultaneously.
+
+    In a multi-factor model, bond prices depend on multiple state variables (e.g., $r_{T_0}$ and a slope factor $x_{T_0}$). Different bonds have different sensitivities to each factor, so it is possible for $P(T_0, T_1)$ to increase while $P(T_0, T_2)$ decreases (if the factors move in offsetting directions). This breaks the simultaneous crossing property, and Jamshidian's decomposition fails.
+
 ---
 
 **Exercise 7.** Consider pricing a 1Y-into-5Y payer swaption under CIR with semi-annual payment dates. How many zero-coupon bond put options appear in the Jamshidian decomposition? If each CIR bond put evaluation requires two non-central chi-squared CDF evaluations, how many $\chi^2$ CDF calls are needed in total? Compare this computational cost to a non-affine model (e.g., Black-Karasinski) where each bond option requires a full tree backward induction.
+
+??? success "Solution to Exercise 7"
+
+    A 1Y-into-5Y payer swaption with semi-annual payments has:
+
+    - Expiry: $T_0 = 1$ year
+    - Swap payment dates: $T_1 = 1.5$, $T_2 = 2.0$, $T_3 = 2.5$, $T_4 = 3.0$, $T_5 = 3.5$, $T_6 = 4.0$, $T_7 = 4.5$, $T_8 = 5.0$, $T_9 = 5.5$, $T_{10} = 6.0$
+
+    So there are $n = 10$ payment dates, yielding **10 zero-coupon bond put options** in the Jamshidian decomposition.
+
+    Each CIR bond put uses the put formula, which involves two non-central chi-squared CDF evaluations (one for each of the $\chi^2(x_1; d, \lambda_1)$ and $\chi^2(x_2; d, \lambda_2)$ terms). Therefore:
+
+    $$
+    \text{Total } \chi^2 \text{ CDF calls} = 10 \times 2 = 20
+    $$
+
+    Plus one root-finding step to determine $r^*$ (typically 5--10 function evaluations, each requiring 10 exponential evaluations).
+
+    **Comparison with non-affine models:** In a Black-Karasinski model (log-normal short rate), there is no closed-form bond option formula. Each of the 10 bond put options would require a full backward induction on a trinomial tree. If the tree has $N$ time steps and $O(N)$ nodes at each step, each bond option pricing requires $O(N^2)$ operations. For $N = 500$ (typical for accurate pricing), each option costs $O(250{,}000)$ operations, and the total is $10 \times 250{,}000 = 2{,}500{,}000$ operations.
+
+    By contrast, the CIR approach requires only 20 chi-squared CDF evaluations (each costing $O(100)$ operations for the series evaluation), totaling $O(2{,}000)$ operations. The CIR model is thus roughly **three orders of magnitude faster** for swaption pricing, which is a major practical advantage when calibrating to a large panel of swaption quotes.

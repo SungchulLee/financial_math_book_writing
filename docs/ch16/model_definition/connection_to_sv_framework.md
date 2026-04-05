@@ -185,22 +185,163 @@ The [next section](affine_structure_and_riccati.md) develops the affine structur
 
 **Exercise 1.** Write the general one-factor SV model $dS_t = rS_t\,dt + \sigma(V_t)S_t\,dW_t^S$ and $dV_t = \mu(V_t)\,dt + \eta(V_t)\,dW_t^V$ with $\operatorname{Corr}(dW^S, dW^V) = \rho\,dt$. Show that the Heston model is the special case $\sigma(V) = \sqrt{V}$, $\mu(V) = \kappa(\theta - V)$, and $\eta(V) = \sigma_v\sqrt{V}$.
 
+??? success "Solution to Exercise 1"
+    The general one-factor SV model under the risk-neutral measure is:
+
+    $$
+    dS_t = rS_t\,dt + \sigma(V_t)\,S_t\,dW_t^S
+    $$
+
+    $$
+    dV_t = \mu(V_t)\,dt + \eta(V_t)\,dW_t^V
+    $$
+
+    $$
+    d\langle W^S, W^V \rangle_t = \rho\,dt
+    $$
+
+    where $\sigma(\cdot)$, $\mu(\cdot)$, and $\eta(\cdot)$ are the three coefficient functions that specify the model. The Heston model corresponds to the choices:
+
+    - **Volatility function:** $\sigma(V) = \sqrt{V}$. The state variable $V_t$ represents instantaneous variance directly, so the instantaneous volatility of the asset price is $\sqrt{V_t}$.
+
+    - **Variance drift:** $\mu(V) = \kappa(\theta - V)$. This is a linear (affine) function of $V$, producing mean-reverting dynamics with speed $\kappa$ and target $\theta$.
+
+    - **Variance diffusion:** $\eta(V) = \sigma_v\sqrt{V}$. The diffusion coefficient is proportional to $\sqrt{V}$, making the variance process a CIR (Cox-Ingersoll-Ross) diffusion.
+
+    Substituting these into the general framework:
+
+    $$
+    dS_t = rS_t\,dt + \sqrt{V_t}\,S_t\,dW_t^S
+    $$
+
+    $$
+    dV_t = \kappa(\theta - V_t)\,dt + \sigma_v\sqrt{V_t}\,dW_t^V
+    $$
+
+    which is precisely the Heston SDE system. The key structural property is that both $\mu(V) = \kappa\theta - \kappa V$ and $\eta^2(V) = \sigma_v^2 V$ are affine functions of $V$, which is the source of the model's analytical tractability.
+
 ---
 
 **Exercise 2.** For the Hull-White SV model where the variance follows a GBM $dV_t = \mu V_t\,dt + \sigma_v V_t\,dW_t^V$, explain why the diffusion coefficient $\sigma_v V_t$ is not affine in $V_t$ (it is linear, but the squared diffusion $\sigma_v^2 V_t^2$ is quadratic). Why does this prevent a closed-form characteristic function?
+
+??? success "Solution to Exercise 2"
+    In the Hull-White (1987) SV model, the variance follows a geometric Brownian motion:
+
+    $$
+    dV_t = \mu V_t\,dt + \sigma_v V_t\,dW_t^V
+    $$
+
+    The diffusion coefficient is $\eta(V) = \sigma_v V$, which is linear in $V$. However, the **squared diffusion** (the instantaneous variance of $V_t$) is:
+
+    $$
+    \eta^2(V) = \sigma_v^2 V^2
+    $$
+
+    This is **quadratic** in $V$, not affine. For a process to be affine, we need both the drift and the elements of the diffusion matrix $\Sigma\Sigma^\top$ to be affine (linear plus constant) in the state variables. The drift $\mu V$ is linear (hence affine), but $\sigma_v^2 V^2$ is quadratic.
+
+    This prevents the exponential-affine ansatz from working. If one substitutes $\phi = \exp(C + DV + iux)$ into the Feynman-Kac PDE for the Hull-White model, the $\frac{1}{2}\sigma_v^2 V^2 D^2$ term generates a $V^2$ dependence that cannot be absorbed into the $V^0$ and $V^1$ coefficients. The separation of the PDE into ODEs for $C$ and $D$ fails because a $V^2$ term appears with no corresponding degree of freedom in the ansatz.
+
+    Without a closed-form characteristic function, pricing European options requires either Monte Carlo simulation (slow for calibration) or numerical PDE methods (computationally expensive in two spatial dimensions). This is the fundamental computational disadvantage of non-affine SV models.
 
 ---
 
 **Exercise 3.** The SABR model has dynamics $dF_t = \sigma_t F_t^\beta\,dW_t^F$. For $\beta = 1$ (log-normal SABR), the forward price is a GBM with stochastic volatility. Compare this to the Heston model and explain why SABR lacks a closed-form characteristic function for general $\beta$.
 
+??? success "Solution to Exercise 3"
+    In the log-normal SABR model ($\beta = 1$), the dynamics are:
+
+    $$
+    dF_t = \sigma_t F_t\,dW_t^F, \qquad d\sigma_t = \alpha\,\sigma_t\,dW_t^\sigma
+    $$
+
+    The volatility $\sigma_t$ follows a driftless geometric Brownian motion. Comparing with Heston:
+
+    - **Heston** models *variance* $V_t$ with a mean-reverting CIR process: the drift is $\kappa(\theta - V_t)$ and the diffusion is $\sigma_v\sqrt{V_t}$.
+    - **SABR** models *volatility* $\sigma_t$ with a GBM: the drift is zero and the diffusion is $\alpha\sigma_t$.
+
+    For general $\beta$, the asset dynamics $dF_t = \sigma_t F_t^\beta\,dW_t^F$ introduce a nonlinear dependence on $F_t$ through $F_t^\beta$. The instantaneous variance of the log-price involves $\sigma_t^2 F_t^{2(\beta-1)}$, which depends on both state variables in a non-affine way. This means the joint process $(F_t, \sigma_t)$ is not affine.
+
+    Even rewriting in terms of $\ln F_t$ and $\sigma_t$ (or $\sigma_t^2$), the coefficients of the resulting PDE are not affine in the state variables for $\beta \neq 0$ or $\beta \neq 1$. Therefore, the exponential-affine ansatz for the characteristic function fails, and no closed-form CF exists for general $\beta$. The celebrated Hagan formula for SABR implied volatility is an asymptotic approximation (valid for short maturities), not an exact result derived from a characteristic function.
+
 ---
 
 **Exercise 4.** The 3/2 model uses $dV_t = \kappa V_t(\theta - V_t)\,dt + \sigma_v V_t^{3/2}\,dW_t^V$. Show that the substitution $Y_t = 1/V_t$ transforms this into a CIR process for $Y_t$. What does this tell you about the tractability of the 3/2 model?
+
+??? success "Solution to Exercise 4"
+    Starting from the 3/2 model:
+
+    $$
+    dV_t = \kappa V_t(\theta - V_t)\,dt + \sigma_v V_t^{3/2}\,dW_t^V
+    $$
+
+    Apply Ito's lemma to $Y_t = 1/V_t$. With $f(V) = 1/V$, we have $f'(V) = -1/V^2$ and $f''(V) = 2/V^3$:
+
+    $$
+    dY_t = f'(V_t)\,dV_t + \tfrac{1}{2}f''(V_t)\,(dV_t)^2
+    $$
+
+    $$
+    = -\frac{1}{V_t^2}\bigl[\kappa V_t(\theta - V_t)\,dt + \sigma_v V_t^{3/2}\,dW_t\bigr] + \tfrac{1}{2}\cdot\frac{2}{V_t^3}\cdot\sigma_v^2 V_t^3\,dt
+    $$
+
+    $$
+    = \left[-\frac{\kappa(\theta - V_t)}{V_t} + \sigma_v^2\right]dt - \frac{\sigma_v}{\sqrt{V_t}}\,dW_t
+    $$
+
+    Substituting $V_t = 1/Y_t$:
+
+    $$
+    dY_t = \left[-\kappa\theta Y_t + \kappa + \sigma_v^2\right]dt - \sigma_v\sqrt{Y_t}\,dW_t
+    $$
+
+    $$
+    = \bigl[(\kappa + \sigma_v^2) - \kappa\theta\,Y_t\bigr]\,dt - \sigma_v\sqrt{Y_t}\,dW_t
+    $$
+
+    This is a CIR process for $Y_t = 1/V_t$ with parameters:
+
+    - Mean-reversion speed: $\kappa\theta$
+    - Long-run mean: $(\kappa + \sigma_v^2)/(\kappa\theta)$
+    - Vol-of-vol: $\sigma_v$
+
+    The negative sign on the diffusion term is immaterial (it can be absorbed by redefining the Brownian motion). Since $Y_t$ follows a CIR process, it is an affine diffusion in the variable $Y_t = 1/V_t$. This means the characteristic function of $Y_T$ (and hence functionals of $V_T$) can be computed using the same Riccati ODE machinery as the Heston model, albeit with different coefficients and applied to the reciprocal variable. The 3/2 model is therefore tractable -- but through the reciprocal transformation rather than directly.
 
 ---
 
 **Exercise 5.** List the key properties that make the Heston model the standard choice for Fourier-based pricing: (i) affine structure, (ii) closed-form CF, (iii) mean-reverting variance, (iv) non-negative variance. Which of these properties does the Stein-Stein model (Gaussian variance) fail to satisfy?
 
+??? success "Solution to Exercise 5"
+    The key properties that make Heston the standard for Fourier-based pricing are:
+
+    **(i) Affine structure.** Both the drift $\mu(V) = \kappa(\theta - V)$ and the squared diffusion $\eta^2(V) = \sigma_v^2 V$ are affine in $V$. This allows the exponential-affine ansatz for the characteristic function, reducing a 2D PDE to Riccati ODEs.
+
+    **(ii) Closed-form characteristic function.** The Riccati ODEs for the Heston model can be solved in closed form, giving an explicit expression for $\phi(u, \tau)$. This enables evaluation of the CF at any frequency $u$ without numerical ODE integration.
+
+    **(iii) Mean-reverting variance.** The CIR drift $\kappa(\theta - V_t)$ pulls variance toward $\theta$, producing a stationary distribution and ensuring that the implied volatility term structure is well-behaved at long maturities.
+
+    **(iv) Non-negative variance.** The CIR process guarantees $V_t \geq 0$ for all $t$ (and $V_t > 0$ if the Feller condition holds). Variance is physically non-negative, so the model is economically consistent.
+
+    The **Stein-Stein model** uses an OU process for volatility: $d\sigma_t = \kappa(\theta - \sigma_t)\,dt + \sigma_v\,dW_t$. The constant diffusion $\sigma_v$ means volatility is Gaussian and can become **negative**, violating property (iv). Since variance is $V_t = \sigma_t^2$, negative volatility is unphysical. The Stein-Stein model satisfies (iii) but fails (iv). Properties (i) and (ii) are partially recovered by working with $V_t = \sigma_t^2$ (Schobel-Zhu, 1999), but the derivation is more complex, the resulting CF involves three Riccati equations instead of two, and the model still allows unphysical negative volatility paths.
+
 ---
 
 **Exercise 6.** For calibration to a panel of option prices across strikes and maturities, explain why having a closed-form characteristic function (as in Heston) is a decisive computational advantage over models requiring numerical PDE solutions for each parameter evaluation (as in SABR with general $\beta$).
+
+??? success "Solution to Exercise 6"
+    In calibration, the model parameters $(\kappa, \theta, \sigma_v, \rho, V_0)$ are adjusted to minimize the distance between model-implied and market-observed option prices (or implied volatilities) across a panel of strikes $K_1, \ldots, K_N$ and maturities $T_1, \ldots, T_M$.
+
+    **With a closed-form CF (Heston):**
+
+    - For each parameter vector proposed by the optimizer, the CF $\phi(u, \tau)$ is evaluated directly from the explicit formula.
+    - Option prices for all $N \times M$ instruments are computed via FFT (Fast Fourier Transform) or the COS method in $O(N \log N)$ operations per maturity, with each CF evaluation costing $O(1)$.
+    - A single calibration iteration evaluates perhaps $10^2$--$10^3$ options in milliseconds.
+    - The optimizer typically requires $10^2$--$10^3$ iterations, giving total calibration time of seconds to minutes.
+
+    **Without a closed-form CF (e.g., SABR with general $\beta$):**
+
+    - For each parameter vector, one must solve a 2D PDE or run Monte Carlo to obtain each option price.
+    - A 2D PDE solve with adequate resolution ($100 \times 100$ grid) requires $O(10^4)$ operations per time step and $O(10^2)$ time steps, so $O(10^6)$ per option price.
+    - Monte Carlo with $10^5$ paths and $10^2$ time steps requires $O(10^7)$ operations per option price.
+    - Evaluating $10^2$--$10^3$ options per calibration iteration becomes extremely expensive.
+
+    The ratio of computational cost is roughly $10^3$--$10^6$ times more expensive per calibration iteration without a CF. Since calibration must be performed frequently (daily or intraday for trading desks), the closed-form CF is not just convenient but practically essential for production use. This is the decisive advantage of the Heston model's affine structure.

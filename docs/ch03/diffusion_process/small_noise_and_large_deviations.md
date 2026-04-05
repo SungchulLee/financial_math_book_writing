@@ -173,46 +173,6 @@ Under $\mathbb{Q}^u$, the process $\widetilde{W}_t := W_t - \frac{1}{\sqrt{\vare
 
 **Exercise 1.** Consider the small-noise SDE $\mathrm{d}X_t^\varepsilon = -X_t^\varepsilon\,\mathrm{d}t + \sqrt{\varepsilon}\,\mathrm{d}W_t$ with $X_0^\varepsilon = 1$. Write down the deterministic skeleton $\bar{x}(t)$ (the ODE solution with $\varepsilon = 0$). For the path $\phi(t) = e^{-t} + \delta\sin(\pi t/T)$ on $[0, T]$, compute the control $u(t)$ such that $\dot{\phi} = b(\phi) + u$ and express the rate function $I_{0,T}(\phi)$ as an integral involving $u$.
 
----
-
-**Exercise 2.** Let $b(x) = -V'(x)$ with $V(x) = \frac{1}{2}x^2$ and $\sigma = 1$. Compute the quasipotential $U(y) = \inf\{I_{0,\infty}(\phi) : \phi(0) = 0,\, \phi(\infty) = y\}$ and verify that $U(y) = V(y) - V(0) = \frac{1}{2}y^2$. Show that the Hamiltonian $H(x, p) = -V'(x)\,p + \frac{1}{2}p^2$ satisfies $H(x, \nabla U(x)) = 0$.
-
----
-
-**Exercise 3.** Consider the double-well potential $V(x) = \frac{1}{4}x^4 - \frac{1}{2}x^2$ with minima at $x = \pm 1$ and a saddle at $x = 0$. For the gradient diffusion $\mathrm{d}X_t^\varepsilon = -V'(X_t^\varepsilon)\,\mathrm{d}t + \sqrt{\varepsilon}\,\mathrm{d}W_t$ started at $X_0 = -1$, compute the potential barrier $\Delta V = V(0) - V(-1)$ and give the exponential rate at which $X^\varepsilon$ escapes from the left well to the right well as $\varepsilon \to 0$.
-
----
-
-**Exercise 4.** Explain the Girsanov-based derivation of the rate function. For the small-noise SDE $\mathrm{d}X_t^\varepsilon = b(X_t^\varepsilon)\,\mathrm{d}t + \sqrt{\varepsilon}\,\sigma(X_t^\varepsilon)\,\mathrm{d}W_t$, describe how shifting $W_t$ by $u(t)/\sqrt{\varepsilon}$ via Girsanov's theorem produces a change-of-measure density proportional to $\exp(-I_{0,T}(\phi)/\varepsilon)$. Why does Novikov's condition hold for a deterministic control $u \in L^2$?
-
----
-
-**Exercise 5.** State the upper and lower bounds of the Freidlin–Wentzell LDP. For a continuity set $A$ (where $\inf_{\mathrm{int}(A)} I = \inf_{\bar{A}} I$), show that the two bounds combine to give
-
-$$
-\lim_{\varepsilon \downarrow 0}\;\varepsilon\log\mathbb{P}(X^\varepsilon \in A) = -\inf_{\phi \in A} I_{0,T}(\phi).
-$$
-
-Give a concrete example of a set $A$ in path space that is a continuity set and one that is not.
-
----
-
-**Exercise 6.** For the small-noise diffusion $\mathrm{d}X_t^\varepsilon = b(X_t^\varepsilon)\,\mathrm{d}t + \sqrt{\varepsilon}\,\sigma(X_t^\varepsilon)\,\mathrm{d}W_t$, define the Hamiltonian $H(x, p) = b(x) \cdot p + \frac{1}{2}p^\top a(x)\,p$ with $a = \sigma\sigma^\top$. Write down the Hamilton equations (the Euler–Lagrange equations for minimising $I_{0,T}$) and show that the instanton path $\phi^*$ satisfies
-
-$$
-\dot{\phi}^* = b(\phi^*) + a(\phi^*)\,p^*, \qquad \dot{p}^* = -(\nabla_x b)^\top p^* - \frac{1}{2}\nabla_x(p^{*\top} a\,p^*),
-$$
-
-where $p^*$ is the conjugate momentum.
-
----
-
-**Exercise 7.** Consider the two-dimensional system $\mathrm{d}X_t^\varepsilon = A X_t^\varepsilon\,\mathrm{d}t + \sqrt{\varepsilon}\,\mathrm{d}W_t$ where $A$ is a $2 \times 2$ stable matrix (all eigenvalues have negative real part) and $X_0^\varepsilon = 0$. Write down the rate function $I_{0,T}(\phi)$ for a path $\phi$ with $\phi(0) = 0$. Show that the quasipotential $U(y) = \inf_{\phi(0) = 0,\, \phi(\infty) = y} I_{0,\infty}(\phi)$ is a quadratic form $U(y) = \frac{1}{2}y^\top Q\,y$ and find the matrix equation that $Q$ must satisfy in terms of $A$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The deterministic skeleton solves $\dot{\bar{x}}(t) = -\bar{x}(t)$ with $\bar{x}(0) = 1$, giving
 
@@ -245,6 +205,10 @@ where $p^*$ is the conjugate momentum.
     $$
 
     Note that as $\delta \to 0$, $\phi \to \bar{x}$ and $I_{0,T}(\phi) \to 0$, confirming that the skeleton has zero cost.
+
+---
+
+**Exercise 2.** Let $b(x) = -V'(x)$ with $V(x) = \frac{1}{2}x^2$ and $\sigma = 1$. Compute the quasipotential $U(y) = \inf\{I_{0,\infty}(\phi) : \phi(0) = 0,\, \phi(\infty) = y\}$ and verify that $U(y) = V(y) - V(0) = \frac{1}{2}y^2$. Show that the Hamiltonian $H(x, p) = -V'(x)\,p + \frac{1}{2}p^2$ satisfies $H(x, \nabla U(x)) = 0$.
 
 ??? success "Solution to Exercise 2"
     With $b(x) = -V'(x) = -x$ and $\sigma = 1$ (so $a = 1$), the rate function for a path $\phi$ from $\phi(0) = 0$ to $\phi(\infty) = y$ is
@@ -291,6 +255,10 @@ where $p^*$ is the conjugate momentum.
 
     and $H(x, \nabla U(x)) = 0$ is verified. $\square$
 
+---
+
+**Exercise 3.** Consider the double-well potential $V(x) = \frac{1}{4}x^4 - \frac{1}{2}x^2$ with minima at $x = \pm 1$ and a saddle at $x = 0$. For the gradient diffusion $\mathrm{d}X_t^\varepsilon = -V'(X_t^\varepsilon)\,\mathrm{d}t + \sqrt{\varepsilon}\,\mathrm{d}W_t$ started at $X_0 = -1$, compute the potential barrier $\Delta V = V(0) - V(-1)$ and give the exponential rate at which $X^\varepsilon$ escapes from the left well to the right well as $\varepsilon \to 0$.
+
 ??? success "Solution to Exercise 3"
     The potential is $V(x) = \frac{1}{4}x^4 - \frac{1}{2}x^2$. The critical points satisfy $V'(x) = x^3 - x = 0$, giving $x = 0, \pm 1$.
 
@@ -311,6 +279,10 @@ where $p^*$ is the conjugate momentum.
     $$
 
     as $\varepsilon \downarrow 0$. The exponential rate is $2\Delta V = 1/2$, so rare transitions between wells become exponentially suppressed as the noise vanishes.
+
+---
+
+**Exercise 4.** Explain the Girsanov-based derivation of the rate function. For the small-noise SDE $\mathrm{d}X_t^\varepsilon = b(X_t^\varepsilon)\,\mathrm{d}t + \sqrt{\varepsilon}\,\sigma(X_t^\varepsilon)\,\mathrm{d}W_t$, describe how shifting $W_t$ by $u(t)/\sqrt{\varepsilon}$ via Girsanov's theorem produces a change-of-measure density proportional to $\exp(-I_{0,T}(\phi)/\varepsilon)$. Why does Novikov's condition hold for a deterministic control $u \in L^2$?
 
 ??? success "Solution to Exercise 4"
     Consider the small-noise SDE $\mathrm{d}X_t^\varepsilon = b(X_t^\varepsilon)\,\mathrm{d}t + \sqrt{\varepsilon}\,\sigma(X_t^\varepsilon)\,\mathrm{d}W_t$. To force $X^\varepsilon$ to follow a path $\phi$ with $\dot{\phi} = b(\phi) + \sigma(\phi)u$, we shift the Brownian motion by $u(t)/\sqrt{\varepsilon}$.
@@ -337,6 +309,16 @@ where $p^*$ is the conjugate momentum.
 
     **Novikov's condition** requires $\mathbb{E}\exp\!\left(\frac{1}{2\varepsilon}\int_0^T\|u(t)\|^2\,\mathrm{d}t\right) < \infty$. Since $u \in L^2([0,T];\mathbb{R}^m)$ is **deterministic**, $\int_0^T\|u\|^2\,\mathrm{d}t$ is a finite constant (not random). Therefore the exponential is a finite constant, and Novikov's condition holds trivially.
 
+---
+
+**Exercise 5.** State the upper and lower bounds of the Freidlin–Wentzell LDP. For a continuity set $A$ (where $\inf_{\mathrm{int}(A)} I = \inf_{\bar{A}} I$), show that the two bounds combine to give
+
+$$
+\lim_{\varepsilon \downarrow 0}\;\varepsilon\log\mathbb{P}(X^\varepsilon \in A) = -\inf_{\phi \in A} I_{0,T}(\phi).
+$$
+
+Give a concrete example of a set $A$ in path space that is a continuity set and one that is not.
+
 ??? success "Solution to Exercise 5"
     The Freidlin–Wentzell LDP states:
 
@@ -357,6 +339,16 @@ where $p^*$ is the conjugate momentum.
     **Continuity set example:** For the SDE $\mathrm{d}X^\varepsilon = -X^\varepsilon\,\mathrm{d}t + \sqrt{\varepsilon}\,\mathrm{d}W$ with $X_0 = 0$, consider $A = \{\phi : \|\phi - \bar{x}\|_\infty > \delta\}$ for some $\delta > 0$. This set has $\mathrm{int}(A) = A$ (it is open) and $\bar{A} = \{\phi : \|\phi - \bar{x}\|_\infty \ge \delta\}$. If the infimum of $I$ over $\bar{A}$ is not attained on the boundary $\{\|\phi - \bar{x}\|_\infty = \delta\}$ exclusively (which generically it is), then $\inf_{\mathrm{int}(A)}I = \inf_{\bar{A}}I$ and $A$ is a continuity set.
 
     **Non-continuity set example:** The singleton $A = \{\bar{x}\}$ (the deterministic skeleton itself). Here $\mathrm{int}(A) = \emptyset$, so $\inf_{\mathrm{int}(A)}I = +\infty$, while $\inf_{\bar{A}}I = I(\bar{x}) = 0$. Since $+\infty \ne 0$, this is not a continuity set.
+
+---
+
+**Exercise 6.** For the small-noise diffusion $\mathrm{d}X_t^\varepsilon = b(X_t^\varepsilon)\,\mathrm{d}t + \sqrt{\varepsilon}\,\sigma(X_t^\varepsilon)\,\mathrm{d}W_t$, define the Hamiltonian $H(x, p) = b(x) \cdot p + \frac{1}{2}p^\top a(x)\,p$ with $a = \sigma\sigma^\top$. Write down the Hamilton equations (the Euler–Lagrange equations for minimising $I_{0,T}$) and show that the instanton path $\phi^*$ satisfies
+
+$$
+\dot{\phi}^* = b(\phi^*) + a(\phi^*)\,p^*, \qquad \dot{p}^* = -(\nabla_x b)^\top p^* - \frac{1}{2}\nabla_x(p^{*\top} a\,p^*),
+$$
+
+where $p^*$ is the conjugate momentum.
 
 ??? success "Solution to Exercise 6"
     The rate function is $I_{0,T}(\phi) = \frac{1}{2}\int_0^T\|u(t)\|^2\,\mathrm{d}t$ where $\dot{\phi} = b(\phi) + \sigma(\phi)u$, i.e., $u = \sigma(\phi)^{-1}(\dot{\phi} - b(\phi))$. This is a calculus of variations problem. Define the Lagrangian
@@ -388,6 +380,10 @@ where $p^*$ is the conjugate momentum.
     $$
 
     where the second equation accounts for the $\phi$-dependence of both $b$ and $a$. The instanton path $\phi^*$ satisfies this system of $2d$ ODEs with boundary conditions $\phi^*(0) = x_0$ and $\phi^*(T) \in$ target set. $\square$
+
+---
+
+**Exercise 7.** Consider the two-dimensional system $\mathrm{d}X_t^\varepsilon = A X_t^\varepsilon\,\mathrm{d}t + \sqrt{\varepsilon}\,\mathrm{d}W_t$ where $A$ is a $2 \times 2$ stable matrix (all eigenvalues have negative real part) and $X_0^\varepsilon = 0$. Write down the rate function $I_{0,T}(\phi)$ for a path $\phi$ with $\phi(0) = 0$. Show that the quasipotential $U(y) = \inf_{\phi(0) = 0,\, \phi(\infty) = y} I_{0,\infty}(\phi)$ is a quadratic form $U(y) = \frac{1}{2}y^\top Q\,y$ and find the matrix equation that $Q$ must satisfy in terms of $A$.
 
 ??? success "Solution to Exercise 7"
     With $b(\phi) = A\phi$ and $\sigma = I$ (so $a = I$), the rate function for a path $\phi$ with $\phi(0) = 0$ is

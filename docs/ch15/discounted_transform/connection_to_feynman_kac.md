@@ -211,22 +211,152 @@ The Feynman-Kac theorem connects the discounted conditional expectation $V(t, x)
 
 **Exercise 1.** State the Feynman-Kac theorem for the function $V(t, x) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r(X_s)\,ds}\,h(X_T) \mid X_t = x]$. Write down the PDE that $V$ satisfies, including the terminal condition. For the Black-Scholes model with $h(x) = (e^x - K)^+$, identify the generator $\mathcal{A}$ and the discount rate $r$.
 
+??? success "Solution to Exercise 1"
+    **Feynman-Kac Theorem.** Let $X_t$ be an Ito diffusion with generator $\mathcal{A}$ and let $r(x)$ be the short rate. Define
+
+    $$
+    V(t, x) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r(X_s)\,ds}\,h(X_T) \;\middle|\; X_t = x\right]
+    $$
+
+    Under suitable regularity conditions, $V$ is the unique classical solution of the PDE
+
+    $$
+    \frac{\partial V}{\partial t}(t, x) + \mathcal{A}V(t, x) - r(x)\,V(t, x) = 0, \qquad V(T, x) = h(x)
+    $$
+
+    For the Black-Scholes model with $X_t = \log S_t$, the dynamics are $dX_t = (r - \frac{1}{2}\sigma^2)\,dt + \sigma\,dW_t$. The generator is
+
+    $$
+    \mathcal{A} = (r - \tfrac{1}{2}\sigma^2)\frac{\partial}{\partial x} + \tfrac{1}{2}\sigma^2\frac{\partial^2}{\partial x^2}
+    $$
+
+    The discount rate is the constant $r(x) = r$, and the terminal condition for a call is $h(x) = (e^x - K)^+$. The Feynman-Kac PDE therefore reads
+
+    $$
+    \frac{\partial V}{\partial t} + (r - \tfrac{1}{2}\sigma^2)\frac{\partial V}{\partial x} + \tfrac{1}{2}\sigma^2\frac{\partial^2 V}{\partial x^2} - rV = 0, \qquad V(T, x) = (e^x - K)^+
+    $$
+
 ---
 
 **Exercise 2.** For a one-dimensional affine diffusion $dX_t = (\kappa_0 + \kappa_1 X_t)\,dt + \sqrt{\sigma_0 + \sigma_1 X_t}\,dW_t$ with short rate $r(x) = \rho_0 + \rho_1 x$, substitute the exponential-affine ansatz $V(\tau, x) = e^{\phi(\tau) + \psi(\tau)x}$ into the Feynman-Kac PDE $\frac{\partial V}{\partial \tau} = \mathcal{A}V - rV$ and derive the extended Riccati system by matching constant and linear terms in $x$.
+
+??? success "Solution to Exercise 2"
+    The generator for the one-dimensional affine diffusion is
+
+    $$
+    \mathcal{A} = (\kappa_0 + \kappa_1 x)\frac{\partial}{\partial x} + \frac{1}{2}(\sigma_0 + \sigma_1 x)\frac{\partial^2}{\partial x^2}
+    $$
+
+    With $r(x) = \rho_0 + \rho_1 x$, the Feynman-Kac PDE in backward time $\tau = T - t$ is
+
+    $$
+    \frac{\partial V}{\partial \tau} = (\kappa_0 + \kappa_1 x)\frac{\partial V}{\partial x} + \frac{1}{2}(\sigma_0 + \sigma_1 x)\frac{\partial^2 V}{\partial x^2} - (\rho_0 + \rho_1 x)V
+    $$
+
+    Substituting the ansatz $V = e^{\phi(\tau) + \psi(\tau)x}$, the derivatives are $\frac{\partial V}{\partial \tau} = (\phi' + \psi' x)V$, $\frac{\partial V}{\partial x} = \psi V$, and $\frac{\partial^2 V}{\partial x^2} = \psi^2 V$. Dividing through by $V > 0$:
+
+    $$
+    \phi' + \psi' x = (\kappa_0 + \kappa_1 x)\psi + \frac{1}{2}(\sigma_0 + \sigma_1 x)\psi^2 - \rho_0 - \rho_1 x
+    $$
+
+    **Constant terms ($x^0$):**
+
+    $$
+    \phi'(\tau) = \kappa_0 \psi + \frac{1}{2}\sigma_0 \psi^2 - \rho_0
+    $$
+
+    **Linear terms (coefficient of $x$):**
+
+    $$
+    \psi'(\tau) = \kappa_1 \psi + \frac{1}{2}\sigma_1 \psi^2 - \rho_1
+    $$
+
+    This is the extended Riccati system. The $\psi$-equation is a scalar Riccati ODE with constant term $-\rho_1$, linear term $\kappa_1$, and quadratic coefficient $\frac{1}{2}\sigma_1$. Once $\psi(\tau)$ is obtained, $\phi(\tau)$ is found by direct integration.
 
 ---
 
 **Exercise 3.** Verify the Feynman-Kac solution for the Vasicek bond price. Starting from $V(\tau, x) = P(t, T) = e^{A(\tau) + B(\tau)x}$ with the Vasicek generator, show that $V$ satisfies $\frac{\partial V}{\partial \tau} = \kappa(\theta - x)\frac{\partial V}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 V}{\partial x^2} - xV$ by computing each derivative and substituting.
 
+??? success "Solution to Exercise 3"
+    For the Vasicek model $dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t$, the generator is $\mathcal{A} = \kappa(\theta - x)\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2}{\partial x^2}$ and the killing rate is $c(x) = x$.
+
+    With $V = e^{A(\tau) + B(\tau)x}$, compute each term:
+
+    - $\frac{\partial V}{\partial \tau} = (A' + B' x)V$
+    - $\frac{\partial V}{\partial x} = BV$
+    - $\frac{\partial^2 V}{\partial x^2} = B^2 V$
+
+    Substituting into $\frac{\partial V}{\partial \tau} = \mathcal{A}V - xV$:
+
+    $$
+    (A' + B'x)V = \kappa(\theta - x)BV + \frac{1}{2}\sigma^2 B^2 V - xV
+    $$
+
+    Dividing by $V > 0$ and collecting terms:
+
+    **Constant terms:** $A' = \kappa\theta B + \frac{1}{2}\sigma^2 B^2$
+
+    **Coefficient of $x$:** $B' = -\kappa B - 1$
+
+    The $B$-equation $B' = -\kappa B - 1$ with $B(0) = 0$ has solution $B(\tau) = -\frac{1 - e^{-\kappa\tau}}{\kappa}$. One can verify: $B'(\tau) = -e^{-\kappa\tau}$ and $-\kappa B(\tau) - 1 = -\kappa \cdot \left(-\frac{1 - e^{-\kappa\tau}}{\kappa}\right) - 1 = (1 - e^{-\kappa\tau}) - 1 = -e^{-\kappa\tau}$, confirming equality. Also $B(0) = -\frac{1 - 1}{\kappa} = 0$, matching the initial condition.
+
 ---
 
 **Exercise 4.** Explain why the Feynman-Kac approach converts the computational cost from "exponential in dimension $d$" (for PDE grid methods) to "polynomial in $d$" (for Riccati ODE methods) when the process is affine. What is the dominant cost in the Riccati approach as the number of factors $d$ increases?
+
+??? success "Solution to Exercise 4"
+    **PDE grid methods** discretize the spatial domain on a grid with $N$ points per dimension. For a $d$-dimensional PDE, the total number of grid points is $N^d$. Each time step of an implicit finite difference scheme requires solving a linear system of size $N^d$, giving cost $O(N^d)$ per time step and $O(N_\tau \cdot N^d)$ total. For $d = 5$ and $N = 100$, this is $10^{10}$---prohibitively expensive.
+
+    **Riccati ODE methods** solve a system of $d + 1$ scalar ODEs (one for $\tilde{\phi}$ and $d$ for $\tilde{\psi}_1, \ldots, \tilde{\psi}_d$). Each ODE is one-dimensional, and standard ODE solvers (e.g., Runge-Kutta) have cost $O(N_\tau)$ per equation, giving total cost $O((d+1) \cdot N_\tau)$---linear in $d$.
+
+    The dominant cost as $d$ increases is the evaluation of the quadratic form $\frac{1}{2}\langle \tilde{\psi}, a_j \tilde{\psi} \rangle$ in each $\tilde{\psi}_j$-equation, which involves $O(d^2)$ operations per evaluation (matrix-vector product). Thus the total cost scales as $O(d^2 \cdot N_\tau)$, which is polynomial in $d$ rather than exponential.
 
 ---
 
 **Exercise 5.** The Feynman-Kac theorem requires regularity conditions on the coefficients and the terminal function $h$. For the payoff $h(x) = (e^x - K)^+$, explain why $h$ is not smooth at $x = \log K$ and discuss how this affects the validity of the Feynman-Kac representation. Does the exponential-affine form still apply?
 
+??? success "Solution to Exercise 5"
+    The payoff $h(x) = (e^x - K)^+$ has a kink at $x = \log K$: it equals $0$ for $x < \log K$ and $e^x - K$ for $x \geq \log K$. The function is continuous but not differentiable at $x = \log K$ (the left derivative is $0$ and the right derivative is $K$), so $h$ is not a $C^2$ function.
+
+    The classical Feynman-Kac theorem requires $h$ to have sufficient smoothness (or polynomial growth conditions) for the solution $V(t, x)$ to be a classical solution of the PDE. Since $h$ is not smooth at $x = \log K$, the PDE solution $V(t, x)$ may not be classical at $t = T$. However, for $t < T$ (strictly before maturity), the diffusion process smooths the terminal condition, and $V(t, x)$ is indeed $C^{1,2}$ and satisfies the PDE classically.
+
+    The exponential-affine form $V = e^{\tilde{\phi} + \langle \tilde{\psi}, x \rangle}$ does **not** directly apply to the call payoff because this ansatz corresponds to the specific terminal condition $h(x) = e^{\langle u, x \rangle}$, not $(e^x - K)^+$. To price the call, one uses Fourier inversion: express $h$ as an integral of exponential functions, apply the exponential-affine formula to each, and integrate. The Feynman-Kac representation remains valid (in the mild/viscosity sense), but the affine form is used indirectly through the characteristic function, not directly for the call payoff.
+
 ---
 
 **Exercise 6.** For a two-factor affine model with state vector $(r_t, V_t)$ and short rate $r(x) = x_1$, write down the Feynman-Kac PDE in two spatial dimensions. Show that the exponential-affine ansatz $V(\tau, x_1, x_2) = e^{\phi(\tau) + \psi_1(\tau)x_1 + \psi_2(\tau)x_2}$ reduces this PDE to a system of three ODEs.
+
+??? success "Solution to Exercise 6"
+    Let the two-factor affine model have state $(X_t^{(1)}, X_t^{(2)}) = (r_t, V_t)$ with dynamics
+
+    $$
+    dX^{(1)} = b_1(x)\,dt + \sigma_{11}(x)\,dW_1 + \sigma_{12}(x)\,dW_2
+    $$
+
+    $$
+    dX^{(2)} = b_2(x)\,dt + \sigma_{21}(x)\,dW_1 + \sigma_{22}(x)\,dW_2
+    $$
+
+    With $r(x) = x_1$ (so $\rho_0 = 0$, $\rho_1 = (1, 0)^T$), the Feynman-Kac PDE in two spatial dimensions is
+
+    $$
+    \frac{\partial V}{\partial \tau} = b_1(x)\frac{\partial V}{\partial x_1} + b_2(x)\frac{\partial V}{\partial x_2} + \frac{1}{2}a_{11}(x)\frac{\partial^2 V}{\partial x_1^2} + a_{12}(x)\frac{\partial^2 V}{\partial x_1 \partial x_2} + \frac{1}{2}a_{22}(x)\frac{\partial^2 V}{\partial x_2^2} - x_1 V
+    $$
+
+    where $a_{ij}(x) = \sum_k \sigma_{ik}(x)\sigma_{jk}(x)$ are the diffusion matrix entries, all affine in $x$.
+
+    Substituting the ansatz $V = e^{\phi(\tau) + \psi_1(\tau)x_1 + \psi_2(\tau)x_2}$ and dividing by $V$:
+
+    $$
+    \phi' + \psi_1' x_1 + \psi_2' x_2 = b_1 \psi_1 + b_2 \psi_2 + \frac{1}{2}a_{11}\psi_1^2 + a_{12}\psi_1\psi_2 + \frac{1}{2}a_{22}\psi_2^2 - x_1
+    $$
+
+    Since all coefficients are affine in $(x_1, x_2)$, collecting constant, $x_1$-, and $x_2$-terms yields three ODEs:
+
+    **ODE for $\phi$:** $\phi'(\tau) = F(\psi_1, \psi_2) - 0$ (constant terms)
+
+    **ODE for $\psi_1$:** $\psi_1'(\tau) = R_1(\psi_1, \psi_2) - 1$ (coefficient of $x_1$, with $-\rho_{1,1} = -1$)
+
+    **ODE for $\psi_2$:** $\psi_2'(\tau) = R_2(\psi_1, \psi_2) - 0$ (coefficient of $x_2$, with $-\rho_{1,2} = 0$)
+
+    This is a system of three scalar ODEs (two coupled for $\psi_1, \psi_2$, plus one quadrature for $\phi$), replacing the original three-dimensional PDE ($\tau, x_1, x_2$). The initial conditions are $\phi(0) = 0$, $\psi_1(0) = u_1$, $\psi_2(0) = u_2$.

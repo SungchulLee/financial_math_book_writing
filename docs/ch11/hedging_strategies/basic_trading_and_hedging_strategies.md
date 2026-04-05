@@ -198,22 +198,186 @@ This demonstrates: unhedged P&L is dominated by directional moves, static delta 
 
 **Exercise 1.** A trader constructs a long straddle by buying an ATM call and an ATM put, each priced at $\$5.00$. The combined premium is $\$10.00$. Compute the breakeven stock prices at expiry. If the underlying finishes at $S_T = 115$ with $K = 100$, what is the profit or loss?
 
+??? success "Solution to Exercise 1"
+    The long straddle consists of a long ATM call and a long ATM put, each costing $\$5.00$, so the total premium is $\$10.00$ with $K = 100$.
+
+    **Breakeven at expiry.** The position profits when the intrinsic value exceeds the premium paid.
+
+    - Upper breakeven: the call is in the money and the put expires worthless, so
+
+    $$
+    S_T - K = 10 \implies S_T = K + 10 = 110
+    $$
+
+    - Lower breakeven: the put is in the money and the call expires worthless, so
+
+    $$
+    K - S_T = 10 \implies S_T = K - 10 = 90
+    $$
+
+    **P&L at $S_T = 115$.** The call pays $115 - 100 = 15$ and the put expires worthless, so
+
+    $$
+    \text{P\&L} = 15 - 10 = +\$5.00
+    $$
+
+    The position is profitable because $S_T = 115$ lies above the upper breakeven of $110$.
+
 ---
 
 **Exercise 2.** For a short strangle with $K_1 = 90$ (put) and $K_2 = 110$ (call), both OTM, the trader collects a total premium of $\$3.50$. Determine the breakeven levels and the maximum profit. Compute the P&L at $S_T = 85$ and $S_T = 120$.
+
+??? success "Solution to Exercise 2"
+    The short strangle collects a total premium of $\$3.50$ by selling an OTM put at $K_1 = 90$ and an OTM call at $K_2 = 110$.
+
+    **Breakeven levels.** The seller loses money when the payoff on either short option exceeds the premium collected.
+
+    - Upper breakeven: the short call is exercised, so
+
+    $$
+    S_T - K_2 = 3.50 \implies S_T = 110 + 3.50 = 113.50
+    $$
+
+    - Lower breakeven: the short put is exercised, so
+
+    $$
+    K_1 - S_T = 3.50 \implies S_T = 90 - 3.50 = 86.50
+    $$
+
+    **Maximum profit.** This occurs when both options expire worthless, i.e., $K_1 \leq S_T \leq K_2$. The maximum profit is the full premium: $\$3.50$.
+
+    **P&L at $S_T = 85$.** The put is in the money: payoff $= 90 - 85 = 5$, and the call expires worthless.
+
+    $$
+    \text{P\&L} = 3.50 - 5.00 = -\$1.50
+    $$
+
+    **P&L at $S_T = 120$.** The call is in the money: payoff $= 120 - 110 = 10$, and the put expires worthless.
+
+    $$
+    \text{P\&L} = 3.50 - 10.00 = -\$6.50
+    $$
 
 ---
 
 **Exercise 3.** Using the Greek summary table, explain why a long straddle has $\Delta \approx 0$ initially but $\Gamma > 0$. As the underlying moves from $S = 100$ to $S = 108$, how does the portfolio delta change? What must the trader do to maintain delta neutrality?
 
+??? success "Solution to Exercise 3"
+    **Why $\Delta \approx 0$ initially.** A long straddle at the money consists of a long call with $\Delta_{\text{call}} \approx +0.5$ and a long put with $\Delta_{\text{put}} \approx -0.5$. The portfolio delta is
+
+    $$
+    \Delta_{\text{straddle}} = \Delta_{\text{call}} + \Delta_{\text{put}} \approx 0.5 + (-0.5) = 0
+    $$
+
+    **Why $\Gamma > 0$.** Both long options have positive gamma. Since gamma is always non-negative for long vanilla options:
+
+    $$
+    \Gamma_{\text{straddle}} = \Gamma_{\text{call}} + \Gamma_{\text{put}} > 0
+    $$
+
+    **Delta change as $S$ moves from 100 to 108.** As the underlying rises, both the call delta and the put delta increase (both move toward $+1$ and $0$, respectively). The rate of change is governed by gamma. With $\delta S = 8$:
+
+    $$
+    \Delta_{\text{new}} \approx \Delta_{\text{old}} + \Gamma_{\text{straddle}} \cdot \delta S = 0 + \Gamma_{\text{straddle}} \cdot 8 > 0
+    $$
+
+    The portfolio becomes net long delta. The call delta increases toward $1$ while the put delta moves toward $0$, so the positive gamma ensures the straddle picks up positive delta on an up-move.
+
+    **Maintaining delta neutrality.** The trader must sell $\Gamma_{\text{straddle}} \times 8$ shares of the underlying to offset the newly acquired positive delta and restore $\Delta_{\text{portfolio}} = 0$.
+
 ---
 
 **Exercise 4.** A risk reversal is constructed by buying a call at $K = 110$ and selling a put at $K = 90$ with $S_0 = 100$. If the call costs $\$3.00$ and the put premium received is $\$3.50$, what is the net premium? Compute the P&L at $S_T = 80$, $100$, and $120$. Explain why this strategy expresses both a directional and a volatility view.
+
+??? success "Solution to Exercise 4"
+    **Net premium.** The trader buys the call for $\$3.00$ and receives $\$3.50$ from selling the put:
+
+    $$
+    \text{Net premium} = -3.00 + 3.50 = +\$0.50 \text{ (credit)}
+    $$
+
+    **P&L at $S_T = 80$.** The call expires worthless. The short put is exercised: the trader must buy at $K = 90$ while the stock is worth $80$, costing $90 - 80 = 10$.
+
+    $$
+    \text{P\&L} = 0.50 - 10.00 = -\$9.50
+    $$
+
+    **P&L at $S_T = 100$.** Both options expire worthless (call strike 110, put strike 90).
+
+    $$
+    \text{P\&L} = +\$0.50
+    $$
+
+    **P&L at $S_T = 120$.** The call pays $120 - 110 = 10$. The put expires worthless.
+
+    $$
+    \text{P\&L} = 0.50 + 10.00 = +\$10.50
+    $$
+
+    **Directional and volatility view.** The risk reversal expresses a bullish directional view because it profits when the underlying rises and loses when it falls. It also exploits the volatility skew: OTM puts are typically more expensive than equidistant OTM calls due to the skew, so the trader receives a net credit by selling the "rich" put and buying the "cheap" call. The strategy implicitly takes a view that the skew overstates downside risk relative to upside potential.
 
 ---
 
 **Exercise 5.** Explain the gamma-theta tradeoff for a short gamma position. If a trader sells an ATM straddle with $\Gamma = -0.08$ (portfolio) and $\Theta = +0.15$ per day, compute the P&L after one day if the underlying: (a) does not move; (b) moves by $2\%$; (c) moves by $5\%$. At what daily move does the gamma loss exceed the theta gain?
 
+??? success "Solution to Exercise 5"
+    The portfolio is short gamma with $\Gamma = -0.08$ and earns $\Theta = +0.15$ per day. Let $S_0 = 100$ for concreteness.
+
+    **(a) Underlying does not move ($\delta S = 0$).**
+
+    $$
+    \text{P\&L} = \Theta \cdot 1 + \frac{1}{2}\Gamma(\delta S)^2 = 0.15 + 0 = +\$0.15
+    $$
+
+    Pure theta gain.
+
+    **(b) Underlying moves by 2% ($\delta S = 2$).**
+
+    $$
+    \text{P\&L} = 0.15 + \frac{1}{2}(-0.08)(2)^2 = 0.15 - 0.16 = -\$0.01
+    $$
+
+    The gamma loss nearly offsets the theta gain.
+
+    **(c) Underlying moves by 5% ($\delta S = 5$).**
+
+    $$
+    \text{P\&L} = 0.15 + \frac{1}{2}(-0.08)(5)^2 = 0.15 - 1.00 = -\$0.85
+    $$
+
+    A large move produces a substantial loss.
+
+    **Breakeven move.** Set the gamma loss equal to the theta gain:
+
+    $$
+    \frac{1}{2}|\Gamma|(\delta S^*)^2 = \Theta \implies \frac{1}{2}(0.08)(\delta S^*)^2 = 0.15
+    $$
+
+    $$
+    (\delta S^*)^2 = \frac{0.30}{0.08} = 3.75 \implies \delta S^* = \sqrt{3.75} \approx 1.94
+    $$
+
+    Any daily move exceeding approximately $\$1.94$ (or $1.94\%$ of $S_0 = 100$) causes the gamma loss to exceed the theta gain.
+
 ---
 
 **Exercise 6.** Extend the P&L simulator to include a **long strangle** strategy. Compute and plot the P&L as a function of the final stock price for $K_1 = 90$, $K_2 = 110$, with both options having $\tau = 0.5$, $\sigma = 0.25$, $r = 0.03$. How does the profile compare to a long straddle at $K = 100$?
+
+??? success "Solution to Exercise 6"
+    Using Black--Scholes pricing with $S_0 = 100$, $r = 0.03$, $\sigma = 0.25$, and $\tau = 0.5$:
+
+    **Long strangle:** Buy an OTM put at $K_1 = 90$ and an OTM call at $K_2 = 110$. The total cost is $P(90) + C(110)$.
+
+    **Long straddle at $K = 100$:** Buy a call and a put at $K = 100$. The total cost is $C(100) + P(100)$.
+
+    The P&L at expiry for each strategy is:
+
+    - Long strangle: $\max(K_1 - S_T, 0) + \max(S_T - K_2, 0) - \text{premium}_{\text{strangle}}$
+    - Long straddle: $|S_T - K| - \text{premium}_{\text{straddle}}$
+
+    **Comparison.** The strangle is cheaper because both options are OTM, but it requires a larger move to reach profitability. The straddle has narrower breakeven points but costs more. Specifically:
+
+    - The straddle has breakevens at $K \pm \text{premium}_{\text{straddle}}$, while the strangle has breakevens at $K_1 - \text{premium}_{\text{strangle}}$ and $K_2 + \text{premium}_{\text{strangle}}$.
+    - For moves within the strangle's strikes ($90 < S_T < 110$), the straddle still generates intrinsic payoff while the strangle generates none.
+    - For very large moves, both strategies converge to the same slope ($\pm 1$ per dollar of underlying move), but the straddle's P&L is shifted up by the difference in strikes minus the difference in premiums.
+    - The strangle is preferred when the trader expects a very large move but wants to minimize the upfront cost and theta bleed.

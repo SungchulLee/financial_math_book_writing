@@ -225,22 +225,136 @@ The exponential martingale $M_t = \exp(\phi(T-t,u) + \psi(T-t,u)^\top X_t)$ is t
 
 **Exercise 1.** For the Vasicek model with $\psi(\tau, u) = ue^{-\kappa\tau}$, write out $M_t = \exp(\phi(T-t, u) + ue^{-\kappa(T-t)}X_t)$ explicitly. Compute $dM_t$ using Ito's lemma and verify that the drift term vanishes, leaving only the stochastic integral $dM_t = M_t \cdot ue^{-\kappa(T-t)}\sigma\,dW_t$.
 
+??? success "Solution to Exercise 1"
+    The Vasicek exponential martingale with $\psi(\tau, u) = ue^{-\kappa\tau}$ and $\phi(\tau, u) = \kappa\theta u\frac{1 - e^{-\kappa\tau}}{\kappa} + \frac{\sigma^2 u^2}{4\kappa}(1 - e^{-2\kappa\tau})$ is
+
+    $$
+    M_t = \exp\!\left(\phi(T-t, u) + ue^{-\kappa(T-t)}X_t\right)
+    $$
+
+    Write $g(t, x) = \phi(T-t, u) + ue^{-\kappa(T-t)}x$. Then $M_t = e^{g(t, X_t)}$ and by Ito's formula:
+
+    $$
+    dM_t = M_t\!\left[\frac{\partial g}{\partial t}\,dt + \frac{\partial g}{\partial x}\,dX_t + \frac{1}{2}\frac{\partial^2 g}{\partial x^2}(\sigma^2\,dt)\right]
+    $$
+
+    Since $g$ is linear in $x$, $\frac{\partial^2 g}{\partial x^2} = 0$. The spatial derivative is $\frac{\partial g}{\partial x} = ue^{-\kappa(T-t)}$. For the time derivative, using $\tau = T - t$:
+
+    $$
+    \frac{\partial g}{\partial t} = -\frac{d\phi}{d\tau} + \kappa u e^{-\kappa\tau}x = -F(\psi(\tau, u)) - R(\psi(\tau, u))x
+    $$
+
+    where $F(\psi) = \kappa\theta\psi + \frac{1}{2}\sigma^2\psi^2$ and $R(\psi) = -\kappa\psi$. Substituting $dX_t = \kappa(\theta - X_t)\,dt + \sigma\,dW_t$:
+
+    $$
+    \frac{\partial g}{\partial x}\,dX_t = ue^{-\kappa(T-t)}\bigl[\kappa(\theta - X_t)\,dt + \sigma\,dW_t\bigr]
+    $$
+
+    Since $M_t = e^{g}$, the Ito formula for the exponential gives $dM_t = M_t\,dg + \frac{1}{2}M_t\,(dg)^2$. With $dg = [\text{drift}]\,dt + \psi\sigma\,dW_t$, the quadratic variation contributes $(dg)^2 = \psi^2\sigma^2\,dt$. The full drift of $M_t$ is therefore $M_t[-F(\psi) - R(\psi)X_t + \psi\kappa(\theta - X_t) + \frac{1}{2}\psi^2\sigma^2]$. Expanding: $\psi\kappa\theta + \frac{1}{2}\sigma^2\psi^2 = F(\psi)$ and $-\kappa\psi = R(\psi)$, so the drift is $M_t[-F(\psi) - R(\psi)X_t + F(\psi) + R(\psi)X_t] = 0$. The remaining stochastic part is
+
+    $$
+    dM_t = M_t \cdot ue^{-\kappa(T-t)}\sigma\,dW_t
+    $$
+
+    confirming that $M_t$ is a local martingale with zero drift.
+
 ---
 
 **Exercise 2.** The Novikov condition requires $\mathbb{E}[\exp(\frac{1}{2}\int_0^T |\psi(T-s,u)^\top\sigma(X_s)|^2\,ds)] < \infty$. For the Vasicek model, show that the integrand $|\psi(T-s,u)|^2 \sigma^2 = |u|^2 e^{-2\kappa(T-s)}\sigma^2$ is deterministic and bounded, so the Novikov condition is satisfied for all $u \in \mathbb{C}$.
+
+??? success "Solution to Exercise 2"
+    For the Vasicek model, $\psi(T-s, u) = ue^{-\kappa(T-s)}$ and $\sigma(X_s) = \sigma$ (constant). The integrand in the Novikov condition is
+
+    $$
+    |\psi(T-s, u)|^2\sigma^2 = |u|^2 e^{-2\kappa(T-s)}\sigma^2
+    $$
+
+    This is a deterministic function of $s$ only --- it does not depend on the path of $X_s$. Therefore
+
+    $$
+    \frac{1}{2}\int_0^T |u|^2 e^{-2\kappa(T-s)}\sigma^2\,ds = \frac{|u|^2\sigma^2}{2}\cdot\frac{1 - e^{-2\kappa T}}{2\kappa} < \infty
+    $$
+
+    for any finite $T$ and any $u \in \mathbb{C}$. Since the exponent in the Novikov condition is a finite deterministic constant, the exponential of it is also finite, and the Novikov condition $\mathbb{E}[\exp(\frac{1}{2}\int_0^T |\psi\sigma|^2\,ds)] < \infty$ is trivially satisfied. Hence $M_t^{(u,T)}$ is a true martingale for all $u \in \mathbb{C}$ and all $T > 0$.
 
 ---
 
 **Exercise 3.** For the CIR model with $u = iv$ (purely imaginary), explain why $|M_t^{(iv,T)}| = |\exp(\phi(T-t,iv) + \psi(T-t,iv)X_t)|$ is bounded by a deterministic constant times $\exp(|\operatorname{Re}(\psi(T-t,iv))| \cdot X_t)$. Under what conditions on $\psi$ does this guarantee boundedness of $|M_t|$?
 
+??? success "Solution to Exercise 3"
+    Write $M_t = \exp(\phi(T-t, iv) + \psi(T-t, iv)X_t)$. Taking the modulus:
+
+    $$
+    |M_t| = \exp\!\bigl(\operatorname{Re}(\phi(T-t, iv)) + \operatorname{Re}(\psi(T-t, iv))\,X_t\bigr)
+    $$
+
+    since $|e^{z}| = e^{\operatorname{Re}(z)}$ for $z \in \mathbb{C}$. Note that $X_t \geq 0$ for the CIR process. Therefore
+
+    $$
+    |M_t| \leq \exp\!\bigl(|\operatorname{Re}(\phi(T-t, iv))| + |\operatorname{Re}(\psi(T-t, iv))|\cdot X_t\bigr)
+    $$
+
+    For $|M_t|$ to be bounded, we need $\operatorname{Re}(\psi(T-t, iv)) \leq 0$ for all $t \in [0, T]$, so that the $X_t$-dependent term does not blow up as $X_t$ grows. When $u = iv$ is purely imaginary, the Riccati equation for $\psi$ often yields $\operatorname{Re}(\psi(\tau, iv)) \leq 0$ for all $\tau \geq 0$ (this follows from the admissibility conditions in the CIR model). Under this condition, $|M_t| \leq \exp(\sup_{\tau \in [0,T]} |\operatorname{Re}(\phi(\tau, iv))|)$, which is a finite deterministic constant. Boundedness of $|M_t|$ immediately implies that $M_t$ is a true (uniformly integrable) martingale.
+
 ---
 
 **Exercise 4.** Prove that if $M_t^{(u,T)}$ is a true martingale, then $\mathbb{E}[M_T^{(u,T)}] = M_0^{(u,T)}$. Use this to derive the log-affine expectation formula $\mathbb{E}[e^{u^\top X_T} \mid X_0 = x] = \exp(\phi(T,u) + \psi(T,u)^\top x)$ directly from the martingale property.
+
+??? success "Solution to Exercise 4"
+    Since $M_t^{(u,T)}$ is a true martingale, $\mathbb{E}[M_t^{(u,T)} \mid \mathcal{F}_s] = M_s^{(u,T)}$ for $s \leq t$. Setting $s = 0$ and $t = T$:
+
+    $$
+    \mathbb{E}[M_T^{(u,T)}] = M_0^{(u,T)}
+    $$
+
+    Now $M_T^{(u,T)} = \exp(\phi(0, u) + \psi(0, u)^\top X_T) = e^{u^\top X_T}$ since $\phi(0,u) = 0$ and $\psi(0,u) = u$. Also, $M_0^{(u,T)} = \exp(\phi(T, u) + \psi(T, u)^\top X_0)$. Therefore
+
+    $$
+    \mathbb{E}[e^{u^\top X_T}] = \exp\!\bigl(\phi(T, u) + \psi(T, u)^\top X_0\bigr)
+    $$
+
+    More generally, for the conditional expectation, the martingale property gives $M_t = \mathbb{E}[M_T \mid \mathcal{F}_t]$, so
+
+    $$
+    \exp\!\bigl(\phi(T-t, u) + \psi(T-t, u)^\top X_t\bigr) = \mathbb{E}[e^{u^\top X_T} \mid \mathcal{F}_t]
+    $$
+
+    Since $X_t$ is Markov, conditioning on $\mathcal{F}_t$ is the same as conditioning on $X_t = x$:
+
+    $$
+    \mathbb{E}[e^{u^\top X_T} \mid X_t = x] = \exp\!\bigl(\phi(T-t, u) + \psi(T-t, u)^\top x\bigr)
+    $$
+
+    This is the log-affine expectation formula, derived purely from the martingale property without solving the Kolmogorov backward PDE.
 
 ---
 
 **Exercise 5.** Consider the exponential martingale $M_t = \exp(\phi(T-t,u) + \psi(T-t,u)X_t)$ for a CIR process with $u = 5$ and parameters $\kappa = 2$, $\xi = 1$. The critical threshold is $u^* = 4 < u = 5$, so the Riccati solution $\psi(\tau, 5)$ explodes at some finite time $T^*$. Explain why $M_t$ is only a strict local martingale (not a true martingale) for $T > T^*$, and what this implies for the moment generating function $\mathbb{E}[e^{5X_T}]$.
 
+??? success "Solution to Exercise 5"
+    For the CIR process with parameters $\kappa = 2$, $\xi = 1$, the Riccati equation for $\psi$ is $\psi' = R(\psi) = -2\psi + \frac{1}{2}\psi^2$. The discriminant is $\gamma = \sqrt{\kappa^2 - 2\xi^2 u} = \sqrt{4 - 2u}$. For $u = 5$, $\gamma = \sqrt{4 - 10} = \sqrt{-6} = i\sqrt{6}$, which is purely imaginary, causing the Riccati solution to involve tangent functions that blow up at a finite time $T^*$.
+
+    At the explosion time $T^*$, $\psi(\tau, 5) \to \infty$, meaning $\exp(\psi(\tau, 5)\,X_t)$ is not integrable. For $T > T^*$, the Riccati solution does not exist on $[0, T]$, and $M_t$ cannot be a true martingale because $\mathbb{E}[M_T] = \mathbb{E}[e^{5X_T}]$ is infinite.
+
+    Concretely, $M_t$ remains a local martingale (the Ito drift still cancels formally), but it fails the integrability condition: $\mathbb{E}[|M_t|]$ becomes infinite for $t$ close to $T$ when $T > T^*$. This is a strict local martingale --- a local martingale that is not a true martingale. The consequence for the moment generating function is that $\mathbb{E}[e^{5X_T}] = +\infty$ for $T > T^*$: the fifth exponential moment of the CIR process explodes in finite time, a phenomenon known as moment explosion.
+
 ---
 
 **Exercise 6.** Suppose you want to use $M_t^{(u,T)}$ as a Radon-Nikodym derivative to define a new measure $\mathbb{Q}$. What normalization condition must hold so that $\mathbb{E}^{\mathbb{P}}[M_T^{(u,T)}] = 1$? Express this condition in terms of $\phi(T, u)$, $\psi(T, u)$, and $X_0$, and explain why it constrains the choice of $u$.
+
+??? success "Solution to Exercise 6"
+    For $M_T^{(u,T)}$ to serve as a valid Radon-Nikodym derivative, we need $\mathbb{E}^{\mathbb{P}}[M_T^{(u,T)}] = 1$. Since $M_T^{(u,T)} = e^{u^\top X_T}$ and $M_0^{(u,T)} = \exp(\phi(T, u) + \psi(T, u)^\top X_0)$, the martingale property gives
+
+    $$
+    \mathbb{E}^{\mathbb{P}}[M_T^{(u,T)}] = M_0^{(u,T)} = \exp\!\bigl(\phi(T, u) + \psi(T, u)^\top X_0\bigr)
+    $$
+
+    The normalization condition is therefore
+
+    $$
+    \phi(T, u) + \psi(T, u)^\top X_0 = 0
+    $$
+
+    This is a constraint that links $u$, $T$, and the initial state $X_0$. Given the Riccati solutions $\phi(T, u)$ and $\psi(T, u)$ (which are determined by the process parameters), this equation implicitly defines the admissible $u$ for each $(T, X_0)$.
+
+    In practice, one often normalizes differently: define the Radon-Nikodym derivative as $\frac{d\mathbb{Q}}{d\mathbb{P}}\big|_{\mathcal{F}_t} = \frac{M_t^{(u,T)}}{M_0^{(u,T)}}$, which automatically satisfies $\mathbb{E}[\frac{d\mathbb{Q}}{d\mathbb{P}}\big|_{\mathcal{F}_T}] = 1$. The constraint on $u$ then reduces to requiring that $M_t^{(u,T)}$ be a strictly positive true martingale, which restricts $u$ to the set where the Riccati solution exists on $[0, T]$ and the integrability conditions hold.

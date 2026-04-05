@@ -895,36 +895,6 @@ The next section examines how real markets deviate from these assumptions and wh
 
 **Exercise 1.** Consider a stock with $S_0 = 100$, $\mu = 0.10$, and $\sigma = 0.25$ under GBM. Compute the probability that the stock price is below \$80 after one year, i.e., $\mathbb{P}(S_1 < 80)$. How does this compare to the probability under Bachelier's arithmetic Brownian motion (with the same $S_0$ and $\sigma$)?
 
----
-
-**Exercise 2.** Assumption 2 states that markets are frictionless. Suppose instead that each trade incurs a proportional transaction cost of $\kappa > 0$ (i.e., buying or selling \$1 of stock costs an additional $\kappa$ dollars). If a delta-hedging strategy requires rebalancing $N$ times over the life of the option, provide a rough estimate of the total transaction cost as a function of $\kappa$, $N$, the average gamma $\bar{\Gamma}$, and the stock price $S$. Explain why continuous hedging ($N \to \infty$) is infeasible in this setting.
-
----
-
-**Exercise 3.** Under the no-dividend assumption (Assumption 6), prove that it is never optimal to exercise an American call option early on a non-dividend-paying stock. Your proof should use only the lower bound $C \geq S - Ke^{-rT}$ and the fact that early exercise yields payoff $S - K$.
-
----
-
-**Exercise 4.** The Black-Scholes model assumes a constant risk-free rate $r$. Suppose the risk-free rate follows a deterministic function $r(t)$. Show that the Black-Scholes PDE generalizes to
-
-$$
-\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + r(t) S \frac{\partial V}{\partial S} - r(t) V = 0
-$$
-
-and explain how the discounting factor $e^{-rT}$ in the Black-Scholes formula should be modified.
-
----
-
-**Exercise 5.** The dividend-adjusted Black-Scholes formula is $C = Se^{-qT}\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$ with $d_1 = \frac{\ln(S/K) + (r - q + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}$. Compute the call and put prices for $S = 100$, $K = 100$, $r = 5\%$, $q = 3\%$, $\sigma = 20\%$, and $T = 1$ year. Verify that the dividend-adjusted put-call parity $C - P = Se^{-qT} - Ke^{-rT}$ holds.
-
----
-
-**Exercise 6.** Discuss which of the six Black-Scholes assumptions is most severely violated for each of the following instruments: (a) a 1-week option on a liquid large-cap stock, (b) a 2-year LEAPS option on a high-dividend utility stock, (c) an option on a cryptocurrency. For each case, identify the assumption that is most problematic and suggest an appropriate model extension.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Under GBM, the stock price at $t = 1$ satisfies
 
@@ -954,6 +924,9 @@ and explain how the discounting factor $e^{-rT}$ in the Black-Scholes formula sh
 
     The ABM probability (~21.2%) is considerably higher because (i) it has no drift term pushing the price upward, and (ii) the normal distribution is symmetric about the mean, whereas the log-normal distribution under GBM is right-skewed, placing less mass in the left tail relative to the mean.
 
+---
+**Exercise 2.** Assumption 2 states that markets are frictionless. Suppose instead that each trade incurs a proportional transaction cost of $\kappa > 0$ (i.e., buying or selling \$1 of stock costs an additional $\kappa$ dollars). If a delta-hedging strategy requires rebalancing $N$ times over the life of the option, provide a rough estimate of the total transaction cost as a function of $\kappa$, $N$, the average gamma $\bar{\Gamma}$, and the stock price $S$. Explain why continuous hedging ($N \to \infty$) is infeasible in this setting.
+
 ??? success "Solution to Exercise 2"
     When delta-hedging with transaction costs, each rebalancing requires trading a quantity of stock approximately proportional to the change in delta. Over a small time interval $\Delta t$, the change in delta is dominated by the gamma term:
 
@@ -974,6 +947,9 @@ and explain how the discounting factor $e^{-rT}$ in the Black-Scholes formula sh
     $$
 
     As $N \to \infty$, this total cost grows as $\sqrt{N} \to \infty$. Therefore, continuous hedging is infeasible: the accumulated transaction costs diverge to infinity, making perfect replication impossible in the presence of any positive transaction cost $\kappa > 0$.
+
+---
+**Exercise 3.** Under the no-dividend assumption (Assumption 6), prove that it is never optimal to exercise an American call option early on a non-dividend-paying stock. Your proof should use only the lower bound $C \geq S - Ke^{-rT}$ and the fact that early exercise yields payoff $S - K$.
 
 ??? success "Solution to Exercise 3"
     We prove that early exercise of an American call on a non-dividend-paying stock is never optimal.
@@ -1001,6 +977,15 @@ and explain how the discounting factor $e^{-rT}$ in the Black-Scholes formula sh
     $$
 
     Since the value of holding the option strictly exceeds the early exercise payoff $S_t - K$ at every $t < T$, it is never optimal to exercise early. $\square$
+
+---
+**Exercise 4.** The Black-Scholes model assumes a constant risk-free rate $r$. Suppose the risk-free rate follows a deterministic function $r(t)$. Show that the Black-Scholes PDE generalizes to
+
+$$
+\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + r(t) S \frac{\partial V}{\partial S} - r(t) V = 0
+$$
+
+and explain how the discounting factor $e^{-rT}$ in the Black-Scholes formula should be modified.
 
 ??? success "Solution to Exercise 4"
     We derive the generalized Black-Scholes PDE with a time-dependent risk-free rate.
@@ -1042,6 +1027,9 @@ and explain how the discounting factor $e^{-rT}$ in the Black-Scholes formula sh
     $$
 
     That is, the constant discount factor is replaced by the integral of the instantaneous short rate over the option's lifetime. The risk-neutral pricing formula becomes $V_0 = \exp\!\left(-\int_0^T r(s)\,ds\right)\mathbb{E}^{\mathbb{Q}}[H]$.
+
+---
+**Exercise 5.** The dividend-adjusted Black-Scholes formula is $C = Se^{-qT}\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$ with $d_1 = \frac{\ln(S/K) + (r - q + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}$. Compute the call and put prices for $S = 100$, $K = 100$, $r = 5\%$, $q = 3\%$, $\sigma = 20\%$, and $T = 1$ year. Verify that the dividend-adjusted put-call parity $C - P = Se^{-qT} - Ke^{-rT}$ holds.
 
 ??? success "Solution to Exercise 5"
     With $S = 100$, $K = 100$, $r = 0.05$, $q = 0.03$, $\sigma = 0.20$, $T = 1$.
@@ -1093,6 +1081,9 @@ and explain how the discounting factor $e^{-rT}$ in the Black-Scholes formula sh
     $$
 
     The dividend-adjusted put-call parity $C - P = Se^{-qT} - Ke^{-rT}$ holds exactly (up to rounding).
+
+---
+**Exercise 6.** Discuss which of the six Black-Scholes assumptions is most severely violated for each of the following instruments: (a) a 1-week option on a liquid large-cap stock, (b) a 2-year LEAPS option on a high-dividend utility stock, (c) an option on a cryptocurrency. For each case, identify the assumption that is most problematic and suggest an appropriate model extension.
 
 ??? success "Solution to Exercise 6"
     **(a) 1-week option on a liquid large-cap stock**:

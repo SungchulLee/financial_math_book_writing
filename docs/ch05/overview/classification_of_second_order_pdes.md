@@ -237,46 +237,6 @@ Classify each of the following PDEs as elliptic, parabolic, or hyperbolic by com
 
 (c) $3u_{xx} + 2u_{xy} + u_{yy} = 0$
 
----
-
-**Exercise 2.**
-The Black-Scholes PDE is $\partial_t V + rS\partial_S V + \frac{1}{2}\sigma^2 S^2 \partial_{SS} V - rV = 0$. Identify the highest-order coefficients $A$, $B$, $C$ (treating $(t, S)$ as the two independent variables) and verify that the discriminant gives $\Delta = 0$, confirming that the equation is parabolic.
-
----
-
-**Exercise 3.**
-The heat equation has the smoothing property: solutions become $C^\infty$ for $t > 0$ even if the initial data is discontinuous. The wave equation does not have this property. Explain this difference in terms of the PDE classification and the nature of characteristic curves for parabolic versus hyperbolic equations.
-
----
-
-**Exercise 4.**
-For the Heston model, the diffusion matrix is
-
-$$
-a = \begin{pmatrix} vS^2 & \rho\xi v S \\ \rho\xi v S & \xi^2 v \end{pmatrix}
-$$
-
-Compute the determinant and eigenvalues of $a$. Under what conditions on $v$, $S$, $\rho$, and $\xi$ is the pricing PDE non-degenerate parabolic? What happens at $v = 0$ or $S = 0$?
-
----
-
-**Exercise 5.**
-Explain why the Black-Scholes PDE degenerates at $S = 0$ (the coefficient of $\partial_{SS}$ vanishes). What does this degeneracy imply about the nature of the boundary at $S = 0$ for geometric Brownian motion? Why is no boundary condition required there, unlike at a finite barrier?
-
----
-
-**Exercise 6.**
-For an Ito diffusion $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$, the generator $\mathcal{L} = \mu\partial_x + \frac{1}{2}\sigma^2\partial_{xx}$ is a second-order operator with no mixed $\partial_{tx}$ term. Explain why this structure always produces a parabolic PDE $\partial_t u + \mathcal{L}u = 0$, regardless of the choice of $\mu$ and $\sigma$ (provided $\sigma \neq 0$).
-
----
-
-**Exercise 7.**
-The call payoff $g(S) = (S - K)^+$ has a kink (discontinuous first derivative) at $S = K$. Yet for any $t < T$, the Black-Scholes price $V(t, S)$ is a smooth function of $S$. This is the parabolic smoothing property. Give an intuitive explanation using the probabilistic interpretation: $V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ \mid S_t = S]$ is an average over many possible terminal values, which smooths out the kink.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a)** $u_{xx} + 2u_{xy} + u_{yy} = 0$: Here $A = 1$, $B = 1$ (the coefficient of $u_{xy}$ is $2B$, so $B = 1$), $C = 1$.
 
@@ -302,6 +262,11 @@ The call payoff $g(S) = (S - K)^+$ has a kink (discontinuous first derivative) a
 
     The equation is **elliptic**.
 
+---
+
+**Exercise 2.**
+The Black-Scholes PDE is $\partial_t V + rS\partial_S V + \frac{1}{2}\sigma^2 S^2 \partial_{SS} V - rV = 0$. Identify the highest-order coefficients $A$, $B$, $C$ (treating $(t, S)$ as the two independent variables) and verify that the discriminant gives $\Delta = 0$, confirming that the equation is parabolic.
+
 ??? success "Solution to Exercise 2"
     The Black-Scholes PDE is:
 
@@ -323,12 +288,28 @@ The call payoff $g(S) = (S - K)^+$ has a kink (discontinuous first derivative) a
 
     Since $\Delta = 0$, the equation is **parabolic**, as expected for a pricing PDE arising from a diffusion process. Note that this classification holds for all $S > 0$ and $\sigma > 0$; at $S = 0$ the equation degenerates (the leading coefficient $A$ vanishes).
 
+---
+
+**Exercise 3.**
+The heat equation has the smoothing property: solutions become $C^\infty$ for $t > 0$ even if the initial data is discontinuous. The wave equation does not have this property. Explain this difference in terms of the PDE classification and the nature of characteristic curves for parabolic versus hyperbolic equations.
+
 ??? success "Solution to Exercise 3"
     **Parabolic equations (heat equation)**: The discriminant $\Delta = 0$ means there is exactly **one family of real characteristics** -- the time slices $t = \text{const}$. Information from the initial data propagates instantaneously in all spatial directions. In Fourier space, an initial mode $e^{ikx}$ evolves as $e^{ikx - \frac{1}{2}k^2 t}$, where the factor $e^{-\frac{1}{2}k^2 t}$ damps high-frequency components exponentially fast. This damping is stronger for larger $|k|$, which explains why the heat equation smooths rough initial data instantly: all discontinuities and kinks are immediately suppressed.
 
     **Hyperbolic equations (wave equation)**: The discriminant $\Delta > 0$ means there are **two families of real characteristics** $x \pm ct = \text{const}$. Information propagates at finite speed $c$ along these characteristics. The general solution $u(t,x) = f(x - ct) + g(x + ct)$ shows that the initial profile is simply translated without distortion. In Fourier space, modes evolve as $e^{i(kx \pm kct)}$ -- pure oscillation with no damping. Discontinuities in the initial data travel along the characteristics indefinitely without being smoothed.
 
     **Summary**: The parabolic structure implies infinite propagation speed with exponential frequency damping (smoothing), while the hyperbolic structure implies finite propagation speed with no damping (preservation of singularities). This is why the heat equation instantaneously regularizes any initial data, whereas the wave equation preserves discontinuities forever.
+
+---
+
+**Exercise 4.**
+For the Heston model, the diffusion matrix is
+
+$$
+a = \begin{pmatrix} vS^2 & \rho\xi v S \\ \rho\xi v S & \xi^2 v \end{pmatrix}
+$$
+
+Compute the determinant and eigenvalues of $a$. Under what conditions on $v$, $S$, $\rho$, and $\xi$ is the pricing PDE non-degenerate parabolic? What happens at $v = 0$ or $S = 0$?
 
 ??? success "Solution to Exercise 4"
     The diffusion matrix of the Heston model is:
@@ -372,6 +353,11 @@ The call payoff $g(S) = (S - K)^+$ has a kink (discontinuous first derivative) a
 
     **At $S = 0$**: The matrix becomes $a = \begin{pmatrix} 0 & 0 \\ 0 & \xi^2 v \end{pmatrix}$, which has rank 1 (if $v > 0$). The PDE degenerates in the $S$-direction but remains diffusive in the $v$-direction. As with Black-Scholes, $S = 0$ is an absorbing boundary for geometric Brownian motion.
 
+---
+
+**Exercise 5.**
+Explain why the Black-Scholes PDE degenerates at $S = 0$ (the coefficient of $\partial_{SS}$ vanishes). What does this degeneracy imply about the nature of the boundary at $S = 0$ for geometric Brownian motion? Why is no boundary condition required there, unlike at a finite barrier?
+
 ??? success "Solution to Exercise 5"
     The Black-Scholes PDE has the second-order term $\frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}$. At $S = 0$, the coefficient $\frac{1}{2}\sigma^2 S^2$ vanishes, so the PDE loses its second-order (diffusive) character. Similarly, the drift term $rS\frac{\partial V}{\partial S}$ also vanishes. The equation reduces to:
 
@@ -392,6 +378,11 @@ The call payoff $g(S) = (S - K)^+$ has a kink (discontinuous first derivative) a
     The exponential function is strictly positive for all real arguments, so $S_t > 0$ for all $t \geq 0$ whenever $S_0 > 0$. Therefore $\mathbb{P}(S_t = 0 \text{ for some } t > 0) = 0$. Since the diffusion never reaches $S = 0$, there are no sample paths that require a boundary rule at $S = 0$. The conditional expectation $V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[g(S_T) \mid S_t = S]$ is fully determined without specifying boundary behavior.
 
     In contrast, at a finite barrier $B > 0$, the coefficient $\frac{1}{2}\sigma^2 B^2 > 0$ and the process reaches $B$ with positive probability, so a boundary condition is necessary to specify the option's behavior upon barrier contact.
+
+---
+
+**Exercise 6.**
+For an Ito diffusion $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$, the generator $\mathcal{L} = \mu\partial_x + \frac{1}{2}\sigma^2\partial_{xx}$ is a second-order operator with no mixed $\partial_{tx}$ term. Explain why this structure always produces a parabolic PDE $\partial_t u + \mathcal{L}u = 0$, regardless of the choice of $\mu$ and $\sigma$ (provided $\sigma \neq 0$).
 
 ??? success "Solution to Exercise 6"
     For a general Ito diffusion $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$, the infinitesimal generator is:
@@ -423,6 +414,11 @@ The call payoff $g(S) = (S - K)^+$ has a kink (discontinuous first derivative) a
     This gives $\Delta = 0$ **regardless** of the specific forms of $\mu$ and $\sigma$. The reason is structural: the Ito SDE is first-order in time ($dX_t = \ldots\,dt + \ldots\,dW_t$), so the generator $\mathcal{L}$ contains no time derivatives. The resulting PDE $\partial_t u + \mathcal{L}u = 0$ is therefore first-order in $t$ and (at most) second-order in $x$, with no $\partial_{tt}$ or $\partial_{tx}$ terms. This structure forces $B = C = 0$ and hence $\Delta = 0$, making the PDE parabolic.
 
     The condition $\sigma \neq 0$ ensures that $A = \frac{1}{2}\sigma^2 > 0$, so the equation is genuinely second-order (non-degenerate parabolic), with the associated smoothing and maximum principle properties. If $\sigma = 0$ everywhere, the equation reduces to a first-order PDE (transport equation) rather than a parabolic one.
+
+---
+
+**Exercise 7.**
+The call payoff $g(S) = (S - K)^+$ has a kink (discontinuous first derivative) at $S = K$. Yet for any $t < T$, the Black-Scholes price $V(t, S)$ is a smooth function of $S$. This is the parabolic smoothing property. Give an intuitive explanation using the probabilistic interpretation: $V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ \mid S_t = S]$ is an average over many possible terminal values, which smooths out the kink.
 
 ??? success "Solution to Exercise 7"
     The Black-Scholes price of a European call is:

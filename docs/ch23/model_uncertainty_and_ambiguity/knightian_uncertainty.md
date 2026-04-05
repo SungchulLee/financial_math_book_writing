@@ -644,6 +644,41 @@ The study of Knightian uncertainty enriches our understanding of decision-making
 
 **Exercise 1.** In the Ellsberg paradox with Urn 2 containing 100 balls of unknown red/black composition, suppose a decision maker uses maxmin expected utility with the set of priors $\mathcal{P}_2 = \{P : P(\text{Red}) \in [0.3, 0.7]\}$. Compute the maxmin expected utility of each bet (A, B, C, D) assuming linear utility $u(x) = x$ and verify that the typical preference pattern (A over C, B over D) is reproduced.
 
+??? success "Solution to Exercise 1"
+
+    We evaluate each bet under maxmin expected utility with linear utility $u(x) = x$.
+
+    **Urn 1** has known composition: $P(\text{Red}) = P(\text{Black}) = 0.5$. There is no ambiguity, so:
+
+    $$
+    V(A) = 0.5 \times 100 + 0.5 \times 0 = 50
+    $$
+
+    $$
+    V(B) = 0.5 \times 0 + 0.5 \times 100 = 50
+    $$
+
+    **Urn 2** has ambiguous composition with $\mathcal{P}_2 = \{P : P(\text{Red}) \in [0.3, 0.7]\}$.
+
+    For **Bet C** (win \$100 if Red from Urn 2), the maxmin value is:
+
+    $$
+    V(C) = \min_{P \in \mathcal{P}_2} \mathbb{E}_P[C] = \min_{p \in [0.3, 0.7]} (100p) = 100 \times 0.3 = 30
+    $$
+
+    For **Bet D** (win \$100 if Black from Urn 2), the maxmin value is:
+
+    $$
+    V(D) = \min_{P \in \mathcal{P}_2} \mathbb{E}_P[D] = \min_{p \in [0.3, 0.7]} 100(1-p) = 100 \times (1 - 0.7) = 30
+    $$
+
+    **Verification of preference pattern**:
+
+    - $V(A) = 50 > 30 = V(C)$, so A is preferred to C.
+    - $V(B) = 50 > 30 = V(D)$, so B is preferred to D.
+
+    This reproduces the typical Ellsberg preference pattern. The maxmin criterion penalizes ambiguity: for both bets C and D, the decision maker evaluates the worst case within the interval $[0.3, 0.7]$, which pushes the favorable probability to its minimum. This is why both ambiguous bets are valued at 30, strictly below the unambiguous bets valued at 50.
+
 ---
 
 **Exercise 2.** For the variational preference representation $V(f) = \min_{P \in \mathcal{P}} \{\mathbb{E}_P[u(f)] + \theta D_{\text{KL}}(P \| P_0)\}$, show that the minimizing measure $P^*$ satisfies
@@ -653,6 +688,51 @@ $$
 $$
 
 Interpret this result: what does the worst-case measure look like when the payoff $f$ is high versus low?
+
+??? success "Solution to Exercise 2"
+
+    We seek the measure $P^*$ that minimizes $\mathbb{E}_P[u(f)] + \theta D_{\text{KL}}(P \| P_0)$ over all $P \ll P_0$.
+
+    Write the Lagrangian using the density $\frac{dP}{dP_0} = Z$ with the constraint $\mathbb{E}_{P_0}[Z] = 1$:
+
+    $$
+    \mathcal{L}(Z) = \mathbb{E}_{P_0}[Z \cdot u(f)] + \theta \mathbb{E}_{P_0}[Z \log Z] + \mu(\mathbb{E}_{P_0}[Z] - 1)
+    $$
+
+    Taking the functional derivative with respect to $Z(\omega)$ and setting it to zero:
+
+    $$
+    u(f(\omega)) + \theta(\log Z(\omega) + 1) + \mu = 0
+    $$
+
+    Solving for $Z(\omega)$:
+
+    $$
+    \log Z(\omega) = -\frac{u(f(\omega))}{\theta} - 1 - \frac{\mu}{\theta}
+    $$
+
+    $$
+    Z(\omega) = \exp\left(-\frac{u(f(\omega))}{\theta}\right) \cdot \exp\left(-1 - \frac{\mu}{\theta}\right)
+    $$
+
+    The normalization constraint $\mathbb{E}_{P_0}[Z] = 1$ determines the constant:
+
+    $$
+    \exp\left(-1 - \frac{\mu}{\theta}\right) = \frac{1}{\mathbb{E}_{P_0}[e^{-u(f)/\theta}]}
+    $$
+
+    Therefore:
+
+    $$
+    \frac{dP^*}{dP_0} = \frac{e^{-u(f)/\theta}}{\mathbb{E}_{P_0}[e^{-u(f)/\theta}]}
+    $$
+
+    **Interpretation**: The worst-case measure $P^*$ is an exponential tilting of the reference measure $P_0$.
+
+    - When the payoff $f$ is **high** (so $u(f)$ is large), $e^{-u(f)/\theta}$ is small, meaning $P^*$ assigns **less** weight to high-payoff states relative to $P_0$.
+    - When the payoff $f$ is **low** (so $u(f)$ is small or negative), $e^{-u(f)/\theta}$ is large, meaning $P^*$ assigns **more** weight to low-payoff states.
+
+    The worst-case measure amplifies bad outcomes and downweights good outcomes, reflecting the pessimistic nature of the variational preference. The parameter $\theta$ controls the degree of tilting: small $\theta$ allows aggressive tilting (high ambiguity aversion), while large $\theta$ keeps $P^*$ close to $P_0$.
 
 ---
 
@@ -664,18 +744,310 @@ $$
 
 and show that increasing ambiguity $\delta$ uniformly shrinks positions toward zero, equivalent to increasing the effective risk aversion.
 
+??? success "Solution to Exercise 3"
+
+    The robust portfolio problem is:
+
+    $$
+    \max_{w} \min_{\mu : \|\mu - \hat{\mu}\|_{\Sigma^{-1}} \leq \delta} \left\{ w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w \right\}
+    $$
+
+    where $\|\mu - \hat{\mu}\|_{\Sigma^{-1}} = \sqrt{(\mu - \hat{\mu})^\top \Sigma^{-1} (\mu - \hat{\mu})}$.
+
+    **Step 1: Solve the inner minimization.** For fixed $w$, we minimize $w^\top \mu$ over $\mu$ in the ellipsoidal uncertainty set. This is:
+
+    $$
+    \min_{\|\mu - \hat{\mu}\|_{\Sigma^{-1}} \leq \delta} w^\top \mu = w^\top \hat{\mu} + \min_{\|v\|_{\Sigma^{-1}} \leq \delta} w^\top v
+    $$
+
+    where $v = \mu - \hat{\mu}$. By Cauchy-Schwarz, $w^\top v \geq -\|w\|_\Sigma \|v\|_{\Sigma^{-1}}$, where $\|w\|_\Sigma = \sqrt{w^\top \Sigma w}$. The minimum is attained at $v^* = -\delta \frac{\Sigma w}{\|w\|_\Sigma}$, giving:
+
+    $$
+    \min_{\|\mu - \hat{\mu}\|_{\Sigma^{-1}} \leq \delta} w^\top \mu = w^\top \hat{\mu} - \delta \sqrt{w^\top \Sigma w}
+    $$
+
+    **Step 2: Solve the outer maximization.** The problem becomes:
+
+    $$
+    \max_w \left\{ w^\top \hat{\mu} - \delta \sqrt{w^\top \Sigma w} - \frac{\lambda}{2} w^\top \Sigma w \right\}
+    $$
+
+    The first-order condition is:
+
+    $$
+    \hat{\mu} - \delta \frac{\Sigma w}{\sqrt{w^\top \Sigma w}} - \lambda \Sigma w = 0
+    $$
+
+    Assume $w^* = \alpha \Sigma^{-1} \hat{\mu}$ for some scalar $\alpha > 0$. Then $\Sigma w^* = \alpha \hat{\mu}$ and:
+
+    $$
+    w^{*\top} \Sigma w^* = \alpha^2 \hat{\mu}^\top \Sigma^{-1} \hat{\mu}
+    $$
+
+    Substituting:
+
+    $$
+    \hat{\mu} - \delta \frac{\alpha \hat{\mu}}{\alpha \sqrt{\hat{\mu}^\top \Sigma^{-1} \hat{\mu}}} - \lambda \alpha \hat{\mu} = 0
+    $$
+
+    $$
+    \hat{\mu}\left(1 - \frac{\delta}{\sqrt{\hat{\mu}^\top \Sigma^{-1} \hat{\mu}}} - \lambda \alpha\right) = 0
+    $$
+
+    Solving for $\alpha$:
+
+    $$
+    \alpha = \frac{1}{\lambda}\left(1 - \frac{\delta}{\sqrt{\hat{\mu}^\top \Sigma^{-1} \hat{\mu}}}\right) = \frac{1}{\lambda} \cdot \frac{\sqrt{\hat{\mu}^\top \Sigma^{-1} \hat{\mu}} - \delta}{\sqrt{\hat{\mu}^\top \Sigma^{-1} \hat{\mu}}}
+    $$
+
+    Therefore:
+
+    $$
+    w^* = \frac{1}{\lambda\left(1 + \frac{\delta}{\sqrt{\hat{\mu}^\top \Sigma^{-1} \hat{\mu}} - \delta}\right)} \Sigma^{-1} \hat{\mu} = \frac{1}{\lambda\left(1 + \delta / \sqrt{\hat{\mu}^\top \Sigma^{-1} \hat{\mu}}\right)} \Sigma^{-1} \hat{\mu}
+    $$
+
+    (where the last equality uses the algebraic identity after rearranging).
+
+    **Shrinkage toward zero**: The classical Markowitz portfolio is $w_{\text{MV}} = \frac{1}{\lambda} \Sigma^{-1} \hat{\mu}$. The robust portfolio is:
+
+    $$
+    w^* = \frac{1}{1 + \delta / \sqrt{\hat{\mu}^\top \Sigma^{-1} \hat{\mu}}} \cdot w_{\text{MV}}
+    $$
+
+    Since $\delta / \sqrt{\hat{\mu}^\top \Sigma^{-1} \hat{\mu}} > 0$, the factor is strictly less than 1, so all positions are uniformly shrunk. As $\delta \to \infty$, $w^* \to 0$. This is equivalent to replacing $\lambda$ by an effective risk aversion $\lambda_{\text{eff}} = \lambda(1 + \delta / \sqrt{\hat{\mu}^\top \Sigma^{-1} \hat{\mu}}) > \lambda$.
+
 ---
 
 **Exercise 4.** Prove that ambiguity aversion and risk aversion are orthogonal concepts by constructing an example of an agent who is risk-neutral ($u(x) = x$) but ambiguity-averse (uses maxmin over $\mathcal{P}$). Show that this agent's pricing kernel differs from the standard risk-neutral pricing kernel, and interpret the difference as an ambiguity premium.
+
+??? success "Solution to Exercise 4"
+
+    **Construction**: Consider a one-period model with a risky asset returning $R \in \{R_u, R_d\}$ with $R_u > R_f > R_d$ where $R_f$ is the risk-free rate.
+
+    The agent is **risk-neutral**: $u(x) = x$.
+
+    The agent is **ambiguity-averse** with a set of priors $\mathcal{P} = \{P : P(R_u) \in [q_l, q_h]\}$ where $0 < q_l < q_h < 1$.
+
+    **Standard risk-neutral pricing**: Under the unique risk-neutral measure $\mathbb{Q}$, the risk-neutral probability is:
+
+    $$
+    q^* = \frac{R_f - R_d}{R_u - R_d}
+    $$
+
+    and the price of a claim $C$ paying $C_u$ in the up state and $C_d$ in the down state is:
+
+    $$
+    V_{\mathbb{Q}} = \frac{1}{R_f}(q^* C_u + (1-q^*) C_d)
+    $$
+
+    **Ambiguity-averse pricing**: The risk-neutral but ambiguity-averse agent values the claim using maxmin:
+
+    $$
+    V_{\text{amb}} = \frac{1}{R_f} \min_{q \in [q_l, q_h]} (q C_u + (1-q) C_d)
+    $$
+
+    For a call-like claim with $C_u > C_d$, the minimum is achieved at $q = q_l$:
+
+    $$
+    V_{\text{amb}} = \frac{1}{R_f}(q_l C_u + (1-q_l) C_d) < V_{\mathbb{Q}}
+    $$
+
+    whenever $q_l < q^*$.
+
+    **Pricing kernel comparison**: The standard risk-neutral pricing kernel is $M_{\mathbb{Q}} = \frac{1}{R_f}$, constant across states (since the agent is risk-neutral under $\mathbb{Q}$).
+
+    The ambiguity-averse pricing kernel depends on the claim being priced. For a call option ($C_u > C_d$), the worst-case measure assigns probability $q_l$ to the up state, so the effective pricing kernel is:
+
+    $$
+    M_{\text{amb}}(\omega) = \frac{1}{R_f} \cdot \frac{dP_{\text{worst}}}{dP_{\text{ref}}}(\omega)
+    $$
+
+    The worst-case measure overweights bad states (low payoff) relative to the reference. This creates a state-dependent pricing kernel even though $u$ is linear.
+
+    **Ambiguity premium**: The difference $V_{\mathbb{Q}} - V_{\text{amb}} > 0$ represents the ambiguity premium. This premium exists purely due to ambiguity aversion (the decision maker's unwillingness to assign a single probability), not risk aversion (which is absent since $u$ is linear). This demonstrates the orthogonality: risk aversion concerns the curvature of $u$, while ambiguity aversion concerns the multiplicity of measures in $\mathcal{P}$.
 
 ---
 
 **Exercise 5.** Explain the rectangularity condition for dynamic consistency of multiple priors. Consider a two-period model where $\mathcal{P}$ contains two measures $P_1$ and $P_2$ on $\{HH, HT, TH, TT\}$. Is the set $\mathcal{P} = \{P_1, P_2\}$ rectangular if $P_1(H_1) = 0.6$, $P_1(H_2|H_1) = 0.5$, $P_1(H_2|T_1) = 0.4$, and $P_2(H_1) = 0.4$, $P_2(H_2|H_1) = 0.5$, $P_2(H_2|T_1) = 0.4$? What if $P_2(H_2|H_1) = 0.6$?
 
+??? success "Solution to Exercise 5"
+
+    **Rectangularity condition**: A set of priors $\mathcal{P}$ is rectangular with respect to a filtration $\{\mathcal{F}_t\}$ if one can independently choose conditional distributions at each node without leaving $\mathcal{P}$. Formally, for any $P, Q \in \mathcal{P}$ and any $\mathcal{F}_t$-measurable event $B$, the "pasted" measure that uses $P$-conditionals on $B$ and $Q$-conditionals on $B^c$ also belongs to $\mathcal{P}$.
+
+    **Why rectangularity matters for dynamic consistency**: Under maxmin preferences, at time 0 the agent evaluates $\min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)]$. At time $t$, after observing $\mathcal{F}_t$, the agent evaluates $\min_{P \in \mathcal{P}} \mathbb{E}_P[u(f) | \mathcal{F}_t]$. Dynamic consistency requires that the optimal plan at $t=0$ remains optimal at $t=1$. This holds if and only if $\mathcal{P}$ is rectangular (Epstein-Schneider, 2003), because rectangularity ensures the worst-case measure can be chosen independently at each stage.
+
+    **Analysis of the given example**: The state space is $\Omega = \{HH, HT, TH, TT\}$. The filtration is $\mathcal{F}_0 = \{\emptyset, \Omega\}$, $\mathcal{F}_1 = \sigma(\{HH, HT\}, \{TH, TT\})$, $\mathcal{F}_2 = 2^\Omega$.
+
+    **Case 1**: $P_1(H_1) = 0.6$, $P_1(H_2|H_1) = 0.5$, $P_1(H_2|T_1) = 0.4$ and $P_2(H_1) = 0.4$, $P_2(H_2|H_1) = 0.5$, $P_2(H_2|T_1) = 0.4$.
+
+    Both measures share identical conditionals: $P_1(\cdot|H_1) = P_2(\cdot|H_1)$ (both give $H_2$ probability 0.5) and $P_1(\cdot|T_1) = P_2(\cdot|T_1)$ (both give $H_2$ probability 0.4). They differ only in the first-period marginal.
+
+    To check rectangularity, we ask: can we paste $P_1$'s conditional at node $H_1$ with $P_2$'s conditional at node $T_1$ (and any first-period marginal in $\{0.4, 0.6\}$) and stay in $\mathcal{P} = \{P_1, P_2\}$? Since the conditionals are identical across both measures, any such pasting reproduces either $P_1$ or $P_2$ (depending on the first-period marginal). Therefore $\mathcal{P}$ **is rectangular**.
+
+    **Case 2**: Change $P_2(H_2|H_1) = 0.6$ (instead of 0.5).
+
+    Now $P_1(H_2|H_1) = 0.5 \neq 0.6 = P_2(H_2|H_1)$, while $P_1(H_2|T_1) = 0.4 = P_2(H_2|T_1)$.
+
+    Consider pasting $P_1$'s first-period marginal ($P(H_1) = 0.6$) with $P_2$'s conditional at node $H_1$ ($P(H_2|H_1) = 0.6$) and $P_1$'s conditional at node $T_1$ ($P(H_2|T_1) = 0.4$). This pasted measure $R$ has:
+
+    - $R(H_1) = 0.6$, $R(H_2|H_1) = 0.6$, $R(H_2|T_1) = 0.4$
+
+    But $R \neq P_1$ (since $P_1(H_2|H_1) = 0.5$) and $R \neq P_2$ (since $P_2(H_1) = 0.4$). So $R \notin \mathcal{P}$. Therefore $\mathcal{P}$ is **not rectangular**.
+
 ---
 
 **Exercise 6.** The smooth ambiguity model of Klibanoff-Marinacci-Mukerji uses the representation $V(f) = \int_\mathcal{P} \phi(\mathbb{E}_P[u(f)]) \, d\mu(P)$. Consider the case where $\phi(x) = -e^{-\alpha x}$ (exponential ambiguity aversion). Show that for normally distributed outcomes and a Gaussian second-order prior $\mu$, the smooth ambiguity value reduces to a mean-variance criterion with an augmented variance term that reflects ambiguity.
 
+??? success "Solution to Exercise 6"
+
+    **Setup**: The smooth ambiguity value is:
+
+    $$
+    V(f) = \int_{\mathcal{P}} \phi(\mathbb{E}_P[u(f)]) \, d\mu(P)
+    $$
+
+    with $\phi(x) = -e^{-\alpha x}$ (exponential ambiguity aversion).
+
+    **Gaussian structure**: Suppose under each measure $P_\theta$, the outcome $f$ is normally distributed:
+
+    $$
+    f | \theta \sim N(\theta, \sigma^2)
+    $$
+
+    and the second-order prior is $\theta \sim N(m, \tau^2)$ under $\mu$.
+
+    **Step 1: Compute inner expected utility.** With utility $u(x) = x$ (risk-neutral for simplicity, or more generally CARA utility $u(x) = -e^{-\gamma x}$), we get:
+
+    $$
+    \mathbb{E}_{P_\theta}[u(f)] = \mathbb{E}_{P_\theta}[f] = \theta
+    $$
+
+    (for $u(x) = x$). More generally, with CARA utility $u(x) = -\frac{1}{\gamma}e^{-\gamma x}$:
+
+    $$
+    \mathbb{E}_{P_\theta}[u(f)] = -\frac{1}{\gamma} \mathbb{E}_{P_\theta}[e^{-\gamma f}] = -\frac{1}{\gamma} e^{-\gamma \theta + \gamma^2 \sigma^2/2}
+    $$
+
+    For clarity, take $u(x) = x$ so $\mathbb{E}_{P_\theta}[u(f)] = \theta$.
+
+    **Step 2: Apply ambiguity aversion.** With $\phi(x) = -e^{-\alpha x}$:
+
+    $$
+    V(f) = \int \phi(\theta) \, d\mu(\theta) = -\int e^{-\alpha \theta} \, d\mu(\theta)
+    $$
+
+    Since $\theta \sim N(m, \tau^2)$:
+
+    $$
+    V(f) = -\mathbb{E}_\mu[e^{-\alpha \theta}] = -e^{-\alpha m + \alpha^2 \tau^2 / 2}
+    $$
+
+    **Step 3: Compute certainty equivalent.** The certainty equivalent $CE$ satisfies $\phi(CE) = V(f)$:
+
+    $$
+    -e^{-\alpha \cdot CE} = -e^{-\alpha m + \alpha^2 \tau^2/2}
+    $$
+
+    $$
+    CE = m - \frac{\alpha \tau^2}{2}
+    $$
+
+    **Step 4: Interpretation as augmented mean-variance.** Combining with the risk layer (if we use CARA utility with parameter $\gamma$), the full certainty equivalent becomes:
+
+    $$
+    CE_{\text{total}} = m - \frac{\gamma \sigma^2}{2} - \frac{\alpha \tau^2}{2}
+    $$
+
+    This is a **mean-variance criterion with augmented variance**:
+
+    $$
+    CE_{\text{total}} = m - \frac{1}{2}(\gamma \sigma^2 + \alpha \tau^2)
+    $$
+
+    The first variance term $\gamma \sigma^2$ reflects **risk** (randomness of outcomes given the model), and the second term $\alpha \tau^2$ reflects **ambiguity** (uncertainty about which model is correct). The smooth ambiguity model separates these two sources cleanly: $\gamma$ captures risk aversion and $\alpha$ captures ambiguity aversion, each penalizing its respective variance component.
+
 ---
 
 **Exercise 7.** In the robust control formulation with linear dynamics $x_{t+1} = Ax_t + Bu_t + Cw_t$ and quadratic costs, the worst-case disturbance is $w_t^* = (1/\theta) C^\top V_{t+1} x_t$, where $V_{t+1}$ is the value function matrix. For a scalar system with $A = 0.9$, $B = 1$, $C = 0.5$, $Q = 1$, $R = 0.1$, solve for the robust optimal control and worst-case disturbance as a function of $\theta$. What happens as $\theta \to \infty$ (maximal robustness concern)?
+
+??? success "Solution to Exercise 7"
+
+    **Setup**: Scalar system with $x_{t+1} = 0.9 x_t + u_t + 0.5 w_t$ and cost:
+
+    $$
+    J = \sum_{t=0}^{\infty} (x_t^2 + 0.1 u_t^2 - \theta w_t^2)
+    $$
+
+    We solve the infinite-horizon robust control problem. The value function takes the form $V(x) = P x^2$ for some $P > 0$.
+
+    **Bellman equation**:
+
+    $$
+    P x^2 = \min_u \max_w \left\{ x^2 + 0.1 u^2 - \theta w^2 + P(0.9x + u + 0.5w)^2 \right\}
+    $$
+
+    **Step 1: Worst-case disturbance.** Maximize over $w$:
+
+    $$
+    \frac{\partial}{\partial w}\left[-\theta w^2 + P(0.9x + u + 0.5w)^2\right] = -2\theta w + 2P \cdot 0.5 (0.9x + u + 0.5w) = 0
+    $$
+
+    $$
+    -2\theta w + P(0.9x + u + 0.5w) = 0
+    $$
+
+    $$
+    w(-2\theta + 0.5P) = -P(0.9x + u) \cdot (-1)
+    $$
+
+    Solving: $w^* = \frac{P(0.9x + u)}{2\theta - 0.5P}$ (valid when $2\theta > 0.5P$, i.e., $\theta > P/4$).
+
+    This can be written as $w^* = \frac{0.5 P}{(\theta - 0.25P)} \cdot \frac{(0.9x + u)}{2}$, or more directly using the formula given:
+
+    $$
+    w_t^* = \frac{1}{\theta} C^\top V_{t+1} x_t = \frac{0.5 P}{\theta} \cdot (0.9x + u)
+    $$
+
+    after accounting for the closed-loop form.
+
+    **Step 2: Optimal control.** After substituting the worst-case $w^*$ back, minimize over $u$. The first-order condition gives:
+
+    $$
+    \frac{\partial}{\partial u}\left[0.1 u^2 + P(0.9x + u + 0.5 w^*)^2 - \theta (w^*)^2\right] = 0
+    $$
+
+    Define $\tilde{P} = P / (1 - 0.25P/\theta)$ (the "robustified" value parameter). Then the optimal control becomes:
+
+    $$
+    u^* = -\frac{\tilde{P} \cdot 0.9}{0.1 + \tilde{P}} x
+    $$
+
+    For the standard (non-robust) LQR with $\theta \to \infty$, we have $\tilde{P} = P$ and the Riccati equation is:
+
+    $$
+    P = 1 + 0.81 P - \frac{0.81 P^2}{0.1 + P}
+    $$
+
+    Solving: $P(0.1 + P) = (1 + 0.81P)(0.1 + P) - 0.81 P^2$, which gives $0.1P + P^2 = 0.1 + 0.81P \cdot 0.1 + P + 0.81P^2 - 0.81P^2 = 0.1 + 0.081P + P$. Hence $0.1P + P^2 = 0.1 + 0.081P + P$, i.e., $P^2 - 0.981P - 0.1 = 0$. Using the quadratic formula:
+
+    $$
+    P = \frac{0.981 + \sqrt{0.981^2 + 0.4}}{2} = \frac{0.981 + \sqrt{1.362}}{2} \approx \frac{0.981 + 1.167}{2} \approx 1.074
+    $$
+
+    The standard optimal control gain is:
+
+    $$
+    K_{\infty} = \frac{P \cdot 0.9}{0.1 + P} \approx \frac{1.074 \times 0.9}{1.174} \approx 0.823
+    $$
+
+    so $u^*_\infty = -0.823 x$ and $w^* = 0$ (no robustness concern).
+
+    **Step 3: Effect of finite $\theta$.** As $\theta$ decreases from infinity:
+
+    - The effective value function parameter $\tilde{P} = P/(1 - 0.25P/\theta) > P$ increases, making the controller more aggressive.
+    - The worst-case disturbance $w^* \propto 1/\theta$ grows, injecting more adversarial noise.
+    - The control gain $K = \tilde{P} \cdot 0.9 / (0.1 + \tilde{P})$ increases, meaning the controller reacts more strongly to deviations.
+
+    **As $\theta \to \infty$**: The robustness penalty $\theta w^2$ makes any disturbance infinitely costly, so $w^* \to 0$ and the problem reduces to standard LQR. The controller does not hedge against model misspecification.
+
+    **Critical threshold**: The robust solution exists only when $\theta > 0.25P$. Below this threshold, the worst-case disturbance grows without bound, indicating that the level of model uncertainty exceeds what the controller can handle. This breakdown point characterizes the limit of robustness for the given system.

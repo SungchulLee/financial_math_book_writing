@@ -327,22 +327,195 @@ A key requirement is **exact fit** to the initial term structure. Approaches inc
 
 **Exercise 1.** Starting from the bond pricing formula $P(t,T) = \mathbb{E}_t^{\mathbb{Q}}[e^{-\int_t^T r_s\,ds}]$, show that the instantaneous forward rate satisfies $f(t,T) = -\frac{\partial}{\partial T}\ln P(t,T)$ and that $P(t,T) = \exp(-\int_t^T f(t,u)\,du)$.
 
+??? success "Solution to Exercise 1"
+    Starting from the fundamental pricing formula under the risk-neutral measure $\mathbb{Q}$:
+
+    $$
+    P(t,T) = \mathbb{E}_t^{\mathbb{Q}}\!\left[e^{-\int_t^T r_s\,ds}\right]
+    $$
+
+    **Forward rate.** By definition, $f(t,T) = -\frac{\partial}{\partial T}\ln P(t,T)$. We compute:
+
+    $$
+    \ln P(t,T) = \ln \mathbb{E}_t^{\mathbb{Q}}\!\left[e^{-\int_t^T r_s\,ds}\right]
+    $$
+
+    Differentiating with respect to $T$ (under regularity conditions allowing interchange of differentiation and expectation):
+
+    $$
+    \frac{\partial}{\partial T}\ln P(t,T) = \frac{1}{P(t,T)}\frac{\partial}{\partial T}\mathbb{E}_t^{\mathbb{Q}}\!\left[e^{-\int_t^T r_s\,ds}\right] = \frac{\mathbb{E}_t^{\mathbb{Q}}\!\left[-r_T\,e^{-\int_t^T r_s\,ds}\right]}{P(t,T)}
+    $$
+
+    Hence $f(t,T) = -\frac{\partial}{\partial T}\ln P(t,T)$.
+
+    **Reconstruction formula.** Integrating $f(t,u)$ from $t$ to $T$:
+
+    $$
+    \int_t^T f(t,u)\,du = -\int_t^T \frac{\partial}{\partial u}\ln P(t,u)\,du = -\bigl[\ln P(t,u)\bigr]_{u=t}^{u=T} = -\ln P(t,T) + \ln P(t,t)
+    $$
+
+    Since $P(t,t) = 1$, we have $\ln P(t,t) = 0$, so
+
+    $$
+    \int_t^T f(t,u)\,du = -\ln P(t,T)
+    $$
+
+    Exponentiating:
+
+    $$
+    P(t,T) = \exp\!\left(-\int_t^T f(t,u)\,du\right)
+    $$
+
+    This shows that the entire discount curve can be recovered from the forward rate curve, and vice versa.
+
+---
+
 ---
 
 **Exercise 2.** Derive the PDE satisfied by the zero-coupon bond price $P(t,T) = F(t, r_t, T)$ in a general short-rate model $dr_t = \mu(t,r)\,dt + \sigma(t,r)\,dW_t$. Apply Ito's lemma and use the no-arbitrage condition to obtain the term-structure PDE.
+
+??? success "Solution to Exercise 2"
+    Consider a general short-rate model $dr_t = \mu(t,r)\,dt + \sigma(t,r)\,dW_t$ under $\mathbb{Q}$. The bond price $P(t,T) = F(t,r_t,T)$ is a function of $(t,r)$ for fixed $T$. Applying Ito's lemma:
+
+    $$
+    dF = \left(\frac{\partial F}{\partial t} + \mu(t,r)\frac{\partial F}{\partial r} + \frac{1}{2}\sigma(t,r)^2\frac{\partial^2 F}{\partial r^2}\right)dt + \sigma(t,r)\frac{\partial F}{\partial r}\,dW_t
+    $$
+
+    Under $\mathbb{Q}$, the discounted bond price $F/B_t$ must be a martingale, where $B_t = e^{\int_0^t r_s\,ds}$. By the product rule:
+
+    $$
+    d\!\left(\frac{F}{B_t}\right) = \frac{1}{B_t}\bigl(dF - r_t F\,dt\bigr)
+    $$
+
+    For this to be a martingale, the $dt$-coefficient must vanish:
+
+    $$
+    \frac{\partial F}{\partial t} + \mu(t,r)\frac{\partial F}{\partial r} + \frac{1}{2}\sigma(t,r)^2\frac{\partial^2 F}{\partial r^2} - r\,F = 0
+    $$
+
+    This is the **term-structure PDE**, valid for any Markov short-rate model. The terminal condition is $F(T,r,T) = 1$ for all $r$.
+
+    By the Feynman-Kac theorem, the solution of this PDE is precisely
+
+    $$
+    F(t,r,T) = \mathbb{E}_t^{\mathbb{Q}}\!\left[e^{-\int_t^T r_s\,ds}\,\bigg|\,r_t = r\right]
+    $$
+
+    confirming the equivalence of the PDE and expectation approaches.
+
+---
 
 ---
 
 **Exercise 3.** The money-market account satisfies $dB_t = r_t B_t\,dt$ with $B_0 = 1$. Show that $B_t = \exp(\int_0^t r_s\,ds)$. Why is this account risk-free in the instantaneous sense but not over finite horizons?
 
+??? success "Solution to Exercise 3"
+    The money-market account satisfies $dB_t = r_t B_t\,dt$ with $B_0 = 1$. This is a first-order linear ODE (given a path of $r_t$):
+
+    $$
+    \frac{dB_t}{B_t} = r_t\,dt
+    $$
+
+    Integrating both sides from $0$ to $t$:
+
+    $$
+    \int_0^t \frac{dB_s}{B_s} = \int_0^t r_s\,ds \implies \ln B_t - \ln B_0 = \int_0^t r_s\,ds
+    $$
+
+    Since $B_0 = 1$:
+
+    $$
+    B_t = \exp\!\left(\int_0^t r_s\,ds\right)
+    $$
+
+    **Instantaneously risk-free.** Over an infinitesimal interval $[t, t+dt]$, the return is $dB_t/B_t = r_t\,dt$, which is deterministic (no $dW_t$ term). There is no randomness in the instantaneous return.
+
+    **Not risk-free over finite horizons.** Over a finite interval $[t, t+\Delta t]$, the accumulated return is $\int_t^{t+\Delta t} r_s\,ds$. Since $r_s$ is a stochastic process, this integral is random. At time $t$, one does not know the future path of $r_s$, so the total return $B_{t+\Delta t}/B_t = \exp(\int_t^{t+\Delta t} r_s\,ds)$ is uncertain. The money-market account is analogous to a floating-rate deposit: the rate adjusts continuously, but the cumulative interest over any finite period is not known in advance.
+
+---
+
 ---
 
 **Exercise 4.** Explain why the short-rate model approach is considered a "bottom-up" approach to term-structure modeling, while the HJM framework is "top-down." What are the main advantages and disadvantages of each?
+
+??? success "Solution to Exercise 4"
+    **Short-rate models (bottom-up).** One specifies the dynamics of a single state variable $r_t$ (or a small vector) under the risk-neutral measure. Bond prices for all maturities are then derived as expectations $P(t,T) = \mathbb{E}_t^{\mathbb{Q}}[e^{-\int_t^T r_s\,ds}]$. The entire yield curve is an output of the model, generated from the bottom (the short end) up to all maturities.
+
+    **HJM framework (top-down).** One directly models the dynamics of the entire forward rate curve $\{f(t,T) : T \geq t\}$. The no-arbitrage drift restriction then constrains the relationship between forward rate drifts and volatilities. The short rate is recovered as $r_t = f(t,t)$.
+
+    **Advantages of short-rate models:**
+
+    - Finite-dimensional state: PDE and lattice methods apply efficiently.
+    - Closed-form solutions exist for Vasicek, CIR, Hull-White.
+    - Intuitive economic interpretation of the state variable.
+
+    **Disadvantages of short-rate models:**
+
+    - The implied forward rate dynamics may be unrealistic or difficult to control.
+    - One-factor models produce perfectly correlated yield changes across maturities.
+    - Fitting the initial term structure requires extensions (e.g., time-dependent parameters).
+
+    **Advantages of HJM:**
+
+    - Automatically fits the initial yield curve by construction.
+    - Models the entire curve directly, allowing flexible correlation structures.
+    - General framework nesting many specific models.
+
+    **Disadvantages of HJM:**
+
+    - Infinite-dimensional in general (the state is the entire curve).
+    - Non-Markovian except for special volatility structures.
+    - Implementation typically requires Monte Carlo or discretization of the full curve.
+
+---
 
 ---
 
 **Exercise 5.** In the general framework, the market price of risk $\lambda(t, r)$ links the physical and risk-neutral drifts: $\mu^{\mathbb{Q}} = \mu^{\mathbb{P}} - \lambda\sigma$. Explain the economic interpretation of $\lambda$ and discuss why it cannot be determined from bond prices alone.
 
+??? success "Solution to Exercise 5"
+    The market price of interest rate risk $\lambda(t,r)$ links the physical and risk-neutral drifts via
+
+    $$
+    \mu^{\mathbb{Q}}(t,r) = \mu^{\mathbb{P}}(t,r) - \lambda(t,r)\,\sigma(t,r)
+    $$
+
+    **Economic interpretation.** The quantity $\lambda(t,r)$ represents the excess return per unit of volatility that investors demand for bearing interest rate risk. Specifically, consider a bond with dynamics $dP/P = \mu_P\,dt + \sigma_P\,dW^{\mathbb{P}}$ under $\mathbb{P}$. No-arbitrage implies
+
+    $$
+    \frac{\mu_P - r}{\sigma_P} = \lambda(t,r)
+    $$
+
+    This is the Sharpe ratio of the bond: the risk premium per unit of interest rate exposure. A positive $\lambda$ means bond holders earn an excess return above the short rate (which is typical when the yield curve slopes upward on average).
+
+    **Why $\lambda$ cannot be determined from bond prices alone.** Bond prices are determined entirely by the risk-neutral dynamics, i.e., by $\mu^{\mathbb{Q}}$ and $\sigma$. The risk-neutral drift $\mu^{\mathbb{Q}}$ absorbs both the physical drift $\mu^{\mathbb{P}}$ and the risk premium $\lambda\sigma$ into a single function. From observed bond prices (or equivalently the yield curve), one can extract $\mu^{\mathbb{Q}}$ and $\sigma$, but cannot disentangle $\mu^{\mathbb{P}}$ from $\lambda$ without additional information.
+
+    To identify $\lambda$, one needs either:
+
+    - Historical time-series data on rate movements (to estimate $\mu^{\mathbb{P}}$), or
+    - A structural equilibrium model that specifies $\lambda$ in terms of economic fundamentals.
+
+    This is a fundamental identification problem: cross-sectional bond data determine the pricing measure $\mathbb{Q}$ but not the physical measure $\mathbb{P}$.
+
+---
+
 ---
 
 **Exercise 6.** Show that if the short rate is deterministic ($\sigma = 0$), then $P(t,T) = e^{-\int_t^T r_s\,ds}$ exactly (no expectation needed). Use this to explain why stochastic models are necessary for pricing interest rate options.
+
+??? success "Solution to Exercise 6"
+    If $\sigma = 0$, then $r_t$ is deterministic: $dr_t = \mu(t,r_t)\,dt$, an ordinary differential equation. The path $\{r_s : s \in [t,T]\}$ is a known function of time (no randomness). Therefore the integral $\int_t^T r_s\,ds$ is a deterministic number, and the expectation in the bond pricing formula becomes trivial:
+
+    $$
+    P(t,T) = \mathbb{E}_t^{\mathbb{Q}}\!\left[e^{-\int_t^T r_s\,ds}\right] = e^{-\int_t^T r_s\,ds}
+    $$
+
+    No expectation is needed because the quantity inside is non-random.
+
+    **Implications for option pricing.** Consider a European call on a $T_2$-maturity bond struck at $K$, expiring at $T_1$. Its payoff is $\max(P(T_1, T_2) - K, 0)$. If rates are deterministic, then $P(T_1, T_2) = e^{-\int_{T_1}^{T_2} r_s\,ds}$ is a known constant. The option payoff is therefore either $(P(T_1,T_2) - K)^+$ with certainty or zero with certainty. The option has no time value; it is worth exactly its discounted intrinsic value:
+
+    $$
+    C = e^{-\int_0^{T_1} r_s\,ds}\max\!\left(e^{-\int_{T_1}^{T_2} r_s\,ds} - K,\, 0\right)
+    $$
+
+    This means all interest rate options (caps, floors, swaptions) would have zero implied volatility, and no non-trivial option pricing theory would be needed. Since market-quoted implied volatilities are strictly positive, stochastic short-rate models (with $\sigma > 0$) are essential for realistic option pricing. The randomness in future rates is precisely what gives interest rate options their value.

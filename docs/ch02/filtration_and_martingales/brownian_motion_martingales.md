@@ -337,42 +337,6 @@ In the next sections, we develop the theory of stopping times and the Optional S
 
 (c) Show that $Z_t^\theta \to 0$ almost surely as $t \to \infty$ for $\theta \neq 0$.
 
-### Exercise 2: Generating Polynomial Martingales
-
-(a) Expand $\exp(\theta W_t - \frac{\theta^2 t}{2})$ as a power series in $\theta$ up to order 4.
-
-(b) Identify the coefficient of $\theta^4$ and verify it is a martingale.
-
-(c) State the general pattern: what is the martingale corresponding to $\theta^n$?
-
-### Exercise 3: Two-Sided Exponential
-
-Consider $Z_t = \cosh(\theta W_t) \exp(-\frac{\theta^2 t}{2})$.
-
-(a) Prove that $Z_t$ is a martingale.
-
-(b) Express $Z_t$ in terms of exponential martingales with parameters $\pm\theta$.
-
-(c) Find the analogous martingale involving $\sinh$.
-
-### Exercise 4: Martingale Characterization of Brownian Motion
-
-Prove **Lévy's characterization**: If $M_t$ is a continuous martingale with $M_0 = 0$ and $[M]_t = t$, then $M_t$ is a standard Brownian motion.
-
-*Hint*: Show that $\exp(\theta M_t - \frac{\theta^2 t}{2})$ is a martingale for all $\theta$ and use uniqueness of moment generating functions.
-
-### Exercise 5: The Martingale Problem
-
-(a) State the martingale problem for Brownian motion: for which functions $f$ is $f(W_t) - \frac{1}{2}\int_0^t f''(W_s) \, ds$ a local martingale?
-
-(b) Verify this for $f(x) = x^2$ and $f(x) = e^{\theta x}$.
-
-(c) Explain the connection to the heat equation $\partial_t u = \frac{1}{2} \partial_{xx} u$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a)** For $0 \le s < t$, factor $Z_t^\theta = Z_s^\theta \cdot Y$ where $Y = \exp(\theta(W_t - W_s) - \frac{\theta^2}{2}(t - s))$.
 
@@ -408,6 +372,16 @@ Prove **Lévy's characterization**: If $M_t$ is a continuous martingale with $M_
 
     Since $\log Z_t^\theta \to -\infty$ a.s., $Z_t^\theta \to 0$ a.s. $\square$
 
+---
+
+### Exercise 2: Generating Polynomial Martingales
+
+(a) Expand $\exp(\theta W_t - \frac{\theta^2 t}{2})$ as a power series in $\theta$ up to order 4.
+
+(b) Identify the coefficient of $\theta^4$ and verify it is a martingale.
+
+(c) State the general pattern: what is the martingale corresponding to $\theta^n$?
+
 ??? success "Solution to Exercise 2"
     **(a)** Write $\exp(\theta W_t - \frac{\theta^2 t}{2})$ using the Taylor expansion of the exponential. Let $x = \theta W_t$ and $y = \frac{\theta^2 t}{2}$:
 
@@ -435,6 +409,18 @@ Prove **Lévy's characterization**: If $M_t$ is a continuous martingale with $M_
     H_n(W_t, t) = t^{n/2} H_n\left(\frac{W_t}{\sqrt{t}}\right) = \sum_{k=0}^{\lfloor n/2 \rfloor} \frac{(-1)^k n!}{k!(n-2k)!} W_t^{n-2k} t^k
     $$
 
+---
+
+### Exercise 3: Two-Sided Exponential
+
+Consider $Z_t = \cosh(\theta W_t) \exp(-\frac{\theta^2 t}{2})$.
+
+(a) Prove that $Z_t$ is a martingale.
+
+(b) Express $Z_t$ in terms of exponential martingales with parameters $\pm\theta$.
+
+(c) Find the analogous martingale involving $\sinh$.
+
 ??? success "Solution to Exercise 3"
     **(a)** $\cosh(\theta W_t) = \frac{e^{\theta W_t} + e^{-\theta W_t}}{2}$. Therefore:
 
@@ -458,6 +444,14 @@ Prove **Lévy's characterization**: If $M_t$ is a continuous martingale with $M_
     \widetilde{Z}_t = \sinh(\theta W_t) \exp\left(-\frac{\theta^2 t}{2}\right)
     $$
 
+---
+
+### Exercise 4: Martingale Characterization of Brownian Motion
+
+Prove **Lévy's characterization**: If $M_t$ is a continuous martingale with $M_0 = 0$ and $[M]_t = t$, then $M_t$ is a standard Brownian motion.
+
+*Hint*: Show that $\exp(\theta M_t - \frac{\theta^2 t}{2})$ is a martingale for all $\theta$ and use uniqueness of moment generating functions.
+
 ??? success "Solution to Exercise 4"
     Assume $M_t$ is a continuous martingale with $M_0 = 0$ and $[M]_t = t$. We want to show $M_t$ is a standard Brownian motion.
 
@@ -472,6 +466,16 @@ Prove **Lévy's characterization**: If $M_t$ is a continuous martingale with $M_
     For the joint distribution: by the martingale property and the fact that $[M]$ is deterministic, the increments $M_t - M_s$ are independent of $\mathcal{F}_s$ with distribution $N(0, t-s)$. This follows because $\exp(i\alpha(M_t - M_s)) \cdot \exp(\frac{\alpha^2(t-s)}{2})$ is a martingale, so $\mathbb{E}[\exp(i\alpha(M_t - M_s)) \mid \mathcal{F}_s] = \exp(-\frac{\alpha^2(t-s)}{2})$, which is the characteristic function of $N(0, t-s)$, independent of $\mathcal{F}_s$.
 
     Therefore $M_t$ has stationary independent Gaussian increments, continuous paths, and $M_0 = 0$: it is a standard Brownian motion. $\square$
+
+---
+
+### Exercise 5: The Martingale Problem
+
+(a) State the martingale problem for Brownian motion: for which functions $f$ is $f(W_t) - \frac{1}{2}\int_0^t f''(W_s) \, ds$ a local martingale?
+
+(b) Verify this for $f(x) = x^2$ and $f(x) = e^{\theta x}$.
+
+(c) Explain the connection to the heat equation $\partial_t u = \frac{1}{2} \partial_{xx} u$.
 
 ??? success "Solution to Exercise 5"
     **(a)** The **martingale problem for Brownian motion**: for any $f \in C^2(\mathbb{R})$, the process

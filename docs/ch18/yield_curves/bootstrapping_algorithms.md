@@ -344,22 +344,182 @@ A well-constructed curve should reprice inputs to within bid-ask tolerance.
 
 **Exercise 1.** A 6-month deposit quotes a simply compounded rate of $L = 3.0\%$ with ACT/360 day count and 182 days to maturity. Compute the discount factor $P(0, 0.5)$ using $P = 1/(1 + L \cdot \delta)$ where $\delta = 182/360$. Then compute the continuously compounded zero rate $R$ such that $P = e^{-R \cdot 0.5}$.
 
+??? success "Solution to Exercise 1"
+    The day count fraction is:
+
+    $$
+    \delta = \frac{182}{360} \approx 0.50556
+    $$
+
+    The discount factor follows from the simple compounding formula:
+
+    $$
+    P(0, 0.5) = \frac{1}{1 + L \cdot \delta} = \frac{1}{1 + 0.03 \times 0.50556} = \frac{1}{1.01517} \approx 0.98506
+    $$
+
+    To find the continuously compounded zero rate $R$, solve $P = e^{-R \cdot 0.5}$:
+
+    $$
+    R = -\frac{\ln P(0, 0.5)}{0.5} = -\frac{\ln(0.98506)}{0.5} = -\frac{-0.01507}{0.5} \approx 0.03014 = 3.014\%
+    $$
+
+    Verification: $e^{-0.03014 \times 0.5} = e^{-0.01507} \approx 0.98506$, which matches.
+
+    Note that the continuously compounded rate (3.014%) is slightly higher than the simple rate (3.0%) because continuous compounding accumulates interest more frequently, so a higher stated rate is needed to produce the same discount factor.
+
 ---
 
 **Exercise 2.** Given deposit-derived discount factors $P(0, 0.25) = 0.9925$ and $P(0, 0.5) = 0.9845$, and a 1-year par swap rate of $S_1 = 3.2\%$ with semi-annual payments, bootstrap the 1-year discount factor $P(0, 1.0)$ by solving $S_1 = \frac{1 - P(0,1)}{0.5 \cdot P(0, 0.5) + 0.5 \cdot P(0, 1)}$.
+
+??? success "Solution to Exercise 2"
+    The par swap rate formula for a 1-year swap with semi-annual payments at $T = 0.5$ and $T = 1.0$ is:
+
+    $$
+    S_1 = \frac{1 - P(0, 1)}{0.5 \cdot P(0, 0.5) + 0.5 \cdot P(0, 1)}
+    $$
+
+    Substituting $S_1 = 0.032$, $P(0, 0.5) = 0.9845$ (using the 0.5-year discount factor for the semi-annual payment schedule):
+
+    $$
+    0.032 = \frac{1 - P(0, 1)}{0.5 \times 0.9845 + 0.5 \times P(0, 1)}
+    $$
+
+    Let $x = P(0, 1)$. Then:
+
+    $$
+    0.032 \bigl(0.49225 + 0.5x\bigr) = 1 - x
+    $$
+
+    $$
+    0.015752 + 0.016x = 1 - x
+    $$
+
+    $$
+    1.016x = 0.984248
+    $$
+
+    $$
+    x = P(0, 1) = \frac{0.984248}{1.016} \approx 0.96876
+    $$
+
+    Verification: plugging back,
+
+    $$
+    S_1 = \frac{1 - 0.96876}{0.5 \times 0.9845 + 0.5 \times 0.96876} = \frac{0.03124}{0.49225 + 0.48438} = \frac{0.03124}{0.97663} \approx 0.03199 \approx 3.2\%
+    $$
+
+    which confirms the result.
 
 ---
 
 **Exercise 3.** Explain why bootstrapping must proceed sequentially from short to long maturities. What would happen if you tried to extract $P(0, 5)$ from a 5-year swap rate without first determining all intermediate discount factors?
 
+??? success "Solution to Exercise 3"
+    Bootstrapping must proceed sequentially because each longer-maturity instrument depends on all shorter-maturity discount factors. The par swap rate formula is:
+
+    $$
+    S_n = \frac{1 - P(0, T_n)}{\sum_{i=1}^n \delta_i P(0, T_i)}
+    $$
+
+    Rearranging for the unknown $P(0, T_n)$:
+
+    $$
+    P(0, T_n) = \frac{1 - S_n \sum_{i=1}^{n-1} \delta_i P(0, T_i)}{1 + S_n \delta_n}
+    $$
+
+    This formula contains $P(0, T_1), \ldots, P(0, T_{n-1})$ on the right-hand side. If you attempted to extract $P(0, 5)$ from a 5-year swap rate directly, you would need $P(0, 1), P(0, 2), P(0, 3), P(0, 4)$ — all of which appear in the annuity sum. Without these intermediate values, the equation has $n$ unknowns and only one equation, making it under-determined.
+
+    Concretely, a 5-year annual swap has five fixed-leg payments, each discounted at a different discount factor. The single swap rate equation cannot determine five unknowns simultaneously. By solving from shortest to longest maturity, each step introduces exactly one new unknown, keeping the system uniquely solvable.
+
 ---
 
 **Exercise 4.** Eurodollar futures quote a rate that differs from the forward rate by a convexity adjustment. If the futures rate is $F_{\text{fut}} = 3.5\%$ and the convexity adjustment is estimated at 5 basis points, what forward rate should be used for bootstrapping? Explain the economic reason for the convexity adjustment.
+
+??? success "Solution to Exercise 4"
+    The forward rate used for bootstrapping should be the futures rate minus the convexity adjustment:
+
+    $$
+    F(0; T_1, T_2) = F_{\text{fut}} - \text{CA} = 3.5\% - 0.05\% = 3.45\%
+    $$
+
+    The economic reason for the convexity adjustment arises from the difference between futures and forward contracts. Futures are **marked to market daily**, meaning gains and losses are settled each day. When rates rise, the futures position loses money, and this loss must be financed at the now-higher prevailing rate. Conversely, when rates fall, the gain is reinvested at the lower prevailing rate. This creates a systematic disadvantage for long futures positions (those betting on rate declines) relative to equivalent forward positions.
+
+    Mathematically, this is a covariance effect. The futures rate equals the expected rate under the risk-neutral measure, while the forward rate equals the expected rate under the $T_2$-forward measure. The convexity adjustment captures the Radon-Nikodym derivative between these measures:
+
+    $$
+    \text{CA} \approx \frac{1}{2} \sigma^2 T_1 (T_2 - T_1)
+    $$
+
+    where $\sigma$ is the rate volatility. The adjustment increases with maturity ($T_1$) and with volatility, reflecting that the daily-settlement effect compounds over longer horizons.
 
 ---
 
 **Exercise 5.** A bootstrapping algorithm uses deposit rates for maturities up to 6 months, futures for 6 months to 2 years, and swap rates from 2 to 30 years. Describe the potential discontinuity in the forward rate curve at the transition points between instrument types. How can this be mitigated?
 
+??? success "Solution to Exercise 5"
+    At each transition point between instrument types, different pricing methodologies and conventions meet, which can create discontinuities in the implied forward rate curve.
+
+    **Deposit-to-futures transition (~6 months):** Deposit rates are directly observed simple rates, while futures imply forward rates over 3-month intervals. The deposit-derived curve reflects spot lending rates, while the futures strip reflects market expectations of future rates (adjusted for convexity). These can embed different credit/liquidity premia, causing a jump in the forward curve at the switchover maturity.
+
+    **Futures-to-swaps transition (~2 years):** Futures provide forward rates for discrete 3-month intervals, while swaps imply discount factors through the par rate formula. The granularity differs: futures give quarterly forward rates, while annual swap rates constrain the average rate over multi-year horizons. Additionally, the convexity adjustment applied to futures introduces model dependence that does not affect swap quotes.
+
+    **Mitigation strategies:**
+
+    1. **Overlapping instruments:** Use instruments from both types in the overlap region and blend their contributions smoothly. For example, use both futures and the 2-year swap rate near the transition, assigning weights that gradually shift.
+
+    2. **Smooth interpolation:** Apply a global fitting method (e.g., smoothing splines with a penalty on the second derivative of the forward curve) rather than strict sequential bootstrapping. This distributes any misfit across the entire curve rather than concentrating it at transition points.
+
+    3. **Simultaneous calibration:** Instead of strict sequential bootstrapping, solve for all discount factors simultaneously by minimizing a penalized objective that prices all instruments correctly while penalizing roughness in the forward curve.
+
+    4. **Stub rates:** At transition points, use stub-period adjustments to ensure the last instrument of one type and the first instrument of the next type are consistent.
+
 ---
 
 **Exercise 6.** Implement the bootstrapping step for a 3-year annual swap rate $S_3 = 3.8\%$, given previously bootstrapped discount factors $P(0,1) = 0.968$ and $P(0,2) = 0.935$. Solve for $P(0,3)$ and compute the implied 1-year forward rate $f(0; 2, 3)$.
+
+??? success "Solution to Exercise 6"
+    The bootstrapping formula for the $n$-th swap discount factor is:
+
+    $$
+    P(0, T_n) = \frac{1 - S_n \sum_{i=1}^{n-1} \delta_i P(0, T_i)}{1 + S_n \delta_n}
+    $$
+
+    With annual payments, $\delta_i = 1$ for all $i$, $S_3 = 0.038$, $P(0,1) = 0.968$, and $P(0,2) = 0.935$:
+
+    $$
+    P(0, 3) = \frac{1 - 0.038 \times (1 \times 0.968 + 1 \times 0.935)}{1 + 0.038 \times 1}
+    $$
+
+    Computing the numerator:
+
+    $$
+    1 - 0.038 \times 1.903 = 1 - 0.072314 = 0.927686
+    $$
+
+    Computing the denominator:
+
+    $$
+    1 + 0.038 = 1.038
+    $$
+
+    Therefore:
+
+    $$
+    P(0, 3) = \frac{0.927686}{1.038} \approx 0.89372
+    $$
+
+    The implied 1-year forward rate from year 2 to year 3 (simply compounded) is:
+
+    $$
+    f(0; 2, 3) = \frac{1}{T_3 - T_2}\left(\frac{P(0, 2)}{P(0, 3)} - 1\right) = \frac{1}{1}\left(\frac{0.935}{0.89372} - 1\right) = 1.04623 - 1 = 0.04623
+    $$
+
+    So $f(0; 2, 3) \approx 4.62\%$.
+
+    Verification: the par swap rate implied by these three discount factors is:
+
+    $$
+    S_3 = \frac{1 - P(0,3)}{\sum_{i=1}^{3} P(0, T_i)} = \frac{1 - 0.89372}{0.968 + 0.935 + 0.89372} = \frac{0.10628}{2.79672} \approx 0.03800 = 3.80\%
+    $$
+
+    which confirms consistency with the input swap rate.

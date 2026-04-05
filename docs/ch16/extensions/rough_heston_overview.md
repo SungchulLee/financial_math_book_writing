@@ -284,27 +284,237 @@ where $N_u$ is the number of quadrature points for Fourier inversion and $N$ is 
 **Exercise 1.**
 The fractional kernel is $K_H(t) = t^{H-1/2}/\Gamma(H+1/2)$. For $H = 0.1$, compute $K_H(t)$ at $t = 0.001, 0.01, 0.1, 1.0$. Compare with the standard Markovian case $H = 0.5$ where $K_{0.5}(t) = 1/\Gamma(1) = 1$ (constant kernel). Explain why the rough kernel $K_{0.1}(t) \propto t^{-0.4}$ diverges as $t \to 0$ and what this means for the regularity of variance paths.
 
+??? success "Solution to Exercise 1"
+    The fractional kernel is $K_H(t) = t^{H-1/2}/\Gamma(H+1/2)$.
+
+    **For $H = 0.1$:** We need $\Gamma(0.6)$. Using the gamma function, $\Gamma(0.6) \approx 1.4892$. The kernel is:
+
+    $$
+    K_{0.1}(t) = \frac{t^{0.1 - 0.5}}{\Gamma(0.6)} = \frac{t^{-0.4}}{1.4892}
+    $$
+
+    Computing at the specified values:
+
+    | $t$ | $t^{-0.4}$ | $K_{0.1}(t)$ | $K_{0.5}(t)$ |
+    |:---:|:---:|:---:|:---:|
+    | 0.001 | $0.001^{-0.4} = 10^{1.2} = 15.849$ | $10.643$ | $1$ |
+    | 0.01 | $0.01^{-0.4} = 10^{0.8} = 6.310$ | $4.237$ | $1$ |
+    | 0.1 | $0.1^{-0.4} = 10^{0.4} = 2.512$ | $1.687$ | $1$ |
+    | 1.0 | $1.0^{-0.4} = 1$ | $0.672$ | $1$ |
+
+    **Key observations:**
+
+    The rough kernel $K_{0.1}(t) \propto t^{-0.4}$ diverges as $t \to 0^+$ because $-0.4 < 0$. In contrast, the standard kernel $K_{0.5}(t) = 1$ is a constant.
+
+    The divergence of $K_{0.1}$ at the origin has a direct consequence for the regularity of variance paths. In the Volterra integral:
+
+    $$
+    v_t = v_0 + \int_0^t K_H(t-s) \, \kappa(\theta - v_s) \, ds + \int_0^t K_H(t-s) \, \xi\sqrt{v_s} \, dW_s
+    $$
+
+    the singular kernel amplifies the effect of the most recent Brownian increments (where $t - s \approx 0$). This produces a variance process whose increments over short intervals $\Delta$ scale as $\Delta^H = \Delta^{0.1}$, meaning the variance changes almost as much over a small interval as over a larger one. The paths are highly irregular ("rough") with local fluctuations that are much more pronounced than those of the standard CIR process ($H = 0.5$).
+
+    Quantitatively, at $t = 0.001$ (roughly 6 hours of trading), the rough kernel value is $10.643$ --- more than 10 times the standard kernel value of $1$. This means that a noise increment at lag $\Delta = 0.001$ is amplified 10-fold relative to the standard case, producing the erratic short-term fluctuations observed in realized volatility data.
+
 ---
 
 **Exercise 2.**
 The Hurst parameter $H$ controls the roughness of volatility paths via $\mathbb{E}[|v_{t+\Delta} - v_t|^2] \sim \Delta^{2H}$. For $H = 0.1$, compute this scaling for $\Delta = 1$ day, 1 hour, and 1 minute (in fractions of a year). Compare with $H = 0.5$. Why does smaller $H$ produce "rougher" paths?
+
+??? success "Solution to Exercise 2"
+    The scaling relation is $\mathbb{E}[|v_{t+\Delta} - v_t|^2] \sim \Delta^{2H}$. We compute this for both $H = 0.1$ and $H = 0.5$.
+
+    First, convert time intervals to fractions of a year (assuming 252 trading days, 6.5 hours per day):
+
+    - 1 day: $\Delta = 1/252 \approx 0.003968$
+    - 1 hour: $\Delta = 1/(252 \times 6.5) \approx 0.000610$
+    - 1 minute: $\Delta = 1/(252 \times 6.5 \times 60) \approx 0.00001017$
+
+    **For $H = 0.1$ ($2H = 0.2$):**
+
+    | Time scale | $\Delta$ | $\Delta^{0.2}$ |
+    |:---:|:---:|:---:|
+    | 1 day | $3.968 \times 10^{-3}$ | $(3.968 \times 10^{-3})^{0.2} = 0.3280$ |
+    | 1 hour | $6.10 \times 10^{-4}$ | $(6.10 \times 10^{-4})^{0.2} = 0.2247$ |
+    | 1 minute | $1.017 \times 10^{-5}$ | $(1.017 \times 10^{-5})^{0.2} = 0.1029$ |
+
+    **For $H = 0.5$ ($2H = 1.0$):**
+
+    | Time scale | $\Delta$ | $\Delta^{1.0}$ |
+    |:---:|:---:|:---:|
+    | 1 day | $3.968 \times 10^{-3}$ | $3.968 \times 10^{-3}$ |
+    | 1 hour | $6.10 \times 10^{-4}$ | $6.10 \times 10^{-4}$ |
+    | 1 minute | $1.017 \times 10^{-5}$ | $1.017 \times 10^{-5}$ |
+
+    **Comparison of ratios:** Going from 1 day to 1 minute (a factor of $390$ reduction in $\Delta$):
+
+    - $H = 0.5$: the variance of increments decreases by factor $390^1 = 390$
+    - $H = 0.1$: the variance of increments decreases by factor $390^{0.2} = 3.30$
+
+    Smaller $H$ produces "rougher" paths because the increments shrink much more slowly as the time scale decreases. With $H = 0.1$, the minute-to-minute fluctuations in variance are only about 3 times smaller than the day-to-day fluctuations (in mean-square), whereas with $H = 0.5$, they are 390 times smaller. This means the rough process exhibits substantial variability at every time scale, producing paths that are visually much more jagged and irregular. The local Holder exponent of the paths is $H$, so smaller $H$ means less regularity and more rapid oscillation.
 
 ---
 
 **Exercise 3.**
 In the rough Heston model, the variance process is non-Markovian: $v_t$ depends on the entire history $\{v_s : s < t\}$, not just the current state. Explain why this makes Monte Carlo simulation more expensive than for the standard Heston model. If a standard Heston QE step requires $O(1)$ operations, and a rough Heston step requires accessing the full history, what is the cost per path of $N$ steps?
 
+??? success "Solution to Exercise 3"
+    In the standard Heston model with the QE scheme, simulating the variance at step $n+1$ requires only the current variance $v_n$ (Markov property). The cost per step is $\mathcal{O}(1)$.
+
+    In the rough Heston model, the variance at step $n$ depends on the entire history through the Volterra integral:
+
+    $$
+    v_{t_n} = v_0 + \sum_{k=0}^{n-1} K_H(t_n - t_k) \, \kappa(\theta - v_{t_k}) \, \Delta t + \sum_{k=0}^{n-1} K_H(t_n - t_k) \, \xi\sqrt{v_{t_k}} \, \Delta W_k
+    $$
+
+    To compute $v_{t_n}$, one must evaluate the convolution sum over all previous steps $k = 0, 1, \ldots, n-1$. This requires:
+
+    - Storing the full history $\{v_{t_0}, v_{t_1}, \ldots, v_{t_{n-1}}\}$ and $\{\Delta W_0, \ldots, \Delta W_{n-1}\}$: $\mathcal{O}(n)$ memory
+    - Computing the weighted sum with kernel weights $K_H(t_n - t_k)$ for each $k$: $\mathcal{O}(n)$ operations per step
+
+    Over a full path of $N$ steps, the total cost is:
+
+    $$
+    \sum_{n=1}^{N} \mathcal{O}(n) = \mathcal{O}(N^2)
+    $$
+
+    compared to $\mathcal{O}(N)$ for the standard Heston model. For a typical daily simulation over 1 year ($N = 252$), the rough Heston Monte Carlo is approximately $252/2 \approx 126$ times more expensive per path.
+
+    **Mitigation strategies:**
+
+    1. **Truncation:** Discard kernel contributions beyond a cutoff lag $L$ (since $K_H(t) \to 0$ as $t \to \infty$), reducing cost to $\mathcal{O}(NL)$
+    2. **Markovian approximation:** Approximate $K_H$ by a sum of $M$ exponentials, converting the Volterra equation into $M$ coupled Markovian SDEs with $\mathcal{O}(MN)$ total cost
+    3. **Hybrid schemes:** Use the exact fractional kernel for recent lags and an exponential approximation for distant lags
+
 ---
 
 **Exercise 4.**
 The characteristic function of the rough Heston model satisfies a fractional Riccati equation. Unlike the standard Riccati ODE (which has a closed-form solution), the fractional Riccati must be solved numerically. Describe the Adams method for solving fractional ODEs and explain why it is well-suited to this problem.
+
+??? success "Solution to Exercise 4"
+    The fractional Riccati equation for the rough Heston model is a Volterra integral equation of the second kind:
+
+    $$
+    h(t) = \int_0^t K_H(t - s) \, F(h(s)) \, ds
+    $$
+
+    where $F(x) = \frac{1}{2}\xi^2 x^2 + (\rho\xi iu - \kappa)x + \frac{1}{2}(iu - u^2)$ and $K_H(t) = t^{H-1/2}/\Gamma(H+1/2)$.
+
+    **The Adams method** for Volterra equations proceeds as follows:
+
+    **Step 1 (Discretization):** Choose a uniform grid $t_n = n\Delta t$ for $n = 0, 1, \ldots, N$ with $\Delta t = T/N$. Set $h(0) = 0$.
+
+    **Step 2 (Predictor):** At step $n$, approximate the integral using an explicit quadrature (Adams-Bashforth type):
+
+    $$
+    h^P(t_n) = \sum_{k=0}^{n-1} b_{n,k} \, K_H(t_n - t_k) \, F(h(t_k)) \, \Delta t
+    $$
+
+    where $b_{n,k}$ are the quadrature weights (e.g., trapezoidal: $b_{n,0} = b_{n,n-1} = 1/2$, $b_{n,k} = 1$ otherwise).
+
+    **Step 3 (Corrector):** Refine using the implicit Adams-Moulton formula that includes the predicted value:
+
+    $$
+    h(t_n) = \sum_{k=0}^{n-1} b_{n,k} \, K_H(t_n - t_k) \, F(h(t_k)) \, \Delta t + b_{n,n} \, K_H(\Delta t) \, F(h^P(t_n)) \, \Delta t
+    $$
+
+    This predictor-corrector approach is repeated for each $n$.
+
+    **Why the Adams method is well-suited:**
+
+    1. **Handles the singular kernel:** The kernel $K_H(t) = t^{H-1/2}/\Gamma(H+1/2)$ is singular at $t = 0$ for $H < 1/2$. The Adams scheme can incorporate product integration weights $w_{n,k} = \int_{t_k}^{t_{k+1}} K_H(t_n - s) \, ds$ that analytically integrate the singular kernel factor, avoiding numerical instability from evaluating $K_H$ at the singularity.
+
+    2. **Naturally handles non-locality:** The convolution structure of the Volterra equation means each step requires the full history. The Adams method computes this sum incrementally --- at step $n$, one adds the contribution of step $n-1$ to the running sum, reusing the $\mathcal{O}(n-1)$ computation from the previous step (though the kernel weights change, requiring $\mathcal{O}(n)$ work per step).
+
+    3. **Good convergence:** With product integration to handle the kernel singularity, the Adams method achieves convergence of order $\min(p, 1+H)$ where $p$ is the order of the underlying quadrature. For $H = 0.1$, this limits the convergence to about order $1.1$, but practical accuracy is sufficient with moderate $N$.
+
+    4. **Complex-valued:** The Riccati function $F$ and solution $h$ are complex-valued (since $u$ is the Fourier variable). The Adams method handles complex arithmetic without modification.
 
 ---
 
 **Exercise 5.**
 Empirically, $H \approx 0.1$ for equity indices. The ATM skew in the rough Heston model behaves as $T^{H-1/2}$ for short maturities. Compare $T^{0.1 - 0.5} = T^{-0.4}$ (rough Heston) with $T^{-0.5}$ (standard Heston) for $T = 1/252, 1/52, 1/12$. Which model produces steeper short-maturity skews? How does this compare with the Bates model's approach to steep short-maturity smiles?
 
+??? success "Solution to Exercise 5"
+    We compare the ATM skew scaling $T^{H-1/2}$ for both models at short maturities.
+
+    **Rough Heston ($H = 0.1$):** Skew $\sim T^{-0.4}$
+
+    | Maturity | $T$ (years) | $T^{-0.4}$ |
+    |:---:|:---:|:---:|
+    | 1 day | $1/252 = 0.003968$ | $0.003968^{-0.4} = 22.14$ |
+    | 1 week | $1/52 = 0.01923$ | $0.01923^{-0.4} = 12.75$ |
+    | 1 month | $1/12 = 0.08333$ | $0.08333^{-0.4} = 7.25$ |
+
+    **Standard Heston ($H = 0.5$):** Skew $\sim T^{0} = 1$ (constant). The ATM skew approaches the finite limit $\rho\xi/(4\sqrt{v_0})$ as $T \to 0$.
+
+    | Maturity | $T$ (years) | $T^{0}$ |
+    |:---:|:---:|:---:|
+    | 1 day | $1/252$ | $1$ |
+    | 1 week | $1/52$ | $1$ |
+    | 1 month | $1/12$ | $1$ |
+
+    **Comparison:** The rough Heston skew at 1 day is $22.14$ times the long-maturity baseline, while the standard Heston skew is constant. The rough Heston model produces dramatically steeper short-maturity skews, diverging as $T \to 0$.
+
+    Note: the standard Heston exponent is $H - 1/2 = 0$ (constant skew limit), not $T^{-0.5}$. The $T^{-0.5}$ scaling would correspond to $H = 0$, which is not physical.
+
+    **Comparison with the Bates model:** The Bates model achieves steep short-maturity skews through a fundamentally different mechanism --- discrete jumps in the stock price. The Bates short-maturity skew converges to a finite constant $\lambda\mu_J/(2\sqrt{v_0})$ as $T \to 0$ (it does not diverge). The rough Heston skew actually **diverges** as $T^{-0.4}$, which better matches the empirical observation that equity skews become extremely steep at very short maturities.
+
+    Key differences:
+
+    - **Bates:** Skew $\to$ finite constant as $T \to 0$. Requires three extra parameters ($\lambda, \mu_J, \sigma_J$). The jump mechanism is somewhat ad hoc and does not explain the roughness of realized volatility paths.
+    - **Rough Heston:** Skew $\to \infty$ as $T \to 0$. Requires one extra parameter ($H$, replacing one degree of freedom). The rough mechanism is directly motivated by the empirical observation of $H \approx 0.1$ in realized volatility. However, the computational cost is significantly higher.
+
 ---
 
 **Exercise 6.**
 The rough Heston model nests the standard Heston model as the special case $H = 0.5$. Verify that the fractional kernel $K_{0.5}(t) = 1/\Gamma(1) = 1$ is constant and that the Volterra integral equation reduces to the standard CIR ODE. Discuss the practical implications: if $H = 0.5$ were the true value, would the rough Heston framework add any value?
+
+??? success "Solution to Exercise 6"
+    **Verification that $K_{0.5}(t) = 1$:**
+
+    $$
+    K_{0.5}(t) = \frac{t^{0.5 - 0.5}}{\Gamma(0.5 + 0.5)} = \frac{t^0}{\Gamma(1)} = \frac{1}{1} = 1
+    $$
+
+    Since $\Gamma(1) = 0! = 1$ and $t^0 = 1$ for all $t > 0$, the kernel is indeed constant.
+
+    **Reduction to the CIR ODE:** Substituting $K_{0.5}(t) = 1$ into the Volterra integral equation for the variance:
+
+    $$
+    v_t = v_0 + \int_0^t 1 \cdot \kappa(\theta - v_s) \, ds + \int_0^t 1 \cdot \xi\sqrt{v_s} \, dW_s
+    $$
+
+    $$
+    = v_0 + \int_0^t \kappa(\theta - v_s) \, ds + \int_0^t \xi\sqrt{v_s} \, dW_s
+    $$
+
+    Differentiating both sides with respect to $t$ (by the fundamental theorem of calculus and the properties of Ito integrals):
+
+    $$
+    dv_t = \kappa(\theta - v_t) \, dt + \xi\sqrt{v_t} \, dW_t
+    $$
+
+    This is exactly the standard CIR SDE.
+
+    Similarly, the fractional Riccati equation with $K_{0.5} = 1$:
+
+    $$
+    h(t) = \int_0^t 1 \cdot F(h(s)) \, ds
+    $$
+
+    Differentiating: $h'(t) = F(h(t))$ with $h(0) = 0$, which is the standard Heston Riccati ODE.
+
+    **Practical implications if $H = 0.5$ were the true value:**
+
+    If empirical analysis showed $H = 0.5$, the rough Heston framework would add **no value** over the standard Heston model:
+
+    1. **Mathematically equivalent:** The rough Heston model with $H = 0.5$ is exactly the standard Heston model, so no additional modeling power is gained.
+
+    2. **Computational cost is strictly higher:** The Volterra formulation requires $\mathcal{O}(N^2)$ operations for CF evaluation (or $\mathcal{O}(MN)$ with Markovian approximation), compared to the closed-form $\mathcal{O}(1)$ Riccati solution of standard Heston. Using the rough Heston numerical framework when $H = 0.5$ would be computationally wasteful, since the exact closed-form solution is available.
+
+    3. **Monte Carlo is path-dependent for no reason:** The Volterra simulation stores full path history at $\mathcal{O}(N^2)$ cost, while the Markovian CIR simulation requires only the current state at $\mathcal{O}(N)$ cost.
+
+    4. **No smile improvement:** The standard Heston limitations (constant short-maturity skew, exponential autocorrelation decay) would persist, since $H = 0.5$ produces identical dynamics.
+
+    The entire motivation for rough Heston rests on the empirical finding $H \approx 0.1 \ll 0.5$. If this finding were overturned, the rough volatility program would lose its justification, and practitioners would be better served by standard Heston or its Markovian extensions (double Heston, Bates).

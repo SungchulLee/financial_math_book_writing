@@ -204,30 +204,6 @@ The **reflection principle** provides the mathematical foundation for all three 
 
 **Exercise 1.** The joint density of $(M_T, W_T)$ for standard Brownian motion is $f_{M_T, W_T}(m, w) = \frac{2(2m - w)}{T\sqrt{2\pi T}} \exp\left(-\frac{(2m-w)^2}{2T}\right)$ for $m \geq 0$ and $w \leq m$. Verify that integrating over $m$ from $\max(0, w)$ to $\infty$ recovers the marginal density of $W_T$, which is $\frac{1}{\sqrt{2\pi T}} e^{-w^2/(2T)}$.
 
----
-
-**Exercise 2.** For the up-and-out call pricing integral, explain why the integration domain is $\{(w, m) : w_{\min} \leq w \leq b, \; \max(0, w) \leq m \leq b\}$ where $b = \frac{1}{\sigma}\log(H/S_0)$. What determines $w_{\min}$, and why is the constraint $w \leq m$ necessary?
-
----
-
-**Exercise 3.** The closed-form barrier formula via the image method is $C_{\text{UO}} = C_{\text{BS}}(S_0, K, T) - (S_0/H)^{2\lambda - 2} C_{\text{BS}}(H^2/S_0, K, T)$. Show that this formula can be derived from the joint density integral by completing the integration in closed form. Identify which terms in the joint density integral correspond to $C_{\text{BS}}(S_0, K, T)$ and which correspond to the image correction.
-
----
-
-**Exercise 4.** For a down-and-out call with barrier $H < S_0$, the relevant quantity is the running minimum $m_T = \inf_{0 \leq t \leq T} W_t$. Write down the joint density $f_{m_T, W_T}$ analogous to the running maximum density. State the integration domain and the pricing integral for the down-and-out call.
-
----
-
-**Exercise 5.** Explain why the joint density approach is more general than the image method for barrier option pricing. Give two specific examples of barrier option variants where the image method fails but the joint density approach can still be applied (possibly via numerical integration).
-
----
-
-**Exercise 6.** In Monte Carlo simulation of barrier options, paths are observed at discrete times, which can miss barrier crossings. Describe the Brownian bridge adjustment: given $S_{t_k}$ and $S_{t_{k+1}}$ at consecutive observation times, write the conditional probability that the path crosses barrier $H$ between $t_k$ and $t_{k+1}$, and explain how this is used to correct the Monte Carlo estimate.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     We need to verify that $\int_{\max(0,w)}^{\infty} f_{M_T, W_T}(m, w)\, dm = \frac{1}{\sqrt{2\pi T}} e^{-w^2/(2T)}$ for all $w$.
 
@@ -251,6 +227,11 @@ The **reflection principle** provides the mathematical foundation for all three 
 
     This is exactly the density of $W_T \sim N(0, T)$, confirming the marginal.
 
+---
+
+
+**Exercise 2.** For the up-and-out call pricing integral, explain why the integration domain is $\{(w, m) : w_{\min} \leq w \leq b, \; \max(0, w) \leq m \leq b\}$ where $b = \frac{1}{\sigma}\log(H/S_0)$. What determines $w_{\min}$, and why is the constraint $w \leq m$ necessary?
+
 ??? success "Solution to Exercise 2"
     The integration domain $\{(w, m) : w_{\min} \leq w \leq b,\; \max(0, w) \leq m \leq b\}$ arises from three constraints:
 
@@ -267,6 +248,11 @@ The **reflection principle** provides the mathematical foundation for all three 
     **Terminal-maximum consistency ($w \leq m$):** The terminal value of Brownian motion $W_T = w$ cannot exceed the running maximum $M_T = m$ (since $M_T = \sup_{t \leq T} W_t \geq W_T$). This constraint $w \leq m$ means the inner integral over $m$ starts at $\max(0, w)$: we need $m \geq 0$ (since $M_T \geq 0$ for BM starting at 0) and $m \geq w$.
 
     **Upper bound on $w$:** Since $w \leq m \leq b$, we also need $w \leq b$, which combines with the barrier constraint.
+
+---
+
+
+**Exercise 3.** The closed-form barrier formula via the image method is $C_{\text{UO}} = C_{\text{BS}}(S_0, K, T) - (S_0/H)^{2\lambda - 2} C_{\text{BS}}(H^2/S_0, K, T)$. Show that this formula can be derived from the joint density integral by completing the integration in closed form. Identify which terms in the joint density integral correspond to $C_{\text{BS}}(S_0, K, T)$ and which correspond to the image correction.
 
 ??? success "Solution to Exercise 3"
     The closed-form barrier formula can be derived from the joint density integral by splitting the computation into two parts.
@@ -294,6 +280,11 @@ The **reflection principle** provides the mathematical foundation for all three 
     $$
 
     The identity $C_{\text{UO}} = C_{\text{BS}} - C_{\text{cross}}$ then gives the closed-form formula.
+
+---
+
+
+**Exercise 4.** For a down-and-out call with barrier $H < S_0$, the relevant quantity is the running minimum $m_T = \inf_{0 \leq t \leq T} W_t$. Write down the joint density $f_{m_T, W_T}$ analogous to the running maximum density. State the integration domain and the pricing integral for the down-and-out call.
 
 ??? success "Solution to Exercise 4"
     For a down-and-out call, the relevant quantity is the running minimum $m_T = \inf_{0 \leq t \leq T} W_t$.
@@ -324,6 +315,11 @@ The **reflection principle** provides the mathematical foundation for all three 
 
     where $w_{\min} = \frac{\log(K/S_0) - \mu T}{\sigma}$ and $\mu = r - \frac{1}{2}\sigma^2$.
 
+---
+
+
+**Exercise 5.** Explain why the joint density approach is more general than the image method for barrier option pricing. Give two specific examples of barrier option variants where the image method fails but the joint density approach can still be applied (possibly via numerical integration).
+
 ??? success "Solution to Exercise 5"
     The image method (closed-form) requires the barrier structure to be simple enough that the reflection principle produces an exact analytical solution. It works for **single constant barriers** with **standard payoffs** under GBM.
 
@@ -334,6 +330,11 @@ The **reflection principle** provides the mathematical foundation for all three 
     1. **Double barrier options** (both upper and lower barriers: $H_L < S_0 < H_U$). The option is knocked out if the price hits either barrier. The image method requires an infinite series of reflections (images of images), which does not simplify to a finite closed form. The joint density approach can handle this by restricting the integration domain to $\{(w, m, m') : m < b_U,\, m' > b_L\}$ and integrating numerically, although the joint density of $(W_T, M_T, m_T)$ is needed.
 
     2. **Barrier options with rebates that depend on the hitting time.** For example, a knock-out option that pays $R \cdot g(\tau_H)$ (where $g$ is a nonlinear function of the hitting time) when the barrier is hit. The image method gives only the standard exponential-discount rebate. The joint density approach, combined with the distribution of the hitting time, can handle arbitrary rebate functions via numerical integration.
+
+---
+
+
+**Exercise 6.** In Monte Carlo simulation of barrier options, paths are observed at discrete times, which can miss barrier crossings. Describe the Brownian bridge adjustment: given $S_{t_k}$ and $S_{t_{k+1}}$ at consecutive observation times, write the conditional probability that the path crosses barrier $H$ between $t_k$ and $t_{k+1}$, and explain how this is used to correct the Monte Carlo estimate.
 
 ??? success "Solution to Exercise 6"
     The **Brownian bridge adjustment** accounts for barrier crossings between discrete observation times.

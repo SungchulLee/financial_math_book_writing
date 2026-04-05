@@ -1,5 +1,7 @@
 # Novikov and Kazamaki Conditions
 
+In the [unifying framework](unifying_principle_controlling_local_martingales.md) of this section, the Novikov and Kazamaki conditions are the **technical guarantees that control is valid** — they ensure the stochastic exponential is a true martingale, so that the Girsanov measure change produces a well-defined probability measure.
+
 When does a stochastic exponential define a valid probability measure? The **Novikov condition** and **Kazamaki condition** provide sufficient conditions for the stochastic exponential to be a true martingale, ensuring that measure changes are well-defined.
 
 !!! info "Prerequisites"
@@ -19,7 +21,7 @@ $$
 Z_t = \mathcal{E}(M)_t = \exp\left(M_t - \frac{1}{2}\langle M \rangle_t\right) = \exp\left(\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds\right)
 $$
 
-We want to use $Z_T$ as a Radon–Nikodym derivative:
+In short, this determines whether $\mathbb{Q}$ exists as a valid equivalent measure. We want to use $Z_T$ as a Radon–Nikodym derivative:
 
 $$
 \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = Z_T
@@ -286,6 +288,9 @@ When condition 2 fails, $\mathbb{Q}$ may still exist but could fail to be equiva
 
 When both Novikov and Kazamaki fail, $Z_t$ may be a **strict local martingale** with $\mathbb{E}[Z_T] < 1$.
 
+!!! warning "Consequence of failure"
+    Failure of both conditions means: density $Z_t$ is not a true martingale $\Rightarrow$ $\mathbb{Q}$ is not a valid equivalent probability measure $\Rightarrow$ the entire risk-neutral pricing framework collapses.
+
 In finance, this corresponds to **asset price bubbles**: the discounted price process is a local martingale but not a true martingale under the pricing measure. See [Local Martingales](local_martingale.md) for the connection between strict local martingales and bubbles.
 
 ---
@@ -355,40 +360,6 @@ $$
 **Exercise 1.**
 In the Black-Scholes model, the market price of risk is $\theta = (\mu - r)/\sigma$ with $\mu = 0.10$, $\sigma = 0.25$, and $r = 0.03$. Verify Novikov's condition explicitly for $T = 10$ and conclude that the Girsanov measure change is valid.
 
----
-
-**Exercise 2.**
-Consider a deterministic but time-varying market price of risk $\theta(t) = \alpha e^{\beta t}$ with $\alpha > 0$ and $\beta > 0$. Compute $\int_0^T \theta(t)^2\,dt$ and determine for which values of $T$ the Novikov condition holds. What happens as $T \to \infty$?
-
----
-
-**Exercise 3.**
-Prove that Novikov's condition implies Kazamaki's condition. Specifically, show that if $\mathbb{E}[\exp(\frac{1}{2}\langle M \rangle_T)] < \infty$, then $\sup_{t \leq T}\mathbb{E}[\exp(\frac{1}{2}M_t)] < \infty$. (Hint: write $\exp(\frac{1}{2}M_t)$ in terms of $\mathcal{E}(\frac{1}{2}M)_t$ and $\exp(\frac{1}{8}\langle M \rangle_t)$, then use the supermartingale property.)
-
----
-
-**Exercise 4.**
-For the Heston model with $\theta_t = (\mu - r)/\sqrt{V_t}$, explain why Novikov's condition involves $\mathbb{E}[\exp(\frac{(\mu-r)^2}{2}\int_0^T V_s^{-1}\,ds)]$. State the Feller condition $2\kappa\bar{V} \geq \xi^2$ and explain its role in ensuring $V_t > 0$. Why does $V_t$ hitting zero cause the Novikov condition to potentially fail?
-
----
-
-**Exercise 5.**
-Consider $\theta_t = c / \sqrt{T - t}$ for $t < T$ with $c > 0$. Show that $\int_0^T \theta_s^2\,ds$ diverges logarithmically. Despite this divergence, explain why the stochastic exponential $Z_t$ may still be well-defined as a local martingale, and identify the defect $\delta = 1 - \mathbb{E}[Z_T]$.
-
----
-
-**Exercise 6.**
-Suppose $|\theta_t| \leq M$ almost surely for some constant $M > 0$ and all $t \in [0, T]$. Show that both the Novikov condition and the Kazamaki condition are satisfied. What is the upper bound on $\mathbb{E}[\exp(\frac{1}{2}\int_0^T \theta_s^2\,ds)]$ in terms of $M$ and $T$?
-
----
-
-**Exercise 7.**
-Construct a process $M_t$ for which Kazamaki's condition is satisfied but Novikov's condition fails. (Hint: consider a process where $M_t$ has controlled moments but $\langle M \rangle_T$ has heavy tails. You may describe the construction conceptually rather than giving an explicit formula.)
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     With $\mu = 0.10$, $\sigma = 0.25$, and $r = 0.03$, the market price of risk is:
 
@@ -403,6 +374,11 @@ Construct a process $M_t$ for which Kazamaki's condition is satisfied but Noviko
     $$
 
     The quantity inside the expectation is deterministic and finite, so Novikov's condition is trivially satisfied. Therefore $\mathcal{E}(-\theta W^{\mathbb{P}})_T$ is a true martingale with $\mathbb{E}[Z_T] = 1$, and the Girsanov measure change from $\mathbb{P}$ to $\mathbb{Q}$ is valid for $T = 10$.
+
+---
+
+**Exercise 2.**
+Consider a deterministic but time-varying market price of risk $\theta(t) = \alpha e^{\beta t}$ with $\alpha > 0$ and $\beta > 0$. Compute $\int_0^T \theta(t)^2\,dt$ and determine for which values of $T$ the Novikov condition holds. What happens as $T \to \infty$?
 
 ??? success "Solution to Exercise 2"
     With $\theta(t) = \alpha e^{\beta t}$:
@@ -420,6 +396,11 @@ Construct a process $M_t$ for which Kazamaki's condition is satisfied but Noviko
     This is finite for **every finite $T$**, since the exponential of any finite number is finite. Thus Novikov's condition holds for all $T < \infty$.
 
     As $T \to \infty$: $\int_0^T \theta(t)^2\,dt \to \infty$ (exponential growth), so $\exp(\frac{1}{2}\int_0^\infty \theta(t)^2\,dt) = +\infty$. On any finite horizon, the Girsanov measure change is valid, but the condition does not extend to infinite horizon. The exponential growth of $\theta(t)$ means the market price of risk becomes arbitrarily large, which would require increasingly extreme probability reweighting.
+
+---
+
+**Exercise 3.**
+Prove that Novikov's condition implies Kazamaki's condition. Specifically, show that if $\mathbb{E}[\exp(\frac{1}{2}\langle M \rangle_T)] < \infty$, then $\sup_{t \leq T}\mathbb{E}[\exp(\frac{1}{2}M_t)] < \infty$. (Hint: write $\exp(\frac{1}{2}M_t)$ in terms of $\mathcal{E}(\frac{1}{2}M)_t$ and $\exp(\frac{1}{8}\langle M \rangle_t)$, then use the supermartingale property.)
 
 ??? success "Solution to Exercise 3"
     Assume Novikov holds: $\mathbb{E}[\exp(\frac{1}{2}\langle M \rangle_T)] < \infty$. We want to show $\sup_{t \leq T}\mathbb{E}[\exp(\frac{1}{2}M_t)] < \infty$.
@@ -456,6 +437,11 @@ Construct a process $M_t$ for which Kazamaki's condition is satisfied but Noviko
 
     where the last step uses Jensen's inequality with the convex function $x \mapsto x^4$ (or equivalently, $\frac{1}{8} \leq \frac{1}{2}$ combined with monotonicity of the exponential). The bound is uniform in $t \leq T$, so $\sup_{t \leq T}\mathbb{E}[\exp(\frac{1}{2}M_t)] < \infty$, which is Kazamaki's condition.
 
+---
+
+**Exercise 4.**
+For the Heston model with $\theta_t = (\mu - r)/\sqrt{V_t}$, explain why Novikov's condition involves $\mathbb{E}[\exp(\frac{(\mu-r)^2}{2}\int_0^T V_s^{-1}\,ds)]$. State the Feller condition $2\kappa\bar{V} \geq \xi^2$ and explain its role in ensuring $V_t > 0$. Why does $V_t$ hitting zero cause the Novikov condition to potentially fail?
+
 ??? success "Solution to Exercise 4"
     In the Heston model, $\theta_t = (\mu - r)/\sqrt{V_t}$, so:
 
@@ -472,6 +458,11 @@ Construct a process $M_t$ for which Kazamaki's condition is satisfied but Noviko
     The **Feller condition** $2\kappa\bar{V} \geq \xi^2$ ensures that the CIR process $V_t$ never reaches zero. Specifically, when Feller holds, $V_t > 0$ for all $t > 0$ a.s. (the boundary at zero is **entrance**, not accessible). This keeps $1/V_s$ bounded in a neighborhood of zero, preventing $\int_0^T V_s^{-1}\,ds$ from exploding.
 
     When Feller is violated ($2\kappa\bar{V} < \xi^2$), $V_t$ can hit zero. Near zero, $1/V_s$ diverges, and $\int_0^T V_s^{-1}\,ds$ may become infinite. If the process spends too much time near zero, the exponential moment in Novikov's condition blows up, and the stochastic exponential may fail to be a true martingale. This would invalidate the Girsanov measure change and potentially signal the presence of arbitrage or bubbles in the model.
+
+---
+
+**Exercise 5.**
+Consider $\theta_t = c / \sqrt{T - t}$ for $t < T$ with $c > 0$. Show that $\int_0^T \theta_s^2\,ds$ diverges logarithmically. Despite this divergence, explain why the stochastic exponential $Z_t$ may still be well-defined as a local martingale, and identify the defect $\delta = 1 - \mathbb{E}[Z_T]$.
 
 ??? success "Solution to Exercise 5"
     With $\theta_t = c/\sqrt{T-t}$ for $t < T$:
@@ -491,6 +482,11 @@ Construct a process $M_t$ for which Kazamaki's condition is satisfied but Noviko
     $$
 
     The defect $\delta = 1 - \mathbb{E}[Z_T] > 0$ represents the "mass" lost to infinity. The exact value depends on $c$ and the specific path structure, but $\delta > 0$ confirms that $Z$ is a strict local martingale and cannot serve as a valid Radon–Nikodym derivative for an equivalent measure.
+
+---
+
+**Exercise 6.**
+Suppose $|\theta_t| \leq M$ almost surely for some constant $M > 0$ and all $t \in [0, T]$. Show that both the Novikov condition and the Kazamaki condition are satisfied. What is the upper bound on $\mathbb{E}[\exp(\frac{1}{2}\int_0^T \theta_s^2\,ds)]$ in terms of $M$ and $T$?
 
 ??? success "Solution to Exercise 6"
     If $|\theta_t| \leq M$ a.s. for all $t \in [0,T]$, then:
@@ -514,6 +510,11 @@ Construct a process $M_t$ for which Kazamaki's condition is satisfied but Noviko
     $$
 
     (using the supermartingale bound from the proof that Novikov implies Kazamaki).
+
+---
+
+**Exercise 7.**
+Construct a process $M_t$ for which Kazamaki's condition is satisfied but Novikov's condition fails. (Hint: consider a process where $M_t$ has controlled moments but $\langle M \rangle_T$ has heavy tails. You may describe the construction conceptually rather than giving an explicit formula.)
 
 ??? success "Solution to Exercise 7"
     **Construction** (conceptual): Let $\tau$ be a random time with $\mathbb{P}(\tau \leq T) = 1$ and define $\theta_t$ to be a process that is bounded for $t < \tau$ but has a carefully chosen blow-up at $t = \tau$.

@@ -348,26 +348,313 @@ $$
 
 where $d_i = 1$ for each day and $\delta = 5/360$. Compare the result to the simple arithmetic average of the daily rates.
 
+??? success "Solution to Exercise 1"
+
+    **Computing the compounded SOFR rate:**
+
+    Given $r_1 = 4.30\%$, $r_2 = 4.32\%$, $r_3 = 4.28\%$, $r_4 = 4.35\%$, $r_5 = 4.31\%$, with $d_i = 1$ for each day and $\delta = 5/360$.
+
+    **Step 1: Compute daily compounding factors.**
+
+    $$
+    1 + \frac{1}{360} \times 0.0430 = 1.000119444
+    $$
+
+    $$
+    1 + \frac{1}{360} \times 0.0432 = 1.000120000
+    $$
+
+    $$
+    1 + \frac{1}{360} \times 0.0428 = 1.000118889
+    $$
+
+    $$
+    1 + \frac{1}{360} \times 0.0435 = 1.000120833
+    $$
+
+    $$
+    1 + \frac{1}{360} \times 0.0431 = 1.000119722
+    $$
+
+    **Step 2: Compute the product.**
+
+    $$
+    \prod_{i=1}^{5}\left(1 + \frac{d_i r_i}{360}\right) = 1.000119444 \times 1.000120000 \times 1.000118889 \times 1.000120833 \times 1.000119722
+    $$
+
+    Since all factors are very close to 1, we can compute the product as:
+
+    $$
+    \approx 1 + (0.000119444 + 0.000120000 + 0.000118889 + 0.000120833 + 0.000119722) + \text{tiny cross-terms}
+    $$
+
+    $$
+    \approx 1 + 0.000598889 = 1.000598889
+    $$
+
+    (The cross-terms from compounding are of order $10^{-8}$ and negligible for this short period.)
+
+    **Step 3: Annualize.**
+
+    $$
+    R = \frac{1}{\delta}\left[\prod_{i=1}^{5}\left(1 + \frac{d_i r_i}{360}\right) - 1\right] = \frac{360}{5} \times 0.000598889 = 72 \times 0.000598889 = 4.3120\%
+    $$
+
+    **Simple arithmetic average:**
+
+    $$
+    \bar{r} = \frac{4.30 + 4.32 + 4.28 + 4.35 + 4.31}{5} = \frac{21.56}{5} = 4.312\%
+    $$
+
+    **Comparison:** The compounded rate (4.3120%) and the simple average (4.312%) are essentially identical for this 5-day period. The compounding effect is negligible ($< 0.001$ bps) because: (a) the period is very short (5 days), and (b) the daily rates are very close to each other. For longer periods (e.g., 3 months with 63 business days), the compounding effect becomes more noticeable, typically on the order of 1--2 bps above the simple average.
+
 ---
 
 **Exercise 2.** A legacy 5-year LIBOR swap with a fixed rate of 3.80% is being converted to SOFR under ISDA fallback provisions. The fixed spread adjustment for 3-month USD LIBOR is 26.161 bps. What is the effective fixed rate the payer will pay after conversion? Is the conversion value-neutral at the time of the fallback, and why might it not be perfectly neutral in practice?
+
+??? success "Solution to Exercise 2"
+
+    **ISDA fallback mechanism:** The legacy swap pays 3-month LIBOR on the floating leg against a fixed rate of 3.80%. After LIBOR cessation, the floating leg references:
+
+    $$
+    \text{Fallback Rate} = \text{Compounded SOFR in Arrears} + 26.161 \text{ bps}
+    $$
+
+    **Effective fixed rate after conversion:** The swap economics are now: pay fixed 3.80%, receive SOFR + 26.161 bps. Rearranging, this is equivalent to paying a net fixed rate of:
+
+    $$
+    \text{Effective fixed rate vs. SOFR} = 3.80\% - 0.26161\% = 3.53839\%
+    $$
+
+    over SOFR. That is, the payer effectively pays $3.80\%$ and receives $\text{SOFR} + 0.26161\%$, which is equivalent to paying $3.80\% - 0.26161\% = 3.5384\%$ over SOFR flat.
+
+    **Value-neutrality at the time of fallback:**
+
+    The conversion was designed to be approximately value-neutral at the moment of fallback. The spread adjustment of 26.161 bps was calculated as the 5-year historical median of the difference (3M LIBOR minus compounded SOFR), frozen on March 5, 2021. At that specific moment:
+
+    $$
+    \mathbb{E}[\text{LIBOR}] \approx \mathbb{E}[\text{SOFR} + 26.161 \text{ bps}]
+    $$
+
+    based on historical averages.
+
+    **Why it may not be perfectly neutral in practice:**
+
+    1. **Historical median vs. current spread:** The 5-year historical median reflects past average conditions, not the current or expected future spread. At the time of fallback, the actual LIBOR-SOFR spread may be higher or lower than 26.161 bps.
+
+    2. **Spread dynamics:** The spread adjustment is fixed forever, but the LIBOR-SOFR spread was stochastic and mean-reverting. Locking in a constant spread converts stochastic basis risk into a deterministic quantity, changing the risk profile.
+
+    3. **Forward-looking vs. backward-looking:** LIBOR was forward-looking (set at the beginning of the period), while compounded SOFR is backward-looking (determined at the end). This difference affects the timing of cash flows and introduces a convexity adjustment that the fixed spread does not capture.
+
+    4. **Discounting effects:** If the swap is collateralized at OIS/SOFR, the change from LIBOR to SOFR + spread on the floating leg changes the covariance between the floating rate and the discount factor, creating a small valuation difference.
 
 ---
 
 **Exercise 3.** Explain the difference between a "lookback" convention and a "lockout" convention for SOFR-based floating payments. For a quarterly floating coupon, describe how a 5-business-day lookback works and how a 2-business-day lockout works. Which convention is preferred for syndicated loans and why?
 
+??? success "Solution to Exercise 3"
+
+    **Lookback convention (5-business-day lookback):**
+
+    In a lookback convention, the SOFR rate applied to each day of the accrual period is shifted backward by 5 business days. For a quarterly accrual period $[T_s, T_e]$:
+
+    - On accrual day $t_i$, the SOFR rate used is $r(t_i - 5\text{bd})$, where $5\text{bd}$ means 5 business days earlier.
+    - The weighting (number of calendar days $d_i$) still corresponds to day $t_i$ in the accrual period, but the rate is from 5 days prior.
+
+    $$
+    R_{\text{lookback}} = \frac{1}{\delta}\left[\prod_{i=1}^{n_d}\left(1 + \frac{d_i}{360} r(t_i - 5\text{bd})\right) - 1\right]
+    $$
+
+    **Effect:** The entire rate is known 5 business days before the end of the accrual period (since the last day's rate uses the SOFR from 5 days earlier). This gives the borrower advance notice of the payment amount.
+
+    **Lockout convention (2-business-day lockout):**
+
+    In a lockout convention, the SOFR rate is frozen for the last 2 business days of the accrual period:
+
+    - For accrual days $t_1, \ldots, t_{n_d - 2}$: the actual SOFR rate $r(t_i)$ is used.
+    - For the last 2 business days $t_{n_d - 1}$ and $t_{n_d}$: the rate is frozen at $r(t_{n_d - 2})$.
+
+    $$
+    R_{\text{lockout}} = \frac{1}{\delta}\left[\prod_{i=1}^{n_d - 2}\left(1 + \frac{d_i}{360} r(t_i)\right) \times \left(1 + \frac{d_{n_d-1} + d_{n_d}}{360} r(t_{n_d - 2})\right) - 1\right]
+    $$
+
+    **Effect:** The payment amount is known 2 business days before the end of the accrual period.
+
+    **Preference for syndicated loans:**
+
+    The **lookback** convention is preferred for syndicated loans because:
+
+    - Syndicated loans involve multiple lenders who need time to process payment instructions.
+    - A 5-day lookback provides sufficient advance notice (the rate is fully known 5 business days before the payment date).
+    - The lookback preserves the SOFR rate dynamics for the full accrual period (just shifted), whereas the lockout effectively shortens the observation window, potentially missing rate movements in the final days.
+    - The ARRC (Alternative Reference Rates Committee) specifically recommended the lookback for syndicated loans.
+
 ---
 
 **Exercise 4.** LIBOR contains a term credit premium while SOFR does not (being secured). For a bank that funds itself at LIBOR + 30 bps, discuss how the transition to SOFR affects the economics of making floating-rate loans. How does the credit-sensitive alternative (e.g., BSBY or Ameribor) attempt to address this issue, and what are the regulatory concerns with such alternatives?
+
+??? success "Solution to Exercise 4"
+
+    **Impact on floating-rate loan economics:**
+
+    Under LIBOR, a bank that funds at LIBOR + 30 bps and makes a floating-rate loan at LIBOR + 150 bps earns a net interest margin (NIM) of:
+
+    $$
+    \text{NIM}_{\text{LIBOR}} = (L + 150) - (L + 30) = 120 \text{ bps}
+    $$
+
+    The LIBOR component cancels, providing a natural hedge between funding and lending.
+
+    Under SOFR, the loan references SOFR while the bank's unsecured funding cost still includes a credit component:
+
+    $$
+    \text{Funding cost} = \text{SOFR} + \text{bank credit spread} + \text{term premium}
+    $$
+
+    If the loan pays SOFR + 150 bps and the bank funds at SOFR + 80 bps (where 80 bps represents the bank's credit spread plus term premium):
+
+    $$
+    \text{NIM}_{\text{SOFR}} = (\text{SOFR} + 150) - (\text{SOFR} + 80) = 70 \text{ bps}
+    $$
+
+    The SOFR cancels, but the bank's credit spread does not. The critical difference is that under LIBOR, the embedded credit premium in LIBOR partially offset the bank's own credit spread (since LIBOR reflected average bank credit risk). Under SOFR, the bank's credit spread is fully exposed---it is not hedged by the reference rate.
+
+    **Credit-sensitive alternatives:**
+
+    - **BSBY (Bloomberg Short-Term Bank Yield Index):** Based on bank CP/CD issuance, it embeds bank credit risk (similar to LIBOR). A loan at BSBY + spread would provide a natural hedge against the bank's own funding cost fluctuations.
+    - **Ameribor:** Based on unsecured overnight lending between smaller banks, reflecting their credit conditions.
+
+    These alternatives restore the LIBOR-like property of having a credit-sensitive reference rate that co-moves with bank funding costs.
+
+    **Regulatory concerns:**
+
+    - **Same vulnerabilities as LIBOR:** Credit-sensitive rates may suffer from the same problems that led to LIBOR's demise---thin underlying transaction volumes, susceptibility to manipulation, and reliance on a limited set of contributing institutions.
+    - **Systemic risk:** Regulators prefer rates based on deep, liquid markets (SOFR has ~\$1 trillion daily volume) rather than thin credit markets.
+    - **Pro-cyclicality:** Credit-sensitive rates rise during crises (when bank credit spreads widen), increasing borrowing costs precisely when borrowers are most stressed. SOFR, being risk-free, does not exhibit this pro-cyclical behavior.
+    - **ARRC and FSB recommendation:** Both strongly recommend SOFR as the primary USD benchmark, with credit-sensitive alternatives discouraged for derivatives and large-scale lending.
 
 ---
 
 **Exercise 5.** Term SOFR is derived from SOFR futures prices. Explain how the market prices of 1-month and 3-month SOFR futures can be used to construct a forward-looking term rate. Why did regulators recommend limiting the use of Term SOFR to certain products (primarily loans) rather than allowing it for all derivatives?
 
+??? success "Solution to Exercise 5"
+
+    **Constructing Term SOFR from futures:**
+
+    **1-month Term SOFR:** Derived from 1-month SOFR futures (contracts that settle based on the arithmetic average of daily SOFR over a calendar month). If the futures price is $P_F$, the implied rate is:
+
+    $$
+    L_{\text{Term}}^{1M}(T) = \frac{100 - P_F}{100}
+    $$
+
+    For example, if the 1-month SOFR futures price for the next month is 94.70, the implied 1-month Term SOFR is $100 - 94.70 = 5.30\%$.
+
+    **3-month Term SOFR:** Derived from 3-month SOFR futures (which settle on the compounded SOFR over a quarterly period). The CME uses an interpolation/bootstrapping methodology:
+
+    - Identify the 3-month SOFR futures contracts whose reference periods overlap with the desired forward period.
+    - Use the futures prices to extract the implied compounded rate for the target 3-month period.
+    - Apply a convexity adjustment if necessary (futures vs. forwards).
+
+    The result is a forward-looking 3-month rate:
+
+    $$
+    L_{\text{Term}}^{3M}(T) = \text{rate implied by SOFR futures for the period } [T, T+3M]
+    $$
+
+    **Why regulators limit Term SOFR usage:**
+
+    1. **Circularity concern:** Term SOFR is derived from SOFR derivatives (futures and OIS). If derivatives themselves referenced Term SOFR, it would create a circular dependence: derivatives priced off a rate that is itself derived from derivatives. This could lead to manipulation incentives and market instability.
+
+    2. **Liquidity and robustness:** SOFR futures markets, while growing, are less liquid than the underlying overnight SOFR market. Basing a widely-used benchmark on a derivatives market that is less deep creates robustness concerns.
+
+    3. **Backward-looking preference:** Regulators and the ARRC strongly prefer that derivatives use compounded SOFR in arrears because it is directly tied to actual overnight transactions (~\$1 trillion daily), making it more robust and harder to manipulate.
+
+    4. **Transition incentive:** Allowing Term SOFR for all products would reduce incentives for market participants to develop infrastructure for backward-looking rates, potentially perpetuating dependence on forward-looking rates that may be less robust.
+
+    The ARRC recommends Term SOFR primarily for **business loans** (where borrowers need payment certainty), **trade finance**, and certain **consumer products**, while discouraging its use for **derivatives** and **capital markets instruments**.
+
 ---
 
 **Exercise 6.** Under the LIBOR framework, the forward LIBOR rate $L_i(t)$ was a martingale under $\mathbb{Q}^{T_{i+1}}$, leading to Black's caplet formula. In the SOFR framework, the compounded rate over $[T_i, T_{i+1}]$ is backward-looking and only known at $T_{i+1}$. Discuss how this affects the measure-theoretic setup for pricing SOFR caplets and whether Black's formula can still be applied (with appropriate modifications).
 
+??? success "Solution to Exercise 6"
+
+    **LIBOR framework (forward-looking):**
+
+    Under the LIBOR framework, the forward LIBOR rate $L_i(t) = L(t; T_i, T_{i+1})$ is defined as the rate fixed at $T_i$ for the period $[T_i, T_{i+1}]$. It is an $\mathcal{F}_{T_i}$-measurable random variable. Under the $T_{i+1}$-forward measure $\mathbb{Q}^{T_{i+1}}$:
+
+    $$
+    L_i(t) \text{ is a martingale for } t \leq T_i
+    $$
+
+    This means $\mathbb{E}^{T_{i+1}}[L_i(T_i) | \mathcal{F}_t] = L_i(t)$. At $T_i$, the rate is known, and the caplet payoff $\delta(L_i(T_i) - K)^+$ paid at $T_{i+1}$ can be priced using Black's formula since $L_i(T_i)$ has a lognormal (or normal) distribution under $\mathbb{Q}^{T_{i+1}}$.
+
+    **SOFR framework (backward-looking):**
+
+    The compounded SOFR rate for $[T_i, T_{i+1}]$ is:
+
+    $$
+    R_i = \frac{1}{\delta_i}\left[\prod_{j}\left(1 + \frac{d_j}{360}r(t_j)\right) - 1\right]
+    $$
+
+    where $r(t_j)$ are daily SOFR rates observed during $[T_i, T_{i+1}]$. Crucially, $R_i$ is only $\mathcal{F}_{T_{i+1}}$-measurable (not $\mathcal{F}_{T_i}$-measurable) because it depends on rates observed throughout the period, including rates at dates after $T_i$.
+
+    **Measure-theoretic implications:**
+
+    Under $\mathbb{Q}^{T_{i+1}}$, the forward value of $R_i$ at time $t < T_i$ is:
+
+    $$
+    R_i^{\text{fwd}}(t) = \mathbb{E}^{T_{i+1}}[R_i | \mathcal{F}_t]
+    $$
+
+    This expectation is well-defined, and $R_i^{\text{fwd}}(t)$ is a $\mathbb{Q}^{T_{i+1}}$-martingale. However, the distribution of $R_i$ is more complex than that of a simple forward rate because $R_i$ is a product (or approximately a sum) of correlated daily rates.
+
+    **Can Black's formula be applied?**
+
+    Yes, with appropriate modifications:
+
+    1. Replace the forward LIBOR rate with the forward SOFR rate: $L_i(0) \to R_i^{\text{fwd}}(0) = \frac{1}{\delta_i}\left(\frac{P^{\text{OIS}}(0,T_i)}{P^{\text{OIS}}(0,T_{i+1})} - 1\right)$.
+
+    2. Use the same Black (or Bachelier) formula with this forward rate as the underlying.
+
+    3. The key assumption is that $R_i^{\text{fwd}}(t)$ follows a lognormal (or normal) diffusion under $\mathbb{Q}^{T_{i+1}}$, which is an approximation---the compounded rate is a nonlinear function of daily rates, not a simple diffusion.
+
+    4. A **convexity adjustment** may be needed if the payment date differs from $T_{i+1}$ or if the lookback/lockout convention modifies the rate. For standard cases (payment at $T_{i+1}$, no lockout), the convexity correction is small (< 0.1 bps for short periods).
+
+    In practice, SOFR caplets are priced using Black's or Bachelier's formula with the SOFR forward rate, and the approximation is considered adequate for most purposes.
+
 ---
 
 **Exercise 7.** The transition from multi-curve (OIS + multiple LIBOR tenors) to essentially single-curve (SOFR) simplifies the modeling framework. Describe three specific simplifications that arise in a SOFR-only world and one new complexity that the backward-looking nature of SOFR introduces compared to forward-looking LIBOR.
+
+??? success "Solution to Exercise 7"
+
+    **Three simplifications in a SOFR-only world:**
+
+    1. **Single discount and projection curve:** Under LIBOR, one needed an OIS curve for discounting and a separate LIBOR curve (per tenor) for projection. Under SOFR, the same OIS/SOFR curve serves both purposes:
+
+        $$
+        P^{\text{discount}}(0,T) = P^{\text{OIS}}(0,T) = P^{\text{projection}}(0,T)
+        $$
+
+        This eliminates the need to build, maintain, and hedge multiple curves, significantly reducing infrastructure complexity.
+
+    2. **No tenor basis modeling:** Under LIBOR, the 3M/6M/12M basis spreads were additional stochastic variables requiring modeling, calibration, and hedging. In a SOFR world, all tenors are derived from the same overnight rate via compounding, so there is no structural basis:
+
+        $$
+        R^{6M}(T_i, T_{i+1}) \approx \text{compounded}(R^{3M}(T_i, T_{i+3M}), R^{3M}(T_{i+3M}, T_{i+1}))
+        $$
+
+        This eliminates an entire dimension of risk factors.
+
+    3. **Simplified calibration:** Multi-curve LMMs required calibration to both the volatility surface and the basis spread dynamics. A single-curve SOFR model calibrates only to SOFR cap/swaption volatilities and the SOFR yield curve, reducing the number of parameters and improving calibration stability.
+
+    **One new complexity from backward-looking rates:**
+
+    **Cash flow uncertainty and convexity adjustments:** Under LIBOR, the forward rate $L_i(T_i)$ was known at the start of the accrual period $T_i$, making the caplet payoff a function of an $\mathcal{F}_{T_i}$-measurable quantity. Under SOFR, the compounded rate $R_i$ is only determined at $T_{i+1}$. This creates:
+
+    - **Operational complexity:** Payment amounts cannot be calculated until the end of the accrual period, requiring lookback, lockout, or payment delay conventions.
+    - **Modeling complexity:** The compounded rate is a product of correlated daily rates, not a single forward rate. Pricing requires either (a) treating the forward compounded rate as the primitive variable (an approximation) or (b) modeling the full path of daily rates (computationally expensive).
+    - **Convexity corrections:** If the payment date is shifted relative to $T_{i+1}$ (e.g., with a payment delay), or if a lookback convention is used, the rate and the discount factor are no longer naturally aligned, creating convexity adjustments that did not exist in the LIBOR framework.
+
+    This backward-looking complexity is a genuine new challenge that did not arise with forward-looking LIBOR, and it has required significant infrastructure development across the industry.

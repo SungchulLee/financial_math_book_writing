@@ -540,51 +540,13 @@ These ideas are fundamental to:
 
 The next sections will make these connections rigorous and develop the full machinery of stochastic calculus.
 
-### Exercises
+## Exercises
 
 #### Scaling Property
 
 Let $a > 0$ and define $X_t := \frac{1}{\sqrt{a}} W_{at}$.
 
 1. Show that $(X_t)_{t \ge 0}$ is a standard Brownian motion by verifying all four defining properties.
-
-2. Explain why this property is called *self-similarity* and what it implies about the visual appearance of Brownian paths at different time scales.
-
-3. How does the scaling property affect:
-   (a) The variance $\text{Var}(X_t)$ compared to $\text{Var}(W_t)$?
-   (b) The relationship between "time units" and "space units"?
-
-#### Deterministic Time Change
-
-4. Let $\phi(t) = t^2$ and define $B_t = W_{\phi(t)} = W_{t^2}$.
-   (a) Compute $\text{Var}(B_t)$ and $\text{Cov}(B_s, B_t)$ for $s < t$.
-   (b) Is $B_t$ a Brownian motion? Why or why not?
-   (c) Are the increments $B_t - B_s$ stationary?
-
-5. For what functions $\phi(t)$ is $W_{\phi(t)}$ a Brownian motion? Prove your answer.
-
-6. Let $\phi(t) = e^t - 1$. Compute the covariance $\text{Cov}(W_{\phi(s)}, W_{\phi(t)})$ and describe how this time change affects the process.
-
-#### Hurst Exponent
-
-7. A self-similar process with Hurst exponent $H$ satisfies $X_{ct} \overset{d}{=} c^H X_t$.
-   (a) Verify that standard Brownian motion has $H = 1/2$.
-   (b) If $H > 1/2$, what does this imply about the correlation of increments?
-   (c) Why is $H = 1/2$ the only value compatible with independent increments?
-
-#### Random Time Change (Dambis-Dubins-Schwarz)
-
-8. Let $M_t = \int_0^t \sigma dW_s = \sigma W_t$ for constant $\sigma > 0$.
-   (a) Compute the quadratic variation $\langle M \rangle_t$.
-   (b) Verify that $M_t = B_{\langle M \rangle_t}$ for some Brownian motion $B$.
-
-9. Let $M_t = \int_0^t s \, dW_s$.
-   (a) Compute $\langle M \rangle_t$.
-   (b) Express $M_t$ as a time-changed Brownian motion.
-
-10. (Stochastic Volatility Interpretation) In a model where $dS_t = \sigma_t S_t dW_t$, explain why the "realized variance" $\int_0^T \sigma_t^2 dt$ represents the "true time" experienced by the asset price.
-
-### Solutions
 
 ??? success "Solution to Exercise 1"
     Define $X_t = \frac{1}{\sqrt{a}} W_{at}$. We verify the four defining properties of Brownian motion.
@@ -607,10 +569,20 @@ Let $a > 0$ and define $X_t := \frac{1}{\sqrt{a}} W_{at}$.
 
     **(iv) Continuity of paths:** Since $t \mapsto at$ is continuous and $t \mapsto W_t$ is continuous a.s., the composition $t \mapsto W_{at}$ is continuous a.s. Dividing by the constant $\sqrt{a}$ preserves continuity.
 
+---
+
+2. Explain why this property is called *self-similarity* and what it implies about the visual appearance of Brownian paths at different time scales.
+
 ??? success "Solution to Exercise 2"
     **Self-similarity** means that the statistical properties of the process are preserved under simultaneous rescaling of time and space. Specifically, $W_{ct} \overset{d}{=} \sqrt{c}\,W_t$ means the process at time scale $c$ is identical in distribution to the process at the original time scale after spatial rescaling by $\sqrt{c}$.
 
     **Visual implication:** If you zoom into a Brownian path by magnifying the time axis by a factor $c$ and the space axis by $\sqrt{c}$, the resulting picture is statistically indistinguishable from the original. At any resolution — whether you view the path over milliseconds or years — the roughness and structure look the same. There is no characteristic scale at which the path becomes "smooth" or "different."
+
+---
+
+3. How does the scaling property affect:
+   (a) The variance $\text{Var}(X_t)$ compared to $\text{Var}(W_t)$?
+   (b) The relationship between "time units" and "space units"?
 
 ??? success "Solution to Exercise 3"
     **(a)** Since $X_t = \frac{1}{\sqrt{a}} W_{at}$ is a standard Brownian motion (by Exercise 1):
@@ -622,6 +594,15 @@ Let $a > 0$ and define $X_t := \frac{1}{\sqrt{a}} W_{at}$.
     And indeed $\text{Var}(X_t) = \frac{1}{a}\text{Var}(W_{at}) = \frac{1}{a} \cdot at = t = \text{Var}(W_t)$. The variance is the same.
 
     **(b)** The scaling $W_{ct} \overset{d}{=} \sqrt{c}\,W_t$ relates time and space units: multiplying time by $c$ is equivalent to multiplying space by $\sqrt{c}$. This gives the fundamental relationship "space scales as the square root of time." In finance, this is why daily volatility $\sigma_{\text{daily}}$ annualizes as $\sigma_{\text{annual}} = \sigma_{\text{daily}}\sqrt{252}$.
+
+---
+
+#### Deterministic Time Change
+
+4. Let $\phi(t) = t^2$ and define $B_t = W_{\phi(t)} = W_{t^2}$.
+   (a) Compute $\text{Var}(B_t)$ and $\text{Cov}(B_s, B_t)$ for $s < t$.
+   (b) Is $B_t$ a Brownian motion? Why or why not?
+   (c) Are the increments $B_t - B_s$ stationary?
 
 ??? success "Solution to Exercise 4"
     **(a)** $B_t = W_{t^2}$, so:
@@ -642,6 +623,10 @@ Let $a > 0$ and define $X_t := \frac{1}{\sqrt{a}} W_{at}$.
 
     This depends on $s$ and $t$ separately, not just on $t - s$. For instance, $\text{Var}(B_2 - B_1) = 4 - 1 = 3$ while $\text{Var}(B_3 - B_2) = 9 - 4 = 5$, even though both intervals have length 1.
 
+---
+
+5. For what functions $\phi(t)$ is $W_{\phi(t)}$ a Brownian motion? Prove your answer.
+
 ??? success "Solution to Exercise 5"
     $W_{\phi(t)}$ is a standard Brownian motion if and only if $\phi(t) = t$.
 
@@ -655,6 +640,10 @@ Let $a > 0$ and define $X_t := \frac{1}{\sqrt{a}} W_{at}$.
 
     Conversely, if $\phi(t) = t$ then $W_{\phi(t)} = W_t$, which is a Brownian motion by assumption.
 
+---
+
+6. Let $\phi(t) = e^t - 1$. Compute the covariance $\text{Cov}(W_{\phi(s)}, W_{\phi(t)})$ and describe how this time change affects the process.
+
 ??? success "Solution to Exercise 6"
     With $\phi(t) = e^t - 1$:
 
@@ -666,12 +655,29 @@ Let $a > 0$ and define $X_t := \frac{1}{\sqrt{a}} W_{at}$.
 
     **Effect of the time change:** Since $\phi'(t) = e^t$, the clock runs exponentially faster as $t$ increases. Near $t = 0$, $\phi(t) \approx t$ so the process behaves like standard Brownian motion. For large $t$, $\phi(t) \approx e^t$, so the variance $\text{Var}(W_{\phi(t)}) = e^t - 1$ grows exponentially rather than linearly. The increments become increasingly volatile over time.
 
+---
+
+#### Hurst Exponent
+
+7. A self-similar process with Hurst exponent $H$ satisfies $X_{ct} \overset{d}{=} c^H X_t$.
+   (a) Verify that standard Brownian motion has $H = 1/2$.
+   (b) If $H > 1/2$, what does this imply about the correlation of increments?
+   (c) Why is $H = 1/2$ the only value compatible with independent increments?
+
 ??? success "Solution to Exercise 7"
     **(a)** By the scaling property, $W_{ct} \overset{d}{=} \sqrt{c}\,W_t$. This means $X_{ct} \overset{d}{=} c^{1/2} X_t$ where $X = W$, confirming $H = 1/2$.
 
     **(b)** If $H > 1/2$, the process exhibits **persistent** behavior: the increments are positively correlated. If the process went up in the past, it is more likely to continue going up. This is sometimes called "long-range dependence" or "trending" behavior.
 
     **(c)** For a process with independent increments, the variance of the increment over $[0, ct]$ must equal the sum of variances over $[0, t]$ and $[t, ct]$. If $X_{ct} \overset{d}{=} c^H X_t$, then $\text{Var}(X_{ct}) = c^{2H}\text{Var}(X_t)$. By independent stationary increments, $\text{Var}(X_{ct}) = ct \cdot \sigma^2$. Setting equal: $c^{2H} t\sigma^2 = ct\sigma^2$, so $c^{2H} = c$ for all $c > 0$, which requires $2H = 1$, i.e., $H = 1/2$.
+
+---
+
+#### Random Time Change (Dambis-Dubins-Schwarz)
+
+8. Let $M_t = \int_0^t \sigma dW_s = \sigma W_t$ for constant $\sigma > 0$.
+   (a) Compute the quadratic variation $\langle M \rangle_t$.
+   (b) Verify that $M_t = B_{\langle M \rangle_t}$ for some Brownian motion $B$.
 
 ??? success "Solution to Exercise 8"
     **(a)** For $M_t = \sigma W_t$, the quadratic variation is:
@@ -688,6 +694,12 @@ Let $a > 0$ and define $X_t := \frac{1}{\sqrt{a}} W_{at}$.
 
     And $M_t = \sigma W_t \sim \mathcal{N}(0, \sigma^2 t)$, which matches. This is also consistent with the scaling property: $B_{\sigma^2 t} \overset{d}{=} \sigma B_t \overset{d}{=} \sigma W_t = M_t$.
 
+---
+
+9. Let $M_t = \int_0^t s \, dW_s$.
+   (a) Compute $\langle M \rangle_t$.
+   (b) Express $M_t$ as a time-changed Brownian motion.
+
 ??? success "Solution to Exercise 9"
     **(a)** For $M_t = \int_0^t s\,dW_s$, the quadratic variation is computed using the Itô isometry formula:
 
@@ -702,6 +714,10 @@ Let $a > 0$ and define $X_t := \frac{1}{\sqrt{a}} W_{at}$.
     $$
 
     The stochastic integral $\int_0^t s\,dW_s$ is a Brownian motion run on the clock $t^3/3$. Since the integrand $H_s = s$ grows with time, the clock accelerates: the process accumulates quadratic variation at rate $s^2$ at time $s$, so early times contribute less randomness than later times.
+
+---
+
+10. (Stochastic Volatility Interpretation) In a model where $dS_t = \sigma_t S_t dW_t$, explain why the "realized variance" $\int_0^T \sigma_t^2 dt$ represents the "true time" experienced by the asset price.
 
 ??? success "Solution to Exercise 10"
     In the stochastic volatility model $dS_t = \sigma_t S_t\,dW_t$ (ignoring drift for simplicity), the log-price satisfies $d\log S_t = -\frac{1}{2}\sigma_t^2\,dt + \sigma_t\,dW_t$. The martingale part is $M_t = \int_0^t \sigma_s\,dW_s$, with quadratic variation:

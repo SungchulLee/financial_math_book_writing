@@ -274,34 +274,6 @@ This is why option prices are **drift-neutral**: they depend only on the volatil
 
 **Exercise 1.** Suppose the real-world drift is $\mu = 12\%$, the risk-free rate is $r = 3\%$, and the volatility is $\sigma = 20\%$. Compute the market price of risk $\theta = \frac{\mu - r}{\sigma}$ and write down the Radon-Nikodym derivative $Z_T$ explicitly for $T = 1$ year.
 
----
-
-**Exercise 2.** Starting from the real-world SDE $dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$ and the Girsanov change $\tilde{W}_t = W_t + \theta t$, substitute $dW_t = d\tilde{W}_t - \theta \, dt$ to verify that the risk-neutral SDE becomes $dS_t = r S_t \, dt + \sigma S_t \, d\tilde{W}_t$.
-
----
-
-**Exercise 3.** Under the risk-neutral measure $\mathbb{Q}$, write the explicit solution for $S_T$ and verify that $\log S_T$ is normally distributed. State the mean and variance of $\log S_T$ under $\mathbb{Q}$ and confirm that the expected value $\mathbb{E}^{\mathbb{Q}}[S_T] = S_0 e^{rT}$.
-
----
-
-**Exercise 4.** Using the Feynman-Kac connection, show that if $V(t, S)$ satisfies the Black-Scholes PDE with terminal condition $V(T, S_T) = (S_T - K)^+$, then the discounted process $\tilde{V}(t) = e^{-rt} V(t, S_t)$ is a martingale under $\mathbb{Q}$. Verify by applying Ito's lemma to $\tilde{V}(t)$ and showing the drift vanishes.
-
----
-
-**Exercise 5.** Consider two traders who agree on all market parameters except the real-world drift: Trader A believes $\mu = 8\%$ while Trader B believes $\mu = 15\%$. Show that both traders arrive at the same Black-Scholes option price, and explain why the drift $\mu$ does not appear in the pricing formula despite appearing in the Radon-Nikodym derivative.
-
----
-
-**Exercise 6.** For the parameters $S_0 = 100$, $K = 105$, $r = 5\%$, $\sigma = 25\%$, $T = 0.5$, carry out the full Girsanov derivation: compute $d_1$, $d_2$, evaluate $\Phi(d_1)$ and $\Phi(d_2)$, and obtain the call price $C_0 = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2)$.
-
----
-
-**Exercise 7.** The Novikov condition $\mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\theta^2 T\right)\right] < \infty$ guarantees that the Girsanov change of measure is well-defined. Show that this condition is automatically satisfied when $\theta$ is a constant. Discuss what could go wrong if $\theta$ were a stochastic process that grows too fast.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The market price of risk is:
 
@@ -322,6 +294,9 @@ This is why option prices are **drift-neutral**: they depend only on the volatil
     where $W_1 \sim \mathcal{N}(0, 1)$ under $\mathbb{P}$. This random variable converts $\mathbb{P}$-expectations to $\mathbb{Q}$-expectations: $\mathbb{E}^{\mathbb{Q}}[X] = \mathbb{E}^{\mathbb{P}}[Z_T X]$ for any $\mathcal{F}_T$-measurable $X$.
 
     Note that $\theta = 0.45$ represents the excess return per unit of risk. The Sharpe ratio of the stock is $0.45$, meaning investors earn $0.45$ units of excess return for each unit of volatility risk they bear.
+
+---
+**Exercise 2.** Starting from the real-world SDE $dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$ and the Girsanov change $\tilde{W}_t = W_t + \theta t$, substitute $dW_t = d\tilde{W}_t - \theta \, dt$ to verify that the risk-neutral SDE becomes $dS_t = r S_t \, dt + \sigma S_t \, d\tilde{W}_t$.
 
 ??? success "Solution to Exercise 2"
     Starting with the real-world SDE: $dS_t = \mu S_t\, dt + \sigma S_t\, dW_t$.
@@ -360,6 +335,9 @@ This is why option prices are **drift-neutral**: they depend only on the volatil
 
     This is the risk-neutral SDE, confirming that under $\mathbb{Q}$, the stock grows at the risk-free rate $r$ instead of the real-world drift $\mu$.
 
+---
+**Exercise 3.** Under the risk-neutral measure $\mathbb{Q}$, write the explicit solution for $S_T$ and verify that $\log S_T$ is normally distributed. State the mean and variance of $\log S_T$ under $\mathbb{Q}$ and confirm that the expected value $\mathbb{E}^{\mathbb{Q}}[S_T] = S_0 e^{rT}$.
+
 ??? success "Solution to Exercise 3"
     Under $\mathbb{Q}$, the SDE $dS_t = rS_t\, dt + \sigma S_t\, d\tilde{W}_t$ has the explicit solution:
 
@@ -390,6 +368,9 @@ This is why option prices are **drift-neutral**: they depend only on the volatil
     $$
 
     This confirms that under the risk-neutral measure, the stock's expected return is the risk-free rate $r$, as required by the martingale property of the discounted asset price.
+
+---
+**Exercise 4.** Using the Feynman-Kac connection, show that if $V(t, S)$ satisfies the Black-Scholes PDE with terminal condition $V(T, S_T) = (S_T - K)^+$, then the discounted process $\tilde{V}(t) = e^{-rt} V(t, S_t)$ is a martingale under $\mathbb{Q}$. Verify by applying Ito's lemma to $\tilde{V}(t)$ and showing the drift vanishes.
 
 ??? success "Solution to Exercise 4"
     Let $V(t, S)$ satisfy the Black-Scholes PDE:
@@ -436,6 +417,9 @@ This is why option prices are **drift-neutral**: they depend only on the volatil
 
     The drift term vanishes, leaving only the stochastic integral with respect to $\tilde{W}$. Therefore $\tilde{V}(t) = e^{-rt}V(t, S_t)$ is a (local) martingale under $\mathbb{Q}$.
 
+---
+**Exercise 5.** Consider two traders who agree on all market parameters except the real-world drift: Trader A believes $\mu = 8\%$ while Trader B believes $\mu = 15\%$. Show that both traders arrive at the same Black-Scholes option price, and explain why the drift $\mu$ does not appear in the pricing formula despite appearing in the Radon-Nikodym derivative.
+
 ??? success "Solution to Exercise 5"
     **Trader A** ($\mu = 8\%$) computes:
 
@@ -469,6 +453,9 @@ This is why option prices are **drift-neutral**: they depend only on the volatil
     Since $d_1$ and $d_2$ depend only on $S_0$, $K$, $r$, $\sigma$, and $T$ (not $\mu$), both traders get the same price.
 
     The drift $\mu$ does not appear because risk-neutral pricing is based on **replication**, not forecasting. The option can be perfectly hedged using the stock and bond, and the cost of this hedge is determined by $\sigma$ (which governs how much the stock moves) and $r$ (which governs the cost of financing), not by $\mu$ (which governs the direction of expected moves). Different beliefs about $\mu$ lead to different Radon-Nikodym derivatives but the same pricing measure.
+
+---
+**Exercise 6.** For the parameters $S_0 = 100$, $K = 105$, $r = 5\%$, $\sigma = 25\%$, $T = 0.5$, carry out the full Girsanov derivation: compute $d_1$, $d_2$, evaluate $\Phi(d_1)$ and $\Phi(d_2)$, and obtain the call price $C_0 = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2)$.
 
 ??? success "Solution to Exercise 6"
     **Parameters**: $S_0 = 100$, $K = 105$, $r = 0.05$, $\sigma = 0.25$, $T = 0.5$.
@@ -510,6 +497,9 @@ This is why option prices are **drift-neutral**: they depend only on the volatil
     $$
 
     The European call price is approximately $\$5.98$.
+
+---
+**Exercise 7.** The Novikov condition $\mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\theta^2 T\right)\right] < \infty$ guarantees that the Girsanov change of measure is well-defined. Show that this condition is automatically satisfied when $\theta$ is a constant. Discuss what could go wrong if $\theta$ were a stochastic process that grows too fast.
 
 ??? success "Solution to Exercise 7"
     When $\theta$ is a constant, the Novikov condition becomes:

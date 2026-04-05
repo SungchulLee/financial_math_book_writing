@@ -304,22 +304,267 @@ Substituting the exponential-affine ansatz into the Feynman-Kac PDE yields a sca
 
 **Exercise 1.** Write the $D$-equation: $D' = \frac{1}{2}\sigma_v^2 D^2 + (\rho\sigma_v iu - \kappa)D + \frac{1}{2}(iu - u^2)$. Identify the coefficients $\alpha$, $\beta$, $\gamma$ in the standard Riccati form $D' = \alpha + \beta D + \frac{1}{2}\gamma D^2$ and compute the discriminant $\gamma^2 = \beta^2 - 2\alpha\gamma$.
 
+??? success "Solution to Exercise 1"
+    The $D$-equation is:
+
+    $$
+    D' = \frac{1}{2}\sigma_v^2 D^2 + (\rho\sigma_v iu - \kappa)D + \frac{1}{2}(iu - u^2)
+    $$
+
+    To match the standard Riccati form $D' = \alpha + \beta D + \frac{1}{2}\gamma_R D^2$ (using $\gamma_R$ to distinguish from the discriminant), the coefficients are:
+
+    $$
+    \alpha = \frac{1}{2}(iu - u^2), \qquad \beta = \rho\sigma_v iu - \kappa, \qquad \gamma_R = \sigma_v^2
+    $$
+
+    Note the factor of $\frac{1}{2}$ in front of $\gamma_R D^2$, consistent with the original equation having $\frac{1}{2}\sigma_v^2 D^2$.
+
+    The discriminant of the quadratic $\frac{1}{2}\gamma_R D^2 + \beta D + \alpha = 0$ is:
+
+    $$
+    \Delta = \beta^2 - 2\alpha\gamma_R = (\rho\sigma_v iu - \kappa)^2 - 2 \cdot \frac{1}{2}(iu - u^2) \cdot \sigma_v^2
+    $$
+
+    $$
+    = (\kappa - i\rho\sigma_v u)^2 - \sigma_v^2(iu - u^2)
+    $$
+
+    $$
+    = (\kappa - i\rho\sigma_v u)^2 + \sigma_v^2(u^2 - iu)
+    $$
+
+    $$
+    = (\kappa - i\rho\sigma_v u)^2 + \sigma_v^2(iu + u^2)
+    $$
+
+    (where the last step uses $u^2 - iu = -(iu - u^2)$, and noting the sign: $-\sigma_v^2(iu - u^2) = \sigma_v^2(u^2 - iu)$; the standard convention writes this as $\sigma_v^2(iu + u^2)$ which equals $\sigma_v^2(u^2 + iu)$.) The discriminant square root is:
+
+    $$
+    \gamma = \sqrt{\Delta} = \sqrt{(\kappa - i\rho\sigma_v u)^2 + \sigma_v^2(iu + u^2)}
+    $$
+
+    This is the key quantity appearing in the closed-form Heston characteristic function.
+
 ---
 
 **Exercise 2.** Apply the substitution $D = -\frac{2}{\sigma_v^2}\frac{h'}{h}$ to transform the Riccati ODE into a second-order linear ODE for $h(\tau)$. Solve $h(\tau) = Ae^{r_+\tau} + Be^{r_-\tau}$ where $r_\pm$ are the characteristic roots.
+
+??? success "Solution to Exercise 2"
+    Starting from the Riccati ODE $D' = \frac{1}{2}\sigma_v^2 D^2 + bD + c$ where $b = \rho\sigma_v iu - \kappa$ and $c = \frac{1}{2}(iu - u^2)$, apply the substitution:
+
+    $$
+    D(\tau) = -\frac{2}{\sigma_v^2}\frac{h'(\tau)}{h(\tau)}
+    $$
+
+    Computing $D'$:
+
+    $$
+    D' = -\frac{2}{\sigma_v^2}\left(\frac{h''}{h} - \frac{(h')^2}{h^2}\right)
+    $$
+
+    Computing $D^2$:
+
+    $$
+    D^2 = \frac{4}{\sigma_v^4}\frac{(h')^2}{h^2}
+    $$
+
+    Substituting into the Riccati ODE:
+
+    $$
+    -\frac{2}{\sigma_v^2}\frac{h''}{h} + \frac{2}{\sigma_v^2}\frac{(h')^2}{h^2} = \frac{1}{2}\sigma_v^2 \cdot \frac{4}{\sigma_v^4}\frac{(h')^2}{h^2} + b\left(-\frac{2}{\sigma_v^2}\frac{h'}{h}\right) + c
+    $$
+
+    The $(h')^2/h^2$ terms cancel on both sides, leaving:
+
+    $$
+    -\frac{2}{\sigma_v^2}\frac{h''}{h} = -\frac{2b}{\sigma_v^2}\frac{h'}{h} + c
+    $$
+
+    Multiplying by $-\frac{\sigma_v^2}{2}h$:
+
+    $$
+    h'' - b\,h' + \frac{\sigma_v^2 c}{2}\,h = 0
+    $$
+
+    Substituting $b = \rho\sigma_v iu - \kappa$ and $c = \frac{1}{2}(iu - u^2)$:
+
+    $$
+    h'' + (\kappa - \rho\sigma_v iu)\,h' + \frac{\sigma_v^2}{4}(iu - u^2)\,h = 0
+    $$
+
+    This is a constant-coefficient second-order linear ODE with characteristic equation:
+
+    $$
+    r^2 + (\kappa - \rho\sigma_v iu)\,r + \frac{\sigma_v^2}{4}(iu - u^2) = 0
+    $$
+
+    By the quadratic formula:
+
+    $$
+    r_\pm = \frac{-(\kappa - i\rho\sigma_v u) \pm \sqrt{(\kappa - i\rho\sigma_v u)^2 - \sigma_v^2(iu - u^2)}}{2} = \frac{-(\kappa - i\rho\sigma_v u) \pm \gamma}{2}
+    $$
+
+    The general solution is $h(\tau) = Ae^{r_+\tau} + Be^{r_-\tau}$.
 
 ---
 
 **Exercise 3.** From the initial condition $D(0) = 0$, determine the ratio $A/B$ in terms of $r_+$ and $r_-$. Substitute back to obtain $D(\tau)$ in closed form.
 
+??? success "Solution to Exercise 3"
+    From $D(0) = 0$ and $D = -\frac{2}{\sigma_v^2}\frac{h'}{h}$, we need $h'(0) = 0$ (with $h(0) \neq 0$).
+
+    With $h(\tau) = Ae^{r_+\tau} + Be^{r_-\tau}$:
+
+    $$
+    h'(\tau) = Ar_+e^{r_+\tau} + Br_-e^{r_-\tau}
+    $$
+
+    At $\tau = 0$: $h'(0) = Ar_+ + Br_- = 0$, so:
+
+    $$
+    \frac{A}{B} = -\frac{r_-}{r_+}
+    $$
+
+    Now compute $D(\tau)$:
+
+    $$
+    D = -\frac{2}{\sigma_v^2}\frac{Ar_+e^{r_+\tau} + Br_-e^{r_-\tau}}{Ae^{r_+\tau} + Be^{r_-\tau}}
+    $$
+
+    Substitute $A = -\frac{r_-}{r_+}B$ and divide numerator and denominator by $Be^{r_-\tau}$:
+
+    $$
+    D = -\frac{2}{\sigma_v^2}\frac{-\frac{r_-}{r_+}\cdot r_+ \cdot e^{(r_+-r_-)\tau} + r_-}{-\frac{r_-}{r_+}\cdot e^{(r_+-r_-)\tau} + 1}
+    $$
+
+    $$
+    = -\frac{2}{\sigma_v^2}\frac{r_-(-e^{(r_+-r_-)\tau} + 1)}{-\frac{r_-}{r_+}e^{(r_+-r_-)\tau} + 1}
+    $$
+
+    $$
+    = -\frac{2}{\sigma_v^2}\frac{r_-(1 - e^{(r_+-r_-)\tau})}{1 - \frac{r_-}{r_+}e^{(r_+-r_-)\tau}}
+    $$
+
+    Note that $r_+ - r_- = \gamma$ and define $g = r_-/r_+$. Then:
+
+    $$
+    D(\tau) = -\frac{2r_-}{\sigma_v^2}\frac{1 - e^{\gamma\tau}}{1 - g\,e^{\gamma\tau}}
+    $$
+
+    Since $r_- = \frac{-(\kappa - i\rho\sigma_v u) - \gamma}{2}$, we have $-\frac{2r_-}{\sigma_v^2} = \frac{\kappa - i\rho\sigma_v u + \gamma}{\sigma_v^2}$, giving the Heston 1993 form. Alternatively, multiplying numerator and denominator by $e^{-\gamma\tau}$ and using $g_{\text{Alb}} = r_+/r_-$:
+
+    $$
+    D(\tau) = \frac{\kappa - i\rho\sigma_v u - \gamma}{\sigma_v^2}\cdot\frac{1 - e^{-\gamma\tau}}{1 - g_{\text{Alb}}\,e^{-\gamma\tau}}
+    $$
+
+    which is the Albrecher form with $g_{\text{Alb}} = \frac{\kappa - i\rho\sigma_v u - \gamma}{\kappa - i\rho\sigma_v u + \gamma}$.
+
 ---
 
 **Exercise 4.** The $C$-equation is $C'(\tau) = (r-q)iu + \kappa\theta D(\tau)$. Given $D(\tau)$ in closed form, perform the integration to obtain $C(\tau)$ and verify that $C(0) = 0$.
+
+??? success "Solution to Exercise 4"
+    The $C$-equation is $C'(\tau) = (r-q)iu + \kappa\theta D(\tau)$ with $C(0) = 0$. Integrating:
+
+    $$
+    C(\tau) = (r-q)iu\,\tau + \kappa\theta\int_0^\tau D(s)\,ds
+    $$
+
+    Using the Albrecher form $D(s) = D_+ \cdot \frac{1 - e^{-\gamma s}}{1 - g\,e^{-\gamma s}}$ where $D_+ = \frac{\kappa - i\rho\sigma_v u - \gamma}{\sigma_v^2}$:
+
+    $$
+    \int_0^\tau \frac{1 - e^{-\gamma s}}{1 - g\,e^{-\gamma s}}\,ds
+    $$
+
+    Split: $\frac{1 - e^{-\gamma s}}{1 - g\,e^{-\gamma s}} = 1 + \frac{(1-g)e^{-\gamma s} - 1 + 1 - e^{-\gamma s}}{1 - g\,e^{-\gamma s}} = 1 - \frac{(1-g)}{1-g\,e^{-\gamma s}} + \frac{1-g}{1-g\,e^{-\gamma s}}$. More directly, use the substitution $w = e^{-\gamma s}$, $dw = -\gamma e^{-\gamma s}\,ds$:
+
+    $$
+    \int_0^\tau \frac{1 - e^{-\gamma s}}{1 - g\,e^{-\gamma s}}\,ds = \tau + \frac{1}{\gamma}\ln\!\left(\frac{1 - g\,e^{-\gamma\tau}}{1 - g}\right)
+    $$
+
+    This can be verified by differentiating with respect to $\tau$: $\frac{d}{d\tau}\left[\tau + \frac{1}{\gamma}\ln\!\left(\frac{1 - g\,e^{-\gamma\tau}}{1-g}\right)\right] = 1 + \frac{1}{\gamma}\cdot\frac{g\gamma e^{-\gamma\tau}}{1 - g\,e^{-\gamma\tau}} = \frac{1 - g\,e^{-\gamma\tau} + g\,e^{-\gamma\tau}}{1 - g\,e^{-\gamma\tau}} = \frac{1}{1 - g\,e^{-\gamma\tau}}$. Hmm, this gives $\frac{1}{1 - g\,e^{-\gamma\tau}}$, not $\frac{1 - e^{-\gamma\tau}}{1 - g\,e^{-\gamma\tau}}$, so the integral formula needs refinement.
+
+    The correct evaluation proceeds by writing:
+
+    $$
+    \frac{1 - e^{-\gamma s}}{1 - g\,e^{-\gamma s}} = \frac{1}{1 - g\,e^{-\gamma s}} - \frac{e^{-\gamma s}}{1 - g\,e^{-\gamma s}}
+    $$
+
+    For the second term, $\int_0^\tau \frac{e^{-\gamma s}}{1 - g\,e^{-\gamma s}}\,ds = -\frac{1}{\gamma}\ln\!\left(\frac{1 - g\,e^{-\gamma\tau}}{1 - g}\right)$ (by the substitution $w = g\,e^{-\gamma s}$).
+
+    For the first term, $\int_0^\tau \frac{ds}{1 - g\,e^{-\gamma s}}$, substitute $w = e^{-\gamma s}$:
+
+    $$
+    = -\frac{1}{\gamma}\int_1^{e^{-\gamma\tau}} \frac{dw}{w(1 - gw)} = -\frac{1}{\gamma}\int_1^{e^{-\gamma\tau}}\left(\frac{1}{w} + \frac{g}{1-gw}\right)dw
+    $$
+
+    $$
+    = -\frac{1}{\gamma}\left[-\gamma\tau - \ln\!\left(\frac{1 - g\,e^{-\gamma\tau}}{1-g}\right)\right] = \tau + \frac{1}{\gamma}\ln\!\left(\frac{1 - g\,e^{-\gamma\tau}}{1-g}\right)
+    $$
+
+    Combining: $\int_0^\tau D_+\frac{1 - e^{-\gamma s}}{1 - g\,e^{-\gamma s}}\,ds = D_+\left[\tau + \frac{2}{\gamma}\ln\!\left(\frac{1 - g\,e^{-\gamma\tau}}{1-g}\right)\right]$. Wait --- the two integrals give $\left[\tau + \frac{1}{\gamma}\ln(\cdots)\right] - \left[-\frac{1}{\gamma}\ln(\cdots)\right] = \tau + \frac{2}{\gamma}\ln\!\left(\frac{1 - g\,e^{-\gamma\tau}}{1-g}\right)$.
+
+    Therefore:
+
+    $$
+    C(\tau) = (r-q)iu\,\tau + \frac{\kappa\theta}{\sigma_v^2}\left[(\kappa - i\rho\sigma_v u - \gamma)\tau - 2\ln\!\left(\frac{1 - g\,e^{-\gamma\tau}}{1-g}\right)\right]
+    $$
+
+    **Verification that $C(0) = 0$:** At $\tau = 0$, the linear term gives $0$ and the logarithm gives $\ln(1) = 0$, so $C(0) = 0$. $\checkmark$
 
 ---
 
 **Exercise 5.** For parameters $\kappa = 2$, $\sigma_v = 0.3$, $\rho = -0.7$, compute the discriminant $\gamma$ at $u = 1$ and verify $\operatorname{Re}(\gamma) > 0$.
 
+??? success "Solution to Exercise 5"
+    For $\kappa = 2$, $\sigma_v = 0.3$, $\rho = -0.7$, $u = 1$:
+
+    $$
+    \gamma^2 = (\kappa - i\rho\sigma_v u)^2 + \sigma_v^2(iu + u^2)
+    $$
+
+    $$
+    = (2 - i(-0.7)(0.3)(1))^2 + (0.3)^2(i + 1)
+    $$
+
+    $$
+    = (2 + 0.21i)^2 + 0.09(1 + i)
+    $$
+
+    $$
+    = (4 + 0.84i - 0.0441) + (0.09 + 0.09i)
+    $$
+
+    $$
+    = 4.0459 + 0.93i
+    $$
+
+    To compute $\gamma = \sqrt{4.0459 + 0.93i}$, use polar form. The modulus is $|\gamma^2| = \sqrt{4.0459^2 + 0.93^2} = \sqrt{16.369 + 0.865} = \sqrt{17.234} \approx 4.151$, and the argument is $\theta = \arctan(0.93/4.0459) \approx 0.2262$ radians.
+
+    Therefore $|\gamma| = \sqrt{4.151} \approx 2.037$ and $\arg(\gamma) = 0.2262/2 \approx 0.1131$ radians. So:
+
+    $$
+    \gamma \approx 2.037(\cos 0.1131 + i\sin 0.1131) \approx 2.037(0.9936 + 0.1129i) \approx 2.024 + 0.230i
+    $$
+
+    Since $\operatorname{Re}(\gamma) \approx 2.024 > 0$, the condition $\operatorname{Re}(\gamma) > 0$ is verified. This ensures that the Albrecher formulation uses decaying exponentials $e^{-\gamma\tau}$ and that $|g| < 1$.
+
 ---
 
 **Exercise 6.** Explain why the $D$-equation is autonomous in $D$ (it does not involve $C$), while the $C$-equation depends on $D$. How does this hierarchical structure simplify the solution process?
+
+??? success "Solution to Exercise 6"
+    The hierarchical (triangular) structure of the Riccati system arises from the affine structure of the Heston model and the form of the exponential-affine ansatz.
+
+    **Why $D$ is autonomous:** The $D$-equation $D' = \frac{1}{2}\sigma_v^2 D^2 + (\rho\sigma_v iu - \kappa)D + \frac{1}{2}(iu - u^2)$ collects all terms proportional to $v$ in the PDE. Since the PDE coefficients that multiply $v$ (namely, the drift $-\frac{1}{2}v$ and $-\kappa v$, and the diffusion terms $\frac{1}{2}v$, $\rho\sigma_v v$, $\frac{1}{2}\sigma_v^2 v$) depend only on the model parameters and $D$ (through the ansatz), but not on $C$, the resulting ODE for $D$ is self-contained.
+
+    Mathematically, $C$ enters the ansatz only through the $v$-independent part of the exponent. When collecting $v^1$ terms in the PDE, the $C$-dependent terms (which are all $v^0$) do not contribute. Hence $D' = f(D, u)$ with no $C$ dependence.
+
+    **Why $C$ depends on $D$:** The $C$-equation $C' = (r-q)iu + \kappa\theta D$ collects the $v^0$ terms. The term $\kappa\theta D$ arises from the mean-reversion drift $\kappa\theta\,\partial_v\varphi = \kappa\theta\,D\,\varphi$, which contributes to the $v^0$ coefficient. Thus $C'$ depends on $D$ through this coupling.
+
+    **Simplification:** The hierarchical structure means the system can be solved sequentially rather than simultaneously:
+
+    1. **First**, solve the $D$-equation as a standalone scalar Riccati ODE. This is the harder step (nonlinear ODE), but it is a single equation in one unknown.
+    2. **Second**, with $D(\tau)$ known, compute $C(\tau)$ by direct integration (quadrature): $C(\tau) = (r-q)iu\tau + \kappa\theta\int_0^\tau D(s)\,ds$. This is a trivial integration step --- no ODE-solving is required.
+
+    Without this hierarchical structure, we would face a coupled system of two nonlinear ODEs, which would be considerably harder to solve in closed form. The decoupling is a direct consequence of the affine property: the state variable $v$ enters the drift and covariance linearly, ensuring that the $v^1$ and $v^0$ coefficient equations separate cleanly.

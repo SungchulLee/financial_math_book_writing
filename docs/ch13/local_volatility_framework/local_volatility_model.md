@@ -285,13 +285,91 @@ The local volatility model extends Black-Scholes by allowing volatility to be a 
 
 **Exercise 1.** The local volatility model SDE is $dS_t = (r-q)S_t\,dt + \sigma_{\text{loc}}(S_t, t)S_t\,dW_t^{\mathbb{Q}}$. (a) Show that if $\sigma_{\text{loc}}(S,t) = \sigma_0$ (constant), this reduces to the Black-Scholes geometric Brownian motion. (b) Write down the corresponding backward Kolmogorov PDE for a European call price $V(S,t)$ in the general local volatility case. (c) Explain why this PDE requires specifying $\sigma_{\text{loc}}(S,t)$ on the entire domain $(0,\infty)\times[0,T]$, not just at the current spot $S_0$.
 
+??? success "Solution to Exercise 1"
+    **(a)** If $\sigma_{\text{loc}}(S, t) = \sigma_0$ (constant), the SDE becomes:
+
+    $$
+    dS_t = (r - q)S_t\,dt + \sigma_0 S_t\,dW_t^{\mathbb{Q}}
+    $$
+
+    This is the standard geometric Brownian motion of the Black-Scholes model. The drift is $(r-q)S_t$ (risk-neutral drift), the diffusion coefficient is $\sigma_0 S_t$ (proportional volatility), and the solution is:
+
+    $$
+    S_T = S_0 \exp\!\left[\left(r - q - \tfrac{\sigma_0^2}{2}\right)T + \sigma_0 W_T\right]
+    $$
+
+    which is the standard lognormal dynamics.
+
+    **(b)** The backward Kolmogorov PDE for a European derivative with price $V(S, t)$ is:
+
+    $$
+    \frac{\partial V}{\partial t} + (r - q)S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma_{\text{loc}}^2(S, t)S^2\frac{\partial^2 V}{\partial S^2} - rV = 0
+    $$
+
+    with terminal condition $V(S, T) = (S - K)^+$ for a European call. This is the generalized Black-Scholes PDE with $\sigma$ replaced by $\sigma_{\text{loc}}(S, t)$.
+
+    **(c)** The PDE requires $\sigma_{\text{loc}}(S, t)$ on the entire domain $(0, \infty) \times [0, T]$ because the solution $V(S, t)$ depends on the future evolution of the process from any state $(S, t)$. Even though the process starts at $S_0$, computing the option price requires solving the PDE backward from terminal time $T$, which involves the local volatility at all possible future values of $S$. The process may visit any price level $S > 0$ before maturity, and the hedge ratio at each state depends on the local volatility there. In a finite-difference numerical scheme, the PDE is solved on a grid spanning a wide range of $S$ values, and $\sigma_{\text{loc}}$ must be specified at every grid point.
+
 ---
 
 **Exercise 2.** The existence and uniqueness theorem (Theorem 13.1.1) requires a local Lipschitz condition on the diffusion coefficient $\sigma_{\text{loc}}(S,t)S$. (a) Verify that $\sigma_{\text{loc}}(S,t)S = \sigma_0 S$ satisfies the local Lipschitz condition with constant $L_K = \sigma_0$. (b) Give an example of a function $\sigma_{\text{loc}}(S,t)$ that violates the local Lipschitz condition. (c) Why does the linear growth condition $|\sigma_{\text{loc}}(S,t)S| \leq C(1+S)$ prevent the solution from exploding in finite time?
 
+??? success "Solution to Exercise 2"
+    **(a)** For $\sigma_{\text{loc}}(S, t) = \sigma_0$ (constant), the diffusion coefficient is $b(S) = \sigma_0 S$. The Lipschitz condition requires:
+
+    $$
+    |b(S_1) - b(S_2)| = |\sigma_0 S_1 - \sigma_0 S_2| = \sigma_0|S_1 - S_2| \leq L_K|S_1 - S_2|
+    $$
+
+    This holds globally (not just locally) with $L_K = \sigma_0$. The condition is satisfied.
+
+    **(b)** An example violating the local Lipschitz condition: $\sigma_{\text{loc}}(S, t) = S^{-1/2}$. Then the diffusion coefficient is $b(S) = S^{-1/2} \cdot S = S^{1/2}$. Near $S = 0$:
+
+    $$
+    |S_1^{1/2} - S_2^{1/2}| = \frac{|S_1 - S_2|}{S_1^{1/2} + S_2^{1/2}}
+    $$
+
+    As $S_1, S_2 \to 0$, the ratio $|b(S_1) - b(S_2)|/|S_1 - S_2| \to \infty$, so no finite Lipschitz constant exists on any compact set containing $S = 0$. This is the square-root diffusion case (CIR/Feller process), which requires separate analysis.
+
+    **(c)** The linear growth condition $|\sigma_{\text{loc}}(S, t)S| \leq C(1 + S)$ ensures the diffusion coefficient does not grow faster than linearly in $S$. Without this condition, the process could reach infinity in finite time (explosion). Intuitively, if the volatility $\sigma_{\text{loc}}(S, t)S$ grows superlinearly (say like $S^{1+\epsilon}$), the process experiences increasingly large random shocks as it grows, potentially accelerating to infinity. The linear growth bound ensures that the expected magnitude of the increments remains controlled, preventing finite-time blow-up by standard comparison arguments for SDEs.
+
 ---
 
 **Exercise 3.** The Breeden-Litzenberger formula states $\partial^2 C / \partial K^2 = e^{-rT}p(K,T)$. (a) Verify this by differentiating $C(K,T) = e^{-rT}\int_K^\infty (S-K)p(S,T)\,dS$ twice with respect to $K$. (b) The denominator of the Dupire formula is $\frac{1}{2}K^2 \partial_{KK}C$. Express this in terms of the risk-neutral density $p(K,T)$. (c) What happens to the Dupire formula when $p(K,T) \to 0$ (deep out-of-the-money)? Discuss the numerical challenges this creates.
+
+??? success "Solution to Exercise 3"
+    **(a)** Starting from $C(K, T) = e^{-rT}\int_K^\infty (S - K)p(S, T)\,dS$:
+
+    **First differentiation:**
+
+    $$
+    \frac{\partial C}{\partial K} = e^{-rT}\left[-(K-K)p(K,T) + \int_K^\infty (-1)p(S,T)\,dS\right] = -e^{-rT}\int_K^\infty p(S,T)\,dS
+    $$
+
+    **Second differentiation:**
+
+    $$
+    \frac{\partial^2 C}{\partial K^2} = -e^{-rT}\cdot(-p(K,T)) = e^{-rT}p(K,T)
+    $$
+
+    This confirms the Breeden-Litzenberger formula.
+
+    **(b)** The denominator of the Dupire formula is:
+
+    $$
+    \frac{1}{2}K^2\frac{\partial^2 C}{\partial K^2} = \frac{1}{2}K^2 e^{-rT}p(K,T)
+    $$
+
+    This is $\frac{1}{2}K^2$ times the discounted risk-neutral density evaluated at $S_T = K$.
+
+    **(c)** When $p(K, T) \to 0$ (deep OTM, either very high or very low strikes), the denominator $\frac{1}{2}K^2 C_{KK} \to 0$. If the numerator approaches zero at a different rate, $\sigma_{\text{loc}}^2$ can diverge or become indeterminate.
+
+    Numerical challenges include:
+
+    - **Division by near-zero:** Small denominators amplify any noise in the numerator, producing unreliable or extreme local volatility values
+    - **Noise amplification:** In the wings, option prices are small and subject to large relative bid-ask spreads. Computing $C_{KK}$ from noisy data in low-density regions amplifies errors quadratically
+    - **Ill-conditioning:** The ratio of two small numbers is inherently unstable numerically
+    - **Mitigation:** Practitioners extrapolate the wings using parametric models (SVI, power-law tails), cap local volatility at reasonable bounds, or use regularization
 
 ---
 
@@ -303,9 +381,47 @@ $$
 
 If the implied volatility skew at ATM is $\partial \sigma_{\text{imp}}/\partial K = -0.001$ per strike unit, with $\sigma_{\text{imp}}(100, 0.5) = 0.20$ and $S_0 = 100$, compute $\sigma_{\text{loc}}(90, 0.5)$ and $\sigma_{\text{loc}}(110, 0.5)$ using this approximation. Compare with the implied volatility values at these strikes.
 
+??? success "Solution to Exercise 4"
+    Using $\sigma_{\text{loc}}(K, T) \approx \sigma_{\text{imp}}(K, T) + (K - S_0)\frac{\partial \sigma_{\text{imp}}}{\partial K}$ with $\frac{\partial \sigma_{\text{imp}}}{\partial K} = -0.001$, $\sigma_{\text{imp}}(100, 0.5) = 0.20$, and $S_0 = 100$:
+
+    **Implied volatilities at the off-ATM strikes (linear skew):**
+
+    $$
+    \sigma_{\text{imp}}(90, 0.5) = 0.20 - 0.001 \times (90 - 100) = 0.20 + 0.01 = 0.21
+    $$
+
+    $$
+    \sigma_{\text{imp}}(110, 0.5) = 0.20 - 0.001 \times (110 - 100) = 0.20 - 0.01 = 0.19
+    $$
+
+    **Local volatilities:**
+
+    $$
+    \sigma_{\text{loc}}(90, 0.5) \approx 0.20 + (90 - 100)(-0.001) = 0.20 + 0.01 = 0.21
+    $$
+
+    $$
+    \sigma_{\text{loc}}(110, 0.5) \approx 0.20 + (110 - 100)(-0.001) = 0.20 - 0.01 = 0.19
+    $$
+
+    **Comparison:** At this level of approximation, $\sigma_{\text{loc}}(K) \approx \sigma_{\text{imp}}(K)$. However, this first-order approximation understates the true steepness of the local volatility skew. A more accurate approximation (accounting for second-order terms) gives a local volatility skew approximately twice as steep as the implied volatility skew. The reason is that implied volatility represents a path-averaged quantity, so to produce an implied vol skew of slope $-0.001$, the instantaneous local volatility must have a steeper slope, roughly $-0.002$. The first-order formula above captures only the leading-order effect.
+
 ---
 
 **Exercise 5.** Market completeness under the local volatility model follows from the existence of a single Brownian driver. (a) State the martingale representation theorem and explain how it guarantees replication. (b) For a European call with payoff $(S_T - K)^+$, the hedge ratio is $\Delta_t = \partial V / \partial S$. In the local volatility model, $\Delta_t$ depends on $\sigma_{\text{loc}}(S,t)$. Explain why the hedge ratio is different from the Black-Scholes delta even when both models are calibrated to the same ATM volatility. (c) Under stochastic volatility, why does market completeness fail?
+
+??? success "Solution to Exercise 5"
+    **(a)** The **martingale representation theorem** states: In a complete market driven by a single Brownian motion $W_t^{\mathbb{Q}}$, every square-integrable $\mathcal{F}_T$-measurable random variable $X$ can be written as:
+
+    $$
+    X = \mathbb{E}^{\mathbb{Q}}[X] + \int_0^T \phi_t\,dW_t^{\mathbb{Q}}
+    $$
+
+    for some predictable process $\phi_t$. Since the discounted option price $\tilde{V}_t = e^{-rt}V_t$ is a $\mathbb{Q}$-martingale, it has the representation $d\tilde{V}_t = \phi_t\,dW_t^{\mathbb{Q}}$. The hedge ratio $\Delta_t = \phi_t / (\sigma_{\text{loc}}(S_t, t)S_t)$ defines a self-financing portfolio that replicates any contingent claim, guaranteeing completeness.
+
+    **(b)** In the local volatility model, the delta $\Delta_t = \partial V / \partial S$ depends on $\sigma_{\text{loc}}(S, t)$ through the PDE solution. Since $\sigma_{\text{loc}}(S, t)$ varies with $S$, the option price surface $V(S, t)$ has different curvature than the Black-Scholes price with constant $\sigma$. Even if both models agree at the current spot (same ATM IV), the local volatility model recognizes that volatility will change as the spot moves (creating "convexity in vol"), while Black-Scholes assumes volatility stays constant. This produces different deltas: the local vol delta incorporates the anticipated change in volatility, while the Black-Scholes delta does not. This difference is sometimes called the "skew delta" or "smile delta" correction.
+
+    **(c)** Under stochastic volatility, the asset dynamics involve two Brownian motions ($dW_t^S$ for the asset, $dW_t^v$ for volatility). The single tradeable asset $S_t$ can only hedge against $dW_t^S$. The second source of randomness $dW_t^v$ creates unhedgeable volatility risk, making the market incomplete. There are infinitely many risk-neutral measures (parameterized by the market price of volatility risk), and contingent claims generally have a range of arbitrage-free prices rather than a unique price.
 
 ---
 
@@ -317,6 +433,42 @@ $$
 
 (a) Show that the $qC$ term in the numerator arises from the dividend-adjusted forward drift $(r-q)S_t$. (b) For an asset with $q > r$, is it possible for the numerator to be negative? If so, what economic interpretation would this have? (c) Verify that setting $q = 0$ recovers the standard Dupire formula.
 
+??? success "Solution to Exercise 6"
+    **(a)** With continuous dividend yield $q$, the risk-neutral drift is $(r-q)S_t$ rather than $rS_t$. The call price satisfies $C = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+]$, and the underlying has the cost-of-carry $(r-q)$. When deriving the Dupire formula via the Fokker-Planck equation, the drift term $\partial_S[(r-q)Sp]$ produces:
+
+    $$
+    C_T = -qC - (r-q)KC_K + \frac{1}{2}\sigma_{\text{loc}}^2 K^2 C_{KK}
+    $$
+
+    The $qC$ term arises because the call price includes the present value of dividends paid during the option's life. The continuous dividend yield reduces the forward price growth rate from $r$ to $r-q$, and the $qC$ correction accounts for the difference between discounting at $r$ and the forward drift at $r-q$. Rearranging gives the Dupire formula with $qC$ in the numerator.
+
+    **(b)** If $q > r$, the forward drift $(r-q)$ is negative, meaning the forward price is declining. The numerator of Dupire's formula is $C_T + (r-q)KC_K + qC$. Since $C_K < 0$, the term $(r-q)KC_K = (r-q)K \cdot (\text{negative}) > 0$ when $r - q < 0$. Together with $C_T \geq 0$ and $qC > 0$, the numerator remains non-negative for arbitrage-free prices. It is **not** possible for the numerator to be negative if the call price surface is arbitrage-free, because a negative numerator would imply $\sigma_{\text{loc}}^2 < 0$, which contradicts the existence of a diffusion model.
+
+    **(c)** Setting $q = 0$ in $\sigma_{\text{loc}}^2 = (C_T + (r-q)KC_K + qC)/(\frac{1}{2}K^2 C_{KK})$ gives:
+
+    $$
+    \sigma_{\text{loc}}^2(K,T) = \frac{C_T + rKC_K}{\frac{1}{2}K^2 C_{KK}}
+    $$
+
+    This is the standard Dupire formula without dividends.
+
 ---
 
 **Exercise 7.** Two models are calibrated to the same arbitrage-free call price surface $C(K,T)$: a local volatility model and a Heston stochastic volatility model. (a) By Theorem 13.1.3, the local volatility surface is unique. How is this consistent with the Heston model also matching $C(K,T)$? (b) State Gyongy's theorem relating the Heston instantaneous variance to the local volatility function. (c) Give an example of a derivative whose price differs between the two models despite identical vanilla calibration.
+
+??? success "Solution to Exercise 7"
+    **(a)** The uniqueness in Theorem 13.1.3 states: given $C(K, T)$, there is a unique **local volatility function** $\sigma_{\text{loc}}(S, t)$ such that the **one-factor diffusion** $dS_t = (r-q)S_t\,dt + \sigma_{\text{loc}}(S_t, t)S_t\,dW_t$ reproduces $C(K, T)$.
+
+    The Heston model is **not** a local volatility model -- it is a two-factor stochastic volatility model. It reproduces the same call prices $C(K, T)$ through a completely different mechanism: the randomness in the variance process $v_t$ generates the smile, whereas in the local vol model the deterministic function $\sigma_{\text{loc}}(S, t)$ generates the smile. These are different models that agree on vanilla option prices but differ on path-dependent derivatives.
+
+    There is no contradiction because the uniqueness theorem applies only within the class of one-factor Markovian diffusions. The Heston model lies outside this class.
+
+    **(b)** **Gyongy's theorem** (1986): Let $(S_t)$ be a general Ito process (e.g., the Heston model). There exists a Markovian diffusion $(\hat{S}_t)$ with the same marginal distributions as $(S_t)$ at every time $t$. The local volatility of this Markovian "projection" is:
+
+    $$
+    \sigma_{\text{loc}}^2(K, t) = \mathbb{E}[v_t \mid S_t = K]
+    $$
+
+    where $v_t$ is the instantaneous variance in the Heston model. That is, the local volatility at level $K$ and time $t$ is the conditional expectation of the Heston instantaneous variance, conditioned on the spot price being at $K$. This is how the local volatility model "compresses" the two-dimensional Heston state space $(S_t, v_t)$ into a single dimension while preserving marginal distributions.
+
+    **(c)** A **barrier option**, such as a down-and-out call with barrier $B < S_0$, is an example whose price differs between the two models. The barrier option depends on the entire path of $S_t$ (whether it hits $B$ before $T$), not just the terminal distribution $S_T$. The local volatility model and the Heston model generate different path distributions: the Heston model produces more realistic clustering of volatility (periods of high and low vol), while the local vol model has deterministic volatility. As a result, the probability of hitting the barrier differs between the two models, leading to different barrier option prices even though vanilla prices are identical.

@@ -480,44 +480,6 @@ $$\boxed{\frac{\partial u}{\partial t} = \mathcal{L}_x u = \mu(x)\frac{\partial 
 **Exercise 1.**
 For the Ornstein-Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, write down the Kolmogorov backward equation. Verify that $u(t, x) = xe^{-\kappa t}$ solves the backward equation with initial condition $g(x) = x$. What is the probabilistic interpretation of this solution?
 
----
-
-**Exercise 2.**
-For Brownian motion $dX_t = dW_t$, the backward equation is the heat equation $\partial_t u = \frac{1}{2}\partial_{xx} u$. Starting from the initial condition $g(x) = e^{\alpha x}$ for a constant $\alpha$, find the solution $u(t, x) = \mathbb{E}_x[e^{\alpha X_t}]$ by guessing $u(t, x) = e^{\alpha x + \beta t}$ and determining $\beta$.
-
----
-
-**Exercise 3.**
-The backward equation has two forms: the initial value problem $\partial_t u = \mathcal{L}u$ with $u(0, x) = g(x)$ and the terminal value problem $\partial_t v + \mathcal{L}v = 0$ with $v(T, x) = g(x)$. Show that these are related by the substitution $v(t, x) = u(T - t, x)$. Why is the terminal value form more natural for option pricing?
-
----
-
-**Exercise 4.**
-For geometric Brownian motion $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$, write the backward equation in the variable $S$. Show that under the risk-neutral measure (replacing $\mu$ with $r$) and adding discounting $-rV$, you recover the Black-Scholes PDE:
-
-$$
-\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0
-$$
-
----
-
-**Exercise 5.**
-Verify the backward equation using Ito's lemma: if $v(t, x)$ solves $\partial_t v + \mathcal{L}v = 0$, apply Ito's lemma to $v(t, X_t)$ to show that $v(t, X_t)$ is a local martingale. Taking expectations, conclude that $v(0, x) = \mathbb{E}_x[g(X_T)]$.
-
----
-
-**Exercise 6.**
-Dynkin's formula states $\mathbb{E}_x[g(X_t)] = g(x) + \mathbb{E}_x\left[\int_0^t (\mathcal{L}g)(X_s)\,ds\right]$. Differentiate both sides with respect to $t$ at $t = 0$ to recover the backward equation at $t = 0$. Why does the Markov property allow you to extend this to all $t > 0$?
-
----
-
-**Exercise 7.**
-Consider the first exit time $\tau = \inf\{t \geq 0 : X_t \notin (a, b)\}$ for a Brownian motion with drift $dX_t = \mu\,dt + \sigma\,dW_t$. The expected exit time $u(x) = \mathbb{E}_x[\tau]$ satisfies the boundary value problem $\mathcal{L}u = -1$ in $(a, b)$ with $u(a) = u(b) = 0$. Solve this ODE explicitly and verify that $u(x) > 0$ for $x \in (a, b)$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     For the OU process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, the generator is:
 
@@ -545,6 +507,11 @@ Consider the first exit time $\tau = \inf\{t \geq 0 : X_t \notin (a, b)\}$ for a
 
     **Probabilistic interpretation**: $u(t, x) = \mathbb{E}[X_t \mid X_0 = x] = xe^{-\kappa t}$. This says the expected position of the OU process at time $t$ decays exponentially toward zero (the long-run mean when $\theta = 0$). The mean-reversion parameter $\kappa$ controls how fast the expectation converges.
 
+---
+
+**Exercise 2.**
+For Brownian motion $dX_t = dW_t$, the backward equation is the heat equation $\partial_t u = \frac{1}{2}\partial_{xx} u$. Starting from the initial condition $g(x) = e^{\alpha x}$ for a constant $\alpha$, find the solution $u(t, x) = \mathbb{E}_x[e^{\alpha X_t}]$ by guessing $u(t, x) = e^{\alpha x + \beta t}$ and determining $\beta$.
+
 ??? success "Solution to Exercise 2"
     For Brownian motion $dX_t = dW_t$, the backward equation is $\partial_t u = \frac{1}{2}\partial_{xx}u$. We guess $u(t, x) = e^{\alpha x + \beta t}$. Then:
 
@@ -570,6 +537,11 @@ Consider the first exit time $\tau = \inf\{t \geq 0 : X_t \notin (a, b)\}$ for a
 
     **Probabilistic check**: $u(t, x) = \mathbb{E}_x[e^{\alpha X_t}] = \mathbb{E}[e^{\alpha(x + W_t)}] = e^{\alpha x}\mathbb{E}[e^{\alpha W_t}]$. Since $W_t \sim N(0, t)$, the moment-generating function gives $\mathbb{E}[e^{\alpha W_t}] = e^{\alpha^2 t/2}$. Therefore $u(t, x) = e^{\alpha x + \alpha^2 t/2}$. $\checkmark$
 
+---
+
+**Exercise 3.**
+The backward equation has two forms: the initial value problem $\partial_t u = \mathcal{L}u$ with $u(0, x) = g(x)$ and the terminal value problem $\partial_t v + \mathcal{L}v = 0$ with $v(T, x) = g(x)$. Show that these are related by the substitution $v(t, x) = u(T - t, x)$. Why is the terminal value form more natural for option pricing?
+
 ??? success "Solution to Exercise 3"
     Given $v(t, x) = u(T - t, x)$, we compute:
 
@@ -588,6 +560,15 @@ Consider the first exit time $\tau = \inf\{t \geq 0 : X_t \notin (a, b)\}$ for a
     For the condition: $v(T, x) = u(T - T, x) = u(0, x) = g(x)$. $\checkmark$
 
     **Why Form 2 is more natural for option pricing**: In finance, the payoff $g(S_T) = (S_T - K)^+$ is known at maturity $T$. We want to find the present value at time $t < T$. The terminal value formulation $\partial_t v + \mathcal{L}v = 0$ with $v(T, x) = g(x)$ directly models this situation: we know the boundary condition at the future time $T$ and solve backward to find the value at earlier times. The time variable $t$ represents calendar time, running from now to expiry, and $v(t, S)$ gives the option price at each intermediate time.
+
+---
+
+**Exercise 4.**
+For geometric Brownian motion $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$, write the backward equation in the variable $S$. Show that under the risk-neutral measure (replacing $\mu$ with $r$) and adding discounting $-rV$, you recover the Black-Scholes PDE:
+
+$$
+\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0
+$$
 
 ??? success "Solution to Exercise 4"
     For GBM $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$, the generator is $\mathcal{L} = \mu S\partial_S + \frac{\sigma^2 S^2}{2}\partial_{SS}$, so the backward equation is:
@@ -616,6 +597,11 @@ Consider the first exit time $\tau = \inf\{t \geq 0 : X_t \notin (a, b)\}$ for a
 
     This is the **Black-Scholes PDE**. $\checkmark$
 
+---
+
+**Exercise 5.**
+Verify the backward equation using Ito's lemma: if $v(t, x)$ solves $\partial_t v + \mathcal{L}v = 0$, apply Ito's lemma to $v(t, X_t)$ to show that $v(t, X_t)$ is a local martingale. Taking expectations, conclude that $v(0, x) = \mathbb{E}_x[g(X_T)]$.
+
 ??? success "Solution to Exercise 5"
     Suppose $v(t, x)$ solves $\frac{\partial v}{\partial t} + \mathcal{L}v = 0$ with $v(T, x) = g(x)$. Apply Ito's lemma to $v(t, X_t)$:
 
@@ -642,6 +628,11 @@ Consider the first exit time $\tau = \inf\{t \geq 0 : X_t \notin (a, b)\}$ for a
     $$
 
     This confirms that the solution to the backward PDE gives the expected value of the terminal payoff. $\checkmark$
+
+---
+
+**Exercise 6.**
+Dynkin's formula states $\mathbb{E}_x[g(X_t)] = g(x) + \mathbb{E}_x\left[\int_0^t (\mathcal{L}g)(X_s)\,ds\right]$. Differentiate both sides with respect to $t$ at $t = 0$ to recover the backward equation at $t = 0$. Why does the Markov property allow you to extend this to all $t > 0$?
 
 ??? success "Solution to Exercise 6"
     Dynkin's formula states:
@@ -671,6 +662,11 @@ Consider the first exit time $\tau = \inf\{t \geq 0 : X_t \notin (a, b)\}$ for a
     $$
 
     This shows that $u(t + h, x)$ can be viewed as computing the expectation $\mathbb{E}_x[\tilde{g}(X_t)]$ where $\tilde{g}(\cdot) = u(h, \cdot)$. Applying the same Dynkin argument to $\tilde{g}$ and differentiating with respect to $h$ at $h = 0$ gives $\partial_t u(t, x) = (\mathcal{L}u)(t, x)$ for all $t > 0$.
+
+---
+
+**Exercise 7.**
+Consider the first exit time $\tau = \inf\{t \geq 0 : X_t \notin (a, b)\}$ for a Brownian motion with drift $dX_t = \mu\,dt + \sigma\,dW_t$. The expected exit time $u(x) = \mathbb{E}_x[\tau]$ satisfies the boundary value problem $\mathcal{L}u = -1$ in $(a, b)$ with $u(a) = u(b) = 0$. Solve this ODE explicitly and verify that $u(x) > 0$ for $x \in (a, b)$.
 
 ??? success "Solution to Exercise 7"
     The ODE is $\mathcal{L}u = -1$ with $\mathcal{L} = \mu\frac{d}{dx} + \frac{\sigma^2}{2}\frac{d^2}{dx^2}$:

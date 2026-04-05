@@ -9,14 +9,23 @@ reveals the **boundaries of the no-arbitrage pricing framework** and connects
 to economically meaningful phenomena such as asset price bubbles, incomplete
 markets, and model risk.
 
-This section catalogs the principal ways in which measure change can fail and
-their financial consequences.
+!!! abstract "How to read this section"
+    There are three main ways the framework fails:
+
+    1. **The measure does not exist** --- Novikov/Kazamaki failure (mass leakage)
+    2. **Prices are not martingales** --- strict local martingales (bubbles)
+    3. **The measure is not unique** --- incomplete markets (pricing ambiguity)
+
+    Two additional failure modes (infinite-horizon singularity, no ELMM)
+    complete the catalog.
+
+These failure modes are not pathologies---they correspond to economically
+meaningful regimes. This section catalogs each mode and its financial
+consequences.
 
 ---
 
 ## Failure Mode 1: Novikov and Kazamaki Conditions Violated
-
-### Intuition
 
 Girsanov's theorem requires the stochastic exponential
 
@@ -24,11 +33,10 @@ $$
 Z_t = \exp\left(-\int_0^t \theta_s\,dW_s^{\mathbb{P}} - \frac{1}{2}\int_0^t \theta_s^2\,ds\right)
 $$
 
-to be a **true martingale** with $\mathbb{E}^{\mathbb{P}}[Z_T] = 1$. Since
-$Z_t$ is always a non-negative local martingale, it is automatically a
-supermartingale by Fatou's lemma. The danger is that it may be a **strict
-local martingale**, meaning $\mathbb{E}^{\mathbb{P}}[Z_T] < 1$, so that $Z_T$
-does not define a valid probability density.
+to be a **true martingale** with $\mathbb{E}^{\mathbb{P}}[Z_T] = 1$.
+As a non-negative local martingale, $Z_t$ is automatically a supermartingale
+(Fatou's lemma). The danger is that $\mathbb{E}^{\mathbb{P}}[Z_T] < 1$---a
+**strict local martingale**---so that $Z_T$ does not define a valid density.
 
 The [Novikov condition](../martingale_foundations/novikov_kazamaki_conditions.md)
 
@@ -36,26 +44,18 @@ $$
 \mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(\frac{1}{2}\int_0^T \theta_s^2\,ds\right)\right] < \infty
 $$
 
-and the weaker Kazamaki condition provide sufficient guarantees. When
-**both** fail, mass can "leak to infinity," and the measure change is invalid.
-
-### The Mechanism of Mass Leakage
-
-When $\theta_t$ grows too fast, the Brownian integral $M_t = \int_0^t \theta_s\,dW_s$
-has explosively growing quadratic variation $\langle M \rangle_t = \int_0^t \theta_s^2\,ds$.
-The stochastic exponential $\mathcal{E}(M)_t$ can then drift toward zero
-in expectation even though it remains strictly positive pathwise. The "missing
-mass" $1 - \mathbb{E}[Z_T]$ represents probability that has escaped to infinity.
-
-Formally, if $Z_t$ is a strict local martingale, define the **defect**:
+and the weaker Kazamaki condition guarantee the true martingale property.
+When both fail, mass "leaks to infinity" and the measure change is invalid:
+the quadratic variation $\int_0^t \theta_s^2\,ds$ explodes, driving
+$\mathcal{E}(M)_t$ toward zero in expectation. The **defect**
 
 $$
 \delta := 1 - \mathbb{E}^{\mathbb{P}}[Z_T] > 0
 $$
 
-The quantity $Z_T / \mathbb{E}^{\mathbb{P}}[Z_T]$ defines a probability
-measure, but it is **not equivalent** to $\mathbb{P}$: it assigns zero
-probability to events where $Z_T = 0$, which can occur in the limit.
+measures the escaped mass. The normalized density
+$Z_T / \mathbb{E}^{\mathbb{P}}[Z_T]$ defines a probability measure, but it
+is **not equivalent** to $\mathbb{P}$: it ignores events where $Z_T = 0$.
 
 ### Example: Exploding Market Price of Risk
 
@@ -304,6 +304,14 @@ super-replication and model-free bounds.
 
 ## Implications for Practice
 
+!!! tip "What practitioners actually worry about"
+    Not all failure modes are equally relevant in day-to-day work. The most
+    common in practice are: **(1)** incompleteness and the resulting model risk,
+    **(2)** calibration inconsistency across instruments or maturities, and
+    **(3)** extreme parameter regimes where Novikov-type conditions are close to
+    failing. Bubbles and infinite-horizon singularities, while theoretically
+    important, arise far less frequently.
+
 Each failure mode has practical consequences:
 
 1. **Model validation**: Before applying risk-neutral pricing, verify that
@@ -332,40 +340,6 @@ risk premium in determining the measure change, see
 **Exercise 1.**
 Consider the market price of risk $\theta_t = c / \sqrt{T - t}$ for $t < T$. Verify that the Novikov condition fails by computing $\int_0^T \theta_s^2\,ds$ and showing it diverges. Explain in financial terms why a model with a market price of risk that blows up near maturity is problematic.
 
----
-
-**Exercise 2.**
-Let $Z_t$ be the stochastic exponential defining the Radon-Nikodym derivative. Suppose $\mathbb{E}^{\mathbb{P}}[Z_T] = 0.95$. Compute the defect $\delta$ and explain why $Z_T / \mathbb{E}^{\mathbb{P}}[Z_T]$ does not define a measure equivalent to $\mathbb{P}$. Where has the "missing mass" gone?
-
----
-
-**Exercise 3.**
-In the CEV model $dS_t = rS_t\,dt + \sigma S_t^{\beta}\,dW_t^{\mathbb{Q}}$, the discounted price process is a strict local martingale when $\beta > 1$. Show that the bubble component $\beta_0 = S_0 - \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] > 0$ in this case. Explain why put-call parity $C - P = S_0 - Ke^{-rT}$ must be modified when a bubble is present.
-
----
-
-**Exercise 4.**
-Consider the Heston model with stock dynamics $dS_t = \mu S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^{1,\mathbb{P}}$ and variance dynamics $dV_t = \kappa(\bar{V} - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{2,\mathbb{P}}$. Explain why $\theta_1$ is determined by no-arbitrage but $\theta_2$ is not. If a practitioner chooses $\theta_2 = 0$ vs $\theta_2 = -0.5$, describe qualitatively how the risk-neutral variance dynamics differ and which choice produces higher prices for out-of-the-money put options.
-
----
-
-**Exercise 5.**
-Under $\mathbb{P}$, let $X_t = W_t$ (standard Brownian motion), and under $\mathbb{Q}$, let $X_t = W_t + \theta t$ for $\theta \neq 0$. Using the law of large numbers, show that $X_t / t \to 0$ $\mathbb{P}$-a.s. and $X_t / t \to \theta$ $\mathbb{Q}$-a.s. Conclude that $\mathbb{P} \perp \mathbb{Q}$ on $\mathcal{F}_{\infty}$ and explain the implication for pricing perpetual derivatives.
-
----
-
-**Exercise 6.**
-A model for an equity market assumes constant volatility and a constant positive risk-free rate, but through a calibration error the model parameters imply a negative forward variance for certain maturities. Explain which failure mode this represents, why no equivalent martingale measure can exist in this case, and what the practitioner should do to remedy the situation.
-
----
-
-**Exercise 7.**
-Consider a market with $n = 1$ traded asset and $d = 2$ Brownian motions. The stock dynamics are $dS_t = \mu S_t\,dt + \sigma_1 S_t\,dW_t^1 + \sigma_2 S_t\,dW_t^2$. The risk premium equation is $\mu - r = \sigma_1\theta_1 + \sigma_2\theta_2$, which defines a line in $(\theta_1, \theta_2)$ space. Parametrize the family of risk-neutral measures by writing $\theta_2$ as a function of $\theta_1$. For the claim $\Phi = (W_T^2)^2$, explain why different points on this line produce different prices.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Computing the integral:
 
@@ -389,6 +363,11 @@ Consider a market with $n = 1$ traded asset and $d = 2$ Brownian motions. The st
 
     **Financial interpretation:** A market price of risk that blows up near maturity means the risk premium becomes unbounded as $t \to T$. This implies that the compensation required for bearing risk over the interval $[t, T]$ grows without bound as $t$ approaches $T$. In practical terms, the model would require infinitely aggressive reweighting of probabilities near the terminal time, which is economically unreasonable. The stochastic exponential $Z_t$ converges to zero almost surely, meaning the "probability measure" $\mathbb{Q}$ loses mass and cannot serve as a valid pricing measure on $[0, T]$. Any derivative prices computed under this $\mathbb{Q}$ would be unreliable or undefined.
 
+---
+
+**Exercise 2.**
+Let $Z_t$ be the stochastic exponential defining the Radon-Nikodym derivative. Suppose $\mathbb{E}^{\mathbb{P}}[Z_T] = 0.95$. Compute the defect $\delta$ and explain why $Z_T / \mathbb{E}^{\mathbb{P}}[Z_T]$ does not define a measure equivalent to $\mathbb{P}$. Where has the "missing mass" gone?
+
 ??? success "Solution to Exercise 2"
     The defect is
 
@@ -401,6 +380,11 @@ Consider a market with $n = 1$ traded asset and $d = 2$ Brownian motions. The st
     To see why, note that $Z_T \geq 0$ a.s. under $\mathbb{P}$. The fact that $\mathbb{E}[Z_T] < 1$ means that $Z_T$ is "smaller than it should be" on average---probability mass has leaked away. Technically, the event $\{Z_T = 0\}$ may have positive $\mathbb{P}$-probability, or more precisely, $Z_T$ may concentrate less mass on certain events than required for equivalence. The measure $\tilde{\mathbb{Q}}$ assigns zero probability to any event where $Z_T = 0$, but $\mathbb{P}$ may assign positive probability to such events, breaking mutual absolute continuity.
 
     The "missing mass" of $\delta = 0.05$ has escaped to infinity in the following sense: the stochastic exponential $Z_t$ is a supermartingale (not a true martingale), and its expected value decreases over time. The paths along which $Z_t$ becomes very small contribute less and less to the expectation. In financial terms, these are extreme paths (e.g., with very large positive Brownian increments) that the measure change attempts to downweight so aggressively that their contribution to the total probability vanishes. The resulting $\tilde{\mathbb{Q}}$ effectively ignores these extreme scenarios, which means it cannot correctly price claims that pay off in those states.
+
+---
+
+**Exercise 3.**
+In the CEV model $dS_t = rS_t\,dt + \sigma S_t^{\beta}\,dW_t^{\mathbb{Q}}$, the discounted price process is a strict local martingale when $\beta > 1$. Show that the bubble component $\beta_0 = S_0 - \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] > 0$ in this case. Explain why put-call parity $C - P = S_0 - Ke^{-rT}$ must be modified when a bubble is present.
 
 ??? success "Solution to Exercise 3"
     When $\beta > 1$ in the CEV model, the discounted price process $\tilde{S}_t = e^{-rt}S_t$ is a strict local martingale under $\mathbb{Q}$. By the supermartingale property:
@@ -443,6 +427,11 @@ Consider a market with $n = 1$ traded asset and $d = 2$ Brownian motions. The st
 
     So the modified put-call parity is $C - P = S_0 - Ke^{-rT} - \beta_0$, which differs from the standard formula by the bubble term $\beta_0$.
 
+---
+
+**Exercise 4.**
+Consider the Heston model with stock dynamics $dS_t = \mu S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^{1,\mathbb{P}}$ and variance dynamics $dV_t = \kappa(\bar{V} - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{2,\mathbb{P}}$. Explain why $\theta_1$ is determined by no-arbitrage but $\theta_2$ is not. If a practitioner chooses $\theta_2 = 0$ vs $\theta_2 = -0.5$, describe qualitatively how the risk-neutral variance dynamics differ and which choice produces higher prices for out-of-the-money put options.
+
 ??? success "Solution to Exercise 4"
     **Why $\theta_1$ is determined:** The stock $S_t$ is traded, so no-arbitrage requires the discounted stock price to be a $\mathbb{Q}$-martingale. This pins down the drift removal for the Brownian motion $W^1$ driving stock returns. Specifically, the stock dynamics give $\mu - r = \sqrt{V_t}\,\theta_1$, so $\theta_1 = (\mu - r)/\sqrt{V_t}$.
 
@@ -466,6 +455,11 @@ Consider a market with $n = 1$ traded asset and $d = 2$ Brownian motions. The st
 
     This is consistent with the empirical observation that the volatility risk premium is typically negative ($\theta_2 < 0$), which is necessary to generate the volatility skew observed in equity option markets.
 
+---
+
+**Exercise 5.**
+Under $\mathbb{P}$, let $X_t = W_t$ (standard Brownian motion), and under $\mathbb{Q}$, let $X_t = W_t + \theta t$ for $\theta \neq 0$. Using the law of large numbers, show that $X_t / t \to 0$ $\mathbb{P}$-a.s. and $X_t / t \to \theta$ $\mathbb{Q}$-a.s. Conclude that $\mathbb{P} \perp \mathbb{Q}$ on $\mathcal{F}_{\infty}$ and explain the implication for pricing perpetual derivatives.
+
 ??? success "Solution to Exercise 5"
     Under $\mathbb{P}$, $X_t = W_t$ is a standard Brownian motion. By the strong law of large numbers for Brownian motion:
 
@@ -487,6 +481,11 @@ Consider a market with $n = 1$ traded asset and $d = 2$ Brownian motions. The st
 
     **Implication for perpetual derivatives:** Since $\mathbb{P}$ and $\mathbb{Q}$ are singular on $\mathcal{F}_{\infty}$, risk-neutral pricing via $\mathbb{E}^{\mathbb{Q}}[\cdot]$ cannot be directly applied to claims with infinite horizon. The equivalence of measures, which is essential for interpreting the risk-neutral expectation as an arbitrage-free price, breaks down. For perpetual American options or other infinite-horizon claims, one must work on finite horizons $[0, T]$ (where $\mathbb{P} \sim \mathbb{Q}$) and then carefully take the limit $T \to \infty$, verifying that convergence is well-behaved.
 
+---
+
+**Exercise 6.**
+A model for an equity market assumes constant volatility and a constant positive risk-free rate, but through a calibration error the model parameters imply a negative forward variance for certain maturities. Explain which failure mode this represents, why no equivalent martingale measure can exist in this case, and what the practitioner should do to remedy the situation.
+
 ??? success "Solution to Exercise 6"
     This represents **Failure Mode 5: No equivalent martingale measure exists**.
 
@@ -499,6 +498,11 @@ Consider a market with $n = 1$ traded asset and $d = 2$ Brownian motions. The st
     1. Re-examine the calibration procedure to identify the source of the error (e.g., interpolation of implied volatilities that produces a non-monotone total variance surface).
     2. Impose **arbitrage-free constraints** on the calibration: the total implied variance $\sigma_{\mathrm{imp}}^2(K, T) \cdot T$ must be non-decreasing in $T$ for each strike $K$ (calendar spread arbitrage condition).
     3. Use a model that guarantees non-negative variance by construction (e.g., the Heston model where the CIR dynamics ensure $V_t \geq 0$ under the Feller condition).
+
+---
+
+**Exercise 7.**
+Consider a market with $n = 1$ traded asset and $d = 2$ Brownian motions. The stock dynamics are $dS_t = \mu S_t\,dt + \sigma_1 S_t\,dW_t^1 + \sigma_2 S_t\,dW_t^2$. The risk premium equation is $\mu - r = \sigma_1\theta_1 + \sigma_2\theta_2$, which defines a line in $(\theta_1, \theta_2)$ space. Parametrize the family of risk-neutral measures by writing $\theta_2$ as a function of $\theta_1$. For the claim $\Phi = (W_T^2)^2$, explain why different points on this line produce different prices.
 
 ??? success "Solution to Exercise 7"
     The risk premium equation $\mu - r = \sigma_1\theta_1 + \sigma_2\theta_2$ is a single linear equation in two unknowns. Solving for $\theta_2$:

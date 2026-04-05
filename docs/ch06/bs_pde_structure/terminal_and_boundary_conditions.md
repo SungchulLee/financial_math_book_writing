@@ -279,30 +279,6 @@ $$
 
 **Exercise 1.** Write down the terminal condition and boundary conditions (as $S \to 0$ and $S \to \infty$) for a European put option with strike $K$ and maturity $T$. Verify that the boundary conditions are consistent with the put-call parity relation.
 
----
-
-**Exercise 2.** For a down-and-out call with barrier $B < K$, the option is worthless if $S$ ever touches $B$. Write down the complete set of conditions: terminal condition at $t = T$, Dirichlet boundary condition at $S = B$, and behavior as $S \to \infty$. Explain why the far-field condition $V \sim S - Ke^{-r(T-t)}$ as $S \to \infty$ is appropriate.
-
----
-
-**Exercise 3.** The American put has a free boundary $S^*(t)$ separating the exercise and continuation regions. State the smooth-pasting conditions at $S = S^*(t)$ and explain their financial interpretation. Why are two conditions (value matching and smooth pasting) needed at the free boundary?
-
----
-
-**Exercise 4.** For a finite-difference implementation on a truncated domain $[0, S_{\max}]$, discuss the effect of choosing $S_{\max}$ too small. What type of error does this introduce, and how does the error propagate inward from the boundary? Provide a rule of thumb for choosing $S_{\max}$ in terms of $K$ and $\sigma\sqrt{T}$.
-
----
-
-**Exercise 5.** A Neumann boundary condition $\frac{\partial V}{\partial S}\big|_{S=B} = h(t)$ constrains the delta at the boundary. Give a financial example where such a condition arises naturally, and explain how it differs from a Dirichlet condition in terms of the information it encodes about the derivative contract.
-
----
-
-**Exercise 6.** Show that the terminal condition $V(T,S) = (S - K)^+$ is not differentiable at $S = K$. Discuss the implications for the PDE solution at $t = T$: is $V(t,S)$ smooth for $t < T$ even though the terminal data is not? Relate this to the smoothing property of the heat equation.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **Terminal condition**: At maturity $t = T$:
 
@@ -330,6 +306,9 @@ $$
 
     At $t = T$: $C(T,S) - P(T,S) = (S-K)^+ - (K-S)^+ = S - K$, and $S - Ke^{0} = S - K$. Consistent.
 
+---
+**Exercise 2.** For a down-and-out call with barrier $B < K$, the option is worthless if $S$ ever touches $B$. Write down the complete set of conditions: terminal condition at $t = T$, Dirichlet boundary condition at $S = B$, and behavior as $S \to \infty$. Explain why the far-field condition $V \sim S - Ke^{-r(T-t)}$ as $S \to \infty$ is appropriate.
+
 ??? success "Solution to Exercise 2"
     For a down-and-out call with barrier $B < K$:
 
@@ -354,6 +333,9 @@ $$
     $$
 
     **Why this far-field condition is appropriate**: When $S \gg B$, the probability that the stock price will ever reach the barrier $B$ before maturity becomes negligible. Therefore the knock-out feature has virtually no value, and the down-and-out call behaves like a vanilla call. For a deep-in-the-money vanilla call, $V \sim S - Ke^{-r(T-t)}$ (the forward value, since $\Phi(d_1) \to 1$ and $\Phi(d_2) \to 1$ as $S \to \infty$). Formally, $\mathbb{P}(\min_{t \leq s \leq T} S_s < B \mid S_t = S) \to 0$ exponentially as $S/B \to \infty$.
+
+---
+**Exercise 3.** The American put has a free boundary $S^*(t)$ separating the exercise and continuation regions. State the smooth-pasting conditions at $S = S^*(t)$ and explain their financial interpretation. Why are two conditions (value matching and smooth pasting) needed at the free boundary?
 
 ??? success "Solution to Exercise 3"
     At the free boundary $S = S^*(t)$, the American put satisfies two **smooth-pasting conditions**:
@@ -380,6 +362,9 @@ $$
 
     **Why two conditions are needed**: The PDE in the continuation region $S > S^*(t)$ is a second-order equation that requires boundary data to determine its solution. But the boundary location $S^*(t)$ is itself unknown. We have two unknowns at the boundary: the solution value and the boundary position. Value matching provides one equation; smooth pasting provides the second. Together, they uniquely determine both $V$ and $S^*(t)$. This is the hallmark of a **free boundary problem**: the extra unknown (boundary location) requires an extra condition (smooth pasting) beyond what a fixed-boundary problem needs.
 
+---
+**Exercise 4.** For a finite-difference implementation on a truncated domain $[0, S_{\max}]$, discuss the effect of choosing $S_{\max}$ too small. What type of error does this introduce, and how does the error propagate inward from the boundary? Provide a rule of thumb for choosing $S_{\max}$ in terms of $K$ and $\sigma\sqrt{T}$.
+
 ??? success "Solution to Exercise 4"
     Choosing $S_{\max}$ too small introduces **boundary truncation error**. The artificial boundary condition imposed at $S_{\max}$ (typically $V(t, S_{\max}) = S_{\max} - Ke^{-r(T-t)}$ for a call) is only an approximation to the true asymptotic behavior.
 
@@ -401,6 +386,9 @@ $$
 
     For typical parameters ($\sigma = 0.3$, $T = 1$), this gives $S_{\max} \approx 3.3K$. A simpler rule often used in practice is $S_{\max} = 3K$ to $5K$, depending on the desired accuracy and the volatility level.
 
+---
+**Exercise 5.** A Neumann boundary condition $\frac{\partial V}{\partial S}\big|_{S=B} = h(t)$ constrains the delta at the boundary. Give a financial example where such a condition arises naturally, and explain how it differs from a Dirichlet condition in terms of the information it encodes about the derivative contract.
+
 ??? success "Solution to Exercise 5"
     **Financial example**: A Neumann condition arises naturally in **capped options** or **options with a delta constraint**. Consider a derivative that, at a boundary $S = B$, is contractually required to have a fixed delta. For instance, a **cliquet option** or a structured product might specify that the participation rate (delta) at certain levels is fixed.
 
@@ -409,6 +397,9 @@ $$
     **Difference from Dirichlet**: A Dirichlet condition $V(t,B) = g(t)$ specifies the **price** of the derivative at the boundary. This encodes information about **what the contract is worth** when the underlying reaches $B$ (e.g., a knockout event where the value drops to zero). A Neumann condition $V_S(t,B) = h(t)$ specifies the **hedge ratio** at the boundary, encoding information about **how the contract responds to price changes** at that level, without directly constraining its value.
 
     In terms of information content: Dirichlet constrains the zeroth-order behavior (level), while Neumann constrains the first-order behavior (slope). Dirichlet is typical for barrier options (the value is known at knockout). Neumann is typical for regularity or symmetry conditions and for reflecting boundaries, where the physical setup determines the gradient rather than the value.
+
+---
+**Exercise 6.** Show that the terminal condition $V(T,S) = (S - K)^+$ is not differentiable at $S = K$. Discuss the implications for the PDE solution at $t = T$: is $V(t,S)$ smooth for $t < T$ even though the terminal data is not? Relate this to the smoothing property of the heat equation.
 
 ??? success "Solution to Exercise 6"
     The terminal condition $\Phi(S) = (S-K)^+$ can be written as:

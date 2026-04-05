@@ -328,17 +328,120 @@ $$
 
 State the boundary conditions on $p$ required for the boundary terms to vanish.
 
+??? success "Solution to Exercise 1"
+    We must show that the second-derivative integral can be transferred from $\varphi$ onto $\sigma_{\text{loc}}^2 S^2 p$ via two integrations by parts.
+
+    **First integration by parts.** Let $u = \varphi'(S)$ and $dv = \frac{1}{2}\sigma_{\text{loc}}^2 S^2 p \, dS$. Then:
+
+    $$
+    \int_0^{\infty} \frac{1}{2}\sigma_{\text{loc}}^2 S^2 \varphi''(S) p \, dS = \left[\varphi'(S) \cdot \frac{1}{2}\sigma_{\text{loc}}^2 S^2 p\right]_0^{\infty} - \int_0^{\infty} \varphi'(S) \frac{\partial}{\partial S}\left[\frac{1}{2}\sigma_{\text{loc}}^2 S^2 p\right] dS
+    $$
+
+    The boundary term vanishes provided $\sigma_{\text{loc}}^2 S^2 p \to 0$ as $S \to 0^+$ and $S \to \infty$.
+
+    **Second integration by parts.** Apply integration by parts to the remaining integral with $u = \varphi(S)$:
+
+    $$
+    -\int_0^{\infty} \varphi'(S) \frac{\partial}{\partial S}\left[\frac{1}{2}\sigma_{\text{loc}}^2 S^2 p\right] dS = -\left[\varphi(S) \frac{\partial}{\partial S}\left(\frac{1}{2}\sigma_{\text{loc}}^2 S^2 p\right)\right]_0^{\infty} + \int_0^{\infty} \varphi(S) \frac{\partial^2}{\partial S^2}\left[\frac{1}{2}\sigma_{\text{loc}}^2 S^2 p\right] dS
+    $$
+
+    The boundary term again vanishes provided $\frac{\partial}{\partial S}[\sigma_{\text{loc}}^2 S^2 p] \to 0$ as $S \to 0^+$ and $S \to \infty$.
+
+    Combining both steps:
+
+    $$
+    \int_0^{\infty} \frac{1}{2}\sigma_{\text{loc}}^2 S^2 \varphi''(S) p \, dS = \int_0^{\infty} \varphi(S) \frac{1}{2}\frac{\partial^2}{\partial S^2}[\sigma_{\text{loc}}^2 S^2 p] \, dS
+    $$
+
+    **Required boundary conditions:** The density $p(S, t)$ and the diffusion coefficient $\sigma_{\text{loc}}^2(S, t) S^2$ must decay fast enough at $S = 0^+$ and $S = \infty$ so that all boundary terms vanish. Specifically:
+
+    - $\sigma_{\text{loc}}^2 S^2 p(S, t) \to 0$ as $S \to 0^+$ and $S \to \infty$
+    - $\frac{\partial}{\partial S}[\sigma_{\text{loc}}^2 S^2 p(S, t)] \to 0$ as $S \to 0^+$ and $S \to \infty$
+
+    These conditions are satisfied for the lognormal-type densities arising in local volatility models.
+
 ---
 
 **Exercise 2.** Write the Fokker-Planck equation for the log-coordinate $x = \log S$, with density $\tilde{p}(x, t) = p(e^x, t)e^x$. Verify that when $\sigma_{\text{loc}}$ is constant, the solution is a Gaussian density with mean $x_0 + (r - q - \sigma^2/2)t$ and variance $\sigma^2 t$.
+
+??? success "Solution to Exercise 2"
+    Under $x = \log S$, the SDE becomes:
+
+    $$
+    dx_t = \left(r - q - \frac{1}{2}\sigma_{\text{loc}}^2(e^{x_t}, t)\right) dt + \sigma_{\text{loc}}(e^{x_t}, t) \, dW_t^{\mathbb{Q}}
+    $$
+
+    Writing $\tilde{\sigma}(x, t) = \sigma_{\text{loc}}(e^x, t)$, the drift is $\tilde{\mu}(x, t) = r - q - \frac{1}{2}\tilde{\sigma}^2(x, t)$ and the diffusion is $\tilde{\sigma}(x, t)$. The Fokker-Planck equation for $\tilde{p}(x, t) = p(e^x, t)e^x$ is:
+
+    $$
+    \frac{\partial \tilde{p}}{\partial t} = -\frac{\partial}{\partial x}\left[\left(r - q - \frac{1}{2}\tilde{\sigma}^2(x, t)\right)\tilde{p}\right] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\tilde{\sigma}^2(x, t)\tilde{p}]
+    $$
+
+    **Verification for constant $\sigma_{\text{loc}} = \sigma$.** When $\tilde{\sigma}(x, t) = \sigma$ is constant, the Fokker-Planck equation becomes:
+
+    $$
+    \frac{\partial \tilde{p}}{\partial t} = -\left(r - q - \frac{1}{2}\sigma^2\right)\frac{\partial \tilde{p}}{\partial x} + \frac{1}{2}\sigma^2 \frac{\partial^2 \tilde{p}}{\partial x^2}
+    $$
+
+    This is the advection-diffusion (heat) equation with constant drift $\mu_x = r - q - \frac{1}{2}\sigma^2$ and constant diffusion $\frac{1}{2}\sigma^2$. The fundamental solution with initial condition $\tilde{p}(x, 0) = \delta(x - x_0)$ is:
+
+    $$
+    \tilde{p}(x, t) = \frac{1}{\sigma\sqrt{2\pi t}} \exp\left(-\frac{(x - x_0 - (r - q - \frac{1}{2}\sigma^2)t)^2}{2\sigma^2 t}\right)
+    $$
+
+    This is a Gaussian with mean $x_0 + (r - q - \sigma^2/2)t$ and variance $\sigma^2 t$, confirming the Black-Scholes lognormal distribution.
 
 ---
 
 **Exercise 3.** The probability flux is $J(S, t) = (r - q)S p - \frac{1}{2}\partial_S[\sigma_{\text{loc}}^2 S^2 p]$. Consider a piecewise constant local volatility: $\sigma_{\text{loc}} = 0.30$ for $S < 100$ and $\sigma_{\text{loc}} = 0.15$ for $S > 100$. Qualitatively describe the shape of the density $p(S, T)$ for $T = 1$ year. Which region has a fatter tail, and why?
 
+??? success "Solution to Exercise 3"
+    The piecewise constant local volatility has $\sigma_{\text{loc}} = 0.30$ for $S < 100$ and $\sigma_{\text{loc}} = 0.15$ for $S > 100$, with $S_0 = 100$.
+
+    **The left tail ($S < 100$) is fatter.** The diffusion coefficient below $S = 100$ is $a(S, t) = \sigma_{\text{loc}}^2 S^2 = 0.09 S^2$, which is four times larger than the coefficient above $S = 100$ where $a(S, t) = 0.0225 S^2$ (at the same price level $S = 100$). The higher volatility region produces stronger diffusion, causing probability mass to spread out more rapidly on the downside.
+
+    **Qualitative shape of $p(S, T)$ at $T = 1$:**
+
+    - The density has a **negative skew** (left-skewed distribution)
+    - The left tail is fatter than the right tail because the diffusion flux is stronger for $S < 100$
+    - The mode of the density is shifted slightly to the right of where it would be under constant volatility, because probability that diffuses below 100 encounters high volatility and spreads further, while probability above 100 encounters low volatility and stays concentrated
+    - The risk-neutral drift $(r - q)S = 0.03S$ pushes the distribution slightly to the right, but this is a secondary effect compared to the asymmetric diffusion
+
+    This density shape produces a downward-sloping implied volatility skew: OTM puts (low $K$) have higher implied volatility than OTM calls (high $K$), consistent with the empirical equity volatility skew.
+
 ---
 
 **Exercise 4.** Prove the conservation of probability: starting from $\partial_t p + \partial_S J = 0$, show that $\int_0^{\infty} p(S, t) \, dS = 1$ for all $t \geq 0$. What physical assumptions are needed at the boundaries $S = 0$ and $S = \infty$?
+
+??? success "Solution to Exercise 4"
+    Starting from the conservation form of the Fokker-Planck equation:
+
+    $$
+    \frac{\partial p}{\partial t} + \frac{\partial J}{\partial S} = 0
+    $$
+
+    Integrate over $S \in (0, \infty)$:
+
+    $$
+    \frac{d}{dt}\int_0^{\infty} p(S, t) \, dS = -\int_0^{\infty} \frac{\partial J}{\partial S} \, dS = -\bigl[J(S, t)\bigr]_{S=0}^{S=\infty} = -(J(\infty, t) - J(0, t))
+    $$
+
+    **Physical assumptions at boundaries:**
+
+    - **At $S = \infty$:** The density $p(S, t) \to 0$ fast enough that both the drift flux $(r-q)Sp$ and the diffusion flux $\frac{1}{2}\partial_S[\sigma_{\text{loc}}^2 S^2 p]$ vanish. This requires $p$ to decay faster than any polynomial, which is guaranteed by the Gaussian upper bounds.
+    - **At $S = 0^+$:** The flux $J(0, t) = 0$ because $S = 0$ is a natural boundary for the lognormal-type diffusion. The drift term $(r-q) \cdot 0 \cdot p = 0$, and the diffusion coefficient $\sigma_{\text{loc}}^2 \cdot 0^2 = 0$ at $S = 0$.
+
+    Therefore $J(\infty, t) = J(0, t) = 0$, which gives:
+
+    $$
+    \frac{d}{dt}\int_0^{\infty} p(S, t) \, dS = 0
+    $$
+
+    Since $p(S, 0) = \delta(S - S_0)$ satisfies $\int_0^{\infty} p(S, 0) \, dS = 1$, the total probability is conserved:
+
+    $$
+    \int_0^{\infty} p(S, t) \, dS = 1 \quad \text{for all } t \geq 0
+    $$
 
 ---
 
@@ -347,6 +450,45 @@ State the boundary conditions on $p$ required for the boundary terms to vanish.
 $$
 \int_0^{\infty} \varphi(S) p(S, T \mid S_0, 0) \, dS = u(S_0, 0)
 $$
+
+??? success "Solution to Exercise 5"
+    We must show that the duality identity holds by connecting the forward and backward equations through their adjoint relationship.
+
+    Let $u(S, t)$ solve the backward equation:
+
+    $$
+    \frac{\partial u}{\partial t} + (r-q)S\frac{\partial u}{\partial S} + \frac{1}{2}\sigma_{\text{loc}}^2 S^2 \frac{\partial^2 u}{\partial S^2} = 0, \quad u(S, T) = \varphi(S)
+    $$
+
+    Let $p(S, t \mid S_0, 0)$ solve the forward equation:
+
+    $$
+    \frac{\partial p}{\partial t} = -\frac{\partial}{\partial S}[(r-q)Sp] + \frac{1}{2}\frac{\partial^2}{\partial S^2}[\sigma_{\text{loc}}^2 S^2 p], \quad p(S, 0) = \delta(S - S_0)
+    $$
+
+    Define $I(t) = \int_0^{\infty} u(S, t) p(S, t \mid S_0, 0) \, dS$. Differentiate with respect to $t$:
+
+    $$
+    \frac{dI}{dt} = \int_0^{\infty} \frac{\partial u}{\partial t} p \, dS + \int_0^{\infty} u \frac{\partial p}{\partial t} \, dS
+    $$
+
+    The first integral gives $\int_0^{\infty} (-\mathcal{L}u) p \, dS$ where $\mathcal{L}$ is the backward operator. The second integral gives $\int_0^{\infty} u \, \mathcal{L}^* p \, dS$ where $\mathcal{L}^*$ is the forward operator. By the adjoint relationship:
+
+    $$
+    \int_0^{\infty} u \, \mathcal{L}^* p \, dS = \int_0^{\infty} p \, \mathcal{L} u \, dS
+    $$
+
+    Therefore:
+
+    $$
+    \frac{dI}{dt} = -\int_0^{\infty} (\mathcal{L}u) p \, dS + \int_0^{\infty} (\mathcal{L}u) p \, dS = 0
+    $$
+
+    Since $I(t)$ is constant, $I(0) = I(T)$. Evaluating at $t = T$: $I(T) = \int_0^{\infty} \varphi(S) p(S, T \mid S_0, 0) \, dS$. Evaluating at $t = 0$ using $p(S, 0) = \delta(S - S_0)$: $I(0) = u(S_0, 0)$. Therefore:
+
+    $$
+    \int_0^{\infty} \varphi(S) p(S, T \mid S_0, 0) \, dS = u(S_0, 0)
+    $$
 
 ---
 
@@ -358,6 +500,50 @@ $$
 
 with $U(K, 0) = (S_0 - K)^+$. Explain why this formulation computes call prices at all strikes simultaneously in a single forward sweep. Compare the computational cost with the backward PDE approach for pricing vanilla options at $N$ different strikes.
 
+??? success "Solution to Exercise 6"
+    **Forward PDE approach.** The forward PDE in call price space:
+
+    $$
+    \frac{\partial U}{\partial T} = \frac{1}{2}\sigma_{\text{loc}}^2(K, T)K^2\frac{\partial^2 U}{\partial K^2} - (r-q)K\frac{\partial U}{\partial K} - qU
+    $$
+
+    starts from the initial condition $U(K, 0) = (S_0 - K)^+$, which is defined for **all strikes $K$** simultaneously. A single forward sweep in $T$ (from $T = 0$ to the final maturity) produces $U(K, T)$ at all grid points $(K_j, T_k)$ in one pass. This means call prices at all $N$ strikes are obtained simultaneously at computational cost $O(M \cdot N_K)$, where $M$ is the number of time steps and $N_K$ is the number of strike grid points.
+
+    **Backward PDE approach.** The backward PDE:
+
+    $$
+    \frac{\partial V}{\partial t} + (r-q)S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma_{\text{loc}}^2(S, t)S^2\frac{\partial^2 V}{\partial S^2} - rV = 0
+    $$
+
+    must be solved with terminal condition $V(S, T) = (S - K)^+$ for **each strike separately**. Pricing $N$ different strikes requires $N$ separate backward PDE solves, each with cost $O(M \cdot N_S)$ where $N_S$ is the number of spot grid points. The total cost is $O(N \cdot M \cdot N_S)$.
+
+    **Comparison:** For $N$ strikes, the forward PDE is $N$ times faster. If $N_K \approx N_S$ and $N = 100$ strikes, the forward PDE provides a speedup of roughly two orders of magnitude. This makes the forward PDE the natural tool for calibration, where one must evaluate call prices at hundreds of strike-maturity pairs to match the market surface.
+
 ---
 
 **Exercise 7.** Under the Gaussian bounds for the transition density (Theorem 13.3.2), show that $C_{KK} = e^{-rT} p(K, T) > 0$ for all $K > 0$ and $T > 0$. Explain why this strict positivity is essential for the well-definedness of Dupire's formula.
+
+??? success "Solution to Exercise 7"
+    By Theorem 13.3.2, under uniform ellipticity ($0 < \lambda \leq \sigma_{\text{loc}} \leq \Lambda$) and Holder continuity of $\sigma_{\text{loc}}$, the transition density satisfies the Gaussian lower bound:
+
+    $$
+    p(K, T) \geq \frac{c}{K\sqrt{T}} \exp\left(-\frac{C(\log K/S_0)^2}{T}\right)
+    $$
+
+    for some constants $c, C > 0$, valid for all $K > 0$ and $T > 0$.
+
+    Since $c > 0$, $K > 0$, and $T > 0$, the prefactor $\frac{c}{K\sqrt{T}} > 0$. The exponential factor is always strictly positive for any finite argument. Therefore $p(K, T) > 0$ for all $K > 0$ and $T > 0$.
+
+    Since $e^{-rT} > 0$ for finite $T$, it follows that:
+
+    $$
+    C_{KK}(K, T) = e^{-rT} p(K, T) > 0
+    $$
+
+    **Why this is essential for Dupire's formula.** The Dupire formula is:
+
+    $$
+    \sigma_{\text{loc}}^2(K, T) = \frac{\partial_T C + (r-q)K\partial_K C + qC}{\frac{1}{2}K^2 \partial_{KK} C}
+    $$
+
+    The denominator is $\frac{1}{2}K^2 C_{KK} = \frac{1}{2}K^2 e^{-rT} p(K, T)$. If $C_{KK} = 0$ at some point, the Dupire formula has a division by zero and the local volatility is undefined. The strict positivity $C_{KK} > 0$ guarantees that the denominator never vanishes, so the local volatility is well-defined and finite at every point $(K, T)$ with $K > 0$ and $T > 0$. Moreover, the positivity of $C_{KK}$ is equivalent to the call price being strictly convex in the strike, which is a necessary condition for absence of butterfly arbitrage.

@@ -1,6 +1,8 @@
 # Local Martingales
 
-A **local martingale** is a process that behaves like a martingale "locally"—when stopped at appropriate times—but may fail to be a true martingale globally. This distinction is crucial in continuous-time finance, where many natural price processes are local martingales but not martingales.
+In the [unifying framework](unifying_principle_controlling_local_martingales.md) of this section, the local martingale is the **raw, uncontrolled object** — the starting point before any upgrade to a true martingale.
+
+A **local martingale** is a process that behaves like a martingale "locally" — when stopped at appropriate times — but may fail to be a true martingale globally. This distinction is crucial in continuous-time finance, where many natural price processes are local martingales but not martingales.
 
 !!! info "Prerequisites"
     This section assumes familiarity with:
@@ -596,46 +598,6 @@ Mass leakage: 65.29%
 **Exercise 1.**
 Let $M_t = \int_0^t \sigma_s\,dW_s$ where $\sigma_s = 1/(1 - s)$ for $s \in [0, 1)$. Show that $\int_0^1 \sigma_s^2\,ds = +\infty$ but $\int_0^t \sigma_s^2\,ds < \infty$ for every $t < 1$. Construct a localizing sequence $\{\tau_n\}$ that makes $M_{t \wedge \tau_n}$ a true martingale for each $n$.
 
----
-
-**Exercise 2.**
-Prove that every true martingale is a local martingale. Then explain why the converse fails by giving the key property that a strict local martingale violates. (Hint: consider the integrability condition.)
-
----
-
-**Exercise 3.**
-Let $M_t$ be a non-negative local martingale with $M_0 = 1$. Using Fatou's lemma, prove the supermartingale inequality $\mathbb{E}[M_t] \leq 1$ for all $t \geq 0$. Explain the financial interpretation of $1 - \mathbb{E}[M_t]$ when $M_t$ is the discounted price of an asset under the risk-neutral measure.
-
----
-
-**Exercise 4.**
-Consider the CEV model $dX_t = \sigma X_t^{\beta}\,dW_t$ with $X_0 = 1$ and $\sigma = 0.5$. For $\beta = 0.5$, verify that $X_t$ is a true martingale by checking that $\mathbb{E}[\langle X \rangle_T] < \infty$ is plausible. For $\beta = 1.5$, explain qualitatively why $X_t$ is only a strict local martingale.
-
----
-
-**Exercise 5.**
-In the Black-Scholes model under $\mathbb{Q}$, the discounted stock price $\tilde{S}_t = e^{-rt}S_t$ satisfies $d\tilde{S}_t = \sigma \tilde{S}_t\,dW_t^{\mathbb{Q}}$. Show that this is a true martingale by verifying that
-
-$$
-\mathbb{E}\left[\int_0^T \sigma^2 \tilde{S}_s^2\,ds\right] < \infty
-$$
-
-Explain why this condition guarantees the validity of risk-neutral pricing in the Black-Scholes model.
-
----
-
-**Exercise 6.**
-Suppose the discounted price process $\tilde{S}_t$ is a strict local martingale under $\mathbb{Q}$ with $\mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] = 0.95\,S_0$. Compute the bubble component $\beta_0$. Then, using the modified put-call parity $C - P = \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] - Ke^{-rT}$, show that the classical put-call parity fails and determine the sign of the error.
-
----
-
-**Exercise 7.**
-For the 3D Bessel process reciprocal $M_t = 1/R_t$ starting from $R_0 = r_0 > 0$, verify the Ito computation: apply Ito's formula to $f(r) = 1/r$ and the SDE $dR_t = (1/R_t)\,dt + dW_t$ to obtain $dM_t = -M_t^2\,dW_t$. Explain why the absence of a $dt$ term confirms $M_t$ is a local martingale, and why the drift terms from $f'$ and $f''$ cancel exactly.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     We have $\sigma_s = 1/(1-s)$ for $s \in [0,1)$. For $t < 1$:
 
@@ -659,10 +621,20 @@ For the 3D Bessel process reciprocal $M_t = 1/R_t$ starting from $R_0 = r_0 > 0$
 
     Since $\mathbb{E}\left[\int_0^{T \wedge \tau_n} \sigma_s^2\,ds\right] \leq n < \infty$, the Itô isometry criterion guarantees that $M_{t \wedge \tau_n} = \int_0^{t \wedge \tau_n} \sigma_s\,dW_s$ is a true (square-integrable) martingale for each $n$.
 
+---
+
+**Exercise 2.**
+Prove that every true martingale is a local martingale. Then explain why the converse fails by giving the key property that a strict local martingale violates. (Hint: consider the integrability condition.)
+
 ??? success "Solution to Exercise 2"
     **Every true martingale is a local martingale**: Let $M_t$ be a true martingale. Define $\tau_n = n$ for all $n \geq 1$. Then $\tau_n \to \infty$, and $M_{t \wedge \tau_n} = M_{t \wedge n}$ is a martingale (a stopped martingale is still a martingale). Hence $M$ is a local martingale with localizing sequence $\{\tau_n = n\}$.
 
     **The converse fails**: A strict local martingale $M_t$ violates the **integrability condition**. Specifically, for a true martingale we need $\mathbb{E}[|M_t|] < \infty$ for all $t$ and $\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s$. A strict local martingale may have $\mathbb{E}[|M_t|] < \infty$ but satisfy only the inequality $\mathbb{E}[M_t \mid \mathcal{F}_s] \leq M_s$ (supermartingale property for non-negative case) rather than equality. The key property violated is **mean preservation**: for a non-negative strict local martingale, $\mathbb{E}[M_t] < \mathbb{E}[M_0]$, meaning the expectation strictly decreases over time due to "mass leaking to infinity."
+
+---
+
+**Exercise 3.**
+Let $M_t$ be a non-negative local martingale with $M_0 = 1$. Using Fatou's lemma, prove the supermartingale inequality $\mathbb{E}[M_t] \leq 1$ for all $t \geq 0$. Explain the financial interpretation of $1 - \mathbb{E}[M_t]$ when $M_t$ is the discounted price of an asset under the risk-neutral measure.
 
 ??? success "Solution to Exercise 3"
     Let $M_t$ be a non-negative local martingale with $M_0 = 1$ and localizing sequence $\{\tau_n\}$. For each $n$, $M_{t \wedge \tau_n}$ is a true martingale, so:
@@ -678,6 +650,11 @@ For the 3D Bessel process reciprocal $M_t = 1/R_t$ starting from $R_0 = r_0 > 0$
     $$
 
     **Financial interpretation**: When $M_t$ is the discounted price of an asset under $\mathbb{Q}$, the quantity $1 - \mathbb{E}[M_t]$ represents the **bubble component**. If $M_t$ is a strict local martingale, $\mathbb{E}[M_t] < 1 = M_0$, meaning the current asset price exceeds its "fundamental value" $\mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T]$ by the amount $S_0(1 - \mathbb{E}[M_t])$. This excess is the mathematical signature of a financial bubble.
+
+---
+
+**Exercise 4.**
+Consider the CEV model $dX_t = \sigma X_t^{\beta}\,dW_t$ with $X_0 = 1$ and $\sigma = 0.5$. For $\beta = 0.5$, verify that $X_t$ is a true martingale by checking that $\mathbb{E}[\langle X \rangle_T] < \infty$ is plausible. For $\beta = 1.5$, explain qualitatively why $X_t$ is only a strict local martingale.
 
 ??? success "Solution to Exercise 4"
     **For $\beta = 0.5$**: The SDE is $dX_t = 0.5 X_t^{0.5}\,dW_t$, so the quadratic variation is:
@@ -695,6 +672,17 @@ For the 3D Bessel process reciprocal $M_t = 1/R_t$ starting from $R_0 = r_0 > 0$
     By the sufficient condition (finite expected quadratic variation), $X_t$ is a true martingale on $[0, T]$.
 
     **For $\beta = 1.5$**: The diffusion coefficient is $\sigma(x) = 0.5 x^{1.5}$, which grows superlinearly. For $\beta > 1$, the process can "explode" — reach infinity in finite time with positive probability. This happens because the volatility grows so rapidly as $X_t$ increases that the process is pushed to infinity. The explosion causes $\mathbb{E}[X_t] < X_0 = 1$ since the "mass" associated with exploded paths is lost. The scale function analysis for the boundary at infinity shows it is accessible (reached in finite time), confirming that $X_t$ is only a strict local martingale.
+
+---
+
+**Exercise 5.**
+In the Black-Scholes model under $\mathbb{Q}$, the discounted stock price $\tilde{S}_t = e^{-rt}S_t$ satisfies $d\tilde{S}_t = \sigma \tilde{S}_t\,dW_t^{\mathbb{Q}}$. Show that this is a true martingale by verifying that
+
+$$
+\mathbb{E}\left[\int_0^T \sigma^2 \tilde{S}_s^2\,ds\right] < \infty
+$$
+
+Explain why this condition guarantees the validity of risk-neutral pricing in the Black-Scholes model.
 
 ??? success "Solution to Exercise 5"
     Under $\mathbb{Q}$, $\tilde{S}_t = e^{-rt}S_t$ with $S_t = S_0 \exp((r - \sigma^2/2)t + \sigma W_t^{\mathbb{Q}})$, so:
@@ -716,6 +704,11 @@ For the 3D Bessel process reciprocal $M_t = 1/R_t$ starting from $R_0 = r_0 > 0$
     $$
 
     Since $\mathbb{E}\left[\int_0^T \sigma^2 \tilde{S}_s^2\,ds\right] < \infty$, the Itô integral $\int_0^t \sigma \tilde{S}_s\,dW_s^{\mathbb{Q}}$ is a true martingale (not just a local martingale). This ensures $\tilde{S}_t$ is a true $\mathbb{Q}$-martingale, which validates the risk-neutral pricing formula $V_0 = \mathbb{E}^{\mathbb{Q}}[e^{-rT}\Phi(S_T)]$ in the Black-Scholes model.
+
+---
+
+**Exercise 6.**
+Suppose the discounted price process $\tilde{S}_t$ is a strict local martingale under $\mathbb{Q}$ with $\mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] = 0.95\,S_0$. Compute the bubble component $\beta_0$. Then, using the modified put-call parity $C - P = \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] - Ke^{-rT}$, show that the classical put-call parity fails and determine the sign of the error.
 
 ??? success "Solution to Exercise 6"
     The **bubble component** is:
@@ -745,6 +738,11 @@ For the 3D Bessel process reciprocal $M_t = 1/R_t$ starting from $R_0 = r_0 > 0$
     $$
 
     The classical put-call parity **overestimates** $C - P$ by the bubble component $\beta_0 = 0.05\,S_0$. Equivalently, the put price is higher than what classical parity would predict (it includes a "bubble premium"), while the call price is lower. The error is positive: $S_0 - Ke^{-rT} > C - P$.
+
+---
+
+**Exercise 7.**
+For the 3D Bessel process reciprocal $M_t = 1/R_t$ starting from $R_0 = r_0 > 0$, verify the Ito computation: apply Ito's formula to $f(r) = 1/r$ and the SDE $dR_t = (1/R_t)\,dt + dW_t$ to obtain $dM_t = -M_t^2\,dW_t$. Explain why the absence of a $dt$ term confirms $M_t$ is a local martingale, and why the drift terms from $f'$ and $f''$ cancel exactly.
 
 ??? success "Solution to Exercise 7"
     Let $f(r) = 1/r$, so $f'(r) = -1/r^2$ and $f''(r) = 2/r^3$. By Itô's formula applied to $M_t = f(R_t)$:

@@ -392,26 +392,111 @@ Dynamically consistent models should match these observables.
 
 **Exercise 1.** Define dynamic consistency for a volatility model in your own words. Give a concrete example of how dynamic inconsistency would manifest: a model is calibrated today, evolved forward by one month, and the forward-implied surface differs systematically from the recalibrated surface.
 
+??? success "Solution to Exercise 1"
+    **Dynamic consistency** means that a volatility model, once calibrated at time $t = 0$ and evolved forward under its own dynamics to a future time $t$, produces a forward-implied volatility surface that agrees (in distribution) with the surface one would obtain by recalibrating the model to fresh market data at time $t$.
+
+    **Concrete example:** Suppose a local volatility model is calibrated today to the SPX implied volatility surface. The model is then evolved forward by one month. Under local vol dynamics, the forward-implied smile for options expiring in, say, two months flattens significantly compared to today's smile. However, when the practitioner recalibrates to market data one month later, the market still exhibits a pronounced skew. The systematic discrepancy between the model-predicted flat forward smile and the recalibrated skewed smile is a manifestation of dynamic inconsistency. This gap means that any exotic option priced using the forward-implied smile from the original calibration will be mispriced.
+
 ---
 
 **Exercise 2.** Explain why local volatility models are dynamically inconsistent. Specifically, if the model is calibrated today and the spot moves by 5%, describe how the model's predicted forward smile differs from what the market would actually show upon recalibration.
+
+??? success "Solution to Exercise 2"
+    Local volatility models are dynamically inconsistent because the local volatility function $\sigma_{\text{loc}}(S, t)$ is a deterministic function of spot and time. Once calibrated, the model's future smile is fully determined by the local vol surface, and it predicts that forward smiles **flatten** over time.
+
+    **Mechanism when spot moves by 5%:** Suppose the spot drops by 5%. In the local vol framework, the model simply evaluates $\sigma_{\text{loc}}(S_{\text{new}}, t)$ at the new spot level. The smile predicted by the model at the new spot level is derived from the original local vol surface, which was designed to match today's smile. As a result:
+
+    - The model predicts that ATM vol increases (because the local vol surface typically has higher values at lower spot levels, reflecting today's skew).
+    - However, the model's predicted smile **shape** at the new spot level tends to be flatter than what the market actually exhibits.
+
+    In practice, the market typically shows a persistent steep skew even after the spot move, while the local vol model's forward smile has lost much of its curvature. Upon recalibration, the new local vol surface differs substantially from the old one, confirming the dynamic inconsistency. The model systematically underpredicts the persistence of skew.
 
 ---
 
 **Exercise 3.** The Heston stochastic volatility model has parameters $(\kappa, \theta, \xi, \rho, v_0)$. When recalibrating the Heston model daily, the parameter $v_0$ changes with market conditions but $\theta$ may drift as well. (a) Why does this represent dynamic inconsistency? (b) Which Heston parameters are most stable across recalibrations? (c) What modifications to the model could improve dynamic consistency?
 
+??? success "Solution to Exercise 3"
+    **(a) Why daily recalibration represents dynamic inconsistency:**
+
+    If the Heston model were dynamically consistent, the only parameter that should change upon recalibration is $v_0$ (which tracks the current instantaneous variance). The long-run variance $\theta$, mean-reversion speed $\kappa$, vol-of-vol $\xi$, and correlation $\rho$ should remain stable because they describe structural features of the volatility dynamics. When $\theta$ drifts over successive recalibrations, it means the model's predicted evolution of the variance term structure does not match reality. The model evolves $v_t$ toward the calibrated $\theta$, but the market's actual long-run level shifts, forcing a recalibration that changes $\theta$.
+
+    **(b) Most stable parameters across recalibrations:**
+
+    Empirically, $\rho$ (spot-vol correlation) is the most stable Heston parameter, followed by $\xi$ (vol-of-vol). These parameters capture structural features of the joint spot-vol dynamics and the shape of the smile. The least stable parameters are $v_0$ (which must track current conditions) and $\theta$ (which drifts with market regimes). The mean-reversion speed $\kappa$ shows moderate stability.
+
+    **(c) Modifications to improve dynamic consistency:**
+
+    - **Time-dependent parameters:** Allow $\theta(t)$ and $\kappa(t)$ to be piecewise constant functions of time, calibrated to the term structure. This improves the static fit but sacrifices some predictive power for dynamics.
+    - **Multi-factor extensions:** Add a second variance factor (double Heston) so that short-term and long-term variance dynamics decouple, reducing the need for $\theta$ to drift.
+    - **Regime-switching:** Allow parameters to switch between distinct regimes, capturing structural shifts in volatility dynamics without continuous recalibration.
+
 ---
 
 **Exercise 4.** Compare local volatility and stochastic volatility models in terms of dynamic consistency for: (a) ATM volatility dynamics, (b) skew dynamics, and (c) forward smile behavior. Summarize your comparison in a table.
+
+??? success "Solution to Exercise 4"
+    | Feature | Local Volatility | Stochastic Volatility |
+    |---------|------------------|-----------------------|
+    | **ATM vol dynamics** | ATM vol changes deterministically with spot via $\sigma_{\text{loc}}(S,t)$; response is immediate and fully determined by today's calibration | ATM vol evolves stochastically via the variance process $v_t$; response depends on realized vol path |
+    | **Skew dynamics** | Forward skew flattens over time; model predicts skew will disappear for long forward-start periods | Forward skew persists due to non-zero $\rho$; skew decays slowly, controlled by vol-of-vol and correlation |
+    | **Forward smile** | Flattens rapidly as the forward-start date increases; unrealistic for pricing cliquets and forward-start options | Maintains non-trivial shape; forward smile has persistent curvature and skew, closer to market behavior |
+
+    **Summary:** Local vol wins on static fit (exact calibration to today's smile) but fails on dynamics. Stochastic vol provides more realistic dynamics, especially for forward-looking products, at the cost of a potentially imperfect static fit.
 
 ---
 
 **Exercise 5.** A cliquet option depends critically on the forward smile because its payoffs are determined by periodic returns. Explain why pricing a cliquet with a dynamically inconsistent model can lead to systematic errors. Would the model overprice or underprice if the forward smile flattens faster than the market expects?
 
+??? success "Solution to Exercise 5"
+    A cliquet option's payoff depends on periodic returns $R_i = S_{t_i}/S_{t_{i-1}} - 1$ over each reset period $[t_{i-1}, t_i]$. Each period's contribution is effectively a forward-start option, and its price depends on the **forward smile** for that period. The forward smile determines the risk-neutral distribution of $S_{t_i}/S_{t_{i-1}}$, which controls the probability of triggering caps and floors on each periodic return.
+
+    **Why dynamic inconsistency causes systematic errors:** A dynamically inconsistent model predicts the wrong forward smile for future periods. If the model's forward smile is too flat (as with local vol), it underestimates the probability of large periodic returns (both positive and negative). This directly affects:
+
+    - The probability of hitting the cap (underestimated if skew is too flat)
+    - The probability of hitting the floor (underestimated if tails are too thin)
+    - The correlation structure between successive returns
+
+    **Overpricing or underpricing:** If the forward smile flattens faster than the market expects, the model **underprices** the cliquet. The reasoning is that a flat forward smile implies thinner tails and lower variance for periodic returns, which reduces the expected value of the capped/floored return payoffs. In particular, the reduced skew undervalues the downside protection embedded in the floor feature. A stochastic volatility model with persistent forward skew would produce a higher cliquet price because it assigns more probability mass to extreme periodic returns.
+
 ---
 
 **Exercise 6.** Bergomi's variance curve model specifies dynamics for the forward variance curve $\xi_t^T = \mathbb{E}_t[\sigma_T^2]$. Explain why directly modeling the forward variance curve leads to better dynamic consistency than calibrating a parametric model. What tradeoff does this approach introduce?
 
+??? success "Solution to Exercise 6"
+    Bergomi's variance curve model specifies the dynamics of the forward variance curve $\xi_t^T = \mathbb{E}_t[\sigma_T^2]$ directly:
+
+    $$
+    d\xi_t^T = \xi_t^T \omega(T-t) \, dZ_t
+    $$
+
+    **Why this leads to better dynamic consistency:** In parametric models (Heston, SABR), the forward variance curve is an output derived from the model parameters. The model's dynamics determine how the curve evolves, and if the dynamics are not rich enough, the evolved curve will not match market observations. By contrast, Bergomi's approach models the entire forward variance curve as the primary object. This means:
+
+    - The initial forward variance curve is directly calibrated to the market term structure.
+    - The evolution of the curve is specified by the volatility function $\omega(T-t)$, which controls how shocks propagate across maturities.
+    - There is no mismatch between the model's predicted evolution and the shape of the curve, because the curve itself is the state variable.
+
+    **Tradeoff:** The main cost is **complexity and tractability**. The variance curve model is infinite-dimensional (it tracks a function, not a finite set of parameters), making calibration and simulation more demanding. Additionally, ensuring no-arbitrage constraints (e.g., forward variances remain positive) requires careful specification of $\omega$. The model also introduces the question of how to parameterize $\omega(T-t)$ itself, trading one calibration problem for another, albeit one with more direct control over dynamics.
+
 ---
 
 **Exercise 7.** A practitioner recalibrates a local volatility model to the SPX surface every day and uses it to price barrier options. Over one month, the model's delta hedge underperforms consistently. Diagnose this as a dynamic consistency problem and propose two potential solutions: one using a different model class, and one using the same local volatility framework with adjustments.
+
+??? success "Solution to Exercise 7"
+    **Diagnosis:** The consistent underperformance of the delta hedge is a classic symptom of dynamic inconsistency in local volatility models. The local vol model is recalibrated daily, and each recalibration changes the local volatility surface $\sigma_{\text{loc}}(S, t)$. The barrier option's delta depends on the model's prediction of how the smile will evolve as the spot approaches the barrier. Because local vol predicts forward smile flattening while the market maintains persistent skew, the model's deltas are systematically biased:
+
+    - Near the barrier, the model underestimates the probability of barrier breaching (wrong tail behavior)
+    - The delta hedge ratio is computed under incorrect forward smile assumptions
+    - Daily recalibration introduces parameter instability, generating spurious P&L
+
+    **Solution 1 (Different model class):** Switch to a stochastic volatility model such as Heston or a stochastic local volatility (SLV) model. The SLV model combines a stochastic volatility component for realistic dynamics with a local volatility component (the "leverage function") for exact calibration:
+
+    $$
+    dS_t = (r-q) S_t \, dt + L(S_t, t) \sqrt{v_t} \, S_t \, dW_t^S
+    $$
+
+    This provides both exact smile fit and more realistic forward smile dynamics, reducing the hedging error from dynamic inconsistency.
+
+    **Solution 2 (Within local vol framework):** Apply a "mixing" or "transition" adjustment to the local vol model. Specifically:
+
+    - Use a **weighted average** of the local vol delta and the sticky-delta (or sticky-strike) delta, with weights chosen to match the empirical skew stickiness ratio (SSR $\approx 0.5$).
+    - Alternatively, apply a **minimum variance hedge** that adjusts the model delta by the empirical spot-vol beta, effectively correcting for the model's incorrect smile dynamics without changing the pricing model itself. This approach accepts that the model is dynamically inconsistent but corrects the hedge ratios using empirical information.

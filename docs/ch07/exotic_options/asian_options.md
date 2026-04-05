@@ -183,30 +183,6 @@ $$
 
 **Exercise 1.** Prove that $C_{\text{Asian}} \leq C_{\text{vanilla}}$ for an average-price call by applying Jensen's inequality. Specifically, show that $\mathbb{E}[(\bar{S} - K)^+] \leq \mathbb{E}[(S_T - K)^+]$ when $\bar{S}$ and $S_T$ have the same mean. State the convexity property you use.
 
----
-
-**Exercise 2.** Under GBM, the continuous geometric average has adjusted volatility $\hat{\sigma} = \sigma/\sqrt{3}$. Derive this result by computing $\text{Var}\left(\frac{1}{T}\int_0^T \log S_t\, dt\right)$ where $\log S_t = \log S_0 + (r - \frac{1}{2}\sigma^2)t + \sigma W_t$. You will need the covariance $\text{Cov}(W_s, W_t) = \min(s, t)$.
-
----
-
-**Exercise 3.** Consider a discrete arithmetic average Asian call with $n = 12$ monthly fixings, $S_0 = 100$, $K = 100$, $T = 1$, $r = 5\%$, $\sigma = 20\%$. Suppose 6 months have elapsed and the observed fixings are $S_1 = 102, S_2 = 105, S_3 = 98, S_4 = 101, S_5 = 103, S_6 = 107$. Compute the partial average of the observed fixings and explain how the pricing problem simplifies for the remaining 6 months.
-
----
-
-**Exercise 4.** Explain why the arithmetic average of lognormal random variables is not lognormal. Describe the moment-matching approximation: what distribution is assumed for $\bar{S}_{\text{arith}}$, how are the parameters $\hat{\mu}$ and $\hat{\sigma}^2$ determined, and what is the resulting approximate pricing formula?
-
----
-
-**Exercise 5.** Compare the average-price call payoff $(\bar{S} - K)^+$ with the average-strike call payoff $(S_T - \bar{S})^+$. (a) Which option is more expensive and why? (b) For which option is the holder exposed to manipulation of the terminal price $S_T$? (c) Describe a hedging scenario where the average-strike call is more appropriate than the average-price call.
-
----
-
-**Exercise 6.** The geometric average Asian option serves as a control variate for pricing arithmetic average Asian options. Explain the control variate method: write the variance-reduced estimator $\hat{V}_{\text{arith}} = \hat{V}_{\text{arith,MC}} + (V_{\text{geom,exact}} - \hat{V}_{\text{geom,MC}})$, and explain why the geometric average is a better control variate than the vanilla European call for this purpose.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     We want to show $\mathbb{E}[(\bar{S} - K)^+] \leq \mathbb{E}[(S_T - K)^+]$ when $\bar{S}$ and $S_T$ have the same mean.
 
@@ -233,6 +209,11 @@ $$
     $$
 
     Discounting both sides by $e^{-rT}$ and taking expectations under $\mathbb{Q}$ gives $C_{\text{Asian}} \leq C_{\text{vanilla}}$.
+
+---
+
+
+**Exercise 2.** Under GBM, the continuous geometric average has adjusted volatility $\hat{\sigma} = \sigma/\sqrt{3}$. Derive this result by computing $\text{Var}\left(\frac{1}{T}\int_0^T \log S_t\, dt\right)$ where $\log S_t = \log S_0 + (r - \frac{1}{2}\sigma^2)t + \sigma W_t$. You will need the covariance $\text{Cov}(W_s, W_t) = \min(s, t)$.
 
 ??? success "Solution to Exercise 2"
     Under GBM, $\log S_t = \log S_0 + (r - \frac{1}{2}\sigma^2)t + \sigma W_t$. We need to compute:
@@ -273,6 +254,11 @@ $$
     \hat{\sigma} = \frac{\sigma}{\sqrt{3}}
     $$
 
+---
+
+
+**Exercise 3.** Consider a discrete arithmetic average Asian call with $n = 12$ monthly fixings, $S_0 = 100$, $K = 100$, $T = 1$, $r = 5\%$, $\sigma = 20\%$. Suppose 6 months have elapsed and the observed fixings are $S_1 = 102, S_2 = 105, S_3 = 98, S_4 = 101, S_5 = 103, S_6 = 107$. Compute the partial average of the observed fixings and explain how the pricing problem simplifies for the remaining 6 months.
+
 ??? success "Solution to Exercise 3"
     The observed fixings are $S_1 = 102, S_2 = 105, S_3 = 98, S_4 = 101, S_5 = 103, S_6 = 107$.
 
@@ -302,6 +288,11 @@ $$
 
     The pricing problem reduces to pricing an Asian call over the remaining 6 months with 6 fixings, an adjusted strike of $K^* \approx 97.33$, and a scaling factor of $1/2$. The initial spot for the remaining problem is $S_6 = 107$.
 
+---
+
+
+**Exercise 4.** Explain why the arithmetic average of lognormal random variables is not lognormal. Describe the moment-matching approximation: what distribution is assumed for $\bar{S}_{\text{arith}}$, how are the parameters $\hat{\mu}$ and $\hat{\sigma}^2$ determined, and what is the resulting approximate pricing formula?
+
 ??? success "Solution to Exercise 4"
     **Why the arithmetic average is not lognormal:** Under GBM, each $S_{t_i}$ is lognormally distributed, meaning $\log S_{t_i}$ is normally distributed. However, the arithmetic average $\bar{S}_{\text{arith}} = \frac{1}{n}\sum_{i=1}^n S_{t_i}$ is a **sum of correlated lognormal** random variables. The sum of lognormal random variables is **not** lognormal because the lognormal distribution is not closed under addition. (It is closed under multiplication, which is why the geometric average remains lognormal.) The distribution of $\bar{S}_{\text{arith}}$ has no simple closed form.
 
@@ -328,12 +319,22 @@ $$
 
     where $\hat{d}_1 = \frac{\hat{\mu} + \hat{\sigma}^2 - \ln K}{\hat{\sigma}}$ and $\hat{d}_2 = \hat{d}_1 - \hat{\sigma}$.
 
+---
+
+
+**Exercise 5.** Compare the average-price call payoff $(\bar{S} - K)^+$ with the average-strike call payoff $(S_T - \bar{S})^+$. (a) Which option is more expensive and why? (b) For which option is the holder exposed to manipulation of the terminal price $S_T$? (c) Describe a hedging scenario where the average-strike call is more appropriate than the average-price call.
+
 ??? success "Solution to Exercise 5"
     **(a) Which option is more expensive?** In general, neither option dominates the other for all parameter values. However, for typical parameters, the **average-price call** $(\bar{S} - K)^+$ tends to be more expensive than the **average-strike call** $(S_T - \bar{S})^+$ for ATM options. The average-price call benefits when the average is high (upward trending market), while the average-strike call benefits when the terminal price significantly exceeds the average (late rally). The relative cost depends on the strike level, volatility, and interest rates.
 
     **(b) Exposure to terminal price manipulation:** The **average-strike call** $(S_T - \bar{S})^+$ is exposed to manipulation of the terminal price $S_T$, since its payoff depends directly on $S_T$. A market participant could inflate $S_T$ near expiry to increase the payoff. The average-price call $(\bar{S} - K)^+$ is resistant to such manipulation because the average is computed over many observations, and manipulating a single observation has limited impact on $\bar{S}$.
 
     **(c) Hedging scenario for average-strike call:** The average-strike call is appropriate for a company that plans to **sell an asset at a future date** and wants to ensure the selling price exceeds the average acquisition cost. For example, a commodity trader who has been accumulating inventory over the averaging period at an average cost of approximately $\bar{S}$ and plans to sell at the terminal date would benefit from the payoff $(S_T - \bar{S})^+$, which guarantees that the sale price exceeds the average cost. This is a natural hedge for a "buy-and-store" commodity strategy.
+
+---
+
+
+**Exercise 6.** The geometric average Asian option serves as a control variate for pricing arithmetic average Asian options. Explain the control variate method: write the variance-reduced estimator $\hat{V}_{\text{arith}} = \hat{V}_{\text{arith,MC}} + (V_{\text{geom,exact}} - \hat{V}_{\text{geom,MC}})$, and explain why the geometric average is a better control variate than the vanilla European call for this purpose.
 
 ??? success "Solution to Exercise 6"
     **The control variate method:** On each Monte Carlo path $i$, compute both the arithmetic Asian payoff $\Phi_{\text{arith}}^{(i)}$ and the geometric Asian payoff $\Phi_{\text{geom}}^{(i)}$. The variance-reduced estimator is:

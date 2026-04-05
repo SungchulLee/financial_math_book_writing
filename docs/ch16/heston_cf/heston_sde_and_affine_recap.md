@@ -177,18 +177,149 @@ This section has collected the Heston bivariate SDE in log-price form, summarize
 
 **Exercise 1.** Write the Heston bivariate SDE in log-price form: $dx_t = (r - q - \frac{1}{2}v_t)\,dt + \sqrt{v_t}\,dW_t^{(1)}$ and $dv_t = \kappa(\theta - v_t)\,dt + \sigma_v\sqrt{v_t}\,dW_t^{(2)}$ with $\operatorname{Corr}(dW^{(1)}, dW^{(2)}) = \rho\,dt$. Identify the drift vector and diffusion matrix as functions of the state $(x, v)$ and verify the affine property.
 
+??? success "Solution to Exercise 1"
+    The Heston bivariate SDE in log-price form under the risk-neutral measure $\mathbb{Q}$ is:
+
+    $$
+    dx_t = \left(r - q - \tfrac{1}{2}v_t\right)dt + \sqrt{v_t}\,dW_t^{(1)}
+    $$
+
+    $$
+    dv_t = \kappa(\theta - v_t)\,dt + \sigma_v\sqrt{v_t}\,dW_t^{(2)}
+    $$
+
+    with $d\langle W^{(1)}, W^{(2)}\rangle_t = \rho\,dt$.
+
+    **Drift vector.** Writing the state as $\mathbf{Y}_t = (x_t, v_t)^\top$, the drift is:
+
+    $$
+    \boldsymbol{\mu}(\mathbf{Y}) = \begin{pmatrix} r - q - \frac{1}{2}v \\ \kappa\theta - \kappa v \end{pmatrix} = \begin{pmatrix} r - q \\ \kappa\theta \end{pmatrix} + \begin{pmatrix} -\frac{1}{2} \\ -\kappa \end{pmatrix} v
+    $$
+
+    This is affine in $v$ (and independent of $x$): $\boldsymbol{\mu} = \mathbf{a}_0 + \mathbf{a}_1 v$ with constant vectors $\mathbf{a}_0$ and $\mathbf{a}_1$.
+
+    **Diffusion matrix.** The diffusion coefficient matrix is:
+
+    $$
+    \Sigma = \sqrt{v}\begin{pmatrix} 1 & 0 \\ \rho\sigma_v & \sigma_v\sqrt{1 - \rho^2} \end{pmatrix}
+    $$
+
+    (using a Cholesky decomposition to decorrelate the Brownian motions). The instantaneous covariance matrix is:
+
+    $$
+    \Sigma\Sigma^\top = v\begin{pmatrix} 1 & \rho\sigma_v \\ \rho\sigma_v & \sigma_v^2 \end{pmatrix}
+    $$
+
+    This is linear in $v$ with zero constant term, hence affine (with $\mathbf{b}_0 = 0$, $\mathbf{b}_1 = \begin{pmatrix} 1 & \rho\sigma_v \\ \rho\sigma_v & \sigma_v^2 \end{pmatrix}$).
+
+    **Affine property verification:** Both the drift vector and the covariance matrix are affine functions of the state variable $v$, and neither depends on $x$. This is the defining property of an affine diffusion, which guarantees that the characteristic function has the exponential-affine form $\varphi = \exp(C + Dv + iux)$.
+
 ---
 
 **Exercise 2.** The conditional characteristic function is defined as $\varphi(u, \tau; x, v) = \mathbb{E}[e^{iux_T} \mid x_t = x, v_t = v]$. Show that the initial condition is $\varphi(u, 0; x, v) = e^{iux}$ by setting $\tau = 0$.
+
+??? success "Solution to Exercise 2"
+    The conditional characteristic function is:
+
+    $$
+    \varphi(u, \tau; x, v) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{iu\,x_T} \;\middle|\; x_t = x, v_t = v\right]
+    $$
+
+    where $\tau = T - t$. Setting $\tau = 0$ means $T = t$, so:
+
+    $$
+    \varphi(u, 0; x, v) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{iu\,x_t} \;\middle|\; x_t = x, v_t = v\right] = e^{iu\,x}
+    $$
+
+    The last equality holds because $x_t = x$ is known given the conditioning information, so $e^{iu\,x_t}$ is a constant (not random) equal to $e^{iux}$. The expectation of a constant is itself.
+
+    This initial condition is the defining property of any characteristic function at zero time lag: when you condition on knowing the current state and ask for the distribution at that same instant, there is no uncertainty, and the CF reduces to $e^{iux}$.
 
 ---
 
 **Exercise 3.** Write the Feynman-Kac PDE for $\varphi$ including all terms: the time derivative, the drift terms, the diffusion terms (including the cross-derivative $\rho\sigma_v v \frac{\partial^2 \varphi}{\partial x \partial v}$), and the discounting term. Verify that there are six terms in total.
 
+??? success "Solution to Exercise 3"
+    The Feynman-Kac PDE for $\varphi(u, \tau; x, v)$ with $\tau = T - t$ is:
+
+    $$
+    \frac{\partial\varphi}{\partial\tau} = \underbrace{\left(r - q - \tfrac{1}{2}v\right)\frac{\partial\varphi}{\partial x}}_{\text{(1) log-price drift}} + \underbrace{\kappa(\theta - v)\frac{\partial\varphi}{\partial v}}_{\text{(2) variance drift}} + \underbrace{\tfrac{1}{2}v\frac{\partial^2\varphi}{\partial x^2}}_{\text{(3) log-price diffusion}} + \underbrace{\rho\sigma_v v\frac{\partial^2\varphi}{\partial x\,\partial v}}_{\text{(4) cross-diffusion}} + \underbrace{\tfrac{1}{2}\sigma_v^2 v\frac{\partial^2\varphi}{\partial v^2}}_{\text{(5) variance diffusion}}
+    $$
+
+    with initial condition $\varphi(u, 0; x, v) = e^{iux}$.
+
+    There are **six terms** in total: one on the left (the time derivative $\partial_\tau\varphi$) and five on the right. The five right-hand-side terms correspond to the infinitesimal generator $\mathcal{L}$ of the bivariate Heston diffusion. Term by term:
+
+    1. **(1)** arises from the drift of $x_t$, which is $(r - q - \frac{1}{2}v_t)$
+    2. **(2)** arises from the drift of $v_t$, which is $\kappa(\theta - v_t)$
+    3. **(3)** arises from $\frac{1}{2}\langle dx, dx\rangle = \frac{1}{2}v\,dt$
+    4. **(4)** arises from $\langle dx, dv\rangle = \rho\sigma_v v\,dt$
+    5. **(5)** arises from $\frac{1}{2}\langle dv, dv\rangle = \frac{1}{2}\sigma_v^2 v\,dt$
+
+    Note: there is no discounting term because the characteristic function is a conditional expectation of $e^{iux_T}$ (not a discounted payoff). The Feynman-Kac theorem here applies to the pure expectation, not to a pricing PDE.
+
 ---
 
 **Exercise 4.** Substitute the exponential-affine ansatz $\varphi = \exp(C(\tau, u) + D(\tau, u)v + iux)$ into the PDE and show that the $x$-dependence cancels, leaving ODEs in $\tau$ only.
 
+??? success "Solution to Exercise 4"
+    Substitute $\varphi = \exp(C(\tau, u) + D(\tau, u)v + iux)$ into the PDE. The partial derivatives are:
+
+    $$
+    \partial_\tau\varphi = (C' + D'v)\varphi, \quad \partial_x\varphi = iu\,\varphi, \quad \partial_{xx}\varphi = -u^2\varphi
+    $$
+
+    $$
+    \partial_v\varphi = D\,\varphi, \quad \partial_{vv}\varphi = D^2\varphi, \quad \partial_{xv}\varphi = iu\,D\,\varphi
+    $$
+
+    Substituting into the PDE and dividing both sides by $\varphi$ (which is nonzero everywhere):
+
+    $$
+    C' + D'v = (r - q - \tfrac{1}{2}v)(iu) + \kappa(\theta - v)D + \tfrac{1}{2}v(-u^2) + \rho\sigma_v v(iu\,D) + \tfrac{1}{2}\sigma_v^2 v\,D^2
+    $$
+
+    The crucial observation is that **all $x$-dependence has been eliminated**. The factor $e^{iux}$ appears in every term of $\varphi$ and its derivatives, so it cancels when we divide by $\varphi$. The remaining equation involves only $\tau$, $u$, $v$, and the functions $C(\tau, u)$, $D(\tau, u)$.
+
+    Since the right-hand side is a polynomial of degree 1 in $v$ (with no higher powers), and the left-hand side is also degree 1 in $v$, we can match coefficients:
+
+    - **$v^0$ terms:** $C' = (r-q)iu + \kappa\theta D$
+    - **$v^1$ terms:** $D' = \frac{1}{2}\sigma_v^2 D^2 + (\rho\sigma_v iu - \kappa)D + \frac{1}{2}(iu - u^2)$
+
+    These are two ODEs in $\tau$ alone, with $u$ as a parameter. The reduction from a PDE in $(x, v, \tau)$ to ODEs in $\tau$ is the central computational advantage of the affine structure.
+
 ---
 
 **Exercise 5.** State the initial conditions for the Riccati system: $C(0, u) = 0$ and $D(0, u) = 0$. Explain why these follow from $\varphi(u, 0; x, v) = e^{iux}$.
+
+??? success "Solution to Exercise 5"
+    The initial conditions for the Riccati system are:
+
+    $$
+    C(0, u) = 0, \qquad D(0, u) = 0
+    $$
+
+    **Derivation from the terminal condition.** The characteristic function at $\tau = 0$ must satisfy:
+
+    $$
+    \varphi(u, 0; x, v) = e^{iux}
+    $$
+
+    Using the exponential-affine ansatz:
+
+    $$
+    \varphi(u, 0; x, v) = \exp\!\bigl(C(0, u) + D(0, u)\,v + iu\,x\bigr)
+    $$
+
+    For these two expressions to be equal for **all** values of $x$ and $v$, we need:
+
+    $$
+    C(0, u) + D(0, u)\,v + iu\,x = iu\,x \quad \text{for all } x, v
+    $$
+
+    This requires $C(0, u) + D(0, u)\,v = 0$ for all $v \geq 0$. Since this must hold for every $v$, the coefficient of $v$ and the constant term must separately vanish:
+
+    - Coefficient of $v$: $D(0, u) = 0$
+    - Constant term: $C(0, u) = 0$
+
+    Intuitively, at $\tau = 0$ there is no time for the drift or diffusion to act, so the variance-dependent and variance-independent accumulations in the exponent are both zero. The characteristic function simply returns $e^{iux}$, reflecting perfect knowledge of the current log-price $x$.

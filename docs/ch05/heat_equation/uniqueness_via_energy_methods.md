@@ -288,40 +288,6 @@ $$
 **Exercise 1.**
 Define the energy functional $E(t) = \frac{1}{2}\int_a^b u(x, t)^2\,dx$ for a solution $u$ of the heat equation with homogeneous Dirichlet conditions on $[a, b]$. Compute $E'(t)$ and show that $E'(t) \leq 0$, proving that energy is non-increasing.
 
----
-
-**Exercise 2.**
-Using the energy method, prove uniqueness: if $u$ and $v$ both solve the heat equation with the same initial and boundary data, define $w = u - v$ and show $E_w(t) = 0$ for all $t \geq 0$, hence $w = 0$.
-
----
-
-**Exercise 3.**
-The Poincare inequality states $\int_a^b u^2\,dx \leq C\int_a^b (u')^2\,dx$ for functions vanishing at the endpoints, with $C = (b-a)^2/\pi^2$. Use this together with the energy decay $E'(t) = -\int (u')^2\,dx$ to show $E'(t) \leq -\frac{\pi^2}{(b-a)^2}E(t)$, giving exponential decay $E(t) \leq E(0)e^{-\pi^2 t/(b-a)^2}$.
-
----
-
-**Exercise 4.**
-For Neumann conditions $u_x(a, t) = u_x(b, t) = 0$, the energy $E(t) = \frac{1}{2}\int u^2\,dx$ still decreases, but does it decay to zero? Explain why the Poincare inequality must be modified (applied to $u - \bar{u}$ where $\bar{u}$ is the spatial average) and what the equilibrium solution is.
-
----
-
-**Exercise 5.**
-Explain the financial interpretation of energy decay for barrier option pricing on a bounded domain $[B_l, B_u]$. As $T - t \to \infty$, the option price decays exponentially. Relate the decay rate to the smallest eigenvalue $\lambda_1 = \pi^2 / (2(B_u - B_l)^2)$.
-
----
-
-**Exercise 6.**
-The energy method requires only integration by parts and does not need the explicit form of the solution. Explain why this is an advantage over the maximum principle approach for proving uniqueness, especially for more complex PDEs with variable coefficients.
-
----
-
-**Exercise 7.**
-For the heat equation with a source term $\partial_t u = \frac{1}{2}\partial_{xx}u + f(x, t)$, the energy is no longer monotonically decreasing. Compute $E'(t)$ in this case and identify the additional term. Under what condition on $f$ does the energy still remain bounded?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Define $E(t) = \frac{1}{2}\int_a^b u(x,t)^2\,dx$ where $u$ solves $\partial_t u = \frac{1}{2}\partial_{xx}u$ with $u(t,a) = u(t,b) = 0$.
 
@@ -346,6 +312,11 @@ For the heat equation with a source term $\partial_t u = \frac{1}{2}\partial_{xx
     $$
 
     since $u_x^2 \geq 0$. The energy is non-increasing. It is strictly decreasing unless $u_x \equiv 0$ on $[a,b]$, which combined with $u(a) = u(b) = 0$ forces $u \equiv 0$.
+
+---
+
+**Exercise 2.**
+Using the energy method, prove uniqueness: if $u$ and $v$ both solve the heat equation with the same initial and boundary data, define $w = u - v$ and show $E_w(t) = 0$ for all $t \geq 0$, hence $w = 0$.
 
 ??? success "Solution to Exercise 2"
     Let $u$ and $v$ both solve the heat equation with the same initial data $u(0,x) = v(0,x) = f(x)$ and boundary data $u(t,a) = v(t,a)$, $u(t,b) = v(t,b)$.
@@ -372,6 +343,11 @@ For the heat equation with a source term $\partial_t u = \frac{1}{2}\partial_{xx
 
     Therefore $u = v$ everywhere on $[a,b] \times [0,T]$.
 
+---
+
+**Exercise 3.**
+The Poincare inequality states $\int_a^b u^2\,dx \leq C\int_a^b (u')^2\,dx$ for functions vanishing at the endpoints, with $C = (b-a)^2/\pi^2$. Use this together with the energy decay $E'(t) = -\int (u')^2\,dx$ to show $E'(t) \leq -\frac{\pi^2}{(b-a)^2}E(t)$, giving exponential decay $E(t) \leq E(0)e^{-\pi^2 t/(b-a)^2}$.
+
 ??? success "Solution to Exercise 3"
     From Exercise 1, $E'(t) = -\frac{1}{2}\int_a^b u_x^2\,dx$. The Poincare inequality for functions vanishing at the endpoints states:
 
@@ -394,6 +370,11 @@ For the heat equation with a source term $\partial_t u = \frac{1}{2}\partial_{xx
     $$
 
     The energy decays exponentially with rate $\pi^2/(b-a)^2$. This rate is the first eigenvalue of $-\frac{d^2}{dx^2}$ on $(a,b)$ with Dirichlet conditions, corresponding to the slowest-decaying Fourier mode $\sin(\pi(x-a)/(b-a))$.
+
+---
+
+**Exercise 4.**
+For Neumann conditions $u_x(a, t) = u_x(b, t) = 0$, the energy $E(t) = \frac{1}{2}\int u^2\,dx$ still decreases, but does it decay to zero? Explain why the Poincare inequality must be modified (applied to $u - \bar{u}$ where $\bar{u}$ is the spatial average) and what the equilibrium solution is.
 
 ??? success "Solution to Exercise 4"
     For Neumann conditions $u_x(a,t) = u_x(b,t) = 0$, the energy dissipation still holds:
@@ -420,6 +401,11 @@ For the heat equation with a source term $\partial_t u = \frac{1}{2}\partial_{xx
 
     The equilibrium is the spatial average of the initial data, representing uniform temperature.
 
+---
+
+**Exercise 5.**
+Explain the financial interpretation of energy decay for barrier option pricing on a bounded domain $[B_l, B_u]$. As $T - t \to \infty$, the option price decays exponentially. Relate the decay rate to the smallest eigenvalue $\lambda_1 = \pi^2 / (2(B_u - B_l)^2)$.
+
 ??? success "Solution to Exercise 5"
     In barrier option pricing on a bounded domain $[B_l, B_u]$ (lower and upper barriers), the option price $V$ satisfies the heat equation (after appropriate transformations) with Dirichlet conditions $V = 0$ at both barriers (the option is knocked out).
 
@@ -434,6 +420,11 @@ For the heat equation with a source term $\partial_t u = \frac{1}{2}\partial_{xx
     **Financial interpretation**: As $T - t \to \infty$ (very long time to expiry), the probability that Brownian motion has not hit either barrier becomes exponentially small, dominated by the slowest-decaying eigenmode. The option price decays exponentially with rate $\lambda_1$ because the particle (stock price) is almost certain to be knocked out.
 
     The decay rate is faster for narrower barrier intervals (smaller $B_u - B_l$): the closer the barriers, the sooner the stock price hits one of them, and the faster the option price decays. Specifically, halving the distance between barriers quadruples the decay rate.
+
+---
+
+**Exercise 6.**
+The energy method requires only integration by parts and does not need the explicit form of the solution. Explain why this is an advantage over the maximum principle approach for proving uniqueness, especially for more complex PDEs with variable coefficients.
 
 ??? success "Solution to Exercise 6"
     The energy method proves uniqueness through three simple steps:
@@ -451,6 +442,11 @@ For the heat equation with a source term $\partial_t u = \frac{1}{2}\partial_{xx
     **Weak solutions**: The energy method only requires $u$ and $u_x$ to be in $L^2$ (Sobolev space $H^1$), not $C^2$. The maximum principle requires classical (twice differentiable) solutions. This makes energy methods the primary tool in modern PDE theory where solutions are understood in the weak (distributional) sense.
 
     **No explicit solution needed**: The proof never uses the form of the solution, only the equation itself and integration by parts.
+
+---
+
+**Exercise 7.**
+For the heat equation with a source term $\partial_t u = \frac{1}{2}\partial_{xx}u + f(x, t)$, the energy is no longer monotonically decreasing. Compute $E'(t)$ in this case and identify the additional term. Under what condition on $f$ does the energy still remain bounded?
 
 ??? success "Solution to Exercise 7"
     For $\partial_t u = \frac{1}{2}\partial_{xx}u + f(x,t)$ with homogeneous Dirichlet conditions:

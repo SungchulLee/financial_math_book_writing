@@ -185,9 +185,61 @@ Fourier inversion methods---the Carr-Madan FFT and the COS method---transform th
 
 **Exercise 1.** Derive the Fourier representation of the European call price starting from $C = e^{-r\tau}\int_{-\infty}^\infty (e^x - K)^+ f(x)\,dx$ where $f(x)$ is the risk-neutral density of $\log S_T$. Show that the price can be written as a single integral involving the characteristic function $\Phi(v)$.
 
+??? success "Solution to Exercise 1"
+    Starting from the call price formula with $x = \log S_t$ and $f$ the risk-neutral density of $X_T = \log S_T$:
+
+    $$
+    C = e^{-r\tau}\int_{-\infty}^{\infty}(e^x - K)^+ f(x)\,dx = e^{-r\tau}\int_{\log K}^{\infty}(e^x - K)f(x)\,dx
+    $$
+
+    Split into two terms:
+
+    $$
+    C = e^{-r\tau}\int_{\log K}^{\infty} e^x f(x)\,dx - Ke^{-r\tau}\int_{\log K}^{\infty} f(x)\,dx
+    $$
+
+    The second integral is $\mathbb{Q}(X_T \geq \log K)$, which can be expressed via the inversion formula using $\Phi(v) = \int e^{ivx}f(x)\,dx$:
+
+    $$
+    \mathbb{Q}(X_T \geq k) = \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\operatorname{Re}\!\left[\frac{e^{-ivk}\Phi(v)}{iv}\right]dv
+    $$
+
+    where $k = \log K$. For the first integral, define the density $\tilde{f}(x) = e^x f(x)/\mathbb{E}[e^{X_T}]$ (the Esscher-transformed density). Its characteristic function is $\tilde{\Phi}(v) = \Phi(v - i)/\Phi(-i)$. Then
+
+    $$
+    \int_k^{\infty} e^x f(x)\,dx = \Phi(-i)\left[\frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\operatorname{Re}\!\left[\frac{e^{-ivk}\tilde{\Phi}(v)}{iv}\right]dv\right]
+    $$
+
+    Combining and noting $e^{-r\tau}\Phi(-i) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[e^{X_T}] = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[S_T] = S_t$ (by the martingale property of discounted prices):
+
+    $$
+    C = S_t\Pi_1 - Ke^{-r\tau}\Pi_2
+    $$
+
+    where $\Pi_1$ and $\Pi_2$ are both expressed as single integrals involving the characteristic function $\Phi(v)$.
+
 ---
 
 **Exercise 2.** The Carr-Madan method introduces a damping factor $e^{\alpha k}$ (where $k = \log K$) to make the Fourier transform of the call price integrable. Explain why $\alpha > 0$ is needed and derive the condition on $\alpha$ that ensures integrability in terms of the moment condition $\mathbb{E}[S_T^{\alpha+1}] < \infty$.
+
+??? success "Solution to Exercise 2"
+    The call price as a function of log-strike $k = \log K$ is $C(k) = e^{-r\tau}\mathbb{E}[(e^{X_T} - e^k)^+]$. As $k \to -\infty$ (deep in-the-money), $C(k) \to e^{-r\tau}\mathbb{E}[e^{X_T}] - e^{-r\tau}e^k \to S_t$, which is positive and bounded. However, $C(k) \geq 0$ and decays to zero only as $k \to +\infty$, while it approaches a positive constant as $k \to -\infty$. Thus $C(k) \notin L^1(\mathbb{R})$ and has no Fourier transform.
+
+    Multiplying by the damping factor $e^{\alpha k}$ for $\alpha > 0$:
+
+    $$
+    c_\alpha(k) = e^{\alpha k}C(k)
+    $$
+
+    As $k \to -\infty$, $c_\alpha(k) \to e^{\alpha k}S_t \to 0$ exponentially. As $k \to +\infty$, $c_\alpha(k) \to 0$ (since $C(k)$ decays faster than any polynomial). So $c_\alpha$ is integrable provided it does not blow up.
+
+    The Fourier transform of $c_\alpha$ involves evaluating $\mathbb{E}[e^{(\alpha+1)X_T}]$, which appears in the denominator of $\hat{c}_\alpha$. For this to be finite, we need
+
+    $$
+    \mathbb{E}[S_T^{\alpha+1}] = \mathbb{E}[e^{(\alpha+1)X_T}] < \infty
+    $$
+
+    This is the integrability condition on $\alpha$. For the Black-Scholes model this holds for all $\alpha > 0$ since $X_T$ is Gaussian. For models with heavy tails (e.g., jump-diffusions), the condition restricts $\alpha$ to values below a critical exponent determined by the exponential moment condition of the process.
 
 ---
 
@@ -199,14 +251,94 @@ $$
 
 where $V_k$ are the cosine series coefficients of the payoff. For a call option, compute $V_k$ analytically by integrating $(e^x - K)^+\cos(k\pi\frac{x-a}{b-a})$ over $[a, b]$.
 
+??? success "Solution to Exercise 3"
+    We need to compute
+
+    $$
+    V_k = \frac{2}{b - a}\int_a^b (e^x - K)^+\cos\!\left(k\pi\frac{x - a}{b - a}\right)dx
+    $$
+
+    Since $(e^x - K)^+ = 0$ for $x < \log K$ and $e^x - K$ for $x \geq \log K$, with $\ell = \log K$:
+
+    $$
+    V_k = \frac{2}{b - a}\int_{\max(a, \ell)}^b (e^x - K)\cos\!\left(k\pi\frac{x - a}{b - a}\right)dx
+    $$
+
+    This splits into two integrals. Define $\omega_k = \frac{k\pi}{b - a}$ and $d = \max(a, \ell)$. The payoff coefficient integrals are:
+
+    **First integral** (the $e^x$ part): Using integration by parts or the known formula $\int e^x \cos(\omega_k(x - a))\,dx = \frac{e^x[\cos(\omega_k(x-a)) + \omega_k\sin(\omega_k(x-a))]}{1 + \omega_k^2}$, evaluate from $d$ to $b$.
+
+    **Second integral** (the $-K$ part): $-K\int_d^b \cos(\omega_k(x - a))\,dx = -\frac{K}{\omega_k}[\sin(\omega_k(b - a)) - \sin(\omega_k(d - a))]$ for $k \geq 1$, and $-K(b - d)$ for $k = 0$.
+
+    For $k \geq 1$, combining and using $\omega_k(b - a) = k\pi$:
+
+    $$
+    V_k = \frac{2}{b-a}\!\left[\frac{e^b(\cos(k\pi) + \omega_k\sin(k\pi)) - e^d(\cos(\omega_k(d-a)) + \omega_k\sin(\omega_k(d-a)))}{1 + \omega_k^2} + \frac{K\sin(\omega_k(d-a))}{\omega_k}\right]
+    $$
+
+    Since $\sin(k\pi) = 0$ and $\cos(k\pi) = (-1)^k$, this simplifies to a closed-form expression in terms of $k$, $a$, $b$, $K$, and $d = \max(a, \log K)$.
+
 ---
 
 **Exercise 4.** The truncation range $[a, b]$ in the COS method is typically set using cumulants of the log-price distribution. If $c_1$, $c_2$, $c_4$ are the first, second, and fourth cumulants, write down the standard choice $a = c_1 - L\sqrt{c_2 + \sqrt{c_4}}$ and $b = c_1 + L\sqrt{c_2 + \sqrt{c_4}}$ with $L = 10$. For the Black-Scholes model, compute $c_1$ and $c_2$ and verify the resulting range.
+
+??? success "Solution to Exercise 4"
+    For the Black-Scholes model, $X_T = \log S_T \sim N(\mu_X, \sigma_X^2)$ where $\mu_X = x + (r - \frac{1}{2}\sigma^2)\tau$ and $\sigma_X^2 = \sigma^2\tau$. The cumulants of a normal distribution are:
+
+    - First cumulant: $c_1 = \mu_X = x + (r - \frac{1}{2}\sigma^2)\tau$
+    - Second cumulant: $c_2 = \sigma_X^2 = \sigma^2\tau$
+    - Fourth cumulant: $c_4 = 0$ (all cumulants of order $\geq 3$ vanish for Gaussian distributions)
+
+    The truncation range is
+
+    $$
+    a = c_1 - L\sqrt{c_2 + \sqrt{c_4}} = c_1 - L\sqrt{\sigma^2\tau}
+    $$
+
+    $$
+    b = c_1 + L\sqrt{c_2 + \sqrt{c_4}} = c_1 + L\sqrt{\sigma^2\tau}
+    $$
+
+    With $L = 10$, this gives $[a, b] = [c_1 - 10\sigma\sqrt{\tau},\; c_1 + 10\sigma\sqrt{\tau}]$. Since the normal density drops below $10^{-22}$ beyond $10$ standard deviations, this range captures essentially the entire probability mass, ensuring the truncation error is negligible.
+
+    For typical parameters (e.g., $\sigma = 0.2$, $\tau = 1$), $\sigma\sqrt{\tau} = 0.2$, so $[a, b] = [c_1 - 2, c_1 + 2]$, a range of width $4$ centered on the expected log-price.
 
 ---
 
 **Exercise 5.** Compare the computational complexity of the Carr-Madan FFT and the COS method. If $N$ is the number of strike points and the characteristic function evaluation costs $O(1)$ (closed-form Riccati solution), what is the total cost of pricing at $N$ strikes for each method? Which method has the advantage for calibration where prices at many strikes are needed simultaneously?
 
+??? success "Solution to Exercise 5"
+    **Carr-Madan FFT:** The method discretizes the Fourier integral at $N$ frequency points $v_j = j\Delta v$, evaluates the characteristic function at each (cost $O(1)$ per evaluation for closed-form models), then applies the FFT to obtain prices at $N$ log-strikes simultaneously. The FFT costs $O(N\log N)$, and the $N$ characteristic function evaluations cost $O(N)$, giving total cost
+
+    $$
+    \text{Carr-Madan: } O(N\log N)
+    $$
+
+    **COS method:** The method sums $N$ terms, each requiring one characteristic function evaluation at $v_k = \frac{k\pi}{b-a}$ (cost $O(1)$) and one multiplication by the precomputed payoff coefficient $V_k$. This gives $N$ prices at a single strike in $O(N)$ operations. For $M$ different strikes, the cost is $O(NM)$ since the characteristic function evaluations are shared but the summation must be repeated for each strike.
+
+    **Comparison for calibration:** In calibration, we need prices at $M$ strikes simultaneously. The Carr-Madan FFT produces all $N = M$ prices in $O(N\log N)$ operations with a single FFT call. The COS method costs $O(NM)$. If $M = N$ (many strikes), FFT has the advantage at $O(N\log N)$ vs $O(N^2)$. However, the COS method typically needs far fewer terms ($N \approx 64$--$128$ vs $N \approx 4096$ for FFT) due to exponential convergence, so in practice the COS method is often faster despite the less favorable scaling.
+
+    For calibration specifically, both methods are vastly superior to Monte Carlo. The COS method is generally preferred because it requires no damping parameter tuning and achieves higher accuracy with fewer terms.
+
 ---
 
 **Exercise 6.** Describe the calibration workflow for fitting a Heston model to a panel of European option prices across multiple strikes and maturities. What is the objective function, how is the characteristic function used as a subroutine, and what optimizer is typically employed? Discuss the role of the Feller condition as a parameter constraint.
+
+??? success "Solution to Exercise 6"
+    **Objective function.** Given observed market prices $C_i^{\text{mkt}}$ for strikes $K_i$ and maturities $T_i$ ($i = 1, \ldots, M$), the Heston parameters $\boldsymbol{\theta} = (\kappa, \theta, \xi, \rho, V_0)$ are found by minimizing
+
+    $$
+    \boldsymbol{\theta}^* = \arg\min_{\boldsymbol{\theta}} \sum_{i=1}^M w_i\!\left(C_i^{\text{model}}(\boldsymbol{\theta}) - C_i^{\text{mkt}}\right)^2
+    $$
+
+    where $w_i$ are weights (commonly inverse bid-ask spread or $1/\text{vega}_i^2$ to equalize the impact of options across strikes).
+
+    **Characteristic function as subroutine.** For each parameter guess $\boldsymbol{\theta}$, the model prices are computed as follows: (1) solve the Heston Riccati ODEs analytically for $\phi(\tau, iv)$ and $\psi(\tau, iv)$, yielding the discounted characteristic function; (2) feed the characteristic function into the COS or Carr-Madan formula to compute prices at all strikes for each maturity. This inner loop is executed hundreds or thousands of times during optimization.
+
+    **Optimizer.** Common choices include:
+
+    - *Levenberg-Marquardt*: A gradient-based method for nonlinear least squares, efficient when analytic gradients $\partial C/\partial \boldsymbol{\theta}$ are available (by differentiating the characteristic function)
+    - *Differential evolution*: A global optimizer that avoids local minima, useful for initial parameter estimation
+    - A typical workflow uses differential evolution for a coarse global search, then Levenberg-Marquardt for refinement
+
+    **Feller condition.** The condition $2\kappa\theta \geq \xi^2$ ensures the CIR variance process $V_t$ stays strictly positive. In calibration, this should be imposed as a constraint: $2\kappa\theta \geq \xi^2$ (or with a small margin). Violating Feller causes $V_t$ to touch zero, where the square root diffusion is not Lipschitz, leading to numerical instability in the Riccati ODE solutions (branch cuts in the complex square root). In practice, many calibrated Heston parameters violate Feller, which is acceptable if the characteristic function is implemented with the correct branch of the complex logarithm (the "rotation count" or "little Heston trap" fix), but imposing Feller as a soft constraint via regularization improves robustness.

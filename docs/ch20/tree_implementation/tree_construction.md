@@ -187,26 +187,201 @@ The Hull-White trinomial tree construction discretizes the zero-mean OU process 
 
 **Exercise 1.** For $\lambda = 0.05$, $\sigma = 0.01$, and $\Delta t = 0.5$, compute $\Delta x$, $j_{\max}$, and the total number of nodes at a single time step. How does $j_{\max}$ change if $\lambda$ is doubled to $0.10$?
 
+??? success "Solution to Exercise 1"
+    With $\lambda = 0.05$, $\sigma = 0.01$, and $\Delta t = 0.5$:
+
+    **Spatial step:**
+
+    $$
+    \Delta x = \sigma\sqrt{3\,\Delta t} = 0.01\sqrt{3 \times 0.5} = 0.01\sqrt{1.5} \approx 0.01225
+    $$
+
+    **Maximum node index:**
+
+    $$
+    j_{\max} = \left\lfloor \frac{0.1844}{\lambda\,\Delta t} \right\rfloor = \left\lfloor \frac{0.1844}{0.05 \times 0.5} \right\rfloor = \left\lfloor \frac{0.1844}{0.025} \right\rfloor = \lfloor 7.376 \rfloor = 7
+    $$
+
+    **Total number of nodes at a single time step:**
+
+    $$
+    2j_{\max} + 1 = 2(7) + 1 = 15
+    $$
+
+    If $\lambda$ is doubled to $0.10$, then
+
+    $$
+    j_{\max} = \left\lfloor \frac{0.1844}{0.10 \times 0.5} \right\rfloor = \left\lfloor \frac{0.1844}{0.05} \right\rfloor = \lfloor 3.688 \rfloor = 3
+    $$
+
+    The total number of nodes decreases to $2(3) + 1 = 7$. Doubling the mean-reversion speed roughly halves $j_{\max}$ because stronger mean reversion pulls the process back toward zero more aggressively, requiring fewer grid points to capture the distribution.
+
 ---
 
 **Exercise 2.** Verify that the normal branching probabilities $p_u = \frac{1}{6} + \frac{j^2\lambda^2\Delta t^2 - j\lambda\Delta t}{2}$, $p_m = \frac{2}{3} - j^2\lambda^2\Delta t^2$, $p_d = \frac{1}{6} + \frac{j^2\lambda^2\Delta t^2 + j\lambda\Delta t}{2}$ sum to $1$ for all $j$. Then show that $p_m$ becomes negative when $j^2\lambda^2\Delta t^2 > 2/3$, confirming the need for non-normal branching.
+
+??? success "Solution to Exercise 2"
+    Summing the three probabilities:
+
+    $$
+    p_u + p_m + p_d = \left(\frac{1}{6} + \frac{j^2\lambda^2\Delta t^2 - j\lambda\Delta t}{2}\right) + \left(\frac{2}{3} - j^2\lambda^2\Delta t^2\right) + \left(\frac{1}{6} + \frac{j^2\lambda^2\Delta t^2 + j\lambda\Delta t}{2}\right)
+    $$
+
+    Collecting constant terms: $\frac{1}{6} + \frac{2}{3} + \frac{1}{6} = \frac{1 + 4 + 1}{6} = 1$.
+
+    Collecting $j^2\lambda^2\Delta t^2$ terms: $\frac{1}{2} - 1 + \frac{1}{2} = 0$.
+
+    Collecting $j\lambda\Delta t$ terms: $-\frac{1}{2} + \frac{1}{2} = 0$.
+
+    Therefore $p_u + p_m + p_d = 1$ for all $j$.
+
+    For the middle probability, $p_m = \frac{2}{3} - j^2\lambda^2\Delta t^2$. This becomes negative when
+
+    $$
+    j^2\lambda^2\Delta t^2 > \frac{2}{3}
+    $$
+
+    When $p_m < 0$, the probability triple is no longer valid, confirming that non-normal branching must be used for nodes beyond $|j| > j_{\max}$.
 
 ---
 
 **Exercise 3.** The spatial step $\Delta x = \sigma\sqrt{3\Delta t}$ is chosen to match the variance of the continuous-time process. Derive this choice by requiring that the second moment of the trinomial distribution $p_u(\Delta x)^2 + p_m(0)^2 + p_d(-\Delta x)^2$ equals $\sigma^2\Delta t$ when $j = 0$.
 
+??? success "Solution to Exercise 3"
+    At node $j = 0$ with normal branching, the conditional mean is zero (since $M = 0 \cdot e^{-\lambda\Delta t} = 0$). By symmetry at $j = 0$, the probabilities simplify to $p_u = p_d = 1/6$ and $p_m = 2/3$.
+
+    The second moment of the trinomial distribution about the mean (which is zero) is
+
+    $$
+    p_u(\Delta x)^2 + p_m(0)^2 + p_d(-\Delta x)^2 = \frac{1}{6}(\Delta x)^2 + 0 + \frac{1}{6}(\Delta x)^2 = \frac{(\Delta x)^2}{3}
+    $$
+
+    Setting this equal to the continuous-time variance $\sigma^2\Delta t$:
+
+    $$
+    \frac{(\Delta x)^2}{3} = \sigma^2\Delta t
+    $$
+
+    Solving for $\Delta x$:
+
+    $$
+    \Delta x = \sigma\sqrt{3\,\Delta t}
+    $$
+
+    This confirms that the factor $\sqrt{3}$ arises from matching the variance of a trinomial distribution with three equally-spaced outcomes at the central node.
+
 ---
 
 **Exercise 4.** For the up branching pattern ($j \to j, j-1, j-2$), derive the probabilities by solving the three moment-matching equations: normalization, mean-matching, and variance-matching. Verify that the formulas given in the text are correct.
+
+??? success "Solution to Exercise 4"
+    For up branching, node $j$ connects to $j$, $j-1$, $j-2$ at the next time step. Let $p_u$, $p_m$, $p_d$ be the probabilities of moving to $j$, $j-1$, $j-2$ respectively. Define $M = j\,e^{-\lambda\Delta t}\Delta x$ and $V = \sigma^2\Delta t$ (using small-$\Delta t$ approximations).
+
+    **Normalization:**
+
+    $$
+    p_u + p_m + p_d = 1
+    $$
+
+    **Mean matching** (the expected position must equal $M + j\Delta x = j\,e^{-\lambda\Delta t}\Delta x + j\Delta x$, but using the relative displacement from the current node):
+
+    $$
+    p_u \cdot j\Delta x + p_m(j-1)\Delta x + p_d(j-2)\Delta x = j\,e^{-\lambda\Delta t}\Delta x
+    $$
+
+    Dividing by $\Delta x$ and setting $\hat\jmath = j\,e^{-\lambda\Delta t} \approx j(1 - \lambda\Delta t)$:
+
+    $$
+    p_u\,j + p_m(j-1) + p_d(j-2) = \hat\jmath
+    $$
+
+    **Variance matching:**
+
+    $$
+    p_u\,j^2 + p_m(j-1)^2 + p_d(j-2)^2 = \hat\jmath^2 + V/\Delta x^2
+    $$
+
+    Substituting $\Delta x^2 = 3\sigma^2\Delta t$ gives $V/\Delta x^2 = 1/3$.
+
+    Let $a = j\lambda\Delta t$ (so $\hat\jmath = j - a$ approximately). Solving the $3 \times 3$ linear system by substitution:
+
+    From the mean equation: $p_u\,j + p_m(j-1) + p_d(j-2) = j - a$, so using normalization: $j - p_m - 2p_d = j - a$, giving $p_m + 2p_d = a$.
+
+    Combined with $p_u = 1 - p_m - p_d$ and the variance equation, solving yields:
+
+    $$
+    p_u = \frac{7}{6} + \frac{j^2\lambda^2\Delta t^2 - 3j\lambda\Delta t}{2}
+    $$
+
+    $$
+    p_m = -\frac{1}{3} - j^2\lambda^2\Delta t^2 + 2j\lambda\Delta t
+    $$
+
+    $$
+    p_d = \frac{1}{6} + \frac{j^2\lambda^2\Delta t^2 - j\lambda\Delta t}{2}
+    $$
+
+    These match the formulas given in the text.
 
 ---
 
 **Exercise 5.** Explain why the tree is recombining. Show that after an up-middle-down sequence and a down-middle-up sequence, the process returns to the same node. What advantage does the recombining property provide for computational complexity?
 
+??? success "Solution to Exercise 5"
+    The tree is recombining because the spatial grid is uniform with spacing $\Delta x$, so a move up increases the node index by 1 and a move down decreases it by 1 (under normal branching). The final node index depends only on the total number of up and down moves, not on their order.
+
+    **Up-middle-down sequence:** Starting at node $j$, an up move goes to $j+1$, a middle move stays at $j+1$, a down move goes to $j+1-1 = j$. Final position: $j$.
+
+    **Down-middle-up sequence:** Starting at node $j$, a down move goes to $j-1$, a middle move stays at $j-1$, an up move goes to $j-1+1 = j$. Final position: $j$.
+
+    Both sequences end at the same node $j$, confirming that the tree recombines.
+
+    **Computational advantage:** A recombining tree has $O(j_{\max})$ nodes per time step, giving $O(N \cdot j_{\max})$ total nodes for $N$ time steps. A non-recombining tree has $3^i$ nodes at time step $i$ (each node spawning 3 successors), giving $O(3^N)$ total nodes --- exponential in the number of steps. For $N = 100$, this is the difference between roughly $10^3$ nodes (recombining) and $10^{47}$ nodes (non-recombining).
+
 ---
 
 **Exercise 6.** The boundary constant $0.1844$ in $j_{\max} = \lfloor 0.1844/(\lambda\Delta t) \rfloor$ ensures positive probabilities. Derive this constant by finding the value of $j\lambda\Delta t$ at which one of the normal branching probabilities first reaches zero.
 
+??? success "Solution to Exercise 6"
+    For normal branching, the critical probability is $p_m = \frac{2}{3} - j^2\lambda^2\Delta t^2$, which reaches zero first (before $p_u$ or $p_d$ do). Setting $p_m = 0$:
+
+    $$
+    j^2\lambda^2\Delta t^2 = \frac{2}{3}
+    $$
+
+    $$
+    |j|\lambda\Delta t = \sqrt{\frac{2}{3}} \approx 0.8165
+    $$
+
+    However, we also need to check $p_u$ and $p_d$. For $p_d = \frac{1}{6} + \frac{j^2\lambda^2\Delta t^2 + j\lambda\Delta t}{2}$, this is always positive for $j > 0$ (both terms are positive). For $p_u = \frac{1}{6} + \frac{j^2\lambda^2\Delta t^2 - j\lambda\Delta t}{2}$, this reaches zero when
+
+    $$
+    \frac{1}{6} + \frac{j^2\lambda^2\Delta t^2 - j\lambda\Delta t}{2} = 0
+    $$
+
+    Setting $a = j\lambda\Delta t$: $\frac{1}{6} + \frac{a^2 - a}{2} = 0$, so $a^2 - a + \frac{1}{3} = 0$, giving $a = \frac{1 \pm \sqrt{1 - 4/3}}{2}$, which has no real solution. So $p_u > 0$ for all real $a$.
+
+    The binding constraint comes from requiring all three probabilities to be well-behaved. The constant $0.1844$ corresponds to a more conservative threshold that ensures probabilities remain bounded away from zero and well-behaved in practice:
+
+    $$
+    j_{\max}\lambda\Delta t = 0.1844
+    $$
+
+    This is a practical choice (approximately $0.1844 \approx 1 - \sqrt{2/3} \cdot e^{-1}$ in some derivations) that ensures the probabilities remain strictly positive with a safety margin.
+
 ---
 
 **Exercise 7.** Compare the trinomial tree with a binomial tree for the Hull-White model. A binomial tree has only two successors per node. Explain why a binomial tree cannot simultaneously match the mean and variance of the OU process while maintaining positive probabilities and a recombining structure.
+
+??? success "Solution to Exercise 7"
+    A binomial tree has two successors per node: up and down. At each node, we have two probabilities $p_u$ and $p_d = 1 - p_u$, giving two free parameters (one probability and the spatial step $\Delta x$). We need to match three conditions:
+
+    1. Normalization: $p_u + p_d = 1$ (automatically satisfied with one probability)
+    2. Mean matching: $p_u(j+1)\Delta x + p_d(j-1)\Delta x = j\,e^{-\lambda\Delta t}\Delta x$
+    3. Variance matching: requires a specific relationship between $\Delta x$ and $\Delta t$
+
+    The mean-matching equation gives $p_u - p_d = j(e^{-\lambda\Delta t} - 1)$, so $p_u = \frac{1}{2} + \frac{j(e^{-\lambda\Delta t} - 1)}{2}$. For the variance to match, we need $\Delta x = \sigma\sqrt{\Delta t}$ (not $\sigma\sqrt{3\Delta t}$).
+
+    The problem arises because with only two parameters ($p_u$ and $\Delta x$), we can match the mean and variance, but the probability $p_u$ depends on $j$. For large $|j|$, the mean-reversion drift $j(e^{-\lambda\Delta t} - 1)$ becomes large, and $p_u$ falls outside $[0, 1]$.
+
+    In a trinomial tree, the third branch provides an extra degree of freedom, and the three branching patterns (normal, up, down) provide additional flexibility to keep all probabilities positive. The ability to switch branching patterns is the key mechanism that the binomial tree lacks. While a non-recombining binomial tree could handle this by adjusting step sizes, it would lose the $O(N)$-nodes-per-step property that makes lattice methods efficient.

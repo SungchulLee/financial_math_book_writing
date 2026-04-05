@@ -455,38 +455,6 @@ These finite-dimensional results carry over to continuous-time models in a natur
 
 **Exercise 1.** Consider a two-state market with one risky asset: $S^1_0 = 80$, $S^1_1(\omega_1) = 100$, $S^1_1(\omega_2) = 70$. Find the unique EMM and use it to price a European put option with strike $K = 85$.
 
----
-
-**Exercise 2.** In a three-state market with one risky asset, $S^1_0 = 50$, $S^1_1 = (70, 55, 35)$, parameterize the family of EMMs. Compute the no-arbitrage price interval for a butterfly spread with payoff $\Phi = (0, 10, 0)$. Is this claim attainable?
-
----
-
-**Exercise 3.** Consider a market with $n = 3$ states and $d = 2$ risky assets with payoff matrix
-
-$$
-X = \begin{pmatrix} 15 & 8 \\ -5 & 2 \\ -10 & -6 \end{pmatrix}
-$$
-
-Determine whether the market is arbitrage-free. If so, find the unique EMM and verify it satisfies the martingale condition for both assets.
-
----
-
-**Exercise 4.** A three-state market has one risky asset and $\operatorname{rank}(X) = 1$. A second risky asset is added with payoff vector $(a, b, c)^T$ and initial price $S^2_0$. What conditions on $(a, b, c)$ ensure that the augmented payoff matrix has rank 2? Under what additional condition on $S^2_0$ does the augmented market remain arbitrage-free?
-
----
-
-**Exercise 5.** In Example 4 of this section, the payoff matrix $X$ has rank 2 but the market admits arbitrage. Explain why high rank alone does not guarantee the absence of arbitrage. What specific property of the columns causes the EMM to require $q_1 = 0$?
-
----
-
-**Exercise 6.** Consider a two-state market with $d = 2$ risky assets: $S^1_0 = 20$, $S^1_1 = (25, 16)$, $S^2_0 = 10$, $S^2_1 = (13, 8)$. Check whether $\operatorname{rank}(X) = n - 1 = 1$. If not, is one of the assets redundant? Find the EMM and price the claim $\Phi = (5, 0)$.
-
----
-
-
-## Solutions
-
-
 ??? success "Solution to Exercise 1"
     The payoff matrix is $2 \times 1$:
 
@@ -516,6 +484,9 @@ Determine whether the market is arbitrage-free. If so, find the unique EMM and v
     V_0 = \mathbb{E}^{\mathbb{Q}}[\Phi] = \frac{1}{3} \cdot 0 + \frac{2}{3} \cdot 15 = 10
     $$
 
+---
+
+**Exercise 2.** In a three-state market with one risky asset, $S^1_0 = 50$, $S^1_1 = (70, 55, 35)$, parameterize the family of EMMs. Compute the no-arbitrage price interval for a butterfly spread with payoff $\Phi = (0, 10, 0)$. Is this claim attainable?
 
 ??? success "Solution to Exercise 2"
     The payoff matrix is $3 \times 1$:
@@ -551,6 +522,15 @@ Determine whether the market is arbitrage-free. If so, find the unique EMM and v
 
     **Is $\Phi$ attainable?** We need $c$ and $\theta$ such that $c \cdot \mathbf{1} + X\theta = \Phi$: $c + 20\theta = 0$, $c + 5\theta = 10$, $c - 15\theta = 0$. From the first and third: $c + 20\theta = 0$ and $c - 15\theta = 0$, giving $35\theta = 0$, so $\theta = 0$ and $c = 0$. But then $c + 5\theta = 0 \neq 10$. The system is inconsistent, so $\Phi$ is **not attainable**.
 
+---
+
+**Exercise 3.** Consider a market with $n = 3$ states and $d = 2$ risky assets with payoff matrix
+
+$$
+X = \begin{pmatrix} 15 & 8 \\ -5 & 2 \\ -10 & -6 \end{pmatrix}
+$$
+
+Determine whether the market is arbitrage-free. If so, find the unique EMM and verify it satisfies the martingale condition for both assets.
 
 ??? success "Solution to Exercise 3"
     The payoff matrix is
@@ -587,6 +567,9 @@ Determine whether the market is arbitrage-free. If so, find the unique EMM and v
 
     Both assets satisfy the martingale condition under $\mathbb{Q}$.
 
+---
+
+**Exercise 4.** A three-state market has one risky asset and $\operatorname{rank}(X) = 1$. A second risky asset is added with payoff vector $(a, b, c)^T$ and initial price $S^2_0$. What conditions on $(a, b, c)$ ensure that the augmented payoff matrix has rank 2? Under what additional condition on $S^2_0$ does the augmented market remain arbitrage-free?
 
 ??? success "Solution to Exercise 4"
     Let the original payoff matrix be $X_1 = (x_1, x_2, x_3)^T$ with $\operatorname{rank}(X_1) = 1$. The second asset's excess return column is $(a - S^2_0, \, b - S^2_0, \, c - S^2_0)^T$.
@@ -615,6 +598,9 @@ Determine whether the market is arbitrage-free. If so, find the unique EMM and v
 
     where $(q_1, q_2, q_3)$ is the unique solution to the system. If $S^2_0$ is set to any other value, no strictly positive solution exists and the market admits arbitrage.
 
+---
+
+**Exercise 5.** In Example 4 of this section, the payoff matrix $X$ has rank 2 but the market admits arbitrage. Explain why high rank alone does not guarantee the absence of arbitrage. What specific property of the columns causes the EMM to require $q_1 = 0$?
 
 ??? success "Solution to Exercise 5"
     In Example 4, the payoff matrix has $\operatorname{rank}(X) = 2 = n - 1 = 2$, which is the rank condition for completeness. However, the market admits arbitrage because the system $X^T q = 0$ with $\sum q_i = 1$ and $q_i > 0$ has no solution -- it forces $q_1 = 0$.
@@ -629,6 +615,9 @@ Determine whether the market is arbitrage-free. If so, find the unique EMM and v
 
     In states $\omega_2$ and $\omega_3$, the ratio $X^{(1)}_i / X^{(2)}_i$ is $5/2 = (-5)/(-2) = 2.5$ for both states. But in state $\omega_1$, the ratio is $10/5 = 2$. This means the linear combination $X^{(1)} - 2X^{(2)} = (0, 1, -1)^T$ is non-negative in states 2 and 3, while being zero in state 1. The further combination that makes states 2 and 3 net out forces state 1 to have the "free" profit. The system $X^T q = 0$ effectively requires $q_1(10 - 2 \cdot 5) = 0$, and since the coefficient $(10 - 2 \cdot 5) = 0$ is trivially satisfied, the additional constraint from the second equation forces $q_1 = 0$. The inconsistency in the return ratios across states makes it impossible to find a strictly positive pricing vector.
 
+---
+
+**Exercise 6.** Consider a two-state market with $d = 2$ risky assets: $S^1_0 = 20$, $S^1_1 = (25, 16)$, $S^2_0 = 10$, $S^2_1 = (13, 8)$. Check whether $\operatorname{rank}(X) = n - 1 = 1$. If not, is one of the assets redundant? Find the EMM and price the claim $\Phi = (5, 0)$.
 
 ??? success "Solution to Exercise 6"
     The payoff matrix is $2 \times 2$:

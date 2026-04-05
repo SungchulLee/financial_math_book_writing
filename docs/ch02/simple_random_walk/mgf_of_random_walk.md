@@ -113,36 +113,6 @@ This gives the large deviation principle $\mathbb{P}(S_n/n \approx x) \approx e^
 
 **Exercise 1.** For the asymmetric random walk with $\mathbb{P}(\xi_i = +1) = p$ and $\mathbb{P}(\xi_i = -1) = 1-p$, show that the MGF is $\mathbb{E}[e^{\lambda S_n}] = (pe^\lambda + (1-p)e^{-\lambda})^n$. Verify that this reduces to $(\cosh \lambda)^n$ when $p = 1/2$.
 
----
-
-**Exercise 2.** Using the MGF $M_{S_n}(\lambda) = (\cosh \lambda)^n$ and the formula $\mathbb{E}[S_n^k] = M_{S_n}^{(k)}(0)$, compute $\mathbb{E}[S_n^6]$ for the symmetric random walk. Express your answer as a polynomial in $n$.
-
----
-
-**Exercise 3.** In the CLT proof, we used the approximation $\left(1 + \frac{\theta^2}{2n} + O(n^{-2})\right)^n \to e^{\theta^2/2}$. Prove this limit rigorously by taking logarithms and using $\log(1+x) = x - x^2/2 + O(x^3)$ for small $x$.
-
----
-
-**Exercise 4.** The large deviation rate function for the symmetric random walk is $I(x) = \frac{1+x}{2}\log(1+x) + \frac{1-x}{2}\log(1-x)$ for $|x| \leq 1$. Show that $I(x) \geq 0$ with equality only at $x = 0$. Then verify that $I''(0) = 1$, so that near $x = 0$ the rate function is approximately $I(x) \approx x^2/2$, which is consistent with the CLT (Gaussian tail with variance $1/n$).
-
----
-
-**Exercise 5.** Use Markov's inequality with the MGF to derive a Chernoff bound for the symmetric random walk: show that for $a > 0$,
-
-$$
-\mathbb{P}(S_n \geq an) \leq \inf_{\lambda > 0} e^{-\lambda an} (\cosh \lambda)^n = e^{-nI(a)}
-$$
-
-Compute this bound numerically for $n = 100$ and $a = 0.3$. Compare with the normal approximation $\mathbb{P}(S_{100} \geq 30)$.
-
----
-
-**Exercise 6.** The cumulant generating function is $\Lambda(\lambda) = n\log\cosh\lambda$. Show that all odd cumulants of $S_n$ are zero. Compute the first three nonzero cumulants ($\kappa_2$, $\kappa_4$, $\kappa_6$) and verify that the **excess kurtosis** $\kappa_4 / \kappa_2^2 = -2/n$ vanishes as $n \to \infty$, consistent with the CLT (the Gaussian has zero excess kurtosis).
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     For the asymmetric walk, the MGF of a single step is:
 
@@ -163,6 +133,10 @@ Compute this bound numerically for $n = 100$ and $a = 0.3$. Compare with the nor
     $$
 
     so the formula reduces to $(\cosh\lambda)^n$ as required.
+
+---
+
+**Exercise 2.** Using the MGF $M_{S_n}(\lambda) = (\cosh \lambda)^n$ and the formula $\mathbb{E}[S_n^k] = M_{S_n}^{(k)}(0)$, compute $\mathbb{E}[S_n^6]$ for the symmetric random walk. Express your answer as a polynomial in $n$.
 
 ??? success "Solution to Exercise 2"
     We need $\mathbb{E}[S_n^6] = M_{S_n}^{(6)}(0)$ where $M_{S_n}(\lambda) = (\cosh\lambda)^n$. Using the cumulant generating function $\Lambda(\lambda) = n\log\cosh\lambda$ and the Taylor expansion:
@@ -187,6 +161,10 @@ Compute this bound numerically for $n = 100$ and $a = 0.3$. Compare with the nor
 
     Therefore $\mathbb{E}[S_n^6] = 15n^3 - 30n^2 + 16n$.
 
+---
+
+**Exercise 3.** In the CLT proof, we used the approximation $\left(1 + \frac{\theta^2}{2n} + O(n^{-2})\right)^n \to e^{\theta^2/2}$. Prove this limit rigorously by taking logarithms and using $\log(1+x) = x - x^2/2 + O(x^3)$ for small $x$.
+
 ??? success "Solution to Exercise 3"
     Let $a_n = 1 + \frac{\theta^2}{2n} + O(n^{-2})$. We need to show $a_n^n \to e^{\theta^2/2}$. Take logarithms:
 
@@ -207,6 +185,10 @@ Compute this bound numerically for $n = 100$ and $a = 0.3$. Compare with the nor
     $$
 
     By continuity of the exponential, $a_n^n = e^{n\log a_n} \to e^{\theta^2/2}$.
+
+---
+
+**Exercise 4.** The large deviation rate function for the symmetric random walk is $I(x) = \frac{1+x}{2}\log(1+x) + \frac{1-x}{2}\log(1-x)$ for $|x| \leq 1$. Show that $I(x) \geq 0$ with equality only at $x = 0$. Then verify that $I''(0) = 1$, so that near $x = 0$ the rate function is approximately $I(x) \approx x^2/2$, which is consistent with the CLT (Gaussian tail with variance $1/n$).
 
 ??? success "Solution to Exercise 4"
     **$I(x) \geq 0$ with equality only at $x = 0$:** Define $f(x) = \frac{1+x}{2}\log(1+x) + \frac{1-x}{2}\log(1-x)$ for $|x| \leq 1$. At $x = 0$: $f(0) = \frac{1}{2}\log 1 + \frac{1}{2}\log 1 = 0$. The first derivative is:
@@ -231,6 +213,16 @@ Compute this bound numerically for $n = 100$ and $a = 0.3$. Compare with the nor
 
     The large deviation principle gives $\mathbb{P}(S_n/n \approx x) \approx e^{-nI(x)} \approx e^{-nx^2/2}$ for small $x$. With $x = a/\sqrt{n}$, this gives $\mathbb{P}(S_n \approx a\sqrt{n}) \approx e^{-a^2/2}$, matching the Gaussian tail from the CLT.
 
+---
+
+**Exercise 5.** Use Markov's inequality with the MGF to derive a Chernoff bound for the symmetric random walk: show that for $a > 0$,
+
+$$
+\mathbb{P}(S_n \geq an) \leq \inf_{\lambda > 0} e^{-\lambda an} (\cosh \lambda)^n = e^{-nI(a)}
+$$
+
+Compute this bound numerically for $n = 100$ and $a = 0.3$. Compare with the normal approximation $\mathbb{P}(S_{100} \geq 30)$.
+
 ??? success "Solution to Exercise 5"
     By Markov's inequality, for any $\lambda > 0$:
 
@@ -251,6 +243,10 @@ Compute this bound numerically for $n = 100$ and $a = 0.3$. Compare with the nor
     $$
 
     For the normal approximation: $\mathbb{P}(S_{100} \geq 30) = \mathbb{P}(Z \geq 30/\sqrt{100}) = \mathbb{P}(Z \geq 3) = 1 - \Phi(3) \approx 0.00135$. The Chernoff bound ($\approx 0.0104$) is a valid upper bound but is looser than the exact Gaussian estimate. The discrepancy is expected because the Chernoff bound applies for all $n$, while the normal approximation is an asymptotic result.
+
+---
+
+**Exercise 6.** The cumulant generating function is $\Lambda(\lambda) = n\log\cosh\lambda$. Show that all odd cumulants of $S_n$ are zero. Compute the first three nonzero cumulants ($\kappa_2$, $\kappa_4$, $\kappa_6$) and verify that the **excess kurtosis** $\kappa_4 / \kappa_2^2 = -2/n$ vanishes as $n \to \infty$, consistent with the CLT (the Gaussian has zero excess kurtosis).
 
 ??? success "Solution to Exercise 6"
     The cumulant generating function is $\Lambda(\lambda) = n\log\cosh\lambda$. Since $\cosh\lambda = \cosh(-\lambda)$ is an even function, $\log\cosh\lambda$ contains only even powers of $\lambda$. Therefore $\Lambda(\lambda) = \sum_{k=1}^\infty \kappa_k \frac{\lambda^k}{k!}$ has $\kappa_k = 0$ for all odd $k$: all odd cumulants vanish.

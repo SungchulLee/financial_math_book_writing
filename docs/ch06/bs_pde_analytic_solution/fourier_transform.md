@@ -1,160 +1,156 @@
-# Fourier Transform Methods: Complete Mathematical Treatment
+# Fourier Transform Methods for Black-Scholes
 
 
-Fourier transform methods are **extraordinarily powerful** for option pricing—they convert parabolic PDEs into **algebraic equations**, enable **fast computation** via FFT, and naturally handle **Lévy processes** and **stochastic volatility**.
+The heat equation approach solved the Black-Scholes PDE by transforming variables until the equation became the classical diffusion equation. Fourier transform methods take a more direct route: rather than reducing to a known PDE, they **diagonalize the differential operator itself**. In frequency space, derivatives become multiplication, the PDE collapses to an algebraic equation, and the solution is recovered by inverse transformation. Crucially, the characteristic function $\phi_T(\omega) = \mathbb{E}^{\mathbb{Q}}[e^{i\omega \ln S_T}]$ that appears in the Fourier solution is the **Fourier transform of the transition density** --- the same Gaussian kernel derived in the heat equation section and the same density under which the Feynman-Kac expectation is computed. The three core methods are united here: the spectral viewpoint decomposes the same pricing operator into its frequency components.
+
+This section is organized in two parts. **Part A** develops the analytic solution: transform of the PDE, characteristic functions, and the damping trick. **Part B** addresses the computational problem of evaluating the inverse Fourier integral efficiently via Carr-Madan, FFT, and Gil-Pelaez formulas.
 
 ---
 
-## **1. Fundamental Theory**
+# Part A --- Analytic Solution
+
+---
+
+## Fundamental Theory
 
 
-### 1. **Fourier Transform Definition**
+### Fourier Transform Definition
 
 
 For a function $f: \mathbb{R} \to \mathbb{C}$:
 
-
-$$\boxed{\hat{f}(\omega) = \mathcal{F}[f](\omega) = \int_{-\infty}^{\infty} f(x)e^{-i\omega x}dx}$$
-
-
+$$
+\boxed{\hat{f}(\omega) = \mathcal{F}[f](\omega) = \int_{-\infty}^{\infty} f(x)e^{-i\omega x}dx}
+$$
 
 **Inverse transform**:
 
-$$\boxed{f(x) = \mathcal{F}^{-1}[\hat{f}](x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{f}(\omega)e^{i\omega x}d\omega}$$
+$$
+\boxed{f(x) = \mathcal{F}^{-1}[\hat{f}](x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{f}(\omega)e^{i\omega x}d\omega}
+$$
 
-
-
-### 2. **Key Properties**
+### Key Properties
 
 
 **Linearity**:
 
-$$\mathcal{F}[\alpha f + \beta g] = \alpha\hat{f} + \beta\hat{g}$$
-
-
+$$
+\mathcal{F}[\alpha f + \beta g] = \alpha\hat{f} + \beta\hat{g}
+$$
 
 **Derivative**:
 
-$$\boxed{\mathcal{F}\left[\frac{df}{dx}\right](\omega) = i\omega\hat{f}(\omega)}$$
+$$
+\boxed{\mathcal{F}\left[\frac{df}{dx}\right](\omega) = i\omega\hat{f}(\omega)}
+$$
 
-
-
-
-$$\boxed{\mathcal{F}\left[\frac{d^2f}{dx^2}\right](\omega) = -\omega^2\hat{f}(\omega)}$$
-
-
+$$
+\boxed{\mathcal{F}\left[\frac{d^2f}{dx^2}\right](\omega) = -\omega^2\hat{f}(\omega)}
+$$
 
 **Shift**:
 
-$$\mathcal{F}[f(x-a)](\omega) = e^{-i\omega a}\hat{f}(\omega)$$
-
-
+$$
+\mathcal{F}[f(x-a)](\omega) = e^{-i\omega a}\hat{f}(\omega)
+$$
 
 **Convolution theorem**:
 
-$$\boxed{\mathcal{F}[f * g] = \hat{f} \cdot \hat{g}}$$
-
-
+$$
+\boxed{\mathcal{F}[f * g] = \hat{f} \cdot \hat{g}}
+$$
 
 where $(f * g)(x) = \int_{-\infty}^{\infty}f(x-y)g(y)dy$.
 
-### 3. **Parseval's Identity**
+### Parseval's Identity
 
-
-
-$$\boxed{\int_{-\infty}^{\infty}|f(x)|^2 dx = \frac{1}{2\pi}\int_{-\infty}^{\infty}|\hat{f}(\omega)|^2 d\omega}$$
-
-
+$$
+\boxed{\int_{-\infty}^{\infty}|f(x)|^2 dx = \frac{1}{2\pi}\int_{-\infty}^{\infty}|\hat{f}(\omega)|^2 d\omega}
+$$
 
 Energy is preserved under the transform.
 
 ---
 
-## **2. Black-Scholes PDE in Fourier Space**
+## Black-Scholes PDE in Fourier Space
 
 
-### 1. **Log-Price Formulation**
+### Log-Price Formulation
 
 
-Define $x = \ln(S/K)$ and $\tau = T - t$. The Black-Scholes PDE becomes:
+As in the heat equation section, define $x = \ln(S/K)$ and $\tau = T - t$. The Black-Scholes PDE becomes:
 
-
-$$\boxed{\frac{\partial V}{\partial \tau} = \frac{\sigma^2}{2}\frac{\partial^2 V}{\partial x^2} + \left(r - \frac{\sigma^2}{2}\right)\frac{\partial V}{\partial x} - rV}$$
-
-
+$$
+\boxed{\frac{\partial V}{\partial \tau} = \frac{\sigma^2}{2}\frac{\partial^2 V}{\partial x^2} + \left(r - \frac{\sigma^2}{2}\right)\frac{\partial V}{\partial x} - rV}
+$$
 
 with terminal condition $V(x,0) = \Phi(Ke^x)$.
 
-### 2. **Apply Fourier Transform**
+### Apply Fourier Transform
 
 
 Transform in the $x$ variable:
 
-$$\hat{V}(\omega,\tau) = \int_{-\infty}^{\infty}V(x,\tau)e^{-i\omega x}dx$$
-
-
+$$
+\hat{V}(\omega,\tau) = \int_{-\infty}^{\infty}V(x,\tau)e^{-i\omega x}dx
+$$
 
 Using the derivative properties:
 
-$$\frac{\partial \hat{V}}{\partial \tau} = -\frac{\sigma^2\omega^2}{2}\hat{V} + i\omega\left(r - \frac{\sigma^2}{2}\right)\hat{V} - r\hat{V}$$
+$$
+\frac{\partial \hat{V}}{\partial \tau} = -\frac{\sigma^2\omega^2}{2}\hat{V} + i\omega\left(r - \frac{\sigma^2}{2}\right)\hat{V} - r\hat{V}
+$$
 
-
-
-
-$$\boxed{\frac{\partial \hat{V}}{\partial \tau} = \psi(\omega)\hat{V}(\omega,\tau)}$$
-
-
+$$
+\boxed{\frac{\partial \hat{V}}{\partial \tau} = \psi(\omega)\hat{V}(\omega,\tau)}
+$$
 
 where the **characteristic exponent** is:
 
-$$\boxed{\psi(\omega) = -\frac{\sigma^2\omega^2}{2} + i\omega\left(r - \frac{\sigma^2}{2}\right) - r}$$
+$$
+\boxed{\psi(\omega) = -\frac{\sigma^2\omega^2}{2} + i\omega\left(r - \frac{\sigma^2}{2}\right) - r}
+$$
+
+### ODE in Fourier Space
 
 
+This is a **first-order ODE** (no longer a PDE):
 
-### 3. **ODE in Fourier Space**
-
-
-This is a **first-order ODE** (no longer PDE!):
-
-
-$$\hat{V}(\omega,\tau) = \hat{V}(\omega,0)e^{\psi(\omega)\tau}$$
-
-
+$$
+\hat{V}(\omega,\tau) = \hat{V}(\omega,0)e^{\psi(\omega)\tau}
+$$
 
 With $\hat{V}(\omega,0) = \hat{\Phi}(\omega)$:
 
+$$
+\boxed{\hat{V}(\omega,\tau) = \hat{\Phi}(\omega)e^{\psi(\omega)\tau}}
+$$
 
-$$\boxed{\hat{V}(\omega,\tau) = \hat{\Phi}(\omega)e^{\psi(\omega)\tau}}$$
+### Solution via Inverse Transform
 
+$$
+\boxed{V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{\Phi}(\omega)e^{\psi(\omega)\tau}e^{i\omega x}d\omega}
+$$
 
-
-### 4. **Solution via Inverse Transform**
-
-
-
-$$\boxed{V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{\Phi}(\omega)e^{\psi(\omega)\tau}e^{i\omega x}d\omega}$$
-
-
-
-This is the **complete solution** in closed form!
+This is the **complete solution** in closed form.
 
 ---
 
-## **3. Characteristic Functions**
+## Characteristic Functions
 
 
-### 1. **Definition**
+### Definition
 
 
 For a random variable $X$, the **characteristic function** is:
 
-$$\boxed{\phi_X(\omega) = \mathbb{E}[e^{i\omega X}]}$$
-
-
+$$
+\boxed{\phi_X(\omega) = \mathbb{E}[e^{i\omega X}]}
+$$
 
 This is the Fourier transform of the probability density.
 
-### 2. **Properties**
+### Properties
 
 
 1. $\phi_X(0) = 1$
@@ -163,268 +159,267 @@ This is the Fourier transform of the probability density.
 4. If $Y = aX + b$: $\phi_Y(\omega) = e^{i\omega b}\phi_X(a\omega)$
 5. **Sum of independent RVs**: $\phi_{X+Y} = \phi_X \cdot \phi_Y$
 
-### 3. **Inversion Formula**
+### Inversion Formula
 
 
 The density can be recovered:
 
-$$\boxed{f_X(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\phi_X(\omega)e^{-i\omega x}d\omega}$$
+$$
+\boxed{f_X(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\phi_X(\omega)e^{-i\omega x}d\omega}
+$$
 
-
-
-### 4. **For Lognormal (Black-Scholes)**
+### For Lognormal (Black-Scholes)
 
 
 Under $\mathbb{Q}$, $X_\tau = \ln(S_T/S_0)$ satisfies:
 
-$$X_\tau \sim N\left[\left(r-\frac{\sigma^2}{2}\right)\tau, \sigma^2\tau\right]$$
-
-
+$$
+X_\tau \sim N\left[\left(r-\frac{\sigma^2}{2}\right)\tau, \sigma^2\tau\right]
+$$
 
 The characteristic function:
 
-$$\boxed{\phi_X(\omega,\tau) = \exp\left[i\omega\left(r-\frac{\sigma^2}{2}\right)\tau - \frac{\sigma^2\omega^2\tau}{2}\right]}$$
+$$
+\boxed{\phi_X(\omega,\tau) = \exp\left[i\omega\left(r-\frac{\sigma^2}{2}\right)\tau - \frac{\sigma^2\omega^2\tau}{2}\right]}
+$$
 
-
-
-### 5. **Connection to PDE Solution**
+### Connection to PDE Solution
 
 
 Note that:
 
-$$e^{\psi(\omega)\tau} = e^{-r\tau}\phi_X(\omega,\tau)$$
-
-
+$$
+e^{\psi(\omega)\tau} = e^{-r\tau}\phi_X(\omega,\tau)
+$$
 
 So:
 
-$$\hat{V}(\omega,\tau) = e^{-r\tau}\hat{\Phi}(\omega)\phi_X(\omega,\tau)$$
+$$
+\hat{V}(\omega,\tau) = e^{-r\tau}\hat{\Phi}(\omega)\phi_X(\omega,\tau)
+$$
 
-
-
-This shows: **Fourier transform of option value = (discounted) Fourier transform of payoff × characteristic function**.
+This shows: **Fourier transform of option value = (discounted) Fourier transform of payoff times characteristic function**.
 
 ---
 
-## **4. European Call Option**
+## European Call Option
 
 
-### 1. **The Challenge: Non-Integrability**
+### The Challenge: Non-Integrability
 
 
 For a call: $\Phi(S) = (S - K)^+ = (Ke^x - K)^+ = K(e^x - 1)^+$
 
 The Fourier transform:
 
-$$\hat{\Phi}(\omega) = K\int_0^{\infty}(e^x - 1)e^{-i\omega x}dx$$
+$$
+\hat{\Phi}(\omega) = K\int_0^{\infty}(e^x - 1)e^{-i\omega x}dx
+$$
 
+This integral **diverges** for real $\omega$.
 
-
-This integral **diverges** for real $\omega$!
-
-### 2. **Complex Analysis Solution**
+### Complex Analysis Solution
 
 
 Extend to **complex** $\omega = \xi + i\eta$:
 
-$$\hat{\Phi}(\omega) = K\int_0^{\infty}(e^x - 1)e^{-i\xi x}e^{\eta x}dx$$
-
-
+$$
+\hat{\Phi}(\omega) = K\int_0^{\infty}(e^x - 1)e^{-i\xi x}e^{\eta x}dx
+$$
 
 For $\eta < -1$:
 
-$$\hat{\Phi}(\omega) = K\left[\int_0^{\infty}e^{(1-i\xi+\eta)x}dx - \int_0^{\infty}e^{(-i\xi+\eta)x}dx\right]$$
+$$
+\hat{\Phi}(\omega) = K\left[\int_0^{\infty}e^{(1-i\xi+\eta)x}dx - \int_0^{\infty}e^{(-i\xi+\eta)x}dx\right]
+$$
 
+$$
+= K\left[\frac{1}{-1+i\xi-\eta} - \frac{1}{i\xi-\eta}\right]
+$$
 
+$$
+= K\left[\frac{i\xi-\eta - (-1+i\xi-\eta)}{(-1+i\xi-\eta)(i\xi-\eta)}\right]
+$$
 
-
-$$= K\left[\frac{1}{-1+i\xi-\eta} - \frac{1}{i\xi-\eta}\right]$$
-
-
-
-
-$$= K\left[\frac{i\xi-\eta - (-1+i\xi-\eta)}{(-1+i\xi-\eta)(i\xi-\eta)}\right]$$
-
-
-
-
-$$\boxed{\hat{\Phi}(\omega) = \frac{K}{(i\omega+1)(i\omega)} = \frac{K}{\omega^2 - i\omega}}$$
-
-
+$$
+\boxed{\hat{\Phi}(\omega) = \frac{K}{(i\omega+1)(i\omega)} = \frac{K}{\omega^2 - i\omega}}
+$$
 
 for $\text{Im}(\omega) < -1$.
 
-### 3. **Carr-Madan Damping Approach**
+### Carr-Madan Damping Approach
 
 
 Instead of dealing with complex $\omega$, **damp** the payoff:
 
-
-$$\tilde{C}(x) = e^{\alpha x}C(x)$$
-
-
+$$
+\tilde{C}(x) = e^{\alpha x}C(x)
+$$
 
 where $\alpha > 0$ is chosen so that $\tilde{C}$ decays as $x \to \infty$.
 
 For a call, need $\alpha > 1$ to ensure:
 
-$$e^{\alpha x}(e^x - 1)^+ = (e^{(\alpha+1)x} - e^{\alpha x})\mathbb{1}_{x>0} \to 0 \text{ as } x \to \infty$$
+$$
+e^{\alpha x}(e^x - 1)^+ = (e^{(\alpha+1)x} - e^{\alpha x})\mathbb{1}_{x>0} \to 0 \text{ as } x \to \infty
+$$
 
+### Fourier Transform of Damped Call
 
+$$
+\hat{\tilde{\Phi}}(\omega) = K\int_0^{\infty}(e^{(\alpha+1)x} - e^{\alpha x})e^{-i\omega x}dx
+$$
 
-### 4. **Fourier Transform of Damped Call**
+$$
+= K\left[\frac{1}{\alpha+1-i\omega} - \frac{1}{\alpha-i\omega}\right]
+$$
 
+$$
+= K\frac{(\alpha-i\omega) - (\alpha+1-i\omega)}{(\alpha+1-i\omega)(\alpha-i\omega)}
+$$
 
-
-$$\hat{\tilde{\Phi}}(\omega) = K\int_0^{\infty}(e^{(\alpha+1)x} - e^{\alpha x})e^{-i\omega x}dx$$
-
-
-
-
-$$= K\left[\frac{1}{\alpha+1-i\omega} - \frac{1}{\alpha-i\omega}\right]$$
-
-
-
-
-$$= K\frac{(\alpha-i\omega) - (\alpha+1-i\omega)}{(\alpha+1-i\omega)(\alpha-i\omega)}$$
-
-
-
-
-$$\boxed{\hat{\tilde{\Phi}}(\omega) = \frac{-K}{(\alpha+i\omega)(\alpha+1+i\omega)}}$$
-
-
+$$
+\boxed{\hat{\tilde{\Phi}}(\omega) = \frac{-K}{(\alpha+i\omega)(\alpha+1+i\omega)}}
+$$
 
 Or equivalently:
 
-$$\boxed{\hat{\tilde{\Phi}}(\omega) = \frac{K}{\alpha^2 + \alpha - \omega^2 + i(2\alpha+1)\omega}}$$
-
-
+$$
+\boxed{\hat{\tilde{\Phi}}(\omega) = \frac{K}{\alpha^2 + \alpha - \omega^2 + i(2\alpha+1)\omega}}
+$$
 
 ---
 
-## **5. Carr-Madan Formula**
+## Unification: Three Representations of One Object
+
+With the Fourier derivation complete, all three core methods of this chapter have now been presented. Each solves the same Black-Scholes PDE, and each arrives at the same pricing formula --- but through a different representation of the pricing operator $\mathcal{P}_{\tau}$. The **heat equation** writes the solution as a convolution with the Gaussian kernel $G$. The **Feynman-Kac formula** writes it as an expectation under the transition density --- which *is* the kernel $G$. The **Fourier transform** diagonalizes the operator, expressing the solution through the characteristic function $\phi_T(\omega) = \mathbb{E}^{\mathbb{Q}}[e^{i\omega \ln S_T}]$ --- which is the Fourier transform of that same density. These are not three independent results. They are one theorem, viewed in spatial, probabilistic, and spectral coordinates.
+
+---
+
+# Part B --- Computational Methods
+
+The analytic derivation is complete: the Fourier transform converts the Black-Scholes PDE into an algebraic equation, and the option price is recovered by inverse transformation. What remains is a **computational** problem: evaluating the inverse integral
+
+$$
+V(x,\tau) = \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{i\omega x}\, \hat{V}(\omega,\tau)\, d\omega
+$$
+
+efficiently across an entire grid of strikes. The Carr-Madan formula, FFT algorithm, and Lewis (Gil-Pelaez) inversion below solve this problem. They are not new analytic solutions; they are algorithms for evaluating the inversion integral. Their importance lies in the fact that they extend unchanged to any model whose characteristic function is known in closed form (Heston, Merton, variance gamma, etc.), making them the computational backbone of modern derivative pricing.
+
+---
+
+## Carr-Madan Formula
 
 
-### 1. **Modified Call Price**
+### Modified Call Price
 
 
 Define:
 
-$$c_T(k) = e^{\alpha k}C(K = e^k, S_0, T)$$
-
-
+$$
+c_T(k) = e^{\alpha k}C(K = e^k, S_0, T)
+$$
 
 where $k = \ln K$ is the **log-strike**.
 
-### 2. **Fourier Transform**
+### Fourier Transform
 
-
-
-$$\psi_T(\omega) = \int_{-\infty}^{\infty}e^{i\omega k}c_T(k)dk$$
-
-
+$$
+\psi_T(\omega) = \int_{-\infty}^{\infty}e^{i\omega k}c_T(k)dk
+$$
 
 Using the characteristic function $\phi_T(\omega)$ of $\ln(S_T/S_0)$:
 
+$$
+\boxed{\psi_T(\omega) = \frac{e^{-rT}\phi_T(\omega - (\alpha+1)i)}{\alpha^2 + \alpha - \omega^2 + i(2\alpha+1)\omega}}
+$$
 
-$$\boxed{\psi_T(\omega) = \frac{e^{-rT}\phi_T(\omega - (\alpha+1)i)}{\alpha^2 + \alpha - \omega^2 + i(2\alpha+1)\omega}}$$
+### Inversion
 
-
-
-### 3. **Inversion**
-
-
-
-$$c_T(k) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-i\omega k}\psi_T(\omega)d\omega$$
-
-
+$$
+c_T(k) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-i\omega k}\psi_T(\omega)d\omega
+$$
 
 Taking the real part (since $c_T$ is real):
 
+$$
+\boxed{C(K,S_0,T) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty}\text{Re}\left[e^{-i\omega k}\psi_T(\omega)\right]d\omega}
+$$
 
-$$\boxed{C(K,S_0,T) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty}\text{Re}\left[e^{-i\omega k}\psi_T(\omega)\right]d\omega}$$
-
-
-
-### 4. **Explicit Formula**
+### Explicit Formula for Black-Scholes
 
 
 For Black-Scholes with $\phi_T(\omega) = \exp[i\omega(r-\frac{\sigma^2}{2})T - \frac{\sigma^2\omega^2 T}{2}]$:
 
-
-$$\boxed{C(K) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty}\frac{e^{-rT}\exp[i\omega k + (r-\frac{\sigma^2}{2})T(\omega-(\alpha+1)i) - \frac{\sigma^2(\omega-(\alpha+1)i)^2T}{2}]}{\alpha^2+\alpha-\omega^2+i(2\alpha+1)\omega}d\omega}$$
-
-
-
-where only the real part is taken.
+$$
+\boxed{C(K) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega k}\,e^{-rT}\exp\bigl[i(\omega-(\alpha+1)i)(r-\frac{\sigma^2}{2})T - \frac{\sigma^2(\omega-(\alpha+1)i)^2T}{2}\bigr]}{\alpha^2+\alpha-\omega^2+i(2\alpha+1)\omega}\right]d\omega}
+$$
 
 ---
 
-## **6. Fast Fourier Transform (FFT)**
+## Fast Fourier Transform (FFT)
 
 
-### 1. **Discrete Fourier Transform**
+### Discrete Fourier Transform
 
 
 For $N$ points $\{x_j\}_{j=0}^{N-1}$:
 
-
-$$\boxed{X_k = \sum_{j=0}^{N-1}x_j e^{-2\pi ijk/N}, \quad k = 0,1,\ldots,N-1}$$
-
-
+$$
+\boxed{X_k = \sum_{j=0}^{N-1}x_j e^{-2\pi ijk/N}, \quad k = 0,1,\ldots,N-1}
+$$
 
 **Inverse**:
 
-$$\boxed{x_j = \frac{1}{N}\sum_{k=0}^{N-1}X_k e^{2\pi ijk/N}}$$
+$$
+\boxed{x_j = \frac{1}{N}\sum_{k=0}^{N-1}X_k e^{2\pi ijk/N}}
+$$
 
-
-
-### 2. **FFT Algorithm**
+### FFT Algorithm
 
 
 The **Fast Fourier Transform** computes the DFT in:
 
-$$\boxed{O(N\log N) \text{ operations}}$$
-
-
+$$
+\boxed{O(N\log N) \text{ operations}}
+$$
 
 instead of $O(N^2)$ for naive implementation.
 
 This is based on the **Cooley-Tukey algorithm** using divide-and-conquer.
 
-### 3. **Application to Option Pricing**
+### Application to Option Pricing
 
 
 **Setup**:
+
 1. Choose $N = 2^n$ (power of 2 for FFT)
 2. Discretize log-strike: $k_u = k_0 + u\Delta k$ for $u = 0,1,\ldots,N-1$
 3. Discretize frequency: $\omega_j = j\Delta\omega$ for $j = 0,1,\ldots,N-1$
 4. Set grid spacing: $\Delta k \cdot \Delta\omega = \frac{2\pi}{N}$
 
-### 4. **Discretization**
+### Discretization
 
 
 The integral:
 
-$$c_T(k_u) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-i\omega k_u}\psi_T(\omega)d\omega$$
-
-
+$$
+c_T(k_u) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-i\omega k_u}\psi_T(\omega)d\omega
+$$
 
 becomes:
 
-$$c_T(k_u) \approx \frac{\Delta\omega}{2\pi}\sum_{j=0}^{N-1}e^{-i\omega_j k_u}\psi_T(\omega_j)$$
+$$
+c_T(k_u) \approx \frac{\Delta\omega}{2\pi}\sum_{j=0}^{N-1}e^{-i\omega_j k_u}\psi_T(\omega_j)
+$$
 
+$$
+= \frac{\Delta\omega}{2\pi}\sum_{j=0}^{N-1}e^{-2\pi iju/N}\psi_T(\omega_j)
+$$
 
+This is an **inverse DFT**.
 
-
-$$= \frac{\Delta\omega}{2\pi}\sum_{j=0}^{N-1}e^{-2\pi iju/N}\psi_T(\omega_j)$$
-
-
-
-This is an **inverse DFT**!
-
-### 5. **Implementation Steps**
+### Implementation Steps
 
 
 1. Choose $\alpha$ (typically $\alpha = 0.75$ or $\alpha = 1.5$)
@@ -433,7 +428,7 @@ This is an **inverse DFT**!
 4. Apply **FFT** to get $\{c_T(k_u)\}$
 5. Extract $C(K_u) = e^{-\alpha k_u}c_T(k_u)$
 
-### 6. **Complexity**
+### Complexity
 
 
 - **Direct integration**: $O(N^2)$ for $N$ strikes
@@ -443,56 +438,54 @@ This is an **inverse DFT**!
 
 ---
 
-## **7. Lewis Formula (Gil-Pelaez)**
+## Lewis Formula (Gil-Pelaez)
 
 
-### 1. **Alternative Inversion**
+### Alternative Inversion
 
 
 The **Gil-Pelaez inversion theorem** avoids damping:
 
+$$
+\boxed{C(K,S,T) = \frac{S}{2} + \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega \ln(K/S)}\phi(\omega-i)}{i\omega}\right]d\omega - \frac{Ke^{-rT}}{2}}
+$$
 
-$$\boxed{C(K,S,T) = \frac{S}{2} + \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega \ln(K/S)}\phi(\omega-i)}{i\omega}\right]d\omega - \frac{Ke^{-rT}}{2}}$$
-
-
-
-
-$$\boxed{\quad - \frac{Ke^{-rT}}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega\ln(K/S)}\phi(\omega)}{i\omega}\right]d\omega}$$
-
-
+$$
+\boxed{\quad - \frac{Ke^{-rT}}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega\ln(K/S)}\phi(\omega)}{i\omega}\right]d\omega}
+$$
 
 where $\phi(\omega)$ is the characteristic function of $\ln(S_T/S_0)$ under $\mathbb{Q}$.
 
-### 2. **Simplified Form**
+### Simplified Form
 
 
 Combining terms:
 
-$$\boxed{C = S\cdot\Pi_1 - Ke^{-rT}\cdot\Pi_2}$$
-
-
+$$
+\boxed{C = S\cdot\Pi_1 - Ke^{-rT}\cdot\Pi_2}
+$$
 
 where:
 
-$$\Pi_1 = \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega\ln(K/S)}\phi(\omega-i)}{i\omega}\right]d\omega$$
+$$
+\Pi_1 = \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega\ln(K/S)}\phi(\omega-i)}{i\omega}\right]d\omega
+$$
 
+$$
+\Pi_2 = \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega\ln(K/S)}\phi(\omega)}{i\omega}\right]d\omega
+$$
 
-
-
-$$\Pi_2 = \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega\ln(K/S)}\phi(\omega)}{i\omega}\right]d\omega$$
-
-
-
-### 3. **Connection to Black-Scholes**
+### Connection to Black-Scholes
 
 
 For lognormal $\phi$, after evaluation of integrals:
+
 - $\Pi_1 = N(d_1)$
 - $\Pi_2 = N(d_2)$
 
-Recovering the Black-Scholes formula!
+Recovering the Black-Scholes formula. $\square$
 
-### 4. **Advantages over Carr-Madan**
+### Advantages over Carr-Madan
 
 
 1. **No damping parameter** $\alpha$ to choose
@@ -502,924 +495,82 @@ Recovering the Black-Scholes formula!
 
 ---
 
-## **8. COS Method (Fang-Oosterlee)**
+## Greeks via Fourier Methods
 
 
-### 1. **Fourier-Cosine Expansion**
+Since the option price is expressed as a Fourier integral, Greeks follow by differentiating under the integral sign.
 
+**Delta.** With $x = \ln S$:
 
-Expand the density on $[a,b]$:
+$$
+\boxed{\Delta = \frac{1}{S}\cdot\frac{1}{2\pi}\int_{-\infty}^{\infty}i\omega\,\hat{C}(\omega,\tau)\,e^{i\omega x}\,d\omega}
+$$
 
-$$f(x) = \sum_{k=0}^{\infty}A_k\cos\left(k\pi\frac{x-a}{b-a}\right)$$
+**Gamma.**
 
+$$
+\boxed{\Gamma = \frac{1}{S^2}\cdot\frac{1}{2\pi}\int_{-\infty}^{\infty}(-\omega^2 - i\omega)\,\hat{C}(\omega,\tau)\,e^{i\omega x}\,d\omega}
+$$
 
+**Theta.**
 
-where:
+$$
+\boxed{\Theta = -\frac{1}{2\pi}\int_{-\infty}^{\infty}\psi(\omega)\,\hat{\Phi}(\omega)\,e^{\psi(\omega)\tau}\,e^{i\omega x}\,d\omega}
+$$
 
-$$A_0 = \frac{1}{b-a}\int_a^b f(x)dx, \quad A_k = \frac{2}{b-a}\int_a^b f(x)\cos\left(k\pi\frac{x-a}{b-a}\right)dx$$
-
-
-
-### 2. **Coefficients via Characteristic Function**
-
-
-
-$$\boxed{A_k = \frac{2}{b-a}\text{Re}\left[\phi\left(\frac{k\pi}{b-a}\right)e^{-ik\pi\frac{a}{b-a}}\right]}$$
-
-
-
-for $k \geq 1$, and $A_0 = \frac{2}{b-a}\text{Re}[\phi(0)e^{0}] = \frac{2}{b-a}$ (normalized).
-
-### 3. **Option Pricing**
-
-
-For a European option with payoff $\Phi(x)$:
-
-$$V(x_0,0) = e^{-rT}\int_a^b\Phi(x)f(x|x_0)dx$$
-
-
-
-
-$$\approx e^{-rT}\sum_{k=0}^{N-1}A_k V_k(x_0)$$
-
-
-
-where:
-
-$$V_k(x_0) = \int_a^b\Phi(x)\cos\left(k\pi\frac{x-a}{b-a}\right)dx$$
-
-
-
-### 4. **For European Call**
-
-
-With $\Phi(x) = K(e^x - 1)^+$:
-
-
-$$V_k = K\int_0^b(e^x-1)\cos\left(k\pi\frac{x-a}{b-a}\right)dx$$
-
-
-
-This can be evaluated analytically:
-
-$$\boxed{V_k = \frac{K}{1+\left(\frac{k\pi}{b-a}\right)^2}\left[\cos\left(k\pi\frac{-a}{b-a}\right) + \frac{k\pi}{b-a}\sin\left(k\pi\frac{-a}{b-a}\right) - e^b\cos\left(k\pi\frac{b-a}{b-a}\right)\right] + \cdots}$$
-
-
-
-### 5. **Advantages**
-
-
-1. **Exponential convergence**: Error $\sim O(e^{-cN})$ for smooth densities
-2. **No FFT required**: Direct summation
-3. **Flexible payoffs**: Any payoff with computable $V_k$
-4. **Barrier options**: Easy to incorporate by restricting $[a,b]$
-
-### 6. **Choosing [a,b]**
-
-
-Typically choose:
-
-$$a = \mathbb{E}[X] - L\sqrt{\text{Var}(X)}, \quad b = \mathbb{E}[X] + L\sqrt{\text{Var}(X)}$$
-
-
-
-where $L \approx 10$ captures $\approx 99.99\%$ of the distribution.
+**Computational efficiency.** All Greeks are computed from the **same FFT output**: evaluate $\hat{C}(\omega_j,\tau)$ once, multiply by $i\omega_j$ (Delta), $-\omega_j^2 - i\omega_j$ (Gamma), or $\psi(\omega_j)$ (Theta), and apply the inverse FFT. The incremental cost per Greek is $O(N\log N)$.
 
 ---
 
-## **9. Multi-Dimensional Extensions**
+## Comparison with Other Methods
 
 
-### 1. **Two-Asset Option**
+Fourier methods are most effective for **European options across many strikes simultaneously** when the characteristic function is available in closed form. The FFT prices an entire strike grid in $O(N\log N)$ operations, compared with $O(N^2)$ for pointwise quadrature or one PDE solve per strike. Greeks come essentially for free from the same transform.
 
+The principal limitations are: (i) the payoff must be Fourier-representable, which requires damping for calls and puts; (ii) **American options** and other free-boundary problems are not directly accessible; (iii) non-smooth payoffs (e.g., digitals) introduce Gibbs oscillations; and (iv) the method suffers from the curse of dimensionality for $d > 3$ assets.
 
-For $V(S_1, S_2, t)$, define:
-
-$$\mathbf{x} = (\ln S_1, \ln S_2), \quad \mathbf{\omega} = (\omega_1, \omega_2)$$
-
-
-
-**2D Fourier transform**:
-
-$$\boxed{\hat{V}(\mathbf{\omega},\tau) = \int_{\mathbb{R}^2}V(\mathbf{x},\tau)e^{-i\mathbf{\omega}\cdot\mathbf{x}}d\mathbf{x}}$$
-
-
-
-### 2. **Joint Characteristic Function**
-
-
-For $\mathbf{X} = (\ln S_1, \ln S_2)$ under $\mathbb{Q}$:
-
-$$\phi_{\mathbf{X}}(\mathbf{\omega}) = \mathbb{E}[e^{i\mathbf{\omega}\cdot\mathbf{X}}]$$
-
-
-
-For **bivariate lognormal** with correlation $\rho$:
-
-$$\phi(\omega_1,\omega_2) = \exp\left[i\sum_j\omega_j\mu_j - \frac{1}{2}\sum_{j,k}\omega_j\omega_k\Sigma_{jk}\right]$$
-
-
-
-where:
-
-$$\Sigma = \begin{pmatrix}\sigma_1^2\tau & \rho\sigma_1\sigma_2\tau \\ \rho\sigma_1\sigma_2\tau & \sigma_2^2\tau\end{pmatrix}$$
-
-
-
-### 3. **Solution**
-
-
-
-$$\hat{V}(\mathbf{\omega},\tau) = \hat{\Phi}(\mathbf{\omega})e^{-r\tau}\phi_{\mathbf{X}}(\mathbf{\omega},\tau)$$
-
-
-
-**Inverse**:
-
-$$V(\mathbf{x},\tau) = \frac{1}{(2\pi)^2}\int_{\mathbb{R}^2}\hat{\Phi}(\mathbf{\omega})e^{-r\tau}\phi(\mathbf{\omega})e^{i\mathbf{\omega}\cdot\mathbf{x}}d\mathbf{\omega}$$
-
-
-
-### 4. **2D FFT**
-
-
-For numerical evaluation, use **2D FFT**:
-- Discretize on grid: $(x_1^j, x_2^k)$ for $j,k = 0,\ldots,N-1$
-- Compute 2D DFT: $O(N^2\log N)$ operations
-- Extract option values on grid
-
-### 5. **Curse of Dimensionality**
-
-
-For $d$ assets:
-- Grid points: $N^d$
-- FFT complexity: $O(N^d \log N)$
-- Becomes prohibitive for $d > 3$ or $4$
-
-**Alternatives** for high dimensions:
-- **Monte Carlo** (no curse of dimensionality)
-- **Sparse grids** (reduce $N^d \to O(N\log^{d-1}N)$)
-- **Quasi-Monte Carlo** with Fourier methods
+For single-strike pricing, direct PDE or closed-form evaluation may be simpler. For path-dependent or early-exercise problems, finite-difference and Monte Carlo methods are generally preferable.
 
 ---
 
-## **10. Lévy Processes**
+## Summary
 
 
-### 1. **General Lévy Process**
-
-
-A Lévy process $L_t$ has **stationary independent increments** with characteristic function:
-
-
-$$\mathbb{E}[e^{i\omega L_t}] = e^{t\psi(\omega)}$$
-
-
-
-where $\psi(\omega)$ is the **Lévy-Khintchine exponent**:
-
-
-$$\boxed{\psi(\omega) = i\omega\mu - \frac{\sigma^2\omega^2}{2} + \int_{\mathbb{R}}\left(e^{i\omega x} - 1 - i\omega x\mathbb{1}_{|x|<1}\right)\nu(dx)}$$
-
-
-
-- $\mu$: drift
-- $\sigma^2$: diffusion coefficient
-- $\nu(dx)$: **Lévy measure** (jump density)
-
-### 2. **Option Pricing**
-
-
-For $S_t = S_0 e^{rt + L_t}$ (under $\mathbb{Q}$):
-
-
-$$V(S,t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[\Phi(S_0e^{L_\tau})]$$
-
-
-
-
-$$= e^{-r\tau}\int_{-\infty}^{\infty}\Phi(S_0e^x)f_{L_\tau}(x)dx$$
-
-
-
-**Fourier approach**:
-
-$$f_{L_\tau}(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{t\psi(\omega)}e^{-i\omega x}d\omega$$
-
-
-
-### 3. **Variance Gamma Model**
-
-
-**Lévy measure**:
-
-$$\nu(dx) = \frac{1}{|x|}e^{-\lambda|x|}dx, \quad \lambda > 0$$
-
-
-
-**Characteristic exponent**:
-
-$$\psi(\omega) = -\frac{1}{\nu}\ln\left(1 - i\theta\nu\omega + \frac{\sigma^2\nu\omega^2}{2}\right)$$
-
-
-
-where $\theta, \sigma, \nu$ are parameters.
-
-### 4. **NIG (Normal Inverse Gaussian)**
-
-
-**Lévy measure**:
-
-$$\nu(dx) = \frac{\alpha\delta}{\pi|x|}e^{\beta x}K_1(\alpha|x|)dx$$
-
-
-
-where $K_1$ is the modified Bessel function.
-
-**Characteristic function**:
-
-$$\phi(\omega) = e^{\delta(\sqrt{\alpha^2-\beta^2} - \sqrt{\alpha^2-(\beta+i\omega)^2})}$$
-
-
-
-### 5. **CGMY Model**
-
-
-**Lévy measure**:
-
-$$\nu(dx) = \begin{cases}
-\frac{Ce^{-G|x|}}{|x|^{1+Y}}dx & x < 0 \\
-\frac{Ce^{-M|x|}}{|x|^{1+Y}}dx & x > 0
-\end{cases}$$
-
-
-
-where $C,G,M,Y$ are parameters ($Y < 2$).
-
-**No closed-form CF**, but can be computed numerically.
-
-### 6. **Unified Fourier Framework**
-
-
-**All Lévy models** fit into:
-
-$$C(K) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty}\text{Re}\left[e^{-i\omega k}\frac{e^{-rT}\phi_T(\omega-(\alpha+1)i)}{\alpha^2+\alpha-\omega^2+i(2\alpha+1)\omega}\right]d\omega$$
-
-
-
-Only the **characteristic function** $\phi_T$ changes!
-
----
-
-## **11. Stochastic Volatility Models**
-
-
-### 1. **Heston Model**
-
-
-
-$$dS_t = rS_t dt + \sqrt{v_t}S_t dW_t^{(1)}$$
-
-
-
-$$dv_t = \kappa(\theta - v_t)dt + \xi\sqrt{v_t}dW_t^{(2)}$$
-
-
-
-with $d\langle W^{(1)}, W^{(2)}\rangle = \rho dt$.
-
-### 2. **Joint Characteristic Function**
-
-
-For $\mathbf{X}_t = (\ln S_t, v_t)$, the CF satisfies a **Riccati system**:
-
-
-$$\phi(\omega,t) = \mathbb{E}[e^{i\omega\ln S_t}] = e^{A(t,\omega) + B(t,\omega)v_0 + i\omega\ln S_0}$$
-
-
-
-where $A(t,\omega), B(t,\omega)$ solve:
-
-$$\boxed{\frac{\partial B}{\partial t} = -\frac{\xi^2}{2}B^2 + (\kappa - i\rho\xi\omega - \frac{\xi^2}{2})B + \frac{\omega^2 + i\omega}{2}}$$
-
-
-
-
-$$\boxed{\frac{\partial A}{\partial t} = \kappa\theta B + ir\omega}$$
-
-
-
-with $A(0) = B(0) = 0$.
-
-### 3. **Explicit Solution**
-
-
-Define:
-
-$$d = \sqrt{(\kappa - i\rho\xi\omega)^2 + \xi^2(\omega^2 + i\omega)}$$
-
-
-
-Then:
-
-$$B(t,\omega) = \frac{(\omega^2+i\omega)(1-e^{-dt})}{2\kappa\theta/\xi^2 - d - (\kappa-i\rho\xi\omega)(1-e^{-dt})}$$
-
-
-
-
-$$A(t,\omega) = ir\omega t + \frac{\kappa\theta}{\xi^2}\left[(\kappa-i\rho\xi\omega-d)t - 2\ln\left(\frac{1-ge^{-dt}}{1-g}\right)\right]$$
-
-
-
-where $g = \frac{\kappa-i\rho\xi\omega-d}{\kappa-i\rho\xi\omega+d}$.
-
-### 4. **Option Pricing**
-
-
-Use **Lewis formula** or **Carr-Madan** with Heston's $\phi(\omega,t)$:
-
-
-$$C = \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega\ln(K/S)}\phi(\omega-i,T)}{i\omega}\right]d\omega - Ke^{-rT}\cdot\Pi_2$$
-
-
-
-### 5. **Computational Notes**
-
-
-- The **branch cut** of $\sqrt{\cdot}$ in $d$ requires careful handling
-- Use **rotation count algorithm** or choose branch consistently
-- Numerical integration: adaptive quadrature (Gauss-Kronrod)
-
----
-
-## **12. Fractional FFT (FRFT)**
-
-
-### 1. **Motivation**
-
-
-Standard FFT requires:
-
-$$\Delta k \cdot \Delta\omega = \frac{2\pi}{N}$$
-
-
-
-This **couples** strike spacing $\Delta k$ to frequency spacing $\Delta\omega$.
-
-**Problem**: May want dense strikes but sparse frequencies (or vice versa).
-
-### 2. **Fractional FFT Solution**
-
-
-**Idea**: Use **chirp-z transform** to decouple grids.
-
-The transform:
-
-$$F(k) = \sum_{j=0}^{N-1}f(x_j)e^{-i\omega_k x_j}$$
-
-
-
-can be rewritten as:
-
-$$e^{-i\omega_k x_j} = e^{-i[(k-j)^2 - k^2 - j^2]/2 \cdot \Delta\omega\Delta x}$$
-
-
-
-This converts to **convolution**:
-
-$$F(k) = e^{-ik^2\Delta\omega\Delta x/2}\sum_{j=0}^{N-1}\left[f(x_j)e^{-ij^2\Delta\omega\Delta x/2}\right] \cdot e^{-i(k-j)^2\Delta\omega\Delta x/2}$$
-
-
-
-The convolution is computed via FFT: $O(N\log N)$.
-
-### 3. **Advantages**
-
-
-1. **Arbitrary strike spacing**: Choose $\Delta k$ independently
-2. **Arbitrary frequency spacing**: Choose $\Delta\omega$ independently
-3. **Focused grids**: Concentrate points where needed
-
-### 4. **Applications**
-
-
-- **Out-of-the-money options**: Dense strikes near spot
-- **Long maturities**: Dense frequencies near $\omega = 0$
-- **Calibration**: Match market strike grid exactly
-
----
-
-## **13. Convolution Methods**
-
-
-### 1. **Convolution Theorem**
-
-
-For densities $f_X, f_Y$ of independent RVs:
-
-$$f_{X+Y} = f_X * f_Y$$
-
-
-
-In Fourier space:
-
-$$\phi_{X+Y} = \phi_X \cdot \phi_Y$$
-
-
-
-### 2. **Multi-Period Options**
-
-
-For a **cliquet option** with resets at $t_1, \ldots, t_n$:
-
-The payoff depends on $\sum_{i=1}^n R_i$ where $R_i = \ln(S_{t_i}/S_{t_{i-1}})$.
-
-**Characteristic function**:
-
-$$\phi_{\sum R_i}(\omega) = \prod_{i=1}^n \phi_{R_i}(\omega)$$
-
-
-
-Compute each $\phi_{R_i}$ separately, multiply, and invert.
-
-### 3. **Compound Options**
-
-
-A **call on a call** requires nested expectations.
-
-**Outer expectation**: Use Fourier inversion
-**Inner expectation**: Closed-form if European
-
-Combine via characteristic function manipulations.
-
----
-
-## **14. Time-Dependent Parameters**
-
-
-### 1. **Piecewise Constant Volatility**
-
-
-If $\sigma(t) = \sigma_i$ for $t \in [t_{i-1}, t_i)$:
-
-
-$$\text{Var}(\ln S_T) = \sum_{i=1}^n \sigma_i^2(t_i - t_{i-1})$$
-
-
-
-**Characteristic function**:
-
-$$\phi(\omega) = \exp\left[i\omega\sum_i(r-\frac{\sigma_i^2}{2})(t_i-t_{i-1}) - \frac{\omega^2}{2}\sum_i\sigma_i^2(t_i-t_{i-1})\right]$$
-
-
-
-### 2. **Local Volatility**
-
-
-For $\sigma = \sigma(S,t)$, the characteristic function is **not explicit**.
-
-**Numerical approach**:
-1. Solve Kolmogorov forward equation for density
-2. Compute CF via Fourier transform of density
-3. Use in pricing formulas
-
-Alternatively: **PDE methods** more efficient than Fourier.
-
-### 3. **Stochastic Interest Rates**
-
-
-With $r_t$ stochastic and independent of $S_t$:
-
-
-$$C = \mathbb{E}[e^{-\int_0^T r_s ds}\Phi(S_T)]$$
-
-
-
-
-$$= \mathbb{E}_{r}\left[\mathbb{E}_S[\Phi(S_T)|r] \cdot e^{-\int_0^T r_s ds}\right]$$
-
-
-
-Compute:
-1. **Inner expectation**: Conditional on interest rate path
-2. **Outer expectation**: Over interest rate distribution
-
-Fourier methods apply to inner expectation with path-dependent discounting.
-
----
-
-## **15. American Options**
-
-
-### 1. **Challenge**
-
-
-American options involve **optimal stopping**:
-
-$$V(S,t) = \sup_{\tau \in [t,T]}\mathbb{E}[e^{-r(\tau-t)}\Phi(S_\tau)|S_t = S]$$
-
-
-
-Fourier methods are **not directly applicable** to free boundary problems.
-
-### 2. **Lower Bound via European**
-
-
-
-$$V_{\text{American}} \geq V_{\text{European}}$$
-
-
-
-Can compute European value via Fourier, giving a lower bound.
-
-### 3. **Richardson Extrapolation**
-
-
-Approximate American by sequence of **Bermudan options** with $n$ exercise dates:
-
-$$V_{\text{Bermudan}}^{(n)} \to V_{\text{American}} \text{ as } n \to \infty$$
-
-
-
-Use **Richardson extrapolation**:
-
-$$V_{\text{American}} \approx V_{\text{Bermudan}}^{(n)} + \frac{V_{\text{Bermudan}}^{(n)} - V_{\text{Bermudan}}^{(n/2)}}{2^p - 1}$$
-
-
-
-where $p$ is the order of convergence.
-
-### 4. **CONV Method**
-
-
-**Lord et al.** developed a Fourier-based method:
-1. Discretize time: $t_0, t_1, \ldots, t_N$
-2. At each $t_i$, compute continuation value via Fourier
-3. Compare with intrinsic value
-4. Use **dynamic programming** backward
-
-**Complexity**: $O(N \cdot M\log M)$ where $M$ is spatial grid size.
-
----
-
-## **16. Barrier Options**
-
-
-### 1. **Reflection Principle**
-
-
-For a **down-and-out call** with barrier $B < S < K$:
-
-The **method of images** gives:
-
-$$V_{DO}(S) = C_{BS}(S) - \left(\frac{B}{S}\right)^{2r/\sigma^2}C_{BS}\left(\frac{B^2}{S}\right)$$
-
-
-
-Each term is computed via Fourier methods separately.
-
-### 2. **Fourier-Based Approach**
-
-
-Alternatively, compute the **distribution of $\inf_{0 \leq s \leq T}S_s$** and integrate:
-
-
-$$V(S,t) = e^{-rT}\int_B^{\infty}\int_0^{\infty}\Phi(S_T)\mathbb{1}_{\inf S_s > B}f(S_T, \inf S_s)dS_T d(\inf S_s)$$
-
-
-
-The joint density can be computed via **Fourier methods** using the **Wiener-Hopf technique**.
-
-### 3. **First Passage Time**
-
-
-The **Laplace transform** of the first passage time density:
-
-$$\mathbb{E}[e^{-\lambda\tau_B}] = \exp\left[-\frac{2}{\sigma^2}(r - \frac{\sigma^2}{2})\ln\frac{S}{B} - \frac{1}{\sigma}\sqrt{2\lambda + (r-\frac{\sigma^2}{2})^2/\sigma^2}\ln\frac{S}{B}\right]$$
-
-
-
-This can be inverted numerically.
-
----
-
-## **17. Greeks via Fourier Methods**
-
-
-### 1. **Delta**
-
-
-
-$$\Delta = \frac{\partial C}{\partial S} = \frac{1}{S}\frac{\partial C}{\partial x}$$
-
-
-
-where $x = \ln S$.
-
-From Fourier representation:
-
-$$C(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{C}(\omega,\tau)e^{i\omega x}d\omega$$
-
-
-
-we get:
-
-$$\frac{\partial C}{\partial x} = \frac{1}{2\pi}\int_{-\infty}^{\infty}i\omega\hat{C}(\omega,\tau)e^{i\omega x}d\omega$$
-
-
-
-So:
-
-$$\boxed{\Delta = \frac{1}{S}\cdot\frac{1}{2\pi}\int_{-\infty}^{\infty}i\omega\hat{C}(\omega,\tau)e^{i\omega x}d\omega}$$
-
-
-
-### 2. **Gamma**
-
-
-
-$$\Gamma = \frac{\partial^2 C}{\partial S^2} = \frac{1}{S^2}\left[\frac{\partial^2 C}{\partial x^2} - \frac{\partial C}{\partial x}\right]$$
-
-
-
-
-$$\boxed{\Gamma = \frac{1}{S^2}\cdot\frac{1}{2\pi}\int_{-\infty}^{\infty}(-\omega^2 - i\omega)\hat{C}(\omega,\tau)e^{i\omega x}d\omega}$$
-
-
-
-### 3. **Vega**
-
-
-For models with stochastic volatility (e.g., Heston):
-
-
-$$\nu = \frac{\partial C}{\partial v_0}$$
-
-
-
-From $C = \frac{1}{2\pi}\int \phi(\omega)e^{i\omega x}d\omega$ with $\phi$ depending on $v_0$:
-
-
-$$\nu = \frac{1}{2\pi}\int\frac{\partial\phi(\omega)}{\partial v_0}e^{i\omega x}d\omega$$
-
-
-
-The derivative $\frac{\partial\phi}{\partial v_0}$ can be computed from the Riccati equations.
-
-### 4. **Theta**
-
-
-
-$$\Theta = \frac{\partial C}{\partial t} = -\frac{\partial C}{\partial \tau}$$
-
-
-
-
-$$= -\frac{1}{2\pi}\int\frac{\partial}{\partial\tau}[\hat{\Phi}(\omega)e^{\psi(\omega)\tau}]e^{i\omega x}d\omega$$
-
-
-
-
-$$\boxed{\Theta = -\frac{1}{2\pi}\int\psi(\omega)\hat{\Phi}(\omega)e^{\psi(\omega)\tau}e^{i\omega x}d\omega}$$
-
-
-
-### 5. **Computational Efficiency**
-
-
-All Greeks computed from **same FFT**:
-1. Compute $\hat{C}(\omega_j,\tau)$ once
-2. Multiply by $i\omega_j$, $-\omega_j^2$, $\psi(\omega_j)$, etc.
-3. Apply inverse FFT for each Greek
-
-**Cost**: $O(N\log N)$ per Greek (minimal overhead).
-
----
-
-## **18. Numerical Integration Techniques**
-
-
-### 1. **Adaptive Quadrature**
-
-
-For integrals:
-
-$$I = \int_0^{\infty}f(\omega)d\omega$$
-
-
-
-where $f$ decays but has oscillations.
-
-**Gauss-Kronrod rules**:
-- Adaptive subdivision
-- Error estimation
-- Stop when tolerance reached
-
-### 2. **Fourier-Bessel Transform**
-
-
-For radially symmetric problems:
-
-$$\hat{f}(\rho) = \int_0^{\infty}f(r)J_0(\rho r)r\,dr$$
-
-
-
-where $J_0$ is the Bessel function of the first kind.
-
-Used in **multi-dimensional** problems with spherical symmetry.
-
-### 3. **Filon Method**
-
-
-For highly oscillatory integrands:
-
-$$I = \int_a^b f(\omega)e^{i\lambda\omega}d\omega, \quad \lambda \gg 1$$
-
-
-
-**Filon's method**: Uses moments of $f$ to achieve accuracy independent of $\lambda$.
-
-### 4. **Complex Integration**
-
-
-Move integration contour to:
-
-$$\omega \to \omega + i\eta$$
-
-
-
-This **damps oscillations** and improves convergence:
-
-$$e^{i(\omega+i\eta)x} = e^{-\eta x}e^{i\omega x}$$
-
-
-
-Must ensure analyticity in the strip.
-
----
-
-## **19. Comparison with Other Methods**
-
-
-### 1. **Fourier vs. Monte Carlo**
-
-
-| **Aspect** | **Fourier** | **Monte Carlo** |
-|------------|-------------|-----------------|
-| Complexity | $O(N\log N)$ | $O(M)$ paths |
-| Accuracy | Spectral (smooth) | $O(1/\sqrt{M})$ |
-| Dimension | Curse ($N^d$) | No curse |
-| Model flexibility | Needs CF | Any model |
-| Greeks | Cheap | Expensive |
-
-### 2. **Fourier vs. PDE**
-
-
-| **Aspect** | **Fourier** | **Finite Difference** |
-|------------|-------------|----------------------|
-| Early exercise | Difficult | Natural |
-| Smooth payoffs | Excellent | Good |
-| Non-smooth payoffs | Oscillations | Stable |
-| Multiple strikes | Simultaneous | One at a time |
-| Exotic models | Easy if CF exists | Need to discretize |
-
-### 3. **When to Use Fourier**
-
-
-**Best for**:
-1. **European options** with many strikes
-2. **Exotic models** (Lévy, stochastic vol) with known CF
-3. **Smooth payoffs** (vanilla calls/puts)
-4. **Low dimensions** ($d \leq 3$)
-5. **Greeks** needed efficiently
-
-**Avoid for**:
-1. **American options** (use PDE or trees)
-2. **Very non-smooth payoffs** (digitals → oscillations)
-3. **High dimensions** ($d > 4$)
-4. **Path-dependent** without CF structure
-
----
-
-## **20. Advanced Applications**
-
-
-### 1. **Variance Swaps**
-
-
-Fair strike:
-
-$$K_{\text{var}}^2 = \mathbb{E}^{\mathbb{Q}}[\text{RV}^2] = \frac{2}{T}\mathbb{E}^{\mathbb{Q}}\left[\int_0^T\sigma_t^2 dt\right]$$
-
-
-
-Using **log-contract replication**:
-
-$$K_{\text{var}}^2 = \frac{2e^{rT}}{T}\left[\int_0^{S_0}\frac{P(K)}{K^2}dK + \int_{S_0}^{\infty}\frac{C(K)}{K^2}dK\right]$$
-
-
-
-Compute $C(K), P(K)$ via FFT for continuum of strikes.
-
-### 2. **Volatility Derivatives**
-
-
-For options on realized variance:
-
-$$\text{Payoff} = \left(\frac{1}{N}\sum_{i=1}^N\left[\ln\frac{S_{t_i}}{S_{t_{i-1}}}\right]^2 - K_{\text{var}}^2\right)^+$$
-
-
-
-The **characteristic function** of realized variance in Heston:
-
-$$\phi_{\text{RV}}(\omega) = \mathbb{E}\left[\exp\left(i\omega\int_0^T v_s ds\right)\right]$$
-
-
-
-can be computed via **extended Heston formulas**.
-
-Use Fourier methods to price.
-
-### 3. **Credit Derivatives**
-
-
-For **CDS** pricing with jumps:
-
-$$\lambda_t = \text{default intensity}$$
-
-
-
-The **survival probability**:
-
-$$\mathbb{Q}(\tau > t) = \mathbb{E}[e^{-\int_0^t\lambda_s ds}]$$
-
-
-
-With **affine intensities**, the CF is known → Fourier pricing.
-
----
-
-## **21. Summary: The Fourier Paradigm**
-
-
-### 1. **The Master Flowchart**
-
+The Fourier approach to Black-Scholes pricing proceeds in four steps:
 
 ```
-Option Payoff Φ(S)
-    ↓
-Transform to log-price: Φ(e^x)
-    ↓
-Fourier Transform: Φ̂(ω)
-    ↓
-Multiply by e^{ψ(ω)τ} (characteristic function)
-    ↓
+Option Payoff Phi(S)
+    |
+Transform to log-price: Phi(e^x)
+    |
+Fourier Transform: hat{Phi}(omega)
+    |
+Multiply by e^{psi(omega) tau}  (characteristic function)
+    |
 Inverse Fourier Transform
-    ↓
-Option Value V(x,τ)
+    |
+Option Value V(x, tau)
 ```
 
-### 2. **Key Formulas**
+**Key formulas.** The PDE in Fourier space reduces to the ODE
 
+$$
+\frac{\partial\hat{V}}{\partial\tau} = \psi(\omega)\hat{V}
+$$
 
-**PDE in Fourier space**:
+with solution
 
-$$\boxed{\frac{\partial\hat{V}}{\partial\tau} = \psi(\omega)\hat{V}}$$
+$$
+\hat{V}(\omega,\tau) = \hat{\Phi}(\omega)e^{\psi(\omega)\tau}
+$$
 
+and inversion
 
+$$
+V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{\Phi}(\omega)e^{\psi(\omega)\tau}e^{i\omega x}d\omega
+$$
 
-**Solution**:
-
-$$\boxed{\hat{V}(\omega,\tau) = \hat{\Phi}(\omega)e^{\psi(\omega)\tau}}$$
-
-
-
-**Inversion**:
-
-$$\boxed{V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{\Phi}(\omega)e^{\psi(\omega)\tau}e^{i\omega x}d\omega}$$
-
-
-
-### 3. **The Power**
-
-
-Fourier methods reveal that option pricing is fundamentally about:
-1. **Transform** payoff to frequency domain
-2. **Propagate** via characteristic function (evolution)
-3. **Invert** back to price space
-
-This works for **any model** where the characteristic function is known—which includes most models of practical interest!
-
-### 4. **The Beauty**
-
-
-The **unification**:
-- **Black-Scholes**: Gaussian CF
-- **Lévy processes**: Exponential of Lévy-Khintchine
-- **Stochastic volatility**: Riccati system
-- **All** fit the same computational framework
-
-Just **change the CF**, everything else stays the same!
+The identity $e^{\psi(\omega)\tau} = e^{-r\tau}\phi_X(\omega,\tau)$ connects the PDE characteristic exponent to the probabilistic characteristic function of the log-return. All three inversion routes -- direct quadrature, Carr-Madan with FFT, and Gil-Pelaez -- produce the Black-Scholes formula $C = SN(d_1) - Ke^{-rT}N(d_2)$ as a special case.
 
 ---
 
@@ -1428,30 +579,6 @@ Just **change the CF**, everything else stays the same!
 ## Exercises
 
 **Exercise 1.** Verify the characteristic exponent for the Black-Scholes model. Starting from the log-price formulation of the PDE, apply the Fourier transform to both sides and show that the ODE in Fourier space has the characteristic exponent $\psi(\omega) = -\frac{\sigma^2\omega^2}{2} + i\omega(r - \frac{\sigma^2}{2}) - r$.
-
----
-
-**Exercise 2.** The Fourier transform of the call payoff $(e^x - 1)^+$ diverges for real $\omega$. Show explicitly that the integral $\int_0^{\infty}(e^x - 1)e^{-i\omega x}dx$ diverges by analyzing the behavior of the integrand as $x \to \infty$. Then verify that introducing the damping factor $e^{-\alpha x}$ with $\alpha > 1$ makes the integral convergent.
-
----
-
-**Exercise 3.** Using the Carr-Madan formula with $\alpha = 1.5$, $S_0 = 100$, $K = 100$, $r = 5\%$, $\sigma = 20\%$, and $T = 1$, set up the numerical integration for the call price. Write the integrand explicitly and verify that evaluating the integral (e.g., via Simpson's rule with a fine grid) recovers the standard Black-Scholes call price to at least 4 decimal places.
-
----
-
-**Exercise 4.** For the Heston stochastic volatility model with parameters $\kappa = 2$, $\theta = 0.04$, $\xi = 0.3$, $\rho = -0.7$, $v_0 = 0.04$, compute the characteristic function $\phi(\omega, T)$ at $\omega = 1$ and $T = 1$. Identify the terms $A(T,\omega)$ and $B(T,\omega)$ from the Riccati equations and evaluate them numerically.
-
----
-
-**Exercise 5.** Explain the relationship $e^{\psi(\omega)\tau} = e^{-r\tau}\phi_X(\omega, \tau)$ between the characteristic exponent of the PDE and the characteristic function of the log-return. Why is this identity central to the Fourier pricing framework? How does it generalize beyond the Black-Scholes model to Levy processes?
-
----
-
-**Exercise 6.** The COS method approximates the density using a cosine expansion on $[a,b]$. For the Black-Scholes model with $S_0 = 100$, $r = 5\%$, $\sigma = 25\%$, $T = 0.5$, compute appropriate bounds $[a,b]$ using $L = 10$ standard deviations. Determine how many terms $N$ in the cosine expansion are needed to achieve 6-digit accuracy for an ATM call.
-
----
-
-## Solutions
 
 ??? success "Solution to Exercise 1"
     The log-price PDE is:
@@ -1482,6 +609,11 @@ Just **change the CF**, everything else stays the same!
     \psi(\omega) = -\frac{\sigma^2\omega^2}{2} + i\omega\left(r - \frac{\sigma^2}{2}\right) - r
     $$
 
+    $\square$
+
+---
+**Exercise 2.** The Fourier transform of the call payoff $(e^x - 1)^+$ diverges for real $\omega$. Show explicitly that the integral $\int_0^{\infty}(e^x - 1)e^{-i\omega x}dx$ diverges by analyzing the behavior of the integrand as $x \to \infty$. Then verify that introducing the damping factor $e^{-\alpha x}$ with $\alpha > 1$ makes the integral convergent and derive the resulting transform.
+
 ??? success "Solution to Exercise 2"
     Consider the integral $I(\omega) = \int_0^{\infty}(e^x - 1)e^{-i\omega x}dx$ for real $\omega$.
 
@@ -1504,6 +636,11 @@ Just **change the CF**, everything else stays the same!
     $$
     = \frac{1}{(\alpha - 1 + i\omega)(\alpha + i\omega)}
     $$
+
+    $\square$
+
+---
+**Exercise 3.** Using the Carr-Madan formula with $\alpha = 1.5$, $S_0 = 100$, $K = 100$, $r = 5\%$, $\sigma = 20\%$, and $T = 1$, set up the numerical integration for the call price. Write the integrand explicitly and verify that evaluating the integral (e.g., via Simpson's rule with a fine grid) recovers the standard Black-Scholes call price to at least 4 decimal places.
 
 ??? success "Solution to Exercise 3"
     With $\alpha = 1.5$, $S_0 = 100$, $K = 100$, $r = 0.05$, $\sigma = 0.20$, $T = 1$, the log-strike is $k = \ln K = \ln 100$.
@@ -1546,54 +683,12 @@ Just **change the CF**, everything else stays the same!
 
     The denominator is $\alpha^2 + \alpha - \omega^2 + i(2\alpha+1)\omega = 3.75 - \omega^2 + 4i\omega$.
 
-    Setting up the numerical integration with Simpson's rule on a fine grid (e.g., $\omega \in [0, 50]$ with $\Delta\omega = 0.01$), and computing $\text{Re}[e^{-i\omega k}\psi_T(\omega)]$ at each point, the integral can be evaluated. The Black-Scholes price for these parameters is $C \approx 10.4506$, which the numerical integration recovers to at least 4 decimal places.
+    Setting up the numerical integration with Simpson's rule on a fine grid (e.g., $\omega \in [0, 50]$ with $\Delta\omega = 0.01$), and computing $\text{Re}[e^{-i\omega k}\psi_T(\omega)]$ at each point, the integral can be evaluated. The Black-Scholes price for these parameters is $C \approx 10.4506$, which the numerical integration recovers to at least 4 decimal places. $\square$
+
+---
+**Exercise 4.** Explain the relationship $e^{\psi(\omega)\tau} = e^{-r\tau}\phi_X(\omega, \tau)$ between the characteristic exponent of the PDE and the characteristic function of the log-return. Starting from the explicit forms of $\psi(\omega)$ and $\phi_X(\omega,\tau)$, verify the identity algebraically and explain why it is central to the Fourier pricing framework.
 
 ??? success "Solution to Exercise 4"
-    With parameters $\kappa = 2$, $\theta = 0.04$, $\xi = 0.3$, $\rho = -0.7$, $v_0 = 0.04$, $\omega = 1$, $T = 1$.
-
-    The Riccati equations give $\phi(\omega,T) = e^{A(T,\omega) + B(T,\omega)v_0 + i\omega \ln S_0}$.
-
-    First compute the auxiliary quantities. Define:
-
-    $$
-    d = \sqrt{(\kappa - i\rho\xi\omega)^2 + \xi^2(\omega^2 + i\omega)}
-    $$
-
-    With $\omega = 1$: $\kappa - i\rho\xi\omega = 2 - i(-0.7)(0.3)(1) = 2 + 0.21i$
-
-    $$
-    \xi^2(\omega^2 + i\omega) = 0.09(1 + i) = 0.09 + 0.09i
-    $$
-
-    $$
-    (\kappa - i\rho\xi\omega)^2 = (2 + 0.21i)^2 = 4 + 0.84i - 0.0441 = 3.9559 + 0.84i
-    $$
-
-    $$
-    d^2 = 3.9559 + 0.84i + 0.09 + 0.09i = 4.0459 + 0.93i
-    $$
-
-    $$
-    d = \sqrt{4.0459 + 0.93i} \approx 2.0196 + 0.2303i
-    $$
-
-    Define $g = \frac{\kappa - i\rho\xi\omega - d}{\kappa - i\rho\xi\omega + d} = \frac{(2 + 0.21i) - (2.0196 + 0.2303i)}{(2 + 0.21i) + (2.0196 + 0.2303i)}$
-
-    $$
-    = \frac{-0.0196 - 0.0203i}{4.0196 + 0.4403i} \approx -0.00484 - 0.00503i
-    $$
-
-    Then:
-
-    $$
-    B(T,\omega) = \frac{(\kappa - i\rho\xi\omega - d)(1 - e^{-dT})}{\xi^2(1 - ge^{-dT})}
-    $$
-
-    With $e^{-dT} \approx e^{-(2.0196+0.2303i)} \approx e^{-2.0196}(\cos 0.2303 - i\sin 0.2303) \approx 0.1326(0.9736 - 0.2284i) \approx 0.1291 - 0.0303i$
-
-    These numerical values yield specific complex numbers for $A$ and $B$ that can be computed to verify the characteristic function evaluation.
-
-??? success "Solution to Exercise 5"
     The identity $e^{\psi(\omega)\tau} = e^{-r\tau}\phi_X(\omega,\tau)$ connects the PDE characteristic exponent to the probabilistic characteristic function.
 
     **Derivation.** The PDE characteristic exponent is:
@@ -1614,37 +709,36 @@ Just **change the CF**, everything else stays the same!
     e^{-r\tau}\phi_X(\omega,\tau) = \exp\left[-r\tau + i\omega\left(r - \frac{\sigma^2}{2}\right)\tau - \frac{\sigma^2\omega^2\tau}{2}\right] = e^{\psi(\omega)\tau}
     $$
 
-    **Why this is central.** This identity means the Fourier-space solution $\hat{V}(\omega,\tau) = \hat{\Phi}(\omega)e^{\psi(\omega)\tau}$ can be rewritten as $\hat{V}(\omega,\tau) = e^{-r\tau}\hat{\Phi}(\omega)\phi_X(\omega,\tau)$. In other words, the option price in Fourier space equals the discounted payoff transform times the characteristic function of the log-return. This directly encodes risk-neutral pricing.
+    **Why this is central.** This identity means the Fourier-space solution $\hat{V}(\omega,\tau) = \hat{\Phi}(\omega)e^{\psi(\omega)\tau}$ can be rewritten as $\hat{V}(\omega,\tau) = e^{-r\tau}\hat{\Phi}(\omega)\phi_X(\omega,\tau)$. In other words, the option price in Fourier space equals the discounted payoff transform times the characteristic function of the log-return. This directly encodes risk-neutral pricing: the transform of the discounted expected payoff factorizes into a payoff piece and a distributional piece. $\square$
 
-    **Generalization to Levy processes.** For a Levy process with characteristic exponent $\psi_L(\omega)$ (from the Levy-Khintchine formula), the characteristic function is $\phi_X(\omega,\tau) = e^{\tau\psi_L(\omega)}$. The PDE is replaced by a PIDE, but the Fourier-space solution retains the same structure: $\hat{V}(\omega,\tau) = e^{-r\tau}\hat{\Phi}(\omega)e^{\tau\psi_L(\omega)}$. Only the characteristic exponent changes -- the entire pricing framework remains identical. This makes Fourier methods model-agnostic: swap in a different $\psi_L$ for jumps (Merton, VG, NIG, CGMY) or stochastic volatility (Heston), and the computational pipeline is unchanged.
+---
+**Exercise 5.** The Gil-Pelaez formula writes the call price as $C = S\Pi_1 - Ke^{-rT}\Pi_2$ where $\Pi_1$ and $\Pi_2$ are given by integrals involving the characteristic function. For the Black-Scholes model, show that $\Pi_1 = N(d_1)$ and $\Pi_2 = N(d_2)$ by substituting the lognormal characteristic function and evaluating the resulting Gaussian integrals.
 
-??? success "Solution to Exercise 6"
-    With $S_0 = 100$, $r = 0.05$, $\sigma = 0.25$, $T = 0.5$:
-
-    **Mean and variance of log-return.** Let $X = \ln(S_T/S_0)$:
-
-    $$
-    \mathbb{E}[X] = \left(r - \frac{\sigma^2}{2}\right)T = (0.05 - 0.03125)(0.5) = 0.009375
-    $$
+??? success "Solution to Exercise 5"
+    The Gil-Pelaez formula gives:
 
     $$
-    \text{Var}(X) = \sigma^2 T = 0.0625 \times 0.5 = 0.03125
+    \Pi_2 = \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega\ln(K/S)}\phi(\omega)}{i\omega}\right]d\omega
     $$
 
-    $$
-    \text{Std}(X) = \sqrt{0.03125} \approx 0.17678
-    $$
-
-    **Bounds with $L = 10$:**
+    With the Black-Scholes characteristic function $\phi(\omega) = \exp[i\omega(r - \sigma^2/2)T - \sigma^2\omega^2 T/2]$, the integrand becomes:
 
     $$
-    a = \mathbb{E}[X] - L \cdot \text{Std}(X) = 0.009375 - 10 \times 0.17678 \approx -1.7584
+    \frac{e^{-i\omega\ln(K/S)}\exp[i\omega(r-\sigma^2/2)T - \sigma^2\omega^2 T/2]}{i\omega}
     $$
 
+    Write $\ln(K/S) = -\ln(S/K)$ and combine the exponentials:
+
     $$
-    b = \mathbb{E}[X] + L \cdot \text{Std}(X) = 0.009375 + 10 \times 0.17678 \approx 1.7772
+    = \frac{\exp[i\omega(\ln(S/K) + (r-\sigma^2/2)T) - \sigma^2\omega^2 T/2]}{i\omega}
     $$
 
-    **Number of terms.** The COS method has exponential convergence $O(e^{-cN})$ for smooth (Gaussian) densities. For the Black-Scholes model (log-normal density, which is infinitely differentiable), the error decreases very rapidly with $N$.
+    The exponent in the numerator is $i\omega\, d_2\sigma\sqrt{T} - \sigma^2\omega^2 T/2$ where $d_2 = \frac{\ln(S/K) + (r-\sigma^2/2)T}{\sigma\sqrt{T}}$. Substituting $u = \omega\sigma\sqrt{T}$, the integral reduces to the standard result:
 
-    For 6-digit accuracy (relative error $< 10^{-6}$), empirical studies and theoretical error bounds for the COS method applied to Black-Scholes show that $N \approx 32$ to $64$ terms suffice. The exact number depends on the specific error metric, but the Gaussian density's smoothness ensures rapid convergence: typically $N = 64$ guarantees well beyond 6-digit accuracy for ATM options with these parameters.
+    $$
+    \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\frac{\sin(d_2 u)}{u}e^{-u^2/2}du = N(d_2)
+    $$
+
+    using the known identity $\frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\frac{\sin(ax)}{x}e^{-x^2/2}dx = N(a)$.
+
+    For $\Pi_1$, the argument $\phi(\omega - i)$ shifts the characteristic function. The shift replaces $\omega$ by $\omega - i$ in $\phi$, which after simplification introduces an extra factor $e^{rT}S/S$ and shifts $d_2$ to $d_1 = d_2 + \sigma\sqrt{T}$. The same Gaussian-integral identity then gives $\Pi_1 = N(d_1)$. $\square$

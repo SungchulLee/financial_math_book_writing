@@ -337,38 +337,6 @@ Let $X_n = \sum_{k=1}^n Y_k$ where $Y_k \ge 0$ and $\mathbb{E}[Y_k \mid \mathcal
 
 (c) What is $X_n$ if not a martingale?
 
-### Exercise 2: Compensator of Squared Brownian Motion
-
-(a) Use Itô's formula to write $W_t^2 = M_t + A_t$ where $M_t$ is a martingale and $A_t$ is predictable increasing.
-
-(b) Identify $A_t$ explicitly.
-
-(c) Explain the connection to quadratic variation.
-
-### Exercise 3: Compensator of |W_t|
-
-The process $|W_t|$ is a submartingale.
-
-(a) Explain why its Doob–Meyer compensator involves local time.
-
-(b) State Tanaka's formula: $|W_t| = \int_0^t \text{sgn}(W_s) \, dW_s + L_t^0$.
-
-(c) Identify the martingale and increasing parts.
-
-### Exercise 4: General Submartingale
-
-Let $M_t$ be a continuous martingale and $f$ a convex $C^2$ function. Then $f(M_t)$ is a submartingale.
-
-(a) Use Itô's formula to find the Doob–Meyer decomposition of $f(M_t)$.
-
-(b) Verify your answer for $f(x) = x^2$ and $M_t = W_t$.
-
-(c) What is the compensator when $f(x) = e^x$ and $M_t = W_t$?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a)** Using the discrete Doob decomposition: $A_n - A_{n-1} = \mathbb{E}[X_n - X_{n-1} \mid \mathcal{F}_{n-1}] = \mathbb{E}[Y_n \mid \mathcal{F}_{n-1}] = c$.
 
@@ -383,6 +351,16 @@ Let $M_t$ be a continuous martingale and $f$ a convex $C^2$ function. Then $f(M_
     $A_n$ is increasing: since $c > 0$, $A_n - A_{n-1} = c > 0$ for all $n$. $\square$
 
     **(c)** Since $A_n = cn$ is increasing (with $c > 0$), $X_n$ is a **submartingale**. It is not a martingale (unless $c = 0$) because the compensator is non-zero.
+
+---
+
+### Exercise 2: Compensator of Squared Brownian Motion
+
+(a) Use Itô's formula to write $W_t^2 = M_t + A_t$ where $M_t$ is a martingale and $A_t$ is predictable increasing.
+
+(b) Identify $A_t$ explicitly.
+
+(c) Explain the connection to quadratic variation.
 
 ??? success "Solution to Exercise 2"
     **(a)** By Ito's formula applied to $f(x) = x^2$ and $W_t$:
@@ -400,6 +378,18 @@ Let $M_t$ be a continuous martingale and $f$ a convex $C^2$ function. Then $f(M_
     $$
     \text{Quadratic variation of } W = \text{Compensator of } W^2
     $$
+
+---
+
+### Exercise 3: Compensator of |W_t|
+
+The process $|W_t|$ is a submartingale.
+
+(a) Explain why its Doob–Meyer compensator involves local time.
+
+(b) State Tanaka's formula: $|W_t| = \int_0^t \text{sgn}(W_s) \, dW_s + L_t^0$.
+
+(c) Identify the martingale and increasing parts.
 
 ??? success "Solution to Exercise 3"
     **(a)** The process $|W_t|$ is a submartingale (since $|\cdot|$ is convex and $W_t$ is a martingale). Its Doob-Meyer decomposition involves local time because $|x|$ is not $C^2$ at $x = 0$. The standard Ito formula does not apply directly, but Tanaka's formula (a generalization of Ito's formula to convex functions) gives the decomposition.
@@ -419,6 +409,18 @@ Let $M_t$ be a continuous martingale and $f$ a convex $C^2$ function. Then $f(M_
     - **Martingale part**: $M_t = \int_0^t \text{sgn}(W_s)\,dW_s$. This is a continuous local martingale (in fact a true martingale since $|\text{sgn}(W_s)| \le 1$).
 
     - **Increasing part (compensator)**: $A_t = L_t^0$. This is a continuous, non-decreasing, adapted process with $L_0^0 = 0$. It increases only when $W_t = 0$, measuring the "time spent at zero" in a generalized sense.
+
+---
+
+### Exercise 4: General Submartingale
+
+Let $M_t$ be a continuous martingale and $f$ a convex $C^2$ function. Then $f(M_t)$ is a submartingale.
+
+(a) Use Itô's formula to find the Doob–Meyer decomposition of $f(M_t)$.
+
+(b) Verify your answer for $f(x) = x^2$ and $M_t = W_t$.
+
+(c) What is the compensator when $f(x) = e^x$ and $M_t = W_t$?
 
 ??? success "Solution to Exercise 4"
     **(a)** By Ito's formula applied to $f(M_t)$ where $M_t$ is a continuous martingale and $f \in C^2$:

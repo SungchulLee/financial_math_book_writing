@@ -501,46 +501,6 @@ These properties are more fundamental than the specific Black-Scholes formula—
 
 **Exercise 1.** A European call is quoted at $C = 12$ with $S = 100$, $K = 95$, $r = 4\%$, and $T = 0.5$ years. Verify that the call price satisfies both the upper bound $C \leq S$ and the lower bound $C \geq \max(S - Ke^{-rT}, 0)$. What is the time value of the option?
 
----
-
-**Exercise 2.** Prove the butterfly spread inequality: for strikes $K_1 < K_2 < K_3$ with $K_2 = \frac{K_1 + K_3}{2}$, show that
-
-$$
-C(K_2) \leq \frac{C(K_1) + C(K_3)}{2}
-$$
-
-by constructing a butterfly spread portfolio and arguing that its payoff is non-negative in all states.
-
----
-
-**Exercise 3.** Compute the delta $\Delta = \mathcal{N}(d_1)$, gamma $\Gamma = \frac{\mathcal{N}'(d_1)}{S\sigma\sqrt{T}}$, and vega $\nu = S\sqrt{T}\,\mathcal{N}'(d_1)$ for a call with $S = 50$, $K = 50$, $r = 3\%$, $\sigma = 20\%$, $T = 1$. Verify that $\Delta \in (0, 1)$, $\Gamma > 0$, and $\nu > 0$.
-
----
-
-**Exercise 4.** Show that gamma is the same for a European call and put with the same strike and maturity. Start from put-call parity $P = C - S + Ke^{-rT}$ and differentiate twice with respect to $S$.
-
----
-
-**Exercise 5.** A market maker observes the following call prices for three strikes with the same maturity: $C(90) = 15.20$, $C(100) = 9.50$, $C(110) = 5.80$. Check whether the convexity condition $C(100) \leq \frac{C(90) + C(110)}{2}$ holds. If violated, describe the arbitrage strategy.
-
----
-
-**Exercise 6.** Explain why an American call on a non-dividend-paying stock is never exercised early. Use the lower bound $C \geq S - Ke^{-r(T-t)} > S - K$ (for $r > 0$ and $T - t > 0$) to argue that the option is always worth more alive than dead.
-
----
-
-**Exercise 7.** The Black-Scholes theta for a call is
-
-$$
-\Theta = -\frac{S\mathcal{N}'(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\mathcal{N}(d_2)
-$$
-
-Show that both terms are negative, so $\Theta < 0$ in general. Under what limiting conditions (deep ITM, near expiration) might the interest rate term dominate the volatility term? Can theta ever be positive for a European call on a non-dividend-paying stock?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **Given**: $C = 12$, $S = 100$, $K = 95$, $r = 0.04$, $T = 0.5$.
 
@@ -559,6 +519,15 @@ Show that both terms are negative, so $\Theta < 0$ in general. Under what limiti
     $$
 
     The option's time value is $\$7$, representing the value of optionality (the chance of further favorable moves and the interest savings from deferring the strike payment).
+
+---
+**Exercise 2.** Prove the butterfly spread inequality: for strikes $K_1 < K_2 < K_3$ with $K_2 = \frac{K_1 + K_3}{2}$, show that
+
+$$
+C(K_2) \leq \frac{C(K_1) + C(K_3)}{2}
+$$
+
+by constructing a butterfly spread portfolio and arguing that its payoff is non-negative in all states.
 
 ??? success "Solution to Exercise 2"
     Consider the butterfly spread portfolio: buy 1 call at $K_1$, sell 2 calls at $K_2 = \frac{K_1+K_3}{2}$, buy 1 call at $K_3$.
@@ -597,6 +566,9 @@ Show that both terms are negative, so $\Theta < 0$ in general. Under what limiti
 
     Rearranging: $C(K_2) \leq \frac{C(K_1) + C(K_3)}{2}$.
 
+---
+**Exercise 3.** Compute the delta $\Delta = \mathcal{N}(d_1)$, gamma $\Gamma = \frac{\mathcal{N}'(d_1)}{S\sigma\sqrt{T}}$, and vega $\nu = S\sqrt{T}\,\mathcal{N}'(d_1)$ for a call with $S = 50$, $K = 50$, $r = 3\%$, $\sigma = 20\%$, $T = 1$. Verify that $\Delta \in (0, 1)$, $\Gamma > 0$, and $\nu > 0$.
+
 ??? success "Solution to Exercise 3"
     **Parameters**: $S = 50$, $K = 50$, $r = 0.03$, $\sigma = 0.20$, $T = 1$.
 
@@ -632,6 +604,9 @@ Show that both terms are negative, so $\Theta < 0$ in general. Under what limiti
 
     All three conditions are verified, consistent with the theoretical properties of European options.
 
+---
+**Exercise 4.** Show that gamma is the same for a European call and put with the same strike and maturity. Start from put-call parity $P = C - S + Ke^{-rT}$ and differentiate twice with respect to $S$.
+
 ??? success "Solution to Exercise 4"
     From put-call parity:
 
@@ -659,6 +634,9 @@ Show that both terms are negative, so $\Theta < 0$ in general. Under what limiti
 
     The second derivative of $Ke^{-rT}$ (a constant with respect to $S$) is zero, and the second derivative of $-S$ is also zero. Therefore the gamma of the put equals the gamma of the call for options with the same strike and maturity. This also follows intuitively: gamma measures the curvature of the option price with respect to $S$, and since put and call prices differ by a linear function of $S$, their curvatures are identical.
 
+---
+**Exercise 5.** A market maker observes the following call prices for three strikes with the same maturity: $C(90) = 15.20$, $C(100) = 9.50$, $C(110) = 5.80$. Check whether the convexity condition $C(100) \leq \frac{C(90) + C(110)}{2}$ holds. If violated, describe the arbitrage strategy.
+
 ??? success "Solution to Exercise 5"
     Check convexity: $\frac{C(90) + C(110)}{2} = \frac{15.20 + 5.80}{2} = 10.50$.
 
@@ -667,6 +645,9 @@ Show that both terms are negative, so $\Theta < 0$ in general. Under what limiti
     Since $9.50 \leq 10.50$, the convexity condition $C(100) \leq \frac{C(90) + C(110)}{2}$ **holds**. ✓
 
     There is no arbitrage opportunity. The butterfly spread (buy $C(90)$, sell $2 \times C(100)$, buy $C(110)$) costs $15.20 - 2(9.50) + 5.80 = 2.00 > 0$, which is consistent with its non-negative payoff. If the condition had been violated (say $C(100) = 11.00 > 10.50$), one would sell the butterfly (sell $C(90)$, buy $2 \times C(100)$, sell $C(110)$) to collect a positive upfront cash flow with a non-positive future liability.
+
+---
+**Exercise 6.** Explain why an American call on a non-dividend-paying stock is never exercised early. Use the lower bound $C \geq S - Ke^{-r(T-t)} > S - K$ (for $r > 0$ and $T - t > 0$) to argue that the option is always worth more alive than dead.
 
 ??? success "Solution to Exercise 6"
     For a European call on a non-dividend-paying stock, the no-arbitrage lower bound is:
@@ -689,6 +670,15 @@ Show that both terms are negative, so $\Theta < 0$ in general. Under what limiti
     2. **Insurance value**: The option protects against the stock falling below $K$; early exercise forfeits this downside protection.
 
     Since the option alive is always worth more than the exercise value $S - K$, early exercise is never optimal for an American call on a non-dividend-paying stock.
+
+---
+**Exercise 7.** The Black-Scholes theta for a call is
+
+$$
+\Theta = -\frac{S\mathcal{N}'(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\mathcal{N}(d_2)
+$$
+
+Show that both terms are negative, so $\Theta < 0$ in general. Under what limiting conditions (deep ITM, near expiration) might the interest rate term dominate the volatility term? Can theta ever be positive for a European call on a non-dividend-paying stock?
 
 ??? success "Solution to Exercise 7"
     The theta formula is:

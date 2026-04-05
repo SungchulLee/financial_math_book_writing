@@ -1046,6 +1046,57 @@ The pathwise perspective reveals that many classical results in stochastic finan
 
 **Exercise 1.** State Follmer's pathwise Ito formula for a twice continuously differentiable function $F(t, x)$ and a continuous path $x(t)$ with finite quadratic variation $[x]_t$. Apply it to $F(t, x) = x^2$ and verify that $x(T)^2 = x(0)^2 + 2\int_0^T x(t) \, dx(t) + [x]_T$ holds for any continuous path, without any probabilistic assumptions.
 
+??? success "Solution to Exercise 1"
+
+    **Statement of Follmer's pathwise Ito formula.**
+
+    Let $F: \mathbb{R} \to \mathbb{R}$ be twice continuously differentiable ($F \in C^2$), and let $x: [0,T] \to \mathbb{R}$ be a continuous path possessing finite quadratic variation along a sequence of partitions $\Pi_n = \{0 = t_0^n < t_1^n < \cdots < t_{N_n}^n = T\}$ with $|\Pi_n| \to 0$. That is, the limit
+
+    $$
+    [x]_T = \lim_{n \to \infty} \sum_{i=0}^{N_n - 1} (x(t_{i+1}^n) - x(t_i^n))^2
+    $$
+
+    exists. Then:
+
+    $$
+    F(x(T)) = F(x(0)) + \int_0^T F'(x(t))\, dx(t) + \frac{1}{2}\int_0^T F''(x(t))\, d[x]_t
+    $$
+
+    where the first integral is a pathwise limit of Riemann-Stieltjes sums:
+
+    $$
+    \int_0^T F'(x(t))\, dx(t) = \lim_{n \to \infty} \sum_i F'(x(t_i^n))(x(t_{i+1}^n) - x(t_i^n))
+    $$
+
+    and the second integral is similarly defined via $d[x]_t$. No probability measure is involved.
+
+    **Application to $F(x) = x^2$.**
+
+    We have $F'(x) = 2x$ and $F''(x) = 2$. Applying the pathwise Ito formula:
+
+    $$
+    x(T)^2 = x(0)^2 + \int_0^T 2x(t)\, dx(t) + \frac{1}{2}\int_0^T 2\, d[x]_t
+    $$
+
+    $$
+    x(T)^2 = x(0)^2 + 2\int_0^T x(t)\, dx(t) + [x]_T
+    $$
+
+    **Verification**: We can verify this directly. By the telescoping identity applied to each partition:
+
+    $$
+    x(T)^2 - x(0)^2 = \sum_i \left[x(t_{i+1})^2 - x(t_i)^2\right] = \sum_i \left[2x(t_i)(x(t_{i+1}) - x(t_i)) + (x(t_{i+1}) - x(t_i))^2\right]
+    $$
+
+    As the mesh $|\Pi_n| \to 0$:
+
+    - $\sum_i 2x(t_i)(x(t_{i+1}) - x(t_i)) \to 2\int_0^T x(t)\, dx(t)$ (Riemann-Stieltjes sum)
+    - $\sum_i (x(t_{i+1}) - x(t_i))^2 \to [x]_T$ (definition of quadratic variation)
+
+    Therefore $x(T)^2 = x(0)^2 + 2\int_0^T x(t)\, dx(t) + [x]_T$, which holds for **any** continuous path with finite quadratic variation, without any probabilistic assumptions.
+
+    Note that for Brownian motion $x = W$, $[W]_T = T$ almost surely, recovering the stochastic calculus identity $W_T^2 = 2\int_0^T W_t\, dW_t + T$.
+
 ---
 
 **Exercise 2.** Consider a European call option with payoff $(S_T - K)^+$ and a pathwise hedging strategy that holds $\Delta_t = \partial C / \partial S (t, S_t)$ shares at each time $t$, where $C$ is the Black-Scholes price function with some reference volatility $\sigma$. Using the pathwise Ito formula, show that the hedging error is
@@ -1056,9 +1107,109 @@ $$
 
 and explain why this error depends on the realized quadratic variation versus the assumed variance.
 
+??? success "Solution to Exercise 2"
+
+    **Setup**: Hedge a European call $(S_T - K)^+$ using Black-Scholes delta $\Delta_t = \frac{\partial C}{\partial S}(t, S_t)$ with reference volatility $\sigma$.
+
+    The Black-Scholes price $C(t, S)$ satisfies the PDE:
+
+    $$
+    \frac{\partial C}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 C}{\partial S^2} + rS\frac{\partial C}{\partial S} - rC = 0
+    $$
+
+    **Apply Follmer's pathwise Ito formula** to $C(t, S_t)$ along the realized path:
+
+    $$
+    C(T, S_T) - C(0, S_0) = \int_0^T \frac{\partial C}{\partial t}\, dt + \int_0^T \frac{\partial C}{\partial S}\, dS_t + \frac{1}{2}\int_0^T \frac{\partial^2 C}{\partial S^2}\, d[S]_t
+    $$
+
+    Since $C(T, S_T) = (S_T - K)^+$ and the hedging portfolio has value:
+
+    $$
+    V_T = C(0, S_0) + \int_0^T \Delta_t\, dS_t = C(0, S_0) + \int_0^T \frac{\partial C}{\partial S}(t, S_t)\, dS_t
+    $$
+
+    The hedging error is:
+
+    $$
+    \text{Error} = V_T - (S_T - K)^+ = C(0, S_0) + \int_0^T \frac{\partial C}{\partial S}\, dS_t - C(T, S_T)
+    $$
+
+    Substituting the Ito expansion of $C(T, S_T)$:
+
+    $$
+    \text{Error} = -\int_0^T \frac{\partial C}{\partial t}\, dt - \frac{1}{2}\int_0^T \frac{\partial^2 C}{\partial S^2}\, d[S]_t
+    $$
+
+    Using the Black-Scholes PDE to substitute $\frac{\partial C}{\partial t} = -\frac{1}{2}\sigma^2 S_t^2 \Gamma_t - rS_t \Delta_t + rC$ (with $r = 0$ for simplicity):
+
+    $$
+    \text{Error} = \int_0^T \frac{1}{2}\sigma^2 S_t^2 \Gamma_t\, dt - \frac{1}{2}\int_0^T S_t^2 \Gamma_t \frac{d[S]_t}{S_t^2} \cdot S_t^2
+    $$
+
+    More carefully, writing $d[S]_t$ for the realized quadratic variation increment:
+
+    $$
+    \text{Error} = \frac{1}{2}\int_0^T \Gamma(t, S_t) \left(\sigma^2 S_t^2\, dt - d[S]_t\right)
+    $$
+
+    or equivalently:
+
+    $$
+    \text{Error} = \frac{1}{2}\int_0^T \Gamma(t, S_t) S_t^2 \left(\sigma^2\, dt - d[\log S]_t\right)
+    $$
+
+    **Interpretation**: The hedging error depends on the difference between the **assumed variance** $\sigma^2\, dt$ used in the Black-Scholes model and the **realized quadratic variation** $d[S]_t$ of the actual path. If the realized quadratic variation equals the assumed variance ($d[S]_t = \sigma^2 S_t^2\, dt$), the error is zero. The error is weighted by gamma $\Gamma_t$, so it is largest when the option has high convexity (near the money, near expiry).
+
+    This is a purely pathwise result: it holds for **any** continuous path with finite quadratic variation, not just for Brownian motion paths. The hedger is long gamma (since $\Gamma > 0$ for a call), so the error is positive when realized variance exceeds assumed variance, and negative otherwise.
+
 ---
 
 **Exercise 3.** In the game-theoretic probability framework of Vovk, a hedger and nature play a game. The hedger chooses a portfolio at each step, and nature chooses the next price move. Formalize the superhedging problem in this setting: define the outer measure of a set of paths $A$ as the minimal initial capital needed to ensure non-negative wealth on all paths in $A^c$. Explain why this approach requires no probability measure.
+
+??? success "Solution to Exercise 3"
+
+    **Game-theoretic setup (Vovk's framework).**
+
+    The game has two players:
+
+    1. **Hedger (Skeptic)**: At each time step $i$, observes the history $(S_0, S_1, \ldots, S_i)$ and chooses a portfolio $\theta_i$ (number of shares to hold).
+    2. **Nature (Reality)**: After the hedger's choice, reveals the next price $S_{i+1}$.
+
+    The hedger's wealth evolves as:
+
+    $$
+    W_{i+1} = W_i + \theta_i (S_{i+1} - S_i)
+    $$
+
+    starting from initial capital $W_0$.
+
+    **Superhedging problem**: For a set of paths $A \subseteq \mathcal{C}([0,T], \mathbb{R}_+)$, the hedger wants to ensure non-negative wealth on all paths **not** in $A$ (i.e., on $A^c$).
+
+    **Definition of outer measure**: The outer measure of $A$ is:
+
+    $$
+    \bar{P}(A) = \inf\left\{W_0 \geq 0 : \exists \text{ strategy } \theta \text{ such that } W_T(\omega) \geq 0 \text{ for all } \omega \in A^c, \text{ and } W_t(\omega) \geq 0 \text{ for all } t, \omega\right\}
+    $$
+
+    Equivalently, $\bar{P}(A)$ is the minimal initial capital needed by the hedger to guarantee non-negative terminal wealth on every path outside $A$. If the hedger starts with capital $\bar{P}(A)$ and follows the optimal strategy, then either:
+
+    - The path $\omega \in A^c$, and the hedger ends with $W_T \geq 0$, or
+    - The path $\omega \in A$, and the hedger may have negative wealth (but this is acceptable since $A$ is the "null set").
+
+    **Why no probability measure is needed.**
+
+    The definition of $\bar{P}(A)$ involves only:
+
+    - Deterministic strategies $\theta$ (functions of observed price history)
+    - Deterministic constraints ($W_T \geq 0$ for each specific path $\omega$)
+    - An infimum over initial capitals
+
+    At no point does the definition reference a probability measure, expectation, or stochastic integral. The "integral" $\int_0^T \theta_t\, dS_t$ is computed pathwise as a Riemann-Stieltjes limit. The outer measure $\bar{P}$ is an intrinsic property of the **path space** and the **available trading strategies**, not of any probabilistic model.
+
+    This approach is philosophically different from measure-theoretic probability: rather than postulating a probability space and deriving consequences, it asks "what can be achieved by trading, path by path?" Events with $\bar{P}(A) = 0$ are those that can be "hedged away" at zero cost, analogous to probability-zero events but defined without probability.
+
+    Remarkably, Vovk showed that under this framework, many classical results of stochastic calculus (quadratic variation of Brownian motion, law of large numbers, etc.) hold for "typical" paths --- those outside a set of outer measure zero.
 
 ---
 
@@ -1070,14 +1221,229 @@ $$
 
 How does this relate to the realized variance of the path?
 
+??? success "Solution to Exercise 4"
+
+    **Setup**: Discrete pathwise hedging at times $0 = t_0 < t_1 < \cdots < t_N = T$, payoff $g(S_T)$ with $g \in C^2$.
+
+    The hedging strategy holds $\theta_{t_i} = g'(S_{t_i})$ shares during $[t_i, t_{i+1})$, and the portfolio value evolves:
+
+    $$
+    V_{t_{i+1}} = V_{t_i} + g'(S_{t_i})(S_{t_{i+1}} - S_{t_i})
+    $$
+
+    The terminal error is:
+
+    $$
+    \text{Error} = V_{t_N} - g(S_T) = V_0 + \sum_{i=0}^{N-1} g'(S_{t_i})(S_{t_{i+1}} - S_{t_i}) - g(S_T)
+    $$
+
+    With $V_0 = g(S_0)$ and using the telescoping sum:
+
+    $$
+    g(S_T) - g(S_0) = \sum_{i=0}^{N-1} [g(S_{t_{i+1}}) - g(S_{t_i})]
+    $$
+
+    Apply Taylor expansion to each term:
+
+    $$
+    g(S_{t_{i+1}}) - g(S_{t_i}) = g'(S_{t_i})(S_{t_{i+1}} - S_{t_i}) + \frac{1}{2}g''(\xi_i)(S_{t_{i+1}} - S_{t_i})^2
+    $$
+
+    where $\xi_i$ is between $S_{t_i}$ and $S_{t_{i+1}}$ (by the mean value theorem). Substituting:
+
+    $$
+    g(S_T) - g(S_0) = \sum_{i=0}^{N-1} g'(S_{t_i})(S_{t_{i+1}} - S_{t_i}) + \frac{1}{2}\sum_{i=0}^{N-1} g''(\xi_i)(S_{t_{i+1}} - S_{t_i})^2
+    $$
+
+    Therefore:
+
+    $$
+    \text{Error} = g(S_0) + \sum_{i=0}^{N-1} g'(S_{t_i})\Delta S_i - g(S_T) = -\frac{1}{2}\sum_{i=0}^{N-1} g''(\xi_i)(\Delta S_i)^2
+    $$
+
+    **Bounding the error**: Since $\Gamma(t, S) = g''(S)$ for a European payoff (or more generally, $g''$ plays the role of gamma):
+
+    $$
+    |\text{Error}| = \frac{1}{2}\left|\sum_{i=0}^{N-1} g''(\xi_i)(\Delta S_i)^2\right| \leq \frac{1}{2}\sup_{t,S}|g''(S)| \sum_{i=0}^{N-1} (\Delta S_i)^2
+    $$
+
+    Writing in terms of returns $r_i = \Delta S_i / S_{t_i}$:
+
+    $$
+    |\text{Error}| \leq \frac{1}{2}\sup_{t,S}|g''(S)| \cdot \sup_i S_{t_i}^2 \cdot \sum_{i=0}^{N-1} r_i^2
+    $$
+
+    or more precisely, using the original form:
+
+    $$
+    |\text{Error}| \leq \frac{1}{2}\sup_{t,S}|\Gamma(t,S)| \cdot S^2 \cdot \sum_{i=0}^{N-1}\left(\frac{S_{t_{i+1}} - S_{t_i}}{S_{t_i}}\right)^2
+    $$
+
+    **Relation to realized variance**: The sum $\sum_{i=0}^{N-1} r_i^2 = \sum_{i=0}^{N-1} \left(\frac{\Delta S_i}{S_{t_i}}\right)^2$ is precisely the **realized variance** of the path over $[0,T]$. As $N \to \infty$ (partition refines), this converges to the quadratic variation $[\log S]_T$. The hedging error is therefore controlled by the product of the maximum gamma exposure and the realized variance, confirming the fundamental link between hedging performance and realized path roughness.
+
 ---
 
 **Exercise 5.** Dupire's functional Ito calculus extends the pathwise approach to path-dependent derivatives. For a lookback option with payoff $\max_{0 \leq t \leq T} S_t - S_T$, explain why the classical (non-path-dependent) delta hedge is insufficient and describe what additional pathwise information the functional delta $\nabla_\omega V$ captures that the standard delta $\partial V / \partial S$ does not.
+
+??? success "Solution to Exercise 5"
+
+    **Why classical delta is insufficient for lookback options.**
+
+    The lookback payoff $\Phi = \max_{0 \leq t \leq T} S_t - S_T$ depends on the entire path history through the running maximum $M_T = \max_{0 \leq t \leq T} S_t$. The standard (Markovian) delta $\partial V / \partial S$ treats the option value as a function of the current spot $S_t$ only, ignoring the dependence on $M_t$.
+
+    Consider two scenarios at time $t$ with the same spot $S_t = 100$:
+
+    - **Scenario A**: Running maximum $M_t = 100$ (currently at the max)
+    - **Scenario B**: Running maximum $M_t = 120$ (well below the max)
+
+    The option values and sensitivities are very different:
+
+    - In **A**, any upward move increases $M_t$, so the option is highly sensitive to $S_t$.
+    - In **B**, upward moves below 120 do not change $M_t$, so the lookback feature is insensitive to $S_t$ for moderate moves.
+
+    A hedge based only on $\partial V / \partial S$ ignores the state variable $M_t$ and would assign the same delta to both scenarios if $V$ were treated as a function of $S_t$ alone.
+
+    **What the functional delta $\nabla_\omega V$ captures.**
+
+    Dupire's functional Ito calculus introduces the **vertical derivative**:
+
+    $$
+    \partial_x F_t(S) = \lim_{\varepsilon \to 0} \frac{F(S + \varepsilon \mathbb{1}_{[t,T]}) - F(S)}{\varepsilon}
+    $$
+
+    This derivative perturbs the **entire future path** from time $t$ onward by $\varepsilon$. For the lookback payoff:
+
+    - If $S_t < M_t$: A small upward bump $\varepsilon$ to the future path does not change $M_T$ (as long as $S_t + \varepsilon < M_t$), but does change $S_T$ to $S_T + \varepsilon$. So $\partial_x F_t = -1$ (the $-S_T$ part).
+    - If $S_t = M_t$: A bump increases both $M_T$ and $S_T$, so the net effect depends on whether the maximum is subsequently exceeded. The functional delta reflects this through the path-dependent state.
+
+    The functional delta captures:
+
+    1. **Path dependence**: The delta depends on the entire history $(S_s)_{s \leq t}$, not just $S_t$.
+    2. **Running maximum as state**: The hedge ratio naturally incorporates $M_t$ as an additional state variable.
+    3. **Discontinuity at $S_t = M_t$**: The delta changes character when the stock is at its running maximum vs. below it.
+    4. **Local time correction**: The functional Ito formula includes a term involving the local time at the running maximum, which accounts for the singular behavior of $M_t$.
+
+    In summary, the standard delta misses the path-dependent nature of the lookback payoff, while the functional delta from Dupire's calculus naturally incorporates the running maximum as a state variable and provides the correct hedging strategy for each path configuration.
 
 ---
 
 **Exercise 6.** Construct a pathwise superhedging strategy for a variance swap with payoff $\sum_{i=1}^N (\log S_{t_i} / S_{t_{i-1}})^2 - K_{\text{var}}$ using the Carr-Madan log-contract replication. Show that the strategy involves holding $-2/S_t$ shares of the underlying plus a static portfolio of options, and that this hedge works for every price path without any distributional assumptions.
 
+??? success "Solution to Exercise 6"
+
+    **Variance swap payoff**: $\sum_{i=1}^N \left(\log \frac{S_{t_i}}{S_{t_{i-1}}}\right)^2 - K_{\text{var}}$.
+
+    **Step 1: Carr-Madan log-contract replication.**
+
+    The key identity from Carr-Madan is that the log contract $-\log(S_T/S_0)$ can be replicated statically. Start with the payoff $g(S_T) = -2\log(S_T/S_0)$. By the Carr-Madan decomposition:
+
+    $$
+    g(S_T) = g(F) + g'(F)(S_T - F) + \int_0^F g''(K)(K - S_T)^+ dK + \int_F^\infty g''(K)(S_T - K)^+ dK
+    $$
+
+    where $F = S_0 e^{rT}$. Computing derivatives: $g'(x) = -2/x$ and $g''(x) = 2/x^2$. So:
+
+    $$
+    -2\log\frac{S_T}{S_0} = -2\log\frac{F}{S_0} - \frac{2}{F}(S_T - F) + \int_0^F \frac{2}{K^2}(K - S_T)^+ dK + \int_F^\infty \frac{2}{K^2}(S_T - K)^+ dK
+    $$
+
+    This is a **static portfolio** of puts (weight $2/K^2$ for $K < F$) and calls (weight $2/K^2$ for $K > F$).
+
+    **Step 2: Connect to realized variance.**
+
+    By pathwise Ito's formula applied to $f(x) = -2\log x$:
+
+    $$
+    -2\log S_T + 2\log S_0 = -2\int_0^T \frac{1}{S_t}\, dS_t + \frac{1}{2}\int_0^T \frac{2}{S_t^2}\, d[S]_t
+    $$
+
+    $$
+    = -2\int_0^T \frac{dS_t}{S_t} + \int_0^T \frac{d[S]_t}{S_t^2}
+    $$
+
+    The term $\int_0^T d[S]_t / S_t^2$ is the continuous realized variance $\int_0^T d[\log S]_t$. Therefore:
+
+    $$
+    \text{RV} = \int_0^T \frac{d[S]_t}{S_t^2} = -2\log\frac{S_T}{S_0} + 2\int_0^T \frac{dS_t}{S_t}
+    $$
+
+    **Step 3: Hedging strategy.**
+
+    The realized variance is replicated by:
+
+    1. **Static portfolio**: Hold $2/K^2$ puts for each strike $K < F$ and $2/K^2$ calls for each strike $K > F$, plus cash and forward positions. This replicates $-2\log(S_T/S_0)$.
+    2. **Dynamic position**: Hold $-2/S_t$ shares of stock at each time $t$, and continuously rebalance. The integral $2\int_0^T dS_t/S_t$ is the P&L from this dynamic position.
+
+    Combining: the variance swap payoff is:
+
+    $$
+    \text{RV} = \underbrace{\left(-2\log\frac{S_T}{S_0}\right)}_{\text{static portfolio payoff}} + \underbrace{2\int_0^T \frac{dS_t}{S_t}}_{\text{dynamic trading P\&L}}
+    $$
+
+    **Step 4: Why this works pathwise.**
+
+    The identity above is a consequence of Follmer's pathwise Ito formula, which holds for **every** continuous path with finite quadratic variation. No distributional assumptions are needed. The dynamic component ($-2/S_t$ shares) is determined entirely by the current price, and the static component is determined at time 0 from observed option prices.
+
+    In discrete time, the approximation $\sum_{i=1}^N (\log S_{t_i}/S_{t_{i-1}})^2 \approx \int_0^T d[\log S]_t$ holds with error that vanishes as the partition refines, and the discrete delta $-2/S_{t_i}$ approximates the continuous strategy. The strategy is model-free because the pathwise Ito formula requires no probability measure.
+
 ---
 
 **Exercise 7.** Rough path theory extends pathwise calculus to paths of low regularity (Holder exponent $H < 1/2$). Explain qualitatively why financial applications with rough volatility (where $H \approx 0.1$) require the rough path framework rather than the classical Follmer pathwise calculus. What is the "iterated integral" or "signature" of a path, and why is it needed for pathwise integration against rough paths?
+
+??? success "Solution to Exercise 7"
+
+    **Why rough paths are needed for $H < 1/2$.**
+
+    Follmer's pathwise Ito formula requires the path to have finite **quadratic variation**, i.e., the sum $\sum_i (x(t_{i+1}) - x(t_i))^2$ must converge. For a path with Holder regularity $\alpha$:
+
+    $$
+    |x(t_{i+1}) - x(t_i)| \leq C|t_{i+1} - t_i|^\alpha
+    $$
+
+    The quadratic variation sum satisfies:
+
+    $$
+    \sum_i (x(t_{i+1}) - x(t_i))^2 \leq C^2 \sum_i |t_{i+1} - t_i|^{2\alpha} \leq C^2 N^{1-2\alpha} |\Pi|^{2\alpha}
+    $$
+
+    For a uniform partition with $N$ points, $|\Pi| = T/N$:
+
+    - If $\alpha > 1/2$: $\sum \to 0$ as $N \to \infty$ (trivial quadratic variation)
+    - If $\alpha = 1/2$: $\sum$ converges to a finite, nonzero limit (Brownian motion case)
+    - If $\alpha < 1/2$: $\sum \to \infty$ (infinite quadratic variation)
+
+    For rough volatility with $H \approx 0.1$, the volatility path has Holder exponent $\alpha \approx 0.1 < 1/2$. The quadratic variation of such a path is **infinite**, so Follmer's formula does not apply directly.
+
+    Moreover, the classical Riemann-Stieltjes integral $\int Y\, dX$ requires the integrand $Y$ and integrator $X$ to have combined regularity exceeding 1 (i.e., $\alpha_Y + \alpha_X > 1$, the Young condition). For $\alpha_X = H = 0.1$, we would need $\alpha_Y > 0.9$, which is unrealistically smooth for financial applications.
+
+    **The iterated integral and signature.**
+
+    Rough path theory overcomes this by encoding higher-order information about the path. The **iterated integral** (or second-order process) for a path $X: [0,T] \to \mathbb{R}^d$ is:
+
+    $$
+    \mathbb{X}_{s,t}^{ij} = \int_s^t \int_s^u dX_r^i\, dX_u^j
+    $$
+
+    This is an element of $\mathbb{R}^{d \times d}$ capturing how different coordinates of the path interact. For a one-dimensional path, it reduces to the area:
+
+    $$
+    \mathbb{X}_{s,t} = \int_s^t (X_u - X_s)\, dX_u
+    $$
+
+    The **signature** of a path is the collection of all iterated integrals up to any order:
+
+    $$
+    \text{Sig}(X)_{s,t} = \left(1, \int_s^t dX_u, \int_s^t \int_s^u dX_r \otimes dX_u, \ldots\right)
+    $$
+
+    **Why the signature is needed.**
+
+    For $\alpha \in (1/3, 1/2]$, the classical Riemann-Stieltjes approach fails, but knowledge of the **first-order increments** $X_t - X_s$ and the **second-order iterated integrals** $\mathbb{X}_{s,t}$ suffices to define the integral $\int Y\, dX$ via the rough path integral:
+
+    $$
+    \int_s^t Y_u\, dX_u \approx Y_s(X_t - X_s) + Y'_s \mathbb{X}_{s,t}
+    $$
+
+    where $Y'$ is the Gubinelli derivative. The key insight is that $\mathbb{X}_{s,t}$ provides the "missing information" that the first-order increments alone cannot supply for rough paths. Without $\mathbb{X}$, different approximation schemes (left-point, midpoint, etc.) give different limits for $\int Y\, dX$, so the integral is not well-defined. The iterated integral pins down which limit is the "correct" one.
+
+    For financial applications with rough volatility ($H \approx 0.1 < 1/3$), even higher-order iterated integrals (third order and beyond) are needed, making the rough path framework essential. The signature provides a complete, model-free description of the path's behavior at all scales, enabling pathwise integration and hedging without probabilistic assumptions.

@@ -219,22 +219,221 @@ The [next section](correlation_and_leverage_effect.md) examines the correlation 
 
 **Exercise 1.** Compute the half-life of mean reversion $t_{1/2} = \ln 2/\kappa$ for $\kappa = 1$ and $\kappa = 5$. In each case, how many trading days does it take for a variance shock to decay by 50%?
 
+??? success "Solution to Exercise 1"
+    The half-life is $t_{1/2} = \ln 2 / \kappa$.
+
+    **Case 1: $\kappa = 1$.**
+
+    $$
+    t_{1/2} = \frac{\ln 2}{1} = 0.6931 \text{ years}
+    $$
+
+    Assuming 252 trading days per year: $0.6931 \times 252 \approx 175$ trading days, or roughly 8.3 calendar months. A variance shock takes about 175 trading days to decay by 50%.
+
+    **Case 2: $\kappa = 5$.**
+
+    $$
+    t_{1/2} = \frac{\ln 2}{5} = 0.1386 \text{ years}
+    $$
+
+    In trading days: $0.1386 \times 252 \approx 35$ trading days, or roughly 1.7 calendar months. The variance shock decays by 50% in about 7 weeks.
+
+    The five-fold increase in $\kappa$ produces a five-fold decrease in half-life. With $\kappa = 1$, volatility shocks persist for the better part of a year, consistent with the slow decay observed after major market crises. With $\kappa = 5$, shocks dissipate in under two months, which would be appropriate for markets where volatility reverts quickly.
+
 ---
 
 **Exercise 2.** For $\kappa = 2$, $\theta = 0.04$, and $V_0 = 0.09$ (post-crash elevated variance), compute $\mathbb{E}[V_t]$ at $t = 0.25, 0.5, 1, 2$ years. Plot or sketch the mean-reversion trajectory.
+
+??? success "Solution to Exercise 2"
+    Using $\kappa = 2$, $\theta = 0.04$, and $V_0 = 0.09$:
+
+    $$
+    \mathbb{E}[V_t] = \theta + (V_0 - \theta)e^{-\kappa t} = 0.04 + 0.05\,e^{-2t}
+    $$
+
+    Computing at each time point:
+
+    **At $t = 0.25$ years:**
+
+    $$
+    \mathbb{E}[V_{0.25}] = 0.04 + 0.05\,e^{-0.5} = 0.04 + 0.05 \times 0.6065 = 0.04 + 0.03033 = 0.07033
+    $$
+
+    **At $t = 0.5$ years:**
+
+    $$
+    \mathbb{E}[V_{0.5}] = 0.04 + 0.05\,e^{-1.0} = 0.04 + 0.05 \times 0.3679 = 0.04 + 0.01839 = 0.05839
+    $$
+
+    **At $t = 1$ year:**
+
+    $$
+    \mathbb{E}[V_1] = 0.04 + 0.05\,e^{-2.0} = 0.04 + 0.05 \times 0.1353 = 0.04 + 0.00677 = 0.04677
+    $$
+
+    **At $t = 2$ years:**
+
+    $$
+    \mathbb{E}[V_2] = 0.04 + 0.05\,e^{-4.0} = 0.04 + 0.05 \times 0.01832 = 0.04 + 0.000916 = 0.04092
+    $$
+
+    | $t$ (years) | $\mathbb{E}[V_t]$ | $\sqrt{\mathbb{E}[V_t]}$ (vol) |
+    |:---:|:---:|:---:|
+    | $0$ | $0.0900$ | $30.0\%$ |
+    | $0.25$ | $0.0703$ | $26.5\%$ |
+    | $0.50$ | $0.0584$ | $24.2\%$ |
+    | $1.00$ | $0.0468$ | $21.6\%$ |
+    | $2.00$ | $0.0409$ | $20.2\%$ |
+    | $\infty$ | $0.0400$ | $20.0\%$ |
+
+    The trajectory shows the expected variance decaying monotonically from $V_0 = 0.09$ (30% volatility) toward $\theta = 0.04$ (20% volatility). The half-life is $\ln 2 / 2 \approx 0.35$ years, and by $t = 2$ years the variance is within 2.3% of its long-run level.
 
 ---
 
 **Exercise 3.** The term structure of implied variance for an ATM option is approximately $\mathbb{E}[\bar{V}_{0,T}] = \theta + (V_0 - \theta)\frac{1 - e^{-\kappa T}}{\kappa T}$. Compute this for $T = 0.1, 0.5, 1, 5$ years with $\kappa = 2$, $\theta = 0.04$, $V_0 = 0.06$. Is the term structure upward-sloping or downward-sloping?
 
+??? success "Solution to Exercise 3"
+    The term structure of expected average variance (variance swap fair strike) is:
+
+    $$
+    \mathbb{E}[\bar{V}_{0,T}] = \theta + (V_0 - \theta)\frac{1 - e^{-\kappa T}}{\kappa T}
+    $$
+
+    With $\kappa = 2$, $\theta = 0.04$, $V_0 = 0.06$:
+
+    **At $T = 0.1$ years:**
+
+    $$
+    \mathbb{E}[\bar{V}_{0,0.1}] = 0.04 + 0.02 \times \frac{1 - e^{-0.2}}{0.2} = 0.04 + 0.02 \times \frac{0.1813}{0.2} = 0.04 + 0.02 \times 0.9063 = 0.05813
+    $$
+
+    **At $T = 0.5$ years:**
+
+    $$
+    \mathbb{E}[\bar{V}_{0,0.5}] = 0.04 + 0.02 \times \frac{1 - e^{-1.0}}{1.0} = 0.04 + 0.02 \times 0.6321 = 0.05264
+    $$
+
+    **At $T = 1$ year:**
+
+    $$
+    \mathbb{E}[\bar{V}_{0,1}] = 0.04 + 0.02 \times \frac{1 - e^{-2.0}}{2.0} = 0.04 + 0.02 \times \frac{0.8647}{2.0} = 0.04 + 0.02 \times 0.4323 = 0.04865
+    $$
+
+    **At $T = 5$ years:**
+
+    $$
+    \mathbb{E}[\bar{V}_{0,5}] = 0.04 + 0.02 \times \frac{1 - e^{-10}}{10} = 0.04 + 0.02 \times \frac{0.99995}{10} = 0.04 + 0.02 \times 0.09999 = 0.04200
+    $$
+
+    | $T$ | $\mathbb{E}[\bar{V}_{0,T}]$ | $\sqrt{\mathbb{E}[\bar{V}_{0,T}]}$ (vol) |
+    |:---:|:---:|:---:|
+    | $0.1$ | $0.05813$ | $24.1\%$ |
+    | $0.5$ | $0.05264$ | $22.9\%$ |
+    | $1.0$ | $0.04865$ | $22.1\%$ |
+    | $5.0$ | $0.04200$ | $20.5\%$ |
+
+    The term structure is **downward-sloping** because $V_0 = 0.06 > \theta = 0.04$. The current variance is elevated above its long-run level, so shorter-maturity variance swaps have higher fair strikes than longer-maturity ones. As $T \to \infty$, $\mathbb{E}[\bar{V}_{0,T}] \to \theta = 0.04$, corresponding to a 20% implied volatility level.
+
 ---
 
 **Exercise 4.** Explain why a higher $\kappa$ produces a flatter implied volatility term structure: the variance converges to $\theta$ faster, so the effect of the current $V_0$ dissipates quickly for longer maturities.
+
+??? success "Solution to Exercise 4"
+    A higher $\kappa$ means the variance process reverts to $\theta$ more quickly. The formula for the expected average variance is:
+
+    $$
+    \mathbb{E}[\bar{V}_{0,T}] = \theta + (V_0 - \theta)\frac{1 - e^{-\kappa T}}{\kappa T}
+    $$
+
+    The key factor is $g(\kappa, T) = \frac{1 - e^{-\kappa T}}{\kappa T}$, which measures how much the current variance $V_0$ influences the average variance over $[0, T]$.
+
+    For large $\kappa$: the exponential $e^{-\kappa T}$ decays rapidly, so $g(\kappa, T) \approx 1/(\kappa T)$ for moderate $T$. The contribution of $(V_0 - \theta)$ to the average variance shrinks as $1/(\kappa T)$. This means that even for short maturities, the expected average variance is close to $\theta$.
+
+    For small $\kappa$: the exponential decays slowly, so $g(\kappa, T) \approx 1 - \kappa T/2$ for small $T$. The current variance $V_0$ dominates the average for a long period.
+
+    **The resulting term structure:** When $\kappa$ is large, the transition from $V_0$ to $\theta$ happens quickly. Even short-maturity options "see" a variance close to $\theta$, so the term structure is nearly flat at $\sqrt{\theta}$ for all but the very shortest maturities. When $\kappa$ is small, the transition is slow, and the term structure exhibits a pronounced slope from $\sqrt{V_0}$ (short end) to $\sqrt{\theta}$ (long end).
+
+    In the options market, a flat implied volatility term structure signals that the market expects current volatility conditions to persist (or equivalently, that mean reversion is fast enough that the current state is already at equilibrium). A steep term structure signals that the current volatility differs substantially from its long-run level and that mean reversion is slow enough for this difference to matter across maturities.
 
 ---
 
 **Exercise 5.** The variance risk premium $\lambda_v$ causes the risk-neutral $\kappa^{\mathbb{Q}}$ to differ from the physical $\kappa^{\mathbb{P}}$. If $\kappa^{\mathbb{P}} = 3$ and $\lambda_v = -1.5$ (investors dislike variance risk), what is $\kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \lambda_v$? Is mean reversion faster or slower under the risk-neutral measure?
 
+??? success "Solution to Exercise 5"
+    With $\kappa^{\mathbb{P}} = 3$ and $\lambda_v = -1.5$:
+
+    $$
+    \kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \lambda_v = 3 + (-1.5) = 1.5
+    $$
+
+    Mean reversion is **slower** under the risk-neutral measure ($\kappa^{\mathbb{Q}} = 1.5 < 3 = \kappa^{\mathbb{P}}$).
+
+    **Interpretation:** A negative $\lambda_v$ means investors are willing to pay a premium to hedge against variance risk. In the risk-neutral world (the world consistent with option prices), variance shocks are more persistent than they are in reality. This makes options appear more expensive than a physical-measure model would suggest, reflecting the **variance risk premium**.
+
+    The half-life under each measure is:
+
+    $$
+    t_{1/2}^{\mathbb{P}} = \frac{\ln 2}{3} = 0.231 \text{ years} \approx 2.8 \text{ months}
+    $$
+
+    $$
+    t_{1/2}^{\mathbb{Q}} = \frac{\ln 2}{1.5} = 0.462 \text{ years} \approx 5.5 \text{ months}
+    $$
+
+    Under the risk-neutral measure, variance shocks take twice as long to decay, which inflates the prices of long-dated options relative to what the physical-measure dynamics would predict.
+
+    Note that the risk-neutral long-run variance is:
+
+    $$
+    \theta^{\mathbb{Q}} = \frac{\kappa^{\mathbb{P}}\theta^{\mathbb{P}}}{\kappa^{\mathbb{Q}}} = \frac{3\,\theta^{\mathbb{P}}}{1.5} = 2\,\theta^{\mathbb{P}}
+    $$
+
+    So $\theta^{\mathbb{Q}} > \theta^{\mathbb{P}}$: the risk-neutral long-run variance is higher, further reflecting the premium investors demand for bearing variance risk.
+
 ---
 
 **Exercise 6.** The autocorrelation function of $V_t$ in stationarity is $\operatorname{Corr}(V_t, V_{t+h}) = e^{-\kappa h}$. For $\kappa = 2$, compute the autocorrelation at lags of 1 day, 1 week, 1 month, and 1 year. At what lag does the correlation drop below 0.1?
+
+??? success "Solution to Exercise 6"
+    For $\kappa = 2$, the autocorrelation function is $\operatorname{Corr}(V_t, V_{t+h}) = e^{-2h}$, where $h$ is measured in years.
+
+    Using the convention: 1 day $= 1/252$ years, 1 week $= 5/252$ years, 1 month $= 21/252$ years.
+
+    **Lag of 1 day ($h = 1/252 = 0.003968$):**
+
+    $$
+    e^{-2 \times 0.003968} = e^{-0.007937} = 0.9921
+    $$
+
+    **Lag of 1 week ($h = 5/252 = 0.01984$):**
+
+    $$
+    e^{-2 \times 0.01984} = e^{-0.03968} = 0.9611
+    $$
+
+    **Lag of 1 month ($h = 21/252 = 0.08333$):**
+
+    $$
+    e^{-2 \times 0.08333} = e^{-0.1667} = 0.8465
+    $$
+
+    **Lag of 1 year ($h = 1$):**
+
+    $$
+    e^{-2 \times 1} = e^{-2} = 0.1353
+    $$
+
+    | Lag | $h$ (years) | Autocorrelation |
+    |:---|:---:|:---:|
+    | 1 day | $0.00397$ | $0.9921$ |
+    | 1 week | $0.01984$ | $0.9611$ |
+    | 1 month | $0.08333$ | $0.8465$ |
+    | 1 year | $1.0$ | $0.1353$ |
+
+    **When does correlation drop below 0.1?** We solve $e^{-2h} = 0.1$:
+
+    $$
+    -2h = \ln(0.1) = -2.3026 \implies h = \frac{2.3026}{2} = 1.1513 \text{ years}
+    $$
+
+    This is approximately $1.1513 \times 252 \approx 290$ trading days, or about 13.8 months. After roughly 14 months, the variance process has essentially "forgotten" its current state and is driven primarily by the stationary distribution around $\theta$.

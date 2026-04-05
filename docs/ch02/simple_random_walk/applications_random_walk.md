@@ -94,30 +94,6 @@ In **reinforcement learning**, value functions for Markov decision processes are
 
 **Exercise 1.** In the Gambler's Ruin problem with initial wealth $a = 20$ and target $b = 100$, compute the probability of reaching $b$ before going broke (assuming a fair game). Then compute the expected duration $\mathbb{E}[\tau]$ of the game using $\mathbb{E}[\tau] = a(b-a)$.
 
----
-
-**Exercise 2.** In the Cox-Ross-Rubinstein model with $S_0 = 100$, $\sigma = 0.3$, $r = 0.05$, and $n = 252$ steps (daily), compute the up and down factors $u = e^{\sigma/\sqrt{n}}$ and $d = e^{-\sigma/\sqrt{n}}$, and the risk-neutral probability $p^*$. Verify that $p^* \neq 1/2$ and compute how far it deviates from $1/2$.
-
----
-
-**Exercise 3.** In Bachelier's arithmetic Brownian motion model $S(t) = S_0 + \sigma W_t$, compute the probability that the stock price becomes negative before time $T = 1$ when $S_0 = 10$ and $\sigma = 3$. This illustrates the defect that motivated the switch to geometric Brownian motion.
-
----
-
-**Exercise 4.** The Einstein diffusion relation states that the diffusion coefficient is $D = \delta^2/(2\tau)$ where $\delta$ is the step size and $\tau$ is the time per step. If a pollen particle in water has $D = 10^{-9}$ cm$^2$/s and makes $10^{12}$ collisions per second, what is the effective step size $\delta$ of each collision?
-
----
-
-**Exercise 5.** In the Wright-Fisher model, the fixation probability starting from allele frequency $x$ is $\mathbb{P}(\text{fixation at 1}) = x$. This is the continuous-time analogue of the gambler's ruin result $\mathbb{P}(\tau_b < \tau_0) = a/b$ with $x = a/b$. If a new mutation appears in a population of $N = 1000$ diploid individuals (so $x = 1/(2N) = 0.0005$), what is the fixation probability? How many such mutations must arise for the expected number of fixations to equal 1?
-
----
-
-**Exercise 6.** The random walk serves as a test problem for temporal-difference learning. Consider a 7-state random walk with states $\{0, 1, 2, 3, 4, 5, 6\}$ where states 0 and 6 are absorbing (giving rewards 0 and 1 respectively), and the walk starts at state 3. Using the martingale property, compute the true value function $V(i) = \mathbb{P}(\text{reach state 6 before state 0} \mid S_0 = i)$ for each state $i = 0, 1, \ldots, 6$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     With $a = 20$ and $b = 100$ in a fair game ($p = 1/2$), the probability of reaching $b$ before going broke is:
 
@@ -130,6 +106,10 @@ In **reinforcement learning**, value functions for Markov decision processes are
     $$
     \mathbb{E}[\tau] = a(b - a) = 20 \cdot (100 - 20) = 20 \cdot 80 = 1600 \text{ rounds}
     $$
+
+---
+
+**Exercise 2.** In the Cox-Ross-Rubinstein model with $S_0 = 100$, $\sigma = 0.3$, $r = 0.05$, and $n = 252$ steps (daily), compute the up and down factors $u = e^{\sigma/\sqrt{n}}$ and $d = e^{-\sigma/\sqrt{n}}$, and the risk-neutral probability $p^*$. Verify that $p^* \neq 1/2$ and compute how far it deviates from $1/2$.
 
 ??? success "Solution to Exercise 2"
     With $S_0 = 100$, $\sigma = 0.3$, $r = 0.05$, and $n = 252$:
@@ -156,6 +136,10 @@ In **reinforcement learning**, value functions for Markov decision processes are
 
     The deviation from $1/2$ is $p^* - 0.5 \approx 0.0005$, which is very small. This small deviation reflects the risk-free drift $r = 0.05$ being spread over 252 daily steps.
 
+---
+
+**Exercise 3.** In Bachelier's arithmetic Brownian motion model $S(t) = S_0 + \sigma W_t$, compute the probability that the stock price becomes negative before time $T = 1$ when $S_0 = 10$ and $\sigma = 3$. This illustrates the defect that motivated the switch to geometric Brownian motion.
+
 ??? success "Solution to Exercise 3"
     In Bachelier's model, $S(t) = S_0 + \sigma W_t$ with $S_0 = 10$ and $\sigma = 3$. The stock becomes negative when $S(t) < 0$, i.e., $W_t < -S_0/\sigma = -10/3$. The probability that $\min_{0 \leq t \leq 1} S(t) < 0$ equals the probability that $\min_{0 \leq t \leq 1} W_t < -10/3$.
 
@@ -166,6 +150,10 @@ In **reinforcement learning**, value functions for Markov decision processes are
     $$
 
     Although this is small (about 0.086%), the probability is strictly positive, illustrating the fundamental defect of arithmetic Brownian motion: for any $S_0$ and $\sigma > 0$, there is always a positive probability of negative prices.
+
+---
+
+**Exercise 4.** The Einstein diffusion relation states that the diffusion coefficient is $D = \delta^2/(2\tau)$ where $\delta$ is the step size and $\tau$ is the time per step. If a pollen particle in water has $D = 10^{-9}$ cm$^2$/s and makes $10^{12}$ collisions per second, what is the effective step size $\delta$ of each collision?
 
 ??? success "Solution to Exercise 4"
     Given $D = 10^{-9}$ cm$^2$/s and the collision rate is $10^{12}$/s, so $\tau = 10^{-12}$ s. From $D = \delta^2/(2\tau)$:
@@ -179,6 +167,10 @@ In **reinforcement learning**, value functions for Markov decision processes are
     $$
 
     This is $\delta \approx 4.47 \times 10^{-13}$ m $= 0.447$ pm (picometers), which is on the order of atomic bond lengths, consistent with the physical picture of molecular collisions.
+
+---
+
+**Exercise 5.** In the Wright-Fisher model, the fixation probability starting from allele frequency $x$ is $\mathbb{P}(\text{fixation at 1}) = x$. This is the continuous-time analogue of the gambler's ruin result $\mathbb{P}(\tau_b < \tau_0) = a/b$ with $x = a/b$. If a new mutation appears in a population of $N = 1000$ diploid individuals (so $x = 1/(2N) = 0.0005$), what is the fixation probability? How many such mutations must arise for the expected number of fixations to equal 1?
 
 ??? success "Solution to Exercise 5"
     In a diploid population of $N = 1000$, a new mutation starts at frequency $x = 1/(2N) = 1/2000 = 0.0005$. The fixation probability is:
@@ -194,6 +186,10 @@ In **reinforcement learning**, value functions for Markov decision processes are
     $$
 
     So 2000 independent new mutations must arise for one fixation event to be expected on average.
+
+---
+
+**Exercise 6.** The random walk serves as a test problem for temporal-difference learning. Consider a 7-state random walk with states $\{0, 1, 2, 3, 4, 5, 6\}$ where states 0 and 6 are absorbing (giving rewards 0 and 1 respectively), and the walk starts at state 3. Using the martingale property, compute the true value function $V(i) = \mathbb{P}(\text{reach state 6 before state 0} \mid S_0 = i)$ for each state $i = 0, 1, \ldots, 6$.
 
 ??? success "Solution to Exercise 6"
     By the Gambler's Ruin result (martingale property), the probability of reaching state $b$ before state 0 starting from state $i$ is $V(i) = i/b$. Here, the absorbing states are 0 and 6, so $b = 6$:

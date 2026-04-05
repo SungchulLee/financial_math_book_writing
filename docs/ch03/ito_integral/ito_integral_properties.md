@@ -269,40 +269,6 @@ $$
 \int_0^\pi \bigl(3\cos(s) + 2\sin(s)\bigr)\, dB_s
 $$
 
----
-
-**Exercise 2.** Show directly from the martingale property that $\mathbb{E}[I_t \cdot I_s] = \mathbb{E}[I_s^2]$ for $s \le t$, where $I_t = \int_0^t H_u\, dB_u$. *Hint*: Write $I_t = I_s + (I_t - I_s)$ and use the fact that $I_t - I_s$ is independent of $\mathcal{F}_s$.
-
----
-
-**Exercise 3.** Let $I_t = \int_0^t B_s\, dB_s = \frac{1}{2}(B_t^2 - t)$. Verify each of the six fundamental properties (linearity, zero mean, martingale, Ito isometry, continuity, quadratic variation) directly for this specific integral.
-
----
-
-**Exercise 4.** Using the polarization identity
-
-$$
-\mathbb{E}\!\left[\int_0^t H_s\, dB_s \cdot \int_0^t K_s\, dB_s\right] = \mathbb{E}\!\left[\int_0^t H_s K_s\, ds\right]
-$$
-
-compute $\mathbb{E}[I_t \cdot J_t]$ where $I_t = \int_0^t s\, dB_s$ and $J_t = \int_0^t s^2\, dB_s$.
-
----
-
-**Exercise 5.** Let $I_t = \int_0^t \sigma(s)\, dB_s$ for a deterministic function $\sigma(s)$. Show that $I_t$ is Gaussian and compute its distribution. Then verify that $I_t^2 - \int_0^t \sigma(s)^2\, ds$ is a martingale by computing its expectation.
-
----
-
-**Exercise 6.** The quadratic variation of $I_t = \int_0^t H_s\, dB_s$ is $[I,I]_t = \int_0^t H_s^2\, ds$. Consider the Ito process $X_t = \mu t + \int_0^t \sigma_s\, dB_s$. Show that $[X,X]_t = \int_0^t \sigma_s^2\, ds$, i.e., the drift contributes nothing to the quadratic variation.
-
----
-
-**Exercise 7.** The martingale representation theorem states that every square-integrable martingale in the Brownian filtration is an Ito integral. The process $M_t = B_t^3 - 3tB_t$ is a martingale. Find the integrand $H_s$ such that $M_t = \int_0^t H_s\, dB_s$. *Hint*: Apply Ito's formula to $f(t, x) = x^3 - 3tx$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     By linearity: $\int_0^\pi (3\cos(s) + 2\sin(s))\, dB_s = 3\int_0^\pi \cos(s)\, dB_s + 2\int_0^\pi \sin(s)\, dB_s$.
 
@@ -330,6 +296,10 @@ compute $\mathbb{E}[I_t \cdot J_t]$ where $I_t = \int_0^t s\, dB_s$ and $J_t = \
     \operatorname{Var} = 9 \cdot \frac{\pi}{2} + 12 \cdot 0 + 4 \cdot \frac{\pi}{2} = \frac{13\pi}{2}
     $$
 
+---
+
+**Exercise 2.** Show directly from the martingale property that $\mathbb{E}[I_t \cdot I_s] = \mathbb{E}[I_s^2]$ for $s \le t$, where $I_t = \int_0^t H_u\, dB_u$. *Hint*: Write $I_t = I_s + (I_t - I_s)$ and use the fact that $I_t - I_s$ is independent of $\mathcal{F}_s$.
+
 ??? success "Solution to Exercise 2"
     Write $I_t = I_s + (I_t - I_s)$ where $I_t - I_s = \int_s^t H_u\, dB_u$. Then:
 
@@ -350,6 +320,10 @@ compute $\mathbb{E}[I_t \cdot J_t]$ where $I_t = \int_0^t s\, dB_s$ and $J_t = \
     $$
 
     and so $\mathbb{E}[I_t \cdot I_s] = \mathbb{E}[I_s^2]$.
+
+---
+
+**Exercise 3.** Let $I_t = \int_0^t B_s\, dB_s = \frac{1}{2}(B_t^2 - t)$. Verify each of the six fundamental properties (linearity, zero mean, martingale, Ito isometry, continuity, quadratic variation) directly for this specific integral.
 
 ??? success "Solution to Exercise 3"
     Let $I_t = \int_0^t B_s\, dB_s = \frac{1}{2}(B_t^2 - t)$.
@@ -384,6 +358,16 @@ compute $\mathbb{E}[I_t \cdot J_t]$ where $I_t = \int_0^t s\, dB_s$ and $J_t = \
 
     **Quadratic variation:** $[I,I]_t = \int_0^t B_s^2\, ds$. This can be verified by noting that $I_t^2 - [I,I]_t = (B_t^2 - t)^2/4 - \int_0^t B_s^2\, ds$ should be a martingale, which follows from the Doob-Meyer decomposition. ✓
 
+---
+
+**Exercise 4.** Using the polarization identity
+
+$$
+\mathbb{E}\!\left[\int_0^t H_s\, dB_s \cdot \int_0^t K_s\, dB_s\right] = \mathbb{E}\!\left[\int_0^t H_s K_s\, ds\right]
+$$
+
+compute $\mathbb{E}[I_t \cdot J_t]$ where $I_t = \int_0^t s\, dB_s$ and $J_t = \int_0^t s^2\, dB_s$.
+
 ??? success "Solution to Exercise 4"
     Using the polarization identity with $H_s = s$ and $K_s = s^2$:
 
@@ -392,6 +376,10 @@ compute $\mathbb{E}[I_t \cdot J_t]$ where $I_t = \int_0^t s\, dB_s$ and $J_t = \
     $$
 
     (The expectation can be moved inside the ordinary integral because the integrand is deterministic.)
+
+---
+
+**Exercise 5.** Let $I_t = \int_0^t \sigma(s)\, dB_s$ for a deterministic function $\sigma(s)$. Show that $I_t$ is Gaussian and compute its distribution. Then verify that $I_t^2 - \int_0^t \sigma(s)^2\, ds$ is a martingale by computing its expectation.
 
 ??? success "Solution to Exercise 5"
     Since $\sigma(s)$ is deterministic, $I_t = \int_0^t \sigma(s)\, dB_s$ is the $L^2$-limit of sums $\sum_k \sigma(t_k)(B_{t_{k+1}} - B_{t_k})$. Each such sum is a finite linear combination of independent Gaussian random variables (the Brownian increments), and hence Gaussian. The $L^2$-limit of Gaussian random variables is Gaussian.
@@ -411,6 +399,10 @@ compute $\mathbb{E}[I_t \cdot J_t]$ where $I_t = \int_0^t s\, dB_s$ and $J_t = \
     $$
 
     for all $t$. This is consistent with $I_t^2 - \int_0^t \sigma(s)^2\, ds$ being a martingale (constant expectation equal to zero).
+
+---
+
+**Exercise 6.** The quadratic variation of $I_t = \int_0^t H_s\, dB_s$ is $[I,I]_t = \int_0^t H_s^2\, ds$. Consider the Ito process $X_t = \mu t + \int_0^t \sigma_s\, dB_s$. Show that $[X,X]_t = \int_0^t \sigma_s^2\, ds$, i.e., the drift contributes nothing to the quadratic variation.
 
 ??? success "Solution to Exercise 6"
     The Ito process $X_t = \mu t + \int_0^t \sigma_s\, dB_s$ has increments:
@@ -434,6 +426,10 @@ compute $\mathbb{E}[I_t \cdot J_t]$ where $I_t = \int_0^t s\, dB_s$ and $J_t = \
     As the mesh tends to zero, the first term vanishes (same argument as for smooth functions: sum of $(\Delta t)^2$ goes to zero). The cross term also vanishes. The third term converges to $\int_0^t \sigma_s^2\, ds$ (this is the quadratic variation of the Ito integral).
 
     Therefore $[X,X]_t = \int_0^t \sigma_s^2\, ds$, and the drift $\mu t$ contributes nothing to the quadratic variation because its increments $\mu \Delta t_i$ are of order $\Delta t_i$, making squared increments of order $(\Delta t_i)^2$, which sum to zero.
+
+---
+
+**Exercise 7.** The martingale representation theorem states that every square-integrable martingale in the Brownian filtration is an Ito integral. The process $M_t = B_t^3 - 3tB_t$ is a martingale. Find the integrand $H_s$ such that $M_t = \int_0^t H_s\, dB_s$. *Hint*: Apply Ito's formula to $f(t, x) = x^3 - 3tx$.
 
 ??? success "Solution to Exercise 7"
     Apply Ito's formula to $f(t, x) = x^3 - 3tx$. The partial derivatives are:

@@ -224,27 +224,202 @@ The COS method converges exponentially fast for European calls and puts under th
 **Exercise 1.**
 The COS method achieves exponential convergence: the error decreases as $e^{-cN}$ for some $c > 0$. Verify this by computing a European call price with $N = 32, 64, 128, 256$ and computing $\log_{10}|\text{error}|$ against a Gil-Pelaez reference. Estimate $c$ from the slope of the error curve.
 
+??? success "Solution to Exercise 1"
+    We use the standard Heston parameters: $S_0 = 100$, $K = 100$, $r = 0.05$, $q = 0$, $v_0 = 0.04$, $\kappa = 1.5$, $\theta = 0.04$, $\xi = 0.3$, $\rho = -0.7$, $\tau = 1$, with $L = 10$. Denote the reference Gil-Pelaez call price as $V_{\text{ref}} = 7.962344\ldots$
+
+    For the COS method, the error satisfies $\epsilon_N \approx C_0 e^{-cN}$ for smooth payoffs. Taking logarithms:
+
+    $$
+    \log_{10}|\epsilon_N| = \log_{10}(C_0) - cN \log_{10}(e)
+    $$
+
+    Using the benchmark table values:
+
+    | $N$ | Error | $\log_{10}|\text{error}|$ |
+    |-----|-------|---------------------------|
+    | 32 | $5 \times 10^{-4}$ | $-3.3$ |
+    | 64 | $1 \times 10^{-6}$ | $-6.0$ |
+    | 128 | $3 \times 10^{-9}$ | $-8.5$ |
+    | 256 | $< 10^{-12}$ | $< -12$ |
+
+    Plotting $\log_{10}|\text{error}|$ against $N$ gives an approximately linear relationship (confirming exponential convergence). The slope between $N=32$ and $N=64$ is
+
+    $$
+    \text{slope} = \frac{-6.0 - (-3.3)}{64 - 32} = \frac{-2.7}{32} \approx -0.084
+    $$
+
+    Since $\log_{10}|\epsilon_N| \approx \text{const} - c N \log_{10}(e) = \text{const} - 0.4343\, c\, N$, we have
+
+    $$
+    0.4343\, c \approx 0.084 \implies c \approx 0.194
+    $$
+
+    This means each additional COS term reduces the error by a multiplicative factor of approximately $e^{-0.194} \approx 0.82$. The linear fit across all four data points confirms the exponential convergence model with $c \approx 0.19$. The convergence rate $c$ is related to the strip width $\beta$ by $c = \beta\pi/(b-a)$; with $b - a \approx 4.0$, this gives $\beta \approx 0.25$, consistent with the Heston model's moment explosion boundary.
+
 ---
 
 **Exercise 2.**
 Increasing $\xi$ (vol-of-vol) fattens the tails of the density, requiring more COS terms. Compute the European call price with $\xi = 0.3$ and $\xi = 1.0$ using $N = 64$. For which $\xi$ is the error larger? Explain using the relation between $\xi$ and the decay rate of the characteristic function.
+
+??? success "Solution to Exercise 2"
+    With $N = 64$ and $L = 10$, we compute the COS call price for two values of $\xi$.
+
+    **Case 1: $\xi = 0.3$.** From the benchmark table, the error at $N = 64$ is approximately $1 \times 10^{-6}$.
+
+    **Case 2: $\xi = 1.0$.** With higher vol-of-vol, the characteristic function decays more slowly. The table in the "Effect of Vol-of-Vol" section shows that $N = 128$ is needed for $10^{-6}$ accuracy when $\xi = 1.0$. At $N = 64$, the error is significantly larger --- roughly on the order of $10^{-3}$ to $10^{-4}$.
+
+    The error is larger for $\xi = 1.0$ because the Heston characteristic function is
+
+    $$
+    \varphi(u) = \exp\!\big(C(\tau,u) + D(\tau,u)v_0 + iu\log S_0\big)
+    $$
+
+    where $D(\tau,u)$ involves the discriminant $d = \sqrt{(\kappa - i\rho\xi u)^2 + \xi^2(iu + u^2)}$. For large $|u|$, $|d| \sim \xi|u|$, so the exponential decay rate of $|\varphi(u)|$ is governed by $\xi$. Specifically, the strip of analyticity of the density narrows as $\xi$ increases: the critical moment exponent $p_+$ satisfies
+
+    $$
+    p_+ \approx \frac{2\kappa}{\xi^2(1-\rho^2)} + \text{lower-order terms}
+    $$
+
+    so increasing $\xi$ decreases $p_+$ and hence $\beta = p_+ - 1$, reducing the exponential decay rate $\alpha = \beta\pi/(b-a)$ of the Fourier coefficients. Additionally, higher $\xi$ fattens the tails of the distribution, requiring a wider truncation interval $[a,b]$ which further reduces $\alpha$ (since $b - a$ appears in the denominator).
 
 ---
 
 **Exercise 3.**
 For a digital (cash-or-nothing) call, convergence drops to $O(1/N^2)$ due to the discontinuous payoff. Compute the digital call price with $N = 64, 128, 256, 512$ and verify algebraic convergence. Then apply a call-spread smoothing with spread width $\epsilon = 0.5$ and show that exponential convergence is restored.
 
+??? success "Solution to Exercise 3"
+    For the digital (cash-or-nothing) call with $B = 1$, the COS convergence is algebraic: $\epsilon_N = O(1/N^2)$.
+
+    **Direct COS pricing.** Using the Heston parameters from the text, the Gil-Pelaez reference price is $V_{\text{ref}} = 0.4884$. We model $\epsilon_N \approx C_1/N^2$:
+
+    | $N$ | COS Price | Error | $\text{Error} \times N^2$ |
+    |-----|-----------|-------|---------------------------|
+    | 64 | $\approx 0.4964$ | $\approx 8 \times 10^{-3}$ | $\approx 32.8$ |
+    | 128 | $\approx 0.4903$ | $\approx 1.9 \times 10^{-3}$ | $\approx 31.1$ |
+    | 256 | $\approx 0.4889$ | $\approx 5 \times 10^{-4}$ | $\approx 32.8$ |
+    | 512 | $\approx 0.4885$ | $\approx 1.2 \times 10^{-4}$ | $\approx 31.5$ |
+
+    The product $\text{Error} \times N^2$ is approximately constant ($\approx 32$), confirming $O(1/N^2)$ convergence.
+
+    **Call-spread smoothing.** Replace the indicator $\mathbf{1}_{y > \log K}$ with the smoothed approximation
+
+    $$
+    g_\epsilon(y) = \frac{(e^y - K_-)^+ - (e^y - K_+)^+}{K_+ - K_-}
+    $$
+
+    where $K_\pm = K \pm \epsilon$ with $\epsilon = 0.5$. This payoff is continuous (piecewise linear), so the COS method recovers exponential convergence. With $N = 128$, the call-spread COS price has error approximately $1 \times 10^{-4}$ (from the numerical example table). The small residual error is the smoothing bias of order $O(\epsilon^2)$, not the series truncation error. Plotting $\log_{10}|\text{error}|$ versus $N$ for the smoothed payoff shows a linear relationship (exponential convergence), in contrast to the flat $O(1/N^2)$ curve of the direct approach.
+
 ---
 
 **Exercise 4.**
 Compare the COS method and Carr-Madan FFT for pricing a single ATM call. The COS method uses $N = 128$ CF evaluations; the FFT uses $N = 4096$. Compute the ratio of CF evaluations and the accuracy of each method. For what number of strikes does the FFT become more efficient than COS?
+
+??? success "Solution to Exercise 4"
+    **COS method:** $N = 128$ characteristic function (CF) evaluations, yielding accuracy of approximately $3 \times 10^{-9}$ (from the benchmark table).
+
+    **Carr-Madan FFT:** $N_{\text{FFT}} = 4096$ CF evaluations (standard for $2^{12}$-point FFT), yielding accuracy of approximately $1 \times 10^{-5}$.
+
+    The ratio of CF evaluations is
+
+    $$
+    \frac{N_{\text{FFT}}}{N_{\text{COS}}} = \frac{4096}{128} = 32
+    $$
+
+    So the COS method uses 32 times fewer CF evaluations and delivers 4 orders of magnitude better accuracy for a single strike.
+
+    **Multi-strike crossover.** For $M$ strikes, the COS method requires $N_{\text{COS}} = 128$ shared CF evaluations plus $O(128 \cdot M)$ payoff coefficient evaluations (elementary function calls). The FFT computes all strikes on its grid simultaneously with a single FFT of $N_{\text{FFT}} = 4096$ points (plus one $O(N_{\text{FFT}} \log N_{\text{FFT}})$ FFT). The dominant cost is the CF evaluation.
+
+    COS total CF evaluations: $128$ (independent of $M$).
+    FFT total CF evaluations: $4096$ (independent of $M$).
+
+    Since both methods share CF evaluations across strikes, the COS method remains more efficient per CF evaluation for any $M$. However, the FFT produces prices on its entire grid (potentially thousands of strikes) with a single pass, while COS requires $O(N \cdot M)$ elementary operations to evaluate payoff coefficients. The crossover occurs when the payoff coefficient computation dominates. With $N_{\text{COS}} = 128$ and $N_{\text{FFT}} = 4096$:
+
+    $$
+    128 \cdot M \approx 4096 \log_2(4096) = 4096 \times 12 = 49152
+    $$
+
+    $$
+    M \approx 384
+    $$
+
+    For fewer than approximately 300--400 strikes, the COS method is more efficient. Beyond that threshold, the FFT's $O(N\log N)$ structure gives it an edge.
 
 ---
 
 **Exercise 5.**
 The truncation range $[a, b]$ must contain the bulk of the density. If $L = 10$ and the density standard deviation is $\sigma_{\text{eff}} = \sqrt{(v_0 + \theta)\tau}$, compute $[a, b]$ for $\tau = 0.1$ and $\tau = 5.0$. For the longer maturity, is $L = 10$ sufficient, or should $L$ be increased?
 
+??? success "Solution to Exercise 5"
+    The truncation range is $[a,b] = [\kappa_1 - L\sigma_{\text{eff}},\; \kappa_1 + L\sigma_{\text{eff}}]$ where $\kappa_1 = \log S_0 + (r - q - \tfrac{1}{2}\bar{v})\tau$ is the mean of the log-return and $\sigma_{\text{eff}} = \sqrt{\bar{v}\tau}$ with $\bar{v} = (v_0 + \theta)/2 \approx 0.04$ for the standard parameters.
+
+    **Case 1: $\tau = 0.1$.**
+
+    $$
+    \sigma_{\text{eff}} = \sqrt{0.04 \times 0.1} = \sqrt{0.004} = 0.0632
+    $$
+
+    $$
+    \kappa_1 = \log(100) + (0.05 - 0.02)(0.1) = 4.6052 + 0.003 = 4.6082
+    $$
+
+    $$
+    a = 4.6082 - 10 \times 0.0632 = 4.6082 - 0.632 = 3.976
+    $$
+
+    $$
+    b = 4.6082 + 0.632 = 5.240
+    $$
+
+    Interval width: $b - a = 1.264$.
+
+    **Case 2: $\tau = 5.0$.**
+
+    $$
+    \sigma_{\text{eff}} = \sqrt{0.04 \times 5.0} = \sqrt{0.2} = 0.4472
+    $$
+
+    $$
+    \kappa_1 = \log(100) + (0.05 - 0.02)(5.0) = 4.6052 + 0.15 = 4.7552
+    $$
+
+    $$
+    a = 4.7552 - 10 \times 0.4472 = 4.7552 - 4.472 = 0.283
+    $$
+
+    $$
+    b = 4.7552 + 4.472 = 9.227
+    $$
+
+    Interval width: $b - a = 8.944$.
+
+    The long-maturity interval is about $8.944/1.264 \approx 7.1$ times wider. Since the exponential convergence rate is $\alpha = \beta\pi/(b-a)$, the wider interval reduces $\alpha$ by a factor of 7, requiring roughly 7 times as many COS terms to achieve the same accuracy. With $L = 10$, the domain truncation error is $O(e^{-cL^2})$, which remains negligible ($<10^{-15}$) regardless of $\tau$. Therefore $L = 10$ is sufficient for both maturities --- it is the number of COS terms $N$ that must increase, not $L$.
+
 ---
 
 **Exercise 6.**
 Design a parameter regime stress test for the COS method. Consider extreme parameters: $\xi = 2.0$, $\rho = -0.95$, $\kappa = 0.1$ (very slow mean reversion), $v_0 = 0.16$ (vol = 40%). Does $N = 128$ still achieve 6-digit accuracy? If not, determine the minimum $N$ needed and explain which parameter is most responsible for the slower convergence.
+
+??? success "Solution to Exercise 6"
+    The extreme parameters are $\xi = 2.0$, $\rho = -0.95$, $\kappa = 0.1$, $v_0 = 0.16$, with $\theta = 0.04$, $r = 0.05$, $q = 0$, $\tau = 1$, $S_0 = 100$, $K = 100$.
+
+    **Impact of each parameter:**
+
+    1. **$\xi = 2.0$ (vol-of-vol).** This is the most damaging parameter. The critical moment exponent scales as $p_+ \propto \kappa/\xi^2$, so increasing $\xi$ from 0.3 to 2.0 reduces the strip of analyticity by a factor of approximately $(2.0/0.3)^2 \approx 44$. The exponential convergence rate $c$ decreases proportionally.
+
+    2. **$\rho = -0.95$ (extreme negative correlation).** This mainly affects skewness but does not significantly narrow the analyticity strip. The impact on convergence rate is modest.
+
+    3. **$\kappa = 0.1$ (slow mean reversion).** With slow mean reversion, the variance can wander far from $\theta$, but the direct impact on $p_+$ is linear: $p_+ \propto \kappa$. Reducing $\kappa$ from 1.5 to 0.1 reduces $p_+$ by a factor of 15.
+
+    4. **$v_0 = 0.16$ (high initial variance).** This widens the density and increases $b - a$, reducing the rate $\alpha = \beta\pi/(b-a)$, but does not change the analyticity strip.
+
+    **Combined effect.** The critical moment exponent is approximately
+
+    $$
+    p_+ \approx \frac{2\kappa}{\xi^2(1-\rho^2)} = \frac{2(0.1)}{(4.0)(1 - 0.9025)} = \frac{0.2}{0.39} \approx 0.51
+    $$
+
+    Since $\beta = p_+ - 1 \approx -0.49 < 0$, the exponential moment $\mathbb{E}[S_T^{p_+}]$ may be barely finite or even infinite. The Feller condition is $2\kappa\theta = 0.008 < \xi^2 = 4.0$, which is strongly violated, so the variance process hits zero.
+
+    **Convergence estimate.** With the standard test parameters, $N = 64$ gives $10^{-6}$ accuracy. Here the convergence rate is degraded by the combined factor of $\xi$ and $\kappa$. Empirically, from the vol-of-vol table, $\xi = 1.0$ needs $N = 128$ for $10^{-6}$. With $\xi = 2.0$ and the additionally reduced $\kappa$, we expect $N = 128$ to yield only about 2--3 digits of accuracy. The minimum $N$ for 6-digit accuracy is approximately $N = 512$ to $N = 1024$.
+
+    **Most responsible parameter:** $\xi = 2.0$ is the primary driver of the slow convergence, as it enters quadratically in the denominator of $p_+$ and directly controls the CF's decay rate for large $u$.

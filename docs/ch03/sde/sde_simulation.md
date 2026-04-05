@@ -1651,58 +1651,6 @@ flowchart TD
 
 **Exercise 1.** Implement the Euler–Maruyama scheme for the SDE $dX_t = \sin(X_t)\,dt + 0.5\,dW_t$ with $X_0 = 0$, $T = 5$, and $N = 1000$. Plot 20 sample paths. Does the process appear to have a stationary distribution?
 
----
-
-**Exercise 2.** For GBM with $\mu = 0.05$, $\sigma = 0.3$, $S_0 = 100$, and $T = 1$:
-
-(a) Simulate $M = 10{,}000$ terminal values using Euler–Maruyama with $N = 10$, $N = 100$, and $N = 1000$ steps.
-
-(b) Simulate $M = 10{,}000$ terminal values using exact simulation.
-
-(c) Compare the sample mean and standard deviation across all four cases. How does the Euler–Maruyama bias change as $N$ increases?
-
----
-
-**Exercise 3.** Derive the Milstein correction term for the CIR process $dr_t = a(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t$. That is, compute $\sigma(r)\,\sigma'(r)$ where $\sigma(r) = \sigma\sqrt{r}$, and write down the full Milstein update step.
-
----
-
-**Exercise 4.** Implement exact simulation for the OU process with parameters $\kappa = 1$, $\theta = 0$, $\sigma = 1$, and $X_0 = 5$.
-
-(a) Simulate $10{,}000$ paths to time $T = 10$ and plot a histogram of $X_T$.
-
-(b) Overlay the theoretical stationary density $\mathcal{N}(\theta, \sigma^2/(2\kappa))$ on the histogram.
-
-(c) Compute the sample mean and variance and compare with the theoretical values.
-
----
-
-**Exercise 5.** Implement antithetic variates for estimating $\mathbb{E}[e^{-rT}\max(S_T - K, 0)]$ (a European call option price) under GBM with $r = 0.05$, $\sigma = 0.2$, $S_0 = 100$, $K = 100$, and $T = 1$.
-
-(a) Estimate the price using $M = 10{,}000$ standard Monte Carlo paths.
-
-(b) Estimate the price using $M/2 = 5{,}000$ antithetic pairs (same total number of paths).
-
-(c) Compare the standard errors of the two estimators.
-
----
-
-**Exercise 6.** Explain why the Euler–Maruyama scheme applied directly to GBM can produce negative stock prices. For what combination of $\mu$, $\sigma$, and $\Delta t$ is this most likely to occur? Show that the Log-Euler scheme avoids this problem by construction.
-
----
-
-**Exercise 7.** Consider the stability of the Euler–Maruyama scheme for the OU process $dX_t = a(\theta - X_t)\,dt + \sigma\,dW_t$.
-
-(a) Simulate with $a = 50$, $\theta = 1$, $\sigma = 0.1$, $X_0 = 1$, $T = 2$, and $N = 100$. Does the scheme remain stable? What is $a\,\Delta t$?
-
-(b) Increase $N$ until the scheme stabilizes. What is the critical value of $a\,\Delta t$ for stability?
-
-(c) Compare with exact OU simulation using the same parameters. Why is exact simulation immune to this stability issue?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     This is a conceptual and implementation exercise. The SDE $dX_t = \sin(X_t)\,dt + 0.5\,dW_t$ has a bounded drift ($|\sin(x)| \leq 1$) and constant diffusion. The Euler-Maruyama update is:
 
@@ -1713,6 +1661,16 @@ flowchart TD
     with $\Delta t = 5/1000 = 0.005$ and $\Delta W_n \sim \mathcal{N}(0, \Delta t)$.
 
     The drift $\sin(X_t)$ has stable equilibria at $X = 2k\pi$ (even multiples of $\pi$) and unstable equilibria at $X = (2k+1)\pi$ (odd multiples). The process should exhibit a stationary distribution: the bounded, periodic drift combined with constant noise prevents the process from drifting to infinity. The sample paths will fluctuate around multiples of $2\pi$, and a histogram of $X_T$ across many paths should reveal a periodic density on $\mathbb{R}$.
+
+---
+
+**Exercise 2.** For GBM with $\mu = 0.05$, $\sigma = 0.3$, $S_0 = 100$, and $T = 1$:
+
+(a) Simulate $M = 10{,}000$ terminal values using Euler–Maruyama with $N = 10$, $N = 100$, and $N = 1000$ steps.
+
+(b) Simulate $M = 10{,}000$ terminal values using exact simulation.
+
+(c) Compare the sample mean and standard deviation across all four cases. How does the Euler–Maruyama bias change as $N$ increases?
 
 ??? success "Solution to Exercise 2"
     **(a)-(c)** For GBM with $\mu = 0.05$, $\sigma = 0.3$, $S_0 = 100$, $T = 1$, the exact terminal distribution is log-normal with:
@@ -1733,6 +1691,10 @@ flowchart TD
     - Exact simulation: no discretization error at all; only Monte Carlo sampling error remains.
 
     The Euler-Maruyama bias decreases linearly with $\Delta t$ (weak order 1). For GBM specifically, the Log-Euler scheme eliminates this bias entirely regardless of step size.
+
+---
+
+**Exercise 3.** Derive the Milstein correction term for the CIR process $dr_t = a(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t$. That is, compute $\sigma(r)\,\sigma'(r)$ where $\sigma(r) = \sigma\sqrt{r}$, and write down the full Milstein update step.
 
 ??? success "Solution to Exercise 3"
     For the CIR process $dr_t = a(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t$, the diffusion function is $\sigma(r) = \sigma\sqrt{r}$.
@@ -1756,6 +1718,16 @@ flowchart TD
     $$
 
     Note that the correction term $\frac{\sigma^2}{4}(\Delta W_n^2 - \Delta t)$ does not depend on $r_n$, which is a special feature of the square-root diffusion. However, this scheme can still produce negative values; boundary modifications (e.g., full truncation or reflection) are needed in practice.
+
+---
+
+**Exercise 4.** Implement exact simulation for the OU process with parameters $\kappa = 1$, $\theta = 0$, $\sigma = 1$, and $X_0 = 5$.
+
+(a) Simulate $10{,}000$ paths to time $T = 10$ and plot a histogram of $X_T$.
+
+(b) Overlay the theoretical stationary density $\mathcal{N}(\theta, \sigma^2/(2\kappa))$ on the histogram.
+
+(c) Compute the sample mean and variance and compare with the theoretical values.
 
 ??? success "Solution to Exercise 4"
     OU process with $\kappa = 1$, $\theta = 0$, $\sigma = 1$, $X_0 = 5$.
@@ -1786,6 +1758,16 @@ flowchart TD
 
     The sample mean and variance from $10{,}000$ paths should be very close to $0$ and $0.5$, respectively.
 
+---
+
+**Exercise 5.** Implement antithetic variates for estimating $\mathbb{E}[e^{-rT}\max(S_T - K, 0)]$ (a European call option price) under GBM with $r = 0.05$, $\sigma = 0.2$, $S_0 = 100$, $K = 100$, and $T = 1$.
+
+(a) Estimate the price using $M = 10{,}000$ standard Monte Carlo paths.
+
+(b) Estimate the price using $M/2 = 5{,}000$ antithetic pairs (same total number of paths).
+
+(c) Compare the standard errors of the two estimators.
+
 ??? success "Solution to Exercise 5"
     This is an implementation exercise. Under risk-neutral GBM, $S_T = S_0\exp[(r - \sigma^2/2)T + \sigma\sqrt{T}\,Z]$ with $Z \sim \mathcal{N}(0,1)$.
 
@@ -1796,6 +1778,10 @@ flowchart TD
     **(b)** Antithetic variates with $M/2 = 5{,}000$ pairs: for each $Z_i$, compute payoffs for both $Z_i$ and $-Z_i$, then average each pair before averaging across pairs.
 
     **(c)** The antithetic estimator typically reduces the standard error by a factor of 3-5 for this problem, because $\max(S_T(Z) - K, 0)$ and $\max(S_T(-Z) - K, 0)$ are negatively correlated (when one is large, the other tends to be small). The variance of the pair average $\frac{1}{2}[f(Z) + f(-Z)]$ is $\frac{1}{4}[\operatorname{Var}(f(Z)) + \operatorname{Var}(f(-Z)) + 2\operatorname{Cov}(f(Z), f(-Z))]$, and the negative covariance reduces total variance significantly.
+
+---
+
+**Exercise 6.** Explain why the Euler–Maruyama scheme applied directly to GBM can produce negative stock prices. For what combination of $\mu$, $\sigma$, and $\Delta t$ is this most likely to occur? Show that the Log-Euler scheme avoids this problem by construction.
 
 ??? success "Solution to Exercise 6"
     The Euler-Maruyama update for GBM $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ is:
@@ -1825,6 +1811,16 @@ flowchart TD
     $$
 
     Since the exponential function is always positive, $S_{n+1} > 0$ for any value of $\Delta W_n$, regardless of step size or parameters. This is because the scheme operates on $\log S$, which is an additive SDE, and then exponentiates the result.
+
+---
+
+**Exercise 7.** Consider the stability of the Euler–Maruyama scheme for the OU process $dX_t = a(\theta - X_t)\,dt + \sigma\,dW_t$.
+
+(a) Simulate with $a = 50$, $\theta = 1$, $\sigma = 0.1$, $X_0 = 1$, $T = 2$, and $N = 100$. Does the scheme remain stable? What is $a\,\Delta t$?
+
+(b) Increase $N$ until the scheme stabilizes. What is the critical value of $a\,\Delta t$ for stability?
+
+(c) Compare with exact OU simulation using the same parameters. Why is exact simulation immune to this stability issue?
 
 ??? success "Solution to Exercise 7"
     **(a)** With $a = 50$, $\Delta t = T/N = 2/100 = 0.02$, so $a\,\Delta t = 50 \times 0.02 = 1.0$.

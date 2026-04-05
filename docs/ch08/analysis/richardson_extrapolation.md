@@ -302,22 +302,166 @@ Richardson extrapolation is a cost-effective way to improve accuracy: computing 
 
 **Exercise 1.** An implicit scheme with $N = 50$ time steps gives a price of $V(h) = 10.4312$, and with $N = 100$ gives $V(h/2) = 10.4412$. Assuming first-order convergence ($p = 1$), compute the Richardson-extrapolated value $V_{\text{ext}} = 2V(h/2) - V(h)$. If the exact price is $10.4506$, compare the errors of $V(h/2)$ and $V_{\text{ext}}$.
 
+??? success "Solution to Exercise 1"
+    Using the Richardson extrapolation formula for a first-order method ($p = 1$, $r = 2$):
+
+    $$
+    V_{\text{ext}} = 2V(h/2) - V(h) = 2 \times 10.4412 - 10.4312 = 20.8824 - 10.4312 = 10.4512
+    $$
+
+    The errors are:
+
+    - Error of $V(h/2) = 10.4412$: $|10.4412 - 10.4506| = 0.0094$
+    - Error of $V_{\text{ext}} = 10.4512$: $|10.4512 - 10.4506| = 0.0006$
+
+    The extrapolated error is approximately $0.0006 / 0.0094 \approx 15.7$ times smaller than the fine-grid error. Richardson extrapolation has effectively converted a first-order scheme into a second-order result using two relatively coarse grids.
+
 ---
 
 **Exercise 2.** For a second-order method (Crank-Nicolson), three grid solutions give: $V(h) = 10.4496$, $V(h/2) = 10.4504$, $V(h/4) = 10.4505$. Compute the Richardson ratio $R = (V(h) - V(h/2))/(V(h/2) - V(h/4))$. Is $R \approx 4$ consistent with second-order convergence?
+
+??? success "Solution to Exercise 2"
+    The Richardson ratio is:
+
+    $$
+    R = \frac{V(h) - V(h/2)}{V(h/2) - V(h/4)} = \frac{10.4496 - 10.4504}{10.4504 - 10.4505} = \frac{-0.0008}{-0.0001} = 8
+    $$
+
+    For a second-order method, we expect $R \approx 2^p = 2^2 = 4$. The observed value $R = 8$ is significantly larger than 4.
+
+    This is **not** consistent with pure second-order convergence. The ratio $R = 8 = 2^3$ would suggest third-order convergence. This can happen when:
+
+    - The leading second-order error term has a very small coefficient, so the next-order term (e.g., $O(h^3)$ or $O(h^4)$) dominates at these grid sizes
+    - The solution happens to be at a special point where the second-order error coefficient nearly vanishes
+    - The grids are not yet in the asymptotic regime
+
+    Further refinement (computing $V(h/8)$) would help determine whether the true asymptotic ratio is 4 or whether the method genuinely exhibits higher-order convergence for this particular problem.
 
 ---
 
 **Exercise 3.** Construct the Romberg table for a Crank-Nicolson solver using solutions at $h$, $h/2$, and $h/4$ with values $V(h) = 10.44$, $V(h/2) = 10.449$, $V(h/4) = 10.4504$. Compute the two level-1 extrapolated values (order 4) and the single level-2 value (order 6).
 
+??? success "Solution to Exercise 3"
+    **Level 0** (original values, order 2):
+
+    $$
+    V_0^{(0)} = V(h) = 10.44, \quad V_1^{(0)} = V(h/2) = 10.449, \quad V_2^{(0)} = V(h/4) = 10.4504
+    $$
+
+    **Level 1** (order 4, using $p = 2$, $r = 2$, so the formula is $(4V_{\text{fine}} - V_{\text{coarse}})/3$):
+
+    $$
+    V_0^{(1)} = \frac{4V_1^{(0)} - V_0^{(0)}}{3} = \frac{4 \times 10.449 - 10.44}{3} = \frac{41.796 - 10.44}{3} = \frac{31.356}{3} = 10.452
+    $$
+
+    $$
+    V_1^{(1)} = \frac{4V_2^{(0)} - V_1^{(0)}}{3} = \frac{4 \times 10.4504 - 10.449}{3} = \frac{41.8016 - 10.449}{3} = \frac{31.3526}{3} \approx 10.45087
+    $$
+
+    **Level 2** (order 6). Since the Crank-Nicolson error expansion contains only even powers of $h$, the level-1 values have error $O(h^4)$, and we eliminate this with $r^{p'} = 2^4 = 16$:
+
+    $$
+    V_0^{(2)} = \frac{16 V_1^{(1)} - V_0^{(1)}}{15} = \frac{16 \times 10.45087 - 10.452}{15} = \frac{167.2139 - 10.452}{15} = \frac{156.7619}{15} \approx 10.45079
+    $$
+
+    The Romberg table:
+
+    | | Order 2 | Order 4 | Order 6 |
+    |---|---|---|---|
+    | $h$ | 10.4400 | | |
+    | $h/2$ | 10.4490 | 10.4520 | |
+    | $h/4$ | 10.4504 | 10.4509 | 10.4508 |
+
 ---
 
 **Exercise 4.** Explain why Richardson extrapolation fails when the payoff has a kink at $S = K$. Specifically, what happens to the error expansion $V(h) = V^* + ch^p + \cdots$ when the solution is not smooth? What does the Richardson ratio look like in this case?
+
+??? success "Solution to Exercise 4"
+    The Richardson extrapolation formula $V_{\text{ext}} = (r^p V(h/r) - V(h))/(r^p - 1)$ relies on the error expansion:
+
+    $$
+    V(h) = V^* + c_p h^p + c_{p+1} h^{p+1} + \cdots
+    $$
+
+    This expansion requires the error to be a smooth (analytic) function of the mesh parameter $h$, which in turn requires the PDE solution to be sufficiently smooth.
+
+    When the payoff has a kink at $S = K$, the solution near maturity has a discontinuous second derivative. This non-smoothness causes the error expansion to contain **non-integer powers** of $h$:
+
+    $$
+    V(h) = V^* + c_1 h^{1/2} + c_2 h + c_3 h^{3/2} + \cdots
+    $$
+
+    or possibly logarithmic terms like $h^2 \ln h$. The regular power series structure is destroyed.
+
+    When we apply the standard formula assuming $p = 2$ to cancel $ch^2$, we are actually leaving behind the dominant $O(h^{1/2})$ and $O(h)$ terms, which are not canceled. The extrapolated value may be no better than (or even worse than) the fine-grid solution.
+
+    The Richardson ratio in this case will not be close to $2^p = 4$. Instead, it will fluctuate or converge to a value like $2^{1/2} \approx 1.41$ or $2^1 = 2$, reflecting the actual (reduced) convergence order. Seeing $R \neq 2^p$ is a clear diagnostic sign that the smooth error expansion assumption has failed.
 
 ---
 
 **Exercise 5.** For independent spatial and temporal extrapolation, four PDE solutions are needed: $V(\Delta S, \Delta\tau)$, $V(\Delta S/2, \Delta\tau)$, $V(\Delta S, \Delta\tau/2)$, and $V(\Delta S/2, \Delta\tau/2)$. Write down the combined extrapolation formula that eliminates leading-order errors in both space and time for a second-order scheme. What is the effective order of the result?
 
+??? success "Solution to Exercise 5"
+    For a second-order scheme, the error has the form:
+
+    $$
+    V(\Delta S, \Delta\tau) = V^* + a(\Delta S)^2 + b(\Delta\tau)^2 + \text{higher order}
+    $$
+
+    We have four solutions:
+
+    - $V_{11} = V(\Delta S, \Delta\tau) = V^* + a(\Delta S)^2 + b(\Delta\tau)^2$
+    - $V_{21} = V(\Delta S/2, \Delta\tau) = V^* + a(\Delta S)^2/4 + b(\Delta\tau)^2$
+    - $V_{12} = V(\Delta S, \Delta\tau/2) = V^* + a(\Delta S)^2 + b(\Delta\tau)^2/4$
+    - $V_{22} = V(\Delta S/2, \Delta\tau/2) = V^* + a(\Delta S)^2/4 + b(\Delta\tau)^2/4$
+
+    **Step 1**: Extrapolate in space (eliminate $a(\Delta S)^2$):
+
+    $$
+    W_1 = \frac{4V_{21} - V_{11}}{3} = V^* + b(\Delta\tau)^2 + O((\Delta S)^4)
+    $$
+
+    $$
+    W_2 = \frac{4V_{22} - V_{12}}{3} = V^* + b(\Delta\tau)^2/4 + O((\Delta S)^4)
+    $$
+
+    **Step 2**: Extrapolate in time (eliminate $b(\Delta\tau)^2$):
+
+    $$
+    V_{\text{ext}} = \frac{4W_2 - W_1}{3}
+    $$
+
+    Substituting:
+
+    $$
+    V_{\text{ext}} = \frac{4 \cdot \frac{4V_{22} - V_{12}}{3} - \frac{4V_{21} - V_{11}}{3}}{3} = \frac{16V_{22} - 4V_{12} - 4V_{21} + V_{11}}{9}
+    $$
+
+    The effective order is $O((\Delta S)^4 + (\Delta\tau)^4)$, i.e., fourth-order in both space and time.
+
 ---
 
 **Exercise 6.** A practitioner wants to improve the accuracy of an implicit (first-order) scheme without switching to Crank-Nicolson. By running the implicit scheme on two grids and applying Richardson extrapolation, they can obtain a second-order result. Compare the total computational cost of this approach to running Crank-Nicolson on the fine grid alone.
+
+??? success "Solution to Exercise 6"
+    **Richardson-extrapolated implicit approach**: Run the implicit (backward Euler) scheme on two grids:
+
+    - Coarse grid: $M$ spatial points, $N$ time steps. Cost: $O(MN)$ (tridiagonal solve per step)
+    - Fine grid: $M$ spatial points, $2N$ time steps. Cost: $O(2MN)$
+    - Total cost: $O(3MN)$
+
+    The extrapolated result $V_{\text{ext}} = 2V(h/2) - V(h)$ has second-order accuracy in time.
+
+    **Crank-Nicolson on the fine grid**: Run Crank-Nicolson with $M$ spatial points and $N$ time steps (Crank-Nicolson is already second-order, so it needs fewer steps for the same accuracy):
+
+    - Cost: $O(MN)$ (tridiagonal solve per step, same cost as implicit)
+
+    **Comparison**: The Richardson-extrapolated implicit approach costs roughly $3\times$ as much as Crank-Nicolson on a single grid for the same second-order accuracy. Crank-Nicolson is the better choice if available, since it achieves second-order convergence in a single solve.
+
+    However, the Richardson approach has practical advantages:
+
+    - **Simplicity**: Implementing backward Euler is easier than Crank-Nicolson (no averaging of time levels)
+    - **No oscillations**: Backward Euler damps all modes monotonically, avoiding the oscillatory artifacts that Crank-Nicolson can produce with non-smooth data
+    - **Code reuse**: If an implicit solver already exists, Richardson extrapolation can improve its accuracy without modifying the core solver
+
+    For these reasons, the Richardson-extrapolated implicit scheme is a viable alternative when implementation simplicity or robustness to non-smooth data is prioritized over raw efficiency.

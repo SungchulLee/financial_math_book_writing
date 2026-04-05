@@ -684,26 +684,230 @@ The smile is not a static feature but encodes rich information about market beli
 
 **Exercise 1.** Given a smile parametrized by $\sigma(y, T) = \sigma_{\text{ATM}} + \mathcal{S} \cdot y + \frac{1}{2}\mathcal{C} \cdot y^2$ with $\sigma_{\text{ATM}} = 0.20$, $\mathcal{S} = -0.15$, and $\mathcal{C} = 0.80$, compute the implied volatility at log-moneyness $y = -0.10$ (OTM put region) and $y = +0.10$ (OTM call region). Verify that the smile exhibits downward skew with positive curvature.
 
+??? success "Solution to Exercise 1"
+    We are given $\sigma_{\text{ATM}} = 0.20$, $\mathcal{S} = -0.15$, $\mathcal{C} = 0.80$, and the smile parametrization
+
+    $$
+    \sigma(y, T) = \sigma_{\text{ATM}} + \mathcal{S} \cdot y + \frac{1}{2}\mathcal{C} \cdot y^2
+    $$
+
+    **At $y = -0.10$ (OTM put region):**
+
+    $$
+    \sigma(-0.10) = 0.20 + (-0.15)(-0.10) + \frac{1}{2}(0.80)(0.01) = 0.20 + 0.015 + 0.004 = 0.219
+    $$
+
+    So the implied volatility is $21.9\%$.
+
+    **At $y = +0.10$ (OTM call region):**
+
+    $$
+    \sigma(+0.10) = 0.20 + (-0.15)(0.10) + \frac{1}{2}(0.80)(0.01) = 0.20 - 0.015 + 0.004 = 0.189
+    $$
+
+    So the implied volatility is $18.9\%$.
+
+    **Verification of downward skew:** The OTM put region ($y < 0$) has IV of 21.9%, which exceeds the ATM IV of 20.0%, which in turn exceeds the OTM call region IV of 18.9%. This confirms $\sigma(-0.10) > \sigma(0) > \sigma(+0.10)$, consistent with downward skew ($\mathcal{S} = -0.15 < 0$).
+
+    **Verification of positive curvature:** Both wings have IV above the linear interpolation. The purely linear component gives $\sigma_{\text{linear}}(-0.10) = 0.215$ and $\sigma_{\text{linear}}(+0.10) = 0.185$. The quadratic term adds $+0.004$ to both, lifting the wings symmetrically. Since $\mathcal{C} = 0.80 > 0$, the smile is convex (U-shaped curvature superimposed on the skew).
+
 ---
 
 **Exercise 2.** The risk reversal and butterfly are defined as $\text{RR}_{25} = \sigma_{25\Delta C} - \sigma_{25\Delta P}$ and $\text{BF}_{25} = \frac{1}{2}(\sigma_{25\Delta C} + \sigma_{25\Delta P}) - \sigma_{\text{ATM}}$. If $\sigma_{25\Delta P} = 25\%$, $\sigma_{\text{ATM}} = 18\%$, and $\sigma_{25\Delta C} = 17\%$, compute $\text{RR}_{25}$ and $\text{BF}_{25}$. Interpret the signs in terms of the skew direction and tail behavior of the risk-neutral distribution.
+
+??? success "Solution to Exercise 2"
+    We are given $\sigma_{25\Delta P} = 25\%$, $\sigma_{\text{ATM}} = 18\%$, and $\sigma_{25\Delta C} = 17\%$.
+
+    **Risk reversal:**
+
+    $$
+    \text{RR}_{25} = \sigma_{25\Delta C} - \sigma_{25\Delta P} = 17\% - 25\% = -8\%
+    $$
+
+    **Butterfly:**
+
+    $$
+    \text{BF}_{25} = \frac{1}{2}(\sigma_{25\Delta C} + \sigma_{25\Delta P}) - \sigma_{\text{ATM}} = \frac{1}{2}(17\% + 25\%) - 18\% = 21\% - 18\% = 3\%
+    $$
+
+    **Interpretation of the risk reversal:** $\text{RR}_{25} = -8\% < 0$ indicates strong downward (negative) skew. The 25-delta put has much higher implied volatility than the 25-delta call, meaning the market prices downside risk more heavily than upside risk. This is characteristic of equity index options where "crashophobia" drives demand for OTM puts.
+
+    **Interpretation of the butterfly:** $\text{BF}_{25} = 3\% > 0$ indicates a smile (wings elevated relative to ATM). The average IV of the two 25-delta options exceeds the ATM IV, reflecting fat tails in the risk-neutral distribution. The positive butterfly implies the market assigns higher probability to extreme moves (both up and down) than a lognormal distribution would predict, indicating excess kurtosis.
 
 ---
 
 **Exercise 3.** Explain the relationship between the smile skew parameter $\mathcal{S}$ and the third moment (skewness) of the risk-neutral distribution, and between the curvature $\mathcal{C}$ and the fourth moment (kurtosis). For an equity index with skewness $-1.5$ and kurtosis $6.0$, predict the qualitative shape of the smile.
 
+??? success "Solution to Exercise 3"
+    **Skew and third moment:** The smile skew parameter $\mathcal{S} = \frac{\partial \sigma_{\text{IV}}}{\partial y}\big|_{y=0}$ is related to the third moment of the risk-neutral log-return distribution through the approximate relationship
+
+    $$
+    \text{Skew}(\ln S_T) \propto -\mathcal{S}(T)
+    $$
+
+    A negative $\mathcal{S}$ (downward skew, where OTM puts have higher IV) corresponds to negative skewness in the risk-neutral distribution. This is because higher IV at low strikes means the risk-neutral density assigns more probability to the left tail than a symmetric (lognormal) distribution would. The Breeden-Litzenberger relationship shows that $\frac{\partial^2 C}{\partial K^2}$ gives the risk-neutral density, and a steeper decline of IV with increasing $K$ translates to a left-skewed density.
+
+    **Curvature and fourth moment:** The curvature parameter $\mathcal{C} = \frac{\partial^2 \sigma_{\text{IV}}}{\partial y^2}\big|_{y=0}$ is related to excess kurtosis:
+
+    $$
+    \text{Kurt}(\ln S_T) - 3 \propto \mathcal{C}(T)
+    $$
+
+    Positive curvature ($\mathcal{C} > 0$) means both wings of the smile are elevated relative to ATM, indicating that extreme outcomes (both tails) are more likely than under a lognormal model. This excess kurtosis reflects fat tails in the risk-neutral distribution.
+
+    **Prediction for equity index with skewness $-1.5$ and kurtosis $6.0$:** Since skewness is strongly negative ($-1.5$), we expect $\mathcal{S} > 0$ in magnitude but negative in sign, producing steep downward skew (OTM puts significantly more expensive). Since kurtosis is $6.0$, the excess kurtosis is $6.0 - 3 = 3.0 > 0$, implying substantial positive curvature. The qualitative shape is a **smirk**: a steeply downward-sloping smile with notable curvature, where the left wing (OTM puts) is much higher than ATM, and the right wing (OTM calls) is only slightly elevated. This is the classic post-1987 equity index pattern.
+
 ---
 
 **Exercise 4.** The SVI parametrization is $w(y) = a + b(\rho(y - m) + \sqrt{(y-m)^2 + \sigma^2})$. For parameters $a = 0.04$, $b = 0.10$, $\rho = -0.5$, $m = 0$, $\sigma = 0.2$, and $T = 1$: (a) compute the total variance $w(y)$ at $y = -0.2, 0, 0.2$; (b) convert to implied volatility via $\sigma_{\text{IV}} = \sqrt{w/T}$; (c) verify that the no-arbitrage condition $b(1 + |\rho|) < 4a$ is satisfied.
+
+??? success "Solution to Exercise 4"
+    We are given $a = 0.04$, $b = 0.10$, $\rho = -0.5$, $m = 0$, $\sigma = 0.2$, $T = 1$.
+
+    **(a) Total variance at $y = -0.2, 0, 0.2$:**
+
+    The SVI formula is $w(y) = a + b(\rho(y - m) + \sqrt{(y - m)^2 + \sigma^2})$.
+
+    At $y = -0.2$:
+
+    $$
+    w(-0.2) = 0.04 + 0.10\left((-0.5)(-0.2) + \sqrt{(-0.2)^2 + 0.04}\right) = 0.04 + 0.10\left(0.1 + \sqrt{0.08}\right)
+    $$
+
+    Since $\sqrt{0.08} = 0.2828$:
+
+    $$
+    w(-0.2) = 0.04 + 0.10(0.1 + 0.2828) = 0.04 + 0.03828 = 0.07828
+    $$
+
+    At $y = 0$:
+
+    $$
+    w(0) = 0.04 + 0.10\left(0 + \sqrt{0 + 0.04}\right) = 0.04 + 0.10(0.2) = 0.04 + 0.02 = 0.06
+    $$
+
+    At $y = 0.2$:
+
+    $$
+    w(0.2) = 0.04 + 0.10\left((-0.5)(0.2) + \sqrt{0.04 + 0.04}\right) = 0.04 + 0.10\left(-0.1 + 0.2828\right) = 0.04 + 0.01828 = 0.05828
+    $$
+
+    **(b) Implied volatility:**
+
+    Since $\sigma_{\text{IV}} = \sqrt{w/T}$ and $T = 1$:
+
+    $$
+    \sigma_{\text{IV}}(-0.2) = \sqrt{0.07828} = 0.2798 \approx 28.0\%
+    $$
+
+    $$
+    \sigma_{\text{IV}}(0) = \sqrt{0.06} = 0.2449 \approx 24.5\%
+    $$
+
+    $$
+    \sigma_{\text{IV}}(0.2) = \sqrt{0.05828} = 0.2414 \approx 24.1\%
+    $$
+
+    The OTM put region ($y = -0.2$) has the highest IV, confirming downward skew driven by $\rho = -0.5 < 0$.
+
+    **(c) No-arbitrage condition:** The condition is $b(1 + |\rho|) < 4a$:
+
+    $$
+    0.10(1 + 0.5) = 0.10 \times 1.5 = 0.15
+    $$
+
+    $$
+    4a = 4(0.04) = 0.16
+    $$
+
+    Since $0.15 < 0.16$, the no-arbitrage condition is satisfied.
 
 ---
 
 **Exercise 5.** Compare the smile shapes across three asset classes: equity indices, major FX pairs, and commodities. For each, describe (a) the typical sign of $\mathcal{S}$ (skew), (b) the typical sign of $\mathcal{C}$ (curvature), (c) the dominant economic driver (leverage effect, jump risk, supply/demand, etc.).
 
+??? success "Solution to Exercise 5"
+    **(a) Equity indices:**
+
+    - **Skew $\mathcal{S}$:** Strongly negative. OTM puts have much higher IV than OTM calls.
+    - **Curvature $\mathcal{C}$:** Positive but moderate. Both wings are elevated, but the effect is asymmetric (left wing much higher).
+    - **Dominant driver:** The leverage effect (as stock prices fall, debt-to-equity rises, increasing equity volatility) combined with crashophobia (institutional demand for portfolio insurance via OTM puts after the 1987 crash). The negative correlation $\rho(dS, d\sigma) < 0$ is the primary mechanism.
+
+    **(b) Major FX pairs (EUR/USD, USD/JPY):**
+
+    - **Skew $\mathcal{S}$:** Near zero. The smile is approximately symmetric around ATM.
+    - **Curvature $\mathcal{C}$:** Positive and often larger than equities. Both wings are significantly elevated.
+    - **Dominant driver:** Two-sided jump risk. Currencies can experience sharp moves in either direction due to central bank interventions, geopolitical events, or capital flow reversals. There is no structural asymmetry analogous to the leverage effect because a depreciation of one currency is simultaneously an appreciation of the other.
+
+    **(c) Commodities:**
+
+    - **Skew $\mathcal{S}$:** Variable, depends on the specific commodity and market conditions. Energy commodities may show positive skew (supply disruption fears push OTM call IV higher) or negative skew (demand collapse fears). Precious metals often show mild positive skew (safe-haven demand for upside exposure).
+    - **Curvature $\mathcal{C}$:** Positive, reflecting jump risk from supply shocks, weather events, and geopolitical disruptions.
+    - **Dominant driver:** Supply-demand asymmetries and physical constraints. Unlike financial assets, commodities have storage costs, delivery logistics, and physical supply limitations that create directional asymmetries specific to each market. Seasonal patterns (e.g., winter heating demand for natural gas) also play a role.
+
 ---
 
 **Exercise 6.** In a jump-diffusion model $dS = \mu S \, dt + \sigma S \, dW + S \, dJ$ where the jump size has mean $m_J < 0$ (negative jumps), explain how this produces (a) negative skew in the implied volatility smile and (b) positive curvature (excess kurtosis). What happens to the smile shape if jumps are symmetric ($m_J = 0$)?
 
+??? success "Solution to Exercise 6"
+    In the jump-diffusion model $dS = \mu S \, dt + \sigma S \, dW + S \, dJ$ with negative mean jump size $m_J < 0$:
+
+    **(a) Negative skew:** Negative jumps ($m_J < 0$) create an asymmetry in the risk-neutral return distribution. The left tail (large declines) is fattened more than the right tail because downward jumps are more likely or larger in magnitude. When the risk-neutral density has a heavier left tail, the Breeden-Litzenberger formula $q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}$ assigns more probability mass to low values of $S_T$. To match these higher probabilities at low strikes, implied volatility must be elevated for OTM puts (low $K$), producing $\frac{\partial \sigma_{\text{IV}}}{\partial K} < 0$, i.e., negative skew.
+
+    Formally, the risk-neutral distribution under jump-diffusion is a mixture of lognormals (one for each number of jumps $n = 0, 1, 2, \ldots$). When $m_J < 0$, the component distributions with $n \geq 1$ jumps are shifted to the left, creating negative skewness in the mixture.
+
+    **(b) Positive curvature (excess kurtosis):** Jumps, regardless of their direction, add mass to the tails of the distribution beyond what diffusion alone would produce. The compound Poisson component introduces discontinuous moves that create leptokurtosis (excess kurtosis $> 0$). Since kurtosis is related to the smile curvature via $\text{Kurt} - 3 \propto \mathcal{C}$, the curvature $\mathcal{C} > 0$, meaning both wings of the smile are elevated relative to ATM.
+
+    Quantitatively, if the jump size has variance $\sigma_J^2$, the excess kurtosis of the return distribution scales as $\lambda \sigma_J^4 / (\sigma^2 + \lambda \sigma_J^2)^2$, which is always positive.
+
+    **(c) Symmetric jumps ($m_J = 0$):** When the mean jump size is zero, the distribution remains symmetric (no skewness), so $\mathcal{S} \approx 0$. However, jumps still add kurtosis, so $\mathcal{C} > 0$ persists. The resulting smile is a symmetric U-shape, similar to what is observed in FX markets. Both OTM puts and OTM calls have elevated IV relative to ATM, but neither wing dominates the other.
+
 ---
 
 **Exercise 7.** An options trader observes the following 3-month SPX implied volatilities: 90% strike = 26%, 95% strike = 22%, 100% (ATM) = 18%, 105% strike = 17%, 110% strike = 16.5%. (a) Compute the smile skew $\mathcal{S}$ as the slope between 95% and 105% strikes in log-moneyness. (b) Compute the smile curvature using the 90%, 100%, and 110% strikes. (c) Is this smile more consistent with equity skew (smirk) or FX smile (symmetric)?
+
+??? success "Solution to Exercise 7"
+    The given 3-month SPX implied volatilities are: 90% strike = 26%, 95% = 22%, 100% (ATM) = 18%, 105% = 17%, 110% = 16.5%.
+
+    **(a) Smile skew $\mathcal{S}$:**
+
+    Log-moneyness values (using moneyness $K/F$ where we approximate $F \approx S_0$):
+
+    $$
+    y_{95} = \ln(0.95) = -0.05129, \quad y_{105} = \ln(1.05) = 0.04879
+    $$
+
+    The slope between 95% and 105% strikes:
+
+    $$
+    \mathcal{S} \approx \frac{\sigma(y_{105}) - \sigma(y_{95})}{y_{105} - y_{95}} = \frac{0.17 - 0.22}{0.04879 - (-0.05129)} = \frac{-0.05}{0.10008} = -0.4996
+    $$
+
+    The smile skew is approximately $\mathcal{S} \approx -0.50$, indicating a steep downward slope.
+
+    **(b) Smile curvature:**
+
+    Using the 90%, 100%, and 110% strikes with log-moneyness $y_{90} = \ln(0.90) = -0.10536$ and $y_{110} = \ln(1.10) = 0.09531$:
+
+    The second derivative is approximated by:
+
+    $$
+    \mathcal{C} \approx \frac{\sigma(y_{110}) - 2\sigma(0) + \sigma(y_{90})}{(\Delta y)^2}
+    $$
+
+    where $\Delta y \approx \frac{y_{110} - y_{90}}{2} = \frac{0.09531 + 0.10536}{2} = 0.10034$.
+
+    $$
+    \mathcal{C} \approx \frac{0.165 - 2(0.18) + 0.26}{(0.10034)^2} = \frac{0.065}{0.01007} \approx 6.45
+    $$
+
+    The curvature is positive and large, indicating a pronounced smile (elevated wings).
+
+    **(c) Equity skew (smirk) vs. FX smile (symmetric):**
+
+    This smile is clearly an **equity skew (smirk)**, not a symmetric FX smile. The evidence is:
+
+    - The left wing is much more elevated than the right wing: IV at 90% strike (26%) is 8 points above ATM, while IV at 110% strike (16.5%) is only 1.5 points below ATM.
+    - The skew is strongly negative ($\mathcal{S} \approx -0.50$), characteristic of equity index options.
+    - A symmetric FX smile would have $\sigma(y) \approx \sigma(-y)$, but here $\sigma(y_{90}) = 26\%$ while $\sigma(y_{110}) = 16.5\%$, showing extreme asymmetry.
+    - The pattern is consistent with post-1987 SPX crashophobia, where OTM puts command a large premium over OTM calls.

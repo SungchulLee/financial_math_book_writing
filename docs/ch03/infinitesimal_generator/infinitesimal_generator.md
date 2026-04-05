@@ -334,60 +334,6 @@ $$
 
 **Exercise 1.** Let $dX_t = 3X_t\,dt + 2X_t\,dW_t$ (geometric Brownian motion with $\mu = 3$, $\sigma = 2$). Write down the infinitesimal generator $\mathcal{L}$ and compute $\mathcal{L}f$ for $f(x) = x^2$.
 
----
-
-**Exercise 2.** For the Ornstein--Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, compute $\mathcal{L}f$ for $f(x) = e^{\alpha x}$ where $\alpha$ is a constant. Use the result to find an ODE for $m(t) = \mathbb{E}_x[e^{\alpha X_t}]$ by applying the generator to the moment generating function.
-
----
-
-**Exercise 3.** Consider the two-dimensional diffusion $(X_t, Y_t)$ driven by independent Brownian motions $W_t^1, W_t^2$:
-
-$$
-dX_t = Y_t\,dt + dW_t^1, \qquad dY_t = -X_t\,dt + dW_t^2
-$$
-
-Write down the multidimensional generator $\mathcal{L}$ and compute $\mathcal{L}f$ for $f(x,y) = x^2 + y^2$.
-
----
-
-**Exercise 4.** Prove that the maximum principle fails for jump processes. Specifically, let $X_t$ be a compound Poisson process with generator
-
-$$
-(\mathcal{L}f)(x) = \lambda \int_{\mathbb{R}} [f(x+y) - f(x)]\,\nu(dy)
-$$
-
-where $\nu$ is a probability measure on $\mathbb{R}$. Find a function $f$ that attains a maximum at $x^*$ yet $(\mathcal{L}f)(x^*) > 0$. (Hint: try $f(x) = -x^2$ and a suitable $\nu$.)
-
----
-
-**Exercise 5.** For standard Brownian motion ($\mathcal{L} = \frac{1}{2}\frac{d^2}{dx^2}$), determine which of the following functions belong to the domain of the generator by computing $\mathcal{L}f$ and checking whether the result is well-defined:
-
-(a) $f(x) = |x|$
-
-(b) $f(x) = x^3$
-
-(c) $f(x) = \sin(x)$
-
-(d) $f(x) = (x - 1)^+$
-
----
-
-**Exercise 6.** Consider the extended generator $\tilde{\mathcal{L}} = \partial_t + \mathcal{L}_t$ for a diffusion $dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t$. Show that if $V(x,t)$ satisfies the Black--Scholes PDE
-
-$$
-\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV = 0
-$$
-
-then $\tilde{\mathcal{L}}V - rV = 0$, where $\mathcal{L}$ is the generator of geometric Brownian motion under the risk-neutral measure ($\mu = r$). Explain why this means $e^{-rt}V(S_t, t)$ is a martingale.
-
----
-
-**Exercise 7.** Let $dX_t = \sigma(X_t)\,dW_t$ (a driftless diffusion with state-dependent volatility). Write down the generator $\mathcal{L}$ and show that every affine function $f(x) = ax + b$ satisfies $\mathcal{L}f = 0$. What does this imply about $f(X_t)$ as a stochastic process?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The SDE is $dX_t = 3X_t\,dt + 2X_t\,dW_t$, so $\mu(x) = 3x$ and $\sigma(x) = 2x$. The generator is:
 
@@ -402,6 +348,10 @@ then $\tilde{\mathcal{L}}V - rV = 0$, where $\mathcal{L}$ is the generator of ge
     $$
 
     This means $\frac{d}{dt}\mathbb{E}[X_t^2 \mid X_0 = x] = 10\,\mathbb{E}[X_t^2 \mid X_0 = x]$, so $\mathbb{E}[X_t^2] = x^2 e^{10t}$.
+
+---
+
+**Exercise 2.** For the Ornstein--Uhlenbeck process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, compute $\mathcal{L}f$ for $f(x) = e^{\alpha x}$ where $\alpha$ is a constant. Use the result to find an ODE for $m(t) = \mathbb{E}_x[e^{\alpha X_t}]$ by applying the generator to the moment generating function.
 
 ??? success "Solution to Exercise 2"
     The OU generator is $\mathcal{L}f = -\kappa x\,f'(x) + \frac{\sigma^2}{2}f''(x)$. For $f(x) = e^{\alpha x}$:
@@ -432,6 +382,16 @@ then $\tilde{\mathcal{L}}V - rV = 0$, where $\mathcal{L}$ is the generator of ge
 
     This is a PDE in $(\alpha, t)$ for the moment generating function. In the special case where we only want the ODE for the mean ($\alpha \to 0$), we differentiate $m(t)$ with respect to $\alpha$ and set $\alpha = 0$. Writing $\mu_1(t) = \mathbb{E}_x[X_t]$: differentiating the Dynkin integral equation with $f(x) = x$ (i.e., the $\alpha$-derivative at $\alpha = 0$) gives $\mu_1'(t) = -\kappa \mu_1(t)$, yielding $\mu_1(t) = x\,e^{-\kappa t}$.
 
+---
+
+**Exercise 3.** Consider the two-dimensional diffusion $(X_t, Y_t)$ driven by independent Brownian motions $W_t^1, W_t^2$:
+
+$$
+dX_t = Y_t\,dt + dW_t^1, \qquad dY_t = -X_t\,dt + dW_t^2
+$$
+
+Write down the multidimensional generator $\mathcal{L}$ and compute $\mathcal{L}f$ for $f(x,y) = x^2 + y^2$.
+
 ??? success "Solution to Exercise 3"
     The drift and diffusion coefficients are $\mu^1(x,y) = y$, $\mu^2(x,y) = -x$, $\sigma^{1,1} = 1$, $\sigma^{2,2} = 1$, with $\sigma^{1,2} = \sigma^{2,1} = 0$. The diffusion matrix is $a = \sigma\sigma^\top = I$ (the identity). The multidimensional generator is:
 
@@ -449,6 +409,16 @@ then $\tilde{\mathcal{L}}V - rV = 0$, where $\mathcal{L}$ is the generator of ge
     $$
 
     By Dynkin's formula, $\mathbb{E}[X_t^2 + Y_t^2] = (x_0^2 + y_0^2) + 2t$, showing the radius squared grows linearly on average. The cross terms from the drift cancel exactly, and only the diffusion contributes.
+
+---
+
+**Exercise 4.** Prove that the maximum principle fails for jump processes. Specifically, let $X_t$ be a compound Poisson process with generator
+
+$$
+(\mathcal{L}f)(x) = \lambda \int_{\mathbb{R}} [f(x+y) - f(x)]\,\nu(dy)
+$$
+
+where $\nu$ is a probability measure on $\mathbb{R}$. Find a function $f$ that attains a maximum at $x^*$ yet $(\mathcal{L}f)(x^*) > 0$. (Hint: try $f(x) = -x^2$ and a suitable $\nu$.)
 
 ??? success "Solution to Exercise 4"
     Let $f(x) = -x^2$. This function attains a global maximum at $x^* = 0$ with $f(0) = 0$. For $x \neq 0$, $f(x) < 0$.
@@ -493,6 +463,18 @@ then $\tilde{\mathcal{L}}V - rV = 0$, where $\mathcal{L}$ is the generator of ge
 
     This violates the maximum principle: $f$ has a local maximum at $x^* = 0$, but $(\mathcal{L}f)(0) = \lambda > 0$. The jump process can "see" the higher value at $x = 2$, which a diffusion (being continuous) cannot reach instantly.
 
+---
+
+**Exercise 5.** For standard Brownian motion ($\mathcal{L} = \frac{1}{2}\frac{d^2}{dx^2}$), determine which of the following functions belong to the domain of the generator by computing $\mathcal{L}f$ and checking whether the result is well-defined:
+
+(a) $f(x) = |x|$
+
+(b) $f(x) = x^3$
+
+(c) $f(x) = \sin(x)$
+
+(d) $f(x) = (x - 1)^+$
+
 ??? success "Solution to Exercise 5"
     The generator of BM is $\mathcal{L}f = \frac{1}{2}f''$.
 
@@ -515,6 +497,16 @@ then $\tilde{\mathcal{L}}V - rV = 0$, where $\mathcal{L}$ is the generator of ge
     This is well-defined for all $x$, so $f \in \mathrm{Dom}(\mathcal{L})$.
 
     **(d)** $f(x) = (x-1)^+ = \max(x-1, 0)$. This function has a kink at $x = 1$: $f'$ has a jump discontinuity at $x = 1$ and $f''$ does not exist there (in the classical sense). So $f \notin C^2(\mathbb{R})$ and $f \notin \mathrm{Dom}(\mathcal{L})$ classically. This is the call option payoff, illustrating why option pricing requires regularization or weak solutions.
+
+---
+
+**Exercise 6.** Consider the extended generator $\tilde{\mathcal{L}} = \partial_t + \mathcal{L}_t$ for a diffusion $dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t$. Show that if $V(x,t)$ satisfies the Black--Scholes PDE
+
+$$
+\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV = 0
+$$
+
+then $\tilde{\mathcal{L}}V - rV = 0$, where $\mathcal{L}$ is the generator of geometric Brownian motion under the risk-neutral measure ($\mu = r$). Explain why this means $e^{-rt}V(S_t, t)$ is a martingale.
 
 ??? success "Solution to Exercise 6"
     Under the risk-neutral measure, $dS_t = rS_t\,dt + \sigma S_t\,dW_t$, so the generator of GBM is:
@@ -550,6 +542,10 @@ then $\tilde{\mathcal{L}}V - rV = 0$, where $\mathcal{L}$ is the generator of ge
     $$
 
     This is a (local) martingale since it is a stochastic integral with respect to $W_t$. Under appropriate integrability conditions (which hold for standard option payoffs), it is a true martingale. Therefore $e^{-rt}V(S_t, t)$ is a martingale, confirming the risk-neutral pricing formula $V(S_0, 0) = \mathbb{E}[e^{-rT}V(S_T, T)]$.
+
+---
+
+**Exercise 7.** Let $dX_t = \sigma(X_t)\,dW_t$ (a driftless diffusion with state-dependent volatility). Write down the generator $\mathcal{L}$ and show that every affine function $f(x) = ax + b$ satisfies $\mathcal{L}f = 0$. What does this imply about $f(X_t)$ as a stochastic process?
 
 ??? success "Solution to Exercise 7"
     The SDE is $dX_t = \sigma(X_t)\,dW_t$, so $\mu(x) = 0$ and the generator is:

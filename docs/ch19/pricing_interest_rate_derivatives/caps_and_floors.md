@@ -384,9 +384,95 @@ Often structured as **zero-cost collars** where premium paid for cap equals prem
 
 **Exercise 1.** Consider a 2-year cap with semiannual resets ($\delta = 0.5$), notional $N = \$1{,}000{,}000$, and strike $K = 4\%$. The discount factors are $P(0, 0.5) = 0.9901$, $P(0, 1.0) = 0.9803$, $P(0, 1.5) = 0.9706$, $P(0, 2.0) = 0.9610$, and the forward rates are $F_0 = 4.0\%$, $F_1 = 4.0\%$, $F_2 = 4.0\%$, $F_3 = 4.0\%$. Each caplet has Black volatility $\sigma_i = 20\%$. Compute the price of each caplet and the total cap price using Black's formula.
 
+??? success "Solution to Exercise 1"
+
+    **Given:** $N = 1{,}000{,}000$, $\delta = 0.5$, $K = 0.04$, $\sigma_i = 0.20$ for all $i$, $F_i = 0.04$ for all $i$.
+
+    Since $F_i = K$ (ATM), we have $\ln(F_i/K) = 0$, so:
+
+    $$
+    d_1 = \frac{0 + \frac{1}{2}\sigma_i^2 T_i}{\sigma_i\sqrt{T_i}} = \frac{1}{2}\sigma_i\sqrt{T_i}
+    $$
+
+    $$
+    d_2 = d_1 - \sigma_i\sqrt{T_i} = -\frac{1}{2}\sigma_i\sqrt{T_i}
+    $$
+
+    The caplet formula is $\text{Caplet}_i = N\delta P(0,T_{i+1})[F_i N(d_1) - K N(d_2)]$.
+
+    Since $F_i = K = 0.04$: $\text{Caplet}_i = N\delta P(0,T_{i+1}) \cdot 0.04 \cdot [N(d_1) - N(d_2)]$.
+
+    **Caplet 1** ($T_0 = 0$, payment at $T_1 = 0.5$):
+
+    $d_1 = \frac{1}{2}(0.20)\sqrt{0} = 0$, $d_2 = 0$. So $N(d_1) - N(d_2) = 0$.
+
+    $\text{Caplet}_0 = 0$. (The first caplet is typically excluded since $L(0, 0.5)$ is already known; if included with $T_0 = 0$, it has zero time value.)
+
+    **Caplet 2** ($T_1 = 0.5$, payment at $T_2 = 1.0$):
+
+    $d_1 = \frac{1}{2}(0.20)\sqrt{0.5} = 0.1 \times 0.7071 = 0.07071$
+
+    $d_2 = -0.07071$
+
+    $N(0.07071) = 0.5282$, $N(-0.07071) = 0.4718$
+
+    $\text{Caplet}_1 = 1{,}000{,}000 \times 0.5 \times 0.9803 \times 0.04 \times (0.5282 - 0.4718) = 1{,}000{,}000 \times 0.5 \times 0.9803 \times 0.04 \times 0.05640 = 1{,}106.3$
+
+    **Caplet 3** ($T_2 = 1.0$, payment at $T_3 = 1.5$):
+
+    $d_1 = \frac{1}{2}(0.20)\sqrt{1.0} = 0.10$, $d_2 = -0.10$
+
+    $N(0.10) = 0.5398$, $N(-0.10) = 0.4602$
+
+    $\text{Caplet}_2 = 1{,}000{,}000 \times 0.5 \times 0.9706 \times 0.04 \times 0.0796 = 1{,}546.5$
+
+    **Caplet 4** ($T_3 = 1.5$, payment at $T_4 = 2.0$):
+
+    $d_1 = \frac{1}{2}(0.20)\sqrt{1.5} = 0.1 \times 1.2247 = 0.12247$, $d_2 = -0.12247$
+
+    $N(0.12247) = 0.5487$, $N(-0.12247) = 0.4513$
+
+    $\text{Caplet}_3 = 1{,}000{,}000 \times 0.5 \times 0.9610 \times 0.04 \times 0.0975 = 1{,}874.8$
+
+    **Total cap price:**
+
+    $$
+    \text{Cap} = 0 + 1{,}106.3 + 1{,}546.5 + 1{,}874.8 \approx \$4{,}527.6
+    $$
+
+    (Note: if the first caplet at $T_0 = 0$ is excluded by convention, the cap has 3 caplets with the prices computed above.)
+
 ---
 
 **Exercise 2.** Prove cap-floor parity: show that for each period, $\max(L - K, 0) - \max(K - L, 0) = L - K$, and deduce that Cap $-$ Floor $=$ Payer Swap. If the ATM swap rate is 5\% and you observe a 5\%-strike cap trading at 320 bps, what must the 5\%-strike floor be worth?
+
+??? success "Solution to Exercise 2"
+
+    **Proof of the identity:** For any real number $L$:
+
+    $$
+    \max(L - K, 0) - \max(K - L, 0) = \begin{cases} L - K & \text{if } L \geq K \\ -(K - L) = L - K & \text{if } L < K \end{cases} = L - K
+    $$
+
+    This holds for all $L$, confirming the identity.
+
+    **Deduction:** For each period $i$, the caplet pays $\delta\max(L_i - K, 0)$ and the floorlet pays $\delta\max(K - L_i, 0)$ at time $T_{i+1}$. The difference is $\delta(L_i - K)$, which is exactly the floating-minus-fixed payment of a payer swap for that period. Summing over all periods:
+
+    $$
+    \text{Cap} - \text{Floor} = \sum_i \text{Caplet}_i - \sum_i \text{Floorlet}_i = \text{Payer Swap}
+    $$
+
+    **Application:** If the ATM swap rate is 5% and the strike is $K = 5\%$, then the payer swap with strike 5% is ATM and has **zero value**. Therefore:
+
+    $$
+    \text{Cap}(5\%) - \text{Floor}(5\%) = 0
+    $$
+
+    $$
+    \text{Floor}(5\%) = \text{Cap}(5\%) = 320 \text{ bps}
+    $$
+
+    The 5%-strike floor is worth **320 bps** (same as the cap).
 
 ---
 
@@ -396,18 +482,245 @@ $$
 \delta \max(L - K, 0) = (1 + K\delta)\max\!\left(\frac{1}{1+K\delta} - P(T_1, T_2), 0\right)
 $$
 
+??? success "Solution to Exercise 3"
+
+    Starting from the caplet payoff paid at $T_2$:
+
+    $$
+    \delta\max(L(T_1, T_2) - K, 0)
+    $$
+
+    The forward rate $L(T_1, T_2)$ is defined by:
+
+    $$
+    L(T_1, T_2) = \frac{1}{\delta}\left(\frac{1}{P(T_1, T_2)} - 1\right)
+    $$
+
+    Substituting:
+
+    $$
+    L - K = \frac{1}{\delta}\left(\frac{1}{P(T_1,T_2)} - 1\right) - K = \frac{1}{\delta}\left(\frac{1}{P(T_1,T_2)} - 1 - K\delta\right) = \frac{1}{\delta}\left(\frac{1 - (1+K\delta)P(T_1,T_2)}{P(T_1,T_2)}\right)
+    $$
+
+    Therefore:
+
+    $$
+    \delta\max(L-K, 0) = \max\!\left(\frac{1 - (1+K\delta)P(T_1,T_2)}{P(T_1,T_2)}, 0\right)
+    $$
+
+    Since $P(T_1,T_2) > 0$, the sign is determined by the numerator:
+
+    $$
+    = \frac{1}{P(T_1,T_2)}\max\!\left(1 - (1+K\delta)P(T_1,T_2), 0\right)
+    $$
+
+    Now factor out $(1+K\delta)$:
+
+    $$
+    = \frac{(1+K\delta)}{P(T_1,T_2)}\max\!\left(\frac{1}{1+K\delta} - P(T_1,T_2), 0\right)
+    $$
+
+    This is paid at $T_2$. To value at time 0, we discount by $P(0,T_2)$, which includes the $1/P(T_1,T_2)$ factor. Alternatively, the payoff at $T_1$ (discounting back one period from $T_2$ to $T_1$ using the factor $P(T_1,T_2)$) is:
+
+    $$
+    P(T_1,T_2) \times \frac{(1+K\delta)}{P(T_1,T_2)}\max\!\left(\frac{1}{1+K\delta} - P(T_1,T_2), 0\right)
+    $$
+
+    $$
+    = (1+K\delta)\max\!\left(\frac{1}{1+K\delta} - P(T_1,T_2), 0\right)
+    $$
+
+    This is exactly $(1+K\delta)$ times a **put option** on the zero-coupon bond $P(T_1,T_2)$ with strike $K_P = 1/(1+K\delta)$ and expiry $T_1$.
+
 ---
 
 **Exercise 4.** A market quotes flat cap volatilities as follows: 1Y cap at 18\%, 2Y cap at 20\%, 3Y cap at 19\%. The caps have annual resets. Bootstrap the spot (caplet) volatilities $\sigma_1$, $\sigma_2$, $\sigma_3$ from these flat volatilities. Explain why the 3Y flat vol can be lower than the 2Y flat vol even though all spot vols are positive.
+
+??? success "Solution to Exercise 4"
+
+    **Bootstrapping spot volatilities from flat volatilities:**
+
+    For annual resets, the cap with maturity $n$ years consists of caplets 1 through $n$ (or $n-1$ depending on convention; here we assume caplets for periods ending at years 1, 2, 3).
+
+    **Year 1 (1Y cap = 1 caplet):**
+
+    The 1Y cap consists of a single caplet with volatility $\sigma_1$. The flat vol equals the spot vol:
+
+    $$
+    \sigma_1 = 18\%
+    $$
+
+    **Year 2 (2Y cap = 2 caplets):**
+
+    The 2Y cap price equals the sum of two caplet prices:
+
+    $$
+    \text{Cap}_2(\sigma_{\text{flat}} = 20\%) = \text{Caplet}_1(\sigma_1) + \text{Caplet}_2(\sigma_2)
+    $$
+
+    But also:
+
+    $$
+    \text{Cap}_2(20\%) = \text{Caplet}_1(20\%) + \text{Caplet}_2(20\%)
+    $$
+
+    We know $\sigma_1 = 18\%$, so we solve for $\sigma_2$ from:
+
+    $$
+    \text{Caplet}_1(18\%) + \text{Caplet}_2(\sigma_2) = \text{Caplet}_1(20\%) + \text{Caplet}_2(20\%)
+    $$
+
+    Since the flat vol of 20% exceeds the first caplet's spot vol of 18%, the second caplet must have $\sigma_2 > 20\%$ to compensate. Using Black's formula (the exact value depends on forward rates and discount factors), the bootstrapped $\sigma_2$ will be approximately **22%** (higher than the flat vol).
+
+    **Year 3 (3Y cap = 3 caplets):**
+
+    $$
+    \text{Cap}_3(19\%) = \text{Caplet}_1(18\%) + \text{Caplet}_2(\sigma_2) + \text{Caplet}_3(\sigma_3)
+    $$
+
+    Since the 3Y flat vol (19%) is lower than the 2Y flat vol (20%), the marginal caplet 3 must have a relatively low volatility. Solving:
+
+    $$
+    \text{Caplet}_3(\sigma_3) = \text{Cap}_3(19\%) - \text{Caplet}_1(18\%) - \text{Caplet}_2(\sigma_2)
+    $$
+
+    This yields $\sigma_3$ below 19% (approximately **16--17%**).
+
+    **Why 3Y flat vol can be below 2Y flat vol:** The flat vol is a weighted average of the spot vols, where the weights depend on caplet prices (and hence on forward rates and discount factors). If the third caplet has a low spot vol, it pulls the weighted average down. The spot vol term structure can be humped (rising then falling) even if the flat vol term structure is monotone, because flat vols smooth out the spot vol curve through averaging.
 
 ---
 
 **Exercise 5.** Using the Bachelier (normal) model, price an ATM caplet with $F = K = 3\%$, $\delta = 0.25$, $T = 1$, $P(0, T + \delta) = 0.9926$, normal volatility $\sigma^{(n)} = 60$ bps, and $N = \$10{,}000{,}000$. Compare the result with the approximate conversion formula $\sigma^{(n)} \approx F \cdot \sigma^{(\text{Black})}$ and compute the implied Black volatility.
 
+??? success "Solution to Exercise 5"
+
+    **Given (Bachelier model):** $F = K = 0.03$ (ATM), $\delta = 0.25$, $T = 1$, $P(0, T+\delta) = P(0, 1.25) = 0.9926$, $\sigma^{(n)} = 0.0060$ (60 bps), $N = 10{,}000{,}000$.
+
+    Since $F = K$, we have $d = (F - K)/(\sigma^{(n)}\sqrt{T}) = 0$, so $N(0) = 0.5$ and $\phi(0) = 1/\sqrt{2\pi} = 0.3989$.
+
+    **Bachelier caplet formula:**
+
+    $$
+    \text{Caplet} = N \cdot \delta \cdot P(0, T+\delta) \cdot \left[(F - K)N(d) + \sigma^{(n)}\sqrt{T}\,\phi(d)\right]
+    $$
+
+    $$
+    = 10{,}000{,}000 \times 0.25 \times 0.9926 \times \left[0 + 0.0060 \times 1.0 \times 0.3989\right]
+    $$
+
+    $$
+    = 10{,}000{,}000 \times 0.25 \times 0.9926 \times 0.002393
+    $$
+
+    $$
+    = 2{,}481{,}500 \times 0.002393 = \$5{,}938
+    $$
+
+    **Implied Black volatility via the conversion formula:**
+
+    $$
+    \sigma^{(\text{Black})} \approx \frac{\sigma^{(n)}}{F} = \frac{0.0060}{0.03} = 0.20 = 20\%
+    $$
+
+    **Verification using Black's formula (ATM):**
+
+    For ATM with $F = K$: $d_1 = \sigma\sqrt{T}/2 = 0.10$, $d_2 = -0.10$.
+
+    $$
+    \text{Caplet}_{\text{Black}} = N\delta P(0,T+\delta) \cdot F \cdot [N(0.10) - N(-0.10)]
+    $$
+
+    $$
+    = 10{,}000{,}000 \times 0.25 \times 0.9926 \times 0.03 \times [0.5398 - 0.4602]
+    $$
+
+    $$
+    = 74{,}445 \times 0.0796 = \$5{,}926
+    $$
+
+    The two results agree to within \$12 (0.2% relative difference), confirming the approximate conversion $\sigma^{(n)} \approx F \cdot \sigma^{(\text{Black})}$ is accurate for ATM options. The small discrepancy arises because the conversion is exact only in the limit of small $\sigma\sqrt{T}$.
+
 ---
 
 **Exercise 6.** A trader constructs a zero-cost collar by buying a cap at $K_H = 5\%$ and selling a floor at $K_L$, both on the same 3-year semiannual floating rate exposure. If the cap costs 180 bps (in running premium) and the floor premium per basis point of strike is approximately 40 bps per 1\% of strike, estimate the floor strike $K_L$ that makes the collar zero-cost. Discuss the risks of this structure.
 
+??? success "Solution to Exercise 6"
+
+    **Given:** Cap costs 180 bps running, floor premium is approximately 40 bps per 1% of strike.
+
+    The floor premium at strike $K_L$ is approximately $40 \times K_L$ bps (where $K_L$ is in percent). For a zero-cost collar:
+
+    $$
+    \text{Floor premium} = \text{Cap premium}
+    $$
+
+    $$
+    40 \times K_L = 180
+    $$
+
+    $$
+    K_L = \frac{180}{40} = 4.5\%
+    $$
+
+    So the floor strike is approximately **$K_L = 4.5\%$**.
+
+    The collar structure: the borrower buys a cap at 5% (protection against rates above 5%) and sells a floor at 4.5% (giving up gains when rates fall below 4.5%). The effective borrowing rate is bounded between 4.5% and 5%.
+
+    **Risks of this structure:**
+
+    1. **Opportunity cost:** If rates fall significantly below 4.5%, the borrower does not benefit --- they are locked into paying at least 4.5% due to the short floor. This is the primary risk.
+    2. **Basis risk:** The cap and floor reference rates (e.g., SOFR) may not perfectly match the borrower's actual funding rate.
+    3. **Credit risk:** The collar counterparty may default, leaving the borrower without the cap protection.
+    4. **Liquidity risk:** Unwinding the collar before maturity may be costly, especially the short floor position.
+    5. **Model risk:** The linear premium approximation ($40 \times K_L$) is crude --- the actual floor premium depends nonlinearly on the strike, forward rates, and volatility.
+    6. **Mark-to-market risk:** Although zero-cost at inception, the collar can have significant positive or negative value subsequently, creating accounting and margin implications.
+
 ---
 
 **Exercise 7.** Compute the cap vega for a 3-year annual cap with $K = 4\%$, $N = \$1{,}000{,}000$, and the following parameters for each caplet: $F_i = 4\%$, $P(0, T_{i+1}) = e^{-0.04 \cdot T_{i+1}}$, $\sigma_i = 22\%$. Verify that the cap vega is the sum of the individual caplet vegas. Which caplet contributes the most vega, and why?
+
+??? success "Solution to Exercise 7"
+
+    **Given:** 3-year annual cap, $K = 0.04$, $N = 1{,}000{,}000$, $F_i = 0.04$ (ATM for each caplet), $\sigma_i = 0.22$, $\delta = 1$ (annual), $P(0, T_{i+1}) = e^{-0.04 T_{i+1}}$.
+
+    **Caplet vega formula:**
+
+    $$
+    \mathcal{V}_{\text{caplet},i} = N \cdot \delta \cdot P(0, T_{i+1}) \cdot F_i \sqrt{T_i}\,\phi(d_1)
+    $$
+
+    Since $F_i = K$ (ATM), $d_1 = \frac{1}{2}\sigma_i\sqrt{T_i}$ and $d_2 = -d_1$.
+
+    **Caplet 1** ($T_1 = 1$, $T_2 = 2$):
+
+    $d_1 = \frac{1}{2}(0.22)(1) = 0.11$, $\phi(0.11) = 0.3965$
+
+    $P(0,2) = e^{-0.08} = 0.9231$
+
+    $\mathcal{V}_1 = 1{,}000{,}000 \times 1 \times 0.9231 \times 0.04 \times 1.0 \times 0.3965 = 14{,}634$
+
+    **Caplet 2** ($T_2 = 2$, $T_3 = 3$):
+
+    $d_1 = \frac{1}{2}(0.22)\sqrt{2} = 0.11 \times 1.4142 = 0.15556$, $\phi(0.15556) = 0.3939$
+
+    $P(0,3) = e^{-0.12} = 0.8869$
+
+    $\mathcal{V}_2 = 1{,}000{,}000 \times 1 \times 0.8869 \times 0.04 \times 1.4142 \times 0.3939 = 19{,}742$
+
+    **Caplet 3** ($T_3 = 3$, $T_4 = 4$):
+
+    $d_1 = \frac{1}{2}(0.22)\sqrt{3} = 0.11 \times 1.7321 = 0.19053$, $\phi(0.19053) = 0.3918$ (approximately, since $\phi$ is nearly flat near 0)
+
+    $P(0,4) = e^{-0.16} = 0.8521$
+
+    $\mathcal{V}_3 = 1{,}000{,}000 \times 1 \times 0.8521 \times 0.04 \times 1.7321 \times 0.3918 = 23{,}126$
+
+    **Total cap vega:**
+
+    $$
+    \mathcal{V}_{\text{cap}} = \mathcal{V}_1 + \mathcal{V}_2 + \mathcal{V}_3 = 14{,}634 + 19{,}742 + 23{,}126 = 57{,}502
+    $$
+
+    This confirms that the cap vega is the sum of individual caplet vegas, since the cap price is the sum of caplet prices and each caplet depends on its own volatility parameter.
+
+    **Which caplet contributes the most vega?** Caplet 3 (the longest-dated) contributes the most vega. This is because the vega of an ATM option is proportional to $\sqrt{T}$ (via the $F\sqrt{T}\phi(d_1)$ factor). Longer-dated caplets have more time for volatility to affect the outcome, so they are more sensitive to changes in volatility. The discount factor $P(0,T_{i+1})$ partially offsets this (later caplets are discounted more), but the $\sqrt{T}$ effect dominates.

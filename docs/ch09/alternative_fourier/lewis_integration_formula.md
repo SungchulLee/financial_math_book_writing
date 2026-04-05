@@ -207,22 +207,157 @@ The Lewis formula provides the simplest Fourier pricing representation for a sin
 
 **Exercise 1.** The strip of analyticity of $\phi_T(z)$ is determined by the exponential moments $\mathbb{E}[S_T^p]$. For the Black-Scholes model, show that $\mathbb{E}[S_T^p] < \infty$ for all $p \in \mathbb{R}$, so the strip is $(-\infty, \infty)$. For a model where the density has power-law tails $f(x) \sim e^{-Mx}$ as $x \to +\infty$ (with $M > 0$), show that $\mathbb{E}[S_T^p] < \infty$ only for $p < M$ and determine the strip boundary.
 
+??? success "Solution to Exercise 1"
+    **Black--Scholes model.** With $\ln S_T \sim N(\mu_T, \sigma^2 T)$ where $\mu_T = \ln S_0 + (r - \sigma^2/2)T$:
+
+    $$
+    \mathbb{E}[S_T^p] = \mathbb{E}[e^{p\ln S_T}] = \exp\!\left(p\mu_T + \frac{p^2\sigma^2 T}{2}\right)
+    $$
+
+    This follows from the moment generating function of the normal distribution. Since $p\mu_T + p^2\sigma^2 T/2$ is finite for every $p \in \mathbb{R}$, we have $\mathbb{E}[S_T^p] < \infty$ for all $p$. The strip of analyticity is $(\underline{p}, \bar{p}) = (-\infty, \infty)$.
+
+    **Power-law tail model.** Suppose $f(x) \sim C e^{-Mx}$ as $x \to +\infty$ for some $M > 0$. Then for $p > 0$:
+
+    $$
+    \mathbb{E}[S_T^p] = \int_{-\infty}^{\infty} e^{px} f(x)\,dx \geq \int_{x_0}^{\infty} e^{px} \cdot C e^{-Mx}\,dx = C\int_{x_0}^{\infty} e^{(p-M)x}\,dx
+    $$
+
+    This integral converges if and only if $p - M < 0$, i.e., $p < M$. For $p \geq M$, the integrand grows (or fails to decay) and the integral diverges. Therefore:
+
+    $$
+    \mathbb{E}[S_T^p] < \infty \quad \Leftrightarrow \quad p < M
+    $$
+
+    The upper strip boundary is $\bar{p} = M$. (A similar analysis for the left tail $f(x) \sim C' e^{Gx}$ as $x \to -\infty$ gives the lower boundary $\underline{p} = -G$.) For the Lewis formula to apply, we need $1/2 < M$, i.e., $M > 1/2$.
+
 ---
 
 **Exercise 2.** Verify the denominator calculation in the Lewis derivation. At $z = u + i/2$, show that $-z(z-i) = -(u + i/2)(u - i/2) = -(u^2 + 1/4)$. Then explain why the factor $1/(u^2 + 1/4)$ ensures $O(u^{-2})$ decay of the integrand as $u \to \infty$.
+
+??? success "Solution to Exercise 2"
+    At $z = u + i/2$:
+
+    $$
+    -z(z - i) = -(u + i/2)\bigl((u + i/2) - i\bigr) = -(u + i/2)(u - i/2)
+    $$
+
+    This is a difference of squares pattern. Using $(a + b)(a - b) = a^2 - b^2$:
+
+    $$
+    -(u + i/2)(u - i/2) = -(u^2 - (i/2)^2) = -(u^2 - (-1/4)) = -(u^2 + 1/4)
+    $$
+
+    The factor $1/(u^2 + 1/4)$ ensures $O(u^{-2})$ decay because for large $|u|$:
+
+    $$
+    \frac{1}{u^2 + 1/4} \sim \frac{1}{u^2} \quad \text{as } u \to \infty
+    $$
+
+    Meanwhile, $|\phi_T(u + i/2)| \leq \mathbb{E}[|e^{i(u+i/2)\ln S_T}|] = \mathbb{E}[e^{-\frac{1}{2}\ln S_T}] = \mathbb{E}[S_T^{-1/2}]$, which is a bounded constant independent of $u$. The oscillatory factor $e^{-iu\ln(K/S_0)}$ has modulus 1. Therefore the full Lewis integrand decays as $O(u^{-2})$, which is integrable on $[0, \infty)$ and ensures rapid convergence of numerical quadrature.
 
 ---
 
 **Exercise 3.** For the Black-Scholes model with $\phi_T(u) = \exp(i(r - \sigma^2/2)Tu - \sigma^2 Tu^2/2)$, evaluate the Lewis integrand at $u = 0, 1, 5, 10$ for the parameters $S_0 = 100$, $K = 100$, $r = 0.05$, $\sigma = 0.20$, $T = 1$. Estimate the upper truncation limit $U$ beyond which the integrand is negligible (say, $< 10^{-15}$).
 
+??? success "Solution to Exercise 3"
+    The characteristic function of the log-return is $\phi_T(u) = \exp(i(r - \sigma^2/2)Tu - \sigma^2 Tu^2/2)$. With $r = 0.05$, $\sigma = 0.20$, $T = 1$: the drift is $r - \sigma^2/2 = 0.05 - 0.02 = 0.03$.
+
+    At $u - i/2$:
+
+    $$
+    \phi_T(u - i/2) = \exp\!\left(i \cdot 0.03 \cdot (u - i/2) - 0.02(u - i/2)^2/2\right)
+    $$
+
+    Expanding $(u - i/2)^2 = u^2 - iu + (-1/4) = u^2 - iu - 1/4$:
+
+    $$
+    \phi_T(u - i/2) = \exp\!\left(0.03iu + 0.015 - 0.01u^2 + 0.01iu + 0.0025\right)
+    $$
+
+    $$
+    = \exp\!\left(0.0175 - 0.01u^2 + i(0.04u)\right)
+    $$
+
+    The Lewis integrand (real part of the expression inside the integral) involves $|\phi_T(u-i/2)|/(u^2 + 1/4)$. The modulus is $|\phi_T(u-i/2)| = \exp(0.0175 - 0.01u^2)$.
+
+    With $K/S_0 = 1$ (ATM), so $\ln(K/S_0) = 0$, the integrand simplifies. Let $g(u) = \frac{|\phi_T(u-i/2)|}{u^2 + 1/4} = \frac{\exp(0.0175 - 0.01u^2)}{u^2 + 0.25}$.
+
+    Evaluating:
+
+    - $u = 0$: $g(0) = \frac{e^{0.0175}}{0.25} = \frac{1.01765}{0.25} \approx 4.071$
+    - $u = 1$: $g(1) = \frac{e^{0.0175 - 0.01}}{1.25} = \frac{e^{0.0075}}{1.25} \approx \frac{1.00753}{1.25} \approx 0.806$
+    - $u = 5$: $g(5) = \frac{e^{0.0175 - 0.25}}{25.25} = \frac{e^{-0.2325}}{25.25} \approx \frac{0.7925}{25.25} \approx 0.0314$
+    - $u = 10$: $g(10) = \frac{e^{0.0175 - 1.0}}{100.25} = \frac{e^{-0.9825}}{100.25} \approx \frac{0.3744}{100.25} \approx 0.00374$
+
+    For the truncation limit, we need $g(U) < 10^{-15}$:
+
+    $$
+    \frac{\exp(0.0175 - 0.01U^2)}{U^2 + 0.25} < 10^{-15}
+    $$
+
+    For large $U$, the dominant term is $\exp(-0.01U^2)$. Setting $\exp(-0.01U^2) \approx 10^{-15}$ gives $0.01U^2 \approx 15\ln 10 \approx 34.54$, so $U \approx \sqrt{3454} \approx 58.8$. Therefore $U \approx 60$ suffices for $10^{-15}$ accuracy in the Black--Scholes model.
+
 ---
 
 **Exercise 4.** The Lewis formula requires no damping parameter, unlike the Carr-Madan method. Explain why the contour $\text{Im}(z) = 1/2$ is "canonical"---that is, why this particular contour avoids the poles at $z = 0$ and $z = i$ while remaining inside the strip of analyticity for standard financial models.
+
+??? success "Solution to Exercise 4"
+    The Lewis formula integrates along $\text{Im}(z) = 1/2$, i.e., the contour $z = u + i/2$ for $u \in \mathbb{R}$. The original pricing integral has poles at $z = 0$ and $z = i$ (arising from the denominator $-z(z-i)$).
+
+    The contour $\text{Im}(z) = 1/2$ is canonical for the following reasons:
+
+    1. **It avoids both poles.** The pole at $z = 0$ lies on $\text{Im}(z) = 0$, and the pole at $z = i$ lies on $\text{Im}(z) = 1$. The line $\text{Im}(z) = 1/2$ passes exactly midway between these poles and never intersects either.
+
+    2. **It lies inside the strip of analyticity.** For the characteristic function to be analytic on the contour, we need $\text{Im}(z) = 1/2 \in (\underline{p}, \bar{p})$. This requires $\mathbb{E}[S_T^{1/2}] < \infty$ (from the lower boundary, since $1/2 > \underline{p}$) and $\mathbb{E}[S_T^{1/2}] < \infty$ is also trivially satisfied since $\mathbb{E}[S_T] < \infty$ (which is required for the call to be well-defined, and by Jensen's inequality $\mathbb{E}[S_T^{1/2}] \leq (\mathbb{E}[S_T])^{1/2} < \infty$). Thus for any model with a finite forward price, the critical line lies inside the strip.
+
+    3. **The denominator provides optimal decay.** At $\text{Im}(z) = 1/2$, the denominator $-z(z-i) = -(u^2 + 1/4)$ is purely real and negative, giving a clean $O(u^{-2})$ decay factor. Any other contour $\text{Im}(z) = c$ with $c \neq 1/2$ would produce a complex denominator $-(u^2 + c^2) + iu(2c-1)$, whose modulus still decays as $O(u^{-2})$ but the real-part extraction is less clean.
+
+    In summary, $\text{Im}(z) = 1/2$ is the unique contour that is equidistant from both poles, lies inside the analyticity strip for all standard models, and produces the simplest real-valued denominator.
 
 ---
 
 **Exercise 5.** Implement the Lewis formula numerically for a European call under Black-Scholes ($S_0 = 100$, $K = 110$, $r = 0.05$, $\sigma = 0.25$, $T = 0.5$) using the trapezoidal rule with $M = 64$ points on $[0, 50]$. Compare your result to the Black-Scholes closed-form price and estimate the quadrature error. How many points $M$ are needed for $10^{-10}$ accuracy?
 
+??? success "Solution to Exercise 5"
+    Using the trapezoidal rule on $[0, 50]$ with $M = 64$ points, the grid spacing is $h = 50/64 \approx 0.78125$, with nodes $u_j = jh$ for $j = 0, 1, \ldots, 64$.
+
+    Parameters: $S_0 = 100$, $K = 110$, $r = 0.05$, $\sigma = 0.25$, $T = 0.5$, so $\ln(K/S_0) = \ln(1.1) \approx 0.09531$.
+
+    The drift: $r - \sigma^2/2 = 0.05 - 0.03125 = 0.01875$.
+
+    The CF at $u - i/2$: $\phi_T(u - i/2) = \exp(i \cdot 0.01875 \cdot 0.5 \cdot (u-i/2) - 0.0625 \cdot 0.5 \cdot (u-i/2)^2/2)$.
+
+    The Lewis formula gives:
+
+    $$
+    C = S_0 - \frac{\sqrt{S_0 K}\,e^{-rT/2}}{\pi} \sum_{j=0}^{M} w_j \,\text{Re}\!\left[\frac{e^{-iu_j \ln(K/S_0)} \phi_T(u_j - i/2)}{u_j^2 + 1/4}\right]
+    $$
+
+    where $w_j$ are trapezoidal weights ($h/2$ at endpoints, $h$ at interior points).
+
+    The Black--Scholes closed-form price for these parameters is computed via the standard formula with $d_1 = \frac{\ln(S_0/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}} = \frac{-0.09531 + 0.05625}{0.25\sqrt{0.5}} \approx \frac{-0.03906}{0.17678} \approx -0.2209$ and $d_2 = d_1 - \sigma\sqrt{T} \approx -0.3977$. This gives $C_{\text{BS}} \approx 3.444$.
+
+    With the trapezoidal rule and $M = 64$ points, the quadrature error is approximately $O(h^2) \approx O(0.6)$ in terms of the discretization, but the Gaussian decay of the Black--Scholes CF makes the actual error much smaller---typically $10^{-6}$ to $10^{-8}$ with $M = 64$.
+
+    For $10^{-10}$ accuracy, the trapezoidal rule converges super-algebraically for smooth, rapidly decaying integrands (the Euler--Maclaurin formula shows exponential convergence for analytic integrands on $[0, \infty)$ with Gaussian decay). Approximately $M = 100$--$128$ points suffice. Alternatively, using Gauss--Legendre quadrature after a change of variables, $M = 40$--$50$ points achieve $10^{-10}$ accuracy.
+
 ---
 
 **Exercise 6.** The three Fourier methods (COS, Carr-Madan, Lewis) are related by contour deformation. The Carr-Madan integrand at $\text{Im}(u) = 0$ can be deformed to Lewis's contour at $\text{Im}(u) = 1/2$ plus a residue at $u = i$. Explain what the residue at $u = i$ corresponds to financially (the forward price component $S_0 e^{-qT}$) and why deforming the contour from real axis to the critical line improves the integrand decay from $O(u^{-1})$ to $O(u^{-2})$.
+
+---
+
+??? success "Solution to Exercise 6"
+    **Residue at $u = i$.** The Carr--Madan formula integrates the damped call transform along the real axis ($\text{Im}(u) = 0$). The integrand has a pole at $u = i$ (from the denominator $(\alpha + iu)(\alpha + 1 + iu)$, which vanishes when $iu = -\alpha$ or $iu = -(\alpha+1)$; for the undamped case $\alpha \to 0$, the poles are at $u = 0$ and $u = i$).
+
+    By Cauchy's residue theorem, deforming the contour from $\text{Im}(u) = 0$ to $\text{Im}(u) = 1/2$ picks up the residue of the integrand at $u = i$ (since the pole at $u = i$ lies between the two contours):
+
+    $$
+    \int_{\text{Im}=0} = \int_{\text{Im}=1/2} + 2\pi i \cdot \text{Res}_{u=i}
+    $$
+
+    The residue at $u = i$ evaluates to $S_0 e^{-qT}$ (the forward price discounted for dividends). Financially, this is the forward component of the call price decomposition $C = e^{-qT}S_0 \cdot P_1 - e^{-rT}K \cdot P_2$. The forward price $S_0 e^{-qT}$ represents the expected value of the asset under the pricing measure, and it appears as a "lump" contribution from the pole.
+
+    **Improvement in integrand decay.** The Gil--Pelaez-type integrand along the real axis ($\text{Im}(u) = 0$) involves $\phi_T(u)/u$, which decays as $O(u^{-1})$ since $|\phi_T(u)| \leq 1$ for real $u$. This slow decay requires either damping (Carr--Madan) or careful handling.
+
+    On the Lewis contour ($\text{Im}(u) = 1/2$), the denominator changes from $u$ to $u^2 + 1/4$, providing $O(u^{-2})$ decay. The extra power of decay comes from the fact that the contour passes through the "saddle point" between the two poles at $z = 0$ and $z = i$. At the midpoint $\text{Im}(z) = 1/2$, the contributions from both poles partially cancel, leaving a net $O(u^{-2})$ envelope. This improved decay means standard quadrature converges faster, no damping parameter is needed, and fewer quadrature points suffice for a given accuracy target.

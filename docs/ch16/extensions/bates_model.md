@@ -256,27 +256,279 @@ where $\hat{v}$ is the effective variance from the QE scheme and $Z \sim \mathca
 **Exercise 1.**
 Compute the jump compensator $\bar{k} = e^{\mu_J + \sigma_J^2/2} - 1$ for $\mu_J = -0.08$ and $\sigma_J = 0.15$. Verify that $\bar{k} < 0$ (the drift adjustment is positive, compensating for the expected downward jumps). What happens to $\bar{k}$ if $\mu_J = 0$ and $\sigma_J > 0$? Explain the financial interpretation.
 
+??? success "Solution to Exercise 1"
+    We compute the jump compensator $\bar{k} = e^{\mu_J + \sigma_J^2/2} - 1$ for $\mu_J = -0.08$ and $\sigma_J = 0.15$.
+
+    First, evaluate the exponent:
+
+    $$
+    \mu_J + \frac{\sigma_J^2}{2} = -0.08 + \frac{(0.15)^2}{2} = -0.08 + 0.01125 = -0.06875
+    $$
+
+    Therefore:
+
+    $$
+    \bar{k} = e^{-0.06875} - 1 = 0.93355 - 1 = -0.06647
+    $$
+
+    Since $\bar{k} < 0$, the drift adjustment $-\lambda\bar{k} > 0$ is positive, which **increases** the drift to compensate for the expected downward jumps. The stock's conditional expected return remains $r - q$ under $\mathbb{Q}$ despite the negative average jump.
+
+    **Case $\mu_J = 0$, $\sigma_J > 0$**: When the mean log-jump is zero, we get:
+
+    $$
+    \bar{k} = e^{0 + \sigma_J^2/2} - 1 = e^{\sigma_J^2/2} - 1 > 0
+    $$
+
+    This is strictly positive because $e^{\sigma_J^2/2} > 1$ for any $\sigma_J > 0$. The financial interpretation is as follows. The compensator $\bar{k}$ measures $\mathbb{E}[e^J - 1]$, which is the expected **proportional** price change per jump. Even when the log-jump has zero mean ($\mu_J = 0$), the price jump $e^J - 1$ has a positive mean due to Jensen's inequality: $\mathbb{E}[e^J] = e^{\mu_J + \sigma_J^2/2} > e^{\mu_J} = 1$. The convexity of the exponential function means symmetric log-jumps produce asymmetric price jumps that are biased upward. The drift correction $-\lambda\bar{k}$ is therefore negative, reducing the drift to offset this convexity bias.
+
 ---
 
 **Exercise 2.**
 The Bates CF is the product $\phi_{\text{Bates}} = \phi_{\text{Heston}} \times \phi_{\text{Jump}}$ where $\phi_{\text{Jump}}(u, \tau) = \exp(\lambda\tau[e^{iu\mu_J - u^2\sigma_J^2/2} - 1])$. Show that $|\phi_{\text{Jump}}(u, \tau)| = \exp(\lambda\tau[e^{-u^2\sigma_J^2/2}\cos(u\mu_J) - 1])$. For $u = 10$, $\lambda = 2$, $\mu_J = -0.05$, $\sigma_J = 0.10$, $\tau = 0.5$, compute $|\phi_{\text{Jump}}|$ and determine whether the jump component decays faster or slower than the Heston component for large $u$.
+
+??? success "Solution to Exercise 2"
+    Starting from the jump characteristic function:
+
+    $$
+    \phi_{\text{Jump}}(u, \tau) = \exp\!\left(\lambda\tau\left[e^{iu\mu_J - u^2\sigma_J^2/2} - 1\right]\right)
+    $$
+
+    we compute the modulus. Write the exponent inside the brackets as:
+
+    $$
+    e^{iu\mu_J - u^2\sigma_J^2/2} = e^{-u^2\sigma_J^2/2}\left(\cos(u\mu_J) + i\sin(u\mu_J)\right)
+    $$
+
+    Therefore:
+
+    $$
+    e^{iu\mu_J - u^2\sigma_J^2/2} - 1 = \left[e^{-u^2\sigma_J^2/2}\cos(u\mu_J) - 1\right] + i\,e^{-u^2\sigma_J^2/2}\sin(u\mu_J)
+    $$
+
+    The real part of the full exponent is:
+
+    $$
+    \text{Re}\!\left(\lambda\tau\left[e^{iu\mu_J - u^2\sigma_J^2/2} - 1\right]\right) = \lambda\tau\left[e^{-u^2\sigma_J^2/2}\cos(u\mu_J) - 1\right]
+    $$
+
+    Since $|\phi_{\text{Jump}}| = \exp(\text{Re}(\cdot))$:
+
+    $$
+    |\phi_{\text{Jump}}(u, \tau)| = \exp\!\left(\lambda\tau\left[e^{-u^2\sigma_J^2/2}\cos(u\mu_J) - 1\right]\right)
+    $$
+
+    **Numerical evaluation** with $u = 10$, $\lambda = 2$, $\mu_J = -0.05$, $\sigma_J = 0.10$, $\tau = 0.5$:
+
+    $$
+    u^2\sigma_J^2/2 = 100 \times 0.01 / 2 = 0.5
+    $$
+
+    $$
+    e^{-0.5} = 0.60653
+    $$
+
+    $$
+    u\mu_J = 10 \times (-0.05) = -0.5 \quad \Rightarrow \quad \cos(-0.5) = 0.87758
+    $$
+
+    $$
+    e^{-0.5}\cos(-0.5) - 1 = 0.60653 \times 0.87758 - 1 = 0.53224 - 1 = -0.46776
+    $$
+
+    $$
+    |\phi_{\text{Jump}}| = \exp(2 \times 0.5 \times (-0.46776)) = \exp(-0.46776) = 0.6265
+    $$
+
+    The jump component decays to about $0.63$ at $u = 10$. For comparison, the Heston characteristic function decays roughly as $\exp(-\text{const} \cdot u^2)$ for large $u$, driven by the variance of the log-price. The jump component decays as $\exp(-\lambda\tau(1 - e^{-u^2\sigma_J^2/2})) \to \exp(-\lambda\tau)$ for large $u$, which is a **constant** limit. Therefore the jump component decays **more slowly** than the Heston component for large $u$, meaning jumps contribute to the heavy tails of the characteristic function and consequently to fatter tails in the return distribution.
 
 ---
 
 **Exercise 3.**
 From the worked example, the Bates IV at 1-week 95% moneyness is 28.4% versus Heston's 22.1%. Convert both to Black-Scholes call prices for $S_0 = 100$, $K = 95$, $T = 1/52$, $r = 3\%$, $q = 0$. What is the price difference in dollar terms? For a market maker selling this put, discuss why the Bates correction is critical.
 
+??? success "Solution to Exercise 3"
+    We use the Black-Scholes formula with $S_0 = 100$, $K = 95$, $T = 1/52 \approx 0.01923$, $r = 0.03$, $q = 0$.
+
+    **Heston IV = 22.1%**: Compute $d_1$ and $d_2$:
+
+    $$
+    d_1 = \frac{\ln(S_0/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}} = \frac{\ln(100/95) + (0.03 + 0.02443)T}{0.221\sqrt{0.01923}}
+    $$
+
+    $$
+    \ln(100/95) = 0.05129, \quad \sigma\sqrt{T} = 0.221 \times 0.13868 = 0.03065
+    $$
+
+    $$
+    d_1 = \frac{0.05129 + 0.05443 \times 0.01923}{0.03065} = \frac{0.05129 + 0.00105}{0.03065} = \frac{0.05234}{0.03065} = 1.7080
+    $$
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{T} = 1.7080 - 0.03065 = 1.6774
+    $$
+
+    Using standard normal CDF values: $N(1.7080) \approx 0.9562$ and $N(1.6774) \approx 0.9533$.
+
+    $$
+    C_{\text{Heston}} = 100 \times 0.9562 - 95 \times e^{-0.03 \times 0.01923} \times 0.9533
+    $$
+
+    $$
+    = 95.62 - 95 \times 0.99942 \times 0.9533 = 95.62 - 90.50 = 5.12
+    $$
+
+    **Bates IV = 28.4%**: Repeating with $\sigma = 0.284$:
+
+    $$
+    \sigma\sqrt{T} = 0.284 \times 0.13868 = 0.03939
+    $$
+
+    $$
+    d_1 = \frac{0.05129 + (0.03 + 0.04033) \times 0.01923}{0.03939} = \frac{0.05129 + 0.00135}{0.03939} = \frac{0.05264}{0.03939} = 1.3363
+    $$
+
+    $$
+    d_2 = 1.3363 - 0.03939 = 1.2969
+    $$
+
+    $N(1.3363) \approx 0.9093$, $N(1.2969) \approx 0.9027$.
+
+    $$
+    C_{\text{Bates}} = 100 \times 0.9093 - 95 \times 0.99942 \times 0.9027 = 90.93 - 85.70 = 5.23
+    $$
+
+    **Price difference**: $C_{\text{Bates}} - C_{\text{Heston}} \approx 5.23 - 5.12 = \$0.11$ per call.
+
+    For the corresponding put prices (via put-call parity $P = C - S + Ke^{-rT}$):
+
+    $$
+    P_{\text{Heston}} = 5.12 - 100 + 95 \times 0.99942 = 5.12 - 100 + 94.95 = 0.07
+    $$
+
+    $$
+    P_{\text{Bates}} = 5.23 - 100 + 94.95 = 0.18
+    $$
+
+    The put price difference is $\$0.11$, but in **relative** terms the Bates put is approximately $0.18 / 0.07 \approx 2.6$ times the Heston put. For a market maker selling this short-dated OTM put, the Bates correction is critical because:
+
+    - The Heston model prices the put at \$0.07, while the Bates model prices it at \$0.18 --- a factor of 2.6 difference
+    - Underpricing short-dated puts by using pure Heston exposes the market maker to significant crash risk: if a jump occurs, the payoff can be many multiples of the collected premium
+    - The jump component captures exactly this tail risk, and ignoring it means systematically undercharging for downside protection at short maturities
+
 ---
 
 **Exercise 4.**
 Show that in the limit $T \to 0$, the Bates ATM skew approaches $\lambda\mu_J / (2\sqrt{v_0})$, which is finite and proportional to $\lambda\mu_J$. Compare this with the Heston ATM skew $\rho\xi/(4\sqrt{v_0})$, which also has a finite short-maturity limit. Why is the jump skew more effective at matching steep market skews?
+
+??? success "Solution to Exercise 4"
+    The ATM implied volatility skew is defined as $\mathcal{S}(T) = \partial\sigma_{\text{imp}} / \partial\ln K \big|_{K=F}$. We analyze the short-maturity limit for both models.
+
+    **Heston ATM skew**: In the standard Heston model, the short-maturity ATM skew converges to a finite constant:
+
+    $$
+    \mathcal{S}_{\text{Heston}}(T) \xrightarrow{T \to 0} \frac{\rho\xi}{4\sqrt{v_0}} \cdot \frac{1}{1}
+    $$
+
+    More precisely, $\mathcal{S}_{\text{Heston}}(T) \approx \rho\xi / (4\sqrt{v_0})$ for small $T$, which is finite and constant.
+
+    **Bates ATM skew (jump contribution)**: The jump component adds a skew contribution. For small $T$, the leading-order jump contribution to the skew comes from the asymmetry of the jump distribution. Using the expansion of the Bates CF near ATM, the jump-induced skew for small $T$ is approximately:
+
+    $$
+    \mathcal{S}_{\text{Jump}}(T) \approx \frac{\lambda\mu_J}{2\sqrt{v_0}}
+    $$
+
+    The total Bates skew for small $T$ is therefore:
+
+    $$
+    \mathcal{S}_{\text{Bates}}(T) \approx \frac{\rho\xi}{4\sqrt{v_0}} + \frac{\lambda\mu_J}{2\sqrt{v_0}}
+    $$
+
+    Both terms are finite as $T \to 0$, so the total skew has a finite short-maturity limit.
+
+    **Why the jump skew is more effective**: The jump skew component $\lambda\mu_J / (2\sqrt{v_0})$ is more effective at matching steep market skews for several reasons:
+
+    1. **Magnitude**: The diffusive skew is bounded by $|\rho\xi| / (4\sqrt{v_0})$, which for typical values ($|\rho| \leq 1$, $\xi \leq 1$, $\sqrt{v_0} \approx 0.2$) gives at most about $1.25$. The jump skew $\lambda\mu_J / (2\sqrt{v_0})$ can be made arbitrarily large by increasing $\lambda$ without affecting other model features.
+
+    2. **Independence**: The diffusive skew parameters $\rho$ and $\xi$ also control the curvature and long-maturity behavior of the smile. Increasing $|\rho|$ or $\xi$ to steepen the short-maturity skew distorts the smile at other maturities. The jump parameters $\lambda$ and $\mu_J$ affect primarily the short-maturity region, providing a more targeted adjustment.
+
+    3. **Empirical skew levels**: Market short-maturity equity skews (e.g., 1-week S&P 500 skews) are often much steeper than what the Heston diffusive component alone can produce, even with $\rho = -1$. Jumps provide the additional degrees of freedom needed.
 
 ---
 
 **Exercise 5.**
 The Bates model has a partial degeneracy between the diffusive skew parameters $(\rho, \xi)$ and the jump skew parameters $(\lambda, \mu_J)$. Design a calibration strategy that resolves this degeneracy: calibrate $(\rho, \xi)$ primarily from long-maturity smile data (where jumps are negligible) and $(\lambda, \mu_J, \sigma_J)$ from short-maturity data (where jumps dominate). Describe the two-stage procedure.
 
+??? success "Solution to Exercise 5"
+    The proposed two-stage calibration strategy exploits the maturity-dependent contributions of diffusive and jump components.
+
+    **Stage 1: Calibrate diffusive parameters $(\rho, \xi)$ from long-maturity data.**
+
+    Select options with $T \geq 1$ year. At these maturities, the jump contribution to the smile is small (as shown in the worked example, the Bates-Heston IV difference is only 0.2--0.5% at 1 year). Therefore, these options are approximately insensitive to the jump parameters.
+
+    - Fix preliminary values $\lambda = 0$, $\mu_J = 0$, $\sigma_J = 0$ (pure Heston)
+    - Calibrate $\{v_0, \kappa, \theta, \xi, \rho\}$ to the long-maturity surface by minimizing:
+
+    $$
+    \min_{v_0, \kappa, \theta, \xi, \rho} \sum_{T_j \geq 1\text{Y}} \sum_k w_{jk}\left[\sigma^{\text{Heston}}(K_k, T_j) - \sigma^{\text{mkt}}(K_k, T_j)\right]^2
+    $$
+
+    This is a standard 5-parameter Heston calibration on a reduced dataset.
+
+    **Stage 2: Calibrate jump parameters $(\lambda, \mu_J, \sigma_J)$ from short-maturity data.**
+
+    Fix $\{v_0, \kappa, \theta, \xi, \rho\}$ from Stage 1. Now calibrate the three jump parameters using options with $T \leq 3$ months:
+
+    $$
+    \min_{\lambda, \mu_J, \sigma_J} \sum_{T_j \leq 3\text{M}} \sum_k w_{jk}\left[\sigma^{\text{Bates}}(K_k, T_j) - \sigma^{\text{mkt}}(K_k, T_j)\right]^2
+    $$
+
+    This is a 3-dimensional optimization, which is much easier than the full 8-parameter joint calibration.
+
+    **Optional refinement (Stage 3)**: Use the Stage 1 + Stage 2 parameters as the initial guess for a joint 8-parameter optimization across all maturities. The good starting point from the two-stage procedure typically leads to rapid convergence and avoids the local minima that plague random initialization of the full problem.
+
+    **Why this resolves the degeneracy**: The key insight is maturity separation. At long maturities, the jump and diffusive skew contributions are asymptotically separable because the jump effect decays as $1/T$ while the diffusive skew persists. By calibrating $(\rho, \xi)$ in a regime where jumps are negligible, we obtain stable estimates uncontaminated by jump-diffusive cross-talk. The jump parameters are then identified from the short-maturity residuals that $(\rho, \xi)$ alone cannot explain.
+
 ---
 
 **Exercise 6.**
 For the Monte Carlo simulation of the Bates model, the expected number of jumps per daily time step is $\lambda\Delta t = 2.0/252 \approx 0.008$. Compute the probability of zero, one, and two jumps in a single step. Argue that the computational overhead of adding jumps to the QE scheme is negligible because $P(N_{\Delta t} = 0) > 99\%$ for typical parameters.
+
+??? success "Solution to Exercise 6"
+    The number of jumps per step follows a Poisson distribution with parameter $\mu = \lambda\Delta t = 2.0/252 \approx 0.007937$.
+
+    **Probability of zero jumps:**
+
+    $$
+    P(N_{\Delta t} = 0) = e^{-\mu} = e^{-0.007937} = 0.99209
+    $$
+
+    **Probability of one jump:**
+
+    $$
+    P(N_{\Delta t} = 1) = \mu \, e^{-\mu} = 0.007937 \times 0.99209 = 0.007874
+    $$
+
+    **Probability of two jumps:**
+
+    $$
+    P(N_{\Delta t} = 2) = \frac{\mu^2}{2} e^{-\mu} = \frac{(0.007937)^2}{2} \times 0.99209 = \frac{0.00006300}{2} \times 0.99209 = 0.00003126
+    $$
+
+    **Summary:**
+
+    | $N_{\Delta t}$ | Probability |
+    |:-:|:-:|
+    | 0 | 99.209% |
+    | 1 | 0.787% |
+    | 2 | 0.003% |
+    | $\geq 3$ | $< 10^{-6}$ |
+
+    The computational overhead argument follows directly:
+
+    1. **On 99.2% of steps**, $N_{\Delta t} = 0$ and the simulation is identical to pure Heston QE. No jump sizes need to be generated, and the log-price update is the standard QE formula.
+
+    2. **On 0.8% of steps**, exactly one jump occurs. The only additional operations are: (a) sampling one Gaussian $J \sim \mathcal{N}(\mu_J, \sigma_J^2)$ and (b) adding $J$ to the log-price. This is $\mathcal{O}(1)$ additional work.
+
+    3. **Two or more jumps** occur on fewer than 0.004% of steps and can be neglected in the cost analysis.
+
+    The total additional cost per path of $N_{\text{steps}} = 252$ daily steps is approximately $252 \times 0.008 = 2$ jump events per year, each requiring one Gaussian sample and one addition. Compared to the $252$ QE variance updates and $252$ log-price updates in pure Heston, the jump overhead is approximately $2/504 < 0.4\%$ additional computation. The overhead is indeed negligible.

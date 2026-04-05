@@ -182,26 +182,6 @@ This limitation motivates the Bates model (Heston + jumps), which uses stochasti
 
 **Exercise 1.** Formulate the Merton calibration problem as a nonlinear least-squares optimization. Write the objective function explicitly, identify the four parameters being optimized, and state the constraints each parameter must satisfy.
 
----
-
-**Exercise 2.** Explain how each of the four Merton parameters $(\sigma, \lambda, \mu_J, \sigma_J)$ controls a different feature of the implied volatility smile. Given a market smile that is steeply skewed with moderate curvature, which parameters would you expect to have large absolute values?
-
----
-
-**Exercise 3.** The skew contribution to implied volatility decays as $\lambda\mu_J/\sqrt{T}$. For $\lambda = 1.0$ and $\mu_J = -0.10$: (a) Compute the skew contribution at $T = 1$ month, $T = 6$ months, and $T = 2$ years. (b) Explain why this decay means the Merton model fits short-maturity smiles better than long-maturity smiles.
-
----
-
-**Exercise 4.** The calibration gradient involves the chain rule $\partial\sigma_{\text{model}}^{(i)}/\partial\theta_j = (\partial C_{\text{Merton}}^{(i)}/\partial\theta_j)/\text{vega}_{\text{BS}}^{(i)}$. Explain why dividing by the Black-Scholes vega converts a price sensitivity into an implied volatility sensitivity. Why is calibration in IV space preferred over price space?
-
----
-
-**Exercise 5.** Discuss two common pitfalls in Merton model calibration: (a) fitting only to ATM options, and (b) parameter instability across days. For each pitfall, describe the symptom and a practical remedy (e.g., including OTM strikes, regularization).
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The Merton calibration problem is formulated as follows. Given $N_{\text{obs}}$ observed market implied volatilities $\{\sigma_{\text{mkt}}^{(i)}\}$ at strikes $\{K_i\}$ and maturities $\{T_i\}$, the objective function is
 
@@ -220,6 +200,11 @@ This limitation motivates the Bates model (Heston + jumps), which uses stochasti
 
     For each trial $\boldsymbol{\theta}$, the model implied volatility $\sigma_{\text{model}}^{(i)}$ is obtained by computing the Merton price $C_{\text{Merton}}(K_i, T_i; \boldsymbol{\theta})$ using the series formula and then numerically inverting the Black-Scholes formula. The total variance must also satisfy $\sigma^2 + \lambda(\sigma_J^2 + \mu_J^2) > 0$, which is automatically satisfied when $\sigma > 0$.
 
+---
+
+
+**Exercise 2.** Explain how each of the four Merton parameters $(\sigma, \lambda, \mu_J, \sigma_J)$ controls a different feature of the implied volatility smile. Given a market smile that is steeply skewed with moderate curvature, which parameters would you expect to have large absolute values?
+
 ??? success "Solution to Exercise 2"
     Each of the four Merton parameters controls a distinct feature of the implied volatility smile:
 
@@ -229,6 +214,11 @@ This limitation motivates the Bates model (Heston + jumps), which uses stochasti
     - **$\sigma_J$ (jump size dispersion):** Controls the curvature (convexity) of the smile. Larger $\sigma_J$ lifts both wings, making deep OTM puts and calls more expensive.
 
     For a market smile that is steeply skewed with moderate curvature, we would expect $|\mu_J|$ to be large (e.g., $\mu_J \approx -0.10$ to $-0.15$), indicating strong downward jump bias, and $\lambda$ to be moderate to large (e.g., $\lambda \geq 1$) to amplify the skew effect. The parameter $\sigma_J$ would be moderate since the curvature is not extreme.
+
+---
+
+
+**Exercise 3.** The skew contribution to implied volatility decays as $\lambda\mu_J/\sqrt{T}$. For $\lambda = 1.0$ and $\mu_J = -0.10$: (a) Compute the skew contribution at $T = 1$ month, $T = 6$ months, and $T = 2$ years. (b) Explain why this decay means the Merton model fits short-maturity smiles better than long-maturity smiles.
 
 ??? success "Solution to Exercise 3"
     **(a)** The skew contribution is proportional to $\lambda\mu_J/\sqrt{T}$. With $\lambda = 1.0$ and $\mu_J = -0.10$:
@@ -253,6 +243,11 @@ This limitation motivates the Bates model (Heston + jumps), which uses stochasti
 
     **(b)** The skew contribution at 1 month ($-0.346$) is about 4.9 times larger than at 2 years ($-0.0707$). This $1/\sqrt{T}$ decay means that jumps dominate the smile shape at short maturities, where the Merton model has enough flexibility to match the steep observed skew. At longer maturities, the jump contribution becomes negligible relative to the diffusion component, so the smile flattens. Since real markets retain a persistent (though flattening) smile even at long maturities, the Merton model cannot fit those maturities well. This motivates extensions such as the Bates model that add stochastic volatility for persistent smile dynamics.
 
+---
+
+
+**Exercise 4.** The calibration gradient involves the chain rule $\partial\sigma_{\text{model}}^{(i)}/\partial\theta_j = (\partial C_{\text{Merton}}^{(i)}/\partial\theta_j)/\text{vega}_{\text{BS}}^{(i)}$. Explain why dividing by the Black-Scholes vega converts a price sensitivity into an implied volatility sensitivity. Why is calibration in IV space preferred over price space?
+
 ??? success "Solution to Exercise 4"
     The chain rule $\partial\sigma_{\text{model}}^{(i)}/\partial\theta_j = (\partial C_{\text{Merton}}^{(i)}/\partial\theta_j)/\text{vega}_{\text{BS}}^{(i)}$ works because the implied volatility $\sigma_{\text{model}}^{(i)}$ is defined implicitly by
 
@@ -273,6 +268,11 @@ This limitation motivates the Bates model (Heston + jumps), which uses stochasti
     - Implied volatilities are on a comparable scale across strikes and maturities (typically 15--40%), while option prices vary by orders of magnitude (from cents for deep OTM to tens of dollars for ITM)
     - Deep OTM options have small prices but meaningful IVs, so price-space calibration would underweight them
     - The objective function landscape is smoother in IV space, leading to better optimizer convergence
+
+---
+
+
+**Exercise 5.** Discuss two common pitfalls in Merton model calibration: (a) fitting only to ATM options, and (b) parameter instability across days. For each pitfall, describe the symptom and a practical remedy (e.g., including OTM strikes, regularization).
 
 ??? success "Solution to Exercise 5"
     **(a) Fitting only to ATM options.** The symptom is that many different parameter sets produce equally good fits, because the four parameters are not identifiable from ATM data alone. In particular, $\sigma^2$ and $\lambda(\sigma_J^2 + \mu_J^2)$ both contribute to ATM variance and cannot be separated. The optimizer may converge to parameter sets with unrealistically large $\lambda$ and small $\sigma$, or vice versa. The remedy is to include a range of OTM strikes in the calibration, since the skew (controlled by $\mu_J$) and curvature (controlled by $\sigma_J$) are only visible in OTM options. Including both OTM puts and calls across several maturities pins down all four parameters.

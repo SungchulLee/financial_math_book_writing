@@ -224,27 +224,230 @@ ADI schemes transform the two-dimensional Heston PDE into sequences of one-dimen
 **Exercise 1.**
 A fully implicit Crank-Nicolson scheme on a grid with $N_x = 200$ and $N_v = 100$ produces a sparse system of size $20{,}000 \times 20{,}000$. If solving this system with a banded solver costs $\mathcal{O}(N_x^2 N_v)$ per time step, compare the total cost for $N_t = 200$ steps with the ADI cost of $\mathcal{O}(N_x N_v \cdot N_t)$. Compute the speedup factor.
 
+??? success "Solution to Exercise 1"
+    **Banded Crank-Nicolson cost.** The grid has $N_x = 200$, $N_v = 100$, so there are $N = N_x N_v = 20{,}000$ unknowns. A banded solver with bandwidth $\mathcal{O}(N_x)$ costs $\mathcal{O}(N_x^2 N_v)$ per time step. For $N_t = 200$ steps:
+
+    $$
+    C_{\text{CN}} = N_t \cdot N_x^2 \cdot N_v = 200 \times 200^2 \times 100 = 8 \times 10^8
+    $$
+
+    **ADI cost.** Each ADI time step costs $\mathcal{O}(N_x N_v)$ (with a small constant multiplier for the number of tridiagonal sweeps). For $N_t = 200$ steps:
+
+    $$
+    C_{\text{ADI}} = N_t \cdot N_x \cdot N_v = 200 \times 200 \times 100 = 4 \times 10^6
+    $$
+
+    **Speedup factor.**
+
+    $$
+    \text{Speedup} = \frac{C_{\text{CN}}}{C_{\text{ADI}}} = \frac{8 \times 10^8}{4 \times 10^6} = 200
+    $$
+
+    The speedup equals $N_x = 200$, which is not a coincidence. The banded solver has an extra factor of $N_x$ in its cost (from the bandwidth), so the ADI speedup scales linearly with $N_x$. For a $400 \times 200$ grid, the speedup would be approximately 400.
+
 ---
 
 **Exercise 2.**
 The Douglas-Rachford scheme treats the mixed derivative explicitly. For $\rho = -0.9$, explain why the CFL-type stability constraint becomes binding. If $\Delta t = T/N_t$ with $T = 1$ and $N_t = 100$, is this time step small enough for stability on a typical Heston grid?
+
+??? success "Solution to Exercise 2"
+    **Why the mixed derivative causes instability.** In the Douglas-Rachford scheme, the mixed derivative operator $A_{xv}$ appears only in the explicit predictor stage $Y_0 = V^n + \Delta\tau A_0 V^n$. For the explicit treatment to be stable, the time step must satisfy a CFL-type condition relating $\Delta\tau$ to the magnitude of $A_{xv}$.
+
+    The mixed derivative coefficient is $\rho \xi v$. At a typical variance level $v \approx 0.04$ and with $\rho = -0.9$, $\xi = 0.3$:
+
+    $$
+    |\rho \xi v| = 0.9 \times 0.3 \times 0.04 = 0.0108
+    $$
+
+    The explicit stability condition for the mixed derivative on a grid with spacings $\Delta x$ and $\Delta v$ is approximately:
+
+    $$
+    \Delta\tau \lesssim \frac{\Delta x \, \Delta v}{2 |\rho \xi v|}
+    $$
+
+    For a typical grid with $\Delta x \approx 0.02$ and $\Delta v \approx 0.004$:
+
+    $$
+    \Delta\tau \lesssim \frac{0.02 \times 0.004}{2 \times 0.0108} \approx 0.0037
+    $$
+
+    With $T = 1$ and $N_t = 100$, the time step is $\Delta t = 0.01$, which exceeds this stability bound. The Douglas-Rachford scheme is therefore **not stable** with these parameters. One would need $N_t \gtrsim 270$ to satisfy the CFL constraint, or alternatively, one should use the Craig-Sneyd or Hundsdorfer-Verwer scheme, which handle the mixed derivative more robustly.
+
+    The instability manifests as oscillations, particularly near $v = 0$ (where the CIR drift is strongest) and for deep in-the-money or out-of-the-money options where $\partial^2 V / \partial x \partial v$ is largest.
 
 ---
 
 **Exercise 3.**
 The Craig-Sneyd scheme adds a correction step that updates the cross-term. Write the four stages explicitly for the Heston PDE operators $\mathcal{A}_0$, $\mathcal{A}_1$, $\mathcal{A}_2$ with $\theta = 1/2$. Explain why Stage 4 (cross-term correction) improves the local truncation error from $\mathcal{O}(\Delta t)$ to $\mathcal{O}(\Delta t^2)$.
 
+??? success "Solution to Exercise 3"
+    **Craig-Sneyd stages with Heston operators.** Let $\mathcal{A}_0 = A_x + A_v + A_{xv} - rI$ be the full operator, and set $\theta = 1/2$. The six stages are:
+
+    **Stage 0** (explicit predictor):
+
+    $$
+    Y_0 = V^n + \Delta\tau \, \mathcal{A}_0 V^n
+    $$
+
+    **Stage 1** ($x$-implicit):
+
+    $$
+    \left(I - \tfrac{1}{2}\Delta\tau \, A_x\right) Y_1 = Y_0 - \tfrac{1}{2}\Delta\tau \, A_x V^n
+    $$
+
+    **Stage 2** ($v$-implicit):
+
+    $$
+    \left(I - \tfrac{1}{2}\Delta\tau \, A_v\right) \tilde{Y} = Y_1 - \tfrac{1}{2}\Delta\tau \, A_v V^n
+    $$
+
+    **Stage 3** (cross-term correction):
+
+    $$
+    \hat{Y}_0 = Y_0 + \tfrac{1}{2}\Delta\tau \left(A_{xv} \tilde{Y} - A_{xv} V^n\right)
+    $$
+
+    **Stage 4** ($x$-implicit, repeated):
+
+    $$
+    \left(I - \tfrac{1}{2}\Delta\tau \, A_x\right) \hat{Y}_1 = \hat{Y}_0 - \tfrac{1}{2}\Delta\tau \, A_x V^n
+    $$
+
+    **Stage 5** ($v$-implicit, repeated):
+
+    $$
+    \left(I - \tfrac{1}{2}\Delta\tau \, A_v\right) V^{n+1} = \hat{Y}_1 - \tfrac{1}{2}\Delta\tau \, A_v V^n
+    $$
+
+    **Why Stage 3 improves accuracy.** Without the correction (i.e., in the Douglas-Rachford scheme), the cross-derivative is evaluated only at $V^n$. The local truncation error from the mixed derivative is:
+
+    $$
+    \Delta\tau \, A_{xv} V^n = \Delta\tau \, A_{xv} V^{n+1} - \Delta\tau^2 \, A_{xv} \dot{V} + \mathcal{O}(\Delta\tau^3)
+    $$
+
+    The $\mathcal{O}(\Delta\tau^2)$ term is a first-order temporal error in the mixed derivative treatment.
+
+    Stage 3 replaces $A_{xv} V^n$ with $\frac{1}{2}(A_{xv} V^n + A_{xv} \tilde{Y})$. Since $\tilde{Y} = V^{n+1} + \mathcal{O}(\Delta\tau)$, this gives a trapezoidal average:
+
+    $$
+    \frac{1}{2}A_{xv}(V^n + \tilde{Y}) = A_{xv} V^{n+1/2} + \mathcal{O}(\Delta\tau^2)
+    $$
+
+    The error in the mixed derivative drops from $\mathcal{O}(\Delta\tau)$ to $\mathcal{O}(\Delta\tau^2)$, making the overall scheme second-order in time.
+
 ---
 
 **Exercise 4.**
 Compare the computational cost per time step of the three ADI schemes. If Thomas's algorithm costs $5N$ operations for a tridiagonal system of size $N$, compute the total operations for: (a) Douglas-Rachford ($N_v$ solves of size $N_x$ + $N_x$ solves of size $N_v$), (b) Craig-Sneyd (same plus one explicit cross-term evaluation), (c) Hundsdorfer-Verwer (double the implicit sweeps). Use $N_x = 200$, $N_v = 100$.
+
+??? success "Solution to Exercise 4"
+    **Thomas algorithm cost.** Each tridiagonal solve of size $N$ costs $5N$ operations (2 divisions, 2 multiplications, 1 subtraction in each of the forward elimination and back-substitution phases, approximately).
+
+    **(a) Douglas-Rachford.**
+
+    - $x$-sweep: $N_v$ tridiagonal systems of size $N_x$, cost $= N_v \times 5N_x = 100 \times 5 \times 200 = 100{,}000$
+    - $v$-sweep: $N_x$ tridiagonal systems of size $N_v$, cost $= N_x \times 5N_v = 200 \times 5 \times 100 = 100{,}000$
+    - Explicit predictor $Y_0$: matrix-vector product with $A_0$, cost $\approx c \cdot N_x N_v$ where $c$ is the stencil width (about 7--9 nonzeros per row), so approximately $7 \times 20{,}000 = 140{,}000$
+
+    $$
+    C_{\text{DR}} \approx 100{,}000 + 100{,}000 + 140{,}000 = 340{,}000 \text{ operations}
+    $$
+
+    **(b) Craig-Sneyd.**
+
+    - Same as DR plus: one explicit cross-term evaluation ($A_{xv} \tilde{Y}$ costs $\approx 5 \times 20{,}000 = 100{,}000$ using the 4-point stencil) and one additional pair of implicit sweeps (same cost as the first pair: $200{,}000$)
+
+    $$
+    C_{\text{CS}} \approx 340{,}000 + 100{,}000 + 200{,}000 = 640{,}000 \text{ operations}
+    $$
+
+    **(c) Hundsdorfer-Verwer.**
+
+    - Same as DR plus: one explicit full-operator evaluation ($A_0 \tilde{Y}$, cost $\approx 140{,}000$) and one additional pair of implicit sweeps ($200{,}000$)
+
+    $$
+    C_{\text{HV}} \approx 340{,}000 + 140{,}000 + 200{,}000 = 680{,}000 \text{ operations}
+    $$
+
+    **Ratios:** $C_{\text{CS}} / C_{\text{DR}} \approx 1.88$ and $C_{\text{HV}} / C_{\text{DR}} \approx 2.00$, confirming the factor-of-2 rule of thumb from the comparison table.
 
 ---
 
 **Exercise 5.**
 Design a convergence study for the Craig-Sneyd scheme: compute the European call price on grids $(N_x, N_v, N_t) = (50, 25, 50)$, $(100, 50, 100)$, $(200, 100, 200)$ and compare with the COS reference. If the scheme is second-order, the error should decrease by a factor of 4 each time. Verify this by computing the convergence rate $p = \log_2(\text{error}_1 / \text{error}_2)$.
 
+??? success "Solution to Exercise 5"
+    **Convergence study design.** Let the three grid levels be indexed by $\ell = 1, 2, 3$:
+
+    | Level $\ell$ | $N_x$ | $N_v$ | $N_t$ | $\Delta x$ factor | $\Delta v$ factor | $\Delta\tau$ factor |
+    |:-----------:|:-----:|:-----:|:-----:|:-----------------:|:-----------------:|:------------------:|
+    | 1 | 50 | 25 | 50 | 1 | 1 | 1 |
+    | 2 | 100 | 50 | 100 | 1/2 | 1/2 | 1/2 |
+    | 3 | 200 | 100 | 200 | 1/4 | 1/4 | 1/4 |
+
+    At each level, compute the European call price $V_\ell$ (e.g., at $S = K$, $v = v_0$) and the error $e_\ell = |V_\ell - V_{\text{ref}}|$ where $V_{\text{ref}}$ is the COS Fourier reference.
+
+    **Second-order convergence prediction.** The Craig-Sneyd scheme with $\theta = 1/2$ is second-order in both space and time. Since all grid parameters are halved simultaneously:
+
+    $$
+    e_\ell = C \cdot h_\ell^2 + \mathcal{O}(h_\ell^3)
+    $$
+
+    where $h_\ell$ represents the characteristic mesh size at level $\ell$. With halving:
+
+    $$
+    \frac{e_1}{e_2} \approx 4, \qquad \frac{e_2}{e_3} \approx 4
+    $$
+
+    **Convergence rate computation.** The numerical convergence rate between levels $\ell$ and $\ell+1$ is:
+
+    $$
+    p = \log_2\!\left(\frac{e_\ell}{e_{\ell+1}}\right)
+    $$
+
+    For a second-order scheme, $p \approx 2$. In practice, one typically observes $p \in [1.8, 2.2]$ due to boundary effects, non-uniform grid stretching, and the explicit treatment of the mixed derivative. If $p$ is significantly less than 2, this may indicate that the mixed derivative treatment or the boundary conditions are limiting the convergence order.
+
+    **Richardson extrapolation.** With the three grid levels, one can also compute an extrapolated price:
+
+    $$
+    V_{\text{extrap}} = \frac{4 V_3 - V_2}{3}
+    $$
+
+    which should be accurate to $\mathcal{O}(h_3^4)$ if the scheme is genuinely second-order.
+
 ---
 
 **Exercise 6.**
 The Hundsdorfer-Verwer scheme performs two sets of implicit sweeps per time step. Describe the advantage: unconditional stability allows larger $\Delta t$. If the Craig-Sneyd scheme requires $N_t = 200$ steps for stability while Hundsdorfer-Verwer requires only $N_t = 100$ for the same accuracy, which scheme is faster overall? Account for the fact that Hundsdorfer-Verwer costs twice as much per step.
+
+??? success "Solution to Exercise 6"
+    **Cost comparison.** Let $C_1$ denote the cost of one tridiagonal sweep pair (one $x$-sweep and one $v$-sweep). Then:
+
+    - Craig-Sneyd costs $2C_1$ per step (two pairs of sweeps plus explicit evaluations)
+    - Hundsdorfer-Verwer costs $2C_1$ per step (same number of sweeps, slightly more expensive explicit evaluation, but approximately equal)
+
+    With the given time step requirements:
+
+    **Craig-Sneyd total cost:**
+
+    $$
+    C_{\text{CS}} = N_t^{\text{CS}} \times 2C_1 = 200 \times 2C_1 = 400 \, C_1
+    $$
+
+    **Hundsdorfer-Verwer total cost:**
+
+    $$
+    C_{\text{HV}} = N_t^{\text{HV}} \times 2C_1 = 100 \times 2C_1 = 200 \, C_1
+    $$
+
+    **Hundsdorfer-Verwer is faster by a factor of 2** despite costing the same per step, because its unconditional stability allows a time step twice as large.
+
+    **The key insight** is that the per-step cost ratio between CS and HV is approximately 1:1 (both require four tridiagonal sweeps), but HV's unconditional stability means the number of time steps is determined purely by accuracy, not by stability. When $|\rho|$ is large, the CS scheme's conditional stability forces smaller $\Delta\tau$ than accuracy alone would require, creating a gap between the stability-limited and accuracy-limited step counts.
+
+    More generally, if the CS stability limit requires $N_t^{\text{CS}}$ steps while accuracy alone requires $N_t^{\text{acc}}$, then HV is faster whenever:
+
+    $$
+    \frac{N_t^{\text{CS}}}{N_t^{\text{acc}}} > 1
+    $$
+
+    For typical equity parameters with $\rho \in [-0.9, -0.5]$, this ratio ranges from 1.5 to 3, making HV the preferred scheme in practice.

@@ -447,34 +447,6 @@ The wide interval $(4.88, \, 11.95)$ reflects the fundamental pricing ambiguity 
 
 **Exercise 1.** Consider the trinomial model with $S_0 = 100$, $u = 1.3$, $m = 1.05$, $d = 0.7$, $r = 5\%$, and $\Delta t = 1$. Verify the no-arbitrage condition. Then parameterize the family of risk-neutral measures by $q_d = \lambda$ and determine the admissible range of $\lambda$.
 
----
-
-**Exercise 2.** Using the trinomial model from Exercise 1, compute the no-arbitrage price interval for a European put with strike $K = 100$. Express $V_0(\lambda)$ as a function of $\lambda$ and find the supremum and infimum over the admissible range. Compare the width of the interval to that of a call with the same strike.
-
----
-
-**Exercise 3.** Prove that a contingent claim $H = (H_u, H_m, H_d)$ in the one-period trinomial model is replicable if and only if the payoff is **affine** in $S_{\Delta t}$, i.e., $H = a \cdot S_{\Delta t} + b$ for some constants $a, b$. Show that this is equivalent to the condition:
-
-$$
-\frac{H_u - H_m}{u - m} = \frac{H_m - H_d}{m - d}
-$$
-
----
-
-**Exercise 4.** In the worked example from the text ($S_0 = 100$, $u = 1.2$, $m = 1.0$, $d = 0.8$, $r = 5\%$), the binomial price of the call equals the upper bound of the trinomial interval. Prove this is not a coincidence: show that for any claim with $H_m = H_d$ (the middle and down payoffs coincide), the binomial price always equals the upper bound of the trinomial price interval.
-
----
-
-**Exercise 5.** Suppose the trinomial market is "completed" by adding a traded European call option with strike $K = 100$ and observed market price $C_0 = 8.50$ (using the same parameters as the worked example in the text). With three assets (stock, bond, call) and three states, the risk-neutral measure becomes unique. Find the unique risk-neutral measure $(q_u, q_m, q_d)$ and use it to price a European put with strike $K = 110$.
-
----
-
-**Exercise 6.** For the Boyle (1988) parameterization with $\sigma = 0.20$, $r = 0.05$, and $\Delta t = 0.25$, compute $u$, $m$, $d$, $q_u$, $q_d$, and $q_m$. Verify that (a) $q_u + q_m + q_d = 1$, (b) the martingale condition $q_u u + q_m m + q_d d = e^{r\Delta t}$ holds, and (c) $\text{Var}^{\mathbb{Q}}[\ln(S_{\Delta t}/S_0)] \approx \sigma^2 \Delta t$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Given $S_0 = 100$, $u = 1.3$, $m = 1.05$, $d = 0.7$, $r = 5\%$, $\Delta t = 1$.
 
@@ -520,6 +492,10 @@ $$
 
     **Admissible range:** $\lambda \in (0, \, 0.41455)$.
 
+---
+
+**Exercise 2.** Using the trinomial model from Exercise 1, compute the no-arbitrage price interval for a European put with strike $K = 100$. Express $V_0(\lambda)$ as a function of $\lambda$ and find the supremum and infimum over the admissible range. Compare the width of the interval to that of a call with the same strike.
+
 ??? success "Solution to Exercise 2"
     Using the trinomial model from Exercise 1, the European put with $K = 100$ has payoffs:
 
@@ -548,6 +524,14 @@ $$
     - Call interval width (from text): $11.95 - 4.88 = 7.07$
 
     The put interval is wider. This is because the put payoff is concentrated entirely in the down state, so varying $q_d$ (which is our free parameter $\lambda$) has maximum impact on the put price. The call payoff is concentrated in the up state, and $q_u = 0.00508 + 1.4\lambda$ has a baseline component $0.00508$ that limits how small the call price can become.
+
+---
+
+**Exercise 3.** Prove that a contingent claim $H = (H_u, H_m, H_d)$ in the one-period trinomial model is replicable if and only if the payoff is **affine** in $S_{\Delta t}$, i.e., $H = a \cdot S_{\Delta t} + b$ for some constants $a, b$. Show that this is equivalent to the condition:
+
+$$
+\frac{H_u - H_m}{u - m} = \frac{H_m - H_d}{m - d}
+$$
 
 ??? success "Solution to Exercise 3"
     A claim $H = (H_u, H_m, H_d)$ is replicable if there exist $\Delta, \beta$ satisfying:
@@ -588,6 +572,10 @@ $$
 
     Then $H = a \cdot S_{\Delta t} + b$ where $b = \beta e^{r\Delta t}$ is the bond component. The payoff is affine in $S_{\Delta t}$. Conversely, any affine payoff $H = aS_{\Delta t} + b$ automatically satisfies the replication conditions with $\Delta = a$ and $\beta = be^{-r\Delta t}$. $\square$
 
+---
+
+**Exercise 4.** In the worked example from the text ($S_0 = 100$, $u = 1.2$, $m = 1.0$, $d = 0.8$, $r = 5\%$), the binomial price of the call equals the upper bound of the trinomial interval. Prove this is not a coincidence: show that for any claim with $H_m = H_d$ (the middle and down payoffs coincide), the binomial price always equals the upper bound of the trinomial price interval.
+
 ??? success "Solution to Exercise 4"
     We prove that when $H_m = H_d$, the binomial price (with states $u$ and $d$ only) equals $\sup_{\mathbb{Q}} e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H]$ over the trinomial risk-neutral family.
 
@@ -614,6 +602,10 @@ $$
     $$
 
     This is exactly the binomial risk-neutral probability, and the corresponding price is the binomial price. Since this is the limiting value as $\lambda \to \lambda_{\max}$ (approached but not reached), the supremum of the trinomial prices equals the binomial price. $\square$
+
+---
+
+**Exercise 5.** Suppose the trinomial market is "completed" by adding a traded European call option with strike $K = 100$ and observed market price $C_0 = 8.50$ (using the same parameters as the worked example in the text). With three assets (stock, bond, call) and three states, the risk-neutral measure becomes unique. Find the unique risk-neutral measure $(q_u, q_m, q_d)$ and use it to price a European put with strike $K = 110$.
 
 ??? success "Solution to Exercise 5"
     With the call market price $C_0 = 8.50$ and call payoffs $H^C = (20, 0, 0)$, we have three traded assets: stock payoffs $(120, 100, 80)$, bond payoffs $(e^{0.05}, e^{0.05}, e^{0.05})$, and call payoffs $(20, 0, 0)$.
@@ -677,6 +669,10 @@ $$
     $$
     = 0.9512 \times (0 + 3.628 + 5.715) = 0.9512 \times 9.343 = 8.89
     $$
+
+---
+
+**Exercise 6.** For the Boyle (1988) parameterization with $\sigma = 0.20$, $r = 0.05$, and $\Delta t = 0.25$, compute $u$, $m$, $d$, $q_u$, $q_d$, and $q_m$. Verify that (a) $q_u + q_m + q_d = 1$, (b) the martingale condition $q_u u + q_m m + q_d d = e^{r\Delta t}$ holds, and (c) $\text{Var}^{\mathbb{Q}}[\ln(S_{\Delta t}/S_0)] \approx \sigma^2 \Delta t$.
 
 ??? success "Solution to Exercise 6"
     Given $\sigma = 0.20$, $r = 0.05$, $\Delta t = 0.25$.

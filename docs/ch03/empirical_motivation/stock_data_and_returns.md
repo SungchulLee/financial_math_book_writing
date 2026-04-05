@@ -329,42 +329,6 @@ established in this section:
 
 **Exercise 1.** A stock closes at \$80.00 on the cum-dividend date and pays a cash dividend of \$2.00. The ex-dividend price is observed at \$78.20. Compute the adjustment factor and the adjusted close price for a historical date when the raw close was \$60.00. Explain why the adjustment factor differs slightly from $78/80$.
 
----
-
-**Exercise 2.** On two consecutive trading days, a stock's adjusted close prices are $S_0 = 150$ and $S_1 = 147$. Compute both the discrete return $r^{(D)}$ and the log return $r^{(C)}$. Verify the relationship $r^{(C)} = \log(1 + r^{(D)})$ numerically, and compute the absolute difference between the two return measures. At what approximate magnitude of $|r^{(D)}|$ does the difference between the two measures first exceed 0.5 %?
-
----
-
-**Exercise 3.** Let $\{r_t^{(C)}\}_{t=1}^{5}$ be five consecutive daily log returns: $+0.012$, $-0.008$, $+0.015$, $-0.003$, $+0.006$. Compute the 5-day cumulative log return directly as a sum. Then convert each daily log return to a discrete return, compute the 5-day cumulative discrete return as
-
-$$
-1 + r_{[1,5]}^{(D)} = \prod_{t=1}^{5}(1 + r_t^{(D)}),
-$$
-
-and verify that $\log(1 + r_{[1,5]}^{(D)})$ equals the sum of log returns.
-
----
-
-**Exercise 4.** A daily log-return series of $T = 504$ observations (approximately two years) has sample mean $\hat{\mu} = 0.0004$ and sample standard deviation $\hat{\sigma} = 0.018$. Compute the annualised mean return and annualised volatility using $N = 252$. Then compute the annualised Sharpe ratio (assuming zero risk-free rate). State the key assumption under which the $\sqrt{N}$ volatility scaling is valid, and explain why this assumption is violated in practice.
-
----
-
-**Exercise 5.** Show algebraically that for an $n$-period investment the discrete return satisfies
-
-$$
-1 + r_{[t,\,t+n]}^{(D)} = \prod_{i=1}^{n}(1 + r_{t+i}^{(D)}),
-$$
-
-while the log return satisfies $r_{[t,\,t+n]}^{(C)} = \sum_{i=1}^{n} r_{t+i}^{(C)}$. Explain why the additive property of log returns makes them more convenient for probabilistic analysis involving the Central Limit Theorem.
-
----
-
-**Exercise 6.** A sample of $T = 1000$ daily log returns yields excess kurtosis $\hat{\kappa} = 4.2$ and skewness $\hat{\gamma}_1 = -0.35$. Under the null hypothesis of i.i.d. normality, the standard error of the sample excess kurtosis is approximately $\sqrt{24/T}$ and the standard error of the sample skewness is approximately $\sqrt{6/T}$. Compute both standard errors, construct approximate 95 % confidence intervals for the true kurtosis and skewness, and determine whether the Gaussian null ($\kappa = 0$, $\gamma_1 = 0$) can be rejected at the 5 % level for each moment.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The adjustment factor is computed from the ex-dividend price and the cum-dividend price:
 
@@ -379,6 +343,10 @@ while the log return satisfies $r_{[t,\,t+n]}^{(C)} = \sum_{i=1}^{n} r_{t+i}^{(C
     $$
 
     The factor differs from $78/80 = 0.975$ because the theoretical ex-dividend price would be $P_{\text{cum}} - D = 80.00 - 2.00 = 78.00$, but the observed ex-dividend price is \$78.20, not \$78.00. The difference arises because in practice the stock does not drop by the full dividend amount on the ex-date. Tax effects (dividends are taxed, so the market does not discount the full pre-tax dividend), supply-demand dynamics, and other market frictions cause the ex-date drop to be slightly less than $D$. The adjustment factor uses the actually observed $P_{\text{ex}} = 78.20$, which is why it equals $0.9775$ rather than the theoretical $0.975$.
+
+---
+
+**Exercise 2.** On two consecutive trading days, a stock's adjusted close prices are $S_0 = 150$ and $S_1 = 147$. Compute both the discrete return $r^{(D)}$ and the log return $r^{(C)}$. Verify the relationship $r^{(C)} = \log(1 + r^{(D)})$ numerically, and compute the absolute difference between the two return measures. At what approximate magnitude of $|r^{(D)}|$ does the difference between the two measures first exceed 0.5 %?
 
 ??? success "Solution to Exercise 2"
     The discrete return is:
@@ -406,6 +374,16 @@ while the log return satisfies $r_{[t,\,t+n]}^{(C)} = \sum_{i=1}^{n} r_{t+i}^{(C
     $$
 
     To find when the difference first exceeds 0.5%, we need $|r^{(D)} - \log(1+r^{(D)})| > 0.005$. Using the Taylor expansion $\log(1+x) \approx x - x^2/2$, the difference is approximately $|x^2/2|$. Setting $x^2/2 = 0.005$ gives $|x| = \sqrt{0.01} = 0.1$. So the difference first exceeds 0.5% when $|r^{(D)}| \approx 10\%$, i.e., a daily move of about 10%.
+
+---
+
+**Exercise 3.** Let $\{r_t^{(C)}\}_{t=1}^{5}$ be five consecutive daily log returns: $+0.012$, $-0.008$, $+0.015$, $-0.003$, $+0.006$. Compute the 5-day cumulative log return directly as a sum. Then convert each daily log return to a discrete return, compute the 5-day cumulative discrete return as
+
+$$
+1 + r_{[1,5]}^{(D)} = \prod_{t=1}^{5}(1 + r_t^{(D)}),
+$$
+
+and verify that $\log(1 + r_{[1,5]}^{(D)})$ equals the sum of log returns.
 
 ??? success "Solution to Exercise 3"
     The 5-day cumulative log return is the sum of the daily log returns:
@@ -442,6 +420,10 @@ while the log return satisfies $r_{[t,\,t+n]}^{(C)} = \sum_{i=1}^{n} r_{t+i}^{(C
 
     This confirms the identity. The key insight is that $1 + r_t^{(D)} = e^{r_t^{(C)}}$, so the product of discrete gross returns equals the exponential of the sum of log returns, and taking logarithms recovers the sum.
 
+---
+
+**Exercise 4.** A daily log-return series of $T = 504$ observations (approximately two years) has sample mean $\hat{\mu} = 0.0004$ and sample standard deviation $\hat{\sigma} = 0.018$. Compute the annualised mean return and annualised volatility using $N = 252$. Then compute the annualised Sharpe ratio (assuming zero risk-free rate). State the key assumption under which the $\sqrt{N}$ volatility scaling is valid, and explain why this assumption is violated in practice.
+
 ??? success "Solution to Exercise 4"
     The annualised mean return is:
 
@@ -471,6 +453,16 @@ while the log return satisfies $r_{[t,\,t+n]}^{(C)} = \sum_{i=1}^{n} r_{t+i}^{(C
 
     While $\operatorname{Cov}(r_t, r_s) \approx 0$ (no return autocorrelation), the non-constant conditional variance induced by GARCH effects means the effective variance of the sum exceeds $N\hat{\sigma}^2$. The $\sqrt{N}$ rule therefore **understates** the true annualised volatility.
 
+---
+
+**Exercise 5.** Show algebraically that for an $n$-period investment the discrete return satisfies
+
+$$
+1 + r_{[t,\,t+n]}^{(D)} = \prod_{i=1}^{n}(1 + r_{t+i}^{(D)}),
+$$
+
+while the log return satisfies $r_{[t,\,t+n]}^{(C)} = \sum_{i=1}^{n} r_{t+i}^{(C)}$. Explain why the additive property of log returns makes them more convenient for probabilistic analysis involving the Central Limit Theorem.
+
 ??? success "Solution to Exercise 5"
     **Discrete return multiplicativity.** By definition $1 + r_{t+i}^{(D)} = S_{t+i}/S_{t+i-1}$. Taking the product:
 
@@ -499,6 +491,10 @@ while the log return satisfies $r_{[t,\,t+n]}^{(C)} = \sum_{i=1}^{n} r_{t+i}^{(C
     $$
 
     Since $n$-period log returns are sums of single-period log returns, the CLT applies directly. This gives us the distributional convergence to normality at long horizons (aggregational Gaussianity), simple formulas for the variance of multi-period returns ($\operatorname{Var} = n\sigma^2$ under i.i.d.), and a natural connection to Brownian motion via Donsker's theorem. In contrast, discrete returns multiply, and the distribution of products of random variables is far harder to characterise — there is no simple "product CLT" that gives Gaussian limits.
+
+---
+
+**Exercise 6.** A sample of $T = 1000$ daily log returns yields excess kurtosis $\hat{\kappa} = 4.2$ and skewness $\hat{\gamma}_1 = -0.35$. Under the null hypothesis of i.i.d. normality, the standard error of the sample excess kurtosis is approximately $\sqrt{24/T}$ and the standard error of the sample skewness is approximately $\sqrt{6/T}$. Compute both standard errors, construct approximate 95 % confidence intervals for the true kurtosis and skewness, and determine whether the Gaussian null ($\kappa = 0$, $\gamma_1 = 0$) can be rejected at the 5 % level for each moment.
 
 ??? success "Solution to Exercise 6"
     **Standard error of excess kurtosis:**

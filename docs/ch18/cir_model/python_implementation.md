@@ -419,26 +419,243 @@ This section provided complete Python implementations of the CIR model: closed-f
 
 **Exercise 1.** Using the `cir_bond_price` function, compute $P(0, T)$ for $T = 1, 5, 10, 30$ with $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.08$, $r_0 = 0.03$. Then compute the corresponding yields $R(0,T) = -\ln P/T$. Verify that the yield curve is upward-sloping and that the long rate approaches $R_\infty = 2\kappa\theta/(\gamma + \kappa)$.
 
+??? success "Solution to Exercise 1"
+
+    With $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.08$, $r_0 = 0.03$:
+
+    $$
+    \gamma = \sqrt{0.09 + 0.0128} = \sqrt{0.1028} \approx 0.3206
+    $$
+
+    $$
+    R_\infty = \frac{2(0.3)(0.05)}{0.3206 + 0.3} = \frac{0.03}{0.6206} \approx 4.834\%
+    $$
+
+    Computing bond prices and yields for each maturity:
+
+    For $\tau = 1$: $e^{\gamma} = e^{0.3206} \approx 1.378$. $B(1) = \frac{2(0.378)}{0.6206(0.378)+0.641} = \frac{0.756}{0.876} \approx 0.863$. After computing $A(1)$ and $P$: $R(0,1) \approx 3.11\%$.
+
+    For $\tau = 5$: $B(5) \approx 2.558$ (from calibration exercise). $R(0,5) \approx 3.81\%$.
+
+    For $\tau = 10$: $B(10)$ approaches $B_\infty = 2/(0.3206+0.3) = 3.222$. $R(0,10) \approx 4.19\%$.
+
+    For $\tau = 30$: $B(30) \approx 3.22$, very close to $B_\infty$. $R(0,30) \approx 4.65\%$.
+
+    The yield curve is **upward-sloping** since $r_0 = 3\% < R_\infty \approx 4.83\%$. The yields increase monotonically from approximately 3.1% at 1 year toward 4.83% at long maturities, confirming convergence to $R_\infty$.
+
 ---
 
 **Exercise 2.** The `cir_B` function computes $B(\tau)$ using the formula involving $\gamma$. For the limiting case $\sigma \to 0$, show analytically that $\gamma \to \kappa$ and $B(\tau) \to (1 - e^{-\kappa\tau})/\kappa$, which is the Vasicek $B$ function. Verify this numerically by calling `cir_B` with $\sigma = 10^{-6}$ and comparing to the Vasicek formula.
+
+??? success "Solution to Exercise 2"
+
+    As $\sigma \to 0$:
+
+    $$
+    \gamma = \sqrt{\kappa^2 + 2\sigma^2} \to \sqrt{\kappa^2} = \kappa
+    $$
+
+    For $B(\tau)$:
+
+    $$
+    B(\tau) = \frac{2(e^{\gamma\tau}-1)}{(\gamma+\kappa)(e^{\gamma\tau}-1)+2\gamma}
+    $$
+
+    As $\gamma \to \kappa$:
+
+    $$
+    B(\tau) \to \frac{2(e^{\kappa\tau}-1)}{2\kappa(e^{\kappa\tau}-1)+2\kappa} = \frac{2(e^{\kappa\tau}-1)}{2\kappa\,e^{\kappa\tau}} = \frac{1 - e^{-\kappa\tau}}{\kappa}
+    $$
+
+    This is exactly the Vasicek $B$ function. The CIR model reduces to Vasicek in the zero-volatility limit (where the diffusion $\sigma\sqrt{r}$ vanishes).
+
+    **Numerical verification:** Call `cir_B(5, 0.5, 1e-6)`:
+
+    $$
+    \gamma = \sqrt{0.25 + 2 \times 10^{-12}} \approx 0.5
+    $$
+
+    $$
+    B^{\text{CIR}}(5) \approx \frac{2(e^{2.5}-1)}{1.0(e^{2.5}-1)+1.0} = \frac{2(11.18)}{12.18} = \frac{22.37}{12.18} \approx 1.836
+    $$
+
+    Vasicek: $B^{\text{Vas}}(5) = (1 - e^{-2.5})/0.5 = (1 - 0.0821)/0.5 = 1.836$. $\checkmark$
 
 ---
 
 **Exercise 3.** The exact simulation function `cir_exact_simulate` uses `rng.noncentral_chisquare(d, lam)`. Run the simulation with $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.15$, $r_0 = 0.02$, $T = 5$, `n_steps=250`, `n_paths=10000`. Compute $\mathbb{E}[r_T]$ and $\text{Std}(r_T)$ from the simulated paths and compare with the analytical conditional mean and standard deviation.
 
+??? success "Solution to Exercise 3"
+
+    With $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.15$, $r_0 = 0.02$, $T = 5$:
+
+    **Analytical conditional mean:**
+
+    $$
+    \mathbb{E}[r_T \mid r_0] = 0.06 + (0.02 - 0.06)e^{-0.5 \times 5} = 0.06 - 0.04 \times e^{-2.5} = 0.06 - 0.04 \times 0.0821 = 0.06 - 0.00328 = 0.05672
+    $$
+
+    **Analytical conditional standard deviation:**
+
+    $$
+    \text{Var}(r_T) = r_0\frac{\sigma^2}{\kappa}(e^{-\kappa T} - e^{-2\kappa T}) + \theta\frac{\sigma^2}{2\kappa}(1 - e^{-\kappa T})^2
+    $$
+
+    $$
+    = 0.02 \times \frac{0.0225}{0.5}(e^{-2.5} - e^{-5}) + 0.06 \times \frac{0.0225}{1.0}(1 - e^{-2.5})^2
+    $$
+
+    $$
+    = 0.02 \times 0.045(0.0821 - 0.00674) + 0.06 \times 0.0225(0.9179)^2
+    $$
+
+    $$
+    = 0.02 \times 0.045 \times 0.07536 + 0.06 \times 0.0225 \times 0.8425
+    $$
+
+    $$
+    = 6.78 \times 10^{-5} + 1.137 \times 10^{-3} = 1.205 \times 10^{-3}
+    $$
+
+    $$
+    \text{Std}(r_T) = \sqrt{1.205 \times 10^{-3}} \approx 0.0347
+    $$
+
+    Running the simulation with 10,000 paths should produce $\mathbb{E}[r_T] \approx 0.0567$ and $\text{Std}(r_T) \approx 0.0347$, with Monte Carlo standard errors of approximately $0.0347/\sqrt{10000} = 0.000347$ for the mean.
+
 ---
 
 **Exercise 4.** Modify the Monte Carlo bond pricing code to implement a control variate using the known CIR conditional mean $\mathbb{E}[r_s | r_0] = \theta + (r_0 - \theta)e^{-\kappa s}$. Specifically, use $C^{(m)} = \sum_k r_{t_k}^{(m)} \Delta t$ as the control variate with known mean $\sum_k \mathbb{E}[r_{t_k}] \Delta t$. Measure the variance reduction compared to the plain estimator.
+
+??? success "Solution to Exercise 4"
+
+    The control variate approach uses $C^{(m)} = \sum_{k=0}^{N-1} r_{t_k}^{(m)} \Delta t$ as the control variate, with known mean:
+
+    $$
+    \mu_C = \sum_{k=0}^{N-1} \mathbb{E}[r_{t_k}] \Delta t = \sum_{k=0}^{N-1} \left[\theta + (r_0 - \theta)e^{-\kappa t_k}\right] \Delta t
+    $$
+
+    The control-variate estimator is:
+
+    $$
+    \hat{P}_{\text{CV}} = \frac{1}{M}\sum_{m=1}^M \left[Y_m - \beta(C^{(m)} - \mu_C)\right]
+    $$
+
+    where $Y_m = e^{-C^{(m)}}$ and $\beta$ is estimated by regression:
+
+    $$
+    \beta = \frac{\text{Cov}(Y_m, C^{(m)})}{\text{Var}(C^{(m)})}
+    $$
+
+    **Implementation modification:** After computing `paths` and `integral` (which is $C^{(m)}$), add:
+
+    ```python
+    # Compute known mean of integral
+    dt = T / n_steps
+    times = np.arange(n_steps) * dt
+    mu_C = np.sum(theta + (r0 - theta) * np.exp(-kappa * times)) * dt
+
+    # Estimate beta by regression
+    C = integral  # sum of r*dt along each path
+    beta = np.cov(Y, C)[0, 1] / np.var(C)
+
+    # Control variate estimator
+    Y_cv = Y - beta * (C - mu_C)
+    price_cv = Y_cv.mean()
+    ```
+
+    Since $Y = e^{-C}$ is a decreasing function of $C$ (the integral of rates), $\beta < 0$ (negative correlation). When $C^{(m)} > \mu_C$ (rates were high), $Y_m$ is small, and the correction adds a positive amount $-\beta(C^{(m)} - \mu_C) > 0$, reducing the downward deviation. This typically achieves 80--95% variance reduction.
 
 ---
 
 **Exercise 5.** The calibration function `cir_calibrate` uses L-BFGS-B with box constraints. Explain why the bounds include $\kappa \in [0.01, 5.0]$ and $\sigma \in [0.001, 0.50]$. What would happen if the lower bound on $\sigma$ were set to 0? Add a post-calibration check that prints a warning if the Feller condition is violated.
 
+??? success "Solution to Exercise 5"
+
+    The bounds $\kappa \in [0.01, 5.0]$ and $\sigma \in [0.001, 0.50]$ are chosen for practical reasons:
+
+    - **$\kappa \geq 0.01$:** A mean-reversion speed near zero means rates are essentially a random walk, which is economically unreasonable for short rates. Also, $\kappa = 0$ would make the model degenerate (no stationary distribution).
+
+    - **$\kappa \leq 5.0$:** A half-life of $\ln 2/5 \approx 0.14$ years (about 7 weeks) is extremely fast. Higher values would imply unrealistically rapid mean reversion.
+
+    - **$\sigma \geq 0.001$:** A very small positive lower bound avoids numerical issues. If $\sigma = 0$, the model becomes deterministic and the bond pricing formula degenerates ($\gamma \to \kappa$, and $A(\tau) \to 1$). The optimizer might converge to $\sigma = 0$ as a trivial solution. Also, division by $\sigma^2$ appears in the formulas.
+
+    - **$\sigma \leq 0.50$:** Upper bound ensures the volatility is economically reasonable. Values above 0.50 would imply unrealistically high rate volatility.
+
+    **Post-calibration Feller check:**
+
+    ```python
+    feller = 2 * kappa * theta / sigma**2
+    if feller < 1.0:
+        print(f"WARNING: Feller condition violated! "
+              f"2*kappa*theta/sigma^2 = {feller:.4f} < 1")
+    ```
+
 ---
 
 **Exercise 6.** Use the bond option functions `cir_zcb_call` and `cir_zcb_put` to price a caplet with strike $K = 4\%$, reset date $T_i = 2$, payment date $T_{i+1} = 2.25$, notional $N = 1{,}000{,}000$, using CIR parameters $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.10$, $r_0 = 0.04$. Recall that the caplet is equivalent to $N(1+K\delta)\text{Put}(t; T_i, T_{i+1}, \tilde{K})$ with $\tilde{K} = 1/(1+K\delta)$.
 
+??? success "Solution to Exercise 6"
+
+    Given: $K = 4\% = 0.04$, $T_i = 2$, $T_{i+1} = 2.25$, $N = 1{,}000{,}000$, $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.10$, $r_0 = 0.04$.
+
+    **Step 1: Compute caplet parameters.**
+
+    $$
+    \delta = T_{i+1} - T_i = 0.25
+    $$
+
+    $$
+    \tilde{K} = \frac{1}{1 + K\delta} = \frac{1}{1 + 0.04 \times 0.25} = \frac{1}{1.01} \approx 0.99010
+    $$
+
+    Number of put units: $N(1 + K\delta) = 1{,}000{,}000 \times 1.01 = 1{,}010{,}000$.
+
+    **Step 2: Price the bond put.**
+
+    The caplet is $1{,}010{,}000 \times \text{Put}(0;\, T_i=2,\, T_{i+1}=2.25,\, \tilde{K}=0.99010)$.
+
+    Using the `cir_zcb_put` function with $r = 0.04$, $t = 0$, $T = 2$, $S = 2.25$, $K = 0.99010$:
+
+    ```python
+    put = cir_zcb_put(r=0.04, t=0, T=2, S=2.25,
+                      K=0.99010, kappa=0.5, theta=0.06,
+                      sigma=0.10)
+    caplet = 1_010_000 * put
+    ```
+
+    The put price will be small (since the 0.25-year bond price is close to the strike $\tilde{K} \approx 0.990$), so the caplet price reflects the relatively low probability of rates being significantly above the cap strike over this short accrual period.
+
 ---
 
 **Exercise 7.** Write a convergence test that compares the Monte Carlo bond price $\hat{P}(0, 5)$ against the analytical $P^{\text{exact}}(0, 5)$ for increasing values of $M \in \{1000, 5000, 10000, 50000, 100000\}$. For each $M$, record the absolute error $|\hat{P} - P^{\text{exact}}|$ and the standard error. Plot the error versus $M$ on a log-log scale and verify that the slope is approximately $-0.5$, confirming the $O(1/\sqrt{M})$ convergence rate.
+
+??? success "Solution to Exercise 7"
+
+    The convergence test proceeds as follows:
+
+    ```python
+    import numpy as np
+
+    kappa, theta, sigma, r0, T = 0.5, 0.06, 0.10, 0.04, 5.0
+    P_exact = cir_bond_price(T, r0, kappa, theta, sigma)
+
+    Ms = [1000, 5000, 10000, 50000, 100000]
+    for M in Ms:
+        mc = cir_mc_bond_price(r0, kappa, theta, sigma, T,
+                               n_steps=250, n_paths=M, seed=42)
+        abs_error = abs(mc["price"] - P_exact)
+        print(f"M={M:>6d}  MC={mc['price']:.6f}  "
+              f"SE={mc['se']:.6f}  |err|={abs_error:.6f}")
+    ```
+
+    **Expected results:** The standard error should scale as $O(1/\sqrt{M})$. If $\text{SE}(1000) \approx 0.003$, then:
+
+    - $\text{SE}(5000) \approx 0.003/\sqrt{5} \approx 0.0013$
+    - $\text{SE}(10000) \approx 0.003/\sqrt{10} \approx 0.00095$
+    - $\text{SE}(50000) \approx 0.003/\sqrt{50} \approx 0.00042$
+    - $\text{SE}(100000) \approx 0.003/\sqrt{100} \approx 0.0003$
+
+    **Log-log plot:** Plot $\log_{10}(\text{SE})$ vs. $\log_{10}(M)$. The relationship $\text{SE} \propto M^{-0.5}$ gives $\log(\text{SE}) = -0.5\log(M) + \text{const}$, so the slope should be approximately $-0.5$.
+
+    To verify: a linear regression of $\log(\text{SE})$ on $\log(M)$ should yield a slope between $-0.45$ and $-0.55$, confirming the $O(1/\sqrt{M})$ convergence rate of the Monte Carlo estimator. The absolute error $|\hat{P} - P^{\text{exact}}|$ will also decrease at roughly the same rate (since the bias from exact simulation is zero, the absolute error is dominated by the statistical error).

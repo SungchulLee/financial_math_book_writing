@@ -255,9 +255,107 @@ The relationship between local and implied volatility is characterized by:
 
 **Exercise 1.** Using the BBF approximation $\sigma_{\text{imp}}(K, T) \approx \sigma_{\text{loc}}((S_0 + K)/2, T/2)$, compute the implied volatility at $K = 90$ and $T = 1$ if the local volatility surface is $\sigma_{\text{loc}}(S, t) = 0.25 - 0.001(S - 100)$. Verify that the implied volatility skew is approximately half as steep as the local volatility skew.
 
+??? success "Solution to Exercise 1"
+    Using the BBF approximation:
+
+    $$
+    \sigma_{\text{imp}}(K, T) \approx \sigma_{\text{loc}}\left(\frac{S_0 + K}{2}, \frac{T}{2}\right)
+    $$
+
+    With $S_0 = 100$, $K = 90$, $T = 1$, and $\sigma_{\text{loc}}(S, t) = 0.25 - 0.001(S - 100)$:
+
+    The midpoint in spot is $\frac{S_0 + K}{2} = \frac{100 + 90}{2} = 95$. The midpoint in time is $\frac{T}{2} = 0.5$ (but $\sigma_{\text{loc}}$ does not depend on $t$ here).
+
+    $$
+    \sigma_{\text{imp}}(90, 1) \approx \sigma_{\text{loc}}(95, 0.5) = 0.25 - 0.001(95 - 100) = 0.25 + 0.005 = 0.255
+    $$
+
+    **Verifying the skew ratio.** The local volatility skew is:
+
+    $$
+    \frac{\partial \sigma_{\text{loc}}}{\partial S} = -0.001
+    $$
+
+    The implied volatility skew is found by differentiating the BBF relation with respect to $K$:
+
+    $$
+    \frac{\partial \sigma_{\text{imp}}}{\partial K} \approx \frac{1}{2}\frac{\partial \sigma_{\text{loc}}}{\partial S}\bigg|_{S=(S_0+K)/2} = \frac{1}{2}(-0.001) = -0.0005
+    $$
+
+    The implied volatility skew ($-0.0005$ per unit of $K$) is indeed half as steep as the local volatility skew ($-0.001$ per unit of $S$), confirming the skew doubling rule.
+
 ---
 
 **Exercise 2.** The ATM time-average relation states $\sigma_{\text{imp}}^2(S_0, T) \approx \frac{1}{T}\int_0^T \sigma_{\text{loc}}^2(S_0, t) \, dt$. Suppose the ATM local volatility is $\sigma_{\text{loc}}(S_0, t) = 0.20 + 0.05 e^{-2t}$. Compute $\sigma_{\text{imp}}(S_0, T)$ for $T = 0.5$ and $T = 2.0$. Is the implied volatility term structure increasing or decreasing?
+
+??? success "Solution to Exercise 2"
+    The ATM time-average relation gives:
+
+    $$
+    \sigma_{\text{imp}}^2(S_0, T) \approx \frac{1}{T}\int_0^T \sigma_{\text{loc}}^2(S_0, t) \, dt
+    $$
+
+    With $\sigma_{\text{loc}}(S_0, t) = 0.20 + 0.05e^{-2t}$, the local variance is:
+
+    $$
+    \sigma_{\text{loc}}^2(S_0, t) = (0.20 + 0.05e^{-2t})^2 = 0.04 + 0.02e^{-2t} + 0.0025e^{-4t}
+    $$
+
+    The integral is:
+
+    $$
+    \int_0^T \sigma_{\text{loc}}^2(S_0, t) \, dt = 0.04T + 0.02 \cdot \frac{1 - e^{-2T}}{2} + 0.0025 \cdot \frac{1 - e^{-4T}}{4}
+    $$
+
+    $$
+    = 0.04T + 0.01(1 - e^{-2T}) + 0.000625(1 - e^{-4T})
+    $$
+
+    **For $T = 0.5$:**
+
+    $$
+    = 0.02 + 0.01(1 - e^{-1}) + 0.000625(1 - e^{-2})
+    $$
+
+    $$
+    = 0.02 + 0.01(0.6321) + 0.000625(0.8647)
+    $$
+
+    $$
+    = 0.02 + 0.006321 + 0.000540 = 0.026861
+    $$
+
+    $$
+    \sigma_{\text{imp}}^2(S_0, 0.5) = \frac{0.026861}{0.5} = 0.053722
+    $$
+
+    $$
+    \sigma_{\text{imp}}(S_0, 0.5) = \sqrt{0.053722} \approx 0.2318
+    $$
+
+    **For $T = 2.0$:**
+
+    $$
+    = 0.08 + 0.01(1 - e^{-4}) + 0.000625(1 - e^{-8})
+    $$
+
+    $$
+    = 0.08 + 0.01(0.9817) + 0.000625(0.9997)
+    $$
+
+    $$
+    = 0.08 + 0.009817 + 0.000625 = 0.090442
+    $$
+
+    $$
+    \sigma_{\text{imp}}^2(S_0, 2.0) = \frac{0.090442}{2.0} = 0.045221
+    $$
+
+    $$
+    \sigma_{\text{imp}}(S_0, 2.0) = \sqrt{0.045221} \approx 0.2127
+    $$
+
+    **The implied volatility term structure is decreasing:** $\sigma_{\text{imp}}$ drops from $0.2318$ at $T = 0.5$ to $0.2127$ at $T = 2.0$. This is because the local volatility starts high ($\sigma_{\text{loc}}(S_0, 0) = 0.25$) and decays toward $0.20$ as $t \to \infty$. The running average of the local variance is dominated by the high early values at short maturities, producing a downward-sloping term structure.
 
 ---
 
@@ -269,9 +367,109 @@ $$
 
 Explain the financial intuition: why does midpoint averaging halve the observed skew?
 
+??? success "Solution to Exercise 3"
+    Starting from the BBF approximation:
+
+    $$
+    \sigma_{\text{imp}}(K, T) \approx \sigma_{\text{loc}}\left(\frac{S_0 + K}{2}, \frac{T}{2}\right)
+    $$
+
+    Differentiate with respect to $K$:
+
+    $$
+    \frac{\partial \sigma_{\text{imp}}}{\partial K} = \frac{\partial \sigma_{\text{loc}}}{\partial S}\bigg|_{S = (S_0+K)/2} \cdot \frac{\partial}{\partial K}\left(\frac{S_0 + K}{2}\right) = \frac{1}{2}\frac{\partial \sigma_{\text{loc}}}{\partial S}\bigg|_{S = (S_0+K)/2}
+    $$
+
+    Evaluating at $K = S_0$ (so $S = (S_0 + S_0)/2 = S_0$):
+
+    $$
+    \frac{\partial \sigma_{\text{imp}}}{\partial K}\bigg|_{K = S_0} = \frac{1}{2}\frac{\partial \sigma_{\text{loc}}}{\partial S}\bigg|_{S = S_0}
+    $$
+
+    Rearranging:
+
+    $$
+    \frac{\partial \sigma_{\text{loc}}}{\partial S}\bigg|_{S = S_0} = 2\frac{\partial \sigma_{\text{imp}}}{\partial K}\bigg|_{K = S_0}
+    $$
+
+    **Financial intuition:** Implied volatility is an average of local volatility along the most probable path from $S_0$ to $K$. The BBF formula says this average is well-approximated by the local volatility at the midpoint $(S_0 + K)/2$. When the strike shifts by $\Delta K$, the midpoint shifts by only $\Delta K / 2$, so the implied volatility changes by half as much as the underlying local volatility. Equivalently, the local volatility surface must slope twice as steeply as the implied volatility smile to produce the observed market skew, because the averaging effect of integrating along the path dampens the slope by a factor of two.
+
 ---
 
 **Exercise 4.** Given a linear implied volatility skew $\sigma_{\text{imp}}(K) = 0.22 - 0.0006(K - 100)$ with $S_0 = 100$, $T = 0.5$, and $r = 2\%$, $q = 0$, use the Gatheral formula to compute $\sigma_{\text{loc}}^2(100, 0.5)$. You may assume $\partial_T \sigma_{\text{imp}} = 0$ and $\partial_{KK} \sigma_{\text{imp}} = 0$.
+
+??? success "Solution to Exercise 4"
+    Given: $\sigma_{\text{imp}}(K) = 0.22 - 0.0006(K - 100)$, $S_0 = 100$, $T = 0.5$, $r = 0.02$, $q = 0$, $\partial_T \sigma_{\text{imp}} = 0$, $\partial_{KK}\sigma_{\text{imp}} = 0$.
+
+    At $K = 100$: $\sigma_{\text{imp}} = 0.22$, $\partial_K \sigma_{\text{imp}} = -0.0006$.
+
+    Compute the total variance and $d_1$:
+
+    $$
+    w = \sigma_{\text{imp}}^2 T = 0.0484 \times 0.5 = 0.0242
+    $$
+
+    $$
+    d_1 = \frac{\log(S_0 e^{(r-q)T}/K) + \frac{1}{2}w}{\sqrt{w}} = \frac{\log(e^{0.01}) + 0.0121}{\sqrt{0.0242}} = \frac{0.01 + 0.0121}{0.15556} = \frac{0.0221}{0.15556} = 0.1421
+    $$
+
+    **Numerator** of the Gatheral formula:
+
+    $$
+    \sigma_{\text{imp}}^2 + 2\sigma_{\text{imp}} T \partial_T \sigma_{\text{imp}} + 2(r-q)K\sigma_{\text{imp}} T \partial_K \sigma_{\text{imp}}
+    $$
+
+    $$
+    = 0.0484 + 0 + 2(0.02)(100)(0.22)(0.5)(-0.0006)
+    $$
+
+    $$
+    = 0.0484 + 2(0.02)(100)(0.22)(0.5)(-0.0006)
+    $$
+
+    $$
+    = 0.0484 - 0.000264 = 0.048136
+    $$
+
+    **Denominator** of the Gatheral formula (with $\partial_{KK}\sigma_{\text{imp}} = 0$):
+
+    $$
+    \left(1 + Kd_1\sqrt{T}\,\partial_K \sigma_{\text{imp}}\right)^2 + K^2\sigma_{\text{imp}} T\left(0 - d_1(\partial_K\sigma_{\text{imp}})^2\sqrt{T}\right)
+    $$
+
+    First term:
+
+    $$
+    1 + 100(0.1421)(\sqrt{0.5})(-0.0006) = 1 + 100(0.1421)(0.7071)(-0.0006) = 1 - 0.006028 = 0.993972
+    $$
+
+    $$
+    (0.993972)^2 = 0.987980
+    $$
+
+    Second term:
+
+    $$
+    (100)^2(0.22)(0.5)\bigl(-0.1421 \times (0.0006)^2 \times 0.7071\bigr) = 10000 \times 0.11 \times (-0.1421 \times 3.6 \times 10^{-7} \times 0.7071)
+    $$
+
+    $$
+    = 1100 \times (-3.617 \times 10^{-8}) = -3.98 \times 10^{-5}
+    $$
+
+    This is negligible. So the denominator is approximately $0.98798$.
+
+    **Result:**
+
+    $$
+    \sigma_{\text{loc}}^2(100, 0.5) = \frac{0.048136}{0.98798} = 0.04872
+    $$
+
+    $$
+    \sigma_{\text{loc}}(100, 0.5) = \sqrt{0.04872} \approx 0.2207
+    $$
+
+    The local volatility at ATM ($0.2207$) is slightly higher than the implied volatility ($0.22$), reflecting the denominator correction due to the implied volatility skew.
 
 ---
 
@@ -283,6 +481,86 @@ $$
 
 Is the local variance term structure monotone?
 
+??? success "Solution to Exercise 5"
+    Using the forward variance formula:
+
+    $$
+    \sigma_{\text{loc}}^2(S_0, T) = \frac{\partial}{\partial T}[T \cdot \sigma_{\text{imp}}^2(S_0, T)]
+    $$
+
+    First compute the total implied variance $T \cdot \sigma_{\text{imp}}^2$ at each maturity:
+
+    - $T = 0.25$: $0.25 \times 0.22^2 = 0.25 \times 0.0484 = 0.01210$
+    - $T = 0.50$: $0.50 \times 0.21^2 = 0.50 \times 0.0441 = 0.02205$
+    - $T = 1.00$: $1.00 \times 0.20^2 = 1.00 \times 0.0400 = 0.04000$
+
+    Approximate the derivative using finite differences:
+
+    **At $T = 0.25$:** Using forward difference from $T = 0$ (where total variance is 0) to $T = 0.25$:
+
+    $$
+    \sigma_{\text{loc}}^2(S_0, 0.25) \approx \frac{0.01210 - 0}{0.25 - 0} = 0.0484
+    $$
+
+    $$
+    \sigma_{\text{loc}}(S_0, 0.25) = \sqrt{0.0484} = 0.220
+    $$
+
+    **At $T = 0.50$:** Using the interval from $T = 0.25$ to $T = 0.50$:
+
+    $$
+    \sigma_{\text{loc}}^2(S_0, 0.50) \approx \frac{0.02205 - 0.01210}{0.50 - 0.25} = \frac{0.00995}{0.25} = 0.03980
+    $$
+
+    $$
+    \sigma_{\text{loc}}(S_0, 0.50) = \sqrt{0.03980} \approx 0.1995
+    $$
+
+    **At $T = 1.0$:** Using the interval from $T = 0.50$ to $T = 1.00$:
+
+    $$
+    \sigma_{\text{loc}}^2(S_0, 1.0) \approx \frac{0.04000 - 0.02205}{1.00 - 0.50} = \frac{0.01795}{0.50} = 0.03590
+    $$
+
+    $$
+    \sigma_{\text{loc}}(S_0, 1.0) = \sqrt{0.03590} \approx 0.1895
+    $$
+
+    **The local variance term structure is monotonically decreasing:** $\sigma_{\text{loc}}^2$ drops from $0.0484$ at $T = 0.25$ to $0.0398$ at $T = 0.50$ to $0.0359$ at $T = 1.0$. The decreasing implied volatility term structure ($22\% \to 21\% \to 20\%$) implies that the marginal variance being added at later times is lower than the average, producing a declining local variance curve. This is analogous to a downward-sloping forward rate curve when the yield curve is downward-sloping.
+
 ---
 
 **Exercise 6.** The "mirror" formula for inverting the BBF relationship is $\sigma_{\text{loc}}(S, t) \approx \sigma_{\text{imp}}(2S - S_0, 2t)$. Given an implied volatility surface $\sigma_{\text{imp}}(K, T) = 0.20 - 0.001(K - 100) + 0.01\sqrt{T}$ with $S_0 = 100$, compute the approximate local volatility at $(S, t) = (95, 0.5)$ and $(S, t) = (105, 0.5)$.
+
+??? success "Solution to Exercise 6"
+    Using the mirror formula $\sigma_{\text{loc}}(S, t) \approx \sigma_{\text{imp}}(2S - S_0, 2t)$ with $S_0 = 100$ and $\sigma_{\text{imp}}(K, T) = 0.20 - 0.001(K - 100) + 0.01\sqrt{T}$.
+
+    **At $(S, t) = (95, 0.5)$:**
+
+    $$
+    K^* = 2(95) - 100 = 90, \quad T^* = 2(0.5) = 1.0
+    $$
+
+    $$
+    \sigma_{\text{loc}}(95, 0.5) \approx \sigma_{\text{imp}}(90, 1.0) = 0.20 - 0.001(90 - 100) + 0.01\sqrt{1.0}
+    $$
+
+    $$
+    = 0.20 + 0.01 + 0.01 = 0.22
+    $$
+
+    **At $(S, t) = (105, 0.5)$:**
+
+    $$
+    K^* = 2(105) - 100 = 110, \quad T^* = 2(0.5) = 1.0
+    $$
+
+    $$
+    \sigma_{\text{loc}}(105, 0.5) \approx \sigma_{\text{imp}}(110, 1.0) = 0.20 - 0.001(110 - 100) + 0.01\sqrt{1.0}
+    $$
+
+    $$
+    = 0.20 - 0.01 + 0.01 = 0.20
+    $$
+
+    The local volatility at $S = 95$ ($0.22$) is higher than at $S = 105$ ($0.20$), reflecting a downward-sloping local volatility in the spot direction. The local vol skew between these points is $(0.20 - 0.22)/(105 - 95) = -0.002$ per unit of $S$, which is twice the implied vol skew of $-0.001$ per unit of $K$, consistent with the skew doubling rule.

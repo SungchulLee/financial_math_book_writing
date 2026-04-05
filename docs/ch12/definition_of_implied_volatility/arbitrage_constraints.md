@@ -579,21 +579,119 @@ Violation of any constraint allows construction of a riskless profit strategy, i
 
 **Exercise 1.** A European call option has spot $S = 100$, strike $K = 95$, risk-free rate $r = 5\%$, dividend yield $q = 2\%$, and maturity $T = 0.5$ years. Compute the no-arbitrage bounds $C_{\text{intrinsic}} < C < S e^{-qT}$. If a broker quotes $C = 6.50$, does implied volatility exist?
 
+??? success "Solution to Exercise 1"
+    We need to compute the no-arbitrage bounds with $S = 100$, $K = 95$, $r = 0.05$, $q = 0.02$, and $T = 0.5$.
+
+    First compute the discounted quantities:
+
+    $$
+    S e^{-qT} = 100 \cdot e^{-0.02 \times 0.5} = 100 \cdot e^{-0.01} \approx 99.005
+    $$
+
+    $$
+    K e^{-rT} = 95 \cdot e^{-0.05 \times 0.5} = 95 \cdot e^{-0.025} \approx 92.653
+    $$
+
+    The intrinsic value (lower bound) is:
+
+    $$
+    C_{\text{intrinsic}} = \max(S e^{-qT} - K e^{-rT}, 0) = \max(99.005 - 92.653, 0) = 6.352
+    $$
+
+    The upper bound is:
+
+    $$
+    S e^{-qT} = 99.005
+    $$
+
+    Therefore the no-arbitrage bounds are $6.352 < C < 99.005$.
+
+    Since the quoted price $C = 6.50$ satisfies $6.352 < 6.50 < 99.005$, it lies in the admissible interval and implied volatility exists. However, note that $C = 6.50$ is very close to the intrinsic value, implying a low implied volatility.
+
 ---
 
 **Exercise 2.** Suppose three call options with the same maturity have strikes $K_1 = 90$, $K_2 = 100$, $K_3 = 110$ and prices $C(90) = 14.20$, $C(100) = 8.50$, $C(110) = 4.80$. (a) Verify that strike monotonicity $C(K_1) \geq C(K_2) \geq C(K_3)$ holds. (b) Check whether the butterfly spread constraint $C(K_1) - 2C(K_2) + C(K_3) \geq 0$ is satisfied. (c) What would it mean economically if this constraint were violated?
+
+??? success "Solution to Exercise 2"
+    **(a)** Check strike monotonicity:
+
+    - $C(90) = 14.20 \geq C(100) = 8.50$ ✓
+    - $C(100) = 8.50 \geq C(110) = 4.80$ ✓
+
+    Strike monotonicity is satisfied.
+
+    **(b)** Check the butterfly spread constraint:
+
+    $$
+    C(K_1) - 2C(K_2) + C(K_3) = 14.20 - 2(8.50) + 4.80 = 14.20 - 17.00 + 4.80 = 2.00
+    $$
+
+    Since $2.00 \geq 0$, the butterfly spread constraint is satisfied.
+
+    **(c)** If the butterfly constraint were violated (i.e., $C(K_1) - 2C(K_2) + C(K_3) < 0$), it would mean the butterfly spread has a negative initial cost but a non-negative payoff at maturity. This constitutes a static arbitrage: one could buy the butterfly spread (long calls at $K_1$ and $K_3$, short two calls at $K_2$), receive cash up front, and have a guaranteed non-negative payoff. Economically, the violation implies the risk-neutral density is negative somewhere between $K_1$ and $K_3$, which is impossible for a valid probability measure. This would indicate mispricing in the options market.
 
 ---
 
 **Exercise 3.** Consider the Gatheral constraint for an arbitrage-free implied volatility surface in terms of total variance $w(y, T) = \sigma_{\text{IV}}^2(y, T) \cdot T$. If $w(y) = 0.04 + 0.02 y + 0.01 y^2$ for a fixed maturity, compute $\frac{\partial w}{\partial y}$ and $\frac{\partial^2 w}{\partial y^2}$. Is the sufficient condition $\frac{\partial^2 w}{\partial y^2} \geq 0$ satisfied?
 
+??? success "Solution to Exercise 3"
+    Given $w(y) = 0.04 + 0.02y + 0.01y^2$, compute the partial derivatives:
+
+    $$
+    \frac{\partial w}{\partial y} = 0.02 + 0.02y
+    $$
+
+    $$
+    \frac{\partial^2 w}{\partial y^2} = 0.02
+    $$
+
+    The sufficient condition for no butterfly arbitrage is $\frac{\partial^2 w}{\partial y^2} \geq 0$. Since $0.02 > 0$, the condition is satisfied.
+
+    This means that total variance is strictly convex in log-moneyness, which is stronger than the Gatheral constraint. The positive second derivative ensures that the risk-neutral density implied by this total variance parameterization is non-negative, consistent with an arbitrage-free surface.
+
 ---
 
 **Exercise 4.** Using the Breeden-Litzenberger formula $\frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)$, explain why butterfly spread convexity is equivalent to non-negativity of the risk-neutral density. If a parametric model produces $q(K) < 0$ for some strike range, what type of arbitrage strategy could be constructed?
 
+??? success "Solution to Exercise 4"
+    The Breeden-Litzenberger formula states:
+
+    $$
+    \frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)
+    $$
+
+    where $q(K)$ is the risk-neutral probability density of $S_T$ evaluated at $K$.
+
+    The butterfly spread constraint requires $C(K_1) - 2C(K_2) + C(K_3) \geq 0$ for equally spaced strikes. In the continuous limit with spacing $\Delta K$:
+
+    $$
+    C(K - \Delta K) - 2C(K) + C(K + \Delta K) \approx \frac{\partial^2 C}{\partial K^2} (\Delta K)^2
+    $$
+
+    This approximation is the finite-difference second derivative. For this to be non-negative, we need $\frac{\partial^2 C}{\partial K^2} \geq 0$, which by Breeden-Litzenberger is equivalent to $e^{-rT} q(K) \geq 0$, i.e., $q(K) \geq 0$. Since $e^{-rT} > 0$, the non-negativity of the second derivative is exactly equivalent to the non-negativity of the risk-neutral density.
+
+    If a parametric model produces $q(K) < 0$ for some strike range $[K_a, K_b]$, one can construct an arbitrage by selling a butterfly spread centered in that region. Specifically, buy calls at $K_a$ and $K_b$ and sell calls at the midpoint $K_m = (K_a + K_b)/2$ in the appropriate ratio. The negative density region means the butterfly has negative cost (you receive premium) but non-negative payoff, yielding a riskless profit.
+
 ---
 
 **Exercise 5.** Two European call options with the same strike $K = 100$ have maturities $T_1 = 0.25$ and $T_2 = 0.50$. The observed prices are $C(T_1) = 5.80$ and $C(T_2) = 5.60$, violating calendar monotonicity. (a) Describe a calendar spread arbitrage strategy. (b) Under what market conditions (e.g., discrete dividends) could this apparent violation be consistent with no-arbitrage?
+
+??? success "Solution to Exercise 5"
+    **(a)** Calendar spread arbitrage strategy: Since $C(T_2) = 5.60 < C(T_1) = 5.80$ violates the monotonicity $C(T_1) \leq C(T_2)$, we can construct the following arbitrage:
+
+    - Buy the longer-dated call ($T_2 = 0.50$) for $\$5.60$
+    - Sell the shorter-dated call ($T_1 = 0.25$) for $\$5.80$
+
+    Net cash inflow at inception: $5.80 - 5.60 = \$0.20$.
+
+    At $T_1 = 0.25$:
+
+    - If $S_{T_1} \leq 100$: the short call expires worthless. We still hold the long $T_2$ call, which has non-negative value. Total P&L $\geq 0.20$
+    - If $S_{T_1} > 100$: the short call is exercised, costing $S_{T_1} - 100$. The long call is worth at least its intrinsic value $\max(S_{T_1} - 100, 0) = S_{T_1} - 100$ (and more due to remaining time value). So the long call's value $\geq$ the short call's obligation, and we keep the initial $\$0.20$
+
+    In either case, the strategy generates a riskless profit.
+
+    **(b)** With discrete dividends, this apparent violation can be consistent with no-arbitrage. If a discrete dividend is paid between $T_1$ and $T_2$, the stock price drops by the dividend amount at the ex-date. This reduces the value of the longer-dated call relative to the shorter-dated one, since the longer-dated option "sees" the dividend-induced drop while the shorter-dated one expires before it. In such cases, $C(T_2) < C(T_1)$ does not constitute true arbitrage because early exercise of American calls may be optimal just before the dividend, and the replication argument above breaks down for European calls in the presence of discrete dividends.
 
 ---
 
@@ -605,6 +703,60 @@ $$
 
 for large $|y|$. Consider a parametric model with $\sigma_{\text{IV}}(y) = 0.20$ (constant). Does this satisfy Lee's constraint? What does it imply about the moments of the risk-neutral distribution?
 
+??? success "Solution to Exercise 6"
+    Lee's constraint requires $\sigma_{\text{IV}}^2(y, T) \geq C |y| / T$ for large $|y|$. With a constant implied volatility model $\sigma_{\text{IV}}(y) = 0.20$:
+
+    $$
+    \sigma_{\text{IV}}^2(y, T) = 0.04 \quad \text{for all } y
+    $$
+
+    As $|y| \to \infty$, the right-hand side $C |y| / T \to \infty$, while the left-hand side remains constant at $0.04$. Therefore, for any fixed $C > 0$ and $T > 0$, there exists a sufficiently large $|y|$ such that:
+
+    $$
+    0.04 < C \frac{|y|}{T}
+    $$
+
+    This means the constant volatility model **violates** Lee's constraint in the wings.
+
+    However, this does not mean the Black-Scholes model itself is arbitrage-free-inconsistent. The log-normal distribution under Black-Scholes has all moments finite. Lee's formula relates the wing behavior of implied volatility to the **maximum finite moment** of the risk-neutral distribution. For the log-normal distribution, all moments $\mathbb{E}[S_T^p]$ are finite for every $p > 0$, corresponding to the fact that the implied volatility grows sublinearly (in fact, stays constant) in the wings. The constraint $\sigma_{\text{IV}}^2 \geq C|y|/T$ is a necessary condition for the density to have finite variance, which the log-normal satisfies. The apparent contradiction resolves because the constant $C$ in Lee's formula depends on the maximum moment order, and for log-normal it can be taken arbitrarily small.
+
 ---
 
 **Exercise 7.** In Durrleman's framework, the two conditions for an arbitrage-free surface are butterfly arbitrage-free ($\partial^2 C / \partial K^2 \geq 0$) and calendar arbitrage-free ($\partial C / \partial T \geq 0$). Given a surface where total variance is $w(y, T) = 0.01 T + 0.005 |y|$, verify whether both conditions are met. Discuss the implications of the non-differentiability at $y = 0$ for the risk-neutral density.
+
+??? success "Solution to Exercise 7"
+    Given $w(y, T) = 0.01T + 0.005|y|$, check the two Durrleman conditions.
+
+    **Calendar arbitrage-free:** We need $\frac{\partial w}{\partial T} \geq 0$:
+
+    $$
+    \frac{\partial w}{\partial T} = 0.01 > 0
+    $$
+
+    This condition is satisfied for all $(y, T)$.
+
+    **Butterfly arbitrage-free:** We need $\frac{\partial^2 C}{\partial K^2} \geq 0$, which relates to the second derivative of $w$ with respect to $y$. For $y \neq 0$:
+
+    $$
+    \frac{\partial w}{\partial y} = \begin{cases} 0.005 & y > 0 \\ -0.005 & y < 0 \end{cases}
+    $$
+
+    $$
+    \frac{\partial^2 w}{\partial y^2} = 0 \quad \text{for } y \neq 0
+    $$
+
+    The sufficient condition $\frac{\partial^2 w}{\partial y^2} \geq 0$ is satisfied (with equality) away from $y = 0$. One would need to verify the full Gatheral constraint at each point, but the zero curvature makes the butterfly condition marginal rather than strictly satisfied.
+
+    **Non-differentiability at $y = 0$:** The function $|y|$ has a kink at $y = 0$, where the left derivative is $-0.005$ and the right derivative is $+0.005$. In the distributional sense:
+
+    $$
+    \frac{\partial^2 |y|}{\partial y^2} = 2\delta(y)
+    $$
+
+    where $\delta(y)$ is the Dirac delta function. This means:
+
+    $$
+    \frac{\partial^2 w}{\partial y^2} = 0.01 \cdot \delta(y)
+    $$
+
+    Via Breeden-Litzenberger, the risk-neutral density is proportional to $\frac{\partial^2 C}{\partial K^2}$. The delta function contribution implies a point mass (atom) in the risk-neutral distribution at $y = 0$ (i.e., at the forward price $K = F$). This means the model assigns a discrete positive probability to $S_T$ landing exactly at the forward price, which is economically unrealistic for a continuous underlying. While not technically an arbitrage violation, the non-smooth surface produces a singular risk-neutral distribution that is problematic for practical hedging and pricing.

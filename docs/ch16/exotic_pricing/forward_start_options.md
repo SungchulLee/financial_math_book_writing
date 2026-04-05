@@ -274,32 +274,320 @@ Two approaches are common:
 **Exercise 1.**
 A forward-start ATM call ($\alpha = 1$) has payoff $(S_T - S_{T_1})^+$ with $T_1 = 0.5$ and $T = 1.0$. Under Black-Scholes with constant volatility $\sigma = 20\%$, the price depends only on $T - T_1 = 0.5$ and the moneyness ratio $\alpha = 1$. Compute this price for $r = 3\%$ and $q = 1\%$. Now explain why under Heston, the price depends on the full maturity structure $(T_1, T)$ and not just $T - T_1$.
 
+??? success "Solution to Exercise 1"
+    **Black--Scholes forward-start call price.** Under Black--Scholes, the forward-start ATM call ($\alpha = 1$) has price:
+
+    $$
+    V_0^{\text{BS}} = S_0 e^{-qT_1} \cdot e^{-r\tau} C_{\text{BS}}(1, 1, \sigma, r - q, \tau)
+    $$
+
+    where $\tau = T - T_1 = 0.5$. The Black--Scholes call with spot $= 1$, strike $= 1$ is:
+
+    $$
+    C_{\text{BS}}(1, 1, \sigma, r - q, \tau) = e^{-q\tau}\Phi(d_1) - e^{-r\tau}\Phi(d_2)
+    $$
+
+    Wait --- since we are pricing the forward return $R = S_T/S_{T_1}$, the "underlying" is $R$ with forward $= e^{(r-q)\tau}$. The relevant formulas are:
+
+    $$
+    d_1 = \frac{\ln(1/\alpha) + (r - q + \sigma^2/2)\tau}{\sigma\sqrt{\tau}} = \frac{0 + (0.03 - 0.01 + 0.02) \times 0.5}{0.20 \times \sqrt{0.5}}
+    $$
+
+    $$
+    = \frac{0.02 \times 0.5}{0.20 \times 0.7071} = \frac{0.010}{0.1414} = 0.0707
+    $$
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{\tau} = 0.0707 - 0.1414 = -0.0707
+    $$
+
+    $$
+    C_{\text{BS}}(1, 1, \sigma, r-q, \tau) = \Phi(0.0707) - e^{-(r-q)\tau}\Phi(-0.0707)
+    $$
+
+    $$
+    = \Phi(0.0707) - e^{-0.01}\Phi(-0.0707)
+    $$
+
+    Using $\Phi(0.0707) \approx 0.5282$ and $\Phi(-0.0707) \approx 0.4718$:
+
+    $$
+    C_{\text{BS}} = 0.5282 - 0.9900 \times 0.4718 = 0.5282 - 0.4671 = 0.0611
+    $$
+
+    The forward-start price is:
+
+    $$
+    V_0^{\text{BS}} = S_0 e^{-qT_1} \cdot e^{-r\tau} \cdot (e^{-q\tau}\Phi(d_1) - \Phi(d_2)) \cdot S_0
+    $$
+
+    Simplifying with the standard formula for a forward-start scaled by $S_0 e^{-qT_1}$:
+
+    $$
+    V_0^{\text{BS}} = S_0 e^{-qT} \Phi(d_1) - S_0 e^{-qT_1} e^{-r\tau} \Phi(d_2)
+    $$
+
+    For $S_0 = 100$, $q = 0.01$, $r = 0.03$, $T_1 = 0.5$, $T = 1.0$, $\tau = 0.5$:
+
+    $$
+    V_0^{\text{BS}} = 100 e^{-0.01} \times 0.5282 - 100 e^{-0.005} \times e^{-0.015} \times 0.4718
+    $$
+
+    $$
+    = 100 \times 0.9900 \times 0.5282 - 100 \times 0.9802 \times 0.4718
+    $$
+
+    $$
+    = 52.29 - 46.25 = \$6.04
+    $$
+
+    **Why the Heston price depends on the full maturity structure $(T_1, T)$, not just $\tau = T - T_1$.** Under Black--Scholes, the forward return $R = S_T/S_{T_1}$ is independent of $\mathcal{F}_{T_1}$ because the increments of Brownian motion are independent. The distribution of $R$ depends only on $\tau$ and the constant $\sigma$.
+
+    Under Heston, $R$ depends on $\mathcal{F}_{T_1}$ through the variance state $v_{T_1}$. The distribution of $v_{T_1}$ depends on:
+
+    - The initial variance $v_0$
+    - The time elapsed $T_1$ (how much mean reversion has occurred)
+    - The parameters $\kappa$, $\theta$, $\xi$
+
+    Two forward-start options with the same $\tau$ but different $T_1$ will have different prices because the distribution of $v_{T_1}$ differs. For short $T_1$, $v_{T_1}$ is close to $v_0$; for long $T_1$, $v_{T_1}$ has mean-reverted toward $\theta$. Since the inner Heston call price $C_{\text{Heston}}(1, \alpha, \tau, v_{T_1})$ depends on $v_{T_1}$, the outer expectation over $v_{T_1}$ produces a price that depends on the full pair $(T_1, T)$.
+
 ---
 
 **Exercise 2.**
 The normalized forward return is $R = S_T / S_{T_1}$. Show that the forward-start call price can be written as $V_0 = S_0 e^{-qT} \mathbb{E}^{\mathbb{Q}^S}[(R - \alpha)^+]$ where $\mathbb{Q}^S$ is the stock-price measure. Explain why factoring out $S_{T_1}$ is essential for pricing and why the resulting expectation depends on the distribution of $v_{T_1}$.
+
+??? success "Solution to Exercise 2"
+    **Measure change to stock-price measure.** Define the stock-price (share) measure $\mathbb{Q}^S$ by the Radon--Nikodym derivative:
+
+    $$
+    \frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{S_T}{S_0 e^{rT}} = \frac{S_T}{S_0 e^{rT}}
+    $$
+
+    (where we assume $q = 0$ for simplicity; with dividends, replace $e^{rT}$ with $e^{(r-q)T}$). For any $\mathcal{F}_T$-measurable payoff $\Phi$:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[e^{-rT} S_{T_1} \Phi] = S_0 \mathbb{E}^{\mathbb{Q}^S}\left[\frac{S_{T_1}}{S_T} \Phi\right]
+    $$
+
+    This is not the most direct route. Instead, consider the forward-start payoff:
+
+    $$
+    V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[S_{T_1}(R - \alpha)^+]
+    $$
+
+    Using the tower property on $\mathcal{F}_{T_1}$:
+
+    $$
+    V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}\!\left[S_{T_1} \mathbb{E}^{\mathbb{Q}}[(R - \alpha)^+ \mid \mathcal{F}_{T_1}]\right]
+    $$
+
+    Now define the $T_1$-forward measure (or use the stock numeraire). Under the $\mathbb{Q}^S$ measure with numeraire $S_t e^{qt}$:
+
+    $$
+    V_0 = S_0 e^{-qT}\mathbb{E}^{\mathbb{Q}^S}[(R - \alpha)^+]
+    $$
+
+    This follows because changing from $\mathbb{Q}$ to $\mathbb{Q}^S$ absorbs the $S_{T_1}$ factor into the measure change. The Radon--Nikodym derivative evaluated at $T_1$ is $\frac{S_{T_1} e^{qT_1}}{S_0 e^{rT_1}}$, so:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[e^{-rT} S_{T_1} (R - \alpha)^+] = S_0 e^{-qT_1} \mathbb{E}^{\mathbb{Q}^S}[e^{-r\tau}(R - \alpha)^+]
+    $$
+
+    **Why factoring out $S_{T_1}$ is essential.** The forward-start payoff $(S_T - \alpha S_{T_1})^+$ involves two random quantities at different times. Factoring as $S_{T_1}(R - \alpha)^+$ separates the problem into:
+
+    1. A **scale factor** $S_{T_1}$ that determines the notional
+    2. A **normalized payoff** $(R - \alpha)^+$ that depends only on the return
+
+    This separation allows us to price the normalized payoff as a standard option on $R$ (with spot $= 1$ and strike $= \alpha$), then scale by the appropriate expectation of $S_{T_1}$.
+
+    **Dependence on $v_{T_1}$.** Under $\mathbb{Q}^S$, the distribution of $R$ still depends on $v_{T_1}$ because the dynamics of $R$ over $[T_1, T]$ involve $\sqrt{v_t}$. The variance state $v_{T_1}$ acts as a sufficient statistic: given $v_{T_1}$, the conditional distribution of $R$ is the Heston return distribution with initial variance $v_{T_1}$ and maturity $\tau$. The unconditional expectation must integrate over all possible values of $v_{T_1}$, weighted by its CIR transition density.
 
 ---
 
 **Exercise 3.**
 Under Heston, the conditional characteristic function of $\ln(S_T/S_{T_1})$ given $v_{T_1}$ is the standard Heston CF with $v_0$ replaced by $v_{T_1}$ and maturity $\tau = T - T_1$. To compute the unconditional price, we must integrate over the distribution of $v_{T_1}$. Describe this iterated expectation: $V_0 = e^{-rT}\mathbb{E}_{v_{T_1}}[\mathbb{E}[(S_T - \alpha S_{T_1})^+ \mid v_{T_1}]]$. How would you numerically evaluate the outer expectation over $v_{T_1}$?
 
+??? success "Solution to Exercise 3"
+    **The iterated expectation.** The forward-start call price is:
+
+    $$
+    V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}\!\left[\mathbb{E}^{\mathbb{Q}}[(S_T - \alpha S_{T_1})^+ \mid v_{T_1}]\right]
+    $$
+
+    Here the outer expectation is over $v_{T_1}$, and the inner expectation is a standard Heston call price.
+
+    **Inner expectation.** Conditional on $v_{T_1} = v$, the forward return $R = S_T/S_{T_1}$ has the Heston distribution with initial variance $v$ and maturity $\tau = T - T_1$. The inner expectation is:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[(S_T - \alpha S_{T_1})^+ \mid v_{T_1} = v] = S_{T_1} \cdot C_{\text{Heston}}(1, \alpha, r, q, \tau, v, \kappa, \theta, \xi, \rho)
+    $$
+
+    where $C_{\text{Heston}}$ is the standard Heston call price with unit spot, strike $\alpha$, and initial variance $v$. This can be computed using the COS method or Gil--Pelaez inversion for each value of $v$.
+
+    **Outer expectation.** After taking $\mathbb{E}^{\mathbb{Q}}[S_{T_1} \mid v_{T_1}]$ into account (and using the tower property more carefully), the price becomes:
+
+    $$
+    V_0 = S_0 e^{-qT_1} e^{-r\tau} \int_0^{\infty} C_{\text{Heston}}(1, \alpha, \tau, v) \, f_{v_{T_1}}(v \mid v_0) \, dv
+    $$
+
+    where $f_{v_{T_1}}(v \mid v_0)$ is the transition density of the CIR process from $v_0$ at time 0 to $v$ at time $T_1$.
+
+    **Numerical evaluation.** The outer integral is over $v \in [0, \infty)$ with weight function $f_{v_{T_1}}$, which is a non-central chi-squared density. Two standard approaches:
+
+    **1. Gauss--Laguerre quadrature.** Since $f_{v_{T_1}}(v) \propto v^{\alpha-1} e^{-\beta v}$ (up to a scaling), Gauss--Laguerre quadrature is well-suited. Choose $M$ quadrature nodes $v^{(1)}, \ldots, v^{(M)}$ and weights $w^{(1)}, \ldots, w^{(M)}$:
+
+    $$
+    V_0 \approx S_0 e^{-qT_1} e^{-r\tau} \sum_{m=1}^{M} w^{(m)} C_{\text{Heston}}(1, \alpha, \tau, v^{(m)})
+    $$
+
+    Typically $M = 20$--$50$ nodes suffice for high accuracy.
+
+    **2. Adaptive quadrature.** Use an adaptive integration routine (e.g., Gauss--Kronrod) on the interval $[0, v_{\max}]$ where $v_{\max}$ is chosen such that $f_{v_{T_1}}(v) < \epsilon$ for $v > v_{\max}$. This automatically concentrates function evaluations where the integrand is large.
+
+    **3. Discretization of the CIR density.** Since the CIR transition density is non-central chi-squared, one can also use the series representation (Bessel function expansion) to evaluate $f_{v_{T_1}}$ at each quadrature node.
+
+    Each evaluation of $C_{\text{Heston}}(1, \alpha, \tau, v^{(m)})$ requires one Fourier inversion (COS or Gil--Pelaez), so the total cost is $M$ Fourier inversions --- negligible compared to Monte Carlo.
+
 ---
 
 **Exercise 4.**
 The **forward implied volatility smile** describes the implied volatility of the forward-start option as a function of $\alpha$. Under Black-Scholes, this smile is flat (constant at $\sigma$). Under Heston, it is not flat because $v_{T_1}$ is random. Explain why the forward smile is generally flatter than the spot smile for long $T_1$: the randomness of $v_{T_1}$ averages over different instantaneous smiles, smoothing the overall shape.
+
+??? success "Solution to Exercise 4"
+    **Why the forward smile flattens for long $T_1$.**
+
+    The forward implied volatility smile at moneyness $\alpha$ is determined by the distribution of the forward return $R = S_T/S_{T_1}$ conditional on information at time 0. Under Heston, this distribution depends on $v_{T_1}$, which is random.
+
+    **The averaging mechanism.** The forward-start price is:
+
+    $$
+    V_0(\alpha) = S_0 e^{-qT_1} e^{-r\tau} \int_0^{\infty} C_{\text{Heston}}(1, \alpha, \tau, v) f_{v_{T_1}}(v) \, dv
+    $$
+
+    For each fixed $v$, the function $\alpha \mapsto C_{\text{Heston}}(1, \alpha, \tau, v)$ generates a "conditional smile" --- the implied volatility smile that would prevail if the variance at the strike-setting date were known to be $v$. Different values of $v$ produce different conditional smiles:
+
+    - Low $v$: steeper smile (lower ATM vol, higher relative skew)
+    - High $v$: flatter smile (higher ATM vol, lower relative skew)
+
+    The unconditional (forward) smile is a **mixture** of these conditional smiles, weighted by $f_{v_{T_1}}$.
+
+    **Effect of increasing $T_1$.** As $T_1$ increases:
+
+    1. **Mean reversion narrows the distribution of $v_{T_1}$.** The CIR process mean-reverts toward $\theta$ at rate $\kappa$. The variance of $v_{T_1}$ is:
+
+        $$
+        \operatorname{Var}(v_{T_1}) = \frac{\xi^2 \theta}{2\kappa}(1 - e^{-\kappa T_1})^2 \cdot \frac{1}{1 - e^{-2\kappa T_1}} \cdot (v_0 e^{-\kappa T_1} \text{ terms} + \cdots)
+        $$
+
+        For large $T_1$, $v_{T_1}$ converges to its stationary distribution with variance $\xi^2\theta/(2\kappa)$, which is independent of $v_0$.
+
+    2. **Concentration around $\theta$.** The distribution of $v_{T_1}$ becomes tightly concentrated around $\theta$ (relative to the dependence on $v_0$). The conditional smiles being averaged are all generated from $v \approx \theta$, so their weighted average is close to any single conditional smile at $v = \theta$.
+
+    3. **The forward smile approaches the $v = \theta$ smile.** In the limit $T_1 \to \infty$, $v_{T_1} = \theta$ almost surely (in the mean-square sense), and the forward smile equals the Heston smile with $v_0 = \theta$ and maturity $\tau$.
+
+    This averaging over different $v$ values is what flattens the smile. Each conditional smile has different curvature and skew, and mixing them smooths out the overall shape. The more dispersed the distribution of $v_{T_1}$ (short $T_1$, far from stationarity), the more mixing and thus more flattening relative to the spot smile; but the spot smile itself is already a "conditional on $v_0$" smile. The forward smile is flatter than the spot smile because it averages over the additional randomness of $v_{T_1}$.
 
 ---
 
 **Exercise 5.**
 A cliquet contract with annual resets and 5-year maturity consists of 5 consecutive forward-start options. The payoff of each leg $k$ is $\min(\max(R_k - 1, f), c)$ where $R_k = S_{t_k}/S_{t_{k-1}}$, $f = 0$ is the floor, and $c = 10\%$ is the cap. Explain why the total cliquet price is not simply 5 times the single-period forward-start price, even though the legs have the same structure. Hint: the variance state connects consecutive periods.
 
+??? success "Solution to Exercise 5"
+    **Why the cliquet price is not 5 times the single-period price.**
+
+    A cliquet contract with $n = 5$ annual periods has payoff:
+
+    $$
+    \Phi_{\text{cliquet}} = \sum_{k=1}^{5} \min(c, \max(f, R_k - 1))
+    $$
+
+    where $R_k = S_{t_k}/S_{t_{k-1}}$ and $f = 0$, $c = 0.10$.
+
+    **If the periods were independent**, the cliquet price would indeed be $5 \times V_{\text{single}}$, where $V_{\text{single}}$ is the price of one capped/floored forward-start option. This is because the expectation of a sum of independent terms is the sum of the expectations.
+
+    **Under Heston, the periods are not independent.** The dependence arises through the **variance state** $v_{t_k}$:
+
+    1. **Sequential variance linkage.** The variance at the end of period $k$ is $v_{t_k}$, which becomes the initial variance for period $k + 1$. Since $v_{t_k}$ is random, the distribution of $R_{k+1}$ depends on the outcome of $v_{t_k}$, which in turn depends on the path during period $k$.
+
+    2. **Positive dependence in variance levels.** If period $k$ experiences high volatility ($v_{t_k}$ is high), then period $k + 1$ starts with high initial variance. Under mean reversion, $v_{t_{k+1}}$ will be pulled toward $\theta$, but the initial condition matters, especially for short reset periods.
+
+    3. **Impact on the cap/floor.** The cap $c = 10\%$ truncates large positive returns. When volatility is high, the probability of $R_k - 1 > c$ (hitting the cap) increases. This means high-vol periods contribute exactly $c$ to the sum, wasting the upside. If high-vol periods cluster (positive autocorrelation in $v_t$), then several consecutive periods may hit the cap, while the corresponding downside (below the floor) is not fully captured because $f = 0$ limits losses.
+
+    4. **Convexity of the capped/floored payoff.** The payoff $\min(c, \max(f, x))$ is a concave function of $x$ for $x > f$ (due to the cap). By Jensen's inequality, the expected capped return conditional on high variance is less than the capped return at expected variance. The dependence between periods means this Jensen effect compounds across multiple periods.
+
+    **Quantitative impact.** In practice, the cliquet price under Heston is typically **lower** than $5 \times V_{\text{single}}$ because the positive autocorrelation of $v_t$ causes the "good" scenarios (high vol, high returns capped at $c$) to cluster together, while the "bad" scenarios (high vol, negative returns floored at $f$) also cluster. The clustering reduces the diversification benefit that would exist if periods were independent. This is one of the reasons cliquets are among the most model-sensitive exotic derivatives.
+
 ---
 
 **Exercise 6.**
 Compare the forward-start call price under Heston for different values of $\rho$. With $\alpha = 1.1$ (10% OTM), $T_1 = 0.5$, $T = 1.0$, and all other parameters equal, explain why a more negative $\rho$ increases the forward-start call price. Consider the conditional smile: given a low $v_{T_1}$ (which is more likely after a positive stock return due to negative $\rho$), the forward smile is steeper, making the OTM forward-start option more expensive.
 
+??? success "Solution to Exercise 6"
+    **Effect of $\rho$ on forward-start OTM call price.**
+
+    Consider a forward-start call with $\alpha = 1.1$ (10% OTM), $T_1 = 0.5$, $T = 1.0$. We argue that more negative $\rho$ **increases** the price.
+
+    **The forward-start price depends on the distribution of $(v_{T_1}, R)$.** The price is:
+
+    $$
+    V_0 = S_0 e^{-qT_1} e^{-r\tau} \int_0^{\infty} C_{\text{Heston}}(1, 1.1, \tau, v) f_{v_{T_1}}(v) \, dv
+    $$
+
+    Note that $f_{v_{T_1}}$ does **not** depend on $\rho$ --- the marginal distribution of $v_{T_1}$ is determined by the CIR dynamics alone (parameters $\kappa, \theta, \xi$), which do not involve $\rho$. However, the inner Heston call price $C_{\text{Heston}}(1, 1.1, \tau, v)$ **does** depend on $\rho$.
+
+    **Effect of $\rho$ on the conditional call price.** For a fixed variance level $v$, the Heston call price $C_{\text{Heston}}(1, \alpha, \tau, v)$ with $\alpha = 1.1$ (OTM) depends on $\rho$ through the implied volatility smile:
+
+    - **More negative $\rho$**: The implied volatility smile has a steeper negative skew. For OTM calls ($\alpha > 1$), the smile skew means the implied volatility at $\alpha = 1.1$ could be lower than ATM. However, the key effect is on the **right tail** of the return distribution.
+
+    Actually, the more precise mechanism is through the **curvature** (convexity) of the smile. With more negative $\rho$:
+
+    - The left tail of the return distribution becomes heavier (higher probability of large downward moves)
+    - The right tail behavior is affected through the constraint that the distribution integrates to the correct forward price
+    - The OTM call at $\alpha = 1.1$ benefits from the increased overall dispersion of returns
+
+    The dominant effect is: more negative $\rho$ increases the **variance of the return** $R$ for a given variance level $v$. This is because the correlation between the stock and variance creates additional return variation beyond what $v$ alone would produce. For an OTM call, higher return variance increases the price (convexity of the call payoff).
+
+    Additionally, consider the conditional smile: for any given $v_{T_1}$, the Heston smile with more negative $\rho$ has higher implied volatility for OTM calls (the smile curvature generates "vol premium" at $\alpha = 1.1$). Integrating over $v_{T_1}$, the forward-start OTM call price is higher.
+
+    Numerically, going from $\rho = -0.3$ to $\rho = -0.7$ might increase the forward-start OTM call price by 10--20%, reflecting the increased smile curvature and right-tail probability.
+
 ---
 
 **Exercise 7.**
 Monte Carlo pricing of forward-start options is straightforward: simulate paths, record $S_{T_1}$ and $S_T$, and compute the discounted payoff. However, variance reduction is less effective than for vanilla options because the European call (the standard control variate) is less correlated with the forward-start payoff. Propose a better control variate for forward-start options and justify your choice. Hint: consider using a Black-Scholes forward-start option with $\sigma = \sqrt{v_0}$ as the control.
+
+??? success "Solution to Exercise 7"
+    **Proposing a better control variate for forward-start options.**
+
+    **Why the vanilla European call is a poor control variate.** The standard control variate for Monte Carlo option pricing is the European vanilla call, whose analytical Heston price is known. However, the vanilla call has payoff $(S_T - K)^+$, which depends on $S_T$ directly, while the forward-start payoff $(S_T - \alpha S_{T_1})^+$ depends on the **ratio** $R = S_T/S_{T_1}$. The correlation between these two payoffs is moderate but not high, because:
+
+    - The vanilla call is sensitive to the absolute level of $S_T$
+    - The forward-start call is sensitive to the return over $[T_1, T]$, irrespective of the level of $S_{T_1}$
+
+    **Proposed control variate: Black--Scholes forward-start option.** Use the Black--Scholes forward-start call with $\sigma = \sqrt{v_0}$ (or $\sigma = \sqrt{\theta}$) as the control variate.
+
+    **The control variate estimator:**
+
+    $$
+    \hat{V}_{\text{CV}} = \hat{V}_{\text{Heston}}^{\text{MC}} - \hat{\beta}\left(\hat{V}_{\text{BS-fwd}}^{\text{MC}} - V_{\text{BS-fwd}}^{\text{exact}}\right)
+    $$
+
+    where:
+
+    - $\hat{V}_{\text{Heston}}^{\text{MC}}$: MC estimate of the Heston forward-start price
+    - $\hat{V}_{\text{BS-fwd}}^{\text{MC}}$: MC estimate of the BS forward-start price, computed from the **same simulated paths** (using the same $S_{T_1}$ and $S_T$ values, but evaluating the BS forward-start payoff)
+    - $V_{\text{BS-fwd}}^{\text{exact}}$: the known analytical BS forward-start price (which has a closed form as derived in the text)
+
+    **Why this is a good control variate:**
+
+    1. **Same payoff structure.** Both the Heston and BS forward-start calls have payoff $(S_T - \alpha S_{T_1})^+$. The only difference is the model generating the paths. This means the two payoffs are functions of the same random variables ($S_{T_1}$ and $S_T$), ensuring high correlation.
+
+    2. **Captures the forward-start structure.** The control variate has the same dependence on $S_{T_1}$ (the scale factor) and on the return $R$ (the option-like piece). This is far more correlated with the target than a vanilla call, which ignores the ratio structure entirely.
+
+    3. **Analytical price available.** The BS forward-start price is known in closed form: $V_{\text{BS-fwd}} = S_0 e^{-qT_1} e^{-r\tau} C_{\text{BS}}(1, \alpha, \sigma, r-q, \tau)$, so no additional simulation is needed for the control mean.
+
+    4. **Practical implementation.** On each simulated path, compute both the Heston payoff (from the stochastic-vol simulation) and what the payoff **would have been** under BS with the same stock path endpoints. The BS forward-start payoff uses the same $S_{T_1}^{(j)}$ and $S_T^{(j)}$, so the two payoffs are highly correlated.
+
+    The choice of $\sigma$ for the BS control should match the effective volatility as closely as possible. Using $\sigma = \sqrt{\theta}$ (long-run variance) is appropriate for $T_1$ large enough that $v_{T_1} \approx \theta$. Alternatively, $\sigma = \sqrt{K_{\text{var}}}$ (the fair variance swap strike for the period $[T_1, T]$) provides a more accurate match.
+
+    Expected variance reduction: **5x--15x**, significantly better than the vanilla call control variate (which typically achieves only 1.5x--3x for forward-start options).

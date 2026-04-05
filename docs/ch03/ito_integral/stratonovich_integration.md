@@ -299,40 +299,6 @@ The Stratonovich integral and the Itô integral differ by a correction term equa
 
 **Exercise 1.** Compute the Stratonovich integral $\int_0^t s \circ dB_s$. Does it differ from the Ito integral $\int_0^t s\, dB_s$? Explain why or why not, using the conversion formula.
 
----
-
-**Exercise 2.** Using the conversion formula
-
-$$
-\int_0^t f(B_s) \circ dB_s = \int_0^t f(B_s)\, dB_s + \frac{1}{2}\int_0^t f'(B_s)\, ds
-$$
-
-compute $\int_0^t B_s^2 \circ dB_s$ and verify that the result is consistent with the classical chain rule applied to $g(x) = x^3/3$.
-
----
-
-**Exercise 3.** The Stratonovich chain rule gives $d(\sin B_t) = \cos(B_t) \circ dB_t$. Convert this to Ito form by finding $d(\sin B_t)$ using Ito's formula. Identify the drift correction term and verify it matches the conversion formula.
-
----
-
-**Exercise 4.** Consider the Stratonovich SDE $dX_t = \sigma X_t \circ dB_t$ (no drift in Stratonovich form). Convert this to its equivalent Ito SDE. What drift term appears in the Ito form? Solve the resulting Ito SDE.
-
----
-
-**Exercise 5.** Let $f(x) = e^x$. Using the Stratonovich chain rule, write $d(e^{B_t})$ in Stratonovich form. Then convert to Ito form and verify that you recover the standard result from Ito's formula.
-
----
-
-**Exercise 6.** Using the coin-flip approximation with $n = 10$ and the sequence $H, T, H, H, T, H, T, T, H, H$, compute both the left-endpoint (Ito) and midpoint (Stratonovich) sums for $\int_0^1 B_s\, dB_s$. Verify that their difference is approximately $\frac{1}{2} \cdot 1 = 0.5$ times the quadratic variation sum $\sum (\Delta B_k)^2$.
-
----
-
-**Exercise 7.** Explain why the Stratonovich integral $\int_0^t B_s \circ dB_s = \frac{1}{2}B_t^2$ is not a martingale, while the Ito integral $\int_0^t B_s\, dB_s = \frac{1}{2}(B_t^2 - t)$ is a martingale. What property of the midpoint evaluation causes the martingale property to fail?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The integrand $f(s) = s$ is deterministic — it does not depend on $B_s$. Using the conversion formula:
 
@@ -348,6 +314,16 @@ compute $\int_0^t B_s^2 \circ dB_s$ and verify that the result is consistent wit
 
     The two integrals are identical. This illustrates the general principle: **when the integrand does not depend on the driving Brownian motion, the Ito and Stratonovich integrals coincide**.
 
+---
+
+**Exercise 2.** Using the conversion formula
+
+$$
+\int_0^t f(B_s) \circ dB_s = \int_0^t f(B_s)\, dB_s + \frac{1}{2}\int_0^t f'(B_s)\, ds
+$$
+
+compute $\int_0^t B_s^2 \circ dB_s$ and verify that the result is consistent with the classical chain rule applied to $g(x) = x^3/3$.
+
 ??? success "Solution to Exercise 2"
     Apply the conversion formula with $f(x) = x^2$ (so $f'(x) = 2x$) and $X_t = B_t$ (so $\sigma = 1$):
 
@@ -362,6 +338,10 @@ compute $\int_0^t B_s^2 \circ dB_s$ and verify that the result is consistent wit
     $$
 
     **Verification via the classical chain rule:** For $g(x) = x^3/3$, the classical chain rule gives $dg(B_t) = g'(B_t) \circ dB_t = B_t^2 \circ dB_t$. Integrating: $g(B_t) - g(0) = \int_0^t B_s^2 \circ dB_s$, so $\int_0^t B_s^2 \circ dB_s = B_t^3/3$. ✓
+
+---
+
+**Exercise 3.** The Stratonovich chain rule gives $d(\sin B_t) = \cos(B_t) \circ dB_t$. Convert this to Ito form by finding $d(\sin B_t)$ using Ito's formula. Identify the drift correction term and verify it matches the conversion formula.
 
 ??? success "Solution to Exercise 3"
     **Stratonovich chain rule:** $d(\sin B_t) = \cos(B_t) \circ dB_t$.
@@ -381,6 +361,10 @@ compute $\int_0^t B_s^2 \circ dB_s$ and verify that the result is consistent wit
     $$
 
     This matches the Ito form: $d(\sin B_t) = \cos(B_t)\, dB_t - \frac{1}{2}\sin(B_t)\, dt$. ✓
+
+---
+
+**Exercise 4.** Consider the Stratonovich SDE $dX_t = \sigma X_t \circ dB_t$ (no drift in Stratonovich form). Convert this to its equivalent Ito SDE. What drift term appears in the Ito form? Solve the resulting Ito SDE.
 
 ??? success "Solution to Exercise 4"
     The Stratonovich SDE is $dX_t = \sigma X_t \circ dB_t$. Apply the conversion formula with $f(x) = \sigma x$, so $f'(x) = \sigma$, and the diffusion coefficient of $X_t$ is $\sigma X_t$:
@@ -402,6 +386,10 @@ compute $\int_0^t B_s^2 \circ dB_s$ and verify that the result is consistent wit
     $$
 
     In the Stratonovich framework, the zero-drift SDE $dX_t = \sigma X_t \circ dB_t$ has the "naive" exponential solution $X_t = X_0 e^{\sigma B_t}$, consistent with the classical chain rule.
+
+---
+
+**Exercise 5.** Let $f(x) = e^x$. Using the Stratonovich chain rule, write $d(e^{B_t})$ in Stratonovich form. Then convert to Ito form and verify that you recover the standard result from Ito's formula.
 
 ??? success "Solution to Exercise 5"
     **Stratonovich chain rule** applied to $f(x) = e^x$ with $X_t = B_t$:
@@ -429,6 +417,10 @@ compute $\int_0^t B_s^2 \circ dB_s$ and verify that the result is consistent wit
     $$
 
     This matches. ✓
+
+---
+
+**Exercise 6.** Using the coin-flip approximation with $n = 10$ and the sequence $H, T, H, H, T, H, T, T, H, H$, compute both the left-endpoint (Ito) and midpoint (Stratonovich) sums for $\int_0^1 B_s\, dB_s$. Verify that their difference is approximately $\frac{1}{2} \cdot 1 = 0.5$ times the quadratic variation sum $\sum (\Delta B_k)^2$.
 
 ??? success "Solution to Exercise 6"
     With $n = 10$, $\Delta t = 1/10$, $\Delta B_k = \pm 1/\sqrt{10}$. The sequence $H, T, H, H, T, H, T, T, H, H$ gives increments $+,-,+,+,-,+,-,-,+,+$ in units of $1/\sqrt{10}$.
@@ -482,6 +474,10 @@ compute $\int_0^t B_s^2 \circ dB_s$ and verify that the result is consistent wit
     **Quadratic variation sum:** $\sum_{k=0}^{9} (\Delta B_k)^2 = 10 \cdot (1/10) = 1$.
 
     So the difference is $\frac{1}{2} \cdot 1 = 1/2$, exactly half the quadratic variation sum. ✓
+
+---
+
+**Exercise 7.** Explain why the Stratonovich integral $\int_0^t B_s \circ dB_s = \frac{1}{2}B_t^2$ is not a martingale, while the Ito integral $\int_0^t B_s\, dB_s = \frac{1}{2}(B_t^2 - t)$ is a martingale. What property of the midpoint evaluation causes the martingale property to fail?
 
 ??? success "Solution to Exercise 7"
     **Ito integral $\frac{1}{2}(B_t^2 - t)$ is a martingale.** For $s < t$:

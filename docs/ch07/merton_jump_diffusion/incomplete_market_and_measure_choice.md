@@ -188,38 +188,15 @@ The Merton jump-diffusion model is incomplete because the compound Poisson jump 
 
 **Exercise 1.** In the Black-Scholes model with one Brownian motion and one stock, explain why the market is complete by counting risk sources and hedging instruments. Then explain why adding a compound Poisson process $N_t$ (independent of $W_t$) breaks completeness, even though the stock price $S_t$ still trades continuously between jumps.
 
----
-
-**Exercise 2.** For a delta-hedged portfolio $\Pi_t = V_t - \Delta_t S_t$ with $\Delta_t = \partial V/\partial S$, compute the hedging error at a jump time when $S$ jumps from $S_{t^-}$ to $S_{t^-}Y$. Show that for a European call with convex payoff, the hedging error $\Delta\Pi = V(S_{t^-}Y) - V(S_{t^-}) - \Delta_t S_{t^-}(Y-1)$ is strictly positive for large jumps (both up and down), and explain why this means jump risk cannot be hedged by any choice of $\Delta_t$.
-
----
-
-**Exercise 3.** The no-arbitrage constraint for an EMM $\mathbb{Q}$ is $r = \mu^{\mathbb{P}} - \sigma\theta + \lambda^{\mathbb{Q}}\bar{k}^{\mathbb{Q}} - \lambda^{\mathbb{P}}\bar{k}^{\mathbb{P}}$. Verify that this is a single equation in the unknowns $(\theta, \lambda^{\mathbb{Q}}, \mu_J^{\mathbb{Q}}, \sigma_J^{\mathbb{Q}})$, and explain why infinitely many solutions exist. For the special case where $\lambda^{\mathbb{Q}} = \lambda^{\mathbb{P}}$ and $\sigma_J^{\mathbb{Q}} = \sigma_J^{\mathbb{P}}$, solve for $\mu_J^{\mathbb{Q}}$ in terms of the other parameters.
-
----
-
-**Exercise 4.** Under the Esscher transform with parameter $h$, the jump intensity changes to $\lambda^{\mathbb{Q}} = \lambda^{\mathbb{P}} e^{h\mu_J + h^2\sigma_J^2/2}$ and the mean log-jump shifts to $\mu_J^{\mathbb{Q}} = \mu_J + h\sigma_J^2$. Suppose $\lambda^{\mathbb{P}} = 0.5$, $\mu_J = -0.10$, $\sigma_J = 0.30$. For $h = 1$, compute $\lambda^{\mathbb{Q}}$ and $\mu_J^{\mathbb{Q}}$. Interpret the sign of the shift in $\mu_J$: does the Esscher transform make downward jumps more or less severe?
-
----
-
-**Exercise 5.** The minimal entropy martingale measure minimizes $H(\mathbb{Q} \| \mathbb{P}) = \mathbb{E}^{\mathbb{Q}}[\ln(d\mathbb{Q}/d\mathbb{P})]$ over all EMMs. Explain intuitively why this criterion chooses the measure that is "closest" to the physical measure. In what sense is a low-entropy measure more conservative than one with high entropy? Contrast this with the minimal martingale measure, which fixes jump parameters at their physical values.
-
----
-
-**Exercise 6.** Consider the no-arbitrage pricing interval $[\underline{\pi}(H),\, \overline{\pi}(H)]$ for a deep out-of-the-money put option with strike $K = 0.7 S_0$. The text states that this interval widens with increasing jump sensitivity. Explain why OTM puts are more sensitive to jump risk than ATM calls, and why the interval width increases with $\lambda$ (jump intensity) and $\sigma_J$ (jump size dispersion).
-
----
-
-**Exercise 7.** A practitioner calibrates the Merton model to S&P 500 option prices and finds $\lambda^{\mathbb{Q}} = 1.5$ while the historical estimate is $\lambda^{\mathbb{P}} = 0.5$. The calibrated mean log-jump is $\mu_J^{\mathbb{Q}} = -0.15$ versus the historical $\mu_J^{\mathbb{P}} = -0.08$. Interpret these differences as a **jump risk premium**: the market prices crashes as both more frequent and more severe than historical data suggests. Compute the ratio $\lambda^{\mathbb{Q}}/\lambda^{\mathbb{P}}$ and discuss what this implies about investors' attitude toward tail risk.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     In the Black-Scholes model, the only source of randomness is the Brownian motion $W_t$. The stock provides one hedging instrument (in addition to the bond). With one risk source and one hedging instrument, we can form a portfolio $\Pi_t = V_t - \Delta_t S_t$ and choose $\Delta_t = \partial V/\partial S$ to eliminate all randomness. The resulting portfolio earns the risk-free rate: $d\Pi_t = r\Pi_t\,dt$. Since every contingent claim can be perfectly replicated, the market is complete, and the risk-neutral measure $\mathbb{Q}$ is unique (by the second fundamental theorem of asset pricing).
 
     Adding a compound Poisson process $N_t$ (independent of $W_t$) introduces a second source of randomness. The stock still provides only one hedging instrument. Delta hedging eliminates the diffusion risk ($dW_t$ component), but at each jump time the hedge fails: the portfolio experiences a random P&L of $V(S_{t^-}Y) - V(S_{t^-}) - \Delta_t S_{t^-}(Y-1)$, which depends on the random jump size $Y$ and cannot be zeroed by any choice of $\Delta_t$. Since we have two risk sources (diffusion and jumps) but only one tradeable asset, we cannot span all contingent claims. The market is incomplete, and multiple equivalent martingale measures exist.
+
+---
+
+
+**Exercise 2.** For a delta-hedged portfolio $\Pi_t = V_t - \Delta_t S_t$ with $\Delta_t = \partial V/\partial S$, compute the hedging error at a jump time when $S$ jumps from $S_{t^-}$ to $S_{t^-}Y$. Show that for a European call with convex payoff, the hedging error $\Delta\Pi = V(S_{t^-}Y) - V(S_{t^-}) - \Delta_t S_{t^-}(Y-1)$ is strictly positive for large jumps (both up and down), and explain why this means jump risk cannot be hedged by any choice of $\Delta_t$.
 
 ??? success "Solution to Exercise 2"
     At a jump time, $S$ changes from $S_{t^-}$ to $S_{t^-}Y$, so the stock position changes by $\Delta_t(S_{t^-}Y - S_{t^-}) = \Delta_t S_{t^-}(Y-1)$, while the option changes by $V(S_{t^-}Y) - V(S_{t^-})$. The hedging error is:
@@ -241,6 +218,11 @@ The Merton jump-diffusion model is incomplete because the compound Poisson jump 
     $$
 
     This is strictly positive for any $Y \neq 1$, whether the jump is up ($Y > 1$) or down ($Y < 1$). The convexity of $V$ means the hedging error is always non-negative (to leading order), and it is strictly positive for any nonzero jump. No choice of $\Delta_t$ can eliminate this error because the error is a nonlinear function of the random variable $Y$: the delta hedge matches only the linear term $V'(S)(Y-1)$, leaving the convexity residual unhedged.
+
+---
+
+
+**Exercise 3.** The no-arbitrage constraint for an EMM $\mathbb{Q}$ is $r = \mu^{\mathbb{P}} - \sigma\theta + \lambda^{\mathbb{Q}}\bar{k}^{\mathbb{Q}} - \lambda^{\mathbb{P}}\bar{k}^{\mathbb{P}}$. Verify that this is a single equation in the unknowns $(\theta, \lambda^{\mathbb{Q}}, \mu_J^{\mathbb{Q}}, \sigma_J^{\mathbb{Q}})$, and explain why infinitely many solutions exist. For the special case where $\lambda^{\mathbb{Q}} = \lambda^{\mathbb{P}}$ and $\sigma_J^{\mathbb{Q}} = \sigma_J^{\mathbb{P}}$, solve for $\mu_J^{\mathbb{Q}}$ in terms of the other parameters.
 
 ??? success "Solution to Exercise 3"
     The no-arbitrage constraint is:
@@ -273,6 +255,11 @@ The Merton jump-diffusion model is incomplete because the compound Poisson jump 
 
     Note that $\theta$ (the market price of diffusion risk) is still free, so even in this restricted case, there is a one-parameter family of solutions.
 
+---
+
+
+**Exercise 4.** Under the Esscher transform with parameter $h$, the jump intensity changes to $\lambda^{\mathbb{Q}} = \lambda^{\mathbb{P}} e^{h\mu_J + h^2\sigma_J^2/2}$ and the mean log-jump shifts to $\mu_J^{\mathbb{Q}} = \mu_J + h\sigma_J^2$. Suppose $\lambda^{\mathbb{P}} = 0.5$, $\mu_J = -0.10$, $\sigma_J = 0.30$. For $h = 1$, compute $\lambda^{\mathbb{Q}}$ and $\mu_J^{\mathbb{Q}}$. Interpret the sign of the shift in $\mu_J$: does the Esscher transform make downward jumps more or less severe?
+
 ??? success "Solution to Exercise 4"
     With $\lambda^{\mathbb{P}} = 0.5$, $\mu_J = -0.10$, $\sigma_J = 0.30$, and $h = 1$:
 
@@ -286,6 +273,11 @@ The Merton jump-diffusion model is incomplete because the compound Poisson jump 
 
     **Interpretation:** The Esscher transform with $h = 1$ shifts $\mu_J$ from $-0.10$ to $-0.01$, making downward jumps **less severe** under $\mathbb{Q}$. The positive shift $h\sigma_J^2 = 0.09$ moves the mean log-jump closer to zero, reducing the expected loss per jump. Simultaneously, the jump intensity decreases slightly from 0.5 to 0.4733. For $h > 0$, the Esscher transform tilts the distribution toward higher values of $S_T$ (since $e^{hX_T}$ upweights paths with large $X_T$), which reduces the severity of downward jumps. To increase the severity of downward jumps (as observed in market calibration), one would need $h < 0$.
 
+---
+
+
+**Exercise 5.** The minimal entropy martingale measure minimizes $H(\mathbb{Q} \| \mathbb{P}) = \mathbb{E}^{\mathbb{Q}}[\ln(d\mathbb{Q}/d\mathbb{P})]$ over all EMMs. Explain intuitively why this criterion chooses the measure that is "closest" to the physical measure. In what sense is a low-entropy measure more conservative than one with high entropy? Contrast this with the minimal martingale measure, which fixes jump parameters at their physical values.
+
 ??? success "Solution to Exercise 5"
     The minimal entropy martingale measure minimizes the Kullback-Leibler divergence $H(\mathbb{Q} \| \mathbb{P}) = \mathbb{E}^{\mathbb{Q}}[\ln(d\mathbb{Q}/d\mathbb{P})]$ over all EMMs $\mathbb{Q} \in \mathcal{Q}$.
 
@@ -294,6 +286,11 @@ The Merton jump-diffusion model is incomplete because the compound Poisson jump 
     **Low-entropy vs. high-entropy measures:** A low-entropy $\mathbb{Q}$ stays close to $\mathbb{P}$, meaning the Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}$ is close to 1 across most scenarios. This implies moderate risk premia and prices that are close to actuarial (physical) expectations. A high-entropy $\mathbb{Q}$ assigns probabilities very different from $\mathbb{P}$, which can produce extreme risk premia (e.g., greatly inflating crash probabilities).
 
     **Contrast with the minimal martingale measure:** The minimal martingale measure fixes $\lambda^{\mathbb{Q}} = \lambda^{\mathbb{P}}$ and $\nu^{\mathbb{Q}} = \nu^{\mathbb{P}}$, adjusting only the diffusion drift. This does not distort jump probabilities at all, which is appropriate when jump risk is truly idiosyncratic. The MEMM, by contrast, may adjust both diffusion and jump parameters, but it does so in a way that minimizes overall distortion. For the Merton model with log-normal jumps, the MEMM coincides with the Esscher transform for a particular $h$, providing a principled balance between no distortion (minimal martingale) and arbitrary distortion.
+
+---
+
+
+**Exercise 6.** Consider the no-arbitrage pricing interval $[\underline{\pi}(H),\, \overline{\pi}(H)]$ for a deep out-of-the-money put option with strike $K = 0.7 S_0$. The text states that this interval widens with increasing jump sensitivity. Explain why OTM puts are more sensitive to jump risk than ATM calls, and why the interval width increases with $\lambda$ (jump intensity) and $\sigma_J$ (jump size dispersion).
 
 ??? success "Solution to Exercise 6"
     OTM puts with strike $K = 0.7 S_0$ pay off only when the stock drops by at least 30%. Under Black-Scholes (continuous paths), such a move over a short horizon is extremely unlikely. Under the Merton model, a single large downward jump ($Y = 0.7$ or less) can trigger the payoff immediately. The OTM put payoff is therefore highly sensitive to the jump component:
@@ -306,6 +303,11 @@ The Merton jump-diffusion model is incomplete because the compound Poisson jump 
     The interval width increases with $\lambda$ because higher jump intensity means more jump events, amplifying the impact of different measures' treatment of jump risk. With more jumps, the cumulative effect of different $\mathbb{Q}$-specifications of $(\mu_J^{\mathbb{Q}}, \sigma_J^{\mathbb{Q}})$ becomes larger.
 
     The width increases with $\sigma_J$ because larger jump dispersion makes the tail probabilities more sensitive to distributional assumptions. When $\sigma_J$ is large, even small changes in $\mu_J^{\mathbb{Q}}$ produce large changes in the probability of extreme events, widening the range of no-arbitrage prices.
+
+---
+
+
+**Exercise 7.** A practitioner calibrates the Merton model to S&P 500 option prices and finds $\lambda^{\mathbb{Q}} = 1.5$ while the historical estimate is $\lambda^{\mathbb{P}} = 0.5$. The calibrated mean log-jump is $\mu_J^{\mathbb{Q}} = -0.15$ versus the historical $\mu_J^{\mathbb{P}} = -0.08$. Interpret these differences as a **jump risk premium**: the market prices crashes as both more frequent and more severe than historical data suggests. Compute the ratio $\lambda^{\mathbb{Q}}/\lambda^{\mathbb{P}}$ and discuss what this implies about investors' attitude toward tail risk.
 
 ??? success "Solution to Exercise 7"
     The ratio of risk-neutral to physical jump intensity is:

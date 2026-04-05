@@ -179,21 +179,186 @@ CIR calibration proceeds through cross-sectional fitting (to yield curves and/or
 
 **Exercise 1.** Given market zero rates $R^{\text{mkt}}(0, T_j)$ for $T_j \in \{1, 3, 5, 10\}$ years with values $\{2.5\%, 3.0\%, 3.5\%, 4.0\%\}$, write out the yield-space objective function explicitly. How many free parameters does CIR have, and why is the optimization over-determined in this case?
 
+??? success "Solution to Exercise 1"
+
+    The yield-space objective function is:
+
+    $$
+    \min_{\kappa,\,\theta,\,\sigma,\,r_0}\;\sum_{j=1}^{4}\left(R^{\text{CIR}}(0, T_j;\,\kappa,\theta,\sigma,r_0) - R^{\text{mkt}}(0, T_j)\right)^2
+    $$
+
+    where $R^{\text{CIR}}(0,T_j) = -\ln P^{\text{CIR}}(0,T_j)/T_j$ and $P^{\text{CIR}}(0,T_j) = A(T_j)e^{-B(T_j)r_0}$. Explicitly:
+
+    $$
+    \min_{\kappa,\,\theta,\,\sigma,\,r_0}\;\left(R^{\text{CIR}}(0,1) - 0.025\right)^2 + \left(R^{\text{CIR}}(0,3) - 0.030\right)^2 + \left(R^{\text{CIR}}(0,5) - 0.035\right)^2 + \left(R^{\text{CIR}}(0,10) - 0.040\right)^2
+    $$
+
+    The CIR model has **four** free parameters: $\kappa$, $\theta$, $\sigma$, and $r_0$. With four market observations and four unknowns, the system is exactly determined in principle. However, the equations are nonlinear and there is no guarantee of a unique solution, so in practice we treat it as a nonlinear least-squares problem. With more than four maturities, the system becomes over-determined (more equations than unknowns), and an exact fit is generically impossible. Here, with exactly four points, an exact fit may be achievable if the CIR yield curve family is flexible enough to pass through all four points.
+
 ---
 
 **Exercise 2.** Compute the CIR bond price $P^{\text{CIR}}(0, 5)$ for parameters $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.08$, and $r_0 = 0.03$. First compute $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$, then $B(5)$ and $A(5)$, and finally $P(0,5) = A(5)\,e^{-B(5)\,r_0}$.
+
+??? success "Solution to Exercise 2"
+
+    Given $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.08$, $r_0 = 0.03$.
+
+    **Step 1: Compute $\gamma$.**
+
+    $$
+    \gamma = \sqrt{\kappa^2 + 2\sigma^2} = \sqrt{0.09 + 0.0128} = \sqrt{0.1028} \approx 0.3206
+    $$
+
+    **Step 2: Compute $B(5)$.**
+
+    $e^{\gamma \cdot 5} = e^{1.603} \approx 4.968$.
+
+    $$
+    B(5) = \frac{2(4.968 - 1)}{(0.3206 + 0.3)(4.968 - 1) + 2(0.3206)} = \frac{7.936}{0.6206 \times 3.968 + 0.6412} = \frac{7.936}{2.462 + 0.641} = \frac{7.936}{3.103} \approx 2.558
+    $$
+
+    **Step 3: Compute $A(5)$.**
+
+    The exponent is $2\kappa\theta/\sigma^2 = 2(0.3)(0.05)/0.0064 = 4.6875$.
+
+    $$
+    A(5) = \left(\frac{2(0.3206) \times e^{(0.3 + 0.3206) \times 2.5}}{3.103}\right)^{4.6875}
+    $$
+
+    $$
+    = \left(\frac{0.6412 \times e^{1.5515}}{3.103}\right)^{4.6875} = \left(\frac{0.6412 \times 4.718}{3.103}\right)^{4.6875} = \left(\frac{3.026}{3.103}\right)^{4.6875} \approx (0.9752)^{4.6875} \approx 0.8904
+    $$
+
+    **Step 4: Bond price.**
+
+    $$
+    P(0,5) = A(5) \times e^{-B(5) \times r_0} = 0.8904 \times e^{-2.558 \times 0.03} = 0.8904 \times e^{-0.07674} \approx 0.8904 \times 0.9261 \approx 0.8246
+    $$
 
 ---
 
 **Exercise 3.** The parameters $\kappa$ and $\theta$ are highly correlated in yield curve fitting. Show that the long rate $R_\infty = 2\kappa\theta/(\gamma + \kappa)$ depends on the product $\kappa\theta$ more strongly than on each parameter individually by computing $\partial R_\infty / \partial \kappa$ and $\partial R_\infty / \partial \theta$. Give two different $(\kappa, \theta)$ pairs that produce approximately the same $R_\infty$ with $\sigma = 0.10$.
 
+??? success "Solution to Exercise 3"
+
+    The long rate is:
+
+    $$
+    R_\infty = \frac{2\kappa\theta}{\gamma + \kappa}, \qquad \gamma = \sqrt{\kappa^2 + 2\sigma^2}
+    $$
+
+    **Partial derivative with respect to $\theta$:**
+
+    $$
+    \frac{\partial R_\infty}{\partial \theta} = \frac{2\kappa}{\gamma + \kappa}
+    $$
+
+    This is straightforward since $\gamma$ does not depend on $\theta$.
+
+    **Partial derivative with respect to $\kappa$:**
+
+    Since $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$, we have $\partial\gamma/\partial\kappa = \kappa/\gamma$. Then:
+
+    $$
+    \frac{\partial R_\infty}{\partial \kappa} = \frac{2\theta(\gamma + \kappa) - 2\kappa\theta(\kappa/\gamma + 1)}{(\gamma + \kappa)^2} = \frac{2\theta[\gamma(\gamma + \kappa) - \kappa(\kappa + \gamma)]/\gamma}{(\gamma + \kappa)^2}
+    $$
+
+    $$
+    = \frac{2\theta(\gamma + \kappa)(\gamma - \kappa)/\gamma}{(\gamma + \kappa)^2} = \frac{2\theta(\gamma - \kappa)}{\gamma(\gamma + \kappa)}
+    $$
+
+    Comparing: $\partial R_\infty/\partial\theta = 2\kappa/(\gamma + \kappa)$, while $\partial R_\infty/\partial\kappa = 2\theta(\gamma - \kappa)/[\gamma(\gamma + \kappa)]$. The dependence on the product $\kappa\theta$ is evident from the formula $R_\infty = 2\kappa\theta/(\gamma + \kappa)$: holding $\kappa\theta$ constant while varying $\kappa$ and $\theta$ individually changes $R_\infty$ only through $\gamma$'s dependence on $\kappa$.
+
+    **Two pairs with similar $R_\infty$ (with $\sigma = 0.10$):**
+
+    Pair 1: $\kappa = 0.3$, $\theta = 0.05$. Then $\gamma = \sqrt{0.09 + 0.02} = 0.3317$, $R_\infty = 2(0.3)(0.05)/(0.3317 + 0.3) = 0.03/0.6317 = 4.75\%$.
+
+    Pair 2: $\kappa = 0.5$, $\theta = 0.03$. Then $\gamma = \sqrt{0.25 + 0.02} = 0.5196$, $R_\infty = 2(0.5)(0.03)/(0.5196 + 0.5) = 0.03/1.0196 = 2.94\%$.
+
+    These differ significantly because $\gamma$ depends on $\kappa$. To match more closely, try:
+
+    Pair 2 (revised): $\kappa = 0.6$, $\theta = 0.025$. Then $\gamma = \sqrt{0.36 + 0.02} = 0.6164$, $R_\infty = 2(0.6)(0.025)/(0.6164 + 0.6) = 0.03/1.2164 = 2.47\%$.
+
+    For better matching, we need $\kappa\theta$ constant and $\kappa$ similar. Take $\kappa_1 = 0.3$, $\theta_1 = 0.10$ and $\kappa_2 = 0.6$, $\theta_2 = 0.05$:
+
+    Pair 1: $R_\infty = 0.06/0.6317 = 9.50\%$.
+    Pair 2: $R_\infty = 0.06/1.2164 = 4.93\%$.
+
+    The correlation is strong but not perfect because $\gamma$ breaks the pure $\kappa\theta$ dependence.
+
 ---
 
 **Exercise 4.** For MLE calibration, the transition density involves the non-central chi-squared distribution with parameters $c_e$, $d$, and $\lambda$. Given $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.10$, $\Delta t = 1/252$ (daily), and $r_t = 0.05$, compute $c_e$, $d$, and $\lambda$. What is the expected value of $r_{t+\Delta t}$ under this density?
 
+??? success "Solution to Exercise 4"
+
+    Given $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.10$, $\Delta t = 1/252$, $r_t = 0.05$.
+
+    **Compute $c_e$:**
+
+    $$
+    c_e = \frac{4\kappa}{\sigma^2(1 - e^{-\kappa\Delta t})} = \frac{4 \times 0.5}{0.01 \times (1 - e^{-0.5/252})}
+    $$
+
+    $$
+    e^{-0.5/252} = e^{-0.001984} \approx 1 - 0.001984 = 0.998016
+    $$
+
+    $$
+    c_e = \frac{2}{0.01 \times 0.001984} = \frac{2}{0.00001984} \approx 100{,}806
+    $$
+
+    **Compute $d$:**
+
+    $$
+    d = \frac{4\kappa\theta}{\sigma^2} = \frac{4 \times 0.5 \times 0.06}{0.01} = 12
+    $$
+
+    **Compute $\lambda$:**
+
+    $$
+    \lambda = c_e \, r_t \, e^{-\kappa\Delta t} = 100{,}806 \times 0.05 \times 0.998016 \approx 5{,}030
+    $$
+
+    **Expected value of $r_{t+\Delta t}$:**
+
+    $$
+    \mathbb{E}[r_{t+\Delta t}] = \frac{d + \lambda}{c_e \cdot 2}
+    $$
+
+    Wait --- more directly, from the CIR conditional mean:
+
+    $$
+    \mathbb{E}[r_{t+\Delta t} \mid r_t] = \theta + (r_t - \theta)e^{-\kappa\Delta t} = 0.06 + (0.05 - 0.06) \times 0.998016 = 0.06 - 0.009980 = 0.050020
+    $$
+
+    The expected value is $\mathbb{E}[r_{t+\Delta t}] \approx 0.05002$, virtually unchanged from $r_t = 0.05$ over one trading day. This is expected because mean reversion has very little effect over such a short interval.
+
 ---
 
 **Exercise 5.** Explain the distinction between physical parameters $(\kappa^{\mathbb{P}}, \theta^{\mathbb{P}}, \sigma)$ estimated from historical data and risk-neutral parameters $(\kappa, \theta, \sigma)$ calibrated from market prices. If MLE gives $\kappa^{\mathbb{P}} = 0.3$ and $\theta^{\mathbb{P}} = 0.05$, and cross-sectional calibration gives $\kappa = 0.5$ and $\theta = 0.06$, what is the implied market price of risk parameter $\lambda_0$?
+
+??? success "Solution to Exercise 5"
+
+    Under the physical measure $\mathbb{P}$, MLE gives $\kappa^{\mathbb{P}} = 0.3$ and $\theta^{\mathbb{P}} = 0.05$.
+
+    Under the risk-neutral measure $\mathbb{Q}$, cross-sectional calibration gives $\kappa = 0.5$ and $\theta = 0.06$.
+
+    The relationship is $\kappa = \kappa^{\mathbb{P}} + \lambda_0$, so:
+
+    $$
+    \lambda_0 = \kappa - \kappa^{\mathbb{P}} = 0.5 - 0.3 = 0.2
+    $$
+
+    **Verification using $\theta$:** The relationship $\theta = \kappa^{\mathbb{P}}\theta^{\mathbb{P}}/\kappa$ gives:
+
+    $$
+    \theta = \frac{0.3 \times 0.05}{0.5} = 0.03
+    $$
+
+    But the calibrated $\theta = 0.06 \neq 0.03$. This inconsistency indicates that the simple affine market price of risk specification $\lambda(r) = \lambda_0\sqrt{r}$ may not fully reconcile the physical and risk-neutral parameters, or that the two estimation procedures involve different data sets and time periods. In practice, obtaining consistent physical and risk-neutral parameters is challenging.
+
+    Taking the $\kappa$ relationship at face value, the implied market price of risk is $\lambda_0 = 0.2$. The positive $\lambda_0$ means investors demand a positive risk premium for bearing interest rate risk, shifting the risk-neutral mean-reversion speed upward relative to the physical measure.
 
 ---
 
@@ -205,6 +370,48 @@ $$
 
 explain why the mixing parameter $\alpha$ matters. If yield errors are on the order of $10^{-4}$ (in decimal) and volatility errors are on the order of $10^{-2}$, what value of $\alpha$ would approximately equalize the two terms?
 
+??? success "Solution to Exercise 6"
+
+    Yield errors are $O(10^{-4})$, so $\sum(R_j^{\text{CIR}} - R_j^{\text{mkt}})^2 \sim J \times 10^{-8}$ where $J$ is the number of yield maturities.
+
+    Volatility errors are $O(10^{-2})$, so $\sum w_i(\sigma_i^{\text{CIR}} - \sigma_i^{\text{mkt}})^2 \sim I \times 10^{-4}$ where $I$ is the number of cap quotes.
+
+    The ratio of the two terms is approximately:
+
+    $$
+    \frac{\text{yield term}}{\text{vol term}} \sim \frac{J \times 10^{-8}}{I \times 10^{-4}} = \frac{J}{I} \times 10^{-4}
+    $$
+
+    To equalize: $\alpha \times J \times 10^{-8} \approx (1-\alpha) \times I \times 10^{-4}$.
+
+    Assuming $J \approx I$ (similar number of instruments):
+
+    $$
+    \alpha \times 10^{-8} \approx (1-\alpha) \times 10^{-4}
+    $$
+
+    $$
+    \alpha \approx \frac{10^{-4}}{10^{-4} + 10^{-8}} \approx \frac{10^{-4}}{10^{-4}} \approx 1 - 10^{-4} \approx 0.9999
+    $$
+
+    So $\alpha$ must be very close to 1 (approximately $\alpha \approx 0.9999$) to equalize the two terms. This reflects the fact that yield errors squared are four orders of magnitude smaller than volatility errors squared. Without proper scaling, the volatility term would completely dominate the objective, and the optimizer would ignore the yield fit. The mixing parameter $\alpha$ effectively re-weights the terms to give both meaningful influence on the calibration.
+
 ---
 
 **Exercise 7.** After calibrating to the five-maturity yield curve in the numerical example, the residuals show a pattern: positive at 1Y, negative at 2Y and 5Y, positive at 10Y, and negative at 30Y. Discuss what this systematic pattern reveals about the CIR model's yield curve shape limitations. What structural feature of a real yield curve might CIR be unable to capture with its three parameters?
+
+??? success "Solution to Exercise 7"
+
+    The residual pattern (positive at 1Y, negative at 2Y and 5Y, positive at 10Y, negative at 30Y) is an oscillating sign pattern that reveals the CIR model's inability to capture **curvature variations** in the real yield curve.
+
+    The CIR yield curve $R(0,\tau) = a(\tau) + b(\tau)r_0$ is determined by only three shape parameters ($\kappa$, $\theta$, $\sigma$), which control:
+
+    - The starting level ($r_0$)
+    - The long-run level ($R_\infty$)
+    - The speed of transition between the two
+
+    This generates a family of yield curves that are essentially **monotone** (or at most single-humped). The model cannot produce an S-shaped curve or a curve with multiple inflection points.
+
+    The oscillating residuals suggest the real yield curve has a more complex shape than CIR can accommodate --- specifically, it likely has **multiple curvature changes**. For example, the real curve might be slightly concave at short maturities (1--2Y), convex in the medium range (5--10Y), and then flatten differently at the long end (30Y). This is a common feature driven by monetary policy expectations at the short end, term premium at the medium range, and supply-demand dynamics at the long end.
+
+    The structural feature CIR cannot capture is the **independent variation of curvature at different maturity segments**. Multi-factor models (e.g., two-factor CIR, or Nelson-Siegel with level, slope, and curvature factors) are needed to capture these richer yield curve dynamics.

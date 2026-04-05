@@ -393,40 +393,6 @@ $$
 
 Show all intermediate values of $B_{t_k}$ and each contribution $B_{t_k}^2 \Delta B_k$.
 
----
-
-**Exercise 2.** A trader holds $H_t = t^2$ shares at time $t$, regardless of price. The cumulative profit and loss is $\int_0^T t^2\, dB_t$. Compute the expected P&L and the variance of the P&L over $[0,1]$.
-
----
-
-**Exercise 3.** Explain in your own words why the Ito integral uses left-endpoint evaluation rather than midpoint or right-endpoint evaluation. Give a financial argument based on the concept of a trading strategy.
-
----
-
-**Exercise 4.** For a deterministic integrand $h(t)$, the Ito integral $\int_0^T h(t)\, dB_t$ is Gaussian with mean zero and variance $\int_0^T h(t)^2\, dt$. Verify this for $h(t) = e^{-t}$ on $[0, T]$ by computing the variance explicitly.
-
----
-
-**Exercise 5.** Using Ito's formula, show that
-
-$$
-\int_0^t B_s^2\, dB_s = \frac{1}{3}B_t^3 - \int_0^t B_s\, ds
-$$
-
-*Hint*: Apply Ito's formula to $f(x) = x^3/3$.
-
----
-
-**Exercise 6.** The quadratic variation of Brownian motion states that $\sum_k (\Delta B_k)^2 \to t$ as the partition becomes finer. In the coin-flip model with $n = 10$, compute $\sum_{k=0}^{9} (\Delta B_k)^2$ and compare it to the theoretical value $t = 1$. Why is the sum exactly equal to 1 in this model?
-
----
-
-**Exercise 7.** Consider two Ito integrals: $I_t = \int_0^t B_s\, dB_s$ and $J_t = \int_0^t s\, dB_s$. Using the Ito isometry, compute $\operatorname{Var}(I_1)$ and $\operatorname{Var}(J_1)$. Which integral has larger variance, and why does this make intuitive sense?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     With $n = 10$, $\Delta t = 1/10$, and $\Delta B_k = \pm 1/\sqrt{10}$. The coin sequence $T, H, T, T, H, H, H, T, H, T$ gives increments $-,+,-,-,+,+,+,-,+,-$ in units of $1/\sqrt{10}$.
 
@@ -453,6 +419,10 @@ $$
     \sum_{k=0}^{9} B_{t_k}^2 \Delta B_k = \frac{1}{10^{3/2}}(0 + 1 + 0 - 1 + 4 + 1 + 0 - 1 + 0 - 1) = \frac{3}{10^{3/2}} \approx 0.0949
     $$
 
+---
+
+**Exercise 2.** A trader holds $H_t = t^2$ shares at time $t$, regardless of price. The cumulative profit and loss is $\int_0^T t^2\, dB_t$. Compute the expected P&L and the variance of the P&L over $[0,1]$.
+
 ??? success "Solution to Exercise 2"
     Since $H_t = t^2$ is deterministic, the expected P&L is zero by the martingale property:
 
@@ -466,6 +436,10 @@ $$
     \operatorname{Var}\!\left(\int_0^1 t^2\, dB_t\right) = \mathbb{E}\!\left[\int_0^1 t^4\, dt\right] = \int_0^1 t^4\, dt = \frac{1}{5}
     $$
 
+---
+
+**Exercise 3.** Explain in your own words why the Ito integral uses left-endpoint evaluation rather than midpoint or right-endpoint evaluation. Give a financial argument based on the concept of a trading strategy.
+
 ??? success "Solution to Exercise 3"
     The Ito integral uses left-endpoint evaluation because of the requirement that the trading position must be chosen **before** observing the next price increment. This is the **non-anticipativity** or **adaptedness** condition.
 
@@ -474,6 +448,10 @@ $$
     Left-endpoint evaluation ensures that $H_{t_k}$ is $\mathcal{F}_{t_k}$-measurable and independent of the future increment $\Delta B_k$. This independence is what makes the cross terms vanish in the Ito isometry proof and gives the integral the martingale property ($\mathbb{E}[I_t] = 0$), reflecting the fair-game interpretation of trading against Brownian noise.
 
     Midpoint or right-endpoint evaluation would use information from the future (specifically, $B_{t_{k+1}}$ or the midpoint value), breaking the independence structure. This is why the Stratonovich integral (midpoint) does not have the martingale property.
+
+---
+
+**Exercise 4.** For a deterministic integrand $h(t)$, the Ito integral $\int_0^T h(t)\, dB_t$ is Gaussian with mean zero and variance $\int_0^T h(t)^2\, dt$. Verify this for $h(t) = e^{-t}$ on $[0, T]$ by computing the variance explicitly.
 
 ??? success "Solution to Exercise 4"
     Since $h(t) = e^{-t}$ is deterministic, the Ito isometry gives:
@@ -487,6 +465,16 @@ $$
     $$
     \int_0^T e^{-t}\, dB_t \sim \mathcal{N}\!\left(0,\; \frac{1 - e^{-2T}}{2}\right)
     $$
+
+---
+
+**Exercise 5.** Using Ito's formula, show that
+
+$$
+\int_0^t B_s^2\, dB_s = \frac{1}{3}B_t^3 - \int_0^t B_s\, ds
+$$
+
+*Hint*: Apply Ito's formula to $f(x) = x^3/3$.
 
 ??? success "Solution to Exercise 5"
     Apply Ito's formula to $f(x) = x^3/3$ with $X_t = B_t$. We have $f'(x) = x^2$ and $f''(x) = 2x$:
@@ -507,6 +495,10 @@ $$
     \int_0^t B_s^2\, dB_s = \frac{1}{3}B_t^3 - \int_0^t B_s\, ds
     $$
 
+---
+
+**Exercise 6.** The quadratic variation of Brownian motion states that $\sum_k (\Delta B_k)^2 \to t$ as the partition becomes finer. In the coin-flip model with $n = 10$, compute $\sum_{k=0}^{9} (\Delta B_k)^2$ and compare it to the theoretical value $t = 1$. Why is the sum exactly equal to 1 in this model?
+
 ??? success "Solution to Exercise 6"
     In the coin-flip model, each increment is $\Delta B_k = \pm 1/\sqrt{n}$, so $(\Delta B_k)^2 = 1/n$ for every $k$. Therefore:
 
@@ -517,6 +509,10 @@ $$
     With $n = 10$: $\sum_{k=0}^{9} (\Delta B_k)^2 = 10 \cdot \frac{1}{10} = 1$, which equals the theoretical value $t = 1$ exactly.
 
     The sum is exactly equal to $1$ in this model because each squared increment is the deterministic constant $1/n$ (not random). In the coin-flip approximation, $|\Delta B_k| = 1/\sqrt{n}$ always, so the quadratic variation sum is $n \cdot (1/\sqrt{n})^2 = 1$ with zero variance. This is a special feature of the binary (Rademacher) approximation; for a Gaussian discretization, each $(\Delta B_k)^2$ would be random (chi-squared distributed), and the sum would only converge to $t$ in the limit.
+
+---
+
+**Exercise 7.** Consider two Ito integrals: $I_t = \int_0^t B_s\, dB_s$ and $J_t = \int_0^t s\, dB_s$. Using the Ito isometry, compute $\operatorname{Var}(I_1)$ and $\operatorname{Var}(J_1)$. Which integral has larger variance, and why does this make intuitive sense?
 
 ??? success "Solution to Exercise 7"
     **Variance of $I_1 = \int_0^1 B_s\, dB_s$.** By the Ito isometry:

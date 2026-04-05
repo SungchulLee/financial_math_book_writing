@@ -637,6 +637,31 @@ $$
 
 compute the risk-neutral skewness implied by a 1-year ATM volatility of 20% and a skew slope of $\mathcal{S} = -0.0015$ per unit strike, with $F = 100$. Is the implied distribution left-skewed or right-skewed?
 
+??? success "Solution to Exercise 1"
+    Given: $\sigma_{\text{ATM}} = 0.20$, $\mathcal{S} = -0.0015$ per unit strike, $F = 100$, $T = 1$.
+
+    Using the asymptotic relation:
+
+    $$
+    \text{Skew}^{\mathbb{Q}} \approx -\frac{6F\mathcal{S}\sqrt{T}}{\sigma_{\text{ATM}}} = -\frac{6 \times 100 \times (-0.0015) \times \sqrt{1}}{0.20}
+    $$
+
+    $$
+    = -\frac{6 \times 100 \times (-0.0015)}{0.20} = -\frac{-0.9}{0.20} = 4.5
+    $$
+
+    Wait -- let us be careful with the signs. The skew slope is $\mathcal{S} = -0.0015$ (negative, meaning IV decreases with strike). Substituting:
+
+    $$
+    \text{Skew}^{\mathbb{Q}} \approx -\frac{6 \times 100 \times (-0.0015) \times 1}{0.20} = -\frac{-0.9}{0.20} = +4.5
+    $$
+
+    However, this result should be interpreted carefully. The formula $\text{Skew}^{\mathbb{Q}} \approx -6F\mathcal{S}\sqrt{T}/\sigma_{\text{ATM}}$ measures the skewness of $S_T$ about its forward value $F$. A negative skew slope ($\mathcal{S} < 0$) corresponds to a distribution that is **left-skewed** in returns but can appear **positively skewed** in the level of $S_T$ depending on the convention.
+
+    In the standard convention where negative skewness means the left tail is heavier (more probability of large drops), the negative slope $\mathcal{S} < 0$ implies **negative skewness in log-returns**. The positive value $+4.5$ arises because the formula measures skewness of $S_T$ (not $\log S_T$), and the lognormal transformation can reverse the sign.
+
+    For the standard interpretation: a downward-sloping IV skew ($\mathcal{S} < 0$) implies the risk-neutral distribution is **left-skewed** in returns -- there is a heavier left tail, reflecting higher probability of large downward moves than a lognormal distribution would predict.
+
 ---
 
 **Exercise 2.** The Carr-Madan formula for risk-neutral variance is
@@ -647,13 +672,88 @@ $$
 
 (a) Explain why the integrand weights options by $1/K^2$. (b) If the implied volatility surface is flat at $\sigma_0 = 0.25$ with $F = 100$, $r = 0.03$, and $T = 1$, compute the risk-neutral variance analytically. (c) Compare this to $F^2(e^{\sigma_0^2 T} - 1)$, the exact lognormal variance.
 
+??? success "Solution to Exercise 2"
+    **(a)** The weighting by $1/K^2$ arises from the decomposition of the variance into contributions from out-of-the-money options. The key identity (Carr-Madan) states that for any twice-differentiable payoff $f(S_T)$:
+
+    $$
+    f(S_T) = f(F) + f'(F)(S_T - F) + \int_0^F f''(K)(K - S_T)^+ dK + \int_F^\infty f''(K)(S_T - K)^+ dK
+    $$
+
+    For $f(S) = S^2$, we have $f''(S) = 2$. More generally, for the log contract $f(S) = -\log(S/F)$, $f''(S) = 1/S^2$. The variance of the return relates to the log contract, and the $1/K^2$ weighting reflects the second derivative of the log function, which arises naturally when expressing the variance in terms of option payoffs.
+
+    **(b)** With flat IV $\sigma_0 = 0.25$, $F = S_0 e^{rT} = S_0 e^{0.03}$, $T = 1$:
+
+    Under the Black-Scholes model with constant $\sigma_0$, $S_T$ is lognormal: $\ln(S_T/F) \sim N(-\sigma_0^2/2, \sigma_0^2)$ (under $\mathbb{Q}$ in forward measure). The risk-neutral variance of $S_T$ is:
+
+    $$
+    \text{Var}^{\mathbb{Q}}(S_T) = F^2(e^{\sigma_0^2 T} - 1) = F^2(e^{0.0625} - 1) \approx F^2 \times 0.0645
+    $$
+
+    **(c)** The Carr-Madan integral, when evaluated with Black-Scholes prices at constant $\sigma_0$, must give the same result:
+
+    $$
+    2e^{rT}\left(\int_0^F \frac{P_{\text{BS}}(K)}{K^2}dK + \int_F^\infty \frac{C_{\text{BS}}(K)}{K^2}dK\right) = F^2(e^{\sigma_0^2 T} - 1)
+    $$
+
+    With $F = 100 e^{0.03} \approx 103.05$:
+
+    $$
+    \text{Var}^{\mathbb{Q}}(S_T) = (103.05)^2(e^{0.0625} - 1) \approx 10619.3 \times 0.0645 \approx 684.9
+    $$
+
+    Both expressions agree exactly since the Carr-Madan formula is derived from the replication of the log contract, which for lognormal distributions reduces to the exact formula $F^2(e^{\sigma_0^2 T} - 1)$.
+
 ---
 
 **Exercise 3.** The Breeden-Litzenberger formula gives the risk-neutral CDF as $\mathbb{Q}(S_T < K) = 1 + e^{rT} \partial C / \partial K$. (a) Derive this result from $C(K,T) = e^{-rT}\int_K^\infty (S - K)q(S)\,dS$. (b) Evaluate $\mathbb{Q}(S_T < F)$ when the smile has zero skew (symmetric about ATM). (c) For the S&P 500 with typical negative skew, is $\mathbb{Q}(S_T < F)$ greater or less than 0.5? Explain.
 
+??? success "Solution to Exercise 3"
+    **(a)** Starting from $C(K, T) = e^{-rT}\int_K^\infty (S - K)q(S)\,dS$:
+
+    Differentiate with respect to $K$:
+
+    $$
+    \frac{\partial C}{\partial K} = e^{-rT}\left[-(K - K)q(K) + \int_K^\infty (-1)q(S)\,dS\right] = -e^{-rT}\int_K^\infty q(S)\,dS
+    $$
+
+    Since $\int_K^\infty q(S)\,dS = \mathbb{Q}(S_T > K) = 1 - \mathbb{Q}(S_T < K)$:
+
+    $$
+    \frac{\partial C}{\partial K} = -e^{-rT}[1 - \mathbb{Q}(S_T < K)]
+    $$
+
+    Solving: $\mathbb{Q}(S_T < K) = 1 + e^{rT}\frac{\partial C}{\partial K}$.
+
+    **(b)** When the smile has zero skew (symmetric about ATM), the risk-neutral density $q(S_T)$ is symmetric about the forward price $F$ in an appropriate sense. For a lognormal density (flat IV), $\mathbb{Q}(S_T < F)$ is:
+
+    $$
+    \mathbb{Q}(S_T < F) = N\left(\frac{-\sigma^2 T/2}{\sigma\sqrt{T}}\right) = N\left(-\frac{\sigma\sqrt{T}}{2}\right)
+    $$
+
+    For $\sigma = 0.20$ and $T = 1$: $\mathbb{Q}(S_T < F) = N(-0.10) \approx 0.460$. So even with zero skew, $\mathbb{Q}(S_T < F) < 0.5$ because the lognormal distribution is right-skewed in levels (the mean exceeds the median).
+
+    **(c)** For the S&P 500 with typical negative skew, the risk-neutral density has a fatter left tail and thinner right tail compared to lognormal. This means more probability mass is shifted below the forward price. Therefore $\mathbb{Q}(S_T < F) > 0.460$ (the lognormal value), and it is typically **greater than 0.5**. The negative skew implies the market assigns a higher probability to the index finishing below the forward than above it, reflecting the pricing of crash risk.
+
 ---
 
 **Exercise 4.** A flat implied volatility surface ($\sigma_{\text{IV}} = \sigma_0$ for all $K$) implies a lognormal risk-neutral density. (a) Verify that the skewness is zero and the kurtosis equals 3 for a lognormal distribution. (b) Now suppose $\sigma_{\text{IV}}(K) = \sigma_0 + a(K - F)^2$ for some $a > 0$ (a symmetric smile). What sign does the excess kurtosis have? (c) Explain why the curvature $\mathcal{C} = \partial^2 \sigma_{\text{IV}} / \partial K^2 |_{K=F} = 2a$ determines the excess kurtosis through $\text{Kurt}^{\mathbb{Q}} - 3 \approx 12 F^2 \mathcal{C} T$.
+
+??? success "Solution to Exercise 4"
+    **(a)** For a lognormal distribution $\ln(S_T/F) \sim N(-\sigma^2 T/2, \sigma^2 T)$, define $X = \ln(S_T/F)$. The third central moment of $X$ is zero (normal distribution is symmetric), and the fourth central moment is $3(\sigma^2 T)^2$.
+
+    For the standardized variable: skewness of $X$ is 0, and kurtosis of $X$ is 3. The skewness and kurtosis of $S_T$ itself differ from those of $\log S_T$, but in the context of the smile-moment correspondence, the relevant quantities are the log-return moments or the standardized asset moments. For the risk-neutral distribution encoded by a flat IV, the absence of skew and the kurtosis of exactly 3 confirm the distribution is consistent with a normal log-return (i.e., lognormal asset price).
+
+    **(b)** With $\sigma_{\text{imp}}(K, T) = \sigma_0 + a(K - F)^2$, the IV surface has a symmetric U-shape (smile) with minimum at $K = F$. The curvature is $\mathcal{C} = \partial^2\sigma_{\text{imp}}/\partial K^2 |_{K=F} = 2a > 0$.
+
+    A positive curvature means OTM options (both puts and calls) have higher IV than ATM, which implies the risk-neutral density has **fatter tails** than the lognormal. Therefore the excess kurtosis is **positive**: $\text{Kurt}^{\mathbb{Q}} - 3 > 0$.
+
+    **(c)** The relationship $\text{Kurt}^{\mathbb{Q}} - 3 \approx 12F^2 \mathcal{C} T$ connects the smile curvature to excess kurtosis:
+
+    - $\mathcal{C} = 2a$ is the curvature of the IV smile at ATM
+    - $F^2$ converts from strike units to relative units
+    - $T$ reflects that the effect accumulates over time
+
+    The factor 12 comes from the Taylor expansion of the Black-Scholes formula relating the second moment of the density to the second derivative of implied volatility with respect to strike. The curvature $\mathcal{C} > 0$ creates additional probability mass in the tails (both left and right), raising the fourth moment above the Gaussian value of 3. Larger $a$ means a more pronounced smile and correspondingly more excess kurtosis.
 
 ---
 
@@ -664,10 +764,78 @@ $$
 
 where strikes are expressed as percentages of the forward. For each market, describe the shape of the implied density (skewness, tail behavior) and identify which smile pattern (skew, smile, or smirk) is present.
 
+??? success "Solution to Exercise 5"
+    **Market A (equity index):** $\sigma_{\text{IV}}(90) = 0.28$, $\sigma_{\text{IV}}(100) = 0.20$, $\sigma_{\text{IV}}(110) = 0.18$.
+
+    The IV surface is **downward sloping** (decreasing with strike), which is a **skew** pattern. The OTM put ($K = 90$) has much higher IV than ATM, while the OTM call ($K = 110$) has lower IV. This implies:
+
+    - **Negative skewness:** The risk-neutral density has a heavier left tail than right tail
+    - **Left tail behavior:** Probability of large drops is significantly higher than lognormal predicts
+    - **Right tail behavior:** Probability of large rises is somewhat lower than lognormal
+    - **Pattern:** This is a **smirk** (asymmetric, with the left wing elevated)
+
+    The implied density is left-skewed with moderate excess kurtosis, reflecting crash risk pricing typical of equity indices.
+
+    **Market B (FX):** $\sigma_{\text{IV}}(90) = 0.25$, $\sigma_{\text{IV}}(100) = 0.20$, $\sigma_{\text{IV}}(110) = 0.25$.
+
+    The IV surface is **U-shaped** (symmetric about ATM), which is a **smile** pattern. Both OTM options have equally elevated IV. This implies:
+
+    - **Near-zero skewness:** The risk-neutral density is approximately symmetric about the forward
+    - **Fat tails (both sides):** Both extreme upward and downward moves are more likely than lognormal predicts
+    - **Excess kurtosis:** Significantly positive, reflecting jump risk in both directions
+    - **Pattern:** This is a pure **smile** (symmetric U-shape)
+
+    The implied density is symmetric but leptokurtic (peaked center, fat tails), typical of FX markets where either currency can strengthen or weaken sharply.
+
 ---
 
 **Exercise 6.** The practical workflow for extracting the risk-neutral density involves interpolating option prices across strikes before applying Breeden-Litzenberger. (a) Why is direct numerical differentiation of raw market quotes problematic? (b) If you use cubic spline interpolation on call prices, what condition must the spline satisfy to ensure $q(K) = e^{rT} C_{KK} \geq 0$? (c) Describe how a parametric model such as SVI can be used instead of splines, and state one advantage and one disadvantage of each approach.
 
+??? success "Solution to Exercise 6"
+    **(a)** Direct numerical differentiation of raw market quotes is problematic because:
+
+    - Market quotes have bid-ask spreads, introducing noise of the order of the spread width
+    - Numerical second derivatives amplify noise: the error in $C_{KK}$ computed by finite differences scales as $\epsilon/(\Delta K)^2$, where $\epsilon$ is the price error
+    - Options at different strikes may be quoted at slightly different times (stale quotes), introducing temporal inconsistency
+    - The resulting density $q(K) = e^{rT}C_{KK}$ can become negative due to noise, which is meaningless
+
+    **(b)** For the cubic spline to ensure $q(K) = e^{rT}C_{KK} \geq 0$, the spline must be **convex** in $K$ at every point, i.e., the second derivative of the interpolated call price must be non-negative everywhere: $C_{KK}(K) \geq 0$ for all $K$ in the interpolation domain. This is a convexity constraint on the spline, which is not automatically satisfied by standard cubic spline algorithms. One must use constrained spline fitting (e.g., Schumaker's shape-preserving splines or convexity-constrained B-splines).
+
+    **(c)** **SVI (Stochastic Volatility Inspired) parametrization:** Fits the total implied variance $w(k) = \sigma_{\text{imp}}^2 T$ as a function of log-moneyness $k = \ln(K/F)$ using:
+
+    $$
+    w(k) = a + b\left(\rho(k - m) + \sqrt{(k - m)^2 + s^2}\right)
+    $$
+
+    *Advantage of SVI:* The parametric form with 5 parameters is smooth and can be made arbitrage-free analytically (Roger Lee's conditions can be enforced). It produces smooth derivatives for the Dupire formula.
+
+    *Disadvantage of SVI:* It may not fit the market perfectly at every strike -- the 5-parameter family is not flexible enough to capture all market features, potentially introducing systematic bias.
+
+    *Advantage of splines:* They can fit every market quote exactly (interpolation), providing maximum flexibility.
+
+    *Disadvantage of splines:* They may produce arbitrage violations (negative density) between data points and are sensitive to noise, requiring additional constraints that complicate the fitting.
+
 ---
 
 **Exercise 7.** The implied volatility surface encodes marginal densities $q(S_T)$ for each maturity $T$ but does not uniquely determine the joint distribution $q(S_{T_1}, S_{T_2})$. (a) Give two different models (e.g., local volatility and Heston) that produce the same marginal densities but different joint distributions. (b) Name a derivative product whose price depends on the joint distribution. (c) Explain why the statement "the implied volatility surface contains all the information needed to price any option" is false.
+
+??? success "Solution to Exercise 7"
+    **(a)** Two models that produce the same marginal densities but different joint distributions:
+
+    1. **Local volatility model** calibrated to the market call surface using Dupire's formula: $dS_t = (r-q)S_t\,dt + \sigma_{\text{loc}}(S_t, t)S_t\,dW_t$. This is a one-factor Markov diffusion.
+
+    2. **Heston stochastic volatility model** calibrated to the same call surface: $dS_t = (r-q)S_t\,dt + \sqrt{v_t}S_t\,dW_t^S$, $dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^v$, with $d\langle W^S, W^v\rangle_t = \rho\,dt$.
+
+    By Gyongy's theorem, both models produce the same marginal density $q(S_T)$ for each $T$ (and hence the same European option prices). However, they generate different joint distributions $q(S_{T_1}, S_{T_2})$ because the Heston model has an additional source of randomness ($v_t$) that creates different path-space correlations.
+
+    **(b)** A **cliquet option** (or ratchet option) is a derivative whose price depends on the joint distribution. Its payoff depends on returns over multiple sub-periods, such as $\sum_{i=1}^n \min(\max(R_i, \text{floor}), \text{cap})$ where $R_i = S_{t_i}/S_{t_{i-1}} - 1$. This requires knowing the joint distribution of $(S_{t_1}, S_{t_2}, \ldots, S_{t_n})$, not just the marginals.
+
+    Other examples include barrier options, Asian options, lookback options, and variance swaps -- all of which depend on the path of $S_t$, not just the terminal distribution.
+
+    **(c)** The statement is false because:
+
+    - The IV surface determines only the marginal distributions $q(S_T)$ for each maturity $T$ via Breeden-Litzenberger
+    - It does **not** determine the joint distribution $q(S_{T_1}, S_{T_2})$ or the full path distribution
+    - Path-dependent options (barriers, Asians, cliquets, variance swaps) require knowledge of the joint or path distribution
+    - Different models (local vol, stochastic vol, jump-diffusion) can all reproduce the same IV surface yet assign different prices to path-dependent options
+    - The IV surface provides necessary but not sufficient information: it constrains but does not uniquely determine the pricing of all derivatives

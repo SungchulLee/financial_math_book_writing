@@ -234,52 +234,6 @@ For Case 1, the theoretical value is $\mathbb{E}[\int_0^T t^2 B_t^2\, dt] = \int
 
 **Exercise 1.** Compute the variance of the Ito integral $\int_0^2 (3t + 1)\, dW_t$ using the Ito isometry.
 
----
-
-**Exercise 2.** Let $\beta(t) = e^{-\alpha t}$ for $\alpha > 0$. Compute
-
-$$
-\mathbb{E}\!\left[\left(\int_0^T e^{-\alpha t}\, dW_t\right)^2\right]
-$$
-
-and find the limit as $T \to \infty$.
-
----
-
-**Exercise 3.** In the proof of the Ito isometry for simple processes, the cross terms $\mathbb{E}[\beta_i \beta_j \Delta W_i \Delta W_j] = 0$ for $i < j$. Explain why this argument relies on the left-endpoint evaluation. What would happen if we used right-endpoint evaluation instead?
-
----
-
-**Exercise 4.** Let $\beta(t) = W_t^2$. Use the Ito isometry to compute
-
-$$
-\operatorname{Var}\!\left(\int_0^T W_t^2\, dW_t\right)
-$$
-
-*Hint*: You will need $\mathbb{E}[W_t^4] = 3t^2$.
-
----
-
-**Exercise 5.** The Ito isometry extends to the polarized form: $\mathbb{E}[\int_0^T H\, dW \cdot \int_0^T K\, dW] = \mathbb{E}[\int_0^T HK\, dt]$. Use this to compute the covariance $\operatorname{Cov}(\int_0^1 t\, dW_t,\; \int_0^1 t^2\, dW_t)$.
-
----
-
-**Exercise 6.** Consider two simple processes $H^{(n)}$ and $H^{(m)}$ that approximate the same integrand $H \in \mathcal{L}^2([0,T])$. Using the Ito isometry, show that
-
-$$
-\mathbb{E}\!\left[\left(\int_0^T H_s^{(n)}\, dW_s - \int_0^T H_s^{(m)}\, dW_s\right)^2\right] \to 0
-$$
-
-as $n, m \to \infty$. Explain why this makes the sequence of integrals a Cauchy sequence in $L^2(\Omega)$.
-
----
-
-**Exercise 7.** The analogy between the Ito isometry and Parseval's identity states that stochastic integration preserves $L^2$ norms. In Fourier analysis, Parseval's identity says $\sum_n |c_n|^2 = \frac{1}{2\pi}\int |f|^2\, dx$. Write a brief comparison: what plays the role of the Fourier coefficients $c_n$ in the stochastic setting, and what plays the role of the $L^2$ norm of $f$?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     By the Ito isometry (the integrand $3t + 1$ is deterministic):
 
@@ -292,6 +246,16 @@ as $n, m \to \infty$. Explain why this makes the sequence of integrals a Cauchy 
     $$
     = \int_0^2 (9t^2 + 6t + 1)\, dt = \left[3t^3 + 3t^2 + t\right]_0^2 = 3(8) + 3(4) + 2 = 24 + 12 + 2 = 38
     $$
+
+---
+
+**Exercise 2.** Let $\beta(t) = e^{-\alpha t}$ for $\alpha > 0$. Compute
+
+$$
+\mathbb{E}\!\left[\left(\int_0^T e^{-\alpha t}\, dW_t\right)^2\right]
+$$
+
+and find the limit as $T \to \infty$.
 
 ??? success "Solution to Exercise 2"
     By the Ito isometry (deterministic integrand):
@@ -308,6 +272,10 @@ as $n, m \to \infty$. Explain why this makes the sequence of integrals a Cauchy 
 
     The variance converges to a finite limit, reflecting the fact that the exponentially decaying integrand effectively "turns off" the accumulation of Brownian noise at large times.
 
+---
+
+**Exercise 3.** In the proof of the Ito isometry for simple processes, the cross terms $\mathbb{E}[\beta_i \beta_j \Delta W_i \Delta W_j] = 0$ for $i < j$. Explain why this argument relies on the left-endpoint evaluation. What would happen if we used right-endpoint evaluation instead?
+
 ??? success "Solution to Exercise 3"
     The argument that cross terms vanish uses the tower property of conditional expectation and the independence of future Brownian increments from past information. For $i < j$:
 
@@ -320,6 +288,16 @@ as $n, m \to \infty$. Explain why this makes the sequence of integrals a Cauchy 
     **With right-endpoint evaluation**, the position $\beta_j$ would be $\mathcal{F}_{t_{j+1}}$-measurable. Then $\beta_j$ would depend on $\Delta W_j$ (since $\Delta W_j$ is part of the information available at $t_{j+1}$). The independence used to kill the cross terms no longer holds. In fact, even the diagonal terms change: $\mathbb{E}[\beta_j^2 (\Delta W_j)^2] \neq \mathbb{E}[\beta_j^2] \cdot \mathbb{E}[(\Delta W_j)^2]$ because $\beta_j$ and $\Delta W_j$ are no longer independent.
 
     Concretely, for $\beta_j = W_{t_{j+1}}$ and $\Delta W_j = W_{t_{j+1}} - W_{t_j}$: $\beta_j$ is correlated with $\Delta W_j$, and $\mathbb{E}[W_{t_{j+1}} \cdot \Delta W_j] = \mathbb{E}[(\Delta W_j)^2] = \Delta t_j \neq 0$. The entire isometry framework breaks down.
+
+---
+
+**Exercise 4.** Let $\beta(t) = W_t^2$. Use the Ito isometry to compute
+
+$$
+\operatorname{Var}\!\left(\int_0^T W_t^2\, dW_t\right)
+$$
+
+*Hint*: You will need $\mathbb{E}[W_t^4] = 3t^2$.
 
 ??? success "Solution to Exercise 4"
     By the Ito isometry with $\beta(t) = W_t^2$:
@@ -334,6 +312,10 @@ as $n, m \to \infty$. Explain why this makes the sequence of integrals a Cauchy 
     = \int_0^T 3t^2\, dt = 3 \cdot \frac{T^3}{3} = T^3
     $$
 
+---
+
+**Exercise 5.** The Ito isometry extends to the polarized form: $\mathbb{E}[\int_0^T H\, dW \cdot \int_0^T K\, dW] = \mathbb{E}[\int_0^T HK\, dt]$. Use this to compute the covariance $\operatorname{Cov}(\int_0^1 t\, dW_t,\; \int_0^1 t^2\, dW_t)$.
+
 ??? success "Solution to Exercise 5"
     Since both integrands are deterministic, the polarized Ito isometry gives:
 
@@ -342,6 +324,16 @@ as $n, m \to \infty$. Explain why this makes the sequence of integrals a Cauchy 
     $$
 
     (Since both integrals have mean zero, the covariance equals the expectation of their product.)
+
+---
+
+**Exercise 6.** Consider two simple processes $H^{(n)}$ and $H^{(m)}$ that approximate the same integrand $H \in \mathcal{L}^2([0,T])$. Using the Ito isometry, show that
+
+$$
+\mathbb{E}\!\left[\left(\int_0^T H_s^{(n)}\, dW_s - \int_0^T H_s^{(m)}\, dW_s\right)^2\right] \to 0
+$$
+
+as $n, m \to \infty$. Explain why this makes the sequence of integrals a Cauchy sequence in $L^2(\Omega)$.
 
 ??? success "Solution to Exercise 6"
     By linearity of the Ito integral:
@@ -369,6 +361,10 @@ as $n, m \to \infty$. Explain why this makes the sequence of integrals a Cauchy 
     $$
 
     This shows $\{\int_0^T H_s^{(n)}\, dW_s\}$ is a Cauchy sequence in $L^2(\Omega)$. Since $L^2(\Omega)$ is a complete Hilbert space, the sequence converges to a unique limit, and this limit defines $\int_0^T H_s\, dW_s$.
+
+---
+
+**Exercise 7.** The analogy between the Ito isometry and Parseval's identity states that stochastic integration preserves $L^2$ norms. In Fourier analysis, Parseval's identity says $\sum_n |c_n|^2 = \frac{1}{2\pi}\int |f|^2\, dx$. Write a brief comparison: what plays the role of the Fourier coefficients $c_n$ in the stochastic setting, and what plays the role of the $L^2$ norm of $f$?
 
 ??? success "Solution to Exercise 7"
     The analogy between the Ito isometry and Parseval's identity can be summarized as follows.

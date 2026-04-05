@@ -281,26 +281,6 @@ The characteristic function of the Merton log-return has the closed-form express
 
 **Exercise 1.** Derive the characteristic function of the Merton log-return by computing $\mathbb{E}[e^{iux_T}]$ as a product of three independent factors: the deterministic drift, the Gaussian diffusion, and the compound Poisson jumps. Verify that the jump factor is $\exp[\lambda T(e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2} - 1)]$.
 
----
-
-**Exercise 2.** Extract the first four cumulants from the characteristic function $\Psi(u) = \ln \phi_{x_T}(u)$ by Taylor-expanding around $u = 0$. Verify that $\kappa_1 = (r - \lambda\bar{k} - \frac{1}{2}\sigma^2 + \lambda\mu_J)T$ and $\kappa_2 = (\sigma^2 + \lambda(\mu_J^2 + \sigma_J^2))T$.
-
----
-
-**Exercise 3.** The Merton model is a finite-activity Levy process because $\nu(\mathbb{R}) = \lambda < \infty$. Explain the distinction between finite-activity and infinite-activity processes. Name one infinite-activity Levy model and describe how its characteristic function differs structurally from the Merton model's.
-
----
-
-**Exercise 4.** For $r = 0.05$, $\sigma = 0.20$, $\lambda = 0.5$, $\mu_J = -0.10$, $\sigma_J = 0.30$, $T = 1$: (a) Compute the skewness and excess kurtosis of the log-return. (b) Repeat for $T = 0.1$ (one month). (c) Verify that the skewness scales as $T^{-1/2}$ and the kurtosis scales as $T^{-1}$.
-
----
-
-**Exercise 5.** The Carr-Madan formula $C(K) = \frac{e^{-rT-\alpha k}}{\pi}\int_0^{\infty} e^{-ivk}\frac{\phi_{x_T}(v - (\alpha+1)i)}{(\alpha + iv)(\alpha + 1 + iv)}\,dv$ requires evaluating the characteristic function at complex arguments. Show that $\phi_{x_T}(u)$ can be analytically continued to complex $u$ and remains well-defined for $\text{Im}(u) \in (-\alpha - 1, 0)$ provided $\alpha > 0$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The log-return decomposes as $x_T = \mu'T + \sigma W_T + \sum_{i=1}^{N_T}\ln Y_i$ where $\mu' = r - \lambda\bar{k} - \frac{1}{2}\sigma^2$. The three components are mutually independent, so
 
@@ -331,6 +311,11 @@ The characteristic function of the Merton log-return has the closed-form express
     $$
     \phi_{x_T}(u) = \exp\!\left[iu\mu'T - \frac{1}{2}\sigma^2 u^2 T + \lambda T\!\left(e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2} - 1\right)\right]
     $$
+
+---
+
+
+**Exercise 2.** Extract the first four cumulants from the characteristic function $\Psi(u) = \ln \phi_{x_T}(u)$ by Taylor-expanding around $u = 0$. Verify that $\kappa_1 = (r - \lambda\bar{k} - \frac{1}{2}\sigma^2 + \lambda\mu_J)T$ and $\kappa_2 = (\sigma^2 + \lambda(\mu_J^2 + \sigma_J^2))T$.
 
 ??? success "Solution to Exercise 2"
     The cumulant generating function is $\Psi(u) = \ln\phi_{x_T}(u)$. We need to expand $\Psi(u) = \sum_{n=1}^{\infty}\kappa_n\frac{(iu)^n}{n!}$ by Taylor-expanding around $u = 0$.
@@ -371,12 +356,22 @@ The characteristic function of the Merton log-return has the closed-form express
 
     The first two cumulants match the stated formulas.
 
+---
+
+
+**Exercise 3.** The Merton model is a finite-activity Levy process because $\nu(\mathbb{R}) = \lambda < \infty$. Explain the distinction between finite-activity and infinite-activity processes. Name one infinite-activity Levy model and describe how its characteristic function differs structurally from the Merton model's.
+
 ??? success "Solution to Exercise 3"
     A **finite-activity** Levy process has a Levy measure $\nu$ with $\nu(\mathbb{R}) < \infty$. This means there are finitely many jumps in any bounded time interval (almost surely). The Merton model has $\nu(\mathbb{R}) = \lambda < \infty$, so it is finite-activity. The jumps arrive as a Poisson process with rate $\lambda$, and the expected number of jumps in $[0, T]$ is $\lambda T$.
 
     An **infinite-activity** Levy process has $\nu(\mathbb{R}) = \infty$, meaning infinitely many (small) jumps accumulate in any finite time interval. The truncation indicator $\mathbf{1}_{|y|<1}$ in the Levy-Khintchine formula is essential in this case because the integral $\int y\,\nu(dy)$ may diverge.
 
     An example of an infinite-activity model is the **Variance Gamma (VG)** process, where $\nu(dy) = C\frac{e^{-G|y|}}{|y|}\mathbf{1}_{y<0}\,dy + C\frac{e^{-My}}{y}\mathbf{1}_{y>0}\,dy$ with $C, G, M > 0$. The Levy measure has a $1/|y|$ singularity at the origin, so $\int_{\mathbb{R}}\nu(dy) = \infty$. Structurally, the VG characteristic function is $\phi_{X_T}(u) = \left(\frac{GM}{(G+iu)(M-iu)}\right)^{CT}$, which involves a rational function raised to a power, rather than the exponential-of-exponential structure of the Merton model. The VG model has no Brownian component ($\sigma = 0$); all variation comes from the infinite accumulation of small jumps.
+
+---
+
+
+**Exercise 4.** For $r = 0.05$, $\sigma = 0.20$, $\lambda = 0.5$, $\mu_J = -0.10$, $\sigma_J = 0.30$, $T = 1$: (a) Compute the skewness and excess kurtosis of the log-return. (b) Repeat for $T = 0.1$ (one month). (c) Verify that the skewness scales as $T^{-1/2}$ and the kurtosis scales as $T^{-1}$.
 
 ??? success "Solution to Exercise 4"
     **(a)** Using the cumulant formulas with $r = 0.05$, $\sigma = 0.20$, $\lambda = 0.5$, $\mu_J = -0.10$, $\sigma_J = 0.30$, $T = 1$:
@@ -412,6 +407,11 @@ The characteristic function of the Merton log-return has the closed-form express
     $$
 
     **(c)** Verification: The skewness ratio is $(-1.639)/(-0.519) \approx 3.162 \approx \sqrt{10} = (1/0.1)^{1/2}/(1/1)^{1/2}$, confirming the $T^{-1/2}$ scaling. The kurtosis ratio is $18.40/1.840 = 10 = T_1/T_2 = 1/0.1$, confirming the $T^{-1}$ scaling.
+
+---
+
+
+**Exercise 5.** The Carr-Madan formula $C(K) = \frac{e^{-rT-\alpha k}}{\pi}\int_0^{\infty} e^{-ivk}\frac{\phi_{x_T}(v - (\alpha+1)i)}{(\alpha + iv)(\alpha + 1 + iv)}\,dv$ requires evaluating the characteristic function at complex arguments. Show that $\phi_{x_T}(u)$ can be analytically continued to complex $u$ and remains well-defined for $\text{Im}(u) \in (-\alpha - 1, 0)$ provided $\alpha > 0$.
 
 ??? success "Solution to Exercise 5"
     The characteristic function $\phi_{x_T}(u) = \exp[iu\mu'T - \frac{1}{2}\sigma^2 u^2 T + \lambda T(e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2} - 1)]$ is defined for real $u$, but the expression makes sense for any complex $u$ as long as the exponent converges.

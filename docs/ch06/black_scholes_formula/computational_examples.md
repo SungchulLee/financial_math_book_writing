@@ -718,40 +718,6 @@ The combination of theoretical understanding and computational proficiency enabl
 
 **Exercise 1.** Price a European put option with $S_0 = 65$, $K = 60$, $T = 0.75$ years, $r = 3\%$, and $\sigma = 35\%$. Show every intermediate step: compute $d_1$, $d_2$, $\mathcal{N}(-d_1)$, $\mathcal{N}(-d_2)$, and the final put price. Verify your answer using put-call parity.
 
----
-
-**Exercise 2.** A market maker observes a European call on a non-dividend-paying stock trading at \$8.25. The stock price is $S_0 = 110$, the strike is $K = 105$, the risk-free rate is $r = 4\%$, and the option expires in 90 days. Using the bisection method (or Brent's method), find the implied volatility to four decimal places. Describe the convergence behavior of your root-finding algorithm.
-
----
-
-**Exercise 3.** Compute the full set of Greeks (delta, gamma, vega, theta, rho) for a European call with $S_0 = 100$, $K = 100$, $T = 1$, $r = 5\%$, and $\sigma = 20\%$. Then verify the following relationships numerically:
-
-$$
-\Gamma_{\text{call}} = \Gamma_{\text{put}}, \qquad \mathcal{V}_{\text{call}} = \mathcal{V}_{\text{put}}, \qquad \Delta_{\text{call}} - \Delta_{\text{put}} = 1
-$$
-
----
-
-**Exercise 4.** Using the Black-Scholes formula, create a table of call option prices for $S_0 = 100$, $r = 5\%$, $\sigma = 25\%$, with strikes $K \in \{80, 90, 100, 110, 120\}$ and maturities $T \in \{0.25, 0.5, 1.0, 2.0\}$ years. For each entry, decompose the price into intrinsic value and time value. Identify which combination of strike and maturity has the largest time value, and explain why.
-
----
-
-**Exercise 5.** Implement a finite-difference approximation to verify the Black-Scholes Greeks. For the call with parameters $S_0 = 50$, $K = 52$, $T = 0.5$, $r = 5\%$, $\sigma = 30\%$, compute:
-
-$$
-\Delta \approx \frac{C(S_0 + h) - C(S_0 - h)}{2h}, \qquad \Gamma \approx \frac{C(S_0 + h) - 2C(S_0) + C(S_0 - h)}{h^2}
-$$
-
-with $h = 0.01$. Compare with the analytical Greeks and report the relative errors.
-
----
-
-**Exercise 6.** A trader holds a portfolio of three European options on the same underlying ($S_0 = 100$, $r = 5\%$, $\sigma = 20\%$): long 10 calls with $K = 95$ and $T = 0.5$, short 20 calls with $K = 100$ and $T = 0.5$, and long 10 calls with $K = 105$ and $T = 0.5$. Compute the portfolio's total delta, gamma, and vega. Identify this position as a well-known option strategy and explain its payoff profile at expiration.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **Parameters**: $S_0 = 65$, $K = 60$, $T = 0.75$, $r = 0.03$, $\sigma = 0.35$.
 
@@ -813,6 +779,9 @@ with $h = 0.01$. Compare with the analytical Greeks and report the relative erro
 
     The small difference is due to rounding. Put-call parity is satisfied. ✓
 
+---
+**Exercise 2.** A market maker observes a European call on a non-dividend-paying stock trading at \$8.25. The stock price is $S_0 = 110$, the strike is $K = 105$, the risk-free rate is $r = 4\%$, and the option expires in 90 days. Using the bisection method (or Brent's method), find the implied volatility to four decimal places. Describe the convergence behavior of your root-finding algorithm.
+
 ??? success "Solution to Exercise 2"
     **Parameters**: $S_0 = 110$, $K = 105$, $r = 0.04$, $T = 90/365 = 0.24658$, market call price $C_{\text{mkt}} = 8.25$.
 
@@ -837,6 +806,13 @@ with $h = 0.01$. Compare with the analytical Greeks and report the relative erro
     After convergence: $\sigma^* \approx 0.2199$ (i.e., $21.99\%$).
 
     **Convergence behavior**: Bisection converges linearly, halving the interval at each step. Starting from $[0.01, 2.00]$ (width $1.99$), after $n$ iterations the width is $1.99/2^n$. For four decimal places ($10^{-4}$), we need $1.99/2^n < 10^{-4}$, giving $n \geq 15$. Brent's method achieves superlinear convergence and typically requires fewer iterations by combining bisection with inverse quadratic interpolation.
+
+---
+**Exercise 3.** Compute the full set of Greeks (delta, gamma, vega, theta, rho) for a European call with $S_0 = 100$, $K = 100$, $T = 1$, $r = 5\%$, and $\sigma = 20\%$. Then verify the following relationships numerically:
+
+$$
+\Gamma_{\text{call}} = \Gamma_{\text{put}}, \qquad \mathcal{V}_{\text{call}} = \mathcal{V}_{\text{put}}, \qquad \Delta_{\text{call}} - \Delta_{\text{put}} = 1
+$$
 
 ??? success "Solution to Exercise 3"
     **Parameters**: $S_0 = 100$, $K = 100$, $T = 1$, $r = 0.05$, $\sigma = 0.20$.
@@ -873,6 +849,9 @@ with $h = 0.01$. Compare with the analytical Greeks and report the relative erro
     - $\mathcal{V}_{\text{call}} = \mathcal{V}_{\text{put}} = 37.52$ ✓
     - $\Delta_{\text{call}} - \Delta_{\text{put}} = 0.6368 - (-0.3632) = 1.0000$ ✓
 
+---
+**Exercise 4.** Using the Black-Scholes formula, create a table of call option prices for $S_0 = 100$, $r = 5\%$, $\sigma = 25\%$, with strikes $K \in \{80, 90, 100, 110, 120\}$ and maturities $T \in \{0.25, 0.5, 1.0, 2.0\}$ years. For each entry, decompose the price into intrinsic value and time value. Identify which combination of strike and maturity has the largest time value, and explain why.
+
 ??? success "Solution to Exercise 4"
     **Parameters**: $S_0 = 100$, $r = 0.05$, $\sigma = 0.25$.
 
@@ -893,6 +872,15 @@ with $h = 0.01$. Compare with the analytical Greeks and report the relative erro
     1. ATM options have the most uncertainty about whether they will finish in or out of the money, maximizing optionality value.
     2. Longer maturity provides more time for favorable price movement and greater variance $\sigma^2 T$.
     3. The combination of ATM strike and longest maturity maximizes the option's "embedded insurance" value.
+
+---
+**Exercise 5.** Implement a finite-difference approximation to verify the Black-Scholes Greeks. For the call with parameters $S_0 = 50$, $K = 52$, $T = 0.5$, $r = 5\%$, $\sigma = 30\%$, compute:
+
+$$
+\Delta \approx \frac{C(S_0 + h) - C(S_0 - h)}{2h}, \qquad \Gamma \approx \frac{C(S_0 + h) - 2C(S_0) + C(S_0 - h)}{h^2}
+$$
+
+with $h = 0.01$. Compare with the analytical Greeks and report the relative errors.
 
 ??? success "Solution to Exercise 5"
     **Parameters**: $S_0 = 50$, $K = 52$, $T = 0.5$, $r = 0.05$, $\sigma = 0.30$, $h = 0.01$.
@@ -924,6 +912,9 @@ with $h = 0.01$. Compare with the analytical Greeks and report the relative erro
     $$
 
     **Relative errors**: With $h = 0.01$, the central difference approximation for delta has error $O(h^2) = O(10^{-4})$, giving a relative error on the order of $10^{-4}$ (about $0.01\%$). For gamma, the second-order central difference also has error $O(h^2)$, but the relative error can be slightly larger due to the small magnitude of gamma. Typical relative errors are below $0.1\%$ for $h = 0.01$.
+
+---
+**Exercise 6.** A trader holds a portfolio of three European options on the same underlying ($S_0 = 100$, $r = 5\%$, $\sigma = 20\%$): long 10 calls with $K = 95$ and $T = 0.5$, short 20 calls with $K = 100$ and $T = 0.5$, and long 10 calls with $K = 105$ and $T = 0.5$. Compute the portfolio's total delta, gamma, and vega. Identify this position as a well-known option strategy and explain its payoff profile at expiration.
 
 ??? success "Solution to Exercise 6"
     **Parameters**: $S_0 = 100$, $r = 0.05$, $\sigma = 0.20$, $T = 0.5$.

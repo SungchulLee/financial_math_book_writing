@@ -230,26 +230,89 @@ The static vs dynamic distinction is the most important conceptual framework for
 
 **Exercise 1.** Distinguish between static calibration and dynamic consistency. A model can perfectly match today's option prices (static) yet predict incorrect future smile behavior (dynamic). Give an example of a situation where this distinction matters for pricing.
 
+??? success "Solution to Exercise 1"
+    Static calibration means the model reproduces all currently observed European option prices -- it matches today's implied volatility surface exactly. Dynamic consistency means the model correctly predicts how the implied volatility surface will evolve over time as the spot moves and time passes.
+
+    A model can achieve perfect static calibration yet fail dynamically. This distinction matters whenever the pricing depends on the future smile. For example, consider a forward-starting option that resets in 6 months at ATM and expires in 12 months. Its price depends on the implied volatility smile that will prevail in 6 months -- the forward smile. Local volatility perfectly matches today's option prices (static calibration) but predicts a forward smile that is systematically too flat (dynamic failure). A stochastic volatility model may not match today's prices exactly but predicts a more realistic forward smile. The pricing difference for the forward-starting option can be 15--30% of the premium, demonstrating that static calibration alone is insufficient for products with forward smile exposure.
+
 ---
 
 **Exercise 2.** The skew stickiness ratio (SSR) measures how the ATM implied volatility changes relative to the prediction under sticky strike. Local volatility implies SSR = 2, while markets show SSR $\approx$ 1.0-1.5 for equity indices. (a) Define SSR precisely. (b) Explain why local volatility produces SSR = 2. (c) What does the empirical SSR of 1.3 imply about the true smile dynamics?
+
+??? success "Solution to Exercise 2"
+    **(a)** The skew stickiness ratio is defined as
+
+    $$
+    \text{SSR} = \frac{\text{Cov}(d\sigma_{\text{imp}}^{\text{ATM}}, \, dS/S)}{\text{Var}(dS/S) \cdot \partial_K \sigma_{\text{imp}}|_{K = S_0}}
+    $$
+
+    It measures how much of the ATM implied volatility change per unit spot return is explained by sliding along the fixed smile curve.
+
+    **(b)** Local volatility produces SSR = 2 because the smile is approximately sticky strike: the implied volatility surface remains anchored at fixed strike levels as the spot moves. When the spot increases by $dS$, the new ATM strike shifts to $S_0 + dS$, and the ATM implied vol changes by $\partial_K \sigma_{\text{imp}} \cdot dS$. However, the local volatility model also shifts the smile slightly due to the time evolution of $\sigma_{\text{loc}}(S, t)$, producing an additional contribution that doubles the naive sticky-strike effect, yielding SSR = 2. More precisely, under sticky strike the regression coefficient of $d\sigma_{\text{imp}}^{\text{ATM}}$ on $dS/S$ equals $S_0 \cdot \partial_K \sigma_{\text{imp}}$, and the SSR formula gives 2 after accounting for the quadratic variation effects in the local volatility dynamics.
+
+    **(c)** An empirical SSR of 1.3 implies that the true smile dynamics are between sticky strike (SSR = 2) and sticky delta (SSR = 0). The smile partially follows the spot (sticky strike component) but also has an independent vol component that offsets part of the spot-driven effect. This is consistent with stochastic volatility models where $\rho \neq -1$ and $\xi > 0$: the independent vol shocks reduce the correlation between ATM vol changes and spot returns, lowering the SSR below the local volatility prediction of 2.
 
 ---
 
 **Exercise 3.** Under local volatility, the implied vol-of-vol is perfectly determined by the local volatility surface and is typically too low compared to realized vol-of-vol. Explain the mechanism: why does the deterministic nature of $\sigma_{\text{loc}}(S, t)$ underestimate the actual randomness of volatility?
 
+??? success "Solution to Exercise 3"
+    Under local volatility, $\sigma_{\text{loc}}(S_t, t)$ is a fixed, deterministic function of $(S_t, t)$. Given the spot $S_t$, the volatility at that instant is known with certainty. The only way volatility changes is through a spot move: if $S_t$ moves to a different level, the model reads off a different value from the same surface. There is no mechanism for volatility to change independently of the spot.
+
+    In reality, implied volatility exhibits significant randomness that is uncorrelated with spot moves. For example, on days when the S&P 500 is flat, the VIX can still move substantially. This residual vol-of-vol, measured as $\hat{\xi}^2 = \text{Var}(\Delta\sigma_{\text{imp}}^{\text{ATM}} - \hat{\beta}\Delta S/S) / \Delta t$, is empirically large ($\hat{\xi} \approx 0.5$--$1.5$ for equity indices).
+
+    Local volatility forces $\hat{\xi}^{\text{LV}} = 0$ because conditioning on $S_{t+\Delta t} = S_t$ completely eliminates all volatility uncertainty. The model has only one Brownian motion driving both spot and volatility, so spot-orthogonal vol shocks are structurally impossible. This underestimates the true randomness of volatility, leading to underpricing of any product sensitive to vol-of-vol (variance swaps, cliquets, options on implied volatility).
+
 ---
 
 **Exercise 4.** A barrier option (e.g., a down-and-out call with barrier at 80% of spot) is priced under local volatility and Heston. The local volatility price is systematically lower. Explain why the incorrect smile dynamics of local volatility (too much sticky strike, too little vol-of-vol) lead to underpricing of this specific product.
+
+??? success "Solution to Exercise 4"
+    For a down-and-out call with a barrier at 80% of spot, the option is extinguished if the spot touches the barrier. The price depends critically on the probability of the spot reaching the barrier and on the conditional dynamics near the barrier.
+
+    Under local volatility, the sticky-strike dynamics mean that as the spot falls toward the barrier, the implied volatility rises predictably along the fixed smile (because the smile has negative skew). The volatility increase is entirely deterministic given the spot move. This produces a specific barrier-touching probability that turns out to be too high in many cases, because local volatility overstates the spot-vol coupling.
+
+    More precisely, local volatility's excessive spot-vol correlation ($\rho = -1$) means that spot declines are always accompanied by maximum vol increases, which inflates the diffusion coefficient near the barrier and increases the probability of barrier hits. However, the zero vol-of-vol also means there are no scenarios where vol spikes independently to push the spot through the barrier. The net effect for down-and-out calls is typically underpricing: the model underestimates the survival probability (probability of not hitting the barrier) because it mischaracterizes the conditional dynamics. The stochastic volatility model, with $|\rho| < 1$ and $\xi > 0$, produces a more nuanced barrier-touching probability that better reflects the independent vol risk and typically gives a higher price for the down-and-out call.
 
 ---
 
 **Exercise 5.** Perfect static calibration guarantees that all European option prices match the market. Why is this necessary but not sufficient for correct pricing of exotic options? Provide two examples of exotic products where static calibration alone fails to produce accurate prices.
 
+??? success "Solution to Exercise 5"
+    Perfect static calibration guarantees that all European (single-maturity, single-strike) option prices match the market. This means the model correctly captures the marginal distribution of $S_T$ at each maturity $T$. However, exotic options depend on more than marginals:
+
+    **Example 1: Forward-starting options.** A forward-starting call depends on the conditional distribution $p(S_{T_2} \mid S_{T_1})$. Two models with the same marginals at $T_1$ and $T_2$ can have different conditional distributions. Local volatility, which has the same marginals as a stochastic volatility model, produces a flatter forward smile (thinner tails in the conditional distribution), underpricing OTM forward-starting options by 10--30%.
+
+    **Example 2: Variance swaps.** The variance swap payoff $\sum_i (\log S_{t_i}/S_{t_{i-1}})^2$ depends on the distribution of realized variance along the path, not just the terminal distribution. The convexity of the variance swap (how its value depends on the strike) is determined by the vol-of-vol, which differs between local volatility ($\hat{\xi} = 0$) and stochastic volatility ($\hat{\xi} = \xi\sqrt{1-\rho^2} > 0$). Both models match the same vanilla prices but disagree on variance swap convexity.
+
+    In both cases, the exotic payoff depends on joint distributions across time or on path properties, which are not pinned down by marginal distributions alone.
+
 ---
 
 **Exercise 6.** The local volatility model implies a perfect negative correlation between spot and volatility ($\rho_{S,\sigma} = -1$). Empirically, equity indices exhibit $\rho \approx -0.7$. How does this discrepancy affect the hedging of a delta-neutral, vega-neutral portfolio? Which Greek is most affected?
 
+??? success "Solution to Exercise 6"
+    Local volatility implies $\rho_{S,\sigma} = -1$ (perfect negative correlation between spot and volatility), while the market has $\rho \approx -0.7$. The correlation discrepancy affects hedging because it determines how much vega exposure accompanies a delta-neutral position.
+
+    In a delta-neutral, vega-neutral portfolio, the primary remaining exposure is to the **cross-gamma** (or vanna) -- the sensitivity of delta to volatility, equivalently the sensitivity of vega to spot. The vanna is
+
+    $$
+    \frac{\partial^2 \Pi}{\partial S \, \partial \sigma}
+    $$
+
+    Under local volatility with $\rho = -1$, every spot move produces a perfectly predictable vol move, so the vanna exposure is hedged as part of the delta hedge. Under the true dynamics with $\rho = -0.7$, the vol move accompanying a spot move is smaller and noisier, so the vanna hedge ratios computed from local volatility are wrong.
+
+    The Greek most affected is **vanna** (and relatedly, the volga -- second derivative of price with respect to implied vol). The LV model overestimates the correlation-driven component of vanna hedging and ignores the independent vol risk, leading to hedging errors when volatility moves independently of the spot.
+
 ---
 
 **Exercise 7.** Stochastic local volatility (SLV) models aim to combine the static calibration of local volatility with the dynamic realism of stochastic volatility. Describe the tradeoff: what is gained and what is lost in terms of (a) model complexity, (b) calibration effort, (c) pricing accuracy for vanillas, and (d) pricing accuracy for exotics?
+
+??? success "Solution to Exercise 7"
+    **(a) Model complexity.** Local volatility requires one function $\sigma_{\text{loc}}(S, t)$ on a 2D grid. Stochastic volatility adds parameters ($\kappa, \theta, \xi, \rho, v_0$) and a second state variable. SLV requires both the SV parameters and the leverage function $L(S, t)$, making it the most complex with two state variables plus a calibrated surface. Complexity increases from LV to SV to SLV.
+
+    **(b) Calibration effort.** LV calibration is straightforward via Dupire's formula (essentially differentiating the option price surface). SV requires nonlinear optimization over a small parameter space but may not achieve exact fit. SLV calibration is the most demanding: it requires iterative Monte Carlo (particle method) to estimate the conditional expectation $\mathbb{E}[v_t \mid S_t = K]$ and compute the leverage function, often requiring multiple simulation passes to converge.
+
+    **(c) Pricing accuracy for vanillas.** LV matches all vanilla prices exactly by construction. SV typically achieves a good but imperfect fit, with residual errors at extreme strikes or maturities. SLV matches all vanilla prices exactly (the leverage function absorbs the calibration residual). So LV and SLV are perfect, while SV is approximate.
+
+    **(d) Pricing accuracy for exotics.** LV systematically misprices exotics that depend on forward smiles or smile dynamics (cliquets, barriers, forward-starting options). SV produces more realistic exotic prices due to genuine vol-of-vol and proper forward smiles, but calibration imperfections in the vanilla surface can propagate to exotic prices. SLV combines exact vanilla calibration with realistic dynamics, producing the most accurate exotic prices. The gain is significant for forward-smile-dependent products (10--30% pricing improvement over LV), at the cost of the additional calibration and computational complexity.

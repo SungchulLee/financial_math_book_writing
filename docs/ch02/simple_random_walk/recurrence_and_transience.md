@@ -122,30 +122,6 @@ The recurrence/transience dichotomy has consequences far beyond the random walk:
 
 **Exercise 1.** Using Stirling's approximation, show that $u_{2n} = \binom{2n}{n} 2^{-2n} \sim \frac{1}{\sqrt{\pi n}}$ for large $n$. Give explicit upper and lower bounds on $u_{2n}$ that hold for all $n \geq 1$.
 
----
-
-**Exercise 2.** For the 1D symmetric random walk, the first-return probability generating function satisfies $F(s) = 1 - 1/U(s)$. Using $u_{2n} \sim (\pi n)^{-1/2}$, show that $U(1) = \infty$ and hence $F(1) = 1$, confirming recurrence. Then compute $f_{2n}$ (the probability of first return at time $2n$) for $n = 1, 2, 3$ directly and verify $f_2 = 1/2$, $f_4 = 1/8$, $f_6 = 1/16$.
-
----
-
-**Exercise 3.** For the asymmetric walk with $p = 0.6$, the Strong Law of Large Numbers gives $S_n/n \to 0.2$ a.s. Use this to show that $\mathbb{P}(S_n = 0 \text{ for infinitely many } n) = 0$. Does this argument require Stirling's approximation?
-
----
-
-**Exercise 4.** In $d = 2$, the return probability is $u_{2n}^{(2)} \sim \frac{1}{\pi n}$. The series $\sum_{n=1}^N u_{2n}^{(2)} \sim \frac{1}{\pi}\log N$ diverges, but slowly. Estimate the number of steps needed before the expected number of returns to the origin reaches 10. Compare this with $d = 1$, where $\sum_{n=1}^N u_{2n}^{(1)} \sim \frac{2}{\sqrt{\pi}}\sqrt{N}$.
-
----
-
-**Exercise 5.** In $d = 3$, the return probability is $F^{(3)}(1) \approx 0.340537$. Using the renewal relation $U(1) = 1/(1 - F(1))$, compute the expected total number of visits to the origin $U^{(3)}(1)$. What does this tell you about the "average number of times the 3D walk returns home"?
-
----
-
-**Exercise 6.** Prove that the $d$-dimensional random walk on $\mathbb{Z}^d$ with $d \geq 3$ is transient by using a generating function argument rather than Stirling's approximation. Specifically, show that $u_{2n}^{(d)} \leq (u_{2n}^{(1)})^d \cdot d^n / 1 = C \cdot n^{-d/2}$ for some constant $C$, and deduce that $\sum_n u_{2n}^{(d)} < \infty$ when $d \geq 3$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     By Stirling's approximation, $n! \sim \sqrt{2\pi n}(n/e)^n$, so:
 
@@ -169,6 +145,10 @@ The recurrence/transience dichotomy has consequences far beyond the random walk:
 
     These bounds give $\frac{1}{2\sqrt{n}} \leq u_{2n} \leq \frac{1}{\sqrt{\pi n}}$ for all $n \geq 1$.
 
+---
+
+**Exercise 2.** For the 1D symmetric random walk, the first-return probability generating function satisfies $F(s) = 1 - 1/U(s)$. Using $u_{2n} \sim (\pi n)^{-1/2}$, show that $U(1) = \infty$ and hence $F(1) = 1$, confirming recurrence. Then compute $f_{2n}$ (the probability of first return at time $2n$) for $n = 1, 2, 3$ directly and verify $f_2 = 1/2$, $f_4 = 1/8$, $f_6 = 1/16$.
+
 ??? success "Solution to Exercise 2"
     From the solution above, $u_{2n} \sim (\pi n)^{-1/2}$. Therefore:
 
@@ -188,6 +168,10 @@ The recurrence/transience dichotomy has consequences far beyond the random walk:
 
     This confirms $f_2 = 1/2$, $f_4 = 1/8$, $f_6 = 1/16$.
 
+---
+
+**Exercise 3.** For the asymmetric walk with $p = 0.6$, the Strong Law of Large Numbers gives $S_n/n \to 0.2$ a.s. Use this to show that $\mathbb{P}(S_n = 0 \text{ for infinitely many } n) = 0$. Does this argument require Stirling's approximation?
+
 ??? success "Solution to Exercise 3"
     By the Strong Law of Large Numbers, $S_n/n \to 2p - 1 = 0.2$ almost surely. In particular, for large enough $n$, $|S_n| > 0.1n$ with probability 1, so $S_n \neq 0$ for all sufficiently large $n$.
 
@@ -198,6 +182,10 @@ The recurrence/transience dichotomy has consequences far beyond the random walk:
     $$
 
     This argument does **not** require Stirling's approximation — it only uses the Strong Law of Large Numbers, which is a consequence of independence and finite variance.
+
+---
+
+**Exercise 4.** In $d = 2$, the return probability is $u_{2n}^{(2)} \sim \frac{1}{\pi n}$. The series $\sum_{n=1}^N u_{2n}^{(2)} \sim \frac{1}{\pi}\log N$ diverges, but slowly. Estimate the number of steps needed before the expected number of returns to the origin reaches 10. Compare this with $d = 1$, where $\sum_{n=1}^N u_{2n}^{(1)} \sim \frac{2}{\sqrt{\pi}}\sqrt{N}$.
 
 ??? success "Solution to Exercise 4"
     In $d = 2$, we need $\sum_{n=1}^{N} u_{2n}^{(2)} \approx 10$. Using $u_{2n}^{(2)} \sim 1/(\pi n)$:
@@ -212,6 +200,10 @@ The recurrence/transience dichotomy has consequences far beyond the random walk:
 
     The 2D walk is recurrent but returns to the origin extraordinarily slowly compared to 1D: roughly $10^{14}$ steps versus $10^2$ steps for the same expected number of returns.
 
+---
+
+**Exercise 5.** In $d = 3$, the return probability is $F^{(3)}(1) \approx 0.340537$. Using the renewal relation $U(1) = 1/(1 - F(1))$, compute the expected total number of visits to the origin $U^{(3)}(1)$. What does this tell you about the "average number of times the 3D walk returns home"?
+
 ??? success "Solution to Exercise 5"
     Using the renewal relation $U^{(3)}(1) = 1/(1 - F^{(3)}(1))$:
 
@@ -220,6 +212,10 @@ The recurrence/transience dichotomy has consequences far beyond the random walk:
     $$
 
     The expected total number of visits to the origin (including the initial visit at time 0) is $U^{(3)}(1) \approx 1.516$. This means the 3D walk visits the origin on average only about 0.516 additional times after the start — it typically wanders away and never comes back. This is in stark contrast with $d = 1$ and $d = 2$, where the expected number of returns is infinite.
+
+---
+
+**Exercise 6.** Prove that the $d$-dimensional random walk on $\mathbb{Z}^d$ with $d \geq 3$ is transient by using a generating function argument rather than Stirling's approximation. Specifically, show that $u_{2n}^{(d)} \leq (u_{2n}^{(1)})^d \cdot d^n / 1 = C \cdot n^{-d/2}$ for some constant $C$, and deduce that $\sum_n u_{2n}^{(d)} < \infty$ when $d \geq 3$.
 
 ??? success "Solution to Exercise 6"
     The $d$-dimensional walk at time $2n$ returns to the origin only if it returns to 0 in each coordinate. At each step, the walk chooses one of $2d$ directions uniformly. Consider the $2n$ steps: exactly $n_j$ steps move in the $+e_j$ direction and $n_j$ steps in the $-e_j$ direction for coordinate $j$, with $\sum_{j=1}^d 2n_j = 2n$, i.e., $\sum_{j=1}^d n_j = n$.

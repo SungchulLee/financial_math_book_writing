@@ -918,22 +918,305 @@ The theory continues to develop rapidly, with ongoing research addressing comput
 
 **Exercise 1.** A standard BSDE has the form $-dY_t = f(t, Y_t, Z_t) \, dt - Z_t \, dW_t$ with terminal condition $Y_T = \xi$. Explain the key difference between a BSDE and a 2BSDE, which has the form $-dY_t = f(t, Y_t, Z_t, \hat{a}_t) \, dt - Z_t \, dW_t$ where $\hat{a}_t$ represents the uncertain quadratic variation. Why does the 2BSDE require a family of probability measures rather than a single one?
 
+??? success "Solution to Exercise 1"
+
+    **Key difference between BSDEs and 2BSDEs.**
+
+    In a standard BSDE, the driving noise is a Brownian motion $W_t$ on a fixed probability space $(\Omega, \mathcal{F}, P)$, and the quadratic variation is deterministic: $d\langle W \rangle_t = dt$. The generator $f(t, Y_t, Z_t)$ depends only on the value process $Y_t$ and the control process $Z_t$. The solution $(Y_t, Z_t)$ is computed under the single measure $P$.
+
+    In a 2BSDE, the generator $f(t, Y_t, Z_t, \hat{a}_t)$ depends additionally on $\hat{a}_t$, which represents the (uncertain) quadratic variation of the canonical process. The equation takes the form:
+
+    $$
+    -dY_t = f(t, Y_t, Z_t, \hat{a}_t) \, dt - Z_t \, dW_t
+    $$
+
+    where $\hat{a}_t = d\langle W \rangle_t / dt$ is no longer fixed at 1 but can vary within bounds $[\underline{a}, \overline{a}]$.
+
+    **Why a family of probability measures is required.** Under a single probability measure $P$, the quadratic variation of the canonical process is determined. To capture uncertainty in the quadratic variation (i.e., volatility uncertainty), one must consider a family $\mathcal{P}$ of probability measures, each corresponding to a different volatility scenario. Under measure $P^\alpha \in \mathcal{P}$, the canonical process has quadratic variation $\hat{a}^\alpha_t \, dt$ with $\hat{a}^\alpha_t \in [\underline{a}, \overline{a}]$.
+
+    The 2BSDE solution is then defined as:
+
+    $$
+    Y_t = \sup_{P \in \mathcal{P}} E_P\left[\xi + \int_t^T f(s, Y_s, Z_s, \hat{a}_s) \, ds \bigg| \mathcal{F}_t\right]
+    $$
+
+    The supremum over $\mathcal{P}$ encodes the worst-case evaluation over all admissible volatility scenarios. This is fundamentally different from a standard BSDE, where only a single measure is used, and it is precisely this feature that connects 2BSDEs to fully nonlinear (rather than semilinear) PDEs.
+
 ---
 
 **Exercise 2.** For the linear BSDE $-dY_t = (\alpha Y_t + \beta Z_t) \, dt - Z_t \, dW_t$ with $Y_T = \xi$, show that the solution is $Y_t = \mathbb{E}_t^{\mathbb{Q}}[e^{-\alpha(T-t)}\xi]$ where $\mathbb{Q}$ is the measure under which $\tilde{W}_t = W_t - \beta t$ is a Brownian motion. Then explain why no such simple representation exists for the nonlinear generator in a 2BSDE.
+
+??? success "Solution to Exercise 2"
+
+    **Solving the linear BSDE.**
+
+    Consider the BSDE:
+
+    $$
+    -dY_t = (\alpha Y_t + \beta Z_t) \, dt - Z_t \, dW_t, \quad Y_T = \xi
+    $$
+
+    Define $\tilde{W}_t = W_t - \beta t$ and let $\mathbb{Q}$ be the measure under which $\tilde{W}_t$ is a Brownian motion, given by Girsanov's theorem with Radon-Nikodym derivative:
+
+    $$
+    \frac{d\mathbb{Q}}{dP}\bigg|_{\mathcal{F}_t} = \mathcal{E}\left(\int_0^t \beta \, dW_s\right) = \exp\left(\beta W_t - \frac{\beta^2}{2}t\right)
+    $$
+
+    Under $\mathbb{Q}$, the BSDE becomes:
+
+    $$
+    -dY_t = \alpha Y_t \, dt - Z_t \, d\tilde{W}_t
+    $$
+
+    since $Z_t \, dW_t = Z_t \, d\tilde{W}_t + \beta Z_t \, dt$. Now define $\hat{Y}_t = e^{\alpha t} Y_t$. By the product rule:
+
+    $$
+    d\hat{Y}_t = \alpha e^{\alpha t} Y_t \, dt + e^{\alpha t} \, dY_t = \alpha e^{\alpha t} Y_t \, dt + e^{\alpha t}(-\alpha Y_t \, dt + Z_t \, d\tilde{W}_t) = e^{\alpha t} Z_t \, d\tilde{W}_t
+    $$
+
+    So $\hat{Y}_t$ is a $\mathbb{Q}$-martingale. Taking conditional expectations:
+
+    $$
+    e^{\alpha t} Y_t = E_\mathbb{Q}[e^{\alpha T} Y_T | \mathcal{F}_t] = E_\mathbb{Q}[e^{\alpha T} \xi | \mathcal{F}_t]
+    $$
+
+    Therefore:
+
+    $$
+    Y_t = E_\mathbb{Q}\left[e^{-\alpha(T-t)} \xi \bigg| \mathcal{F}_t\right]
+    $$
+
+    At $t = 0$, this gives $\mathcal{E}_g[\xi] = Y_0 = E_\mathbb{Q}[e^{-\alpha T} \xi]$.
+
+    **Why no such representation exists for 2BSDEs.** The linear BSDE admits this closed-form representation because the generator $g(t, y, z) = \alpha y + \beta z$ is linear in $(y, z)$. Linearity allows a single measure change (Girsanov) to absorb the generator entirely, reducing the problem to a classical expectation.
+
+    In a 2BSDE, the generator $F(t, y, z, \gamma)$ depends nonlinearly on the second-order term $\gamma$, which interacts with the uncertain quadratic variation. The nonlinearity means:
+
+    1. No single measure change can absorb $F$ --- one would need different measures for different values of $\gamma$.
+    2. The supremum over measures $\mathcal{P}$ is intrinsic to the problem and cannot be reduced to evaluation under a single measure.
+    3. The associated PDE is fully nonlinear, not semilinear, so the classical Feynman-Kac representation (which works for linear and semilinear PDEs) does not apply directly.
 
 ---
 
 **Exercise 3.** The Soner-Touzi-Zhang wellposedness result for 2BSDEs requires the generator to satisfy certain regularity conditions. State these conditions and explain their financial interpretation. In particular, why is the Lipschitz condition on the generator important for ensuring the uniqueness of the robust derivative price?
 
+??? success "Solution to Exercise 3"
+
+    **Soner-Touzi-Zhang well-posedness conditions.**
+
+    The well-posedness result for 2BSDEs requires the generator $F(t, y, z, \gamma)$ to satisfy:
+
+    **(C1) Monotonicity in $\gamma$**: $F$ is decreasing in $\gamma$ in the sense that for $\gamma_1 \leq \gamma_2$ (in the positive semidefinite ordering):
+
+    $$
+    F(t, y, z, \gamma_1) \geq F(t, y, z, \gamma_2)
+    $$
+
+    **(C2) Lipschitz continuity in $(y, z)$**: There exists a constant $K > 0$ such that for all $(t, \gamma)$:
+
+    $$
+    |F(t, y_1, z_1, \gamma) - F(t, y_2, z_2, \gamma)| \leq K(|y_1 - y_2| + |z_1 - z_2|)
+    $$
+
+    **(C3) Uniform boundedness**: $|F(t, 0, 0, \gamma)| \leq C$ for some constant $C$, uniformly in $(t, \gamma)$.
+
+    **Financial interpretation of each condition:**
+
+    - **Monotonicity in $\gamma$ (C1)**: In the context of uncertain volatility, higher gamma exposure (larger $\gamma$) means the portfolio is more exposed to volatility moves. The monotonicity condition says that increasing gamma exposure decreases the generator, which corresponds to the fact that the worst-case cost of volatility uncertainty is higher when gamma is larger. This ensures that the optimization over volatility scenarios has a well-defined structure --- nature's choice of volatility is adversarial and consistent.
+
+    - **Lipschitz condition (C2)**: This ensures that small perturbations in the portfolio value $y$ or hedging strategy $z$ lead to small changes in the generator. Financially, this means that the pricing rule is stable: nearby portfolios or hedging strategies produce nearby prices. Without this condition, two nearly identical derivative positions could have vastly different robust prices, which would be economically unreasonable. For uniqueness, the Lipschitz condition provides the contraction property needed for the Picard iteration to converge to a unique fixed point, ensuring that the robust derivative price is unique.
+
+    - **Boundedness (C3)**: This ensures that the generator does not explode when the position is zero, preventing degenerate solutions. Financially, it means the cost of model uncertainty for a zero position is finite.
+
+    The **Lipschitz condition is particularly important for uniqueness** because it ensures that the mapping from terminal conditions to initial values (the pricing operator) is a contraction. Without it, multiple solutions to the 2BSDE could exist, meaning the robust derivative price would be ambiguous --- there would be multiple values that are self-consistently "robust," undermining the usefulness of the framework.
+
 ---
 
 **Exercise 4.** Show that the superhedging price under uncertain volatility $\sigma_t \in [\underline{\sigma}, \overline{\sigma}]$ can be characterized as the solution of a 2BSDE with generator $f(t, y, z, a) = -rz + \frac{1}{2}\overline{\sigma}^2 |z|^2 \mathbb{1}_{z \geq 0} + \frac{1}{2}\underline{\sigma}^2 |z|^2 \mathbb{1}_{z < 0}$. Verify that this reduces to the BSB equation in the Markovian case.
+
+??? success "Solution to Exercise 4"
+
+    **Characterization of the superhedging price via 2BSDE.**
+
+    Consider a stock $S_t$ with uncertain volatility $\sigma_t \in [\underline{\sigma}, \overline{\sigma}]$. Under risk-neutral pricing, the stock dynamics are $dS_t = rS_t \, dt + \sigma_t S_t \, dW_t$. The superhedging price is:
+
+    $$
+    V_t = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} E^\sigma\left[e^{-r(T-t)} \Phi(S_T) \bigg| \mathcal{F}_t\right]
+    $$
+
+    The 2BSDE formulation is: find $(Y_t, Z_t)$ such that
+
+    $$
+    Y_t = e^{-rT}\Phi(S_T) + \int_t^T f(s, Y_s, Z_s, \hat{a}_s) \, ds - \int_t^T Z_s \, dW_s
+    $$
+
+    where $\hat{a}_t = \sigma_t^2$ is the uncertain quadratic variation rate and the generator is:
+
+    $$
+    f(t, y, z, a) = -ry + \frac{1}{2}a|z|^2 \cdot \text{(sign-dependent term)}
+    $$
+
+    More precisely, let us work in log-stock coordinates. The superhedging price $V(t, S)$ satisfies the BSB equation:
+
+    $$
+    \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^{*2} S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
+    $$
+
+    where $\sigma^{*2} = \overline{\sigma}^2$ when $\Gamma = \partial^2 V / \partial S^2 > 0$ and $\sigma^{*2} = \underline{\sigma}^2$ when $\Gamma < 0$.
+
+    In the 2BSDE framework with $Y_t = V(t, S_t)$ and $Z_t = S_t \frac{\partial V}{\partial S}(t, S_t)$, the generator can be written as:
+
+    $$
+    f(t, y, z, a) = -ry + \frac{1}{2}a \cdot \Gamma_t S_t^2
+    $$
+
+    where nature chooses $a = \overline{\sigma}^2$ if $\Gamma_t > 0$ and $a = \underline{\sigma}^2$ if $\Gamma_t < 0$. This is equivalently:
+
+    $$
+    f(t, y, z, \Gamma) = -ry + \frac{1}{2}\overline{\sigma}^2 S^2 \Gamma^+ - \frac{1}{2}\underline{\sigma}^2 S^2 \Gamma^-
+    $$
+
+    where $\Gamma^+ = \max(\Gamma, 0)$ and $\Gamma^- = \max(-\Gamma, 0)$.
+
+    **Reduction to BSB equation in the Markovian case.** If $Y_t = u(t, S_t)$ for a smooth function $u$, then by Ito's formula:
+
+    $$
+    dY_t = \left(\frac{\partial u}{\partial t} + rS\frac{\partial u}{\partial S} + \frac{1}{2}\sigma_t^2 S^2 \frac{\partial^2 u}{\partial S^2}\right) dt + \sigma_t S \frac{\partial u}{\partial S} \, dW_t
+    $$
+
+    Matching with the 2BSDE dynamics and optimizing over $\sigma_t$ yields:
+
+    $$
+    \frac{\partial u}{\partial t} + rS\frac{\partial u}{\partial S} + \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 u}{\partial S^2} - ru = 0
+    $$
+
+    The supremum selects $\overline{\sigma}$ when $\frac{\partial^2 u}{\partial S^2} > 0$ and $\underline{\sigma}$ when $\frac{\partial^2 u}{\partial S^2} < 0$, which is precisely the Black-Scholes-Barenblatt equation with terminal condition $u(T, S) = \Phi(S)$.
 
 ---
 
 **Exercise 5.** Describe a numerical scheme for solving 2BSDEs based on the branching diffusion method or the deep learning approach. For the deep learning approach, explain how the neural network parameterizes the control $Z_t$ and how the loss function enforces the terminal condition $Y_T = \xi$ and the dynamics. What are the main computational challenges compared to standard BSDEs?
 
+??? success "Solution to Exercise 5"
+
+    **Deep learning approach for solving 2BSDEs.**
+
+    The deep learning method for 2BSDEs, extending the approach of Han, Jentzen, and E (2018) for standard BSDEs, parameterizes the solution using neural networks and trains by minimizing a loss that enforces the 2BSDE dynamics and terminal condition.
+
+    **Neural network parameterization.** Discretize $[0, T]$ into $N$ time steps $0 = t_0 < t_1 < \cdots < t_N = T$ with $\Delta t = T/N$. The unknowns are:
+
+    - $Y_0 \in \mathbb{R}$: the initial value (a trainable scalar)
+    - $Z_{t_i} = f_{\theta_Z^i}(t_i, X_{t_i})$: neural networks approximating the control process at each time step
+    - $\Gamma_{t_i} = f_{\theta_\Gamma^i}(t_i, X_{t_i})$: neural networks approximating the second-order process
+
+    **Forward simulation.** Simulate the state process $X_t$ forward:
+
+    $$
+    X_{t_{i+1}} = X_{t_i} + b(t_i, X_{t_i})\Delta t + \sigma_{t_i} \Delta W_i
+    $$
+
+    where $\sigma_{t_i}$ is chosen adversarially based on $\Gamma_{t_i}$:
+
+    $$
+    \sigma_{t_i}^* = \arg\sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \frac{1}{2}\sigma^2 \Gamma_{t_i}
+    $$
+
+    **Backward iteration.** Update $Y$ using the Euler discretization of the 2BSDE:
+
+    $$
+    Y_{t_{i+1}} = Y_{t_i} - F(t_i, Y_{t_i}, Z_{t_i}, \Gamma_{t_i})\Delta t + Z_{t_i} \Delta W_i
+    $$
+
+    **Loss function.** The loss enforces the terminal condition:
+
+    $$
+    \mathcal{L}(\theta) = E\left[\left|Y_{t_N} - \xi(X_{t_N})\right|^2\right]
+    $$
+
+    where $Y_{t_N}$ is obtained by iterating the discrete dynamics forward from $Y_0$ using the neural network approximations.
+
+    An alternative, more robust loss includes both terminal mismatch and dynamics residual:
+
+    $$
+    \mathcal{L}(\theta) = E\left[\left|Y_{t_N} - \xi\right|^2 + \lambda \sum_{i=0}^{N-1} \left|Y_{t_{i+1}} - Y_{t_i} + F(t_i, Y_{t_i}, Z_{t_i}, \Gamma_{t_i})\Delta t - Z_{t_i}\Delta W_i\right|^2\right]
+    $$
+
+    **Optimization.** Use stochastic gradient descent (Adam optimizer) with mini-batches of simulated paths. At each training iteration:
+
+    1. Sample a batch of $M$ Brownian paths $\{\Delta W_i^{(m)}\}$
+    2. Forward propagate to compute $\{Y_{t_N}^{(m)}\}$
+    3. Compute loss and backpropagate
+    4. Update parameters $\theta$
+
+    **Main computational challenges compared to standard BSDEs:**
+
+    1. **Optimization over measures**: At each time step, the worst-case volatility must be determined based on $\Gamma_{t_i}$. This inner optimization adds computational cost and can introduce instability.
+
+    2. **Second-order process $\Gamma_t$**: Approximating $\Gamma_t$ requires either an additional neural network (increasing the parameter space) or computing second derivatives of $Y$ with respect to $X$ (requiring higher-order automatic differentiation).
+
+    3. **Non-convexity**: The loss landscape for 2BSDEs is more complex due to the interplay between the adversarial volatility choice and the neural network parameters, making convergence slower and less reliable.
+
+    4. **Stability**: The supremum over measures can amplify numerical errors. Small errors in $\Gamma_t$ can lead to incorrect volatility selection, which propagates and accumulates over time steps.
+
+    5. **Curse of dimensionality for the measure space**: While neural networks handle high-dimensional state spaces well, the optimization over the measure space $\mathcal{P}$ adds an additional layer of complexity absent in standard BSDEs.
+
 ---
 
 **Exercise 6.** The connection between 2BSDEs and fully nonlinear PDEs is established through the nonlinear Feynman-Kac formula. State this formula and explain how the solution $u(t, x)$ of the fully nonlinear PDE $\partial_t u + G(D^2 u) = 0$ with $G(A) = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]}\frac{1}{2}\sigma^2 A$ is related to the 2BSDE solution. Why is the viscosity solution concept necessary here?
+
+??? success "Solution to Exercise 6"
+
+    **Nonlinear Feynman-Kac formula for 2BSDEs.**
+
+    **Statement.** Let $(Y_t, Z_t, \Gamma_t)$ be the solution of a 2BSDE with generator $F(t, y, z, \gamma)$ and terminal condition $\xi = \Phi(X_T)$, where $X_t$ is a state process. If $Y_t = u(t, X_t)$ for a function $u: [0,T] \times \mathbb{R}^d \to \mathbb{R}$, then $u$ is the unique viscosity solution of the fully nonlinear PDE:
+
+    $$
+    \frac{\partial u}{\partial t}(t, x) + \sup_{\sigma \in \Sigma}\left\{\frac{1}{2}\text{tr}[\sigma\sigma^\top D^2 u(t,x)] + \mu(t,x) \cdot \nabla u(t,x)\right\} + f(t, u, \sigma^\top \nabla u) = 0
+    $$
+
+    with terminal condition $u(T, x) = \Phi(x)$.
+
+    **Application to the G-heat equation.** For the specific case where $F(t, y, z, \gamma) = G(\gamma)$ with:
+
+    $$
+    G(A) = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \frac{1}{2}\sigma^2 A = \frac{1}{2}\overline{\sigma}^2 A^+ - \frac{1}{2}\underline{\sigma}^2 A^-
+    $$
+
+    the associated PDE is:
+
+    $$
+    \frac{\partial u}{\partial t} + G\left(\frac{\partial^2 u}{\partial x^2}\right) = 0
+    $$
+
+    The 2BSDE solution $Y_t = u(t, B_t)$ where $B_t$ is the G-Brownian motion satisfies:
+
+    $$
+    Y_t = \sup_{P \in \mathcal{P}_G} E_P[\Phi(B_T) | \mathcal{F}_t]
+    $$
+
+    The connection is established as follows. Apply the G-Ito formula to $u(t, B_t)$:
+
+    $$
+    du(t, B_t) = \frac{\partial u}{\partial t} \, dt + \frac{\partial u}{\partial x} \, dB_t + \frac{1}{2}\frac{\partial^2 u}{\partial x^2} \, d\langle B \rangle_t
+    $$
+
+    Since $d\langle B \rangle_t = \hat{a}_t \, dt$ with $\hat{a}_t \in [\underline{\sigma}^2, \overline{\sigma}^2]$, the PDE condition $\partial_t u + G(\partial_{xx} u) = 0$ ensures that:
+
+    $$
+    \frac{\partial u}{\partial t} + \frac{1}{2}\hat{a}_t \frac{\partial^2 u}{\partial x^2} \leq 0
+    $$
+
+    for all admissible $\hat{a}_t$, with equality attained by the worst-case choice. This makes $u(t, B_t)$ a G-supermartingale that achieves its supremum, connecting the PDE solution to the 2BSDE value process.
+
+    Identifying $Z_t = \frac{\partial u}{\partial x}(t, B_t)$ and $\Gamma_t = \frac{\partial^2 u}{\partial x^2}(t, B_t)$ completes the correspondence: $(Y_t, Z_t, \Gamma_t)$ solves the 2BSDE if and only if $u$ solves the fully nonlinear PDE.
+
+    **Why the viscosity solution concept is necessary.** The viscosity solution framework is essential for several reasons:
+
+    1. **Lack of classical regularity**: The PDE $\partial_t u + G(D^2 u) = 0$ is fully nonlinear. Unlike semilinear PDEs arising from standard BSDEs, classical (smooth) solutions may not exist. For example, when the payoff $\Phi$ is not smooth (e.g., a call option payoff $(x - K)^+$), the solution $u$ inherits this lack of smoothness.
+
+    2. **Discontinuous coefficients**: The function $G(A) = \frac{1}{2}\overline{\sigma}^2 A^+ - \frac{1}{2}\underline{\sigma}^2 A^-$ has a kink at $A = 0$. When $D^2 u$ changes sign, the PDE effectively switches between two different equations, and the solution may not be $C^2$ at the switching boundary.
+
+    3. **Comparison principle and uniqueness**: Viscosity solution theory provides a comparison principle for fully nonlinear PDEs: if $u$ is a viscosity subsolution and $v$ is a viscosity supersolution with $u(T, \cdot) \leq v(T, \cdot)$, then $u \leq v$ on $[0, T] \times \mathbb{R}^d$. This is the key tool for establishing uniqueness of the 2BSDE solution.
+
+    4. **Stability under approximation**: Viscosity solutions are stable under uniform convergence of approximating equations, which is crucial for the convergence of numerical schemes (finite differences, Monte Carlo) to the true solution.
+
+    Without the viscosity solution concept, one could neither guarantee existence of a solution to the PDE in general nor prove uniqueness, and the Feynman-Kac connection between the 2BSDE and the PDE would break down.

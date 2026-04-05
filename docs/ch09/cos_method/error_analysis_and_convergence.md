@@ -220,22 +220,203 @@ The COS method's error structure is clean and well-understood:
 
 **Exercise 1.** The total COS error satisfies $|V - V_{\text{COS}}| \leq \varepsilon_1 + \varepsilon_2$, where $\varepsilon_1$ is the truncation error and $\varepsilon_2$ is the series truncation error. For the Heston model with $L = 10$ and $N = 128$, the text states $\varepsilon_1 < 10^{-15}$ and $\varepsilon_2 \approx 10^{-11}$. Verify that the total error is dominated by $\varepsilon_2$ and determine how large $N$ must be to make $\varepsilon_2 < 10^{-15}$.
 
+??? success "Solution to Exercise 1"
+    With $\varepsilon_1 < 10^{-15}$ and $\varepsilon_2 \approx 10^{-11}$:
+
+    $$
+    |V - V_{\text{COS}}| \leq \varepsilon_1 + \varepsilon_2 < 10^{-15} + 10^{-11} \approx 10^{-11}
+    $$
+
+    The total error is dominated by $\varepsilon_2$ since $\varepsilon_1/\varepsilon_2 < 10^{-15}/10^{-11} = 10^{-4}$, making the truncation error contribution negligible.
+
+    To find $N$ such that $\varepsilon_2 < 10^{-15}$: From the convergence data, the Heston model shows exponential convergence $\varepsilon_2 \sim e^{-cN}$. Using two data points from the table:
+
+    - $N = 64$: $\varepsilon_2 \approx 10^{-7}$
+    - $N = 128$: $\varepsilon_2 \approx 10^{-11}$
+
+    From $e^{-64c} \cdot K \approx 10^{-7}$ and $e^{-128c}\cdot K \approx 10^{-11}$, dividing: $e^{-64c} = 10^{-4}$, so $c = 4\ln 10/64 \approx 0.1439$.
+
+    For $\varepsilon_2 < 10^{-15}$: Using the relationship $\varepsilon_2(N) = \varepsilon_2(128)\cdot e^{-c(N-128)}$:
+
+    $$
+    10^{-11}\cdot e^{-0.1439(N-128)} < 10^{-15}
+    $$
+
+    $$
+    e^{-0.1439(N-128)} < 10^{-4} \implies 0.1439(N-128) > 4\ln 10 \approx 9.21
+    $$
+
+    $$
+    N - 128 > 64 \implies N > 192
+    $$
+
+    Therefore $N \approx 192$ is needed. Rounding to the next power of 2, $N = 256$ provides a comfortable margin, consistent with the table showing $\varepsilon_2 \approx 10^{-15}$ at $N = 256$.
+
 ---
 
 **Exercise 2.** The series truncation error bound uses the Cauchy-Schwarz inequality: $\varepsilon_2 \leq e^{-rT}(\sum_{k=N}^{\infty}A_k^2)^{1/2}(\sum_{k=N}^{\infty}V_k^2)^{1/2}$. For a call payoff, the payoff coefficients decay as $V_k = O(1/k^2)$. If the density coefficients decay as $|A_k| \leq Ce^{-\beta k\pi/(b-a)}$, show that the dominant factor in the error bound is the density coefficient tail sum, and derive an explicit bound on $\varepsilon_2$.
+
+??? success "Solution to Exercise 2"
+    For the call payoff, $V_k = O(K/k^2)$ for large $k$ (due to the kink in $(e^x - 1)^+$ at $x = 0$). The payoff coefficient tail sum is:
+
+    $$
+    \sum_{k=N}^{\infty}V_k^2 = O\!\left(\sum_{k=N}^{\infty}\frac{K^2}{k^4}\right) = O\!\left(\frac{K^2}{N^3}\right)
+    $$
+
+    The density coefficient tail sum with exponential decay $|A_k| \leq Ce^{-\beta k\pi/(b-a)}$ is:
+
+    $$
+    \sum_{k=N}^{\infty}A_k^2 \leq C^2\sum_{k=N}^{\infty}e^{-2\beta k\pi/(b-a)} = \frac{C^2 e^{-2\beta N\pi/(b-a)}}{1 - e^{-2\beta\pi/(b-a)}}
+    $$
+
+    Let $\gamma = 2\beta\pi/(b-a)$. This simplifies to $O(e^{-\gamma N})$.
+
+    By Cauchy--Schwarz:
+
+    $$
+    \varepsilon_2 \leq e^{-rT}\left(\sum_{k=N}^{\infty}A_k^2\right)^{1/2}\left(\sum_{k=N}^{\infty}V_k^2\right)^{1/2} = O\!\left(e^{-rT}\cdot e^{-\gamma N/2}\cdot\frac{K}{N^{3/2}}\right)
+    $$
+
+    The dominant factor is $e^{-\gamma N/2} = e^{-\beta N\pi/(b-a)}$, which decays exponentially in $N$. The algebraic factor $N^{-3/2}$ from the payoff coefficients is negligible compared to the exponential decay. Therefore, the density coefficient tail sum is the dominant factor, and:
+
+    $$
+    \varepsilon_2 \leq C' e^{-rT}K\,e^{-\beta N\pi/(b-a)}\,N^{-3/2}
+    $$
+
+    for a constant $C'$. The exponential term dominates, confirming that the convergence rate is determined by the density's analyticity strip width $\beta$.
 
 ---
 
 **Exercise 3.** For the Black-Scholes model, the density is Gaussian (entire function) and the coefficients decay as $|A_k| \sim e^{-ck^2}$ (super-exponential). Using the convergence data in the example ($N = 8$: error $\approx 10^{-3}$; $N = 16$: error $\approx 10^{-6}$; $N = 32$: error $\approx 10^{-11}$), estimate the parameter $c$ in the decay rate and predict the error for $N = 48$.
 
+??? success "Solution to Exercise 3"
+    For super-exponential convergence $\varepsilon_2 \sim e^{-cN^2}$, we can estimate $c$ from the data:
+
+    - $N = 8$: $\varepsilon_2 \approx 2.1\times 10^{-3}$, so $-64c \approx \ln(2.1\times 10^{-3}) = -6.17$, giving $c \approx 0.0964$
+    - $N = 16$: $\varepsilon_2 \approx 3.5\times 10^{-6}$, so $-256c \approx \ln(3.5\times 10^{-6}) = -12.56$, giving $c \approx 0.0491$
+    - $N = 32$: $\varepsilon_2 \approx 1.2\times 10^{-11}$, so $-1024c \approx \ln(1.2\times 10^{-11}) = -25.14$, giving $c \approx 0.0246$
+
+    The estimates of $c$ are decreasing because the actual error model is not a pure $e^{-cN^2}$ form---there are sub-leading corrections and the payoff coefficient decay also contributes. Using the two most reliable data points ($N = 16$ and $N = 32$):
+
+    From $e^{-c\cdot 256}/e^{-c\cdot 1024} = 10^{-6}/10^{-11} = 10^5$, so $e^{768c} = 10^5$, giving $c = 5\ln 10/768 \approx 0.01499$.
+
+    **Prediction for $N = 48$:** Using $\varepsilon_2(N) \approx e^{-cN^2}$ with the relationship $\varepsilon_2(48)/\varepsilon_2(32) = e^{-c(2304-1024)} = e^{-1280c}$:
+
+    $$
+    \varepsilon_2(48) \approx 1.2\times 10^{-11}\cdot e^{-1280\times 0.01499} \approx 1.2\times 10^{-11}\cdot e^{-19.19} \approx 1.2\times 10^{-11}\times 4.6\times 10^{-9} \approx 5.5\times 10^{-20}
+    $$
+
+    This is well below machine precision ($\approx 10^{-16}$), so $N = 48$ would effectively achieve machine precision for this Black--Scholes case, consistent with the observation that $N = 32$ already provides 11-digit accuracy.
+
 ---
 
 **Exercise 4.** Explain why narrower truncation intervals (smaller $b - a$) improve the COS convergence rate. If the analyticity strip width is $\beta$ and the interval length is $b - a$, the exponential convergence rate is $e^{-\beta N\pi/(b-a)}$. For the Heston model with $\beta = 0.5$ and two truncation choices $b - a = 5$ and $b - a = 10$, compare the values of $N$ needed to achieve $\varepsilon_2 < 10^{-8}$.
+
+??? success "Solution to Exercise 4"
+    The exponential convergence rate is $\varepsilon_2 \sim e^{-\beta N\pi/(b-a)}$. The ratio $\beta\pi/(b-a)$ appears in the exponent, so a narrower interval (smaller $b-a$) increases this ratio and accelerates convergence.
+
+    **Intuitive explanation:** A narrower interval means the cosine frequencies $\omega_k = k\pi/(b-a)$ are more widely spaced. Since the characteristic function (and hence the density coefficients) decay at a rate determined by $\beta$ in frequency space, wider frequency spacing means that fewer terms are needed before the coefficients become negligible.
+
+    **Quantitative comparison for Heston with $\beta = 0.5$:**
+
+    Case 1: $b - a = 5$. The convergence rate per term is $e^{-0.5\pi/5} = e^{-\pi/10} \approx e^{-0.3142}$. For $\varepsilon_2 < 10^{-8}$:
+
+    $$
+    e^{-0.3142 N} < 10^{-8} \implies N > \frac{8\ln 10}{0.3142} \approx 58.6
+    $$
+
+    So $N \approx 59$ suffices.
+
+    Case 2: $b - a = 10$. The convergence rate per term is $e^{-0.5\pi/10} = e^{-\pi/20} \approx e^{-0.1571}$. For $\varepsilon_2 < 10^{-8}$:
+
+    $$
+    e^{-0.1571 N} < 10^{-8} \implies N > \frac{8\ln 10}{0.1571} \approx 117.2
+    $$
+
+    So $N \approx 118$ is needed.
+
+    Doubling the interval width approximately doubles the required $N$ (from 59 to 118). This confirms that the convergence rate scales inversely with $b - a$, and keeping the interval as narrow as possible (while maintaining negligible truncation error) is optimal.
 
 ---
 
 **Exercise 5.** The convergence study for the Heston model shows each doubling of $N$ adds approximately 3-4 digits of accuracy. Verify this is consistent with exponential convergence $\varepsilon_2 \sim e^{-cN}$ by computing $c$ from the data ($N = 32$: error $\approx 10^{-4}$; $N = 64$: error $\approx 10^{-7}$). What convergence rate would you expect for algebraic convergence $\varepsilon_2 \sim N^{-p}$ with $p = 4$?
 
+??? success "Solution to Exercise 5"
+    From the Heston data: $N = 32$ gives $\varepsilon_2 \approx 10^{-4}$ and $N = 64$ gives $\varepsilon_2 \approx 10^{-7}$.
+
+    **Computing $c$ for exponential convergence $\varepsilon_2 \sim Ke^{-cN}$:**
+
+    $$
+    \frac{\varepsilon_2(32)}{\varepsilon_2(64)} = e^{-32c}/e^{-64c} = e^{32c} = \frac{10^{-4}}{10^{-7}} = 10^3
+    $$
+
+    $$
+    32c = 3\ln 10 \implies c = \frac{3\ln 10}{32} = \frac{6.908}{32} \approx 0.2159
+    $$
+
+    **Verification:** Each doubling of $N$ adds $32c/\ln 10 = 32\times 0.2159/2.3026 \approx 3.0$ decimal digits. The data shows approximately 3 digits gained from $N = 32$ to $64$ ($10^{-4} \to 10^{-7}$) and approximately 4 digits from $N = 64$ to $128$ ($10^{-7} \to 10^{-11}$). The 3--4 digit range per doubling is consistent with $c \approx 0.2$.
+
+    **Algebraic convergence comparison:** For $\varepsilon_2 = C N^{-p}$ with $p = 4$:
+
+    $$
+    \frac{\varepsilon_2(N)}{\varepsilon_2(2N)} = \frac{(2N)^4}{N^4} = 2^4 = 16
+    $$
+
+    Each doubling of $N$ reduces the error by a factor of $2^4 = 16$, which corresponds to $\log_{10}(16) \approx 1.2$ decimal digits. This is much slower than the 3--4 digits per doubling observed for exponential convergence. To go from $10^{-4}$ to $10^{-11}$ (7 digits) with $p = 4$ algebraic convergence would require increasing $N$ by a factor of $10^{7/4} \approx 56$, i.e., from $N = 32$ to $N \approx 1800$---far more than the $N = 128$ needed with exponential convergence.
+
 ---
 
 **Exercise 6.** The practical convergence diagnostic suggests computing $V_N$ and $V_{2N}$ and checking if $|V_{2N} - V_N| < \varepsilon$. Explain why this Richardson-type estimate works for exponentially convergent methods. For algebraic convergence $\varepsilon_2 = O(N^{-p})$, derive the relationship between $|V_{2N} - V_N|$ and the true error $|V_{2N} - V_{\text{exact}}|$.
+
+---
+
+??? success "Solution to Exercise 6"
+    **Why Richardson extrapolation works for exponential convergence:**
+
+    Suppose $V_N = V_{\text{exact}} + Ke^{-cN}$ (leading error term). Then:
+
+    $$
+    V_{2N} - V_N = Ke^{-cN}(e^{-cN} - 1) = -Ke^{-cN}(1 - e^{-cN})
+    $$
+
+    The true error at $2N$ is $V_{2N} - V_{\text{exact}} = Ke^{-2cN}$. The ratio:
+
+    $$
+    \frac{|V_{2N} - V_{\text{exact}}|}{|V_{2N} - V_N|} = \frac{e^{-2cN}}{e^{-cN}(1 - e^{-cN})} = \frac{e^{-cN}}{1 - e^{-cN}}
+    $$
+
+    For large $cN$ (which holds when the method is converging well), $e^{-cN} \ll 1$, so:
+
+    $$
+    |V_{2N} - V_{\text{exact}}| \approx e^{-cN}\cdot|V_{2N} - V_N| \ll |V_{2N} - V_N|
+    $$
+
+    This means the true error at $2N$ is exponentially smaller than the difference $|V_{2N} - V_N|$. Therefore, if $|V_{2N} - V_N| < \varepsilon$, the true error is much smaller than $\varepsilon$, making $|V_{2N} - V_N|$ a conservative error estimate.
+
+    **Algebraic convergence case:** Suppose $V_N = V_{\text{exact}} + C N^{-p}$. Then:
+
+    $$
+    V_{2N} - V_N = C(2N)^{-p} - CN^{-p} = CN^{-p}(2^{-p} - 1)
+    $$
+
+    The true error at $2N$ is:
+
+    $$
+    V_{2N} - V_{\text{exact}} = C(2N)^{-p} = CN^{-p}\cdot 2^{-p}
+    $$
+
+    The ratio:
+
+    $$
+    \frac{|V_{2N} - V_{\text{exact}}|}{|V_{2N} - V_N|} = \frac{2^{-p}}{1 - 2^{-p}}
+    $$
+
+    This is a constant (independent of $N$). For $p = 4$: $2^{-4}/(1 - 2^{-4}) = (1/16)/(15/16) = 1/15$.
+
+    Therefore, for algebraic convergence with $p = 4$:
+
+    $$
+    |V_{2N} - V_{\text{exact}}| = \frac{1}{15}|V_{2N} - V_N|
+    $$
+
+    The difference $|V_{2N} - V_N|$ overestimates the true error by a factor of 15, which is still a useful (conservative) estimate but not as dramatically conservative as in the exponential case.

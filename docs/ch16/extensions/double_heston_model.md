@@ -279,27 +279,244 @@ Total initial variance: $v_0 = 0.04$ (20% vol). Long-run total variance: $\theta
 **Exercise 1.**
 The double Heston model uses two CIR variance factors: $dv_t^{(1)} = \kappa_1(\theta_1 - v_t^{(1)})dt + \xi_1\sqrt{v_t^{(1)}}dW_t^{(3)}$ and $dv_t^{(2)} = \kappa_2(\theta_2 - v_t^{(2)})dt + \xi_2\sqrt{v_t^{(2)}}dW_t^{(4)}$, with the total variance $v_t = v_t^{(1)} + v_t^{(2)}$. If $v_0^{(1)} = 0.02$, $\kappa_1 = 5.0$, $\theta_1 = 0.02$ (fast factor) and $v_0^{(2)} = 0.02$, $\kappa_2 = 0.5$, $\theta_2 = 0.03$ (slow factor), compute the half-life of each factor and the long-run total variance $\theta_1 + \theta_2$.
 
+??? success "Solution to Exercise 1"
+    The half-life of a mean-reverting CIR process $dv = \kappa(\theta - v)dt + \cdots$ is $t_{1/2} = \ln 2 / \kappa$, since the expected value satisfies $\mathbb{E}[v_t - \theta] = (v_0 - \theta)e^{-\kappa t}$ and the deviation halves when $e^{-\kappa t} = 1/2$.
+
+    **Factor 1 (fast):** $\kappa_1 = 5.0$
+
+    $$
+    t_{1/2}^{(1)} = \frac{\ln 2}{\kappa_1} = \frac{0.6931}{5.0} = 0.1386 \text{ years} \approx 1.7 \text{ months}
+    $$
+
+    **Factor 2 (slow):** $\kappa_2 = 0.5$
+
+    $$
+    t_{1/2}^{(2)} = \frac{\ln 2}{\kappa_2} = \frac{0.6931}{0.5} = 1.3863 \text{ years} \approx 16.6 \text{ months}
+    $$
+
+    **Long-run total variance:**
+
+    $$
+    \theta = \theta_1 + \theta_2 = 0.02 + 0.03 = 0.05
+    $$
+
+    This corresponds to a long-run total volatility of $\sqrt{0.05} \approx 22.4\%$.
+
+    The factor interpretation is clear: Factor 1 reverts to its long-run level in roughly 2 months, making it responsive to short-term volatility shocks but quickly forgotten. Factor 2 reverts over more than a year, governing the persistent component of volatility. The slow factor's larger long-run variance ($\theta_2 = 0.03 > \theta_1 = 0.02$) means the long-term volatility level is primarily determined by Factor 2.
+
 ---
 
 **Exercise 2.**
 The double Heston CF is the product of two single-factor Heston CFs: $\phi_{\text{DH}}(u) = \phi_{\text{H}}^{(1)}(u) \cdot \phi_{\text{H}}^{(2)}(u)$ where each factor uses its own $(\kappa_j, \theta_j, \xi_j, \rho_j, v_0^{(j)})$. Explain why this factorization holds (the two variance processes are independent). What changes if the two Brownian motions $W^{(3)}$ and $W^{(4)}$ are correlated?
+
+??? success "Solution to Exercise 2"
+    The factorization $\phi_{\text{DH}}(u) = \phi_{\text{H}}^{(1)}(u) \cdot \phi_{\text{H}}^{(2)}(u)$ holds because the two variance factors are driven by **independent** Brownian motions.
+
+    **Formal argument:** The log-price can be decomposed as:
+
+    $$
+    X_T = X_0 + (r-q)T - \frac{1}{2}\int_0^T (v_s^{(1)} + v_s^{(2)})ds + \int_0^T \sqrt{v_s^{(1)}} \, dW_s^{(1)} + \int_0^T \sqrt{v_s^{(2)}} \, dW_s^{(3)}
+    $$
+
+    Define the contribution from each factor:
+
+    $$
+    Y^{(j)} = -\frac{1}{2}\int_0^T v_s^{(j)} ds + \int_0^T \sqrt{v_s^{(j)}} \, dW_s^{(2j-1)}
+    $$
+
+    Since $(W^{(1)}, W^{(2)})$ and $(W^{(3)}, W^{(4)})$ are independent pairs, and $v^{(1)}$ depends only on $W^{(2)}$ while $v^{(2)}$ depends only on $W^{(4)}$, the random variables $Y^{(1)}$ and $Y^{(2)}$ are **independent**. Therefore:
+
+    $$
+    \mathbb{E}[e^{iu(Y^{(1)} + Y^{(2)})}] = \mathbb{E}[e^{iuY^{(1)}}] \cdot \mathbb{E}[e^{iuY^{(2)}}]
+    $$
+
+    Each factor is simply a Heston-type contribution evaluated with its own parameters.
+
+    **If $W^{(2)}$ and $W^{(4)}$ were correlated** (say $d\langle W^{(2)}, W^{(4)}\rangle_t = \rho_{12} \, dt$ with $\rho_{12} \neq 0$), the two variance processes would be correlated, and $Y^{(1)}$ and $Y^{(2)}$ would no longer be independent. The factorization would break down. Specifically:
+
+    - The Riccati equations for $D_1$ and $D_2$ would become **coupled**, as the joint affine structure would involve cross-terms $v^{(1)} v^{(2)}$ that do not factor
+    - The state space would effectively become three-dimensional $(X, v^{(1)}, v^{(2)})$ with a non-separable characteristic function
+    - The model would lose the computational advantage of reusing single-factor Heston code and would require solving a coupled system of Riccati ODEs
+
+    In practice, the independence assumption $\rho_{12} = 0$ is maintained precisely to preserve the multiplicative CF structure.
 
 ---
 
 **Exercise 3.**
 With 10 parameters, the double Heston model has a data-to-parameter ratio of 45/10 = 4.5 for a surface with 45 options. Discuss the overfitting risk. Propose constraints that reduce the effective parameter count: for example, fixing $v_0^{(1)} + v_0^{(2)} = \sigma_{\text{ATM,short}}^2$ and $\theta_1 + \theta_2 = \sigma_{\text{ATM,long}}^2$ based on market data. How many free parameters remain?
 
+??? success "Solution to Exercise 3"
+    **Overfitting risk:** With 10 parameters and 45 data points, the data-to-parameter ratio is $45/10 = 4.5$. A ratio below 5:1 is generally considered insufficient for stable parameter estimation, particularly when:
+
+    - Parameters are partially degenerate (factor labeling symmetry)
+    - Options at different strikes/maturities have correlated pricing errors
+    - The effective number of independent market observations may be less than 45 (due to smile smoothness)
+
+    The model has enough flexibility to interpolate noise in the data rather than capturing the true volatility surface structure.
+
+    **Proposed constraints:**
+
+    1. **Fix total initial variance:** $v_0^{(1)} + v_0^{(2)} = \sigma_{\text{ATM,short}}^2$, where $\sigma_{\text{ATM,short}}$ is the short-maturity ATM implied volatility. This eliminates one free parameter by tying the initial variance to a directly observable market quantity.
+
+    2. **Fix total long-run variance:** $\theta_1 + \theta_2 = \sigma_{\text{ATM,long}}^2$, where $\sigma_{\text{ATM,long}}$ is the long-maturity ATM implied volatility level. This eliminates another parameter.
+
+    3. **Factor ordering convention:** Impose $\kappa_1 > \kappa_2$ to break the factor-labeling symmetry. This does not reduce the parameter count but eliminates a discrete degeneracy.
+
+    **Counting free parameters after constraints:**
+
+    Original parameters: $v_0^{(1)}, \kappa_1, \theta_1, \xi_1, \rho_1, v_0^{(2)}, \kappa_2, \theta_2, \xi_2, \rho_2$ (10 free).
+
+    After the two equality constraints:
+
+    - $v_0^{(2)} = \sigma_{\text{ATM,short}}^2 - v_0^{(1)}$ (eliminates $v_0^{(2)}$)
+    - $\theta_2 = \sigma_{\text{ATM,long}}^2 - \theta_1$ (eliminates $\theta_2$)
+
+    **Remaining free parameters: 8.** The data-to-parameter ratio improves to $45/8 = 5.6$, which is more reasonable. Further constraints (e.g., fixing $\rho_2$ based on long-maturity skew data, or imposing Feller conditions $2\kappa_j\theta_j \geq \xi_j^2$) can further reduce the effective degrees of freedom.
+
 ---
 
 **Exercise 4.**
 The fast factor ($\kappa_1 = 5.0$, half-life = 0.14 years) primarily controls the short-maturity smile, while the slow factor ($\kappa_2 = 0.5$, half-life = 1.4 years) controls the long-maturity term structure. Compute the contribution of each factor to the expected average variance $\bar{v}(T) = \bar{v}^{(1)}(T) + \bar{v}^{(2)}(T)$ at $T = 1$ month and $T = 2$ years. Verify that the fast factor dominates at short maturities.
+
+??? success "Solution to Exercise 4"
+    The expected average variance contribution from factor $j$ over $[0, T]$ is:
+
+    $$
+    \bar{v}^{(j)}(T) = \frac{1}{T}\int_0^T \mathbb{E}[v_s^{(j)}] \, ds = \frac{1}{T}\int_0^T \left[\theta_j + (v_0^{(j)} - \theta_j)e^{-\kappa_j s}\right] ds
+    $$
+
+    Evaluating the integral:
+
+    $$
+    \bar{v}^{(j)}(T) = \theta_j + (v_0^{(j)} - \theta_j) \cdot \frac{1 - e^{-\kappa_j T}}{\kappa_j T}
+    $$
+
+    **At $T = 1/12$ (1 month):**
+
+    Factor 1 ($v_0^{(1)} = 0.02$, $\kappa_1 = 5.0$, $\theta_1 = 0.02$):
+
+    $$
+    \bar{v}^{(1)}(1/12) = 0.02 + (0.02 - 0.02) \cdot \frac{1 - e^{-5/12}}{5/12} = 0.02
+    $$
+
+    Since $v_0^{(1)} = \theta_1$, the fast factor contributes a constant $0.02$ regardless of maturity.
+
+    Factor 2 ($v_0^{(2)} = 0.02$, $\kappa_2 = 0.5$, $\theta_2 = 0.03$):
+
+    $$
+    \kappa_2 T = 0.5/12 = 0.04167
+    $$
+
+    $$
+    \bar{v}^{(2)}(1/12) = 0.03 + (0.02 - 0.03) \cdot \frac{1 - e^{-0.04167}}{0.04167}
+    $$
+
+    $$
+    = 0.03 + (-0.01) \cdot \frac{1 - 0.9592}{0.04167} = 0.03 + (-0.01) \cdot \frac{0.0408}{0.04167}
+    $$
+
+    $$
+    = 0.03 - 0.01 \times 0.9791 = 0.03 - 0.009791 = 0.02021
+    $$
+
+    Total at 1 month: $\bar{v}(1/12) = 0.02 + 0.02021 = 0.04021$.
+
+    Factor 1 contributes $0.02 / 0.04021 = 49.7\%$ and Factor 2 contributes $50.3\%$.
+
+    **At $T = 2$ (2 years):**
+
+    Factor 1:
+
+    $$
+    \bar{v}^{(1)}(2) = 0.02 + (0.02 - 0.02) \cdot \frac{1 - e^{-10}}{10} = 0.02
+    $$
+
+    Factor 2:
+
+    $$
+    \kappa_2 T = 0.5 \times 2 = 1.0
+    $$
+
+    $$
+    \bar{v}^{(2)}(2) = 0.03 + (0.02 - 0.03) \cdot \frac{1 - e^{-1}}{1} = 0.03 + (-0.01)(1 - 0.3679)
+    $$
+
+    $$
+    = 0.03 - 0.006321 = 0.02368
+    $$
+
+    Total at 2 years: $\bar{v}(2) = 0.02 + 0.02368 = 0.04368$.
+
+    Factor 1 contributes $0.02 / 0.04368 = 45.8\%$ and Factor 2 contributes $54.2\%$.
+
+    In this particular example, because $v_0^{(1)} = \theta_1$, the fast factor's contribution is constant. The slow factor's contribution increases with maturity as it transitions from $v_0^{(2)} = 0.02$ toward $\theta_2 = 0.03$. At short maturities, both factors contribute roughly equally because both start at $v_0^{(j)} = 0.02$, but the fast factor dominates the **smile shape** (skew and curvature) at short maturities because its high $\xi_1 = 1.0$ and extreme $\rho_1 = -0.9$ generate strong smile dynamics on its fast timescale $1/\kappa_1 = 0.2$ years.
 
 ---
 
 **Exercise 5.**
 Each factor has its own correlation: $\rho_1$ and $\rho_2$. Explain how this allows the model to produce different skew dynamics at different horizons. If $\rho_1 = -0.9$ (strong negative correlation for the fast factor) and $\rho_2 = -0.4$ (weak correlation for the slow factor), what does this imply about the behavior of the skew term structure?
 
+??? success "Solution to Exercise 5"
+    With two correlations $\rho_1$ and $\rho_2$, the double Heston model generates different skew dynamics at different time horizons through the interplay of timescale separation and correlation strength.
+
+    **Mechanism:** The ATM implied volatility skew in the double Heston model is approximately:
+
+    $$
+    \text{Skew}(T) \approx \frac{\rho_1 \xi_1}{4} \cdot w_1(T) + \frac{\rho_2 \xi_2}{4} \cdot w_2(T)
+    $$
+
+    where $w_j(T)$ is the weight of factor $j$, which depends on $\kappa_j$ and $T$. For short maturities $T \ll 1/\kappa_1$, both factors contribute proportional to their initial variances. For intermediate maturities $1/\kappa_1 \ll T \ll 1/\kappa_2$, the fast factor has largely mean-reverted and its skew contribution diminishes, while the slow factor still contributes fully. For long maturities $T \gg 1/\kappa_2$, both factors have mean-reverted and the skew flattens.
+
+    **With $\rho_1 = -0.9$ and $\rho_2 = -0.4$:**
+
+    - **Short maturities** ($T < 2$ months): Both factors are active. The skew is dominated by the fast factor's strong leverage ($\rho_1 = -0.9$) combined with its high vol-of-vol ($\xi_1$). The result is a **steep negative skew**, consistent with the very negative short-dated equity skews observed in the market.
+
+    - **Intermediate maturities** (3 months to 1 year): The fast factor ($\kappa_1 = 5$, half-life $\approx 1.7$ months) has substantially mean-reverted. Its skew contribution fades, and the skew transitions toward the slow factor's weaker leverage ($\rho_2 = -0.4$). The overall skew **flattens**.
+
+    - **Long maturities** ($T > 2$ years): The skew is almost entirely determined by the slow factor, with $\rho_2 = -0.4$, producing a **moderate negative skew**.
+
+    This matches the well-documented empirical observation that equity implied volatility skews are steep at short maturities and flatten as maturity increases. In the single Heston model, a single $\rho$ forces the same leverage effect across all maturities, leading to either a skew that is too steep at long maturities or too flat at short maturities.
+
+    **Skew term structure behavior:** The skew decays from approximately $\rho_1\xi_1/(4\sqrt{v_0})$ at very short maturities toward $\rho_2\xi_2/(4\sqrt{\theta_1 + \theta_2})$ at very long maturities, with the transition occurring on the timescale $1/\kappa_1$.
+
 ---
 
 **Exercise 6.**
 Calibrate the double Heston model conceptually: given a market surface with systematically positive residuals in the short-maturity wings (Heston underfits) and negative residuals in the long-maturity term structure (Heston overfits the ATM level), explain which double Heston parameters you would adjust to fix each issue. Use the fast/slow factor interpretation.
+
+??? success "Solution to Exercise 6"
+    We use the fast/slow factor decomposition to diagnose and fix each calibration issue.
+
+    **Issue 1: Positive residuals in short-maturity wings (Heston underfits).**
+
+    Positive residuals mean the single Heston model **underestimates** implied volatility in the wings at short maturities. The wings are controlled by the vol-of-vol $\xi$ (which generates smile curvature) and the tails of the return distribution. The single Heston $\xi$ is a compromise between short- and long-maturity curvature.
+
+    **Fix:** Assign a **high vol-of-vol** $\xi_1$ to the fast factor. Since the fast factor ($\kappa_1$ large) dominates at short maturities, increasing $\xi_1$ steepens the short-maturity wings without affecting long-maturity options (where the fast factor has mean-reverted). Specifically:
+
+    - Increase $\xi_1$ to produce more smile curvature at short maturities
+    - Set $\rho_1$ strongly negative (e.g., $-0.9$) to steepen the put wing preferentially
+    - The fast mean-reversion $\kappa_1$ ensures this extra curvature dissipates quickly, leaving long-maturity wings unchanged
+
+    **Issue 2: Negative residuals in long-maturity term structure (Heston overfits ATM level).**
+
+    Negative residuals mean the single Heston model **overestimates** the long-maturity ATM implied volatility. This occurs because the single Heston long-run variance $\theta$ must match both the long-maturity ATM level and contribute to the short-maturity variance.
+
+    **Fix:** Adjust the slow factor's long-run variance $\theta_2$ **downward**. The slow factor ($\kappa_2$ small) governs the long-maturity ATM level through $\sqrt{\theta_1 + \theta_2}$. Specifically:
+
+    - Reduce $\theta_2$ to lower the long-maturity ATM level
+    - Compensate at short maturities by increasing $v_0^{(1)}$ (fast factor initial variance), which supports the short-maturity ATM level but decays quickly toward the lower $\theta_1$
+    - Keep $\kappa_2$ small so the slow factor's influence persists at long maturities
+
+    **Combined prescription:**
+
+    | Parameter | Adjustment | Rationale |
+    |-----------|-----------|-----------|
+    | $\xi_1$ | Increase | More short-maturity wing curvature |
+    | $\rho_1$ | More negative | Steeper short-maturity put skew |
+    | $\kappa_1$ | Large (e.g., 5--10) | Confine fast factor to short maturities |
+    | $v_0^{(1)}$ | Increase | Support short-maturity ATM level |
+    | $\theta_2$ | Decrease | Lower long-maturity ATM level |
+    | $\kappa_2$ | Small (e.g., 0.5--1) | Slow factor dominates at long maturities |
+    | $\xi_2$ | Moderate | Avoid excessive long-maturity curvature |
+
+    This two-factor decomposition is the fundamental advantage of the double Heston model: it decouples the short-maturity calibration (fast factor) from the long-maturity calibration (slow factor), resolving systematic residual patterns that are inherent to the single-factor Heston model.

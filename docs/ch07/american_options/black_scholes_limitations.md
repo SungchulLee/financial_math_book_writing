@@ -186,26 +186,6 @@ $$
 
 **Exercise 1.** Explain why the Black-Scholes formula cannot be applied directly to American options. Specifically, identify which step in the Black-Scholes derivation (construction of the hedged portfolio, Ito's lemma, no-arbitrage condition, or solving the PDE) breaks down when early exercise is possible.
 
----
-
-**Exercise 2.** For the perpetual American put ($T = \infty$), the PDE becomes time-independent: $\frac{1}{2}\sigma^2 S^2 V'' + rSV' - rV = 0$ for $S > S^*$. Solve this ODE with boundary conditions $V(S^*) = K - S^*$, $V'(S^*) = -1$ (smooth pasting), and $V(\infty) = 0$. Find $S^*$ and the perpetual put price.
-
----
-
-**Exercise 3.** The free boundary $S^*(t)$ for an American put satisfies $S^*(T) = K$ at maturity. As $t$ decreases from $T$, does $S^*$ increase or decrease? Provide an economic argument for the direction of $S^*(t)$ and sketch the free boundary qualitatively.
-
----
-
-**Exercise 4.** Compare the domains of the PDE for a European put (the entire half-plane $S > 0$, $t < T$) and an American put (the continuation region $S > S^*(t)$, $t < T$). Explain why the unknown boundary $S^*(t)$ makes the American problem fundamentally harder.
-
----
-
-**Exercise 5.** Barone-Adesi and Whaley (1987) proposed an analytical approximation for the American put. The key idea is to decompose $V_{\text{Am}} = V_{\text{Eu}} + \epsilon(S,t)$ and approximate $\epsilon$. Describe the advantage of this decomposition approach over solving the free-boundary problem directly, and discuss its accuracy limitations for long-dated options.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The Black-Scholes derivation proceeds through several steps, and it is the **solving the PDE** step that breaks down for American options.
 
@@ -218,6 +198,11 @@ $$
     4. **Solving the PDE (the breakdown):** For European options, the PDE is solved on the fixed domain $(0, \infty) \times [0, T)$ with the terminal condition $V(S, T) = \Phi(S)$ and boundary conditions at $S = 0$ and $S \to \infty$. The solution uses the heat equation transformation and yields the Black-Scholes formula.
 
     For American options, the domain of the PDE is $\{(S, t) : S > S^*(t), \, 0 \leq t < T\}$, where $S^*(t)$ is unknown. The free boundary $S^*(t)$ must be found simultaneously with $V$. This couples the PDE solution to the boundary determination, creating a **free-boundary problem** that cannot be solved by the standard Feynman-Kac / heat equation approach. The additional constraint $V(S, t) \geq \Phi(S)$ and the smooth-pasting conditions at $S^*(t)$ have no analog in the European case.
+
+---
+
+
+**Exercise 2.** For the perpetual American put ($T = \infty$), the PDE becomes time-independent: $\frac{1}{2}\sigma^2 S^2 V'' + rSV' - rV = 0$ for $S > S^*$. Solve this ODE with boundary conditions $V(S^*) = K - S^*$, $V'(S^*) = -1$ (smooth pasting), and $V(\infty) = 0$. Find $S^*$ and the perpetual put price.
 
 ??? success "Solution to Exercise 2"
     For $T = \infty$, the put price depends only on $S$ (not $t$), so $V_t = 0$ and the PDE becomes the ODE:
@@ -274,6 +259,11 @@ $$
 
     where $\lambda = \frac{2r}{\sigma^2}$ (using the simplified form when $r - \sigma^2/2$ simplifies; more precisely, $\lambda = -\gamma_2$ from the quadratic above).
 
+---
+
+
+**Exercise 3.** The free boundary $S^*(t)$ for an American put satisfies $S^*(T) = K$ at maturity. As $t$ decreases from $T$, does $S^*$ increase or decrease? Provide an economic argument for the direction of $S^*(t)$ and sketch the free boundary qualitatively.
+
 ??? success "Solution to Exercise 3"
     At maturity, $S^*(T) = K$: exercise whenever the put is in the money.
 
@@ -292,6 +282,11 @@ $$
     - The boundary rises toward $K$.
 
     **Qualitative sketch:** $S^*(t)$ is a monotonically increasing curve from some value $S^*(0) < K$ on the left to $S^*(T) = K$ on the right. The curve is concave, rising steeply near maturity. For large time to maturity, $S^*(t)$ approaches the perpetual boundary $S^*_\infty = \frac{\lambda}{\lambda+1}K$ where $\lambda = 2r/\sigma^2$.
+
+---
+
+
+**Exercise 4.** Compare the domains of the PDE for a European put (the entire half-plane $S > 0$, $t < T$) and an American put (the continuation region $S > S^*(t)$, $t < T$). Explain why the unknown boundary $S^*(t)$ makes the American problem fundamentally harder.
 
 ??? success "Solution to Exercise 4"
     **European PDE domain:** The Black-Scholes PDE holds on the entire half-plane $\{(S, t) : S > 0, \, 0 \leq t < T\}$. The boundary conditions are:
@@ -317,6 +312,11 @@ $$
     3. Numerically, the free boundary must be tracked or approximated at each time step, adding an inner loop (e.g., Newton iteration or PSOR) to the standard time-stepping algorithm.
 
     4. The smooth-pasting condition $V_S(S^*, t) = -1$ is an additional constraint that determines $S^*(t)$, but it involves the derivative of the solution at a point that is itself unknown.
+
+---
+
+
+**Exercise 5.** Barone-Adesi and Whaley (1987) proposed an analytical approximation for the American put. The key idea is to decompose $V_{\text{Am}} = V_{\text{Eu}} + \epsilon(S,t)$ and approximate $\epsilon$. Describe the advantage of this decomposition approach over solving the free-boundary problem directly, and discuss its accuracy limitations for long-dated options.
 
 ??? success "Solution to Exercise 5"
     **The decomposition approach:** Write $V_{\text{Am}}(S, t) = V_{\text{Eu}}(S, t) + \epsilon(S, t)$, where $\epsilon$ is the early exercise premium. The European price $V_{\text{Eu}}$ is known analytically, so the problem reduces to finding $\epsilon$.

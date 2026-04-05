@@ -1,9 +1,9 @@
 # Feynman-Kac Formula and the Black-Scholes Solution
 
 
-The **Feynman-Kac formula** provides a profound connection between **partial differential equations** and **probability theory**. It transforms a parabolic PDE into a probabilistic expectation, enabling the derivation of the Black-Scholes formula through stochastic analysis rather than PDE methods.
+The preceding sections derived the Black-Scholes formula by transforming the PDE --- into the heat equation, into frequency space via Fourier, Mellin, or Laplace transforms, or by exploiting scaling structure. All of these are ultimately PDE techniques: they manipulate the equation directly. The **Feynman-Kac formula** takes a fundamentally different approach. It establishes that the solution of a parabolic PDE can be written as a **probabilistic expectation**, bypassing the PDE entirely in favor of stochastic calculus.
 
-This section presents the general Feynman-Kac theorem, applies it rigorously to the Black-Scholes PDE, and derives the closed-form option pricing formulas through detailed probabilistic calculations.
+This shift from differential equations to expectations is not merely a technical alternative --- it is the conceptual foundation of risk-neutral pricing. This section presents the general Feynman-Kac theorem, applies it rigorously to the Black-Scholes PDE, and derives the closed-form option pricing formulas through detailed probabilistic calculations.
 
 ---
 
@@ -116,7 +116,7 @@ $$
 \boxed{V(S,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]}
 $$
 
-**Interpretation**: The option value is the **expected discounted payoff** under the risk-neutral measure.
+**Interpretation**: The option value is the **expected discounted payoff** under the risk-neutral measure. This is the **probabilistic representation** of the pricing semigroup $\mathcal{P}_\tau = e^{\tau\mathcal{L}}$ introduced in the chapter overview.
 
 This converts the PDE problem into a probabilistic expectation problem.
 
@@ -250,7 +250,7 @@ with terminal conditions:
 ## Solving the SDE: Distribution of S_T
 
 
-To evaluate the expectation in the Feynman-Kac formula, we need the distribution of $S_T$.
+To evaluate the expectation in the Feynman-Kac formula, we need the distribution of $S_T$. The result --- that $\ln S_T$ is normally distributed --- is exactly the lognormal transition density whose Gaussian kernel we already met in the heat equation section. We rederive it here via Ito's lemma, which is the natural probabilistic route and confirms that the two approaches yield the same object.
 
 ### 1. **The Stochastic Differential Equation**
 
@@ -321,15 +321,7 @@ $$
 \ln S_T \mid S_t \sim \mathcal{N}\left(\ln S_t + \left(r - \frac{1}{2}\sigma^2\right)\tau, \sigma^2\tau\right)
 $$
 
-**Log-normal distribution**: $S_T$ is log-normally distributed with:
-- Mean of $\ln S_T$: $\mathbb{E}[\ln S_T | S_t] = \ln S_t + (r - \frac{1}{2}\sigma^2)\tau$
-- Variance of $\ln S_T$: $\text{Var}[\ln S_T | S_t] = \sigma^2\tau$
-
-The probability density function:
-
-$$
-p(S_T \mid S_t) = \frac{1}{S_T\sigma\sqrt{2\pi\tau}}\exp\left[-\frac{\left(\ln(S_T/S_t) - (r-\frac{\sigma^2}{2})\tau\right)^2}{2\sigma^2\tau}\right]
-$$
+**Log-normal distribution**: $S_T$ is log-normally distributed with mean $\mathbb{E}[\ln S_T | S_t] = \ln S_t + (r - \frac{1}{2}\sigma^2)\tau$ and variance $\text{Var}[\ln S_T | S_t] = \sigma^2\tau$. The corresponding transition density $p(S_T \mid S_t)$ is the Gaussian kernel derived in the heat equation section --- expressed here in original $(S,t)$ coordinates rather than transformed $(x,\tau)$ coordinates.
 
 ---
 
@@ -723,56 +715,21 @@ $$
 ## Why Feynman-Kac Works: Deep Intuition
 
 
+The rigorous derivation in the previous sections established that the discounted value $e^{-\int_0^t r\,ds}\,u(X_t,t)$ is a martingale whenever $u$ satisfies the Feynman-Kac PDE. In the Black-Scholes setting this takes a particularly transparent form.
+
 ### 1. **The Martingale Property**
 
 
-Under the risk-neutral measure, the **discounted stock price** is a martingale:
+Under the risk-neutral measure, $d(e^{-rt}S_t) = e^{-rt}\sigma S_t\,dW_t^{\mathbb{Q}}$, which has no drift. Hence the discounted stock price is a martingale, and by the same argument the discounted option value $e^{-rt}V(S_t,t)$ is a martingale whenever $V$ satisfies the Black-Scholes PDE. This immediately yields the Feynman-Kac representation $V(S_t,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid \mathcal{F}_t]$.
 
-$$
-\mathbb{E}^{\mathbb{Q}}[e^{-rt}S_t \mid \mathcal{F}_s] = e^{-rs}S_s \quad \text{for } s \leq t
-$$
-
-**Proof**: Since $dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$, we have:
-
-$$
-d(e^{-rt}S_t) = e^{-rt}\sigma S_t dW_t^{\mathbb{Q}}
-$$
-
-This is a martingale (no drift).
-
-### 2. **Extension to Option Value**
-
-
-By extension, the **discounted option value** must also be a martingale:
-
-$$
-\mathbb{E}^{\mathbb{Q}}[e^{-rT}V(S_T,T) \mid \mathcal{F}_t] = e^{-rt}V(S_t,t)
-$$
-
-At maturity: $V(S_T,T) = \Phi(S_T)$
-
-Therefore:
-
-$$
-e^{-rt}V(S_t,t) = \mathbb{E}^{\mathbb{Q}}[e^{-rT}\Phi(S_T) \mid \mathcal{F}_t]
-$$
-
-Solving for $V$:
-
-$$
-V(S_t,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid \mathcal{F}_t]
-$$
-
-**This is the Feynman-Kac representation.**
-
-### 3. **No-Arbitrage = Martingale Measure**
+### 2. **No-Arbitrage = Martingale Measure**
 
 
 The Feynman-Kac formula is the **mathematical manifestation of no-arbitrage pricing**:
 
 **Fundamental Theorem of Asset Pricing**:
-- **No arbitrage** ⟺ Existence of equivalent martingale measure $\mathbb{Q}$
-- **Completeness** + No arbitrage ⟺ **Unique** martingale measure
+- **No arbitrage** $\Longleftrightarrow$ Existence of equivalent martingale measure $\mathbb{Q}$
+- **Completeness** + No arbitrage $\Longleftrightarrow$ **Unique** martingale measure
 
 The risk-neutral measure $\mathbb{Q}$ is the unique measure under which:
 1. Discounted asset prices are martingales
@@ -849,54 +806,6 @@ where $\mathbf{S}_T = (S_1^T, \ldots, S_n^T)$ follows a **multivariate log-norma
 
 ---
 
-## Summary: Why Feynman-Kac is Powerful
-
-
-The Feynman-Kac formula provides a profound bridge between analysis and probability:
-
-### 1. **Key Advantages**
-
-
-**1. Converts PDE to probability**: 
-- Often easier to compute expectations than solve PDEs
-- Enables intuitive economic interpretation
-
-**2. Enables Monte Carlo simulation**:
-- Can estimate $\mathbb{E}^{\mathbb{Q}}[\Phi(S_T)]$ by simulating paths
-- Particularly useful for high-dimensional problems
-
-**3. Generalizes naturally**:
-- Extends to path-dependent options (average, lookback)
-- Works for multiple assets with ease
-- Handles time-dependent parameters
-
-**4. Economic interpretation**:
-- Risk-neutral valuation has clear meaning
-- Connects to no-arbitrage and FTAP
-- Probabilities $\mathcal{N}(d_1)$, $\mathcal{N}(d_2)$ have financial significance
-
-**5. Theoretical foundation**:
-- Links stochastic calculus with classical PDE theory
-- Unifies discrete (binomial) and continuous (BS) models
-- Foundation for modern derivative pricing
-
-### 2. **The Big Picture**
-
-
-The Feynman-Kac formula demonstrates that:
-
-**PDE ⟷ Probability ⟷ Stochastic Process**
-
-are three equivalent perspectives on the same mathematical object:
-
-- **PDE**: Black-Scholes equation
-- **Probability**: Risk-neutral expectation
-- **Stochastic Process**: Geometric Brownian motion
-
-This trinity underlies modern quantitative finance and enables both theoretical insight and practical computation.
-
----
-
 ## Summary
 
 
@@ -913,7 +822,8 @@ V(S,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]
 $$
 
 **Derivation steps**:
-1. Apply Itô's lemma to discounted $u(X_t,t)$
+
+1. Apply Ito's lemma to discounted $u(X_t,t)$
 2. Show it becomes a martingale if $u$ satisfies the PDE
 3. Take expectation to get probabilistic representation
 4. Solve SDE to find distribution of $S_T$ (log-normal)
@@ -936,41 +846,30 @@ $$
 - $\mathcal{N}(d_2)$ = Risk-neutral probability of exercise
 - $\mathcal{N}(d_1)$ = Delta = Stock-measure probability of exercise
 
-The Feynman-Kac approach reveals that option pricing is fundamentally about computing expectations under the appropriate probability measure---a perspective that generalizes far beyond the simple Black-Scholes model to the entire landscape of derivative pricing.
+**Why Feynman-Kac is powerful**:
+
+- **Converts PDE to probability**: expectations are often easier to compute than solving PDEs, and carry intuitive economic meaning
+- **Enables Monte Carlo simulation**: particularly useful for high-dimensional and path-dependent problems
+- **Generalizes naturally**: extends to time-dependent parameters, multiple assets, and exotic payoffs
+- **Theoretical foundation**: links stochastic calculus with classical PDE theory and the Fundamental Theorem of Asset Pricing
+
+The formula demonstrates that **PDE**, **probability**, and **stochastic process** are three equivalent perspectives on the same mathematical object --- a trinity that underlies modern quantitative finance and enables both theoretical insight and practical computation.
+
+### The three core methods are one object
+
+The expectation $\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]$ is a convolution of the payoff with the transition density of $\ln S_T$ --- exactly the Green's function integral derived in the heat equation section. The heat equation *convolution* and the Feynman-Kac *expectation* are the same integral; the Green's function and the transition density are the same function. Conversely, writing the expectation as $\mathbb{E}^{\mathbb{Q}}[e^{i\omega \ln S_T}]$ in frequency space yields the **characteristic function** $\phi_T(\omega)$ that drives Fourier methods. The three core approaches of this chapter are therefore not independent techniques. They compute the same object --- the pricing semigroup $\mathcal{P}_\tau = e^{\tau\mathcal{L}}$ applied to the payoff --- in three coordinate systems:
+
+| Method | Coordinate system | Key object |
+|---|---|---|
+| Heat equation | Spatial $(x, \tau)$ | Green's function (Gaussian kernel) |
+| Feynman-Kac | Probabilistic | Transition density / expectation |
+| Fourier | Spectral $(\omega)$ | Characteristic function |
 
 ---
 
 ## Exercises
 
 **Exercise 1.** Verify the Feynman-Kac formula for the trivial case $\Phi(S) = S$ (the stock itself). Show that $V(S,t) = S$ satisfies both the Black-Scholes PDE and the expectation $e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[S_T \mid S_t = S]$.
-
----
-
-**Exercise 2.** Carry out the "completing the square" step in the evaluation of $I_1$ in full detail. Starting from the combined exponent $y - \frac{(y-m)^2}{2v^2}$, show every algebraic step leading to the factorization into $e^{m + v^2/2}$ times a Gaussian integral with shifted mean $m + v^2$.
-
----
-
-**Exercise 3.** Use the Feynman-Kac representation to derive the price of a **power option** with payoff $\Phi(S_T) = S_T^2$ at maturity. Compute $e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[S_T^2 \mid S_t = S]$ using the log-normal distribution of $S_T$.
-
----
-
-**Exercise 4.** The Kolmogorov backward equation for Black-Scholes governs $V(S,t)$, while the forward equation governs the transition density $p(S_T, T \mid S, t)$. Starting from the Black-Scholes backward equation, write down the corresponding forward (Fokker-Planck) equation and verify that the log-normal density $p(S_T, T \mid S, t)$ satisfies it.
-
----
-
-**Exercise 5.** Using the Feynman-Kac formula with time-dependent volatility $\sigma(t)$, show that the Black-Scholes call price takes the same functional form as the constant-volatility case, but with $\sigma^2 T$ replaced by $\int_t^T \sigma^2(s) \, ds$. Define the effective volatility $\bar{\sigma}$ and express $d_1$ and $d_2$ in terms of $\bar{\sigma}$.
-
----
-
-**Exercise 6.** Consider a European option with payoff $\Phi(S_T) = \ln(S_T)$ (a log contract). Use the Feynman-Kac representation to compute its price $V(S,t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[\ln S_T \mid S_t = S]$. Show that the result is $V = e^{-r\tau}[\ln S + (r - \frac{1}{2}\sigma^2)\tau]$, and verify that this satisfies the Black-Scholes PDE.
-
----
-
-**Exercise 7.** The discounted option value $e^{-rt}V(S_t, t)$ is a martingale under $\mathbb{Q}$. Use Ito's lemma to compute $d(e^{-rt}V)$ and show that the drift vanishes if and only if $V$ satisfies the Black-Scholes PDE. This provides an alternative proof of the Feynman-Kac connection.
-
----
-
-## Solutions
 
 ??? success "Solution to Exercise 1"
     We need to verify that $V(S,t) = S$ satisfies both the Black-Scholes PDE and the Feynman-Kac representation.
@@ -1004,6 +903,9 @@ The Feynman-Kac approach reveals that option pricing is fundamentally about comp
     $$
 
     Discounting: $e^{-r(T-t)} \cdot Se^{r(T-t)} = S$. Both representations agree.
+
+---
+**Exercise 2.** Carry out the "completing the square" step in the evaluation of $I_1$ in full detail. Starting from the combined exponent $y - \frac{(y-m)^2}{2v^2}$, show every algebraic step leading to the factorization into $e^{m + v^2/2}$ times a Gaussian integral with shifted mean $m + v^2$.
 
 ??? success "Solution to Exercise 2"
     Starting from the combined exponent $y - \frac{(y-m)^2}{2v^2}$, we proceed step by step.
@@ -1062,6 +964,9 @@ The Feynman-Kac approach reveals that option pricing is fundamentally about comp
 
     The second factor is the kernel of a Gaussian with mean $m + v^2$ and variance $v^2$, confirming that $I_1 = e^{m+v^2/2} \cdot \mathcal{N}\left(\frac{(m+v^2) - \ln K}{v}\right)$.
 
+---
+**Exercise 3.** Use the Feynman-Kac representation to derive the price of a **power option** with payoff $\Phi(S_T) = S_T^2$ at maturity. Compute $e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[S_T^2 \mid S_t = S]$ using the log-normal distribution of $S_T$.
+
 ??? success "Solution to Exercise 3"
     The payoff is $\Phi(S_T) = S_T^2$. By Feynman-Kac:
 
@@ -1103,6 +1008,9 @@ The Feynman-Kac approach reveals that option pricing is fundamentally about comp
 
     One can verify this satisfies the Black-Scholes PDE: with $V = S^2 e^{(r+\sigma^2)\tau}$, computing $V_t = -(r+\sigma^2)V$, $V_S = 2Se^{(r+\sigma^2)\tau}$, $V_{SS} = 2e^{(r+\sigma^2)\tau}$, and substituting into $V_t + rSV_S + \frac{1}{2}\sigma^2 S^2 V_{SS} - rV = 0$ confirms the identity.
 
+---
+**Exercise 4.** The Kolmogorov backward equation for Black-Scholes governs $V(S,t)$, while the forward equation governs the transition density $p(S_T, T \mid S, t)$. Starting from the Black-Scholes backward equation, write down the corresponding forward (Fokker-Planck) equation and verify that the log-normal density $p(S_T, T \mid S, t)$ satisfies it.
+
 ??? success "Solution to Exercise 4"
     **Backward equation** (Black-Scholes PDE for $V(S,t)$):
 
@@ -1129,6 +1037,9 @@ The Feynman-Kac approach reveals that option pricing is fundamentally about comp
     - $\frac{\partial m}{\partial T} = r - \frac{\sigma^2}{2}$ and $\frac{\partial v^2}{\partial T} = \sigma^2$
     - Converting derivatives with respect to $S_T$ to derivatives with respect to $y$ using $\frac{\partial}{\partial S_T} = \frac{1}{S_T}\frac{\partial}{\partial y}$
     - Expanding the forward equation terms and verifying cancellation
+
+---
+**Exercise 5.** Using the Feynman-Kac formula with time-dependent volatility $\sigma(t)$, show that the Black-Scholes call price takes the same functional form as the constant-volatility case, but with $\sigma^2 T$ replaced by $\int_t^T \sigma^2(s) \, ds$. Define the effective volatility $\bar{\sigma}$ and express $d_1$ and $d_2$ in terms of $\bar{\sigma}$.
 
 ??? success "Solution to Exercise 5"
     With time-dependent volatility $\sigma(t)$, the SDE under $\mathbb{Q}$ is:
@@ -1181,6 +1092,9 @@ The Feynman-Kac approach reveals that option pricing is fundamentally about comp
     d_2 = d_1 - \bar{\sigma}\sqrt{\tau} = d_1 - \Sigma
     $$
 
+---
+**Exercise 6.** Consider a European option with payoff $\Phi(S_T) = \ln(S_T)$ (a log contract). Use the Feynman-Kac representation to compute its price $V(S,t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[\ln S_T \mid S_t = S]$. Show that the result is $V = e^{-r\tau}[\ln S + (r - \frac{1}{2}\sigma^2)\tau]$, and verify that this satisfies the Black-Scholes PDE.
+
 ??? success "Solution to Exercise 6"
     The payoff is $\Phi(S_T) = \ln(S_T)$. By Feynman-Kac:
 
@@ -1212,7 +1126,7 @@ The Feynman-Kac approach reveals that option pricing is fundamentally about comp
     \frac{\partial V}{\partial t} = re^{-r\tau}\left[\ln S + (r - \frac{1}{2}\sigma^2)\tau\right] + e^{-r\tau}(r - \frac{1}{2}\sigma^2)(-1)
     $$
 
-    Wait, using $\frac{\partial \tau}{\partial t} = -1$:
+    Since $\frac{\partial \tau}{\partial t} = -1$:
 
     $$
     \frac{\partial V}{\partial t} = re^{-r\tau}\left[\ln S + (r-\frac{1}{2}\sigma^2)\tau\right] - e^{-r\tau}(r - \frac{1}{2}\sigma^2)
@@ -1235,6 +1149,9 @@ The Feynman-Kac approach reveals that option pricing is fundamentally about comp
     $$
 
     The PDE is satisfied.
+
+---
+**Exercise 7.** The discounted option value $e^{-rt}V(S_t, t)$ is a martingale under $\mathbb{Q}$. Use Ito's lemma to compute $d(e^{-rt}V)$ and show that the drift vanishes if and only if $V$ satisfies the Black-Scholes PDE. This provides an alternative proof of the Feynman-Kac connection.
 
 ??? success "Solution to Exercise 7"
     Let $Y_t = e^{-rt}V(S_t, t)$. Apply the product rule (Ito's lemma for products):

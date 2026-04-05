@@ -1,1160 +1,476 @@
-# Similarity Solutions: Complete Mathematical Treatment
+# Similarity Solutions and Scaling Structure
 
+The heat equation and separation of variables sections both transformed the Black-Scholes PDE into standard forms and solved them. But neither explained *why* the final formula depends on the particular combinations $\ln(S/K)/(\sigma\sqrt{\tau})$ and $r\tau$ rather than on $S$, $K$, $\sigma$, $\tau$, and $r$ independently. The answer lies in **scale invariance** and **dimensional analysis**.
 
-Similarity solutions exploit **scale invariance** and **dimensional analysis** to reduce PDEs to ODEs by identifying the "right" combination of variables. This reveals the **deep symmetry structure** underlying option pricing.
+Similarity solutions identify combinations of variables that respect the symmetry of a PDE, potentially reducing it to an ODE. Unlike the previous methods, this section does not provide a standalone derivation of the Black-Scholes formula. Instead, it reveals the **structural reason** why the formula takes the form it does: $d_1$ and $d_2$ are modified similarity coordinates, and the dependence on $S/K$, $\sigma\sqrt{\tau}$, and $r\tau$ is forced by dimensional analysis. The naive similarity ansatz does not fully reduce the Black-Scholes PDE to an ODE --- the interest rate $r$ breaks exact self-similarity --- but the scaling structure it uncovers is essential for understanding asymptotic behavior and building intuition.
 
 ---
 
-## **1. Dimensional Analysis Foundation**
+## 1. Dimensional Analysis Foundation
 
+### Physical Dimensions
 
-### 1. **Physical Dimensions**
+In the Black-Scholes problem, the dimensional quantities are:
 
-
-In the Black-Scholes problem, the **dimensional quantities** are:
-- $S$: stock price $[$ \$ $]$
-- $K$: strike price $[$ \$ $]$
+- $S$: stock price $[\$]$
+- $K$: strike price $[\$]$
 - $t, T$: time $[T]$
 - $\sigma$: volatility $[T^{-1/2}]$ (since $dW_t$ scales as $\sqrt{dt}$)
 - $r$: interest rate $[T^{-1}]$
-- $V$: option value $[$ \$ $]$
+- $V$: option value $[\$]$
 
-### 2. **Buckingham Pi Theorem**
+### Buckingham Pi Theorem
 
+With $n = 6$ variables and $m = 2$ fundamental dimensions ($[\$], [T]$), we get $n - m = 4$ dimensionless groups.
 
-With $n = 6$ variables and $m = 2$ fundamental dimensions ($[\$], [T]$), we get $n - m = 4$ **dimensionless groups**.
-
-### 3. **Dimensionless Variables**
-
+### Dimensionless Variables
 
 Define:
 
-$$\boxed{\pi_1 = \frac{S}{K} \quad \text{(moneyness)}}$$
+$$
+\pi_1 = \frac{S}{K} \quad \text{(moneyness)}
+$$
 
+$$
+\pi_2 = \sigma\sqrt{T-t} = \sigma\sqrt{\tau} \quad \text{(scaled time)}
+$$
 
+$$
+\pi_3 = r\tau \quad \text{(discount factor exponent)}
+$$
 
+$$
+\pi_4 = \frac{V}{K} \quad \text{(normalized value)}
+$$
 
-$$\boxed{\pi_2 = \sigma\sqrt{T-t} = \sigma\sqrt{\tau} \quad \text{(scaled time)}}$$
-
-
-
-
-$$\boxed{\pi_3 = r\tau \quad \text{(discount factor exponent)}}$$
-
-
-
-
-$$\boxed{\pi_4 = \frac{V}{K} \quad \text{(normalized value)}}$$
-
-
-
-### 4. **Dimensional Reduction**
-
+### Dimensional Reduction
 
 The option value must have the form:
 
-$$\boxed{V(S,K,t,\sigma,r,T) = K \cdot f\left(\frac{S}{K}, \sigma\sqrt{\tau}, r\tau\right)}$$
+$$
+V(S,K,t,\sigma,r,T) = K \cdot f\!\left(\frac{S}{K},\, \sigma\sqrt{\tau},\, r\tau\right)
+$$
 
-
-
-This is the **most general form** consistent with dimensional analysis!
+This is the most general form consistent with dimensional analysis.
 
 ---
 
-## **2. Scale Invariance of Black-Scholes**
+## 2. Scale Invariance of the Black-Scholes PDE
 
+### The PDE
 
-### 1. **The PDE**
+$$
+\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV = 0
+$$
 
+### Scaling Transformation
 
+Consider the one-parameter family of transformations:
 
-$$\boxed{\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV = 0}$$
-
-
-
-### 2. **Scaling Transformation**
-
-
-Consider the **one-parameter family** of transformations:
-
-$$S \to \lambda S, \quad K \to \lambda K, \quad V \to \lambda V$$
-
-
+$$
+S \to \lambda S, \quad K \to \lambda K, \quad V \to \lambda V
+$$
 
 with $t, \sigma, r$ unchanged.
 
-### 3. **Invariance**
-
+### Invariance
 
 Substituting into the PDE:
 
-$$\frac{\partial(\lambda V)}{\partial t} + r(\lambda S)\frac{\partial(\lambda V)}{\partial(\lambda S)} + \frac{\sigma^2(\lambda S)^2}{2}\frac{\partial^2(\lambda V)}{\partial(\lambda S)^2} - r(\lambda V)$$
+$$
+\frac{\partial(\lambda V)}{\partial t} + r(\lambda S)\frac{\partial(\lambda V)}{\partial(\lambda S)} + \frac{\sigma^2(\lambda S)^2}{2}\frac{\partial^2(\lambda V)}{\partial(\lambda S)^2} - r(\lambda V)
+$$
 
-
-
-
-$$= \lambda\left[\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV\right] = 0$$
-
-
+$$
+= \lambda\left[\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV\right] = 0
+$$
 
 The PDE is **homogeneous of degree 1** in $(S, K, V)$.
 
-### 4. **Economic Interpretation**
+### Economic Interpretation
 
-
-If all dollar amounts scale by $\lambda$ (change of currency), the **form** of the PDE doesn't change. This is the **scale invariance** or **homogeneity** of the market.
+If all dollar amounts scale by $\lambda$ (change of currency), the form of the PDE does not change. This is the **scale invariance** or **homogeneity** of the market.
 
 ---
 
-## **3. Similarity Variable for Black-Scholes**
+## 3. Similarity Variable for the Black-Scholes PDE
 
-
-### 1. **Log-Moneyness Variable**
-
+### Log-Moneyness Variable
 
 The most natural similarity variable combines space and time:
 
-
-$$\boxed{\xi = \frac{\ln(S/K)}{\sigma\sqrt{\tau}} = \frac{x}{\sigma\sqrt{\tau}}}$$
-
-
+$$
+\xi = \frac{\ln(S/K)}{\sigma\sqrt{\tau}} = \frac{x}{\sigma\sqrt{\tau}}
+$$
 
 where $x = \ln(S/K)$ and $\tau = T - t$.
 
-### 2. **Physical Meaning**
-
+### Physical Meaning
 
 - Numerator: **log-moneyness** (how far from strike in log terms)
-- Denominator: **volatility × time scale** (uncertainty measure)
+- Denominator: **volatility times the time scale** (uncertainty measure)
 - $\xi$: **standardized distance** from strike
 
-For $|\xi| \approx 1$: option is at-the-money over the relevant time scale
-For $|\xi| \gg 1$: option is deep in/out of the money
+For $|\xi| \approx 1$: option is at-the-money over the relevant time scale.
+For $|\xi| \gg 1$: option is deep in- or out-of-the-money.
 
-### 3. **Alternative Variables**
-
+### Alternative Variables
 
 Other common choices:
 
-$$\eta = \frac{\ln(S/K) + (r \pm \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}} \quad \text{(drift-adjusted)}$$
+$$
+\eta = \frac{\ln(S/K) + (r \pm \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}} \quad \text{(drift-adjusted)}
+$$
 
-
-
-
-$$\zeta = \frac{S}{Ke^{-r\tau}} \quad \text{(forward moneyness)}$$
-
-
+$$
+\zeta = \frac{S}{Ke^{-r\tau}} \quad \text{(forward moneyness)}
+$$
 
 Each has advantages for different problems.
 
 ---
 
-## **4. Reduction to ODE**
+## 4. Attempt to Reduce the Black-Scholes PDE to an ODE
 
-
-### 1. **Similarity Ansatz**
-
+### Similarity Ansatz
 
 Seek a solution of the form:
 
-$$\boxed{V(S,t) = K \cdot g(\xi) = K \cdot g\left(\frac{\ln(S/K)}{\sigma\sqrt{\tau}}\right)}$$
+$$
+V(S,t) = K \cdot g(\xi) = K \cdot g\!\left(\frac{\ln(S/K)}{\sigma\sqrt{\tau}}\right)
+$$
 
+### Computing Derivatives
 
+Partial derivatives of $\xi$:
 
-### 2. **Computing Derivatives**
+$$
+\frac{\partial\xi}{\partial\tau} = -\frac{\ln(S/K)}{2\sigma\tau^{3/2}} = -\frac{\xi}{2\tau}
+$$
 
+$$
+\frac{\partial\xi}{\partial S} = \frac{1}{S\sigma\sqrt{\tau}}
+$$
 
-**Partial derivatives**:
+$$
+\frac{\partial^2\xi}{\partial S^2} = -\frac{1}{S^2\sigma\sqrt{\tau}}
+$$
 
-$$\frac{\partial\xi}{\partial\tau} = -\frac{\ln(S/K)}{2\sigma\tau^{3/2}} = -\frac{\xi}{2\tau}$$
+Chain rule:
 
+$$
+\frac{\partial V}{\partial t} = -\frac{\partial V}{\partial\tau} = K g'(\xi)\frac{\xi}{2\tau}
+$$
 
+$$
+\frac{\partial V}{\partial S} = K g'(\xi) \cdot \frac{1}{S\sigma\sqrt{\tau}}
+$$
 
+$$
+\frac{\partial^2 V}{\partial S^2} = K g''(\xi) \cdot \frac{1}{S^2\sigma^2\tau} - K g'(\xi) \cdot \frac{1}{S^2\sigma\sqrt{\tau}}
+$$
 
-$$\frac{\partial\xi}{\partial S} = \frac{1}{S\sigma\sqrt{\tau}}$$
+### Substituting into the PDE
 
+$$
+Kg'(\xi)\frac{\xi}{2\tau} + rS \cdot Kg'(\xi)\frac{1}{S\sigma\sqrt{\tau}} + \frac{\sigma^2 S^2}{2}\!\left[Kg''(\xi)\frac{1}{S^2\sigma^2\tau} - Kg'(\xi)\frac{1}{S^2\sigma\sqrt{\tau}}\right] - rKg(\xi) = 0
+$$
 
+Simplifying:
 
+$$
+\frac{Kg'(\xi)\xi}{2\tau} + \frac{rKg'(\xi)}{\sigma\sqrt{\tau}} + \frac{Kg''(\xi)}{2\tau} - \frac{Kg'(\xi)}{2\sigma\sqrt{\tau}} - rKg(\xi) = 0
+$$
 
-$$\frac{\partial^2\xi}{\partial S^2} = -\frac{1}{S^2\sigma\sqrt{\tau}}$$
+Multiply by $\tau / K$:
 
+$$
+\frac{g'(\xi)\xi}{2} + \frac{rg'(\xi)\sqrt{\tau}}{\sigma} + \frac{g''(\xi)}{2} - \frac{g'(\xi)\sqrt{\tau}}{2\sigma} - rg(\xi)\tau = 0
+$$
 
+### The Ansatz Fails: Non-Similarity
 
-**Chain rule**:
-
-$$\frac{\partial V}{\partial t} = -\frac{\partial V}{\partial\tau} = K g'(\xi)\frac{\xi}{2\tau}$$
-
-
-
-
-$$\frac{\partial V}{\partial S} = K g'(\xi) \cdot \frac{1}{S\sigma\sqrt{\tau}}$$
-
-
-
-
-$$\frac{\partial^2 V}{\partial S^2} = K g''(\xi) \cdot \frac{1}{S^2\sigma^2\tau} - K g'(\xi) \cdot \frac{1}{S^2\sigma\sqrt{\tau}}$$
-
-
-
-### 3. **Substituting into PDE**
-
-
-
-$$Kg'(\xi)\frac{\xi}{2\tau} + rS \cdot Kg'(\xi)\frac{1}{S\sigma\sqrt{\tau}} + \frac{\sigma^2 S^2}{2}\left[Kg''(\xi)\frac{1}{S^2\sigma^2\tau} - Kg'(\xi)\frac{1}{S^2\sigma\sqrt{\tau}}\right] - rKg(\xi) = 0$$
-
-
-
-Simplify:
-
-$$\frac{Kg'(\xi)\xi}{2\tau} + \frac{rKg'(\xi)}{\sigma\sqrt{\tau}} + \frac{Kg''(\xi)}{2\tau} - \frac{Kg'(\xi)}{2\sigma\sqrt{\tau}} - rKg(\xi) = 0$$
-
-
-
-Multiply by $\frac{\tau}{K}$:
-
-$$\frac{g'(\xi)\xi}{2} + \frac{rg'(\xi)\sqrt{\tau}}{\sigma} + \frac{g''(\xi)}{2} - \frac{g'(\xi)\sqrt{\tau}}{2\sigma} - rg(\xi)\tau = 0$$
-
-
-
-### 4. **Problem: Non-Similarity**
-
-
-The presence of $\tau$ prevents complete reduction to ODE!
-
-The issue: $r$ introduces a **scale** that breaks perfect similarity.
+The presence of $\tau$ prevents complete reduction to an ODE. The interest rate $r$ introduces a **scale** that breaks perfect similarity. This is a key structural observation: the Black-Scholes PDE is not purely self-similar, and no single-variable reduction of the form $V = Kg(\xi)$ eliminates time entirely.
 
 ---
 
-## **5. Modified Similarity Variables**
+## 5. Modified Similarity Variables and the Black-Scholes Structure
 
+### Dimensionless Time
 
-### 1. **Dimensionless Time**
+Including the interest rate scaling yields the drift-adjusted similarity variable:
 
+$$
+\xi = \frac{\ln(S/K) + (r - \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}
+$$
 
-Include the interest rate scaling:
+This is related to $d_2$ in the Black-Scholes formula.
 
-$$\xi = \frac{\ln(S/K) + (r - \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}$$
+### Modified Ansatz
 
+Instead of a single similarity function, try:
 
-
-This is related to $d_2$ in Black-Scholes!
-
-### 2. **Modified Ansatz**
-
-
-Try:
-
-$$\boxed{V(S,t) = Se^{-q\tau}h(\xi_1) - Ke^{-r\tau}h(\xi_2)}$$
-
-
+$$
+V(S,t) = Se^{-q\tau}h(\xi_1) - Ke^{-r\tau}h(\xi_2)
+$$
 
 where:
 
-$$\xi_1 = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}} = d_1$$
+$$
+\xi_1 = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}} = d_1
+$$
 
+$$
+\xi_2 = \frac{\ln(S/K) + (r - \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}} = d_2
+$$
 
+This is the **Black-Scholes structure**: the formula decomposes into two terms, each involving a similarity coordinate evaluated through the same function $h$.
 
+### The ODE for h
 
-$$\xi_2 = \frac{\ln(S/K) + (r - \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}} = d_2$$
+Both $h(\xi_1)$ and $h(\xi_2)$ satisfy the same second-order ODE:
 
+$$
+\frac{d^2h}{d\xi^2} + \xi\frac{dh}{d\xi} = 0
+$$
 
-
-This is the **Black-Scholes structure**!
-
-### 3. **The ODE for h**
-
-
-Both $h(\xi_1)$ and $h(\xi_2)$ satisfy:
-
-$$\boxed{\frac{d^2h}{d\xi^2} + \xi\frac{dh}{d\xi} = 0}$$
-
-
-
-### 4. **Solution**
-
+### Solution
 
 Integrate once:
 
-$$\frac{dh}{d\xi} = Ce^{-\xi^2/2}$$
-
-
+$$
+\frac{dh}{d\xi} = Ce^{-\xi^2/2}
+$$
 
 Integrate again:
 
-$$\boxed{h(\xi) = C_1\int_{-\infty}^{\xi}e^{-s^2/2}ds + C_2 = C_1\sqrt{2\pi}N(\xi) + C_2}$$
+$$
+h(\xi) = C_1\int_{-\infty}^{\xi}e^{-s^2/2}\,ds + C_2 = C_1\sqrt{2\pi}\,N(\xi) + C_2
+$$
 
-
-
-where $N(\xi) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\xi}e^{-s^2/2}ds$ is the standard normal CDF!
+where $N(\xi) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\xi}e^{-s^2/2}\,ds$ is the standard normal CDF. The Black-Scholes formula emerges with $h = N$ (after applying boundary conditions to fix the constants).
 
 ---
 
-## **6. Heat Equation Similarity**
+## 6. Heat Equation Similarity
 
-
-### 1. **Transformed PDE**
-
+### Transformed PDE
 
 In variables $x = \ln(S/K)$ and $\tau = T - t$, after removing drift and decay:
 
-$$\frac{\partial w}{\partial \tau} = \frac{\partial^2 w}{\partial x^2}$$
+$$
+\frac{\partial w}{\partial \tau} = \frac{\partial^2 w}{\partial x^2}
+$$
 
+This is the heat equation.
 
-
-This is the **heat equation**.
-
-### 2. **Self-Similar Solution**
-
+### Self-Similar Solution
 
 The fundamental solution (heat kernel) has the form:
 
-$$\boxed{w(x,\tau) = \frac{1}{\sqrt{\tau}}G\left(\frac{x}{\sqrt{\tau}}\right)}$$
+$$
+w(x,\tau) = \frac{1}{\sqrt{\tau}}\,G\!\left(\frac{x}{\sqrt{\tau}}\right)
+$$
 
+where $\eta = x / \sqrt{\tau}$ is the similarity variable.
 
-
-where $\eta = \frac{x}{\sqrt{\tau}}$ is the **similarity variable**.
-
-### 3. **Reduction to ODE**
-
+### Reduction to ODE
 
 Substitute:
 
-$$\frac{\partial w}{\partial\tau} = -\frac{1}{2\tau^{3/2}}G(\eta) - \frac{\eta}{2\tau^{3/2}}G'(\eta)$$
+$$
+\frac{\partial w}{\partial\tau} = -\frac{1}{2\tau^{3/2}}G(\eta) - \frac{\eta}{2\tau^{3/2}}G'(\eta)
+$$
 
-
-
-
-$$\frac{\partial^2 w}{\partial x^2} = \frac{1}{\tau^{3/2}}G''(\eta)$$
-
-
+$$
+\frac{\partial^2 w}{\partial x^2} = \frac{1}{\tau^{3/2}}G''(\eta)
+$$
 
 The heat equation becomes:
 
-$$-\frac{1}{2\tau^{3/2}}G - \frac{\eta}{2\tau^{3/2}}G' = \frac{1}{\tau^{3/2}}G''$$
-
-
+$$
+-\frac{1}{2\tau^{3/2}}G - \frac{\eta}{2\tau^{3/2}}G' = \frac{1}{\tau^{3/2}}G''
+$$
 
 Multiply by $\tau^{3/2}$:
 
-$$\boxed{G''(\eta) + \frac{\eta}{2}G'(\eta) + \frac{1}{2}G(\eta) = 0}$$
+$$
+G''(\eta) + \frac{\eta}{2}G'(\eta) + \frac{1}{2}G(\eta) = 0
+$$
 
-
-
-### 4. **Solution: Gaussian**
-
+### Solution: Gaussian
 
 The solution is:
 
-$$\boxed{G(\eta) = Ce^{-\eta^2/4} = Ce^{-x^2/(4\tau)}}$$
-
-
+$$
+G(\eta) = Ce^{-\eta^2/4}
+$$
 
 Therefore:
 
-$$\boxed{w(x,\tau) = \frac{C}{\sqrt{4\pi\tau}}e^{-x^2/(4\tau)}}$$
+$$
+w(x,\tau) = \frac{C}{\sqrt{4\pi\tau}}\,e^{-x^2/(4\tau)}
+$$
 
-
-
-This is the **heat kernel** or **fundamental solution**!
-
----
-
-## **7. Lie Group Methods**
-
-
-### 1. **Infinitesimal Generators**
-
-
-The Black-Scholes PDE admits **symmetry transformations** forming a Lie group.
-
-**Scaling symmetry**:
-
-$$X_1 = S\frac{\partial}{\partial S} + K\frac{\partial}{\partial K} + V\frac{\partial}{\partial V}$$
-
-
-
-**Time translation**:
-
-$$X_2 = \frac{\partial}{\partial t}$$
-
-
-
-**Interest rate scaling**:
-
-$$X_3 = r\frac{\partial}{\partial r} + \frac{1}{\tau}\frac{\partial}{\partial\tau}$$
-
-
-
-### 2. **Invariant Solutions**
-
-
-Solutions invariant under a symmetry generator satisfy:
-
-$$X f = 0$$
-
-
-
-For $X_1$ (scaling):
-
-$$S\frac{\partial f}{\partial S} + K\frac{\partial f}{\partial K} + V\frac{\partial f}{\partial V} = 0$$
-
-
-
-This gives:
-
-$$f(S,K,V) = F\left(\frac{S}{K}, \frac{V}{K}\right)$$
-
-
-
-The similarity structure!
-
-### 3. **Optimal System**
-
-
-The **optimal system** of one-dimensional subalgebras gives all **inequivalent** similarity reductions.
-
-For Black-Scholes, this recovers:
-1. Scaling similarity: $\xi = S/K$
-2. Heat equation similarity: $\eta = x/\sqrt{\tau}$
-3. Combined: $\xi = \frac{\ln(S/K)}{\sqrt{\tau}}$
+This is the **heat kernel** (fundamental solution). Unlike the Black-Scholes PDE, the heat equation admits an exact self-similar reduction because there is no interest-rate parameter to break the scaling.
 
 ---
 
-## **8. Traveling Wave Solutions**
+## 7. Explicit Example: European Call
 
+### Terminal Condition
 
-### 1. **Wave Ansatz**
+$$
+V(S,T) = (S - K)^+ = K(e^x - 1)^+
+$$
 
+In the similarity variable $\xi = x / (\sigma\sqrt{\tau})$:
 
-For PDEs with translation symmetry, try:
+$$
+V(x,0) = K(e^{\sigma\sqrt{\tau}\,\xi} - 1)^+ \quad \text{at } \tau = 0
+$$
 
-$$u(x,t) = f(x - ct)$$
+### The Terminal Condition Is Not Self-Similar
 
+As $\tau \to 0$, the payoff $(S - K)^+$ does not collapse to a function of $\xi$ alone. The terminal condition is not self-similar, which is another reason the naive similarity ansatz cannot capture the full solution.
 
+### Resolution via Superposition
 
-where $c$ is the **wave speed**.
+The full solution is a superposition over the self-similar fundamental solution:
 
-### 2. **Black-Scholes Context**
+$$
+V(x,\tau) = \int_{-\infty}^{\infty}G(x-y,\tau)\,\Phi(y)\,dy
+$$
 
+where $G$ is the heat kernel. The self-similar kernel acts as the building block, even though the overall solution is not self-similar.
 
-The drift term $\left(r - \frac{\sigma^2}{2}\right)\frac{\partial V}{\partial x}$ suggests traveling wave:
-
-$$V(x,\tau) = F\left(x - \left(r - \frac{\sigma^2}{2}\right)\tau\right)$$
-
-
-
-### 3. **Moving Frame**
-
-
-In the frame moving with velocity $v = r - \frac{\sigma^2}{2}$:
-
-$$\xi = x - v\tau = \ln(S/K) - \left(r - \frac{\sigma^2}{2}\right)\tau$$
-
-
-
-The PDE simplifies, revealing the **stationary structure**.
-
----
-
-## **9. Explicit Example: European Call**
-
-
-### 1. **Terminal Condition**
-
-
-
-$$V(S,T) = (S - K)^+ = K(e^x - 1)^+$$
-
-
-
-In similarity variable $\xi = \frac{x}{\sigma\sqrt{\tau}}$:
-
-$$V(x,0) = K(e^{\sigma\sqrt{\tau}\xi} - 1)^+ \quad \text{at } \tau = 0$$
-
-
-
-As $\tau \to 0$:
-
-$$e^{\sigma\sqrt{\tau}\xi} \approx 1 + \sigma\sqrt{\tau}\xi \to \begin{cases} 1 & \xi > 0 \\ 1 & \xi < 0 \end{cases}$$
-
-
-
-### 2. **Problem**
-
-
-The terminal condition is **not self-similar**! It doesn't have the form $g(\xi)$ at $\tau = 0$.
-
-### 3. **Resolution**
-
-
-The **full solution** is not purely self-similar—it's a **superposition**:
-
-$$V(x,\tau) = \int_{-\infty}^{\infty}G(x-y,\tau)\Phi(y)dy$$
-
-
-
-where $G$ is the self-similar fundamental solution.
-
-### 4. **Black-Scholes Formula**
-
+### Black-Scholes Formula
 
 After transformation and integration:
 
-$$\boxed{C(S,t) = SN(d_1) - Ke^{-r\tau}N(d_2)}$$
+$$
+C(S,t) = SN(d_1) - Ke^{-r\tau}N(d_2)
+$$
 
+where $d_1, d_2$ are the modified similarity variables:
 
+$$
+d_1 = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}
+$$
 
-where $d_1, d_2$ are the **similarity variables**:
+$$
+d_2 = \frac{\ln(S/K) + (r - \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}} = d_1 - \sigma\sqrt{\tau}
+$$
 
-$$d_1 = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}$$
-
-
-
-
-$$d_2 = \frac{\ln(S/K) + (r - \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}} = d_1 - \sigma\sqrt{\tau}$$
-
-
-
-The structure $N(d_1), N(d_2)$ reflects the underlying **similarity symmetry**!
-
----
-
-## **10. Self-Similar Barrier Options**
-
-
-### 1. **Absorbing Barrier**
-
-
-For a barrier at $S = B$, the condition $V(B,t) = 0$ in similarity variables:
-
-$$V\left(B, t\right) = Kg\left(\frac{\ln(B/K)}{\sigma\sqrt{\tau}}\right) = 0$$
-
-
-
-This requires:
-
-$$g\left(\frac{\ln(B/K)}{\sigma\sqrt{\tau}}\right) = 0 \quad \forall \tau$$
-
-
-
-This is **impossible** unless $B = K$ (barrier at strike)!
-
-### 2. **Power-Law Similarity**
-
-
-Try modified ansatz:
-
-$$V(S,t) = S^\alpha f(\xi)$$
-
-
-
-where $\alpha$ is chosen to satisfy boundary conditions.
-
-For down-and-out with barrier $B$:
-
-$$\alpha = \frac{2r}{\sigma^2}$$
-
-
-
-gives the correct scaling.
-
-### 3. **Method of Images**
-
-
-The similarity structure suggests:
-
-$$V_{DO}(S,t) = V(S,t) - \left(\frac{B}{S}\right)^{2r/\sigma^2}V\left(\frac{B^2}{S}, t\right)$$
-
-
-
-The exponent $2r/\sigma^2$ comes from **dimensional analysis** and **scale invariance**!
+The structure $N(d_1), N(d_2)$ reflects the underlying similarity symmetry of the heat equation, adapted to account for the drift introduced by the interest rate.
 
 ---
 
-## **11. Higher-Dimensional Similarity**
+## 8. Asymptotics and Similarity
 
+### Short-Time Asymptotics
 
-### 1. **Two-Asset Problem**
+As $\tau \to 0$, the similarity variable $\xi = \ln(S/K) / (\sigma\sqrt{\tau})$ becomes:
 
-
-For options on $S_1, S_2$ with **uncorrelated** dynamics:
-
-$$\frac{\partial V}{\partial t} + \sum_{i=1,2}\left[rS_i\frac{\partial V}{\partial S_i} + \frac{\sigma_i^2 S_i^2}{2}\frac{\partial^2 V}{\partial S_i^2}\right] - rV = 0$$
-
-
-
-### 2. **Similarity Variables**
-
-
-Define:
-
-$$\xi_1 = \frac{\ln(S_1/K_1)}{\sigma_1\sqrt{\tau}}, \quad \xi_2 = \frac{\ln(S_2/K_2)}{\sigma_2\sqrt{\tau}}$$
-
-
-
-### 3. **Product Form**
-
-
-Try:
-
-$$V(S_1, S_2, t) = K_1 K_2 g(\xi_1, \xi_2)$$
-
-
-
-The PDE separates into:
-
-$$\frac{\partial g}{\partial\tau} = L_1 g + L_2 g$$
-
-
-
-where $L_i$ are the one-dimensional operators.
-
-For **basket options** $(w_1 S_1 + w_2 S_2 - K)^+$, similarity variable:
-
-$$\xi = \frac{w_1 S_1 + w_2 S_2}{K\sqrt{\tau}}$$
-
-
-
-approximates the solution structure.
-
----
-
-## **12. Asymptotics and Similarity**
-
-
-### 1. **Short-Time Asymptotics**
-
-
-As $\tau \to 0$, the similarity variable $\xi = \frac{\ln(S/K)}{\sigma\sqrt{\tau}}$ becomes:
 - $\xi \to +\infty$ if $S > K$ (ITM)
 - $\xi \to -\infty$ if $S < K$ (OTM)
 - $\xi = O(1)$ if $S \approx K$ (ATM)
 
-### 2. **ATM Expansion**
-
+### ATM Expansion
 
 For $S \approx K$ (so $\xi = O(1)$):
 
-$$V \approx K\left[N(d_1) - N(d_2)\right] \approx \frac{K\sigma\sqrt{\tau}}{\sqrt{2\pi}}[1 + O(\tau)]$$
-
-
+$$
+V \approx K\left[N(d_1) - N(d_2)\right] \approx \frac{K\sigma\sqrt{\tau}}{\sqrt{2\pi}}\left[1 + O(\tau)\right]
+$$
 
 This is the **ATM approximation**: $V \sim \sigma\sqrt{\tau}$ (time-value decay).
 
-### 3. **Deep OTM/ITM**
-
+### Deep OTM and ITM
 
 For $|\xi| \gg 1$:
 
-$$N(d_i) \approx \begin{cases} 1 & d_i \to +\infty \\ 0 & d_i \to -\infty \end{cases}$$
+$$
+N(d_i) \approx \begin{cases} 1 & d_i \to +\infty \\ 0 & d_i \to -\infty \end{cases}
+$$
 
+Using Mill's ratio:
 
+$$
+1 - N(x) \approx \frac{e^{-x^2/2}}{x\sqrt{2\pi}} \quad \text{for } x \gg 1
+$$
 
-Using **Mill's ratio**:
-
-$$1 - N(x) \approx \frac{e^{-x^2/2}}{x\sqrt{2\pi}} \quad \text{for } x \gg 1$$
-
-
-
-This gives **exponential decay** in $\xi$.
+This gives exponential decay in $\xi$: deep out-of-the-money options have prices that vanish exponentially in the squared similarity variable.
 
 ---
 
-## **13. Connection to Probability Theory**
+## 9. Connection to Probability Theory
 
-
-### 1. **Central Limit Theorem**
-
+### Central Limit Theorem
 
 The heat kernel:
 
-$$G(x,\tau) = \frac{1}{\sqrt{4\pi\tau}}e^{-x^2/(4\tau)}$$
+$$
+G(x,\tau) = \frac{1}{\sqrt{4\pi\tau}}\,e^{-x^2/(4\tau)}
+$$
 
-
-
-is the **Gaussian density** with variance $2\tau$.
+is the Gaussian density with variance $2\tau$.
 
 The similarity variable:
 
-$$\xi = \frac{x}{\sqrt{2\tau}}$$
+$$
+\xi = \frac{x}{\sqrt{2\tau}}
+$$
 
+is the standardized variable for the CLT.
 
-
-is the **standardized variable** for the CLT.
-
-### 2. **Large Deviations**
-
+### Large Deviations
 
 For $\tau \to \infty$ with $x/\tau = v$ fixed:
 
-$$-\frac{1}{\tau}\ln G(x,\tau) \approx \frac{v^2}{4} + \frac{1}{2}\ln(4\pi\tau)$$
+$$
+-\frac{1}{\tau}\ln G(x,\tau) \approx \frac{v^2}{4} + \frac{1}{2}\ln(4\pi\tau)
+$$
 
+The rate function $I(v) = v^2/4$ governs large deviations.
 
+### Scaling Limits
 
-The **rate function** $I(v) = v^2/4$ governs large deviations.
+As $\tau \to 0$ with $\xi = x/\sqrt{\tau}$ fixed, the distribution concentrates on $\{\xi = 0\}$, i.e., $S = K$.
 
-### 3. **Scaling Limits**
-
-
-As $\tau \to 0$ with $\xi = x/\sqrt{\tau}$ fixed, the distribution **concentrates** on $\{\xi = 0\}$, i.e., $S = K$.
-
-This is the **zero-diffusion limit** or **small-noise asymptotics**.
-
----
-
-## **14. Numerical Methods via Similarity**
-
-
-### 1. **Sparse Grids**
-
-
-Using similarity variable $\xi$ instead of $(S,t)$:
-- Fewer grid points needed near ATM
-- Natural boundary conditions at $\xi \to \pm\infty$
-- Adaptive refinement based on $|\xi|$
-
-### 2. **Transformation of Domain**
-
-
-Map $(S,t) \in (0,\infty) \times [0,T]$ to $(\xi, \tau) \in \mathbb{R} \times [0,T]$.
-
-The "computational domain" is **unbounded** but naturally truncated:
-
-$$\xi \in [-\xi_{\max}, \xi_{\max}]$$
-
-
-
-where $\xi_{\max} \approx 5$ captures $99.99\%$ of the distribution.
-
-### 3. **Initial Condition**
-
-
-Terminal payoff $\Phi(S)$ becomes:
-
-$$\Phi(\xi, 0) = \Phi(Ke^{\sigma\sqrt{\tau}\xi})\bigg|_{\tau=0}$$
-
-
-
-As $\tau \to 0$, this is **singular** but well-defined in distributional sense.
+This is the zero-diffusion limit (small-noise asymptotics).
 
 ---
 
-## **15. Similarity in Stochastic Volatility**
+## 10. Summary
 
+### Key Insights
 
-### 1. **Heston Model**
+1. **Black-Scholes is scale-invariant**: Multiply all dollar amounts by $\lambda$, and the solution scales proportionally.
 
+2. **Natural similarity variable**: $\xi = \ln(S/K) / (\sigma\sqrt{\tau})$ is the standardized log-moneyness.
 
+3. **The naive ansatz fails**: The interest rate $r$ introduces a scale that prevents a pure similarity reduction of the Black-Scholes PDE to a single ODE.
 
-$$dS_t = rS_t dt + \sqrt{v_t}S_t dW_t^{(1)}$$
+4. **Heat equation succeeds**: After removing drift and discounting, the transformed PDE admits an exact self-similar reduction whose fundamental solution is the Gaussian kernel.
 
+5. **Black-Scholes formula as modified similarity**: The formula $C = SN(d_1) - Ke^{-r\tau}N(d_2)$ decomposes into two terms, each evaluated at a drift-adjusted similarity coordinate. The function $N$ arises from the ODE $h'' + \xi h' = 0$.
 
+### The Similarity Perspective
 
-$$dv_t = \kappa(\theta - v_t)dt + \xi\sqrt{v_t}dW_t^{(2)}$$
+Similarity solutions reveal that option prices depend on **ratios, not absolutes**:
 
-
-
-### 2. **Quasi-Similarity**
-
-
-Define:
-
-$$\xi_S = \frac{\ln(S/K)}{\sqrt{v_0\tau}}, \quad \xi_v = \frac{v_t}{v_0}$$
-
-
-
-The solution has **approximate** similarity structure:
-
-$$V(S, v, t) \approx K f(\xi_S, \xi_v, \kappa\tau, \xi\sqrt{\tau})$$
-
-
-
-Not purely self-similar due to mean-reversion $\kappa$.
-
-### 3. **Long-Time Limit**
-
-
-As $\tau \to \infty$, $v_t \to \theta$ (mean-reversion), so:
-
-$$V \approx V_{\text{BS}}(S, K, \tau, \sigma = \sqrt{\theta})$$
-
-
-
-The similarity structure **emerges** in the long-time limit.
-
----
-
-## **16. Fractional Diffusion and Anomalous Scaling**
-
-
-### 1. **Fractional Heat Equation**
-
-
-
-$$\frac{\partial u}{\partial t} = (-\Delta)^{\alpha/2}u$$
-
-
-
-where $(-\Delta)^{\alpha/2}$ is the **fractional Laplacian**.
-
-### 2. **Scaling**
-
-
-The fundamental solution:
-
-$$u(x,t) = t^{-1/\alpha}L_\alpha\left(\frac{|x|}{t^{1/\alpha}}\right)$$
-
-
-
-where $L_\alpha$ is a **Lévy stable density**.
-
-The similarity variable:
-
-$$\boxed{\xi = \frac{x}{t^{1/\alpha}}}$$
-
-
-
-reflects **anomalous diffusion** (subdiffusion $\alpha < 2$, superdiffusion $\alpha > 2$).
-
-### 3. **Rough Volatility**
-
-
-For **fractional Brownian motion** with Hurst parameter $H$:
-
-$$\text{Var}[B_t^H] \sim t^{2H}$$
-
-
-
-The similarity variable scales as:
-
-$$\xi \sim \frac{x}{t^H}$$
-
-
-
----
-
-## **17. Similarity Solutions for American Options**
-
-
-### 1. **Free Boundary Problem**
-
-
-
-$$\max\left\{-\frac{\partial V}{\partial t} - \mathcal{L}V, V - \Phi(S)\right\} = 0$$
-
-
-
-with free boundary $S^*(t)$ (optimal exercise).
-
-### 2. **Similarity Variable**
-
-
-The free boundary has scaling:
-
-$$S^*(t) = K h(\tau)$$
-
-
-
-where $h(\tau)$ satisfies an ODE derived from similarity.
-
-### 3. **Perpetual American Put**
-
-
-For $T \to \infty$ (**perpetual**), time-independence gives:
-
-$$V(S) = (K - S)^+ \text{ or } \mathcal{L}V = 0$$
-
-
-
-In the continuation region $S > S^*$:
-
-$$rS\frac{dV}{dS} + \frac{\sigma^2 S^2}{2}\frac{d^2V}{dS^2} - rV = 0$$
-
-
-
-Try power-law: $V = AS^\alpha$:
-
-$$\boxed{\alpha = \frac{1}{2} - \frac{r}{\sigma^2} \pm \sqrt{\left(\frac{1}{2} - \frac{r}{\sigma^2}\right)^2 + \frac{2r}{\sigma^2}}}$$
-
-
-
-Choose $\alpha < 0$ for boundedness as $S \to \infty$.
-
-### 4. **Optimal Exercise Boundary**
-
-
-At $S = S^*$:
-- **Value matching**: $V(S^*) = K - S^*$
-- **Smooth pasting**: $V'(S^*) = -1$
-
-These determine $A$ and $S^*$:
-
-$$\boxed{S^* = \frac{\alpha}{\alpha - 1}K}$$
-
-
-
-The ratio $S^*/K$ is **constant** (time-independent similarity).
-
----
-
-## **18. Dimensional Analysis for Exotic Options**
-
-
-### 1. **Lookback Option**
-
-
-Payoff: $S_{\max} - S_T$ where $S_{\max} = \max_{0 \leq t \leq T}S_t$.
-
-**Dimensionless variables**:
-
-$$\pi_1 = \frac{S}{S_{\max}}, \quad \pi_2 = \frac{S_{\max}}{K}, \quad \pi_3 = \sigma\sqrt{\tau}$$
-
-
-
-Value:
-
-$$V = S_{\max} \cdot f\left(\frac{S}{S_{\max}}, \sigma\sqrt{\tau}, r\tau\right)$$
-
-
-
-### 2. **Asian Option**
-
-
-Payoff depends on average $A = \frac{1}{T}\int_0^T S_t dt$.
-
-**Dimensionless**:
-
-$$\pi_1 = \frac{S}{K}, \quad \pi_2 = \frac{A}{K}, \quad \pi_3 = \sigma\sqrt{\tau}$$
-
-
-
-Value:
-
-$$V = K \cdot f\left(\frac{S}{K}, \frac{A}{K}, \sigma\sqrt{\tau}, r\tau\right)$$
-
-
-
-The average $A$ introduces an **additional state variable**, breaking simple similarity.
-
----
-
-## **19. Group Invariants and Similarity**
-
-
-### 1. **Invariant Theory**
-
-
-Under the scaling group $G$:
-
-$$g: (S, K, V, t) \to (\lambda S, \lambda K, \lambda V, t)$$
-
-
-
-The **invariants** are:
-
-$$I_1 = \frac{S}{K}, \quad I_2 = \frac{V}{K}, \quad I_3 = t$$
-
-
-
-All functions of these invariants are invariant under $G$.
-
-### 2. **Complete Set**
-
-
-The **fundamental theorem**: Any $G$-invariant function can be expressed as a function of the complete set of invariants.
-
-For Black-Scholes:
-
-$$V = K \cdot f\left(\frac{S}{K}, \sigma\sqrt{T-t}, r(T-t)\right)$$
-
-
-
-is the **most general form**.
-
-### 3. **Differential Invariants**
-
-
-Higher-order invariants:
-
-$$J_1 = S\frac{\partial V}{\partial S}, \quad J_2 = S^2\frac{\partial^2 V}{\partial S^2}$$
-
-
-
-The Greeks $\Delta, \Gamma$ are **differential invariants**!
-
----
-
-## **20. Comparison with Other Methods**
-
-
-### 1. **Similarity vs. Fourier**
-
-
-| **Aspect** | **Similarity** | **Fourier** |
-|------------|----------------|-------------|
-| Reduction | PDE → ODE | PDE → algebraic |
-| Domain | Infinite natural | Infinite natural |
-| Variables | $\xi = x/\sqrt{\tau}$ | $\omega$ (frequency) |
-| Solution | Asymptotic structure | Exact formula |
-| Intuition | Scaling/geometry | Spectral decomposition |
-
-### 2. **Similarity vs. Separation**
-
-
-| **Aspect** | **Similarity** | **Separation** |
-|------------|----------------|----------------|
-| Ansatz | $V = f(\xi(x,t))$ | $V = X(x)T(t)$ |
-| Reduction | 1 variable fewer | Independent ODEs |
-| Spectrum | N/A | Discrete/continuous |
-| Generality | Special solutions | Complete basis |
-
-### 3. **When Similarity Works**
-
-
-**Best for**:
-1. **Scale-invariant problems** (homogeneous PDEs)
-2. **Fundamental solutions** (heat kernel, Green's functions)
-3. **Asymptotic analysis** (small/large time behavior)
-4. **Dimensional analysis** (parameter reduction)
-5. **Conceptual understanding** (scaling laws)
-
-**Limited for**:
-1. **Inhomogeneous PDEs** (source terms)
-2. **General boundary conditions** (non-self-similar)
-3. **Time-dependent parameters** ($\sigma(t), r(t)$)
-4. **Path-dependent options** (multiple state variables)
-
----
-
-## **21. The Deep Structure**
-
-
-### 1. **Why Similarity Exists**
-
-
-Similarity solutions arise when the PDE admits a **one-parameter group** of transformations:
-
-$$\phi_\lambda: (x, t, u) \to (X(x,t,\lambda), T(x,t,\lambda), U(x,t,u,\lambda))$$
-
-
-
-leaving the PDE invariant.
-
-For Black-Scholes:
-- **Scaling group**: $(S, K, V) \to (\lambda S, \lambda K, \lambda V)$
-- **Time translation**: $t \to t + c$
-- **Combined**: Similarity variables
-
-### 2. **Noether's Theorem Analog**
-
-
-In PDE theory, **symmetries** ↔ **conservation laws** ↔ **similarity reductions**.
-
-Each symmetry gives:
-1. A **conservation law** (for hyperbolic PDEs)
-2. A **similarity reduction** (reduction of variables)
-3. **Invariant solutions** (special solution families)
-
-### 3. **The Fundamental Principle**
-
-
-
-$$\boxed{\text{Scaling symmetry} \iff \text{Homogeneity} \iff \text{Similarity variable} \iff \text{Dimensional analysis}}$$
-
-
-
-These are **four perspectives** on the **same mathematical structure**.
-
----
-
-## **22. Summary: The Similarity Paradigm**
-
-
-### 1. **Key Insights**
-
-
-1. **Black-Scholes is scale-invariant**: Multiply all dollar amounts by $\lambda$, solution scales proportionally
-
-2. **Similarity variable**: $\xi = \frac{\ln(S/K)}{\sigma\sqrt{\tau}}$ is the "natural" coordinate
-
-3. **Reduction to ODE**: Heat equation $\to$ ODE for Gaussian kernel
-
-4. **Black-Scholes formula**: Structure $N(d_1), N(d_2)$ reflects similarity symmetry
-
-5. **Greeks are invariants**: $\Delta, \Gamma$ scale correctly under transformations
-
-### 2. **The Master Formulas**
-
-
-**Similarity variable**:
-
-$$\boxed{\xi = \frac{\ln(S/K)}{\sigma\sqrt{\tau}}}$$
-
-
-
-**Heat kernel**:
-
-$$\boxed{G(\xi) = \frac{1}{\sqrt{2\pi}}e^{-\xi^2/2}}$$
-
-
-
-**General solution**:
-
-$$\boxed{V(S,t) = K\int_{-\infty}^{\infty}g(\xi')\frac{e^{-(\xi-\xi')^2/2}}{\sqrt{2\pi}}d\xi'}$$
-
-
-
-**Black-Scholes structure**:
-
-$$\boxed{C = SN(d_1) - Ke^{-r\tau}N(d_2)}$$
-
-
-
-where $d_1, d_2$ are **similarity coordinates**.
-
-### 3. **The Philosophy**
-
-
-Similarity solutions reveal that **option prices depend on ratios, not absolutes**:
 - Not $S$ and $K$ separately, but $S/K$ (moneyness)
 - Not $\tau$ and $\sigma$ separately, but $\sigma\sqrt{\tau}$ (total volatility)
-- Not absolute prices, but **dimensionless combinations**
+- Not absolute prices, but dimensionless combinations
 
-This is the **geometric essence** of option pricing!
-
----
+This is the geometric essence of the Black-Scholes pricing structure. In the operator framework of the introduction, similarity analysis reveals the **invariant structure** of the pricing semigroup $\mathcal{P}_\tau = e^{\tau\mathcal{L}}$: its action depends only on dimensionless combinations of the problem's parameters.
 
 ---
 
 ## Exercises
 
 **Exercise 1.** Using the Buckingham Pi theorem, show that the Black-Scholes call price must have the form $C = K \cdot f(S/K, \sigma^2\tau, r\tau)$ for some dimensionless function $f$. Verify this by examining the Black-Scholes formula and identifying $f$ explicitly.
-
----
-
-**Exercise 2.** The similarity variable for the heat equation is $\xi = x / \sqrt{\tau}$. Show that if $F(x, \tau) = g(\xi)$, then substituting into $\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2 \frac{\partial^2 F}{\partial x^2}$ yields the ODE $-\frac{\xi}{2}g'(\xi) = \frac{\sigma^2}{2}g''(\xi)$. Solve this ODE and relate the solution to the error function.
-
----
-
-**Exercise 3.** The Black-Scholes formula depends on $S$ and $K$ only through the ratio $S/K$ (moneyness). Explain this using the scale invariance of GBM: if $S_t$ satisfies the GBM SDE, show that $\lambda S_t$ also satisfies the same SDE with the same $\mu$ and $\sigma$, and conclude that the call price must be homogeneous of degree 1 in $(S, K)$.
-
----
-
-**Exercise 4.** Show that the Black-Scholes call price satisfies Euler's identity for homogeneous functions: $C = S\frac{\partial C}{\partial S} + K\frac{\partial C}{\partial K}$. Verify this directly using the Black-Scholes formula.
-
----
-
-**Exercise 5.** The ATM approximation $C \approx 0.4 S\sigma\sqrt{T}$ can be understood as a similarity scaling. Show that for $S = K$ and $r = 0$, the call price depends on $S$, $\sigma$, and $T$ only through the combination $S\sigma\sqrt{T}$, and determine the proportionality constant from the Black-Scholes formula.
-
----
-
-**Exercise 6.** A **perpetual American put** is an American put with $T = \infty$. Argue from dimensional analysis that the price must have the form $P(S) = K \cdot h(S/K, r/\sigma^2)$ for some function $h$ (no time dependence since $T = \infty$). Using the ODE that results from the time-independent Black-Scholes equation, find the similarity solution and the optimal exercise boundary.
-
----
-
----
-
-## Solutions
 
 ??? success "Solution to Exercise 1"
 
@@ -1191,6 +507,9 @@ This is the **geometric essence** of option pricing!
     $$
 
     where $x = S/K$, $v = \sigma^2\tau$, $\rho = r\tau$, confirming the Buckingham Pi prediction exactly.
+
+---
+**Exercise 2.** The similarity variable for the heat equation is $\xi = x / \sqrt{\tau}$. Show that if $F(x, \tau) = g(\xi)$, then substituting into $\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2 \frac{\partial^2 F}{\partial x^2}$ yields the ODE $-\frac{\xi}{2}g'(\xi) = \frac{\sigma^2}{2}g''(\xi)$. Solve this ODE and relate the solution to the error function.
 
 ??? success "Solution to Exercise 2"
 
@@ -1236,6 +555,9 @@ This is the **geometric essence** of option pricing!
 
     For general $\sigma$, the substitution $\eta = \xi/\sigma$ gives $g(\xi) = A\,\mathrm{erf}\!\left(\frac{\xi}{\sigma\sqrt{2}}\right) + B$. This is precisely the **error function** solution. The fundamental solution of the heat equation, $\frac{1}{\sigma\sqrt{2\pi\tau}}e^{-x^2/(2\sigma^2\tau)}$, is recovered by differentiating $g$ with respect to $x$, confirming that the Gaussian kernel arises naturally from the similarity reduction.
 
+---
+**Exercise 3.** The Black-Scholes formula depends on $S$ and $K$ only through the ratio $S/K$ (moneyness). Explain this using the scale invariance of GBM: if $S_t$ satisfies the GBM SDE, show that $\lambda S_t$ also satisfies the same SDE with the same $\mu$ and $\sigma$, and conclude that the call price must be homogeneous of degree 1 in $(S, K)$.
+
 ??? success "Solution to Exercise 3"
 
     Let $S_t$ satisfy the GBM SDE under the risk-neutral measure:
@@ -1268,6 +590,9 @@ This is the **geometric essence** of option pricing!
 
     Therefore $C$ depends on $S$ and $K$ only through the moneyness ratio $S/K$. This is a direct consequence of the scale invariance of the underlying GBM dynamics.
 
+---
+**Exercise 4.** Show that the Black-Scholes call price satisfies Euler's identity for homogeneous functions: $C = S\frac{\partial C}{\partial S} + K\frac{\partial C}{\partial K}$. Verify this directly using the Black-Scholes formula.
+
 ??? success "Solution to Exercise 4"
 
     Euler's theorem states that if $f$ is homogeneous of degree $k$, then $\sum_i x_i \frac{\partial f}{\partial x_i} = k f$. From Exercise 3, $C(S, K, \tau)$ is homogeneous of degree 1 in $(S, K)$, so:
@@ -1293,7 +618,7 @@ This is the **geometric essence** of option pricing!
     **Step 2**: Compute $\frac{\partial C}{\partial K}$. Since $\frac{\partial d_1}{\partial K} = \frac{\partial d_2}{\partial K} = -\frac{1}{K\sigma\sqrt{\tau}}$:
 
     $$
-    \frac{\partial C}{\partial K} = S\mathcal{N}'(d_1)\left(-\frac{1}{K\sigma\sqrt{\tau}}\right) - e^{-r\tau}\mathcal{N}(d_2) - Ke^{-r\tau}\mathcal{N}'(d_2)\left(-\frac{1}{K\sigma\sqrt{\tau}}\right)
+    \frac{\partial C}{\partial K} = S\mathcal{N}'(d_1)\!\left(-\frac{1}{K\sigma\sqrt{\tau}}\right) - e^{-r\tau}\mathcal{N}(d_2) - Ke^{-r\tau}\mathcal{N}'(d_2)\!\left(-\frac{1}{K\sigma\sqrt{\tau}}\right)
     $$
 
     Again using $S\mathcal{N}'(d_1) = Ke^{-r\tau}\mathcal{N}'(d_2)$, the first and third terms cancel:
@@ -1308,7 +633,10 @@ This is the **geometric essence** of option pricing!
     S\frac{\partial C}{\partial S} + K\frac{\partial C}{\partial K} = S\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2) = C
     $$
 
-    This confirms Euler's identity for the degree-1 homogeneous Black-Scholes call price.
+    This confirms Euler's identity for the degree-1 homogeneous Black-Scholes call price. $\square$
+
+---
+**Exercise 5.** The ATM approximation $C \approx 0.4\, S\sigma\sqrt{T}$ can be understood as a similarity scaling. Show that for $S = K$ and $r = 0$, the call price depends on $S$, $\sigma$, and $T$ only through the combination $S\sigma\sqrt{T}$, and determine the proportionality constant from the Black-Scholes formula.
 
 ??? success "Solution to Exercise 5"
 
@@ -1346,76 +674,4 @@ This is the **geometric essence** of option pricing!
     C \approx 0.4\, S\sigma\sqrt{T}
     $$
 
-    This confirms the ATM approximation as a similarity scaling result, with the proportionality constant being exactly $1/\sqrt{2\pi}$.
-
-??? success "Solution to Exercise 6"
-
-    **Dimensional analysis**: For a perpetual American put ($T = \infty$), there is no time dependence, so $\tau = T - t \to \infty$ is irrelevant. The remaining quantities are $S$ $[\$]$, $K$ $[\$]$, $\sigma$ $[T^{-1/2}]$, and $r$ $[T^{-1}]$. The dimensionless groups are $S/K$ and $r/\sigma^2$, yielding:
-
-    $$
-    P(S) = K \cdot h\!\left(\frac{S}{K},\, \frac{r}{\sigma^2}\right)
-    $$
-
-    **The ODE**: With $\partial V/\partial t = 0$, the Black-Scholes PDE reduces to the time-independent ODE:
-
-    $$
-    \frac{\sigma^2 S^2}{2}P''(S) + rSP'(S) - rP(S) = 0
-    $$
-
-    This is an Euler-Cauchy equation. Substituting $P(S) = AS^\beta$:
-
-    $$
-    \frac{\sigma^2}{2}\beta(\beta - 1)AS^\beta + r\beta AS^\beta - rAS^\beta = 0
-    $$
-
-    Dividing by $AS^\beta$:
-
-    $$
-    \frac{\sigma^2}{2}\beta(\beta - 1) + r\beta - r = 0
-    $$
-
-    $$
-    \frac{\sigma^2}{2}\beta^2 + \left(r - \frac{\sigma^2}{2}\right)\beta - r = 0
-    $$
-
-    The roots are:
-
-    $$
-    \beta = \frac{-(r - \sigma^2/2) \pm \sqrt{(r - \sigma^2/2)^2 + 2\sigma^2 r}}{\sigma^2}
-    $$
-
-    Simplifying the discriminant: $(r - \sigma^2/2)^2 + 2\sigma^2 r = (r + \sigma^2/2)^2$, so:
-
-    $$
-    \beta_1 = 1, \quad \beta_2 = -\frac{2r}{\sigma^2}
-    $$
-
-    The general solution is $P(S) = A_1 S + A_2 S^{\beta_2}$ where $\beta_2 = -2r/\sigma^2 < 0$.
-
-    **Boundary conditions**: As $S \to \infty$, $P(S) \to 0$, so $A_1 = 0$. At the optimal exercise boundary $S^*$, value matching gives $P(S^*) = K - S^*$ and smooth pasting gives $P'(S^*) = -1$.
-
-    From $P(S) = A_2 S^{\beta_2}$: value matching yields $A_2 (S^*)^{\beta_2} = K - S^*$, and smooth pasting yields $A_2 \beta_2 (S^*)^{\beta_2 - 1} = -1$.
-
-    Dividing the second by the first:
-
-    $$
-    \frac{\beta_2}{S^*} = \frac{-1}{K - S^*} \implies S^* = \frac{\beta_2 K}{\beta_2 - 1} = \frac{2rK}{2r + \sigma^2}
-    $$
-
-    Substituting back:
-
-    $$
-    A_2 = \frac{K - S^*}{(S^*)^{\beta_2}} = \frac{K}{(S^*)^{\beta_2}}\cdot\frac{-1}{\beta_2 - 1}
-    $$
-
-    The perpetual American put price is:
-
-    $$
-    P(S) = (K - S^*)\left(\frac{S}{S^*}\right)^{\beta_2} \quad \text{for } S \geq S^*
-    $$
-
-    $$
-    P(S) = K - S \quad \text{for } S \leq S^*
-    $$
-
-    where $\beta_2 = -2r/\sigma^2$ and $S^* = \frac{2rK}{2r + \sigma^2}$. This is a pure similarity solution: it depends on $S$ and $K$ only through $S/K$, and on $r$ and $\sigma$ only through the ratio $r/\sigma^2$.
+    This confirms the ATM approximation as a similarity scaling result, with the proportionality constant being exactly $1/\sqrt{2\pi}$. $\square$

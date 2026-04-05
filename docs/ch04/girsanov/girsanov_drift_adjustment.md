@@ -35,7 +35,7 @@ $$
 \theta := \frac{\mu - r}{\sigma}
 $$
 
-This has a concrete financial interpretation: it is the **excess return per unit of volatility**, i.e. how many units of risk premium the investor earns for each unit of volatility exposure. It is also called the **Sharpe ratio** of the asset.
+This has a concrete financial interpretation: it is the **excess return per unit of volatility**, i.e. how many units of risk premium the investor earns for each unit of volatility exposure. In the scalar GBM setting it coincides with the **Sharpe ratio** of the asset, though "market price of risk" is the safer general terminology.
 
 The sign of $\theta$ encodes the direction of the adjustment:
 
@@ -101,7 +101,7 @@ $$
 V_t = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}\bigl[\Phi(S_T)\,\big|\,\mathcal{F}_t\bigr]
 $$
 
-where $\Phi$ is the payoff function. This is the **risk-neutral pricing formula**, and it holds for any derivative whose payoff depends on $S_T$.
+where $\Phi$ is the payoff function. Assuming absence of arbitrage and market completeness, this is the **risk-neutral pricing formula**, and it holds for any $\mathcal{F}_T$-measurable payoff $\Phi(S_T)$ integrable under $\mathbb{Q}$. This construction corresponds to the existence of an equivalent martingale measure, as guaranteed by the Fundamental Theorem of Asset Pricing.
 
 ---
 
@@ -121,40 +121,6 @@ This drift adjustment is the mathematical foundation of risk-neutral pricing: it
 
 **Exercise 1.**
 A stock follows $dS_t = 0.08\,S_t\,dt + 0.30\,S_t\,dW_t^{\mathbb{P}}$ with risk-free rate $r = 0.02$. Compute the market price of risk $\theta$, write the density process $Z_t$, and derive the risk-neutral dynamics of $S_t$.
-
----
-
-**Exercise 2.**
-Starting from the physical dynamics $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}$ and the definition $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t$, show step by step that the discounted price process $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale. In particular, verify that the $dt$ term vanishes after substitution.
-
----
-
-**Exercise 3.**
-Consider an asset with physical drift $\mu = 0.05$ and volatility $\sigma = 0.40$ in a market with $r = 0.03$. A second asset has $\mu' = 0.10$ and $\sigma' = 0.40$. Both assets are driven by the same Brownian motion. Compute $\theta$ for each asset. Are the two values consistent? What does this tell you about arbitrage in this market?
-
----
-
-**Exercise 4.**
-Explain why the volatility $\sigma$ is unchanged under the Girsanov measure change, while the drift changes from $\mu$ to $r$. Relate your answer to the fact that quadratic variation is a pathwise quantity.
-
----
-
-**Exercise 5.**
-Under $\mathbb{P}$, a zero-coupon bond price satisfies $dP(t,T) = \mu_P P(t,T)\,dt + \sigma_P P(t,T)\,dW_t^{\mathbb{P}}$. Apply the Girsanov drift adjustment to derive the dynamics under $\mathbb{Q}$ and show that the discounted bond price $e^{-\int_0^t r_s\,ds}P(t,T)$ is a $\mathbb{Q}$-martingale.
-
----
-
-**Exercise 6.**
-Suppose $\theta$ is not constant but depends on the current stock price: $\theta_t = (\mu(S_t) - r) / \sigma(S_t)$. Write the Radon-Nikodym derivative $Z_T$ in integral form and state the Novikov condition that must hold. Explain why this condition may fail for certain choices of $\mu(\cdot)$ and $\sigma(\cdot)$.
-
----
-
-**Exercise 7.**
-For the density process $Z_t = \exp(-\theta W_t^{\mathbb{P}} - \frac{1}{2}\theta^2 t)$ with constant $\theta = 0.3$ and $T = 2$, compute $\mathbb{E}^{\mathbb{P}}[Z_T]$ and verify it equals 1. Then compute $Z_T$ for a specific path where $W_T^{\mathbb{P}} = 1.5$ and interpret the result: is this path upweighted or downweighted under $\mathbb{Q}$?
-
----
-
-## Solutions
 
 ??? success "Solution to Exercise 1"
     Given $dS_t = 0.08\,S_t\,dt + 0.30\,S_t\,dW_t^{\mathbb{P}}$ with $r = 0.02$, the parameters are $\mu = 0.08$, $\sigma = 0.30$.
@@ -186,6 +152,11 @@ For the density process $Z_t = \exp(-\theta W_t^{\mathbb{P}} - \frac{1}{2}\theta
     $$
 
     Under $\mathbb{Q}$: $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}} = 0.02\,S_t\,dt + 0.30\,S_t\,dW_t^{\mathbb{Q}}$. The drift has changed from $\mu = 0.08$ to $r = 0.02$ while volatility remains $\sigma = 0.30$.
+
+---
+
+**Exercise 2.**
+Starting from the physical dynamics $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}$ and the definition $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t$, show step by step that the discounted price process $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale. In particular, verify that the $dt$ term vanishes after substitution.
 
 ??? success "Solution to Exercise 2"
     Start with $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}$ and $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t$ where $\theta = (\mu - r)/\sigma$.
@@ -222,6 +193,11 @@ For the density process $Z_t = \exp(-\theta W_t^{\mathbb{P}} - \frac{1}{2}\theta
 
     **Step 4:** The $dt$ term is zero. Since $d\widetilde{S}_t = \sigma\widetilde{S}_t\,dW_t^{\mathbb{Q}}$ contains only a $dW_t^{\mathbb{Q}}$ term and no drift, $\widetilde{S}_t = e^{-rt}S_t$ is a $\mathbb{Q}$-martingale.
 
+---
+
+**Exercise 3.**
+Assume a complete market driven by a single Brownian motion. An asset has physical drift $\mu = 0.05$ and volatility $\sigma = 0.40$ with $r = 0.03$. A second asset has $\mu' = 0.10$ and $\sigma' = 0.40$, driven by the same Brownian motion. Compute $\theta$ for each asset. Are the two values consistent? What does this tell you about arbitrage in this market?
+
 ??? success "Solution to Exercise 3"
     For the first asset: $\mu = 0.05$, $\sigma = 0.40$, $r = 0.03$:
 
@@ -239,7 +215,12 @@ For the density process $Z_t = \exp(-\theta W_t^{\mathbb{P}} - \frac{1}{2}\theta
 
     Since both assets are driven by the **same** Brownian motion $W_t$, a single Girsanov change of measure can only shift $W_t$ by one value of $\theta$. If we use $\theta_1 = 0.05$, then the first asset's discounted price is a martingale under $\mathbb{Q}$, but the second asset's drift under $\mathbb{Q}$ would be $\mu' - \sigma'\theta_1 = 0.10 - 0.40 \times 0.05 = 0.08 \neq r = 0.03$. The second asset's discounted price would not be a martingale.
 
-    This means **there is no single equivalent martingale measure** under which both discounted prices are martingales. By the fundamental theorem of asset pricing, this implies the market admits **arbitrage**. One could construct an arbitrage by going long the high-Sharpe-ratio asset and short the low-Sharpe-ratio asset, since they share the same risk factor but offer different compensation per unit of risk.
+    This means **there is no single equivalent martingale measure** under which both discounted prices are martingales. By the fundamental theorem of asset pricing, this implies the market admits **arbitrage**. Intuitively, one could exploit the inconsistency by trading the two assets against each other, since they share the same risk factor but offer different compensation per unit of risk. (The precise construction of the arbitrage strategy requires care and is not immediate from the $\theta$-mismatch alone.)
+
+---
+
+**Exercise 4.**
+Explain why the volatility $\sigma$ is unchanged under the Girsanov measure change, while the drift changes from $\mu$ to $r$. Relate your answer to the fact that quadratic variation is a pathwise quantity.
 
 ??? success "Solution to Exercise 4"
     The drift changes from $\mu$ to $r$ because it depends on how probabilities are assigned to paths. The Girsanov measure change reweights the probability of each path via the Radon-Nikodym derivative $Z_T$, which shifts the expected value of $dW_t$ from $0$ (under $\mathbb{P}$) to $-\theta\,dt$ (effectively, by making $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t$ a $\mathbb{Q}$-Brownian motion). This reweighting changes the first moment (mean/drift) of the process.
@@ -254,6 +235,11 @@ For the density process $Z_t = \exp(-\theta W_t^{\mathbb{P}} - \frac{1}{2}\theta
 
     Formally, in the SDE $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}$, the Girsanov substitution replaces $dW_t^{\mathbb{P}} = dW_t^{\mathbb{Q}} - \theta\,dt$, which only modifies the $dt$ coefficient (the drift). The coefficient of $dW_t^{\mathbb{Q}}$ remains $\sigma S_t$, leaving volatility unchanged.
 
+---
+
+**Exercise 5.**
+Under $\mathbb{P}$, a zero-coupon bond price satisfies $dP(t,T) = \mu_P P(t,T)\,dt + \sigma_P P(t,T)\,dW_t^{\mathbb{P}}$. Apply the Girsanov drift adjustment to derive the dynamics under $\mathbb{Q}$ and show that the discounted bond price $e^{-\int_0^t r_s\,ds}P(t,T)$ is a $\mathbb{Q}$-martingale.
+
 ??? success "Solution to Exercise 5"
     Under $\mathbb{P}$, the zero-coupon bond dynamics are:
 
@@ -261,17 +247,17 @@ For the density process $Z_t = \exp(-\theta W_t^{\mathbb{P}} - \frac{1}{2}\theta
     dP(t,T) = \mu_P P(t,T)\,dt + \sigma_P P(t,T)\,dW_t^{\mathbb{P}}
     $$
 
-    The market price of risk is $\theta = (\mu_P - r_t)/\sigma_P$, where $r_t$ is the short rate. Define $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \int_0^t \theta_s\,ds$. Substituting $dW_t^{\mathbb{P}} = dW_t^{\mathbb{Q}} - \theta_t\,dt$:
+    The market price of risk is $\lambda_t = (\mu_P - r_t)/\sigma_P$, where $r_t$ is the short rate. Note that in interest rate models the market price of risk $\lambda_t$ may depend on state variables such as $r_t$, making $\lambda_t$ adapted rather than constant. Define $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \int_0^t \lambda_s\,ds$. Substituting $dW_t^{\mathbb{P}} = dW_t^{\mathbb{Q}} - \lambda_t\,dt$:
 
     $$
-    dP(t,T) = \mu_P P\,dt + \sigma_P P\bigl(dW_t^{\mathbb{Q}} - \theta_t\,dt\bigr)
+    dP(t,T) = \mu_P P\,dt + \sigma_P P\bigl(dW_t^{\mathbb{Q}} - \lambda_t\,dt\bigr)
     $$
 
     $$
-    = (\mu_P - \sigma_P\theta_t)P\,dt + \sigma_P P\,dW_t^{\mathbb{Q}}
+    = (\mu_P - \sigma_P\lambda_t)P\,dt + \sigma_P P\,dW_t^{\mathbb{Q}}
     $$
 
-    Since $\sigma_P\theta_t = \sigma_P \cdot \frac{\mu_P - r_t}{\sigma_P} = \mu_P - r_t$:
+    Since $\sigma_P\lambda_t = \sigma_P \cdot \frac{\mu_P - r_t}{\sigma_P} = \mu_P - r_t$:
 
     $$
     dP(t,T) = r_t P(t,T)\,dt + \sigma_P P(t,T)\,dW_t^{\mathbb{Q}}
@@ -297,6 +283,11 @@ For the density process $Z_t = \exp(-\theta W_t^{\mathbb{P}} - \frac{1}{2}\theta
 
     The $dt$ term vanishes, confirming that $e^{-\int_0^t r_s\,ds}P(t,T)$ is a $\mathbb{Q}$-martingale.
 
+---
+
+**Exercise 6.**
+Suppose $\theta$ is not constant but depends on the current stock price: $\theta_t = (\mu(S_t) - r) / \sigma(S_t)$. Write the Radon-Nikodym derivative $Z_T$ in integral form and state the Novikov condition that must hold. Explain why this condition may fail for certain choices of $\mu(\cdot)$ and $\sigma(\cdot)$.
+
 ??? success "Solution to Exercise 6"
     When $\theta_t = (\mu(S_t) - r)/\sigma(S_t)$ depends on the stock price, the Radon-Nikodym derivative in integral form is:
 
@@ -321,6 +312,11 @@ For the density process $Z_t = \exp(-\theta W_t^{\mathbb{P}} - \frac{1}{2}\theta
     - In stochastic volatility models where $\sigma(S_t)$ can become very small with positive probability, the exponential moment may diverge.
 
     When Novikov fails, $Z_t$ is only a local martingale, and the measure change may not define a valid probability measure.
+
+---
+
+**Exercise 7.**
+For the density process $Z_t = \exp(-\theta W_t^{\mathbb{P}} - \frac{1}{2}\theta^2 t)$ with constant $\theta = 0.3$ and $T = 2$, compute $\mathbb{E}^{\mathbb{P}}[Z_T]$ and verify it equals 1. Then compute $Z_T$ for a specific path where $W_T^{\mathbb{P}} = 1.5$ and interpret the result: is this path upweighted or downweighted under $\mathbb{Q}$?
 
 ??? success "Solution to Exercise 7"
     With $\theta = 0.3$ and $T = 2$:

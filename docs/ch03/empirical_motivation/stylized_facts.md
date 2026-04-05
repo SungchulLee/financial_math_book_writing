@@ -351,42 +351,6 @@ equations.
 
 **Exercise 1.** The excess kurtosis of a Student-$t$ distribution with $\nu > 4$ degrees of freedom is $6/(\nu - 4)$. If an empirical estimate of excess kurtosis for daily equity returns is $\hat{\kappa} = 6$, what value of $\nu$ does this imply? For this $\nu$, does the fourth moment of the Student-$t$ distribution exist? What happens to the theoretical kurtosis as $\nu \to 4^+$?
 
----
-
-**Exercise 2.** Suppose daily log returns $\{r_t\}$ satisfy $\operatorname{Corr}(r_t, r_{t-k}) = 0$ for all $k \geq 1$, but $\operatorname{Corr}(r_t^2, r_{t-1}^2) = 0.25$. Explain why these two conditions are not contradictory. Write down a simple GARCH(1,1) model
-
-$$
-r_t = \sigma_t Z_t, \quad Z_t \sim \mathcal{N}(0,1), \quad \sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2
-$$
-
-and verify that $\mathbb{E}[r_t \mid \mathcal{F}_{t-1}] = 0$ while $\operatorname{Var}(r_t \mid \mathcal{F}_{t-1}) = \sigma_t^2$ varies over time.
-
----
-
-**Exercise 3.** The tail of a distribution follows a power law $P(|r| > x) \sim C x^{-\alpha}$ with $\alpha = 4$. A Gaussian distribution with the same variance $\sigma^2$ has $P(|r| > x) \approx \frac{\sigma}{x\sqrt{2\pi}} e^{-x^2/(2\sigma^2)}$ for large $x$. Taking $\sigma = 0.01$ (daily), compute both probabilities at $x = 5\sigma = 0.05$ (choose $C$ so that the power-law probability at $x = 3\sigma$ matches the Gaussian probability at $x = 3\sigma$). How many times more likely is a $5\sigma$ event under the power-law tail than under the Gaussian?
-
----
-
-**Exercise 4.** The leverage effect is characterised by $\operatorname{Corr}(r_t, \sigma_{t+1}^2) < 0$. In the Heston model the correlation between the Brownian motions driving the price and variance processes is $\rho$. Explain qualitatively why $\rho < 0$ generates the leverage effect. Specifically, if $dS_t = \mu S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^S$ and $dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V$ with $\operatorname{Corr}(dW_t^S, dW_t^V) = \rho\,dt$, trace through what happens to $V_t$ when $S_t$ experiences a large negative shock (i.e., $dW_t^S \ll 0$) and $\rho = -0.7$.
-
----
-
-**Exercise 5.** Aggregational Gaussianity states that excess kurtosis decreases with the return horizon. Under i.i.d. assumptions, if a daily return has excess kurtosis $\kappa_1$, show that the $n$-day return (sum of $n$ daily returns) has excess kurtosis
-
-$$
-\kappa_n = \frac{\kappa_1}{n}
-$$
-
-Using this formula, if $\kappa_1 = 8$ at daily frequency, compute the excess kurtosis at weekly ($n = 5$), monthly ($n = 21$), and quarterly ($n = 63$) horizons. At what horizon does the excess kurtosis drop below 0.5?
-
----
-
-**Exercise 6.** You are given a time series of 2520 daily log returns (approximately 10 years). Describe step-by-step how you would test for each of the five stylized facts documented in this section. For each fact, state: (a) the specific quantity you would compute or the test you would run, (b) the null hypothesis, and (c) what outcome would confirm the presence of the stylized fact. You do not need to perform the computations; outline the methodology only.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The excess kurtosis of a Student-$t$ distribution with $\nu > 4$ degrees of freedom is $6/(\nu - 4)$. Setting this equal to the empirical estimate:
 
@@ -403,6 +367,16 @@ Using this formula, if $\kappa_1 = 8$ at daily frequency, compute the excess kur
     $$
 
     The theoretical kurtosis diverges to infinity. At $\nu = 4$ exactly, the fourth moment ceases to exist, and for $\nu < 4$ the kurtosis is undefined. This boundary behaviour reflects the fact that heavier tails (smaller $\nu$) produce more extreme observations, inflating the fourth moment relative to the squared variance.
+
+---
+
+**Exercise 2.** Suppose daily log returns $\{r_t\}$ satisfy $\operatorname{Corr}(r_t, r_{t-k}) = 0$ for all $k \geq 1$, but $\operatorname{Corr}(r_t^2, r_{t-1}^2) = 0.25$. Explain why these two conditions are not contradictory. Write down a simple GARCH(1,1) model
+
+$$
+r_t = \sigma_t Z_t, \quad Z_t \sim \mathcal{N}(0,1), \quad \sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2
+$$
+
+and verify that $\mathbb{E}[r_t \mid \mathcal{F}_{t-1}] = 0$ while $\operatorname{Var}(r_t \mid \mathcal{F}_{t-1}) = \sigma_t^2$ varies over time.
 
 ??? success "Solution to Exercise 2"
     The two conditions are not contradictory because they concern different aspects of the return process.
@@ -428,6 +402,10 @@ Using this formula, if $\kappa_1 = 8$ at daily frequency, compute the excess kur
     $$
 
     Because $\sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2$ depends on the past squared return, the conditional variance changes over time. After a large $|r_{t-1}|$, $\sigma_t^2$ increases, making a large $|r_t|$ more likely (regardless of sign). This is precisely volatility clustering with unpredictable returns.
+
+---
+
+**Exercise 3.** The tail of a distribution follows a power law $P(|r| > x) \sim C x^{-\alpha}$ with $\alpha = 4$. A Gaussian distribution with the same variance $\sigma^2$ has $P(|r| > x) \approx \frac{\sigma}{x\sqrt{2\pi}} e^{-x^2/(2\sigma^2)}$ for large $x$. Taking $\sigma = 0.01$ (daily), compute both probabilities at $x = 5\sigma = 0.05$ (choose $C$ so that the power-law probability at $x = 3\sigma$ matches the Gaussian probability at $x = 3\sigma$). How many times more likely is a $5\sigma$ event under the power-law tail than under the Gaussian?
 
 ??? success "Solution to Exercise 3"
     **Step 1: Calibrate $C$ so that the power-law and Gaussian probabilities match at $x = 3\sigma$.**
@@ -474,6 +452,10 @@ Using this formula, if $\kappa_1 = 8$ at daily frequency, compute the excess kur
 
     A $5\sigma$ event is roughly **600 times more likely** under the power-law tail than under the Gaussian. This demonstrates quantitatively why Gaussian risk models severely underestimate the frequency of extreme events.
 
+---
+
+**Exercise 4.** The leverage effect is characterised by $\operatorname{Corr}(r_t, \sigma_{t+1}^2) < 0$. In the Heston model the correlation between the Brownian motions driving the price and variance processes is $\rho$. Explain qualitatively why $\rho < 0$ generates the leverage effect. Specifically, if $dS_t = \mu S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^S$ and $dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V$ with $\operatorname{Corr}(dW_t^S, dW_t^V) = \rho\,dt$, trace through what happens to $V_t$ when $S_t$ experiences a large negative shock (i.e., $dW_t^S \ll 0$) and $\rho = -0.7$.
+
 ??? success "Solution to Exercise 4"
     In the Heston model:
 
@@ -499,6 +481,16 @@ Using this formula, if $\kappa_1 = 8$ at daily frequency, compute the excess kur
 
     This is exactly the leverage effect: $\operatorname{Corr}(r_t, \sigma_{t+1}^2) < 0$. The negative correlation $\rho$ between the two driving Brownian motions is the continuous-time mechanism that generates the asymmetric volatility response observed empirically. A positive return (large positive $dW_t^S$) would tend to produce negative $dW_t^V$, decreasing variance — but the effect is weaker in magnitude for positive returns due to the asymmetric nature of the observed leverage effect, which additional model features (such as non-linear drift in $V_t$) can capture.
 
+---
+
+**Exercise 5.** Aggregational Gaussianity states that excess kurtosis decreases with the return horizon. Under i.i.d. assumptions, if a daily return has excess kurtosis $\kappa_1$, show that the $n$-day return (sum of $n$ daily returns) has excess kurtosis
+
+$$
+\kappa_n = \frac{\kappa_1}{n}
+$$
+
+Using this formula, if $\kappa_1 = 8$ at daily frequency, compute the excess kurtosis at weekly ($n = 5$), monthly ($n = 21$), and quarterly ($n = 63$) horizons. At what horizon does the excess kurtosis drop below 0.5?
+
 ??? success "Solution to Exercise 5"
     If $r_1, r_2, \ldots, r_n$ are i.i.d. daily returns each with excess kurtosis $\kappa_1$ and variance $\sigma^2$, the $n$-day return is $R_n = \sum_{i=1}^n r_i$.
 
@@ -523,6 +515,10 @@ Using this formula, if $\kappa_1 = 8$ at daily frequency, compute the excess kur
     $$
 
     The excess kurtosis drops below 0.5 at horizon $n = 17$ days (roughly 3.5 weeks). This confirms aggregational Gaussianity: as the horizon increases, the return distribution becomes progressively closer to Gaussian.
+
+---
+
+**Exercise 6.** You are given a time series of 2520 daily log returns (approximately 10 years). Describe step-by-step how you would test for each of the five stylized facts documented in this section. For each fact, state: (a) the specific quantity you would compute or the test you would run, (b) the null hypothesis, and (c) what outcome would confirm the presence of the stylized fact. You do not need to perform the computations; outline the methodology only.
 
 ??? success "Solution to Exercise 6"
     **Fact 1: Heavy tails (leptokurtosis).**

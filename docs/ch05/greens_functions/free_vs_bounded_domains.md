@@ -243,40 +243,6 @@ $$
 **Exercise 1.**
 Write the free-space Green's function $G_{\text{free}}(t, x; 0, y)$ for the heat equation $\partial_t u = \frac{1}{2}\partial_{xx}u$. Verify that $\int_{-\infty}^{\infty}G_{\text{free}}\,dx = 1$ for all $t > 0$ by recognizing the integrand as a Gaussian density.
 
----
-
-**Exercise 2.**
-For the bounded domain $[0, L]$ with absorbing (Dirichlet) boundary conditions, the Green's function can be constructed via the method of images. Write the first image correction to the free-space kernel and explain geometrically why image sources are placed at $y' = -y$ and $y' = 2L - y$.
-
----
-
-**Exercise 3.**
-A down-and-out barrier option on a log-price process $X_t = \ln S_t$ corresponds to solving the heat equation on $[B, \infty)$ with absorbing condition at $X = B$. Explain why the Green's function on this half-line is $G_{\text{free}}(t, x; 0, y) - G_{\text{free}}(t, x; 0, 2B - y)$. What is the financial interpretation of the subtracted term?
-
----
-
-**Exercise 4.**
-Compare the long-time behavior of the free-space Green's function (pointwise decay to zero, conservation of total mass) with the bounded-domain Dirichlet Green's function (exponential decay in total mass). Explain the probabilistic reason for this difference in terms of absorption at the boundary.
-
----
-
-**Exercise 5.**
-On $[0, L]$ with Dirichlet conditions, the spectral expansion of the Green's function involves eigenvalues $\lambda_n = n^2\pi^2/(2L^2)$. Explain why the smallest eigenvalue $\lambda_1$ dominates for large times and compute the decay rate of $G$ for $L = 1$.
-
----
-
-**Exercise 6.**
-For Neumann boundary conditions $\partial_x u(t, 0) = \partial_x u(t, L) = 0$, the Green's function conserves total mass. Explain why, in financial terms, this corresponds to a reflecting barrier. Give an example of a financial model where reflecting barriers are appropriate.
-
----
-
-**Exercise 7.**
-Consider a double-barrier option with $B_l = 80$ and $B_u = 120$ on a stock with $S_0 = 100$. In log-space, this corresponds to a bounded domain $[\ln 80, \ln 120]$. Explain qualitatively how the spectral decomposition of the Green's function on this interval determines the option price, and why shorter-maturity options are more sensitive to higher-order eigenmodes.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The free-space Green's function for $\partial_t u = \frac{1}{2}\partial_{xx}u$ is
 
@@ -291,6 +257,11 @@ Consider a double-barrier option with $B_l = 80$ and $B_u = 120$ on a stock with
     $$
 
     The last integral equals $1$ because the integrand is the standard normal density. This holds for all $t > 0$, confirming that $G_{\text{free}}$ is a probability density in $x$ and that total probability (or heat) is conserved on the free domain.
+
+---
+
+**Exercise 2.**
+For the bounded domain $[0, L]$ with absorbing (Dirichlet) boundary conditions, the Green's function can be constructed via the method of images. Write the first image correction to the free-space kernel and explain geometrically why image sources are placed at $y' = -y$ and $y' = 2L - y$.
 
 ??? success "Solution to Exercise 2"
     On the bounded domain $[0, L]$ with absorbing conditions $u(t, 0) = u(t, L) = 0$, the method of images starts with the free-space Green's function and adds image sources to enforce the boundary conditions.
@@ -311,6 +282,11 @@ Consider a double-barrier option with $B_l = 80$ and $B_u = 120$ on a stock with
 
     Geometrically, $-y$ is the mirror image of $y$ through the left boundary, and $2L - y$ is the mirror image through the right boundary. The negative sign ensures cancellation at the boundary (Dirichlet condition). Enforcing both conditions simultaneously requires an infinite sequence of images at $y + 2kL$ and $-y + 2kL$ for all integers $k$, producing the full image series.
 
+---
+
+**Exercise 3.**
+A down-and-out barrier option on a log-price process $X_t = \ln S_t$ corresponds to solving the heat equation on $[B, \infty)$ with absorbing condition at $X = B$. Explain why the Green's function on this half-line is $G_{\text{free}}(t, x; 0, y) - G_{\text{free}}(t, x; 0, 2B - y)$. What is the financial interpretation of the subtracted term?
+
 ??? success "Solution to Exercise 3"
     For the half-line $[B, \infty)$ with absorbing condition at $X = B$, we apply the method of images. The image of the source at $y$ (with $y > B$) is placed at $y' = 2B - y$ (the reflection of $y$ across $B$), giving
 
@@ -322,6 +298,11 @@ Consider a double-barrier option with $B_l = 80$ and $B_u = 120$ on a stock with
 
     **Financial interpretation**: The first term $G_{\text{free}}(t, x; 0, y)$ represents the transition density of the unrestricted log-price process (the vanilla option contribution). The subtracted term $G_{\text{free}}(t, x; 0, 2B - y)$ represents paths that have crossed the barrier $B$ and been reflected back into the domain. By the reflection principle for Brownian motion, the density of reflected paths that end up at $x > B$ after crossing $B$ is exactly $G_{\text{free}}(t, x; 0, 2B - y)$. Subtracting these reflected paths removes the contribution of barrier-crossing trajectories, correctly pricing the down-and-out option.
 
+---
+
+**Exercise 4.**
+Compare the long-time behavior of the free-space Green's function (pointwise decay to zero, conservation of total mass) with the bounded-domain Dirichlet Green's function (exponential decay in total mass). Explain the probabilistic reason for this difference in terms of absorption at the boundary.
+
 ??? success "Solution to Exercise 4"
     **Free-space Green's function**: As $t \to \infty$, $G_{\text{free}}(t, x; 0, y) = (2\pi t)^{-1/2}\exp(-(x-y)^2/(2t)) \to 0$ pointwise for every fixed $x$. The Gaussian spreads and flattens, but total mass is conserved: $\int_{-\infty}^{\infty} G_{\text{free}}\,dx = 1$ for all $t > 0$. The particle diffuses to infinity, distributing its probability over the entire real line.
 
@@ -332,6 +313,11 @@ Consider a double-barrier option with $B_l = 80$ and $B_u = 120$ on a stock with
     $$
 
     **Probabilistic reason**: On the free domain, Brownian motion wanders to infinity but never disappears -- every trajectory survives forever, so total probability is conserved. On the bounded Dirichlet domain, the absorbing boundaries "kill" the process upon contact. As $t$ grows, more and more trajectories have been absorbed, so the surviving probability mass decreases. The exponential decay rate $\lambda_1$ is the principal eigenvalue, which represents the escape rate of the process from the domain.
+
+---
+
+**Exercise 5.**
+On $[0, L]$ with Dirichlet conditions, the spectral expansion of the Green's function involves eigenvalues $\lambda_n = n^2\pi^2/(2L^2)$. Explain why the smallest eigenvalue $\lambda_1$ dominates for large times and compute the decay rate of $G$ for $L = 1$.
 
 ??? success "Solution to Exercise 5"
     On $[0, L]$ with Dirichlet conditions, the spectral expansion of the Green's function is
@@ -354,6 +340,11 @@ Consider a double-barrier option with $B_l = 80$ and $B_u = 120$ on a stock with
 
     The decay rate is $\lambda_1$, the smallest eigenvalue. For $L = 1$, $\lambda_1 = \pi^2/2 \approx 4.93$, so the Green's function decays as $e^{-\pi^2 t/2}$. This means the total surviving probability decays at rate $\pi^2/2$ per unit time.
 
+---
+
+**Exercise 6.**
+For Neumann boundary conditions $\partial_x u(t, 0) = \partial_x u(t, L) = 0$, the Green's function conserves total mass. Explain why, in financial terms, this corresponds to a reflecting barrier. Give an example of a financial model where reflecting barriers are appropriate.
+
 ??? success "Solution to Exercise 6"
     With Neumann boundary conditions $\partial_x u(t, 0) = \partial_x u(t, L) = 0$, the derivative of $u$ vanishes at both boundaries. This means there is no net flux of probability through the boundary -- particles that reach the boundary are reflected back into the domain rather than being absorbed.
 
@@ -370,6 +361,11 @@ Consider a double-barrier option with $B_l = 80$ and $B_u = 120$ on a stock with
     - **Exchange rate target zones**: A central bank intervenes to keep the exchange rate within a band (e.g., the European Exchange Rate Mechanism). When the rate reaches the boundary, intervention reflects it back.
     - **Regulated interest rates**: Short rates subject to a floor (zero lower bound) or a ceiling, where the rate is reflected when it hits the constraint.
     - **Constrained portfolio processes**: Wealth processes with minimum guarantees, where the portfolio is rebalanced at the boundary to prevent breaching the constraint.
+
+---
+
+**Exercise 7.**
+Consider a double-barrier option with $B_l = 80$ and $B_u = 120$ on a stock with $S_0 = 100$. In log-space, this corresponds to a bounded domain $[\ln 80, \ln 120]$. Explain qualitatively how the spectral decomposition of the Green's function on this interval determines the option price, and why shorter-maturity options are more sensitive to higher-order eigenmodes.
 
 ??? success "Solution to Exercise 7"
     In log-space, the domain is $[a, b] = [\ln 80, \ln 120]$ with $L = b - a = \ln(120/80) = \ln(3/2) \approx 0.405$. The Dirichlet Green's function on this interval has the spectral decomposition

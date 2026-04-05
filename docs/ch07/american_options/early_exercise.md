@@ -199,30 +199,6 @@ $$
 
 **Exercise 1.** Prove that it is never optimal to exercise an American call early on a non-dividend-paying stock. Use the inequality $C \geq S - Ke^{-r(T-t)} > S - K$ (for $r > 0$, $T > t$) to show that the call is always worth more alive than dead.
 
----
-
-**Exercise 2.** For an American put on a non-dividend-paying stock, explain why early exercise can be optimal when the put is sufficiently deep in the money. Specifically, show that the interest earned on the strike proceeds $rK \, dt$ can exceed the time value lost from exercise.
-
----
-
-**Exercise 3.** Consider an American call on a stock that pays a discrete dividend $D$ at time $t_d < T$. Explain why it may be optimal to exercise just before the ex-dividend date. Derive the condition on $D$ that makes early exercise worthwhile.
-
----
-
-**Exercise 4.** The exercise boundary $S^*(t)$ for an American put satisfies $S^*(T) = K$ and $S^*(t) < K$ for $t < T$. At the exercise boundary, two conditions hold: $V(S^*, t) = K - S^*$ (value matching) and $\frac{\partial V}{\partial S}(S^*, t) = -1$ (smooth pasting). Explain the economic intuition behind each condition.
-
----
-
-**Exercise 5.** Compare the early exercise behavior of American calls and puts by filling in a table with the following columns: option type (call/put), dividend status (yes/no), early exercise possible (yes/no), and economic reason. Cover all four combinations.
-
----
-
-**Exercise 6.** An American call on a stock paying continuous dividends at rate $q > 0$ may be exercised early. Show that the critical dividend yield $q^*$ above which early exercise becomes possible depends on $r$, $\sigma$, and $T$. For $r = 5\%$, $\sigma = 20\%$, $T = 1$, estimate $q^*$ numerically using a binomial tree.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **Claim:** For a non-dividend-paying stock with $r > 0$ and $t < T$, it is never optimal to exercise an American call early.
 
@@ -249,6 +225,11 @@ $$
     The option value strictly exceeds the exercise payoff for all $t < T$. Exercising yields $S_t - K$, but selling the option yields at least $C_{\text{Am}} > S_t - K$. Therefore, exercising is always suboptimal, and the call is "worth more alive than dead."
 
     Since early exercise is never optimal, the American and European calls have the same value: $C_{\text{Am}} = C_{\text{Eu}}$. $\square$
+
+---
+
+
+**Exercise 2.** For an American put on a non-dividend-paying stock, explain why early exercise can be optimal when the put is sufficiently deep in the money. Specifically, show that the interest earned on the strike proceeds $rK \, dt$ can exceed the time value lost from exercise.
 
 ??? success "Solution to Exercise 2"
     For a deep-in-the-money American put ($S_t \ll K$), early exercise can be optimal because the **interest earned** on the strike cash exceeds the **time value lost**.
@@ -278,6 +259,11 @@ $$
     $$
 
     When $S_t$ is sufficiently small, the interest $rK \, dt$ dominates the time value lost, and early exercise becomes optimal. The critical stock price $S^*(t)$ is determined by the balance between these competing effects.
+
+---
+
+
+**Exercise 3.** Consider an American call on a stock that pays a discrete dividend $D$ at time $t_d < T$. Explain why it may be optimal to exercise just before the ex-dividend date. Derive the condition on $D$ that makes early exercise worthwhile.
 
 ??? success "Solution to Exercise 3"
     **When early exercise of a call may be optimal:** Just before the ex-dividend date $t_d$, the stock price is $S_{t_d^-}$. On the ex-date, the price drops to approximately $S_{t_d^-} - D$.
@@ -309,6 +295,11 @@ $$
 
     Intuitively, early exercise requires the holder to pay $K$ now rather than at maturity, forgoing interest $K(1 - e^{-r(T-t_d)})$. This cost is worthwhile only if the captured dividend $D$ exceeds it. For small $T - t_d$, the interest cost is approximately $rK(T - t_d)$, so the condition becomes $D > rK(T - t_d)$.
 
+---
+
+
+**Exercise 4.** The exercise boundary $S^*(t)$ for an American put satisfies $S^*(T) = K$ and $S^*(t) < K$ for $t < T$. At the exercise boundary, two conditions hold: $V(S^*, t) = K - S^*$ (value matching) and $\frac{\partial V}{\partial S}(S^*, t) = -1$ (smooth pasting). Explain the economic intuition behind each condition.
+
 ??? success "Solution to Exercise 4"
     **Value-matching condition** $V(S^*, t) = K - S^*$: At the exercise boundary, the option value equals the intrinsic value. This ensures **continuity** of the option price across the boundary.
 
@@ -323,6 +314,11 @@ $$
 
     Smooth pasting is a necessary condition for the **optimality** of $S^*(t)$ and can be derived from the variational characterization of the free boundary. It provides the additional equation needed (beyond value-matching) to uniquely determine the unknown boundary.
 
+---
+
+
+**Exercise 5.** Compare the early exercise behavior of American calls and puts by filling in a table with the following columns: option type (call/put), dividend status (yes/no), early exercise possible (yes/no), and economic reason. Cover all four combinations.
+
 ??? success "Solution to Exercise 5"
     | Option Type | Dividend Status | Early Exercise Possible? | Economic Reason |
     |---|---|---|---|
@@ -334,6 +330,11 @@ $$
     **Key asymmetry between calls and puts:** For calls without dividends, the holder benefits from paying $K$ later (earning interest on $K$) and retaining insurance against $S$ dropping below $K$. Both effects favor continuation. For puts, the holder receives $K$ upon exercise and can earn interest on it; when the option is deep in the money, this interest exceeds the remaining time value and insurance value.
 
     Dividends break the no-early-exercise result for calls because the holder misses dividend payments while holding the option instead of the stock. For puts, dividends actually reduce the incentive to exercise early because future stock price declines (from dividends) increase the put's future payoff.
+
+---
+
+
+**Exercise 6.** An American call on a stock paying continuous dividends at rate $q > 0$ may be exercised early. Show that the critical dividend yield $q^*$ above which early exercise becomes possible depends on $r$, $\sigma$, and $T$. For $r = 5\%$, $\sigma = 20\%$, $T = 1$, estimate $q^*$ numerically using a binomial tree.
 
 ??? success "Solution to Exercise 6"
     For a stock paying continuous dividends at rate $q$, the lower bound for the European call becomes:

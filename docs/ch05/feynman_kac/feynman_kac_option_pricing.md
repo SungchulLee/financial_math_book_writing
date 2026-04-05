@@ -356,40 +356,6 @@ $$
 **Exercise 1.**
 For a European put option with payoff $g(S) = (K - S)^+$, write the Feynman-Kac probabilistic representation and the corresponding Black-Scholes PDE with terminal and boundary conditions. What are the boundary conditions as $S \to 0$ and $S \to \infty$?
 
----
-
-**Exercise 2.**
-A down-and-out call with barrier $B < S_0$ and strike $K > B$ has price $V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+\mathbf{1}_{\{\tau_B > T\}} | S_t = S]$. Write the PDE domain and boundary conditions. Explain why the PDE is solved on $(B, \infty)$ rather than $(0, \infty)$ and how the killing at the barrier is implemented.
-
----
-
-**Exercise 3.**
-For a double barrier option with lower barrier $B_l$ and upper barrier $B_u$, the domain is $(B_l, B_u)$. If the payoff is $g(S) = (S - K)^+$ and both barriers are knock-out, write the boundary conditions at $S = B_l$ and $S = B_u$. How does the solution domain affect the Feynman-Kac expectation?
-
----
-
-**Exercise 4.**
-Explain the difference between the Feynman-Kac representation for European options ($e^{-r\tau}\mathbb{E}[g(S_T)]$) and the optimal stopping formulation for American options ($\sup_\tau \mathbb{E}[e^{-r\tau}g(S_\tau)]$). Why does the American option require a free boundary problem rather than a standard PDE?
-
----
-
-**Exercise 5.**
-For a European call in the Black-Scholes model, verify that the solution $V(t,S) = S\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)$ satisfies the terminal condition $V(T, S) = (S - K)^+$ by computing $\lim_{t \to T^-} V(t, S)$ for the cases $S > K$ and $S < K$.
-
----
-
-**Exercise 6.**
-An Asian option has payoff $g = (\frac{1}{T}\int_0^T S_s\,ds - K)^+$. Explain why the standard one-dimensional Feynman-Kac approach is insufficient and an augmented state variable $A_t = \int_0^t S_s\,ds$ is needed. Write the two-dimensional PDE that the option price satisfies.
-
----
-
-**Exercise 7.**
-A digital (binary) barrier option pays $\$1$ if $S_T > K$ and the stock never crosses the barrier $B < K$ during $[0, T]$. Write the Feynman-Kac representation, identify the PDE domain, and describe the terminal and boundary conditions.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **Feynman-Kac probabilistic representation**: For a European put with payoff $g(S) = (K - S)^+$:
 
@@ -410,6 +376,11 @@ A digital (binary) barrier option pays $\$1$ if $S_T > K$ and the stock never cr
     - As $S \to 0$: The put is deep in the money with certainty, so $P(t, 0) = Ke^{-r(T-t)}$ (the discounted strike).
     - As $S \to \infty$: The put is far out of the money with certainty, so $P(t, S) \to 0$.
 
+---
+
+**Exercise 2.**
+A down-and-out call with barrier $B < S_0$ and strike $K > B$ has price $V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+\mathbf{1}_{\{\tau_B > T\}} | S_t = S]$. Write the PDE domain and boundary conditions. Explain why the PDE is solved on $(B, \infty)$ rather than $(0, \infty)$ and how the killing at the barrier is implemented.
+
 ??? success "Solution to Exercise 2"
     **PDE domain**: The down-and-out call is priced on $S \in (B, \infty)$ with $t \in [0, T]$.
 
@@ -422,6 +393,11 @@ A digital (binary) barrier option pays $\$1$ if $S_T > K$ and the stock never cr
     **Why the domain is $(B, \infty)$**: Once the stock price hits the barrier $B$, the option is immediately worthless (knocked out). The process is effectively "killed" at $\tau_B = \inf\{s > t : S_s \leq B\}$. In the Feynman-Kac framework, the indicator $\mathbf{1}_{\{\tau_B > T\}}$ restricts the expectation to paths that survive above $B$ for the entire interval $[t, T]$.
 
     **Implementation of killing at the barrier**: The Dirichlet boundary condition $V(t, B) = 0$ enforces the knockout. When solving the PDE numerically via finite differences, the grid starts at $S = B$ (not $S = 0$), and the boundary value $V = 0$ is imposed there at every time step. This is equivalent to absorbing the probability mass at $B$: any path reaching the barrier is removed from the expectation.
+
+---
+
+**Exercise 3.**
+For a double barrier option with lower barrier $B_l$ and upper barrier $B_u$, the domain is $(B_l, B_u)$. If the payoff is $g(S) = (S - K)^+$ and both barriers are knock-out, write the boundary conditions at $S = B_l$ and $S = B_u$. How does the solution domain affect the Feynman-Kac expectation?
 
 ??? success "Solution to Exercise 3"
     **Boundary conditions for the double barrier knockout call**:
@@ -437,6 +413,11 @@ A digital (binary) barrier option pays $\$1$ if $S_T > K$ and the stock never cr
     $$
 
     where $\tau_{B_l}$ and $\tau_{B_u}$ are the first hitting times of the lower and upper barriers. Only paths that remain entirely within $(B_l, B_u)$ during $[t, T]$ contribute to the expectation. The bounded domain means the Green's function decays faster than on $(0, \infty)$, and the option price is strictly less than the corresponding single-barrier or vanilla option.
+
+---
+
+**Exercise 4.**
+Explain the difference between the Feynman-Kac representation for European options ($e^{-r\tau}\mathbb{E}[g(S_T)]$) and the optimal stopping formulation for American options ($\sup_\tau \mathbb{E}[e^{-r\tau}g(S_\tau)]$). Why does the American option require a free boundary problem rather than a standard PDE?
 
 ??? success "Solution to Exercise 4"
     **European option**: The price is a fixed expectation over all paths at the terminal time:
@@ -459,6 +440,11 @@ A digital (binary) barrier option pays $\$1$ if $S_T > K$ and the stock never cr
     - **Exercise region** ($V^{\text{Am}} = g$): It is optimal to exercise immediately; $V^{\text{Am}} = g(S)$.
 
     The boundary $S^*(t)$ between these regions is not known a priori -- it must be determined as part of the solution. This is why the problem is a **free boundary problem** rather than a standard PDE with fixed boundary conditions. The standard Feynman-Kac formula does not apply directly because the terminal time is replaced by an optimally chosen random time.
+
+---
+
+**Exercise 5.**
+For a European call in the Black-Scholes model, verify that the solution $V(t,S) = S\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)$ satisfies the terminal condition $V(T, S) = (S - K)^+$ by computing $\lim_{t \to T^-} V(t, S)$ for the cases $S > K$ and $S < K$.
 
 ??? success "Solution to Exercise 5"
     We need to show $\lim_{t \to T^-} V(t, S) = (S - K)^+$.
@@ -483,6 +469,11 @@ A digital (binary) barrier option pays $\$1$ if $S_T > K$ and the stock never cr
     V(t, S) \to K \cdot \frac{1}{2} - K \cdot 1 \cdot \frac{1}{2} = 0 = (K - K)^+ \;\checkmark
     $$
 
+---
+
+**Exercise 6.**
+An Asian option has payoff $g = (\frac{1}{T}\int_0^T S_s\,ds - K)^+$. Explain why the standard one-dimensional Feynman-Kac approach is insufficient and an augmented state variable $A_t = \int_0^t S_s\,ds$ is needed. Write the two-dimensional PDE that the option price satisfies.
+
 ??? success "Solution to Exercise 6"
     The payoff $g = \left(\frac{1}{T}\int_0^T S_s\,ds - K\right)^+$ depends on the entire path of $S$ through its time-average. The price $V$ at time $t$ depends not only on the current stock price $S_t$ but also on how much of the average has already been accumulated.
 
@@ -497,6 +488,11 @@ A digital (binary) barrier option pays $\$1$ if $S_T > K$ and the stock never cr
     $$
 
     with terminal condition $V(T, S, A) = \left(\frac{A}{T} - K\right)^+$. The $S\,\partial_A V$ term arises from the drift $dA_t = S_t\,dt$ of the auxiliary variable. There is no second-order derivative in $A$ because $A_t$ has no diffusion component.
+
+---
+
+**Exercise 7.**
+A digital (binary) barrier option pays $\$1$ if $S_T > K$ and the stock never crosses the barrier $B < K$ during $[0, T]$. Write the Feynman-Kac representation, identify the PDE domain, and describe the terminal and boundary conditions.
 
 ??? success "Solution to Exercise 7"
     **Feynman-Kac representation**: The digital barrier option pays $\$1$ if $S_T > K$ and the barrier $B$ is never breached:

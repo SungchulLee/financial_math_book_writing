@@ -441,22 +441,337 @@ $$
 
 **Exercise 1.** Verify the four axioms of a sublinear expectation for $\hat{\mathbb{E}}[X] = \sup_{P \in \mathcal{P}} \mathbb{E}_P[X]$ where $\mathcal{P}$ is a convex set of probability measures. Specifically, check: (a) monotonicity, (b) constant preservation $\hat{\mathbb{E}}[c] = c$, (c) sub-additivity $\hat{\mathbb{E}}[X + Y] \leq \hat{\mathbb{E}}[X] + \hat{\mathbb{E}}[Y]$, and (d) positive homogeneity $\hat{\mathbb{E}}[\lambda X] = \lambda \hat{\mathbb{E}}[X]$ for $\lambda > 0$.
 
+??? success "Solution to Exercise 1"
+
+    **Goal.** Verify the four axioms of a sublinear expectation for $\hat{\mathbb{E}}[X] = \sup_{P \in \mathcal{P}} E_P[X]$ where $\mathcal{P}$ is a convex set of probability measures.
+
+    **(a) Monotonicity**: Let $X \geq Y$ (pointwise, i.e., $X(\omega) \geq Y(\omega)$ for all $\omega$). For every $P \in \mathcal{P}$, the linear expectation $E_P$ is monotone, so $E_P[X] \geq E_P[Y]$. Taking the supremum over $P \in \mathcal{P}$:
+
+    $$
+    \hat{\mathbb{E}}[X] = \sup_{P \in \mathcal{P}} E_P[X] \geq \sup_{P \in \mathcal{P}} E_P[Y] = \hat{\mathbb{E}}[Y]
+    $$
+
+    since each term in the first supremum dominates the corresponding term in the second. $\checkmark$
+
+    **(b) Constant preservation**: Let $c \in \mathbb{R}$ be a constant. For every $P \in \mathcal{P}$, $E_P[c] = c$ (since $c$ is deterministic). Therefore:
+
+    $$
+    \hat{\mathbb{E}}[c] = \sup_{P \in \mathcal{P}} E_P[c] = \sup_{P \in \mathcal{P}} c = c
+    $$
+
+    since the supremum of a constant over any non-empty set is that constant. $\checkmark$
+
+    **(c) Sub-additivity**: For any $P \in \mathcal{P}$, by linearity of $E_P$:
+
+    $$
+    E_P[X + Y] = E_P[X] + E_P[Y] \leq \sup_{P' \in \mathcal{P}} E_{P'}[X] + \sup_{P'' \in \mathcal{P}} E_{P''}[Y] = \hat{\mathbb{E}}[X] + \hat{\mathbb{E}}[Y]
+    $$
+
+    The inequality holds because $E_P[X] \leq \sup_{P'} E_{P'}[X]$ and $E_P[Y] \leq \sup_{P''} E_{P''}[Y]$ for each fixed $P$. Taking the supremum over $P$ on the left side:
+
+    $$
+    \hat{\mathbb{E}}[X + Y] = \sup_{P \in \mathcal{P}} E_P[X + Y] = \sup_{P \in \mathcal{P}} \{E_P[X] + E_P[Y]\} \leq \hat{\mathbb{E}}[X] + \hat{\mathbb{E}}[Y]
+    $$
+
+    Note: convexity of $\mathcal{P}$ is not needed for sub-additivity; this holds for any set $\mathcal{P}$. The key is that the supremum of a sum is at most the sum of the suprema, since the optimizer for $X + Y$ jointly may not be the best individual optimizer for $X$ or $Y$ separately. $\checkmark$
+
+    **(d) Positive homogeneity**: Let $\lambda > 0$. For every $P \in \mathcal{P}$, $E_P[\lambda X] = \lambda E_P[X]$ by linearity. Therefore:
+
+    $$
+    \hat{\mathbb{E}}[\lambda X] = \sup_{P \in \mathcal{P}} E_P[\lambda X] = \sup_{P \in \mathcal{P}} \lambda E_P[X] = \lambda \sup_{P \in \mathcal{P}} E_P[X] = \lambda \hat{\mathbb{E}}[X]
+    $$
+
+    The third equality uses the fact that for $\lambda > 0$, $\sup_P \lambda f(P) = \lambda \sup_P f(P)$ (scaling commutes with supremum for positive scalars). $\checkmark$
+
+    All four axioms are verified, confirming that $\hat{\mathbb{E}}[X] = \sup_{P \in \mathcal{P}} E_P[X]$ defines a sublinear expectation. $\square$
+
 ---
 
 **Exercise 2.** The G-normal distribution $X \sim \mathcal{N}(0, [\underline{\sigma}^2, \overline{\sigma}^2])$ satisfies $\hat{\mathbb{E}}[\varphi(X)] = u(1, 0)$ where $u$ solves the G-heat equation $\partial_t u = G(\partial_{xx} u)$ with $G(a) = \frac{1}{2}(\overline{\sigma}^2 a^+ - \underline{\sigma}^2 a^-)$. For $\varphi(x) = x^2$, compute $\hat{\mathbb{E}}[X^2]$ and $\hat{\mathbb{E}}[-X^2]$. Verify that $\hat{\mathbb{E}}[X^2] = \overline{\sigma}^2$ and $\hat{\mathbb{E}}[-X^2] = -\underline{\sigma}^2$.
+
+??? success "Solution to Exercise 2"
+
+    **Goal.** Compute $\hat{\mathbb{E}}[X^2]$ and $\hat{\mathbb{E}}[-X^2]$ for $X \sim \mathcal{N}(0, [\underline{\sigma}^2, \overline{\sigma}^2])$.
+
+    **Setup.** The G-normal distribution is characterized by $\hat{\mathbb{E}}[\varphi(X)] = u(1, 0)$ where $u$ solves the G-heat equation:
+
+    $$
+    \frac{\partial u}{\partial t} = G\left(\frac{\partial^2 u}{\partial x^2}\right), \quad u(0, x) = \varphi(x)
+    $$
+
+    with $G(a) = \frac{1}{2}(\overline{\sigma}^2 a^+ - \underline{\sigma}^2 a^-)$.
+
+    **Computation of $\hat{\mathbb{E}}[X^2]$:** Set $\varphi(x) = x^2$. We look for a solution of the form $u(t, x) = x^2 + c \cdot t$ for some constant $c$. Then:
+
+    $$
+    \frac{\partial u}{\partial t} = c, \quad \frac{\partial^2 u}{\partial x^2} = 2
+    $$
+
+    The G-heat equation requires $c = G(2)$. Since $2 > 0$:
+
+    $$
+    G(2) = \frac{1}{2}\overline{\sigma}^2 \cdot 2 = \overline{\sigma}^2
+    $$
+
+    So $u(t, x) = x^2 + \overline{\sigma}^2 t$, and:
+
+    $$
+    \hat{\mathbb{E}}[X^2] = u(1, 0) = 0 + \overline{\sigma}^2 = \overline{\sigma}^2
+    $$
+
+    **Computation of $\hat{\mathbb{E}}[-X^2]$:** Set $\varphi(x) = -x^2$. Look for $u(t, x) = -x^2 + c \cdot t$. Then:
+
+    $$
+    \frac{\partial u}{\partial t} = c, \quad \frac{\partial^2 u}{\partial x^2} = -2
+    $$
+
+    The G-heat equation requires $c = G(-2)$. Since $-2 < 0$:
+
+    $$
+    G(-2) = -\frac{1}{2}\underline{\sigma}^2 \cdot 2 = -\underline{\sigma}^2
+    $$
+
+    So $u(t, x) = -x^2 - \underline{\sigma}^2 t$, and:
+
+    $$
+    \hat{\mathbb{E}}[-X^2] = u(1, 0) = 0 - \underline{\sigma}^2 = -\underline{\sigma}^2
+    $$
+
+    **Verification.** Using the representation $\hat{\mathbb{E}}[X] = \sup_{P \in \mathcal{P}} E_P[X]$ where under each $P \in \mathcal{P}$, $X$ has distribution $N(0, \sigma_P^2)$ with $\sigma_P \in [\underline{\sigma}, \overline{\sigma}]$:
+
+    - $\hat{\mathbb{E}}[X^2] = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} E[(\sigma Z)^2] = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \sigma^2 = \overline{\sigma}^2$ $\checkmark$
+    - $\hat{\mathbb{E}}[-X^2] = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} E[-(\sigma Z)^2] = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} (-\sigma^2) = -\underline{\sigma}^2$ $\checkmark$
+
+    Note the key asymmetry: $\hat{\mathbb{E}}[X^2] = \overline{\sigma}^2$ uses the maximum volatility (worst case for the "long variance" position), while $\hat{\mathbb{E}}[-X^2] = -\underline{\sigma}^2$ uses the minimum volatility (worst case for the "short variance" position). Furthermore, $\hat{\mathbb{E}}[X^2] + \hat{\mathbb{E}}[-X^2] = \overline{\sigma}^2 - \underline{\sigma}^2 > 0$ when $\underline{\sigma} < \overline{\sigma}$, showing that $\hat{\mathbb{E}}$ is genuinely nonlinear (a linear expectation would give $\hat{\mathbb{E}}[X^2] + \hat{\mathbb{E}}[-X^2] = 0$). $\square$
 
 ---
 
 **Exercise 3.** Prove the representation theorem for sublinear expectations: if $\hat{\mathbb{E}}$ is a sublinear expectation on a finite state space $\Omega = \{\omega_1, \ldots, \omega_n\}$, then there exists a compact convex set $\mathcal{P}$ of probability measures such that $\hat{\mathbb{E}}[X] = \max_{P \in \mathcal{P}} \mathbb{E}_P[X]$. Hint: use the supporting hyperplane theorem.
 
+??? success "Solution to Exercise 3"
+
+    **Goal.** Prove the representation theorem on a finite state space $\Omega = \{\omega_1, \ldots, \omega_n\}$.
+
+    **Step 1: Identify random variables with $\mathbb{R}^n$.** On $\Omega = \{\omega_1, \ldots, \omega_n\}$, a random variable $X$ is a vector $\mathbf{x} = (x_1, \ldots, x_n) \in \mathbb{R}^n$ where $x_i = X(\omega_i)$. The sublinear expectation $\hat{\mathbb{E}}: \mathbb{R}^n \to \mathbb{R}$ is a functional satisfying:
+
+    - (A1) $\mathbf{x} \geq \mathbf{y}$ componentwise $\implies$ $\hat{\mathbb{E}}[\mathbf{x}] \geq \hat{\mathbb{E}}[\mathbf{y}]$
+    - (A2) $\hat{\mathbb{E}}[c \mathbf{1}] = c$ for $c \in \mathbb{R}$
+    - (A3) $\hat{\mathbb{E}}[\mathbf{x} + \mathbf{y}] \leq \hat{\mathbb{E}}[\mathbf{x}] + \hat{\mathbb{E}}[\mathbf{y}]$
+    - (A4) $\hat{\mathbb{E}}[\lambda \mathbf{x}] = \lambda \hat{\mathbb{E}}[\mathbf{x}]$ for $\lambda > 0$
+
+    **Step 2: $\hat{\mathbb{E}}$ is a sublinear functional on $\mathbb{R}^n$.** Properties (A3) and (A4) mean that $\hat{\mathbb{E}}$ is sublinear (positively homogeneous and subadditive) on $\mathbb{R}^n$. This is equivalent to saying $\hat{\mathbb{E}}$ is the support function of some convex set.
+
+    **Step 3: Apply the supporting hyperplane theorem.** By the Hahn-Banach theorem (or its finite-dimensional version, the supporting hyperplane theorem), for any sublinear functional $p: \mathbb{R}^n \to \mathbb{R}$, we have:
+
+    $$
+    p(\mathbf{x}) = \max_{\ell \in \mathcal{L}} \ell(\mathbf{x})
+    $$
+
+    where $\mathcal{L} = \{\ell : \mathbb{R}^n \to \mathbb{R} \text{ linear} : \ell(\mathbf{x}) \leq p(\mathbf{x}) \text{ for all } \mathbf{x}\}$ is the subdifferential of $p$ at the origin.
+
+    **Step 4: Identify linear functionals with probability measures.** Each linear functional $\ell$ on $\mathbb{R}^n$ has the form $\ell(\mathbf{x}) = \sum_{i=1}^n p_i x_i$ for some $(p_1, \ldots, p_n) \in \mathbb{R}^n$. We need to show each $\ell \in \mathcal{L}$ corresponds to a probability measure, i.e., $p_i \geq 0$ and $\sum_i p_i = 1$.
+
+    - **Non-negativity**: Take $\mathbf{x} = -\mathbf{e}_i$ (negative of the $i$-th basis vector, so $x_j = -\delta_{ij}$). Then $\mathbf{x} \leq \mathbf{0}$, so by monotonicity $\hat{\mathbb{E}}[\mathbf{x}] \leq \hat{\mathbb{E}}[\mathbf{0}] = 0$. For $\ell \in \mathcal{L}$: $\ell(-\mathbf{e}_i) = -p_i \leq \hat{\mathbb{E}}[-\mathbf{e}_i] \leq 0$, so $p_i \geq 0$.
+
+    - **Normalization**: Take $\mathbf{x} = \mathbf{1}$ (all ones). By constant preservation, $\hat{\mathbb{E}}[\mathbf{1}] = 1$. Also $\ell(\mathbf{1}) = \sum_i p_i \leq \hat{\mathbb{E}}[\mathbf{1}] = 1$. Take $\mathbf{x} = -\mathbf{1}$: $\hat{\mathbb{E}}[-\mathbf{1}] = -1$ and $\ell(-\mathbf{1}) = -\sum_i p_i \leq -1$, giving $\sum_i p_i \geq 1$. Combining: $\sum_i p_i = 1$.
+
+    **Step 5: Form the set $\mathcal{P}$.** Define:
+
+    $$
+    \mathcal{P} = \left\{P = (p_1, \ldots, p_n) : p_i \geq 0, \sum_i p_i = 1, \sum_i p_i x_i \leq \hat{\mathbb{E}}[\mathbf{x}] \text{ for all } \mathbf{x} \in \mathbb{R}^n\right\}
+    $$
+
+    This is a compact (closed and bounded subset of the simplex) convex set.
+
+    **Step 6: Conclude.** By the supporting hyperplane theorem:
+
+    $$
+    \hat{\mathbb{E}}[\mathbf{x}] = \max_{P \in \mathcal{P}} E_P[\mathbf{x}] = \max_{P \in \mathcal{P}} \sum_{i=1}^n p_i x_i
+    $$
+
+    The maximum (rather than supremum) is attained because $\mathcal{P}$ is compact and $P \mapsto E_P[\mathbf{x}]$ is continuous. $\square$
+
 ---
 
 **Exercise 4.** State the G-Central Limit Theorem: if $X_1, X_2, \ldots$ are i.i.d. under a sublinear expectation with $\hat{\mathbb{E}}[X_i] = \overline{\mu}$, $\hat{\mathbb{E}}[-X_i] = -\underline{\mu}$, then $\frac{1}{\sqrt{n}}\sum_{i=1}^n (X_i - \mu_n)$ converges to a G-normal distribution. Explain how this differs from the classical CLT and why the limit is an interval rather than a point.
+
+??? success "Solution to Exercise 4"
+
+    **Statement of the G-Central Limit Theorem.**
+
+    Let $\{X_i\}_{i=1}^\infty$ be a sequence of independent, identically distributed random variables on a sublinear expectation space $(\Omega, \mathcal{H}, \hat{\mathbb{E}})$ satisfying:
+
+    $$
+    \hat{\mathbb{E}}[X_i] = \hat{\mathcal{E}}[X_i] = 0 \quad (\text{symmetric mean})
+    $$
+
+    $$
+    \hat{\mathbb{E}}[X_i^2] = \overline{\sigma}^2, \quad \hat{\mathcal{E}}[X_i^2] = \underline{\sigma}^2
+    $$
+
+    where $0 < \underline{\sigma} \leq \overline{\sigma}$. Then the normalized sum:
+
+    $$
+    S_n = \frac{X_1 + X_2 + \cdots + X_n}{\sqrt{n}}
+    $$
+
+    converges in distribution (under $\hat{\mathbb{E}}$) to the G-normal distribution $\mathcal{N}(0, [\underline{\sigma}^2, \overline{\sigma}^2])$:
+
+    $$
+    \lim_{n \to \infty} \hat{\mathbb{E}}[\varphi(S_n)] = \hat{\mathbb{E}}[\varphi(X)]
+    $$
+
+    for all $\varphi \in C_{b, \text{Lip}}(\mathbb{R})$, where $X \sim \mathcal{N}(0, [\underline{\sigma}^2, \overline{\sigma}^2])$.
+
+    **More generally**, if $\hat{\mathbb{E}}[X_i] = \overline{\mu}$ and $\hat{\mathcal{E}}[X_i] = \underline{\mu}$ (not necessarily zero), the CLT has an additional drift term, and one considers the centered sum $\frac{1}{\sqrt{n}}\sum_{i=1}^n(X_i - \mu_n)$ for an appropriate centering sequence.
+
+    **How the G-CLT differs from the classical CLT:**
+
+    1. **Limit is a distribution, not a point variance.** In the classical CLT, $S_n \xrightarrow{d} N(0, \sigma^2)$ for a single, known variance $\sigma^2$. In the G-CLT, the limit is $\mathcal{N}(0, [\underline{\sigma}^2, \overline{\sigma}^2])$, a G-normal distribution characterized by a range of variances. This is not a single Gaussian but a family of Gaussians parameterized by $\sigma \in [\underline{\sigma}, \overline{\sigma}]$.
+
+    2. **Persistent uncertainty.** In the classical setting, the variance of the limit is determined by the single true variance $\sigma^2 = E[X_i^2]$. In the G-CLT, even with infinitely many observations, the variance remains uncertain: the "true" variance could be any value in $[\underline{\sigma}^2, \overline{\sigma}^2]$. This reflects the fact that under model uncertainty (multiple priors), aggregating data does not resolve the ambiguity about which prior is correct.
+
+    3. **The limit is an interval, not a point.** For the G-expectation of a convex function $\varphi$:
+
+    $$
+    \hat{\mathbb{E}}[\varphi(X)] = E[\varphi(\overline{\sigma} Z)], \quad Z \sim N(0,1)
+    $$
+
+    while for concave $\varphi$:
+
+    $$
+    \hat{\mathbb{E}}[\varphi(X)] = E[\varphi(\underline{\sigma} Z)]
+    $$
+
+    So the G-expectation of any nonlinear function of the limit depends on the convexity structure, with different volatilities being selected for different test functions. The classical CLT, by contrast, gives a single answer for each $\varphi$.
+
+    4. **Nonlinear PDE characterization.** The G-normal distribution is characterized by the G-heat equation (a fully nonlinear PDE), whereas the classical normal is characterized by the linear heat equation. The G-heat equation selects the worst-case volatility at each point in space-time, making the limit inherently nonlinear.
+
+    5. **Financial interpretation.** Consider a portfolio of $n$ i.i.d. returns $X_i$ with uncertain variance. The classical CLT says the portfolio's normalized return converges to a Gaussian with known variance. The G-CLT says the portfolio's normalized return converges to a G-normal distribution --- the variance remains uncertain. This means that even extreme diversification cannot eliminate volatility uncertainty, which has profound implications for risk management: model risk is irreducible through diversification alone. $\square$
 
 ---
 
 **Exercise 5.** For the G-Brownian motion $(B_t)_{t \geq 0}$ with $\hat{\mathbb{E}}[B_t^2] = \overline{\sigma}^2 t$ and $\hat{\mathbb{E}}[-B_t^2] = -\underline{\sigma}^2 t$, compute the G-expectation of the payoff $\varphi(B_T) = (B_T - K)^+$ for $K = 0$ and $T = 1$. Show that $\hat{\mathbb{E}}[(B_1)^+] = \overline{\sigma}/\sqrt{2\pi}$ and interpret this as the worst-case call price under uncertain volatility.
 
+??? success "Solution to Exercise 5"
+
+    **Goal.** Compute $\hat{\mathbb{E}}[(B_1)^+]$ where $B_1$ is a G-Brownian motion at time $T = 1$ with $\hat{\mathbb{E}}[B_1^2] = \overline{\sigma}^2$.
+
+    **Step 1: Use the G-normal characterization.** Since $B_1 \sim \mathcal{N}(0, [\underline{\sigma}^2, \overline{\sigma}^2])$, we have for any $\varphi \in C_{b,\text{Lip}}(\mathbb{R})$:
+
+    $$
+    \hat{\mathbb{E}}[\varphi(B_1)] = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} E[\varphi(\sigma Z)]
+    $$
+
+    where $Z \sim N(0,1)$ under the classical probability.
+
+    **Step 2: Analyze convexity of the payoff.** The function $\varphi(x) = x^+ = \max(x, 0)$ is convex (it is the maximum of two linear functions: $x$ and $0$). For convex $\varphi$, the G-expectation is achieved at the maximum volatility:
+
+    $$
+    \hat{\mathbb{E}}[(B_1)^+] = E[(\overline{\sigma} Z)^+] = \overline{\sigma} E[Z^+]
+    $$
+
+    To verify this, note that for convex $\varphi$, the map $\sigma \mapsto E[\varphi(\sigma Z)]$ is increasing (by Jensen's inequality applied to the scaling). Specifically, for $\varphi(x) = x^+$:
+
+    $$
+    E[(\sigma Z)^+] = \sigma E[Z \cdot \mathbb{1}_{\{Z > 0\}}] = \sigma \int_0^\infty z \frac{1}{\sqrt{2\pi}} e^{-z^2/2} \, dz = \sigma \cdot \frac{1}{\sqrt{2\pi}}
+    $$
+
+    This is increasing in $\sigma$, confirming the supremum is at $\overline{\sigma}$.
+
+    **Step 3: Compute the integral.** We need:
+
+    $$
+    E[Z^+] = E[Z \cdot \mathbb{1}_{\{Z > 0\}}] = \int_0^\infty z \frac{1}{\sqrt{2\pi}} e^{-z^2/2} \, dz
+    $$
+
+    Substituting $u = z^2/2$, $du = z \, dz$:
+
+    $$
+    E[Z^+] = \frac{1}{\sqrt{2\pi}} \int_0^\infty e^{-u} \, du = \frac{1}{\sqrt{2\pi}}
+    $$
+
+    **Step 4: Final result.**
+
+    $$
+    \hat{\mathbb{E}}[(B_1)^+] = \overline{\sigma} \cdot \frac{1}{\sqrt{2\pi}} = \frac{\overline{\sigma}}{\sqrt{2\pi}}
+    $$
+
+    **Interpretation as worst-case call price.** Consider an asset with zero drift and uncertain volatility $\sigma \in [\underline{\sigma}, \overline{\sigma}]$, with dynamics $dS_t = \sigma_t S_t \, dB_t$ (in a simplified setting where $S_t = S_0 + B_t$ for a normalized asset, or more precisely, $B_T$ represents the normalized log-return).
+
+    The payoff $(B_1)^+$ is analogous to a call option payoff (the positive part of the terminal value). The G-expectation $\hat{\mathbb{E}}[(B_1)^+] = \overline{\sigma}/\sqrt{2\pi}$ gives the **worst-case (super-replication) price** under volatility uncertainty.
+
+    The worst case selects $\sigma = \overline{\sigma}$ because $(B_1)^+$ is convex: a long call position has positive gamma, meaning higher volatility increases the expected payoff. The seller of the call faces the worst scenario when volatility is maximal. This is consistent with the Black-Scholes-Barenblatt equation, which prescribes $\overline{\sigma}$ for positive-gamma positions.
+
+    Conversely, the conjugate expectation gives the lower bound:
+
+    $$
+    \hat{\mathcal{E}}[(B_1)^+] = -\hat{\mathbb{E}}[-(B_1)^+] = \frac{\underline{\sigma}}{\sqrt{2\pi}}
+    $$
+
+    The interval $[\underline{\sigma}/\sqrt{2\pi}, \overline{\sigma}/\sqrt{2\pi}]$ is the bid-ask spread for this call option under volatility uncertainty. $\square$
+
 ---
 
 **Exercise 6.** The G-Ito formula states that for $f \in C^2(\mathbb{R})$ and G-Brownian motion $B_t$: $f(B_t) = f(0) + \int_0^t f'(B_s) \, dB_s + \frac{1}{2}\int_0^t f''(B_s) \, d\langle B \rangle_s$. Apply this to $f(x) = e^x$ and explain why the quadratic variation process $\langle B \rangle_t$ takes values in $[\underline{\sigma}^2 t, \overline{\sigma}^2 t]$ rather than being deterministic. What does this imply for hedging under volatility uncertainty?
+
+??? success "Solution to Exercise 6"
+
+    **Application of the G-Ito formula to $f(x) = e^x$.**
+
+    **Step 1: Apply the G-Ito formula.** With $f(x) = e^x$, we have $f'(x) = e^x$ and $f''(x) = e^x$. The G-Ito formula gives:
+
+    $$
+    e^{B_t} = e^{B_0} + \int_0^t e^{B_s} \, dB_s + \frac{1}{2}\int_0^t e^{B_s} \, d\langle B \rangle_s
+    $$
+
+    Since $B_0 = 0$, this becomes:
+
+    $$
+    e^{B_t} = 1 + \int_0^t e^{B_s} \, dB_s + \frac{1}{2}\int_0^t e^{B_s} \, d\langle B \rangle_s
+    $$
+
+    **Step 2: Why $\langle B \rangle_t$ is not deterministic.** In the G-Brownian motion framework, the quadratic variation $\langle B \rangle_t$ is defined as the limit:
+
+    $$
+    \langle B \rangle_t = \lim_{|\pi| \to 0} \sum_{i=0}^{n-1} (B_{t_{i+1}} - B_{t_i})^2
+    $$
+
+    where the limit is taken in the quasi-sure sense. The key difference from classical Brownian motion is that under each measure $P \in \mathcal{P}$, the quadratic variation may differ:
+
+    - Under measure $P_\sigma$ (corresponding to volatility $\sigma$), $\langle B \rangle_t = \sigma^2 t$
+    - Different measures in $\mathcal{P}$ assign different values to $\langle B \rangle_t$
+
+    Since no single measure is privileged, $\langle B \rangle_t$ is not a deterministic function. It satisfies:
+
+    $$
+    \underline{\sigma}^2 t \leq \langle B \rangle_t \leq \overline{\sigma}^2 t \quad \text{quasi-surely}
+    $$
+
+    but the exact value depends on which measure $P \in \mathcal{P}$ governs the path. The process $\langle B \rangle_t$ is increasing and continuous, but it is a genuine stochastic process (not deterministic) because the "true" volatility at each instant is unknown.
+
+    More formally, the G-Brownian motion increment $B_{t+s} - B_t$ is G-normally distributed with $\hat{\mathbb{E}}[(B_{t+s} - B_t)^2] = \overline{\sigma}^2 s$ and $\hat{\mathcal{E}}[(B_{t+s} - B_t)^2] = \underline{\sigma}^2 s$. The gap between these means the realized quadratic variation is not predetermined. The quadratic variation process $\langle B \rangle_t$ is itself a source of randomness, distinct from the randomness in $B_t$.
+
+    **Step 3: Implications for hedging under volatility uncertainty.** The G-Ito formula for $e^{B_t}$ reveals the fundamental challenge of hedging under volatility uncertainty:
+
+    $$
+    e^{B_t} - 1 = \underbrace{\int_0^t e^{B_s} \, dB_s}_{\text{hedgeable}} + \underbrace{\frac{1}{2}\int_0^t e^{B_s} \, d\langle B \rangle_s}_{\text{not fully hedgeable}}
+    $$
+
+    The first integral $\int_0^t e^{B_s} \, dB_s$ is a symmetric G-martingale and represents the hedgeable component --- the P&L from delta-hedging. The hedge ratio is $\Delta_s = e^{B_s}$ (or $f'(B_s)$ in general).
+
+    The second integral $\frac{1}{2}\int_0^t e^{B_s} \, d\langle B \rangle_s$ depends on the realized quadratic variation $\langle B \rangle_s$, which is uncertain. Since $d\langle B \rangle_s$ takes values between $\underline{\sigma}^2 \, ds$ and $\overline{\sigma}^2 \, ds$, this term has an uncertain contribution:
+
+    $$
+    \frac{1}{2}\underline{\sigma}^2 \int_0^t e^{B_s} \, ds \leq \frac{1}{2}\int_0^t e^{B_s} \, d\langle B \rangle_s \leq \frac{1}{2}\overline{\sigma}^2 \int_0^t e^{B_s} \, ds
+    $$
+
+    This uncertainty is the **gamma P&L risk**: since $f''(x) = e^x > 0$ (positive gamma), higher realized volatility benefits a long position in $e^{B_t}$. The hedger cannot eliminate this risk through delta-hedging alone.
+
+    **Practical implications:**
+
+    1. **Delta-hedging is insufficient**: Unlike classical Black-Scholes, where delta-hedging perfectly replicates the payoff, under G-Brownian motion the quadratic variation integral introduces an unhedgeable residual.
+
+    2. **Gamma exposure determines risk**: The term $f''(B_s) \, d\langle B \rangle_s$ shows that the exposure to volatility uncertainty is proportional to gamma ($f'' = e^{B_s}$ in this case). Positive gamma means the hedger benefits from high volatility; a super-replicating seller must assume the worst case ($\overline{\sigma}$).
+
+    3. **Need for vega hedging or robust strategies**: To reduce exposure to the uncertain $\langle B \rangle$, one must either (a) hedge gamma using other options (vega hedging), effectively neutralizing $f''$, or (b) accept the uncertainty and price it via the BSB equation, which automatically selects the worst-case volatility at each point. $\square$

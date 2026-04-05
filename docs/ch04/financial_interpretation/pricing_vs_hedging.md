@@ -4,6 +4,16 @@
 Although pricing and hedging are closely related, they represent **distinct
 economic problems**. Measure change clarifies the difference between them.
 
+!!! abstract "Key distinction"
+    Pricing is an expectation over probability distributions.
+    Hedging is a statement about pathwise replication.
+    Measure change affects pricing but not hedging.
+
+!!! note "Common confusion"
+    Pricing and hedging use the same model inputs, which creates the illusion
+    that they solve the same problem. They do not: pricing assigns value,
+    hedging controls pathwise risk.
+
 ---
 
 ## Pricing: A Valuation Problem
@@ -57,6 +67,16 @@ Hedging, however, is **measure-invariant**:
 - A self-financing strategy remains self-financing under any equivalent measure.
 - Replication arguments do not depend on \(\mathbb{P}\) or \(\mathbb{Q}\).
 
+In practice, hedge ratios are computed from \(\mathbb{Q}\)-calibrated models but
+evaluated under \(\mathbb{P}\)-realized dynamics. This means hedging performance
+depends on the real-world paths the market takes, not on the risk-neutral
+probabilities used to derive the hedge ratios.
+
+!!! warning "Critical implication"
+    A hedging strategy derived under \(\mathbb{Q}\) can produce non-zero P&L
+    under \(\mathbb{P}\). Hedging removes model-consistent risk, not realized
+    risk.
+
 ---
 
 ## Complete vs Incomplete Markets
@@ -65,6 +85,11 @@ Hedging, however, is **measure-invariant**:
 - In **complete markets**, pricing and hedging coincide:
   the price is the cost of the unique replicating strategy.
 - In **incomplete markets**, pricing is not unique, and hedging is imperfect.
+  Hedging errors accumulate through the gamma P\&L: the mismatch between
+  realized and implied volatility generates a running profit or loss
+  proportional to the position's gamma (see
+  [Practitioner Perspective](practitioner_perspective.md) for the full
+  decomposition).
 
 This distinction will reappear in later chapters on model risk and robust pricing.
 
@@ -87,52 +112,6 @@ correctly.
 **Exercise 1.**
 Consider a European call option with payoff $X_T = (S_T - K)^+$ in a complete market. Write the risk-neutral pricing formula for $V_0$ and explain why the formula does not involve the physical drift $\mu$ of the underlying asset.
 
----
-
-**Exercise 2.**
-A trader constructs a self-financing replicating portfolio $(\phi_t, \psi_t)$ consisting of $\phi_t$ shares of stock and $\psi_t$ units of the risk-free bond. Show that the self-financing condition
-
-$$
-dV_t = \phi_t\,dS_t + \psi_t\,dB_t
-$$
-
-holds under both $\mathbb{P}$ and $\mathbb{Q}$. Explain why this demonstrates that hedging is measure-invariant.
-
----
-
-**Exercise 3.**
-In an incomplete market with two Brownian motions but only one traded asset, the risk-neutral measure is not unique. Explain why the price of a non-traded contingent claim depends on the choice of $\mathbb{Q}$, while the hedging strategy using only the traded asset does not fully replicate the claim. What is the financial interpretation of the residual risk?
-
----
-
-**Exercise 4.**
-Consider a market where a stock follows geometric Brownian motion under $\mathbb{P}$:
-
-$$
-dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}
-$$
-
-A derivative has payoff $\Phi(S_T)$. A practitioner argues: "Since hedging does not depend on the measure, I can compute my hedge ratios under $\mathbb{P}$ instead of $\mathbb{Q}$." Is this correct? Carefully distinguish between computing the hedge ratio and determining the derivative price.
-
----
-
-**Exercise 5.**
-In a complete market, the price of a contingent claim equals the cost of its unique replicating portfolio. Prove that if two different risk-neutral measures $\mathbb{Q}_1$ and $\mathbb{Q}_2$ both existed in a complete market, they would assign the same price to every contingent claim, and conclude that $\mathbb{Q}_1 = \mathbb{Q}_2$.
-
----
-
-**Exercise 6.**
-A market has two assets: a risk-free bond with rate $r$ and a stock $S_t$. A new non-traded asset $Y_t$ is introduced, correlated with $S_t$ but not directly hedgeable. Explain the difference between the pricing interval $[\underline{V}, \overline{V}]$ for a claim on $Y_T$ and the unique price that would exist if $Y_t$ were traded. How does the width of the pricing interval relate to the correlation between $Y_t$ and $S_t$?
-
----
-
-**Exercise 7.**
-A practitioner computes the Black-Scholes delta $\Delta = \partial V / \partial S$ for hedging but uses historical (physical measure) volatility $\sigma_{\mathbb{P}}$ instead of implied volatility $\sigma_{\mathrm{imp}}$. Explain the conceptual error and describe the financial consequences in terms of the gamma P&L decomposition.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The risk-neutral pricing formula for the European call is
 
@@ -148,6 +127,17 @@ A practitioner computes the Black-Scholes delta $\Delta = \partial V / \partial 
 
     The physical drift $\mu$ does not appear because Girsanov's theorem absorbs it into the measure change. Specifically, the Brownian motion $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t$ with $\theta = (\mu - r)/\sigma$ shifts the drift from $\mu$ to $r$. Since the pricing formula is an expectation under $\mathbb{Q}$, only the risk-neutral drift $r$ and the volatility $\sigma$ (which is invariant under measure change) enter the calculation. The physical drift $\mu$ determines how likely different paths are under $\mathbb{P}$, but pricing uses the reweighted probabilities under $\mathbb{Q}$, where the drift is always $r$ regardless of $\mu$.
 
+---
+
+**Exercise 2.**
+A trader constructs a self-financing replicating portfolio $(\phi_t, \psi_t)$ consisting of $\phi_t$ shares of stock and $\psi_t$ units of the risk-free bond. Show that the self-financing condition
+
+$$
+dV_t = \phi_t\,dS_t + \psi_t\,dB_t
+$$
+
+holds under both $\mathbb{P}$ and $\mathbb{Q}$. Explain why this demonstrates that hedging is measure-invariant.
+
 ??? success "Solution to Exercise 2"
     The self-financing condition states that changes in portfolio value come solely from changes in asset prices, with no external cash flows:
 
@@ -160,6 +150,11 @@ A practitioner computes the Black-Scholes delta $\Delta = \partial V / \partial 
     Formally, the Ito integral $\int_0^t \phi_s\,dS_s$ is defined pathwise via the quadratic variation of $S$. The quadratic variation $\langle S \rangle_t = \int_0^t \sigma^2 S_s^2\,ds$ is a path-by-path quantity that does not change under an equivalent measure change. Since the stochastic integral depends only on the integrand $\phi_t$ and the paths of $S_t$ (including their quadratic variation), the self-financing condition holds identically under both $\mathbb{P}$ and $\mathbb{Q}$.
 
     This demonstrates that hedging is measure-invariant: a portfolio that replicates a payoff under $\mathbb{P}$ also replicates it under $\mathbb{Q}$, and vice versa. The measure affects expectations and probabilities, but not the pathwise trading mechanics. Pricing requires choosing a measure (to compute the expectation), but hedging does not.
+
+---
+
+**Exercise 3.**
+In an incomplete market with two Brownian motions but only one traded asset, the risk-neutral measure is not unique. Explain why the price of a non-traded contingent claim depends on the choice of $\mathbb{Q}$, while the hedging strategy using only the traded asset does not fully replicate the claim. What is the financial interpretation of the residual risk?
 
 ??? success "Solution to Exercise 3"
     In an incomplete market with two Brownian motions $W^1, W^2$ but only one traded asset $S$, the risk premium equation $\mu - r = \sigma_1\theta_1 + \sigma_2\theta_2$ has one equation and two unknowns. This defines a one-parameter family of valid market price of risk vectors $(\theta_1, \theta_2)$, and hence a family of risk-neutral measures $\{\mathbb{Q}^{\theta}\}$.
@@ -174,6 +169,17 @@ A practitioner computes the Black-Scholes delta $\Delta = \partial V / \partial 
 
     The **residual risk** is the unhedgeable component---the part of the claim's payoff that is orthogonal to the traded asset's returns. Financially, this represents the risk from the non-traded factor $W^2$ that cannot be diversified or hedged away using available instruments. The width of the pricing interval $[\underline{V}, \overline{V}]$ reflects the magnitude of this residual risk: in a complete market the interval collapses to a single point, while in an incomplete market the residual risk creates genuine pricing ambiguity.
 
+---
+
+**Exercise 4.**
+Consider a market where a stock follows geometric Brownian motion under $\mathbb{P}$:
+
+$$
+dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}
+$$
+
+A derivative has payoff $\Phi(S_T)$. A practitioner argues: "Since hedging does not depend on the measure, I can compute my hedge ratios under $\mathbb{P}$ instead of $\mathbb{Q}$." Is this correct? Carefully distinguish between computing the hedge ratio and determining the derivative price.
+
 ??? success "Solution to Exercise 4"
     The practitioner's statement is partially correct but requires careful qualification.
 
@@ -184,6 +190,11 @@ A practitioner computes the Black-Scholes delta $\Delta = \partial V / \partial 
     **Price determination:** The derivative price $V$ must be computed under $\mathbb{Q}$, not $\mathbb{P}$. Using $\mathbb{P}$-dynamics to compute the price (e.g., via $\mathbb{E}^{\mathbb{P}}[e^{-rT}\Phi(S_T)]$) would give the wrong answer because this expectation does not account for risk preferences correctly.
 
     In summary: the replication argument is measure-invariant, but the price function from which $\Delta$ is derived must come from $\mathbb{Q}$-pricing. The practitioner can hedge under $\mathbb{P}$ (execute trades in the physical market) but must use the $\mathbb{Q}$-derived hedge ratio.
+
+---
+
+**Exercise 5.**
+In a complete market, the price of a contingent claim equals the cost of its unique replicating portfolio. Prove that if two different risk-neutral measures $\mathbb{Q}_1$ and $\mathbb{Q}_2$ both existed in a complete market, they would assign the same price to every contingent claim, and conclude that $\mathbb{Q}_1 = \mathbb{Q}_2$.
 
 ??? success "Solution to Exercise 5"
     In a complete market, every contingent claim $\Phi(S_T)$ can be replicated by a self-financing trading strategy. Let $V_0$ denote the initial cost of the unique replicating portfolio. By the law of one price (no arbitrage), the price of the claim must equal $V_0$.
@@ -199,6 +210,11 @@ A practitioner computes the Black-Scholes delta $\Delta = \partial V / \partial 
     Since $\mathbb{Q}_1$ and $\mathbb{Q}_2$ assign the same expected value to $e^{-rT}\Phi(S_T)$ for every bounded measurable function $\Phi$, they must agree on the distribution of $S_T$ for every $T$. More generally, since this holds for all $\mathcal{F}_T$-measurable random variables (by completeness), we conclude $\mathbb{Q}_1 = \mathbb{Q}_2$ on every $\mathcal{F}_T$, hence $\mathbb{Q}_1 = \mathbb{Q}_2$.
 
     This is the content of the Second Fundamental Theorem of Asset Pricing: completeness is equivalent to uniqueness of the equivalent martingale measure.
+
+---
+
+**Exercise 6.**
+A market has two assets: a risk-free bond with rate $r$ and a stock $S_t$. A new non-traded asset $Y_t$ is introduced, correlated with $S_t$ but not directly hedgeable. Explain the difference between the pricing interval $[\underline{V}, \overline{V}]$ for a claim on $Y_T$ and the unique price that would exist if $Y_t$ were traded. How does the width of the pricing interval relate to the correlation between $Y_t$ and $S_t$?
 
 ??? success "Solution to Exercise 6"
     When $Y_t$ is non-traded but correlated with the traded asset $S_t$, the market is incomplete. The risk premium on the non-traded Brownian motion driving $Y_t$ (independently of $S_t$) is a free parameter, leading to a family of risk-neutral measures.
@@ -216,6 +232,11 @@ A practitioner computes the Black-Scholes delta $\Delta = \partial V / \partial 
     - If $|\rho| = 1$: $Y_t$ is perfectly correlated with $S_t$ and can be perfectly hedged using $S_t$. The pricing interval collapses to a point.
     - If $|\rho| = 0$: $Y_t$ is independent of $S_t$ and completely unhedgeable. The pricing interval is widest because the risk-neutral distribution of $Y_T$ is entirely unconstrained by the traded asset.
     - For intermediate $|\rho|$: The interval width decreases as $|\rho|$ increases, because higher correlation means more of $Y_t$'s risk can be hedged with $S_t$, leaving less residual ambiguity.
+
+---
+
+**Exercise 7.**
+A practitioner computes the Black-Scholes delta $\Delta = \partial V / \partial S$ for hedging but uses historical (physical measure) volatility $\sigma_{\mathbb{P}}$ instead of implied volatility $\sigma_{\mathrm{imp}}$. Explain the conceptual error and describe the financial consequences in terms of the gamma P&L decomposition.
 
 ??? success "Solution to Exercise 7"
     The conceptual error is that the practitioner is mixing measures. The Black-Scholes delta $\Delta = \partial V / \partial S$ is computed from the option price $V$, which is a function of implied volatility $\sigma_{\mathrm{imp}}$ (a $\mathbb{Q}$-measure quantity). Using historical volatility $\sigma_{\mathbb{P}}$ instead means computing the delta from a different price function, leading to an incorrect hedge ratio.

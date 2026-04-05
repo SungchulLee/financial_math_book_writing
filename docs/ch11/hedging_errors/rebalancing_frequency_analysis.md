@@ -319,22 +319,321 @@ which vanishes as $\delta t \to 0$, consistent with the CLT. For finite $\delta 
 
 **Exercise 1.** For an ATM call with $S = K = 100$, $\sigma = 0.25$, $T = 0.5$, and constant $\Gamma = 0.028$, compute the cumulative hedging error standard deviation for $N = 26$ (weekly), $N = 126$ (daily), and $N = 504$ (twice daily) rebalancing dates. Verify that the ratios of these standard deviations are consistent with the $\sqrt{\delta t}$ scaling law.
 
+??? success "Solution to Exercise 1"
+    With $S = K = 100$, $\sigma = 0.25$, $T = 0.5$, $\Gamma = 0.028$:
+
+    The cumulative hedging error variance is:
+
+    $$
+    \operatorname{Var}(\text{HE}) = \frac{1}{2}\Gamma^2 S^4 \sigma^4 T \cdot \delta t
+    $$
+
+    First compute the constant factor:
+
+    $$
+    \frac{1}{2}\Gamma^2 S^4 \sigma^4 T = \frac{1}{2}(0.028)^2(10^8)(0.25)^4(0.5)
+    $$
+
+    $$
+    = \frac{1}{2}(7.84 \times 10^{-4})(10^8)(3.906 \times 10^{-3})(0.5)
+    $$
+
+    $$
+    = \frac{1}{2}(7.84 \times 10^{-4})(10^8)(1.953 \times 10^{-3}) = \frac{1}{2}(7.84 \times 10^{-4})(1.953 \times 10^{5})
+    $$
+
+    $$
+    = \frac{1}{2}(153.1) = 76.55
+    $$
+
+    **Weekly** ($N = 26$, $\delta t = T/N = 0.5/26 \approx 0.01923$):
+
+    $$
+    \operatorname{Std}(\text{HE}) = \sqrt{76.55 \times 0.01923} = \sqrt{1.472} \approx 1.213
+    $$
+
+    **Daily** ($N = 126$, $\delta t = 0.5/126 \approx 0.003968$):
+
+    $$
+    \operatorname{Std}(\text{HE}) = \sqrt{76.55 \times 0.003968} = \sqrt{0.3038} \approx 0.551
+    $$
+
+    **Twice daily** ($N = 504$, $\delta t = 0.5/504 \approx 0.000992$):
+
+    $$
+    \operatorname{Std}(\text{HE}) = \sqrt{76.55 \times 0.000992} = \sqrt{0.07594} \approx 0.276
+    $$
+
+    **Verification of $\sqrt{\delta t}$ scaling:**
+
+    $$
+    \frac{\text{Std(weekly)}}{\text{Std(daily)}} = \frac{1.213}{0.551} \approx 2.20 \approx \sqrt{126/26} = \sqrt{4.846} \approx 2.20 \;\checkmark
+    $$
+
+    $$
+    \frac{\text{Std(daily)}}{\text{Std(twice daily)}} = \frac{0.551}{0.276} \approx 2.00 \approx \sqrt{504/126} = \sqrt{4} = 2.00 \;\checkmark
+    $$
+
+    The ratios confirm the $\sqrt{\delta t}$ scaling law.
+
 ---
 
 **Exercise 2.** The total cost function is $\text{Total}(N) = a/\sqrt{N} + b\sqrt{N}$. Derive the optimal $N^*$ that minimizes this function. For $a = 4.0$ and $b = 0.05$, compute $N^*$ and the corresponding optimal rebalancing interval $\delta t^*$ when $T = 0.25$. What is the minimum total cost?
+
+??? success "Solution to Exercise 2"
+    The total cost function is:
+
+    $$
+    \text{Total}(N) = \frac{a}{\sqrt{N}} + b\sqrt{N}
+    $$
+
+    Taking the derivative and setting it to zero:
+
+    $$
+    \frac{d}{dN}\text{Total}(N) = -\frac{a}{2N^{3/2}} + \frac{b}{2\sqrt{N}} = 0
+    $$
+
+    Multiplying through by $2N^{3/2}$:
+
+    $$
+    -a + bN = 0 \implies N^* = \frac{a}{b}
+    $$
+
+    For $a = 4.0$ and $b = 0.05$:
+
+    $$
+    N^* = \frac{4.0}{0.05} = 80
+    $$
+
+    The optimal rebalancing interval with $T = 0.25$:
+
+    $$
+    \delta t^* = \frac{T}{N^*} = \frac{0.25}{80} = 0.003125 \text{ years} \approx 0.79 \text{ trading days}
+    $$
+
+    This suggests rebalancing slightly more frequently than once per day.
+
+    The minimum total cost is:
+
+    $$
+    \text{Total}(N^*) = \frac{a}{\sqrt{a/b}} + b\sqrt{a/b} = \sqrt{ab} + \sqrt{ab} = 2\sqrt{ab}
+    $$
+
+    $$
+    = 2\sqrt{4.0 \times 0.05} = 2\sqrt{0.20} = 2 \times 0.4472 \approx 0.894
+    $$
+
+    The minimum total cost is approximately $\$0.89$.
 
 ---
 
 **Exercise 3.** Leland's adjusted volatility is $\hat{\sigma}^2 = \sigma^2(1 + \sqrt{2/\pi} \cdot \kappa/(\sigma\sqrt{\delta t}))$. For $\sigma = 0.20$, $\kappa = 0.002$ (20 bps half-spread), and daily rebalancing ($\delta t = 1/252$), compute $\hat{\sigma}$. By what percentage does the Leland volatility exceed the true volatility? How does this percentage change if the trader switches to weekly rebalancing?
 
+??? success "Solution to Exercise 3"
+    With $\sigma = 0.20$, $\kappa = 0.002$, $\delta t = 1/252$:
+
+    $$
+    \hat{\sigma}^2 = \sigma^2\left(1 + \sqrt{\frac{2}{\pi}} \cdot \frac{\kappa}{\sigma\sqrt{\delta t}}\right)
+    $$
+
+    Compute the correction factor:
+
+    $$
+    \frac{\kappa}{\sigma\sqrt{\delta t}} = \frac{0.002}{0.20 \times \sqrt{1/252}} = \frac{0.002}{0.20 \times 0.06299} = \frac{0.002}{0.01260} \approx 0.15873
+    $$
+
+    $$
+    \sqrt{\frac{2}{\pi}} \approx 0.7979
+    $$
+
+    $$
+    \hat{\sigma}^2 = 0.04\left(1 + 0.7979 \times 0.15873\right) = 0.04(1 + 0.12665) = 0.04 \times 1.12665 = 0.04507
+    $$
+
+    $$
+    \hat{\sigma} = \sqrt{0.04507} \approx 0.2123
+    $$
+
+    The Leland volatility exceeds the true volatility by:
+
+    $$
+    \frac{\hat{\sigma} - \sigma}{\sigma} = \frac{0.2123 - 0.20}{0.20} = \frac{0.0123}{0.20} \approx 6.15\%
+    $$
+
+    **For weekly rebalancing** ($\delta t = 1/52$):
+
+    $$
+    \frac{\kappa}{\sigma\sqrt{\delta t}} = \frac{0.002}{0.20 \times \sqrt{1/52}} = \frac{0.002}{0.20 \times 0.13868} = \frac{0.002}{0.02774} \approx 0.07211
+    $$
+
+    $$
+    \hat{\sigma}^2 = 0.04(1 + 0.7979 \times 0.07211) = 0.04(1 + 0.05753) = 0.04 \times 1.05753 = 0.04230
+    $$
+
+    $$
+    \hat{\sigma} \approx \sqrt{0.04230} \approx 0.2057
+    $$
+
+    The percentage excess is:
+
+    $$
+    \frac{0.2057 - 0.20}{0.20} \approx 2.85\%
+    $$
+
+    The Leland adjustment is smaller for weekly rebalancing ($2.85\%$ vs $6.15\%$) because less frequent rebalancing incurs fewer transaction costs per unit time, requiring a smaller volatility correction.
+
 ---
 
 **Exercise 4.** The expected total transaction cost scales as $\mathbb{E}[\text{TC}_{\text{total}}] \approx C_0 \sqrt{N}$. For an ATM call with $\Gamma = 0.032$, $\sigma = 0.20$, $S = 100$, $T = 0.25$, and $\kappa = 0.001$, compute $C_0$ and the expected transaction costs for daily and hourly rebalancing. At what rebalancing frequency do expected transaction costs equal $1\%$ of the option price (approximately $\$4.50$)?
+
+??? success "Solution to Exercise 4"
+    From the formula $\mathbb{E}[\text{TC}_{\text{total}}] \approx C_0\sqrt{N}$ where:
+
+    $$
+    C_0 = \kappa\,\overline{|\Gamma|\sigma S^2}\,T\,\sqrt{\frac{2}{\pi}}
+    $$
+
+    Wait -- more precisely, each step costs $\mathbb{E}[\text{TC}_k] \approx \kappa\,|\Gamma_k|\,\sigma S_k^2\sqrt{2\delta t/\pi}$, and summing $N$ steps:
+
+    $$
+    \mathbb{E}[\text{TC}_{\text{total}}] = N \times \kappa\,|\Gamma|\,\sigma S^2\sqrt{\frac{2\delta t}{\pi}} = \kappa\,|\Gamma|\,\sigma S^2\,\sqrt{\frac{2N}{\pi}} \cdot \sqrt{T}
+    $$
+
+    Let us define $C_0$ so that $\mathbb{E}[\text{TC}_{\text{total}}] = C_0\sqrt{N}$:
+
+    $$
+    C_0 = \kappa\,|\Gamma|\,\sigma S^2\,\sqrt{\frac{2T}{\pi}}
+    $$
+
+    With $\kappa = 0.001$, $\Gamma = 0.032$, $\sigma = 0.20$, $S = 100$, $T = 0.25$:
+
+    $$
+    C_0 = 0.001 \times 0.032 \times 0.20 \times 10000 \times \sqrt{\frac{0.5}{\pi}}
+    $$
+
+    $$
+    = 0.001 \times 0.032 \times 0.20 \times 10000 \times \sqrt{0.15915}
+    $$
+
+    $$
+    = 0.064 \times 0.3989 \approx 0.02553
+    $$
+
+    **Daily rebalancing** ($N = 63$ for $T = 0.25$):
+
+    $$
+    \mathbb{E}[\text{TC}] = 0.02553 \times \sqrt{63} = 0.02553 \times 7.937 \approx 0.2026
+    $$
+
+    **Hourly rebalancing** ($N = 63 \times 8 = 504$):
+
+    $$
+    \mathbb{E}[\text{TC}] = 0.02553 \times \sqrt{504} = 0.02553 \times 22.45 \approx 0.573
+    $$
+
+    **Frequency where TC equals 1% of option price.** With option price $\approx \$4.50$, we need $\text{TC} = 0.045$:
+
+    $$
+    0.02553\sqrt{N} = 0.045 \implies \sqrt{N} = 1.763 \implies N \approx 3.1
+    $$
+
+    Transaction costs reach $1\%$ of the option price at approximately $N = 3$ rebalancing events over the life of the option, which corresponds to monthly rebalancing ($\delta t \approx 0.25/3 \approx 0.083$ years). For any higher frequency, TC exceeds $1\%$ of the option price.
 
 ---
 
 **Exercise 5.** Using the CLT for hedging error, construct a 95% confidence interval for the cumulative hedging error of a daily-rebalanced short ATM call with $S = K = 100$, $\sigma = 0.20$, $T = 0.5$, $\Gamma = 0.025$. Express the interval in dollars and as a percentage of the option price (approximately $\$6.30$). How does the interval change if gamma-weighted adaptive rebalancing reduces the effective number of high-gamma steps by half?
 
+??? success "Solution to Exercise 5"
+    With $S = K = 100$, $\sigma = 0.20$, $T = 0.5$, $\Gamma = 0.025$, daily rebalancing ($\delta t = 1/252$):
+
+    $$
+    \operatorname{Var}(\text{HE}) = \frac{1}{2}\Gamma^2 S^4 \sigma^4 T \cdot \delta t
+    $$
+
+    $$
+    = \frac{1}{2}(0.025)^2(10^8)(0.20)^4(0.5)(1/252)
+    $$
+
+    $$
+    = \frac{1}{2}(6.25 \times 10^{-4})(10^8)(1.6 \times 10^{-3})(0.5)(3.968 \times 10^{-3})
+    $$
+
+    $$
+    = \frac{1}{2}(6.25 \times 10^{-4})(10^8)(3.175 \times 10^{-6})
+    $$
+
+    $$
+    = \frac{1}{2}(6.25 \times 10^{-4})(317.5) = \frac{1}{2}(0.1984) = 0.09922
+    $$
+
+    $$
+    \operatorname{Std}(\text{HE}) = \sqrt{0.09922} \approx 0.3150
+    $$
+
+    The 95% confidence interval is:
+
+    $$
+    [-1.96 \times 0.315,\; +1.96 \times 0.315] = [-0.617,\; +0.617]
+    $$
+
+    **In dollars:** the interval is approximately $[-\$0.62, +\$0.62]$.
+
+    **As a percentage of option price** ($\approx \$6.30$):
+
+    $$
+    \frac{0.617}{6.30} \approx 9.8\%
+    $$
+
+    The 95% confidence interval is approximately $\pm 9.8\%$ of the option price.
+
+    **With adaptive rebalancing** reducing effective high-gamma steps by half: the dominant contribution to $\operatorname{Var}(\text{HE})$ comes from high-gamma steps. If adaptive scheduling halves the effective number of these steps (by rebalancing more frequently during high-gamma periods and less frequently otherwise), the variance decreases by roughly a factor of 2:
+
+    $$
+    \operatorname{Std}(\text{HE})_{\text{adaptive}} \approx \frac{0.315}{\sqrt{2}} \approx 0.223
+    $$
+
+    The 95% CI shrinks to approximately $[-\$0.44, +\$0.44]$, or about $\pm 6.9\%$ of the option price.
+
 ---
 
 **Exercise 6.** A trader considers a non-uniform rebalancing schedule where the interval shrinks near expiry. The adaptive rule triggers rebalancing when $\frac{1}{2}|\Gamma_k| \sigma^2 S_k^2 (t - t_k) > \varepsilon_{\text{target}}$. For $\varepsilon_{\text{target}} = 0.05$, $\sigma = 0.20$, $S = 100$, and $\Gamma$ ranging from $0.03$ (at $\tau = 3$ months) to $0.30$ (at $\tau = 1$ day), compute the maximum allowable interval $\delta t_{\max}$ at each gamma level. How does this compare to a uniform daily schedule?
+
+??? success "Solution to Exercise 6"
+    The adaptive rule triggers rebalancing when:
+
+    $$
+    \frac{1}{2}|\Gamma_k|\,\sigma^2 S_k^2\,(t - t_k) > \varepsilon_{\text{target}}
+    $$
+
+    Solving for the maximum allowable interval:
+
+    $$
+    \delta t_{\max} = \frac{2\varepsilon_{\text{target}}}{|\Gamma_k|\,\sigma^2 S_k^2}
+    $$
+
+    With $\varepsilon_{\text{target}} = 0.05$, $\sigma = 0.20$, $S = 100$:
+
+    $$
+    \delta t_{\max} = \frac{2 \times 0.05}{|\Gamma_k| \times 0.04 \times 10000} = \frac{0.10}{400\,|\Gamma_k|}
+    $$
+
+    **At $\tau = 3$ months** ($\Gamma = 0.03$):
+
+    $$
+    \delta t_{\max} = \frac{0.10}{400 \times 0.03} = \frac{0.10}{12} \approx 0.00833 \text{ years} \approx 2.1 \text{ trading days}
+    $$
+
+    **At $\tau = 1$ day** ($\Gamma = 0.30$):
+
+    $$
+    \delta t_{\max} = \frac{0.10}{400 \times 0.30} = \frac{0.10}{120} \approx 0.000833 \text{ years} \approx 0.21 \text{ trading days} \approx 1.7 \text{ hours}
+    $$
+
+    **Comparison with uniform daily schedule** ($\delta t = 1/252 \approx 0.00397$ years):
+
+    | Time to expiry | $\Gamma$ | $\delta t_{\max}$ | Uniform daily | Comparison |
+    |:---|:---|:---|:---|:---|
+    | 3 months | 0.03 | 2.1 days | 1 day | Adaptive allows longer intervals |
+    | 1 day | 0.30 | 1.7 hours | 1 day | Adaptive requires much shorter intervals |
+
+    When gamma is low (far from expiry), the adaptive rule permits less frequent rebalancing than daily, saving transaction costs. Near expiry, when gamma spikes, the adaptive rule demands sub-daily rebalancing to control the hedging error. A uniform daily schedule over-hedges early (wasting on transaction costs) and under-hedges near expiry (accepting too much error). The adaptive approach allocates rebalancing effort where it matters most.

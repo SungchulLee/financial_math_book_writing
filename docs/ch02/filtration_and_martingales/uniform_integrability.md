@@ -240,44 +240,6 @@ Uniform integrability is the "tightness" condition for random variables, analogo
 
 (c) Is the family $\{\sin(W_t) : t \ge 0\}$ uniformly integrable?
 
-### Exercise 2: Vitali Theorem
-
-(a) Give an example of $X_n \to 0$ a.s. with $\mathbb{E}[X_n] = 1$ for all $n$. Identify why the family is not UI.
-
-(b) Suppose $X_n \to X$ in probability and $\mathbb{E}[X_n^2] \le C < \infty$ for all $n$. Prove $X_n \to X$ in $L^1$.
-
-(c) Give an example showing that $L^1$ convergence without a.s. convergence can still imply UI.
-
-### Exercise 3: Martingale Convergence
-
-(a) Let $M_n = \mathbb{E}[X \mid \mathcal{F}_n]$ for $X \in L^2$. Show the family is UI and that $M_n \to X$ in $L^2$.
-
-(b) Construct a martingale that is $L^1$-bounded but **not** uniformly integrable. Verify it does not converge in $L^1$.
-
-*Hint*: Use the product martingale $M_n = \prod_{i=1}^n \xi_i$ from the introduction.
-
-(c) Prove: if $(M_n)$ is a UI martingale with $M_n \to M_\infty$ a.s., then for any stopping time $\tau$ (including $\tau = \infty$ on the event $\{\tau = \infty\}$):
-
-$$
-M_\tau = \mathbb{E}[M_\infty \mid \mathcal{F}_\tau] \quad \text{a.s.}
-$$
-
-### Exercise 4: de la Vallée Poussin
-
-(a) Prove: if $\sup_\alpha \mathbb{E}[|X_\alpha| \log(1 + |X_\alpha|)] < \infty$, then $\{X_\alpha\}$ is UI.
-
-*Hint*: Take $\Phi(x) = x \log(1+x)$ and verify $\Phi(x)/x \to \infty$.
-
-(b) Conversely, show that for any UI family $\{X_\alpha\}$, there exists a function $\Phi$ with $\Phi(x)/x \to \infty$ such that $\sup_\alpha \mathbb{E}[\Phi(|X_\alpha|)] < \infty$.
-
-*Hint*: This is the converse direction of the de la Vallée Poussin theorem. Construct $\Phi$ stepwise using the UI condition.
-
-(c) Conclude that the three characterizations of UI in the main text are all equivalent.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a)** For $T < \infty$, $\sup_{t \le T} \mathbb{E}[W_t^2] = \sup_{t \le T} t = T < \infty$. Since the family $\{W_t : 0 \le t \le T\}$ is $L^2$-bounded (with $p = 2 > 1$), it is uniformly integrable by the $L^p$ criterion. $\square$
 
@@ -286,6 +248,16 @@ $$
     If $\{Z_t : t \ge 0\}$ were UI, then by the Vitali convergence theorem, $Z_t \to 0$ a.s. combined with UI would imply $Z_t \to 0$ in $L^1$, giving $\mathbb{E}[Z_t] \to 0$. But $\mathbb{E}[Z_t] = 1$ for all $t$, a contradiction. Therefore the family is **not** UI. $\square$
 
     **(c)** $|\sin(W_t)| \le 1$ for all $t$ and $\omega$. The constant $Y \equiv 1$ is in $L^1$. Since $|\sin(W_t)| \le Y$ for all $t$, the family is dominated by an integrable random variable, hence **uniformly integrable**. $\square$
+
+---
+
+### Exercise 2: Vitali Theorem
+
+(a) Give an example of $X_n \to 0$ a.s. with $\mathbb{E}[X_n] = 1$ for all $n$. Identify why the family is not UI.
+
+(b) Suppose $X_n \to X$ in probability and $\mathbb{E}[X_n^2] \le C < \infty$ for all $n$. Prove $X_n \to X$ in $L^1$.
+
+(c) Give an example showing that $L^1$ convergence without a.s. convergence can still imply UI.
 
 ??? success "Solution to Exercise 2"
     **(a)** Let $X_n = n \cdot \mathbf{1}_{[0, 1/n]}$ on $(\Omega, \mathbb{P}) = ([0,1], \text{Lebesgue})$. Then $X_n \to 0$ a.s. (for $\omega > 0$, eventually $\omega > 1/n$) but $\mathbb{E}[X_n] = n \cdot (1/n) = 1$ for all $n$.
@@ -303,6 +275,22 @@ $$
     More directly: UI and convergence in probability imply $L^1$ convergence (this is a standard extension of Vitali's theorem where a.s. convergence is replaced by convergence in probability).
 
     **(c)** Consider $X_n = Y \cdot \mathbf{1}_{\{U \le 1/n\}}$ where $Y \in L^1$ and $U \sim \text{Uniform}[0,1]$ independent of $Y$. Then $X_n \to 0$ in $L^1$ (since $\mathbb{E}[|X_n|] = \mathbb{E}[|Y|]/n \to 0$). However, $X_n$ need not converge a.s. (consider replacing the indicator with a more oscillating sequence). The $L^1$ convergence directly implies UI by the Vitali theorem (in the $L^1$-convergence-implies-UI direction). $\square$
+
+---
+
+### Exercise 3: Martingale Convergence
+
+(a) Let $M_n = \mathbb{E}[X \mid \mathcal{F}_n]$ for $X \in L^2$. Show the family is UI and that $M_n \to X$ in $L^2$.
+
+(b) Construct a martingale that is $L^1$-bounded but **not** uniformly integrable. Verify it does not converge in $L^1$.
+
+*Hint*: Use the product martingale $M_n = \prod_{i=1}^n \xi_i$ from the introduction.
+
+(c) Prove: if $(M_n)$ is a UI martingale with $M_n \to M_\infty$ a.s., then for any stopping time $\tau$ (including $\tau = \infty$ on the event $\{\tau = \infty\}$):
+
+$$
+M_\tau = \mathbb{E}[M_\infty \mid \mathcal{F}_\tau] \quad \text{a.s.}
+$$
 
 ??? success "Solution to Exercise 3"
     **(a)** Let $M_n = \mathbb{E}[X \mid \mathcal{F}_n]$ for $X \in L^2$. By the conditional Jensen inequality:
@@ -344,6 +332,20 @@ $$
     $$
 
     (using $A \in \mathcal{F}_\tau \subseteq \mathcal{F}_{\tau_k}$). Therefore $\mathbb{E}[M_\tau \mathbf{1}_A] = \mathbb{E}[M_\infty \mathbf{1}_A]$ for all $A \in \mathcal{F}_\tau$, giving $M_\tau = \mathbb{E}[M_\infty \mid \mathcal{F}_\tau]$. $\square$
+
+---
+
+### Exercise 4: de la Vallée Poussin
+
+(a) Prove: if $\sup_\alpha \mathbb{E}[|X_\alpha| \log(1 + |X_\alpha|)] < \infty$, then $\{X_\alpha\}$ is UI.
+
+*Hint*: Take $\Phi(x) = x \log(1+x)$ and verify $\Phi(x)/x \to \infty$.
+
+(b) Conversely, show that for any UI family $\{X_\alpha\}$, there exists a function $\Phi$ with $\Phi(x)/x \to \infty$ such that $\sup_\alpha \mathbb{E}[\Phi(|X_\alpha|)] < \infty$.
+
+*Hint*: This is the converse direction of the de la Vallée Poussin theorem. Construct $\Phi$ stepwise using the UI condition.
+
+(c) Conclude that the three characterizations of UI in the main text are all equivalent.
 
 ??? success "Solution to Exercise 4"
     **(a)** Take $\Phi(x) = x\log(1 + x)$. Then $\Phi(0) = 0$, $\Phi$ is convex on $[0, \infty)$ (since $\Phi''(x) = \frac{1}{1+x} + \frac{1}{(1+x)^2} \cdot x^{-1}\ldots$ actually let's verify: $\Phi'(x) = \log(1+x) + \frac{x}{1+x}$ and $\Phi''(x) = \frac{1}{1+x} + \frac{1}{(1+x)^2} > 0$), and

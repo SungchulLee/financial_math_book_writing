@@ -211,22 +211,202 @@ The [next section](moment_explosions_and_constraints.md) examines a different ty
 
 **Exercise 1.** For $\kappa = 1.5$, $\theta = 0.04$, $\sigma_v = 0.4$, check whether the Feller condition $2\kappa\theta \geq \sigma_v^2$ is satisfied. Repeat for $\sigma_v = 0.3$. In each case, describe the qualitative behavior of $V_t$ near zero.
 
+??? success "Solution to Exercise 1"
+    **Case 1: $\kappa = 1.5$, $\theta = 0.04$, $\sigma_v = 0.4$.**
+
+    $$
+    2\kappa\theta = 2(1.5)(0.04) = 0.12
+    $$
+
+    $$
+    \sigma_v^2 = (0.4)^2 = 0.16
+    $$
+
+    Since $0.12 < 0.16$, the Feller condition is **violated**. The Feller ratio is $F = 0.12/0.16 = 0.75$, and the CIR dimension is $\delta = 4\kappa\theta/\sigma_v^2 = 4(1.5)(0.04)/0.16 = 1.5 < 2$.
+
+    Near $v = 0$, the drift $\kappa\theta = 0.06 > 0$ pushes the process upward, but the diffusion is strong enough relative to this drift that the process can reach zero. The boundary is regular and instantaneously reflecting: $V_t$ touches zero with positive probability but is immediately pushed back by the positive drift $\kappa\theta$. In simulation, Euler schemes may produce negative values.
+
+    **Case 2: $\kappa = 1.5$, $\theta = 0.04$, $\sigma_v = 0.3$.**
+
+    $$
+    2\kappa\theta = 0.12
+    $$
+
+    $$
+    \sigma_v^2 = (0.3)^2 = 0.09
+    $$
+
+    Since $0.12 > 0.09$, the Feller condition is **satisfied**. The Feller ratio is $F = 0.12/0.09 \approx 1.33$, and $\delta = 4(1.5)(0.04)/0.09 \approx 2.67 > 2$.
+
+    The boundary $v = 0$ is an entrance boundary: the process can never reach zero from the interior. The variance $V_t > 0$ almost surely for all $t > 0$. The drift at zero ($\kappa\theta = 0.06$) is strong enough relative to the diffusion to prevent the process from reaching the boundary. Simulation is straightforward since the probability of near-zero variance is very small.
+
 ---
 
 **Exercise 2.** The dimension parameter of the CIR non-central chi-squared transition density is $\nu = 4\kappa\theta/\sigma_v^2$. Show that $\nu \geq 2$ is equivalent to the Feller condition. For $\nu < 2$, the density has a mass at $V_T = 0$; compute $\nu$ for $\kappa = 2$, $\theta = 0.02$, $\sigma_v = 0.5$.
+
+??? success "Solution to Exercise 2"
+    The CIR process $dV_t = \kappa(\theta - V_t)\,dt + \sigma_v\sqrt{V_t}\,dW_t$ has an exact transition density. Conditional on $V_t = v$, the distribution of $V_T$ (where $T > t$) is a scaled non-central chi-squared:
+
+    $$
+    V_T = \frac{\sigma_v^2(1 - e^{-\kappa(T-t)})}{4\kappa}\,\chi^2_\nu(\lambda)
+    $$
+
+    where $\chi^2_\nu(\lambda)$ denotes the non-central chi-squared distribution with $\nu$ degrees of freedom and non-centrality parameter $\lambda$. The dimension parameter is:
+
+    $$
+    \nu = \frac{4\kappa\theta}{\sigma_v^2}
+    $$
+
+    The Feller condition $2\kappa\theta \geq \sigma_v^2$ is equivalent to:
+
+    $$
+    \frac{4\kappa\theta}{\sigma_v^2} \geq 2 \qquad \Longleftrightarrow \qquad \nu \geq 2
+    $$
+
+    When $\nu \geq 2$, the non-central chi-squared density is continuous on $(0, \infty)$ with no mass at zero, confirming that $\mathbb{P}(V_T = 0) = 0$.
+
+    When $\nu < 2$, the density has a **point mass at zero**: $\mathbb{P}(V_T = 0) > 0$. The chi-squared density with $\nu < 2$ degrees of freedom diverges as $V \to 0^+$, and the transition distribution has an atom at $V = 0$.
+
+    For $\kappa = 2$, $\theta = 0.02$, $\sigma_v = 0.5$:
+
+    $$
+    \nu = \frac{4(2)(0.02)}{(0.5)^2} = \frac{0.16}{0.25} = 0.64
+    $$
+
+    Since $\nu = 0.64 < 2$, the Feller condition is violated. The transition density has a point mass at $V_T = 0$, and the variance process reaches zero with positive probability. The low value of $\nu$ indicates that the boundary-touching behavior is frequent.
 
 ---
 
 **Exercise 3.** Explain why calibrated Heston parameters frequently violate the Feller condition. Give a typical set of calibrated parameters from equity markets and compute $2\kappa\theta$ vs $\sigma_v^2$.
 
+??? success "Solution to Exercise 3"
+    Calibrated Heston parameters frequently violate the Feller condition because the market-implied dynamics require a combination of parameters that is incompatible with $2\kappa\theta \geq \sigma_v^2$.
+
+    **Why this happens:**
+
+    1. **High vol-of-vol ($\sigma_v$) is needed to fit the smile.** The curvature of the implied volatility smile, especially for short maturities, requires a large $\sigma_v$ (typically $0.3$--$1.0$). This makes $\sigma_v^2$ large.
+
+    2. **Moderate $\kappa\theta$ is needed to fit the term structure.** The long-run variance $\theta$ is determined by long-dated implied volatilities (typically $\theta \approx 0.03$--$0.06$). The mean-reversion speed $\kappa$ is constrained by the rate at which the smile flattens across maturities (typically $\kappa \approx 1$--$5$).
+
+    3. **The product $2\kappa\theta$ is bounded.** With $\kappa \approx 2$ and $\theta \approx 0.04$, we get $2\kappa\theta = 0.16$, while $\sigma_v = 0.5$ gives $\sigma_v^2 = 0.25$, violating the condition.
+
+    **Typical calibrated example (S&P 500):** $\kappa = 1.8$, $\theta = 0.035$, $\sigma_v = 0.55$, $\rho = -0.72$, $V_0 = 0.04$.
+
+    $$
+    2\kappa\theta = 2(1.8)(0.035) = 0.126
+    $$
+
+    $$
+    \sigma_v^2 = (0.55)^2 = 0.3025
+    $$
+
+    The Feller ratio is $F = 0.126/0.3025 \approx 0.42$, far below 1. This is representative: in practice, Feller ratios of $0.3$--$0.8$ are the norm for equity indices. The market "demands" more vol-of-vol than is consistent with strict positivity of variance.
+
 ---
 
 **Exercise 4.** In Euler discretization of the CIR process, the update $\hat{V}_{n+1} = \hat{V}_n + \kappa(\theta - \hat{V}_n)\Delta t + \sigma_v\sqrt{\hat{V}_n}\sqrt{\Delta t}\,Z$ can produce negative values. Describe three remedies: full truncation, reflection, and the Higham-Mao scheme. Which preserves the correct mean?
+
+??? success "Solution to Exercise 4"
+    The Euler discretization of the CIR process is:
+
+    $$
+    \hat{V}_{n+1} = \hat{V}_n + \kappa(\theta - \hat{V}_n)\Delta t + \sigma_v\sqrt{\hat{V}_n}\sqrt{\Delta t}\,Z_n, \qquad Z_n \sim N(0,1)
+    $$
+
+    When $\hat{V}_n$ is small and $\sigma_v$ is large, the Gaussian noise can drive $\hat{V}_{n+1} < 0$. Three remedies:
+
+    **1. Full truncation (Higham and Mao, Lord et al.):**
+
+    $$
+    \hat{V}_{n+1} = \hat{V}_n + \kappa(\theta - \hat{V}_n^+)\Delta t + \sigma_v\sqrt{\hat{V}_n^+}\sqrt{\Delta t}\,Z_n
+    $$
+
+    where $V^+ = \max(V, 0)$. Both the drift and diffusion use the truncated value. If the result is negative, set $\hat{V}_{n+1} = 0$. This scheme has $O(\Delta t)$ weak convergence. It does **not** exactly preserve the correct mean because the truncation introduces a bias: the diffusion is suppressed when $V$ is near zero, making the process "stick" near zero slightly more than it should.
+
+    **2. Reflection:**
+
+    $$
+    \hat{V}_{n+1} = \left|\hat{V}_n + \kappa(\theta - \hat{V}_n)\Delta t + \sigma_v\sqrt{\hat{V}_n}\sqrt{\Delta t}\,Z_n\right|
+    $$
+
+    Negative values are reflected to positive values via absolute value. This preserves $O(\Delta t)$ weak convergence. It approximately preserves the first moment because reflection maps $-\epsilon$ to $+\epsilon$, but introduces a small bias in the distribution near zero.
+
+    **3. Higham-Mao implicit scheme:**
+
+    $$
+    \hat{V}_{n+1} = \hat{V}_n + \kappa(\theta - \hat{V}_{n+1})\Delta t + \sigma_v\sqrt{\hat{V}_n^+}\sqrt{\Delta t}\,Z_n
+    $$
+
+    Solving for $\hat{V}_{n+1}$:
+
+    $$
+    \hat{V}_{n+1} = \frac{\hat{V}_n + \kappa\theta\Delta t + \sigma_v\sqrt{\hat{V}_n^+}\sqrt{\Delta t}\,Z_n}{1 + \kappa\Delta t}
+    $$
+
+    The implicit treatment of the mean-reversion drift stabilizes the scheme. The denominator $1 + \kappa\Delta t > 1$ damps large fluctuations. This can still produce negative values but is more stable. Among these, the **full truncation scheme** is the most widely used in practice because it is simple and has been shown to achieve the best trade-off between bias and variance in empirical studies by Lord, Koekkoek, and van Dijk (2010).
+
+    **Which preserves the correct mean?** None of the three exactly preserves $\mathbb{E}[\hat{V}_{n+1}] = \hat{V}_n + \kappa(\theta - \hat{V}_n)\Delta t$ because all modify the process near zero. The reflection scheme comes closest for the first moment, but the exact simulation methods (Broadie-Kaya, Andersen QE) are needed for unbiased moment matching.
 
 ---
 
 **Exercise 5.** For the PDE pricing approach, the Heston PDE degenerates at $v = 0$ (the second-order term in $v$ vanishes). Explain why no boundary condition should be imposed at $v = 0$; instead, the PDE itself becomes a first-order equation. What boundary condition is appropriate at $v = v_{\max}$ (large $v$)?
 
+??? success "Solution to Exercise 5"
+    The Heston PDE for a European derivative $U(t, S, v)$ is:
+
+    $$
+    \frac{\partial U}{\partial t} + (r-q)S\frac{\partial U}{\partial S} + \kappa(\theta - v)\frac{\partial U}{\partial v} + \tfrac{1}{2}vS^2\frac{\partial^2 U}{\partial S^2} + \rho\sigma_v vS\frac{\partial^2 U}{\partial S\partial v} + \tfrac{1}{2}\sigma_v^2 v\frac{\partial^2 U}{\partial v^2} = rU
+    $$
+
+    At $v = 0$, all terms containing $v$ as a factor vanish:
+
+    $$
+    \frac{\partial U}{\partial t} + (r-q)S\frac{\partial U}{\partial S} + \kappa\theta\frac{\partial U}{\partial v} = rU
+    $$
+
+    The second-order terms in $S$ and $v$ (the terms $\frac{1}{2}vS^2 U_{SS}$, $\rho\sigma_v vS\,U_{Sv}$, and $\frac{1}{2}\sigma_v^2 v\,U_{vv}$) all vanish because they are proportional to $v$. The PDE degenerates from a second-order (parabolic) equation to a first-order (hyperbolic) equation.
+
+    **No boundary condition should be imposed at $v = 0$** because:
+
+    - When the Feller condition holds ($\delta \geq 2$), $v = 0$ is an entrance boundary that the process never reaches from the interior. The solution is uniquely determined by the interior PDE alone.
+    - When the Feller condition is violated ($\delta < 2$), $v = 0$ is a regular-reflecting boundary. The natural (reflecting) behavior is automatically captured by the degenerate PDE at $v = 0$: the drift $\kappa\theta > 0$ in the $\partial U/\partial v$ term pushes information into the interior, which is the correct reflection behavior.
+
+    Imposing an artificial Dirichlet or Neumann condition at $v = 0$ would overconstrain the problem and introduce error.
+
+    **Boundary condition at $v = v_{\max}$:** At the truncation boundary $v = v_{\max}$ (an artificial boundary introduced by the finite grid), one typically imposes a condition that reflects the behavior for large variance. Common choices:
+
+    - **Linear extrapolation (Neumann):** $\frac{\partial^2 U}{\partial v^2}\big|_{v=v_{\max}} = 0$, assuming the option price is approximately linear in $v$ for very large $v$.
+    - **Asymptotic condition:** For a European call, as $v \to \infty$, the option value approaches $S e^{-qT}$ (the forward value), so $U(t, S, v_{\max}) \approx Se^{-q(T-t)}$.
+    - **Zero second derivative:** This is equivalent to assuming the curvature in $v$ vanishes far from the origin.
+
+    The boundary at $v_{\max}$ should be placed far enough (e.g., $v_{\max} = 5\theta$ to $10\theta$) that the choice of condition has minimal impact on the interior solution.
+
 ---
 
 **Exercise 6.** Show that even when the Feller condition is violated, the CIR process is well-defined as a weak solution of the SDE and the characteristic function formula remains valid. Why does this mean that the Feller condition is a regularity condition for simulation, not a requirement for pricing?
+
+??? success "Solution to Exercise 6"
+    **Well-posedness without the Feller condition.** The CIR SDE $dV_t = \kappa(\theta - V_t)\,dt + \sigma_v\sqrt{V_t}\,dW_t$ with $\kappa > 0$, $\theta > 0$, $\sigma_v > 0$, and $V_0 > 0$ has a unique strong solution $V_t \geq 0$ for all $t \geq 0$, regardless of whether the Feller condition holds. This follows from the Yamada-Watanabe theorem.
+
+    The diffusion coefficient $\sigma_v\sqrt{v}$ is Holder continuous of order $\frac{1}{2}$ but not Lipschitz at $v = 0$. The standard Picard-Lindelof uniqueness theorem does not apply. However, the Yamada-Watanabe condition for pathwise uniqueness requires:
+
+    $$
+    \int_0^\epsilon \frac{1}{\sigma^2(v)}\,dv = \int_0^\epsilon \frac{1}{\sigma_v^2 v}\,dv = \frac{1}{\sigma_v^2}\ln\left(\frac{\epsilon}{0^+}\right) = +\infty
+    $$
+
+    This integral diverges, so the Yamada-Watanabe condition is satisfied, guaranteeing pathwise uniqueness. The Feller condition only determines whether $V_t$ stays strictly positive ($V_t > 0$) or can touch zero ($V_t = 0$ with positive probability). In either case, the process exists, is unique, and satisfies $V_t \geq 0$.
+
+    **Validity of the characteristic function.** The Heston characteristic function $\phi(u, \tau) = \exp(C(\tau, u) + D(\tau, u)v + iux)$ is derived from the Feynman-Kac theorem applied to the backward Kolmogorov equation. The derivation requires:
+
+    1. The joint process $(x_t, V_t)$ is well-defined (which it is, by Yamada-Watanabe).
+    2. The exponential-affine ansatz satisfies the PDE.
+    3. The Riccati ODEs for $C$ and $D$ have solutions on $[0, T]$ (which they do for $u$ in the strip of analyticity).
+
+    None of these steps require the Feller condition. The Riccati solutions $C(\tau, u)$ and $D(\tau, u)$ are the same regardless of whether $2\kappa\theta \geq \sigma_v^2$ or $2\kappa\theta < \sigma_v^2$. The characteristic function formula, and all Fourier pricing methods derived from it, remain valid.
+
+    **Conclusion.** The Feller condition is a **regularity condition for simulation**, not a requirement for pricing:
+
+    - **For pricing** (Fourier methods, PDE methods): The CF formula is exact and does not depend on the Feller condition. The PDE is well-posed with the degenerate boundary treatment at $v = 0$.
+    - **For simulation** (Monte Carlo): When the Feller condition is violated, discrete-time schemes can produce negative variance, requiring ad hoc fixes (truncation, reflection) that introduce bias. The Feller condition ensures that this problem does not arise.
+
+    In practice, since calibrated parameters almost always violate the Feller condition, practitioners use Fourier methods (which are unaffected) for pricing and employ careful simulation schemes (QE, exact) for Monte Carlo applications.

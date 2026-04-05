@@ -98,40 +98,6 @@ quietly contains the forward evolution through \(p\).
 **Exercise 1.**
 Solve the PDE $V_t + \frac{1}{2}\sigma^2 V_{xx} = 0$ with terminal condition $V(T, x) = x^3$ using the Feynman-Kac representation. (Hint: if $X_T = x + \sigma(W_T - W_t)$, compute $\mathbb{E}[X_T^3]$ using the moments of the normal distribution.)
 
----
-
-**Exercise 2.**
-Solve $V_t + \mu V_x + \frac{1}{2}\sigma^2 V_{xx} - rV = 0$ with $V(T, x) = x$ using the discounted Feynman-Kac formula. Verify your answer satisfies the PDE by direct substitution.
-
----
-
-**Exercise 3.**
-Consider the PDE $V_t + \frac{1}{2}\sigma^2 V_{xx} = 0$ with $V(T, x) = e^{ax}$ for constant $a$. Use Feynman-Kac to compute $V(t, x) = \mathbb{E}[e^{aX_T} | X_t = x]$ where $dX_s = \sigma\,dW_s$. Verify that your answer satisfies the PDE.
-
----
-
-**Exercise 4.**
-Explain the relationship between the backward and forward Kolmogorov equations in the context of the Feynman-Kac formula. If $u(x,t) = \int f(y)\,p(x,t;y,T)\,dy$, identify which equation governs $u$ as a function of $(x,t)$ and which governs $p$ as a function of $(y,T)$.
-
----
-
-**Exercise 5.**
-Solve $V_t + \mu V_x + \frac{1}{2}\sigma^2 V_{xx} = 0$ with $V(T, x) = \max(x, 0)$ using Feynman-Kac. Write $V(t, x) = \mathbb{E}[\max(X_T, 0) | X_t = x]$ and express the answer in terms of the standard normal CDF $\Phi$.
-
----
-
-**Exercise 6.**
-Consider $V_t + \frac{1}{2}\sigma^2 V_{xx} + f(x) = 0$ with $V(T, x) = 0$ where $f(x) = 1$. Use the Feynman-Kac formula with running payoff to show that $V(t, x) = T - t$. Verify by substitution into the PDE.
-
----
-
-**Exercise 7.**
-Explain why the Feynman-Kac formula provides two equivalent computational methods: solving the PDE (finite differences) and computing the expectation (Monte Carlo). For a one-dimensional problem on a fine grid, which method is typically more efficient? For a five-dimensional problem, which method is preferred and why?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     With $dX_s = \sigma\,dW_s$ and $X_t = x$, the terminal value is $X_T = x + \sigma(W_T - W_t)$. Let $Z = W_T - W_t \sim N(0, T - t)$.
 
@@ -160,6 +126,11 @@ Explain why the Feynman-Kac formula provides two equivalent computational method
     $$
 
     Terminal condition: $V(T, x) = x^3 + 0 = x^3$. $\checkmark$
+
+---
+
+**Exercise 2.**
+Solve $V_t + \mu V_x + \frac{1}{2}\sigma^2 V_{xx} - rV = 0$ with $V(T, x) = x$ using the discounted Feynman-Kac formula. Verify your answer satisfies the PDE by direct substitution.
 
 ??? success "Solution to Exercise 2"
     The PDE is $V_t + \mu V_x + \frac{1}{2}\sigma^2 V_{xx} - rV = 0$ with $V(T, x) = x$.
@@ -194,6 +165,11 @@ Explain why the Feynman-Kac formula provides two equivalent computational method
 
     Terminal condition: $V(T, x) = e^0(x + 0) = x$. $\checkmark$
 
+---
+
+**Exercise 3.**
+Consider the PDE $V_t + \frac{1}{2}\sigma^2 V_{xx} = 0$ with $V(T, x) = e^{ax}$ for constant $a$. Use Feynman-Kac to compute $V(t, x) = \mathbb{E}[e^{aX_T} | X_t = x]$ where $dX_s = \sigma\,dW_s$. Verify that your answer satisfies the PDE.
+
 ??? success "Solution to Exercise 3"
     With $dX_s = \sigma\,dW_s$ and $g(x) = e^{ax}$, the Feynman-Kac formula gives:
 
@@ -221,6 +197,11 @@ Explain why the Feynman-Kac formula provides two equivalent computational method
 
     Terminal condition: $V(T, x) = e^{ax + 0} = e^{ax}$. $\checkmark$
 
+---
+
+**Exercise 4.**
+Explain the relationship between the backward and forward Kolmogorov equations in the context of the Feynman-Kac formula. If $u(x,t) = \int f(y)\,p(x,t;y,T)\,dy$, identify which equation governs $u$ as a function of $(x,t)$ and which governs $p$ as a function of $(y,T)$.
+
 ??? success "Solution to Exercise 4"
     The Feynman-Kac formula involves two functions of the transition density $p(x, t; y, T)$:
 
@@ -230,6 +211,11 @@ Explain why the Feynman-Kac formula provides two equivalent computational method
     The function $u(x, t) = \int f(y)\,p(x, t; y, T)\,dy$ is governed by the **backward equation** as a function of $(x, t)$: since $\mathcal{L}_x$ acts on $p$ and $f(y)$ does not depend on $x$ or $t$, the integral inherits the backward PDE $\partial_t u + \mathcal{L}_x u = 0$.
 
     The density $p(x, t; y, T)$ appearing inside the integral satisfies the **forward equation** as a function of $(y, T)$. So even though we "solve the backward PDE for $u$," the probabilistic representation $u = \int f\,p\,dy$ implicitly encodes the forward evolution of probability densities through $p$.
+
+---
+
+**Exercise 5.**
+Solve $V_t + \mu V_x + \frac{1}{2}\sigma^2 V_{xx} = 0$ with $V(T, x) = \max(x, 0)$ using Feynman-Kac. Write $V(t, x) = \mathbb{E}[\max(X_T, 0) | X_t = x]$ and express the answer in terms of the standard normal CDF $\Phi$.
 
 ??? success "Solution to Exercise 5"
     With $dX_s = \mu\,ds + \sigma\,dW_s$, $X_t = x$, and $g(x) = \max(x, 0)$:
@@ -256,6 +242,11 @@ Explain why the Feynman-Kac formula provides two equivalent computational method
     V(t, x) = \bigl(x + \mu(T - t)\bigr)\,\Phi\!\left(\frac{x + \mu(T - t)}{\sigma\sqrt{T - t}}\right) + \sigma\sqrt{T - t}\;\phi\!\left(\frac{x + \mu(T - t)}{\sigma\sqrt{T - t}}\right)
     $$
 
+---
+
+**Exercise 6.**
+Consider $V_t + \frac{1}{2}\sigma^2 V_{xx} + f(x) = 0$ with $V(T, x) = 0$ where $f(x) = 1$. Use the Feynman-Kac formula with running payoff to show that $V(t, x) = T - t$. Verify by substitution into the PDE.
+
 ??? success "Solution to Exercise 6"
     The PDE is $V_t + \frac{1}{2}\sigma^2 V_{xx} + 1 = 0$ with $V(T, x) = 0$. This has $r = 0$, $g(x) = 0$ (terminal), and running payoff $f(x) = 1$.
 
@@ -274,6 +265,11 @@ Explain why the Feynman-Kac formula provides two equivalent computational method
     $$
 
     Terminal condition: $V(T, x) = T - T = 0$. $\checkmark$
+
+---
+
+**Exercise 7.**
+Explain why the Feynman-Kac formula provides two equivalent computational methods: solving the PDE (finite differences) and computing the expectation (Monte Carlo). For a one-dimensional problem on a fine grid, which method is typically more efficient? For a five-dimensional problem, which method is preferred and why?
 
 ??? success "Solution to Exercise 7"
     The Feynman-Kac formula establishes the equivalence $u(t,x) = \mathbb{E}[e^{-\int r\,ds}g(X_T) \mid X_t = x]$, which is simultaneously a PDE solution and an expected value. This gives two computational methods:

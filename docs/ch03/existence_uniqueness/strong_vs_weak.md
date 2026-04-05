@@ -265,50 +265,6 @@ $$
 
 (c) $dX_t = X_t\,dt + X_t\,dW_t$, $\quad X_0 = x_0 > 0$
 
----
-
-**Exercise 2.** State the formal definition of a strong solution. Explain why condition 1 ($X_t$ is $\mathcal{F}_t^W$-adapted) means that a strong solution is a "functional of the Brownian path." Give an explicit example by writing the strong solution of the geometric Brownian motion SDE $dX_t = \mu X_t\,dt + \sigma X_t\,dW_t$ as a measurable map $X_t = F(t, W_s : 0 \leq s \leq t)$.
-
----
-
-**Exercise 3.** Consider Tanaka's SDE $dX_t = \mathrm{sgn}(X_t)\,dW_t$ with $X_0 = 0$. The text constructs a weak solution using the Tanaka--Meyer formula for $|B_t|$.
-
-(a) Verify that $W_t = \int_0^t \mathrm{sgn}(B_s)\,dB_s$ has quadratic variation $\langle W \rangle_t = t$, confirming it is a Brownian motion by Levy's characterisation.
-
-(b) Explain why $X_t = |B_t|$ satisfies $dX_t = \mathrm{sgn}(X_t)\,dW_t$ despite the presence of the local time term $L_t^0(B)$ in the Tanaka--Meyer formula.
-
----
-
-**Exercise 4.** Prove that pathwise uniqueness implies uniqueness in law. Proceed as follows: let $(\Omega_1, \mathbb{P}_1, W^1, X^1)$ and $(\Omega_2, \mathbb{P}_2, W^2, X^2)$ be two weak solutions with the same initial distribution. Construct a common probability space on which both solutions can be compared (hint: use the product space $\Omega_1 \times \Omega_2$), and explain how pathwise uniqueness on this space forces $\mathrm{Law}(X^1) = \mathrm{Law}(X^2)$.
-
----
-
-**Exercise 5.** The Yamada--Watanabe theorem states:
-
-$$
-\text{Pathwise uniqueness} + \text{Weak existence} \implies \text{Strong existence}
-$$
-
-Explain why the converse fails: give an example (or describe a scenario) where a strong solution exists but pathwise uniqueness does not hold. Then explain why the Yamada--Watanabe theorem is still useful despite this asymmetry.
-
----
-
-**Exercise 6.** In mathematical finance, the Black--Scholes model $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ admits a strong solution. Explain why strong existence is essential for delta-hedging, where the hedging strategy must be computed pathwise as a function of the observed asset price trajectory. Contrast this with option pricing under the risk-neutral measure, where only the distribution of $S_T$ matters, and a weak solution would suffice.
-
----
-
-**Exercise 7.** Complete the following classification table by filling in "Yes," "No," or "N/A" for each entry. Justify each answer briefly.
-
-| SDE | Weak existence | Pathwise uniqueness | Uniqueness in law | Strong existence |
-|---|---|---|---|---|
-| $dX_t = -X_t\,dt + dW_t$ | | | | |
-| $dX_t = \mathrm{sgn}(X_t)\,dW_t$, $X_0 = 0$ | | | | |
-| $dX_t = \kappa(\theta - X_t)\,dt + \sigma\sqrt{X_t}\,dW_t$ (CIR) | | | | |
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     **(a)** $dX_t = -X_t\,dt + 2\,dW_t$, $X_0 = 1$.
 
@@ -330,6 +286,10 @@ Explain why the converse fails: give an example (or describe a scenario) where a
     X_t = x_0 \exp\!\left(\tfrac{1}{2}t + W_t\right)
     $$
 
+---
+
+**Exercise 2.** State the formal definition of a strong solution. Explain why condition 1 ($X_t$ is $\mathcal{F}_t^W$-adapted) means that a strong solution is a "functional of the Brownian path." Give an explicit example by writing the strong solution of the geometric Brownian motion SDE $dX_t = \mu X_t\,dt + \sigma X_t\,dW_t$ as a measurable map $X_t = F(t, W_s : 0 \leq s \leq t)$.
+
 ??? success "Solution to Exercise 2"
     A strong solution is a continuous adapted process $X_t$ on a given filtered probability space $(\Omega, \mathcal{F}, (\mathcal{F}_t), \mathbb{P})$ carrying a Brownian motion $W_t$ such that:
 
@@ -346,6 +306,14 @@ Explain why the converse fails: give an example (or describe a scenario) where a
     $$
 
     This is an explicit measurable map $F(t, W_s : 0 \leq s \leq t) = x_0\exp[(\mu - \sigma^2/2)t + \sigma W_t]$. Note that $X_t$ depends on the Brownian path only through the terminal value $W_t$, which is a special feature of SDEs with linear coefficients.
+
+---
+
+**Exercise 3.** Consider Tanaka's SDE $dX_t = \mathrm{sgn}(X_t)\,dW_t$ with $X_0 = 0$. The text constructs a weak solution using the Tanaka--Meyer formula for $|B_t|$.
+
+(a) Verify that $W_t = \int_0^t \mathrm{sgn}(B_s)\,dB_s$ has quadratic variation $\langle W \rangle_t = t$, confirming it is a Brownian motion by Levy's characterisation.
+
+(b) Explain why $X_t = |B_t|$ satisfies $dX_t = \mathrm{sgn}(X_t)\,dW_t$ despite the presence of the local time term $L_t^0(B)$ in the Tanaka--Meyer formula.
 
 ??? success "Solution to Exercise 3"
     **(a)** Define $W_t = \int_0^t \mathrm{sgn}(B_s)\,dB_s$. The quadratic variation is:
@@ -378,6 +346,10 @@ Explain why the converse fails: give an example (or describe a scenario) where a
 
     Since $|\mathrm{sgn}(B_s)| = 1$ a.e., this equals $\int_0^t dB_s = B_t = B_t - B_0$. But the Tanaka--Meyer formula gives $|B_t| = W_t + L_t^0$, and the local time $L_t^0(B)$ is a continuous non-decreasing process that increases only when $B_t = 0$ (equivalently, $X_t = 0$). The local time acts as a reflecting boundary term. In the weak formulation, the SDE $dX_t = \mathrm{sgn}(X_t)\,dW_t$ is satisfied because the local time does not contribute to the martingale part — it is a process of zero quadratic variation, and the SDE is understood to hold in the sense of the integral equation with $X_0 = 0$.
 
+---
+
+**Exercise 4.** Prove that pathwise uniqueness implies uniqueness in law. Proceed as follows: let $(\Omega_1, \mathbb{P}_1, W^1, X^1)$ and $(\Omega_2, \mathbb{P}_2, W^2, X^2)$ be two weak solutions with the same initial distribution. Construct a common probability space on which both solutions can be compared (hint: use the product space $\Omega_1 \times \Omega_2$), and explain how pathwise uniqueness on this space forces $\mathrm{Law}(X^1) = \mathrm{Law}(X^2)$.
+
 ??? success "Solution to Exercise 4"
     Let $(\Omega_1, \mathbb{P}_1, W^1, X^1)$ and $(\Omega_2, \mathbb{P}_2, W^2, X^2)$ be two weak solutions with $\mathrm{Law}(X_0^1) = \mathrm{Law}(X_0^2) = \mu$.
 
@@ -394,12 +366,26 @@ Explain why the converse fails: give an example (or describe a scenario) where a
 
     Now pathwise uniqueness applies on $(\hat{\Omega}, \hat{\mathbb{P}})$: since $\hat{X}^1$ and $\hat{X}^2$ are two solutions driven by the same $\hat{W}$ with the same initial condition, $\hat{X}^1 = \hat{X}^2$ a.s. Therefore $\mathrm{Law}(X^1) = \mathrm{Law}(\hat{X}^1) = \mathrm{Law}(\hat{X}^2) = \mathrm{Law}(X^2)$.
 
+---
+
+**Exercise 5.** The Yamada--Watanabe theorem states:
+
+$$
+\text{Pathwise uniqueness} + \text{Weak existence} \implies \text{Strong existence}
+$$
+
+Explain why the converse fails: give an example (or describe a scenario) where a strong solution exists but pathwise uniqueness does not hold. Then explain why the Yamada--Watanabe theorem is still useful despite this asymmetry.
+
 ??? success "Solution to Exercise 5"
     **Why the converse fails:** A strong solution can exist without pathwise uniqueness. Consider an SDE where the coefficients are smooth and Lipschitz except on a null set that is never visited by any particular solution. More concretely, consider an SDE of the form $dX_t = \sigma(X_t)\,dW_t$ where $\sigma$ is chosen so that multiple weak solutions exist (pathwise uniqueness fails), yet one can still construct a strong (adapted to $\mathcal{F}^W$) solution for specific initial conditions.
 
     A more standard example: the SDE $dX_t = \mathrm{sgn}(X_t)\,dW_t$ with $X_0 = 1$ (instead of $X_0 = 0$). For this initial condition, the solution $X_t$ stays away from zero for small $t$ (where the discontinuity lives), and the coefficients are locally Lipschitz away from zero. A local strong solution exists. However, pathwise uniqueness in the global sense (for all initial conditions, including $X_0 = 0$) fails.
 
     **Why Yamada--Watanabe is still useful:** Despite the asymmetry, the theorem provides a powerful strategy for establishing strong existence: instead of constructing a strong solution directly (which requires exhibiting a measurable functional of the Brownian motion), one can separately (1) prove pathwise uniqueness via analytical estimates and (2) construct any weak solution by choosing a convenient probability space. This decomposition is often much easier than a direct construction.
+
+---
+
+**Exercise 6.** In mathematical finance, the Black--Scholes model $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ admits a strong solution. Explain why strong existence is essential for delta-hedging, where the hedging strategy must be computed pathwise as a function of the observed asset price trajectory. Contrast this with option pricing under the risk-neutral measure, where only the distribution of $S_T$ matters, and a weak solution would suffice.
 
 ??? success "Solution to Exercise 6"
     **Delta-hedging requires strong solutions:** In the Black--Scholes framework, the delta-hedging strategy $\Delta_t = \partial_S V(t, S_t)$ must be computed as a function of the observed asset price trajectory $S_t$. This requires that $S_t$ is a functional of the Brownian motion driving the market — precisely the condition for a strong solution. The hedger observes the price path $(S_s : 0 \leq s \leq t)$, which determines $W_t$ (and vice versa), and must construct a portfolio process adapted to this filtration.
@@ -413,6 +399,16 @@ Explain why the converse fails: give an example (or describe a scenario) where a
     $$
 
     This depends only on the distribution of $S_T$ under the risk-neutral measure $\mathbb{Q}$, not on the pathwise relationship between $S_t$ and $W_t$. If two weak solutions $S$ and $S'$ have the same law, then $\mathbb{E}^{\mathbb{Q}}[h(S_T)] = \mathbb{E}^{\mathbb{Q}}[h(S_T')]$, so the price is the same. A weak solution (plus uniqueness in law) therefore suffices for pricing.
+
+---
+
+**Exercise 7.** Complete the following classification table by filling in "Yes," "No," or "N/A" for each entry. Justify each answer briefly.
+
+| SDE | Weak existence | Pathwise uniqueness | Uniqueness in law | Strong existence |
+|---|---|---|---|---|
+| $dX_t = -X_t\,dt + dW_t$ | | | | |
+| $dX_t = \mathrm{sgn}(X_t)\,dW_t$, $X_0 = 0$ | | | | |
+| $dX_t = \kappa(\theta - X_t)\,dt + \sigma\sqrt{X_t}\,dW_t$ (CIR) | | | | |
 
 ??? success "Solution to Exercise 7"
     The completed table:

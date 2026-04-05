@@ -371,26 +371,170 @@ d_2&=&a
 
 **Exercise 1.** Show that a caplet with reset date $T_{k-1}$ and payment date $T_k$ is equivalent to a put option on the zero-coupon bond $P(T_{k-1}, T_k)$ with modified notional $\hat{N} = N(1 + \tau_k K)$ and strike $\hat{K} = \frac{1}{1 + \tau_k K}$.
 
+??? success "Solution to Exercise 1"
+    Starting from the risk-neutral pricing formula for the caplet payoff at $T_k$:
+
+    $$
+    V^{\text{CPL}}(t_0) = \mathbb{E}^{\mathbb{Q}}\!\left[\frac{M(t_0)}{M(T_k)}\,N\tau_k\max(l_k(T_{k-1}) - K, 0)\,\Big|\,\mathcal{F}(t_0)\right]
+    $$
+
+    Using the tower property to condition on $\mathcal{F}(T_{k-1})$ and the definition $l_k(T_{k-1}) = \frac{1}{\tau_k}\!\left(\frac{1}{P(T_{k-1},T_k)} - 1\right)$:
+
+    $$
+    V^{\text{CPL}}(t_0) = \mathbb{E}^{\mathbb{Q}}\!\left[\frac{M(t_0)}{M(T_{k-1})}\,N\tau_k\max(l_k(T_{k-1}) - K, 0)\,P(T_{k-1},T_k)\,\Big|\,\mathcal{F}(t_0)\right]
+    $$
+
+    Substituting the LIBOR definition and simplifying:
+
+    $$
+    N\tau_k\max(l_k(T_{k-1}) - K, 0)\,P(T_{k-1},T_k) = N\max\!\left(1 - (1+\tau_k K)P(T_{k-1},T_k),\,0\right)
+    $$
+
+    Factoring out $(1+\tau_k K)$:
+
+    $$
+    = N(1+\tau_k K)\max\!\left(\frac{1}{1+\tau_k K} - P(T_{k-1},T_k),\,0\right)
+    $$
+
+    Defining $\hat{N} = N(1+\tau_k K)$ and $\hat{K} = \frac{1}{1+\tau_k K}$:
+
+    $$
+    V^{\text{CPL}}(t_0) = \hat{N}\,\mathbb{E}^{\mathbb{Q}}\!\left[\frac{M(t_0)}{M(T_{k-1})}\max(\hat{K} - P(T_{k-1},T_k),\,0)\,\Big|\,\mathcal{F}(t_0)\right]
+    $$
+
+    The right-hand side is exactly $\hat{N}$ times the price of a European put option on the ZCB $P(T_{k-1},T_k)$ with option maturity $T_{k-1}$ and strike $\hat{K}$.
+
 ---
 
 **Exercise 2.** In Black's formula, the forward LIBOR rate $l_k(t)$ is assumed lognormal under $\mathbb{Q}^{T_k}$. In the Hull-White model, the short rate is Gaussian. Explain why these two assumptions lead to different implied volatility structures across strikes.
+
+??? success "Solution to Exercise 2"
+    **Black's formula (lognormal assumption):** Under the $\mathbb{Q}^{T_k}$ measure, the forward LIBOR rate $l_k(t)$ is assumed to follow geometric Brownian motion $dl_k = \sigma_k l_k\,dW^{T_k}$. This means $l_k(T_{k-1})$ is lognormally distributed, which gives a constant implied volatility across all strikes (a flat smile).
+
+    **Hull-White model (Gaussian assumption):** The short rate $r(t)$ follows an Ornstein-Uhlenbeck process, so $r(T_{k-1})$ is normally distributed. The caplet price depends on the ZCB price $P(T_{k-1},T_k) = e^{A(\tau_k) + B(\tau_k)r(T_{k-1})}$, which is the exponential of a Gaussian random variable, hence lognormally distributed.
+
+    The forward LIBOR rate $l_k(T_{k-1}) = \frac{1}{\tau_k}\!\left(\frac{1}{P(T_{k-1},T_k)} - 1\right)$ is then a nonlinear function of a lognormal variable. When we invert Black's formula to extract the implied volatility from Hull-White prices, we obtain an implied vol that depends on the strike $K$, producing a volatility skew. The skew arises because the distribution of $l_k(T_{k-1})$ under the Hull-White model differs from the lognormal distribution: the tails behave differently, leading to higher implied volatilities for deep in-the-money or out-of-the-money strikes relative to at-the-money.
 
 ---
 
 **Exercise 3.** For a caplet with $T_{k-1} = 4$, $T_k = 5$, $K = 0.04$, $N = 1{,}000{,}000$, compute $\hat{N}$ and $\hat{K}$. Using Hull-White parameters $\lambda = 0.05$ and $\sigma = 0.01$, describe the inputs needed for the ZCB put option formula.
 
+??? success "Solution to Exercise 3"
+    Given $T_{k-1} = 4$, $T_k = 5$, $K = 0.04$, $N = 1{,}000{,}000$, and $\tau_k = T_k - T_{k-1} = 1$:
+
+    **Modified notional:**
+
+    $$
+    \hat{N} = N(1 + \tau_k K) = 1{,}000{,}000 \times (1 + 1 \times 0.04) = 1{,}040{,}000
+    $$
+
+    **Modified strike:**
+
+    $$
+    \hat{K} = \frac{1}{1 + \tau_k K} = \frac{1}{1.04} \approx 0.96154
+    $$
+
+    For the ZCB put option formula in the Hull-White model, the required inputs are:
+
+    - **Option maturity:** $T_{k-1} = 4$ (the caplet reset date)
+    - **Bond maturity:** $T_k = 5$
+    - **Strike:** $\hat{K} = 0.96154$
+    - **Hull-White parameters:** $\lambda = 0.05$, $\sigma = 0.01$
+    - **Bond price function $B(\tau_k)$:** $B(1) = \frac{e^{-0.05 \times 1} - 1}{0.05} = \frac{0.9512 - 1}{0.05} \approx -0.9754$
+    - **Conditional mean $\mu_r(t_0, T_{k-1}, T_k)$:** Requires the market yield curve (forward rates) and the drift adjustment for the $T_k$-measure
+    - **Conditional variance $v_r^2(t_0, T_{k-1})$:** $v_r^2(0, 4) = \frac{\sigma^2}{2\lambda}(1 - e^{-2\lambda \times 4}) = \frac{0.0001}{0.1}(1 - e^{-0.4}) \approx 0.001 \times 0.3297 \approx 0.0003297$, so $v_r(0,4) \approx 0.01816$
+
 ---
 
 **Exercise 4.** The proof shows two derivation approaches: using the $T_{k-1}$-measure and the $T_k$-measure. Explain the key difference: which measure makes the caplet a put on the ZCB, and which measure keeps the discounting inside the expectation?
+
+??? success "Solution to Exercise 4"
+    **$T_{k-1}$-measure approach:** Using $P(t_0, T_{k-1})$ as numeraire, the caplet becomes
+
+    $$
+    V^{\text{CPL}}(t_0) = \hat{N}\,P(t_0, T_{k-1})\,\mathbb{E}^{T_{k-1}}\!\left[\max(\hat{K} - P(T_{k-1}, T_k),\,0)\,\Big|\,\mathcal{F}(t_0)\right]
+    $$
+
+    This is a put option on the ZCB $P(T_{k-1},T_k)$ priced under the $T_{k-1}$-forward measure. The discounting is handled by the numeraire $P(t_0, T_{k-1})$ outside the expectation. The distribution of $r(T_{k-1})$ under this measure uses the drift adjusted by $B(T_{k-1} - t)$.
+
+    **$T_k$-measure approach:** Using $P(t_0, T_k)$ as numeraire, the caplet is
+
+    $$
+    V^{\text{CPL}}(t_0) = N\,P(t_0, T_k)\,e^{-A(\tau_k)}\,\mathbb{E}^{T_k}\!\left[\max(e^{-B(\tau_k)r(T_{k-1})} - \hat{K},\,0)\,\Big|\,\mathcal{F}(t_0)\right]
+    $$
+
+    Here the discounting uses $P(t_0, T_k)$ and the ZCB price appears as $e^{A(\tau_k)+B(\tau_k)r(T_{k-1})}$ inside the max. The distribution of $r(T_{k-1})$ uses the drift adjusted by $B(T_k - t)$ (note the different maturity in the drift adjustment).
+
+    The key difference: the $T_{k-1}$-measure approach makes the caplet directly a put on $P(T_{k-1},T_k)$ with the discount factor $P(t_0,T_{k-1})$ cleanly outside, while the $T_k$-measure approach keeps the exponential structure inside the expectation and uses $P(t_0,T_k)$ for discounting.
 
 ---
 
 **Exercise 5.** Verify the cap-floor parity: $\text{Cap}(t_0) - \text{Floor}(t_0) = \text{IRS}^{\text{Payer}}(t_0)$. Explain why this relationship is model-independent.
 
+??? success "Solution to Exercise 5"
+    **Cap-floor parity derivation:** For each individual caplet-floorlet pair:
+
+    $$
+    \text{Caplet}_k - \text{Floorlet}_k = N\tau_k\,\mathbb{E}^{\mathbb{Q}}\!\left[\frac{M(t_0)}{M(T_k)}(l_k(T_{k-1}) - K)\,\Big|\,\mathcal{F}(t_0)\right]
+    $$
+
+    since $\max(x,0) - \max(-x,0) = x$. The expectation of the forward rate under the $T_k$-forward measure gives $l_k(t_0)$, so:
+
+    $$
+    \text{Caplet}_k - \text{Floorlet}_k = N\tau_k\,P(t_0, T_k)(l_k(t_0) - K)
+    $$
+
+    Summing over all $k = 1, \ldots, n$ and using $l_k(t_0) = \frac{1}{\tau_k}\!\left(\frac{P(t_0,T_{k-1})}{P(t_0,T_k)} - 1\right)$:
+
+    $$
+    \text{Cap} - \text{Floor} = N\sum_{k=1}^n \left(P(t_0,T_{k-1}) - P(t_0,T_k)\right) - NK\sum_{k=1}^n \tau_k P(t_0,T_k)
+    $$
+
+    The first sum telescopes to $P(t_0,T_0) - P(t_0,T_n)$, giving:
+
+    $$
+    \text{Cap} - \text{Floor} = N(P(t_0,T_0) - P(t_0,T_n)) - NK\sum_{k=1}^n \tau_k P(t_0,T_k) = \text{IRS}^{\text{Payer}}(t_0)
+    $$
+
+    **Model independence:** This relationship is model-independent because it follows from the put-call parity for each caplet-floorlet pair, which is a no-arbitrage result. The key identity $\max(x,0) - \max(-x,0) = x$ holds pathwise for every outcome, so no distributional assumptions about $l_k$ are needed. The parity holds in any arbitrage-free model.
+
 ---
 
 **Exercise 6.** The Hull-White model parameters affect the implied volatility smile produced by the caplet formula. Describe qualitatively how increasing $\sigma$ and increasing $\lambda$ each affect the level and shape of the implied volatility curve.
 
+??? success "Solution to Exercise 6"
+    **Effect of increasing $\sigma$:** Higher Hull-White volatility $\sigma$ increases the overall level of implied volatilities across all strikes. This is because the short rate has larger fluctuations, leading to greater uncertainty in bond prices and forward rates, which translates to higher option prices and hence higher Black implied vols.
+
+    **Effect of increasing $\lambda$:** Higher mean reversion speed $\lambda$ decreases the level of implied volatilities, especially for longer-dated caplets. Mean reversion pulls the short rate toward $\theta(t)$, reducing the conditional variance of $r(T_{k-1})$:
+
+    $$
+    v_r^2(t_0, T_{k-1}) = \frac{\sigma^2}{2\lambda}(1 - e^{-2\lambda(T_{k-1} - t_0)})
+    $$
+
+    For large $\lambda$, $v_r^2$ saturates at $\frac{\sigma^2}{2\lambda}$, which decreases with $\lambda$. This means the effective volatility of bond prices (and hence forward rates) is reduced.
+
+    **Shape effect:** Since the Hull-White model has a Gaussian short rate, the implied volatility smile (as a function of strike) exhibits a skew. Increasing $\sigma$ amplifies this skew, while increasing $\lambda$ compresses it. The skew arises from the exponential mapping from Gaussian $r$ to bond prices, and stronger mean reversion reduces the range of $r$ values and hence the degree of non-linearity visible in the implied vol surface.
+
 ---
 
 **Exercise 7.** In the Python code, the function `compute_Implied_Volatility_using_Black76` backs out Black implied volatilities from Hull-White caplet prices. Explain why the resulting implied vol may depend on the strike $K$, even though the Hull-White model has constant $\sigma$.
+
+??? success "Solution to Exercise 7"
+    The Hull-White model has a constant short-rate volatility $\sigma$, but the implied volatility backed out via Black's formula depends on the strike $K$ because the two models assume fundamentally different distributions for the underlying rate.
+
+    **Black's formula** assumes $l_k(T_{k-1})$ is lognormal under $\mathbb{Q}^{T_k}$. A single $\sigma_k^{\text{Black}}$ produces a specific lognormal distribution for $l_k$.
+
+    **The Hull-White model** assumes $r(T_{k-1})$ is Gaussian. The forward LIBOR rate is:
+
+    $$
+    l_k(T_{k-1}) = \frac{1}{\tau_k}\!\left(e^{-A(\tau_k) - B(\tau_k)r(T_{k-1})} - 1\right)
+    $$
+
+    which is a nonlinear (exponential) function of the Gaussian variable $r(T_{k-1})$. The resulting distribution of $l_k(T_{k-1})$ is not lognormal -- it has different skewness and kurtosis.
+
+    When we compute Hull-White caplet prices at various strikes and invert Black's formula to find the implied volatility, we are fitting a lognormal distribution to match the Hull-White price at each strike separately. Since the true distribution differs from lognormal, a different $\sigma_k^{\text{Black}}$ is needed at each strike:
+
+    - **ATM:** The lognormal and Hull-White distributions agree most closely, so the implied vol is near its "base" level.
+    - **OTM/ITM:** The tail probabilities differ between the two distributions, so the implied vol adjusts to compensate, producing a strike-dependent smile or skew.
+
+    This is why `compute_Implied_Volatility_using_Black76` returns a strike-dependent implied vol even though $\sigma$ is constant in the Hull-White model.

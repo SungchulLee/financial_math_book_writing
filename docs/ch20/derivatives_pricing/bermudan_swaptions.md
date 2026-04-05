@@ -184,26 +184,137 @@ Bermudan swaptions require numerical methods because the early exercise decision
 
 **Exercise 1.** Explain the inequality $V^{\text{European}} \le V^{\text{Bermudan}} \le V^{\text{American}}$. Why is the Bermudan value always at least as large as the European value? Under what conditions would the Bermudan and European values be equal?
 
+??? success "Solution to Exercise 1"
+    The inequality $V^{\text{European}} \le V^{\text{Bermudan}} \le V^{\text{American}}$ follows from the nesting of exercise opportunities:
+
+    - **$V^{\text{European}} \le V^{\text{Bermudan}}$:** The European swaption can only be exercised at a single date $T_m$. The Bermudan swaption can be exercised at $T_m$ and at additional dates $T_{m+1}, \ldots, T_{n-1}$. Since the Bermudan holder has strictly more exercise opportunities, they can always replicate the European strategy (exercise only at $T_m$) and potentially do better. Therefore the Bermudan value is at least as large.
+
+    - **$V^{\text{Bermudan}} \le V^{\text{American}}$:** The American swaption can be exercised at any time in $[T_m, T_{n-1}]$, while the Bermudan is restricted to the discrete set $\mathcal{T}$. The American holder has more flexibility, so $V^{\text{American}} \ge V^{\text{Bermudan}}$.
+
+    **When are Bermudan and European values equal?** This happens when early exercise is never optimal, i.e., the early exercise premium is zero. This occurs when:
+
+    - The swaption is deep out-of-the-money, so the probability of profitable exercise at any date is negligible.
+    - The time value of the option always exceeds the intrinsic value at the intermediate exercise dates, meaning it is always better to wait. In practice, for at-the-money or in-the-money payer swaptions in a low-rate environment, the early exercise premium is positive and the two values differ.
+
 ---
 
 **Exercise 2.** In the backward induction algorithm, the Bellman equation is $V_{ij} = \max(E_{ij}, C_{ij})$. Describe what happens at nodes where $T_i \notin \mathcal{T}$ (not an exercise date). Why is the continuation value the only relevant quantity at such nodes?
+
+??? success "Solution to Exercise 2"
+    At nodes where $T_i \notin \mathcal{T}$ (not an exercise date), the holder cannot exercise the option. The only possibility is to continue holding, so:
+
+    $$
+    V_{ij} = C_{ij} = e^{-r_{ij}\Delta t}\sum_{l} p_{ijl}\,V_{i+1,l}
+    $$
+
+    The exercise value $E_{ij}$ is irrelevant at these nodes because the contract does not permit exercise. The option value is determined entirely by discounting the expected future option values back one time step.
+
+    This is analogous to non-dividend dates for American equity options: between exercise opportunities, the option behaves as a European option over that interval, and its value is simply the continuation (hold) value. The Bellman equation $V = \max(E, C)$ only applies at exercise dates; at all other nodes, it reduces to $V = C$.
 
 ---
 
 **Exercise 3.** The exercise boundary $r^*(T_j)$ slopes upward as $T_j$ approaches the final exercise date. Explain this behavior intuitively: why does the holder require a lower rate to exercise early versus late?
 
+??? success "Solution to Exercise 3"
+    The exercise boundary $r^*(T_j)$ slopes upward as $T_j$ approaches the final exercise date for the following reasons:
+
+    **Early exercise dates ($T_j$ near $T_m$):** At early dates, the remaining swap has a long tenor, and there are many future exercise dates remaining. The holder requires rates to be substantially below the strike $K$ to justify exercising because:
+
+    1. The time value of the remaining optionality is high (many future exercise opportunities).
+    2. Exercising now forfeits the option to exercise later at a potentially better rate.
+    3. Only very favorable current rates (very low $r$) make immediate exercise worthwhile.
+
+    Hence $r^*(T_j)$ is low.
+
+    **Late exercise dates ($T_j$ near $T_{n-1}$):** Near the final exercise date, the remaining swap is short and there are few (or no) future exercise opportunities. The time value of waiting is small because:
+
+    1. Little optionality remains.
+    2. The remaining swap tenor is short, so the exercise value is smaller in magnitude.
+    3. The threshold approaches the European optimal exercise level.
+
+    Hence $r^*(T_j)$ is higher -- the holder is willing to exercise at less favorable rates because waiting has little value.
+
+    The upward slope reflects the decreasing value of the "option to wait" as the final exercise date approaches.
+
 ---
 
 **Exercise 4.** In the Longstaff-Schwartz algorithm, the regression is performed only on in-the-money paths. Explain why this restriction improves the accuracy of the continuation value estimate near the exercise boundary.
+
+??? success "Solution to Exercise 4"
+    The regression in the Longstaff-Schwartz algorithm is performed only on in-the-money (ITM) paths because:
+
+    1. **Relevance to the exercise decision:** The exercise decision only matters when the option is in the money ($E(T_j) > 0$). For out-of-the-money (OTM) paths, the holder will never exercise regardless of the continuation value, so these paths contribute no information about the exercise boundary.
+
+    2. **Improved regression fit near the boundary:** The exercise boundary lies in the region where the option transitions from ITM to OTM. By restricting the regression to ITM paths, the polynomial fit concentrates on the region where the exercise decision is actually made. Including OTM paths would add data points where $E = 0$ regardless of the continuation value, diluting the regression's accuracy in the critical near-boundary region.
+
+    3. **Numerical stability:** OTM paths have $E = 0$ but potentially large continuation values. Including them would bias the regression toward fitting the relationship between state variables and continuation values in a region where the exercise decision is trivially "hold," wasting degrees of freedom.
+
+    4. **Theoretical justification:** Longstaff and Schwartz show that the optimal stopping rule depends only on the conditional expectation of the continuation value on the set where exercise is feasible. The regression needs to approximate $\mathbb{E}[C \,|\, r, E > 0]$, not $\mathbb{E}[C \,|\, r]$.
 
 ---
 
 **Exercise 5.** Compare the trinomial tree and Longstaff-Schwartz approaches for pricing a Bermudan swaption in the one-factor Hull-White model. Which method is more efficient, and why? Under what circumstances would you prefer the Monte Carlo approach?
 
+??? success "Solution to Exercise 5"
+    **Trinomial tree:**
+
+    - *Advantages:* Exact backward induction gives the precise Bermudan price (up to discretization). The exercise boundary is computed explicitly at each node. The algorithm is deterministic with no sampling noise. For the one-factor Hull-White model, trees with 500-1000 steps run in under a second.
+    - *Limitations:* The tree size grows exponentially with the number of factors. For two-factor models, a two-dimensional tree or lattice is needed, which is feasible but significantly more expensive.
+
+    **Longstaff-Schwartz Monte Carlo:**
+
+    - *Advantages:* Easily extends to multi-factor models (two-factor Hull-White, stochastic volatility). Can handle path-dependent features. Flexible choice of basis functions.
+    - *Limitations:* Produces a low-biased estimate. Requires a large number of paths (e.g., 50,000-100,000) for accurate results. The regression quality affects the exercise decision accuracy. Statistical noise requires variance reduction techniques.
+
+    **For one-factor Hull-White:** The trinomial tree is more efficient. It produces exact prices (up to time discretization) without sampling noise, and runs much faster.
+
+    **When to prefer Monte Carlo:** Use Longstaff-Schwartz when:
+
+    - The model has two or more factors (e.g., two-factor Hull-White for better yield curve dynamics).
+    - Path-dependent features are present (e.g., callable range accruals).
+    - The model is non-Markovian or does not admit a recombining tree.
+
 ---
 
 **Exercise 6.** The Longstaff-Schwartz algorithm produces a low-biased estimate. Explain the source of this bias and describe how the Andersen-Broadie dual method provides an upper bound, yielding a confidence interval for the true price.
 
+??? success "Solution to Exercise 6"
+    **Source of low bias:** The Longstaff-Schwartz algorithm estimates the continuation value $C(T_j)$ via a least-squares regression. The estimated continuation value $\hat{C}(T_j)$ differs from the true value $C(T_j)$ by a regression error:
+
+    $$
+    \hat{C}(T_j) = C(T_j) + \epsilon(T_j)
+    $$
+
+    The exercise rule is: exercise if $E(T_j) > \hat{C}(T_j)$. Due to the noise $\epsilon$:
+
+    - When $\hat{C}$ is too low (underestimated), the algorithm exercises too early, accepting a suboptimal exercise value.
+    - When $\hat{C}$ is too high (overestimated), the algorithm delays exercise, missing a good exercise opportunity.
+
+    Both types of errors lead to suboptimal exercise decisions, and the resulting average payoff is lower than the true optimally-exercised value. Hence the estimate is low-biased.
+
+    **Andersen-Broadie dual method:** The dual approach provides an upper bound based on the identity:
+
+    $$
+    V^{\text{Berm}}(t_0) = \inf_{\{M_j\}} \mathbb{E}\!\left[\max_{T_j \in \mathcal{T}} \left(\frac{E(T_j)}{B(T_j)} - M_j\right)\right] + M_0
+    $$
+
+    where the infimum is over martingales $\{M_j\}$ and $B(T_j)$ is the discount factor. By choosing a specific martingale (constructed from the exercise policy estimated by Longstaff-Schwartz), one obtains an upper bound that can be computed via Monte Carlo. The true price lies between the Longstaff-Schwartz lower bound and the Andersen-Broadie upper bound, giving a confidence interval.
+
 ---
 
 **Exercise 7.** For a 10-year Bermudan payer swaption with annual exercise rights and $K = 0.04$, describe qualitatively how the early exercise premium $V^{\text{Berm}} - V^{\text{European}}$ depends on the volatility parameter $\sigma$ and the mean reversion speed $\lambda$.
+
+??? success "Solution to Exercise 7"
+    **Dependence on $\sigma$ (volatility):**
+
+    - Increasing $\sigma$ raises both the European swaption value and the Bermudan value.
+    - The early exercise premium $V^{\text{Berm}} - V^{\text{European}}$ generally increases with $\sigma$. Higher volatility means the short rate visits a wider range of values, creating more situations where early exercise is optimal. With higher $\sigma$, there are more paths where rates drop significantly below $K$ at intermediate dates, making early exercise valuable.
+    - However, higher volatility also increases the time value of waiting. The net effect is that the premium increases, but at a slower rate than the option values themselves.
+
+    **Dependence on $\lambda$ (mean reversion):**
+
+    - Higher $\lambda$ reduces the effective volatility of rates at longer horizons through mean reversion. This reduces both European and Bermudan values.
+    - The early exercise premium tends to increase with $\lambda$ relative to the European value. With strong mean reversion, a favorable rate observed today is likely to revert toward the long-run mean, so it is better to exercise now rather than wait (since waiting means the favorable rate will likely disappear). This makes early exercise more attractive.
+    - Conversely, with low $\lambda$, favorable rates persist, reducing the urgency to exercise early.
+
+    In summary: higher $\sigma$ increases the absolute early exercise premium, and higher $\lambda$ increases the relative importance of early exercise (the premium as a fraction of the European value).

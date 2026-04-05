@@ -130,30 +130,6 @@ where the expectation must account for path-dependent features—this is what ma
 
 **Exercise 1.** Consider a derivative with payoff $\Phi = f(\{S_t\}_{0 \leq t \leq T})$, where $f$ depends on the entire price path. Explain precisely what "path dependency" means mathematically and why it prevents the use of a single terminal distribution $S_T$ for pricing. Give one example each of a payoff that is path-dependent and one that is not.
 
----
-
-**Exercise 2.** A vanilla European call on a stock with $S_0 = 100$, $K = 100$, $T = 1$, $r = 5\%$, $\sigma = 20\%$ costs approximately $\$10.45$. Without computing exact prices, rank the following from cheapest to most expensive and justify each ordering using no-arbitrage arguments: (a) a down-and-out call with barrier $H = 80$, (b) the vanilla call, (c) a fixed-strike lookback call, (d) an arithmetic average-price call.
-
----
-
-**Exercise 3.** Explain why Asian options are popular in commodity markets but barrier options are more common in FX markets. Relate your answer to the specific financial risks each instrument is designed to hedge.
-
----
-
-**Exercise 4.** A chooser option allows the holder to choose at time $t_c$ whether the option is a call or a put. Explain why a chooser option is always cheaper than a straddle (i.e., buying both a call and a put with the same strike and maturity). Under what conditions does the chooser price approach the straddle price?
-
----
-
-**Exercise 5.** The pricing formula for any exotic option under risk-neutral valuation is $V_0 = e^{-rT} \mathbb{E}^{\mathbb{Q}}[\Phi(\{S_t\})]$. For a vanilla option, this expectation depends only on the marginal distribution of $S_T$. For which of the following exotics does the pricing require knowledge of the full joint distribution of $(S_{t_1}, S_{t_2}, \ldots, S_{t_n})$, and for which does the marginal of $S_T$ (possibly augmented with one additional statistic) suffice? (a) Barrier option, (b) Asian option, (c) Digital option, (d) Lookback option.
-
----
-
-**Exercise 6.** Consider a multi-asset exotic whose payoff depends on $d$ correlated assets. Explain why Monte Carlo simulation is preferred over binomial trees for $d \geq 3$. Quantify the computational cost of each method as a function of $d$ and the number of discretization points $N$.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     A payoff $\Phi = f(\{S_t\}_{0 \leq t \leq T})$ is **path-dependent** if $f$ cannot be written as a function of $S_T$ alone. Mathematically, there exist two paths $\omega_1$ and $\omega_2$ such that $S_T(\omega_1) = S_T(\omega_2)$ but $f(\omega_1) \neq f(\omega_2)$. The payoff depends on the full trajectory, not just the endpoint.
 
@@ -162,6 +138,11 @@ where the expectation must account for path-dependent features—this is what ma
     **Path-dependent example:** A lookback call with payoff $(\max_{0 \leq t \leq T} S_t - K)^+$. Two paths with the same $S_T = 110$ but different maxima (one reaching 130 and the other only reaching 112) produce different payoffs.
 
     **Non-path-dependent example:** A vanilla European call with payoff $(S_T - K)^+$. This depends only on $S_T$, so the marginal distribution of $S_T$ suffices for pricing.
+
+---
+
+
+**Exercise 2.** A vanilla European call on a stock with $S_0 = 100$, $K = 100$, $T = 1$, $r = 5\%$, $\sigma = 20\%$ costs approximately $\$10.45$. Without computing exact prices, rank the following from cheapest to most expensive and justify each ordering using no-arbitrage arguments: (a) a down-and-out call with barrier $H = 80$, (b) the vanilla call, (c) a fixed-strike lookback call, (d) an arithmetic average-price call.
 
 ??? success "Solution to Exercise 2"
     The ranking from cheapest to most expensive is:
@@ -178,10 +159,20 @@ where the expectation must account for path-dependent features—this is what ma
 
     - **(d) $\leq$ (a):** The Asian call is typically cheaper than the down-and-out call for these parameters. With $H = 80$ well below $S_0 = 100$, the probability of knockout is modest, so the down-and-out call retains most of the vanilla value. The Asian call's averaging effect provides a more substantial discount.
 
+---
+
+
+**Exercise 3.** Explain why Asian options are popular in commodity markets but barrier options are more common in FX markets. Relate your answer to the specific financial risks each instrument is designed to hedge.
+
 ??? success "Solution to Exercise 3"
     **Asian options in commodity markets:** Commodity producers and consumers face gradual exposure over time (e.g., an airline buying jet fuel monthly, an oil producer selling output continuously). The average price over a period better represents their actual economic exposure than the spot price on a single date. Asian options also resist price manipulation near settlement, which is a concern in less liquid commodity markets.
 
     **Barrier options in FX markets:** FX markets are highly liquid with tight spreads, and corporate treasurers often have specific exchange rate levels that trigger hedging actions (e.g., a budget rate or a pain threshold). Barrier options provide cheaper hedging than vanilla options by accepting that the hedge expires if rates move beyond a certain level. The deep liquidity of FX markets ensures continuous monitoring of barriers is practical. Additionally, structured FX products for corporate clients often embed barriers to reduce premium costs while providing protection within a relevant range.
+
+---
+
+
+**Exercise 4.** A chooser option allows the holder to choose at time $t_c$ whether the option is a call or a put. Explain why a chooser option is always cheaper than a straddle (i.e., buying both a call and a put with the same strike and maturity). Under what conditions does the chooser price approach the straddle price?
 
 ??? success "Solution to Exercise 4"
     A **straddle** has payoff at maturity:
@@ -202,6 +193,11 @@ where the expectation must account for path-dependent features—this is what ma
 
     The chooser price approaches the straddle price when **$t_c \to T$** (choice date near maturity). At that point, the holder sees the near-final price and knows which option will be in the money, so choosing the better one is nearly as valuable as holding both. Specifically, as $t_c \to T$, $\min(C(t_c), P(t_c)) \to 0$ (one option is deep out of the money), so $\max(C, P) \to C + P$ and the chooser value converges to the straddle value.
 
+---
+
+
+**Exercise 5.** The pricing formula for any exotic option under risk-neutral valuation is $V_0 = e^{-rT} \mathbb{E}^{\mathbb{Q}}[\Phi(\{S_t\})]$. For a vanilla option, this expectation depends only on the marginal distribution of $S_T$. For which of the following exotics does the pricing require knowledge of the full joint distribution of $(S_{t_1}, S_{t_2}, \ldots, S_{t_n})$, and for which does the marginal of $S_T$ (possibly augmented with one additional statistic) suffice? (a) Barrier option, (b) Asian option, (c) Digital option, (d) Lookback option.
+
 ??? success "Solution to Exercise 5"
     **(a) Barrier option:** Requires the **joint distribution** of $(S_T, \max_{t} S_t)$ or $(S_T, \min_{t} S_t)$. The payoff depends on $S_T$ through $(S_T - K)^+$ and on the path extremum through the indicator function. However, the marginal of $S_T$ augmented with one additional statistic (the running maximum or minimum) suffices — the full joint distribution of all intermediate prices is not needed.
 
@@ -210,6 +206,11 @@ where the expectation must account for path-dependent features—this is what ma
     **(c) Digital option:** The payoff $Q \cdot \mathbf{1}_{\{S_T > K\}}$ depends only on **$S_T$**, so the marginal distribution of $S_T$ suffices. No path information is needed.
 
     **(d) Lookback option:** Requires the **joint distribution** of $(S_T, \max_t S_t)$ or $(S_T, \min_t S_t)$. Like the barrier option, the marginal of $S_T$ augmented with one additional statistic (the running extremum) is sufficient.
+
+---
+
+
+**Exercise 6.** Consider a multi-asset exotic whose payoff depends on $d$ correlated assets. Explain why Monte Carlo simulation is preferred over binomial trees for $d \geq 3$. Quantify the computational cost of each method as a function of $d$ and the number of discretization points $N$.
 
 ??? success "Solution to Exercise 6"
     **Binomial tree cost:** A single-asset binomial tree with $N$ time steps has $O(N^2)$ nodes. For $d$ assets, a multinomial tree (where each asset independently moves up or down at each step) has $O(2^d)$ branches at each node, producing a tree with $O((N+1)^d)$ terminal nodes. The total computational cost is:

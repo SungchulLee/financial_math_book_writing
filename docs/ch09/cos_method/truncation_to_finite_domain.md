@@ -191,22 +191,164 @@ Truncation to a finite domain is the first step of the COS method, and the cumul
 
 **Exercise 1.** For $X \sim N(0, 1)$, the cumulants are $c_1 = 0$, $c_2 = 1$, $c_3 = 0$, $c_4 = 0$. Compute the cumulant-based truncation interval $[a, b]$ using the formula $[c_1 - L\sqrt{c_2 + \sqrt{c_4 + 2c_2^2}},\; c_1 + L\sqrt{c_2 + \sqrt{c_4 + 2c_2^2}}]$ with $L = 10$. Compare this to the simpler rule $[c_1 - L\sqrt{c_2}, c_1 + L\sqrt{c_2}]$ and explain the difference.
 
+??? success "Solution to Exercise 1"
+    For $X \sim N(0, 1)$, the cumulants are $c_1 = 0$, $c_2 = 1$, $c_3 = 0$, $c_4 = 0$.
+
+    **Full cumulant formula:** Substituting into $[c_1 - L\sqrt{c_2 + \sqrt{c_4 + 2c_2^2}},\; c_1 + L\sqrt{c_2 + \sqrt{c_4 + 2c_2^2}}]$:
+
+    $$
+    c_2 + \sqrt{c_4 + 2c_2^2} = 1 + \sqrt{0 + 2} = 1 + \sqrt{2} \approx 2.4142
+    $$
+
+    The half-width is $L\sqrt{1 + \sqrt{2}} = 10\sqrt{2.4142} \approx 10 \times 1.554 = 15.54$.
+
+    $$
+    [a, b] = [-15.54, 15.54]
+    $$
+
+    **Simplified rule:** $[c_1 - L\sqrt{c_2},\; c_1 + L\sqrt{c_2}] = [-10, 10]$.
+
+    **Comparison:** The full cumulant formula gives an interval that is wider by a factor of $\sqrt{1 + \sqrt{2}} \approx 1.554$. The extra width comes from the $\sqrt{c_4 + 2c_2^2}$ term, which for the normal distribution evaluates to $\sqrt{2}$ even though $c_4 = 0$ (because of the $2c_2^2$ contribution). This provides additional safety margin. However, for $N(0,1)$, even the simpler interval $[-10, 10]$ captures all but $P(|X| > 10) \approx 1.5 \times 10^{-23}$ of the probability, so the extra width is unnecessary in practice. The full formula is designed to accommodate distributions with significant excess kurtosis ($c_4 > 0$), where the simpler rule might be too narrow.
+
 ---
 
 **Exercise 2.** Compute the first four cumulants $c_1, c_2, c_3, c_4$ for the Variance Gamma model with parameters $\sigma = 0.12$, $\theta = -0.14$, $\nu = 0.2$, $r = 0.05$, $T = 1$. Using the formulas $c_2 = (\sigma^2 + \nu\theta^2)T$, $c_4 = (3\sigma^4\nu + 12\sigma^2\theta^2\nu^2 + 6\theta^4\nu^3)T$, determine the truncation interval with $L = 12$. How much wider is this interval compared to the Black-Scholes case with the same variance?
+
+??? success "Solution to Exercise 2"
+    For the Variance Gamma model with $\sigma = 0.12$, $\theta = -0.14$, $\nu = 0.2$, $T = 1$:
+
+    **Cumulant $c_2$ (variance):**
+
+    $$
+    c_2 = (\sigma^2 + \nu\theta^2)T = (0.0144 + 0.2 \times 0.0196)\times 1 = 0.0144 + 0.00392 = 0.01832
+    $$
+
+    **Cumulant $c_4$ (excess kurtosis related):**
+
+    $$
+    c_4 = (3\sigma^4\nu + 12\sigma^2\theta^2\nu^2 + 6\theta^4\nu^3)T
+    $$
+
+    Computing each term:
+
+    - $3\sigma^4\nu = 3 \times (0.12)^4 \times 0.2 = 3 \times 2.0736\times 10^{-4}\times 0.2 = 1.244\times 10^{-4}$
+    - $12\sigma^2\theta^2\nu^2 = 12\times 0.0144\times 0.0196\times 0.04 = 1.355\times 10^{-4}$
+    - $6\theta^4\nu^3 = 6\times 3.842\times 10^{-4}\times 0.008 = 1.844\times 10^{-5}$
+
+    $$
+    c_4 = (1.244 + 1.355 + 0.1844)\times 10^{-4} \approx 2.783\times 10^{-4}
+    $$
+
+    **Truncation interval with $L = 12$:**
+
+    $$
+    c_2 + \sqrt{c_4 + 2c_2^2} = 0.01832 + \sqrt{2.783\times 10^{-4} + 2\times(0.01832)^2}
+    $$
+
+    $$
+    = 0.01832 + \sqrt{2.783\times 10^{-4} + 6.712\times 10^{-4}} = 0.01832 + \sqrt{9.495\times 10^{-4}}
+    $$
+
+    $$
+    = 0.01832 + 0.03081 = 0.04913
+    $$
+
+    Half-width: $L\sqrt{0.04913} = 12\times 0.2217 = 2.660$.
+
+    $$
+    [a, b] = [c_1 - 2.660,\; c_1 + 2.660]
+    $$
+
+    so $b - a = 5.32$.
+
+    **Comparison with Black--Scholes of the same variance:** For Black--Scholes with $c_2 = 0.01832$ and $c_4 = 0$, using $L = 12$:
+
+    $$
+    c_2 + \sqrt{0 + 2c_2^2} = 0.01832 + 0.01832\sqrt{2} = 0.01832 + 0.02591 = 0.04423
+    $$
+
+    Half-width: $12\sqrt{0.04423} = 12\times 0.2103 = 2.524$, giving $b - a = 5.048$.
+
+    The Variance Gamma interval ($b - a = 5.32$) is wider than the Black--Scholes interval ($b - a = 5.05$) by about 5.4%, reflecting the additional kurtosis of the VG model.
 
 ---
 
 **Exercise 3.** The Chebyshev-based truncation bound gives $P(X \notin [c_1 - L\sqrt{c_2}, c_1 + L\sqrt{c_2}]) \leq 1/L^2$. For $L = 10$, this yields $\delta \leq 0.01$. Why is this bound extremely conservative for a normal distribution? Compute the exact value of $P(|X| > 10)$ for $X \sim N(0, 1)$ and compare to the Chebyshev bound.
 
+??? success "Solution to Exercise 3"
+    The Chebyshev bound gives $P(|X| > 10) \leq 1/10^2 = 0.01$ for $X \sim N(0,1)$.
+
+    The exact value is:
+
+    $$
+    P(|X| > 10) = 2\Phi(-10) = 2\times\frac{1}{2}\text{erfc}(10/\sqrt{2}) \approx 1.524\times 10^{-23}
+    $$
+
+    The Chebyshev bound ($0.01$) overestimates the true probability by a factor of about $6.6 \times 10^{20}$, which is roughly 21 orders of magnitude.
+
+    **Why so conservative:** Chebyshev's inequality uses only the mean and variance of the distribution. It must hold for *all* distributions with those moments, including heavy-tailed distributions that concentrate much more mass in the tails than the Gaussian. For example, a two-point distribution $P(X = \pm 10) = 0.005$, $P(X = 0) = 0.99$ has $\text{Var}(X) = 0.5$, and for appropriately scaled versions, the Chebyshev bound is tight. The normal distribution has exponentially decaying tails ($f(x) \sim e^{-x^2/2}$), which makes the polynomial Chebyshev bound absurdly loose. The exponential tail bound $P(|X| > L) \approx 2e^{-L^2/2}$ is much tighter and nearly exact for the Gaussian.
+
 ---
 
 **Exercise 4.** Explain the interaction between the truncation interval width $b - a$ and the COS convergence rate. If $[a, b]$ is widened by a factor of 2, how does this affect (a) the truncation error $\varepsilon_1$, (b) the cosine frequencies $\omega_k = k\pi/(b-a)$, and (c) the number of terms $N$ needed for a given series truncation error $\varepsilon_2$? What is the optimal balance?
+
+??? success "Solution to Exercise 4"
+    **(a) Effect on truncation error $\varepsilon_1$:** Widening $[a, b]$ by a factor of 2 captures more probability mass, reducing $\delta = P(X \notin [a,b])$. For sub-Gaussian tails, $\delta$ decreases exponentially with the interval half-width, so doubling the interval reduces $\varepsilon_1$ dramatically (e.g., from $10^{-20}$ to $10^{-80}$ for a Gaussian).
+
+    **(b) Effect on cosine frequencies:** The frequencies are $\omega_k = k\pi/(b-a)$. Doubling $b - a$ halves all frequencies: $\omega_k^{\text{new}} = k\pi/(2(b-a)) = \omega_k/2$. This means the cosine basis functions oscillate more slowly, and the series needs more terms to capture the same level of detail in the density.
+
+    **(c) Effect on $N$:** The exponential convergence rate is $\varepsilon_2 \sim e^{-\beta N\pi/(b-a)}$. Doubling $b - a$ halves the exponent, so to maintain the same $\varepsilon_2$, we need to double $N$. More precisely, if $N_1$ terms suffice for interval $b - a$, then $N_2 = 2N_1$ terms are needed for interval $2(b - a)$ to achieve the same series error.
+
+    **Optimal balance:** The optimal $[a, b]$ minimizes the total error $\varepsilon_1 + \varepsilon_2$. Since $\varepsilon_1$ decreases exponentially with the interval width while $\varepsilon_2$ increases (for fixed $N$), the optimum occurs where both errors are comparable. In practice, the truncation error is already negligible ($< 10^{-15}$) for $L = 10$, so the series error dominates and the interval should be kept as narrow as possible while maintaining negligible truncation error.
 
 ---
 
 **Exercise 5.** The diagnostic check "$A_0(b-a)/2 \approx 1$" verifies proper truncation. For a correctly truncated density, $A_0 = 2/(b-a)\int_a^b f(x)\,dx \approx 2/(b-a)$, so $A_0(b-a)/2 \approx 1$. If you observe $A_0(b-a)/2 = 0.95$, what does this indicate about the truncation interval? Estimate the fraction of probability mass outside $[a, b]$.
 
+??? success "Solution to Exercise 5"
+    If $A_0(b-a)/2 = 0.95$, then:
+
+    $$
+    \frac{b-a}{2}\cdot\frac{2}{b-a}\int_a^b f(x)\,dx = \int_a^b f(x)\,dx = 0.95
+    $$
+
+    Since $\int_{-\infty}^{\infty}f(x)\,dx = 1$ for a probability density, the fraction of probability mass outside $[a, b]$ is:
+
+    $$
+    P(X \notin [a, b]) = 1 - \int_a^b f(x)\,dx = 1 - 0.95 = 0.05
+    $$
+
+    This means 5% of the probability mass lies outside the truncation interval, which is far too much for accurate pricing. The resulting truncation error bound is $|\varepsilon_k| \leq 2\times 0.05/(b-a) = 0.1/(b-a)$, which can lead to significant price errors.
+
+    This situation indicates the truncation interval is too narrow. The remedy is to increase $L$ (e.g., from 6 to 10 or 12) or check whether the cumulant computation is correct. For a properly truncated density with $L = 10$, one should observe $A_0(b-a)/2 > 1 - 10^{-15}$.
+
 ---
 
 **Exercise 6.** For very short maturities ($T = 0.001$), the density concentrates sharply near the forward price. Compute $c_2 = \sigma^2 T$ for $\sigma = 0.20$ and determine the half-width $L\sqrt{c_2}$ with $L = 10$. Explain why the COS method requires many more terms $N$ for short maturities even though the truncation interval is narrow, and suggest a practical strategy for handling this regime.
+
+---
+
+??? success "Solution to Exercise 6"
+    For $\sigma = 0.20$ and $T = 0.001$:
+
+    $$
+    c_2 = \sigma^2 T = 0.04\times 0.001 = 4\times 10^{-5}
+    $$
+
+    The half-width is:
+
+    $$
+    L\sqrt{c_2} = 10\sqrt{4\times 10^{-5}} = 10\times 6.325\times 10^{-3} = 0.06325
+    $$
+
+    So $b - a = 2\times 0.06325 = 0.1265$, a very narrow interval.
+
+    **Why many terms $N$ are needed:** The density peak height is proportional to $1/\sqrt{c_2} = 1/\sqrt{4\times 10^{-5}} \approx 158$, meaning the density is very tall and sharply peaked. Although the truncation interval is narrow, the cosine series on $[a, b]$ has basis functions with frequencies $\omega_k = k\pi/(b-a) = k\pi/0.1265$. The density changes rapidly relative to $b - a$, but the key issue is that the *absolute* number of oscillations needed to resolve the density shape is determined by the density's intrinsic smoothness, not the interval width.
+
+    More precisely, the analyticity strip width $\beta$ (in absolute terms) is roughly independent of $T$ for the Black--Scholes model, but $b - a \propto \sqrt{T}$. The convergence rate $e^{-\beta N\pi/(b-a)}$ improves with smaller $b - a$ only if $\beta$ scales the same way. For log-normal densities, the Gaussian decay of coefficients gives $|A_k| \sim e^{-\sigma^2 T k^2\pi^2/(2(b-a)^2)}$. With $b - a = 2L\sigma\sqrt{T}$, this becomes $|A_k| \sim e^{-k^2\pi^2/(8L^2)}$, which is actually independent of $T$. So in the Black--Scholes case, $N$ does not grow with decreasing $T$.
+
+    However, for stochastic volatility models, short maturities produce densities with sharper features (near-ATM kinks from discrete monitoring, or mixed distributions from variance process), requiring more terms. The practical strategy is:
+
+    1. Use a fine grid of $N$ values and check convergence empirically via Richardson extrapolation.
+    2. Scale $N$ inversely with $\sqrt{T}$ as a starting heuristic for non-Gaussian models.
+    3. Consider alternative methods (FFT or direct quadrature) for very short maturities where the COS method requires $N > 500$.

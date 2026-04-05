@@ -300,13 +300,174 @@ A common approach is to:
 
 **Exercise 1.** Consider a one-factor HJM model with constant volatility $\sigma(t, T) = 0.01$. Compute the correlation between changes in the 2-year and 10-year forward rates over a small time interval $dt$. Explain why this model implies that all forward rates are perfectly correlated and discuss the limitation for pricing instruments sensitive to curve shape (e.g., CMS spread options).
 
+??? success "Solution to Exercise 1"
+
+    **Step 1: Compute the correlation.**
+
+    In a one-factor model, $df(t, T) = \alpha(t, T)\,dt + \sigma(t, T)\,dW_t$. The stochastic increments of two forward rates are:
+
+    $$
+    df(t, T_1) - \alpha(t, T_1)\,dt = \sigma(t, T_1)\,dW_t
+    $$
+
+    $$
+    df(t, T_2) - \alpha(t, T_2)\,dt = \sigma(t, T_2)\,dW_t
+    $$
+
+    Both are driven by the **same** Brownian motion $W_t$. The instantaneous covariance is:
+
+    $$
+    \text{Cov}(df(t, T_1), df(t, T_2)) = \sigma(t, T_1)\,\sigma(t, T_2)\,dt
+    $$
+
+    The instantaneous variances are $\sigma(t, T_i)^2\,dt$. Therefore:
+
+    $$
+    \rho(T_1, T_2) = \frac{\sigma(t, T_1)\,\sigma(t, T_2)}{\sqrt{\sigma(t, T_1)^2} \cdot \sqrt{\sigma(t, T_2)^2}} = \frac{\sigma(t, T_1)\,\sigma(t, T_2)}{|\sigma(t, T_1)|\,|\sigma(t, T_2)|}
+    $$
+
+    Since volatility functions are typically positive ($\sigma(t, T) > 0$), this equals $1$.
+
+    **Step 2: Apply to the specific case $\sigma(t, T) = 0.01$.**
+
+    With constant volatility, $\sigma(t, T_1) = \sigma(t, T_2) = 0.01$, so $\rho = 1$ regardless of $T_1$ and $T_2$. The 2-year and 10-year forward rates are perfectly correlated.
+
+    **Step 3: Limitation for curve-shape-sensitive instruments.**
+
+    Perfect correlation means the model can only produce **parallel shifts** of the yield curve. It cannot generate:
+
+    - **Steepening/flattening:** 2Y rates moving differently from 10Y rates.
+    - **Butterfly movements:** intermediate maturities moving opposite to short and long ends.
+
+    CMS spread options pay based on the difference between two swap rates (e.g., 10Y - 2Y). In a one-factor model, the spread $f(t, T_2) - f(t, T_1)$ evolves deterministically (its stochastic part is $[\sigma(t, T_2) - \sigma(t, T_1)]\,dW_t$, which with constant $\sigma$ equals zero). This means the spread has zero volatility, making CMS spread options worthless in the model --- a clearly unrealistic outcome. At least two factors are needed to price curve-shape-sensitive instruments.
+
 ---
 
 **Exercise 2.** A two-factor HJM model has exponential volatility structures $\sigma_1(t, T) = \sigma_1 e^{-\kappa_1(T-t)}$ and $\sigma_2(t, T) = \sigma_2 e^{-\kappa_2(T-t)}$ with $\sigma_1 = 0.010$, $\kappa_1 = 0.03$, $\sigma_2 = 0.008$, $\kappa_2 = 0.50$. Compute the instantaneous correlation between the 1-year and 10-year forward rates. How does this correlation depend on the relative magnitudes of the two factors?
 
+??? success "Solution to Exercise 2"
+
+    **Step 1: Compute the instantaneous covariance and variances.**
+
+    For a two-factor model, the covariance between $df(t, T_1)$ and $df(t, T_2)$ is:
+
+    $$
+    \text{Cov} = \bigl[\sigma_1(t, T_1)\sigma_1(t, T_2) + \sigma_2(t, T_1)\sigma_2(t, T_2)\bigr]\,dt
+    $$
+
+    The variances are:
+
+    $$
+    \text{Var}(df(t, T_i)) = \bigl[\sigma_1(t, T_i)^2 + \sigma_2(t, T_i)^2\bigr]\,dt
+    $$
+
+    **Step 2: Evaluate the factor loadings.**
+
+    Let $\tau_1 = T_1 - t = 1$ (1-year) and $\tau_2 = T_2 - t = 10$ (10-year).
+
+    Factor 1: $\sigma_1(t, T_i) = 0.010\,e^{-0.03\tau_i}$
+
+    $$
+    \sigma_1(\tau_1) = 0.010\,e^{-0.03} \approx 0.009704
+    $$
+
+    $$
+    \sigma_1(\tau_2) = 0.010\,e^{-0.30} \approx 0.007408
+    $$
+
+    Factor 2: $\sigma_2(t, T_i) = 0.008\,e^{-0.50\tau_i}$
+
+    $$
+    \sigma_2(\tau_1) = 0.008\,e^{-0.50} \approx 0.004852
+    $$
+
+    $$
+    \sigma_2(\tau_2) = 0.008\,e^{-5.0} \approx 0.000054
+    $$
+
+    **Step 3: Compute the correlation.**
+
+    Numerator:
+
+    $$
+    \sigma_1(\tau_1)\sigma_1(\tau_2) + \sigma_2(\tau_1)\sigma_2(\tau_2) \approx (0.009704)(0.007408) + (0.004852)(0.000054)
+    $$
+
+    $$
+    \approx 7.189 \times 10^{-5} + 2.62 \times 10^{-7} \approx 7.215 \times 10^{-5}
+    $$
+
+    Denominator:
+
+    $$
+    V_1 = \sigma_1(\tau_1)^2 + \sigma_2(\tau_1)^2 \approx (9.704 \times 10^{-3})^2 + (4.852 \times 10^{-3})^2 \approx 9.417 \times 10^{-5} + 2.354 \times 10^{-5} = 1.177 \times 10^{-4}
+    $$
+
+    $$
+    V_2 = \sigma_1(\tau_2)^2 + \sigma_2(\tau_2)^2 \approx (7.408 \times 10^{-3})^2 + (5.4 \times 10^{-5})^2 \approx 5.488 \times 10^{-5} + 2.9 \times 10^{-9} \approx 5.488 \times 10^{-5}
+    $$
+
+    $$
+    \rho = \frac{7.215 \times 10^{-5}}{\sqrt{1.177 \times 10^{-4}} \cdot \sqrt{5.488 \times 10^{-5}}} = \frac{7.215 \times 10^{-5}}{(1.085 \times 10^{-2})(7.408 \times 10^{-3})} \approx \frac{7.215 \times 10^{-5}}{8.038 \times 10^{-5}} \approx 0.898
+    $$
+
+    **Step 4: Interpretation.**
+
+    The instantaneous correlation between the 1-year and 10-year forward rates is approximately **0.90**, well below 1. The decorrelation comes primarily from Factor 2 (the slope factor), which has fast exponential decay ($\kappa_2 = 0.50$) and loads heavily on short maturities but negligibly on long maturities. This creates a differential in the factor loading "direction" in the two-dimensional factor space, reducing correlation.
+
+    If $\sigma_2 \gg \sigma_1$, the second factor dominates and the decorrelation between short and long rates is more pronounced. If $\sigma_2 \ll \sigma_1$, the first factor dominates and the correlation approaches 1 (one-factor-like behavior).
+
 ---
 
 **Exercise 3.** The humped volatility function $\sigma(t, T) = [\sigma_0 + \sigma_1(T-t)]e^{-\kappa(T-t)}$ is a common specification. For $\sigma_0 = 0.005$, $\sigma_1 = 0.003$, and $\kappa = 0.20$, find the time-to-maturity $\tau^* = T - t$ at which the volatility is maximized. Compute the peak volatility and the long-maturity asymptotic volatility.
+
+??? success "Solution to Exercise 3"
+
+    **Step 1: Find the maximum of $\sigma(t, T) = [\sigma_0 + \sigma_1(T-t)]e^{-\kappa(T-t)}$.**
+
+    Let $\tau = T - t$ and define $g(\tau) = (\sigma_0 + \sigma_1 \tau)e^{-\kappa\tau}$.
+
+    Differentiate:
+
+    $$
+    g'(\tau) = \sigma_1 e^{-\kappa\tau} - \kappa(\sigma_0 + \sigma_1\tau)e^{-\kappa\tau} = e^{-\kappa\tau}\bigl[\sigma_1 - \kappa\sigma_0 - \kappa\sigma_1\tau\bigr]
+    $$
+
+    Setting $g'(\tau) = 0$ (note $e^{-\kappa\tau} > 0$):
+
+    $$
+    \sigma_1 - \kappa\sigma_0 - \kappa\sigma_1\tau^* = 0 \implies \tau^* = \frac{\sigma_1 - \kappa\sigma_0}{\kappa\sigma_1} = \frac{1}{\kappa} - \frac{\sigma_0}{\sigma_1}
+    $$
+
+    **Step 2: Evaluate with given parameters.**
+
+    $\sigma_0 = 0.005$, $\sigma_1 = 0.003$, $\kappa = 0.20$:
+
+    $$
+    \tau^* = \frac{1}{0.20} - \frac{0.005}{0.003} = 5 - 1.667 = 3.333 \text{ years}
+    $$
+
+    **Step 3: Compute the peak volatility.**
+
+    $$
+    g(\tau^*) = (0.005 + 0.003 \times 3.333)\,e^{-0.20 \times 3.333} = (0.005 + 0.010)\,e^{-0.667}
+    $$
+
+    $$
+    = 0.015 \times 0.5134 \approx 0.00770
+    $$
+
+    The peak volatility is approximately **77.0 basis points** (annualized), occurring at the 3.33-year point.
+
+    **Step 4: Compute the long-maturity asymptotic volatility.**
+
+    As $\tau \to \infty$:
+
+    $$
+    g(\tau) = (\sigma_0 + \sigma_1\tau)e^{-\kappa\tau} \to 0
+    $$
+
+    since the exponential decay dominates the linear growth. The long-maturity asymptotic volatility is **zero**. This is consistent with empirical observations that very long-term forward rates (e.g., 30Y+) exhibit low volatility.
 
 ---
 
@@ -321,6 +482,58 @@ A common approach is to:
 
 The eigenvalues are $\lambda_1 = 85$, $\lambda_2 = 10$, $\lambda_3 = 3$ (in basis points squared per week). What fraction of total variance is explained by the first two factors? Describe how you would use these eigenvectors to construct a three-factor HJM model.
 
+??? success "Solution to Exercise 4"
+
+    **Step 1: Fraction of variance explained by the first two factors.**
+
+    Total variance: $\lambda_1 + \lambda_2 + \lambda_3 = 85 + 10 + 3 = 98$ (in bp$^2$/week).
+
+    Fraction explained by first two factors:
+
+    $$
+    R_2 = \frac{\lambda_1 + \lambda_2}{\lambda_1 + \lambda_2 + \lambda_3} = \frac{85 + 10}{98} = \frac{95}{98} \approx 96.9\%
+    $$
+
+    Two factors explain approximately **97%** of total variance.
+
+    **Step 2: Construct the three-factor HJM model.**
+
+    Set the volatility functions using the PCA loadings:
+
+    $$
+    \sigma_i(t, T) = \sqrt{\lambda_i}\,v_i(T - t), \quad i = 1, 2, 3
+    $$
+
+    where $v_i(\tau)$ is the $i$-th eigenvector loading at time-to-maturity $\tau$, interpolated from the given discrete values.
+
+    Specifically:
+
+    - $\sigma_1(t, T) = \sqrt{85}\,v_1(T-t) \approx 9.22\,v_1(T-t)$ (level factor)
+    - $\sigma_2(t, T) = \sqrt{10}\,v_2(T-t) \approx 3.16\,v_2(T-t)$ (slope factor)
+    - $\sigma_3(t, T) = \sqrt{3}\,v_3(T-t) \approx 1.73\,v_3(T-t)$ (curvature factor)
+
+    The forward rate dynamics are:
+
+    $$
+    df(t, T) = \alpha(t, T)\,dt + \sum_{i=1}^3 \sigma_i(t, T)\,dW_t^i
+    $$
+
+    with drift determined by the HJM condition:
+
+    $$
+    \alpha(t, T) = \sum_{i=1}^3 \sigma_i(t, T)\int_t^T \sigma_i(t, u)\,du
+    $$
+
+    **Step 3: Practical considerations.**
+
+    In practice, the discrete eigenvectors would be:
+
+    1. **Interpolated** to a continuous function $v_i(\tau)$ using cubic splines or parametric fitting (e.g., fitting $v_1$ to a constant, $v_2$ to a linear or exponential function, $v_3$ to a quadratic or humped function).
+    2. **Normalized** so that the model reproduces the observed covariance matrix of forward rate changes.
+    3. **Smoothed** to ensure regularity required for the HJM drift computation (integrability and differentiability).
+
+    The resulting model can reproduce level, slope, and curvature movements observed in the data, providing realistic yield curve dynamics for pricing and risk management.
+
 ---
 
 **Exercise 5.** Explain the concept of a separable volatility structure $\sigma_i(t, T) = \phi_i(t)\,\psi_i(T-t)$ in the context of HJM. Why does separability simplify the computation of the drift condition? Show that for a separable specification, the drift becomes
@@ -329,9 +542,101 @@ $$
 \alpha(t, T) = \sum_{i=1}^d \phi_i(t)^2\,\psi_i(T-t)\int_t^T \psi_i(u-t)\,du
 $$
 
+??? success "Solution to Exercise 5"
+
+    **Step 1: Define separable volatility.**
+
+    A separable volatility structure is $\sigma_i(t, T) = \phi_i(t)\,\psi_i(T-t)$ where $\phi_i$ depends on calendar time and $\psi_i$ depends on time-to-maturity.
+
+    **Step 2: Simplification of the drift condition.**
+
+    The HJM drift condition is:
+
+    $$
+    \alpha(t, T) = \sum_{i=1}^d \sigma_i(t, T)\int_t^T \sigma_i(t, u)\,du
+    $$
+
+    Substituting the separable form:
+
+    $$
+    \alpha(t, T) = \sum_{i=1}^d \phi_i(t)\,\psi_i(T-t)\int_t^T \phi_i(t)\,\psi_i(u-t)\,du
+    $$
+
+    Since $\phi_i(t)$ does not depend on the integration variable $u$, it factors out:
+
+    $$
+    \alpha(t, T) = \sum_{i=1}^d \phi_i(t)^2\,\psi_i(T-t)\int_t^T \psi_i(u-t)\,du
+    $$
+
+    Changing variables $y = u - t$:
+
+    $$
+    \alpha(t, T) = \sum_{i=1}^d \phi_i(t)^2\,\psi_i(T-t)\int_0^{T-t} \psi_i(y)\,dy
+    $$
+
+    This confirms the stated formula. $\checkmark$
+
+    **Step 3: Why separability simplifies the drift computation.**
+
+    Without separability, the integral $\int_t^T \sigma_i(t, u)\,du$ may depend on both $t$ and $T$ in a complex, non-factored way. With separability:
+
+    1. The $\phi_i(t)^2$ factor depends only on current time and can be precomputed or updated as time evolves.
+    2. The integral $\int_0^{T-t} \psi_i(y)\,dy$ depends only on **time-to-maturity** $\tau = T - t$, which can be precomputed for all $\tau$ on a grid once and for all.
+    3. The drift at each $(t, T)$ grid point is a simple product of known quantities, avoiding a full numerical integration at each step.
+
+    In time-homogeneous models ($\phi_i(t) = 1$), the drift depends only on $\tau = T - t$, and the integral $\Psi_i(\tau) = \int_0^\tau \psi_i(y)\,dy$ can be tabulated in advance. This reduces the drift computation from $O(N)$ per maturity point to $O(1)$ table lookups.
+
 ---
 
 **Exercise 6.** A piecewise-constant volatility specification assigns a constant volatility to each forward rate in each time period: $\sigma(t, T) = \lambda_{j,k}$ for $t \in [t_{k-1}, t_k)$ and $T \in [T_{j-1}, T_j)$. For a model with 4 quarterly periods and 4 forward rates, write down the full volatility matrix $\Lambda = (\lambda_{j,k})$ and count the number of free parameters. Compare this with the 2--4 parameters of the abcd specification and discuss the trade-off.
+
+??? success "Solution to Exercise 6"
+
+    **Step 1: Write down the volatility matrix.**
+
+    With 4 quarterly periods ($k = 1, 2, 3, 4$) and 4 forward rates ($j = 1, 2, 3, 4$), the volatility matrix is:
+
+    $$
+    \Lambda = \begin{pmatrix}
+    \lambda_{1,1} & \lambda_{1,2} & \lambda_{1,3} & \lambda_{1,4} \\
+    \lambda_{2,1} & \lambda_{2,2} & \lambda_{2,3} & \lambda_{2,4} \\
+    \lambda_{3,1} & \lambda_{3,2} & \lambda_{3,3} & \lambda_{3,4} \\
+    \lambda_{4,1} & \lambda_{4,2} & \lambda_{4,3} & \lambda_{4,4}
+    \end{pmatrix}
+    $$
+
+    where $\lambda_{j,k}$ is the volatility of the $j$-th forward rate during the $k$-th time period. However, at time $t_k$, forward rates with index $j \leq k$ have already expired, so we only need $j > k$. This gives an upper-triangular structure:
+
+    $$
+    \Lambda = \begin{pmatrix}
+    \lambda_{1,1} & - & - & - \\
+    \lambda_{2,1} & \lambda_{2,2} & - & - \\
+    \lambda_{3,1} & \lambda_{3,2} & \lambda_{3,3} & - \\
+    \lambda_{4,1} & \lambda_{4,2} & \lambda_{4,3} & \lambda_{4,4}
+    \end{pmatrix}
+    $$
+
+    (reading as: row $j$ = forward rate $j$, column $k$ = time period $k$, entries below/on diagonal where $j > k$ are active).
+
+    **Step 2: Count free parameters.**
+
+    The number of active entries is $4 + 3 + 2 + 1 = 10$ (or equivalently $\binom{4+1}{2} = 10$ for $N$ periods giving $N(N+1)/2$ parameters). So there are **10 free parameters**.
+
+    **Step 3: Compare with the abcd specification.**
+
+    The abcd (or humped) specification $\sigma(t, T) = [a + b(T-t)]e^{-c(T-t)} + d$ has only **4 parameters** $(a, b, c, d)$. It enforces a smooth, analytically tractable volatility term structure.
+
+    **Trade-off:**
+
+    | Aspect | Piecewise constant (10 params) | abcd (4 params) |
+    |--------|-------------------------------|-----------------|
+    | Calibration flexibility | High --- can match 10 market prices exactly | Limited --- smooth approximation only |
+    | Smoothness | Discontinuous at grid boundaries | Smooth and differentiable |
+    | Stability | Risk of overfitting, unstable parameters | Stable, fewer local optima |
+    | Interpretability | Opaque (each entry is a free parameter) | Intuitive (hump location, decay rate) |
+    | Extrapolation | Poor (no structure beyond the grid) | Reasonable (smooth continuation) |
+
+    In practice, the piecewise-constant approach is used for exact calibration to a set of caplets or swaptions, while the abcd specification is preferred for models requiring stability and interpolation/extrapolation capability.
 
 ---
 
@@ -342,3 +647,67 @@ $$
 $$
 
 for any $T_1, T_2$. Then show that in a two-factor model, the correlation is strictly less than 1 in general, and express it in terms of the factor loadings at $T_1$ and $T_2$.
+
+??? success "Solution to Exercise 7"
+
+    **Part 1: Perfect correlation in a one-factor model.**
+
+    In a one-factor model:
+
+    $$
+    df(t, T_i) = \alpha(t, T_i)\,dt + \sigma(t, T_i)\,dW_t, \quad i = 1, 2
+    $$
+
+    The instantaneous covariance is:
+
+    $$
+    \text{Cov}(df(t, T_1), df(t, T_2)) = \sigma(t, T_1)\,\sigma(t, T_2)\,dt
+    $$
+
+    The instantaneous variances are:
+
+    $$
+    \text{Var}(df(t, T_i)) = \sigma(t, T_i)^2\,dt
+    $$
+
+    The instantaneous correlation is:
+
+    $$
+    \rho(T_1, T_2) = \frac{\sigma(t, T_1)\,\sigma(t, T_2)}{\sqrt{\sigma(t, T_1)^2}\,\sqrt{\sigma(t, T_2)^2}} = \frac{\sigma(t, T_1)\,\sigma(t, T_2)}{|\sigma(t, T_1)|\,|\sigma(t, T_2)|}
+    $$
+
+    For positive volatility functions ($\sigma(t, T) > 0$), this simplifies to:
+
+    $$
+    \rho(T_1, T_2) = \frac{\sigma(t, T_1)\,\sigma(t, T_2)}{\sigma(t, T_1)\,\sigma(t, T_2)} = 1
+    $$
+
+    for any $T_1, T_2$. All forward rates are perfectly correlated. $\square$
+
+    **Part 2: Correlation strictly less than 1 in a two-factor model.**
+
+    In a two-factor model:
+
+    $$
+    df(t, T) = \alpha(t, T)\,dt + \sigma_1(t, T)\,dW_t^1 + \sigma_2(t, T)\,dW_t^2
+    $$
+
+    The correlation is:
+
+    $$
+    \rho(T_1, T_2) = \frac{\sigma_1(t, T_1)\sigma_1(t, T_2) + \sigma_2(t, T_1)\sigma_2(t, T_2)}{\sqrt{\sigma_1(t, T_1)^2 + \sigma_2(t, T_1)^2}\,\sqrt{\sigma_1(t, T_2)^2 + \sigma_2(t, T_2)^2}}
+    $$
+
+    This is the cosine of the angle between the vectors $\mathbf{v}_1 = (\sigma_1(t, T_1), \sigma_2(t, T_1))$ and $\mathbf{v}_2 = (\sigma_1(t, T_2), \sigma_2(t, T_2))$ in $\mathbb{R}^2$:
+
+    $$
+    \rho(T_1, T_2) = \frac{\mathbf{v}_1 \cdot \mathbf{v}_2}{|\mathbf{v}_1|\,|\mathbf{v}_2|} = \cos\theta
+    $$
+
+    By the Cauchy--Schwarz inequality, $|\rho| \leq 1$ with equality if and only if $\mathbf{v}_1$ and $\mathbf{v}_2$ are parallel, i.e.,
+
+    $$
+    \frac{\sigma_1(t, T_1)}{\sigma_2(t, T_1)} = \frac{\sigma_1(t, T_2)}{\sigma_2(t, T_2)}
+    $$
+
+    For a general two-factor model, this ratio varies with maturity (unless the two volatility functions are proportional, which would collapse the model to effectively one factor). Therefore $\rho(T_1, T_2) < 1$ for $T_1 \neq T_2$ in general. $\square$

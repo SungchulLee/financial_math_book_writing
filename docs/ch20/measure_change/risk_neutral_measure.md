@@ -155,26 +155,196 @@ The Hull-White model under $\mathbb{Q}$ is obtained from the physical measure $\
 
 **Exercise 1.** The Novikov condition requires $\mathbb{E}^{\mathbb{P}}[\exp(\frac{1}{2}\int_0^T \gamma(s)^2\,ds)] < \infty$. For a constant market price of risk $\gamma$, show that this condition is always satisfied and compute the Radon-Nikodym derivative explicitly.
 
+??? success "Solution to Exercise 1"
+    For a constant market price of risk $\gamma$, the Novikov condition becomes
+
+    $$
+    \mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(\frac{1}{2}\int_0^T \gamma^2\,ds\right)\right] = \exp\!\left(\frac{1}{2}\gamma^2 T\right) < \infty
+    $$
+
+    Since $\gamma$ is a finite constant and $T < \infty$, the exponential of a finite number is always finite. Therefore the Novikov condition is automatically satisfied for any constant $\gamma$.
+
+    The Radon-Nikodym derivative simplifies to
+
+    $$
+    \frac{d\mathbb{Q}}{d\mathbb{P}}\Bigg|_{\mathcal{F}(t)} = \exp\!\left(-\gamma\,W^{\mathbb{P}}(t) - \frac{1}{2}\gamma^2 t\right)
+    $$
+
+    This is a standard exponential martingale $\mathcal{E}(-\gamma W^{\mathbb{P}})_t$. One can verify it is a martingale by checking that $\mathbb{E}^{\mathbb{P}}[\frac{d\mathbb{Q}}{d\mathbb{P}}\big|_{\mathcal{F}(t)}] = 1$, which follows from the moment generating function of the normal distribution: $W^{\mathbb{P}}(t) \sim \mathcal{N}(0, t)$, so
+
+    $$
+    \mathbb{E}^{\mathbb{P}}\!\left[e^{-\gamma W^{\mathbb{P}}(t) - \frac{1}{2}\gamma^2 t}\right] = e^{-\frac{1}{2}\gamma^2 t}\,e^{\frac{1}{2}\gamma^2 t} = 1
+    $$
+
 ---
 
 **Exercise 2.** Suppose $\lambda^{\mathbb{P}} = 0.04$, $\theta^{\mathbb{P}}(t) = 0.06$, $\sigma = 0.012$, and $\gamma = -0.20$. Compute $\lambda$ and $\theta^{\mathbb{Q}}(t)$ under the risk-neutral measure. Is $\theta^{\mathbb{Q}}(t)$ higher or lower than $\theta^{\mathbb{P}}(t)$, and why?
+
+??? success "Solution to Exercise 2"
+    With $\lambda^{\mathbb{P}} = 0.04$, $\theta^{\mathbb{P}}(t) = 0.06$, $\sigma = 0.012$, and constant $\gamma = -0.20$:
+
+    **Mean reversion speed:** Since $\gamma$ is constant (i.e., $\gamma_1 = 0$ in the affine specification), the mean reversion speed is preserved:
+
+    $$
+    \lambda = \lambda^{\mathbb{P}} = 0.04
+    $$
+
+    **Mean reversion level:** From $\lambda\theta^{\mathbb{Q}}(t) = \lambda^{\mathbb{P}}\theta^{\mathbb{P}}(t) - \sigma\gamma$:
+
+    $$
+    \theta^{\mathbb{Q}}(t) = \theta^{\mathbb{P}}(t) - \frac{\sigma\gamma}{\lambda} = 0.06 - \frac{0.012 \times (-0.20)}{0.04} = 0.06 + 0.06 = 0.12
+    $$
+
+    So $\theta^{\mathbb{Q}}(t) = 0.12 > 0.06 = \theta^{\mathbb{P}}(t)$.
+
+    The risk-neutral mean reversion level is higher because $\gamma < 0$, which means the market demands a positive risk premium for bearing interest rate risk. Under $\mathbb{Q}$, the drift is shifted upward to compensate investors for this risk. The negative market price of risk implies that bond investors require extra compensation (higher expected rates under $\mathbb{Q}$) relative to the physical dynamics.
 
 ---
 
 **Exercise 3.** For the affine market price of risk $\gamma(t) = \gamma_0 + \gamma_1 r(t)$, show that the risk-neutral mean reversion speed is $\lambda = \lambda^{\mathbb{P}} + \sigma\gamma_1$, which differs from $\lambda^{\mathbb{P}}$. Give a financial interpretation of why the mean reversion speed can change under a measure change when $\gamma_1 \neq 0$.
 
+??? success "Solution to Exercise 3"
+    With $\gamma(t) = \gamma_0 + \gamma_1 r(t)$, substituting into the $\mathbb{Q}$-drift:
+
+    $$\begin{array}{lllll}
+    \displaystyle
+    dr(t)
+    &=&\displaystyle
+    \left[\lambda^{\mathbb{P}}(\theta^{\mathbb{P}}(t) - r(t)) - \sigma(\gamma_0 + \gamma_1 r(t))\right]dt + \sigma\,dW^{\mathbb{Q}}(t)
+    \\[6pt]
+    &=&\displaystyle
+    \left[\lambda^{\mathbb{P}}\theta^{\mathbb{P}}(t) - \sigma\gamma_0 - (\lambda^{\mathbb{P}} + \sigma\gamma_1)r(t)\right]dt + \sigma\,dW^{\mathbb{Q}}(t)
+    \end{array}$$
+
+    Matching to the standard form $dr(t) = \lambda(\theta^{\mathbb{Q}}(t) - r(t))dt + \sigma\,dW^{\mathbb{Q}}(t)$, the coefficient of $r(t)$ gives
+
+    $$
+    \lambda = \lambda^{\mathbb{P}} + \sigma\gamma_1
+    $$
+
+    which differs from $\lambda^{\mathbb{P}}$ whenever $\gamma_1 \neq 0$.
+
+    **Financial interpretation:** When $\gamma_1 \neq 0$, the market price of risk depends on the level of the short rate. This means the risk premium that investors demand varies with the interest rate environment. A positive $\gamma_1$ increases the risk-neutral mean reversion speed relative to the physical speed: when rates are high, the larger risk premium creates stronger downward pressure under $\mathbb{Q}$, and when rates are low, the smaller risk premium creates less upward pressure. This state-dependent adjustment to the drift effectively modifies how quickly the process reverts, changing the mean reversion speed under the new measure. By contrast, a constant market price of risk ($\gamma_1 = 0$) shifts the drift uniformly, affecting only the level to which the process reverts, not the speed.
+
 ---
 
 **Exercise 4.** Explain why the volatility parameter $\sigma$ is the same under both $\mathbb{P}$ and $\mathbb{Q}$. What theorem guarantees this invariance, and what property of the diffusion coefficient is required?
+
+??? success "Solution to Exercise 4"
+    The volatility parameter $\sigma$ is the same under $\mathbb{P}$ and $\mathbb{Q}$ because of **Girsanov's theorem**, which guarantees that a change of measure modifies only the drift of an Ito process, not the diffusion coefficient.
+
+    Specifically, Girsanov's theorem constructs the new Brownian motion $W^{\mathbb{Q}}(t) = W^{\mathbb{P}}(t) + \int_0^t \gamma(s)\,ds$, so
+
+    $$
+    dW^{\mathbb{P}}(t) = dW^{\mathbb{Q}}(t) - \gamma(t)\,dt
+    $$
+
+    Substituting into $dr(t) = \mu^{\mathbb{P}}(t)\,dt + \sigma\,dW^{\mathbb{P}}(t)$:
+
+    $$
+    dr(t) = \left[\mu^{\mathbb{P}}(t) - \sigma\gamma(t)\right]dt + \sigma\,dW^{\mathbb{Q}}(t)
+    $$
+
+    The $dt$ coefficient (drift) changes, but the $dW$ coefficient (diffusion) remains exactly $\sigma$. This invariance holds because Girsanov's theorem operates by an absolutely continuous change of measure, which preserves the quadratic variation $\langle r \rangle_t = \int_0^t \sigma^2\,ds$. The quadratic variation is a path-by-path property that does not depend on the probability measure, so the diffusion coefficient $\sigma$ is measure-invariant.
 
 ---
 
 **Exercise 5.** Under $\mathbb{Q}$, the discounted bond price $P(t,T)/M(t)$ is a martingale. Verify this for the Hull-White model by showing that the drift of $d(P(t,T)/M(t))$ vanishes. (Hint: use the bond dynamics $dP/P = r\,dt + \sigma_P dW^{\mathbb{Q}}$ and the money market dynamics $dM = rM\,dt$.)
 
+??? success "Solution to Exercise 5"
+    Define $Z(t) = P(t,T)/M(t)$, the discounted bond price. We need to show $Z(t)$ is a $\mathbb{Q}$-martingale, i.e., its drift under $\mathbb{Q}$ vanishes.
+
+    The bond dynamics under $\mathbb{Q}$ are $dP = r P\,dt + \sigma_P P\,dW^{\mathbb{Q}}$ and the money market dynamics are $dM = rM\,dt$.
+
+    Using the quotient rule (Ito's formula for $Z = P/M$):
+
+    $$\begin{array}{lllll}
+    \displaystyle
+    dZ
+    &=&\displaystyle
+    \frac{1}{M}\,dP - \frac{P}{M^2}\,dM + \frac{P}{M^3}(dM)^2 - \frac{1}{M^2}\,dP\,dM
+    \end{array}$$
+
+    Since $dM = rM\,dt$ has no Brownian component, $(dM)^2 = 0$ and $dP\,dM = 0$. Therefore:
+
+    $$\begin{array}{lllll}
+    \displaystyle
+    dZ
+    &=&\displaystyle
+    \frac{1}{M}\!\left(rP\,dt + \sigma_P P\,dW^{\mathbb{Q}}\right) - \frac{P}{M^2}(rM\,dt)
+    \\[6pt]
+    &=&\displaystyle
+    \frac{P}{M}\!\left(r\,dt + \sigma_P\,dW^{\mathbb{Q}} - r\,dt\right)
+    \\[6pt]
+    &=&\displaystyle
+    Z\,\sigma_P\,dW^{\mathbb{Q}}
+    \end{array}$$
+
+    The drift vanishes, so $Z(t) = P(t,T)/M(t)$ is indeed a $\mathbb{Q}$-martingale.
+
 ---
 
 **Exercise 6.** Describe the alternative route from HJM to the risk-neutral Hull-White SDE. Starting from the HJM volatility $\sigma(t,T) = \sigma e^{-\lambda(T-t)}$, derive the HJM drift condition and show that the short rate $r(t) = f(t,t)$ satisfies the Hull-White SDE.
 
+??? success "Solution to Exercise 6"
+    **Step 1: HJM forward rate dynamics.** Under $\mathbb{Q}$, the HJM framework specifies:
+
+    $$
+    df(t,T) = \mu^{\mathbb{Q}}(t,T)\,dt + \sigma(t,T)\,dW^{\mathbb{Q}}(t)
+    $$
+
+    The HJM drift condition (no-arbitrage under $\mathbb{Q}$) requires:
+
+    $$
+    \mu^{\mathbb{Q}}(t,T) = \sigma(t,T)\int_t^T \sigma(t,u)\,du
+    $$
+
+    **Step 2: Hull-White volatility specification.** For $\sigma(t,T) = \sigma e^{-\lambda(T-t)}$:
+
+    $$
+    \int_t^T \sigma(t,u)\,du = \int_t^T \sigma e^{-\lambda(u-t)}\,du = \frac{\sigma}{\lambda}\left(1 - e^{-\lambda(T-t)}\right)
+    $$
+
+    So the drift is:
+
+    $$
+    \mu^{\mathbb{Q}}(t,T) = \sigma e^{-\lambda(T-t)} \cdot \frac{\sigma}{\lambda}\left(1 - e^{-\lambda(T-t)}\right) = \frac{\sigma^2}{\lambda}e^{-\lambda(T-t)}\left(1 - e^{-\lambda(T-t)}\right)
+    $$
+
+    **Step 3: Extract the short rate.** Set $r(t) = f(t,t)$. Using the chain rule:
+
+    $$
+    dr(t) = \left[\frac{\partial f}{\partial t}(t,t) + \frac{\partial f}{\partial T}(t,t)\right]dt + \text{(evaluated at } T = t\text{)}
+    $$
+
+    Integrating the forward rate dynamics and differentiating with respect to $T$, one obtains:
+
+    $$
+    dr(t) = \left[\frac{\partial f^M}{\partial T}(0,t) + \frac{\sigma^2}{2\lambda^2}\frac{\partial}{\partial t}(1 - e^{-\lambda t})^2 + \lambda(f^M(0,t) - r(t)) + \frac{\sigma^2}{2\lambda}(1 - e^{-2\lambda t})\right]dt + \sigma\,dW^{\mathbb{Q}}(t)
+    $$
+
+    Collecting terms and defining $\theta^{\mathbb{Q}}(t)$ appropriately, this reduces to the Hull-White SDE $dr(t) = \lambda(\theta^{\mathbb{Q}}(t) - r(t))dt + \sigma\,dW^{\mathbb{Q}}(t)$. The HJM drift condition uniquely determines the drift, ensuring no-arbitrage.
+
 ---
 
 **Exercise 7.** In practice, $\theta^{\mathbb{Q}}(t)$ is calibrated to the market term structure rather than derived from $\theta^{\mathbb{P}}(t)$ and $\gamma(t)$. Discuss the advantages and disadvantages of this approach. Under what circumstances would you need to estimate $\gamma(t)$ explicitly?
+
+??? success "Solution to Exercise 7"
+    **Advantages of direct calibration under $\mathbb{Q}$:**
+
+    - The function $\theta^{\mathbb{Q}}(t)$ is uniquely determined by the observed market term structure $P^M(0,T)$ through the relation $\theta^{\mathbb{Q}}(t) = \frac{1}{\lambda}\frac{\partial f^M}{\partial T}(0,t) + f^M(0,t) + \frac{\sigma^2}{2\lambda^2}(1 - e^{-\lambda t})^2$. This ensures the model exactly reproduces all observed bond prices.
+    - No estimation of the market price of risk $\gamma(t)$ or physical dynamics is needed, avoiding the statistical challenges of estimating drift parameters from noisy time series data.
+    - The approach is model-consistent for pricing: all derivative prices are expectations under $\mathbb{Q}$, so only $\mathbb{Q}$-parameters matter.
+
+    **Disadvantages:**
+
+    - Physical dynamics are unknown, so the model cannot generate realistic rate scenarios for risk management (VaR, stress testing) without additional assumptions.
+    - The model provides no information about expected returns on bonds or risk premia.
+    - Changes in the yield curve over time lead to recalibration of $\theta^{\mathbb{Q}}(t)$, and the time-series behavior of recalibrated parameters may be unrealistic.
+
+    **When explicit estimation of $\gamma(t)$ is needed:**
+
+    - **Risk management and scenario generation:** Simulating future rate paths for VaR or expected shortfall requires the physical measure $\mathbb{P}$.
+    - **Real-world forecasting:** Predicting future interest rate levels or evaluating investment strategies.
+    - **Relative value analysis:** Comparing model-implied risk premia to historical norms to identify mispriced securities.
+    - **Multi-period portfolio optimization:** Utility-based optimization requires expected returns under $\mathbb{P}$, not $\mathbb{Q}$.

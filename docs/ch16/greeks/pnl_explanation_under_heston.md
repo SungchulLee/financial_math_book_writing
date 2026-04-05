@@ -374,27 +374,246 @@ The **delta-hedged P&L** (removing the delta component) is approximately $+\$0.0
 **Exercise 1.**
 In Black-Scholes, the delta-hedged P&L over an interval $[t, t+dt]$ is $dP\&L = \frac{1}{2}\Gamma S^2(\sigma_{\text{real}}^2 - \sigma_{\text{imp}}^2)dt + \Theta\,dt$. Under Heston, an additional vega term appears: $\mathcal{V}\,dv_t$. Explain the financial meaning of this term. If $\mathcal{V} > 0$ (long vega) and variance increases ($dv > 0$), is the P&L contribution positive or negative?
 
+??? success "Solution to Exercise 1"
+    The vega P&L term $\mathcal{V}\,dv_t$ captures the change in the option's value due to changes in the instantaneous variance $v_t$, holding all other variables fixed. This term arises because variance is a second stochastic factor in the Heston model: unlike Black-Scholes where $\sigma$ is constant, the Heston variance $v_t$ fluctuates randomly according to the CIR process $dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}$.
+
+    **Financial meaning.** If $\mathcal{V} > 0$ (the trader is long vega, i.e., the option price increases when variance rises), then:
+
+    - When variance increases ($dv > 0$): the vega P&L contribution is $\mathcal{V} \times dv > 0$, which is **positive**. The option becomes more valuable because higher variance implies larger expected future moves in $S$, increasing the option's time value.
+    - When variance decreases ($dv < 0$): the contribution is negative. The option loses value because the expected future volatility has declined.
+
+    For a long call position, $\mathcal{V} > 0$ always (call prices are increasing in variance). So a variance increase ($dv > 0$) produces a **positive** P&L contribution.
+
+    This term is absent from Black-Scholes because $v$ is constant, so $dv = 0$ identically. Under Heston, the vega P&L can be the dominant component of delta-hedged P&L for long-dated options, since variance moves $dv_t$ can be large (especially when $\xi$ is high) while the gamma P&L depends on realized stock moves which are of order $\sqrt{v\,dt}$.
+
 ---
 
 **Exercise 2.**
 The Heston P&L decomposition includes a vanna term $\partial^2 V / \partial S \partial v \cdot S\sqrt{v}\rho\xi v\,dt$. Explain why this term arises from the correlation between $dS$ and $dv$. For $\rho < 0$, does a simultaneous drop in $S$ and rise in $v$ produce a positive or negative vanna P&L for a long call position?
+
+??? success "Solution to Exercise 2"
+    The vanna term in the P&L decomposition is:
+
+    $$
+    \text{Vanna P\&L} = \mathcal{A}\,\rho\,\xi\,v_t\,S_t\,dt
+    $$
+
+    where $\mathcal{A} = \partial^2 V / \partial S \,\partial v$.
+
+    **Why it arises from correlation.** In the two-dimensional Ito expansion of $dV(t, S_t, v_t)$, the cross-term is:
+
+    $$
+    \frac{\partial^2 V}{\partial S\,\partial v}\,dS_t\,dv_t
+    $$
+
+    Computing the quadratic covariation:
+
+    $$
+    dS_t\,dv_t = \bigl(\sqrt{v_t}\,S_t\,dW_t^{(1)}\bigr)\bigl(\xi\sqrt{v_t}\,dW_t^{(2)}\bigr) = \xi\,v_t\,S_t\,dW_t^{(1)}\,dW_t^{(2)} = \rho\,\xi\,v_t\,S_t\,dt
+    $$
+
+    This is nonzero precisely because $\rho \neq 0$: the stock and variance Brownian motions are correlated. If $\rho = 0$, the vanna P&L vanishes entirely.
+
+    **Sign analysis for $\rho < 0$ and a long call.** Consider a simultaneous drop in $S$ and rise in $v$ (the leverage effect, which is the typical scenario when $\rho < 0$):
+
+    - $\Delta S < 0$ and $\Delta v > 0$
+
+    For a long call position, the vanna $\mathcal{A} = \partial^2 V / \partial S\,\partial v$ is typically **negative** for ATM and ITM options. Intuitively: when $S$ increases, the option moves deeper ITM and its sensitivity to variance (vega) decreases (because deep ITM options are less sensitive to volatility). So $\partial\mathcal{V}/\partial S < 0$, i.e., $\mathcal{A} < 0$.
+
+    The vanna P&L over a discrete interval is approximately:
+
+    $$
+    \mathcal{A}\,\Delta S\,\Delta v \approx \mathcal{A} \times (\text{negative}) \times (\text{positive}) < 0 \quad \text{if } \mathcal{A} < 0
+    $$
+
+    Wait -- we must be more careful. The continuous-time vanna P&L from the Ito expansion is the *deterministic* cross-variation term $\mathcal{A}\,\rho\,\xi\,v\,S\,dt$, not $\mathcal{A}\,\Delta S\,\Delta v$. For $\rho < 0$, $\mathcal{A} < 0$, $\xi > 0$, $v > 0$, $S > 0$:
+
+    $$
+    \mathcal{A}\,\rho\,\xi\,v\,S\,dt = (\text{negative})(\text{negative})(\text{positive})(\text{positive})(\text{positive})(\text{positive}) > 0
+    $$
+
+    The vanna P&L is **positive** for a long call with $\rho < 0$. This makes financial sense: the leverage effect (negative correlation) means that when stocks drop, volatility rises, providing a partial natural hedge. The vanna term captures this beneficial correlation effect --- the option "benefits" from the systematic relationship between spot and variance.
 
 ---
 
 **Exercise 3.**
 A trader sells an ATM call and delta-hedges daily. Over one month, the unexplained P&L (residual after delta, gamma, theta, and vega terms) has a standard deviation of \$0.50 per option. Identify three sources of this unexplained P&L: (a) discrete hedging error, (b) unhedged volga ($\partial^2 V/\partial v^2$) exposure, (c) model mis-specification. Which is likely the dominant source?
 
+??? success "Solution to Exercise 3"
+    The three sources of unexplained P&L are:
+
+    **(a) Discrete hedging error.** The P&L decomposition assumes continuous delta hedging ($dt \to 0$), but in practice the trader rebalances at discrete intervals $\Delta t$ (e.g., daily). The discretization error over each rebalancing interval is approximately:
+
+    $$
+    \text{Discrete error} \approx \frac{1}{2}\Gamma\,S^2\left[\left(\frac{\Delta S}{S}\right)^2 - v\,\Delta t\right] + \text{higher-order terms}
+    $$
+
+    This is the gamma slippage: the realized squared return $(\Delta S/S)^2$ deviates from its expected value $v\,\Delta t$ over finite intervals. The standard deviation of this term scales as $\mathcal{O}(\sqrt{\Delta t})$ per step and $\mathcal{O}((\Delta t)^{0})$ cumulatively over $T/\Delta t$ steps (since errors are partially diversified but not independent due to serial correlation in $v_t$). For daily hedging ($\Delta t = 1/252$), this can produce P&L noise of order \$0.10--\$0.50 per option over a month.
+
+    **(b) Unhedged volga exposure.** The volga term $\frac{1}{2}\mathcal{G}\,\xi^2\,v\,dt$ is a deterministic contribution to the P&L decomposition, but it is often omitted from simplified attribution models. More importantly, the trader does not hedge the **stochastic** part of the volga exposure: changes in $\mathcal{G}$ itself as $(S, v)$ evolve, and the fact that $\xi$ may not be constant. For an ATM call, $\mathcal{G}$ is moderate, but for OTM options or variance-sensitive instruments, this can be significant. Over one month, the cumulative unhedged volga P&L is approximately:
+
+    $$
+    \sum_{i=1}^{N} \frac{1}{2}\mathcal{G}_i\,\xi^2\,v_i\,\Delta t \approx \frac{1}{2}\bar{\mathcal{G}}\,\xi^2\,\bar{v}\,T_{\text{month}}
+    $$
+
+    For $\bar{\mathcal{G}} \approx 60$, $\xi = 0.5$, $\bar{v} = 0.04$, $T_{\text{month}} = 1/12$: approximately $\frac{1}{2} \times 60 \times 0.25 \times 0.04 / 12 \approx \$0.025$.
+
+    **(c) Model misspecification.** The Heston model assumes specific functional forms for the dynamics (CIR variance, constant parameters, no jumps). If the true process has:
+
+    - Jumps in $S$ or $v$: the Ito expansion misses the jump terms entirely
+    - Time-varying $\kappa$, $\theta$, $\xi$, or $\rho$: the Greeks computed with static parameters are systematically wrong
+    - Rougher volatility dynamics ($H < 0.5$): the CIR process is too smooth, and the Heston Greeks understate the true sensitivities at short horizons
+
+    **Dominant source.** For a standard ATM call hedged daily over one month, the **discrete hedging error** is likely the dominant source, producing the largest contribution to the \$0.50 standard deviation. The gamma slippage from daily rebalancing is inherently noisy and scales with $\Gamma\,S^2\,v$ (which is large for ATM options). The volga and model misspecification terms are smaller for vanilla ATM options but become more important for exotic or long-dated positions.
+
 ---
 
 **Exercise 4.**
 The gamma P&L is $\frac{1}{2}\Gamma S^2 (dS/S)^2 \approx \frac{1}{2}\Gamma S^2 v\,dt$. The vega P&L is $\mathcal{V}\,dv$. For typical equity Heston parameters ($v_0 = 0.04$, $\xi = 0.5$), estimate the order of magnitude of each term for an ATM call with $T = 0.5$, $S_0 = 100$. Which contributes more to daily P&L variance?
+
+??? success "Solution to Exercise 4"
+    **Gamma P&L (per day).** The expected magnitude of the gamma P&L per day is:
+
+    $$
+    \left|\frac{1}{2}\Gamma\,S_0^2\,v_0\,\Delta t\right| = \frac{1}{2} \times \Gamma \times 100^2 \times 0.04 \times \frac{1}{252}
+    $$
+
+    For an ATM call with $T = 0.5$, using the worked example values, $\Gamma \approx 0.0298$:
+
+    $$
+    \frac{1}{2} \times 0.0298 \times 10{,}000 \times 0.04 \times \frac{1}{252} \approx \frac{1}{2} \times 0.0298 \times 400 \times 0.00397 \approx \$0.024
+    $$
+
+    The **variance** of the daily gamma P&L (driven by the randomness of $(\Delta S/S)^2$) scales as $\Gamma^2 S^4 v^2 \Delta t / 2$, giving a daily standard deviation of approximately:
+
+    $$
+    \sigma_{\text{gamma}} \approx \Gamma\,S_0^2\,v_0\,\sqrt{\Delta t / 2} \approx 0.0298 \times 10{,}000 \times 0.04 \times \sqrt{1/504} \approx 11.92 \times 0.0445 \approx \$0.53
+    $$
+
+    **Vega P&L (per day).** The vega P&L is $\mathcal{V}\,\Delta v$. The daily change in variance under the Heston model has standard deviation:
+
+    $$
+    \sigma_{\Delta v} = \xi\sqrt{v_0\,\Delta t} = 0.5 \times \sqrt{0.04 / 252} = 0.5 \times 0.0126 \approx 0.0063
+    $$
+
+    With $\mathcal{V} \approx 17.8$:
+
+    $$
+    \sigma_{\text{vega}} = |\mathcal{V}| \times \sigma_{\Delta v} \approx 17.8 \times 0.0063 \approx \$0.112
+    $$
+
+    **Comparison.** The daily **expected** gamma P&L ($\approx \$0.024$) is larger than the daily expected vega P&L (which is approximately $\mathcal{V}\,\kappa(\theta - v_0)\,\Delta t = 0$ since $v_0 = \theta$). However, in terms of P&L **variance** (which drives hedging risk):
+
+    $$
+    \sigma_{\text{gamma}} \approx \$0.53, \qquad \sigma_{\text{vega}} \approx \$0.11
+    $$
+
+    The gamma P&L contributes more to daily P&L variance in this example, roughly 5 times more in standard deviation. However, the vega contribution is not negligible and would dominate for longer-dated options (where $\mathcal{V}$ is larger and $\Gamma$ is smaller) or during periods of high vol-of-vol ($\xi > 0.5$).
+
+    Over longer horizons, the vega P&L can accumulate because variance changes are autocorrelated (mean-reverting but persistent), while gamma P&L noise is more diversified across independent daily stock moves. This means the vega contribution to cumulative P&L variance grows faster than $\sqrt{N}$ (where $N$ is the number of days), potentially becoming dominant over monthly or quarterly horizons.
 
 ---
 
 **Exercise 5.**
 To hedge the vega P&L, a trader can add a variance swap to the portfolio. Explain how: if the delta-hedged call has vega $\mathcal{V}$ and the variance swap has vega $\mathcal{V}_{\text{VS}} = \partial(\text{VS price})/\partial v_0$, what notional of the variance swap neutralizes the vega exposure?
 
+??? success "Solution to Exercise 5"
+    A variance swap pays the difference between realized and fixed (strike) variance. Its price under Heston is a function of $v_0$, and its vega is:
+
+    $$
+    \mathcal{V}_{\text{VS}} = \frac{\partial V_{\text{VS}}}{\partial v_0}
+    $$
+
+    For a variance swap with maturity $T_{\text{VS}}$, the fair strike is:
+
+    $$
+    K_{\text{var}} = \mathbb{E}^{\mathbb{Q}}\!\left[\frac{1}{T}\int_0^T v_t\,dt\right] = \theta + (v_0 - \theta)\frac{1 - e^{-\kappa T}}{\kappa T}
+    $$
+
+    The sensitivity to $v_0$ is:
+
+    $$
+    \mathcal{V}_{\text{VS}} = \frac{\partial K_{\text{var}}}{\partial v_0} \times \text{notional} = \frac{1 - e^{-\kappa T}}{\kappa T} \times \text{notional}
+    $$
+
+    **Hedging the vega exposure.** The delta-hedged call has unhedged vega P&L $\mathcal{V}_{\text{call}}\,dv_t$. To neutralize this, the trader adds $N$ units of variance swap notional such that the total vega is zero:
+
+    $$
+    \mathcal{V}_{\text{call}} + N \times \mathcal{V}_{\text{VS}} = 0
+    $$
+
+    Solving:
+
+    $$
+    N = -\frac{\mathcal{V}_{\text{call}}}{\mathcal{V}_{\text{VS}}}
+    $$
+
+    For example, with $\mathcal{V}_{\text{call}} = 17.8$ and a variance swap with $T = 0.5$, $\kappa = 2.0$:
+
+    $$
+    \frac{1 - e^{-\kappa T}}{\kappa T} = \frac{1 - e^{-1}}{1} = 1 - 0.368 = 0.632
+    $$
+
+    If the variance swap notional is quoted per unit of variance, $\mathcal{V}_{\text{VS}} = 0.632$ per unit notional. The required notional is:
+
+    $$
+    N = -\frac{17.8}{0.632} \approx -28.2
+    $$
+
+    The trader should **sell** approximately 28.2 units of variance swap notional (since $\mathcal{V}_{\text{call}} > 0$, the long call is long vega, and selling variance swaps provides short vega exposure).
+
+    **Important caveat.** This hedge neutralizes only the first-order vega exposure $\mathcal{V}\,dv$. The residual P&L still contains the volga term $\frac{1}{2}\mathcal{G}\,\xi^2\,v\,dt$ and any mismatch in the vega term structure (the call's vega decays differently with $T$ than the variance swap's vega). A more precise hedge would match the vega at multiple maturities or use vega-weighted positions in variance swaps of different tenors.
+
 ---
 
 **Exercise 6.**
 Simulate a delta-hedging experiment under Heston: sell a 6-month ATM call, delta-hedge daily using the Heston delta, and record the total P&L across 10,000 paths. Decompose the P&L into gamma, theta, and vega components. Verify that the mean P&L is approximately zero (the hedge is unbiased) and that the standard deviation reflects the unhedged variance risk.
+
+??? success "Solution to Exercise 6"
+    **Simulation setup.**
+
+    1. **Model parameters**: $S_0 = 100$, $K = 100$, $T = 0.5$, $r = 0.03$, $q = 0$, $v_0 = 0.04$, $\kappa = 2.0$, $\theta = 0.04$, $\xi = 0.5$, $\rho = -0.7$.
+    2. **Discretization**: Daily steps, $N = 126$ steps ($T = 0.5$ years $\times$ 252 days/year).
+    3. **Paths**: $M = 10{,}000$ independent paths.
+    4. **Simulation scheme**: Use the QE (quadratic exponential) scheme for the variance process to ensure $v_t \geq 0$, and log-Euler for the stock price.
+
+    **Delta-hedging algorithm.** On each path $m$ and at each time step $t_i$:
+
+    1. Compute the Heston delta $\Delta_i^m = \Delta(t_i, S_i^m, v_i^m)$ using Fourier inversion (or a fast approximation).
+    2. The hedged portfolio P&L over $[t_i, t_{i+1}]$ is:
+
+        $$
+        \Delta\Pi_i^m = V(t_{i+1}, S_{i+1}^m, v_{i+1}^m) - V(t_i, S_i^m, v_i^m) - \Delta_i^m(S_{i+1}^m - S_i^m) - r\bigl(V(t_i, S_i^m, v_i^m) - \Delta_i^m S_i^m\bigr)\Delta t
+        $$
+
+    3. The total hedged P&L is $\Pi^m = \sum_{i=0}^{N-1} \Delta\Pi_i^m$.
+
+    **P&L decomposition.** At each step, decompose $\Delta\Pi_i^m$ into:
+
+    - **Gamma component**: $\frac{1}{2}\Gamma_i^m (S_i^m)^2 \left[(\Delta S_i^m / S_i^m)^2 - v_i^m \Delta t\right]$
+    - **Theta component**: $\Theta_i^m \Delta t + \frac{1}{2}\Gamma_i^m (S_i^m)^2 v_i^m \Delta t - r(V_i^m - \Delta_i^m S_i^m)\Delta t$ (the deterministic part)
+    - **Vega component**: $\mathcal{V}_i^m \Delta v_i^m$
+    - **Residual**: everything not captured by the above (vanna, volga, higher-order, discretization)
+
+    **Expected results.**
+
+    - **Mean P&L $\approx 0$.** Under the risk-neutral measure with correct model pricing, the expected delta-hedged P&L is zero: $\mathbb{E}[\Pi] = 0$. Across 10,000 paths, the sample mean should be close to zero (within $\pm 2\sigma/\sqrt{M}$).
+    - **Standard deviation.** The residual P&L after delta hedging is driven by the unhedged variance risk. From the continuous-time result $d\Pi = \mathcal{V}\,\xi\sqrt{v}\,dW^{(2)}$, the variance of the cumulative P&L is:
+
+        $$
+        \operatorname{Var}(\Pi) = \mathbb{E}\!\left[\int_0^T \mathcal{V}^2(t)\,\xi^2\,v_t\,dt\right]
+        $$
+
+        With $\mathcal{V} \approx 17.8$ (at inception, decreasing over time), $\xi^2 = 0.25$, $\bar{v} \approx 0.04$:
+
+        $$
+        \operatorname{Var}(\Pi) \approx \bar{\mathcal{V}}^2\,\xi^2\,\bar{v}\,T \approx (12)^2 \times 0.25 \times 0.04 \times 0.5 \approx 0.72
+        $$
+
+        So $\operatorname{Std}(\Pi) \approx \$0.85$. (Here $\bar{\mathcal{V}} \approx 12$ is the time-averaged vega.)
+
+    - **Decomposition verification.** Summing the gamma, theta, and vega components across all time steps should approximately equal the total P&L for each path. The unexplained residual (from discretization, vanna, volga, higher-order terms) should have a standard deviation of approximately \$0.10--\$0.20 per option, much smaller than the \$0.85 total P&L standard deviation.
+
+    - **Gamma P&L statistics.** The cumulative gamma P&L should have mean $\approx 0$ (since realized variance equals implied on average under the risk-neutral measure) and standard deviation of approximately \$0.30--\$0.50.
+
+    - **Vega P&L statistics.** The cumulative vega P&L should also have mean $\approx 0$ (variance innovations have zero mean) but with a standard deviation of approximately \$0.60--\$0.80, confirming that variance risk is the dominant source of hedging uncertainty.

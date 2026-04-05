@@ -331,6 +331,84 @@ After calibration, decompose the swaption pricing error into:
 
 **Exercise 1.** Consider an LMM with four forward rates $L_1, L_2, L_3, L_4$ on an annual grid ($T_i = i$ for $i=1,\ldots,4$). The stripped caplet Black volatilities are $v_1 = 20\%$, $v_2 = 22\%$, $v_3 = 21\%$, $v_4 = 19\%$. Using the homogeneous assumption (each off-diagonal volatility in a new row equals the corresponding diagonal element of the previous row), execute the volatility cascade to compute the full lower-triangular volatility matrix $\Lambda = (\lambda_{ij})$. Check that no negative variance arises.
 
+??? success "Solution to Exercise 1"
+    **Setup:** Four forward rates on an annual grid with $T_i = i$, so $\Delta_k = T_k - T_{k-1} = 1$ for all $k$. Stripped caplet vols: $v_1 = 20\%$, $v_2 = 22\%$, $v_3 = 21\%$, $v_4 = 19\%$.
+
+    The volatility cascade builds the lower-triangular matrix $\Lambda = (\lambda_{ij})$ row by row. The constraint for row $i$ is:
+
+    $$
+    (v_i^{\text{mkt}})^2 \cdot T_i = \sum_{j=1}^{i} \lambda_{ij}^2 \cdot \Delta_j
+    $$
+
+    With the **homogeneous assumption**, each off-diagonal entry in a new row equals the corresponding diagonal element from the previous row: $\lambda_{i,j} = \lambda_{j,j}$ for $j < i$.
+
+    **Row 1 ($L_1$):**
+
+    $$
+    \lambda_{11}^2 \cdot 1 = (0.20)^2 \cdot 1 = 0.04 \implies \lambda_{11} = 20.0\%
+    $$
+
+    **Row 2 ($L_2$):**
+
+    Homogeneous: $\lambda_{21} = \lambda_{11} = 20.0\%$. Solve for $\lambda_{22}$:
+
+    $$
+    \lambda_{21}^2 \cdot 1 + \lambda_{22}^2 \cdot 1 = (0.22)^2 \cdot 2 = 0.0968
+    $$
+
+    $$
+    \lambda_{22}^2 = 0.0968 - (0.20)^2 = 0.0968 - 0.04 = 0.0568
+    $$
+
+    $$
+    \lambda_{22} = \sqrt{0.0568} = 23.83\%
+    $$
+
+    **Row 3 ($L_3$):**
+
+    Homogeneous: $\lambda_{31} = \lambda_{11} = 20.0\%$, $\lambda_{32} = \lambda_{22} = 23.83\%$. Solve for $\lambda_{33}$:
+
+    $$
+    (0.20)^2 + (0.2383)^2 + \lambda_{33}^2 = (0.21)^2 \cdot 3 = 0.1323
+    $$
+
+    $$
+    \lambda_{33}^2 = 0.1323 - 0.04 - 0.05678 = 0.03552
+    $$
+
+    $$
+    \lambda_{33} = \sqrt{0.03552} = 18.85\%
+    $$
+
+    **Row 4 ($L_4$):**
+
+    Homogeneous: $\lambda_{41} = 20.0\%$, $\lambda_{42} = 23.83\%$, $\lambda_{43} = 18.85\%$. Solve for $\lambda_{44}$:
+
+    $$
+    (0.20)^2 + (0.2383)^2 + (0.1885)^2 + \lambda_{44}^2 = (0.19)^2 \cdot 4 = 0.1444
+    $$
+
+    $$
+    \lambda_{44}^2 = 0.1444 - 0.04 - 0.05678 - 0.03553 = 0.01209
+    $$
+
+    $$
+    \lambda_{44} = \sqrt{0.01209} = 10.99\%
+    $$
+
+    **Check for negative variance:** All $\lambda_{kk}^2$ values are positive: $0.04$, $0.0568$, $0.03552$, $0.01209$. No negative variance arises.
+
+    **Full volatility matrix $\Lambda$:**
+
+    | | $[0,1]$ | $[1,2]$ | $[2,3]$ | $[3,4]$ |
+    |---|---|---|---|---|
+    | $L_1$ | 20.00% | --- | --- | --- |
+    | $L_2$ | 20.00% | 23.83% | --- | --- |
+    | $L_3$ | 20.00% | 23.83% | 18.85% | --- |
+    | $L_4$ | 20.00% | 23.83% | 18.85% | 10.99% |
+
+    Note the diagonal volatilities: 20.00%, 23.83%, 18.85%, 10.99%. The decline in $\lambda_{44}$ reflects the fact that $v_4 = 19\%$ is the lowest caplet vol, and the homogeneous assumption forces significant variance into the early periods, leaving little residual for the final period.
+
 ---
 
 **Exercise 2.** In the abcd volatility parameterization $\phi(\tau) = (a + b\tau)e^{-c\tau} + d$, suppose $a = 0.05$, $b = 0.12$, $c = 0.80$, and $d = 0.14$. Compute the peak maturity
@@ -341,21 +419,204 @@ $$
 
 and the corresponding peak volatility $\phi(\tau^*)$. Sketch the volatility as a function of $\tau$ and interpret the hump economically.
 
+??? success "Solution to Exercise 2"
+    **Peak maturity:**
+
+    $$
+    \tau^* = \frac{1}{c} - \frac{a}{b} = \frac{1}{0.80} - \frac{0.05}{0.12} = 1.25 - 0.4167 = 0.8333 \text{ years}
+    $$
+
+    **Peak volatility:**
+
+    $$
+    \phi(\tau^*) = (a + b\tau^*)e^{-c\tau^*} + d
+    $$
+
+    $$
+    = (0.05 + 0.12 \times 0.8333)\,e^{-0.80 \times 0.8333} + 0.14
+    $$
+
+    $$
+    = (0.05 + 0.10)\,e^{-0.6667} + 0.14
+    $$
+
+    $$
+    = 0.15 \times 0.5134 + 0.14
+    $$
+
+    $$
+    = 0.0770 + 0.14 = 0.2170 = 21.70\%
+    $$
+
+    **Behavior at key points:**
+
+    - At $\tau = 0$ (at expiry): $\phi(0) = (0.05 + 0)\,e^{0} + 0.14 = 0.05 + 0.14 = 19.0\%$
+    - At $\tau = \tau^* = 0.833$: $\phi(\tau^*) = 21.70\%$ (peak)
+    - As $\tau \to \infty$: $\phi(\tau) \to 0 + d = 14.0\%$ (the exponential term decays to zero)
+
+    **Sketch description:** The volatility curve starts at 19.0% for $\tau = 0$, rises to a peak of 21.70% at $\tau \approx 0.83$ years, then decays gradually toward the asymptotic level of 14.0%.
+
+    **Economic interpretation of the hump:**
+
+    The hump shape reflects the empirical observation that forward rates at **intermediate maturities** (roughly 1--3 years ahead) tend to be the most volatile. This occurs because:
+
+    - **Very short-term rates** are anchored by central bank policy and change only at discrete meeting dates, limiting their variability.
+    - **Intermediate rates** are driven by expectations about the future path of monetary policy, which are inherently uncertain and subject to frequent revision.
+    - **Very long-term rates** are dominated by slow-moving factors like long-run inflation expectations and term premia, which change gradually.
+
+    The parameters capture this: $d = 14\%$ is the baseline (long-run) vol level, the exponential term adds extra volatility that peaks near $\tau^* \approx 0.83$ years, and $c = 0.80$ controls how quickly the extra volatility decays with maturity.
+
 ---
 
 **Exercise 3.** Suppose Stage 1 of the cascade has been completed and yields a $3 \times 3$ volatility matrix $\Lambda$. Three forward rates have initial values $L_1(0) = 3.5\%$, $L_2(0) = 3.8\%$, $L_3(0) = 4.0\%$ and the initial swap rate is $S(0) = 3.77\%$ with equal weights $w_i = 1/3$. Using Rebonato's swaption volatility formula with exponential correlation $\rho_{ij} = e^{-\beta|i-j|}$, derive an expression for the model swaption volatility $\sigma_S^{\text{model}}$ as an explicit function of $\beta$. Explain qualitatively why increasing $\beta$ (decreasing correlation) reduces $\sigma_S^{\text{model}}$.
+
+??? success "Solution to Exercise 3"
+    **Setup:** Three forward rates with $L_1(0) = 3.5\%$, $L_2(0) = 3.8\%$, $L_3(0) = 4.0\%$, $S(0) = 3.77\%$, equal weights $w_i = 1/3$, exponential correlation $\rho_{ij} = e^{-\beta|i-j|}$.
+
+    Assume Stage 1 produced a $3 \times 3$ volatility matrix $\Lambda$. For a swaption with expiry $T_\alpha = T_1 = 1$ (the first period), Rebonato's formula gives:
+
+    $$
+    (\sigma_S^{\text{model}})^2 \cdot T_1 = \sum_{i,j=1}^{3}\frac{w_i w_j L_i(0) L_j(0)}{S(0)^2}\rho_{ij}\sum_{k=1}^{1}\lambda_{ik}\lambda_{jk}\Delta_k
+    $$
+
+    Since we integrate only over $[0, T_1]$ (the first period, $k=1$, $\Delta_1 = 1$):
+
+    $$
+    (\sigma_S^{\text{model}})^2 = \frac{1}{9 \cdot S(0)^2}\sum_{i,j=1}^{3}L_i(0)\,L_j(0)\,\rho_{ij}\,\lambda_{i1}\,\lambda_{j1}
+    $$
+
+    Define $A_i = L_i(0)\,\lambda_{i1}$. Then:
+
+    $$
+    (\sigma_S^{\text{model}})^2 = \frac{1}{9\,S(0)^2}\sum_{i,j=1}^{3}A_i\,A_j\,\rho_{ij}
+    $$
+
+    Expanding the double sum with $\rho_{ij} = e^{-\beta|i-j|}$:
+
+    $$
+    \sum_{i,j}A_i A_j \rho_{ij} = A_1^2 + A_2^2 + A_3^2 + 2A_1 A_2 e^{-\beta} + 2A_2 A_3 e^{-\beta} + 2A_1 A_3 e^{-2\beta}
+    $$
+
+    Therefore:
+
+    $$
+    (\sigma_S^{\text{model}})^2 = \frac{1}{9\,S(0)^2}\bigl[A_1^2 + A_2^2 + A_3^2 + 2(A_1 A_2 + A_2 A_3)e^{-\beta} + 2A_1 A_3 e^{-2\beta}\bigr]
+    $$
+
+    This is the explicit expression for the model swaption volatility as a function of $\beta$.
+
+    **Qualitative explanation of why increasing $\beta$ reduces $\sigma_S^{\text{model}}$:**
+
+    Increasing $\beta$ decreases the correlation $\rho_{ij} = e^{-\beta|i-j|}$ between distinct forward rates ($i \neq j$). In the formula, the cross terms $A_i A_j \rho_{ij}$ are positive (since all $A_i > 0$), and reducing $\rho_{ij}$ decreases these terms while leaving the diagonal terms $A_i^2$ unchanged. Therefore the total sum $\sum_{i,j} A_i A_j \rho_{ij}$ decreases, reducing $\sigma_S^{\text{model}}$.
+
+    Economically, lower correlation means forward rates move more independently. When rates are imperfectly correlated, individual rate movements partially cancel in the swap rate (which is a weighted average of forward rates). This **diversification effect** reduces the variance, and hence the volatility, of the swap rate.
 
 ---
 
 **Exercise 4.** Explain why a negative value of $\lambda_{kk}^2$ in the cascade indicates an inconsistency between the market caplet volatilities and the structural assumption used for the off-diagonal entries. Propose two concrete remedies and discuss the trade-off between exact caplet fit and parameter smoothness.
 
+??? success "Solution to Exercise 4"
+    **Why negative $\lambda_{kk}^2$ indicates inconsistency:**
+
+    In the cascade, the diagonal volatility is determined by:
+
+    $$
+    \lambda_{kk}^2 = \frac{(v_k^{\text{mkt}})^2 T_k - \sum_{j=1}^{k-1}\lambda_{kj}^2\Delta_j}{\Delta_k}
+    $$
+
+    This is negative when:
+
+    $$
+    \sum_{j=1}^{k-1}\lambda_{kj}^2\Delta_j > (v_k^{\text{mkt}})^2 T_k
+    $$
+
+    meaning the variance assigned to the off-diagonal entries (periods before $T_{k-1}$) already **exceeds** the total variance required by the market caplet volatility $v_k^{\text{mkt}}$. The structural assumption (e.g., homogeneity: $\lambda_{kj} = \lambda_{jj}$) forces the earlier-period volatilities to be too high for forward rate $L_k$, and there is no positive residual variance left for the final period.
+
+    This typically happens when:
+
+    - The market caplet volatility $v_k$ is lower than previous caplet vols, but the homogeneous assumption assigns the high earlier volatilities to the new row.
+    - The volatility term structure is steeply declining at maturity $T_k$.
+
+    **Remedy 1: Relax the homogeneity assumption.**
+
+    Instead of setting $\lambda_{kj} = \lambda_{jj}$, use a scaled version: $\lambda_{kj} = \alpha_k \cdot \lambda_{jj}$ with $\alpha_k \leq 1$. The scaling factor $\alpha_k$ is chosen so that the off-diagonal entries do not consume too much variance. Alternatively, use the abcd function: set $\lambda_{kj} = \phi(T_k - T_{j-1})$ where $\phi$ is the abcd function. Since the abcd function typically declines for large $\tau$, this naturally assigns lower volatility to the earliest periods.
+
+    **Remedy 2: Regularized (non-exact) fit.**
+
+    Instead of requiring an exact match to each caplet volatility, minimize:
+
+    $$
+    \sum_k (v_k^{\text{model}} - v_k^{\text{mkt}})^2 + \alpha\sum_k(\lambda_{kk} - \lambda_{k-1,k-1})^2
+    $$
+
+    The smoothness penalty prevents any single $\lambda_{kk}$ from deviating too far from its neighbor, even if this means a small caplet pricing error. This avoids the negative variance problem at the cost of an approximate (rather than exact) caplet fit.
+
+    **Trade-off:** Exact caplet fit requires the cascade to absorb all residual variance into the diagonal element, which can produce extreme or negative values when the structural assumption is incompatible with the data. Parameter smoothness, achieved by relaxing exactness, produces more economically sensible and numerically stable volatility matrices, but introduces caplet pricing errors (typically small, 0.5--1 bp in vol terms). In practice, the slight loss of exactness is overwhelmingly preferred over the instability of exact fitting.
+
 ---
 
 **Exercise 5.** A co-terminal swaption set with final maturity $T_5 = 5$ years contains swaptions with expiries $1\text{Y}, 2\text{Y}, 3\text{Y}, 4\text{Y}$. Explain how the cascade algorithm can be run "backward" from the longest-expiry co-terminal swaption to achieve an exact fit to all four co-terminal swaption volatilities. Why does this backward calibration produce different diagonal volatilities $\lambda_{kk}$ compared to the standard (caplet-based) forward cascade?
 
+??? success "Solution to Exercise 5"
+    **Backward calibration to co-terminal swaptions:**
+
+    A co-terminal swaption set with final maturity $T_5 = 5$ years has swaptions with expiries 1Y, 2Y, 3Y, 4Y and tenors 4Y, 3Y, 2Y, 1Y respectively (all ending at year 5).
+
+    The backward cascade proceeds as follows:
+
+    **Step 1: Longest expiry (4Y into 1Y).** This swaption has expiry $T_4 = 4$ and tenor 1Y. It references a single forward rate $L_4$, so it is essentially a caplet:
+
+    $$
+    \sigma_{S}^{4Y \times 1Y} = v_4
+    $$
+
+    This determines $v_4$ (the Black caplet vol for $L_4$), from which the cascade row for $L_4$ is built.
+
+    **Step 2: Next expiry (3Y into 2Y).** This swaption references $L_3$ and $L_4$ over the period $[0, 3]$. Since $v_4$ is known from Step 1, the swaption volatility depends on $v_3$ (or more precisely, on $\lambda_{33}$) and the correlation $\rho_{34}$. Using Rebonato's formula, solve for $\lambda_{33}$ to match the co-terminal swaption vol.
+
+    **Step 3: Continue backward.** The 2Y into 3Y swaption involves $L_2, L_3, L_4$. With $v_3, v_4$ known, solve for the volatility parameters of $L_2$ (specifically $\lambda_{22}$). Similarly, the 1Y into 4Y swaption determines $\lambda_{11}$.
+
+    **Why backward calibration produces different diagonal volatilities:**
+
+    In the **standard (forward) cascade**, $\lambda_{kk}$ is determined by the caplet volatility $v_k^{\text{mkt}}$ and the structural assumption for off-diagonal entries. The caplet is the calibration target, and correlations play no role.
+
+    In the **backward (co-terminal) cascade**, $\lambda_{kk}$ is determined by the co-terminal swaption volatility, which depends on **both** volatilities and **correlations**. The same caplet vol $v_k$ may not be matched exactly because the diagonal element is chosen to match a different instrument (the co-terminal swaption). The correlation matrix influences the swaption price, so the backward cascade implicitly incorporates correlation information into the volatility matrix.
+
+    Concretely, if correlations are low (high decorrelation), the backward cascade needs higher individual volatilities to match a given swaption vol (since diversification reduces the aggregate vol). Conversely, if correlations are high, lower individual volatilities suffice. This means the diagonal volatilities from the backward cascade depend on the assumed correlation, whereas the forward cascade's diagonal volatilities are correlation-independent.
+
 ---
 
 **Exercise 6.** After completing both stages of the calibration cascade, the maximum residual swaption volatility error across the full $10 \times 10$ swaption matrix is 4.5 bps, concentrated at the $7\text{Y} \times 3\text{Y}$ and $8\text{Y} \times 2\text{Y}$ swaptions. Perform an error attribution analysis: describe how you would determine whether the residual is primarily due to (a) the volatility parameterization, (b) the correlation parameterization, or (c) the frozen-weight approximation in Rebonato's formula.
+
+??? success "Solution to Exercise 6"
+    **Error attribution analysis:**
+
+    The total swaption pricing error for each (expiry, tenor) pair is:
+
+    $$
+    \epsilon_m = \sigma_m^{\text{model}} - \sigma_m^{\text{mkt}}
+    $$
+
+    To determine the source of the residual (4.5 bps at $7\text{Y}\times 3\text{Y}$ and $8\text{Y}\times 2\text{Y}$), perform the following decomposition:
+
+    **Test (a): Volatility parameterization.**
+
+    Replace the parametric volatility $\sigma_i(t)$ with the "free" piecewise-constant volatility matrix that matches all caplet vols exactly, and re-evaluate the swaption prices using Rebonato's formula with the same correlation parameters. If the residual drops significantly, the volatility parameterization is the bottleneck. If the residual persists, volatility is not the issue (caplet vols are matched exactly in both cases in the standard LMM, so this mainly tests whether the time-allocation of variance within each caplet period matters).
+
+    **Test (b): Correlation parameterization.**
+
+    Fix the volatility matrix and replace the parametric correlation $\rho_{ij} = e^{-\beta|i-j|}$ with an **unconstrained** (but positive semi-definite) correlation matrix. Optimize each $\rho_{ij}$ freely to minimize the swaption pricing errors. If the residual drops substantially (e.g., from 4.5 bps to below 1 bp), the parametric correlation model is too restrictive and is the primary error source. The problematic swaptions ($7\text{Y}\times 3\text{Y}$ and $8\text{Y}\times 2\text{Y}$) likely require correlation levels that the exponential parameterization cannot accommodate.
+
+    **Test (c): Frozen-weight approximation.**
+
+    Rebonato's formula uses "frozen" (time-0) weights $w_i = \delta P(0, T_{i+1})/A(0)$, which approximates the stochastic weights in the exact swaption pricing. To test this:
+
+    - Price the problematic swaptions using **Monte Carlo simulation** of the full LMM (with the same volatilities and correlations), which does not rely on the frozen-weight approximation.
+    - Compare the Monte Carlo swaption vol with Rebonato's formula swaption vol.
+
+    If the Monte Carlo price matches the market better (residual drops), the approximation error is significant. This is more likely for long-expiry swaptions where the drift and weight dynamics have more time to deviate from their frozen values.
+
+    **Expected diagnosis for the $7\text{Y}\times 3\text{Y}$ and $8\text{Y}\times 2\text{Y}$ swaptions:** These are long-expiry, short-tenor swaptions. They depend primarily on the volatility of a few forward rates near maturity 7--10 years and the correlation among them. The concentration of errors at these specific cells most likely indicates that the correlation model is too rigid (test b), because short-tenor swaptions are sensitive to local correlation structure that a global exponential parameterization cannot capture.
 
 ---
 
@@ -366,3 +627,34 @@ $$
 $$
 
 Discuss how the regularization parameter $\alpha$ controls the trade-off between exact caplet fit and volatility smoothness. What happens in the limits $\alpha \to 0$ and $\alpha \to \infty$?
+
+??? success "Solution to Exercise 7"
+    The regularized objective function is:
+
+    $$
+    \min_{\Lambda,\,\rho} \underbrace{\sum_i (\sigma_i^{\text{model}} - \sigma_i^{\text{mkt}})^2}_{\text{caplet fit}} + \underbrace{\alpha \sum_i (\lambda_{ii} - \lambda_{i-1,i-1})^2}_{\text{volatility smoothness}} + \underbrace{\gamma \sum_m (\sigma_m^{\text{swap,model}} - \sigma_m^{\text{swap,mkt}})^2}_{\text{swaption fit}}
+    $$
+
+    **Role of $\alpha$:**
+
+    The parameter $\alpha \geq 0$ penalizes differences between consecutive diagonal volatilities $\lambda_{ii}$ and $\lambda_{i-1,i-1}$. This enforces **smoothness** in the diagonal of the volatility matrix, preventing large oscillations between adjacent periods.
+
+    - **Small $\alpha$:** The caplet fit term dominates. The optimizer freely adjusts each $\lambda_{ii}$ to match the corresponding caplet volatility exactly, even if this creates a jagged diagonal pattern (e.g., 20%, 28%, 15%, 25%). The result is a potentially unstable and oscillatory volatility matrix.
+
+    - **Large $\alpha$:** The smoothness penalty dominates. The optimizer forces $\lambda_{ii} \approx \lambda_{i-1,i-1}$ for all $i$, making the diagonal nearly constant. This prevents exact caplet fitting (since different caplet vols require different diagonal elements) but produces a very smooth volatility surface.
+
+    **Limit $\alpha \to 0$:**
+
+    The smoothness penalty vanishes. The objective reduces to:
+
+    $$
+    \min_{\Lambda,\,\rho}\sum_i (\sigma_i^{\text{model}} - \sigma_i^{\text{mkt}})^2 + \gamma \sum_m (\sigma_m^{\text{swap,model}} - \sigma_m^{\text{swap,mkt}})^2
+    $$
+
+    This is the standard (unregularized) joint calibration. Each caplet volatility is matched as closely as possible (exact, if degrees of freedom permit), and the diagonal volatilities $\lambda_{ii}$ can take any values. The volatility matrix may be jagged and sensitive to small changes in market data.
+
+    **Limit $\alpha \to \infty$:**
+
+    The penalty forces $\lambda_{ii} = \lambda_{i-1,i-1}$ for all $i$, i.e., a **constant diagonal**: $\lambda_{11} = \lambda_{22} = \cdots = \lambda_{nn} = \bar{\lambda}$. The single parameter $\bar{\lambda}$ is chosen to best fit the caplet volatilities in a least-squares sense, resulting in $\bar{\lambda} \approx \bar{v}$ (a weighted average of market caplet vols). Individual caplet vols cannot be matched unless they are all equal. The model collapses to a highly constrained version that is very smooth but fits the data poorly --- this is **underfitting**.
+
+    **Practical choice of $\alpha$:** Increase $\alpha$ from 0 until the caplet pricing errors are at the level of market bid-ask noise (typically 0.5--1 bp in vol). This gives the smoothest volatility matrix consistent with the data quality, avoiding both overfitting (oscillatory $\Lambda$) and underfitting (constant diagonal).

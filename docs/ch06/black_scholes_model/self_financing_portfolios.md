@@ -381,42 +381,6 @@ These results establish the mathematical infrastructure for the Black-Scholes PD
 
 **Exercise 1.** Let $\phi_t = 1$ (hold one share of stock) and $X_0 = S_0 + B$ for some constant $B > 0$. Determine the bond position $\psi_t$ and verify directly that the strategy is self-financing by checking that $S_t \, d\phi_t + B_t \, d\psi_t = 0$.
 
----
-
-**Exercise 2.** Consider a self-financing portfolio with wealth dynamics $dX_t = rX_t \, dt + \phi_t(dS_t - rS_t \, dt)$. Suppose the trader invests a constant fraction $\pi$ of wealth in the stock, so $\phi_t S_t = \pi X_t$. Show that the wealth process satisfies
-
-$$
-dX_t = X_t\left[(r + \pi(\mu - r))\,dt + \pi\sigma\,dW_t\right]
-$$
-
-and solve this SDE explicitly for $X_t$.
-
----
-
-**Exercise 3.** Prove that if two self-financing portfolios $X_t$ and $Y_t$ satisfy $X_T = Y_T$ almost surely, then $X_t = Y_t$ for all $t \in [0,T]$ almost surely. Use the martingale property of the discounted wealth under $\mathbb{Q}$. Explain why this result is essential for the uniqueness of derivative prices.
-
----
-
-**Exercise 4.** Define the doubling strategy informally and explain how it appears to generate arbitrage in continuous time. Then explain precisely how the admissibility condition $X_t \geq -a$ prevents this strategy from being used.
-
----
-
-**Exercise 5.** For a European call with Black-Scholes price $V(S_t, t) = S_t \mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)$, write down the replicating portfolio $(\phi_t, \psi_t)$ explicitly. Verify that at $t = 0$ the portfolio value equals $V(S_0, 0)$, and at $t = T$ the portfolio value equals $(S_T - K)^+$.
-
----
-
-**Exercise 6.** Show that the discounted stock price $\tilde{S}_t = e^{-rt}S_t$ satisfies
-
-$$
-d\tilde{S}_t = (\mu - r)\tilde{S}_t \, dt + \sigma \tilde{S}_t \, dW_t
-$$
-
-under the physical measure $\mathbb{P}$. Explain why $\tilde{S}_t$ is not a martingale under $\mathbb{P}$ (assuming $\mu \neq r$) and identify the Girsanov change of measure that makes it a martingale.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     With $\phi_t = 1$ (one share) and $X_0 = S_0 + B$ for some constant $B > 0$:
 
@@ -454,6 +418,15 @@ under the physical measure $\mathbb{P}$. Explain why $\tilde{S}_t$ is not a mart
 
     The strategy is self-financing. The portfolio simply holds one share and $B$ units of the bond, with both positions unchanged over time. $\square$
 
+---
+**Exercise 2.** Consider a self-financing portfolio with wealth dynamics $dX_t = rX_t \, dt + \phi_t(dS_t - rS_t \, dt)$. Suppose the trader invests a constant fraction $\pi$ of wealth in the stock, so $\phi_t S_t = \pi X_t$. Show that the wealth process satisfies
+
+$$
+dX_t = X_t\left[(r + \pi(\mu - r))\,dt + \pi\sigma\,dW_t\right]
+$$
+
+and solve this SDE explicitly for $X_t$.
+
 ??? success "Solution to Exercise 2"
     Given $\phi_t S_t = \pi X_t$ (constant fraction $\pi$ of wealth in stock), substitute into the wealth dynamics:
 
@@ -487,6 +460,9 @@ under the physical measure $\mathbb{P}$. Explain why $\tilde{S}_t$ is not a mart
 
     This is the **Merton portfolio** result. The log-return is normally distributed with mean $(r + \pi(\mu - r) - \frac{1}{2}\pi^2\sigma^2)t$ and variance $\pi^2\sigma^2 t$. The optimal $\pi$ that maximizes the expected log-wealth growth rate is $\pi^* = (\mu - r)/\sigma^2$ (the Kelly criterion).
 
+---
+**Exercise 3.** Prove that if two self-financing portfolios $X_t$ and $Y_t$ satisfy $X_T = Y_T$ almost surely, then $X_t = Y_t$ for all $t \in [0,T]$ almost surely. Use the martingale property of the discounted wealth under $\mathbb{Q}$. Explain why this result is essential for the uniqueness of derivative prices.
+
 ??? success "Solution to Exercise 3"
     Suppose $X_t$ and $Y_t$ are both self-financing portfolios with $X_T = Y_T$ a.s.
 
@@ -508,6 +484,9 @@ under the physical measure $\mathbb{P}$. Explain why $\tilde{S}_t$ is not a mart
 
     **Importance for uniqueness**: This result guarantees that if a contingent claim $H$ is replicable, then the replication cost is unique. If two different self-financing strategies both replicate $H$ (i.e., $X_T = Y_T = H$), they must have the same initial cost $X_0 = Y_0$ and indeed the same value at all intermediate times. This ensures a unique arbitrage-free price for every replicable claim.
 
+---
+**Exercise 4.** Define the doubling strategy informally and explain how it appears to generate arbitrage in continuous time. Then explain precisely how the admissibility condition $X_t \geq -a$ prevents this strategy from being used.
+
 ??? success "Solution to Exercise 4"
     **The doubling strategy** (informally): Start with initial wealth 0. At each step, bet on the outcome of a fair coin flip, doubling the stake after each loss. Specifically, bet \$1; if you lose, bet \$2; if you lose again, bet \$4; and so on. The first win recovers all previous losses plus a \$1 profit. Since you eventually win with probability 1, this appears to generate a sure profit from nothing.
 
@@ -524,6 +503,9 @@ under the physical measure $\mathbb{P}$. Explain why $\tilde{S}_t$ is not a mart
     $$
 
     Combined with $X_T \geq 0$ (no-bankruptcy at maturity), this forces $X_T = 0$ a.s. --- no profit is possible. The admissibility condition thus closes the loophole that makes the doubling strategy appear to work.
+
+---
+**Exercise 5.** For a European call with Black-Scholes price $V(S_t, t) = S_t \mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)$, write down the replicating portfolio $(\phi_t, \psi_t)$ explicitly. Verify that at $t = 0$ the portfolio value equals $V(S_0, 0)$, and at $t = T$ the portfolio value equals $(S_T - K)^+$.
 
 ??? success "Solution to Exercise 5"
     The Black-Scholes call price is $V(S_t, t) = S_t\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)$ where:
@@ -559,6 +541,15 @@ under the physical measure $\mathbb{P}$. Explain why $\tilde{S}_t$ is not a mart
     - If $S_T < K$: Then $d_1, d_2 \to -\infty$, so $\mathcal{N}(d_1) \to 0$ and $\mathcal{N}(d_2) \to 0$. The portfolio value is $0 \cdot S_T + 0 = 0 = (S_T - K)^+$. $\checkmark$
 
     In both cases, $X_T = (S_T - K)^+$, confirming exact replication. $\square$
+
+---
+**Exercise 6.** Show that the discounted stock price $\tilde{S}_t = e^{-rt}S_t$ satisfies
+
+$$
+d\tilde{S}_t = (\mu - r)\tilde{S}_t \, dt + \sigma \tilde{S}_t \, dW_t
+$$
+
+under the physical measure $\mathbb{P}$. Explain why $\tilde{S}_t$ is not a martingale under $\mathbb{P}$ (assuming $\mu \neq r$) and identify the Girsanov change of measure that makes it a martingale.
 
 ??? success "Solution to Exercise 6"
     Apply the product rule to $\tilde{S}_t = e^{-rt}S_t$:

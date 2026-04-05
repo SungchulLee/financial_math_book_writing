@@ -319,6 +319,44 @@ These extensions increase calibration complexity but can be important for long-d
 
 **Exercise 1.** A quanto cap on 3-month GBP LIBOR is settled in USD at a 1:1 exchange rate. The GBP forward rate is $L^f(0) = 4.8\%$, the GBP rate volatility is $\sigma^f = 19\%$, the GBP/USD exchange rate volatility is $\sigma_X = 8\%$, and the rate-FX correlation is $\rho_{L,X} = 0.25$. For a caplet fixing in $T = 3$ years, compute the quanto-adjusted forward rate and the quanto adjustment in basis points. Interpret the sign of the adjustment.
 
+??? success "Solution to Exercise 1"
+
+    **Given:** $L^f(0) = 0.048$, $\sigma^f = 0.19$, $\sigma_X = 0.08$, $\rho_{L,X} = 0.25$, $T = 3$ years.
+
+    **Quanto-adjusted forward rate:**
+
+    $$
+    L^{f,\text{quanto}}(0) = L^f(0) \, \exp\!\left(-\rho_{L,X} \, \sigma^f \, \sigma_X \, T\right)
+    $$
+
+    Computing the exponent:
+
+    $$
+    -\rho_{L,X} \, \sigma^f \, \sigma_X \, T = -0.25 \times 0.19 \times 0.08 \times 3 = -0.25 \times 0.0456 = -0.01140
+    $$
+
+    $$
+    L^{f,\text{quanto}}(0) = 0.048 \times e^{-0.01140} = 0.048 \times 0.98867 = 0.047456
+    $$
+
+    Equivalently, $L^{f,\text{quanto}}(0) = 4.746\%$.
+
+    **Quanto adjustment in basis points:**
+
+    $$
+    \text{Quanto Adj} = L^{f,\text{quanto}}(0) - L^f(0) = 4.746\% - 4.800\% = -0.054\% = -5.4 \text{ bp}
+    $$
+
+    Alternatively, using the first-order formula:
+
+    $$
+    \text{Quanto Adj} \approx -\rho_{L,X} \, \sigma^f \, \sigma_X \, T \cdot L^f(0) = -0.01140 \times 0.048 = -0.000547 = -5.5 \text{ bp}
+    $$
+
+    (The slight difference is due to the first-order approximation.)
+
+    **Interpretation:** The adjustment is **negative** ($-5.4$ bp) because $\rho_{L,X} = 0.25 > 0$. Positive correlation means that when GBP rates are high, the GBP tends to strengthen against the USD. A standard (non-quanto) product would benefit from this correlation (high rates + strong GBP = double benefit), but the quanto product settles at a fixed exchange rate and misses the FX gain. The quanto-adjusted rate is therefore lower, reflecting the loss of this favorable correlation.
+
 ---
 
 **Exercise 2.** Starting from the dynamics of the foreign forward rate under $\mathbb{Q}^{f,T_{i+1}}$ and the exchange rate under $\mathbb{Q}^d$, derive the quanto drift
@@ -328,6 +366,64 @@ $$
 $$
 
 using Girsanov's theorem for the composite measure change $\mathbb{Q}^{f,T_{i+1}} \to \mathbb{Q}^d \to \mathbb{Q}^{d,T_{i+1}}$. State all assumptions and identify where the correlation enters.
+
+??? success "Solution to Exercise 2"
+
+    **Step 1: Foreign forward rate under $\mathbb{Q}^{f,T_{i+1}}$.**
+
+    Under the foreign $T_{i+1}$-forward measure, with numéraire $P^f(t, T_{i+1})$:
+
+    $$
+    \frac{dL_i^f(t)}{L_i^f(t)} = \sigma_i^f \, dW_L^{f,T_{i+1}}(t)
+    $$
+
+    where $W_L^{f,T_{i+1}}$ is a Brownian motion under $\mathbb{Q}^{f,T_{i+1}}$.
+
+    **Step 2: Exchange rate under $\mathbb{Q}^d$.**
+
+    Under the domestic risk-neutral measure:
+
+    $$
+    \frac{dX(t)}{X(t)} = (r^d - r^f) \, dt + \sigma_X \, dW_X^d(t)
+    $$
+
+    **Assumption:** $dW_L^{f,T_{i+1}} \cdot dW_X^d = \rho_{L,X} \, dt$ (constant correlation).
+
+    **Step 3: Measure change $\mathbb{Q}^{f,T_{i+1}} \to \mathbb{Q}^d$.**
+
+    The relationship between the domestic and foreign risk-neutral measures involves the exchange rate. The numéraire for $\mathbb{Q}^d$ expressed in foreign terms is $B^d(t)/X(t)$. The Girsanov kernel for the change $\mathbb{Q}^f \to \mathbb{Q}^d$ is $\sigma_X$, applied to the Brownian motion $W_X$.
+
+    Under $\mathbb{Q}^d$, the foreign Brownian motion $W_L^{f}$ shifts:
+
+    $$
+    dW_L^{f}(t) = dW_L^{d}(t) - \rho_{L,X} \, \sigma_X \, dt
+    $$
+
+    This is because the Girsanov theorem for the measure change from $\mathbb{Q}^f$ to $\mathbb{Q}^d$ involves the volatility of the exchange rate, projected onto the direction of $W_L$.
+
+    **Step 4: Measure change $\mathbb{Q}^d \to \mathbb{Q}^{d,T_{i+1}}$.**
+
+    Changing from $\mathbb{Q}^d$ to $\mathbb{Q}^{d,T_{i+1}}$ introduces an additional drift from the domestic bond volatility $\sigma_P^d(t, T_{i+1})$. However, we also need to account for the change from $\mathbb{Q}^{f,T_{i+1}}$ to $\mathbb{Q}^f$ (forward to spot measure in the foreign economy), which introduces a drift involving the foreign bond volatility.
+
+    **Step 5: Combining the measure changes.**
+
+    The composite measure change $\mathbb{Q}^{f,T_{i+1}} \to \mathbb{Q}^{d,T_{i+1}}$ introduces a total drift in $L_i^f$. The key observation is that the drift terms from the forward-measure changes (foreign and domestic) involve bond volatilities that approximately cancel for the forward rate $L_i^f$, leaving only the FX-related drift.
+
+    Under $\mathbb{Q}^{d,T_{i+1}}$:
+
+    $$
+    \frac{dL_i^f(t)}{L_i^f(t)} = -\rho_{L,X} \, \sigma_i^f \, \sigma_X \, dt + \sigma_i^f \, dW_L^{d,T_{i+1}}(t)
+    $$
+
+    The quanto drift is:
+
+    $$
+    \mu_{\text{quanto}} = -\rho_{L,X} \, \sigma_i^f \, \sigma_X
+    $$
+
+    **Where correlation enters:** The correlation appears in Step 3 when projecting the Girsanov kernel (which is $\sigma_X$, the FX volatility vector) onto the direction of the foreign rate's Brownian motion $W_L$. The projection is $\rho_{L,X} \sigma_X$, giving the drift correction $-\rho_{L,X} \sigma_i^f \sigma_X$.
+
+    **Assumptions used:** (1) Lognormal dynamics for both $L_i^f$ and $X$. (2) Constant volatilities $\sigma_i^f$, $\sigma_X$ and constant correlation $\rho_{L,X}$. (3) Deterministic interest rates for the forward-measure changes (or that the additional drifts from stochastic rates cancel to leading order). $\blacksquare$
 
 ---
 
@@ -339,18 +435,238 @@ $$
 
 where only the foreign rate requires a quanto adjustment. Explain why the domestic rate does not need an adjustment.
 
+??? success "Solution to Exercise 3"
+
+    **Present value of the diff swap coupon:**
+
+    $$
+    V_0 = P^d(0, T_{i+1}) \, \mathbb{E}^{\mathbb{Q}^{d,T_{i+1}}}\!\left[\delta_i (L_i^f(T_i) - L_i^d(T_i))\right]
+    $$
+
+    By linearity of expectation:
+
+    $$
+    V_0 = P^d(0, T_{i+1}) \, \delta_i \left(\mathbb{E}^{\mathbb{Q}^{d,T_{i+1}}}[L_i^f(T_i)] - \mathbb{E}^{\mathbb{Q}^{d,T_{i+1}}}[L_i^d(T_i)]\right)
+    $$
+
+    **Foreign rate:** $L_i^f$ is a martingale under $\mathbb{Q}^{f,T_{i+1}}$, not under $\mathbb{Q}^{d,T_{i+1}}$. Therefore:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}^{d,T_{i+1}}}[L_i^f(T_i)] = L_i^{f,\text{quanto}}(0) = L_i^f(0) \, e^{-\rho_{L,X}\sigma_i^f\sigma_X T_i}
+    $$
+
+    The foreign rate requires the quanto adjustment.
+
+    **Domestic rate:** $L_i^d$ is a martingale under $\mathbb{Q}^{d,T_{i+1}}$ (the domestic $T_{i+1}$-forward measure) because $T_{i+1}$ is precisely its natural payment date, and $P^d(t, T_{i+1})$ is the natural numéraire. Therefore:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}^{d,T_{i+1}}}[L_i^d(T_i)] = L_i^d(0)
+    $$
+
+    No adjustment is needed for the domestic rate.
+
+    **Why the domestic rate needs no adjustment:** The domestic forward rate $L_i^d$ for period $[T_i, T_{i+1}]$ is defined as a function of $P^d(t, T_i)/P^d(t, T_{i+1})$, and when both the pricing numéraire and the payment currency are domestic, no measure change is required. The payoff $(L_i^f - L_i^d)$ is paid in domestic currency at $T_{i+1}$, and $\mathbb{Q}^{d,T_{i+1}}$ is the correct pricing measure. The domestic rate is already a martingale under this measure, while the foreign rate requires the cross-currency measure change.
+
+    **Fair diff-swap spread:**
+
+    $$
+    V_0 = P^d(0, T_{i+1}) \, \delta_i \left(L_i^{f,\text{quanto}}(0) - L_i^d(0)\right)
+    $$
+
+    The fair spread (the fixed rate that makes $V_0 = 0$) is $L_i^{f,\text{quanto}}(0) - L_i^d(0)$. $\blacksquare$
+
 ---
 
 **Exercise 4.** A trader estimates the GBP rate / GBP-USD FX correlation to be $\rho_{L,X} = 0.35$ using a 1-year rolling window, but $\rho_{L,X} = 0.15$ using a 5-year window. For a 10-year quanto cap on GBP LIBOR with $\sigma^f = 20\%$, $\sigma_X = 10\%$, and $L^f(0) = 5\%$, compute the quanto adjustment under each correlation estimate and express the difference in basis points. Discuss how this correlation uncertainty affects the risk management of a quanto book.
+
+??? success "Solution to Exercise 4"
+
+    **Given:** $\sigma^f = 0.20$, $\sigma_X = 0.10$, $L^f(0) = 0.05$, $T = 10$ years.
+
+    **With $\rho_{L,X} = 0.35$ (1-year window):**
+
+    $$
+    \text{Quanto Adj}_1 = -\rho_{L,X} \, \sigma^f \, \sigma_X \, T \cdot L^f(0) = -0.35 \times 0.20 \times 0.10 \times 10 \times 0.05
+    $$
+
+    $$
+    = -0.35 \times 0.01 \times 0.05 = -0.000350 = -3.50 \text{ bp}
+    $$
+
+    Using the exact formula: $L^{f,q}_1 = 0.05 \times e^{-0.35 \times 0.20 \times 0.10 \times 10} = 0.05 \times e^{-0.07} = 0.05 \times 0.9324 = 0.04662$. Adjustment $= -3.38$ bp.
+
+    **With $\rho_{L,X} = 0.15$ (5-year window):**
+
+    $$
+    \text{Quanto Adj}_2 = -0.15 \times 0.20 \times 0.10 \times 10 \times 0.05 = -0.000150 = -1.50 \text{ bp}
+    $$
+
+    Using the exact formula: $L^{f,q}_2 = 0.05 \times e^{-0.15 \times 0.20 \times 0.10 \times 10} = 0.05 \times e^{-0.03} = 0.05 \times 0.9704 = 0.04852$. Adjustment $= -1.48$ bp.
+
+    **Difference between the two estimates:**
+
+    $$
+    |\text{Adj}_1 - \text{Adj}_2| = |{-3.38} - ({-1.48})| = 1.90 \text{ bp}
+    $$
+
+    On the forward rate level, the difference is approximately **1.9 basis points**.
+
+    **Impact on risk management:**
+
+    1. **Valuation uncertainty:** A 1.9 bp difference in the forward rate translates directly to P&L uncertainty. For a \$1 billion notional 10-year quanto cap, this could represent millions of dollars in mark-to-market difference.
+
+    2. **Correlation hedging:** The rate-FX correlation $\rho_{L,X}$ cannot be hedged directly with liquid instruments, making it an unhedgeable risk factor. This is a key source of **model risk** in quanto books.
+
+    3. **Reserve requirements:** Prudent risk management requires holding reserves for correlation uncertainty. A common approach is to compute the quanto adjustment under multiple correlation scenarios (e.g., $\pm 1$ standard deviation of the historical estimate) and reserve the range.
+
+    4. **Estimation methodology:** The choice of estimation window (1-year vs 5-year) reflects a trade-off between responsiveness to recent market conditions and statistical stability. Neither is objectively correct, suggesting that quanto pricing inherently carries irreducible model risk of the order computed above.
 
 ---
 
 **Exercise 5.** Show that the quanto adjustment formula $L^{f,\text{quanto}} = L^f \exp(-\rho_{L,X}\sigma^f\sigma_X T)$ can be rewritten as a shift in the drift of the lognormal process. Specifically, verify that if $L_i^f(T_i)$ is lognormal under $\mathbb{Q}^{f,T_{i+1}}$ with zero drift, then under $\mathbb{Q}^{d,T_{i+1}}$ it remains lognormal but with drift $\mu_{\text{quanto}} = -\rho_{L,X}\sigma^f\sigma_X$, and that the volatility $\sigma^f$ is unchanged.
 
+??? success "Solution to Exercise 5"
+
+    Under $\mathbb{Q}^{f,T_{i+1}}$, the foreign forward rate is a driftless lognormal martingale:
+
+    $$
+    dL_i^f(t) = \sigma^f L_i^f(t) \, dW^{f,T_{i+1}}(t)
+    $$
+
+    In integrated form:
+
+    $$
+    L_i^f(T_i) = L_i^f(0) \exp\!\left(-\frac{1}{2}(\sigma^f)^2 T_i + \sigma^f W^{f,T_{i+1}}(T_i)\right)
+    $$
+
+    Under $\mathbb{Q}^{d,T_{i+1}}$, the quanto drift $\mu_{\text{quanto}} = -\rho_{L,X}\sigma^f\sigma_X$ shifts the dynamics to:
+
+    $$
+    dL_i^f(t) = \mu_{\text{quanto}} \, L_i^f(t) \, dt + \sigma^f L_i^f(t) \, dW^{d,T_{i+1}}(t)
+    $$
+
+    In integrated form:
+
+    $$
+    L_i^f(T_i) = L_i^f(0) \exp\!\left(\left(\mu_{\text{quanto}} - \frac{1}{2}(\sigma^f)^2\right) T_i + \sigma^f W^{d,T_{i+1}}(T_i)\right)
+    $$
+
+    This is lognormal with:
+
+    - **Drift:** $\mu_{\text{quanto}} = -\rho_{L,X}\sigma^f\sigma_X$ (nonzero)
+    - **Volatility:** $\sigma^f$ (unchanged)
+
+    **Verification of the expectation:**
+
+    $$
+    \mathbb{E}^{\mathbb{Q}^{d,T_{i+1}}}[L_i^f(T_i)] = L_i^f(0) \exp\!\left(\mu_{\text{quanto}} \, T_i\right) = L_i^f(0) \exp\!\left(-\rho_{L,X}\sigma^f\sigma_X T_i\right) = L_i^{f,\text{quanto}}(0)
+    $$
+
+    This confirms the quanto-adjusted forward rate formula.
+
+    **Why the volatility is unchanged:** The Girsanov theorem changes the drift of the Brownian motion but not its quadratic variation. Specifically, $W^{d,T_{i+1}}(t) = W^{f,T_{i+1}}(t) + \int_0^t \rho_{L,X}\sigma_X \, ds$ is still a Brownian motion under $\mathbb{Q}^{d,T_{i+1}}$ (by Girsanov's theorem), so the diffusion coefficient $\sigma^f$ multiplying $dW$ is the same under both measures. The quanto adjustment affects only the mean of $\ln L_i^f(T_i)$, not its variance. $\blacksquare$
+
 ---
 
 **Exercise 6.** Price a quanto floorlet on EUR EURIBOR with strike $K = 3.0\%$, settled in JPY. The parameters are: $L^f(0) = 2.8\%$ (EUR forward rate), $\sigma^f = 25\%$, $\sigma_X = 12\%$ (EUR/JPY vol), $\rho_{L,X} = -0.15$, $T = 2$ years, $\delta = 0.5$, and $P^d(0, T_{i+1}) = 0.990$ (JPY discount factor). First compute the quanto-adjusted forward rate, then apply Black's formula for the floorlet.
 
+??? success "Solution to Exercise 6"
+
+    **Given:** $L^f(0) = 0.028$ (EUR), $\sigma^f = 0.25$, $\sigma_X = 0.12$ (EUR/JPY), $\rho_{L,X} = -0.15$, $T = 2$, $\delta = 0.5$, $P^d(0, T_{i+1}) = 0.990$, $K = 0.03$.
+
+    **Step 1: Quanto-adjusted forward rate.**
+
+    $$
+    L^{f,\text{quanto}}(0) = L^f(0) \, \exp\!\left(-\rho_{L,X} \, \sigma^f \, \sigma_X \, T\right)
+    $$
+
+    $$
+    = 0.028 \times \exp\!\left(-(-0.15) \times 0.25 \times 0.12 \times 2\right) = 0.028 \times \exp(0.0090)
+    $$
+
+    $$
+    = 0.028 \times 1.00904 = 0.028253
+    $$
+
+    The quanto-adjusted forward rate is $2.825\%$. The adjustment is **positive** ($+2.5$ bp) because $\rho_{L,X} < 0$: when EUR rates rise, the EUR tends to weaken against JPY. The quanto product does not suffer from this FX loss, so the effective forward rate is higher.
+
+    **Step 2: Black's formula for the quanto floorlet.**
+
+    $$
+    \text{Quanto Floorlet} = \delta \, P^d(0, T_{i+1}) \left[K \, N(-d_2) - L^{f,q}(0) \, N(-d_1)\right]
+    $$
+
+    Computing $d_1$ and $d_2$:
+
+    $$
+    d_1 = \frac{\ln(L^{f,q}(0)/K) + \frac{1}{2}(\sigma^f)^2 T}{\sigma^f \sqrt{T}} = \frac{\ln(0.028253/0.030) + \frac{1}{2}(0.0625)(2)}{0.25\sqrt{2}}
+    $$
+
+    $$
+    = \frac{\ln(0.94177) + 0.0625}{0.3536} = \frac{-0.05997 + 0.0625}{0.3536} = \frac{0.00253}{0.3536} = 0.00716
+    $$
+
+    $$
+    d_2 = d_1 - \sigma^f\sqrt{T} = 0.00716 - 0.3536 = -0.3464
+    $$
+
+    Now:
+
+    - $N(-d_1) = N(-0.00716) = 0.4971$
+    - $N(-d_2) = N(0.3464) = 0.6355$
+
+    **Quanto floorlet price:**
+
+    $$
+    = 0.5 \times 0.990 \times \left[0.030 \times 0.6355 - 0.028253 \times 0.4971\right]
+    $$
+
+    $$
+    = 0.495 \times \left[0.019065 - 0.014045\right] = 0.495 \times 0.005020 = 0.002485
+    $$
+
+    The quanto floorlet price is approximately $0.2485\%$ of notional, or $24.85$ bp.
+
+    **Note:** The floorlet is relatively valuable because the quanto-adjusted forward rate ($2.825\%$) is below the strike ($3.0\%$), so the floor is in-the-money, making $N(-d_1) \approx 0.50$ and $N(-d_2) \approx 0.64$.
+
 ---
 
 **Exercise 7.** In a stochastic volatility extension, both $\sigma^f(t)$ and $\sigma_X(t)$ follow their own diffusion processes and $\rho_{L,X}(t)$ is state-dependent. Explain qualitatively why the constant-parameter quanto formula $\exp(-\rho\sigma^f\sigma_X T)$ becomes inadequate for long-dated quanto products. Describe two modeling approaches that can handle time-varying or stochastic correlation and discuss their calibration requirements.
+
+??? success "Solution to Exercise 7"
+
+    **Why the constant-parameter formula becomes inadequate:**
+
+    The quanto adjustment formula $\exp(-\rho\sigma^f\sigma_X T)$ assumes that $\rho$, $\sigma^f$, and $\sigma_X$ are **constant** over the life of the product. For long-dated quanto products (e.g., 10--30 years), this assumption breaks down for several reasons:
+
+    1. **Volatility mean-reversion and regime changes:** Interest rate volatilities and FX volatilities exhibit mean-reversion and can undergo regime shifts. Using today's spot volatility for a 20-year projection overstates or understates the cumulative adjustment. The correct integral is $\int_0^T \rho(t)\sigma^f(t)\sigma_X(t) \, dt$, which can differ significantly from $\rho\sigma^f\sigma_X T$.
+
+    2. **Correlation instability:** The rate-FX correlation $\rho_{L,X}$ is empirically unstable, varying with macroeconomic regimes (e.g., risk-on vs risk-off), monetary policy cycles, and market stress. A constant $\rho$ fails to capture the time-varying nature of this dependence.
+
+    3. **Stochastic volatility effects:** When volatilities are stochastic, the quanto adjustment depends on the **joint distribution** of $(\sigma^f(t), \sigma_X(t), \rho(t))$, not just their initial values. The convexity of the exponential function means that $\mathbb{E}[\exp(-\int_0^T \rho\sigma^f\sigma_X dt)] \neq \exp(-\mathbb{E}[\int_0^T \rho\sigma^f\sigma_X dt])$ (Jensen's inequality), introducing a higher-order correction.
+
+    4. **Correlation between correlation and rates:** If correlation increases during stress periods when rates are volatile, the average $\rho\sigma^f\sigma_X$ product differs from the product of averages.
+
+    **Two modeling approaches:**
+
+    **Approach 1: Multi-factor stochastic volatility with local correlation.**
+
+    Model the foreign rate, exchange rate, and their volatilities jointly:
+
+    - $dL^f/L^f = \sigma^f(v_1(t)) \, dW_1$, where $v_1$ follows a CIR or Heston process
+    - $dX/X = \ldots + \sigma_X(v_2(t)) \, dW_2$, where $v_2$ follows its own stochastic process
+    - $\rho_{L,X}(t) = \rho(v_1(t), v_2(t))$, a deterministic function of the variance states
+
+    **Calibration requirements:** Joint calibration to (1) the foreign interest rate swaption surface, (2) the FX option smile across maturities, and (3) cross-asset products such as quanto swaptions or power reverse dual currency notes (PRDCs) that are sensitive to rate-FX correlation. Correlation is typically backed out from quanto product prices or estimated from historical data with appropriate filtering.
+
+    **Approach 2: Time-dependent (piecewise constant) parameters.**
+
+    Use a simpler framework where $\sigma^f(t)$, $\sigma_X(t)$, and $\rho(t)$ are deterministic but time-varying (e.g., piecewise constant on annual intervals):
+
+    $$
+    L^{f,\text{quanto}}(0) = L^f(0) \exp\!\left(-\sum_{k} \rho_k \, \sigma^f_k \, \sigma_{X,k} \, \Delta t_k\right)
+    $$
+
+    **Calibration requirements:** Calibrate each time bucket's volatilities to the respective term structure of option prices (caplet vols for rates, FX option vols for FX). The time-dependent correlation can be estimated from forward-starting quanto products or from historical rolling-window estimates mapped to future periods.
+
+    This approach is simpler to implement than full stochastic volatility but captures the most important effect: the term structure of the adjustment parameters. It is widely used in practice for pricing long-dated quanto products.

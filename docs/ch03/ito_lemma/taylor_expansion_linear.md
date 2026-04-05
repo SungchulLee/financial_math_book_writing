@@ -238,46 +238,6 @@ That analysis leads to **Itô's lemma**, which can be viewed as a Taylor expansi
 
 **Exercise 1.** Let $f(x) = \sin(x)$. Write the first-order Taylor approximation of $f$ around $x_0 = 0$. Use it to approximate $f(0.1)$ and compare with the exact value.
 
----
-
-**Exercise 2.** For the function $f(t, b) = t^2 + tb + b^3$, compute the first-order Taylor expansion around $(t_0, b_0) = (1, 1)$. Identify the tangent plane equation explicitly.
-
----
-
-**Exercise 3.** A deterministic path satisfies $\Delta x = O(\Delta t)$, so $(\Delta x)^2 = O((\Delta t)^2)$. Explain why this means the quadratic term in the Taylor expansion is negligible for smooth deterministic functions. Then explain why the same argument fails for Brownian motion, where $\Delta B_t \sim \sqrt{\Delta t}$.
-
----
-
-**Exercise 4.** Consider $f(x) = \log(x)$ expanded around $x_0 = 1$.
-
-(a) Write the first-order Taylor approximation.
-
-(b) Use it to approximate $\log(1.05)$.
-
-(c) Compute the exact value and the absolute error. How does the error scale with $\Delta x = 0.05$?
-
----
-
-**Exercise 5.** Let $f(t, b) = e^{-t}\cos(b)$. Compute the partial derivatives $f_t(0, 0)$ and $f_b(0, 0)$, and write the first-order Taylor expansion around $(0, 0)$. What is the geometric interpretation of the result?
-
----
-
-**Exercise 6.** The error of a first-order Taylor approximation is proportional to $(\Delta x)^2$. Suppose you approximate $f(x) = e^x$ at $x_0 = 0$ with $\Delta x = 0.1$ and observe an error $\epsilon$. Predict (without computing the exact value) by what factor the error decreases if you reduce $\Delta x$ to $0.01$.
-
----
-
-**Exercise 7.** A Brownian motion path is simulated with $N = 1000$ steps over $[0, 1]$, so $\Delta t = 0.001$. For each increment $\Delta B_i$, we have $\mathbb{E}[(\Delta B_i)^2] = \Delta t$.
-
-(a) What is the expected value of $\sum_{i=0}^{N-1} (\Delta B_i)^2$?
-
-(b) Why does this sum converge to $t = 1$ as $N \to \infty$, while $\sum_{i=0}^{N-1} (\Delta t)^2 \to 0$?
-
-(c) Explain in one sentence why this difference is the reason linear Taylor approximations are insufficient for functions of Brownian motion.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The first-order Taylor approximation of $f(x) = \sin(x)$ around $x_0 = 0$ is
 
@@ -292,6 +252,10 @@ That analysis leads to **Itô's lemma**, which can be viewed as a Taylor expansi
     $$
 
     The exact value is $\sin(0.1) = 0.09983\ldots$, so the approximation error is approximately $0.00017$. This error is proportional to $(\Delta x)^2 = 0.01$, consistent with the general theory that first-order Taylor errors scale quadratically.
+
+---
+
+**Exercise 2.** For the function $f(t, b) = t^2 + tb + b^3$, compute the first-order Taylor expansion around $(t_0, b_0) = (1, 1)$. Identify the tangent plane equation explicitly.
 
 ??? success "Solution to Exercise 2"
     We compute $f(1,1) = 1 + 1 + 1 = 3$. The partial derivatives are
@@ -308,10 +272,24 @@ That analysis leads to **Itô's lemma**, which can be viewed as a Taylor expansi
 
     The tangent plane equation is $z = 3 + 3(t - 1) + 4(b - 1)$, or equivalently $z = 3t + 4b - 4$.
 
+---
+
+**Exercise 3.** A deterministic path satisfies $\Delta x = O(\Delta t)$, so $(\Delta x)^2 = O((\Delta t)^2)$. Explain why this means the quadratic term in the Taylor expansion is negligible for smooth deterministic functions. Then explain why the same argument fails for Brownian motion, where $\Delta B_t \sim \sqrt{\Delta t}$.
+
 ??? success "Solution to Exercise 3"
     For a deterministic path, the increment satisfies $\Delta x = O(\Delta t)$. Squaring gives $(\Delta x)^2 = O((\Delta t)^2)$. In the Taylor expansion, the first-order term $f'(x_0)\Delta x$ is $O(\Delta t)$, while the second-order term $\frac{1}{2}f''(x_0)(\Delta x)^2$ is $O((\Delta t)^2)$. As $\Delta t \to 0$, the quadratic term vanishes much faster than the linear term, so it can be safely dropped.
 
     For Brownian motion, $\Delta B_t \sim \sqrt{\Delta t}$, so $(\Delta B_t)^2 \sim \Delta t$. The quadratic term $\frac{1}{2}f''(\Delta B_t)^2$ is therefore $O(\Delta t)$ — the **same order** as the linear term $f'(\Delta t)$. Since it does not vanish relative to the first-order terms, it cannot be neglected.
+
+---
+
+**Exercise 4.** Consider $f(x) = \log(x)$ expanded around $x_0 = 1$.
+
+(a) Write the first-order Taylor approximation.
+
+(b) Use it to approximate $\log(1.05)$.
+
+(c) Compute the exact value and the absolute error. How does the error scale with $\Delta x = 0.05$?
 
 ??? success "Solution to Exercise 4"
     **(a)** We have $f(x) = \log(x)$, $f'(x) = 1/x$, and $f(1) = 0$, $f'(1) = 1$. The first-order Taylor approximation around $x_0 = 1$ is
@@ -328,6 +306,10 @@ That analysis leads to **Itô's lemma**, which can be viewed as a Taylor expansi
 
     **(c)** The exact value is $\log(1.05) = 0.04879\ldots$. The absolute error is $|0.05 - 0.04879| \approx 0.00121$. Since $f''(x) = -1/x^2$ and the error of a first-order approximation is approximately $\frac{1}{2}|f''(x_0)|(\Delta x)^2 = \frac{1}{2}(1)(0.05)^2 = 0.00125$, the error scales as $(\Delta x)^2$, which matches the observed value.
 
+---
+
+**Exercise 5.** Let $f(t, b) = e^{-t}\cos(b)$. Compute the partial derivatives $f_t(0, 0)$ and $f_b(0, 0)$, and write the first-order Taylor expansion around $(0, 0)$. What is the geometric interpretation of the result?
+
 ??? success "Solution to Exercise 5"
     The partial derivatives of $f(t, b) = e^{-t}\cos(b)$ are
 
@@ -343,6 +325,10 @@ That analysis leads to **Itô's lemma**, which can be viewed as a Taylor expansi
 
     Geometrically, the tangent plane at $(0, 0)$ is flat in the $b$-direction (since $f_b(0,0) = 0$) and has slope $-1$ in the $t$-direction. The surface is momentarily at a maximum in $b$ at $b = 0$ (since $\cos(b)$ peaks there), while it decays exponentially in $t$.
 
+---
+
+**Exercise 6.** The error of a first-order Taylor approximation is proportional to $(\Delta x)^2$. Suppose you approximate $f(x) = e^x$ at $x_0 = 0$ with $\Delta x = 0.1$ and observe an error $\epsilon$. Predict (without computing the exact value) by what factor the error decreases if you reduce $\Delta x$ to $0.01$.
+
 ??? success "Solution to Exercise 6"
     The error of a first-order Taylor approximation scales as $C(\Delta x)^2$ for some constant $C$ depending on $f''$. If the error at $\Delta x = 0.1$ is $\epsilon$, then $\epsilon \approx C(0.1)^2 = 0.01C$. At $\Delta x = 0.01$, the error is approximately $C(0.01)^2 = 0.0001C$. The ratio of errors is
 
@@ -351,6 +337,16 @@ That analysis leads to **Itô's lemma**, which can be viewed as a Taylor expansi
     $$
 
     The error decreases by a factor of $100$. Equivalently, reducing $\Delta x$ by a factor of $10$ reduces the error by a factor of $10^2 = 100$.
+
+---
+
+**Exercise 7.** A Brownian motion path is simulated with $N = 1000$ steps over $[0, 1]$, so $\Delta t = 0.001$. For each increment $\Delta B_i$, we have $\mathbb{E}[(\Delta B_i)^2] = \Delta t$.
+
+(a) What is the expected value of $\sum_{i=0}^{N-1} (\Delta B_i)^2$?
+
+(b) Why does this sum converge to $t = 1$ as $N \to \infty$, while $\sum_{i=0}^{N-1} (\Delta t)^2 \to 0$?
+
+(c) Explain in one sentence why this difference is the reason linear Taylor approximations are insufficient for functions of Brownian motion.
 
 ??? success "Solution to Exercise 7"
     **(a)** Since $\mathbb{E}[(\Delta B_i)^2] = \Delta t = 0.001$ for each increment, and the increments are independent:

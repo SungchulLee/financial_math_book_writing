@@ -244,6 +244,49 @@ The extended Riccati system with discounting modifies the standard system by sub
 
 **Exercise 1.** For the Vasicek model with short rate $r_t = X_t$, write the extended Riccati system $\tilde{\phi}' = F(\tilde{\psi}) - \rho_0$ and $\tilde{\psi}' = R(\tilde{\psi}) - \rho_1$ with $\rho_0 = 0$ and $\rho_1 = 1$. Solve for the bond pricing functions $A(\tau)$ and $B(\tau)$ with initial conditions $A(0) = 0$, $B(0) = 0$ and verify the well-known Vasicek bond price formula.
 
+??? success "Solution to Exercise 1"
+    For the Vasicek model $dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t$ with $r_t = X_t$, the affine parameters are $\kappa_0 = \kappa\theta$, $\kappa_1 = -\kappa$, $\sigma_0 = \sigma^2$, $\sigma_1 = 0$, $\rho_0 = 0$, $\rho_1 = 1$.
+
+    The extended Riccati system is:
+
+    $$
+    \tilde{\psi}'(\tau) = \kappa_1 \tilde{\psi} + \tfrac{1}{2}\sigma_1 \tilde{\psi}^2 - \rho_1 = -\kappa \tilde{\psi} - 1, \qquad \tilde{\psi}(0) = 0
+    $$
+
+    $$
+    \tilde{\phi}'(\tau) = \kappa_0 \tilde{\psi} + \tfrac{1}{2}\sigma_0 \tilde{\psi}^2 - \rho_0 = \kappa\theta \tilde{\psi} + \tfrac{1}{2}\sigma^2 \tilde{\psi}^2, \qquad \tilde{\phi}(0) = 0
+    $$
+
+    **Solving for $B(\tau) = \tilde{\psi}(\tau)$:** The linear ODE $B' = -\kappa B - 1$ with $B(0) = 0$ has the integrating factor $e^{\kappa\tau}$. Multiplying: $(e^{\kappa\tau}B)' = -e^{\kappa\tau}$, so $e^{\kappa\tau}B = -\frac{e^{\kappa\tau} - 1}{\kappa}$, giving
+
+    $$
+    B(\tau) = -\frac{1 - e^{-\kappa\tau}}{\kappa}
+    $$
+
+    **Solving for $A(\tau) = \tilde{\phi}(\tau)$:** Integrating $A' = \kappa\theta B + \frac{1}{2}\sigma^2 B^2$:
+
+    $$
+    A(\tau) = \kappa\theta\int_0^\tau B(s)\,ds + \frac{\sigma^2}{2}\int_0^\tau B(s)^2\,ds
+    $$
+
+    Computing each integral with $B(s) = -\frac{1 - e^{-\kappa s}}{\kappa}$:
+
+    $$
+    \int_0^\tau B(s)\,ds = -\frac{1}{\kappa}\left(\tau - \frac{1 - e^{-\kappa\tau}}{\kappa}\right) = -\frac{\tau}{\kappa} + \frac{1 - e^{-\kappa\tau}}{\kappa^2}
+    $$
+
+    $$
+    \int_0^\tau B(s)^2\,ds = \frac{1}{\kappa^2}\left(\tau - \frac{2(1 - e^{-\kappa\tau})}{\kappa} + \frac{1 - e^{-2\kappa\tau}}{2\kappa}\right)
+    $$
+
+    Combining:
+
+    $$
+    A(\tau) = -\theta\!\left(\tau + \frac{e^{-\kappa\tau} - 1}{\kappa}\right) + \frac{\sigma^2}{2\kappa^2}\!\left(\tau + \frac{2(e^{-\kappa\tau} - 1)}{\kappa} + \frac{1 - e^{-2\kappa\tau}}{2\kappa}\right)
+    $$
+
+    The bond price is $P(t, T) = e^{A(\tau) + B(\tau)r_t}$, which is the standard Vasicek formula.
+
 ---
 
 **Exercise 2.** For the CIR model, the bond pricing Riccati equation is $B'(\tau) = -1 - \kappa B + \frac{\xi^2}{2}B^2$. Define $\gamma = \sqrt{\kappa^2 + 2\xi^2}$ and verify by direct substitution that
@@ -254,18 +297,165 @@ $$
 
 satisfies this ODE with $B(0) = 0$.
 
+??? success "Solution to Exercise 2"
+    We need to verify that $B(\tau) = \frac{-2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}$ satisfies $B' = -1 - \kappa B + \frac{\xi^2}{2}B^2$ with $B(0) = 0$.
+
+    **Initial condition:** At $\tau = 0$, $e^{\gamma \cdot 0} - 1 = 0$, so $B(0) = \frac{-2 \cdot 0}{0 + 2\gamma} = 0$. Verified.
+
+    **ODE verification:** Write $B = -2N/D$ where $N = e^{\gamma\tau} - 1$ and $D = (\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma$. Then $N' = \gamma e^{\gamma\tau}$ and $D' = (\gamma + \kappa)\gamma e^{\gamma\tau}$.
+
+    $$
+    B' = -2\frac{N'D - ND'}{D^2} = -2\frac{\gamma e^{\gamma\tau} D - (e^{\gamma\tau} - 1)(\gamma + \kappa)\gamma e^{\gamma\tau}}{D^2}
+    $$
+
+    The numerator simplifies to $-2\gamma e^{\gamma\tau}[D - (\gamma + \kappa)(e^{\gamma\tau} - 1)] = -2\gamma e^{\gamma\tau} \cdot 2\gamma = -4\gamma^2 e^{\gamma\tau}$.
+
+    So $B' = -4\gamma^2 e^{\gamma\tau}/D^2$. On the other hand, computing $-1 - \kappa B + \frac{\xi^2}{2}B^2$:
+
+    $$
+    -1 + \frac{2\kappa N}{D} + \frac{\xi^2}{2}\cdot\frac{4N^2}{D^2} = \frac{-D^2 + 2\kappa ND + 2\xi^2 N^2}{D^2}
+    $$
+
+    Expanding the numerator with $\gamma^2 = \kappa^2 + 2\xi^2$ and $D = (\gamma + \kappa)N + 2\gamma$:
+
+    $$
+    -D^2 + 2\kappa ND + 2\xi^2 N^2 = -[(\gamma+\kappa)N + 2\gamma]^2 + 2\kappa N[(\gamma+\kappa)N + 2\gamma] + 2\xi^2 N^2
+    $$
+
+    Expanding: $-(\gamma+\kappa)^2 N^2 - 4\gamma(\gamma+\kappa)N - 4\gamma^2 + 2\kappa(\gamma+\kappa)N^2 + 4\kappa\gamma N + 2\xi^2 N^2$.
+
+    The $N^2$ coefficient: $-(\gamma+\kappa)^2 + 2\kappa(\gamma+\kappa) + 2\xi^2 = -\gamma^2 + \kappa^2 + 2\xi^2 = -\gamma^2 + \gamma^2 = 0$.
+
+    The $N$ coefficient: $-4\gamma(\gamma+\kappa) + 4\kappa\gamma = -4\gamma^2$.
+
+    The constant: $-4\gamma^2$.
+
+    So the numerator is $-4\gamma^2 N - 4\gamma^2 = -4\gamma^2(N + 1) = -4\gamma^2 e^{\gamma\tau}$, confirming $B' = -4\gamma^2 e^{\gamma\tau}/D^2$. The ODE is satisfied.
+
 ---
 
 **Exercise 3.** Show that the yield $y(t, T) = -\frac{A(\tau)}{\tau} - \frac{B(\tau)}{\tau}x$ for the CIR model converges to a finite limit as $\tau \to \infty$. Compute this long-run yield $y_\infty$ in terms of $\kappa$, $\theta$, $\xi$, and $\gamma$.
+
+??? success "Solution to Exercise 3"
+    The yield is $y(t, T) = -\frac{A(\tau)}{\tau} - \frac{B(\tau)}{\tau}x$. We need the limits of $B(\tau)/\tau$ and $A(\tau)/\tau$ as $\tau \to \infty$.
+
+    **Limit of $B(\tau)/\tau$:** Since $B(\tau) = \frac{-2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}$, for large $\tau$ the $e^{\gamma\tau}$ terms dominate:
+
+    $$
+    B(\tau) \to \frac{-2e^{\gamma\tau}}{(\gamma + \kappa)e^{\gamma\tau}} = \frac{-2}{\gamma + \kappa}
+    $$
+
+    So $B(\tau)/\tau \to 0$ as $\tau \to \infty$, and $B(\tau)$ converges to the finite limit $B_\infty = \frac{-2}{\gamma + \kappa}$.
+
+    **Limit of $A(\tau)/\tau$:** From $A' = \kappa\theta B + \frac{1}{2} \cdot 0 \cdot B^2 = \kappa\theta B$ (since $\sigma_0 = 0$ in CIR), we have by L'Hopital's rule
+
+    $$
+    \lim_{\tau \to \infty}\frac{A(\tau)}{\tau} = \lim_{\tau \to \infty} A'(\tau) = \kappa\theta B_\infty = \frac{-2\kappa\theta}{\gamma + \kappa}
+    $$
+
+    Therefore the long-run yield is
+
+    $$
+    y_\infty = \lim_{\tau \to \infty} y(t, T) = -\lim_{\tau\to\infty}\frac{A(\tau)}{\tau} = \frac{2\kappa\theta}{\gamma + \kappa}
+    $$
+
+    This is finite and independent of $x$ (the current short rate). It depends only on the long-run mean $\theta$, the speed of mean reversion $\kappa$, the volatility $\xi$ (through $\gamma = \sqrt{\kappa^2 + 2\xi^2}$), and represents the yield on an infinitely long zero-coupon bond.
 
 ---
 
 **Exercise 4.** Verify that the instantaneous forward rate $f(t, T) = -A'(\tau) - B'(\tau)x$ recovers the short rate at $\tau = 0$: $f(t, t) = -A'(0) - B'(0)x = \rho_0 + \rho_1 x = r(x)$.
 
+??? success "Solution to Exercise 4"
+    At $\tau = 0$, the bond matures and pays $\$1$, so $P(t, t) = 1$, $A(0) = 0$, and $B(0) = 0$. We need to verify $f(t, t) = -A'(0) - B'(0)x = r(x)$.
+
+    From the Riccati system:
+
+    $$
+    A'(0) = F(B(0)) - \rho_0 = F(0) - \rho_0
+    $$
+
+    Since $F(0) = \langle b_0, 0 \rangle + \frac{1}{2}\langle 0, a_0 \cdot 0 \rangle = 0$, we get $A'(0) = -\rho_0$.
+
+    $$
+    B_j'(0) = R_j(B(0)) - \rho_{1,j} = R_j(0) - \rho_{1,j}
+    $$
+
+    Since $R_j(0) = \langle b_j, 0 \rangle + \frac{1}{2}\langle 0, a_j \cdot 0 \rangle = 0$, we get $B_j'(0) = -\rho_{1,j}$.
+
+    Therefore
+
+    $$
+    f(t, t) = -A'(0) - \langle B'(0), x \rangle = \rho_0 + \langle \rho_1, x \rangle = r(x)
+    $$
+
+    This confirms that the instantaneous forward rate at $\tau = 0$ equals the current short rate, which is the fundamental consistency condition for the term structure.
+
 ---
 
 **Exercise 5.** Consider a two-factor model where $r_t = X_t^{(1)} + X_t^{(2)}$ with independent Vasicek factors. Write down the extended Riccati system for the bond price $P(t, T) = e^{A(\tau) + B_1(\tau)x_1 + B_2(\tau)x_2}$ and show that $B_1$ and $B_2$ satisfy independent linear ODEs. Derive the two-factor bond price formula.
 
+??? success "Solution to Exercise 5"
+    With $r_t = X_t^{(1)} + X_t^{(2)}$, we have $\rho_0 = 0$ and $\rho_1 = (1, 1)^T$. Each factor follows an independent Vasicek process: $dX_t^{(i)} = \kappa_i(\theta_i - X_t^{(i)})\,dt + \sigma_i\,dW_t^{(i)}$ for $i = 1, 2$.
+
+    The affine parameters for each factor are $b_{0,i} = \kappa_i\theta_i$, $b_{i,i} = -\kappa_i$ (with $b_{i,j} = 0$ for $i \neq j$), $a_{0,ii} = \sigma_i^2$, $a_{j,ik} = 0$ for all $j$. Setting $u = 0$ for bond pricing:
+
+    $$
+    B_i'(\tau) = -\kappa_i B_i - 1, \qquad B_i(0) = 0, \quad i = 1, 2
+    $$
+
+    $$
+    A'(\tau) = \kappa_1\theta_1 B_1 + \kappa_2\theta_2 B_2 + \tfrac{1}{2}\sigma_1^2 B_1^2 + \tfrac{1}{2}\sigma_2^2 B_2^2, \qquad A(0) = 0
+    $$
+
+    Since the $B_i$-equations are decoupled, each is an independent linear ODE with solution
+
+    $$
+    B_i(\tau) = -\frac{1 - e^{-\kappa_i\tau}}{\kappa_i}, \quad i = 1, 2
+    $$
+
+    The $A$-equation is then integrated directly:
+
+    $$
+    A(\tau) = \sum_{i=1}^{2}\left[\kappa_i\theta_i\int_0^\tau B_i(s)\,ds + \frac{\sigma_i^2}{2}\int_0^\tau B_i(s)^2\,ds\right]
+    $$
+
+    Each integral is the same as in the one-factor Vasicek case. Writing $A_i(\tau)$ for the one-factor $A$-function of factor $i$, we get $A(\tau) = A_1(\tau) + A_2(\tau)$. The two-factor bond price is
+
+    $$
+    P(t, T) = e^{A_1(\tau) + A_2(\tau) + B_1(\tau)x_1 + B_2(\tau)x_2}
+    $$
+
+    which is the product of two independent Vasicek bond prices: $P = P_1(t, T) \cdot P_2(t, T)$. This factorization is a direct consequence of the independence of the two factors.
+
 ---
 
 **Exercise 6.** For the discounted characteristic function ($u = iv \neq 0$), the extended Riccati system must be solved with complex initial data $\tilde{\psi}(0) = iv$. Taking the CIR model, write down the discriminant for the $\tilde{\psi}$-equation with discounting and compare it to the discriminant $\gamma = \sqrt{\kappa^2 - 2\xi^2 iv}$ from the undiscounted case. How does the discounting term $\rho_1 = 1$ modify the discriminant?
+
+??? success "Solution to Exercise 6"
+    For the CIR model with discounting ($\rho_1 = 1$), the $\tilde{\psi}$-equation is
+
+    $$
+    \tilde{\psi}' = -\kappa\tilde{\psi} + \frac{\xi^2}{2}\tilde{\psi}^2 - 1
+    $$
+
+    This is a Riccati equation $\tilde{\psi}' = \alpha + \beta\tilde{\psi} + \frac{1}{2}\gamma\tilde{\psi}^2$ with $\alpha = -1$, $\beta = -\kappa$, $\gamma = \xi^2$. The discriminant of this equation is
+
+    $$
+    \tilde{\gamma}^2 = \beta^2 - 2\alpha\gamma = \kappa^2 + 2\xi^2
+    $$
+
+    so $\tilde{\gamma} = \sqrt{\kappa^2 + 2\xi^2}$.
+
+    For the **undiscounted** characteristic function (no killing, $\rho_1 = 0$) with initial condition $\tilde{\psi}(0) = iv$, the $\tilde{\psi}$-equation is
+
+    $$
+    \tilde{\psi}' = -\kappa\tilde{\psi} + \frac{\xi^2}{2}\tilde{\psi}^2
+    $$
+
+    with $\alpha = 0$, giving discriminant $\gamma_{\text{undiscounted}}^2 = \kappa^2$, and the characteristic function involves $\gamma_{\text{undiscounted}} = \kappa$. However, if we look at the combined equation for bond pricing plus characteristic function (with $\tilde{\psi}(0) = iv$ and $\rho_1 = 1$), the full discriminant is
+
+    $$
+    \tilde{\gamma}(v) = \sqrt{\kappa^2 + 2\xi^2 - 2\xi^2 iv + 2\xi^2} = \sqrt{(\kappa^2 + 2\xi^2) - 2\xi^2 iv}
+    $$
+
+    Comparing with the undiscounted case where the discriminant would be $\gamma(v) = \sqrt{\kappa^2 - 2\xi^2 iv}$, the discounting adds $+2\xi^2$ inside the square root. This shifts the real part of the discriminant upward, which improves the numerical stability of the Riccati solution for complex arguments and ensures that the bond-pricing component ($v = 0$) gives $\tilde{\gamma}(0) = \sqrt{\kappa^2 + 2\xi^2}$, matching the standard CIR bond discriminant.

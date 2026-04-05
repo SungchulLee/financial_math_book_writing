@@ -305,38 +305,6 @@ $$
 
 **Exercise 1.** Evaluate $\int_0^t B_s^3\,dB_s$ by choosing an appropriate function $f(x)$ with $f'(x) = x^3$ and applying Itô's lemma. Express your answer in terms of $B_t$ and an ordinary integral.
 
----
-
-**Exercise 2.** For $\theta \in \mathbb{R}$, define $M_t = \cos(\theta B_t)\,e^{\theta^2 t/2}$. Apply Itô's lemma to show that $dM_t$ has no $dt$ term, and conclude that $M_t$ is a local martingale. Write the SDE satisfied by $M_t$.
-
----
-
-**Exercise 3.** The Ornstein--Uhlenbeck process satisfies $dX_t = -\theta X_t\,dt + \sigma\,dB_t$ with $X_0 = x_0$. Apply Itô's lemma to $f(t, x) = e^{\theta t}x$ to derive the explicit solution for $X_t$. (Hint: the product-rule approach in Example 7 of the Itô Rules page uses the same idea.)
-
----
-
-**Exercise 4.** Let $dS_t = \mu S_t\,dt + \sigma S_t\,dB_t$ be geometric Brownian motion. Apply Itô's lemma to $f(x) = x^p$ for a constant $p \in \mathbb{R}$ to compute $d(S_t^p)$. Show that
-
-$$
-S_t^p = S_0^p \exp\!\left[\left(p\mu + \frac{1}{2}p(p-1)\sigma^2\right)t + p\sigma B_t\right]
-$$
-
----
-
-**Exercise 5.** Evaluate $\int_0^t (1 + B_s^2)\,dB_s$ by splitting the integral and applying Itô's lemma to appropriate antiderivatives for each term. Express the result using $B_t$ and ordinary integrals.
-
----
-
-**Exercise 6.** Apply Itô's lemma to $f(x) = \log(x^2) = 2\log(x)$ for $x > 0$ with $dX_t = \mu X_t\,dt + \sigma X_t\,dB_t$. Verify that you obtain twice the result from the $\log(x)$ computation in Example 7. Explain why this must be the case.
-
----
-
-**Exercise 7.** Let $B_0 = b > 0$ and define $Y_t = B_t^2$ for $t < \tau_0 = \inf\{t : B_t = 0\}$. Use Itô's lemma to compute $dY_t$. Then apply Itô's lemma again to $g(y) = \sqrt{y}$ to recover $dB_t$ from $dY_t$, and verify consistency. What regularity condition on $g$ fails at $y = 0$, and why does this matter?
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     Choose $f(x) = \frac{1}{4}x^4$, so $f'(x) = x^3$ and $f''(x) = 3x^2$. Itô's lemma gives:
 
@@ -355,6 +323,10 @@ $$
     $$
     \int_0^t B_s^3\,dB_s = \frac{1}{4}B_t^4 - \frac{3}{2}\int_0^t B_s^2\,ds
     $$
+
+---
+
+**Exercise 2.** For $\theta \in \mathbb{R}$, define $M_t = \cos(\theta B_t)\,e^{\theta^2 t/2}$. Apply Itô's lemma to show that $dM_t$ has no $dt$ term, and conclude that $M_t$ is a local martingale. Write the SDE satisfied by $M_t$.
 
 ??? success "Solution to Exercise 2"
     For $M_t = \cos(\theta B_t)\,e^{\theta^2 t/2}$, write $f(t, x) = \cos(\theta x)\,e^{\theta^2 t/2}$. Compute:
@@ -376,6 +348,10 @@ $$
     $$
 
     Since the $dt$ term vanishes, $M_t$ is a local martingale.
+
+---
+
+**Exercise 3.** The Ornstein--Uhlenbeck process satisfies $dX_t = -\theta X_t\,dt + \sigma\,dB_t$ with $X_0 = x_0$. Apply Itô's lemma to $f(t, x) = e^{\theta t}x$ to derive the explicit solution for $X_t$. (Hint: the product-rule approach in Example 7 of the Itô Rules page uses the same idea.)
 
 ??? success "Solution to Exercise 3"
     The Ornstein--Uhlenbeck SDE is $dX_t = -\theta X_t\,dt + \sigma\,dB_t$. Let $f(t, x) = e^{\theta t}x$. Then:
@@ -401,6 +377,14 @@ $$
     $$
     X_t = e^{-\theta t}x_0 + \sigma e^{-\theta t}\int_0^t e^{\theta s}\,dB_s = e^{-\theta t}x_0 + \sigma\int_0^t e^{-\theta(t-s)}\,dB_s
     $$
+
+---
+
+**Exercise 4.** Let $dS_t = \mu S_t\,dt + \sigma S_t\,dB_t$ be geometric Brownian motion. Apply Itô's lemma to $f(x) = x^p$ for a constant $p \in \mathbb{R}$ to compute $d(S_t^p)$. Show that
+
+$$
+S_t^p = S_0^p \exp\!\left[\left(p\mu + \frac{1}{2}p(p-1)\sigma^2\right)t + p\sigma B_t\right]
+$$
 
 ??? success "Solution to Exercise 4"
     For $f(x) = x^p$ with $dS_t = \mu S_t\,dt + \sigma S_t\,dB_t$: $f'(x) = px^{p-1}$, $f''(x) = p(p-1)x^{p-2}$. By Version 3:
@@ -429,6 +413,10 @@ $$
 
     where the exponent is $p(\mu - \frac{1}{2}\sigma^2)t + p\sigma B_t = (p\mu - \frac{1}{2}p\sigma^2)t + p\sigma B_t$, and we verify: writing $S_t^p$ as a GBM with drift coefficient $p\mu + \frac{1}{2}p(p-1)\sigma^2$ and applying the log-to-exponential conversion with convexity adjustment $-\frac{1}{2}(p\sigma)^2$ confirms the stated formula.
 
+---
+
+**Exercise 5.** Evaluate $\int_0^t (1 + B_s^2)\,dB_s$ by splitting the integral and applying Itô's lemma to appropriate antiderivatives for each term. Express the result using $B_t$ and ordinary integrals.
+
 ??? success "Solution to Exercise 5"
     Split the integral: $\int_0^t (1 + B_s^2)\,dB_s = \int_0^t dB_s + \int_0^t B_s^2\,dB_s$.
 
@@ -445,6 +433,10 @@ $$
     $$
     \int_0^t (1 + B_s^2)\,dB_s = B_t + \frac{1}{3}B_t^3 - \int_0^t B_s\,ds
     $$
+
+---
+
+**Exercise 6.** Apply Itô's lemma to $f(x) = \log(x^2) = 2\log(x)$ for $x > 0$ with $dX_t = \mu X_t\,dt + \sigma X_t\,dB_t$. Verify that you obtain twice the result from the $\log(x)$ computation in Example 7. Explain why this must be the case.
 
 ??? success "Solution to Exercise 6"
     For $f(x) = \log(x^2) = 2\log(x)$ with $x > 0$ and $dX_t = \mu X_t\,dt + \sigma X_t\,dB_t$:
@@ -464,6 +456,10 @@ $$
     $$
 
     This is exactly twice the result from the $\log(x)$ computation: $d(\log X_t) = (\mu - \frac{\sigma^2}{2})\,dt + \sigma\,dB_t$. This must be the case because $\log(x^2) = 2\log(x)$, so by linearity of the differential, $d(\log(X_t^2)) = 2\,d(\log X_t)$.
+
+---
+
+**Exercise 7.** Let $B_0 = b > 0$ and define $Y_t = B_t^2$ for $t < \tau_0 = \inf\{t : B_t = 0\}$. Use Itô's lemma to compute $dY_t$. Then apply Itô's lemma again to $g(y) = \sqrt{y}$ to recover $dB_t$ from $dY_t$, and verify consistency. What regularity condition on $g$ fails at $y = 0$, and why does this matter?
 
 ??? success "Solution to Exercise 7"
     For $Y_t = B_t^2$ with $f(x) = x^2$: $f'(x) = 2x$, $f''(x) = 2$. Itô's lemma gives:

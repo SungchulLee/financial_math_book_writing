@@ -323,22 +323,318 @@ Both approaches address the same problem---sensitivity of mean-variance optimiza
 
 **Exercise 1.** Given a market-capitalization-weighted portfolio $w_{\text{mkt}} = (0.6, 0.4)^\top$ for two assets with covariance $\Sigma = \begin{pmatrix} 0.04 & 0.01 \\ 0.01 & 0.09 \end{pmatrix}$ and risk aversion $\lambda = 2.5$, compute the implied equilibrium returns $\Pi = \lambda \Sigma w_{\text{mkt}}$. Explain why these "reverse-optimized" returns serve as a more stable prior than sample means.
 
+??? success "Solution to Exercise 1"
+    We compute $\Pi = \lambda \Sigma w_{\text{mkt}}$ with $\lambda = 2.5$, $\Sigma = \begin{pmatrix} 0.04 & 0.01 \\ 0.01 & 0.09 \end{pmatrix}$, and $w_{\text{mkt}} = (0.6, 0.4)^\top$.
+
+    First, compute $\Sigma w_{\text{mkt}}$:
+
+    $$
+    \Sigma w_{\text{mkt}} = \begin{pmatrix} 0.04 & 0.01 \\ 0.01 & 0.09 \end{pmatrix}\begin{pmatrix} 0.6 \\ 0.4 \end{pmatrix} = \begin{pmatrix} 0.04 \times 0.6 + 0.01 \times 0.4 \\ 0.01 \times 0.6 + 0.09 \times 0.4 \end{pmatrix} = \begin{pmatrix} 0.028 \\ 0.042 \end{pmatrix}
+    $$
+
+    Then multiply by $\lambda = 2.5$:
+
+    $$
+    \Pi = 2.5 \times \begin{pmatrix} 0.028 \\ 0.042 \end{pmatrix} = \begin{pmatrix} 0.07 \\ 0.105 \end{pmatrix}
+    $$
+
+    So the implied equilibrium excess returns are $\Pi_1 = 7.0\%$ and $\Pi_2 = 10.5\%$.
+
+    **Why these are more stable than sample means:** Sample mean estimates of expected returns have standard errors on the order of $\sigma / \sqrt{T}$. For a typical asset with $\sigma = 20\%$ and $T = 60$ monthly observations, the standard error is approximately $20\% / \sqrt{60} \approx 2.6\%$ per month (or much larger annualized), which is comparable in magnitude to the expected return differences themselves. This makes sample means extremely noisy.
+
+    In contrast, reverse-optimized returns $\Pi = \lambda \Sigma w_{\text{mkt}}$ depend on market capitalization weights (which are very stable and precisely measured) and the covariance matrix (which is far more accurately estimated than means, since second moments converge at rate $O(1/\sqrt{T})$ with a smaller constant). A small change in capitalization weights produces a proportionally small, smooth change in $\Pi$, whereas a small change in sample returns can produce wild swings in $\hat{\mu}$. The reverse-optimized returns therefore serve as a well-anchored, stable prior for the Bayesian updating step.
+
 ---
 
 **Exercise 2.** An investor believes Asset 2 will outperform Asset 1 by 2% (i.e., the view is $\mu_2 - \mu_1 = 0.02$ with confidence $\omega^2 = 0.001$). Using the Black-Litterman formula with $\tau = 0.05$ and the equilibrium returns from Exercise 1, compute the posterior expected returns $\mu_{\text{BL}} = [(\tau\Sigma)^{-1} + P^\top \Omega^{-1} P]^{-1}[(\tau\Sigma)^{-1}\Pi + P^\top \Omega^{-1} q]$ where $P = (-1, 1)$, $q = 0.02$, $\Omega = (0.001)$.
+
+??? success "Solution to Exercise 2"
+    **Setup.** We have $\tau = 0.05$, $P = (-1, \; 1)$ (a $1 \times 2$ matrix), $q = 0.02$, and $\Omega = (0.001)$ (a $1 \times 1$ matrix). From Exercise 1, $\Pi = (0.07, 0.105)^\top$.
+
+    **Step 1 — Compute $(\tau \Sigma)^{-1}$.**
+
+    $$
+    \tau \Sigma = 0.05 \begin{pmatrix} 0.04 & 0.01 \\ 0.01 & 0.09 \end{pmatrix} = \begin{pmatrix} 0.002 & 0.0005 \\ 0.0005 & 0.0045 \end{pmatrix}
+    $$
+
+    The determinant is $\det(\tau \Sigma) = 0.002 \times 0.0045 - 0.0005^2 = 0.000009 - 0.00000025 = 0.00000875$.
+
+    $$
+    (\tau \Sigma)^{-1} = \frac{1}{0.00000875}\begin{pmatrix} 0.0045 & -0.0005 \\ -0.0005 & 0.002 \end{pmatrix} = \begin{pmatrix} 514.286 & -57.143 \\ -57.143 & 228.571 \end{pmatrix}
+    $$
+
+    **Step 2 — Compute $P^\top \Omega^{-1} P$.**
+
+    Since $\Omega^{-1} = 1/0.001 = 1000$:
+
+    $$
+    P^\top \Omega^{-1} P = 1000 \begin{pmatrix} -1 \\ 1 \end{pmatrix}(-1, \; 1) = 1000 \begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix} = \begin{pmatrix} 1000 & -1000 \\ -1000 & 1000 \end{pmatrix}
+    $$
+
+    **Step 3 — Compute the posterior precision matrix.**
+
+    $$
+    \hat{\Sigma}_{\text{BL}}^{-1} = (\tau \Sigma)^{-1} + P^\top \Omega^{-1} P = \begin{pmatrix} 1514.286 & -1057.143 \\ -1057.143 & 1228.571 \end{pmatrix}
+    $$
+
+    **Step 4 — Invert to get $\hat{\Sigma}_{\text{BL}}$.**
+
+    The determinant is $1514.286 \times 1228.571 - 1057.143^2 = 1860000 - 1117551.02 \approx 742449$.
+
+    $$
+    \hat{\Sigma}_{\text{BL}} = \frac{1}{742449}\begin{pmatrix} 1228.571 & 1057.143 \\ 1057.143 & 1514.286 \end{pmatrix} \approx \begin{pmatrix} 0.001655 & 0.001424 \\ 0.001424 & 0.002039 \end{pmatrix}
+    $$
+
+    **Step 5 — Compute the right-hand side vector.**
+
+    $$
+    (\tau \Sigma)^{-1}\Pi = \begin{pmatrix} 514.286 & -57.143 \\ -57.143 & 228.571 \end{pmatrix}\begin{pmatrix} 0.07 \\ 0.105 \end{pmatrix} = \begin{pmatrix} 30.0 \\ 20.0 \end{pmatrix}
+    $$
+
+    $$
+    P^\top \Omega^{-1} q = 1000 \begin{pmatrix} -1 \\ 1 \end{pmatrix}(0.02) = \begin{pmatrix} -20 \\ 20 \end{pmatrix}
+    $$
+
+    $$
+    \text{RHS} = \begin{pmatrix} 30.0 \\ 20.0 \end{pmatrix} + \begin{pmatrix} -20 \\ 20 \end{pmatrix} = \begin{pmatrix} 10.0 \\ 40.0 \end{pmatrix}
+    $$
+
+    **Step 6 — Compute the posterior mean.**
+
+    $$
+    \hat{\mu}_{\text{BL}} = \hat{\Sigma}_{\text{BL}} \times \text{RHS} = \begin{pmatrix} 0.001655 & 0.001424 \\ 0.001424 & 0.002039 \end{pmatrix}\begin{pmatrix} 10.0 \\ 40.0 \end{pmatrix} = \begin{pmatrix} 0.07351 \\ 0.09580 \end{pmatrix}
+    $$
+
+    Approximately $\hat{\mu}_{\text{BL}} \approx (7.35\%, \; 9.58\%)^\top$.
+
+    **Interpretation.** The view that Asset 2 outperforms Asset 1 by 2% has shifted the posterior away from equilibrium ($\Pi = (7.0\%, 10.5\%)^\top$). Asset 1's expected return increased slightly from 7.0% to 7.35%, while Asset 2's decreased from 10.5% to 9.58%. The implied spread $\hat{\mu}_2 - \hat{\mu}_1 = 2.23\%$ has moved toward the view of 2% from the equilibrium spread of 3.5%, representing a precision-weighted compromise between the prior and the view.
 
 ---
 
 **Exercise 3.** Show that the Black-Litterman model is equivalent to Theil's mixed estimation. Specifically, write the equilibrium prior as $\Pi = \mu + \epsilon_1$ with $\epsilon_1 \sim N(0, \tau\Sigma)$ and the view as $q = P\mu + \epsilon_2$ with $\epsilon_2 \sim N(0, \Omega)$, then derive the GLS estimator $\hat{\mu}_{\text{BL}}$ by stacking these "observation" equations.
 
+??? success "Solution to Exercise 3"
+    **Theil mixed estimation** treats the prior and view equations as a stacked linear regression system with heteroscedastic errors.
+
+    **The two "observation" equations:**
+
+    1. **Prior equation:** The equilibrium returns are a noisy observation of $\mu$:
+
+        $$
+        \Pi = I \cdot \mu + \eta, \quad \eta \sim N(0, \tau \Sigma)
+        $$
+
+    2. **View equation:** The investor views are another noisy observation:
+
+        $$
+        q = P \mu + \varepsilon, \quad \varepsilon \sim N(0, \Omega)
+        $$
+
+    **Stack the system.** Define:
+
+    $$
+    y = \begin{pmatrix} \Pi \\ q \end{pmatrix}, \quad X = \begin{pmatrix} I \\ P \end{pmatrix}, \quad e = \begin{pmatrix} \eta \\ \varepsilon \end{pmatrix}, \quad \text{Var}(e) = V = \begin{pmatrix} \tau \Sigma & 0 \\ 0 & \Omega \end{pmatrix}
+    $$
+
+    so the system is $y = X \mu + e$ with $e \sim N(0, V)$.
+
+    **GLS estimator.** The generalized least squares estimator is:
+
+    $$
+    \hat{\mu}_{\text{GLS}} = (X^\top V^{-1} X)^{-1} X^\top V^{-1} y
+    $$
+
+    **Expand $X^\top V^{-1} X$:**
+
+    $$
+    X^\top V^{-1} X = \begin{pmatrix} I & P^\top \end{pmatrix} \begin{pmatrix} (\tau \Sigma)^{-1} & 0 \\ 0 & \Omega^{-1} \end{pmatrix} \begin{pmatrix} I \\ P \end{pmatrix} = (\tau \Sigma)^{-1} + P^\top \Omega^{-1} P
+    $$
+
+    **Expand $X^\top V^{-1} y$:**
+
+    $$
+    X^\top V^{-1} y = \begin{pmatrix} I & P^\top \end{pmatrix} \begin{pmatrix} (\tau \Sigma)^{-1} & 0 \\ 0 & \Omega^{-1} \end{pmatrix} \begin{pmatrix} \Pi \\ q \end{pmatrix} = (\tau \Sigma)^{-1} \Pi + P^\top \Omega^{-1} q
+    $$
+
+    **Therefore:**
+
+    $$
+    \hat{\mu}_{\text{GLS}} = \big[(\tau \Sigma)^{-1} + P^\top \Omega^{-1} P\big]^{-1}\big[(\tau \Sigma)^{-1} \Pi + P^\top \Omega^{-1} q\big]
+    $$
+
+    This is exactly the Black-Litterman posterior mean $\hat{\mu}_{\text{BL}}$. The GLS covariance of the estimator is:
+
+    $$
+    \text{Var}(\hat{\mu}_{\text{GLS}}) = (X^\top V^{-1} X)^{-1} = \big[(\tau \Sigma)^{-1} + P^\top \Omega^{-1} P\big]^{-1} = \hat{\Sigma}_{\text{BL}}
+    $$
+
+    which is exactly the Black-Litterman posterior covariance. This establishes the complete equivalence: the Bayesian posterior under Gaussian conjugate priors is identical to the frequentist GLS estimator in the Theil mixed estimation framework. $\blacksquare$
+
 ---
 
 **Exercise 4.** The parameter $\tau$ controls the relative weight of the equilibrium prior versus investor views. For $\tau \in \{0.01, 0.05, 0.25, 1.0\}$, compute the Black-Litterman posterior returns from Exercise 2 and plot how the portfolio allocation changes. At what value of $\tau$ does the view dominate the equilibrium? Explain the financial interpretation.
+
+??? success "Solution to Exercise 4"
+    Using the setup from Exercises 1--2, we compute $\hat{\mu}_{\text{BL}}$ for each value of $\tau$. The key quantities that change with $\tau$ are $(\tau \Sigma)^{-1}$ and $P^\top \Omega^{-1} P$.
+
+    We use the alternative form for clarity:
+
+    $$
+    \hat{\mu}_{\text{BL}} = \Pi + \tau \Sigma P^\top (P \tau \Sigma P^\top + \Omega)^{-1}(q - P\Pi)
+    $$
+
+    **Preliminary:** $P = (-1, 1)$, $q = 0.02$, $\Pi = (0.07, 0.105)^\top$.
+
+    $$
+    P \Pi = -0.07 + 0.105 = 0.035, \quad q - P\Pi = 0.02 - 0.035 = -0.015
+    $$
+
+    $$
+    P \Sigma P^\top = 1 \cdot 0.04 - 2 \cdot 0.01 + 1 \cdot 0.09 = 0.11
+    $$
+
+    $$
+    \Sigma P^\top = \begin{pmatrix} -0.04 + 0.01 \\ -0.01 + 0.09 \end{pmatrix} = \begin{pmatrix} -0.03 \\ 0.08 \end{pmatrix}
+    $$
+
+    For each $\tau$, compute $\hat{\mu}_{\text{BL}} = \Pi + \tau \cdot \begin{pmatrix} -0.03 \\ 0.08 \end{pmatrix} \cdot \frac{-0.015}{\tau \cdot 0.11 + 0.001}$.
+
+    **$\tau = 0.01$:**
+
+    $$
+    \text{scalar} = \frac{-0.015}{0.01 \cdot 0.11 + 0.001} = \frac{-0.015}{0.0021} = -7.143
+    $$
+
+    $$
+    \hat{\mu}_{\text{BL}} = \begin{pmatrix} 0.07 \\ 0.105 \end{pmatrix} + 0.01 \begin{pmatrix} -0.03 \\ 0.08 \end{pmatrix}(-7.143) = \begin{pmatrix} 0.07 + 0.002143 \\ 0.105 - 0.005714 \end{pmatrix} = \begin{pmatrix} 0.0721 \\ 0.0993 \end{pmatrix}
+    $$
+
+    **$\tau = 0.05$:**
+
+    $$
+    \text{scalar} = \frac{-0.015}{0.05 \cdot 0.11 + 0.001} = \frac{-0.015}{0.0065} = -2.308
+    $$
+
+    $$
+    \hat{\mu}_{\text{BL}} = \begin{pmatrix} 0.07 \\ 0.105 \end{pmatrix} + 0.05 \begin{pmatrix} -0.03 \\ 0.08 \end{pmatrix}(-2.308) = \begin{pmatrix} 0.07 + 0.003462 \\ 0.105 - 0.009231 \end{pmatrix} = \begin{pmatrix} 0.0735 \\ 0.0958 \end{pmatrix}
+    $$
+
+    **$\tau = 0.25$:**
+
+    $$
+    \text{scalar} = \frac{-0.015}{0.25 \cdot 0.11 + 0.001} = \frac{-0.015}{0.0285} = -0.5263
+    $$
+
+    $$
+    \hat{\mu}_{\text{BL}} = \begin{pmatrix} 0.07 \\ 0.105 \end{pmatrix} + 0.25 \begin{pmatrix} -0.03 \\ 0.08 \end{pmatrix}(-0.5263) = \begin{pmatrix} 0.07 + 0.003947 \\ 0.105 - 0.010526 \end{pmatrix} = \begin{pmatrix} 0.0739 \\ 0.0945 \end{pmatrix}
+    $$
+
+    **$\tau = 1.0$:**
+
+    $$
+    \text{scalar} = \frac{-0.015}{1.0 \cdot 0.11 + 0.001} = \frac{-0.015}{0.111} = -0.1351
+    $$
+
+    $$
+    \hat{\mu}_{\text{BL}} = \begin{pmatrix} 0.07 \\ 0.105 \end{pmatrix} + 1.0 \begin{pmatrix} -0.03 \\ 0.08 \end{pmatrix}(-0.1351) = \begin{pmatrix} 0.07 + 0.004054 \\ 0.105 - 0.010811 \end{pmatrix} = \begin{pmatrix} 0.0741 \\ 0.0942 \end{pmatrix}
+    $$
+
+    **Summary table:**
+
+    | $\tau$ | $\hat{\mu}_1$ | $\hat{\mu}_2$ | Spread $\hat{\mu}_2 - \hat{\mu}_1$ |
+    |--------|--------------|--------------|--------------------------------------|
+    | 0 (prior) | 7.00% | 10.50% | 3.50% |
+    | 0.01 | 7.21% | 9.93% | 2.72% |
+    | 0.05 | 7.35% | 9.58% | 2.23% |
+    | 0.25 | 7.39% | 9.45% | 2.06% |
+    | 1.00 | 7.41% | 9.42% | 2.01% |
+    | $\infty$ (view) | --- | --- | 2.00% |
+
+    **Financial interpretation:** As $\tau$ increases, the prior becomes more diffuse (less informative), so the views receive more weight. The spread between the two expected returns converges toward the view value of 2%. For $\tau = 0.01$, the equilibrium dominates and the portfolio remains close to market weights. By $\tau = 1.0$, the view almost completely overrides the equilibrium. Financially, $\tau$ represents the investor's confidence in the equilibrium: a small $\tau$ means the investor trusts the market consensus, while a large $\tau$ means the investor believes the market provides little information about true expected returns and relies heavily on active views.
 
 ---
 
 **Exercise 5.** The Garlappi-Uppal-Wang robust extension of Black-Litterman introduces an ellipsoidal uncertainty set around the posterior mean. The robust portfolio is $w^* = \frac{1}{\lambda}\Sigma^{-1}\hat{\mu}_{\text{BL}} \cdot \frac{1}{1 + \varepsilon/\sqrt{\hat{\mu}_{\text{BL}}^\top \Sigma^{-1}\hat{\mu}_{\text{BL}}}}$. For the setup of Exercises 1-2 and $\varepsilon = 0.3$, compute the robust portfolio and compare it with the standard Black-Litterman portfolio. By how much does robustness reduce the allocation to risky assets?
 
+??? success "Solution to Exercise 5"
+    **Setup.** From Exercises 1--2, $\hat{\mu}_{\text{BL}} \approx (0.0735, 0.0958)^\top$ and $\Sigma = \begin{pmatrix} 0.04 & 0.01 \\ 0.01 & 0.09 \end{pmatrix}$, with $\lambda = 2.5$ and $\varepsilon = 0.3$.
+
+    **Step 1 — Standard Black-Litterman portfolio.**
+
+    Ignoring the posterior covariance for simplicity (using only $\Sigma$ for the risk term), the unconstrained optimal portfolio is:
+
+    $$
+    w_{\text{BL}} = \frac{1}{\lambda}\Sigma^{-1}\hat{\mu}_{\text{BL}}
+    $$
+
+    Compute $\Sigma^{-1}$. The determinant of $\Sigma$ is $0.04 \times 0.09 - 0.01^2 = 0.0035$.
+
+    $$
+    \Sigma^{-1} = \frac{1}{0.0035}\begin{pmatrix} 0.09 & -0.01 \\ -0.01 & 0.04 \end{pmatrix} = \begin{pmatrix} 25.714 & -2.857 \\ -2.857 & 11.429 \end{pmatrix}
+    $$
+
+    $$
+    \Sigma^{-1}\hat{\mu}_{\text{BL}} = \begin{pmatrix} 25.714 & -2.857 \\ -2.857 & 11.429 \end{pmatrix}\begin{pmatrix} 0.0735 \\ 0.0958 \end{pmatrix} = \begin{pmatrix} 1.616 \\ 0.885 \end{pmatrix}
+    $$
+
+    $$
+    w_{\text{BL}} = \frac{1}{2.5}\begin{pmatrix} 1.616 \\ 0.885 \end{pmatrix} = \begin{pmatrix} 0.646 \\ 0.354 \end{pmatrix}
+    $$
+
+    **Step 2 — Compute the robust scaling factor.**
+
+    $$
+    \hat{\mu}_{\text{BL}}^\top \Sigma^{-1} \hat{\mu}_{\text{BL}} = (0.0735, 0.0958)^\top \cdot (1.616, 0.885)^\top = 0.0735 \times 1.616 + 0.0958 \times 0.885 = 0.1188 + 0.0848 = 0.2036
+    $$
+
+    $$
+    \sqrt{\hat{\mu}_{\text{BL}}^\top \Sigma^{-1} \hat{\mu}_{\text{BL}}} = \sqrt{0.2036} = 0.4512
+    $$
+
+    The robust scaling factor is:
+
+    $$
+    \frac{1}{1 + \varepsilon / \sqrt{\hat{\mu}_{\text{BL}}^\top \Sigma^{-1} \hat{\mu}_{\text{BL}}}} = \frac{1}{1 + 0.3 / 0.4512} = \frac{1}{1 + 0.665} = \frac{1}{1.665} = 0.6006
+    $$
+
+    **Step 3 — Robust portfolio.**
+
+    $$
+    w_{\text{robust}} = 0.6006 \times w_{\text{BL}} = 0.6006 \times \begin{pmatrix} 0.646 \\ 0.354 \end{pmatrix} = \begin{pmatrix} 0.388 \\ 0.213 \end{pmatrix}
+    $$
+
+    **Step 4 — Comparison.**
+
+    | | Asset 1 | Asset 2 | Total Risky |
+    |---|---------|---------|-------------|
+    | BL portfolio | 64.6% | 35.4% | 100.0% |
+    | Robust portfolio | 38.8% | 21.3% | 60.1% |
+
+    The robustness parameter $\varepsilon = 0.3$ reduces the total allocation to risky assets by approximately **39.9%** (from 100% to 60.1%). The remaining 39.9% is implicitly allocated to the risk-free asset. This reduction reflects the investor's caution about the reliability of the estimated expected returns: the ellipsoidal uncertainty set introduces a worst-case penalty that shrinks the portfolio toward the origin, proportionally reducing all risky positions while preserving the relative weights between assets.
+
 ---
 
 **Exercise 6.** An epsilon-contamination robustification replaces the Gaussian prior $\Pi \sim N(\mu, \tau\Sigma)$ with a contaminated prior $(1 - \varepsilon) N(\mu, \tau\Sigma) + \varepsilon Q$ for arbitrary $Q$. Explain qualitatively how this affects the posterior distribution and why it leads to wider confidence intervals for the expected returns. For what types of views (strong vs. weak, concentrated vs. diffuse) does the contamination have the largest impact on the portfolio?
+
+??? success "Solution to Exercise 6"
+    **Effect on the posterior distribution.**
+
+    Under the standard Gaussian prior $N(\mu, \tau \Sigma)$, the posterior is also Gaussian with well-defined mean and covariance. With the epsilon-contamination prior $(1 - \varepsilon) N(\mu, \tau \Sigma) + \varepsilon Q$, the posterior is no longer a single Gaussian. Instead, for each choice of $Q \in \mathcal{Q}$, Bayesian updating yields a different posterior. The set of all such posteriors forms a **class of posterior distributions**.
+
+    The posterior expectation is no longer a single point but an **interval** (or, in multivariate settings, a **set**):
+
+    $$
+    \mathbb{E}[\mu \mid q] \in \Big[(1-\varepsilon') \hat{\mu}_{\text{BL}} + \varepsilon' \inf_Q \mathbb{E}_Q[\mu \mid q], \; (1-\varepsilon') \hat{\mu}_{\text{BL}} + \varepsilon' \sup_Q \mathbb{E}_Q[\mu \mid q]\Big]
+    $$
+
+    where $\varepsilon'$ is the posterior contamination weight (which depends on $\varepsilon$ and the relative likelihoods). Since the contaminating distribution $Q$ is arbitrary, the infimum and supremum can be far apart, producing **wider confidence intervals** for the expected returns.
+
+    **Why wider confidence intervals arise:** The standard Gaussian posterior concentrates around $\hat{\mu}_{\text{BL}}$ with covariance $\hat{\Sigma}_{\text{BL}}$, reflecting the combined information from prior and views. The contamination fraction $\varepsilon$ represents the probability that the prior is completely wrong. Since $Q$ is unrestricted, the contaminating component can place mass anywhere, expanding the range of plausible posterior means in every direction. The net effect is that the effective posterior uncertainty is strictly larger than the Gaussian posterior covariance.
+
+    **Impact on different types of views:**
+
+    1. **Strong views (small $\Omega$) vs. weak views (large $\Omega$):** Contamination has a *larger* impact when views are **strong** (high confidence). With strong views, the standard BL posterior departs substantially from equilibrium. If the prior is contaminated, the investor cannot trust this departure --- the contaminating distribution $Q$ might imply very different expected returns, and the strong view has pulled the posterior far from the safe equilibrium anchor. With weak views, the posterior stays close to equilibrium regardless of $Q$, so contamination matters less.
+
+    2. **Concentrated views (few assets) vs. diffuse views (many assets):** Contamination has a *larger* impact on **concentrated** views (involving one or two assets). A concentrated view makes the portfolio highly sensitive to the expected return of specific assets. If the prior for those assets is contaminated, the worst-case posterior can deviate substantially in the direction that hurts the concentrated position. With diffuse views spread across many assets, the portfolio is more diversified and less sensitive to any single contamination scenario.
+
+    In summary, epsilon-contamination acts as a robustification that is most consequential precisely when the investor is most aggressive (strong, concentrated views) --- it forces the optimizer to hedge against the possibility that the prior beliefs driving those aggressive tilts are fundamentally wrong.

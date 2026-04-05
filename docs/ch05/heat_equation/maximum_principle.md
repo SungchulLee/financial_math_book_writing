@@ -238,40 +238,6 @@ $$
 **Exercise 1.**
 State the weak maximum principle for the heat equation on $\overline{Q}_T = [a, b] \times [0, T]$: if $\partial_t u \leq \frac{1}{2}\partial_{xx}u$ in $Q_T$, then $\max_{\overline{Q}_T}u = \max_{\Gamma_T}u$ where $\Gamma_T$ is the parabolic boundary. Identify $\Gamma_T$ explicitly.
 
----
-
-**Exercise 2.**
-Use the maximum principle to prove uniqueness: if $u$ and $v$ both solve the heat equation with the same initial and boundary conditions, show that $w = u - v$ satisfies $\max|w| = 0$, hence $u = v$.
-
----
-
-**Exercise 3.**
-Give a probabilistic interpretation of the maximum principle using Brownian motion. If $u(t, x) = \mathbb{E}_x[f(W_{\tau \wedge (T-t)})]$ where $\tau$ is the exit time from $(a, b)$, explain why $u$ cannot exceed $\max f$ on the parabolic boundary.
-
----
-
-**Exercise 4.**
-The strong maximum principle states: if $u$ achieves its maximum at an interior point of $Q_T$, then $u$ is constant throughout. Explain the intuition using the heat equation: if the temperature has an interior hot spot, heat would flow away from it, reducing the temperature there.
-
----
-
-**Exercise 5.**
-Apply the comparison principle to option pricing: if two European options have payoffs $g_1(S_T) \leq g_2(S_T)$ for all $S_T$, show that $V_1(t, S) \leq V_2(t, S)$ for all $t < T$ and $S > 0$. Which form of the maximum principle is used?
-
----
-
-**Exercise 6.**
-Consider the heat equation $\partial_t u = \frac{1}{2}\partial_{xx}u$ on $[0, 1] \times [0, T]$ with $u(0, t) = 0$, $u(1, t) = 1$, and $u(x, 0) = x$. Without solving the PDE, use the maximum principle to determine the range of $u$ on the entire domain.
-
----
-
-**Exercise 7.**
-The maximum principle fails for the backward heat equation $\partial_t u = -\frac{1}{2}\partial_{xx}u$. Explain why this equation is ill-posed (solutions can blow up from arbitrarily small perturbations in the initial data), and connect this to the financial fact that we solve the pricing PDE backward in time from the terminal condition.
-
----
-
-## Solutions
-
 ??? success "Solution to Exercise 1"
     The weak maximum principle states: if $u$ is continuous on $\overline{Q}_T = [a,b] \times [0,T]$ and satisfies $\partial_t u \leq \frac{1}{2}\partial_{xx}u$ in the interior $Q_T = (a,b) \times (0,T]$, then:
 
@@ -288,6 +254,11 @@ The maximum principle fails for the backward heat equation $\partial_t u = -\fra
     $$
 
     This is the bottom edge (initial time $t = 0$ for all $x \in [a,b]$) plus the two lateral edges (spatial boundaries $x = a$ and $x = b$ for all times $t \in [0,T]$). The top edge $\{T\} \times [a,b]$ is **not** part of the parabolic boundary, because the heat equation propagates information forward in time.
+
+---
+
+**Exercise 2.**
+Use the maximum principle to prove uniqueness: if $u$ and $v$ both solve the heat equation with the same initial and boundary conditions, show that $w = u - v$ satisfies $\max|w| = 0$, hence $u = v$.
 
 ??? success "Solution to Exercise 2"
     Let $u$ and $v$ both solve the heat equation $\partial_t w = \frac{1}{2}\partial_{xx}w$ on $Q_T$ with the same initial condition $u(0,x) = v(0,x) = f(x)$ and the same boundary conditions $u(t,a) = v(t,a)$ and $u(t,b) = v(t,b)$.
@@ -306,6 +277,11 @@ The maximum principle fails for the backward heat equation $\partial_t u = -\fra
 
     Combining: $w \leq 0$ and $-w \leq 0$, so $w = 0$ everywhere. Therefore $\max_{\overline{Q}_T}|w| = 0$, giving $u = v$.
 
+---
+
+**Exercise 3.**
+Give a probabilistic interpretation of the maximum principle using Brownian motion. If $u(t, x) = \mathbb{E}_x[f(W_{\tau \wedge (T-t)})]$ where $\tau$ is the exit time from $(a, b)$, explain why $u$ cannot exceed $\max f$ on the parabolic boundary.
+
 ??? success "Solution to Exercise 3"
     In the probabilistic formulation, $u(t,x) = \mathbb{E}_x[f(W_{\tau \wedge (T-t)})]$ where $W$ is Brownian motion starting at $x$ and $\tau$ is the exit time from $(a,b)$.
 
@@ -322,6 +298,11 @@ The maximum principle fails for the backward heat equation $\partial_t u = -\fra
 
     An expected value (weighted average) of a collection of numbers cannot exceed the maximum of those numbers. This is precisely the maximum principle: the solution $u$ at any interior point is a probability-weighted average of its boundary/initial values, so it cannot exceed the maximum boundary value.
 
+---
+
+**Exercise 4.**
+The strong maximum principle states: if $u$ achieves its maximum at an interior point of $Q_T$, then $u$ is constant throughout. Explain the intuition using the heat equation: if the temperature has an interior hot spot, heat would flow away from it, reducing the temperature there.
+
 ??? success "Solution to Exercise 4"
     Suppose $u$ has an interior maximum at $(t_0, x_0)$ with $0 < t_0 \leq T$ and $a < x_0 < b$.
 
@@ -332,6 +313,11 @@ The maximum principle fails for the backward heat equation $\partial_t u = -\fra
     By the heat equation, $\partial_t u = \frac{1}{2}\partial_{xx}u \leq 0$, meaning the temperature at this point is decreasing (or staying constant) over time. Heat is flowing away from the hot spot to cooler surrounding areas.
 
     This means the hot spot cannot persist: if it existed at time $t_0$, then at a slightly earlier time $t_0 - \epsilon$, the value must have been at least as large (since the temperature is decreasing). Tracing backward, the maximum must originate from the initial or boundary data. The only way the temperature can be constant (not decreasing) at the hot spot is if $\partial_{xx}u = 0$, which propagates the argument to neighbors, forcing $u$ to be constant everywhere.
+
+---
+
+**Exercise 5.**
+Apply the comparison principle to option pricing: if two European options have payoffs $g_1(S_T) \leq g_2(S_T)$ for all $S_T$, show that $V_1(t, S) \leq V_2(t, S)$ for all $t < T$ and $S > 0$. Which form of the maximum principle is used?
 
 ??? success "Solution to Exercise 5"
     Since $g_1(S_T) \leq g_2(S_T)$ for all $S_T > 0$, the option prices satisfy $V_i(T, S) = g_i(S)$ at maturity. Both $V_1$ and $V_2$ solve the Black-Scholes PDE:
@@ -352,6 +338,11 @@ The maximum principle fails for the backward heat equation $\partial_t u = -\fra
 
     This uses the **comparison principle**, which is a direct corollary of the weak maximum principle applied to $w = V_1 - V_2$.
 
+---
+
+**Exercise 6.**
+Consider the heat equation $\partial_t u = \frac{1}{2}\partial_{xx}u$ on $[0, 1] \times [0, T]$ with $u(0, t) = 0$, $u(1, t) = 1$, and $u(x, 0) = x$. Without solving the PDE, use the maximum principle to determine the range of $u$ on the entire domain.
+
 ??? success "Solution to Exercise 6"
     The boundary and initial data are: $u(0, t) = 0$, $u(1, t) = 1$, and $u(x, 0) = x$.
 
@@ -370,6 +361,11 @@ The maximum principle fails for the backward heat equation $\partial_t u = -\fra
     Therefore $0 \leq u(x,t) \leq 1$ for all $(x,t) \in [0,1] \times [0,T]$.
 
     In fact, the steady-state solution $u_\infty(x) = x$ satisfies the heat equation ($\partial_t u_\infty = 0$, $\partial_{xx} u_\infty = 0$) and matches all the boundary and initial data. By uniqueness, $u(x,t) = x$ for all $t$.
+
+---
+
+**Exercise 7.**
+The maximum principle fails for the backward heat equation $\partial_t u = -\frac{1}{2}\partial_{xx}u$. Explain why this equation is ill-posed (solutions can blow up from arbitrarily small perturbations in the initial data), and connect this to the financial fact that we solve the pricing PDE backward in time from the terminal condition.
 
 ??? success "Solution to Exercise 7"
     The backward heat equation $\partial_t u = -\frac{1}{2}\partial_{xx}u$ is ill-posed because high-frequency perturbations grow exponentially in time rather than decaying.

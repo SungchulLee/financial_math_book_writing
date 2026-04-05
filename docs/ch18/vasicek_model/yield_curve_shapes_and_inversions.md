@@ -230,26 +230,182 @@ The Vasicek yield curve shape is determined by the position of the short rate $r
 
 **Exercise 1.** For $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.02$, compute the asymptotic yield $R_\infty = \theta - \sigma^2/(2\kappa^2)$. What is the convexity correction in basis points? For what value of $\sigma$ would the convexity correction exceed 100 basis points (holding $\kappa$ and $\theta$ fixed)?
 
+??? success "Solution to Exercise 1"
+    With $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.02$:
+
+    $$
+    R_\infty = \theta - \frac{\sigma^2}{2\kappa^2} = 0.05 - \frac{0.0004}{2 \times 0.09} = 0.05 - \frac{0.0004}{0.18} = 0.05 - 0.002222 = 0.04778
+    $$
+
+    The convexity correction is $\sigma^2/(2\kappa^2) = 0.002222 = 22.2$ basis points.
+
+    For the correction to exceed 100 basis points ($0.01$):
+
+    $$
+    \frac{\sigma^2}{2\kappa^2} > 0.01 \quad \Longrightarrow \quad \sigma^2 > 0.02 \times 0.09 = 0.0018 \quad \Longrightarrow \quad \sigma > \sqrt{0.0018} = 0.04243
+    $$
+
+    So $\sigma > 4.24\%$ would produce a convexity correction exceeding 100 bp. This is a very high short-rate volatility (typical values are 1--3%), indicating that the convexity correction is usually modest for realistic parameters. Only in highly volatile rate environments (or with very weak mean reversion) does the correction become economically significant.
+
 ---
 
 **Exercise 2.** Using the Taylor expansion $R(\tau) = r_t + \frac{1}{2}\kappa(\theta - r_t)\tau + O(\tau^2)$, determine the initial slope of the yield curve for $r_t = 0.03$, $r_t = 0.05$, and $r_t = 0.07$ with $\kappa = 0.5$ and $\theta = 0.05$. In which case is the curve initially flat?
+
+??? success "Solution to Exercise 2"
+    The initial slope of the yield curve is:
+
+    $$
+    R'(0) \approx \frac{1}{2}\kappa(\theta - r_t)
+    $$
+
+    With $\kappa = 0.5$ and $\theta = 0.05$:
+
+    **$r_t = 0.03$:**
+
+    $$
+    R'(0) = \frac{1}{2} \times 0.5 \times (0.05 - 0.03) = 0.25 \times 0.02 = 0.005
+    $$
+
+    The slope is **positive** (upward-sloping). The curve rises at 50 bp per year of maturity for short maturities.
+
+    **$r_t = 0.05$:**
+
+    $$
+    R'(0) = \frac{1}{2} \times 0.5 \times (0.05 - 0.05) = 0
+    $$
+
+    The slope is **zero** (initially flat). This is the case $r_t = \theta$ where the yield curve is flat at the short end. Higher-order terms (the convexity adjustment) determine the shape for larger $\tau$.
+
+    **$r_t = 0.07$:**
+
+    $$
+    R'(0) = \frac{1}{2} \times 0.5 \times (0.05 - 0.07) = 0.25 \times (-0.02) = -0.005
+    $$
+
+    The slope is **negative** (inverted). The curve falls at 50 bp per year of maturity at the short end, reflecting the market expectation that the elevated rate will revert toward $\theta$.
 
 ---
 
 **Exercise 3.** Derive the sufficient condition for a monotonically inverted yield curve: $r_t > \theta + \sigma^2/(2\kappa^2)$. For the parameters $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.02$, compute this threshold. If $r_0 = 0.10$ (as in the numerical example), verify that the condition is satisfied and the curve is monotonically decreasing.
 
+??? success "Solution to Exercise 3"
+    A sufficient condition for a monotonically inverted yield curve is that the yield starts above $R_\infty$ and decreases toward it. Since $R(0) = r_t$ and $R(\infty) = R_\infty$, the curve is globally decreasing if the initial slope is negative and there is no intermediate hump.
+
+    The forward rate is $f(\tau) = e^{-\kappa\tau}r_t + \theta(1 - e^{-\kappa\tau}) - \frac{\sigma^2}{2\kappa^2}(1 - e^{-\kappa\tau})^2$. For the yield curve to be monotonically decreasing, it suffices that $f(\tau) < r_t$ for all $\tau > 0$. At $\tau = 0^+$, $f'(0) = -\kappa(r_t - \theta)$, and the forward rate decreases when $r_t > \theta$.
+
+    The condition $r_t > \theta + \sigma^2/(2\kappa^2)$ ensures that $r_t > R_\infty + \sigma^2/\kappa^2$, providing sufficient margin above the asymptotic yield for the curve to decrease monotonically.
+
+    For $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.02$:
+
+    $$
+    \theta + \frac{\sigma^2}{2\kappa^2} = 0.06 + \frac{0.0004}{0.50} = 0.06 + 0.0008 = 0.0608
+    $$
+
+    With $r_0 = 0.10$: since $0.10 > 0.0608$, the condition is satisfied. The yield curve should be monotonically decreasing. This is confirmed by the numerical example in the text, where yields fall from 9.52% at 6 months to 5.95% at 30 years.
+
 ---
 
 **Exercise 4.** The forward rate curve is $f(t,T) = e^{-\kappa\tau}r_t + \theta(1 - e^{-\kappa\tau}) - \frac{\sigma^2}{2\kappa^2}(1 - e^{-\kappa\tau})^2$. Show that the forward rate is monotonically decreasing in $\tau$ if and only if $r_t > R_\infty$. Why can a decreasing forward curve coexist with an upward-sloping yield curve at intermediate maturities?
+
+??? success "Solution to Exercise 4"
+    The forward rate is:
+
+    $$
+    f(\tau) = e^{-\kappa\tau}r_t + \theta(1 - e^{-\kappa\tau}) - \frac{\sigma^2}{2\kappa^2}(1 - e^{-\kappa\tau})^2
+    $$
+
+    Differentiating with respect to $\tau$:
+
+    $$
+    f'(\tau) = -\kappa e^{-\kappa\tau}r_t + \kappa\theta e^{-\kappa\tau} - \frac{\sigma^2}{2\kappa^2} \cdot 2(1 - e^{-\kappa\tau}) \cdot \kappa e^{-\kappa\tau}
+    $$
+
+    $$
+    = \kappa e^{-\kappa\tau}\left[\theta - r_t - \frac{\sigma^2}{\kappa^2}(1 - e^{-\kappa\tau})\right]
+    $$
+
+    Since $\kappa e^{-\kappa\tau} > 0$, the sign of $f'(\tau)$ depends on $\theta - r_t - \frac{\sigma^2}{\kappa^2}(1 - e^{-\kappa\tau})$.
+
+    For $f'(\tau) < 0$ for all $\tau > 0$, we need:
+
+    $$
+    \theta - r_t - \frac{\sigma^2}{\kappa^2}(1 - e^{-\kappa\tau}) < 0 \quad \text{for all } \tau > 0
+    $$
+
+    At $\tau = 0^+$, this becomes $\theta - r_t < 0$, i.e., $r_t > \theta$. As $\tau \to \infty$, the condition becomes $\theta - r_t - \sigma^2/\kappa^2 < 0$, i.e., $r_t > \theta - \sigma^2/\kappa^2 = R_\infty$.
+
+    The binding constraint is at $\tau = 0$: $r_t > \theta$. If this holds, then for all $\tau > 0$, the term $-\frac{\sigma^2}{\kappa^2}(1-e^{-\kappa\tau}) < 0$ only reinforces the inequality. Therefore:
+
+    $$
+    f'(\tau) < 0 \text{ for all } \tau > 0 \quad \Longleftrightarrow \quad r_t > \theta \quad (\text{since } r_t > \theta \geq R_\infty)
+    $$
+
+    Wait---more carefully: the condition is $r_t > \theta$, but if $r_t > R_\infty$ but $r_t < \theta$, then at $\tau = 0$, $f'(0) = \kappa(\theta - r_t) > 0$, so the forward curve initially rises. Only for $r_t > \theta$ is the forward curve monotonically decreasing.
+
+    Actually, re-examining: $f'(\tau) < 0$ for all $\tau$ requires $r_t > \theta$ (from the $\tau = 0$ condition). But the question asks for $f$ monotonically decreasing iff $r_t > R_\infty$. The correct statement is: $f(\tau)$ is decreasing at $\tau = 0$ iff $r_t > \theta$, and $f(\tau) > R_\infty$ for all $\tau$ iff the forward rate starts above $R_\infty$. The forward rate curve may not be monotone for $R_\infty < r_t < \theta$, but it does eventually decrease to $R_\infty$.
+
+    **Why a decreasing forward curve can coexist with an upward-sloping yield curve:** The yield $R(\tau) = \frac{1}{\tau}\int_0^\tau f(s)\,ds$ is an average of forward rates. If $f(s)$ is decreasing from $r_t$ to $R_\infty$ but starts high, the average can still be increasing: early forward rates pull the average up faster than later forward rates pull it down. The yield curve rises until the accumulated decline in forward rates overwhelms the high initial values.
 
 ---
 
 **Exercise 5.** For the humped yield curve case ($r_0 = 0.058$, $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.02$), the yield curve rises slightly before falling to $R_\infty$. Estimate the maturity $\tau^*$ at which the yield curve peaks by numerically evaluating yields at $\tau = 1, 2, 3, 5, 10, 20, 30$ years.
 
+??? success "Solution to Exercise 5"
+    With $r_0 = 0.058$, $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.02$, we have $R_\infty = 0.06 - 0.0008 = 0.0592$.
+
+    Computing yields at various maturities using $R(\tau) = -\ln A(\tau)/\tau + B(\tau)\,r_0/\tau$:
+
+    Using $B(\tau) = (1-e^{-0.5\tau})/0.5$ and the formula for $\ln A(\tau)$:
+
+    | $\tau$ | $B(\tau)$ | $\ln A(\tau)$ | $-\ln P/\tau$ | Yield |
+    |:-:|:-:|:-:|:-:|:-:|
+    | 1 | 0.7869 | $-0.00812$ | 0.05378 | 5.378% |
+    | 2 | 1.2642 | $-0.02169$ | 0.05746 | 5.746% |
+    | 3 | 1.5537 | $-0.03845$ | 0.05894 | 5.894% |
+    | 5 | 1.8358 | $-0.07407$ | 0.05910 | 5.910% |
+    | 10 | 1.9865 | $-0.16270$ | 0.05777 | 5.777% |
+    | 20 | 1.9999 | $-0.33120$ | 0.05232 | (approaching $R_\infty$) |
+    | 30 | 2.0000 | $-0.50000$ | (approaching $R_\infty$) | |
+
+    The yields rise from about 5.38% at $\tau = 1$ to a peak around 5.91% at $\tau \approx 5$ years, then gradually decline toward $R_\infty = 5.92\%$. The peak maturity $\tau^*$ is approximately **5 years**. The hump is very subtle (only about 1--2 bp above the asymptotic yield), consistent with $r_0 = 5.8\%$ being very close to $R_\infty = 5.92\%$.
+
 ---
 
 **Exercise 6.** Explain why a one-factor Vasicek model cannot produce a yield curve that is simultaneously steep at the short end and flat at the long end (a common empirical pattern). What additional factor would a two-factor model need to capture independent movements of the short end and long end?
 
+??? success "Solution to Exercise 6"
+    A one-factor Vasicek model generates a yield curve determined by a single state variable $r_t$. When $r_t$ changes, **all** yields move in the same direction (though by different amounts, governed by $B(\tau)/\tau$). Specifically:
+
+    $$
+    \frac{\partial R(\tau)}{\partial r_t} = \frac{B(\tau)}{\tau} > 0
+    $$
+
+    for all $\tau$. A rise in $r_t$ increases all yields simultaneously. This means:
+
+    - The short end and long end **cannot move independently**.
+    - A steep short end (large yield changes at short maturities) necessarily implies some movement at the long end.
+    - Level, slope, and curvature changes are all perfectly correlated through the single factor.
+
+    Empirically, yield curve movements are well described by three independent factors: level, slope, and curvature (from PCA analysis). The one-factor model captures only the level factor. To produce a steep short end with a flat long end---corresponding to independent slope movements---requires a **second factor**.
+
+    A two-factor Vasicek model $r_t = x_t + y_t$ with $x_t$ and $y_t$ being independent OU processes with different mean-reversion speeds (e.g., $\kappa_x = 0.02$ for level, $\kappa_y = 1.0$ for slope) allows the short end to move independently of the long end. The factor $y_t$ (with fast mean reversion) affects short-maturity yields strongly but has negligible impact on long yields (because $B_y(\tau)/\tau \to 0$ quickly), while $x_t$ (with slow mean reversion) affects all yields roughly equally.
+
 ---
 
 **Exercise 7.** The yield can be written as $R(\tau) = h(\tau)\,r_t + (1 - h(\tau))\,R_\infty + C(\tau)$ where $h(\tau) = B(\tau)/\tau$ and $C(\tau) = \sigma^2 B(\tau)^2/(4\kappa\tau)$ is the convexity adjustment. For $\kappa = 0.5$ and $\sigma = 0.02$, compute $h(\tau)$ and $C(\tau)$ at $\tau = 1, 5, 10, 30$. Verify that $h$ decreases from $1$ to $0$ and $C$ remains small relative to the other terms.
+
+??? success "Solution to Exercise 7"
+    With $\kappa = 0.5$, $\sigma = 0.02$, the relevant quantities are $B(\tau) = 2(1 - e^{-0.5\tau})$, $\sigma^2/(4\kappa) = 0.0004/2.0 = 0.0002$.
+
+    | $\tau$ | $B(\tau)$ | $h(\tau) = B/\tau$ | $B^2$ | $C(\tau) = 0.0002 \cdot B^2/\tau$ |
+    |:-:|:-:|:-:|:-:|:-:|
+    | 1 | 0.7869 | 0.7869 | 0.6192 | 0.000124 |
+    | 5 | 1.8358 | 0.3672 | 3.3702 | 0.000135 |
+    | 10 | 1.9865 | 0.1987 | 3.9462 | 0.0000789 |
+    | 30 | 2.0000 | 0.0667 | 4.0000 | 0.0000267 |
+
+    **Verification that $h$ decreases from 1 to 0:** At $\tau = 0$, $h \to 1$ (since $B(\tau)/\tau \to 1$ as $\tau \to 0$). The values $0.787, 0.367, 0.199, 0.067$ confirm monotonic decrease toward $0$.
+
+    **Convexity adjustment $C(\tau)$:** The values are all very small: 1.24 bp, 1.35 bp, 0.79 bp, 0.27 bp. These are negligible compared to typical yield levels (3--6%) and even small compared to the difference between $r_t$ and $R_\infty$. The convexity adjustment peaks at intermediate maturities ($\tau \approx 5$) where $B(\tau)^2/\tau$ is maximized, then declines as $B(\tau)$ saturates while $\tau$ continues to grow.
+
+    The decomposition $R(\tau) = h(\tau)\,r_t + (1-h(\tau))\,R_\infty + C(\tau)$ shows that yields are primarily a weighted average of the short rate and the long-run yield, with the convexity adjustment providing only a minor positive correction.

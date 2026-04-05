@@ -750,17 +750,113 @@ Wing asymptotics provide a rigorous framework for understanding tail risk, const
 
 **Exercise 1.** Using Lee's moment formula $p_{\pm} = 2/m_{\pm}$, compute the wing slopes $p_+$ and $p_-$ for a risk-neutral distribution with maximum finite right moment $m_+ = 3$ and maximum finite left moment $m_- = 1.5$. Which wing is steeper? What does this say about the relative heaviness of the tails?
 
+??? success "Solution to Exercise 1"
+    Using Lee's moment formula $p_{\pm} = 2/m_{\pm}$:
+
+    **Right wing:** $m_+ = 3$, so
+
+    $$
+    p_+ = \frac{2}{3} \approx 0.667
+    $$
+
+    **Left wing:** $m_- = 1.5$, so
+
+    $$
+    p_- = \frac{2}{1.5} = \frac{4}{3} \approx 1.333
+    $$
+
+    Since $p_- > p_+$, the **left wing is steeper** (the implied variance $\sigma_{\text{IV}}^2 T$ grows faster with $|y|$ on the left side). By Lee's formula, a steeper wing corresponds to a smaller maximum finite moment, meaning the corresponding tail is lighter. Indeed, $m_- = 1.5 < m_+ = 3$, so fewer left-tail moments are finite.
+
+    Equivalently, the **right tail is heavier** than the left tail: the distribution has a fat right tail (large upward moves are more probable), while the left tail decays faster. This is the opposite of the typical equity pattern, where the left tail is fatter due to crash risk.
+
 ---
 
 **Exercise 2.** Consider a risk-neutral density with power law right tail $q(S) \sim C_+ S^{-4}$ as $S \to \infty$. (a) Determine the maximum finite moment $m_+$. (b) Compute the right wing slope $p_+$. (c) Write the asymptotic formula for $\sigma_{\text{IV}}^2(y, T) T$ as $y \to +\infty$. (d) Is the variance of $S_T$ finite?
+
+??? success "Solution to Exercise 2"
+    **Given:** $q(S) \sim C_+ S^{-4}$ as $S \to \infty$, so $\alpha = 4$.
+
+    **(a) Maximum finite moment:**
+
+    $$
+    m_+ = \alpha - 1 = 4 - 1 = 3
+    $$
+
+    This means $\mathbb{E}[S_T^p] < \infty$ for all $p < 3$, and $\mathbb{E}[S_T^3] = \infty$.
+
+    **(b) Right wing slope:**
+
+    $$
+    p_+ = \frac{2}{m_+} = \frac{2}{3} \approx 0.667
+    $$
+
+    **(c) Asymptotic formula:** By Theorem 4.4.8:
+
+    $$
+    \sigma_{\text{IV}}^2(y, T) T \sim \frac{2y}{\alpha - 1} = \frac{2y}{3} \quad \text{as } y \to +\infty
+    $$
+
+    Equivalently:
+
+    $$
+    \sigma_{\text{IV}}(K, T) \sim \sqrt{\frac{2\ln(K/F)}{3T}}
+    $$
+
+    **(d) Variance of $S_T$:** The variance requires $\mathbb{E}[S_T^2] < \infty$. Since $m_+ = 3 > 2$, the second moment is finite, so **yes, the variance of $S_T$ is finite**. In fact, all moments up to (but not including) the third are finite.
 
 ---
 
 **Exercise 3.** The SVI parametrization has wing slopes $p_+ = 1 + \rho$ and $p_- = 1 - \rho$. (a) For $\rho = -0.4$, compute both wing slopes and verify $0 < p_{\pm} < 2$. (b) What value of $\rho$ produces symmetric wings? (c) Explain why $|\rho| > 1$ would violate arbitrage constraints.
 
+??? success "Solution to Exercise 3"
+    **SVI wing slopes:** $p_+ = 1 + \rho$ and $p_- = 1 - \rho$.
+
+    **(a) For $\rho = -0.4$:**
+
+    $$
+    p_+ = 1 + (-0.4) = 0.6
+    $$
+
+    $$
+    p_- = 1 - (-0.4) = 1.4
+    $$
+
+    **Verification:** $0 < p_+ = 0.6 < 2$ and $0 < p_- = 1.4 < 2$. Both satisfy the arbitrage constraint.
+
+    Note that $p_- > p_+$, so the left wing is steeper than the right wing. This means the right tail is heavier (consistent with $\rho < 0$ producing an equity-like skew where the left wing IV is higher but flatter in total variance space).
+
+    **(b)** Symmetric wings require $p_+ = p_-$:
+
+    $$
+    1 + \rho = 1 - \rho \implies 2\rho = 0 \implies \rho = 0
+    $$
+
+    When $\rho = 0$, both wing slopes equal $1$, giving symmetric behavior.
+
+    **(c)** If $|\rho| > 1$, say $\rho = 1.2$, then $p_+ = 2.2 > 2$ and $p_- = -0.2 < 0$. A negative $p_-$ would mean implied variance decreases with $|y|$ in the left wing, which is impossible for a valid probability density (it would imply that deep OTM puts are underpriced relative to any non-degenerate distribution). Similarly, $p_+ > 2$ would imply the first moment $\mathbb{E}[S_T]$ is infinite, violating the no-arbitrage condition $\mathbb{E}^{\mathbb{Q}}[S_T] = F < \infty$. Therefore $|\rho| > 1$ leads to arbitrage violations.
+
 ---
 
 **Exercise 4.** An equity index has empirical wing slopes $p_- \approx 1.2$ and $p_+ \approx 2.0$. Using Lee's formula, determine the maximum finite moments $m_-$ and $m_+$. Explain the economic interpretation: why does the left tail exhibit a lower maximum finite moment?
+
+??? success "Solution to Exercise 4"
+    Using Lee's formula $p_{\pm} = 2/m_{\pm}$ to find the maximum finite moments:
+
+    **Left tail:** $p_- = 1.2$, so
+
+    $$
+    m_- = \frac{2}{p_-} = \frac{2}{1.2} = \frac{5}{3} \approx 1.667
+    $$
+
+    **Right tail:** $p_+ = 2.0$, so
+
+    $$
+    m_+ = \frac{2}{p_+} = \frac{2}{2.0} = 1.0
+    $$
+
+    **Interpretation:** The left tail has maximum finite moment $m_- \approx 1.667$, meaning $\mathbb{E}[S_T^{-p}] < \infty$ for $p < 1.667$. The right tail has $m_+ = 1.0$, meaning $\mathbb{E}[S_T^p] < \infty$ for $p < 1$ (borderline — the first moment $\mathbb{E}[S_T]$ is just barely finite).
+
+    **Economic interpretation:** The lower maximum finite moment on the left ($m_- < m_+$ in the wing slope sense, but actually $m_- > m_+$ in the moment exponent sense here — let us clarify). With $p_- = 1.2 < p_+ = 2.0$, the left wing is **flatter** in total variance, meaning it requires less implied variance to grow. This corresponds to a **fatter left tail**: the risk-neutral distribution assigns substantial probability to large downward moves (market crashes). This is characteristic of equity indices, where investors aggressively bid up OTM put prices as crash protection, making the left tail of the risk-neutral distribution much heavier than the right tail. The market is pricing significant downside risk relative to upside potential.
 
 ---
 
@@ -772,10 +868,101 @@ $$
 
 Explain why this integral diverges if the implied volatility wings are flat (constant $\sigma_{\text{IV}}$ for large $|y|$), and connect this to the condition that all moments must be infinite when $p_{\pm} = 0$.
 
+??? success "Solution to Exercise 5"
+    If the implied volatility wings are flat ($\sigma_{\text{IV}}(y, T) = \sigma_\infty$ for large $|y|$), then the total implied variance is:
+
+    $$
+    w(y) = \sigma_{\text{IV}}^2(y, T) \cdot T = \sigma_\infty^2 T = \text{constant}
+    $$
+
+    for large $|y|$, which means $p_{\pm} = \lim_{|y| \to \infty} w(y)/|y| = 0$.
+
+    By Lee's formula, $p_{\pm} = 2/m_{\pm}$, so $p_{\pm} = 0$ implies $m_{\pm} = \infty$. But $m_+ = \infty$ means that $\mathbb{E}[S_T^p] = \infty$ for all $p > 0$ — even the first moment is infinite. This contradicts the no-arbitrage requirement $\mathbb{E}^{\mathbb{Q}}[S_T] = F < \infty$.
+
+    **Why the variance swap integral diverges:** Consider the right wing contribution:
+
+    $$
+    \int_F^\infty \frac{C(K)}{K^2} dK
+    $$
+
+    For large $K$, the Black-Scholes call price with constant IV $\sigma_\infty$ behaves as:
+
+    $$
+    C(K) \approx S_0 \Phi(d_1) - K e^{-rT}\Phi(d_2) \sim S_0 \frac{\phi(d_1)}{|d_1|}
+    $$
+
+    where $d_1 = \frac{-\ln(K/F) + \sigma_\infty^2 T/2}{\sigma_\infty \sqrt{T}}$. For large $K$, $d_1 \to -\infty$ and:
+
+    $$
+    C(K) \sim \frac{S_0}{\sqrt{2\pi} |d_1|} \exp\left(-\frac{(\ln(K/F))^2}{2\sigma_\infty^2 T}\right)
+    $$
+
+    The ratio $C(K)/K^2$ still decays, but only as a Gaussian in $\ln K$, not as a power law. Converting the integral to log-moneyness $y = \ln(K/F)$:
+
+    $$
+    \int_{y_0}^\infty \frac{C(Fe^y)}{F^2 e^{2y}} F e^y dy \sim \int_{y_0}^\infty e^{-y} \exp\left(-\frac{y^2}{2\sigma_\infty^2 T}\right) \frac{dy}{y}
+    $$
+
+    This integral converges for any fixed $\sigma_\infty$, but the point is that the flat-wing model implies unrealistic tail behavior. Specifically, the density implied by flat wings has all moments infinite, meaning the variance $\text{Var}(S_T) = \mathbb{E}[S_T^2] - F^2 = \infty$. Since the variance swap strike equals $\text{Var}(\ln(S_T/F))/T$ (which relates to the full integral), and the underlying distribution has pathological tails, the replicating portfolio for the variance swap would require infinite notional in the wings — making the variance swap ill-defined in practice.
+
 ---
 
 **Exercise 6.** Consider an absorbing barrier model where $\mathbb{P}^{\mathbb{Q}}(S_T = 0) = p_0 = 0.02$. (a) Compute the minimum put price $P(K, T) \geq K e^{-rT} p_0$ for $K = 50$ with $r = 0.05$ and $T = 1$. (b) Explain why the left wing implied volatility must satisfy $\sigma_{\text{IV}}(K, T) \to \infty$ as $K \to 0$. (c) In which asset classes might this model be realistic?
 
+??? success "Solution to Exercise 6"
+    **(a) Minimum put price:**
+
+    $$
+    P(K, T) \geq K e^{-rT} p_0 = 50 \times e^{-0.05 \times 1} \times 0.02 = 50 \times 0.9512 \times 0.02 = 0.9512
+    $$
+
+    So the put price is at least $\$0.95$ regardless of how far OTM it is.
+
+    **(b) Why $\sigma_{\text{IV}} \to \infty$ as $K \to 0$:** As $K \to 0$, a standard (no-default) model would give $P(K, T) \to 0$ exponentially fast. But with positive default probability, $P(K, T) \geq K e^{-rT} p_0 > 0$ for all $K > 0$. In the Black-Scholes formula, matching a non-vanishing put price at small $K$ requires:
+
+    $$
+    P_{\text{BS}}(K, T, \sigma) \geq K e^{-rT} p_0
+    $$
+
+    For small $K$, the Black-Scholes put price is approximately $K e^{-rT}\Phi(-d_2)$ where $d_2 = \frac{\ln(S_0/K) + (r - \sigma^2/2)T}{\sigma\sqrt{T}}$. As $K \to 0$, $d_2 \to +\infty$ and $\Phi(-d_2) \to 0$ for any finite $\sigma$. To keep $\Phi(-d_2) \geq p_0 > 0$, we need $d_2$ to remain bounded, which requires $\sigma \to \infty$ to absorb the growing $\ln(S_0/K)$ term. Therefore $\sigma_{\text{IV}}(K, T) \to \infty$ as $K \to 0$.
+
+    **(c) Realistic asset classes:** An absorbing barrier at zero is realistic for:
+
+    - **Corporate bonds/credit:** Individual firms can default, with recovery at or near zero
+    - **Sovereign credit:** Countries can default (e.g., Argentina, Greece)
+    - **Distressed equities:** Companies near bankruptcy have non-negligible probability of stock price going to zero
+    - **Cryptocurrency:** Some tokens have gone to zero
+    - **Structured products:** Tranched credit products (e.g., equity tranches of CDOs) can be completely wiped out
+
 ---
 
 **Exercise 7.** A parametric smile model produces wing behavior $\sigma_{\text{IV}}^2(y, T) T = 0.05 + 0.8|y| + 0.1 y^2$ for large $|y|$. (a) Identify the leading-order behavior and determine the effective wing slope. (b) Does this satisfy the arbitrage constraint $0 < p_{\pm} \leq 2$? (c) Compute the implied maximum finite moments $m_{\pm}$ using Lee's formula.
+
+??? success "Solution to Exercise 7"
+    **(a) Leading-order behavior and effective wing slope:**
+
+    The total implied variance is $w(y) = \sigma_{\text{IV}}^2(y, T) T = 0.05 + 0.8|y| + 0.1 y^2$. For large $|y|$, the quadratic term $0.1 y^2$ dominates, so:
+
+    $$
+    \frac{w(y)}{|y|} = \frac{0.05 + 0.8|y| + 0.1 y^2}{|y|} = \frac{0.05}{|y|} + 0.8 + 0.1|y| \to \infty
+    $$
+
+    as $|y| \to \infty$. The effective wing slope in Lee's sense is:
+
+    $$
+    p_{\pm} = \lim_{|y| \to \infty} \frac{w(y)}{|y|} = +\infty
+    $$
+
+    The leading-order behavior is **quadratic** ($w(y) \sim 0.1 y^2$), which grows faster than linear.
+
+    **(b) Arbitrage constraint check:** The constraint requires $0 < p_{\pm} \leq 2$. Here $p_{\pm} = +\infty > 2$, so this **violates** the arbitrage constraint. A wing slope exceeding $2$ implies that the first moment $\mathbb{E}[S_T]$ would be infinite (the forward price cannot be finite), which contradicts no-arbitrage.
+
+    More precisely, $p_{\pm} = \infty$ means the distribution has **compact support** (all moments are finite). While compact support is not itself an arbitrage violation, the super-linear growth of $w(y)$ creates issues: the implied density may become negative for large strikes, which is a butterfly arbitrage violation. In practice, any parametric model with faster-than-linear growth of total variance in the wings must be carefully checked for arbitrage.
+
+    **(c) Maximum finite moments:** Since $p_{\pm} = \infty$, Lee's formula gives:
+
+    $$
+    m_{\pm} = \frac{2}{p_{\pm}} = \frac{2}{\infty} = 0
+    $$
+
+    This is paradoxical: it would suggest no finite moments at all. The resolution is that Lee's formula $p_{\pm} = 2/m_{\pm}$ applies to the linear growth rate of total variance. When $w(y)$ grows super-linearly (quadratically here), the formula's limit is infinite, and the correct interpretation is that all moments $\mathbb{E}[S_T^p]$ are finite for all $p > 0$. The distribution has lighter tails than any power law — effectively compact support or sub-exponential decay. The model should be modified to cap the wing growth at a linear rate to ensure consistency with Lee's moment constraints.

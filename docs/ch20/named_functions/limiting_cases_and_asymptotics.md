@@ -233,26 +233,216 @@ The named functions of the Hull-White model exhibit clean limiting behavior that
 
 **Exercise 1.** Derive the Ho-Lee limit of $\theta(t)$ by taking $a \to 0$ in the formula $\theta(t) = f'(0,t) + af(0,t) + \frac{\sigma^2}{2a}(1-e^{-2at})$. Be careful with the indeterminate form in the third term; use L'Hopital's rule or Taylor expansion to show it converges to $\sigma^2 t$.
 
+??? success "Solution to Exercise 1"
+    The third term of $\theta(t) = f'(0,t) + af(0,t) + \frac{\sigma^2}{2a}(1-e^{-2at})$ involves the indeterminate form $\frac{\sigma^2}{2a}(1-e^{-2at})$ as $a \to 0$, since both the numerator factor $(1-e^{-2at})$ vanishes and the denominator $a$ vanishes.
+
+    **Using Taylor expansion:** Expand $e^{-2at} = 1 - 2at + \frac{(2at)^2}{2} - \frac{(2at)^3}{6} + \cdots$:
+
+    $$
+    \frac{1-e^{-2at}}{2a} = \frac{2at - 2a^2t^2 + \frac{4a^3t^3}{3} - \cdots}{2a} = t - at^2 + \frac{2a^2t^3}{3} - \cdots
+    $$
+
+    Therefore $\frac{\sigma^2}{2a}(1-e^{-2at}) = \sigma^2(t - at^2 + \cdots) \to \sigma^2 t$ as $a \to 0$.
+
+    **Alternatively, using L'Hopital's rule:** Treat $a$ as the variable and apply L'Hopital:
+
+    $$
+    \lim_{a\to 0}\frac{\sigma^2(1-e^{-2at})}{2a} = \lim_{a\to 0}\frac{\sigma^2 \cdot 2t\, e^{-2at}}{2} = \sigma^2 t
+    $$
+
+    The remaining terms have straightforward limits: $af(0,t) \to 0$ as $a \to 0$.
+
+    Therefore: $\lim_{a\to 0}\theta(t) = f'(0,t) + 0 + \sigma^2 t = f'(0,t) + \sigma^2 t$, which is the Ho-Lee drift function.
+
 ---
 
 **Exercise 2.** For $a = 0.001$, $\sigma = 0.01$, and $\tau = 5$, compute $B(\tau)$ exactly, using the Ho-Lee approximation $B \approx \tau$, and using the first-order correction $B \approx \tau(1 - a\tau/2)$. Report the relative error of each approximation. At what value of $a\tau$ does the first-order correction achieve a relative error below $10^{-4}$?
+
+??? success "Solution to Exercise 2"
+    With $a = 0.001$, $\sigma = 0.01$, $\tau = 5$, so $a\tau = 0.005$.
+
+    **Exact:** $B(5) = \frac{1-e^{-0.005}}{0.001} = \frac{1-0.99501}{0.001} = \frac{0.004988}{0.001} = 4.98752$ (using $e^{-0.005} = 0.995012$).
+
+    **Ho-Lee approximation:** $B \approx \tau = 5$. Relative error:
+
+    $$
+    \frac{|5 - 4.98752|}{4.98752} = \frac{0.01248}{4.98752} = 0.00250 = 0.250\%
+    $$
+
+    **First-order correction:** $B \approx \tau(1 - a\tau/2) = 5(1 - 0.0025) = 5(0.9975) = 4.9875$. Relative error:
+
+    $$
+    \frac{|4.9875 - 4.98752|}{4.98752} = \frac{0.00002}{4.98752} \approx 4 \times 10^{-6} = 0.0004\%
+    $$
+
+    **Threshold for $10^{-4}$ relative error with first-order correction:** The next term in the expansion is $B(\tau) = \tau(1 - \frac{a\tau}{2} + \frac{(a\tau)^2}{6} - \cdots)$. The relative error of the first-order correction is approximately $\frac{(a\tau)^2}{6}$. Setting this below $10^{-4}$:
+
+    $$
+    \frac{(a\tau)^2}{6} < 10^{-4} \implies (a\tau)^2 < 6 \times 10^{-4} \implies a\tau < 0.0245
+    $$
+
+    So for $a\tau < 0.024$, the first-order correction achieves relative error below $10^{-4}$.
 
 ---
 
 **Exercise 3.** In the fast mean-reversion limit $a \to \infty$, all option prices should vanish. Explain this result intuitively: what happens to the distribution of $r_t$ when mean reversion is infinitely fast? What does this imply for the value of any convexity-dependent instrument?
 
+??? success "Solution to Exercise 3"
+    When $a \to \infty$, the mean-reversion force $-a(r_t - \theta(t)/a)$ becomes infinitely strong. The short rate $r_t$ is pulled instantaneously toward the deterministic level $\theta(t)/a$. The distribution of $r_t$ collapses to a point mass: $r_t \to \theta(t)/a$ almost surely.
+
+    Formally, the variance $\sigma_r^2(t) = \frac{\sigma^2}{2a}(1-e^{-2at}) \leq \frac{\sigma^2}{2a} \to 0$. With zero variance, the short rate is deterministic, and so is the entire discount factor $e^{-\int_t^T r_s\,ds}$.
+
+    **Implication for options:** Any option price depends on the variability of the underlying. A call option on a bond, for example, has value:
+
+    $$
+    C = \mathbb{E}\left[e^{-\int_t^T r_s\,ds}(P(T,S) - K)^+\right]
+    $$
+
+    When $r_t$ is deterministic, $P(T,S)$ is known at time $t$ and the payoff $(P(T,S) - K)^+$ is a constant. The option either expires in the money with certainty (intrinsic value only) or out of the money with certainty (zero value). There is no time value from convexity because convexity effects arise from the nonlinearity of the payoff interacting with randomness, and here the randomness has been eliminated.
+
+    More generally, any convexity-dependent instrument (swaptions, caps, floors, convexity adjustments in futures vs. forwards) has its convexity value driven to zero when all uncertainty vanishes.
+
 ---
 
 **Exercise 4.** Derive the short-maturity expansion $V(t,T) = \frac{\sigma^2\tau^3}{3} - \frac{\sigma^2 a\tau^4}{6} + O(\tau^5)$ by substituting the Taylor expansions of $B(\tau)$ and $B(2\tau)$ into the formula $V = \frac{\sigma^2}{a^2}[\tau - 2B(\tau) + B(2\tau)/2]$.
+
+??? success "Solution to Exercise 4"
+    Start from $V = \frac{\sigma^2}{a^2}[\tau - 2B(\tau) + B(2\tau)/2]$.
+
+    Substitute the Taylor expansions:
+
+    $$
+    B(\tau) = \tau - \frac{a\tau^2}{2} + \frac{a^2\tau^3}{6} - \frac{a^3\tau^4}{24} + O(\tau^5)
+    $$
+
+    $$
+    B(2\tau) = 2\tau - \frac{a(2\tau)^2}{2} + \frac{a^2(2\tau)^3}{6} - \frac{a^3(2\tau)^4}{24} + O(\tau^5) = 2\tau - 2a\tau^2 + \frac{4a^2\tau^3}{3} - \frac{2a^3\tau^4}{3} + O(\tau^5)
+    $$
+
+    Compute each piece:
+
+    $$
+    2B(\tau) = 2\tau - a\tau^2 + \frac{a^2\tau^3}{3} - \frac{a^3\tau^4}{12} + O(\tau^5)
+    $$
+
+    $$
+    \frac{B(2\tau)}{2} = \tau - a\tau^2 + \frac{2a^2\tau^3}{3} - \frac{a^3\tau^4}{3} + O(\tau^5)
+    $$
+
+    Now combine:
+
+    $$
+    \tau - 2B(\tau) + \frac{B(2\tau)}{2} = \tau - 2\tau + a\tau^2 - \frac{a^2\tau^3}{3} + \frac{a^3\tau^4}{12} + \tau - a\tau^2 + \frac{2a^2\tau^3}{3} - \frac{a^3\tau^4}{3} + O(\tau^5)
+    $$
+
+    $$
+    = \left(-\frac{a^2\tau^3}{3} + \frac{2a^2\tau^3}{3}\right) + \left(\frac{a^3\tau^4}{12} - \frac{a^3\tau^4}{3}\right) + O(\tau^5)
+    $$
+
+    $$
+    = \frac{a^2\tau^3}{3} - \frac{a^3\tau^4}{4} + O(\tau^5)
+    $$
+
+    Multiply by $\sigma^2/a^2$:
+
+    $$
+    V(t,T) = \frac{\sigma^2}{a^2}\left(\frac{a^2\tau^3}{3} - \frac{a^3\tau^4}{4} + O(\tau^5)\right) = \frac{\sigma^2\tau^3}{3} - \frac{\sigma^2 a\tau^4}{4} + O(\tau^5)
+    $$
+
+    Comparing with the stated result $V(t,T) = \frac{\sigma^2\tau^3}{3} - \frac{\sigma^2 a\tau^4}{6} + O(\tau^5)$, note the coefficient of $\tau^4$ depends on the precise expansion. Recomputing the $\tau^4$ coefficient more carefully: from $2B(\tau)$ the $\tau^4$ term is $-\frac{a^3\tau^4}{12}$ and from $\frac{B(2\tau)}{2}$ the $\tau^4$ term is $-\frac{a^3\tau^4}{3}$. The net $\tau^4$ contribution is $\frac{a^3\tau^4}{12} - \frac{a^3\tau^4}{3} = -\frac{a^3\tau^4}{4}$, giving $V = \frac{\sigma^2\tau^3}{3} - \frac{\sigma^2 a\tau^4}{4} + O(\tau^5)$. The $-\frac{a}{4}$ coefficient versus $-\frac{a}{6}$ arises from whether additional higher-order terms are included; keeping terms through $O(\tau^5)$ in $B$ confirms $-\frac{a}{4}$.
 
 ---
 
 **Exercise 5.** The long-maturity yield sensitivity $\partial R/\partial r = B(\tau)/\tau \to 1/(a\tau) \to 0$ shows that long yields are insensitive to the short rate. Explain why this is a fundamental limitation of one-factor models. How does a two-factor extension address this limitation?
 
+??? success "Solution to Exercise 5"
+    The yield sensitivity to the short rate is $\frac{\partial R}{\partial r} = \frac{B(\tau)}{\tau}$.
+
+    As $\tau \to \infty$, $B(\tau) \to 1/a$, so $B(\tau)/\tau \to 0$. This means long-maturity yields are unresponsive to changes in the current short rate $r_t$.
+
+    **Why this is a fundamental limitation:** In a one-factor model, all yield curve movements are driven by a single stochastic factor ($r_t$). The change in yield at maturity $\tau$ is $\Delta R(\tau) = \frac{B(\tau)}{\tau}\Delta r_t$. Since $B(\tau)/\tau \to 0$ for large $\tau$, the ratio of long yield movement to short yield movement is:
+
+    $$
+    \frac{\Delta R(\tau_{\text{long}})}{\Delta R(\tau_{\text{short}})} = \frac{B(\tau_{\text{long}})/\tau_{\text{long}}}{B(\tau_{\text{short}})/\tau_{\text{short}}} \to 0
+    $$
+
+    This means the model cannot generate scenarios where the long end moves significantly while the short end moves modestly (or vice versa). Empirically, the yield curve exhibits twists, butterflies, and independent long-end movements that a single factor cannot capture.
+
+    **Two-factor extension:** A two-factor model introduces a second state variable, say $\ell_t$ (a "long rate" or "slope" factor), with its own stochastic dynamics. The bond price becomes $P(t,T) = e^{A(t,T) - B_1(\tau)r_t - B_2(\tau)\ell_t}$, where $B_1(\tau)/\tau \to 0$ but $B_2(\tau)/\tau$ can remain bounded away from zero. This allows independent movement of the long end via $\ell_t$. Common examples include the two-factor Hull-White model (G2++) and the two-factor CIR model.
+
 ---
 
 **Exercise 6.** Design a unit test for a Hull-White implementation using the summary table of limits. Write pseudocode that checks $B(\tau)$, $\sigma_r^2(t)$, and $V(t,T)$ against the Ho-Lee limits for $a = 10^{-6}$ and against the fast-mean-reversion limits for $a = 10^{6}$, with appropriate tolerance bounds.
 
+??? success "Solution to Exercise 6"
+    Pseudocode for a unit test suite:
+
+        def test_ho_lee_limits():
+            """Test against Ho-Lee limits for near-zero mean reversion."""
+            a = 1e-6
+            sigma = 0.01
+            taus = [1, 5, 10, 30]
+            tol = 1e-4  # relative tolerance
+
+            for tau in taus:
+                # B(tau) should equal tau
+                B_exact = (1 - exp(-a * tau)) / a
+                B_holee = tau
+                assert abs(B_exact - B_holee) / B_holee < tol
+
+                # sigma_r^2(t) should equal sigma^2 * t
+                var_exact = sigma**2 / (2*a) * (1 - exp(-2*a*tau))
+                var_holee = sigma**2 * tau
+                assert abs(var_exact - var_holee) / var_holee < tol
+
+                # V(t,T) should equal sigma^2 * tau^3 / 3
+                B_2tau = (1 - exp(-2*a*tau)) / a
+                V_exact = sigma**2 / a**2 * (tau - 2*B_exact + B_2tau/2)
+                V_holee = sigma**2 * tau**3 / 3
+                assert abs(V_exact - V_holee) / V_holee < tol
+
+        def test_fast_mean_reversion_limits():
+            """Test against deterministic limits for large mean reversion."""
+            a = 1e6
+            sigma = 0.01
+            taus = [1, 5, 10, 30]
+            abs_tol = 1e-4  # absolute tolerance (values near zero)
+
+            for tau in taus:
+                # B(tau) should be near zero
+                B_exact = (1 - exp(-a * tau)) / a
+                assert B_exact < abs_tol
+
+                # sigma_r^2(t) should be near zero
+                var_exact = sigma**2 / (2*a) * (1 - exp(-2*a*tau))
+                assert var_exact < abs_tol
+
+                # V(t,T) should be near zero
+                B_2tau = (1 - exp(-2*a*tau)) / a
+                V_exact = sigma**2 / a**2 * (tau - 2*B_exact + B_2tau/2)
+                assert V_exact < abs_tol
+
+    The Ho-Lee test uses relative tolerance because the values are nonzero, while the fast-mean-reversion test uses absolute tolerance because the limiting values are zero. For the fast-mean-reversion test, care must be taken with floating-point overflow in $e^{-a\tau}$ for very large $a\tau$; in practice, $e^{-10^6}$ underflows to zero in IEEE 754 arithmetic, which is the correct limiting behavior.
+
 ---
 
 **Exercise 7.** The bond price in the Ho-Lee limit is $P(t,T) = \frac{P^M(0,T)}{P^M(0,t)}\exp(\tau[f^M(0,t) - r(t)] + \frac{\sigma^2}{6}\tau^3)$. Identify the convexity correction term $\frac{\sigma^2}{6}\tau^3$ and explain its sign. Why does this term grow with $\tau^3$ rather than $\tau^2$?
+
+??? success "Solution to Exercise 7"
+    The convexity correction term in the Ho-Lee bond price is $\frac{\sigma^2}{6}\tau^3$. This term arises from the variance of the integrated short rate $\int_t^T r_s\,ds$.
+
+    **Sign:** The convexity correction is positive ($+\frac{\sigma^2}{6}\tau^3$), which means the bond price is **higher** than it would be under deterministic rates. This is Jensen's inequality at work: since $P(t,T) = \mathbb{E}[e^{-\int_t^T r_s\,ds}]$ and $e^{-x}$ is convex, Jensen's inequality gives $\mathbb{E}[e^{-X}] \geq e^{-\mathbb{E}[X]}$. The convexity correction captures this excess: more randomness in rates increases bond prices (equivalently, lowers yields relative to forward rates).
+
+    **Why $\tau^3$ rather than $\tau^2$:** The convexity correction is proportional to the variance of $\int_t^T r_s\,ds$, not the variance of $r_T$ itself. In the Ho-Lee model (no mean reversion):
+
+    $$
+    \text{Var}\!\left[\int_t^T r_s\,ds\right] = \int_t^T\int_t^T \text{Cov}(r_s, r_u)\,ds\,du
+    $$
+
+    Since $\text{Cov}(r_s, r_u) = \sigma^2\min(s-t, u-t)$ in the Ho-Lee model (both $r_s$ and $r_u$ share the same Brownian increments up to $\min(s,u)$), the double integral evaluates to:
+
+    $$
+    \sigma^2\int_0^\tau\int_0^\tau \min(s', u')\,ds'\,du' = \sigma^2\cdot\frac{\tau^3}{3}
+    $$
+
+    The $\tau^3$ scaling comes from the double integration over the triangle: each integration contributes one power of $\tau$ beyond the $\tau$ dependence already in $\text{Cov}(r_s, r_u) \sim \min(\cdot,\cdot) \sim \tau$. If we were computing $\text{Var}(r_T)$ (a single time point), we would get $\sigma^2\tau$ (scaling like $\tau^1$). The integration over the interval $[t,T]$ adds two extra powers of $\tau$, yielding $\tau^3$.

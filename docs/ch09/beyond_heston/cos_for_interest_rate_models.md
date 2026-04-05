@@ -208,22 +208,245 @@ The COS method extends to interest rate derivatives by substituting the appropri
 
 **Exercise 1.** For the Vasicek model with $r_0 = 0.05$, $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.01$, and $T = 1$, compute the mean and variance of $r_T$: $\mu_r = \theta + (r_0 - \theta)e^{-\kappa T}$ and $\sigma_r^2 = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa T})$. Write down the characteristic function $\phi_{\text{Vas}}(u) = \exp(iu\mu_r - \sigma_r^2 u^2/2)$ and evaluate it at $u = 0, 1, 10$.
 
+??? success "Solution to Exercise 1"
+    With $r_0 = 0.05$, $\kappa = 0.3$, $\theta = 0.05$, $\sigma = 0.01$, and $T = 1$:
+
+    **Mean:**
+
+    $$
+    \mu_r = \theta + (r_0 - \theta)e^{-\kappa T} = 0.05 + (0.05 - 0.05)e^{-0.3} = 0.05
+    $$
+
+    Since $r_0 = \theta$, the mean stays at the long-run level regardless of $T$.
+
+    **Variance:**
+
+    $$
+    \sigma_r^2 = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa T}) = \frac{0.0001}{0.6}(1 - e^{-0.6}) = \frac{0.0001}{0.6}(1 - 0.54881) = \frac{0.0001 \times 0.45119}{0.6} \approx 7.520 \times 10^{-5}
+    $$
+
+    So $\sigma_r \approx 0.008672$.
+
+    **Characteristic function:** $\phi_{\text{Vas}}(u) = \exp(iu\mu_r - \sigma_r^2 u^2 / 2) = \exp(0.05iu - 3.760 \times 10^{-5}u^2)$.
+
+    **At $u = 0$:**
+
+    $$
+    \phi_{\text{Vas}}(0) = \exp(0) = 1
+    $$
+
+    This is the normalization condition satisfied by all characteristic functions.
+
+    **At $u = 1$:**
+
+    $$
+    \phi_{\text{Vas}}(1) = \exp(0.05i - 3.760 \times 10^{-5}) = e^{-3.760 \times 10^{-5}}(\cos 0.05 + i\sin 0.05)
+    $$
+
+    $$
+    \approx 0.99996(0.99875 + 0.04998i) \approx 0.99871 + 0.04997i
+    $$
+
+    **At $u = 10$:**
+
+    $$
+    \phi_{\text{Vas}}(10) = \exp(0.5i - 3.760 \times 10^{-3}) = e^{-0.003760}(\cos 0.5 + i\sin 0.5)
+    $$
+
+    $$
+    \approx 0.99625(0.87758 + 0.47943i) \approx 0.87429 + 0.47763i
+    $$
+
+    Note that $|\phi(u)|$ decreases with $u$ due to the Gaussian damping factor $e^{-\sigma_r^2 u^2/2}$, which reflects the smoothness of the Gaussian density.
+
 ---
 
 **Exercise 2.** For a European call on a zero-coupon bond, the exercise boundary is $x^* = (A(T, T_B) - \ln K)/B(T, T_B)$, where $A$ and $B$ are the bond pricing coefficients. Explain geometrically why the exercise region is $x < x^*$ (i.e., rates below the critical rate), and what this means financially: a bond call is exercised when rates are low (bond prices are high).
+
+??? success "Solution to Exercise 2"
+    The bond price is $P(T, T_B) = \exp(A(T, T_B) - B(T, T_B)\,r_T)$, which is a **decreasing** function of $r_T$ because $B(T, T_B) > 0$ for $T_B > T$. Geometrically, the mapping from $r_T$ to bond price is a downward-sloping exponential curve.
+
+    The call payoff is $(P(T, T_B) - K)^+ = (\exp(A - Br_T) - K)^+$. This is positive when:
+
+    $$
+    \exp(A - Br_T) > K \iff A - Br_T > \ln K \iff r_T < \frac{A - \ln K}{B} = x^*
+    $$
+
+    So the exercise region is $r_T < x^*$, i.e., rates below the critical rate $x^*$.
+
+    **Financial interpretation:** A bond call option is a bet that bond prices will be high (equivalently, that interest rates will be low) at expiry. When $r_T < x^*$, the short rate is low enough that the zero-coupon bond price exceeds the strike, making the call in-the-money. This is the opposite of an equity call, where exercise occurs when the price is high. The duality arises because bond prices and interest rates move inversely.
+
+    Geometrically, plotting the payoff $(e^{A - Bx} - K)^+$ as a function of $x = r_T$: it equals zero for $x > x^*$ and curves upward exponentially as $x$ decreases below $x^*$.
 
 ---
 
 **Exercise 3.** The payoff coefficients for a bond option involve $\chi_k^{(-B)}(a, x^*) = \int_a^{x^*}e^{-Bx}\cos(\omega_k(x-a))\,dx$. Derive the closed form by integration by parts, following the same approach used for $\chi_k$ in the equity case. Show that the result is $\frac{1}{B^2 + \omega_k^2}[\cdots]$ with appropriate boundary terms.
 
+??? success "Solution to Exercise 3"
+    We need to compute $\chi_k^{(-B)}(a, x^*) = \int_a^{x^*} e^{-Bx}\cos(\omega_k(x - a))\,dx$ where $\omega_k = k\pi/(b-a)$.
+
+    Use the standard integral formula. Let $I = \int e^{-Bx}\cos(\omega_k(x-a))\,dx$. Write $\cos(\omega_k(x-a)) = \operatorname{Re}[e^{i\omega_k(x-a)}]$, so:
+
+    $$
+    I = \operatorname{Re}\!\left[\int e^{-Bx + i\omega_k(x-a)}\,dx\right] = \operatorname{Re}\!\left[e^{-i\omega_k a}\int e^{(-B + i\omega_k)x}\,dx\right]
+    $$
+
+    $$
+    = \operatorname{Re}\!\left[\frac{e^{-i\omega_k a}\,e^{(-B+i\omega_k)x}}{-B + i\omega_k}\right]
+    $$
+
+    Multiply numerator and denominator by $(-B - i\omega_k)$:
+
+    $$
+    I = \operatorname{Re}\!\left[\frac{(-B - i\omega_k)\,e^{-Bx + i\omega_k(x-a)}}{B^2 + \omega_k^2}\right]
+    $$
+
+    Expanding the real part:
+
+    $$
+    I = \frac{e^{-Bx}}{B^2 + \omega_k^2}\left[-B\cos(\omega_k(x-a)) + \omega_k\sin(\omega_k(x-a))\right]
+    $$
+
+    Evaluating at the limits $x = a$ and $x = x^*$:
+
+    $$
+    \chi_k^{(-B)}(a, x^*) = \frac{1}{B^2 + \omega_k^2}\bigg[e^{-Bx^*}\big(-B\cos(\omega_k(x^*-a)) + \omega_k\sin(\omega_k(x^*-a))\big) - e^{-Ba}(-B)\bigg]
+    $$
+
+    This simplifies to:
+
+    $$
+    \chi_k^{(-B)}(a, x^*) = \frac{1}{B^2 + \omega_k^2}\bigg[e^{-Bx^*}\big(-B\cos(\omega_k(x^*-a)) + \omega_k\sin(\omega_k(x^*-a))\big) + Be^{-Ba}\bigg]
+    $$
+
+    Note the $1/(B^2 + \omega_k^2)$ prefactor, which is the same structure as the equity case with $B$ replacing $1$. For $k = 0$ ($\omega_0 = 0$), the integral reduces to $\chi_0^{(-B)} = (e^{-Ba} - e^{-Bx^*})/B$.
+
 ---
 
 **Exercise 4.** A caplet on the forward rate $L(T_i, T_{i+1})$ can be expressed as $(1 + \delta K)$ times a put on a zero-coupon bond. Derive this relationship starting from the caplet payoff $\delta(L(T_i, T_{i+1}) - K)^+$ and using $L(T_i, T_{i+1}) = (1/P(T_i, T_{i+1}) - 1)/\delta$. What is the strike of the bond put in terms of $\delta$ and $K$?
+
+??? success "Solution to Exercise 4"
+    Starting from the caplet payoff at $T_{i+1}$, discounted to $T_i$:
+
+    $$
+    \text{Caplet payoff at } T_i = P(T_i, T_{i+1})\,\delta\,(L(T_i, T_{i+1}) - K)^+
+    $$
+
+    Using the definition of the simply compounded forward rate:
+
+    $$
+    L(T_i, T_{i+1}) = \frac{1}{\delta}\left(\frac{1}{P(T_i, T_{i+1})} - 1\right)
+    $$
+
+    Substituting:
+
+    $$
+    \delta(L - K)^+ = \delta\left(\frac{1}{\delta}\left(\frac{1}{P(T_i, T_{i+1})} - 1\right) - K\right)^+ = \left(\frac{1}{P(T_i, T_{i+1})} - 1 - \delta K\right)^+
+    $$
+
+    $$
+    = \frac{1}{P(T_i, T_{i+1})}\left(1 - (1 + \delta K)P(T_i, T_{i+1})\right)^+
+    $$
+
+    Therefore, the caplet value at $T_i$ is:
+
+    $$
+    P(T_i, T_{i+1}) \cdot \frac{1}{P(T_i, T_{i+1})}\left(1 - (1+\delta K)P(T_i, T_{i+1})\right)^+
+    $$
+
+    $$
+    = \left(1 - (1 + \delta K)P(T_i, T_{i+1})\right)^+
+    $$
+
+    $$
+    = (1 + \delta K)\left(\frac{1}{1+\delta K} - P(T_i, T_{i+1})\right)^+
+    $$
+
+    This is $(1 + \delta K)$ times the payoff of a **put option on the zero-coupon bond** $P(T_i, T_{i+1})$ with strike:
+
+    $$
+    K_{\text{put}} = \frac{1}{1 + \delta K}
+    $$
+
+    So a caplet with cap rate $K$ is equivalent to $(1 + \delta K)$ put options on the ZCB with strike $1/(1 + \delta K)$.
 
 ---
 
 **Exercise 5.** The Jamshidian decomposition reduces a swaption to a portfolio of bond options. For a payer swaption on a 3-year annual-pay swap with fixed rate $K = 0.04$ and option expiry $T_0 = 1$, list the bond options in the decomposition. How many COS evaluations are needed to price the swaption?
 
+??? success "Solution to Exercise 5"
+    For a payer swaption on a 3-year annual-pay swap with fixed rate $K = 0.04$ and option expiry $T_0 = 1$, the swap has payment dates $T_1 = 2$, $T_2 = 3$, $T_3 = 4$ (annual payments starting one year after option expiry), with accrual period $\delta = 1$.
+
+    The Jamshidian decomposition gives:
+
+    $$
+    V_{\text{swaption}} = \sum_{i=1}^{3} c_i \cdot \text{Put}(T_0, T_i, K_i)
+    $$
+
+    The cash flow weights are:
+
+    - $c_1 = \delta K = 1 \times 0.04 = 0.04$ (coupon at $T_1 = 2$)
+    - $c_2 = \delta K = 0.04$ (coupon at $T_2 = 3$)
+    - $c_3 = 1 + \delta K = 1.04$ (principal + coupon at $T_3 = 4$)
+
+    The strikes $K_i = P(r^*, T_i)$ are determined by finding the critical rate $r^*$ that solves:
+
+    $$
+    0.04\,P(r^*, T_1) + 0.04\,P(r^*, T_2) + 1.04\,P(r^*, T_3) = 1
+    $$
+
+    This is a single nonlinear equation in $r^*$ (under Vasicek or CIR, $P$ is exponential-affine in $r^*$), solved by Newton's method or bisection.
+
+    The bond options in the decomposition are:
+
+    1. Put on ZCB maturing at $T_1 = 2$, with notional 0.04 and strike $K_1 = P(r^*, 2)$, expiring at $T_0 = 1$
+    2. Put on ZCB maturing at $T_2 = 3$, with notional 0.04 and strike $K_2 = P(r^*, 3)$, expiring at $T_0 = 1$
+    3. Put on ZCB maturing at $T_3 = 4$, with notional 1.04 and strike $K_3 = P(r^*, 4)$, expiring at $T_0 = 1$
+
+    **Number of COS evaluations:** $n = 3$ independent COS evaluations (one per bond put), plus the one-time cost of solving for $r^*$. Each COS evaluation is $O(N)$, so the total cost is $O(3N)$, which is negligible.
+
 ---
 
 **Exercise 6.** The COS method for interest rate models requires the characteristic function of $r_T$ under the $T$-forward measure, not the risk-neutral measure. For the Vasicek model, the forward measure adjustment replaces $\kappa$ by $\kappa + \sigma B(T, T_B)$. Explain why this measure change is needed and how it affects the mean and variance of $r_T$. What happens to the COS price if you forget to apply the measure change?
+
+---
+
+??? success "Solution to Exercise 6"
+    **Why the measure change is needed:** The bond option value is:
+
+    $$
+    V = \mathbb{E}^Q\!\left[e^{-\int_0^T r_s\,ds}(P(T, T_B) - K)^+\right]
+    $$
+
+    The stochastic discount factor $e^{-\int_0^T r_s\,ds}$ is correlated with $r_T$ (since $r_T$ is part of the integral), making the expectation difficult to compute directly. The change to the $T$-forward measure eliminates the stochastic discounting:
+
+    $$
+    V = P(0, T)\,\mathbb{E}^T\!\left[(P(T, T_B) - K)^+\right]
+    $$
+
+    Under $\mathbb{E}^T$, the density of $r_T$ is different from the risk-neutral density. The Radon--Nikodym derivative is:
+
+    $$
+    \frac{d\mathbb{Q}^T}{d\mathbb{Q}} = \frac{e^{-\int_0^T r_s\,ds}}{P(0,T)}
+    $$
+
+    **Effect on Vasicek parameters:** For the Vasicek model, the forward measure dynamics are:
+
+    $$
+    dr_t = (\kappa\theta - (\kappa + \sigma B(t, T))r_t)\,dt + \sigma\,dW_t^T
+    $$
+
+    This is equivalent to replacing $\kappa$ with $\tilde{\kappa} = \kappa + \sigma B(T, T_B)$ (note: the adjustment uses $B$ evaluated for the bond maturity relevant to the pricing) and $\theta$ with $\tilde{\theta} = \kappa\theta / \tilde{\kappa}$.
+
+    **Effect on mean and variance:**
+
+    - The variance $\sigma_r^2 = \frac{\sigma^2}{2\tilde{\kappa}}(1 - e^{-2\tilde{\kappa}T})$ changes because $\tilde{\kappa} > \kappa$ (assuming $B > 0$), so the variance under the forward measure is **smaller** than under $\mathbb{Q}$---the rate has stronger mean reversion under the forward measure.
+    - The mean $\mu_r = \tilde{\theta} + (r_0 - \tilde{\theta})e^{-\tilde{\kappa}T}$ shifts because $\tilde{\theta} < \theta$ (the long-run mean is pulled down) and the rate of convergence $\tilde{\kappa}$ is faster.
+
+    **Consequence of forgetting the measure change:** If the risk-neutral CF is used instead of the forward-measure CF, the COS method computes $\mathbb{E}^Q[(P(T, T_B) - K)^+]$ instead of $\mathbb{E}^T[(P(T, T_B) - K)^+]$. Multiplying by $P(0, T)$ then gives:
+
+    $$
+    P(0, T)\,\mathbb{E}^Q[(P(T, T_B) - K)^+] \neq P(0, T)\,\mathbb{E}^T[(P(T, T_B) - K)^+] = V_{\text{correct}}
+    $$
+
+    The error is a systematic bias: the wrong density assigns incorrect probabilities to the exercise region, producing a bond option price that does not satisfy no-arbitrage conditions. For typical parameters, this error is small when the volatility $\sigma$ is small (the two measures are similar) but can be substantial for high-volatility or long-maturity scenarios.

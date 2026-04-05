@@ -255,26 +255,89 @@ The central message is that local volatility is not wrong -- it is **incomplete*
 
 **Exercise 1.** Explain the root cause of local volatility's limitations in one sentence. Why does the absence of an independent volatility Brownian motion $dW_t^v$ restrict the model's ability to capture realistic smile dynamics?
 
+??? success "Solution to Exercise 1"
+    The root cause is that in local volatility the instantaneous volatility $\sigma_{\text{loc}}(S_t, t)$ is a deterministic function of the spot price and time, so there is no independent Brownian motion driving volatility separately from the asset price. Without $dW_t^v$, the volatility path is completely determined by the spot path, which forces a perfect negative spot-vol correlation ($\rho = -1$), produces zero residual vol-of-vol, generates sticky-strike dynamics, and flattens forward smiles -- all because the model has only one source of randomness.
+
 ---
 
 **Exercise 2.** In the stochastic local volatility (SLV) model, the asset dynamics are $dS_t = (r-q)S_t \, dt + L(S_t, t)\sqrt{v_t} S_t \, dW_t^S$ where $L(S, t)$ is the leverage function. Explain the role of $L$ in reconciling the stochastic volatility component with the observed vanilla surface. What happens if $L \equiv 1$?
+
+??? success "Solution to Exercise 2"
+    The leverage function $L(S, t)$ adjusts the diffusion coefficient of the SLV model so that the model's marginal distributions of $S_t$ match those implied by the market's vanilla option surface. Specifically, $L$ absorbs the discrepancy between the Dupire local volatility (which encodes the market vanilla prices) and the conditional expected variance from the stochastic volatility component, via
+
+    $$
+    L^2(K, t) = \frac{\sigma_{\text{loc}}^2(K, t)}{\mathbb{E}^{\mathbb{Q}}[v_t \mid S_t = K]}
+    $$
+
+    If $L \equiv 1$, the SLV model reduces to a pure stochastic volatility model. In this case, the model generally cannot match the full vanilla surface exactly, because the SV component alone typically lacks enough flexibility to reproduce every market-quoted call and put price. The calibration residuals in vanilla options would be nonzero, meaning the model would approximate, but not perfectly fit, the observed implied volatility surface.
 
 ---
 
 **Exercise 3.** Gyongy's theorem states that for any stochastic volatility model, there exists a local volatility model with the same marginal distributions. The local volatility is $\sigma_{\text{loc}}^2(K, t) = \mathbb{E}[v_t \mid S_t = K]$. If $v_t$ and $S_t$ are negatively correlated ($\rho < 0$), is $\sigma_{\text{loc}}(K, t)$ increasing or decreasing in $K$? Explain the connection to the implied volatility skew.
 
+??? success "Solution to Exercise 3"
+    When $\rho < 0$, spot $S_t$ and variance $v_t$ are negatively correlated: paths that reach a high level $S_t = K$ tend to have lower variance $v_t$, while paths reaching a low level $S_t = K$ tend to have higher variance. Since the Gyongy projection is
+
+    $$
+    \sigma_{\text{loc}}^2(K, t) = \mathbb{E}[v_t \mid S_t = K]
+    $$
+
+    this negative correlation implies that $\sigma_{\text{loc}}(K, t)$ is **decreasing** in $K$: lower strikes correspond to higher conditional expected variance and vice versa. This produces a downward-sloping local volatility surface as a function of strike, which in turn generates a negatively skewed implied volatility smile -- matching the empirically observed equity skew where OTM puts (low strikes) have higher implied volatility than OTM calls (high strikes).
+
 ---
 
 **Exercise 4.** The leverage function in SLV models is $L^2(K, t) = \sigma_{\text{loc}}^2(K, t) / \mathbb{E}[v_t \mid S_t = K]$. If $\sigma_{\text{loc}}(100, 0) = 0.20$ and $\mathbb{E}[v_0 \mid S_0 = 100] = 0.05$, compute $L(100, 0)$. If the stochastic vol component has higher vol-of-vol than implied by the local vol surface, will $L$ be greater or less than 1 at typical strikes?
+
+??? success "Solution to Exercise 4"
+    We have $\sigma_{\text{loc}}(100, 0) = 0.20$, so $\sigma_{\text{loc}}^2(100, 0) = 0.04$. Given $\mathbb{E}[v_0 \mid S_0 = 100] = 0.05$:
+
+    $$
+    L^2(100, 0) = \frac{0.04}{0.05} = 0.80
+    $$
+
+    $$
+    L(100, 0) = \sqrt{0.80} \approx 0.894
+    $$
+
+    Since $L < 1$, the stochastic volatility component already generates more conditional variance at-the-money than the market requires, so the leverage function dampens it.
+
+    If the SV component has higher vol-of-vol than implied by the local vol surface, then $\mathbb{E}[v_t \mid S_t = K]$ will generally be larger (higher vol-of-vol spreads the distribution of $v_t$ more widely, often raising the conditional mean at typical strikes). This makes the denominator of $L^2$ larger relative to the numerator, so $L < 1$ at typical strikes. The leverage function must attenuate the SV component to prevent the model from over-generating volatility relative to what the market vanilla surface implies.
 
 ---
 
 **Exercise 5.** Compare the prices of a 1-year cliquet option (sum of capped monthly returns) under three models: pure local volatility, Heston stochastic volatility, and SLV. Which model do you expect to give the highest price, and why? Relate your answer to the forward smile behavior of each model.
 
+??? success "Solution to Exercise 5"
+    The **Heston stochastic volatility model** is expected to give the highest cliquet price, followed by SLV, with pure local volatility giving the lowest price.
+
+    The reasoning is as follows. Each monthly return in the cliquet is effectively a forward-starting option, priced using the forward smile at each reset date. Local volatility produces systematically flat forward smiles (the skew and curvature decay rapidly with the reset date), so the capped monthly returns are priced as if the tails are thin -- undervaluing tail risk and underpricing the cliquet. Stochastic volatility (Heston) preserves forward smile curvature through the vol-of-vol parameter $\xi$, producing persistent skew and convexity at each reset. The wider forward smiles assign higher probabilities to extreme monthly returns, increasing the value of the caps and floors and raising the cliquet price. The SLV model sits between the two: its stochastic component preserves some forward smile curvature while its leverage function constrains the calibration, so the forward smiles are more curved than LV but potentially slightly less so than pure SV (depending on the mixing parameter $\eta$).
+
+    Typical price differences are 15--30% of the premium between LV and SV, driven entirely by the forward smile behavior.
+
 ---
 
 **Exercise 6.** The mixing parameter $\eta$ in an SLV model controls the blend between local and stochastic volatility. At $\eta = 0$, the model reduces to pure local volatility; at $\eta = 1$, it becomes full stochastic volatility with leverage. Describe qualitatively how the forward smile changes as $\eta$ increases from 0 to 1. What value of $\eta$ best fits typical equity markets?
 
+??? success "Solution to Exercise 6"
+    At $\eta = 0$, the model is pure local volatility: $v_t^0 = 1$ and all dynamics come from the leverage function $L(S, t)$. The forward smile is flat because the volatility is deterministic given the spot path, with no independent vol randomness to sustain curvature.
+
+    As $\eta$ increases from 0 toward 1, the stochastic volatility component $v_t^{\eta/2}$ contributes more to the diffusion. This introduces genuine vol-of-vol into the forward dynamics: conditional on $S_t = K$, the variance $v_t$ is still random, and this randomness generates persistent forward smile curvature. The forward skew strengthens, the forward smile wings widen, and the overall forward smile shape approaches that of a pure SV model.
+
+    At $\eta = 1$, the model has the full SV component with leverage, and the forward smile is as persistent as the SV model allows.
+
+    For typical equity markets, practitioners find that $\eta \in [0.5, 1.0]$ fits best, with $\eta \approx 0.6$--$0.8$ being the most common range. This balances the need for persistent forward smiles (higher $\eta$) against the calibration stability of the leverage function (lower $\eta$ means $L$ does more of the work, making it closer to 1 and more stable numerically).
+
 ---
 
 **Exercise 7.** A practitioner must choose between Heston, local volatility, and SLV for pricing barrier options on the S&P 500. Discuss the tradeoffs: (a) calibration difficulty, (b) forward smile accuracy, (c) hedging performance, and (d) computational cost. Make a recommendation with justification.
+
+??? success "Solution to Exercise 7"
+    **(a) Calibration difficulty.** Local volatility is the easiest to calibrate: Dupire's formula gives a closed-form expression. Heston requires nonlinear optimization over 5 parameters with a Fourier-based pricing engine; this is moderately difficult and can suffer from local minima and parameter degeneracy ($\kappa$-$\theta$ and $\xi$-$\rho$ tradeoffs). SLV is the hardest: it requires calibrating the SV parameters, computing the Dupire surface, and then iteratively estimating the leverage function via Monte Carlo particle methods.
+
+    **(b) Forward smile accuracy.** Local volatility produces systematically flat forward smiles, making it the worst for barrier options whose value depends on conditional densities at the barrier level. Heston produces more realistic forward smiles with persistent skew, but may not match the vanilla surface perfectly, introducing calibration error. SLV combines exact vanilla calibration with realistic forward smiles, making it the most accurate.
+
+    **(c) Hedging performance.** Local volatility deltas are biased because the model assumes sticky-strike dynamics, overpredicting the sensitivity of implied vol to spot moves. Heston deltas incorporate vol-of-vol and partial correlation, producing more realistic hedges. SLV deltas blend both effects and are generally the most robust, with the mixing parameter $\eta$ controlling the balance.
+
+    **(d) Computational cost.** Local volatility is cheapest (PDE or tree methods on a 2D grid). Heston is moderate (Fourier pricing for vanillas, PDE or Monte Carlo for barriers). SLV is the most expensive (particle method calibration plus full Monte Carlo pricing).
+
+    **Recommendation.** For pricing barrier options on the S&P 500, use the SLV model with moderate mixing $\eta \approx 0.5$--$0.7$. Barrier option prices are highly sensitive to the conditional density at the barrier, which depends critically on the forward smile. Local volatility's flat forward smiles produce systematic bias, while Heston's imperfect vanilla calibration introduces its own errors. SLV eliminates both issues at the cost of higher computational effort, which is justified given the typical notional sizes of barrier option books.

@@ -304,32 +304,343 @@ $$
 
 where $A = \theta(1 - (1 - e^{-\kappa\tau})/(\kappa\tau))$ and $B = (1 - e^{-\kappa\tau})/(\kappa\tau)$ with $\tau = 30/365$. For $\kappa = 2.0$ and $\theta = 0.04$, compute $A$ and $B$. If $v_t = 0.04$, compute VIX in percentage.
 
+??? success "Solution to Exercise 1"
+    **Computing the affine coefficients.** With $\kappa = 2.0$, $\theta = 0.04$, $\tau = 30/365$:
+
+    $$
+    \kappa\tau = 2.0 \times \frac{30}{365} = \frac{60}{365} = 0.16438
+    $$
+
+    $$
+    e^{-\kappa\tau} = e^{-0.16438} = 0.8484
+    $$
+
+    $$
+    B = \frac{1 - e^{-\kappa\tau}}{\kappa\tau} = \frac{1 - 0.8484}{0.16438} = \frac{0.1516}{0.16438} = 0.9222
+    $$
+
+    $$
+    A = \theta(1 - B) = 0.04 \times (1 - 0.9222) = 0.04 \times 0.0778 = 0.003111
+    $$
+
+    **Computing VIX for $v_t = 0.04$.** Using VIX$_t^2 = A + B v_t$:
+
+    $$
+    \text{VIX}_t^2 = 0.003111 + 0.9222 \times 0.04 = 0.003111 + 0.036889 = 0.04000
+    $$
+
+    $$
+    \text{VIX}_t = 100 \times \sqrt{0.04000} = 100 \times 0.2000 = 20.00\%
+    $$
+
+    This makes intuitive sense: when $v_t = \theta = 0.04$, the variance is at its long-run level, and the 30-day expected average variance equals $\theta$ (since there is no drift away from $\theta$). The VIX is exactly $100\sqrt{\theta} = 20\%$.
+
+    **Verification.** We can check: $A + B\theta = \theta(1-B) + B\theta = \theta$, confirming that VIX$^2 = \theta$ when $v_t = \theta$, regardless of the value of $\kappa$.
+
 ---
 
 **Exercise 2.**
 Since VIX$^2 = A + Bv_t$ is affine in $v_t$, the characteristic function of VIX$^2$ follows from the known distribution of $v_t$. If $v_t$ has a CIR stationary distribution (Gamma), show that VIX$^2$ also follows a shifted Gamma distribution. Compute the mean and variance of VIX$^2$ in terms of $A$, $B$, $\theta$, $\kappa$, and $\xi$.
+
+??? success "Solution to Exercise 2"
+    **Stationary distribution of VIX$^2$.** In the stationary regime ($T \to \infty$), the CIR process $v_t$ has a Gamma distribution:
+
+    $$
+    v_{\infty} \sim \text{Gamma}\!\left(\frac{2\kappa\theta}{\xi^2}, \frac{2\kappa}{\xi^2}\right)
+    $$
+
+    with shape $\alpha_{\text{shape}} = 2\kappa\theta/\xi^2$ and rate $\beta_{\text{rate}} = 2\kappa/\xi^2$. This gives $\mathbb{E}[v_{\infty}] = \theta$ and $\operatorname{Var}(v_{\infty}) = \xi^2\theta/(2\kappa)$.
+
+    Since VIX$^2 = A + B v_t$, VIX$^2$ is a **shifted (and scaled) Gamma** random variable:
+
+    $$
+    \text{VIX}^2 - A = B v_t \sim \text{Gamma}\!\left(\frac{2\kappa\theta}{\xi^2}, \frac{2\kappa}{B\xi^2}\right)
+    $$
+
+    The shift by $A$ does not change the shape of the distribution, only the location.
+
+    **Mean of VIX$^2$:**
+
+    $$
+    \mathbb{E}[\text{VIX}_T^2] = A + B \, \mathbb{E}[v_T]
+    $$
+
+    For the general case (not just stationary), $\mathbb{E}[v_T] = \theta + (v_0 - \theta)e^{-\kappa T}$, so:
+
+    $$
+    \mathbb{E}[\text{VIX}_T^2] = A + B\theta + B(v_0 - \theta)e^{-\kappa T}
+    $$
+
+    Since $A + B\theta = \theta$:
+
+    $$
+    \mathbb{E}[\text{VIX}_T^2] = \theta + B(v_0 - \theta)e^{-\kappa T}
+    $$
+
+    In the stationary limit: $\mathbb{E}[\text{VIX}_{\infty}^2] = \theta$.
+
+    **Variance of VIX$^2$:**
+
+    $$
+    \operatorname{Var}(\text{VIX}_T^2) = B^2 \operatorname{Var}(v_T)
+    $$
+
+    The variance of $v_T$ under CIR is:
+
+    $$
+    \operatorname{Var}(v_T) = \frac{\xi^2}{\kappa}\left[\frac{\theta}{2}(1 - e^{-\kappa T})^2 + v_0 e^{-\kappa T}(1 - e^{-\kappa T})\right]
+    $$
+
+    Simplifying:
+
+    $$
+    \operatorname{Var}(v_T) = \frac{\xi^2(1 - e^{-\kappa T})}{\kappa}\left[\frac{\theta}{2}(1 - e^{-\kappa T}) + v_0 e^{-\kappa T}\right]
+    $$
+
+    Therefore:
+
+    $$
+    \operatorname{Var}(\text{VIX}_T^2) = \frac{B^2 \xi^2(1 - e^{-\kappa T})}{\kappa}\left[\frac{\theta}{2}(1 - e^{-\kappa T}) + v_0 e^{-\kappa T}\right]
+    $$
+
+    In the stationary limit ($T \to \infty$):
+
+    $$
+    \operatorname{Var}(\text{VIX}_{\infty}^2) = B^2 \cdot \frac{\xi^2\theta}{2\kappa}
+    $$
 
 ---
 
 **Exercise 3.**
 VIX call options have payoff $({\text{VIX}_T - K_{\text{VIX}}})^+$ where $K_{\text{VIX}}$ is the VIX strike (in percentage). To price this via Fourier inversion, we need the CF of VIX$_T$ (not VIX$_T^2$). Describe the challenge: VIX$_T = \sqrt{A + Bv_T}$ is a nonlinear function of $v_T$. Explain how to price VIX options by: (a) computing the CF of $v_T$ (which is known for CIR), (b) changing variables from VIX to $v_T$, and (c) applying Gil-Pelaez inversion.
 
+??? success "Solution to Exercise 3"
+    **The challenge of pricing VIX options.** VIX options have payoff $(\text{VIX}_T - K_{\text{VIX}})^+$ where $\text{VIX}_T = \sqrt{A + Bv_T}$. The characteristic function of VIX$_T^2 = A + Bv_T$ is available in closed form (from the CIR MGF), but the characteristic function of $\text{VIX}_T = \sqrt{A + Bv_T}$ is **not** available in closed form because the square root is a nonlinear transformation.
+
+    **Approach (a): CF of $v_T$.** The CIR process has a known characteristic function (equivalently, moment generating function):
+
+    $$
+    \mathbb{E}[e^{iwv_T} \mid v_0] = \exp(C(T, iw) + D(T, iw)v_0)
+    $$
+
+    where $C$ and $D$ are the Riccati solutions given in the text. This is a closed-form expression, easily evaluable for any $w \in \mathbb{C}$.
+
+    **Approach (b): Change of variables from VIX to $v_T$.** The VIX call price is:
+
+    $$
+    C_{\text{VIX}} = e^{-rT}\mathbb{E}[(\sqrt{A + Bv_T} - K_{\text{VIX}})^+]
+    $$
+
+    Since $\text{VIX} = \sqrt{A + Bv_T}$ is a monotone increasing function of $v_T$, the event $\{\text{VIX}_T > K_{\text{VIX}}\}$ is equivalent to $\{v_T > v^*\}$ where:
+
+    $$
+    v^* = \frac{K_{\text{VIX}}^2 - A}{B}
+    $$
+
+    Therefore:
+
+    $$
+    C_{\text{VIX}} = e^{-rT}\int_{v^*}^{\infty} (\sqrt{A + Bv} - K_{\text{VIX}}) f_{v_T}(v) \, dv
+    $$
+
+    where $f_{v_T}$ is the (non-central chi-squared) density of $v_T$.
+
+    **Approach (c): Gil--Pelaez inversion.** To evaluate the integral above, we can use the Gil--Pelaez framework. The probability $\mathbb{P}(v_T > v^*)$ can be computed as:
+
+    $$
+    \mathbb{P}(v_T > v^*) = \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty} \operatorname{Re}\!\left[\frac{e^{-iu v^*}\phi_{v_T}(u)}{iu}\right] du
+    $$
+
+    where $\phi_{v_T}(u) = \mathbb{E}[e^{iuv_T}]$ is the CIR characteristic function. For the full call price, we also need the conditional first moment $\mathbb{E}[\sqrt{A + Bv_T} \mathbf{1}_{\{v_T > v^*\}}]$. This can be computed by:
+
+    1. **Fourier inversion of the density:** First recover $f_{v_T}(v)$ via inverse Fourier transform of $\phi_{v_T}$, then numerically integrate $\int_{v^*}^{\infty}\sqrt{A + Bv}\,f_{v_T}(v)\,dv$.
+
+    2. **Direct numerical integration:** Since the non-central chi-squared density has well-known computational forms (series of Poisson-weighted central chi-squared densities), one can directly evaluate the integral numerically without Fourier methods.
+
+    3. **COS method on $v_T$:** Apply the COS expansion to $f_{v_T}$ over $[0, v_{\max}]$, with payoff coefficients $H_k = \int_{v^*}^{v_{\max}}(\sqrt{A+Bv} - K_{\text{VIX}})\cos(\cdots)\,dv$ computed numerically.
+
+    The most efficient approach in practice is method 2 (direct integration against the non-central chi-squared density), as it avoids the Fourier inversion step entirely and exploits the known distributional form of $v_T$.
+
 ---
 
 **Exercise 4.**
 The Heston model generates a **VIX smile**: implied volatilities of VIX options vary with the VIX strike. Explain why the VIX smile is upward-sloping (OTM VIX calls have higher implied vol than ATM). Hint: VIX$^2$ is affine in $v_t$, and $v_t$ follows a CIR process whose distribution is right-skewed. The positive skewness of VIX translates to an upward-sloping smile.
+
+??? success "Solution to Exercise 4"
+    **Why the VIX smile is upward-sloping.**
+
+    The VIX implied volatility smile refers to the Black (lognormal) implied volatility of VIX options as a function of the VIX strike $K_{\text{VIX}}$. An upward-sloping smile means OTM VIX calls (high strikes) have higher implied volatility than ATM VIX options.
+
+    **Step 1: Distribution of VIX.** Under Heston, VIX$^2 = A + Bv_T$, where $v_T$ follows a CIR process. The distribution of $v_T$ is non-central chi-squared, which is:
+
+    - **Supported on $[0, \infty)$**: VIX$^2 \geq A > 0$, so VIX is bounded below
+    - **Right-skewed**: The chi-squared family has positive skewness. Large values of $v_T$ are possible but rare, creating a heavy right tail
+    - **Skewness coefficient**: For the CIR process, the skewness is $2\xi/\sqrt{2\kappa\theta} > 0$, confirming positive skewness
+
+    Since VIX $= \sqrt{A + Bv_T}$, VIX inherits the right skew of $v_T$ (the square root is a concave function that compresses the right tail somewhat, but the skewness remains positive).
+
+    **Step 2: Right skew implies upward-sloping implied vol.** When a distribution is right-skewed relative to the lognormal:
+
+    - The right tail is **heavier** than lognormal: $\mathbb{P}(\text{VIX} > K)$ decays slower than the lognormal tail for large $K$
+    - OTM calls (high $K_{\text{VIX}}$) are worth more than the lognormal model predicts
+    - To match these higher prices, the Black implied volatility must be **increased** for high strikes
+    - This creates the upward slope in the VIX implied volatility smile
+
+    **Step 3: Contrast with SPX smile.** The SPX implied volatility smile is typically downward-sloping (negative skew) because:
+
+    - SPX returns are left-skewed (leverage effect from $\rho < 0$)
+    - OTM puts (low strikes) are expensive
+
+    The VIX smile has the **opposite** direction because VIX is derived from the variance process, not the stock price. The variance process has a right-skewed distribution regardless of $\rho$ (which affects only the stock-variance correlation, not the marginal distribution of $v_T$).
+
+    **Step 4: Role of $\xi$.** The vol-of-vol $\xi$ controls the magnitude of the skewness. Higher $\xi$ means more dispersed $v_T$, heavier right tail, and a steeper upward slope in the VIX smile.
 
 ---
 
 **Exercise 5.**
 A key limitation of single-factor Heston for VIX options is that it cannot fit both the SPX implied volatility surface and the VIX smile simultaneously. Explain why: the five Heston parameters are fully determined by the SPX surface calibration, leaving no degrees of freedom to fit VIX options. If the SPX-calibrated parameters give VIX at-the-money implied volatility of 80%, but the market shows 100%, what does this discrepancy reveal about the model?
 
+??? success "Solution to Exercise 5"
+    **Joint SPX-VIX calibration failure.**
+
+    **The constraint.** The single-factor Heston model has five parameters: $v_0, \kappa, \theta, \xi, \rho$. When calibrating to the SPX implied volatility surface (a rich set of option prices across strikes and maturities), all five parameters are effectively determined. The calibration minimizes some loss function:
+
+    $$
+    (\hat{v}_0, \hat{\kappa}, \hat{\theta}, \hat{\xi}, \hat{\rho}) = \arg\min \sum_{i} \left(\sigma_{\text{Heston}}^{\text{impl}}(K_i, T_i) - \sigma_{\text{market}}^{\text{impl}}(K_i, T_i)\right)^2
+    $$
+
+    Once these parameters are fixed, the VIX option prices are **fully determined** --- there are no free parameters left to fit the VIX smile.
+
+    **Why the fit fails.** The VIX smile under Heston is controlled primarily by $\xi$ (vol-of-vol) and $\kappa$ (mean reversion):
+
+    - $\xi$ determines the width of the VIX distribution (and hence the VIX smile curvature)
+    - $\kappa$ determines how much of $v_0$ propagates to the VIX option expiry
+
+    The SPX surface also depends on $\xi$ and $\kappa$, but through different mechanisms:
+
+    - $\xi$ controls the SPX smile curvature (kurtosis of returns)
+    - $\kappa$ controls the term structure of the SPX smile
+
+    In practice, the $\xi$ required to fit the SPX surface is **too small** to generate enough VIX smile curvature. The SPX-calibrated Heston model produces VIX options with:
+
+    - **Too low** ATM VIX implied volatility (e.g., 80% vs. market 100%)
+    - **Too flat** VIX smile
+
+    **What the discrepancy reveals.** If the SPX-calibrated Heston gives VIX ATM vol of 80% but the market shows 100%, this means:
+
+    1. **The variance process has more randomness than single-factor CIR can capture.** The actual variance dynamics may involve jumps, multiple factors, or non-constant vol-of-vol.
+
+    2. **The VIX smile contains information beyond what is in the SPX surface.** The VIX market prices imply a heavier-tailed variance distribution than the SPX-calibrated CIR process.
+
+    3. **Model risk.** Using SPX-calibrated Heston to price VIX derivatives will systematically underprice OTM VIX calls and ITM VIX puts, creating arbitrage opportunities for sophisticated traders who recognize the model limitation.
+
+    This discrepancy is one of the main motivations for multi-factor extensions (double Heston, Bates with variance jumps, rough volatility models) that decouple the SPX and VIX fitting channels.
+
 ---
 
 **Exercise 6.**
 Compute the Heston-implied VIX for $v_0 = 0.04$ and $v_0 = 0.09$ (the latter representing a market stress scenario). Using $\kappa = 2.0$, $\theta = 0.04$, $\tau = 30/365$, compute VIX in both cases. Then compute the VIX "delta" with respect to $v_t$: $\partial\text{VIX}/\partial v_t = 100 \cdot B / (2\sqrt{A + Bv_t})$. Is the VIX more sensitive to variance changes when $v_t$ is high or low?
 
+??? success "Solution to Exercise 6"
+    **Computing VIX for two variance levels.** Using $\kappa = 2.0$, $\theta = 0.04$, $\tau = 30/365$:
+
+    From Exercise 1: $A = 0.003111$ and $B = 0.9222$.
+
+    **Case 1: $v_t = 0.04$.**
+
+    $$
+    \text{VIX}_t^2 = 0.003111 + 0.9222 \times 0.04 = 0.04000
+    $$
+
+    $$
+    \text{VIX}_t = 100\sqrt{0.04000} = 20.00
+    $$
+
+    **Case 2: $v_t = 0.09$.**
+
+    $$
+    \text{VIX}_t^2 = 0.003111 + 0.9222 \times 0.09 = 0.003111 + 0.08300 = 0.08611
+    $$
+
+    $$
+    \text{VIX}_t = 100\sqrt{0.08611} = 29.35
+    $$
+
+    **VIX delta.** The sensitivity of VIX to $v_t$ is:
+
+    $$
+    \frac{\partial \text{VIX}}{\partial v_t} = 100 \cdot \frac{B}{2\sqrt{A + Bv_t}}
+    $$
+
+    **Case 1: $v_t = 0.04$.**
+
+    $$
+    \frac{\partial \text{VIX}}{\partial v_t} = 100 \times \frac{0.9222}{2\sqrt{0.04000}} = 100 \times \frac{0.9222}{0.4000} = 100 \times 2.306 = 230.6
+    $$
+
+    **Case 2: $v_t = 0.09$.**
+
+    $$
+    \frac{\partial \text{VIX}}{\partial v_t} = 100 \times \frac{0.9222}{2\sqrt{0.08611}} = 100 \times \frac{0.9222}{0.5871} = 100 \times 1.571 = 157.1
+    $$
+
+    **Comparison.** The VIX delta at $v_t = 0.04$ (230.6) is significantly higher than at $v_t = 0.09$ (157.1). This means:
+
+    - **VIX is more sensitive to variance changes when $v_t$ is low.**
+    - This is a consequence of the square root: $\frac{\partial}{\partial v}\sqrt{v} = \frac{1}{2\sqrt{v}}$, which is a decreasing function of $v$.
+
+    **Interpretation.** In calm markets ($v_t$ low, VIX $\approx$ 20), a given increase in instantaneous variance causes a proportionally larger VIX move than in stressed markets ($v_t$ high, VIX $\approx$ 30). This is consistent with the empirical observation that VIX moves are proportionally larger (in percentage terms) from low levels than from high levels. However, the *absolute* change in VIX for a fixed *absolute* change in $v_t$ is also larger when VIX is low:
+
+    - At $v_t = 0.04$: $\Delta \text{VIX} \approx 230.6 \times \Delta v$ per unit $\Delta v$
+    - At $v_t = 0.09$: $\Delta \text{VIX} \approx 157.1 \times \Delta v$ per unit $\Delta v$
+
+    This asymmetric sensitivity has implications for VIX option hedging: the delta hedge of VIX options must be adjusted more frequently when VIX is low because the VIX delta is larger and changes faster.
+
 ---
 
 **Exercise 7.**
 The double Heston model adds a second variance factor $v_t^{(2)}$ so that VIX$^2 = A_1 + B_1 v_t^{(1)} + A_2 + B_2 v_t^{(2)}$. Explain how this extra factor provides additional degrees of freedom to calibrate VIX options. If the first factor has $\kappa_1 = 2.0$ (slow mean-reversion) and the second has $\kappa_2 = 10.0$ (fast mean-reversion), which factor dominates short-dated VIX options and which dominates long-dated ones?
+
+??? success "Solution to Exercise 7"
+    **Double Heston model and VIX options.**
+
+    **VIX$^2$ under double Heston.** In the double Heston model, the total instantaneous variance is $v_t = v_t^{(1)} + v_t^{(2)}$, where each factor follows an independent CIR process:
+
+    $$
+    dv_t^{(i)} = \kappa_i(\theta_i - v_t^{(i)})dt + \xi_i\sqrt{v_t^{(i)}}dW_t^{(2,i)}, \quad i = 1, 2
+    $$
+
+    The VIX$^2$ becomes:
+
+    $$
+    \text{VIX}_t^2 = A_1 + B_1 v_t^{(1)} + A_2 + B_2 v_t^{(2)}
+    $$
+
+    where $A_i = \theta_i(1 - B_i)$ and $B_i = (1 - e^{-\kappa_i\tau})/(\kappa_i\tau)$ for each factor.
+
+    **Additional degrees of freedom.** The single-factor Heston has five parameters affecting VIX options: $v_0, \kappa, \theta, \xi$ (and $\rho$ does not affect VIX$^2$ since it only enters the stock-variance correlation). The double Heston model has, for VIX purposes, eight relevant parameters: $v_0^{(1)}, \kappa_1, \theta_1, \xi_1, v_0^{(2)}, \kappa_2, \theta_2, \xi_2$.
+
+    These additional parameters allow independent control of:
+
+    1. **The level of VIX**: $\mathbb{E}[\text{VIX}^2] = A_1 + B_1\mathbb{E}[v_T^{(1)}] + A_2 + B_2\mathbb{E}[v_T^{(2)}]$
+    2. **The volatility of VIX**: $\operatorname{Var}(\text{VIX}^2) = B_1^2\operatorname{Var}(v_T^{(1)}) + B_2^2\operatorname{Var}(v_T^{(2)})$ (cross terms vanish by independence)
+    3. **The skewness of VIX**: The sum of two independent gamma-type variables has different skewness than a single one
+    4. **The term structure of VIX smile**: Different $\kappa_1, \kappa_2$ produce different decay rates
+
+    This richer parameterization allows the double Heston model to fit both the SPX surface (through the combined effect of both factors plus their correlations $\rho_1, \rho_2$ with the stock) and the VIX smile (through the individual $\xi_i$ and $\kappa_i$ parameters) simultaneously.
+
+    **Short-dated versus long-dated VIX options.** With $\kappa_1 = 2.0$ (slow mean reversion) and $\kappa_2 = 10.0$ (fast mean reversion):
+
+    **Short-dated VIX options** (expiry $T$ small, say 1--2 months):
+
+    - The **fast factor** $v_t^{(2)}$ dominates. With $\kappa_2 = 10$, the variance of $v_T^{(2)}$ given $v_0^{(2)}$ is large relative to its mean-reversion time scale. Over short horizons, the fast factor has not yet mean-reverted, so it contributes substantial randomness to VIX$_T$.
+    - The coefficient $B_2 = (1 - e^{-\kappa_2\tau})/(\kappa_2\tau)$ is close to 1 for small $\tau$, so the fast factor fully loads onto VIX$^2$.
+    - The fast factor's variance $\operatorname{Var}(v_T^{(2)})$ decays quickly with $T$ but is large for small $T$.
+
+    **Long-dated VIX options** (expiry $T$ large, say 6--12 months):
+
+    - The **slow factor** $v_t^{(1)}$ dominates. With $\kappa_1 = 2.0$, the variance of $v_T^{(1)}$ decays slowly and remains significant even at long horizons.
+    - The fast factor $v_T^{(2)}$ has largely mean-reverted to $\theta_2$ by the VIX option expiry, contributing little randomness. Its variance $\operatorname{Var}(v_T^{(2)}) \propto e^{-\kappa_2 T}(1 - e^{-\kappa_2 T})$ is very small for large $T$.
+    - The VIX smile at long maturities is therefore controlled primarily by $\xi_1$ and $\kappa_1$.
+
+    This separation of time scales is the key mechanism: the fast factor captures the steep short-dated VIX smile (driven by short-term variance uncertainty), while the slow factor captures the persistent long-dated VIX smile (driven by long-term variance uncertainty). The single-factor Heston cannot achieve this separation, which is why it struggles with the VIX term structure.

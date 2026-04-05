@@ -226,22 +226,184 @@ The affine framework delivers its remarkable tractability --- exponential-affine
 
 **Exercise 1.** The SABR model has dynamics $dF_t = \sigma_t F_t^\beta\,dW_t^{(1)}$ and $d\sigma_t = \alpha\sigma_t\,dW_t^{(2)}$ with $\operatorname{Corr}(dW^{(1)}, dW^{(2)}) = \rho\,dt$. Identify which affine condition fails for $\beta \neq 0, 1/2, 1$ and explain why the exponential-affine ansatz cannot be applied.
 
+??? success "Solution to Exercise 1"
+    The SABR model has dynamics
+
+    $$
+    dF_t = \sigma_t F_t^\beta\,dW_t^{(1)}, \qquad d\sigma_t = \alpha\sigma_t\,dW_t^{(2)}
+    $$
+
+    with $\operatorname{Corr}(dW^{(1)}, dW^{(2)}) = \rho\,dt$. The state vector is $X_t = (F_t, \sigma_t)^\top$.
+
+    **Checking the affine diffusion condition.** The diffusion matrix is
+
+    $$
+    a(F, \sigma) = \begin{pmatrix} \sigma^2 F^{2\beta} & \rho\alpha\sigma^2 F^\beta \\ \rho\alpha\sigma^2 F^\beta & \alpha^2\sigma^2 \end{pmatrix}
+    $$
+
+    For the affine condition, we need $a(x) = a_0 + \alpha_1 x^{(1)} + \alpha_2 x^{(2)}$, i.e., each entry of $a$ must be an affine (linear plus constant) function of the state variables $(F, \sigma)$.
+
+    The $(1,1)$ entry is $\sigma^2 F^{2\beta}$. For general $\beta$:
+
+    - If $\beta = 0$: the entry is $\sigma^2$, which is quadratic in $\sigma$, not affine.
+    - If $\beta = 1/2$: the entry is $\sigma^2 F$, which is $\sigma^2$ times $F$ --- a product of state variables, not affine.
+    - If $\beta = 1$: the entry is $\sigma^2 F^2$, again not affine.
+
+    In fact, for **any** $\beta$, the diffusion matrix $a(F, \sigma)$ involves products like $\sigma^2 F^{2\beta}$ that are nonlinear functions of the state. The affine condition $a(x) = a_0 + \sum_i \alpha_i x^{(i)}$ requires each component of $a$ to depend at most linearly on $x^{(i)}$, with **no products of state variables** and **no nonlinear powers**.
+
+    The exponential-affine ansatz $\mathbb{E}[e^{u^\top X_T} | X_t = x] = \exp(\phi + \psi^\top x)$ requires that the generator applied to $e^{u^\top x}$ produces a function of the form $(F(u) + R(u)^\top x) \cdot e^{u^\top x}$. The term $\frac{1}{2}\sigma^2 F^{2\beta} u_1^2$ from the $(1,1)$ entry of $a$ is not affine in $(F, \sigma)$ for any $\beta \neq 0, 1/2, 1$ in general, and even at these special values the $\sigma^2$ factor makes it nonlinear. Therefore the Riccati ODE system cannot close, and the affine framework does not apply.
+
 ---
 
 **Exercise 2.** Rough volatility models use fractional Brownian motion $B_t^H$ with Hurst parameter $H < 1/2$. The process $B_t^H$ is not Markovian. Explain why the Markov property is essential for the affine framework and why its failure prevents the derivation of Riccati ODEs.
+
+??? success "Solution to Exercise 2"
+    The affine framework derives the conditional characteristic function $\mathbb{E}[e^{u^\top X_T} | \mathcal{F}_t]$ by exploiting the Markov property in two essential steps:
+
+    **Step 1: Reduction to a function of the current state.** The Markov property states that $\mathbb{E}[f(X_T) | \mathcal{F}_t] = g(t, X_t)$ for some deterministic function $g$. This allows us to write
+
+    $$
+    \mathbb{E}[e^{u^\top X_T} | \mathcal{F}_t] = G(t, X_t, u)
+    $$
+
+    Without the Markov property, the conditional expectation depends on the entire path $\{X_s\}_{s \leq t}$, so no finite-dimensional function $G(t, x, u)$ can represent it.
+
+    **Step 2: PDE characterization via the generator.** The Markov property implies that $G$ satisfies the Kolmogorov backward PDE $\partial_t G + \mathcal{A}G = 0$. The affine ansatz $G(t, x, u) = \exp(\phi(T-t, u) + \psi(T-t, u)^\top x)$ is substituted into this PDE, and the affine structure of $\mathcal{A}$ ensures that the PDE reduces to the Riccati ODE system for $(\phi, \psi)$.
+
+    **Why fractional Brownian motion breaks this.** For $B_t^H$ with $H < 1/2$, the increments $B_{t+\Delta}^H - B_t^H$ depend on the entire past through the fractional kernel $(t - s)^{H-1/2}$. The process $X_t$ driven by $B^H$ is not Markovian: knowing $X_t$ alone is insufficient to determine the conditional distribution of $X_T$. The conditional expectation $\mathbb{E}[e^{u^\top X_T} | \mathcal{F}_t]$ depends on the full history $\{X_s\}_{s \leq t}$, not just $X_t$.
+
+    As a result, there is no PDE for $G(t, x)$ --- instead, one obtains a Volterra integral equation (the fractional Riccati equation) that incorporates the memory kernel. This equation is infinite-dimensional in nature and cannot be reduced to a finite system of ODEs, which is why the standard affine Riccati machinery does not apply.
 
 ---
 
 **Exercise 3.** Consider a local volatility model $dS_t = rS_t\,dt + \sigma(S_t, t)S_t\,dW_t$ where $\sigma(S, t)$ is a general function calibrated to the implied volatility surface. Show that unless $\sigma(S, t)$ has the specific form $\sigma(S, t) = \sqrt{c_0 + c_1\log S}$, the diffusion is not affine in the log-price.
 
+??? success "Solution to Exercise 3"
+    In the local volatility model, define $x_t = \log S_t$. By Ito's lemma:
+
+    $$
+    dx_t = \left(r - \frac{1}{2}\sigma^2(e^{x_t}, t)\right)dt + \sigma(e^{x_t}, t)\,dW_t
+    $$
+
+    The diffusion coefficient (as a function of the log-price $x$) is $\tilde{\sigma}(x, t) = \sigma(e^x, t)$, and the diffusion matrix is
+
+    $$
+    a(x, t) = \tilde{\sigma}(x, t)^2 = \sigma(e^x, t)^2
+    $$
+
+    For the affine condition, we need $a(x, t) = c_0(t) + c_1(t)\,x$ for some time-dependent coefficients. This requires
+
+    $$
+    \sigma(e^x, t)^2 = c_0(t) + c_1(t)\,x
+    $$
+
+    Substituting $S = e^x$, i.e., $x = \log S$:
+
+    $$
+    \sigma(S, t)^2 = c_0(t) + c_1(t)\log S
+    $$
+
+    Therefore
+
+    $$
+    \sigma(S, t) = \sqrt{c_0(t) + c_1(t)\log S}
+    $$
+
+    This is the only functional form of $\sigma(S, t)$ for which the diffusion is affine in the log-price. For any other dependence on $S$ --- constant ($\sigma(S,t) = \sigma_0$, which gives $c_1 = 0$, a special case), power-law ($\sigma \propto S^\gamma$ for $\gamma \neq 0$), or a general calibrated surface --- the diffusion $\sigma(S,t)^2$ is not a linear function of $\log S$, and the affine structure fails.
+
+    Note that even the special affine case $\sigma(S,t) = \sqrt{c_0 + c_1\log S}$ is unusual in practice: it requires $c_0 + c_1\log S > 0$ for all relevant $S$, which constrains the domain, and it does not match the Dupire local volatility surfaces typically calibrated from market data.
+
 ---
 
 **Exercise 4.** The rough Heston model replaces the CIR variance process with a fractional process driven by $B^H$. El Euch and Rosenbaum (2019) showed that the characteristic function satisfies a fractional Riccati equation. Describe qualitatively how a fractional Riccati equation differs from the standard Riccati ODE and why it is harder to solve.
+
+??? success "Solution to Exercise 4"
+    The standard Heston Riccati ODE for the variance factor loading $\psi(t)$ is
+
+    $$
+    \frac{d\psi}{dt} = R(\psi) = \frac{1}{2}(iu - u^2) + (\rho\xi iu - \kappa)\psi + \frac{1}{2}\xi^2\psi^2
+    $$
+
+    This is an ordinary differential equation: $\psi(t)$ depends only on the current value $\psi$ and can be solved forward from $\psi(0) = 0$. It has a closed-form solution in terms of exponentials.
+
+    The **fractional Riccati equation** in the rough Heston model ($H < 1/2$) replaces this ODE with a Volterra integral equation:
+
+    $$
+    \psi(t) = \frac{1}{\Gamma(H + 1/2)}\int_0^t (t - s)^{H - 1/2}\,R(\psi(s))\,ds
+    $$
+
+    **Key differences:**
+
+    1. **Memory kernel.** The fractional kernel $(t - s)^{H-1/2}$ with $H < 1/2$ gives exponent $H - 1/2 < 0$, so the kernel is singular at $s = t$ and decays as a power law. This means $\psi(t)$ depends on the entire history $\{\psi(s)\}_{0 \leq s \leq t}$, not just the current value. The equation is non-local in time.
+
+    2. **No closed-form solution.** The Volterra structure with a nonlinear right-hand side $R(\psi)$ (quadratic in $\psi$) admits no known closed-form solution. Numerical methods such as Adams schemes must be used, with care taken to handle the singular kernel.
+
+    3. **Computational cost.** Solving the ODE at a single point $t = T$ costs $O(1)$ (closed form) or $O(N)$ for a numerical ODE solver with $N$ steps. Solving the Volterra equation costs $O(N^2)$ because each step requires evaluating the integral over all previous steps. With acceleration techniques (e.g., the multi-level scheme of Bayer, Friz, and Gatheral), the cost can be reduced but remains substantially higher than the ODE case.
+
+    4. **Regularity.** The solution $\psi(t)$ of the fractional Riccati equation has regularity $\psi(t) \sim t^{H+1/2}$ near $t = 0$, which is less smooth than the ODE solution (which is analytic). This affects the accuracy of numerical quadrature for Fourier inversion.
 
 ---
 
 **Exercise 5.** List three empirical phenomena that affine models handle well and three that they handle poorly. For each poorly-handled phenomenon, name a non-affine model that addresses it. Discuss the pricing/calibration trade-off: what computational advantage is lost by moving to the non-affine model?
 
+??? success "Solution to Exercise 5"
+    **Three phenomena that affine models handle well:**
+
+    1. **Implied volatility skew for vanilla options.** The Heston model produces a realistic skew through the correlation $\rho < 0$ between the asset and variance, and the Fourier pricing formula evaluates in milliseconds.
+
+    2. **Term structure of interest rates.** Affine short-rate models (Vasicek, CIR, multi-factor Gaussian) deliver exponential-affine bond prices $P(t,T) = e^{A(\tau) + B(\tau)r_t}$, enabling fast yield curve fitting and swaption pricing.
+
+    3. **Credit default swap pricing.** Affine intensity models produce closed-form survival probabilities $\mathbb{Q}(\tau > T | \mathcal{F}_t) = e^{A(\tau) + B(\tau)\lambda_t}$, allowing fast CDS pricing and CVA computation.
+
+    **Three phenomena that affine models handle poorly:**
+
+    1. **Short-maturity implied volatility skew.** Affine diffusion models produce a skew that decays as $O(T^{-1/2})$, but equity markets exhibit steeper decay around $O(T^{-0.4})$. **Non-affine alternative:** The rough Heston model ($H \approx 0.1$) matches the empirical skew decay $O(T^{H-1/2})$. **Trade-off:** The characteristic function requires solving a Volterra integral equation ($O(N^2)$ cost per evaluation) instead of a Riccati ODE (closed form), making calibration orders of magnitude slower.
+
+    2. **Realistic local volatility dynamics.** Affine models cannot reproduce the Dupire local volatility surface, which is a nonlinear function of $(S, t)$. **Non-affine alternative:** Stochastic local volatility (SLV) models combine a calibrated local volatility function with stochastic volatility. **Trade-off:** SLV models require Monte Carlo simulation or PDE methods for pricing --- there is no Fourier-based pricing formula, and calibration requires a particle method or Markovian projection, increasing computation from milliseconds to seconds or minutes.
+
+    3. **Volatility clustering and self-similarity.** Realized volatility exhibits long memory and power-law autocorrelation decay, inconsistent with the exponential decay of Markovian affine models. **Non-affine alternative:** Fractional stochastic volatility models or the rough Bergomi model. **Trade-off:** These models are non-Markovian, requiring Monte Carlo simulation with $O(N^{2H+1})$ cost per path and no closed-form characteristic function, making real-time pricing infeasible.
+
 ---
 
 **Exercise 6.** The 3/2 stochastic volatility model has dynamics $dV_t = \kappa V_t(\theta - V_t)\,dt + \xi V_t^{3/2}\,dW_t$. Show that $V_t$ is not affine by checking the diffusion condition: $a(V) = \xi^2 V^3$ is cubic in $V$, not affine. However, show that $Y_t = 1/V_t$ is a CIR process and therefore affine. What does this tell you about the importance of choosing the right state variable?
+
+??? success "Solution to Exercise 6"
+    **Showing $V_t$ is not affine.** The diffusion coefficient of $V_t$ is $\sigma(V) = \xi V^{3/2}$, so the diffusion matrix is
+
+    $$
+    a(V) = \sigma(V)^2 = \xi^2 V^3
+    $$
+
+    For the affine condition, $a(V)$ must be of the form $a_0 + a_1 V$ (affine in $V$). Since $V^3$ is cubic, it cannot be written as $a_0 + a_1 V$ for any constants $a_0, a_1$. Therefore $V_t$ is not an affine process.
+
+    **Showing $Y_t = 1/V_t$ is CIR.** Apply Ito's lemma to $Y_t = f(V_t) = V_t^{-1}$:
+
+    $$
+    dY_t = f'(V_t)\,dV_t + \frac{1}{2}f''(V_t)\,(dV_t)^2
+    $$
+
+    With $f'(V) = -V^{-2}$ and $f''(V) = 2V^{-3}$:
+
+    $$
+    dY_t = -V_t^{-2}\!\left[\kappa V_t(\theta - V_t)\,dt + \xi V_t^{3/2}\,dW_t\right] + \frac{1}{2}\cdot 2V_t^{-3}\cdot\xi^2 V_t^3\,dt
+    $$
+
+    $$
+    = \left[-\kappa\theta V_t^{-1} + \kappa + \xi^2\right]dt - \xi V_t^{-1/2}\,dW_t
+    $$
+
+    Substituting $V_t^{-1} = Y_t$ and $V_t^{-1/2} = \sqrt{Y_t}$:
+
+    $$
+    dY_t = \left[(\kappa + \xi^2) - \kappa\theta\,Y_t\right]dt - \xi\sqrt{Y_t}\,dW_t
+    $$
+
+    This is a CIR process with parameters:
+
+    - Mean-reversion speed: $\tilde{\kappa} = \kappa\theta$
+    - Long-run mean: $\tilde{\theta} = (\kappa + \xi^2)/(\kappa\theta)$
+    - Volatility parameter: $\tilde{\xi} = \xi$
+
+    The process $Y_t$ has affine drift $\tilde{\kappa}(\tilde{\theta} - Y_t)$ and diffusion $\tilde{\xi}\sqrt{Y_t}$, which satisfies the affine conditions on $\mathbb{R}_+$.
+
+    **Implications for state variable choice.** This example demonstrates that whether a process is affine depends critically on the **choice of state variable**. The same underlying stochastic dynamics can be non-affine in one parameterization ($V_t$) and affine in another ($Y_t = 1/V_t$). Before concluding that a model lies outside the affine class, one should check whether a nonlinear transformation of the state variable produces an affine process. If such a transformation exists, the full machinery of Riccati ODEs, characteristic functions, and Fourier pricing can be applied in the transformed coordinates.

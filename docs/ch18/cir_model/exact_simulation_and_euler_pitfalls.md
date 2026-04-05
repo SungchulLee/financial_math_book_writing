@@ -204,26 +204,223 @@ The CIR process admits exact simulation via its non-central chi-squared transiti
 
 **Exercise 1.** For CIR parameters $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.15$, and $r_t = 0.02$, compute the exact simulation parameters for $\Delta t = 1/252$ (one trading day): the scaling factor $c$, the degrees of freedom $d$, and the non-centrality parameter $\lambda(r_t)$. What is the expected value of $r_{t+\Delta t}$?
 
+??? success "Solution to Exercise 1"
+
+    Given $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.15$, $r_t = 0.02$, $\Delta t = 1/252$.
+
+    **Scaling factor $c$:**
+
+    $$
+    c = \frac{\sigma^2(1 - e^{-\kappa\Delta t})}{4\kappa} = \frac{0.0225(1 - e^{-0.5/252})}{2.0}
+    $$
+
+    $$
+    e^{-0.5/252} \approx 1 - 0.001984 = 0.998016
+    $$
+
+    $$
+    c = \frac{0.0225 \times 0.001984}{2.0} = \frac{4.464 \times 10^{-5}}{2.0} = 2.232 \times 10^{-5}
+    $$
+
+    **Degrees of freedom $d$:**
+
+    $$
+    d = \frac{4\kappa\theta}{\sigma^2} = \frac{4 \times 0.5 \times 0.06}{0.0225} = \frac{0.12}{0.0225} = 5.333
+    $$
+
+    **Non-centrality parameter $\lambda(r_t)$:**
+
+    $$
+    \lambda(r_t) = \frac{r_t}{c} \cdot e^{-\kappa\Delta t} = \frac{0.02}{2.232 \times 10^{-5}} \times 0.998016 = 896.1 \times 0.998016 \approx 894.3
+    $$
+
+    **Expected value of $r_{t+\Delta t}$:**
+
+    Using the CIR conditional mean:
+
+    $$
+    \mathbb{E}[r_{t+\Delta t}] = \theta + (r_t - \theta)e^{-\kappa\Delta t} = 0.06 + (0.02 - 0.06) \times 0.998016 = 0.06 - 0.03992 = 0.02008
+    $$
+
+    Alternatively, using the chi-squared mean: $\mathbb{E}[r_{t+\Delta t}] = c(d + \lambda) = 2.232 \times 10^{-5}(5.333 + 894.3) = 2.232 \times 10^{-5} \times 899.6 \approx 0.02008$. $\checkmark$
+
 ---
 
 **Exercise 2.** Using the Euler scheme with $r_{t_k} = 0.005$, $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.15$, and $\Delta t = 1/252$, compute the probability that the next Euler step produces a negative rate. Use the formula $\mathbb{P}(r_{t_{k+1}} < 0) = \Phi(-m/s)$ where $m = r_{t_k} + \kappa(\theta - r_{t_k})\Delta t$ and $s = \sigma\sqrt{r_{t_k}\Delta t}$.
+
+??? success "Solution to Exercise 2"
+
+    Given $r_{t_k} = 0.005$, $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.15$, $\Delta t = 1/252$.
+
+    **Compute $m$ (expected next value under Euler):**
+
+    $$
+    m = r_{t_k} + \kappa(\theta - r_{t_k})\Delta t = 0.005 + 0.5(0.06 - 0.005)/252
+    $$
+
+    $$
+    = 0.005 + 0.5 \times 0.055/252 = 0.005 + 0.0001091 = 0.005109
+    $$
+
+    **Compute $s$ (standard deviation of Euler step):**
+
+    $$
+    s = \sigma\sqrt{r_{t_k}\Delta t} = 0.15\sqrt{0.005/252} = 0.15\sqrt{1.984 \times 10^{-5}} = 0.15 \times 0.004455 = 6.683 \times 10^{-4}
+    $$
+
+    **Probability of negative rate:**
+
+    $$
+    \mathbb{P}(r_{t_{k+1}} < 0) = \Phi\left(-\frac{m}{s}\right) = \Phi\left(-\frac{0.005109}{6.683 \times 10^{-4}}\right) = \Phi(-7.645)
+    $$
+
+    This is an extremely small probability: $\Phi(-7.645) \approx 10^{-14}$. Even with $r_{t_k}$ as low as 0.005, the probability of a negative Euler step is negligible for daily time steps with these parameters. The negative rate problem becomes significant only when $r_{t_k}$ is even closer to zero or when $\Delta t$ is larger.
 
 ---
 
 **Exercise 3.** Compare the three Euler fixes (truncation, reflection, absorption) for a path where the Euler update gives $r_{t_{k+1}} = -0.002$. For each method, what value is used for $r_{t_{k+1}}$? Which method best preserves the expected value of $r_{t_{k+1}}$, and why?
 
+??? success "Solution to Exercise 3"
+
+    The Euler update gives $r_{t_{k+1}} = -0.002$.
+
+    **Truncation (full truncation):** Set $r_{t_{k+1}} = \max(-0.002, 0) = 0$.
+
+    **Reflection:** Set $r_{t_{k+1}} = |-0.002| = 0.002$.
+
+    **Absorption:** Set $r_{t_{k+1}} = 0$ (same as truncation in this case).
+
+    **Which preserves the expected value best?** The true CIR process is non-negative, so the "correct" value should be some small positive number. Reflection gives $r_{t_{k+1}} = 0.002$, which is positive and preserves the magnitude of the deviation from zero. Truncation and absorption both set the value to zero, which introduces a downward bias.
+
+    Reflection best preserves the expected value because the true process, when it approaches zero, is repelled (if the Feller condition holds) or reflected (if violated). The symmetric reflection $|r|$ mimics this boundary behavior. Truncation to zero acts as absorption, which is not the correct boundary behavior for the CIR process and systematically underestimates the rate near zero.
+
 ---
 
 **Exercise 4.** Derive the Milstein correction term $\frac{\sigma^2}{4}(Z_k^2 - 1)\Delta t$ for the CIR process. Start from $\frac{\partial}{\partial r}(\sigma\sqrt{r}) = \frac{\sigma}{2\sqrt{r}}$ and use the Ito-Taylor expansion to show that the double stochastic integral contributes $\frac{1}{2}\sigma\sqrt{r}\cdot\frac{\sigma}{2\sqrt{r}}((\Delta W)^2 - \Delta t) = \frac{\sigma^2}{4}(Z^2 - 1)\Delta t$.
+
+??? success "Solution to Exercise 4"
+
+    The Milstein scheme for a general SDE $dX = a(X)dt + b(X)dW$ adds the correction $\frac{1}{2}b(X)b'(X)[(\Delta W)^2 - \Delta t]$.
+
+    For CIR: $b(r) = \sigma\sqrt{r}$, so:
+
+    $$
+    b'(r) = \frac{\sigma}{2\sqrt{r}}
+    $$
+
+    The Milstein correction is:
+
+    $$
+    \frac{1}{2}b(r_{t_k})b'(r_{t_k})[(\Delta W_k)^2 - \Delta t] = \frac{1}{2}\sigma\sqrt{r_{t_k}} \cdot \frac{\sigma}{2\sqrt{r_{t_k}}}[(\Delta W_k)^2 - \Delta t]
+    $$
+
+    $$
+    = \frac{\sigma^2}{4}[(\Delta W_k)^2 - \Delta t]
+    $$
+
+    Since $\Delta W_k = \sqrt{\Delta t}\,Z_k$ where $Z_k \sim \mathcal{N}(0,1)$:
+
+    $$
+    (\Delta W_k)^2 - \Delta t = \Delta t(Z_k^2 - 1)
+    $$
+
+    Therefore the Milstein correction is:
+
+    $$
+    \frac{\sigma^2}{4}(Z_k^2 - 1)\Delta t
+    $$
+
+    Note that $\sqrt{r_{t_k}}$ cancels between $b$ and $b'$, making the correction **independent of $r_{t_k}$**. This is a special feature of the square-root diffusion.
 
 ---
 
 **Exercise 5.** The implicit Milstein scheme gives $r_{t_{k+1}} = \frac{r_{t_k} + \kappa\theta\Delta t + \sigma\sqrt{r_{t_k}}\sqrt{\Delta t}\,Z_k + \frac{\sigma^2}{4}(Z_k^2 - 1)\Delta t}{1 + \kappa\Delta t}$. Show that the denominator $1 + \kappa\Delta t > 1$ dampens extreme values. For $r_{t_k} = 0.01$, $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.15$, $\Delta t = 1/252$, compute $r_{t_{k+1}}$ for $Z_k = -3$ (a large negative shock) using both the explicit and implicit Milstein schemes. Does either produce a negative value?
 
+??? success "Solution to Exercise 5"
+
+    Given $r_{t_k} = 0.01$, $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.15$, $\Delta t = 1/252$, $Z_k = -3$.
+
+    **Explicit Milstein:**
+
+    $$
+    r_{t_{k+1}} = r_{t_k} + \kappa(\theta - r_{t_k})\Delta t + \sigma\sqrt{r_{t_k}}\sqrt{\Delta t}\,Z_k + \frac{\sigma^2}{4}(Z_k^2 - 1)\Delta t
+    $$
+
+    Computing each term:
+
+    - Drift: $0.5(0.06 - 0.01)/252 = 0.025/252 = 9.921 \times 10^{-5}$
+    - Diffusion: $0.15\sqrt{0.01}\sqrt{1/252}(-3) = 0.015 \times 0.06300 \times (-3) = -2.835 \times 10^{-3}$
+    - Milstein: $\frac{0.0225}{4}(9 - 1)/252 = 0.005625 \times 8/252 = 1.786 \times 10^{-4}$
+
+    $$
+    r_{t_{k+1}} = 0.01 + 9.921 \times 10^{-5} - 2.835 \times 10^{-3} + 1.786 \times 10^{-4} = 0.01 - 0.002558 = 0.007442
+    $$
+
+    **Implicit Milstein:**
+
+    $$
+    r_{t_{k+1}} = \frac{r_{t_k} + \kappa\theta\Delta t + \sigma\sqrt{r_{t_k}}\sqrt{\Delta t}\,Z_k + \frac{\sigma^2}{4}(Z_k^2 - 1)\Delta t}{1 + \kappa\Delta t}
+    $$
+
+    Numerator: $0.01 + 0.5 \times 0.06/252 + (-2.835 \times 10^{-3}) + 1.786 \times 10^{-4}$
+
+    $$
+    = 0.01 + 1.190 \times 10^{-4} - 2.835 \times 10^{-3} + 1.786 \times 10^{-4} = 0.007462
+    $$
+
+    Denominator: $1 + 0.5/252 = 1 + 0.001984 = 1.001984$.
+
+    $$
+    r_{t_{k+1}} = \frac{0.007462}{1.001984} = 0.007447
+    $$
+
+    Both values are positive. The implicit scheme produces a very slightly smaller value due to the damping denominator, but the difference is minimal for this moderate shock. For $Z_k = -3$, neither scheme produces a negative value with these parameters because $r_{t_k} = 0.01$ is far enough from zero.
+
 ---
 
 **Exercise 6.** Explain why the exact simulation method allows arbitrarily large time steps $\Delta t$ without introducing discretization error, while the Euler method requires $\Delta t$ to be small. If a derivative payoff depends on the rate at monthly dates only, how many time steps does exact simulation need for a 5-year horizon versus daily Euler?
 
+??? success "Solution to Exercise 6"
+
+    **Why exact simulation allows large $\Delta t$:** The exact simulation draws $r_{t+\Delta t}$ from the true conditional distribution $r_{t+\Delta t} \mid r_t \sim (c) \cdot \chi^2(d, \lambda)$. This distribution is exact regardless of $\Delta t$, because it is the analytical transition density of the CIR process. No Taylor expansion or discretization is involved. The only error comes from the finite number of Monte Carlo paths (statistical error), not from time discretization.
+
+    **Why Euler requires small $\Delta t$:** The Euler scheme approximates the drift and diffusion as constant over each step, replacing the continuous SDE with a discrete recursion. The local error in each step is $O(\Delta t^{3/2})$ (for weak convergence), and these errors accumulate over $N = T/\Delta t$ steps. Additionally, large $\Delta t$ increases the probability of producing negative rates, which violates the model's non-negativity property.
+
+    **Time step comparison for a 5-year horizon:**
+
+    - **Exact simulation** with monthly dates: $5 \times 12 = 60$ time steps (only the dates needed for numerical integration of $\int r_s\,ds$).
+    - **Daily Euler**: $5 \times 252 = 1{,}260$ time steps.
+
+    Exact simulation requires approximately 21 times fewer steps, and each step is bias-free. Even though each exact simulation step is more expensive (non-central chi-squared sampling vs. Gaussian sampling), the large reduction in steps makes the overall computation competitive or faster.
+
 ---
 
 **Exercise 7.** Design a convergence experiment comparing exact simulation, Euler with truncation, and implicit Milstein for pricing a 5-year zero-coupon bond under CIR with $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.15$, $r_0 = 0.04$. Describe the experiment: what is the "true" price (from the analytical formula), how many paths $M$ to use, which time step sizes $\Delta t$ to test, and how to measure convergence. What plot would you produce to demonstrate the convergence rates?
+
+??? success "Solution to Exercise 7"
+
+    **True price:** Compute analytically using the CIR bond formula $P^{\text{exact}}(0,5) = A(5)e^{-B(5)r_0}$ with $\kappa = 0.5$, $\theta = 0.06$, $\sigma = 0.15$, $r_0 = 0.04$.
+
+    First: $\gamma = \sqrt{0.25 + 0.045} = \sqrt{0.295} \approx 0.5431$. Then compute $B(5)$, $A(5)$, and $P^{\text{exact}}$.
+
+    **Experiment design:**
+
+    1. **Number of paths:** Fix $M = 100{,}000$ (large enough that statistical error is small relative to discretization error).
+
+    2. **Time step sizes:** Test $\Delta t \in \{1, 1/4, 1/12, 1/52, 1/252\}$ (annual, quarterly, monthly, weekly, daily).
+
+    3. **For each $\Delta t$ and each method:**
+        - Simulate $M$ paths using the given scheme.
+        - Approximate $\int_0^5 r_s\,ds$ using the trapezoidal rule.
+        - Compute $\hat{P} = \frac{1}{M}\sum_{m=1}^M e^{-\int_0^5 r_s^{(m)}\,ds}$.
+        - Record the bias $|\hat{P} - P^{\text{exact}}|$ and the standard error.
+
+    4. **Convergence measure:** The bias (systematic error from discretization) should decrease as $\Delta t \to 0$. For the Euler scheme, the weak convergence rate is $O(\Delta t^{0.5})$ for the CIR process. For exact simulation, the bias is zero for any $\Delta t$ (only the integration approximation contributes).
+
+    **Plot:** A log-log plot with $\Delta t$ on the horizontal axis and $|\hat{P} - P^{\text{exact}}|$ on the vertical axis. Three lines (one per method):
+
+    - **Exact simulation:** Nearly flat (zero bias), with only statistical noise and integration error.
+    - **Euler with truncation:** Slope approximately $-0.5$ on log-log scale, confirming $O(\sqrt{\Delta t})$ weak convergence.
+    - **Implicit Milstein:** Slope between $-0.5$ and $-1.0$, showing improved convergence over plain Euler.
+
+    A secondary plot showing the standard error vs. $M$ (for fixed $\Delta t$) would confirm the $O(1/\sqrt{M})$ statistical convergence rate, which is the same for all methods.
