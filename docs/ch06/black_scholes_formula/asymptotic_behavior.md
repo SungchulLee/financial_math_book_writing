@@ -175,7 +175,7 @@ C &= S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) \\
 \end{aligned}
 $$
 
-**Interpretation**: With infinite time, the call becomes equivalent to owning the stock (since there's certainty of finishing ITM and the strike payment becomes negligible after discounting).
+**Interpretation**: With infinite time, the call becomes equivalent to owning the stock. Formally, $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 1$ so the risk-neutral probability of finishing ITM approaches $1$, while the discounted strike $Ke^{-rT} \to 0$.
 
 **Put price**:
 
@@ -183,7 +183,7 @@ $$
 P \to Ke^{-rT} - S \cdot 0 \to 0
 $$
 
-Long-dated puts become worthless (stock will almost certainly be above strike eventually).
+Long-dated puts become worthless: the risk-neutral probability $\mathcal{N}(-d_2) \to 0$ as $T \to \infty$ (when $r > 0$).
 
 ---
 
@@ -201,7 +201,7 @@ $$
 
 **Case 1: $S_0 > Ke^{-rT}$** (Forward price above strike)
 
-Stock will certainly finish above $K$:
+As $\sigma \to 0$, $d_1, d_2 \to +\infty$ so $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 1$. The stock finishes above $K$ with probability approaching $1$:
 
 $$
 C \to S_0 - Ke^{-rT}
@@ -209,7 +209,7 @@ $$
 
 **Case 2: $S_0 < Ke^{-rT}$** (Forward price below strike)
 
-Stock will certainly finish below $K$:
+Now $d_1, d_2 \to -\infty$ so $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 0$. The stock finishes below $K$ with probability approaching $1$:
 
 $$
 C \to 0
@@ -277,7 +277,7 @@ $$
 C \to S \cdot 1 - Ke^{-rT} \cdot 0 = S
 $$
 
-**Interpretation**: With infinite volatility, the call is worth the full stock price (no chance of finishing OTM since variance dominates everything).
+**Interpretation**: With infinite volatility, $\mathcal{N}(d_1) \to 1$ while $\mathcal{N}(d_2) \to 0$, so the call approaches the full stock price.
 
 **Put price**: From put-call parity:
 
@@ -460,7 +460,7 @@ $$
 ## Practical Implications
 
 
-### 1. **1. Sanity Checks**
+### 1. **Sanity Checks**
 
 
 These limits provide **bounds** for option prices:
@@ -470,7 +470,7 @@ These limits provide **bounds** for option prices:
 
 Any pricing model violating these bounds is immediately suspect.
 
-### 2. **2. Numerical Stability**
+### 2. **Numerical Stability**
 
 
 When implementing Black-Scholes:
@@ -479,7 +479,7 @@ When implementing Black-Scholes:
 - For $T \approx 0$: Use intrinsic value directly
 - For $\sigma$ very small or large: Use limiting formulas
 
-### 3. **3. Greeks Behavior**
+### 3. **Greeks Behavior**
 
 
 Limiting behavior of prices determines Greeks:
@@ -488,7 +488,7 @@ Limiting behavior of prices determines Greeks:
 - As $T \to 0$ with $S \neq K$: $\Gamma \to \infty$ (curvature spikes)
 - As $\sigma \to 0$: Vega $\to 0$ (no sensitivity to volatility)
 
-### 4. **4. Model Validation**
+### 4. **Model Validation**
 
 
 Real market data should respect these asymptotic behaviors. Violations suggest:
