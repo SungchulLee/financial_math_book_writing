@@ -5,6 +5,15 @@ Option prices satisfy fundamental mathematical properties that follow from no-ar
 
 This section rigorously establishes these properties for European options under the Black-Scholes framework.
 
+!!! note "Proposition (No-Arbitrage Properties of European Options)"
+    For European options on a non-dividend-paying stock, the Black-Scholes prices satisfy:
+
+    1. **Bounds**: $(S - Ke^{-rT})^+ \leq C \leq S$ and $(Ke^{-rT} - S)^+ \leq P \leq Ke^{-rT}$
+    2. **Monotonicity**: $C$ is increasing in $S$, $T$, $\sigma$ and decreasing in $K$; reversed for $P$ in $S$ and $K$
+    3. **Convexity**: $\Gamma = \partial^2 C / \partial S^2 > 0$ and $\partial^2 C / \partial K^2 > 0$
+
+    Each property follows from the no-arbitrage principle; violations imply arbitrage opportunities. The proofs below verify these directly from the Black-Scholes formula.
+
 ---
 
 ## Fundamental Bounds
