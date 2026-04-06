@@ -291,6 +291,11 @@ $$
 C \approx \max(S - Ke^{-rT}, 0)
 $$
 
+#### 4. **Issue 4: Vectorized Pricing**
+
+
+For large-scale pricing (e.g., computing prices across a grid of strikes and maturities), evaluate $d_1$, $d_2$, and $\mathcal{N}(\cdot)$ as array operations rather than looping over individual contracts. Libraries such as NumPy and SciPy handle this natively via broadcasting.
+
 ---
 
 ### Complete Working Example

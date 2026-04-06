@@ -396,7 +396,8 @@ The Black-Scholes formula can be derived via multiple methods (covered in subseq
 
 4. **Martingale theory** (Section 2.2): Apply Girsanov's theorem and martingale pricing
 
-These three perspectives are **mathematically equivalent**: the PDE, the risk-neutral expectation, and the replication argument all lead to the same formula. Each provides different insight—the PDE characterizes the local dynamics, the expectation gives a global probabilistic view, and replication reveals the hedging strategy—but they are unified by the no-arbitrage principle.
+!!! note "Equivalence of Perspectives"
+    The PDE, risk-neutral expectation, and replication approaches are **mathematically equivalent**: each leads to the same Black-Scholes formula. The PDE characterizes local dynamics, the expectation gives a global probabilistic view, and replication reveals the hedging strategy. All three are unified by the no-arbitrage principle.
 
 ---
 
