@@ -94,7 +94,13 @@ $$
 D_0 = -\frac{\partial C_0}{\partial K}
 $$
 
-This reveals that the digital call captures the **density of the call price with respect to strike**—a fact that connects option pricing to the risk-neutral distribution of $S_T$.
+This reveals that the digital call captures the **density of the call price with respect to strike**. Differentiating once more gives the **Breeden-Litzenberger result**: the risk-neutral density of $S_T$ can be extracted from observed call prices via
+
+$$
+f^{\mathbb{Q}}(K) = e^{rT}\frac{\partial^2 C_0}{\partial K^2}
+$$
+
+This is one of the deepest connections between option markets and probability theory—it shows that a complete set of call prices implicitly encodes the entire risk-neutral distribution.
 
 ---
 
