@@ -99,13 +99,15 @@ $$
 
 After substitution and using $\mathcal{N}'(d_1) = \frac{1}{\sqrt{2\pi}}e^{-d_1^2/2}$:
 
-The cross-terms cancel (due to Black-Scholes PDE), leaving:
+The cross-terms cancel because $S\mathcal{N}'(d_1)\frac{\partial d_1}{\partial S} = Ke^{-rT}\mathcal{N}'(d_2)\frac{\partial d_2}{\partial S}$, which follows from the identity $S\phi(d_1) = Ke^{-rT}\phi(d_2)$. This leaves:
 
 $$
 \frac{\partial C}{\partial S} = \mathcal{N}(d_1)
 $$
 
 Since $\mathcal{N}(d_1) \in (0,1)$ for all finite $d_1$, the call is strictly increasing in $S$. ✓
+
+**Economic intuition**: A higher stock price increases the probability that the call finishes in-the-money and raises the expected payoff conditional on exercise.
 
 ### 2. **Put Options**
 
@@ -129,6 +131,8 @@ $$
 $$
 
 Since $\mathcal{N}(d_1) < 1$, we have $\frac{\partial P}{\partial S} < 0$. ✓
+
+**Economic intuition**: A higher stock price reduces the likelihood that the put finishes in-the-money and lowers the expected payoff $(K - S_T)^+$.
 
 ---
 
@@ -226,10 +230,10 @@ $$
 - Lower probability of exercise
 - Less favorable payoff structure
 
-From the formula:
+Differentiating the Black-Scholes formula and using the identity $S\phi(d_1) = Ke^{-rT}\phi(d_2)$ to cancel cross-terms:
 
 $$
-\frac{\partial C}{\partial K} = -e^{-rT}\mathcal{N}(d_2) - \text{(other terms that sum to zero)}
+\frac{\partial C}{\partial K} = -e^{-rT}\mathcal{N}(d_2) < 0
 $$
 
 ### 2. **Put Options**
@@ -285,6 +289,8 @@ The option value curve $C(S)$ is:
 - Tangent line always lies below the curve
 
 This convexity property is fundamental to option hedging and risk management.
+
+**Economic intuition**: Convexity means options benefit disproportionately from large moves—gains from favorable moves always exceed losses from unfavorable moves of the same magnitude. This asymmetry is the source of the option's time value.
 
 ---
 
