@@ -63,21 +63,24 @@ $$
 ### 1. **European Call Option**
 
 
-Under assumptions 1–7 above, the unique arbitrage-free price of a European call option at time $t$ is:
+!!! note "Theorem (Black-Scholes Formula)"
+    Under assumptions 1–7 above, the unique arbitrage-free price of a European call option at time $t$ is:
 
-$$
-\boxed{C(S,t) = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)}
-$$
+    $$
+    C(S,t) = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)
+    $$
 
-where:
+    where
 
-$$
-\boxed{d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}}
-$$
+    $$
+    d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}, \qquad d_2 = d_1 - \sigma\sqrt{T-t}
+    $$
 
-$$
-\boxed{d_2 = d_1 - \sigma\sqrt{T-t} = \frac{\ln(S/K) + (r - \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}}
-$$
+    and the corresponding European put price is:
+
+    $$
+    P(S,t) = Ke^{-r(T-t)}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)
+    $$
 
 **Notation**: $\mathcal{N}(x)$ denotes the **cumulative distribution function** of the standard normal distribution:
 
@@ -85,16 +88,11 @@ $$
 \mathcal{N}(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{-\frac{z^2}{2}} dz = \mathbb{P}(Z \leq x) \quad \text{where } Z \sim \mathcal{N}(0,1)
 $$
 
-### 2. **European Put Option**
-
-
-The price of a European put option at time $t$ is:
+**Explicit form of $d_2$**:
 
 $$
-\boxed{P(S,t) = Ke^{-r(T-t)}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)}
+d_2 = \frac{\ln(S/K) + (r - \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}
 $$
-
-where $d_1$ and $d_2$ are defined identically as for the call.
 
 **Alternative form** using $\mathcal{N}(-x) = 1 - \mathcal{N}(x)$:
 
@@ -145,7 +143,18 @@ $$
 
 **Interpretation**: Related to the risk-neutral probability of exercise (explained in next section).
 
-### 3. **The Normal CDF N(·)**
+### 3. **Key Identity**
+
+
+The normal density values at $d_1$ and $d_2$ satisfy a fundamental relation used throughout the Greeks derivations:
+
+$$
+S\,\phi(d_1) = Ke^{-r(T-t)}\phi(d_2)
+$$
+
+where $\phi(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$ is the standard normal density. This follows from $d_1^2 - d_2^2 = 2\left[\ln(S/K) + r(T-t)\right]$.
+
+### 4. **The Normal CDF N(·)**
 
 
 **Properties**:
