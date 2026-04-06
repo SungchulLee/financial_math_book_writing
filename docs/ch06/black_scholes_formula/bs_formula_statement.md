@@ -45,7 +45,7 @@ $$
 
 6. **Complete markets**: No arbitrage opportunities exist
 
-7. **Log-normal distribution**: Asset returns are normally distributed
+7. **Log-normal returns**: Log-returns $\log(S_t / S_0)$ are normally distributed
 
 ### 3. **Contract Specifications**
 
@@ -63,7 +63,7 @@ $$
 ### 1. **European Call Option**
 
 
-The price of a European call option at time $t$ is:
+Under assumptions 1–7 above, the unique arbitrage-free price of a European call option at time $t$ is:
 
 $$
 \boxed{C(S,t) = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)}
