@@ -125,23 +125,25 @@ $$
 ### 2. **Derivation via Measure Change**
 
 
-The following sketch outlines the key steps; a full proof using Girsanov's theorem appears in the next section.
-
-Under the stock measure, the Radon-Nikodym derivative is:
+The stock measure $\mathbb{Q}^S$ uses the stock as numéraire. Its Radon-Nikodym derivative with respect to $\mathbb{Q}$ is:
 
 $$
 \frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_T e^{-rT}}{S_0}
 $$
 
-Under $\mathbb{Q}^S$, the stock price dynamics shift:
+Substituting the explicit form of $S_T$ under $\mathbb{Q}$:
+
+$$
+\frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma W_T} \cdot e^{-rT}}{S_0} = \exp\!\left(\sigma W_T - \frac{1}{2}\sigma^2 T\right)
+$$
+
+This is the exponential martingale $\mathcal{E}(\sigma W)_T$. By Girsanov's theorem, the process $\tilde{W}_t = W_t - \sigma t$ is a Brownian motion under $\mathbb{Q}^S$, which shifts the stock price drift from $r$ to $r + \sigma^2$:
 
 $$
 S_T = S_0 e^{(r + \frac{1}{2}\sigma^2)T + \sigma \tilde{W}_T}
 $$
 
-where $\tilde{W}_T \sim \mathcal{N}(0, T)$ under $\mathbb{Q}^S$.
-
-Following the same calculation as for $d_2$:
+where $\tilde{W}_T \sim \mathcal{N}(0, T)$ under $\mathbb{Q}^S$. Following the same standardization as for $d_2$:
 
 $$
 \mathbb{Q}^S(S_T > K) = \mathcal{N}\left(\frac{\log(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}\right) = \mathcal{N}(d_1)
