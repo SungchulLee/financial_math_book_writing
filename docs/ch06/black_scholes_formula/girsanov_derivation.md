@@ -114,7 +114,13 @@ C_0 &= e^{-rT} \mathbb{E}^{\mathbb{Q}}[(S_T - K)^+] \\
 \end{aligned}
 $$
 
-The integral is evaluated by substituting $S_T = S_0 e^{(r - \sigma^2/2)T + \sigma\sqrt{T}\, Z}$ with $Z \sim N(0,1)$, completing the square, and recognizing the resulting expressions as normal CDF evaluations.
+The integral is evaluated by substituting $S_T = S_0 e^{(r - \sigma^2/2)T + \sigma\sqrt{T}\, Z}$ with $Z \sim N(0,1)$. The condition $S_T > K$ becomes $Z > -d_2$, and the integrand factors as:
+
+$$
+e^{-rT} S_0 \int_{-d_2}^{\infty} e^{(r - \frac{1}{2}\sigma^2)T + \sigma\sqrt{T}z}\, \frac{1}{\sqrt{2\pi}} e^{-z^2/2}\, dz - K e^{-rT} \int_{-d_2}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-z^2/2}\, dz
+$$
+
+The second integral is simply $\Phi(d_2)$. For the first, completing the square in the exponent via $-\frac{1}{2}\sigma^2 T + \sigma\sqrt{T}z - \frac{z^2}{2} = -\frac{1}{2}(z - \sigma\sqrt{T})^2$ and substituting $u = z - \sigma\sqrt{T}$ yields $S_0\Phi(d_1)$.
 
 ---
 
