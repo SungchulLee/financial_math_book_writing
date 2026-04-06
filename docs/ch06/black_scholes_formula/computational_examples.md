@@ -276,36 +276,19 @@ def black_scholes_greeks(S, K, T, r, sigma, option_type='call'):
         'rho': rho
     }
 
-# Calculate for call
-call_greeks = black_scholes_greeks(50, 52, 0.5, 0.05, 0.30, 'call')
-print("Call Option:")
-for greek, value in call_greeks.items():
-    print(f"  {greek.capitalize()}: {value:.4f}")
-
-print("\nPut Option:")
-put_greeks = black_scholes_greeks(50, 52, 0.5, 0.05, 0.30, 'put')
-for greek, value in put_greeks.items():
-    print(f"  {greek.capitalize()}: {value:.4f}")
 ```
 
-**Output**:
-```
-Call Option:
-  Price: 3.9089
-  Delta: 0.5156
-  Gamma: 0.0377
-  Theta: -4.8652
-  Vega: 0.1335
-  Rho: 0.1203
+For the same parameters ($S=50$, $K=52$, $T=0.5$, $r=5\%$, $\sigma=30\%$):
 
-Put Option:
-  Price: 4.6153
-  Delta: -0.4844
-  Gamma: 0.0377
-  Theta: -3.5691
-  Vega: 0.1335
-  Rho: -0.1335
-```
+| Greek | Call | Put |
+|---|---|---|
+| Price | 3.9089 | 4.6153 |
+| Delta | 0.5156 | -0.4844 |
+| Gamma | 0.0377 | 0.0377 |
+| Theta | -4.8652 | -3.5691 |
+| Vega | 0.1335 | 0.1335 |
+
+Note that gamma and vega are identical for call and put (a consequence of put-call parity), while $\Delta_{\text{call}} - \Delta_{\text{put}} = 1$.
 
 ---
 
@@ -319,91 +302,34 @@ Both call and put prices are monotonically increasing in volatility (positive ve
 ### Practical Examples
 
 
-#### 1. **Example 1: ATM Call with Different Maturities**
+#### 1. **ATM Call with Different Maturities**
 
 
-Compare ATM calls with 1 month, 3 months, 6 months, and 1 year to maturity:
+For $S = K = 100$, $r = 5\%$, $\sigma = 25\%$:
 
-```python
-S = K = 100  # ATM
-r = 0.05
-sigma = 0.25
-maturities = [1/12, 3/12, 6/12, 1.0]
+| Maturity | Call Price | $\sqrt{T}$ ratio |
+|---|---|---|
+| 1 month | \$2.05 | — |
+| 3 months | \$3.56 | $\times 1.74$ |
+| 6 months | \$5.04 | $\times 2.46$ |
+| 12 months | \$7.13 | $\times 3.48$ |
 
-print("ATM Call Prices by Maturity:")
-print(f"{'Maturity':<12} {'Price':<10} {'Time Value'}")
-print("-" * 35)
+**What we learn**: Option value grows sublinearly with time—roughly as $\sqrt{T}$, consistent with the ATM approximation $C_{\text{ATM}} \approx 0.4\, S\sigma\sqrt{T}$. This $\sqrt{T}$ scaling is a direct consequence of the diffusive nature of Brownian motion.
 
-for T in maturities:
-    call_price = black_scholes_call(S, K, T, r, sigma)
-    # ATM so intrinsic value is 0
-    time_value = call_price
-    
-    maturity_label = f"{int(T*12)} month{'s' if T != 1/12 else ''}"
-    print(f"{maturity_label:<12} ${call_price:>8.2f}  ${time_value:>8.2f}")
-```
-
-**Output**:
-```
-ATM Call Prices by Maturity:
-Maturity     Price      Time Value
------------------------------------
-1 month      $  2.05    $  2.05
-3 months     $  3.56    $  3.56
-6 months     $  5.04    $  5.04
-12 months    $  7.13    $  7.13
-```
-
-**What we learn**: Option value increases with time, but sublinearly—roughly proportional to $\sqrt{T}$, consistent with the ATM approximation $C_{\text{ATM}} \approx 0.4\, S\sigma\sqrt{T}$. Doubling the maturity increases the price by a factor of $\sqrt{2} \approx 1.41$, not $2$. This $\sqrt{T}$ scaling is a direct consequence of the diffusive nature of Brownian motion.
-
-#### 2. **Example 2: OTM vs ITM vs ATM**
+#### 2. **Moneyness and Delta**
 
 
-Compare options at different moneyness levels:
+For $S = 100$, $r = 5\%$, $\sigma = 25\%$, $T = 0.5$:
 
-```python
-S = 100
-r = 0.05
-sigma = 0.25
-T = 0.5
+| Strike | Moneyness | Call | Put | Call $\Delta$ | Put $\Delta$ |
+|---|---|---|---|---|---|
+| 80 | ITM | \$20.65 | \$0.52 | 0.936 | -0.064 |
+| 90 | ITM | \$11.49 | \$1.36 | 0.793 | -0.207 |
+| 100 | ATM | \$5.04 | \$4.91 | 0.566 | -0.434 |
+| 110 | OTM | \$1.67 | \$11.42 | 0.317 | -0.683 |
+| 120 | OTM | \$0.39 | \$20.14 | 0.134 | -0.866 |
 
-strikes = [80, 90, 100, 110, 120]  # Deep ITM to Deep OTM
-
-print("\nOption Prices at Different Strikes:")
-print(f"{'Strike':<10} {'Moneyness':<12} {'Call':<10} {'Put':<10} {'Call Δ':<10} {'Put Δ'}")
-print("-" * 65)
-
-for K in strikes:
-    call_price = black_scholes_call(S, K, T, r, sigma)
-    put_price = black_scholes_put(S, K, T, r, sigma)
-    
-    call_greeks = black_scholes_greeks(S, K, T, r, sigma, 'call')
-    put_greeks = black_scholes_greeks(S, K, T, r, sigma, 'put')
-    
-    if S > K:
-        moneyness = "ITM"
-    elif S < K:
-        moneyness = "OTM"
-    else:
-        moneyness = "ATM"
-    
-    print(f"{K:<10} {moneyness:<12} ${call_price:<9.2f} ${put_price:<9.2f} "
-          f"{call_greeks['delta']:<9.3f} {put_greeks['delta']:<9.3f}")
-```
-
-**Output**:
-```
-Option Prices at Different Strikes:
-Strike     Moneyness    Call       Put        Call Δ     Put Δ
------------------------------------------------------------------
-80         ITM          $20.65     $ 0.52     0.936      -0.064
-90         ITM          $11.49     $ 1.36     0.793      -0.207
-100        ATM          $ 5.04     $ 4.91     0.566      -0.434
-110        OTM          $ 1.67     $11.42     0.317      -0.683
-120        OTM          $ 0.39     $20.14     0.134      -0.866
-```
-
-**What we learn**: Delta ranges from near $0$ (deep OTM) to near $1$ (deep ITM), passing through $\approx 0.5$ at ATM. This confirms the probabilistic interpretation: $\Delta = \mathcal{N}(d_1)$ is the stock-measure probability of exercise. The table also shows that ITM options carry substantial intrinsic value while OTM options derive their entire value from optionality (time value).
+**What we learn**: Delta varies from near $0$ (deep OTM) to near $1$ (deep ITM), confirming the probabilistic interpretation $\Delta = \mathcal{N}(d_1)$. ITM options carry substantial intrinsic value; OTM options derive their entire value from optionality.
 
 #### 3. **Example 3: Implied Volatility Calculation**
 
