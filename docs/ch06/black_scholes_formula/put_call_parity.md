@@ -236,7 +236,7 @@ $$
 ## Applications
 
 
-### 1. **Application 1: Synthetic Positions**
+### 1. **Synthetic Positions**
 
 
 Put-call parity allows creation of **synthetic** positions:
@@ -250,20 +250,9 @@ $$
 \end{array}
 $$
 
-**Use case**: If an option is illiquid or mispriced, create it synthetically using other instruments.
+These are useful when an option is illiquid or mispriced, or when only one option trades actively (compute the other via $P = C - S + Ke^{-rT}$).
 
-### 2. **Application 2: Pricing One Option from Another**
-
-
-If you know the call price, you can immediately determine the put price:
-
-$$
-P = C - S + Ke^{-rT}
-$$
-
-This is useful when only one option trades actively.
-
-### 3. **Application 3: Early Exercise of American Options**
+### 2. **Early Exercise of American Options**
 
 
 For American options on **non-dividend-paying stocks**, put-call parity implies:
@@ -274,28 +263,20 @@ $$
 
 Since $C_{\text{Am}} = C_{\text{Eu}}$ (call not exercised early), this shows American puts can trade at a premium to European puts.
 
-### 4. **Application 4: Arbitrage Detection**
+### 3. **Arbitrage Detection and Implied Rates**
 
 
-In practice, compare observed market prices to put-call parity:
+Compare observed market prices to put-call parity. Define the deviation:
 
 $$
 \Delta = (C_{\text{market}} - P_{\text{market}}) - (S_{\text{market}} - Ke^{-rT_{\text{market}}})
 $$
 
-- If $|\Delta| > \text{transaction costs}$: Potential arbitrage
-- If $|\Delta| < \text{transaction costs}$: No arbitrage after costs
-
-### 5. **Application 5: Implied Interest Rate**
-
-
-If call, put, and stock prices are known, solve for the **implied risk-free rate**:
+If $|\Delta|$ exceeds transaction costs, an arbitrage opportunity exists. Conversely, if call, put, and stock prices are known, one can extract the **implied risk-free rate**:
 
 $$
 r = -\frac{1}{T}\log\left(\frac{K}{S + P - C}\right)
 $$
-
-This can be used to infer market expectations of interest rates.
 
 ---
 
