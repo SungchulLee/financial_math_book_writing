@@ -1,7 +1,7 @@
 # Computational Examples
 
 
-This section provides detailed step-by-step calculations for pricing European options using the Black-Scholes formula, along with Python implementations and practical examples. The goal is to bridge the theoretical formulas with numerical computation.
+This section bridges the Black-Scholes formulas with numerical computation through manual calculations, a Python implementation, and worked examples that illustrate key features of option pricing.
 
 ---
 
@@ -186,74 +186,26 @@ Small rounding error confirms parity holds. ✓
 import numpy as np
 from scipy.stats import norm
 
-def black_scholes_call(S, K, T, r, sigma):
-    """
-    Calculate European call option price using Black-Scholes formula.
-    
-    Parameters:
-    S : float : current stock price
-    K : float : strike price
-    T : float : time to maturity (years)
-    r : float : risk-free rate (annual)
-    sigma : float : volatility (annual)
-    
-    Returns:
-    float : call option price
-    """
+def black_scholes(S, K, T, r, sigma, option_type='call'):
+    """Black-Scholes price for a European call or put."""
     d1 = (np.log(S / K) + (r + 0.5 * sigma**2) * T) / (sigma * np.sqrt(T))
     d2 = d1 - sigma * np.sqrt(T)
-    
-    call_price = S * norm.cdf(d1) - K * np.exp(-r * T) * norm.cdf(d2)
-    
-    return call_price
+    if option_type == 'call':
+        return S * norm.cdf(d1) - K * np.exp(-r * T) * norm.cdf(d2)
+    else:
+        return K * np.exp(-r * T) * norm.cdf(-d2) - S * norm.cdf(-d1)
 
-def black_scholes_put(S, K, T, r, sigma):
-    """
-    Calculate European put option price using Black-Scholes formula.
-    
-    Parameters: (same as call)
-    
-    Returns:
-    float : put option price
-    """
-    d1 = (np.log(S / K) + (r + 0.5 * sigma**2) * T) / (sigma * np.sqrt(T))
-    d2 = d1 - sigma * np.sqrt(T)
-    
-    put_price = K * np.exp(-r * T) * norm.cdf(-d2) - S * norm.cdf(-d1)
-    
-    return put_price
+# Example: S0=50, K=52, T=0.5, r=5%, sigma=30%
+C = black_scholes(50, 52, 0.5, 0.05, 0.30, 'call')  # 3.91
+P = black_scholes(50, 52, 0.5, 0.05, 0.30, 'put')   # 4.62
 
-# Example usage
-S0 = 50
-K = 52
-T = 0.5
-r = 0.05
-sigma = 0.30
-
-call_price = black_scholes_call(S0, K, T, r, sigma)
-put_price = black_scholes_put(S0, K, T, r, sigma)
-
-print(f"Call Price: ${call_price:.2f}")
-print(f"Put Price: ${put_price:.2f}")
-
-# Verify put-call parity
-parity_lhs = call_price - put_price
-parity_rhs = S0 - K * np.exp(-r * T)
-print(f"\nPut-Call Parity Check:")
-print(f"C - P = {parity_lhs:.4f}")
-print(f"S - Ke^(-rT) = {parity_rhs:.4f}")
-print(f"Difference: {abs(parity_lhs - parity_rhs):.6f}")
+# Verify put-call parity: C - P = S - Ke^(-rT)
+print(f"C - P = {C - P:.4f},  S - Ke^(-rT) = {50 - 52*np.exp(-0.025):.4f}")
 ```
 
 **Output**:
 ```
-Call Price: $3.91
-Put Price: $4.62
-
-Put-Call Parity Check:
-C - P = -0.7065
-S - Ke^(-rT) = -0.7065
-Difference: 0.000000
+C - P = -0.7065,  S - Ke^(-rT) = -0.7065
 ```
 
 ---
@@ -360,68 +312,7 @@ Put Option:
 ### Sensitivity Analysis
 
 
-#### 1. **Impact of Volatility**
-
-
-```python
-import matplotlib.pyplot as plt
-
-# Range of volatilities
-sigmas = np.linspace(0.1, 0.6, 50)
-call_prices = [black_scholes_call(50, 52, 0.5, 0.05, s) for s in sigmas]
-put_prices = [black_scholes_put(50, 52, 0.5, 0.05, s) for s in sigmas]
-
-plt.figure(figsize=(10, 6))
-plt.plot(sigmas * 100, call_prices, label='Call', linewidth=2)
-plt.plot(sigmas * 100, put_prices, label='Put', linewidth=2)
-plt.xlabel('Volatility (%)', fontsize=12)
-plt.ylabel('Option Price ($)', fontsize=12)
-plt.title('Option Prices vs. Volatility', fontsize=14)
-plt.legend(fontsize=12)
-plt.grid(True, alpha=0.3)
-plt.show()
-```
-
-#### 2. **Impact of Stock Price**
-
-
-```python
-# Range of stock prices
-stock_prices = np.linspace(30, 70, 100)
-call_values = [black_scholes_call(S, 52, 0.5, 0.05, 0.30) for S in stock_prices]
-put_values = [black_scholes_put(S, 52, 0.5, 0.05, 0.30) for S in stock_prices]
-
-# Intrinsic values
-call_intrinsic = np.maximum(stock_prices - 52, 0)
-put_intrinsic = np.maximum(52 - stock_prices, 0)
-
-plt.figure(figsize=(12, 5))
-
-# Call subplot
-plt.subplot(1, 2, 1)
-plt.plot(stock_prices, call_values, 'b-', linewidth=2, label='Call Value')
-plt.plot(stock_prices, call_intrinsic, 'r--', linewidth=1.5, label='Intrinsic Value')
-plt.axvline(52, color='gray', linestyle=':', alpha=0.7, label='Strike')
-plt.xlabel('Stock Price ($)')
-plt.ylabel('Call Value ($)')
-plt.title('Call Option Value')
-plt.legend()
-plt.grid(True, alpha=0.3)
-
-# Put subplot
-plt.subplot(1, 2, 2)
-plt.plot(stock_prices, put_values, 'b-', linewidth=2, label='Put Value')
-plt.plot(stock_prices, put_intrinsic, 'r--', linewidth=1.5, label='Intrinsic Value')
-plt.axvline(52, color='gray', linestyle=':', alpha=0.7, label='Strike')
-plt.xlabel('Stock Price ($)')
-plt.ylabel('Put Value ($)')
-plt.title('Put Option Value')
-plt.legend()
-plt.grid(True, alpha=0.3)
-
-plt.tight_layout()
-plt.show()
-```
+Both call and put prices are monotonically increasing in volatility (positive vega) and respond nonlinearly to the stock price. The call value curve lies above the intrinsic value $(S - K)^+$ for all $S$, with the gap (time value) maximized near the strike. These relationships can be verified numerically using the `black_scholes` function above across ranges of $\sigma$ and $S$.
 
 ---
 
@@ -463,7 +354,7 @@ Maturity     Price      Time Value
 12 months    $  7.13    $  7.13
 ```
 
-**Observation**: Option value increases with time, but not linearly (roughly proportional to $\sqrt{T}$).
+**What we learn**: Option value increases with time, but sublinearly—roughly proportional to $\sqrt{T}$, consistent with the ATM approximation $C_{\text{ATM}} \approx 0.4\, S\sigma\sqrt{T}$. Doubling the maturity increases the price by a factor of $\sqrt{2} \approx 1.41$, not $2$. This $\sqrt{T}$ scaling is a direct consequence of the diffusive nature of Brownian motion.
 
 #### 2. **Example 2: OTM vs ITM vs ATM**
 
@@ -512,10 +403,7 @@ Strike     Moneyness    Call       Put        Call Δ     Put Δ
 120        OTM          $ 0.39     $20.14     0.134      -0.866
 ```
 
-**Observations**:
-- Deep ITM call has $\Delta \approx 1$, behaves like stock
-- Deep OTM call has $\Delta \approx 0$, minimal stock sensitivity
-- ATM options have $\Delta \approx 0.5$
+**What we learn**: Delta ranges from near $0$ (deep OTM) to near $1$ (deep ITM), passing through $\approx 0.5$ at ATM. This confirms the probabilistic interpretation: $\Delta = \mathcal{N}(d_1)$ is the stock-measure probability of exercise. The table also shows that ITM options carry substantial intrinsic value while OTM options derive their entire value from optionality (time value).
 
 #### 3. **Example 3: Implied Volatility Calculation**
 
@@ -602,115 +490,32 @@ $$
 ### Complete Working Example
 
 
-#### 1. **Real-World Scenario**
+Consider a call option with $S = \$175$, $K = \$180$, $T = 45/365$ years, $r = 4.5\%$, $\sigma = 28\%$.
 
+Using the Greeks function above, the results are:
 
-You're analyzing a call option on Apple stock:
+| Quantity | Value |
+|---|---|
+| Call price | \$3.67 |
+| Intrinsic value | \$0.00 |
+| Time value | \$3.67 |
+| Delta | 0.4089 |
+| Gamma | 0.0441 |
+| Vega (per 1%) | \$0.1382 |
+| Theta (per day) | -\$0.06 |
 
-- Current stock price: $S = \$175.00$
-- Strike price: $K = \$180.00$
-- Days to expiration: 45 days
-- Risk-free rate: $r = 4.5\%$ (annual)
-- Historical volatility: $\sigma = 28\%$ (annual)
-
-**Question**: What is the fair value of this call option?
-
-**Solution**:
-
-```python
-# Input parameters
-S = 175.00
-K = 180.00
-T = 45 / 365  # Convert days to years
-r = 0.045
-sigma = 0.28
-
-# Calculate option price
-call_price = black_scholes_call(S, K, T, r, sigma)
-greeks = black_scholes_greeks(S, K, T, r, sigma, 'call')
-
-print("=" * 50)
-print("BLACK-SCHOLES OPTION VALUATION")
-print("=" * 50)
-print(f"\nInput Parameters:")
-print(f"  Stock Price (S):        ${S:.2f}")
-print(f"  Strike Price (K):       ${K:.2f}")
-print(f"  Time to Maturity (T):   {T*365:.0f} days ({T:.4f} years)")
-print(f"  Risk-Free Rate (r):     {r*100:.2f}%")
-print(f"  Volatility (σ):         {sigma*100:.2f}%")
-
-print(f"\nOption Valuation:")
-print(f"  Call Price:             ${greeks['price']:.2f}")
-print(f"  Intrinsic Value:        ${max(S - K, 0):.2f}")
-print(f"  Time Value:             ${greeks['price'] - max(S - K, 0):.2f}")
-
-print(f"\nGreeks:")
-print(f"  Delta (Δ):              {greeks['delta']:.4f}")
-print(f"  Gamma (Γ):              {greeks['gamma']:.4f}")
-print(f"  Vega (ν):               ${greeks['vega']:.4f} per 1% vol")
-print(f"  Theta (Θ):              ${greeks['theta']:.2f} per year")
-print(f"                          ${greeks['theta']/365:.2f} per day")
-print(f"  Rho (ρ):                ${greeks['rho']:.4f} per 1% rate")
-
-print("\n" + "=" * 50)
-```
-
-**Output**:
-```
-==================================================
-BLACK-SCHOLES OPTION VALUATION
-==================================================
-
-Input Parameters:
-  Stock Price (S):        $175.00
-  Strike Price (K):       $180.00
-  Time to Maturity (T):   45 days (0.1233 years)
-  Risk-Free Rate (r):     4.50%
-  Volatility (σ):         28.00%
-
-Option Valuation:
-  Call Price:             $3.67
-  Intrinsic Value:        $0.00
-  Time Value:             $3.67
-
-Greeks:
-  Delta (Δ):              0.4089
-  Gamma (Γ):              0.0441
-  Vega (ν):               $0.1382 per 1% vol
-  Theta (Θ):              $-22.05 per year
-                          $-0.06 per day
-  Rho (ρ):                $0.0433 per 1% rate
-
-==================================================
-```
-
-**Interpretation**: This OTM call with 45 days to expiration is worth \$3.67, consisting entirely of time value. It has a delta of 0.41, meaning for every \$1 increase in the stock price, the option gains approximately \$0.41.
+**What we learn**: This OTM call is worth \$3.67, consisting entirely of time value. The delta of $0.41$ means the option captures roughly 41 cents of each dollar move in the stock—far less than a stock position, but with a much smaller capital outlay (\$3.67 vs. \$175). The high gamma ($0.044$) indicates that delta itself changes rapidly near the strike, which is characteristic of short-dated, near-ATM options. The negative theta of \$0.06 per day reflects the time decay that erodes the option's value as expiration approaches.
 
 ---
 
 ### Summary
 
 
-This section provided:
+The examples above illustrate three key computational takeaways:
 
-1. **Manual calculations**: Step-by-step computation of call and put prices
-
-2. **Python implementation**: Complete code with Greeks calculation
-
-3. **Sensitivity analysis**: Visual exploration of parameter effects
-
-4. **Practical examples**: Real-world scenarios and interpretation
-
-5. **Numerical considerations**: Common issues and solutions
-
-**Key takeaways**:
-- Black-Scholes formula is straightforward to implement computationally
-- Standard normal CDF $\mathcal{N}(\cdot)$ is the only special function required
-- Greeks provide sensitivity measures essential for risk management
-- Put-call parity serves as a validation check
-- Implied volatility calculation inverts the pricing formula
-
-The combination of theoretical understanding and computational proficiency enables effective use of the Black-Scholes model in practice.
+1. The standard normal CDF $\mathcal{N}(\cdot)$ is the only special function required—Black-Scholes pricing reduces to evaluating two CDF values
+2. Greeks provide first-order sensitivity measures that connect the formula's mathematical structure to hedging practice
+3. Put-call parity and the ATM $\sqrt{T}$ scaling serve as quick sanity checks for any implementation
 
 ---
 
