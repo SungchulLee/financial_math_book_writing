@@ -84,37 +84,12 @@ $$
 ### 3. **Terminal Values**
 
 
-At maturity $T$, consider two cases:
+| Scenario | Portfolio A | Portfolio B |
+|---|---|---|
+| $S_T > K$ | $(S_T - K) + K = S_T$ | $0 + S_T = S_T$ |
+| $S_T \leq K$ | $0 + K = K$ | $(K - S_T) + S_T = K$ |
 
-**Case 1: $S_T > K$** (stock above strike)
-
-- **Portfolio A**:
- 
-      - Call payoff: $S_T - K$
-      - Bond payoff: $K$
-      - Total: $(S_T - K) + K = S_T$
-
-- **Portfolio B**:
-
-      - Put payoff: $0$ (expires worthless)
-      - Stock value: $S_T$
-      - Total: $0 + S_T = S_T$
-
-**Case 2: $S_T \leq K$** (stock at or below strike)
-
-- **Portfolio A**:
-
-      - Call payoff: $0$ (expires worthless)
-      - Bond payoff: $K$
-      - Total: $0 + K = K$
-
-- **Portfolio B**:
-
-      - Put payoff: $K - S_T$
-      - Stock value: $S_T$
-      - Total: $(K - S_T) + S_T = K$
-
-**Observation**: In both cases, $V_T^A = V_T^B$.
+In both cases $V_T^A = V_T^B$.
 
 ### 4. **No-Arbitrage Conclusion**
 

@@ -33,19 +33,21 @@ $$
 ### 2. **Fundamental Assumptions**
 
 
+**Market structure:**
+
 1. **Frictionless markets**: No transaction costs, taxes, or restrictions on short selling
-
 2. **Continuous trading**: Assets can be traded continuously in time
+3. **No arbitrage**: The market admits no risk-free profits
 
-3. **Constant parameters**: Risk-free rate $r$ and volatility $\sigma$ are known constants
+**Price dynamics:**
 
-4. **No dividends**: The underlying asset pays no dividends during the option's life
+4. **Constant parameters**: Risk-free rate $r$ and volatility $\sigma$ are known constants
+5. **Log-normal returns**: Log-returns $\log(S_t / S_0)$ are normally distributed
+6. **No dividends**: The underlying asset pays no dividends during the option's life
 
-5. **European exercise**: Options can only be exercised at maturity $T$
+**Contract:**
 
-6. **Complete markets**: No arbitrage opportunities exist
-
-7. **Log-normal returns**: Log-returns $\log(S_t / S_0)$ are normally distributed
+7. **European exercise**: Options can only be exercised at maturity $T$
 
 ### 3. **Contract Specifications**
 
@@ -394,7 +396,7 @@ The Black-Scholes formula can be derived via multiple methods (covered in subseq
 
 4. **Martingale theory** (Section 2.2): Apply Girsanov's theorem and martingale pricing
 
-Each method provides different insights into **why** this particular formula emerges from the no-arbitrage principle.
+These three perspectives are **mathematically equivalent**: the PDE, the risk-neutral expectation, and the replication argument all lead to the same formula. Each provides different insight—the PDE characterizes the local dynamics, the expectation gives a global probabilistic view, and replication reveals the hedging strategy—but they are unified by the no-arbitrage principle.
 
 ---
 

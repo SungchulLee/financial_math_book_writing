@@ -56,29 +56,7 @@ $$
 ### 3. **Verification for Black-Scholes**
 
 
-**Lower bound for call**:
-
-Since $\mathcal{N}(d_1), \mathcal{N}(d_2) \in [0,1]$:
-
-When $S > Ke^{-rT}$:
-
-$$
-C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) \geq S \cdot 0 - Ke^{-rT} \cdot 1
-$$
-
-But more carefully, when deeply ITM, $\mathcal{N}(d_1), \mathcal{N}(d_2) \approx 1$:
-
-$$
-C \approx S - Ke^{-rT}
-$$
-
-**Upper bound**:
-
-$$
-C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) \leq S \cdot 1 - Ke^{-rT} \cdot 0 = S
-$$
-
-Both bounds satisfied. ✓
+Since $\mathcal{N}(d_1), \mathcal{N}(d_2) \in [0,1]$, the upper bound follows immediately: $C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) \leq S \cdot 1 - Ke^{-rT} \cdot 0 = S$. The lower bound $C \geq (S - Ke^{-rT})^+$ can be verified by noting that deep ITM ($d_1, d_2 \to +\infty$) gives $C \to S - Ke^{-rT}$, and convexity in $S$ (proved below) ensures $C$ never dips below this value. ✓
 
 ---
 

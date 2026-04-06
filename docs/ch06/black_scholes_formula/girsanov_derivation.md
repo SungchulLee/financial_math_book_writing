@@ -120,7 +120,13 @@ $$
 e^{-rT} S_0 \int_{-d_2}^{\infty} e^{(r - \frac{1}{2}\sigma^2)T + \sigma\sqrt{T}z}\, \frac{1}{\sqrt{2\pi}} e^{-z^2/2}\, dz - K e^{-rT} \int_{-d_2}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-z^2/2}\, dz
 $$
 
-The second integral is simply $\Phi(d_2)$. For the first, completing the square in the exponent via $-\frac{1}{2}\sigma^2 T + \sigma\sqrt{T}z - \frac{z^2}{2} = -\frac{1}{2}(z - \sigma\sqrt{T})^2$ and substituting $u = z - \sigma\sqrt{T}$ yields $S_0\Phi(d_1)$.
+The second integral is simply $\Phi(d_2)$. For the first, completing the square in the exponent gives:
+
+$$
+\boxed{-\frac{1}{2}\sigma^2 T + \sigma\sqrt{T}\,z - \frac{z^2}{2} = -\frac{1}{2}(z - \sigma\sqrt{T})^2}
+$$
+
+Substituting $u = z - \sigma\sqrt{T}$ shifts the lower limit from $-d_2$ to $-d_2 - \sigma\sqrt{T} = -d_1$, yielding $S_0\Phi(d_1)$.
 
 ---
 
