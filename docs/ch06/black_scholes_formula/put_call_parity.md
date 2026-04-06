@@ -372,86 +372,19 @@ $$
 
 ---
 
-## Put-Call Parity and Option Strategies
+## Option Strategies from Parity
 
 
-### 1. **Conversion**
+Put-call parity underpins several standard strategies. A **conversion** (long stock + long put + short call) locks in a risk-free payoff of $K$ at maturity, equivalent to a bond. Its reverse, a **reversal**, creates a synthetic short bond. Combining conversions and reversals at two different strikes produces a **box spread** with guaranteed payoff $K_2 - K_1$, which must cost $(K_2 - K_1)e^{-rT}$ by no-arbitrage.
 
-
-Buy stock + Buy put + Sell call = Synthetic bond position
-
-**Payoff at $T$**:
-
-- If $S_T > K$: $S_T + 0 - (S_T - K) = K$
-- If $S_T \leq K$: $S_T + (K - S_T) - 0 = K$
-
-**Result**: Guaranteed payoff of $K$ regardless of stock price.
-
-**Profit**: $(S_0 + P_0 - C_0) - Ke^{-rT}$ should be zero by parity.
-
-### 2. **Reversal**
-
-
-Short stock + Sell put + Buy call = Negative bond position
-
-**Payoff at $T$**: Always $-K$ (borrow $K$)
-
-**Relation to parity**: The reverse of conversion.
-
-### 3. **Box Spread**
-
-
-Combination of conversion and reversal with different strikes:
-- Buy call at $K_1$ + Sell call at $K_2$
-- Sell put at $K_1$ + Buy put at $K_2$
-
-**Payoff**: Always $K_2 - K_1$ (risk-free)
-
-**Price**: Should equal $(K_2 - K_1)e^{-rT}$ by no-arbitrage.
-
----
-
-## Historical Note
-
-
-Put-call parity was first rigorously derived by **Hans Stoll** in 1969, before the Black-Scholes model. Key insights:
-
-1. **Model-independent**: Requires only no-arbitrage, not specific price dynamics
-2. **Broader applicability**: Works even when Black-Scholes assumptions fail
-3. **Market efficiency**: Violations are quickly arbitraged away in liquid markets
-
-In practice, put-call parity holds very tightly for liquid, exchange-traded options with transaction costs explaining small deviations.
+Put-call parity was first rigorously derived by **Hans Stoll** (1969), before Black-Scholes. Unlike the pricing formula itself, parity is **model-independent**: it requires only the absence of arbitrage, not any specific distributional assumptions.
 
 ---
 
 ## Summary
 
 
-Put-call parity establishes the fundamental relationship:
-
-$$
-\boxed{C - P = S - Ke^{-r(T-t)}}
-$$
-
-**Key points**:
-
-1. **Derivation**: Pure no-arbitrage argument (portfolio replication)
-
-2. **Verification**: Satisfied exactly by Black-Scholes formula
-
-3. **Applications**:
-   - Create synthetic positions
-   - Price one option from another
-   - Detect arbitrage opportunities
-   - Infer implied interest rates
-
-4. **Generalizations**: Extends to dividends, foreign exchange, futures
-
-5. **Robustness**: Holds regardless of underlying asset dynamics (unlike Black-Scholes formula)
-
-6. **Practical importance**: One of the most reliable relationships in option markets
-
-Put-call parity is more fundamental than any specific pricing model—it follows directly from the law of one price and must hold in any arbitrage-free market.
+Put-call parity $C - P = S - Ke^{-r(T-t)}$ is a model-independent no-arbitrage relationship. It enables synthetic position construction, arbitrage detection, and one-from-the-other pricing. It generalizes to dividends, foreign exchange, and futures. As a pure consequence of the law of one price, it is more fundamental than any specific pricing formula.
 
 ---
 
