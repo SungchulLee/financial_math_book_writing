@@ -3,7 +3,10 @@
 
 The Black-Scholes formula exhibits well-defined **limiting behavior** as parameters approach extreme values. Understanding these limits provides intuition for how options behave in different market conditions and serves as a check for numerical implementations.
 
-This section systematically analyzes the asymptotic behavior of option prices. Each limit below follows from the dominated convergence theorem applied to $C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$, using the asymptotic properties $\mathcal{N}(x) \to 1$ as $x \to +\infty$ and $\mathcal{N}(x) \to 0$ as $x \to -\infty$.
+This section systematically analyzes the asymptotic behavior of option prices.
+
+!!! note "Unifying Principle"
+    Every limit in this section reduces to the same mechanism: determining the sign and rate at which $d_1$ and $d_2$ diverge to $\pm\infty$. Since $C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$ and the Gaussian CDF satisfies $\mathcal{N}(x) \to 1$ as $x \to +\infty$ and $\mathcal{N}(x) \to 0$ as $x \to -\infty$, all asymptotics follow from the **tail behavior of the standard normal distribution**.
 
 ---
 
@@ -54,35 +57,7 @@ Deep OTM put becomes worthless.
 ### 2. **As S → 0 (Deep Out-of-the-Money Call)**
 
 
-**Behavior of $d_1$ and $d_2$**:
-
-$$
-d_1, d_2 \to -\infty
-$$
-
-**Cumulative probabilities**:
-
-$$
-\mathcal{N}(d_1), \mathcal{N}(d_2) \to 0
-$$
-
-**Call price**:
-
-$$
-C \to S \cdot 0 - Ke^{-rT} \cdot 0 = 0
-$$
-
-**Put price**:
-
-$$
-\begin{aligned}
-P &= Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1) \\
-&\to Ke^{-rT} \cdot 1 - 0 \cdot 0 \\
-&= Ke^{-rT}
-\end{aligned}
-$$
-
-**Interpretation**: Deep ITM put approaches the present value of the strike minus essentially zero stock value.
+Now $d_1, d_2 \to -\infty$, so $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 0$ and $C \to 0$. For the put, $\mathcal{N}(-d_2) \to 1$ gives $P \to Ke^{-rT}$: the deep ITM put approaches the present value of the strike.
 
 ---
 
@@ -146,24 +121,12 @@ This recovers the **terminal payoff condition**.
 
 ---
 
-### 2. **As T → ∞ (Very Long Maturity)**
+### 2. **As T → ∞ (Very Long Maturity, r > 0)**
 
 
-**Behavior of $d_1$ and $d_2$**:
+**Assumption**: $r > 0$ throughout this subsection. The case $r = 0$ is qualitatively different (see Exercise 5).
 
-For fixed $S, K, r, \sigma$:
-
-$$
-d_1 = \frac{\ln(S/K)}{\sigma\sqrt{T}} + \frac{(r + \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma}
-$$
-
-The second term dominates:
-
-$$
-d_1 \sim \frac{(r + \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma} \to +\infty
-$$
-
-Similarly $d_2 \to +\infty$.
+Since $d_1 = \frac{\ln(S/K)}{\sigma\sqrt{T}} + \frac{(r + \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma}$ and the second term dominates when $r > 0$, we have $d_1 \to +\infty$ and similarly $d_2 \to +\infty$.
 
 **Call price**:
 
@@ -326,31 +289,7 @@ $$
 ### 2. **As r → ∞ (Infinite Interest Rate)**
 
 
-**Discounting**: $e^{-rT} \to 0$
-
-**Behavior**: 
-
-$$
-d_1 \sim \frac{r\sqrt{T}}{\sigma} \to +\infty
-$$
-
-$$
-d_2 = d_1 - \sigma\sqrt{T} \to +\infty
-$$
-
-**Call price**:
-
-$$
-C \to S \cdot 1 - 0 \cdot 1 = S
-$$
-
-**Interpretation**: With infinite interest rate, the discounted strike becomes zero, so the call is worth the full stock price.
-
-**Put price**:
-
-$$
-P \to 0 \cdot 1 - S \cdot 0 = 0
-$$
+As $r \to \infty$, $d_1, d_2 \to +\infty$ (driven by the $r\sqrt{T}/\sigma$ term) and $e^{-rT} \to 0$. Therefore $C \to S$ and $P \to 0$: the discounted strike vanishes, so the call is worth the full stock price.
 
 ---
 
@@ -360,50 +299,12 @@ $$
 ### 1. **As K → 0 (Zero Strike)**
 
 
-**Call**:
-
-$$
-\ln(S/K) \to +\infty, \quad d_1, d_2 \to +\infty
-$$
-
-$$
-C \to S - 0 \cdot e^{-rT} = S
-$$
-
-**Interpretation**: Call with zero strike is equivalent to owning the stock (certain to exercise for nothing).
-
-**Put**:
-
-$$
-P \to 0
-$$
-
-(no value in selling stock for zero)
-
----
+As $K \to 0$, $d_1, d_2 \to +\infty$, so $C \to S$ and $P \to 0$. A call with zero strike is equivalent to owning the stock.
 
 ### 2. **As K → ∞ (Infinite Strike)**
 
 
-**Call**:
-
-$$
-\ln(S/K) \to -\infty, \quad d_1, d_2 \to -\infty
-$$
-
-$$
-C \to 0
-$$
-
-(no chance of stock exceeding infinite strike)
-
-**Put**:
-
-$$
-P \to Ke^{-rT} - S \to +\infty
-$$
-
-But in practice, $P < Ke^{-rT}$ (never exceeds max theoretical payoff).
+As $K \to \infty$, $d_1, d_2 \to -\infty$, so $C \to 0$ (no chance of exceeding the strike) and $P \to Ke^{-rT} - S \to +\infty$, bounded above by $Ke^{-rT}$.
 
 ---
 
@@ -451,7 +352,7 @@ $$
 | $S \to \infty$ | $C \to S - Ke^{-rT}$ | $P \to 0$ |
 | $S \to 0$ | $C \to 0$ | $P \to Ke^{-rT}$ |
 | $T \to 0$ | $C \to (S-K)^+$ | $P \to (K-S)^+$ |
-| $T \to \infty$ | $C \to S$ | $P \to 0$ |
+| $T \to \infty$ ($r > 0$) | $C \to S$ | $P \to 0$ |
 | $\sigma \to 0$ | $C \to (S-Ke^{-rT})^+$ | $P \to (Ke^{-rT}-S)^+$ |
 | $\sigma \to \infty$ | $C \to S$ | $P \to Ke^{-rT}$ |
 | $r \to 0$ | Reduces to $C = S\mathcal{N}(d_1) - K\mathcal{N}(d_2)$ | Put-call parity: $C - P = S - K$ |
@@ -488,9 +389,9 @@ When implementing Black-Scholes:
 
 Limiting behavior of prices determines Greeks:
 
-- As $S \to \infty$: $\Delta_{\text{call}} \to 1$, $\Gamma \to 0$
-- As $T \to 0$ with $S \neq K$: $\Gamma \to \infty$ (curvature spikes)
-- As $\sigma \to 0$: Vega $\to 0$ (no sensitivity to volatility)
+- As $S \to \infty$: $\Delta_{\text{call}} \to 1$, $\Gamma \to 0$ (option behaves linearly like stock)
+- As $T \to 0$ with $S \approx K$: $\Gamma \to \infty$ (curvature spikes), making delta-hedging near expiry extremely costly and unstable — this is the root cause of pin risk
+- As $\sigma \to 0$: Vega $\to 0$ (no sensitivity to volatility; option becomes deterministic)
 
 ### 4. **Model Validation**
 
