@@ -3,7 +3,7 @@
 
 The Black-Scholes formula exhibits well-defined **limiting behavior** as parameters approach extreme values. Understanding these limits provides intuition for how options behave in different market conditions and serves as a check for numerical implementations.
 
-This section systematically analyzes the asymptotic behavior of option prices.
+This section systematically analyzes the asymptotic behavior of option prices. Each limit below follows from the dominated convergence theorem applied to $C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$, using the asymptotic properties $\mathcal{N}(x) \to 1$ as $x \to +\infty$ and $\mathcal{N}(x) \to 0$ as $x \to -\infty$.
 
 ---
 
@@ -285,7 +285,11 @@ $$
 P = C - S + Ke^{-rT} \to S - S + Ke^{-rT} = Ke^{-rT}
 $$
 
-Infinite volatility gives the put its maximum possible value (present value of strike).
+**Summary**:
+
+$$
+\boxed{\lim_{\sigma \to \infty} C = S, \qquad \lim_{\sigma \to \infty} P = Ke^{-rT}}
+$$
 
 ---
 
