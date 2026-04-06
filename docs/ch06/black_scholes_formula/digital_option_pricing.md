@@ -88,7 +88,13 @@ The second term $K e^{-rT}\,\Phi(d_2)$ is exactly $K$ times the digital call pri
 - $\Phi(d_2) = \mathbb{Q}(S_T > K)$: the **risk-neutral probability** that the call finishes in the money.
 - $\Phi(d_1) = \mathbb{Q}^S(S_T > K)$: the probability under the **stock numéraire measure**.
 
-The digital call price thus appears naturally as a component of the standard Black–Scholes formula.
+The digital call price thus appears naturally as a component of the standard Black–Scholes formula. Equivalently, the digital call price is the negative derivative of the standard call price with respect to the strike:
+
+$$
+D_0 = -\frac{\partial C_0}{\partial K}
+$$
+
+This reveals that the digital call captures the **density of the call price with respect to strike**—a fact that connects option pricing to the risk-neutral distribution of $S_T$.
 
 ---
 
