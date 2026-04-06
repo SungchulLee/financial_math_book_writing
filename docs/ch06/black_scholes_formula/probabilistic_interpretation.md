@@ -125,6 +125,8 @@ $$
 ### 2. **Derivation via Measure Change**
 
 
+The following sketch outlines the key steps; a full proof using Girsanov's theorem appears in the next section.
+
 Under the stock measure, the Radon-Nikodym derivative is:
 
 $$
