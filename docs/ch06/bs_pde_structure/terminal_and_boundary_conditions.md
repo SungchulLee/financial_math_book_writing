@@ -280,7 +280,7 @@ $$
 **Terminal and boundary conditions transform abstract PDEs into specific pricing problems, encoding the contractual features of financial derivatives.**
 
 !!! note "Synthesis: The Complete PDE Framework"
-    The pricing PDE is not just an equation but a complete structure. The **operator** $\mathcal{L}$ encodes market dynamics, the **killing term** $-rV$ encodes discounting, and the **conditions** encode the contract. The Greeks arise as sensitivities of the solution to this system, and numerical methods approximate it. Together, these elements form a unified framework for derivative pricing — every financial question (pricing, hedging, risk) reduces to a question about this PDE system.
+    The pricing PDE is not just an equation but a complete structure. The **operator** $\mathcal{L}$ captures market dynamics, the **killing term** $-rV$ represents discounting, and the **conditions** specify the contract. The Greeks arise as sensitivities of the solution to this system, and numerical methods approximate it. Together, these elements form a unified framework for derivative pricing — every financial question (pricing, hedging, risk) reduces to a question about this PDE system.
 
 ---
 

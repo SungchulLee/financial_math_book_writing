@@ -2,7 +2,7 @@
 
 The **Greeks** are sensitivities of option prices to various parameters. They are essential for hedging, risk management, and understanding option behavior. The pricing PDE provides a unified framework for computing and relating the Greeks.
 
-Since the option price is the Feynman-Kac expectation $V = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]$, every Greek is ultimately a **derivative of this expectation** with respect to the corresponding variable or parameter. The PDE makes these relationships explicit and connects them algebraically.
+Since the option price is the Feynman-Kac expectation $V = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]$, every Greek is ultimately a **derivative of this expectation** with respect to the corresponding variable or parameter, holding all others fixed. The PDE makes these relationships explicit and connects them algebraically.
 
 ---
 

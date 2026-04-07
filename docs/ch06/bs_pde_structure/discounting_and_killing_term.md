@@ -1,11 +1,11 @@
 # Discounting and the Killing Term
 
-A pricing PDE has three essential components: (1) the **operator** $\mathcal{L}$, which describes market dynamics; (2) the **killing term** $-rV$, which encodes discounting; and (3) the **terminal and boundary conditions**, which encode the contract payoff. The Greeks arise as sensitivities of the solution to this complete system.
+A pricing PDE has three essential components: (1) the **operator** $\mathcal{L}$, which captures market dynamics; (2) the **killing term** $-rV$, which reflects discounting; and (3) the **terminal and boundary conditions**, which specify the contract payoff. The Greeks arise as sensitivities of the solution to this complete system.
 
 This section focuses on component (2). In financial mathematics, future cash flows must be **discounted** to reflect the time value of money. This discounting enters pricing PDEs through a characteristic killing term $-rV$ that has deep probabilistic and analytical interpretations.
 
 !!! tip "Core Takeaway"
-    The $-rV$ term in the pricing PDE is the analytical expression of discounting. It is equivalent to the factor $e^{-r(T-t)}$ in the Feynman-Kac pricing formula and ensures that the discounted option price is a martingale. Everything else in this section elaborates on this single idea from different angles.
+    The $-rV$ term in the pricing PDE is the analytical expression of discounting. It is equivalent to the factor $e^{-r(T-t)}$ in the Feynman-Kac pricing formula and ensures that the discounted option price is a martingale. Everything else in this section is a reformulation of this single idea.
 
 ---
 
@@ -46,7 +46,7 @@ $$
 \mathcal{L}V = rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}
 $$
 
-so the pricing PDE becomes the familiar $V_t + rSV_S + \frac{1}{2}\sigma^2 S^2 V_{SS} - rV = 0$. In PDE theory, this is the **backward Kolmogorov equation with killing** — the generator $\mathcal{L}$ defines the backward Kolmogorov equation, and the $-rV$ term adds the killing.
+so the pricing PDE becomes the familiar $V_t + rSV_S + \frac{1}{2}\sigma^2 S^2 V_{SS} - rV = 0$. In PDE theory, this is the **backward Kolmogorov equation with killing** — the infinitesimal generator $\mathcal{L}$ defines the backward Kolmogorov equation, and the $-rV$ term augments it with a zeroth-order (killing) term.
 
 ---
 
