@@ -8,6 +8,8 @@ This section shows, through concrete examples, that mispriced options create arb
 
 ## Mispricing Creates Arbitrage
 
+**Key idea**: The option price is determined by replication, not by belief about where the stock is headed.
+
 Consider a European call option with strike $K = 100$ maturing in one period. Suppose the stock currently trades at $S_0 = 100$, the risk-free rate is $r = 5\%$ per period, and the stock can move to either $S_u = 120$ or $S_d = 90$ at maturity. The call payoff is
 
 $$
@@ -42,7 +44,7 @@ In both cases the profit is locked in at time zero with no risk. This is the hal
 
 ## Replication as a Pricing Principle
 
-The example above illustrates a profound idea: the option price is determined not by investors' views on whether the stock will go up or down, but by the cost of replicating the option's payoff using traded instruments. The drift $\mu$ of the stock is irrelevant — only the volatility (which determines the range of possible outcomes) and the risk-free rate (which determines the cost of financing) matter.
+The example above illustrates a profound idea: the option price is determined not by investors' views on whether the stock will go up or down, but by the cost of replicating the option's payoff using traded instruments. This replication perspective and the risk-neutral expectation $V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[\text{Payoff}]$ introduced in the premium section are **mathematically equivalent** — two representations of the same no-arbitrage principle. The drift $\mu$ of the stock is irrelevant — only the volatility (which determines the range of possible outcomes) and the risk-free rate (which determines the cost of financing) matter.
 
 In continuous time, the stock price is modeled by geometric Brownian motion, and the replicating portfolio must be adjusted continuously. At each instant $t$, the portfolio holds $\Delta_t$ shares of stock and invests the remainder in the risk-free bond. The quantity
 

@@ -6,6 +6,8 @@ Having defined what options are and characterized their payoffs at maturity, we 
 
 ## Premium as the Price of Optionality
 
+**Key idea**: The premium reflects the asymmetric payoff structure and the uncertainty about the future — not the expected return of the underlying.
+
 The **premium** is the price paid by the buyer to the writer at the time the option contract is initiated. In return, the buyer acquires the right (but not the obligation) to exercise the option at maturity. The writer, having received the premium, assumes the obligation to fulfill the contract if exercised.
 
 It is essential to distinguish **premium** from **payoff**. The payoff of a European call at maturity is $(S_T - K)^+$, but this quantity is realized only at time $T$ and may be zero. The premium $C_0$ is paid at time $t = 0$ regardless of what happens later. An option can have a positive payoff yet still result in a net loss if the payoff does not exceed the premium:
