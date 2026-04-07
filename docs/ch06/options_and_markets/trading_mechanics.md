@@ -39,6 +39,52 @@ Standardization is what makes exchange trading possible: because every contract 
 
 ---
 
+## Contract Specifications: Real Market Examples
+
+In practice, the **contract multiplier** determines the monetary scale of premiums and payoffs. Two prominent examples illustrate the convention:
+
+### S&P 500 Index Options (SPX)
+
+- **Underlying**: S&P 500 Index
+- **Multiplier**: \$100 per index point
+- **Settlement**: Cash-settled, European-style
+
+If the quoted premium of an SPX call is 20, the actual cost is:
+
+$$
+20 \times 100 = \$2{,}000
+$$
+
+At maturity, if the index is at 5,250 with strike $K = 5{,}200$, the cash payoff is:
+
+$$
+(5{,}250 - 5{,}200)^+ \times 100 = 50 \times 100 = \$5{,}000
+$$
+
+### KOSPI 200 Options
+
+- **Underlying**: KOSPI 200 Index
+- **Multiplier**: 250,000 KRW per index point
+- **Settlement**: Cash-settled, European-style
+
+If the quoted premium is 0.80, the actual cost is:
+
+$$
+0.80 \times 250{,}000 = 200{,}000 \text{ KRW}
+$$
+
+If at maturity the index is at 320 with strike $K = 300$:
+
+$$
+(320 - 300)^+ \times 250{,}000 = 20 \times 250{,}000 = 5{,}000{,}000 \text{ KRW}
+$$
+
+### Why Multipliers Matter
+
+The multiplier directly affects the monetary value of payoffs, the risk exposure per contract, and the margin requirements. Throughout this text, we work in **normalized units** (one unit of underlying), so the payoff of a call is simply $(S_T - K)^+$. In practice, all quantities must be scaled by the contract multiplier to obtain actual dollar (or won) amounts.
+
+---
+
 ## Bid-Ask Spread and Liquidity
 
 At any moment, the order book displays two prices for each option contract:
