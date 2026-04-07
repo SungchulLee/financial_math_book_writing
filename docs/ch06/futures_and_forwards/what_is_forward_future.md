@@ -34,8 +34,10 @@ The critical difference from forwards is the mechanism of **daily settlement** (
 | S&P 500 E-mini | CME | \$50 $\times$ index | \$50 |
 | KOSPI 200 | KRX | 250,000 KRW $\times$ index | 250,000 KRW |
 | KOSPI 200 Mini | KRX | 50,000 KRW $\times$ index | 50,000 KRW |
-| WTI Crude Oil | NYMEX | 1,000 barrels | \$1,000 per \$1/barrel |
-| Gold | COMEX | 100 troy ounces | \$100 per \$1/oz |
+| WTI Crude Oil | NYMEX | 1,000 barrels (\$1 move = \$1,000) | \$1,000 |
+| Gold | COMEX | 100 troy ounces (\$1 move = \$100) | \$100 |
+
+A "1-point move" always refers to one unit of the quoted price. The **contract size** determines how many such units you control, and therefore how price changes translate into profit and loss.
 
 A single S&P 500 E-mini futures contract with the index at 5,000 controls a notional value of
 
