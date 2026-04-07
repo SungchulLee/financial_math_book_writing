@@ -102,7 +102,7 @@ The table below summarizes the conceptual transition from forwards to options:
 | Gamma | $0$ | $> 0$ (near the strike) |
 | Pricing method | Algebraic no-arbitrage | Black-Scholes PDE / risk-neutral expectation |
 
-In the sections that follow, we introduce options and their markets, then develop the Black-Scholes model that makes dynamic replication precise.
+Forward pricing demonstrates that derivatives can be valued without forecasting future prices — the price is determined by replication, not belief. This principle extends to options, where nonlinearity requires dynamic hedging instead of static replication. In the sections that follow, we introduce options and their markets, then develop the Black-Scholes model that makes dynamic replication precise.
 
 ---
 

@@ -1,5 +1,7 @@
 # Futures vs Forwards
 
+**Key idea**: Daily settlement transforms credit risk into liquidity risk — the counterparty may not default, but must fund daily margin calls.
+
 Both futures and forwards are agreements to buy or sell an asset at a predetermined price on a future date. Despite this shared purpose, they differ fundamentally in how they are traded, settled, and regulated. Understanding these differences is essential for pricing, risk management, and choosing the right instrument in practice.
 
 ---
@@ -74,7 +76,7 @@ $$
 
 where $G_0$ is the futures price and $F_0$ is the forward price. When the asset price $S$ and the interest rate $r$ are **positively correlated**, the adjustment is positive and $G_0 > F_0$. When they are **negatively correlated**, $G_0 < F_0$.
 
-This is sometimes called the **futures convexity bias** and is particularly relevant in fixed-income markets, where the underlying (a bond or interest rate) is mechanically linked to interest rates themselves.
+This is sometimes called the **futures convexity bias**. Why does this matter? In fixed-income markets, where the underlying (a bond or interest rate) is mechanically linked to interest rates themselves, the adjustment can be material and must be accounted for in pricing.
 
 ---
 

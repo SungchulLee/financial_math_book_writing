@@ -1,5 +1,7 @@
 # Cost of Carry
 
+**Key idea**: The forward price reflects the net cost of holding the asset until maturity, not expectations of where the price will be.
+
 The previous sections established that the no-arbitrage forward price of a non-dividend-paying asset is $F_0 = S_0 e^{rT}$. In practice, assets generate income, require storage, or offer convenience to their holders. The **cost-of-carry model** captures all of these factors in a single exponential adjustment. The general formula is
 
 $$
