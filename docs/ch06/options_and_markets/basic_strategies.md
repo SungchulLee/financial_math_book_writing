@@ -6,7 +6,7 @@ An option on its own provides leveraged, directional exposure. But the real util
 
 ## The Four Elementary Positions
 
-Every option strategy is built from four atomic building blocks. Let $S_T$ denote the stock price at maturity, $K$ the strike price, and $c$ the call premium and $p$ the put premium paid at inception.
+Every option strategy is built from four atomic building blocks. Let $S_T$ denote the stock price at maturity, $K$ the strike price, and $c$ the call premium and $p$ the put premium paid at inception. From this point on, we distinguish **payoff** (the value received at maturity, always non-negative for long positions) from **profit** (payoff minus premium, which can be negative).
 
 ### Long Call
 

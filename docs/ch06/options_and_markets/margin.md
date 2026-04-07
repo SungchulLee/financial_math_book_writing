@@ -43,6 +43,8 @@ The initial margin is set at the time the position is opened. For a naked call, 
 
 ## Margin Calls and Maintenance
 
+Why does this matter for pricing theory? Margin requirements constrain the positions that market participants can take and affect the supply of options. From a modeling perspective, the existence of margin reflects the fact that credit risk is a real-world friction that the idealized Black-Scholes framework abstracts away.
+
 As the underlying price moves against the writer's position, the margin account may fall below a prescribed **maintenance margin** level. When this happens, the broker issues a **margin call**, requiring the writer to deposit additional funds promptly — often within one trading day. Failure to meet the margin call allows the broker to close the position, crystallizing the loss.
 
 This mechanism prevents the accumulation of unrealized losses that the writer cannot cover, protecting both the counterparty and the integrity of the exchange.

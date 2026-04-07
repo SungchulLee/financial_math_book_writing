@@ -106,6 +106,8 @@ provides a normalized measure of transaction costs that is comparable across con
 
 ## Market Makers
 
+Why does liquidity matter for pricing theory? The Black-Scholes model assumes continuous, frictionless trading. In practice, the bid-ask spread is the primary friction, and its size determines how closely real hedging approximates the theoretical ideal.
+
 Liquidity on options exchanges is provided in large part by **market makers** --- firms that continuously post bid and ask quotes and stand ready to trade in either direction. Market makers profit from the bid-ask spread but bear inventory risk: after filling a customer order, they hold a position that must be hedged. In practice, market makers use delta hedging and other Greek-based strategies to manage this risk, making the Black-Scholes framework not merely an academic construct but the operational backbone of options market-making.
 
 ---

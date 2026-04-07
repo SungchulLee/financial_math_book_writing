@@ -40,6 +40,19 @@ Note the symmetry: a call profits from upward moves and a put profits from downw
 
 ---
 
+## Payoff Profiles
+
+The following table shows the shape of call and put payoffs across a range of stock prices, for a strike of $K = 100$:
+
+| $S_T$ | 70 | 80 | 90 | 100 | 110 | 120 | 130 |
+|---|---|---|---|---|---|---|---|
+| **Call** $(S_T - K)^+$ | 0 | 0 | 0 | 0 | 10 | 20 | 30 |
+| **Put** $(K - S_T)^+$ | 30 | 20 | 10 | 0 | 0 | 0 | 0 |
+
+The call payoff is a "hockey stick" shape: flat at zero for $S_T \leq K$, then rising linearly with slope 1 for $S_T > K$. The put payoff is the mirror image: linearly decreasing for $S_T < K$, then flat at zero. The kink at $S_T = K$ is the defining geometric feature of option payoffs and the source of the nonlinearity that makes pricing nontrivial.
+
+---
+
 ## Long and Short Positions
 
 Every option trade has two sides. The **long** party is the buyer (holder) of the option; the **short** party is the seller (writer). Their payoffs are mirror images:
@@ -69,7 +82,7 @@ Now suppose instead $S_T = 87$:
 - **Put payoff (long):** $(100 - 87)^+ = \$13$. The holder sells at \$100 an asset worth only \$87.
 - **Put payoff (short):** $-\$13$. The writer must buy at \$100 what is worth \$87.
 
-These payoffs represent value at expiration only. To determine whether a trade was profitable overall, one must subtract the **premium** paid (for the long) or add the premium received (for the short). The question of how to determine a fair premium is the central problem of option pricing, which we address next.
+These payoffs represent value at expiration only. To determine whether a trade was profitable overall, one must subtract the **premium** paid (for the long) or add the premium received (for the short). This raises a natural question: if the payoff depends on the unknown future price $S_T$, how should the premium be determined *today*? This is the central problem of option pricing, and we turn to it next.
 
 ---
 
