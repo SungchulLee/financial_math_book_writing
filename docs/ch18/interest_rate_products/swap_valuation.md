@@ -14,12 +14,12 @@ Consider a plain vanilla interest rate swap with:
 - Notional: $N$
 - Fixed rate: $K$
 - Payment dates: $T_1, T_2, \dots, T_n$
-- Year fractions: $\delta_i = T_i - T_{i-1}$
+- Year fractions: $\tau_i = T_i - T_{i-1}$
 
 The two legs are:
 
-- **Fixed leg:** pays $N K \delta_i$ at each $T_i$
-- **Floating leg:** pays $N L(T_{i-1}, T_i) \delta_i$, where $L$ is the reference rate
+- **Fixed leg:** pays $N K \tau_i$ at each $T_i$
+- **Floating leg:** pays $N l(T_{i-1}, T_i) \tau_i$, where $l$ is the reference rate (simply compounded forward rate)
 
 ---
 
@@ -30,13 +30,13 @@ Let $P(0,T)$ denote the discount factor.
 The value of the fixed leg is:
 
 $$
-\text{PV}_{\text{fixed}} = N K \sum_{i=1}^n \delta_i P(0, T_i)
+\text{PV}_{\text{fixed}} = N K \sum_{i=1}^n \tau_i P(0, T_i)
 $$
 
 Define the **annuity factor**:
 
 $$
-A = \sum_{i=1}^n \delta_i P(0, T_i)
+A = \sum_{i=1}^n \tau_i P(0, T_i)
 $$
 
 Then:
@@ -117,6 +117,9 @@ The swap value depends on the future evolution of interest rates through discoun
 
 This transition from deterministic cash flow valuation to optionality mirrors the transition from forwards to options studied earlier.
 
+!!! quote "Big Picture"
+    All interest rate derivatives can be expressed in terms of discount factors. Bonds define the discount curve, FRAs extract forward rates, and swaps combine these into structured cash flows. Pricing reduces to present value under no-arbitrage.
+
 ---
 
 ## Exercises
@@ -124,7 +127,7 @@ This transition from deterministic cash flow valuation to optionality mirrors th
 **Exercise 1.** A 3-year payer swap has annual payments, notional $N = 1{,}000{,}000$, and fixed rate $K = 4\%$. The discount factors are $P(0,1) = 0.9615$, $P(0,2) = 0.9246$, $P(0,3) = 0.8890$. Compute the present values of the fixed and floating legs, and determine the swap value.
 
 ??? success "Solution to Exercise 1"
-    With annual payments, $\delta_i = 1$ for all $i$.
+    With annual payments, $\tau_i = 1$ for all $i$.
 
     **Annuity factor**:
 
@@ -176,7 +179,7 @@ This transition from deterministic cash flow valuation to optionality mirrors th
 **Exercise 3.** Explain why the floating leg of a swap with notional $N$ has present value $N(1 - P(0, T_n))$. Start from the fact that a floating-rate note that resets at each payment date is worth par immediately after a reset.
 
 ??? success "Solution to Exercise 3"
-    A floating-rate note (FRN) pays $N L(T_{i-1}, T_i) \delta_i$ at each $T_i$ plus the notional $N$ at $T_n$. Immediately after each coupon reset, the FRN reprices to par because its future coupons will reset to the prevailing market rate. Therefore at $t = 0$, a FRN paying coupons plus notional is worth $N$.
+    A floating-rate note (FRN) pays $N L(T_{i-1}, T_i) \tau_i$ at each $T_i$ plus the notional $N$ at $T_n$. Immediately after each coupon reset, the FRN reprices to par because its future coupons will reset to the prevailing market rate. Therefore at $t = 0$, a FRN paying coupons plus notional is worth $N$.
 
     The floating leg of the swap pays only the coupons, not the final notional. Its value is therefore the value of the full FRN minus the present value of the notional repayment:
 
