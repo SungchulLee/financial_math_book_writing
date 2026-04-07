@@ -90,6 +90,8 @@ In financial applications, **Dirichlet conditions dominate**: barrier options, k
 
 ### As S → 0
 
+This encodes the contract's behavior when the underlying becomes worthless.
+
 **Call option**: The call is worthless if the stock goes to zero:
 
 $$
@@ -105,6 +107,8 @@ $$
 (Present value of receiving $K$ at maturity)
 
 ### As S → ∞
+
+This encodes the contract's behavior when the underlying is extremely valuable.
 
 **Call option**: As $S \to \infty$, $d_1, d_2 \to +\infty$ so $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 1$, giving:
 
@@ -124,7 +128,7 @@ $$
 
 ## Barrier Options
 
-Barrier options have **explicit boundaries** where the contract terminates.
+Barrier options encode a **contractual termination event** as an explicit Dirichlet boundary condition where the contract value drops to zero (or a rebate).
 
 ### Down-and-Out Call
 
@@ -192,7 +196,7 @@ where $L_t$ is the local time at the boundary. A concrete financial example is a
 
 ## American Options and Free Boundaries
 
-American options introduce a **free boundary** (exercise boundary).
+The early exercise feature of American options corresponds to a **free boundary** — a boundary whose location is not specified by the contract but must be determined as part of the solution.
 
 ### Optimal Stopping Problem
 

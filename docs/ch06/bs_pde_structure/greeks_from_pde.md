@@ -64,7 +64,7 @@ For small $r$: $\Theta \approx -\frac{1}{2}\sigma^2 S^2\Gamma$
 
 ## Delta: The Hedge Ratio
 
-### Definition
+Differentiating the Feynman-Kac representation $V = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]$ with respect to $S$ gives:
 
 $$
 \Delta = \frac{\partial V}{\partial S}
@@ -94,7 +94,7 @@ where $d_1 = \frac{\log(S/K) + (r + \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}$
 
 ## Gamma: Convexity
 
-### Definition
+Differentiating the expectation twice with respect to $S$ — equivalently, differentiating delta — gives:
 
 $$
 \Gamma = \frac{\partial^2 V}{\partial S^2} = \frac{\partial \Delta}{\partial S}
@@ -129,6 +129,8 @@ Gamma measures the **instability of the hedge**:
 ---
 
 ## Theta: Time Decay
+
+Differentiating the pricing function with respect to time — the remaining independent variable in the PDE — gives:
 
 ### Definition
 

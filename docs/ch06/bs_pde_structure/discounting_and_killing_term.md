@@ -1,6 +1,8 @@
 # Discounting and the Killing Term
 
-In financial mathematics, future cash flows must be **discounted** to reflect the time value of money. This discounting enters pricing PDEs through a characteristic **killing term** $-rV$ that has deep probabilistic and analytical interpretations.
+A pricing PDE has three essential components: (1) the **operator** $\mathcal{L}$, which describes market dynamics; (2) the **killing term** $-rV$, which encodes discounting; and (3) the **terminal and boundary conditions**, which encode the contract payoff. The Greeks arise as sensitivities of the solution to this complete system.
+
+This section focuses on component (2). In financial mathematics, future cash flows must be **discounted** to reflect the time value of money. This discounting enters pricing PDEs through a characteristic killing term $-rV$ that has deep probabilistic and analytical interpretations.
 
 !!! tip "Core Takeaway"
     The $-rV$ term in the pricing PDE is the analytical expression of discounting. It is equivalent to the factor $e^{-r(T-t)}$ in the Feynman-Kac pricing formula and ensures that the discounted option price is a martingale. Everything else in this section elaborates on this single idea from different angles.
@@ -25,6 +27,8 @@ at time $t < T$.
 ---
 
 ## The Pricing PDE with Discounting
+
+Under the risk-neutral measure, discounted asset prices are martingales. Imposing that the discounted option price $e^{-rt}V(t, S_t)$ is also a martingale and applying Itô's lemma, one finds that the drift of $e^{-rt}V$ vanishes if and only if $V$ satisfies the following PDE.
 
 For a diffusion $X_t$ with infinitesimal generator $\mathcal{L}$, the pricing PDE is:
 
