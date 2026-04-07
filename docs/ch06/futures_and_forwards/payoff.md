@@ -1,5 +1,7 @@
 # Payoff of Forwards and Futures
 
+**Key idea**: Linear payoffs imply symmetric risk and static replication — no dynamic hedging is needed.
+
 The previous sections defined forward and futures contracts and described their mechanics. We now turn to a precise question: what is a forward position worth at maturity? Unlike options, whose payoffs are kinked and bounded below by zero, the forward payoff is **linear** in the underlying price and can take negative values. This simplicity is both a strength and a risk: it makes pricing elegant but exposes both parties to losses in every state of the world.
 
 ---
