@@ -70,6 +70,9 @@ This is the **Black-Scholes PDE**. Every arbitrage-free option price — call, p
 
 The next sections develop this derivation rigorously: we formalize the self-financing condition, apply Ito calculus to the hedged portfolio, and show that the no-arbitrage requirement leaves no room for the drift $\mu$ — only $r$, $\sigma$, and the payoff determine the price.
 
+!!! note "Big Picture"
+    Options derive their value from asymmetric payoffs. Their prices are determined not by beliefs about the future, but by the cost of replicating those payoffs in the market. This equivalence between replication and expectation transforms pricing into a mathematical problem — leading directly to the Black-Scholes equation.
+
 ---
 
 ## Exercises
