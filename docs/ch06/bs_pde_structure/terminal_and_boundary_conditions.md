@@ -14,6 +14,8 @@ $$
 
 has infinitely many solutions. The conditions select the **unique solution** corresponding to a specific contract.
 
+Because the Black-Scholes PDE is **parabolic** and solved backward in time (from known payoff at $T$ toward the present), it requires a **terminal** condition rather than an initial condition. This is the reverse of the heat equation in physics, where the initial temperature is known and the solution evolves forward. In finance, the payoff at maturity is the known quantity, and the price is computed by working backward.
+
 ---
 
 ## Terminal Conditions
@@ -102,13 +104,13 @@ $$
 
 ### As S → ∞
 
-**Call option**: Behaves like the forward:
+**Call option**: As $S \to \infty$, $d_1, d_2 \to +\infty$ so $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 1$, giving:
 
 $$
-V(t, S) \sim S - Ke^{-r(T-t)} \quad \text{as } S \to \infty
+V(t, S) \sim S \cdot 1 - Ke^{-r(T-t)} \cdot 1 = S - Ke^{-r(T-t)} \quad \text{as } S \to \infty
 $$
 
-Equivalently: $V_S \to 1$ (delta approaches 1).
+The deep ITM call behaves like a forward contract, with $\Delta \to 1$.
 
 **Put option**: Worthless for large $S$:
 
@@ -198,7 +200,7 @@ $$
 
 ### Complementarity Formulation
 
-The American option price satisfies:
+The exercise decision divides the $(t,S)$-plane into two regions: a **continuation region** where the PDE holds as an equality, and an **exercise region** where $V = \Phi$. At any point, exactly one of these conditions is active. This structure is compactly expressed as a complementarity problem — the American option price satisfies:
 
 $$
 \begin{cases}

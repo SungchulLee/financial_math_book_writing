@@ -2,6 +2,9 @@
 
 In financial mathematics, future cash flows must be **discounted** to reflect the time value of money. This discounting enters pricing PDEs through a characteristic **killing term** $-rV$ that has deep probabilistic and analytical interpretations.
 
+!!! tip "Core Takeaway"
+    The $-rV$ term in the pricing PDE is the analytical expression of discounting. It is equivalent to the factor $e^{-r(T-t)}$ in the Feynman-Kac pricing formula and ensures that the discounted option price is a martingale. Everything else in this section elaborates on this single idea from different angles.
+
 ---
 
 ## The Time Value of Money
@@ -75,7 +78,7 @@ This is a local martingale. $\square$
 
 ## The Killed Process Interpretation
 
-The killing term has an alternative interpretation via **killed processes**.
+The killing term has an alternative interpretation via **killed processes**. The key idea is simple: instead of multiplying the payoff by a discount factor $e^{-rT}$, we can equivalently imagine the contract being randomly cancelled before maturity, where the probability of surviving to $T$ is exactly $e^{-rT}$. This turns deterministic discounting into a probabilistic event.
 
 **Definition**: A process is **killed at rate $r$** if it is terminated at a random time $\zeta$ with:
 

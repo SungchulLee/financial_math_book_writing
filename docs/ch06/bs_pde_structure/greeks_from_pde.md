@@ -176,6 +176,8 @@ $$
 
 **Note**: Vega is not a Greek letter!
 
+Unlike $\Delta$, $\Gamma$, and $\Theta$, vega cannot be read directly from the PDE because $\sigma$ is a **parameter** of the PDE, not one of its independent variables. However, differentiating the entire PDE with respect to $\sigma$ shows that $\mathcal{V}$ itself satisfies a related PDE with a source term proportional to $\sigma S^2 \Gamma$, confirming the deep connection between vega and gamma.
+
 ### Black-Scholes Formula
 
 $$
@@ -206,6 +208,8 @@ Vega is essential for:
 $$
 \rho = \frac{\partial V}{\partial r}
 $$
+
+Like vega, rho measures sensitivity to a PDE parameter rather than an independent variable. Differentiating the PDE with respect to $r$ yields a PDE for $\rho$ with source terms involving $S\Delta$ and $V$ — reflecting that interest rate changes affect both the drift and the discounting.
 
 ### Black-Scholes Formulas
 
