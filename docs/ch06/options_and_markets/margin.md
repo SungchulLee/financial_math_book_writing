@@ -35,7 +35,7 @@ This worst case occurs when $S_T = 0$. Although the loss is finite, it can still
 
 ## Margin as a Performance Guarantee
 
-Because the exchange stands between buyer and writer as the central counterparty, it must ensure that every writer can fulfill the contract. **Margin** is the collateral — typically cash or eligible securities — that the writer deposits with the broker to guarantee performance.
+Because the exchange stands between buyer and writer as the central counterparty, it must ensure that every writer can fulfill the contract. In essence, the exchange is asking: *can you pay if things go wrong?* **Margin** is the collateral — typically cash or eligible securities — that the writer deposits with the broker to guarantee performance.
 
 The initial margin is set at the time the position is opened. For a naked call, the required margin is larger than for a naked put, reflecting the unbounded loss profile. Covered positions (e.g., a call written while holding the underlying stock) require substantially less margin because the writer's obligation is offset by the asset already held.
 

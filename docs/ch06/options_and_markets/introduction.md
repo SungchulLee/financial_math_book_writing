@@ -1,5 +1,7 @@
 # Introduction
 
+Suppose you own a stock worth \$100 and want to guarantee that you can sell it for at least \$95 over the next three months, no matter what happens in the market. How much should you pay for that protection? This is, at its core, an option pricing problem.
+
 Options are among the most important financial instruments in modern markets. They provide a mechanism for transferring risk, speculating on price movements, and — most critically for this text — they pose a deep mathematical question: **what is the correct price?**
 
 Unlike stocks or bonds, whose values are determined directly by cash flows, an option's value depends on the *future behavior* of an underlying asset. This makes option pricing inherently probabilistic and leads naturally to the theory of stochastic processes, partial differential equations, and measure-theoretic probability.

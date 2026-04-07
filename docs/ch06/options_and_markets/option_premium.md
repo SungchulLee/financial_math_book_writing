@@ -80,7 +80,7 @@ $$
 P_0 = e^{-rT}\, \mathbb{E}^{\mathbb{Q}}\!\left[(K - S_T)^+\right]
 $$
 
-The measure $\mathbb{Q}$ is not the real-world probability — it is the unique measure under which discounted asset prices are martingales. We do not yet have the tools to construct $\mathbb{Q}$ or justify these formulas; that is the subject of later chapters. For now, the key insight is that the premium is not merely a market convention or a subjective assessment of risk. It is determined by a precise mathematical expectation, discounted at the risk-free rate. This expectation-based viewpoint transforms option pricing from a problem of forecasting into a problem of computing expectations — a shift that lies at the heart of mathematical finance.
+The measure $\mathbb{Q}$ is not the real-world probability — it is the unique measure under which discounted asset prices are martingales. We do not yet have the tools to construct $\mathbb{Q}$ or justify these formulas; that is the subject of later chapters. For now, the key insight is that the premium is not merely a market convention or a subjective assessment of risk. It is determined by a precise mathematical expectation, discounted at the risk-free rate. This expectation-based viewpoint transforms option pricing from a problem of forecasting into a problem of computing expectations — a shift that lies at the heart of mathematical finance. The existence and form of $\mathbb{Q}$ will be **derived, not assumed**, from the no-arbitrage principle in the chapters that follow.
 
 ---
 

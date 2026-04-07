@@ -57,6 +57,8 @@ An option's relationship to the current stock price is classified as:
 
 Moneyness determines how sensitive an option is to changes in the underlying and plays a central role in the behavior of the Greeks.
 
+**Example**: Consider a European call on stock XYZ with $K = 50$ and $T = 3$ months. The current stock price is $S = 53$. This call is ITM with intrinsic value $53 - 50 = \$3$. If the premium is \$5, the remaining \$2 represents **time value** — the market's assessment that the stock could move further before expiration. This raises a natural question: how should the premium be determined? That is the subject of subsequent sections.
+
 ---
 
 ## Exercises
