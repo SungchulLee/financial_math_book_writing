@@ -82,6 +82,8 @@ $$
 
 A linear combination is specified.
 
+In financial applications, **Dirichlet conditions dominate**: barrier options, knockout features, and payoff constraints all specify the option *value* at a boundary. Neumann and Robin conditions arise less frequently, primarily in reflecting-boundary models and certain structured products.
+
 ---
 
 ## Boundary Conditions for Standard Options
@@ -184,7 +186,7 @@ $$
 dS_t = rS_t\,dt + \sigma S_t\,dW_t + dL_t
 $$
 
-where $L_t$ is the local time at the boundary.
+where $L_t$ is the local time at the boundary. A concrete financial example is an **exchange rate under a central bank floor**: the Swiss National Bank's 2011–2015 EUR/CHF floor at 1.20 acted as a reflecting barrier, preventing the rate from falling below this level. Pricing options on such an exchange rate requires a reflecting (Neumann) boundary condition $\partial V/\partial S = 0$ at $S = B$.
 
 ---
 

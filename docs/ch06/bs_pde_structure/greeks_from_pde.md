@@ -2,6 +2,8 @@
 
 The **Greeks** are sensitivities of option prices to various parameters. They are essential for hedging, risk management, and understanding option behavior. The pricing PDE provides a unified framework for computing and relating the Greeks.
 
+Since the option price is the Feynman-Kac expectation $V = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]$, every Greek is ultimately a **derivative of this expectation** with respect to the corresponding variable or parameter. The PDE makes these relationships explicit and connects them algebraically.
+
 ---
 
 ## Definition of the Greeks
@@ -134,6 +136,8 @@ $$
 \Theta = \frac{\partial V}{\partial t}
 $$
 
+**Sign convention**: We define $\Theta = \partial V / \partial t$, so that the PDE reads $\Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2\Gamma = rV$ without extra signs. Some practitioners define theta as $-\partial V / \partial t$ (the rate of value *lost* per day), which reverses the sign. In this text, theta for a long call is negative.
+
 **Convention**: Often reported as daily decay ($\Theta/365$).
 
 ### Black-Scholes Formulas
@@ -176,7 +180,13 @@ $$
 
 **Note**: Vega is not a Greek letter!
 
-Unlike $\Delta$, $\Gamma$, and $\Theta$, vega cannot be read directly from the PDE because $\sigma$ is a **parameter** of the PDE, not one of its independent variables. However, differentiating the entire PDE with respect to $\sigma$ shows that $\mathcal{V}$ itself satisfies a related PDE with a source term proportional to $\sigma S^2 \Gamma$, confirming the deep connection between vega and gamma.
+Unlike $\Delta$, $\Gamma$, and $\Theta$, vega cannot be read directly from the PDE because $\sigma$ is a **parameter** of the PDE, not one of its independent variables. Differentiating the entire Black-Scholes PDE with respect to $\sigma$ yields a PDE for $\mathcal{V}$:
+
+$$
+\frac{\partial \mathcal{V}}{\partial t} + rS\frac{\partial \mathcal{V}}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 \mathcal{V}}{\partial S^2} - r\mathcal{V} = -\sigma S^2 \Gamma
+$$
+
+This is the same Black-Scholes operator applied to $\mathcal{V}$, with a source term $-\sigma S^2\Gamma$ driven by gamma — confirming that vega and gamma are deeply linked.
 
 ### Black-Scholes Formula
 

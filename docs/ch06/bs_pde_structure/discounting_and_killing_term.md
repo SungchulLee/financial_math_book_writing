@@ -26,7 +26,7 @@ at time $t < T$.
 
 ## The Pricing PDE with Discounting
 
-For a diffusion $X_t$ with generator $\mathcal{L}$, the pricing PDE is:
+For a diffusion $X_t$ with infinitesimal generator $\mathcal{L}$, the pricing PDE is:
 
 $$
 \boxed{
@@ -35,6 +35,14 @@ $$
 $$
 
 The term $-rV$ is called the **killing term** or **discount term**.
+
+For the Black-Scholes model specifically, $X_t = S_t$ follows geometric Brownian motion under the risk-neutral measure $\mathbb{Q}$, with drift $r$ (not the real-world drift $\mu$, which is absorbed by the Girsanov measure change). The generator acts on $V(t,S)$ as:
+
+$$
+\mathcal{L}V = rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}
+$$
+
+so the pricing PDE becomes the familiar $V_t + rSV_S + \frac{1}{2}\sigma^2 S^2 V_{SS} - rV = 0$.
 
 ---
 
