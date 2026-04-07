@@ -6,6 +6,8 @@ When an investor buys an option, the maximum loss is the premium paid — a know
 
 ## Risk Asymmetry Between Buyer and Writer
 
+**Key idea**: Margin exists because losses are asymmetric — the buyer's loss is bounded by the premium, but the writer's loss can be far larger.
+
 The holder of a call option pays the premium $C_0$ and receives the payoff $(S_T - K)^+$ at maturity. The worst outcome is that the option expires worthless and the holder loses $C_0$. The same bounded-loss argument applies to put holders, whose maximum loss is the premium $P_0$.
 
 Writers face the opposite situation. The writer of a **naked call** (a call written without holding the underlying asset) receives $C_0$ but must deliver the payoff $(S_T - K)^+$. Since $S_T$ is unbounded above, the writer's loss

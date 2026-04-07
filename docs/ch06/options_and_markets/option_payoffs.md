@@ -40,6 +40,32 @@ Note the symmetry: a call profits from upward moves and a put profits from downw
 
 ---
 
+## Payoff Diagrams
+
+The following diagrams show the characteristic "hockey stick" shapes of call and put payoffs for a strike of $K = 100$.
+
+**Long call payoff**: flat at zero for $S_T \leq K$, then rising linearly.
+
+```mermaid
+xychart-beta
+    title "Long Call Payoff (K = 100)"
+    x-axis "Stock Price at Maturity" [60, 70, 80, 90, 100, 110, 120, 130, 140]
+    y-axis "Payoff" 0 --> 40
+    line [0, 0, 0, 0, 0, 10, 20, 30, 40]
+```
+
+**Long put payoff**: linearly decreasing for $S_T < K$, then flat at zero.
+
+```mermaid
+xychart-beta
+    title "Long Put Payoff (K = 100)"
+    x-axis "Stock Price at Maturity" [60, 70, 80, 90, 100, 110, 120, 130, 140]
+    y-axis "Payoff" 0 --> 40
+    line [40, 30, 20, 10, 0, 0, 0, 0, 0]
+```
+
+---
+
 ## Payoff Profiles
 
 The following table shows the shape of call and put payoffs across a range of stock prices, for a strike of $K = 100$:

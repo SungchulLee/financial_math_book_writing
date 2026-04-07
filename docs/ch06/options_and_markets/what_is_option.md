@@ -1,6 +1,6 @@
 # What is an Option?
 
-An option is a financial derivative giving the holder the **right, but not the obligation**, to buy or sell an underlying asset at a predetermined price. This asymmetry — the holder chooses, the writer must comply — is the defining feature of options and the source of their mathematical richness.
+An option is a financial derivative giving the holder the **right, but not the obligation**, to buy or sell an underlying asset at a predetermined price. In everyday terms, an option is insurance with a price: the buyer pays a premium today for protection (or opportunity) tomorrow. This asymmetry — the holder chooses, the writer must comply — is the defining feature of options and the source of their mathematical richness.
 
 ---
 

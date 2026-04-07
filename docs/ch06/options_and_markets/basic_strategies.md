@@ -91,7 +91,15 @@ $$
 - **Max loss**: $S_0 - c$ (if the stock falls to zero)
 - **Breakeven**: $S_T = S_0 - c$
 
-The covered call sacrifices upside beyond $K$ in exchange for the premium income $c$. It is the most widely used option strategy in practice, favored when the investor holds stock and has a neutral-to-mildly-bullish outlook. The premium received provides a partial cushion against a decline in the stock price.
+The covered call sacrifices upside beyond $K$ in exchange for the premium income $c$. It is the most widely used option strategy in practice because it converts uncertain upside into immediate income, favored when the investor holds stock and has a neutral-to-mildly-bullish outlook.
+
+```mermaid
+xychart-beta
+    title "Covered Call Profit (S0 = 100, K = 105, c = 3)"
+    x-axis "Stock Price at Maturity" [80, 85, 90, 95, 100, 105, 110, 115, 120]
+    y-axis "Profit" -20 --> 10
+    line [-17, -12, -7, -2, 3, 8, 8, 8, 8]
+```
 
 ---
 
@@ -117,7 +125,15 @@ $$
 - **Max loss**: $S_0 - K + p$ (bounded, regardless of how far the stock falls)
 - **Breakeven**: $S_T = S_0 + p$
 
-The protective put is effectively an insurance policy: the investor pays premium $p$ to guarantee that losses on the stock never exceed $S_0 - K + p$, while retaining full participation in any upside. This is the option-market analogue of buying an insurance deductible.
+The protective put is effectively an insurance policy: the investor pays premium $p$ to guarantee that losses on the stock never exceed $S_0 - K + p$, while retaining full participation in any upside.
+
+```mermaid
+xychart-beta
+    title "Protective Put Profit (S0 = 100, K = 95, p = 4)"
+    x-axis "Stock Price at Maturity" [75, 80, 85, 90, 95, 100, 105, 110, 115]
+    y-axis "Profit" -10 --> 15
+    line [-9, -9, -9, -9, -9, -4, 1, 6, 11]
+```
 
 ---
 
