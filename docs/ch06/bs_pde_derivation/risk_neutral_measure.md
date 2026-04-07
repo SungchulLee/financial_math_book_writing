@@ -84,7 +84,22 @@ Multiplying by $e^{rt}$ yields **(P)**. Equivalently, this pricing formula follo
 
 We write $V_t = V(t, S_t)$ for the option price process evaluated along the stock path; in what follows, $V(t,S)$ denotes the deterministic pricing function and $V_t$ the corresponding stochastic process. We assume $V \in C^{1,2}([0,T) \times (0,\infty))$ with polynomial growth. Polynomial growth is imposed to guarantee the relevant expectations are finite and to support uniqueness in the classical solution class. Since geometric Brownian motion has finite moments of all orders, this growth bound suffices.
 
-Note also that conditioning on $S_t = S$ and conditioning on $\mathcal{F}_t$ are interchangeable here because the $\mathbb{Q}$-dynamics of $S_t$ are Markov: $\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid \mathcal{F}_t] = \mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t]$.
+Note also that conditioning on $S_t = S$ and conditioning on $\mathcal{F}_t$ are interchangeable here because the $\mathbb{Q}$-dynamics of $S_t$ are Markov. Under $\mathbb{Q}$, the stock follows the diffusion
+
+$$
+dS_t = rS_t\, dt + \sigma S_t\, dW_t^{\mathbb{Q}}
+$$
+
+which is a time-homogeneous Markov process. Therefore, for any measurable payoff $\Phi$,
+
+$$
+\mathbb{E}^{\mathbb{Q}}[\Phi(S_T)\mid \mathcal{F}_t]
+=
+\mathbb{E}^{\mathbb{Q}}[\Phi(S_T)\mid S_t]
+\quad \text{a.s.}
+$$
+
+The intuition is that, for a Markov process, the future evolution depends only on the current state and not on the past history. Although $\mathcal{F}_t$ contains the entire path information up to time $t$, this additional information is redundant once $S_t$ is known. Hence the conditional expectation reduces to a function of $(t, S_t)$ alone.
 
 The two sections that follow prove the equivalence **(P) $\Leftrightarrow$ (A)**.
 
