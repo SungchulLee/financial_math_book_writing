@@ -29,11 +29,13 @@ The critical difference from forwards is the mechanism of **daily settlement** (
 
 ## Real-World Examples
 
-| Contract | Exchange | Contract size | Settlement |
+| Contract | Exchange | Contract size | 1-point P&L |
 |---|---|---|---|
-| WTI Crude Oil | NYMEX (CME) | 1,000 barrels | Physical delivery |
-| S&P 500 E-mini | CME | \$50 $\times$ index level | Cash settlement |
-| KOSPI 200 | KRX | 250,000 KRW $\times$ index level | Cash settlement |
+| S&P 500 E-mini | CME | \$50 $\times$ index | \$50 |
+| KOSPI 200 | KRX | 250,000 KRW $\times$ index | 250,000 KRW |
+| KOSPI 200 Mini | KRX | 50,000 KRW $\times$ index | 50,000 KRW |
+| WTI Crude Oil | NYMEX | 1,000 barrels | \$1,000 per \$1/barrel |
+| Gold | COMEX | 100 troy ounces | \$100 per \$1/oz |
 
 A single S&P 500 E-mini futures contract with the index at 5,000 controls a notional value of
 
@@ -41,13 +43,17 @@ $$
 \$50 \times 5{,}000 = \$250{,}000
 $$
 
+If the index moves from 5,000 to 5,010, the holder gains $10 \times \$50 = \$500$.
+
 Similarly, one KOSPI 200 futures contract with the index at 350 controls
 
 $$
 250{,}000 \text{ KRW} \times 350 = 87{,}500{,}000 \text{ KRW}
 $$
 
-These large notional amounts relative to the margin required illustrate the **leverage** embedded in futures contracts.
+The KOSPI 200 Mini contract at the same level controls one-fifth of this: $50{,}000 \times 350 = 17{,}500{,}000$ KRW, making it accessible to smaller participants.
+
+While contract specifications differ across markets, the economic structure is identical: a quoted price multiplied by a contract size determines the monetary exposure. These large notional amounts relative to the margin required illustrate the **leverage** embedded in futures contracts.
 
 ---
 
