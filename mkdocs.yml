@@ -142,11 +142,12 @@ nav:
             - 4.1 Martingale Theory:
                 - "The Unifying Principle: Controlling Local Martingales": ch04/martingale_foundations/unifying_principle_controlling_local_martingales.md
                 - Local Martingale: ch04/martingale_foundations/local_martingale.md
+                - Stochastic Exponential: ch04/martingale_foundations/stochastic_exponential.md
+                - Novikov and Kazamaki Conditions: ch04/martingale_foundations/novikov_kazamaki_conditions.md
                 - Martingale and No-Arbitrage: ch04/martingale_foundations/martingale_and_no_arbitrage.md
                 - Risk-Neutral Valuation Principle: ch04/martingale_foundations/risk_neutral_valuation_principle.md
-                - Stochastic Exponential: ch04/martingale_foundations/stochastic_exponential.md
                 - Martingale Representation Theorem: ch04/martingale_foundations/martingale_representation_theorem.md
-                - Novikov and Kazamaki Conditions: ch04/martingale_foundations/novikov_kazamaki_conditions.md
+                
             - 4.2 Girsanov Theorem:
                 - Intuitive Introduction: ch04/girsanov/girsanov_intuition.md
                 - Girsanov's Theorem: ch04/girsanov/girsanov_theorem.md
@@ -232,24 +233,42 @@ nav:
 
         - 6 Black-Scholes Model:
             - Chapter Overview: ch06/index.md
-            - 6.1 Introduction:
+            - 6.1 Futures and Forwards:
+                - Introduction: ch06/futures_and_forwards/introduction.md
+                - What is a Forward and a Future: ch06/futures_and_forwards/what_is_forward_future.md
+                - Payoff of Forwards and Futures: ch06/futures_and_forwards/payoff.md
+                - No-Arbitrage Pricing: ch06/futures_and_forwards/no_arbitrage_pricing.md
+                - Cost of Carry and Extensions: ch06/futures_and_forwards/cost_of_carry.md
+                - Futures vs Forwards: ch06/futures_and_forwards/futures_vs_forwards.md
+                - Margin and Marking to Market: ch06/futures_and_forwards/margin_mark_to_market.md
+                - Why Forwards Are Easy and Options Are Hard: ch06/futures_and_forwards/bridge_to_options.md
+            - 6.2 Options and Markets:
+                - Introduction: ch06/options_and_markets/introduction.md
+                - What is an Option?: ch06/options_and_markets/what_is_option.md
+                - Option Payoffs: ch06/options_and_markets/option_payoffs.md
+                - Option Premium: ch06/options_and_markets/option_premium.md
+                - Trading Mechanics: ch06/options_and_markets/trading_mechanics.md
+                - Margin and Short Positions: ch06/options_and_markets/margin.md
+                - Basic Strategies: ch06/options_and_markets/basic_strategies.md
+                - Why Pricing Matters: ch06/options_and_markets/why_pricing_matters.md
+            - 6.3 BS Model Introduction:
                 - Introduction: ch06/black_scholes_model/introduction.md
                 - Model Assumptions: ch06/black_scholes_model/assumptions.md
                 - Historical Context: ch06/black_scholes_model/historical_context.md
                 - Geometric Brownian Motion as Asset Price Model: ch06/black_scholes_model/gbm_as_asset_price_model.md
                 - Self-Financing Portfolios: ch06/black_scholes_model/self_financing_portfolios.md
-            - 6.2 Black-Scholes PDE Derivation:
+            - 6.4 BS PDE Derivation:
                 - One Equation, Five Perspectives: ch06/bs_pde_derivation/one_equation_five_perspectives.md
                 - Delta Hedging: ch06/bs_pde_derivation/delta_hedging.md
                 - Replication: ch06/bs_pde_derivation/replication.md
                 - Risk-Neutral Measure: ch06/bs_pde_derivation/risk_neutral_measure.md
                 - Change of Numéraire: ch06/bs_pde_derivation/change_of_numeraire.md
                 - Equilibrium Derivation: ch06/bs_pde_derivation/equilibrium.md
-            - 6.3 Black-Scholes PDE Structure:
+            - 6.5 BS PDE Structure:
                 - Discounting and Killing: ch06/bs_pde_structure/discounting_and_killing_term.md
                 - Greeks from Partial Differential Equation: ch06/bs_pde_structure/greeks_from_pde.md
                 - Boundary Conditions: ch06/bs_pde_structure/terminal_and_boundary_conditions.md
-            - 6.4 Black-Scholes Analytic Solutions:
+            - 6.6 BS Analytic Solutions:
                 - BS Analytic Solutions Introduction: ch06/bs_pde_analytic_solution/intro.md
                 - Heat Equation: ch06/bs_pde_analytic_solution/heat_equation.md
                 - Separation of Variables: ch06/bs_pde_analytic_solution/separation_of_variables.md
@@ -260,7 +279,7 @@ nav:
                 - Feynman–Kac Formula: ch06/bs_pde_analytic_solution/feynman_kac.md
                 - Change of Numéraire: ch06/bs_pde_analytic_solution/change_of_numeraire.md
                 - Viscosity Solutions: ch06/bs_pde_analytic_solution/viscosity_solutions.md
-            - 6.5 Black-Scholes Formula:
+            - 6.7 BS Formula:
                 - The Black-Scholes Formula: ch06/black_scholes_formula/bs_formula_statement.md
                 - Probabilistic Interpretation: ch06/black_scholes_formula/probabilistic_interpretation.md
                 - Girsanov Derivation: ch06/black_scholes_formula/girsanov_derivation.md
@@ -269,7 +288,7 @@ nav:
                 - Asymptotic Behavior: ch06/black_scholes_formula/asymptotic_behavior.md
                 - Properties and Bounds: ch06/black_scholes_formula/properties_and_bounds.md
                 - Computational Examples: ch06/black_scholes_formula/computational_examples.md
-            - 6.6 Python Examples:
+            - 6.8 Python Examples:
                 - Geometric Brownian Motion Simulation: ch06/codes/black_scholes_gbm.py
                 - Option Prices (Comprehensive): ch06/codes/black_scholes_option_prices.py
                 - Option Prices (Using Formula): ch06/codes/black_scholes_prices_formula.py
@@ -878,11 +897,13 @@ nav:
                 - No-Arbitrage Relations: ch18/yield_curves/no_arbitrage_relations.md
                 - Bootstrapping Algorithms: ch18/yield_curves/bootstrapping_algorithms.md
                 - Interpolation Methods: ch18/yield_curves/interpolation_methods.md
-            - 18.2 Interest Rate Market:
-                - Forward Rate Agreement: ch18/interest_rate_market/forward_rate_agreement.md
-                - Interest Rate Swap: ch18/interest_rate_market/interest_rate_swap.md
-                - Coupon-Bearing Bond and Floating Rate Note: ch18/interest_rate_market/coupon_bond_and_frn.md
-                - Bond Price Quotes: ch18/interest_rate_market/bond_pricing.md
+            - 18.2 Interest Rate Products:
+                - Coupon-Bearing Bond and Floating Rate Note: ch18/interest_rate_products/coupon_bond_and_frn.md
+                - Bond Pricing: ch18/interest_rate_products/bond_pricing.md
+                - Forward Rate Agreement: ch18/interest_rate_products/forward_rate_agreement.md
+                - Interest Rate Swap: ch18/interest_rate_products/interest_rate_swap.md
+                - Swap Valuation: ch18/interest_rate_products/swap_valuation.md
+                - From Swaps to Swaptions: ch18/interest_rate_products/bridge_to_swaptions.md
             - 18.3 Short-Rate Models:
                 - General Short-Rate Framework: ch18/short_rate_models/general_short_rate_framework.md
                 - Vasicek Model: ch18/short_rate_models/vasicek_model.md
