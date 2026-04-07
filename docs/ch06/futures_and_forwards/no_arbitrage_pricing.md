@@ -7,6 +7,8 @@ The forward price is not chosen by negotiation or forecasting. It is determined 
 
 ---
 
+**Interpretation**: The forward price is simply today's spot price carried forward at the risk-free rate — nothing more. All the information needed is already in $S_0$ and $r$.
+
 ## Replication Argument
 
 The central tool is **replication**: we construct a portfolio of traded instruments whose payoff at maturity matches that of the forward contract. By no-arbitrage, the cost of this replicating portfolio must equal the cost of entering the forward.

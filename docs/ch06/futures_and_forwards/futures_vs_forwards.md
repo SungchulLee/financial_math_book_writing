@@ -64,7 +64,9 @@ for a non-dividend-paying asset, or more generally $S_0 \, e^{(r-q)T}$ with cont
 
 ## When They Differ: The Convexity Adjustment
 
-When interest rates are **stochastic**, the forward price and the futures price generally diverge. The reason is that daily settlement interacts with random interest rates.
+For most practical purposes, forward and futures prices are nearly identical. The difference becomes meaningful only when interest rates are **stochastic** and correlated with the underlying — a subtlety that primarily affects interest rate derivatives. The following discussion explains the mechanism; readers focused on equity applications may safely note the conclusion and move on.
+
+When interest rates are stochastic, the forward price and the futures price generally diverge. The reason is that daily settlement interacts with random interest rates.
 
 Consider a long futures position. When the futures price rises, gains are received and can be reinvested. If interest rates tend to be high when the underlying price rises (positive correlation between $S$ and $r$), then gains are reinvested at favorable rates and losses are financed at low rates. This makes the long futures position more attractive than a long forward, pushing the futures price above the forward price.
 
