@@ -6,21 +6,25 @@ A **coupon-bearing bond** (CB) pays a fixed coupon at regular intervals plus the
 
 ## Coupon-Bearing Bond
 
-$$\begin{array}{ccccccccccccccccc}
-\displaystyle
-{\bf\text{CB}}(t,{\cal T},N,{\cal C})
-=
-N\sum_{k=m+1}^n c_iP(t,T_i)\\
-\end{array}$$
+A coupon bond with face value $N$, coupon rate $c$, and payment dates $T_{m+1}, \ldots, T_n$ pays $Nc\tau_k$ at each $T_k$ plus principal $N$ at maturity $T_n$. Its value is the present value of all cash flows:
+
+$$
+\text{CB}(t, \mathcal{T}, N, c) = Nc\sum_{k=m+1}^{n} \tau_k P(t, T_k) + N P(t, T_n)
+$$
+
+Equivalently, defining the total cash flow at each date as $C_k = Nc\tau_k$ for $k < n$ and $C_n = Nc\tau_n + N$:
+
+$$
+\text{CB}(t, \mathcal{T}, N, c) = \sum_{k=m+1}^{n} C_k P(t, T_k)
+$$
 
 ## Floating-Rate Note
 
-$$\begin{array}{ccccccccccccccccc}
-\displaystyle
-{\bf\text{FRN}}(t,{\cal T},N)
-=
-NP(t,T_m)\\
-\end{array}$$
+At any reset date $T_m$, the FRN is worth par because its future coupons will reset to the prevailing market rate. At time $t$, its value is that par value discounted back from the next reset date:
+
+$$
+\text{FRN}(t, \mathcal{T}, N) = N P(t, T_m)
+$$
 
 ???+ note "Proof"
 

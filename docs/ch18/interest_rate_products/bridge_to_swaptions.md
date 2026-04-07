@@ -54,6 +54,8 @@ The swaption payoff resembles a call option:
 - payoff: convex function of rate
 - value depends on **volatility**
 
+Under the **annuity measure** $\mathbb{Q}^A$ (with the swap annuity $A$ as numeraire), the swap rate behaves as a martingale, making it the natural underlying for swaption pricing — exactly as the stock price is a martingale under the risk-neutral measure in Black-Scholes.
+
 ---
 
 !!! tip "Key Idea"
