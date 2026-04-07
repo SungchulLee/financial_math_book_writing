@@ -102,8 +102,8 @@ The table below summarizes the conceptual transition from forwards to options:
 | Gamma | $0$ | $> 0$ (near the strike) |
 | Pricing method | Algebraic no-arbitrage | Black-Scholes PDE / risk-neutral expectation |
 
-!!! note "Section Summary"
-    Forward pricing shows that derivative values can be determined entirely by replication under no-arbitrage — without forecasting future prices. This principle extends to options, where nonlinearity requires dynamic hedging. The transition from static to dynamic replication is the central step toward the Black-Scholes model, developed in the sections that follow.
+!!! note "Section Summary (Futures and Forwards)"
+    Forward pricing shows that derivative values can be determined entirely by replication under no-arbitrage. The payoff is linear, the hedge is static, and the mathematics is algebraic. This simplicity is not a limitation but a foundation: it reveals the core principle that price is determined by replication, not expectation. Options extend this principle to nonlinear payoffs, where replication becomes dynamic and pricing depends on volatility — the subject of the sections that follow.
 
 ---
 
