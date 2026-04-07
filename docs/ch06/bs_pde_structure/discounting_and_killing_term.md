@@ -46,7 +46,7 @@ $$
 \mathcal{L}V = rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}
 $$
 
-so the pricing PDE becomes the familiar $V_t + rSV_S + \frac{1}{2}\sigma^2 S^2 V_{SS} - rV = 0$.
+so the pricing PDE becomes the familiar $V_t + rSV_S + \frac{1}{2}\sigma^2 S^2 V_{SS} - rV = 0$. In PDE theory, this is the **backward Kolmogorov equation with killing** — the generator $\mathcal{L}$ defines the backward Kolmogorov equation, and the $-rV$ term adds the killing.
 
 ---
 

@@ -90,7 +90,7 @@ In financial applications, **Dirichlet conditions dominate**: barrier options, k
 
 ### As S → 0
 
-This encodes the contract's behavior when the underlying becomes worthless.
+These conditions capture what happens to the contract at extreme stock prices.
 
 **Call option**: The call is worthless if the stock goes to zero:
 
@@ -107,8 +107,6 @@ $$
 (Present value of receiving $K$ at maturity)
 
 ### As S → ∞
-
-This encodes the contract's behavior when the underlying is extremely valuable.
 
 **Call option**: As $S \to \infty$, $d_1, d_2 \to +\infty$ so $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 1$, giving:
 
@@ -280,6 +278,9 @@ $$
 $$
 
 **Terminal and boundary conditions transform abstract PDEs into specific pricing problems, encoding the contractual features of financial derivatives.**
+
+!!! note "Synthesis: The Complete PDE Framework"
+    The pricing PDE is not just an equation but a complete structure. The **operator** $\mathcal{L}$ encodes market dynamics, the **killing term** $-rV$ encodes discounting, and the **conditions** encode the contract. The Greeks arise as sensitivities of the solution to this system, and numerical methods approximate it. Together, these elements form a unified framework for derivative pricing — every financial question (pricing, hedging, risk) reduces to a question about this PDE system.
 
 ---
 
