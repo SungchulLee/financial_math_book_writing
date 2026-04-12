@@ -43,7 +43,7 @@ This is the price of a claim that pays 1 at time $T$ if and only if no default o
 ### Definition of the Survival Measure
 
 !!! abstract "Definition"
-    The **$T$-survival measure** $\mathbb{Q}^S$ (or $\mathbb{Q}^{T,S}$) is defined on $\mathcal{F}_T$ by the Radon-Nikodym derivative:
+    The **$T$-survival measure** $\mathbb{Q}^S$ (or $\mathbb{Q}^{T,S}$) is defined on $\mathcal{F}_T$ by the Radon–Nikodym derivative:
 
     $$
     \frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{e^{-\int_0^T (r_s + \lambda_s)ds}}{\bar{P}(0,T)}
@@ -57,7 +57,7 @@ This is the price of a claim that pays 1 at time $T$ if and only if no default o
 
 ### Well-Definedness
 
-The Radon-Nikodym density is:
+The Radon–Nikodym density is:
 
 - **Positive:** Since $e^{-\int_0^T (r_s + \lambda_s)ds} > 0$ a.s.
 - **Normalized:** $\mathbb{E}^{\mathbb{Q}}[d\mathbb{Q}^S / d\mathbb{Q}] = 1$ by construction
@@ -84,7 +84,7 @@ Therefore $\mathbb{Q}^S$ is a well-defined probability measure equivalent to $\m
     \mathbb{E}^{\mathbb{Q}^S}[X \mid \mathcal{F}_t] = \frac{\mathbb{E}^{\mathbb{Q}}\left[\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} X \mid \mathcal{F}_t\right]}{\mathbb{E}^{\mathbb{Q}}\left[\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} \mid \mathcal{F}_t\right]}
     $$
 
-    Substituting the Radon-Nikodym derivative:
+    Substituting the Radon–Nikodym derivative:
 
     $$
     = \frac{\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^T (r_s + \lambda_s)ds} X \mid \mathcal{F}_t\right] / \bar{P}(0,T)}{e^{-\int_0^t (r_s+\lambda_s)ds} \bar{P}(t,T) / \bar{P}(0,T)}

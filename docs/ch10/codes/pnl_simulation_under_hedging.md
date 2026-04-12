@@ -198,7 +198,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-This demonstrates that more frequent rebalancing reduces hedging error variance, but with diminishing returns (the error scales as \(\sqrt{\Delta t}\)).
+This demonstrates that more frequent rebalancing reduces hedging error variance, but with diminishing returns (the error scales as $\sqrt{\Delta t}$).
 
 ---
 
@@ -273,7 +273,7 @@ The decomposition shows the fundamental tension: theta bleeds value continuously
 
 - Single-path simulations illustrate how hedging strategies perform on specific market scenarios.
 - Monte Carlo simulations quantify hedging error distributions across many scenarios.
-- Rebalancing frequency analysis confirms the \(\sqrt{\Delta t}\) scaling of discrete hedging error.
+- Rebalancing frequency analysis confirms the $\sqrt{\Delta t}$ scaling of discrete hedging error.
 - The theta-gamma decomposition is the key diagnostic for understanding delta-hedged P&L.
 
 ---

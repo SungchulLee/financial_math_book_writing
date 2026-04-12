@@ -26,13 +26,13 @@ The discount factor has been replaced by the known quantity $P(t,T)$, and the ex
 
 ## Definition of the T-forward measure
 
-The $T$-forward measure $\mathbb{Q}^T$ is defined by the Radon-Nikodym derivative
+The $T$-forward measure $\mathbb{Q}^T$ is defined by the Radon–Nikodym derivative
 
 $$
 \frac{d\mathbb{Q}^T}{d\mathbb{Q}}\bigg|_{\mathcal{F}_t} = \frac{P(t,T)}{P(0,T)\,B_t} = \frac{P(t,T)\,B_0}{P(0,T)\,B_t}
 $$
 
-Since $P(t,T)/B_t$ is a $\mathbb{Q}$-martingale (discounted bond price), this Radon-Nikodym process is a well-defined positive martingale.
+Since $P(t,T)/B_t$ is a $\mathbb{Q}$-martingale (discounted bond price), this Radon–Nikodym process is a well-defined positive martingale.
 
 For the Vasicek model, the bond price $P(t,T) = A(\tau)\,e^{-B(\tau)\,r_t}$ and the dynamics of $P$ under $\mathbb{Q}$ involve the diffusion coefficient
 
@@ -423,7 +423,7 @@ The $T$-forward measure $\mathbb{Q}^T$ simplifies derivative pricing by replacin
     We want to write this in Vasicek form $\kappa(\theta - r_t)\,dt + \sigma\,dW_t^{\mathbb{Q}}$, so:
 
     $$
-    \kappa = \kappa^{\mathbb{P}} + \lambda, \qquad \kappa\theta = \kappa^{\mathbb{P}}\theta^{\mathbb{P}} - \sigma\lambda + \lambda\theta^{\mathbb{P}} ...
+    \kappa = \kappa^{\mathbb{P}} + \lambda, \qquad \kappa\theta = \kappa^{\mathbb{P}}\theta^{\mathbb{P}} - \sigma\lambda + \lambda\theta^{\mathbb{P}} ..
     $$
 
     Wait---let us be more careful. Rewriting the drift:

@@ -10,12 +10,12 @@ Beyond simple parameter shrinkage, regularization can encode **structural belief
 
 Hard constraints (e.g., exact smoothness or monotonicity) are often replaced by soft penalties:
 
-\[
-\min_{\theta} \; \mathcal{L}(\theta) + \lambda \mathcal{R}(\theta),
-\]
+$$
+\min_{\theta} \; \mathcal{L}(\theta) + \lambda \mathcal{R}(\theta)
+$$
 
 
-where \(\mathcal{R}\) measures deviation from desired structure.
+where $\mathcal{R}$ measures deviation from desired structure.
 
 This approach:
 - improves numerical stability,
@@ -29,14 +29,14 @@ This approach:
 ### 1. Finite-difference penalties
 
 
-For discretized parameters \(\theta_i\):
+For discretized parameters $\theta_i$:
 
-\[
+$$
 \mathcal{R}(\theta)
 = \sum_i (\theta_{i+1}-\theta_i)^2
 \quad \text{or} \quad
-\sum_i (\theta_{i+2}-2\theta_{i+1}+\theta_i)^2.
-\]
+\sum_i (\theta_{i+2}-2\theta_{i+1}+\theta_i)^2
+$$
 
 
 
@@ -47,13 +47,13 @@ These penalize:
 ### 2. Continuous formulations
 
 
-For a function \(f(x)\):
+For a function $f(x)$:
 
-\[
+$$
 \mathcal{R}(f) = \int |f'(x)|^2 dx
 \quad \text{or} \quad
-\int |f''(x)|^2 dx.
-\]
+\int |f''(x)|^2 dx
+$$
 
 
 

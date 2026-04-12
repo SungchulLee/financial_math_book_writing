@@ -63,14 +63,14 @@ The full estimates are carried out in [Picard Iteration](picard_iteration.md).
 **Ornstein–Uhlenbeck** (with mean-reversion speed $\kappa > 0$):
 
 $$
-dX_t = -\kappa X_t\,dt + \nu\,dW_t, \qquad K = \kappa.
+dX_t = -\kappa X_t\,dt + \nu\,dW_t, \qquad K = \kappa
 $$
 
 **Affine SDE** (with scalar coefficients $\alpha, \beta, \gamma, \delta$):
 
 $$
 dX_t = (\alpha + \beta X_t)\,dt + (\gamma + \delta X_t)\,dW_t,
-\qquad K = |\beta| + |\delta|.
+\qquad K = |\beta| + |\delta|
 $$
 
 **Smooth, bounded-derivative case.** If $b$ and $\sigma$ are $C^1$ in $x$ with
@@ -87,7 +87,7 @@ The diffusion coefficient $\sigma\sqrt{x}$ fails global Lipschitz at $x = 0$.
 Taking $y = 0$ and letting $x \to 0^+$:
 
 $$
-\frac{|\sqrt{x} - \sqrt{0}|}{|x - 0|} = \frac{1}{\sqrt{x}} \to +\infty.
+\frac{|\sqrt{x} - \sqrt{0}|}{|x - 0|} = \frac{1}{\sqrt{x}} \to +\infty
 $$
 
 So no single constant $K$ bounds the ratio $|\sigma(x)-\sigma(y)|/|x-y|$ near
@@ -176,7 +176,7 @@ Under local Lipschitz alone, a unique continuous solution exists up to the
 **explosion time** (since $X_t$ is continuous, each $\tau_n$ is a stopping time):
 
 $$
-\tau_\infty = \lim_{n \to \infty} \tau_n, \qquad \tau_n = \inf\{t \geq 0 : |X_t| \geq n\}.
+\tau_\infty = \lim_{n \to \infty} \tau_n, \qquad \tau_n = \inf\{t \geq 0 : |X_t| \geq n\}
 $$
 
 Adding the linear growth condition forces $\mathbb{P}(\tau_\infty = \infty) = 1$,

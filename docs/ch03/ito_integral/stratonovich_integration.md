@@ -456,7 +456,7 @@ compute $\int_0^t B_s^2 \circ dB_s$ and verify that the result is consistent wit
     **Stratonovich (midpoint) sum:** $\sum_{k=0}^{9} \frac{1}{2}(B_{t_k} + B_{t_{k+1}}) \Delta B_k$
 
     $$
-    = \frac{1}{2} \cdot \frac{1}{10}\left((0+1)(+1) + (1+0)(-1) + (0+1)(+1) + (1+2)(+1) + (2+1)(-1)\right.
+    = \frac{1}{2} \cdot \frac{1}{10}\left((0+1)(+1) + (1+0)(-1) + (0+1)(+1) + (1+2)(+1) + (2+1)(-1)\right
     $$
 
     $$

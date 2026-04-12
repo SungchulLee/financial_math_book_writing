@@ -302,7 +302,7 @@ The `HullWhite` class implements the complete one-factor Hull-White model comput
 
     Therefore $\theta^{\mathbb{T}}(t) < \theta(t)$, which means the drift of the short rate is lower under the $T$-forward measure than under $\mathbb{Q}$. This produces a lower expected short rate under $\mathbb{Q}^T$.
 
-    **Economic interpretation:** Under the $T$-forward measure $\mathbb{Q}^T$, the numeraire is the zero-coupon bond $P(t, T)$. When the short rate is lower, bond prices are higher. The $T$-forward measure "tilts" the distribution toward states where the bond (the numeraire) has high value, i.e., low-rate states. This is the Radon-Nikodym effect: the measure change reweights paths by $P(t, T)/P(0, T)$, giving more probability weight to paths with low rates. This tilt is essential for the forward-measure pricing formula $\mathbb{E}^{\mathbb{Q}^T}[V(T)] = V(0)/P(0, T)$ to hold.
+    **Economic interpretation:** Under the $T$-forward measure $\mathbb{Q}^T$, the numeraire is the zero-coupon bond $P(t, T)$. When the short rate is lower, bond prices are higher. The $T$-forward measure "tilts" the distribution toward states where the bond (the numeraire) has high value, i.e., low-rate states. This is the Radon–Nikodym effect: the measure change reweights paths by $P(t, T)/P(0, T)$, giving more probability weight to paths with low rates. This tilt is essential for the forward-measure pricing formula $\mathbb{E}^{\mathbb{Q}^T}[V(T)] = V(0)/P(0, T)$ to hold.
 
 ---
 

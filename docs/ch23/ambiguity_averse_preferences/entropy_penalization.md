@@ -787,7 +787,7 @@ Hint: use the exponentially tilted measure $dP^*/dQ = e^{\theta X}/\mathbb{E}_Q[
     \log \mathbb{E}_Q[e^{\theta X}] = \sup_{P \ll Q}\left\{\theta \mathbb{E}_P[X] - D_{\text{KL}}(P \| Q)\right\}
     $$
 
-    **Step 1: Upper bound.** For any $P \ll Q$ with Radon-Nikodym derivative $M = dP/dQ$:
+    **Step 1: Upper bound.** For any $P \ll Q$ with Radon–Nikodym derivative $M = dP/dQ$:
 
     $$
     \theta \mathbb{E}_P[X] - D_{\text{KL}}(P \| Q) = \mathbb{E}_Q[M \cdot \theta X] - \mathbb{E}_Q[M \log M]

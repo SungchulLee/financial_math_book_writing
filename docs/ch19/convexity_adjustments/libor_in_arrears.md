@@ -289,7 +289,7 @@ Expanding the product and using properties of the lognormal distribution, the ar
 **Exercise 2.** Starting from the Radon--Nikodym derivative
 
 $$
-\frac{d\mathbb{Q}^{T_i}}{d\mathbb{Q}^{T_{i+1}}}\bigg|_{\mathcal{F}_{T_i}} = \frac{P(0, T_{i+1})}{P(0, T_i)} \cdot (1 + \delta_i L_i(T_i)),
+\frac{d\mathbb{Q}^{T_i}}{d\mathbb{Q}^{T_{i+1}}}\bigg|_{\mathcal{F}_{T_i}} = \frac{P(0, T_{i+1})}{P(0, T_i)} \cdot (1 + \delta_i L_i(T_i))
 $$
 
 derive the exact formula

@@ -374,7 +374,7 @@ Under the $T$-forward measure $\mathbb{Q}^T$, the Hull-White short rate retains 
 ??? success "Solution to Exercise 6"
     The $\mathbb{Q}^T$-mean is lower than the $\mathbb{Q}$-mean because of the probabilistic interpretation of the measure change.
 
-    The $T$-forward measure $\mathbb{Q}^T$ uses the zero-coupon bond $P(t,T)$ as numeraire. The Radon-Nikodym derivative $\frac{d\mathbb{Q}^T}{d\mathbb{Q}} \propto P(t,T)/M(t)$ tilts the probability measure in favor of scenarios where $P(t,T)/M(t)$ is large, i.e., where bond prices are high relative to the money market account.
+    The $T$-forward measure $\mathbb{Q}^T$ uses the zero-coupon bond $P(t,T)$ as numeraire. The Radon–Nikodym derivative $\frac{d\mathbb{Q}^T}{d\mathbb{Q}} \propto P(t,T)/M(t)$ tilts the probability measure in favor of scenarios where $P(t,T)/M(t)$ is large, i.e., where bond prices are high relative to the money market account.
 
     High bond prices correspond to low interest rates. Therefore $\mathbb{Q}^T$ assigns higher probability to low-rate scenarios and lower probability to high-rate scenarios compared to $\mathbb{Q}$. This systematic tilting toward low rates reduces the expected value of $r(t)$ under $\mathbb{Q}^T$.
 

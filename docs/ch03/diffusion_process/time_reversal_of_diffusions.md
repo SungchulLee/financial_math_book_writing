@@ -7,7 +7,7 @@ Time reversal studies the law of a diffusion when observed **backwards in time**
 **Setup.** Let $(X_t)_{0 \le t \le T}$ solve the forward SDE on a filtered space $(\Omega, \mathcal{F}, (\mathcal{F}_t), \mathbb{P})$:
 
 $$
-\mathrm{d}X_t^{i} = b^{i}(t, X_t)\,\mathrm{d}t + \sigma^{i\alpha}(t, X_t)\,\mathrm{d}W_t^{\alpha},
+\mathrm{d}X_t^{i} = b^{i}(t, X_t)\,\mathrm{d}t + \sigma^{i\alpha}(t, X_t)\,\mathrm{d}W_t^{\alpha}
 $$
 
 where we define the **covariance matrix** $a^{ij}(t,x) := \sigma^{i\alpha}(t,x)\sigma^{j\alpha}(t,x)$ (Einstein summation on $\alpha$). Assume $X_t$ admits a smooth positive density $p(t, x)$ for each $t \in (0, T]$.
@@ -15,7 +15,7 @@ where we define the **covariance matrix** $a^{ij}(t,x) := \sigma^{i\alpha}(t,x)\
 Define the **time-reversed process**:
 
 $$
-\widetilde{X}_t := X_{T-t}, \qquad 0 \le t \le T.
+\widetilde{X}_t := X_{T-t}, \qquad 0 \le t \le T
 $$
 
 !!! info "Theorem (Haussmann–Pardoux, 1986; Anderson, 1982)"
@@ -24,7 +24,7 @@ $$
     $$
     \mathrm{d}\widetilde{X}_t^{i}
     = \widetilde{b}^{i}(t, \widetilde{X}_t)\,\mathrm{d}t
-    + \sigma^{i\alpha}(T-t, \widetilde{X}_t)\,\mathrm{d}\widetilde{W}_t^{\alpha},
+    + \sigma^{i\alpha}(T-t, \widetilde{X}_t)\,\mathrm{d}\widetilde{W}_t^{\alpha}
     $$
 
     where $(\widetilde{W}_t)$ is a Brownian motion with respect to the **backward filtration** $\widetilde{\mathcal{F}}_t = \sigma(X_s : T-t \le s \le T)$, and the **reversed drift** is
@@ -33,7 +33,7 @@ $$
     \boxed{
     \widetilde{b}^{i}(t, x)
     = -b^{i}(T-t, x)
-    + \frac{1}{p(T-t, x)}\,\frac{\partial}{\partial x_j}\!\bigl(a^{ij}(T-t, x)\,p(T-t, x)\bigr).
+    + \frac{1}{p(T-t, x)}\,\frac{\partial}{\partial x_j}\!\bigl(a^{ij}(T-t, x)\,p(T-t, x)\bigr)
     }
     $$
 
@@ -54,7 +54,7 @@ $$
 The **score** $\nabla \log p(t,x) = \nabla_x \log p(t,x)$ is the gradient of the log-density of $X_t$. For constant $a = \sigma\sigma^\top$ (spatially homogeneous diffusion), the formula simplifies to
 
 $$
-\widetilde{b}^{i}(t, x) = -b^{i}(T-t, x) + a^{ij}\,\partial_{x_j} \log p(T-t, x).
+\widetilde{b}^{i}(t, x) = -b^{i}(T-t, x) + a^{ij}\,\partial_{x_j} \log p(T-t, x)
 $$
 
 **Intuition.** When running a diffusion backward, the noise term is unchanged (the diffusion matrix is the same), but the drift must be corrected to account for the flow of probability mass encoded in $p$. The score term steers the reversed process toward regions of higher density, counteracting the tendency of the forward noise to spread out.
@@ -77,7 +77,7 @@ In the constant-$a$ case, the score correction $a\,\nabla\log p$ can be understo
 The score term $\nabla\log p(t,x)$ is precisely what modern **score-based diffusion models** (e.g. DDPM, score matching) learn from data. In the practically common case of **constant** $a = \sigma\sigma^\top$ (spatially homogeneous noise), the reversed SDE takes the explicit form
 
 $$
-\mathrm{d}\widetilde{X}_t = \bigl(-b(T-t,\widetilde{X}_t) + a\,\nabla\log p(T-t,\widetilde{X}_t)\bigr)\mathrm{d}t + \sigma\,\mathrm{d}\widetilde{W}_t.
+\mathrm{d}\widetilde{X}_t = \bigl(-b(T-t,\widetilde{X}_t) + a\,\nabla\log p(T-t,\widetilde{X}_t)\bigr)\mathrm{d}t + \sigma\,\mathrm{d}\widetilde{W}_t
 $$
 
 For spatially varying $\sigma$, the full formula from the theorem above applies, with the additional divergence term $\partial_{x_j} a^{ij}$. The practical approach: train a neural network to approximate $\nabla\log p(t,x)$ at all noise levels $t$, then run the reversed SDE from pure noise to generate new samples. The Haussmann–Pardoux theorem is the mathematical foundation underlying this entire class of generative models.
@@ -91,7 +91,7 @@ For spatially varying $\sigma$, the full formula from the theorem above applies,
 If $X_0 \sim \pi$ where $\pi$ is the invariant measure and the process is **reversible** (detailed balance holds), then
 
 $$
-(X_t)_{0 \le t \le T} \stackrel{d}{=} (X_{T-t})_{0 \le t \le T}.
+(X_t)_{0 \le t \le T} \stackrel{d}{=} (X_{T-t})_{0 \le t \le T}
 $$
 
 In this case $p(t, x) = \pi(x)$ for all $t$, the score is $\nabla\log\pi(x)$, and one can verify that $\widetilde{b}^i = b^i$: the reversed drift equals the forward drift, consistent with time symmetry.
@@ -99,7 +99,7 @@ In this case $p(t, x) = \pi(x)$ for all $t$, the score is $\nabla\log\pi(x)$, an
 **Example — Ornstein–Uhlenbeck process.** Consider
 
 $$
-\mathrm{d}X_t = -\theta X_t\,\mathrm{d}t + \sigma\,\mathrm{d}W_t, \qquad \theta > 0.
+\mathrm{d}X_t = -\theta X_t\,\mathrm{d}t + \sigma\,\mathrm{d}W_t, \qquad \theta > 0
 $$
 
 The invariant measure is $\pi = \mathcal{N}(0, \sigma^2/2\theta)$, so $\nabla\log\pi(x) = -x/(\sigma^2/2\theta) = -2\theta x/\sigma^2$. Substituting into the reversed drift formula (constant $a = \sigma^2$):
@@ -115,13 +115,13 @@ Time reversal produces the **same OU process**.
 Let $\mathrm{d}X_t = \mu\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ on $[0,T]$ with $X_0 = 0$. Then $p(t,x) = \phi(x; \mu t, \sigma^2 t)$ (Gaussian) and
 
 $$
-\partial_x \log p(t,x) = -\frac{x - \mu t}{\sigma^2 t}.
+\partial_x \log p(t,x) = -\frac{x - \mu t}{\sigma^2 t}
 $$
 
 The reversed drift is
 
 $$
-\widetilde{b}(t, x) = -\mu + \sigma^2 \cdot \left(-\frac{x - \mu(T-t)}{\sigma^2(T-t)}\right) = -\mu - \frac{x - \mu(T-t)}{T-t}.
+\widetilde{b}(t, x) = -\mu + \sigma^2 \cdot \left(-\frac{x - \mu(T-t)}{\sigma^2(T-t)}\right) = -\mu - \frac{x - \mu(T-t)}{T-t}
 $$
 
 This is a **Brownian bridge** drift. To read the direction: $\widetilde{X}_0 = X_T$ (the reversed process starts at the forward endpoint) and $\widetilde{X}_T = X_0 = 0$ (it ends at the forward starting point). The drift $-(x - \mu(T-t))/(T-t)$ pulls $\widetilde{X}$ toward $0$ as $t \to T$, confirming it is a bridge from $X_T$ back to $0$, with the original drift negated. Time reversal converts free Brownian motion (with drift) into a conditioned process pinned at both endpoints.
@@ -135,26 +135,26 @@ We sketch the formal derivation of the reversed drift formula in the constant-$a
 **Step 1: Forward Fokker–Planck.** The density $p(t,x)$ satisfies
 
 $$
-\partial_t p = -\partial_{x_i}(b^i p) + \frac{1}{2} a^{ij}\,\partial_{x_i x_j} p.
+\partial_t p = -\partial_{x_i}(b^i p) + \frac{1}{2} a^{ij}\,\partial_{x_i x_j} p
 $$
 
 **Step 2: Reversed process as backward semimartingale.** By the theory of backward stochastic calculus (see Pardoux 1986), $\widetilde{X}_t = X_{T-t}$ is a semimartingale under $\widetilde{\mathcal{F}}_t$ admitting a decomposition
 
 $$
-\mathrm{d}\widetilde{X}_t = \widetilde{b}(t, \widetilde{X}_t)\,\mathrm{d}t + \sigma\,\mathrm{d}\widetilde{W}_t.
+\mathrm{d}\widetilde{X}_t = \widetilde{b}(t, \widetilde{X}_t)\,\mathrm{d}t + \sigma\,\mathrm{d}\widetilde{W}_t
 $$
 
 **Step 3: Identify the drift.** We work in the **constant-$a$** case (the general case requires one extra step noted below). The reversed density $\widetilde{p}(t,x) = p(T-t,x)$ must satisfy the forward Fokker–Planck equation for $\widetilde{X}$:
 
 $$
-\partial_t \widetilde{p} = -\partial_{x_i}(\widetilde{b}^i \widetilde{p}) + \frac{1}{2}a^{ij}\,\partial_{x_i x_j}\widetilde{p}.
+\partial_t \widetilde{p} = -\partial_{x_i}(\widetilde{b}^i \widetilde{p}) + \frac{1}{2}a^{ij}\,\partial_{x_i x_j}\widetilde{p}
 $$
 
 Substituting $\widetilde{p}(t,x) = p(T-t,x)$ so $\partial_t \widetilde{p} = -\partial_t p(T-t,x)$, and using the forward Fokker–Planck for $p$ gives (after rearrangement):
 
 $$
 \partial_{x_i}(\widetilde{b}^i \widetilde{p})
-= \partial_{x_i}(b^i \widetilde{p}) - a^{ij}\,\partial_{x_i x_j}\widetilde{p}.
+= \partial_{x_i}(b^i \widetilde{p}) - a^{ij}\,\partial_{x_i x_j}\widetilde{p}
 $$
 
 Dividing by $\widetilde{p} > 0$ and expanding $\partial_{x_j}(a^{ij}\widetilde{p})/\widetilde{p} = \partial_{x_j}a^{ij} + a^{ij}\partial_{x_j}\log\widetilde{p}$ (using constant $a$, so $\partial_{x_j}a^{ij} = 0$) yields $\widetilde{b}^i = -b^i + a^{ij}\partial_{x_j}\log p(T-t,x)$, consistent with the boxed formula. For **spatially varying $a$**, the divergence term $\partial_{x_j}a^{ij}$ is non-zero and the same calculation produces the full formula $\widetilde{b}^i = -b^i + \frac{1}{p}\partial_{x_j}(a^{ij}p)$ stated in the theorem. $\square$
@@ -243,7 +243,7 @@ Dividing by $\widetilde{p} > 0$ and expanding $\partial_{x_j}(a^{ij}\widetilde{p
 **Exercise 3.** Let $\mathrm{d}X_t = b(X_t)\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$ with constant $\sigma > 0$ and a smooth density $p(t, x) > 0$. Starting from the forward Fokker–Planck equation
 
 $$
-\partial_t p = -\partial_x(b\,p) + \frac{\sigma^2}{2}\,\partial_x^2 p,
+\partial_t p = -\partial_x(b\,p) + \frac{\sigma^2}{2}\,\partial_x^2 p
 $$
 
 derive the reversed drift formula $\widetilde{b}(t, x) = -b(T-t, x) + \sigma^2\,\partial_x \log p(T-t, x)$ by requiring that the reversed density $\widetilde{p}(t, x) = p(T-t, x)$ satisfies its own Fokker–Planck equation.

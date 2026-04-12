@@ -25,7 +25,7 @@ $$
 
 For this to be computable via the Riccati machinery, $X_t$ must also be affine under $\mathbb{Q}$. If the measure change from $\mathbb{P}$ to $\mathbb{Q}$ broke the affine structure, we would lose the exponential-affine bond price formula and need to resort to Monte Carlo or PDE methods.
 
-The closure property guarantees that this does not happen: any measure change defined by an exponential-affine Radon-Nikodym derivative maps one set of affine parameters to another. The bond pricing formulas, characteristic functions, and Riccati equations all carry over to the new measure --- only the parameter values change.
+The closure property guarantees that this does not happen: any measure change defined by an exponential-affine Radon–Nikodym derivative maps one set of affine parameters to another. The bond pricing formulas, characteristic functions, and Riccati equations all carry over to the new measure --- only the parameter values change.
 
 ---
 
@@ -117,7 +117,7 @@ The key observation is that the terms involving $x^{(i)} \cdot \Lambda x$ produc
 The Esscher transform is a classical tool from actuarial science that provides a natural exponential-affine measure change.
 
 !!! info "Definition: Esscher Transform"
-    For a parameter $\theta \in \mathbb{R}^d$, the **Esscher transform** defines a new measure $\mathbb{Q}^\theta$ via the Radon-Nikodym derivative
+    For a parameter $\theta \in \mathbb{R}^d$, the **Esscher transform** defines a new measure $\mathbb{Q}^\theta$ via the Radon–Nikodym derivative
 
     $$
     \frac{d\mathbb{Q}^\theta}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} = \frac{\exp(\theta^\top X_t)}{\mathbb{E}^{\mathbb{P}}[\exp(\theta^\top X_t)]}
@@ -194,7 +194,7 @@ $$
 
 ### Extended Girsanov Theorem
 
-For affine jump-diffusions, the measure change modifies both the Brownian motion drift and the jump compensator. The Radon-Nikodym derivative takes the form
+For affine jump-diffusions, the measure change modifies both the Brownian motion drift and the jump compensator. The Radon–Nikodym derivative takes the form
 
 $$
 \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} = \mathcal{E}\!\left(\int_0^t \lambda_s^\top dW_s^{\mathbb{P}}\right) \cdot \prod_{0 < s \leq t} \eta(X_{s^-}, \Delta X_s)\,e^{\int_0^t (1 - \bar{\eta}(X_s))\,\lambda^J(X_s)\,ds}
@@ -308,7 +308,7 @@ The closure property of affine processes under measure change is the key to thei
 **Exercise 4.** For the Esscher transform with parameter $\theta \in \mathbb{R}$, applied to a one-dimensional OU process $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, compute the drift of $X_t$ under the new measure $\mathbb{Q}^\theta$. Show that $X_t$ remains an OU process under $\mathbb{Q}^\theta$ with modified parameters $\kappa^{\mathbb{Q}} = \kappa - \sigma^2\theta$ and unchanged diffusion $\sigma$.
 
 ??? success "Solution to Exercise 4"
-    The OU process has $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, so $\mu(x) = -\kappa x$ and $a = \sigma^2$ (constant diffusion). The Esscher Radon-Nikodym derivative is $\frac{d\mathbb{Q}^\theta}{d\mathbb{P}}\big|_{\mathcal{F}_t} = \frac{e^{\theta X_t}}{\mathbb{E}[e^{\theta X_t}]}$. By Girsanov's theorem, the drift under $\mathbb{Q}^\theta$ is $\mu^{\mathbb{Q}}(x) = \mu^{\mathbb{P}}(x) + a\theta = -\kappa x + \sigma^2\theta$. Under $\mathbb{Q}^\theta$, the dynamics become
+    The OU process has $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, so $\mu(x) = -\kappa x$ and $a = \sigma^2$ (constant diffusion). The Esscher Radon–Nikodym derivative is $\frac{d\mathbb{Q}^\theta}{d\mathbb{P}}\big|_{\mathcal{F}_t} = \frac{e^{\theta X_t}}{\mathbb{E}[e^{\theta X_t}]}$. By Girsanov's theorem, the drift under $\mathbb{Q}^\theta$ is $\mu^{\mathbb{Q}}(x) = \mu^{\mathbb{P}}(x) + a\theta = -\kappa x + \sigma^2\theta$. Under $\mathbb{Q}^\theta$, the dynamics become
 
     $$
     dX_t = (-\kappa X_t + \sigma^2\theta)\,dt + \sigma\,dW_t^{\mathbb{Q}}

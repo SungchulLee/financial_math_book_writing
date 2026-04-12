@@ -139,33 +139,39 @@ nav:
 
         - 4 Measure Change:
             - Chapter Overview: ch04/index.md
-            - 4.1 Martingale Theory:
-                - "The Unifying Principle: Controlling Local Martingales": ch04/martingale_foundations/unifying_principle_controlling_local_martingales.md
-                - Local Martingale: ch04/martingale_foundations/local_martingale.md
-                - Stochastic Exponential: ch04/martingale_foundations/stochastic_exponential.md
-                - Novikov and Kazamaki Conditions: ch04/martingale_foundations/novikov_kazamaki_conditions.md
-                - Martingale and No-Arbitrage: ch04/martingale_foundations/martingale_and_no_arbitrage.md
-                - Risk-Neutral Valuation Principle: ch04/martingale_foundations/risk_neutral_valuation_principle.md
-                - Martingale Representation Theorem: ch04/martingale_foundations/martingale_representation_theorem.md
-                
-            - 4.2 Girsanov Theorem:
+
+            - 4.1 Martingale Machinery:
+                - Local Martingale: ch04/martingale/local_martingale.md
+                - Integrability Conditions: ch04/martingale/integrability_conditions.md
+                - Stochastic Exponential: ch04/martingale/stochastic_exponential.md
+                - Novikov and Kazamaki Conditions: ch04/martingale/novikov_kazamaki_conditions.md
+                - Martingale Representation Theorem: ch04/martingale/martingale_representation_theorem.md
+                - "The Unifying Principle: Controlling Local Martingales": ch04/martingale/unifying_principle.md
+
+            - 4.2 Martingales in Finance:
+                - Martingale and No-Arbitrage: ch04/finance/martingale_and_no_arbitrage.md
+                - Risk-Neutral Valuation Principle: ch04/finance/risk_neutral_valuation_principle.md
+
+            - 4.3 Girsanov Theorem:
                 - Intuitive Introduction: ch04/girsanov/girsanov_intuition.md
+                - Financial Meaning of Drift Adjustment: ch04/girsanov/girsanov_drift_adjustment.md
                 - Girsanov's Theorem: ch04/girsanov/girsanov_theorem.md
                 - Proof of Girsanov's Theorem: ch04/girsanov/girsanov_proof.md
-                - Financial Meaning of Drift Adjustment: ch04/girsanov/girsanov_drift_adjustment.md
-            - 4.3 Risk-Neutral Measure:
-                - Construction of the Risk-Neutral Measure: ch04/risk-neutral_measure/construction_of_risk-neutral_measure.md
-                - Market Price of Risk: ch04/risk-neutral_measure/market_price_of_risk.md
-                - Examples of Measure Change: ch04/risk-neutral_measure/example.md
-                - Numéraire and Measure Change: ch04/risk-neutral_measure/numeraire_and_measure_change.md
-                - Forward Measure: ch04/risk-neutral_measure/forward_measure.md
-            - 4.4 Financial Insights:
-                - Financial Insights Intro: ch04/financial_interpretation/intro.md
-                - Pricing vs Hedging: ch04/financial_interpretation/pricing_vs_hedging.md
-                - Physical vs Risk-Neutral World: ch04/financial_interpretation/physical_vs_risk_neutral_world.md
-                - Risk Premium Decomposition: ch04/financial_interpretation/risk_premium_decomposition.md
-                - When Measure Change Fails: ch04/financial_interpretation/when_measure_change_fails.md
-                - Practitioner Perspective: ch04/financial_interpretation/practitioner_perspective.md
+
+            - 4.4 Risk-Neutral Measure:
+                - Construction of the Risk-Neutral Measure: ch04/risk_neutral/construction.md
+                - Market Price of Risk: ch04/risk_neutral/market_price_of_risk.md
+                - Examples of Measure Change: ch04/risk_neutral/examples.md
+                - Numéraire and Measure Change: ch04/risk_neutral/numeraire.md
+                - Forward Measure: ch04/risk_neutral/forward_measure.md
+
+            - 4.5 Financial Interpretation:
+                - Financial Insights Intro: ch04/insights/intro.md
+                - Physical vs Risk-Neutral World: ch04/insights/physical_vs_risk_neutral.md
+                - Pricing vs Hedging: ch04/insights/pricing_vs_hedging.md
+                - Risk Premium Decomposition: ch04/insights/risk_premium_decomposition.md
+                - When Measure Change Fails: ch04/insights/when_measure_change_fails.md
+                - Practitioner Perspective: ch04/insights/practitioner_perspective.md
 
         - 5 PDE in Finance:
             - Chapter Overview: ch05/index.md
@@ -251,7 +257,7 @@ nav:
                 - Margin and Short Positions: ch06/options_and_markets/margin.md
                 - Basic Strategies: ch06/options_and_markets/basic_strategies.md
                 - Why Pricing Matters: ch06/options_and_markets/why_pricing_matters.md
-            - 6.3 BS Model Introduction:
+            - 6.3 BS Introduction:
                 - Introduction: ch06/black_scholes_model/introduction.md
                 - Model Assumptions: ch06/black_scholes_model/assumptions.md
                 - Historical Context: ch06/black_scholes_model/historical_context.md
@@ -698,7 +704,6 @@ nav:
         - 15 Affine Processes:
             - Chapter Overview: ch15/index.md
             - 15.1 Definition and Setup:
-                - Markov Processes Review: ch15/definition_and_setup/markov_processes_review.md
                 - State Space and Regularity: ch15/definition_and_setup/state_space_and_regularity.md
                 - Definition of Affine Process: ch15/definition_and_setup/definition_of_affine_process.md
                 - Log-Affine Expectation Property: ch15/definition_and_setup/log_affine_expectation_property.md
@@ -904,13 +909,19 @@ nav:
                 - Interest Rate Swap: ch18/interest_rate_products/interest_rate_swap.md
                 - Swap Valuation: ch18/interest_rate_products/swap_valuation.md
                 - From Swaps to Swaptions: ch18/interest_rate_products/bridge_to_swaptions.md
-            - 18.3 Short-Rate Models:
+            - 18.3 Swaption Pricing:
+                - Annuity Measure and Change of Numeraire: ch18/swaption_pricing/annuity_measure_and_change_of_numeraire.md
+                - Swap Rate Dynamics and Lognormal Model: ch18/swaption_pricing/swap_rate_dynamics_and_lognormal_model.md
+                - Black Swaption Formula: ch18/swaption_pricing/black_swaption_formula.md
+                - Implied Volatility and Market Quotes: ch18/swaption_pricing/implied_volatility_and_market_quotes.md
+                - "Volatility Smile and SABR (preview)": ch18/swaption_pricing/volatility_smile_and_sabr.md
+            - 18.4 Short-Rate Models:
                 - General Short-Rate Framework: ch18/short_rate_models/general_short_rate_framework.md
                 - Vasicek Model: ch18/short_rate_models/vasicek_model.md
                 - Cox-Ingersoll-Ross Model: ch18/short_rate_models/cir_model.md
                 - Affine Term Structure: ch18/short_rate_models/affine_term_structure.md
                 - Hull-White Model: ch18/short_rate_models/hull_white_model.md
-            - 18.4 Vasicek:
+            - 18.5 Vasicek:
                 - Vasicek and Ornstein-Uhlenbeck Process: ch18/vasicek_model/vasicek_sde_and_ou_process.md
                 - Explicit Solution and Distribution: ch18/vasicek_model/explicit_solution_and_distribution.md
                 - Named Functions A(t,T) and B(t,T): ch18/vasicek_model/named_functions.md
@@ -924,7 +935,7 @@ nav:
                 - Calibration to Yield Curve and Caps: ch18/vasicek_model/calibration.md
                 - Python Implementation: ch18/vasicek_model/python_implementation.py
                 - Python Implementation (Guide): ch18/vasicek_model/python_implementation.md
-            - 18.5 Cox-Ingersoll-Ross:
+            - 18.6 Cox-Ingersoll-Ross:
                 - Cox-Ingersoll-Ross and Square-Root Process: ch18/cir_model/cir_sde_and_square_root_process.md
                 - Feller Condition and Boundary Classification: ch18/cir_model/feller_condition_and_boundary.md
                 - Transition Density (Non-Central Chi-Squared): ch18/cir_model/transition_density.md
@@ -939,12 +950,12 @@ nav:
                 - Calibration: ch18/cir_model/calibration.md
                 - Python Implementation: ch18/cir_model/python_implementation.py
                 - Python Implementation (Guide): ch18/cir_model/python_implementation.md
-            - 18.6 Short-Rate Model Comparison:
+            - 18.7 Short-Rate Model Comparison:
                 - Vasicek vs Cox-Ingersoll-Ross vs Hull-White: ch18/model_comparison/vasicek_vs_cir_vs_hull_white.md
                 - Analytical Tractability Comparison: ch18/model_comparison/analytical_tractability.md
                 - Calibration Fit Comparison: ch18/model_comparison/calibration_fit_comparison.md
                 - When to Use Which Model: ch18/model_comparison/when_to_use_which.md
-            - 18.7 Black-Karasinski:
+            - 18.8 Black-Karasinski:
                 - Log-Normal Short Rate Dynamics: ch18/black_karasinski/log_normal_short_rate_sde.md
                 - Non-Affine Structure and Consequences: ch18/black_karasinski/non_affine_structure.md
                 - No Closed-Form Bond Prices: ch18/black_karasinski/no_closed_form_bond_prices.md
@@ -954,7 +965,7 @@ nav:
                 - Calibration to Cap Volatilities: ch18/black_karasinski/calibration_to_cap_volatilities.md
                 - Python Implementation: ch18/black_karasinski/python_implementation.py
                 - Python Implementation (Guide): ch18/black_karasinski/python_implementation.md
-            - 18.8 Python Examples:
+            - 18.9 Python Examples:
                 - Vasicek Usage: ch18/codes/vasicek_usage.py
                 - Cox-Ingersoll-Ross Usage: ch18/codes/cir_usage.py
                 - Bond Price Quote: ch18/codes/bond_price_quote.py

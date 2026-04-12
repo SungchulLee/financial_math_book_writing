@@ -14,11 +14,11 @@ $$
 \int_0^t g(s,B_s)\,dB_s
 $$
 
-The key idea is to **choose a function \(f(t,x)\)** whose derivative with respect to \(x\) matches the integrand.
+The key idea is to **choose a function $f(t,x)$** whose derivative with respect to $x$ matches the integrand.
 
 ### General Strategy
 
-Choose \(f(t,x)\) such that \(\frac{\partial f}{\partial x}(t,x) = g(t,x)\). Applying Itô's lemma to \(f(t,B_t)\) gives
+Choose $f(t,x)$ such that $\frac{\partial f}{\partial x}(t,x) = g(t,x)$. Applying Itô's lemma to $f(t,B_t)$ gives
 
 $$
 df(t,B_t)
@@ -31,13 +31,13 @@ df(t,B_t)
 \frac{\partial^2 f}{\partial x^2}\,dt
 $$
 
-Rearranging isolates the stochastic integral and expresses it in terms of \(f(t,B_t)\) and ordinary integrals.
+Rearranging isolates the stochastic integral and expresses it in terms of $f(t,B_t)$ and ordinary integrals.
 
 ---
 
-### Example 1: \(\displaystyle\int_0^t B_s\,dB_s\)
+### Example 1: $\displaystyle\int_0^t B_s\,dB_s$
 
-Choose \(f(x) = \frac{x^2}{2}\), so that \(f'(x) = x\).
+Choose $f(x) = \frac{x^2}{2}$, so that $f'(x) = x$.
 
 $$
 f'(x) = x, \qquad f''(x) = 1
@@ -49,7 +49,7 @@ $$
 d\!\left(\frac{B_t^2}{2}\right) = B_t\,dB_t + \frac{1}{2}\,dt
 $$
 
-Integrating from \(0\) to \(t\):
+Integrating from $0$ to $t$:
 
 $$
 \boxed{
@@ -57,20 +57,20 @@ $$
 }
 $$
 
-This identity implies that \(B_t^2 - t\) is a martingale.
+This identity implies that $B_t^2 - t$ is a martingale.
 
 ---
 
-### Example 2: \(\displaystyle\int_0^t s\,dB_s\)
+### Example 2: $\displaystyle\int_0^t s\,dB_s$
 
-The integrand \(s\) is **deterministic and square-integrable**. For deterministic integrands, the Itô isometry gives the distribution directly: the integral is Gaussian with zero mean (since all Itô integrals of deterministic square-integrable integrands are centered Gaussian) and variance
+The integrand $s$ is **deterministic and square-integrable**. For deterministic integrands, the Itô isometry gives the distribution directly: the integral is Gaussian with zero mean (since all Itô integrals of deterministic square-integrable integrands are centered Gaussian) and variance
 
 $$
 \mathbb{E}\!\left[\left(\int_0^t s\,dB_s\right)^2\right]
 = \int_0^t s^2\,ds = \frac{t^3}{3}
 $$
 
-Therefore (where \(\overset{d}{=}\) denotes equality in distribution):
+Therefore (where $\overset{d}{=}$ denotes equality in distribution):
 
 $$
 \boxed{
@@ -94,9 +94,9 @@ This path-by-path identity is consistent with the Gaussian characterization abov
 
 ---
 
-### Example 3: \(\displaystyle\int_0^t sB_s\,dB_s\)
+### Example 3: $\displaystyle\int_0^t sB_s\,dB_s$
 
-Choose \(f(t,x) = \frac{1}{2}tx^2\), so that \(\frac{\partial f}{\partial x} = tx\).
+Choose $f(t,x) = \frac{1}{2}tx^2$, so that $\frac{\partial f}{\partial x} = tx$.
 
 $$
 \frac{\partial f}{\partial t} = \frac{1}{2}x^2,
@@ -128,13 +128,13 @@ $$
 }
 $$
 
-The integral \(\int_0^t B_s^2\,ds\) has no closed form and is left as is. This example shows how **time dependence introduces additional drift terms**.
+The integral $\int_0^t B_s^2\,ds$ has no closed form and is left as is. This example shows how **time dependence introduces additional drift terms**.
 
 ---
 
-### Example 4: \(\displaystyle\int_0^t B_s^2\,dB_s\)
+### Example 4: $\displaystyle\int_0^t B_s^2\,dB_s$
 
-Choose \(f(x) = \frac{x^3}{3}\), so that \(f'(x) = x^2\).
+Choose $f(x) = \frac{x^3}{3}$, so that $f'(x) = x^2$.
 
 $$
 f'(x) = x^2, \qquad f''(x) = 2x
@@ -154,13 +154,13 @@ $$
 }
 $$
 
-The integral \(\int_0^t B_s\,ds\) has no closed form and is left as is.
+The integral $\int_0^t B_s\,ds$ has no closed form and is left as is.
 
 ---
 
-### Example 5: \(\displaystyle\int_0^t e^{B_s}\,dB_s\)
+### Example 5: $\displaystyle\int_0^t e^{B_s}\,dB_s$
 
-Apply Itô's lemma to \(f(x) = e^x\):
+Apply Itô's lemma to $f(x) = e^x$:
 
 $$
 d(e^{B_t}) = e^{B_t}\,dB_t + \frac{1}{2}e^{B_t}\,dt
@@ -174,25 +174,25 @@ $$
 }
 $$
 
-The integral \(\int_0^t e^{B_s}\,ds\) has no closed form and is left as is.
+The integral $\int_0^t e^{B_s}\,ds$ has no closed form and is left as is.
 
 ---
 
 ## 2. Constructing Martingales
 
-A sufficient condition for \(M_t\) to be a **local martingale** is that its Itô differential has no \(dt\) term. Under suitable integrability conditions (such as Novikov's condition for exponential processes), it is a true martingale. Itô's lemma makes the vanishing-drift condition explicit and checkable.
+A sufficient condition for $M_t$ to be a **local martingale** is that its Itô differential has no $dt$ term. Under suitable integrability conditions (such as Novikov's condition for exponential processes), it is a true martingale. Itô's lemma makes the vanishing-drift condition explicit and checkable.
 
 ---
 
 ### Example 6: The Exponential Martingale
 
-For \(\theta \in \mathbb{R}\), define
+For $\theta \in \mathbb{R}$, define
 
 $$
 Z_t = \exp\!\left(\theta B_t - \frac{1}{2}\theta^2 t\right)
 $$
 
-Apply Itô's lemma to \(f(t,x) = e^{\theta x - \frac{1}{2}\theta^2 t}\):
+Apply Itô's lemma to $f(t,x) = e^{\theta x - \frac{1}{2}\theta^2 t}$:
 
 $$
 f_t = -\frac{1}{2}\theta^2 e^{\theta x - \frac{1}{2}\theta^2 t},
@@ -202,13 +202,13 @@ f_x = \theta e^{\theta x - \frac{1}{2}\theta^2 t},
 f_{xx} = \theta^2 e^{\theta x - \frac{1}{2}\theta^2 t}
 $$
 
-The \(dt\) coefficient is \(f_t + \frac{1}{2}f_{xx} = -\frac{1}{2}\theta^2 Z_t + \frac{1}{2}\theta^2 Z_t = 0\), so:
+The $dt$ coefficient is $f_t + \frac{1}{2}f_{xx} = -\frac{1}{2}\theta^2 Z_t + \frac{1}{2}\theta^2 Z_t = 0$, so:
 
 $$
 \boxed{dZ_t = \theta Z_t\,dB_t}
 $$
 
-Since the \(dt\) coefficient vanishes, \(Z_t\) is a local martingale. It is a true martingale by Novikov's condition: $\mathbb{E}\!\left[\exp\!\left(\frac{1}{2}\theta^2 T\right)\right] < \infty$ for all finite $T$, which holds since $\theta$ is a constant. This SDE has the explicit solution $Z_t = Z_0\exp(\theta B_t - \frac{1}{2}\theta^2 t)$, confirming that the original definition and the SDE are consistent.
+Since the $dt$ coefficient vanishes, $Z_t$ is a local martingale. It is a true martingale by Novikov's condition: $\mathbb{E}\!\left[\exp\!\left(\frac{1}{2}\theta^2 T\right)\right] < \infty$ for all finite $T$, which holds since $\theta$ is a constant. This SDE has the explicit solution $Z_t = Z_0\exp(\theta B_t - \frac{1}{2}\theta^2 t)$, confirming that the original definition and the SDE are consistent.
 
 This process is fundamental in **Girsanov's theorem** and **risk-neutral pricing**.
 
@@ -216,7 +216,7 @@ This process is fundamental in **Girsanov's theorem** and **risk-neutral pricing
 
 ## 3. Solving Stochastic Differential Equations
 
-The standard approach is to guess a transformation \(f(t, X_t)\) that converts the SDE into a simpler (often deterministic-coefficient) equation, then integrate.
+The standard approach is to guess a transformation $f(t, X_t)$ that converts the SDE into a simpler (often deterministic-coefficient) equation, then integrate.
 
 ---
 
@@ -228,7 +228,7 @@ $$
 dS_t = \mu S_t\,dt + \sigma S_t\,dB_t, \qquad S_0 = s_0
 $$
 
-where \(\mu \in \mathbb{R}\) and \(\sigma > 0\) are constants. Apply Itô's lemma to \(f(x) = \log x\):
+where $\mu \in \mathbb{R}$ and $\sigma > 0$ are constants. Apply Itô's lemma to $f(x) = \log x$:
 
 $$
 f'(x) = \frac{1}{x}, \qquad f''(x) = -\frac{1}{x^2}
@@ -240,7 +240,7 @@ $$
 (dS_t)^2 = \sigma^2 S_t^2\,dt
 $$
 
-Substituting \(dS_t = \mu S_t\,dt + \sigma S_t\,dB_t\) and \((dS_t)^2 = \sigma^2 S_t^2\,dt\):
+Substituting $dS_t = \mu S_t\,dt + \sigma S_t\,dB_t$ and $(dS_t)^2 = \sigma^2 S_t^2\,dt$:
 
 $$
 d(\log S_t)
@@ -256,7 +256,7 @@ S_t = s_0\exp\!\left[\left(\mu - \frac{1}{2}\sigma^2\right)t + \sigma B_t\right]
 }
 $$
 
-The Itô correction \(-\frac{1}{2}\sigma^2\) is the convexity adjustment between arithmetic drift and geometric growth rate. This process is the foundation of the **Black–Scholes model**.
+The Itô correction $-\frac{1}{2}\sigma^2$ is the convexity adjustment between arithmetic drift and geometric growth rate. This process is the foundation of the **Black–Scholes model**.
 
 ---
 
@@ -268,7 +268,7 @@ The example below applies Itô's lemma directly to a process transformation, ill
 
 ### Example 8: Reciprocal of Brownian Motion
 
-Let \(B_0 = b \neq 0\) (we require $b \neq 0$ since $f(x) = 1/x$ is undefined at $x = 0$) and let \(Y_t = 1/B_t\), valid up to \(\tau_0 = \inf\{t > 0 : B_t = 0\}\). For \(f(x) = 1/x\):
+Let $B_0 = b \neq 0$ (we require $b \neq 0$ since $f(x) = 1/x$ is undefined at $x = 0$) and let $Y_t = 1/B_t$, valid up to $\tau_0 = \inf\{t > 0 : B_t = 0\}$. For $f(x) = 1/x$:
 
 $$
 f'(x) = -\frac{1}{x^2}, \qquad f''(x) = \frac{2}{x^3}
@@ -280,7 +280,7 @@ $$
 d\!\left(\frac{1}{B_t}\right) = -\frac{1}{B_t^2}\,dB_t + \frac{1}{B_t^3}\,dt
 $$
 
-The \(dt\) term \(\frac{1}{B_t^3}\,dt\) is a non-zero drift, so \(1/B_t\) is **not** a local martingale. The Itô correction introduces a drift even though $f(x) = 1/x$ has no explicit time dependence. In integral form:
+The $dt$ term $\frac{1}{B_t^3}\,dt$ is a non-zero drift, so $1/B_t$ is **not** a local martingale. The Itô correction introduces a drift even though $f(x) = 1/x$ has no explicit time dependence. In integral form:
 
 $$
 \boxed{
@@ -294,8 +294,8 @@ $$
 
 | Technique | Key step | Examples |
 |---|---|---|
-| Evaluate stochastic integrals | Find \(f\) with \(f_x = g\); apply Itô's lemma and rearrange | 1–5 |
-| Construct martingales | Verify that \(dt\) coefficient vanishes; check integrability | 6 |
+| Evaluate stochastic integrals | Find $f$ with $f_x = g$; apply Itô's lemma and rearrange | 1–5 |
+| Construct martingales | Verify that $dt$ coefficient vanishes; check integrability | 6 |
 | Solve SDEs | Apply a simplifying transformation; integrate | 7 |
 | Process transformations | Apply Itô's lemma directly; correction term produces non-zero drift from curvature even without explicit time dependence | 8 |
 

@@ -12,42 +12,42 @@ Delta hedging removes linear price risk but leaves the portfolio exposed to gamm
 
 After delta hedging, the residual P&L over an interval is
 
-\[
+$$
 P\&L_{\text{hedged}} \approx \frac{1}{2}\Gamma(\delta S)^2 + \Theta\,\delta t
-\]
+$$
 
-If \(\Gamma\) is large, even moderate price moves create significant P&L swings. **Gamma hedging** seeks
+If $\Gamma$ is large, even moderate price moves create significant P&L swings. **Gamma hedging** seeks
 
-\[
+$$
 \boxed{\Gamma_{\text{portfolio}} = 0}
-\]
+$$
 
 #### Mechanics
 
-Since the underlying asset has \(\Gamma = 0\) (its price is linear in itself), gamma can only be hedged with **other options**.
+Since the underlying asset has $\Gamma = 0$ (its price is linear in itself), gamma can only be hedged with **other options**.
 
-**Worked example.** You are long 100 calls with per-option \(\Gamma_{\text{call}} = 0.04\).
+**Worked example.** You are long 100 calls with per-option $\Gamma_{\text{call}} = 0.04$.
 
-Total gamma: \(100 \times 0.04 = 4.0\).
+Total gamma: $100 \times 0.04 = 4.0$.
 
-To neutralize, find another option (e.g., an ATM put) with \(\Gamma_{\text{put}} = 0.05\). Short
+To neutralize, find another option (e.g., an ATM put) with $\Gamma_{\text{put}} = 0.05$. Short
 
-\[
+$$
 n = \frac{4.0}{0.05} = 80 \text{ puts}
-\]
+$$
 
 After adding 80 short puts:
 
-\[
+$$
 \Gamma_{\text{portfolio}} = 4.0 - 80 \times 0.05 = 0
-\]
+$$
 
 **Important.** Adding the puts changes the portfolio delta, so you must **re-delta-hedge** after the gamma adjustment.
 
 #### Sequential hedging procedure
 
-1. **Gamma-neutralize** using options (match \(\Gamma\) with opposite-sign option positions).
-2. **Re-delta-hedge** using shares to restore \(\Delta_{\text{portfolio}} = 0\).
+1. **Gamma-neutralize** using options (match $\Gamma$ with opposite-sign option positions).
+2. **Re-delta-hedge** using shares to restore $\Delta_{\text{portfolio}} = 0$.
 
 This order matters: adjusting gamma with options changes delta, but adjusting delta with shares does not affect gamma.
 
@@ -60,15 +60,15 @@ This order matters: adjusting gamma with options changes delta, but adjusting de
 
 In real markets, implied volatility changes over time. A portfolio with net vega exposure gains or loses value as implied vol shifts:
 
-\[
+$$
 \delta V \approx \nu \cdot \delta\sigma_{\text{implied}}
-\]
+$$
 
 A **vega-neutral** portfolio satisfies
 
-\[
+$$
 \boxed{\nu_{\text{portfolio}} = 0}
-\]
+$$
 
 #### Mechanics
 
@@ -82,9 +82,9 @@ Like gamma, vega can only be hedged with **other options** (the underlying has z
 
 In Black–Scholes, vega and gamma are proportional:
 
-\[
+$$
 \nu = \sigma S^2 \tau\,\Gamma
-\]
+$$
 
 This means gamma-hedging automatically addresses vega in the Black–Scholes world. However, in practice (stochastic volatility, term structure effects), vega and gamma are **not perfectly correlated**, and separate hedging is required.
 
@@ -95,28 +95,28 @@ This means gamma-hedging automatically addresses vega in the Black–Scholes wor
 
 When both gamma and vega must be neutralized, you need **at least two option instruments** (in addition to the underlying for delta). This creates a system of equations:
 
-\[
+$$
 \begin{cases}
 n_1 \Gamma_1 + n_2 \Gamma_2 = -\Gamma_{\text{existing}} \\
 n_1 \nu_1 + n_2 \nu_2 = -\nu_{\text{existing}}
 \end{cases}
-\]
+$$
 
-Solve for \(n_1, n_2\), then re-delta-hedge with shares.
+Solve for $n_1, n_2$, then re-delta-hedge with shares.
 
-**Example.** Existing portfolio: \(\Gamma = +4\), \(\nu = +200\).
+**Example.** Existing portfolio: $\Gamma = +4$, $\nu = +200$.
 
 Available instruments:
-- Option A: \(\Gamma_A = 0.05\), \(\nu_A = 3.0\)
-- Option B: \(\Gamma_B = 0.02\), \(\nu_B = 5.0\)
+- Option A: $\Gamma_A = 0.05$, $\nu_A = 3.0$
+- Option B: $\Gamma_B = 0.02$, $\nu_B = 5.0$
 
 Solve:
 
-\[
+$$
 \begin{pmatrix} 0.05 & 0.02 \\ 3.0 & 5.0 \end{pmatrix}
 \begin{pmatrix} n_1 \\ n_2 \end{pmatrix}
 = \begin{pmatrix} -4 \\ -200 \end{pmatrix}
-\]
+$$
 
 yielding the required positions in options A and B.
 
@@ -127,16 +127,16 @@ yielding the required positions in options A and B.
 
 Gamma and theta are fundamentally linked through the Black–Scholes PDE:
 
-\[
+$$
 \Theta + \frac{1}{2}\sigma^2 S^2 \Gamma = r(V - S\Delta)
-\]
+$$
 
 This implies:
 
 | Position | Gamma | Theta | Interpretation |
 |---|---|---|---|
-| **Long options** | \(\Gamma > 0\) | \(\Theta < 0\) | Benefit from moves, pay time decay |
-| **Short options** | \(\Gamma < 0\) | \(\Theta > 0\) | Earn time decay, lose on moves |
+| **Long options** | $\Gamma > 0$ | $\Theta < 0$ | Benefit from moves, pay time decay |
+| **Short options** | $\Gamma < 0$ | $\Theta > 0$ | Earn time decay, lose on moves |
 
 You cannot have both positive gamma and positive theta simultaneously (in Black–Scholes). This tradeoff is the central tension in options portfolio management.
 
@@ -159,7 +159,7 @@ Sell options to earn theta income while dynamically delta-hedging to manage dire
 #### P&L structure
 
 - **Profit = theta earned** (positive, accrues daily).
-- **Loss = gamma cost** from rebalancing: approximately \(\frac{1}{2}|\Gamma|(\Delta S)^2\) per move.
+- **Loss = gamma cost** from rebalancing: approximately $\frac{1}{2}|\Gamma|(\Delta S)^2$ per move.
 - **Net P&L** depends on whether realized vol exceeds or falls below implied vol.
 
 #### Risk profile

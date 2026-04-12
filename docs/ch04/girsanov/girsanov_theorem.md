@@ -1,6 +1,5 @@
 # Girsanov's Theorem
 
-
 Girsanov's theorem is one of the most powerful tools in mathematical finance. It describes how a change of probability measure modifies the drift of a stochastic process while preserving its Brownian structure. This is essential for pricing derivatives via risk-neutral measures.
 
 !!! note "Standing assumptions"
@@ -26,7 +25,7 @@ This condition ensures that the exponential martingale does not explode and is a
 
 ## The Exponential Martingale
 
-Define the **Radon-Nikodym derivative** (also called the **exponential martingale**):
+Define the **Radon–Nikodym derivative** (also called the **exponential martingale**):
 
 $$
 \boxed{
@@ -63,7 +62,13 @@ $$
 \mathbb{E}^{\mathbb{Q}}[X] = \mathbb{E}^{\mathbb{P}}[X \cdot Z_T]
 $$
 
-For events in the σ-algebra $\mathcal{F}_t$ (where $t \leq T$), since $Z_t$ is a martingale:
+If in addition $X$ is $\mathcal{F}_t$-measurable for some $t \leq T$, then since $Z_s$ is a $\mathbb{P}$-martingale we can replace $Z_T$ by $Z_t$:
+
+$$
+\mathbb{E}^{\mathbb{Q}}[X] = \mathbb{E}^{\mathbb{P}}[X \cdot Z_T] = \mathbb{E}^{\mathbb{P}}\!\big[X \cdot \mathbb{E}^{\mathbb{P}}[Z_T \mid \mathcal{F}_t]\big] = \mathbb{E}^{\mathbb{P}}[X \cdot Z_t]
+$$
+
+In particular, taking $X = \mathbf{1}_A$ for $A \in \mathcal{F}_t$:
 
 $$
 \mathbb{Q}(A) = \mathbb{E}^{\mathbb{P}}[Z_T \cdot \mathbf{1}_A] = \mathbb{E}^{\mathbb{P}}[Z_t \cdot \mathbf{1}_A], \quad A \in \mathcal{F}_t
@@ -113,7 +118,7 @@ under $\mathbb{Q}$.
     <em>Top-left:</em> Paths under the physical measure ℙ drawn with equal opacity; the amber
     dashed line tracks the theoretical drift μt.
     <em>Top-center:</em> The same paths under ℚ — opacity is proportional to the
-    Radon-Nikodym weight Z<sub>T</sub> = exp(−θW<sub>T</sub> − ½θ²T).
+    Radon–Nikodym weight Z<sub>T</sub> = exp(−θW<sub>T</sub> − ½θ²T).
     High-weight paths (those that drifted upward against μ) appear dark and prominent;
     low-weight paths fade to near-invisible, making the measure change immediately visible.
     <em>Top-right:</em> Sorted bar chart of relative Z<sub>T</sub> weights (alpha-coded);
@@ -145,25 +150,14 @@ where $\mu(t)$ is the drift.
 
 **Under $\mathbb{Q}$:** Since $W_t = \widetilde{W}_t - \int_0^t \theta_s\,ds$:
 
-$$
-dX_t = \mu(t)\,dt + \sigma(t)\left(d\widetilde{W}_t - \theta_t\,dt\right)
-$$
-
-$$
-= \mu(t)\,dt + \sigma(t)\,d\widetilde{W}_t - \sigma(t)\theta_t\,dt
-$$
-
-$$
-= \left(\mu(t) - \sigma(t)\theta_t\right)dt + \sigma(t)\,d\widetilde{W}_t
-$$
-
-$$
-= 0\,dt + \sigma(t)\,d\widetilde{W}_t
-$$
-
-$$
-= \sigma(t)\,d\widetilde{W}_t
-$$
+$$\begin{array}{lll}
+dX_t 
+&=&\displaystyle \mu(t)\,dt + \sigma(t)\left(d\widetilde{W}_t - \theta_t\,dt\right)\\
+&=&\displaystyle \mu(t)\,dt + \sigma(t)\,d\widetilde{W}_t - \sigma(t)\theta_t\,dt\\
+&=&\displaystyle \left(\mu(t) - \sigma(t)\theta_t\right)dt + \sigma(t)\,d\widetilde{W}_t\\
+&=&\displaystyle 0\,dt + \sigma(t)\,d\widetilde{W}_t\\
+&=&\displaystyle \sigma(t)\,d\widetilde{W}_t
+\end{array}$$
 
 **Result:** The drift term in this representation is removed under $\mathbb{Q}$.
 
@@ -177,27 +171,45 @@ $$
 dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
 $$
 
-The risk $\mu$ and risk-free rate $r$ are different, so this is not a martingale.
+The expected return $\mu$ and the risk-free rate $r$ differ, so the discounted stock price is not a martingale under $\mathbb{P}$.
 
 **Solution via Girsanov:**
 
-1. **Choose Girsanov kernel:** $\theta = \frac{\mu - r}{\sigma}$ (market price of risk)
+1. **Choose the Girsanov kernel:** $\theta = \frac{\mu - r}{\sigma}$ (market price of risk). The stock-price dynamics under $\mathbb{P}$ can then be rewritten as
 
-2. **Define numeraire-relative measure $\mathbb{Q}$:** Use $Z_T = \exp\left(-\int_0^T \theta\,dW_s - \frac{1}{2}\int_0^T \theta^2\,ds\right)$
+    $$
+    dS_t = rS_t\,dt + \sigma S_t\!\left(dW_t + \frac{\mu - r}{\sigma}\,dt\right) = rS_t\,dt + \sigma S_t(dW_t + \theta\,dt)
+    $$
 
-3. **Under $\mathbb{Q}$:** The discounted stock price becomes a martingale:
+2. **Define the new measure $\mathbb{Q}$** by
 
-$$
-d(e^{-rt}S_t) = 0\,dt + e^{-rt}\sigma S_t\,d\widetilde{W}_t
-$$
+    $$
+    Z_T = \exp\!\left(-\int_0^T \theta\,dW_s - \frac{1}{2}\int_0^T \theta^2\,ds\right), \qquad \frac{d\mathbb{Q}}{d\mathbb{P}}\Big|_{\mathcal{F}_T} = Z_T
+    $$
 
-4. **Option price:** Risk-neutral expectation:
+    By Girsanov’s theorem, $\widetilde{W}_t := W_t + \theta t$ is a standard Brownian motion under $\mathbb{Q}$.
 
-$$
-C(t, S_t) = e^{-r(T-t)} \mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ | \mathcal{F}_t]
-$$
+3. **Under $\mathbb{Q}$**, the stock-price dynamics become
 
-This is the foundation of the Black-Scholes pricing formula.
+    $$
+    dS_t = rS_t\,dt + \sigma S_t\,d\widetilde{W}_t
+    $$
+
+    The discounted stock price satisfies $d(e^{-rt}S_t) = e^{-rt}\sigma S_t\,d\widetilde{W}_t$, so $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale.
+
+4. **Martingale pricing argument.** Let the European call payoff at maturity $T$ be $\Phi(S_T) = (S_T - K)^+$. Since $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale, $\mathbb{Q}$ is the risk-neutral measure. Under no-arbitrage and market completeness, discounted derivative prices are also $\mathbb{Q}$-martingales:
+
+    $$
+    e^{-rt}C(t, S_t) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-rT}\Phi(S_T) \mid \mathcal{F}_t\right]
+    $$
+
+    Multiplying both sides by $e^{rt}$:
+
+    $$
+    C(t, S_t) = e^{-r(T-t)}\,\mathbb{E}^{\mathbb{Q}}\!\left[(S_T - K)^+ \mid \mathcal{F}_t\right]
+    $$
+
+    This is the foundation of Black–Scholes pricing.
 
 ---
 
@@ -262,16 +274,12 @@ where:
 
 **Key observation:** The discounted stock price $e^{-rt}S_t$ is NOT a $\mathbb{P}$-martingale because:
 
-$$
-d(e^{-rt}S_t) = -re^{-rt}S_t\,dt + e^{-rt}dS_t
-$$
-
-$$
-= -re^{-rt}S_t\,dt + e^{-rt}(\mu S_t\,dt + \sigma S_t\,dW_t)
-$$
-
-$$
-= e^{-rt}S_t(\mu - r)\,dt + e^{-rt}\sigma S_t\,dW_t$$
+$$\begin{array}{lll}
+d(e^{-rt}S_t) 
+&=&\displaystyle -re^{-rt}S_t\,dt + e^{-rt}dS_t\\
+&=&\displaystyle -re^{-rt}S_t\,dt + e^{-rt}(\mu S_t\,dt + \sigma S_t\,dW_t)\\
+&=&\displaystyle e^{-rt}S_t(\mu - r)\,dt + e^{-rt}\sigma S_t\,dW_t
+\end{array}$$
 
 The $dt$ coefficient is $(\mu - r)S_t e^{-rt} \neq 0$ (unless $\mu = r$), so this is not a martingale.
 
@@ -287,7 +295,7 @@ $$
 \mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\int_0^T \left(\frac{\mu-r}{\sigma}\right)^2 ds\right)\right] = \exp\left(\frac{(\mu-r)^2 T}{2\sigma^2}\right) < \infty \quad \checkmark
 $$
 
-**Exponential martingale (Radon-Nikodym derivative):**
+**Exponential martingale (Radon–Nikodym derivative):**
 
 $$
 Z_t = \exp\left(-\frac{\mu - r}{\sigma}W_t - \frac{(\mu-r)^2 t}{2\sigma^2}\right)
@@ -301,17 +309,12 @@ $$
 
 **Transform the SDE:** Since $W_t = \widetilde{W}_t - \frac{\mu-r}{\sigma}t$:
 
-$$
-dS_t = \mu S_t\,dt + \sigma S_t\left(d\widetilde{W}_t - \frac{\mu-r}{\sigma}dt\right)
-$$
-
-$$
-= \mu S_t\,dt + \sigma S_t\,d\widetilde{W}_t - (\mu - r)S_t\,dt
-$$
-
-$$
-= rS_t\,dt + \sigma S_t\,d\widetilde{W}_t
-$$
+$$\begin{array}{lll}
+dS_t 
+&=&\displaystyle \mu S_t\,dt + \sigma S_t\left(d\widetilde{W}_t - \frac{\mu-r}{\sigma}dt\right)\\
+&=&\displaystyle \mu S_t\,dt + \sigma S_t\,d\widetilde{W}_t - (\mu - r)S_t\,dt\\
+&=&\displaystyle rS_t\,dt + \sigma S_t\,d\widetilde{W}_t
+\end{array}$$
 
 **Result under $\mathbb{Q}$ (risk-neutral measure):**
 
@@ -321,17 +324,12 @@ $$
 
 Now the discounted stock price is a martingale:
 
-$$
-d(e^{-rt}S_t) = -re^{-rt}S_t\,dt + e^{-rt}dS_t
-$$
-
-$$
-= -re^{-rt}S_t\,dt + e^{-rt}(rS_t\,dt + \sigma S_t\,d\widetilde{W}_t)
-$$
-
-$$
-= e^{-rt}\sigma S_t\,d\widetilde{W}_t \quad \text{(martingale!)}
-$$
+$$\begin{array}{lll}
+d(e^{-rt}S_t) 
+&=&\displaystyle -re^{-rt}S_t\,dt + e^{-rt}dS_t\\
+&=&\displaystyle -re^{-rt}S_t\,dt + e^{-rt}(rS_t\,dt + \sigma S_t\,d\widetilde{W}_t)\\
+&=&\displaystyle e^{-rt}\sigma S_t\,d\widetilde{W}_t \quad \text{(martingale!)}
+\end{array}$$
 
 **Option pricing:** A European call option with strike $K$ and maturity $T$ has price:
 
@@ -357,9 +355,10 @@ dr_t = \kappa(\bar{r} - r_t)\,dt + \sigma\,dW_t
 $$
 
 where:
-- $\bar{r}$ = long-run mean interest rate
-- $\kappa$ = mean reversion speed
-- $\sigma$ = volatility
+
+- $\bar{r}$ : long-run mean interest rate
+- $\kappa$ : mean reversion speed
+- $\sigma$ : volatility
 
 **Typical market price of risk:** $\lambda$ (constant or time-dependent)
 
@@ -402,7 +401,7 @@ Girsanov's theorem is indispensable because:
 ## Python: Simulating the Measure Change
 
 The following script reproduces Figure 1. It simulates 200 drifted Brownian motion paths under $\mathbb{P}$,
-computes the Radon-Nikodym weights $Z_T$, and visualizes the measure change in six panels.
+computes the Radon–Nikodym weights $Z_T$, and visualizes the measure change in six panels.
 In the path panels, opacity encodes the weight: high-$Z_T$ paths appear dark and prominent,
 while low-$Z_T$ paths fade out, making the measure change immediately visible.
 
@@ -574,10 +573,10 @@ plt.show()
 ## Exercises
 
 **Exercise 1.**
-Let $W_t$ be a standard Brownian motion under $\mathbb{P}$ and let $\theta = 0.5$ (constant). Write the explicit form of the Radon-Nikodym derivative $Z_T$ for $T = 1$, verify that the Novikov condition holds, and define the shifted Brownian motion $\widetilde{W}_t$ under $\mathbb{Q}$.
+Let $W_t$ be a standard Brownian motion under $\mathbb{P}$ and let $\theta = 0.5$ (constant). Write the explicit form of the Radon–Nikodym derivative $Z_T$ for $T = 1$, verify that the Novikov condition holds, and define the shifted Brownian motion $\widetilde{W}_t$ under $\mathbb{Q}$.
 
 ??? success "Solution to Exercise 1"
-    With $\theta = 0.5$ constant and $T = 1$, the Radon-Nikodym derivative is:
+    With $\theta = 0.5$ constant and $T = 1$, the Radon–Nikodym derivative is:
 
     $$
     Z_T = \exp\!\left(-\theta W_T - \frac{1}{2}\theta^2 T\right) = \exp\!\left(-0.5\,W_1 - \frac{1}{2}(0.25)(1)\right) = \exp\!\left(-0.5\,W_1 - 0.125\right)
@@ -732,10 +731,10 @@ Girsanov's theorem states that $\widetilde{W}_t = W_t + \int_0^t \theta_s\,ds$ i
 ---
 
 **Exercise 6.**
-Consider a two-dimensional Brownian motion $(W_t^1, W_t^2)$ and a Girsanov kernel $\boldsymbol{\theta} = (\theta_1, \theta_2)$. Write the vector form of the Radon-Nikodym derivative $Z_T$ and state the multivariate Novikov condition. Define the shifted Brownian motions $\widetilde{W}_t^1$ and $\widetilde{W}_t^2$ under $\mathbb{Q}$ and verify they are independent.
+Consider a two-dimensional Brownian motion $(W_t^1, W_t^2)$ and a Girsanov kernel $\boldsymbol{\theta} = (\theta_1, \theta_2)$. Write the vector form of the Radon–Nikodym derivative $Z_T$ and state the multivariate Novikov condition. Define the shifted Brownian motions $\widetilde{W}_t^1$ and $\widetilde{W}_t^2$ under $\mathbb{Q}$ and verify they are independent.
 
 ??? success "Solution to Exercise 6"
-    For a two-dimensional Brownian motion $(W_t^1, W_t^2)$ with Girsanov kernel $\boldsymbol{\theta} = (\theta_1, \theta_2)$, the Radon-Nikodym derivative takes the vector form:
+    For a two-dimensional Brownian motion $(W_t^1, W_t^2)$ with Girsanov kernel $\boldsymbol{\theta} = (\theta_1, \theta_2)$, the Radon–Nikodym derivative takes the vector form:
 
     $$
     Z_T = \exp\!\left(-\sum_{i=1}^{2}\int_0^T \theta_i\,dW_s^i - \frac{1}{2}\sum_{i=1}^{2}\int_0^T \theta_i^2\,ds\right)

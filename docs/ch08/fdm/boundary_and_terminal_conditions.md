@@ -2,31 +2,31 @@
 
 
 Numerical PDE pricing requires:
-- a **terminal condition** at \(t=T\),
-- **boundary conditions** in \(S\) after truncating \((0,\infty)\) to \([0,S_{\max}]\).
+- a **terminal condition** at $t=T$,
+- **boundary conditions** in $S$ after truncating $(0,\infty)$ to $[0,S_{\max}]$.
 
 ---
 
 ## Terminal Condition
 
 
-For a European payoff \(\Phi(S)\),
+For a European payoff $\Phi(S)$,
 
-\[
+$$
 \boxed{V(T,S)=\Phi(S).}
-\]
+$$
 
 
-In time-to-maturity \(\tau=T-t\), this becomes \(u(0,S)=\Phi(S)\).
+In time-to-maturity $\tau=T-t$, this becomes $u(0,S)=\Phi(S)$.
 
-Payoffs often have kinks (e.g. \((S-K)^+\)), affecting accuracy near \(\tau=0\).
+Payoffs often have kinks (e.g. $(S-K)^+$), affecting accuracy near $\tau=0$.
 
 ---
 
 ## Truncation
 
 
-Choose \(S_{\max}\) large enough to make truncation error negligible in the region of interest.
+Choose $S_{\max}$ large enough to make truncation error negligible in the region of interest.
 
 ---
 
@@ -35,25 +35,25 @@ Choose \(S_{\max}\) large enough to make truncation error negligible in the regi
 
 Call:
 
-\[
+$$
 \boxed{
 V(t,0)=0,
 \qquad
-V(t,S_{\max})\approx S_{\max}-Ke^{-r(T-t)}.
+V(t,S_{\max})\approx S_{\max}-Ke^{-r(T-t)}
 }
-\]
+$$
 
 
 
 Put:
 
-\[
+$$
 \boxed{
 V(t,0)\approx Ke^{-r(T-t)},
 \qquad
-V(t,S_{\max})\approx 0.
+V(t,S_{\max})\approx 0
 }
-\]
+$$
 
 
 
@@ -62,18 +62,18 @@ V(t,S_{\max})\approx 0.
 ## Neumann-Type Alternatives
 
 
-Call delta tends to \(1\) as \(S\to\infty\):
+Call delta tends to $1$ as $S\to\infty$:
 
-\[
+$$
 \boxed{V_S(t,S_{\max})\approx 1.}
-\]
+$$
 
 
-Put delta tends to \(0\):
+Put delta tends to $0$:
 
-\[
+$$
 \boxed{V_S(t,S_{\max})\approx 0.}
-\]
+$$
 
 
 

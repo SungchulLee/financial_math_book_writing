@@ -9,11 +9,11 @@ Optimal strategies are model-dependent; robust strategies trade some optimality 
 
 
 In Black–Scholes:
-- **Optimal hedge**: Delta = \(N(d_1)\)
+- **Optimal hedge**: Delta = $N(d_1)$
 - **Optimal price**: Unique, given by the BS formula
 
 In reality:
-- Model parameters (\(\sigma\), \(r\), etc.) are uncertain
+- Model parameters ($\sigma$, $r$, etc.) are uncertain
 - Model structure (diffusion, jump, stochastic vol?) is uncertain
 - The "optimal" strategy depends on the assumed model
 
@@ -43,24 +43,25 @@ In reality:
 
 Instead of a single price, compute bounds:
 
-\[
+$$
 \underline{V} \leq V_{\text{true}} \leq \overline{V}
-\]
+$$
 
-where the bounds hold for all models in an uncertainty set \(\mathcal{M}\).
+where the bounds hold for all models in an uncertainty set $\mathcal{M}$.
 
-**Example: volatility uncertainty.** If \(\sigma \in [\sigma_{\min}, \sigma_{\max}]\):
+**Example: volatility uncertainty.** If $\sigma \in [\sigma_{\min}, \sigma_{\max}]$:
 
-\[
+$$
 \underline{V} = V^{\text{BS}}(\sigma_{\min}), \qquad \overline{V} = V^{\text{BS}}(\sigma_{\max})
-\]
+$$
 
 (for vanilla options where vega is positive).
 
 **Width of bounds:**
-\[
+
+$$
 \overline{V} - \underline{V} \approx \nu \cdot (\sigma_{\max} - \sigma_{\min})
-\]
+$$
 
 Narrow bounds indicate prices are robust; wide bounds indicate model sensitivity.
 
@@ -71,23 +72,23 @@ Narrow bounds indicate prices are robust; wide bounds indicate model sensitivity
 
 **Worst-case hedging:** Choose hedge that minimizes maximum loss:
 
-\[
+$$
 \Delta^* = \arg\min_\Delta \max_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \text{HedgingError}(\Delta, \sigma)
-\]
+$$
 
-For linear dependence on \(\sigma\), this often gives:
+For linear dependence on $\sigma$, this often gives:
 
-\[
+$$
 \Delta^* = \frac{1}{2}\left(\Delta(\sigma_{\min}) + \Delta(\sigma_{\max})\right)
-\]
+$$
 
 **Model averaging:** Weight hedges by model probabilities:
 
-\[
+$$
 \Delta^* = \sum_i w_i \Delta_i
-\]
+$$
 
-where \(w_i\) are subjective weights on models \(i\).
+where $w_i$ are subjective weights on models $i$.
 
 ---
 
@@ -99,10 +100,10 @@ Test P&L under alternative models:
 | Model | Key feature | Typical stress |
 |:------|:------------|:---------------|
 | Black–Scholes | Constant vol | Baseline |
-| Local vol | \(\sigma(S,t)\) | Skew sensitivity |
-| Heston | \(\sqrt{v}\, dW^{(2)}\) | Vol-of-vol |
+| Local vol | $\sigma(S,t)$ | Skew sensitivity |
+| Heston | $\sqrt{v}\, dW^{(2)}$ | Vol-of-vol |
 | Jump-diffusion | Poisson jumps | Tail risk |
-| SABR | \(\sigma_t\) mean-reverting | Smile dynamics |
+| SABR | $\sigma_t$ mean-reverting | Smile dynamics |
 
 A robust strategy should have bounded losses across all scenarios.
 
@@ -112,16 +113,18 @@ A robust strategy should have bounded losses across all scenarios.
 
 
 **1. P&L variance across models:**
-\[
+
+$$
 \text{Var}_{\mathcal{M}}(P\&L) = \mathbb{E}_{\mathcal{M}}[(P\&L - \bar{P\&L})^2]
-\]
+$$
 
 Low variance indicates robustness.
 
 **2. Maximum drawdown:**
-\[
+
+$$
 \text{MaxDD} = \max_{\text{model} \in \mathcal{M}} (-P\&L)
-\]
+$$
 
 Robust strategies have bounded MaxDD.
 
@@ -136,11 +139,11 @@ Does the strategy remain profitable (positive Sharpe) across models?
 
 Regulators require capital for model uncertainty:
 
-\[
+$$
 \text{Model Risk Capital} = \alpha \times (\overline{V} - \underline{V})
-\]
+$$
 
-where \(\alpha\) is a regulatory multiplier.
+where $\alpha$ is a regulatory multiplier.
 
 **Practical computation:**
 1. Define model uncertainty set
@@ -154,9 +157,9 @@ where \(\alpha\) is a regulatory multiplier.
 
 Instead of pointwise Greeks, report ranges:
 
-\[
+$$
 \Delta \in [\Delta_{\min}, \Delta_{\max}]
-\]
+$$
 
 This reflects:
 - Uncertainty in implied volatility surface

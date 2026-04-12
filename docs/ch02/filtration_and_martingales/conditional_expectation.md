@@ -19,7 +19,7 @@ Let $(\Omega, \mathcal{F}, \mathbb{P})$ be a probability space, $\mathcal{G} \su
 **Definition**: The **conditional expectation** $\mathbb{E}[X \mid \mathcal{G}]$ is the unique (up to a.s. equality) random variable satisfying:
 
 1. **Measurability**: $\mathbb{E}[X \mid \mathcal{G}]$ is $\mathcal{G}$-measurable.
-2. **Partial averaging**: For every $G \in \mathcal{G}$,
+2. **Partial averaging**: For every $G \in \mathcal{G}$
 $$
 \int_G \mathbb{E}[X \mid \mathcal{G}] \, d\mathbb{P} = \int_G X \, d\mathbb{P}
 $$

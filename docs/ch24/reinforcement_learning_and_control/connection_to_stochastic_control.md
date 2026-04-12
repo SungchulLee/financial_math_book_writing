@@ -22,12 +22,12 @@ The goal is to maximize expected utility or reward.
 
 In continuous time, optimal control leads to the HJB equation:
 
-\[
-0 = \sup_u \left\{ \mathcal{L}^u V + r(x,u) \right\},
-\]
+$$
+0 = \sup_u \left\{ \mathcal{L}^u V + r(x,u) \right\}
+$$
 
 
-where \(\mathcal{L}^u\) is the controlled generator.
+where $\mathcal{L}^u$ is the controlled generator.
 
 This is the continuous-time analogue of Bellman equations.
 

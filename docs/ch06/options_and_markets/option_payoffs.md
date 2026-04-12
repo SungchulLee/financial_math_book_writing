@@ -77,6 +77,14 @@ The following table shows the shape of call and put payoffs across a range of st
 
 The call payoff is a "hockey stick" shape: flat at zero for $S_T \leq K$, then rising linearly with slope 1 for $S_T > K$. The put payoff is the mirror image: linearly decreasing for $S_T < K$, then flat at zero. The kink at $S_T = K$ is the defining geometric feature of option payoffs and the source of the nonlinearity that makes pricing nontrivial.
 
+??? tip "From Points to Dollars: Contract Multipliers"
+    The abstract payoff $(S_T - K)^+$ represents one unit of the underlying. Real option contracts include a **multiplier** that converts index points into currency:
+
+    - **SPX options** (\$100 multiplier): A call with $K = 6{,}600$ that expires with the index at $6{,}650$ pays $(6{,}650 - 6{,}600)^+ \times 100 = \$5{,}000$.
+    - **KOSPI 200 options** (₩250,000 multiplier): A put with $K = 880$ that expires with the index at $870$ pays $(880 - 870)^+ \times 250{,}000 = ₩2{,}500{,}000$.
+
+    Throughout this text, we work in normalized units (multiplier $= 1$). In practice, all payoffs and premiums must be scaled by the contract multiplier.
+
 ---
 
 ## Long and Short Positions

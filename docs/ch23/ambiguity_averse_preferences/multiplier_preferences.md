@@ -55,7 +55,7 @@ $$
 V(f) = -\theta \log \mathbb{E}_{P_0}\left[e^{-u(f)/\theta}\right]
 $$
 
-**Proof**: Define the Lagrangian $\mathcal{L}(P, \lambda)$ over all $P \ll P_0$. Write $\frac{dP}{dP_0} = M$ (the Radon-Nikodym derivative). The objective becomes:
+**Proof**: Define the Lagrangian $\mathcal{L}(P, \lambda)$ over all $P \ll P_0$. Write $\frac{dP}{dP_0} = M$ (the Radon–Nikodym derivative). The objective becomes:
 
 $$
 \mathcal{L}(M) = \mathbb{E}_{P_0}[M \cdot u(f)] + \theta \, \mathbb{E}_{P_0}[M \log M]
@@ -642,7 +642,7 @@ This follows from the tower property of conditional expectations applied to expo
     \mathbb{E}_{P_0}[e^{-f/\theta}] = 0.6 \times 0.1353 + 0.4 \times 2.7183 = 0.0812 + 1.0873 = 1.1685
     $$
 
-    The worst-case Radon-Nikodym derivatives:
+    The worst-case Radon–Nikodym derivatives:
 
     $$
     M^*(\omega_1) = \frac{0.1353}{1.1685} = 0.1158, \quad M^*(\omega_2) = \frac{2.7183}{1.1685} = 2.3264

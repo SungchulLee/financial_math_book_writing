@@ -819,7 +819,7 @@ Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
 
     Also, $\mathbb{E}[M_t] = M_0 = e^0 = 1$ for all $t$.
 
-    **Significance:** The exponential martingale is the Radon-Nikodym derivative used in the **Girsanov theorem** to change probability measures. In finance, it transforms the real-world measure $\mathbb{P}$ to the risk-neutral measure $\mathbb{Q}$ under which discounted asset prices are martingales, enabling arbitrage-free option pricing.
+    **Significance:** The exponential martingale is the Radon–Nikodym derivative used in the **Girsanov theorem** to change probability measures. In finance, it transforms the real-world measure $\mathbb{P}$ to the risk-neutral measure $\mathbb{Q}$ under which discounted asset prices are martingales, enabling arbitrage-free option pricing.
 
 ---
 

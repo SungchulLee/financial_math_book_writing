@@ -751,7 +751,7 @@ The IV surface is not merely a quoting convention—it is a rich source of distr
 ??? success "Solution to Exercise 5"
     **(a)** The difference between the risk-neutral probability (3.2%) and the lognormal probability (0.8%) of a 10% decline is driven by the **implied volatility skew**. OTM puts (which pay off in a 10% decline scenario) have much higher implied volatility than ATM options. This elevated put IV increases the put price, and through Breeden-Litzenberger, translates into a fatter left tail of the risk-neutral density. The skew assigns more risk-neutral probability to large downside moves than a symmetric lognormal model would.
 
-    **(b)** No, 3.2% is **not** the true (physical) probability of a 10% decline. The risk-neutral density $q(S_T)$ and the physical density $p(S_T)$ are related by the pricing kernel (Radon-Nikodym derivative):
+    **(b)** No, 3.2% is **not** the true (physical) probability of a 10% decline. The risk-neutral density $q(S_T)$ and the physical density $p(S_T)$ are related by the pricing kernel (Radon–Nikodym derivative):
 
     $$
     q(S) = \frac{d\mathbb{Q}}{d\mathbb{P}} \cdot p(S)

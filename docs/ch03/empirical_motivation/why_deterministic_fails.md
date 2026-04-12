@@ -14,7 +14,7 @@ A **deterministic model** for an asset price $S(t)$ is an ordinary differential
 equation (ODE) of the form
 
 $$
-\frac{dS}{dt} = f(S, t),
+\frac{dS}{dt} = f(S, t)
 $$
 
 whose solution is uniquely determined by the initial condition $S(0) = S_0$.
@@ -23,13 +23,13 @@ Given $S_0$ and $f$, the price at every future time is *exactly* known.
 The canonical example is **exponential growth**:
 
 $$
-\frac{dS}{dt} = \mu S, \qquad S(0) = S_0,
+\frac{dS}{dt} = \mu S, \qquad S(0) = S_0
 $$
 
 with unique solution
 
 $$
-S(t) = S_0 e^{\mu t}.
+S(t) = S_0 e^{\mu t}
 $$
 
 More generally, any ODE satisfying standard Lipschitz conditions produces a
@@ -45,13 +45,13 @@ at every $t$.
 The log-return over a period $\Delta t$ under the exponential-growth model is
 
 $$
-r_t = \log \frac{S(t + \Delta t)}{S(t)} = \mu \Delta t.
+r_t = \log \frac{S(t + \Delta t)}{S(t)} = \mu \Delta t
 $$
 
 This is a **constant**, not a random variable:
 
 $$
-\operatorname{Var}(r_t) = 0.
+\operatorname{Var}(r_t) = 0
 $$
 
 Real log-returns satisfy $\operatorname{Var}(r_t) = \sigma^2 \Delta t > 0$ with
@@ -99,7 +99,7 @@ the first place cannot generate *time-varying* variability in the second place.
 Mathematically, GARCH-type dependence of the form
 
 $$
-\sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2,
+\sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2
 $$
 
 where $r_{t-1}^2$ is the squared return at time $t-1$ feeding into the
@@ -111,7 +111,7 @@ The distribution of the log-return under the exponential-growth ODE concentrates
 all probability on the single value $\mu \Delta t$:
 
 $$
-P(r_t = \mu \Delta t) = 1.
+P(r_t = \mu \Delta t) = 1
 $$
 
 This distribution has no tails whatsoever. In contrast, S&P 500 daily returns
@@ -143,7 +143,7 @@ A natural first attempt is to bolt random shocks onto the ODE:
 
 $$
 S(t + \Delta t) = S(t)\,e^{\mu \Delta t} + \varepsilon_t, \qquad
-\varepsilon_t \sim \mathcal{N}(0,\, \sigma^2 \Delta t).
+\varepsilon_t \sim \mathcal{N}(0,\, \sigma^2 \Delta t)
 $$
 
 **Problem 1 — Prices can go negative.** Because $\varepsilon_t$ is unbounded
@@ -161,7 +161,7 @@ $\Delta t$:
 
 $$
 \frac{S(t + \Delta t) - S(t)}{\Delta t}
-= \mu S(t) + \frac{\varepsilon_t}{\Delta t}.
+= \mu S(t) + \frac{\varepsilon_t}{\Delta t}
 $$
 
 As $\Delta t \to 0$, the term $\varepsilon_t / \Delta t \sim
@@ -178,7 +178,7 @@ current price:
 
 $$
 S(t + \Delta t) = S(t)\exp\!\left(\mu \Delta t + \sigma\sqrt{\Delta t}\cdot Z\right),
-\qquad Z \sim \mathcal{N}(0,1).
+\qquad Z \sim \mathcal{N}(0,1)
 $$
 
 - **Positivity:** The exponential is always positive.
@@ -187,7 +187,7 @@ $$
 
 $$
 \frac{\log S(t + \Delta t) - \log S(t)}{\sqrt{\Delta t}}
-= \mu\sqrt{\Delta t} + \sigma Z \;\xrightarrow{\;\Delta t \to 0\;}\; \sigma Z,
+= \mu\sqrt{\Delta t} + \sigma Z \;\xrightarrow{\;\Delta t \to 0\;}\; \sigma Z
 $$
 
 which converges in distribution to $\mathcal{N}(0, \sigma^2)$. This is
@@ -203,7 +203,7 @@ where $W_t$ is **Brownian motion**. The derivation above establishes the
 *log-price* SDE directly:
 
 $$
-d(\log S_t) = \mu\,dt + \sigma\,dW_t.
+d(\log S_t) = \mu\,dt + \sigma\,dW_t
 $$
 
 Recovering the *price-level* SDE $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ from

@@ -31,11 +31,15 @@ The critical difference from forwards is the mechanism of **daily settlement** (
 
 | Contract | Exchange | Contract size | 1-point P&L |
 |---|---|---|---|
-| S&P 500 E-mini | CME | \$50 $\times$ index | \$50 |
+| S&P 500 E-mini (ES) | CME | \$50 $\times$ index | \$50 |
+| S&P 500 Micro E-mini (MES) | CME | \$5 $\times$ index | \$5 |
 | KOSPI 200 | KRX | 250,000 KRW $\times$ index | 250,000 KRW |
 | KOSPI 200 Mini | KRX | 50,000 KRW $\times$ index | 50,000 KRW |
 | WTI Crude Oil | NYMEX | 1,000 barrels (\$1 move = \$1,000) | \$1,000 |
 | Gold | COMEX | 100 troy ounces (\$1 move = \$100) | \$100 |
+
+!!! note "S&P 500 futures naming"
+    A full-size S&P 500 futures contract (ticker SP, multiplier \$250) once existed but is largely obsolete. When practitioners say "S&P 500 futures" they almost always mean the **E-mini (ES)**. The **Micro E-mini (MES)** at \$5 per point is one-tenth the size of ES, making it accessible to smaller accounts.
 
 A "1-point move" always refers to one unit of the quoted price. The **contract size** determines how many such units you control, and therefore how price changes translate into profit and loss.
 
@@ -57,6 +61,25 @@ The KOSPI 200 Mini contract at the same level controls one-fifth of this: $50{,}
 
 While contract specifications differ across markets, the economic structure is identical: a quoted price multiplied by a contract size determines the monetary exposure. These large notional amounts relative to the margin required illustrate the **leverage** embedded in futures contracts.
 
+### Contract Month Codes and the Front Month
+
+Exchange-traded futures are identified by a ticker symbol that encodes the underlying asset and the delivery month. The standard month codes used across most exchanges are:
+
+| Code | Month | Code | Month |
+|---|---|---|---|
+| F | January | N | July |
+| G | February | Q | August |
+| H | March | U | September |
+| J | April | V | October |
+| K | May | X | November |
+| M | June | Z | December |
+
+For example, CLK26 denotes the WTI crude oil contract for May 2026 delivery, and CLM26 denotes June 2026. The **front-month contract** is the nearest active contract — the one with the closest delivery date that has not yet expired.
+
+Because many futures expire *before* the delivery month begins, the calendar can be unintuitive. WTI crude oil futures stop trading roughly three business days before the 25th of the month prior to delivery. The April 2026 contract (CLJ26) therefore expired in late March; by early April the front month had already rolled to May (CLK26).
+
+Most traders do not hold contracts to delivery. Instead they **roll** their positions — selling the expiring front-month contract and buying the next — typically one to two weeks before expiration as liquidity shifts to the next contract.
+
 ---
 
 ## Physical Delivery vs Cash Settlement
@@ -66,7 +89,21 @@ At maturity, a futures contract is settled in one of two ways:
 - **Physical delivery**: The seller delivers the actual underlying asset and the buyer pays the delivery price. This is standard for commodity futures (crude oil, wheat, gold).
 - **Cash settlement**: No physical asset changes hands. Instead, the difference between the futures price and the spot price at expiration is paid in cash. This is typical for index futures, where delivering a basket of 200 or 500 stocks would be impractical.
 
-In mathematical pricing, the settlement method does not affect the no-arbitrage price of the contract — what matters is the value of the underlying at maturity.
+In mathematical pricing, the settlement method does not affect the no-arbitrage price of the contract — what matters is the value of the underlying at maturity. In practice, however, the delivery mechanism has important operational consequences.
+
+### Physical Delivery: WTI Crude Oil
+
+WTI crude oil futures (CL) are physically delivered at Cushing, Oklahoma. Unlike contracts with a single settlement date, CL uses a **delivery window** spanning the entire delivery month — there is no single delivery date. After the contract expires, the process works as follows:
+
+1. The **short position** (seller) submits a formal "Notice of Intention to Deliver," choosing when during the delivery month to deliver.
+2. **CME Clearing** assigns the delivery notice to a long position holder, who must accept delivery.
+3. The physical transfer of 1,000 barrels per contract (approximately 159,000 liters) is coordinated through pipeline and storage infrastructure at Cushing.
+
+A trader who cannot take or make physical delivery must exit the position before expiration. This constraint was starkly illustrated on April 20, 2020, when the front-month WTI contract settled at $-\$37.63$ per barrel — sellers were literally paying buyers to take oil because storage at Cushing was full and trapped longs could not accept delivery.
+
+### Cash Settlement: KOSPI 200
+
+KOSPI 200 futures on the Korea Exchange (KRX) are cash-settled. Each contract expires on the **second Thursday** of the contract month, and the final settlement value is determined by a Special Opening Quotation (SOQ) of the KOSPI 200 index. No shares change hands — only the cash difference between the futures price and the settlement index level is exchanged. This clean mechanism avoids the logistical complexities of physical delivery entirely.
 
 ---
 

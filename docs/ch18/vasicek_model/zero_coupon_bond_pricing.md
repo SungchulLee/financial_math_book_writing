@@ -118,7 +118,7 @@ This is the **bond pricing PDE** under the physical measure, with the market pri
 
 ### Step 1: Change of Measure via Girsanov Theorem
 
-We seek a risk-neutral measure $\mathbb{Q}$ under which discounted bond prices are martingales. Define the Radon-Nikodym derivative process:
+We seek a risk-neutral measure $\mathbb{Q}$ under which discounted bond prices are martingales. Define the Radon–Nikodym derivative process:
 
 $$dW_t^\mathbb{Q} = \xi dt + dW_t$$
 

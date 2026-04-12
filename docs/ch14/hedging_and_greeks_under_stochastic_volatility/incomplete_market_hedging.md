@@ -46,9 +46,9 @@ Still, some risks remain irreducible.
 
 Hedging error should be viewed as:
 
-\[
-\text{P&L}_{\text{hedge}} = \text{model error} + \text{unhedgeable risk}.
-\]
+$$
+\text{P&L}_{\text{hedge}} = \text{model error} + \text{unhedgeable risk}
+$$
 
 
 

@@ -396,7 +396,7 @@ Basel III's shift from VaR to ES reflects growing acceptance of coherence as a g
     \text{ES}_\alpha(L) = \sup\left\{\mathbb{E}^\mathbb{Q}[L] : \frac{d\mathbb{Q}}{d\mathbb{P}} \le \frac{1}{1-\alpha}\right\}
     $$
 
-    The set $\mathcal{Q}$ consists of all probability measures $\mathbb{Q}$ that are absolutely continuous with respect to $\mathbb{P}$ and whose Radon-Nikodym derivative (likelihood ratio) is bounded above by $\frac{1}{1-\alpha}$.
+    The set $\mathcal{Q}$ consists of all probability measures $\mathbb{Q}$ that are absolutely continuous with respect to $\mathbb{P}$ and whose Radon–Nikodym derivative (likelihood ratio) is bounded above by $\frac{1}{1-\alpha}$.
 
     **Interpretation:** For $\alpha = 0.95$, the constraint is $\frac{d\mathbb{Q}}{d\mathbb{P}} \le 20$. This means $\mathbb{Q}$ can multiply the probability of any event by at most 20. The worst-case $\mathbb{Q}^*$ concentrates probability mass on the worst $5\%$ of outcomes, reweighting them by a factor of $\frac{1}{1-\alpha} = 20$ and assigning zero weight to the remaining $95\%$. This is exactly the conditional expectation in the worst tail, which is the definition of ES.
 

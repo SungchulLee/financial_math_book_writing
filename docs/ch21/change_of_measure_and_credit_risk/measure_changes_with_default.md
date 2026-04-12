@@ -8,7 +8,7 @@ Changing probability measures in the presence of default requires special care b
 ## Measure change framework
 
 
-Let \(\mathbb{Q}\) and \(\mathbb{P}\) be equivalent measures on the enlarged filtration \((\mathcal{G}_t)\).
+Let $\mathbb{Q}$ and $\mathbb{P}$ be equivalent measures on the enlarged filtration $(\mathcal{G}_t)$.
 The Radon–Nikodym derivative must account for:
 - diffusion risks,
 - jump-to-default risk.
@@ -20,12 +20,12 @@ The Radon–Nikodym derivative must account for:
 
 Under a change of measure, the default intensity transforms as
 
-\[
-\lambda_t^{\mathbb{Q}} = \lambda_t^{\mathbb{P}} + \theta_t,
-\]
+$$
+\lambda_t^{\mathbb{Q}} = \lambda_t^{\mathbb{P}} + \theta_t
+$$
 
 
-where \(\theta_t\) reflects the market price of default risk.
+where $\theta_t$ reflects the market price of default risk.
 
 This parallels drift changes in diffusion models.
 

@@ -8,7 +8,7 @@ Stochastic volatility models distinguish between **risk-neutral** and **physical
 ## Risk-neutral calibration
 
 
-Option prices identify parameters under the risk-neutral measure \(\mathbb{Q}\).
+Option prices identify parameters under the risk-neutral measure $\mathbb{Q}$.
 These parameters reflect:
 - investor risk preferences,
 - compensation for unhedgeable volatility risk.
@@ -20,7 +20,7 @@ They should not be confused with historical estimates.
 ## Physical dynamics
 
 
-Historical time-series analysis estimates parameters under the physical measure \(\mathbb{P}\).
+Historical time-series analysis estimates parameters under the physical measure $\mathbb{P}$.
 Empirically:
 - realized volatility is lower than option-implied variance,
 - volatility shocks earn negative premia.
@@ -30,7 +30,7 @@ Empirically:
 ## Implications for calibration
 
 
-Mixing \(\mathbb{P}\) and \(\mathbb{Q}\) parameters without modeling VRP leads to:
+Mixing $\mathbb{P}$ and $\mathbb{Q}$ parameters without modeling VRP leads to:
 
 - inconsistent dynamics,
 - misleading economic interpretation,
@@ -177,7 +177,7 @@ These improve interpretability but increase complexity.
 
     **(a) Increased demand for portfolio insurance:** During market downturns, institutional investors rush to buy OTM puts for portfolio protection. This demand pressure drives up option prices, particularly for puts, inflating implied volatility well above the level justified by expected future realized volatility. The supply of volatility insurance is relatively inelastic (dealers have limited capacity to warehouse volatility risk), so the demand shock translates directly into higher option premia and a wider VRP.
 
-    **(b) Higher risk aversion during downturns:** In equilibrium asset pricing models with time-varying risk aversion (e.g., habit formation or loss aversion), investors become more risk-averse after wealth declines. Higher risk aversion means a larger Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}$ in bad states, which inflates the $\mathbb{Q}$-expectation of variance relative to $\mathbb{P}$. Formally, if the pricing kernel loads negatively on variance innovations, then the VRP equals the covariance of the pricing kernel with variance shocks, which becomes more negative (larger premium) when risk aversion is elevated.
+    **(b) Higher risk aversion during downturns:** In equilibrium asset pricing models with time-varying risk aversion (e.g., habit formation or loss aversion), investors become more risk-averse after wealth declines. Higher risk aversion means a larger Radon–Nikodym derivative $d\mathbb{Q}/d\mathbb{P}$ in bad states, which inflates the $\mathbb{Q}$-expectation of variance relative to $\mathbb{P}$. Formally, if the pricing kernel loads negatively on variance innovations, then the VRP equals the covariance of the pricing kernel with variance shocks, which becomes more negative (larger premium) when risk aversion is elevated.
 
     **(c) Correlation of volatility spikes with negative wealth shocks:** Volatility is strongly negatively correlated with equity returns (the "leverage effect"). This means volatility spikes coincide with states where investors' marginal utility is high. Since the risk premium for any risk factor is proportional to its covariance with the pricing kernel, and since high marginal utility (bad states) coincides with high volatility, variance carries a large negative risk premium (i.e., variance buyers accept lower expected returns because variance pays off in bad states). During stress, this correlation strengthens, amplifying the VRP.
 

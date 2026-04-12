@@ -308,7 +308,7 @@ Explain why this step simplifies the computation.
     V^{\text{ZCB}}(t_0, T) = \mathbb{E}^{\mathbb{Q}}\!\left[\frac{M(t_0)}{M(T)}\max(P(T,T_S) - K, 0)\,\Big|\,\mathcal{F}(t_0)\right]
     $$
 
-    The Radon-Nikodym derivative for the change from $\mathbb{Q}$ to the $T$-forward measure $\mathbb{Q}^T$ is
+    The Radon–Nikodym derivative for the change from $\mathbb{Q}$ to the $T$-forward measure $\mathbb{Q}^T$ is
 
     $$
     \frac{d\mathbb{Q}^T}{d\mathbb{Q}}\bigg|_{\mathcal{F}(T)} = \frac{P(T,T)}{P(t_0,T) \cdot M(T)/M(t_0)} = \frac{1}{P(t_0,T)} \cdot \frac{M(t_0)}{M(T)}

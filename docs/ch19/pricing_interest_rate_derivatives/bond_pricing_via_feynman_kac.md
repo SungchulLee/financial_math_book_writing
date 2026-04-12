@@ -10,16 +10,16 @@ An alternative and often more intuitive approach to bond pricing uses the **Feyn
 
 The fundamental pricing relation is
 
-\[
+$$
 P(t,T) = \mathbb{E}^{\mathbb{Q}}\left[
 \exp\left(-\int_t^T r_s ds\right)
 \middle| \mathcal{F}_t
-\right].
-\]
+\right]
+$$
 
 
 
-This holds for any arbitrage-free short-rate model under \(\mathbb{Q}\).
+This holds for any arbitrage-free short-rate model under $\mathbb{Q}$.
 
 ---
 
@@ -28,15 +28,15 @@ This holds for any arbitrage-free short-rate model under \(\mathbb{Q}\).
 
 The Feynman–Kac theorem states that the function
 
-\[
+$$
 u(t,r) = \mathbb{E}^{\mathbb{Q}}\left[
 \exp\left(-\int_t^T r_s ds\right)
 \middle| r_t=r
 \right]
-\]
+$$
 
 
-is the unique solution to the bond pricing PDE with terminal condition \(u(T,r)=1\).
+is the unique solution to the bond pricing PDE with terminal condition $u(T,r)=1$.
 
 Thus:
 - expectation formulation and PDE formulation are equivalent,
@@ -48,7 +48,7 @@ Thus:
 
 
 For affine short-rate models:
-- the integral \(\int_t^T r_s ds\) is Gaussian (Vasicek) or non-central chi-square (CIR),
+- the integral $\int_t^T r_s ds$ is Gaussian (Vasicek) or non-central chi-square (CIR),
 - expectations can be computed analytically,
 - results coincide with exponential-affine formulas.
 
@@ -69,7 +69,7 @@ However, Monte Carlo is usually inefficient for plain bonds compared to closed f
 ## Key takeaways
 
 
-- Bond prices are discounted expectations under \(\mathbb{Q}\).
+- Bond prices are discounted expectations under $\mathbb{Q}$.
 - Feynman–Kac links PDEs and probabilistic pricing.
 - Monte Carlo follows naturally from this view.
 
@@ -88,7 +88,7 @@ However, Monte Carlo is usually inefficient for plain bonds compared to closed f
 **Exercise 1.** In the Vasicek model, $dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t^{\mathbb{Q}}$, the short rate $r_t$ is Gaussian with conditional mean $\mathbb{E}[r_s | r_t] = \theta + (r_t - \theta)e^{-\kappa(s-t)}$ and conditional variance $\text{Var}(r_s | r_t) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa(s-t)})$. Using the Feynman--Kac representation
 
 $$
-P(t, T) = \mathbb{E}^{\mathbb{Q}}\!\left[\exp\!\left(-\int_t^T r_s\,ds\right)\;\middle|\;r_t\right],
+P(t, T) = \mathbb{E}^{\mathbb{Q}}\!\left[\exp\!\left(-\int_t^T r_s\,ds\right)\;\middle|\;r_t\right]
 $$
 
 explain why the bond price has the exponential-affine form $P(t, T) = e^{A(\tau) - B(\tau)r_t}$ where $\tau = T - t$, and identify the functions $A(\tau)$ and $B(\tau)$.

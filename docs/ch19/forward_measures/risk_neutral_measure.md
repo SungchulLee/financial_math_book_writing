@@ -8,19 +8,19 @@ The **risk-neutral measure** is the cornerstone of arbitrage-free pricing. Under
 ## Numéraire and probability measure
 
 
-Let \(B_t\) denote the money-market account:
+Let $B_t$ denote the money-market account:
 
-\[
-dB_t = r_t B_t\,dt, \qquad B_0=1.
-\]
+$$
+dB_t = r_t B_t\,dt, \qquad B_0=1
+$$
 
 
 
-A probability measure \(\mathbb{Q}\) is **risk-neutral** if, for any tradable asset with price \(S_t\),
+A probability measure $\mathbb{Q}$ is **risk-neutral** if, for any tradable asset with price $S_t$,
 
-\[
-\frac{S_t}{B_t} \text{ is a martingale under } \mathbb{Q}.
-\]
+$$
+\frac{S_t}{B_t} \text{ is a martingale under } \mathbb{Q}
+$$
 
 
 
@@ -31,15 +31,15 @@ A probability measure \(\mathbb{Q}\) is **risk-neutral** if, for any tradable as
 
 Under the risk-neutral measure,
 
-\[
+$$
 V_t = \mathbb{E}^{\mathbb{Q}}\left[
 e^{-\int_t^T r_s ds} \, V_T
 \middle| \mathcal{F}_t
-\right],
-\]
+\right]
+$$
 
 
-where \(V_T\) is the payoff at maturity.
+where $V_T$ is the payoff at maturity.
 
 This formula applies to bonds, options, and general derivatives.
 
@@ -61,8 +61,8 @@ It is not the physical (real-world) probability measure.
 
 
 In interest-rate models:
-- the short rate \(r_t\) determines discounting,
-- \(\mathbb{Q}\)-dynamics are calibrated to prices,
+- the short rate $r_t$ determines discounting,
+- $\mathbb{Q}$-dynamics are calibrated to prices,
 - physical dynamics are relevant for risk management, not pricing.
 
 ---
@@ -71,7 +71,7 @@ In interest-rate models:
 
 
 - Risk-neutral measure enforces arbitrage-free pricing.
-- Discounted prices are martingales under \(\mathbb{Q}\).
+- Discounted prices are martingales under $\mathbb{Q}$.
 - Pricing reduces to discounted expectation.
 
 ---
@@ -89,7 +89,7 @@ In interest-rate models:
 **Exercise 1.** Under the risk-neutral measure $\mathbb{Q}$, the short rate follows the Vasicek model $dr_t = a(b - r_t)\,dt + \sigma\,dW_t^{\mathbb{Q}}$. Using the pricing formula
 
 $$
-P(t, T) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r_s\,ds}\;\middle|\;\mathcal{F}_t\right],
+P(t, T) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r_s\,ds}\;\middle|\;\mathcal{F}_t\right]
 $$
 
 explain why the bond price depends on $r_t$ but not on the physical drift parameters. What role does the risk-neutral drift $a(b - r_t)$ play in determining bond prices?

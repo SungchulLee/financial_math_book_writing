@@ -11,7 +11,7 @@ $$
 The semigroup acts on measures from the right: for a probability measure $\mu$,
 
 $$
-(\mu P_t)(A) := \int_{\mathbb{R}^d} P_t \mathbf{1}_A(x)\,\mu(\mathrm{d}x) = \mathbb{P}^{\mu}(X_t \in A).
+(\mu P_t)(A) := \int_{\mathbb{R}^d} P_t \mathbf{1}_A(x)\,\mu(\mathrm{d}x) = \mathbb{P}^{\mu}(X_t \in A)
 $$
 
 !!! info "Definition: Invariant Measure"
@@ -24,7 +24,7 @@ $$
     equivalently, for all bounded measurable $f$ and all $t \ge 0$:
 
     $$
-    \int_{\mathbb{R}^d} P_t f(x)\,\pi(\mathrm{d}x) = \int_{\mathbb{R}^d} f(x)\,\pi(\mathrm{d}x).
+    \int_{\mathbb{R}^d} P_t f(x)\,\pi(\mathrm{d}x) = \int_{\mathbb{R}^d} f(x)\,\pi(\mathrm{d}x)
     $$
 
     In other words: if $X_0 \sim \pi$ then $X_t \sim \pi$ for all $t \ge 0$.
@@ -33,7 +33,7 @@ $$
     A process $(X_t)$ is **stationary** if its finite-dimensional distributions are invariant under time shifts: for all $h \ge 0$ and all $0 \le t_1 < \cdots < t_k$,
 
     $$
-    (X_{t_1 + h}, \dots, X_{t_k + h}) \stackrel{d}{=} (X_{t_1}, \dots, X_{t_k}).
+    (X_{t_1 + h}, \dots, X_{t_k + h}) \stackrel{d}{=} (X_{t_1}, \dots, X_{t_k})
     $$
 
     Starting a Markov process from an invariant measure $\pi$ yields a stationary process.
@@ -60,7 +60,7 @@ For a diffusion with drift $b$ and covariance matrix $a = \sigma\sigma^\top$, if
 $$
 0
 = -\frac{\partial}{\partial x_i}\!\bigl(b^{i}(x)\,\pi(x)\bigr)
-+ \frac{1}{2}\,\frac{\partial^2}{\partial x_i \partial x_j}\!\bigl(a^{ij}(x)\,\pi(x)\bigr).
++ \frac{1}{2}\,\frac{\partial^2}{\partial x_i \partial x_j}\!\bigl(a^{ij}(x)\,\pi(x)\bigr)
 $$
 
 This is the **stationary Fokker–Planck equation**. It is an elliptic PDE for the unknown density $\pi$.
@@ -83,7 +83,7 @@ A stronger condition than invariance is **reversibility**.
 
     $$
     \int f(x)\,(P_t g)(x)\,\pi(\mathrm{d}x)
-    = \int g(x)\,(P_t f)(x)\,\pi(\mathrm{d}x).
+    = \int g(x)\,(P_t f)(x)\,\pi(\mathrm{d}x)
     $$
 
     Equivalently, $\mathcal{L}$ is self-adjoint in $L^2(\pi)$.
@@ -99,7 +99,7 @@ Reversibility implies that the process is **time-symmetric**: $(X_t)_{0 \le t \l
 Consider
 
 $$
-\mathrm{d}X_t = -\nabla V(X_t)\,\mathrm{d}t + \sqrt{2}\,\mathrm{d}W_t,
+\mathrm{d}X_t = -\nabla V(X_t)\,\mathrm{d}t + \sqrt{2}\,\mathrm{d}W_t
 $$
 
 where $V : \mathbb{R}^d \to \mathbb{R}$ is smooth and $Z := \int_{\mathbb{R}^d} e^{-V(x)}\,\mathrm{d}x < \infty$.
@@ -109,7 +109,7 @@ where $V : \mathbb{R}^d \to \mathbb{R}$ is smooth and $Z := \int_{\mathbb{R}^d} 
 **Verification via Fokker–Planck.** Here $b^i = -\partial_i V$ and $a^{ij} = 2\delta^{ij}$. The stationary equation $\mathcal{L}^*\pi = 0$ becomes
 
 $$
-\frac{\partial}{\partial x_i}\!\bigl(\partial_i V \cdot \pi\bigr) + \Delta \pi = 0.
+\frac{\partial}{\partial x_i}\!\bigl(\partial_i V \cdot \pi\bigr) + \Delta \pi = 0
 $$
 
 Substituting $\pi = Z^{-1}e^{-V}$ and computing each term separately (for a fixed index $i$, no sum):
@@ -118,7 +118,7 @@ $$
 \frac{\partial}{\partial x_i}\!\bigl(\partial_i V \cdot e^{-V}\bigr)
 = e^{-V}\bigl(\partial_i^2 V - (\partial_i V)^2\bigr),
 \qquad
-\partial_i^2(e^{-V}) = e^{-V}\bigl((\partial_i V)^2 - \partial_i^2 V\bigr).
+\partial_i^2(e^{-V}) = e^{-V}\bigl((\partial_i V)^2 - \partial_i^2 V\bigr)
 $$
 
 Summing over $i$: the two contributions cancel term by term, giving $\mathcal{L}^*\pi = 0$. $\square$
@@ -145,7 +145,7 @@ We verify the generator condition $\int \mathcal{L}f\,\mathrm{d}\pi = 0$ is equi
 **Backward direction.** Suppose $\int \mathcal{L}f\,\mathrm{d}\pi = 0$ for all $f \in \mathrm{Dom}(\mathcal{L})$. Set $h(t) := \int P_t f\,\mathrm{d}\pi$. Then
 
 $$
-h'(t) = \int \mathcal{L}(P_t f)\,\mathrm{d}\pi = 0,
+h'(t) = \int \mathcal{L}(P_t f)\,\mathrm{d}\pi = 0
 $$
 
 where the first equality uses $\frac{\mathrm{d}}{\mathrm{d}t}P_t f = \mathcal{L} P_t f$ (the Kolmogorov forward equation for the semigroup), and the second applies the hypothesis with test function $P_t f \in \mathrm{Dom}(\mathcal{L})$. Hence $h(t) = h(0) = \int f\,\mathrm{d}\pi$ for all $t \ge 0$, confirming $\pi P_t = \pi$. $\square$
@@ -286,7 +286,7 @@ where the first equality uses $\frac{\mathrm{d}}{\mathrm{d}t}P_t f = \mathcal{L}
 **Exercise 4.** Consider the two-dimensional diffusion
 
 $$
-\mathrm{d}X_t^1 = -X_t^1\,\mathrm{d}t + X_t^2\,\mathrm{d}t + \mathrm{d}W_t^1, \qquad \mathrm{d}X_t^2 = -X_t^1\,\mathrm{d}t - X_t^2\,\mathrm{d}t + \mathrm{d}W_t^2.
+\mathrm{d}X_t^1 = -X_t^1\,\mathrm{d}t + X_t^2\,\mathrm{d}t + \mathrm{d}W_t^1, \qquad \mathrm{d}X_t^2 = -X_t^1\,\mathrm{d}t - X_t^2\,\mathrm{d}t + \mathrm{d}W_t^2
 $$
 
 Find the invariant measure (hint: try a Gaussian ansatz). Is this process reversible? Justify your answer by checking whether $\mathcal{L}$ is self-adjoint in $L^2(\pi)$.
@@ -361,7 +361,7 @@ Find the invariant measure (hint: try a Gaussian ansatz). Is this process revers
 **Exercise 5.** Prove that reversibility (detailed balance) implies invariance. That is, show that if for all bounded measurable $f, g$ and all $t \ge 0$,
 
 $$
-\int f(x)\,(P_t g)(x)\,\pi(\mathrm{d}x) = \int g(x)\,(P_t f)(x)\,\pi(\mathrm{d}x),
+\int f(x)\,(P_t g)(x)\,\pi(\mathrm{d}x) = \int g(x)\,(P_t f)(x)\,\pi(\mathrm{d}x)
 $$
 
 then $\pi P_t = \pi$.

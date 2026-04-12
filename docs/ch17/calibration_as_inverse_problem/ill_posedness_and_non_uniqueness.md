@@ -24,13 +24,13 @@ Calibration can violate (2) and (3) even when (1) holds.
 ### 1. Incomplete information
 
 
-Market quotes provide a finite set of prices (\(m\) instruments), while models may have:
+Market quotes provide a finite set of prices ($m$ instruments), while models may have:
 
-- many parameters (\(d\) large),
+- many parameters ($d$ large),
 - hidden state variables,
-- functional degrees of freedom (e.g., a local volatility surface \(\sigma_{\text{loc}}(t,S)\)).
+- functional degrees of freedom (e.g., a local volatility surface $\sigma_{\text{loc}}(t,S)$).
 
-Even when \(m\ge d\), the effective rank of the Jacobian may be much smaller due to redundancy and weak sensitivity.
+Even when $m\ge d$, the effective rank of the Jacobian may be much smaller due to redundancy and weak sensitivity.
 
 ### 2. Noisy data
 
@@ -42,16 +42,16 @@ Observed prices are affected by:
 - microstructure noise,
 - interpolation/extrapolation artifacts (surface construction).
 
-Let the true data be \(y^\star\) and observed data \(y = y^\star + \varepsilon\). If the inverse map is unstable, \(\varepsilon\) is amplified into large parameter errors.
+Let the true data be $y^\star$ and observed data $y = y^\star + \varepsilon$. If the inverse map is unstable, $\varepsilon$ is amplified into large parameter errors.
 
 ### 3. Model misspecification
 
 
 Even with perfect data, the model may be unable to fit all instruments:
 
-\[
-y \notin \mathrm{Range}(F).
-\]
+$$
+y \notin \mathrm{Range}(F)
+$$
 
 
 Then the optimization problem has a best-fit solution but no exact inverse.
@@ -64,11 +64,11 @@ Then the optimization problem has a best-fit solution but no exact inverse.
 ### 1. Flat directions (parameter degeneracy)
 
 
-If the loss surface has valleys, many \(\theta\) yield nearly identical fit:
+If the loss surface has valleys, many $\theta$ yield nearly identical fit:
 
-\[
-\mathcal{L}(F(\theta),y) \approx \text{constant along a curve/manifold}.
-\]
+$$
+\mathcal{L}(F(\theta),y) \approx \text{constant along a curve/manifold}
+$$
 
 
 
@@ -94,18 +94,18 @@ Constraints (positivity, Feller condition, no-arbitrage filters) can create mult
 ## A linearized view: conditioning and singular values
 
 
-Around a reference \(\theta_0\), with \(F(\theta)\approx F(\theta_0)+J\Delta\theta\), least squares suggests
+Around a reference $\theta_0$, with $F(\theta)\approx F(\theta_0)+J\Delta\theta$, least squares suggests
 
-\[
-\Delta\theta \approx (J^\top W J)^{-1}J^\top W (y - F(\theta_0)).
-\]
+$$
+\Delta\theta \approx (J^\top W J)^{-1}J^\top W (y - F(\theta_0))
+$$
 
 
 
-If \(J^\top WJ\) is ill-conditioned (small eigenvalues), then:
+If $J^\top WJ$ is ill-conditioned (small eigenvalues), then:
 
 - the inverse is numerically unstable,
-- \(\|\Delta\theta\|\) can blow up relative to data noise.
+- $\|\Delta\theta\|$ can blow up relative to data noise.
 
 This connects directly to **regularization** (Chapter 5.3).
 
@@ -115,7 +115,7 @@ This connects directly to **regularization** (Chapter 5.3).
 
 
 - **Sensitivity / Greeks-to-parameters:** check Jacobian magnitudes.
-- **Bootstrap / re-sample quotes:** re-calibrate after perturbing \(y\) within bid–ask.
+- **Bootstrap / re-sample quotes:** re-calibrate after perturbing $y$ within bid–ask.
 - **Profile likelihood / one-parameter sweeps:** visualize flat directions.
 - **Multiple initializations:** detect multi-modality / local minima.
 

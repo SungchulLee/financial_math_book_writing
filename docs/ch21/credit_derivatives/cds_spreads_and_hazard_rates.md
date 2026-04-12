@@ -14,9 +14,9 @@ Intuitively:
 
 Under simplifying assumptions, spreads are approximately:
 
-\[
-s \approx (1 - R) \times \text{average hazard rate}.
-\]
+$$
+s \approx (1 - R) \times \text{average hazard rate}
+$$
 
 
 
@@ -25,17 +25,17 @@ s \approx (1 - R) \times \text{average hazard rate}.
 ## Formal link under intensity models
 
 
-Under recovery of face value and deterministic intensity \(\lambda\),
+Under recovery of face value and deterministic intensity $\lambda$,
 
-\[
+$$
 s
 = \frac{(1-R) \int_0^T e^{-\int_0^t (r+\lambda) ds} \lambda \, dt}
-{\int_0^T e^{-\int_0^t (r+\lambda) ds} \, dt}.
-\]
+{\int_0^T e^{-\int_0^t (r+\lambda) ds} \, dt}
+$$
 
 
 
-This equation is inverted to infer \(\lambda\) from market spreads.
+This equation is inverted to infer $\lambda$ from market spreads.
 
 ---
 

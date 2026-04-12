@@ -23,13 +23,13 @@ Key properties:
 
 #### Long gamma (buying options)
 
-Position: buy calls/puts or straddles. Greek profile: \(\Gamma > 0\), \(\Theta < 0\), \(\nu > 0\).
+Position: buy calls/puts or straddles. Greek profile: $\Gamma > 0$, $\Theta < 0$, $\nu > 0$.
 
 Profit when the underlying makes large moves (realized vol exceeds implied vol). The cost is daily theta bleed when the market is quiet. Best used ahead of anticipated events.
 
 #### Short gamma (selling options)
 
-Position: sell calls/puts or straddles. Greek profile: \(\Gamma < 0\), \(\Theta > 0\), \(\nu < 0\).
+Position: sell calls/puts or straddles. Greek profile: $\Gamma < 0$, $\Theta > 0$, $\nu < 0$.
 
 Profit when the market stays calm (realized vol below implied vol). Risk: large, sudden moves cause disproportionate losses (concave P&L). Best suited for range-bound markets with elevated implied vol.
 
@@ -66,20 +66,20 @@ Profit when the market stays calm (realized vol below implied vol). Risk: large,
 
 **Greek profile:**
 
-- \(\Delta \approx 0\) (initially neutral).
-- \(\Gamma > 0\) (benefits from moves in either direction).
-- \(\Theta < 0\) (pays significant time decay).
-- \(\nu > 0\) (benefits from vol increases).
+- $\Delta \approx 0$ (initially neutral).
+- $\Gamma > 0$ (benefits from moves in either direction).
+- $\Theta < 0$ (pays significant time decay).
+- $\nu > 0$ (benefits from vol increases).
 
 **Profit when:** the underlying moves substantially in either direction, or implied vol rises. The move must be large enough to offset the premium paid (which includes time value for both options).
 
-**Breakeven:** \(S_T > K + \text{premium}\) or \(S_T < K - \text{premium}\).
+**Breakeven:** $S_T > K + \text{premium}$ or $S_T < K - \text{premium}$.
 
 #### Short straddle
 
 **Construction:** sell call and put at the same strike.
 
-**Greek profile:** \(\Gamma < 0\), \(\Theta > 0\), \(\nu < 0\).
+**Greek profile:** $\Gamma < 0$, $\Theta > 0$, $\nu < 0$.
 
 **Profit when:** the market stays calm and near the strike. Earn premium from time decay. Risk is unlimited in both directions.
 
@@ -90,7 +90,7 @@ Profit when the market stays calm (realized vol below implied vol). Risk: large,
 
 #### Long strangle
 
-**Construction:** buy OTM call (strike \(K_2\)) and OTM put (strike \(K_1 < K_2\)).
+**Construction:** buy OTM call (strike $K_2$) and OTM put (strike $K_1 < K_2$).
 
 Similar to long straddle but cheaper (both options are OTM), with wider breakeven points. Requires a larger move to profit, but costs less in theta.
 
@@ -105,7 +105,7 @@ Earns premium if the underlying stays between the two strikes. Wider profit zone
 ### Greek summary of common strategies
 
 
-| Strategy | \(\Delta\) | \(\Gamma\) | \(\Theta\) | \(\nu\) | View |
+| Strategy | $\Delta$ | $\Gamma$ | $\Theta$ | $\nu$ | View |
 |---|---|---|---|---|---|
 | Long call | + | + | − | + | Bullish + long vol |
 | Short call | − | − | + | − | Bearish + short vol |

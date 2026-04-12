@@ -8,22 +8,22 @@ In practice, *static* calibration to vanilla options is often performed not dire
 ## From prices to implied volatility
 
 
-For a given maturity \(T\) and strike \(K\), a market quote is typically a bid/ask or mid option price
+For a given maturity $T$ and strike $K$, a market quote is typically a bid/ask or mid option price
 
-\[
-C^{\text{mkt}}(K,T).
-\]
-
-
-
-The **Black–Scholes implied volatility** \(\sigma_{\text{impl}}(K,T)\) is defined as the unique \(\sigma\ge 0\) such that
-
-\[
-C^{\text{BS}}(K,T;\sigma) = C^{\text{mkt}}(K,T),
-\]
+$$
+C^{\text{mkt}}(K,T)
+$$
 
 
-where \(C^{\text{BS}}\) is the Black–Scholes call price (with the appropriate forward/discounting conventions).
+
+The **Black–Scholes implied volatility** $\sigma_{\text{impl}}(K,T)$ is defined as the unique $\sigma\ge 0$ such that
+
+$$
+C^{\text{BS}}(K,T;\sigma) = C^{\text{mkt}}(K,T)
+$$
+
+
+where $C^{\text{BS}}$ is the Black–Scholes call price (with the appropriate forward/discounting conventions).
 
 ### 1. Why implied vols?
 
@@ -39,9 +39,9 @@ where \(C^{\text{BS}}\) is the Black–Scholes call price (with the appropriate 
 
 A volatility “surface” is really a function of strike and maturity. Common coordinates include:
 
-- \((K,T)\) (strike, maturity),
-- \((k,T)\) where \(k=\log(K/F_T)\) is **log-moneyness**,
-- \((\Delta,T)\) where \(\Delta\) is option delta (FX-style quoting).
+- $(K,T)$ (strike, maturity),
+- $(k,T)$ where $k=\log(K/F_T)$ is **log-moneyness**,
+- $(\Delta,T)$ where $\Delta$ is option delta (FX-style quoting).
 
 A robust workflow typically:
 
@@ -52,9 +52,9 @@ A robust workflow typically:
 ### 1. Common surface representations
 
 
-- **Parametric smiles per maturity** (e.g., SVI, polynomial in \(k\))
-- **Spline / kernel smoothing** across \((k,T)\)
-- **Local volatility / total variance surface** \(w(k,T)=T\sigma_{\text{impl}}^2(k,T)\)
+- **Parametric smiles per maturity** (e.g., SVI, polynomial in $k$)
+- **Spline / kernel smoothing** across $(k,T)$
+- **Local volatility / total variance surface** $w(k,T)=T\sigma_{\text{impl}}^2(k,T)$
 
 ---
 
@@ -65,7 +65,7 @@ A “good” implied vol surface should not generate static arbitrage.
 
 Typical constraints (informally):
 
-- **Calendar arbitrage:** total variance should be non-decreasing in \(T\) for fixed moneyness.
+- **Calendar arbitrage:** total variance should be non-decreasing in $T$ for fixed moneyness.
 - **Butterfly arbitrage:** call prices convex in strike; in implied vol coordinates this imposes shape constraints.
 
 In practice, calibration is often done after (or together with) an **arbitrage-cleaning** step: remove obvious violations, widen bid/ask, or fit a surface constrained to be arbitrage-free.
@@ -75,21 +75,21 @@ In practice, calibration is often done after (or together with) an **arbitrage-c
 ## Calibrating a model to the surface
 
 
-Let the model depend on parameters \(\theta\). For each grid point \((K_i,T_i)\), we can compute model prices \(C^{\text{model}}(K_i,T_i;\theta)\) and then compute the corresponding implied vol
+Let the model depend on parameters $\theta$. For each grid point $(K_i,T_i)$, we can compute model prices $C^{\text{model}}(K_i,T_i;\theta)$ and then compute the corresponding implied vol
 
-\[
-\sigma^{\text{model}}_{\text{impl}}(K_i,T_i;\theta).
-\]
+$$
+\sigma^{\text{model}}_{\text{impl}}(K_i,T_i;\theta)
+$$
 
 
 
-Calibration “to the surface” means selecting \(\theta\) such that
+Calibration “to the surface” means selecting $\theta$ such that
 
-\[
+$$
 \sigma^{\text{model}}_{\text{impl}}(K_i,T_i;\theta)
 \approx
-\sigma^{\text{mkt}}_{\text{impl}}(K_i,T_i).
-\]
+\sigma^{\text{mkt}}_{\text{impl}}(K_i,T_i)
+$$
 
 
 

@@ -13,7 +13,7 @@ The market provides quotes for liquid instruments such as:
 - futures and FRAs,
 - OIS and IRS swaps.
 
-From these, a discount curve \(P(0,T)\) is constructed via **bootstrapping**, ensuring that each instrument is priced exactly.
+From these, a discount curve $P(0,T)$ is constructed via **bootstrapping**, ensuring that each instrument is priced exactly.
 
 ---
 
@@ -35,7 +35,7 @@ Modern practice treats curve construction as a pre-model step.
 Common approaches to enforce exact fit include:
 
 - **Deterministic shifts:** add a time-dependent drift (e.g. Hull–White extension),
-- **Initial term-structure fitting:** calibrate model functions to match \(P(0,T)\),
+- **Initial term-structure fitting:** calibrate model functions to match $P(0,T)$,
 - **HJM framework:** exact fit is automatic by construction.
 
 Exact fit is essential for pricing curve-sensitive products.
@@ -76,7 +76,7 @@ Thus, curve fitting is non-negotiable in practice.
 **Exercise 1.** Suppose you observe the following zero-coupon bond prices: $P(0,0.5) = 0.9950$, $P(0,1) = 0.9870$, $P(0,1.5) = 0.9760$, and $P(0,2) = 0.9620$. Compute the continuously compounded zero rates $R(0,T)$ for each maturity using the relation
 
 $$
-P(0,T) = e^{-R(0,T)\,T}.
+P(0,T) = e^{-R(0,T)\,T}
 $$
 
 Verify that the zero rates are increasing with maturity and interpret this shape economically.
@@ -132,7 +132,7 @@ Verify that the zero rates are increasing with maturity and interpret this shape
 **Exercise 2.** A two-year par swap with semiannual payments has a quoted rate of $s = 3.80\%$. Using the discount factors from Exercise 1, verify whether the par swap rate is consistent with these discount factors via the formula
 
 $$
-s = \frac{1 - P(0,T_n)}{\sum_{i=1}^{n} \delta_i\, P(0,T_i)},
+s = \frac{1 - P(0,T_n)}{\sum_{i=1}^{n} \delta_i\, P(0,T_i)}
 $$
 
 where $\delta_i = 0.5$ for semiannual periods. If it is not consistent, explain what adjustment to the curve would be needed.
@@ -189,13 +189,13 @@ where $\delta_i = 0.5$ for semiannual periods. If it is not consistent, explain 
 **Exercise 3.** Consider the Hull--White model with short-rate dynamics
 
 $$
-dr(t) = \bigl[\theta(t) - a\,r(t)\bigr]\,dt + \sigma\,dW(t).
+dr(t) = \bigl[\theta(t) - a\,r(t)\bigr]\,dt + \sigma\,dW(t)
 $$
 
 Show that exact fit to the initial term structure is achieved by choosing
 
 $$
-\theta(t) = \frac{\partial f(0,t)}{\partial t} + a\,f(0,t) + \frac{\sigma^2}{2a}\bigl(1 - e^{-2at}\bigr),
+\theta(t) = \frac{\partial f(0,t)}{\partial t} + a\,f(0,t) + \frac{\sigma^2}{2a}\bigl(1 - e^{-2at}\bigr)
 $$
 
 where $f(0,t) = -\frac{\partial}{\partial t}\ln P(0,t)$ is the initial instantaneous forward rate. Explain why this deterministic shift approach is called "fitting the initial curve."

@@ -18,9 +18,9 @@ The resolution lies in understanding the difference between **paths** and
 
 A stochastic process such as Brownian motion generates random paths
 
-\[
-\omega : [0,T] \to \mathbb{R}.
-\]
+$$
+\omega : [0,T] \to \mathbb{R}
+$$
 
 A probability measure does not create new paths.
 Instead, it assigns **weights** to these paths.
@@ -56,21 +56,26 @@ Only the probability weights have changed.
 ## Continuous-Time Perspective
 
 
-Let \(W_t\) be Brownian motion under a measure \(\mathbb{P}\).
+Let $W_t$ be Brownian motion under a measure $\mathbb{P}$.
 The process
 
-\[
+$$
 Y_t = W_t + \theta t
-\]
+$$
 
-has drift \(\theta\) under \(\mathbb{P}\).
+has drift $\theta$ under $\mathbb{P}$.
 
 Girsanov’s theorem answers the following question:
 
-> *Is there an equivalent probability measure under which \(Y_t\) is a Brownian motion?*
+> *Is there an equivalent probability measure under which $Y_t$ is a Brownian motion?*
 
-The answer is yes, provided the Novikov condition holds.
-The drift can be absorbed into the probability measure, and no sample path is added or removed — only reweighted.
+The answer is yes, provided the **Novikov condition**
+
+$$
+\mathbb{E}^{\mathbb{P}}!\left[\exp!\left(\frac12\int_0^T \theta_s^2,ds\right)\right] < \infty
+$$
+
+holds, which guarantees that the exponential change-of-measure process is a true martingale. In the case of constant drift $\theta$, the condition is automatically satisfied. Thus the drift can be absorbed into the probability measure, and no sample path is added or removed—only reweighted.
 
 ---
 
@@ -94,7 +99,7 @@ viewpoints.
 
 More precisely, drift is not a pathwise property but a property of the *finite-dimensional distributions* induced by the measure. Equivalently, drift corresponds to the compensator in the semimartingale decomposition under a given measure. For diffusion models of the type considered here, drift is reflected in the measure-weighted law of the process rather than in any individual sample path.
 
-Everything that follows is a rigorous formulation of this idea. Next we formalize this intuition through the Radon-Nikodym derivative and the exponential martingale.
+Everything that follows is a rigorous formulation of this idea. Next we formalize this intuition through the Radon–Nikodym derivative and the exponential martingale.
 
 ---
 
@@ -104,7 +109,7 @@ Everything that follows is a rigorous formulation of this idea. Next we formaliz
 Consider two observers watching the same set of stock price paths over one year. Observer A uses measure $\mathbb{P}$ and estimates a positive drift of 8%. Observer B uses measure $\mathbb{Q}$ and sees drift equal to the risk-free rate $r = 2\%$. Explain how both observers can be correct simultaneously, and describe what differs between their assessments.
 
 ??? success "Solution to Exercise 1"
-    Both observers are correct because they are using different probability measures to evaluate the same set of sample paths. Observer A, using the physical measure $\mathbb{P}$, assigns probabilities to paths that reflect real-world likelihoods. Under this weighting, the average growth rate of the stock is 8%. Observer B, using the risk-neutral measure $\mathbb{Q}$, reweights the same paths via a Radon-Nikodym derivative so that upward-trending paths receive less probability and downward-trending paths receive more. Under this reweighting, the average growth rate equals the risk-free rate $r = 2\%$.
+    Both observers are correct because they are using different probability measures to evaluate the same set of sample paths. Observer A, using the physical measure $\mathbb{P}$, assigns probabilities to paths that reflect real-world likelihoods. Under this weighting, the average growth rate of the stock is 8%. Observer B, using the risk-neutral measure $\mathbb{Q}$, reweights the same paths via a Radon–Nikodym derivative so that upward-trending paths receive less probability and downward-trending paths receive more. Under this reweighting, the average growth rate equals the risk-free rate $r = 2\%$.
 
     What differs is not the paths themselves but the probability weights assigned to them. Both observers see the exact same collection of possible price trajectories. Observer A's weighting reflects beliefs about real-world returns (incorporating risk premia), while Observer B's weighting is constructed so that discounted prices are martingales, enabling arbitrage-free pricing. Neither observer is wrong — they are answering different questions about the same probability space.
 
@@ -151,7 +156,7 @@ A skeptic argues: "If changing the probability measure does not change any sampl
 ---
 
 **Exercise 4.**
-Suppose you flip a biased coin with $\mathbb{P}(\text{Heads}) = 0.7$. Define a new measure $\mathbb{Q}$ with $\mathbb{Q}(\text{Heads}) = 0.5$. The sample space $\{\text{H}, \text{T}\}$ is the same under both measures. Compute the Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}$ on each outcome and verify that $\mathbb{E}^{\mathbb{P}}[d\mathbb{Q}/d\mathbb{P}] = 1$. Use this discrete example to illustrate the intuition behind Girsanov's theorem.
+Suppose you flip a biased coin with $\mathbb{P}(\text{Heads}) = 0.7$. Define a new measure $\mathbb{Q}$ with $\mathbb{Q}(\text{Heads}) = 0.5$. The sample space $\{\text{H}, \text{T}\}$ is the same under both measures. Compute the Radon–Nikodym derivative $d\mathbb{Q}/d\mathbb{P}$ on each outcome and verify that $\mathbb{E}^{\mathbb{P}}[d\mathbb{Q}/d\mathbb{P}] = 1$. Use this discrete example to illustrate the intuition behind Girsanov's theorem.
 
 ??? success "Solution to Exercise 4"
     On the outcome $\text{H}$:
@@ -172,7 +177,7 @@ Suppose you flip a biased coin with $\mathbb{P}(\text{Heads}) = 0.7$. Define a n
     \mathbb{E}^{\mathbb{P}}\!\left[\frac{d\mathbb{Q}}{d\mathbb{P}}\right] = \mathbb{P}(\text{H}) \cdot \frac{5}{7} + \mathbb{P}(\text{T}) \cdot \frac{5}{3} = 0.7 \cdot \frac{5}{7} + 0.3 \cdot \frac{5}{3} = 0.5 + 0.5 = 1 \quad \checkmark
     $$
 
-    This illustrates the key idea behind Girsanov's theorem: the Radon-Nikodym derivative reweights outcomes without changing the sample space. Under $\mathbb{P}$, heads is more likely (biased coin), so if we define "drift" as the expected value, there is a positive bias toward heads. Under $\mathbb{Q}$, the same outcomes exist but with equal probability (fair coin), removing the drift. The outcome $\text{H}$ (analogous to an upward-drifting path) is downweighted by $5/7 < 1$, while $\text{T}$ (a downward path) is upweighted by $5/3 > 1$. The continuous-time Girsanov theorem works identically: the Radon-Nikodym derivative $Z_T$ reweights paths so that a drifted process becomes driftless.
+    This illustrates the key idea behind Girsanov's theorem: the Radon–Nikodym derivative reweights outcomes without changing the sample space. Under $\mathbb{P}$, heads is more likely (biased coin), so if we define "drift" as the expected value, there is a positive bias toward heads. Under $\mathbb{Q}$, the same outcomes exist but with equal probability (fair coin), removing the drift. The outcome $\text{H}$ (analogous to an upward-drifting path) is downweighted by $5/7 < 1$, while $\text{T}$ (a downward path) is upweighted by $5/3 > 1$. The continuous-time Girsanov theorem works identically: the Radon–Nikodym derivative $Z_T$ reweights paths so that a drifted process becomes driftless.
 
 ---
 
@@ -187,7 +192,7 @@ In the thought experiment of observing many random paths, suppose the first obse
     - Paths that trend **downward** or stay flat must receive **higher** weight under $\mathbb{Q}$ than under $\mathbb{P}$.
     - Paths that trend **strongly upward** must receive **lower** weight under $\mathbb{Q}$.
 
-    Specifically, the weight of each path $\omega$ is proportional to the Radon-Nikodym derivative $Z_T(\omega)$. For a process with drift $\mu > 0$ and constant volatility $\sigma$, the Girsanov kernel is $\theta = \mu/\sigma$, and the weight is $Z_T(\omega) = \exp(-\theta W_T(\omega) - \frac{1}{2}\theta^2 T)$. Paths where $W_T(\omega)$ is large and positive (those responsible for the upward drift) get exponentially downweighted by the factor $e^{-\theta W_T}$, while paths where $W_T(\omega)$ is negative get upweighted. The result is that the reweighted average drift is zero.
+    Specifically, the weight of each path $\omega$ is proportional to the Radon–Nikodym derivative $Z_T(\omega)$. For a process with drift $\mu > 0$ and constant volatility $\sigma$, the Girsanov kernel is $\theta = \mu/\sigma$, and the weight is $Z_T(\omega) = \exp(-\theta W_T(\omega) - \frac{1}{2}\theta^2 T)$. Paths where $W_T(\omega)$ is large and positive (those responsible for the upward drift) get exponentially downweighted by the factor $e^{-\theta W_T}$, while paths where $W_T(\omega)$ is negative get upweighted. The result is that the reweighted average drift is zero.
 
 ---
 

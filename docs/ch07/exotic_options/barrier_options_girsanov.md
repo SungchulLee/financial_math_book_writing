@@ -258,7 +258,7 @@ As $S_t$ approaches the barrier $H$, the option's delta and gamma exhibit extrem
 ---
 
 
-**Exercise 3.** Explain why the reflection principle cannot be applied directly to drifted Brownian motion $X_t = x + \mu t + \sigma W_t$ when $\mu \neq 0$. Describe the Girsanov-type measure change that removes the drift, and show that the Radon-Nikodym derivative produces the factor $(S_0/H)^{2\lambda - 2}$ in the pricing formula.
+**Exercise 3.** Explain why the reflection principle cannot be applied directly to drifted Brownian motion $X_t = x + \mu t + \sigma W_t$ when $\mu \neq 0$. Describe the Girsanov-type measure change that removes the drift, and show that the Radon–Nikodym derivative produces the factor $(S_0/H)^{2\lambda - 2}$ in the pricing formula.
 
 ??? success "Solution to Exercise 3"
     The reflection principle for **driftless** Brownian motion $B_t$ states that for a barrier at level $b$:
@@ -271,7 +271,7 @@ As $S_t$ approaches the barrier $H$, the option's delta and gamma exhibit extrem
 
     For drifted Brownian motion $X_t = x + \mu t + \sigma W_t$ with $\mu \neq 0$, this bijection fails because reflecting a path changes the drift: the reflected segment has drift $-\mu$ instead of $+\mu$. The reflected paths are no longer equally likely under the original measure.
 
-    To fix this, we define a new measure $\hat{\mathbb{Q}}$ under which $X_t$ has no drift. By Girsanov's theorem, the Radon-Nikodym derivative is:
+    To fix this, we define a new measure $\hat{\mathbb{Q}}$ under which $X_t$ has no drift. By Girsanov's theorem, the Radon–Nikodym derivative is:
 
     $$
     \frac{d\hat{\mathbb{Q}}}{d\mathbb{Q}} = \exp\left(-\frac{\mu}{\sigma}W_T - \frac{\mu^2}{2\sigma^2}T\right)

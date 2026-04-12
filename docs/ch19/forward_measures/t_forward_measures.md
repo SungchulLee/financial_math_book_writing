@@ -1,46 +1,46 @@
 # T-Forward Measures
 
 
-Beyond the risk-neutral measure, it is often convenient to price derivatives under a **forward measure**, associated with a specific maturity \(T\).
+Beyond the risk-neutral measure, it is often convenient to price derivatives under a **forward measure**, associated with a specific maturity $T$.
 
 ---
 
 ## Definition of the T-forward measure
 
 
-Let \(P(t,T)\) be the zero-coupon bond maturing at \(T\).
-The **T-forward measure** \(\mathbb{Q}^T\) is defined by choosing \(P(t,T)\) as numéraire.
+Let $P(t,T)$ be the zero-coupon bond maturing at $T$.
+The **T-forward measure** $\mathbb{Q}^T$ is defined by choosing $P(t,T)$ as numéraire.
 
-Under \(\mathbb{Q}^T\),
+Under $\mathbb{Q}^T$,
 
-\[
+$$
 \frac{S_t}{P(t,T)} \text{ is a martingale}
-\]
+$$
 
 
-for any tradable asset \(S_t\) that pays off at or before \(T\).
+for any tradable asset $S_t$ that pays off at or before $T$.
 
 ---
 
 ## Pricing under the forward measure
 
 
-For a payoff \(V_T\) at time \(T\),
+For a payoff $V_T$ at time $T$,
 
-\[
-V_t = P(t,T)\,\mathbb{E}^{\mathbb{Q}^T}[V_T \mid \mathcal{F}_t].
-\]
+$$
+V_t = P(t,T)\,\mathbb{E}^{\mathbb{Q}^T}[V_T \mid \mathcal{F}_t]
+$$
 
 
 
-Discounting disappears because the numéraire already matures at \(T\).
+Discounting disappears because the numéraire already matures at $T$.
 
 ---
 
 ## Dynamics under the forward measure
 
 
-Changing from \(\mathbb{Q}\) to \(\mathbb{Q}^T\):
+Changing from $\mathbb{Q}$ to $\mathbb{Q}^T$:
 - alters drift terms,
 - leaves volatilities unchanged,
 - simplifies pricing of forwards, FRAs, and caps.
@@ -179,7 +179,7 @@ $$\begin{array}{lllll}
 \text{exp}\left(\int_0^t\left(r(t')-\frac{1}{2}\sigma_P^2(t',T)\right)dt'+\int_0^t\sigma_P(t',T)dW^{\mathbb{Q}}(t')\right)
 \end{array}$$
 
-**Radon-Nikodym Derivative**
+**Radon–Nikodym Derivative**
 
 $$\begin{array}{lllll}
 \displaystyle

@@ -81,7 +81,7 @@ Meaning: the solution trajectory is uniquely determined by the Brownian path.
 distribution have the same law:
 
 $$
-\mathrm{Law}(X_t : t \geq 0) = \mathrm{Law}(X_t' : t \geq 0).
+\mathrm{Law}(X_t : t \geq 0) = \mathrm{Law}(X_t' : t \geq 0)
 $$
 
 Meaning: the probability distribution of the solution is unique, even if individual

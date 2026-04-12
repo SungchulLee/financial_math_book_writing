@@ -439,7 +439,7 @@ Risk-sensitive control provides a principled framework for incorporating risk pr
 
     The supremum is achieved, completing the proof. $\blacksquare$
 
-    **Interpretation of $P^*$:** The worst-case measure $P^*$ exponentially tilts probabilities toward high-cost outcomes. The Radon-Nikodym derivative $dP^*/dP_0 \propto e^{\gamma C}$ assigns more weight to states where $C$ is large. This is the adversarial distribution that maximizes expected cost net of the entropy penalty.
+    **Interpretation of $P^*$:** The worst-case measure $P^*$ exponentially tilts probabilities toward high-cost outcomes. The Radon–Nikodym derivative $dP^*/dP_0 \propto e^{\gamma C}$ assigns more weight to states where $C$ is large. This is the adversarial distribution that maximizes expected cost net of the entropy penalty.
 
     **Role of $\gamma$:** The parameter $\gamma$ controls the trade-off:
 

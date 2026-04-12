@@ -48,6 +48,17 @@ $$
 
 Time value reflects the possibility that the underlying price may move favorably before expiration. Even an out-of-the-money option commands a positive premium because there is still time for the stock price to cross the strike. As maturity approaches, this possibility diminishes, and the time value decays to zero — a phenomenon known as **time decay**. At expiration, the premium equals the intrinsic value exactly: all time value has vanished.
 
+??? example "Intrinsic and Time Value: SPX Options"
+    With the S&P 500 index at approximately 6,616, consider front-month call options (one month to expiration, \$100 multiplier):
+
+    | Strike | Premium (pts) | Intrinsic value | Time value | Dollar cost |
+    |---|---|---|---|---|
+    | 6,500 (ITM) | $\approx 260$ | $6{,}616 - 6{,}500 = 116$ | $\approx 144$ | \$26,000 |
+    | 6,600 (ATM) | $\approx 180$ | $6{,}616 - 6{,}600 = 16$ | $\approx 164$ | \$18,000 |
+    | 6,700 (OTM) | $\approx 84$ | $0$ | $84$ | \$8,400 |
+
+    The ATM option is almost entirely time value. As the option moves deeper ITM, intrinsic value grows but time value remains substantial — reflecting the possibility that the index could move even further. The OTM option has no intrinsic value at all; its entire premium is the market's assessment of the probability that the index will rise above 6,700 before expiration.
+
 ---
 
 ## Factors Affecting the Premium
@@ -65,6 +76,11 @@ Five quantities govern the option premium. Their influence can be summarized qua
 The first two are immediate: a call becomes more valuable as the underlying rises (moving it deeper in the money) and less valuable as the strike rises (making exercise less likely). Greater time to maturity increases the premium for both calls and puts because it enlarges the range of possible outcomes.
 
 Volatility $\sigma$ is perhaps the most important determinant. Higher volatility means larger potential swings in $S_T$, which benefits the option holder: upside gains grow while the downside remains bounded at zero payoff. This asymmetry makes options more valuable in volatile markets, a feature that will be made precise through the Black-Scholes formula.
+
+??? tip "Volatility Skew"
+    In real markets, the effect of volatility on premiums is not uniform across strikes. Out-of-the-money puts tend to trade at higher implied volatilities than symmetric out-of-the-money calls — a phenomenon called **volatility skew**. For S&P 500 options, a put struck 200 points below the index may be priced at a higher implied volatility than a call struck 200 points above, even though both are equally far from the current level.
+
+    This skew reflects the market's demand for **downside protection**: investors are willing to pay a disproportionate premium to insure against sudden market declines, which tend to be sharper and more damaging than rallies of equal magnitude. The volatility skew is a persistent empirical feature of equity index options and has important implications for pricing models beyond Black-Scholes.
 
 The risk-free rate $r$ enters because exercising a call at maturity is equivalent to deferring purchase of the stock. A higher rate reduces the present value of the strike payment $K e^{-r(T-t)}$, making the call more valuable. The effect is reversed for puts.
 

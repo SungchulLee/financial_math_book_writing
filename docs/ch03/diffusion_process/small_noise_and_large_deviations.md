@@ -7,13 +7,13 @@ Consider the **small-noise diffusion** on $[0,T]$:
 $$
 \mathrm{d}X_t^{\varepsilon}
 = b(X_t^{\varepsilon})\,\mathrm{d}t + \sqrt{\varepsilon}\,\sigma(X_t^{\varepsilon})\,\mathrm{d}W_t,
-\qquad X_0^{\varepsilon} = x_0,
+\qquad X_0^{\varepsilon} = x_0
 $$
 
 where $\varepsilon > 0$ is a small parameter. As $\varepsilon \downarrow 0$, $X^{\varepsilon}$ concentrates around the **deterministic skeleton** (the ODE solution):
 
 $$
-\dot{\bar{x}}(t) = b(\bar{x}(t)), \qquad \bar{x}(0) = x_0.
+\dot{\bar{x}}(t) = b(\bar{x}(t)), \qquad \bar{x}(0) = x_0
 $$
 
 Large deviations theory (Freidlin–Wentzell) makes precise how **exponentially unlikely** it is for $X^{\varepsilon}$ to deviate from $\bar{x}$.
@@ -34,7 +34,7 @@ Large deviations theory (Freidlin–Wentzell) makes precise how **exponentially 
     Equivalently, using the control representation: if $\dot{\phi}(t) = b(\phi(t)) + \sigma(\phi(t))\,u(t)$ for some $u \in L^2([0,T]; \mathbb{R}^m)$, then
 
     $$
-    I_{0,T}(\phi) = \frac{1}{2}\int_0^T \|u(t)\|^2\,\mathrm{d}t.
+    I_{0,T}(\phi) = \frac{1}{2}\int_0^T \|u(t)\|^2\,\mathrm{d}t
     $$
 
     This is the **minimum energy** (in $L^2$ of the control) needed to force the system along the path $\phi$.
@@ -51,13 +51,13 @@ Large deviations theory (Freidlin–Wentzell) makes precise how **exponentially 
     - **(Upper bound)** For every closed set $F \subset C([0,T];\mathbb{R}^d)$:
 
     $$
-    \limsup_{\varepsilon \downarrow 0}\;\varepsilon \log \mathbb{P}(X^{\varepsilon} \in F) \le -\inf_{\phi \in F} I_{0,T}(\phi).
+    \limsup_{\varepsilon \downarrow 0}\;\varepsilon \log \mathbb{P}(X^{\varepsilon} \in F) \le -\inf_{\phi \in F} I_{0,T}(\phi)
     $$
 
     - **(Lower bound)** For every open set $G \subset C([0,T];\mathbb{R}^d)$:
 
     $$
-    \liminf_{\varepsilon \downarrow 0}\;\varepsilon \log \mathbb{P}(X^{\varepsilon} \in G) \ge -\inf_{\phi \in G} I_{0,T}(\phi).
+    \liminf_{\varepsilon \downarrow 0}\;\varepsilon \log \mathbb{P}(X^{\varepsilon} \in G) \ge -\inf_{\phi \in G} I_{0,T}(\phi)
     $$
 
 !!! warning "On the Invertibility Assumption"
@@ -68,7 +68,7 @@ Large deviations theory (Freidlin–Wentzell) makes precise how **exponentially 
 Combining upper and lower bounds: for a set $A$ satisfying $\inf_{\phi \in \mathrm{int}(A)} I_{0,T}(\phi) = \inf_{\phi \in \bar{A}} I_{0,T}(\phi)$ (a **continuity set** of $I_{0,T}$, meaning the infimum is the same over the interior and the closure),
 
 $$
-\mathbb{P}(X^{\varepsilon} \in A) \approx \exp\!\left(-\frac{1}{\varepsilon}\inf_{\phi \in A} I_{0,T}(\phi)\right) \quad (\varepsilon \downarrow 0).
+\mathbb{P}(X^{\varepsilon} \in A) \approx \exp\!\left(-\frac{1}{\varepsilon}\inf_{\phi \in A} I_{0,T}(\phi)\right) \quad (\varepsilon \downarrow 0)
 $$
 
 The **most likely atypical path** (the **instanton** or **optimal fluctuation path**) is the minimiser of $I_{0,T}$ over the constrained set $A$. All other paths in $A$ are exponentially less likely.
@@ -80,7 +80,7 @@ The Itô SDE says $\dot{X}^{\varepsilon} \approx b(X^{\varepsilon}) + \sqrt{\var
 $$
 \frac{\mathrm{d}\mathbb{P}}{\mathrm{d}\mathbb{Q}^u}\bigg|_{\mathcal{F}_T}
 = \exp\!\left(-\frac{1}{2\varepsilon}\int_0^T \|u(t)\|^2\,\mathrm{d}t\right)
-= \exp\!\left(-\frac{I_{0,T}(\phi)}{\varepsilon}\right),
+= \exp\!\left(-\frac{I_{0,T}(\phi)}{\varepsilon}\right)
 $$
 
 so the $\mathbb{P}$-probability of the path $\phi$ is suppressed by a factor $\exp(-I_{0,T}(\phi)/\varepsilon)$ relative to the shifted measure — directly giving the exponential rate. (Since $u$ is a deterministic $L^2$ function, Novikov's condition $\mathbb{E}\exp(\frac{1}{2\varepsilon}\int\|u\|^2\,\mathrm{d}t) < \infty$ holds automatically, ensuring $\mathbb{Q}^u$ is a true probability measure.)
@@ -94,13 +94,13 @@ so the $\mathbb{P}$-probability of the path $\phi$ is suppressed by a factor $\e
 Let $d = 1$, $b(x) = -V'(x)$ (gradient drift), $\sigma = 1$:
 
 $$
-\mathrm{d}X_t^{\varepsilon} = -V'(X_t^{\varepsilon})\,\mathrm{d}t + \sqrt{\varepsilon}\,\mathrm{d}W_t.
+\mathrm{d}X_t^{\varepsilon} = -V'(X_t^{\varepsilon})\,\mathrm{d}t + \sqrt{\varepsilon}\,\mathrm{d}W_t
 $$
 
 Suppose $V$ has a local minimum at $0$ and a saddle point at $x^* > 0$ with $V(x^*) > V(0)$. The **quasipotential** for escape from the well is
 
 $$
-\Delta V := V(x^*) - V(0) = I_{0,\infty}(\phi^*),
+\Delta V := V(x^*) - V(0) = I_{0,\infty}(\phi^*)
 $$
 
 where $\phi^*$ is the minimising path (the instanton). By the LDP,
@@ -116,13 +116,13 @@ This recovers the **Kramers escape rate** from statistical physics.
 Define the **Hamiltonian** associated to the large deviations:
 
 $$
-H(x, p) = b(x) \cdot p + \frac{1}{2}\,p^\top a(x)\,p, \qquad a = \sigma\sigma^\top.
+H(x, p) = b(x) \cdot p + \frac{1}{2}\,p^\top a(x)\,p, \qquad a = \sigma\sigma^\top
 $$
 
 The **quasipotential** $U(x) := \inf\{I_{0,\infty}(\phi) : \phi(0) = x_0,\, \phi(\infty) = x\}$ satisfies the stationary **Hamilton–Jacobi equation**:
 
 $$
-H(x, \nabla U(x)) = 0.
+H(x, \nabla U(x)) = 0
 $$
 
 This equation has a meaningful solution when $x_0$ is a **stable equilibrium** of the ODE $\dot{x} = b(x)$ (i.e. $b(x_0) = 0$ and the linearisation at $x_0$ is stable); the quasipotential then measures the cost of reaching $x$ from the basin of attraction of $x_0$.
@@ -130,7 +130,7 @@ This equation has a meaningful solution when $x_0$ is a **stable equilibrium** o
 The time-dependent analogue: the value function $V(t, x) = -\varepsilon \log \mathbb{E}^x[e^{-g(X_T^{\varepsilon})/\varepsilon}]$ satisfies, as $\varepsilon \to 0$, the **nonlinear** Hamilton–Jacobi PDE
 
 $$
-\partial_t V + H(x, \nabla_x V) = 0,
+\partial_t V + H(x, \nabla_x V) = 0
 $$
 
 in contrast to the **linear** Kolmogorov backward equation satisfied by $\mathbb{E}^x[g(X_T^{\varepsilon})]$. Large deviations thus convert linear PDE problems into nonlinear Hamilton–Jacobi problems.
@@ -148,7 +148,7 @@ $$
 = \exp\!\left(
 \frac{1}{\sqrt{\varepsilon}}\int_0^T u(t)^\top\,\mathrm{d}W_t
 - \frac{1}{2\varepsilon}\int_0^T \|u(t)\|^2\,\mathrm{d}t
-\right).
+\right)
 $$
 
 Under $\mathbb{Q}^u$, the process $\widetilde{W}_t := W_t - \frac{1}{\sqrt{\varepsilon}}\int_0^t u(s)\,\mathrm{d}s$ is a standard BM, and the SDE becomes $\mathrm{d}X^\varepsilon = (b + \sigma u)\,\mathrm{d}t + \sqrt{\varepsilon}\,\sigma\,\mathrm{d}\widetilde{W}$, which has $\phi$ as its leading-order ($\varepsilon \to 0$) solution. The log-likelihood of the shift is $-\frac{1}{2\varepsilon}\int\|u\|^2\,\mathrm{d}t = -I_{0,T}(\phi)/\varepsilon$, directly giving the exponential rate.
@@ -314,7 +314,7 @@ Under $\mathbb{Q}^u$, the process $\widetilde{W}_t := W_t - \frac{1}{\sqrt{\vare
 **Exercise 5.** State the upper and lower bounds of the Freidlin–Wentzell LDP. For a continuity set $A$ (where $\inf_{\mathrm{int}(A)} I = \inf_{\bar{A}} I$), show that the two bounds combine to give
 
 $$
-\lim_{\varepsilon \downarrow 0}\;\varepsilon\log\mathbb{P}(X^\varepsilon \in A) = -\inf_{\phi \in A} I_{0,T}(\phi).
+\lim_{\varepsilon \downarrow 0}\;\varepsilon\log\mathbb{P}(X^\varepsilon \in A) = -\inf_{\phi \in A} I_{0,T}(\phi)
 $$
 
 Give a concrete example of a set $A$ in path space that is a continuity set and one that is not.
@@ -345,7 +345,7 @@ Give a concrete example of a set $A$ in path space that is a continuity set and 
 **Exercise 6.** For the small-noise diffusion $\mathrm{d}X_t^\varepsilon = b(X_t^\varepsilon)\,\mathrm{d}t + \sqrt{\varepsilon}\,\sigma(X_t^\varepsilon)\,\mathrm{d}W_t$, define the Hamiltonian $H(x, p) = b(x) \cdot p + \frac{1}{2}p^\top a(x)\,p$ with $a = \sigma\sigma^\top$. Write down the Hamilton equations (the Euler–Lagrange equations for minimising $I_{0,T}$) and show that the instanton path $\phi^*$ satisfies
 
 $$
-\dot{\phi}^* = b(\phi^*) + a(\phi^*)\,p^*, \qquad \dot{p}^* = -(\nabla_x b)^\top p^* - \frac{1}{2}\nabla_x(p^{*\top} a\,p^*),
+\dot{\phi}^* = b(\phi^*) + a(\phi^*)\,p^*, \qquad \dot{p}^* = -(\nabla_x b)^\top p^* - \frac{1}{2}\nabla_x(p^{*\top} a\,p^*)
 $$
 
 where $p^*$ is the conjugate momentum.

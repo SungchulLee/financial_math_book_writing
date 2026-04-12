@@ -8,43 +8,43 @@ In short-rate models, zero-coupon bond prices can be characterized as solutions 
 ## Setup
 
 
-Let \(r_t\) follow a risk-neutral short-rate diffusion
+Let $r_t$ follow a risk-neutral short-rate diffusion
 
-\[
-dr_t = \mu^{\mathbb{Q}}(t,r_t)\,dt + \sigma(t,r_t)\,dW_t^{\mathbb{Q}}.
-\]
+$$
+dr_t = \mu^{\mathbb{Q}}(t,r_t)\,dt + \sigma(t,r_t)\,dW_t^{\mathbb{Q}}
+$$
 
 
 
 Define the zero-coupon bond price
 
-\[
-P(t,T,r) = \text{price at }t\text{ of }1\text{ paid at }T,
-\]
+$$
+P(t,T,r) = \text{price at }t\text{ of }1\text{ paid at }T
+$$
 
 
-given \(r_t=r\).
+given $r_t=r$.
 
 ---
 
 ## Pricing PDE
 
 
-By standard arbitrage arguments, \(P(t,T,r)\) satisfies
+By standard arbitrage arguments, $P(t,T,r)$ satisfies
 
-\[
+$$
 \partial_t P
 + \mu^{\mathbb{Q}}(t,r)\,\partial_r P
 + \tfrac12 \sigma(t,r)^2\,\partial_{rr}P
-- rP = 0,
-\]
+- rP = 0
+$$
 
 
 with terminal condition
 
-\[
-P(T,T,r)=1.
-\]
+$$
+P(T,T,r)=1
+$$
 
 
 
@@ -57,9 +57,9 @@ This PDE is backward in time.
 
 Appropriate boundary conditions depend on the model:
 
-- as \(r\to \infty\): bond price decays to zero,
-- as \(r\to -\infty\) (if allowed): growth must remain controlled,
-- at boundaries like \(r=0\) (CIR): degeneracy requires careful handling.
+- as $r\to \infty$: bond price decays to zero,
+- as $r\to -\infty$ (if allowed): growth must remain controlled,
+- at boundaries like $r=0$ (CIR): degeneracy requires careful handling.
 
 Correct boundary treatment is crucial for numerical stability.
 

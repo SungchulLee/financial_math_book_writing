@@ -54,7 +54,7 @@ $$
 
 with $\theta_t = \lambda_t^{\mathbb{P}}(\eta_t - 1)$ being the **additive risk premium**.
 
-### Radon-Nikodym Derivative
+### Radon–Nikodym Derivative
 
 The measure change for the default component is characterized by:
 

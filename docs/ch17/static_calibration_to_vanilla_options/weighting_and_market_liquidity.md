@@ -10,15 +10,15 @@ Calibration is only as good as its treatment of **quote quality**. Two instrumen
 
 Consider weighted least squares:
 
-\[
+$$
 \mathcal{L}(\theta)=\frac12\sum_{j=1}^m w_j\,r_j(\theta)^2,
-\qquad r_j(\theta)=f_j(\theta)-y_j.
-\]
+\qquad r_j(\theta)=f_j(\theta)-y_j
+$$
 
 
 
-- Large \(w_j\): the optimizer will prioritize fitting instrument \(j\).
-- Small \(w_j\): instrument \(j\) is effectively down-weighted (treated as noisy/unreliable).
+- Large $w_j$: the optimizer will prioritize fitting instrument $j$.
+- Small $w_j$: instrument $j$ is effectively down-weighted (treated as noisy/unreliable).
 
 Without sensible weights, calibration may overfit illiquid points and produce unstable parameters.
 
@@ -29,9 +29,9 @@ Without sensible weights, calibration may overfit illiquid points and produce un
 
 A common heuristic is:
 
-\[
-w_j \propto \frac{1}{\text{(bid-ask)}_j^2}.
-\]
+$$
+w_j \propto \frac{1}{\text{(bid-ask)}_j^2}
+$$
 
 
 
@@ -68,9 +68,9 @@ Therefore, practitioners often apply **region-dependent weights**:
 
 In vol-space calibration, the same vol error can imply very different price errors depending on Vega:
 
-\[
-\Delta C \approx \text{Vega}\,\Delta\sigma.
-\]
+$$
+\Delta C \approx \text{Vega}\,\Delta\sigma
+$$
 
 
 
@@ -103,12 +103,12 @@ Think of weights as *the last step* after basic data hygiene.
 ### 1. A simple “spread + maturity balancing” scheme
 
 
-- baseline: \(w_j = 1/\text{spread}_j^2\),
+- baseline: $w_j = 1/\text{spread}_j^2$,
 - per-maturity normalization so each maturity contributes similarly:
 
-  \[
-  w_{j \in T} \leftarrow \frac{w_j}{\sum_{k\in T} w_k}.
-  \]
+  $$
+  w_{j \in T} \leftarrow \frac{w_j}{\sum_{k\in T} w_k}
+  $$
 
 
 

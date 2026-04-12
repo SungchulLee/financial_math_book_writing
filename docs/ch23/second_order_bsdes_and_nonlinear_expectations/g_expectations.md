@@ -395,7 +395,7 @@ $$
 
 is the relative entropy (Kullback-Leibler divergence).
 
-**Proof**: The optimal measure $\mathbb{Q}^*$ has Radon-Nikodym derivative:
+**Proof**: The optimal measure $\mathbb{Q}^*$ has Radon–Nikodym derivative:
 
 
 $$
@@ -964,7 +964,7 @@ g-Expectations represent a cornerstone of modern mathematical finance, providing
     -dY_t = (\mu Y_t + \lambda Z_t) \, dt - Z_t \, dW_t, \quad Y_T = \xi
     $$
 
-    **Step 2: Change of measure.** Define $\mathbb{Q}$ by the Radon-Nikodym derivative:
+    **Step 2: Change of measure.** Define $\mathbb{Q}$ by the Radon–Nikodym derivative:
 
     $$
     \frac{d\mathbb{Q}}{dP}\bigg|_{\mathcal{F}_T} = \mathcal{E}\left(\int_0^T \lambda \, dW_s\right) = \exp\left(\lambda W_T - \frac{\lambda^2}{2}T\right)

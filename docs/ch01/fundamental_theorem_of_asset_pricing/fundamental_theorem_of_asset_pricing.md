@@ -411,7 +411,7 @@ Find all probability vectors $q = (q_1, q_2, q_3)$ with $q_i > 0$ and $\sum q_i 
 
 ---
 
-**Exercise 2.** Prove the easy direction of the First FTAP in detail: if an equivalent martingale measure $\mathbb{Q}$ exists, then no arbitrage opportunity exists. Your proof should explicitly use the strict positivity of the Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}$.
+**Exercise 2.** Prove the easy direction of the First FTAP in detail: if an equivalent martingale measure $\mathbb{Q}$ exists, then no arbitrage opportunity exists. Your proof should explicitly use the strict positivity of the Radon–Nikodym derivative $d\mathbb{Q}/d\mathbb{P}$.
 
 ??? success "Solution to Exercise 2"
     Let $\mathbb{Q}$ be an EMM with Radon--Nikodym derivative $Z = d\mathbb{Q}/d\mathbb{P}$, so $Z(\omega) > 0$ for all $\omega$ (since $\mathbb{Q} \sim \mathbb{P}$). The discounted price process $\tilde{S}^i_t = S^i_t / S^0_t$ is a $\mathbb{Q}$-martingale, meaning for any strategy $\theta$:

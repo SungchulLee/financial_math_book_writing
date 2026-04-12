@@ -8,13 +8,13 @@
 ## Definition of regret
 
 
-For a sequence of losses \(\ell_t\),
+For a sequence of losses $\ell_t$,
 
-\[
+$$
 \text{Regret}_T
 = \sum_{t=1}^T \ell_t(a_t)
-- \min_{a} \sum_{t=1}^T \ell_t(a).
-\]
+- \min_{a} \sum_{t=1}^T \ell_t(a)
+$$
 
 
 
@@ -38,7 +38,7 @@ Each reflects different learning goals.
 
 
 Typical guarantees are:
-- \(O(\sqrt{T})\) regret for convex losses,
+- $O(\sqrt{T})$ regret for convex losses,
 - logarithmic regret for strongly convex problems.
 
 Bounds are often worst-case.

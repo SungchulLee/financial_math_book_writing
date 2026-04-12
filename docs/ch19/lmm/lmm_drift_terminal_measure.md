@@ -133,7 +133,7 @@ B(t)=P\left(t,T_{q(t)}\right)\prod_{i=0}^{q(t)-1}\left(1+\delta L(T_i,T_i)\right
 P(t,T_n)=P\left(t,T_{q(t)}\right)\prod_{i=q(t)}^{n-1}\frac{1}{1+\delta L\left(T_{q(t)},T_i\right)}\\
 \end{array}$$
 
-### Radon-Nikodym Derivative for Spot Measure
+### Radon–Nikodym Derivative for Spot Measure
 
 $$\begin{array}{llllllll}
 \displaystyle
@@ -173,7 +173,7 @@ dl_i(t)
 
 ### Special Case: Spot Measure Equals Forward Measure
 
-**Spot Measure Radon-Nikodym Derivative**
+**Spot Measure Radon–Nikodym Derivative**
 
 $$\begin{array}{llllll}
 \displaystyle

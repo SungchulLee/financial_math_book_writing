@@ -13,13 +13,13 @@ $$
 makes the ratio $X(t)/N(t)$ a martingale for any tradable asset $X(t)$. Here $M(t) = \exp(\int_0^t r(s)\,ds)$ is the money market account.
 
 !!! info "Definition: T-Forward Measure"
-    The $T$-forward measure $\mathbb{Q}^T$ is the probability measure obtained by choosing $N(t) = P(t,T)$ as numeraire. Its Radon-Nikodym derivative with respect to $\mathbb{Q}$ is
+    The $T$-forward measure $\mathbb{Q}^T$ is the probability measure obtained by choosing $N(t) = P(t,T)$ as numeraire. Its Radon–Nikodym derivative with respect to $\mathbb{Q}$ is
 
     $$
     \frac{d\mathbb{Q}^T}{d\mathbb{Q}}\Bigg|_{\mathcal{F}(t)} = \frac{P(t,T)/P(0,T)}{M(t)/M(0)} = \frac{P(t,T)}{P(0,T)\,M(t)}
     $$
 
-## Radon-Nikodym Derivative in the Hull-White Model
+## Radon–Nikodym Derivative in the Hull-White Model
 
 In the Hull-White model, the zero-coupon bond dynamics under $\mathbb{Q}$ are
 
@@ -33,7 +33,7 @@ $$
 \sigma_P(t,T) = -\frac{\sigma}{\lambda}\left(1 - e^{-\lambda(T-t)}\right) = \sigma\,B(t,T)
 $$
 
-with $B(t,T) = -\frac{1}{\lambda}(1 - e^{-\lambda(T-t)})$ using the sign convention from the named functions. Taking the logarithm of the Radon-Nikodym derivative:
+with $B(t,T) = -\frac{1}{\lambda}(1 - e^{-\lambda(T-t)})$ using the sign convention from the named functions. Taking the logarithm of the Radon–Nikodym derivative:
 
 $$\begin{array}{lllll}
 \displaystyle
@@ -187,7 +187,7 @@ The $T$-forward measure $\mathbb{Q}^T$ uses the zero-coupon bond $P(t,T)$ as num
 
 ## Exercises
 
-**Exercise 1.** State the general change-of-numeraire theorem. If the numeraire is $N(t) = P(t,T)$ and the base measure is $\mathbb{Q}$ with numeraire $M(t) = e^{\int_0^t r(s)\,ds}$, write down the Radon-Nikodym derivative $\frac{d\mathbb{Q}^T}{d\mathbb{Q}}\big|_{\mathcal{F}(t)}$ and verify that $P(t,S)/P(t,T)$ is a $\mathbb{Q}^T$-martingale for any $S$.
+**Exercise 1.** State the general change-of-numeraire theorem. If the numeraire is $N(t) = P(t,T)$ and the base measure is $\mathbb{Q}$ with numeraire $M(t) = e^{\int_0^t r(s)\,ds}$, write down the Radon–Nikodym derivative $\frac{d\mathbb{Q}^T}{d\mathbb{Q}}\big|_{\mathcal{F}(t)}$ and verify that $P(t,S)/P(t,T)$ is a $\mathbb{Q}^T$-martingale for any $S$.
 
 ??? success "Solution to Exercise 1"
     **General change-of-numeraire theorem:** Let $N(t)$ be a positive, tradable numeraire and $M(t) = e^{\int_0^t r(s)\,ds}$ the money market account. The measure $\mathbb{Q}^N$ defined by
@@ -198,7 +198,7 @@ The $T$-forward measure $\mathbb{Q}^T$ uses the zero-coupon bond $P(t,T)$ as num
 
     makes the ratio $X(t)/N(t)$ a $\mathbb{Q}^N$-martingale for every tradable asset $X(t)$.
 
-    **Radon-Nikodym derivative for the T-forward measure:** Setting $N(t) = P(t,T)$:
+    **Radon–Nikodym derivative for the T-forward measure:** Setting $N(t) = P(t,T)$:
 
     $$
     \frac{d\mathbb{Q}^T}{d\mathbb{Q}}\Bigg|_{\mathcal{F}(t)} = \frac{P(t,T)}{P(0,T)\,M(t)}
@@ -294,7 +294,7 @@ The $T$-forward measure $\mathbb{Q}^T$ uses the zero-coupon bond $P(t,T)$ as num
     \frac{X(t)}{M(t)} = \mathbb{E}^{\mathbb{Q}}\!\left[\frac{X(T)}{M(T)}\,\Big|\,\mathcal{F}(t)\right]
     $$
 
-    The abstract Bayes formula for conditional expectations states that for any random variable $Y$ and Radon-Nikodym derivative $L_T = \frac{d\mathbb{Q}^T}{d\mathbb{Q}}\big|_{\mathcal{F}(T)}$:
+    The abstract Bayes formula for conditional expectations states that for any random variable $Y$ and Radon–Nikodym derivative $L_T = \frac{d\mathbb{Q}^T}{d\mathbb{Q}}\big|_{\mathcal{F}(T)}$:
 
     $$
     \mathbb{E}^T\!\left[Y\,|\,\mathcal{F}(t)\right] = \frac{\mathbb{E}^{\mathbb{Q}}\!\left[L_T\,Y\,|\,\mathcal{F}(t)\right]}{L_t}
@@ -335,16 +335,16 @@ The $T$-forward measure $\mathbb{Q}^T$ uses the zero-coupon bond $P(t,T)$ as num
 
 ---
 
-**Exercise 6.** Consider two different $T$-forward measures, $\mathbb{Q}^{T_1}$ and $\mathbb{Q}^{T_2}$ with $T_1 < T_2$. Derive the Radon-Nikodym derivative $\frac{d\mathbb{Q}^{T_2}}{d\mathbb{Q}^{T_1}}\big|_{\mathcal{F}(t)}$ and the corresponding Girsanov transformation between the two measures.
+**Exercise 6.** Consider two different $T$-forward measures, $\mathbb{Q}^{T_1}$ and $\mathbb{Q}^{T_2}$ with $T_1 < T_2$. Derive the Radon–Nikodym derivative $\frac{d\mathbb{Q}^{T_2}}{d\mathbb{Q}^{T_1}}\big|_{\mathcal{F}(t)}$ and the corresponding Girsanov transformation between the two measures.
 
 ??? success "Solution to Exercise 6"
-    **Radon-Nikodym derivative between two forward measures:** Starting from their respective definitions relative to $\mathbb{Q}$:
+    **Radon–Nikodym derivative between two forward measures:** Starting from their respective definitions relative to $\mathbb{Q}$:
 
     $$
     \frac{d\mathbb{Q}^{T_i}}{d\mathbb{Q}}\Bigg|_{\mathcal{F}(t)} = \frac{P(t,T_i)}{P(0,T_i)\,M(t)}, \qquad i = 1, 2
     $$
 
-    The Radon-Nikodym derivative from $\mathbb{Q}^{T_1}$ to $\mathbb{Q}^{T_2}$ is:
+    The Radon–Nikodym derivative from $\mathbb{Q}^{T_1}$ to $\mathbb{Q}^{T_2}$ is:
 
     $$
     \frac{d\mathbb{Q}^{T_2}}{d\mathbb{Q}^{T_1}}\Bigg|_{\mathcal{F}(t)} = \frac{d\mathbb{Q}^{T_2}/d\mathbb{Q}\big|_{\mathcal{F}(t)}}{d\mathbb{Q}^{T_1}/d\mathbb{Q}\big|_{\mathcal{F}(t)}} = \frac{P(t,T_2)/P(0,T_2)}{P(t,T_1)/P(0,T_1)} = \frac{P(t,T_2)\,P(0,T_1)}{P(t,T_1)\,P(0,T_2)}

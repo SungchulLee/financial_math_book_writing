@@ -5,7 +5,7 @@ The stock-price numeraire measure $\mathbb{Q}^S$ uses the stock price $S_t$ as t
 !!! abstract "Learning Objectives"
     By the end of this section, you will be able to:
 
-    1. Derive the Radon-Nikodym derivative for the change from $\mathbb{Q}$ to $\mathbb{Q}^S$
+    1. Derive the Radon–Nikodym derivative for the change from $\mathbb{Q}$ to $\mathbb{Q}^S$
     2. Obtain the Heston SDE and characteristic function under $\mathbb{Q}^S$
     3. Relate $P_1$ to the exercise probability under the stock-price numeraire
     4. Apply the $\mathbb{Q}^S$ framework to price asset-or-nothing digital calls
@@ -20,7 +20,7 @@ In the Black-Scholes model, the call formula $C = S_0 N(d_1) - K e^{-rT} N(d_2)$
 
 ## Numeraire Change: General Theory
 
-Let $N_t$ be a positive $\mathbb{Q}$-martingale (after discounting). The numeraire measure $\mathbb{Q}^N$ associated with numeraire $N_t$ is defined by the Radon-Nikodym derivative
+Let $N_t$ be a positive $\mathbb{Q}$-martingale (after discounting). The numeraire measure $\mathbb{Q}^N$ associated with numeraire $N_t$ is defined by the Radon–Nikodym derivative
 
 $$
 \frac{d\mathbb{Q}^N}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{N_T / N_0}{B_T / B_0}
@@ -29,7 +29,7 @@ $$
 where $B_t = e^{rt}$ is the money-market account.
 
 !!! info "Proposition (Stock-Price Numeraire)"
-    For the stock-price numeraire $N_t = S_t e^{qt}$ (the reinvested stock), the Radon-Nikodym derivative is
+    For the stock-price numeraire $N_t = S_t e^{qt}$ (the reinvested stock), the Radon–Nikodym derivative is
 
     $$
     \frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{S_T e^{qT}}{S_0 e^{qT} \cdot e^{(r-q)T}} \cdot \frac{B_0}{1} = \frac{S_T}{S_0 e^{(r-q)T}}
@@ -47,7 +47,7 @@ $$
 dS_t = (r - q)S_t \, dt + \sqrt{v_t} \, S_t \, dW_t^{(1), \mathbb{Q}}
 $$
 
-The Radon-Nikodym density process is
+The Radon–Nikodym density process is
 
 $$
 Z_t = \frac{S_t}{S_0 e^{(r-q)t}} = \mathcal{E}\!\left(\int_0^t \sqrt{v_s} \, dW_s^{(1),\mathbb{Q}}\right)
@@ -240,14 +240,14 @@ $$
 
 ## Summary
 
-The stock-price numeraire measure $\mathbb{Q}^S$ is obtained from the risk-neutral measure $\mathbb{Q}$ by the Radon-Nikodym derivative $d\mathbb{Q}^S/d\mathbb{Q} = S_T / (S_0 e^{(r-q)\tau})$. Under $\mathbb{Q}^S$, the Heston variance process has modified mean-reversion parameters $\kappa^* = \kappa - \rho\xi$ and $\theta^* = \kappa\theta/\kappa^*$, while $\xi$ and $\rho$ are unchanged. The characteristic function under $\mathbb{Q}^S$ is obtained either by solving the Riccati system with modified parameters or by the shift formula $\varphi_1(u) = \varphi(u-i)/(S_0 e^{(r-q)\tau})$. The probability $P_1 = \mathbb{Q}^S(S_T > K)$ is the delta of the call (when $q = 0$) and prices asset-or-nothing digital options. The $\mathbb{Q}^S$ framework completes the two-probability decomposition of the Heston call price.
+The stock-price numeraire measure $\mathbb{Q}^S$ is obtained from the risk-neutral measure $\mathbb{Q}$ by the Radon–Nikodym derivative $d\mathbb{Q}^S/d\mathbb{Q} = S_T / (S_0 e^{(r-q)\tau})$. Under $\mathbb{Q}^S$, the Heston variance process has modified mean-reversion parameters $\kappa^* = \kappa - \rho\xi$ and $\theta^* = \kappa\theta/\kappa^*$, while $\xi$ and $\rho$ are unchanged. The characteristic function under $\mathbb{Q}^S$ is obtained either by solving the Riccati system with modified parameters or by the shift formula $\varphi_1(u) = \varphi(u-i)/(S_0 e^{(r-q)\tau})$. The probability $P_1 = \mathbb{Q}^S(S_T > K)$ is the delta of the call (when $q = 0$) and prices asset-or-nothing digital options. The $\mathbb{Q}^S$ framework completes the two-probability decomposition of the Heston call price.
 
 ---
 
 ## Exercises
 
 **Exercise 1.**
-The Radon-Nikodym derivative is $d\mathbb{Q}^S/d\mathbb{Q} = S_T/(S_0 e^{(r-q)\tau})$. Verify that $\mathbb{E}^{\mathbb{Q}}[d\mathbb{Q}^S/d\mathbb{Q}] = 1$ by using the fact that $\mathbb{E}^{\mathbb{Q}}[S_T] = S_0 e^{(r-q)\tau}$ (the discounted stock is a $\mathbb{Q}$-martingale). Why is this expectation-one property necessary for $\mathbb{Q}^S$ to be a valid probability measure?
+The Radon–Nikodym derivative is $d\mathbb{Q}^S/d\mathbb{Q} = S_T/(S_0 e^{(r-q)\tau})$. Verify that $\mathbb{E}^{\mathbb{Q}}[d\mathbb{Q}^S/d\mathbb{Q}] = 1$ by using the fact that $\mathbb{E}^{\mathbb{Q}}[S_T] = S_0 e^{(r-q)\tau}$ (the discounted stock is a $\mathbb{Q}$-martingale). Why is this expectation-one property necessary for $\mathbb{Q}^S$ to be a valid probability measure?
 
 ??? success "Solution to Exercise 1"
     We compute
@@ -268,7 +268,7 @@ The Radon-Nikodym derivative is $d\mathbb{Q}^S/d\mathbb{Q} = S_T/(S_0 e^{(r-q)\t
     \mathbb{E}^{\mathbb{Q}}\!\left[\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\right] = \frac{S_0 e^{(r-q)\tau}}{S_0 e^{(r-q)\tau}} = 1
     $$
 
-    **Why this is necessary.** For $\mathbb{Q}^S$ to be a valid probability measure, it must assign total mass 1 to the sample space $\Omega$. The Radon-Nikodym derivative $Z = d\mathbb{Q}^S/d\mathbb{Q}$ defines $\mathbb{Q}^S$ via $\mathbb{Q}^S(A) = \mathbb{E}^{\mathbb{Q}}[Z\cdot\mathbf{1}_A]$ for any event $A$. For the full space $A = \Omega$:
+    **Why this is necessary.** For $\mathbb{Q}^S$ to be a valid probability measure, it must assign total mass 1 to the sample space $\Omega$. The Radon–Nikodym derivative $Z = d\mathbb{Q}^S/d\mathbb{Q}$ defines $\mathbb{Q}^S$ via $\mathbb{Q}^S(A) = \mathbb{E}^{\mathbb{Q}}[Z\cdot\mathbf{1}_A]$ for any event $A$. For the full space $A = \Omega$:
 
     $$
     \mathbb{Q}^S(\Omega) = \mathbb{E}^{\mathbb{Q}}[Z] = 1

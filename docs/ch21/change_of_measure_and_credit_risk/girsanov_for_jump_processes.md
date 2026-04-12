@@ -10,9 +10,9 @@ Girsanov’s theorem extends beyond diffusions to **jump processes**, providing 
 
 Default is modeled as a jump process with compensator
 
-\[
-A_t = \int_0^{t \wedge \tau} \lambda_s ds.
-\]
+$$
+A_t = \int_0^{t \wedge \tau} \lambda_s ds
+$$
 
 
 
@@ -39,7 +39,7 @@ In credit models:
 - jump intensities reflect risk premia,
 - pricing formulas remain tractable.
 
-This formalism justifies using different intensities under \(\mathbb{P}\) and \(\mathbb{Q}\).
+This formalism justifies using different intensities under $\mathbb{P}$ and $\mathbb{Q}$.
 
 ---
 

@@ -607,7 +607,7 @@ Interpret this result in terms of the value of a forward-starting swap.
 **Exercise 7.** The swap measure $\mathbb{Q}^A$ can be viewed as a weighted combination of individual forward measures. Starting from the Radon--Nikodym derivative
 
 $$
-\frac{d\mathbb{Q}^A}{d\mathbb{Q}^{T_j}}\bigg|_{\mathcal{F}_t} = \frac{A(t)\,P(0, T_j)}{P(t, T_j)\,A(0)},
+\frac{d\mathbb{Q}^A}{d\mathbb{Q}^{T_j}}\bigg|_{\mathcal{F}_t} = \frac{A(t)\,P(0, T_j)}{P(t, T_j)\,A(0)}
 $$
 
 derive the Girsanov drift adjustment $dW_t^A = dW_t^{T_j} - [\sigma_A(t) - \Sigma(t, T_j)]\,dt$, identifying the volatility $\sigma_A(t)$ of the annuity factor in terms of the individual bond volatilities $\Sigma(t, T_k)$.

@@ -127,7 +127,7 @@ where $\rho_{g,C}$ is the correlation between $g(S_T)$ and $C$. When $|\rho_{g,C
 
 ### Idea
 
-**Importance sampling** changes the probability measure under which paths are simulated, concentrating sampling effort in the region of the payoff space that contributes most to the price. The exact expectation is preserved by reweighting each path with a **likelihood ratio** (Radon-Nikodym derivative).
+**Importance sampling** changes the probability measure under which paths are simulated, concentrating sampling effort in the region of the payoff space that contributes most to the price. The exact expectation is preserved by reweighting each path with a **likelihood ratio** (Radon–Nikodym derivative).
 
 ### Drift Shifting for the Log-Price
 

@@ -18,7 +18,7 @@ shorthand SDE notation that encodes that limit.
 A **stochastic differential equation** is an equation of the form
 
 $$
-dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t,
+dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t
 $$
 
 where:
@@ -33,7 +33,7 @@ This equation is shorthand for the integral equation
 $$
 X_t = X_0
 + \int_0^t \mu(X_s, s)\,ds
-+ \int_0^t \sigma(X_s, s)\,dW_s,
++ \int_0^t \sigma(X_s, s)\,dW_s
 $$
 
 where the first integral is an ordinary Riemann integral and the second is an
@@ -56,7 +56,7 @@ $$
 Equivalently, in multiplicative form:
 
 $$
-S_{n+1} = S_n \exp\!\left(\mu\,\Delta t + \sigma\sqrt{\Delta t}\cdot Z_n\right).
+S_{n+1} = S_n \exp\!\left(\mu\,\Delta t + \sigma\sqrt{\Delta t}\cdot Z_n\right)
 $$
 
 This model has three desirable properties:
@@ -71,7 +71,7 @@ Let $t = n\,\Delta t$ and write the change over one step as
 
 $$
 S(t+\Delta t) - S(t)
-= S(t)\!\left[\exp\!\left(\mu\,\Delta t + \sigma\sqrt{\Delta t}\cdot Z\right) - 1\right].
+= S(t)\!\left[\exp\!\left(\mu\,\Delta t + \sigma\sqrt{\Delta t}\cdot Z\right) - 1\right]
 $$
 
 For small $\Delta t$ the first-order Taylor expansion $e^x - 1 \approx x$ gives
@@ -79,7 +79,7 @@ the **heuristic approximation**
 
 $$
 S(t+\Delta t) - S(t)
-\approx S(t)\!\left(\mu\,\Delta t + \sigma\sqrt{\Delta t}\cdot Z\right).
+\approx S(t)\!\left(\mu\,\Delta t + \sigma\sqrt{\Delta t}\cdot Z\right)
 $$
 
 !!! warning "This expansion discards the Itô correction"
@@ -96,7 +96,7 @@ Rearranging the first-order approximation:
 
 $$
 \frac{S(t+\Delta t) - S(t)}{\Delta t}
-\approx \mu\,S(t) + \sigma\,S(t)\,\frac{Z}{\sqrt{\Delta t}}.
+\approx \mu\,S(t) + \sigma\,S(t)\,\frac{Z}{\sqrt{\Delta t}}
 $$
 
 As $\Delta t \to 0$ the second term $\sigma S(t) \cdot Z/\sqrt{\Delta t}$ does
@@ -122,7 +122,7 @@ process $S_t$ then follows by applying the exponential map to that limit.
     = \sqrt{\Delta t}\sum_{i=1}^{\lfloor t/\Delta t \rfloor} Z_i
     + \sqrt{\Delta t}\!\left(\frac{t}{\Delta t}
       - \left\lfloor\frac{t}{\Delta t}\right\rfloor\right)
-      Z_{\lfloor t/\Delta t\rfloor+1},
+      Z_{\lfloor t/\Delta t\rfloor+1}
     $$
 
     with $W^{(\Delta t)}(T)$ defined by continuity. As $\Delta t \to 0$,
@@ -158,7 +158,7 @@ Black-Scholes model. Its explicit solution — derived in Section 2.2 using
 Itô's lemma, which recovers the $O(\Delta t)$ term discarded above — is
 
 $$
-S_t = S_0 \exp\!\left[\left(\mu - \tfrac{\sigma^2}{2}\right)t + \sigma W_t\right].
+S_t = S_0 \exp\!\left[\left(\mu - \tfrac{\sigma^2}{2}\right)t + \sigma W_t\right]
 $$
 
 The $-\frac{\sigma^2}{2}$ drift correction is a consequence of
@@ -187,7 +187,7 @@ The symbol $dW_t$ is shorthand for the infinitesimal increment
 $W_{t+dt} - W_t \sim \mathcal{N}(0, dt)$, satisfying
 
 $$
-\mathbb{E}[dW_t] = 0, \qquad \mathbb{E}[(dW_t)^2] = dt.
+\mathbb{E}[dW_t] = 0, \qquad \mathbb{E}[(dW_t)^2] = dt
 $$
 
 The second identity — $(dW_t)^2 = dt$ in the mean-square sense — has a
@@ -204,7 +204,7 @@ smooth functions. It is precisely this non-vanishing quadratic variation that
 forces the modification of the chain rule known as **Itô's lemma**:
 
 $$
-df(W_t) = f'(W_t)\,dW_t + \tfrac{1}{2}f''(W_t)\,dt.
+df(W_t) = f'(W_t)\,dW_t + \tfrac{1}{2}f''(W_t)\,dt
 $$
 
 The extra term $\frac{1}{2}f''(W_t)\,dt$ has no analogue in ordinary calculus;
@@ -250,7 +250,7 @@ construction as a mean-square limit of **left-endpoint** sums:
 $$
 \int_0^t \sigma(X_s,s)\,dW_s
 = \lim_{|\mathcal{P}|\to 0}
-\sum_i \sigma(X_{t_i}, t_i)\bigl(W_{t_{i+1}} - W_{t_i}\bigr).
+\sum_i \sigma(X_{t_i}, t_i)\bigl(W_{t_{i+1}} - W_{t_i}\bigr)
 $$
 
 Left endpoints are used because they make the integrand $\sigma(X_{t_i}, t_i)$
@@ -332,7 +332,7 @@ price process follows by the exponential map.
 The resulting continuous-time object, the SDE
 
 $$
-dX_t = \mu(X_t,t)\,dt + \sigma(X_t,t)\,dW_t,
+dX_t = \mu(X_t,t)\,dt + \sigma(X_t,t)\,dW_t
 $$
 
 captures what the deterministic ODE cannot: randomness, non-differentiable

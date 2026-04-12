@@ -366,7 +366,7 @@ $$
 
     **2. Variance-Optimal Measure**
 
-    - **(a) Principle**: Choose $\mathbb{Q}^{\text{var}}$ to minimize $\text{Var}^{\mathbb{P}}[d\mathbb{Q}/d\mathbb{P}]$, i.e., the variance of the Radon-Nikodym derivative under the physical measure.
+    - **(a) Principle**: Choose $\mathbb{Q}^{\text{var}}$ to minimize $\text{Var}^{\mathbb{P}}[d\mathbb{Q}/d\mathbb{P}]$, i.e., the variance of the Radon–Nikodym derivative under the physical measure.
     - **(b) Advantage**: Leads to the best mean-variance hedging strategy; the resulting hedge minimizes the $L^2$ hedging error.
     - **(c) Preferred when**: Constructing optimal hedging portfolios in a mean-variance framework, for example when a trader wants to minimize the variance of their P&L.
 

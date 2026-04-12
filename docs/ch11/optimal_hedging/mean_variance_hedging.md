@@ -145,7 +145,7 @@ is the **mean-variance tradeoff** of $\tilde{S}$. For the FS decomposition to yi
 An alternative characterization of mean-variance hedging uses the **variance-optimal martingale measure**.
 
 !!! abstract "Definition: Variance-Optimal Measure"
-    The variance-optimal martingale measure $\mathbb{Q}^*$ is the equivalent martingale measure that minimizes the $L^2(\mathbb{P})$ norm of its Radon-Nikodym derivative:
+    The variance-optimal martingale measure $\mathbb{Q}^*$ is the equivalent martingale measure that minimizes the $L^2(\mathbb{P})$ norm of its Radon–Nikodym derivative:
 
     $$
     \mathbb{Q}^* = \arg\min_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}\!\left[\left(\frac{d\mathbb{Q}}{d\mathbb{P}}\right)^2\right]

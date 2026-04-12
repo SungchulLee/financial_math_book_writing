@@ -24,7 +24,7 @@ is derived via four conceptually distinct routes:
 
 - *Delta hedging*: construct a self-financing portfolio $\Pi = V - \Delta S$ that eliminates stochastic risk by setting $\Delta = \partial V / \partial S$, then apply no-arbitrage to require $d\Pi = r\Pi\, dt$
 - *Risk-neutral pricing*: invoke the fundamental theorem of asset pricing and Girsanov's theorem so that the discounted price $e^{-rt}V$ is a $\mathbb{Q}$-martingale, and set its drift to zero
-- *Change of numeraire*: use the stock as numeraire with its associated measure $\mathbb{Q}^S$ via the Radon-Nikodym derivative $Z_t = S_t e^{-rt}/S_0$, and derive the PDE from pricing invariance
+- *Change of numeraire*: use the stock as numeraire with its associated measure $\mathbb{Q}^S$ via the Radon–Nikodym derivative $Z_t = S_t e^{-rt}/S_0$, and derive the PDE from pricing invariance
 - *Equilibrium*: derive the PDE from a representative-agent economy with CRRA preferences, where market clearing yields the equilibrium risk premium $\mu - r = \gamma \sigma^2$ and the stochastic discount factor $M_t = e^{-\rho t} S_t^{-\gamma}$
 
 ### **PDE Structure and Conditions** 
@@ -55,7 +55,7 @@ $$V = K \cdot f(S/K, \sigma\sqrt{\tau}, r\tau)$$
 
 $$u(x,t) = \mathbb{E}[e^{-r(T-t)}\Phi(X_T) \mid X_t = x]$$
  
-- *Change of numeraire*: provide alternative derivations using forward measures and stock-numeraire techniques, with the Radon-Nikodym derivative connecting different pricing measures
+- *Change of numeraire*: provide alternative derivations using forward measures and stock-numeraire techniques, with the Radon–Nikodym derivative connecting different pricing measures
 - *Viscosity solutions*: handle non-smooth payoffs (digital options with $\Phi(S) = \mathbf{1}_{S>K}$) and free-boundary problems (American options) where classical $C^2$ solutions fail, using test-function-based sub/supersolution definitions
 
 ### **The Black-Scholes Formula** 

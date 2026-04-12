@@ -13,9 +13,9 @@
 
 A model is **structurally identifiable** (with respect to chosen instruments) if
 
-\[
-F(\theta_1)=F(\theta_2) \;\Rightarrow\; \theta_1=\theta_2.
-\]
+$$
+F(\theta_1)=F(\theta_2) \;\Rightarrow\; \theta_1=\theta_2
+$$
 
 
 
@@ -26,18 +26,18 @@ This is a property of the model + instrument set, *not* of the optimizer.
 
 In practice, we only need parameters to be distinguishable within noise:
 
-\[
+$$
 \|F(\theta_1)-F(\theta_2)\| \lesssim \text{noise level}
 \quad\Rightarrow\quad
 \theta_1,\theta_2 \text{ are practically indistinguishable.}
-\]
+$$
 
 
 
 Practical identifiability depends on:
 
 - quote noise / liquidity,
-- weights \(w_j\),
+- weights $w_j$,
 - instrument selection (strikes/maturities),
 - numerical implementation.
 
@@ -48,22 +48,22 @@ Practical identifiability depends on:
 
 A standard local criterion: if the Jacobian
 
-\[
+$$
 J(\theta)=\nabla_\theta F(\theta)\in\mathbb{R}^{m\times d}
-\]
+$$
 
 
-has **full column rank** at \(\theta\), then the parameters are locally identifiable (in a smooth setting).
+has **full column rank** at $\theta$, then the parameters are locally identifiable (in a smooth setting).
 
-Equivalently, if \(J^\top W J\) is nonsingular for a positive definite weight matrix \(W\), the (linearized) least-squares problem has a unique local solution.
+Equivalently, if $J^\top W J$ is nonsingular for a positive definite weight matrix $W$, the (linearized) least-squares problem has a unique local solution.
 
 ### 1. Singular values as an identifiability score
 
 
-Let \(J = U \Sigma V^\top\) be the SVD with singular values \(\sigma_1\ge \dots \ge \sigma_d\). Then:
+Let $J = U \Sigma V^\top$ be the SVD with singular values $\sigma_1\ge \dots \ge \sigma_d$. Then:
 
-- very small \(\sigma_d\) indicates a nearly unidentifiable direction,
-- the condition number \(\kappa=\sigma_1/\sigma_d\) measures sensitivity.
+- very small $\sigma_d$ indicates a nearly unidentifiable direction,
+- the condition number $\kappa=\sigma_1/\sigma_d$ measures sensitivity.
 
 ---
 
@@ -123,7 +123,7 @@ Choose parameters that are closer to what the market “sees”, e.g.:
 
 If parameters are weakly identifiable, regularization stabilizes estimation:
 
-- Tikhonov: penalize deviation from prior \(\theta_{\text{prior}}\),
+- Tikhonov: penalize deviation from prior $\theta_{\text{prior}}$,
 - smoothness penalties (for functional parameters),
 - Bayesian priors to express beliefs and uncertainty.
 

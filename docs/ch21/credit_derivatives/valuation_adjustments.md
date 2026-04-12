@@ -22,9 +22,9 @@ Real markets violate these assumptions.
 
 **CVA** accounts for counterparty default risk:
 
-\[
-\text{CVA} = \mathbb{E}[\text{Exposure} \times \text{Loss Given Default}].
-\]
+$$
+\text{CVA} = \mathbb{E}[\text{Exposure} \times \text{Loss Given Default}]
+$$
 
 
 

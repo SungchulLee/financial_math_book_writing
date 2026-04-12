@@ -49,7 +49,7 @@ The factor of $\sigma$ in the denominator appears because the Brownian motion en
 
 ## Measure Change
 
-Define the **Radon-Nikodym density process**:
+Define the **Radon–Nikodym density process**:
 
 $$
 Z_t = \exp\!\left(-\theta W_t^{\mathbb{P}} - \frac{1}{2}\theta^2 t\right), \qquad \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = Z_T
@@ -73,15 +73,13 @@ is a standard Brownian motion. Equivalently, $W_t^{\mathbb{P}} = W_t^{\mathbb{Q}
 
 We now substitute $W_t^{\mathbb{P}} = W_t^{\mathbb{Q}} - \theta t$ into the original SDE:
 
-$$
-dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}
-= \mu S_t\,dt + \sigma S_t\left(dW_t^{\mathbb{Q}} - \theta\,dt\right)
-$$
-
-$$
-= \mu S_t\,dt - \sigma\theta S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
-= (\mu - \sigma\theta)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
-$$
+$$\begin{array}{lll}
+dS_t 
+&=&\displaystyle \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}\\
+&=&\displaystyle \mu S_t\,dt + \sigma S_t\left(dW_t^{\mathbb{Q}} - \theta\,dt\right)\\
+&=&\displaystyle \mu S_t\,dt - \sigma\theta S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}\\
+&=&\displaystyle (\mu - \sigma\theta)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
+\end{array}$$
 
 Substituting $\theta = (\mu - r)/\sigma$, so $\sigma\theta = \mu - r$:
 
@@ -223,7 +221,7 @@ Assume a complete market driven by a single Brownian motion. An asset has physic
 Explain why the volatility $\sigma$ is unchanged under the Girsanov measure change, while the drift changes from $\mu$ to $r$. Relate your answer to the fact that quadratic variation is a pathwise quantity.
 
 ??? success "Solution to Exercise 4"
-    The drift changes from $\mu$ to $r$ because it depends on how probabilities are assigned to paths. The Girsanov measure change reweights the probability of each path via the Radon-Nikodym derivative $Z_T$, which shifts the expected value of $dW_t$ from $0$ (under $\mathbb{P}$) to $-\theta\,dt$ (effectively, by making $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t$ a $\mathbb{Q}$-Brownian motion). This reweighting changes the first moment (mean/drift) of the process.
+    The drift changes from $\mu$ to $r$ because it depends on how probabilities are assigned to paths. The Girsanov measure change reweights the probability of each path via the Radon–Nikodym derivative $Z_T$, which shifts the expected value of $dW_t$ from $0$ (under $\mathbb{P}$) to $-\theta\,dt$ (effectively, by making $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t$ a $\mathbb{Q}$-Brownian motion). This reweighting changes the first moment (mean/drift) of the process.
 
     The volatility $\sigma$, however, is determined by the **quadratic variation**, which is a **pathwise** quantity. Quadratic variation is computed as:
 
@@ -286,10 +284,10 @@ Under $\mathbb{P}$, a zero-coupon bond price satisfies $dP(t,T) = \mu_P P(t,T)\,
 ---
 
 **Exercise 6.**
-Suppose $\theta$ is not constant but depends on the current stock price: $\theta_t = (\mu(S_t) - r) / \sigma(S_t)$. Write the Radon-Nikodym derivative $Z_T$ in integral form and state the Novikov condition that must hold. Explain why this condition may fail for certain choices of $\mu(\cdot)$ and $\sigma(\cdot)$.
+Suppose $\theta$ is not constant but depends on the current stock price: $\theta_t = (\mu(S_t) - r) / \sigma(S_t)$. Write the Radon–Nikodym derivative $Z_T$ in integral form and state the Novikov condition that must hold. Explain why this condition may fail for certain choices of $\mu(\cdot)$ and $\sigma(\cdot)$.
 
 ??? success "Solution to Exercise 6"
-    When $\theta_t = (\mu(S_t) - r)/\sigma(S_t)$ depends on the stock price, the Radon-Nikodym derivative in integral form is:
+    When $\theta_t = (\mu(S_t) - r)/\sigma(S_t)$ depends on the stock price, the Radon–Nikodym derivative in integral form is:
 
     $$
     Z_T = \exp\!\left(-\int_0^T \theta_t\,dW_t^{\mathbb{P}} - \frac{1}{2}\int_0^T \theta_t^2\,dt\right)

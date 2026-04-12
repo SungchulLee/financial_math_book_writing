@@ -92,6 +92,8 @@ This is the fundamental reason that forward prices depend on $r$ alone while opt
 !!! quote "Big Picture"
     Forward pricing is the prototype for all derivative pricing. The principle is always the same: replicate the payoff, and no-arbitrage determines the price. For forwards, replication is static and the mathematics is elementary. Options add nonlinearity, which demands dynamic replication---and with it, the full machinery of stochastic calculus, Ito's lemma, and the Black-Scholes PDE.
 
+In practice, many of the same underlying assets are traded as both futures and options. For example, S&P 500 E-mini futures (ES) — a linear instrument covered in this section — trade alongside SPX index options on the same underlying. SPX options are European-style and cash-settled with a \$100 multiplier; their nonlinear payoff requires the Black-Scholes framework rather than the algebraic no-arbitrage arguments that suffice for ES. The transition from pricing ES futures to pricing SPX options is a concrete instance of the shift from linear to nonlinear payoffs described next.
+
 The table below summarizes the conceptual transition from forwards to options:
 
 | | **Forward** | **Option** |

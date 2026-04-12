@@ -125,7 +125,7 @@ $$
 ### 2. **Derivation via Measure Change**
 
 
-The stock measure $\mathbb{Q}^S$ uses the stock as numéraire. Its Radon-Nikodym derivative with respect to $\mathbb{Q}$ is:
+The stock measure $\mathbb{Q}^S$ uses the stock as numéraire. Its Radon–Nikodym derivative with respect to $\mathbb{Q}$ is:
 
 $$
 \frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_T e^{-rT}}{S_0}
@@ -529,10 +529,10 @@ This probabilistic interpretation reveals that option pricing is fundamentally a
     where the last step uses the symmetry $1 - \mathcal{N}(-x) = \mathcal{N}(x)$.
 
 ---
-**Exercise 3.** The stock measure $\mathbb{Q}^S$ is defined by the Radon-Nikodym derivative $\frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_T e^{-rT}}{S_0}$. Show that under $\mathbb{Q}^S$, the drift of the stock price becomes $r + \sigma^2$ instead of $r$. Use Girsanov's theorem to identify the new Brownian motion $\tilde{W}_t = W_t - \sigma t$.
+**Exercise 3.** The stock measure $\mathbb{Q}^S$ is defined by the Radon–Nikodym derivative $\frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_T e^{-rT}}{S_0}$. Show that under $\mathbb{Q}^S$, the drift of the stock price becomes $r + \sigma^2$ instead of $r$. Use Girsanov's theorem to identify the new Brownian motion $\tilde{W}_t = W_t - \sigma t$.
 
 ??? success "Solution to Exercise 3"
-    The Radon-Nikodym derivative is $\frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_T e^{-rT}}{S_0}$. Under $\mathbb{Q}$:
+    The Radon–Nikodym derivative is $\frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_T e^{-rT}}{S_0}$. Under $\mathbb{Q}$:
 
     $$
     S_T = S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma W_T}

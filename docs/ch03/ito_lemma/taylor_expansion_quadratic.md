@@ -15,30 +15,30 @@ Including the quadratic term allows the approximation to follow the curvature of
 
 ### Quadratic Approximation in One Variable
 
-Extending the linear approximation from the previous section, we include a second-order term. If \(f\) is twice differentiable near \(x_0\), we can write the **second-order Taylor approximation** as
+Extending the linear approximation from the previous section, we include a second-order term. If $f$ is twice differentiable near $x_0$, we can write the **second-order Taylor approximation** as
 
-\[
+$$
 f(x) \approx
 f(x_0)
 + f'(x_0)(x-x_0)
-+ \frac12 f''(x_0)(x-x_0)^2.
-\]
++ \frac12 f''(x_0)(x-x_0)^2
+$$
 
 Using increment notation,
 
-\[
+$$
 \Delta f
 \approx
 f'(x_0)\Delta x
 +
-\frac12 f''(x_0)(\Delta x)^2,
-\]
+\frac12 f''(x_0)(\Delta x)^2
+$$
 
 where
 
-\[
-\Delta x = x-x_0.
-\]
+$$
+\Delta x = x-x_0
+$$
 
 The second term captures the **curvature of the function near the expansion point**.
 
@@ -48,11 +48,11 @@ The second term captures the **curvature of the function near the expansion poin
 
 #### 1. Problem
 
-Approximate \(f(1.1)\) using the quadratic approximation at \(x_0=1\), where
+Approximate $f(1.1)$ using the quadratic approximation at $x_0=1$, where
 
-\[
-f(x)=e^{x-1}+(x-1)^2.
-\]
+$$
+f(x)=e^{x-1}+(x-1)^2
+$$
 
 This example is useful because the exponential term introduces curvature while the polynomial keeps the derivatives simple.
 
@@ -60,30 +60,30 @@ This example is useful because the exponential term introduces curvature while t
 
 First compute derivatives.
 
-\[
+$$
 f'(x)=e^{x-1}+2(x-1)
-\]
+$$
 
-\[
+$$
 f''(x)=e^{x-1}+2
-\]
+$$
 
-Evaluate them at \(x_0=1\):
+Evaluate them at $x_0=1$:
 
-\[
+$$
 f(1)=1,\qquad f'(1)=1,\qquad f''(1)=3
-\]
+$$
 
-Let \(\Delta x = 1.1-1 = 0.1\). The quadratic approximation gives
+Let $\Delta x = 1.1-1 = 0.1$. The quadratic approximation gives
 
-\[
+$$
 f(1.1)
 \approx
 1 + 1(0.1) + \frac12 \cdot 3 (0.1)^2
 = 1.115
-\]
+$$
 
-The true value is \(f(1.1)=e^{0.1}+0.01\approx1.11517\). Compared with the linear approximation (which gives \(1.1\)), the quadratic approximation reduces the error from \(\approx 0.015\) to \(\approx 0.00017\) — a reduction of roughly two orders of magnitude — illustrating how the second-order term captures **local curvature**.
+The true value is $f(1.1)=e^{0.1}+0.01\approx1.11517$. Compared with the linear approximation (which gives $1.1$), the quadratic approximation reduces the error from $\approx 0.015$ to $\approx 0.00017$ — a reduction of roughly two orders of magnitude — illustrating how the second-order term captures **local curvature**.
 
 ---
 
@@ -128,7 +128,7 @@ plt.show()
 
 ![taylor_expansion_quadratic_1d](./image/taylor_expansion_quadratic_1d.png)
 
-*Figure 1. Quadratic approximation of \(f(x)=e^{x-1}+(x-1)^2\) at \(x=1\). The blue curve shows the original function, the dashed orange curve is the quadratic Taylor approximation, and the red dot marks the expansion point.*
+*Figure 1. Quadratic approximation of $f(x)=e^{x-1}+(x-1)^2$ at $x=1$. The blue curve shows the original function, the dashed orange curve is the quadratic Taylor approximation, and the red dot marks the expansion point.*
 
 Near the expansion point the two curves are almost identical. The quadratic curve follows the original function much more closely than the tangent line, illustrating how second-order terms capture **local curvature**.
 
@@ -136,9 +136,9 @@ Near the expansion point the two curves are almost identical. The quadratic curv
 
 ### Quadratic Approximation in Two Variables
 
-For a twice differentiable function \(f(t,b)\), the second-order Taylor expansion includes both **pure second derivatives** and **cross derivatives**.
+For a twice differentiable function $f(t,b)$, the second-order Taylor expansion includes both **pure second derivatives** and **cross derivatives**.
 
-\[
+$$
 \Delta f
 \approx
 f_t\Delta t
@@ -150,22 +150,22 @@ f_b\Delta b
 \frac12 f_{bb}(\Delta b)^2
 +
 f_{tb}\Delta t\Delta b
-\]
+$$
 
 This expansion describes how the surface bends in different directions.
 
 In compact matrix form:
 
-\[
+$$
 f(x) \approx
 f(x_0)
 +
 \nabla f(x_0)^T(x-x_0)
 +
-\frac12 (x-x_0)^T H (x-x_0),
-\]
+\frac12 (x-x_0)^T H (x-x_0)
+$$
 
-where \(H\) is the **Hessian matrix**, the matrix of all second-order partial derivatives of \(f\). It describes how the function bends in different directions.
+where $H$ is the **Hessian matrix**, the matrix of all second-order partial derivatives of $f$. It describes how the function bends in different directions.
 
 ---
 
@@ -173,43 +173,43 @@ where \(H\) is the **Hessian matrix**, the matrix of all second-order partial de
 
 #### 1. Problem
 
-Approximate \(f(1.1,1.8)\) using the quadratic approximation at
+Approximate $f(1.1,1.8)$ using the quadratic approximation at
 
-\[
+$$
 (t_0,b_0)=(1,2)
-\]
+$$
 
 where
 
-\[
-f(t,b)=e^{t-1}+(t-1)^2+(b-2)^2.
-\]
+$$
+f(t,b)=e^{t-1}+(t-1)^2+(b-2)^2
+$$
 
 #### 2. Solution
 
 First compute partial derivatives:
 
-\[
+$$
 f_t=e^{t-1}+2(t-1),\qquad f_b=2(b-2)
-\]
+$$
 
 Second derivatives:
 
-\[
+$$
 f_{tt}=e^{t-1}+2,\qquad f_{bb}=2,\qquad f_{tb}=0
-\]
+$$
 
-Since \(t\) and \(b\) enter the function separately (no cross term), the cross-partial \(f_{tb}=0\), and the cross term in the expansion vanishes.
+Since $t$ and $b$ enter the function separately (no cross term), the cross-partial $f_{tb}=0$, and the cross term in the expansion vanishes.
 
-Evaluate at \((1,2)\):
+Evaluate at $(1,2)$:
 
-\[
+$$
 f(1,2)=1,\qquad f_t(1,2)=1,\qquad f_b(1,2)=0,\qquad f_{tt}(1,2)=3,\qquad f_{bb}(1,2)=2
-\]
+$$
 
-Let \(\Delta t=0.1\) and \(\Delta b=1.8-2=-0.2\). Substituting all four terms into the expansion explicitly:
+Let $\Delta t=0.1$ and $\Delta b=1.8-2=-0.2$. Substituting all four terms into the expansion explicitly:
 
-\[
+$$
 f(1.1,1.8)
 \approx
 \underbrace{1}_{f}
@@ -218,7 +218,7 @@ f(1.1,1.8)
 +\underbrace{\frac12(3)(0.1)^2}_{0.015}
 +\underbrace{\frac12(2)(0.2)^2}_{0.04}
 = 1.155
-\]
+$$
 
 Note that $|\Delta b| = 0.2$ so $\frac12 f_{bb}(\Delta b)^2 = \frac12(2)(0.04) = 0.04$, not $0.2$.
 
@@ -274,7 +274,7 @@ plt.show()
 
 ![taylor_expansion_quadratic_2d](./image/taylor_expansion_quadratic_2d.png)
 
-*Figure 2. Quadratic Taylor approximation of the surface \(f(t,b)=e^{t-1}+(t-1)^2+(b-2)^2\) at \((1,2)\). The blue surface represents the original function and the orange surface represents the quadratic approximation. The red dot marks the expansion point.*
+*Figure 2. Quadratic Taylor approximation of the surface $f(t,b)=e^{t-1}+(t-1)^2+(b-2)^2$ at $(1,2)$. The blue surface represents the original function and the orange surface represents the quadratic approximation. The red dot marks the expansion point.*
 
 Near the expansion point the quadratic surface follows the original function very closely, capturing curvature that the tangent plane misses.
 
@@ -284,25 +284,25 @@ Quadratic Taylor expansions play a crucial role in many areas of mathematics. In
 
 #### Deterministic vs Brownian Scaling
 
-In deterministic calculus, the quadratic term becomes extremely small as increments shrink. If a variable changes by a small amount \(dt\), then the square of the increment is negligible:
+In deterministic calculus, the quadratic term becomes extremely small as increments shrink. If a variable changes by a small amount $dt$, then the square of the increment is negligible:
 
-\[
+$$
 (dt)^2 \ll dt
-\]
+$$
 
 For this reason, quadratic terms are typically ignored in first-order approximations.
 
-Brownian motion behaves differently. Over a short time interval \(dt\), the increment of a Brownian motion satisfies
+Brownian motion behaves differently. Over a short time interval $dt$, the increment of a Brownian motion satisfies
 
-\[
+$$
 \Delta B_t \sim \sqrt{dt}
-\]
+$$
 
 Because the increment scales with the square root of time, its square satisfies
 
-\[
+$$
 (\Delta B_t)^2 \sim dt
-\]
+$$
 
 This scaling is made precise via the quadratic variation of Brownian motion; see [From Taylor to Itô](from_taylor_to_ito.md) and [Quadratic Variation of Brownian Motion](../../ch02/brownian_motion/quadratic_variation_of_brownian_motion.md) for the rigorous statement.
 
@@ -362,7 +362,7 @@ plt.show()
 
 ![Function_of_Brownian_motion](./image/function_of_brownian_motion.png)
 
-*Figure 3. Left: a simulated Brownian path \(B_t\) and the transformed process \(B_t^2\). Right: the cumulative squared increments \(\sum (\Delta B_i)^2\) compared with cumulative time \(t = \sum dt\). The close agreement in the right panel illustrates that $(\Delta B_t)^2 \sim \Delta t$, motivating why the squared increment cannot be ignored when expanding functions of Brownian motion.*
+*Figure 3. Left: a simulated Brownian path $B_t$ and the transformed process $B_t^2$. Right: the cumulative squared increments $\sum (\Delta B_i)^2$ compared with cumulative time $t = \sum dt$. The close agreement in the right panel illustrates that $(\Delta B_t)^2 \sim \Delta t$, motivating why the squared increment cannot be ignored when expanding functions of Brownian motion.*
 
 Unlike deterministic calculus, the squared increment does **not** vanish. This is why quadratic terms cannot be ignored when expanding functions of Brownian motion. This phenomenon leads directly to the modified Taylor expansion known as **Itô's lemma**.
 

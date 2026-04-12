@@ -12,13 +12,13 @@ $$
     A time-homogeneous Markov process $(X_t)_{t \ge 0}$ satisfies the **Markov property** if for all bounded measurable $\varphi$ and all $0 \le s \le t$,
 
     $$
-    \mathbb{E}[\varphi(X_t) \mid \mathcal{F}_s] = \mathbb{E}^{X_s}[\varphi(X_{t-s})].
+    \mathbb{E}[\varphi(X_t) \mid \mathcal{F}_s] = \mathbb{E}^{X_s}[\varphi(X_{t-s})]
     $$
 
     It satisfies the **strong Markov property** if the same identity holds when the deterministic time $s$ is replaced by any **stopping time** $\tau < \infty$ $\mathbb{P}$-a.s.: for all $t \ge 0$,
 
     $$
-    \mathbb{E}[\varphi(X_{\tau + t}) \mid \mathcal{F}_\tau] = \mathbb{E}^{X_\tau}[\varphi(X_t)].
+    \mathbb{E}[\varphi(X_{\tau + t}) \mid \mathcal{F}_\tau] = \mathbb{E}^{X_\tau}[\varphi(X_t)]
     $$
 
 The key difference: the Markov property is memoryless at **fixed times**; the strong Markov property is memoryless at **random times** (first passage times, exit times, etc.).
@@ -37,7 +37,7 @@ For a fixed time $s$, the Markov property follows from the independence of Brown
     Let $(W_t)_{t \ge 0}$ be a standard Brownian motion and $\tau$ a stopping time with $\mathbb{P}(\tau < \infty) = 1$. Define
 
     $$
-    B_t := W_{\tau + t} - W_\tau, \qquad t \ge 0.
+    B_t := W_{\tau + t} - W_\tau, \qquad t \ge 0
     $$
 
     Then $(B_t)_{t \ge 0}$ is a standard Brownian motion and is **independent of $\mathcal{F}_\tau$**.
@@ -71,7 +71,7 @@ The **strong Markov property** concerns the **conditional law** of the future pa
 Let $D \subset \mathbb{R}^d$ be open and define the **exit time**
 
 $$
-\tau_D := \inf\{t \ge 0 : X_t \notin D\}.
+\tau_D := \inf\{t \ge 0 : X_t \notin D\}
 $$
 
 $\tau_D$ is a stopping time. The strong Markov property asserts: conditionally on $\mathcal{F}_{\tau_D}$, the post-exit process $(X_{\tau_D + t})_{t \ge 0}$ behaves like a fresh copy of $X$ started from $X_{\tau_D} \in \partial D$.
@@ -87,7 +87,7 @@ This **restart argument** is used repeatedly in:
 For standard Brownian motion $W$ and $a > 0$:
 
 $$
-\mathbb{P}\!\left(\max_{0 \le s \le t} W_s \ge a\right) = 2\,\mathbb{P}(W_t \ge a).
+\mathbb{P}\!\left(\max_{0 \le s \le t} W_s \ge a\right) = 2\,\mathbb{P}(W_t \ge a)
 $$
 
 *Proof sketch.* Let $\tau_a = \inf\{s : W_s = a\}$. By the strong Markov property, $B_s := W_{\tau_a + s} - a$ is a fresh standard BM independent of $\mathcal{F}_{\tau_a}$. On $\{\tau_a \le t\}$, the event $\{W_t \ge a\}$ equals $\{B_{t-\tau_a} \ge 0\}$ and by symmetry of BM has probability $1/2$ conditionally on $\mathcal{F}_{\tau_a}$. Therefore $\mathbb{P}(W_t \ge a,\, \tau_a \le t) = \frac{1}{2}\mathbb{P}(\tau_a \le t)$. Since $\mathbb{P}(\max_{s \le t} W_s \ge a) = \mathbb{P}(\tau_a \le t)$ and $\mathbb{P}(W_t \ge a) = \mathbb{P}(W_t \ge a,\, \tau_a \le t)$ (as $a > 0$), the result follows. $\square$

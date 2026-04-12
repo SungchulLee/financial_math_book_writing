@@ -13,19 +13,19 @@ The Fourier Cosine (COS) method extends the Fourier inversion principle to const
 
 ## Fourier Cosine Series Representation
 
-Assume the density \(f(x)\) is supported on the interval \([a, b]\). The Fourier cosine series expansion is:
+Assume the density $f(x)$ is supported on the interval $[a, b]$. The Fourier cosine series expansion is:
 
-\[
+$$
 f(x) \approx \sum_{k=0}^{n-1} \mathop{'} A_k \cos\left(k\pi \frac{x - a}{b - a}\right)
-\]
+$$
 
-where the prime notation \(\sum \mathop{'}\) indicates the first term is weighted by \(1/2\), and the coefficients are:
+where the prime notation $\sum \mathop{'}$ indicates the first term is weighted by $1/2$, and the coefficients are:
 
-\[
+$$
 A_k = \frac{2}{b-a} \mathbb{Re}\left[\varphi\left(\frac{k\pi}{b-a}\right) e^{-i\frac{k\pi a}{b-a}}\right]
-\]
+$$
 
-Here \(\varphi(u)\) is the characteristic function. The key advantage is that \(A_k\) is trivial to compute if \(\varphi\) is available.
+Here $\varphi(u)$ is the characteristic function. The key advantage is that $A_k$ is trivial to compute if $\varphi$ is available.
 
 ---
 
@@ -33,23 +33,23 @@ Here \(\varphi(u)\) is the characteristic function. The key advantage is that \(
 
 The option price under risk-neutral valuation is:
 
-\[
+$$
 V(t, S) = e^{-r\tau} \mathbb{E}^{\mathbb{Q}}[V(T, x) | \mathcal{F}(t)]
-\]
+$$
 
-where \(x = \log S(T)\). Substituting the cosine expansion of the density:
+where $x = \log S(T)$. Substituting the cosine expansion of the density:
 
-\[
+$$
 V(t, S) \approx e^{-r\tau} \frac{b-a}{2} \sum_{k=0}^{n-1} \mathop{'} A_k H_k
-\]
+$$
 
 Here:
-- \(A_k\) are the density Fourier coefficients (computed from the characteristic function)
-- \(H_k\) are the payoff coefficients, defined as:
+- $A_k$ are the density Fourier coefficients (computed from the characteristic function)
+- $H_k$ are the payoff coefficients, defined as:
 
-\[
+$$
 H_k = \frac{2}{b-a} \int_a^b V(T, x) \cos\left(k\pi \frac{x - a}{b - a}\right) dx
-\]
+$$
 
 ---
 
@@ -58,42 +58,46 @@ H_k = \frac{2}{b-a} \int_a^b V(T, x) \cos\left(k\pi \frac{x - a}{b - a}\right) d
 For European calls and puts, the payoff integrals have closed-form solutions using auxiliary functions:
 
 **Chi function:**
-\[
-\chi_k(c, d) := \int_c^d e^x \cos\left(k\pi \frac{x - a}{b - a}\right) dx
-\]
 
-\[
+$$
+\chi_k(c, d) := \int_c^d e^x \cos\left(k\pi \frac{x - a}{b - a}\right) dx
+$$
+
+$$
 = \frac{1}{1 + \left(\frac{k\pi}{b-a}\right)^2} \left[
 \cos\left(k\pi \frac{d-a}{b-a}\right)e^d - \cos\left(k\pi \frac{c-a}{b-a}\right)e^c
-\right.
-\]
+\right
+$$
 
-\[
+$$
 \left. + \frac{k\pi}{b-a}\sin\left(k\pi \frac{d-a}{b-a}\right)e^d - \frac{k\pi}{b-a}\sin\left(k\pi \frac{c-a}{b-a}\right)e^c
 \right]
-\]
+$$
 
 **Psi function:**
-\[
-\psi_k(c, d) := \int_c^d \cos\left(k\pi \frac{x - a}{b - a}\right) dx
-\]
 
-\[
+$$
+\psi_k(c, d) := \int_c^d \cos\left(k\pi \frac{x - a}{b - a}\right) dx
+$$
+
+$$
 = \begin{cases}
 \frac{b-a}{k\pi}\left[\sin\left(k\pi \frac{d-a}{b-a}\right) - \sin\left(k\pi \frac{c-a}{b-a}\right)\right] & k \neq 0\\
 d - c & k = 0
 \end{cases}
-\]
+$$
 
 **Call payoff coefficients:**
-\[
+
+$$
 H_k^{\text{call}} = \frac{2}{b-a} \chi_k(\log K, b) - \frac{2K}{b-a} \psi_k(\log K, b)
-\]
+$$
 
 **Put payoff coefficients:**
-\[
+
+$$
 H_k^{\text{put}} = \frac{2K}{b-a} \psi_k(a, \log K) - \frac{2}{b-a} \chi_k(a, \log K)
-\]
+$$
 
 ---
 
@@ -114,29 +118,32 @@ The COS method converges **exponentially** fast, making it one of the most effic
 
 ## Implementation Steps for Heston
 
-1. **Set bounds:** Choose \([a, b]\) to contain the significant mass of the log-return density (typically \(\pm 3 \times \text{standard deviation}\))
+1. **Set bounds:** Choose $[a, b]$ to contain the significant mass of the log-return density (typically $\pm 3 \times \text{standard deviation}$)
 
-2. **Compute characteristic function:** For Heston, evaluate the closed-form CF at frequency points \(u_k = \frac{k\pi}{b-a}\)
+2. **Compute characteristic function:** For Heston, evaluate the closed-form CF at frequency points $u_k = \frac{k\pi}{b-a}$
 
-3. **Compute \(A_k\):** Use the formula:
-   \[
+3. **Compute $A_k$:** Use the formula:
+
+   $$
    A_k = \frac{2}{b-a} \mathbb{Re}\left[\varphi\left(\frac{k\pi}{b-a}\right) e^{-i\frac{k\pi a}{b-a}}\right]
-   \]
+   $$
 
-4. **Compute \(H_k\):** For each strike \(K\), use the closed-form payoff coefficients
+4. **Compute $H_k$:** For each strike $K$, use the closed-form payoff coefficients
 
 5. **Sum the series:**
-   \[
+
+   $$
    V = e^{-r\tau} \frac{b-a}{2} \sum_{k=0}^{n-1} \mathop{'} A_k H_k
-   \]
-   with typically \(n = 64\) to \(128\)
+   $$
+
+   with typically $n = 64$ to $128$
 
 ---
 
 ## Advantages of COS Method
 
 1. **Extreme speed:** Pricing hundreds of strikes in milliseconds
-2. **Exponential convergence:** Exponentially fast in the number of terms \(n\)
+2. **Exponential convergence:** Exponentially fast in the number of terms $n$
 3. **Simplicity:** No FFT algorithm needed, just a direct sum
 4. **Flexibility:** Easy to extend to exotic options with integrable payoffs
 5. **Stability:** More stable numerically than FFT for moderate accuracy requirements
@@ -147,7 +154,7 @@ The COS method converges **exponentially** fast, making it one of the most effic
 
 **Limitations:**
 - Payoff must be integrable (rules out barrier/digital options without modification)
-- Choice of bounds \([a, b]\) affects convergence
+- Choice of bounds $[a, b]$ affects convergence
 - Difficult to apply to path-dependent options
 
 **Extensions:**

@@ -9,7 +9,7 @@ Intensity-based models provide tractable pricing formulas for defaultable claims
 
 
 Assume:
-- default intensity \(\lambda_t\),
+- default intensity $\lambda_t$,
 - recovery scheme specified,
 - immersion and progressive enlargement hold.
 
@@ -22,13 +22,13 @@ Pricing reduces to computing discounted expectations involving survival probabil
 
 Under recovery of treasury (RT), the price simplifies to
 
-\[
+$$
 P^d(t,T)
 = \mathbb{E}^{\mathbb{Q}}\left[
 \exp\left(-\int_t^T (r_s + \lambda_s) ds\right)
 \middle| \mathcal{F}_t
-\right].
-\]
+\right]
+$$
 
 
 

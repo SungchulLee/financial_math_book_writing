@@ -434,7 +434,7 @@ The weights in the annuity combine contributions from each payment date, reflect
 **Exercise 2.** In the Vasicek model with $\sigma = 0.008$, $\kappa = 0.15$, the zero-coupon bond prices are $P(0,2) = 0.94$ and $P(0,7) = 0.76$. Price a European call option on $P(t, 7)$ with maturity $T = 2$ and strike $K = 0.80$. Carry out the full calculation: compute the forward bond price, the integrated variance using
 
 $$
-v^2 = \sigma^2 \, B(T_B - T)^2 \cdot \frac{1 - e^{-2\kappa T}}{2\kappa},
+v^2 = \sigma^2 \, B(T_B - T)^2 \cdot \frac{1 - e^{-2\kappa T}}{2\kappa}
 $$
 
 then apply Black's formula.

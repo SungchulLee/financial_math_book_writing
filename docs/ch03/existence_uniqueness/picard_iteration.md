@@ -128,7 +128,7 @@ Since $n! \sim (n/e)^n\sqrt{2\pi n}$ grows faster than any exponential,
 
 $$
 \sum_{n=0}^\infty \sqrt{e_n(T)}
-\leq \sqrt{e_0(T)}\sum_{n=0}^\infty \frac{(CT)^{n/2}}{\sqrt{n!}} < \infty.
+\leq \sqrt{e_0(T)}\sum_{n=0}^\infty \frac{(CT)^{n/2}}{\sqrt{n!}} < \infty
 $$
 
 Hence $\{X^{(n)}\}$ is Cauchy in $L^2(\Omega; C([0,T]))$ — the Banach space of

@@ -24,13 +24,13 @@ where $P(t,T)$ is the known zero-coupon bond price. The pricing problem thus red
 
 ## Definition of the T-forward measure
 
-The $T$-forward measure $\mathbb{Q}^T$ is defined by its Radon-Nikodym derivative with respect to $\mathbb{Q}$ on $\mathcal{F}_T$:
+The $T$-forward measure $\mathbb{Q}^T$ is defined by its Radon–Nikodym derivative with respect to $\mathbb{Q}$ on $\mathcal{F}_T$:
 
 $$
 \frac{d\mathbb{Q}^T}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{e^{-\int_0^T r_s\,ds}}{P(0,T)}
 $$
 
-The numeraire associated with $\mathbb{Q}^T$ is the zero-coupon bond $P(t,T)$. Under $\mathbb{Q}^T$, any asset price divided by $P(t,T)$ is a martingale. The Radon-Nikodym density process (restricted to $\mathcal{F}_t$) is
+The numeraire associated with $\mathbb{Q}^T$ is the zero-coupon bond $P(t,T)$. Under $\mathbb{Q}^T$, any asset price divided by $P(t,T)$ is a martingale. The Radon–Nikodym density process (restricted to $\mathcal{F}_t$) is
 
 $$
 L_t = \frac{d\mathbb{Q}^T}{d\mathbb{Q}}\bigg|_{\mathcal{F}_t} = \frac{e^{-\int_0^t r_s\,ds}\,P(t,T)}{P(0,T)}

@@ -10,12 +10,12 @@ In incomplete markets, hedging strategies depend on the **optimality criterion**
 
 A classical approach minimizes expected squared hedging error:
 
-\[
-\min_{\pi} \; \mathbb{E}\big[(H - V_T^{\pi})^2\big],
-\]
+$$
+\min_{\pi} \; \mathbb{E}\big[(H - V_T^{\pi})^2\big]
+$$
 
 
-where \(H\) is the payoff and \(V_T^{\pi}\) the hedged portfolio value.
+where $H$ is the payoff and $V_T^{\pi}$ the hedged portfolio value.
 
 Pros:
 - mathematically tractable,
@@ -32,9 +32,9 @@ Cons:
 
 Alternatively, one may maximize expected utility:
 
-\[
-\max_{\pi} \; \mathbb{E}[U(V_T^{\pi})].
-\]
+$$
+\max_{\pi} \; \mathbb{E}[U(V_T^{\pi})]
+$$
 
 
 

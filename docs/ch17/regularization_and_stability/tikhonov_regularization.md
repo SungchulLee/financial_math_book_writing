@@ -10,14 +10,14 @@ Ill-posed calibration problems are often stabilized by **regularization**, which
 
 Recall a typical least-squares calibration problem:
 
-\[
-\min_{\theta \in \Theta} \; \frac12\|F(\theta) - y\|_W^2,
-\]
+$$
+\min_{\theta \in \Theta} \; \frac12\|F(\theta) - y\|_W^2
+$$
 
 
-where \(F\) is the forward pricing map and \(y\) denotes market data.
+where $F$ is the forward pricing map and $y$ denotes market data.
 
-If the Jacobian of \(F\) is ill-conditioned, small data noise can lead to large parameter fluctuations. Tikhonov regularization addresses this by penalizing undesirable parameter behavior.
+If the Jacobian of $F$ is ill-conditioned, small data noise can lead to large parameter fluctuations. Tikhonov regularization addresses this by penalizing undesirable parameter behavior.
 
 ---
 
@@ -26,39 +26,39 @@ If the Jacobian of \(F\) is ill-conditioned, small data noise can lead to large 
 
 The Tikhonov-regularized problem is
 
-\[
+$$
 \min_{\theta \in \Theta} \;
 \frac12\|F(\theta) - y\|_W^2
-+ \frac{\lambda}{2}\|L(\theta - \theta_0)\|^2.
-\]
++ \frac{\lambda}{2}\|L(\theta - \theta_0)\|^2
+$$
 
 
 
 Components:
-- \(\lambda > 0\): regularization strength,
-- \(L\): regularization operator (often identity),
-- \(\theta_0\): reference or prior parameter vector.
+- $\lambda > 0$: regularization strength,
+- $L$: regularization operator (often identity),
+- $\theta_0$: reference or prior parameter vector.
 
 Special cases:
-- **Zero-order Tikhonov:** \(L = I\), penalizes large parameter magnitudes.
-- **Shifted Tikhonov:** pulls parameters toward a prior guess \(\theta_0\).
+- **Zero-order Tikhonov:** $L = I$, penalizes large parameter magnitudes.
+- **Shifted Tikhonov:** pulls parameters toward a prior guess $\theta_0$.
 
 ---
 
 ## Linearized analysis
 
 
-For a linear forward map \(F(\theta) = A\theta\), the solution satisfies
+For a linear forward map $F(\theta) = A\theta$, the solution satisfies
 
-\[
+$$
 (A^\top W A + \lambda L^\top L)\theta
-= A^\top W y + \lambda L^\top L \theta_0.
-\]
+= A^\top W y + \lambda L^\top L \theta_0
+$$
 
 
 
 Key consequences:
-- the matrix becomes invertible even if \(A^\top W A\) is singular,
+- the matrix becomes invertible even if $A^\top W A$ is singular,
 - small singular values are damped,
 - variance is reduced at the cost of bias.
 
@@ -71,8 +71,8 @@ This bias–variance trade-off is central to regularization.
 
 Tikhonov regularization admits a Bayesian interpretation:
 
-- likelihood: \(y \mid \theta \sim \mathcal{N}(F(\theta), W^{-1})\),
-- prior: \(\theta \sim \mathcal{N}(\theta_0, (\lambda L^\top L)^{-1})\).
+- likelihood: $y \mid \theta \sim \mathcal{N}(F(\theta), W^{-1})$,
+- prior: $\theta \sim \mathcal{N}(\theta_0, (\lambda L^\top L)^{-1})$.
 
 Then the regularized solution is the **maximum a posteriori (MAP)** estimator.
 
@@ -81,7 +81,7 @@ Then the regularized solution is the **maximum a posteriori (MAP)** estimator.
 ## Choosing the regularization parameter
 
 
-Selecting \(\lambda\) is critical. Common approaches:
+Selecting $\lambda$ is critical. Common approaches:
 
 - **L-curve method:** plot fit vs regularization norm,
 - **discrepancy principle:** match residual size to noise level,

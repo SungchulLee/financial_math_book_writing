@@ -584,7 +584,7 @@ under the physical measure $\mathbb{P}$. Explain why $\tilde{S}_t$ is not a mart
     dW_t^{\mathbb{Q}} = dW_t + \theta\,dt = dW_t + \frac{\mu - r}{\sigma}\,dt
     $$
 
-    Under the risk-neutral measure $\mathbb{Q}$, defined by the Radon-Nikodym derivative:
+    Under the risk-neutral measure $\mathbb{Q}$, defined by the Radon–Nikodym derivative:
 
     $$
     \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} = \exp\!\left(-\theta W_t - \frac{1}{2}\theta^2 t\right)

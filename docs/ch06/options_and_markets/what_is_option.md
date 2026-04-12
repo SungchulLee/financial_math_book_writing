@@ -29,7 +29,7 @@ Every option contract specifies:
 - **Maturity** $T$: The date at which the option expires
 - **Exercise style**: European (exercise only at $T$) or American (exercise at any time $t \leq T$)
 
-Throughout this text, we focus primarily on **European options**, which can only be exercised at maturity. This restriction is not just a simplification — it makes the pricing problem analytically tractable and leads directly to the Black-Scholes formula.
+Throughout this text, we focus primarily on **European options**, which can only be exercised at maturity. This restriction is not just a simplification — it makes the pricing problem analytically tractable and leads directly to the Black–Scholes formula.
 
 ---
 
@@ -58,6 +58,39 @@ An option's relationship to the current stock price is classified as:
 Moneyness determines how sensitive an option is to changes in the underlying and plays a central role in the behavior of the Greeks.
 
 **Example**: Consider a European call on stock XYZ with $K = 50$ and $T = 3$ months. The current stock price is $S = 53$. This call is ITM with intrinsic value $53 - 50 = \$3$. If the premium is \$5, the remaining \$2 represents **time value** — the market's assessment that the stock could move further before expiration. This raises a natural question: how should the premium be determined? That is the subject of subsequent sections.
+
+??? example "Moneyness in Practice: SPX Options"
+    With the S&P 500 index near 6,600, consider call options expiring in one month:
+
+    - **ITM** ($K = 6{,}500$): Premium $\approx 260$ points. The option has substantial intrinsic value ($6{,}600 - 6{,}500 = 100$ points) and behaves almost like the index itself — deep ITM options track the underlying nearly dollar-for-dollar.
+    - **ATM** ($K = 6{,}600$): Premium $\approx 180$ points. Intrinsic value is negligible, so nearly all of the premium is time value — the market's assessment of how far the index could move before expiration.
+    - **OTM** ($K = 6{,}700$): Premium $\approx 84$ points. With zero intrinsic value, the entire premium is time value. The option is cheaper because exercise requires the index to rally more than 100 points.
+
+    At the \$100 contract multiplier, these premiums correspond to \$26,000, \$18,000, and \$8,400 per contract — illustrating how moneyness directly determines the cost of an option position.
+
+---
+
+## Real-World Option Contracts
+
+Like futures, exchange-traded options have standardized contract sizes that determine their monetary value. The **contract multiplier** converts the quoted option premium into the actual dollar (or won) cost of one contract.
+
+| Contract | Exchange | Underlying | Contract size | 1-point value |
+|---|---|---|---|---|
+| SPX Index Options | CBOE | S&P 500 index | \$100 $\times$ index | \$100 |
+| SPY Options | CBOE | SPY ETF | 100 shares | \$100 |
+| KOSPI 200 Options | KRX | KOSPI 200 index | 250,000 KRW $\times$ index | 250,000 KRW |
+| AAPL Options | CBOE | Apple stock | 100 shares | \$100 |
+
+For example, an SPX call option with a quoted premium of 50 points costs
+
+$$
+50 \times \$100 = \$5{,}000
+$$
+
+per contract. Unlike futures, this amount is paid **upfront** as the option premium and represents the buyer's maximum possible loss. A 1-point change in the option price corresponds to \$100 per SPX contract.
+
+!!! tip "Contrast with futures"
+    In a [futures contract](../futures_and_forwards/what_is_forward_future.md), no premium is paid at inception — both sides are symmetrically obligated, and the delivery price is set so the contract has zero initial value. In an option contract, the buyer pays a premium for the right to walk away, and the writer receives this premium as compensation for bearing one-sided risk. The contract multiplier plays the same role in both markets: it converts quoted price changes into monetary gains and losses.
 
 ---
 

@@ -800,7 +800,7 @@ and that the HJM condition then constrains the physical drift as $\alpha^{\mathb
 **Exercise 7.** Verify the consistency of the discounted bond price dynamics. Starting from
 
 $$
-d\tilde{P} = \tilde{P}\left[\left(-\int_t^T \alpha(t, u)\,du + \frac{1}{2}\Sigma(t, T)^2\right)dt - \Sigma(t, T)\,dW_t\right],
+d\tilde{P} = \tilde{P}\left[\left(-\int_t^T \alpha(t, u)\,du + \frac{1}{2}\Sigma(t, T)^2\right)dt - \Sigma(t, T)\,dW_t\right]
 $$
 
 substitute the drift condition $\int_t^T \alpha(t, u)\,du = \frac{1}{2}\Sigma(t, T)^2$ and confirm that the drift of $\tilde{P}$ vanishes, leaving $d\tilde{P} = -\tilde{P}\,\Sigma(t, T)\,dW_t$, which is indeed a martingale (assuming appropriate integrability conditions).

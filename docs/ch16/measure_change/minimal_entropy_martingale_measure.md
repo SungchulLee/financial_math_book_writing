@@ -57,7 +57,7 @@ For the Heston model, $\mathcal{M}$ is parameterized by the variance risk premiu
 
 ## Entropy Computation for the Heston Model
 
-The Radon-Nikodym derivative from $\mathbb{P}$ to $\mathbb{Q}_\lambda$ (the EMM with variance risk premium $\lambda$) is
+The Radon–Nikodym derivative from $\mathbb{P}$ to $\mathbb{Q}_\lambda$ (the EMM with variance risk premium $\lambda$) is
 
 $$
 \frac{d\mathbb{Q}_\lambda}{d\mathbb{P}} = \exp\!\left(-\int_0^T \lambda_S(t) \, dW_t^{(1),\mathbb{P}} - \int_0^T \lambda\sqrt{v_t} \, dW_t^{(2),\mathbb{P}} - \frac{1}{2}\int_0^T(\lambda_S^2(t) + \lambda^2 v_t)\,dt\right)
@@ -188,7 +188,7 @@ Relative entropy satisfies $H(\mathbb{Q}|\mathbb{P}) \geq 0$ with equality if an
 ??? success "Solution to Exercise 1"
     Under any equivalent martingale measure $\mathbb{Q}$, the discounted stock price must be a martingale, which requires the drift of $S_t$ to change from $\mu$ to $r$. If $\mu \neq r$, then $\mathbb{Q} \neq \mathbb{P}$ because the two measures assign different expected growth rates to the stock. Since $H(\mathbb{Q}|\mathbb{P}) = 0$ if and only if $\mathbb{Q} = \mathbb{P}$, the entropy is strictly positive for every EMM when $\mu \neq r$.
 
-    More precisely, the Radon-Nikodym derivative satisfies
+    More precisely, the Radon–Nikodym derivative satisfies
 
     $$
     \log\frac{d\mathbb{Q}}{d\mathbb{P}} = -\int_0^T \frac{\mu - r}{\sqrt{v_t}} \, dW_t^{(1),\mathbb{P}} - \int_0^T \lambda\sqrt{v_t}\,dW_t^{(2),\mathbb{P}} - \frac{1}{2}\int_0^T\left(\frac{(\mu-r)^2}{v_t} + \lambda^2 v_t\right)dt
@@ -334,7 +334,7 @@ The MEMM, minimal variance martingale measure, and Esscher transform all select 
 
     **MEMM ($\lambda^* \approx 0$).** As shown in the text, the MEMM minimizes statistical distortion and selects $\lambda^* \approx 0$ in many parameter regimes (especially the stationary case). This is fundamentally a statistical criterion with no economic content regarding investor preferences.
 
-    **Minimal variance martingale measure.** This minimizes $\text{Var}^{\mathbb{P}}[d\mathbb{Q}/d\mathbb{P}]$, which penalizes large deviations of the Radon-Nikodym derivative. While this produces a different $\lambda^*$ than the MEMM, it is still a purely statistical criterion that does not incorporate risk aversion. In typical Heston parameters, the minimal variance measure also does not produce a large positive $\lambda$.
+    **Minimal variance martingale measure.** This minimizes $\text{Var}^{\mathbb{P}}[d\mathbb{Q}/d\mathbb{P}]$, which penalizes large deviations of the Radon–Nikodym derivative. While this produces a different $\lambda^*$ than the MEMM, it is still a purely statistical criterion that does not incorporate risk aversion. In typical Heston parameters, the minimal variance measure also does not produce a large positive $\lambda$.
 
     **Esscher transform.** The Esscher measure arises from exponential tilting: $d\mathbb{Q}/d\mathbb{P} \propto \exp(\beta X_T)$ for some parameter $\beta$. While this has a decision-theoretic interpretation (it corresponds to the optimal measure for an exponential utility investor), it is determined by the tilting parameter rather than by market data, and there is no reason why the resulting $\lambda$ should match the market-implied value.
 

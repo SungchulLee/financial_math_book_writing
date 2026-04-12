@@ -177,9 +177,9 @@ plt.show()
 
 Key observations from the plots:
 
-- **Gamma** diverges as \(\tau \to 0\) for ATM options (\(\Gamma \sim 1/\sqrt{\tau}\)).
-- **Theta** becomes most negative near expiry (\(\Theta \sim -1/\sqrt{\tau}\)).
-- **Vega** peaks at moderate maturities and decays as \(\sqrt{\tau}\) for short maturities.
+- **Gamma** diverges as $\tau \to 0$ for ATM options ($\Gamma \sim 1/\sqrt{\tau}$).
+- **Theta** becomes most negative near expiry ($\Theta \sim -1/\sqrt{\tau}$).
+- **Vega** peaks at moderate maturities and decays as $\sqrt{\tau}$ for short maturities.
 - **Delta** approaches 0.5 for all maturities at ATM.
 
 ---

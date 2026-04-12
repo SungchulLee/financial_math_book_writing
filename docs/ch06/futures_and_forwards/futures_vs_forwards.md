@@ -22,6 +22,8 @@ The table below summarizes the structural differences between forwards and futur
 
 In short, forwards offer flexibility while futures offer liquidity and credit safety.
 
+A practical consequence of standardization is that futures contracts have fixed expiry months rather than custom maturity dates. A hedger needing protection through mid-July must choose between the June and August contracts rather than matching the exact date. To maintain continuous exposure, futures traders periodically **roll** their positions — closing the expiring contract and opening the next — incurring transaction costs and potential slippage at each roll. Forward users, by contrast, can match the maturity precisely to their need and hold a single position without rolling.
+
 ---
 
 ## Why Mark-to-Market Matters

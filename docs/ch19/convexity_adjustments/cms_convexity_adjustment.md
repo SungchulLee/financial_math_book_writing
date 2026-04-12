@@ -371,7 +371,7 @@ for all $S_0 > 0$, $n \geq 2$, and $\delta > 0$.
 **Exercise 4.** Starting from the Radon--Nikodym derivative
 
 $$
-\frac{d\mathbb{Q}^{T_p}}{d\mathbb{Q}^A}\bigg|_{\mathcal{F}_{T_f}} = \frac{P(T_f, T_p) \cdot A(0)}{A(T_f) \cdot P(0, T_p)},
+\frac{d\mathbb{Q}^{T_p}}{d\mathbb{Q}^A}\bigg|_{\mathcal{F}_{T_f}} = \frac{P(T_f, T_p) \cdot A(0)}{A(T_f) \cdot P(0, T_p)}
 $$
 
 derive the expression $\mathbb{E}^{\mathbb{Q}^{T_p}}[S(T_f)] = \frac{A(0)}{P(0, T_p)}\,\mathbb{E}^{\mathbb{Q}^A}[S(T_f) \cdot G(S(T_f))]$ where $G(S) = P(T_f, T_p)/A(T_f)$. State clearly which properties of $S(T_f)$ under $\mathbb{Q}^A$ you use.

@@ -497,7 +497,7 @@ which yields portfolios robust to model uncertainty.
     \mathcal{Q} = \left\{\mathbb{Q} \ll \mathbb{P} \;\bigg|\; \frac{d\mathbb{Q}}{d\mathbb{P}} \le \frac{1}{1-\alpha}\right\}
     $$
 
-    That is, $\mathcal{Q}$ consists of all probability measures $\mathbb{Q}$ absolutely continuous with respect to $\mathbb{P}$ whose Radon-Nikodym derivative is bounded above by $\frac{1}{1-\alpha}$.
+    That is, $\mathcal{Q}$ consists of all probability measures $\mathbb{Q}$ absolutely continuous with respect to $\mathbb{P}$ whose Radon–Nikodym derivative is bounded above by $\frac{1}{1-\alpha}$.
 
     **Why this set?** The constraint $\frac{d\mathbb{Q}}{d\mathbb{P}} \le \frac{1}{1-\alpha}$ means that $\mathbb{Q}$ can place at most $\frac{1}{1-\alpha}$ times as much weight on any event as $\mathbb{P}$ does. The extremal measure in $\mathcal{Q}$ that achieves the supremum concentrates all its extra weight on the worst $(1-\alpha)$ fraction of outcomes. Specifically, the maximizing $\mathbb{Q}^*$ has:
 

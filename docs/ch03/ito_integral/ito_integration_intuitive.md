@@ -5,7 +5,7 @@
 The **Itô integral** extends ordinary integration to the setting where the integrator is **Brownian motion** rather than time. Unlike a classical Riemann–Stieltjes integral, a pathwise construction fails because Brownian paths have unbounded variation almost surely. For a process $H_t$ that depends only on information available up to time $t$ and satisfies the square-integrability condition
 
 $$
-\mathbb{E}\!\left[\int_0^T H_t^2\,dt\right] < \infty,
+\mathbb{E}\!\left[\int_0^T H_t^2\,dt\right] < \infty
 $$
 
 we define
@@ -18,7 +18,7 @@ as the $L^2$-limit of left-endpoint sums
 
 $$
 \int_0^T H_t\,dB_t
-:= \lim_{|\Pi|\to 0} \sum_{k=0}^{n-1} H_{t_k}\bigl(B_{t_{k+1}}-B_{t_k}\bigr),
+:= \lim_{|\Pi|\to 0} \sum_{k=0}^{n-1} H_{t_k}\bigl(B_{t_{k+1}}-B_{t_k}\bigr)
 $$
 
 where $\Pi = \{0=t_0<t_1<\cdots<t_n=T\}$ is a partition of $[0,T]$ and $|\Pi|$ is its mesh size.

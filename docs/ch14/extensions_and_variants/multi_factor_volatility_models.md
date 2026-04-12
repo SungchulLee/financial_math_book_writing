@@ -22,9 +22,9 @@ A single volatility factor cannot capture all time scales simultaneously.
 
 A generic multi-factor model may be written as
 
-\[
-V_t = \sum_{i=1}^n V_t^{(i)},
-\]
+$$
+V_t = \sum_{i=1}^n V_t^{(i)}
+$$
 
 
 where each factor satisfies its own stochastic dynamics, often with different mean-reversion speeds.

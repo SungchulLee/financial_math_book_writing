@@ -46,7 +46,7 @@ The five physical parameters are:
 
 ## Girsanov's Theorem for Two-Dimensional Diffusions
 
-To change from $\mathbb{P}$ to $\mathbb{Q}$, define the market prices of risk $\lambda_S(t)$ and $\lambda_v(t)$ and the Radon-Nikodym derivative
+To change from $\mathbb{P}$ to $\mathbb{Q}$, define the market prices of risk $\lambda_S(t)$ and $\lambda_v(t)$ and the Radon–Nikodym derivative
 
 $$
 \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = \exp\!\left(-\int_0^T \lambda_S(t) \, dW_t^{(1), \mathbb{P}} - \int_0^T \lambda_v(t) \, dW_t^{(2), \mathbb{P}} - \frac{1}{2}\int_0^T (\lambda_S^2(t) + \lambda_v^2(t)) \, dt\right)
@@ -251,7 +251,7 @@ The stock market price of risk is $\lambda_S(t) = (\mu - r)/\sqrt{v_t}$. Explain
 
     When the Feller condition is violated ($2\kappa\theta < \xi^2$), the variance process can reach zero. Near $v_t = 0$, the integrand $1/v_t$ explodes, and the integral $\int_0^T v_t^{-1}\,dt$ may diverge. Specifically, for a CIR process that touches zero, the time spent near zero contributes a divergent integral of $1/v_t$, causing $\int_0^T \lambda_S^2\,dt = \infty$ with positive probability.
 
-    When this integral is infinite, the stochastic exponential defining the Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}$ may fail to be a true martingale (it could be a strict local martingale), and the Novikov condition fails. In this case, the standard Girsanov construction does not produce a valid equivalent martingale measure, and one must either:
+    When this integral is infinite, the stochastic exponential defining the Radon–Nikodym derivative $d\mathbb{Q}/d\mathbb{P}$ may fail to be a true martingale (it could be a strict local martingale), and the Novikov condition fails. In this case, the standard Girsanov construction does not produce a valid equivalent martingale measure, and one must either:
 
     - Relax the specification of $\lambda_S$ near $v_t = 0$ (e.g., cap $\lambda_S$ at some maximum value)
     - Use a weaker sufficient condition than Novikov (such as Kazamaki's criterion)

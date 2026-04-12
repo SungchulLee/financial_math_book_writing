@@ -97,6 +97,13 @@ The relationship between the forward price and the spot price defines the shape 
 
 Contango and backwardation are not permanent conditions — they shift as supply, demand, and interest rates change.
 
+??? example "Real-World Example: WTI Crude Oil Term Structure"
+    The WTI crude oil forward curve frequently shifts between contango and backwardation depending on supply conditions. During periods of tight supply or geopolitical risk, the front-month contract trades at a significant premium to deferred months — a classic backwardation pattern where the market values immediate delivery far more than future delivery.
+
+    Conversely, when storage is abundant and supply exceeds near-term demand, the curve tilts into contango: deferred contracts trade above the front month, reflecting the financing and storage costs of holding physical oil.
+
+    An extreme dislocation occurred on April 20, 2020, when the front-month WTI contract (May 2020, CLK20) settled at $-\$37.63$ per barrel while contracts just one month out remained positive. Storage at the Cushing, Oklahoma delivery point was nearly full, and traders holding long positions who could not take physical delivery were forced to sell at any price. This episode demonstrated that physical delivery constraints can overwhelm the standard cost-of-carry relationship and produce term structure dislocations that no equilibrium model would predict.
+
 ---
 
 ## Summary of Cost-of-Carry Cases

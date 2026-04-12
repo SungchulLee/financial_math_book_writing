@@ -27,7 +27,7 @@ To move from $\mathbb{P}$ to the risk-neutral measure $\mathbb{Q}$, we introduce
 
     defines a standard Brownian motion $W^{\mathbb{Q}}(t)$ under the risk-neutral measure $\mathbb{Q}$.
 
-The Radon-Nikodym derivative that defines the change of measure is
+The Radon–Nikodym derivative that defines the change of measure is
 
 $$
 \frac{d\mathbb{Q}}{d\mathbb{P}}\Bigg|_{\mathcal{F}(t)} = \exp\!\left(-\int_0^t \gamma(s)\,dW^{\mathbb{P}}(s) - \frac{1}{2}\int_0^t \gamma(s)^2\,ds\right)
@@ -153,7 +153,7 @@ The Hull-White model under $\mathbb{Q}$ is obtained from the physical measure $\
 
 ## Exercises
 
-**Exercise 1.** The Novikov condition requires $\mathbb{E}^{\mathbb{P}}[\exp(\frac{1}{2}\int_0^T \gamma(s)^2\,ds)] < \infty$. For a constant market price of risk $\gamma$, show that this condition is always satisfied and compute the Radon-Nikodym derivative explicitly.
+**Exercise 1.** The Novikov condition requires $\mathbb{E}^{\mathbb{P}}[\exp(\frac{1}{2}\int_0^T \gamma(s)^2\,ds)] < \infty$. For a constant market price of risk $\gamma$, show that this condition is always satisfied and compute the Radon–Nikodym derivative explicitly.
 
 ??? success "Solution to Exercise 1"
     For a constant market price of risk $\gamma$, the Novikov condition becomes
@@ -164,7 +164,7 @@ The Hull-White model under $\mathbb{Q}$ is obtained from the physical measure $\
 
     Since $\gamma$ is a finite constant and $T < \infty$, the exponential of a finite number is always finite. Therefore the Novikov condition is automatically satisfied for any constant $\gamma$.
 
-    The Radon-Nikodym derivative simplifies to
+    The Radon–Nikodym derivative simplifies to
 
     $$
     \frac{d\mathbb{Q}}{d\mathbb{P}}\Bigg|_{\mathcal{F}(t)} = \exp\!\left(-\gamma\,W^{\mathbb{P}}(t) - \frac{1}{2}\gamma^2 t\right)

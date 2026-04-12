@@ -134,7 +134,7 @@ r(t_0)e^{-\lambda (t-t_0)}+\lambda\int_{t_0}^t\theta^\mathbb{T}(t')e^{-\lambda(t
 
 ## Exercises
 
-**Exercise 1.** Starting from the ZCB dynamics $\frac{dP(t,T)}{P(t,T)} = r(t)dt + \sigma_P(t,T)dW^{\mathbb{Q}}(t)$, derive the Radon-Nikodym derivative $\frac{d\mathbb{T}}{d\mathbb{Q}}\big|_{\mathcal{F}(t)}$ step by step. Verify that it is an exponential martingale.
+**Exercise 1.** Starting from the ZCB dynamics $\frac{dP(t,T)}{P(t,T)} = r(t)dt + \sigma_P(t,T)dW^{\mathbb{Q}}(t)$, derive the Radon–Nikodym derivative $\frac{d\mathbb{T}}{d\mathbb{Q}}\big|_{\mathcal{F}(t)}$ step by step. Verify that it is an exponential martingale.
 
 ??? success "Solution to Exercise 1"
     Starting from the ZCB dynamics under $\mathbb{Q}$:
@@ -155,7 +155,7 @@ r(t_0)e^{-\lambda (t-t_0)}+\lambda\int_{t_0}^t\theta^\mathbb{T}(t')e^{-\lambda(t
     \log P(t,T) - \log P(0,T) = \int_0^t r(s)\,ds - \frac{1}{2}\int_0^t \sigma_P^2(s,T)\,ds + \int_0^t \sigma_P(s,T)\,dW^{\mathbb{Q}}(s)
     $$
 
-    The Radon-Nikodym derivative is $\frac{d\mathbb{T}}{d\mathbb{Q}}\big|_{\mathcal{F}(t)} = \frac{P(t,T)}{P(0,T)M(t)}$ where $M(t) = e^{\int_0^t r(s)\,ds}$. Taking the logarithm:
+    The Radon–Nikodym derivative is $\frac{d\mathbb{T}}{d\mathbb{Q}}\big|_{\mathcal{F}(t)} = \frac{P(t,T)}{P(0,T)M(t)}$ where $M(t) = e^{\int_0^t r(s)\,ds}$. Taking the logarithm:
 
     $$\begin{array}{lllll}
     \displaystyle

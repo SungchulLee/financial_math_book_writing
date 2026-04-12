@@ -24,12 +24,12 @@ Joint calibration enforces:
 
 A typical joint objective is
 
-\[
+$$
 \mathcal{L}(\theta)
 = \frac12\sum_{i,j} w_{ij}
 \big(\sigma^{\text{model}}_{\text{impl}}(k_i,T_j;\theta)
-- \sigma^{\text{mkt}}_{\text{impl}}(k_i,T_j)\big)^2.
-\]
+- \sigma^{\text{mkt}}_{\text{impl}}(k_i,T_j)\big)^2
+$$
 
 
 
@@ -45,9 +45,9 @@ Key design choices:
 
 Parameters affect different regions:
 
-- \(\rho\): skew across strikes,
-- \(\xi\): smile curvature and term-structure interaction,
-- \(\kappa, \theta\): long-maturity variance level.
+- $\rho$: skew across strikes,
+- $\xi$: smile curvature and term-structure interaction,
+- $\kappa, \theta$: long-maturity variance level.
 
 Joint calibration ensures these effects are reconciled globally.
 

@@ -466,7 +466,7 @@ The CF under the stock-price numeraire is obtained as $\varphi_1(u) = \varphi(u 
     C = S_0 e^{-qT} P_1 - K e^{-rT} P_2
     $$
 
-    Here $P_2 = \mathbb{Q}(S_T > K)$ is the exercise probability under the money-market numeraire (the usual risk-neutral measure), and $P_1 = \mathbb{Q}^S(S_T > K)$ is the exercise probability under the **stock-price numeraire**. Under the stock-price numeraire, the Radon-Nikodym derivative is:
+    Here $P_2 = \mathbb{Q}(S_T > K)$ is the exercise probability under the money-market numeraire (the usual risk-neutral measure), and $P_1 = \mathbb{Q}^S(S_T > K)$ is the exercise probability under the **stock-price numeraire**. Under the stock-price numeraire, the Radon–Nikodym derivative is:
 
     $$
     \frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_T}{S_0 e^{(r-q)T}} = \frac{S_T}{\mathbb{E}[S_T]}

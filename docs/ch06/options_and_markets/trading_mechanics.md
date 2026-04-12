@@ -48,6 +48,8 @@ In practice, the **contract multiplier** determines the monetary scale of premiu
 - **Underlying**: S&P 500 Index
 - **Multiplier**: \$100 per index point
 - **Settlement**: Cash-settled, European-style
+- **Expiration**: Standard monthly options expire on the **third Friday** of the expiration month; weekly options (SPXW) expire Monday, Wednesday, or Friday
+- **Final settlement**: Monthly options use **AM settlement** based on the Special Opening Quotation (SOQ) — a value computed from the opening prices of all 500 index constituents. Weekly options use **PM settlement** based on the closing index level
 
 If the quoted premium of an SPX call is 20, the actual cost is:
 
@@ -66,6 +68,8 @@ $$
 - **Underlying**: KOSPI 200 Index
 - **Multiplier**: 250,000 KRW per index point
 - **Settlement**: Cash-settled, European-style
+- **Expiration**: Monthly options expire on the **second Thursday** of the expiration month
+- **Tick size**: 0.01 index points = 2,500 KRW per contract
 
 If the quoted premium is 0.80, the actual cost is:
 
@@ -101,6 +105,11 @@ $$
 $$
 
 provides a normalized measure of transaction costs that is comparable across contracts with different price levels.
+
+??? example "Bid-Ask Spreads in Practice"
+    For SPX options near the money with near-term expiration, bid-ask spreads are typically a few index points wide. An ATM SPX call might show a bid of 177 and an ask of 182 — a spread of 5 points, or \$500 per contract at the \$100 multiplier. At-the-money options on actively traded indices have relative spreads of a few percent, while far out-of-the-money options on illiquid underlyings may have relative spreads exceeding 20%.
+
+    KOSPI 200 options, which are among the most actively traded index options in the world, typically exhibit tight spreads near the money — reflecting a market with exceptionally high retail participation compared to the more institutionally dominated SPX options market.
 
 ---
 

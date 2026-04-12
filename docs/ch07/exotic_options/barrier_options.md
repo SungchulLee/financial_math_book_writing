@@ -244,7 +244,7 @@ $$
 ??? success "Solution to Exercise 3"
     The exponent $2\lambda$ arises from the **reflection principle applied to drifted Brownian motion**. Under $\mathbb{Q}$, the log-price follows $X_t = \log S_t = x + \mu t + \sigma W_t$ where $\mu = r - \frac{1}{2}\sigma^2$.
 
-    The reflection principle applies directly only to driftless Brownian motion. To remove the drift, we perform a Girsanov-type measure change. Define a new measure $\hat{\mathbb{Q}}$ via the Radon-Nikodym derivative:
+    The reflection principle applies directly only to driftless Brownian motion. To remove the drift, we perform a Girsanov-type measure change. Define a new measure $\hat{\mathbb{Q}}$ via the Radon–Nikodym derivative:
 
     $$
     \frac{d\hat{\mathbb{Q}}}{d\mathbb{Q}} = \exp\left(-\frac{\mu}{\sigma}W_T - \frac{\mu^2}{2\sigma^2}T\right)
@@ -252,7 +252,7 @@ $$
 
     Under $\hat{\mathbb{Q}}$, the process $X_t - x = \sigma \hat{W}_t$ is a driftless Brownian motion (scaled by $\sigma$).
 
-    When reflecting a path that hits barrier $b = \log H$ about that barrier, the reflected path starts from $2b - x = \log(H^2/S_0)$. The Radon-Nikodym factor evaluated at the reflected starting point introduces a multiplicative correction:
+    When reflecting a path that hits barrier $b = \log H$ about that barrier, the reflected path starts from $2b - x = \log(H^2/S_0)$. The Radon–Nikodym factor evaluated at the reflected starting point introduces a multiplicative correction:
 
     $$
     \exp\left(\frac{2\mu}{\sigma^2}(b - x)\right) = \exp\left(\frac{2\mu}{\sigma^2}\log\frac{H}{S_0}\right) = \left(\frac{H}{S_0}\right)^{2\mu/\sigma^2}

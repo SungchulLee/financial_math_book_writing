@@ -444,7 +444,7 @@ A well-constructed curve should reprice inputs to within bid-ask tolerance.
 
     The economic reason for the convexity adjustment arises from the difference between futures and forward contracts. Futures are **marked to market daily**, meaning gains and losses are settled each day. When rates rise, the futures position loses money, and this loss must be financed at the now-higher prevailing rate. Conversely, when rates fall, the gain is reinvested at the lower prevailing rate. This creates a systematic disadvantage for long futures positions (those betting on rate declines) relative to equivalent forward positions.
 
-    Mathematically, this is a covariance effect. The futures rate equals the expected rate under the risk-neutral measure, while the forward rate equals the expected rate under the $T_2$-forward measure. The convexity adjustment captures the Radon-Nikodym derivative between these measures:
+    Mathematically, this is a covariance effect. The futures rate equals the expected rate under the risk-neutral measure, while the forward rate equals the expected rate under the $T_2$-forward measure. The convexity adjustment captures the Radon–Nikodym derivative between these measures:
 
     $$
     \text{CA} \approx \frac{1}{2} \sigma^2 T_1 (T_2 - T_1)

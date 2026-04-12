@@ -1,6 +1,6 @@
 # Exponential Martingales
 
-Exponential martingales built from affine processes serve two fundamental purposes in mathematical finance. First, they provide the mechanism for computing characteristic functions: the conditional expectation $\mathbb{E}[e^{u^\top X_T} \mid \mathcal{F}_t]$ equals the martingale evaluated at time $t$. Second, they serve as **Radon-Nikodym derivatives** for measure changes, enabling the passage from the physical measure $\mathbb{P}$ to the risk-neutral measure $\mathbb{Q}$ while preserving the affine structure. This section constructs exponential martingales from the Riccati solutions, proves the martingale property using the infinitesimal generator, and establishes the integrability conditions that separate true martingales from mere local martingales.
+Exponential martingales built from affine processes serve two fundamental purposes in mathematical finance. First, they provide the mechanism for computing characteristic functions: the conditional expectation $\mathbb{E}[e^{u^\top X_T} \mid \mathcal{F}_t]$ equals the martingale evaluated at time $t$. Second, they serve as **Radon–Nikodym derivatives** for measure changes, enabling the passage from the physical measure $\mathbb{P}$ to the risk-neutral measure $\mathbb{Q}$ while preserving the affine structure. This section constructs exponential martingales from the Riccati solutions, proves the martingale property using the infinitesimal generator, and establishes the integrability conditions that separate true martingales from mere local martingales.
 
 !!! abstract "Learning Objectives"
     By the end of this section, you will be able to:
@@ -25,7 +25,7 @@ $$
 
 should have zero drift --- that is, it should be a martingale. The Riccati system provides exactly the $\phi$ and $\psi$ that achieve this cancellation.
 
-This martingale perspective is more than a technical convenience. Every conditional expectation of the form $\mathbb{E}[g(X_T) \mid \mathcal{F}_t]$ can be expressed as a martingale evaluated at time $t$. For exponential-affine functions $g(x) = e^{u^\top x}$, the martingale $M_t$ does the job. And when $M_t$ is used as a Radon-Nikodym derivative, it changes the probability measure while preserving the affine class.
+This martingale perspective is more than a technical convenience. Every conditional expectation of the form $\mathbb{E}[g(X_T) \mid \mathcal{F}_t]$ can be expressed as a martingale evaluated at time $t$. For exponential-affine functions $g(x) = e^{u^\top x}$, the martingale $M_t$ does the job. And when $M_t$ is used as a Radon–Nikodym derivative, it changes the probability measure while preserving the affine class.
 
 ---
 
@@ -197,7 +197,7 @@ The state-dependent volatility $M_t \cdot \psi(T-t, u) \cdot \xi\sqrt{X_t}$ mean
 
 ## Role in Measure Change
 
-Exponential martingales serve as **Radon-Nikodym derivatives** for changing the probability measure. If $M_t^{(u,T)}$ is a strictly positive true martingale with $\mathbb{E}[M_T] = 1$ (which requires $\phi(T, u) + \psi(T, u)^\top x = 0$ at $x = X_0$ with appropriate normalization), then
+Exponential martingales serve as **Radon–Nikodym derivatives** for changing the probability measure. If $M_t^{(u,T)}$ is a strictly positive true martingale with $\mathbb{E}[M_T] = 1$ (which requires $\phi(T, u) + \psi(T, u)^\top x = 0$ at $x = X_0$ with appropriate normalization), then
 
 $$
 \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} = M_t^{(u,T)}
@@ -209,7 +209,7 @@ defines a new probability measure $\mathbb{Q}$. Under $\mathbb{Q}$, the process 
 
 ## Summary
 
-The exponential martingale $M_t = \exp(\phi(T-t,u) + \psi(T-t,u)^\top X_t)$ is the probabilistic object that connects the Riccati ODE system to the characteristic function of an affine process. The martingale property holds because the Riccati equations are precisely the conditions for the drift of $M_t$ to vanish under Ito's lemma. For purely imaginary $u$, the martingale property is automatic; for real $u$, additional integrability conditions (Novikov or Kazamaki) are needed to upgrade from local to true martingale. Beyond characteristic function computation, exponential martingales serve as Radon-Nikodym derivatives for measure changes that preserve the affine structure.
+The exponential martingale $M_t = \exp(\phi(T-t,u) + \psi(T-t,u)^\top X_t)$ is the probabilistic object that connects the Riccati ODE system to the characteristic function of an affine process. The martingale property holds because the Riccati equations are precisely the conditions for the drift of $M_t$ to vanish under Ito's lemma. For purely imaginary $u$, the martingale property is automatic; for real $u$, additional integrability conditions (Novikov or Kazamaki) are needed to upgrade from local to true martingale. Beyond characteristic function computation, exponential martingales serve as Radon–Nikodym derivatives for measure changes that preserve the affine structure.
 
 ---
 
@@ -340,10 +340,10 @@ The exponential martingale $M_t = \exp(\phi(T-t,u) + \psi(T-t,u)^\top X_t)$ is t
 
 ---
 
-**Exercise 6.** Suppose you want to use $M_t^{(u,T)}$ as a Radon-Nikodym derivative to define a new measure $\mathbb{Q}$. What normalization condition must hold so that $\mathbb{E}^{\mathbb{P}}[M_T^{(u,T)}] = 1$? Express this condition in terms of $\phi(T, u)$, $\psi(T, u)$, and $X_0$, and explain why it constrains the choice of $u$.
+**Exercise 6.** Suppose you want to use $M_t^{(u,T)}$ as a Radon–Nikodym derivative to define a new measure $\mathbb{Q}$. What normalization condition must hold so that $\mathbb{E}^{\mathbb{P}}[M_T^{(u,T)}] = 1$? Express this condition in terms of $\phi(T, u)$, $\psi(T, u)$, and $X_0$, and explain why it constrains the choice of $u$.
 
 ??? success "Solution to Exercise 6"
-    For $M_T^{(u,T)}$ to serve as a valid Radon-Nikodym derivative, we need $\mathbb{E}^{\mathbb{P}}[M_T^{(u,T)}] = 1$. Since $M_T^{(u,T)} = e^{u^\top X_T}$ and $M_0^{(u,T)} = \exp(\phi(T, u) + \psi(T, u)^\top X_0)$, the martingale property gives
+    For $M_T^{(u,T)}$ to serve as a valid Radon–Nikodym derivative, we need $\mathbb{E}^{\mathbb{P}}[M_T^{(u,T)}] = 1$. Since $M_T^{(u,T)} = e^{u^\top X_T}$ and $M_0^{(u,T)} = \exp(\phi(T, u) + \psi(T, u)^\top X_0)$, the martingale property gives
 
     $$
     \mathbb{E}^{\mathbb{P}}[M_T^{(u,T)}] = M_0^{(u,T)} = \exp\!\bigl(\phi(T, u) + \psi(T, u)^\top X_0\bigr)
@@ -357,4 +357,4 @@ The exponential martingale $M_t = \exp(\phi(T-t,u) + \psi(T-t,u)^\top X_t)$ is t
 
     This is a constraint that links $u$, $T$, and the initial state $X_0$. Given the Riccati solutions $\phi(T, u)$ and $\psi(T, u)$ (which are determined by the process parameters), this equation implicitly defines the admissible $u$ for each $(T, X_0)$.
 
-    In practice, one often normalizes differently: define the Radon-Nikodym derivative as $\frac{d\mathbb{Q}}{d\mathbb{P}}\big|_{\mathcal{F}_t} = \frac{M_t^{(u,T)}}{M_0^{(u,T)}}$, which automatically satisfies $\mathbb{E}[\frac{d\mathbb{Q}}{d\mathbb{P}}\big|_{\mathcal{F}_T}] = 1$. The constraint on $u$ then reduces to requiring that $M_t^{(u,T)}$ be a strictly positive true martingale, which restricts $u$ to the set where the Riccati solution exists on $[0, T]$ and the integrability conditions hold.
+    In practice, one often normalizes differently: define the Radon–Nikodym derivative as $\frac{d\mathbb{Q}}{d\mathbb{P}}\big|_{\mathcal{F}_t} = \frac{M_t^{(u,T)}}{M_0^{(u,T)}}$, which automatically satisfies $\mathbb{E}[\frac{d\mathbb{Q}}{d\mathbb{P}}\big|_{\mathcal{F}_T}] = 1$. The constraint on $u$ then reduces to requiring that $M_t^{(u,T)}$ be a strictly positive true martingale, which restricts $u$ to the set where the Riccati solution exists on $[0, T]$ and the integrability conditions hold.

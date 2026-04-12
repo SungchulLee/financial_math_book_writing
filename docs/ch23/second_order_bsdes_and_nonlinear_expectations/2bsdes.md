@@ -956,7 +956,7 @@ The theory continues to develop rapidly, with ongoing research addressing comput
     -dY_t = (\alpha Y_t + \beta Z_t) \, dt - Z_t \, dW_t, \quad Y_T = \xi
     $$
 
-    Define $\tilde{W}_t = W_t - \beta t$ and let $\mathbb{Q}$ be the measure under which $\tilde{W}_t$ is a Brownian motion, given by Girsanov's theorem with Radon-Nikodym derivative:
+    Define $\tilde{W}_t = W_t - \beta t$ and let $\mathbb{Q}$ be the measure under which $\tilde{W}_t$ is a Brownian motion, given by Girsanov's theorem with Radon–Nikodym derivative:
 
     $$
     \frac{d\mathbb{Q}}{dP}\bigg|_{\mathcal{F}_t} = \mathcal{E}\left(\int_0^t \beta \, dW_s\right) = \exp\left(\beta W_t - \frac{\beta^2}{2}t\right)

@@ -28,6 +28,9 @@ $$
 
 where $D_t \geq 0$ is any deposit made in response to a margin call. A margin call is triggered whenever $M_{t-1} + \Delta_t$ falls below the maintenance margin.
 
+!!! info "Settlement Price vs Market Price"
+    The settlement price $F_t$ is not simply the last traded price of the day. It is an **official closing value** determined by the exchange using a specific calculation window near market close. The settlement price serves as the authoritative reference for daily mark-to-market, margin calculations, and end-of-day P&L reporting. It can differ — sometimes significantly — from the price at which the contract last traded during the session.
+
 ---
 
 ## Worked Example: Three-Day Margin Account
@@ -54,6 +57,11 @@ The margin balance of \$7{,}000 falls below the maintenance level of \$7{,}500, 
 ## Counterparty Risk and the Role of the Clearinghouse
 
 Because gains and losses are settled in cash every day, no large unrealized obligation accumulates over the life of the contract. If a trader cannot meet a margin call, the position is closed immediately and the loss is limited to one day's adverse move. The clearinghouse, acting as the counterparty to every trade, therefore faces only overnight exposure rather than the full maturity exposure that arises in a forward contract. This is why marking to market is said to **virtually eliminate counterparty risk** in futures markets.
+
+??? example "April 2020: When the Margin System Was Tested"
+    On April 20, 2020, the front-month WTI crude oil contract (CLK20, May 2020) settled at $-\$37.63$ per barrel — the first time a major commodity futures contract traded at a negative price. The collapse was driven by COVID-19 demand destruction, nearly full storage at the Cushing delivery point, and expiration pressure on traders who could not take physical delivery.
+
+    The margin system operated as designed: as prices plunged, margin calls were triggered on long positions throughout the day, and brokers liquidated accounts that could not meet the calls. The clearinghouse's exposure remained limited to intraday price movement rather than the full cumulative loss over the contract's life. However, the event revealed that standard margin models had assumed a non-negative price floor — an assumption that negative prices spectacularly violated, prompting exchanges to revise their risk models.
 
 ---
 

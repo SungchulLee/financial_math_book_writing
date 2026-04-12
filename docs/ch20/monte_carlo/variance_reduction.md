@@ -273,7 +273,7 @@ Variance reduction is essential for efficient Monte Carlo pricing in the Hull-Wh
 
 ---
 
-**Exercise 5.** Importance sampling for a deep out-of-the-money caplet shifts the mean of $r_T$ toward the strike $K$. The likelihood ratio per time step is $\exp(-\theta_{\text{IS}} Z_i + \frac{1}{2}\theta_{\text{IS}}^2)$. Derive this formula by computing the Radon-Nikodym derivative between $\mathcal{N}(\theta_{\text{IS}}, 1)$ and $\mathcal{N}(0,1)$ for a single normal draw.
+**Exercise 5.** Importance sampling for a deep out-of-the-money caplet shifts the mean of $r_T$ toward the strike $K$. The likelihood ratio per time step is $\exp(-\theta_{\text{IS}} Z_i + \frac{1}{2}\theta_{\text{IS}}^2)$. Derive this formula by computing the Radon–Nikodym derivative between $\mathcal{N}(\theta_{\text{IS}}, 1)$ and $\mathcal{N}(0,1)$ for a single normal draw.
 
 ??? success "Solution to Exercise 5"
     Let $Z \sim \mathcal{N}(0, 1)$ under the original measure, and $\tilde{Z} = Z - \theta_{\text{IS}} \sim \mathcal{N}(-\theta_{\text{IS}}, 1)$ under the original measure (equivalently, $Z = \tilde{Z} + \theta_{\text{IS}}$ where $\tilde{Z} \sim \mathcal{N}(0, 1)$ under the importance sampling measure).
@@ -288,7 +288,7 @@ Variance reduction is essential for efficient Monte Carlo pricing in the Hull-Wh
     h(z) = \frac{1}{\sqrt{2\pi}}e^{-(z - \theta_{\text{IS}})^2/2} \quad (\text{importance sampling})
     $$
 
-    The Radon-Nikodym derivative (likelihood ratio) is
+    The Radon–Nikodym derivative (likelihood ratio) is
 
     $$
     \frac{f(z)}{h(z)} = \frac{e^{-z^2/2}}{e^{-(z-\theta_{\text{IS}})^2/2}} = \exp\!\left(-\frac{z^2}{2} + \frac{(z - \theta_{\text{IS}})^2}{2}\right)

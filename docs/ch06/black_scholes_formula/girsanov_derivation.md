@@ -270,13 +270,13 @@ $$
 dS = rS\,dt + \sigma S\,d\tilde{W}^{\mathbb{Q}}
 $$
 
-**The change of measure** via the Radon-Nikodym derivative:
+**The change of measure** via the Radon–Nikodym derivative:
 
 $$
 \frac{d\mathbb{Q}}{d\mathbb{P}}\Big|_{\mathcal{F}_T} = \exp\left(-\frac{\mu - r}{\sigma}W_T - \frac{1}{2}\left(\frac{\mu-r}{\sigma}\right)^2 T\right)
 $$
 
-**Key observation:** The martingale property of $\tilde{V}(t)$ holds under $\mathbb{Q}$, not $\mathbb{P}$. The drift $\mu$ appears in the Radon-Nikodym derivative but not in the final formula because we compute the expectation under $\mathbb{Q}$.
+**Key observation:** The martingale property of $\tilde{V}(t)$ holds under $\mathbb{Q}$, not $\mathbb{P}$. The drift $\mu$ appears in the Radon–Nikodym derivative but not in the final formula because we compute the expectation under $\mathbb{Q}$.
 
 This is why option prices are **drift-neutral**: they depend only on the volatility $\sigma$, the risk-free rate $r$, and the option structure, not on traders' expectations ($\mu$) about future stock returns.
 
@@ -284,7 +284,7 @@ This is why option prices are **drift-neutral**: they depend only on the volatil
 
 ## Exercises
 
-**Exercise 1.** Suppose the real-world drift is $\mu = 12\%$, the risk-free rate is $r = 3\%$, and the volatility is $\sigma = 20\%$. Compute the market price of risk $\theta = \frac{\mu - r}{\sigma}$ and write down the Radon-Nikodym derivative $Z_T$ explicitly for $T = 1$ year.
+**Exercise 1.** Suppose the real-world drift is $\mu = 12\%$, the risk-free rate is $r = 3\%$, and the volatility is $\sigma = 20\%$. Compute the market price of risk $\theta = \frac{\mu - r}{\sigma}$ and write down the Radon–Nikodym derivative $Z_T$ explicitly for $T = 1$ year.
 
 ??? success "Solution to Exercise 1"
     The market price of risk is:
@@ -293,7 +293,7 @@ This is why option prices are **drift-neutral**: they depend only on the volatil
     \theta = \frac{\mu - r}{\sigma} = \frac{0.12 - 0.03}{0.20} = \frac{0.09}{0.20} = 0.45
     $$
 
-    The Radon-Nikodym derivative for $T = 1$ is:
+    The Radon–Nikodym derivative for $T = 1$ is:
 
     $$
     Z_T = \exp\left(-\theta W_T - \frac{1}{2}\theta^2 T\right) = \exp\left(-0.45\, W_1 - \frac{1}{2}(0.45)^2 \cdot 1\right)
@@ -430,7 +430,7 @@ This is why option prices are **drift-neutral**: they depend only on the volatil
     The drift term vanishes, leaving only the stochastic integral with respect to $\tilde{W}$. Therefore $\tilde{V}(t) = e^{-rt}V(t, S_t)$ is a (local) martingale under $\mathbb{Q}$.
 
 ---
-**Exercise 5.** Consider two traders who agree on all market parameters except the real-world drift: Trader A believes $\mu = 8\%$ while Trader B believes $\mu = 15\%$. Show that both traders arrive at the same Black-Scholes option price, and explain why the drift $\mu$ does not appear in the pricing formula despite appearing in the Radon-Nikodym derivative.
+**Exercise 5.** Consider two traders who agree on all market parameters except the real-world drift: Trader A believes $\mu = 8\%$ while Trader B believes $\mu = 15\%$. Show that both traders arrive at the same Black-Scholes option price, and explain why the drift $\mu$ does not appear in the pricing formula despite appearing in the Radon–Nikodym derivative.
 
 ??? success "Solution to Exercise 5"
     **Trader A** ($\mu = 8\%$) computes:
@@ -445,7 +445,7 @@ This is why option prices are **drift-neutral**: they depend only on the volatil
     \theta_B = \frac{0.15 - r}{\sigma}
     $$
 
-    Each trader defines a different Radon-Nikodym derivative:
+    Each trader defines a different Radon–Nikodym derivative:
 
     $$
     Z_T^A = \exp\left(-\theta_A W_T - \frac{1}{2}\theta_A^2 T\right), \quad Z_T^B = \exp\left(-\theta_B W_T - \frac{1}{2}\theta_B^2 T\right)
@@ -464,7 +464,7 @@ This is why option prices are **drift-neutral**: they depend only on the volatil
 
     Since $d_1$ and $d_2$ depend only on $S_0$, $K$, $r$, $\sigma$, and $T$ (not $\mu$), both traders get the same price.
 
-    The drift $\mu$ does not appear because risk-neutral pricing is based on **replication**, not forecasting. The option can be perfectly hedged using the stock and bond, and the cost of this hedge is determined by $\sigma$ (which governs how much the stock moves) and $r$ (which governs the cost of financing), not by $\mu$ (which governs the direction of expected moves). Different beliefs about $\mu$ lead to different Radon-Nikodym derivatives but the same pricing measure.
+    The drift $\mu$ does not appear because risk-neutral pricing is based on **replication**, not forecasting. The option can be perfectly hedged using the stock and bond, and the cost of this hedge is determined by $\sigma$ (which governs how much the stock moves) and $r$ (which governs the cost of financing), not by $\mu$ (which governs the direction of expected moves). Different beliefs about $\mu$ lead to different Radon–Nikodym derivatives but the same pricing measure.
 
 ---
 **Exercise 6.** For the parameters $S_0 = 100$, $K = 105$, $r = 5\%$, $\sigma = 25\%$, $T = 0.5$, carry out the full Girsanov derivation: compute $d_1$, $d_2$, evaluate $\Phi(d_1)$ and $\Phi(d_2)$, and obtain the call price $C_0 = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2)$.

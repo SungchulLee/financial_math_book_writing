@@ -38,7 +38,7 @@ so that
 
 $$
 P_{\text{adj},\,s} = P_{\text{raw},\,s} \times \frac{P_{\text{ex}}}{P_{\text{ex}} + D},
-\qquad s < t.
+\qquad s < t
 $$
 
 This ensures that a position held through the ex-date shows the correct
@@ -54,13 +54,13 @@ are standard.
 **Discrete (arithmetic) return:**
 
 $$
-r_t^{(D)} = \frac{S_t - S_{t-1}}{S_{t-1}} = \frac{S_t}{S_{t-1}} - 1.
+r_t^{(D)} = \frac{S_t - S_{t-1}}{S_{t-1}} = \frac{S_t}{S_{t-1}} - 1
 $$
 
 **Continuous (log) return:**
 
 $$
-r_t^{(C)} = \log\frac{S_t}{S_{t-1}} = \log S_t - \log S_{t-1}.
+r_t^{(C)} = \log\frac{S_t}{S_{t-1}} = \log S_t - \log S_{t-1}
 $$
 
 They are related by $r^{(C)} = \log(1 + r^{(D)})$. For $|r^{(D)}| < 0.05$
@@ -81,7 +81,7 @@ single-period log returns:
 $$
 r_{[t,\,t+n]}^{(C)}
 = \log\frac{S_{t+n}}{S_t}
-= \sum_{i=1}^n r_{t+i}^{(C)}.
+= \sum_{i=1}^n r_{t+i}^{(C)}
 $$
 
 Discrete returns multiply rather than add: $1 + r_{[t,t+n]}^{(D)} =
@@ -93,7 +93,7 @@ arguments all apply cleanly to additive quantities.
 that log returns over a period $\Delta t$ are Gaussian:
 
 $$
-r_t^{(C)} \sim \mathcal{N}\!\left(\mu\Delta t,\;\sigma^2\Delta t\right).
+r_t^{(C)} \sim \mathcal{N}\!\left(\mu\Delta t,\;\sigma^2\Delta t\right)
 $$
 
 Log returns are thus the natural observation equation for GBM and for any SDE
@@ -113,7 +113,7 @@ are
 $$
 \hat{\mu} = \frac{1}{T}\sum_{t=1}^T r_t,
 \qquad
-\hat{\sigma}^2 = \frac{1}{T-1}\sum_{t=1}^T (r_t - \hat{\mu})^2,
+\hat{\sigma}^2 = \frac{1}{T-1}\sum_{t=1}^T (r_t - \hat{\mu})^2
 $$
 
 $$
@@ -237,7 +237,7 @@ def moment_summary(returns: pd.Series, N: int = 252) -> dict:
         "excess_kurtosis"     : kurt,
         "annual_mean"         : ann_mu,
         "annual_vol"          : ann_sigma,
-        "sharpe_ratio (rf=0)" : ann_mu / ann_sigma,
+        "sharpe_ratio (rf=0)" : ann_mu / ann_sigma
     }
 
 # ── 5. Full pipeline ──────────────────────────────────────────────────────────
@@ -380,7 +380,7 @@ established in this section:
 **Exercise 3.** Let $\{r_t^{(C)}\}_{t=1}^{5}$ be five consecutive daily log returns: $+0.012$, $-0.008$, $+0.015$, $-0.003$, $+0.006$. Compute the 5-day cumulative log return directly as a sum. Then convert each daily log return to a discrete return, compute the 5-day cumulative discrete return as
 
 $$
-1 + r_{[1,5]}^{(D)} = \prod_{t=1}^{5}(1 + r_t^{(D)}),
+1 + r_{[1,5]}^{(D)} = \prod_{t=1}^{5}(1 + r_t^{(D)})
 $$
 
 and verify that $\log(1 + r_{[1,5]}^{(D)})$ equals the sum of log returns.
@@ -458,7 +458,7 @@ and verify that $\log(1 + r_{[1,5]}^{(D)})$ equals the sum of log returns.
 **Exercise 5.** Show algebraically that for an $n$-period investment the discrete return satisfies
 
 $$
-1 + r_{[t,\,t+n]}^{(D)} = \prod_{i=1}^{n}(1 + r_{t+i}^{(D)}),
+1 + r_{[t,\,t+n]}^{(D)} = \prod_{i=1}^{n}(1 + r_{t+i}^{(D)})
 $$
 
 while the log return satisfies $r_{[t,\,t+n]}^{(C)} = \sum_{i=1}^{n} r_{t+i}^{(C)}$. Explain why the additive property of log returns makes them more convenient for probabilistic analysis involving the Central Limit Theorem.

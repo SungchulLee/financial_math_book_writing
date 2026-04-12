@@ -21,27 +21,27 @@ This time decay accelerates as the option nears expiration, especially for **at-
 
 #### Call options
 
-As time to maturity \(\tau = T - t\) decreases, the call price converges to its intrinsic value:
+As time to maturity $\tau = T - t$ decreases, the call price converges to its intrinsic value:
 
-\[
+$$
 C(S, t) \to \max(S - K, 0) \quad \text{as } \tau \to 0
-\]
+$$
 
 The rate of convergence depends on moneyness:
 
 | Moneyness | Behavior | Theta magnitude |
 |---|---|---|
-| **ITM** (\(S \gg K\)) | Converges to \(S - K\); slow time value loss | Moderate |
-| **ATM** (\(S \approx K\)) | Largest extrinsic value; decays fastest | Largest |
-| **OTM** (\(S \ll K\)) | Already near zero; decays quickly but cheaply | Small (option is cheap) |
+| **ITM** ($S \gg K$) | Converges to $S - K$; slow time value loss | Moderate |
+| **ATM** ($S \approx K$) | Largest extrinsic value; decays fastest | Largest |
+| **OTM** ($S \ll K$) | Already near zero; decays quickly but cheaply | Small (option is cheap) |
 
 #### Put options
 
 Similarly:
 
-\[
+$$
 P(S, t) \to \max(K - S, 0) \quad \text{as } \tau \to 0
-\]
+$$
 
 ATM puts also exhibit the fastest time decay, mirroring the call behavior.
 
@@ -50,19 +50,19 @@ ATM puts also exhibit the fastest time decay, mirroring the call behavior.
 ### Theta acceleration near expiry
 
 
-The \(\sqrt{\tau}\) dependence in the Black–Scholes formula means that an ATM option's time value decays as
+The $\sqrt{\tau}$ dependence in the Black–Scholes formula means that an ATM option's time value decays as
 
-\[
+$$
 V_{\text{extrinsic}} \propto \sigma S \sqrt{\tau}
-\]
+$$
 
-Taking the derivative with respect to \(\tau\):
+Taking the derivative with respect to $\tau$:
 
-\[
+$$
 \Theta_{\text{ATM}} \propto -\frac{\sigma S}{2\sqrt{\tau}}
-\]
+$$
 
-This diverges as \(\tau \to 0\), reflecting the well-known acceleration of time decay in the final days before expiry. For an ATM option with 1 day to expiry, theta is approximately \(\sqrt{252}\) times larger than for a 1-year option (per unit of calendar time).
+This diverges as $\tau \to 0$, reflecting the well-known acceleration of time decay in the final days before expiry. For an ATM option with 1 day to expiry, theta is approximately $\sqrt{252}$ times larger than for a 1-year option (per unit of calendar time).
 
 ---
 
@@ -107,15 +107,15 @@ Sell options to earn positive theta, then delta-hedge dynamically to manage dire
 
 For a short ATM call position that is delta-hedged:
 
-\[
+$$
 \text{Daily P\&L} \approx \underbrace{|\Theta|\,\Delta t}_{\text{theta income}} - \underbrace{\frac{1}{2}|\Gamma|(\Delta S)^2}_{\text{gamma cost from moves}}
-\]
+$$
 
 The strategy is profitable when realized volatility is **below** implied volatility:
 
-\[
+$$
 \mathbb{E}[\text{P\&L}] > 0 \iff \sigma_{\text{realized}} < \sigma_{\text{implied}}
-\]
+$$
 
 #### Risks
 
@@ -233,7 +233,7 @@ The plot shows theta income accelerating as expiry approaches — the short opti
 ### What to remember
 
 
-- Theta is most negative for long ATM options and accelerates near expiry as \(1/\sqrt{\tau}\).
+- Theta is most negative for long ATM options and accelerates near expiry as $1/\sqrt{\tau}$.
 - Short option positions earn theta but are exposed to gamma and vega risk.
 - Calendar spreads exploit differential time decay between near and far maturities.
 - The gamma-theta tradeoff is inescapable: earning theta always implies bearing some form of convexity risk.

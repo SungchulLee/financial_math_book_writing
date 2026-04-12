@@ -22,12 +22,12 @@ Robust learning seeks stability rather than optimality under idealized assumptio
 
 Robust learning often adopts a min–max formulation:
 
-\[
-\min_{\pi} \max_{\mathbb{P} \in \mathcal{P}} \mathbb{E}_{\mathbb{P}}[L(\pi)],
-\]
+$$
+\min_{\pi} \max_{\mathbb{P} \in \mathcal{P}} \mathbb{E}_{\mathbb{P}}[L(\pi)]
+$$
 
 
-where \(\mathcal{P}\) represents a set of plausible models.
+where $\mathcal{P}$ represents a set of plausible models.
 
 This guards against worst-case scenarios.
 

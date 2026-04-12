@@ -34,7 +34,7 @@ Gaussian distribution with the same mean and variance. This is measured by
 **excess kurtosis**:
 
 $$
-\kappa = \frac{\mathbb{E}[(r - \mu)^4]}{\sigma^4} - 3.
+\kappa = \frac{\mathbb{E}[(r - \mu)^4]}{\sigma^4} - 3
 $$
 
 For a Gaussian distribution $\kappa = 0$ by definition. Empirical estimates
@@ -73,7 +73,7 @@ A tractable parametric family capturing this is the **Student-$t$ distribution**
 with $\nu$ degrees of freedom:
 
 $$
-f(x;\nu) \propto \left(1 + \frac{x^2}{\nu}\right)^{-(\nu+1)/2}.
+f(x;\nu) \propto \left(1 + \frac{x^2}{\nu}\right)^{-(\nu+1)/2}
 $$
 
 Empirical fits for equity indices typically give $\nu \approx 4$–$6$.
@@ -216,7 +216,7 @@ between the Brownian motions driving price and volatility — precisely the
 parameter $\rho < 0$ in the Heston model:
 
 $$
-\operatorname{Cov}(dW_t^S,\, dW_t^V) = \rho\,dt, \qquad \rho \approx -0.6,
+\operatorname{Cov}(dW_t^S,\, dW_t^V) = \rho\,dt, \qquad \rho \approx -0.6
 $$
 
 where $dW_t^S$ and $dW_t^V$ are standard Brownian increments each with

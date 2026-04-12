@@ -248,7 +248,7 @@ The numéraire framework shows that arbitrage-free pricing is invariant under th
 
 ## Exercises
 
-**Exercise 1.** In the Black-Scholes model with $r = 0.05$, $\sigma = 0.3$, and $S_0 = 100$, compute the Radon-Nikodym derivative $d\mathbb{Q}^T / d\mathbb{Q}$ at time $T = 1$ when the numéraire changes from the money market account $e^{rt}$ to the zero-coupon bond $P(t, T)$. Express the result in terms of $P(0, T)$ and $e^{rT}$.
+**Exercise 1.** In the Black-Scholes model with $r = 0.05$, $\sigma = 0.3$, and $S_0 = 100$, compute the Radon–Nikodym derivative $d\mathbb{Q}^T / d\mathbb{Q}$ at time $T = 1$ when the numéraire changes from the money market account $e^{rt}$ to the zero-coupon bond $P(t, T)$. Express the result in terms of $P(0, T)$ and $e^{rT}$.
 
 ??? success "Solution to Exercise 1"
     In the Black--Scholes model with deterministic interest rates, $P(t, T) = e^{-r(T-t)}$. The Radon--Nikodym derivative from $\mathbb{Q}$ (money market numéraire $N_t = e^{rt}$) to $\mathbb{Q}^T$ (zero-coupon bond numéraire $M_t = P(t, T)$) is
@@ -367,7 +367,7 @@ The numéraire framework shows that arbitrage-free pricing is invariant under th
 
 ---
 
-**Exercise 4.** Show that if $N_t$ is a numéraire (strictly positive traded asset) and $M_t / N_t$ is a $\mathbb{Q}^N$-martingale, then the Radon-Nikodym process $L_t = (M_t / M_0) / (N_t / N_0)$ satisfies $L_0 = 1$ and $\mathbb{E}^{\mathbb{Q}^N}[L_T] = 1$. Why are these two properties necessary and sufficient for $L_T$ to define a change of measure?
+**Exercise 4.** Show that if $N_t$ is a numéraire (strictly positive traded asset) and $M_t / N_t$ is a $\mathbb{Q}^N$-martingale, then the Radon–Nikodym process $L_t = (M_t / M_0) / (N_t / N_0)$ satisfies $L_0 = 1$ and $\mathbb{E}^{\mathbb{Q}^N}[L_T] = 1$. Why are these two properties necessary and sufficient for $L_T$ to define a change of measure?
 
 ??? success "Solution to Exercise 4"
     **Showing $L_0 = 1$:** By definition,

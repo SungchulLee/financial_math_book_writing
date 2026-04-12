@@ -112,7 +112,7 @@ $$
 \hat{P}_{\text{IS}} = \frac{1}{M}\sum_{m=1}^{M}Y_m\cdot L_m
 $$
 
-where $L_m$ is the Radon-Nikodym derivative between the shifted and original measures. When well-tuned, importance sampling can reduce variance by 90% or more, but a poorly chosen shift can increase it.
+where $L_m$ is the Radon–Nikodym derivative between the shifted and original measures. When well-tuned, importance sampling can reduce variance by 90% or more, but a poorly chosen shift can increase it.
 
 ---
 

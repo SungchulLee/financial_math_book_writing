@@ -41,6 +41,9 @@ Because the exchange stands between buyer and writer as the central counterparty
 
 The initial margin is set at the time the position is opened. For a naked call, the required margin is larger than for a naked put, reflecting the unbounded loss profile. Covered positions (e.g., a call written while holding the underlying stock) require substantially less margin because the writer's obligation is offset by the asset already held.
 
+??? tip "Premium Scale: Why Margin Matters"
+    At-the-money SPX options command premiums of 150–200 index points, each worth \$100 per point. Writing a single naked ATM call therefore creates potential exposure on the order of tens of thousands of dollars per contract. Even a naked put, whose loss is bounded, can require the writer to pay up to $K \times 100$ in the extreme case — for an SPX put with $K = 6{,}600$, that is \$660,000. These magnitudes explain why exchanges demand substantial margin collateral from option writers and why margin calls can be triggered by seemingly modest index movements.
+
 ---
 
 ## Margin Calls and Maintenance

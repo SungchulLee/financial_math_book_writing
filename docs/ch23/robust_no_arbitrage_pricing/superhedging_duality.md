@@ -1098,13 +1098,13 @@ That is, show that the superhedging price functional is positive homogeneous and
 
 ---
 
-**Exercise 5.** The good-deal bound restricts the set of equivalent martingale measures to those with bounded Radon-Nikodym derivative: $\mathcal{M}_{\text{GD}} = \{\mathbb{Q} \in \mathcal{M} : \|d\mathbb{Q}/d\mathbb{P}\|_\infty \leq K\}$. In the trinomial model of Exercise 2, with physical probabilities $\mathbb{P} = (0.3, 0.4, 0.3)$, compute the good-deal bounds for the digital call with $K = 3$, and compare them with the superhedging/sub-replication bounds from Exercise 2.
+**Exercise 5.** The good-deal bound restricts the set of equivalent martingale measures to those with bounded Radon–Nikodym derivative: $\mathcal{M}_{\text{GD}} = \{\mathbb{Q} \in \mathcal{M} : \|d\mathbb{Q}/d\mathbb{P}\|_\infty \leq K\}$. In the trinomial model of Exercise 2, with physical probabilities $\mathbb{P} = (0.3, 0.4, 0.3)$, compute the good-deal bounds for the digital call with $K = 3$, and compare them with the superhedging/sub-replication bounds from Exercise 2.
 
 ??? success "Solution to Exercise 5"
 
     **Setup.** Trinomial model from Exercise 2: $S_0 = 100$, $S_1 \in \{80, 100, 120\}$, $\mathcal{M} = \{(p, 1-2p, p) : p \in [0, 1/2]\}$. Physical measure $\mathbb{P} = (0.3, 0.4, 0.3)$. Digital call $\xi = \mathbb{1}\{S_1 > 100\}$. Good-deal bound parameter $K = 3$.
 
-    **Radon-Nikodym derivative.** For $\mathbb{Q} = (p, 1-2p, p)$:
+    **Radon–Nikodym derivative.** For $\mathbb{Q} = (p, 1-2p, p)$:
 
     $$
     \frac{d\mathbb{Q}}{d\mathbb{P}} = \left(\frac{p}{0.3}, \frac{1-2p}{0.4}, \frac{p}{0.3}\right)
@@ -1130,7 +1130,7 @@ That is, show that the superhedging price functional is positive homogeneous and
 
     So for $K = 3$, the good-deal constraint does not restrict the EMM set at all: $\mathcal{M}_{\text{GD}} = \mathcal{M}$.
 
-    Let us also check whether the Radon-Nikodym derivative must be bounded below (some formulations require this). If we additionally require $\frac{d\mathbb{Q}}{d\mathbb{P}} \geq 1/K = 1/3$:
+    Let us also check whether the Radon–Nikodym derivative must be bounded below (some formulations require this). If we additionally require $\frac{d\mathbb{Q}}{d\mathbb{P}} \geq 1/K = 1/3$:
 
     - $\omega_1$: $p / 0.3 \geq 1/3 \implies p \geq 0.1$
     - $\omega_2$: $(1-2p) / 0.4 \geq 1/3 \implies 1 - 2p \geq 2/15 \implies p \leq 13/30 \approx 0.433$
@@ -1156,7 +1156,7 @@ That is, show that the superhedging price functional is positive homogeneous and
     \pi^{\text{GD, sub}} = \inf_{p \in [0.1, 13/30]} p = 0.1
     $$
 
-    **Comparison:** The good-deal bounds (with two-sided constraint) are $[0.1, 0.433]$, which is strictly tighter than the superhedging/sub-replication bounds $[0, 0.5]$ from Exercise 2. The good-deal bounds exclude extreme EMMs that would require implausibly large Radon-Nikodym derivatives, thereby narrowing the arbitrage-free price range.
+    **Comparison:** The good-deal bounds (with two-sided constraint) are $[0.1, 0.433]$, which is strictly tighter than the superhedging/sub-replication bounds $[0, 0.5]$ from Exercise 2. The good-deal bounds exclude extreme EMMs that would require implausibly large Radon–Nikodym derivatives, thereby narrowing the arbitrage-free price range.
 
 ---
 

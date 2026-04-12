@@ -127,6 +127,11 @@ $$
 
 The protective put is effectively an insurance policy: the investor pays premium $p$ to guarantee that losses on the stock never exceed $S_0 - K + p$, while retaining full participation in any upside.
 
+??? tip "Protective Puts in Practice: Portfolio Insurance"
+    Institutional investors frequently use SPX put options to protect equity portfolios. With the S&P 500 near 6,600, an ATM put costs roughly 160 index points, or \$16,000 per contract. Since each contract controls a notional exposure of $6{,}600 \times 100 = \$660{,}000$, the cost of one month of downside protection is approximately $16{,}000 / 660{,}000 \approx 2.4\%$ of the notional value.
+
+    This "cost of insurance" is one reason OTM puts are more popular in practice: a put struck 200 points below the index might cost only half as much, providing protection against a decline beyond roughly 3% at a lower premium. The trade-off between the level of protection and its cost is a central consideration in portfolio risk management.
+
 ```mermaid
 xychart-beta
     title "Protective Put Profit (S0 = 100, K = 95, p = 4)"

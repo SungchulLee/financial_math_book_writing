@@ -233,7 +233,7 @@ def cir_mc_bond_price(r0: float, kappa: float, theta: float,
         "price": price,
         "se": se,
         "ci_lower": price - 1.96 * se,
-        "ci_upper": price + 1.96 * se,
+        "ci_upper": price + 1.96 * se
     }
 
 
@@ -304,7 +304,7 @@ def cir_calibrate(maturities: np.ndarray, market_yields: np.ndarray,
         "sigma": sigma,
         "r0": r0,
         "residuals_bp": (model_yields - market_yields) * 10000,
-        "feller_ratio": 2 * kappa * theta / sigma**2,
+        "feller_ratio": 2 * kappa * theta / sigma**2
     }
 
 

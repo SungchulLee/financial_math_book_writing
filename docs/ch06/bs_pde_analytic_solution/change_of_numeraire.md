@@ -64,7 +64,7 @@ $$
 
 
 
-### 2. **Radon-Nikodym Derivative**
+### 2. **Radon–Nikodym Derivative**
 
 
 The measure $\mathbb{Q}^N$ is related to the standard risk-neutral measure $\mathbb{Q}$ via:
@@ -131,7 +131,7 @@ $$
 
 
 
-### 3. **Radon-Nikodym Derivative**
+### 3. **Radon–Nikodym Derivative**
 
 
 The stock measure is related to $\mathbb{Q}$ by:
@@ -322,7 +322,7 @@ $$
 
 Choose numeraire $N_t = X_t B_t^f = X_t e^{r_f t}$ (foreign money market converted to domestic).
 
-The Radon-Nikodym derivative:
+The Radon–Nikodym derivative:
 
 $$
 \frac{d\mathbb{Q}^f}{d\mathbb{Q}^d}\Big|_{\mathcal{F}_T} = \frac{X_T e^{r_f T - r_d T}}{X_0}
@@ -406,7 +406,7 @@ The change of numeraire technique provides an elegant alternative to standard ri
 
 1. **Key idea**: Price assets relative to any traded numeraire, not just the money market
 
-2. **Mathematical tool**: Radon-Nikodym derivative relating different numeraire measures
+2. **Mathematical tool**: Radon–Nikodym derivative relating different numeraire measures
 
 3. **Girsanov connection**: Numeraire change induces Brownian motion drift change
 
@@ -425,7 +425,7 @@ In the operator framework of the introduction, the change of numeraire expresses
 
 ## Exercises
 
-**Exercise 1.** Let $N_t = e^{rt}$ be the money market account and $\mathbb{Q}$ the associated risk-neutral measure. Verify the Radon-Nikodym derivative formula by showing that $\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\big|_{\mathcal{F}_T} = \frac{S_T e^{-rT}}{S_0}$ has expectation 1 under $\mathbb{Q}$.
+**Exercise 1.** Let $N_t = e^{rt}$ be the money market account and $\mathbb{Q}$ the associated risk-neutral measure. Verify the Radon–Nikodym derivative formula by showing that $\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\big|_{\mathcal{F}_T} = \frac{S_T e^{-rT}}{S_0}$ has expectation 1 under $\mathbb{Q}$.
 
 ??? success "Solution to Exercise 1"
     We need to show that $\mathbb{E}^{\mathbb{Q}}\left[\frac{S_T e^{-rT}}{S_0}\right] = 1$.
@@ -454,7 +454,7 @@ In the operator framework of the introduction, the change of numeraire expresses
     \mathbb{E}^{\mathbb{Q}}\left[\exp\left(-\frac{1}{2}\sigma^2 T + \sigma W_T^{\mathbb{Q}}\right)\right] = \exp\left(-\frac{1}{2}\sigma^2 T + \frac{1}{2}\sigma^2 T\right) = 1
     $$
 
-    This confirms that the Radon-Nikodym derivative has unit expectation, as required for a valid change of measure.
+    This confirms that the Radon–Nikodym derivative has unit expectation, as required for a valid change of measure.
 
 ---
 **Exercise 2.** Under the stock measure $\mathbb{Q}^S$, the discounted bond price $B_t / S_t = e^{rt}/S_t$ is a martingale. Verify this explicitly by computing $d(e^{rt}/S_t)$ using Ito's lemma and the stock dynamics under $\mathbb{Q}^S$, and confirming that the drift vanishes.
@@ -490,7 +490,7 @@ In the operator framework of the introduction, the change of numeraire expresses
 ??? success "Solution to Exercise 3"
     Under $\mathbb{Q}^d$, the FX rate satisfies $dX_t = (r_d - r_f)X_t \, dt + \sigma X_t \, dW_t^{\mathbb{Q}^d}$.
 
-    **Step 1: Choose numeraire.** Take the foreign money market account converted to domestic currency: $N_t = X_t e^{r_f t}$. The Radon-Nikodym derivative is:
+    **Step 1: Choose numeraire.** Take the foreign money market account converted to domestic currency: $N_t = X_t e^{r_f t}$. The Radon–Nikodym derivative is:
 
     $$
     \frac{d\mathbb{Q}^f}{d\mathbb{Q}^d}\Big|_{\mathcal{F}_T} = \frac{X_T e^{(r_f - r_d)T}}{X_0}
@@ -544,7 +544,7 @@ In the operator framework of the introduction, the change of numeraire expresses
     dS_t^{(i)} = rS_t^{(i)} \, dt + \sigma_i S_t^{(i)} \, dW_t^{(i)}, \quad d\langle W^{(1)}, W^{(2)}\rangle_t = \rho \, dt
     $$
 
-    **Step 1: Use $S_t^{(2)}$ as numeraire.** The Radon-Nikodym derivative is:
+    **Step 1: Use $S_t^{(2)}$ as numeraire.** The Radon–Nikodym derivative is:
 
     $$
     \frac{d\mathbb{Q}^{S^{(2)}}}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{S_T^{(2)} e^{-rT}}{S_0^{(2)}}
@@ -628,7 +628,7 @@ In the operator framework of the introduction, the change of numeraire expresses
     F(t,T) = \frac{S_t}{P(t,T)} = S_t e^{r(T-t)}
     $$
 
-    Under $\mathbb{Q}$, $dS_t = rS_t \, dt + \sigma S_t \, dW_t^{\mathbb{Q}}$. The numeraire is $P(t,T) = e^{-r(T-t)}$ with $dP = rP \, dt$ (deterministic). The Radon-Nikodym derivative:
+    Under $\mathbb{Q}$, $dS_t = rS_t \, dt + \sigma S_t \, dW_t^{\mathbb{Q}}$. The numeraire is $P(t,T) = e^{-r(T-t)}$ with $dP = rP \, dt$ (deterministic). The Radon–Nikodym derivative:
 
     $$
     \frac{d\mathbb{Q}^T}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{P(T,T)/B_T}{P(0,T)/B_0} = \frac{1/e^{rT}}{e^{-rT}/1} = 1

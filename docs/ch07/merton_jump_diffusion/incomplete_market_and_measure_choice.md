@@ -59,9 +59,9 @@ The change of measure from $\mathbb{P}$ to $\mathbb{Q}$ can modify:
 
 The diffusion risk premium $\theta$ is pinned down by the no-arbitrage condition (ensuring the correct drift), but the jump parameters $(\lambda^{\mathbb{Q}}, \nu^{\mathbb{Q}})$ have a **one-parameter family** of solutions for each additional constraint.
 
-### The Radon-Nikodym Derivative
+### The Radon–Nikodym Derivative
 
-The general Radon-Nikodym derivative for changing jump intensity and jump size distribution is:
+The general Radon–Nikodym derivative for changing jump intensity and jump size distribution is:
 
 $$
 \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = \exp\!\left[-\theta W_T^{\mathbb{P}} - \frac{1}{2}\theta^2 T + (\lambda^{\mathbb{P}} - \lambda^{\mathbb{Q}})T + \sum_{i=1}^{N_T}\ln\frac{\lambda^{\mathbb{Q}}f^{\mathbb{Q}}(Y_i)}{\lambda^{\mathbb{P}}f^{\mathbb{P}}(Y_i)}\right]
@@ -283,7 +283,7 @@ The Merton jump-diffusion model is incomplete because the compound Poisson jump 
 
     **Intuitive interpretation:** The KL divergence measures the "information cost" of replacing the physical measure $\mathbb{P}$ with the pricing measure $\mathbb{Q}$. Minimizing it selects the $\mathbb{Q}$ that distorts the real-world probabilities as little as possible while still satisfying the martingale condition. This is conservative in the sense that it does not introduce large risk premia beyond what is minimally required by no-arbitrage.
 
-    **Low-entropy vs. high-entropy measures:** A low-entropy $\mathbb{Q}$ stays close to $\mathbb{P}$, meaning the Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}$ is close to 1 across most scenarios. This implies moderate risk premia and prices that are close to actuarial (physical) expectations. A high-entropy $\mathbb{Q}$ assigns probabilities very different from $\mathbb{P}$, which can produce extreme risk premia (e.g., greatly inflating crash probabilities).
+    **Low-entropy vs. high-entropy measures:** A low-entropy $\mathbb{Q}$ stays close to $\mathbb{P}$, meaning the Radon–Nikodym derivative $d\mathbb{Q}/d\mathbb{P}$ is close to 1 across most scenarios. This implies moderate risk premia and prices that are close to actuarial (physical) expectations. A high-entropy $\mathbb{Q}$ assigns probabilities very different from $\mathbb{P}$, which can produce extreme risk premia (e.g., greatly inflating crash probabilities).
 
     **Contrast with the minimal martingale measure:** The minimal martingale measure fixes $\lambda^{\mathbb{Q}} = \lambda^{\mathbb{P}}$ and $\nu^{\mathbb{Q}} = \nu^{\mathbb{P}}$, adjusting only the diffusion drift. This does not distort jump probabilities at all, which is appropriate when jump risk is truly idiosyncratic. The MEMM, by contrast, may adjust both diffusion and jump parameters, but it does so in a way that minimizes overall distortion. For the Merton model with log-normal jumps, the MEMM coincides with the Esscher transform for a particular $h$, providing a principled balance between no distortion (minimal martingale) and arbitrary distortion.
 

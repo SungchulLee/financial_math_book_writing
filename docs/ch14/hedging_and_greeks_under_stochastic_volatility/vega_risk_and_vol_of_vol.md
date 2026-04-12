@@ -10,9 +10,9 @@ Under stochastic volatility, option risk is no longer captured by delta alone. *
 
 In Black–Scholes, vega measures sensitivity to a single volatility parameter:
 
-\[
-\text{Vega} = \partial_{\sigma} P.
-\]
+$$
+\text{Vega} = \partial_{\sigma} P
+$$
 
 
 
@@ -28,7 +28,7 @@ Thus, vega is model- and state-dependent.
 ## Vol-of-vol risk
 
 
-The parameter (or process) controlling volatility fluctuations—often denoted \(\xi\)—introduces **second-order volatility risk**.
+The parameter (or process) controlling volatility fluctuations—often denoted $\xi$—introduces **second-order volatility risk**.
 
 Consequences:
 - option prices depend on uncertainty of future volatility,

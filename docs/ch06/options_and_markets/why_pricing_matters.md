@@ -73,6 +73,11 @@ The next sections develop this derivation rigorously: we formalize the self-fina
 !!! note "Big Picture"
     Options derive their value from asymmetric payoffs. Their prices are determined not by beliefs about the future, but by the cost of replicating those payoffs in the market. This equivalence between replication and expectation transforms pricing into a mathematical problem — leading directly to the Black-Scholes equation.
 
+??? example "Checking No-Arbitrage with Real Data"
+    Put-call parity provides a simple consistency check on live market prices. With the S&P 500 near 6,600 and front-month options at the 6,600 strike, a call trades around 180 points and a put around 160 points. The difference $C - P \approx 20$ points should approximately equal $S_0 e^{-qT} - K e^{-rT}$, where $q$ is the continuous dividend yield of the index.
+
+    Plugging in typical values ($r \approx 4\%$, $q \approx 1.3\%$, $T \approx 1/12$) confirms that the observed call-put spread is consistent with no-arbitrage once dividends are accounted for. If this relationship were violated by more than the bid-ask spread, an arbitrageur could lock in a risk-free profit — exactly the mechanism described above.
+
 ---
 
 ## Exercises

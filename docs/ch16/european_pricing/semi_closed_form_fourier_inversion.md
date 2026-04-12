@@ -313,7 +313,7 @@ The exercise probability $P_2 = \mathbb{Q}(S_T > K)$ under the risk-neutral meas
 
     **Economic interpretation of $P_1 = \mathbb{Q}^S(S_T > K)$:** This is the exercise probability under the stock-price numeraire (the "share measure" $\mathbb{Q}^S$). Under $\mathbb{Q}^S$, the process $K e^{-r(T-t)} / S_t$ is a martingale, meaning probabilities are weighted by the stock price. States where $S_T$ is large receive more weight, making $P_1 > P_2$ in general.
 
-    **Why $P_1 > P_2$:** Under $\mathbb{Q}^S$, the Radon-Nikodym derivative is $d\mathbb{Q}^S / d\mathbb{Q} = S_T / (S_0 e^{(r-q)\tau})$. This tilts the probability distribution toward high-$S_T$ states. Since $\{S_T > K\}$ is precisely the event where $S_T$ is large, this event receives greater weight under $\mathbb{Q}^S$ than under $\mathbb{Q}$, so $P_1 \geq P_2$ with equality only when $S_T$ is deterministic.
+    **Why $P_1 > P_2$:** Under $\mathbb{Q}^S$, the Radon–Nikodym derivative is $d\mathbb{Q}^S / d\mathbb{Q} = S_T / (S_0 e^{(r-q)\tau})$. This tilts the probability distribution toward high-$S_T$ states. Since $\{S_T > K\}$ is precisely the event where $S_T$ is large, this event receives greater weight under $\mathbb{Q}^S$ than under $\mathbb{Q}$, so $P_1 \geq P_2$ with equality only when $S_T$ is deterministic.
 
     **Black-Scholes verification:** In the Black-Scholes model, $\log S_T \sim N(\log S_0 + (r - q - \sigma^2/2)\tau, \, \sigma^2 \tau)$ under $\mathbb{Q}$. Then:
 

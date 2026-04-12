@@ -10,30 +10,30 @@ Delta hedging is the most fundamental options risk management technique: maintai
 
 For a portfolio containing options, the **portfolio delta** measures total first-order sensitivity to the underlying price. A delta-neutral portfolio satisfies
 
-\[
+$$
 \boxed{\Delta_{\text{portfolio}} = 0}
-\]
+$$
 
-For a single long option with delta \(\Delta\), this requires holding \(-\Delta\) shares of the underlying.
+For a single long option with delta $\Delta$, this requires holding $-\Delta$ shares of the underlying.
 
 ---
 
 ### Static delta hedge: worked example
 
 
-Suppose you hold **100 European call options** (each on 1 share) with delta \(\Delta = 0.6\).
+Suppose you hold **100 European call options** (each on 1 share) with delta $\Delta = 0.6$.
 
 **Portfolio delta** before hedging:
 
-\[
+$$
 \Delta_{\text{portfolio}} = 100 \times 0.6 = 60
-\]
+$$
 
 **Delta-neutral hedge**: short **60 shares** of the underlying.
 
-\[
+$$
 \Delta_{\text{hedged}} = 60 - 60 = 0
-\]
+$$
 
 After hedging, a \$1 move in the stock produces approximately zero change in portfolio value (to first order).
 
@@ -44,38 +44,38 @@ After hedging, a \$1 move in the stock produces approximately zero change in por
 
 Delta hedging eliminates only the **linear** component of price risk. The residual P&L after delta hedging comes from:
 
-**Gamma (convexity).** The delta itself changes as \(S\) moves. For a move \(\delta S\):
+**Gamma (convexity).** The delta itself changes as $S$ moves. For a move $\delta S$:
 
-\[
+$$
 \delta V_{\text{hedged}} \approx \frac{1}{2}\Gamma(\delta S)^2
-\]
+$$
 
-This term is always positive for long options (\(\Gamma > 0\)), meaning the hedged portfolio benefits from large moves — but the cost is theta.
+This term is always positive for long options ($\Gamma > 0$), meaning the hedged portfolio benefits from large moves — but the cost is theta.
 
 **Theta (time decay).** The Black–Scholes PDE implies:
 
-\[
+$$
 \Theta + \frac{1}{2}\sigma^2 S^2 \Gamma = r(V - S\Delta)
-\]
+$$
 
 For a long gamma position, theta is negative: the portfolio loses value with the passage of time if the stock doesn't move.
 
-**Discrete rebalancing.** In practice, hedges are adjusted at discrete intervals, not continuously. The error between discrete and continuous hedging is proportional to \(\Gamma \cdot \sigma^2 S^2 \cdot \Delta t\).
+**Discrete rebalancing.** In practice, hedges are adjusted at discrete intervals, not continuously. The error between discrete and continuous hedging is proportional to $\Gamma \cdot \sigma^2 S^2 \cdot \Delta t$.
 
 ---
 
 ### Dynamic delta hedging
 
 
-In practice, delta changes with \(S\), so the hedge must be **rebalanced** over time.
+In practice, delta changes with $S$, so the hedge must be **rebalanced** over time.
 
 **Algorithm:**
 
-1. At time \(t_0\): compute \(\Delta(t_0, S_0)\), hold \(-\Delta \cdot N_{\text{options}}\) shares.
-2. At time \(t_1\): recompute \(\Delta(t_1, S_1)\), adjust share position.
+1. At time $t_0$: compute $\Delta(t_0, S_0)$, hold $-\Delta \cdot N_{\text{options}}$ shares.
+2. At time $t_1$: recompute $\Delta(t_1, S_1)$, adjust share position.
 3. Repeat at each rebalancing date.
 
-**Rebalancing cost** per step is approximately \(|\Delta(t_{i+1}) - \Delta(t_i)| \times S \times \text{spread}\).
+**Rebalancing cost** per step is approximately $|\Delta(t_{i+1}) - \Delta(t_i)| \times S \times \text{spread}$.
 
 The tradeoff: more frequent rebalancing reduces hedging error but increases transaction costs.
 
@@ -84,13 +84,13 @@ The tradeoff: more frequent rebalancing reduces hedging error but increases tran
 ### P&L decomposition
 
 
-Over a rebalancing period \([t, t+\Delta t]\), the delta-hedged P&L decomposes as:
+Over a rebalancing period $[t, t+\Delta t]$, the delta-hedged P&L decomposes as:
 
-\[
+$$
 P\&L \approx \underbrace{\Theta\,\Delta t}_{\text{time decay}} + \underbrace{\frac{1}{2}\Gamma(\Delta S)^2}_{\text{gamma P\&L}} + \underbrace{\nu\,\Delta\sigma}_{\text{vega P\&L}}
-\]
+$$
 
-where \(\Delta S = S_{t+\Delta t} - S_t\) and \(\Delta\sigma\) is any change in implied volatility. This decomposition is the workhorse of options P&L attribution.
+where $\Delta S = S_{t+\Delta t} - S_t$ and $\Delta\sigma$ is any change in implied volatility. This decomposition is the workhorse of options P&L attribution.
 
 ---
 
@@ -158,19 +158,19 @@ The plot shows: without hedging, P&L is linear in the stock move. With delta hed
 ### When delta hedging breaks down
 
 
-- **Near expiry, near the strike**: gamma blows up (\(\Gamma \sim 1/(S\sigma\sqrt{\tau})\)), delta changes violently.
+- **Near expiry, near the strike**: gamma blows up ($\Gamma \sim 1/(S\sigma\sqrt{\tau})$), delta changes violently.
 - **Jumps in the underlying**: delta hedging assumes continuous price paths; jumps cause unhedgeable losses.
 - **Illiquid markets**: wide bid-ask spreads make frequent rebalancing prohibitively expensive.
-- **Large moves**: the linear approximation \(\delta V \approx \Delta\,\delta S\) breaks down for moves where higher-order terms matter.
+- **Large moves**: the linear approximation $\delta V \approx \Delta\,\delta S$ breaks down for moves where higher-order terms matter.
 
 ---
 
 ### What to remember
 
 
-- Delta hedging removes first-order directional risk by holding \(-\Delta\) shares per option.
+- Delta hedging removes first-order directional risk by holding $-\Delta$ shares per option.
 - Residual P&L after delta hedging is driven by gamma, theta, and vega — the higher-order Greeks.
-- Dynamic rebalancing is necessary because delta changes with \(S\) and \(t\).
+- Dynamic rebalancing is necessary because delta changes with $S$ and $t$.
 - The gamma-theta tradeoff is fundamental: long gamma earns on moves but pays theta; short gamma earns theta but loses on moves.
 
 ---

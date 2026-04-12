@@ -1,12 +1,25 @@
 # Introduction
 
 Long before the first option was traded on an exchange, merchants and farmers were
-already locking in future prices. Forward contracts appear in Mesopotamian clay
-tablets dating to roughly 1750 BCE, and organized futures markets emerged in
-seventeenth-century Japan with the Dojima Rice Exchange. Forwards and futures are,
-quite literally, the oldest derivatives — and they remain among the most actively
-traded instruments today, covering commodities, currencies, interest rates, and
-equity indices worth trillions of dollars.
+already locking in future prices. Forward-like agreements appear in Mesopotamian
+clay tablets dating to roughly 1750 BCE, where grain delivery contracts specified
+quantities and fixed prices under the Code of Hammurabi. Around 600 BCE, Thales of
+Miletus reportedly paid deposits to secure future access to olive presses before the
+harvest — often cited as the first recorded derivatives trade. By the 1630s, Dutch
+merchants were trading forward contracts on tulip bulbs during the famous Tulip
+Mania, though these lacked standardization and carried substantial default risk.
+
+The transition from informal forwards to true futures occurred in Japan. The Dojima
+Rice Exchange in Osaka (circa 1730) introduced standardized rice contracts traded on
+an organized exchange with rudimentary clearing — widely regarded as the first
+genuine futures market. The modern system of standardized contracts, fixed delivery
+dates, margin requirements, and a central clearinghouse was established at the
+Chicago Board of Trade (CBOT) in 1848 and remains the template for exchanges
+worldwide.
+
+Forwards and futures are, quite literally, the oldest derivatives — and they remain
+among the most actively traded instruments today, covering commodities, currencies,
+interest rates, and equity indices worth trillions of dollars.
 
 ## Why Forwards Come Before Options
 
@@ -21,7 +34,7 @@ Concretely, if the forward price on a non-dividend-paying asset is $F$ and the
 current spot price is $S_0$, the relationship enforced by arbitrage is
 
 $$
-F = S_0 \, e^{rT},
+F = S_0 \, e^{rT}
 $$
 
 where $r$ is the continuously compounded risk-free rate and $T$ is the time to

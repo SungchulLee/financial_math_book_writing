@@ -143,7 +143,7 @@ $$\begin{array}{ccccccc}
 \sigma_i(t)dW_i^i(t)
 \end{array}$$
 
-### Change of Measure: Radon-Nikodym Derivative
+### Change of Measure: Radon–Nikodym Derivative
 
 $$\begin{array}{ccccccc}
 \displaystyle

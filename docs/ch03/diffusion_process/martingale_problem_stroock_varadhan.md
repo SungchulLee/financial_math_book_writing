@@ -10,7 +10,7 @@ $$
 (\mathcal{L}f)(x)
 = b^{i}(x)\,\frac{\partial f}{\partial x_i}(x)
 + \frac{1}{2}\,a^{ij}(x)\,\frac{\partial^2 f}{\partial x_i \partial x_j}(x),
-\qquad f \in C_c^\infty(\mathbb{R}^d).
+\qquad f \in C_c^\infty(\mathbb{R}^d)
 $$
 
 (Einstein summation is in force; $i, j$ run from $1$ to $d$.)
@@ -46,14 +46,14 @@ The SDE approach requires: (a) a fixed probability space, (b) an explicit Browni
 If $a = \sigma\sigma^\top$ and $X$ solves the SDE
 
 $$
-\mathrm{d}X_t^{i} = b^{i}(X_t)\,\mathrm{d}t + \sigma^{i\alpha}(X_t)\,\mathrm{d}W_t^{\alpha},
+\mathrm{d}X_t^{i} = b^{i}(X_t)\,\mathrm{d}t + \sigma^{i\alpha}(X_t)\,\mathrm{d}W_t^{\alpha}
 $$
 
 then Itô's formula gives
 
 $$
 f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,\mathrm{d}s
-= \int_0^t \frac{\partial f}{\partial x_i}(X_s)\,\sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^{\alpha},
+= \int_0^t \frac{\partial f}{\partial x_i}(X_s)\,\sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^{\alpha}
 $$
 
 which is a local martingale (a true martingale under mild integrability conditions). Hence **every strong solution of the SDE solves the martingale problem**. The converse — constructing an SDE from a solution of the martingale problem — requires extracting a Brownian motion. This is done in two steps: first, the **Doob–Meyer decomposition** identifies the quadratic variation of the local martingale $M^f$, which determines $a(x)$; second, the **martingale representation theorem** (Lévy's characterisation) extracts a BM $W$ such that $M^f_t = \int_0^t \partial_i f(X_s)\,\sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^\alpha$, where $\sigma$ is a matrix square root of $a$ with $a = \sigma\sigma^\top$. Both steps are possible when $a(x)$ is strictly positive definite; in the degenerate case the representation breaks down.
@@ -99,7 +99,7 @@ Taking $f(x) = x^i x^j$ in the martingale problem (this function is not in $C_c^
 $$
 M_t^{x^i x^j}
 = X_t^i X_t^j - X_0^i X_0^j
-- \int_0^t \left(b^i(X_s) X_s^j + b^j(X_s) X_s^i + a^{ij}(X_s)\right)\mathrm{d}s.
+- \int_0^t \left(b^i(X_s) X_s^j + b^j(X_s) X_s^i + a^{ij}(X_s)\right)\mathrm{d}s
 $$
 
 The $a^{ij}$ term arises from the second-order part of $\mathcal{L}$. This shows that **$a^{ij}(x)\,\mathrm{d}t$ is the quadratic covariation rate**, consistent with the SDE definition $\mathrm{d}\langle X^i, X^j\rangle_t = a^{ij}(X_t)\,\mathrm{d}t$.
@@ -118,20 +118,20 @@ $$
 f(X_t)
 = f(X_0)
 + \int_0^t \frac{\partial f}{\partial x_i}(X_s)\,\mathrm{d}X_s^i
-+ \frac{1}{2}\int_0^t \frac{\partial^2 f}{\partial x_i \partial x_j}(X_s)\,\mathrm{d}\langle X^i, X^j\rangle_s.
++ \frac{1}{2}\int_0^t \frac{\partial^2 f}{\partial x_i \partial x_j}(X_s)\,\mathrm{d}\langle X^i, X^j\rangle_s
 $$
 
 Substituting $\mathrm{d}X_s^i = b^i(X_s)\,\mathrm{d}s + \sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^\alpha$ and $\mathrm{d}\langle X^i, X^j\rangle_s = a^{ij}(X_s)\,\mathrm{d}s$:
 
 $$
 f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,\mathrm{d}s
-= \int_0^t \frac{\partial f}{\partial x_i}(X_s)\,\sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^\alpha.
+= \int_0^t \frac{\partial f}{\partial x_i}(X_s)\,\sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^\alpha
 $$
 
 The right side is a stochastic integral against $W$, hence a local martingale. To upgrade to a **true martingale**: since $f \in C_c^\infty$, the gradient $\nabla f$ is bounded and supported on a compact set $K \subset \mathbb{R}^d$. Under the SDE's linear growth condition on $\sigma$, one verifies
 
 $$
-\mathbb{E}\!\int_0^t \sum_{i=1}^d\sum_{\alpha=1}^m \bigl|\partial_i f(X_s)\bigr|^2 \bigl|\sigma^{i\alpha}(X_s)\bigr|^2\,\mathrm{d}s < \infty,
+\mathbb{E}\!\int_0^t \sum_{i=1}^d\sum_{\alpha=1}^m \bigl|\partial_i f(X_s)\bigr|^2 \bigl|\sigma^{i\alpha}(X_s)\bigr|^2\,\mathrm{d}s < \infty
 $$
 
 which (by the Itô isometry) ensures the stochastic integral is square-integrable, hence a true martingale. $\square$

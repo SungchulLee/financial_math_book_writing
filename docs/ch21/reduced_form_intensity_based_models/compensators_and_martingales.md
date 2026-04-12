@@ -588,7 +588,7 @@ The martingale/compensator framework justifies this formula rigorously.
     dA_t = \lambda_t \mathbf{1}_{\{\tau > t\}}\,dt
     $$
 
-    The intensity $\lambda_t$ determines how fast the "expected default" accumulates. Before default, the compensator grows at rate $\lambda_t$; at default, it stops. The connection is that $\lambda_t$ is the unique predictable process such that $H_t - \int_0^{t \wedge \tau} \lambda_s\,ds$ is a martingale. Thus, the hazard rate is operationally defined as the "Radon-Nikodym derivative" of the compensator with respect to Lebesgue measure on $[0, \tau]$.
+    The intensity $\lambda_t$ determines how fast the "expected default" accumulates. Before default, the compensator grows at rate $\lambda_t$; at default, it stops. The connection is that $\lambda_t$ is the unique predictable process such that $H_t - \int_0^{t \wedge \tau} \lambda_s\,ds$ is a martingale. Thus, the hazard rate is operationally defined as the "Radon–Nikodym derivative" of the compensator with respect to Lebesgue measure on $[0, \tau]$.
 
 ---
 

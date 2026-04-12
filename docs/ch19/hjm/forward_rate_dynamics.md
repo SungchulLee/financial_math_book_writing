@@ -10,20 +10,20 @@ The Heath–Jarrow–Morton (HJM) framework models the **entire forward rate cur
 
 Recall the instantaneous forward rate
 
-\[
-f(t,T) := -\partial_T \log P(t,T),
-\]
+$$
+f(t,T) := -\partial_T \log P(t,T)
+$$
 
 
 so that
 
-\[
-P(t,T) = \exp\left(-\int_t^T f(t,u)\,du\right).
-\]
+$$
+P(t,T) = \exp\left(-\int_t^T f(t,u)\,du\right)
+$$
 
 
 
-In HJM, \(f(t,T)\) for all maturities \(T\ge t\) is the state variable.
+In HJM, $f(t,T)$ for all maturities $T\ge t$ is the state variable.
 
 ---
 
@@ -32,15 +32,15 @@ In HJM, \(f(t,T)\) for all maturities \(T\ge t\) is the state variable.
 
 Under the risk-neutral measure, HJM postulates
 
-\[
-df(t,T) = \alpha(t,T)\,dt + \sum_{i=1}^n \sigma_i(t,T)\,dW_t^i,
-\]
+$$
+df(t,T) = \alpha(t,T)\,dt + \sum_{i=1}^n \sigma_i(t,T)\,dW_t^i
+$$
 
 
 where:
-- \(\sigma_i(t,T)\) are volatility functions,
-- \(W^i\) are Brownian motions,
-- \(\alpha(t,T)\) is the drift.
+- $\sigma_i(t,T)$ are volatility functions,
+- $W^i$ are Brownian motions,
+- $\alpha(t,T)$ is the drift.
 
 Crucially, the drift is *not arbitrary*.
 
@@ -91,7 +91,7 @@ where:
 
 
 - Volatility structures determine how different maturities move together.
-- The model is **infinite-dimensional** because \(T\) is continuous.
+- The model is **infinite-dimensional** because $T$ is continuous.
 - Short-rate and market models arise as special cases.
 
 ---
