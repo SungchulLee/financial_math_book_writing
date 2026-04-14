@@ -76,9 +76,9 @@ $$
 
 ## Step 3: The Shifted Process is a Q-Martingale
 
-**Goal:** Show that $\widetilde{W}_t = W_t + \int_0^t \theta_s\,ds$ is a martingale under $\mathbb{Q}$.
+**Goal:** Show that $\widetilde{W}_t = W_t + \int_0^t \theta_s\,ds$ is a continuous local martingale under $\mathbb{Q}$.
 
-**Method:** Use the change-of-measure formula. For any $\mathcal{F}_t$-adapted process $X_t$:
+**Method:** Use the **abstract Bayes rule** (Bayes' formula for conditional expectations under a change of measure). For any $\mathcal{F}_t$-adapted process $X_t$:
 
 $$
 \mathbb{E}^{\mathbb{Q}}[X_t | \mathcal{F}_s] = \frac{\mathbb{E}^{\mathbb{P}}[X_t Z_T | \mathcal{F}_s]}{\mathbb{E}^{\mathbb{P}}[Z_T | \mathcal{F}_s]}
@@ -102,13 +102,13 @@ $$
 = \frac{\mathbb{E}^{\mathbb{P}}\left[\left(W_t + \int_0^t \theta_u\,du\right) Z_T | \mathcal{F}_s\right]}{Z_s}
 $$
 
-The key step is to compute $d(\widetilde{W}_t Z_t)$ via the Ito product rule and verify that no $dt$ term survives. The explicit calculation (carried out in the [cancellation mechanism](#key-insight-the-cancellation-mechanism) section below) proceeds as:
+The key step is to compute $d(\widetilde{W}_t Z_t)$ via the Itô product rule and verify that no $dt$ term survives. The explicit calculation (carried out in the [cancellation mechanism](#key-insight-the-cancellation-mechanism) section below; see also Karatzas–Shreve, Theorem 3.5.1) proceeds as:
 
 1. Compute $d(\widetilde{W}_t Z_t) = Z_t\,d\widetilde{W}_t + \widetilde{W}_t\,dZ_t + d\langle \widetilde{W}, Z\rangle_t$
 2. The $dt$ contributions $+Z_t\theta_t\,dt$ (from the drift in $\widetilde{W}_t$) and $-Z_t\theta_t\,dt$ (from the cross-variation) cancel exactly
-3. Therefore $\widetilde{W}_t Z_t$ is a $\mathbb{P}$-martingale. Dividing by $Z_s$ in the conditional expectation (using Bayes' rule for conditional expectations under measure change) yields that $\widetilde{W}_t$ is a $\mathbb{Q}$-martingale
+3. Therefore $\widetilde{W}_t Z_t$ is a $\mathbb{P}$-martingale. This uses the general principle: if $X_t Z_t$ is a $\mathbb{P}$-martingale, then $X_t$ is a $\mathbb{Q}$-martingale (dividing by $Z_s$ in the conditional expectation via Bayes' rule under measure change)
 
-**Result:** $\widetilde{W}_t$ is a **$\mathbb{Q}$-martingale**.
+**Result:** $\widetilde{W}_t$ is a **continuous $\mathbb{Q}$-local martingale** (after localization if necessary).
 
 ---
 
@@ -139,7 +139,7 @@ $$
 **Application:** We have shown:
 
 1. $\widetilde{W}_t$ is continuous (sum of continuous processes)
-2. $\widetilde{W}_t$ is a $\mathbb{Q}$-martingale (Step 3)
+2. $\widetilde{W}_t$ is a continuous $\mathbb{Q}$-local martingale (Step 3)
 3. $\langle\widetilde{W}\rangle_t = t$ (Step 4)
 
 By Lévy's theorem:
@@ -154,7 +154,7 @@ $$
 
 Another approach uses direct computation. This derivation is most transparent when $\theta$ is constant; for general adapted $\theta_t$, the characteristic-function argument requires additional care. Under $\mathbb{Q}$, we want to show $\widetilde{W}_t$ is Brownian.
 
-**Key formula:** For a $\mathbb{Q}$-martingale $M_t$ with $\langle M\rangle_t = t$, the process must be Brownian.
+**Key formula:** For a continuous $\mathbb{Q}$-local martingale $M_t$ with $\langle M\rangle_t = t$, the process must be Brownian (Lévy's characterization).
 
 We can verify this by computing the characteristic function (shown here for constant $\theta$):
 
@@ -164,6 +164,9 @@ $$
 
 This matches the characteristic function of $\mathcal{N}(0, t)$, confirming that $\widetilde{W}_t$ is a standard Brownian motion. For general adapted $\theta_t$, Levy's characterization (Steps 3-5) is the standard route.
 
+!!! warning "Constant θ only"
+    The characteristic function argument above applies when $\theta$ is constant. For general adapted $\theta_t$, the proof requires the full machinery of stochastic exponentials and Lévy's characterization theorem — the direct computation does not generalize.
+
 ---
 
 ## Summary of the Proof Strategy
@@ -172,7 +175,7 @@ This matches the characteristic function of $\mathcal{N}(0, t)$, confirming that
 |------|---------------|-----------------|
 | 1 | $Z_t$ is a $\mathbb{P}$-martingale | To define the measure $\mathbb{Q}$ properly |
 | 2 | $\mathbb{E}^{\mathbb{P}}[Z_t] = 1$ | Ensures $\mathbb{Q}$ is a probability measure |
-| 3 | $\widetilde{W}_t$ is a $\mathbb{Q}$-martingale | Necessary property of Brownian motion |
+| 3 | $\widetilde{W}_t$ is a continuous $\mathbb{Q}$-local martingale | Necessary property of Brownian motion |
 | 4 | $d\langle\widetilde{W}\rangle_t = dt$ | Identifies the volatility as unit constant |
 | 5 | Apply Lévy's theorem | Concludes $\widetilde{W}_t$ is Brownian motion |
 
@@ -228,6 +231,11 @@ The Novikov condition $\mathbb{E}^{\mathbb{P}}[\exp(\frac{1}{2}\int_0^T \theta_s
 3. The measure change is valid
 
 Without this condition, $Z_t$ may only be a local martingale, and the measure change may not define a valid probability measure.
+
+---
+
+!!! note "Filtration is preserved"
+    The measure change from $\mathbb{P}$ to $\mathbb{Q}$ does not alter the filtration $\{\mathcal{F}_t\}$. Adaptedness is a pathwise property: a process $X_t$ is $\mathcal{F}_t$-measurable if and only if it depends only on the history up to time $t$. Since equivalent measure changes do not alter the sample space or the sigma-algebras, every adapted process under $\mathbb{P}$ remains adapted under $\mathbb{Q}$.
 
 ---
 
@@ -417,7 +425,7 @@ Suppose the Novikov condition fails, meaning $\mathbb{E}^{\mathbb{P}}[\exp(\frac
     \mathbb{E}^{\mathbb{P}}[Z_T] < 1
     $$
 
-    This means the "measure" $\mathbb{Q}$ defined by $d\mathbb{Q}/d\mathbb{P} = Z_T$ satisfies $\mathbb{Q}(\Omega) = \mathbb{E}^{\mathbb{P}}[Z_T] < 1$, so $\mathbb{Q}$ is not a valid probability measure (it does not assign total mass 1 to the sample space). Some probability "leaks" to infinity.
+    This means the "measure" $\mathbb{Q}$ defined by $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T} = Z_T$ satisfies $\mathbb{Q}(\Omega) = \mathbb{E}^{\mathbb{P}}[Z_T] < 1$, so $\mathbb{Q}$ is not a valid probability measure (it does not assign total mass 1 to the sample space). Some probability "leaks" to infinity.
 
     Intuitively, when $\theta_s$ can become very large, the exponential martingale $Z_t$ can spend extended periods near zero, causing its expectation to drop below 1. The "lost mass" corresponds to paths along which $Z_t$ collapses toward zero. The Novikov condition prevents this by ensuring $\theta_s$ does not grow too fast, keeping $Z_t$ well-behaved enough to be a true martingale with unit expectation.
 
@@ -478,3 +486,56 @@ Verify the characteristic function computation in Step 6: show that $\mathbb{E}^
     $$
 
     This is the characteristic function of $\mathcal{N}(0, t)$, confirming that $\widetilde{W}_t$ is a standard Brownian motion under $\mathbb{Q}$.
+
+---
+
+**Exercise 8.**
+In the proof of Girsanov's theorem, Lévy's characterization is used: a continuous adapted process $X_t$ with $X_0 = 0$ is a Brownian motion if and only if it is a local martingale with $\langle X \rangle_t = t$. A candidate checks only that $\langle \widetilde{W} \rangle_t = t$ and declares $\widetilde{W}_t$ is a Brownian motion. What did they forget?
+
+??? success "Solution to Exercise 8"
+    They forgot to verify the **local martingale property**. Lévy's characterization requires *both* conditions: (1) continuous local martingale, and (2) quadratic variation equal to $t$. Having $\langle X \rangle_t = t$ alone is not sufficient — a process with the right quadratic variation but a drift term is not a Brownian motion.
+
+    In the Girsanov proof, showing $\widetilde{W}_t$ is a $\mathbb{Q}$-local martingale is the substantive step: it requires verifying that $d\widetilde{W}_t$ has no $dt$ term under $\mathbb{Q}$, which comes from the specific structure of the Radon–Nikodym derivative $Z_t$. The quadratic variation computation $\langle \widetilde{W} \rangle_t = \langle W \rangle_t = t$ is the easy part.
+
+---
+
+**Exercise 9.**
+The Radon–Nikodym derivative is $Z_t = \exp(-\theta W_t - \frac{1}{2}\theta^2 t)$. Explain why the correction term $-\frac{1}{2}\theta^2 t$ is absolutely necessary. What goes wrong if you define $\hat{Z}_t = \exp(-\theta W_t)$ instead?
+
+??? success "Solution to Exercise 9"
+    Apply Itô's lemma to $\hat{Z}_t = \exp(-\theta W_t)$. Writing $\hat{Z}_t = e^{f(W_t)}$ with $f(x) = -\theta x$:
+
+    $$
+    d\hat{Z}_t = -\theta\hat{Z}_t\,dW_t + \frac{1}{2}\theta^2\hat{Z}_t\,dt
+    $$
+
+    The $dt$ term $\frac{1}{2}\theta^2\hat{Z}_t\,dt$ does not vanish. This means $\hat{Z}_t$ is **not** a local martingale — it has a positive drift. Consequently:
+
+    - $\mathbb{E}^{\mathbb{P}}[\hat{Z}_T] = e^{\frac{1}{2}\theta^2 T} \neq 1$, so $\hat{Z}_T$ cannot define a valid probability measure.
+    - The measure defined by normalizing $\hat{Z}_T$ would not produce the correct Brownian shift — the resulting shifted process would not be a standard Brownian motion under the new measure.
+
+    The correction $-\frac{1}{2}\theta^2 t$ is precisely the Itô correction that cancels this unwanted drift. With $Z_t = \exp(-\theta W_t - \frac{1}{2}\theta^2 t)$:
+
+    $$
+    dZ_t = -\theta Z_t\,dW_t
+    $$
+
+    No $dt$ term survives, making $Z_t$ a local martingale with $\mathbb{E}^{\mathbb{P}}[Z_T] = 1$. This is the defining property of the **stochastic exponential**: the $-\frac{1}{2}\theta^2 t$ term is the price of working with exponentials in Itô calculus, where the chain rule picks up an extra second-derivative (quadratic variation) term that must be compensated.
+
+---
+
+**Exercise 10.**
+You find a process $X_t$ with drift zero and bounded volatility, yet $\mathbb{E}[X_T] < X_0$. Is this possible? If yes, what kind of mathematical object is $X_t$, and how does this relate to the Girsanov proof?
+
+??? success "Solution to Exercise 10"
+    **Yes, this is possible.** Such a process is a **strict local martingale** — a local martingale that is not a true martingale.
+
+    A local martingale has $dX_t = \sigma_t\,dW_t$ (no drift term), so it "looks" like a martingale infinitesimally. However, the defining property of a true martingale is $\mathbb{E}[X_T | \mathcal{F}_t] = X_t$, which requires integrability and a uniform integrability condition. A strict local martingale satisfies:
+
+    $$
+    \mathbb{E}[X_T] < X_0
+    $$
+
+    The "lost" expectation corresponds to probability mass escaping to infinity in finite time. A classic example is the inverse Bessel process of dimension 3, $X_t = 1/\|B_t\|$ where $B_t$ is 3D Brownian motion started away from the origin.
+
+    **Connection to Girsanov:** This is precisely why the Novikov condition matters in the proof. The exponential process $Z_t = \exp(-\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds)$ always satisfies $dZ_t = -Z_t\theta_t\,dW_t$ (no drift), making it a non-negative local martingale. But without Novikov, $Z_t$ could be a strict local martingale with $\mathbb{E}[Z_T] < 1$, and the "measure" $\mathbb{Q}$ defined by $d\mathbb{Q}/d\mathbb{P} = Z_T$ would have total mass less than 1 — not a valid probability measure. The proof requires $Z_t$ to be a true martingale, not just a local one.

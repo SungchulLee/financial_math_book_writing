@@ -3,7 +3,10 @@
 Girsanov's theorem is one of the most powerful tools in mathematical finance. It describes how a change of probability measure modifies the drift of a stochastic process while preserving its Brownian structure. This is essential for pricing derivatives via risk-neutral measures.
 
 !!! note "Standing assumptions"
-    All processes in this section are defined on a filtered probability space $(\Omega, \mathcal{F}, \{\mathcal{F}_t\}, \mathbb{P})$ satisfying the usual conditions, and all measure changes are between equivalent probability measures. In financial applications, the Girsanov kernel $\theta_t$ is often denoted $\lambda_t$ and called the **market price of risk**.
+    All processes in this section are defined on a filtered probability space $(\Omega, \mathcal{F}, \{\mathcal{F}_t\}, \mathbb{P})$ satisfying the usual conditions. All measure changes are between **equivalent** probability measures ($\mathbb{Q} \sim \mathbb{P}$), meaning they share the same null sets: events impossible under $\mathbb{P}$ remain impossible under $\mathbb{Q}$, and vice versa. Throughout, we distinguish **local martingales** from **true martingales**; the latter requires integrability verification (e.g., Novikov's condition).
+
+!!! note "Notation convention"
+    Throughout this section, $\theta_t$ denotes the Girsanov kernel (drift adjustment process). In financial applications, $\theta_t = (\mu_t - r_t)/\sigma_t$ is the **market price of risk**. Some references use $\lambda_t$ for the same quantity; in the Vasicek example below, $\lambda$ is used following the interest rate literature convention.
 
 ---
 
@@ -104,11 +107,17 @@ under $\mathbb{Q}$.
 |-------------|--------------------------------------|--------------------------------|
 | Brownian motion | $W_t$ is standard | $\widetilde{W}_t$ is standard |
 | Transformed BM | $\widetilde{W}_t = W_t + \int \theta\,ds$ has drift | Driftless |
-| What changed | Original measure | Probability measure and interpretation |
+| What changed | Original measure | Probability measure (and hence the law of the process) |
 | Information structure | Same filtration | Same filtration |
 | Volatility | Unchanged | Unchanged |
 
-**Key insight:** The theorem shows that drift can be removed by reweighting paths via a change of measure. The drift term in an SDE representation can change under equivalent measure change — it reflects how we assign probabilities to outcomes, not just the pathwise behavior.
+**Key insight:** Drift is removed in the semimartingale decomposition under $\mathbb{Q}$ — the reweighting of paths via the measure change absorbs the drift term (see [Girsanov Intuition](girsanov_intuition.md) for the conceptual foundation).
+
+!!! tip "An SDE is measure-dependent"
+    A stochastic differential equation is not an intrinsic object — it is a representation of a process under a given probability measure. Changing the measure changes the semimartingale decomposition, and therefore the drift. This is the deepest conceptual takeaway from Girsanov's theorem.
+
+!!! tip "Drift vs quadratic variation under measure change"
+    Girsanov's theorem changes only the **finite-variation (drift) part** of a semimartingale. The **quadratic variation (volatility structure)** is invariant under equivalent measure changes. This is why option prices depend on volatility but not on drift.
 
 <figure markdown="span">
   ![Girsanov measure change visualization](./image/girsanov_theorem_demo.png){ width="100%" }
@@ -159,7 +168,7 @@ dX_t
 &=&\displaystyle \sigma(t)\,d\widetilde{W}_t
 \end{array}$$
 
-**Result:** The drift term in this representation is removed under $\mathbb{Q}$.
+**Result:** The drift term in the semimartingale decomposition disappears under $\mathbb{Q}$.
 
 ---
 
@@ -175,13 +184,21 @@ The expected return $\mu$ and the risk-free rate $r$ differ, so the discounted s
 
 **Solution via Girsanov:**
 
-1. **Choose the Girsanov kernel:** $\theta = \frac{\mu - r}{\sigma}$ (market price of risk). The stock-price dynamics under $\mathbb{P}$ can then be rewritten as
+1. **Goal — make the discounted price a martingale.** We want a measure $\mathbb{Q}$ under which the discounted stock price $e^{-rt}S_t$ is a martingale. That means its $dt$ drift must vanish under $\mathbb{Q}$.
+
+2. **Determine the required kernel.** Under $\mathbb{P}$ the discounted stock has drift $(\mu - r)e^{-rt}S_t\,dt$. Girsanov removes a drift of $\sigma\theta$ from the SDE, so setting $\sigma\theta = \mu - r$ gives
+
+    $$
+    \theta = \frac{\mu - r}{\sigma} \qquad \text{(market price of risk)}
+    $$
+
+    With this choice the stock-price dynamics under $\mathbb{P}$ can be rewritten as
 
     $$
     dS_t = rS_t\,dt + \sigma S_t\!\left(dW_t + \frac{\mu - r}{\sigma}\,dt\right) = rS_t\,dt + \sigma S_t(dW_t + \theta\,dt)
     $$
 
-2. **Define the new measure $\mathbb{Q}$** by
+3. **Define the new measure $\mathbb{Q}$** via the stochastic exponential
 
     $$
     Z_T = \exp\!\left(-\int_0^T \theta\,dW_s - \frac{1}{2}\int_0^T \theta^2\,ds\right), \qquad \frac{d\mathbb{Q}}{d\mathbb{P}}\Big|_{\mathcal{F}_T} = Z_T
@@ -189,15 +206,15 @@ The expected return $\mu$ and the risk-free rate $r$ differ, so the discounted s
 
     By Girsanov’s theorem, $\widetilde{W}_t := W_t + \theta t$ is a standard Brownian motion under $\mathbb{Q}$.
 
-3. **Under $\mathbb{Q}$**, the stock-price dynamics become
+4. **Under $\mathbb{Q}$**, the stock-price dynamics become
 
     $$
     dS_t = rS_t\,dt + \sigma S_t\,d\widetilde{W}_t
     $$
 
-    The discounted stock price satisfies $d(e^{-rt}S_t) = e^{-rt}\sigma S_t\,d\widetilde{W}_t$, so $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale.
+    The discounted stock price satisfies $d(e^{-rt}S_t) = e^{-rt}\sigma S_t\,d\widetilde{W}_t$. Girsanov guarantees that $e^{-rt}S_t$ is a **local martingale** under $\mathbb{Q}$. For geometric Brownian motion with constant coefficients this local martingale is a true martingale (this follows from explicit moment bounds: $\mathbb{E}^{\mathbb{Q}}[e^{-rt}S_t] = S_0 < \infty$), but in general upgrading from local to true martingale is an additional step.
 
-4. **Martingale pricing argument.** Let the European call payoff at maturity $T$ be $\Phi(S_T) = (S_T - K)^+$. Since $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale, $\mathbb{Q}$ is the risk-neutral measure. Under no-arbitrage and market completeness, discounted derivative prices are also $\mathbb{Q}$-martingales:
+5. **Martingale pricing argument.** Let the European call payoff at maturity $T$ be $\Phi(S_T) = (S_T - K)^+$. Since $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale, $\mathbb{Q}$ is the risk-neutral measure. Under no-arbitrage and market completeness, discounted derivative prices are also $\mathbb{Q}$-martingales:
 
     $$
     e^{-rt}C(t, S_t) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-rT}\Phi(S_T) \mid \mathcal{F}_t\right]
@@ -210,6 +227,13 @@ The expected return $\mu$ and the risk-free rate $r$ differ, so the discounted s
     $$
 
     This is the foundation of Black–Scholes pricing.
+
+!!! warning "Technical requirements"
+    The validity of the Girsanov measure change requires:
+
+    1. **Integrability**: The stochastic exponential $Z_t = \mathcal{E}(-\int_0^\cdot \theta_s\,dW_s)_t$ must be a true martingale (not just a local martingale). This is ensured by the [Novikov or Kazamaki conditions](../martingale/novikov_kazamaki_conditions.md).
+    2. **Local martingale vs true martingale**: Under $\mathbb{Q}$, the process $\tilde{W}_t$ is a Brownian motion and $\tilde{S}_t = e^{-rt}S_t$ is a local martingale. Upgrading to a true martingale requires separate verification (e.g., boundedness in $L^1$ or explicit moment estimates).
+    3. **Completeness**: Uniqueness of the risk-neutral measure (and hence unique pricing) requires market completeness, which is a separate condition from the existence of $\mathbb{Q}$.
 
 ---
 
@@ -237,7 +261,7 @@ $$
 Z_t = \exp\left(-\frac{\mu}{\sigma}W_t - \frac{\mu^2 t}{2\sigma^2}\right)
 $$
 
-**Under $\mathbb{Q}$ with $d\mathbb{Q}/d\mathbb{P} = Z_T$:**
+**Under $\mathbb{Q}$ with $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T} = Z_T$:**
 
 $$
 \widetilde{W}_t := W_t + \frac{\mu}{\sigma}t \text{ is a standard Brownian motion}
@@ -301,7 +325,7 @@ $$
 Z_t = \exp\left(-\frac{\mu - r}{\sigma}W_t - \frac{(\mu-r)^2 t}{2\sigma^2}\right)
 $$
 
-**Under $\mathbb{Q}$ with $d\mathbb{Q}/d\mathbb{P} = Z_T$:**
+**Under $\mathbb{Q}$ with $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T} = Z_T$:**
 
 $$
 \widetilde{W}_t := W_t + \frac{\mu - r}{\sigma}t \text{ is a standard Brownian motion}
@@ -322,14 +346,16 @@ $$
 dS_t = rS_t\,dt + \sigma S_t\,d\widetilde{W}_t
 $$
 
-Now the discounted stock price is a martingale:
+Now the discounted stock price is a local martingale under $\mathbb{Q}$:
 
 $$\begin{array}{lll}
 d(e^{-rt}S_t) 
 &=&\displaystyle -re^{-rt}S_t\,dt + e^{-rt}dS_t\\
 &=&\displaystyle -re^{-rt}S_t\,dt + e^{-rt}(rS_t\,dt + \sigma S_t\,d\widetilde{W}_t)\\
-&=&\displaystyle e^{-rt}\sigma S_t\,d\widetilde{W}_t \quad \text{(martingale!)}
+&=&\displaystyle e^{-rt}\sigma S_t\,d\widetilde{W}_t \quad \text{(local martingale)}
 \end{array}$$
+
+Since $\sigma$ is constant and the integrand $e^{-rt}\sigma S_t$ satisfies the necessary integrability conditions, this local martingale is in fact a **true martingale**.
 
 **Option pricing:** A European call option with strike $K$ and maturity $T$ has price:
 
@@ -395,6 +421,8 @@ Girsanov's theorem is indispensable because:
 4. **Consistent pricing across assets:** Girsanov ensures that a single choice of numeraire and measure prices all derivatives consistently
 
 5. **Computational advantage:** Working under $\mathbb{Q}$ often simplifies calculations because many prices become martingales
+
+6. **FTAP connection:** The existence of such an equivalent martingale measure $\mathbb{Q}$ is equivalent to the absence of arbitrage (Fundamental Theorem of Asset Pricing)
 
 ---
 
@@ -804,4 +832,67 @@ A derivative has payoff $\Phi(S_T) = S_T^2$ and the stock follows GBM with $\mu 
     V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[S_T^2] = e^{-0.03} \cdot S_0^2 \cdot e^{0.10} = S_0^2 \exp(0.07)
     $$
 
-    Note that the price depends on $r$ and $\sigma$ but **not** on the physical drift $\mu = 0.10$. This is a direct consequence of Girsanov's theorem: the measure change removes $\mu$ from the pricing formula entirely.
+    Within arbitrage-free pricing, derivative values depend on the risk-neutral dynamics ($r$ and $\sigma$) and are therefore independent of the physical drift $\mu = 0.10$. This is a direct consequence of Girsanov's theorem: the measure change absorbs $\mu$ into the probability reweighting.
+
+---
+
+**Exercise 8.**
+A candidate says: "Under a Girsanov measure change, volatility is unchanged. Therefore the distribution of $S_T$ is unchanged." Is this correct?
+
+??? success "Solution to Exercise 8"
+    **No.** The volatility coefficient $\sigma$ is indeed invariant under Girsanov, and the sample paths are identical. However, the **drift** changes from $\mu$ to $r$, which shifts the center of the distribution of $S_T$.
+
+    Concretely, under $\mathbb{P}$: $\ln S_T \sim \mathcal{N}(\ln S_0 + (\mu - \sigma^2/2)T,\; \sigma^2 T)$. Under $\mathbb{Q}$: $\ln S_T \sim \mathcal{N}(\ln S_0 + (r - \sigma^2/2)T,\; \sigma^2 T)$. Same variance, different mean. The candidate confused invariance of a local parameter ($\sigma$) with invariance of the global distribution. Girsanov preserves paths and volatility, but reweights which paths are likely — changing the distribution.
+
+---
+
+**Exercise 9.**
+Two assets are driven by the same Brownian motion with the same volatility $\sigma = 0.3$ but different physical drifts $\mu_1 = 0.08$ and $\mu_2 = 0.12$, with $r = 0.02$. Construct a self-financing portfolio that generates riskless profit, and relate this to the failure of a single Girsanov measure change.
+
+??? success "Solution to Exercise 9"
+    **Market prices of risk:**
+
+    $$
+    \theta_1 = \frac{0.08 - 0.02}{0.3} = 0.2, \qquad \theta_2 = \frac{0.12 - 0.02}{0.3} = \frac{1}{3} \approx 0.333
+    $$
+
+    Since $\theta_1 \neq \theta_2$ and both assets are driven by the same Brownian motion, no single Girsanov shift can remove the drift from both discounted prices simultaneously.
+
+    **Constructing the arbitrage:** Both assets follow GBM with the same $\sigma$ and the same $W_t$:
+
+    $$
+    S_t^{(i)} = S_0^{(i)} \exp\!\left((\mu_i - \tfrac{1}{2}\sigma^2)t + \sigma W_t\right)
+    $$
+
+    The ratio is:
+
+    $$
+    \frac{S_t^{(1)}}{S_t^{(2)}} = \frac{S_0^{(1)}}{S_0^{(2)}} \exp\!\left((\mu_1 - \mu_2)t\right)
+    $$
+
+    This is **deterministic** — all randomness cancels because both assets share the same Brownian driver and the same $\sigma$. The ratio decays at rate $\mu_1 - \mu_2 = -0.04$ per year.
+
+    **Portfolio:** At time 0, go long $1/S_0^{(2)}$ units of asset 2 and short $1/S_0^{(1)}$ units of asset 1. The value at time $T$ is deterministic and differs from risk-free growth at rate $r$. This is a riskless arbitrage: a zero-cost portfolio with a known, non-zero payoff.
+
+    **Girsanov interpretation:** A single measure change $W_t^{\mathbb{Q}} = W_t + \theta t$ can eliminate the drift from one asset (say asset 1 with $\theta = 0.2$), but then asset 2 retains a residual drift $\mu_2 - r - \sigma\theta = 0.12 - 0.02 - 0.06 = 0.04$ under $\mathbb{Q}$. No equivalent martingale measure exists for both assets simultaneously, which by the FTAP implies arbitrage.
+
+---
+
+**Exercise 10.**
+Suppose you are forbidden from using Girsanov's theorem. How would you still argue that $V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T)]$? What conceptual principle replaces Girsanov, and where does Girsanov re-enter?
+
+??? success "Solution to Exercise 10"
+    The alternative argument uses **replication (hedging)**:
+
+    1. **Construct a replicating portfolio** $(\Delta_t, B_t)$ of $\Delta_t$ shares and $B_t$ units of the bond such that $V_T = \Phi(S_T)$ almost surely.
+    2. **No-arbitrage:** If two portfolios have the same terminal payoff, they must have the same price at all prior times.
+    3. **Self-financing condition + Itô calculus:** The portfolio dynamics $dV_t = \Delta_t\,dS_t + r(V_t - \Delta_t S_t)\,dt$ combined with $V_T = \Phi(S_T)$ yields the Black–Scholes PDE for $V(t, S)$.
+    4. **Feynman–Kac theorem:** The solution to this PDE can be represented as:
+
+        $$
+        V(t, S_t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) | \mathcal{F}_t]
+        $$
+
+        where the expectation is under a measure where $S_t$ drifts at rate $r$.
+
+    **Where Girsanov re-enters:** Feynman–Kac produces an expectation under a measure where $S_t$ has drift $r$ — but *identifying* this as a well-defined probability measure $\mathbb{Q}$ and understanding its properties (equivalence to $\mathbb{P}$, the Brownian structure of $\widetilde{W}_t$, the connection to the FTAP) requires Girsanov's theorem. Replication tells you the *answer*; Girsanov tells you *why the answer takes the form of an expectation under a specific measure* and connects it to the broader framework of equivalent martingale measures.
