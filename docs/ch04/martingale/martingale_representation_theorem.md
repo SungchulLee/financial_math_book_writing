@@ -47,7 +47,7 @@ Before stating the main theorem, recall the converse direction (proved in [Itô 
 !!! note "Itô Integrals Are Martingales"
     If $\phi_s$ is a predictable process with 
     
-    $$\mathbb{E}\left[\int_0^T \phi_s^2 \, ds\right] < \infty$$ 
+    $$\mathbb{E}\left[\int_0^T \phi_s^2 \, ds\right] < \infty$$
     
     then the Itô integral
 
@@ -69,7 +69,7 @@ This tells us that stochastic integrals produce martingales. The Martingale Repr
 
 ### Martingale Representation Theorem
 
-!!! theorem "Martingale Representation Theorem"
+!!! tip "Martingale Representation Theorem"
     Let $M_t$ be a square-integrable $\mathcal{F}_t$-martingale on $[0,T]$. Then there exists a **unique** predictable process $\phi_t$ such that:
 
     $$
@@ -243,7 +243,7 @@ Together, they provide:
 
 For a $d$-dimensional Brownian motion $W_t = (W_t^1, \ldots, W_t^d)$ with independent components:
 
-!!! theorem "Multi-Dimensional MRT"
+!!! tip "Multi-Dimensional MRT"
     Every square-integrable $\mathcal{F}_t^W$-martingale $M_t$ can be written as:
 
     $$
@@ -262,7 +262,7 @@ This extends to markets with multiple sources of risk (multiple stocks, stochast
 
 In **Malliavin calculus**, the integrand $\phi_t$ can be written explicitly using conditional expectations of Malliavin derivatives.
 
-!!! theorem "Clark–Ocone Formula"
+!!! tip "Clark–Ocone Formula"
     If $F \in \mathbb{D}^{1,2}$ (the Malliavin–Sobolev space), then:
 
     $$
@@ -277,7 +277,7 @@ In **Malliavin calculus**, the integrand $\phi_t$ can be written explicitly usin
 
 When the filtration is larger than the Brownian filtration (e.g., jump processes, stochastic volatility with unhedgeable risk), the MRT fails. Instead, we have:
 
-!!! theorem "Kunita–Watanabe Decomposition"
+!!! tip "Kunita–Watanabe Decomposition"
     Let $M_t$ be a square-integrable martingale and $N_t$ a given martingale (e.g., a traded asset). Then:
 
     $$
@@ -312,7 +312,7 @@ $$
 | **Proof method** | Hilbert space theory + Itô isometry |
 | **Extensions** | Clark–Ocone (explicit $\phi$), Kunita–Watanabe (incomplete markets) |
 
-!!! summary "Key Takeaway"
+!!! abstract "Key Takeaway"
     The Martingale Representation Theorem formalizes the idea that Brownian motion generates all randomness in its filtration. In finance, this translates to **market completeness**: every derivative can be perfectly hedged, and the hedging strategy is unique. When the theorem fails (incomplete markets), unhedgeable risk remains, and pricing/hedging become more complex.
 
 ---

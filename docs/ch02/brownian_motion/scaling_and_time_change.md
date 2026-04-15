@@ -250,7 +250,7 @@ The fundamental result connecting continuous martingales to Brownian motion is:
 
 Let $M = \{M_t\}_{t \ge 0}$ be a continuous local martingale with $M_0 = 0$ and $\langle M \rangle_\infty = \infty$, and let $\tau(u) = \inf\{t \ge 0 : \langle M\rangle_t > u\}$ be the inverse of its quadratic variation (as defined above). Then the process
 
-$$B_u := M_{\tau(u)}, \qquad u \ge 0,$$
+$$B_u := M_{\tau(u)}, \qquad u \ge 0$$
 
 is a standard Brownian motion, and:
 

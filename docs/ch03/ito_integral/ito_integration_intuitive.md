@@ -123,7 +123,7 @@ This single path is used in the examples below.
 
 ### 4. Worked Examples
 
-#### Example 1: Integration of $B$ against $dB$
+#### Example 1: Integration of B against dB
 
 $$
 \int_0^1 B_s\,dB_s
@@ -160,7 +160,7 @@ The key algebraic reason: $B_{t_{k+1}}^2 - B_{t_k}^2 = 2B_{t_k}\,\Delta B_k + (\
 
 ---
 
-#### Example 2: Integration of $s$ against $dB$
+#### Example 2: Integration of s against dB
 
 $$
 \int_0^1 s\,dB_s
@@ -195,7 +195,7 @@ and the integral is Gaussian: $\int_0^1 s\,dB_s \sim \mathcal{N}(0, 1/3)$.
 
 ---
 
-#### Example 3: Integration of $sB_s$ against $dB$
+#### Example 3: Integration of sBₛ against dB
 
 $$
 \int_0^1 sB_s\,dB_s

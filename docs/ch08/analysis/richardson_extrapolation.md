@@ -63,7 +63,7 @@ $$
 
     This has accuracy $O(h^{p+1})$, one order higher than the original scheme.
 
-### Special Case: $r = 2$ (Grid Doubling)
+### Special Case: r = 2 (Grid Doubling)
 
 For the common choice of doubling the number of grid points ($r = 2$):
 
@@ -170,7 +170,7 @@ $$
 
 where $p$ is the original order and the effective order at level $k$ is $p + k$.
 
-### Example Table (Crank-Nicolson, $p = 2$)
+### Example Table (Crank-Nicolson, p = 2)
 
 | | $V^{(0)}$ (order 2) | $V^{(1)}$ (order 4) | $V^{(2)}$ (order 6) |
 |---|---|---|---|

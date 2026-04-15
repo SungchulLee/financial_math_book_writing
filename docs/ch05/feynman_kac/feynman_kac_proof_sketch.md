@@ -244,7 +244,7 @@ u(t,x) = E[D·g]  ──Markov──▶  D(t,s)·u(s,Xₛ) is a martingale
 
 ---
 
-## The Special Case $r = 0$ (Kolmogorov Backward)
+## The Special Case r = 0 (Kolmogorov Backward)
 
 When $r \equiv 0$, the Feynman-Kac formula reduces to:
 

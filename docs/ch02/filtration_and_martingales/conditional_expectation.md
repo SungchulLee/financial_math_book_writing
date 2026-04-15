@@ -20,6 +20,7 @@ Let $(\Omega, \mathcal{F}, \mathbb{P})$ be a probability space, $\mathcal{G} \su
 
 1. **Measurability**: $\mathbb{E}[X \mid \mathcal{G}]$ is $\mathcal{G}$-measurable.
 2. **Partial averaging**: For every $G \in \mathcal{G}$
+
 $$
 \int_G \mathbb{E}[X \mid \mathcal{G}] \, d\mathbb{P} = \int_G X \, d\mathbb{P}
 $$
@@ -187,7 +188,7 @@ $$
 - $\varphi(x) = x^2$: $(\mathbb{E}[X \mid \mathcal{G}])^2 \le \mathbb{E}[X^2 \mid \mathcal{G}]$
 - $\varphi(x) = e^x$: $e^{\mathbb{E}[X|\mathcal{G}]} \le \mathbb{E}[e^X \mid \mathcal{G}]$
 
-### 7. $L^p$ Contractivity
+### 7. Lp Contractivity
 
 For $p \ge 1$:
 

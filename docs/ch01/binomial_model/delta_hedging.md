@@ -348,6 +348,7 @@ V_0 = -50 + 57.07 = 7.07
 $$
 
 !!! success "European Put Price"
+
     $$P_0 = 7.07$$
     
     **Verification via risk-neutral pricing:**

@@ -1642,7 +1642,7 @@ flowchart TD
     J --> M["MLMC"]
 ```
 
-!!! summary "Key Takeaway"
+!!! abstract "Key Takeaway"
     Euler-Maruyama is the workhorse of SDE simulation: simple, robust, and applicable to any SDE. Milstein improves pathwise accuracy when the diffusion derivative is tractable. For GBM, the Log-Euler scheme preserves positivity and achieves strong order 1. Exact simulation eliminates time discretization error when closed-form transition distributions are available (GBM, OU, CIR). Multilevel Monte Carlo reduces the cost of computing expectations substantially compared to standard Monte Carlo. The total simulation error combines discretization error (controlled by step size) and Monte Carlo error (controlled by path count), and balancing these two sources is essential for efficient computation.
 
 ---

@@ -82,7 +82,7 @@ $$
 
 ---
 
-## Example: Heat Equation on $[0, L]$ with Dirichlet Conditions
+## Example: Heat Equation on [0, L] with Dirichlet Conditions
 
 ### Eigenvalue Problem
 
@@ -126,7 +126,7 @@ $$
 
 ---
 
-## Example: Heat Equation on $[0, L]$ with Neumann Conditions
+## Example: Heat Equation on [0, L] with Neumann Conditions
 
 ### Eigenvalue Problem
 
@@ -203,7 +203,7 @@ $$
 
 The **spectral gap** $\lambda_2 - \lambda_1$ determines the rate of convergence to the dominant mode.
 
-### Pointwise vs $L^2$ Convergence
+### Pointwise vs L² Convergence
 
 - **$L^2$ convergence**: Always guaranteed by the spectral theorem
 - **Pointwise convergence**: Requires additional smoothness of the eigenfunctions and the initial data

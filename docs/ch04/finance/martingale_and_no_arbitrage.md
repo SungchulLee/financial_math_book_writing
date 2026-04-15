@@ -71,7 +71,7 @@ $$
 V_t = \phi_t S_t + \psi_t B_t
 $$
 
-!!! definition "Self-Financing Strategy"
+!!! info "Self-Financing Strategy"
     A strategy $(\phi, \psi)$ is **self-financing** if the portfolio value changes only due to asset price movements, not from injecting or withdrawing cash:
 
     $$
@@ -98,7 +98,7 @@ $$
 
 This is the cumulative profit (in discounted terms) from holding $\phi_s$ shares.
 
-!!! definition "Admissible Strategy"
+!!! info "Admissible Strategy"
     A self-financing strategy $\phi$ is **admissible** if the gains process is bounded below:
 
     $$
@@ -109,7 +109,7 @@ This is the cumulative profit (in discounted terms) from holding $\phi_s$ shares
 
 ### Formal Definition of Arbitrage
 
-!!! definition "Arbitrage Opportunity"
+!!! info "Arbitrage Opportunity"
     An **arbitrage opportunity** is an admissible self-financing strategy $\phi$ with:
     
     1. $V_0 = 0$ (zero initial cost)
@@ -120,7 +120,7 @@ This is the cumulative profit (in discounted terms) from holding $\phi_s$ shares
 
 In continuous time, the naive arbitrage definition above is insufficient. The correct condition is **NFLVR** (No Free Lunch with Vanishing Risk):
 
-!!! definition "NFLVR"
+!!! info "NFLVR"
     **NFLVR** holds if there is no sequence of admissible strategies $(\phi^n)$ such that:
     
     - $V_0^n = 0$ for all $n$
@@ -217,7 +217,7 @@ Since $\mathbb{Q}$ is **equivalent** to $\mathbb{P}$ (they have the same null se
 
 **Conclusion**: No arbitrage is possible!
 
-!!! theorem "Martingale Implies No Arbitrage"
+!!! tip "Martingale Implies No Arbitrage"
     If there exists a probability measure $\mathbb{Q} \sim \mathbb{P}$ such that discounted asset prices are $\mathbb{Q}$-local martingales, then no arbitrage opportunities exist.
 
 ---
@@ -280,7 +280,7 @@ This is the **central pathology** of continuous-time finance: the model is arbit
 
 The converse is also true: if there's no arbitrage, then a martingale measure must exist.
 
-!!! theorem "Fundamental Theorem of Asset Pricing (FTAP)"
+!!! tip "Fundamental Theorem of Asset Pricing (FTAP)"
     The following are equivalent:
     
     1. **No arbitrage** (NFLVR holds)
@@ -430,7 +430,7 @@ The measure $\mathbb{Q}$ encodes the **prices** that prevent arbitrage:
 
 A market is **complete** if every contingent claim can be replicated by a self-financing strategy.
 
-!!! theorem "Second Fundamental Theorem"
+!!! tip "Second Fundamental Theorem"
     An arbitrage-free market is **complete** if and only if the ELMM $\mathbb{Q}$ is **unique**.
 
 In complete markets:

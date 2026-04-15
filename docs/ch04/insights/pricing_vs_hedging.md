@@ -55,7 +55,7 @@ asset prices and trading rules. They depend on:
 
 ---
 
-## Why Pricing Uses $\mathbb{Q}$
+## Why Pricing Uses ℚ
 
 
 Pricing is measure-dependent because it is a valuation exercise.

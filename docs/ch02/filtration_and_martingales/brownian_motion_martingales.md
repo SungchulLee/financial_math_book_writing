@@ -212,9 +212,11 @@ each coefficient $H_n(W_t, t)$ is a martingale.
 **Proof**: Since $Z_t^\theta$ is a martingale for each $\theta$, the martingale property gives $\mathbb{E}[Z_t^\theta \mid \mathcal{F}_s] = Z_s^\theta$.
 
 To interchange the sum and conditional expectation, note that for $|\theta| \le R$:
+
 $$
 \sum_{n=0}^\infty \frac{|\theta|^n}{n!} |H_n(W_t, t)| \le \exp\left(R|W_t| + \frac{R^2 t}{2}\right) \in L^1
 $$
+
 (a standard Gaussian moment estimate). By dominated convergence for conditional expectations:
 
 $$

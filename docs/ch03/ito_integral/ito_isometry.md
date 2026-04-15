@@ -78,7 +78,7 @@ $$
 
 completing the heuristic derivation.
 
-#### Connection to the $L^2$ extension
+#### Connection to the L² extension
 
 The isometry is not just an interesting identity—it is the **mechanism of construction**. The rigorous extension of the Itô integral from simple processes to all $\mathcal{L}^2([0,T])$ proceeds by:
 
@@ -107,7 +107,7 @@ flowchart LR
 
 ### 4. Examples
 
-#### Example 1: Deterministic integrand $\beta(t) = t$
+#### Example 1: Deterministic integrand β(t) = t
 
 $$
 I = \int_0^1 t\, dW_t
@@ -125,7 +125,7 @@ $$
 \int_0^1 t\, dW_t \sim \mathcal{N}\!\left(0,\; \frac{1}{3}\right)
 $$
 
-#### Example 2: Random integrand $\beta(t) = t W_t$
+#### Example 2: Random integrand β(t) = t Wₜ
 
 $$
 \operatorname{Var}\!\left(\int_0^T t W_t\, dW_t\right)

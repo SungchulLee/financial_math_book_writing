@@ -170,15 +170,15 @@ The series converges rapidly for typical parameter values. Even for $\lambda = 5
 
 ## Special Cases
 
-### Zero Jumps ($\lambda = 0$)
+### Zero Jumps (λ = 0)
 
 When $\lambda = 0$, the only nonzero weight is $w_0 = 1$, and $\sigma_0 = \sigma$, $r_0 = r$. The series reduces to a single Black-Scholes price, confirming consistency.
 
-### Pure Jump ($\sigma = 0$)
+### Pure Jump (σ = 0)
 
 When $\sigma = 0$, the diffusion component vanishes, and $\sigma_n^2 = n\sigma_J^2/T$. The $n = 0$ term has $\sigma_0 = 0$, giving a degenerate Black-Scholes price (digital payoff behavior). The formula remains valid but the individual terms with small $n$ may require careful numerical treatment.
 
-### Large $\lambda T$
+### Large λ T
 
 When $\lambda T$ is large, the Poisson distribution concentrates around its mean $\lambda'T$, and the series is dominated by terms near $n \approx \lambda'T$. The effective volatility approaches $\sqrt{\sigma^2 + \lambda\sigma_J^2}$ and the excess kurtosis diminishes, consistent with the central limit theorem.
 

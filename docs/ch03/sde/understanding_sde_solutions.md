@@ -221,7 +221,7 @@ H -->|Yes| I[Lamperti transform]
 H -->|No| J[Use analytical approximations or numerical methods]
 ```
 
-!!! summary "Key Takeaways"
+!!! abstract "Key Takeaways"
     - Only a small class of SDEs admit elementary closed-form pathwise solutions
     - Many solvable models rely on **transformations**
     - Structural recognition is the first and most important step

@@ -72,7 +72,7 @@ $$S^{(n)} \Rightarrow W \quad \text{in } D[0,T] \text{ with the Skorokhod topolo
 
 The piecewise-linear version $W^{(n)}$ lies in $C[0,T]$ and satisfies
 
-$$W^{(n)} \Rightarrow W \quad \text{in } C[0,T] \text{ with the uniform topology } \|f\|_\infty = \sup_{t \in [0,T]}|f(t)|.$$
+$$W^{(n)} \Rightarrow W \quad \text{in } C[0,T] \text{ with the uniform topology } \|f\|_\infty = \sup_{t \in [0,T]}|f(t)|$$
 
 The latter is the stronger statement. Within each interval $[k/n,(k+1)/n]$, $S^{(n)}$ is constant while $W^{(n)}$ linearly interpolates a single increment of size $\pm 1/\sqrt{n}$; the maximum deviation within any such interval is therefore exactly $1/\sqrt{n}$. Hence $\|S^{(n)} - W^{(n)}\|_\infty = 1/\sqrt{n} \to 0$ almost surely, so both versions give the same weak limit.
 

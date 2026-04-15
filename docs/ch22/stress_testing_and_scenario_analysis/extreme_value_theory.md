@@ -59,7 +59,7 @@ $$
 
 A distribution $F$ belongs to the **maximum domain of attraction** of $G_\xi$ (written $F \in \text{MDA}(G_\xi)$) if the normalized maxima converge to $G_\xi$.
 
-### Characterization for Heavy Tails ($\xi > 0$)
+### Characterization for Heavy Tails (ξ > 0)
 
 $F \in \text{MDA}(G_\xi)$ with $\xi > 0$ if and only if:
 
@@ -75,7 +75,7 @@ where $\ell(x)$ is a **slowly varying function** ($\ell(tx)/\ell(x) \to 1$ as $x
 - Pareto distribution: $\xi = 1/\alpha$ where $\alpha$ is the Pareto exponent
 - Stable distributions with index $\alpha < 2$: $\xi = 1/\alpha$
 
-### Characterization for Light Tails ($\xi = 0$)
+### Characterization for Light Tails (ξ = 0)
 
 $F \in \text{MDA}(G_0)$ if and only if:
 

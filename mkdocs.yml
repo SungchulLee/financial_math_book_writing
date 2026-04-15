@@ -167,11 +167,20 @@ nav:
 
             - 4.5 Financial Interpretation:
                 - Financial Insights Intro: ch04/insights/intro.md
+                # NEW CORE (must come early)
+                # ECONOMIC FOUNDATION
+                - What the SDF Really Means: ch04/insights/sdf.md
+                - From SDF to CAPM to Factor Models: ch04/insights/sdf_to_capm.md
+                # Resolve the paradox formally
                 - Physical vs Risk-Neutral World: ch04/insights/physical_vs_risk_neutral.md
-                - Pricing vs Hedging: ch04/insights/pricing_vs_hedging.md
+                # Mechanism
                 - Risk Premium Decomposition: ch04/insights/risk_premium_decomposition.md
-                - When Measure Change Fails: ch04/insights/when_measure_change_fails.md
+                # Implications
+                - Pricing vs Hedging: ch04/insights/pricing_vs_hedging.md
+                # Reality check
                 - Practitioner Perspective: ch04/insights/practitioner_perspective.md
+                # Limits of the framework
+                - When Measure Change Fails: ch04/insights/when_measure_change_fails.md
 
         - 5 PDE in Finance:
             - Chapter Overview: ch05/index.md

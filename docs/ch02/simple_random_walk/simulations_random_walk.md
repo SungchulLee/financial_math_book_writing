@@ -275,7 +275,7 @@ At n = 100:
 
 ---
 
-## Simulation 6: Recurrence — Return Fractions in $d = 1$ vs $d = 3$
+## Simulation 6: Recurrence — Return Fractions in d = 1 vs d = 3
 
 Theorem 1.1.7 (Pólya) predicts that the 1D walk returns to the origin with probability 1, but the 3D walk returns with probability only ~0.341 (equivalently, escapes with probability ~0.659). This simulation makes that contrast visual by tracking the return fraction as the step budget grows.
 

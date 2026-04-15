@@ -57,7 +57,7 @@ $$
 p_u + p_m + p_d = 1
 $$
 
-### Standard branching (successor nodes at $x_{j+1}$, $x_j$, $x_{j-1}$)
+### Standard branching (successor nodes at xⱼ₊₁, xⱼ, xⱼ₋₁)
 
 The three equations yield:
 
@@ -79,7 +79,7 @@ $$
 p_u \approx \frac{1}{6} + \frac{\mu_j\sqrt{\Delta t}}{2\sigma\sqrt{3}}, \qquad p_m \approx \frac{2}{3}, \qquad p_d \approx \frac{1}{6} - \frac{\mu_j\sqrt{\Delta t}}{2\sigma\sqrt{3}}
 $$
 
-### Up branching (successor nodes at $x_{j+2}$, $x_{j+1}$, $x_j$)
+### Up branching (successor nodes at xⱼ₊₂, xⱼ₊₁, xⱼ)
 
 $$
 p_u = \frac{1}{6} + \frac{(\mu_j\Delta t)^2}{2\Delta x^2} - \frac{\mu_j\Delta t}{2\Delta x}

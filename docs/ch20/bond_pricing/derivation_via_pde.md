@@ -196,7 +196,7 @@ Since $B(\tau)$ is already known, this is a quadrature (direct integration), not
 
 ## Evaluating the Integrals
 
-### The $B^2$ Integral
+### The B² Integral
 
 The second integral can be computed in closed form.
 

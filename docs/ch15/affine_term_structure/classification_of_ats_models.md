@@ -51,7 +51,7 @@ $$
 r_t = \rho_0 + \rho_1^\top X_t
 $$
 
-### The Role of $m$
+### The Role of m
 
 !!! info "Definition: The Integer $m$"
     A $d$-dimensional affine term structure model belongs to class $A_m(d)$ if exactly $m$ of the $d$ state variables enter the conditional covariance matrix $\Sigma(X_t)\Sigma(X_t)^\top$ with nonzero coefficients. That is, $H_i \neq 0$ for exactly $m$ values of $i \in \{1, \ldots, d\}$.
@@ -125,7 +125,7 @@ For a $d$-dimensional affine model, the affine state transformation $X \mapsto C
 
 ## Classification of Standard Models
 
-### One-Factor Models: $A_0(1)$ and $A_1(1)$
+### One-Factor Models: A₀(1) and A₁(1)
 
 | Model | Class | Dynamics | Rates |
 |---|---|---|---|
@@ -151,7 +151,7 @@ The general $A_m(d)$ family grows rapidly with $d$. For $d = 3$, there are four 
 
 ## Trade-offs Across Sub-Classes
 
-### Gaussian Models: $A_0(d)$
+### Gaussian Models: A₀(d)
 
 **Advantages:**
 
@@ -165,7 +165,7 @@ The general $A_m(d)$ family grows rapidly with $d$. For $d = 3$, there are four 
 - Yield volatilities are constant, contradicting the empirical evidence of time-varying volatility
 - Cannot generate the volatility smile observed in interest rate options
 
-### Square-Root Models: $A_d(d)$
+### Square-Root Models: Ad(d)
 
 **Advantages:**
 
@@ -179,7 +179,7 @@ The general $A_m(d)$ family grows rapidly with $d$. For $d = 3$, there are four 
 - Correlation structure is heavily constrained by admissibility
 - Likelihood evaluation requires non-central chi-squared distributions
 
-### Mixed Models: $A_m(d)$ with $0 < m < d$
+### Mixed Models: Aₘ(d) with 0 < m < d
 
 **Advantages:**
 

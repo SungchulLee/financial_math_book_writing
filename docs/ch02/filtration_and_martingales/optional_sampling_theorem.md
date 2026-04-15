@@ -45,9 +45,11 @@ $$
 For $s \le t$, we need $\mathbb{E}[M_{t \wedge \tau} \mid \mathcal{F}_s] = M_{s \wedge \tau}$.
 
 The key idea is to approximate $\tau$ by discrete stopping times. For each $n$, define:
+
 $$
 \tau^{(n)} = \frac{\lceil 2^n \tau \rceil}{2^n}
 $$
+
 (the smallest multiple of $2^{-n}$ that is $\ge \tau$). Each $\tau^{(n)}$ takes values in $\{k/2^n : k = 0, 1, 2, \ldots\} \cup \{\infty\}$ and is a stopping time. The stopped process $M_{t \wedge \tau^{(n)}}$ satisfies the martingale property by a direct verification on each atom $\{\tau^{(n)} = k/2^n\}$.
 
 As $n \to \infty$, $\tau^{(n)} \downarrow \tau$, and by right-continuity of paths $M_{t \wedge \tau^{(n)}} \to M_{t \wedge \tau}$ a.s. Dominated convergence (using the bound $|M_{t \wedge \tau^{(n)}}| \le \sup_{u \le T} |M_u| \in L^1$ for bounded $\tau \le T$) justifies passing to the limit in the martingale property.
@@ -112,7 +114,7 @@ $$
 
 **Theorem**: If $|M_{t \wedge \tau}| \le Y$ for all $t$ where $\mathbb{E}[Y] < \infty$, then $\mathbb{E}[M_\tau] = \mathbb{E}[M_0]$.
 
-### Condition 3: $L^p$ Bound with Finite Stopping Time Moment
+### Condition 3: Lp Bound with Finite Stopping Time Moment
 
 **Theorem**: If $\sup_t \mathbb{E}|M_t|^p < \infty$ for some $p > 1$ and $\mathbb{E}[\tau] < \infty$, then optional sampling holds. (A stronger moment condition on $\tau$ yields optional sampling even in the non-$L^p$-bounded case; see Revuz–Yor, Chapter II.)
 

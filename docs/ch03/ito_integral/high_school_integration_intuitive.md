@@ -94,7 +94,7 @@ We illustrate using the coin sequence $H,H,T,H,T,T,H,H,H,T$ with $n=10$, giving 
 
 ---
 
-#### Example 1: Integrating $B_s$ with respect to time
+#### Example 1: Integrating Bₛ with respect to time
 
 $$
 \int_0^1 B_s \, ds \approx \sum B_{t_k}\,\Delta t
@@ -140,7 +140,7 @@ The Riemann sum approximation gives $\sum t_k\,\Delta t \approx 0.45$, convergin
 
 ---
 
-#### Example 3: Integrating $sB_s$
+#### Example 3: Integrating sBₛ
 
 Now the integrand depends on both time and the Brownian path:
 

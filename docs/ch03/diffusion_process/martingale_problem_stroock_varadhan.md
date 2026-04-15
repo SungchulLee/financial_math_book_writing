@@ -69,7 +69,7 @@ Well-posedness of the martingale problem is **equivalent to uniqueness in law** 
 
 ### The Stroock–Varadhan Theorem
 
-!!! theorem "Theorem (Stroock–Varadhan, 1969–1972)"
+!!! tip "Theorem (Stroock–Varadhan, 1969–1972)"
     Suppose $b$ is bounded and measurable and $a$ is **bounded, continuous, and uniformly elliptic**: there exists $\lambda > 0$ such that
 
     $$

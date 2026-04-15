@@ -54,7 +54,7 @@ $$\boxed{\mathcal{L}u = -1 \text{ in } D, \quad u = 0 \text{ on } \partial D}$$
 
 ---
 
-### Brownian Motion on $(a, b)$
+### Brownian Motion on (a, b)
 
 **Process**: $dX_t = dW_t$, generator $\mathcal{L} = \frac{1}{2}\frac{d^2}{dx^2}$
 
@@ -66,7 +66,7 @@ Boundary conditions give $C = a + b$ and $D = -ab$, so:
 
 $$\boxed{\mathbb{E}_x[\tau] = (x - a)(b - x)}$$
 
-!!! check "Verification"
+!!! success "Verification"
     - $x = a$: $\mathbb{E}_a[\tau] = 0$ $\checkmark$
     - $x = b$: $\mathbb{E}_b[\tau] = 0$ $\checkmark$
     - Maximum at $x = \frac{a+b}{2}$: $\mathbb{E}_{(a+b)/2}[\tau] = \frac{(b-a)^2}{4}$ $\checkmark$
@@ -76,7 +76,7 @@ $$\boxed{\mathbb{E}_x[\tau] = (x - a)(b - x)}$$
 
 ---
 
-### Brownian Motion on $(0, \infty)$: Hitting Zero
+### Brownian Motion on (0, ∞): Hitting Zero
 
 **Setup**: $X_0 = x > 0$, $\tau_0 = \inf\{t : X_t = 0\}$
 
@@ -95,7 +95,7 @@ $$\boxed{\mathbb{E}_x[\tau_0] = \infty \text{ for BM on } (0, \infty)}$$
 
 ## Exit Probabilities
 
-### Hitting $b$ Before $a$ (Brownian Motion)
+### Hitting b Before a (Brownian Motion)
 
 **Setup**: $X_0 = x \in (a, b)$, find $p(x) = \mathbb{P}_x(X_\tau = b)$
 
@@ -131,7 +131,7 @@ In the discrete setting, this follows from the optional stopping theorem applied
 
 $$p(x) = \frac{e^{-2\mu x/\sigma^2} - e^{-2\mu a/\sigma^2}}{e^{-2\mu b/\sigma^2} - e^{-2\mu a/\sigma^2}}$$
 
-!!! check "Limit Check"
+!!! success "Limit Check"
     As $\mu \to 0$: by L'Hôpital, $p(x) \to \frac{x - a}{b - a}$ $\checkmark$
 
 ---
@@ -187,7 +187,7 @@ The functional $e^{-\lambda\tau}$ is multiplicative in $\tau$, so Dynkin's formu
 
 **Strategy**: Find $v$ solving $\mathcal{L}v = \lambda v$ in $D$, $v = 1$ on target boundary. Then $v(x) = \mathbb{E}_x[e^{-\lambda\tau}]$.
 
-### BM Hitting Time of Level $a$
+### BM Hitting Time of Level a
 
 Let $\tau_a = \inf\{t : X_t = a\}$ for BM starting at $x > a$.
 
@@ -197,7 +197,7 @@ Let $\tau_a = \inf\{t : X_t = a\}$ for BM starting at $x > a$.
 
 $$\boxed{\mathbb{E}_x[e^{-\lambda\tau_a}] = e^{-\sqrt{2\lambda}(x - a)}}$$
 
-!!! check "Sanity Checks"
+!!! success "Sanity Checks"
     - $x = a$: result is $1$ $\checkmark$ (already there)
     - $x \to \infty$: result $\to 0$ $\checkmark$ (takes forever)
     - $\lambda \to 0$: result $\to 1$ $\checkmark$ (no discounting; BM hits every level a.s.)

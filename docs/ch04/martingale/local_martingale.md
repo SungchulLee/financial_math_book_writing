@@ -30,7 +30,7 @@ A process $\{M_t\}_{t \geq 0}$ is a **martingale** with respect to filtration $\
 
 #### Local Martingale
 
-!!! definition "Local Martingale"
+!!! info "Local Martingale"
     An adapted process $\{M_t\}_{t \geq 0}$ with $M_0$ finite almost surely is a **local martingale** if there exists a sequence of stopping times $\{\tau_n\}_{n=1}^{\infty}$ such that:
 
     1. **Monotonicity**: $\tau_1 \leq \tau_2 \leq \tau_3 \leq \cdots$
@@ -250,7 +250,7 @@ $$
 !!! tip "Key insight"
     Non-negative local martingales can only **lose** expectation, never gain it. If $\mathbb{E}[M_t] < \mathbb{E}[M_0]$, immediately think: strict local martingale.
 
-!!! theorem "Non-negative Local Martingales are Supermartingales"
+!!! tip "Non-negative Local Martingales are Supermartingales"
     Let $M$ be a non-negative local martingale. Then $M$ is a supermartingale:
 
     $$
@@ -387,7 +387,7 @@ $$
 
 For $f \in C^2$, define the process $Y_t = f(X_t)$.
 
-!!! theorem "Generator Criterion"
+!!! tip "Generator Criterion"
     If $\mathcal{L}f(x) = 0$ for all $x$ in the state space, then $f(X_t)$ is a **local martingale**.
     
     To upgrade to a **true martingale**, verify any of the [six sufficient conditions above](#sufficient-conditions-for-true-martingale)—for example:
@@ -433,7 +433,7 @@ In practice, $\tilde{S}_t$ is often only a **local martingale**. The distinction
 
 #### Strict Local Martingales and Financial Bubbles
 
-!!! important "Bubble Characterization"
+!!! warning "Bubble Characterization"
     If the discounted price process is a **strict local martingale** under $\mathbb{Q}$:
     
     $$
@@ -513,7 +513,7 @@ $$
 }
 $$
 
-!!! summary "The Bottom Line"
+!!! abstract "The Bottom Line"
     The distinction between local martingales and true martingales is essential for:
     
     1. **Rigorous Itô calculus**: Ensuring stochastic integrals have the expected properties

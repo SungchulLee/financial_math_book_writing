@@ -137,7 +137,7 @@ The first term is the **Merton ratio** (myopic demand); the second is the **hedg
 
 ## Risk Aversion and the Price-Hedge Spectrum
 
-### Effect of Risk Aversion $\gamma$
+### Effect of Risk Aversion γ
 
 | $\gamma$ | Price behavior | Hedge behavior |
 |:---|:---|:---|

@@ -50,3 +50,18 @@ This section introduces the language and concepts of options markets:
 - **Why pricing matters**: the no-arbitrage principle that motivates the entire theory
 
 These concepts provide the foundation for the Black–Scholes formula and its extensions.
+
+## Exercises
+
+**Exercise 1.** A European call option on stock XYZ has strike price K = 100 and expires in 3 months. If the stock price at expiration is S_T = 112, what is the payoff? What if S_T = 95?
+
+??? success "Solution to Exercise 1"
+    For S_T = 112: payoff = max(S_T - K, 0) = max(112 - 100, 0) = 12. For S_T = 95: payoff = max(95 - 100, 0) = 0. The call expires worthless when the stock finishes below the strike.
+
+---
+
+**Exercise 2.** Explain the difference between intrinsic value and time value of an option. If a call with strike 100 is trading at 8 when the stock price is 105, what is the intrinsic value and what is the time value?
+
+??? success "Solution to Exercise 2"
+    Intrinsic value is the payoff if the option were exercised immediately: max(S - K, 0) = max(105 - 100, 0) = 5. Time value is the difference between the option price and intrinsic value: 8 - 5 = 3. The time value reflects the possibility that the stock may move further in the money before expiration.
+

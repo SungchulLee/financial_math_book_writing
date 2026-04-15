@@ -41,10 +41,10 @@ $$
 
 The risk-neutral valuation principle rests on the **Fundamental Theorem of Asset Pricing (FTAP)**:
 
-!!! theorem "First Fundamental Theorem"
+!!! tip "First Fundamental Theorem"
     A market is **arbitrage-free** if and only if there exists an **equivalent martingale measure** $\mathbb{Q}$ under which discounted prices of traded assets are martingales.
 
-!!! theorem "Second Fundamental Theorem"
+!!! tip "Second Fundamental Theorem"
     An arbitrage-free market is **complete** (every contingent claim can be replicated) if and only if the equivalent martingale measure $\mathbb{Q}$ is **unique**.
 
 **Key implications**:
@@ -364,7 +364,7 @@ $$
 | **PDE equivalence** | Same as solving Black–Scholes PDE (Feynman–Kac) |
 | **Limitations** | Incomplete markets → non-unique prices; model dependence |
 
-!!! summary "Key Takeaway"
+!!! abstract "Key Takeaway"
     The risk-neutral valuation principle transforms the economic problem of pricing into a mathematical problem of computing expectations. The measure $\mathbb{Q}$ is not about beliefs—it encodes the no-arbitrage constraints from traded asset prices. In complete markets, this gives unique derivative prices; in incomplete markets, it gives bounds.
 
 ---

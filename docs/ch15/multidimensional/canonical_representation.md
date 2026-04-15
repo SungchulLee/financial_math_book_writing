@@ -155,7 +155,7 @@ This theorem has a profound consequence: the space of observationally distinct $
 
 ## Examples of Canonicalization
 
-### One-Factor CIR: $A_1(1)$
+### One-Factor CIR: A₁(1)
 
 The general one-factor CIR model has parameters $\kappa > 0$, $\theta > 0$, $\xi > 0$. The canonical form normalizes $\xi = 1$ (unit diffusion):
 
@@ -165,13 +165,13 @@ $$
 
 This is achieved by the state transformation $\tilde{X}_t = X_t / \xi^2$ (since the original diffusion $\xi\sqrt{X_t}$ becomes $\xi \cdot \xi^{-1}\sqrt{\tilde{X}_t} = \sqrt{\tilde{X}_t}$). The transformed parameters are $\tilde{\kappa} = \kappa$ and $\tilde{\theta} = \theta/\xi^2$.
 
-### Two-Factor Gaussian: $A_0(2)$
+### Two-Factor Gaussian: A₀(2)
 
 The general $A_0(2)$ model has drift $b_0 + Bx$ with $B \in \mathbb{R}^{2 \times 2}$ (4 parameters) and constant covariance $a_0$ (3 parameters, symmetric). The short rate adds 3 parameters ($\rho_0, \rho_1^{(1)}, \rho_1^{(2)}$). Total: 12 parameters.
 
 The canonical form uses $C$ to diagonalize $a_0$ (putting Gaussian components in standard form with unit variance) and $c$ to center the drift. The transformation eliminates 6 parameters, leaving 6 free parameters in the canonical $A_0(2)$ model.
 
-### Heston Model: $A_1(2)$
+### Heston Model: A₁(2)
 
 The standard Heston parametrization uses $(\kappa, \theta, \xi, \rho, r)$ plus the initial conditions. In canonical form:
 

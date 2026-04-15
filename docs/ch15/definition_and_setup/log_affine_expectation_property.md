@@ -122,7 +122,7 @@ $$
 
 This separation works precisely because the drift and diffusion coefficients are affine in $x$. If the coefficients had any nonlinear dependence on $x$, the ansatz would fail and the log-affine property would not hold.
 
-### Identification with $F$ and $R$
+### Identification with F and R
 
 Writing $F(u) = \kappa_0 u + \frac{1}{2}\sigma_0 u^2$ and $R(u) = \kappa_1 u + \frac{1}{2}\sigma_1 u^2$, the system becomes
 

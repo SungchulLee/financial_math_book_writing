@@ -66,66 +66,58 @@ $$
 \displaystyle
 \frac{\partial^2 (S_T - K)^+}{\partial K^2} &=& \displaystyle \delta(S_T - K)
 \end{array}$$
-
 The Dirac delta function has the key property:
-
 $$
+
 \int_{-\infty}^{\infty} \delta(x - a) f(x) \, dx = f(a)
-$$
 
+$$
 It can be understood as the limit of increasingly narrow, increasingly tall distributions centered at $K$:
-
 $$
+
 \delta(x - K) = \lim_{\epsilon \to 0} \frac{1}{\epsilon\sqrt{\pi}} e^{-(x-K)^2/\epsilon^2}
+
 $$
-
 ---
-
 ## Computing Option Greeks via Distributions
-
 Using the Tanaka formula, we can rigorously compute the Greeks (sensitivities) of options:
-
 ### Delta and Gamma
-
 The delta (first derivative with respect to spot) is:
-
 $$
+
 \Delta = \frac{\partial C}{\partial S_T} = e^{-rT}\mathbb{E}^Q\left[\frac{\partial (S_T - K)^+}{\partial S_T}\right] = e^{-rT}\mathbb{E}^Q[1(S_T > K)] = e^{-rT}\int_{K}^{\infty} p(s, T) \, ds
-$$
 
+$$
 The gamma (second derivative with respect to spot) is:
-
 $$
+
 \Gamma = \frac{\partial^2 C}{\partial S_T^2} = e^{-rT}\mathbb{E}^Q\left[\frac{\partial^2 (S_T - K)^+}{\partial S_T^2}\right] = e^{-rT}\mathbb{E}^Q[\delta(S_T - K)] = e^{-rT}p(K, T)
-$$
 
+$$
 This shows that the gamma is proportional to the risk-neutral probability density at the strike price. This is a profound result: gamma measures how likely the stock is to end up exactly at the strike price.
-
 ### The Strike Derivative
-
 Similarly, with respect to the strike $K$:
-
 $$
+
 \frac{\partial C}{\partial K} = e^{-rT}\mathbb{E}^Q\left[-1(S_T > K)\right] = -e^{-rT}\int_{K}^{\infty} p(s, T) \, ds
-$$
 
 $$
+$$
+
 \frac{\partial^2 C}{\partial K^2} = e^{-rT}\mathbb{E}^Q[\delta(S_T - K)] = e^{-rT}p(K, T)
-$$
 
+$$
 ---
-
 ## Itô's Lemma for Non-Smooth Functions
-
 Using the Tanaka formula, we can apply an extended version of Itô's lemma to the call payoff. Under the risk-neutral measure:
-
 $$
+
 dS_t = rS_t dt + \sigma(t, S_t)S_t dW_t
-$$
 
+$$
 The change in the call payoff is:
-
 $$
+
 \begin{array}{lll}
 d(S_T - K)^+ &=& \displaystyle \frac{\partial (S_T - K)^+}{\partial S_T}dS_T + \frac{1}{2}\frac{\partial^2 (S_T - K)^+}{\partial S_T^2}dS^2_T \\
 &=& \displaystyle 1(S_T > K)dS_T + \frac{1}{2}\delta(S_T - K)dS^2_T \\

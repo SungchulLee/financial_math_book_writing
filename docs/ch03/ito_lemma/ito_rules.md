@@ -159,7 +159,7 @@ where $b_t$ is the diffusion coefficient of $X_t$ and $e_t$ is the diffusion coe
 
 ## 5. Worked Examples
 
-### Example 1 — Computing $\int_0^t s\,dW_s$
+### Example 1 -- Computing the Integral of s dW
 
 Let $X_t = t$ (deterministic) and $Y_t = W_t$, so $dX_t = dt$ and $dY_t = dW_t$.
 Since $X_t$ is deterministic, its quadratic covariation with any Itô process is zero,

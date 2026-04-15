@@ -335,7 +335,7 @@ The moments $\mathbb{E}[W_T^k]$ determine $\mathbb{E}[S_T^k]$ via:
 
 $$\mathbb{E}[S_T^k] = S_0^k e^{k(\mu - \sigma^2/2)T} \mathbb{E}[e^{k\sigma W_T}] = S_0^k e^{k\mu T + k^2\sigma^2T/2}$$
 
-#### Variance of $W_T^2$
+#### Variance of WT²
 
 Using the moment formulas:
 

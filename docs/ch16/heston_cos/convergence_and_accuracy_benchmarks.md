@@ -128,7 +128,7 @@ The FFT computes all 50 strikes in a single pass (interpolating from the FFT gri
 
 The COS convergence rate depends on Heston parameters through two mechanisms: the density smoothness (affecting $\alpha$) and the density spread (affecting $b - a$).
 
-### Effect of Vol-of-Vol $\xi$
+### Effect of Vol-of-Vol ξ
 
 Higher $\xi$ produces heavier tails and a wider density, requiring more COS terms.
 
@@ -139,7 +139,7 @@ Higher $\xi$ produces heavier tails and a wider density, requiring more COS term
 | 0.5 | 96 | 192 |
 | 1.0 | 128 | 256 |
 
-### Effect of Maturity $\tau$
+### Effect of Maturity τ
 
 Longer maturities produce wider densities, increasing the required $N$.
 
@@ -151,7 +151,7 @@ Longer maturities produce wider densities, increasing the required $N$.
 | 5.0 | 96 |
 | 10.0 | 128 |
 
-### Effect of Correlation $\rho$
+### Effect of Correlation ρ
 
 Extreme negative correlation produces strongly skewed densities but does not significantly affect the convergence rate (the density remains smooth).
 

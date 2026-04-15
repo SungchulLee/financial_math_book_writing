@@ -107,7 +107,7 @@ The two sections that follow prove the equivalence **(P) $\Leftrightarrow$ (A)**
     The discounted price process $e^{-rt}V(t,S_t)$ is a $\mathbb{Q}$-martingale if and only if $V$ solves the Black–Scholes PDE.
 
 
-## Forward Direction: (P) $\Rightarrow$ (A) via Itô's Formula
+## Forward Direction: (P) ⇒ (A) via Itô's Formula
 
 
 Starting from the pricing formula **(P)**, we derive the Black–Scholes PDE **(A)**.
@@ -140,7 +140,7 @@ with terminal condition $V(T, S) = \Phi(S)$. $\square$
     The pricing formula **(P)** forces $e^{-rt}V$ to be a $\mathbb{Q}$-martingale. Itô's formula then computes the drift of $e^{-rt}V$ explicitly. Setting that drift to zero is not a choice — it is a necessity. The PDE **(A)** is a **consequence** of the martingale property, not a condition imposed from outside.
 
 
-## Converse Direction: (A) $\Rightarrow$ (P) via Feynman–Kac
+## Converse Direction: (A) ⇒ (P) via Feynman–Kac
 
 
 Starting from the PDE **(A)**, we recover the pricing formula **(P)**. This is the content of the Feynman–Kac theorem.

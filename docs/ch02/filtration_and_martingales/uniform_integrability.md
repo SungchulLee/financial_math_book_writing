@@ -4,7 +4,7 @@ Almost sure convergence and $L^1$ convergence are not equivalent. Uniform integr
 
 ---
 
-## The Gap Between a.s. and $L^1$ Convergence
+## The Gap Between a.s. and L¹ Convergence
 
 **Example (mass escape)**: Let $X_n = n \cdot \mathbf{1}_{[0, 1/n]}$ on $\Omega = [0,1]$ with Lebesgue measure. Then $X_n \to 0$ almost surely (for every $\omega > 0$, eventually $\omega > 1/n$), yet:
 
@@ -43,11 +43,13 @@ $$
 **(i) Uniform integrability** (definition above).
 
 **(ii) $L^1$-boundedness plus equi-absolute continuity**: $\sup_\alpha \mathbb{E}|X_\alpha| < \infty$, and for every $\varepsilon > 0$ there exists $\delta > 0$ such that:
+
 $$
 \mathbb{P}(A) < \delta \implies \sup_\alpha \mathbb{E}[|X_\alpha| \cdot \mathbf{1}_A] < \varepsilon
 $$
 
 **(iii) de la Vallée Poussin condition**: There exists a convex function $\Phi: [0,\infty) \to [0,\infty)$ with $\Phi(0) = 0$ and $\Phi(x)/x \to \infty$ as $x \to \infty$, such that:
+
 $$
 \sup_\alpha \mathbb{E}[\Phi(|X_\alpha|)] < \infty
 $$
@@ -97,9 +99,11 @@ as $K \to \infty$, where $C = \sup_\alpha \mathbb{E}[|X_\alpha|^p]$. $\square$
 **Example 3: Conditional expectations of a single variable**. If $Y \in L^1$, then $\{\mathbb{E}[Y \mid \mathcal{G}] : \mathcal{G} \subseteq \mathcal{F}\}$ is UI.
 
 **Proof**: By conditional Jensen, $|\mathbb{E}[Y|\mathcal{G}]| \le \mathbb{E}[|Y||\mathcal{G}]$, so it suffices to show $\{\mathbb{E}[|Y||\mathcal{G}] : \mathcal{G} \subseteq \mathcal{F}\}$ is UI. This family is $L^1$-bounded: $\mathbb{E}[\mathbb{E}[|Y||\mathcal{G}]] = \mathbb{E}[|Y|]$ for all $\mathcal{G}$. For equi-absolute continuity: given $\varepsilon > 0$, since $|Y| \in L^1$ there exists $\delta > 0$ such that $\int_A |Y|\,d\mathbb{P} < \varepsilon$ whenever $\mathbb{P}(A) < \delta$. For any event $A$ with $\mathbb{P}(A) < \delta$:
+
 $$
 \mathbb{E}[\mathbb{E}[|Y||\mathcal{G}]\,\mathbf{1}_A] = \mathbb{E}[|Y|\,\mathbf{1}_A] < \varepsilon
 $$
+
 By characterization (ii), the family is UI. $\square$
 
 This is the key example: **every UI martingale arises from conditioning a single $L^1$ variable** — see the convergence theorem below.
@@ -140,7 +144,7 @@ for large $n$, using uniform convergence on $A^c$ and UI (plus dominated converg
 
 This is the central application of UI in this chapter.
 
-### Characterization of $L^1$-Convergent Martingales
+### Characterization of L¹-Convergent Martingales
 
 **Theorem**: Let $(M_n, \mathcal{F}_n)_{n \ge 0}$ be a martingale. The following are equivalent:
 

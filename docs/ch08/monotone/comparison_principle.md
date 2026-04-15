@@ -135,7 +135,7 @@ $$
 
 The operator is non-decreasing in $u$. For Black-Scholes, the $-rV$ term means the operator contains $+ru$, which is indeed non-decreasing in $u$ (provided $r \geq 0$).
 
-### Continuity of $F$
+### Continuity of F
 
 The function $F$ must be continuous in all its arguments (or at least satisfy appropriate semicontinuity conditions).
 

@@ -72,7 +72,7 @@ If there exists an integrable random variable $Y$ with $\mathbb{E}[Y] < \infty$ 
 
 This generalizes boundedness: the bound need not be deterministic, but must itself be integrable.
 
-### Criterion 3: $L^p$ Boundedness ($p > 1$)
+### Criterion 3: Lp Boundedness (p > 1)
 
 If $\sup_{t \in [0,T]} \mathbb{E}[|M_t|^p] < \infty$ for some $p > 1$, then $M$ is a uniformly integrable martingale on $[0,T]$.
 
@@ -157,7 +157,7 @@ $$
 | BDG / Itô isometry | $\mathbb{E}[\langle M \rangle_T^{p/2}] < \infty$ | |
 | Uniform integrability | Tails uniformly thin | Weakest sufficient |
 
-!!! summary "Key takeaway"
+!!! abstract "Key takeaway"
     Every sufficient condition for the true martingale property works by establishing uniform integrability, either directly or through moment bounds. In financial applications, the Itô isometry condition $\mathbb{E}[\int_0^T \sigma_s^2\,ds] < \infty$ and the Novikov condition $\mathbb{E}[\exp(\frac{1}{2}\int_0^T \theta_s^2\,ds)] < \infty$ are the two most commonly used tests.
 
 ---

@@ -225,7 +225,7 @@ $$
 
 At equilibrium, the aggregate liquidation schedule is smoother than the individual one, because the mean field feedback tempers aggressive trading.
 
-### Comparison with $N$-Player Equilibrium
+### Comparison with N-Player Equilibrium
 
 **Theorem (Cardaliaguet-Lehalle, 2018).** The MFG equilibrium approximates the $N$-player Nash equilibrium with error:
 

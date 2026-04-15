@@ -122,7 +122,7 @@ e_n(t) \leq C\int_0^t e_{n-1}(s)\,ds
 = \frac{(Ct)^n}{n!}\,e_0(T). \quad \square
 $$
 
-### Step 4 — Convergence in $L^2$
+### Step 4 — Convergence in L²
 
 Since $n! \sim (n/e)^n\sqrt{2\pi n}$ grows faster than any exponential,
 

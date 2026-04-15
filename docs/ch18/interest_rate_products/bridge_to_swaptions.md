@@ -125,6 +125,7 @@ Pricing swaptions requires three ingredients: forward swap rates (from the yield
 **Exercise 2.** If the swap rate at expiry in Exercise 1 were $S_T = 3.0\%$ instead, what would the swaption payoff be? Explain the holder's decision.
 
 ??? success "Solution to Exercise 2"
+
     $$
     N A (S_T - K)^+ = 10{,}000{,}000 \times 2.75 \times (0.030 - 0.035)^+ = 10{,}000{,}000 \times 2.75 \times 0 = 0
     $$

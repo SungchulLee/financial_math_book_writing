@@ -136,7 +136,7 @@ For $A_m(d)$ models with $m > 0$, the quadratic terms make the system genuinely 
 
 ## Key Examples
 
-### Two-Factor Gaussian Model: $A_0(2)$
+### Two-Factor Gaussian Model: A₀(2)
 
 State: $X_t = (r_t, \ell_t)^\top \in \mathbb{R}^2$ where $r_t$ is a short-rate factor and $\ell_t$ is a long-rate factor.
 
@@ -148,7 +148,7 @@ Affine parameters: $b_0 = (\kappa_r\theta_r, \kappa_\ell\theta_\ell)^\top$, $B =
 
 The Riccati system is linear: $\psi'(\tau) = B^\top\psi(\tau)$, which gives $\psi(\tau) = e^{B^\top\tau}\,u$. Both components can go negative, making this suitable for nominal rates in a low-rate environment but problematic as a model for variance.
 
-### Heston Model: $A_1(2)$
+### Heston Model: A₁(2)
 
 State: $X_t = (V_t, \log S_t)^\top$ with $V_t \in \mathbb{R}_+$ (variance) and $\log S_t \in \mathbb{R}$ (log-price).
 
@@ -180,7 +180,7 @@ The variance $V_t$ drives the diffusion of both itself and the log-price, placin
 
     The second equation gives $\psi_2(\tau) = u_2$ (constant), reducing the system to a scalar Riccati equation for $\psi_1$ with coefficients depending on $u_2$. This is why the Heston characteristic function has a semi-closed form.
 
-### Three-Factor Interest Rate Model: $A_1(3)$
+### Three-Factor Interest Rate Model: A₁(3)
 
 State: $X_t = (V_t, r_t, \ell_t)^\top$ with $V_t \in \mathbb{R}_+$ (volatility), $r_t \in \mathbb{R}$ (short rate), $\ell_t \in \mathbb{R}$ (long rate).
 

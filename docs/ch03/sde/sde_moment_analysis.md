@@ -479,7 +479,7 @@ When computing moments for a new SDE:
 3. **Solve the ODE hierarchy.** For many models, the first and second moment ODEs are linear and solvable in closed form.
 4. **Verify via simulation** for models where analytical results are complex. For processes with state-dependent diffusion (such as CIR), standard Euler schemes can introduce discretization bias near boundaries — exact simulation or higher-order methods may be needed for reliable verification. See the [Simulation](sde_simulation.md) page for implementation details.
 
-!!! summary "Key Takeaway"
+!!! abstract "Key Takeaway"
     Moment analysis extracts quantitative information from SDEs without solving for the full distribution. Gaussian processes (Brownian motion, Vasicek) have moments determined entirely by the mean and variance. Log-normal processes (GBM) require power-moment techniques. State-dependent volatility (CIR) couples the moment hierarchy, requiring ODE methods. In all cases, Itô isometry and Itô's lemma are the essential computational tools.
 
 ---

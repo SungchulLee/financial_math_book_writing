@@ -63,7 +63,7 @@ $$
 \partial_t u + \mathcal{L}u - r\,u = 0, \quad u(T, \cdot) = g
 $$
 
-### The $-r\,u$ Term
+### The -ru Term
 
 The discounting appears as the **zeroth-order term** $-r\,u$ in the PDE. This term acts as a "sink" -- it continuously removes value from the solution at rate $r$.
 
@@ -157,7 +157,7 @@ $$
 
 **Interpretation**: The process lives until a random killing time $\zeta$. We only collect the payoff $g(X_T)$ if the process survives to maturity.
 
-### Why $-r\,u$ in the PDE?
+### Why -ru in the PDE?
 
 The $-ru$ term represents the rate of "leakage" from the system. At each instant $ds$, a fraction $r\,ds$ of the remaining probability mass is killed. The PDE tracks the expected value conditional on survival, and the $-ru$ term accounts for the continual erosion of this value.
 
@@ -167,7 +167,7 @@ $$
 
 ---
 
-## Derivation of the $-r\,u$ Term
+## Derivation of the -ru Term
 
 ### From the Undiscounted Backward Equation
 

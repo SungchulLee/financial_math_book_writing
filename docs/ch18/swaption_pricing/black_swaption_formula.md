@@ -197,6 +197,7 @@ which is exactly the value of the underlying payer swap. This is the swaption an
 **Exercise 2.** Using the same parameters as Exercise 1, compute the receiver swaption price. Verify payer-receiver parity: $V^{\text{pay}} - V^{\text{rec}} = N A_{m,n}(0)(S_{m,n}(0) - K)$.
 
 ??? success "Solution to Exercise 2"
+
     $$
     V^{\text{rec}} = N A_{m,n}(0)[K\Phi(-d_2) - S_{m,n}(0)\Phi(-d_1)]
     $$

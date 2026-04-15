@@ -35,7 +35,7 @@ Rearranging isolates the stochastic integral and expresses it in terms of $f(t,B
 
 ---
 
-### Example 1: $\displaystyle\int_0^t B_s\,dB_s$
+### Example 1: Integral of B dB
 
 Choose $f(x) = \frac{x^2}{2}$, so that $f'(x) = x$.
 
@@ -61,7 +61,7 @@ This identity implies that $B_t^2 - t$ is a martingale.
 
 ---
 
-### Example 2: $\displaystyle\int_0^t s\,dB_s$
+### Example 2: Integral of s dB
 
 The integrand $s$ is **deterministic and square-integrable**. For deterministic integrands, the Itô isometry gives the distribution directly: the integral is Gaussian with zero mean (since all Itô integrals of deterministic square-integrable integrands are centered Gaussian) and variance
 
@@ -94,7 +94,7 @@ This path-by-path identity is consistent with the Gaussian characterization abov
 
 ---
 
-### Example 3: $\displaystyle\int_0^t sB_s\,dB_s$
+### Example 3: Integral of sB dB
 
 Choose $f(t,x) = \frac{1}{2}tx^2$, so that $\frac{\partial f}{\partial x} = tx$.
 
@@ -132,7 +132,7 @@ The integral $\int_0^t B_s^2\,ds$ has no closed form and is left as is. This exa
 
 ---
 
-### Example 4: $\displaystyle\int_0^t B_s^2\,dB_s$
+### Example 4: Integral of B² dB
 
 Choose $f(x) = \frac{x^3}{3}$, so that $f'(x) = x^2$.
 
@@ -158,7 +158,7 @@ The integral $\int_0^t B_s\,ds$ has no closed form and is left as is.
 
 ---
 
-### Example 5: $\displaystyle\int_0^t e^{B_s}\,dB_s$
+### Example 5: Integral of exp(B) dB
 
 Apply Itô's lemma to $f(x) = e^x$:
 

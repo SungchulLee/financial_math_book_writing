@@ -46,7 +46,7 @@ We prove all three cases via the criterion $U(1) = \infty \Leftrightarrow$ recur
 
 ---
 
-### Proof for $d = 1$
+### Proof for d = 1
 
 The probability of return to 0 at time $2n$ is
 
@@ -60,7 +60,7 @@ so $u_{2n} \sim \frac{1}{\sqrt{\pi n}}$. Since $\sum_{n=1}^\infty \frac{1}{\sqrt
 
 ---
 
-### Proof for $d = 2$
+### Proof for d = 2
 
 In two dimensions, at each step the walk moves in one of the four directions $\{\pm e_1, \pm e_2\}$, each with probability $1/4$. To return to the origin at time $2n$, the walk must take exactly $k$ steps in the $+e_1$ direction, $k$ steps in the $-e_1$ direction, $n-k$ steps in the $+e_2$ direction, and $n-k$ steps in the $-e_2$ direction, for some $0 \leq k \leq n$. Summing over $k$:
 
@@ -77,7 +77,7 @@ Again $\sum_n u_{2n}^{(2)} = \infty$, so the 2D walk is **recurrent**.
 
 ---
 
-### Proof for $d \geq 3$
+### Proof for d ≥ 3
 
 In $d$ dimensions, the same multinomial counting argument gives
 
@@ -87,7 +87,7 @@ where the sum is over all $(n_1,\ldots,n_d)$ with $n_i \geq 0$ and $\sum_{i=1}^d
 
 ---
 
-## Asymmetric Walk in $d = 1$
+## Asymmetric Walk in d = 1
 
 For $p \neq 1/2$, any nonzero drift makes the 1D walk transient. By the Strong Law of Large Numbers:
 

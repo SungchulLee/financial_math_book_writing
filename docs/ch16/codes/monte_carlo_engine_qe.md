@@ -47,7 +47,7 @@ When $\psi$ is small (large $v_t$), the distribution is approximately Gaussian. 
 
 The QE scheme samples $v_{t+\Delta t}$ by matching these two moments using one of two approximations, selected by comparing $\psi$ to a threshold $\psi_c$ (typically $\psi_c = 1.5$).
 
-### Case 1: $\psi \leq \psi_c$ (Quadratic Approximation)
+### Case 1: ψ ≤ ψc (Quadratic Approximation)
 
 When $\psi$ is small, the conditional distribution is approximately normal and the variance is far from zero. Use a **quadratic** transformation of a standard normal:
 
@@ -70,7 +70,7 @@ The condition $\psi \leq \psi_c$ with $\psi_c \leq 2$ ensures $b^2 \geq 0$, so t
 !!! note "Moment Matching Verification"
     With $Z_v \sim N(0,1)$: $\mathbb{E}[a(b + Z_v)^2] = a(b^2 + 1) = m$ and $\text{Var}[a(b + Z_v)^2] = 2a^2(b^2 + 1)^2\psi/(2) = s^2$. The first two moments match exactly by construction.
 
-### Case 2: $\psi > \psi_c$ (Exponential Approximation)
+### Case 2: ψ > ψc (Exponential Approximation)
 
 When $\psi$ is large, the variance is near zero and the conditional distribution has a significant point mass at zero. Use an **exponential** distribution mixed with a point mass:
 

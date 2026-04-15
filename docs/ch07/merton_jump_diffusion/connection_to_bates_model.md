@@ -161,15 +161,15 @@ The Bates model achieves the best fit but at the cost of a higher-dimensional op
 
 ## Implied Volatility Surface Comparison
 
-### Short Maturity ($T = 1$ month)
+### Short Maturity (T = 1 month)
 
 At very short maturities, the Heston model produces a nearly flat smile (stochastic volatility has not had time to act), while the Merton model produces steep skew through jumps. The Bates model matches the market by combining both effects.
 
-### Medium Maturity ($T = 6$ months)
+### Medium Maturity (T = 6 months)
 
 Both Heston and Bates fit well. The Merton model begins to underperform because its smile amplitude is decaying.
 
-### Long Maturity ($T = 2$ years)
+### Long Maturity (T = 2 years)
 
 The Merton smile has almost vanished (the jump contribution scales as $1/\sqrt{T}$). The Heston model, through its persistent stochastic volatility, maintains the smile. The Bates model provides the same long-maturity fit as Heston since the jump effect is negligible.
 

@@ -68,7 +68,7 @@ A critical point: $(\widetilde{W}_t)$ is a Brownian motion adapted to the **back
 
 Conflating forward and backward filtrations is the most common source of error in time reversal arguments.
 
-### Connection to Doob's $h$-Transform
+### Connection to Doob's h-Transform
 
 In the constant-$a$ case, the score correction $a\,\nabla\log p$ can be understood via a **Doob $h$-transform**: weighting the path measure by $h(t,x) = p(t,x)$ (the density itself) produces a new drift that guides the process toward the support of $p$. Time reversal is essentially a Doob $h$-transform with $h = p$.
 

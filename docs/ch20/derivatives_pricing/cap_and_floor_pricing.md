@@ -7,6 +7,7 @@ Interest rate caps and floors are among the most actively traded OTC derivatives
 An interest rate cap on a notional $N$ with strike $K$ and payment dates $T_1, T_2, \ldots, T_n$ consists of $n$ individual caplets. Each caplet pays at $T_k$ based on the floating rate observed at $T_{k-1}$.
 
 !!! info "Definition: Cap and Floor"
+
     $$\begin{array}{lllll}
     \displaystyle
     \text{Cap}(t_0) &=& \displaystyle\sum_{k=1}^{n} \text{Caplet}_k(t_0)

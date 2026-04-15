@@ -164,7 +164,7 @@ $$
 
 This is universal -- it encodes the derivative's payoff structure.
 
-### Boundary at $S = 0$
+### Boundary at S = 0
 
 At $S = 0$, the Black-Scholes operator degenerates: $\frac{1}{2}\sigma^2 S^2 \partial_{SS} \to 0$. The PDE reduces to:
 
@@ -177,7 +177,7 @@ For a call ($g(0) = 0$): $V(t, 0) = 0$. For a put ($g(0) = K$): $V(t, 0) = Ke^{-
 !!! info "Why No Boundary Condition Is Needed at $S = 0$"
     The degeneracy of the PDE at $S = 0$ means $S = 0$ is an **absorbing boundary** for geometric Brownian motion: once $S_t = 0$, it remains there forever. Probabilistically, $\mathbb{P}(S_t = 0 \text{ for some } t) = 0$, so the boundary is never reached. The PDE determines its own boundary behavior there.
 
-### Boundary as $S \to \infty$
+### Boundary as S → ∞
 
 An artificial truncation at $S = S_\text{max}$ requires a far-field boundary condition. Common choices:
 

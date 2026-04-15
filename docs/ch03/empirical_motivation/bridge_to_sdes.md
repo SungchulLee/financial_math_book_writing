@@ -174,7 +174,7 @@ $(dW_t)^2 = dt \neq 0$, not of the heuristic derivation here.
 
 ---
 
-## What is $dW_t$?
+## What is dWₜ?
 
 Standard Brownian motion $W_t$ is a stochastic process satisfying:
 

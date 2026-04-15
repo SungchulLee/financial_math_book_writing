@@ -161,7 +161,7 @@ To validate the inversion approaches, consider the standard normal distribution.
 
     This recovers the standard normal CDF. The integrand $e^{-u^2/2}\sin(ux)/u$ is bounded and rapidly decaying, so the trapezoidal rule with $M = 100$ points on $[0, 20]$ achieves $10^{-12}$ accuracy.
 
-### Python: PDF, CDF, and Characteristic Function of Normal($\mu$, $\sigma^2$)
+### Python: PDF, CDF, and Characteristic Function of Normal(μ, σ²)
 
 The following code plots all three objects simultaneously for Normal($\mu = 10$, $\sigma^2 = 1$), illustrating the three panels: PDF $f(x)$, CDF $F(x)$, and the characteristic function $\varphi(u)$ showing its real part, imaginary part, and Gaussian modulus envelope $|\varphi(u)| = e^{-\sigma^2 u^2/2}$.
 

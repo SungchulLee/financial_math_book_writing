@@ -20,7 +20,7 @@ The yield curve has at least three independent degrees of freedom---level, slope
 
 ## The Dai-Singleton Classification
 
-### The $A_m(d)$ Family
+### The Aₘ(d) Family
 
 **Definition ($A_m(d)$ Models).** An affine term structure model with $d$ state variables, of which $m$ are CIR-type (non-negative), belongs to the $A_m(d)$ family, where $0 \leq m \leq d$.
 

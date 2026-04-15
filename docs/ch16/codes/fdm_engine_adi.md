@@ -45,7 +45,7 @@ The kill term $-rV$ is split equally between $\mathcal{A}_1$ and $\mathcal{A}_2$
 
 ## Grid Construction
 
-### Non-Uniform Grid in $x$
+### Non-Uniform Grid in x
 
 The log-price grid concentrates points near $x_0 = \ln S_0$ (the ATM region). A sinh-based stretching is standard:
 
@@ -55,7 +55,7 @@ $$
 
 where $c_1$ controls the grid range and $c_2$ controls the concentration near $x_0$. Typical values: $c_1 = 4$, $c_2 = 4$, $N_x = 100$--$200$.
 
-### Non-Uniform Grid in $v$
+### Non-Uniform Grid in v
 
 The variance grid concentrates points near $v = 0$ (where the PDE degenerates) and near $v_0$:
 
@@ -75,7 +75,7 @@ Uniform spacing $\Delta t = T / N_t$ with $N_t = 100$--$500$ time steps (marchin
 
 The Heston PDE requires boundary conditions on all four edges of the $(x, v)$ rectangle.
 
-### At $v = 0$ (Degenerate Boundary)
+### At v = 0 (Degenerate Boundary)
 
 When $v = 0$, the diffusion coefficients in $x$ and $v$ both vanish. The PDE reduces to the ODE:
 
@@ -85,7 +85,7 @@ $$
 
 This boundary condition is applied by discretizing this reduced PDE on the $v = 0$ row. Note that $\kappa\theta > 0$ (under the Feller condition), so information flows **into** the domain from $v = 0$---the boundary is not a sink.
 
-### At $v = v_{\max}$
+### At v = v_max
 
 For large $v$, apply a **linear extrapolation** (Neumann-type) condition:
 
@@ -95,13 +95,13 @@ $$
 
 This assumes the option value varies linearly in $v$ for large variance, which is approximately true when $v_{\max}$ is chosen sufficiently large.
 
-### At $x = x_{\min}$ (Deep OTM for Calls)
+### At x = x_min (Deep OTM for Calls)
 
 For calls: $V(x_{\min}, v, t) = 0$ (the call is worthless when $S$ is very small).
 
 For puts: $V(x_{\min}, v, t) = K e^{-r(T-t)} - S_{\min}$ (intrinsic value approximation).
 
-### At $x = x_{\max}$ (Deep ITM for Calls)
+### At x = x_max (Deep ITM for Calls)
 
 For calls: $V(x_{\max}, v, t) = S_{\max} - K e^{-r(T-t)}$ (intrinsic value approximation).
 
@@ -119,7 +119,7 @@ $$
 \hat{V} = V^n + \Delta t \left(\mathcal{A}_0 V^n + \mathcal{A}_1 V^n + \mathcal{A}_2 V^n\right)
 $$
 
-### Stage 2: Implicit $x$-Direction
+### Stage 2: Implicit x-Direction
 
 $$
 (I - \vartheta \Delta t \, \mathcal{A}_1) V^* = \hat{V} - \vartheta \Delta t \, \mathcal{A}_1 V^n
@@ -127,7 +127,7 @@ $$
 
 This is a tridiagonal system in the $x$-direction for each fixed $v_j$, solved via Thomas's algorithm.
 
-### Stage 3: Implicit $v$-Direction
+### Stage 3: Implicit v-Direction
 
 $$
 (I - \vartheta \Delta t \, \mathcal{A}_2) V^{**} = V^* - \vartheta \Delta t \, \mathcal{A}_2 V^n

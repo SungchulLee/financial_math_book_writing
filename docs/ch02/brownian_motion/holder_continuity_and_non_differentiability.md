@@ -18,11 +18,11 @@ calculus (Itô's calculus) is required.
 
 ### Definition
 
-!!! definition "Hölder Continuity"
+!!! info "Hölder Continuity"
     A function $f:[0,T]\to\mathbb{R}$ is **Hölder continuous of order $\alpha \in (0,1]$**
     if there exists a finite constant $C > 0$ such that
 
-    $$|f(t) - f(s)| \leq C\,|t - s|^\alpha \quad \text{for all } s, t \in [0,T].$$
+    $$|f(t) - f(s)| \leq C\,|t - s|^\alpha \quad \text{for all } s, t \in [0,T]$$
 
     The largest such $\alpha$ is called the **Hölder exponent** of $f$.
 
@@ -40,7 +40,7 @@ allows the function to oscillate in ways that preclude differentiability.
 The tool used to establish path regularity for stochastic processes is the following
 general theorem.
 
-!!! theorem "Kolmogorov's Continuity Criterion"
+!!! tip "Kolmogorov's Continuity Criterion"
     Let $\{X_t\}_{t \in [0,T]}$ be a stochastic process satisfying
 
     $$\mathbb{E}[|X_t - X_s|^p] \leq C\,|t-s|^{1+\beta}$$
@@ -54,7 +54,7 @@ the Borel–Cantelli lemma to show that the modulus of continuity decays at the 
 rate. The details use the Markov inequality and a chaining argument; see Karatzas &
 Shreve (1991), Theorem 2.2.8 for the full proof. $\square$
 
-### Brownian Motion is Hölder-$\alpha$ for Every $\alpha < \tfrac{1}{2}$
+### Brownian Motion is Hölder-α for Every α < (1)/(2)
 
 **Theorem** (Hölder Regularity of Brownian Motion)
 
@@ -65,15 +65,15 @@ surely Hölder continuous of order $\alpha$ for every $\alpha < \tfrac{1}{2}$.
 
 Since $W_t - W_s \sim \mathcal{N}(0, t-s)$, the $p$-th moment of a Gaussian increment is:
 
-$$\mathbb{E}[|W_t - W_s|^p] = \mathbb{E}[|Z|^p]\,|t-s|^{p/2}, \quad Z \sim \mathcal{N}(0,1).$$
+$$\mathbb{E}[|W_t - W_s|^p] = \mathbb{E}[|Z|^p]\,|t-s|^{p/2}, \quad Z \sim \mathcal{N}(0,1)$$
 
 For the $p$-th absolute moment of a standard normal, $\mathbb{E}[|Z|^p] = \frac{2^{p/2}\,\Gamma((p+1)/2)}{\sqrt{\pi}} < \infty$, so set $C_p = \mathbb{E}[|Z|^p]$:
 
-$$\mathbb{E}[|W_t - W_s|^p] = C_p\,|t-s|^{p/2}.$$
+$$\mathbb{E}[|W_t - W_s|^p] = C_p\,|t-s|^{p/2}$$
 
 We want to apply Kolmogorov's criterion with exponent $1+\beta$. Matching:
 
-$$p/2 = 1 + \beta \implies \beta = p/2 - 1.$$
+$$p/2 = 1 + \beta \implies \beta = p/2 - 1$$
 
 For $\beta > 0$ we need $p > 2$. With $p > 2$, the criterion gives Hölder continuity of
 every order $\alpha < \beta/p = (p/2 - 1)/p = \tfrac{1}{2} - \tfrac{1}{p}$.
@@ -97,7 +97,7 @@ $\alpha < \tfrac{1}{2}$. $\square$
 
 ### Statement
 
-!!! theorem "Brownian Motion is Nowhere Differentiable"
+!!! tip "Brownian Motion is Nowhere Differentiable"
     Almost surely, the function $t \mapsto W_t(\omega)$ is differentiable at no point
     $t \in [0, \infty)$.
 
@@ -112,11 +112,11 @@ We give a clean argument using the quadratic variation.
 **Suppose** for contradiction that $W_t(\omega)$ is differentiable at some $t_0$, with
 derivative $W'_{t_0} = L(\omega)$. Then for any $\varepsilon > 0$ there exists $\delta > 0$ such that
 
-$$|W_{t_0+h} - W_{t_0}| \leq (|L| + \varepsilon)|h| \quad \text{for all } |h| < \delta.$$
+$$|W_{t_0+h} - W_{t_0}| \leq (|L| + \varepsilon)|h| \quad \text{for all } |h| < \delta$$
 
 Fix a partition $\Pi_n$ of a small interval $[t_0, t_0+\eta]$ with $\eta < \delta$ and mesh $\|\Pi_n\| \to 0$. Then
 
-$$\sum_i (W_{t_{i+1}} - W_{t_i})^2 \leq \max_i |W_{t_{i+1}} - W_{t_i}| \cdot \sum_i |W_{t_{i+1}} - W_{t_i}|.$$
+$$\sum_i (W_{t_{i+1}} - W_{t_i})^2 \leq \max_i |W_{t_{i+1}} - W_{t_i}| \cdot \sum_i |W_{t_{i+1}} - W_{t_i}|$$
 
 The first factor is bounded by $(|L|+\varepsilon)\|\Pi_n\| \to 0$. The second factor is the
 total variation of $W$ over $[t_0, t_0+\eta]$, which is finite (since the increments are
@@ -124,7 +124,7 @@ bounded by $(|L|+\varepsilon)\eta$). Therefore the left side converges to 0.
 
 But by the quadratic variation theorem (Section: Quadratic Variation of Brownian Motion), for any interval $[t_0, t_0+\eta]$:
 
-$$\sum_i (W_{t_{i+1}}-W_{t_i})^2 \xrightarrow{L^2} \eta > 0.$$
+$$\sum_i (W_{t_{i+1}}-W_{t_i})^2 \xrightarrow{L^2} \eta > 0$$
 
 $L^2$ convergence implies convergence along a subsequence of partitions for a.e. $\omega$, so for a.e. $\omega$ there exists a subsequence along which $\sum_i (W_{t_{i+1}} - W_{t_i})^2(\omega) \to \eta > 0$ — contradicting the deterministic bound above which forces the same sum to $0$ for any $\omega$ where $W$ is differentiable at $t_0$.
 
@@ -136,7 +136,7 @@ arbitrary and the exceptional null set can be chosen uniformly over all rational
 
 The $\sqrt{\Delta t}$ scaling of increments is the immediate intuition:
 
-$$\frac{W_{t+h} - W_t}{h} \approx \frac{\sqrt{h}}{h} = \frac{1}{\sqrt{h}} \to \infty \quad \text{as } h \to 0.$$
+$$\frac{W_{t+h} - W_t}{h} \approx \frac{\sqrt{h}}{h} = \frac{1}{\sqrt{h}} \to \infty \quad \text{as } h \to 0$$
 
 The difference quotient diverges in magnitude (though not in a fixed direction, since
 increments are symmetric about zero). This is why no limit exists.
@@ -155,11 +155,11 @@ flowchart LR
 
 ### Definition and Smooth Comparison
 
-!!! definition "Total Variation"
+!!! info "Total Variation"
     The **total variation** of $f:[0,T]\to\mathbb{R}$ along a partition
     $\Pi = \{0 = t_0 < t_1 < \cdots < t_n = T\}$ is
 
-    $$V_1(f,\Pi) = \sum_{i=0}^{n-1}|f(t_{i+1})-f(t_i)|.$$
+    $$V_1(f,\Pi) = \sum_{i=0}^{n-1}|f(t_{i+1})-f(t_i)|$$
 
     The **total variation** of $f$ on $[0,T]$ is $V_1(f) = \sup_\Pi V_1(f,\Pi)$.
 
@@ -171,7 +171,7 @@ decomposition applies). Classical integration theory relies entirely on this fac
 
 ### Brownian Motion Has Infinite Total Variation
 
-!!! theorem "Infinite Total Variation"
+!!! tip "Infinite Total Variation"
     Almost surely, the total variation of $W$ on $[0,T]$ is infinite:
 
     $$V_1(W) = \sup_\Pi \sum_{i}|W_{t_{i+1}} - W_{t_i}| = +\infty \quad \text{a.s.}$$
@@ -183,11 +183,11 @@ For any partition $\Pi$ of $[0,T]$, bound each squared increment by the maximum:
 $$\sum_i (\Delta W_i)^2
 = \sum_i |\Delta W_i| \cdot |\Delta W_i|
 \leq \left(\max_i |\Delta W_i|\right) \cdot \sum_i |\Delta W_i|
-= \left(\max_i |\Delta W_i|\right) \cdot V_1(W, \Pi).$$
+= \left(\max_i |\Delta W_i|\right) \cdot V_1(W, \Pi)$$
 
 Rearranging:
 
-$$V_1(W, \Pi) \geq \frac{\sum_i (\Delta W_i)^2}{\max_i |\Delta W_i|}.$$
+$$V_1(W, \Pi) \geq \frac{\sum_i (\Delta W_i)^2}{\max_i |\Delta W_i|}$$
 
 As $\|\Pi\| \to 0$: the numerator converges in $L^2$ to $T > 0$ (the quadratic variation
 result), while the denominator converges to 0 in probability (since
@@ -308,6 +308,13 @@ plt.show()
   direct consequence of the nowhere differentiability forcing $dW_t^2 = dt$.
 
 ---
+
+## References
+
+- Karatzas, I., & Shreve, S. E. (1991). *Brownian Motion and Stochastic Calculus*, 2nd ed. Springer. (Theorem 2.2.8 for Kolmogorov criterion; Chapter 1 for path properties)
+- Mörters, P., & Peres, Y. (2010). *Brownian Motion*. Cambridge University Press. (Chapter 1 for Hölder regularity and non-differentiability)
+- Revuz, D., & Yor, M. (1999). *Continuous Martingales and Brownian Motion*, 3rd ed. Springer. (Chapter I for Kolmogorov criterion)
+- Billingsley, P. (1995). *Probability and Measure*, 3rd ed. Wiley. (Weak convergence and tightness)
 
 ## Exercises
 
@@ -433,10 +440,3 @@ plt.show()
     $$
 
     As $\|\Pi\| \to 0$, the right side tends to 0. Therefore $\sum_i (f(t_{i+1}) - f(t_i))^2 \to 0$, confirming zero quadratic variation at a point of differentiability.
-
-## References
-
-- Karatzas, I., & Shreve, S. E. (1991). *Brownian Motion and Stochastic Calculus*, 2nd ed. Springer. (Theorem 2.2.8 for Kolmogorov criterion; Chapter 1 for path properties)
-- Mörters, P., & Peres, Y. (2010). *Brownian Motion*. Cambridge University Press. (Chapter 1 for Hölder regularity and non-differentiability)
-- Revuz, D., & Yor, M. (1999). *Continuous Martingales and Brownian Motion*, 3rd ed. Springer. (Chapter I for Kolmogorov criterion)
-- Billingsley, P. (1995). *Probability and Measure*, 3rd ed. Wiley. (Weak convergence and tightness)

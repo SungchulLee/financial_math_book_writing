@@ -6,7 +6,7 @@ Credit models can be calibrated to two fundamentally different data sources: **h
 
 ## Two Measures, Two Calibrations
 
-### Physical Measure ($\mathbb{P}$)
+### Physical Measure (ℙ)
 
 Under the **physical** (or historical, or real-world, or actuarial) measure:
 
@@ -14,7 +14,7 @@ Under the **physical** (or historical, or real-world, or actuarial) measure:
 - Parameters reflect the **true statistical likelihood** of default
 - Used for: risk management, capital allocation, internal rating systems, stress testing
 
-### Risk-Neutral Measure ($\mathbb{Q}$)
+### Risk-Neutral Measure (ℚ)
 
 Under the **risk-neutral** (or pricing) measure:
 

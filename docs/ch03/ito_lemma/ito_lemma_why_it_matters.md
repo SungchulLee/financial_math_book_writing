@@ -30,7 +30,7 @@ To see why this becomes unpleasant quickly, we compute a few integrals directly.
 
 ## 2. Why the Direct Approach Is Hard
 
-### Example A: Computing $\int_0^1 B_s\,dB_s$ Directly
+### Example A: Computing the Integral of B dB Directly
 
 By definition,
 
@@ -71,7 +71,7 @@ $$
 
 Even this "simple" integral required a special algebraic trick and knowledge of quadratic variation.
 
-### Example B: Computing $\int_0^1 sB_s\,dB_s$ Directly
+### Example B: Computing the Integral of sB dB Directly
 
 The definition gives
 
@@ -150,7 +150,7 @@ This is the stochastic analogue of $\int_0^t g(s)\,ds = G(t) - G(0)$. The right-
 
 ## 4. Re-doing the Earlier Examples
 
-### Example A: $\int_0^1 B_s\,dB_s$
+### Example A: Integral of B dB
 
 Choose $f(b)=\frac12 b^2$. Then $f_t=0$, $f_b=b$, $f_{bb}=1$. Itô's lemma gives (using $B_0 = 0$):
 
@@ -169,7 +169,7 @@ $$
 }
 $$
 
-### Example B: $\int_0^1 sB_s\,dB_s$
+### Example B: Integral of sB dB
 
 Choose $f(t,b)=\frac12 t b^2$. Then $f_t=\frac12 b^2$, $f_b=tb$, $f_{bb}=t$. Itô's lemma gives (using $B_0 = 0$):
 
@@ -193,7 +193,7 @@ $$
 
     The result still contains $\int_0^1 B_s^2\,ds$ — but we arrived at it in a few lines rather than through pages of Riemann-sum manipulations.
 
-### Example C: $\int_0^1 B_s^2\,dB_s$
+### Example C: Integral of B² dB
 
 Choose $f(b)=\frac13 b^3$. Then $f_t=0$, $f_b=b^2$, $f_{bb}=2b$, so $\frac12 f_{bb}\,ds = b\,ds = B_s\,ds$. Itô's lemma gives (using $B_0 = 0$):
 

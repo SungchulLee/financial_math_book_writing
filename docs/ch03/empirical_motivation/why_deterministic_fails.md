@@ -217,8 +217,9 @@ generates an extra drift term. This is the subject of Section 2.2.
     gives $\log S_t = \log S_0 + \mu t + \sigma W_t$, hence
     $S_t = S_0 e^{\mu t + \sigma W_t}$. The correct solution, derived in
     Section 2.2 via Itô's lemma, is
+
     $$S_t = S_0 \exp\!\left[\left(\mu - \tfrac{\sigma^2}{2}\right)t
-    + \sigma W_t\right].$$
+    + \sigma W_t\right]$$
     The $-\frac{\sigma^2}{2}$ correction comes from the second-order term
     $(dW_t)^2 = dt \neq 0$ that is absent in ordinary calculus. It is not a
     small correction: for $\sigma = 0.20$, it shifts the drift by $-0.02$

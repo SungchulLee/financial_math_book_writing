@@ -350,7 +350,7 @@ Itô's lemma requires $f \in C^{2,1}$. If the transformation is not sufficiently
 
 Deterministic functions such as $e^{at}$ have finite variation. When computing $d(e^{at} X_t)$ using the product rule, no additional Itô correction appears from the deterministic factor — only the stochastic terms in $dX_t$ contribute to quadratic covariation.
 
-!!! summary "Key Takeaway"
+!!! abstract "Key Takeaway"
     Verifying SDE solutions reduces to computing the differential of the proposed process using Itô's lemma and matching the resulting drift and diffusion coefficients with the original equation.
 
 ---

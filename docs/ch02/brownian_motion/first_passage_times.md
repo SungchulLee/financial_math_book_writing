@@ -21,11 +21,11 @@ $\mathbb{P}(\tau_a < \infty) = 1$, and illustrates all results with simulation.
 
 ### Definition
 
-!!! definition "First Passage Time"
+!!! info "First Passage Time"
     For a standard Brownian motion $\{W_t\}_{t \geq 0}$ and level $a \in \mathbb{R}$,
     the **first passage time** (or **hitting time**) to $a$ is:
 
-    $$\tau_a := \inf\{t \geq 0 : W_t = a\}.$$
+    $$\tau_a := \inf\{t \geq 0 : W_t = a\}$$
 
     We set $\tau_a = +\infty$ if the level is never reached.
 
@@ -39,16 +39,16 @@ since $\{\tau_a \leq t\} = \{\sup_{s \leq t} W_s \geq a\} \in \mathcal{F}_t$ by
 continuity of paths. Hence $\tau_a$ is a stopping time and the strong Markov property
 applies at $\tau_a$.
 
-### Recurrence: $\mathbb{P}(\tau_a < \infty) = 1$
+### Recurrence: ℙ(τₐ < ∞) = 1
 
-!!! theorem "Brownian Motion Hits Every Level"
+!!! tip "Brownian Motion Hits Every Level"
     For any $a \in \mathbb{R}$, $\mathbb{P}(\tau_a < \infty) = 1$.
 
 **Proof.**
 
 By the reflection principle (Theorem 1.6.1 in the Reflection Principle chapter):
 
-$$\mathbb{P}(\tau_a \leq t) = \mathbb{P}(M_t \geq a) = 2\mathbb{P}(W_t \geq a) = 2\Phi\!\left(-\frac{a}{\sqrt{t}}\right).$$
+$$\mathbb{P}(\tau_a \leq t) = \mathbb{P}(M_t \geq a) = 2\mathbb{P}(W_t \geq a) = 2\Phi\!\left(-\frac{a}{\sqrt{t}}\right)$$
 
 As $t \to \infty$, $a/\sqrt{t} \to 0$, so $\Phi(-a/\sqrt{t}) \to \Phi(0) = 1/2$. Therefore:
 
@@ -56,14 +56,14 @@ $$\mathbb{P}(\tau_a < \infty) = \lim_{t \to \infty} \mathbb{P}(\tau_a \leq t) = 
 
 ---
 
-## Distribution of $\tau_a$: The Lévy Distribution
+## Distribution of τₐ: The Lévy Distribution
 
 ### Cumulative Distribution Function
 
-!!! theorem "CDF of First Passage Time"
+!!! tip "CDF of First Passage Time"
     For $a > 0$ and $t > 0$:
 
-    $$\mathbb{P}(\tau_a \leq t) = 2\Phi\!\left(-\frac{a}{\sqrt{t}}\right) = 2\left[1 - \Phi\!\left(\frac{a}{\sqrt{t}}\right)\right].$$
+    $$\mathbb{P}(\tau_a \leq t) = 2\Phi\!\left(-\frac{a}{\sqrt{t}}\right) = 2\left[1 - \Phi\!\left(\frac{a}{\sqrt{t}}\right)\right]$$
 
 **Proof.**
 
@@ -74,7 +74,7 @@ $$\mathbb{P}(\tau_a \leq t) = \mathbb{P}(M_t \geq a) = 2\mathbb{P}(W_t \geq a) =
 
 ### Probability Density Function
 
-!!! theorem "Lévy Distribution"
+!!! tip "Lévy Distribution"
     The density of $\tau_a$ for $a > 0$ is:
 
     $$\boxed{f_{\tau_a}(t) = \frac{a}{\sqrt{2\pi t^3}}\exp\!\left(-\frac{a^2}{2t}\right), \quad t > 0.}$$
@@ -87,7 +87,7 @@ Differentiate the CDF with respect to $t$, using $\Phi'(x) = \phi(x) = \frac{1}{
 
 $$f_{\tau_a}(t)
 = \frac{d}{dt}\,2\Phi\!\left(-\frac{a}{\sqrt{t}}\right)
-= 2\phi\!\left(-\frac{a}{\sqrt{t}}\right) \cdot \frac{d}{dt}\!\left(-\frac{a}{\sqrt{t}}\right).$$
+= 2\phi\!\left(-\frac{a}{\sqrt{t}}\right) \cdot \frac{d}{dt}\!\left(-\frac{a}{\sqrt{t}}\right)$$
 
 Since $\frac{d}{dt}(-a/\sqrt{t}) = a/(2t^{3/2})$ and $\phi(-x) = \phi(x)$:
 
@@ -99,17 +99,17 @@ $$f_{\tau_a}(t) = \frac{2}{\sqrt{2\pi}}\exp\!\left(-\frac{a^2}{2t}\right) \cdot 
 $$\int_0^\infty f_{\tau_a}(t)\,dt
 = \frac{a}{\sqrt{2\pi}} \int_0^\infty t^{-3/2} e^{-a^2/(2t)}\,dt
 = \frac{a}{\sqrt{2\pi}} \int_\infty^0 \frac{u^3}{a^3} e^{-u^2/2} \cdot \left(-\frac{2a^2}{u^3}\right) du
-= \frac{2}{\sqrt{2\pi}} \int_0^\infty e^{-u^2/2}\,du = 1.$$
+= \frac{2}{\sqrt{2\pi}} \int_0^\infty e^{-u^2/2}\,du = 1$$
 
 The last step uses $\int_0^\infty e^{-u^2/2}\,du = \sqrt{\pi/2}$, so $\frac{2}{\sqrt{2\pi}} \cdot \sqrt{\frac{\pi}{2}} = \frac{2}{\sqrt{2\pi}} \cdot \frac{\sqrt{\pi}}{\sqrt{2}} = \frac{2\sqrt{\pi}}{2\sqrt{\pi}} = 1$. $\square$
 
 ---
 
-## Moments of $\tau_a$
+## Moments of τₐ
 
 ### Infinite Mean, Finite Fractional Moments
 
-!!! theorem "Moments of the First Passage Time"
+!!! tip "Moments of the First Passage Time"
     For $a > 0$:
 
     1. $\mathbb{P}(\tau_a < \infty) = 1$ (recurrent).
@@ -118,7 +118,7 @@ The last step uses $\int_0^\infty e^{-u^2/2}\,du = \sqrt{\pi/2}$, so $\frac{2}{\
 
 **Proof of (2).** The density satisfies $f_{\tau_a}(t) \sim \frac{a}{\sqrt{2\pi}}\,t^{-3/2}$ as $t \to \infty$. Therefore:
 
-$$\mathbb{E}[\tau_a] = \int_0^\infty t \cdot f_{\tau_a}(t)\,dt \sim \frac{a}{\sqrt{2\pi}}\int_1^\infty t^{-1/2}\,dt = \infty.$$
+$$\mathbb{E}[\tau_a] = \int_0^\infty t \cdot f_{\tau_a}(t)\,dt \sim \frac{a}{\sqrt{2\pi}}\int_1^\infty t^{-1/2}\,dt = \infty$$
 
 **Proof of (3).** We need $\mathbb{E}[\tau_a^r] = \int_0^\infty t^r f_{\tau_a}(t)\,dt < \infty \iff r < 1/2$. The integrand at $t \to \infty$ behaves as $t^r \cdot t^{-3/2} = t^{r-3/2}$, which is integrable iff $r - 3/2 < -1$, i.e., $r < 1/2$. At $t \to 0^+$ the Gaussian factor $e^{-a^2/(2t)}$ decays faster than any power, so there is no issue at the origin. Hence $\mathbb{E}[\tau_a^r] < \infty \iff r < \tfrac{1}{2}$. $\square$
 
@@ -139,13 +139,13 @@ and CDF by inversion.
 
 For any $\lambda \in \mathbb{R}$, the **exponential martingale** is:
 
-$$\mathcal{E}_t^\lambda := \exp\!\left(\lambda W_t - \tfrac{1}{2}\lambda^2 t\right).$$
+$$\mathcal{E}_t^\lambda := \exp\!\left(\lambda W_t - \tfrac{1}{2}\lambda^2 t\right)$$
 
 This is a martingale with $\mathbb{E}[\mathcal{E}_t^\lambda] = 1$ for all $t$.
 
 ### Laplace Transform
 
-!!! theorem "Laplace Transform of $\tau_a$"
+!!! tip "Laplace Transform of $\tau_a$"
     For $\alpha > 0$ and $a > 0$:
 
     $$\boxed{\mathbb{E}[e^{-\alpha\tau_a}] = e^{-a\sqrt{2\alpha}}.}$$
@@ -155,18 +155,18 @@ This is a martingale with $\mathbb{E}[\mathcal{E}_t^\lambda] = 1$ for all $t$.
 Fix $\lambda > 0$ and apply the **optional stopping theorem** to $\mathcal{E}^\lambda$ at
 the bounded stopping time $\tau_a \wedge T$ (bounded, so optional stopping applies directly):
 
-$$1 = \mathbb{E}[\mathcal{E}_0^\lambda] = \mathbb{E}[\mathcal{E}_{\tau_a \wedge T}^\lambda].$$
+$$1 = \mathbb{E}[\mathcal{E}_0^\lambda] = \mathbb{E}[\mathcal{E}_{\tau_a \wedge T}^\lambda]$$
 
 Split on $\{\tau_a \leq T\}$ and $\{\tau_a > T\}$:
 
 $$1 = \mathbb{E}\!\left[e^{\lambda a - \frac{1}{2}\lambda^2 \tau_a}\,\mathbf{1}_{\{\tau_a \leq T\}}\right]
-+ \mathbb{E}\!\left[e^{\lambda W_T - \frac{1}{2}\lambda^2 T}\,\mathbf{1}_{\{\tau_a > T\}}\right].$$
++ \mathbb{E}\!\left[e^{\lambda W_T - \frac{1}{2}\lambda^2 T}\,\mathbf{1}_{\{\tau_a > T\}}\right]$$
 
 The second term is non-negative and, on $\{\tau_a > T\}$, $W_T \leq a$ (since the path
 has not yet hit $a$), so the second term is bounded by $e^{\lambda a - \frac{1}{2}\lambda^2 T} \to 0$
 as $T \to \infty$ (for $\lambda > 0$). By the monotone convergence theorem (the first term is increasing in $T$):
 
-$$1 = e^{\lambda a}\,\mathbb{E}[e^{-\frac{1}{2}\lambda^2 \tau_a}] + 0,$$
+$$1 = e^{\lambda a}\,\mathbb{E}[e^{-\frac{1}{2}\lambda^2 \tau_a}] + 0$$
 
 hence $\mathbb{E}[e^{-\frac{1}{2}\lambda^2\tau_a}] = e^{-\lambda a}$. Setting $\alpha = \frac{1}{2}\lambda^2$
 (so $\lambda = \sqrt{2\alpha}$):
@@ -181,11 +181,11 @@ $\int_0^\infty e^{-\alpha t}\frac{a}{\sqrt{2\pi t^3}}e^{-a^2/(2t)}\,dt$ and
 using the identity $\int_0^\infty u^{-1/2}e^{-(c/u + du)}\,du = \sqrt{\pi/d}\,e^{-2\sqrt{cd}}$
 (for $c, d > 0$) recovers $e^{-a\sqrt{2\alpha}}$, confirming consistency.
 
-### Consequence: $\mathbb{E}[\tau_a] = \infty$ from the Laplace Transform
+### Consequence: 𝔼[τₐ] = ∞ from the Laplace Transform
 
 Differentiating $\mathbb{E}[e^{-\alpha\tau_a}] = e^{-a\sqrt{2\alpha}}$ with respect to $\alpha$:
 
-$$\mathbb{E}[\tau_a e^{-\alpha\tau_a}] = \frac{a}{\sqrt{2\alpha}}\,e^{-a\sqrt{2\alpha}}.$$
+$$\mathbb{E}[\tau_a e^{-\alpha\tau_a}] = \frac{a}{\sqrt{2\alpha}}\,e^{-a\sqrt{2\alpha}}$$
 
 Taking $\alpha \to 0^+$: the right side $\to \infty$, confirming $\mathbb{E}[\tau_a] = \infty$.
 
@@ -197,7 +197,7 @@ The Lévy distribution inherits the self-similarity of Brownian motion.
 
 **Proposition.** For $a, c > 0$:
 
-$$\tau_{ca} \overset{d}{=} c^2 \tau_a.$$
+$$\tau_{ca} \overset{d}{=} c^2 \tau_a$$
 
 **Proof.** By the scaling property $W_{c^2 t} \overset{d}{=} c\,W_t$:
 
@@ -296,7 +296,7 @@ Sample median: 0.5431  (theoretical ≈ 2.1983)
 
 The sample median is lower than the theoretical value (~2.20) due to discretization bias: with step size `dt=0.001`, the simulation records the first step at which $W \geq a$, which slightly underestimates $\tau_a$. The theoretical median satisfies $2\Phi(-1/\sqrt{m}) = 0.5$, giving $m = 1/(\Phi^{-1}(0.75))^2 \approx 1/0.6745^2 \approx 2.20$.
 
-### Verifying the Scaling Property $\tau_{ca} \overset{d}{=} c^2\tau_a$
+### Verifying the Scaling Property τcₐ = c²τₐ
 
 ```python
 np.random.seed(0)
@@ -337,7 +337,7 @@ A **knock-out barrier call option** with barrier $B > S_0$ expires worthless if 
 price hits $B$ before maturity $T$. Under the Black-Scholes model
 $S_t = S_0 e^{(r-\sigma^2/2)t + \sigma W_t}$, the barrier is hit iff
 
-$$\max_{0 \leq s \leq T} W_s \geq \frac{\log(B/S_0) - (r - \sigma^2/2)T}{\sigma} =: a.$$
+$$\max_{0 \leq s \leq T} W_s \geq \frac{\log(B/S_0) - (r - \sigma^2/2)T}{\sigma} =: a$$
 
 The knock-out probability is $\mathbb{P}(\tau_a \leq T) = 2\Phi(-a/\sqrt{T})$, and the
 option price is reduced by the probability of knock-out weighted by the payoff structure.
@@ -348,7 +348,7 @@ In the Merton (1974) model, a firm defaults when its asset value $V_t$ first fal
 the debt level $D$. If $V_t$ follows geometric Brownian motion, the log-asset value
 $X_t = \log(V_t/D)$ follows a drifted Brownian motion, and default time is
 
-$$\tau_D = \inf\{t \geq 0 : X_t = 0\}.$$
+$$\tau_D = \inf\{t \geq 0 : X_t = 0\}$$
 
 The survival probability $\mathbb{P}(\tau_D > T)$ — adjusted for drift — generalizes the
 zero-drift formula $2\Phi(-a/\sqrt{T})$ and forms the basis of structural credit models.
@@ -373,6 +373,14 @@ appears directly in the option price formula.
     - **Scaling**: $\tau_{ca} \overset{d}{=} c^2\tau_a$; the natural time scale is $a^2$.
 
 ---
+
+## References
+
+- Karatzas, I., & Shreve, S. E. (1991). *Brownian Motion and Stochastic Calculus*, 2nd ed. Springer. (Chapter 2)
+- Revuz, D., & Yor, M. (1999). *Continuous Martingales and Brownian Motion*, 3rd ed. Springer. (Chapter III)
+- Mörters, P., & Peres, Y. (2010). *Brownian Motion*. Cambridge University Press. (Chapter 3)
+- Shreve, S. E. (2004). *Stochastic Calculus for Finance II: Continuous-Time Models*. Springer. (Chapter 7)
+- Merton, R. C. (1974). On the pricing of corporate debt: The risk structure of interest rates. *Journal of Finance*, 29(2), 449–470.
 
 ## Exercises
 
@@ -530,11 +538,3 @@ appears directly in the option price formula.
     $$
 
     This matches the formula for standard Brownian motion. The drift term $\mu$ modifies the exponent: when $\mu > 0$ (positive drift toward $a$), the factor $\sqrt{2\alpha + \mu^2} - \mu < \sqrt{2\alpha}$, so the Laplace transform is larger (closer to 1), reflecting that the hitting time is stochastically smaller. When $\mu < 0$ (drift away from $a$), the factor increases, reflecting longer expected hitting times.
-
-## References
-
-- Karatzas, I., & Shreve, S. E. (1991). *Brownian Motion and Stochastic Calculus*, 2nd ed. Springer. (Chapter 2)
-- Revuz, D., & Yor, M. (1999). *Continuous Martingales and Brownian Motion*, 3rd ed. Springer. (Chapter III)
-- Mörters, P., & Peres, Y. (2010). *Brownian Motion*. Cambridge University Press. (Chapter 3)
-- Shreve, S. E. (2004). *Stochastic Calculus for Finance II: Continuous-Time Models*. Springer. (Chapter 7)
-- Merton, R. C. (1974). On the pricing of corporate debt: The risk structure of interest rates. *Journal of Finance*, 29(2), 449–470.

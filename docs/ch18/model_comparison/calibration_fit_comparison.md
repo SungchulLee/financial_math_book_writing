@@ -59,7 +59,7 @@ $$
 
 ## Cap Volatility Fit
 
-### Constant volatility ($\sigma$ scalar)
+### Constant volatility (σ scalar)
 
 With a single volatility parameter, each model generates a specific term structure shape for cap implied volatilities. The typical pattern:
 
@@ -77,7 +77,7 @@ With a single volatility parameter, each model generates a specific term structu
     | Hull-White | 15--25 | 12--20 | 30--50 |
     | Black-Karasinski | 15--30 | 12--25 | 30--55 |
 
-### Piecewise-constant volatility ($\sigma(t)$)
+### Piecewise-constant volatility (σ(t))
 
 With one volatility level per cap maturity, all models fit ATM cap volatilities to within numerical precision (tree discretization error for BK, machine precision for HW):
 
@@ -132,7 +132,7 @@ $$
 
 BK shows higher parameter instability with piecewise-constant $\sigma(t)$ because the tree-based calibration introduces discretization noise that varies with the yield curve level.
 
-### $a$--$\sigma$ correlation
+### a--σ correlation
 
 In all models, the mean-reversion speed $a$ and the volatility $\sigma$ are partially correlated: higher $a$ flattens the rate distribution, which can be compensated by higher $\sigma$. This creates a ridge in the objective function landscape, leading to:
 

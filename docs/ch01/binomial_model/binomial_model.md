@@ -158,7 +158,7 @@ We will answer this question through three equivalent perspectives:
 
 An **arbitrage** is a trading strategy that generates profit without risk. Formally:
 
-!!! definition "Arbitrage"
+!!! info "Arbitrage"
     A portfolio $(\Delta, \beta)$ is an **arbitrage** if:
     
     1. $V_0 \leq 0$ (zero or negative initial cost)

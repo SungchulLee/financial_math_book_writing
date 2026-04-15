@@ -43,7 +43,7 @@ The factor of 100 converts from decimal to percentage, matching the market conve
 !!! warning "VIX Convention"
     The CBOE defines VIX using a discrete strip of OTM options (the model-free formula). The continuous-time definition above is the idealization used in stochastic volatility models. The two agree exactly when the model generates option prices consistent with the strip, but differences arise from truncation and discretization in the market formula.
 
-### VIX Squared as Affine in $v_t$
+### VIX Squared as Affine in vₜ
 
 Under Heston, $v_t$ is a CIR process with conditional expectation $\mathbb{E}^{\mathbb{Q}}[v_s \mid \mathcal{F}_t] = \theta + (v_t - \theta)e^{-\kappa(s-t)}$ for $s \geq t$. Integrating:
 
@@ -88,7 +88,7 @@ The coefficient $b$ satisfies $0 < b \leq 1$ for all $\kappa > 0$, with $b \to 1
 
 ## Characteristic Function of VIX
 
-### From $v_t$ to VIX$^2$
+### From vₜ to VIX²
 
 Since VIX$_t^2 = a + b \, v_t$, the characteristic function of VIX$^2$ at a future time $T$ (the VIX option expiry) is:
 

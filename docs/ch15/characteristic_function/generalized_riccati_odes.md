@@ -106,7 +106,7 @@ $$
 
 for $j = 1, \ldots, d$.
 
-### Structure of $F$ and $R$
+### Structure of F and R
 
 Each function $F$ and $R_j$ has three terms corresponding to the three sources of randomness:
 
@@ -134,7 +134,7 @@ This hierarchical structure is computationally advantageous: the hard work is so
 
 The character of the $\psi_j$-equation depends on whether the $j$-th component has state-dependent diffusion or jumps.
 
-### Case 1: Gaussian Component ($a_j = 0$, $m_j = 0$)
+### Case 1: Gaussian Component (aⱼ = 0, mⱼ = 0)
 
 When neither the diffusion nor the jump intensity depends on $x_j$, the $R_j$ function is linear in $w$:
 
@@ -144,7 +144,7 @@ $$
 
 The ODE $\psi_j' = \langle b_j, \psi \rangle$ is linear and can be solved by matrix exponentials in the multidimensional case.
 
-### Case 2: CIR-Type Component ($a_j \neq 0$, $m_j = 0$)
+### Case 2: CIR-Type Component (aⱼ ≠ 0, mⱼ = 0)
 
 When the diffusion depends on $x_j$ but there are no state-dependent jumps:
 
@@ -154,7 +154,7 @@ $$
 
 The quadratic term makes this a genuine **Riccati equation**. For the scalar CIR process ($d = 1$), this becomes $\psi' = \kappa_1 \psi + \frac{1}{2}\sigma_1 \psi^2$, which has a well-known closed-form solution.
 
-### Case 3: Jump-Diffusion Component ($m_j \neq 0$)
+### Case 3: Jump-Diffusion Component (mⱼ ≠ 0)
 
 When state-dependent jumps are present, $R_j$ includes the nonlinear integral term:
 

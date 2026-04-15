@@ -124,6 +124,7 @@ Define the operators:
 The backward-in-time stepping from $t_{k+1}$ to $t_k$ (with $\Delta t = T/N_t$):
 
 !!! info "Algorithm: IMEX Scheme"
+
     $$
     \frac{v^k - v^{k+1}}{\Delta t} + \theta\mathcal{D}v^k + (1-\theta)\mathcal{D}v^{k+1} + \mathcal{I}v^{k+1} = 0
     $$

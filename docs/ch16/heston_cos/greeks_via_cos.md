@@ -171,6 +171,7 @@ These are the original Riccati equations evaluated at the current values of $C$ 
 The sensitivity to the risk-free rate $r$ enters through both the discount factor and the drift.
 
 !!! info "Proposition (COS Rho-Greek)"
+
     $$
     \frac{\partial C}{\partial r} = -\tau C + e^{-r\tau} \sum_{k=0}^{N-1}{}' A_k^{(r)} \, V_k^{\text{call}}
     $$

@@ -93,7 +93,7 @@ If $g$ satisfies appropriate conditions:
 
 2. **Time-Consistency:** 
 
-   $$\mathcal{E}_g[X | \mathcal{F}_s] = \mathcal{E}_g[\mathcal{E}_g[X | \mathcal{F}_t] | \mathcal{F}_s]$$ 
+   $$\mathcal{E}_g[X | \mathcal{F}_s] = \mathcal{E}_g[\mathcal{E}_g[X | \mathcal{F}_t] | \mathcal{F}_s]$$
 
    for $s < t$
 

@@ -178,6 +178,35 @@ This limitation motivates the Bates model (Heston + jumps), which uses stochasti
 
 ---
 
+## Identifiability and Pitfalls
+
+### Parameter Correlations
+
+The four parameters are not fully identifiable from ATM options alone:
+
+- $\sigma^2$ and $\lambda\sigma_J^2$ both contribute to ATM variance: you need OTM options to separate them
+- $\lambda$ and $\sigma_J$ are partially interchangeable: more frequent small jumps can mimic fewer large jumps
+
+!!! warning "Common Calibration Pitfalls"
+    1. **Fitting ATM only**: Produces many equivalent parameter sets. Always include OTM strikes.
+    2. **Ignoring maturity structure**: Calibrating to a single maturity leaves the $1/\sqrt{T}$ decay unconstrained.
+    3. **Negative $\sigma^2$**: Can occur if the optimizer pushes all variance into the jump component. Use $\sigma > 0$ as a hard constraint.
+    4. **Unstable day-to-day parameters**: High sensitivity to market noise. Regularization or Bayesian priors help stabilize.
+
+### Goodness-of-Fit Metrics
+
+| Metric | Definition | Target |
+|--------|-----------|--------|
+| RMSE (IV) | $\sqrt{\frac{1}{N}\sum(\sigma_{\text{model}} - \sigma_{\text{mkt}})^2}$ | $< 0.5\%$ |
+| Max error | $\max_i |\sigma_{\text{model}}^{(i)} - \sigma_{\text{mkt}}^{(i)}|$ | $< 1.5\%$ |
+| Weighted RMSE | $\sqrt{\frac{\sum w_i(\sigma_{\text{model}} - \sigma_{\text{mkt}})^2}{\sum w_i}}$ | $< 0.3\%$ |
+
+---
+
+## Summary
+
+Calibration of the Merton jump-diffusion model fits the four parameters $(\sigma, \lambda, \mu_J, \sigma_J)$ to the observed implied volatility surface by minimizing a nonlinear least-squares objective. Each parameter controls a specific feature of the smile: $\sigma$ sets the ATM level, $\lambda$ scales the overall smile amplitude, $\mu_J$ determines the skew, and $\sigma_J$ governs the curvature. The model fits short-maturity smiles well but struggles at longer maturities because the jump contribution decays as $1/\sqrt{T}$, motivating extensions such as the Bates model that add stochastic volatility for persistent smile dynamics.
+
 ## Exercises
 
 **Exercise 1.** Formulate the Merton calibration problem as a nonlinear least-squares optimization. Write the objective function explicitly, identify the four parameters being optimized, and state the constraints each parameter must satisfy.
@@ -280,32 +309,3 @@ This limitation motivates the Bates model (Heston + jumps), which uses stochasti
     **(b) Parameter instability across days.** The symptom is that calibrated parameters fluctuate significantly from one day to the next, even when the market smile has changed only slightly. This occurs because the objective function has a relatively flat valley in parameter space, making the minimum sensitive to small perturbations in input data. The remedy is regularization: add a penalty term $\alpha\|\boldsymbol{\theta} - \boldsymbol{\theta}_0\|^2$ to the objective function, where $\boldsymbol{\theta}_0$ is the previous day's calibrated parameters (or a prior estimate) and $\alpha > 0$ controls the regularization strength. This anchors the parameters to a stable reference, smoothing day-to-day fluctuations while still allowing the calibration to track genuine market movements.
 
 ---
-
-## Identifiability and Pitfalls
-
-### Parameter Correlations
-
-The four parameters are not fully identifiable from ATM options alone:
-
-- $\sigma^2$ and $\lambda\sigma_J^2$ both contribute to ATM variance: you need OTM options to separate them
-- $\lambda$ and $\sigma_J$ are partially interchangeable: more frequent small jumps can mimic fewer large jumps
-
-!!! warning "Common Calibration Pitfalls"
-    1. **Fitting ATM only**: Produces many equivalent parameter sets. Always include OTM strikes.
-    2. **Ignoring maturity structure**: Calibrating to a single maturity leaves the $1/\sqrt{T}$ decay unconstrained.
-    3. **Negative $\sigma^2$**: Can occur if the optimizer pushes all variance into the jump component. Use $\sigma > 0$ as a hard constraint.
-    4. **Unstable day-to-day parameters**: High sensitivity to market noise. Regularization or Bayesian priors help stabilize.
-
-### Goodness-of-Fit Metrics
-
-| Metric | Definition | Target |
-|--------|-----------|--------|
-| RMSE (IV) | $\sqrt{\frac{1}{N}\sum(\sigma_{\text{model}} - \sigma_{\text{mkt}})^2}$ | $< 0.5\%$ |
-| Max error | $\max_i |\sigma_{\text{model}}^{(i)} - \sigma_{\text{mkt}}^{(i)}|$ | $< 1.5\%$ |
-| Weighted RMSE | $\sqrt{\frac{\sum w_i(\sigma_{\text{model}} - \sigma_{\text{mkt}})^2}{\sum w_i}}$ | $< 0.3\%$ |
-
----
-
-## Summary
-
-Calibration of the Merton jump-diffusion model fits the four parameters $(\sigma, \lambda, \mu_J, \sigma_J)$ to the observed implied volatility surface by minimizing a nonlinear least-squares objective. Each parameter controls a specific feature of the smile: $\sigma$ sets the ATM level, $\lambda$ scales the overall smile amplitude, $\mu_J$ determines the skew, and $\sigma_J$ governs the curvature. The model fits short-maturity smiles well but struggles at longer maturities because the jump contribution decays as $1/\sqrt{T}$, motivating extensions such as the Bates model that add stochastic volatility for persistent smile dynamics.

@@ -67,7 +67,7 @@ $$
 C(u, \tau) = (r - q)iu\tau + \frac{\kappa\theta}{\xi^2} \left[ (\kappa - i\rho\xi u - \gamma)\tau - 2\ln\!\left(\frac{1 - g \, e^{-\gamma\tau}}{1 - g}\right) \right]
 $$
 
-### Why $|g| < 1$ Ensures Stability
+### Why |g| < 1 Ensures Stability
 
 The key property is that $|g| < 1$ whenever $\text{Re}(\gamma) > 0$. Since $e^{-\gamma\tau}$ decays exponentially for $\text{Re}(\gamma) > 0$, the denominator $1 - g \, e^{-\gamma\tau}$ stays bounded away from zero for all $\tau > 0$. The logarithm argument $({1 - g \, e^{-\gamma\tau}})/({1 - g})$ never crosses the negative real axis, so the complex logarithm is continuous.
 

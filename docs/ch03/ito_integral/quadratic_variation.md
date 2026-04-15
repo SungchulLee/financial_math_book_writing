@@ -40,7 +40,7 @@ $$
 
 The $\frac{1}{2}f''(W_t)\,dt$ term comes from summing $f''(W_{t_k})(\Delta W_k)^2 \approx f''(W_{t_k})\Delta t_k \to \int f''(W_t)\,dt$. This is exactly the quadratic variation.
 
-#### Proof that $[W]_t = t$
+#### Proof that [W]ₜ = t
 
 We show $Q(W, \Pi) \to t$ in $L^2$ (and hence in probability) as $\|\Pi\| \to 0$.
 
@@ -138,7 +138,7 @@ flowchart TD
 
 ### 4. Examples
 
-#### Example 1: Quadratic variation of $W_t$ — numerical verification
+#### Example 1: Quadratic variation of Wₜ — numerical verification
 
 The following script simulates many Brownian paths and plots the quadratic variation sum against the theoretical value $t$.
 

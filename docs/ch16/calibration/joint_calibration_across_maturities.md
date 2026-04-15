@@ -33,7 +33,7 @@ This is the same vega-weighted IV-space formulation from the [objective function
 
 The Heston model's five parameters have different sensitivities to different parts of the term structure. Understanding these sensitivities is essential for designing a calibration that uses market data efficiently.
 
-### Short Maturities ($T \leq 3$ months)
+### Short Maturities (T ≤ 3 months)
 
 For small $T$, the variance process has not yet mean-reverted significantly: $v_T \approx v_0 + \mathcal{O}(\kappa T)$. The short-maturity smile is therefore controlled primarily by:
 
@@ -52,7 +52,7 @@ $$
 \left. \frac{\partial^2 \sigma_{\text{imp}}}{\partial (\ln K)^2} \right|_{K = S_0 e^{rT}} \approx \frac{\xi^2(1 - \rho^2)}{8 v_0}
 $$
 
-### Long Maturities ($T \geq 1$ year)
+### Long Maturities (T ≥ 1 year)
 
 For large $T$, the variance process has time to mean-revert, and the smile reflects the long-run behavior:
 

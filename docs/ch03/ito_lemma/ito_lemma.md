@@ -152,9 +152,11 @@ When computing $df(t, X_t)$ where $dX_t = \mu_t\,dt + \sigma_t\,dB_t$:
 1. Compute the partial derivatives $f_t,\; f_x,\; f_{xx}$
 2. Compute $(dX_t)^2 = \sigma_t^2\,dt$ using the Itô multiplication table (see [From Taylor to Itô](from_taylor_to_ito.md))
 3. Substitute into the formula:
+
 $$
 df = \left(f_t + \mu_t f_x + \tfrac{1}{2}\sigma_t^2 f_{xx}\right)dt + \sigma_t f_x\,dB_t
 $$
+
 4. Simplify; if the $dt$ coefficient vanishes, $f(t, X_t)$ is a **local martingale** (provided $\sigma_t f_x$ is locally square-integrable, so that the stochastic integral term is a well-defined local martingale). Under an additional integrability condition such as Novikov's condition, it is a true martingale.
 
 For a full set of worked examples — including $e^{B_t}$, geometric Brownian motion, and the Black-Scholes PDE — see [Applications and Examples](ito_calculus_applications.md).

@@ -117,11 +117,11 @@ $$
 
 ---
 
-## Doob's $L^1$ Results
+## Doob's L¹ Results
 
 The case $p = 1$ requires separate treatment since $\frac{p}{p-1} \to \infty$ as $p \to 1$.
 
-### Weak $L^1$ Inequality (already proved above)
+### Weak L¹ Inequality (already proved above)
 
 The first result is the weak $L^1$ bound already established in the proof:
 
@@ -131,7 +131,7 @@ $$
 
 This yields the tail bound $\mathbb{P}(M_T^* \ge \lambda) \le \frac{\mathbb{E}[|M_T|]}{\lambda}$ for martingales (by applying to $|M_t|$, which is a submartingale). Note: this follows from Doob's weak inequality, not directly from Markov's inequality.
 
-### Strong $L^1$ Inequality (Orlicz space bound)
+### Strong L¹ Inequality (Orlicz space bound)
 
 For a *strong* bound on $\mathbb{E}[M_T^*]$ itself, one needs more than $L^1$ integrability of $M_T$. The sharp result involves the $L \log L$ Orlicz space:
 

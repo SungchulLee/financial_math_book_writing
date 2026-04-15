@@ -53,7 +53,7 @@ However, Brownian motion has **quadratic variation** equal to $t$, which suggest
 
 ---
 
-### 3. Strategy: $L^2$-Approximation
+### 3. Strategy: L²-Approximation
 
 The Itô integral is constructed via approximation in the **mean-square sense** rather than pathwise. The key steps are:
 
@@ -196,7 +196,7 @@ flowchart LR
 
 ---
 
-### 6. Step 3: Extension to $L^2$-Adapted Processes
+### 6. Step 3: Extension to L²-Adapted Processes
 
 Let $\mathcal{L}^2([0,T])$ denote the space of adapted processes $H = \{H_t\}_{0 \le t \le T}$ satisfying:
 

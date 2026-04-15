@@ -69,7 +69,7 @@ See [Generator and Martingales](generator_and_martingales.md) for the full devel
 
 ## Examples
 
-### Brownian Motion: $\mathbb{E}[X_\tau]$
+### Brownian Motion: 𝔼[Xτ]
 
 | Item | Value |
 |------|-------|
@@ -81,7 +81,7 @@ $$\mathbb{E}_x[X_\tau] = x + \mathbb{E}_x\left[\int_0^\tau 0\,ds\right] = x$$
 
 ---
 
-### Brownian Motion: $\mathbb{E}[X_\tau^2]$
+### Brownian Motion: 𝔼[Xτ²]
 
 | Item | Value |
 |------|-------|
@@ -91,7 +91,7 @@ $$\mathbb{E}_x[X_\tau^2] = x^2 + \mathbb{E}_x[\tau]$$
 
 ---
 
-### Expected Exit Time from $(a, b)$
+### Expected Exit Time from (a, b)
 
 **Problem**: BM starts at $x \in (a,b)$. Find $\mathbb{E}_x[\tau]$ where $\tau = \inf\{t: X_t \notin (a,b)\}$.
 
@@ -123,7 +123,7 @@ $$
 \boxed{\mathbb{E}_x[\tau] = (x-a)(b-x)}
 $$
 
-!!! check "Verification"
+!!! success "Verification"
     - $x = a$: $\mathbb{E}_a[\tau] = 0$ $\checkmark$
     - $x = b$: $\mathbb{E}_b[\tau] = 0$ $\checkmark$
     - Max at midpoint: $\mathbb{E}_{(a+b)/2}[\tau] = \frac{(b-a)^2}{4}$ $\checkmark$
@@ -133,7 +133,7 @@ $$
 
 ---
 
-### Ornstein–Uhlenbeck: $\mathbb{E}[X_t]$
+### Ornstein–Uhlenbeck: 𝔼[Xₜ]
 
 > **Note**: This example uses a fixed time $t$ rather than a stopping time $\tau$. Dynkin's formula applies to both — simply replace $\tau$ with a deterministic $t$.
 
@@ -150,7 +150,7 @@ $$\boxed{m(t) = x e^{-\kappa t}}$$
 
 ---
 
-### GBM: $\mathbb{E}[S_t]$
+### GBM: 𝔼[Sₜ]
 
 > **Note**: As above, $t$ is a deterministic time.
 

@@ -146,15 +146,15 @@ A positive initial slope (local increase) combined with the long-rate limit belo
 
 Each CIR parameter has a distinct effect on the yield curve.
 
-### Speed of mean reversion ($\kappa$)
+### Speed of mean reversion (κ)
 
 Increasing $\kappa$ strengthens the pull toward $\theta$, making the yield curve converge to its long-run level more quickly. For a normal curve, higher $\kappa$ steepens the short end. The long rate $R_\infty = 2\kappa\theta/(\gamma + \kappa)$ increases with $\kappa$ (holding other parameters fixed) because faster mean reversion reduces the effective variance of cumulative discounting.
 
-### Long-run mean ($\theta$)
+### Long-run mean (θ)
 
 The parameter $\theta$ primarily affects the level of the yield curve. Increasing $\theta$ raises $R_\infty$ and shifts the entire long end upward. Since $a(\tau)$ is proportional to $\kappa\theta$, both the intercept and the long rate scale with $\theta$.
 
-### Volatility ($\sigma$)
+### Volatility (σ)
 
 Increasing $\sigma$ has two effects:
 

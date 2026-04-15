@@ -72,6 +72,7 @@ $$
 Solving for $D$:
 
 !!! success "Theorem: Closed-Form Solution for D (Albrecher Formulation)"
+
     $$
     D(\tau, u) = \frac{\kappa - i\rho\sigma_v u - \gamma}{\sigma_v^2} \cdot \frac{1 - e^{-\gamma\tau}}{1 - g\,e^{-\gamma\tau}}
     $$
@@ -113,6 +114,7 @@ $$
 Therefore:
 
 !!! success "Theorem: Closed-Form Solution for C (Albrecher Formulation)"
+
     $$
     C(\tau, u) = (r-q)\,iu\,\tau + \frac{\kappa\theta}{\sigma_v^2}\left[(\kappa - i\rho\sigma_v u - \gamma)\,\tau - 2\ln\!\left(\frac{1 - g\,e^{-\gamma\tau}}{1 - g}\right)\right]
     $$
@@ -250,15 +252,15 @@ The term $\ln\!\left(\frac{1 - g\,e^{-\gamma\tau}}{1-g}\right)$ in $C(\tau, u)$ 
 
 ## Special Cases
 
-### Black-Scholes Limit ($\sigma_v \to 0$)
+### Black-Scholes Limit (σv → 0)
 
 When $\sigma_v = 0$: $\gamma \to \kappa$, $g \to 0$, $D(\tau) \to \frac{1}{2}(iu - u^2)(1 - e^{-\kappa\tau})/\kappa$, and as $\kappa \to 0$ further: $D(\tau) \to \frac{1}{2}(iu - u^2)\tau$, recovering the Black-Scholes characteristic function.
 
-### Zero Correlation ($\rho = 0$)
+### Zero Correlation (ρ = 0)
 
 When $\rho = 0$: $\gamma = \sqrt{\kappa^2 + \sigma_v^2(iu + u^2)}$, $g = \frac{\kappa - \gamma}{\kappa + \gamma}$. The formula simplifies because the cross-terms vanish, but the structure remains the same.
 
-### Long Maturity ($\tau \to \infty$)
+### Long Maturity (τ → ∞)
 
 As $\tau \to \infty$: $D \to D_+ = (\kappa - i\rho\sigma_v u - \gamma)/\sigma_v^2$ and $C$ grows linearly in $\tau$. The characteristic function decays exponentially in $\tau$ (for $u \neq 0$), reflecting the diffusion of $x_T$ over time.
 

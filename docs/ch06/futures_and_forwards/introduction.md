@@ -62,3 +62,18 @@ valuation) reappears, in a more complex form, when we price options. If you
 understand *why* the forward price must equal $S_0 \, e^{rT}$, you already
 possess the core intuition behind the Black-Scholes formula. The rest is
 generalization.
+
+## Exercises
+
+**Exercise 1.** A forward contract on stock ABC is struck at F = 50 with delivery in 6 months. If the spot price at delivery is S_T = 55, what is the payoff to the long party? What is the payoff to the short party?
+
+??? success "Solution to Exercise 1"
+    The long party's payoff is S_T - F = 55 - 50 = 5. The short party's payoff is F - S_T = 50 - 55 = -5. Forward contracts are zero-sum: the long party's gain equals the short party's loss.
+
+---
+
+**Exercise 2.** Explain why the forward price of a non-dividend-paying stock satisfies F = S_0 * exp(rT), where r is the risk-free rate and T is the time to delivery.
+
+??? success "Solution to Exercise 2"
+    Consider two portfolios: (A) enter a long forward at price F, and (B) buy the stock now at S_0, funded by borrowing at rate r. Portfolio B costs S_0 * exp(rT) at delivery. Both portfolios deliver one share at time T. By no-arbitrage, they must have the same cost, so F = S_0 * exp(rT).
+

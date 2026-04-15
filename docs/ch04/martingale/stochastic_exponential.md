@@ -398,7 +398,7 @@ $$
 | **True martingale** | Requires Novikov or Kazamaki condition |
 | **Finance application** | Radon–Nikodym derivative for measure change |
 
-!!! summary "Key Takeaway"
+!!! abstract "Key Takeaway"
     The stochastic exponential is the "correct" way to exponentiate stochastic processes, accounting for the Itô correction term $-\frac{1}{2}\langle X \rangle_t$. This correction removes the drift that would otherwise arise, making $\mathcal{E}(X)$ a local martingale. The stochastic exponential is essential for all measure-change arguments in mathematical finance.
 
 ---

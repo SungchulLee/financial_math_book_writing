@@ -1,7 +1,15 @@
 
-# Exercises
+# Random Walk Exercises
 
-## Exercise 1 — Quadratic Variation
+## References
+
+- Williams, D. (1991). *Probability with Martingales*. Cambridge University Press.
+- Durrett, R. (2019). *Probability: Theory and Examples*, 5th ed. Cambridge University Press.
+- Feller, W. (1968). *An Introduction to Probability Theory and Its Applications*, Vol. 1, 3rd ed. Wiley.
+
+## Exercises
+
+**Exercise 1.** Quadratic Variation.
 
 Let $W^{(n)}$ be the piecewise-linear scaled random walk from [Scaling Limit](scaling_limit.md), and let
 
@@ -48,7 +56,7 @@ Explain why this distinguishes random walk paths from smooth paths.
 
 ---
 
-## Exercise 2 — Higher Moments
+**Exercise 2.** Higher Moments.
 
 Let $S_n = \sum_{i=1}^n \xi_i$ be the symmetric random walk.
 
@@ -81,7 +89,7 @@ where $(2k-1)!! = 1 \cdot 3 \cdot 5 \cdots (2k-1)$. Compare with the Brownian mo
 
 ---
 
-## Exercise 3 — Gambler's Ruin
+**Exercise 3.** Gambler's Ruin.
 
 A gambler starts with $\$a$ and bets $\$1$ per round on a fair coin flip. The walk $\{S_n\}$ starts at $S_0 = a$ and is absorbed at the barriers 0 and $b$ (with $b > a$). Let
 
@@ -130,7 +138,7 @@ As $b \to \infty$, $\mathbb{E}[\tau_0 \wedge \tau_b] = a(b-a) \to \infty$. Since
 
 ---
 
-## Exercise 4 — Reflection Principle (Preview)
+**Exercise 4.** Reflection Principle (Preview).
 
 Let $M_n = \max_{0 \leq k \leq n} S_k$ be the running maximum of the symmetric random walk.
 
@@ -167,9 +175,3 @@ where $\Phi$ is the standard normal CDF. This is the exact distribution of $\max
     $$
 
     This is $\mathbb{P}(\max_{0 \leq t \leq 1} W_t \geq x) = 2(1-\Phi(x))$, which is the exact distribution of the running maximum of Brownian motion on $[0,1]$.
-
-## References
-
-- Williams, D. (1991). *Probability with Martingales*. Cambridge University Press.
-- Durrett, R. (2019). *Probability: Theory and Examples*, 5th ed. Cambridge University Press.
-- Feller, W. (1968). *An Introduction to Probability Theory and Its Applications*, Vol. 1, 3rd ed. Wiley.

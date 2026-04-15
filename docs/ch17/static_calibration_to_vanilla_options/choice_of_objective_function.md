@@ -81,7 +81,7 @@ This suggests:
 
 Real data contain outliers. Robust alternatives include:
 
-### 1. $\ell_1$ loss
+### 1. ₁ loss
 
 
 $$

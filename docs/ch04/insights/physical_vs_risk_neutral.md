@@ -8,7 +8,7 @@ This section clarifies their respective roles.
 
 ---
 
-## The Physical Measure $\mathbb{P}$
+## The Physical Measure ℙ
 
 
 The physical (or real-world) measure describes how asset prices actually evolve.
@@ -22,7 +22,7 @@ Under $\mathbb{P}$, expected returns include risk premia.
 
 ---
 
-## The Risk-Neutral Measure $\mathbb{Q}$
+## The Risk-Neutral Measure ℚ
 
 
 The risk-neutral measure is a **pricing tool**, not a description of reality.
@@ -49,7 +49,7 @@ only how they are weighted.
 
 ---
 
-## Why $\mathbb{Q}$ Is Not “Believed”
+## Why ℚ Is Not “Believed”
 
 
 The risk-neutral measure should not be interpreted as:

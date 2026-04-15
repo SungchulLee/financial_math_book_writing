@@ -10,15 +10,15 @@ The quadratic variation captures exactly how much those oscillations accumulate.
 
 Recall that for a smooth function $f:[0,T]\to\mathbb{R}$, the **total variation** along a partition $\Pi = \{0 = t_0 < t_1 < \cdots < t_n = T\}$ is
 
-$$V_1(f, \Pi) = \sum_{i=0}^{n-1} |f(t_{i+1}) - f(t_i)|,$$
+$$V_1(f, \Pi) = \sum_{i=0}^{n-1} |f(t_{i+1}) - f(t_i)|$$
 
 and the **quadratic variation** is
 
-$$V_2(f, \Pi) = \sum_{i=0}^{n-1} \bigl(f(t_{i+1}) - f(t_i)\bigr)^2.$$
+$$V_2(f, \Pi) = \sum_{i=0}^{n-1} \bigl(f(t_{i+1}) - f(t_i)\bigr)^2$$
 
 For a $C^1$ function, each increment satisfies $|f(t_{i+1}) - f(t_i)| \approx |f'(\xi_i)|\,\Delta t_i$, so
 
-$$V_2(f, \Pi) \approx \sum_{i=0}^{n-1} |f'(\xi_i)|^2 (\Delta t_i)^2 \leq \|\Pi\| \cdot \sum_{i=0}^{n-1} |f'(\xi_i)|^2 \Delta t_i \;\xrightarrow{\|\Pi\|\to 0}\; 0.$$
+$$V_2(f, \Pi) \approx \sum_{i=0}^{n-1} |f'(\xi_i)|^2 (\Delta t_i)^2 \leq \|\Pi\| \cdot \sum_{i=0}^{n-1} |f'(\xi_i)|^2 \Delta t_i \;\xrightarrow{\|\Pi\|\to 0}\; 0$$
 
 Smooth functions have **zero quadratic variation**. Brownian motion, by contrast, has *infinite* total variation on every interval — meaning $V_1(B, \Pi) \to \infty$ as $\|\Pi\| \to 0$ — yet finite, nonzero quadratic variation. This is why $[B]_T$ is the natural measure of path roughness for stochastic calculus, replacing the total variation that works well for smooth paths.
 
@@ -32,10 +32,10 @@ $$\Pi_n = \{0 = t_0^{(n)} < t_1^{(n)} < \cdots < t_n^{(n)} = T\}$$
 
 be a sequence of partitions of $[0,T]$ with mesh $\|\Pi_n\| = \max_i \Delta t_i^{(n)} \to 0$.
 
-!!! definition "Quadratic Variation"
+!!! info "Quadratic Variation"
     The **quadratic variation** of $B$ on $[0,T]$ along the partition $\Pi_n$ is
 
-    $$[B]_T^{(\Pi_n)} = \sum_{i=0}^{n-1} \bigl(B_{t_{i+1}^{(n)}} - B_{t_i^{(n)}}\bigr)^2.$$
+    $$[B]_T^{(\Pi_n)} = \sum_{i=0}^{n-1} \bigl(B_{t_{i+1}^{(n)}} - B_{t_i^{(n)}}\bigr)^2$$
 
     We say $[B]_T = T$ if $[B]_T^{(\Pi_n)} \to T$ in $L^2(\Omega)$ as $\|\Pi_n\| \to 0$.
 
@@ -43,10 +43,10 @@ be a sequence of partitions of $[0,T]$ with mesh $\|\Pi_n\| = \max_i \Delta t_i^
 
 ## The Main Theorem
 
-!!! theorem "$[B]_T = T$ in $L^2$"
+!!! tip "$[B]_T = T$ in $L^2$"
     For any sequence of partitions with $\|\Pi_n\| \to 0$,
 
-    $$[B]_T^{(\Pi_n)} \xrightarrow{L^2} T \quad \text{as } n \to \infty.$$
+    $$[B]_T^{(\Pi_n)} \xrightarrow{L^2} T \quad \text{as } n \to \infty$$
 
 **Proof.**
 
@@ -56,7 +56,7 @@ Write $\Delta B_i = B_{t_{i+1}} - B_{t_i}$ and $\Delta t_i = t_{i+1} - t_i$ for 
 
 Since $\Delta B_i \sim \mathcal{N}(0, \Delta t_i)$, we have $\mathbb{E}[(\Delta B_i)^2] = \Delta t_i$, so by linearity:
 
-$$\mathbb{E}\!\left[[B]_T^{(\Pi_n)}\right] = \sum_{i=0}^{n-1} \mathbb{E}[(\Delta B_i)^2] = \sum_{i=0}^{n-1} \Delta t_i = T.$$
+$$\mathbb{E}\!\left[[B]_T^{(\Pi_n)}\right] = \sum_{i=0}^{n-1} \mathbb{E}[(\Delta B_i)^2] = \sum_{i=0}^{n-1} \Delta t_i = T$$
 
 The estimator is unbiased for every partition. Note that independence plays no role here — the result holds for any process with the correct second moments.
 
@@ -64,15 +64,15 @@ The estimator is unbiased for every partition. Note that independence plays no r
 
 We need $\mathrm{Var}\!\left([B]_T^{(\Pi_n)}\right) \to 0$. This is where the **independent increments** property is essential: it allows the variance of the sum to equal the sum of the variances:
 
-$$\mathrm{Var}\!\left([B]_T^{(\Pi_n)}\right) = \sum_{i=0}^{n-1} \mathrm{Var}\!\left((\Delta B_i)^2\right).$$
+$$\mathrm{Var}\!\left([B]_T^{(\Pi_n)}\right) = \sum_{i=0}^{n-1} \mathrm{Var}\!\left((\Delta B_i)^2\right)$$
 
 For $X \sim \mathcal{N}(0, \sigma^2)$, the fourth moment is $\mathbb{E}[X^4] = 3\sigma^4$, so
 
-$$\mathrm{Var}(X^2) = \mathbb{E}[X^4] - (\mathbb{E}[X^2])^2 = 3\sigma^4 - \sigma^4 = 2\sigma^4.$$
+$$\mathrm{Var}(X^2) = \mathbb{E}[X^4] - (\mathbb{E}[X^2])^2 = 3\sigma^4 - \sigma^4 = 2\sigma^4$$
 
 Applying this with $\sigma^2 = \Delta t_i$:
 
-$$\mathrm{Var}\!\left([B]_T^{(\Pi_n)}\right) = \sum_{i=0}^{n-1} 2(\Delta t_i)^2 \leq 2\|\Pi_n\| \sum_{i=0}^{n-1} \Delta t_i = 2T\|\Pi_n\| \xrightarrow{n\to\infty} 0.$$
+$$\mathrm{Var}\!\left([B]_T^{(\Pi_n)}\right) = \sum_{i=0}^{n-1} 2(\Delta t_i)^2 \leq 2\|\Pi_n\| \sum_{i=0}^{n-1} \Delta t_i = 2T\|\Pi_n\| \xrightarrow{n\to\infty} 0$$
 
 Since the mean equals $T$ for every partition, this gives $\mathbb{E}\!\left[\left([B]_T^{(\Pi_n)} - T\right)^2\right] = \mathrm{Var}\!\left([B]_T^{(\Pi_n)}\right) \to 0$. $\square$
 
@@ -82,14 +82,14 @@ Since the mean equals $T$ for every partition, this gives $\mathbb{E}\!\left[\le
 
 The $L^2$ result above guarantees convergence in mean square. A stronger statement also holds:
 
-!!! theorem "Almost Sure Convergence (dyadic subsequence)"
+!!! tip "Almost Sure Convergence (dyadic subsequence)"
     For the dyadic partitions $t_i^{(k)} = iT/2^k$ with $k \to \infty$,
 
-    $$[B]_T^{(\Pi_{2^k})} \xrightarrow{a.s.} T \quad \text{as } k \to \infty.$$
+    $$[B]_T^{(\Pi_{2^k})} \xrightarrow{a.s.} T \quad \text{as } k \to \infty$$
 
 For any $\varepsilon > 0$, Chebyshev's inequality and the variance bound give
 
-$$P\!\left(\left|[B]_T^{(\Pi_{2^k})} - T\right| > \varepsilon\right) \leq \frac{\mathrm{Var}\!\left([B]_T^{(\Pi_{2^k})}\right)}{\varepsilon^2} \leq \frac{2T^2/2^k}{\varepsilon^2}.$$
+$$P\!\left(\left|[B]_T^{(\Pi_{2^k})} - T\right| > \varepsilon\right) \leq \frac{\mathrm{Var}\!\left([B]_T^{(\Pi_{2^k})}\right)}{\varepsilon^2} \leq \frac{2T^2/2^k}{\varepsilon^2}$$
 
 Since $\sum_{k=1}^\infty 2T^2/(2^k \varepsilon^2) < \infty$, the Borel–Cantelli lemma gives $[B]_T^{(\Pi_{2^k})} \to T$ almost surely.
 
@@ -98,11 +98,11 @@ Since $\sum_{k=1}^\infty 2T^2/(2^k \varepsilon^2) < \infty$, the Borel–Cantell
 
 ---
 
-## The Differential Notation $dB_t^2 = dt$
+## The Differential Notation dBₜ² = dt
 
 The quadratic variation result is almost always written in differential shorthand:
 
-$$dB_t^2 = dt, \qquad \text{i.e.,} \quad (dB_t)^2 = dt.$$
+$$dB_t^2 = dt, \qquad \text{i.e.,} \quad (dB_t)^2 = dt$$
 
 This is a heuristic that encodes the $L^2$ result: increments of Brownian motion over an infinitesimal interval $[t, t+dt]$ satisfy $(\Delta B)^2 \approx dt$, not $(\Delta B)^2 \approx (dt)^2$ as would hold for a smooth path. The multiplication table for stochastic differentials is:
 
@@ -123,18 +123,18 @@ $$f(B_{t+dt}) - f(B_t) = f'(B_t)\,dB_t + \tfrac{1}{2}f''(B_t)\,(dB_t)^2 + \cdots
 
 For a smooth deterministic path, $(dB_t)^2 \sim (dt)^2 \to 0$ and the second term vanishes. For Brownian motion, $(dB_t)^2 = dt$ survives, giving **Itô's formula**:
 
-$$df(B_t) = f'(B_t)\,dB_t + \tfrac{1}{2}f''(B_t)\,dt.$$
+$$df(B_t) = f'(B_t)\,dB_t + \tfrac{1}{2}f''(B_t)\,dt$$
 
 The $\frac{1}{2}f''$ term is a direct consequence of $[B]_t = t$. This is the central role quadratic variation plays in the theory.
 
 !!! example "Itô's formula for $B_t^2$"
     Take $f(x) = x^2$. Then $f'(x) = 2x$ and $f''(x) = 2$, so
 
-    $$d(B_t^2) = 2B_t\,dB_t + \tfrac{1}{2} \cdot 2\,dt = 2B_t\,dB_t + dt.$$
+    $$d(B_t^2) = 2B_t\,dB_t + \tfrac{1}{2} \cdot 2\,dt = 2B_t\,dB_t + dt$$
 
     Integrating: $B_T^2 = 2\int_0^T B_t\,dB_t + T$, or equivalently
 
-    $$\int_0^T B_t\,dB_t = \frac{B_T^2 - T}{2}.$$
+    $$\int_0^T B_t\,dB_t = \frac{B_T^2 - T}{2}$$
 
     The $-T$ term has no counterpart in ordinary calculus and comes entirely from $[B]_T = T$.
 
@@ -144,7 +144,7 @@ The $\frac{1}{2}f''$ term is a direct consequence of $[B]_t = t$. This is the ce
 
 For two independent Brownian motions $B^{(1)}$ and $B^{(2)}$, the **cross variation** is
 
-$$[B^{(1)}, B^{(2)}]_T = \lim_{\|\Pi\|\to 0} \sum_{i} \Delta B_i^{(1)} \Delta B_i^{(2)} = 0 \quad \text{in } L^2.$$
+$$[B^{(1)}, B^{(2)}]_T = \lim_{\|\Pi\|\to 0} \sum_{i} \Delta B_i^{(1)} \Delta B_i^{(2)} = 0 \quad \text{in } L^2$$
 
 More generally, for correlated Brownian motions satisfying $\mathbb{E}[dB_t^{(1)}\,dB_t^{(2)}] = \rho\,dt$, the same partition-limit definition gives
 

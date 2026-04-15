@@ -214,7 +214,7 @@ Perturb the input data by adding noise within bid-ask spreads and reconstruct th
 
     All metrics are within acceptable bounds, indicating a reliable construction.
 
-## From $(K, T)$ to $(S, t)$
+## From (K, T) to (S, t)
 
 ### Coordinate Transformation
 

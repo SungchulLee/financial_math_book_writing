@@ -103,7 +103,7 @@ This gives $|\rho| \leq 1$, which is the natural constraint on a correlation par
 
 ## Correlation Constraints in Multi-Factor Models
 
-### The $A_m(d)$ Constraints
+### The Aₘ(d) Constraints
 
 For a general $A_m(d)$ model, the correlation structure is constrained by the positive semi-definiteness of $a(x)$ for all $x \in D$. This imposes restrictions beyond the simple $|\rho| \leq 1$ condition.
 

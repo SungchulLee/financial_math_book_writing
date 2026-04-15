@@ -145,7 +145,7 @@ The integrand has **simple poles** at:
 - $s = 0$, where $\Lambda(0) = -r$
 - $s = -1$, where $\Lambda(-1) = \frac{\sigma^2}{2} - r + \frac{\sigma^2}{2} - r = \sigma^2 - 2r$
 
-### Residue at $s = 0$
+### Residue at s = 0
 
 $$
 \text{Res}_{s=0} = \lim_{s \to 0}\,s \cdot \frac{K^{s+1}}{s(s+1)}\,e^{-\Lambda(s)\tau}\,S^{-s}
@@ -155,7 +155,7 @@ $$
 = \frac{K}{1} \cdot e^{-(-r)\tau} \cdot 1 = Ke^{r\tau}
 $$
 
-### Residue at $s = -1$
+### Residue at s = -1
 
 $$
 \text{Res}_{s=-1} = \lim_{s \to -1}\,(s+1) \cdot \frac{K^{s+1}}{s(s+1)}\,e^{-\Lambda(s)\tau}\,S^{-s}

@@ -208,7 +208,7 @@ This section develops SDE theory and methods across the following pages:
 | **Moment Analysis** | computing expectations and variances | moment equations, Itô isometry, generator methods |
 | **Simulation Methods** | numerical approximation | Euler–Maruyama, Milstein, exact simulation |
 
-!!! summary "Key Takeaway"
+!!! abstract "Key Takeaway"
     A stochastic differential equation extends ordinary differential equations by adding a Brownian motion term. The drift captures deterministic trends, the diffusion captures random fluctuations, and the interplay between them — governed by Itô calculus — produces phenomena that have no counterpart in deterministic mathematics.
 
 ---

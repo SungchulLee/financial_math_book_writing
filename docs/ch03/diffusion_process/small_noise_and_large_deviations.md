@@ -45,7 +45,7 @@ Large deviations theory (Freidlin–Wentzell) makes precise how **exponentially 
 
 ### The Freidlin–Wentzell LDP
 
-!!! theorem "Theorem (Freidlin–Wentzell, 1970)"
+!!! tip "Theorem (Freidlin–Wentzell, 1970)"
     Assume $b$ and $\sigma$ are bounded and Lipschitz, and $\sigma(x)$ is uniformly invertible. The family $(X^{\varepsilon})_{\varepsilon > 0}$, viewed as random variables in $C([0,T]; \mathbb{R}^d)$, satisfies a **Large Deviation Principle (LDP)** with speed $\varepsilon$ and good rate function $I_{0,T}$:
 
     - **(Upper bound)** For every closed set $F \subset C([0,T];\mathbb{R}^d)$:

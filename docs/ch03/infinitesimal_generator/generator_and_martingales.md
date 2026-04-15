@@ -89,7 +89,7 @@ Dynkin's formula uses $\mathbb{E}[M_\tau] = 0$, which requires optional stopping
 
     $$\mathcal{L}f(x) = 0 \quad \text{for all } x$$
 
-### Harmonic $\Rightarrow$ Local Martingale
+### Harmonic ⇒ Local Martingale
 
 If $\mathcal{L}f = 0$:
 
@@ -105,7 +105,7 @@ $$
 
 ---
 
-## Converse: Martingale $\Rightarrow$ Harmonic?
+## Converse: Martingale ⇒ Harmonic?
 
 If $f(X_t)$ is a martingale, then $M_t = f(X_t) - f(X_0)$ is a martingale, and also $M_t = f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,ds$ is a martingale. So $\int_0^t (\mathcal{L}f)(X_s)\,ds$ must be a martingale. But it is also a continuous finite-variation process.
 
@@ -157,7 +157,7 @@ The $\Leftarrow$ direction requires non-degeneracy so the process visits all of 
 
 ---
 
-### Example 2: Brownian Motion in $\mathbb{R}^d$
+### Example 2: Brownian Motion in ℝᵈ
 
 **Generator**: $\mathcal{L} = \frac{1}{2}\Delta$
 

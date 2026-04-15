@@ -47,13 +47,13 @@ Evaluate the CF on a frequency grid $u \in [0.01, 100]$ with $N = 4096$ points, 
 
 **Result**: $C^{\text{GP}} = 6.8061$
 
-### Method 2: COS Method ($N = 128$)
+### Method 2: COS Method (N = 128)
 
 Truncation range: $a = -0.7$, $b = 0.7$ (based on $L = 10$ and the cumulant estimate). Compute density coefficients $A_k$ and payoff coefficients $H_k^{\text{call}}$.
 
 **Result**: $C^{\text{COS}} = 6.8061$
 
-### Method 3: Carr-Madan FFT ($N = 4096$)
+### Method 3: Carr-Madan FFT (N = 4096)
 
 Damping parameter $\alpha = 1.5$, frequency spacing $\Delta\nu = 0.01$. Run FFT and interpolate to $K = 100$.
 

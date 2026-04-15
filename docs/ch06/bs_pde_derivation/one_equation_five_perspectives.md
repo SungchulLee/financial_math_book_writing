@@ -89,3 +89,18 @@ The Black–Scholes PDE is not a model-specific accident. It is the **unique equ
 Understanding each derivation is not repetition—it is seeing the same object from different angles, until its structure becomes unavoidable.
 
 All five derivations are equivalent not because they resemble each other, but because they are different expressions of the same underlying principle: **no-arbitrage in a complete market**. The Black–Scholes equation is not derived—it is *revealed* as the unique pricing rule consistent with no-arbitrage in a complete market. Each method strips away a different layer, until only that rule remains.
+
+## Exercises
+
+**Exercise 1.** Name the five perspectives on the Black-Scholes equation discussed in this section. For each perspective, write one sentence explaining its key insight.
+
+??? success "Solution to Exercise 1"
+    The five perspectives are: (1) the hedging/replication argument, which shows the option price satisfies a PDE because a self-financing portfolio can replicate the payoff; (2) the risk-neutral pricing formula, which expresses the price as a discounted expected payoff under the risk-neutral measure; (3) the Feynman-Kac connection, which links the PDE solution to a conditional expectation; (4) the martingale approach, which identifies the discounted option price as a martingale; and (5) the change-of-numeraire technique, which simplifies the pricing formula by choosing a convenient numeraire.
+
+---
+
+**Exercise 2.** Explain in your own words why these five perspectives, despite their different starting points, all lead to the same pricing formula.
+
+??? success "Solution to Exercise 2"
+    All five perspectives are mathematically equivalent characterizations of the same no-arbitrage condition. The hedging argument constructs the replicating portfolio directly; risk-neutral pricing reformulates the same condition using measure theory; Feynman-Kac provides the analytical bridge between PDEs and expectations; the martingale approach captures the no-arbitrage condition in its most abstract form; and the change of numeraire is a computational simplification that preserves the underlying equivalence. Each perspective emphasizes a different mathematical tool but encodes the same economic content: the absence of arbitrage uniquely determines the option price.
+

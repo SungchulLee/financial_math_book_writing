@@ -163,7 +163,7 @@ flowchart TD
 
 ### 4. Examples
 
-#### Example 1: Constant integrand — $H_s = \sigma$
+#### Example 1: Constant integrand — Hₛ = σ
 
 Let $\sigma > 0$ be a constant. Then $I_t = \sigma B_t$.
 
@@ -175,7 +175,7 @@ Let $\sigma > 0$ be a constant. Then $I_t = \sigma B_t$.
 
 ---
 
-#### Example 2: Deterministic integrand — $H_s = s$
+#### Example 2: Deterministic integrand — Hₛ = s
 
 $$
 I_t = \int_0^t s\, dB_s
@@ -193,7 +193,7 @@ So $I_t \sim \mathcal{N}(0,\, t^3/3)$.
 
 ---
 
-#### Example 3: Random integrand — $H_s = B_s$
+#### Example 3: Random integrand — Hₛ = Bₛ
 
 $$
 I_t = \int_0^t B_s\, dB_s = \frac{B_t^2 - t}{2}

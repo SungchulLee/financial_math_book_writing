@@ -33,7 +33,7 @@ For a fixed time $s$, the Markov property follows from the independence of Brown
 
 ### Strong Markov Property for Brownian Motion
 
-!!! theorem "Theorem"
+!!! tip "Theorem"
     Let $(W_t)_{t \ge 0}$ be a standard Brownian motion and $\tau$ a stopping time with $\mathbb{P}(\tau < \infty) = 1$. Define
 
     $$
@@ -46,7 +46,7 @@ This is the prototype. The proof uses right-continuity of $(\mathcal{F}_t)$ to a
 
 ### Strong Markov Property for Diffusions
 
-!!! theorem "Theorem"
+!!! tip "Theorem"
     Let $X_t$ solve the SDE
 
     $$

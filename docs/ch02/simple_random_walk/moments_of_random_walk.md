@@ -46,7 +46,7 @@ This expression is maximised at $p = 1/2$, where $\text{Var}(\xi_i) = 1$, and te
 
 ---
 
-## Mean of $S_n$
+## Mean of Sₙ
 
 Since $S_n = \sum_{i=1}^n \xi_i$ and each $\xi_i$ has the same distribution, linearity of expectation gives:
 
@@ -63,7 +63,7 @@ The walk is centred at the origin at every time step. This is equivalent to the 
 
 ---
 
-## Variance of $S_n$
+## Variance of Sₙ
 
 ### Method 1: Additivity of Variance
 
@@ -82,7 +82,7 @@ The standard deviation is $\sqrt{n}$. After $n$ steps, a typical excursion from 
 
 ---
 
-### Method 2: Direct Expansion of $\mathbb{E}[S_n^2]$
+### Method 2: Direct Expansion of 𝔼[Sₙ²]
 
 This derivation makes the role of cross terms explicit, which matters for higher-moment calculations.
 

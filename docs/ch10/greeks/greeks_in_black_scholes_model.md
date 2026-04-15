@@ -41,7 +41,7 @@ $$
 
 ---
 
-## Preliminary: Derivatives of $d_1$ and $d_2$
+## Preliminary: Derivatives of d₁ and d₂
 
 
 Before computing Greeks, we establish the key derivatives:

@@ -43,7 +43,7 @@ Spreads create a pricing band:
 - Traders should be profitable when expected P&L > spread costs
 - Models underestimate costs if ignoring spread impact
 
-!!! caution "Model Limits"
+!!! warning "Model Limits"
     Perfect replication assumed in Black-Scholes assumes zero transaction costs. Under realistic spreads:
     - Perfect replication is impossible (hedging costs accumulate to significant levels)
     - Safe pricing requires markup that exceeds model price by a spread-dependent premium

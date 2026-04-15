@@ -213,6 +213,7 @@ The generator is only defined for functions where the limit exists. Typical func
 The generator describes **local** (infinitesimal) dynamics; the **transition operator** describes **global** (finite-time) evolution.
 
 !!! abstract "Definition (Transition Operator)"
+
     $$(P_{t_0, t} f)(x_0) = \mathbb{E}[f(X_t) \mid X_{t_0} = x_0]$$
 
 The generator is the infinitesimal version: $(\mathcal{L}_{t_0} f)(x_0) = \lim_{h \downarrow 0} \frac{(P_{t_0, t_0+h} f)(x_0) - f(x_0)}{h}$.
@@ -240,6 +241,7 @@ $$(\mathcal{L}f)(x^*) \leq 0$$
 ??? abstract "Proof"
 
     At a maximum, $f'(x^*) = 0$ and $f''(x^*) \leq 0$:
+
     $$(\mathcal{L}f)(x^*) = \mu(x^*) \cdot 0 + \frac{1}{2}\sigma^2(x^*) \cdot f''(x^*) \leq 0 \qquad \square$$
 
 !!! warning "Failure for Jump Processes"

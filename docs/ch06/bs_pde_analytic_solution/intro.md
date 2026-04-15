@@ -224,3 +224,18 @@ Once this is understood:
 * and the structure of the Black--Scholes formula becomes inevitable.
 
 The diversity of methods is therefore not a complication, but a reflection of the deep structure of the model.
+
+## Exercises
+
+**Exercise 1.** Summarize the main topics covered in this section in three to five sentences. Identify the key mathematical tools introduced.
+
+??? success "Solution to Exercise 1"
+    Answers will vary based on the specific content of the introductory section. A good summary should identify the central mathematical objects, the main theorems or results, and the connections to the broader theory developed in subsequent sections.
+
+---
+
+**Exercise 2.** List two open questions or extensions mentioned in this introduction that are addressed in later sections.
+
+??? success "Solution to Exercise 2"
+    Answers will vary. Students should identify specific claims or concepts that are stated without proof in the introduction and note where the full treatment appears later in the chapter.
+
