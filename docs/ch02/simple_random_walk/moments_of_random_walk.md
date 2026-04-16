@@ -263,3 +263,34 @@ $$\mathbb{E}[S_n^4] = n + 3n(n-1) = 3n^2 - 2n. \quad\square$$
     Every case gives 0, so $\mathbb{E}[S_n^3] = 0$.
 
     **Generalization:** Yes, $\mathbb{E}[S_n^k] = 0$ for all odd $k$. This follows from the symmetry $\xi_i \overset{d}{=} -\xi_i$, which implies $S_n \overset{d}{=} -S_n$. For any odd $k$: $\mathbb{E}[S_n^k] = \mathbb{E}[(-S_n)^k] = -\mathbb{E}[S_n^k]$, which forces $\mathbb{E}[S_n^k] = 0$. Alternatively, the index-counting argument shows that with an odd number of index slots, at least one distinct index must appear an odd number of times, introducing a factor of $\mathbb{E}[\xi_i^{\text{odd}}] = 0$.
+
+---
+
+**Exercise 7.** Higher Moments via Pairing.
+
+**(a)** Verify $\mathbb{E}[S_n^2] = n$ by direct expansion, without using the variance formula.
+
+**(b)** Using the pairing argument from Proposition 1.1.1, compute $\mathbb{E}[S_n^6]$.
+
+*Hint:* $\mathbb{E}[\xi_{i_1}\cdots\xi_{i_6}]$ is nonzero only when every distinct index appears an even number of times. The surviving cases are: (i) all six indices equal; (ii) one group of four equal indices and one pair; (iii) three distinct pairs.
+
+**(c)** Show that as $n \to \infty$:
+
+$$\mathbb{E}[S_n^{2k}] = (2k-1)!!\, n^k + O(n^{k-1})$$
+
+where $(2k-1)!! = 1 \cdot 3 \cdot 5 \cdots (2k-1)$. Compare with the Brownian motion moments $\mathbb{E}[W_1^{2k}] = (2k-1)!!$ and explain the connection.
+
+??? success "Solution to Exercise 7"
+    **(a)** $\mathbb{E}[S_n^2] = \sum_{i,j=1}^n \mathbb{E}[\xi_i\xi_j]$. For $i = j$: $\mathbb{E}[\xi_i^2] = 1$, contributing $n$ terms. For $i \neq j$: $\mathbb{E}[\xi_i\xi_j] = 0$ by independence and zero mean. Therefore $\mathbb{E}[S_n^2] = n$.
+
+    **(b)** Count ordered 6-tuples $(i_1,\ldots,i_6)$ where each distinct index appears an even number of times:
+
+    - **All six equal**: $\mathbb{E}[\xi_i^6] = 1$, with $n$ choices. Contribution: $n$.
+    - **One group of 4, one group of 2** (index $a$ appears 4 times, $b$ appears 2 times, $a \neq b$): the number of slot assignments is $\binom{6}{4} = 15$, and ordered pairs $(a,b)$ with $a \neq b$ give $n(n-1)$. Contribution: $15n(n-1)$.
+    - **Three distinct pairs** (indices $a, b, c$ each appearing twice): for each unordered triple $\{a,b,c\}$ ($\binom{n}{3}$ choices), the number of ordered 6-tuples is $\frac{6!}{(2!)^3} = 90$. Contribution: $90\binom{n}{3} = 15n(n-1)(n-2)$.
+
+    Total: $\mathbb{E}[S_n^6] = n + 15n(n-1) + 15n(n-1)(n-2) = 15n^3 - 30n^2 + 16n$.
+
+    **(c)** The leading term comes from the case where all indices appear in distinct pairs. The number of ways to pair $2k$ slots is $(2k-1)!! = (2k)!/(2^k k!)$, and the number of ordered $k$-tuples of distinct indices is asymptotically $n^k$, giving leading term $(2k-1)!! \cdot n^k$. Lower-order terms from index collisions contribute $O(n^{k-1})$.
+
+    For Brownian motion: $\mathbb{E}[W_1^{2k}] = (2k-1)!!$ since $W_1 \sim \mathcal{N}(0,1)$. The connection is the CLT: $S_n/\sqrt{n} \to \mathcal{N}(0,1)$, so $\mathbb{E}[S_n^{2k}]/n^k \to (2k-1)!!$.

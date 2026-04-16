@@ -198,3 +198,85 @@ The quadratic variation is deterministic. The decomposition $S_n^2 = [S]_n + M_n
     We also need to verify the other conditions: $|S_n|$ is adapted (since $S_n$ is adapted), and $\mathbb{E}[|S_n|] < \infty$ (since $\mathbb{E}[|S_n|] \leq \sqrt{\mathbb{E}[S_n^2]} = \sqrt{n} < \infty$).
 
     Therefore $\{|S_n|\}$ satisfies $\mathbb{E}[|S_{n+1}| \mid \mathcal{F}_n] \geq |S_n|$, which is the submartingale condition.
+
+---
+
+**Exercise 7.** Quadratic Variation on Arbitrary Partitions.
+
+Let $W^{(n)}$ be the piecewise-linear scaled random walk from [Scaling Limit](scaling_limit.md), and let
+
+$$\Pi = \{0 = t_0 < t_1 < \cdots < t_m = T\}$$
+
+be a partition of $[0,T]$ with each $t_i$ a multiple of $1/n$, so that each subinterval $[t_i, t_{i+1}]$ contains exactly one increment $\xi_j$.
+
+**(a)** Show that
+
+$$\mathbb{E}\!\left[\sum_{i=0}^{m-1} (W^{(n)}(t_{i+1}) - W^{(n)}(t_i))^2\right] = T$$
+
+**(b)** Show that
+
+$$\sum_{i=0}^{m-1} (W^{(n)}(t_{i+1}) - W^{(n)}(t_i))^2 = T \quad \text{almost surely}$$
+
+(not merely in expectation). *Hint:* $W^{(n)}$ is piecewise linear with exactly one increment $\xi_j$ per subinterval. Use the fact that $\xi_j^2 = 1$ almost surely to evaluate each squared increment explicitly.
+
+**(c)** For a differentiable function $f: [0,T] \to \mathbb{R}$ with bounded derivative, show that
+
+$$\sum_{i=0}^{m-1} (f(t_{i+1}) - f(t_i))^2 \to 0 \quad \text{as } |\Pi| \to 0$$
+
+Explain why this distinguishes random walk paths from smooth paths.
+
+??? success "Solution to Exercise 7"
+    **(a)** The partition has $m$ subintervals, each of length $1/n$, so $m = nT$. Each subinterval contains exactly one increment $\xi_j/\sqrt{n}$, with $(W^{(n)}(t_{i+1}) - W^{(n)}(t_i))^2 = \xi_j^2/n$. Taking expectations:
+
+    $$
+    \mathbb{E}\!\left[\sum_{i=0}^{m-1}(W^{(n)}(t_{i+1}) - W^{(n)}(t_i))^2\right] = \sum_{i=0}^{m-1} \frac{\mathbb{E}[\xi_j^2]}{n} = \frac{m}{n} = T
+    $$
+
+    **(b)** Since $\xi_j^2 = 1$ almost surely, each squared increment is $1/n$ almost surely (not just in expectation):
+
+    $$
+    \sum_{i=0}^{m-1}(W^{(n)}(t_{i+1}) - W^{(n)}(t_i))^2 = \frac{m}{n} = T \quad \text{almost surely}
+    $$
+
+    **(c)** By the Mean Value Theorem, $f(t_{i+1}) - f(t_i) = f'(c_i)(t_{i+1} - t_i)$ for some $c_i \in (t_i, t_{i+1})$. If $|f'| \leq M$:
+
+    $$
+    \sum_{i=0}^{m-1}(f(t_{i+1}) - f(t_i))^2 \leq M^2 \sum_{i=0}^{m-1}(\Delta t_i)^2 \leq M^2 |\Pi| T \to 0
+    $$
+
+    For smooth functions the quadratic variation vanishes; for random walk paths it equals $T > 0$. This non-vanishing quadratic variation is the hallmark of "infinite roughness" and gives rise to the Itô correction term.
+
+---
+
+**Exercise 8.** Gambler's Ruin.
+
+A gambler starts with \$$a$ and bets \$1 per round on a fair coin flip. The walk $\{S_n\}$ starts at $S_0 = a$ and is absorbed at the barriers 0 and $b$ (with $b > a$). Let
+
+$$\tau_0 = \inf\{n : S_n = 0\}, \qquad \tau_b = \inf\{n : S_n = b\}, \qquad \tau = \tau_0 \wedge \tau_b$$
+
+**(a)** Using the martingale $\{S_n\}$ (Proposition 1.1.3) and the Optional Stopping Theorem, show that
+
+$$\mathbb{P}(\tau_b < \tau_0) = \frac{a}{b}$$
+
+**(b)** Let $b \to \infty$. Show that $\mathbb{P}(\tau_0 < \infty) = 1$: the gambler is ruined with probability 1 in an unbounded game.
+
+**(c)** Using the martingale $\{S_n^2 - n\}$ (Proposition 1.1.4) and the Optional Stopping Theorem, show that
+
+$$\mathbb{E}[\tau] = \mathbb{E}[\tau_0 \wedge \tau_b] = a(b - a)$$
+
+??? success "Solution to Exercise 8"
+    **(a)** Since $\{S_n\}$ is a martingale, the Optional Stopping Theorem gives $\mathbb{E}[S_\tau] = \mathbb{E}[S_0] = a$. At stopping, $S_\tau \in \{0, b\}$:
+
+    $$
+    a = b \cdot \mathbb{P}(\tau_b < \tau_0)
+    $$
+
+    Therefore $\mathbb{P}(\tau_b < \tau_0) = a/b$.
+
+    **(b)** Letting $b \to \infty$: $\mathbb{P}(\tau_0 < \tau_b) = 1 - a/b \to 1$. Since $\{\tau_0 < \tau_b\} \nearrow \{\tau_0 < \infty\}$ as $b \to \infty$, $\mathbb{P}(\tau_0 < \infty) = 1$.
+
+    **(c)** The martingale $M_n = S_n^2 - n$ gives $\mathbb{E}[M_\tau] = a^2$, so $\mathbb{E}[\tau] = \mathbb{E}[S_\tau^2] - a^2$. Computing $\mathbb{E}[S_\tau^2] = b^2 \cdot (a/b) = ab$:
+
+    $$
+    \mathbb{E}[\tau] = ab - a^2 = a(b-a)
+    $$

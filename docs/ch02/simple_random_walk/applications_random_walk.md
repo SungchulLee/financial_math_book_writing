@@ -14,7 +14,7 @@ $$\tau_0 = \inf\{n \geq 0 : S_n = 0\}, \qquad \tau_b = \inf\{n \geq 0 : S_n = b\
 
 **Result.** $\mathbb{P}(\tau_b < \tau_0) = a/b$.
 
-**Key tool:** The martingale property of $\{S_n\}$ (Proposition 1.1.3) and the Optional Stopping Theorem. See [Exercise 3](exercises_random_walk.md) for the full derivation.
+**Key tool:** The martingale property of $\{S_n\}$ (Proposition 1.1.3) and the Optional Stopping Theorem. See [Exercise 8](martingale_property.md#exercises) for the full derivation.
 
 **Consequence.** As $b \to \infty$, $\mathbb{P}(\tau_b < \tau_0) = a/b \to 0$, so the gambler is ruined with certainty in an unbounded game. This is consistent with recurrence (Theorem 1.1.7): the unrestricted walk returns to every state infinitely often. There is no contradiction — the walk is recurrent on all of $\mathbb{Z}$, but in the gambler's ruin setup the walk is *absorbed* at 0, preventing any return once ruin occurs.
 
@@ -74,7 +74,7 @@ $$dX_t = \sqrt{X_t(1-X_t)}\,dW_t$$
 
 The random walk is the prototypical **Markov chain** on $\mathbb{Z}$: the transition probability from state $i$ is $p$ to $i+1$ and $1-p$ to $i-1$, depending only on the current position. The Markov property (Proposition 1.1.6) is the key structural ingredient.
 
-In **reinforcement learning**, value functions for Markov decision processes are estimated by temporal-difference methods that exploit the Markov property. The random walk serves as the canonical test case for policy evaluation algorithms (e.g., TD(0), Monte Carlo). The quantity $\mathbb{E}[\tau_0 \wedge \tau_b] = a(b-a)$ from [Exercise 3(c)](exercises_random_walk.md) gives the expected absorption time starting from $a$ with absorbing barriers at 0 and $b$; this closed-form result serves as a benchmark for verifying RL algorithms.
+In **reinforcement learning**, value functions for Markov decision processes are estimated by temporal-difference methods that exploit the Markov property. The random walk serves as the canonical test case for policy evaluation algorithms (e.g., TD(0), Monte Carlo). The quantity $\mathbb{E}[\tau_0 \wedge \tau_b] = a(b-a)$ from [Exercise 8(c)](martingale_property.md#exercises) gives the expected absorption time starting from $a$ with absorbing barriers at 0 and $b$; this closed-form result serves as a benchmark for verifying RL algorithms.
 
 ---
 

@@ -65,7 +65,6 @@ nav:
                 - Donsker's Theorem: ch02/simple_random_walk/donsker_theorem.md
                 - Simulations: ch02/simple_random_walk/simulations_random_walk.md
                 - Applications: ch02/simple_random_walk/applications_random_walk.md
-                - Exercises: ch02/simple_random_walk/exercises_random_walk.md
             - 2.2 Brownian Motion:
                 - Brownian Motion: ch02/brownian_motion/brownian_motion.md
                 - Moments of Brownian Motion: ch02/brownian_motion/moments_of_brownian_motion.md
@@ -148,38 +147,37 @@ nav:
                 - Martingale Representation Theorem: ch04/martingale/martingale_representation_theorem.md
                 - "The Unifying Principle: Controlling Local Martingales": ch04/martingale/unifying_principle.md
 
-            - 4.2 Martingales in Finance:
-                - Martingale and No-Arbitrage: ch04/finance/martingale_and_no_arbitrage.md
-                - Risk-Neutral Valuation Principle: ch04/finance/risk_neutral_valuation_principle.md
-
-            - 4.3 Girsanov Theorem:
+            - 4.2 Girsanov Theorem:
                 - Intuitive Introduction: ch04/girsanov/girsanov_intuition.md
                 - Financial Meaning of Drift Adjustment: ch04/girsanov/girsanov_drift_adjustment.md
                 - Girsanov's Theorem: ch04/girsanov/girsanov_theorem.md
                 - Proof of Girsanov's Theorem: ch04/girsanov/girsanov_proof.md
 
-            - 4.4 Risk-Neutral Measure:
+            - 4.3 Risk-Neutral Measure:
+                ## I. Financial Meaning
+                - Martingale and No-Arbitrage: ch04/risk_neutral/martingale_and_no_arbitrage.md
+                - Risk-Neutral Valuation Principle: ch04/risk_neutral/risk_neutral_valuation_principle.md
+                ## II. Construction
                 - Construction of the Risk-Neutral Measure: ch04/risk_neutral/construction.md
                 - Market Price of Risk: ch04/risk_neutral/market_price_of_risk.md
                 - Examples of Measure Change: ch04/risk_neutral/examples.md
+                ## III. Extensions
                 - Numéraire and Measure Change: ch04/risk_neutral/numeraire.md
                 - Forward Measure: ch04/risk_neutral/forward_measure.md
 
-            - 4.5 Financial Interpretation:
+            - 4.4 Financial Insights:
                 - Financial Insights Intro: ch04/insights/intro.md
-                # NEW CORE (must come early)
-                # ECONOMIC FOUNDATION
+                ## I. Economic Foundation (WHY)
                 - What the SDF Really Means: ch04/insights/sdf.md
                 - From SDF to CAPM to Factor Models: ch04/insights/sdf_to_capm.md
-                # Resolve the paradox formally
+                ## II. Measure Change Interpretation (HOW)
                 - Physical vs Risk-Neutral World: ch04/insights/physical_vs_risk_neutral.md
-                # Mechanism
                 - Risk Premium Decomposition: ch04/insights/risk_premium_decomposition.md
-                # Implications
+                ## III. Pricing vs Hedging (WHAT)
                 - Pricing vs Hedging: ch04/insights/pricing_vs_hedging.md
-                # Reality check
+                ## IV. Practice (REALITY)
                 - Practitioner Perspective: ch04/insights/practitioner_perspective.md
-                # Limits of the framework
+                ## V. Limits (BOUNDARIES)
                 - When Measure Change Fails: ch04/insights/when_measure_change_fails.md
 
         - 5 PDE in Finance:

@@ -236,3 +236,36 @@ Finite-dimensional convergence plus tightness yields the full functional limit $
     $$
 
     This proves that $K(s,t) = \min(s,t)$ is a positive semi-definite kernel, which by the Kolmogorov existence theorem guarantees the existence of a Gaussian process with this covariance structure (i.e., Brownian motion).
+
+---
+
+**Exercise 7.** Reflection Principle (Preview).
+
+Let $M_n = \max_{0 \leq k \leq n} S_k$ be the running maximum of the symmetric random walk.
+
+**(a)** By a symmetry argument, show that for $m > 0$:
+
+$$\mathbb{P}(M_n \geq m) = 2\,\mathbb{P}(S_n \geq m) - \mathbb{P}(S_n = m)$$
+
+*Hint:* Consider the "reflected" path obtained by flipping all steps after the first time the walk hits $m$. By symmetry, paths that hit $m$ and end below $m$ are in bijection with paths that hit $m$ and end above $m$.
+
+**(b)** Use part (a) and the normal approximation to show that for large $n$:
+
+$$\mathbb{P}\!\left(\frac{M_n}{\sqrt{n}} \geq x\right) \approx 2\bigl(1-\Phi(x)\bigr), \qquad x > 0$$
+
+where $\Phi$ is the standard normal CDF. This is the exact distribution of $\max_{0 \leq t \leq 1} W_t$ for Brownian motion, derived rigorously in a later chapter.
+
+??? success "Solution to Exercise 7"
+    **(a)** Decompose the event $\{M_n \geq m\}$ by the final position $S_n$. Paths that hit $m$ and end at $S_n = j < m$ are in bijection with paths that hit $m$ and end at $2m - j > m$ — reflect all steps after the first hitting time of $m$. Therefore $\mathbb{P}(M_n \geq m, S_n < m) = \mathbb{P}(S_n > m)$. Combining:
+
+    $$
+    \mathbb{P}(M_n \geq m) = \mathbb{P}(S_n > m) + \mathbb{P}(S_n = m) + \mathbb{P}(S_n > m) = 2\mathbb{P}(S_n \geq m) - \mathbb{P}(S_n = m)
+    $$
+
+    **(b)** For large $n$, $S_n/\sqrt{n} \approx Z \sim \mathcal{N}(0,1)$ and $\mathbb{P}(S_n = m) \to 0$:
+
+    $$
+    \mathbb{P}\!\left(\frac{M_n}{\sqrt{n}} \geq x\right) \approx 2\mathbb{P}(Z \geq x) = 2(1 - \Phi(x))
+    $$
+
+    This matches the exact distribution of the running maximum of Brownian motion on $[0,1]$.
