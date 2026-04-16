@@ -1,6 +1,31 @@
 # Arrow-Debreu Securities and State Prices
 
-Arrow-Debreu securities and state prices are foundational concepts in financial economics that provide a unified framework for pricing any financial asset. Introduced by Kenneth Arrow and Gérard Debreu in the 1950s, these ideas establish the theoretical basis for no-arbitrage pricing, risk-neutral valuation, and the completeness of financial markets.
+This is the destination of the chapter. The
+[previous section](arbitrage_and_dominance.md) established that no-arbitrage
+is the only economic assumption needed for pricing; this section shows
+exactly what pricing rule it produces. The answer is the
+[First Fundamental Theorem](one_period_market_model.md):
+
+!!! success "First Fundamental Theorem of Asset Pricing (finite case)"
+    The market admits no arbitrage if and only if there exists a strictly
+    positive state price vector $\boldsymbol{\phi} \gg 0$ such that
+
+    $$
+    \mathbf{P} = \mathbf{X}\boldsymbol{\phi}
+    $$
+
+    Equivalently, there exists a risk-neutral measure $\mathbb{Q}$ such that
+    $P_j = \frac{1}{1 + r_f}\mathbb{E}^{\mathbb{Q}}[X_j]$ for every asset $j$.
+
+Arrow-Debreu securities provide the concrete objects --- one security per
+state, paying \$1 in that state and 0 elsewhere --- whose prices are the
+components $\phi_s$ of the state price vector. Every other asset decomposes
+into a bundle of these elementary claims, so pricing reduces to decomposing
+payoffs into state-contingent pieces.
+
+Introduced by Kenneth Arrow and Gérard Debreu in the 1950s, this framework
+establishes the theoretical basis for no-arbitrage pricing, risk-neutral
+valuation, and market completeness.
 
 !!! abstract "Learning Objectives"
     After completing this section, you should understand:

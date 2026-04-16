@@ -1,6 +1,21 @@
 # Portfolios and Payoffs
 
-Having established the one-period market model and its probability space in the [previous section](one_period_market_model.md), we now formalize how investors interact with this market through portfolios. In the one-period model, investors make decisions at time $t = 0$ by choosing how many units of each available asset to hold. This choice --- a **portfolio** --- determines the investor's exposure to each possible future state of the world. The resulting terminal wealth, or **payoff**, depends on which state is realized at time $t = 1$. Understanding the set of all achievable payoffs is central to pricing, hedging, and the notion of market completeness that we will develop throughout this chapter.
+Having established the one-period market model in the
+[previous section](one_period_market_model.md), we now formalize how
+investors interact with it. Investors make decisions at $t = 0$ by choosing a
+**portfolio** --- a vector of holdings across the available assets --- whose
+**payoff** at $t = 1$ depends on which state is realized. The key observation
+of this page is that both the cost map $\boldsymbol{\theta} \mapsto V_0$ and
+the payoff map $\boldsymbol{\theta} \mapsto V_1$ are **linear**, so the entire
+trading structure is an exercise in linear algebra.
+
+!!! tip "Key insight: markets are linear algebra"
+    The portfolio cost and payoff maps are linear functionals on
+    $\mathbb{R}^{d+1}$. This linearity is what makes the
+    [First Fundamental Theorem](one_period_market_model.md) possible:
+    no-arbitrage becomes a statement about separating hyperplanes, and the
+    state price vector $\boldsymbol{\phi}$ of the main theorem is precisely
+    the coefficient vector of the linear pricing rule on attainable payoffs.
 
 !!! abstract "Learning Objectives: Portfolios, Payoffs, and Attainability"
     After completing this section, you should be able to:

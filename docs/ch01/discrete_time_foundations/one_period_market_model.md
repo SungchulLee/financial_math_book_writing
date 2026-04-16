@@ -1,6 +1,33 @@
 # One-Period Market Model
 
-Why study a model with only one time step and finitely many states? Because this minimal framework already contains the essential ideas of modern asset pricing: the relationship between no-arbitrage and the existence of pricing measures, the concept of market completeness, and the linear algebra of replication. Every continuous-time result in this book --- from Black-Scholes to the Heath-Jarrow-Morton framework --- has a one-period ancestor that is easier to state, prove, and compute. We introduce the one-period market model, the simplest discrete-time framework in which the core questions of asset pricing can be rigorously formulated and answered.
+This chapter derives modern asset pricing from a single economic assumption:
+**no-arbitrage**. The entire theory rests on one theorem.
+
+!!! success "Main theorem (First Fundamental Theorem of Asset Pricing, finite case)"
+    In a finite-state one-period market, prices $\mathbf{P}$ and payoffs $\mathbf{X}$
+    admit no arbitrage if and only if there exists a strictly positive state
+    price vector $\boldsymbol{\phi} \gg 0$ such that
+
+    $$
+    \mathbf{P} = \mathbf{X}\boldsymbol{\phi}
+    $$
+
+    This linear pricing rule is equivalent to discounted expectation under a
+    risk-neutral measure $\mathbb{Q}$.
+
+Everything in this chapter builds toward this result. The roadmap:
+
+| Section | Role | Concept |
+|---|---|---|
+| **One-period model** (this page) | Environment | States, assets, uncertainty |
+| [Portfolios and payoffs](portfolios_and_payoffs.md) | Mechanics | Trading, linear payoff space |
+| [Arbitrage and dominance](arbitrage_and_dominance.md) | Economic restriction | No free lunch |
+| [State prices](state_prices_arrow_debreu.md) | Pricing structure | Linear valuation, $\mathbb{Q}$ |
+
+The finite-state model is the minimal framework in which this theorem can be
+stated, proved, and computed. Every continuous-time result later in the book
+--- Black-Scholes, HJM, and beyond --- has a one-period ancestor built on the
+same logic: **no-arbitrage $\Leftrightarrow$ linear pricing**.
 
 !!! abstract "Learning Objectives"
     After completing this section, you should be able to:

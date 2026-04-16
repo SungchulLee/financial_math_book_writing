@@ -1,8 +1,29 @@
 # Arbitrage and Dominance
 
-An arbitrage opportunity is a trading strategy that generates profit without risk or net investment. This is the central impossibility condition of mathematical finance: if markets allowed riskless profits from nothing, prices would be driven to eliminate them, and no consistent pricing framework could exist. This page defines arbitrage and the related concept of dominance in a discrete one-period market, establishes their formal relationship to the Law of One Price, and shows how their absence constrains prices so tightly that positive state prices must exist.
+An arbitrage opportunity is a trading strategy that generates profit without
+risk or net investment. This is the central impossibility condition of
+mathematical finance: if markets allowed riskless profits from nothing, prices
+would be driven to eliminate them, and no consistent pricing framework could
+exist.
 
-Building on the portfolio and payoff framework from the [preceding section](portfolios_and_payoffs.md), we now ask: when can an investor construct a portfolio that earns a guaranteed profit? The answer to this question leads directly to the existence of positive state prices and risk-neutral measures, which we develop in the [next section](state_prices_arrow_debreu.md).
+Building on the portfolio and payoff framework from the
+[preceding section](portfolios_and_payoffs.md), we ask: when can an investor
+construct a portfolio with zero cost and non-negative payoff that is strictly
+positive somewhere? The answer to this question is the economic content of
+the [First Fundamental Theorem](one_period_market_model.md). The absence of
+arbitrage will imply the existence of a linear pricing rule
+$\mathbf{P} = \mathbf{X}\boldsymbol{\phi}$ with $\boldsymbol{\phi} \gg 0$,
+which we construct using state prices in the
+[next section](state_prices_arrow_debreu.md).
+
+!!! tip "Key insight: no-arbitrage is the only assumption needed"
+    The entire pricing theory of this chapter --- state prices, risk-neutral
+    measures, and discounted expectation --- follows from the single economic
+    assumption that no arbitrage opportunity exists. No utility function, no
+    equilibrium argument, no statistical hypothesis is required. This is why
+    the FTAP is called *fundamental*: it derives probability (the
+    risk-neutral measure $\mathbb{Q}$) from economics (no-arbitrage), not
+    the other way around.
 
 !!! abstract "Learning Objectives"
     After completing this section, you should be able to:
