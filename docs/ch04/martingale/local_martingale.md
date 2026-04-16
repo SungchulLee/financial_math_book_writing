@@ -98,6 +98,30 @@ $$
 \boxed{\text{Fatou turns equality at the stopped level into inequality in the limit because large values escape integrably.}}
 $$
 
+??? example "Toy model: rare spikes that pointwise limits miss"
+    Define $X_n = n \cdot \mathbf{1}_{\{U \leq 1/n\}}$ where $U \sim \text{Uniform}(0,1)$.
+
+    - **Each $X_n$ has expectation 1**: $\mathbb{E}[X_n] = n \cdot \tfrac{1}{n} = 1$.
+    - **Pointwise limit is 0**: for any fixed $u > 0$, eventually $u > 1/n$, so $X_n(u) = 0$.
+    - **Fatou gap**: $\mathbb{E}[\liminf X_n] = 0 < 1 = \liminf \mathbb{E}[X_n]$.
+
+    The spike at each stage is rare (probability $1/n$) but large (size $n$), so it sustains the expectation. But no single sample path ever sees a spike in the limit — the mass escapes through ever-rarer events. This is exactly the mechanism behind strict local martingales: expectation sees rare huge values; pointwise limits do not.
+
+??? example "Signed contrast: the doubling strategy"
+    A gambler bets $\$2^{n-1}$ on round $n$ until the first head at time $T = \inf\{n \geq 1 : \text{toss } n \text{ is Head}\}$. The cumulative wealth is:
+
+    $$
+    S_n = \mathbf{1}_{\{T \leq n\}} - (2^n - 1)\,\mathbf{1}_{\{T > n\}}
+    $$
+
+    Then $\mathbb{E}[S_n] = (1 - 2^{-n}) - (2^n - 1) \cdot 2^{-n} = 0$ for every $n$ (fair game), but $S_n \to 1$ a.s. since $T < \infty$ a.s. So:
+
+    $$
+    \mathbb{E}[\lim S_n] = 1 > 0 = \lim \mathbb{E}[S_n]
+    $$
+
+    Here the rare **negative** tail (catastrophic loss $-(2^n - 1)$ with probability $2^{-n}$) disappears pathwise, so the limit expectation is **larger**. In a non-negative strict local martingale, the rare **positive** tail disappears instead, so the limit expectation is **smaller**. The mechanism is the same — compensating mass hides in rarer and rarer extreme events — but the sign determines the direction.
+
 **(b) If $M_t \leq 0$ (non-positive local martingale).** Apply Fatou to $-M$:
 
 $$
