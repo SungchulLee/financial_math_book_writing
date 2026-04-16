@@ -62,7 +62,7 @@ Tail behaviour is well approximated by a **power law**:
 
 $$
 P(|r| > x) \sim C\,x^{-\alpha}
-\quad \text{as } x \to \infty,
+\quad \text{as } x \to \infty
 $$
 
 with tail index $\alpha \approx 3$–$5$ for daily equity returns. A Gaussian
@@ -235,7 +235,7 @@ For daily and lower frequencies, log returns show no statistically significant
 autocorrelation:
 
 $$
-\operatorname{Corr}(r_t,\, r_{t-k}) \approx 0 \quad \text{for } k \geq 1.
+\operatorname{Corr}(r_t,\, r_{t-k}) \approx 0 \quad \text{for } k \geq 1
 $$
 
 This is the empirical content of the **Efficient Market Hypothesis** in its

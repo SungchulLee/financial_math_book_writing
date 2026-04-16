@@ -31,7 +31,7 @@ data providers use the actual observed ex-date price to compute the adjustment
 factor:
 
 $$
-\text{factor} = \frac{P_{\text{ex}}}{P_{\text{cum}}} \approx \frac{P_{\text{ex}}}{P_{\text{ex}} + D},
+\text{factor} = \frac{P_{\text{ex}}}{P_{\text{cum}}} \approx \frac{P_{\text{ex}}}{P_{\text{ex}} + D}
 $$
 
 so that
@@ -121,7 +121,7 @@ $$
 \quad\text{(skewness)},
 \qquad
 \hat{\kappa} = \frac{1}{T}\sum_{t=1}^T \left(\frac{r_t - \hat\mu}{\hat\sigma}\right)^4 - 3
-\quad\text{(excess kurtosis)}.
+\quad\text{(excess kurtosis)}
 $$
 
 **Annualisation.** Let $N = 252$ (trading days per year). If daily log returns
@@ -132,7 +132,7 @@ $$
 \operatorname{Var}(r_{\text{ann}}) = N \hat\sigma^2
 \quad\Longrightarrow\quad
 \hat{\sigma}_{\text{ann}} = \sqrt{N}\,\hat{\sigma}, \qquad
-\hat{\mu}_{\text{ann}} = N\,\hat{\mu}.
+\hat{\mu}_{\text{ann}} = N\,\hat{\mu}
 $$
 
 Mean scales linearly with horizon; volatility scales with the **square root**

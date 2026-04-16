@@ -128,7 +128,7 @@ $t$ and the variance at time $t+1$:
 
 $$
 \operatorname{Corr}(r_t,\, \sigma_{t+1}^2) \approx -0.6
-\quad \text{(empirical estimate for large-cap equities)}.
+\quad \text{(empirical estimate for large-cap equities)}
 $$
 
 Under a deterministic ODE, $r_t = \mu\Delta t$ is a constant and
