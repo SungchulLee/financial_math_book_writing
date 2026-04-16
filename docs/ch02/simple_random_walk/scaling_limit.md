@@ -82,11 +82,7 @@ are independent.
 
 ### Non-Differentiability
 
-For the scaled walk, the difference quotient at jump times $t = k/n$ (for integer $k$) is:
-
-$$\frac{S^{(n)}(t + 1/n) - S^{(n)}(t)}{1/n} = \sqrt{n}\,\xi_{k+1} \in \{-\sqrt{n}, +\sqrt{n}\}$$
-
-This has magnitude $\sqrt{n} \to \infty$. (At intermediate times the step-function $S^{(n)}$ is flat, and the piecewise-linear $W^{(n)}$ has constant slope $\pm\sqrt{n}$ between jump times — so the same conclusion holds throughout each interval.) In the limit, the paths cannot be differentiable. Paley, Wiener, and Zygmund (1933) proved rigorously that Brownian motion is almost surely nowhere differentiable.
+The difference quotient at jump times $t = k/n$ is $\sqrt{n}\,\xi_{k+1}$, which diverges. Brownian motion is almost surely nowhere differentiable (Paley, Wiener, Zygmund, 1933).
 
 ### Quadratic Variation of the Scaled Walk
 
@@ -101,11 +97,7 @@ The quadratic variation of the scaled walk converges to $t$ — the same as Brow
 
 ## What Comes Next
 
-The moment calculations above establish **finite-dimensional convergence**: for any fixed $t$, $S^{(n)}(t) \to \mathcal{N}(0,t)$ in distribution (this is the CLT of [Theorem 1.1.10](mgf_of_random_walk.md)). But finite-dimensional convergence alone does not imply that the *entire process* converges to Brownian motion. The additional ingredient is **tightness** of the measures induced by $\{W^{(n)}\}$ on $C[0,T]$. Tightness plus finite-dimensional convergence gives the full functional limit
-
-$$W^{(n)} \Rightarrow W \quad \text{in } C[0,T] \text{ with the uniform topology.}$$
-
-This is **Donsker's Invariance Principle**, proved in [Donsker's Theorem](donsker_theorem.md).
+Finite-dimensional convergence plus tightness yields the full functional limit $W^{(n)} \Rightarrow W$ in $C[0,T]$ — see [Donsker's Theorem](donsker_theorem.md).
 
 ---
 

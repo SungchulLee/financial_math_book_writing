@@ -72,40 +72,10 @@ $$\frac{S_n}{\sqrt{n}} \xrightarrow{d} \mathcal{N}(0,1). \quad\square$$
 
 ---
 
-## Cumulants
-
-The **cumulant generating function** is
-
-$$\Lambda(\lambda) := \log \mathbb{E}[e^{\lambda S_n}] = n \log\cosh\lambda$$
-
-The **cumulants** $\kappa_k$ of $S_n$ are defined by $\Lambda(\lambda) = \sum_{k=1}^\infty \kappa_k \frac{\lambda^k}{k!}$. Since $\cosh\lambda$ is an even function, $\log\cosh\lambda$ has only even-degree terms, so all odd cumulants vanish. This reflects the distributional symmetry $S_n \overset{d}{=} -S_n$: a symmetric distribution has all odd cumulants equal to zero.
-
----
-
-## Large Deviations
-
-For **large deviations**, the rate function governing probabilities of the form $\mathbb{P}(S_n/n \geq x)$ is the Legendre–Fenchel transform of $\log\cosh$:
-
-$$I(x) = \sup_{\lambda \in \mathbb{R}} \bigl(\lambda x - \log\cosh\lambda\bigr)$$
-
-Setting the derivative to zero gives $x = \tanh\lambda$, so $\lambda^* = \tanh^{-1}(x)$. To simplify, use $\tanh^{-1}(x) = \frac{1}{2}\log\frac{1+x}{1-x}$ and $\cosh(\tanh^{-1}(x)) = \frac{1}{\sqrt{1-x^2}}$. Substituting:
-
-$$I(x) = x \cdot \frac{1}{2}\log\frac{1+x}{1-x} - \log\frac{1}{\sqrt{1-x^2}}
-= \frac{x}{2}\log\frac{1+x}{1-x} + \frac{1}{2}\log(1-x^2)$$
-
-Writing $\log(1-x^2) = \log(1+x)+\log(1-x)$ and collecting terms yields:
-
-$$I(x) = \frac{1+x}{2}\log(1+x) + \frac{1-x}{2}\log(1-x), \quad |x| \leq 1$$
-
-This gives the large deviation principle $\mathbb{P}(S_n/n \approx x) \approx e^{-nI(x)}$ for $|x| \leq 1$. The constraint $|x| \leq 1$ is natural: since each $\xi_i \in \{-1,+1\}$, the average $S_n/n$ is always confined to $[-1,1]$, and the supremum in the Legendre transform is $+\infty$ for $|x|>1$ by convention.
-
----
-
 ## References
 
 - Durrett, R. (2019). *Probability: Theory and Examples*, 5th ed. Cambridge University Press.
 - Feller, W. (1968). *An Introduction to Probability Theory and Its Applications*, Vol. 2, 3rd ed. Wiley.
-- Dembo, A., & Zeitouni, O. (2010). *Large Deviations Techniques and Applications*, 2nd ed. Springer.
 
 ---
 
@@ -136,30 +106,12 @@ This gives the large deviation principle $\mathbb{P}(S_n/n \approx x) \approx e^
 
 ---
 
-**Exercise 2.** Using the MGF $M_{S_n}(\lambda) = (\cosh \lambda)^n$ and the formula $\mathbb{E}[S_n^k] = M_{S_n}^{(k)}(0)$, compute $\mathbb{E}[S_n^6]$ for the symmetric random walk. Express your answer as a polynomial in $n$.
+**Exercise 2.** Differentiate $M_{S_n}(\lambda) = (\cosh\lambda)^n$ twice and evaluate at $\lambda = 0$ to recover $\mathbb{E}[S_n^2] = n$. Verify against the direct calculation in [Moments of Random Walk](moments_of_random_walk.md).
 
 ??? success "Solution to Exercise 2"
-    We need $\mathbb{E}[S_n^6] = M_{S_n}^{(6)}(0)$ where $M_{S_n}(\lambda) = (\cosh\lambda)^n$. Using the cumulant generating function $\Lambda(\lambda) = n\log\cosh\lambda$ and the Taylor expansion:
+    Let $M(\lambda) = (\cosh\lambda)^n$. First derivative: $M'(\lambda) = n(\cosh\lambda)^{n-1}\sinh\lambda$. At $\lambda = 0$: $M'(0) = n \cdot 1 \cdot 0 = 0 = \mathbb{E}[S_n]$.
 
-    $$
-    \log\cosh\lambda = \frac{\lambda^2}{2} - \frac{\lambda^4}{12} + \frac{\lambda^6}{45} - \cdots
-    $$
-
-    So $\Lambda(\lambda) = \frac{n\lambda^2}{2} - \frac{n\lambda^4}{12} + \frac{n\lambda^6}{45} - \cdots$, giving cumulants $\kappa_2 = n$, $\kappa_4 = -2n$, $\kappa_6 = 16n$.
-
-    The sixth moment is related to cumulants by:
-
-    $$
-    \mathbb{E}[S_n^6] = \kappa_6 + 15\kappa_4\kappa_2 + 15\kappa_2^3 + 10\kappa_3^2
-    $$
-
-    Since $\kappa_3 = 0$ (odd cumulant):
-
-    $$
-    \mathbb{E}[S_n^6] = 16n + 15(-2n)(n) + 15n^3 = 16n - 30n^2 + 15n^3
-    $$
-
-    Therefore $\mathbb{E}[S_n^6] = 15n^3 - 30n^2 + 16n$.
+    Second derivative: $M''(\lambda) = n(n-1)(\cosh\lambda)^{n-2}\sinh^2\lambda + n(\cosh\lambda)^{n-1}\cosh\lambda = n(n-1)(\cosh\lambda)^{n-2}\sinh^2\lambda + n(\cosh\lambda)^n$. At $\lambda = 0$: $M''(0) = 0 + n \cdot 1 = n = \mathbb{E}[S_n^2]$, agreeing with the direct calculation.
 
 ---
 
@@ -188,85 +140,3 @@ This gives the large deviation principle $\mathbb{P}(S_n/n \approx x) \approx e^
 
 ---
 
-**Exercise 4.** The large deviation rate function for the symmetric random walk is $I(x) = \frac{1+x}{2}\log(1+x) + \frac{1-x}{2}\log(1-x)$ for $|x| \leq 1$. Show that $I(x) \geq 0$ with equality only at $x = 0$. Then verify that $I''(0) = 1$, so that near $x = 0$ the rate function is approximately $I(x) \approx x^2/2$, which is consistent with the CLT (Gaussian tail with variance $1/n$).
-
-??? success "Solution to Exercise 4"
-    **$I(x) \geq 0$ with equality only at $x = 0$:** Define $f(x) = \frac{1+x}{2}\log(1+x) + \frac{1-x}{2}\log(1-x)$ for $|x| \leq 1$. At $x = 0$: $f(0) = \frac{1}{2}\log 1 + \frac{1}{2}\log 1 = 0$. The first derivative is:
-
-    $$
-    f'(x) = \frac{1}{2}\log(1+x) - \frac{1}{2}\log(1-x) = \frac{1}{2}\log\frac{1+x}{1-x}
-    $$
-
-    So $f'(0) = 0$. The second derivative is:
-
-    $$
-    f''(x) = \frac{1}{2}\cdot\frac{1}{1+x} + \frac{1}{2}\cdot\frac{1}{1-x} = \frac{1}{1-x^2}
-    $$
-
-    Since $f''(x) > 0$ for all $|x| < 1$, $f$ is strictly convex on $(-1,1)$. A strictly convex function with $f(0) = 0$ and $f'(0) = 0$ satisfies $f(x) > 0$ for all $x \neq 0$ in $(-1,1)$.
-
-    **Verification that $I''(0) = 1$:** From above, $f''(0) = 1/(1-0) = 1$. Therefore near $x = 0$:
-
-    $$
-    I(x) \approx \frac{1}{2}I''(0)x^2 = \frac{x^2}{2}
-    $$
-
-    The large deviation principle gives $\mathbb{P}(S_n/n \approx x) \approx e^{-nI(x)} \approx e^{-nx^2/2}$ for small $x$. With $x = a/\sqrt{n}$, this gives $\mathbb{P}(S_n \approx a\sqrt{n}) \approx e^{-a^2/2}$, matching the Gaussian tail from the CLT.
-
----
-
-**Exercise 5.** Use Markov's inequality with the MGF to derive a Chernoff bound for the symmetric random walk: show that for $a > 0$,
-
-$$
-\mathbb{P}(S_n \geq an) \leq \inf_{\lambda > 0} e^{-\lambda an} (\cosh \lambda)^n = e^{-nI(a)}
-$$
-
-Compute this bound numerically for $n = 100$ and $a = 0.3$. Compare with the normal approximation $\mathbb{P}(S_{100} \geq 30)$.
-
-??? success "Solution to Exercise 5"
-    By Markov's inequality, for any $\lambda > 0$:
-
-    $$
-    \mathbb{P}(S_n \geq an) = \mathbb{P}(e^{\lambda S_n} \geq e^{\lambda an}) \leq \frac{\mathbb{E}[e^{\lambda S_n}]}{e^{\lambda an}} = e^{-\lambda an}(\cosh\lambda)^n
-    $$
-
-    Optimizing over $\lambda > 0$:
-
-    $$
-    \mathbb{P}(S_n \geq an) \leq \inf_{\lambda > 0} e^{-n(\lambda a - \log\cosh\lambda)} = e^{-nI(a)}
-    $$
-
-    For $n = 100$, $a = 0.3$: we need $I(0.3) = \frac{1.3}{2}\log 1.3 + \frac{0.7}{2}\log 0.7 = 0.65 \cdot 0.2624 + 0.35 \cdot (-0.3567) = 0.1706 - 0.1248 = 0.0457$.
-
-    $$
-    \mathbb{P}(S_{100} \geq 30) \leq e^{-100 \cdot 0.0457} = e^{-4.57} \approx 0.0104
-    $$
-
-    For the normal approximation: $\mathbb{P}(S_{100} \geq 30) = \mathbb{P}(Z \geq 30/\sqrt{100}) = \mathbb{P}(Z \geq 3) = 1 - \Phi(3) \approx 0.00135$. The Chernoff bound ($\approx 0.0104$) is a valid upper bound but is looser than the exact Gaussian estimate. The discrepancy is expected because the Chernoff bound applies for all $n$, while the normal approximation is an asymptotic result.
-
----
-
-**Exercise 6.** The cumulant generating function is $\Lambda(\lambda) = n\log\cosh\lambda$. Show that all odd cumulants of $S_n$ are zero. Compute the first three nonzero cumulants ($\kappa_2$, $\kappa_4$, $\kappa_6$) and verify that the **excess kurtosis** $\kappa_4 / \kappa_2^2 = -2/n$ vanishes as $n \to \infty$, consistent with the CLT (the Gaussian has zero excess kurtosis).
-
-??? success "Solution to Exercise 6"
-    The cumulant generating function is $\Lambda(\lambda) = n\log\cosh\lambda$. Since $\cosh\lambda = \cosh(-\lambda)$ is an even function, $\log\cosh\lambda$ contains only even powers of $\lambda$. Therefore $\Lambda(\lambda) = \sum_{k=1}^\infty \kappa_k \frac{\lambda^k}{k!}$ has $\kappa_k = 0$ for all odd $k$: all odd cumulants vanish.
-
-    Using the expansion $\log\cosh\lambda = \frac{\lambda^2}{2} - \frac{\lambda^4}{12} + \frac{\lambda^6}{45} - \cdots$:
-
-    $$
-    \Lambda(\lambda) = n\left(\frac{\lambda^2}{2} - \frac{\lambda^4}{12} + \frac{\lambda^6}{45} - \cdots\right)
-    $$
-
-    Reading off $\kappa_k \frac{\lambda^k}{k!}$:
-
-    - $\kappa_2 = n$ (from $\frac{n\lambda^2}{2} = \kappa_2\frac{\lambda^2}{2!}$)
-    - $\kappa_4 = -2n$ (from $-\frac{n\lambda^4}{12} = \kappa_4\frac{\lambda^4}{4!}$, so $\kappa_4 = -\frac{n \cdot 24}{12} = -2n$)
-    - $\kappa_6 = 16n$ (from $\frac{n\lambda^6}{45} = \kappa_6\frac{\lambda^6}{6!}$, so $\kappa_6 = \frac{n \cdot 720}{45} = 16n$)
-
-    The excess kurtosis is:
-
-    $$
-    \frac{\kappa_4}{\kappa_2^2} = \frac{-2n}{n^2} = \frac{-2}{n} \xrightarrow{n\to\infty} 0
-    $$
-
-    This vanishing is consistent with the CLT: $S_n/\sqrt{n} \to \mathcal{N}(0,1)$, and the Gaussian distribution has excess kurtosis 0.

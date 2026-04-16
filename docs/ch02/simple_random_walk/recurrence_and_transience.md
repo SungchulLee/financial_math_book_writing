@@ -1,10 +1,6 @@
 # Recurrence and Transience
 
-> "A drunken man will find his way home, but a drunken bird may get lost forever."
->
-> — Shizuo Kakutani (as quoted in Durrett, *Probability: Theory and Examples*, 4th ed., p. 162)
-
-Whether a random walk returns to its starting point depends critically on the dimension of the space it lives in. This dichotomy, first established by Pólya (1921), is one of the most striking results in probability theory.
+Whether a random walk returns to its starting point depends on the dimension of the space (Pólya, 1921).
 
 ---
 
@@ -94,17 +90,6 @@ For $p \neq 1/2$, any nonzero drift makes the 1D walk transient. By the Strong L
 $$\frac{S_n}{n} \to \mathbb{E}[\xi_1] = 2p - 1 \neq 0 \quad \text{almost surely.}$$
 
 So $S_n \to +\infty$ (if $p > 1/2$) or $S_n \to -\infty$ (if $p < 1/2$) almost surely. The walk visits each integer only finitely many times, regardless of how small $|p - 1/2|$ is. There is no threshold — any drift, however small, destroys recurrence.
-
----
-
-## Implications
-
-The recurrence/transience dichotomy has consequences far beyond the random walk:
-
-- **Statistical mechanics:** recurrence in $d \leq 2$ is related to the absence of a phase transition in the Ising model below dimension 2 (Peierls argument).
-- **Polymer physics:** transience in $d \geq 3$ models the fact that a long polymer in 3D has positive probability of having no self-intersections.
-- **Population genetics:** in the Wright–Fisher model, the allele frequency process is a martingale whose absorbing boundaries are inevitably hit — in analogy with, but not directly caused by, the recurrence of the 1D walk (see [Applications](applications_random_walk.md) for a precise statement).
-- **Potential theory:** the connection $U(1) < \infty \Leftrightarrow$ transient is the probabilistic version of the Green's function being finite.
 
 ---
 

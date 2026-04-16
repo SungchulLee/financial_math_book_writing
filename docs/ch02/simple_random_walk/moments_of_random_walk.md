@@ -1,6 +1,6 @@
 # Moments of the Random Walk
 
-The first two moments of $S_n$ — its mean and variance — are the most basic quantitative facts about the walk. We derive them in full detail, presenting every algebraic step. Students who are comfortable with these computations should still read the summary table at the end, as the formulas recur throughout the chapter.
+We derive the mean, variance, and fourth moment of $S_n$ from the step distribution. The summary table at the end collects formulas used throughout the chapter.
 
 ---
 
@@ -65,25 +65,6 @@ The walk is centred at the origin at every time step. This is equivalent to the 
 
 ## Variance of Sₙ
 
-### Method 1: Additivity of Variance
-
-Since $\xi_1, \xi_2, \ldots, \xi_n$ are **independent**, the variance of their sum equals the sum of their variances:
-
-$$\text{Var}(S_n) = \text{Var}\!\left(\sum_{i=1}^n \xi_i\right) = \sum_{i=1}^n \text{Var}(\xi_i) = \sum_{i=1}^n 4p(1-p) = 4np(1-p)$$
-
-!!! warning "Independence is essential here"
-    Unlike linearity of expectation, the identity $\text{Var}(\sum \xi_i) = \sum \text{Var}(\xi_i)$ requires that the $\xi_i$ be **uncorrelated** (pairwise independence suffices). For the random walk the $\xi_i$ are fully independent, so this holds without qualification.
-
-**Symmetric case ($p = 1/2$):**
-
-$$\text{Var}(S_n) = 4n \cdot \tfrac{1}{2} \cdot \tfrac{1}{2} = n$$
-
-The standard deviation is $\sqrt{n}$. After $n$ steps, a typical excursion from the origin is of order $\sqrt{n}$, not $n$. This **diffusive scaling** ($\sim\sqrt{n}$) is the signature of randomness without drift and persists in the Brownian motion limit.
-
----
-
-### Method 2: Direct Expansion of 𝔼[Sₙ²]
-
 This derivation makes the role of cross terms explicit, which matters for higher-moment calculations.
 
 **Expand the square:**
@@ -110,10 +91,7 @@ $$= n + (2p-1)^2\bigl[n(n-1) - n^2\bigr]
 = n\bigl[1-(2p-1)^2\bigr]
 = 4np(1-p). \quad\square$$
 
-Both methods agree.
-
-!!! note "Why cross terms vanish when $p = 1/2$"
-    In the symmetric case $\mathbb{E}[\xi_i] = 0$, so independence gives $\mathbb{E}[\xi_i \xi_j] = \mathbb{E}[\xi_i]\mathbb{E}[\xi_j] = 0$ for $i \neq j$. Every off-diagonal term vanishes and $\mathbb{E}[S_n^2] = n$ immediately. The vanishing of $\mathbb{E}[\xi_i \xi_j]$ reflects the absence of correlation between non-overlapping steps — a consequence of the Markov property (see [Martingale Property](martingale_property.md)).
+**Symmetric case ($p = 1/2$).** $\mathbb{E}[\xi_i] = 0$ kills every cross term, leaving $\text{Var}(S_n) = n$. The standard deviation $\sqrt{n}$ is the signature of diffusive scaling that persists in the Brownian limit.
 
 ---
 
