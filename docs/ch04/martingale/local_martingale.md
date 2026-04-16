@@ -1,8 +1,6 @@
 # Local Martingales
 
-In the [unifying framework](unifying_principle.md) of this section, the local martingale is the **raw, uncontrolled object** — the starting point before any upgrade to a true martingale.
-
-A **local martingale** is a process that behaves like a martingale "locally" — when stopped at appropriate times — but may fail to be a true martingale globally. This distinction is crucial in continuous-time finance, where many natural price processes are local martingales but not martingales.
+A **local martingale** is a process that behaves like a martingale "locally" — when stopped at appropriate times — but may fail to be a true martingale globally (see [Unifying Principle](unifying_principle.md)). This distinction is crucial in continuous-time finance, where many natural price processes are local martingales but not martingales.
 
 !!! tip "Mental model"
     - **Local martingale** = "looks like a fair game locally"
@@ -18,17 +16,11 @@ A **local martingale** is a process that behaves like a martingale "locally" —
 
 ---
 
-### Definitions
+## Definitions
 
-#### Martingale (Recap)
+Recall that a [martingale](../../ch02/filtration_and_martingales/martingales.md) is an adapted, integrable process satisfying $\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s$ for all $s \leq t$. The local version relaxes this to hold only under stopping.
 
-A process $\{M_t\}_{t \geq 0}$ is a **martingale** with respect to filtration $\{\mathcal{F}_t\}$ if:
-
-1. **Adaptedness**: $M_t$ is $\mathcal{F}_t$-measurable for all $t \geq 0$
-2. **Integrability**: $\mathbb{E}[|M_t|] < \infty$ for all $t \geq 0$
-3. **Martingale property**: $\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s$ almost surely for all $0 \leq s \leq t$
-
-#### Local Martingale
+### Local Martingale
 
 !!! info "Local Martingale"
     An adapted process $\{M_t\}_{t \geq 0}$ with $M_0$ finite almost surely is a **local martingale** if there exists a sequence of stopping times $\{\tau_n\}_{n=1}^{\infty}$ such that:
@@ -46,7 +38,7 @@ A process $\{M_t\}_{t \geq 0}$ is a **martingale** with respect to filtration $\
 
 ---
 
-### The Martingale Hierarchy
+## The Martingale Hierarchy
 
 The following inclusions are strict:
 
@@ -63,33 +55,67 @@ where **UI** denotes uniformly integrable. The inclusions go from strongest (UI 
 
 ---
 
-### What Can Go Wrong?
+## What Can Go Wrong?
 
-A local martingale fails to be a martingale when any of the following occurs:
+A local martingale fails to be a true martingale for two fundamentally different reasons.
 
-#### 1. Integrability Failure
+### 1. Integrability Failure
 
-The random variable $M_t$ may satisfy $\mathbb{E}[|M_t|] = \infty$ for some (or all) $t > 0$.
-
-#### 2. Loss of Integrability
-
-A local martingale may fail to be a true martingale when it approaches a boundary (finite or infinite) in such a way that integrability is lost. This is often interpreted as probability mass 'escaping to infinity,' even if individual sample paths do not literally explode in finite time.
-
-#### 3. Mass Leakage at Infinity
-
-Even without explosion, probability mass can "escape to infinity" in the sense that:
+The process is not even a martingale candidate:
 
 $$
-\mathbb{E}[M_t] < \mathbb{E}[M_0]
+\mathbb{E}[|M_t|] = \infty \quad \text{for some } t > 0
 $$
 
-The "missing mass" corresponds to paths where $M_t$ has grown large.
+### 2. Integrability Holds, but Martingale Property Fails
+
+Even when $\mathbb{E}[|M_t|] < \infty$, the martingale property can fail because limits do not commute with expectation. When we localize and take $n \to \infty$, Fatou's lemma only gives an inequality — and the direction of that inequality depends on the sign of $M$.
+
+The direction of failure is determined by the sign of $M$:
+
+**(a) If $M_t \geq 0$ (non-negative local martingale).** Let $\{\tau_n\}$ be a localizing sequence. Each stopped process $M_{t \wedge \tau_n}$ is a true martingale, so:
+
+$$
+\mathbb{E}[M_{t \wedge \tau_n}] = \mathbb{E}[M_0] \quad \text{for every } n
+$$
+
+Since $M_{t \wedge \tau_n} \to M_t$ a.s. (as $\tau_n \uparrow \infty$) and $M_{t \wedge \tau_n} \geq 0$, Fatou's lemma applies:
+
+$$
+\mathbb{E}[M_t] = \mathbb{E}\!\left[\liminf_{n \to \infty} M_{t \wedge \tau_n}\right] \leq \liminf_{n \to \infty} \mathbb{E}[M_{t \wedge \tau_n}] = \mathbb{E}[M_0]
+$$
+
+Equality makes $M$ a true martingale; strict inequality signals **mass loss at infinity**.
+
+**Why the inequality can be strict.** Upgrading $\leq$ to $=$ would require interchanging limit and expectation, which needs uniform integrability or dominated convergence. When neither holds, the mechanism is:
+
+1. At each finite $n$, the stopping time $\tau_n$ **cuts off** the process before extreme values are reached, so $\mathbb{E}[M_{t \wedge \tau_n}] = M_0$ holds exactly.
+2. As $n$ increases, $\tau_n$ lets the process run longer — rare paths where $M_t$ becomes very large are cut off later and later.
+3. Although these extreme paths are rare, they carry large values and contribute disproportionately to the expectation.
+4. In the limit $n \to \infty$, these paths are never cut, but their contribution to the expectation does **not come back nicely** — it is lost in the passage from $\liminf$ of expectations to expectation of $\liminf$.
+
+$$
+\boxed{\text{Fatou turns equality at the stopped level into inequality in the limit because large values escape integrably.}}
+$$
+
+**(b) If $M_t \leq 0$ (non-positive local martingale).** Apply Fatou to $-M$:
+
+$$
+\mathbb{E}[M_t] \geq \mathbb{E}[M_0]
+$$
+
+Equality makes $M$ a true martingale; strict inequality signals **mass gain from $-\infty$** (sign-flipped leakage).
+
+**(c) No Sign Constraint (General Case).** If $M$ has no sign restriction, then no inequality is forced by Fatou alone — $\mathbb{E}[M_t]$ can lie above or below $\mathbb{E}[M_0]$. The outcome depends on which tail dominates: large positive excursions push the expectation down, while large negative excursions push it up.
+
+!!! tip "One-line summary"
+    A local martingale fails either because it is **not integrable**, or because **localization hides tail behavior**, and the direction of failure is dictated by the **sign via Fatou**.
 
 ---
 
-### Canonical Examples
+## Canonical Examples
 
-#### Example 1: Itô Integrals
+### Example 1: Itô Integrals
 
 Consider the Itô integral:
 
@@ -129,7 +155,7 @@ By the Itô isometry criterion, $M_{t \wedge \tau_n}$ is a true martingale for e
 
 ---
 
-#### Example 2: Stochastic Exponential (True Martingale)
+### Example 2: Stochastic Exponential (True Martingale)
 
 The **stochastic exponential** of Brownian motion:
 
@@ -154,7 +180,7 @@ By Novikov's theorem (see [Novikov & Kazamaki Conditions](novikov_kazamaki_condi
 
 ---
 
-#### Example 3: Reciprocal of 3D Bessel Process (Strict Local Martingale)
+### Example 3: Reciprocal of 3D Bessel Process (Strict Local Martingale)
 
 Let $R_t = |B_t|$ where $B_t = (B^1_t, B^2_t, B^3_t)$ is 3-dimensional Brownian motion started from $B_0 = x$ with $|x| = r_0 > 0$. The process $R_t$ is the **3-dimensional Bessel process** started from $r_0$.
 
@@ -210,7 +236,7 @@ where $\Phi$ is the standard normal CDF. The strict inequality shows $\mathbb{E}
 
 ---
 
-#### Example 4: CEV Model with β > 1 (Strict Local Martingale)
+### Example 4: CEV Model with β > 1 (Strict Local Martingale)
 
 The **constant elasticity of variance (CEV)** model provides a clean example of a strict local martingale arising in finance. Consider:
 
@@ -243,9 +269,9 @@ $$
 
 ---
 
-### Mathematical Characterization
+## Mathematical Characterization
 
-#### The Supermartingale Property
+### The Supermartingale Property
 
 !!! tip "Key insight"
     Non-negative local martingales can only **lose** expectation, never gain it. If $\mathbb{E}[M_t] < \mathbb{E}[M_0]$, immediately think: strict local martingale.
@@ -257,19 +283,7 @@ $$
     \mathbb{E}[M_t \mid \mathcal{F}_s] \leq M_s \quad \text{almost surely for all } 0 \leq s \leq t
     $$
 
-**Proof**: Let $\{\tau_n\}$ be a localizing sequence. For the stopped process:
-
-$$
-\mathbb{E}[M_{t \wedge \tau_n} \mid \mathcal{F}_s] = M_{s \wedge \tau_n} \quad \text{(martingale property)}
-$$
-
-Since $M \geq 0$, Fatou's lemma gives:
-
-$$
-\mathbb{E}[M_t \mid \mathcal{F}_s] = \mathbb{E}\left[\liminf_{n \to \infty} M_{t \wedge \tau_n} \mid \mathcal{F}_s\right] \leq \liminf_{n \to \infty} \mathbb{E}[M_{t \wedge \tau_n} \mid \mathcal{F}_s] = \liminf_{n \to \infty} M_{s \wedge \tau_n} = M_s
-$$
-
-where the last equality uses $\tau_n \to \infty$ a.s. $\square$
+**Proof**: Apply the Fatou argument from [What Can Go Wrong?](#what-can-go-wrong) with conditional rather than unconditional expectations: $\mathbb{E}[M_t \mid \mathcal{F}_s] \leq \liminf_n \mathbb{E}[M_{t \wedge \tau_n} \mid \mathcal{F}_s] = \liminf_n M_{s \wedge \tau_n} = M_s$. $\square$
 
 **Corollary**: For non-negative local martingales:
 
@@ -281,103 +295,19 @@ with **equality if and only if** $M$ is a true martingale.
 
 ---
 
-#### Characterization via Fatou's Lemma
+## Sufficient Conditions for True Martingale
 
-For a non-negative local martingale with localizing sequence $\{\tau_n\}$:
+A local martingale $M$ is a true martingale if any of the following holds:
 
-$$
-\mathbb{E}[M_{t \wedge \tau_n}] = \mathbb{E}[M_0] \quad \text{for all } n
-$$
+- **Boundedness**, **domination**, or **$L^p$ boundedness** ($p > 1$) → see [Integrability Conditions](integrability_conditions.md)
+- **Finite expected quadratic variation** (BDG inequality) → see [Integrability Conditions](integrability_conditions.md)
+- **Novikov's condition** or **Kazamaki's condition** (for stochastic exponentials) → see [Novikov and Kazamaki Conditions](novikov_kazamaki_conditions.md)
 
-Taking $n \to \infty$ and applying Fatou's lemma:
-
-$$
-\mathbb{E}[M_t] \leq \liminf_{n \to \infty} \mathbb{E}[M_{t \wedge \tau_n}] = \mathbb{E}[M_0]
-$$
-
-The inequality can be **strict**—this is the signature of a strict local martingale.
+All conditions ultimately ensure [uniform integrability](../../ch02/filtration_and_martingales/martingale_convergence.md#uniform-integrability), which prevents mass from escaping to infinity.
 
 ---
 
-### Sufficient Conditions for True Martingale
-
-A local martingale $M$ is a **true martingale** if any of the following conditions holds:
-
-#### 1. Boundedness
-
-$$
-|M_t| \leq C \quad \text{almost surely for all } t \in [0,T]
-$$
-
-for some constant $C < \infty$.
-
-#### 2. Domination
-
-$$
-|M_t| \leq Y \quad \text{almost surely for all } t \in [0,T]
-$$
-
-for some integrable random variable $Y$ (i.e., $\mathbb{E}[Y] < \infty$).
-
-#### 3. L^p Boundedness (p > 1)
-
-$$
-\sup_{t \in [0,T]} \mathbb{E}[|M_t|^p] < \infty
-$$
-
-This follows from the fact that $L^p$-bounded martingales are uniformly integrable for $p > 1$.
-
-#### 4. Finite Expected Quadratic Variation
-
-For **continuous** local martingales with $M_0$ integrable:
-
-$$
-\mathbb{E}[\langle M \rangle_T] < \infty \implies M \text{ is a true martingale on } [0,T]
-$$
-
-**Proof sketch**: By the Burkholder–Davis–Gundy inequality:
-
-$$
-\mathbb{E}\left[\sup_{t \leq T} |M_t|\right] \leq C \cdot \mathbb{E}\left[\langle M \rangle_T^{1/2}\right] \leq C \cdot \mathbb{E}[\langle M \rangle_T]^{1/2} < \infty
-$$
-
-Hence $M$ is dominated by an integrable random variable. $\square$
-
-#### 5. Novikov's Condition (for Stochastic Exponentials)
-
-For a continuous local martingale $M$ with $M_0 = 0$:
-
-$$
-\mathbb{E}\left[\exp\left(\frac{1}{2}\langle M \rangle_T\right)\right] < \infty \implies \mathcal{E}(M)_t \text{ is a true martingale on } [0,T]
-$$
-
-where $\mathcal{E}(M)_t = \exp(M_t - \frac{1}{2}\langle M \rangle_t)$ is the stochastic exponential.
-
-#### 6. Kazamaki's Condition (Weaker than Novikov's Condition)
-
-If $\mathcal{E}(M/2)$ is a submartingale, then $\mathcal{E}(M)$ is a true martingale on $[0,T]$.
-
-Kazamaki's condition is strictly weaker than Novikov's. See [Novikov & Kazamaki Conditions](novikov_kazamaki_conditions.md) for details and proofs.
-
----
-
-#### Logical Relationships Between Conditions
-
-!!! note "How the Conditions Relate"
-    The conditions above are not independent. For continuous local martingales:
-    
-    | Implication | Mechanism |
-    |-------------|-----------|
-    | **(1) ⟹ (2)** | Boundedness is domination with $Y = C$ |
-    | **(3) ⟹ (2)** | Doob's maximal inequality: $\mathbb{E}[\sup_t \|M_t\|^p] \leq \left(\frac{p}{p-1}\right)^p \mathbb{E}[\|M_T\|^p]$, so $Y = \sup_t \|M_t\|$ works |
-    | **(4) ⟹ (2)** | BDG inequality: $\mathbb{E}[\sup_t \|M_t\|] \leq C \cdot \mathbb{E}[\langle M \rangle_T^{1/2}] < \infty$ |
-    | **(5) ⟹ (6)** | Novikov implies Kazamaki (see [proof](novikov_kazamaki_conditions.md)) |
-    
-    The common thread: all conditions ultimately ensure **[uniform integrability](../../ch02/filtration_and_martingales/martingale_convergence.md#uniform-integrability)**, which prevents mass from escaping to infinity.
-
----
-
-### Connection to Infinitesimal Generators
+## Connection to Infinitesimal Generators
 
 Let $X_t$ be a diffusion with infinitesimal generator:
 
@@ -390,14 +320,7 @@ For $f \in C^2$, define the process $Y_t = f(X_t)$.
 !!! tip "Generator Criterion"
     If $\mathcal{L}f(x) = 0$ for all $x$ in the state space, then $f(X_t)$ is a **local martingale**.
     
-    To upgrade to a **true martingale**, verify any of the [six sufficient conditions above](#sufficient-conditions-for-true-martingale)—for example:
-    
-    - 1. Boundedness: $|f(X_t)| \leq C$
-    - 2. Domination: $|f(X_t)| \leq Y$ with $\mathbb{E}[Y] < \infty$
-    - 3. $L^p$ Boundedness ($p > 1$): $\sup_{t \in [0,T]} \mathbb{E}[|f(X_t)|^p] < \infty$
-    - 4. Finite Expected Quadratic Variation: $\mathbb{E}[\langle f(X) \rangle_T] < \infty$
-    - 5. Novikov's Condition (for Stochastic Exponentials)
-    - 6. Kazamaki's Condition (Weaker than Novikov's Condition)
+    To upgrade to a **true martingale**, verify any of the [sufficient conditions above](#sufficient-conditions-for-true-martingale) (boundedness, domination, $L^p$ bounds, finite quadratic variation, or Novikov/Kazamaki for stochastic exponentials).
 
 **Connection to Dynkin's formula**: By Itô's formula:
 
@@ -411,7 +334,7 @@ See [Generator and Martingales](../../ch03/infinitesimal_generator/generator_and
 
 ---
 
-### Financial Implications
+## Financial Implications
 
 | Math | Finance |
 |------|---------|
@@ -419,7 +342,7 @@ See [Generator and Martingales](../../ch03/infinitesimal_generator/generator_and
 | True martingale | Valid pricing (expectations preserved) |
 | Strict local martingale | Bubble (market price exceeds fundamental value) |
 
-#### Discounted Asset Prices
+### Discounted Asset Prices
 
 The **discounted asset price** is defined as:
 
@@ -431,7 +354,7 @@ Under the risk-neutral measure $\mathbb{Q}$, the discounted asset price is requi
 
 In practice, $\tilde{S}_t$ is often only a **local martingale**. The distinction matters.
 
-#### Strict Local Martingales and Financial Bubbles
+### Strict Local Martingales and Financial Bubbles
 
 !!! warning "Bubble Characterization"
     If the discounted price process is a **strict local martingale** under $\mathbb{Q}$:
@@ -444,7 +367,7 @@ In practice, $\tilde{S}_t$ is often only a **local martingale**. The distinction
 
 **Reference**: Jarrow, Protter, and Shimbo (2010), "Asset Price Bubbles in Incomplete Markets," *Mathematical Finance*.
 
-#### Put-Call Parity Failure
+### Put-Call Parity Failure
 
 The standard put-call parity:
 
@@ -460,7 +383,7 @@ $$
 
 Put-call parity fails, and the put price includes a "bubble premium."
 
-#### Connection to Girsanov's Theorem
+### Connection to Girsanov's Theorem
 
 When performing measure changes via Girsanov's theorem, the Radon–Nikodym derivative:
 
@@ -474,7 +397,7 @@ See [Girsanov's Theorem](../girsanov/girsanov_theorem.md) for the full treatment
 
 ---
 
-### Summary Table
+## Summary Table
 
 | Property | Martingale | Local Martingale | Strict Local Martingale |
 |----------|-----------|------------------|------------------------|
@@ -487,7 +410,7 @@ See [Girsanov's Theorem](../girsanov/girsanov_theorem.md) for the full treatment
 
 ---
 
-### Key Takeaways
+## Key Takeaways
 
 $$
 \boxed{
@@ -497,7 +420,7 @@ $$
 
 $$
 \boxed{
-\mathcal{L}f = 0 \text{ + sufficient condition (1–6)} \implies f(X_t) \text{ is a true martingale}
+\mathcal{L}f = 0 \text{ + sufficient condition} \implies f(X_t) \text{ is a true martingale}
 }
 $$
 
@@ -523,7 +446,7 @@ $$
 
 ---
 
-### Python Simulation: Mass Leakage in Strict Local Martingales
+## Python Simulation: Mass Leakage in Strict Local Martingales
 
 The following simulation demonstrates how $\mathbb{E}[M_t]$ can decrease over time for a strict local martingale.
 
@@ -656,7 +579,7 @@ Prove that every true martingale is a local martingale. Then explain why the con
 ??? success "Solution to Exercise 2"
     **Every true martingale is a local martingale**: Let $M_t$ be a true martingale. Define $\tau_n = n$ for all $n \geq 1$. Then $\tau_n \to \infty$, and $M_{t \wedge \tau_n} = M_{t \wedge n}$ is a martingale (a stopped martingale is still a martingale). Hence $M$ is a local martingale with localizing sequence $\{\tau_n = n\}$.
 
-    **The converse fails**: A strict local martingale $M_t$ violates the **integrability condition**. Specifically, for a true martingale we need $\mathbb{E}[|M_t|] < \infty$ for all $t$ and $\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s$. A strict local martingale may have $\mathbb{E}[|M_t|] < \infty$ but satisfy only the inequality $\mathbb{E}[M_t \mid \mathcal{F}_s] \leq M_s$ (supermartingale property for non-negative case) rather than equality. The key property violated is **mean preservation**: for a non-negative strict local martingale, $\mathbb{E}[M_t] < \mathbb{E}[M_0]$, meaning the expectation strictly decreases over time due to "mass leaking to infinity."
+    **The converse fails**: A strict local martingale can fail to be a true martingale in two ways. First, integrability itself may fail: $\mathbb{E}[|M_t|] = \infty$ for some $t$. Second — and more subtly — integrability may hold ($\mathbb{E}[|M_t|] < \infty$) while the martingale property still fails because Fatou's lemma only gives an inequality when passing from stopped to unstopped processes. For a non-negative strict local martingale this means $\mathbb{E}[M_t \mid \mathcal{F}_s] \leq M_s$ (supermartingale, not martingale) and $\mathbb{E}[M_t] < \mathbb{E}[M_0]$ — the expectation strictly decreases over time because large values escape integrably at each localization step.
 
 ---
 
@@ -703,41 +626,9 @@ Consider the CEV model $dX_t = \sigma X_t^{\beta}\,dW_t$ with $X_0 = 1$ and $\si
 ---
 
 **Exercise 5.**
-In the Black-Scholes model under $\mathbb{Q}$, the discounted stock price $\tilde{S}_t = e^{-rt}S_t$ satisfies $d\tilde{S}_t = \sigma \tilde{S}_t\,dW_t^{\mathbb{Q}}$. Show that this is a true martingale by verifying that
-
-$$
-\mathbb{E}\left[\int_0^T \sigma^2 \tilde{S}_s^2\,ds\right] < \infty
-$$
-
-Explain why this condition guarantees the validity of risk-neutral pricing in the Black-Scholes model.
-
-??? success "Solution to Exercise 5"
-    Under $\mathbb{Q}$, $\tilde{S}_t = e^{-rt}S_t$ with $S_t = S_0 \exp((r - \sigma^2/2)t + \sigma W_t^{\mathbb{Q}})$, so:
-
-    $$
-    \tilde{S}_t = S_0 \exp\left(-\frac{\sigma^2}{2}t + \sigma W_t^{\mathbb{Q}}\right)
-    $$
-
-    Therefore $\tilde{S}_t^2 = S_0^2 \exp(-\sigma^2 t + 2\sigma W_t^{\mathbb{Q}})$. Taking expectations:
-
-    $$
-    \mathbb{E}[\tilde{S}_t^2] = S_0^2 \exp(-\sigma^2 t) \cdot \mathbb{E}[\exp(2\sigma W_t^{\mathbb{Q}})] = S_0^2 \exp(-\sigma^2 t) \cdot \exp(2\sigma^2 t) = S_0^2 \exp(\sigma^2 t)
-    $$
-
-    Now:
-
-    $$
-    \mathbb{E}\left[\int_0^T \sigma^2 \tilde{S}_s^2\,ds\right] = \sigma^2 \int_0^T \mathbb{E}[\tilde{S}_s^2]\,ds = \sigma^2 S_0^2 \int_0^T e^{\sigma^2 s}\,ds = S_0^2(e^{\sigma^2 T} - 1) < \infty
-    $$
-
-    Since $\mathbb{E}\left[\int_0^T \sigma^2 \tilde{S}_s^2\,ds\right] < \infty$, the Itô integral $\int_0^t \sigma \tilde{S}_s\,dW_s^{\mathbb{Q}}$ is a true martingale (not just a local martingale). This ensures $\tilde{S}_t$ is a true $\mathbb{Q}$-martingale, which validates the risk-neutral pricing formula $V_0 = \mathbb{E}^{\mathbb{Q}}[e^{-rT}\Phi(S_T)]$ in the Black-Scholes model.
-
----
-
-**Exercise 6.**
 Suppose the discounted price process $\tilde{S}_t$ is a strict local martingale under $\mathbb{Q}$ with $\mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] = 0.95\,S_0$. Compute the bubble component $\beta_0$. Then, using the modified put-call parity $C - P = \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] - Ke^{-rT}$, show that the classical put-call parity fails and determine the sign of the error.
 
-??? success "Solution to Exercise 6"
+??? success "Solution to Exercise 5"
     The **bubble component** is:
 
     $$
@@ -768,10 +659,10 @@ Suppose the discounted price process $\tilde{S}_t$ is a strict local martingale 
 
 ---
 
-**Exercise 7.**
+**Exercise 6.**
 For the 3D Bessel process reciprocal $M_t = 1/R_t$ starting from $R_0 = r_0 > 0$, verify the Ito computation: apply Ito's formula to $f(r) = 1/r$ and the SDE $dR_t = (1/R_t)\,dt + dW_t$ to obtain $dM_t = -M_t^2\,dW_t$. Explain why the absence of a $dt$ term confirms $M_t$ is a local martingale, and why the drift terms from $f'$ and $f''$ cancel exactly.
 
-??? success "Solution to Exercise 7"
+??? success "Solution to Exercise 6"
     Let $f(r) = 1/r$, so $f'(r) = -1/r^2$ and $f''(r) = 2/r^3$. By Itô's formula applied to $M_t = f(R_t)$:
 
     $$
@@ -796,12 +687,3 @@ For the 3D Bessel process reciprocal $M_t = 1/R_t$ starting from $R_0 = r_0 > 0$
 
     The absence of a $dt$ term means $M_t$ is a pure stochastic integral $M_t = M_0 + \int_0^t (-M_s^2)\,dW_s$, which is by definition a local martingale. The drift cancellation is not coincidental — it reflects the deep connection between harmonic functions and martingales via the generator criterion.
 
----
-
-**Exercise 8.**
-A continuous local martingale $M_t \geq 0$ with $M_0 = 1$ satisfies $\mathbb{E}[M_T] = 1$ for one fixed $T > 0$. Can you conclude $M$ is a martingale on $[0,T]$? What if $M_t$ is not assumed non-negative?
-
-??? success "Solution to Exercise 8"
-    **Non-negative case:** Yes. A non-negative local martingale is a supermartingale, so $\mathbb{E}[M_t] \leq \mathbb{E}[M_0] = 1$ for all $t$. Combined with $\mathbb{E}[M_T] = 1$, monotonicity of the supermartingale expectation gives $\mathbb{E}[M_t] = 1$ for all $t \leq T$. The gap $M_s - \mathbb{E}[M_t \mid \mathcal{F}_s] \geq 0$ has zero expectation and is therefore zero a.s., so $M$ is a true martingale on $[0,T]$.
-
-    **Without non-negativity:** No. Expectation equality at one time does not force the martingale property at intermediate times without additional structure (such as non-negativity or uniform integrability). A signed local martingale can have matching terminal expectation yet fail to be a true martingale on $[0,T]$.

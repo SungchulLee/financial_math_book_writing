@@ -1,8 +1,6 @@
 # Integrability Conditions for Martingales
 
-In the [unifying framework](unifying_principle.md) of this section, integrability conditions are the **concrete tests that determine whether a local martingale can be upgraded to a true martingale**. While the [Novikov and Kazamaki conditions](novikov_kazamaki_conditions.md) address the special case of stochastic exponentials, the criteria on this page apply to general local martingales.
-
-A local martingale is a process that "looks like" a martingale when stopped at appropriate times, but may lose mass globally. The upgrade from local martingale to true martingale always comes down to a single question: is the family of random variables $\{M_\tau : \tau \text{ stopping time}\}$ sufficiently well-behaved? This page catalogs the standard conditions that answer this question and shows how they relate to one another.
+This section provides the concrete tests that upgrade a [local martingale](local_martingale.md) to a true martingale (see [Unifying Principle](unifying_principle.md)). While the [Novikov and Kazamaki conditions](novikov_kazamaki_conditions.md) address stochastic exponentials specifically, the criteria here apply to general local martingales.
 
 !!! info "Prerequisites"
     This section assumes familiarity with:
@@ -14,13 +12,7 @@ A local martingale is a process that "looks like" a martingale when stopped at a
 
 ## The Core Problem
 
-Recall from the [local martingale](local_martingale.md) page that every martingale is a local martingale, but the converse fails. A non-negative local martingale $M_t$ is always a supermartingale (by Fatou's lemma), so
-
-$$
-\mathbb{E}[M_t] \leq \mathbb{E}[M_0]
-$$
-
-When strict inequality holds — when $\mathbb{E}[M_t] < \mathbb{E}[M_0]$ — probability mass has "leaked to infinity." The local martingale is then a **strict local martingale**, and it cannot serve as a Radon–Nikodym derivative for a valid measure change. The integrability conditions below are precisely the tools that rule out this mass leakage.
+A non-negative local martingale is always a supermartingale, and strict inequality $\mathbb{E}[M_t] < \mathbb{E}[M_0]$ signals mass leakage (see [Local Martingales — What Can Go Wrong?](local_martingale.md#what-can-go-wrong) for the full Fatou mechanism). The integrability conditions below are the tools that rule out this leakage.
 
 ---
 

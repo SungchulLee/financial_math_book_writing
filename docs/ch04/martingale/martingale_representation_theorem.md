@@ -1,8 +1,6 @@
 # Martingale Representation Theorem
 
-In the [unifying framework](unifying_principle.md) of this section, the martingale representation theorem represents **full control** — every source of randomness can be expressed as a stochastic integral, which means every contingent claim can be hedged.
-
-The **Martingale Representation Theorem (MRT)** states that, under a Brownian filtration, every square-integrable martingale can be expressed as a stochastic integral with respect to the driving Brownian motion.
+The **Martingale Representation Theorem (MRT)** states that, under a Brownian filtration, every square-integrable martingale can be expressed as a stochastic integral with respect to the driving Brownian motion. In the [unifying framework](unifying_principle.md), this represents **full control** — every contingent claim can be hedged.
 
 Rather than repeating basic definitions already covered in earlier chapters, this section focuses on:
 

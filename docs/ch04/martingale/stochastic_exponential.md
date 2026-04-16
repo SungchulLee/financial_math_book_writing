@@ -1,8 +1,6 @@
 # The Stochastic Exponential
 
-In the [unifying framework](unifying_principle.md) of this section, the stochastic exponential is the **transformation enabling control** — it converts additive local martingales into multiplicative densities for measure change.
-
-The **stochastic exponential** (or **Doléans-Dade exponential**) is the stochastic analogue of the ordinary exponential function. It is the fundamental tool for constructing Radon–Nikodym derivatives in measure change, and therefore central to Girsanov's theorem and risk-neutral pricing.
+The **stochastic exponential** (or **Doléans-Dade exponential**) converts additive local martingales into multiplicative densities for measure change (see [Unifying Principle](unifying_principle.md)). It is central to Girsanov's theorem and risk-neutral pricing.
 
 !!! info "Prerequisites"
     This section assumes familiarity with:
@@ -259,35 +257,13 @@ The term $\mu - \frac{\sigma^2}{2}$ is the **drift-adjusted growth rate**—the 
 
 ## Connection to Girsanov's Theorem
 
-The stochastic exponential is the **Radon–Nikodym derivative** for measure change.
-
-### Measure Change Setup
-
-To change from measure $\mathbb{P}$ to measure $\mathbb{Q}$:
+The stochastic exponential is the **Radon–Nikodym derivative** for measure change: $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T} = Z_T$ where the density process is
 
 $$
-\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = Z_T
+Z_t = \mathcal{E}\!\left(\int_0^\cdot \theta_s\,dW_s\right)_t = \exp\!\left(\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds\right)
 $$
 
-where the **density process** is:
-
-$$
-Z_t = \mathcal{E}\left(\int_0^\cdot \theta_s\,dW_s\right)_t = \exp\left(\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds\right)
-$$
-
-Here $\theta_t$ is the **Girsanov kernel** (market price of risk in finance).
-
-### Girsanov's Result
-
-Under $\mathbb{Q}$, the process:
-
-$$
-\tilde{W}_t = W_t - \int_0^t \theta_s\,ds
-$$
-
-is a standard Brownian motion.
-
-**Validity**: For this measure change to be valid (i.e., $\mathbb{Q}$ is a probability measure equivalent to $\mathbb{P}$), we need $Z_t$ to be a **true martingale** with $\mathbb{E}^{\mathbb{P}}[Z_T] = 1$. This is guaranteed by Novikov's or Kazamaki's condition.
+and $\theta_t$ is the **Girsanov kernel** (market price of risk in finance). Under $\mathbb{Q}$, the process $\tilde{W}_t = W_t - \int_0^t \theta_s\,ds$ is a standard Brownian motion. For this to be valid, $Z_t$ must be a true martingale with $\mathbb{E}^{\mathbb{P}}[Z_T] = 1$, guaranteed by [Novikov or Kazamaki](novikov_kazamaki_conditions.md).
 
 See [Girsanov's Theorem](../girsanov/girsanov_theorem.md) for the complete treatment.
 

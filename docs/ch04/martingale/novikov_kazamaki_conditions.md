@@ -1,8 +1,6 @@
 # Novikov and Kazamaki Conditions
 
-In the [unifying framework](unifying_principle.md) of this section, the Novikov and Kazamaki conditions are the **technical guarantees that control is valid** — they ensure the stochastic exponential is a true martingale, so that the Girsanov measure change produces a well-defined probability measure.
-
-When does a stochastic exponential define a valid probability measure? The **Novikov condition** and **Kazamaki condition** provide sufficient conditions for the stochastic exponential to be a true martingale, ensuring that measure changes are well-defined.
+This section provides the conditions guaranteeing that a [stochastic exponential](stochastic_exponential.md) is a true martingale, so that the Girsanov measure change produces a valid probability measure (see [Unifying Principle](unifying_principle.md)).
 
 !!! info "Prerequisites"
     This section assumes familiarity with:
@@ -253,33 +251,15 @@ When the Feller condition holds, the variance process remains strictly positive,
 
 ### Girsanov's Theorem
 
-For Girsanov's theorem to produce a valid measure change, we need the Radon–Nikodym derivative:
-
-$$
-Z_T = \exp\left(\int_0^T \theta_s\,dW_s - \frac{1}{2}\int_0^T \theta_s^2\,ds\right)
-$$
-
-to satisfy $\mathbb{E}[Z_T] = 1$. Novikov or Kazamaki provides this guarantee.
+For the [Girsanov measure change](stochastic_exponential.md#connection-to-girsanovs-theorem) to be valid, the density $Z_T = \mathcal{E}(M)_T$ must satisfy $\mathbb{E}[Z_T] = 1$. Novikov or Kazamaki provides this guarantee.
 
 ### Risk-Neutral Measure Construction
 
-The risk-neutral measure $\mathbb{Q}$ exists and is equivalent to $\mathbb{P}$ if:
-
-1. A suitable market price of risk process $\theta$ is specified (model structure)
-2. The stochastic exponential is a true martingale (Novikov/Kazamaki)
-
-These together ensure that the resulting measure is a valid equivalent martingale measure.
-
-When condition 2 fails, $\mathbb{Q}$ may still exist but could fail to be equivalent to $\mathbb{P}$, or the market may admit arbitrage of the first kind.
+The risk-neutral measure $\mathbb{Q}$ exists and is equivalent to $\mathbb{P}$ when both a suitable market price of risk $\theta$ is specified and the stochastic exponential is a true martingale (Novikov/Kazamaki). When the latter fails, $\mathbb{Q}$ may fail to be equivalent to $\mathbb{P}$, or the market may admit arbitrage of the first kind.
 
 ### Bubbles and Strict Local Martingales
 
-When both Novikov and Kazamaki fail, $Z_t$ may be a **strict local martingale** with $\mathbb{E}[Z_T] < 1$.
-
-!!! warning "Consequence of failure"
-    Failure of both conditions means: density $Z_t$ is not a true martingale $\Rightarrow$ $\mathbb{Q}$ is not a valid equivalent probability measure $\Rightarrow$ the entire risk-neutral pricing framework collapses.
-
-In finance, this corresponds to **asset price bubbles**: the discounted price process is a local martingale but not a true martingale under the pricing measure. See [Local Martingales](local_martingale.md) for the connection between strict local martingales and bubbles.
+When both conditions fail, $Z_t$ may be a [strict local martingale](local_martingale.md#strict-local-martingales-and-financial-bubbles) with $\mathbb{E}[Z_T] < 1$, corresponding to asset price bubbles.
 
 ---
 
