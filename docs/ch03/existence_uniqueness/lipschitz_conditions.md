@@ -39,24 +39,7 @@ $$
 with the state $x$. The drift vector field has a uniformly bounded spatial slope,
 and each column of $\sigma$ varies at most proportionally to displacement.
 
-**Why Lipschitz implies uniqueness.** Suppose $X_t$ and $Y_t$ are two solutions with
-$X_0 = Y_0 = x_0$. Set $Z_t = X_t - Y_t$. Then:
-
-$$
-Z_t = \int_0^t \bigl[b(s,X_s) - b(s,Y_s)\bigr]\,ds
-      + \int_0^t \bigl[\sigma(s,X_s) - \sigma(s,Y_s)\bigr]\,dW_s
-$$
-
-Using the Lipschitz bound, the Itô isometry, and Doob's maximal inequality one
-obtains:
-
-$$
-\mathbb{E}\Bigl[\sup_{s \leq t}|Z_s|^2\Bigr] \leq C \int_0^t \mathbb{E}|Z_s|^2\,ds
-$$
-
-Gronwall's inequality with $Z_0 = 0$ then gives
-$\mathbb{E}[\sup_{s \leq t}|Z_s|^2] = 0$ for all $t$, hence $X_t = Y_t$ a.s.
-The full estimates are carried out in [Picard Iteration](picard_iteration.md).
+**Why Lipschitz implies uniqueness.** The Lipschitz bound controls the difference between any two solutions via the Itô isometry, Doob's maximal inequality, and Gronwall's inequality. The full proof is given in [Picard Iteration — Uniqueness](picard_iteration.md#uniqueness).
 
 ### Examples of Lipschitz coefficients
 
@@ -157,8 +140,7 @@ for a constant $C$ depending only on $K$ and dimension.
     listed separately only to highlight their distinct roles: Lipschitz controls
     *uniqueness*, linear growth controls *non-explosion*.
 
-The proof constructs the solution via Picard iteration; see
-[Picard Iteration](picard_iteration.md) for the full argument.
+The construction of this solution is carried out via [Picard Iteration](picard_iteration.md), while the broader distinction between strong and weak solutions is developed in [Strong vs Weak Solutions](strong_vs_weak.md).
 
 ---
 
@@ -169,7 +151,7 @@ there exists $K_R > 0$ such that
 
 $$
 |b(t,x) - b(t,y)| + |\sigma(t,x) - \sigma(t,y)| \leq K_R|x-y|
-\quad \text{for all } |x|, |y| \leq R.
+\quad \text{for all } |x|, |y| \leq R
 $$
 
 Under local Lipschitz alone, a unique continuous solution exists up to the
@@ -197,7 +179,7 @@ on $\mathbb{R}$. Pathwise uniqueness holds if:
    $\rho : (0,\infty) \to (0,\infty)$ with
 
 $$
-\int_0^\epsilon \frac{du}{\rho^2(u)} = +\infty \quad \text{for every } \epsilon > 0.
+\int_0^\epsilon \frac{du}{\rho^2(u)} = +\infty \quad \text{for every } \epsilon > 0
 $$
 
 The divergence is required at $0$: for any fixed $\epsilon > 0$ the tail integral

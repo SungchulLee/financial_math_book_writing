@@ -70,7 +70,7 @@ solutions on the **same** probability space with the **same** Brownian motion an
 $X_0 = Y_0$ a.s., then
 
 $$
-\mathbb{P}\!\left(X_t = Y_t\ \text{for all}\ t \geq 0\right) = 1.
+\mathbb{P}\!\left(X_t = Y_t\ \text{for all}\ t \geq 0\right) = 1
 $$
 
 Meaning: the solution trajectory is uniquely determined by the Brownian path.
@@ -130,11 +130,7 @@ exists, then a strong solution exists and it is unique in law.
 
 ### Example 1: Lipschitz Coefficients (Strong Solution)
 
-For $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$ with globally Lipschitz coefficients:
-
-- Strong existence: ✓ (Picard iteration)
-- Pathwise uniqueness: ✓ (Gronwall)
-- Uniqueness in law: ✓ (follows from pathwise uniqueness)
+For $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$ with globally Lipschitz coefficients, the [Lipschitz conditions](lipschitz_conditions.md) guarantee a unique strong solution via [Picard iteration](picard_iteration.md). Uniqueness in law follows from pathwise uniqueness by [Yamada–Watanabe](#the-yamada–watanabe-theorem).
 
 ### Example 2: Tanaka's SDE (Weak but Not Strong)
 
