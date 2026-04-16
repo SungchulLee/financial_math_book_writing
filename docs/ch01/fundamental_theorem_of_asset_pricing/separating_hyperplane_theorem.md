@@ -1,9 +1,11 @@
 # The Separating Hyperplane Theorem
 
 
-The **Separating Hyperplane Theorem** is a fundamental result in convex analysis that formalizes a basic geometric intuition: two disjoint convex sets can always be separated by a hyperplane. This seemingly simple observation has far-reaching consequences. It is the mathematical engine behind the proof of the [Fundamental Theorem of Asset Pricing](fundamental_theorem_of_asset_pricing.md), and it underpins Lagrange duality, KKT conditions, linear programming duality, and minimax theorems in game theory.
+This page is a **supporting result** for the [Fundamental Theorem of Asset Pricing](fundamental_theorem_of_asset_pricing.md): the separation of disjoint convex sets is the geometric mechanism that turns no-arbitrage into the existence of a strictly positive pricing functional, which then normalizes to an equivalent martingale measure.
 
-This page states the three main versions of the theorem (weak separation, strict separation, and supporting hyperplanes), gives complete proofs of the first two, and develops the connection to the FTAP in detail.
+The **Separating Hyperplane Theorem** itself is a result in convex analysis: two disjoint convex sets can always be separated by a hyperplane. Beyond FTAP, it underpins Lagrange duality, KKT conditions, linear programming duality, and minimax theorems in game theory.
+
+This page states the three main versions (weak separation, strict separation, supporting hyperplanes), gives complete proofs of the first two, and develops the FTAP application in detail.
 
 
 ## Statements of the Theorem

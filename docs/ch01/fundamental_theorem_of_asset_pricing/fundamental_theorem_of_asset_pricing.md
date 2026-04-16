@@ -1,7 +1,31 @@
 # The Fundamental Theorem of Asset Pricing
 
 
-The **Fundamental Theorem of Asset Pricing (FTAP)** is the cornerstone of modern mathematical finance. It establishes a deep equivalence between an economic concept—**no-arbitrage**—and a probabilistic structure—the existence of an **equivalent martingale measure**. This chapter presents the precise setup, states both parts of the theorem, gives a complete proof in the finite-state case, and discusses the extensions required for continuous time.
+The **Fundamental Theorem of Asset Pricing (FTAP)** is the cornerstone of modern mathematical finance. This chapter shows that arbitrage-free pricing is equivalent to the existence of a martingale measure, that unique pricing is equivalent to completeness, and that both remain invariant under changes of numéraire.
+
+
+## Chapter Roadmap
+
+The chapter develops one forced progression: economic constraint → geometric separation → martingale measure → pricing structure.
+
+``` mermaid
+flowchart LR
+A[No-Arbitrage] --> B[Separating Hyperplane]
+B --> C[Equivalent Martingale Measure]
+C --> D[Completeness / Uniqueness]
+D --> E[Examples]
+E --> F[Numéraire Change]
+```
+
+| Section | Role | Main idea |
+|---|---|---|
+| [FTAP](#statement-of-the-theorem) (this page) | Core theorem | no-arbitrage ↔ equivalent martingale measure |
+| [Separating Hyperplane](separating_hyperplane_theorem.md) | Proof tool | geometric separation produces a pricing functional |
+| [Complete Markets and Uniqueness](complete_markets_and_uniqueness.md) | Second FTAP | uniqueness of EMM ↔ replicability |
+| [Finite Market Examples](finite_market_examples.md) | Concrete intuition | complete, incomplete, and arbitrage cases |
+| [Numéraire and Change of Measure](numeraire_and_change_of_measure.md) | Extension | pricing is invariant under choice of numéraire |
+
+This chapter is the bridge between the earlier discrete pricing chapters and the later continuous-time theory: it formalizes no-arbitrage as the organizing principle, identifies when martingale measures exist and are unique, and prepares the move to change of measure and continuous-time stochastic calculus.
 
 
 ## Setup and Market Model
