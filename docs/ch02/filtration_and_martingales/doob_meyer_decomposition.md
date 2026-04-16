@@ -1,456 +1,168 @@
-# Doob–Meyer Decomposition
+# Doob-Meyer Decomposition
 
-## Separating Signal from Noise
-
-One of the deepest insights in martingale theory is that every "reasonable" stochastic process can be decomposed into two parts: a **martingale** (pure noise, unpredictable fluctuations) and a **predictable finite variation process** (systematic drift, accumulated trend).
-
-This is the Doob–Meyer decomposition. It reveals the internal structure of stochastic processes and explains why semimartingales—the natural class for stochastic integration—have the form they do.
+By now we know what martingales look like ([Martingales](martingales.md)), when they converge ([Martingale Convergence](martingale_convergence.md)), and why [Uniform Integrability](uniform_integrability.md) is the sharp condition for the $L^1$ theory. The Doob-Meyer decomposition completes this structural picture: every "reasonable" adapted process splits into a **pure-noise martingale** and a **predictable drift**. Itô processes are a special case; the theorem says the structure is universal.
 
 ---
 
-## Motivation: The Itô Process Perspective
+## Discrete Time: The Elementary Case
 
-Consider an Itô process:
+The discrete decomposition requires no heavy machinery.
 
-$$
-X_t = X_0 + \int_0^t b_s \, ds + \int_0^t \sigma_s \, dW_s
-$$
+!!! success "Discrete Doob decomposition"
+    Let $(X_n, \mathcal{F}_n)_{n\ge 0}$ be an adapted integrable process. There exist unique processes $M$ (martingale, $M_0 = 0$) and $A$ (predictable, $A_0 = 0$) with
 
-This already exhibits a decomposition:
+    $$
+    X_n = X_0 + M_n + A_n.
+    $$
 
-- **Drift term**: $A_t = \int_0^t b_s \, ds$ — predictable, finite variation
-- **Martingale term**: $M_t = \int_0^t \sigma_s \, dW_s$ — local martingale
+    If $X$ is a submartingale, $A$ is non-decreasing.
 
-The Doob–Meyer theorem says this structure is **universal**: it holds for all submartingales, not just those arising from SDEs.
+**Construction**. Set $A_n - A_{n-1} = \mathbb{E}[X_n - X_{n-1} \mid \mathcal{F}_{n-1}]$; this is $\mathcal{F}_{n-1}$-measurable, so $A$ is predictable. Define $M_n = X_n - X_0 - A_n$; by design $\mathbb{E}[M_n - M_{n-1} \mid \mathcal{F}_{n-1}] = 0$.
 
----
+**Uniqueness**. Any difference $D_n$ of two such decompositions is both a predictable process and a martingale with $D_0 = 0$. Predictability means $D_n$ is $\mathcal{F}_{n-1}$-measurable, so $\mathbb{E}[D_n - D_{n-1} \mid \mathcal{F}_{n-1}] = D_n - D_{n-1}$. The martingale property also makes this $0$, so $D_n \equiv 0$. $\square$
 
-## Discrete-Time Doob Decomposition
-
-We start with discrete time, where the decomposition is elementary.
-
-**Theorem (Discrete Doob Decomposition)**: Let $(X_n, \mathcal{F}_n)_{n \ge 0}$ be an adapted integrable process. Then there exist unique processes:
-
-- $(M_n)$ — a martingale with $M_0 = 0$
-- $(A_n)$ — a predictable process with $A_0 = 0$
-
-such that:
-
-$$
-\boxed{X_n = X_0 + M_n + A_n}
-$$
-
-**Proof**: Define $A_n$ recursively by:
-
-$$
-A_0 = 0, \quad A_n - A_{n-1} = \mathbb{E}[X_n - X_{n-1} \mid \mathcal{F}_{n-1}]
-$$
-
-Then $A_n$ is predictable (since $A_n - A_{n-1}$ is $\mathcal{F}_{n-1}$-measurable).
-
-Define $M_n = X_n - X_0 - A_n$. Then:
-
-$$
-\mathbb{E}[M_n - M_{n-1} \mid \mathcal{F}_{n-1}] = \mathbb{E}[X_n - X_{n-1} \mid \mathcal{F}_{n-1}] - (A_n - A_{n-1}) = 0
-$$
-
-So $M_n$ is a martingale.
-
-**Uniqueness**: If $X_n = X_0 + M_n + A_n = X_0 + \widetilde{M}_n + \widetilde{A}_n$, then $D_n := M_n - \widetilde{M}_n = \widetilde{A}_n - A_n$ is both a martingale and predictable with $D_0 = 0$. Since $D_n$ is predictable, $D_n$ is $\mathcal{F}_{n-1}$-measurable, so $\mathbb{E}[D_n - D_{n-1} \mid \mathcal{F}_{n-1}] = D_n - D_{n-1}$. But since $D_n$ is also a martingale, $\mathbb{E}[D_n - D_{n-1} \mid \mathcal{F}_{n-1}] = 0$. Therefore $D_n = D_{n-1}$ a.s. for all $n$, and since $D_0 = 0$ we get $D_n = 0$ a.s. $\square$
-
-**Submartingale case**: $X_n$ is a submartingale iff $A_n$ is increasing (i.e., $A_n - A_{n-1} \ge 0$).
+!!! info "Reading the pieces"
+    $A_n$ is the **conditional drift** accumulated through time $n$. $M_n$ is what remains after this drift is removed — the "unanticipated" part of $X_n$.
 
 ---
 
-## Continuous-Time: Technical Challenges
+## Continuous Time: Class (D) Submartingales
 
-In continuous time, the decomposition requires more care:
+In continuous time, two refinements are needed: paths should be càdlàg, and the stopped family $\{X_\tau : \tau \text{ bounded stopping time}\}$ should be uniformly integrable. The latter is **class (D)**; it rules out explosions under random sampling. A UI martingale is class (D); $W_t^2$ is not, but $W_{t\wedge T}^2$ is.
 
-1. **Path regularity**: We need càdlàg (right-continuous with left limits) paths.
-2. **Integrability**: Simple boundedness isn't enough; we need uniform integrability conditions.
-3. **Predictability**: The increasing process must be predictable, not just adapted.
+!!! success "Doob-Meyer decomposition"
+    Every càdlàg submartingale $(X_t)$ of class (D) admits a unique decomposition
 
-The key concept is **class (D)**.
+    $$
+    X_t = X_0 + M_t + A_t
+    $$
 
----
+    with $M$ a càdlàg martingale and $A$ a predictable, non-decreasing, càdlàg process with $A_0 = 0$.
 
-## Class (D) Processes
+The process $A$ is the **compensator** (or **dual predictable projection**) of $X$: the best predictable drift one can strip away. Without predictability, uniqueness fails — predictability is the essential regularity.
 
-**Definition**: A càdlàg adapted process $(X_t)_{t \ge 0}$ is of **class (D)** if the family:
-
-$$
-\{X_\tau : \tau \text{ is a bounded stopping time}\}
-$$
-
-is uniformly integrable.
-
-**Interpretation**: Class (D) processes don't blow up too badly, even when stopped at arbitrary (bounded) random times.
-
-**Examples**:
-
-- Any uniformly integrable martingale is class (D).
-- $W_t^2$ is not class (D) (it's unbounded in expectation).
-- $W_{t \wedge T}^2$ is class (D) for fixed $T$ (it's bounded).
-
----
-
-## The Doob–Meyer Theorem
-
-**Theorem (Doob–Meyer Decomposition)**: Let $(X_t)_{t \ge 0}$ be a càdlàg submartingale of class (D). Then there exist unique processes:
-
-- $(M_t)$ — a càdlàg martingale
-- $(A_t)$ — a predictable càdlàg increasing process with $A_0 = 0$
-
-such that:
-
-$$
-\boxed{X_t = X_0 + M_t + A_t, \quad t \ge 0}
-$$
-
-Equivalently:
-
-$$
-\boxed{M_t = X_t - X_0 - A_t \text{ is a martingale}}
-$$
-
-**Remarks**:
-
-1. "Increasing" means $A_s \le A_t$ for $s \le t$ almost surely.
-2. "Predictable" is essential—without it, the decomposition wouldn't be unique.
-3. The theorem extends to local submartingales via localization.
-
----
-
-## Proof Sketch
-
-The proof proceeds through several steps:
-
-**Step 1**: For discrete approximations, apply the discrete Doob decomposition.
-
-**Step 2**: Show the discrete increasing processes converge (in an appropriate sense) to a continuous-time limit.
-
-**Step 3**: Verify predictability of the limit using properties of the predictable $\sigma$-algebra.
-
-**Step 4**: Establish uniqueness via the fact that a predictable finite variation martingale starting at 0 must be identically 0.
-
-The details involve delicate arguments from the general theory of processes and are typically found in advanced texts (e.g., Dellacherie-Meyer, Revuz-Yor).
-
----
-
-## Uniqueness
-
-**Theorem**: The decomposition is unique: if
-
-$$
-X_t = X_0 + M_t + A_t = X_0 + \widetilde{M}_t + \widetilde{A}_t
-$$
-
-with both $(A_t)$ and $(\widetilde{A}_t)$ predictable increasing, then:
-
-$$
-A_t = \widetilde{A}_t \quad \text{for all } t, \text{ a.s.}
-$$
-
-Hence $M_t = \widetilde{M}_t$ as well.
-
-**Proof**: The difference $D_t := A_t - \widetilde{A}_t = \widetilde{M}_t - M_t$ is both:
-
-- A predictable finite variation process (difference of two predictable finite variation processes) with $D_0 = 0$
-- A martingale (difference of two martingales)
-
-In the **continuous** case (which covers all applications in this text): a continuous martingale of finite variation has zero quadratic variation. To see this without Itô's formula, note that for any partition $0 = t_0 < t_1 < \cdots < t_n = T$:
-
-$$
-\sum_{k} (D_{t_k} - D_{t_{k-1}})^2 \le \max_k |D_{t_k} - D_{t_{k-1}}| \cdot \sum_k |D_{t_k} - D_{t_{k-1}}|
-$$
-
-The second factor is bounded by the total variation of $D$ on $[0,T]$, which is finite. The first factor tends to 0 as the mesh of the partition tends to 0, by continuity of $D$. So $[D]_T = 0$, and since $D$ is a continuous local martingale with $[D] \equiv 0$, we conclude $D \equiv 0$ (a standard result: see Revuz–Yor, Chapter IV).
-
-In the general càdlàg case: a predictable local martingale of finite variation must be identically zero. This follows from the theory of purely discontinuous martingales and is proved in Dellacherie–Meyer. With $D_0 = 0$, we conclude $A_t = \widetilde{A}_t$ a.s. for all $t$. $\square$
-
----
-
-## The Compensator
-
-The predictable increasing process $A_t$ in the Doob–Meyer decomposition is called the **compensator** (or **dual predictable projection**) of the submartingale $X_t$.
-
-**Interpretation**: $A_t$ captures the "expected accumulated increase" of $X_t$ given past information. It's the systematic drift stripped away from the random fluctuations.
-
-**Notation**: Sometimes written $A_t = \langle X \rangle_t^p$ or $A_t = X_t^p$ (predictable compensator).
+**Idea of proof**. Discretize time along a fine partition, apply the discrete Doob decomposition, and pass to the limit; class (D) provides the uniform integrability needed for the compensators to converge, and properties of the predictable $\sigma$-algebra identify the limit. Uniqueness reduces to: *a predictable local martingale of finite variation starting at $0$ is identically zero*. (In the continuous case this is immediate — such a process has zero quadratic variation.) Details are carried out in Dellacherie-Meyer or Revuz-Yor.
 
 ---
 
 ## Key Examples
 
-### Example 1: Squared Brownian Motion
+!!! example "Squared Brownian motion"
+    By Itô's formula, $W_t^2 = 2\int_0^t W_s\,dW_s + t$. The decomposition reads
 
-For $X_t = W_t^2$, Itô's formula gives:
+    $$
+    W_t^2 = M_t + t, \qquad M_t = 2\int_0^t W_s\,dW_s.
+    $$
 
-$$
-W_t^2 = 2\int_0^t W_s \, dW_s + t
-$$
+    The compensator $A_t = t$ equals the quadratic variation $[W]_t$.
 
-Thus:
+!!! example "Convex transform of a martingale"
+    If $M$ is a continuous martingale and $f \in C^2$ is convex, Itô's formula gives
 
-- $M_t = 2\int_0^t W_s \, dW_s$ (martingale)
-- $A_t = t$ (predictable increasing)
+    $$
+    f(M_t) = f(M_0) + \underbrace{\int_0^t f'(M_s)\,dM_s}_{\text{martingale part}} + \underbrace{\tfrac{1}{2}\int_0^t f''(M_s)\,d[M]_s}_{\text{compensator } A_t}.
+    $$
 
-The compensator is deterministic: $A_t = t = [W]_t$ (the quadratic variation).
+    Convexity ($f'' \ge 0$) makes $A_t$ non-decreasing, confirming that $f(M_t)$ is a submartingale.
 
-$$
-\boxed{W_t^2 = M_t + t}
-$$
+!!! example "Absolute value and local time"
+    $|W_t|$ is a submartingale. Tanaka's formula gives its decomposition
 
-### Example 2: Submartingale from Convex Transform
+    $$
+    |W_t| = \int_0^t \operatorname{sgn}(W_s)\,dW_s + L_t^0,
+    $$
 
-If $M_t$ is a martingale and $\varphi$ is convex with $\varphi(M_t) \in L^1$, then $X_t = \varphi(M_t)$ is a submartingale.
-
-For $\varphi(x) = x^2$ and $M_t = W_t$:
-
-$$
-W_t^2 - t = M_t \quad \text{(the martingale part)}
-$$
-
-### Example 3: Absolute Value
-
-$|W_t|$ is a submartingale. Its Doob–Meyer decomposition involves the **local time** $L_t^0$:
-
-$$
-|W_t| = \int_0^t \text{sgn}(W_s) \, dW_s + L_t^0
-$$
-
-where $L_t^0$ is the local time at 0 (a continuous increasing process measuring time spent near 0).
-
-### Example 4: Maximum Process
-
-$M_t^* = \sup_{s \le t} W_s$ is a submartingale. Its compensator involves reflected Brownian motion and is related to the running maximum's rate of increase.
+    where $L_t^0$ is the local time of $W$ at $0$ — a continuous, non-decreasing process that grows only when $W_t = 0$.
 
 ---
 
-## Connection to Quadratic Variation
+## Compensators and Quadratic Variation
 
-For a continuous local martingale $M_t$, the **quadratic variation** $[M]_t$ is the unique continuous increasing process such that:
-
-$$
-M_t^2 - [M]_t \text{ is a local martingale}
-$$
-
-Comparing with Doob–Meyer: $M_t^2$ is a submartingale (when $M_t$ is a true martingale), and $[M]_t$ is its compensator.
-
-**For Brownian motion**: $[W]_t = t$, recovering $W_t^2 - t$ is a martingale.
-
-**Key relationship**:
+For a continuous local martingale $M$, the quadratic variation $[M]_t$ is the unique continuous increasing process such that $M_t^2 - [M]_t$ is a local martingale. Comparing with Doob-Meyer:
 
 $$
-\text{Quadratic variation} = \text{Compensator of the square}
+\text{quadratic variation of } M \;=\; \text{compensator of } M^2.
 $$
+
+For Brownian motion, $[W]_t = t$, recovering $W_t^2 - t$ is a martingale.
 
 ---
 
 ## Semimartingales
 
-The Doob–Meyer decomposition naturally leads to the class of **semimartingales**.
-
-**Definition**: A process $X_t$ is a **semimartingale** if it can be written as:
+Allowing $A$ to be any adapted càdlàg finite-variation process (not necessarily predictable or increasing) and $M$ to be a local martingale defines the class of **semimartingales**:
 
 $$
-X_t = X_0 + M_t + A_t
+X_t = X_0 + M_t + A_t.
 $$
 
-where $M_t$ is a local martingale and $A_t$ is an adapted càdlàg finite variation process (not necessarily increasing or predictable).
-
-**Key facts**:
-
-1. Semimartingales are the most general class of integrators for stochastic integrals.
-2. Every submartingale of class (D) is a semimartingale (by Doob–Meyer).
-3. Itô processes are semimartingales.
-4. The semimartingale property is preserved under $C^2$ transformations (Itô's formula).
+Every class (D) submartingale is a semimartingale by Doob-Meyer, and Itô processes are the prime examples. Semimartingales are the natural integrators for stochastic integration, and the class is preserved under $C^2$ transformations via Itô's formula.
 
 ---
 
-## Applications
+## Why It Matters
 
-### 1. Characterizing Martingales
-
-A process is a martingale iff its Doob–Meyer compensator is 0. This gives a criterion: check whether the expected drift vanishes.
-
-### 2. Change of Measure
-
-Under Girsanov's theorem, changing measure changes the compensator. If $X_t$ has compensator $A_t$ under $\mathbb{P}$, it has a different compensator under $\mathbb{Q}$.
-
-### 3. Stochastic Calculus
-
-The Doob–Meyer decomposition justifies writing Itô processes as drift + martingale. The general theory extends this to all semimartingales.
-
-### 4. Mathematical Finance
-
-In pricing theory, the compensator of a price process determines the "risk premium." Under the risk-neutral measure, the compensator adjusts so that discounted prices become martingales.
-
----
-
-## Historical Perspective
-
-The theorem is named after:
-
-- **Joseph Doob** (1910–2004): American mathematician who founded modern martingale theory
-- **Paul-André Meyer** (1934–2003): French mathematician who generalized the decomposition to continuous time
-
-Meyer's work in the 1960s, as part of the Strasbourg school, established the general theory of processes that underpins modern stochastic analysis.
-
----
-
-## Summary
-
-The Doob–Meyer Decomposition:
-
-$$
-\boxed{X_t = X_0 + M_t + A_t}
-$$
-
-| Component | Type | Interpretation |
-|-----------|------|----------------|
-| $M_t$ | Martingale | Pure noise, unpredictable fluctuations |
-| $A_t$ | Predictable increasing | Systematic drift, accumulated trend |
-
-**When it applies**: Class (D) submartingales (or local submartingales via localization).
-
-**Why it matters**:
-
-- Reveals the internal structure of stochastic processes
-- Explains why semimartingales are the natural class for integration
-- Connects martingale theory to quadratic variation
-- Provides the foundation for Itô calculus and beyond
-
-The decomposition tells us that every submartingale is secretly a martingale plus predictable drift—separating what can be anticipated from what cannot.
+A process is a martingale exactly when its Doob-Meyer compensator vanishes, so the decomposition is the standard tool for testing and for change of measure: Girsanov shifts the compensator, and the risk-neutral measure is the one under which the compensator of discounted prices is zero. This is why the decomposition sits at the foundation of pricing theory.
 
 ---
 
 ## Exercises
 
-### Exercise 1: Discrete Decomposition
-
-Let $X_n = \sum_{k=1}^n Y_k$ where $Y_k \ge 0$ and $\mathbb{E}[Y_k \mid \mathcal{F}_{k-1}] = c$ for some constant $c > 0$.
-
-(a) Find the Doob decomposition $X_n = M_n + A_n$.
-
-(b) Verify that $A_n$ is predictable and increasing.
-
-(c) What is $X_n$ if not a martingale?
+**Exercise 1.** Let $X_n = \sum_{k=1}^n Y_k$ with $Y_k \ge 0$ and $\mathbb{E}[Y_k \mid \mathcal{F}_{k-1}] = c > 0$. Find the Doob decomposition and identify it as a sub- or supermartingale.
 
 ??? success "Solution to Exercise 1"
-    **(a)** Using the discrete Doob decomposition: $A_n - A_{n-1} = \mathbb{E}[X_n - X_{n-1} \mid \mathcal{F}_{n-1}] = \mathbb{E}[Y_n \mid \mathcal{F}_{n-1}] = c$.
-
-    Therefore $A_n = \sum_{k=1}^n c = cn$ (with $A_0 = 0$).
-
-    The martingale part is $M_n = X_n - X_0 - A_n = X_n - cn$ (with $M_0 = 0$).
-
-    So the decomposition is: $X_n = M_n + cn$, where $M_n = \sum_{k=1}^n (Y_k - c)$.
-
-    **(b)** $A_n = cn$ is predictable: $A_n - A_{n-1} = c$ is a constant, hence $\mathcal{F}_{n-1}$-measurable.
-
-    $A_n$ is increasing: since $c > 0$, $A_n - A_{n-1} = c > 0$ for all $n$. $\square$
-
-    **(c)** Since $A_n = cn$ is increasing (with $c > 0$), $X_n$ is a **submartingale**. It is not a martingale (unless $c = 0$) because the compensator is non-zero.
+    $A_n - A_{n-1} = \mathbb{E}[X_n - X_{n-1} \mid \mathcal{F}_{n-1}] = \mathbb{E}[Y_n \mid \mathcal{F}_{n-1}] = c$, so $A_n = cn$ (predictable and strictly increasing). The martingale part is $M_n = X_n - cn = \sum_{k=1}^n (Y_k - c)$. Since $A_n$ is increasing, $X_n$ is a submartingale. $\square$
 
 ---
 
-### Exercise 2: Compensator of Squared Brownian Motion
-
-(a) Use Itô's formula to write $W_t^2 = M_t + A_t$ where $M_t$ is a martingale and $A_t$ is predictable increasing.
-
-(b) Identify $A_t$ explicitly.
-
-(c) Explain the connection to quadratic variation.
+**Exercise 2.** Use Itô's formula to find the Doob-Meyer decomposition of $f(W_t)$ for $f \in C^2$ convex. Verify on $f(x) = x^2$ and $f(x) = e^{\theta x}$.
 
 ??? success "Solution to Exercise 2"
-    **(a)** By Ito's formula applied to $f(x) = x^2$ and $W_t$:
+    Itô's formula gives
 
     $$
-    W_t^2 = W_0^2 + 2\int_0^t W_s\,dW_s + \int_0^t 1\,ds = 2\int_0^t W_s\,dW_s + t
+    f(W_t) = f(0) + \int_0^t f'(W_s)\,dW_s + \tfrac{1}{2}\int_0^t f''(W_s)\,ds,
     $$
 
-    So $M_t = 2\int_0^t W_s\,dW_s$ (martingale) and $A_t = t$ (predictable increasing).
+    so $M_t = \int_0^t f'(W_s)\,dW_s$ (local martingale) and $A_t = \tfrac{1}{2}\int_0^t f''(W_s)\,ds$ (non-decreasing by convexity).
 
-    **(b)** The compensator is $A_t = t$. This is deterministic, continuous, and increasing.
-
-    **(c)** The compensator $A_t = t$ equals the quadratic variation $[W]_t = t$. This is a general fact: for a continuous local martingale $M$, the process $M^2 - [M]$ is a local martingale, so $[M]$ is the compensator of the submartingale $M^2$. The identity:
-
-    $$
-    \text{Quadratic variation of } W = \text{Compensator of } W^2
-    $$
+    For $f(x) = x^2$: $M_t = 2\int_0^t W_s\,dW_s$, $A_t = t$. For $f(x) = e^{\theta x}$: $M_t = \theta\int_0^t e^{\theta W_s}\,dW_s$, $A_t = \tfrac{\theta^2}{2}\int_0^t e^{\theta W_s}\,ds$. $\square$
 
 ---
 
-### Exercise 3: Compensator of |W_t|
-
-The process $|W_t|$ is a submartingale.
-
-(a) Explain why its Doob–Meyer compensator involves local time.
-
-(b) State Tanaka's formula: $|W_t| = \int_0^t \text{sgn}(W_s) \, dW_s + L_t^0$.
-
-(c) Identify the martingale and increasing parts.
+**Exercise 3.** State Tanaka's formula for $|W_t|$ and identify the martingale and compensator parts.
 
 ??? success "Solution to Exercise 3"
-    **(a)** The process $|W_t|$ is a submartingale (since $|\cdot|$ is convex and $W_t$ is a martingale). Its Doob-Meyer decomposition involves local time because $|x|$ is not $C^2$ at $x = 0$. The standard Ito formula does not apply directly, but Tanaka's formula (a generalization of Ito's formula to convex functions) gives the decomposition.
-
-    The compensator must account for the "kink" in $|x|$ at the origin. The local time $L_t^0$ measures how much time the process spends near zero, and it provides exactly the increasing process needed.
-
-    **(b)** Tanaka's formula states:
+    Tanaka's formula:
 
     $$
-    |W_t| = \int_0^t \text{sgn}(W_s)\,dW_s + L_t^0
+    |W_t| = \int_0^t \operatorname{sgn}(W_s)\,dW_s + L_t^0,
     $$
 
-    where $\text{sgn}(x) = +1$ for $x > 0$, $\text{sgn}(x) = -1$ for $x < 0$, $\text{sgn}(0) = 0$, and $L_t^0$ is the local time of $W$ at 0.
-
-    **(c)**
-
-    - **Martingale part**: $M_t = \int_0^t \text{sgn}(W_s)\,dW_s$. This is a continuous local martingale (in fact a true martingale since $|\text{sgn}(W_s)| \le 1$).
-
-    - **Increasing part (compensator)**: $A_t = L_t^0$. This is a continuous, non-decreasing, adapted process with $L_0^0 = 0$. It increases only when $W_t = 0$, measuring the "time spent at zero" in a generalized sense.
+    where $L_t^0$ is local time at $0$. The martingale part is $M_t = \int_0^t \operatorname{sgn}(W_s)\,dW_s$ (a true martingale, since $|\operatorname{sgn}| \le 1$ gives $L^2$ bound). The compensator is $A_t = L_t^0$: continuous, non-decreasing, grows only on $\{W_t = 0\}$. Classical Itô fails here because $|x|$ is not $C^2$ at $0$; the local time is precisely what records the "kink." $\square$
 
 ---
 
-### Exercise 4: General Submartingale
-
-Let $M_t$ be a continuous martingale and $f$ a convex $C^2$ function. Then $f(M_t)$ is a submartingale.
-
-(a) Use Itô's formula to find the Doob–Meyer decomposition of $f(M_t)$.
-
-(b) Verify your answer for $f(x) = x^2$ and $M_t = W_t$.
-
-(c) What is the compensator when $f(x) = e^x$ and $M_t = W_t$?
+**Exercise 4.** Show uniqueness of the discrete Doob decomposition: a predictable martingale starting at $0$ is identically zero.
 
 ??? success "Solution to Exercise 4"
-    **(a)** By Ito's formula applied to $f(M_t)$ where $M_t$ is a continuous martingale and $f \in C^2$:
+    Let $D$ be predictable and a martingale with $D_0 = 0$. Predictability makes $D_n$ $\mathcal{F}_{n-1}$-measurable, so
 
     $$
-    f(M_t) = f(M_0) + \int_0^t f'(M_s)\,dM_s + \frac{1}{2}\int_0^t f''(M_s)\,d[M]_s
+    \mathbb{E}[D_n - D_{n-1} \mid \mathcal{F}_{n-1}] = D_n - D_{n-1}.
     $$
 
-    The Doob-Meyer decomposition is:
+    The martingale property makes the left side $0$. Hence $D_n = D_{n-1}$ a.s., and induction from $D_0 = 0$ gives $D_n = 0$ a.s. for all $n$. $\square$
 
-    - **Martingale part**: $\int_0^t f'(M_s)\,dM_s$ (a local martingale)
-    - **Compensator**: $A_t = \frac{1}{2}\int_0^t f''(M_s)\,d[M]_s$
+---
 
-    Since $f$ is convex, $f'' \ge 0$, so $A_t$ is non-decreasing. This confirms $f(M_t)$ is a submartingale.
+**Exercise 5.** Why is the compensator of a continuous martingale $M$ applied to $M^2$ equal to $[M]$? Illustrate on $M = W$.
 
-    **(b)** For $f(x) = x^2$ and $M_t = W_t$: $f'(x) = 2x$, $f''(x) = 2$, $[W]_t = t$.
-
-    - Martingale part: $\int_0^t 2W_s\,dW_s$ (matches Example 1)
-    - Compensator: $\frac{1}{2}\int_0^t 2\,ds = t$ (matches Example 1)
-
-    **(c)** For $f(x) = e^x$ and $M_t = W_t$: $f'(x) = e^x$, $f''(x) = e^x$, $[W]_t = t$.
+??? success "Solution to Exercise 5"
+    Itô's formula for $f(x) = x^2$ on the continuous local martingale $M$ gives
 
     $$
-    e^{W_t} = e^{W_0} + \int_0^t e^{W_s}\,dW_s + \frac{1}{2}\int_0^t e^{W_s}\,ds
+    M_t^2 = M_0^2 + 2\int_0^t M_s\,dM_s + [M]_t,
     $$
 
-    The compensator is:
-
-    $$
-    A_t = \frac{1}{2}\int_0^t e^{W_s}\,ds
-    $$
-
-    This is a random, continuous, increasing process (since $e^{W_s} > 0$). The martingale part is $\int_0^t e^{W_s}\,dW_s$.
+    so $M_t^2 - [M]_t$ is a local martingale — the Doob-Meyer martingale part — and $[M]_t$ is the compensator. For $M = W$, $[W]_t = t$, recovering $W_t^2 - t$ as a martingale. $\square$

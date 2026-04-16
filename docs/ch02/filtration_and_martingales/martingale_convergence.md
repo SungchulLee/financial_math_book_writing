@@ -1,439 +1,186 @@
 # Martingale Convergence
 
-## The Convergence Question
-
-One of the most striking features of martingale theory is that martingales "want to converge." Unlike general sequences of random variables, martingales possess an intrinsic structure—the conditional expectation property—that forces limiting behavior under mild conditions.
-
-The fundamental question: given a martingale $\{M_t\}$ or $\{M_n\}$, does $\lim M_t$ (or $\lim M_n$) exist, and in what sense?
-
-This section develops the convergence theory, progressing from almost sure convergence to $L^p$ convergence, with the crucial role of uniform integrability as the bridge between these modes.
+Martingales "want to converge." The conditional expectation property forces limiting behavior under mild conditions, distinguishing martingales from arbitrary sequences of integrable random variables. This section establishes when — and in what sense — a martingale admits a limit, and isolates a gap that will be filled in [Uniform Integrability](uniform_integrability.md).
 
 ---
 
-## Almost Sure Convergence: The Upcrossing Lemma
+## Almost Sure Convergence
 
-The key to martingale convergence is Doob's **upcrossing inequality**, which bounds how often a martingale can oscillate between two levels.
+The path to a.s. convergence runs through **upcrossings**. For $a < b$, an upcrossing of $[a,b]$ by $X_0, X_1, \ldots$ is a pair $s < t$ with $X_s \le a$ and $X_t \ge b$. If a sequence oscillates infinitely, it upcrosses some rational interval infinitely often. Bounding the expected number of upcrossings therefore forces convergence.
 
-### Upcrossings Defined
-
-For a process $\{X_n\}$ and real numbers $a < b$, an **upcrossing** of the interval $[a, b]$ is a pair of times $s < t$ such that $X_s \le a$ and $X_t \ge b$ (the process crosses from below $a$ to above $b$).
-
-Let $U_N^{[a,b]}$ denote the number of upcrossings of $[a, b]$ by $(X_0, X_1, \ldots, X_N)$.
-
-### Doob's Upcrossing Inequality
-
-**Theorem**: If $\{X_n\}_{n=0}^N$ is a submartingale, then:
-
-$$
-\boxed{(b - a) \mathbb{E}[U_N^{[a,b]}] \le \mathbb{E}[(X_N - a)^+]}
-$$
-
-where $(x)^+ = \max(x, 0)$.
-
-**Proof**: Define the **betting strategy** process $H_n$ as follows: $H_n = 1$ if we are currently "in an upcrossing" (i.e., below $a$ and waiting to cross above $b$), and $H_n = 0$ otherwise. Formally:
-
-- Let $\sigma_1 = \inf\{n \geq 0 : X_n \leq a\}$ (first time at or below $a$)
-- Let $\tau_1 = \inf\{n > \sigma_1 : X_n \geq b\}$ (first time at or above $b$ after $\sigma_1$)
-- Continue inductively: $\sigma_{k+1} = \inf\{n > \tau_k : X_n \leq a\}$, $\tau_{k+1} = \inf\{n > \sigma_{k+1} : X_n \geq b\}$
-
-Set $H_n = 1$ if $\sigma_k \leq n - 1 < \tau_k$ for some $k$, and $H_n = 0$ otherwise. This is a **predictable** process (it depends only on $X_0, \ldots, X_{n-1}$).
-
-The total gain from this strategy is:
-
-$$
-G_N = \sum_{n=1}^N H_n (X_n - X_{n-1})
-$$
-
-Each completed upcrossing contributes at least $b - a$ to the gain, so:
-
-$$
-G_N \geq (b - a) U_N^{[a,b]} - (X_N - a)^-
-$$
-
-For submartingales, predictable strategies with non-negative bounded coefficients preserve the submartingale property, so $\mathbb{E}[G_N] \geq 0$. From $G_N \geq (b-a)U_N^{[a,b]} - (X_N - a)^-$ and $\mathbb{E}[G_N] \ge 0$:
-
-$$
-(b-a)\mathbb{E}[U_N^{[a,b]}] \le \mathbb{E}[(X_N - a)^-] + \mathbb{E}[G_N]
-$$
-
-Now use the identity $(x-a)^+ - (x-a)^- = x - a$, so $(x-a)^- = (x-a)^+ - (x-a) \le (x-a)^+$. Combined with $\mathbb{E}[G_N] \ge 0$:
-
-$$
-(b-a)\mathbb{E}[U_N^{[a,b]}] \le \mathbb{E}[(X_N - a)^-] \le \mathbb{E}[(X_N - a)^+]
-$$
-
-$\square$
-
-**Interpretation**: If the expected final value is bounded, the process cannot oscillate too much. Each upcrossing "costs" at least $b - a$ on average.
-
----
-
-## The Martingale Convergence Theorem
-
-**Theorem (Doob's Martingale Convergence Theorem)**: Let $\{M_n\}_{n \ge 0}$ be a martingale (or submartingale) satisfying:
-
-$$
-\sup_n \mathbb{E}[|M_n|] < \infty \quad \text{($L^1$-bounded)}
-$$
-
-Then there exists a random variable $M_\infty$ with $\mathbb{E}|M_\infty| < \infty$ such that:
-
-$$
-\boxed{M_n \to M_\infty \quad \text{almost surely as } n \to \infty}
-$$
-
-**Proof**:
-
-*Step 1*: For any rational $a < b$, the upcrossing inequality gives:
-
-$$
-\mathbb{E}[U_\infty^{[a,b]}] = \lim_N \mathbb{E}[U_N^{[a,b]}] \le \frac{\sup_n \mathbb{E}[(M_n - a)^+]}{b - a} < \infty
-$$
-
-Therefore $U_\infty^{[a,b]} < \infty$ almost surely.
-
-*Step 2*: The event "$(M_n)$ oscillates infinitely often" equals:
-
-$$
-\bigcup_{a < b, \, a,b \in \mathbb{Q}} \{U_\infty^{[a,b]} = \infty\}
-$$
-
-This is a countable union of null sets, hence null.
-
-*Step 3*: Therefore, $\liminf_n M_n = \limsup_n M_n$ almost surely, so the limit exists (possibly $\pm \infty$).
-
-*Step 4*: To show $M_\infty$ is finite a.s., note that $(|M_n|)$ is a submartingale and:
-
-$$
-\mathbb{P}(|M_\infty| = \infty) \le \lim_K \mathbb{P}\left(\sup_n |M_n| \ge K\right) \le \lim_K \frac{\sup_n \mathbb{E}|M_n|}{K} = 0 \quad \square
-$$
-
----
-
-## L¹ Convergence and Uniform Integrability
-
-Almost sure convergence does **not** imply $L^1$ convergence. The canonical counterexample:
-
-**Example**: Let $\xi_1, \xi_2, \ldots$ be i.i.d. with $\mathbb{P}(\xi_i = 2) = \mathbb{P}(\xi_i = 0) = 1/2$. Define:
-
-$$
-M_n = \prod_{i=1}^n \xi_i
-$$
-
-Then $M_n$ is a martingale with $\mathbb{E}[M_n] = 1$ for all $n$. However, $M_n \to 0$ almost surely (since $\mathbb{P}(\text{at least one } \xi_i = 0) = 1$), but $\mathbb{E}[M_n] = 1 \not\to 0 = \mathbb{E}[M_\infty]$.
-
-**Why does this happen?** The expected value is preserved by increasingly rare but large realizations. With probability $(1/2)^n$, all $\xi_i = 2$, giving $M_n = 2^n$. This contributes $(1/2)^n \cdot 2^n = 1$ to the expectation—the entire expected value comes from an exponentially unlikely event.
-
-The gap is filled by **uniform integrability** — the condition that rules out the probability mass escaping to infinity that we saw above. The complete theory, including three equivalent characterizations and all proofs, is developed in the companion document *Uniform Integrability*. We recall just the definition and key examples here.
-
-### Uniform Integrability
-
-A family of random variables $\{X_\alpha\}_{\alpha \in A}$ is **uniformly integrable (UI)** if:
-
-$$
-\lim_{K \to \infty} \sup_{\alpha \in A} \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| > K\}}] = 0
-$$
-
-**Interpretation**: The tails of all $X_\alpha$ are controlled by the same truncation level $K$, uniformly in $\alpha$.
-
-**Key examples of UI families** (see *Uniform Integrability* for proofs):
-
-- Any $L^p$-bounded family with $p > 1$.
-- The family $\{\mathbb{E}[Y \mid \mathcal{G}_\alpha]\}$ for any $Y \in L^1$ and any sub-$\sigma$-algebras $\mathcal{G}_\alpha$.
-- Any family dominated by an integrable random variable.
-
----
-
-## The UI Convergence Theorem
-
-**Theorem**: Let $\{M_n\}$ be a martingale. The following are equivalent:
-
-1. $(M_n)$ is uniformly integrable.
-
-2. $M_n \to M_\infty$ in $L^1$ for some $M_\infty \in L^1$.
-
-3. $M_n \to M_\infty$ a.s. and in $L^1$ for some $M_\infty \in L^1$.
-
-4. There exists $M_\infty \in L^1$ such that $M_n = \mathbb{E}[M_\infty \mid \mathcal{F}_n]$ for all $n$.
-
-5. $(M_n)$ is **closed**: there exists $X \in L^1$ such that $M_n = \mathbb{E}[X \mid \mathcal{F}_n]$.
-
-**Proof sketch** (main implications):
-
-$(4) \Rightarrow (1)$: Conditional expectations of an integrable random variable form a UI family.
-
-$(1) \Rightarrow (3)$: By the basic convergence theorem, $M_n \to M_\infty$ a.s. UI plus a.s. convergence implies $L^1$ convergence (Vitali).
-
-$(3) \Rightarrow (4)$: For any $A \in \mathcal{F}_n$, by dominated convergence:
-
-$$
-\mathbb{E}[M_\infty \mathbf{1}_A] = \lim_m \mathbb{E}[M_m \mathbf{1}_A] = \mathbb{E}[M_n \mathbf{1}_A]
-$$
-
-showing $M_n = \mathbb{E}[M_\infty \mid \mathcal{F}_n]$. $\square$
-
----
-
-## L^p Convergence
-
-**Theorem**: Let $p > 1$ and let $(M_n)$ be a martingale with $\sup_n \mathbb{E}|M_n|^p < \infty$. Then:
-
-$$
-\boxed{M_n \to M_\infty \quad \text{in } L^p \text{ and a.s.}}
-$$
-
-**Proof**: $L^p$-boundedness with $p > 1$ implies UI, so $L^1$ (hence a.s.) convergence follows. For $L^p$ convergence, Doob's maximal inequality gives:
-
-$$
-\mathbb{E}\left[\sup_n |M_n|^p\right] \le \left(\frac{p}{p-1}\right)^p \sup_n \mathbb{E}|M_n|^p < \infty
-$$
-
-Since $|M_n - M_\infty|^p \le 2^p \sup_n |M_n|^p$ which is integrable, dominated convergence yields $L^p$ convergence. $\square$
-
-**Remark**: The case $p = 1$ fails: $L^1$-boundedness gives a.s. convergence but not $L^1$ convergence without UI.
-
----
-
-## Backward Martingales
-
-A **backward martingale** (or reverse martingale) is a sequence $(M_n, \mathcal{F}_n)_{n \geq 1}$ with $\mathcal{F}_n \supseteq \mathcal{F}_{n+1}$ (decreasing filtration) and:
-
-$$
-\mathbb{E}[M_n \mid \mathcal{F}_{n+1}] = M_{n+1} \quad \text{for all } n \geq 1
-$$
-
-Equivalently, as we move forward in the index $n$, we have *less* information (the filtration shrinks), and conditioning on this smaller $\sigma$-algebra still gives the martingale relation.
-
-**Theorem (Backward Martingale Convergence)**: If $(M_n, \mathcal{F}_n)_{n \geq 1}$ is a backward martingale with $\sup_n \mathbb{E}|M_n| < \infty$, then:
-
-$$
-M_n \to M_\infty \quad \text{a.s. and in } L^1
-$$
-
-where $M_\infty = \mathbb{E}[M_1 \mid \mathcal{F}_\infty]$ and $\mathcal{F}_\infty = \bigcap_n \mathcal{F}_n$ is the tail $\sigma$-algebra.
-
-**Key difference**: Backward martingales **always** converge in $L^1$—uniform integrability is automatic since $(M_n)$ is a sequence of conditional expectations of $M_1$.
-
-**Application (Strong Law of Large Numbers)**: Let $X_1, X_2, \ldots$ be i.i.d. with $\mathbb{E}|X_1| < \infty$ and mean $\mu$. Define:
-
-- $S_n = X_1 + \cdots + X_n$
-- $\mathcal{F}_n = \sigma(S_n, S_{n+1}, S_{n+2}, \ldots)$ — the $\sigma$-algebra generated by all partial sums from $S_n$ onward
-
-The key observation is that $\mathcal{F}_n \supseteq \mathcal{F}_{n+1}$ (knowing $(S_n, S_{n+1}, \ldots)$ gives more information than knowing only $(S_{n+1}, S_{n+2}, \ldots)$).
-
-Let $\bar{X}_n = S_n/n$. Then $(\bar{X}_n, \mathcal{F}_n)$ is a backward martingale. By the backward convergence theorem:
-
-$$
-\frac{S_n}{n} = \bar{X}_n \to \mathbb{E}[X_1 \mid \mathcal{F}_\infty] \quad \text{a.s. and in } L^1
-$$
-
-By Kolmogorov's 0-1 law, $\mathcal{F}_\infty$ is trivial (all events have probability 0 or 1), so:
-
-$$
-\frac{S_n}{n} \to \mathbb{E}[X_1] = \mu \quad \text{a.s. and in } L^1
-$$
-
-This elegant proof of the SLLN avoids truncation arguments.
-
----
-
-## Continuous-Time Convergence
-
-The convergence theorems extend to continuous time with appropriate modifications.
-
-**Theorem**: Let $(M_t)_{t \ge 0}$ be a right-continuous martingale with:
-
-$$
-\sup_t \mathbb{E}|M_t| < \infty
-$$
-
-Then $M_\infty := \lim_{t \to \infty} M_t$ exists almost surely and is finite a.s.
-
-If additionally $(M_t)$ is UI, then $M_t \to M_\infty$ in $L^1$ and $M_t = \mathbb{E}[M_\infty \mid \mathcal{F}_t]$.
-
-**Regularity**: In continuous time, one typically assumes càdlàg paths (right-continuous with left limits). The Doob regularization theorem guarantees that any $L^1$-bounded martingale has a càdlàg modification.
-
----
-
-## Convergence of Specific Martingales
-
-### Example 1: Doob Martingale
-
-If $M_t = \mathbb{E}[X \mid \mathcal{F}_t]$ for some $X \in L^1$, then $M_t \to X$ a.s. and in $L^1$ as $t \to \infty$ (assuming $\mathcal{F}_t \uparrow \mathcal{F}$).
-
-This is the Lévy martingale convergence theorem: as information increases, our best estimate of $X$ converges to $X$ itself.
-
-### Example 2: Exponential Martingale
-
-Consider $Z_t = \exp(\theta W_t - \frac{\theta^2 t}{2})$. For $\theta \neq 0$:
-
-- $\mathbb{E}[Z_t] = 1$ for all $t$.
-- $Z_t \to 0$ almost surely as $t \to \infty$. To see this, take logarithms: $\log Z_t = \theta W_t - \frac{\theta^2}{2} t$. By the law of the iterated logarithm, $W_t = O(\sqrt{t \log \log t})$ a.s., so $\theta W_t = o(t)$ a.s. Therefore $\log Z_t \sim -\frac{\theta^2}{2}t \to -\infty$ a.s., giving $Z_t \to 0$ a.s.
-
-This is **not** UI: $\mathbb{E}[Z_t] = 1 \not\to 0 = \mathbb{E}[Z_\infty]$.
-
-### Example 3: Random Walk Martingale
-
-The simple random walk $S_n = \sum_{i=1}^n \xi_i$ (fair coin) satisfies $S_n \to ?$. Since $\mathbb{E}[S_n^2] = n \to \infty$, the walk is not $L^2$-bounded, and indeed $S_n$ does not converge.
-
-However, $S_n/\sqrt{n} \Rightarrow N(0,1)$ in distribution (CLT), though this is **not** a.s. convergence.
-
----
-
-## The Optional Stopping Connection
-
-Martingale convergence and optional sampling are deeply connected:
-
-**Theorem**: Let $(M_n)$ be a UI martingale with limit $M_\infty$. For any stopping time $\tau$ (possibly infinite):
-
-$$
-\mathbb{E}[M_\tau] = \mathbb{E}[M_0] \quad \text{and} \quad M_\tau = \mathbb{E}[M_\infty \mid \mathcal{F}_\tau]
-$$
-
-This extends the optional sampling theorem to unbounded stopping times, using convergence to handle the limit.
-
----
-
-## Summary: The Convergence Hierarchy
-
-| Condition | Almost Sure | $L^1$ | $L^p$ ($p > 1$) |
-|-----------|-------------|-------|-----------------|
-| $L^1$-bounded | ✓ | ✗ (need UI) | — |
-| Uniformly integrable | ✓ | ✓ | — |
-| $L^p$-bounded ($p > 1$) | ✓ | ✓ | ✓ |
-| Closed (= $\mathbb{E}[X \mid \mathcal{F}_n]$) | ✓ | ✓ | Depends on $X$ |
-
-**Key takeaways**:
-
-1. **$L^1$-boundedness alone gives a.s. convergence** via the upcrossing lemma.
-
-2. **Uniform integrability bridges a.s. and $L^1$ convergence** and is equivalent to closure.
-
-3. **$L^p$-boundedness with $p > 1$ is stronger than UI** and gives $L^p$ convergence.
-
-4. **Backward martingales always converge in $L^1$**—no additional conditions needed.
-
-The convergence theory completes the structural picture of martingales: they are processes that, under boundedness conditions, settle down to limiting values, preserving the martingale property even at "time infinity."
-
----
-
-## Exercises
-
-### Exercise 1: Upcrossings
-
-Let $M_n$ be a submartingale and let $U_N^{[a,b]}$ denote the number of upcrossings of $[a,b]$ by $M_0, \ldots, M_N$.
-
-(a) State Doob's upcrossing inequality.
-
-(b) Use the upcrossing inequality to prove: if $\sup_n \mathbb{E}[M_n^+] < \infty$, then $M_n$ converges a.s.
-
-(c) Explain why the condition involves $M_n^+$ rather than $|M_n|$.
-
-??? success "Solution to Exercise 1"
-    **(a)** **Doob's upcrossing inequality**: If $\{X_n\}_{n=0}^N$ is a submartingale and $a < b$, then:
+!!! abstract "Doob's upcrossing inequality"
+    If $(X_n)_{n=0}^N$ is a submartingale and $U_N^{[a,b]}$ is the number of upcrossings of $[a,b]$, then
 
     $$
     (b - a)\,\mathbb{E}[U_N^{[a,b]}] \le \mathbb{E}[(X_N - a)^+]
     $$
 
-    where $U_N^{[a,b]}$ is the number of upcrossings of $[a, b]$ by $X_0, \ldots, X_N$.
-
-    **(b)** For any rational $a < b$, the upcrossing inequality gives:
-
-    $$
-    \mathbb{E}[U_\infty^{[a,b]}] = \lim_{N \to \infty} \mathbb{E}[U_N^{[a,b]}] \le \frac{\sup_n \mathbb{E}[(M_n - a)^+]}{b - a}
-    $$
-
-    Now $(M_n - a)^+ \le |M_n| + |a|$, so $\mathbb{E}[(M_n - a)^+] \le \mathbb{E}[|M_n|] + |a|$. For a submartingale, $\mathbb{E}[M_n^+] \le \mathbb{E}[|M_n|]$ and $\mathbb{E}[|M_n|] = 2\mathbb{E}[M_n^+] - \mathbb{E}[M_n] \le 2\mathbb{E}[M_n^+]$ (using $|x| = 2x^+ - x$). If $\sup_n \mathbb{E}[M_n^+] < \infty$, then $\sup_n \mathbb{E}[|M_n|] < \infty$.
-
-    Therefore $U_\infty^{[a,b]} < \infty$ a.s. for each rational pair $a < b$. The event "$(M_n)$ oscillates infinitely" is $\bigcup_{a < b, \, a,b \in \mathbb{Q}} \{U_\infty^{[a,b]} = \infty\}$, a countable union of null sets, hence null. So $M_n$ converges a.s. $\square$
-
-    **(c)** The condition involves $M_n^+$ rather than $|M_n|$ because for a submartingale, the positive part controls the negative part. Specifically, $\mathbb{E}[M_n^-] = \mathbb{E}[M_n^+] - \mathbb{E}[M_n] \le \mathbb{E}[M_n^+] - \mathbb{E}[M_0]$ (since $\mathbb{E}[M_n]$ is non-decreasing for submartingales). So bounding $\mathbb{E}[M_n^+]$ automatically bounds $\mathbb{E}[M_n^-]$ and hence $\mathbb{E}[|M_n|] = \mathbb{E}[M_n^+] + \mathbb{E}[M_n^-]$.
-
-    For a general martingale, $\mathbb{E}[M_n^+] = \mathbb{E}[M_n^-] + \mathbb{E}[M_n]$, and if $\mathbb{E}[M_n] = \mathbb{E}[M_0]$ is constant, then $\sup_n \mathbb{E}[M_n^+] < \infty$ is equivalent to $\sup_n \mathbb{E}[|M_n|] < \infty$.
+**Idea of proof**. Define a predictable "betting strategy" $H_n = 1$ when the process is inside an unfinished upcrossing, $0$ otherwise. Each completed upcrossing contributes at least $b-a$ to the gain $G_N = \sum H_n (X_n - X_{n-1})$, and $\mathbb{E}[G_N] \ge 0$ for submartingales. The inequality follows.
 
 ---
 
-### Exercise 2: Uniform Integrability
+!!! success "Martingale convergence theorem (Doob)"
+    Let $(M_n)$ be a submartingale with $\sup_n \mathbb{E}|M_n| < \infty$. Then there exists $M_\infty \in L^1$ such that
 
-(a) Prove that a family $\{X_\alpha\}$ is uniformly integrable if and only if it is $L^1$-bounded and satisfies: for all $\epsilon > 0$, there exists $\delta > 0$ such that $\mathbb{P}(A) < \delta$ implies $\sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_A] < \epsilon$.
+    $$
+    M_n \to M_\infty \quad \text{almost surely.}
+    $$
 
-(b) Show that $\{W_t : t \le T\}$ is uniformly integrable for any $T < \infty$.
+**Proof**. For each rational $a < b$, the upcrossing inequality gives $\mathbb{E}[U_\infty^{[a,b]}] \le \sup_n \mathbb{E}[(M_n - a)^+]/(b-a) < \infty$, so $U_\infty^{[a,b]} < \infty$ a.s. The event "$(M_n)$ oscillates" is the countable union over rational $a < b$ of $\{U_\infty^{[a,b]} = \infty\}$, hence null. So $\liminf M_n = \limsup M_n =: M_\infty$ a.s. Finiteness follows from Markov's inequality applied to $\sup_n |M_n|$. $\square$
 
-(c) Show that $\{e^{W_t - t/2} : t \ge 0\}$ is **not** uniformly integrable.
+---
+
+## The L¹ Gap
+
+A.s. convergence does **not** imply $L^1$ convergence. Mass can escape to rare high values:
+
+!!! warning "Canonical counterexample"
+    Let $\xi_i$ be i.i.d. with $\mathbb{P}(\xi_i = 2) = \mathbb{P}(\xi_i = 0) = 1/2$ and $M_n = \prod_{i=1}^n \xi_i$. Then $(M_n)$ is a martingale, $M_n \to 0$ a.s. (some $\xi_i$ eventually vanishes), yet $\mathbb{E}[M_n] = 1$ for all $n$. The mass is carried by the event $\{\xi_1 = \cdots = \xi_n = 2\}$ of probability $2^{-n}$, on which $M_n = 2^n$.
+
+The missing condition is **uniform integrability**: the entire family has uniformly controlled tails. See [Uniform Integrability](uniform_integrability.md) for the full theory; we recall only what is needed here.
+
+A family $\{X_\alpha\}$ is UI if
+
+$$
+\lim_{K\to\infty} \sup_\alpha \mathbb{E}[|X_\alpha|\,\mathbf{1}_{\{|X_\alpha|>K\}}] = 0.
+$$
+
+Key UI examples:
+
+- any $L^p$-bounded family with $p > 1$;
+- $\{\mathbb{E}[Y \mid \mathcal{G}_\alpha]\}$ for $Y \in L^1$ and sub-$\sigma$-algebras $\mathcal{G}_\alpha$;
+- any family dominated by an integrable random variable.
+
+---
+
+## UI Martingales and Closure
+
+!!! success "UI convergence theorem"
+    For a martingale $(M_n)$, the following are equivalent:
+
+    1. $(M_n)$ is uniformly integrable.
+    2. $M_n \to M_\infty$ in $L^1$ for some $M_\infty \in L^1$.
+    3. $M_n \to M_\infty$ a.s. and in $L^1$.
+    4. $(M_n)$ is **closed**: $M_n = \mathbb{E}[X \mid \mathcal{F}_n]$ for some $X \in L^1$.
+
+**Key implications**. $(4) \Rightarrow (1)$ because conditional expectations of a single $L^1$ variable are UI. $(1) \Rightarrow (3)$ combines Doob's a.s. theorem with Vitali's theorem (UI + a.s. $\Rightarrow L^1$). $(3) \Rightarrow (4)$ follows because for $A \in \mathcal{F}_n$, $\mathbb{E}[M_\infty \mathbf{1}_A] = \lim_m \mathbb{E}[M_m \mathbf{1}_A] = \mathbb{E}[M_n \mathbf{1}_A]$.
+
+!!! tip "L^p case, p > 1"
+    If $\sup_n \mathbb{E}|M_n|^p < \infty$ for some $p > 1$, then $M_n \to M_\infty$ a.s. and in $L^p$. Reason: $L^p$-boundedness with $p>1$ implies UI (hence a.s. and $L^1$ convergence), and Doob's maximal inequality gives the $L^p$ domination $\mathbb{E}[\sup_n |M_n|^p] \le (p/(p-1))^p \sup_n \mathbb{E}|M_n|^p$, so $L^p$ convergence follows by dominated convergence.
+
+---
+
+## Backward Martingales
+
+A **backward martingale** $(M_n, \mathcal{F}_n)_{n\ge 1}$ satisfies $\mathcal{F}_n \supseteq \mathcal{F}_{n+1}$ and $\mathbb{E}[M_n \mid \mathcal{F}_{n+1}] = M_{n+1}$: as $n$ grows, information *shrinks*.
+
+!!! success "Backward convergence"
+    Every $L^1$-bounded backward martingale converges a.s. and in $L^1$ to $M_\infty = \mathbb{E}[M_1 \mid \mathcal{F}_\infty]$, where $\mathcal{F}_\infty = \bigcap_n \mathcal{F}_n$.
+
+UI is automatic here: the sequence consists of conditional expectations of the single variable $M_1$.
+
+!!! example "Strong law of large numbers"
+    Let $X_i$ be i.i.d. with $\mathbb{E}|X_1| < \infty$ and mean $\mu$. Set $S_n = X_1 + \cdots + X_n$, $\bar X_n = S_n/n$, and $\mathcal{F}_n = \sigma(S_n, S_{n+1}, \ldots)$ (decreasing). By exchangeability, $\mathbb{E}[X_k \mid \mathcal{F}_{n+1}]$ is the same for all $k \le n+1$, so
+
+    $$
+    \mathbb{E}[\bar X_n \mid \mathcal{F}_{n+1}] = \bar X_{n+1},
+    $$
+
+    making $(\bar X_n)$ a backward martingale. Convergence gives $\bar X_n \to \mathbb{E}[X_1 \mid \mathcal{F}_\infty]$, and Kolmogorov's 0–1 law makes $\mathcal{F}_\infty$ trivial, yielding $\bar X_n \to \mu$ a.s. and in $L^1$.
+
+---
+
+## Continuous Time
+
+For right-continuous martingales $(M_t)_{t \ge 0}$ with $\sup_t \mathbb{E}|M_t| < \infty$, the same conclusions hold: $M_\infty := \lim_{t\to\infty} M_t$ exists a.s. and is finite. If $(M_t)$ is UI, convergence is also in $L^1$ and $M_t = \mathbb{E}[M_\infty \mid \mathcal{F}_t]$. Doob's regularization theorem provides a càdlàg modification whenever the filtration satisfies the usual conditions.
+
+!!! example "Three behaviors to remember"
+    - **Lévy martingale** $M_t = \mathbb{E}[X \mid \mathcal{F}_t]$: UI, so $M_t \to X$ a.s. and in $L^1$.
+    - **Exponential martingale** $Z_t = \exp(\theta W_t - \theta^2 t/2)$, $\theta \ne 0$: $\mathbb{E}[Z_t] = 1$ but $Z_t \to 0$ a.s. Not UI.
+    - **Simple random walk** $S_n$: $\mathbb{E}[S_n^2] = n \to \infty$, not $L^1$-bounded, does not converge a.s.
+
+---
+
+## Optional Sampling at Infinity
+
+UI bridges optional sampling and convergence: for a UI martingale $(M_n)$ and any stopping time $\tau$ (possibly infinite),
+
+$$
+M_\tau = \mathbb{E}[M_\infty \mid \mathcal{F}_\tau] \quad \text{and} \quad \mathbb{E}[M_\tau] = \mathbb{E}[M_0].
+$$
+
+This extends the bounded optional sampling theorem — already established for bounded stopping times — to the unbounded case, using $L^1$ convergence to pass to the limit $\tau \wedge k \to \tau$.
+
+---
+
+## The Convergence Hierarchy
+
+| Hypothesis | a.s. | $L^1$ | $L^p$, $p>1$ |
+|---|---|---|---|
+| $L^1$-bounded | yes | no (need UI) | — |
+| UI | yes | yes | — |
+| $L^p$-bounded, $p>1$ | yes | yes | yes |
+| Closed: $M_n = \mathbb{E}[X\mid\mathcal{F}_n]$ | yes | yes | iff $X \in L^p$ |
+
+A.s. convergence comes from $L^1$-boundedness alone (upcrossings). $L^1$ convergence requires UI, which is equivalent to closure. $L^p$-boundedness with $p>1$ is strictly stronger and yields $L^p$ convergence. Backward martingales always close automatically.
+
+---
+
+## Exercises
+
+**Exercise 1.** Let $(M_n)$ be a submartingale with $\sup_n \mathbb{E}[M_n^+] < \infty$. Prove $M_n$ converges a.s.
+
+??? success "Solution to Exercise 1"
+    For each rational $a < b$, Doob's upcrossing inequality gives
+
+    $$
+    \mathbb{E}[U_\infty^{[a,b]}] \le \frac{\sup_n \mathbb{E}[(M_n - a)^+]}{b-a} \le \frac{\sup_n \mathbb{E}[M_n^+] + |a|}{b-a} < \infty,
+    $$
+
+    so $U_\infty^{[a,b]} < \infty$ a.s. The union over rational pairs is still a null set, so $\liminf M_n = \limsup M_n$ a.s. For finiteness, note $\mathbb{E}[M_n^-] = \mathbb{E}[M_n^+] - \mathbb{E}[M_n] \le \mathbb{E}[M_n^+] - \mathbb{E}[M_0]$ (submartingale means $\mathbb{E}[M_n] \ge \mathbb{E}[M_0]$), so $\sup_n \mathbb{E}|M_n| < \infty$ and Markov's inequality forces the limit to be finite. $\square$
+
+---
+
+**Exercise 2.** Show directly that $Z_t = e^{W_t - t/2}$ is not uniformly integrable.
 
 ??? success "Solution to Exercise 2"
-    **(a)** ($\Rightarrow$) Assume $\{X_\alpha\}$ is UI. Then $\sup_\alpha \mathbb{E}[|X_\alpha|] < \infty$ (taking $K = 0$ in the definition).
-
-    For equi-absolute continuity: given $\varepsilon > 0$, choose $K$ such that $\sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| > K\}}] < \varepsilon/2$. Then for any event $A$:
-
-    $$
-    \mathbb{E}[|X_\alpha| \mathbf{1}_A] = \mathbb{E}[|X_\alpha| \mathbf{1}_A \mathbf{1}_{\{|X_\alpha| \le K\}}] + \mathbb{E}[|X_\alpha| \mathbf{1}_A \mathbf{1}_{\{|X_\alpha| > K\}}] \le K\,\mathbb{P}(A) + \varepsilon/2
-    $$
-
-    Taking $\delta = \varepsilon/(2K)$: if $\mathbb{P}(A) < \delta$, then $\sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_A] < \varepsilon$.
-
-    ($\Leftarrow$) Assume $L^1$-bounded and equi-absolutely continuous. Note:
-
-    $$
-    \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| > K\}}] \le \sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_{A_\alpha}]
-    $$
-
-    where $A_\alpha = \{|X_\alpha| > K\}$. By Markov: $\mathbb{P}(A_\alpha) \le \mathbb{E}[|X_\alpha|]/K \le C/K$. Given $\varepsilon > 0$, choose $\delta$ from equi-absolute continuity, then $K = C/\delta$. For this $K$, $\mathbb{P}(A_\alpha) < \delta$ for all $\alpha$, so $\sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| > K\}}] < \varepsilon$. $\square$
-
-    **(b)** $\sup_{t \le T} \mathbb{E}[W_t^2] = T < \infty$. Since $p = 2 > 1$ and the family is $L^2$-bounded, it is UI. $\square$
-
-    **(c)** As shown in Exercise 1(b): $Z_t = e^{W_t - t/2} \to 0$ a.s. but $\mathbb{E}[Z_t] = 1$, so $\mathbb{E}[Z_t] \not\to \mathbb{E}[\lim Z_t] = 0$. By Vitali's theorem, this failure of $L^1$ convergence despite a.s. convergence implies the family is not UI. $\square$
+    $Z_t$ is a martingale, so $\mathbb{E}[Z_t] = 1$. By the law of the iterated logarithm, $W_t/t \to 0$ a.s., so $\log Z_t = W_t - t/2 \to -\infty$ a.s., giving $Z_t \to 0$ a.s. If $(Z_t)$ were UI, Vitali would force $\mathbb{E}[Z_t] \to \mathbb{E}[0] = 0$, contradicting $\mathbb{E}[Z_t] = 1$. $\square$
 
 ---
 
-### Exercise 3: Backward Martingales
-
-Let $X_1, X_2, \ldots$ be i.i.d. with $\mathbb{E}[X_1] = \mu$ and $\mathbb{E}|X_1| < \infty$. Let $\bar{X}_n = \frac{1}{n}\sum_{k=1}^n X_k$.
-
-(a) Define $\mathcal{F}_n = \sigma(S_n, S_{n+1}, \ldots)$ where $S_k = X_1 + \cdots + X_k$. Show this is a decreasing sequence of $\sigma$-algebras.
-
-(b) Prove that $(\bar{X}_n, \mathcal{F}_n)_{n \geq 1}$ is a backward martingale.
-
-(c) Use backward martingale convergence to prove the strong law of large numbers: $\bar{X}_n \to \mu$ a.s.
+**Exercise 3.** Let $X_i$ be i.i.d. with mean $\mu$ and $\mathbb{E}|X_1| < \infty$, $\bar X_n = n^{-1}\sum_{k=1}^n X_k$, and $\mathcal{F}_n = \sigma(S_n, S_{n+1}, \ldots)$. Show $(\bar X_n, \mathcal{F}_n)$ is a backward martingale and deduce the SLLN.
 
 ??? success "Solution to Exercise 3"
-    **(a)** Define $\mathcal{F}_n = \sigma(S_n, S_{n+1}, \ldots)$ where $S_k = X_1 + \cdots + X_k$.
-
-    If we know $(S_n, S_{n+1}, S_{n+2}, \ldots)$, we can recover $(S_{n+1}, S_{n+2}, \ldots)$ (by just ignoring $S_n$). But knowing $(S_n, S_{n+1}, \ldots)$ gives strictly more information than knowing $(S_{n+1}, S_{n+2}, \ldots)$ because we also know $S_n$ and hence $X_n = S_n - S_{n-1}$ if we know $S_{n-1}$... Actually, more precisely:
-
-    $\mathcal{F}_{n+1} = \sigma(S_{n+1}, S_{n+2}, \ldots) \subseteq \sigma(S_n, S_{n+1}, S_{n+2}, \ldots) = \mathcal{F}_n$
-
-    since every function of $(S_{n+1}, S_{n+2}, \ldots)$ is also a function of $(S_n, S_{n+1}, S_{n+2}, \ldots)$. So $\mathcal{F}_n \supseteq \mathcal{F}_{n+1}$: the sequence is decreasing. $\square$
-
-    **(b)** We need to show $\mathbb{E}[\bar{X}_n \mid \mathcal{F}_{n+1}] = \bar{X}_{n+1}$ for all $n \ge 1$.
-
-    Since $\bar{X}_n = S_n/n$ and $S_n = S_{n+1} - X_{n+1}$: $\bar{X}_n = (S_{n+1} - X_{n+1})/n$.
-
-    Given $\mathcal{F}_{n+1} = \sigma(S_{n+1}, S_{n+2}, \ldots)$, $S_{n+1}$ is $\mathcal{F}_{n+1}$-measurable. We need $\mathbb{E}[X_{n+1} \mid \mathcal{F}_{n+1}]$. By the exchangeability argument: given $(S_{n+1}, S_{n+2}, \ldots)$, the individual summands $X_1, \ldots, X_{n+1}$ are exchangeable (by the i.i.d. assumption). Therefore:
+    The filtration is decreasing since functions of $(S_{n+1}, S_{n+2}, \ldots)$ are functions of $(S_n, S_{n+1}, \ldots)$. Given $\mathcal{F}_{n+1}$, the summands $X_1, \ldots, X_{n+1}$ are exchangeable by the i.i.d. assumption, so $\mathbb{E}[X_k \mid \mathcal{F}_{n+1}]$ does not depend on $k$. Summing yields $(n+1)\mathbb{E}[X_k \mid \mathcal{F}_{n+1}] = S_{n+1}$, so each equals $\bar X_{n+1}$. Then
 
     $$
-    \mathbb{E}[X_{n+1} \mid \mathcal{F}_{n+1}] = \mathbb{E}[X_k \mid \mathcal{F}_{n+1}] \quad \text{for all } k = 1, \ldots, n+1
+    \mathbb{E}[\bar X_n \mid \mathcal{F}_{n+1}] = \tfrac{1}{n}\mathbb{E}[S_{n+1} - X_{n+1} \mid \mathcal{F}_{n+1}] = \tfrac{1}{n}\bigl(S_{n+1} - \bar X_{n+1}\bigr) = \bar X_{n+1}.
     $$
 
-    Summing over $k$: $(n+1)\mathbb{E}[X_{n+1} \mid \mathcal{F}_{n+1}] = \mathbb{E}[S_{n+1} \mid \mathcal{F}_{n+1}] = S_{n+1}$.
+    Backward convergence gives $\bar X_n \to \mathbb{E}[X_1 \mid \mathcal{F}_\infty]$ a.s. and in $L^1$. Since $\mathcal{F}_\infty \subseteq \bigcap_n \sigma(X_n, X_{n+1}, \ldots)$, Kolmogorov's 0–1 law makes $\mathcal{F}_\infty$ trivial and the limit equals $\mu$. $\square$
 
-    So $\mathbb{E}[X_{n+1} \mid \mathcal{F}_{n+1}] = S_{n+1}/(n+1) = \bar{X}_{n+1}$.
+---
 
-    Therefore:
+**Exercise 4.** Show that $L^p$-boundedness with $p > 1$ implies UI. Deduce that an $L^p$-bounded martingale converges in $L^p$.
 
-    $$
-    \mathbb{E}[\bar{X}_n \mid \mathcal{F}_{n+1}] = \frac{1}{n}\mathbb{E}[S_{n+1} - X_{n+1} \mid \mathcal{F}_{n+1}] = \frac{S_{n+1} - S_{n+1}/(n+1)}{n} = \frac{S_{n+1} \cdot n/(n+1)}{n} = \frac{S_{n+1}}{n+1} = \bar{X}_{n+1}
-    $$
-
-    So $(\bar{X}_n, \mathcal{F}_n)$ is a backward martingale. $\square$
-
-    **(c)** By the backward martingale convergence theorem, $\bar{X}_n \to M_\infty$ a.s. and in $L^1$, where $M_\infty = \mathbb{E}[X_1 \mid \mathcal{F}_\infty]$ and $\mathcal{F}_\infty = \bigcap_{n \ge 1} \mathcal{F}_n$ is the tail $\sigma$-algebra.
-
-    By Kolmogorov's zero-one law, $\mathcal{F}_\infty$ is trivial (all events have probability 0 or 1). This is because $\mathcal{F}_\infty \subseteq \sigma(X_{n+1}, X_{n+2}, \ldots)$ for all $n$ (the tail $\sigma$-algebra of the partial sums is contained in the tail $\sigma$-algebra of the i.i.d. sequence), and the latter is trivial by Kolmogorov's 0-1 law.
-
-    Since $\mathcal{F}_\infty$ is trivial, $\mathbb{E}[X_1 \mid \mathcal{F}_\infty] = \mathbb{E}[X_1] = \mu$ a.s. Therefore:
+??? success "Solution to Exercise 4"
+    For $p > 1$ and $C = \sup_\alpha \mathbb{E}|X_\alpha|^p$,
 
     $$
-    \bar{X}_n = \frac{S_n}{n} \to \mu \quad \text{a.s.} \quad \square
+    \mathbb{E}[|X_\alpha|\,\mathbf{1}_{\{|X_\alpha|>K\}}] \le \frac{1}{K^{p-1}}\mathbb{E}[|X_\alpha|^p] \le \frac{C}{K^{p-1}} \to 0
     $$
+
+    as $K \to \infty$, uniformly in $\alpha$; so the family is UI. For a martingale $(M_n)$, Doob's maximal inequality gives $\mathbb{E}[\sup_n |M_n|^p] \le (p/(p-1))^p \,C < \infty$. Combined with a.s. convergence $M_n \to M_\infty$ (from $L^1$-boundedness), dominated convergence yields $\mathbb{E}|M_n - M_\infty|^p \to 0$. $\square$
+
+---
+
+**Exercise 5.** Let $(M_t)$ be a UI martingale with limit $M_\infty$ and $\tau$ any stopping time. Prove $M_\tau = \mathbb{E}[M_\infty \mid \mathcal{F}_\tau]$ a.s.
+
+??? success "Solution to Exercise 5"
+    Let $\tau_k = \tau \wedge k$, a bounded stopping time. Bounded optional sampling applied to the closed martingale $M_n = \mathbb{E}[M_\infty \mid \mathcal{F}_n]$ gives $M_{\tau_k} = \mathbb{E}[M_\infty \mid \mathcal{F}_{\tau_k}]$. For $A \in \mathcal{F}_\tau \subseteq \mathcal{F}_{\tau_k}$,
+
+    $$
+    \mathbb{E}[M_{\tau_k}\mathbf{1}_A] = \mathbb{E}[M_\infty \mathbf{1}_A].
+    $$
+
+    Since $\tau_k \to \tau$ a.s. and $M$ converges a.s., $M_{\tau_k} \to M_\tau$ a.s. UI of $(M_n)$ carries over to $(M_{\tau_k})$ (it is bounded by the Doob maximal $L^1$ process), so $M_{\tau_k} \to M_\tau$ in $L^1$. Passing to the limit: $\mathbb{E}[M_\tau \mathbf{1}_A] = \mathbb{E}[M_\infty \mathbf{1}_A]$ for all $A \in \mathcal{F}_\tau$, giving the claim. $\square$
