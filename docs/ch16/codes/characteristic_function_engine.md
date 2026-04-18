@@ -1,6 +1,6 @@
 # Characteristic Function Engine
 
-The characteristic function (CF) is the computational backbone of the Heston model. Every Fourier-based pricing method---Gil-Pelaez inversion, COS, Carr-Madan FFT---begins by evaluating $\varphi(u, \tau)$ for a grid of Fourier frequencies $u$. Getting the CF computation right means getting the branch-cut handling and numerical precision right; a naive implementation produces discontinuities that silently corrupt option prices. This guide develops a robust CF engine based on the Albrecher formulation, explains the source of numerical instability in the original Heston (1993) formula, and walks through the implementation in [`characteristic_function_engine.py`](characteristic_function_engine.py).
+The characteristic function (CF) is the computational backbone of the Heston model. Every Fourier-based pricing method---Gil-Pelaez inversion, COS, Carr-Madan FFT---begins by evaluating $\varphi(u, \tau)$ for a grid of Fourier frequencies $u$. Getting the CF computation right means getting the branch-cut handling and numerical precision right; a naive implementation produces discontinuities that silently corrupt option prices. This guide develops a robust CF engine based on the Albrecher formulation, explains the source of numerical instability in the original Heston (1993) formula, and walks through the implementation in [`characteristic_function_engine.py`](characteristic_function_engine.md).
 
 !!! abstract "Learning Objectives"
     By the end of this section, you will be able to:

@@ -1,6 +1,6 @@
 # End-to-End Worked Examples
 
-This section ties together every component of the Heston model implementation---model class, characteristic function engine, COS/FFT pricing, Monte Carlo simulation, FDM solver, calibration pipeline, and Greeks computation---into three complete workflows. Each example starts from raw inputs and produces final answers, with intermediate values shown at every step so the reader can verify their own implementation. The companion code is in [`end_to_end_worked_examples.py`](end_to_end_worked_examples.py).
+This section ties together every component of the Heston model implementation---model class, characteristic function engine, COS/FFT pricing, Monte Carlo simulation, FDM solver, calibration pipeline, and Greeks computation---into three complete workflows. Each example starts from raw inputs and produces final answers, with intermediate values shown at every step so the reader can verify their own implementation. The companion code is in [`end_to_end_worked_examples.py`](end_to_end_worked_examples.md).
 
 !!! abstract "Learning Objectives"
     By the end of this section, you will be able to:

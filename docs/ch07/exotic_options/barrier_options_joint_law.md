@@ -173,7 +173,7 @@ where $w_{\min}$ is chosen so that the payoff is negligible below it (typically 
 
 A complete implementation is available in the appendix:
 
-- [Barrier Call (Joint Law Pricing)](../../ch07/codes/exotic_barrier_call_joint_law.py)
+- [Barrier Call (Joint Law Pricing)](../../ch07/codes/exotic_barrier_call_joint_law.md)
 
 The implementation includes:
 

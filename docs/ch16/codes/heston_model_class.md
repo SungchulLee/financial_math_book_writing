@@ -11,7 +11,7 @@ A well-designed model class serves as the single source of truth for parameters,
     4. Connect the model class to pricing engines through a consistent interface
 
 !!! tip "Prerequisites"
-    This section builds on the [Heston SDE and parameters](../model_definition/heston_sde_and_parameters.md) and the [Feller condition](../model_definition/feller_condition_and_boundary.md). The companion implementation is in [`heston_model_class.py`](heston_model_class.py).
+    This section builds on the [Heston SDE and parameters](../model_definition/heston_sde_and_parameters.md) and the [Feller condition](../model_definition/feller_condition_and_boundary.md). The companion implementation is in [`heston_model_class.py`](heston_model_class.md).
 
 ---
 

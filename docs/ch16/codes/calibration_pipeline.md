@@ -1,6 +1,6 @@
 # Calibration Pipeline
 
-Calibrating the Heston model in practice involves much more than calling an optimizer. Raw market data must be cleaned, filtered for arbitrage violations, and organized by maturity. The pricing engine must be configured for speed (FFT for the full surface sweep) rather than precision. The optimizer must be initialized with sensible bounds, run through a global search stage, and refined locally. After calibration, the results must be validated against market data and checked for parameter stability. This guide assembles all these components into a production-quality **end-to-end calibration pipeline**, referencing the implementation in [`calibration_pipeline.py`](calibration_pipeline.py).
+Calibrating the Heston model in practice involves much more than calling an optimizer. Raw market data must be cleaned, filtered for arbitrage violations, and organized by maturity. The pricing engine must be configured for speed (FFT for the full surface sweep) rather than precision. The optimizer must be initialized with sensible bounds, run through a global search stage, and refined locally. After calibration, the results must be validated against market data and checked for parameter stability. This guide assembles all these components into a production-quality **end-to-end calibration pipeline**, referencing the implementation in [`calibration_pipeline.py`](calibration_pipeline.md).
 
 !!! abstract "Learning Objectives"
     By the end of this section, you will be able to:
@@ -276,7 +276,7 @@ Calibrate to SPX options with $S_0 = 4500$, 5 maturities (1M to 2Y), 135 total o
 
 ## Summary
 
-The calibration pipeline transforms raw market option data into validated Heston parameters through five stages: preprocessing (arbitrage filtering, IV extraction), configuration (pricing engine, vega weights, bounds, regularization), optimization (DE global + local refinement), validation (IVRMSE, residual patterns, parameter reasonableness), and storage (parameters + metadata). Each stage has failure modes that must be monitored: arbitrage violations in the input data, optimizer convergence failures, parameters hitting bounds, and systematic residual patterns indicating model limitations. The pipeline in [`calibration_pipeline.py`](calibration_pipeline.py) implements this workflow with the `HestonCalibrator` class.
+The calibration pipeline transforms raw market option data into validated Heston parameters through five stages: preprocessing (arbitrage filtering, IV extraction), configuration (pricing engine, vega weights, bounds, regularization), optimization (DE global + local refinement), validation (IVRMSE, residual patterns, parameter reasonableness), and storage (parameters + metadata). Each stage has failure modes that must be monitored: arbitrage violations in the input data, optimizer convergence failures, parameters hitting bounds, and systematic residual patterns indicating model limitations. The pipeline in [`calibration_pipeline.py`](calibration_pipeline.md) implements this workflow with the `HestonCalibrator` class.
 
 ---
 
