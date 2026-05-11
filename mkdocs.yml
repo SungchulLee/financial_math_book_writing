@@ -1179,8 +1179,6 @@ nav:
                     - Swaps under Hull-White: ch20/codes/grzelak_swaps_hw.md
                     - Jamshidian Trick: ch20/codes/grzelak_jamshidian_trick.md
                     - Shifted Lognormal: ch20/codes/grzelak_shifted_lognormal.md
-                - Simulation and Bonds (Grzelak) — Additional:
-                    - Hull-White Zero-Coupon Bonds (Variant): ch20/codes/grzelak_hull_white_zcbs_v2.md
                 - Hybrid Models (Grzelak):
                     - Black-Scholes-Hull-White Comparison: ch20/codes/grzelak_bshw_comparison.md
                     - Black-Scholes-Hull-White Implied Volatility: ch20/codes/grzelak_bshw_implied_volatility.md
