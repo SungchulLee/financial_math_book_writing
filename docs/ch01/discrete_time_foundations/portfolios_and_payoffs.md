@@ -84,6 +84,7 @@ The entries of $\boldsymbol{\theta}$ are real numbers, which means:
 ### Long and Short Positions
 
 !!! tip "Long vs Short"
+
     - A **long position** in asset $j$ means $\theta^j > 0$: the investor owns the asset and profits when its value rises.
     - A **short position** in asset $j$ means $\theta^j < 0$: the investor has sold the asset without owning it (short selling) and profits when its value falls.
     - Short selling the risk-free asset ($\theta^0 < 0$) corresponds to **borrowing** at the risk-free rate.

@@ -15,12 +15,14 @@ V_0 = \mathbb{E}^{\mathbb{Q}}\left[D(0,T) \cdot \text{Payoff}_T\right]
 $$
 
 with key assumptions:
+
 - Borrowing/lending at risk-free rate
 - No default risk
 - No funding constraints
 - Complete markets
 
 **Properties:**
+
 - **Linear:** $V(A + B) = V(A) + V(B)$
 - **Law of one price:** Unique price
 - **Counterparty-independent:** Price doesn't depend on who trades
@@ -36,6 +38,7 @@ V^{\text{total}} = V^{\text{risk-free}} - \text{CVA} + \text{DVA} - \text{FVA} -
 $$
 
 This breaks the classical framework:
+
 - **Nonlinear:** $V^{\text{total}}(A+B) \ne V^{\text{total}}(A) + V^{\text{total}}(B)$
 - **Multiple prices:** Different banks compute different XVAs
 - **Counterparty-dependent:** Price depends on trading relationship
@@ -78,6 +81,7 @@ V_t = \xi + \int_t^T f(s, V_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
 $$
 
 where:
+
 - $\xi$ = terminal payoff
 - $f$ = driver incorporating XVA effects
 - $Z$ = hedging process
@@ -89,6 +93,7 @@ f(t, V, Z) = -rV + \underbrace{\lambda_C \cdot \text{LGD}_C \cdot V^+}_{\text{CV
 $$
 
 where:
+
 - $\lambda_C, \lambda_B$ = default intensities
 - $C$ = collateral
 - $s_F$ = funding spread
@@ -96,6 +101,7 @@ where:
 ### Recursive Structure
 
 The BSDE approach captures the **recursive nature** of XVA:
+
 - Today's value depends on future exposures
 - Future exposures depend on future values
 - Creates feedback loops
@@ -232,6 +238,7 @@ $$
 ### XVA Desk
 
 Centralized desk responsible for:
+
 - Calculating XVA across all trades
 - Charging/crediting trading desks
 - Managing and hedging XVA risk
@@ -250,6 +257,7 @@ Trading desks see XVA as a cost; XVA desk manages the risk.
 ### P&L Attribution
 
 XVA P&L decomposes into:
+
 - New trade impact
 - Market movements (rates, spreads, etc.)
 - Credit spread movements
@@ -287,6 +295,7 @@ Banks with better credit (lower CVA) or funding (lower FVA) have pricing advanta
 ### CVA Capital
 
 Basel III requires capital for CVA risk:
+
 - **SA-CVA:** Standardized approach
 - **BA-CVA:** Basic approach (simpler)
 - **IMA-CVA:** Internal model approach (advanced)
@@ -294,6 +303,7 @@ Basel III requires capital for CVA risk:
 ### Prudent Valuation
 
 Additional reserves for:
+
 - Model uncertainty in XVA
 - Market data uncertainty
 - Close-out uncertainty
@@ -311,11 +321,13 @@ Additional reserves for:
 ### Theoretical Issues
 
 **FVA debate:**
+
 - Does FVA create arbitrage opportunities?
 - Should banks price their own funding into derivatives?
 - Hull-White (2012) vs Burgard-Kjaer (2011) debate
 
 **DVA inclusion:**
+
 - Controversial "profit from own default"
 - Accounting requires it; regulatory capital excludes it
 
@@ -345,6 +357,7 @@ Additional reserves for:
 | **Net XVA** | **-\$750K** | |
 
 **Decision:**
+
 - Trade needs \$750K compensation to break even
 - Negotiate higher spread or upfront fee
 - Or decline if counterparty won't pay

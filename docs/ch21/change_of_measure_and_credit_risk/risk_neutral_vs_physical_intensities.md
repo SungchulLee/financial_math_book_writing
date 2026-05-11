@@ -36,6 +36,7 @@ The premium compensates investors for bearing default risk.
 
 
 Empirically:
+
 - $\lambda^{\mathbb{Q}}$ implied from CDS is typically higher,
 - historical default frequencies underestimate market-implied risk,
 - stress periods amplify the gap.
@@ -48,6 +49,7 @@ Thus, CDS-implied intensities should not be interpreted as real default probabil
 
 
 Common approaches include:
+
 - specifying $\lambda^{\mathbb{P}}$ and adding a market price of risk,
 - directly modeling $\lambda^{\mathbb{Q}}$ for pricing,
 - joint estimation using market and historical data.

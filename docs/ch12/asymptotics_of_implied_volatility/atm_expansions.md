@@ -5,6 +5,7 @@
 
 
 The **at-the-money (ATM) expansion** of implied volatility provides a detailed characterization of the smile near the forward price $F = S_0 e^{(r-q)T}$. This region is of paramount importance because:
+
 - ATM options are the most liquid and actively traded
 - ATM IV serves as the benchmark volatility level
 - Near-ATM expansion connects to Greeks and hedging sensitivity
@@ -93,6 +94,7 @@ $$
 
 
 where:
+
 - $\sigma_0 = \sigma_{\text{ATM}}$: ATM volatility level
 - $\sigma_1 = \frac{\partial \sigma}{\partial y}\big|_{y=0}$: Skew parameter
 - $\sigma_2 = \frac{\partial^2 \sigma}{\partial y^2}\big|_{y=0}$: Curvature parameter
@@ -106,17 +108,20 @@ The baseline volatility for an ATM option. Reflects the overall uncertainty abou
 
 **$\sigma_1$ (Skew):**  
 The linear slope of the smile:
+
 - $\sigma_1 < 0$: Downward skew (equity-like)
 - $\sigma_1 > 0$: Upward skew (rare)
 - $\sigma_1 = 0$: Symmetric smile
 
 **$\sigma_2$ (Curvature):**  
 The quadratic term controlling smile convexity:
+
 - $\sigma_2 > 0$: U-shaped smile (FX-like)
 - $\sigma_2 < 0$: Inverted smile (frown, rare)
 
 **$\sigma_3$ (Skewness of Curvature):**  
 Asymmetry in how the smile curves:
+
 - $\sigma_3 \neq 0$: Different curvature on left vs right wing
 - Typically small in practice
 
@@ -136,6 +141,7 @@ $$
 
 
 where $X = \ln(S_T/F)$ has:
+
 - Mean: $\mathbb{E}[X] = -\frac{1}{2}\text{Var}(X)$ (to ensure $\mathbb{E}[S_T] = F$)
 - Variance: $\text{Var}(X) = \sigma_{\text{eff}}^2 T$
 - Skewness: $\text{Skew}(X) = \gamma_3$
@@ -182,6 +188,7 @@ where $\gamma_3 = \mathbb{E}[(X - \mathbb{E}[X])^3] / (\text{Var}(X))^{3/2}$ is 
 **Proof sketch:** Expand the Black-Scholes call price in powers of $y$ and match to the cumulant-generating function. The cubic term in $y$ introduces the third cumulant (skewness). □
 
 **Interpretation:**
+
 - Negative skewness ($\gamma_3 < 0$) → Positive skew parameter ($\sigma_1 > 0$... wait, this is backwards)
 
 **Correction:** The sign convention depends on definition. Using:
@@ -194,6 +201,7 @@ $$
 
 
 we have:
+
 - Negative skewness ($\gamma_3 < 0$) → Negative smile skew ($\frac{d\sigma}{dy} < 0$)
 
 This matches equity markets: left-skewed distribution → downward-sloping IV.
@@ -214,6 +222,7 @@ $$
 where $\gamma_4 = \mathbb{E}[(X - \mathbb{E}[X])^4] / (\text{Var}(X))^2$ is the kurtosis.
 
 **Interpretation:**
+
 - Excess kurtosis ($\gamma_4 > 3$) → Positive curvature ($\sigma_2 > 0$) → U-shaped smile
 - Leptokurtic (fat tails) → Convex smile
 
@@ -247,6 +256,7 @@ $$
 
 
 **Coefficients:**
+
 - $\sigma_0 = \sigma$
 - $\sigma_1 = \sigma_2 = \sigma_3 = \cdots = 0$ (flat smile)
 
@@ -324,11 +334,13 @@ $$
 
 
 **Key insights:**
+
 - ATM level determined by spot variance $v_0$
 - Skew proportional to correlation $\rho$ and vol-of-vol $\xi$
 - Curvature from vol-of-vol $\xi$ (always positive for Heston)
 
 **Empirical calibration:**
+
 - Fit $\sigma_{\text{ATM}} \to v_0$
 - Fit skew $\sigma_1 \to \rho, \xi$
 - Term structure constrains $\kappa, \theta$
@@ -355,6 +367,7 @@ $$
 
 
 **Parameters:**
+
 - $\alpha$: ATM volatility level
 - $\beta$: Backbone slope (determines mean-reversion of local vol)
 - $\rho$: Correlation (controls skew)
@@ -436,6 +449,7 @@ $$
 
 
 **Calibration:**
+
 - Use ATM and two wing points (e.g., 25-delta put/call)
 - Solve linear system for $(\sigma_0, \sigma_1, \sigma_2)$
 
@@ -443,6 +457,7 @@ $$
 
 
 Market quotes in terms of:
+
 - **ATM:** $\sigma_{\text{ATM}}$
 - **Risk Reversal (RR):** $\text{RR}_{25\Delta} = \sigma_{25\Delta \text{ call}} - \sigma_{25\Delta \text{ put}}$
 - **Butterfly (BF):** $\text{BF}_{25\Delta} = \frac{\sigma_{25\Delta \text{ call}} + \sigma_{25\Delta \text{ put}}}{2} - \sigma_{\text{ATM}}$
@@ -482,6 +497,7 @@ $$
 
 
 **Example:**
+
 - ATM = 20%
 - RR = $-2\%$ (downward skew)
 - BF = $1\%$ (positive curvature)
@@ -622,6 +638,7 @@ $$
 
 
 **Typical patterns:**
+
 - Upward sloping: Low current volatility, expected to rise
 - Downward sloping: High current volatility, expected to fall
 - Humped: Event risk at intermediate maturity
@@ -676,6 +693,7 @@ A complete smile model must consistently match:
 **Example (SVI):**
 
 SVI smoothly interpolates:
+
 - Near $y = m$: Quadratic behavior (ATM-like)
 - Large $|y - m|$: Linear growth (wing-like)
 

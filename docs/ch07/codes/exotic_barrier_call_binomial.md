@@ -9,6 +9,7 @@ The barrier condition is enforced at every node: if the stock price falls to or 
 the barrier H, the option value is set to zero (knocked out).
 
 Mathematical Framework:
+
     - CRR parameters: u = exp(σ√Δt), d = 1/u, q = (exp(rΔt) - d) / (u - d)
     - Stock price at node (n,j): S_{n,j} = S₀ · u^j · d^(n-j)
     - Backward induction with barrier:
@@ -16,6 +17,7 @@ Mathematical Framework:
         V_{n,j} = 0                                               if S_{n,j} ≤ H
 
 References:
+
     - Cox, Ross, Rubinstein (1979). Option pricing: A simplified approach.
     - Rubinstein, Reiner (1991). Breaking down the barriers.
 
@@ -213,3 +215,36 @@ if __name__ == "__main__":
     for h, p in zip(H_values[::3], prices_by_barrier[::3]):
         print(f"{h:10.0f} {p:10.4f} {p/vanilla_price*100:13.1f}%")
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Define a down-and-out barrier call. Write the backward induction formula with barrier enforcement at each node.
+
+??? success "Solution to Exercise 1"
+    A down-and-out call pays $\max(S_T - K, 0)$ if $S_t > H$ for all $t$. In the binomial tree, at each node $(n, j)$: if $S_{n,j} \le H$, set $V_{n,j} = 0$ (knocked out); otherwise $V_{n,j} = e^{-r\Delta t}[qV_{n+1,j+1} + (1-q)V_{n+1,j}]$.
+
+---
+
+**Exercise 2.**
+Why does the binomial tree price of a barrier option converge more slowly than for a vanilla option?
+
+??? success "Solution to Exercise 2"
+    The barrier $H$ rarely falls exactly on a node level $S_0 u^j d^{M-j}$. The effective barrier oscillates between adjacent node levels as $M$ changes, causing price oscillations with convergence rate $O(1/\sqrt{M})$ instead of $O(1/M)$.
+
+---
+
+**Exercise 3.**
+Describe the Broadie-Glasserman barrier correction for improving convergence.
+
+??? success "Solution to Exercise 3"
+    Replace the barrier $H$ with an adjusted barrier $H_M = H \exp(\beta\sigma\sqrt{\Delta t})$ where $\beta \approx 0.5826$. This correction accounts for the average displacement of the barrier from the nearest node level, accelerating convergence to $O(1/M)$.
+
+---
+
+**Exercise 4.**
+Derive the in-out parity for barrier options: $C_{\text{in}} + C_{\text{out}} = C_{\text{vanilla}}$.
+
+??? success "Solution to Exercise 4"
+    A long DI call plus a long DO call always pays $\max(S_T - K, 0)$: if the barrier is hit, the DI activates; if not, the DO survives. By no-arbitrage, the sum of their prices equals the vanilla call price.

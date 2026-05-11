@@ -1,6 +1,6 @@
 # Doob-Meyer Decomposition
 
-By now we know what martingales look like ([Martingales](martingales.md)), when they converge ([Martingale Convergence](martingale_convergence.md)), and why [Uniform Integrability](uniform_integrability.md) is the sharp condition for the $L^1$ theory. The Doob-Meyer decomposition completes this structural picture: every "reasonable" adapted process splits into a **pure-noise martingale** and a **predictable drift**. Itô processes are a special case; the theorem says the structure is universal.
+By now we know what martingales look like ([Martingales](martingale.md)), when they converge ([Martingale Convergence](martingale_convergence.md)), and why [Uniform Integrability](uniform_integrability.md) is the sharp condition for the $L^1$ theory. The Doob-Meyer decomposition completes this structural picture: every "reasonable" adapted process splits into a **pure-noise martingale** and a **predictable drift**. Itô processes are a special case; the theorem says the structure is universal.
 
 ---
 

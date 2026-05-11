@@ -57,11 +57,13 @@ $$
 ### Advantages and Disadvantages
 
 **Advantages:**
+
 - Intuitive: recovery is a fixed fraction of principal
 - Matches bankruptcy practice: recovery rates are quoted as percentage of par
 - Standard in bond market analysis
 
 **Disadvantages:**
+
 - More complex pricing formulas (two-term structure)
 - Recovery payment timing affects present value
 
@@ -88,10 +90,12 @@ $$
 ### Advantages and Disadvantages
 
 **Advantages:**
+
 - Clean separation of credit and interest rate risk
 - Analytical simplicity
 
 **Disadvantages:**
+
 - Economically odd: recovery depends on time remaining
 - Not how actual bankruptcy works
 
@@ -120,11 +124,13 @@ Default risk enters through the **loss-adjusted intensity** $(1-R)\lambda$.
 ### Advantages and Disadvantages
 
 **Advantages:**
+
 - Simplest pricing formula
 - Closed-form in affine models
 - Consistent with CDS conventions
 
 **Disadvantages:**
+
 - Recursive definition less intuitive
 - May not match bankruptcy outcomes
 

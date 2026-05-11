@@ -3,10 +3,18 @@
 
 This section bridges the Black-Scholes formulas with numerical computation through manual calculations, a Python implementation, and worked examples that illustrate key features of option pricing.
 
+Having developed the Black-Scholes formula and its mathematical structure, we now turn to its practical implementation: how to compute prices, Greeks, and implied volatilities reliably and efficiently.
+
+!!! info "Where this fits"
+    - **Roadmap row(s):** Operationalisation across all six perspectives.
+    - **Builds on:** [The Black-Scholes formula](bs_formula_statement.md), [Properties and bounds](properties_and_bounds.md) (Greek formulas), and [Asymptotic behavior](asymptotic_behavior.md) (numerical edge cases).
+    - **Feeds into:** the volatility-modelling chapters that follow (local and stochastic volatility, jump diffusion). Figure 3 below previews the empirical motivation.
+
 ---
 
 ### Manual Calculation: European Call
 
+*Section goal: a by-hand evaluation of the call formula at $S=50$, $K=52$, $T=0.5$.*
 
 #### 1. **Problem Setup**
 
@@ -45,6 +53,7 @@ The European call is worth approximately **\$3.91**.
 
 ### European Put and Parity Check
 
+*Section goal: pricing the put with the same parameters and verifying $C - P = S - Ke^{-rT}$.*
 
 Using the same parameters and $\mathcal{N}(-x) = 1 - \mathcal{N}(x)$:
 
@@ -58,6 +67,7 @@ $$
 
 ### Python Implementation
 
+*Section goal: a vectorisable `black_scholes` function for both calls and puts.*
 
 #### 1. **Basic Implementation**
 
@@ -92,69 +102,39 @@ C - P = -0.7065,  S - Ke^(-rT) = -0.7065
 
 ### Greeks Calculation
 
+*Section goal: closed-form delta, gamma, vega, theta, rho — and visual confirmation across spot (Figures 1–2).*
 
 #### 1. **Complete Implementation with Greeks**
 
 
 ```python
 def black_scholes_greeks(S, K, T, r, sigma, option_type='call'):
-    """
-    Calculate Black-Scholes option price and Greeks.
-    
-    Returns:
-    dict : {'price', 'delta', 'gamma', 'theta', 'vega', 'rho'}
-    """
-    # Compute d1 and d2
+    """Black-Scholes price and Greeks; returns dict with price, delta, gamma, theta, vega, rho."""
     d1 = (np.log(S / K) + (r + 0.5 * sigma**2) * T) / (sigma * np.sqrt(T))
     d2 = d1 - sigma * np.sqrt(T)
-    
-    # Standard normal PDF and CDF
     pdf_d1 = norm.pdf(d1)
     cdf_d1 = norm.cdf(d1)
     cdf_d2 = norm.cdf(d2)
-    
+
     if option_type == 'call':
-        # Call price
         price = S * cdf_d1 - K * np.exp(-r * T) * cdf_d2
-        
-        # Delta
         delta = cdf_d1
-        
-        # Theta (per year, convert to per day by dividing by 365)
-        theta = (-S * pdf_d1 * sigma / (2 * np.sqrt(T)) 
+        theta = (-S * pdf_d1 * sigma / (2 * np.sqrt(T))
                  - r * K * np.exp(-r * T) * cdf_d2)
-        
-        # Rho (per 1% change in r)
         rho = K * T * np.exp(-r * T) * cdf_d2 / 100
-        
     else:  # put
-        # Put price
         price = K * np.exp(-r * T) * norm.cdf(-d2) - S * norm.cdf(-d1)
-        
-        # Delta
         delta = cdf_d1 - 1
-        
-        # Theta
-        theta = (-S * pdf_d1 * sigma / (2 * np.sqrt(T)) 
+        theta = (-S * pdf_d1 * sigma / (2 * np.sqrt(T))
                  + r * K * np.exp(-r * T) * norm.cdf(-d2))
-        
-        # Rho
         rho = -K * T * np.exp(-r * T) * norm.cdf(-d2) / 100
-    
-    # Gamma (same for call and put)
+
+    # Gamma and vega (same for call and put; vega quoted per 1% change in sigma)
     gamma = pdf_d1 / (S * sigma * np.sqrt(T))
-    
-    # Vega (same for call and put, per 1% change in sigma)
     vega = S * np.sqrt(T) * pdf_d1 / 100
-    
-    return {
-        'price': price,
-        'delta': delta,
-        'gamma': gamma,
-        'theta': theta,
-        'vega': vega,
-        'rho': rho
-    }
+
+    return {'price': price, 'delta': delta, 'gamma': gamma,
+            'theta': theta, 'vega': vega, 'rho': rho}
 
 ```
 
@@ -170,10 +150,21 @@ For the same parameters ($S=50$, $K=52$, $T=0.5$, $r=5\%$, $\sigma=30\%$):
 
 Note that gamma and vega are identical for call and put (a consequence of put-call parity), while $\Delta_{\text{call}} - \Delta_{\text{put}} = 1$.
 
+<figure markdown="span">
+  ![Black-Scholes prices and Greeks vs spot](./image/fig1_greeks_panel.svg)
+  <figcaption markdown="span">**Figure 1:** Black-Scholes prices and Greeks as functions of the underlying spot $S$, for $K = 100$, $T = 0.5$ y, $r = 5\%$, $\sigma = 25\%$. Top row: price (with intrinsic-value envelopes), delta (call positive, put negative, differing by $1$), gamma (identical for call and put, peaked near the money). Bottom row: vega (also identical, concentrated near $S = K$), theta (negative for both), and the payoffs at expiry. Note how delta saturates at $0$ and $\pm 1$ for deep OTM/ITM, gamma and vega are positive everywhere and bell-shaped about $S = K$, and theta is most negative for ATM options.</figcaption>
+</figure>
+
+<figure markdown="span">
+  ![Gamma vs spot at decreasing maturity](./image/fig2_gamma_evolution.svg)
+  <figcaption markdown="span">**Figure 2:** Gamma sharpening as expiry approaches, for $K = 100$, $r = 5\%$, $\sigma = 25\%$. As $T \to 0$, $\Gamma$ concentrates around $K$ and grows unbounded at the strike while flattening to zero away from it. This is the "gamma spike" of short-dated near-ATM options: small spot moves cause large changes in delta, so the position becomes increasingly hard to hedge with infrequent rebalancing — and motivates the call-spread approximation discussed in [Digital Option Pricing](digital_option_pricing.md).</figcaption>
+</figure>
+
 ---
 
 ### Sensitivity Analysis
 
+*Section goal: how the price responds to changes in $\sigma$, $S$, and $T$.*
 
 Both call and put prices are monotonically increasing in volatility (positive vega) and respond nonlinearly to the stock price. The call value curve lies above the intrinsic value $(S - K)^+$ for all $S$, with the gap (time value) maximized near the strike. These relationships can be verified numerically using the `black_scholes` function above across ranges of $\sigma$ and $S$.
 
@@ -181,6 +172,7 @@ Both call and put prices are monotonically increasing in volatility (positive ve
 
 ### Practical Examples
 
+*Section goal: three numerical illustrations: maturity scaling, moneyness vs. delta, and implied volatility (Figure 3).*
 
 #### 1. **ATM Call with Different Maturities**
 
@@ -219,10 +211,22 @@ Given a market option price, back out the implied volatility:
 ```python
 from scipy.optimize import brentq
 
+def black_scholes_call(S, K, T, r, sigma):
+    """Convenience wrapper: Black-Scholes price for a European call."""
+    return black_scholes(S, K, T, r, sigma, option_type='call')
+
 def implied_volatility_call(market_price, S, K, T, r):
     """
     Calculate implied volatility for a call option.
     Uses Brent's method to find sigma such that BS price = market price.
+    Brent works here because the BS call price is strictly increasing in
+    sigma (positive vega), which guarantees a unique root in any bracket
+    [sigma_lo, sigma_hi] containing it. Brent combines bisection (for
+    robustness) with inverse quadratic interpolation (for superlinear
+    convergence near the root); typical convergence is ~5–10 iterations.
+    Conditioning degrades when vega is small — i.e., for deep ITM/OTM or
+    near-expiry options — so very-low-time-value quotes can yield wide
+    confidence on sigma despite the algorithm reporting tight tolerance.
     """
     def objective(sigma):
         return black_scholes_call(S, K, T, r, sigma) - market_price
@@ -254,10 +258,16 @@ Implied Volatility: 30.55%
 BS Price at Implied Vol: $6.00
 ```
 
+<figure markdown="span">
+  ![Black-Scholes flat smile vs an observed equity-index smirk](./image/fig3_volatility_smile.svg)
+  <figcaption markdown="span">**Figure 3:** Why a single $\sigma$ cannot fit a market across strikes. Blue dots: implied volatilities recovered by inverting Black-Scholes prices that were generated with constant $\sigma = 25\%$ — flat by construction, a self-consistency check on the inversion. Red squares: an illustrative equity-index "smirk," with implied vol declining as strikes move above the forward and rising for low strikes. The Black-Scholes model has only one $\sigma$, so its implied surface is necessarily flat at every maturity; the empirically observed smile/smirk is thus direct evidence that the lognormal-with-constant-volatility assumption fails — motivating the local-volatility, stochastic-volatility, and jump-diffusion models developed in later chapters.</figcaption>
+</figure>
+
 ---
 
 ### Common Numerical Issues
 
+*Section goal: edge cases (extreme $d$, $T \to 0$, low $\sigma$) and how to handle them.*
 
 #### 1. **Issue 1: Extreme Values of d_1 or d_2**
 
@@ -291,15 +301,16 @@ $$
 C \approx \max(S - Ke^{-rT}, 0)
 $$
 
-#### 4. **Issue 4: Vectorized Pricing**
+#### 4. **Issue 4: Vectorized Pricing and Greeks**
 
 
-For large-scale pricing (e.g., computing prices across a grid of strikes and maturities), evaluate $d_1$, $d_2$, and $\mathcal{N}(\cdot)$ as array operations rather than looping over individual contracts. Libraries such as NumPy and SciPy handle this natively via broadcasting.
+For large-scale pricing (e.g., computing prices and Greeks across a grid of strikes and maturities), evaluate $d_1$, $d_2$, $\mathcal{N}(\cdot)$, and $\phi(\cdot)$ as array operations rather than looping over individual contracts. The functions defined above are *already* vectorized: passing NumPy arrays for `S`, `K`, `T`, or `sigma` makes `np.log`, `np.sqrt`, `np.exp`, `norm.cdf`, and `norm.pdf` broadcast automatically, so a single call computes the entire grid. The Greeks dictionary returned by `black_scholes_greeks` then contains arrays of the same shape — typically a $10^4\!-\!10^6\times$ speedup over Python-level loops, and the bottleneck for production risk systems with millions of contracts. (The same broadcasting principle applies to implied-volatility surfaces: vectorize the objective inside Brent only if you also vectorize the bracketing logic, since `brentq` itself is scalar.)
 
 ---
 
 ### Complete Working Example
 
+*Section goal: an end-to-end pricing of a representative OTM call with full Greeks.*
 
 Consider a call option with $S = \$175$, $K = \$180$, $T = 45/365$ years, $r = 4.5\%$, $\sigma = 28\%$.
 

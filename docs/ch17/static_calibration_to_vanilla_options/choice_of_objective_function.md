@@ -29,10 +29,12 @@ $$
 
 
 Pros:
+
 - aligns with replication cost (prices are what you trade),
 - avoids implied-vol inversion.
 
 Cons:
+
 - prices differ wildly in magnitude across strikes/maturities (requires careful scaling),
 - deep OTM prices can be tiny but still informative about tails.
 
@@ -48,10 +50,12 @@ $$
 
 
 Pros:
+
 - more uniform scale across the surface,
 - closer to market quoting conventions.
 
 Cons:
+
 - implied-vol mapping can be unstable (especially near expiry or deep OTM),
 - implicitly re-weights errors through Vega.
 
@@ -71,6 +75,7 @@ $$
 then weighted least squares with $w_j=1/\sigma_j^2$ corresponds to maximum likelihood.
 
 This suggests:
+
 - weights should reflect **noise variance** of quotes,
 - bid/ask spreads provide a proxy for $\sigma_j$.
 
@@ -96,6 +101,7 @@ $$
 Quadratic near zero, linear in the tails. It often improves stability without sacrificing too much smoothness for optimizers.
 
 Robust losses can be especially useful when:
+
 - some quotes are stale,
 - microstructure noise is dominant,
 - surface construction introduces artifacts.
@@ -115,6 +121,7 @@ $$
 one may use objectives that incorporate **Vega weighting** to make the loss more “price meaningful” while remaining in vol-space.
 
 Other scaling choices:
+
 - relative price errors: $(C^{\text{model}}-C^{\text{mkt}})/C^{\text{mkt}}$,
 - normalized errors by forward/discount factor,
 - total variance errors in $w=T\sigma^2$.

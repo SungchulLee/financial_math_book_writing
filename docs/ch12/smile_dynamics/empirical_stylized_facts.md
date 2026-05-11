@@ -26,6 +26,7 @@ $$
 where $\beta < 0$ (typically $\beta \approx -1.5$ to $-2.5$ for equity indices).
 
 **Empirical evidence:**
+
 - S&P 500: $\beta \approx -2.0$ (1990-2020 average)
 - EURO STOXX 50: $\beta \approx -1.8$
 - Individual stocks: More variable, $\beta \approx -1.0$ to $-2.5$
@@ -45,6 +46,7 @@ The vol response is stronger for down moves than up moves.
 **Observation:** After large negative returns, the implied volatility skew steepens significantly.
 
 **Mechanism:**
+
 - OTM put demand increases (hedging, panic)
 - Risk-neutral left tail becomes fatter
 - Market prices higher crash probability
@@ -57,6 +59,7 @@ $$
 
 
 **Post-crash behavior:**
+
 - Normal regime: Skew $\approx$ 5-8 vol points
 - Post-crash: Skew $\approx$ 15-25 vol points
 - Decay time: 1-3 months
@@ -69,6 +72,7 @@ $$
 **Half-life:** Approximately 1-2 months for equity indices.
 
 **Model implications:** Models should incorporate:
+
 - Skew dynamics correlated with vol level
 - Mean reversion in skew
 - Asymmetric response to up/down moves
@@ -89,6 +93,7 @@ $$
 
 
 **Example (SPX):**
+
 - 1-month vol: $\beta \approx -2.5$
 - 1-year vol: $\beta \approx -1.5$
 
@@ -102,6 +107,7 @@ $$
 **Frequency:** Approximately 15-20% of the time for SPX since 1990.
 
 **Triggers:**
+
 - Large spot declines (> 3% daily)
 - VIX spikes (> 30)
 - Crisis events
@@ -114,6 +120,7 @@ $$
 **Observation:** Volatility shocks propagate gradually across maturities.
 
 **Mechanism:**
+
 - Impact short maturities first
 - Slowly affects longer maturities
 - Long-end acts as "anchor"
@@ -154,6 +161,7 @@ where $\rho \approx 0.95$ for daily data.
 | Gold | 14-16% |
 
 **Mean reversion speed:** Varies by asset and regime:
+
 - Normal times: Slow (half-life 1-2 months)
 - Post-spike: Faster (half-life 1-2 weeks)
 
@@ -180,6 +188,7 @@ $$
 
 
 **Characteristics:**
+
 - Strong negative skew (crashophobia)
 - Leverage effect pronounced
 - Term structure usually upward sloping
@@ -197,16 +206,19 @@ $$
 
 
 **Characteristics:**
+
 - Smile more symmetric (smirk less pronounced)
 - Risk reversals vary by currency pair
 - Closer to sticky delta than equities
 
 **G10 currencies (EUR/USD):**
+
 - ATM vol: 6-10% typically
 - Risk reversal: Near zero (slight puts over calls)
 - Smile (butterfly): 0.3-1.0%
 
 **EM currencies:**
+
 - Higher overall vol
 - More pronounced skew (downside for EM currency)
 - Event risk (elections, crises)
@@ -215,11 +227,13 @@ $$
 
 
 **Energy (Crude Oil):**
+
 - Positive skew common (upside tail)
 - Seasonal effects in term structure
 - Event risk (OPEC, geopolitics)
 
 **Precious Metals (Gold):**
+
 - Modest negative skew
 - Flight-to-quality during stress
 - Vol correlated with equity stress
@@ -228,6 +242,7 @@ $$
 
 
 **Characteristics:**
+
 - Smile around ATM (both tails priced)
 - Term structure tied to rate expectations
 - Vol depends on rate level (lower rates → lower vol)
@@ -248,6 +263,7 @@ $$
 where the denominator is the ATM vol change predicted by sticky strike.
 
 **Interpretation:**
+
 - SSR = 0: Pure sticky strike
 - SSR = 1: Pure sticky delta/moneyness
 - SSR = 0.3-0.6: Typical empirical range
@@ -282,6 +298,7 @@ $$
 
 
 **Empirical values:**
+
 - SPX: 3-5% (annualized)
 - Higher during stress periods
 
@@ -296,6 +313,7 @@ $$
 
 
 **Empirical values:**
+
 - SPX: -0.3 to -0.5
 - Skew steepens approximately 0.3-0.5 vol points per 1% spot decline
 
@@ -318,10 +336,12 @@ $$
 
 
 **Pre-event:**
+
 - Term structure humps at event maturity
 - Vol elevated for event-spanning options
 
 **Post-event:**
+
 - Vol crush if event resolves uncertainty
 - Vol spike if event creates uncertainty
 - Skew adjusts to new information

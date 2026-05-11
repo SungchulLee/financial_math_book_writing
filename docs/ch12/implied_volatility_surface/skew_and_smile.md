@@ -63,6 +63,7 @@ Less common; sometimes seen in commodity markets.
 
 
 A **smirk** combines skew and smile:
+
 - Asymmetric smile
 - OTM puts have much higher IV than ATM
 - OTM calls have moderately higher IV than ATM
@@ -97,7 +98,7 @@ $$
 **Delta-moneyness:** Using Black-Scholes delta:
 
 $$
-\Delta_{\text{call}} = e^{-qT} \Phi(d_1)
+\Delta_{\text{call}} = e^{-qT} \mathcal{N}(d_1)
 $$
 
 
@@ -159,6 +160,7 @@ $$
 
 
 **Interpretation:**
+
 - $\sigma_{\text{ATM}}$: Volatility level
 - $\mathcal{S}$: Linear skew (asymmetry)
 - $\mathcal{C}$: Quadratic curvature (smile)
@@ -223,11 +225,13 @@ High implied volatility indicates higher probability of large upward moves.
 **Post-1987:** Strong downward skew emerged after October 1987 crash
 
 **Characteristics:**
+
 - OTM puts (e.g., 90% strike) have IV 5-10 points higher than ATM
 - OTM calls have IV close to ATM (minimal smile on upside)
 - Shape: Downward sloping with slight curvature (smirk)
 
 **Example (S&P 500, typical values):**
+
 - ATM (100%): 18% IV
 - 95% strike: 22% IV
 - 90% strike: 26% IV
@@ -251,15 +255,18 @@ High implied volatility indicates higher probability of large upward moves.
 
 
 **Major pairs (EUR/USD, USD/JPY):**
+
 - **Symmetric smile:** Both OTM puts and calls have elevated IV
 - Reflects two-sided jump risk (currency can move sharply either direction)
 - Risk reversals (25-delta) often close to zero
 
 **Emerging market FX:**
+
 - **Asymmetric smile:** Often skewed toward currency depreciation
 - Reflects sovereign risk, capital flight fears
 
 **Example (EUR/USD):**
+
 - ATM: 10% IV
 - 25-delta put: 11% IV
 - 25-delta call: 11% IV
@@ -269,15 +276,18 @@ High implied volatility indicates higher probability of large upward moves.
 
 
 **Energy (crude oil):**
+
 - Variable skew depending on supply/demand
 - Sometimes upward skew (supply disruption fears)
 - Sometimes downward skew (demand collapse fears)
 
 **Precious metals (gold):**
+
 - Mild upward skew or flat (safe-haven asset)
 - OTM calls priced for tail risk hedging
 
 **Agricultural:**
+
 - Seasonal patterns
 - Asymmetric based on weather risk direction
 
@@ -285,10 +295,12 @@ High implied volatility indicates higher probability of large upward moves.
 
 
 **Normal market:**
+
 - Upward skew (rates can spike but rarely crash below zero)
 - Post-2008: Negative rates complicate pattern
 
 **High-rate environment:**
+
 - Downward skew (rates expected to fall from high levels)
 
 ## Economic Drivers of Smile and Skew
@@ -389,6 +401,7 @@ $$
 
 
 where:
+
 - $y$: Log-moneyness
 - $a$: Overall level
 - $b$: Slope
@@ -405,11 +418,13 @@ $$
 
 
 **Advantages:**
+
 - Explicit formula
 - No-arbitrage constraints easily enforced ($b(1 + |\rho|) < 4a$, etc.)
 - Flexible enough to fit market data
 
 **Limitations:**
+
 - Single-maturity parametrization (doesn't enforce calendar arbitrage across maturities)
 
 ### 2. SSVI (Surface SVI)
@@ -427,6 +442,7 @@ $$
 where $\varphi(T)$ controls the ATM curvature as a function of maturity.
 
 **Properties:**
+
 - Arbitrage-free by construction (no butterfly or calendar arbitrage)
 - Smooth across both $K$ and $T$
 - Fits market data well with few parameters
@@ -459,6 +475,7 @@ $$
 where $z = \frac{\nu}{\alpha}(FK)^{(1-\beta)/2} \ln(F/K)$ and $x(z) = \ln\left(\frac{\sqrt{1 - 2\rho z + z^2} + z - \rho}{1 - \rho}\right)$.
 
 **Parameters:**
+
 - $\alpha$: ATM volatility
 - $\beta \in [0, 1]$: CEV exponent (controls backbone)
 - $\rho \in [-1, 1]$: Correlation (controls skew)
@@ -491,11 +508,13 @@ $$
 
 
 **Interpretation:**
+
 - $\text{RR} < 0$: Downward skew (put IV > call IV)
 - $\text{RR} > 0$: Upward skew (call IV > put IV)
 - $\text{RR} \approx 0$: Symmetric smile
 
 **Typical values:**
+
 - Equity: RR $\approx -3\%$ to $-5\%$ (negative)
 - FX: RR $\approx 0\%$ (near symmetric)
 
@@ -512,10 +531,12 @@ $$
 
 
 **Interpretation:**
+
 - $\text{BF} > 0$: Smile (wings elevated relative to ATM)
 - $\text{BF} < 0$: Frown (wings depressed, rare)
 
 **Typical values:**
+
 - Equity: BF $\approx 1\%$ to $2\%$
 - FX: BF $\approx 1\%$ to $3\%$
 - Higher during crises
@@ -524,6 +545,7 @@ $$
 
 
 **ATM conventions:**
+
 1. **ATM forward:** $K = F = S_0 e^{(r-q)T}$
 2. **ATM spot:** $K = S_0$
 3. **ATM delta-neutral:** $K$ such that $\Delta_{\text{call}} = 0.5$

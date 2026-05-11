@@ -141,3 +141,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+The FFT-based density recovery uses $f(x) = \frac{du}{\pi}\text{Re}[\text{FFT}(\varphi(u)e^{-ibu})]$ with boundary correction. Explain the role of the boundary correction term.
+
+??? success "Solution to Exercise 1"
+    The trapezoidal rule approximation of $\int_0^{u_{\max}} e^{-iux}\varphi(u)du$ treats the endpoints specially: the first and last values get weight $1/2$. The boundary correction $\phi_{\text{boundary}} = \frac{1}{2}(e^{-ix u_0}\varphi(u_0) + e^{-ix u_{\max}}\varphi(u_{\max}))$ subtracts the double-counted endpoint contributions from the FFT result, converting the sum from a rectangle rule to a proper trapezoidal rule.
+
+---
+
+**Exercise 2.**
+The grid parameters are $u_{\max} = 20$ and $N = 2^8 = 256$. Compute the frequency spacing $du$ and the corresponding spatial resolution $dx = 2\pi/(N \cdot du)$.
+
+??? success "Solution to Exercise 2"
+    $du = u_{\max}/N = 20/256 = 0.078125$. $dx = 2\pi/(N \cdot du) = 2\pi/20 = 0.3142$. The spatial grid covers $[b, b + N \cdot dx]$ where $b = \min(x)$. For $x \in [-8, 8]$, $N \cdot dx = 256 \times 0.314 = 80.4$, which is more than sufficient.
+
+---
+
+**Exercise 3.**
+Cubic interpolation is used to evaluate the recovered density at arbitrary $x$ points. Why is interpolation necessary rather than evaluating the FFT result directly?
+
+??? success "Solution to Exercise 3"
+    The FFT produces density values on a specific grid $x_k = b + k \cdot dx$ determined by the frequency parameters. The desired evaluation points $x$ generally do not coincide with this grid. Cubic interpolation maps the FFT output to arbitrary points with $O(dx^4)$ accuracy, which is consistent with the underlying trapezoidal quadrature accuracy.
+
+---
+
+**Exercise 4.**
+For the standard normal, $u_{\max} = 20$ is sufficient because $|\varphi(u)| = e^{-u^2/2} < 10^{-87}$ at $u = 20$. Estimate the required $u_{\max}$ for a Cauchy distribution with CF $\varphi(u) = e^{-|u|}$.
+
+??? success "Solution to Exercise 4"
+    For the Cauchy CF: $|\varphi(u)| = e^{-|u|}$. To achieve $|\varphi(u_{\max})| < 10^{-8}$: $e^{-u_{\max}} < 10^{-8}$, giving $u_{\max} > 8\ln 10 \approx 18.4$. So $u_{\max} = 20$ suffices. However, the Cauchy density has heavy tails requiring a wider spatial domain. With $N = 256$ and $u_{\max} = 20$: $dx = 0.314$, giving spatial range $\approx 80$, which captures the Cauchy tails adequately.

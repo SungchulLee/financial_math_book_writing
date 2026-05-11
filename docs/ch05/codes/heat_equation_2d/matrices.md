@@ -329,3 +329,54 @@ def construct_neumann_bc_2d(Nx: int, Ny: int, dx: float, dy: float,
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+Explain how the 2D Laplacian is constructed using Kronecker products. If $D_x$ and $D_y$ are 1D second-derivative operators, write the formula for the 2D Laplacian $L$.
+
+??? success "Solution to Exercise 1"
+    The 2D Laplacian is $L = D_x \otimes I_y + I_x \otimes D_y$, where $\otimes$ denotes the Kronecker product.
+
+    - $D_x \otimes I_y$: applies the $x$-derivative to each row (keeping $y$ fixed).
+    - $I_x \otimes D_y$: applies the $y$-derivative to each column (keeping $x$ fixed).
+
+    For $N_x = N_y = 3$ (interior only), the resulting $9 \times 9$ matrix has the 5-point stencil structure with $-4$ on the diagonal and $+1$ on the four off-diagonals corresponding to neighbors.
+
+---
+
+**Exercise 2.**
+The ADI (Alternating Direction Implicit) method splits each time step into two half-steps. Describe the two half-steps and explain why each involves only a tridiagonal solve.
+
+??? success "Solution to Exercise 2"
+    **Half-step 1** (x-direction implicit, y-direction explicit): For each fixed $j$, solve $(I - \frac{r_x}{2}D_x^2)u^{n+1/2}_{:,j} = (I + \frac{r_y}{2}D_y^2)u^n_{:,j}$. This is a tridiagonal system of size $N_x - 2$ for each $j$.
+
+    **Half-step 2** (y-direction implicit, x-direction explicit): For each fixed $i$, solve $(I - \frac{r_y}{2}D_y^2)u^{n+1}_{i,:} = (I + \frac{r_x}{2}D_x^2)u^{n+1/2}_{i,:}$. This is a tridiagonal system of size $N_y - 2$ for each $i$.
+
+    Each half-step is implicit in only one direction, producing a tridiagonal (not block-tridiagonal) system that can be solved in $O(N)$ with the Thomas algorithm.
+
+---
+
+**Exercise 3.**
+Why does `apply_dirichlet_bc_2d` set boundary rows to identity? What would happen if boundary conditions were not applied after constructing the Laplacian?
+
+??? success "Solution to Exercise 3"
+    Setting boundary rows to identity ($A_{k,:} = e_k^T$) ensures that boundary values remain unchanged during time stepping: $u_k^{n+1} = u_k^n$ for boundary node $k$.
+
+    Without applying boundary conditions, the Laplacian stencil at boundary nodes would reference ghost points outside the domain (undefined values). The resulting linear system would either be inconsistent or produce physically meaningless solutions that violate the boundary conditions. The identity rows effectively decouple boundary nodes from the interior solve.
+
+---
+
+**Exercise 4.**
+Compare the sparsity patterns of the 1D and 2D Backward Euler matrices. If $N_x = N_y = 50$, how many nonzero entries does the 2D matrix have approximately?
+
+??? success "Solution to Exercise 4"
+    The 1D Backward Euler matrix is tridiagonal with $N_x$ rows and at most $3N_x - 2$ nonzeros.
+
+    The 2D Backward Euler matrix has $N = N_x \times N_y = 2500$ rows. Each interior row has 5 nonzeros (from the 5-point stencil), and boundary rows have 1 nonzero (identity). With approximately $(N_x - 2)(N_y - 2) = 2304$ interior nodes and 196 boundary nodes:
+
+    $$
+    \text{nnz} \approx 5 \times 2304 + 1 \times 196 = 11{,}716
+    $$
+
+    A dense matrix would have $2500^2 = 6{,}250{,}000$ entries, so the sparse matrix uses only about 0.19% of the storage. This dramatic sparsity is why sparse solvers are essential for 2D problems.

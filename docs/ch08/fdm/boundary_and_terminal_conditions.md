@@ -2,6 +2,7 @@
 
 
 Numerical PDE pricing requires:
+
 - a **terminal condition** at $t=T$,
 - **boundary conditions** in $S$ after truncating $(0,\infty)$ to $[0,S_{\max}]$.
 

@@ -1,6 +1,9 @@
 # Dynkin's Formula
 
-**Dynkin's formula** is the integral form of the infinitesimal generator — a stochastic fundamental theorem of calculus.
+**Dynkin's formula** is obtained by taking expectations in the
+[fundamental decomposition](infinitesimal_generator.md#the-fundamental-decomposition),
+where the martingale term $M_t$ vanishes. It is the central tool for computing
+expectations of diffusion processes without solving SDEs.
 
 $$
 \boxed{
@@ -41,19 +44,16 @@ and stopping time $\tau$ with $\mathbb{E}_x[\tau] < \infty$.
 
 ## Proof
 
-??? abstract "Via Itô's Lemma"
+??? abstract "From the Fundamental Decomposition"
 
-    **Step 1**: Apply Itô's lemma
+    Apply the
+    [fundamental decomposition](infinitesimal_generator.md#the-fundamental-decomposition)
+    at time $\tau$:
 
-    $$df(X_t) = (\mathcal{L}f)(X_t)\,dt + \sigma(X_t)f'(X_t)\,dW_t$$
+    $$f(X_\tau) = f(x) + \int_0^\tau (\mathcal{L}f)(X_s)\,ds + M_\tau$$
 
-    **Step 2**: Integrate $0 \to \tau$
-
-    $$f(X_\tau) - f(x) = \int_0^\tau (\mathcal{L}f)(X_s)\,ds + \int_0^\tau \sigma f'\,dW_s$$
-
-    **Step 3**: Take expectation (Itô integral vanishes under the integrability condition)
-
-    $$\mathbb{E}_x[f(X_\tau)] = f(x) + \mathbb{E}_x\left[\int_0^\tau (\mathcal{L}f)(X_s)\,ds\right] \qquad \square$$
+    Taking expectations and using $\mathbb{E}[M_\tau] = 0$ (the Itô integral has zero
+    mean under the integrability condition) gives Dynkin's formula. $\square$
 
 ---
 
@@ -124,6 +124,7 @@ $$
 $$
 
 !!! success "Verification"
+
     - $x = a$: $\mathbb{E}_a[\tau] = 0$ $\checkmark$
     - $x = b$: $\mathbb{E}_b[\tau] = 0$ $\checkmark$
     - Max at midpoint: $\mathbb{E}_{(a+b)/2}[\tau] = \frac{(b-a)^2}{4}$ $\checkmark$

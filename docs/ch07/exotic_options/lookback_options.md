@@ -7,6 +7,7 @@
 Lookback options appear in performance-linked products, executive compensation structures, and specialized hedging strategies where capturing the best achievable outcome is valued.
 
 !!! info "Prerequisites"
+
     - [Black–Scholes Formula](../../ch06/black_scholes_formula/bs_formula_statement.md) (vanilla pricing)
     - [Reflection Principle](../../ch02/brownian_motion/reflection_principle.md) (distribution of Brownian motion extrema)
     - [Exotic Options Overview](exotic_options_overview.md) (classification)

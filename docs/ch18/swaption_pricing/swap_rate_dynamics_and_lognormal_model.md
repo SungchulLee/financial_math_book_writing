@@ -43,6 +43,7 @@ dS(t) = \sigma_S\, S(t)\, dW_t^A
 $$
 
 where:
+
 - $\sigma_S$: constant volatility
 - $W_t^A$: Brownian motion under $\mathbb{Q}^A$
 
@@ -64,6 +65,7 @@ $$
 S(T_m) = S(t)
 \exp\left(
 -\frac{1}{2}\sigma_S^2 (T_m - t)
+
 + \sigma_S \sqrt{T_m - t}\, Z
 \right)
 $$
@@ -262,7 +264,7 @@ These relax the assumptions of the lognormal model.
     **Lognormal (Black) ATM price.** When $K = S_0$ the Black formula simplifies. The log-moneyness is zero, so $d_1 = \tfrac{1}{2}\sigma_{\text{LN}}\sqrt{\tau}$ and $d_2 = -\tfrac{1}{2}\sigma_{\text{LN}}\sqrt{\tau}$ where $\tau = T_m - t$. The price per unit notional and annuity is:
 
     $$
-    C_{\text{Black}} = S_0\bigl[\Phi(d_1) - \Phi(d_2)\bigr] = S_0\bigl[2\Phi(\tfrac{1}{2}\sigma_{\text{LN}}\sqrt{\tau}) - 1\bigr]
+    C_{\text{Black}} = S_0\bigl[\mathcal{N}(d_1) - \mathcal{N}(d_2)\bigr] = S_0\bigl[2\Phi(\tfrac{1}{2}\sigma_{\text{LN}}\sqrt{\tau}) - 1\bigr]
     $$
 
     For small $\sigma_{\text{LN}}\sqrt{\tau}$, using $\Phi(x) \approx \tfrac{1}{2} + \tfrac{x}{\sqrt{2\pi}}$:

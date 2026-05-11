@@ -40,6 +40,7 @@ $$
 $$
 
 **Intuition:**
+
 - High $\Gamma$ (convexity benefit): narrow band (hedge frequently)
 - High $\lambda$ (expensive trading): wide band (hedge infrequently)
 - The $1/3$ exponent comes from balancing $\mathcal{O}(h^2)$ hedging error against $\mathcal{O}(1/h)$ transaction costs
@@ -74,6 +75,7 @@ $$
 $$
 
 Key features:
+
 - Sublinear in time horizon $T$
 - Fractional power of costs $\lambda$
 - Dominated by gamma exposure

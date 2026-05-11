@@ -24,6 +24,7 @@ $$
 
 $$
 \boxed{X_t^{(n+1)} = x_0 + \int_0^t b\!\left(s, X_s^{(n)}\right)ds
+
 + \int_0^t \sigma\!\left(s, X_s^{(n)}\right)dW_s}
 $$
 
@@ -84,6 +85,7 @@ For $n \geq 1$, write:
 $$
 X_t^{(n+1)} - X_t^{(n)}
 = \int_0^t \!\left[b\!\left(s,X_s^{(n)}\right) - b\!\left(s,X_s^{(n-1)}\right)\right]ds
+
 + \int_0^t \!\left[\sigma\!\left(s,X_s^{(n)}\right) - \sigma\!\left(s,X_s^{(n-1)}\right)\right]dW_s
 $$
 
@@ -151,6 +153,7 @@ $Z_t = X_t - Y_t$. Then:
 
 $$
 Z_t = \int_0^t \bigl[b(s,X_s)-b(s,Y_s)\bigr]\,ds
+
       + \int_0^t \bigl[\sigma(s,X_s)-\sigma(s,Y_s)\bigr]\,dW_s
 $$
 
@@ -186,6 +189,7 @@ Substituting $X_s^{(1)} = x_0(1 + \alpha s + \beta W_s)$ into the iteration:
 $$
 X_t^{(2)} = x_0\!\left[
   1 + \alpha t + \beta W_t
+
   + \alpha^2 \frac{t^2}{2}
   + \alpha\beta \int_0^t s\,dW_s
   + \beta^2 \int_0^t W_s\,dW_s
@@ -209,6 +213,7 @@ Substituting both:
 $$
 X_t^{(2)} = x_0\!\left[
   1 + \alpha t + \beta W_t
+
   + \alpha^2 \frac{t^2}{2}
   + \alpha\beta\!\left(tW_t - \int_0^t W_s\,ds\right)
   + \beta^2\!\left(\tfrac{1}{2}W_t^2 - \tfrac{1}{2}t\right)
@@ -244,6 +249,7 @@ $\beta = \sigma$), verifiable directly by Itô's formula.
 
 $$
 \boxed{X_t^{(n+1)} = x_0 + \int_0^t b\!\left(s, X_s^{(n)}\right)ds
+
 + \int_0^t \sigma\!\left(s, X_s^{(n)}\right)dW_s \;\xrightarrow{n\to\infty}\; X_t}
 $$
 

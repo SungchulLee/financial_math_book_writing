@@ -153,3 +153,36 @@ def mainCalculation():
 if __name__ == "__main__":
     mainCalculation()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Explain conditional expectation pricing: $C = \sum_{n=0}^\infty P(N=n)C_{\text{BS}}(\sigma_n)$.
+
+??? success "Solution to Exercise 1"
+    Conditioning on $n$ jumps in $[0,T]$, the stock follows log-normal dynamics with enhanced volatility $\sigma_n = \sqrt{\sigma^2 + n\sigma_J^2/T}$. The option price is the Poisson-weighted average of BS prices at these enhanced volatilities.
+
+---
+
+**Exercise 2.**
+How does $\lambda T$ (expected number of jumps) affect the implied volatility surface?
+
+??? success "Solution to Exercise 2"
+    Small $\lambda T$: surface is nearly flat (close to BS). Moderate $\lambda T \approx 1$: pronounced smile at short maturities. Large $\lambda T$: by CLT, jumps look Gaussian with enhanced variance, and the surface resembles higher-vol BS (flatter).
+
+---
+
+**Exercise 3.**
+If $\mu_J < 0$, which side of the implied volatility curve is steeper?
+
+??? success "Solution to Exercise 3"
+    Negative $\mu_J$ means crashes are more likely than rallies, fattening the left tail. OTM puts (low strikes) require higher $\sigma_{\text{imp}}$ to match, producing a steeper left side (volatility skew).
+
+---
+
+**Exercise 4.**
+What educational insight does this comparison between BS with and without jumps provide?
+
+??? success "Solution to Exercise 4"
+    It shows that constant volatility (BS) cannot produce a volatility smile. Jumps are one mechanism that generates the smile by adding tail risk. The conditioning technique elegantly connects jump-diffusion pricing to familiar BS formulas.

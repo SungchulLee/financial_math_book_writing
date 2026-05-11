@@ -145,3 +145,43 @@ class VasicekParameters:
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+The Vasicek SDE is $dr = a(b - r)\,dt + \sigma\,dW$. Explain why the `MIN_RATE` in `VasicekConfig` is $-0.1$ rather than a small positive number as in the CIR model.
+
+??? success "Solution to Exercise 1"
+    Unlike the CIR model where the diffusion coefficient $\sigma\sqrt{r}$ vanishes at $r = 0$ (preventing negative rates under the Feller condition), the Vasicek model has constant diffusion $\sigma$. Since $r(t)$ is normally distributed, it can take any real value, including negative ones. Setting `MIN_RATE = -0.1` allows the model to accommodate negative rates down to $-10\%$, which reflects realistic scenarios observed in markets (e.g., the negative interest rate policies adopted by the ECB and BOJ). The CIR model uses `MIN_RATE = 1e-10` because its theoretical process is always non-negative.
+
+---
+
+**Exercise 2.**
+Create a `VasicekParameters` instance with $r_0 = 0.02$, $b = 0.04$, $a = 0.15$, $\sigma = 0.01$, and `maturity_time = 20.0`. Convert it to a dictionary and verify all fields.
+
+??? success "Solution to Exercise 2"
+    ```python
+    params = VasicekParameters(r0=0.02, b=0.04, a=0.15, sigma=0.01, maturity_time=20.0)
+    d = params.to_dict()
+    ```
+
+    The dictionary is `{'r0': 0.02, 'b': 0.04, 'a': 0.15, 'sigma': 0.01, 'maturity_time': 20.0}`. All parameters pass validation: $r_0 = 0.02 \in (-0.1, 1.0)$, $b = 0.04 \in (-0.1, 1.0)$, $a = 0.15 > 0$, $\sigma = 0.01 > 0$, and `maturity_time` $= 20.0 \in (10^{-6}, 100)$.
+
+---
+
+**Exercise 3.**
+What exception is raised if you try to create `VasicekParameters(r0=0.03, b=0.05, a=-0.1, sigma=0.02, maturity_time=10.0)`? Explain why this constraint exists.
+
+??? success "Solution to Exercise 3"
+    A `VasicekParameterError` is raised with the message "Mean reversion speed a=-0.1 must be positive." The mean reversion speed $a$ must be positive to ensure that the process $r(t)$ reverts toward the long-term mean $b$. If $a \leq 0$, the drift term $a(b - r)$ would push the rate away from $b$ (or provide no reversion), causing the process to be non-stationary and potentially diverge.
+
+---
+
+**Exercise 4.**
+Compare the `VasicekParameters` dataclass to `CIRParameters`. List two key structural differences and explain how they reflect the mathematical differences between the models.
+
+??? success "Solution to Exercise 4"
+
+    1. **No Feller condition**: `CIRParameters` includes a `feller_parameter` property and `check_feller_condition` method, which are absent in `VasicekParameters`. This is because the CIR diffusion $\sigma\sqrt{r}$ requires $2\kappa\theta \geq \sigma^2$ to prevent the rate from reaching zero, while Vasicek's constant diffusion $\sigma$ has no analogous constraint.
+
+    2. **Negative rate bounds**: `VasicekConfig.MIN_RATE = -0.1` allows negative initial rates and long-term means, while `CIRConfig.MIN_RATE = 1e-10` enforces strict positivity. This reflects the fact that the Vasicek process is Gaussian (taking values in $(-\infty, +\infty)$) while the CIR process is supported on $[0, +\infty)$.

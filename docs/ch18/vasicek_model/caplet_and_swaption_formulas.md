@@ -42,7 +42,7 @@ $$
 \boxed{\text{Caplet}(t) = (1 + \delta_k\,\kappa_{\text{cap}})\,\text{Put}_{\text{ZCB}}(t;\, K_k,\, T_{k-1},\, T_k)}
 $$
 
-where $\text{Put}_{\text{ZCB}}(t; K, T, S) = K\,P(t,T)\,\Phi(-d_2) - P(t,S)\,\Phi(-d_1)$ is the Vasicek ZCB put formula.
+where $\text{Put}_{\text{ZCB}}(t; K, T, S) = K\,P(t,T)\,\mathcal{N}(-d_2) - P(t,S)\,\mathcal{N}(-d_1)$ is the Vasicek ZCB put formula.
 
 ---
 
@@ -316,7 +316,7 @@ In the Vasicek framework, caplets reduce to puts on zero-coupon bonds via the id
     \sigma_P = B(0.5) \times v = 0.4643 \times 0.01301 = 0.006042
     $$
 
-    **Put price.** $\text{Put}(K, T_0, T_1) = K\,P(0,T_0)\,\Phi(-d_2) - P(0,T_1)\,\Phi(-d_1)$ where:
+    **Put price.** $\text{Put}(K, T_0, T_1) = K\,P(0,T_0)\,\mathcal{N}(-d_2) - P(0,T_1)\,\mathcal{N}(-d_1)$ where:
 
     $$
     d_1 = \frac{\ln\!\left(\frac{P(0,1.5)}{K \cdot P(0,1)}\right)}{\sigma_P} + \frac{\sigma_P}{2} = \frac{\ln\!\left(\frac{0.9391}{0.97561 \times 0.9595}\right)}{0.006042} + 0.003021

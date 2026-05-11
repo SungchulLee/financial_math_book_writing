@@ -9,6 +9,7 @@
 ### Contract Specification
 
 A **European call option** on a zero-coupon bond:
+
 - **Underlying:** $T_B$-maturity zero-coupon bond $P(t, T_B)$
 - **Strike:** $K$
 - **Expiry:** $T < T_B$
@@ -38,6 +39,7 @@ The forward bond price $P(T, T_B)$ is a martingale under $\mathbb{Q}^T$.
 ### Setup
 
 In the Vasicek model:
+
 - $P(t, T_B) = A(T_B - t) e^{-B(T_B - t) r_t}$
 - $r_T$ is Gaussian given $r_0$
 
@@ -76,6 +78,7 @@ $$
 $$
 
 where:
+
 - $\sigma$ is the short-rate volatility
 - $B(\tau) = (1 - e^{-\kappa \tau})/\kappa$
 - $\kappa$ is the mean-reversion speed
@@ -131,6 +134,7 @@ C(0) = P(0, T_B) \chi^2(x^*; \nu + 2, \lambda_1) - K P(0, T) \chi^2(x^*; \nu, \l
 $$
 
 where:
+
 - $\nu = 4\kappa\theta/\sigma^2$ (degrees of freedom)
 - $\lambda_1, \lambda_2$ are non-centrality parameters depending on model parameters
 - $x^*$ is a threshold determined by the strike
@@ -138,6 +142,7 @@ where:
 ### Computational Notes
 
 The non-central chi-squared CDF can be computed via:
+
 - Series expansion
 - Numerical integration
 - Library functions (e.g., in Python's scipy)
@@ -182,6 +187,7 @@ $$
 ### Example
 
 A 5-year bond with annual coupons of 5% and principal of 100:
+
 - Cashflows: $c_1 = 5, c_2 = 5, c_3 = 5, c_4 = 5, c_5 = 105$
 - At times: $T_1 = 1, T_2 = 2, T_3 = 3, T_4 = 4, T_5 = 5$
 - Option expiry: $T = 0.5$
@@ -245,6 +251,7 @@ Sensitivity to mean-reversion parameter $\kappa$ requires differentiating throug
 ### When Closed Forms Don't Apply
 
 Numerical methods are needed for:
+
 - American bond options (early exercise)
 - Complex payoffs
 - Non-affine models
@@ -294,6 +301,7 @@ This connection allows caplet pricing using bond option formulas.
 ### Calibration
 
 Bond option prices are sensitive to:
+
 - Volatility parameter $\sigma$
 - Mean-reversion $\kappa$
 - Initial yield curve (via discount factors)

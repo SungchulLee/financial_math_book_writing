@@ -198,6 +198,7 @@ The exercise boundary $S^*(t)$ increases as $t \to T$ (from below).
 ### Algorithm
 
 Work backward from maturity:
+
 1. Find the grid point where exercise first becomes optimal
 2. Set $u_j = \Phi_j$ for $j \leq j^*$
 3. Solve PDE only for $j > j^*$

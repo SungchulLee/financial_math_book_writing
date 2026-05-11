@@ -29,6 +29,7 @@ $$
 $$
 
 where:
+
 - $A$ is the swap annuity
 - $K$ is the strike rate
 

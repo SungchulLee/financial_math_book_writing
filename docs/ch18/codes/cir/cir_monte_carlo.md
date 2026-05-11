@@ -236,3 +236,71 @@ class CIRModel(bmw.BrownianMotion):
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+Describe the two-step procedure used by the `CIRModel.simulate_cir` method: (1) generating Brownian increments and (2) applying CIR dynamics. Why is this decomposition useful from a software engineering perspective?
+
+??? success "Solution to Exercise 1"
+    The first step inherits from the `BrownianMotion` parent class and generates standard Brownian increments $\Delta W_i \sim \mathcal{N}(0, \Delta t)$ for all paths and time steps. The second step takes these increments and applies the CIR-specific SDE
+
+    $$
+    r_{i+1} = r_i + \kappa(\theta - r_i)\,\Delta t + \sigma\sqrt{r_i}\,\Delta W_i.
+    $$
+
+    This decomposition follows the strategy pattern: the Brownian motion generation is reusable across different interest rate models (Vasicek, CIR, Hull-White), while only the dynamics step differs. It also facilitates testing, since one can verify the Brownian increments independently from the model-specific logic.
+
+---
+
+**Exercise 2.**
+The `CIRResult.has_negative_rates` property checks whether any simulated rate is negative. Explain why negative rates can appear in an Euler-Maruyama simulation of the CIR process even though the theoretical CIR process is non-negative.
+
+??? success "Solution to Exercise 2"
+    The continuous-time CIR process $dr = \kappa(\theta - r)\,dt + \sigma\sqrt{r}\,dW$ is non-negative when the Feller condition $2\kappa\theta \geq \sigma^2$ holds. However, the Euler-Maruyama discretization
+
+    $$
+    r_{i+1} = r_i + \kappa(\theta - r_i)\,\Delta t + \sigma\sqrt{r_i}\,\Delta W_i
+    $$
+
+    can produce $r_{i+1} < 0$ for a large negative $\Delta W_i$, since the discrete step does not enforce non-negativity. This occurs more frequently when $\Delta t$ is large, $\sigma$ is large relative to $\kappa\theta$, or when $r_i$ is close to zero. The `absorption_fix` option in `SimulationConfig` addresses this by applying $r_{i+1} = \max(r_{i+1}, 0)$.
+
+---
+
+**Exercise 3.**
+Suppose a CIR simulation produces `num_paths = 5000` and `num_time_steps = 200`. What are the dimensions of the `short_rate_paths` array, and how do you extract the distribution of rates at the midpoint of the simulation?
+
+??? success "Solution to Exercise 3"
+    The `short_rate_paths` array has shape $(5000, 200)$, where each row is a path and each column corresponds to a time step. To extract rates at the midpoint (time step index 100):
+
+    ```python
+    midpoint_rates = result.short_rate_paths[:, 100]
+    ```
+
+    This gives a one-dimensional array of 5000 values representing the distribution of $r(T/2)$ across all simulated paths. One can then compute summary statistics such as `np.mean(midpoint_rates)` and `np.std(midpoint_rates)` or plot a histogram.
+
+---
+
+**Exercise 4.**
+The `get_statistics` method returns percentiles `q25` and `q75` of the final rate distribution. If `q25 = 0.038` and `q75 = 0.062`, compute the interquartile range (IQR). Using the IQR, propose a criterion for detecting outlier paths.
+
+??? success "Solution to Exercise 4"
+    The interquartile range is
+
+    $$
+    \text{IQR} = q_{75} - q_{25} = 0.062 - 0.038 = 0.024.
+    $$
+
+    A standard outlier detection criterion (Tukey's fences) flags any final rate $r_T$ as an outlier if
+
+    $$
+    r_T < q_{25} - 1.5 \times \text{IQR} \quad \text{or} \quad r_T > q_{75} + 1.5 \times \text{IQR}.
+    $$
+
+    Substituting:
+
+    $$
+    r_T < 0.038 - 0.036 = 0.002 \quad \text{or} \quad r_T > 0.062 + 0.036 = 0.098.
+    $$
+
+    Paths with final rates below $0.2\%$ or above $9.8\%$ would be flagged as outliers.

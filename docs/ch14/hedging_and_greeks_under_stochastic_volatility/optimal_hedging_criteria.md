@@ -18,10 +18,12 @@ $$
 where $H$ is the payoff and $V_T^{\pi}$ the hedged portfolio value.
 
 Pros:
+
 - mathematically tractable,
 - leads to explicit hedging strategies.
 
 Cons:
+
 - penalizes large and small errors equally,
 - sensitive to model assumptions.
 
@@ -39,6 +41,7 @@ $$
 
 
 This framework:
+
 - incorporates risk aversion,
 - links pricing and hedging,
 - is economically coherent.
@@ -51,11 +54,13 @@ However, it is often computationally demanding.
 
 
 Robust approaches aim to:
+
 - perform reasonably well across models,
 - limit worst-case losses,
 - avoid overfitting to a single calibration.
 
 Examples include:
+
 - min–max hedging,
 - stress-based hedging rules,
 - conservative Greeks.
@@ -66,6 +71,7 @@ Examples include:
 
 
 In practice, desks choose criteria based on:
+
 - product type (vanilla vs exotic),
 - liquidity of hedging instruments,
 - regulatory and capital constraints.

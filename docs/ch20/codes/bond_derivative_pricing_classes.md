@@ -3,6 +3,7 @@
 The Hull-White model's affine structure means that zero-coupon bond prices, bond options, caps, floors, and swaptions all have closed-form or semi-closed-form expressions. This guide describes the pricing classes in the companion `bond_derivative_pricing_classes.py` module, mapping each method to its mathematical formula. The classes build on the `HullWhite` model class and its named functions ($A$, $B$, $\theta$) to compute prices and Greeks for the main interest rate derivatives.
 
 !!! info "Prerequisites"
+
     - [Hull-White Model Class Guide](hull_white_model_class.md) (model class and named functions)
     - [Named Functions Implementation Guide](named_functions_implementation.md) ($A$, $B$, $\theta$ computation)
     - [Bond Price Formula](../bond_pricing/bond_price_formula.md) (derivation of $P = e^{A + Br}$)
@@ -55,7 +56,7 @@ For time-0 pricing, the initial short rate $r_0$ is extracted from the market cu
 A European call option with strike $K$, expiry $T_0$, on a ZCB maturing at $T_1 > T_0$ has the closed-form price:
 
 $$
-C(0, T_0, T_1, K) = P(0, T_1)\,\Phi(d_1) - K\,P(0, T_0)\,\Phi(d_2)
+C(0, T_0, T_1, K) = P(0, T_1)\,\mathcal{N}(d_1) - K\,P(0, T_0)\,\mathcal{N}(d_2)
 $$
 
 where

@@ -482,3 +482,63 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+In the stochastic amortizing swap, the prepayment rate depends on the stochastic swap rate $S(t)$. Explain why the notional profile becomes path-dependent and what this implies for pricing.
+
+??? success "Solution to Exercise 1"
+    The CPR at time $t$ is $\Lambda(\varepsilon_t)$ where $\varepsilon_t = K - S(t)$ and $S(t)$ is a stochastic process. Since $S(t)$ follows different paths in each Monte Carlo scenario, the CPR varies across paths. The outstanding notional at time $t$ depends on all previous CPR values (and hence all previous swap rates), making it path-dependent:
+
+    $$
+    N(t) = N(t-1) - Q(t) - \Lambda(\varepsilon_t)(N(t-1) - Q(t)).
+    $$
+
+    This path-dependency means the product cannot be priced by a simple closed-form formula; Monte Carlo simulation across many interest rate scenarios is required.
+
+---
+
+**Exercise 2.**
+The Hull-White model is used to generate stochastic interest rate paths. Write the SDE and explain how the $\theta(t)$ function ensures calibration to the initial yield curve.
+
+??? success "Solution to Exercise 2"
+    The Hull-White SDE is
+
+    $$
+    dr(t) = \lambda[\theta(t) - r(t)]\,dt + \eta\,dW(t),
+    $$
+
+    where $\theta(t)$ is chosen so that the model reproduces the observed term structure:
+
+    $$
+    \theta(t) = \frac{1}{\lambda}\frac{\partial f(0,t)}{\partial t} + f(0,t) + \frac{\eta^2}{2\lambda^2}(1 - e^{-2\lambda t}).
+    $$
+
+    Here $f(0,t)$ is the market instantaneous forward rate. This choice ensures $P_{\text{model}}(0,T) = P_{\text{market}}(0,T)$ for all $T$, so the model is automatically calibrated to the initial yield curve.
+
+---
+
+**Exercise 3.**
+Compare the "rational" and "irrational" incentive functions used in the code. What is the CPR when $\varepsilon = 0$ for each?
+
+??? success "Solution to Exercise 3"
+
+    - **Irrational**: $\Lambda(\varepsilon) = 0.04 + 0.1/(1 + e^{200(-\varepsilon)})$. At $\varepsilon = 0$: $\Lambda(0) = 0.04 + 0.1/(1 + 1) = 0.04 + 0.05 = 0.09$ ($9\%$ CPR). Even when there is no rate advantage, some borrowers still prepay (due to moving, divorce, etc.).
+    - **Rational**: $\Lambda(\varepsilon) = 0.04 \cdot \mathbf{1}_{\varepsilon > 0}$. At $\varepsilon = 0$: $\Lambda(0) = 0$ ($0\%$ CPR). The step function assumes borrowers only prepay when there is a strictly positive benefit.
+
+    The irrational model is more realistic because it includes a baseline prepayment rate for non-financial reasons.
+
+---
+
+**Exercise 4.**
+If the mortgage rate is $K = 5\%$ and the Hull-White model generates 2000 swap rate paths at maturity, how would you estimate the expected notional profile and its confidence bands?
+
+??? success "Solution to Exercise 4"
+    For each of the 2000 paths, compute the notional schedule $N_i(t)$ for $i = 1, \ldots, 2000$ by applying the incentive function to the path-specific swap rates. The expected notional profile is
+
+    $$
+    \hat{N}(t) = \frac{1}{2000}\sum_{i=1}^{2000} N_i(t).
+    $$
+
+    The 95% confidence bands at each time point are the $2.5$th and $97.5$th percentiles of $\{N_i(t)\}_{i=1}^{2000}$. This shows the range of outcomes: in low-rate scenarios, heavy prepayment shrinks the notional quickly; in high-rate scenarios, minimal prepayment keeps the notional near its scheduled path.

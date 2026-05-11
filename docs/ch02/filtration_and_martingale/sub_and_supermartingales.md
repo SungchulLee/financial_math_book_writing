@@ -92,6 +92,7 @@ since $A_t \ge A_s$ and $A_t$ is predictable. This is the Doob–Meyer structure
 ### Closure Under Operations
 
 **Proposition**: 
+
 - If $X$ and $Y$ are submartingales and $a, b \ge 0$, then $aX + bY$ is a submartingale.
 - If $X$ is a submartingale and $Y$ is a martingale, then $X + Y$ is a submartingale.
 - $\max(X_t, Y_t)$ and $\min(X_t, Y_t)$ of two submartingales need not be a submartingale.
@@ -182,6 +183,7 @@ $$
 **Why class (D)?** The letter D stands for "Dirichlet" — class (D) processes arise naturally in potential theory as Dirichlet solutions. For supermartingales, class (D) is exactly the condition needed to apply optional sampling at unbounded stopping times.
 
 **Examples**:
+
 - Any uniformly integrable martingale is class (D).
 - Bounded supermartingales are class (D).
 - $W_t$ on $[0, T]$ is class (D) (by Doob's $L^2$ inequality: $\mathbb{E}[\sup_{t \le T} W_t^2] \le 4T$).

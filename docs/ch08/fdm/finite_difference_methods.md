@@ -209,6 +209,7 @@ Implemented using one-sided differences or ghost points.
 ### Grid Sizing
 
 **Rule of thumb**:
+
 - $S_{\max} \approx 3K$ to $5K$ for vanilla options
 - $\Delta S$ small enough to resolve payoff kink at $K$
 - Place grid point exactly at strike $K$
@@ -218,6 +219,7 @@ Implemented using one-sided differences or ghost points.
 The payoff $(S-K)^+$ has a kink at $S = K$, causing accuracy issues.
 
 **Remedies**:
+
 1. Use fine grid near $K$
 2. Apply payoff smoothing
 3. Use Rannacher time-stepping

@@ -7,6 +7,7 @@
 Martingale Optimal Transport (MOT) represents a powerful synthesis of optimal transport theory and martingale theory, providing a framework for robust derivative pricing that combines geometric insights with financial constraints. This theory addresses the fundamental question: **What is the optimal distribution of a martingale given its marginal distributions?**
 
 MOT has emerged as a central tool in quantitative finance for:
+
 1. **Model-free pricing**: Deriving tight bounds on exotic derivatives using only vanilla option prices
 2. **Robust hedging**: Constructing optimal hedging strategies under model uncertainty
 3. **Calibration**: Ensuring no-arbitrage in fitted volatility surfaces
@@ -82,6 +83,7 @@ $$
 
 
 **Interpretation**: 
+
 - $\phi(x)$: "Potential" at source location $x$
 - $\psi(y)$: "Potential" at target location $y$
 - Constraint ensures no arbitrage in transport economy
@@ -104,6 +106,7 @@ where $\phi^c$ is the $c$-transform of $\phi$.
 
 
 **Setup**: Consider two time points $0 < T$ with:
+
 - Initial distribution $\mu$ on $\mathbb{R}_+$ (current asset prices)
 - Terminal distribution $\nu$ on $\mathbb{R}_+$ (implied by option prices at maturity $T$)
 
@@ -211,6 +214,7 @@ $$
 
 
 **Given Information**:
+
 - Current stock price $S_0$
 - Call option prices $C(K)$ for strikes $K \in \mathcal{K}$
 - Maturity $T$
@@ -250,6 +254,7 @@ $$
 subject to $\phi(x) + \phi^*(y) \geq g(x, y)$ for all $x, y$.
 
 **Interpretation**: 
+
 - $\phi(x)$ is a "potential function" 
 - The bound is achieved by a static portfolio of vanilla options plus cash
 - This provides a super-replication strategy
@@ -281,6 +286,7 @@ $$
 **Theorem** (Static Replication): The optimal dual potentials $\phi^*$ and $\psi^*$ correspond to portfolios of vanilla options that super-replicate (for upper bound) or sub-replicate (for lower bound) the exotic payoff.
 
 **Construction**: The superhedging portfolio consists of:
+
 - A position in the stock: $\theta_S = \phi'(S_0)$ (if $\phi$ is differentiable)
 - Positions in calls: density $\theta_C(K) = \partial^2 \phi^*/\partial K^2$
 - Cash: $\theta_0$
@@ -305,6 +311,7 @@ $$
 **Marginals**: Given distributions $\mu_0, \mu_1, \ldots, \mu_n$ at each time.
 
 **Multi-Marginal MOT**: Find joint distribution $\pi$ on $\prod_{i=0}^n \mathbb{R}_+$ such that:
+
 1. Marginal constraints: $\pi_i = \mu_i$ for each $i$
 2. Martingale property: $\mathbb{E}_{\pi}[S_{T_{i+1}} | S_{T_i}] = S_{T_i}$ for all $i$
 
@@ -332,6 +339,7 @@ $$
 **Strong Duality**: Equality holds under regularity conditions.
 
 **Duality Gap**: In multi-period settings, duality gaps can occur due to:
+
 - Non-compactness
 - Lack of convexity in augmented space
 - Technical measure-theoretic issues
@@ -345,6 +353,7 @@ $$
 
 
 **Grid Setup**: Discretize state spaces:
+
 - $S_0 \in \{s_1^0, s_2^0, \ldots, s_{N_0}^0\}$
 - $S_T \in \{s_1^T, s_2^T, \ldots, s_{N_T}^T\}$
 
@@ -425,6 +434,7 @@ where Penalty enforces the constraints $\phi + \psi \leq c$ and martingale condi
 **Stochastic Gradient Descent**: Sample from $\mu$ and $\nu$, compute gradients, and update network parameters.
 
 **Advantages**: 
+
 - Scalable to high dimensions
 - Can handle complex cost functions
 - Amortized computation across multiple queries
@@ -501,6 +511,7 @@ $$
 **Challenge**: Payoff depends on joint distribution of $(S_{T_1}, S_{T_2})$, not just marginals.
 
 **MOT Approach**: 
+
 - Use marginals at $T_1$ and $T_2$ from market option prices
 - Compute robust bounds via multi-period MOT
 
@@ -550,6 +561,7 @@ $$
 **Challenge**: VIX is not directly tradable; hedging requires S&P 500 options.
 
 **MOT Approach**: 
+
 - Treat VIX as a functional of option prices
 - Use MOT to find worst-case/best-case scenarios for VIX option values
 - Construct static hedges using S&P 500 options
@@ -617,6 +629,7 @@ for all convex functions $f$ for which both integrals exist.
 **ICP Property**: A cost function $c$ satisfies ICP if every optimal coupling in $\mathcal{M}(\mu, \nu)$ is supported on a "paving" of $\mathbb{R} \times \mathbb{R}$ by convex sets.
 
 **Examples**:
+
 - $c(x, y) = |y - x|$ (absolute difference)
 - $c(x, y) = (y - x)^+$ (call payoff)
 - $c(x, y) = (y - x)^2$ (squared error)
@@ -672,6 +685,7 @@ where $\preceq_c$ denotes convex order.
 
 
 **Root Embedding**: Given marginals $\mu$ and $\nu$ with $\mu \preceq_c \nu$, construct a martingale $(M_t)_{t \in [0, 1]}$ with:
+
 - $M_0 \sim \mu$
 - $M_1 \sim \nu$
 
@@ -743,11 +757,13 @@ $$
 
 
 **Input Data**:
+
 - Current spot price $S_0$
 - Market call prices $\{C(K_i)\}_{i=1}^n$ at maturity $T$
 - Risk-free rate $r$
 
 **Marginal Extraction**:
+
 - Compute risk-neutral density using Breeden-Litzenberger:
 
   $$
@@ -787,6 +803,7 @@ subject to  sum_j π[i,j] = μ[i]  for all i
 
 
 **Extract Hedge**: From optimal dual potentials:
+
 - Stock position: $\theta_S = \phi'(S_0)$
 - Option positions: $\theta_C(K) = \phi^{''*}(K)$
 
@@ -798,6 +815,7 @@ subject to  sum_j π[i,j] = μ[i]  for all i
 
 
 **Parameter Variation**: 
+
 - Perturb strike prices
 - Change time to maturity
 - Adjust interest rate
@@ -815,6 +833,7 @@ subject to  sum_j π[i,j] = μ[i]  for all i
 **Payoff**: $g(S_T) = \mathbb{1}_{\{S_T > K\}}$
 
 **Marginals**: 
+
 - $\mu = \delta_{100}$ (point mass at $S_0 = 100$)
 - $\nu$ from market call prices with strikes $\{90, 95, 100, 105, 110, 115, 120\}$
 
@@ -874,6 +893,7 @@ $$
 **Challenge**: Curse of dimensionality for $d > 2$ assets.
 
 **Approaches**:
+
 - **Dimensionality reduction**: Project onto lower-dimensional subspaces
 - **Tensor methods**: Exploit structure in high-dimensional couplings
 - **Neural networks**: Parameterize couplings or potentials with deep networks
@@ -882,6 +902,7 @@ $$
 
 
 **Martingale Diffusion**: Given marginals $(\mu_t)_{t \in [0,T]}$, construct diffusion process $(X_t)$ with:
+
 - Prescribed marginals
 - Martingale property
 
@@ -900,6 +921,7 @@ with $\int x v \rho dx = 0$ (martingale).
 
 
 **Problem**: Fit volatility surface ensuring:
+
 - No calendar arbitrage
 - No butterfly arbitrage
 - Martingale property
@@ -914,6 +936,7 @@ with $\int x v \rho dx = 0$ (martingale).
 **Generative Models**: Use MOT to train generative adversarial networks (GANs) with martingale constraints.
 
 **Applications**:
+
 - Synthetic market data generation
 - Stress testing
 - Scenario analysis
@@ -938,14 +961,17 @@ with $\int x v \rho dx = 0$ (martingale).
 
 
 **For Traders**:
+
 - Robust pricing bounds quantify model uncertainty
 - Static hedges reduce gamma risk and transaction costs
 
 **For Risk Managers**:
+
 - Worst-case scenarios identified via extremal martingale couplings
 - Stress testing calibrated to no-arbitrage constraints
 
 **For Quants**:
+
 - Calibration algorithms ensuring arbitrage-free surfaces
 - New product design guided by MOT bounds
 
@@ -953,6 +979,7 @@ with $\int x v \rho dx = 0$ (martingale).
 
 
 MOT represents a profound synthesis of:
+
 - **Probability Theory**: Martingales and stochastic processes
 - **Optimization**: Convex analysis and duality
 - **Geometry**: Optimal transport and Wasserstein space

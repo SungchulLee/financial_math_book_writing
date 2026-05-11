@@ -3,28 +3,20 @@
 The **$T$-forward measure** is a probability measure that uses the zero-coupon bond $P(t,T)$ as numéraire. It is particularly useful for pricing interest rate derivatives where the payoff occurs at a specific future date $T$.
 
 The central advantage of the forward measure is that it **removes the randomness of
-discounting**. Under the risk-neutral measure $\mathbb{Q}$, pricing requires computing
-$\mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r_s\,ds}\,\Phi_T]$, where the stochastic discount
-factor and the payoff may be correlated. The forward measure absorbs this stochastic
-discount factor into the probability weighting, so that pricing reduces to a simple
-expectation $P(t,T)\,\mathbb{E}^{\mathbb{Q}^T}[\Phi_T]$ with a deterministic prefactor.
-In this sense, the forward measure makes the payoff maturity $T$ the natural reference
-point.
+discounting**: pricing reduces to $P(t,T)\,\mathbb{E}^{\mathbb{Q}^T}[\Phi_T]$ with a
+deterministic prefactor, avoiding the correlation between stochastic discount factor
+and payoff that complicates the
+[risk-neutral valuation formula](risk_neutral_valuation_principle.md).
 
 ---
 
 ## Definition
 
-### The Numéraire
+The forward measure is the [numéraire framework](numeraire.md) applied to the
+$T$-maturity zero-coupon bond $P(t,T)$ (with $P(T,T) = 1$ and $P(t,T) > 0$).
 
-The **$T$-maturity zero-coupon bond** has price process $P(t,T)$ satisfying:
-
-- $P(T,T) = 1$ (pays 1 at maturity)
-- $P(t,T) > 0$ for $t < T$
-
-### The T-Forward Measure
-
-The $T$-forward measure $\mathbb{Q}^T$ is defined by the Radon–Nikodym derivative:
+By the [change-of-numéraire formula](numeraire.md#relationship-between-measures), the
+$T$-forward measure $\mathbb{Q}^T$ has Radon–Nikodym derivative:
 
 $$
 \boxed{
@@ -40,11 +32,8 @@ where $B_t = e^{\int_0^t r_s\,ds}$ is the money market account and $\mathbb{Q}$ 
 
 ### 1. Bond-Deflated Prices are Martingales
 
-Under $\mathbb{Q}^T$, for any traded asset $S_t$:
-
-$$
-\frac{S_t}{P(t,T)} \text{ is a } \mathbb{Q}^T\text{-martingale}
-$$
+By the [numéraire theorem](numeraire.md#the-fundamental-theorem-for-numéraires),
+$S_t / P(t,T)$ is a $\mathbb{Q}^T$-martingale for any traded asset $S_t$.
 
 ### 2. Forward Prices are Martingales
 
@@ -91,10 +80,8 @@ $$
 
 Under $\mathbb{Q}$: $W_t^{\mathbb{Q}}$ is Brownian motion.
 
-The change of numéraire from $B_t$ to $P(t,T)$ induces a new measure under which
-bond-denominated price processes are martingales. The Radon–Nikodym derivative
-depends on the bond dynamics, and the corresponding Girsanov kernel is the bond
-volatility $\sigma_P(t,T)$. Consequently:
+The [change of numéraire](numeraire.md) from $B_t$ to $P(t,T)$ shifts the Brownian
+motion by the bond volatility $\sigma_P(t,T)$:
 
 $$
 W_t^{\mathbb{Q}^T} = W_t^{\mathbb{Q}} - \int_0^t \sigma_P(s,T)\,ds
@@ -165,7 +152,7 @@ $$
 If $L(t;T,T+\delta)$ is log-normal under $\mathbb{Q}^{T+\delta}$ with volatility $\sigma_L$:
 
 $$
-V_t = P(t,T+\delta) \cdot \delta \cdot [L_t\Phi(d_1) - K\Phi(d_2)]
+V_t = P(t,T+\delta) \cdot \delta \cdot [L_t\mathcal{N}(d_1) - K\mathcal{N}(d_2)]
 $$
 
 This is **Black's formula for caplets**.
@@ -264,6 +251,7 @@ All are equivalent measures connected by Radon–Nikodym derivatives.
 | Forward starting options | Payoff depends on forward price |
 
 **Avoid** forward measure for:
+
 - Path-dependent options (use $\mathbb{Q}$)
 - American options (early exercise)
 - Options with multiple payment dates (use swap measure)
@@ -393,7 +381,7 @@ A caplet with strike $K = 0.05$ on the LIBOR rate $L(T; T, T+\delta)$ with $\del
     Under Black's formula for the caplet:
 
     $$
-    V_0 = P(0,T+\delta) \cdot \delta \cdot [L_0\Phi(d_1) - K\Phi(d_2)]
+    V_0 = P(0,T+\delta) \cdot \delta \cdot [L_0\mathcal{N}(d_1) - K\mathcal{N}(d_2)]
     $$
 
     where
@@ -495,7 +483,7 @@ Consider the exchange option with payoff $(S_T^1 - S_T^2)^+$. Using $S_t^2$ as n
     Since $R_t$ is a martingale, its log-normal dynamics have zero drift (in the risk-neutral sense for this numéraire), and the problem reduces to a Black-Scholes call with underlying $R_t$, strike 1, and volatility $\sigma$. Multiplying by $S_t^2$:
 
     $$
-    V_t = S_t^1\Phi(d_1) - S_t^2\Phi(d_2)
+    V_t = S_t^1\mathcal{N}(d_1) - S_t^2\mathcal{N}(d_2)
     $$
 
     where

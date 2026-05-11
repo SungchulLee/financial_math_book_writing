@@ -194,6 +194,7 @@ $$
 $$
 
 where:
+
 - $\mathcal{M}(\delta_{S_0}, \mu)$ is the set of martingale couplings: joint distributions $\pi$ with marginals $\delta_{S_0}$ and $\mu$, satisfying $\int y \, d\pi(x, y | x) = x$
 - $c(x, y)$ is the cost function encoding the exotic payoff
 
@@ -209,6 +210,7 @@ $$
 $$
 
 where:
+
 - $\phi: \mathbb{R}_+ \to \mathbb{R}$ is a payoff function of vanilla options (static hedge)
 - $h_t$ is a dynamic trading strategy in the underlying
 
@@ -629,7 +631,7 @@ by discretizing the integral over the support of $\mu$.
     **Setup.** Under Black-Scholes with $\sigma = 0.25$, $S_0 = 100$, $T = 1$, $r = 0$, the call price is:
 
     $$
-    C_{\text{BS}}(K) = S_0 \Phi(d_1) - K\Phi(d_2)
+    C_{\text{BS}}(K) = S_0 \mathcal{N}(d_1) - K\mathcal{N}(d_2)
     $$
 
     where $d_1 = \frac{\log(S_0/K) + \sigma^2 T/2}{\sigma\sqrt{T}}$, $d_2 = d_1 - \sigma\sqrt{T}$, and $\Phi$ is the standard normal CDF.

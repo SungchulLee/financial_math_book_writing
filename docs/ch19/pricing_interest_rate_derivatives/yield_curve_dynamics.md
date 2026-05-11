@@ -33,6 +33,7 @@ $$
 
 
 Consequences:
+
 - the curve moves in a low-dimensional way,
 - all maturities are driven by the same state variable(s),
 - this limits flexibility but ensures consistency.
@@ -43,6 +44,7 @@ Consequences:
 
 
 No-arbitrage imposes strong constraints on curve dynamics:
+
 - drifts of bond prices are determined by volatility,
 - arbitrage-free evolution ties together different maturities.
 
@@ -54,6 +56,7 @@ These ideas are formalized in HJM theory.
 
 
 Yield curve dynamics determine:
+
 - swap and FRA pricing,
 - cap/floor and swaption dynamics,
 - hedging behavior across maturities.

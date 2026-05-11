@@ -272,3 +272,44 @@ if __name__ == "__main__":
 
     print("="*70)
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+State the boundary conditions for the European put at $S = 0$ and $S = S_{\max}$ in the explicit FDM. Explain why the $S = 0$ boundary is critical for put pricing.
+
+??? success "Solution to Exercise 1"
+    At $S = 0$: $V(0, t) = K e^{-r(T-t)}$, since the put is certain to pay $K$ at maturity. At $S = S_{\max}$: $V(S_{\max}, t) = 0$, since the put is deeply out of the money. The $S = 0$ boundary is critical because the put value reaches its maximum there ($K e^{-rT} \approx \$95.12$), and the option dynamics change rapidly in this region. Discretization errors at this boundary propagate throughout the solution.
+
+---
+
+**Exercise 2.**
+Verify put-call parity numerically: for $C = 10.4506$, $P = 5.5735$, $S_0 = 100$, $K = 100$, $T = 1$, $r = 0.05$, check that $C - P = S_0 - K e^{-rT}$.
+
+??? success "Solution to Exercise 2"
+    $$
+    C - P = 10.4506 - 5.5735 = 4.8771
+    $$
+
+    $$
+    S_0 - K e^{-rT} = 100 - 100 e^{-0.05} = 100 - 95.1229 = 4.8771
+    $$
+
+    Put-call parity holds exactly. This serves as a consistency check: if the same FDM is applied to both call and put with identical parameters, the parity relation should be satisfied to numerical precision.
+
+---
+
+**Exercise 3.**
+Explain why the kink in the put payoff $\max(K - S, 0)$ at $S = K$ causes difficulties for finite difference methods.
+
+??? success "Solution to Exercise 3"
+    The payoff has a discontinuous first derivative at $S = K$ (slope jumps from $-1$ to $0$). Finite difference approximations assume smoothness; the kink introduces $O(1)$ errors in first-derivative approximations at $S = K$. These errors generate spurious oscillations propagating backward in time. Remedies include placing a grid point exactly at $K$, using non-uniform grids near $K$, or applying payoff smoothing.
+
+---
+
+**Exercise 4.**
+If the explicit FDM in original space has max error $\$0.4821$ and the log-space method has max error $\$0.0932$ (both with $M = 100$), compute the improvement factor and explain where the log-space advantage is most pronounced.
+
+??? success "Solution to Exercise 4"
+    The improvement factor is $0.4821 / 0.0932 \approx 5.17$. The advantage is most pronounced near $S = 0$, where the put value approaches $K e^{-rT}$ and changes rapidly. In original space, the uniform grid provides only a few points in the critical $S \in [0, 20]$ region. The log-space grid concentrates many more points near small $S$ values, dramatically reducing boundary-related errors for puts.

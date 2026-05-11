@@ -192,3 +192,53 @@ if __name__ == "__main__":
     original_style_plot()
     comprehensive_example()
 ```
+
+## Exercises
+
+**Exercise 1.**
+For the eigenfunction expansion of the heat equation with a step function $f(x) = 1$ on $[0.4, 0.6]$ and $L = 1$, derive the Fourier coefficient $A_n$.
+
+??? success "Solution to Exercise 1"
+    $$
+    A_n = \frac{2}{L}\int_0^L f(x)\sin(n\pi x/L)\,dx = 2\int_{0.4}^{0.6}\sin(n\pi x)\,dx
+    $$
+
+    $$
+    = 2\left[-\frac{\cos(n\pi x)}{n\pi}\right]_{0.4}^{0.6} = \frac{2}{n\pi}\bigl[\cos(0.4 n\pi) - \cos(0.6 n\pi)\bigr]
+    $$
+
+    Using the product-to-sum formula: $\cos A - \cos B = 2\sin\!\bigl(\frac{A+B}{2}\bigr)\sin\!\bigl(\frac{B-A}{2}\bigr)$, we get $A_n = \frac{4}{n\pi}\sin(0.5 n\pi)\sin(0.1 n\pi)$.
+
+---
+
+**Exercise 2.**
+How many Fourier modes $N$ are needed for the eigenfunction expansion to approximate the step function initial condition to within $L^\infty$ error of approximately 5%?
+
+??? success "Solution to Exercise 2"
+    For a step function, the Gibbs phenomenon causes an overshoot of about 9% regardless of $N$. However, away from the discontinuity, the error decreases as $N$ increases. The partial sum approximation error away from discontinuities scales as $O(1/N)$.
+
+    For 5% accuracy in the $L^\infty$ sense including boundary effects, we need $N \approx 100$ or more. Due to the Gibbs phenomenon at discontinuities, the $L^\infty$ error cannot be reduced below approximately 9% of the jump height using truncated Fourier series. Using $N = 100$ modes provides good accuracy in the interior while accepting the Gibbs oscillation at the edges.
+
+---
+
+**Exercise 3.**
+Compare the `quick_solve` wrapper approach to the direct `HeatEquation1D` class approach. What are the trade-offs in terms of flexibility versus convenience?
+
+??? success "Solution to Exercise 3"
+    The `quick_solve` function is a one-call convenience: it creates the solver, sets the initial condition, solves, optionally validates, and optionally plots. It is ideal for quick exploratory work.
+
+    The `HeatEquation1D` class offers more flexibility: you can solve with different methods without re-creating the object, access intermediate states, compare methods, and perform custom analysis. The class is better for systematic studies (convergence, stability) where you need to reuse the same setup with variations.
+
+---
+
+**Exercise 4.**
+After solving with Crank-Nicolson and validating against the eigenfunction expansion, the max absolute error is $3.2 \times 10^{-4}$. If you double $N_x$ (keeping the same $\alpha$ by adjusting $N_t$), what error do you expect for a second-order method?
+
+??? success "Solution to Exercise 4"
+    For a second-order method, the error scales as $O(\Delta x^2)$. Doubling $N_x$ halves $\Delta x$, so $\Delta x^2$ is quartered. The expected error is
+
+    $$
+    E_{\text{new}} \approx \frac{3.2 \times 10^{-4}}{4} = 8.0 \times 10^{-5}
+    $$
+
+    To maintain the same $\alpha = D\Delta t/\Delta x^2$ with halved $\Delta x$, we need $\Delta t$ quartered, hence $N_t$ quadrupled. This fourfold increase in time steps combined with doubled spatial points makes the refined computation about 8 times more expensive.

@@ -280,6 +280,7 @@ a starting point for hedging, and a benchmark against which model risk can
 be measured.
 
 !!! tip "Trader translation"
+
     - Price with implied vol ($\mathbb{Q}$).
     - Make money with realized vol ($\mathbb{P}$).
 

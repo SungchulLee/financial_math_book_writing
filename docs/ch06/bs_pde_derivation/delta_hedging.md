@@ -133,7 +133,7 @@ The dividend yield replaces $r$ by $r - q$ in the first-order (drift) term, whil
 
 
 ??? note "On self-financing and rebalancing"
-    This derivation holds $\Delta$ fixed over each infinitesimal interval $[t, t+dt]$ and then rebalances—a "freeze-and-rebalance" heuristic that avoids the machinery of self-financing strategies. In the standard Black–Scholes setting this leads to the same PDE as the rigorous self-financing replication argument (see the [rigorous version](replication.md)), which constructs $(\alpha_t, \beta_t)$ in the stock and bond satisfying $dV_t = \alpha_t\,dS_t + \beta_t\,dB_t$ with no external cash flows.
+    This derivation holds $\Delta$ fixed over each infinitesimal interval $[t, t+dt]$ and then rebalances—a "freeze-and-rebalance" heuristic that avoids the machinery of self-financing strategies. In the standard Black–Scholes setting this leads to the same PDE as the rigorous self-financing replication argument (see the [rigorous version](replication.md)), which constructs $(\alpha_t, \beta_t)$ in the stock and bond satisfying $dV_t = \alpha_t\,dS_t + \beta_t\,dB_t$ with no external cash flows. The informal hedge ratio $\Delta = V_S$ used here and the rigorous stock holding $\alpha_t = V_S$ of the next page are the same object: the two pages differ in how the bond leg is treated, not in the stock leg.
 
 
 ## Summary
@@ -147,7 +147,7 @@ The derivation proceeds in three steps:
 
 The Black–Scholes PDE with terminal condition $V(T, S) = \Phi(S)$ is a **backward parabolic equation**: it is solved from $t = T$ back to $t = 0$.
 
-For alternative derivations that arrive at the same PDE via different reasoning, see [Black–Scholes PDE via Change of Numéraire](change_of_numeraire.md) (martingale condition on $V/S$) and [Risk-Neutral Pricing](../../ch01/fundamental_theorem_of_asset_pricing/numeraire_and_change_of_measure.md) (Feynman–Kac representation under the equivalent martingale measure).
+For alternative derivations that arrive at the same PDE via different reasoning, see [Black–Scholes PDE via Change of Numéraire](change_of_numeraire.md) (martingale condition on $V/S$) and [Risk-Neutral Pricing](../../ch01/numeraire_and_change_of_measure/numeraire_and_change_of_measure.md) (Feynman–Kac representation under the equivalent martingale measure).
 
 
 ## References

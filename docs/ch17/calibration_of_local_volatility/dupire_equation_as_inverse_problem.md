@@ -33,6 +33,7 @@ A common (simplified) form is:
 $$
 \partial_T C(K,T)
 = \frac12\,\sigma_{\text{loc}}^2(T,K)\,K^2\,\partial_{KK} C(K,T)
+
 - (r-q)K\,\partial_K C(K,T)
 + q\,C(K,T)
 $$

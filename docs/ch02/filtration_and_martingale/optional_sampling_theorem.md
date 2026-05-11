@@ -1,12 +1,12 @@
 # Optional Sampling Theorem
 
-[Martingales](martingales.md) are fair games at deterministic times: $\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s$. What happens when we replace $s, t$ by random times $\sigma \le \tau$? The Optional Sampling Theorem answers precisely this question: when does $\mathbb{E}[M_\tau \mid \mathcal{F}_\sigma] = M_\sigma$?
+[Martingales](martingale.md) are fair games at deterministic times: $\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s$. What happens when we replace $s, t$ by random times $\sigma \le \tau$? The Optional Sampling Theorem answers precisely this question: when does $\mathbb{E}[M_\tau \mid \mathcal{F}_\sigma] = M_\sigma$?
 
 ---
 
 ## The Bounded Case
 
-**Theorem (Optional Sampling, bounded version).** Let $M$ be a right-continuous martingale and let $\sigma \le \tau \le T$ be [stopping times](stopping_times.md) with $T < \infty$. Then
+**Theorem (Optional Sampling, bounded version).** Let $M$ be a right-continuous martingale and let $\sigma \le \tau \le T$ be [stopping times](stopping_time.md) with $T < \infty$. Then
 
 $$
 \mathbb{E}[M_\tau \mid \mathcal{F}_\sigma] = M_\sigma \quad \text{a.s.}
@@ -189,3 +189,49 @@ with the inequality reversed for submartingales. In particular, $|M|$ (submartin
     For the unbounded $\tau$: $\mathbb{P}(\tau < \infty) = 1$ but $\mathbb{E}[\tau] = \infty$ (and $S$ is not UI on $[0, \tau]$). None of the sufficient conditions apply, so $\mathbb{E}[S_\tau] \ne \mathbb{E}[S_0]$ is possible — and indeed $\mathbb{E}[S_\tau] = 1$.
 
     For the truncation $\tau_N = \tau \wedge N$: this is bounded by $N$, so the bounded-case theorem applies and $\mathbb{E}[S_{\tau_N}] = 0$ for every finite $N$. The limit $N \to \infty$ is where things break: $S_{\tau_N} \to S_\tau = 1$ a.s., but $\{S_{\tau_N}\}_N$ is not uniformly integrable, so expectations do not pass to the limit.
+
+---
+
+**Exercise 7.**
+Let $M_t$ be a martingale and $\tau$ a bounded stopping time. Show that the stopped process $M_{t \wedge \tau}$ is also a martingale. Then explain in words why stopping prevents "bad behavior" in local martingales.
+
+??? success "Solution to Exercise 7"
+    Let $N_t := M_{t \wedge \tau}$. Since $M$ is adapted and $\tau$ is a stopping time, $N_t$ is adapted. Since $M$ is a martingale and $\tau$ is a bounded stopping time, the optional stopping theorem applies to the bounded stopping times $s \wedge \tau \leq t \wedge \tau$, giving
+
+    $$
+    \mathbb{E}[M_{t \wedge \tau} \mid \mathcal{F}_s] = M_{s \wedge \tau}
+    $$
+
+    Hence $\mathbb{E}[N_t \mid \mathcal{F}_s] = N_s$. Therefore $N_t = M_{t \wedge \tau}$ is a martingale.
+
+    **Why stopping helps.** A process may behave badly only when it wanders into extreme regions where integrability fails or huge tail events appear. Stopping cuts the path off before it reaches those regions. So the stopped process remains "well-behaved," and martingale arguments become valid again. Localization is exactly the idea of choosing stopping times that hide the bad behavior until farther and farther out.
+
+---
+
+**Exercise 8.**
+Let $M_t$ be a local martingale and $\tau$ an unbounded stopping time. Give an example showing that $\mathbb{E}[M_\tau] = \mathbb{E}[M_0]$ may fail.
+
+??? success "Solution to Exercise 8"
+    A classical example uses Brownian motion $W_t$, which is a true martingale. Let
+
+    $$
+    \tau = \inf\{t \geq 0 : W_t = 1\}.
+    $$
+
+    This stopping time is almost surely finite, but unbounded. Since $W_\tau = 1$ a.s. and $W_0 = 0$:
+
+    $$
+    \mathbb{E}[W_\tau] = 1 \neq 0 = \mathbb{E}[W_0].
+    $$
+
+    **Why it fails.** Localize by $\tau_n = \tau \wedge n$. Each $\tau_n$ is bounded, so optional stopping applies and $\mathbb{E}[W_{\tau_n}] = 0$ for every $n$. But $W_{\tau_n} \to W_\tau = 1$ a.s., so
+
+    $$
+    \lim_{n \to \infty} \mathbb{E}[W_{\tau_n}] = 0
+    \quad \text{yet} \quad
+    \mathbb{E}\!\left[\lim_{n \to \infty} W_{\tau_n}\right] = 1.
+    $$
+
+    The exchange of limit and expectation fails because $\{W_{\tau_n}\}_n$ is not uniformly integrable. To hit level $+1$, Brownian motion often wanders far negative first. These rare but large negative excursions keep $\mathbb{E}[W_{\tau_n}] = 0$ for each $n$. But as $n \to \infty$, the negative excursions disappear pathwise (every path eventually hits $+1$), yet their compensating contribution to expectation is lost.
+
+    **When optional stopping does work.** The identity $\mathbb{E}[M_\tau] = \mathbb{E}[M_0]$ holds if any of the following is satisfied: (i) $\tau$ is bounded a.s.; (ii) the family $\{M_{t \wedge \tau}\}_{t \geq 0}$ is uniformly integrable; (iii) $M$ is a uniformly integrable martingale. Without such conditions, expectation need not be preserved.

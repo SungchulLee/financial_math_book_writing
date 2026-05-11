@@ -15,6 +15,7 @@ df(t, T) = \alpha(t, T) \, dt + \sigma(t, T) \, dW_t^{\mathbb{Q}}
 $$
 
 where:
+
 - $f(t, T)$: forward rate at time $t$ for maturity $T$
 - $\alpha(t, T)$: drift (to be determined)
 - $\sigma(t, T)$: volatility (modeling input)
@@ -285,12 +286,14 @@ The key insight is:
 > **In the HJM framework, once you specify the volatility structure $\sigma(t, T)$, the drift $\alpha(t, T)$ is uniquely determined by no-arbitrage.**
 
 This is analogous to:
+
 - Black-Scholes: drift of stock under $\mathbb{Q}$ is $r$ (determined)
 - Girsanov: drift adjustment absorbs market price of risk
 
 ### Volatility is the Modeling Choice
 
 The modeler chooses $\sigma(t, T)$, which controls:
+
 - How different maturities move together
 - The shape of yield curve dynamics
 - Complexity vs. tractability
@@ -360,6 +363,7 @@ This recovers the Hull-White forward rate drift.
 ### Initial Curve is Matched
 
 By construction, the HJM model:
+
 - Starts with $f(0, T)$ given by market data
 - Evolves $f(t, T)$ according to the SDE
 - Satisfies no-arbitrage at all times
@@ -415,6 +419,7 @@ where $\Sigma(t, T) = \int_t^T \sigma(t, u) \, du$ is the bond volatility.
 ### Calibration Focus
 
 Since drift is determined, calibration focuses on:
+
 - Volatility parameters
 - Factor structure
 - Correlation patterns
@@ -422,6 +427,7 @@ Since drift is determined, calibration focuses on:
 ### Stability Considerations
 
 The drift condition involves **integration**, which smooths out volatility irregularities. However:
+
 - Numerical integration must be accurate
 - Discontinuous volatilities can cause issues
 - Maturity-dependent regularization may be needed

@@ -164,6 +164,7 @@ E --> F["X_{n+1} = X_n + b Δt + σ ΔW"]
 ```
 
 !!! note "Euler-Maruyama Algorithm"
+
     1. Set time grid: $t_n = n\Delta t$ for $n = 0, 1, \ldots, N$
     2. Initialize: $X_0 = x$
     3. For $n = 0, 1, \ldots, N-1$:

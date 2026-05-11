@@ -51,6 +51,7 @@ $$
 there are **two sources of randomness** ($W^S$, $W^V$) but only **one traded asset** ($S$). The volatility shock $dW_t^V$ cannot be hedged by trading $S$ alone.
 
 **Dimension count:**
+
 - Risk factors: 2 (price, volatility)
 - Traded instruments: 1 (underlying) + 1 (bond) = 2
 - But bond provides no volatility exposure → effective instruments for volatility: 0
@@ -64,6 +65,7 @@ dS_t = \mu S_t\,dt + \sigma S_t\,dW_t + S_{t^-}(e^{J_t} - 1)\,dN_t
 $$
 
 where $N_t$ is a Poisson process, then:
+
 - Jump timing is unpredictable
 - Jump size may be random
 - Continuous hedging cannot eliminate jump risk
@@ -120,6 +122,7 @@ $$
 $$
 
 where:
+
 - $\underline{C}$ = subhedging price (price of cheapest super-replicating portfolio)
 - $\overline{C}$ = superhedging price
 
@@ -158,6 +161,7 @@ Volatility occupies a special role in incomplete markets:
 ### Volatility Cannot Be Directly Traded
 
 While volatility derivatives exist (variance swaps, VIX options), in many markets:
+
 - Volatility is not a directly tradeable asset
 - Delta hedging eliminates only price risk, not volatility risk
 - Vega exposure remains after delta hedging
@@ -184,6 +188,7 @@ $$
 $$
 
 This premium compensates for:
+
 - Jump risk
 - Volatility-of-volatility risk
 - Correlation with market downturns (volatility spikes when markets crash)
@@ -244,6 +249,7 @@ Since perfect replication is impossible:
 ### Model Selection
 
 Different models imply different:
+
 - Risk-neutral dynamics
 - Volatility risk premia
 - Hedging strategies

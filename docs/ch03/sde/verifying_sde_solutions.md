@@ -7,36 +7,15 @@ Verification is typically easier than solving an SDE itself. Once a candidate so
 !!! abstract "Learning Goals"
     After completing this section you should be able to:
 
-    - state the formal definition of a strong solution to an SDE
     - apply Itô's lemma to compute the differential of a proposed solution
     - match drift and diffusion coefficients to verify correctness
     - recognize common pitfalls in SDE verification
 
 ---
 
-## 1. What It Means to Solve an SDE
+## 1. The Verification Idea
 
-### Formal Definition
-
-Consider a general SDE
-
-$$
-dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t
-$$
-
-We say that $X_t$ is a **strong solution** if it is an adapted, continuous process satisfying the integral equation
-
-$$
-X_t = X_0 + \int_0^t \mu(X_s, s)\,ds + \int_0^t \sigma(X_s, s)\,dW_s
-$$
-
-almost surely for all $t \geq 0$, where the stochastic integral is understood in the Itô sense.
-
-Note that the solution may depend on the **entire Brownian path** up to time $t$, not simply on the current value $W_t$. For instance, the Ornstein–Uhlenbeck solution involves a stochastic integral over the path.
-
-### Why Verification Works
-
-Under conditions ensuring existence and uniqueness of the SDE, any adapted process whose Itô differential has the same drift and diffusion coefficients as the SDE, and satisfies the initial condition, must coincide with the unique solution.
+Given the solution concept from the previous section, verification asks a direct question: does a proposed process actually satisfy a given SDE? Under conditions ensuring existence and uniqueness, any adapted process whose Itô differential has the correct drift and diffusion coefficients, and satisfies the initial condition, must coincide with the unique solution.
 
 The verification procedure is:
 

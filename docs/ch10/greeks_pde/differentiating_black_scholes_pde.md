@@ -37,6 +37,7 @@ $$
 $$
 
 Computing each term:
+
 - $\frac{\partial}{\partial S}(S^2 V_{SS}) = 2S V_{SS} + S^2 V_{SSS}$
 - $\frac{\partial}{\partial S}(S V_S) = V_S + S V_{SS}$
 
@@ -44,6 +45,7 @@ Substituting $\Delta = V_S$, $\Gamma = V_{SS}$, and $\Delta_S = \Gamma$:
 
 $$
 \frac{\partial \Delta}{\partial t}
+
 + \frac{1}{2}\sigma^2(2S\Gamma + S^2\Gamma_S)
 + r(\Delta + S\Gamma)
 - r\Delta = 0
@@ -54,6 +56,7 @@ Simplifying:
 $$
 \boxed{
 \frac{\partial \Delta}{\partial t}
+
 + \frac{1}{2}\sigma^2 S^2 \Delta_{SS}
 + (r + \sigma^2)S\,\Delta_S
 + \sigma^2 \Delta
@@ -78,6 +81,7 @@ Let $\Gamma = V_{SS}$. Differentiate the delta PDE with respect to $S$:
 
 $$
 \frac{\partial \Gamma}{\partial t}
+
 + \frac{1}{2}\sigma^2 S^2 \Gamma_{SS}
 + (r + 2\sigma^2)S\,\Gamma_S
 + (2\sigma^2 + r)\Gamma
@@ -89,6 +93,7 @@ Simplifying:
 $$
 \boxed{
 \frac{\partial \Gamma}{\partial t}
+
 + \frac{1}{2}\sigma^2 S^2 \Gamma_{SS}
 + (r + 2\sigma^2)S\,\Gamma_S
 + 2\sigma^2 \Gamma = 0
@@ -103,6 +108,7 @@ The terminal condition is $\Gamma(T,S) = \Phi''(S)$. For a vanilla call, $\Phi''
 
 
 These PDEs are useful for:
+
 - **Boundary behavior analysis**: determining far-field limits $S \to 0$ and $S \to \infty$
 - **Maximum principle arguments**: establishing bounds on Greeks
 - **Regularity theory**: understanding smoothness away from maturity

@@ -26,6 +26,7 @@ The short rate $r_t$ in the Vasicek model follows the SDE:
 $$dr_t = \alpha(\theta - r_t)dt + \sigma dW_t$$
 
 where:
+
 - $r_t$ is the instantaneous short rate at time $t$
 - $\alpha > 0$ is the **mean reversion speed** parameter
 - $\theta$ is the **long-run mean** (also called the equilibrium rate)
@@ -35,18 +36,21 @@ where:
 ### Interpretation of Parameters
 
 **Mean Reversion Speed ($\alpha$)**:
+
 - Controls how quickly rates revert to the long-run mean
 - Larger $\alpha$ means faster mean reversion
 - Small $\alpha$ means slow reversion (rates wander for longer periods)
 - Typical values: $\alpha \in [0.05, 1.0]$ depending on the modeling horizon
 
 **Long-Run Mean ($\theta$)**:
+
 - The equilibrium interest rate level
 - Represents the average rate around which short rates fluctuate
 - Typically calibrated to historical averages or market expectations
 - Can be constant or time-dependent in extensions
 
 **Volatility ($\sigma$)**:
+
 - Controls the magnitude of random fluctuations
 - Higher volatility means more pronounced rate movements
 - Typical values: $\sigma \in [0.005, 0.03]$ (50 to 300 basis points)
@@ -73,16 +77,19 @@ This is exactly the Ornstein-Uhlenbeck form with $\lambda = \alpha$.
 ### Properties of the OU Process
 
 **Mean Reversion**:
+
 - The process is attracted to its equilibrium level ($\theta$ for Vasicek)
 - The drift term $\alpha(\theta - r_t)$ is positive when $r_t < \theta$ and negative when $r_t > \theta$
 - This creates an automatic "restoring force" toward equilibrium
 
 **Stationary Distribution**:
+
 - In the long run, the process converges to a stationary distribution
 - For Vasicek: $r_\infty \sim \mathcal{N}(\theta, \sigma^2/(2\alpha))$
 - The stationary variance depends on both $\sigma$ (volatility) and $\alpha$ (mean reversion speed)
 
 **Path Properties**:
+
 - Paths are continuous but highly fluctuating
 - The process exhibits "clustering" behavior around the long-run mean
 - Mean reversion prevents explosive behavior (unlike geometric Brownian motion)
@@ -96,18 +103,21 @@ This is exactly the Ornstein-Uhlenbeck form with $\lambda = \alpha$.
 When plotting sample paths of the Vasicek model:
 
 **For strong mean reversion (large $\alpha$)**:
+
 - Paths that deviate above $\theta$ are quickly pulled back down
 - Same for paths below $\theta$: quickly restored upward
 - Paths oscillate tightly around the mean
 - Variation around the mean is relatively modest
 
 **For weak mean reversion (small $\alpha$)**:
+
 - Paths wander far from $\theta$ for extended periods
 - Slower return to equilibrium
 - More pronounced trends and trending behavior
 - Greater variation around the mean
 
 **Impact of volatility ($\sigma$)**:
+
 - Higher $\sigma$ causes more dramatic excursions from $\theta$
 - Mean reversion still operates, but the path is "noisier"
 - Extreme values become more likely
@@ -119,6 +129,7 @@ The instantaneous drift (expected change) of the short rate is:
 $$\mathbb{E}[dr_t | r_t] = \alpha(\theta - r_t)dt$$
 
 This shows that:
+
 - If $r_t > \theta$: the drift is negative (rates expected to decrease)
 - If $r_t < \theta$: the drift is positive (rates expected to increase)
 - If $r_t = \theta$: the drift is zero (equilibrium)
@@ -141,16 +152,19 @@ The magnitude of the expected change is proportional to the deviation from equil
 ## Extensions and Variants
 
 **Time-Dependent Parameters**:
+
 - $\alpha(t)$, $\theta(t)$, $\sigma(t)$ can be made time-dependent
 - Allows calibration to initial term structure
 - Hull-White model is Vasicek with time-varying $\theta(t)$
 
 **Multi-Factor Vasicek**:
+
 - Multiple correlated short-rate factors
 - Better captures term structure dynamics
 - More parameters but more flexibility
 
 **Negative Rate Handling**:
+
 - Original Vasicek allows negative rates (problematic pre-2008)
 - Modern implementations may add lower bounds
 - Alternative: CIR model prevents negative rates
@@ -173,7 +187,101 @@ The mean-reversion property makes the model particularly suitable for long-term 
 
 ## Exercises
 
-**Exercise 1.** For Vasicek parameters $\alpha = 0.3$, $\theta = 0.05$, $\sigma = 0.02$, compute the instantaneous expected drift $\mathbb{E}[dr_t \mid r_t]$ when $r_t = 0.02$, $r_t = 0.05$, and $r_t = 0.08$. Interpret the sign and magnitude of the drift in each case.
+---
+
+**Exercise 1.** Consider the linear SDE
+
+$$
+dX_t = (2 - 3X_t)\,dt + 4\,dW_t, \qquad X_0 = 0
+$$
+
+(a) Identify the mean-reversion speed $a$, long-term mean $\theta$, and volatility $\sigma$.
+
+(b) Solve using the integrating factor method. Write the integrating factor explicitly.
+
+(c) Compute $\mathbb{E}[X_t]$ and $\operatorname{Var}[X_t]$.
+
+??? success "Solution to Exercise 3"
+    The SDE $dX_t = (2 - 3X_t)\,dt + 4\,dW_t$ is an Ornstein-Uhlenbeck process.
+
+    **(a)** Rewrite the drift as $a(\theta - X_t) = 3(\frac{2}{3} - X_t)$, so:
+
+    - Mean-reversion speed: $a = 3$
+    - Long-term mean: $\theta = 2/3$
+    - Volatility: $\sigma = 4$
+
+    **(b)** The integrating factor is $M(t) = e^{3t}$. Define $Y_t = e^{3t}X_t$. By the Ito product rule (no quadratic covariation since $e^{3t}$ is deterministic):
+
+    $$
+    dY_t = 3e^{3t}X_t\,dt + e^{3t}\,dX_t = 3e^{3t}X_t\,dt + e^{3t}[(2 - 3X_t)\,dt + 4\,dW_t]
+    $$
+
+    $$
+    = 2e^{3t}\,dt + 4e^{3t}\,dW_t
+    $$
+
+    Integrating: $Y_t = Y_0 + \int_0^t 2e^{3s}\,ds + \int_0^t 4e^{3s}\,dW_s = 0 + \frac{2}{3}(e^{3t} - 1) + 4\int_0^t e^{3s}\,dW_s$
+
+    Dividing by $e^{3t}$:
+
+    $$
+    X_t = \frac{2}{3}(1 - e^{-3t}) + 4\int_0^t e^{-3(t-s)}\,dW_s
+    $$
+
+    **(c)** The expectation is (the stochastic integral has zero mean):
+
+    $$
+    \mathbb{E}[X_t] = \frac{2}{3}(1 - e^{-3t})
+    $$
+
+    The variance is computed via Ito isometry:
+
+    $$
+    \operatorname{Var}[X_t] = 16 \int_0^t e^{-6(t-s)}\,ds = 16 \cdot \frac{1 - e^{-6t}}{6} = \frac{8}{3}(1 - e^{-6t})
+    $$
+
+---
+
+**Exercise 2.** Solve the Vasicek model
+
+$$
+dr_t = 0.5(0.04 - r_t)\,dt + 0.01\,dW_t, \qquad r_0 = 0.03
+$$
+
+(a) Write the explicit solution for $r_t$.
+
+(b) Find the stationary distribution.
+
+(c) Compute $\mathbb{E}[r_1]$ and $\operatorname{Var}[r_1]$.
+
+??? success "Solution to Exercise 5"
+    The Vasicek model $dr_t = 0.5(0.04 - r_t)\,dt + 0.01\,dW_t$ has $a = 0.5$, $\theta = 0.04$, $\sigma = 0.01$, $r_0 = 0.03$.
+
+    **(a)** The explicit solution is:
+
+    $$
+    r_t = 0.03\,e^{-0.5t} + 0.04(1 - e^{-0.5t}) + 0.01\int_0^t e^{-0.5(t-s)}\,dW_s
+    $$
+
+    **(b)** The stationary distribution is $r_\infty \sim \mathcal{N}\!\left(\theta, \frac{\sigma^2}{2a}\right)$:
+
+    $$
+    r_\infty \sim \mathcal{N}\!\left(0.04,\; \frac{0.0001}{1.0}\right) = \mathcal{N}(0.04,\; 0.0001)
+    $$
+
+    The stationary standard deviation is $\sqrt{0.0001} = 0.01 = 1\%$.
+
+    **(c)** At $t = 1$:
+
+    $$
+    \mathbb{E}[r_1] = 0.03\,e^{-0.5} + 0.04(1 - e^{-0.5}) = 0.03 \times 0.6065 + 0.04 \times 0.3935 \approx 0.03394
+    $$
+
+    $$
+    \operatorname{Var}[r_1] = \frac{0.0001}{1.0}(1 - e^{-1.0}) = 0.0001 \times 0.6321 \approx 6.321 \times 10^{-5}
+    $$
+
+**Exercise 3.** For Vasicek parameters $\alpha = 0.3$, $\theta = 0.05$, $\sigma = 0.02$, compute the instantaneous expected drift $\mathbb{E}[dr_t \mid r_t]$ when $r_t = 0.02$, $r_t = 0.05$, and $r_t = 0.08$. Interpret the sign and magnitude of the drift in each case.
 
 ??? success "Solution to Exercise 1"
     The instantaneous expected drift is $\mathbb{E}[dr_t \mid r_t] = \alpha(\theta - r_t)\,dt$ with $\alpha = 0.3$ and $\theta = 0.05$.
@@ -204,7 +312,7 @@ The mean-reversion property makes the model particularly suitable for long-term 
 
 ---
 
-**Exercise 2.** Transform the Vasicek SDE into the standard OU form by defining $y_t = r_t - \theta$. Write the SDE for $y_t$ and identify the mean-reversion speed and volatility. What is the stationary distribution of $y_t$, and how does it relate to the stationary distribution of $r_t$?
+**Exercise 4.** Transform the Vasicek SDE into the standard OU form by defining $y_t = r_t - \theta$. Write the SDE for $y_t$ and identify the mean-reversion speed and volatility. What is the stationary distribution of $y_t$, and how does it relate to the stationary distribution of $r_t$?
 
 ??? success "Solution to Exercise 2"
     Define $y_t = r_t - \theta$. Then:
@@ -235,7 +343,7 @@ The mean-reversion property makes the model particularly suitable for long-term 
 
 ---
 
-**Exercise 3.** The stationary variance of the Vasicek model is $\sigma^2/(2\alpha)$. For $\alpha = 0.5$ and $\sigma = 0.02$, compute the stationary standard deviation. If $\alpha$ is halved to $0.25$ while keeping $\sigma$ fixed, by what factor does the stationary standard deviation change? Explain intuitively why weaker mean reversion increases long-run variability.
+**Exercise 5.** The stationary variance of the Vasicek model is $\sigma^2/(2\alpha)$. For $\alpha = 0.5$ and $\sigma = 0.02$, compute the stationary standard deviation. If $\alpha$ is halved to $0.25$ while keeping $\sigma$ fixed, by what factor does the stationary standard deviation change? Explain intuitively why weaker mean reversion increases long-run variability.
 
 ??? success "Solution to Exercise 3"
     The stationary standard deviation is:
@@ -262,7 +370,7 @@ The mean-reversion property makes the model particularly suitable for long-term 
 
 ---
 
-**Exercise 4.** Compare the Vasicek SDE $dr_t = \alpha(\theta - r_t)dt + \sigma dW_t$ with the Merton model $dr_t = \mu\,dt + \sigma dW_t$. Show that the Merton model is a special case of Vasicek with $\alpha = 0$. What happens to the stationary distribution formula $\mathcal{N}(\theta, \sigma^2/(2\alpha))$ as $\alpha \to 0$? Does the Merton model have a stationary distribution?
+**Exercise 6.** Compare the Vasicek SDE $dr_t = \alpha(\theta - r_t)dt + \sigma dW_t$ with the Merton model $dr_t = \mu\,dt + \sigma dW_t$. Show that the Merton model is a special case of Vasicek with $\alpha = 0$. What happens to the stationary distribution formula $\mathcal{N}(\theta, \sigma^2/(2\alpha))$ as $\alpha \to 0$? Does the Merton model have a stationary distribution?
 
 ??? success "Solution to Exercise 4"
     The Merton model is $dr_t = \mu\,dt + \sigma\,dW_t$. We can write the Vasicek SDE as:
@@ -283,7 +391,7 @@ The mean-reversion property makes the model particularly suitable for long-term 
 
 ---
 
-**Exercise 5.** The mean reversion speed $\alpha$ determines how quickly the process returns to $\theta$ after a shock. If rates are currently at $r_0 = 0.08$ and $\theta = 0.05$, compute the expected rate $\mathbb{E}[r_t \mid r_0]$ at $t = 1, 3, 5$ years for $\alpha = 0.1$ and $\alpha = 1.0$ (using the formula from the explicit solution section). How many years does it take for the expected deviation $r_0 - \theta$ to decay to 10% of its initial value in each case?
+**Exercise 7.** The mean reversion speed $\alpha$ determines how quickly the process returns to $\theta$ after a shock. If rates are currently at $r_0 = 0.08$ and $\theta = 0.05$, compute the expected rate $\mathbb{E}[r_t \mid r_0]$ at $t = 1, 3, 5$ years for $\alpha = 0.1$ and $\alpha = 1.0$ (using the formula from the explicit solution section). How many years does it take for the expected deviation $r_0 - \theta$ to decay to 10% of its initial value in each case?
 
 ??? success "Solution to Exercise 5"
     The conditional expected rate is $\mathbb{E}[r_t \mid r_0] = \theta + (r_0 - \theta)e^{-\alpha t}$ with $r_0 = 0.08$, $\theta = 0.05$.
@@ -312,7 +420,7 @@ The mean-reversion property makes the model particularly suitable for long-term 
 
 ---
 
-**Exercise 6.** The Hull-White model $dr_t = (\theta(t) - ar_t)dt + \sigma dW_t$ generalizes Vasicek by allowing a time-dependent $\theta(t)$. Explain why this extension enables exact calibration to an arbitrary initial yield curve. What property of the constant-$\theta$ Vasicek model prevents it from matching an arbitrary yield curve?
+**Exercise 8.** The Hull-White model $dr_t = (\theta(t) - ar_t)dt + \sigma dW_t$ generalizes Vasicek by allowing a time-dependent $\theta(t)$. Explain why this extension enables exact calibration to an arbitrary initial yield curve. What property of the constant-$\theta$ Vasicek model prevents it from matching an arbitrary yield curve?
 
 ??? success "Solution to Exercise 6"
     The Hull-White model $dr_t = (\theta(t) - ar_t)\,dt + \sigma\,dW_t$ has a **time-dependent** function $\theta(t)$. The bond pricing formula becomes $P(0,T) = A(0,T)\,e^{-B(T)\,r_0}$ where $\ln A(0,T)$ now involves an integral of $\theta(s)$.
@@ -329,7 +437,7 @@ The mean-reversion property makes the model particularly suitable for long-term 
 
 ---
 
-**Exercise 7.** The CIR model replaces the constant diffusion $\sigma$ in Vasicek with $\sigma\sqrt{r_t}$. Explain qualitatively how the square-root diffusion prevents negative rates. Does the CIR model remain an Ornstein-Uhlenbeck process? What key analytical property of the OU process (linearity of the SDE in $r_t$) is lost in CIR?
+**Exercise 9.** The CIR model replaces the constant diffusion $\sigma$ in Vasicek with $\sigma\sqrt{r_t}$. Explain qualitatively how the square-root diffusion prevents negative rates. Does the CIR model remain an Ornstein-Uhlenbeck process? What key analytical property of the OU process (linearity of the SDE in $r_t$) is lost in CIR?
 
 ??? success "Solution to Exercise 7"
     In the CIR model, the diffusion coefficient is $\sigma\sqrt{r_t}$ instead of the constant $\sigma$ in Vasicek.

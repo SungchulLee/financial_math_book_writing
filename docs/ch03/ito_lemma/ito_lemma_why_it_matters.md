@@ -99,6 +99,7 @@ $$
 \boxed{
 \int_0^1 sB_s\,dB_s
 = \frac12 B_1^2
+
 - \frac12\int_0^1 B_s^2\,ds
 - \frac14
 }
@@ -116,7 +117,7 @@ $$
 \int_0^t g(s)\,ds = G(t)-G(0),\qquad G'=g
 $$
 
-Itô's lemma plays the same role for stochastic integrals, but with a crucial difference: the correction term $\tfrac12 f_{bb}\,ds$ accounts for the non-zero quadratic variation of Brownian motion. This correction arises because the Itô multiplication table gives $(dB_t)^2 = dt$ (see [From Taylor to Itô](from_taylor_to_ito.md)), so the second-order Taylor term $\tfrac12 f_{bb}(dB_t)^2$ does not vanish but instead contributes $\tfrac12 f_{bb}\,dt$. Where the classical FTC simply evaluates an antiderivative at the endpoints, the stochastic version must also subtract this accumulated curvature correction.
+Itô's lemma plays the same role for stochastic integrals, but with the Itô correction $\tfrac12 f_{bb}\,dt$ — the curvature term that survives because $(dB_t)^2 = dt$ (see [Quadratic Taylor Expansion](taylor_expansion_quadratic.md)). Where the classical FTC simply evaluates an antiderivative at the endpoints, the stochastic version must also subtract this accumulated curvature correction.
 
 To compute $\int_0^t g(s,B_s)\,dB_s$ using Itô's lemma:
 
@@ -157,6 +158,7 @@ Choose $f(b)=\frac12 b^2$. Then $f_t=0$, $f_b=b$, $f_{bb}=1$. Itô's lemma gives
 $$
 \frac12 B_1^2 - \underbrace{\frac12 \cdot 0^2}_{f(0,B_0)=0}
 = \underbrace{\int_0^1 0\,ds}_{=\,0}
+
 + \int_0^1 B_s\,dB_s
 + \frac12\int_0^1 1\,ds
 $$
@@ -176,6 +178,7 @@ Choose $f(t,b)=\frac12 t b^2$. Then $f_t=\frac12 b^2$, $f_b=tb$, $f_{bb}=t$. It�
 $$
 \frac12 \cdot 1 \cdot B_1^2 - 0
 = \int_0^1 \frac12 B_s^2\,ds
+
 + \int_0^1 sB_s\,dB_s
 + \frac12\int_0^1 s\,ds
 $$
@@ -200,6 +203,7 @@ Choose $f(b)=\frac13 b^3$. Then $f_t=0$, $f_b=b^2$, $f_{bb}=2b$, so $\frac12 f_{
 $$
 \frac13 B_1^3 - 0
 = \underbrace{\int_0^1 0\,ds}_{f_t=0,\;=\,0}
+
 + \int_0^1 B_s^2\,dB_s
 + \int_0^1 B_s\,ds
 $$

@@ -84,7 +84,7 @@ We compare results of the explicit finite difference scheme in both original and
 **Black-Scholes Formula for a European Call:**
 
 $$
-C(S, t) = S \Phi(d_1) - K e^{-r(T - t)} \Phi(d_2)
+C(S, t) = S \mathcal{N}(d_1) - K e^{-r(T - t)} \mathcal{N}(d_2)
 $$
 
 where $d_1 = \frac{\ln(S / K) + (r + \frac{1}{2} \sigma^2)(T - t)}{\sigma \sqrt{T - t}}$ and $d_2 = d_1 - \sigma \sqrt{T - t}$.

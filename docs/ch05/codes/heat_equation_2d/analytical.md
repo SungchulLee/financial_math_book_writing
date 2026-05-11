@@ -110,3 +110,59 @@ def solve_analytical(x: np.ndarray, t: float, initial_func: Callable,
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+For the 2D heat equation with Dirichlet boundary conditions on $[0, L_x] \times [0, L_y]$, write the eigenfunction corresponding to mode numbers $(m, n)$ and its eigenvalue.
+
+??? success "Solution to Exercise 1"
+    The eigenfunction is $\phi_{m,n}(x,y) = \sin(m\pi x/L_x)\sin(n\pi y/L_y)$ with eigenvalue
+
+    $$
+    \lambda_{m,n} = D\pi^2\left(\frac{m^2}{L_x^2} + \frac{n^2}{L_y^2}\right)
+    $$
+
+    The exact solution for this mode is $u(x,y,t) = \phi_{m,n}(x,y)\,e^{-\lambda_{m,n} t}$. Higher-order modes (larger $m$ or $n$) decay faster.
+
+---
+
+**Exercise 2.**
+Compute $\lambda_{1,1}$ for a square domain $L_x = L_y = 1$ with $D = 0.01$. After what time $t^*$ has this mode decayed to 1% of its initial amplitude?
+
+??? success "Solution to Exercise 2"
+    $$
+    \lambda_{1,1} = 0.01 \cdot \pi^2(1 + 1) = 0.02\pi^2 \approx 0.1974
+    $$
+
+    Setting $e^{-\lambda_{1,1} t^*} = 0.01$ gives $t^* = -\ln(0.01)/\lambda_{1,1} = \ln(100)/0.1974 \approx 4.605/0.1974 \approx 23.3$. So the fundamental mode takes about 23.3 time units to decay to 1%.
+
+---
+
+**Exercise 3.**
+Why is the analytical solution for the 2D heat equation limited to certain initial conditions (e.g., sine waves)? What alternative approaches exist for arbitrary initial data?
+
+??? success "Solution to Exercise 3"
+    The eigenfunction expansion requires computing double Fourier coefficients $A_{m,n} = \frac{4}{L_x L_y}\int_0^{L_x}\int_0^{L_y} f(x,y)\sin(m\pi x/L_x)\sin(n\pi y/L_y)\,dy\,dx$. For arbitrary $f$, these integrals must be evaluated numerically, which is expensive and may be inaccurate for non-smooth $f$.
+
+    Alternative approaches: (1) 2D heat kernel convolution $u = \iint G_{\text{2D}} f\,d\xi\,d\eta$, (2) 2D FFT spectral method (fast but assumes periodicity), (3) direct numerical solution via finite differences or finite elements (most general).
+
+---
+
+**Exercise 4.**
+Define the relative $L^2$ error between a numerical solution $u_h$ and an analytical solution $u_a$ on a 2D grid. Write the discrete approximation using grid spacings $\Delta x$ and $\Delta y$.
+
+??? success "Solution to Exercise 4"
+    The relative $L^2$ error is
+
+    $$
+    e_{\text{rel}} = \frac{\|u_h - u_a\|_{L^2}}{\|u_a\|_{L^2}} = \frac{\sqrt{\iint (u_h - u_a)^2\,dx\,dy}}{\sqrt{\iint u_a^2\,dx\,dy}}
+    $$
+
+    Discretized on a grid:
+
+    $$
+    e_{\text{rel}} \approx \frac{\sqrt{\Delta x\,\Delta y \sum_{i,j}(u_{h,ij} - u_{a,ij})^2}}{\sqrt{\Delta x\,\Delta y \sum_{i,j} u_{a,ij}^2}}
+    $$
+
+    The $\Delta x\,\Delta y$ factors cancel, simplifying to the ratio of discrete $\ell^2$ norms, but including them provides a mesh-independent error measure.

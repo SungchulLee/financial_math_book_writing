@@ -19,6 +19,7 @@ stand-alone with only NumPy, SciPy, and Matplotlib.
 
 Methods implemented
 -------------------
+
 1. Closed-form Black-Scholes formula (call and put)
 2. Vega (dPrice / dSigma)
 3. Monte Carlo simulation (European options)
@@ -689,3 +690,59 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The BS pricer implements five methods. Rank them by computational cost and explain when each is the best choice.
+
+??? success "Solution to Exercise 1"
+    | Method | Cost | Best for |
+    |--------|------|----------|
+    | Closed-form | $O(1)$ | European vanilla options |
+    | Vega | $O(1)$ | Implied vol computation, hedging |
+    | Monte Carlo | $O(N)$ | Path-dependent or high-dimensional options |
+    | PDE (implicit FD) | $O(N_S \cdot N_t)$ | American options, smooth Greeks |
+    | LSM | $O(N \cdot M \cdot p)$ | American/Bermudan options |
+
+    For European options, always use the closed form. For American puts, PDE or LSM. For exotic path-dependent options, Monte Carlo.
+
+---
+
+**Exercise 2.**
+The PDE solver uses an implicit finite-difference scheme with sparse LU factorization. Explain why sparse LU is efficient for the BS PDE.
+
+??? success "Solution to Exercise 2"
+    The implicit scheme produces a tridiagonal system $A\mathbf{V}^j = \mathbf{b}^j$ at each time step. A tridiagonal matrix is extremely sparse ($O(N)$ nonzeros out of $O(N^2)$ entries).
+
+    Sparse LU factorization of a tridiagonal matrix costs $O(N)$ and needs to be done only once (since $A$ is the same at every time step). Each subsequent solve is also $O(N)$. This is much faster than dense LU ($O(N^3)$) and makes the implicit scheme practical for large grids.
+
+---
+
+**Exercise 3.**
+The Longstaff-Schwartz Method (LSM) uses regression to estimate the continuation value. Describe the regression step at time $t_k$.
+
+??? success "Solution to Exercise 3"
+    At time $t_k$, for paths that are in the money:
+
+    1. Compute the discounted future cash flows $Y_i$ (from $t_{k+1}$ onward) for each path $i$.
+    2. Regress $Y_i$ on basis functions of $S_{t_k}^{(i)}$ (e.g., $1, S, S^2$): $\hat{Y} = \beta_0 + \beta_1 S + \beta_2 S^2$.
+    3. The fitted values $\hat{Y}_i$ estimate the continuation value $E[Y \mid S_{t_k}]$.
+    4. Compare with the exercise value $\max(K - S_{t_k}^{(i)}, 0)$: exercise if immediate value exceeds continuation.
+
+    This backward induction determines the optimal exercise strategy, and the price is the average discounted payoff under this strategy.
+
+---
+
+**Exercise 4.**
+Compare the five pricing methods for an American put with $S = 100$, $K = 100$, $T = 1$, $r = 0.05$, $\sigma = 0.20$. Which methods can handle early exercise?
+
+??? success "Solution to Exercise 4"
+    Only the **PDE solver** and **LSM** can handle early exercise:
+
+    - PDE: At each time step, enforce $V \ge \max(K - S, 0)$ (the early exercise constraint).
+    - LSM: Uses regression-based backward induction to approximate the optimal exercise boundary.
+
+    The closed-form formula gives only the European put price (a lower bound). Monte Carlo can price European options but needs LSM for American options. Vega applies only to European options.
+
+    For this example, the American put premium (excess over European) is typically 1--3% of the option price, depending on the parameters.

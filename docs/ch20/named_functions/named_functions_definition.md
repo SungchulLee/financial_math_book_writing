@@ -90,6 +90,7 @@ A(u,\tau)
 &=&\displaystyle
 -\frac{\sigma^2}{4\lambda^3}\left[(1+iu\lambda)\left[
     3-4e^{-\lambda \tau}+e^{-2\lambda \tau}
+
     - iu\lambda\left(1-e^{-2\lambda \tau}\right)
     \right]-2\lambda\tau\right]
 +\lambda\int_0^\tau\theta(T-\tau')B(u,\tau')d\tau'\\

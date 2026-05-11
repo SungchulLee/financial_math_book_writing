@@ -6,6 +6,7 @@ portfolio_risk_dashboard.py
 Portfolio Risk Dashboard with Correlated Multi-Asset Simulation
 
 This module implements a portfolio risk dashboard that demonstrates:
+
 - Multi-asset Geometric Brownian Motion (GBM) simulation with Cholesky decomposition
 - Correlated underlyings (e.g., equities, indices)
 - European option pricing via Monte Carlo simulation
@@ -13,6 +14,7 @@ This module implements a portfolio risk dashboard that demonstrates:
 - Portfolio-level risk aggregation and visualization
 
 The approach follows the DX Library's derivatives_portfolio methodology:
+
 1. Define multiple correlated underlyings using GBM
 2. Use Cholesky decomposition to generate correlated Brownian increments
 3. Price European call/put options via Monte Carlo across all simulated paths
@@ -20,6 +22,7 @@ The approach follows the DX Library's derivatives_portfolio methodology:
 5. Aggregate position-level Greeks to portfolio level
 
 Key Educational Concepts:
+
 - Correlation matrix and Cholesky decomposition
 - Multi-dimensional Monte Carlo sampling
 - Numerical differentiation for Greeks estimation
@@ -802,3 +805,48 @@ This approach is foundational for:
 if __name__ == '__main__':
     portfolio, gbm, paths = main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+A portfolio risk dashboard typically displays VaR, ES, sector exposures, and Greeks. Explain why a single risk metric is insufficient for risk management.
+
+??? success "Solution to Exercise 1"
+    Different risk metrics capture different aspects of portfolio risk:
+
+    - **VaR**: The loss threshold at a given confidence level. Does not describe the magnitude of losses beyond VaR.
+    - **ES**: The expected loss beyond VaR. Captures tail risk severity.
+    - **Sector exposures**: Show concentration risk. A portfolio may have low VaR but be heavily concentrated in one sector.
+    - **Greeks** (Delta, Gamma, Vega): Show sensitivity to specific risk factors. Important for hedging and understanding the drivers of risk.
+
+    A dashboard combining these provides a comprehensive view, enabling risk managers to identify both the level of risk and its sources.
+
+---
+
+**Exercise 2.**
+Describe how to compute the contribution of each position to the portfolio VaR (component VaR).
+
+??? success "Solution to Exercise 2"
+    Component VaR for position $i$ is $\text{CVaR}_i = w_i \times \frac{\partial \text{VaR}}{\partial w_i}$. For parametric VaR with normal returns:
+
+    $$
+    \text{CVaR}_i = w_i \times \frac{(\Sigma\mathbf{w})_i}{\sigma_p} \times z_\alpha \times V,
+    $$
+
+    where $(\Sigma\mathbf{w})_i$ is the $i$-th element of the covariance-weighted portfolio, $\sigma_p$ is portfolio volatility, $z_\alpha$ is the normal quantile, and $V$ is portfolio value. The sum of all component VaRs equals total VaR: $\sum_i \text{CVaR}_i = \text{VaR}$.
+
+---
+
+**Exercise 3.**
+A risk limit system triggers alerts when VaR exceeds a threshold. If the daily VaR limit is \$5M and today's VaR is \$4.8M, what actions might a risk manager take?
+
+??? success "Solution to Exercise 3"
+    The VaR is close to the limit ($96\%$ utilization). The risk manager might: (1) investigate which positions are driving the high VaR; (2) reduce exposure to the most risk-contributing positions; (3) add hedges to offset the dominant risk factors; (4) alert senior management of the near-breach; (5) run stress tests to assess the impact of adverse scenarios; (6) consider whether the VaR increase is transient (e.g., due to a spike in implied volatility) or structural.
+
+---
+
+**Exercise 4.**
+Why should a risk dashboard include both historical and forward-looking risk metrics?
+
+??? success "Solution to Exercise 4"
+    Historical metrics (historical VaR, realized volatility, maximum drawdown) show what has happened and provide context. Forward-looking metrics (parametric VaR, stress test results, scenario analysis) show what could happen based on current positions and market conditions. A regime change (e.g., shift from low to high volatility) may not be captured by historical metrics for weeks, while forward-looking metrics using current implied volatilities can react immediately. The combination provides both validation (does forward VaR align with recent experience?) and early warning (are stress tests showing emerging risks?).

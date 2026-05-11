@@ -73,6 +73,7 @@ $$
 
 
 where:
+
 - $F$: Generator (nonlinear, second-order)
 - $\Gamma_t$: Second-order process (matrix-valued)
 - $\langle W \rangle_t$: Quadratic variation of $W$
@@ -140,6 +141,7 @@ where $G$ captures the second-order nonlinearity.
 
 
 **Theorem** (Soner-Touzi-Zhang, 2012): Under appropriate conditions on $F$ and $\xi$:
+
 1. **Monotonicity**: $F$ is decreasing in $\gamma$
 2. **Lipschitz**: $F$ is Lipschitz in $(y, z)$ uniformly in $\gamma$
 3. **Boundedness**: $|F(t, 0, 0, \gamma)| \leq C$ uniformly
@@ -147,6 +149,7 @@ where $G$ captures the second-order nonlinearity.
 There exists a unique solution $(Y, Z, \Gamma)$ to the 2BSDE.
 
 **Proof Sketch**: 
+
 1. Define value function through dynamic programming principle
 2. Show it is a viscosity solution to associated PDE
 3. Use comparison principle to establish uniqueness
@@ -191,6 +194,7 @@ with terminal condition $u(T, x) = \Phi(x)$.
 
 
 **Definition**: A function $u$ is a viscosity solution if it satisfies:
+
 - **Subsolution**: For any smooth test function $\phi$ with $u - \phi$ attaining a local maximum at $(t_0, x_0)$:
 
   $$
@@ -248,6 +252,7 @@ $$
 
 
 **Definition**: A process $B_t$ is a **G-Brownian motion** if:
+
 1. $B_0 = 0$
 2. Independent increments (in a generalized sense)
 3. $B_t - B_s \sim N(\{0\} \times [\underline{\sigma}^2(t-s), \overline{\sigma}^2(t-s)])$ (G-normal distribution)
@@ -307,6 +312,7 @@ $$
 and $\mathcal{P}_G$ is the set of measures compatible with the G-Brownian motion.
 
 **Properties**:
+
 1. **Sublinearity**: $\mathbb{E}^G[\xi + \eta] \leq \mathbb{E}^G[\xi] + \mathbb{E}^G[\eta]$
 2. **Positive homogeneity**: $\mathbb{E}^G[\lambda \xi] = \lambda \mathbb{E}^G[\xi]$ for $\lambda \geq 0$
 3. **Monotonicity**: $\xi \geq \eta \implies \mathbb{E}^G[\xi] \geq \mathbb{E}^G[\eta]$
@@ -435,6 +441,7 @@ $$
 
 
 **Market Structure**: When markets are incomplete due to:
+
 - Volatility uncertainty
 - Non-tradeable risk factors
 - Transaction costs
@@ -538,6 +545,7 @@ $$
 
 
 **Theorem**: Quadratic 2BSDEs have unique solutions under:
+
 1. Small time horizon $T$
 2. Bounded terminal condition
 3. Monotonicity in $\gamma$
@@ -545,6 +553,7 @@ $$
 **Challenge**: Standard Lipschitz arguments fail; requires refined estimates.
 
 **Applications**:
+
 - Large investor models
 - Portfolio optimization with ambiguity
 - Risk-sensitive control
@@ -588,6 +597,7 @@ $$
 
 
 **Applications**:
+
 - Systemic risk under model uncertainty
 - Mean-field games with ambiguity
 - Large portfolio optimization
@@ -617,6 +627,7 @@ $$
 
 
 **Monotone Schemes**: Ensure convergence to viscosity solution:
+
 - Use upwind discretization for first derivatives
 - Ensure monotonicity in all arguments
 
@@ -626,11 +637,13 @@ $$
 **Challenge**: Direct simulation difficult due to supremum over measures.
 
 **Approach 1** (Scenario Sampling): 
+
 1. Discretize $\mathcal{P}$ into finite set $\{P_1, \ldots, P_N\}$
 2. Simulate under each $P_i$
 3. Take pointwise supremum
 
 **Approach 2** (Least-Squares Monte Carlo):
+
 1. Backward iteration with conditional expectations
 2. At each step, optimize over measures in $\mathcal{P}$
 3. Use regression to approximate value function
@@ -661,6 +674,7 @@ $$
 **Optimization**: Use stochastic gradient descent with mini-batches of simulated paths.
 
 **Advantages**:
+
 - Handles high dimensions
 - Bypasses curse of dimensionality
 - Scales with complexity
@@ -708,6 +722,7 @@ $$
 
 
 where:
+
 - $\alpha$: Player 1's control (optimizer)
 - $\beta$: Player 2's control (adversary, nature)
 
@@ -887,16 +902,19 @@ where $Y_t$ solves a 2BSDE with appropriate generator.
 
 
 **For Traders**:
+
 - Robust pricing bounds under volatility uncertainty
 - Model-free hedging strategies
 - Quantification of model risk
 
 **For Risk Managers**:
+
 - Worst-case risk measures
 - Stress testing under fundamental uncertainty
 - Regulatory capital with model risk
 
 **For Researchers**:
+
 - Rigorous mathematical foundations for robust finance
 - Bridge between probability, PDEs, and control theory
 - Framework for handling irreducible uncertainty
@@ -905,6 +923,7 @@ where $Y_t$ solves a 2BSDE with appropriate generator.
 
 
 2BSDEs represent a major advance in stochastic analysis, unifying:
+
 - **Backward SDEs**: Extending to fully nonlinear settings
 - **Viscosity Solutions**: Providing probabilistic counterpart
 - **Robust Optimization**: Connecting to minimax problems

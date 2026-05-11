@@ -191,3 +191,58 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The Hull-White Euler discretization is $r_{i+1} = r_i + \lambda(\theta(t_i) - r_i)\,\Delta t + \eta\,\Delta W_i$. For $\lambda = 0.03$, $\eta = 0.01$, and a flat curve at $5\%$, compute $\theta(0)$ and the first step with $r_0 = 0.05$, $\Delta t = 0.01$, $\Delta W = 0.005$.
+
+??? success "Solution to Exercise 1"
+    For a flat curve at $5\%$, $\theta(0) \approx f(0,0) = 0.05$ (ignoring the small convexity correction). The first Euler step is:
+
+    $$
+    r_1 = 0.05 + 0.03(0.05 - 0.05) \times 0.01 + 0.01 \times 0.005 = 0.05 + 0 + 0.00005 = 0.05005.
+    $$
+
+    The rate increases slightly due to the positive Brownian increment.
+
+---
+
+**Exercise 2.**
+The code normalizes Brownian increments to have exact mean zero and unit variance. Explain the purpose and effect on simulation accuracy.
+
+??? success "Solution to Exercise 2"
+    Normalization adjusts each time step's increments: $z_i^{\text{norm}} = (z_i - \bar{z}_i)/s_i$. This is a variance reduction technique that:
+
+    1. Removes sampling noise from the first two moments, ensuring $\mathbb{E}[\Delta W] = 0$ and $\text{Var}[\Delta W] = \Delta t$ exactly.
+    2. Improves convergence of Monte Carlo estimates, especially for a moderate number of paths.
+    3. Has no effect on the distributional shape (the normalized samples are still approximately Gaussian).
+
+    The improvement is most noticeable for expectations that depend on the mean (like bond prices) rather than tail quantities.
+
+---
+
+**Exercise 3.**
+If 1000 Hull-White paths are simulated over 10 years with 500 time steps, estimate the memory required to store all rate paths (using 64-bit floating point).
+
+??? success "Solution to Exercise 3"
+    The rate array has shape $(1000, 501)$ (including the initial value). Each entry uses 8 bytes (64-bit float):
+
+    $$
+    \text{Memory} = 1000 \times 501 \times 8 = 4{,}008{,}000 \text{ bytes} \approx 3.82 \text{ MB}.
+    $$
+
+    This is modest. However, if auxiliary arrays (Brownian increments, money market accounts) are also stored, the total is approximately $3 \times 3.82 \approx 11.5$ MB.
+
+---
+
+**Exercise 4.**
+Describe how the mean reversion speed $\lambda$ affects the dispersion of simulated Hull-White paths over a long horizon.
+
+??? success "Solution to Exercise 4"
+    The variance of $r(t)$ is $\text{Var}[r(t)] = \eta^2(1 - e^{-2\lambda t})/(2\lambda)$. For large $t$:
+
+    - Small $\lambda$ (e.g., $0.01$): The variance grows slowly toward $\eta^2/(2\lambda)$, which is large. Paths spread widely, similar to a random walk. The half-life is $\ln(2)/0.01 \approx 69$ years.
+    - Large $\lambda$ (e.g., $1.0$): The variance quickly saturates at $\eta^2/2$, which is small. Paths cluster tightly around the mean. The half-life is $0.69$ years.
+
+    Stronger mean reversion produces a tighter "funnel" of paths around $\theta(t)$, while weak mean reversion allows paths to wander far from the initial curve.

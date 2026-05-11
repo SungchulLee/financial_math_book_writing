@@ -271,6 +271,7 @@ where $W_{ij} = A_{ij}/E_i$ is the exposure of $i$ to $j$ relative to $i$'s equi
 | **Forward-looking** | Partially | Partially | Yes | Scenario-based |
 
 !!! info "Regulatory Applications"
+
     - **G-SIB designation:** Indicator-based approach, but market-based metrics inform supervisory judgment
     - **Macroprudential stress tests:** SRISK-type frameworks inform system-wide capital adequacy
     - **FSOC (US) / ESRB (EU):** Use combinations of metrics for monitoring financial stability

@@ -1,7 +1,7 @@
 # Numéraire and Change of Measure
 
 
-The [Fundamental Theorem of Asset Pricing](fundamental_theorem_of_asset_pricing.md) guarantees the existence of an equivalent martingale measure (EMM) relative to a chosen numéraire. This chapter develops the **numéraire framework** in full: we define what a numéraire is, state and prove the **change of numéraire theorem**, and show through worked examples how choosing the right numéraire can dramatically simplify derivative pricing.
+The [Fundamental Theorem of Asset Pricing](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md) guarantees the existence of an equivalent martingale measure (EMM) relative to a chosen numéraire. This chapter develops the **numéraire framework** in full: we define what a numéraire is, state and prove the **change of numéraire theorem**, and show through worked examples how choosing the right numéraire can dramatically simplify derivative pricing.
 
 The central message is that **prices are invariant under numéraire changes**. Different numéraires give different martingale measures but identical arbitrage-free prices. This is not merely a theoretical curiosity—it is one of the most powerful computational tools in quantitative finance.
 
@@ -181,7 +181,7 @@ $$V_0 = S^2_0 \cdot \mathbb{E}^{\mathbb{Q}^2}\!\left[\left(\frac{S^1_T}{S^2_T} -
 
 Under $\mathbb{Q}^2$, the ratio $R_t = S^1_t / S^2_t$ is a martingale. If both assets follow geometric Brownian motion, $R_t$ is itself a geometric Brownian motion (with volatility $\sigma_R = \sqrt{\sigma_1^2 - 2\rho\sigma_1\sigma_2 + \sigma_2^2}$). The expectation is now a **one-dimensional** Black–Scholes-type integral:
 
-$$V_0 = S^2_0 \bigl[R_0\, \Phi(d_1) - \Phi(d_2)\bigr]$$
+$$V_0 = S^2_0 \bigl[R_0\, \mathcal{N}(d_1) - \mathcal{N}(d_2)\bigr]$$
 
 where $R_0 = S^1_0 / S^2_0$ and
 
@@ -189,7 +189,7 @@ $$d_1 = \frac{\ln(R_0) + \frac{1}{2}\sigma_R^2 T}{\sigma_R \sqrt{T}}, \qquad d_2
 
 Substituting $S^2_0 R_0 = S^1_0$:
 
-$$\boxed{V_0 = S^1_0\, \Phi(d_1) - S^2_0\, \Phi(d_2)}$$
+$$\boxed{V_0 = S^1_0\, \mathcal{N}(d_1) - S^2_0\, \mathcal{N}(d_2)}$$
 
 This is **Margrabe's formula** (1978). The change of numéraire reduced a two-dimensional problem to a one-dimensional one.
 
@@ -305,7 +305,7 @@ The numéraire framework shows that arbitrage-free pricing is invariant under th
     Margrabe's formula gives:
 
     $$
-    V_0 = S^1_0 \, \Phi(d_1) - S^2_0 \, \Phi(d_2) = 50 \times 0.6224 - 48 \times 0.5496 = 31.12 - 26.38 \approx 4.74
+    V_0 = S^1_0 \, \mathcal{N}(d_1) - S^2_0 \, \mathcal{N}(d_2) = 50 \times 0.6224 - 48 \times 0.5496 = 31.12 - 26.38 \approx 4.74
     $$
 
     Note that no discounting or risk-free rate appears in Margrabe's formula -- the exchange option price depends only on the initial prices, the relative volatility $\sigma_R$, and the time to maturity.
@@ -436,13 +436,13 @@ The numéraire framework shows that arbitrage-free pricing is invariant under th
 
     With $\sigma_R = 0$, the quantities $d_1$ and $d_2$ become:
 
-    - If $R_0 = S^1_0/S^2_0 > 1$: $d_1 = d_2 = \ln(R_0)/(0) = +\infty$, so $\Phi(d_1) = \Phi(d_2) = 1$
+    - If $R_0 = S^1_0/S^2_0 > 1$: $d_1 = d_2 = \ln(R_0)/(0) = +\infty$, so $\mathcal{N}(d_1) = \mathcal{N}(d_2) = 1$
 
-    - If $R_0 < 1$: $d_1 = d_2 = -\infty$, so $\Phi(d_1) = \Phi(d_2) = 0$
+    - If $R_0 < 1$: $d_1 = d_2 = -\infty$, so $\mathcal{N}(d_1) = \mathcal{N}(d_2) = 0$
 
-    - If $R_0 = 1$: $d_1 = d_2 = 0/0$, which by continuity gives $\Phi(d_1) = \Phi(d_2) = 1/2$
+    - If $R_0 = 1$: $d_1 = d_2 = 0/0$, which by continuity gives $\mathcal{N}(d_1) = \mathcal{N}(d_2) = 1/2$
 
-    Applying Margrabe's formula $V_0 = S^1_0 \Phi(d_1) - S^2_0 \Phi(d_2)$:
+    Applying Margrabe's formula $V_0 = S^1_0 \mathcal{N}(d_1) - S^2_0 \mathcal{N}(d_2)$:
 
     - If $S^1_0 > S^2_0$: $V_0 = S^1_0 - S^2_0$
     - If $S^1_0 < S^2_0$: $V_0 = 0$

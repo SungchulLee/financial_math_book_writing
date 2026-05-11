@@ -141,7 +141,7 @@ This is the simplest form of the Hagan formula. The smile is entirely encoded in
 
 Black (lognormal) and Bachelier (normal) implied volatilities parameterize the same option price using different models. For a call option with forward $F$, strike $K$, and maturity $T$:
 
-**Black price:** $C = DF\left[F\,\Phi(d_1) - K\,\Phi(d_2)\right]$ where $d_{1,2} = \frac{\ln(F/K) \pm \frac{1}{2}\sigma_B^2 T}{\sigma_B\sqrt{T}}$
+**Black price:** $C = DF\left[F\,\mathcal{N}(d_1) - K\,\mathcal{N}(d_2)\right]$ where $d_{1,2} = \frac{\ln(F/K) \pm \frac{1}{2}\sigma_B^2 T}{\sigma_B\sqrt{T}}$
 
 **Bachelier price:** $C = DF\left[(F-K)\,\Phi(\tilde{d}) + \sigma_N\sqrt{T}\,\phi(\tilde{d})\right]$ where $\tilde{d} = \frac{F-K}{\sigma_N\sqrt{T}}$
 

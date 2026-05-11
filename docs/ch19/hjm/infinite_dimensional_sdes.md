@@ -32,6 +32,7 @@ $$
 
 
 where:
+
 - $f_t$ is a curve,
 - $\Sigma_t$ is a linear operator.
 
@@ -43,6 +44,7 @@ Rigorous treatment uses stochastic calculus in Hilbert spaces.
 
 
 In practice, one often restricts to:
+
 - separable volatility structures,
 - finite-factor representations,
 - basis expansions in maturity.
@@ -55,6 +57,7 @@ These yield **finite-dimensional realizations** consistent with HJM.
 
 
 Common approaches include:
+
 - maturity discretization (time–maturity grids),
 - factor models for volatility,
 - projection onto basis functions.

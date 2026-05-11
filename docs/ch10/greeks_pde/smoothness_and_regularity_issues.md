@@ -2,6 +2,7 @@
 
 
 Regularity of $V$ and Greeks depends on:
+
 - regularity of payoff $\Phi$,
 - ellipticity/smoothness of coefficients,
 - time distance to maturity.
@@ -61,6 +62,7 @@ $$
 $$
 
 This shows how the Dirac mass "regularizes" into a smooth bump with:
+
 - **Height**: $\mathcal{O}(\tau^{-1/2})$
 - **Width**: $\mathcal{O}(\sqrt{\tau})$
 - **Area** (integral of $\Gamma$): $\mathcal{O}(1)$, independent of $\tau$
@@ -96,10 +98,12 @@ $$
 Free boundaries reduce regularity; viscosity solutions provide the right weak framework.
 
 **Free boundary regularity.** For the American put, the optimal exercise boundary $S^*(t)$ satisfies:
+
 - $S^* \in C^{0,1/2}$ (Lipschitz in $\sqrt{T-t}$) near maturity
 - $S^*$ is smooth away from maturity
 
 **Greeks across the boundary.** At the exercise boundary:
+
 - $V$ is $C^1$ (smooth pasting): $\Delta$ is continuous
 - $V$ is generally not $C^2$: $\Gamma$ has a jump discontinuity
 - The jump in $\Gamma$ relates to the local time of $S$ at the boundary

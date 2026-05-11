@@ -102,7 +102,7 @@ Here $A = c^2$, $B = 0$, $C = -1$, so $\Delta = c^2 > 0$.
 
 ## Why Financial PDEs Are Parabolic
 
-The Black-Scholes PDE is:
+The Black-Scholes PDE (see [Why PDEs in Finance](why_pdes_in_finance.md) for its full derivation and financial meaning) serves as the prototypical parabolic example:
 
 $$
 \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0

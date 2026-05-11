@@ -31,6 +31,7 @@ $$
 
 
 **Key insight:** The same information is represented in three equivalent ways:
+
 1. **Option prices** $C(K, T)$: Direct market observables
 2. **Risk-neutral density** $q(S_T)$: Probabilistic description
 3. **Implied volatility** $\sigma_{\text{IV}}(K, T)$: Normalized quoting convention
@@ -123,6 +124,7 @@ $$
 
 
 **Empirical relationship:** Negative skewness (left tail heavier) corresponds to:
+
 - **Downward sloping IV skew:** $\frac{\partial \sigma_{\text{IV}}}{\partial K} < 0$ for $K < F$
 - **Equity markets:** Typically exhibit negative skew (crash fear)
 
@@ -150,6 +152,7 @@ $$
 
 
 **Relationship to smile:** Excess kurtosis (fat tails, $\text{Kurt} > 3$) manifests as:
+
 - **Volatility smile:** Both OTM puts and calls have higher IV than ATM
 - **Symmetric wings:** $\sigma_{\text{IV}}(K)$ increases as $|K - F|$ increases
 
@@ -180,6 +183,7 @@ $$
 
 
 This is the Black-Scholes assumption. Properties:
+
 - **Symmetric log-returns:** $\ln(S_T/F)$ is normally distributed
 - **Skewness:** Zero
 - **Kurtosis:** $3$ (mesokurtic, same as normal)
@@ -188,6 +192,7 @@ This is the Black-Scholes assumption. Properties:
 
 
 If $\frac{\partial \sigma_{\text{IV}}}{\partial K} < 0$ (volatility decreases with strike), the density exhibits:
+
 - **Left tail fatter than lognormal:** Higher probability of large drops
 - **Right tail thinner:** Lower probability of large rises
 - **Negative skewness:** $\mathbb{E}[(S_T - F)^3] < 0$
@@ -200,6 +205,7 @@ If $\frac{\partial \sigma_{\text{IV}}}{\partial K} < 0$ (volatility decreases wi
 
 
 If $\sigma_{\text{IV}}(K)$ is convex in $K$ (minimum at ATM, increases in wings), the density has:
+
 - **Fat tails:** Both extreme outcomes more likely than lognormal predicts
 - **Excess kurtosis:** $\text{Kurt} > 3$
 - **Potential for jumps:** Discontinuous price movements
@@ -212,11 +218,13 @@ If $\sigma_{\text{IV}}(K)$ is convex in $K$ (minimum at ATM, increases in wings)
 
 
 Combination of skew and smile:
+
 - OTM puts have much higher IV than ATM
 - OTM calls have moderately higher IV than ATM
 - Asymmetric U-shape
 
 Corresponds to:
+
 - Negative skewness (left tail dominates)
 - Moderate excess kurtosis (both tails fat, but left more so)
 
@@ -356,6 +364,7 @@ $$
 The risk-neutral density $q(S_T)$ differs from the physical (real-world) density $p(S_T)$ due to risk premia. However, $q$ reflects **market-implied** probabilities.
 
 **Interpretation:**
+
 - High IV in OTM puts → Market assigns high probability (or high risk aversion) to crashes
 - Steep skew → Strong asymmetry in perceived risks
 
@@ -390,11 +399,13 @@ Example: If 1-month 10%-OTM put has $\sigma_{\text{IV}} = 30\%$ vs ATM $\sigma_{
 
 
 Construct $q(K)$ by:
+
 1. Collecting IV across strikes for fixed maturity
 2. Converting to call prices via BS
 3. Applying B-L: $q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}$
 
 **Common findings:**
+
 - **Equity indices:** Left-skewed, fat-tailed (crash risk)
 - **FX:** Symmetric smile, fat-tailed (jump risk)
 - **Individual stocks:** Varies (event risk, earnings)
@@ -459,21 +470,25 @@ The forward IV surface $\sigma_{\text{IV}}^{\text{fwd}}(K; t, T)$ encodes $q(S_T
 
 
 **Black-Scholes (flat IV):**
+
 - Density: Lognormal
 - Skew: 0
 - Kurtosis: 3
 
 **Equity smile (downward skew):**
+
 - Density: Negatively skewed, left tail fat
 - Skew: $< 0$
 - Kurtosis: $> 3$
 
 **FX smile (symmetric U-shape):**
+
 - Density: Symmetric, both tails fat
 - Skew: $\approx 0$
 - Kurtosis: $\gg 3$
 
 **Commodity (volatile):**
+
 - Density: Highly skewed or bimodal
 - Skew: Varies
 - Kurtosis: Very high
@@ -525,6 +540,7 @@ $$
 
 
 The choice depends on:
+
 1. **Vanilla pricing:** All models can fit the smile (Dupire guarantees perfect fit)
 2. **Exotic pricing:** Models differ significantly for path-dependent options
 3. **Hedging:** Smile dynamics determine rehedging P&L
@@ -577,6 +593,7 @@ Compute skewness, kurtosis, tail probabilities, VaR, etc.
 **Observed:** Downward-sloping skew with $\sigma_{\text{IV}}(K)$ decreasing approximately linearly for $K < F$
 
 **Implied density:**
+
 - Negative skewness $\approx -1.5$ to $-2.0$
 - Excess kurtosis $\approx 5$ to $8$
 - Left tail probability (5% OTM puts) $\approx 15\%$ vs lognormal $10\%$

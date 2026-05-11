@@ -498,3 +498,54 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The code compares binomial tree prices with Black-Scholes analytical prices. Explain why the binomial price converges to the BS price as the number of steps $M \to \infty$.
+
+??? success "Solution to Exercise 1"
+    The CRR binomial model approximates GBM by discretizing the stock price into up ($u$) and down ($d$) moves with $u = e^{\sigma\sqrt{\Delta t}}$ and $d = 1/u$. As $\Delta t = T/M \to 0$:
+
+    1. The binomial distribution of $\ln(S_T/S_0)$ converges to a normal distribution (CLT).
+    2. The risk-neutral probability $q = (e^{r\Delta t} - d)/(u - d) \to 1/2 + (r - \sigma^2/2)\sqrt{\Delta t}/(2\sigma)$.
+    3. The discounted binomial tree price converges to the BS integral $e^{-rT}E^Q[\max(S_T - K, 0)]$.
+
+    The convergence rate is $O(1/M)$, with oscillations due to whether the strike lies on a node.
+
+---
+
+**Exercise 2.**
+For $S = 100$, $K = 100$, $T = 1$, $r = 0.05$, $\sigma = 0.20$ with $M = 500$ binomial steps, estimate the pricing error compared to the BS formula.
+
+??? success "Solution to Exercise 2"
+    With $M = 500$, the convergence error is approximately $O(1/500) \approx 0.002$ in relative terms. The BS call price is approximately $\$10.45$, so the binomial error is about $\$0.02$.
+
+    The error oscillates between even and odd $M$ due to the node-positioning effect: when $M$ is chosen so that $K$ falls exactly on a node, the error is smaller. Richardson extrapolation (averaging $M$ and $M+1$) can reduce the error to $O(1/M^2)$.
+
+---
+
+**Exercise 3.**
+The small visualization model uses $M = 6$ steps. Draw a 3-step binomial tree and label the stock prices at each node for $S = 100$, $u = 1.1$, $d = 0.9$.
+
+??? success "Solution to Exercise 3"
+    At each node $S_{n,j} = S_0 u^j d^{n-j}$:
+
+    - $t=0$: $S = 100$
+    - $t=1$: $Su = 110$, $Sd = 90$
+    - $t=2$: $Su^2 = 121$, $Sud = 99$, $Sd^2 = 81$
+    - $t=3$: $Su^3 = 133.1$, $Su^2d = 108.9$, $Sud^2 = 89.1$, $Sd^3 = 72.9$
+
+    With $K = 100$, the call payoffs at $t = 3$ are: $33.1$, $8.9$, $0$, $0$. Working backward with the risk-neutral probability gives the call price at $t = 0$.
+
+---
+
+**Exercise 4.**
+Compare the computational complexity of the binomial tree with $M$ steps versus the Black-Scholes formula. When is each method preferred?
+
+??? success "Solution to Exercise 4"
+
+    - **BS formula**: $O(1)$ -- just evaluates $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$. Preferred for European options where an analytical formula exists.
+    - **Binomial tree**: $O(M)$ space (using the array-based method) and $O(M^2)$ time. Preferred for American options (where early exercise must be checked at each node) and for exotic options without closed-form solutions.
+
+    The binomial tree's main advantage is flexibility: it can handle early exercise, dividends at discrete dates, and varying parameters. Its main disadvantage is slower convergence ($O(1/M)$) compared to analytical formulas.

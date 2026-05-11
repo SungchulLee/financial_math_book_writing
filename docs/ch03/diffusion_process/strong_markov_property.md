@@ -5,7 +5,7 @@
 Throughout, $(\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \ge 0}, \mathbb{P})$ is a filtered probability space satisfying the usual conditions. A **stopping time** is a random variable $\tau : \Omega \to [0, \infty]$ such that $\{\tau \le t\} \in \mathcal{F}_t$ for all $t \ge 0$. The **stopped $\sigma$-algebra** is
 
 $$
-\mathcal{F}_\tau := \{ A \in \mathcal{F} : A \cap \{\tau \le t\} \in \mathcal{F}_t \text{ for all } t \ge 0 \}.
+\mathcal{F}_\tau := \{ A \in \mathcal{F} : A \cap \{\tau \le t\} \in \mathcal{F}_t \text{ for all } t \ge 0 \}
 $$
 
 !!! info "Definition: Markov Property vs Strong Markov Property"

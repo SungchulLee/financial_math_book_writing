@@ -272,3 +272,55 @@ if __name__ == "__main__":
     
         return results
 ```
+
+## Exercises
+
+**Exercise 1.**
+Describe the computational cost per time step for Forward Euler, Backward Euler, and Crank-Nicolson on a grid with $N_x$ points. Which method is cheapest per step, and which is most expensive?
+
+??? success "Solution to Exercise 1"
+
+    - **Forward Euler**: matrix-vector product $A\mathbf{u}$, costing $O(N_x)$ operations since $A$ is tridiagonal. This is the cheapest.
+    - **Backward Euler**: solve $A\mathbf{u}^{n+1} = \mathbf{u}^n$. For a tridiagonal system, the Thomas algorithm costs $O(N_x)$, though with a larger constant than the explicit multiplication.
+    - **Crank-Nicolson**: compute $\mathbf{b} = B\mathbf{u}^n$ (one tridiagonal multiply) then solve $A\mathbf{u}^{n+1} = \mathbf{b}$ (one tridiagonal solve). Total cost is $O(N_x)$ but with the largest constant of the three.
+
+    All are $O(N_x)$ per step, but Forward Euler has the smallest constant. However, Forward Euler may require many more time steps due to its stability restriction.
+
+---
+
+**Exercise 2.**
+The `solve_with_history` function stores the solution every `save_every` time steps. If $N_t = 10{,}000$ and `save_every = 100`, how many snapshots are stored? What is the memory requirement in terms of $N_x$?
+
+??? success "Solution to Exercise 2"
+    The number of snapshots is $N_t / \text{save\_every} + 1 = 10{,}000/100 + 1 = 101$ (including the initial condition).
+
+    Each snapshot is a vector of length $N_x$, so the total memory is $101 \times N_x$ floating-point numbers. For $N_x = 1000$ and 8-byte doubles, this is $101 \times 1000 \times 8 = 808{,}000$ bytes $\approx 0.8$ MB.
+
+---
+
+**Exercise 3.**
+Explain why the $\theta$-method with $\theta = 0$ reduces to Forward Euler and $\theta = 1$ reduces to Backward Euler. For what value of $\theta$ is the method second-order in time?
+
+??? success "Solution to Exercise 3"
+    The $\theta$-method is $\mathbf{u}^{n+1} = \mathbf{u}^n + \Delta t[\theta F(\mathbf{u}^{n+1}) + (1-\theta)F(\mathbf{u}^n)]$ where $F(\mathbf{u}) = D L\mathbf{u}$.
+
+    - $\theta = 0$: only the explicit term remains, giving $\mathbf{u}^{n+1} = \mathbf{u}^n + \Delta t\,F(\mathbf{u}^n)$ (Forward Euler).
+    - $\theta = 1$: only the implicit term remains, giving $\mathbf{u}^{n+1} = \mathbf{u}^n + \Delta t\,F(\mathbf{u}^{n+1})$ (Backward Euler).
+    - $\theta = 1/2$: the trapezoidal rule, i.e., Crank-Nicolson, which is second-order in time because the local truncation error of the trapezoidal rule is $O(\Delta t^3)$.
+
+---
+
+**Exercise 4.**
+The `compare_methods` function catches a `ValueError` when Forward Euler is unstable. Explain how one could modify the comparison to still include Forward Euler results by automatically adjusting $N_t$ to satisfy the stability condition.
+
+??? success "Solution to Exercise 4"
+    Given $\alpha = D\Delta t / \Delta x^2 \le 0.5$, the maximum stable time step is $\Delta t_{\max} = 0.5\,\Delta x^2 / D$. The minimum number of time steps is $N_t^{\min} = \lceil T / \Delta t_{\max} \rceil$.
+
+    The modification would:
+
+    1. Check if the given $\alpha > 0.5$.
+    2. If so, compute $N_t^{\text{stable}} = \lceil T \cdot D / (0.5 \Delta x^2) \rceil$.
+    3. Re-solve Forward Euler with the larger $N_t^{\text{stable}}$.
+    4. Report that the time step was adjusted for stability.
+
+    This ensures a fair comparison: all methods solve to the same final time $T$, but Forward Euler uses more (smaller) steps when necessary.

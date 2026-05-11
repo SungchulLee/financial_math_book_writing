@@ -95,6 +95,7 @@ UI is automatic here: the sequence consists of conditional expectations of the s
 For right-continuous martingales $(M_t)_{t \ge 0}$ with $\sup_t \mathbb{E}|M_t| < \infty$, the same conclusions hold: $M_\infty := \lim_{t\to\infty} M_t$ exists a.s. and is finite. If $(M_t)$ is UI, convergence is also in $L^1$ and $M_t = \mathbb{E}[M_\infty \mid \mathcal{F}_t]$. Doob's regularization theorem provides a càdlàg modification whenever the filtration satisfies the usual conditions.
 
 !!! example "Three behaviors to remember"
+
     - **Lévy martingale** $M_t = \mathbb{E}[X \mid \mathcal{F}_t]$: UI, so $M_t \to X$ a.s. and in $L^1$.
     - **Exponential martingale** $Z_t = \exp(\theta W_t - \theta^2 t/2)$, $\theta \ne 0$: $\mathbb{E}[Z_t] = 1$ but $Z_t \to 0$ a.s. Not UI.
     - **Simple random walk** $S_n$: $\mathbb{E}[S_n^2] = n \to \infty$, not $L^1$-bounded, does not converge a.s.

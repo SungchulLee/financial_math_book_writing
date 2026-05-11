@@ -132,3 +132,68 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+For an annuity mortgage with notional \$1,000,000, annual rate $5\%$, and 30-year term with no prepayment, compute the constant annual installment $C$.
+
+??? success "Solution to Exercise 1"
+    The annuity installment formula is
+
+    $$
+    C = \frac{r \cdot N_0}{1 - (1 + r)^{-n}} = \frac{0.05 \times 1{,}000{,}000}{1 - (1.05)^{-30}}.
+    $$
+
+    Computing $(1.05)^{-30} = 1/4.3219 = 0.2314$:
+
+    $$
+    C = \frac{50{,}000}{1 - 0.2314} = \frac{50{,}000}{0.7686} \approx \$65{,}051.
+    $$
+
+---
+
+**Exercise 2.**
+In the first year of the mortgage from Exercise 1, compute the interest payment, notional repayment, and remaining notional.
+
+??? success "Solution to Exercise 2"
+
+    - Interest payment: $I_1 = r \times N_0 = 0.05 \times 1{,}000{,}000 = \$50{,}000$
+    - Notional repayment: $Q_1 = C - I_1 = 65{,}051 - 50{,}000 = \$15{,}051$
+    - Remaining notional: $N_1 = N_0 - Q_1 = 1{,}000{,}000 - 15{,}051 = \$984{,}949$
+
+    In an annuity mortgage, the interest portion decreases over time while the notional repayment increases, keeping the total installment constant.
+
+---
+
+**Exercise 3.**
+If a conditional prepayment rate (CPR) of $10\%$ is applied, the prepayment at time $t$ is $P_t = \text{CPR} \times (N_{t-1} - Q_t)$. Compute the prepayment and new notional after year 1 using the values from Exercise 2.
+
+??? success "Solution to Exercise 3"
+    The prepayment is
+
+    $$
+    P_1 = 0.10 \times (N_0 - Q_1) = 0.10 \times (1{,}000{,}000 - 15{,}051) = 0.10 \times 984{,}949 = \$98{,}495.
+    $$
+
+    The new remaining notional is
+
+    $$
+    N_1 = N_0 - Q_1 - P_1 = 1{,}000{,}000 - 15{,}051 - 98{,}495 = \$886{,}454.
+    $$
+
+    The prepayment significantly accelerates the reduction of the outstanding balance.
+
+---
+
+**Exercise 4.**
+Explain how prepayments affect the cash flow profile of an annuity mortgage and why mortgage-backed securities (MBS) investors face prepayment risk.
+
+??? success "Solution to Exercise 4"
+    With prepayments, the outstanding notional decreases faster than scheduled. This has several effects:
+
+    1. The interest portion of future payments shrinks because the remaining balance is smaller.
+    2. The recalculated installment for subsequent periods is lower (computed from a smaller notional over fewer remaining periods).
+    3. The total interest paid over the life of the mortgage is reduced.
+
+    For MBS investors, prepayment risk manifests as reinvestment risk: when rates fall, borrowers prepay (refinance at lower rates), returning principal to investors who must reinvest at lower yields. Conversely, when rates rise, prepayments slow, extending the effective duration of the MBS beyond expectations. This asymmetric behavior creates negative convexity in MBS pricing.

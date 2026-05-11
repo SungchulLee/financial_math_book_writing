@@ -39,21 +39,7 @@ u(0,x) = f(x)
 }
 $$
 
-**Proof**: 
-
-Using the convolution formula:
-
-$$
-u(t,x) = \int_{\mathbb{R}} f(y) G(t, y-x)\,dy = \int_{\mathbb{R}} f(x+z) G(t,z)\,dz
-$$
-
-Since $G$ solves the heat equation and differentiation commutes with integration:
-
-$$
-\frac{\partial u}{\partial t} = \int f(x+z) \frac{\partial G}{\partial t}(t,z)\,dz = \frac{1}{2}\int f(x+z) \frac{\partial^2 G}{\partial z^2}(t,z)\,dz = \frac{1}{2}\frac{\partial^2 u}{\partial x^2}
-$$
-
-The initial condition follows from $G(t,\cdot) \to \delta_0$ as $t \to 0$. $\square$
+**Proof**: Since $u(t,x) = \int f(y) G(t,y-x)\,dy$ and $G$ solves the heat equation, differentiation under the integral gives $u_t = \frac{1}{2}u_{xx}$; the initial condition follows from $G(t,\cdot) \to \delta_0$. See [Fundamental Solution](fundamental_solution.md) for the full convolution machinery. $\square$
 
 ---
 
@@ -117,15 +103,18 @@ This is a local martingale (and a true martingale under growth conditions). $\sq
 The probabilistic representation enables **Monte Carlo methods**:
 
 **Algorithm**:
+
 1. Generate $N$ independent samples $B_t^{(1)}, \ldots, B_t^{(N)}$ of Brownian motion at time $t$
 2. Estimate: $u(t,x) \approx \frac{1}{N}\sum_{i=1}^N f(x + B_t^{(i)})$
 
 **Advantages**:
+
 - Works in high dimensions (no curse of dimensionality for well-behaved $f$)
 - Easy to implement
 - Naturally parallelizable
 
 **Disadvantages**:
+
 - Slow convergence: error $\sim 1/\sqrt{N}$
 - Variance reduction may be needed
 

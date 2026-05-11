@@ -13,11 +13,13 @@ This section illustrates the **implied volatility smile** using real market data
 
 
 Before the October 1987 crash, the SPX implied volatility surface was relatively flat:
+
 - Puts and calls at similar strikes had similar IVs
 - The Black-Scholes model was considered adequate
 - Market makers did not price significant crash risk
 
 **Typical pre-1987 characteristics:**
+
 - ATM IV: 15-20%
 - Skew: Near zero
 - Smile curvature: Minimal
@@ -28,11 +30,13 @@ Before the October 1987 crash, the SPX implied volatility surface was relatively
 The October 1987 crash (Black Monday) fundamentally changed the SPX smile:
 
 **Key changes:**
+
 - Pronounced downside skew emerged
 - OTM puts became significantly more expensive
 - The "smirk" pattern became permanent
 
 **Mechanism:**
+
 - Portfolio insurance strategies contributed to crash severity
 - Investors now demand protection against tail events
 - "Crashophobia" priced into OTM puts
@@ -190,6 +194,7 @@ $$
 
 
 Small deviations occur due to:
+
 - Bid-ask spreads
 - American exercise premium (for SPY options)
 - Dividend expectations
@@ -208,6 +213,7 @@ $$
 Typical SPX values: 0.5-2.0 vol points
 
 **Interpretation:** Positive butterfly indicates:
+
 - Fat tails in risk-neutral distribution
 - Market prices both up and down jump risk
 
@@ -238,6 +244,7 @@ Typical SPX values: 0.5-2.0 vol points
 
 
 **VIX smile characteristics:**
+
 - **Inverted skew:** OTM calls more expensive than OTM puts
 - **High ATM vol:** 80-120% typical
 - **Mean reversion:** VIX cannot go to zero, bounds the downside
@@ -293,6 +300,7 @@ filtered = options[
 
 
 SPX option liquidity is concentrated:
+
 - **Strikes:** Multiples of 25 or 50 points
 - **Expirations:** Monthly, weekly (Wed, Fri)
 - **Moneyness:** Within ±10% of spot
@@ -344,6 +352,7 @@ When hedging exotic options (barriers, cliquets, autocallables), traders must ac
 
 
 The SPX smile encodes:
+
 - **Risk-neutral crash probability:** Steeper skew = higher crash expectation
 - **Market uncertainty:** Higher ATM = more uncertainty
 - **Tail risk pricing:** Wing vols = extreme event premiums
@@ -395,6 +404,7 @@ The SPX implied volatility smile exhibits:
 5. **Liquidity concentration** (around ATM, standard strikes)
 
 Understanding these patterns is essential for:
+
 - Option pricing and trading
 - Risk management
 - Model calibration

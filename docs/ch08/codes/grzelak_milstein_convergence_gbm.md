@@ -187,3 +187,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Write the Milstein scheme for GBM and show that the correction term $\frac{1}{2}\sigma^2 S[(\Delta W)^2 - \Delta t]$ recovers strong order 1.
+
+??? success "Solution to Exercise 1"
+    The Milstein scheme: $S_{i+1} = S_i + rS_i\Delta t + \sigma S_i \Delta W_i + \frac{1}{2}\sigma^2 S_i[(\Delta W_i)^2 - \Delta t]$. This equals $S_i(1 + r\Delta t + \sigma\Delta W + \frac{\sigma^2}{2}((\Delta W)^2 - \Delta t))$. Expanding the exact $\exp((r - \sigma^2/2)\Delta t + \sigma\Delta W)$ to second order matches, confirming strong order 1.
+
+---
+
+**Exercise 2.**
+If Euler strong error at $\Delta t = 0.002$ is $0.1$ and Milstein is $0.01$, estimate both at $\Delta t = 0.0002$.
+
+??? success "Solution to Exercise 2"
+    Euler ($O(\sqrt{\Delta t})$): $0.1/\sqrt{10} \approx 0.0316$. Milstein ($O(\Delta t)$): $0.01/10 = 0.001$. At $\Delta t = 0.0002$, Milstein is about 32 times more accurate.
+
+---
+
+**Exercise 3.**
+For what class of SDEs does the Milstein scheme reduce to the Euler scheme?
+
+??? success "Solution to Exercise 3"
+    When $b^\prime(X) = 0$, i.e., when the diffusion coefficient is constant (additive noise). Examples: Ornstein-Uhlenbeck ($dX = \kappa(\theta - X)dt + \sigma dW$) and the Bachelier model. For these, both schemes have strong order 1.
+
+---
+
+**Exercise 4.**
+How does the number of Monte Carlo paths (e.g., 100) affect the reliability of the estimated convergence rate?
+
+??? success "Solution to Exercise 4"
+    The standard error of the strong error estimate is $\text{SE} \approx \sigma_{\text{abs}}/\sqrt{N_{\text{paths}}}$. With 100 paths, $\text{SE} \approx \hat{\epsilon}/10$, giving 10% relative uncertainty. The convergence slope on a log-log plot has uncertainty $\pm 0.1$. Using 10,000 paths would reduce SE to 1%, giving a much cleaner convergence plot.

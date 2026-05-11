@@ -9,6 +9,7 @@ Empirical evidence suggests that volatility exhibits **rough behavior**, with pa
 
 
 High-frequency data show that:
+
 - volatility has very low Hölder regularity,
 - volatility increments are highly persistent,
 - classical diffusions are too smooth.
@@ -43,6 +44,7 @@ Small Hurst parameter $H$ implies rough paths.
 
 
 Rough volatility models naturally explain:
+
 - steep short-maturity smiles,
 - fast decay of ATM skew,
 - empirical scaling laws.

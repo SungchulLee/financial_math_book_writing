@@ -3,6 +3,7 @@
 The Fourier cosine series and the COS pricing formula are defined on a finite interval $[a, b]$, but the log-price under most financial models has support on the entire real line (or a half-line). Restricting the density to a finite interval introduces a truncation error that must be controlled. Choosing the interval too narrow discards significant probability mass and produces inaccurate prices; choosing it too wide wastes computational effort on regions where the density is negligible and can degrade the convergence rate. This section develops the cumulant-based truncation rule of Fang and Oosterlee (2008), derives error bounds, and provides practical guidance for selecting $[a, b]$ across different models.
 
 !!! info "Prerequisites"
+
     - [Cosine Coefficients via CF](cosine_coefficients_via_cf.md) (the CF-based coefficient formula and its truncation error)
     - Probability: cumulants, moment-generating functions, tail bounds
 

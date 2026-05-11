@@ -13,6 +13,7 @@ An **arbitrage-free implied volatility surface** must satisfy a set of structura
 
 
 A **static arbitrage** is a portfolio of options and cash that:
+
 1. Has non-positive initial cost: $V_0 \leq 0$
 2. Has non-negative payoff at all terminal states: $V_T(S_T) \geq 0$ for all $S_T$
 3. Has strictly positive payoff with positive probability: $\mathbb{P}(V_T > 0) > 0$
@@ -23,6 +24,7 @@ A **static arbitrage** is a portfolio of options and cash that:
 
 
 Consider a **call spread**:
+
 - Long 1 call at strike $K_1$
 - Short 1 call at strike $K_2 > K_1$
 
@@ -62,6 +64,7 @@ $$
 
 
 Consider a **butterfly spread**:
+
 - Long 1 call at strike $K_1$
 - Short 2 calls at strike $K_2 = \frac{K_1 + K_3}{2}$ (midpoint)
 - Long 1 call at strike $K_3$
@@ -103,6 +106,7 @@ $$
 
 
 Consider a **calendar spread**:
+
 - Short 1 call at strike $K$ maturing at $T_1$
 - Long 1 call at same strike $K$ maturing at $T_2 > T_1$
 
@@ -174,6 +178,7 @@ $$
 
 
 Boundary conditions:
+
 - As $K \to 0$: $C(K) \to S_0 e^{-qT}$, so $\frac{\partial C}{\partial K} \to 0$
 - As $K \to \infty$: $C(K) \to 0$, so $\frac{\partial C}{\partial K} \to -e^{-rT}$
 
@@ -232,6 +237,7 @@ An implied volatility surface $\sigma_{\text{IV}}(K, T)$ is arbitrage-free if an
 where subscripts denote partial derivatives: $w_y = \frac{\partial w}{\partial y}$, etc.
 
 **Proof sketch:** 
+
 - Butterfly condition ensures $\frac{\partial^2 C}{\partial K^2} \geq 0$
 - Calendar condition ensures $\frac{\partial C}{\partial T} \geq 0$
 - Together, these guarantee a valid probability measure exists
@@ -427,6 +433,7 @@ If IV is too flat in the wings, the distribution has infinite variance (patholog
 **Given:** Observed option prices at discrete strikes $\{K_i\}$ for maturity $T$
 
 **Goal:** Construct smooth call price function $C(K)$ that:
+
 1. Passes through observed points
 2. Satisfies arbitrage constraints
 3. Is smooth enough for numerical differentiation
@@ -437,6 +444,7 @@ If IV is too flat in the wings, the distribution has infinite variance (patholog
 Standard cubic splines can introduce spurious oscillations violating convexity.
 
 **Solution:** Use **monotone and convex splines**:
+
 - Enforce $C_K \leq 0$ (monotonicity)
 - Enforce $C_{KK} \geq 0$ (convexity)
 
@@ -524,6 +532,7 @@ $$
 
 
 Consider a **condor spread** (4 strikes):
+
 - Long $K_1, K_4$
 - Short $K_2, K_3$
 
@@ -542,6 +551,7 @@ Durrleman's condition involves both $w_T$ (calendar) and $w_{yy}$ (butterfly) si
 **Key insight:** Calendar and butterfly constraints are **coupled**. Satisfying each separately is necessary but not sufficient.
 
 **Example:** A surface with:
+
 - $w_{yy} \geq 0$ for each $T$
 - $w_T \geq 0$ for each $y$
 
@@ -556,6 +566,7 @@ can still violate Durrleman's joint condition $g(y, T) \geq 0$.
 
 
 If the call price surface violates arbitrage, **Dupire's formula** can produce:
+
 - Negative local volatility $\sigma_{\text{loc}}^2 < 0$
 - Infinite local volatility $\sigma_{\text{loc}}^2 = \infty$
 - Complex local volatility $\sigma_{\text{loc}} \in \mathbb{C}$
@@ -568,6 +579,7 @@ If the call price surface violates arbitrage, **Dupire's formula** can produce:
 
 
 Arbitrage violations also prevent calibration of parametric models (Heston, SABR):
+
 - Optimization may not converge
 - Calibrated parameters may be unrealistic (e.g., $\rho = -1.2 > 1$)
 
@@ -582,6 +594,7 @@ Arbitrage violations also prevent calibration of parametric models (Heston, SABR
 Using **mid prices** can create apparent arbitrage:
 
 **Example:**
+
 - Bid for $K_1$ call: \$5.00
 - Ask for $K_1$ call: \$5.10
 - Bid for $K_2$ call: \$4.95
@@ -599,6 +612,7 @@ But using ask for long, bid for short: $5.10 - 4.95 = 0.15$ (costly, no arbitrag
 
 
 Deep OTM or far-dated options may have:
+
 - Wide bid-ask spreads
 - Stale quotes (not updated recently)
 - Few or zero trades

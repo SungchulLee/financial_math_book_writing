@@ -7,6 +7,7 @@
 Pathwise hedging represents a paradigm shift from traditional stochastic hedging strategies to deterministic, model-free approaches that work **path-by-path**. Rather than relying on specific probability measures or stochastic models, pathwise hedging constructs portfolios that replicate or dominate derivatives for **every possible realization** of the underlying asset price path.
 
 This approach is particularly powerful because:
+
 1. **Model-free**: No assumptions about the underlying dynamics
 2. **Robust**: Works for every path, not just on average
 3. **Constructive**: Provides explicit trading strategies
@@ -83,12 +84,14 @@ $$
 
 
 where:
+
 - The first integral is pathwise Riemann-Stieltjes (or Young if $S$ is rough)
 - $[S]_t = \lim_{|\Pi| \to 0} \sum_{i} (S_{t_{i+1}} - S_{t_i})^2$ is the quadratic variation
 
 **Interpretation**: This formula holds **path-by-path**, without reference to any probability measure or Brownian motion.
 
 **Hedging Implication**: To replicate $f(S_T)$ from initial capital $f(S_0)$:
+
 - Hold $\theta_t = f'(S_t)$ shares at time $t$ (delta hedging)
 - But accumulate error: $\frac{1}{2} \int_0^T f''(S_t) \, d[S]_t$
 
@@ -109,6 +112,7 @@ $$
 where $A \subseteq \mathcal{C}([0,T], \mathbb{R}_+)$ is an event.
 
 **Properties**:
+
 - Super-additive but not additive
 - Provides upper bound on "probability" in pathwise sense
 - Connects to continuous-time betting strategies
@@ -168,6 +172,7 @@ where the expectation is with respect to paths conditional on $S_T = K$.
 **Setup**: Consider a European option with payoff $\Phi(S_T)$.
 
 **Tangent Path**: A path $\tilde{S} \in \mathcal{C}([0,T], \mathbb{R}_+)$ with:
+
 1. $\tilde{S}_0 = S_0$ (same initial value)
 2. $\tilde{S}_T$ chosen such that $\Phi(\tilde{S}_T)$ equals the target
 
@@ -202,6 +207,7 @@ $$
 
 
 **Strategy**:
+
 1. Choose the "worst-case" tangent path $\tilde{S}^{\max}$
 2. Delta-hedge along $\tilde{S}^{\max}$
 3. Accumulate quadratic variation penalty
@@ -259,6 +265,7 @@ $$
 
 
 **Pathwise Implementation**:
+
 - Monitor realized quadratic variation
 - Adjust hedge dynamically based on observed path regularity
 
@@ -269,6 +276,7 @@ $$
 
 
 **Rough Path**: A pair $(X, \mathbb{X})$ where:
+
 - $X: [0,T] \to \mathbb{R}^d$ is a continuous path
 - $\mathbb{X}_{s,t}$ is the "second-order increment":
 
@@ -344,6 +352,7 @@ where $W^H$ is fractional Brownian motion with $H < 1/2$.
 **Challenge**: Classical Itô calculus does not apply directly.
 
 **Rough Path Solution**:
+
 1. Lift $(S, V)$ to rough path $(S, \mathbb{S})$ including second-order terms
 2. Define hedging strategy in controlled rough path sense
 3. Prove convergence of discrete hedging to continuous limit
@@ -373,6 +382,7 @@ $$
 
 
 **Pathwise Interpretation**: 
+
 - This formula is **model-free** in the sense that it directly relates market observables
 - The resulting $\sigma(K, T)$ can be used to hedge pathwise, without assuming a specific SDE
 
@@ -389,6 +399,7 @@ $$
 
 
 subject to:
+
 1. $\sigma(S, t) > 0$ (positivity)
 2. No calendar arbitrage
 3. No butterfly arbitrage
@@ -399,6 +410,7 @@ subject to:
 
 
 $$
+
 + \lambda \int_0^T \int_0^{\infty} \left( \frac{\partial \sigma}{\partial S} \right)^2 dS \, dt
 $$
 
@@ -422,6 +434,7 @@ $$
 
 
 **Examples**:
+
 - Asian options: $F(S) = \left(\frac{1}{T} \int_0^T S_t \, dt - K\right)^+$
 - Lookback options: $F(S) = \max_{0 \leq t \leq T} S_t - K$
 - Barrier options: $F(S) = (S_T - K)^+ \mathbb{1}_{\{\sup_{t \leq T} S_t < H\}}$
@@ -622,6 +635,7 @@ $$
 
 
 **Pathwise Hedge**: 
+
 - Hold 0 shares when below running maximum
 - Hold 1 share when at running maximum
 - Continuously monitor and adjust
@@ -648,10 +662,12 @@ $$
 
 
 **Functional Derivative**: 
+
 - Below barrier ($S_t < H$): $\partial_x \Phi = (S_T - K)_+'$ standard delta
 - At barrier ($S_t = H$): Delta jumps to zero
 
 **Pathwise Strategy**:
+
 - Delta-hedge as long as barrier not hit
 - Liquidate immediately upon hitting barrier
 - Accumulate error from jump in delta
@@ -803,6 +819,7 @@ $$
 
 
 **Algorithm**:
+
 1. Generate sample path $S_t$ (any model or historical data)
 2. Compute functional derivative $\partial_x F_t(S)$ at each time
 3. Implement delta-hedge: $\theta_t = \partial_x F_t(S)$
@@ -907,6 +924,7 @@ $$
 
 
 **Pathwise Interpretation**: 
+
 - Volatility path has roughness $H$
 - Delta-hedging requires rough path integration techniques
 - Convergence of discrete hedging strategies depends on regularity
@@ -922,11 +940,13 @@ $$
 **Setup**: Hedge a one-month ATM call on S&P 500 using pathwise strategy.
 
 **Data**: 
+
 - Initial spot: $S_0 = 4500$
 - Strike: $K = 4500$
 - Historical paths (5-minute data)
 
 **Strategy**: 
+
 - Compute functional derivative at each 5-minute interval
 - Rebalance delta position
 - Track cumulative hedging error
@@ -941,6 +961,7 @@ $$
 **Challenge**: Delta jumps discontinuously at barrier.
 
 **Pathwise Approach**:
+
 - Monitor proximity to barrier continuously
 - Adjust hedge aggressively near barrier
 - Accept larger gamma cost near barrier to maintain robustness
@@ -976,11 +997,13 @@ approximating remaining average.
 
 
 **Advantages**:
+
 - Model-free: Robust to misspecification
 - Transparent: Clear connection to underlying path properties
 - Constructive: Provides explicit trading rules
 
 **Best Suited For**:
+
 - Environments with model uncertainty
 - Derivatives with functional payoffs (Asian, lookback)
 - Situations where continuous monitoring is feasible
@@ -1034,6 +1057,7 @@ approximating remaining average.
 
 
 Pathwise hedging transforms derivative pricing from probabilistic to deterministic framework, providing:
+
 - **Robustness**: Works under model uncertainty
 - **Transparency**: Clear hedging rules
 - **Validation**: Testable on historical data without assuming model

@@ -296,3 +296,47 @@ def plot_cross_sections(X, Y, u_initial, u_final, method="Method"):
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+Compare contour plots and surface plots for visualizing 2D heat equation solutions. When is each visualization more informative?
+
+??? success "Solution to Exercise 1"
+    **Contour plots** (top-down view) are better for: quantitative comparison (reading values from contour labels), identifying symmetry patterns, and comparing multiple solutions side by side (they take less space). They are the standard for publication-quality figures.
+
+    **Surface plots** (3D perspective) are better for: intuitive understanding of the temperature landscape, visualizing peak heights and valley depths, and presentations where visual impact matters. However, they can obscure features behind peaks and are harder to read precisely.
+
+    For error analysis, contour plots are almost always preferred because the error magnitudes need to be compared quantitatively across the domain.
+
+---
+
+**Exercise 2.**
+The error analysis plot shows absolute and relative error side by side. When might relative error be misleading, and how should one interpret it near zero crossings?
+
+??? success "Solution to Exercise 2"
+    Relative error $|u_h - u|/|u|$ becomes misleading when $|u|$ is very small or zero. Near zero crossings, $|u| \to 0$ while $|u_h - u|$ remains bounded, causing the relative error to blow up to infinity even when the absolute error is tiny.
+
+    To handle this, one should: (1) add a small regularization constant $\epsilon$ in the denominator: $|u_h - u|/(|u| + \epsilon)$, (2) restrict relative error analysis to regions where $|u|$ exceeds a threshold, or (3) report both absolute and relative errors, noting the domain of validity of each.
+
+---
+
+**Exercise 3.**
+Why does the 2D evolution plot use a consistent colorbar range across all time snapshots? What would happen with auto-scaled colorbars?
+
+??? success "Solution to Exercise 3"
+    A consistent colorbar range (typically set to the global min/max across all snapshots) ensures that the same color represents the same temperature at every time. This allows visual tracking of the diffusion process: the initial hot spot appears bright, and its gradual cooling is visible as the colors fade.
+
+    With auto-scaled colorbars, each snapshot would use its own min/max, making the hottest point always appear the same color. This hides the overall cooling trend and can mislead the viewer into thinking the peak temperature is constant. Auto-scaling is only appropriate when comparing spatial patterns, not magnitudes.
+
+---
+
+**Exercise 4.**
+The cross-section plot shows temperature along $x$ at fixed $y$ (and vice versa). For a Gaussian initial condition centered at $(0.5, 0.5)$, describe the expected shape of these cross-sections.
+
+??? success "Solution to Exercise 4"
+    For a 2D Gaussian $f(x,y) = A\exp(-(x-0.5)^2/(2\sigma_x^2) - (y-0.5)^2/(2\sigma_y^2))$:
+
+    The cross-section at $y = 0.5$ is $f(x, 0.5) = A\exp(-(x-0.5)^2/(2\sigma_x^2))$, a 1D Gaussian with width $\sigma_x$. The cross-section at $x = 0.5$ is similarly a 1D Gaussian with width $\sigma_y$.
+
+    After evolution under the heat equation, both cross-sections remain Gaussian but with broadened widths $\sqrt{\sigma_x^2 + 2Dt}$ and $\sqrt{\sigma_y^2 + 2Dt}$ and reduced amplitudes. The peak decreases as $A\sigma_x\sigma_y / \sqrt{(\sigma_x^2 + 2Dt)(\sigma_y^2 + 2Dt)}$.

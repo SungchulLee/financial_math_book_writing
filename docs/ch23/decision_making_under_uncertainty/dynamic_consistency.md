@@ -9,6 +9,7 @@
 Under standard expected utility with Bayesian updating, dynamic consistency is automatic. However, when preferences incorporate **ambiguity aversion**, **robust optimization**, or **non-expected utility**, dynamic consistency may fail, leading to time-inconsistent behavior.
 
 Understanding and ensuring dynamic consistency is crucial for:
+
 1. **Dynamic portfolio optimization**: Multi-period investment strategies
 2. **Derivatives pricing**: Hedging strategies over time
 3. **Risk management**: Coherent risk assessment across horizons
@@ -21,6 +22,7 @@ Understanding and ensuring dynamic consistency is crucial for:
 
 
 **Setup**: Consider a decision tree with:
+
 - Time periods $t = 0, 1, \ldots, T$
 - Information filtration $\{\mathcal{F}_t\}$
 - Acts (strategies) $\{a_t\}_{t=0}^T$
@@ -120,6 +122,7 @@ $$
 
 
 **Two-Period Problem**:
+
 - States: $\{\omega_1, \omega_2, \omega_3\}$
 - Period 1 information: $\{\{\omega_1\}, \{\omega_2, \omega_3\}\}$
 - Priors: $\mathcal{P} = \{P_1, P_2\}$ with different weights
@@ -173,6 +176,7 @@ is also in $\mathcal{P}$.
 
 
 **Product Structure**: Rectangularity means the set of priors has a "product" structure across time:
+
 - Period-by-period uncertainty sets are independent
 - No constraints linking uncertainty at different times
 
@@ -222,6 +226,7 @@ V_t = \min_{P_t \in \mathcal{P}_t} \mathbb{E}_{P_t}[u(c_t) + \beta V_{t+1} | \ma
 $$
 
 **Properties**:
+
 - Dynamically consistent by construction
 - Nests EU as special case ($\mathcal{P}_t$ singleton)
 - Tractable for computation
@@ -327,6 +332,7 @@ $$
 **Limitation**: Requires credible commitment technology.
 
 **Examples**: 
+
 - Pension contributions with withdrawal penalties
 - Derivative contracts with fixed terms
 
@@ -565,7 +571,7 @@ Dynamic consistency is essential for coherent multi-period decision-making and m
 
     Now modify $f$ slightly to break the tie and create a scenario where the ex-ante preference switches while conditional preferences remain the same. The key mechanism is that without rectangularity, the worst-case measure at $t = 0$ may combine conditionals from different measures, leading to a different ranking than what backward induction (applying worst-case conditionally at each node) would produce.
 
-    Therefore, non-rectangularity implies dynamic inconsistency. $\blacksquare$
+    Therefore, non-rectangularity implies dynamic inconsistency. $\square$
 
 ---
 
@@ -648,7 +654,7 @@ Dynamic consistency is essential for coherent multi-period decision-making and m
     D_{\text{KL}}(P \| P_0) = D_{\text{KL}}(P_0^{\text{marginal}} \| P_0^{\text{marginal}}) + \mathbb{E}_{P}[D_{\text{KL}}(P_1(\cdot \mid \mathcal{F}_1) \| P_{0,1}(\cdot \mid \mathcal{F}_1))]
     $$
 
-    This chain rule for KL divergence means the penalty function factors across time periods automatically. In the language of variational preferences, the cost function $c(P) = \theta D_{\text{KL}}(P \| P_0)$ satisfies the additivity condition $c(P) = c_0(P_0^{\text{marg}}) + \mathbb{E}_P[c_1(P_1)]$, which is precisely the condition Maccheroni-Marinacci-Rustichini identify as sufficient for dynamic consistency. No rectangularity condition on an uncertainty set is needed because the entropic formulation uses a penalty rather than a constraint. $\blacksquare$
+    This chain rule for KL divergence means the penalty function factors across time periods automatically. In the language of variational preferences, the cost function $c(P) = \theta D_{\text{KL}}(P \| P_0)$ satisfies the additivity condition $c(P) = c_0(P_0^{\text{marg}}) + \mathbb{E}_P[c_1(P_1)]$, which is precisely the condition Maccheroni-Marinacci-Rustichini identify as sufficient for dynamic consistency. No rectangularity condition on an uncertainty set is needed because the entropic formulation uses a penalty rather than a constraint. $\square$
 
 ---
 
@@ -830,7 +836,7 @@ Dynamic consistency is essential for coherent multi-period decision-making and m
 
     $\text{CVaR}_{0.10}^0(\rho_1) = $ worst $10\%$ of $\{0, 100\}$ each w.p. $0.5$. Worst $10\%$ falls entirely in the $100$ mass, so $\text{CVaR}_{0.10}^0(\rho_1) = 100$.
 
-    Since $100 \neq 50$, the recursive CVaR gives a different answer from the direct CVaR, proving that CVaR is **not** time-consistent. $\blacksquare$
+    Since $100 \neq 50$, the recursive CVaR gives a different answer from the direct CVaR, proving that CVaR is **not** time-consistent. $\square$
 
 ---
 

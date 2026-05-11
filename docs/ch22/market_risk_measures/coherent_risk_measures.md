@@ -113,6 +113,7 @@ $$
 where $\gamma > 0$ is the risk aversion parameter.
 
 **Properties:**
+
 - Convex but not positively homogeneous
 - Penalizes tail risk exponentially
 - Connected to exponential utility: $\rho_\gamma(L) = -\frac{1}{\gamma}\log(-\mathbb{E}[-e^{-\gamma(-L)}])$
@@ -187,6 +188,7 @@ $$
 The set of positions requiring no additional capital.
 
 **Properties:**
+
 - Coherent $\rho$ $\Leftrightarrow$ $\mathcal{A}$ is a convex cone containing constants $\le 0$
 - Convex $\rho$ $\Leftrightarrow$ $\mathcal{A}$ is convex
 

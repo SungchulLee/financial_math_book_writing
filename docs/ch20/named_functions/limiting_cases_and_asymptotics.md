@@ -3,6 +3,7 @@
 The named functions $B(\tau)$, $A(t,T)$, $V(t,T)$, $\sigma_r^2(t)$, and $\theta(t)$ of the Hull-White model depend on the mean reversion speed $a$ and the volatility $\sigma$. Their behavior in extreme parameter regimes -- $a \to 0$, $a \to \infty$, $\tau \to 0$, $\tau \to \infty$ -- reveals the model's connections to simpler models (Ho-Lee, deterministic rates) and provides approximations useful for intuition, debugging, and numerical validation.
 
 !!! info "Prerequisites"
+
     - Named functions definition and relationships (sibling sections)
     - Ho-Lee model: $dr = \theta(t)\,dt + \sigma\,dW$
     - Taylor expansion and L'Hopital's rule

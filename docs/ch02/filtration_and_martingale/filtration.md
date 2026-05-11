@@ -142,6 +142,12 @@ Filtrations are the backbone for everything that follows: conditional expectatio
 
 ---
 
+!!! note "Algebra vs σ-algebra"
+    An **algebra of sets** is a collection closed under complements and **finite** unions, containing $\Omega$.
+    A **σ-algebra** is additionally closed under **countable** unions.
+
+    Every σ-algebra is an algebra, but not vice versa.
+
 **Exercise 2.** Let $(\mathcal{F}_t)$ be a filtration.
 
 (a) Show $\mathcal{A} := \bigcup_{t \ge 0} \mathcal{F}_t$ is an algebra.

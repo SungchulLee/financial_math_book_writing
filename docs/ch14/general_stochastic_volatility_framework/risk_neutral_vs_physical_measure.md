@@ -18,6 +18,7 @@ dV_t &= a^{\mathbb{P}}(V_t)\,dt + b(V_t)\,dW_t^{V,\mathbb{P}}
 $$
 
 Under $\mathbb{P}$:
+
 - $\mu^{\mathbb{P}}$ reflects the expected return on the asset
 - $a^{\mathbb{P}}(V)$ reflects how volatility actually evolves
 - This is the measure relevant for **forecasting** and **risk management**
@@ -34,6 +35,7 @@ dV_t &= a^{\mathbb{Q}}(V_t)\,dt + b(V_t)\,dW_t^{V,\mathbb{Q}}
 $$
 
 Under $\mathbb{Q}$:
+
 - The drift of $S$ is the risk-free rate minus dividends (no-arbitrage)
 - Option prices are computed as discounted expectations
 - This is the measure relevant for **pricing** and **calibration**
@@ -102,6 +104,7 @@ $$
 $$
 
 This quantity is:
+
 - **Not determined by no-arbitrage** (volatility is non-traded)
 - **Estimated from data** or **implied from options**
 - **Model-dependent** in its functional form
@@ -157,6 +160,7 @@ $$
 or equivalently in terms of variance swap rates vs. realized variance.
 
 **Empirical finding:** VRP is typically **positive** for equity indices:
+
 - Implied variance exceeds realized variance on average
 - Sellers of variance earn positive returns
 - This compensates for volatility's tendency to spike during market stress
@@ -208,11 +212,13 @@ Estimating from historical data (realized variance, returns) yields **physical p
 ### The Mixing Problem
 
 **Danger:** Using $\kappa^{\mathbb{P}}$ from time series with $\theta^{\mathbb{Q}}$ from options creates:
+
 - Inconsistent dynamics
 - Incorrect risk-neutral expectations
 - Poor hedging performance
 
 **Solution:** Either:
+
 1. Use only option-implied ($\mathbb{Q}$) parameters for pricing
 2. Explicitly model the risk premium to connect $\mathbb{P}$ and $\mathbb{Q}$
 3. Joint estimation using both options and returns
@@ -226,6 +232,7 @@ Estimating from historical data (realized variance, returns) yields **physical p
 Typically: $\kappa^{\mathbb{Q}} > \kappa^{\mathbb{P}}$
 
 **Interpretation:** Under $\mathbb{Q}$, volatility mean-reverts faster. This occurs because:
+
 - The risk premium $\lambda > 0$ adds to mean reversion
 - Markets "price in" faster normalization of volatility spikes
 
@@ -267,6 +274,7 @@ $$
 ### Joint Maximum Likelihood
 
 Simultaneously estimate $(\theta^{\mathbb{P}}, \theta^{\mathbb{Q}}, \lambda)$ using:
+
 - Return data (contributes to $\mathbb{P}$-likelihood)
 - Option prices (contributes to $\mathbb{Q}$-likelihood)
 
@@ -275,6 +283,7 @@ Simultaneously estimate $(\theta^{\mathbb{P}}, \theta^{\mathbb{Q}}, \lambda)$ us
 ### Bayesian Approaches
 
 Place priors on risk premium parameters and update with data:
+
 - Natural framework for uncertainty quantification
 - Can incorporate economic constraints
 - Computationally intensive

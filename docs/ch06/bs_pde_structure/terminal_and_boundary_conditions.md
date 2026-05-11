@@ -46,6 +46,7 @@ The function $\Phi$ is determined by the contract.
 ### Regularity
 
 The terminal condition may be:
+
 - **Continuous**: Most standard options
 - **Discontinuous**: Digital options (jumps at strike)
 - **Non-smooth**: Calls and puts (kink at strike)
@@ -219,6 +220,7 @@ This is a **free boundary problem**: the exercise boundary $S^*(t)$ is part of t
 ### Exercise Boundary
 
 For an American put:
+
 - $V(t, S) = K - S$ for $S < S^*(t)$ (immediate exercise)
 - $V(t, S) > K - S$ for $S > S^*(t)$ (hold)
 
@@ -237,6 +239,7 @@ A problem is **well-posed** if:
 ### For Pricing PDEs
 
 With appropriate terminal and boundary conditions:
+
 - **Existence**: Feynman-Kac provides probabilistic solution
 - **Uniqueness**: Maximum principle ensures uniqueness
 - **Stability**: Comparison principle gives continuous dependence
@@ -256,6 +259,7 @@ $$
 ### Boundary Condition Errors
 
 Incorrect boundary conditions cause errors that propagate inward. Use:
+
 - Asymptotic analysis for far-field behavior
 - Sufficiently large domain
 - Absorbing boundary conditions
@@ -341,7 +345,7 @@ $$
     V(t, S) \sim S - Ke^{-r(T-t)} \quad \text{as } S \to \infty
     $$
 
-    **Why this far-field condition is appropriate**: When $S \gg B$, the probability that the stock price will ever reach the barrier $B$ before maturity becomes negligible. Therefore the knock-out feature has virtually no value, and the down-and-out call behaves like a vanilla call. For a deep-in-the-money vanilla call, $V \sim S - Ke^{-r(T-t)}$ (the forward value, since $\Phi(d_1) \to 1$ and $\Phi(d_2) \to 1$ as $S \to \infty$). Formally, $\mathbb{P}(\min_{t \leq s \leq T} S_s < B \mid S_t = S) \to 0$ exponentially as $S/B \to \infty$.
+    **Why this far-field condition is appropriate**: When $S \gg B$, the probability that the stock price will ever reach the barrier $B$ before maturity becomes negligible. Therefore the knock-out feature has virtually no value, and the down-and-out call behaves like a vanilla call. For a deep-in-the-money vanilla call, $V \sim S - Ke^{-r(T-t)}$ (the forward value, since $\mathcal{N}(d_1) \to 1$ and $\mathcal{N}(d_2) \to 1$ as $S \to \infty$). Formally, $\mathbb{P}(\min_{t \leq s \leq T} S_s < B \mid S_t = S) \to 0$ exponentially as $S/B \to \infty$.
 
 ---
 **Exercise 3.** The American put has a free boundary $S^*(t)$ separating the exercise and continuation regions. State the smooth-pasting conditions at $S = S^*(t)$ and explain their financial interpretation. Why are two conditions (value matching and smooth pasting) needed at the free boundary?
@@ -445,4 +449,4 @@ $$
 
     The solution is the convolution $u(\tau, x) = \int G(x - y, \tau)\, \Phi(e^y K)\, dy$. Since $G$ is a Gaussian (smooth in $x$ for any $\tau > 0$), convolution with $G$ produces a smooth function regardless of how rough the initial data $\Phi$ is. The Gaussian kernel "smears out" any kinks or discontinuities instantaneously.
 
-    Financially, for $t < T$ there is always some time remaining, so the probability distribution of $S_T$ given $S_t$ is a smooth lognormal density. This smooths the expected payoff. Only at $t = T$ (zero time remaining) does the distribution collapse to a point mass, and the kink in the payoff reappears. In terms of the Greeks, $\Delta = \Phi(d_1)$ is smooth for $t < T$ but converges to a step function as $t \to T$.
+    Financially, for $t < T$ there is always some time remaining, so the probability distribution of $S_T$ given $S_t$ is a smooth lognormal density. This smooths the expected payoff. Only at $t = T$ (zero time remaining) does the distribution collapse to a point mass, and the kink in the payoff reappears. In terms of the Greeks, $\Delta = \mathcal{N}(d_1)$ is smooth for $t < T$ but converges to a step function as $t \to T$.

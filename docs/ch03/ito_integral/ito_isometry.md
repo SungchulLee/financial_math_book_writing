@@ -46,6 +46,7 @@ To understand the *size* of the integral, examine its second moment. Squaring:
 $$
 \left( \sum_{i=0}^{n-1} \beta_i \Delta W_i \right)^2
 = \underbrace{\sum_{i=0}^{n-1} \beta_i^2 (\Delta W_i)^2}_{\text{diagonal terms}}
+
 + 2\underbrace{\sum_{i < j} \beta_i \beta_j \Delta W_i \Delta W_j}_{\text{cross terms}}
 $$
 

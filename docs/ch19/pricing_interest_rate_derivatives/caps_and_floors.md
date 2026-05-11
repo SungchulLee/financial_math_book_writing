@@ -11,6 +11,7 @@
 A **cap** is a contract that pays the holder when a floating rate exceeds a strike rate $K$.
 
 **Structure:**
+
 - Notional: $N$
 - Strike: $K$
 - Reset dates: $T_0, T_1, \ldots, T_{n-1}$
@@ -98,6 +99,7 @@ d_2 = d_1 - \sigma_i \sqrt{T_i}
 $$
 
 and:
+
 - $F_i = F(0; T_i, T_{i+1})$ is the current forward rate
 - $P(0, T_{i+1})$ is the discount factor
 - $\sigma_i$ is the Black (lognormal) volatility
@@ -222,15 +224,18 @@ This approximate relationship helps convert between conventions.
 ### Market Data
 
 The market provides:
+
 - Cap prices (or flat implied volatilities) for various strikes and maturities
 - Sometimes explicit caplet volatilities
 
 ### Calibration Procedure
 
 **For Black's model:**
+
 - Input: flat vol → strip to spot vols → use for pricing
 
 **For short-rate models (e.g., Hull-White):**
+
 1. Fix $\kappa$ (often from other considerations)
 2. Fit $\sigma$ (or $\sigma(t)$) to match market cap prices
 
@@ -243,6 +248,7 @@ $$
 ### Term Structure of Volatility
 
 The spot volatility term structure $T \mapsto \sigma(T)$ reveals:
+
 - Humped shape: volatility peaks at intermediate maturities
 - Downward sloping: short-term rates more volatile
 - Upward sloping: long-term uncertainty dominates
@@ -312,6 +318,7 @@ This "rule of 40" helps with quick sanity checks.
 ### Definition
 
 A **collar** combines:
+
 - Long cap at strike $K_H$ (high)
 - Short floor at strike $K_L$ (low)
 

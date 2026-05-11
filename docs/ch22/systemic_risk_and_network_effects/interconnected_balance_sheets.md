@@ -9,10 +9,12 @@ Systemic risk arises when financial institutions are **interconnected** through 
 ### Direct Exposures
 
 **Interbank lending:** Banks lend to each other in money markets
+
 - Unsecured lending (Fed funds, LIBOR)
 - Secured lending (repo)
 
 **Derivative exposures:** OTC derivatives create bilateral credit risk
+
 - Notional exposures can be massive
 - Netting reduces but doesn't eliminate risk
 
@@ -21,10 +23,12 @@ Systemic risk arises when financial institutions are **interconnected** through 
 ### Indirect Exposures
 
 **Common asset holdings:** Fire sales affect all holders
+
 - Forced selling by one institution depresses prices
 - Affects mark-to-market of others holding same assets
 
 **Funding markets:** Shared reliance on short-term funding
+
 - Money market stress affects all participants
 - Confidence effects spread quickly
 
@@ -35,6 +39,7 @@ Systemic risk arises when financial institutions are **interconnected** through 
 ### Nodes and Edges
 
 Model the financial system as a directed graph:
+
 - **Nodes:** Financial institutions
 - **Edges:** Exposures (claims between institutions)
 - **Edge weight:** Size of exposure
@@ -60,6 +65,7 @@ This captures the fraction of each institution's liabilities owed to others.
 ### Setup
 
 **$n$ institutions** with:
+
 - External assets $e_i$ (assets outside the network)
 - Interbank liabilities $\bar{p}_i$ (nominal obligations to other banks)
 - Liability matrix $\Pi$ where $\Pi_{ij}$ = share of $i$'s liabilities owed to $j$
@@ -73,6 +79,7 @@ p_i = \min\left(\bar{p}_i, \, e_i + \sum_{j=1}^n \Pi_{ji} p_j\right)
 $$
 
 **Interpretation:**
+
 - Institution $i$ pays the minimum of:
   - What it owes ($\bar{p}_i$)
   - What it has: external assets plus what it receives from others
@@ -92,6 +99,7 @@ $$
 Institution $i$ **defaults** if $p_i < \bar{p}_i$.
 
 **Contagion mechanism:**
+
 1. Institution $A$ receives shock, reduces payments
 2. $A$'s creditors receive less, may default themselves
 3. Cascade propagates through network
@@ -115,6 +123,7 @@ A 1% decline in assets causes $\frac{1}{\text{Equity/Assets}}$ % decline in equi
 ### Fire Sale Externality
 
 When institution $i$ sells assets:
+
 1. Price drops by amount proportional to sale
 2. Other holders suffer mark-to-market losses
 3. May trigger further sales
@@ -142,16 +151,19 @@ $$
 ### Concentration vs Diversification
 
 **Highly concentrated:** Few large, interconnected institutions
+
 - Resilient to small shocks (diversification)
 - Vulnerable to failure of large node (too-big-to-fail)
 
 **Highly diversified:** Many small connections
+
 - Resilient to individual failures
 - Potentially vulnerable to system-wide shocks
 
 ### Core-Periphery Structure
 
 Many financial networks exhibit core-periphery structure:
+
 - **Core:** Highly interconnected major banks
 - **Periphery:** Smaller institutions connected mainly to core
 
@@ -218,6 +230,7 @@ $$
 $$
 
 Capital shortfall in a crisis, where:
+
 - $k$ = prudential capital ratio
 - $D_i$ = debt
 - $W_i$ = market cap
@@ -230,6 +243,7 @@ Capital shortfall in a crisis, where:
 ### G-SIB Framework
 
 **Globally Systemically Important Banks** identified using:
+
 - Size
 - Interconnectedness
 - Substitutability

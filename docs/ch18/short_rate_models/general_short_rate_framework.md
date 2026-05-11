@@ -19,11 +19,13 @@ where $B_t$ is the money-market account value.
 ### Interpretation
 
 The short rate represents:
+
 - The rate earned on an overnight deposit (in the limit)
 - The instantaneous cost of borrowing
 - The drift rate of the money-market account
 
 In practice, proxies for $r_t$ include:
+
 - Federal Funds rate (USD)
 - EONIA/€STR (EUR)
 - SONIA (GBP)
@@ -50,6 +52,7 @@ $$
 ### Economic Role
 
 The money-market account:
+
 - Represents risk-free investment by continuous rolling of overnight deposits
 - Serves as the natural **numéraire** for risk-neutral pricing
 - Accumulates interest at the (stochastic) short rate
@@ -106,6 +109,7 @@ dr_t = \mu^{\mathbb{Q}}(t, r_t) \, dt + \sigma(t, r_t) \, dW_t^{\mathbb{Q}}
 $$
 
 where:
+
 - $\mu^{\mathbb{Q}}(t, r)$: drift under risk-neutral measure
 - $\sigma(t, r)$: volatility function
 - $W_t^{\mathbb{Q}}$: Brownian motion under $\mathbb{Q}$
@@ -123,6 +127,7 @@ This function solves a PDE (derived below) or can be computed via the Feynman-Ka
 ### Why Markov?
 
 The Markov property:
+
 - Enables PDE methods for pricing
 - Allows for closed-form solutions in special cases
 - Provides a finite-dimensional state space

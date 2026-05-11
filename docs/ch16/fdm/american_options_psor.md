@@ -375,10 +375,10 @@ Compute the early exercise boundary at $t = 0$ (i.e., right now) for an American
     K - S^* = P_{\text{BS}}(S^*, K, T, r, \sigma)
     $$
 
-    Using the Black-Scholes put formula $P_{\text{BS}} = Ke^{-rT}\Phi(-d_2) - S\Phi(-d_1)$ with $K = 100$, $T = 1$, $r = 0.05$, $\sigma = 0.20$:
+    Using the Black-Scholes put formula $P_{\text{BS}} = Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)$ with $K = 100$, $T = 1$, $r = 0.05$, $\sigma = 0.20$:
 
     $$
-    100 - S^* = 100 e^{-0.05}\Phi(-d_2) - S^*\Phi(-d_1)
+    100 - S^* = 100 e^{-0.05}\mathcal{N}(-d_2) - S^*\mathcal{N}(-d_1)
     $$
 
     where

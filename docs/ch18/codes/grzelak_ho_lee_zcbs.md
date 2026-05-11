@@ -167,3 +167,73 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The Ho-Lee model SDE is $dr(t) = \theta(t)\,dt + \sigma\,dW(t)$. If the market zero-coupon bond curve is $P(0,T) = e^{-0.1T}$, compute the forward rate $f(0,T)$ and the drift function $\theta(t)$ for $\sigma = 0.007$.
+
+??? success "Solution to Exercise 1"
+    The instantaneous forward rate is
+
+    $$
+    f(0,T) = -\frac{\partial}{\partial T}\ln P(0,T) = -\frac{\partial}{\partial T}(-0.1T) = 0.1.
+    $$
+
+    The forward rate is constant at $10\%$ for this flat curve. The Ho-Lee drift is
+
+    $$
+    \theta(t) = \frac{\partial f}{\partial T}(0,t) + \sigma^2 t = 0 + 0.007^2 \times t = 4.9 \times 10^{-5}\,t.
+    $$
+
+    The drift grows linearly with time, capturing the volatility-induced upward adjustment needed to maintain consistency with the market curve.
+
+---
+
+**Exercise 2.**
+Explain how the money market account $M(t)$ is computed in the code and why the ZCB price is estimated as $P(0,t) \approx \mathbb{E}[1/M(t)]$.
+
+??? success "Solution to Exercise 2"
+    The money market account satisfies $dM = r(t)\,M\,dt$, which is discretized as
+
+    $$
+    M(t_{i+1}) = M(t_i)\,\exp\!\left(\frac{r(t_{i+1}) + r(t_i)}{2}\,\Delta t\right),
+    $$
+
+    using the trapezoidal rule for numerical integration of $\int_0^t r(s)\,ds$. The risk-neutral pricing formula for a zero-coupon bond is
+
+    $$
+    P(0,t) = \mathbb{E}^{\mathbb{Q}}\!\left[\frac{1}{M(t)}\right].
+    $$
+
+    This is estimated by averaging $1/M(t)$ across all Monte Carlo paths. The closer this estimate is to the market curve $P(0,t) = e^{-0.1t}$, the better the model calibration.
+
+---
+
+**Exercise 3.**
+For $\sigma = 0.007$, $T = 40$, and $N = 25{,}000$ paths, the code compares analytical and Monte Carlo ZCB prices. Estimate the standard error of the Monte Carlo estimate for $P(0,20)$ if the variance of $1/M(20)$ is approximately $0.01$.
+
+??? success "Solution to Exercise 3"
+    The standard error of the Monte Carlo estimator is
+
+    $$
+    \text{SE} = \frac{\sqrt{\text{Var}(1/M(20))}}{\sqrt{N}} = \frac{\sqrt{0.01}}{\sqrt{25{,}000}} = \frac{0.1}{158.1} \approx 0.000632.
+    $$
+
+    The $95\%$ confidence interval for $P(0,20)$ is approximately $\hat{P} \pm 1.96 \times 0.000632 \approx \hat{P} \pm 0.00124$. With the analytical value $P(0,20) = e^{-2} \approx 0.1353$, this represents a relative error of about $0.9\%$.
+
+---
+
+**Exercise 4.**
+The Ho-Lee model allows negative interest rates. For $\sigma = 0.007$ and a flat forward curve at $10\%$, estimate the probability that $r(40) < 0$ assuming $r(40)$ is approximately normally distributed.
+
+??? success "Solution to Exercise 4"
+    Under the Ho-Lee model with a flat forward curve, $r(t)$ is normally distributed with mean $f(0,t) = 0.1$ and variance $\sigma^2 t = 0.007^2 \times 40 = 0.00196$. The standard deviation is $\sqrt{0.00196} \approx 0.04427$.
+
+    The probability of negative rates is
+
+    $$
+    \mathbb{P}(r(40) < 0) = \Phi\!\left(\frac{0 - 0.1}{0.04427}\right) = \Phi(-2.259) \approx 0.012.
+    $$
+
+    There is approximately a $1.2\%$ chance of negative rates at year 40. While small, this is non-zero, which is a well-known limitation of Gaussian short-rate models like Ho-Lee.

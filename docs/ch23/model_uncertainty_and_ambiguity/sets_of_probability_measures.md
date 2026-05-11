@@ -15,10 +15,12 @@ This chapter develops the mathematical theory of sets of probability measures, t
 
 
 **Setup**: Let $(\Omega, \mathcal{F})$ be a measurable space where:
+
 - $\Omega$ is the state space
 - $\mathcal{F}$ is a $\sigma$-algebra of events
 
 **Probability Measure**: A function $P: \mathcal{F} \to [0,1]$ satisfying:
+
 1. $P(\emptyset) = 0$, $P(\Omega) = 1$
 2. Countable additivity: For disjoint $\{A_i\}_{i=1}^{\infty}$,
 
@@ -61,6 +63,7 @@ for all bounded continuous functions $f: \Omega \to \mathbb{R}$.
 4. $P_n(A) \to P(A)$ for all $P$-continuity sets $A$ (i.e., $P(\partial A) = 0$)
 
 **Prokhorov's Theorem**: If $\Omega$ is a complete separable metric space (Polish space), then:
+
 - $\mathcal{M}_1(\Omega)$ is complete and separable in the weak topology
 - A subset $\mathcal{P} \subseteq \mathcal{M}_1(\Omega)$ is relatively compact iff it is tight
 
@@ -79,6 +82,7 @@ $$
 where $\mu = P + Q$.
 
 **Properties**:
+
 1. Metric: $\|P - Q\|_{\text{TV}}$ defines a metric on $\mathcal{M}_1(\Omega)$
 2. Range: $\|P - Q\|_{\text{TV}} \in [0, 1]$
 3. Triangle inequality: $\|P - R\|_{\text{TV}} \leq \|P - Q\|_{\text{TV}} + \|Q - R\|_{\text{TV}}$
@@ -243,6 +247,7 @@ $$
 
 
 **Theorem**: Many natural uncertainty sets are convex:
+
 1. KL balls: $\mathcal{P}_{\text{KL}}(\theta)$ is convex
 2. Total variation balls: $\mathcal{P}_{\text{TV}}(\delta)$ is convex
 3. Moment-constrained sets: $\mathcal{P}_{\text{moment}}$ is convex (under convex constraints)
@@ -251,6 +256,7 @@ $$
 
 
 **Theorem** (Compact Sets): Under weak topology, $\mathcal{P} \subseteq \mathcal{M}_1(\Omega)$ is compact if:
+
 1. $\mathcal{P}$ is closed
 2. $\mathcal{P}$ is tight (for Polish spaces)
 
@@ -264,6 +270,7 @@ $$
 
 
 **Implications**: Compactness ensures that:
+
 - $\min_{P \in \mathcal{P}} \mathbb{E}_P[f]$ is attained for continuous $f$
 - Sequential minimizing procedures converge
 
@@ -319,6 +326,7 @@ $$
 
 
 where:
+
 - $\mathcal{X}$ is the decision space
 - $\mathcal{P}$ is the uncertainty set of probability measures
 - $f(x, \omega)$ is the loss function
@@ -517,6 +525,7 @@ $$
 
 
 **Properties**:
+
 1. **Non-negativity**: $D_{\text{KL}}(P \| Q) \geq 0$ with equality iff $P = Q$ (Gibbs' inequality)
 2. **Joint convexity**: $D_{\text{KL}}(\cdot \| \cdot)$ is jointly convex
 3. **Data processing inequality**: For measurable $f$:
@@ -551,6 +560,7 @@ $$
 
 
 where:
+
 - $\lambda^*$ is chosen so that $D_{\text{KL}}(P^* \| P_0) = \theta$
 - $Z(\lambda) = \mathbb{E}_{P_0}[e^{-\lambda X}]$ is the moment generating function
 
@@ -868,6 +878,7 @@ $$
 
 
 **Advantages**: 
+
 - Metrizes weak convergence
 - Respects the geometry of $\Omega$
 - Leads to smooth optimization problems
@@ -894,12 +905,14 @@ $$
 
 
 **Examples**:
+
 1. **KL Divergence**: $\phi(t) = t \log t$
 2. **Total Variation**: $\phi(t) = |t - 1|$
 3. **$\chi^2$ Divergence**: $\phi(t) = (t - 1)^2$
 4. **Hellinger Distance**: $\phi(t) = (\sqrt{t} - 1)^2$
 
 **Properties**: All $\phi$-divergences satisfy:
+
 - Non-negativity
 - Joint convexity
 - Data processing inequality
@@ -908,6 +921,7 @@ $$
 
 
 **Sion's Minimax Theorem**: If $\mathcal{X}$ is compact convex, $\mathcal{P}$ is convex, and $f(x, P)$ is:
+
 - Convex-continuous in $x$ for fixed $P$
 - Concave-continuous in $P$ for fixed $x$
 
@@ -926,6 +940,7 @@ $$
 
 
 **Capacity** (Non-additive measure): $\nu: \mathcal{F} \to [0,1]$ satisfying:
+
 1. $\nu(\emptyset) = 0$, $\nu(\Omega) = 1$
 2. Monotonicity: $A \subseteq B \implies \nu(A) \leq \nu(B)$
 
@@ -969,16 +984,19 @@ establishing connection between non-additive integration and maxmin preferences.
 
 
 **Specifying $\mathcal{P}$**:
+
 1. Start with moment-based sets using observable statistics
 2. Refine with KL or Wasserstein balls centered at empirical measure
 3. Validate using stress tests and expert judgment
 
 **Computational Approaches**:
+
 1. Exploit extreme points for maxmin problems
 2. Use duality for convex formulations
 3. Apply importance sampling for rare events
 
 **Model Selection**:
+
 1. KL divergence: When absolute continuity is reasonable
 2. Wasserstein distance: When geometry of outcomes matters
 3. Total variation: For conservative worst-case analysis

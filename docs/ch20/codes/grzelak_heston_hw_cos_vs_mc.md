@@ -315,3 +315,65 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The Heston-Hull-White model combines stochastic volatility (Heston) with stochastic interest rates (Hull-White). Write the three coupled SDEs.
+
+??? success "Solution to Exercise 1"
+    The three SDEs are:
+
+    $$
+    dS(t) = r(t)\,S(t)\,dt + \sqrt{v(t)}\,S(t)\,dW_S(t),
+    $$
+
+    $$
+    dv(t) = \kappa(\bar{v} - v(t))\,dt + \sigma_v\sqrt{v(t)}\,dW_v(t),
+    $$
+
+    $$
+    dr(t) = \lambda[\theta(t) - r(t)]\,dt + \eta\,dW_r(t),
+    $$
+
+    with correlations $dW_S \cdot dW_v = \rho_{Sv}\,dt$ and potentially $dW_S \cdot dW_r = \rho_{Sr}\,dt$, $dW_v \cdot dW_r = \rho_{vr}\,dt$.
+
+---
+
+**Exercise 2.**
+Explain why the COS method can still be applied to the Heston-Hull-White model despite having three factors.
+
+??? success "Solution to Exercise 2"
+    The COS method requires the characteristic function $\phi(u) = \mathbb{E}[e^{iu\ln S(T)}]$. For the Heston-Hull-White model, under certain assumptions (independent $W_r$ from $W_v$, or specific correlation structures), the characteristic function can be derived in semi-closed form as a product of Heston and Hull-White components:
+
+    $$
+    \phi(u) = \phi_{\text{Heston}}(u) \times \phi_{\text{HW}}(u).
+    $$
+
+    This factorization holds because the Hull-White component enters linearly in the log-price dynamics. The COS method then proceeds as in the 1D case, expanding this characteristic function. The computational cost remains $O(N)$ in the number of cosine terms, independent of the number of factors.
+
+---
+
+**Exercise 3.**
+Monte Carlo for the Heston-Hull-White model requires simulating three correlated processes. Describe how to generate correlated Brownian increments using the Cholesky decomposition.
+
+??? success "Solution to Exercise 3"
+    Given the correlation matrix
+
+    $$
+    \Sigma = \begin{pmatrix} 1 & \rho_{Sv} & \rho_{Sr} \\ \rho_{Sv} & 1 & \rho_{vr} \\ \rho_{Sr} & \rho_{vr} & 1 \end{pmatrix},
+    $$
+
+    compute the Cholesky decomposition $\Sigma = LL^T$. Then generate three independent standard normals $Z_1, Z_2, Z_3$ and transform: $(W_S, W_v, W_r) = L \cdot (Z_1, Z_2, Z_3)^T$. This produces increments with the correct correlation structure. Each increment is then scaled by $\sqrt{\Delta t}$ and used in the respective Euler-Maruyama steps.
+
+---
+
+**Exercise 4.**
+Compare the convergence properties of COS and Monte Carlo for pricing a 5-year European call under the Heston-Hull-White model. Which method do you recommend and why?
+
+??? success "Solution to Exercise 4"
+
+    - **COS**: Converges exponentially fast; typically $N = 128$ or $256$ terms suffice for $10^{-6}$ accuracy. Computation time: milliseconds. Limited to European options.
+    - **Monte Carlo**: Converges as $O(1/\sqrt{M})$; for $10^{-3}$ accuracy, needs approximately $10^6$ paths $\times$ 500 time steps. Computation time: seconds to minutes. Handles any payoff type.
+
+    For European options, COS is strongly recommended due to its speed and accuracy. For exotics (barriers, Bermudans, Asian options), Monte Carlo is necessary. A practical approach: use COS for calibration (which requires thousands of option evaluations) and Monte Carlo for pricing exotic products.

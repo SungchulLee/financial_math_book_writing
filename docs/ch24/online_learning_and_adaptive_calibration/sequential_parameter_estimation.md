@@ -9,11 +9,13 @@
 ### The Online Learning Setting
 
 In sequential estimation, data arrives as a stream $(X_1, Y_1), (X_2, Y_2), \ldots$ At each time $t$, we:
+
 1. Observe new data $(X_t, Y_t)$
 2. Update parameter estimate $\theta_{t-1} \to \theta_t$
 3. Make predictions using $\theta_t$
 
 **Desiderata:**
+
 - **Computational efficiency:** $O(1)$ or $O(d)$ update complexity
 - **Memory efficiency:** Constant storage, not growing with $t$
 - **Adaptivity:** Track time-varying parameters
@@ -103,6 +105,7 @@ For $d$-dimensional parameters, RLS is $O(t)$ times faster than repeated batch e
 ### Initialization
 
 Initialize with:
+
 - $\hat{\theta}_0 = 0$ (or prior estimate)
 - $P_0^{-1} = \delta I$ for small $\delta > 0$ (regularization)
 
@@ -151,6 +154,7 @@ $$
 ### Choosing the Forgetting Factor
 
 **Bias-variance trade-off:**
+
 - $\lambda \to 1$: Low variance (uses all data), high bias if parameters change
 - $\lambda \to 0$: Low bias (adapts quickly), high variance (few effective observations)
 
@@ -187,6 +191,7 @@ $$
 $$
 
 Common choices:
+
 - $\eta_t = c/t$ (polynomial decay)
 - $\eta_t = c/\sqrt{t}$ (slower decay, often better in practice)
 
@@ -488,6 +493,7 @@ The Kalman filter (Section 14.2.2) generalizes to arbitrary state dynamics.
 ### Initialization Sensitivity
 
 Early estimates can be sensitive to initialization:
+
 - Use batch estimation on initial data window
 - Start with large regularization, decrease over time
 - Warm-start from related problems
@@ -495,6 +501,7 @@ Early estimates can be sensitive to initialization:
 ### Numerical Stability
 
 For RLS, maintain positive definiteness of $P_t^{-1}$:
+
 - Use square-root filter or UD decomposition
 - Periodically re-symmetrize: $P_t^{-1} \leftarrow (P_t^{-1} + P_t^{-1\top})/2$
 - Add small regularization: $P_t^{-1} \leftarrow P_t^{-1} + \epsilon I$

@@ -174,6 +174,7 @@ Consider calibrating to $M = 20$ options with the vega-weighted objective from t
 ## Practical Recommendations
 
 !!! tip "Tuning Guidelines for Heston DE Calibration"
+
     1. **Population size**: Use $N_p = 10d$ to $15d$ where $d = 5$. Larger populations improve robustness but increase cost linearly.
     2. **Mutation factor**: $F \in [0.5, 1.0]$. Lower $F$ favors exploitation; higher $F$ favors exploration.
     3. **Crossover rate**: $CR \in [0.7, 0.95]$. High $CR$ works well when all parameters interact strongly (as in Heston).

@@ -1,11 +1,11 @@
 # Understanding Solutions of Stochastic Differential Equations
 
-Stochastic differential equations (SDEs) describe systems that evolve under both deterministic forces and random fluctuations. They appear throughout physics, finance, biology, and engineering.
+The previous section defined what a stochastic differential equation is and introduced the canonical models. We now turn to a deeper question: what does it mean to **solve** an SDE?
 
-Because most SDEs cannot be solved in closed form, the goal of this chapter is to understand **what it means to solve an SDE, when analytical solutions exist, and how to recognize the structures that make them tractable**.
+Unlike ODEs, solving an SDE means describing a **random process**, not a single deterministic function. This fundamental distinction — that the solution is itself random — shapes everything that follows: the types of solutions one can seek, the analytical techniques available, and the limits of closed-form solvability.
 
 !!! abstract "Learning Goals"
-    After completing this chapter you should be able to:
+    After completing this section you should be able to:
 
     - explain what it means to solve an SDE
     - distinguish between explicit pathwise solutions and distributional characterizations
@@ -22,28 +22,7 @@ The discussion proceeds in four stages:
 
 ---
 
-## 1. General Form of an SDE
-
-An Itô stochastic differential equation has the form
-
-$$
-dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t
-$$
-
-where
-
-| Symbol             | Meaning               |
-| ------------------ | --------------------- |
-| $X_t$              | stochastic process    |
-| $\mu(X_t, t)$     | drift term            |
-| $\sigma(X_t, t)$  | diffusion coefficient |
-| $W_t$              | Brownian motion       |
-
-The drift describes the **deterministic trend**, while the diffusion term represents **random fluctuations**.
-
----
-
-## 2. What Does "Solving" an SDE Mean?
+## 1. What Does "Solving" an SDE Mean?
 
 In deterministic calculus we solve for a function $x(t)$.
 
@@ -61,11 +40,13 @@ There are several distinct senses in which an SDE can be "solved":
 
 **Numerical solvability.** When closed forms are unavailable, the SDE may still be studied effectively through simulation, moment approximations, or PDE solvers.
 
-A solution is often expressed in integral form as
+Formally, a **strong solution** is an adapted, continuous process satisfying the integral equation
 
 $$
 X_t = X_0 + \int_0^t \mu(X_s, s)\,ds + \int_0^t \sigma(X_s, s)\,dW_s
 $$
+
+almost surely for all $t \geq 0$, where the stochastic integral is understood in the Itô sense. The solution may depend on the entire Brownian path up to time $t$, not simply on the current value $W_t$ — for instance, the Ornstein–Uhlenbeck solution involves a stochastic integral over the path.
 
 Analytical solutions allow us to compute distributions, derive moments, analyze long-term behavior, and benchmark numerical algorithms.
 
@@ -75,7 +56,7 @@ Analytical solutions allow us to compute distributions, derive moments, analyze 
 
 ---
 
-## 3. Types of SDE Structures
+## 2. Types of SDE Structures
 
 Different analytical techniques apply depending on the structure of the equation. Recognizing the structure is the **most important step in solving an SDE**.
 
@@ -102,7 +83,7 @@ E1 --> M4[Lamperti transform]
 
 ---
 
-## 4. The Transformation Viewpoint
+## 3. The Transformation Viewpoint
 
 Many solvable SDEs become manageable only after a suitable change of variables. The central theme is
 
@@ -124,7 +105,7 @@ Although the details differ from model to model, the strategy is the same: ident
 
 ---
 
-## 5. Diffusion Model Cheat Sheet
+## 4. Diffusion Model Cheat Sheet
 
 | Model | SDE | Key Property | Typical Use |
 |---|---|---|---|
@@ -159,7 +140,7 @@ Although the details differ from model to model, the strategy is the same: ident
 
 ---
 
-## 6. Analytical Tools for Studying SDEs
+## 5. Analytical Tools for Studying SDEs
 
 Some techniques do not directly produce an explicit pathwise solution, but still provide powerful analytical information.
 
@@ -189,15 +170,15 @@ Girsanov's theorem allows one to change the **drift** of a stochastic process by
 
 ---
 
-## 7. When Closed-Form Solutions Do Not Exist
+## 6. When Closed-Form Solutions Do Not Exist
 
 Most SDEs cannot be solved analytically in an elementary pathwise sense. Examples include nonlinear stochastic volatility models, SABR-type models, multi-factor interest rate models, jump-diffusions, and coupled nonlinear systems.
 
-Even when a simple explicit pathwise formula is unavailable, one may still have access to transition densities, characteristic functions, moment equations, PDE representations, and simulation methods. In all these cases the structural classification of §3 remains the starting point: knowing the equation's form determines which analytical or numerical tool to reach for.
+Even when a simple explicit pathwise formula is unavailable, one may still have access to transition densities, characteristic functions, moment equations, PDE representations, and simulation methods. In all these cases the structural classification of §2 remains the starting point: knowing the equation's form determines which analytical or numerical tool to reach for.
 
 ---
 
-## 8. Decision Framework
+## 7. Decision Framework
 
 A practical workflow when encountering a new SDE:
 
@@ -222,6 +203,7 @@ H -->|No| J[Use analytical approximations or numerical methods]
 ```
 
 !!! abstract "Key Takeaways"
+
     - Only a small class of SDEs admit elementary closed-form pathwise solutions
     - Many solvable models rely on **transformations**
     - Structural recognition is the first and most important step
@@ -229,11 +211,11 @@ H -->|No| J[Use analytical approximations or numerical methods]
 
 ---
 
-## 9. Bridge to Solution Techniques
+## 8. Bridge to Solution Techniques
 
-In this chapter we focused on **conceptual foundations**: what it means to solve an SDE, the four senses of solvability, and the structural patterns that determine which techniques apply.
+This page focused on **conceptual foundations**: what it means to solve an SDE, the four senses of solvability, and the structural patterns that determine which techniques apply.
 
-In the next chapter we turn to the main **solution techniques** themselves: direct integration, Itô transformations, integrating factors, Lamperti transforms, and the practical workflow for applying them to classical solvable models.
+The next page turns to the main **solution techniques** themselves: direct integration, Itô transformations, integrating factors, Lamperti transforms, and the practical workflow for applying them to classical solvable models.
 
 ---
 

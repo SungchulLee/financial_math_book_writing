@@ -521,3 +521,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Define a forward-start option and explain why the Heston model is relevant.
+
+??? success "Solution to Exercise 1"
+    A forward-start option has strike $K = \alpha S_{T_1}$ set at time $T_1$, expiring at $T_2 > T_1$. Under constant volatility (BS), forward-start options have the same implied vol as spot options. Under Heston, stochastic volatility creates a non-trivial forward vol term structure.
+
+---
+
+**Exercise 2.**
+How does the COS method price forward-start options under Heston?
+
+??? success "Solution to Exercise 2"
+    Compute the characteristic function of $\ln(S_{T_2}/S_{T_1})$ under Heston, expand the option value in a cosine series, evaluate coefficients from the characteristic function, and sum the series.
+
+---
+
+**Exercise 3.**
+How do different $(T_1, T_2)$ pairs affect forward-start implied volatility?
+
+??? success "Solution to Exercise 3"
+    Short $T_1$: forward vol is close to spot vol. Long $T_1$: variance mean-reverts toward $\bar{v}$, so forward vol approaches $\sqrt{\bar{v}}$. The forward vol term structure flattens as $T_1$ increases.
+
+---
+
+**Exercise 4.**
+Explain how forward-start options are building blocks of cliquet options.
+
+??? success "Solution to Exercise 4"
+    A cliquet sums capped periodic returns: $\sum_k \max(S_{t_k}/S_{t_{k-1}} - 1, 0)$. Each term is a forward-start option. Under Heston, periodic returns are correlated through persistent variance, making cliquet pricing fundamentally different from BS.

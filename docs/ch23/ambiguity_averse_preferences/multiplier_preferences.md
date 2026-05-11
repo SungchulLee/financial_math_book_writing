@@ -577,7 +577,7 @@ This follows from the tower property of conditional expectations applied to expo
     | 50 | $3.45$ |
     | $\infty$ | $4.00$ |
 
-    $\blacksquare$
+    $\square$
 
 ---
 
@@ -660,7 +660,7 @@ This follows from the tower property of conditional expectations applied to expo
 
     **Verification:** $P^*(\omega_1) + P^*(\omega_2) = 0.0695 + 0.9306 \approx 1$. ✓
 
-    **Probability shift:** The reference model assigns $P_0(\omega_1) = 0.6$ (good outcome) and $P_0(\omega_2) = 0.4$ (bad outcome). The worst-case measure dramatically shifts probability from the good outcome to the bad outcome: $P^*(\omega_1) \approx 0.07$ and $P^*(\omega_2) \approx 0.93$. The worst-case model is one where the bad outcome is overwhelmingly likely, reflecting the adversarial nature of the entropy-penalized distortion. $\blacksquare$
+    **Probability shift:** The reference model assigns $P_0(\omega_1) = 0.6$ (good outcome) and $P_0(\omega_2) = 0.4$ (bad outcome). The worst-case measure dramatically shifts probability from the good outcome to the bad outcome: $P^*(\omega_1) \approx 0.07$ and $P^*(\omega_2) \approx 0.93$. The worst-case model is one where the bad outcome is overwhelmingly likely, reflecting the adversarial nature of the entropy-penalized distortion. $\square$
 
 ---
 
@@ -733,7 +733,7 @@ This follows from the tower property of conditional expectations applied to expo
     | 10 | 1.093 | 0.870 | Mild robustness |
     | 2 | 1.148 | 0.874 | Strong robustness |
 
-    As $\theta$ decreases (more robustness), the Riccati solution $P_\theta$ increases, reflecting the higher cost assigned to state deviations. The control gain $F_\theta$ increases slightly, meaning the controller acts more aggressively to bring the state back to zero. The worst-case distortion also increases, meaning the adversary pushes the state further from zero. The net effect is that the robust controller is more conservative, applying stronger corrective action. $\blacksquare$
+    As $\theta$ decreases (more robustness), the Riccati solution $P_\theta$ increases, reflecting the higher cost assigned to state deviations. The control gain $F_\theta$ increases slightly, meaning the controller acts more aggressively to bring the state back to zero. The worst-case distortion also increases, meaning the adversary pushes the state further from zero. The net effect is that the robust controller is more conservative, applying stronger corrective action. $\square$
 
 ---
 
@@ -783,7 +783,7 @@ This follows from the tower property of conditional expectations applied to expo
 
     2. **Response to model changes:** If the reference model $P_0$ changes (e.g., due to regime shift), a robust agent adjusts both $P_0$ and the worst-case distortion, while a purely risk-averse agent simply updates beliefs. The two models predict different transition dynamics.
 
-    3. **Cross-domain consistency:** Risk aversion $\alpha'$ should be constant across decision domains under standard EU. Under multiplier preferences, $\theta$ may vary across domains where the agent has different levels of model confidence, generating domain-specific "apparent risk aversion." $\blacksquare$
+    3. **Cross-domain consistency:** Risk aversion $\alpha'$ should be constant across decision domains under standard EU. Under multiplier preferences, $\theta$ may vary across domains where the agent has different levels of model confidence, generating domain-specific "apparent risk aversion." $\square$
 
 ---
 
@@ -838,7 +838,7 @@ This follows from the tower property of conditional expectations applied to expo
 
     **Key insight:** The exponential transformation converts the nonlinear multiplier preference into a linear conditional expectation inside the logarithm. The tower property applies to the **linear** conditional expectation $\mathbb{E}_{P_0}[e^{-V_2/\theta} | \mathcal{F}_1]$, and the $\log$ and $-\theta$ transformations are applied after. This is precisely why the exponential/logarithmic structure ensures dynamic consistency: the recursive composition of "exponentiate, condition, take expectation" telescopes via the tower property.
 
-    In contrast, max-min preferences do not enjoy this property because $\min_{P \in \mathcal{P}} \mathbb{E}_P[\cdot | \mathcal{F}_1]$ does not in general commute with $\min_{P \in \mathcal{P}} \mathbb{E}_P[\cdot]$ (the worst-case prior can differ at each stage). $\blacksquare$
+    In contrast, max-min preferences do not enjoy this property because $\min_{P \in \mathcal{P}} \mathbb{E}_P[\cdot | \mathcal{F}_1]$ does not in general commute with $\min_{P \in \mathcal{P}} \mathbb{E}_P[\cdot]$ (the worst-case prior can differ at each stage). $\square$
 
 ---
 
@@ -941,4 +941,4 @@ This follows from the tower property of conditional expectations applied to expo
 
     The discrepancy suggests the formula should be interpreted with $\sigma$ representing equity return volatility rather than consumption volatility, or that $1/\theta$ is measured in different units. Under the Hansen-Sargent calibration, a detection error probability of about 10% corresponds to a small $\theta$ that generates the needed premium. The qualitative conclusion holds strongly: **multiplier preferences with even moderate robustness concern ($\theta = 5$) dramatically increase the equity premium relative to the standard model**, even if the exact numerical match depends on the specific general equilibrium specification.
 
-    The standard model premium of 0.245% with $\alpha = 2$ illustrates the equity premium puzzle: matching the historical 6% would require $\alpha \approx 50$, which is implausibly high. Multiplier preferences resolve this by adding a robustness premium that does not require extreme risk aversion. $\blacksquare$
+    The standard model premium of 0.245% with $\alpha = 2$ illustrates the equity premium puzzle: matching the historical 6% would require $\alpha \approx 50$, which is implausibly high. Multiplier preferences resolve this by adding a robustness premium that does not require extreme risk aversion. $\square$

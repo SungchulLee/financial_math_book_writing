@@ -9,10 +9,12 @@ Dynamic risk measures extend static risk measures to a multi-period setting. **T
 In a dynamic setting, risk is evaluated at multiple times $0 \le s < t \le T$.
 
 Consider a risk manager who:
+
 - At time $s$, ranks position $X$ as less risky than $Y$
 - At time $t > s$, reverses this ranking
 
 Such **preference reversals** create serious problems:
+
 - Inconsistent capital allocation over time
 - Gaming opportunities for traders
 - Unstable risk limits
@@ -74,6 +76,7 @@ $$
 More generally, risk assessments can be computed by backward induction through any sequence of intermediate times.
 
 **Computational implication:** Multi-period risk can be computed by:
+
 1. Start at terminal time $T$
 2. Work backward, applying single-period risk measures recursively
 

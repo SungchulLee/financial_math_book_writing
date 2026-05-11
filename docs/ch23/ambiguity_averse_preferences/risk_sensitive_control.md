@@ -7,6 +7,7 @@
 **Risk-sensitive control** provides a framework for optimal decision-making that explicitly accounts for the variability of outcomes, not just their expected values. Unlike standard stochastic optimal control, which optimizes expected cumulative cost, risk-sensitive control incorporates an **exponential transformation** that penalizes variance and higher moments.
 
 This approach, pioneered by Jacobson (1973) and Howard and Matheson (1972), has deep connections to:
+
 1. **Robust control**: Worst-case optimization under model uncertainty
 2. **Large deviations theory**: Rare event probabilities
 3. **Information theory**: Entropy and relative entropy
@@ -44,6 +45,7 @@ $$
 where $\gamma \neq 0$ is the **risk-sensitivity parameter**.
 
 **Interpretation**:
+
 - $\gamma > 0$: Risk-averse (penalizes variability)
 - $\gamma < 0$: Risk-seeking (rewards variability)
 - $\gamma \to 0$: Recovers risk-neutral case
@@ -309,6 +311,7 @@ Risk-sensitive control generalizes exponential utility to multi-period settings.
 
 
 **Comparison**:
+
 - CVaR: Focus on tail quantile
 - Risk-sensitive: Exponential weighting of all outcomes
 - Risk-sensitive is smoother but less interpretable for tail risk
@@ -382,7 +385,7 @@ Risk-sensitive control provides a principled framework for incorporating risk pr
     - The first term $\mathbb{E}[C]$ is the expected total cost (same as risk-neutral)
     - The second term $\frac{\gamma}{2}\text{Var}(C)$ penalizes the variability of the total cost
 
-    Thus, risk sensitivity introduces a penalty for variance, with $\gamma$ controlling the trade-off. Higher $\gamma$ means greater penalty for cost variability, encouraging the controller to choose actions that reduce not just the expected cost but also its dispersion. The exponential criterion naturally encodes this mean-variance trade-off without requiring separate specification of a variance constraint. $\blacksquare$
+    Thus, risk sensitivity introduces a penalty for variance, with $\gamma$ controlling the trade-off. Higher $\gamma$ means greater penalty for cost variability, encouraging the controller to choose actions that reduce not just the expected cost but also its dispersion. The exponential criterion naturally encodes this mean-variance trade-off without requiring separate specification of a variance constraint. $\square$
 
 ---
 
@@ -437,7 +440,7 @@ Risk-sensitive control provides a principled framework for incorporating risk pr
     = \mathbb{E}_{P^*}[C] - \mathbb{E}_{P^*}[C] + \frac{1}{\gamma}\log\mathbb{E}_{P_0}[e^{\gamma C}] = \frac{1}{\gamma}\log\mathbb{E}_{P_0}[e^{\gamma C}]
     $$
 
-    The supremum is achieved, completing the proof. $\blacksquare$
+    The supremum is achieved, completing the proof. $\square$
 
     **Interpretation of $P^*$:** The worst-case measure $P^*$ exponentially tilts probabilities toward high-cost outcomes. The Radon–Nikodym derivative $dP^*/dP_0 \propto e^{\gamma C}$ assigns more weight to states where $C$ is large. This is the adversarial distribution that maximizes expected cost net of the entropy penalty.
 
@@ -543,7 +546,7 @@ Risk-sensitive control provides a principled framework for incorporating risk pr
 
     The risk-sensitive controller has a slightly higher gain (0.833 vs 0.823), meaning it applies slightly stronger feedback. This is because the risk-sensitive criterion penalizes cost variability: by controlling more aggressively, the controller reduces the variance of future states (and hence future costs), at the expense of higher control effort. The effective Riccati matrix $P_{\text{eff}} > P$ amplifies the state cost, leading to the more aggressive response.
 
-    The difference is modest for $\gamma = 0.5$ because $\gamma\Sigma_w P \approx 0.134$ is relatively small. For larger $\gamma$ (approaching the breakdown point at $\gamma = 1/(\Sigma_w P) \approx 3.72$), the differences would be much more dramatic. $\blacksquare$
+    The difference is modest for $\gamma = 0.5$ because $\gamma\Sigma_w P \approx 0.134$ is relatively small. For larger $\gamma$ (approaching the breakdown point at $\gamma = 1/(\Sigma_w P) \approx 3.72$), the differences would be much more dramatic. $\square$
 
 ---
 
@@ -607,7 +610,7 @@ Risk-sensitive control provides a principled framework for incorporating risk pr
 
     For example, with $n = 100$ quarterly observations: $D_{\text{KL}} = 0.03285$.
 
-    Since the risk-sensitive parameter relates to entropy via $D_{\text{KL}}(P^* \| P_0) = \gamma \cdot \text{Var}_{P^*}(C)/2$ (in the LQG case), one can numerically solve for $\gamma$ given the model parameters and the target $D_{\text{KL}}$. The key insight is that $\gamma$ is not chosen arbitrarily but is pinned down by the requirement that the worst-case model be statistically difficult to distinguish from the reference model at the specified detection error level. $\blacksquare$
+    Since the risk-sensitive parameter relates to entropy via $D_{\text{KL}}(P^* \| P_0) = \gamma \cdot \text{Var}_{P^*}(C)/2$ (in the LQG case), one can numerically solve for $\gamma$ given the model parameters and the target $D_{\text{KL}}$. The key insight is that $\gamma$ is not chosen arbitrarily but is pinned down by the requirement that the worst-case model be statistically difficult to distinguish from the reference model at the specified detection error level. $\square$
 
 ---
 
@@ -700,7 +703,7 @@ Risk-sensitive control provides a principled framework for incorporating risk pr
 
     With $\gamma = 0.5$: $\pi^* = 0.08/(0.04 \times 1.5) = 1.333 < 2.0 = \pi_{\text{Merton}}$.
 
-    **Conclusion:** Risk-sensitive control with $\gamma > 0$ (risk-averse convention) reduces the optimal portfolio weight from the Merton ratio. The effective risk aversion increases from 1 (log utility) to $1 + \gamma$, shrinking the position in the risky asset. This reflects the agent's concern about tail outcomes: the exponential criterion penalizes large losses more heavily than a log-utility agent would. $\blacksquare$
+    **Conclusion:** Risk-sensitive control with $\gamma > 0$ (risk-averse convention) reduces the optimal portfolio weight from the Merton ratio. The effective risk aversion increases from 1 (log utility) to $1 + \gamma$, shrinking the position in the risky asset. This reflects the agent's concern about tail outcomes: the exponential criterion penalizes large losses more heavily than a log-utility agent would. $\square$
 
 ---
 
@@ -751,4 +754,4 @@ Risk-sensitive control provides a principled framework for incorporating risk pr
 
     4. **Dynamic consistency:** The risk-sensitive Bellman equation provides a dynamically consistent framework for multi-period ALM, whereas mean-variance optimization is notoriously time-inconsistent (the optimal policy at $t=1$ generally differs from the $t=0$ plan).
 
-    5. **Regulatory alignment:** Pension regulators increasingly focus on stress testing and worst-case scenarios (e.g., solvency capital requirements). The risk-sensitive framework naturally incorporates these concerns through the parameter $\gamma$, which can be calibrated to regulatory stress test levels. $\blacksquare$
+    5. **Regulatory alignment:** Pension regulators increasingly focus on stress testing and worst-case scenarios (e.g., solvency capital requirements). The risk-sensitive framework naturally incorporates these concerns through the parameter $\gamma$, which can be calibrated to regulatory stress test levels. $\square$

@@ -3,6 +3,7 @@
 Understanding the error structure of the COS method is essential for choosing parameters ($N$, $[a,b]$, $L$) that achieve a target accuracy with minimal computation. The total error decomposes into two independent components: the truncation error from restricting the density to a finite interval, and the series truncation error from using finitely many cosine terms. This section derives rigorous bounds for each component, establishes the exponential convergence rate for smooth densities, and explains why the COS method achieves machine precision with remarkably few terms for standard financial models.
 
 !!! info "Prerequisites"
+
     - [COS Pricing Formula](cos_pricing_formula.md) (the formula whose error we analyze)
     - [Truncation to Finite Domain](truncation_to_finite_domain.md) (domain truncation)
     - [Convergence of Fourier Series](../fourier_series/convergence_of_fourier_series.md) (coefficient decay rates)
@@ -157,6 +158,7 @@ The optimal balance is achieved when both errors are comparable. For the standar
 In implementations, the convergence can be monitored empirically:
 
 !!! tip "Convergence Diagnostics"
+
     1. **Richardson extrapolation.** Compute $V_N$ and $V_{2N}$. If $|V_{2N} - V_N| < \varepsilon$, then $V_{2N}$ is accurate to approximately $\varepsilon$.
 
     2. **Coefficient magnitude.** If $|F_k V_k| < \varepsilon$ for $k \geq N_0$, then the remaining terms contribute less than $(N - N_0)\varepsilon$ to the sum.

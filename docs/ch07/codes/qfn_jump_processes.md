@@ -226,3 +226,36 @@ if __name__ == "__main__":
     plt.grid(True)
     plt.show()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Distinguish between a Poisson process, compound Poisson process, and Merton jump-diffusion.
+
+??? success "Solution to Exercise 1"
+    Poisson: counting process $N(t)$ with intensity $\lambda$. Compound Poisson: $X_t = \sum_{i=1}^{N(t)} J_i$ with i.i.d. jump sizes. Merton: adds Gaussian diffusion to compound Poisson: $dS/S = (r-\lambda\bar{k})dt + \sigma dW + (e^J-1)dN$.
+
+---
+
+**Exercise 2.**
+Compare Euler-Maruyama and analytical simulation for the Merton model.
+
+??? success "Solution to Exercise 2"
+    Euler: $S_{t+\Delta t} = S_t + \ldots$ has $O(\Delta t)$ bias. Analytical: $S_T = S_0\exp(\ldots)$ is exact. Analytical is more accurate and faster (one step for terminal values). Euler is needed only for intermediate path values.
+
+---
+
+**Exercise 3.**
+Explain the difference between finite-activity and infinite-activity Levy processes.
+
+??? success "Solution to Exercise 3"
+    Finite activity (compound Poisson): finitely many jumps per unit time, $\int \nu(dx) < \infty$. Infinite activity (VG, NIG): infinitely many small jumps, $\int \nu(dx) = \infty$. Infinite activity better captures high-frequency microstructure.
+
+---
+
+**Exercise 4.**
+Why do jump processes make markets incomplete?
+
+??? success "Solution to Exercise 4"
+    With jumps, there are two risk sources ($W_t$ and $N_t$) but only one risky asset. The jump risk cannot be hedged, making some claims non-replicable. Multiple equivalent martingale measures exist, and option prices are not unique without additional assumptions.

@@ -130,3 +130,50 @@ if __name__ == "__main__":
 
     print()
 ```
+
+## Exercises
+
+**Exercise 1.**
+Describe the Monte Carlo procedure for pricing a European call option. List the steps from parameter input to price output.
+
+??? success "Solution to Exercise 1"
+
+    1. **Set parameters**: $S_0, K, T, r, \sigma, q$, number of paths $N$.
+    2. **Generate random numbers**: Draw $Z_1, \ldots, Z_N \sim \mathcal{N}(0,1)$.
+    3. **Simulate terminal prices**: $S_T^{(i)} = S_0\exp((r-q-\frac{1}{2}\sigma^2)T + \sigma\sqrt{T}\,Z_i)$.
+    4. **Compute payoffs**: $\phi_i = \max(S_T^{(i)} - K, 0)$.
+    5. **Discount and average**: $\hat{C} = e^{-rT}\frac{1}{N}\sum_{i=1}^N \phi_i$.
+    6. **Compute standard error**: $\mathrm{SE} = e^{-rT}\cdot s_\phi / \sqrt{N}$ where $s_\phi$ is the sample std of payoffs.
+    7. **Report**: $\hat{C} \pm 1.96\,\mathrm{SE}$ (95% CI).
+
+---
+
+**Exercise 2.**
+The MC estimate has a standard error. Explain the difference between bias and variance in MC estimators. Is the BS MC estimator unbiased?
+
+??? success "Solution to Exercise 2"
+    **Bias** is the systematic error: $E[\hat{C}] - C_{\text{true}}$. **Variance** is the random error: $\mathrm{Var}(\hat{C})$.
+
+    The BS MC estimator using the exact GBM solution (not Euler discretization) is **unbiased**: $E[\hat{C}] = e^{-rT}E^Q[\max(S_T - K, 0)] = C_{\text{BS}}$ exactly. The variance is $\mathrm{Var}(\hat{C}) = \mathrm{Var}(e^{-rT}\phi) / N$, which decreases as $1/N$.
+
+    If Euler discretization is used instead of the exact solution, a small bias of $O(\Delta t)$ is introduced. This time-stepping bias does not decrease with $N$, so it eventually dominates for large $N$.
+
+---
+
+**Exercise 3.**
+With $N = 10{,}000$ paths, the MC call price is $\$10.42 \pm 0.15$ (95% CI). The BS formula gives $\$10.45$. Is the MC result consistent with the analytical value?
+
+??? success "Solution to Exercise 3"
+    The 95% CI is $[10.42 - 0.15, 10.42 + 0.15] = [10.27, 10.57]$. Since the analytical value $10.45$ falls within this interval, the MC result is consistent.
+
+    The deviation $|10.42 - 10.45| = 0.03$ is well within one standard error ($0.15/1.96 \approx 0.077$), corresponding to about $0.39$ standard deviations. There is no evidence of bias.
+
+---
+
+**Exercise 4.**
+How would you modify the MC simulation to price a put option instead of a call? Does the variance of the put payoff differ from the call payoff?
+
+??? success "Solution to Exercise 4"
+    Simply change the payoff function from $\max(S_T - K, 0)$ to $\max(K - S_T, 0)$. Everything else remains the same.
+
+    The put payoff variance is generally **different** from the call payoff variance. For ATM options, put payoff variance is usually lower because the put payoff is bounded by $K$ while the call payoff is unbounded. For deep OTM puts ($K \ll S_0$), the variance is very small (most paths give zero payoff). This means MC pricing is more efficient for puts than for calls in terms of standard error per path.

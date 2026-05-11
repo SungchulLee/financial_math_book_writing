@@ -40,6 +40,7 @@ $$
 Let $F: (a, b) \to \mathbb{R}$ be continuous and strictly monotone. Then for any $P \in (\inf_{\sigma \in (a,b)} F(\sigma), \sup_{\sigma \in (a,b)} F(\sigma))$, there exists a unique $\sigma_* \in (a, b)$ such that $F(\sigma_*) = P$.
 
 *Proof.* 
+
 - **Existence:** By the Intermediate Value Theorem, since $F$ is continuous and $P$ lies in the range of $F$
 - **Uniqueness:** Strict monotonicity prevents multiple solutions □
 
@@ -50,7 +51,7 @@ For the Black-Scholes call pricing function:
 
 
 $$
-C_{\text{BS}}: (0, \infty) \to \mathbb{R}_+, \quad \sigma \mapsto S e^{-qT} \Phi(d_1) - K e^{-rT} \Phi(d_2)
+C_{\text{BS}}: (0, \infty) \to \mathbb{R}_+, \quad \sigma \mapsto S e^{-qT} \mathcal{N}(d_1) - K e^{-rT} \mathcal{N}(d_2)
 $$
 
 
@@ -97,16 +98,19 @@ $$
 
 
 **Case 1:** $m > 1$ (in-the-money forward)
+
 - $\ln m > 0 \Rightarrow d_1, d_2 \to +\infty$
-- $\Phi(d_1), \Phi(d_2) \to 1$
+- $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 1$
 - $C_{\text{BS}} \to S e^{-qT} - K e^{-rT}$
 
 **Case 2:** $m < 1$ (out-of-the-money forward)
+
 - $\ln m < 0 \Rightarrow d_1, d_2 \to -\infty$
-- $\Phi(d_1), \Phi(d_2) \to 0$
+- $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 0$
 - $C_{\text{BS}} \to 0$
 
 **Case 3:** $m = 1$ (at-the-money forward)
+
 - Requires more careful analysis using $\Phi(x) = \frac{1}{2} + \frac{1}{\sqrt{2\pi}} x + O(x^3)$ for small $x$
 - Limit gives $0$ (zero time value at zero volatility) □
 
@@ -141,8 +145,9 @@ $$
 
 
 Therefore:
-- $\Phi(d_1) \to 1$
-- $\Phi(d_2) \to 0$
+
+- $\mathcal{N}(d_1) \to 1$
+- $\mathcal{N}(d_2) \to 0$
 - $C_{\text{BS}} \to S e^{-qT} \cdot 1 - K e^{-rT} \cdot 0 = S e^{-qT}$ □
 
 **Economic interpretation:** At infinite volatility, the option has value equal to the discounted spot (assuming immediate exercise), as the optionality dominates completely.
@@ -193,6 +198,7 @@ $$
 
 
 *Proof.* Each factor is strictly positive:
+
 - $S e^{-qT} > 0$ (discounted spot)
 - $\phi(d_1) > 0$ (Gaussian density is positive everywhere)
 - $\sqrt{T} > 0$ □
@@ -284,6 +290,7 @@ $$
 
 
 We have:
+
 - $\frac{\partial G}{\partial \sigma} = \mathcal{V}(\sigma) \neq 0$ (non-degeneracy condition satisfied)
 - $C_{\text{BS}}$ is $C^\infty$ in $\sigma$
 
@@ -398,12 +405,14 @@ Price below intrinsic value violates static arbitrage (buy option, exercise imme
 Price at or above discounted spot (short option, buy stock, guaranteed profit)
 
 In practice, small violations occur due to:
+
 - Bid-ask spreads
 - Illiquidity
 - Stale quotes
 - Microstructure noise
 
 These cases are handled by:
+
 - Clipping prices to admissible range
 - Rejecting quotes as non-tradable
 - Using robust estimation methods
@@ -460,6 +469,7 @@ measures sensitivity of implied volatility to relative errors in price.
 
 **Proposition 4.2.5** (Ill-Conditioning Regimes)  
 The condition number $\kappa \to \infty$ as:
+
 1. $C \to C_{\text{intrinsic}}^+$ (low volatility regime)
 2. $T \to 0$ (expiry approach)
 
@@ -498,7 +508,7 @@ For digital (binary) calls with payoff $\mathbb{1}_{S_T > K}$:
 
 
 $$
-D_{\text{BS}}(\sigma) = e^{-rT} \Phi(d_2)
+D_{\text{BS}}(\sigma) = e^{-rT} \mathcal{N}(d_2)
 $$
 
 
@@ -525,6 +535,7 @@ The existence and uniqueness of implied volatility rests on:
 4. **Stability:** Locally Lipschitz with condition number analysis
 
 Key results:
+
 - Implied volatility exists $\iff$ $C \in (C_{\text{intrinsic}}, S e^{-qT})$
 - The inverse map is $C^\infty$ smooth
 - Numerical inversion is well-conditioned except near boundaries
@@ -726,23 +737,23 @@ Evaluate the sign of this expression at ATM (where $d_1 d_2 \approx 0$) and deep
     As $\sigma \to 0^+$, both $d_1 \to 0^+$ and $d_2 \to 0^-$. Using the Taylor expansion $\Phi(x) \approx \frac{1}{2} + \frac{x}{\sqrt{2\pi}}$ for small $x$:
 
     $$
-    \Phi(d_1) \approx \frac{1}{2} + \frac{\sigma\sqrt{T}}{2\sqrt{2\pi}}
+    \mathcal{N}(d_1) \approx \frac{1}{2} + \frac{\sigma\sqrt{T}}{2\sqrt{2\pi}}
     $$
 
     $$
-    \Phi(d_2) \approx \frac{1}{2} - \frac{\sigma\sqrt{T}}{2\sqrt{2\pi}}
+    \mathcal{N}(d_2) \approx \frac{1}{2} - \frac{\sigma\sqrt{T}}{2\sqrt{2\pi}}
     $$
 
     With $m = 1$, the ATM-forward condition gives $S e^{-qT} = K e^{-rT}$. Substituting into the Black-Scholes formula:
 
     $$
-    C_{\text{BS}} = S e^{-qT} \Phi(d_1) - K e^{-rT} \Phi(d_2) = S e^{-qT} \left[\Phi(d_1) - \Phi(d_2)\right]
+    C_{\text{BS}} = S e^{-qT} \mathcal{N}(d_1) - K e^{-rT} \mathcal{N}(d_2) = S e^{-qT} \left[\mathcal{N}(d_1) - \mathcal{N}(d_2)\right]
     $$
 
     Using the approximations:
 
     $$
-    \Phi(d_1) - \Phi(d_2) \approx \frac{\sigma\sqrt{T}}{2\sqrt{2\pi}} + \frac{\sigma\sqrt{T}}{2\sqrt{2\pi}} = \frac{\sigma\sqrt{T}}{\sqrt{2\pi}}
+    \mathcal{N}(d_1) - \mathcal{N}(d_2) \approx \frac{\sigma\sqrt{T}}{2\sqrt{2\pi}} + \frac{\sigma\sqrt{T}}{2\sqrt{2\pi}} = \frac{\sigma\sqrt{T}}{\sqrt{2\pi}}
     $$
 
     Therefore:
@@ -755,10 +766,10 @@ Evaluate the sign of this expression at ATM (where $d_1 d_2 \approx 0$) and deep
 
 ---
 
-**Exercise 6.** For a binary (digital) call option with payoff $\mathbb{1}_{S_T > K}$, the Black-Scholes price is $D_{\text{BS}}(\sigma) = e^{-rT} \Phi(d_2)$. Show that $\partial D_{\text{BS}} / \partial \sigma$ can be negative for certain values of moneyness and volatility. Provide a specific numerical example where uniqueness of implied volatility fails for a digital option.
+**Exercise 6.** For a binary (digital) call option with payoff $\mathbb{1}_{S_T > K}$, the Black-Scholes price is $D_{\text{BS}}(\sigma) = e^{-rT} \mathcal{N}(d_2)$. Show that $\partial D_{\text{BS}} / \partial \sigma$ can be negative for certain values of moneyness and volatility. Provide a specific numerical example where uniqueness of implied volatility fails for a digital option.
 
 ??? success "Solution to Exercise 6"
-    The digital call price under Black-Scholes is $D_{\text{BS}}(\sigma) = e^{-rT} \Phi(d_2)$, where:
+    The digital call price under Black-Scholes is $D_{\text{BS}}(\sigma) = e^{-rT} \mathcal{N}(d_2)$, where:
 
     $$
     d_2 = \frac{\ln(S/K) + (r - q - \sigma^2/2)T}{\sigma\sqrt{T}}

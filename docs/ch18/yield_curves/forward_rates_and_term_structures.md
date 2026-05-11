@@ -23,6 +23,7 @@ $$
 ### Economic Interpretation
 
 The forward rate $F(0; T_1, T_2)$ is:
+
 - The rate that can be **locked in today** for borrowing/lending over $[T_1, T_2]$
 - The rate that makes a **forward-starting loan** have zero initial value
 - The **break-even rate** for the period, given the current term structure
@@ -92,6 +93,7 @@ f(t,T) = z(t,T) + (T-t) \frac{\partial z(t,T)}{\partial T}
 $$
 
 This shows that:
+
 - If the yield curve is flat ($z$ constant), then $f(t,T) = z$
 - If the yield curve is upward sloping ($\partial z/\partial T > 0$), then $f(t,T) > z(t,T)$
 - If the yield curve is downward sloping, then $f(t,T) < z(t,T)$
@@ -111,6 +113,7 @@ This is the rate for infinitesimally short borrowing at time $t$.
 ## Forward Rate Agreement (FRA)
 
 A **Forward Rate Agreement** is a contract to exchange:
+
 - A fixed rate $K$ payment
 - A floating rate (typically LIBOR) payment
 
@@ -212,6 +215,7 @@ Forward rates are derivatives of the discount curve, making them sensitive to in
 ### Forward Rate Volatility
 
 Instantaneous forward rates inherit volatility from the term structure:
+
 - Short-end forwards are more volatile
 - Long-end forwards are more stable
 - This affects HJM model specification
@@ -219,6 +223,7 @@ Instantaneous forward rates inherit volatility from the term structure:
 ### Negative Forward Rates
 
 Forward rates can be negative when:
+
 - The yield curve is sufficiently inverted
 - Market rates are near or below zero
 
@@ -387,7 +392,7 @@ This does not indicate arbitrage but requires care in lognormal models.
     \frac{1}{T - t}\int_t^T f(t, u)\,du = z(t, T)
     $$
 
-    This establishes that the zero rate is the arithmetic average of the instantaneous forward rate curve over $[t, T]$. $\blacksquare$
+    This establishes that the zero rate is the arithmetic average of the instantaneous forward rate curve over $[t, T]$. $\square$
 
     This identity has a natural interpretation: the zero rate for maturity $T$ represents the "average" cost of borrowing per unit time over $[t, T]$, while the forward rate $f(t, u)$ represents the marginal cost at each instant $u$. Averaging the marginal costs recovers the average cost.
 

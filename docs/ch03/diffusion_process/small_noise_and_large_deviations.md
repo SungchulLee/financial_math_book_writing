@@ -2,7 +2,7 @@
 
 ## Concept Definition
 
-Consider the **small-noise diffusion** on $[0,T]$:
+Consider the [diffusion](diffusion_process_overview.md) from earlier with scaled noise:
 
 $$
 \mathrm{d}X_t^{\varepsilon}
@@ -106,14 +106,14 @@ $$
 where $\phi^*$ is the minimising path (the instanton). By the LDP,
 
 $$
-\mathbb{P}(X^{\varepsilon} \text{ exits the well}) \approx \exp\!\left(-\frac{\Delta V}{\varepsilon}\right).
+\mathbb{P}(X^{\varepsilon} \text{ exits the well}) \approx \exp\!\left(-\frac{\Delta V}{\varepsilon}\right)
 $$
 
 This recovers the **Kramers escape rate** from statistical physics.
 
 ### Hamilton–Jacobi Connection
 
-Define the **Hamiltonian** associated to the large deviations:
+The large-deviations Hamiltonian is built from the same coefficients $(b, a)$ that define the [generator](diffusion_process_overview.md#infinitesimal-generator) $\mathcal{L} = b \cdot \nabla + \frac{1}{2}a:\nabla^2$. Define the **Hamiltonian**:
 
 $$
 H(x, p) = b(x) \cdot p + \frac{1}{2}\,p^\top a(x)\,p, \qquad a = \sigma\sigma^\top
@@ -147,6 +147,7 @@ $$
 \frac{\mathrm{d}\mathbb{Q}^u}{\mathrm{d}\mathbb{P}}\bigg|_{\mathcal{F}_T}
 = \exp\!\left(
 \frac{1}{\sqrt{\varepsilon}}\int_0^T u(t)^\top\,\mathrm{d}W_t
+
 - \frac{1}{2\varepsilon}\int_0^T \|u(t)\|^2\,\mathrm{d}t
 \right)
 $$

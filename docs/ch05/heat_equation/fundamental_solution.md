@@ -150,35 +150,13 @@ In particular: mean $= 0$, variance $= t$.
 
 ## Probabilistic Interpretation
 
-The heat kernel is the **transition density of Brownian motion**:
-
-$$
-G(t,x) = \frac{d}{dx}\mathbb{P}(B_t \leq x) = p_{B_t}(x)
-$$
-
-More generally, for Brownian motion starting at $y$:
-
-$$
-\mathbb{P}(B_t \in dx \mid B_0 = y) = G(t, x-y)\,dx
-$$
-
-The convolution formula becomes:
-
-$$
-u(t,x) = \mathbb{E}[f(x + B_t)] = \mathbb{E}[f(B_t) \mid B_0 = x]
-$$
+The heat kernel is the transition density of Brownian motion: $G(t,x-y) = p_{B_t \mid B_0 = y}(x)$, so the convolution formula becomes $u(t,x) = \mathbb{E}[f(x + B_t)]$. See [Heat Equation and Brownian Motion](heat_equation_and_brownian_motion.md) for the full probabilistic treatment.
 
 ---
 
 ## Regularity
 
-**Theorem**: If $f$ is bounded and measurable, then for all $t > 0$:
-
-1. $u(t,\cdot) \in C^\infty(\mathbb{R})$ — infinitely differentiable
-2. $u(t,x) > 0$ if $f \geq 0$ and $f \not\equiv 0$
-3. $\|u(t,\cdot)\|_\infty \leq \|f\|_\infty$
-
-**Proof sketch**: Differentiation under the integral sign is justified because $G$ and all its derivatives decay rapidly.
+For bounded measurable $f$ and $t > 0$, the convolution $u(t,\cdot)$ is $C^\infty$, positivity-preserving, and $\sup$-norm contracting. This **smoothing property** — solutions become instantly smooth even from rough initial data — is the structural fingerprint of the heat equation; see [Heat Equation Overview](heat_equation_overview.md) for the qualitative discussion.
 
 ---
 
@@ -225,6 +203,7 @@ G(t,x) = \frac{1}{\sqrt{2\pi t}}e^{-x^2/2t} = \text{density of } B_t \sim N(0,t)
 $$
 
 The fundamental solution:
+
 - Solves the heat equation with delta initial data
 - Gives general solutions via convolution
 - Equals the transition density of Brownian motion

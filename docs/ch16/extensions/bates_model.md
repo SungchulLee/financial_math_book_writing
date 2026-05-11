@@ -7,6 +7,7 @@ The Heston model captures the **diffusive** component of equity volatility dynam
 The **Bates model** (Bates, 1996) resolves this by combining the Heston stochastic volatility process with **Merton-type lognormal jumps** in the stock price. This **stochastic volatility with jumps in diffusion** (SVJD) model retains the affine structure, so the characteristic function is available in closed form and all Fourier pricing methods apply unchanged. The jump parameters provide the extra degrees of freedom needed to fit short-maturity smiles.
 
 !!! info "Prerequisites"
+
     - [Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md) (Heston dynamics)
     - [Closed-Form Characteristic Function](../heston_cf/closed_form_characteristic_function.md) (Heston CF)
     - [Affine Structure and Riccati](../model_definition/affine_structure_and_riccati.md) (affine framework)
@@ -211,6 +212,7 @@ where $\hat{v}$ is the effective variance from the QE scheme and $Z \sim \mathca
 | 1 year | 100% | 20.1% | 20.3% | +0.2% |
 
 !!! example "Observations"
+
     1. The jump effect is strongest at **short maturities** and **low strikes**: the 1-week 95% moneyness point shows a 6.3% IV increase from Heston to Bates.
     2. At 1-year maturity, the jump contribution is only 0.2--0.5% --- the diffusive dynamics dominate.
     3. The negative mean jump ($\mu_J = -0.05$) asymmetrically steepens the **put side** of the smile, consistent with the observation that equity markets exhibit crash fear.
@@ -229,6 +231,7 @@ where $\hat{v}$ is the effective variance from the QE scheme and $Z \sim \mathca
 | Key advantage | Finite short-maturity skew from jump component |
 
 !!! abstract "Key Takeaways"
+
     1. **Heston + Merton jumps**: The Bates model combines stochastic volatility with lognormal jumps, addressing the Heston model's inability to fit steep short-maturity smiles.
 
     2. **CF is multiplicative**: The Bates CF is the product of the Heston CF and the Merton jump CF, so existing Fourier pricing infrastructure (COS, FFT, Gil-Pelaez) applies unchanged.

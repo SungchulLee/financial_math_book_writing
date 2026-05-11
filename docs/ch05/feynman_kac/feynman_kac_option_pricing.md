@@ -3,6 +3,7 @@
 The Feynman-Kac formula transforms every option pricing problem into a PDE, and every PDE back into an expectation. This page applies the framework to concrete financial derivatives: **European options** (the Black-Scholes formula as a direct Feynman-Kac computation), **barrier options** (Feynman-Kac on restricted domains), and the **connection to American options** (free boundary problems and variational inequalities).
 
 !!! tip "Related Content"
+
     - [Feynman-Kac Formula](feynman_kac_formula.md) -- the general theorem
     - [Discounted Feynman-Kac](discounted_feynman_kac.md) -- the discounting mechanism
     - [Proof Sketch](feynman_kac_proof_sketch.md) -- the martingale argument
@@ -58,7 +59,7 @@ $$
 **Step 4**: Split and evaluate:
 
 $$
-V(t, S) = S\,\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)
+V(t, S) = S\,\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)
 $$
 
 where:
@@ -68,7 +69,7 @@ d_1 = \frac{\log(S/K) + (r + \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_
 $$
 
 !!! note "Verification"
-    One can verify that $V = S\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)$ satisfies the Black-Scholes PDE by direct differentiation. The computation is involved but straightforward. The key identities are:
+    One can verify that $V = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)$ satisfies the Black-Scholes PDE by direct differentiation. The computation is involved but straightforward. The key identities are:
 
     $$
     S\phi(d_1) = Ke^{-r(T-t)}\phi(d_2)
@@ -83,7 +84,7 @@ $$
 By the same method (or by put-call parity):
 
 $$
-P(t, S) = Ke^{-r(T-t)}\Phi(-d_2) - S\Phi(-d_1)
+P(t, S) = Ke^{-r(T-t)}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)
 $$
 
 **Put-call parity** (a model-independent no-arbitrage relation):
@@ -97,7 +98,7 @@ $$
 Payoff $g(S) = \mathbf{1}_{\{S > K\}}$ (pays $\$1$ if in the money):
 
 $$
-V_{\text{digital}}(t, S) = e^{-r(T-t)}\,\mathbb{Q}(S_T > K \mid S_t = S) = e^{-r(T-t)}\,\Phi(d_2)
+V_{\text{digital}}(t, S) = e^{-r(T-t)}\,\mathbb{Q}(S_T > K \mid S_t = S) = e^{-r(T-t)}\,\mathcal{N}(d_2)
 $$
 
 ---
@@ -444,26 +445,26 @@ Explain the difference between the Feynman-Kac representation for European optio
 ---
 
 **Exercise 5.**
-For a European call in the Black-Scholes model, verify that the solution $V(t,S) = S\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)$ satisfies the terminal condition $V(T, S) = (S - K)^+$ by computing $\lim_{t \to T^-} V(t, S)$ for the cases $S > K$ and $S < K$.
+For a European call in the Black-Scholes model, verify that the solution $V(t,S) = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)$ satisfies the terminal condition $V(T, S) = (S - K)^+$ by computing $\lim_{t \to T^-} V(t, S)$ for the cases $S > K$ and $S < K$.
 
 ??? success "Solution to Exercise 5"
     We need to show $\lim_{t \to T^-} V(t, S) = (S - K)^+$.
 
     As $t \to T^-$, we have $\tau = T - t \to 0^+$, so $d_1 = \frac{\log(S/K) + (r + \sigma^2/2)\tau}{\sigma\sqrt{\tau}}$ and $d_2 = d_1 - \sigma\sqrt{\tau}$.
 
-    **Case $S > K$**: $\log(S/K) > 0$, so as $\tau \to 0^+$, $d_1 \to +\infty$ and $d_2 \to +\infty$. Therefore $\Phi(d_1) \to 1$ and $\Phi(d_2) \to 1$:
+    **Case $S > K$**: $\log(S/K) > 0$, so as $\tau \to 0^+$, $d_1 \to +\infty$ and $d_2 \to +\infty$. Therefore $\mathcal{N}(d_1) \to 1$ and $\mathcal{N}(d_2) \to 1$:
 
     $$
     V(t, S) \to S \cdot 1 - K \cdot e^0 \cdot 1 = S - K = (S - K)^+ \;\checkmark
     $$
 
-    **Case $S < K$**: $\log(S/K) < 0$, so as $\tau \to 0^+$, $d_1 \to -\infty$ and $d_2 \to -\infty$. Therefore $\Phi(d_1) \to 0$ and $\Phi(d_2) \to 0$:
+    **Case $S < K$**: $\log(S/K) < 0$, so as $\tau \to 0^+$, $d_1 \to -\infty$ and $d_2 \to -\infty$. Therefore $\mathcal{N}(d_1) \to 0$ and $\mathcal{N}(d_2) \to 0$:
 
     $$
     V(t, S) \to S \cdot 0 - K \cdot e^0 \cdot 0 = 0 = (S - K)^+ \;\checkmark
     $$
 
-    **Case $S = K$**: $\log(S/K) = 0$, so $d_1 = (r + \sigma^2/2)\sqrt{\tau}/\sigma \to 0^+$ and $d_2 \to 0^-$. Therefore $\Phi(d_1) \to 1/2$ and $\Phi(d_2) \to 1/2$:
+    **Case $S = K$**: $\log(S/K) = 0$, so $d_1 = (r + \sigma^2/2)\sqrt{\tau}/\sigma \to 0^+$ and $d_2 \to 0^-$. Therefore $\mathcal{N}(d_1) \to 1/2$ and $\mathcal{N}(d_2) \to 1/2$:
 
     $$
     V(t, S) \to K \cdot \frac{1}{2} - K \cdot 1 \cdot \frac{1}{2} = 0 = (K - K)^+ \;\checkmark

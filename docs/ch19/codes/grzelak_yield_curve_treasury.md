@@ -324,3 +324,47 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+Describe the difference between a yield curve constructed from treasury instruments versus one constructed from swap instruments. Which is more commonly used for derivative pricing?
+
+??? success "Solution to Exercise 1"
+    Treasury yield curves are built from government bonds, which are considered default-free. They reflect the risk-free rate but may include liquidity premia and are affected by government supply/demand dynamics. Swap yield curves are built from interest rate swaps, which reflect interbank credit risk (historically LIBOR, now SOFR-based). Swap curves are smoother because swaps are standardized OTC contracts available at many maturities.
+
+    For derivative pricing, swap curves (specifically OIS curves for discounting) are more commonly used because derivatives are typically collateralized, and the collateral rate matches OIS. Treasury curves are used for government bond analytics and as benchmarks.
+
+---
+
+**Exercise 2.**
+The Newton-Raphson method requires an initial guess for the rates. What happens if the initial guess is far from the solution, and how does the code handle this?
+
+??? success "Solution to Exercise 2"
+    If the initial guess is far from the solution, Newton-Raphson may converge slowly, diverge, or converge to a wrong local minimum. The code uses $r_0 = 0.01$ for all spine points, which is a reasonable initial guess for typical interest rate environments ($0-5\%$). The convergence is monitored via the norm of the update vector, and the loop continues until $\|\text{err}\| < \text{tol}$. In practice, if the market swap rates are reasonable, this initial guess leads to convergence within $5-10$ iterations.
+
+---
+
+**Exercise 3.**
+If par swap rates are $\{2\%, 3\%, 4\%, 5\%\}$ at maturities $\{1, 5, 10, 30\}$ years, the curve is upward-sloping. What does this imply about the market's expectation for future short-term rates?
+
+??? success "Solution to Exercise 3"
+    An upward-sloping yield curve implies that longer-term rates are higher than shorter-term rates. Under the expectations hypothesis, this means the market expects short-term rates to rise in the future:
+
+    $$
+    f(0, t_1, t_2) > y(0, t_1) \implies \text{expected future short rates exceed current short rates}.
+    $$
+
+    However, this interpretation is complicated by the term premium: investors may demand higher yields for longer maturities due to increased interest rate risk, even if they expect rates to remain constant. The actual expectation component and the risk premium component cannot be separated from the yield curve alone.
+
+---
+
+**Exercise 4.**
+Explain the role of the convergence tolerance parameter `tol = 1e-15` and why such high precision is used.
+
+??? success "Solution to Exercise 4"
+    The tolerance $10^{-15}$ requires the Newton-Raphson solution to be accurate to near machine precision (double-precision floating point has about 16 significant digits). This extreme precision is used because:
+
+    1. **Consistency**: Even small errors in the yield curve can propagate and amplify in derivative pricing, especially for long-dated or exotic instruments.
+    2. **Greeks accuracy**: Finite-difference Greeks involve subtracting nearby prices; if the curve is not solved precisely, the price differences are contaminated by curve-fitting noise rather than genuine sensitivities.
+    3. **Repricing**: Par swaps should reprice to exactly zero; any residual value indicates a calibration error.

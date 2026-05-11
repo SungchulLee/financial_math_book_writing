@@ -6,64 +6,28 @@ Partial differential equations arise naturally in quantitative finance whenever 
 
 ## The Core Insight
 
-Consider a derivative with payoff $g(S_T)$ at maturity $T$. Under the risk-neutral measure, its price at time $t$ is:
+Consider a derivative with payoff $g(S_T)$ at maturity $T$. Under the risk-neutral measure, its time-$t$ price is:
 
 $$
 V(t, S) = e^{-r(T-t)}\,\mathbb{E}^{\mathbb{Q}}[g(S_T) \mid S_t = S]
 $$
 
-This expectation is a **function of the current state** $(t, S)$. The Feynman-Kac theorem guarantees that this function satisfies a parabolic PDE:
-
-$$
-\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} = rV
-$$
-
-with terminal condition $V(T, S) = g(S)$.
+This expectation is a **function of the current state** $(t, S)$. The Feynman-Kac theorem (developed in [The SDE-PDE Bridge](sde_pde_bridge.md)) guarantees that such a function satisfies a parabolic PDE — the Black-Scholes equation in the geometric Brownian motion case. The remarkable consequence: **a deterministic PDE captures the present value of a random future payoff**.
 
 !!! quote "The Central Principle"
-    **Expected values of diffusion processes satisfy partial differential equations.** Every pricing problem for a Markovian underlying reduces to solving a PDE.
+    Every pricing problem for a Markovian underlying reduces to solving a PDE. The drift and volatility of the underlying determine the PDE coefficients; the payoff sets the terminal condition; discounting enters as a zeroth-order term.
 
 ---
 
-## From Stochastic Process to PDE
+## The Three-Term Anatomy of a Pricing PDE
 
-### The Generator Connection
+The generator $\mathcal{L}$ of the underlying diffusion (see [The SDE-PDE Bridge](sde_pde_bridge.md) for its definition and the Feynman-Kac derivation) decomposes the pricing PDE into three financially meaningful terms:
 
-For a general diffusion:
+- **Drift** $\mu$ contributes a first-order (transport) term — directional motion of the underlying
+- **Volatility** $\sigma$ contributes a second-order (diffusion) term — random fluctuation
+- **Discounting** $r$ contributes a zeroth-order (decay) term — time value of money
 
-$$
-dX_t = \mu(t, X_t)\,dt + \sigma(t, X_t)\,dW_t
-$$
-
-the **infinitesimal generator** is the differential operator:
-
-$$
-\mathcal{L} = \mu(t,x)\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2(t,x)\frac{\partial^2}{\partial x^2}
-$$
-
-The generator encodes the local dynamics of the process. Any expected value $u(t,x) = \mathbb{E}[g(X_T) \mid X_t = x]$ satisfies:
-
-$$
-\frac{\partial u}{\partial t} + \mathcal{L}u = 0, \quad u(T, x) = g(x)
-$$
-
-With discounting at rate $r(t,x)$, the PDE becomes:
-
-$$
-\frac{\partial u}{\partial t} + \mathcal{L}u - r\,u = 0
-$$
-
-This is the **Feynman-Kac equation**, and it is the master equation of financial PDE theory.
-
-### Why Does a Random Process Lead to a Deterministic Equation?
-
-The key is the **Markov property**. Because the future of $X_t$ depends only on its current state, the conditional expectation $u(t,x)$ is a well-defined function of $(t,x)$ alone. The PDE then describes how this function must evolve to remain consistent with the stochastic dynamics.
-
-Intuitively:
-
-- **Drift** $\mu$ contributes a first-order (transport) term
-- **Volatility** $\sigma$ contributes a second-order (diffusion) term
-- **Discounting** $r$ contributes a zeroth-order (decay) term
+This three-term structure — transport, diffusion, decay — is the universal anatomy of every financial pricing PDE.
 
 ---
 

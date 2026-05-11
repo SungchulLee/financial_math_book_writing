@@ -219,3 +219,60 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The Black-Scholes-Hull-White (BSHW) model combines geometric Brownian motion for the asset with Hull-White dynamics for the short rate. Write the two coupled SDEs and identify the correlation parameter.
+
+??? success "Solution to Exercise 1"
+    The BSHW model specifies:
+
+    $$
+    dS(t) = r(t)\,S(t)\,dt + \sigma_S\,S(t)\,dW_S(t),
+    $$
+
+    $$
+    dr(t) = \lambda[\theta(t) - r(t)]\,dt + \eta\,dW_r(t),
+    $$
+
+    where $dW_S \cdot dW_r = \rho\,dt$. The correlation $\rho$ captures the co-movement between the asset price and interest rates. Negative $\rho$ (common for equities) means rising rates tend to depress stock prices.
+
+---
+
+**Exercise 2.**
+The COS method prices options by expanding the characteristic function in Fourier cosine series. Explain why it is faster than Monte Carlo for the BSHW model.
+
+??? success "Solution to Exercise 2"
+    The COS method computes the option price as a truncated series:
+
+    $$
+    V \approx e^{-rT}\sum_{k=0}^{N-1} \text{Re}\!\left[\phi\!\left(\frac{k\pi}{b-a}\right) e^{-ik\pi\frac{a}{b-a}}\right] V_k,
+    $$
+
+    where $\phi$ is the characteristic function and $V_k$ are known coefficients. For the BSHW model, the characteristic function is available in closed form (or semi-closed form). The COS method requires only $O(N)$ operations (typically $N = 64$ to $256$ terms), while Monte Carlo requires $O(M \times S)$ operations ($M$ paths, $S$ steps), with $M$ typically in the thousands. The COS method converges exponentially in $N$, whereas Monte Carlo converges as $O(1/\sqrt{M})$.
+
+---
+
+**Exercise 3.**
+If the BSHW model produces an implied volatility surface that differs from the Black-Scholes flat surface, what features of the interest rate model create this effect?
+
+??? success "Solution to Exercise 3"
+    The stochastic interest rate introduces two effects:
+
+    1. **Volatility of discount factor**: The random discount factor $e^{-\int_0^T r(s)\,ds}$ adds variance to the option payoff, effectively increasing the total option value relative to flat-rate Black-Scholes.
+    2. **Correlation effect**: When $\rho \neq 0$, the stock and interest rate co-move, creating a skew in the implied volatility surface. Negative $\rho$ (rates up, stocks down) steepens the put skew, while positive $\rho$ flattens it.
+
+    For long-dated options, these effects are more pronounced because the cumulative variance of the discount factor grows with maturity.
+
+---
+
+**Exercise 4.**
+Compare the computational accuracy of COS vs. Monte Carlo for pricing a 10-year European call under the BSHW model. What are the trade-offs?
+
+??? success "Solution to Exercise 4"
+
+    - **COS method**: Highly accurate (errors on the order of $10^{-8}$ with $N = 128$ terms), extremely fast (milliseconds), but requires the characteristic function in closed form. Limited to European-style payoffs unless combined with backward induction.
+    - **Monte Carlo**: Flexible (handles path-dependent and early-exercise features), but converges slowly ($O(1/\sqrt{M})$). For $0.01\%$ accuracy, one might need $10^6$ paths. Variance reduction techniques (antithetic variables, control variates) help but add complexity.
+
+    For plain European options under the BSHW model, COS is clearly superior. Monte Carlo becomes necessary for Bermudan swaptions or path-dependent exotics.

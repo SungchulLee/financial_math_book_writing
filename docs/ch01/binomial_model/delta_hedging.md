@@ -9,6 +9,7 @@ This section develops option pricing through the **hedging argument**:
 Unlike replication (which asks "what portfolio matches the payoff?"), hedging asks "what portfolio eliminates risk?" Both approaches yield the same price, but the hedging perspective provides crucial insight into risk management and the economic meaning of delta.
 
 !!! info "Prerequisites"
+
     - [Binomial Model](binomial_model.md) (market setup, no-arbitrage condition)
     - [Replicating Portfolio](replicating_portfolio.md) (replication approach)
 
@@ -197,46 +198,13 @@ $$
 
 ## Deriving the Option Price
 
-Solving for $V_0$:
+Solving $\Delta S_0 - V_0 = e^{-r\Delta t} \cdot \frac{dH_u - uH_d}{u - d}$ for $V_0$ and substituting $\Delta = (H_u - H_d)/((u-d)S_0)$, the algebra collapses to the same formula obtained by [replication](replicating_portfolio.md):
 
 $$
-\Delta S_0 - V_0 = e^{-r\Delta t} \cdot \frac{dH_u - uH_d}{u - d}
+\boxed{V_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)}, \qquad q := \frac{e^{r\Delta t} - d}{u - d}
 $$
 
-$$
-V_0 = \Delta S_0 - e^{-r\Delta t} \cdot \frac{dH_u - uH_d}{u - d}
-$$
-
-Substituting $\Delta = \frac{H_u - H_d}{(u-d)S_0}$:
-
-$$\begin{array}{lll}
-V_0 
-&=&\displaystyle \frac{H_u - H_d}{u - d} - e^{-r\Delta t} \cdot \frac{dH_u - uH_d}{u - d}\\
-&=&\displaystyle \frac{1}{u-d}\left[(H_u - H_d) - e^{-r\Delta t}(dH_u - uH_d)\right]\\
-&=&\displaystyle \frac{1}{u-d}\left[H_u(1 - de^{-r\Delta t}) + H_d(ue^{-r\Delta t} - 1)\right]
-\end{array}$$
-
-Multiplying by $\frac{e^{r\Delta t}}{e^{r\Delta t}}$:
-
-$$
-V_0 = e^{-r\Delta t} \cdot \frac{1}{u-d}\left[H_u(e^{r\Delta t} - d) + H_d(u - e^{r\Delta t})\right]
-$$
-
-!!! success "Option Pricing Formula (via Hedging)"
-
-    $$
-    \boxed{V_0 = e^{-r\Delta t}\left[\frac{e^{r\Delta t} - d}{u - d} H_u + \frac{u - e^{r\Delta t}}{u - d} H_d\right]}
-    $$
-
-### Risk-Neutral Probability Emerges
-
-Define $q := \frac{e^{r\Delta t} - d}{u - d}$. Then:
-
-$$
-\boxed{V_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)}
-$$
-
-The risk-neutral probability **emerges from hedging**—it was not assumed!
+The risk-neutral probability $q$ **emerges from hedging** — it was not assumed.
 
 ---
 
@@ -447,6 +415,7 @@ This is the deep insight of arbitrage pricing: **prices are determined by what c
 | Option price | $V_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)$ |
 
 !!! abstract "Key Takeaways"
+
     1. **Hedging eliminates risk**: By holding $\Delta$ shares against an option, the portfolio becomes risk-free.
     
     2. **No-arbitrage determines price**: A risk-free portfolio must earn the risk-free rate—this pins down the option price.
@@ -466,8 +435,8 @@ This is the deep insight of arbitrage pricing: **prices are determined by what c
 | Section | Topic |
 |---------|-------|
 | [Risk-Neutral Measure](risk_neutral_measure.md) | The measure $\mathbb{Q}$ and expectation pricing |
-| [Multi-Period Model](multi_period_binomial_model.md) | Dynamic delta hedging over multiple periods |
-| [Binomial to Black–Scholes](binomial_to_black_scholes_limit.md) | Continuous-time limit |
+| [Multi-Period Model](../multi_period_model/multi_period_binomial_model.md) | Dynamic delta hedging over multiple periods |
+| [Binomial to Black–Scholes](../binomial_to_black_scholes/binomial_to_black_scholes_limit.md) | Continuous-time limit |
 
 ---
 

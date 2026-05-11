@@ -455,3 +455,59 @@ def estimate_fwhm(x, y):
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The script uses `np.trapz` to compute mass (integral of $u$ over the domain). Explain the trapezoidal rule and its accuracy for smooth versus discontinuous functions.
+
+??? success "Solution to Exercise 1"
+    The trapezoidal rule approximates $\int_a^b f(x)\,dx \approx \Delta x\bigl[\frac{1}{2}f_0 + f_1 + \cdots + f_{N-2} + \frac{1}{2}f_{N-1}\bigr]$ where $\Delta x = (b-a)/(N-1)$.
+
+    For smooth functions, the error is $O(\Delta x^2)$ (second-order). For functions with discontinuities, the error degrades to $O(\Delta x)$ near the jump because the trapezoidal rule cannot accurately capture the area under a step.
+
+    For mass conservation checks, the trapezoidal rule is adequate because the heat equation preserves the integral $\int u\,dx$ (with Neumann BCs) or changes it predictably (with Dirichlet BCs), and the numerical mass change should be small.
+
+---
+
+**Exercise 2.**
+The mass change percentage is computed as $|m_f - m_i|/m_i \times 100$. For Dirichlet boundary conditions $u(0) = u(L) = 0$, is mass exactly conserved? Explain.
+
+??? success "Solution to Exercise 2"
+    No, mass is not conserved with homogeneous Dirichlet boundary conditions. The boundary condition $u = 0$ at the endpoints acts as a heat sink: heat that reaches the boundary is absorbed. The total mass $\int_0^L u(x,t)\,dx$ decreases monotonically over time.
+
+    The rate of mass loss is governed by the boundary flux: $\frac{d}{dt}\int_0^L u\,dx = D\bigl[\frac{\partial u}{\partial x}\bigr]_0^L = D\bigl[u_x(L,t) - u_x(0,t)\bigr]$. For a centered initial pulse, both boundary fluxes are negative (heat flows out), so mass decreases.
+
+---
+
+**Exercise 3.**
+The `estimate_fwhm` function computes the full width at half maximum of the solution profile. How does the FWHM of a Gaussian initial condition evolve under the heat equation?
+
+??? success "Solution to Exercise 3"
+    For a Gaussian initial condition $u(x,0) = A\exp(-(x-x_c)^2/(2w^2))$, the solution remains Gaussian:
+
+    $$
+    u(x,t) = \frac{A w}{\sqrt{w^2 + 2Dt}}\exp\!\Bigl(-\frac{(x-x_c)^2}{2(w^2 + 2Dt)}\Bigr)
+    $$
+
+    The effective width is $w_{\text{eff}}(t) = \sqrt{w^2 + 2Dt}$. The FWHM of a Gaussian is $2\sqrt{2\ln 2}\,w_{\text{eff}}$, so
+
+    $$
+    \text{FWHM}(t) = 2\sqrt{2\ln 2}\,\sqrt{w^2 + 2Dt}
+    $$
+
+    The FWHM grows as $\sqrt{t}$ for large $t$, reflecting the diffusive broadening.
+
+---
+
+**Exercise 4.**
+The script tests different initial conditions (Gaussian, step, sine). Rank them by expected numerical accuracy for Crank-Nicolson with fixed $N_x = 50$, and explain why.
+
+??? success "Solution to Exercise 4"
+    Ranked from most to least accurate:
+
+    1. **Sine wave**: This is an eigenfunction of the heat equation, so Crank-Nicolson needs only to track a single mode's exponential decay. The error is purely from time discretization.
+    2. **Gaussian**: Smooth and infinitely differentiable, so the spatial discretization achieves its theoretical $O(\Delta x^2)$ rate without complications.
+    3. **Step function**: Discontinuous, causing large spatial errors near the jumps. The solution has high-frequency content that decays quickly but is poorly resolved at early times. Errors near the discontinuity dominate.
+
+    This ranking reflects the general principle that smoother initial data produces more accurate numerical solutions.

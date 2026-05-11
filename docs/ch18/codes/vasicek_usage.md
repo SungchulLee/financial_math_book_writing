@@ -820,3 +820,81 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+In Example 7, the Vasicek and CIR models are compared with similar parameters. Explain why the Vasicek model reports a nonzero "Negative Rates %" while CIR reports zero.
+
+??? success "Solution to Exercise 1"
+    The Vasicek model has a constant diffusion coefficient $\sigma$, making $r(t)$ normally distributed. Since a normal distribution has support on $(-\infty, +\infty)$, negative rates occur with positive probability:
+
+    $$
+    \mathbb{P}(r(t) < 0) = \Phi\!\left(\frac{-\mathbb{E}[r(t)]}{\sqrt{\text{Var}[r(t)]}}\right) > 0.
+    $$
+
+    The CIR model has diffusion $\sigma\sqrt{r}$ which vanishes at $r = 0$. When the Feller condition $2\kappa\theta \geq \sigma^2$ holds, the process is strictly positive. With the test parameters ($\kappa = 0.1$, $\theta = 0.05$, $\sigma = 0.02$), the Feller parameter is $2 \times 0.1 \times 0.05/0.02^2 = 25$, strongly satisfying the condition.
+
+---
+
+**Exercise 2.**
+Example 8 compares exact and Euler simulations. Why does the exact scheme have zero discretization error while Euler's error decreases with more time steps?
+
+??? success "Solution to Exercise 2"
+    The exact scheme exploits the closed-form transition density of the Vasicek model:
+
+    $$
+    r(t+\Delta t) \mid r(t) \sim \mathcal{N}\!\left(r(t)e^{-a\Delta t} + b(1 - e^{-a\Delta t}),\; \frac{\sigma^2}{2a}(1 - e^{-2a\Delta t})\right).
+    $$
+
+    Each step samples from this exact distribution, introducing no approximation. The Euler scheme approximates the SDE $dr = a(b-r)\,dt + \sigma\,dW$ with a first-order Taylor expansion:
+
+    $$
+    r_{i+1} \approx r_i + a(b - r_i)\Delta t + \sigma\Delta W_i.
+    $$
+
+    The strong error is $O(\sqrt{\Delta t})$, so increasing the number of steps (decreasing $\Delta t$) reduces the discretization bias, but never eliminates it completely for finite $\Delta t$.
+
+---
+
+**Exercise 3.**
+Example 3 prices bonds for rate scenarios including $r = -0.01$. Compute the Vasicek bond price $P(r, 0, 1)$ for $r = -0.01$, $b = 0.05$, $a = 0.1$, $\sigma = 0.02$.
+
+??? success "Solution to Exercise 3"
+    With $T = 1$: $B(1) = (1 - e^{-0.1})/0.1 = (1 - 0.9048)/0.1 = 0.9516$.
+
+    For $A(1)$: let $\theta_{\infty} = b - \sigma^2/(2a^2) = 0.05 - 0.0004/0.02 = 0.05 - 0.02 = 0.03$.
+
+    $$
+    \ln A(1) = (b - \sigma^2/(2a^2))(B(1) - 1) - \frac{\sigma^2}{4a}B(1)^2 = 0.03 \times (0.9516 - 1) - 0.0001 \times 0.9055.
+    $$
+
+    $$
+    \ln A(1) = 0.03 \times (-0.0484) - 0.00009055 = -0.001452 - 0.0000906 = -0.001543.
+    $$
+
+    $$
+    P = e^{\ln A(1) - B(1) \times r} = e^{-0.001543 - 0.9516 \times (-0.01)} = e^{-0.001543 + 0.009516} = e^{0.007973} \approx 1.008.
+    $$
+
+    The bond price exceeds 1 because the negative short rate means holding cash effectively costs money, making the bond more valuable than its face value.
+
+---
+
+**Exercise 4.**
+In the parameter sensitivity analysis (Example 6), increasing $\sigma$ increases the negative rate percentage. Quantify this relationship for the stationary distribution.
+
+??? success "Solution to Exercise 4"
+    In stationarity, $r \sim \mathcal{N}(b, \sigma^2/(2a))$. The negative rate probability is
+
+    $$
+    \mathbb{P}(r < 0) = \Phi\!\left(\frac{-b}{\sigma/\sqrt{2a}}\right) = \Phi\!\left(\frac{-b\sqrt{2a}}{\sigma}\right).
+    $$
+
+    With $b = 0.05$ and $a = 0.1$:
+
+    - $\sigma = 0.01$: $\mathbb{P}(r < 0) = \Phi(-0.05\sqrt{0.2}/0.01) = \Phi(-2.236) \approx 1.27\%$
+    - $\sigma = 0.02$: $\Phi(-0.05\sqrt{0.2}/0.02) = \Phi(-1.118) \approx 13.2\%$
+    - $\sigma = 0.03$: $\Phi(-0.05\sqrt{0.2}/0.03) = \Phi(-0.745) \approx 22.8\%$
+
+    The negative rate percentage increases rapidly with $\sigma$ because the distribution widens while the mean stays fixed.

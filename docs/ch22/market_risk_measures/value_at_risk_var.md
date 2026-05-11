@@ -146,6 +146,7 @@ $$
 This is the **pinball loss** (or quantile loss) function, which is asymmetric around the quantile.
 
 **Implications for backtesting:**
+
 - Elicitability enables comparative backtesting via scoring rules
 - One can assess which of two VaR models performs better by comparing average scores
 - This property is valuable for model selection and validation

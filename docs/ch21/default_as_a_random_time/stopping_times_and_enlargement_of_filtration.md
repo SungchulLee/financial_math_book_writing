@@ -152,6 +152,7 @@ $$
 $$
 
 Under this construction:
+
 - $\tau$ is a totally inaccessible stopping time in $(\mathcal{G}_t)$
 - The conditional survival probability is $G_t = \mathbb{P}(\tau > t \mid \mathcal{F}_t) = e^{-\Lambda_t}$
 - The Azéma supermartingale has an explicit form
@@ -198,7 +199,7 @@ This construction is the workhorse of intensity-based credit models.
 
     where the inequality follows from $H_t \ge H_s$ a.s. and the monotonicity of conditional expectation, and the equality follows from $H_s$ being $\mathcal{G}_s$-measurable.
 
-    Additionally, $\mathbb{E}[H_t] = \mathbb{P}(\tau \le t) < \infty$, so $H_t$ is integrable for all $t$. Thus $H_t$ is a submartingale. $\blacksquare$
+    Additionally, $\mathbb{E}[H_t] = \mathbb{P}(\tau \le t) < \infty$, so $H_t$ is integrable for all $t$. Thus $H_t$ is a submartingale. $\square$
 
     **Part 2: Compute $\mathbb{E}[H_t]$ when $\tau \sim \text{Exp}(\lambda)$.**
 
@@ -305,7 +306,7 @@ This construction is the workhorse of intensity-based credit models.
     X = X_0 \, \mathbf{1}_{\{\tau > t\}} + X_1(\tau) \, \mathbf{1}_{\{\tau \le t\}}
     $$
 
-    which is the claimed representation. $\blacksquare$
+    which is the claimed representation. $\square$
 
 ---
 

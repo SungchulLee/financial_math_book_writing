@@ -517,3 +517,41 @@ def plot_with_analytical(x: np.ndarray, u_numerical: np.ndarray,
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+When plotting a convergence study on a log-log scale, explain how to read off the convergence order from the slope of the error-versus-grid-size line.
+
+??? success "Solution to Exercise 1"
+    If the error scales as $E \propto h^p$ where $h = 1/N_x$, then $\log E = p \log h + C$. On a log-log plot, this is a straight line with slope $p$. A slope of $-2$ (when plotting error vs $N_x$) indicates second-order convergence, since $E \propto N_x^{-2} = h^2$.
+
+    To estimate $p$ from two data points: $p = \log(E_2/E_1) / \log(h_2/h_1)$. This is why convergence studies use at least 3--4 grid sizes for a reliable estimate.
+
+---
+
+**Exercise 2.**
+Describe what each panel in the 2x3 comparison plot (produced by `plot_with_analytical`) shows. Why is it useful to plot the error separately from the solution?
+
+??? success "Solution to Exercise 2"
+    The top row shows each numerical method (Forward Euler, Backward Euler, Crank-Nicolson) overlaid on the analytical solution. The bottom row shows the pointwise absolute error $|u_{\text{num}}(x) - u_{\text{exact}}(x)|$ for each method.
+
+    Plotting errors separately is essential because the solutions may look visually identical even when errors differ by orders of magnitude. The error plot reveals spatial error patterns (e.g., larger errors near discontinuities) and allows quantitative comparison of method accuracy through the displayed maximum error.
+
+---
+
+**Exercise 3.**
+In the stability analysis plot, a vertical dashed line at $\alpha = 0.5$ separates stable and unstable regions. Explain why Forward Euler errors grow unboundedly when $\alpha > 0.5$.
+
+??? success "Solution to Exercise 3"
+    From von Neumann analysis, the amplification factor of Forward Euler is $g = 1 - 4\alpha\sin^2(\theta/2)$. When $\alpha > 0.5$, the high-frequency mode $\theta = \pi$ gives $g = 1 - 4\alpha < -1$. Since $|g| > 1$, the mode amplitude grows at each time step as $|g|^n \to \infty$. This causes oscillatory blow-up of the numerical solution, with the error growing exponentially in time.
+
+---
+
+**Exercise 4.**
+Explain why `plot_evolution_snapshots` is preferred over animation for publication. What are the trade-offs between the two visualization approaches?
+
+??? success "Solution to Exercise 4"
+    Static snapshots are preferred for publications because they can be printed, included in PDFs, and examined without special software. Each subplot shows the solution at a specific time, making it easy to compare profiles side by side.
+
+    Animations are better for presentations and interactive exploration because they show smooth temporal evolution and can reveal transient phenomena (e.g., oscillations in unstable schemes) that might be missed by a few snapshots. However, animations require video-capable formats and cannot be embedded in most printed documents.

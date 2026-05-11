@@ -9,6 +9,7 @@
 
 
 Wrong-way risk occurs when:
+
 - exposure and default risk are positively correlated,
 - losses are amplified during adverse market conditions.
 
@@ -20,6 +21,7 @@ The opposite case is **right-way risk**, where exposure decreases as credit risk
 
 
 Typical examples include:
+
 - interest-rate swaps with leveraged counterparties,
 - FX derivatives where currency depreciation weakens the counterparty,
 - CDS written on correlated reference entities.
@@ -32,6 +34,7 @@ WWR is most severe during market stress.
 
 
 Standard intensity models often assume:
+
 - independence between exposure and default,
 - constant or exogenous intensities.
 
@@ -43,6 +46,7 @@ These assumptions underestimate tail losses when WWR is present.
 
 
 Mitigation techniques include:
+
 - conservative exposure modeling,
 - stressed CVA calculations,
 - explicit dependence between market factors and intensity.

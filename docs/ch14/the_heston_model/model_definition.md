@@ -166,6 +166,7 @@ $$
 $$
 
 This shows:
+
 - ATM level: $\sqrt{V_0}$
 - Skew: $\propto \rho\xi$
 - Convexity: $\propto \xi^2$
@@ -214,6 +215,7 @@ where $V_t^+ = \max(V_t, 0)$ and $(Z_1, Z_2)$ are correlated normals.
 ### QE Scheme (Andersen)
 
 The **Quadratic-Exponential** scheme is more accurate:
+
 1. Match moments of the non-central $\chi^2$ transition density
 2. Use quadratic approximation for small $V$, exponential for large $V$
 

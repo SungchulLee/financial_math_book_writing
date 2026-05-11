@@ -157,3 +157,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+A cash-or-nothing call pays $K$ if $S_T > K$ and zero otherwise. Write its discounted payoff and the Black-Scholes closed-form price.
+
+??? success "Solution to Exercise 1"
+    Discounted payoff: $Ke^{-rT}\mathbf{1}_{S_T > K}$. The BS price is $V = Ke^{-rT}N(d_2)$ where $d_2 = \frac{\ln(S_0/K) + (r - \sigma^2/2)T}{\sigma\sqrt{T}}$. This differs from a standard call because there is no $(S_T - K)$ factor---the payoff is a fixed amount $K$ conditional on finishing ITM.
+
+---
+
+**Exercise 2.**
+In the COS method, the cash-or-nothing coefficients use only $\Psi_k$ (not $\text{Chi}_k$). Explain why the exponential coefficient is absent.
+
+??? success "Solution to Exercise 2"
+    The cash-or-nothing payoff is $K \cdot \mathbf{1}_{x > 0}$ (in log-space), which does not contain the $e^x$ factor present in vanilla options. The Fourier-cosine expansion of this indicator function involves only $\Psi_k = \int \cos(k\pi(x-a)/(b-a))dx$ over the ITM region, without the exponential weighting. The Chi coefficients, which capture $\int e^x \cos(\cdot)dx$, are needed only for payoffs proportional to $S_T$.
+
+---
+
+**Exercise 3.**
+The cash-or-nothing put pays $K$ if $S_T < K$. Using put-call parity for digitals, express its price in terms of the cash-or-nothing call price.
+
+??? success "Solution to Exercise 3"
+    Since the events $\{S_T > K\}$ and $\{S_T < K\}$ are complementary (ignoring the zero-probability event $S_T = K$): $V_{\text{put}} + V_{\text{call}} = Ke^{-rT}$. Therefore $V_{\text{put}} = Ke^{-rT} - V_{\text{call}} = Ke^{-rT}(1 - N(d_2)) = Ke^{-rT}N(-d_2)$.
+
+---
+
+**Exercise 4.**
+For $N = 40$ COS terms, the cash-or-nothing error is larger than for vanilla options with the same $N$. Explain why discontinuous payoffs require more terms.
+
+??? success "Solution to Exercise 4"
+    The cash-or-nothing payoff has a discontinuity at $S = K$ (jump from 0 to $K$). The Fourier cosine series converges slowly for discontinuous functions (Gibbs phenomenon), with error $O(1/N)$ rather than the exponential convergence seen for smooth payoffs. The vanilla payoff has a kink (continuous but not differentiable), giving $O(1/N^2)$ convergence. For $N = 40$, the digital error can be $\sim 2.5\%$ versus $< 0.01\%$ for vanilla options.

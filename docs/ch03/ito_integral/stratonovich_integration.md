@@ -141,6 +141,7 @@ $$
 \boxed{
 \int_0^t f(s, X_s) \circ dW_s
 = \int_0^t f(s, X_s) \, dW_s
+
 + \frac{1}{2}\int_0^t \frac{\partial f}{\partial x}(s, X_s)\,\sigma(s, X_s) \, ds
 }
 $$

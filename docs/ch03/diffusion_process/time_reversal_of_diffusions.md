@@ -2,15 +2,7 @@
 
 ## Concept Definition
 
-Time reversal studies the law of a diffusion when observed **backwards in time**, asking: if $(X_t)_{0 \le t \le T}$ is a diffusion, what SDE does the reversed process $\widetilde{X}_t := X_{T-t}$ satisfy?
-
-**Setup.** Let $(X_t)_{0 \le t \le T}$ solve the forward SDE on a filtered space $(\Omega, \mathcal{F}, (\mathcal{F}_t), \mathbb{P})$:
-
-$$
-\mathrm{d}X_t^{i} = b^{i}(t, X_t)\,\mathrm{d}t + \sigma^{i\alpha}(t, X_t)\,\mathrm{d}W_t^{\alpha}
-$$
-
-where we define the **covariance matrix** $a^{ij}(t,x) := \sigma^{i\alpha}(t,x)\sigma^{j\alpha}(t,x)$ (Einstein summation on $\alpha$). Assume $X_t$ admits a smooth positive density $p(t, x)$ for each $t \in (0, T]$.
+Given the [diffusion](diffusion_process_overview.md) $(X_t)_{0 \le t \le T}$ with drift $b^i(t,x)$ and covariance $a^{ij}(t,x) = \sigma^{i\alpha}\sigma^{j\alpha}$, time reversal asks: what SDE does the reversed process $\widetilde{X}_t := X_{T-t}$ satisfy? Assume $X_t$ admits a smooth positive density $p(t, x)$ for each $t \in (0, T]$.
 
 Define the **time-reversed process**:
 
@@ -24,6 +16,7 @@ $$
     $$
     \mathrm{d}\widetilde{X}_t^{i}
     = \widetilde{b}^{i}(t, \widetilde{X}_t)\,\mathrm{d}t
+
     + \sigma^{i\alpha}(T-t, \widetilde{X}_t)\,\mathrm{d}\widetilde{W}_t^{\alpha}
     $$
 
@@ -33,6 +26,7 @@ $$
     \boxed{
     \widetilde{b}^{i}(t, x)
     = -b^{i}(T-t, x)
+
     + \frac{1}{p(T-t, x)}\,\frac{\partial}{\partial x_j}\!\bigl(a^{ij}(T-t, x)\,p(T-t, x)\bigr)
     }
     $$
@@ -48,7 +42,8 @@ The reversed drift contains two parts:
 $$
 \widetilde{b}^{i}(t, x)
 = \underbrace{-b^{i}(T-t, x)}_{\text{negated forward drift}}
-+ \underbrace{\frac{\partial a^{ij}}{\partial x_j}(T-t,x) + a^{ij}(T-t,x)\,\partial_{x_j} \log p(T-t, x)}_{\text{score correction}}.
+
++ \underbrace{\frac{\partial a^{ij}}{\partial x_j}(T-t,x) + a^{ij}(T-t,x)\,\partial_{x_j} \log p(T-t, x)}_{\text{score correction}}
 $$
 
 The **score** $\nabla \log p(t,x) = \nabla_x \log p(t,x)$ is the gradient of the log-density of $X_t$. For constant $a = \sigma\sigma^\top$ (spatially homogeneous diffusion), the formula simplifies to

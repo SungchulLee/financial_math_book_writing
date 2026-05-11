@@ -38,6 +38,7 @@ $$
 
 
 where:
+
 - $\sigma_i(t,T)$ are volatility functions,
 - $W^i$ are Brownian motions,
 - $\alpha(t,T)$ is the drift.
@@ -81,6 +82,7 @@ df(t,T) = \mu^{\mathbb{Q}}(t,T)dt + \sigma(t,T)dW^{\mathbb{Q}}(t)
 $$
 
 where:
+
 - $\mu^{\mathbb{Q}}(t,T)$ is the drift under the risk-neutral measure
 - $\sigma(t,T)$ is the volatility of the forward rate
 - $dW^{\mathbb{Q}}(t)$ is a standard Brownian motion increment

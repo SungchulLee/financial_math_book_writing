@@ -7,8 +7,9 @@ A European option can only be exercised at maturity, but many traded options —
 This section develops the complete theory and practice of American option pricing on binomial trees. We formulate the optimal stopping problem, derive the backward induction algorithm, characterize the American price process as a **Snell envelope** (the smallest supermartingale dominating the payoff), prove that early exercise of an American call on a non-dividend-paying stock is never optimal, and study the early exercise boundary. A detailed numerical example ties the theory together.
 
 !!! info "Prerequisites"
-    - [Binomial Model](binomial_model.md) (one-period setup, stock dynamics)
-    - [Risk-Neutral Measure](risk_neutral_measure.md) (risk-neutral probability $q$, expectation pricing)
+
+    - [Binomial Model](../binomial_model/binomial_model.md) (one-period setup, stock dynamics)
+    - [Risk-Neutral Measure](../binomial_model/risk_neutral_measure.md) (risk-neutral probability $q$, expectation pricing)
     - [Multi-Period Binomial Model](multi_period_binomial_model.md) (tree construction, backward induction for European options)
 
 !!! abstract "Learning Objectives"
@@ -136,52 +137,13 @@ The American recursion adds the $\max$ with the intrinsic value. Since the maxim
 
 ## The Snell Envelope
 
-### Supermartingale Characterization
-
-The sequence of discounted American option values $\{\tilde{V}_n\}_{n=0}^{N}$, where $\tilde{V}_n = e^{-rn\Delta t} V_n$, has a fundamental property under the risk-neutral measure.
-
-!!! note "Theorem (Supermartingale Property)"
-    The discounted American option price process $\{\tilde{V}_n\}$ is a **supermartingale** under $\mathbb{Q}$:
-
-    $$
-    \tilde{V}_n \geq \mathbb{E}^{\mathbb{Q}}[\tilde{V}_{n+1} \mid \mathcal{F}_n]
-    $$
-
-    for all $n = 0, 1, \ldots, N-1$.
-
-??? example "Proof"
-    At each node $(n, j)$, the backward recursion gives:
-
-    $$
-    V_{n,j} = \max\!\Big(h_{n,j},\; e^{-r\Delta t}\!\left[q\,V_{n+1,j+1} + (1-q)\,V_{n+1,j}\right]\Big) \geq e^{-r\Delta t}\!\left[q\,V_{n+1,j+1} + (1-q)\,V_{n+1,j}\right]
-    $$
-
-    Multiplying both sides by $e^{-rn\Delta t}$:
-
-    $$
-    e^{-rn\Delta t} V_{n,j} \geq e^{-r(n+1)\Delta t}\!\left[q\,V_{n+1,j+1} + (1-q)\,V_{n+1,j}\right]
-    $$
-
-    The left side is $\tilde{V}_{n,j}$ and the right side is $\mathbb{E}^{\mathbb{Q}}[\tilde{V}_{n+1} \mid \mathcal{F}_n]$ evaluated at node $(n,j)$. This is exactly the supermartingale inequality. $\square$
-
-### Definition of the Snell Envelope
-
-The American option price process is in fact the **Snell envelope** of the discounted payoff process.
-
-!!! note "Definition (Snell Envelope)"
-    Let $\{h_n\}_{n=0}^{N}$ be an adapted process (the payoff process). The **Snell envelope** of $\{h_n\}$ is the smallest supermartingale $\{U_n\}$ that dominates $\{h_n\}$:
-
-    1. $U_n \geq h_n$ for all $n$ (domination)
-    2. $U_n \geq \mathbb{E}^{\mathbb{Q}}[e^{-r\Delta t} U_{n+1} \mid \mathcal{F}_n]$ for all $n$ (supermartingale)
-    3. If $\{U'_n\}$ is any other supermartingale with $U'_n \geq h_n$, then $U'_n \geq U_n$ (smallest)
-
-The Snell envelope is constructed by exactly the backward induction recursion:
+This is the theoretical name for the recursion above: the American option price process $\{V_n\}$ is the **Snell envelope** of the discounted payoff $\{h_n\}$ — the smallest $\mathbb{Q}$-supermartingale dominating $\{h_n\}$. The defining recursion
 
 $$
 U_N = h_N, \qquad U_n = \max\!\big(h_n,\; \mathbb{E}^{\mathbb{Q}}[e^{-r\Delta t} U_{n+1} \mid \mathcal{F}_n]\big)
 $$
 
-This is precisely the American option recursion. The Snell envelope provides the theoretical foundation: the American price is the **smallest** supermartingale that lies above the payoff at every node.
+coincides with the American backward induction. In particular, $\{\tilde{V}_n = e^{-rn\Delta t}V_n\}$ is a $\mathbb{Q}$-supermartingale, equality holding precisely at exercise nodes.
 
 ### Optimal Stopping and the Snell Envelope
 
@@ -285,7 +247,7 @@ The early exercise boundary for an American put has several important properties
 On a binomial tree, the exercise boundary separates the nodes into two regions:
 
 <figure markdown="span">
-  ![american_put_tree](./image/american_put_tree.svg)
+  ![american_put_tree](../binomial_model/image/american_put_tree.svg)
   <figcaption markdown="span">**Figure 1:** Early exercise boundary on the 3-period binomial tree ($S_0 = 100$, $K = 100$, $\sigma = 30\%$, $r = 5\%$, $T = 1$, $N = 3$). Teal nodes lie in the continuation region; coral nodes lie in the exercise region; gray nodes expire out-of-the-money. The amber dashed curve is the early exercise boundary. Node $(2, 0)$ at $S = \$70.83$ is the sole interior exercise node, where intrinsic value \$29.17 exceeds continuation value \$27.51.</figcaption>
 </figure>
 
@@ -336,7 +298,7 @@ $$
 | $S_{3,0}$ | \$59.60 |
 
 <figure markdown="span">
-  ![stock_price_tree](./image/stock_price_tree.svg)
+  ![stock_price_tree](../binomial_model/image/stock_price_tree.svg)
   <figcaption markdown="span">**Figure 2:** Stock price tree for the 3-period example ($S_0 = 100$, $u = 1.1882$, $d = 0.8416$). The CRR parametrization $d = 1/u$ gives a recombining tree with $n + 1$ distinct prices at time step $n$. Each node $(n, j)$ carries price $S_{n,j} = S_0\, u^j\, d^{n-j}$; subscripts show the index $(n, j)$.</figcaption>
 </figure>
 
@@ -396,7 +358,7 @@ $$
 ### Summary of Option Values
 
 <figure markdown="span">
-  ![option_value_tree](./image/option_value_tree.svg)
+  ![option_value_tree](../binomial_model/image/option_value_tree.svg)
   <figcaption markdown="span">**Figure 3:** American put option values $V_{n,j}$ on the 3-period tree ($K = 100$, $q = 0.5056$). Teal nodes: continuation value dominates, the holder waits. Coral nodes: intrinsic value dominates, the holder exercises immediately. Gray nodes: option expires worthless. The amber dashed curve is the early exercise boundary; node $(2, 0)$ at $S = \$70.83$ is the sole interior exercise node, contributing the entire early exercise premium of \$0.39.</figcaption>
 </figure>
 
@@ -439,37 +401,7 @@ At $n = 2$, the stock price \$70.83 is below the exercise boundary, while \$100.
 
 ## American Put is Worth More Than European Put
 
-The worked example demonstrates a general result.
-
-!!! note "Theorem (American Put Premium)"
-    For a put option on any underlying:
-
-    $$
-    V_n^{\text{Am, put}} \geq V_n^{\text{Eu, put}} \quad \text{for all } n
-    $$
-
-    with strict inequality whenever there exists a node at which early exercise is optimal.
-
-??? example "Proof"
-    The European put value satisfies:
-
-    $$
-    V_{n,j}^{\text{Eu}} = e^{-r\Delta t}\!\left[q\,V_{n+1,j+1}^{\text{Eu}} + (1-q)\,V_{n+1,j}^{\text{Eu}}\right]
-    $$
-
-    The American put value satisfies:
-
-    $$
-    V_{n,j}^{\text{Am}} = \max\!\Big(h_{n,j},\; e^{-r\Delta t}\!\left[q\,V_{n+1,j+1}^{\text{Am}} + (1-q)\,V_{n+1,j}^{\text{Am}}\right]\Big)
-    $$
-
-    We prove $V_{n,j}^{\text{Am}} \geq V_{n,j}^{\text{Eu}}$ by backward induction. At $n = N$, both equal $h_{N,j}$, so the base case holds. Suppose $V_{n+1,k}^{\text{Am}} \geq V_{n+1,k}^{\text{Eu}}$ for all $k$. Then:
-
-    $$
-    V_{n,j}^{\text{Am}} \geq e^{-r\Delta t}\!\left[q\,V_{n+1,j+1}^{\text{Am}} + (1-q)\,V_{n+1,j}^{\text{Am}}\right] \geq e^{-r\Delta t}\!\left[q\,V_{n+1,j+1}^{\text{Eu}} + (1-q)\,V_{n+1,j}^{\text{Eu}}\right] = V_{n,j}^{\text{Eu}}
-    $$
-
-    The first inequality follows from the $\max$ operator, and the second from the induction hypothesis. $\square$
+By the [comparison established earlier](#comparison-with-european-pricing), the American recursion adds a $\max$ with the intrinsic value, so $V_n^{\text{Am, put}} \geq V_n^{\text{Eu, put}}$ at every node, with strict inequality whenever early exercise is optimal somewhere. A simple backward induction confirms this, using the fact that the $\max$ can only increase the value.
 
 ---
 
@@ -477,7 +409,7 @@ The worked example demonstrates a general result.
 
 ### The Free-Boundary Problem
 
-As $N \to \infty$ and $\Delta t \to 0$, the binomial tree converges to a continuous-time model (see [Binomial to Black–Scholes](binomial_to_black_scholes_limit.md)). In this limit, the American put price $P(S, t)$ satisfies a **free-boundary problem**:
+As $N \to \infty$ and $\Delta t \to 0$, the binomial tree converges to a continuous-time model (see [Binomial to Black–Scholes](../binomial_to_black_scholes/binomial_to_black_scholes_limit.md)). In this limit, the American put price $P(S, t)$ satisfies a **free-boundary problem**:
 
 In the **continuation region** ($S > S^*(t)$), the price satisfies the Black–Scholes PDE:
 
@@ -706,7 +638,7 @@ Saved: early_exercise_boundary.svg
 The left panel shows the early exercise boundary $S^*(t)$: the coral region below the curve is where immediate exercise is optimal; the teal region above is where holding is optimal. The boundary starts well below $K$ at $t = 0$ (the option's time value is large) and converges monotonically to $K$ at expiry. The right panel traces the all-down path $j = 0$ through the tree: the American put value (coral) tracks the intrinsic value (dotted) once the boundary is crossed, while the European put (dashed green) continues to undervalue the option — the amber shading between the two curves is the early exercise premium, which widens as the stock falls.
 
 <figure markdown="span">
-  ![early_exercise_boundary](./image/early_exercise_boundary.svg)
+  ![early_exercise_boundary](../binomial_model/image/early_exercise_boundary.svg)
   <figcaption markdown="span">**Figure 4:** Left: early exercise boundary $S^*(t)$ for the American put ($S_0 = 100$, $K = 100$, $\sigma = 30\%$, $r = 5\%$, $T = 1$ yr, $N = 252$ daily steps). The coral region is the exercise region; the teal region is the continuation region. The boundary converges to $K = 100$ at expiry. Right: American put value, European put value, and intrinsic value along the all-down path ($j = 0$). The amber shading between the American and European curves is the early exercise premium; it widens as the stock falls and the boundary is crossed.</figcaption>
 </figure>
 
@@ -724,6 +656,7 @@ The left panel shows the early exercise boundary $S^*(t)$: the coral region belo
 | American call (no dividends) | $V^{\text{Am, call}} = V^{\text{Eu, call}}$ |
 
 !!! abstract "Key Takeaways"
+
     1. **Backward induction with exercise check**: American pricing extends European pricing by comparing intrinsic value to continuation value at every node.
 
     2. **Optimal stopping**: The American price solves a supremum over stopping times; the Snell envelope characterizes it as the smallest supermartingale dominating the payoff.
@@ -741,7 +674,7 @@ The left panel shows the early exercise boundary $S^*(t)$: the coral region belo
 | Section | Topic |
 |---------|-------|
 | [Trinomial Model](trinomial_model.md) | Three-state extension with finer resolution |
-| [Binomial to Black–Scholes](binomial_to_black_scholes_limit.md) | Continuous-time limit of the binomial model |
+| [Binomial to Black–Scholes](../binomial_to_black_scholes/binomial_to_black_scholes_limit.md) | Continuous-time limit of the binomial model |
 
 ---
 

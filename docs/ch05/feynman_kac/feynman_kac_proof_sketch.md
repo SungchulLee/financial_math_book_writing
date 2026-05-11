@@ -3,6 +3,7 @@
 The Feynman-Kac formula connects PDE solutions to stochastic expectations. This page presents a **detailed proof sketch** of both directions: starting from the PDE and arriving at the expectation formula, and starting from the expectation and deriving the PDE. The core technique is Ito's lemma applied to a carefully constructed process that becomes a martingale.
 
 !!! tip "Related Content"
+
     - [Feynman-Kac Formula](feynman_kac_formula.md) -- statement and applications
     - [Discounted Feynman-Kac](discounted_feynman_kac.md) -- extension with discounting
     - [Kolmogorov Backward Equation](../kolmogorov_equations/kolmogorov_backward.md) -- the special case $r = 0$
@@ -290,25 +291,7 @@ In finance, the risk-free rate $r$ serves as both the discounting rate in the ex
 
 ## Extension: Running Payoff
 
-When there is a source term $f(s, X_s)$ (running payoff), the PDE becomes:
-
-$$
-\partial_t u + \mathcal{L}u - ru + f = 0
-$$
-
-and the representation is:
-
-$$
-u(t, x) = \mathbb{E}\!\left[e^{-\int_t^T r\,ds}\,g(X_T) + \int_t^T e^{-\int_t^s r\,d\tau}\,f(s, X_s)\,ds \,\Big|\, X_t = x\right]
-$$
-
-The proof proceeds identically, except the process:
-
-$$
-Y_s = D(t,s)\,u(s, X_s) + \int_t^s D(t, \tau)\,f(\tau, X_\tau)\,d\tau
-$$
-
-is the martingale. The $-f$ from the PDE cancels the $+f$ from the integral term. See [Feynman-Kac Formula](feynman_kac_formula.md) for details.
+The proof generalises to the source-term case by enriching $Y_s$ with $\int_t^s D(t,\tau)f(\tau, X_\tau)\,d\tau$; the $-f$ from the PDE cancels the $+f$ from the integral term. See [Running Payoff Feynman–Kac](feynman_kac_running_payoff.md) for the formula.
 
 ---
 

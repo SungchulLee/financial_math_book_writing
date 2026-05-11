@@ -249,3 +249,51 @@ if __name__ == "__main__":
     print(f"  Time value: ${put_itm - max(100-120, 0):.2f}")
     print()
 ```
+
+## Exercises
+
+**Exercise 1.**
+Plot the Black-Scholes call price $C(S)$ as a function of stock price $S$ for $K = 100$, $T = 1$, $r = 0.05$, $\sigma = 0.20$. Describe the shape and identify the intrinsic value and time value components.
+
+??? success "Solution to Exercise 1"
+    The call price $C(S)$ is a smooth, increasing, convex curve. For $S \ll K$, $C \approx 0$ (deep OTM). For $S \gg K$, $C \approx S - Ke^{-rT}$ (deep ITM, approaching the discounted intrinsic value).
+
+    The **intrinsic value** is $\max(S - K, 0)$ -- the payoff if exercised immediately. The **time value** is $C(S) - \max(S - K, 0)$, which is always non-negative. Time value is maximized near ATM ($S \approx K$) and approaches zero deep ITM or OTM. It represents the optionality: the chance of favorable stock movements before expiration.
+
+---
+
+**Exercise 2.**
+How does the call price curve change as $T$ decreases toward zero? Sketch $C(S)$ for $T = 1$, $T = 0.1$, and $T = 0.01$.
+
+??? success "Solution to Exercise 2"
+    As $T \to 0$, the call price converges to the intrinsic value $\max(S - K, 0)$, forming a hockey-stick shape. The time value (the smooth rounding near $S = K$) shrinks:
+
+    - $T = 1$: Broad, smooth curve with significant time value.
+    - $T = 0.1$: Sharper bend near $S = K$, less time value.
+    - $T = 0.01$: Nearly a piecewise linear function matching the payoff.
+
+    This convergence reflects the decreasing probability of large moves as time runs out.
+
+---
+
+**Exercise 3.**
+For a fixed $S = 100$ and $K = 100$, plot the call price as a function of volatility $\sigma \in [0.05, 0.80]$. Is the relationship linear?
+
+??? success "Solution to Exercise 3"
+    The call price increases monotonically with $\sigma$ (positive vega). The relationship is approximately linear for moderate $\sigma$ but becomes sublinear for very high $\sigma$.
+
+    Near $\sigma = 0$: $C \approx \max(S - Ke^{-rT}, 0)$ (deterministic limit). As $\sigma \to \infty$: $C \to S$ (the option is worth the entire stock price because massive upside is possible). The curve is concave (increasing at a decreasing rate).
+
+---
+
+**Exercise 4.**
+Explain the financial interpretation of the BS call price as $C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$. What do $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$ represent?
+
+??? success "Solution to Exercise 4"
+
+    - $\mathcal{N}(d_2)$ is the risk-neutral probability that the option expires in the money: $P^Q(S_T > K)$.
+    - $Ke^{-rT}\mathcal{N}(d_2)$ is the present value of the expected payment if the option is exercised.
+    - $\mathcal{N}(d_1)$ is the delta-weighted probability (under the stock numeraire measure): it accounts for the correlation between the stock price and the exercise event.
+    - $S\mathcal{N}(d_1)$ is the present value of receiving the stock conditional on exercise.
+
+    The call price is the difference: what you expect to receive (stock) minus what you expect to pay (strike), both conditional on exercise and discounted.

@@ -9,6 +9,7 @@ used in quantitative finance, together with probability and density functions
 obtained by Fourier inversion.
 
 Characteristic functions included:
+
     - Normal, Gamma, Poisson (basic distributions)
     - Merton jump-diffusion
     - Variance Gamma (VG)
@@ -16,6 +17,7 @@ Characteristic functions included:
     - Heston stochastic volatility (original and Schoutens formulation)
 
 Probability / density functions included:
+
     - Q1, Q2  -- risk-neutral probabilities via CF inversion (stock and
       money-market numeraire)
     - Gil-Pelaez PDF inversion
@@ -839,3 +841,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Compute the characteristic function of a standard normal random variable $X \sim N(0,1)$ at $u = 1$. Verify that $|\varphi(u)| \leq 1$ for all $u$.
+
+??? success "Solution to Exercise 1"
+    $\varphi(u) = e^{iu\mu - \frac{1}{2}u^2\sigma^2}$. For $\mu = 0$, $\sigma = 1$: $\varphi(1) = e^{-1/2} \approx 0.6065$. Since $|\varphi(u)| = e^{-u^2/2} \leq 1$ for all $u$, the bound holds. This follows from $|\mathbb{E}[e^{iuX}]| \leq \mathbb{E}[|e^{iuX}|] = 1$.
+
+---
+
+**Exercise 2.**
+Write the characteristic function of the Merton jump-diffusion log-return and identify the contribution of jumps versus diffusion.
+
+??? success "Solution to Exercise 2"
+    $\varphi(u) = \exp\bigl(t(iu\mu - \frac{1}{2}u^2\sigma^2 + \lambda(e^{iu\mu_J - \frac{1}{2}u^2\sigma_J^2} - 1))\bigr)$. The first two terms $iu\mu - \frac{1}{2}u^2\sigma^2$ are the diffusion (GBM) component. The third term $\lambda(e^{iu\mu_J - \frac{1}{2}u^2\sigma_J^2} - 1)$ is the jump contribution: $\lambda$ is intensity, and $e^{iu\mu_J - \frac{1}{2}u^2\sigma_J^2}$ is the CF of a single normal jump.
+
+---
+
+**Exercise 3.**
+The Gil-Pelaez formula recovers the PDF via $f(x) = \frac{1}{\pi}\int_0^\infty \text{Re}[e^{-iux}\varphi(u)]\,du$. Explain why a finite integration limit suffices for distributions whose CF decays rapidly.
+
+??? success "Solution to Exercise 3"
+    If $|\varphi(u)|$ decays as $e^{-cu^2}$ (e.g., normal) or faster, the integrand magnitude is bounded by $e^{-cu^2}$, which becomes negligible for $u > \sqrt{20/c}$. For $N(0,1)$, $|\varphi(u)| = e^{-u^2/2}$, so the integrand is below $10^{-9}$ for $u > 6$. A limit of 50 provides machine-precision accuracy. For heavier-tailed distributions (Gamma with small shape), the CF decays as $|u|^{-a}$, requiring finite limits to avoid oscillatory integration errors.
+
+---
+
+**Exercise 4.**
+Price a European call via $C = S_0 Q_1 - Ke^{-rT}Q_2$ using Fourier inversion with $S_0 = 100$, $K = 105$, $r = 0.05$, $T = 1$, $\sigma = 0.2$. Explain the probabilistic meaning of $Q_1$ and $Q_2$.
+
+??? success "Solution to Exercise 4"
+    $Q_1$ is the probability that $S_T > K$ under the stock-price numeraire (risk-neutral measure tilted by $S_T/\mathbb{E}[S_T]$). $Q_2$ is the same probability under the money-market numeraire (standard risk-neutral measure). The call price decomposes as: present value of receiving the stock when ITM ($S_0 Q_1$) minus present value of paying the strike when ITM ($Ke^{-rT}Q_2$). For GBM, $Q_1 = N(d_1)$ and $Q_2 = N(d_2)$, recovering the Black-Scholes formula.

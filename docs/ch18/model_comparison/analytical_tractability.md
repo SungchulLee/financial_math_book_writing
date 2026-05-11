@@ -3,6 +3,7 @@
 The choice of short-rate model in practice often hinges not on which model best fits the data, but on which model allows the fastest and most reliable computation of prices and risk sensitivities. Vasicek and CIR are affine models with closed-form bond prices, option prices, and known transition densities. Hull-White extends Vasicek with time-dependent drift while preserving the affine structure, retaining all closed-form results. Black-Karasinski sacrifices this tractability for log-normal rates and guaranteed positivity, requiring numerical methods for every calculation. This section catalogues exactly what each model can and cannot compute in closed form, providing a systematic basis for model selection.
 
 !!! info "Prerequisites"
+
     - [Vasicek Model](../short_rate_models/vasicek_model.md)
     - [CIR Model](../short_rate_models/cir_model.md)
     - [Hull-White Model](../short_rate_models/hull_white_model.md)

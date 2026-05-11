@@ -299,6 +299,7 @@ $$
 $$
 
 !!! abstract "Key Takeaways"
+
     1. **Both conditions are sufficient but not necessary** for the stochastic exponential to be a true martingale.
     
     2. **Novikov is easier to verify** when the quadratic variation $\langle M \rangle$ is controlled.

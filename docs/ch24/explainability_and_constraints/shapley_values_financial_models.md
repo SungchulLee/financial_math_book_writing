@@ -262,6 +262,7 @@ Financial models classified as high-risk under the EU AI Act must provide:
 SHAP values serve as a compliance mechanism, though they explain *what* drives predictions, not *why* in a causal sense.
 
 !!! warning "Limitations of SHAP in Finance"
+
     - **Not causal:** SHAP values measure association, not causation. A feature may have high SHAP value due to correlation with the true causal driver.
     - **Conditional distribution assumptions:** Results depend on how absent features are handled (marginal vs conditional).
     - **Stability:** SHAP values for individual predictions can be sensitive to small input perturbations, especially in regions with sparse training data.

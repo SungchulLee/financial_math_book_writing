@@ -7,6 +7,7 @@ The CBOE Volatility Index (VIX) measures the market's expectation of 30-day forw
 The Heston model provides an elegant framework for VIX option pricing because VIX$^2$ is an **affine function** of the instantaneous variance $v_t$. This affine relationship means that the characteristic function of VIX$^2$ (and hence of VIX) can be computed in closed form, enabling semi-analytical pricing of VIX options via Fourier inversion. This section derives the affine representation, obtains the characteristic function, and prices VIX calls and puts.
 
 !!! info "Prerequisites"
+
     - [Variance Swaps (Closed-Form)](variance_swaps_closed_form.md) (expected integrated variance)
     - [CIR Variance Process Solution](../variance_dynamics/cir_variance_process_solution.md) (conditional moments)
     - [Closed-Form Characteristic Function](../heston_cf/closed_form_characteristic_function.md) (Heston CF)
@@ -255,6 +256,7 @@ So VIX$_T^2 = 0.00460 + 0.8849 \, v_T$, confirming VIX$^2$ is approximately $0.8
 | 30 | \$0.02 | \$8.88 | 82% |
 
 !!! example "Observations"
+
     1. The VIX option implied volatility exhibits a **smile** with a minimum near ATM and higher implied vols for both deep ITM and OTM strikes.
     2. The VIX implied vol levels (68--82%) are much higher than the equity implied vol ($\approx 20\%$) because VIX itself is highly volatile.
     3. The right-skewed distribution of VIX (from the chi-squared tail of $v_T$) produces higher implied vols for high VIX strikes.
@@ -271,6 +273,7 @@ So VIX$_T^2 = 0.00460 + 0.8849 \, v_T$, confirming VIX$^2$ is approximately $0.8
 | VIX futures approx | $F_{\text{VIX}} \approx \sqrt{\mathbb{E}[\text{VIX}^2]} - \operatorname{Var}[\text{VIX}^2]/(8(\mathbb{E}[\text{VIX}^2])^{3/2})$ |
 
 !!! abstract "Key Takeaways"
+
     1. **VIX$^2$ is affine in $v_t$**: Under Heston, VIX$^2 = a + b \, v_t$ with explicit coefficients depending on $\kappa$ and $\tau$. This is the key result enabling semi-analytical pricing.
 
     2. **Characteristic function in closed form**: The CF of VIX$^2$ inherits the CIR moment generating function structure, requiring only evaluation of the Riccati solution.

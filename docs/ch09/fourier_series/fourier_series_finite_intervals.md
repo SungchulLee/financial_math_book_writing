@@ -3,6 +3,7 @@
 Fourier analysis provides the mathematical backbone of modern option pricing under models with known characteristic functions. Before developing the COS method and other Fourier pricing techniques, we must establish the classical theory of Fourier series on bounded intervals. The key insight is that any sufficiently regular function on $[a, b]$ can be decomposed into a sum of sinusoidal components, and the coefficients of this decomposition carry the same information as the original function. In the pricing context, this means we can reconstruct a probability density from its Fourier coefficients, which are directly computable from the characteristic function.
 
 !!! info "Prerequisites"
+
     - Linear algebra: inner product spaces, orthogonality, projections
     - Real analysis: $L^2$ spaces, pointwise and uniform convergence
     - Basic probability: probability density functions, expectation

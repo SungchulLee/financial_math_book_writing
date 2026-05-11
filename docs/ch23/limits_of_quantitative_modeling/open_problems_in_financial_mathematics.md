@@ -7,6 +7,7 @@
 Despite decades of development, financial mathematics contains numerous **open problems** — questions that remain unsolved or areas where current models are known to be inadequate. These open problems represent both intellectual challenges and practical limitations of quantitative finance.
 
 This section surveys major open problems across several domains:
+
 1. **Volatility modeling**: Rough volatility, market microstructure
 2. **Model calibration**: Consistency, stability, joint calibration
 3. **Machine learning**: Deep hedging, explainability
@@ -22,6 +23,7 @@ This section surveys major open problems across several domains:
 **Observation**: Implied volatility varies across strikes and maturities, forming a **surface**.
 
 **Challenge**: No single model captures:
+
 - Smile (convexity in strike)
 - Skew (asymmetry)
 - Term structure
@@ -37,6 +39,7 @@ $$
 
 
 **Challenge**: Calibrate model simultaneously to:
+
 - Vanilla options (all strikes, maturities)
 - Variance swaps
 - VIX options
@@ -85,6 +88,7 @@ where $W_t^H$ is fractional Brownian motion with $H < 0.5$.
 **Advantage**: Better fits short-term smile and ATM skew.
 
 **Challenge**: 
+
 - Not a Markov process; requires infinite-dimensional state
 - Numerical methods computationally intensive
 - Hedging strategy unclear
@@ -110,6 +114,7 @@ where $W_t^H$ is fractional Brownian motion with $H < 0.5$.
 **Reality**: Multiple informed traders, complex order types, high-frequency dynamics.
 
 **Open Problem**: Tractable equilibrium model with:
+
 - Multiple strategic traders
 - Realistic order book dynamics
 - Endogenous volatility
@@ -120,6 +125,7 @@ where $W_t^H$ is fractional Brownian motion with $H < 0.5$.
 **Almgren-Chriss**: Minimize execution cost under linear price impact.
 
 **Extensions Needed**:
+
 - Nonlinear, non-permanent impact
 - Stochastic liquidity
 - Multiple assets
@@ -135,6 +141,7 @@ where $W_t^H$ is fractional Brownian motion with $H < 0.5$.
 **Observation**: Microstructure noise, bid-ask bounce, discrete prices.
 
 **Open Problem**: Continuous-time limit that correctly captures:
+
 - Price discreteness
 - Market maker behavior
 - Information revelation
@@ -154,6 +161,7 @@ $$
 trained to minimize hedging loss.
 
 **Advantages**:
+
 - Model-free
 - Handles transaction costs, constraints
 - Captures complex dynamics
@@ -185,11 +193,13 @@ trained to minimize hedging loss.
 **Problem**: Given finite option prices, construct arbitrage-free surface.
 
 **Constraints**:
+
 - Call prices decreasing in strike
 - Convexity: $\frac{\partial^2 C}{\partial K^2} \geq 0$
 - Calendar spread: $C(K, T_1) \leq C(K, T_2)$ for $T_1 < T_2$
 
 **Open Problem**: Optimal interpolation that:
+
 - Satisfies arbitrage constraints
 - Minimizes smoothness penalty
 - Has closed-form or fast numerical solution
@@ -200,6 +210,7 @@ trained to minimize hedging loss.
 **Challenge**: Calibrate single model to both S&P 500 options and VIX options.
 
 **Difficulty**: Standard stochastic volatility models cannot match both:
+
 - SPX smile shape
 - VIX option prices
 
@@ -215,6 +226,7 @@ trained to minimize hedging loss.
 **Solved**: Two marginals.
 
 **Open Problems**:
+
 - Multiple marginals (more than 2 dates)
 - Path-dependent constraints
 - Computational efficiency for high dimensions
@@ -236,6 +248,7 @@ where $\bar{p}_i$ is clearing payment, $\pi_{ij}$ is liability fraction.
 **Eisenberg-Noe**: Existence and uniqueness of clearing vector.
 
 **Open Problems**:
+
 - Realistic network formation
 - Dynamic network evolution
 - Optimal intervention strategies
@@ -271,6 +284,7 @@ where $\bar{p}_i$ is clearing payment, $\pi_{ij}$ is liability fraction.
 **Question**: How should asset prices reflect climate risk?
 
 **Challenge**: 
+
 - Long time horizons (decades)
 - Deep uncertainty about climate outcomes
 - Non-stationarity
@@ -281,6 +295,7 @@ where $\bar{p}_i$ is clearing payment, $\pi_{ij}$ is liability fraction.
 **Problem**: Model carbon permit prices for hedging and valuation.
 
 **Features**:
+
 - Policy-dependent dynamics
 - Rare events (policy changes)
 - Link to economic activity
@@ -305,6 +320,7 @@ where $\bar{p}_i$ is clearing payment, $\pi_{ij}$ is liability fraction.
 **Challenge**: Traditional models assume economic fundamentals; cryptos have novel value drivers.
 
 **Open Questions**:
+
 - Fundamental value of cryptocurrency
 - Appropriate discount rate
 - Role of network effects
@@ -315,6 +331,7 @@ where $\bar{p}_i$ is clearing payment, $\pi_{ij}$ is liability fraction.
 **Automated Market Makers**: Liquidity pools with algorithmic pricing.
 
 **Open Problems**:
+
 - Optimal AMM design
 - Impermanent loss mitigation
 - Cross-protocol contagion
@@ -337,6 +354,7 @@ where $\bar{p}_i$ is clearing payment, $\pi_{ij}$ is liability fraction.
 **Tools**: Martingale optimal transport, robust hedging.
 
 **Open Problem**: Extend model-free methods to:
+
 - Path-dependent options
 - Multiple underlying assets
 - Transaction costs
@@ -349,6 +367,7 @@ where $\bar{p}_i$ is clearing payment, $\pi_{ij}$ is liability fraction.
 **SPDEs**: Stochastic partial differential equations for factor dynamics.
 
 **Open Problems**:
+
 - Well-posedness for relevant SPDEs
 - Numerical methods for high-dimensional problems
 - Statistical inference in function spaces
@@ -359,6 +378,7 @@ where $\bar{p}_i$ is clearing payment, $\pi_{ij}$ is liability fraction.
 **2BSDEs**: Second-order BSDEs for uncertain volatility.
 
 **Open Problems**:
+
 - Existence/uniqueness for general coefficients
 - Numerical schemes that scale to high dimensions
 - Connection to fully nonlinear PDEs
@@ -383,6 +403,7 @@ where $\bar{p}_i$ is clearing payment, $\pi_{ij}$ is liability fraction.
 **Current State**: Point estimates dominate practice.
 
 **Open Problem**: Practical methods for:
+
 - Confidence intervals for prices
 - Model risk reserves
 - Parameter uncertainty propagation
@@ -395,6 +416,7 @@ where $\bar{p}_i$ is clearing payment, $\pi_{ij}$ is liability fraction.
 **Curse of Dimensionality**: Parameters grow as $O(n^2)$ or worse.
 
 **Open Problem**: Parsimonious multi-asset models that:
+
 - Capture dependence structure
 - Remain tractable
 - Calibrate stably
@@ -767,7 +789,7 @@ Financial mathematics remains a vibrant field with fundamental open questions th
 
     Regulators require that financial institutions understand and can explain their risk management strategies. The concern with deep hedging is multifaceted:
 
-    1. **No closed-form**: The hedge ratio is defined implicitly by the neural network weights. Unlike Black-Scholes delta $\Delta = \Phi(d_1)$, there is no formula that a human can inspect and understand.
+    1. **No closed-form**: The hedge ratio is defined implicitly by the neural network weights. Unlike Black-Scholes delta $\Delta = \mathcal{N}(d_1)$, there is no formula that a human can inspect and understand.
 
     2. **Sensitivity to training data**: If the training data does not include crisis scenarios, the learned strategy may behave unpredictably during crises. Unlike a model-based strategy where we can analytically characterize behavior under extreme parameters, a neural network's extrapolation properties are unknown.
 

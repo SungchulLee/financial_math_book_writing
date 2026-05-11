@@ -75,3 +75,56 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The modular 2D solver separates grid creation, initial conditions, solvers, and plotting into distinct modules. Explain the software engineering benefit of this separation.
+
+??? success "Solution to Exercise 1"
+    This separation follows the **single responsibility principle**: each module handles one concern. Benefits include:
+
+    - **Testability**: Each module can be unit-tested independently (e.g., test that `create_2d_grid` produces correct spacing without running any solver).
+    - **Reusability**: Initial conditions can be reused across different solvers; plotting functions work with any solution array.
+    - **Maintainability**: Adding a new solver requires changes only in `solvers.py`, not in the grid or plotting code.
+    - **Extensibility**: New initial conditions, boundary conditions, or visualization methods can be added without touching existing code.
+
+---
+
+**Exercise 2.**
+The `get_stability_info` function returns a dictionary with `is_stable_forward`. How would you extend this to also report the maximum stable time step for Forward Euler?
+
+??? success "Solution to Exercise 2"
+    Add a computed field for the maximum stable time step:
+
+    $$
+    \Delta t_{\max} = \frac{0.5}{D(1/\Delta x^2 + 1/\Delta y^2)}
+    $$
+
+    This follows from $r_x + r_y \le 0.5$, i.e., $D\Delta t(1/\Delta x^2 + 1/\Delta y^2) \le 0.5$.
+
+    The modified function would add `"max_stable_dt": 0.5 / (D * (1/dx**2 + 1/dy**2))` and `"min_stable_Nt": int(np.ceil(T / max_stable_dt))` to the returned dictionary. This gives users actionable guidance on how to adjust parameters for stability.
+
+---
+
+**Exercise 3.**
+The cross-section analysis plots temperature along $x$ at fixed $y$ and vice versa. For an initial circular pulse centered at $(0.5, 0.5)$, what symmetry should these cross-sections exhibit?
+
+??? success "Solution to Exercise 3"
+    For a circular pulse with center $(0.5, 0.5)$ on a square domain, the initial condition has fourfold symmetry: it is symmetric about both $x = 0.5$ and $y = 0.5$.
+
+    The cross-section at $y = 0.5$ should be identical to the cross-section at $x = 0.5$ (rotational symmetry). Both should be symmetric about their respective midpoints. After evolution under the heat equation (which preserves these symmetries with Dirichlet BCs on a square domain), the cross-sections remain symmetric and identical.
+
+    Any asymmetry in the computed cross-sections indicates numerical error, possibly from grid effects or insufficient resolution.
+
+---
+
+**Exercise 4.**
+Compare the circular pulse and Gaussian initial conditions after evolution. Which produces a smoother solution, and why does this matter for numerical accuracy?
+
+??? success "Solution to Exercise 4"
+    The Gaussian initial condition is infinitely differentiable ($C^\infty$), while the circular pulse has a discontinuity at its boundary (a jump from amplitude to zero).
+
+    After evolution, both solutions become smooth for $t > 0$ (the heat equation is a smoothing operator). However, at early times, the circular pulse produces steep gradients near its boundary that are harder to resolve numerically. This leads to larger spatial discretization errors and potential oscillations with coarse grids.
+
+    The Gaussian solution is smooth from the start, so numerical methods achieve their full theoretical convergence rate immediately. For benchmarking numerical methods, smooth initial conditions are preferred because they allow clean convergence analysis.

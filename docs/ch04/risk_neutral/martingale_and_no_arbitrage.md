@@ -208,6 +208,7 @@ $$
 ### Why This Rules Out Arbitrage
 
 For an arbitrage, we need:
+
 - $G_T(\phi) \geq 0$ almost surely
 - $\mathbb{Q}(G_T(\phi) > 0) > 0$
 
@@ -311,89 +312,34 @@ It **only** alters:
 
 ### The Mechanism
 
-Under $\mathbb{P}$:
-
-$$
-d\tilde{S}_t = (\mu - r)\tilde{S}_t\,dt + \sigma \tilde{S}_t\,dW_t^{\mathbb{P}}
-$$
-
-Under $\mathbb{Q}$ (via Girsanov):
-
-$$
-d\tilde{S}_t = \sigma \tilde{S}_t\,dW_t^{\mathbb{Q}}
-$$
-
-where $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \int_0^t \theta_s\,ds$ is a $\mathbb{Q}$-Brownian motion, with $\theta_t = (\mu_t - r_t)/\sigma_t$.
-
-The drift has been **absorbed** into the change of Brownian motion!
-
-### The Market Price of Risk
-
-The quantity:
-
-$$
-\theta_t = \frac{\mu_t - r_t}{\sigma_t}
-$$
-
-is called the **market price of risk** or **Sharpe ratio**. It measures the excess return per unit of volatility.
-
-Girsanov's theorem says: shifting Brownian motion by $\int \theta\,dt$ removes the drift from discounted prices.
+Under $\mathbb{P}$, the discounted price has drift $(\mu - r)$. The
+[construction of $\mathbb{Q}$](construction.md) uses the
+[market price of risk](market_price_of_risk.md) $\theta_t = (\mu_t - r_t)/\sigma_t$
+to define a Girsanov shift that absorbs this drift into the change of Brownian motion,
+yielding a driftless discounted price under $\mathbb{Q}$.
 
 ---
 
 ## Example: Black–Scholes Model
 
-### Under the Physical Measure P
+In the Black–Scholes model ($dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}$ with
+constant coefficients), the discounted price has drift $\mu - r \neq 0$, so the
+martingale property fails under $\mathbb{P}$.
 
-$$
-dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}
-$$
-
-Discounted:
-
-$$
-d\tilde{S}_t = (\mu - r)\tilde{S}_t\,dt + \sigma \tilde{S}_t\,dW_t^{\mathbb{P}}
-$$
-
-This has drift $\mu - r \neq 0$ (typically), so the martingale property fails under $\mathbb{P}$.
-
-### Under the Risk-Neutral Measure Q
-
-The market price of risk is constant: $\theta = (\mu - r)/\sigma$.
-
-Define the Radon–Nikodym derivative:
-
-$$
-\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = \exp\left(-\theta W_T^{\mathbb{P}} - \frac{\theta^2 T}{2}\right)
-$$
-
-This is the stochastic exponential $\mathcal{E}(-\theta W^{\mathbb{P}})_T$.
-
-Then $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t$ is a $\mathbb{Q}$-Brownian motion, and:
-
-$$
-dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
-$$
-
-Discounted:
+Applying the [standard construction](construction.md) with constant market price of
+risk $\theta = (\mu - r)/\sigma$, the Radon–Nikodym derivative is the
+[stochastic exponential](../martingale/stochastic_exponential.md)
+$\mathcal{E}(-\theta W^{\mathbb{P}})_T$. Under $\mathbb{Q}$:
 
 $$
 d\tilde{S}_t = \sigma \tilde{S}_t\,dW_t^{\mathbb{Q}}
 $$
 
-**No drift!** The discounted price is a $\mathbb{Q}$-martingale.
-
-### Verification via Novikov
-
-Since $\theta$ is constant:
-
-$$
-\mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\int_0^T \theta^2\,ds\right)\right] = e^{\theta^2 T/2} < \infty
-$$
-
-Novikov's condition is satisfied, so the stochastic exponential is a true martingale, and $\mathbb{Q}$ is a valid probability measure equivalent to $\mathbb{P}$.
-
-See [Novikov and Kazamaki Conditions](../martingale/novikov_kazamaki_conditions.md) for general criteria.
+No drift — the discounted price is a $\mathbb{Q}$-martingale. Since $\theta$ is
+constant, the Novikov condition $e^{\theta^2 T/2} < \infty$ is trivially satisfied,
+confirming $\mathbb{Q}$ is a valid equivalent measure. See
+[Novikov and Kazamaki Conditions](../martingale/novikov_kazamaki_conditions.md) for
+general criteria.
 
 ---
 
@@ -457,22 +403,51 @@ See [Martingale Representation Theorem](../martingale/martingale_representation_
 
 ---
 
-## Summary: The No-Arbitrage ⟺ Martingale Connection
+## Summary: Three Levels of No-Arbitrage and Pricing
 
-$$
-\boxed{
-\text{No Arbitrage (NFLVR)} \iff \exists\, \mathbb{Q} \sim \mathbb{P} : \tilde{S}_t \text{ is a } \mathbb{Q}\text{-local martingale}
-}
-$$
+!!! abstract "FTAP Ladder"
 
-| Concept | Mathematical Statement |
-|---------|----------------------|
-| Arbitrage-free | NFLVR holds |
-| Risk-neutral measure | ELMM $\mathbb{Q}$ exists |
-| Drift removal | $d\tilde{S} = \sigma \tilde{S}\,dW^{\mathbb{Q}}$ (no $dt$ term) |
-| Market price of risk | $\theta = (\mu - r)/\sigma$ |
-| Complete market | $\mathbb{Q}$ is unique |
-| Incomplete market | Multiple $\mathbb{Q}$'s exist |
+    **Level 1 — Existence (No-Arbitrage):**
+
+    $$
+    \text{NFLVR}
+    \;\Longleftrightarrow\;
+    \exists\, \mathbb{Q} \sim \mathbb{P}
+    \text{ such that }
+    \tilde{S}_t \text{ is a local martingale}
+    $$
+
+    No arbitrage guarantees an Equivalent Local Martingale Measure (ELMM), but does
+    not by itself validate expectation-based pricing.
+
+    ---
+
+    **Level 2 — Pricing (Validity):**
+
+    If discounted prices are **true martingales** under $\mathbb{Q}$, then:
+
+    $$
+    V_t = \mathbb{E}^{\mathbb{Q}}\!\left[
+    e^{-\int_t^T r_s\,ds}\,\Phi_T
+    \;\middle|\; \mathcal{F}_t
+    \right]
+    $$
+
+    Upgrading local martingales to true martingales is what makes pricing work.
+    Without this upgrade, bubbles can appear and the formula fails.
+
+    ---
+
+    **Level 3 — Uniqueness (Completeness):**
+
+    $$
+    \text{Unique } \mathbb{Q}
+    \;\Longleftrightarrow\;
+    \text{market is complete}
+    $$
+
+    Unique $\mathbb{Q}$ gives a unique price; multiple $\mathbb{Q}$'s give a pricing
+    interval.
 
 ---
 
@@ -610,48 +585,6 @@ Let $G_t$ be a local martingale with $G_t \geq -M$ for some $M > 0$.
 ---
 
 **Exercise 4.**
-In the Black–Scholes model with $\mu = 0.10$, $r = 0.02$, $\sigma = 0.20$:
-
-(a) Compute the market price of risk $\theta$.
-
-(b) Write down the Radon–Nikodym derivative $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T}$ for $T = 1$.
-
-(c) Verify Novikov's condition is satisfied.
-
-(d) Under $\mathbb{Q}$, what is the drift of $S_t$?
-
-??? success "Solution to Exercise 4"
-    **(a)** The market price of risk is:
-
-    $$
-    \theta = \frac{\mu - r}{\sigma} = \frac{0.10 - 0.02}{0.20} = \frac{0.08}{0.20} = 0.4
-    $$
-
-    **(b)** The Radon–Nikodym derivative for $T = 1$ is:
-
-    $$
-    \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_1} = \exp\left(-\theta W_1^{\mathbb{P}} - \frac{\theta^2}{2}\right) = \exp\left(-0.4\, W_1^{\mathbb{P}} - 0.08\right)
-    $$
-
-    **(c)** Novikov's condition requires:
-
-    $$
-    \mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\int_0^1 \theta^2\,ds\right)\right] = \exp\left(\frac{\theta^2}{2}\right) = \exp(0.08) \approx 1.0833 < \infty
-    $$
-
-    Since $\theta$ is constant, the integral $\int_0^1 \theta^2\,ds = \theta^2 = 0.16$ is deterministic, and the exponential moment is trivially finite. Novikov's condition is satisfied.
-
-    **(d)** Under $\mathbb{Q}$, the drift of $S_t$ is $r = 0.02$. Specifically:
-
-    $$
-    dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}} = 0.02\,S_t\,dt + 0.20\,S_t\,dW_t^{\mathbb{Q}}
-    $$
-
-    The physical drift $\mu = 0.10$ has been replaced by the risk-free rate $r = 0.02$.
-
----
-
-**Exercise 5.**
 A discrete-time market has two periods and a stock that can go up by factor $u = 1.3$ or down by factor $d = 0.8$ each period. The risk-free rate per period is $R = 0.05$.
 
 (a) Compute the risk-neutral probability $q = (1 + R - d)/(u - d)$.
@@ -660,7 +593,7 @@ A discrete-time market has two periods and a stock that can go up by factor $u =
 
 (c) Verify that $\tilde{S}_t$ is a martingale under $\mathbb{Q}$: check $\mathbb{E}^{\mathbb{Q}}[\tilde{S}_1 \mid S_0] = \tilde{S}_0$ and $\mathbb{E}^{\mathbb{Q}}[\tilde{S}_2 \mid S_1] = \tilde{S}_1$ at each node.
 
-??? success "Solution to Exercise 5"
+??? success "Solution to Exercise 4"
     **(a)** The risk-neutral probability is
 
     $$
@@ -695,7 +628,7 @@ A discrete-time market has two periods and a stock that can go up by factor $u =
 
 ---
 
-**Exercise 6.**
+**Exercise 5.**
 Consider a market with one traded stock driven by two independent Brownian motions:
 
 $$
@@ -710,7 +643,7 @@ with risk-free rate $r$.
 
 (c) Pick two specific points on the line from (a) and explain why they define two different equivalent martingale measures, each producing a different price for a claim $\Phi(W_T^2)$ that depends only on the second Brownian motion.
 
-??? success "Solution to Exercise 6"
+??? success "Solution to Exercise 5"
     **(a)** Under $\mathbb{Q}^{\boldsymbol{\theta}}$, the discounted stock must have zero drift. The Girsanov shift $W_t^{i,\mathbb{Q}} = W_t^{i,\mathbb{P}} + \theta_i t$ removes the drift when
 
     $$
@@ -729,7 +662,7 @@ with risk-free rate $r$.
 
 ---
 
-**Exercise 7.**
+**Exercise 6.**
 Explain why the admissibility condition $G_t(\phi) \geq -M$ is necessary to rule out arbitrage. Consider the following "doubling strategy" in discrete time: at each step $k$, bet $2^k$ on a fair coin flip. If you win, stop. If you lose, double the bet.
 
 (a) Show that this strategy has zero initial cost, always eventually wins, and produces a guaranteed profit of 1 unit.
@@ -738,7 +671,7 @@ Explain why the admissibility condition $G_t(\phi) \geq -M$ is necessary to rule
 
 (c) Relate this to the admissibility requirement in continuous time: why does the supermartingale argument from the text fail without a lower bound on $G_t$?
 
-??? success "Solution to Exercise 7"
+??? success "Solution to Exercise 6"
     **(a)** At step $k$, the bet is $2^k$ on a fair coin. If the first win occurs at step $n$, the cumulative losses from steps $0, \ldots, n-1$ are $1 + 2 + \cdots + 2^{n-1} = 2^n - 1$. The win at step $n$ pays $2^n$. Net profit: $2^n - (2^n - 1) = 1$. Since the coin is fair and independent, the probability of never winning is $\lim_{n \to \infty} (1/2)^n = 0$. The strategy eventually wins with probability 1, costing nothing to enter and guaranteeing a profit of 1. This is an apparent arbitrage.
 
     **(b)** Before winning, the cumulative loss after $n$ steps is $-(2^n - 1)$. This is unbounded: $G_n \leq -(2^n - 1) \to -\infty$ as $n \to \infty$. There is no finite $M$ such that $G_t \geq -M$ for all $t$. The strategy requires the ability to borrow arbitrary amounts.
@@ -749,10 +682,10 @@ Explain why the admissibility condition $G_t(\phi) \geq -M$ is necessary to rule
 
 ---
 
-**Exercise 8.**
+**Exercise 7.**
 You cannot find any single arbitrage strategy, but you construct a sequence of strategies $\{\phi^n\}$ such that $V_0^n = 0$, $V_T^n \geq -1/n$, and $V_T^n \to f \geq 0$ in probability with $\mathbb{P}(f > 0) > 0$. Is the market arbitrage-free?
 
-??? success "Solution to Exercise 8"
+??? success "Solution to Exercise 7"
     No. This is precisely a violation of **NFLVR** (No Free Lunch with Vanishing Risk).
 
     The condition for NFLVR is that no such sequence exists: there should be no sequence of admissible strategies whose terminal values converge to a non-negative, non-trivially positive payoff while the lower bounds on intermediate losses vanish. The individual strategies are not arbitrage (each has $V_T^n \geq -1/n$, not $\geq 0$), but the limiting payoff is.
@@ -763,10 +696,10 @@ You cannot find any single arbitrage strategy, but you construct a sequence of s
 
 ---
 
-**Exercise 9.**
+**Exercise 8.**
 Two quants price the same exotic derivative in an incomplete market. One gets \$12 and the other gets \$15. Both claim their prices are arbitrage-free. Is one of them wrong?
 
-??? success "Solution to Exercise 9"
+??? success "Solution to Exercise 8"
     Not necessarily — both can be correct.
 
     In an incomplete market, the equivalent martingale measure $\mathbb{Q}$ is **not unique**. Different choices of $\mathbb{Q}$ (corresponding to different specifications of the unhedgeable risk premium) lead to different but equally valid arbitrage-free prices. The set of all such prices forms an interval $[V_{\min}, V_{\max}]$, and any price in this interval is consistent with no-arbitrage.
@@ -774,3 +707,37 @@ Two quants price the same exotic derivative in an incomplete market. One gets \$
     If both \$12 and \$15 lie within this interval, both are valid. Neither quant is "wrong" — they are implicitly using different equivalent martingale measures, which correspond to different risk preferences or calibration choices for the unspanned risk factors.
 
     The price becomes unique only when the market is **complete** (Second Fundamental Theorem), i.e., when there is a unique ELMM. In incomplete markets, arbitrage-free pricing alone does not pin down a single price — additional criteria (utility maximization, minimal entropy, variance-optimal hedging) are needed to select among the valid measures.
+
+---
+
+**Exercise 9.**
+Suppose the discounted price process $\tilde{S}_t$ is a strict local martingale under $\mathbb{Q}$ with $\mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] = 0.95\,S_0$. Compute the bubble component $\beta_0$. Then, using the modified put-call parity $C - P = \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] - Ke^{-rT}$, show that the classical put-call parity fails and determine the sign of the error.
+
+??? success "Solution to Exercise 9"
+    The **bubble component** is:
+
+    $$
+    \beta_0 = S_0 - \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] = S_0 - 0.95\,S_0 = 0.05\,S_0
+    $$
+
+    So 5% of the current price is due to the bubble.
+
+    For put-call parity, in the standard (true martingale) case:
+
+    $$
+    C - P = S_0 - Ke^{-rT}
+    $$
+
+    Under the strict local martingale setting, the modified put-call parity is:
+
+    $$
+    C - P = \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] - Ke^{-rT} = 0.95\,S_0 - Ke^{-rT}
+    $$
+
+    Comparing with the classical formula:
+
+    $$
+    (C - P)_{\text{classical}} - (C - P)_{\text{actual}} = S_0 - 0.95\,S_0 = 0.05\,S_0 = \beta_0 > 0
+    $$
+
+    The classical put-call parity **overestimates** $C - P$ by the bubble component $\beta_0 = 0.05\,S_0$. Equivalently, the put price is higher than what classical parity would predict (it includes a "bubble premium"), while the call price is lower. The error is positive: $S_0 - Ke^{-rT} > C - P$.

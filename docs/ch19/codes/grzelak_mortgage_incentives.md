@@ -89,3 +89,62 @@ def mainCode():
 if __name__ == "__main__":
     mainCode()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The incentive function is defined as $\Lambda(\varepsilon) = 0.04 + 0.1/(1 + e^{115(0.02 - \varepsilon)})$ where $\varepsilon = K - S(t)$ is the difference between the old mortgage rate and the current swap rate. Compute $\Lambda(0.05)$ and $\Lambda(-0.05)$.
+
+??? success "Solution to Exercise 1"
+    For $\varepsilon = 0.05$: $\Lambda(0.05) = 0.04 + 0.1/(1 + e^{115(0.02 - 0.05)}) = 0.04 + 0.1/(1 + e^{-3.45})$. Since $e^{-3.45} \approx 0.0317$: $\Lambda(0.05) = 0.04 + 0.1/1.0317 \approx 0.04 + 0.0969 = 0.137$.
+
+    For $\varepsilon = -0.05$: $\Lambda(-0.05) = 0.04 + 0.1/(1 + e^{115(0.02 + 0.05)}) = 0.04 + 0.1/(1 + e^{8.05})$. Since $e^{8.05} \approx 3133$: $\Lambda(-0.05) \approx 0.04 + 0.1/3134 \approx 0.04$.
+
+    When rates fall ($\varepsilon > 0$), the incentive is high ($13.7\%$ CPR). When rates rise ($\varepsilon < 0$), the incentive drops to the baseline $4\%$ CPR.
+
+---
+
+**Exercise 2.**
+Explain the economic interpretation of the sigmoid shape of the incentive function. Why does prepayment not jump to $100\%$ immediately when refinancing is beneficial?
+
+??? success "Solution to Exercise 2"
+    The sigmoid shape captures several real-world frictions:
+
+    1. **Transaction costs**: Refinancing involves fees (origination, appraisal, legal), so small rate differentials do not justify prepayment.
+    2. **Information asymmetry**: Not all borrowers are aware of market rate changes or actively monitor rates.
+    3. **Heterogeneous borrowers**: Some are rate-sensitive (prepay quickly), others are less responsive.
+    4. **Lock-in effects**: Some borrowers cannot refinance due to credit deterioration, negative equity, or contractual constraints.
+
+    The sigmoid smoothly transitions from the baseline CPR (around $4\%$) to the maximum (about $14\%$) as the rate differential increases, reflecting this gradual behavioral response.
+
+---
+
+**Exercise 3.**
+If the old mortgage rate is $K = 5\%$ and the current swap rate drops to $S = 2\%$, compute $\varepsilon$ and the prepayment incentive.
+
+??? success "Solution to Exercise 3"
+    $$
+    \varepsilon = K - S = 0.05 - 0.02 = 0.03.
+    $$
+
+    $$
+    \Lambda(0.03) = 0.04 + \frac{0.1}{1 + e^{115(0.02 - 0.03)}} = 0.04 + \frac{0.1}{1 + e^{-1.15}}.
+    $$
+
+    Since $e^{-1.15} \approx 0.3166$: $\Lambda(0.03) = 0.04 + 0.1/1.3166 \approx 0.04 + 0.0760 = 0.116$.
+
+    The CPR is approximately $11.6\%$, indicating strong prepayment activity. A 300 basis point rate differential triggers significant refinancing.
+
+---
+
+**Exercise 4.**
+How would you modify the incentive function to model a "burnout" effect, where the prepayment rate decreases over time even if the rate differential remains favorable?
+
+??? success "Solution to Exercise 4"
+    Burnout occurs because the most rate-sensitive borrowers prepay first, leaving a pool of less responsive borrowers. To model this, multiply the incentive function by a time-dependent decay factor:
+
+    $$
+    \Lambda_{\text{burnout}}(\varepsilon, t) = \Lambda(\varepsilon) \times \bigl[\alpha + (1 - \alpha)e^{-\beta t}\bigr],
+    $$
+
+    where $\alpha \in (0,1)$ is the long-run prepayment fraction (the "floor") and $\beta > 0$ controls the burnout speed. Initially ($t = 0$) the full incentive applies; as $t$ increases, only the fraction $\alpha$ of borrowers remains responsive. Alternatively, one can condition on the path history of $\varepsilon$, reducing the incentive if $\varepsilon$ has been positive for many consecutive periods.

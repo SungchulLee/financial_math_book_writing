@@ -52,6 +52,7 @@ The parameter $\beta$ controls the **backbone** of the smile—how ATM volatilit
 | 1 | Lognormal | $\propto 1/F$ |
 
 **In practice:** $\beta$ is often fixed based on market convention:
+
 - Interest rates: $\beta = 0$ (normal) or $\beta = 0.5$
 - FX: $\beta = 1$ (lognormal)
 - Equity: $\beta = 1$ typically
@@ -59,12 +60,14 @@ The parameter $\beta$ controls the **backbone** of the smile—how ATM volatilit
 ### Volatility of Volatility (ν)
 
 The parameter $\nu$ controls **smile curvature**:
+
 - Higher $\nu$ → more convex smile
 - $\nu = 0$ → no smile (CEV model only)
 
 ### Correlation (ρ)
 
 The parameter $\rho$ controls **smile skew**:
+
 - $\rho < 0$ → negative skew (equity-like)
 - $\rho > 0$ → positive skew
 - $\rho = 0$ → symmetric smile
@@ -74,6 +77,7 @@ The parameter $\rho$ controls **smile skew**:
 ### Initial Volatility (α)
 
 The parameter $\alpha$ sets the **ATM implied volatility level**:
+
 - Directly calibrated to ATM market quote
 - For $\beta = 1$: $\alpha \approx \sigma_{\text{ATM}}$
 - For $\beta \neq 1$: relationship is more complex
@@ -212,6 +216,7 @@ $$
 ### The Problem
 
 When rates can go negative ($F < 0$ possible), the standard SABR model fails:
+
 - $F^{\beta}$ undefined for $F < 0$ and $0 < \beta < 1$
 - Lognormal ($\beta = 1$) excludes negative rates
 

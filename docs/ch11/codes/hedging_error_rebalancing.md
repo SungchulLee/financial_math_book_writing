@@ -79,3 +79,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Plot (conceptually) the hedging error standard deviation versus $1/\sqrt{N}$ where $N$ is the number of rebalancing steps. What slope do you expect?
+
+??? success "Solution to Exercise 1"
+    The relationship is $\text{std}(\text{error}) = C / \sqrt{N}$ for some constant $C$ depending on option parameters ($\sigma$, $\Gamma$, $S$, $T$). On a plot of std vs $1/\sqrt{N}$, the relationship is linear with slope $C$ and zero intercept. The slope $C \approx \frac{\sigma^2 S^2 \Gamma}{2}\sqrt{T}$ captures the "unhedged gamma" risk.
+
+---
+
+**Exercise 2.**
+For $N = 10, 50, 250, 1000$ rebalancing steps, the hedging error std ratios should be approximately $1 : 1/\sqrt{5} : 1/5 : 1/10$. Verify this scaling.
+
+??? success "Solution to Exercise 2"
+    Ratios relative to $N = 10$: $\sqrt{10/50} = 0.447$, $\sqrt{10/250} = 0.2$, $\sqrt{10/1000} = 0.1$. So the ratios are $1 : 0.447 : 0.2 : 0.1$, confirming the $1/\sqrt{N}$ scaling. Doubling $N$ reduces error by factor $\sqrt{2} \approx 1.41$.
+
+---
+
+**Exercise 3.**
+Explain the economic tradeoff between rebalancing frequency and transaction costs. What is the optimal rebalancing frequency?
+
+??? success "Solution to Exercise 3"
+    More frequent rebalancing reduces hedging error variance ($\propto 1/N$) but increases transaction costs ($\propto N$, since each trade incurs a cost). Total cost $= \text{hedging error cost} + \text{TC} \approx A/N + BN$. Minimizing: $\partial/\partial N(-A/N^2 + B) = 0$ gives $N^* = (A/B)^{1/2}$. The optimal frequency balances the marginal reduction in hedging error against the marginal transaction cost.
+
+---
+
+**Exercise 4.**
+If transaction costs are $c = 0.1\%$ per trade and the option has $\Gamma = 0.02$, $S = 100$, $\sigma = 0.2$, $T = 1$, estimate the optimal number of rebalancing steps.
+
+??? success "Solution to Exercise 4"
+    Hedging error cost $\propto \Gamma^2 S^4 \sigma^4 T / N$, transaction cost $\propto c \cdot S \cdot \mathbb{E}[|\Delta_{i+1} - \Delta_i|] \cdot N \approx c \cdot S \cdot \Gamma \cdot \sigma \cdot S \sqrt{T/N} \cdot N = cS^2\Gamma\sigma\sqrt{TN}$. Setting derivatives equal: $N^* \approx (\Gamma S^2 \sigma^2 / c)^{2/3} \approx (0.02 \times 10000 \times 0.04 / 0.001)^{2/3} = (8000)^{2/3} \approx 400$ steps.

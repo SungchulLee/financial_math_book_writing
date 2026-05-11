@@ -298,6 +298,7 @@ The Greeks under the Merton jump-diffusion model inherit the series structure of
 **Exercise 3.** Unlike Black-Scholes, the Merton model has four vega sensitivities: $\mathcal{V}_\sigma$, $\mathcal{V}_\lambda$, $\mathcal{V}_{\mu_J}$, $\mathcal{V}_{\sigma_J}$. For an ATM call, explain qualitatively whether each vega is positive or negative, and which one dominates for long-maturity options versus short-maturity options.
 
 ??? success "Solution to Exercise 3"
+
     - **$\mathcal{V}_\sigma$ (diffusion vega):** Positive for ATM calls. Increasing the diffusion volatility increases the option value through the standard Black-Scholes mechanism. This dominates for **long-maturity** options where the diffusion component contributes most of the total variance.
 
     - **$\mathcal{V}_\lambda$ (jump intensity vega):** Positive for ATM calls. More frequent jumps increase uncertainty, raising option values through higher effective volatility. This is most important for **short-maturity** options where jump effects dominate.

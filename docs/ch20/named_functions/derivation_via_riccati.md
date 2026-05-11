@@ -3,6 +3,7 @@
 The named functions $A(t,T)$ and $B(t,T)$ that define the Hull-White bond price $P(t,T) = e^{A(t,T) + B(t,T) r_t}$ are not guessed or postulated; they arise systematically from solving the bond pricing PDE with an exponential-affine ansatz. The substitution reduces the PDE to a system of ordinary differential equations, with $B$ satisfying a Riccati equation (which in the Hull-White case is linear) and $A$ determined by a subsequent quadrature. This section carries out the derivation step by step, solves both ODEs explicitly, and connects the solutions to the named functions collected in the reference section.
 
 !!! info "Prerequisites"
+
     - Hull-White SDE: $dr_t = [\theta(t) - ar_t]\, dt + \sigma\, dW_t$
     - Bond pricing PDE from Feynman-Kac theorem
     - Ordinary differential equations: integrating factor, variation of constants

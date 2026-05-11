@@ -61,6 +61,7 @@ The Heston model is governed by five parameters, each with a distinct financial 
 | Correlation | $\rho$ | $\rho \in [-1, 1]$ | Instantaneous correlation between asset returns and variance changes |
 
 !!! tip "Parameter Interpretation at a Glance"
+
     - **$\kappa$ and $\theta$ together** control the term structure of variance. Large $\kappa$ means variance quickly returns to $\theta$; small $\kappa$ means persistent deviations.
     - **$\sigma_v$** determines the curvature (convexity) of the implied volatility smile. Higher $\sigma_v$ produces fatter tails and more pronounced smiles.
     - **$\rho$** determines the skew of the implied volatility surface. Negative $\rho$ (typical for equities, with $\rho \approx -0.7$) generates negative skew. Positive $\rho$ (sometimes seen in FX or commodities) generates positive skew.

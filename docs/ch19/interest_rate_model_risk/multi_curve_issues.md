@@ -9,9 +9,11 @@ Modern interest-rate markets operate with **multiple yield curves**, reflecting 
 
 
 Pre-crisis practice used:
+
 - one curve for discounting and forwarding.
 
 Post-crisis markets distinguish:
+
 - OIS curves for discounting,
 - tenor-specific curves for forwarding (LIBOR, EURIBOR).
 
@@ -23,6 +25,7 @@ This separation is essential for arbitrage-free pricing.
 
 
 Multi-curve pricing affects:
+
 - swaps and FRAs,
 - caps/floors and swaptions,
 - collateralized vs uncollateralized trades.
@@ -35,6 +38,7 @@ Cashflows must be discounted and projected using different curves.
 
 
 Classical models must be extended to:
+
 - handle multiple correlated curves,
 - model spreads between curves,
 - incorporate collateral and funding effects.
@@ -47,6 +51,7 @@ These extensions increase dimensionality and calibration complexity.
 
 
 Multi-curve models introduce:
+
 - additional parameters with weak identifiability,
 - dependence on market conventions,
 - sensitivity to curve construction choices.

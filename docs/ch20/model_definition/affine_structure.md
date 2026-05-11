@@ -3,6 +3,7 @@
 A term structure model is called "affine" when bond prices take the exponential-affine form $P(t,T) = e^{A(t,T) + B(t,T) r_t}$, where $A$ and $B$ are deterministic functions of time. The affine property is the source of the Hull-White model's analytical tractability: it reduces the computation of bond prices to evaluating two known functions, yields and forward rates become linear in the short rate, and option pricing formulas follow from the log-normality of bond price ratios. This section defines the affine class, verifies that the Hull-White model belongs to it, derives the Riccati ODEs governing $A$ and $B$, and discusses the broad consequences for pricing.
 
 !!! info "Prerequisites"
+
     - Hull-White SDE and mean reversion (this chapter)
     - Bond pricing PDE: Feynman-Kac representation
     - Ordinary differential equations: Riccati and linear ODEs

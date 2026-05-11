@@ -604,3 +604,74 @@ def run_all_examples():
 if __name__ == "__main__":
     run_all_examples()
 ```
+
+## Exercises
+
+**Exercise 1.**
+In Example 1, the CIR model is created with $r_0 = 0.03$, $\theta = 0.05$, $\kappa = 0.1$, and $\sigma = 0.03$. After 10 years, what is the theoretical expected rate? If the simulation mean is $0.0493$, compute the relative error.
+
+??? success "Solution to Exercise 1"
+    The theoretical expected rate at time $T = 10$ is
+
+    $$
+    \mathbb{E}[r(10)] = \theta + (r_0 - \theta)e^{-\kappa T} = 0.05 + (0.03 - 0.05)e^{-0.1 \times 10} = 0.05 - 0.02\,e^{-1}.
+    $$
+
+    Since $e^{-1} \approx 0.3679$:
+
+    $$
+    \mathbb{E}[r(10)] \approx 0.05 - 0.00736 = 0.04264.
+    $$
+
+    The relative error is
+
+    $$
+    \varepsilon = \frac{|0.0493 - 0.04264|}{0.04264} \approx \frac{0.00666}{0.04264} \approx 15.6\%.
+    $$
+
+    This relatively large error for 5000 paths suggests either finite-sample noise or discretization bias in the Euler-Maruyama scheme.
+
+---
+
+**Exercise 2.**
+Example 4 computes bond prices and yields for maturities from 0.25 to 30 years. Explain why the CIR yield curve has a finite long-run yield as maturity $T \to \infty$, and express this limiting yield in terms of the model parameters.
+
+??? success "Solution to Exercise 2"
+    As $T \to \infty$, the CIR yield converges to
+
+    $$
+    y_\infty = \lim_{T \to \infty} y(0, T) = \frac{2\kappa\theta}{\kappa + \gamma},
+    $$
+
+    where $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$. This finite limit exists because the $B(T)$ coefficient saturates at $2/(\kappa + \gamma)$ and the log of $A(T)$ grows linearly with $T$ at rate determined by $\kappa\theta$. Unlike the Vasicek model (where the long-run yield can be negative), the CIR long-run yield is always positive, which is consistent with the non-negativity of the CIR process.
+
+---
+
+**Exercise 3.**
+In Example 9 (convergence analysis), the mean error decreases as the number of paths increases. If the standard error of the mean is $\sigma_r / \sqrt{N}$ where $\sigma_r$ is the standard deviation of the final rate, estimate how many paths are needed to achieve a mean error below $0.0001$ if $\sigma_r = 0.015$.
+
+??? success "Solution to Exercise 3"
+    The standard error of the Monte Carlo mean estimator is
+
+    $$
+    \text{SE} = \frac{\sigma_r}{\sqrt{N}}.
+    $$
+
+    Setting $\text{SE} < 0.0001$:
+
+    $$
+    \frac{0.015}{\sqrt{N}} < 0.0001 \implies \sqrt{N} > \frac{0.015}{0.0001} = 150 \implies N > 22{,}500.
+    $$
+
+    At least $22{,}500$ paths are needed. In practice, one might use $25{,}000$ paths to provide a margin of safety.
+
+---
+
+**Exercise 4.**
+Example 10 calibrates CIR parameters from synthetic historical data using the method of moments. Describe two limitations of the method-of-moments estimator compared to maximum likelihood estimation for the CIR model.
+
+??? success "Solution to Exercise 4"
+
+    1. **Efficiency**: The method of moments uses only the first two moments (mean and variance) and autocorrelation, discarding higher-order information in the data. Maximum likelihood estimation (MLE) uses the full transition density (non-central chi-squared), making it asymptotically efficient -- it achieves the Cramer-Rao lower bound for variance of parameter estimates.
+
+    2. **Bias and robustness**: The method-of-moments estimator for $\kappa$ uses the log-autocorrelation formula $\hat{\kappa} = -\ln(\hat{\rho})/\Delta t$, which is biased in small samples (the autocorrelation estimator itself is biased downward). MLE, combined with the known CIR transition density, yields consistent estimators that converge faster to the true parameter values, especially for the mean-reversion speed $\kappa$ which is notoriously difficult to estimate.

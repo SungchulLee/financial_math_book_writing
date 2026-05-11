@@ -222,6 +222,7 @@ The next section develops **Itô's lemma**—the chain rule of stochastic calcul
     $$
     df(t, \mathbf{X}_t)
     = \frac{\partial f}{\partial t}\,dt
+
     + \sum_i \frac{\partial f}{\partial x_i}\,dX_t^i
     + \frac{1}{2}\sum_{i,j} \frac{\partial^2 f}{\partial x_i \partial x_j}\, d[X^i, X^j]_t
     $$

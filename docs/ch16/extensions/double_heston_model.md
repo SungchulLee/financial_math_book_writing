@@ -7,6 +7,7 @@ The single-factor Heston model captures the essential features of stochastic vol
 The **double Heston model** (Christoffersen, Heston, and Jacobs, 2009) introduces two independent CIR variance factors, each with its own correlation, mean-reversion speed, and vol-of-vol. This doubles the parameter space but provides enough flexibility to separately control short-term smile dynamics (through a fast-reverting factor) and long-term volatility term structure (through a slow-reverting factor). The characteristic function retains the affine form, so all Fourier pricing methods carry over directly.
 
 !!! info "Prerequisites"
+
     - [Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md) (single-factor Heston)
     - [Affine Structure and Riccati](../model_definition/affine_structure_and_riccati.md) (Riccati ODE system)
     - [Closed-Form Characteristic Function](../heston_cf/closed_form_characteristic_function.md) (Heston CF)
@@ -235,6 +236,7 @@ Total initial variance: $v_0 = 0.04$ (20% vol). Long-run total variance: $\theta
 | 1Y | 110% | 18.5% | 18.6% |
 
 !!! example "Observations"
+
     1. At 1-month maturity, the double Heston produces a **steeper smile** than single Heston (27.2% vs 25.8% at 90% moneyness). The fast factor ($\kappa_1 = 8$, $\rho_1 = -0.9$) drives the short-maturity skew.
     2. At 1-year maturity, both models produce similar ATM vols (20.2%) because $v_0 = \theta$ in both cases.
     3. The double Heston allows the 1-month skew to be steep ($\rho_1 = -0.9$) while the 1-year skew is more moderate ($\rho_2 = -0.5$). Single Heston must compromise with a single $\rho$.
@@ -252,6 +254,7 @@ Total initial variance: $v_0 = 0.04$ (20% vol). Long-run total variance: $\theta
 | Key advantage | Independent control of short- and long-maturity smile |
 
 !!! abstract "Key Takeaways"
+
     1. **Additive variance structure**: Two independent CIR factors whose variances sum to the total instantaneous variance.
 
     2. **CF factorizes**: The characteristic function is a product of two single-Heston CFs, making implementation straightforward --- reuse existing single-factor code.

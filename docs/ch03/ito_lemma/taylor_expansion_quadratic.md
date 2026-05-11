@@ -20,6 +20,7 @@ Extending the linear approximation from the previous section, we include a secon
 $$
 f(x) \approx
 f(x_0)
+
 + f'(x_0)(x-x_0)
 + \frac12 f''(x_0)(x-x_0)^2
 $$
@@ -281,6 +282,11 @@ Near the expansion point the quadratic surface follows the original function ver
 ---
 
 Quadratic Taylor expansions play a crucial role in many areas of mathematics. In stochastic calculus, second-order terms become essential because random fluctuations produce non-negligible quadratic effects — an idea that leads directly to **Itô's lemma**.
+
+!!! abstract "The central fact"
+
+    Classical calculus ignores second-order terms because they vanish.
+    Stochastic calculus keeps them because they don't.
 
 #### Deterministic vs Brownian Scaling
 

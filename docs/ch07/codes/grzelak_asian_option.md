@@ -161,3 +161,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Explain the cost reduction technique for Asian options: why does averaging reduce MC variance?
+
+??? success "Solution to Exercise 1"
+    The arithmetic average $\bar{S} = \frac{1}{n}\sum S_{t_i}$ has lower variance than $S_T$ because averaging diversifies across time. The covariance between $S_{t_i}$ and $S_{t_j}$ is positive but less than $\text{Var}(S_T)$, so the overall variance decreases as $O(1/n)$. This directly reduces the MC standard error.
+
+---
+
+**Exercise 2.**
+Compare the variance of $S_T$ versus $\bar{S}$ for GBM with $\sigma = 0.20$ and $T = 1$.
+
+??? success "Solution to Exercise 2"
+    $\text{Var}(S_T)/S_0^2 = e^{2rT}(e^{\sigma^2 T} - 1) \approx e^{0.1}(e^{0.04} - 1) \approx 0.0449$. For the continuous average, $\text{Var}(\bar{S})/S_0^2 \approx 0.0150$ (roughly one-third). The Asian option payoff has about 60--70% less variance.
+
+---
+
+**Exercise 3.**
+How would you modify the simulation to price an Asian put?
+
+??? success "Solution to Exercise 3"
+    Change the payoff from $\max(\bar{S} - K, 0)$ to $\max(K - \bar{S}, 0)$. The path simulation and averaging are identical. The cost reduction effect still applies.
+
+---
+
+**Exercise 4.**
+The script is based on Grzelak (2019). What Euler scheme is used, and why is it exact for GBM?
+
+??? success "Solution to Exercise 4"
+    The scheme $S_{t+\Delta t} = S_t\exp((r - \frac{1}{2}\sigma^2)\Delta t + \sigma\sqrt{\Delta t}Z)$ is the exact GBM solution at each step. It preserves the log-normal distribution exactly, with no time-stepping bias. This is possible because GBM has a known closed-form solution.

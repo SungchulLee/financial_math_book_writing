@@ -7,6 +7,7 @@ Monte Carlo Variance Reduction Techniques for Black-Scholes Option Pricing
 
 Demonstrates variance reduction techniques for Monte Carlo pricing of European
 call options under the Black-Scholes model:
+
 - Antithetic variates
 - Moment matching
 - Combined antithetic variates + moment matching
@@ -510,3 +511,50 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+Describe the three variance reduction techniques compared in this code: antithetic variates, moment matching, and their combination. Which achieves the largest variance reduction?
+
+??? success "Solution to Exercise 1"
+
+    1. **Antithetic variates**: Pair each random draw $Z$ with $-Z$. Exploits negative correlation between paired payoffs. Typical variance reduction ratio: 1.5--3x.
+
+    2. **Moment matching**: Adjust the random draws to have exact mean 0 and variance 1 (subtract sample mean, divide by sample std). Ensures the simulated distribution matches the theoretical moments exactly. Typical reduction: 1.2--2x.
+
+    3. **Combined**: Apply both techniques. First generate antithetic pairs, then moment-match the combined set. Typically achieves 2--5x reduction.
+
+    The combination usually achieves the largest reduction, but the benefit depends on the specific payoff. For European call options, antithetic variates alone is often the most cost-effective.
+
+---
+
+**Exercise 2.**
+Explain why moment matching is equivalent to importance sampling with a specific weight function. How does it differ from stratified sampling?
+
+??? success "Solution to Exercise 2"
+    Moment matching rescales the draws: $\tilde{Z}_i = (Z_i - \bar{Z})/s_Z$ where $\bar{Z}$ and $s_Z$ are the sample mean and std. This is equivalent to importance sampling with weights that correct the empirical distribution to match the theoretical moments.
+
+    Stratified sampling, by contrast, divides the probability space into strata (e.g., intervals of $Z$) and samples proportionally from each stratum. Stratification ensures coverage of the tails, while moment matching only ensures correct first two moments.
+
+    Stratified sampling is generally more effective for tail-sensitive payoffs (deep OTM options), while moment matching is simpler to implement and works well for ATM options.
+
+---
+
+**Exercise 3.**
+The convergence plot shows MC price versus number of paths. How does the convergence rate differ between plain MC and antithetic MC?
+
+??? success "Solution to Exercise 3"
+    Both converge at rate $O(1/\sqrt{N})$, but with different constants. If the plain MC standard error is $\mathrm{SE}_{\text{plain}} = \sigma_{\text{plain}}/\sqrt{N}$ and the antithetic SE is $\mathrm{SE}_{\text{anti}} = \sigma_{\text{anti}}/\sqrt{N}$, then $\sigma_{\text{anti}} < \sigma_{\text{plain}}$.
+
+    On a log-log plot, both lines have slope $-1/2$, but the antithetic line is shifted down by $\log(\sigma_{\text{anti}}/\sigma_{\text{plain}})$. The antithetic method achieves a given accuracy with fewer paths, equivalent to a speedup factor of $(\sigma_{\text{plain}}/\sigma_{\text{anti}})^2$.
+
+---
+
+**Exercise 4.**
+The variance reduction ratio is defined as $\mathrm{VRR} = \mathrm{Var}_{\text{plain}}/\mathrm{Var}_{\text{reduced}}$. If VRR $= 4$, how does this translate to computational savings?
+
+??? success "Solution to Exercise 4"
+    A VRR of 4 means the reduced variance is $1/4$ of the plain variance, so the standard error is halved. To achieve the same SE as plain MC with $N$ paths, the variance-reduced method needs only $N/4$ paths. Since each path has the same computational cost (approximately), the total computation is reduced by a factor of 4.
+
+    Alternatively, with the same $N$ paths, the SE is halved, giving a narrower confidence interval. This is equivalent to having run $4N$ plain MC paths, providing "free" accuracy improvement at no additional cost.

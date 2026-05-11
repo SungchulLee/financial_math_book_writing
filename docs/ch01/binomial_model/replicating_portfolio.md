@@ -19,6 +19,7 @@ This section develops replication from two complementary perspectives:
 Both approaches yield the same prices.
 
 !!! info "Prerequisites"
+
     - [Binomial Model](binomial_model.md) (market setup, no-arbitrage condition)
 
 !!! abstract "Learning Objectives"
@@ -34,28 +35,7 @@ Both approaches yield the same prices.
 
 ## The Payoff Space
 
-### One-Period Binomial Model
-
-In the one-period binomial model, there are exactly **two possible states** at time $\Delta t$:
-
-- **Up state**: Stock price is $uS_0$
-- **Down state**: Stock price is $dS_0$
-
-Any derivative has a payoff that depends on which state occurs:
-
-$$
-H = 
-\begin{cases}
-H_u & \text{(up state)} \\[4pt]
-H_d & \text{(down state)}
-\end{cases}
-$$
-
-We can represent this as a vector in $\mathbb{R}^2$:
-
-$$
-H = (H_u, H_d)
-$$
+Using the [one-period setup](binomial_model.md) with up/down states $uS_0$ and $dS_0$, any derivative payoff is a vector $H = (H_u, H_d) \in \mathbb{R}^2$.
 
 ### The Payoff Space Is Two-Dimensional
 
@@ -509,6 +489,7 @@ The replication results connect to the **Fundamental Theorems of Asset Pricing**
     The market is **complete** if and only if the state prices (equivalently, $\mathbb{Q}$) are unique.
 
 In the one-period binomial model:
+
 - No-arbitrage ($d < e^{r\Delta t} < u$) guarantees positive state prices
 - Two assets for two states guarantees uniqueness
 
@@ -528,6 +509,7 @@ See [FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_
 | Sum of state prices | $\psi_u + \psi_d = e^{-r\Delta t}$ |
 
 !!! abstract "Key Takeaways"
+
     1. **Two equivalent bases**: Stock-bond and Arrow-Debreu both span the payoff space.
     
     2. **Replication determines price**: The cost of the replicating portfolio is the unique no-arbitrage price.
@@ -546,7 +528,7 @@ See [FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_
 |---------|-------|
 | [Delta Hedging](delta_hedging.md) | Pricing via risk elimination |
 | [Risk-Neutral Measure](risk_neutral_measure.md) | The measure $\mathbb{Q}$ and expectation pricing |
-| [Multi-Period Model](multi_period_binomial_model.md) | Extending to multiple time steps |
+| [Multi-Period Model](../multi_period_model/multi_period_binomial_model.md) | Extending to multiple time steps |
 
 ---
 

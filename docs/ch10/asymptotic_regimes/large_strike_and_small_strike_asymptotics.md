@@ -81,6 +81,7 @@ $$
 $$
 
 These are related to the existence of moments:
+
 - If $\mathbb{E}[S_T^{1+\alpha}] < \infty$, then $\beta_R \leq 2 - 4(\sqrt{\alpha^2 + \alpha} - \alpha)$
 - If $\mathbb{E}[S_T^{-\alpha}] < \infty$, then $\beta_L \leq 2 - 4(\sqrt{\alpha^2 + \alpha} - \alpha)$
 

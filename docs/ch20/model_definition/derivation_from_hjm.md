@@ -3,6 +3,7 @@
 The Heath-Jarrow-Morton (HJM) framework provides the most fundamental approach to interest rate modeling by specifying the dynamics of the entire forward rate curve. The Hull-White model arises as a special case of HJM when the forward rate volatility takes the specific exponentially decaying form $\sigma_f(t,T) = \sigma e^{-a(T-t)}$. This derivation is important because it demonstrates that the Hull-White model is not merely an ad hoc specification but is the unique short-rate model consistent with the HJM framework under this volatility structure. Moreover, the HJM perspective automatically ensures no-arbitrage pricing and makes the role of the initial term structure explicit.
 
 !!! info "Prerequisites"
+
     - HJM framework: forward rate dynamics, drift condition (Chapter 19)
     - Hull-White SDE and mean reversion (previous section)
     - Stochastic calculus: Ito's formula, stochastic Fubini theorem

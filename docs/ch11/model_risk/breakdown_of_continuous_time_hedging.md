@@ -107,6 +107,7 @@ $$
 This is a **systematic error** (not mean-zero) that accumulates over time.
 
 **For stochastic volatility:** $\sigma(t)$ is random, so hedging error is doubly stochastic:
+
 1. Randomness from $S$ path
 2. Randomness from $\sigma$ path
 
@@ -130,15 +131,18 @@ Delta hedging in a stochastic volatility world leaves **vega exposure** unhedged
 
 
 **Delta-only hedging** is robust to:
+
 - Small volatility changes (first-order effect is zero)
 - Small discrete intervals
 
 **Delta-only hedging** is fragile to:
+
 - Large jumps
 - Systematic volatility misspecification
 - Near-expiry gamma exposure
 
 **Delta-gamma hedging** adds second-order protection but:
+
 - Requires additional instruments (e.g., another option)
 - Introduces new risks (basis risk)
 

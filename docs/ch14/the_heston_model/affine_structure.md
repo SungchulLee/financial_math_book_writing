@@ -209,6 +209,7 @@ This avoids numerical issues when $|g| > 1$.
 ### The "Little Heston Trap"
 
 The original Heston formulation can suffer from:
+
 1. **Branch cut issues:** Complex logarithm discontinuities
 2. **Cancellation errors:** Near-zero denominators
 3. **Overflow:** Large exponentials

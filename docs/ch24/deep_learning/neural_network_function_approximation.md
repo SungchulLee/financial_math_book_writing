@@ -478,7 +478,7 @@ For American option pricing with $d$ exercise features, the neural network appro
     where:
 
     - $f_1$: maps raw market features (spreads, order flow, momentum signals) to volatility-related quantities. This involves nonlinear aggregation of high-frequency information.
-    - $f_2$: maps volatility state to Greeks (Delta, Gamma, Vega). For instance, $\Delta = \Phi(d_1)$ where $d_1$ depends nonlinearly on volatility.
+    - $f_2$: maps volatility state to Greeks (Delta, Gamma, Vega). For instance, $\Delta = \mathcal{N}(d_1)$ where $d_1$ depends nonlinearly on volatility.
     - $f_3$: maps Greeks and market state to the option price. This involves integration and portfolio aggregation.
 
     **3-layer network efficiency.** A 3-layer network naturally mirrors this hierarchy:

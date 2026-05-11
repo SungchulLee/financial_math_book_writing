@@ -252,7 +252,7 @@ At $v = v_{\max}$, a Neumann condition $\partial^2 V / \partial v^2 = 0$ (linear
     V(t, S, v) \approx S e^{-q(T-t)} - K e^{-r(T-t)} \cdot \Phi(d_2(v))
     $$
 
-    where $d_2(v) \to \infty$ as $v \to \infty$, giving $\Phi(d_2) \to 1$. The call value saturates at $S e^{-qT} - Ke^{-rT}$ (the forward value minus the discounted strike), and the dependence on $v$ becomes negligible. In the transition region, $V$ is approximately linear in $v$ because the dominant sensitivity is:
+    where $d_2(v) \to \infty$ as $v \to \infty$, giving $\mathcal{N}(d_2) \to 1$. The call value saturates at $S e^{-qT} - Ke^{-rT}$ (the forward value minus the discounted strike), and the dependence on $v$ becomes negligible. In the transition region, $V$ is approximately linear in $v$ because the dominant sensitivity is:
 
     $$
     \frac{\partial V}{\partial v} \approx \text{vega} / (2\sqrt{v})

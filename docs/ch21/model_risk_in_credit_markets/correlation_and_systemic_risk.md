@@ -9,6 +9,7 @@ Credit risk is inherently correlated across firms and sectors. Ignoring **correl
 
 
 Credit correlations arise from:
+
 - macroeconomic shocks,
 - sectoral dependencies,
 - financial contagion and feedback loops.
@@ -21,6 +22,7 @@ These effects intensify during crises.
 
 
 Approaches include:
+
 - copula-based default correlation,
 - factor models for intensities,
 - structural multi-firm asset models.
@@ -33,6 +35,7 @@ Each approach balances tractability and realism.
 
 
 Systemic risk refers to:
+
 - joint default events,
 - cascading failures,
 - breakdown of diversification.
@@ -45,6 +48,7 @@ Single-name models cannot capture these effects.
 
 
 Ignoring correlation leads to:
+
 - underpricing of portfolio credit risk,
 - severe losses in stress scenarios,
 - misleading diversification benefits.

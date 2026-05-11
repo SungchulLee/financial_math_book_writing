@@ -235,3 +235,36 @@ if __name__ == "__main__":
 
     print("="*70)
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Describe a spatial convergence study for the CN scheme. What should you plot, and what slope indicates second-order convergence?
+
+??? success "Solution to Exercise 1"
+    Fix $N_t$ large enough that time error is negligible. Vary $N_S$ and compute the error $e(N_S) = |V_{\text{num}} - V_{\text{exact}}|$ at a reference point (e.g., $S = S_0$). Plot $\log(e)$ vs $\log(\Delta S)$. A slope of 2 indicates $O(\Delta S^2)$ convergence, confirming second-order spatial accuracy.
+
+---
+
+**Exercise 2.**
+Why must the time step be sufficiently small when testing spatial convergence?
+
+??? success "Solution to Exercise 2"
+    If $\Delta t$ is too large, the time discretization error dominates the spatial error, and the observed convergence rate reflects $O(\Delta t^2)$ rather than $O(\Delta S^2)$. To isolate spatial convergence, use $\Delta t \ll \Delta S^2$ so that the time error is negligible.
+
+---
+
+**Exercise 3.**
+What convergence rate do you expect near the strike price $S = K$ where the payoff has a kink?
+
+??? success "Solution to Exercise 3"
+    Near $S = K$, the payoff is non-smooth, and the solution gradient changes rapidly. The local convergence rate may degrade to first order or worse. Away from $S = K$, the full second-order rate is observed. Rannacher smoothing or adaptive grids can restore second-order convergence globally.
+
+---
+
+**Exercise 4.**
+If doubling $N_S$ from 100 to 200 reduces the error from $4 \times 10^{-4}$ to $1 \times 10^{-4}$, what is the observed convergence order?
+
+??? success "Solution to Exercise 4"
+    $p = \log(e_1/e_2)/\log(h_1/h_2) = \log(4)/\log(2) = 2$. This confirms second-order spatial convergence, consistent with the CN scheme.

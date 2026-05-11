@@ -313,3 +313,53 @@ if __name__ == "__main__":
 
     print("="*80)
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Consider an American put option with $S_0 = 100$, $K = 110$, $T = 1$, $r = 0.05$, $\sigma = 0.3$, and $q = 0$. Using the explicit finite difference method, explain why the early exercise boundary for this in-the-money put is higher than for an at-the-money put.
+
+??? success "Solution to Exercise 1"
+    For a deep in-the-money put ($S_0 < K$), the intrinsic value $K - S$ is already large. The early exercise boundary $S^*(t)$ is the stock price below which immediate exercise is optimal. For an ITM put, the boundary is higher because the time value of money on the strike payment $K e^{-r(T-t)}$ provides incentive to exercise early and invest the proceeds at the risk-free rate $r$. At the boundary, the discounted expected continuation value equals the intrinsic value. With higher $K$, the interest earned on the exercise proceeds $K - S^*$ is larger, pushing $S^*$ upward.
+
+---
+
+**Exercise 2.**
+The CFL stability condition for the explicit scheme requires $\Delta t \leq (\Delta S)^2 / (\sigma^2 S_{\max}^2)$. For $\sigma = 0.2$, $S_{\max} = 300$, and $M = 100$ spatial points, compute the maximum allowable time step and the minimum number of time steps for $T = 1$.
+
+??? success "Solution to Exercise 2"
+    The spatial step is $\Delta S = 300 / 100 = 3$. The CFL condition gives:
+
+    $$
+    \Delta t \leq \frac{(\Delta S)^2}{\sigma^2 S_{\max}^2} = \frac{9}{0.04 \times 90000} = \frac{9}{3600} = 0.0025
+    $$
+
+    The minimum number of time steps is $N \geq T / \Delta t = 1 / 0.0025 = 400$. In practice, one uses even more steps for safety since the condition is most restrictive at $S = S_{\max}$.
+
+---
+
+**Exercise 3.**
+Explain why the log-space transformation $x = \ln S$ is advantageous for the explicit FDM applied to American puts. Write the transformed Black-Scholes PDE in terms of $V(x, t)$.
+
+??? success "Solution to Exercise 3"
+    Under $x = \ln S$, the Black-Scholes PDE becomes:
+
+    $$
+    \frac{\partial V}{\partial t} + \left(r - q - \frac{\sigma^2}{2}\right) \frac{\partial V}{\partial x} + \frac{\sigma^2}{2} \frac{\partial^2 V}{\partial x^2} - rV = 0
+    $$
+
+    The advantages are: (1) constant coefficients eliminate the non-uniform truncation error; (2) the grid in $x$-space provides natural refinement near $S = 0$ where put values change rapidly; (3) the boundary at $S = 0$ maps to $x \to -\infty$, handled more cleanly. For American puts, the early exercise region near $S = 0$ is resolved more accurately with this transformation.
+
+---
+
+**Exercise 4.**
+Compare the early exercise premium from the original-space versus log-space explicit FDM. If the European put price is $\$5.5735$ and the American prices are $\$6.0831$ (original) and $\$6.0847$ (log-space), compute both premiums and explain which is likely more accurate.
+
+??? success "Solution to Exercise 4"
+    The early exercise premiums are:
+
+    - Original space: $6.0831 - 5.5735 = \$0.5096$
+    - Log-space: $6.0847 - 5.5735 = \$0.5112$
+
+    The log-space method is likely more accurate because it places more grid points near small stock prices where the early exercise boundary is located. The difference of $\$0.0016$ reflects the better resolution of the sharp transition from continuation to exercise in the deep ITM region. The log-space advantage is most significant for puts because their maximum value occurs at $S = 0$.

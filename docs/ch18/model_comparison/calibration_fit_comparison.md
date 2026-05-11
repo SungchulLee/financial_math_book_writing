@@ -3,6 +3,7 @@
 All one-factor short-rate models with time-dependent drift --- Vasicek, CIR, Hull-White, and Black-Karasinski --- can fit the initial yield curve exactly by construction. The real test is how well they reproduce the prices of interest rate derivatives, particularly caps, floors, and swaptions, which depend on the volatility structure. This section compares the calibration quality of these four models against market cap volatilities and swaption volatilities, using consistent data and methodology to isolate the effect of model choice from calibration technique.
 
 !!! info "Prerequisites"
+
     - [Vasicek vs CIR vs Hull-White](vasicek_vs_cir_vs_hull_white.md) (structural differences)
     - [Analytical Tractability](analytical_tractability.md) (computational methods available to each model)
     - [Calibration to Cap Volatilities](../black_karasinski/calibration_to_cap_volatilities.md) (BK calibration details)

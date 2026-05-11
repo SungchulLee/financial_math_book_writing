@@ -18,6 +18,7 @@ dV_t &= a(t, V_t)\,dt + b(t, V_t)\,dW_t^V
 $$
 
 where:
+
 - $S_t$ is the asset price
 - $V_t$ is the **variance** or **volatility factor** (interpretation varies by model)
 - $W^S$, $W^V$ are standard Brownian motions
@@ -56,6 +57,7 @@ $$
 The pair $(S_t, V_t)$ is a **two-dimensional Markov process**. Given $(S_s, V_s)$, the future evolution $(S_t, V_t)_{t \geq s}$ is independent of the past.
 
 This enables:
+
 - PDE pricing via Kolmogorov equations
 - Efficient Monte Carlo simulation
 - Characteristic function computation
@@ -108,6 +110,7 @@ dV_t &= \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V
 $$
 
 **Characteristics:**
+
 - $V_t$ is instantaneous variance (non-negative)
 - Square-root (CIR) volatility dynamics
 - Mean-reverting to $\theta$
@@ -125,6 +128,7 @@ dV_t &= \mu_V V_t\,dt + \xi V_t\,dW_t^V
 $$
 
 **Characteristics:**
+
 - $V_t$ is instantaneous volatility
 - Geometric Brownian motion for volatility
 - No mean reversion (can add it)
@@ -142,6 +146,7 @@ dV_t &= \kappa(\theta - V_t)\,dt + \xi\,dW_t^V
 $$
 
 **Characteristics:**
+
 - Mean-reverting Gaussian volatility
 - Can become negative (problematic)
 - Simpler dynamics than Heston
@@ -159,6 +164,7 @@ dV_t &= \kappa V_t(\theta - V_t)\,dt + \xi V_t^{3/2}\,dW_t^V
 $$
 
 **Characteristics:**
+
 - Higher volatility of volatility at high $V$
 - Heavier tails than Heston
 - Can match steep short-maturity smiles
@@ -176,6 +182,7 @@ d\sigma_t &= \nu \sigma_t\,dW_t^{\sigma}
 $$
 
 **Characteristics:**
+
 - Forward price dynamics (driftless under forward measure)
 - $\beta$ controls backbone (normal vs. lognormal)
 - No mean reversion
@@ -230,6 +237,7 @@ $$
 $$
 
 Integrating over the distribution of integrated variance yields:
+
 - Heavy tails (excess kurtosis)
 - Skewness (if $\rho \neq 0$)
 
@@ -244,6 +252,7 @@ $$
 ### Implied Volatility Smile
 
 The smile arises because:
+
 - $\rho < 0$ → negative skew
 - $\xi > 0$ → smile curvature (convexity)
 - Mean reversion → term structure effects

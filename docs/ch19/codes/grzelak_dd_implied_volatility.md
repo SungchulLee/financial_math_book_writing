@@ -154,3 +154,44 @@ if __name__ == "__main__":
     
     mainCalculation()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The displaced diffusion model defines the forward process as $dF = \sigma\beta F\,dW$ instead of $dF = \sigma F\,dW$. Explain the role of $\beta$ and what happens when $\beta = 1$ and $\beta \to 0$.
+
+??? success "Solution to Exercise 1"
+    The parameter $\beta$ controls the mixture between lognormal ($\beta = 1$) and normal ($\beta = 0$) dynamics. At $\beta = 1$, the model reduces to standard Black-Scholes with lognormal returns. As $\beta \to 0$, the dynamics become $dF = \sigma F_0\,dW$ (approximately), yielding normal (Bachelier) dynamics. Intermediate values of $\beta$ generate implied volatility skews: $\beta < 1$ produces downward-sloping skew (higher implied vol for low strikes), while negative $\beta$ can produce upward-sloping skew.
+
+---
+
+**Exercise 2.**
+The displaced diffusion call price is computed using a shifted Black-Scholes formula. Write the modified strike and forward that enter the standard Black-Scholes formula.
+
+??? success "Solution to Exercise 2"
+    The displaced diffusion call price uses the substitutions:
+
+    $$
+    F_{\text{eff}} = \frac{F}{\beta}, \qquad K_{\text{eff}} = K + \frac{1 - \beta}{\beta}F, \qquad \sigma_{\text{eff}} = \sigma\beta.
+    $$
+
+    The call price is then $P(0,T)\bigl[F_{\text{eff}}\,\mathcal{N}(d_1) - K_{\text{eff}}\,\mathcal{N}(d_2)\bigr]$ where $d_1$ and $d_2$ use $\sigma_{\text{eff}}\sqrt{T}$.
+
+---
+
+**Exercise 3.**
+For $\beta = 0.5$, $\sigma = 0.15$, $F = 1.0$, $T = 2.0$, and strike $K = 1.0$ (ATM), compute the effective volatility $\sigma_{\text{eff}}$ and explain how it compares to the Black implied volatility.
+
+??? success "Solution to Exercise 3"
+    The effective volatility is $\sigma_{\text{eff}} = \sigma\beta = 0.15 \times 0.5 = 0.075 = 7.5\%$. This is the volatility parameter that enters the displaced Black-Scholes formula. The Black implied volatility (from inverting the standard Black formula at the displaced diffusion price) will generally differ from $7.5\%$ because the displaced diffusion model is not lognormal. At the money ($K = F$), the implied vol is approximately $\sigma_{\text{eff}}$ but deviates for away-from-the-money strikes, creating the skew.
+
+---
+
+**Exercise 4.**
+The code plots implied volatility as a function of strike for different values of $\beta$. Describe the shape of the implied volatility smile for $\beta = -0.5$, $\beta = 0.5$, and $\beta = 1.0$.
+
+??? success "Solution to Exercise 4"
+
+    - $\beta = 1.0$: The model is pure lognormal, so the implied volatility is flat across all strikes (no skew, no smile).
+    - $\beta = 0.5$: The implied volatility curve slopes downward from low strikes to high strikes, producing a negative skew. This is because low-strike options have relatively higher implied vol in the displaced diffusion framework.
+    - $\beta = -0.5$: The skew reverses -- implied volatility slopes upward from low to high strikes. This behavior is unusual for equity markets but can be relevant for certain interest rate products. The negative $\beta$ effectively makes the diffusion coefficient increase with the forward rate.

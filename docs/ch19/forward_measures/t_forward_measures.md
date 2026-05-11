@@ -41,6 +41,7 @@ Discounting disappears because the numéraire already matures at $T$.
 
 
 Changing from $\mathbb{Q}$ to $\mathbb{Q}^T$:
+
 - alters drift terms,
 - leaves volatilities unchanged,
 - simplifies pricing of forwards, FRAs, and caps.
@@ -53,6 +54,7 @@ Many rates become martingales under their natural forward measures.
 
 
 Forward measures are especially useful for:
+
 - caplets and floorlets,
 - forward-starting contracts,
 - simplifying drift terms in HJM and LMM.

@@ -272,3 +272,44 @@ if __name__ == "__main__":
 
     print("="*70)
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+For a European call with $S_0 = 100$, $K = 100$, $T = 1$, $r = 0.05$, $\sigma = 0.2$, compute the analytical Black-Scholes price using $d_1$ and $d_2$.
+
+??? success "Solution to Exercise 1"
+    Computing $d_1 = \frac{\ln(100/100) + (0.05 + 0.02)(1)}{0.2} = \frac{0.07}{0.2} = 0.35$ and $d_2 = 0.35 - 0.2 = 0.15$. Then:
+
+    $$
+    C = 100 \, N(0.35) - 100 e^{-0.05} N(0.15) = 100(0.6368) - 95.123(0.5596) = 63.68 - 53.23 = \$10.45
+    $$
+
+---
+
+**Exercise 2.**
+Derive the explicit finite difference approximation for $\frac{\sigma^2}{2} S^2 \frac{\partial^2 V}{\partial S^2}$ at grid point $(S_i, t_j)$. Show that the coefficient of $V_{i,j}$ can become negative for large $S_i$.
+
+??? success "Solution to Exercise 2"
+    Using central differences: $\frac{\partial^2 V}{\partial S^2} \approx \frac{V_{i+1,j} - 2V_{i,j} + V_{i-1,j}}{(\Delta S)^2}$. The coefficient of $V_{i,j}$ from the diffusion term is $-\sigma^2 S_i^2 / (\Delta S)^2$. In the explicit update, the total coefficient of $V_{i,j}$ is $1 - \sigma^2 S_i^2 \Delta t / (\Delta S)^2 - r\Delta t$. This becomes negative when $\Delta t > (\Delta S)^2 / (\sigma^2 S_i^2 + r(\Delta S)^2)$, causing oscillatory instability.
+
+---
+
+**Exercise 3.**
+Compare the truncation error of the explicit FDM in original space (variable, growing with $S$) versus log-space (constant). Explain why this matters for option pricing accuracy.
+
+??? success "Solution to Exercise 3"
+    In original space, the central difference for $\sigma^2 S^2 V_{SS}/2$ has truncation error $O(S^2 (\Delta S)^2)$, growing quadratically with $S$. At $S = 300$ with $\Delta S = 3$, the leading error is proportional to $300^2 \cdot 9 = 810{,}000$. In log-space, the constant-coefficient PDE gives uniform error $O((\Delta x)^2)$. This matters because the original-space method systematically overestimates errors at large $S$ values, corrupting the solution throughout the grid via backward induction.
+
+---
+
+**Exercise 4.**
+Apply Richardson extrapolation: if $V_{100} = 10.4473$ (100 grid points) and $V_{200} = 10.4498$ (200 grid points), compute the extrapolated price $V^* = (4V_{200} - V_{100})/3$.
+
+??? success "Solution to Exercise 4"
+    $$
+    V^* = \frac{4(10.4498) - 10.4473}{3} = \frac{41.7992 - 10.4473}{3} = \frac{31.3519}{3} = 10.4506
+    $$
+
+    This matches the analytical value to four decimal places. The extrapolation cancels the leading $O((\Delta S)^2)$ error term, yielding an $O((\Delta S)^4)$ approximation from two second-order computations.

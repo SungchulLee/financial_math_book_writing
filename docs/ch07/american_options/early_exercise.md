@@ -7,6 +7,7 @@ The holder of an American option must decide **at every moment** whether to exer
 Understanding the conditions under which early exercise is rational is essential for correct pricing and hedging. The analysis differs fundamentally between puts and calls, and depends critically on dividends.
 
 !!! info "Prerequisites"
+
     - [American Option Definition](american_option_definition.md) (optimal stopping formulation)
     - [Put-Call Parity](../../ch06/black_scholes_formula/put_call_parity.md) (parity relations)
     - [Properties and Bounds](../../ch06/black_scholes_formula/properties_and_bounds.md) (option value bounds)

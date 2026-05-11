@@ -10,6 +10,7 @@ In quantitative finance and econometrics, model uncertainty arises from two fund
 2. **Estimation Error**: The true model belongs to the model class, but parameters are estimated with finite-sample error
 
 Understanding the distinction between these error sources and their interaction is crucial for:
+
 - Robust model selection
 - Proper uncertainty quantification
 - Risk management
@@ -80,6 +81,7 @@ where $D_{\text{KL}}(P \| Q)$ is the Kullback-Leibler divergence.
 
 
 **Properties**:
+
 - When well-specified: $\theta_0 = \theta^*$
 - When misspecified: $\theta_0$ is the "closest" parameter in the KL sense
 - $\theta_0$ is uniquely defined under identifiability conditions
@@ -182,6 +184,7 @@ $$
 
 
 where:
+
 - **Hessian**: 
 
   $$
@@ -250,6 +253,7 @@ $$
 
 
 **Implication**: For large $n$:
+
 - Estimation error becomes negligible: $O(n^{-1/2})$
 - Misspecification error dominates: $O(1)$
 
@@ -280,6 +284,7 @@ $$
 
 
 where:
+
 - $f^*$ is the Bayes-optimal predictor under $P^*$
 - $f_{\theta_0}$ is the best predictor in model class $\mathcal{M}$
 - $\hat{f}_n$ is the estimated predictor
@@ -317,6 +322,7 @@ $$
 
 
 **Interpretation**:
+
 1. **Misspecification**: Cannot be reduced by collecting more data
 2. **Bias**: Decreases with more flexible models
 3. **Variance**: Decreases with more data but increases with model complexity
@@ -412,11 +418,13 @@ $$
 
 
 **Advantages**:
+
 - Valid under misspecification
 - No assumption about model form
 - Directly relevant for prediction
 
 **Disadvantages**:
+
 - Computationally intensive
 - High variance for small $n$
 
@@ -485,6 +493,7 @@ $$
 using the sandwich estimator $\hat{\Sigma}$.
 
 **Critical Issue**: Standard tests assume well-specification. Using incorrect covariance (e.g., $\mathcal{I}(\theta_0)^{-1}$ instead of sandwich) leads to:
+
 - Incorrect size
 - Invalid p-values
 - Misleading inference
@@ -513,6 +522,7 @@ $$
 where $\hat{\Sigma}$ is the sandwich estimator.
 
 **Coverage**: 
+
 - Standard CI: May have coverage $< 1-\alpha$ under misspecification
 - Robust CI: Maintains nominal coverage asymptotically
 
@@ -584,6 +594,7 @@ where $r$ is the number of overidentifying restrictions.
 
 
 **Setup**: Two estimators $\hat{\theta}_1$ and $\hat{\theta}_2$ where:
+
 - $\hat{\theta}_1$ is consistent under both $H_0$ and $H_1$ but inefficient under $H_0$
 - $\hat{\theta}_2$ is consistent and efficient under $H_0$ but inconsistent under $H_1$
 
@@ -770,6 +781,7 @@ $$
 
 
 **Components**:
+
 1. **Misspecification**: Ignoring jumps creates systematic bias
 2. **Estimation Error**: Volatility $\sigma$ estimated from data
 3. **Interaction**: Estimated $\sigma$ may partially compensate for model misspecification
@@ -828,6 +840,7 @@ $$
 
 
 **Parameter Estimation**:
+
 - $\hat{\mu}$ estimated from sample mean
 - $\hat{\Sigma}$ estimated from sample covariance
 
@@ -841,6 +854,7 @@ $$
 
 
 **Misspecification**: Returns may not be i.i.d. normal:
+
 - Fat tails
 - Time-varying moments
 - Dependencies
@@ -860,11 +874,13 @@ $$
 
 
 **Misspecification**: 
+
 - Missing factors
 - Nonlinear factor loadings
 - Time-varying betas
 
 **Estimation Error**: 
+
 - Estimated $\hat{\beta}_i$ from regression
 - Standard error: $O(n^{-1/2})$
 
@@ -920,6 +936,7 @@ $$
 
 
 **Setup**: Two working models:
+
 1. Outcome regression: $m(X; \alpha)$
 2. Propensity score: $\pi(X; \beta)$
 
@@ -933,6 +950,7 @@ $$
 
 
 **Property**: $\hat{\tau}$ is consistent if **either** (not necessarily both):
+
 - $m(X; \alpha)$ is correctly specified, **or**
 - $\pi(X; \beta)$ is correctly specified
 
@@ -957,6 +975,7 @@ $$
 rather than $O_p(n^{-1})$ in fixed-dimensional case.
 
 **Misspecification**: Can be exacerbated in high dimensions:
+
 - More parameters to estimate
 - Greater potential for overfitting
 - Model selection more difficult
@@ -977,16 +996,19 @@ $$
 
 
 **Step 1**: Diagnostic Checks
+
 - Plot residuals vs. fitted values
 - Q-Q plots for normality
 - ACF plots for independence
 
 **Step 2**: Formal Tests
+
 - Run omnibus goodness-of-fit tests
 - Check moment conditions
 - Perform Hausman-type specification tests
 
 **Step 3**: Cross-Validation
+
 - Compare in-sample vs. out-of-sample performance
 - Large discrepancy suggests overfitting or misspecification
 
@@ -1053,6 +1075,7 @@ $$
 
 
 **Guidelines**:
+
 - **Small $n$**: Use simpler models to reduce estimation error
 - **Large $n$**: Can afford more complex models; focus on reducing misspecification
 - **High $d$**: Regularization crucial to control estimation error

@@ -173,3 +173,66 @@ if __name__ == "__main__":
         
             return max(0.0, min(100.0, score))
 ```
+
+## Exercises
+
+**Exercise 1.**
+The `create_cir_model` factory function has default parameters `r0=0.03`, `theta=0.05`, `kappa=0.1`, `sigma=0.03`. Verify whether these defaults satisfy the Feller condition.
+
+??? success "Solution to Exercise 1"
+    The Feller parameter is
+
+    $$
+    \frac{2\kappa\theta}{\sigma^2} = \frac{2 \times 0.1 \times 0.05}{0.03^2} = \frac{0.01}{0.0009} \approx 11.11.
+    $$
+
+    Since $11.11 \geq 1$, the Feller condition $2\kappa\theta \geq \sigma^2$ is comfortably satisfied. The short rate will remain strictly positive with these default parameters.
+
+---
+
+**Exercise 2.**
+The `quick_simulation` function provides a one-line interface for running CIR simulations. Write a call that simulates 10,000 paths using the Milstein scheme with $r_0 = 0.02$ and $\sigma = 0.05$, keeping all other parameters at defaults.
+
+??? success "Solution to Exercise 2"
+    The call is:
+
+    ```python
+    result = quick_simulation(
+        num_paths=10000,
+        scheme=CIRScheme.MILSTEIN,
+        r0=0.02,
+        sigma=0.05
+    )
+    ```
+
+    This uses keyword arguments passed through `**model_params` to override `r0` and `sigma` in `create_cir_model`, while `theta=0.05`, `kappa=0.1`, and `maturity_time=10.0` remain at their defaults. The Feller parameter becomes $2 \times 0.1 \times 0.05 / 0.05^2 = 4.0$, which still satisfies the condition.
+
+---
+
+**Exercise 3.**
+The `CIRAnalyzer.comprehensive_analysis` method returns a quality score out of 100. If all validation tests pass, the Feller condition is satisfied, but $5\%$ of simulated rate values are negative, what is the quality score?
+
+??? success "Solution to Exercise 3"
+    The score starts at $100$. Since all validation tests pass, no deduction is applied for validation failures. The Feller condition is satisfied, so no $15$-point deduction occurs. However, negative rates are present, and the negative rate percentage is $5\%$, which deducts $5 \times 2 = 10$ points:
+
+    $$
+    \text{score} = 100 - 10 = 90.
+    $$
+
+    The quality score is $90$ out of $100$. The negative rates likely arise from the Euler-Maruyama discretization rather than a parameter issue, since the Feller condition holds.
+
+---
+
+**Exercise 4.**
+Explain the purpose of the `_calculate_theoretical_benchmarks` method and how the benchmarks are used in the comprehensive analysis.
+
+??? success "Solution to Exercise 4"
+    The `_calculate_theoretical_benchmarks` method computes:
+
+    - `theoretical_final_mean`: $\mathbb{E}[r(T)] = \theta + (r_0 - \theta)e^{-\kappa T}$
+    - `theoretical_final_variance`: $\text{Var}[r(T)]$ from the CIR variance formula
+    - `theoretical_final_std`: $\sqrt{\text{Var}[r(T)]}$
+    - `long_term_mean`: $\theta$
+    - `initial_rate`: $r_0$
+
+    These benchmarks serve as the ground truth against which the Monte Carlo simulation is validated. The validation tests compare empirical means and variances from the simulation to these exact values, flagging discrepancies that exceed the tolerance. The benchmarks also help assess convergence: as the number of paths increases, empirical statistics should converge to these theoretical values by the law of large numbers.

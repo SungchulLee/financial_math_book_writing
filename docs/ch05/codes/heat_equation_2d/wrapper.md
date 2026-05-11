@@ -462,3 +462,74 @@ if __name__ == "__main__":
     u_final = solve_crank_nicolson_2d(u_init, params, params.Nt)
     plot_2d_solution(params.X, params.Y, u_final, u_init, "crank_nicolson")
 ```
+
+## Exercises
+
+**Exercise 1.**
+The `HeatEquation2D` class supports initial condition types including `"step"`, `"gaussian"`, `"circular"`, `"sine"`, `"hotspots"`, `"ring"`, and `"custom"`. For each, describe a physical scenario where it would be a natural model.
+
+??? success "Solution to Exercise 1"
+
+    - **Step**: A heated rectangular plate placed on a cold surface (localized heating).
+    - **Gaussian**: A laser beam heating a point on a metal sheet (concentrated energy source).
+    - **Circular**: A hot circular stamp pressed onto a surface.
+    - **Sine**: Oscillatory temperature distribution from wave interference (eigenmode analysis).
+    - **Hotspots**: Multiple electronic components generating heat on a circuit board.
+    - **Ring**: An annular heating element (e.g., a circular stove burner).
+    - **Custom**: Any application-specific initial temperature distribution.
+
+---
+
+**Exercise 2.**
+The `solve_heat_equation_2d` convenience function returns both the solution and the solver object. Write a code snippet that uses this function to solve with Backward Euler and then re-solves with Crank-Nicolson using the same setup.
+
+??? success "Solution to Exercise 2"
+    ```python
+    result = solve_heat_equation_2d("gaussian", "backward",
+                                     Nx=50, Ny=50, Nt=500)
+    solver = result["solver"]
+    u_backward = result["u_final"]
+
+    # Re-solve with Crank-Nicolson using the same setup
+    solver.reset()
+    u_cn = solver.solve("cn")
+
+    # Compare
+    diff = np.max(np.abs(u_backward - u_cn))
+    print(f"Max difference: {diff:.6e}")
+    ```
+
+    The `reset()` call restores the initial condition, and `solve("cn")` re-solves with a different method. This avoids re-creating the grid and initial condition.
+
+---
+
+**Exercise 3.**
+Explain why the `get_stability_info` method is important for users of the 2D solver. What practical decision does it help make?
+
+??? success "Solution to Exercise 3"
+    The stability info tells the user whether Forward Euler will work with the current grid parameters. If $r_x + r_y > 0.5$, the user must either:
+
+    1. Increase $N_t$ (decrease $\Delta t$) until the condition is satisfied.
+    2. Switch to an unconditionally stable method (Backward Euler, Crank-Nicolson, or ADI).
+
+    Without checking stability, a Forward Euler simulation would produce oscillating or diverging solutions, wasting computation time and potentially being mistaken for physical behavior. The stability info empowers the user to make an informed choice before running the solver.
+
+---
+
+**Exercise 4.**
+The `info()` method returns a dictionary of solver state. Design a function that takes two `HeatEquation2D` solvers and prints a comparison table of their parameters (domain, grid, diffusivity, stability).
+
+??? success "Solution to Exercise 4"
+    ```python
+    def compare_solvers(solver1, solver2):
+        info1, info2 = solver1.info(), solver2.info()
+        keys = ["domain_size", "spatial_points", "time_steps",
+                "diffusivity", "stability_parameter",
+                "is_stable_forward"]
+        print(f"{'Parameter':<25} {'Solver 1':<20} {'Solver 2':<20}")
+        print("-" * 65)
+        for k in keys:
+            print(f"{k:<25} {str(info1[k]):<20} {str(info2[k]):<20}")
+    ```
+
+    This function extracts matching keys from both `info()` dictionaries and prints them side by side. It helps identify which parameter differences (e.g., finer grid, larger diffusivity) lead to different solution quality or stability behavior.

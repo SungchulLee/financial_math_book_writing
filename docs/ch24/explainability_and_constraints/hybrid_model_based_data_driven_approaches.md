@@ -9,10 +9,12 @@
 
 
 Pure model-based approaches:
+
 - offer interpretability and structure,
 - may be too rigid.
 
 Pure data-driven approaches:
+
 - offer flexibility,
 - may violate financial principles.
 
@@ -24,6 +26,7 @@ Hybrid models bridge this gap.
 
 
 Common strategies include:
+
 - learning residuals on top of parametric models,
 - using ML to calibrate or adapt model parameters,
 - embedding financial models within neural architectures.
@@ -34,6 +37,7 @@ Common strategies include:
 
 
 Hybrid approaches:
+
 - improve data efficiency,
 - preserve no-arbitrage structure,
 - enhance stability and interpretability.
@@ -46,6 +50,7 @@ They are widely adopted in practice.
 
 
 Examples include:
+
 - volatility surface modeling,
 - yield curve fitting,
 - execution and impact modeling.

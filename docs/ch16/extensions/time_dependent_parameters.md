@@ -3,6 +3,7 @@
 In the standard Heston model, the parameters $\kappa$, $\theta$, $\xi$, and $\rho$ are constants. This produces a single implied volatility surface shape that cannot simultaneously match market smiles at both short and long maturities. In practice, the short-maturity smile is steep and driven by jump-like behavior, while the long-maturity smile flattens as mean reversion dominates. Allowing parameters to vary with time --- typically as piecewise-constant functions --- gives the model enough flexibility to fit the entire term structure of implied volatilities while preserving the affine structure that enables semi-analytic pricing.
 
 !!! info "Prerequisites"
+
     - [Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md) (constant-parameter Heston)
     - [Closed-Form Characteristic Function](../heston_cf/closed_form_characteristic_function.md) (Riccati ODE system)
     - [Affine Structure and Riccati](../model_definition/affine_structure_and_riccati.md) (affine framework)

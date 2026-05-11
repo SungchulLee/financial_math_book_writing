@@ -141,6 +141,7 @@ $$
 \boxed{
 df(t, X_t)
 = \left(f_t + b^i f_i + \tfrac{1}{2}a^{ij}f_{ij}\right)dt
+
 + \sigma^{i\alpha} f_i\,dW_t^\alpha
 }
 $$

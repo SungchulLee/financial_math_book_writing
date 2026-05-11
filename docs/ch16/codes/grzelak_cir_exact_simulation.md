@@ -162,3 +162,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+The CIR process can be simulated exactly using the non-central chi-squared distribution. Write the distribution of $r_{t+\Delta t}$ given $r_t$.
+
+??? success "Solution to Exercise 1"
+    Given $r_t$, the scaled future rate $\frac{4\kappa}{\sigma^2(1-e^{-\kappa\Delta t})}r_{t+\Delta t}$ follows a non-central chi-squared distribution with $d = \frac{4\kappa\theta}{\sigma^2}$ degrees of freedom and non-centrality parameter $\lambda = \frac{4\kappa e^{-\kappa\Delta t}}{\sigma^2(1-e^{-\kappa\Delta t})}r_t$. This exact distribution avoids discretization error entirely.
+
+---
+
+**Exercise 2.**
+Compare the exact CIR simulation with the Euler scheme in terms of: (a) accuracy, (b) computational cost, (c) handling of the zero boundary.
+
+??? success "Solution to Exercise 2"
+    (a) Exact simulation has zero discretization error; Euler has $O(\Delta t)$ error. (b) Exact requires sampling from non-central $\chi^2$ (more expensive per step) vs simple Gaussian for Euler. (c) Exact automatically respects $r \geq 0$ when Feller holds; Euler can produce negative values requiring ad-hoc fixes. For pricing, exact simulation is preferred when feasible.
+
+---
+
+**Exercise 3.**
+For the CIR process with $\kappa = 0.5$, $\theta = 0.05$, $\sigma = 0.1$, compute the degrees of freedom $d$ of the chi-squared distribution.
+
+??? success "Solution to Exercise 3"
+    $d = 4\kappa\theta/\sigma^2 = 4(0.5)(0.05)/0.01 = 10$. Since $d > 2$ (equivalent to the Feller condition $2\kappa\theta > \sigma^2$), the distribution is well-defined and the rate stays strictly positive.
+
+---
+
+**Exercise 4.**
+Explain why exact simulation is particularly important for the CIR process compared to, say, GBM.
+
+??? success "Solution to Exercise 4"
+    GBM has a closed-form exact simulation ($S_{t+\Delta t} = S_t \exp((r-\sigma^2/2)\Delta t + \sigma\sqrt{\Delta t}Z)$), so Euler is unnecessary. The CIR process has no such simple update; the Euler scheme can violate the positivity constraint, causing crashes or biased results. Exact CIR simulation via non-central $\chi^2$ preserves all statistical properties, making it essential for accurate bond pricing and variance simulation in Heston.

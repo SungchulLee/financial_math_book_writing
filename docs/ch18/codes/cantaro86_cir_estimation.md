@@ -16,6 +16,7 @@ Adapted as a self-contained educational module -- no local imports required.
 
 Contents
 --------
+
 1. Euler-Maruyama CIR simulation with four truncation methods:
        reflection, positive-part, full truncation, partial truncation.
 2. CIR density via modified Bessel functions (CIR_pdf) and
@@ -704,3 +705,36 @@ if __name__ == "__main__":
     print("Done.")
     print("=" * 70)
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+The CIR model $dr = \kappa(\theta - r)\,dt + \sigma\sqrt{r}\,dW$ can be estimated from time series of short rates. Write the discrete OLS regression form $r_{t+1} - r_t = a + b \cdot r_t + \epsilon_t$.
+
+??? success "Solution to Exercise 1"
+    Discretizing: $r_{t+1} - r_t \approx \kappa\theta\Delta t - \kappa r_t \Delta t + \sigma\sqrt{r_t}\Delta W_t$. Setting $a = \kappa\theta\Delta t$ and $b = -\kappa\Delta t$: $\Delta r_t = a + b r_t + \epsilon_t$ where $\epsilon_t \sim N(0, \sigma^2 r_t \Delta t)$. OLS gives estimates $\hat{a}, \hat{b}$, from which $\hat{\kappa} = -\hat{b}/\Delta t$ and $\hat{\theta} = \hat{a}/(\hat{\kappa}\Delta t)$.
+
+---
+
+**Exercise 2.**
+OLS assumes homoscedastic errors, but CIR has $\text{Var}(\epsilon_t) = \sigma^2 r_t \Delta t$ (heteroscedastic). Explain how WLS (weighted least squares) corrects this.
+
+??? success "Solution to Exercise 2"
+    WLS uses weights $w_t = 1/(\sigma^2 r_t \Delta t) \propto 1/r_t$. This downweights observations with high variance (high $r_t$) and upweights low-variance observations. The WLS estimator is BLUE (best linear unbiased estimator) under the CIR heteroscedasticity structure, while OLS is unbiased but inefficient.
+
+---
+
+**Exercise 3.**
+From daily Federal Funds rate data, you estimate $\hat{\kappa} = 0.15$, $\hat{\theta} = 0.03$, $\hat{\sigma} = 0.05$. Compute the half-life of mean reversion and check the Feller condition.
+
+??? success "Solution to Exercise 3"
+    Half-life $= \ln(2)/\kappa = 0.693/0.15 = 4.62$ years. Feller: $2\kappa\theta = 2(0.15)(0.03) = 0.009$ vs $\sigma^2 = 0.0025$. Since $0.009 > 0.0025$, the Feller condition is satisfied.
+
+---
+
+**Exercise 4.**
+Explain why maximum likelihood estimation (MLE) is preferred over OLS for CIR parameter estimation.
+
+??? success "Solution to Exercise 4"
+    MLE exploits the known transition density of the CIR process (non-central chi-squared), properly accounting for heteroscedasticity and the positivity constraint. OLS ignores these features, potentially producing biased estimates when rates are near zero. MLE also provides standard errors and confidence intervals via the Fisher information matrix.

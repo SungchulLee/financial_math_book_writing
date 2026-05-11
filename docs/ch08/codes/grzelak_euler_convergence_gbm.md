@@ -186,3 +186,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Show that the Euler scheme for GBM has weak convergence order 1 and strong convergence order 0.5.
+
+??? success "Solution to Exercise 1"
+    Weak convergence: expanding the exact solution to first order in $\Delta t$ matches the Euler step, giving accumulated error $O(\Delta t)$ over $N = T/\Delta t$ steps (order 1). Strong convergence: the Euler scheme misses the Ito correction term $-\frac{\sigma^2}{2}S\Delta t$. Each step has $O(\Delta t)$ error, but pathwise accumulation as a random walk gives $O(\sqrt{\Delta t})$ (order 0.5).
+
+---
+
+**Exercise 2.**
+For GBM with $r = 0.06$, $\sigma = 0.3$, $S_0 = 50$, $T = 1$, compute $\mathbb{E}[S_T]$ exactly and explain why Euler can estimate the mean accurately despite low strong order.
+
+??? success "Solution to Exercise 2"
+    $\mathbb{E}[S_T] = 50 e^{0.06} = \$53.09$. Euler preserves $\mathbb{E}[S_{i+1}|S_i] = S_i(1 + r\Delta t)$, so the mean is accurately estimated. Weak convergence (order 1) governs expectations; strong convergence (order 0.5) governs individual paths. For pricing via expectations, Euler is effective even with moderate steps.
+
+---
+
+**Exercise 3.**
+Explain why normalizing random samples ($z \leftarrow (z - \bar{z})/s_z$) at each step improves convergence.
+
+??? success "Solution to Exercise 3"
+    Normalization forces exact zero mean and unit variance at each step, eliminating finite-sample bias in the drift and realized volatility. This moment matching reduces Monte Carlo variance, producing smoother convergence plots, especially with few paths.
+
+---
+
+**Exercise 4.**
+On a log-log plot, the weak error has slope 1 and the strong error has slope 0.5. If the strong error at $\Delta t = 0.01$ is $0.5$, estimate it at $\Delta t = 0.001$.
+
+??? success "Solution to Exercise 4"
+    $\epsilon_s \propto \sqrt{\Delta t}$. At $\Delta t = 0.01$: $C_s = 0.5/\sqrt{0.01} = 5$. At $\Delta t = 0.001$: $\epsilon_s = 5\sqrt{0.001} = 0.158$. Reducing $\Delta t$ tenfold reduces strong error by factor $\sqrt{10} \approx 3.16$.

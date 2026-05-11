@@ -55,6 +55,7 @@ For the heat equation, information flows **forward in time**. The parabolic boun
 Suppose $u$ attains its maximum at an interior point $(t_0, x_0) \in Q_T$.
 
 At a maximum:
+
 - $\frac{\partial u}{\partial t}(t_0, x_0) \geq 0$ (if $t_0 < T$) or unrestricted (if $t_0 = T$)
 - $\frac{\partial u}{\partial x}(t_0, x_0) = 0$
 - $\frac{\partial^2 u}{\partial x^2}(t_0, x_0) \leq 0$
@@ -124,6 +125,14 @@ $$
 $$
 
 Therefore $w \equiv 0$, so $u = v$. $\square$
+
+!!! note "Two routes to uniqueness"
+    | Method | Proof tool | When to use |
+    |---|---|---|
+    | **Maximum principle** (this page) | Pointwise inequality | Bounded domains, $L^\infty$ data, intuitive |
+    | **Energy method** ([energy_methods](uniqueness_via_energy_methods.md)) | $L^2$ energy decay | Functional setting, variable coefficients, spectral analysis |
+
+    Both proofs are kept because they extend differently: the maximum principle generalizes to elliptic/parabolic comparison theorems, while the energy method generalizes to Galerkin approximations and weak formulations.
 
 ---
 

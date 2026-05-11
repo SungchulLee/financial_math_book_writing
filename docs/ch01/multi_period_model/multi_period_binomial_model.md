@@ -11,10 +11,11 @@ This section extends the one-period binomial model to **multiple time periods**.
 The key insight is that multi-period pricing reduces to **repeated application** of one-period pricing via **backward induction**.
 
 !!! info "Prerequisites"
-    - [Binomial Model](binomial_model.md) (one-period setup)
-    - [Replicating Portfolio](replicating_portfolio.md) (replication approach)
-    - [Delta Hedging](delta_hedging.md) (hedging approach)
-    - [Risk-Neutral Measure](risk_neutral_measure.md) (expectation pricing)
+
+    - [Binomial Model](../binomial_model/binomial_model.md) (one-period setup)
+    - [Replicating Portfolio](../binomial_model/replicating_portfolio.md) (replication approach)
+    - [Delta Hedging](../binomial_model/delta_hedging.md) (hedging approach)
+    - [Risk-Neutral Measure](../binomial_model/risk_neutral_measure.md) (expectation pricing)
 
 !!! abstract "Learning Objectives"
     By the end of this section, you will be able to:
@@ -66,7 +67,7 @@ An up-then-down path reaches the same price as a down-then-up path. The tree **r
 ### Tree Visualization (N = 3)
 
 <figure markdown="span">
-  ![binomial_tree_n3](./image/binomial_tree_n3.svg)
+  ![binomial_tree_n3](../binomial_model/image/binomial_tree_n3.svg)
   <figcaption markdown="span">**Figure 1:** Three-period recombining binomial tree with log-scale node spacing. Node $(n, j)$ has price $S_{n,j} = u^j d^{n-j} S_0$. The tree is mirror-symmetric around $S_0$ under the CRR parametrization $d = 1/u$, where up and down moves are equal in magnitude in log space: $\log u = -\log d = \sigma\sqrt{\Delta t}$.</figcaption>
 </figure>
 
@@ -919,7 +920,7 @@ Delta oscillates around $0.56$–$0.62$ for most of the life of the option. Near
 Three features stand out. First, **self-financing holds exactly**: replication error is zero on every path by construction — no external cash ever enters or leaves the portfolio. Second, **delta reflects moneyness**: on the all-up path, once delta hits $1.0$ the MMA stabilizes at $\approx -100$, the discounted strike, which is the deep-ITM limit of a call (equivalent to a forward). Third, **theta decay is visible on the ATM path**: the portfolio value drifts from $4.39$ to $0$ despite the stock returning to $S_0 = 100$ — the option premium paid at inception is exactly the cost of this time decay, with the gamma spike near expiry reflecting the binary payoff risk when the stock teeters at the strike.
 
 <figure markdown="span">
-  ![delta_evolution](./image/delta_evolution.png)
+  ![delta_evolution](../binomial_model/image/delta_evolution.png)
   <figcaption markdown="span">**Figure 2:** Delta evolution along three price paths over $N = 58$ daily rebalancing steps ($T = 3/13$ yr, $S_0 = K = 100$, $\sigma = 20\%$, $r = 5\%$). The **blue (ITM)** path shows delta saturating at $1$ by day 21 once the option is sufficiently deep in-the-money. The **red (OTM)** path shows delta collapsing to $0$ by day 22 as the option expires worthless. The **green (ATM)** path oscillates near $\Delta = 0.5$ throughout, with a sharp gamma spike in the final two days as the option teeters at the strike.</figcaption>
 </figure>
 
@@ -937,6 +938,7 @@ Three features stand out. First, **self-financing holds exactly**: replication e
 | Cash position | $B_{n,j} = V_{n,j} - \Delta_{n,j} S_{n,j}$ |
 
 !!! abstract "Key Takeaways"
+
     1. **Backward induction**: Multi-period pricing reduces to repeated one-period pricing.
     
     2. **Dynamic delta hedging**: The hedge ratio changes at each node and must be rebalanced.
@@ -955,7 +957,7 @@ Three features stand out. First, **self-financing holds exactly**: replication e
 |---------|-------|
 | [American Options on Trees](american_options_on_trees.md) | Early exercise and the optimal stopping problem |
 | [Trinomial Model](trinomial_model.md) | Three-state extension and incomplete markets |
-| [Binomial to Black–Scholes](binomial_to_black_scholes_limit.md) | Continuous-time limit |
+| [Binomial to Black–Scholes](../binomial_to_black_scholes/binomial_to_black_scholes_limit.md) | Continuous-time limit |
 
 ---
 

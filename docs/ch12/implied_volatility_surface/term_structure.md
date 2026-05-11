@@ -72,6 +72,7 @@ $$
 Short-dated options have lower implied volatility than long-dated options.
 
 **Interpretation:**
+
 - **Low current volatility:** Market expects volatility to increase over time (mean reversion to long-run average)
 - **Volatility mean reversion:** Current volatility below long-run mean $\theta$
 - **Uncertainty accumulation:** Longer horizons have more uncertain outcomes
@@ -103,6 +104,7 @@ $$
 Short-dated options have higher implied volatility than long-dated options.
 
 **Interpretation:**
+
 - **High current volatility:** Market expects volatility to decrease over time
 - **Elevated uncertainty:** Recent shock or crisis with expected normalization
 - **Mean reversion from above:** Current volatility above long-run mean
@@ -128,6 +130,7 @@ $$
 Implied volatility peaks at intermediate maturities (e.g., 3-6 months).
 
 **Interpretation:**
+
 - **Event risk at specific horizon:** Earnings announcement, election, Brexit vote, etc.
 - **Short-term calm, medium-term uncertainty:** Market expects volatility spike at known future event
 - **Long-term mean reversion:** After event, volatility returns to baseline
@@ -148,6 +151,7 @@ $$
 
 
 **Interpretation:**
+
 - No expected change in volatility regime
 - Market sees current volatility as persistent
 - Rare in practice except as transient configuration
@@ -219,6 +223,7 @@ $$
 but does **not** directly constrain $\sigma_{\text{ATM}}(T)$.
 
 **Example:** Both scenarios are arbitrage-free:
+
 1. $\sigma_{\text{ATM}}(T_1) = 20\%$, $\sigma_{\text{ATM}}(T_2) = 25\%$ (upward)
 2. $\sigma_{\text{ATM}}(T_1) = 30\%$, $\sigma_{\text{ATM}}(T_2) = 22\%$ (downward, but $w(T_2) = 0.22^2 \cdot T_2 > w(T_1) = 0.30^2 \cdot T_1$ if $T_2$ is large enough)
 
@@ -276,6 +281,7 @@ $$
 **Interpretation:** The instantaneous volatility the market expects at time $T$ given current information.
 
 **Relationship to term structure slope:**
+
 - Upward sloping: $\frac{d\sigma_{\text{ATM}}}{dT} > 0 \Rightarrow \sigma_{\text{inst}}^2 > \sigma_{\text{ATM}}^2$ (forward vol exceeds spot IV)
 - Downward sloping: $\frac{d\sigma_{\text{ATM}}}{dT} < 0 \Rightarrow \sigma_{\text{inst}}^2 < \sigma_{\text{ATM}}^2$ (forward vol below spot IV)
 
@@ -361,6 +367,7 @@ $$
 
 
 **Limits:**
+
 - Short maturity: $\sigma_{\text{ATM}}^2(T) \approx v_0$ (spot variance)
 - Long maturity: $\sigma_{\text{ATM}}^2(T) \to \theta + \frac{\xi^2}{4\kappa}$ (long-run level + vol-of-vol effect)
 
@@ -409,18 +416,21 @@ The term structure remains flat (both components scale linearly with $T$), but t
 
 
 **Normal regime (VIX < 20):**
+
 - Upward sloping term structure
 - 1-month ATM IV: 12-15%
 - 1-year ATM IV: 18-22%
 - Reflects mean reversion to long-run volatility
 
 **Crisis regime (VIX > 30):**
+
 - Downward sloping term structure
 - 1-month ATM IV: 30-50%
 - 1-year ATM IV: 20-30%
 - Reflects expected calm-down
 
 **Event-driven:**
+
 - Humped around known events (FOMC, elections)
 - Peak at event maturity
 
@@ -428,11 +438,13 @@ The term structure remains flat (both components scale linearly with $T$), but t
 
 
 **G10 currencies (EUR/USD, USD/JPY):**
+
 - Relatively flat term structure
 - Less pronounced mean reversion than equities
 - Occasional humps around central bank meetings
 
 **Emerging markets:**
+
 - More volatile term structure
 - Steeper slopes reflecting sovereign risk, capital controls
 
@@ -440,11 +452,13 @@ The term structure remains flat (both components scale linearly with $T$), but t
 
 
 **Energy (crude oil, natural gas):**
+
 - Highly seasonal term structure
 - Humps corresponding to delivery periods
 - Winter natural gas: high IV for winter maturities
 
 **Precious metals (gold, silver):**
+
 - Relatively flat or mildly upward sloping
 - Flight-to-safety effects during crises
 
@@ -630,6 +644,7 @@ where $\lambda$ is the mean-reversion speed (e.g., $\lambda = \kappa$ in Heston)
 
 **Vega exposure:**  
 A portfolio with options across maturities has **term structure risk**:
+
 - **Parallel shift:** All maturities move together (rare)
 - **Steepening:** Long-end rises more than short-end
 - **Flattening:** Term structure compresses
@@ -641,10 +656,12 @@ A portfolio with options across maturities has **term structure risk**:
 
 
 **Carry trades:**  
+
 - If term structure is upward sloping, sell short-dated options, buy long-dated options
 - Collect theta from short-dated, benefit from mean reversion
 
 **Event trades:**  
+
 - If term structure shows hump at known event, compare realized volatility around event to implied
 - Trade forward variance swaps to isolate event-specific vol
 

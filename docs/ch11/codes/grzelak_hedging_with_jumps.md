@@ -361,3 +361,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+In the Merton jump-diffusion model, the stock can gap suddenly. Explain why delta hedging with the BS formula fails to fully replicate the option when jumps occur.
+
+??? success "Solution to Exercise 1"
+    BS delta hedging assumes continuous paths. When a jump occurs, the stock price changes discontinuously by $J$ (a random amount). The hedge position $\Delta \cdot S$ changes by $\Delta \cdot J \cdot S$, but the option value changes by a nonlinear amount depending on the jump size. The mismatch $V(Se^J) - V(S) - \Delta \cdot S(e^J - 1) \neq 0$ is the unhedgeable jump risk. This risk cannot be diversified away with continuous trading.
+
+---
+
+**Exercise 2.**
+Compare the P&L histogram from jump-diffusion hedging versus pure GBM hedging. Why are the tails heavier with jumps?
+
+??? success "Solution to Exercise 2"
+    With jumps, large stock movements occur instantaneously, creating large hedging errors that the delta cannot anticipate. The P&L distribution develops heavier tails (more extreme gains and losses) because each jump creates a discrete, unhedgeable gain/loss proportional to the jump size. The kurtosis of the P&L distribution increases significantly compared to the near-normal GBM case.
+
+---
+
+**Exercise 3.**
+If jump intensity is $\lambda = 1$ (one jump per year on average) with mean $\mu_J = 0$ and $\sigma_J = 0.25$, estimate the average absolute hedging loss per jump.
+
+??? success "Solution to Exercise 3"
+    Per jump, the loss is approximately $\frac{1}{2}\Gamma S^2(e^J - 1)^2$ where $J \sim N(0, 0.0625)$. For small jumps: $(e^J - 1) \approx J$, so loss $\approx \frac{1}{2}\Gamma S^2 J^2$. Expected loss per jump: $\frac{1}{2}\Gamma S^2 \mathbb{E}[J^2] = \frac{1}{2}\Gamma S^2 \sigma_J^2 = \frac{1}{2}(0.02)(1)(0.0625) = 0.000625$. With 1 jump per year, annual expected loss from jumps $\approx \$0.000625$ per unit notional.
+
+---
+
+**Exercise 4.**
+To reduce jump hedging error, one could use options with different strikes. Explain how a "crash-protection" strategy using OTM puts can help.
+
+??? success "Solution to Exercise 4"
+    OTM puts provide insurance against large downward jumps. By buying puts at a lower strike, the hedger creates a portfolio that gains value when large negative jumps occur, partially offsetting the loss on the short call position. This is effectively buying tail risk protection. The cost is the put premium, which must be weighed against the expected jump losses. In markets with frequent jumps, the cost of puts may be justified by the reduction in extreme P&L outcomes.

@@ -9,6 +9,7 @@ Risk-neutral pricing is one of the central principles of modern asset pricing:
 This section shows how the risk-neutral pricing formula emerges from no-arbitrage, proves its equivalence to replication, and applies it to price various derivatives.
 
 !!! info "Prerequisites"
+
     - [Binomial Model](binomial_model.md) (market setup, risk-neutral probability)
     - [Replicating Portfolio](replicating_portfolio.md) (replication approach)
     - [Delta Hedging](delta_hedging.md) (hedging approach)
@@ -44,6 +45,11 @@ Risk-neutral pricing asks a different question:
 > *Is there a probability measure under which prices can be computed by expectation alone?*
 
 The answer is **yes**, and that measure is uniquely determined by no-arbitrage.
+
+!!! abstract "Three views, one principle"
+    $$\boxed{\text{[Replication](replicating_portfolio.md)} \;=\; \text{[Delta hedging](delta_hedging.md)} \;=\; \text{Risk-neutral expectation}}$$
+
+    These are three equivalent perspectives on the same arbitrage-free price: matching payoffs by construction, eliminating risk by hedging, and computing expectations under a measure that turns discounted prices into martingales.
 
 ---
 
@@ -387,6 +393,7 @@ $$
 ### Example: Bull Spread
 
 A bull spread consists of:
+
 - Long call with strike $K_1$
 - Short call with strike $K_2 > K_1$
 
@@ -432,6 +439,7 @@ V_0(\alpha H^{(1)} + \beta H^{(2)})\\
 | **Risk premium inclusive** | By construction, it removes risk premia |
 
 !!! warning "Key Distinction"
+
     - **Physical measure $\mathbb{P}$**: Describes actual probabilities; used for forecasting and risk management
     - **Risk-neutral measure $\mathbb{Q}$**: Pricing device; used for derivative valuation
     
@@ -469,7 +477,7 @@ $$
 
 Both methods give the same price. Backward induction is computationally more efficient for path-independent options, while the direct formula is useful for analysis.
 
-See [Multi-Period Binomial Model](multi_period_binomial_model.md) for complete details.
+See [Multi-Period Binomial Model](../multi_period_model/multi_period_binomial_model.md) for complete details.
 
 ---
 
@@ -485,6 +493,7 @@ See [Multi-Period Binomial Model](multi_period_binomial_model.md) for complete d
 | Put–call parity | $C_0 - P_0 = S_0 - Ke^{-r\Delta t}$ |
 
 !!! abstract "Key Takeaways"
+
     1. **Risk-neutral pricing = discounted expectation**: $V_0 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H]$
     
     2. **Equivalent to replication**: Risk-neutral pricing gives the same answer as constructing the replicating portfolio.
@@ -503,8 +512,8 @@ See [Multi-Period Binomial Model](multi_period_binomial_model.md) for complete d
 
 | Section | Topic |
 |---------|-------|
-| [Multi-Period Binomial Model](multi_period_binomial_model.md) | Backward induction in trees |
-| [Binomial to Black–Scholes Limit](binomial_to_black_scholes_limit.md) | Continuous-time convergence |
+| [Multi-Period Binomial Model](../multi_period_model/multi_period_binomial_model.md) | Backward induction in trees |
+| [Binomial to Black–Scholes Limit](../binomial_to_black_scholes/binomial_to_black_scholes_limit.md) | Continuous-time convergence |
 
 ---
 

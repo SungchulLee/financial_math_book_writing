@@ -169,3 +169,54 @@ if __name__ == "__main__":
 
     print("="*60)
 ```
+
+## Exercises
+
+**Exercise 1.**
+State put-call parity for European options. Derive it using a no-arbitrage argument involving two portfolios.
+
+??? success "Solution to Exercise 1"
+    Put-call parity: $C - P = S_0 - Ke^{-rT}$.
+
+    **Portfolio A**: Long call + $Ke^{-rT}$ in bonds. At $T$: if $S_T > K$, exercise call for $S_T - K + K = S_T$; if $S_T \le K$, call expires, get $K$.
+
+    **Portfolio B**: Long put + long stock. At $T$: if $S_T > K$, put expires, have $S_T$; if $S_T \le K$, exercise put for $K - S_T + S_T = K$.
+
+    Both portfolios pay $\max(S_T, K)$ at $T$. By no-arbitrage, they must have equal present values: $C + Ke^{-rT} = P + S_0$, giving $C - P = S_0 - Ke^{-rT}$.
+
+---
+
+**Exercise 2.**
+Using put-call parity, if $C = 8.50$, $S_0 = 100$, $K = 95$, $T = 0.5$, $r = 0.04$, compute $P$.
+
+??? success "Solution to Exercise 2"
+    $$
+    P = C - S_0 + Ke^{-rT} = 8.50 - 100 + 95e^{-0.02} = 8.50 - 100 + 93.12 = \$1.62
+    $$
+
+---
+
+**Exercise 3.**
+Explain how put-call parity can be used to verify the correctness of option pricing implementations. What discrepancy would indicate a bug?
+
+??? success "Solution to Exercise 3"
+    After computing $C$ and $P$ independently (whether by formula, MC, or PDE), check that $C - P = S_0 e^{-qT} - Ke^{-rT}$ (with dividends). Any discrepancy beyond numerical tolerance indicates a bug.
+
+    Common bugs detected:
+
+    - Incorrect discount factor (using $e^{-rT}$ instead of $e^{-(r-q)T}$ for dividends).
+    - Wrong sign in $d_1$ or $d_2$ formula.
+    - Boundary condition errors in PDE solvers.
+    - Payoff function errors ($\max(S-K,0)$ vs $\max(K-S,0)$).
+
+---
+
+**Exercise 4.**
+Does put-call parity hold for American options? If not, what inequality replaces it?
+
+??? success "Solution to Exercise 4"
+    Put-call parity does **not** hold for American options because the early exercise feature breaks the equivalence between the two portfolios.
+
+    For American options on a non-dividend-paying stock: $S_0 - K \le C_A - P_A \le S_0 - Ke^{-rT}$.
+
+    The upper bound comes from the European parity (since $C_A = C_E$ for non-dividend stocks). The lower bound accounts for the possibility that the American put may be exercised early. With dividends, the bounds become: $S_0 e^{-qT} - K \le C_A - P_A \le S_0 - Ke^{-rT}$.

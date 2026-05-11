@@ -732,6 +732,7 @@ The introduction of a continuous dividend yield into the Black-Scholes model:
 **Practical verdict**:
 
 Despite its limitations, the dividend-adjusted Black-Scholes model remains widely used due to:
+
 - Analytical tractability
 - Ease of implementation
 - Reasonable approximation for stocks with regular dividend policies

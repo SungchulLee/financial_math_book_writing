@@ -472,3 +472,58 @@ if __name__ == "__main__":
     # Run the full demo
     demo_all_features()
 ```
+
+## Exercises
+
+**Exercise 1.**
+Using the `HeatSolver` wrapper with method chaining, write a single expression that creates a solver for a Gaussian pulse on $[0, 2]$ with $D = 0.015$, solves with Crank-Nicolson, and validates against the eigenfunction analytical solution.
+
+??? success "Solution to Exercise 1"
+    ```python
+    solver = (HeatSolver(L=2.0, T=0.1, Nx=80, Nt=1000, D=0.015)
+              .set_initial_condition("gaussian", center=0.5, width=0.1)
+              .solve("cn"))
+    validation = solver.validate("eigenfunction")
+    ```
+
+    The chaining works because `set_initial_condition` and `solve` both return `self`. The validation returns a dictionary with keys `max_absolute_error`, `l2_error`, `relative_l2_error`, and `max_relative_error`.
+
+---
+
+**Exercise 2.**
+Explain the purpose of the `convergence_study` function. What does it measure, and how should the error behave as $N_x$ increases for a second-order method?
+
+??? success "Solution to Exercise 2"
+    The `convergence_study` function solves the heat equation on progressively finer grids ($N_x = 25, 50, 100, 200$) and records the $L^2$ error against the analytical solution for each.
+
+    For a second-order method like Crank-Nicolson, the $L^2$ error should scale as $O(\Delta x^2) = O(1/N_x^2)$. On a log-log plot, this appears as a straight line with slope $-2$. If the observed slope deviates, it may indicate insufficient time refinement, boundary effects, or that the initial condition is not smooth enough for the method to achieve its theoretical order.
+
+---
+
+**Exercise 3.**
+The `benchmark_methods` function ranks methods by $L^2$ error. Under what conditions might Backward Euler outperform Forward Euler in this ranking, even though both are first-order in time?
+
+??? success "Solution to Exercise 3"
+    Backward Euler can outperform Forward Euler when:
+
+    1. The stability parameter $\alpha$ is close to (but below) $0.5$: Forward Euler is near its stability limit and may exhibit large oscillatory errors, while Backward Euler remains well-behaved.
+    2. The time step is large: Forward Euler accumulates large errors or becomes unstable, while Backward Euler's implicit nature damps high-frequency errors.
+    3. The initial condition is rough (e.g., a step function): Backward Euler's numerical diffusion actually smooths out Gibbs-like oscillations that explicit methods might amplify.
+
+    However, Backward Euler introduces extra numerical diffusion, so for smooth problems with small $\alpha$, both methods give comparable first-order accuracy.
+
+---
+
+**Exercise 4.**
+Describe the role of the `_estimate_convergence_rate` helper function. How does it compute the convergence rate from two grid refinement levels?
+
+??? success "Solution to Exercise 4"
+    Given grid sizes $N_1, N_2$ and corresponding errors $E_1, E_2$, the convergence rate $p$ is estimated by
+
+    $$
+    p = \frac{\log(E_2 / E_1)}{\log(h_2 / h_1)}
+    $$
+
+    where $h_i = 1/N_i$. This assumes $E \propto h^p$. The function uses the last two valid data points for robustness.
+
+    For example, if $N_1 = 50$, $N_2 = 100$, $E_1 = 4 \times 10^{-4}$, $E_2 = 1 \times 10^{-4}$, then $p = \log(1/4)/\log(1/2) = \log(4)/\log(2) = 2$, confirming second-order convergence.

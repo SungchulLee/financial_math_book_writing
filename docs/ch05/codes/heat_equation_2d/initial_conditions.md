@@ -169,3 +169,52 @@ def zero_initial_condition_2d(X: np.ndarray, Y: np.ndarray) -> np.ndarray:
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+Write the formula for a 2D Gaussian pulse centered at $(x_c, y_c)$ with widths $(\sigma_x, \sigma_y)$ and amplitude $A$. What does the contour plot look like when $\sigma_x \ne \sigma_y$?
+
+??? success "Solution to Exercise 1"
+    $$
+    f(x,y) = A\exp\!\Bigl(-\frac{(x - x_c)^2}{2\sigma_x^2} - \frac{(y - y_c)^2}{2\sigma_y^2}\Bigr)
+    $$
+
+    When $\sigma_x \ne \sigma_y$, the contours are ellipses with semi-axes proportional to $\sigma_x$ and $\sigma_y$. If $\sigma_x > \sigma_y$, the Gaussian is elongated in the $x$-direction. The principal axes of the ellipse align with the coordinate axes because there is no cross term $xy$.
+
+---
+
+**Exercise 2.**
+For the ring pattern initial condition with inner radius $r_1 = 0.2$ and outer radius $r_2 = 0.3$ on a unit square, estimate the total mass (area integral of $u$).
+
+??? success "Solution to Exercise 2"
+    The ring has amplitude 1 in the annular region $r_1 \le \sqrt{(x-0.5)^2 + (y-0.5)^2} \le r_2$. The area of this annulus is
+
+    $$
+    \pi(r_2^2 - r_1^2) = \pi(0.09 - 0.04) = 0.05\pi \approx 0.157
+    $$
+
+    Since the amplitude is 1, the total mass equals the area: approximately $0.157$. (This assumes the ring fits entirely within the domain, which it does for a unit square centered at $(0.5, 0.5)$.)
+
+---
+
+**Exercise 3.**
+The `multiple_hotspots_2d` function superimposes several Gaussian pulses. Under the heat equation, do the hotspots interact? Explain using the linearity of the PDE.
+
+??? success "Solution to Exercise 3"
+    Yes, the hotspots interact through the heat equation because diffusion is a global process. However, the interaction is purely additive due to linearity. If $u_1$ and $u_2$ are solutions for individual hotspots, then $u_1 + u_2$ is the solution for both hotspots combined.
+
+    At early times, well-separated hotspots evolve independently (their Gaussian profiles have negligible overlap). As time progresses, the spreading profiles begin to overlap and merge. The final equilibrium (for Dirichlet BCs) is $u = 0$ everywhere.
+
+---
+
+**Exercise 4.**
+Compare the 2D step function and circular pulse initial conditions. Which produces sharper gradients, and how does this affect the numerical solution quality?
+
+??? success "Solution to Exercise 4"
+    Both have discontinuities at their boundaries, but:
+
+    - The **step function** has straight-line discontinuities along the rectangle edges, creating corners where two edges meet at right angles. These corners produce the sharpest gradients.
+    - The **circular pulse** has a smooth (curved) boundary, but still has a jump discontinuity.
+
+    Both produce Gibbs-like oscillations in spectral methods and first-order accuracy degradation in finite differences. However, the corners of the step function create stronger singularities in the solution gradient, making it slightly harder to resolve numerically. Smoothed versions (e.g., replacing the step with a tanh transition) would improve accuracy significantly.

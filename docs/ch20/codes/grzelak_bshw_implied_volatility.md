@@ -182,3 +182,55 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The BSHW model generates a term structure of implied volatilities that varies with option maturity. Explain why shorter-dated and longer-dated options have different implied volatilities even for ATM strikes.
+
+??? success "Solution to Exercise 1"
+    For short-dated options, the stochastic interest rate has minimal impact because the variance of $\int_0^T r(s)\,ds$ is small. The implied volatility is close to $\sigma_S$ (the asset volatility). For long-dated options, the accumulated interest rate uncertainty becomes significant, adding to the total variance of the log-asset price:
+
+    $$
+    \text{Var}[\ln S(T)] \approx \sigma_S^2 T + \text{terms involving } \eta, \rho, \lambda.
+    $$
+
+    This additional variance increases the implied volatility for long-dated options, creating a term structure that rises with maturity (if $\rho < 0$ or $\eta > 0$).
+
+---
+
+**Exercise 2.**
+If the BSHW model has $\sigma_S = 20\%$, $\eta = 1\%$, $\lambda = 5\%$, and $\rho = -0.3$, qualitatively describe the implied volatility term structure for ATM options.
+
+??? success "Solution to Exercise 2"
+
+    - At short maturities ($T < 1$ year), the implied vol is approximately $\sigma_S = 20\%$.
+    - At longer maturities, the interest rate variance contribution grows. With $\eta = 1\%$ (small rate vol), the effect is modest -- perhaps adding $0.5-1\%$ to implied vol at 10 years.
+    - The negative correlation $\rho = -0.3$ introduces skew but has a relatively minor effect on ATM vol.
+    - The mean reversion $\lambda = 5\%$ limits the long-run interest rate variance to $\eta^2/(2\lambda) = 0.01\%$, keeping the term structure effect bounded.
+
+    Overall, the ATM implied vol term structure would gently rise from $20\%$ at short maturities to approximately $20.5-21\%$ at 10 years.
+
+---
+
+**Exercise 3.**
+How would increasing the correlation $\rho$ from $-0.3$ to $+0.3$ change the implied volatility skew?
+
+??? success "Solution to Exercise 3"
+    With $\rho = -0.3$: When rates rise (bad for bonds), stocks tend to fall, amplifying downside risk. This steepens the put skew (higher implied vol for low strikes).
+
+    With $\rho = +0.3$: When rates rise, stocks tend to rise too. This reduces downside risk and can flatten or reverse the skew, with higher implied vol for high strikes. The change from negative to positive correlation shifts the skew from "equity-like" (downward sloping) to "interest-rate-like" (potentially upward sloping), which has significant implications for pricing and hedging long-dated equity options.
+
+---
+
+**Exercise 4.**
+Explain why the BSHW model is particularly important for pricing long-dated equity options and equity-linked insurance products.
+
+??? success "Solution to Exercise 4"
+    For maturities beyond 5 years, the assumption of constant (or deterministic) interest rates becomes unrealistic. The BSHW model captures the joint dynamics of equity and interest rates, which is crucial for:
+
+    1. **Variable annuities**: These insurance products have maturities of 10-30 years and include guaranteed minimum benefits linked to equity performance, discounted at prevailing rates.
+    2. **Convertible bonds**: Long-dated instruments where both equity and rate risk matter.
+    3. **Equity-linked notes**: Structured products with long tenors.
+
+    Using a flat-rate model would misprice these products by ignoring the correlation between equity performance and the discount rate, leading to hedging errors.

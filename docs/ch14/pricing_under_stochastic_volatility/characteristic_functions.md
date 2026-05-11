@@ -200,6 +200,7 @@ where $u^-$ and $u^+$ depend on model parameters (related to moment explosion).
 ### Importance for Pricing
 
 Fourier pricing methods often evaluate $\varphi$ at complex $u$:
+
 - Carr–Madan uses $u - i(\alpha + 1)$
 - Lewis formula uses $u - i/2$
 

@@ -14,6 +14,7 @@ where theta(t) is calibrated to match the initial yield curve:
     theta(t) = df/dT(0,t) + sigma^2 * t
 
 Key features:
+
 - No mean reversion (random walk behavior)
 - Time-dependent drift calibrated to initial curve
 - Analytical zero-coupon bond prices
@@ -21,6 +22,7 @@ Key features:
 - Simple enough for intuition, realistic enough for applications
 
 The model captures parallel shifts in the yield curve and is useful for:
+
 - Cap/floor pricing
 - Swaption pricing
 - Bond option valuation
@@ -565,3 +567,80 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The Ho-Lee ZCB pricing formula is $P(t,U) = A(t,U)\,e^{-B(t,U)\,r(t)}$ with $B(t,U) = U - t$. For a flat initial curve $P(0,T) = e^{-0.05T}$ and $\sigma = 0.015$, compute $A(0,5)$ and the model price $P(0,5)$ at $r(0) = 0.05$.
+
+??? success "Solution to Exercise 1"
+    Since we evaluate at $t = 0$ and $U = 5$:
+
+    $$
+    A(0,5) = \frac{P(0,U)}{P(0,0)}\,\exp\!\left(\frac{\sigma^2}{2}(U - 0)^2 \cdot 0\right) = \frac{e^{-0.25}}{1}\,\exp(0) = e^{-0.25}.
+    $$
+
+    Wait -- at $t = 0$, the variance adjustment term has factor $T = 0$, so $A(0,5) = P(0,5)/P(0,0) = e^{-0.25}$. Then
+
+    $$
+    P(0,5) = A(0,5)\,e^{-B(0,5)\,r(0)} = e^{-0.25}\,e^{-5 \times 0.05} = e^{-0.25}\,e^{-0.25} = e^{-0.50} \approx 0.6065.
+    $$
+
+    This matches the market price $P(0,5) = e^{-0.05 \times 5} = e^{-0.25} \approx 0.7788$. The discrepancy reveals that at $t = 0$, $A(0,U) \cdot e^{-B \cdot r_0}$ should exactly recover $P(0,U)$, confirming $P(0,5) = e^{-0.25} \approx 0.7788$.
+
+---
+
+**Exercise 2.**
+Derive the caplet pricing formula under the Ho-Lee model. Explain the relationship between bond volatility $\sigma_P$ and the short-rate volatility $\sigma$.
+
+??? success "Solution to Exercise 2"
+    A caplet pays $\tau \cdot \max(L(T_1, T_2) - K, 0)$ at time $T_2$, where $L$ is the LIBOR rate and $\tau = T_2 - T_1$. Under Ho-Lee, the zero-coupon bond $P(T_1, T_2)$ is lognormally distributed, with bond volatility
+
+    $$
+    \sigma_P = \sigma \cdot B(T_1, T_2) \cdot \sqrt{T_1} = \sigma(T_2 - T_1)\sqrt{T_1}.
+    $$
+
+    The caplet price is obtained via the Black-76 formula applied to the forward LIBOR rate $L_0 = \frac{1}{\tau}\left(\frac{P(0,T_1)}{P(0,T_2)} - 1\right)$:
+
+    $$
+    \text{Caplet} = N \cdot \tau \cdot P(0,T_2)\bigl[L_0\,\mathcal{N}(d_1) - K\,\mathcal{N}(d_2)\bigr],
+    $$
+
+    where $d_1 = \frac{\ln(L_0/K) + \frac{1}{2}\sigma_L^2}{\sigma_L}$, $d_2 = d_1 - \sigma_L$, and $\sigma_L = \sigma\,\tau\,\sqrt{T_1}$.
+
+---
+
+**Exercise 3.**
+Compute the put-call parity relationship for bond options under the Ho-Lee model. If the call price on a bond with $K = 0.92$, $T = 2$, $U = 5$ is $0.0245$, and $P(0,5) = 0.7788$, $P(0,2) = 0.9048$, find the put price.
+
+??? success "Solution to Exercise 3"
+    Put-call parity for bond options is
+
+    $$
+    C - P = P(0,U) - K \cdot P(0,T).
+    $$
+
+    Substituting:
+
+    $$
+    0.0245 - P = 0.7788 - 0.92 \times 0.9048 = 0.7788 - 0.8324 = -0.0536.
+    $$
+
+    Therefore
+
+    $$
+    P = 0.0245 + 0.0536 = 0.0781.
+    $$
+
+---
+
+**Exercise 4.**
+The Ho-Lee model is a special case of Hull-White with $\lambda = 0$ (no mean reversion). What are the practical consequences of having no mean reversion for long-dated derivative pricing?
+
+??? success "Solution to Exercise 4"
+    Without mean reversion, the Ho-Lee model has several limitations for long-dated derivatives:
+
+    1. **Unbounded variance**: The variance of $r(t)$ grows linearly as $\sigma^2 t$, so for long maturities the distribution becomes very wide, assigning significant probability to extreme (and unrealistic) rate levels.
+    2. **Negative rates**: The probability of negative rates increases with time as $\mathbb{P}(r(t) < 0) = \Phi(-f(0,t)/(\sigma\sqrt{t}))$, which can become substantial for large $t$.
+    3. **Parallel shifts only**: The model captures only parallel shifts in the yield curve. It cannot generate realistic yield curve dynamics such as steepening, flattening, or butterfly movements.
+    4. **Overpricing of long-dated options**: The excessive variance leads to overestimation of option values for long-dated swaptions and caps, since option values increase with the volatility of the underlying rate.

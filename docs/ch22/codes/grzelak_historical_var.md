@@ -459,3 +459,47 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+Historical VaR at the $99\%$ confidence level uses the $1$st percentile of historical losses. With 500 daily returns, which return (sorted from worst to best) gives the $99\%$ VaR?
+
+??? success "Solution to Exercise 1"
+    The $99\%$ VaR corresponds to the $(1 - 0.99) \times 500 = 5$th worst daily return (or the 5th order statistic from the left tail). If the 5 worst daily returns are $\{-4.2\%, -3.8\%, -3.1\%, -2.9\%, -2.5\%\}$, then $\text{VaR}_{99\%} = 2.5\%$ (the loss magnitude at the 5th worst observation).
+
+---
+
+**Exercise 2.**
+Explain the advantages and disadvantages of historical VaR compared to parametric (Gaussian) VaR.
+
+??? success "Solution to Exercise 2"
+    **Advantages**: (1) No distributional assumptions -- captures fat tails, skewness, and other non-Gaussian features present in the data. (2) Model-free -- no parameter estimation required. (3) Naturally incorporates correlations via the historical portfolio returns.
+
+    **Disadvantages**: (1) Requires a long history (500-1000+ observations), which may not be available for new instruments. (2) Backward-looking -- assumes the past is representative of the future. (3) Sensitive to the window length -- a window including a crisis gives higher VaR than a calm-period window. (4) Discrete -- VaR jumps when an extreme observation enters or exits the window.
+
+---
+
+**Exercise 3.**
+If a portfolio has a 1-day $99\%$ VaR of \$1M, estimate the 10-day VaR using the square-root-of-time rule. When does this rule break down?
+
+??? success "Solution to Exercise 3"
+    $$
+    \text{VaR}_{10\text{-day}} \approx \text{VaR}_{1\text{-day}} \times \sqrt{10} = 1{,}000{,}000 \times 3.162 = \$3{,}162{,}000.
+    $$
+
+    The square-root-of-time rule assumes returns are i.i.d. (independent and identically distributed). It breaks down when: (1) returns exhibit autocorrelation (trending or mean-reverting markets); (2) volatility is time-varying (GARCH effects); (3) the portfolio is dynamically rebalanced (changing composition over the 10-day horizon); (4) there are liquidity constraints (cannot exit positions at will).
+
+---
+
+**Exercise 4.**
+Describe how to implement a rolling-window historical VaR with a window of 252 business days, and how the VaR estimate changes over time.
+
+??? success "Solution to Exercise 4"
+    For each date $t$:
+
+    1. Collect the most recent 252 daily P&L values: $\{L_{t-251}, \ldots, L_t\}$.
+    2. Sort them from worst to best.
+    3. The $99\%$ VaR is the $\lfloor 0.01 \times 252\rfloor = 2$nd or 3rd worst observation.
+
+    As $t$ advances, the window slides: the oldest observation drops out and the newest enters. The VaR changes when an extreme loss enters the window (VaR jumps up) or exits (VaR drops). During market crises, VaR increases with a lag (it takes time for extreme losses to populate the window), and after crises, VaR remains elevated until the extreme observations age out of the window.

@@ -8,6 +8,7 @@ markets, or model misspecification. This section catalogs the five failure
 modes and their financial consequences.
 
 !!! abstract "The five failure modes"
+
     1. **Novikov/Kazamaki violated** --- mass leaks, pricing measure invalid
     2. **Strict local martingale** --- bubbles, put-call parity breaks
     3. **Incomplete market** --- pricing interval, not a unique price

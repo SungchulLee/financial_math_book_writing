@@ -26,6 +26,7 @@ V(S,T) = \max(S-K, 0)
 $$
 
 **Challenge**: The PDE has:
+
 - Variable coefficients ($S^2$ and $S$ terms)
 - A zero-order term ($-rV$)
 - Terminal condition (not initial)
@@ -139,6 +140,7 @@ $$
 $$
 
 Since:
+
 - $\frac{\partial x}{\partial t} = -\left(r - \frac{1}{2}\sigma^2\right)$ (from definition of $x$)
 - $\frac{\partial \tau}{\partial t} = -1$
 
@@ -258,6 +260,7 @@ This is the **heat equation** with thermal diffusivity $\kappa = \frac{1}{2}\sig
 The terminal condition $V(S,T) = (S-K)^+$ becomes an **initial condition** for $F$.
 
 At $\tau = 0$ (maturity):
+
 - $x = \log S$ (since $\tau = 0$ in the definition of $x$)
 - $F(x,0) = V(S,T)e^{r \cdot 0} = V(S,T)$
 
@@ -312,6 +315,7 @@ $$
 $$
 
 This is a **Gaussian kernel** with:
+
 - Mean: $z$ (centered at source location)
 - Variance: $\sigma^2\tau$ (spreads with time)
 - Normalization: $\int_{-\infty}^\infty G(x,\tau; z) dx = 1$
@@ -371,6 +375,7 @@ F(x,\tau) = \int_{-\infty}^\infty \psi(z) \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\
 $$
 
 **Interpretation**:
+
 - Decompose initial condition $\psi(x)$ into point sources: $\psi(z)\delta(z)$
 - Each point source at $z$ evolves according to $G(x,\tau; z)$
 - The total solution is the **integral** (continuous sum) of all contributions
@@ -546,6 +551,7 @@ $$
 
 
 Recall:
+
 - $x = \log S + (r - \frac{1}{2}\sigma^2)\tau$
 - $e^x = Se^{(r - \frac{1}{2}\sigma^2)\tau}$
 
@@ -595,10 +601,12 @@ C = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
 $$
 
 **Term 1**: $S_0\mathcal{N}(d_1)$
+
 - Expected stock value **conditional on exercise** under the stock measure
 - $\mathcal{N}(d_1)$ is the probability of exercise under a measure where the stock is the numeraire
 
 **Term 2**: $Ke^{-rT}\mathcal{N}(d_2)$
+
 - Expected discounted strike payment
 - $\mathcal{N}(d_2)$ is the probability of exercise under the risk-neutral measure
 
@@ -606,6 +614,7 @@ $$
 
 
 The heat equation derivation reveals:
+
 - Option pricing ≡ Diffusion of payoff backward in time
 - Green's function = Transition density of log-price under Brownian motion
 - Black-Scholes formula = Weighted average of terminal payoffs over Gaussian distribution

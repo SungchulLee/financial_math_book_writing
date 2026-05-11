@@ -16,6 +16,7 @@
 ### Independence Principle
 
 Validation should be performed by parties **independent** of model development:
+
 - Separate team
 - Different reporting line
 - No conflicts of interest
@@ -27,12 +28,14 @@ Validation should be performed by parties **independent** of model development:
 ### 1. Conceptual Review
 
 Assess model theory and assumptions:
+
 - Mathematical foundations
 - Economic rationale
 - Key assumptions and limitations
 - Comparison to alternative approaches
 
 **Questions:**
+
 - Does the model capture relevant risk drivers?
 - Are assumptions realistic?
 - What is the model's domain of validity?
@@ -40,6 +43,7 @@ Assess model theory and assumptions:
 ### 2. Data Quality Assessment
 
 Evaluate inputs:
+
 - Data sources and reliability
 - Time series length and stationarity
 - Missing data treatment
@@ -49,6 +53,7 @@ Evaluate inputs:
 ### 3. Implementation Testing
 
 Verify correct implementation:
+
 - Unit tests for components
 - Benchmark against analytical solutions
 - Cross-validation with alternative implementations
@@ -57,6 +62,7 @@ Verify correct implementation:
 ### 4. Outcome Analysis
 
 Compare predictions to realized outcomes:
+
 - Backtesting
 - Out-of-sample performance
 - Stress scenario validation
@@ -68,6 +74,7 @@ Compare predictions to realized outcomes:
 ### SR 11-7 (Federal Reserve)
 
 Key principles:
+
 - Sound model development, implementation, use
 - Effective validation
 - Governance and controls
@@ -76,6 +83,7 @@ Key principles:
 ### Basel Framework
 
 Model approval requirements:
+
 - Internal validation
 - Supervisory approval for internal models
 - Use test (model must inform decisions)
@@ -88,6 +96,7 @@ Model approval requirements:
 ### Benchmarking
 
 Compare model to:
+
 - Industry standard models
 - Vendor models
 - Simpler alternative approaches
@@ -103,6 +112,7 @@ $$
 $$
 
 **Identify:**
+
 - Key drivers
 - Unstable regions
 - Nonlinearities
@@ -110,6 +120,7 @@ $$
 ### Scenario Analysis
 
 Apply hypothetical scenarios:
+
 - Historical stress periods
 - Hypothetical extremes
 - Edge cases
@@ -119,6 +130,7 @@ Apply hypothetical scenarios:
 ### Statistical Testing
 
 Formal hypothesis tests:
+
 - Parameter significance
 - Residual diagnostics
 - Stability tests (structural breaks)
@@ -130,6 +142,7 @@ Formal hypothesis tests:
 ### Model Documentation
 
 Every model should have:
+
 - **Theory:** Mathematical formulation and assumptions
 - **Implementation:** Technical specification
 - **Calibration:** Data and methodology
@@ -139,6 +152,7 @@ Every model should have:
 ### Validation Documentation
 
 Validation reports should include:
+
 - Scope and objectives
 - Methodology
 - Findings and issues
@@ -160,6 +174,7 @@ Validation reports should include:
 ### Quantitative Scoring
 
 Score models on:
+
 - Conceptual soundness (1-5)
 - Implementation quality (1-5)
 - Performance (1-5)
@@ -174,6 +189,7 @@ Overall rating = weighted average.
 ### Periodic Review
 
 Models require regular revalidation:
+
 - Annual review (minimum)
 - More frequent for high-risk models
 - Triggered reviews after significant changes
@@ -181,6 +197,7 @@ Models require regular revalidation:
 ### Change Management
 
 When models change:
+
 1. Document change rationale
 2. Assess impact
 3. Re-validate affected components
@@ -189,6 +206,7 @@ When models change:
 ### Performance Monitoring
 
 Continuous tracking:
+
 - Backtesting results
 - Exception reports
 - User feedback

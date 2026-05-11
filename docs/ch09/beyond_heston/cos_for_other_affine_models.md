@@ -3,6 +3,7 @@
 The COS method requires only one model-specific input: the characteristic function $\phi(u)$. Everything else---the cosine expansion, payoff coefficients, truncation rule, and summation---is model-independent. This universality means the COS method applies immediately to any model with a known characteristic function. This section develops the characteristic functions for four important model families beyond Heston---Bates (SVJ), Variance Gamma, CGMY/tempered stable, and NIG---and explains the model-specific considerations for applying the COS method to each.
 
 !!! info "Prerequisites"
+
     - [COS Pricing Formula](../cos_method/cos_pricing_formula.md) (the model-independent pricing formula)
     - [Truncation to Finite Domain](../cos_method/truncation_to_finite_domain.md) (cumulant-based truncation)
     - [Error Analysis and Convergence](../cos_method/error_analysis_and_convergence.md) (convergence rates)

@@ -74,7 +74,7 @@ $$
 Under the annuity measure:
 
 $$
-S_{m,n}(t) \text{ is a martingale under } \mathbb{Q}^A.
+S_{m,n}(t) \text{ is a martingale under } \mathbb{Q}^A
 $$
 
 ---

@@ -14,7 +14,7 @@ Rather than repeating basic definitions already covered in earlier chapters, thi
     
     - [Itô Integral Construction](../../ch03/ito_integral/ito_integral_construction.md)
     - [Itô Isometry](../../ch03/ito_integral/ito_isometry.md)
-    - [Martingales](../../ch02/filtration_and_martingales/martingales.md)
+    - [Martingales](../../ch02/filtration_and_martingale/martingale.md)
 
 ---
 
@@ -463,7 +463,7 @@ In a two-dimensional Brownian filtration with $\mathbf{W}_t = (W_t^1, W_t^2)$, a
 Consider a European call option in the Black–Scholes model. The delta hedge is $\Delta_t = \Phi(d_1(t, S_t))$. Identify the MRT integrand $\psi_t$ in terms of the Black–Scholes Greeks and model parameters. Verify dimensionally that $\Delta_t = \psi_t / (\sigma \tilde{S}_t)$ is consistent.
 
 ??? success "Solution to Exercise 7"
-    The Black–Scholes call price is $V_t = S_t\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)$, and the delta is $\Delta_t = \Phi(d_1(t, S_t))$.
+    The Black–Scholes call price is $V_t = S_t\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)$, and the delta is $\Delta_t = \Phi(d_1(t, S_t))$.
 
     The discounted option price satisfies:
 
@@ -474,10 +474,10 @@ Consider a European call option in the Black–Scholes model. The delta hedge is
     Since $d\tilde{V}_t = \Delta_t\,d\tilde{S}_t = \Delta_t \sigma \tilde{S}_t\,dW_t^{\mathbb{Q}}$, we identify:
 
     $$
-    \psi_t = \Delta_t \cdot \sigma \tilde{S}_t = \Phi(d_1) \cdot \sigma S_t e^{-rt}
+    \psi_t = \Delta_t \cdot \sigma \tilde{S}_t = \mathcal{N}(d_1) \cdot \sigma S_t e^{-rt}
     $$
 
-    **Dimensional check**: $\psi_t$ has the dimension of "dollars" (same as $\tilde{V}_t$, since $dW_t$ is dimensionless). Indeed, $\Delta_t = \Phi(d_1)$ is dimensionless, $\sigma$ is dimensionless (per $\sqrt{\text{time}}$), and $\tilde{S}_t = S_t e^{-rt}$ has dimension of dollars. So $\psi_t = \Delta_t \cdot \sigma \tilde{S}_t$ has dimension of dollars, consistent with the MRT representation.
+    **Dimensional check**: $\psi_t$ has the dimension of "dollars" (same as $\tilde{V}_t$, since $dW_t$ is dimensionless). Indeed, $\Delta_t = \mathcal{N}(d_1)$ is dimensionless, $\sigma$ is dimensionless (per $\sqrt{\text{time}}$), and $\tilde{S}_t = S_t e^{-rt}$ has dimension of dollars. So $\psi_t = \Delta_t \cdot \sigma \tilde{S}_t$ has dimension of dollars, consistent with the MRT representation.
 
     Inversely, $\Delta_t = \psi_t / (\sigma \tilde{S}_t)$ is dimensionless (shares), consistent with it being the number of shares in the hedging portfolio.
 

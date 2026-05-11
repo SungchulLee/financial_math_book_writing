@@ -170,13 +170,13 @@ Note that **both the diffusion and drift coefficients change** when $\sigma$ is 
 For a European call:
 
 $$
-\rho_{\text{call}} = KTe^{-rT}\Phi(d_2)
+\rho_{\text{call}} = KTe^{-rT}\mathcal{N}(d_2)
 $$
 
 For a European put:
 
 $$
-\rho_{\text{put}} = -KTe^{-rT}\Phi(-d_2)
+\rho_{\text{put}} = -KTe^{-rT}\mathcal{N}(-d_2)
 $$
 
 Call rho is positive (higher rates increase call values), and put rho is negative.

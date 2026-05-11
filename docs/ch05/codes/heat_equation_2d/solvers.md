@@ -262,3 +262,51 @@ if __name__ == "__main__":
     
         return results
 ```
+
+## Exercises
+
+**Exercise 1.**
+Explain the Thomas algorithm for solving tridiagonal systems. What is its computational complexity compared to general Gaussian elimination?
+
+??? success "Solution to Exercise 1"
+    The Thomas algorithm solves $A\mathbf{x} = \mathbf{d}$ where $A$ is tridiagonal with sub-diagonal $a$, main diagonal $b$, and super-diagonal $c$.
+
+    **Forward elimination**: For $i = 2, \ldots, n$: $w = a_{i-1}/b_{i-1}$, $b_i \leftarrow b_i - w c_{i-1}$, $d_i \leftarrow d_i - w d_{i-1}$.
+
+    **Back substitution**: $x_n = d_n/b_n$; for $i = n-1, \ldots, 1$: $x_i = (d_i - c_i x_{i+1})/b_i$.
+
+    Total cost: $O(n)$ operations (specifically $5n - 4$ multiplications/divisions and $3n - 3$ additions). General Gaussian elimination costs $O(n^3)$, so the Thomas algorithm is dramatically faster for tridiagonal systems.
+
+---
+
+**Exercise 2.**
+Compare the Forward Euler, Backward Euler, and Crank-Nicolson methods for the 2D heat equation in terms of stability and per-step cost.
+
+??? success "Solution to Exercise 2"
+    | Method | Stability | Per-step cost |
+    |--------|-----------|---------------|
+    | Forward Euler | Conditional: $r_x + r_y \le 1/2$ | $O(N_x N_y)$ explicit update |
+    | Backward Euler | Unconditional | $O(N_x N_y)$ sparse solve |
+    | Crank-Nicolson | Unconditional | $O(N_x N_y)$ sparse multiply + solve |
+
+    The sparse solve for 2D problems costs more than the explicit update, but Backward Euler and Crank-Nicolson allow much larger time steps. Crank-Nicolson has the best accuracy ($O(\Delta t^2)$) among the three.
+
+---
+
+**Exercise 3.**
+The ADI method splits the 2D problem into a sequence of 1D problems. Explain why this is advantageous over directly solving the full 2D implicit system.
+
+??? success "Solution to Exercise 3"
+    Direct 2D implicit methods require solving a linear system of size $N_x N_y$. Even with sparse solvers, the cost is $O((N_x N_y)^{3/2})$ for direct methods or requires iterative solvers.
+
+    ADI reduces this to solving $N_y$ tridiagonal systems of size $N_x$ (x-sweep) plus $N_x$ tridiagonal systems of size $N_y$ (y-sweep). Each tridiagonal solve costs $O(N)$, so the total is $O(N_x N_y)$ -- the same as the explicit method but with unconditional stability. ADI also has better cache locality since it operates on rows/columns sequentially.
+
+---
+
+**Exercise 4.**
+The `compare_2d_methods` function tries each method and catches exceptions. Why might Forward Euler fail while the other methods succeed?
+
+??? success "Solution to Exercise 4"
+    Forward Euler fails when the stability condition $r_x + r_y \le 1/2$ is violated. This happens when the time step $\Delta t$ is too large relative to the spatial discretization. The other methods (Backward Euler, Crank-Nicolson, ADI) are unconditionally stable, meaning they produce bounded solutions for any $\Delta t$.
+
+    The `compare_2d_methods` function explicitly checks the stability condition before attempting Forward Euler and raises a `ValueError` if violated. The try-except block catches this and reports the failure while allowing the comparison to continue with the stable methods.

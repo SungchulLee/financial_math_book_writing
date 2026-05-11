@@ -36,10 +36,12 @@ $$
 
 
 Intuition:
+
 - wide spreads imply large uncertainty,
 - tight spreads imply reliable pricing information.
 
 Variants:
+
 - use half-spread as standard deviation,
 - cap weights to avoid a few ultra-tight quotes dominating,
 - add a floor to spreads to prevent infinite weights.
@@ -116,6 +118,7 @@ Think of weights as *the last step* after basic data hygiene.
 
 
 Combine with robust losses (Huber):
+
 - treat large residuals as probable bad data points,
 - avoid a single quote forcing a poor global fit.
 

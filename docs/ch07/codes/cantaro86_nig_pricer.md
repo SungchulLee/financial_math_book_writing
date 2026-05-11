@@ -21,6 +21,7 @@ X_NIG(t) = theta * IG(t) + sigma * W(IG(t))
 where IG(t) ~ InverseGaussian(t, t^2/kappa) is the subordinator.
 
 This file is self-contained and implements:
+
     1. NIG characteristic function (cf_NIG)
     2. Fourier inversion probabilities Q1, Q2
     3. NIG probability density function (NIG_pdf)
@@ -516,3 +517,42 @@ if __name__ == "__main__":
     plt.show()
     print("  Plot saved to nig_density.png")
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Write the characteristic function of the NIG process. Identify the parameters and their roles.
+
+??? success "Solution to Exercise 1"
+    The NIG characteristic function is
+
+    $$
+    \varphi_{\text{NIG}}(u) = \exp\!\Bigl(\frac{t}{\kappa}\Bigl[1 - \sqrt{1 - 2iu\theta\kappa + u^2\sigma^2\kappa}\Bigr]\Bigr)
+    $$
+
+    Parameters: $\sigma$ (volatility), $\theta$ (drift/skewness), $\kappa$ (kurtosis via IG subordinator variance). When $\theta = 0$, the process is symmetric. When $\kappa \to 0$, NIG converges to Brownian motion.
+
+---
+
+**Exercise 2.**
+Compare NIG pricing via Fourier inversion and Monte Carlo. Which is faster for a single option?
+
+??? success "Solution to Exercise 2"
+    Fourier inversion evaluates $\varphi(u)$ at $O(N)$ quadrature points (typically $N = 100$--$200$), taking milliseconds. Monte Carlo requires $O(N_{\text{paths}})$ simulations (10,000--100,000), taking seconds. Fourier inversion is 100--1000x faster for a single European option.
+
+---
+
+**Exercise 3.**
+The NIG density involves the modified Bessel function $K_1$. What numerical challenges arise?
+
+??? success "Solution to Exercise 3"
+    $K_1(z)$ grows exponentially for small $z$ and decays for large $z$, causing overflow/underflow. Remedies: use the scaled Bessel function $e^z K_1(z)$ (available in `scipy.special.k1e`), work in log-space, and use asymptotic expansions for extreme arguments.
+
+---
+
+**Exercise 4.**
+Explain the Levy measure and its role in characterizing the NIG process.
+
+??? success "Solution to Exercise 4"
+    The Levy measure $\nu(dx)$ describes jump intensity and size distribution. For NIG: $\nu(dx) \propto |x|^{-1} K_1(\alpha|x|) e^{\beta x} dx$. It satisfies $\int \nu(dx) = \infty$ (infinite activity: infinitely many small jumps per unit time). The Levy-Khintchine formula connects $\nu$ to the characteristic function, providing a complete description through the jump structure.

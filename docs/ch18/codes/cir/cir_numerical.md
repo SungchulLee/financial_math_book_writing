@@ -252,3 +252,81 @@ class CIRRiskMetrics:
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+The CIR transition density involves the non-central chi-squared distribution. Given parameters $\kappa = 0.2$, $\theta = 0.05$, $\sigma = 0.04$, $r_{\text{current}} = 0.03$, and $\Delta t = 1$, compute the scaling factor $c$ and the non-centrality parameter $\lambda$.
+
+??? success "Solution to Exercise 1"
+    The scaling factor is
+
+    $$
+    c = \frac{2\kappa}{\sigma^2(1 - e^{-\kappa \Delta t})} = \frac{2 \times 0.2}{0.04^2 \times (1 - e^{-0.2})} = \frac{0.4}{0.0016 \times 0.1813} = \frac{0.4}{0.000290} \approx 1379.3.
+    $$
+
+    The non-centrality parameter is
+
+    $$
+    \lambda = c \cdot r_{\text{current}} \cdot e^{-\kappa \Delta t} = 1379.3 \times 0.03 \times e^{-0.2} \approx 1379.3 \times 0.03 \times 0.8187 \approx 33.87.
+    $$
+
+---
+
+**Exercise 2.**
+Explain the difference between the Euler-Maruyama approximation and the exact simulation step for the CIR model. When would you prefer one over the other?
+
+??? success "Solution to Exercise 2"
+    The Euler-Maruyama scheme discretizes the SDE directly:
+
+    $$
+    r_{i+1} = r_i + \kappa(\theta - r_i)\,\Delta t + \sigma\sqrt{r_i}\,\Delta W_i.
+    $$
+
+    It introduces discretization error of order $O(\sqrt{\Delta t})$ and can produce negative values. The exact simulation uses the known transition distribution: $c \cdot r_{t+\Delta t}$ follows a non-central chi-squared distribution with degrees of freedom $2q + 2$ and non-centrality $\lambda = c \cdot r_t \cdot e^{-\kappa \Delta t}$. The exact method has no discretization error regardless of time step size, but requires sampling from the non-central chi-squared distribution, which is computationally more expensive per step. Prefer exact simulation for accuracy (e.g., pricing or calibration), and Euler-Maruyama for speed in exploratory analysis with fine time grids.
+
+---
+
+**Exercise 3.**
+The calibration method minimizes the sum of squared errors between model yields and observed yields. If the observed yield curve has maturities $T \in \{1, 5, 10, 30\}$ with yields $\{2\%, 3\%, 3.5\%, 4\%\}$, write the objective function explicitly.
+
+??? success "Solution to Exercise 3"
+    Let $\hat{y}(T; r_0, \theta, \kappa, \sigma)$ denote the CIR model yield at maturity $T$. The objective function is
+
+    $$
+    f(r_0, \theta, \kappa, \sigma) = \sum_{i=1}^{4} \bigl[\hat{y}(T_i; r_0, \theta, \kappa, \sigma) - y_i^{\text{obs}}\bigr]^2,
+    $$
+
+    which expands to
+
+    $$
+    f = [\hat{y}(1) - 0.02]^2 + [\hat{y}(5) - 0.03]^2 + [\hat{y}(10) - 0.035]^2 + [\hat{y}(30) - 0.04]^2.
+    $$
+
+    The model yield is $\hat{y}(T) = -\ln P(r_0, 0, T)/T$, where $P$ is the CIR bond price. The optimization finds $(r_0^*, \theta^*, \kappa^*, \sigma^*)$ that minimizes $f$ subject to positivity constraints.
+
+---
+
+**Exercise 4.**
+Using the numerical duration and convexity formulas in the code, compute the approximate bond price change when the rate shifts from $r = 0.04$ to $r = 0.045$, given a duration of $D = 7.5$ and convexity of $C = 65$. The current bond price is $P = 0.70$.
+
+??? success "Solution to Exercise 4"
+    The second-order Taylor approximation for the bond price change is
+
+    $$
+    \Delta P \approx -D \cdot \Delta r \cdot P + \frac{1}{2}\,C \cdot (\Delta r)^2 \cdot P,
+    $$
+
+    where $\Delta r = 0.005$. Substituting:
+
+    $$
+    \Delta P \approx -7.5 \times 0.005 \times 0.70 + \frac{1}{2} \times 65 \times (0.005)^2 \times 0.70.
+    $$
+
+    Computing each term:
+
+    $$
+    \Delta P \approx -0.02625 + 0.5 \times 65 \times 0.000025 \times 0.70 = -0.02625 + 0.000569 \approx -0.02568.
+    $$
+
+    The bond price decreases by approximately $0.0257$, from $0.70$ to about $0.6743$.

@@ -37,6 +37,7 @@ $$
 $$
 
 **Approaches:**
+
 - Multiple VaR methodologies (historical, parametric, Monte Carlo)
 - Alternative distributional assumptions
 - Different calibration windows
@@ -44,6 +45,7 @@ $$
 ### 2. Conservative Assumptions
 
 When uncertain, err on the side of caution:
+
 - Use confidence intervals, not point estimates
 - Apply buffers for model uncertainty
 - Choose conservative calibration when in doubt
@@ -51,6 +53,7 @@ When uncertain, err on the side of caution:
 ### 3. Stress Testing Priority
 
 Stress test results should inform decisions more than statistical models:
+
 - Scenarios don't require probability estimates
 - Capture tail risks models may miss
 - Force consideration of "what if"
@@ -58,11 +61,13 @@ Stress test results should inform decisions more than statistical models:
 ### 4. Simplicity Over Complexity
 
 Complex models:
+
 - Harder to understand and validate
 - More parameters to estimate (overfitting risk)
 - More failure modes
 
 Simple models:
+
 - Transparent limitations
 - Robust to data issues
 - Easier to monitor
@@ -100,6 +105,7 @@ $$
 ### Stress Testing Integration
 
 Robust framework combines:
+
 - Statistical measures (VaR, ES)
 - Stress test results
 - Scenario analysis
@@ -117,6 +123,7 @@ $$
 $$
 
 **Prudent valuation adjustments:**
+
 - AVA for model uncertainty
 - AVA for close-out costs
 - AVA for market price uncertainty
@@ -124,6 +131,7 @@ $$
 ### Conservative Limits
 
 Set limits that:
+
 - Are below model-implied thresholds
 - Have cushion for model error
 - Are tightened during uncertainty
@@ -135,6 +143,7 @@ Set limits that:
 ### Risk Culture
 
 Robust frameworks require:
+
 - Healthy skepticism of models
 - Encouragement of challenge
 - No punishment for questioning assumptions
@@ -195,6 +204,7 @@ Resample data to generate distribution of model outputs.
 ### Kill Switches
 
 Predefined triggers for model override:
+
 - Backtesting failures beyond threshold
 - Unusual market conditions
 - Extreme model outputs
@@ -208,6 +218,7 @@ Predefined triggers for model override:
 ### 1. Model Inventory
 
 Maintain complete list of models:
+
 - Purpose and use
 - Key assumptions
 - Known limitations
@@ -227,6 +238,7 @@ Categorize models by importance:
 ### 3. Model Risk Reporting
 
 Regular reports including:
+
 - Model performance metrics
 - Backtesting results
 - Model changes
@@ -236,6 +248,7 @@ Regular reports including:
 ### 4. Escalation Framework
 
 Clear protocols for:
+
 - Model failures
 - Validation issues
 - Limit breaches
@@ -248,6 +261,7 @@ Clear protocols for:
 ### Recognition
 
 Signs of model failure:
+
 - Repeated backtesting breaches
 - Implausible outputs
 - Inconsistency across models
@@ -263,6 +277,7 @@ Signs of model failure:
 ### Post-Mortem
 
 After significant failures:
+
 - Document what happened
 - Identify warning signs missed
 - Recommend improvements

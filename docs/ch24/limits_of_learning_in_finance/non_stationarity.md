@@ -9,6 +9,7 @@ A fundamental limitation of learning in finance is **non-stationarity**: the sta
 
 
 A process is non-stationary if:
+
 - distributions evolve over time,
 - parameters drift,
 - structural breaks occur.
@@ -21,6 +22,7 @@ Most financial time series exhibit non-stationarity.
 
 
 Non-stationarity arises from:
+
 - changing market regimes,
 - regulatory and institutional shifts,
 - technological innovation,
@@ -34,6 +36,7 @@ These changes invalidate static models.
 
 
 Non-stationarity causes:
+
 - degradation of predictive performance,
 - instability of parameter estimates,
 - misleading backtests.
@@ -46,6 +49,7 @@ Models trained on past data may fail abruptly.
 
 
 Common approaches include:
+
 - rolling-window estimation,
 - adaptive and online learning,
 - regime-switching models,

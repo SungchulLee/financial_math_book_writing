@@ -39,6 +39,7 @@ t \mapsto \text{PFE}_\alpha(t), \quad t \in [0, T]
 $$
 
 **Characteristics:**
+
 - Always non-negative
 - Typically exceeds EE profile
 - Shape depends on product type and volatility
@@ -100,6 +101,7 @@ $$
 $$
 
 **Uses:**
+
 - Credit limit approval
 - Counterparty exposure limits
 - Stress testing benchmarks
@@ -115,6 +117,7 @@ $$
 - Declines toward maturity (pull-to-par)
 
 **Example:** 10-year receiver swap
+
 - Peak PFE at ~5 years
 - PFE at maturity ≈ 0
 
@@ -181,6 +184,7 @@ $$
 with equality only for perfectly correlated exposures.
 
 **Implication:** 
+
 - Cannot simply sum PFEs across counterparties
 - Netting benefits apply to PFE
 - Diversification reduces portfolio PFE
@@ -196,6 +200,7 @@ $$
 $$
 
 Credit limits are set based on:
+
 - Counterparty creditworthiness
 - Internal risk appetite
 - Regulatory requirements
@@ -203,6 +208,7 @@ Credit limits are set based on:
 ### Pre-Deal Check
 
 Before executing a trade:
+
 1. Compute incremental PFE
 2. Check against available limit
 3. Approve or reject
@@ -222,6 +228,7 @@ $$
 $$
 
 **Properties:**
+
 - Can be negative (diversification benefit)
 - Depends on correlation with existing portfolio
 - Used for trade-level limit allocation
@@ -245,6 +252,7 @@ $$
 $$
 
 **Effect:** Collateral significantly reduces PFE but:
+
 - MPOR creates residual exposure
 - Threshold $H$ creates a floor
 - Collateral disputes can increase effective MPOR
@@ -260,6 +268,7 @@ $$
 $$
 
 **Treatment:**
+
 - Stressed PFE calculations
 - Explicit correlation modeling
 - Conservative add-ons
@@ -279,6 +288,7 @@ $$
 $$
 
 where:
+
 - EAD = Exposure at Default
 - RC = Replacement Cost
 - PFE = Potential Future Exposure (add-on)
@@ -287,6 +297,7 @@ where:
 ### Internal Models Method (IMM)
 
 Advanced banks can use internal PFE models:
+
 - Subject to regulatory approval
 - Backtesting requirements
 - Capital multipliers

@@ -16,6 +16,7 @@
 ### Principle
 
 A good risk model should:
+
 - Predict exceedances at the stated confidence level
 - Not be too conservative (wasteful) or too aggressive (unsafe)
 
@@ -46,6 +47,7 @@ LR_{uc} = -2 \ln\left[\frac{(1-\alpha)^{n_0} \alpha^{n_1}}{\hat{p}^{n_1} (1-\hat
 $$
 
 where:
+
 - $n_1$ = number of exceedances
 - $n_0 = n - n_1$ = non-exceedances
 - $\hat{p} = n_1/n$ = observed exceedance rate
@@ -59,6 +61,7 @@ Under $H_0$: $LR_{uc} \sim \chi^2(1)$
 Good VaR should have **independent** exceedances (no clustering).
 
 **Transition probabilities:**
+
 - $\pi_{01}$ = P(exceedance today | no exceedance yesterday)
 - $\pi_{11}$ = P(exceedance today | exceedance yesterday)
 
@@ -147,6 +150,7 @@ Test using Kolmogorov-Smirnov or Anderson-Darling.
 ### Purpose
 
 Translate risk measures into operational controls:
+
 - Prevent excessive risk-taking
 - Ensure capital adequacy
 - Enable decentralized decision-making
@@ -180,6 +184,7 @@ $$
 ### Limit Framework
 
 **Hierarchy:**
+
 1. Firm-wide risk appetite
 2. Business unit limits
 3. Desk limits
@@ -216,6 +221,7 @@ $$
 ### Limit Exceptions
 
 Temporary limit increases require:
+
 - Business justification
 - Senior approval
 - Time limit
@@ -228,12 +234,14 @@ Temporary limit increases require:
 ### Using Backtesting for Limit Calibration
 
 Poor backtesting results may indicate:
+
 - Model underestimates risk → Tighten limits
 - Model overestimates risk → Limits may be too conservative
 
 ### Backtesting of Limit Utilization
 
 Track:
+
 - Frequency of approaching limits
 - Causes of breaches
 - Relationship to P&L outcomes

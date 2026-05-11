@@ -692,7 +692,7 @@ $$
     \lim_{\xi \to 0} G_\xi(x) = \exp(-e^{-x}) = G_0(x)
     $$
 
-    This confirms that the Gumbel distribution is the limiting case of the GEV family as $\xi \to 0$, providing a continuous bridge between the Frechet ($\xi > 0$) and Weibull ($\xi < 0$) types. $\blacksquare$
+    This confirms that the Gumbel distribution is the limiting case of the GEV family as $\xi \to 0$, providing a continuous bridge between the Frechet ($\xi > 0$) and Weibull ($\xi < 0$) types. $\square$
 
 ---
 

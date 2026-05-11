@@ -1479,3 +1479,51 @@ def numerical_pricing(S0: float, K: float, T: float, r: float, sigma: float, q: 
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+Derive the formulas for $d_1$ and $d_2$ in the Black-Scholes model with continuous dividends. Show that $d_1 - d_2 = \sigma\sqrt{T}$.
+
+??? success "Solution to Exercise 1"
+    $$
+    d_1 = \frac{\ln(S/K) + (r - q + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \quad d_2 = \frac{\ln(S/K) + (r - q - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+    $$
+
+    Subtracting:
+
+    $$
+    d_1 - d_2 = \frac{(r - q + \frac{1}{2}\sigma^2)T - (r - q - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}} = \frac{\sigma^2 T}{\sigma\sqrt{T}} = \sigma\sqrt{T}
+    $$
+
+---
+
+**Exercise 2.**
+The `implied_volatility` function uses Newton-Raphson with vega as the derivative. Explain why vega is always positive, which ensures the BS price is monotonically increasing in $\sigma$.
+
+??? success "Solution to Exercise 2"
+    Vega is $\nu = S e^{-qT}\phi(d_1)\sqrt{T}$. Since $S > 0$, $e^{-qT} > 0$, $\phi(d_1) > 0$ (Gaussian PDF is always positive), and $\sqrt{T} > 0$, we have $\nu > 0$ for all valid parameters.
+
+    Monotonicity of BS price in $\sigma$ follows: $\partial C/\partial\sigma = \nu > 0$, so the call price strictly increases with volatility. This guarantees that the implied volatility equation $C_{\text{BS}}(\sigma) = C_{\text{market}}$ has a unique solution (assuming $C_{\text{market}}$ is in the valid range), and Newton-Raphson converges from any reasonable starting point.
+
+---
+
+**Exercise 3.**
+The utility module includes GBM path simulation. Write the Euler-Maruyama discretization for GBM and the exact (log-normal) simulation. Which is more accurate per step?
+
+??? success "Solution to Exercise 3"
+    **Euler-Maruyama**: $S_{t+\Delta t} = S_t + (r-q)S_t\Delta t + \sigma S_t\sqrt{\Delta t}\,Z$
+
+    **Exact simulation**: $S_{t+\Delta t} = S_t\exp\bigl((r-q-\frac{1}{2}\sigma^2)\Delta t + \sigma\sqrt{\Delta t}\,Z\bigr)$
+
+    The exact method is second-order accurate (no discretization error in the SDE sense), while Euler-Maruyama has $O(\Delta t)$ weak error and $O(\sqrt{\Delta t})$ strong error. For GBM, the exact method is always preferred because it preserves positivity of $S$ and has no time-stepping error.
+
+---
+
+**Exercise 4.**
+Explain the `compute_batch_implied_volatility` function. Why is batch computation useful for volatility surface construction?
+
+??? success "Solution to Exercise 4"
+    The function computes implied volatility for many (strike, maturity) pairs simultaneously. This is needed for volatility surface construction, where market prices are observed for a grid of strikes $K_1, \ldots, K_m$ and maturities $T_1, \ldots, T_n$.
+
+    Batch computation is efficient because: (1) the Newton-Raphson iterations can be vectorized, (2) initial guesses for neighboring strikes can be bootstrapped from already-computed values (warm starting), and (3) the resulting $\sigma_{\text{imp}}(K, T)$ surface reveals market-implied information about future volatility dynamics, skewness, and kurtosis.

@@ -268,14 +268,14 @@ The CIR model provides closed-form European bond option prices through the non-c
 
 ---
 
-**Exercise 3.** The CIR call option formula involves two non-central chi-squared CDF evaluations with different parameters $\lambda_1$ and $\lambda_2$. Explain the role of each term by analogy with the Black-Scholes formula $C = S\,\Phi(d_1) - Ke^{-rT}\Phi(d_2)$. Which CIR term corresponds to the "delta-weighted asset value" and which to the "discounted strike probability"?
+**Exercise 3.** The CIR call option formula involves two non-central chi-squared CDF evaluations with different parameters $\lambda_1$ and $\lambda_2$. Explain the role of each term by analogy with the Black-Scholes formula $C = S\,\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$. Which CIR term corresponds to the "delta-weighted asset value" and which to the "discounted strike probability"?
 
 ??? success "Solution to Exercise 3"
 
-    The Black-Scholes call formula is $C = S\,\Phi(d_1) - Ke^{-rT}\Phi(d_2)$, where:
+    The Black-Scholes call formula is $C = S\,\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$, where:
 
-    - The first term $S\,\Phi(d_1)$ is the delta-weighted asset value --- the present value of the asset conditional on exercise, weighted by the probability of exercise under the stock-numeraire measure.
-    - The second term $Ke^{-rT}\Phi(d_2)$ is the discounted strike times the risk-neutral exercise probability.
+    - The first term $S\,\mathcal{N}(d_1)$ is the delta-weighted asset value --- the present value of the asset conditional on exercise, weighted by the probability of exercise under the stock-numeraire measure.
+    - The second term $Ke^{-rT}\mathcal{N}(d_2)$ is the discounted strike times the risk-neutral exercise probability.
 
     In the CIR bond option formula:
 
@@ -283,9 +283,9 @@ The CIR model provides closed-form European bond option prices through the non-c
     C(t) = P(t,S)\,\chi^2(x_1;\,d,\,\lambda_1) - K\,P(t,T)\,\chi^2(x_2;\,d,\,\lambda_2)
     $$
 
-    - **First term** $P(t,S)\,\chi^2(x_1; d, \lambda_1)$: This is the analogue of $S\,\Phi(d_1)$. Here $P(t,S)$ plays the role of the underlying asset price $S$, and $\chi^2(x_1; d, \lambda_1)$ is the exercise probability under a measure change that uses $P(t,S)$ as numeraire (the $S$-forward measure). The parameter shift from $\lambda_2$ to $\lambda_1$ (which involves $B(S-T)$) reflects this additional measure change, analogous to the shift from $d_2$ to $d_1$ in Black-Scholes.
+    - **First term** $P(t,S)\,\chi^2(x_1; d, \lambda_1)$: This is the analogue of $S\,\mathcal{N}(d_1)$. Here $P(t,S)$ plays the role of the underlying asset price $S$, and $\chi^2(x_1; d, \lambda_1)$ is the exercise probability under a measure change that uses $P(t,S)$ as numeraire (the $S$-forward measure). The parameter shift from $\lambda_2$ to $\lambda_1$ (which involves $B(S-T)$) reflects this additional measure change, analogous to the shift from $d_2$ to $d_1$ in Black-Scholes.
 
-    - **Second term** $K\,P(t,T)\,\chi^2(x_2; d, \lambda_2)$: This is the analogue of $Ke^{-rT}\Phi(d_2)$. Here $K\,P(t,T)$ is the present value of the strike, and $\chi^2(x_2; d, \lambda_2)$ is the exercise probability under the $T$-forward measure $\mathbb{Q}^T$.
+    - **Second term** $K\,P(t,T)\,\chi^2(x_2; d, \lambda_2)$: This is the analogue of $Ke^{-rT}\mathcal{N}(d_2)$. Here $K\,P(t,T)$ is the present value of the strike, and $\chi^2(x_2; d, \lambda_2)$ is the exercise probability under the $T$-forward measure $\mathbb{Q}^T$.
 
     The key structural parallel is that both formulas decompose the call price into "asset leg minus strike leg," each weighted by an exercise probability under a different numeraire measure.
 
@@ -393,7 +393,7 @@ The CIR model provides closed-form European bond option prices through the non-c
     \lambda_1 = \frac{2\phi^2 r_t e^{\gamma(T-t)}}{\phi + \psi + B(S-T)}, \qquad \lambda_2 = \frac{2\phi^2 r_t e^{\gamma(T-t)}}{\phi + \psi}
     $$
 
-    Since $B(S-T) > 0$, the denominator of $\lambda_1$ is larger than that of $\lambda_2$, so $\lambda_1 < \lambda_2$. At the ATM forward condition, the two chi-squared CDFs have similar magnitudes (analogous to $\Phi(d_1) \approx \Phi(d_2)$ in Black-Scholes ATM), but they are not exactly equal because the non-central chi-squared distribution is not symmetric and the parameter shift affects the distribution shape.
+    Since $B(S-T) > 0$, the denominator of $\lambda_1$ is larger than that of $\lambda_2$, so $\lambda_1 < \lambda_2$. At the ATM forward condition, the two chi-squared CDFs have similar magnitudes (analogous to $\mathcal{N}(d_1) \approx \mathcal{N}(d_2)$ in Black-Scholes ATM), but they are not exactly equal because the non-central chi-squared distribution is not symmetric and the parameter shift affects the distribution shape.
 
 ---
 

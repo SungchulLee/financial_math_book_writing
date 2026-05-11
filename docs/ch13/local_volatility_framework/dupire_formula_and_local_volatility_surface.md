@@ -22,6 +22,7 @@ $$
 
 
 where:
+
 - $\sigma_{\text{loc}}(S, t)$ is a deterministic function of spot and time
 - $r$ is the risk-free rate
 - $q$ is the dividend yield
@@ -85,6 +86,7 @@ $$
 when expressed in forward coordinates.
 
 **Interpretation:** Local volatility at strike $K$ and time $T$ is determined entirely by:
+
 - Time derivative of call price (theta)
 - Second strike derivative (gamma via Breeden-Litzenberger)
 
@@ -155,6 +157,7 @@ $$
 
 
 At expiry, the call payoff creates a kink at $S = K$:
+
 - $C(S, T, T) = \max(S - K, 0)$
 - $\frac{\partial C}{\partial S}\big|_{S=K, t=T} = 1$ (jump in derivative)
 - $\frac{\partial^2 C}{\partial S^2}\big|_{S=K, t=T}$ contains Dirac delta
@@ -259,6 +262,7 @@ reproduces the entire call price surface.
 
 
 The local volatility model is **perfectly calibrated** to vanilla options by construction:
+
 - Input: Market call prices $C_{\text{market}}(K, T)$
 - Output: Local volatility surface $\sigma_{\text{loc}}(K, T)$ via Dupire's formula
 - Result: Model prices exactly match market prices for all $(K, T)$
@@ -278,6 +282,7 @@ $$
 
 
 **Intuition:** 
+
 - **Implied volatility** is the constant volatility that, when plugged into Black-Scholes, matches the market price
 - **Local volatility** is the instantaneous volatility the process will have if it reaches level $K$ at time $T$
 
@@ -287,6 +292,7 @@ The relationship is complex and involves the entire smile surface.
 
 
 In Black-Scholes, all options on the same underlying have the same implied volatility. In local volatility:
+
 - Each strike-maturity pair has its own implied volatility
 - The **smile** $\sigma_{\text{IV}}(K)$ and **term structure** $\sigma_{\text{IV}}(T)$ are endogenous
 - The model generates smile dynamics: as spot moves, the smile changes
@@ -329,6 +335,7 @@ $$
 Taking derivatives of noisy data amplifies errors. Small errors in $C$ lead to large errors in $\sigma_{\text{loc}}$.
 
 **Solution:** 
+
 - Smooth the call price surface before differentiation (e.g., spline interpolation)
 - Use total variation regularization
 - Impose arbitrage-free constraints (convexity in $K$, monotonicity in $T$)
@@ -337,6 +344,7 @@ Taking derivatives of noisy data amplifies errors. Small errors in $C$ lead to l
 Near the wings, $\frac{\partial^2 C}{\partial K^2} \approx 0$, causing $\sigma_{\text{loc}} \to \infty$.
 
 **Solution:**
+
 - Extrapolate wings using parametric forms (e.g., power law tails)
 - Cap local volatility at reasonable bounds
 - Use regularization penalties for extreme values
@@ -438,11 +446,13 @@ This is a PDE for $C$ in terms of $\sigma_{\text{loc}}$. Dupire's formula invert
 
 **Theorem 4.2.4** (Well-Posedness)  
 If $C(K, T)$ is:
+
 1. $C^2$ in $K$ and $C^1$ in $T$
 2. Satisfies no-arbitrage constraints ($C_K \leq 0$, $C_{KK} \geq 0$, $C_T \geq 0$)
 3. Has suitable boundary and initial conditions
 
 then the local volatility $\sigma_{\text{loc}}(K, T)$ given by Dupire's formula is:
+
 - Positive
 - Bounded
 - Yields a well-posed SDE
@@ -509,6 +519,7 @@ $$
 
 
 establishes a **model-free, one-to-one relationship** between:
+
 - Observable European call prices $C(K, T)$
 - Local volatility function $\sigma_{\text{loc}}(S, t)$
 

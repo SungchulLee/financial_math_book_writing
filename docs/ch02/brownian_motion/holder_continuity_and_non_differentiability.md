@@ -291,6 +291,7 @@ plt.show()
 ## Summary
 
 !!! abstract "Key Results"
+
     1. **Hölder regularity**: Brownian motion is almost surely Hölder-$\alpha$ for
        every $\alpha < \tfrac{1}{2}$, established via Kolmogorov's criterion with
        $\mathbb{E}[|W_t - W_s|^p] = C_p\,|t-s|^{p/2}$.

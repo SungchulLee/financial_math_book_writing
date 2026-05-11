@@ -3,6 +3,7 @@
 The previous sections developed the SABR model piece by piece: SDE and parameters, Hagan formula, calibration procedure, Greeks, and arbitrage corrections. This section assembles those pieces into complete workflows that mirror what a practitioner executes every day. We calibrate the SABR model to representative swaption market data, price a swaption from the calibrated parameters, compute Greeks suitable for hedging, and critically compare the model output with the market. Each step is presented with explicit numerical calculations that the reader can reproduce.
 
 !!! info "Prerequisites"
+
     - [SABR SDE and Parameters](sabr_sde_and_parameters.md) (model definition)
     - [Hagan Implied Volatility Approximation](hagan_implied_volatility_approximation.md) (Hagan formula)
     - [Calibration to Swaption Smiles](calibration_to_swaption_smiles.md) (calibration procedure)
@@ -135,7 +136,7 @@ This was already computed in the validation step above.
 The Black formula for a payer swaption with annuity $A$, forward rate $F$, strike $K$, expiry $T$, and implied volatility $\sigma_B$ is:
 
 $$
-V_{\text{payer}} = A \left[F\,\Phi(d_1) - K\,\Phi(d_2)\right]
+V_{\text{payer}} = A \left[F\,\mathcal{N}(d_1) - K\,\mathcal{N}(d_2)\right]
 $$
 
 where:
@@ -155,11 +156,11 @@ d_2 = -0.08621 - 0.43756 = -0.52377
 $$
 
 $$
-\Phi(d_1) = \Phi(-0.08621) = 0.46565
+\mathcal{N}(d_1) = \Phi(-0.08621) = 0.46565
 $$
 
 $$
-\Phi(d_2) = \Phi(-0.52377) = 0.30024
+\mathcal{N}(d_2) = \Phi(-0.52377) = 0.30024
 $$
 
 $$
@@ -187,7 +188,7 @@ $$
 **Black delta:**
 
 $$
-\Delta_{\text{Black}} = \Phi(d_1) = 0.46565
+\Delta_{\text{Black}} = \mathcal{N}(d_1) = 0.46565
 $$
 
 **Black vega (per unit annuity):**

@@ -9,6 +9,7 @@ Under the Black--Scholes model, forward-start options have a simple closed form 
 This section develops the pricing theory for forward-start options under Heston, derives the conditional characteristic function, analyzes the **forward implied volatility smile**, and connects the results to cliquet pricing.
 
 !!! info "Prerequisites"
+
     - [Closed-Form Characteristic Function](../heston_cf/closed_form_characteristic_function.md) (Heston CF)
     - [COS Applied to Heston](../heston_cos/cos_applied_to_heston.md) (COS pricing)
     - [Affine Structure and Riccati](../model_definition/affine_structure_and_riccati.md) (Riccati system)
@@ -230,6 +231,7 @@ Two approaches are common:
 | 1.10 | \$0.80 | 20.0% |
 
 !!! example "Observations"
+
     1. The forward smile is **negatively skewed**: lower moneyness ratios (OTM puts) have higher implied volatility, consistent with the negative $\rho = -0.7$.
     2. The forward ATM implied volatility (20.5%) is close to $\sqrt{\theta} = 20\%$ because the 6-month delay allows significant mean reversion ($e^{-2 \times 0.5} = e^{-1} \approx 0.37$).
     3. Under Black--Scholes, all forward IVs would be identically 20% (the constant vol). The spread of 2.1% across strikes (from 20.0% to 22.1%) quantifies the stochastic volatility effect on the forward smile.
@@ -247,6 +249,7 @@ Two approaches are common:
 | Forward smile | Non-flat under Heston; flat under local vol |
 
 !!! abstract "Key Takeaways"
+
     1. **Conditional CF preserves affine structure**: Given $v_{T_1}$, the forward return has the same Heston CF structure, enabling semi-analytical inner pricing.
 
     2. **Two-step integration**: Price by first computing the Heston call for each $v_{T_1}$ value, then averaging over the CIR distribution of $v_{T_1}$.
@@ -284,7 +287,7 @@ A forward-start ATM call ($\alpha = 1$) has payoff $(S_T - S_{T_1})^+$ with $T_1
     where $\tau = T - T_1 = 0.5$. The Black--Scholes call with spot $= 1$, strike $= 1$ is:
 
     $$
-    C_{\text{BS}}(1, 1, \sigma, r - q, \tau) = e^{-q\tau}\Phi(d_1) - e^{-r\tau}\Phi(d_2)
+    C_{\text{BS}}(1, 1, \sigma, r - q, \tau) = e^{-q\tau}\mathcal{N}(d_1) - e^{-r\tau}\mathcal{N}(d_2)
     $$
 
     Wait --- since we are pricing the forward return $R = S_T/S_{T_1}$, the "underlying" is $R$ with forward $= e^{(r-q)\tau}$. The relevant formulas are:
@@ -318,13 +321,13 @@ A forward-start ATM call ($\alpha = 1$) has payoff $(S_T - S_{T_1})^+$ with $T_1
     The forward-start price is:
 
     $$
-    V_0^{\text{BS}} = S_0 e^{-qT_1} \cdot e^{-r\tau} \cdot (e^{-q\tau}\Phi(d_1) - \Phi(d_2)) \cdot S_0
+    V_0^{\text{BS}} = S_0 e^{-qT_1} \cdot e^{-r\tau} \cdot (e^{-q\tau}\mathcal{N}(d_1) - \mathcal{N}(d_2)) \cdot S_0
     $$
 
     Simplifying with the standard formula for a forward-start scaled by $S_0 e^{-qT_1}$:
 
     $$
-    V_0^{\text{BS}} = S_0 e^{-qT} \Phi(d_1) - S_0 e^{-qT_1} e^{-r\tau} \Phi(d_2)
+    V_0^{\text{BS}} = S_0 e^{-qT} \mathcal{N}(d_1) - S_0 e^{-qT_1} e^{-r\tau} \mathcal{N}(d_2)
     $$
 
     For $S_0 = 100$, $q = 0.01$, $r = 0.03$, $T_1 = 0.5$, $T = 1.0$, $\tau = 0.5$:

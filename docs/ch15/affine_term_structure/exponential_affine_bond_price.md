@@ -501,10 +501,10 @@ Write the Riccati system for $B_1(\tau)$ and $B_2(\tau)$, and explain why $B_2(\
     $$
 
     $$
-    = -\frac{\tau}{\kappa} + \frac{1 - e^{-\kappa\tau}}{\kappa^2} = \frac{B(\tau) + \tau \cdot 0}{\,} = B(\tau)/\kappa + ..
+    = -\frac{\tau}{\kappa} + \frac{1 - e^{-\kappa\tau}}{\kappa^2}
     $$
 
-    More directly: $\int_0^\tau B(s)\,ds = -\frac{1}{\kappa}[\tau + B(\tau)]$ since $\int_0^\tau (1 - e^{-\kappa s})\,ds = \tau - (1 - e^{-\kappa\tau})/\kappa = \tau + B(\tau)\kappa/1$... Let me compute carefully:
+    More directly, compute the integral carefully:
 
     $$
     \int_0^\tau (1 - e^{-\kappa s})\,ds = \tau - \left[-\frac{e^{-\kappa s}}{\kappa}\right]_0^\tau = \tau - \frac{1 - e^{-\kappa\tau}}{\kappa} = \tau + B(\tau)

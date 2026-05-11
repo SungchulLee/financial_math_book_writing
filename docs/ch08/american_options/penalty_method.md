@@ -237,6 +237,7 @@ The first two components are pinned to the payoff (up to $O(1/\rho)$ error), whi
 | **Conditioning** | Degrades with large $\rho$ | Unaffected |
 
 !!! tip "When to Use Which"
+
     - **Penalty method**: Preferred when an existing PDE solver infrastructure is available, or in higher dimensions where PSOR is less natural. The penalty term is easy to add to any implicit time-stepping code.
     - **PSOR**: Preferred when exact LCP solutions are required without approximation error, or when conditioning is a concern.
 

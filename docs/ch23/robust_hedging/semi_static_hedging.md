@@ -5,11 +5,13 @@
 
 
 Semi-static hedging represents a middle ground between fully dynamic hedging (continuous rebalancing) and purely static hedging (buy-and-hold). This approach constructs hedging portfolios that require:
+
 1. **Initial setup**: A static portfolio of vanilla options and underlying asset
 2. **Discrete adjustments**: Rebalancing only at specific times or when certain conditions are met
 3. **Minimal transactions**: Significantly fewer trades than continuous delta-hedging
 
 Semi-static hedging is particularly valuable because it:
+
 - **Reduces transaction costs**: Fewer trades mean lower frictional expenses
 - **Simplifies implementation**: Discrete rebalancing is operationally easier
 - **Provides robustness**: Less sensitive to model misspecification than continuous strategies
@@ -65,6 +67,7 @@ with minimal adjustments to $\theta_t$.
 **Scheduled Times**: Predetermined rebalancing dates $\{t_1, \ldots, t_M\}$.
 
 **Event-Driven**: Rebalance when specific events occur:
+
 - Asset price crosses threshold: $S_t \in \mathcal{S}$
 - Implied volatility changes significantly: $|\sigma_t - \sigma_{t-1}| > \delta$
 - Time to maturity reaches checkpoint: $T - t \in \mathcal{T}$
@@ -89,6 +92,7 @@ $$
 where $F = S_0 e^{rT}$ is the forward price.
 
 **Static Portfolio**: 
+
 - Linear position: $g'(F)$ units of forward
 - Puts: Density $g''(K)$ for $K < F$
 - Calls: Density $g''(K)$ for $K > F$
@@ -97,6 +101,7 @@ where $F = S_0 e^{rT}$ is the forward price.
 **Purely Static**: No rebalancing needed; hold until maturity.
 
 **Limitations**: 
+
 - Only works for European-style payoffs
 - Requires complete options market (continuum of strikes)
 - Sensitive to bid-ask spreads for far-out-of-money options
@@ -151,6 +156,7 @@ $$
 where $\mu = \frac{r - \frac{1}{2}\sigma^2}{\sigma^2}$.
 
 **Static Portfolio**:
+
 - Long 1 standard call with strike $K$
 - Short $\left(\frac{H}{S_0}\right)^{2\mu}$ calls with strike $K$ on "reflected" stock $\frac{H^2}{S}$
 
@@ -160,16 +166,19 @@ where $\mu = \frac{r - \frac{1}{2}\sigma^2}{\sigma^2}$.
 
 
 **Challenge**: Static replication fails when:
+
 - Volatility is stochastic
 - Jumps are present
 - Volatility surface changes shape
 
 **Semi-Static Solution**: 
+
 1. **Initial Setup**: Use approximate static replication
 2. **Monitoring**: Track asset price relative to barrier
 3. **Adjustment Rule**: If $S_t$ approaches barrier (e.g., $|S_t - H| < \epsilon$), rebalance the option portfolio
 
 **Adjustment Strategy**: Near barrier, switch from static portfolio to:
+
 - Pure delta-hedge if far from barrier
 - Increased option coverage if near barrier
 
@@ -188,6 +197,7 @@ $$
 
 
 **Semi-Static Implementation**:
+
 1. Hold static portfolio: Long call at $K$, short options as per formula
 2. Monitor time spent near barrier: $L_T(H) = \lim_{\epsilon \to 0} \frac{1}{2\epsilon} \int_0^T \mathbb{1}_{\{|S_t - H| < \epsilon\}} dt$ (local time)
 3. Adjust when local time accumulates significantly
@@ -201,6 +211,7 @@ $$
 **Payoff**: $\Phi = M_T - K$ where $M_T = \max_{0 \leq t \leq T} S_t$.
 
 **Decomposition**: Write as sum of:
+
 - Standard call: $(S_T - K)^+$
 - Plus: $(M_T - S_T)^+$ (gain from maximum exceeding terminal value)
 
@@ -219,11 +230,13 @@ $$
 involving a continuum of vanilla calls.
 
 **Semi-Static Approximation**: 
+
 1. Discretize the integral over strikes
 2. Hold portfolio of calls with strikes $\{K, K + \Delta, K + 2\Delta, \ldots\}$
 3. Rebalance only if maximum increases significantly (e.g., by $\Delta$ or more)
 
 **Adjustment Rule**: When $M_t$ increases from $M_{t^-}$ to $M_t > M_{t^-} + \Delta$:
+
 - Add calls with strikes in $[M_{t^-}, M_t]$
 - Adjust position sizes to match continuous limit
 
@@ -233,6 +246,7 @@ involving a continuum of vanilla calls.
 **Payoff**: $S_T - m_T$ where $m_T = \min_{0 \leq t \leq T} S_t$.
 
 **Semi-Static Strategy**:
+
 - Monitor running minimum $m_t$
 - Hold portfolio that pays $S_T - m_t$ at maturity
 - Adjust when $m_t$ decreases: shift put strikes downward
@@ -269,6 +283,7 @@ $$
 
 
 **Static Portfolio**: 
+
 - Long $1/n$ calls at each averaging date with strike $nK$
 - This portfolio sub-replicates the Asian option
 
@@ -278,6 +293,7 @@ $$
 **Carr-Madan Moment-Matching**: Use static portfolio that matches first few moments of the average.
 
 **Adjustment**: At times $t_i$:
+
 - Observe $S_{t_i}$
 - Update running average: $A_i = \frac{1}{i} \sum_{j=1}^i S_{t_j}$
 - Rebalance option portfolio to match updated distribution of final average
@@ -299,6 +315,7 @@ $$
 where bounds involve portfolios of standard calls.
 
 **Semi-Static Enhancement**: Use static bounds as initial portfolio, with adjustments when:
+
 - Realized average deviates significantly from expected
 - Volatility changes materially
 
@@ -322,6 +339,7 @@ $$
 
 
 **Semi-Static Implementation**:
+
 1. **Static Setup**: Hold options maturing at $\{t_1, \ldots, t_n\}$ approximating continuation values
 2. **Adjustment at $t_i$**: 
    - Check if $g(S_{t_i})$ exceeds continuation value
@@ -336,10 +354,12 @@ $$
 **Knock-Out**: Option knocks out if $S_{t_i} \geq H$ for any $i \in \{1, \ldots, n\}$.
 
 **Continuous vs. Discrete**: Discrete monitoring is **easier to hedge** than continuous because:
+
 - Barrier breaches only checked at specific times
 - Static replication more feasible
 
 **Semi-Static Strategy**:
+
 1. **Initial Portfolio**: Static replication for continuous barrier (approximate)
 2. **Adjustments**: 
    - Just before each monitoring time $t_i$: Check if $S_{t_i^-} \approx H$
@@ -384,6 +404,7 @@ $$
 **Purely Static**: Hold portfolio of puts and calls with weights $1/K^2$ across all strikes.
 
 **Implementation**: 
+
 - Discretize integral using available strikes
 - Hold portfolio until maturity
 - No rebalancing required
@@ -407,6 +428,7 @@ which is typically small.
 **Challenge**: VIX is not directly tradable; must hedge using S&P 500 options or VIX futures.
 
 **Semi-Static Strategy**:
+
 1. **Static Component**: Portfolio of S&P 500 options replicating VIX (approximately)
 2. **Dynamic Adjustments**: 
    - When VIX changes significantly (e.g., $\Delta \text{VIX} > 2\%$), rebalance S&P options
@@ -431,6 +453,7 @@ where $\text{Realized Vol} = \sqrt{\text{RV}}$.
 **Challenge**: Square root makes static replication impossible with standard options.
 
 **Semi-Static Approximation**:
+
 1. **Static Component**: Variance swap (which can be replicated)
 2. **Adjustment**: Use convexity correction:
 
@@ -502,6 +525,7 @@ $$
 **Question**: When to adjust the static option portfolio?
 
 **Criteria**:
+
 1. **Time-based**: At regular intervals (monthly, quarterly)
 2. **Price-based**: When $S_t$ moves beyond certain levels
 3. **Greeks-based**: When delta, gamma, or vega deviate from targets
@@ -541,6 +565,7 @@ subject to transaction cost constraints.
 **Assumption**: Volatility lies in range $[\underline{\sigma}, \overline{\sigma}]$.
 
 **Robust Semi-Static Hedge**:
+
 1. **Static Component**: Use midpoint volatility $\bar{\sigma} = (\underline{\sigma} + \overline{\sigma})/2$ for initial replication
 2. **Dynamic Adjustments**: 
    - Monitor realized variance
@@ -555,6 +580,7 @@ subject to transaction cost constraints.
 **Setup**: Underlying may jump, but jump intensity and size are uncertain.
 
 **Strategy**:
+
 1. **Base Case**: Static replication assuming no jumps
 2. **Jump Protection**: 
    - Long out-of-the-money puts (downside jump protection)
@@ -570,11 +596,13 @@ subject to transaction cost constraints.
 
 
 **Identify Static Component**: Determine which options to include:
+
 - Strikes: Choose based on payoff structure and liquidity
 - Maturities: Match or slightly exceed target maturity
 - Quantities: Solve for weights using Carr-Madan or similar
 
 **Example** (Digital Option):
+
 - Static portfolio: Tight call spread around strike $K$
 - Spread width $\Delta K$ chosen based on liquidity and cost
 
@@ -582,6 +610,7 @@ subject to transaction cost constraints.
 
 
 **Specify Rules**: Clear conditions for rebalancing:
+
 - **Time triggers**: "Rebalance every month"
 - **Price triggers**: "Rebalance if $S_t$ crosses $K \pm 10\%$"
 - **Greeks triggers**: "Rebalance if $|\Delta - \Delta^*| > 0.2$"
@@ -592,6 +621,7 @@ subject to transaction cost constraints.
 
 
 **Real-Time Tracking**:
+
 - Portfolio value $V_t$
 - Target value (mark-to-market of exotic)
 - Tracking error: $|V_t - \text{Target}_t|$
@@ -603,16 +633,19 @@ subject to transaction cost constraints.
 
 
 **Pre-Adjustment Check**:
+
 - Verify trigger condition
 - Calculate optimal adjustment (solve for new $\theta_t$, $n_i^C$, $n_j^P$)
 - Estimate transaction costs
 
 **Execution**:
+
 - Place orders for required adjustments
 - Monitor fill prices
 - Update portfolio records
 
 **Post-Adjustment Review**:
+
 - Verify new portfolio matches target
 - Document rationale and costs
 - Update tracking error statistics
@@ -621,6 +654,7 @@ subject to transaction cost constraints.
 
 
 **Metrics**:
+
 - **Hedging Error**: $|V_T - \Phi|$ at maturity
 - **Transaction Costs**: $\sum_{i=1}^M \text{Cost}_i$
 - **Number of Adjustments**: $M$
@@ -635,12 +669,14 @@ subject to transaction cost constraints.
 
 
 **Setup**:
+
 - Underlying: S&P 500
 - Strike: $K = 4000$
 - Barrier: $H = 3800$
 - Maturity: 3 months
 
 **Semi-Static Strategy**:
+
 1. **Initial**: Static portfolio using put-call symmetry relation
 2. **Monitoring**: Daily check if $S_t \in [3800, 3850]$ (near barrier)
 3. **Adjustments**: If near barrier, shift from static portfolio to dynamic delta-hedge
@@ -652,11 +688,13 @@ subject to transaction cost constraints.
 
 
 **Setup**:
+
 - Underlying: EUR/USD
 - Averaging: Daily over 6 months
 - Strike: $K = 1.10$
 
 **Semi-Static Strategy**:
+
 1. **Static Bounds**: Rogers-Shi bounds using vanilla options
 2. **Adjustments**: Monthly, update portfolio based on accumulated average
 3. **Greeks Management**: Rebalance if delta drifts by > 0.3
@@ -667,16 +705,19 @@ subject to transaction cost constraints.
 
 
 **Setup**:
+
 - Underlying: Crude oil (WTI)
 - Tenor: 12 months
 - Strike: $K_{\text{var}} = 400$ (vol$^2$ in percentage points)
 
 **Semi-Static Strategy**:
+
 1. **Static Replication**: Portfolio of calls and puts with weights $1/K^2$
 2. **Adjustments**: None (purely static)
 3. **Monitoring**: Track realized variance daily
 
 **Result**: 
+
 - Final realized variance: 425
 - Replication error: < 2% (due to discrete strikes and jumps)
 - No transaction costs beyond initial setup
@@ -699,6 +740,7 @@ $$
 **Challenge**: Correlation uncertainty.
 
 **Semi-Static Strategy**:
+
 1. **Static Component**: Vanilla options on each underlying
 2. **Correlation Adjustment**: Rebalance when observed correlation deviates from initial estimate
 3. **Frequency**: Quarterly or when cross-asset moves are large
@@ -711,6 +753,7 @@ $$
 **Optimal Exercise**: Holder can exercise at any time before maturity.
 
 **Semi-Static Hedge**:
+
 1. **Static Component**: Portfolio of Europeans approximating exercise boundary
 2. **Adjustments**: At each potential exercise time, check if early exercise is optimal
 3. **Dynamic Overlay**: Small delta-hedge to correct for approximation errors
@@ -730,6 +773,7 @@ $$
 
 
 **Semi-Static Approach**:
+
 1. **Vega Hedging**: Hold options at multiple strikes to hedge volatility risk
 2. **Adjustment**: When implied volatility changes significantly, rebalance option portfolio
 3. **Frequency**: Based on vol-of-vol (typically more frequent than delta adjustments)
@@ -742,6 +786,7 @@ $$
 **Floaters and Path-Dependent Coupons**: Options on bonds where payoff depends on interest rate path.
 
 **Semi-Static Strategy**:
+
 1. **Static Component**: Portfolio of caplets and floorlets
 2. **Adjustments**: At coupon reset dates, rebalance based on realized rates
 3. **Curve Risk**: Manage exposure to different points on yield curve
@@ -757,6 +802,7 @@ $$
 | **Purely Static** | None | Very Low | Low | Can be high |
 
 **Semi-Static Niche**: Optimal for situations where:
+
 - Transaction costs are moderate to high
 - Path-dependence is manageable
 - Some model uncertainty exists
@@ -771,6 +817,7 @@ $$
 **Objective**: Use ML to learn optimal adjustment triggers from data.
 
 **Approach**:
+
 1. Simulate many paths under various models
 2. For each path, compute optimal adjustment times (via DP)
 3. Train classifier/regressor to predict adjustments from observed state variables
@@ -794,6 +841,7 @@ $$
 where $\mathcal{P}$ is a set of probability measures.
 
 **Solution Methods**:
+
 - Duality theory
 - Scenario optimization
 - Distributionally robust optimization
@@ -802,6 +850,7 @@ where $\mathcal{P}$ is a set of probability measures.
 
 
 **Deep Hedging**: Train neural networks to output:
+
 - Option quantities $\{n_i^C, n_j^P\}$
 - Adjustment times $\{t_i\}$
 - Stock positions $\theta_t$
@@ -830,12 +879,14 @@ where $\mathcal{P}$ is a set of probability measures.
 
 
 **When to Use Semi-Static**:
+
 - Transaction costs are non-negligible
 - Continuous monitoring is operationally challenging
 - Model uncertainty is significant
 - Derivative has some path-dependence but not extreme
 
 **Design Principles**:
+
 - **Robust static base**: Choose static portfolio that works across multiple scenarios
 - **Clear triggers**: Define objective, testable adjustment conditions
 - **Cost-aware**: Explicitly account for transaction costs in optimization
@@ -853,6 +904,7 @@ where $\mathcal{P}$ is a set of probability measures.
 
 
 Semi-static hedging continues to evolve with:
+
 - **Machine learning**: Automated discovery of optimal adjustment rules
 - **Robustness theory**: Strategies that work across model classes
 - **High-frequency data**: Using intraday information to improve timing

@@ -51,6 +51,7 @@ $$
 $$
 
 The gamma "peak" has:
+
 - **Height**: $\mathcal{O}(\tau^{-1/2})$
 - **Width**: $\mathcal{O}(\sigma\sqrt{\tau})$ in log-moneyness
 - **Area** (integral): $\mathcal{O}(1)$, conserved as $\tau \to 0$

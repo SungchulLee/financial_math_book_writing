@@ -7,6 +7,7 @@
 Financial models fail when their assumptions diverge sufficiently from reality that their outputs become unreliable or misleading. Understanding the modes, causes, and warning signs of model failure is essential for robust risk management and for maintaining appropriate skepticism about quantitative tools.
 
 This section examines:
+
 1. **Historical case studies**: LTCM, the Gaussian copula crisis, flash crashes
 2. **Failure taxonomies**: Classifying different types of model breakdown
 3. **Early warning indicators**: Signs that a model may be failing
@@ -21,6 +22,7 @@ This section examines:
 **Long-Term Capital Management**: Hedge fund founded in 1994 by John Meriwether with Nobel laureates Myron Scholes and Robert Merton.
 
 **Strategy**: Convergence trades exploiting small mispricings:
+
 - On-the-run vs. off-the-run Treasury bonds
 - Interest rate swap spreads
 - Equity volatility arbitrage
@@ -182,6 +184,7 @@ Inconsistent with single-factor Gaussian copula.
 **Definition**: Model structure does not match data generating process.
 
 **Examples**:
+
 - Assuming constant volatility when volatility is stochastic
 - Using normal distribution when returns are fat-tailed
 - Linear model for nonlinear relationship
@@ -194,6 +197,7 @@ Inconsistent with single-factor Gaussian copula.
 **Definition**: Parameter estimates differ from true values due to finite data.
 
 **Manifestation**:
+
 - Confidence intervals too narrow
 - Overfitting to noise
 - Unstable parameters across samples
@@ -206,6 +210,7 @@ Inconsistent with single-factor Gaussian copula.
 **Definition**: Parameters or structure change over time.
 
 **Examples**:
+
 - Volatility regimes (low vol vs. crisis)
 - Correlation breakdown during stress
 - Policy regime changes (central bank intervention)
@@ -227,6 +232,7 @@ Inconsistent with single-factor Gaussian copula.
 **Definition**: Correct model implemented incorrectly.
 
 **Sources**:
+
 - Coding errors
 - Data errors
 - Numerical instability
@@ -247,6 +253,7 @@ $$
 $$
 
 Warning signs:
+
 - Autocorrelation in residuals
 - Heteroskedasticity
 - Non-normality
@@ -649,7 +656,7 @@ Understanding when and how models fail is as important as understanding how they
     Consider a market where many participants delta-hedge option portfolios using the Black-Scholes model. The Black-Scholes delta for a call option is:
 
     $$
-    \Delta = \Phi(d_1), \quad d_1 = \frac{\ln(S/K) + (r + \sigma^2/2)\tau}{\sigma\sqrt{\tau}}
+    \Delta = \mathcal{N}(d_1), \quad d_1 = \frac{\ln(S/K) + (r + \sigma^2/2)\tau}{\sigma\sqrt{\tau}}
     $$
 
     When $S$ increases, $\Delta$ increases (for calls), so hedgers buy more stock. When $S$ decreases, $\Delta$ decreases, so hedgers sell stock. This creates a **positive feedback loop**:

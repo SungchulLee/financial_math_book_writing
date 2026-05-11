@@ -9,10 +9,12 @@
 ### Novation and Interposition
 
 When trades are cleared:
+
 1. Original bilateral trade: A ↔ B
 2. After novation: A ↔ CCP ↔ B
 
 The CCP becomes:
+
 - **Buyer to every seller**
 - **Seller to every buyer**
 
@@ -63,6 +65,7 @@ Absorbs losses beyond defaulter's IM.
 ### Skin in the Game
 
 CCP's own capital at risk:
+
 - First loss after defaulter's margin
 - Aligns incentives
 
@@ -90,6 +93,7 @@ $$
 ### Too Big to Fail
 
 CCPs concentrate risk:
+
 - Single point of failure for cleared markets
 - Failure would be catastrophic
 - Implicitly backed by public sector
@@ -97,6 +101,7 @@ CCPs concentrate risk:
 ### Winner's Curse
 
 Post-crisis mandates push trading to CCPs:
+
 - More risk concentrated
 - Higher systemic importance
 - Regulatory paradox
@@ -104,6 +109,7 @@ Post-crisis mandates push trading to CCPs:
 ### Interoperability Risk
 
 CCPs may have exposures to each other:
+
 - Link arrangements
 - Cross-margining
 - Default of one affects others
@@ -115,6 +121,7 @@ CCPs may have exposures to each other:
 ### Problem
 
 During stress:
+
 1. Volatility increases
 2. IM requirements increase
 3. Members face margin calls
@@ -126,6 +133,7 @@ During stress:
 ### Mitigants
 
 **Anti-procyclicality measures:**
+
 - Floor on IM (minimum even in calm periods)
 - Lookback periods include stressed periods
 - Caps on IM increases
@@ -152,12 +160,14 @@ When member defaults:
 ### Auction Mechanism
 
 Incentivize bidding:
+
 - "Juniorization" of non-bidders (higher DF exposure)
 - Split of auction profits
 
 ### Recovery and Resolution
 
 If waterfall exhausted:
+
 - **Recovery:** CCP attempts to continue
 - **Resolution:** Orderly wind-down by authorities
 
@@ -178,6 +188,7 @@ under extreme but plausible conditions.
 ### Stress Scenarios
 
 Test against:
+
 - Historical stress (2008, 2020)
 - Hypothetical extremes
 - Multiple member defaults
@@ -186,6 +197,7 @@ Test against:
 ### Supervisory Stress Tests
 
 Coordinated across CCPs:
+
 - Common scenarios
 - Assess systemic implications
 - Identify gaps
@@ -197,6 +209,7 @@ Coordinated across CCPs:
 ### Member Exposures to CCP
 
 Banks face CCP risk through:
+
 - Margin posted (credit exposure to CCP)
 - Default fund contributions (mutualized risk)
 - Assessment powers (contingent liability)
@@ -204,6 +217,7 @@ Banks face CCP risk through:
 ### CCP Exposures to Banks
 
 CCPs hold bank risk:
+
 - Cash margin invested with banks
 - IM in bank securities
 - Bank guarantees
@@ -217,6 +231,7 @@ CCPs hold bank risk:
 ### PFMI (CPSS-IOSCO)
 
 **Principles for Financial Market Infrastructures:**
+
 - Governance
 - Credit risk management
 - Margin requirements
@@ -226,6 +241,7 @@ CCPs hold bank risk:
 ### Basel Treatment
 
 **Exposure to CCPs:**
+
 - Qualifying CCPs: 2% risk weight for trade exposures
 - DF contributions: Higher risk weights
 - Non-qualifying CCPs: 1250% risk weight

@@ -139,3 +139,62 @@ def zero_initial_condition(x: np.ndarray) -> np.ndarray:
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+For a Gaussian pulse $u(x, 0) = A\exp(-(x - x_c)^2 / (2w^2))$ with $A = 1$, $x_c = 0.5$, $w = 0.1$ on $[0, 1]$, compute the total mass $\int_0^1 u(x,0)\,dx$ approximately.
+
+??? success "Solution to Exercise 1"
+    Since $w = 0.1$ is small relative to the domain, the Gaussian is well-contained in $[0,1]$, so we approximate using the full-line integral:
+
+    $$
+    \int_0^1 e^{-(x-0.5)^2/(2\cdot 0.01)}\,dx \approx \int_{-\infty}^{\infty} e^{-(x-0.5)^2/0.02}\,dx = \sqrt{2\pi \cdot 0.01} = \sqrt{0.02\pi} \approx 0.2507
+    $$
+
+    The total mass is approximately $0.251$.
+
+---
+
+**Exercise 2.**
+Show that the sine wave initial condition $u(x,0) = \sin(n\pi x / L)$ is an eigenfunction of the 1D heat equation with Dirichlet boundary conditions. What is the corresponding eigenvalue?
+
+??? success "Solution to Exercise 2"
+    Substituting $u(x,t) = T(t)\sin(n\pi x/L)$ into $u_t = D u_{xx}$ gives $T'(t)\sin(n\pi x/L) = -D(n\pi/L)^2 T(t)\sin(n\pi x/L)$, so $T'(t) = -D(n\pi/L)^2 T(t)$, with solution $T(t) = e^{-\lambda_n t}$ where
+
+    $$
+    \lambda_n = D\left(\frac{n\pi}{L}\right)^2
+    $$
+
+    The eigenvalue is $\lambda_n = D n^2\pi^2/L^2$. The exact solution is $u(x,t) = \sin(n\pi x/L)\,e^{-\lambda_n t}$, which decays exponentially with rate proportional to $n^2$.
+
+---
+
+**Exercise 3.**
+Compare the step function and triangle wave initial conditions. Which one has Fourier coefficients that decay faster? Explain why this affects numerical convergence.
+
+??? success "Solution to Exercise 3"
+    The step function is discontinuous, so its Fourier sine coefficients decay as $O(1/n)$. The triangle wave is continuous (but has a kink), so its coefficients decay as $O(1/n^2)$.
+
+    Faster Fourier decay means fewer modes are needed for an accurate eigenfunction expansion. For numerical methods, smoother initial conditions produce solutions with less high-frequency content, reducing spatial discretization error and leading to faster convergence with grid refinement.
+
+---
+
+**Exercise 4.**
+Write a custom initial condition function that models two Gaussian hot spots at positions $x = 0.3$ and $x = 0.7$ with amplitudes 1.0 and 0.5, respectively, both with width $w = 0.05$, on a domain $[0, 1]$.
+
+??? success "Solution to Exercise 4"
+    The function is
+
+    $$
+    f(x) = \exp\!\Bigl(-\frac{(x - 0.3)^2}{2(0.05)^2}\Bigr) + 0.5\exp\!\Bigl(-\frac{(x - 0.7)^2}{2(0.05)^2}\Bigr)
+    $$
+
+    In Python:
+    ```python
+    def two_hotspots(x):
+        return (np.exp(-(x - 0.3)**2 / (2 * 0.05**2))
+                + 0.5 * np.exp(-(x - 0.7)**2 / (2 * 0.05**2)))
+    ```
+
+    As the heat equation evolves, the two peaks diffuse and eventually merge into a single broad profile that decays toward the Dirichlet boundary values.

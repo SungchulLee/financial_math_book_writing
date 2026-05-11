@@ -95,6 +95,7 @@ $\square$
 The term $\sigma^2(x_0) = \text{Var}(Y|X = x_0)$ represents inherent noise in the data-generating process. No estimator can reduce this component—it sets a lower bound on achievable prediction error.
 
 In finance, irreducible error is often large:
+
 - Daily equity returns: $\sigma \approx 1\%$, signal (expected return) $\approx 0.05\%$
 - Signal-to-noise ratio: $\text{SNR} = |\mu|/\sigma \approx 0.05$
 
@@ -109,6 +110,7 @@ $$
 $$
 
 Bias arises when:
+
 - The model class is too restrictive (e.g., fitting a line to a quadratic relationship)
 - Regularization shrinks estimates toward a fixed target
 - Prior beliefs in Bayesian estimation are incorrect
@@ -124,6 +126,7 @@ $$
 $$
 
 Variance is high when:
+
 - The model is overly flexible
 - Sample size is small
 - Features are highly collinear
@@ -138,6 +141,7 @@ Variance is high when:
 ### Complexity and the Trade-Off
 
 As model complexity increases:
+
 - **Bias decreases**: More flexible models can approximate $f^*$ more closely
 - **Variance increases**: More parameters to estimate from the same data
 
@@ -150,6 +154,7 @@ Consider fitting a polynomial of degree $p$ to data from $Y = f^*(X) + \varepsil
 For the estimator $\hat{f}_p(x) = \sum_{j=0}^p \hat{\beta}_j x^j$:
 
 **Bias:** If $f^*$ is a polynomial of degree $q$:
+
 - $p < q$: $\text{Bias} \neq 0$ (underfitting)
 - $p \geq q$: $\text{Bias} = 0$ (correctly or overspecified)
 
@@ -182,6 +187,7 @@ $$
 $$
 
 As $\lambda$ increases:
+
 - Bias increases (shrinkage toward zero)
 - Variance decreases (regularization stabilizes estimates)
 
@@ -284,6 +290,7 @@ Even a perfect model explains only $\sim 0.25\%$ of daily return variance!
 ### Effective Sample Size
 
 Financial time series exhibit:
+
 - **Autocorrelation:** Reduces effective sample size
 - **Heteroskedasticity:** Some observations more informative than others
 - **Structural breaks:** Historical data may not represent future dynamics
@@ -307,6 +314,7 @@ $$
 even if $\mathbb{E}[\hat{f}] = \bar{f}^*$ (average over time).
 
 Rolling windows trade bias against variance:
+
 - **Short windows:** Low bias (recent data), high variance (few observations)
 - **Long windows:** High bias (old data), low variance (many observations)
 
@@ -317,6 +325,7 @@ Rolling windows trade bias against variance:
 ### Classical U-Shaped Curve
 
 Classical theory predicts a U-shaped test error curve:
+
 - Underfitting region: High bias, low variance
 - Optimal complexity: Minimum total error
 - Overfitting region: Low bias, high variance

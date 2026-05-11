@@ -16,6 +16,7 @@ Adapted as a SELF-CONTAINED educational module for the
 
 Topics covered
 --------------
+
 1. Characteristic functions of Normal, Gamma, and Poisson distributions.
 2. Gil-Pelaez Fourier inversion formula for density recovery.
 3. Density recovery demos for Normal, Gamma, and Poisson.
@@ -483,3 +484,36 @@ if __name__ == "__main__":
     demo_option_pricing()
     demo_short_maturity_warning()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+For the Gamma distribution with shape $a = 1$ and scale $b = 2$, the Gil-Pelaez inversion requires a finite integration limit rather than $\infty$. Explain why in terms of the CF decay rate.
+
+??? success "Solution to Exercise 1"
+    The Gamma CF is $(1 - 2iu)^{-1}$, with $|\varphi(u)| = (1 + 4u^2)^{-1/2}$, decaying as $O(1/|u|)$. This slow decay makes the integrand in Gil-Pelaez oscillatory and only conditionally convergent. Using $\infty$ as the limit causes numerical integration to fail or converge very slowly. A finite limit (e.g., 24) truncates the tail where the integrand oscillates with decreasing amplitude, giving good accuracy.
+
+---
+
+**Exercise 2.**
+For the Poisson distribution, the integration domain for Gil-Pelaez inversion is $[0, \pi]$ rather than $[0, \infty)$. Explain why.
+
+??? success "Solution to Exercise 2"
+    The Poisson CF is $\varphi(u) = e^{\lambda(e^{iu} - 1)}$, which is periodic with period $2\pi$. Since the PMF has support on non-negative integers, the inversion formula reduces to $P(X = k) = \frac{1}{\pi}\int_0^\pi \text{Re}[e^{-iuk}\varphi(u)]du$. Integrating beyond $\pi$ would double-count due to periodicity.
+
+---
+
+**Exercise 3.**
+Compare the Fourier inversion, Lewis, and FFT-Lewis methods for pricing a GBM call. Which is fastest for a single strike? For 100 strikes simultaneously?
+
+??? success "Solution to Exercise 3"
+    For a single strike: Fourier inversion and Lewis have similar cost ($O(1)$ quadrature evaluations each). FFT-Lewis has overhead from the $O(N\log N)$ FFT plus interpolation, making it slower for one strike. For 100 strikes: Fourier and Lewis require 100 separate integrations ($O(100)$ cost), while FFT-Lewis prices all strikes in one $O(N\log N)$ pass plus interpolation. FFT-Lewis is dramatically faster for multiple strikes.
+
+---
+
+**Exercise 4.**
+The demo warns about short-maturity OTM options. Explain why the Q1 integrand becomes highly oscillatory for $K = 120$, $T = 0.01$, $S_0 = 100$, and how this affects pricing accuracy.
+
+??? success "Solution to Exercise 4"
+    The log-moneyness $k = \ln(120/100) = 0.182$ is large relative to the diffusion scale $\sigma\sqrt{T} = 0.02$. The integrand contains $e^{-iuk}$, which oscillates with frequency $k$, while the CF $\varphi(u)$ has width $\propto 1/(\sigma\sqrt{T})$. When $k \gg \sigma\sqrt{T}$, many oscillations occur within the significant region of the CF, making numerical quadrature unreliable. The probability $Q_2 \approx N(d_2)$ is extremely small ($d_2 \approx -9$), so even tiny integration errors can dominate.

@@ -5,10 +5,16 @@
 
 This section derives put-call parity, verifies it for the Black-Scholes formula, and explores its applications.
 
+!!! info "Where this fits"
+    - **Roadmap row(s):** Replication — parity is the simplest possible replication argument.
+    - **Builds on:** [The Black-Scholes formula](bs_formula_statement.md) (the call and put formulas being linked).
+    - **Feeds into:** [Properties and bounds](properties_and_bounds.md) (Greek symmetries via parity, e.g. $\Gamma_{\text{call}} = \Gamma_{\text{put}}$) and [Asymptotic behavior](asymptotic_behavior.md) (parity-based limit checks).
+
 ---
 
 ## Statement of Put-Call Parity
 
+*Section goal: the identity $C - P = S - Ke^{-rT}$ as a forward-replication relation.*
 
 ### 1. **The Parity Relationship**
 
@@ -16,7 +22,7 @@ This section derives put-call parity, verifies it for the Black-Scholes formula,
 For European options on a non-dividend-paying stock with the same strike $K$ and maturity $T$:
 
 $$
-\boxed{C - P = S - Ke^{-r(T-t)}}
+\boxed{C - P = S - Ke^{-rT}}
 $$
 
 or equivalently at time $t=0$:
@@ -26,6 +32,14 @@ $$
 $$
 
 **In words**: The difference between call and put prices equals the difference between the current stock price and the present value of the strike.
+
+**Forward-contract reading.** The right-hand side $S - Ke^{-rT}$ is the time-$0$ value of a **forward contract** to buy the stock at strike $K$ on date $T$. So put-call parity reads, fundamentally,
+
+$$
+C - P = \text{(forward to buy at } K\text{)}.
+$$
+
+A long call combined with a short put at the same strike replicates this forward; the no-arbitrage derivation below makes the replication rigorous.
 
 ### 2. **Alternative Forms**
 
@@ -54,6 +68,7 @@ Each form is useful for different applications.
 
 ## No-Arbitrage Derivation
 
+*Section goal: deriving parity from a portfolio that replicates the forward in two ways.*
 
 Put-call parity can be derived purely from **no-arbitrage arguments**, independent of any model assumptions (like constant volatility or log-normal returns).
 
@@ -63,10 +78,12 @@ Put-call parity can be derived purely from **no-arbitrage arguments**, independe
 Consider two portfolios at time $t=0$:
 
 **Portfolio A**: 
+
 - Long 1 call with strike $K$
 - Long 1 zero-coupon bond paying $K$ at time $T$
 
 **Portfolio B**:
+
 - Long 1 put with strike $K$
 - Long 1 share of stock
 
@@ -91,6 +108,13 @@ $$
 
 In both cases $V_T^A = V_T^B$.
 
+**Payoff geometry.** It helps to visualize the four payoffs as a function of $S_T$:
+
+- **Long call**: zero for $S_T \leq K$, then a $45^\circ$ line $S_T - K$ for $S_T > K$ (hockey stick pointing up-right).
+- **Short put**: a $45^\circ$ line $S_T - K$ for $S_T < K$ (going from $-K$ at $S_T = 0$ up to zero at $S_T = K$), then flat zero for $S_T \geq K$ (hockey stick pointing down-left).
+
+Adding "long call $+$ short put" stitches the two pieces together into a *single straight line of slope $1$ passing through $(K, 0)$* — the payoff function $S_T - K$, identical to a forward struck at $K$. The kinks at $S_T = K$ cancel exactly. Drawing the three payoff diagrams on the same axes (long call, short put, and their sum) is the single most useful sketch for internalizing put-call parity.
+
 ### 4. **No-Arbitrage Conclusion**
 
 
@@ -112,6 +136,7 @@ This is put-call parity.
 
 ## Verification with Black-Scholes
 
+*Section goal: direct algebraic confirmation that the BS formulas satisfy parity.*
 
 ### 1. **Black-Scholes Formulas**
 
@@ -158,6 +183,7 @@ $$
 
 ## Arbitrage Opportunities
 
+*Section goal: how to exploit a parity violation.*
 
 If put-call parity is violated, **arbitrage opportunities** exist.
 
@@ -189,27 +215,13 @@ $$
 ### 2. **Case 2: C - P < S - Ke^-rT** (Put overpriced relative to call)
 
 
-**Arbitrage strategy** (reverse of above):
-
-1. **Buy** call (pay $C$)
-2. **Sell** put (receive $P$)
-3. **Short** stock (receive $S$)
-4. **Lend** $Ke^{-rT}$ at rate $r$
-
-**Net cash flow at $t=0$**:
-
-$$
--C + P + S - Ke^{-rT} > 0
-$$
-
-**At maturity $T$**: All positions close with zero net cash flow.
-
-**Result**: Guaranteed profit at $t=0$ → **Arbitrage**
+Reverse all four legs of Case 1: **buy** call, **sell** put, **short** stock, **lend** $Ke^{-rT}$. The initial cash flow $-C + P + S - Ke^{-rT} > 0$ is again pocketed risk-free, and the same case analysis at $T$ shows all positions close at zero net.
 
 ---
 
 ## Applications
 
+*Section goal: Greek symmetries, synthetic instruments, and replication uses of parity.*
 
 ### 1. **Synthetic Positions**
 
@@ -230,13 +242,15 @@ These are useful when an option is illiquid or mispriced, or when only one optio
 ### 2. **Early Exercise of American Options**
 
 
-For American options on **non-dividend-paying stocks**, put-call parity implies:
+*The remainder of this subsection extends parity to American options and may be skipped on first reading.*
+
+For American options on **non-dividend-paying stocks**, equality breaks and parity becomes a *two-sided inequality*:
 
 $$
-C_{\text{Am}} - P_{\text{Am}} \geq S - Ke^{-r(T-t)}
+S - K \;\leq\; C_{\text{Am}} - P_{\text{Am}} \;\leq\; S - Ke^{-rT}
 $$
 
-Since $C_{\text{Am}} = C_{\text{Eu}}$ (call not exercised early), this shows American puts can trade at a premium to European puts.
+The upper bound uses $C_{\text{Am}} = C_{\text{Eu}}$ (early exercise of an American call on a non-dividend stock is never optimal) together with $P_{\text{Am}} \geq P_{\text{Eu}}$ and European parity. The lower bound captures the *worst case from the call-minus-put holder's perspective* — that the put is exercised against them immediately when $S < K$, leaving net cash $S - K$. The width of the band, $K(1 - e^{-rT})$, is the **early-exercise premium** of the American put over the European put: it is exactly the interest the put holder forgoes by waiting, and it shrinks to zero as $r \to 0$ or $t \to T$. So early exercise is rationally driven by the time value of the strike payment, and the inequality $C_{\text{Am}} - P_{\text{Am}} < S - Ke^{-rT}$ measures by how much. (Exercise 7 derives both bounds explicitly.)
 
 ### 3. **Arbitrage Detection and Implied Rates**
 
@@ -257,6 +271,7 @@ $$
 
 ## Generalizations
 
+*Section goal: parity under continuous dividends, foreign-domestic FX, and American options.*
 
 ### 1. **With Continuous Dividends**
 
@@ -264,7 +279,7 @@ $$
 If the stock pays dividends at continuous rate $q$:
 
 $$
-\boxed{C - P = Se^{-q(T-t)} - Ke^{-r(T-t)}}
+\boxed{C - P = Se^{-qT} - Ke^{-rT}}
 $$
 
 **Derivation**: Replace $S$ with $Se^{-qT}$ (present value of stock after dividend payments).
@@ -306,6 +321,7 @@ Since futures require no initial payment, this simplifies further.
 
 ## Numerical Example
 
+*Section goal: a worked check of parity at typical option parameters.*
 
 **Market data**:
 
@@ -322,23 +338,10 @@ Since futures require no initial payment, this simplifies further.
 From put-call parity:
 
 $$
-P_0 = C_0 - S_0 + Ke^{-rT}
-$$
-
-$$
-P_0 = 4.50 - 50 + 50 \times e^{-0.04 \times 0.5}
-$$
-
-$$
-P_0 = 4.50 - 50 + 50 \times e^{-0.02}
-$$
-
-$$
-P_0 = 4.50 - 50 + 50 \times 0.9802
-$$
-
-$$
-P_0 = 4.50 - 50 + 49.01 = 3.51
+P_0 
+= C_0 - S_0 + Ke^{-rT}
+= 4.50 - 50 + 50 \times e^{-0.04 \times 0.5}
+= 4.50 - 50 + 49.01 = 3.51
 $$
 
 **Answer**: The put should be priced at **\$3.51**.
@@ -349,6 +352,7 @@ $$
 
 ## Option Strategies from Parity
 
+*Section goal: synthetic forwards, conversions, and reverse conversions.*
 
 Put-call parity underpins several standard strategies. A **conversion** (long stock + long put + short call) locks in a risk-free payoff of $K$ at maturity, equivalent to a bond. Its reverse, a **reversal**, creates a synthetic short bond. Combining conversions and reversals at two different strikes produces a **box spread** with guaranteed payoff $K_2 - K_1$, which must cost $(K_2 - K_1)e^{-rT}$ by no-arbitrage.
 
@@ -359,7 +363,7 @@ Put-call parity was first rigorously derived by **Hans Stoll** (1969), before Bl
 ## Summary
 
 
-Put-call parity $C - P = S - Ke^{-r(T-t)}$ is a model-independent no-arbitrage relationship. It enables synthetic position construction, arbitrage detection, and one-from-the-other pricing. It generalizes to dividends, foreign exchange, and futures. As a pure consequence of the law of one price, it is more fundamental than any specific pricing formula.
+Put-call parity $C - P = S - Ke^{-rT}$ is a model-independent no-arbitrage relationship. It enables synthetic position construction, arbitrage detection, and one-from-the-other pricing. It generalizes to dividends, foreign exchange, and futures. As a pure consequence of the law of one price, it is more fundamental than any specific pricing formula.
 
 ---
 

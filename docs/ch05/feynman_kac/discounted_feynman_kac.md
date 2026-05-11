@@ -3,6 +3,7 @@
 The **discounted Feynman-Kac formula** extends the basic Feynman-Kac result by incorporating a **killing** or **discounting** term $r(t, x)$. This extension is essential for finance, where the time value of money requires discounting future cash flows. The discounting rate may be constant (as in Black-Scholes) or state-dependent (as in stochastic interest rate models), leading to a rich interplay between the PDE and probabilistic representations.
 
 !!! tip "Related Content"
+
     - [Feynman-Kac Formula](feynman_kac_formula.md) -- the general statement
     - [Proof Sketch](feynman_kac_proof_sketch.md) -- detailed derivation
     - [Applications to Option Pricing](feynman_kac_option_pricing.md) -- financial applications
@@ -199,87 +200,19 @@ This gives $\partial_t u + \mathcal{L}u - r\,u = 0$. $\square$
 
 ---
 
-## The Discounted Feynman-Kac with Running Payoff
+## Extension: Running Payoff
 
-The most general form includes both a terminal payoff $g$ and a running payoff $f$:
-
-$$
-u(t, x) = \mathbb{E}\!\left[e^{-\int_t^T r\,ds}\,g(X_T) + \int_t^T e^{-\int_t^s r\,d\tau}\,f(s, X_s)\,ds \,\Big|\, X_t = x\right]
-$$
-
-This satisfies:
-
-$$
-\partial_t u + \mathcal{L}u - r\,u + f = 0, \quad u(T, x) = g(x)
-$$
-
-The running payoff $f$ appears as a source term in the PDE. Financially, it represents **continuous cash flows** (dividends, coupon payments, or running costs).
+Adding a running payoff $f$ extends the formula to $u = \mathbb{E}[e^{-\int r\,ds}g(X_T) + \int e^{-\int r\,d\tau}f\,ds]$, satisfying $\partial_t u + \mathcal{L}u - ru + f = 0$. See [Running Payoff Feynman–Kac](feynman_kac_running_payoff.md) for details.
 
 ---
 
-## Applications in Finance
+## Financial Applications
 
-### 1. Black-Scholes Option Pricing
+The discounted Feynman–Kac PDE underlies several pricing models. Full derivations:
 
-Under $\mathbb{Q}$: $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$
-
-The option price satisfies the **Black-Scholes PDE**:
-
-$$
-\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0
-$$
-
-Here $\mu = rS$, $\sigma_{\text{diff}} = \sigma S$, and the discount rate is the constant $r$. The $-rV$ term is the Feynman-Kac discounting.
-
-### 2. Vasicek Bond Pricing
-
-Short rate: $dr_t = \kappa(\theta - r_t)\,dt + \sigma_r\,dW_t$
-
-Bond price PDE:
-
-$$
-\frac{\partial P}{\partial t} + \kappa(\theta - r)\frac{\partial P}{\partial r} + \frac{1}{2}\sigma_r^2\frac{\partial^2 P}{\partial r^2} - rP = 0
-$$
-
-The discounting rate $r$ is the state variable itself. The explicit solution is:
-
-$$
-P(t, r; T) = \exp\!\left(A(\tau) - B(\tau)\,r\right)
-$$
-
-where $\tau = T - t$ and:
-
-$$
-B(\tau) = \frac{1 - e^{-\kappa\tau}}{\kappa}, \quad A(\tau) = \left(\theta - \frac{\sigma_r^2}{2\kappa^2}\right)(B(\tau) - \tau) - \frac{\sigma_r^2}{4\kappa}B(\tau)^2
-$$
-
-### 3. CIR Bond Pricing
-
-Short rate: $dr_t = \kappa(\theta - r_t)\,dt + \xi\sqrt{r_t}\,dW_t$
-
-The bond price again satisfies the discounted Feynman-Kac PDE, and the affine structure yields:
-
-$$
-P(t, r; T) = A(\tau)\,e^{-B(\tau)\,r}
-$$
-
-with more complex but still explicit functions $A(\tau)$ and $B(\tau)$.
-
-### 4. Dividend-Paying Stock
-
-For a stock paying continuous dividends at rate $q$:
-
-$$
-dS_t = (r - q)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
-$$
-
-The option price satisfies:
-
-$$
-\partial_t V + (r-q)S\,\partial_S V + \frac{1}{2}\sigma^2 S^2\,\partial_{SS}V - rV = 0
-$$
-
-The dividend yield $q$ modifies the drift (reducing the risk-neutral growth rate) but the discounting is still at rate $r$.
+- **Black–Scholes option pricing**: see [Feynman–Kac Option Pricing](feynman_kac_option_pricing.md).
+- **Bond pricing (Vasicek, CIR)**: see [Feynman–Kac Formula § Bond Pricing](feynman_kac_formula.md#application-2-bond-pricing-with-stochastic-interest-rates).
+- **Dividend-paying stock**: replace the drift $rS$ by $(r-q)S$ while keeping the discount rate $r$.
 
 ---
 

@@ -119,7 +119,7 @@ Several researchers made partial progress toward the Black-Scholes formula, each
 Case Sprenkle derived an option pricing formula under GBM but, like Samuelson, required assumptions about investor risk aversion. His formula for a European call was
 
 $$
-C_{\text{Sprenkle}} = e^{\mu T} S_0 \,\Phi(d_1) - (1-Z)\,K\,\Phi(d_2)
+C_{\text{Sprenkle}} = e^{\mu T} S_0 \,\mathcal{N}(d_1) - (1-Z)\,K\,\mathcal{N}(d_2)
 $$
 
 where $Z$ represents a risk-aversion parameter that could not be determined from market observables alone.
@@ -129,7 +129,7 @@ where $Z$ represents a risk-aversion parameter that could not be determined from
 Alan Boness made the important step of discounting the expected stock price at the stock's own expected return $\mu$, arriving at a formula structurally close to Black-Scholes:
 
 $$
-C_{\text{Boness}} = S_0 \,\Phi(d_1) - K e^{-\mu T}\,\Phi(d_2)
+C_{\text{Boness}} = S_0 \,\mathcal{N}(d_1) - K e^{-\mu T}\,\mathcal{N}(d_2)
 $$
 
 The formula resembles the Black-Scholes formula but with $\mu$ in place of $r$. Boness was tantalizingly close but could not justify why $\mu$ should be replaced by $r$.
@@ -193,7 +193,7 @@ $$
 Solving the PDE with the terminal condition $V(S,T) = (S - K)^+$ for a European call yields the celebrated **Black-Scholes formula**:
 
 $$
-C(S_0, T) = S_0\,\Phi(d_1) - Ke^{-rT}\,\Phi(d_2)
+C(S_0, T) = S_0\,\mathcal{N}(d_1) - Ke^{-rT}\,\mathcal{N}(d_2)
 $$
 
 where
@@ -402,7 +402,7 @@ Each stage resolved a specific mathematical limitation of its predecessor while 
 **Exercise 3.** Boness's formula has $\mu$ where the Black-Scholes formula has $r$. If a stock has expected return $\mu = 12\%$, risk-free rate $r = 4\%$, $S_0 = 100$, $K = 100$, $T = 1$, and $\sigma = 25\%$, compute the call price under both Boness's formula and the Black-Scholes formula. What is the percentage difference? Explain why the Black-Scholes price is the correct arbitrage-free price regardless of $\mu$.
 
 ??? success "Solution to Exercise 3"
-    The Black-Scholes formula for a European call is $C = S_0\,\Phi(d_1) - Ke^{-rT}\,\Phi(d_2)$ with:
+    The Black-Scholes formula for a European call is $C = S_0\,\mathcal{N}(d_1) - Ke^{-rT}\,\mathcal{N}(d_2)$ with:
 
     $$
     d_1 = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}
@@ -504,9 +504,9 @@ Each stage resolved a specific mathematical limitation of its predecessor while 
 **Exercise 6.** The volatility smile emerged after the 1987 crash. Before the crash, implied volatilities across strikes were approximately flat. Explain what "implied volatility" means in terms of the Black-Scholes formula, and discuss why a non-flat implied volatility surface is inconsistent with the constant-$\sigma$ assumption of GBM. Name two post-1987 models from the table in the text and briefly describe how each addresses the smile phenomenon.
 
 ??? success "Solution to Exercise 6"
-    Under Bachelier's model, $C = (S_0 - K)\Phi(d) + \sigma\sqrt{T}\,\phi(d)$ where $d = (S_0 - K)/(\sigma\sqrt{T})$.
+    Under Bachelier's model, $C = (S_0 - K)\mathcal{N}(d) + \sigma\sqrt{T}\,\phi(d)$ where $d = (S_0 - K)/(\sigma\sqrt{T})$.
 
-    Under the Black-Scholes formula, $C = S_0\Phi(d_1) - Ke^{-rT}\Phi(d_2)$.
+    Under the Black-Scholes formula, $C = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$.
 
     **Derivation of Bachelier from $\mathbb{E}[(S_T - K)^+]$**:
 
@@ -522,10 +522,10 @@ Each stage resolved a specific mathematical limitation of its predecessor while 
     = (S_0 - K)\int_{-d}^{\infty}\phi(z)\,dz + \sigma\sqrt{T}\int_{-d}^{\infty}z\,\phi(z)\,dz
     $$
 
-    The first integral gives $(S_0 - K)\Phi(d)$. For the second, use $\int_{-d}^{\infty}z\phi(z)\,dz = \phi(-d) = \phi(d)$. Therefore:
+    The first integral gives $(S_0 - K)\mathcal{N}(d)$. For the second, use $\int_{-d}^{\infty}z\phi(z)\,dz = \phi(-d) = \phi(d)$. Therefore:
 
     $$
-    C = (S_0 - K)\Phi(d) + \sigma\sqrt{T}\,\phi(d)
+    C = (S_0 - K)\mathcal{N}(d) + \sigma\sqrt{T}\,\phi(d)
     $$
 
     This confirms Bachelier's formula. The key difference from Black-Scholes is that Bachelier prices under a normal (not log-normal) distribution, uses no discounting ($r = 0$), and the result depends on the preference-free expectation only because Bachelier implicitly assumed that the market price of risk is zero (equivalent to the physical measure coinciding with the risk-neutral measure when $r = 0$ and $\mu = 0$).

@@ -7,11 +7,13 @@
 **Uncertain volatility models (UVMs)** provide a rigorous framework for option pricing and hedging when the true volatility of the underlying asset is unknown or uncertain. Rather than assuming a specific volatility parameter or stochastic volatility model, UVMs consider a **range** or **set** of possible volatilities and seek prices and hedging strategies that are **robust** to this uncertainty.
 
 The seminal work of Avellaneda, Levy, and Parás (1995) established the mathematical foundations of uncertain volatility models, showing that:
+
 1. Robust super-replication prices satisfy **fully nonlinear PDEs**
 2. Optimal hedging strategies can be characterized explicitly
 3. Market bid-ask spreads can be explained by volatility uncertainty
 
 This framework has profound implications for:
+
 - **Model-free pricing**: Deriving bounds without specifying dynamics
 - **Robust hedging**: Strategies that work across volatility scenarios
 - **Risk management**: Quantifying model risk
@@ -33,6 +35,7 @@ $$
 
 
 where:
+
 - $\mu$: Drift (unimportant for pricing under risk-neutrality)
 - $\sigma_t$: Instantaneous volatility (uncertain)
 - $W_t$: Brownian motion
@@ -130,6 +133,7 @@ $$
 
 
 **Factors**:
+
 - Increases with $\overline{\sigma} - \underline{\sigma}$ (uncertainty range)
 - Increases with option gamma exposure
 - Increases with time to maturity
@@ -162,6 +166,7 @@ $$
 
 
 **Proof Sketch**: 
+
 1. Dynamic programming principle: $V$ is the value function
 2. Apply Itô's formula to $V(t, S_t)$
 3. Choose $\sigma_t$ adversarially to maximize/minimize $\frac{\partial^2 V}{\partial S^2}$
@@ -175,6 +180,7 @@ $$
 **Definition**: Since $V$ may not be $C^2$ (especially at strike for digital options), solutions are understood in the **viscosity sense**.
 
 **Viscosity Solution**: A function $V$ satisfying:
+
 - At smooth points: PDE holds classically
 - At non-smooth points: Comparison with test functions
 
@@ -355,6 +361,7 @@ $$
 
 
 **Volatility Choice**: 
+
 - Far from barrier: Use volatility based on gamma sign
 - Near barrier: Critical region where hedging is difficult
 
@@ -442,6 +449,7 @@ $$
 
 
 where:
+
 - $\boldsymbol{\Sigma} = (\sigma_{ij})$: Covariance matrix
 - $\mathcal{S}$: Set of admissible covariance matrices
 - $\odot$: Element-wise multiplication
@@ -480,6 +488,7 @@ where $\mathcal{R}$ is the set of valid correlation matrices.
 
 
 **Grid**: Discretize $(t, S)$ space:
+
 - Time: $t \in \{0, \Delta t, 2\Delta t, \ldots, T\}$
 - Space: $S \in \{S_{\min}, S_{\min} + \Delta S, \ldots, S_{\max}\}$
 
@@ -521,6 +530,7 @@ $$
 **Challenge**: Direct Monte Carlo is difficult due to supremum over volatilities.
 
 **Approach**: For each simulated path:
+
 1. At each time step, observe $S_t$ and $\Gamma_t$
 2. Choose $\sigma_t$ adversarially based on $\text{sign}(\Gamma_t)$
 3. Continue simulation to maturity
@@ -541,6 +551,7 @@ $$
 
 
 **Algorithm**:
+
 1. **Initialize**: Guess volatility policy $\sigma^{(0)}(t, S)$
 2. **Solve PDE**: Compute $V^{(k)}$ solving linear PDE with $\sigma = \sigma^{(k)}$
 3. **Update Policy**: Set:
@@ -643,6 +654,7 @@ $$
 
 
 **Scenarios**: Test portfolio under extreme volatility scenarios:
+
 1. **Vol Spike**: $\sigma \to \overline{\sigma}$ suddenly
 2. **Vol Crash**: $\sigma \to \underline{\sigma}$ suddenly
 3. **Time-Varying**: $\sigma_t$ follows worst-case path
@@ -749,6 +761,7 @@ $$
 
 
 **Two-Way Quotes**: Provide bid and ask prices:
+
 - **Bid**: $V^{\text{sub}}$ (buying from client)
 - **Ask**: $V^{\text{sup}}$ (selling to client)
 
@@ -914,6 +927,7 @@ $$
 
 
 **Machine Learning**: Learn volatility bounds from data:
+
 - Supervised learning: Predict $[\underline{\sigma}, \overline{\sigma}]$ from market features
 - Reinforcement learning: Optimal hedging strategies under UVM
 
@@ -962,16 +976,19 @@ $$
 
 
 **For Traders**:
+
 - Robust pricing: conservative but safe
 - Hedging: model-free delta strategies
 - Market making: natural bid-ask spreads
 
 **For Risk Managers**:
+
 - Model risk quantification
 - Stress testing frameworks
 - Regulatory capital calculations
 
 **For Researchers**:
+
 - Connection to fully nonlinear PDEs
 - Viscosity solution theory
 - Robust optimization frameworks
@@ -980,6 +997,7 @@ $$
 
 
 Uncertain volatility models bridge:
+
 - **Stochastic Analysis**: BSDEs and martingale theory
 - **PDE Theory**: Fully nonlinear equations and viscosity solutions
 - **Optimization**: Robust control and minimax problems
@@ -1012,7 +1030,7 @@ The UVM framework represents a cornerstone of robust quantitative finance, provi
     **Step 3: Compute prices using Black-Scholes formula.** With $r = 0$, the Black-Scholes call price is:
 
     $$
-    C(S_0, K, \sigma, T) = S_0 \Phi(d_1) - K\Phi(d_2)
+    C(S_0, K, \sigma, T) = S_0 \mathcal{N}(d_1) - K\mathcal{N}(d_2)
     $$
 
     where $d_1 = \frac{\sigma\sqrt{T}}{2}$ and $d_2 = -\frac{\sigma\sqrt{T}}{2}$ (since $S_0 = K$ and $r = 0$).
@@ -1129,7 +1147,7 @@ where $a^*(S,t) = \overline{\sigma}^2$ if $\Gamma > 0$ and $a^*(S,t) = \underlin
 
     **Part 1: Gamma of a European call is always positive.**
 
-    The Black-Scholes call price is $C(S) = S\Phi(d_1) - Ke^{-rT}\Phi(d_2)$ where:
+    The Black-Scholes call price is $C(S) = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$ where:
 
     $$
     d_1 = \frac{\ln(S/K) + (r + \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}
@@ -1138,7 +1156,7 @@ where $a^*(S,t) = \overline{\sigma}^2$ if $\Gamma > 0$ and $a^*(S,t) = \underlin
     Computing the gamma:
 
     $$
-    \Gamma = \frac{\partial^2 C}{\partial S^2} = \frac{\partial}{\partial S}\left[\Phi(d_1) + S\phi(d_1)\frac{\partial d_1}{\partial S}\right]
+    \Gamma = \frac{\partial^2 C}{\partial S^2} = \frac{\partial}{\partial S}\left[\mathcal{N}(d_1) + S\phi(d_1)\frac{\partial d_1}{\partial S}\right]
     $$
 
     Using the fact that $\frac{\partial d_1}{\partial S} = \frac{1}{S\sigma\sqrt{T-t}}$ and the identity $S\phi(d_1) = Ke^{-r(T-t)}\phi(d_2)$, the gamma simplifies to:
@@ -1160,7 +1178,7 @@ where $a^*(S,t) = \overline{\sigma}^2$ if $\Gamma > 0$ and $a^*(S,t) = \underlin
     The digital (binary) call has payoff $\Phi(S) = \mathbb{1}_{\{S > K\}}$. Its Black-Scholes price is:
 
     $$
-    V_{\text{dig}}(S) = e^{-r(T-t)}\Phi(d_2)
+    V_{\text{dig}}(S) = e^{-r(T-t)}\mathcal{N}(d_2)
     $$
 
     The delta is:

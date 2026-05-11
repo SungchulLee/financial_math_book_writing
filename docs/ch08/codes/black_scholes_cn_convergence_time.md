@@ -243,3 +243,36 @@ if __name__ == "__main__":
 
     print("="*70)
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Describe a temporal convergence study for the CN scheme. How do you isolate the time discretization error?
+
+??? success "Solution to Exercise 1"
+    Fix $N_S$ large enough that spatial error is negligible. Vary $N_t$ and compute the error $e(N_t) = |V_{\text{num}} - V_{\text{exact}}|$. Plot $\log(e)$ vs $\log(\Delta t)$. A slope of 2 confirms $O(\Delta t^2)$ temporal accuracy.
+
+---
+
+**Exercise 2.**
+The CN scheme is second-order in time. What would the convergence order be for Backward Euler?
+
+??? success "Solution to Exercise 2"
+    Backward Euler is first-order in time: $O(\Delta t)$. On a log-log convergence plot, the slope would be 1 instead of 2. This means halving $\Delta t$ only halves the error (versus quartering it for CN), making Backward Euler four times less efficient for the same accuracy.
+
+---
+
+**Exercise 3.**
+Can the observed convergence order be higher than 2 for the CN scheme? Under what conditions?
+
+??? success "Solution to Exercise 3"
+    Yes, superconvergence can occur when the solution is very smooth and the error expansion has vanishing odd-order terms. For the BS PDE with smooth initial data and far from boundaries, the error may show $O(\Delta t^3)$ behavior for specific grid configurations. However, this is not guaranteed and should not be relied upon.
+
+---
+
+**Exercise 4.**
+If the time convergence test shows order 1 instead of 2, what could be wrong?
+
+??? success "Solution to Exercise 4"
+    Possible causes: (1) the payoff non-smoothness at $S = K$ is degrading the convergence (use Rannacher smoothing), (2) $N_S$ is too small so spatial error contaminates the time convergence, (3) the boundary conditions are only first-order accurate, (4) for American options, the free boundary introduces a lower-order error contribution.

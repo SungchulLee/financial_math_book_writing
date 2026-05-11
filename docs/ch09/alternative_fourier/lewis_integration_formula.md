@@ -3,6 +3,7 @@
 The Lewis (2001) formula provides the most elegant Fourier pricing representation: a single contour integral along the critical line $\text{Im}(z) = 1/2$ in the complex plane that gives the European call price directly, without a damping parameter, without an FFT, and without a cosine expansion. The integrand decays as $O(|u|^{-2})$, ensuring rapid convergence of standard quadrature rules. For pricing a single option at a given strike, the Lewis formula is often the simplest and most accurate approach.
 
 !!! info "Prerequisites"
+
     - [From Characteristic Function to Density](../cos_method/characteristic_function_to_density.md) (Fourier inversion)
     - Complex analysis: contour integration, analytic continuation, residues
     - [Carr--Madan FFT Method](carr_madan_fft.md) (for comparison)

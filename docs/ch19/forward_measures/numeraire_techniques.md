@@ -38,6 +38,7 @@ This generalizes the risk-neutral measure concept.
 
 
 Common choices include:
+
 - money-market account $B_t$ → risk-neutral measure,
 - zero-coupon bond $P(t,T)$ → T-forward measure,
 - swap annuity → swap measure.

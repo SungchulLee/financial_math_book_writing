@@ -9,6 +9,7 @@ Stochastic volatility models operate in **incomplete markets**: not all sources 
 
 
 In stochastic volatility models:
+
 - volatility is not directly tradable,
 - variance shocks introduce independent risk,
 - delta hedging alone cannot eliminate uncertainty.
@@ -21,6 +22,7 @@ As a result, perfect replication is impossible.
 
 
 In an incomplete market:
+
 - hedging strategies are not unique,
 - residual risk remains even after optimal hedging,
 - hedging performance depends on chosen objective.
@@ -33,6 +35,7 @@ This contrasts sharply with Black–Scholes replication.
 
 
 Practitioners attempt to reduce incompleteness using:
+
 - options of different strikes/maturities (vega hedging),
 - variance swaps or volatility indices (when available),
 - dynamic rebalancing across the surface.
@@ -53,6 +56,7 @@ $$
 
 
 Risk management focuses on:
+
 - distribution of hedging error,
 - tail risk,
 - robustness across scenarios.

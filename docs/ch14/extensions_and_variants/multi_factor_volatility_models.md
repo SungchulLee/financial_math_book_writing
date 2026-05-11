@@ -9,6 +9,7 @@ Single-factor stochastic volatility models often fail to capture the full richne
 
 
 Empirical volatility exhibits:
+
 - short-term fluctuations,
 - long-term persistence,
 - regime-dependent behavior.
@@ -46,11 +47,13 @@ These models improve fit and stability across maturities.
 
 
 Adding factors increases flexibility but introduces:
+
 - identifiability challenges,
 - higher calibration variance,
 - need for stronger regularization.
 
 Calibration typically requires:
+
 - wide maturity coverage,
 - strong parameter constraints,
 - stability-focused objectives.

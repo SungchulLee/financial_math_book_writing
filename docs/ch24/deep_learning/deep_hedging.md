@@ -416,7 +416,7 @@ This eliminates model risk in the hedging strategy itself, even though a model m
 
     **Adaptive behaviors of deep hedging:**
 
-    1. **Reduced trading near the money.** When $S \approx K$, the Black-Scholes delta $\Delta = \Phi(d_1)$ is approximately 0.5 and its gamma $\Gamma = \phi(d_1)/(S\sigma\sqrt{T-t})$ is at its maximum. Delta hedging rebalances aggressively in this region because small price moves cause large delta changes. Each rebalance incurs transaction costs. Deep hedging recognizes that the marginal reduction in variance from this frequent rebalancing is outweighed by the cost, so it trades less.
+    1. **Reduced trading near the money.** When $S \approx K$, the Black-Scholes delta $\Delta = \mathcal{N}(d_1)$ is approximately 0.5 and its gamma $\Gamma = \phi(d_1)/(S\sigma\sqrt{T-t})$ is at its maximum. Delta hedging rebalances aggressively in this region because small price moves cause large delta changes. Each rebalance incurs transaction costs. Deep hedging recognizes that the marginal reduction in variance from this frequent rebalancing is outweighed by the cost, so it trades less.
 
     2. **More aggressive hedging in the tails.** When $S$ is far from $K$ (deep in- or out-of-the-money), delta is near 0 or 1 and gamma is small. Classical delta hedging barely trades here. However, deep hedging with a tail-risk measure (CVaR) recognizes that tail scenarios carry disproportionate risk, so it may maintain or adjust positions to protect against extreme moves.
 

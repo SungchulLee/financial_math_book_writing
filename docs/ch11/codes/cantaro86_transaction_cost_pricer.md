@@ -20,6 +20,7 @@ Davis, Panas and Zariphopoulou (1993) introduced a utility-based
     framework where the agent maximises expected exponential utility:
         U(W) = -exp(-gamma * W)
     subject to proportional transaction costs:
+
         - cost_b (lambda): proportional BUY cost
         - cost_s (mu):     proportional SELL cost
 
@@ -30,11 +31,13 @@ The option price is defined as the indifference price: the amount p
 
 The algorithm uses a binomial tree in (log-price, stock-holding) space
     and backward induction with three possible actions at each node:
+
         - Buy shares   (increase holdings by dy)
         - Sell shares   (decrease holdings by dy)
         - Do nothing   (hold current position)
 
 Key References:
+
     - Davis, M.H.A., Panas, V.G., Zariphopoulou, T. (1993).
       "European option pricing with transaction costs."
       SIAM J. Control Optim., 31(2), 470-493.
@@ -457,3 +460,36 @@ if __name__ == "__main__":
     print("  - The spread grows with the level of transaction costs.")
     print("=" * 72)
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+The DPZ model uses backward induction on a binomial tree in (log-price, holdings) space. Explain the three actions available at each node and the optimality criterion.
+
+??? success "Solution to Exercise 1"
+    At each node, the agent can: (1) Buy $dy$ shares (increase holdings), incurring cost $(1+\lambda_b)Sdy$; (2) Sell $dy$ shares (decrease holdings), receiving $(1-\lambda_s)Sdy$; (3) Do nothing (hold current position). The optimal action maximizes expected exponential utility $-e^{-\gamma W}$, which is equivalent to minimizing $Q = e^{-\gamma W}$. The algorithm takes $Q = \min(\text{Buy}, \text{Sell}, \text{Hold})$ at each node.
+
+---
+
+**Exercise 2.**
+The indifference price for the writer is $p = \frac{\delta_0}{\gamma}\ln(Q_{\text{option}}/Q_{\text{no option}})$. Derive this from the definition of indifference pricing.
+
+??? success "Solution to Exercise 2"
+    The writer is indifferent when $\max \mathbb{E}[-e^{-\gamma(W + p)}] = \max \mathbb{E}[-e^{-\gamma W_{\text{no opt}}}]$. Taking logs: $-\gamma p + \ln Q_{\text{option}} = \ln Q_{\text{no option}}$ (where $Q$ represents the optimized expected negative utility). Solving: $p = \frac{1}{\gamma}(\ln Q_{\text{option}} - \ln Q_{\text{no option}}) = \frac{1}{\gamma}\ln(Q_{\text{option}}/Q_{\text{no option}})$. The discount factor $\delta_0 = e^{-rT}$ adjusts for time value.
+
+---
+
+**Exercise 3.**
+With zero transaction costs, the DPZ model should recover the BS price. Explain why small discrepancies may remain and how they depend on $N$ and $\gamma$.
+
+??? success "Solution to Exercise 3"
+    With zero costs, the binomial tree still has discrete hedging, introducing discretization error $O(1/N)$. The risk aversion $\gamma$ affects the convergence: for small $\gamma$, the utility is nearly linear and the price converges faster to BS. For large $\gamma$, the nonlinear utility magnifies discretization effects. As $N \to \infty$ and $\gamma \to 0$, the DPZ price converges to BS.
+
+---
+
+**Exercise 4.**
+The algorithm complexity is $O(N^2)$ per pricing call. Explain the memory requirement and suggest how to make it practical for $N = 1000$.
+
+??? success "Solution to Exercise 4"
+    At step $k$, there are $k+1$ log-price nodes and $2M+1$ holding nodes, where $M = \lfloor N/2 \rfloor$. The $Q$ matrix at step $k$ is $(k+1) \times (2M+1)$. Peak memory at step $N$ is $O(N^2)$. For $N = 1000$: $Q$ is $1001 \times 1001 \approx 10^6$ doubles $\approx 8$ MB, which is feasible. Time is the bottleneck: $N$ backward steps each involving $O(N \times N)$ operations gives $O(N^3)$ total. For $N = 1000$, this takes minutes; parallelizing the holding-dimension operations can help.

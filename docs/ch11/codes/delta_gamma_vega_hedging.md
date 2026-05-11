@@ -349,3 +349,36 @@ def example_delta_gamma_vega_hedge():
 if __name__ == "__main__":
     example_delta_gamma_vega_hedge()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+To hedge a short call position against delta, gamma, and vega risks, you need three instruments. Explain why the spot asset alone cannot hedge gamma or vega.
+
+??? success "Solution to Exercise 1"
+    The spot asset has $\Delta = 1$, $\Gamma = 0$, $\text{Vega} = 0$. It can only adjust the portfolio delta. Gamma and vega hedging require instruments with nonzero gamma and vega, which means other options. The system $A\mathbf{x} = \mathbf{b}$ with $A = [\Delta, \Gamma, \text{Vega}]$ for spot, call, and put gives three equations in three unknowns, uniquely determining the hedge quantities.
+
+---
+
+**Exercise 2.**
+If the portfolio delta is $-0.55$, gamma is $-0.02$, and vega is $-0.38$, and a hedging call has $\Delta = 0.5$, $\Gamma = 0.02$, $\text{Vega} = 0.19$, compute the number of calls needed to neutralize gamma.
+
+??? success "Solution to Exercise 2"
+    To neutralize gamma: $n_{\text{call}} \times 0.02 = 0.02$, so $n_{\text{call}} = 1$. After adding 1 call: delta becomes $-0.55 + 0.5 = -0.05$ and vega becomes $-0.38 + 0.19 = -0.19$. Additional spot and put positions are needed to zero out remaining delta and vega.
+
+---
+
+**Exercise 3.**
+Explain the P&L Taylor expansion: $\text{P\&L} \approx \Delta \cdot dS + \frac{1}{2}\Gamma \cdot (dS)^2 + \text{Vega} \cdot d\sigma - \Theta \cdot dt$. Which terms dominate for small versus large moves?
+
+??? success "Solution to Exercise 3"
+    For small moves ($|dS| < 1\%$): the linear delta term dominates. For large moves ($|dS| > 5\%$): the quadratic gamma term becomes important, especially for short gamma positions. The vega term dominates during volatility regime changes. Theta is the constant daily cost/income. A delta-gamma-vega-neutral portfolio has P&L $\approx -\Theta \cdot dt$ plus higher-order residuals.
+
+---
+
+**Exercise 4.**
+Compute the variance reduction from delta-gamma-vega hedging versus delta-only hedging for a short call, given scenarios with $dS \in [-10, 10]$ and $d\sigma \in [-2\%, 2\%]$.
+
+??? success "Solution to Exercise 4"
+    Delta-only hedging leaves residual gamma and vega exposure: P&L variance $\approx \text{Var}(\frac{1}{2}\Gamma(dS)^2) + \text{Var}(\text{Vega} \cdot d\sigma) + 2\text{Cov}$. For typical parameters, $\text{Var}(\Gamma \text{ term}) \approx \Gamma^2 \mathbb{E}[(dS)^4]/4$ and $\text{Var}(\text{Vega term}) \approx \text{Vega}^2\text{Var}(d\sigma)$. Full hedging eliminates both, leaving only higher-order terms. Typical variance reduction is 90--99%.

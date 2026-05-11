@@ -47,6 +47,7 @@ V_{ij} = \max\!\left(E_{ij},\; C_{ij}\right)
 $$
 
 !!! info "Algorithm: Tree-Based Bermudan Pricing"
+
     1. **Build the tree**: Construct the Hull-White trinomial tree calibrated to the market yield curve (see tree construction section).
     2. **Terminal values**: At each node at the final exercise date $T_{n-1}$, compute $V_{ij} = \max(E_{ij}, 0)$ where $E_{ij}$ is the swap value given $r_{ij}$.
     3. **Backward step**: For each time step from $T_{n-2}$ back to $T_m$:
@@ -97,6 +98,7 @@ For more complex variants (path-dependent features, multiple factors), the Longs
 ### Algorithm Overview
 
 !!! info "Algorithm: Longstaff-Schwartz for Bermudan Swaptions"
+
     1. **Simulate paths**: Generate $M$ paths of the short rate $\{r^{(m)}(t)\}$ using exact simulation.
     2. **Terminal payoffs**: At the last exercise date $T_{n-1}$, compute $V^{(m)} = \max(E^{(m)}(T_{n-1}), 0)$ for each path.
     3. **Backward regression**: For each exercise date $T_j$ from $T_{n-2}$ back to $T_m$:

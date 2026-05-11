@@ -224,3 +224,36 @@ if __name__ == "__main__":
     print(f"✅ Put options: More sensitive at low stock prices (S→0)")
     print("="*70)
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Write the boundary conditions for a European put solved by Crank-Nicolson.
+
+??? success "Solution to Exercise 1"
+    $V(0,t) = Ke^{-r(T-t)}$ (deep OTM: present value of strike). $V(S_{\max}, t) = 0$ (worthless for large $S$). $V(S,T) = \max(K - S, 0)$ (payoff).
+
+---
+
+**Exercise 2.**
+Verify put-call parity using the CN solutions for the European call and put on the same grid.
+
+??? success "Solution to Exercise 2"
+    At each grid point: $C_i - P_i \approx S_i - Ke^{-r(T-t_j)}$. The deviation from exact parity measures the numerical error of the CN scheme. Typical deviations are $O(\Delta S^2 + \Delta t^2)$, providing a useful internal consistency check.
+
+---
+
+**Exercise 3.**
+How does the put price behave as $S \to 0$ and $S \to \infty$?
+
+??? success "Solution to Exercise 3"
+    As $S \to 0$: $P \to Ke^{-r(T-t)}$ (the put is deep ITM and will almost certainly be exercised). As $S \to \infty$: $P \to 0$ (the put is deep OTM). The put price is a decreasing, convex function of $S$.
+
+---
+
+**Exercise 4.**
+Compare the CN solution for the European put with the analytical BS formula at $S_0 = 100$, $K = 100$, $T = 1$, $r = 0.05$, $\sigma = 0.20$.
+
+??? success "Solution to Exercise 4"
+    The BS put price is approximately \$5.57. The CN solution should agree to within $O(10^{-3})$ with standard grid parameters ($N_S = 100$, $N_t = 1000$). The error is largest near $S = K$ due to the payoff kink and smallest in the tails where the solution is smooth.

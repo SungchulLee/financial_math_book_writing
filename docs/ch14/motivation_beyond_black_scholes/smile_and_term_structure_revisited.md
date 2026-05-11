@@ -19,6 +19,7 @@ If the Black–Scholes model were correct, $\sigma_{\text{impl}}(K, T) = \sigma$
 **Parameterizations:**
 
 Rather than strike $K$, practitioners often use:
+
 - **Log-moneyness:** $k = \log(K/F)$ where $F = S_0 e^{(r-q)T}$ is the forward
 - **Delta:** The Black–Scholes delta of the option
 - **Standardized moneyness:** $m = k/(\sigma_{\text{ATM}}\sqrt{T})$
@@ -45,6 +46,7 @@ $$
 | Skew (per 10% moneyness) | 1.5%–4% |
 
 The asymmetry reflects:
+
 1. **Crash risk:** Markets assign higher probability to large downward moves
 2. **Leverage effect:** Volatility increases when prices fall
 3. **Demand imbalance:** Strong demand for downside protection (puts)
@@ -52,6 +54,7 @@ The asymmetry reflects:
 ### Single-Stock Smiles
 
 Individual equities exhibit more varied patterns:
+
 - Generally less steep skew than indices
 - Can show upward-sloping wings for speculative stocks
 - Earnings and events create localized smile distortions
@@ -69,6 +72,7 @@ Both OTM puts and OTM calls have elevated implied volatility, reflecting tail ri
 ### Commodity Smiles
 
 Commodities exhibit varied patterns depending on:
+
 - Supply/demand asymmetries
 - Storage costs and convenience yields
 - Seasonality
@@ -86,16 +90,19 @@ $$
 ### Common Term Structure Shapes
 
 **Upward sloping (contango):** Short-term vol < Long-term vol
+
 - Typical in calm markets
 - Reflects uncertainty increasing with horizon
 - Mean reversion of volatility is not yet "priced in"
 
 **Downward sloping (backwardation):** Short-term vol > Long-term vol
+
 - Common during stress periods
 - Current high volatility expected to mean-revert
 - VIX term structure in 2008, 2020 exhibited strong backwardation
 
 **Humped:** Peak at intermediate maturity
+
 - Event risk (earnings, elections) at specific dates
 - Regulatory deadlines or macro announcements
 
@@ -143,10 +150,12 @@ $$
 As the underlying moves, the smile shifts. Two limiting cases:
 
 **Sticky strike:** $\sigma_{\text{impl}}(K, t)$ remains constant for fixed $K$
+
 - Implies: as $S$ moves, the smile "slides" along the strike axis
 - Inconsistent with most stochastic volatility models
 
 **Sticky delta:** $\sigma_{\text{impl}}(\Delta, t)$ remains constant for fixed $\Delta$
+
 - Implies: the smile moves with the forward
 - More consistent with floating smile models
 
@@ -167,6 +176,7 @@ f^{\mathbb{Q}}(S_T = K) = e^{rT} \frac{\partial^2 C}{\partial K^2}\bigg|_{K}
 $$
 
 A non-flat smile implies a non-Gaussian risk-neutral density:
+
 - Steep put skew → heavy left tail → crash risk priced
 - Elevated wings → fat tails → extreme moves priced
 
@@ -179,6 +189,7 @@ VRP = \mathbb{E}^{\mathbb{Q}}[\sigma^2] - \mathbb{E}^{\mathbb{P}}[\sigma^2]
 $$
 
 is typically positive for equity indices (investors pay a premium for volatility protection). The term structure of VRP reveals:
+
 - Short-term VRP tends to be larger
 - VRP increases during stress
 - Mean reversion of VRP itself
@@ -186,6 +197,7 @@ is typically positive for equity indices (investors pay a premium for volatility
 ### Demand and Supply
 
 The smile also reflects market microstructure:
+
 - Institutional demand for OTM puts (portfolio insurance)
 - Market makers' inventory and hedging costs
 - Flow imbalances in specific strikes/maturities
@@ -205,6 +217,7 @@ A viable stochastic volatility model must explain:
 | Term structure | Realistic volatility dynamics |
 
 The Heston model (Section 9.3) addresses all these through:
+
 - Stochastic variance $V_t$
 - Correlation $\rho$ (skew)
 - Vol-of-vol $\xi$ (curvature)

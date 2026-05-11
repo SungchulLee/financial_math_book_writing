@@ -9,6 +9,7 @@
 ### Temporary Impact
 
 Short-lived price pressure during execution:
+
 - Prices move against the trade during execution
 - Prices partially revert after execution completes
 - Duration: minutes to hours
@@ -16,6 +17,7 @@ Short-lived price pressure during execution:
 ### Permanent Impact
 
 Lasting price change due to information revelation:
+
 - Market infers information from the trade
 - Price adjusts to incorporate new information
 - Persists indefinitely
@@ -39,6 +41,7 @@ $$
 $$
 
 where:
+
 - $\Delta P$ = price impact (as return)
 - $\sigma$ = daily volatility
 - $Q$ = order size (shares)
@@ -81,6 +84,7 @@ S_t = S_0 - g(v_t) - h(v_t) + \sigma W_t
 $$
 
 where:
+
 - $v_t = -\dot{x}(t)$ is the trading rate
 - $g(v)$ = permanent impact function
 - $h(v)$ = temporary impact function
@@ -237,6 +241,7 @@ $$
 $$
 
 **Benchmarks:**
+
 - Arrival price (decision time)
 - VWAP (volume-weighted average)
 - TWAP (time-weighted average)
@@ -255,6 +260,7 @@ where $\beta$ estimates price sensitivity to order flow.
 ### Transaction Cost Analysis (TCA)
 
 Comprehensive analysis decomposing costs:
+
 - Market impact
 - Timing cost
 - Opportunity cost
@@ -283,6 +289,7 @@ where liquidation cost depends on position size and impact model.
 ### Stressed Impact
 
 During crises, impact increases:
+
 - Wider spreads
 - Lower depth
 - Higher volatility
@@ -307,6 +314,7 @@ Under-hedge when impact is costly.
 ### Rebalancing Frequency
 
 Trade-off between:
+
 - Tracking error (favor frequent rebalancing)
 - Impact costs (favor infrequent rebalancing)
 
@@ -319,6 +327,7 @@ Trade-off between:
 ### Algorithmic Trading
 
 Execution algorithms designed to minimize impact:
+
 - **TWAP:** Time-weighted average price
 - **VWAP:** Volume-weighted average price
 - **Implementation Shortfall:** Minimize expected cost
@@ -327,6 +336,7 @@ Execution algorithms designed to minimize impact:
 ### Pre-Trade Analysis
 
 Before large trades:
+
 1. Estimate expected impact
 2. Choose execution horizon
 3. Select algorithm
@@ -335,6 +345,7 @@ Before large trades:
 ### Post-Trade Analysis
 
 After execution:
+
 1. Compare to benchmark
 2. Decompose costs
 3. Assess algorithm performance

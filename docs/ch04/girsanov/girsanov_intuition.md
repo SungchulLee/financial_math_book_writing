@@ -16,21 +16,8 @@ The resolution lies in understanding the difference between **paths** and
 ## Paths vs Probability Measures
 
 
-A stochastic process such as Brownian motion generates random paths
-
-$$
-\omega : [0,T] \to \mathbb{R}
-$$
-
-A probability measure does not create new paths.
-Instead, it assigns **weights** to these paths.
-
-All measure changes considered here are between **equivalent measures**: no path is removed, only reweighted. Changing the probability measure therefore:
-
-- does **not** alter which paths are possible,
-- but **does** change how likely each path is.
-
-Drift is not an intrinsic property of a path, but of its decomposition under a measure. The semimartingale decomposition is measure-dependent: the same path admits different drift–martingale splittings under different probability measures.
+A probability measure does not create new paths — it assigns **weights** to paths.
+All measure changes here are between **equivalent measures**: no path is removed, only reweighted.
 
 ---
 
@@ -38,16 +25,13 @@ Drift is not an intrinsic property of a path, but of its decomposition under a m
 
 
 Imagine observing many random paths over time.
-
-Under one probability measure, paths that trend upward may be more likely.
-Under another measure, those same paths may be downweighted.
+Different measures assign different weights to the same paths, changing averages (drift) without changing trajectories.
 
 From the perspective of averages:
 
-- the first observer sees a **positive drift**,
-- the second observer sees **no drift**.
+- one observer sees a **positive drift**,
+- another observer sees **no drift**.
 
-The sample space (set of paths) is unchanged, but the probability law on that space changes.
 Only the probability weights have changed.
 
 ---
@@ -64,14 +48,14 @@ $$
 
 has drift $\theta$ under $\mathbb{P}$. More precisely:
 
-- Under $\mathbb{P}$: $Y_t$ has drift $\theta$ (it is a Brownian motion plus a linear trend).
-- Under $\mathbb{Q}$ (to be constructed): $Y_t$ has drift $0$ (it is itself a Brownian motion).
+- Under $\mathbb{P}$: $Y_t$ has drift $\theta$ (a Brownian motion plus a linear trend).
+- Girsanov's theorem guarantees a measure $\mathbb{Q}$ under which $Y_t$ has drift $0$.
 
 Girsanov’s theorem answers the following question:
 
 > *Is there an equivalent probability measure under which $Y_t$ is a Brownian motion?*
 
-The answer is yes, under suitable integrability conditions (formalized later as the [Novikov condition](../martingale/novikov_kazamaki_conditions.md)), which guarantee that the exponential change-of-measure process is a true martingale. In the case of constant drift $\theta$, these conditions are automatically satisfied. Thus the drift can be absorbed into the probability measure, and no sample path is added or removed—only reweighted.
+The answer is yes (under the [Novikov condition](../martingale/novikov_kazamaki_conditions.md), automatically satisfied for constant $\theta$). The drift is absorbed into the probability measure — no sample path is added or removed, only reweighted.
 
 ---
 
@@ -92,14 +76,8 @@ viewpoints.
 
 
 > **Drift lives in the probability measure, not in the paths.**
-> Drift is not a property of individual paths, but of the probability-weighted ensemble of paths.
->
-> Same paths + different weights $\Rightarrow$ different drift.
 
-The remainder of this chapter shows how this intuition becomes exact: a carefully constructed change of measure removes drift through an exponential reweighting of paths. The key technical question is: *how do we construct a measure change that exactly cancels the drift?* The answer is the exponential martingale, whose structure is designed so that a precise cancellation occurs at the level of stochastic differentials.
-
-!!! note "From intuition to formalism"
-    The informal idea — that changing measure changes drift but not volatility — is made precise through the Radon–Nikodym derivative $Z_T = d\mathbb{Q}/d\mathbb{P}$, which is a stochastic exponential. The [proof](girsanov_proof.md) shows that this reweighting produces exactly the drift shift described above, while the [theorem statement](girsanov_theorem.md) gives the precise conditions under which the construction is valid.
+The [theorem statement](girsanov_theorem.md) makes this precise, and the [proof](girsanov_proof.md) shows why the cancellation works.
 
 ---
 
@@ -177,29 +155,14 @@ Suppose you flip a biased coin with $\mathbb{P}(\text{Heads}) = 0.7$. Define a n
     \mathbb{E}^{\mathbb{P}}\!\left[\frac{d\mathbb{Q}}{d\mathbb{P}}\right] = \mathbb{P}(\text{H}) \cdot \frac{5}{7} + \mathbb{P}(\text{T}) \cdot \frac{5}{3} = 0.7 \cdot \frac{5}{7} + 0.3 \cdot \frac{5}{3} = 0.5 + 0.5 = 1 \quad \checkmark
     $$
 
-    This illustrates the key idea behind Girsanov's theorem: the Radon–Nikodym derivative reweights outcomes without changing the sample space. Under $\mathbb{P}$, heads is more likely (biased coin), so if we define "drift" as the expected value, there is a positive bias toward heads. Under $\mathbb{Q}$, the same outcomes exist but with equal probability (fair coin), removing the drift. The outcome $\text{H}$ (analogous to an upward-drifting path) is downweighted by $5/7 < 1$, while $\text{T}$ (a downward path) is upweighted by $5/3 > 1$. The continuous-time Girsanov theorem works identically: the Radon–Nikodym derivative $Z_T$ reweights paths so that a drifted process becomes driftless.
+    The Radon–Nikodym derivative reweights outcomes without changing the sample space: $\text{H}$ is downweighted ($5/7 < 1$), $\text{T}$ is upweighted ($5/3 > 1$), removing the bias toward heads.
 
 ---
 
 **Exercise 5.**
-In the thought experiment of observing many random paths, suppose the first observer sees an average drift of $+5\%$ per year and the second observer sees an average drift of $0\%$. If both observe the same 10,000 simulated paths, explain how the second observer's probability weights must differ from the first's. Which paths receive higher weight under the second observer's measure?
-
-??? success "Solution to Exercise 5"
-    The first observer assigns equal probability weights to all 10,000 paths (or weights consistent with the physical measure $\mathbb{P}$). Under these weights, the average drift is $+5\%$ per year, meaning paths that trend upward contribute more to the average.
-
-    The second observer uses a different set of probability weights (corresponding to the measure $\mathbb{Q}$) so that the weighted average drift is $0\%$. To achieve this:
-
-    - Paths that trend **downward** or stay flat must receive **higher** weight under $\mathbb{Q}$ than under $\mathbb{P}$.
-    - Paths that trend **strongly upward** must receive **lower** weight under $\mathbb{Q}$.
-
-    Specifically, the weight of each path $\omega$ is proportional to the Radon–Nikodym derivative $Z_T(\omega)$. For a process with drift $\mu > 0$ and constant volatility $\sigma$, the Girsanov kernel is $\theta = \mu/\sigma$, and the weight is $Z_T(\omega) = \exp(-\theta W_T(\omega) - \frac{1}{2}\theta^2 T)$. Paths where $W_T(\omega)$ is large and positive (those responsible for the upward drift) get exponentially downweighted by the factor $e^{-\theta W_T}$, while paths where $W_T(\omega)$ is negative get upweighted. The result is that the reweighted average drift is zero.
-
----
-
-**Exercise 6.**
 The statement "drift lives in the probability measure, not in the paths" is the central idea. Provide a concrete numerical example: take a discrete random walk with three possible paths and show that by reassigning probabilities (without adding or removing paths), you can change the expected drift from positive to zero.
 
-??? success "Solution to Exercise 6"
+??? success "Solution to Exercise 5"
     Consider a discrete random walk over one period with three possible paths:
 
     - Path A: the walk goes up by $+2$
@@ -218,56 +181,14 @@ The statement "drift lives in the probability measure, not in the paths" is the 
     \mathbb{E}^{\mathbb{Q}}[X] = 0.2 \cdot 2 + 0.2 \cdot 1 + 0.6 \cdot (-1) = 0.4 + 0.2 - 0.6 = 0
     $$
 
-    No paths were added or removed. The upward path A was downweighted from 0.5 to 0.2, and the downward path C was upweighted from 0.2 to 0.6. This is exactly the discrete analogue of what Girsanov's theorem does in continuous time.
+    No paths were added or removed — path A was downweighted from 0.5 to 0.2 and path C upweighted from 0.2 to 0.6.
 
 ---
 
-**Exercise 7.**
-Explain why the Girsanov measure change preserves the volatility of the process. Specifically, if $Y_t = W_t + \theta t$ has the same quadratic variation as $W_t$ under both $\mathbb{P}$ and $\mathbb{Q}$, what does this imply about the "roughness" or "fluctuation" of the paths? Why is this property important for option pricing?
-
-??? success "Solution to Exercise 7"
-    The quadratic variation of $Y_t = W_t + \theta t$ is:
-
-    $$
-    \langle Y \rangle_t = \langle W + \theta \cdot \rangle_t = \langle W \rangle_t = t
-    $$
-
-    The deterministic drift term $\theta t$ has zero quadratic variation because it is a finite-variation process. Adding a finite-variation process to a semimartingale does not change its quadratic variation.
-
-    Quadratic variation is a **pathwise** quantity — it is determined by the oscillations of the sample paths along any partition, and these oscillations are the same regardless of the probability measure. Since the paths under $\mathbb{P}$ and $\mathbb{Q}$ are identical (only their weights differ), the quadratic variation is the same: $\langle Y \rangle_t = t$ under both measures.
-
-    This means the "roughness" or local fluctuation structure of the paths is identical under both measures. The paths have the same volatility, the same Hölder regularity, and the same local behavior.
-
-    This is crucial for option pricing because **option prices depend primarily on volatility, not on drift**. The Black-Scholes formula, for instance, depends on $\sigma$ but not on $\mu$. The Girsanov measure change removes the drift (which encodes investor risk preferences and is difficult to estimate) while preserving the volatility (which is directly observable from market prices). This is why we can calibrate option pricing models to implied volatility without needing to estimate expected returns.
-
----
-
-**Exercise 8.**
-A candidate claims: "Girsanov's theorem changes the drift of the process, so it must change the sample paths." In one sentence, explain why this is wrong, and give the correct interpretation.
-
-??? success "Solution to Exercise 8"
-    The underlying sample space is the same, and the canonical paths are unchanged, but their probability law is different — Girsanov changes the **probability weights** assigned to those paths, not the paths themselves. Drift is not a property of individual paths but of the **probability-weighted ensemble of paths**: the same trajectory that looks like an upward drift under $\mathbb{P}$ appears driftless under $\mathbb{Q}$ because $\mathbb{Q}$ assigns higher weight to paths that happened to drift upward, rebalancing the ensemble average to zero excess return.
-
----
-
-**Exercise 9.**
-A trader claims: "Drift doesn't matter for options, so we can ignore it completely." Why is this *mostly* true? Give at least one situation where it becomes false.
-
-??? success "Solution to Exercise 9"
-    This is mostly true because Girsanov's theorem shows that the physical drift $\mu$ drops out of derivative prices entirely: under the risk-neutral measure $\mathbb{Q}$, every asset drifts at the risk-free rate $r$ regardless of $\mu$. The Black–Scholes price depends on $\sigma$, $r$, $T$, $K$, and $S_0$ — not on $\mu$. This is a direct consequence of the measure change absorbing $\mu$ into the Radon–Nikodym derivative.
-
-    However, drift *does* matter in the following situations:
-
-    - **Risk management under $\mathbb{P}$**: Computing VaR, expected shortfall, or simulating future portfolio scenarios requires the physical measure where $\mu$ matters.
-    - **Incomplete markets**: When no equivalent martingale measure exists (e.g., stochastic volatility without enough traded hedging instruments), the risk premium cannot be fully absorbed by a measure change, and $\mu$ affects prices through the unhedgeable component.
-    - **Measure change validity**: If the market price of risk $\theta = (\mu - r)/\sigma$ is too large, the Novikov condition may fail and the Girsanov measure change is not valid, so the drift cannot be cleanly removed.
-
----
-
-**Exercise 10.**
+**Exercise 6.**
 You change measure from $\mathbb{P}$ to $\mathbb{Q}$ so that upward-trending paths are downweighted and downward-trending paths are upweighted. A colleague concludes: "Under $\mathbb{Q}$, the stock should go down in expectation." Explain precisely why this reasoning is wrong.
 
-??? success "Solution to Exercise 10"
+??? success "Solution to Exercise 6"
     The reasoning confuses "downweighting upward paths" with "making the stock decline." Under $\mathbb{Q}$, the stock's expected growth rate is $r$ (the risk-free rate), which is typically positive. The reweighting does not make the stock decline — it reduces the expected growth rate from $\mu$ (which includes a risk premium) to $r$ (which does not).
 
     Concretely, if $\mu = 10\%$ and $r = 3\%$, the Girsanov measure change downweights paths where the stock grew strongly (say at 15%) and upweights paths where it grew modestly or declined. The net effect is that the weighted average growth rate shifts from 10% to 3% — not to a negative number. The stock still grows in expectation under $\mathbb{Q}$, just at the risk-free rate.

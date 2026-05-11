@@ -44,6 +44,7 @@ V(t, S) \approx e^{-r\tau} \frac{b-a}{2} \sum_{k=0}^{n-1} \mathop{'} A_k H_k
 $$
 
 Here:
+
 - $A_k$ are the density Fourier coefficients (computed from the characteristic function)
 - $H_k$ are the payoff coefficients, defined as:
 
@@ -153,11 +154,13 @@ The COS method converges **exponentially** fast, making it one of the most effic
 ## Limitations and Extensions
 
 **Limitations:**
+
 - Payoff must be integrable (rules out barrier/digital options without modification)
 - Choice of bounds $[a, b]$ affects convergence
 - Difficult to apply to path-dependent options
 
 **Extensions:**
+
 - Digital options: piecewise polynomial approximation
 - Barrier options: combination with finite-difference solver
 - American options: backward induction with COS method at each step

@@ -27,6 +27,7 @@ $$
 ### Information Content
 
 At time $t$, a market participant observing $\mathcal{G}_t$ knows:
+
 - All market information up to time $t$ (contained in $\mathcal{F}_t$)
 - Whether default has occurred by time $t$
 - If default has occurred, the exact time $\tau$ when it happened
@@ -49,6 +50,7 @@ X = Y \mathbf{1}_{\{\tau > t\}} + Z(\tau) \mathbf{1}_{\{\tau \le t\}}
 $$
 
 where:
+
 - $Y$ is $\mathcal{F}_t$-measurable
 - $Z: [0,t] \times \Omega \to \mathbb{R}$ is $\mathcal{B}([0,t]) \otimes \mathcal{F}_t$-measurable
 
@@ -73,6 +75,7 @@ Here, $\sigma(\tau)$ represents complete knowledge of the default time, availabl
 ### Information Content
 
 At any time $t$, an observer of $\mathcal{G}_t$ knows:
+
 - All market information up to time $t$
 - The exact value of $\tau$ (regardless of whether $\tau \le t$ or $\tau > t$)
 
@@ -188,6 +191,7 @@ The function $u \mapsto \alpha_t^u$ is the conditional density of $\tau$ given $
 ### Implications
 
 Under the density hypothesis:
+
 - The Azéma supermartingale has absolutely continuous sample paths
 - Default intensity exists: $\lambda_t = \alpha_t^t / G_t$ on $\{\tau > t\}$
 - Semimartingale decompositions have explicit forms
@@ -275,7 +279,7 @@ The uncertainty is completely resolved by knowing $\tau$.
 
     - Under **initial enlargement**, the agent knows $\tau$ exactly. If $\tau > T$, the agent is certain no default will occur and values the claim at its default-free price. If $\tau \le T$, the agent knows default will happen and can act accordingly. There is no credit spread from the perspective of this insider — only deterministic knowledge.
 
-    The difference $e^{-\lambda(T-t)}$ vs. $\mathbf{1}_{\{\tau > T\}}$ quantifies the **value of knowing the default time in advance**. The insider's certainty eliminates the need for credit risk premia entirely. $\blacksquare$
+    The difference $e^{-\lambda(T-t)}$ vs. $\mathbf{1}_{\{\tau > T\}}$ quantifies the **value of knowing the default time in advance**. The insider's certainty eliminates the need for credit risk premia entirely. $\square$
 
 ---
 
@@ -301,7 +305,7 @@ The uncertainty is completely resolved by knowing $\tau$.
 
     Under **progressive enlargement** on $\{\tau > t\}$, the $\mathcal{G}_t^{\text{prog}}$-measurable information includes $\mathcal{F}_t$ and the knowledge that $\tau > t$, but **not** the exact future value of $\tau$. The representation theorem for $\mathcal{G}_t^{\text{prog}}$-measurable random variables states that on $\{\tau > t\}$, any $\mathcal{G}_t^{\text{prog}}$-measurable random variable equals an $\mathcal{F}_t$-measurable random variable. But $X = \tau$ on $\{\tau > t\}$, and $\tau$ is not $\mathcal{F}_t$-measurable (in reduced-form models, $\tau$ depends on the independent trigger $E$). Hence $X$ is not $\mathcal{G}_t^{\text{prog}}$-measurable.
 
-    **Economic interpretation:** Under progressive enlargement on $\{\tau > t\}$, we know default hasn't happened yet but not when it will happen. Under initial enlargement, we know exactly when it will happen. The random variable $\tau \cdot \mathbf{1}_{\{\tau > t\}}$ — the future default time, observed prior to default — captures this informational gap. $\blacksquare$
+    **Economic interpretation:** Under progressive enlargement on $\{\tau > t\}$, we know default hasn't happened yet but not when it will happen. Under initial enlargement, we know exactly when it will happen. The random variable $\tau \cdot \mathbf{1}_{\{\tau > t\}}$ — the future default time, observed prior to default — captures this informational gap. $\square$
 
 ---
 
@@ -362,7 +366,7 @@ For the specific case where $X$ represents the mark-to-market value of a default
     - **Recovery of treasury (RT):** $R(\tau) = \delta \cdot P(\tau, T)$, so $Z(\tau) = \delta \cdot P(\tau, T) \cdot B_t / B_\tau$
     - **Recovery of market value (RMV):** $R(\tau) = \delta \cdot V_{\tau-}$, requiring the pre-default value just before default
 
-    The dependence of $Z$ on $\tau$ (not just on $t$) reflects that recovery terms, accrued interest, and reinvestment depend on when exactly default occurred within $[0, t]$. $\blacksquare$
+    The dependence of $Z$ on $\tau$ (not just on $t$) reflects that recovery terms, accrued interest, and reinvestment depend on when exactly default occurred within $[0, t]$. $\square$
 
 ---
 
@@ -403,7 +407,7 @@ For the specific case where $X$ represents the mark-to-market value of a default
     2. Perform a **measure change** (Girsanov-type transformation) to absorb the informational drift into a new probability measure
     3. Restrict the class of admissible strategies to prevent unbounded information exploitation
 
-    The measure change introduces an additional drift that exactly offsets the insider's informational advantage, restoring fair pricing. Without this adjustment, the original $\mathbb{Q}$ allows arbitrage under $\mathcal{G}^{\text{init}}$-adapted trading. This is the mathematical formalization of why insider trading (with perfect information about default timing) is incompatible with standard no-arbitrage pricing. $\blacksquare$
+    The measure change introduces an additional drift that exactly offsets the insider's informational advantage, restoring fair pricing. Without this adjustment, the original $\mathbb{Q}$ allows arbitrage under $\mathcal{G}^{\text{init}}$-adapted trading. This is the mathematical formalization of why insider trading (with perfect information about default timing) is incompatible with standard no-arbitrage pricing. $\square$
 
 ---
 
@@ -459,7 +463,7 @@ For $X_t = W_t$ (a standard Brownian motion) and $G_t = e^{-\lambda t}$ (constan
 
     So $W_t$ is itself a $\mathcal{G}$-martingale — no drift correction is needed. This confirms the **immersion property**: the $\mathcal{F}$-Brownian motion $W_t$ remains a $\mathcal{G}$-martingale (in fact, a $\mathcal{G}$-Brownian motion) after progressive enlargement.
 
-    **Interpretation.** The drift correction vanishes because $G_t = e^{-\lambda t}$ is deterministic, reflecting the fact that default risk (governed by constant $\lambda$) is independent of the Brownian motion driving market prices. There is no covariation between the market factor $W$ and the survival probability $G$, so observing default provides no information about the Brownian motion's future behavior. $\blacksquare$
+    **Interpretation.** The drift correction vanishes because $G_t = e^{-\lambda t}$ is deterministic, reflecting the fact that default risk (governed by constant $\lambda$) is independent of the Brownian motion driving market prices. There is no covariation between the market factor $W$ and the survival probability $G$, so observing default provides no information about the Brownian motion's future behavior. $\square$
 
 ---
 
@@ -515,4 +519,4 @@ For $X_t = W_t$ (a standard Brownian motion) and $G_t = e^{-\lambda t}$ (constan
 
     More fundamentally, the issue is that knowing $\tau$ (an $\mathcal{F}$-stopping time) provides so much information about the path of $W$ that the semimartingale structure cannot be preserved under any equivalent measure. The filtration $\mathcal{G}^{\text{init}}$ is "too large" — it contains predictable information about the martingale's future, creating singularities in the Radon–Nikodym density process that would be needed for a Girsanov-type transformation.
 
-    In terms of the general theory, when $\tau$ is $\mathcal{F}_\infty$-measurable, the initial enlargement $\mathcal{F}_t \vee \sigma(\tau)$ is equivalent to giving an insider knowledge of a functional of the entire path. The Dirac nature of the conditional law means there is no "smoothing" that would allow the information to be absorbed into a drift correction, and the fundamental semimartingale property — which underlies all of stochastic calculus and no-arbitrage pricing — breaks down. $\blacksquare$
+    In terms of the general theory, when $\tau$ is $\mathcal{F}_\infty$-measurable, the initial enlargement $\mathcal{F}_t \vee \sigma(\tau)$ is equivalent to giving an insider knowledge of a functional of the entire path. The Dirac nature of the conditional law means there is no "smoothing" that would allow the information to be absorbed into a drift correction, and the fundamental semimartingale property — which underlies all of stochastic calculus and no-arbitrage pricing — breaks down. $\square$

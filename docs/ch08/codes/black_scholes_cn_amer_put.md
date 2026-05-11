@@ -224,3 +224,36 @@ if __name__ == "__main__":
     print(f"✅ Monte Carlo provides independent verification")
     print("="*70)
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+For the American put with CN, explain the penalty method as an alternative to direct projection for enforcing early exercise.
+
+??? success "Solution to Exercise 1"
+    The penalty method adds a large penalty term $\rho\max(K - S - V, 0)$ to the PDE, forcing $V \ge K - S$ without explicit projection. As $\rho \to \infty$, the solution converges to the American put price. The advantage is that the modified PDE remains smooth, allowing standard linear algebra without iterative projection.
+
+---
+
+**Exercise 2.**
+Describe the free boundary problem formulation for the American put. What are the conditions at the exercise boundary?
+
+??? success "Solution to Exercise 2"
+    The American put satisfies: (1) $V_t + \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S - rV = 0$ for $S > S^*(t)$ (continuation region), (2) $V(S,t) = K - S$ for $S \le S^*(t)$ (exercise region), (3) $V(S^*(t), t) = K - S^*(t)$ (value matching), (4) $V_S(S^*(t), t) = -1$ (smooth pasting). The unknown boundary $S^*(t)$ must be determined as part of the solution.
+
+---
+
+**Exercise 3.**
+Compare the American put premium (American minus European) for different volatilities and interest rates.
+
+??? success "Solution to Exercise 3"
+    The American put premium increases with: (1) higher $r$ (more interest earned on $K$ upon exercise), (2) lower $\sigma$ (less option time value, so exercise becomes relatively more attractive), (3) longer $T$ (more opportunities for early exercise). Typical premiums range from 0.5% to 5% of the option price for standard equity parameters.
+
+---
+
+**Exercise 4.**
+How does grid refinement (increasing $N_S$ and $N_t$) affect the computed early exercise boundary?
+
+??? success "Solution to Exercise 4"
+    With coarser grids, the exercise boundary $S^*(t)$ is step-like (constrained to grid points) and may have significant discretization error. As the grid refines, $S^*(t)$ becomes smoother and converges to the true continuous boundary. The convergence rate depends on the CN scheme order: $O(\Delta S^2 + \Delta t^2)$ in the continuation region, but potentially lower near the boundary itself.

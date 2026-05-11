@@ -67,6 +67,7 @@ Boundary conditions give $C = a + b$ and $D = -ab$, so:
 $$\boxed{\mathbb{E}_x[\tau] = (x - a)(b - x)}$$
 
 !!! success "Verification"
+
     - $x = a$: $\mathbb{E}_a[\tau] = 0$ $\checkmark$
     - $x = b$: $\mathbb{E}_b[\tau] = 0$ $\checkmark$
     - Maximum at $x = \frac{a+b}{2}$: $\mathbb{E}_{(a+b)/2}[\tau] = \frac{(b-a)^2}{4}$ $\checkmark$
@@ -198,6 +199,7 @@ Let $\tau_a = \inf\{t : X_t = a\}$ for BM starting at $x > a$.
 $$\boxed{\mathbb{E}_x[e^{-\lambda\tau_a}] = e^{-\sqrt{2\lambda}(x - a)}}$$
 
 !!! success "Sanity Checks"
+
     - $x = a$: result is $1$ $\checkmark$ (already there)
     - $x \to \infty$: result $\to 0$ $\checkmark$ (takes forever)
     - $\lambda \to 0$: result $\to 1$ $\checkmark$ (no discounting; BM hits every level a.s.)

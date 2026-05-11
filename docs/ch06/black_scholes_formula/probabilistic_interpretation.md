@@ -5,10 +5,16 @@ The Black-Scholes formula is not merely a mathematical expression—it has deep 
 
 This section reveals the probabilistic structure underlying the option pricing formula.
 
+!!! info "Where this fits"
+    - **Roadmap row(s):** Probability, Measure change.
+    - **Builds on:** [The Black-Scholes formula](bs_formula_statement.md) (statement and notation).
+    - **Feeds into:** [Properties and bounds](properties_and_bounds.md) (delta as $\mathcal{N}(d_1)$) and [Digital option pricing](digital_option_pricing.md) (strike differentiation extracts the implied density).
+
 ---
 
 ## Risk-Neutral Expectation
 
+*Section goal: pricing as a discounted expectation under the risk-neutral measure $\mathbb{Q}$.*
 
 ### 1. **Fundamental Pricing Formula**
 
@@ -28,13 +34,13 @@ $$
 ### 2. **Terminal Stock Price Distribution**
 
 
-Under $\mathbb{Q}$, the terminal stock price is:
+**Throughout this section, $W_t$ denotes a Brownian motion under the risk-neutral measure $\mathbb{Q}$.** Under $\mathbb{Q}$, the terminal stock price is
 
 $$
 S_T = S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma W_T}
 $$
 
-where $W_T \sim \mathcal{N}(0, T)$ under $\mathbb{Q}$.
+so $W_T \sim \mathcal{N}(0, T)$. After the measure change to $\mathbb{Q}^S$ below, we will work with $\widetilde{W}_t = W_t - \sigma t$ instead, which is Brownian under $\mathbb{Q}^S$ by Girsanov's theorem.
 
 **Log-normal distribution**:
 
@@ -58,6 +64,7 @@ This reveals two key probabilities we need to evaluate.
 
 ## The Meaning of N(d_2)
 
+*Section goal: $\mathcal{N}(d_2)$ as the risk-neutral exercise probability $\mathbb{Q}(S_T > K)$.*
 
 ### 1. **Exercise Probability Under Q**
 
@@ -83,15 +90,14 @@ S_T > K
 
 Since $\frac{W_T}{\sqrt{T}} \sim \mathcal{N}(0,1)$ under $\mathbb{Q}$:
 
-$$
-\mathbb{Q}(S_T > K) = \mathbb{Q}\left(Z > \frac{\log(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}\right) = \mathcal{N}(d_2)
-$$
+$$\begin{array}{lll}
+\mathbb{Q}(S_T > K) 
+&=&\displaystyle \mathbb{Q}\left(Z > \frac{\log(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}\right) \\
+&=&\displaystyle \mathbb{Q}\left(Z < - \frac{\log(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}\right) \\
+&=&\displaystyle \mathcal{N}(d_2)
+\end{array}$$
 
-where $Z \sim \mathcal{N}(0,1)$ and we used:
-
-$$
-d_2 = \frac{\log(S_0/K) + (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}} = -\frac{\log(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
-$$
+where $Z \sim \mathcal{N}(0,1)$.
 
 ### 3. **Intuition**
 
@@ -112,6 +118,7 @@ $$
 
 ## The Meaning of N(d_1)
 
+*Section goal: $\mathcal{N}(d_1)$ as the same exercise event measured under the stock-numéraire $\mathbb{Q}^S$.*
 
 ### 1. **Stock Measure Probability**
 
@@ -125,13 +132,13 @@ $$
 ### 2. **Derivation via Measure Change**
 
 
-The stock measure $\mathbb{Q}^S$ uses the stock as numéraire. Its Radon–Nikodym derivative with respect to $\mathbb{Q}$ is:
+Three pieces are now in play: the risk-neutral measure $\mathbb{Q}$, the stock-numéraire measure $\mathbb{Q}^S$, and the Radon–Nikodym derivative $d\mathbb{Q}^S/d\mathbb{Q}$ that links them. Writing $B_t = e^{rt}$ for the deterministic bond-account numéraire, the change-of-numéraire weight takes the canonical *ratio-of-numéraires* form
 
 $$
-\frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_T e^{-rT}}{S_0}
+\frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_T/S_0}{B_T/B_0} = \frac{S_T\, e^{-rT}}{S_0}
 $$
 
-Substituting the explicit form of $S_T$ under $\mathbb{Q}$:
+The numerator $S_T/S_0$ is stock-denominated growth; the denominator $B_T/B_0$ is bond-denominated growth; their ratio is exactly the relative-performance weight that reweights the measure. The same template generalises to any numéraire pair $(N, M)$ via $\dfrac{d\mathbb{Q}^N}{d\mathbb{Q}^M} = \dfrac{N_T/M_T}{N_0/M_0}$. Substituting the explicit form of $S_T$ under $\mathbb{Q}$:
 
 $$
 \frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma W_T} \cdot e^{-rT}}{S_0} = \exp\!\left(\sigma W_T - \frac{1}{2}\sigma^2 T\right)
@@ -158,7 +165,7 @@ $$
 \Delta = \frac{\partial C}{\partial S} = \mathcal{N}(d_1)
 $$
 
-This is **not a coincidence**—the delta naturally emerges as the stock-measure probability through the replication argument.
+**Two distinct interpretations, one number.** Delta is a *replication coefficient*: the share count that locally replicates the option, defined by the self-financing condition. $\mathbb{Q}^S(S_T > K)$ is a *probability* under the stock-numéraire measure, defined by Girsanov's theorem. They happen to be equal in the Black–Scholes model — this is an algebraic fact, not a definition — but they live in different conceptual categories. Treating delta as "literally a probability" is a useful mnemonic but conflates a hedging quantity with a measure-theoretic one. The agreement is what makes the numéraire-change derivation of the formula clean; it is not the reason delta works as a hedge.
 
 ### 4. **Relationship Between d_1 and d_2**
 
@@ -175,6 +182,7 @@ The difference $\sigma\sqrt{T}$ represents the **volatility-time effect** that s
 
 ## The Two-Term Structure
 
+*Section goal: how $S\mathcal{N}(d_1)$ and $Ke^{-rT}\mathcal{N}(d_2)$ split a conditional expectation across two measures.*
 
 ### 1. **Call Option**
 
@@ -185,19 +193,15 @@ $$
 
 **Interpretation**:
 
-1. **Strike term** $Ke^{-rT}\mathcal{N}(d_2)$:
-   - Discounted strike $Ke^{-rT}$ multiplied by probability of exercise $\mathcal{N}(d_2)$
-   - Expected present value of payment if exercised under $\mathbb{Q}$
+1. **Strike term** $Ke^{-rT}\mathcal{N}(d_2)$: discounted strike weighted by the risk-neutral exercise probability — the expected present value of payment if exercised under $\mathbb{Q}$.
 
-2. **Stock term** $S_0\mathcal{N}(d_1)$:
-   - Current stock price $S_0$ multiplied by $\mathcal{N}(d_1)$
-   - This is **not** simply $\mathbb{E}^{\mathbb{Q}}[S_T | S_T > K]$
-   - Rather, it equals $e^{-rT}\mathbb{E}^{\mathbb{Q}}[S_T \cdot \mathbf{1}_{\{S_T > K\}}]$ after evaluation
+2. **Stock term** $S_0\mathcal{N}(d_1)$: equals $e^{-rT}\mathbb{E}^{\mathbb{Q}}[S_T \cdot \mathbf{1}_{\{S_T > K\}}]$ (not the simpler $\mathbb{E}^{\mathbb{Q}}[S_T | S_T > K]$).
 
 ### 2. **Conditional Expectation Decomposition**
 
 
 Define:
+
 - $p = \mathbb{Q}(S_T > K) = \mathcal{N}(d_2)$
 - $\bar{S} = \mathbb{E}^{\mathbb{Q}}[S_T | S_T > K]$ = conditional expected stock price
 
@@ -207,19 +211,19 @@ $$
 \mathbb{E}^{\mathbb{Q}}[S_T \cdot \mathbf{1}_{\{S_T > K\}}] = \bar{S} \cdot p
 $$
 
-After calculation (completing the square in the Gaussian integral), it turns out:
+After calculation (completing the square in the Gaussian integral, exactly as in Exercise 4), it turns out:
 
 $$
-\bar{S} \cdot p = S_0 e^{rT} \mathcal{N}(d_1)
+\bar{S} \cdot p = \mathbb{E}^{\mathbb{Q}}[S_T \cdot \mathbf{1}_{\{S_T > K\}}] = S_0\, e^{rT}\, \mathcal{N}(d_1)
 $$
 
-Therefore:
+Note that this $\mathcal{N}(d_1)$ is *not* the same probability $p = \mathcal{N}(d_2)$ — the conditional-mean factor $\bar S$ shifts the relevant standardization by exactly $\sigma\sqrt{T}$, which is the Girsanov drift to the stock measure. Substituting both pieces back:
 
 $$
-C_0 = e^{-rT}[\bar{S} \cdot p - K \cdot p] = e^{-rT}\bar{S} \cdot \mathcal{N}(d_2) - Ke^{-rT}\mathcal{N}(d_2)
+C_0 = e^{-rT}\!\left[\bar{S} \cdot p - K \cdot p\right] = \underbrace{e^{-rT}\cdot S_0 e^{rT}\mathcal{N}(d_1)}_{S_0\,\mathcal{N}(d_1)} - Ke^{-rT}\mathcal{N}(d_2) = S_0\,\mathcal{N}(d_1) - Ke^{-rT}\,\mathcal{N}(d_2)
 $$
 
-which simplifies to the BS formula.
+This is the Black–Scholes formula. The two-term structure thus has a clean reading: the strike term carries $\mathcal{N}(d_2)$ (the bare exercise probability), and the stock term carries $\mathcal{N}(d_1)$ (the same exercise probability re-weighted by the conditional expected stock value).
 
 ### 3. **Put Option**
 
@@ -256,8 +260,10 @@ $$
 
 ## Numerical Example
 
+*Section goal: a worked illustration that $\mathcal{N}(d_1) \neq \mathcal{N}(d_2)$ and quantification of the gap.*
 
 Consider:
+
 - $S_0 = 100$, $K = 100$ (ATM)
 - $r = 5\%$, $\sigma = 20\%$, $T = 1$ year
 
@@ -290,56 +296,32 @@ $$
 **Step 3**: Call price
 
 $$
-\begin{aligned}
-C_0 &= 100 \times 0.6368 - 100 \times e^{-0.05} \times 0.5596 \\
-&= 63.68 - 95.12 \times 0.5596 \\
-&= 63.68 - 53.22 \\
-&\approx 10.46
-\end{aligned}
+C_0 
+= 100 \times 0.6368 - 100 \times e^{-0.05} \times 0.5596 
+\approx 10.46
 $$
 
 ---
 
 ## Why Two Different Probabilities?
 
+*Section goal: the Girsanov drift shift and why $d_1 - d_2 = \sigma\sqrt{T}$ encodes it.*
 
 ### 1. **The Measure Change Effect**
 
 
-The shift from $\mathbb{Q}$ to $\mathbb{Q}^S$ changes the drift of the stock price:
-
-**Under $\mathbb{Q}$** (risk-neutral):
+The shift from $\mathbb{Q}$ to $\mathbb{Q}^S$ raises the expected return of the stock from $r$ to $r + \sigma^2$:
 
 $$
-dS_t = rS_t dt + \sigma S_t dW_t
+dS_t = rS_t dt + \sigma S_t dW_t \quad\longrightarrow\quad dS_t = (r + \sigma^2)S_t dt + \sigma S_t d\tilde{W}_t
 $$
 
-Expected return = risk-free rate $r$
-
-**Under $\mathbb{Q}^S$** (stock measure):
-
-$$
-dS_t = (r + \sigma^2)S_t dt + \sigma S_t d\tilde{W}_t
-$$
-
-Expected return = $r + \sigma^2$ (higher!)
-
-The stock measure gives more weight to paths where $S_T$ is large, increasing the probability of $S_T > K$.
+The likelihood ratio $\frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_T e^{-rT}}{S_0}$ is *exactly proportional to the terminal stock value*, so $\mathbb{Q}^S$ tilts $\mathbb{Q}$ by a factor linear in $S_T$ — and that linear weighting is precisely what Girsanov converts into the drift shift from $r$ to $r + \sigma^2$.
 
 ### 2. **Girsanov's Theorem**
 
 
-The Brownian motions under the two measures are related by:
-
-$$
-d\tilde{W}_t = dW_t + \sigma dt
-$$
-
-This drift adjustment of $\sigma dt$ shifts the distribution, causing:
-
-$$
-d_1 = d_2 + \sigma\sqrt{T}
-$$
+The Brownian motions under the two measures are related by $d\tilde{W}_t = dW_t + \sigma dt$, and this $\sigma dt$ adjustment is what produces $d_1 = d_2 + \sigma\sqrt{T}$.
 
 ### 3. **Economic Intuition**
 
@@ -349,10 +331,14 @@ $$
 
 The difference captures the **risk premium** embedded in the stock.
 
+!!! note "Connection to the SDF / state-price density"
+    The Radon–Nikodym derivative $\frac{d\mathbb{Q}}{d\mathbb{P}}$ is closely related to the **stochastic discount factor** $M_T$ (also called the pricing kernel or state-price density): up to discounting, $M_T = e^{-rT}\,\frac{d\mathbb{Q}}{d\mathbb{P}}$. So pricing under $\mathbb{Q}$ and pricing by SDF, $V_0 = \mathbb{E}^{\mathbb{P}}[M_T \cdot \text{Payoff}]$, are the same operation written in two languages — the first absorbs discounting and risk-adjustment into a measure change, the second into a per-state weight. The numéraire change to $\mathbb{Q}^S$ then corresponds to multiplying the SDF by $S_T$ before pricing — equivalently, expressing prices in units of stock.
+
 ---
 
 ## Connection to Delta Hedging
 
+*Section goal: why $\Delta = \mathcal{N}(d_1)$ equals a probability without literally being one.*
 
 The hedge ratio (delta) for a call is:
 
@@ -374,6 +360,7 @@ The $\Delta$ that replicates the option is exactly the probability under the mea
 
 ## Limiting Cases
 
+*Section goal: what the two probabilities collapse to in degenerate parameter regimes.*
 
 ### 1. **Deep In-the-Money** (S ≫ K)
 
@@ -419,21 +406,13 @@ Both probabilities are near 50%, symmetrically distributed around 0.5.
 
 The Black-Scholes formula has a deep probabilistic structure:
 
-1. **$\mathcal{N}(d_2)$** = Risk-neutral probability of exercise = $\mathbb{Q}(S_T > K)$
+1. $\mathcal{N}(d_2) = \mathbb{Q}(S_T > K)$ is the risk-neutral exercise probability; $\mathcal{N}(d_1) = \mathbb{Q}^S(S_T > K)$ is the stock-measure exercise probability and equals delta.
 
-2. **$\mathcal{N}(d_1)$** = Stock-measure probability of exercise = $\mathbb{Q}^S(S_T > K)$ = Delta
+2. The two-term structure pairs each measure with its natural quantity: the strike term carries $\mathcal{N}(d_2)$ (bare exercise probability), the stock term carries $\mathcal{N}(d_1)$ (exercise probability re-weighted by conditional expected stock value).
 
-3. **Two-term structure**:
-   - Stock term: Expected stock value conditional on exercise (stock measure)
-   - Strike term: Expected strike payment conditional on exercise (risk-neutral)
+3. The gap $d_1 - d_2 = \sigma\sqrt{T}$ encodes the Girsanov drift between $\mathbb{Q}$ (used for pricing) and $\mathbb{Q}^S$ (used for hedging).
 
-4. **Difference $d_1 - d_2 = \sigma\sqrt{T}$**: Reflects the measure change between $\mathbb{Q}$ and $\mathbb{Q}^S$
-
-5. **Economic meaning**: 
-   - $\mathbb{Q}$ for pricing (neutral to risk)
-   - $\mathbb{Q}^S$ for hedging (captures risk exposure)
-
-This probabilistic interpretation reveals that option pricing is fundamentally about **weighted expectations under carefully chosen probability measures**.
+Option pricing is fundamentally about **weighted expectations under carefully chosen probability measures**.
 
 ---
 

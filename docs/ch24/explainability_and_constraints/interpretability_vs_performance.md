@@ -9,6 +9,7 @@ In financial machine learning, there is a persistent tension between **model int
 
 
 Interpretability refers to the ability to:
+
 - understand how inputs affect outputs,
 - explain model decisions to stakeholders,
 - diagnose errors and instability.
@@ -21,6 +22,7 @@ Linear and sparse models are typically highly interpretable.
 
 
 High-performance models include:
+
 - deep neural networks,
 - ensemble methods,
 - highly nonlinear learners.
@@ -33,6 +35,7 @@ They often achieve superior predictive accuracy but operate as black boxes.
 
 
 In finance:
+
 - models affect capital, pricing, and risk limits,
 - regulators require explainability,
 - senior management must understand model behavior.
@@ -45,6 +48,7 @@ Pure black-box approaches are often unacceptable.
 
 
 Institutions balance:
+
 - slightly lower accuracy for higher transparency,
 - model simplicity for robustness,
 - explainability for governance and trust.

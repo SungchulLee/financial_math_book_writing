@@ -2,9 +2,19 @@
 
 We price a **European call option** on a stock whose price follows a geometric Brownian motion. We apply **Girsanov's theorem** to change from the real-world measure $\mathbb{P}$ to the risk-neutral measure $\mathbb{Q}$ under which the discounted asset price is a martingale.
 
+!!! info "Where this fits"
+    - **Roadmap row(s):** Replication, PDE, Measure change.
+    - **Builds on:** [The Black-Scholes formula](bs_formula_statement.md) (the result to be derived).
+    - **Feeds into:** [Probabilistic interpretation](probabilistic_interpretation.md) (the Girsanov drift shift $d_1 = d_2 + \sigma\sqrt{T}$) and [Properties and bounds](properties_and_bounds.md) (PDE structure underlying the Greeks).
+
+!!! note "Prerequisites"
+    This section assumes familiarity with Itô's formula, exponential (Doléans-Dade) martingales, equivalent measure changes, and the role of filtrations. Readers without this background may treat the derivation as a structural map and revisit after the stochastic-calculus chapter.
+
 ---
 
 ## 1 Model Setup
+
+*Section goal: stock dynamics under the real-world measure $\mathbb{P}$ and the parameters used throughout.*
 
 Let the stock price $S_t$ evolve under the real-world measure $\mathbb{P}$ as:
 
@@ -36,6 +46,8 @@ $$
 
 ## 2 Step 1: Change of Measure Using Girsanov
 
+*Section goal: constructing the equivalent measure $\mathbb{Q}$ under which the discounted stock is a martingale.*
+
 We define the **market price of risk**:
 
 $$
@@ -54,17 +66,19 @@ $$
 \tilde{W}_t := W_t + \theta t
 $$
 
-is a **Brownian motion under $\mathbb{Q}$**, and under $\mathbb{Q}$ the stock price satisfies:
+is a **Brownian motion under $\mathbb{Q}$**. For validity, $Z$ must be a true martingale, not merely a local one; the **Novikov condition** $\mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(\frac{1}{2}\int_0^T \theta^2\,dt\right)\right] < \infty$ is the standard sufficient criterion. In the Black–Scholes setting $\theta$ is constant, so it reduces to $e^{\theta^2 T/2} < \infty$ and is automatic (see Exercise 7). Under $\mathbb{Q}$ the stock price satisfies:
 
 $$
 dS_t = r S_t\, dt + \sigma S_t\, d\tilde{W}_t
 $$
 
-This is the **risk-neutral dynamic**. The drift has been shifted from $\mu$ to $r$, while the volatility $\sigma$ remains unchanged.
+This is the **risk-neutral dynamic**: the drift shifts from $\mu$ to $r$, while $\sigma$ is unchanged.
 
 ---
 
 ## 3 Step 2: Explicit Distribution of S_T under Q
+
+*Section goal: the lognormal distribution of the terminal stock price under $\mathbb{Q}$.*
 
 Solving the SDE under $\mathbb{Q}$:
 
@@ -82,6 +96,8 @@ $$
 
 ## 4 Step 3: Compute the Call Option Price
 
+*Section goal: evaluating $\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+]$ in closed form by Gaussian integration.*
+
 Define:
 
 $$
@@ -92,15 +108,15 @@ $$
 Then the **Black–Scholes formula** gives:
 
 $$
-C_0 = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2)
+C_0 = S_0 \mathcal{N}(d_1) - K e^{-rT} \mathcal{N}(d_2)
 $$
 
-where $\Phi(\cdot)$ is the standard normal cumulative distribution function.
+where $\mathcal{N}(\cdot)$ is the standard normal cumulative distribution function.
 
 ### Interpretation of the Terms
 
-- $\Phi(d_2) = \mathbb{Q}(S_T > K)$: the risk-neutral probability that the option expires in the money.
-- $\Phi(d_1) = \mathbb{Q}^S(S_T > K)$: the probability under the **stock numéraire measure** that the option expires in the money.
+- $\mathcal{N}(d_2) = \mathbb{Q}(S_T > K)$: the risk-neutral probability that the option expires in the money.
+- $\mathcal{N}(d_1) = \mathbb{Q}^S(S_T > K)$: the probability under the **stock numéraire measure** that the option expires in the money.
 
 ### Derivation Sketch
 
@@ -110,33 +126,41 @@ $$
 \begin{aligned}
 C_0 &= e^{-rT} \mathbb{E}^{\mathbb{Q}}[(S_T - K)^+] \\
 &= e^{-rT} \int_K^\infty (s - K)\, f_{S_T}^{\mathbb{Q}}(s)\, ds \\
-&= S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2)
+&= S_0 \mathcal{N}(d_1) - K e^{-rT} \mathcal{N}(d_2)
 \end{aligned}
 $$
 
-The integral is evaluated by substituting $S_T = S_0 e^{(r - \sigma^2/2)T + \sigma\sqrt{T}\, Z}$ with $Z \sim N(0,1)$. The condition $S_T > K$ becomes $Z > -d_2$, and the integrand factors as:
+Substitute $S_T = S_0 e^{(r - \sigma^2/2)T + \sigma\sqrt{T}\, Z}$ with $Z \sim N(0,1)$; the condition $S_T > K$ becomes $Z > -d_2$, and the integrand splits as:
 
 $$
 e^{-rT} S_0 \int_{-d_2}^{\infty} e^{(r - \frac{1}{2}\sigma^2)T + \sigma\sqrt{T}z}\, \frac{1}{\sqrt{2\pi}} e^{-z^2/2}\, dz - K e^{-rT} \int_{-d_2}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-z^2/2}\, dz
 $$
 
-The second integral is simply $\Phi(d_2)$. For the first, completing the square in the exponent gives:
+The second integral is $\mathcal{N}(d_2)$. In the first, $e^{-rT}\,e^{rT} = 1$ leaves $S_0\int_{-d_2}^{\infty}\frac{1}{\sqrt{2\pi}}\exp\!\left(-\tfrac{1}{2}\sigma^2 T + \sigma\sqrt{T}\,z - \tfrac{z^2}{2}\right) dz$. Completing the square:
 
 $$
 \boxed{-\frac{1}{2}\sigma^2 T + \sigma\sqrt{T}\,z - \frac{z^2}{2} = -\frac{1}{2}(z - \sigma\sqrt{T})^2}
 $$
 
-Substituting $u = z - \sigma\sqrt{T}$ shifts the lower limit from $-d_2$ to $-d_2 - \sigma\sqrt{T} = -d_1$, yielding $S_0\Phi(d_1)$.
+The substitution $u = z - \sigma\sqrt{T}$ shifts the lower limit to $-d_2 - \sigma\sqrt{T} = -d_1$:
+
+$$
+S_0\int_{-d_1}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-u^2/2}\, du = S_0\,\mathbb{P}(Z > -d_1) = S_0\,\mathcal{N}(d_1)
+$$
+
+by symmetry of $\mathcal{N}$, completing the derivation.
 
 ---
 
 ## 5 Final Result
 
+*Section goal: the Black-Scholes price recovered from the martingale viewpoint.*
+
 The **European call price** under Girsanov (risk-neutral pricing) is:
 
 $$
 \boxed{
-C_0 = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2)
+C_0 = S_0 \mathcal{N}(d_1) - K e^{-rT} \mathcal{N}(d_2)
 }
 $$
 
@@ -170,11 +194,14 @@ $$
 
 ---
 
-## QuantPie Derivation via Feynman-Kac
+## 7 PDE Perspective: Feynman–Kac Bridge
 
-### Connection to the Black-Scholes PDE
+*Section goal: identifying the same price as the Feynman-Kac solution to the Black-Scholes PDE.*
 
-The **Black-Scholes PDE** and risk-neutral pricing are connected through the Feynman-Kac formula. For a European option with payoff $\Phi(S_T)$:
+The same price arises from the *PDE side* via the **Feynman–Kac theorem** — the same answer through a different lens, tying together three formulations that recur in option pricing.
+
+**Notation note**: here $V(t, S)$ denotes the option value at calendar time $t$ with terminal date $T$, so time remaining is $T - t$. Elsewhere in the chapter $T$ denotes time-to-maturity (evaluating at $t = 0$); setting $t = 0$ below recovers that form.
+
 
 $$
 \begin{array}{lcc}
@@ -182,15 +209,17 @@ $$
 \\
 \text{Terminal Condition} & & \displaystyle V(T, S_T) = \Phi(S_T)\\
 \\
-\text{Risk-Neutral SDE} & & \displaystyle dS = rS\,dt + \sigma S\,dB^{\mathbb{Q}}\\
+\text{Risk-Neutral SDE} & & \displaystyle dS = rS\,dt + \sigma S\,d\tilde{W}_t\\
 \\
 \text{Feynman-Kac Result} & & \displaystyle V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) | S_t = S]
 \end{array}
 $$
 
-### Verification via Itô's Lemma
+The verification below shows that any $C^{1,2}$ solution of the PDE produces a $\mathbb{Q}$-martingale after discounting, which forces it to equal the conditional expectation on the right-hand side — the same expectation we evaluated explicitly in Steps 2–3 above.
 
-**Starting from the PDE**, assume $V$ satisfies:
+### Step 7.1: Itô's Lemma applied to $V(t, S_t)$
+
+Assume $V$ satisfies the PDE:
 
 $$
 \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
@@ -198,25 +227,20 @@ $$
 
 **Apply Itô's Lemma** to $V(t, S_t)$ under the risk-neutral dynamics:
 
-$$
-dV = V_t dt + V_S dS + \frac{1}{2}V_{SS}(dS)^2
-$$
-
-$$
-= V_t dt + V_S(rS\,dt + \sigma S\,dB^{\mathbb{Q}}) + \frac{1}{2}V_{SS}\sigma^2 S^2 dt
-$$
-
-$$
-= \left(V_t + rSV_S + \frac{1}{2}\sigma^2S^2V_{SS}\right)dt + \sigma SV_S dB^{\mathbb{Q}}
-$$
+$$\begin{array}{lll}
+dV 
+&=&\displaystyle V_t dt + V_S dS + \frac{1}{2}V_{SS}(dS)^2\\
+&=&\displaystyle V_t dt + V_S(rS\,dt + \sigma S\,d\tilde{W}_t) + \frac{1}{2}V_{SS}\sigma^2 S^2 dt\\
+&=&\displaystyle \left(V_t + rSV_S + \frac{1}{2}\sigma^2S^2V_{SS}\right)dt + \sigma SV_S d\tilde{W}_t
+\end{array}$$
 
 **Substituting the PDE constraint** ($V_t + rSV_S + \frac{1}{2}\sigma^2S^2V_{SS} = rV$):
 
 $$
-dV = rV\,dt + \sigma SV_S dB^{\mathbb{Q}}
+dV = rV\,dt + \sigma SV_S d\tilde{W}_t
 $$
 
-### Discounted Value is a Martingale
+### Step 7.2: Discounted value is a $\mathbb{Q}$-martingale
 
 Define the **discounted option value:**
 
@@ -227,16 +251,16 @@ $$
 **Computing the differential:**
 
 $$
-d\tilde{V} = \frac{dV}{e^{rt}} - r\frac{V}{e^{rt}}dt = \frac{rV\,dt + \sigma SV_S dB^{\mathbb{Q}}}{e^{rt}} - r\frac{V}{e^{rt}}dt
-$$
-
-$$
-= \frac{\sigma SV_S}{e^{rt}}dB^{\mathbb{Q}} = \sigma S\left(\frac{V_S}{e^{rt}}\right)dB^{\mathbb{Q}}
+d\tilde{V} 
+= \frac{dV}{e^{rt}} - r\frac{V}{e^{rt}}dt 
+= \frac{rV\,dt + \sigma SV_S d\tilde{W}_t}{e^{rt}} - r\frac{V}{e^{rt}}dt
+= \frac{\sigma SV_S}{e^{rt}}d\tilde{W}_t 
+= \sigma S\left(\frac{V_S}{e^{rt}}\right)d\tilde{W}_t
 $$
 
 **The drift term vanishes!** Therefore $\tilde{V}(t)$ is a **martingale under** $\mathbb{Q}$.
 
-### Martingale Property Implies Risk-Neutral Pricing
+### Step 7.3: Martingale property implies risk-neutral pricing
 
 Since $\tilde{V}(t)$ is a martingale:
 
@@ -256,29 +280,15 @@ $$
 \boxed{V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) | S_t = S]}
 $$
 
-### Why the Real-World Drift Doesn't Matter
+### Step 7.4: Why the real-world drift $\mu$ does not appear
 
-Under the real-world measure $\mathbb{P}$:
-
-$$
-dS = \mu S\,dt + \sigma S\,dW
-$$
-
-Under the risk-neutral measure $\mathbb{Q}$ defined by Girsanov:
+The PDE derivation, like the direct Girsanov derivation in Sections 2–3, never uses $\mu$. The reason is now visible: the martingale property of $\tilde{V}(t)$ in Step 7.2 holds under $\mathbb{Q}$, and the conditional expectation in Step 7.3 is taken under $\mathbb{Q}$. The drift $\mu$ enters only via the Radon–Nikodym derivative
 
 $$
-dS = rS\,dt + \sigma S\,d\tilde{W}^{\mathbb{Q}}
+\frac{d\mathbb{Q}}{d\mathbb{P}}\Big|_{\mathcal{F}_T} = \exp\!\left(-\frac{\mu - r}{\sigma}W_T - \frac{1}{2}\left(\frac{\mu-r}{\sigma}\right)^2 T\right)
 $$
 
-**The change of measure** via the Radon–Nikodym derivative:
-
-$$
-\frac{d\mathbb{Q}}{d\mathbb{P}}\Big|_{\mathcal{F}_T} = \exp\left(-\frac{\mu - r}{\sigma}W_T - \frac{1}{2}\left(\frac{\mu-r}{\sigma}\right)^2 T\right)
-$$
-
-**Key observation:** The martingale property of $\tilde{V}(t)$ holds under $\mathbb{Q}$, not $\mathbb{P}$. The drift $\mu$ appears in the Radon–Nikodym derivative but not in the final formula because we compute the expectation under $\mathbb{Q}$.
-
-This is why option prices are **drift-neutral**: they depend only on the volatility $\sigma$, the risk-free rate $r$, and the option structure, not on traders' expectations ($\mu$) about future stock returns.
+— it changes the measure under which we compute, but the final price is an integral against the $\mathbb{Q}$-density, in which $\mu$ does not appear. This is the *drift-neutral* property: option prices depend only on $\sigma$, $r$, and the option structure, not on traders' beliefs ($\mu$) about future stock returns. Consistently with this, Exercise 5 shows two traders with different $\mu$ produce identical option prices.
 
 ---
 
@@ -459,7 +469,7 @@ This is why option prices are **drift-neutral**: they depend only on the volatil
     Both lead to the same $\tilde{W}_t$ under $\mathbb{Q}$, and hence the same risk-neutral distribution for $S_T$. The option price is:
 
     $$
-    C_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+] = S_0\Phi(d_1) - Ke^{-rT}\Phi(d_2)
+    C_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+] = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
     $$
 
     Since $d_1$ and $d_2$ depend only on $S_0$, $K$, $r$, $\sigma$, and $T$ (not $\mu$), both traders get the same price.
@@ -467,7 +477,7 @@ This is why option prices are **drift-neutral**: they depend only on the volatil
     The drift $\mu$ does not appear because risk-neutral pricing is based on **replication**, not forecasting. The option can be perfectly hedged using the stock and bond, and the cost of this hedge is determined by $\sigma$ (which governs how much the stock moves) and $r$ (which governs the cost of financing), not by $\mu$ (which governs the direction of expected moves). Different beliefs about $\mu$ lead to different Radon–Nikodym derivatives but the same pricing measure.
 
 ---
-**Exercise 6.** For the parameters $S_0 = 100$, $K = 105$, $r = 5\%$, $\sigma = 25\%$, $T = 0.5$, carry out the full Girsanov derivation: compute $d_1$, $d_2$, evaluate $\Phi(d_1)$ and $\Phi(d_2)$, and obtain the call price $C_0 = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2)$.
+**Exercise 6.** For the parameters $S_0 = 100$, $K = 105$, $r = 5\%$, $\sigma = 25\%$, $T = 0.5$, carry out the full Girsanov derivation: compute $d_1$, $d_2$, evaluate $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$, and obtain the call price $C_0 = S_0 \mathcal{N}(d_1) - K e^{-rT} \mathcal{N}(d_2)$.
 
 ??? success "Solution to Exercise 6"
     **Parameters**: $S_0 = 100$, $K = 105$, $r = 0.05$, $\sigma = 0.25$, $T = 0.5$.
@@ -488,14 +498,14 @@ This is why option prices are **drift-neutral**: they depend only on the volatil
     d_2 = -0.0462 - 0.17678 = -0.2230
     $$
 
-    **Step 3: Evaluate $\Phi(d_1)$ and $\Phi(d_2)$**
+    **Step 3: Evaluate $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$**
 
     $$
-    \Phi(-0.0462) \approx 0.4816
+    \mathcal{N}(-0.0462) \approx 0.4816
     $$
 
     $$
-    \Phi(-0.2230) \approx 0.4118
+    \mathcal{N}(-0.2230) \approx 0.4118
     $$
 
     **Step 4: Compute call price**

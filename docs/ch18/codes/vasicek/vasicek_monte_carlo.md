@@ -232,3 +232,59 @@ class VasicekModel(bmw.BrownianMotion):
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+The Vasicek model uses the exact simulation scheme as its default. Write the exact transition formula for $r(t + \Delta t) \mid r(t)$ and explain why it eliminates discretization error.
+
+??? success "Solution to Exercise 1"
+    The exact transition is
+
+    $$
+    r(t + \Delta t) = r(t)\,e^{-a\Delta t} + b(1 - e^{-a\Delta t}) + \sigma\sqrt{\frac{1 - e^{-2a\Delta t}}{2a}}\,Z,
+    $$
+
+    where $Z \sim \mathcal{N}(0,1)$. This formula is exact because the Vasicek SDE has a linear drift and constant diffusion, making $r(t)$ an Ornstein-Uhlenbeck process with a known Gaussian transition density. No approximation is made; the conditional distribution of $r(t + \Delta t)$ given $r(t)$ is exactly Gaussian with the specified mean and variance, regardless of the step size $\Delta t$.
+
+---
+
+**Exercise 2.**
+Explain why the `VasicekResult.has_negative_rates` property is expected to return `True` for most Vasicek simulations, unlike the CIR model.
+
+??? success "Solution to Exercise 2"
+    The Vasicek process is Gaussian, meaning $r(t)$ can take any real value. The probability of negative rates is
+
+    $$
+    \mathbb{P}(r(t) < 0) = \Phi\!\left(\frac{-\mathbb{E}[r(t)]}{\sqrt{\text{Var}[r(t)]}}\right),
+    $$
+
+    which is nonzero whenever $\mathbb{E}[r(t)] < \infty$. For typical parameters ($b = 0.05$, $\sigma = 0.02$, $a = 0.1$) and long horizons, this probability can be several percent. With thousands of paths and hundreds of time steps, it is virtually certain that at least one rate observation will be negative. This contrasts with the CIR model, where $r(t) \geq 0$ almost surely under the Feller condition.
+
+---
+
+**Exercise 3.**
+The `get_statistics` method returns the negative rate percentage. If $r(t)$ is stationary with mean $b = 0.04$ and standard deviation $\sigma_\infty = \sigma/\sqrt{2a} = 0.03$, estimate the long-run percentage of negative rates.
+
+??? success "Solution to Exercise 3"
+    In stationarity, $r \sim \mathcal{N}(b, \sigma_\infty^2) = \mathcal{N}(0.04, 0.0009)$. The probability of a negative rate is
+
+    $$
+    \mathbb{P}(r < 0) = \Phi\!\left(\frac{0 - 0.04}{0.03}\right) = \Phi(-1.333) \approx 0.0912.
+    $$
+
+    Approximately $9.1\%$ of rate observations in the stationary regime will be negative.
+
+---
+
+**Exercise 4.**
+The `VasicekModel` class inherits from `BrownianMotion`. Describe the inheritance hierarchy and how the `simulate_vasicek` method leverages the parent class.
+
+??? success "Solution to Exercise 4"
+    The hierarchy is `BrownianMotion` $\to$ `VasicekModel`. The parent class `BrownianMotion` provides:
+
+    - Random seed management
+    - The `simulate` method that generates Brownian increments $\Delta W_i$
+    - Time grid construction
+
+    The `simulate_vasicek` method calls `super().simulate(...)` to obtain a `BrownianResult` containing the increments and time grid. It then passes these increments to `_apply_vasicek_dynamics`, which selects the appropriate scheme (exact, Euler-Maruyama, or Milstein) and transforms the Brownian increments into Vasicek short rate paths. This design separates the stochastic driver (Brownian motion) from the model-specific dynamics, enabling code reuse across different short-rate models.

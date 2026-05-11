@@ -407,3 +407,48 @@ if __name__ == "__main__":
         
             return filtered
 ```
+
+## Exercises
+
+**Exercise 1.**
+Define implied volatility. Given a market call price of $\$12.50$ with $S_0 = 100$, $K = 100$, $T = 1$, $r = 0.05$, $q = 0$, describe the Newton-Raphson algorithm to find $\sigma_{\mathrm{imp}}$.
+
+??? success "Solution to Exercise 1"
+    Implied volatility $\sigma_{\mathrm{imp}}$ is the value of $\sigma$ such that $C_{\mathrm{BS}}(S_0, K, T, r, \sigma, q) = C_{\mathrm{market}}$.
+
+    Newton-Raphson iteration: $\sigma_{n+1} = \sigma_n - \frac{C_{\mathrm{BS}}(\sigma_n) - C_{\mathrm{market}}}{\nu(\sigma_n)}$, where $\nu = \partial C/\partial \sigma$ is vega.
+
+    Starting from $\sigma_0 = 0.20$: compute $C_{\mathrm{BS}}(0.20) \approx 10.45$ and $\nu(0.20) \approx 39.4$. Then $\sigma_1 = 0.20 - (10.45 - 12.50)/39.4 = 0.20 + 0.052 = 0.252$. Continue iterating until $|C_{\mathrm{BS}}(\sigma_n) - 12.50| < \epsilon$.
+
+---
+
+**Exercise 2.**
+Explain the volatility smile and the volatility skew. Why does the BS model fail to produce these patterns?
+
+??? success "Solution to Exercise 2"
+    The **volatility smile** is the U-shaped curve of implied volatility as a function of strike price $K$: OTM puts and OTM calls have higher implied volatilities than ATM options. The **volatility skew** is the downward-sloping pattern where low-strike (OTM put) implied volatilities exceed high-strike (OTM call) implied volatilities.
+
+    The BS model assumes constant volatility $\sigma$, so it predicts a flat implied volatility surface. The smile/skew arises because real-world returns have fatter tails and negative skewness compared to the log-normal distribution. Market participants demand higher prices for OTM options (especially puts) to compensate for tail risk, which translates into higher implied volatilities.
+
+---
+
+**Exercise 3.**
+What is the VSTOXX index, and how is it related to implied volatility? How would you use historical VSTOXX data to calibrate a volatility model?
+
+??? success "Solution to Exercise 3"
+    VSTOXX is the European equivalent of the VIX: it measures the 30-day implied volatility of EURO STOXX 50 options. It is computed from a strip of OTM put and call option prices using a model-free variance swap formula.
+
+    To calibrate a volatility model, one would: (1) collect VSTOXX implied volatility data across strikes and maturities, (2) choose a model (e.g., Heston, SABR) that can produce a volatility surface, (3) minimize the sum of squared errors between model-implied and market-implied volatilities by adjusting model parameters, (4) validate the calibration on out-of-sample data.
+
+---
+
+**Exercise 4.**
+The Newton-Raphson method for implied volatility can fail to converge. List two conditions under which this happens and propose remedies.
+
+??? success "Solution to Exercise 4"
+
+    1. **Zero vega near deep OTM/ITM options**: When the option is far from the money, vega is tiny, causing $\sigma_{n+1} - \sigma_n$ to be enormous. Remedy: use bisection or Brent's method as a fallback when $|\nu| < \epsilon$.
+
+    2. **Bad initial guess**: If $\sigma_0$ is far from the true value, Newton-Raphson may overshoot into negative volatility or oscillate. Remedy: start with $\sigma_0 = \sqrt{2|\ln(S_0/K) + rT|/T}$ (Brenner-Subrahmanyam approximation) and clamp updates to $[\sigma_n/2, 2\sigma_n]$.
+
+    A robust implementation combines Newton-Raphson (fast near the solution) with bisection (guaranteed convergence) in a hybrid approach.

@@ -279,3 +279,36 @@ if __name__ == "__main__":
 
     print("="*70)
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Write the tridiagonal system $A\mathbf{V}^j = \mathbf{b}^j$ for the implicit FDM with $M = 4$ interior points. Identify the diagonal, sub-diagonal, and super-diagonal entries.
+
+??? success "Solution to Exercise 1"
+    With $\alpha_i, \beta_i, \gamma_i$ denoting the sub-diagonal, main diagonal, and super-diagonal coefficients derived from discretizing $rSV_S + \frac{\sigma^2}{2}S^2V_{SS} - rV$, the $4 \times 4$ system is $A\mathbf{V}^j = -\mathbf{V}^{j+1} + \mathbf{b}_{\text{bc}}$, where $A$ has entries $\beta_i$ on the diagonal, $\alpha_i$ below, and $\gamma_i$ above. Boundary values $V_0^j$ and $V_5^j$ modify the first and last rows of the right-hand side.
+
+---
+
+**Exercise 2.**
+Compare convergence rates: implicit ($O(\Delta t + (\Delta S)^2)$) versus Crank-Nicolson ($O((\Delta t)^2 + (\Delta S)^2)$). If the implicit error with $N = 100$ is $0.05$, estimate both errors at $N = 200$.
+
+??? success "Solution to Exercise 2"
+    Implicit: doubling $N$ halves $\Delta t$, error $\approx 0.05/2 = 0.025$. Crank-Nicolson: error $\approx 0.05/4 = 0.0125$. To achieve error $0.001$: implicit needs $N \approx 5{,}000$; Crank-Nicolson needs $N \approx 707$.
+
+---
+
+**Exercise 3.**
+Explain the difference between stability and accuracy for the implicit scheme. Why can a stable scheme still be inaccurate?
+
+??? success "Solution to Exercise 3"
+    Stability means the solution remains bounded for any grid parameters. Accuracy means convergence to the true solution upon refinement. A stable but coarse implicit scheme (e.g., $N = 10$) produces smooth but inaccurate values because the first-order time error $O(\Delta t) = O(0.1)$ gives roughly 10% error. The Lax equivalence theorem states stability plus consistency implies convergence, but the convergence rate depends on the scheme order.
+
+---
+
+**Exercise 4.**
+The log-space implicit method gives max error $\$0.0312$ with $M = 100$, $N = 1{,}000$. Estimate the error with $M = 200$, $N = 4{,}000$.
+
+??? success "Solution to Exercise 4"
+    Error is $O((\Delta S)^2 + \Delta t)$. Doubling $M$ reduces $(\Delta S)^2$ by factor 4; quadrupling $N$ reduces $\Delta t$ by factor 4. If both terms contribute equally ($\approx 0.0156$ each), after refinement each is $\approx 0.0039$, total $\approx 0.0078$. The error decreases by roughly a factor of 4.

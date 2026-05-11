@@ -251,3 +251,61 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The Hull-White one-factor (1F) model has SDE $dr = \lambda(\theta(t) - r)\,dt + \eta\,dW$. The two-factor (2F) model adds a second mean-reverting factor. Write the 2F SDEs.
+
+??? success "Solution to Exercise 1"
+    The 2F Hull-White model is:
+
+    $$
+    dr(t) = \lambda_1[\theta(t) - r(t)]\,dt + \eta_1\,dW_1(t) + u(t)\,dt,
+    $$
+
+    $$
+    du(t) = -\lambda_2\,u(t)\,dt + \eta_2\,dW_2(t),
+    $$
+
+    where $u(t)$ is the second factor with its own mean reversion speed $\lambda_2$ and volatility $\eta_2$, and $dW_1 \cdot dW_2 = \rho\,dt$. The factor $u(t)$ adds a stochastic component to the long-term mean of $r(t)$, allowing more flexible yield curve dynamics.
+
+---
+
+**Exercise 2.**
+Explain which types of yield curve shapes the 2F model can produce that the 1F model cannot.
+
+??? success "Solution to Exercise 2"
+    The 1F model can produce yield curves that are upward-sloping, downward-sloping, or humped. However, it generates yield curve movements that are essentially one-dimensional (all points move together). The 2F model adds a second independent source of randomness, enabling:
+
+    1. **Twist movements**: The short end and long end of the curve can move in opposite directions.
+    2. **Richer correlation structures**: Different maturities can have different correlations in their yield changes.
+    3. **More realistic volatility term structures**: The volatility of yields at different maturities can exhibit a hump pattern that the 1F model cannot capture with a single exponentially decaying function.
+
+---
+
+**Exercise 3.**
+If $\lambda_1 = 0.1$ and $\lambda_2 = 0.5$, compute the half-lives of the two factors and interpret their roles.
+
+??? success "Solution to Exercise 3"
+    The half-life is $t_{1/2} = \ln(2)/\lambda$:
+
+    - Factor 1: $t_{1/2} = \ln(2)/0.1 \approx 6.93$ years. This slow-reverting factor captures long-term level movements.
+    - Factor 2: $t_{1/2} = \ln(2)/0.5 \approx 1.39$ years. This fast-reverting factor captures short-term deviations (slope changes).
+
+    Together, they decompose interest rate movements into a persistent level component and a transient slope component, similar to the first two principal components of yield curve changes.
+
+---
+
+**Exercise 4.**
+The 2F model has 5 free parameters ($\lambda_1, \lambda_2, \eta_1, \eta_2, \rho$) versus 2 for the 1F model ($\lambda, \eta$). Discuss the calibration challenges.
+
+??? success "Solution to Exercise 4"
+    With 5 parameters, the 2F model has greater flexibility but faces:
+
+    1. **Identifiability**: Some parameter combinations produce similar yield curve dynamics, making the optimization landscape flat (multiple near-optimal solutions).
+    2. **Overfitting**: With more parameters, the model can fit the current cap/swaption surface closely but may produce unstable hedges (parameter sensitivity).
+    3. **Computational cost**: Each calibration step requires solving the 2F model (e.g., evaluating swaption prices analytically or via PDE), which is more expensive than the 1F case.
+    4. **Correlation estimation**: The parameter $\rho$ is difficult to estimate from market data because it governs the joint movement of two latent factors.
+
+    Practical approaches include fixing $\lambda_1, \lambda_2$ from historical data and calibrating only $\eta_1, \eta_2, \rho$ to the swaption surface.

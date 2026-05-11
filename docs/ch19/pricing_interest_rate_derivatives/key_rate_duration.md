@@ -503,7 +503,7 @@ where $\lambda_j$ is the variance of the $j$-th principal component.
     Dividing by $-P \cdot \Delta y$:
 
     $$
-    \sum_{k=1}^K \text{KRD}_k = D_{\text{mod}} \qquad \blacksquare
+    \sum_{k=1}^K \text{KRD}_k = D_{\text{mod}} \qquad \square
     $$
 
 ---

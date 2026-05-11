@@ -119,7 +119,7 @@ $\square$
 Under the risk-neutral measure ($\mu \to r$), the GBM transition density gives the **Black-Scholes formula** when integrated against the payoff:
 
 $$
-C(0, s_0) = e^{-rT}\int_K^{\infty}(S - K)\,p^{\mathbb{Q}}(T, S \mid 0, s_0)\,dS = s_0\Phi(d_1) - Ke^{-rT}\Phi(d_2)
+C(0, s_0) = e^{-rT}\int_K^{\infty}(S - K)\,p^{\mathbb{Q}}(T, S \mid 0, s_0)\,dS = s_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
 $$
 
 ---
@@ -516,7 +516,7 @@ $$
 C(0, s_0) = e^{-rT}\int_K^{\infty}(S - K)\,p^{\mathbb{Q}}(T, S \mid 0, s_0)\,dS
 $$
 
-Show that the integral splits into two terms involving the cumulative normal distribution $\Phi$, yielding $C = s_0\Phi(d_1) - Ke^{-rT}\Phi(d_2)$.
+Show that the integral splits into two terms involving the cumulative normal distribution $\Phi$, yielding $C = s_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$.
 
 ??? success "Solution to Exercise 6"
     Under the risk-neutral measure, $S_T$ has transition density:
@@ -534,7 +534,7 @@ Show that the integral splits into two terms involving the cumulative normal dis
     **Evaluating $I_2$**: Substituting $z = \frac{\ln(S/s_0) - (r - \sigma^2/2)T}{\sigma\sqrt{T}}$:
 
     $$
-    I_2 = \mathbb{Q}(S_T > K) = \Phi(d_2)
+    I_2 = \mathbb{Q}(S_T > K) = \mathcal{N}(d_2)
     $$
 
     where $d_2 = \frac{\ln(s_0/K) + (r - \sigma^2/2)T}{\sigma\sqrt{T}}$.
@@ -548,7 +548,7 @@ Show that the integral splits into two terms involving the cumulative normal dis
     The exponent of $S$ (which equals $e^{\ln S}$) combines with the Gaussian to shift the mean by $\sigma^2 T$:
 
     $$
-    I_1 = s_0 e^{rT}\Phi(d_1)
+    I_1 = s_0 e^{rT}\mathcal{N}(d_1)
     $$
 
     where $d_1 = d_2 + \sigma\sqrt{T} = \frac{\ln(s_0/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}}$.
@@ -556,7 +556,7 @@ Show that the integral splits into two terms involving the cumulative normal dis
     **Combining:**
 
     $$
-    C = e^{-rT}(s_0 e^{rT}\Phi(d_1) - K\Phi(d_2)) = s_0\Phi(d_1) - Ke^{-rT}\Phi(d_2)
+    C = e^{-rT}(s_0 e^{rT}\mathcal{N}(d_1) - K\mathcal{N}(d_2)) = s_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
     $$
 
     This is the **Black-Scholes formula**. $\checkmark$

@@ -32,6 +32,7 @@ $$
 $$
 
 where:
+
 - $W_t$: Brownian motion (continuous part)
 - $J_t$: Compound Poisson process (jump part)
 - $\lambda$: Jump intensity (expected number of jumps per year)
@@ -107,6 +108,7 @@ C_{\text{Merton}} = \sum_{n=0}^\infty \frac{e^{-\lambda'T}(\lambda'T)^n}{n!} C_{
 $$
 
 where:
+
 - $\lambda' = \lambda(1 + \kappa)$
 - $r_n = r - \lambda\kappa + n(\mu_J + \sigma_J^2/2)/T$
 - $\sigma_n^2 = \sigma^2 + n\sigma_J^2/T$

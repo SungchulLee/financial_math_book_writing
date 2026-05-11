@@ -281,3 +281,55 @@ if __name__ == "__main__":
     u_final = solve_crank_nicolson(u_init, params.coeff, params.Nt)
     plot_solution(params.x, u_init, u_final, "crank_nicolson")
 ```
+
+## Exercises
+
+**Exercise 1.**
+Using the `HeatEquation1D` class with a step function initial condition ($u = 1$ on $[0.4, 0.6]$, zero elsewhere) on $[0, 1]$, explain qualitatively what the solution looks like at $t = 0.1$ with $D = 0.01$. Why does the step smooth out?
+
+??? success "Solution to Exercise 1"
+    At $t = 0.1$, the sharp step function has diffused into a smooth bell-shaped curve centered around $x = 0.5$. The peak value is less than 1, and the tails extend beyond $[0.4, 0.6]$.
+
+    The smoothing occurs because the heat equation describes diffusion: heat flows from hot regions (the step) to cold regions (the zero background). Mathematically, $\partial u / \partial t = D\,\partial^2 u / \partial x^2$ means the rate of change is proportional to the curvature. At the edges of the step, the large curvature drives rapid change, smoothing the discontinuity.
+
+---
+
+**Exercise 2.**
+Compare the three numerical methods (Forward Euler, Backward Euler, Crank-Nicolson) in terms of their truncation error order and stability properties.
+
+??? success "Solution to Exercise 2"
+    | Method | Time accuracy | Space accuracy | Stability |
+    |--------|:---:|:---:|---|
+    | Forward Euler | $O(\Delta t)$ | $O(\Delta x^2)$ | Conditionally stable: $\alpha \le 1/2$ |
+    | Backward Euler | $O(\Delta t)$ | $O(\Delta x^2)$ | Unconditionally stable |
+    | Crank-Nicolson | $O(\Delta t^2)$ | $O(\Delta x^2)$ | Unconditionally stable |
+
+    Crank-Nicolson is the most accurate due to its second-order time accuracy, achieved by averaging the explicit and implicit discretizations. Backward Euler is unconditionally stable but introduces more numerical diffusion. Forward Euler is cheapest per step but requires a small time step.
+
+---
+
+**Exercise 3.**
+The `solve` method accepts method strings `"forward"`, `"backward"`, and `"cn"`. Write pseudocode for the Crank-Nicolson update step: given $\mathbf{u}^n$, show how to compute $\mathbf{u}^{n+1}$.
+
+??? success "Solution to Exercise 3"
+    Crank-Nicolson averages the explicit and implicit discretizations:
+
+    $$
+    \mathbf{u}^{n+1} - \frac{\alpha}{2}\,L\,\mathbf{u}^{n+1} = \mathbf{u}^n + \frac{\alpha}{2}\,L\,\mathbf{u}^n
+    $$
+
+    where $L$ is the tridiagonal second-difference matrix. In matrix form: $A\,\mathbf{u}^{n+1} = B\,\mathbf{u}^n$, where $A = I - (\alpha/2)\,L$ and $B = I + (\alpha/2)\,L$. Pseudocode:
+
+    1. Compute right-hand side: `rhs = B @ u_n`
+    2. Solve the linear system: `u_{n+1} = solve(A, rhs)`
+    3. Apply Dirichlet boundary conditions: `u_{n+1}[0] = u_{n+1}[-1] = 0`
+
+---
+
+**Exercise 4.**
+Explain what `validate_solution("eigenfunction")` computes internally. Why might the eigenfunction method give a poor reference solution for a discontinuous initial condition with a small number of Fourier modes $N$?
+
+??? success "Solution to Exercise 4"
+    The method computes the eigenfunction expansion $u(x,t) = \sum_{n=1}^{N} A_n \sin(n\pi x/L)\,e^{-D(n\pi/L)^2 t}$ and compares it to the numerical solution via error metrics (max error, $L^2$ error, etc.).
+
+    For a discontinuous initial condition (like a step function), the Fourier sine coefficients $A_n$ decay as $O(1/n)$, which is slow. With a finite number of modes $N$, the Gibbs phenomenon produces oscillations of about 9% overshoot near the discontinuity. This makes the truncated eigenfunction expansion a poor approximation of the true solution near discontinuities, so a large $N$ (e.g., $N = 100$ or more) is necessary for accurate validation.

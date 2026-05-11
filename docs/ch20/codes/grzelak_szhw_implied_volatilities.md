@@ -393,3 +393,55 @@ if __name__ == "__main__":
     
     mainCalculation()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The Schobel-Zhu-Hull-White (SZHW) model combines stochastic volatility (Schobel-Zhu) with stochastic rates (Hull-White). Write the three SDEs.
+
+??? success "Solution to Exercise 1"
+    $$
+    dS(t) = r(t)\,S(t)\,dt + \sigma(t)\,S(t)\,dW_S(t),
+    $$
+
+    $$
+    d\sigma(t) = \kappa_\sigma(\bar{\sigma} - \sigma(t))\,dt + \xi\,dW_\sigma(t),
+    $$
+
+    $$
+    dr(t) = \lambda(\theta(t) - r(t))\,dt + \eta\,dW_r(t),
+    $$
+
+    where $\sigma(t)$ is the volatility process (Ornstein-Uhlenbeck, unlike Heston's CIR process), and all three Brownian motions can be correlated. The key difference from Heston-HW is that Schobel-Zhu models volatility directly (not variance), which is Gaussian and can go negative.
+
+---
+
+**Exercise 2.**
+Explain the advantage of the Schobel-Zhu volatility specification over the Heston specification for obtaining a characteristic function.
+
+??? success "Solution to Exercise 2"
+    Both models have semi-closed-form characteristic functions, but the SZ model's Gaussian volatility process leads to simpler moment calculations. The variance of the integrated variance $\int_0^T \sigma^2(s)\,ds$ can be computed analytically because $\sigma$ is Gaussian. However, $\sigma(t)$ can become negative (requiring interpretation as "absolute volatility" or using $\sigma^2$ in the diffusion). The Heston model's CIR variance process is always positive but leads to more complex Riccati equations. For the combined SZHW model, the additive structure of Gaussian processes (SZ + HW) simplifies the joint characteristic function.
+
+---
+
+**Exercise 3.**
+The SZHW model generates an implied volatility surface. Describe how the three correlation parameters ($\rho_{S\sigma}$, $\rho_{Sr}$, $\rho_{\sigma r}$) each affect the surface.
+
+??? success "Solution to Exercise 3"
+
+    - $\rho_{S\sigma}$: Controls the skew. Negative values (volatility rises when price falls) produce a downward-sloping skew, similar to the equity "leverage effect."
+    - $\rho_{Sr}$: Controls the correlation between equity returns and interest rate changes. Affects the term structure of ATM volatility and the overall level for long-dated options.
+    - $\rho_{\sigma r}$: Controls the co-movement of volatility and rates. A positive value means high-volatility regimes coincide with high rates, which can flatten the long-dated skew.
+
+---
+
+**Exercise 4.**
+Compare the implied volatility term structure from the SZHW model with that from plain Black-Scholes. What features does SZHW capture that BS cannot?
+
+??? success "Solution to Exercise 4"
+    Black-Scholes produces a flat implied volatility surface (constant across strikes and maturities by construction). The SZHW model captures:
+
+    1. **Smile/skew across strikes**: Stochastic volatility generates a non-flat volatility smile that varies with moneyness.
+    2. **Term structure of ATM vol**: The combination of volatility mean reversion and stochastic rates creates a non-flat ATM vol term structure.
+    3. **Smile dynamics**: The skew changes with maturity (short-term skew is steeper than long-term skew due to volatility mean reversion).
+    4. **Rate-equity decorrelation**: The stochastic rate component captures the increasing importance of rate uncertainty for long-dated options.

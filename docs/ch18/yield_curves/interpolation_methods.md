@@ -19,6 +19,7 @@ where $P_i = P(0, T_i)$ are discount factors at maturities $T_i$.
 ### Required
 
 A continuous function $P(0, T)$ for all $T \in [0, T_n]$ that:
+
 1. Passes through all given points: $P(0, T_i) = P_i$
 2. Produces sensible forward rates
 3. Is stable under small perturbations of inputs
@@ -134,6 +135,7 @@ z(0, T) = a_i + b_i(T - T_i) + c_i(T - T_i)^2 + d_i(T - T_i)^3
 $$
 
 subject to:
+
 - Interpolation: $z(0, T_i) = z_i$
 - Continuity of $z, z', z''$ at interior nodes
 - Natural boundary: $z''(T_1) = z''(T_n) = 0$
@@ -149,6 +151,7 @@ The forward rate is a **quadratic** function within each interval, ensuring smoo
 ### Potential Issues
 
 **Oscillation:** Cubic splines can overshoot between nodes, potentially producing:
+
 - Negative forward rates
 - Non-monotonic forwards where monotonicity is expected
 - Artifacts near endpoints
@@ -164,6 +167,7 @@ If the zero curve has a kink, the cubic spline may introduce "wiggles" in the fo
 ### Motivation
 
 Developed by Hagan & West (2006) to address:
+
 - Negative forward rates from naive methods
 - Oscillation in forward curves
 - Need for local control
@@ -184,6 +188,7 @@ g(T) = \int_0^T f(0, u) du = -\log P(0, T)
 $$
 
 such that:
+
 1. $g(T_i) = -\log P_i$ (matches data)
 2. $g'(T) = f(0, T) > 0$ (positive forwards)
 3. $g'(T)$ is monotone within each interval (no oscillation)
@@ -254,16 +259,19 @@ The term $\frac{\partial P(0, T_j)}{\partial z_i}$ depends on interpolation.
 ### Local vs. Global Methods
 
 **Local methods** (linear, monotone convex):
+
 - $\frac{\partial P(0, T_j)}{\partial z_i} = 0$ unless $T_j$ is near $T_i$
 - Sparse Jacobian, cleaner hedges
 
 **Global methods** (cubic spline):
+
 - All rates can affect all maturities
 - Dense Jacobian, complicated hedges
 
 ### Hedging Stability
 
 Linear interpolation on log-discounts creates **discontinuities** in forward rates at nodes. This leads to:
+
 - Hedge ratios that jump as instruments approach node dates
 - Difficulty in attributing P&L to rate moves
 
@@ -323,6 +331,7 @@ Can better capture certain curve shapes.
 ### Machine Learning Approaches
 
 Recent work uses neural networks to:
+
 - Learn interpolation from historical curves
 - Capture complex dependencies
 - Maintain no-arbitrage constraints via architecture

@@ -237,3 +237,53 @@ if __name__ == '__main__':
     plt.tight_layout()
     plt.show()
 ```
+
+## Exercises
+
+**Exercise 1.**
+Explain the difference between static and dynamic Monte Carlo. When does each approach give the same result?
+
+??? success "Solution to Exercise 1"
+    **Static MC** simulates only the terminal value $S_T$ in one step using the exact log-normal distribution. **Dynamic MC** simulates the full path $S_0, S_{\Delta t}, S_{2\Delta t}, \ldots, S_T$ using $M$ time steps.
+
+    For European options (payoff depends only on $S_T$), both methods give the same expected payoff because the exact GBM solution preserves the terminal distribution regardless of the number of intermediate steps. Dynamic MC introduces no additional bias if the exact GBM step is used.
+
+    They differ for path-dependent options (Asian, barrier, lookback) where the full path matters. For these, only dynamic MC provides the path information needed to compute the payoff.
+
+---
+
+**Exercise 2.**
+Both methods use antithetic variates and moment matching. Explain how these techniques are applied to the dynamic MC paths.
+
+??? success "Solution to Exercise 2"
+    For dynamic MC with $M$ steps per path and $N$ paths:
+
+    **Antithetic variates**: For each path using increments $\{Z_1, \ldots, Z_M\}$, generate a mirror path using $\{-Z_1, \ldots, -Z_M\}$. The payoff estimate is the average of the two path payoffs.
+
+    **Moment matching**: After generating all $N \times M$ random increments, adjust each time step's draws to have exact mean 0 and variance 1. This ensures the empirical distribution matches the theoretical distribution at every time step.
+
+    Both techniques reduce variance while keeping the estimator unbiased.
+
+---
+
+**Exercise 3.**
+The code benchmarks MC results against the closed-form BSM price. What metric is used to assess MC accuracy?
+
+??? success "Solution to Exercise 3"
+    The primary metrics are:
+
+    1. **Absolute error**: $|\hat{C}_{\text{MC}} - C_{\text{BS}}|$
+    2. **Standard error**: $\mathrm{SE} = s / \sqrt{N}$ (measures precision of the MC estimate)
+    3. **Error in standard errors**: $(\hat{C}_{\text{MC}} - C_{\text{BS}}) / \mathrm{SE}$ (should be approximately $\mathcal{N}(0,1)$ if the estimator is unbiased)
+
+    A properly implemented MC should have the analytical price within 2 standard errors of the MC estimate approximately 95% of the time.
+
+---
+
+**Exercise 4.**
+For static MC, the computational cost is $O(N)$. For dynamic MC with $M$ steps, it is $O(NM)$. What value of $M$ would you recommend for pricing a European call, and why?
+
+??? success "Solution to Exercise 4"
+    For a European call, $M = 1$ (static MC) is optimal because the payoff depends only on $S_T$, and the exact GBM solution gives the correct distribution in one step. Using $M > 1$ increases cost by a factor of $M$ without improving accuracy.
+
+    However, $M > 1$ is necessary when: (1) pricing path-dependent options, (2) testing discrete hedging strategies, (3) the dynamics are more complex than GBM (e.g., stochastic volatility requiring Euler steps), or (4) monitoring barrier crossings at discrete dates. For European vanilla options, always use $M = 1$.

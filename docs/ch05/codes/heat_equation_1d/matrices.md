@@ -220,3 +220,53 @@ def construct_neumann_matrix(Nx: int, coeff: float, method: str = "forward") -> 
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+Write the Forward Euler matrix $A$ explicitly for $N_x = 5$ grid points with coefficient $\alpha = 0.4$. Verify that the boundary rows enforce Dirichlet conditions $u_0 = u_4 = 0$.
+
+??? success "Solution to Exercise 1"
+    The $5 \times 5$ matrix is
+
+    $$
+    A = \begin{pmatrix} 1 & 0 & 0 & 0 & 0 \\ 0.4 & 0.2 & 0.4 & 0 & 0 \\ 0 & 0.4 & 0.2 & 0.4 & 0 \\ 0 & 0 & 0.4 & 0.2 & 0.4 \\ 0 & 0 & 0 & 0 & 1 \end{pmatrix}
+    $$
+
+    The first row $[1, 0, 0, 0, 0]$ preserves $u_0^{n+1} = u_0^n = 0$, and the last row $[0, 0, 0, 0, 1]$ preserves $u_4^{n+1} = u_4^n = 0$. Interior rows implement the scheme $u_j^{n+1} = \alpha u_{j-1}^n + (1 - 2\alpha) u_j^n + \alpha u_{j+1}^n$.
+
+---
+
+**Exercise 2.**
+Explain why the Backward Euler matrix requires solving a linear system $A\mathbf{u}^{n+1} = \mathbf{u}^n$ at each time step, whereas Forward Euler uses a simple matrix-vector product.
+
+??? success "Solution to Exercise 2"
+    Forward Euler is explicit: $\mathbf{u}^{n+1} = A_{\text{FE}}\,\mathbf{u}^n$, which is a direct matrix-vector multiplication.
+
+    Backward Euler evaluates the spatial derivative at time level $n+1$: $\mathbf{u}^{n+1} = \mathbf{u}^n + \alpha\,L\,\mathbf{u}^{n+1}$, which rearranges to $(I - \alpha L)\,\mathbf{u}^{n+1} = \mathbf{u}^n$. The matrix $A_{\text{BE}} = I - \alpha L$ appears on the left-hand side, requiring a linear solve. This implicit coupling is what gives Backward Euler unconditional stability.
+
+---
+
+**Exercise 3.**
+Show that the Crank-Nicolson scheme can be viewed as the $\theta$-method with $\theta = 1/2$. Write the general $\theta$-method update equation.
+
+??? success "Solution to Exercise 3"
+    The $\theta$-method is
+
+    $$
+    \mathbf{u}^{n+1} = \mathbf{u}^n + \alpha\bigl[(1-\theta)\,L\,\mathbf{u}^n + \theta\,L\,\mathbf{u}^{n+1}\bigr]
+    $$
+
+    Rearranging: $(I - \theta\alpha L)\,\mathbf{u}^{n+1} = (I + (1-\theta)\alpha L)\,\mathbf{u}^n$, i.e., $A\,\mathbf{u}^{n+1} = B\,\mathbf{u}^n$.
+
+    Setting $\theta = 0$ recovers Forward Euler ($A = I$), $\theta = 1$ gives Backward Euler ($B = I$), and $\theta = 1/2$ gives Crank-Nicolson, which averages the explicit and implicit contributions equally.
+
+---
+
+**Exercise 4.**
+Describe how Neumann (zero-flux) boundary conditions $\partial u/\partial x = 0$ at $x = 0$ and $x = L$ modify the boundary rows of the Forward Euler matrix compared to Dirichlet conditions.
+
+??? success "Solution to Exercise 4"
+    For Dirichlet conditions, the boundary rows are identity rows: $A_{0,:} = [1, 0, \ldots]$ and $A_{N-1,:} = [\ldots, 0, 1]$, which hold the boundary values fixed.
+
+    For Neumann conditions $\partial u / \partial x = 0$, we use the ghost-point approximation: $(u_1 - u_{-1})/(2\Delta x) = 0$ implies $u_{-1} = u_1$. The boundary row becomes $A_{0,:} = [0, -1, 1, 0, \ldots]$, enforcing $u_0 = u_1$. Similarly, $A_{N-1,:} = [\ldots, 0, -1, 1]$ enforces $u_{N-1} = u_{N-2}$. This allows flux to reflect at the boundaries rather than being absorbed.

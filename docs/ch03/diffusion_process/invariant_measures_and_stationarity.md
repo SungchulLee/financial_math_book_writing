@@ -5,7 +5,7 @@
 Let $(X_t)_{t \ge 0}$ be a time-homogeneous Markov process on $\mathbb{R}^d$ with transition semigroup $(P_t)_{t \ge 0}$ defined by
 
 $$
-P_t f(x) := \mathbb{E}^x[f(X_t)], \qquad f \text{ bounded measurable}.
+P_t f(x) := \mathbb{E}^x[f(X_t)], \qquad f \text{ bounded measurable}
 $$
 
 The semigroup acts on measures from the right: for a probability measure $\mu$,
@@ -18,7 +18,7 @@ $$
     A probability measure $\pi$ on $\mathbb{R}^d$ is **invariant** for $(P_t)$ if
 
     $$
-    \pi P_t = \pi \qquad \text{for all } t \ge 0,
+    \pi P_t = \pi \qquad \text{for all } t \ge 0
     $$
 
     equivalently, for all bounded measurable $f$ and all $t \ge 0$:
@@ -40,55 +40,36 @@ $$
 
 ---
 
+## Why Invariant Measures Matter
+
+An invariant measure describes the **equilibrium distribution** of a stochastic system: the state toward which the process settles in the long run. If $X_t$ converges in law as $t \to \infty$, the limit must be an invariant measure. This connects to ergodicity (time averages equal space averages), stability of stochastic systems, and — in finance — the stationary distribution of mean-reverting processes (e.g., interest rates, volatility).
+
+---
+
 ## Explanation
 
 ### Generator Characterisation
 
-Let $\mathcal{L}$ be the infinitesimal generator of $(P_t)$. If $\pi$ is invariant, differentiating $\int P_t f\,\mathrm{d}\pi = \int f\,\mathrm{d}\pi$ at $t = 0$ gives
+Using the [generator](diffusion_process_overview.md#infinitesimal-generator) $\mathcal{L}$ defined earlier, $\pi$ is invariant if and only if
 
 $$
 \int_{\mathbb{R}^d} (\mathcal{L}f)(x)\,\pi(\mathrm{d}x) = 0
-\qquad \text{for all } f \in \mathrm{Dom}(\mathcal{L}).
+\qquad \text{for all } f \in \mathrm{Dom}(\mathcal{L})
 $$
 
-The interchange of differentiation and integration is justified by dominated convergence when $f \in \mathrm{Dom}(\mathcal{L})$ (so $\frac{P_t f - f}{t} \to \mathcal{L}f$ in $L^\infty$ and is uniformly bounded). In terms of the formal $L^2$-adjoint $\mathcal{L}^*$, this is $\mathcal{L}^* \pi = 0$.
+Equivalently, $\mathcal{L}^* \pi = 0$ in the distributional sense. The proof of this equivalence is given [below](#proof--derivation).
 
-### Fokker–Planck Equation for Stationary Densities
+### Stationary Fokker–Planck Equation
 
-For a diffusion with drift $b$ and covariance matrix $a = \sigma\sigma^\top$, if $\pi$ has a density (also denoted $\pi$), stationarity requires $\mathcal{L}^*\pi = 0$:
+When $\pi$ has a density, $\mathcal{L}^*\pi = 0$ reduces to the **stationary Fokker–Planck equation** — an elliptic PDE for $\pi$ in terms of the drift $b$ and diffusion matrix $a = \sigma\sigma^\top$. This is the main computational tool for finding invariant densities (see exercises).
 
-$$
-0
-= -\frac{\partial}{\partial x_i}\!\bigl(b^{i}(x)\,\pi(x)\bigr)
-+ \frac{1}{2}\,\frac{\partial^2}{\partial x_i \partial x_j}\!\bigl(a^{ij}(x)\,\pi(x)\bigr)
-$$
+### Existence and Uniqueness
 
-This is the **stationary Fokker–Planck equation**. It is an elliptic PDE for the unknown density $\pi$.
+An invariant measure need not exist. Existence can be established via **Lyapunov / Foster criteria** (a drift condition ensuring tightness of time-averages) or, for gradient diffusions, by verifying $\int e^{-V}\,\mathrm{d}x < \infty$. Uniqueness follows from irreducibility and non-degeneracy of the diffusion matrix.
 
-### Existence of Invariant Measures
+### Reversibility
 
-An invariant measure need not exist for every diffusion. Sufficient conditions include:
-
-- **Lyapunov / Foster criterion**: there exist a function $V \ge 1$, a compact set $C$, and constants $\alpha > 0$, $K < \infty$ such that $\mathcal{L}V(x) \le -\alpha V(x) + K\,\mathbf{1}_C(x)$. This implies tightness of the time-averages $\frac{1}{T}\int_0^T P_t(x, \cdot)\,\mathrm{d}t$ and, by Prokhorov, existence of an invariant measure.
-- **Gradient diffusion**: if $\int e^{-V(x)}\,\mathrm{d}x < \infty$, the gradient diffusion has invariant density $\pi \propto e^{-V}$ (see Example below).
-
-Uniqueness typically requires irreducibility (every open set is reachable) and a non-degeneracy condition on $a$.
-
-### Reversibility and Detailed Balance
-
-A stronger condition than invariance is **reversibility**.
-
-!!! info "Definition: Reversibility"
-    A stationary process $(X_t)$ with invariant measure $\pi$ is **reversible** (satisfies **detailed balance**) if for all bounded measurable $f, g$ and all $t \ge 0$:
-
-    $$
-    \int f(x)\,(P_t g)(x)\,\pi(\mathrm{d}x)
-    = \int g(x)\,(P_t f)(x)\,\pi(\mathrm{d}x)
-    $$
-
-    Equivalently, $\mathcal{L}$ is self-adjoint in $L^2(\pi)$.
-
-Reversibility implies that the process is **time-symmetric**: $(X_t)_{0 \le t \le T}$ and $(X_{T-t})_{0 \le t \le T}$ have the same law whenever $X_0 \sim \pi$. This connects directly to time reversal of diffusions; see [Time Reversal of Diffusions](time_reversal_of_diffusions.md).
+A stronger property than invariance is **reversibility** (detailed balance): $\mathcal{L}$ is self-adjoint in $L^2(\pi)$. This implies the process is time-symmetric under $\pi$. Gradient diffusions are always reversible; adding a non-gradient drift component breaks detailed balance. Reversibility is exactly the condition under which the [time-reversal formula](time_reversal_of_diffusions.md) simplifies: the reversed process has the same generator as the forward process.
 
 ---
 
@@ -106,22 +87,7 @@ where $V : \mathbb{R}^d \to \mathbb{R}$ is smooth and $Z := \int_{\mathbb{R}^d} 
 
 **Claim.** $\pi(x) = Z^{-1} e^{-V(x)}$ is an invariant density.
 
-**Verification via Fokker–Planck.** Here $b^i = -\partial_i V$ and $a^{ij} = 2\delta^{ij}$. The stationary equation $\mathcal{L}^*\pi = 0$ becomes
-
-$$
-\frac{\partial}{\partial x_i}\!\bigl(\partial_i V \cdot \pi\bigr) + \Delta \pi = 0
-$$
-
-Substituting $\pi = Z^{-1}e^{-V}$ and computing each term separately (for a fixed index $i$, no sum):
-
-$$
-\frac{\partial}{\partial x_i}\!\bigl(\partial_i V \cdot e^{-V}\bigr)
-= e^{-V}\bigl(\partial_i^2 V - (\partial_i V)^2\bigr),
-\qquad
-\partial_i^2(e^{-V}) = e^{-V}\bigl((\partial_i V)^2 - \partial_i^2 V\bigr)
-$$
-
-Summing over $i$: the two contributions cancel term by term, giving $\mathcal{L}^*\pi = 0$. $\square$
+**Verification.** Substituting $\pi = Z^{-1}e^{-V}$ into the stationary Fokker–Planck equation $\mathcal{L}^*\pi = 0$ (with $b = -\nabla V$, $a = 2I$), the terms $\nabla\cdot(\nabla V\,\pi)$ and $\Delta\pi$ cancel exactly. $\square$
 
 **Reversibility.** This process is reversible with respect to $\pi$; the gradient structure ensures detailed balance.
 
@@ -242,48 +208,7 @@ where the first equality uses $\frac{\mathrm{d}}{\mathrm{d}t}P_t f = \mathcal{L}
 
 ---
 
-**Exercise 3.** Construct a Lyapunov function $V(x) = 1 + |x|^2$ for the diffusion $\mathrm{d}X_t = -X_t\,\mathrm{d}t + \mathrm{d}W_t$ in $\mathbb{R}^d$. Verify the Foster–Lyapunov criterion $\mathcal{L}V(x) \le -\alpha V(x) + K\,\mathbf{1}_C(x)$ by computing $\mathcal{L}V$, and find explicit constants $\alpha > 0$, $K < \infty$, and a compact set $C$.
-
-??? success "Solution to Exercise 3"
-    The diffusion is $\mathrm{d}X_t = -X_t\,\mathrm{d}t + \mathrm{d}W_t$ in $\mathbb{R}^d$, with $b(x) = -x$ and $a = I_d$. The Lyapunov function is $V(x) = 1 + |x|^2$.
-
-    Computing $\mathcal{L}V$:
-
-    $$
-    \partial_i V = 2x^i, \qquad \partial_i\partial_j V = 2\delta^{ij}
-    $$
-
-    $$
-    \mathcal{L}V(x) = b^i(x)\,\partial_i V(x) + \frac{1}{2}a^{ij}\,\partial_i\partial_j V(x) = (-x^i)(2x^i) + \frac{1}{2}\delta^{ij}(2\delta^{ij})
-    $$
-
-    $$
-    = -2|x|^2 + d
-    $$
-
-    We want $\mathcal{L}V(x) \le -\alpha V(x) + K\,\mathbf{1}_C(x)$. Since $V(x) = 1 + |x|^2$:
-
-    $$
-    -2|x|^2 + d \le -\alpha(1 + |x|^2) + K\,\mathbf{1}_C(x)
-    $$
-
-    Choose $\alpha = 1$. Then we need
-
-    $$
-    -2|x|^2 + d \le -(1 + |x|^2) + K\,\mathbf{1}_C(x)
-    $$
-
-    $$
-    -|x|^2 + d + 1 \le K\,\mathbf{1}_C(x)
-    $$
-
-    For $|x|^2 \ge d + 1$, the left side is $\le 0$ and the inequality holds without the indicator. Choose $C = \{x : |x|^2 \le d + 1\}$ (a compact ball) and $K = d + 1$. Then for $x \in C$: $-|x|^2 + d + 1 \le d + 1 = K$, so the inequality holds.
-
-    Therefore the Foster–Lyapunov criterion is satisfied with $\alpha = 1$, $K = d + 1$, and $C = \{x : |x| \le \sqrt{d+1}\}$.
-
----
-
-**Exercise 4.** Consider the two-dimensional diffusion
+**Exercise 3.** Consider the two-dimensional diffusion
 
 $$
 \mathrm{d}X_t^1 = -X_t^1\,\mathrm{d}t + X_t^2\,\mathrm{d}t + \mathrm{d}W_t^1, \qquad \mathrm{d}X_t^2 = -X_t^1\,\mathrm{d}t - X_t^2\,\mathrm{d}t + \mathrm{d}W_t^2
@@ -291,7 +216,7 @@ $$
 
 Find the invariant measure (hint: try a Gaussian ansatz). Is this process reversible? Justify your answer by checking whether $\mathcal{L}$ is self-adjoint in $L^2(\pi)$.
 
-??? success "Solution to Exercise 4"
+??? success "Solution to Exercise 3"
     The drift is $b(x) = (-x^1 + x^2,\, -x^1 - x^2)^\top$ and $a = I_2$. Try a Gaussian invariant measure $\pi \sim \mathcal{N}(0, \Sigma)$ with $\Sigma = \text{diag}(\sigma_1^2, \sigma_2^2)$ or more generally a symmetric positive definite matrix.
 
     The drift can be written $b(x) = Bx$ where
@@ -358,7 +283,7 @@ Find the invariant measure (hint: try a Gaussian ansatz). Is this process revers
 
 ---
 
-**Exercise 5.** Prove that reversibility (detailed balance) implies invariance. That is, show that if for all bounded measurable $f, g$ and all $t \ge 0$,
+**Exercise 4.** Prove that reversibility (detailed balance) implies invariance. That is, show that if for all bounded measurable $f, g$ and all $t \ge 0$,
 
 $$
 \int f(x)\,(P_t g)(x)\,\pi(\mathrm{d}x) = \int g(x)\,(P_t f)(x)\,\pi(\mathrm{d}x)
@@ -366,7 +291,7 @@ $$
 
 then $\pi P_t = \pi$.
 
-??? success "Solution to Exercise 5"
+??? success "Solution to Exercise 4"
     Assume detailed balance holds: for all bounded measurable $f, g$ and $t \ge 0$,
 
     $$
@@ -391,9 +316,9 @@ then $\pi P_t = \pi$.
 
 ---
 
-**Exercise 6.** Give an example of a diffusion that has an invariant measure but is **not** reversible. (Hint: consider adding a non-gradient drift component to a gradient diffusion.) Verify invariance directly and explain why detailed balance fails.
+**Exercise 5.** Give an example of a diffusion that has an invariant measure but is **not** reversible. (Hint: consider adding a non-gradient drift component to a gradient diffusion.) Verify invariance directly and explain why detailed balance fails.
 
-??? success "Solution to Exercise 6"
+??? success "Solution to Exercise 5"
     Consider the two-dimensional diffusion
 
     $$
@@ -430,7 +355,7 @@ then $\pi P_t = \pi$.
 
 ---
 
-**Exercise 7.** Suppose a one-dimensional diffusion $\mathrm{d}X_t = b(X_t)\,\mathrm{d}t + \sigma(X_t)\,\mathrm{d}W_t$ on an interval $(l, r)$ has generator $\mathcal{L}f = b\,f' + \frac{1}{2}\sigma^2 f''$. Using the stationary Fokker–Planck equation, show that any invariant density must satisfy
+**Exercise 6.** Suppose a one-dimensional diffusion $\mathrm{d}X_t = b(X_t)\,\mathrm{d}t + \sigma(X_t)\,\mathrm{d}W_t$ on an interval $(l, r)$ has generator $\mathcal{L}f = b\,f' + \frac{1}{2}\sigma^2 f''$. Using the stationary Fokker–Planck equation, show that any invariant density must satisfy
 
 $$
 \pi(x) = \frac{C}{\sigma^2(x)}\exp\!\left(\int^x \frac{2\,b(y)}{\sigma^2(y)}\,\mathrm{d}y\right)
@@ -438,7 +363,7 @@ $$
 
 for some normalising constant $C > 0$. Apply this formula to recover the invariant density of the OU process from Exercise 1.
 
-??? success "Solution to Exercise 7"
+??? success "Solution to Exercise 6"
     The generator is $\mathcal{L}f = bf' + \frac{1}{2}\sigma^2 f''$. The adjoint operator $\mathcal{L}^*$ acts on densities as
 
     $$

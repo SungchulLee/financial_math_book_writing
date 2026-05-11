@@ -13,6 +13,7 @@ The SDE is:
     where theta(t) is chosen to match the initial yield curve
 
 Key features:
+
 - Analytical zero-coupon bond prices (ZCB)
 - Closed-form option prices on bonds
 - Calibration to market yield curve
@@ -893,3 +894,51 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+Write the Hull-White short rate simulation formula using the Euler-Maruyama scheme and identify each term.
+
+??? success "Solution to Exercise 1"
+    $$
+    r(t + \Delta t) = r(t) + \lambda[\theta(t) - r(t)]\,\Delta t + \eta\,\sqrt{\Delta t}\,Z,
+    $$
+
+    where $Z \sim \mathcal{N}(0,1)$. The terms are:
+
+    - $\lambda[\theta(t) - r(t)]\,\Delta t$: Mean-reverting drift pulling $r$ toward the time-dependent target $\theta(t)$.
+    - $\eta\sqrt{\Delta t}\,Z$: Random shock with volatility $\eta$.
+    - $\theta(t)$: Calibrated to match the initial yield curve.
+
+---
+
+**Exercise 2.**
+For the Hull-White model, the exact simulation formula is $r(t+\Delta t) = r(t)e^{-\lambda\Delta t} + \alpha(t+\Delta t) - \alpha(t)e^{-\lambda\Delta t} + \eta\sqrt{\frac{1-e^{-2\lambda\Delta t}}{2\lambda}}\,Z$ where $\alpha(t) = f(0,t) + \frac{\eta^2}{2\lambda^2}(1-e^{-\lambda t})^2$. Explain the advantage of this formula.
+
+??? success "Solution to Exercise 2"
+    The exact formula samples from the true conditional distribution of $r(t+\Delta t) | r(t)$, which is Gaussian. There is zero discretization error regardless of step size. The Euler scheme, by contrast, approximates the continuous dynamics and introduces error of order $O(\Delta t)$. The exact scheme allows the use of larger time steps (e.g., one step per year) without loss of accuracy, dramatically reducing computation time for applications like Bermudan swaption pricing where evaluations at exercise dates suffice.
+
+---
+
+**Exercise 3.**
+If $\lambda = 0.05$, $\eta = 0.01$, and the initial forward curve is flat at $3\%$, compute $r(0)$ and $\alpha(0)$.
+
+??? success "Solution to Exercise 3"
+    The initial short rate is $r(0) = f(0,0) = 3\% = 0.03$.
+
+    $$
+    \alpha(0) = f(0,0) + \frac{\eta^2}{2\lambda^2}(1 - e^{0})^2 = 0.03 + \frac{0.0001}{0.005} \times 0 = 0.03.
+    $$
+
+    At $t = 0$, $(1 - e^{-\lambda \times 0})^2 = 0$, so $\alpha(0) = f(0,0) = 0.03$.
+
+---
+
+**Exercise 4.**
+Describe how to compute the money market account $M(T) = \exp\!\left(\int_0^T r(s)\,ds\right)$ from simulated short rate paths and its use in pricing.
+
+??? success "Solution to Exercise 4"
+    The integral is approximated numerically: $\int_0^T r(s)\,ds \approx \sum_{i=0}^{N-1} r(t_i)\,\Delta t$ (left-rectangle rule) or $\sum \frac{r(t_i) + r(t_{i+1})}{2}\Delta t$ (trapezoidal rule). Then $M(T) = \exp(\text{sum})$.
+
+    For pricing, the risk-neutral valuation formula is $V(0) = \mathbb{E}[\text{payoff}/M(T)]$. The Monte Carlo estimate is $\hat{V} = \frac{1}{N}\sum_{j=1}^N \text{payoff}_j / M_j(T)$. The money market account acts as the stochastic discount factor, converting future payoffs to present values under the risk-neutral measure.

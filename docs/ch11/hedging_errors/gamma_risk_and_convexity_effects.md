@@ -60,6 +60,7 @@ $$
 $$
 
 **Interpretation:**
+
 - Long gamma positions earn from realized volatility ($\frac{1}{2}\Gamma(dS)^2$)
 - But pay theta (time decay) to maintain the position
 - These exactly offset when realized vol equals implied vol
@@ -109,12 +110,14 @@ $$
 
 
 **Long gamma** (positive $\Gamma$):
+
 - Benefits from large moves: $\frac{1}{2}\Gamma(\Delta S)^2 > 0$
 - Pays theta: $\Theta < 0$ typically
 - Profits when realized volatility exceeds implied volatility
 - "Buy low, sell high" rebalancing: as $S$ rises, sell; as $S$ falls, buy
 
 **Short gamma** (negative $\Gamma$):
+
 - Earns theta: $\Theta > 0$ (collecting premium)
 - Loses on large moves: $\frac{1}{2}\Gamma(\Delta S)^2 < 0$
 - Profits when realized volatility is below implied volatility
@@ -134,6 +137,7 @@ $$
 where $\sigma_{\text{realized}}^2 dt = (dS/S)^2$ is instantaneous realized variance.
 
 **Trading strategy:**
+
 - If you expect $\sigma_{\text{realized}} > \sigma_{\text{implied}}$: buy options (long gamma)
 - If you expect $\sigma_{\text{realized}} < \sigma_{\text{implied}}$: sell options (short gamma)
 

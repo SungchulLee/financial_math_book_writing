@@ -18,6 +18,7 @@ Adapted as a SELF-CONTAINED educational module for the
 
 Topics covered
 --------------
+
 1. Variance Gamma PIDE solver:
    - VG Lévy measure and cutoff epsilon decomposition.
    - PIDE discretisation: tridiagonal diffusion + convolution for jumps.
@@ -707,3 +708,42 @@ def demo_all():
 if __name__ == "__main__":
     demo_all()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Write the PIDE for option pricing under a general Levy process. Identify diffusion, drift, and jump terms.
+
+??? success "Solution to Exercise 1"
+    The PIDE is
+
+    $$
+    V_t + \frac{1}{2}\sigma^2 S^2 V_{SS} + (r - q - \omega)SV_S - rV + \int[V(Se^y) - V(S) - S(e^y - 1)V_S]\,\nu(dy) = 0
+    $$
+
+    Diffusion: $\frac{1}{2}\sigma^2 S^2 V_{SS}$. Drift: $(r - q - \omega)SV_S$. Discount: $-rV$. Jump integral: the $\nu(dy)$ term accounts for discontinuous price movements.
+
+---
+
+**Exercise 2.**
+The VG PIDE uses a cutoff $\epsilon$ to decompose the Levy measure. Explain this decomposition.
+
+??? success "Solution to Exercise 2"
+    Small jumps ($|y| < \epsilon$) are approximated by enhanced diffusion: $\sigma_\epsilon^2 = \sigma^2 + \int_{|y|<\epsilon} y^2 \nu(dy)$. Large jumps ($|y| \ge \epsilon$) are handled by the integral term. Smaller $\epsilon$ improves accuracy but increases the effective diffusion coefficient, requiring finer grids.
+
+---
+
+**Exercise 3.**
+FFT convolution accelerates the jump integral from $O(N^2)$ to $O(N\log N)$. Explain why.
+
+??? success "Solution to Exercise 3"
+    The jump integral $\int V(Se^y)\nu(y)dy$ is a convolution in log-price space. The convolution theorem states $\mathcal{F}[V * \nu] = \mathcal{F}[V] \cdot \mathcal{F}[\nu]$. Using FFT: compute both transforms ($O(N\log N)$), multiply pointwise ($O(N)$), inverse transform ($O(N\log N)$). Total: $O(N\log N)$ versus $O(N^2)$ for direct evaluation.
+
+---
+
+**Exercise 4.**
+Compare PIDE and Monte Carlo for Levy model pricing. When is each preferred?
+
+??? success "Solution to Exercise 4"
+    PIDE is preferred for European options in 1D (deterministic accuracy, full strike surface at once, handles American options via free boundary). MC is preferred for path-dependent exotics and multi-asset problems. PIDE implementation is more complex (singular integrals) but produces smooth, noise-free prices ideal for calibration.

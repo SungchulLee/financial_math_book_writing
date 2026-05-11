@@ -291,7 +291,7 @@ by applying Girsanov's theorem to the lognormal forward rate dynamics. Show expl
     \mathbb{E}^{\mathbb{Q}^{T_p}}[L_i(T_i)] = L_i(0) \exp\!\left(\int_0^{T_i} \mu(t) \, dt\right) \approx L_i(0)(1 + \sigma_i \, \sigma_P(T_{i+1}, T_p) \, \rho \, T_i)
     $$
 
-    The covariance structure is explicit: the drift depends on $\text{Cov}(dL_i/L_i, dR/R) = \sigma_i \sigma_R \rho \, dt$, which is the instantaneous covariance between the forward rate and the bond price ratio. $\blacksquare$
+    The covariance structure is explicit: the drift depends on $\text{Cov}(dL_i/L_i, dR/R) = \sigma_i \sigma_R \rho \, dt$, which is the instantaneous covariance between the forward rate and the bond price ratio. $\square$
 
 ---
 

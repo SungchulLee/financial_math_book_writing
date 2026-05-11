@@ -120,6 +120,7 @@ $$
 $$
 
 **Implications:**
+
 - Cannot directly compare ES forecasts using scoring rules
 - Backtesting ES requires different approaches
 

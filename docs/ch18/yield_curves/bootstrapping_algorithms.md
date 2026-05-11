@@ -9,6 +9,7 @@
 #### The Problem
 
 Market data comes in the form of:
+
 - Deposit rates (short maturities)
 - Futures prices (medium maturities)
 - Swap rates (longer maturities)
@@ -18,6 +19,7 @@ Each instrument depends on multiple discount factors. Bootstrapping solves for d
 #### General Principle
 
 Given:
+
 1. A market quote for an instrument with maturity $T_n$
 2. All discount factors $P(0, T_1), \ldots, P(0, T_{n-1})$ for shorter maturities
 
@@ -30,6 +32,7 @@ Solve for $P(0, T_n)$ such that the instrument is correctly priced.
 #### Instrument Description
 
 A **deposit** with maturity $T$ and rate $R_d$ pays:
+
 - Invest 1 at time 0
 - Receive $1 + R_d \cdot \delta$ at time $T$
 
@@ -106,6 +109,7 @@ Each step uses the forward rate from the corresponding future.
 #### Instrument Description
 
 A **payer swap** with:
+
 - Fixed leg: pays fixed rate $S$ on notional $N$
 - Floating leg: receives floating rate (e.g., 3M LIBOR/SOFR)
 
@@ -211,6 +215,7 @@ Fit a cubic spline $z(T)$ through the bootstrapped zero rates.
 **Monotone Convex:**
 
 Specialized method ensuring:
+
 - Positive forward rates
 - Monotone forwards in each segment
 - Local control (changes don't propagate)
@@ -232,6 +237,7 @@ The choice of interpolation strongly affects forward rates:
 #### Post-2008 Reality
 
 After the 2008 financial crisis, the single-curve framework broke down:
+
 - **Discounting curve:** Based on OIS (overnight indexed swap) rates
 - **Forwarding curves:** Tenor-specific (1M, 3M, 6M LIBOR/SOFR)
 

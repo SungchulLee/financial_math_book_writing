@@ -696,3 +696,47 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The Expected Positive Exposure (EPE) and Expected Negative Exposure (ENE) are defined as $\text{EPE}(t) = \mathbb{E}[\max(V(t), 0)]$ and $\text{ENE}(t) = \mathbb{E}[\min(V(t), 0)]$. For a payer swap, describe how these profiles evolve over the swap's life.
+
+??? success "Solution to Exercise 1"
+    For a payer swap (pay fixed, receive floating):
+
+    - Early in the swap's life, the exposure is low because few cash flows have been exchanged and the swap value is near zero.
+    - EPE peaks at about one-third to one-half of the swap's life, as the present value of remaining cash flows is maximized and rate movements have had time to create value.
+    - Toward maturity, EPE declines as fewer cash flows remain (the "pull-to-par" effect).
+
+    The EPE profile is "humped," while the ENE profile mirrors it on the negative side. The net exposure under netting depends on the portfolio composition.
+
+---
+
+**Exercise 2.**
+Explain how netting reduces the Potential Future Exposure (PFE) for a portfolio of two offsetting swaps.
+
+??? success "Solution to Exercise 2"
+    Consider two swaps: swap A (payer, pay $3\%$) and swap B (receiver, pay floating, receive $3.5\%$). At any time $t$, their values are negatively correlated (if rates rise, A gains and B loses). Without netting, PFE $= \max(V_A, 0) + \max(V_B, 0)$. With netting, PFE $= \max(V_A + V_B, 0)$. Since $V_A$ and $V_B$ partially offset, the netted exposure is much smaller. For perfectly offsetting swaps, the netted PFE would be near zero, while the gross PFE would still be substantial.
+
+---
+
+**Exercise 3.**
+The Hull-White model is used to simulate rate paths for exposure computation. Why is risk-neutral simulation appropriate here rather than real-world simulation?
+
+??? success "Solution to Exercise 3"
+    For CVA pricing (which is a market-consistent valuation), risk-neutral simulation is appropriate because CVA is the market price of counterparty credit risk. The EPE computed under the risk-neutral measure ensures consistency with observed market prices of hedging instruments. Real-world simulation (using historical or estimated drifts) would be appropriate for regulatory capital calculations (e.g., SA-CVA) but would produce CVA values that are not market-consistent and cannot be hedged.
+
+---
+
+**Exercise 4.**
+If the netted EPE profile peaks at \$5M at year 3, the counterparty's hazard rate is $1.5\%$, and recovery is $40\%$, estimate the approximate CVA using a simple formula.
+
+??? success "Solution to Exercise 4"
+    A rough approximation using average EPE:
+
+    $$
+    \text{CVA} \approx (1-R) \times \overline{\text{EPE}} \times h \times T = 0.6 \times 2.5M \times 0.015 \times 5 = \$112{,}500,
+    $$
+
+    where $\overline{\text{EPE}} \approx 0.5 \times \text{Peak EPE} = \$2.5M$ (triangular approximation). This is a crude estimate; the full Monte Carlo computation integrates the actual EPE profile against the default probability density.

@@ -12,6 +12,7 @@ This section focuses on component (2). In financial mathematics, future cash flo
 ## The Time Value of Money
 
 A dollar today is worth more than a dollar tomorrow because:
+
 - It can be invested at the risk-free rate $r$
 - Inflation erodes purchasing power
 - There is uncertainty about future payments
@@ -121,6 +122,7 @@ The terminology comes from probability theory:
 | Time value of money | Expected survival time |
 
 In physics, $r$ might represent:
+
 - Decay rate of radioactive particles
 - Absorption rate in diffusion
 - Death rate in population models
@@ -142,6 +144,7 @@ $$
 $$
 
 **Applications**:
+
 - Credit risk: Higher rates for riskier states
 - Stochastic interest rates: $r = r(X_t)$
 - Intensity-based default models
@@ -163,6 +166,7 @@ D_t^T = \exp\left(-\int_t^T r(X_s)\,ds\right)
 $$
 
 **Properties**:
+
 - $D(t,t) = 1$
 - $D(t,T) \cdot D(T,S) = D(t,S)$ (multiplicative)
 - $dD_t^s/D_t^s = -r(X_t)\,dt$
@@ -198,6 +202,7 @@ $$
 where $\lambda$ is the default intensity.
 
 **Interpretation**:
+
 - Total discount rate = risk-free rate + credit spread
 - $\lambda$ represents probability of default per unit time
 

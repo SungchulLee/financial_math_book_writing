@@ -192,6 +192,7 @@ $$
 ### Monitoring Convergence
 
 !!! tip "Practical Tips"
+
     - Plot the running mean and running standard error as functions of the number of paths to check for convergence visually
     - Use batched estimators: divide $M$ paths into $B$ batches of size $M/B$, compute the price in each batch, and use the batch standard deviation to estimate SE
     - For path-dependent options, monitor the convergence of both the time discretization error (by doubling $N$) and the Monte Carlo error (by doubling $M$) separately

@@ -14,6 +14,7 @@ expansion in the increments $dt$ and $dW_t$ gives
 $$
 f(t+dt,\, W_t + dW_t) - f(t,\, W_t)
 = f_t \, dt + f_x \, dW_t
+
 + \tfrac{1}{2} f_{tt} (dt)^2
 + f_{tx} \, dt \, dW_t
 + \tfrac{1}{2} f_{xx} (dW_t)^2
@@ -62,18 +63,7 @@ $$
 | $dt \, dW_t$ | $O((\Delta t)^{3/2})$ | vanishes — since $3/2 > 1$, this is $o(dt)$ |
 | $(dW_t)^2$ | $O(\Delta t)$ | **survives** — this is quadratic variation |
 
-The survival of $(dW_t)^2$ is the central fact. A smooth **deterministic** path
-satisfies $\Delta x = O(\Delta t)$, so $(\Delta x)^2 = O((\Delta t)^2)$ vanishes.
-Brownian motion instead satisfies $\Delta W_t = O(\sqrt{\Delta t})$, so
-$(\Delta W_t)^2 = O(\Delta t)$ — the same order as $dt$ itself. The rigorous
-statement is that the quadratic variation of Brownian motion equals $t$; see
-[Quadratic Variation of Brownian Motion](../../ch02/brownian_motion/quadratic_variation_of_brownian_motion.md).
-
-!!! tip "The key asymmetry"
-
-    A smooth **deterministic** path satisfies $\Delta x = O(\Delta t)$, so $(\Delta x)^2 = O((\Delta t)^2)$ — it **vanishes**.  
-    Brownian motion satisfies $\Delta W = O(\sqrt{\Delta t})$, so $(\Delta W)^2 = O(\Delta t)$ — it **survives**.  
-    This single difference is the source of the Itô correction term that separates stochastic calculus from ordinary calculus.
+The survival of $(dW_t)^2$ is the central fact. The scaling argument behind each rule — why deterministic squares vanish but Brownian squares survive — is developed in [Quadratic Taylor Expansion](taylor_expansion_quadratic.md) and [Quadratic Variation of Brownian Motion](../../ch02/brownian_motion/quadratic_variation_of_brownian_motion.md). Here we simply apply the table mechanically.
 
 ---
 
@@ -85,6 +75,7 @@ second-order product:
 $$
 f(t+dt,\, W_t+dW_t) - f(t,\, W_t)
 = f_t \, dt
+
 + f_x \, dW_t
 + \tfrac{1}{2} f_{tt} \underbrace{(dt)^2}_{=\,0}
 + f_{tx} \underbrace{dt \, dW_t}_{=\,0}
@@ -119,6 +110,7 @@ substituting the zero coefficients explicitly:
 $$
 f(t, W_t + dW_t) - f(t, W_t)
 = \underbrace{0 \cdot dt}_{f_t\,dt\,=\,0}
+
 + f_x \, dW_t
 + \tfrac{1}{2} f_{tt} \underbrace{(dt)^2}_{=\,0}
 + f_{tx} \underbrace{dt \, dW_t}_{=\,0}

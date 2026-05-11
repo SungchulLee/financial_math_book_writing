@@ -3,6 +3,7 @@
 The COS method delivers exponential convergence for a broad class of models, but it is not infallible. Certain characteristic functions, density shapes, and parameter regimes expose structural weaknesses in the cosine expansion, leading to slow convergence, oscillatory errors, or outright failure. Understanding these limitations is essential for practitioners who must decide when to trust the COS price and when to reach for an alternative method. This section catalogs the principal failure modes, explains their mathematical origins, and presents practical remedies.
 
 !!! info "Prerequisites"
+
     - [COS Pricing Formula](../cos_method/cos_pricing_formula.md) (cosine expansion and convergence)
     - [Error Analysis and Convergence](../cos_method/error_analysis_and_convergence.md) (truncation and series error)
     - [COS for Other Affine Models](cos_for_other_affine_models.md) (model-specific CFs)

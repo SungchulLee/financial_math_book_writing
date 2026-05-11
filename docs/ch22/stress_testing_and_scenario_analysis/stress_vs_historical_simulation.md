@@ -23,6 +23,7 @@ Stress testing and historical simulation are two complementary approaches to ass
 Historical simulation estimates risk by revaluing the portfolio under historical market movements.
 
 **Algorithm:**
+
 1. Collect $n$ historical return observations: $\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{r}_n$
 2. Apply each historical return to current portfolio: $L_i = -P_0 \cdot (e^{\mathbf{w}^\top \mathbf{r}_i} - 1)$
 3. Order losses: $L_{(1)} \le L_{(2)} \le \cdots \le L_{(n)}$
@@ -68,6 +69,7 @@ An enhancement that addresses volatility clustering:
 4. Generate "volatility-adjusted" scenarios
 
 **Advantages:**
+
 - Adapts to current volatility regime
 - Better tail coverage during high-volatility periods
 
@@ -85,6 +87,7 @@ Stress testing evaluates portfolio losses under **hypothetical or extreme scenar
 
 **1. Historical Scenarios**
 Replay specific historical events:
+
 - 2008 Global Financial Crisis
 - 2020 COVID-19 market crash
 - 1998 LTCM crisis
@@ -92,12 +95,14 @@ Replay specific historical events:
 
 **2. Hypothetical Scenarios**
 Economically motivated but not historically observed:
+
 - Sovereign default of major economy
 - Simultaneous equity crash and interest rate spike
 - Cyberattack on financial infrastructure
 
 **3. Sensitivity Analysis**
 Single-factor shocks:
+
 - Equity indices down 20%
 - Interest rates up 200 bps
 - Credit spreads widen 500 bps
@@ -177,6 +182,7 @@ A critical consideration is that **correlations change under stress**:
 - Liquidity correlations spike
 
 **Approaches:**
+
 1. **Stressed correlation matrices:** Increase correlations uniformly or selectively
 2. **Copula-based stress:** Use different copulas for normal vs. stressed conditions
 3. **Factor models:** Increase factor loadings under stress

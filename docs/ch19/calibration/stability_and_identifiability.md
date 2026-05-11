@@ -9,6 +9,7 @@ Calibration of interest-rate models faces challenges of **stability** and **iden
 
 
 Some parameters are weakly identifiable due to:
+
 - limited option maturity coverage,
 - correlations between factors,
 - flat sensitivity of prices to certain directions.
@@ -21,6 +22,7 @@ This leads to multiple parameter sets fitting the same data.
 
 
 A stable calibration should exhibit:
+
 - smooth parameter evolution,
 - robustness to small quote changes,
 - consistent dynamics across market regimes.
@@ -33,6 +35,7 @@ Large day-to-day parameter swings indicate overfitting.
 
 
 Useful diagnostics include:
+
 - sensitivity and Jacobian analysis,
 - perturbation of market quotes,
 - rolling-window calibration tests.
@@ -45,6 +48,7 @@ These help separate structural issues from numerical ones.
 
 
 Stability is improved by:
+
 - reducing model dimensionality,
 - imposing economically motivated constraints,
 - penalizing parameter variability,

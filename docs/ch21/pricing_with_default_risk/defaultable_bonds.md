@@ -18,6 +18,7 @@ R \cdot F \cdot \delta(\tau) & \text{if } \tau \le T \text{ (default)}
 $$
 
 where:
+
 - $\tau$ is the default time
 - $R$ is the recovery rate (fraction of face value recovered)
 - $\delta(\tau)$ is a timing factor depending on the recovery convention
@@ -25,6 +26,7 @@ where:
 ### Cash Flows Depend on Default
 
 The key distinction from default-free bonds:
+
 - **Uncertain principal:** Recovery payment if default
 - **Timing uncertainty:** When and how much is received
 - **Credit risk premium:** Compensation for bearing default risk
@@ -200,6 +202,7 @@ where $y(t,T)$ is the yield on a comparable risk-free bond.
 ### Spread Components
 
 The credit spread compensates for:
+
 1. **Expected loss:** Probability of default × Loss given default
 2. **Unexpected loss:** Uncertainty around default
 3. **Risk premium:** Compensation for systematic credit risk
@@ -230,6 +233,7 @@ Taking logs: $y^d - y \approx (1-R)\lambda$.
 ### Structure
 
 A defaultable coupon bond pays:
+
 - Coupons $c$ at times $t_1, t_2, \ldots, t_n = T$ (if no default)
 - Principal $F$ at maturity $T$ (if no default)
 - Recovery payment upon default
@@ -245,6 +249,7 @@ where each $P^d(t, t_i)$ is a defaultable discount factor.
 ### Accrued Interest at Default
 
 Upon default, accrued interest from the last coupon date may or may not be paid:
+
 - **With accrued:** Standard market convention
 - **Without accrued:** Simplifies modeling
 
@@ -253,6 +258,7 @@ Upon default, accrued interest from the last coupon date may or may not be paid:
 ## Numerical Example
 
 **Parameters:**
+
 - Face value: $F = 100$
 - Recovery rate: $R = 40\%$
 - Risk-free rate: $r = 4\%$ (constant)
@@ -305,11 +311,13 @@ $$
 | RMV | $R \cdot P^d(\tau-,T)$ | Best (Duffie-Singleton) | CDS market |
 
 **RMV advantages:**
+
 - Simple multiplicative adjustment to discount rate
 - Closed-form pricing in affine models
 - Consistent with CDS market quoting conventions
 
 **RFV advantages:**
+
 - Intuitive: recover fraction of par
 - Directly observable in bankruptcy proceedings
 - Standard in bond market analysis

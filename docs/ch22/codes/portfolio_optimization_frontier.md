@@ -287,3 +287,55 @@ if __name__ == '__main__':
     except Exception as e:
         print(f"CML computation skipped: {e}")
 ```
+
+## Exercises
+
+**Exercise 1.**
+The mean-variance efficient frontier minimizes portfolio variance $\sigma_p^2 = \mathbf{w}^T\Sigma\mathbf{w}$ subject to $\mathbf{w}^T\boldsymbol{\mu} = \mu_p$ and $\mathbf{w}^T\mathbf{1} = 1$. Write the Lagrangian and derive the first-order conditions.
+
+??? success "Solution to Exercise 1"
+    The Lagrangian is
+
+    $$
+    \mathcal{L} = \mathbf{w}^T\Sigma\mathbf{w} - \lambda_1(\mathbf{w}^T\boldsymbol{\mu} - \mu_p) - \lambda_2(\mathbf{w}^T\mathbf{1} - 1).
+    $$
+
+    First-order conditions: $\frac{\partial\mathcal{L}}{\partial\mathbf{w}} = 2\Sigma\mathbf{w} - \lambda_1\boldsymbol{\mu} - \lambda_2\mathbf{1} = 0$, giving $\mathbf{w} = \frac{1}{2}\Sigma^{-1}(\lambda_1\boldsymbol{\mu} + \lambda_2\mathbf{1})$.
+
+    The multipliers $\lambda_1, \lambda_2$ are found from the two constraints. Substituting back gives the closed-form solution for optimal weights as a function of the target return $\mu_p$.
+
+---
+
+**Exercise 2.**
+For two assets with returns $\mu_1 = 8\%$, $\mu_2 = 12\%$, volatilities $\sigma_1 = 15\%$, $\sigma_2 = 25\%$, and correlation $\rho = 0.3$, compute the minimum-variance portfolio weights.
+
+??? success "Solution to Exercise 2"
+    The minimum-variance portfolio weights are:
+
+    $$
+    w_1 = \frac{\sigma_2^2 - \rho\sigma_1\sigma_2}{\sigma_1^2 + \sigma_2^2 - 2\rho\sigma_1\sigma_2} = \frac{0.0625 - 0.3 \times 0.0375}{0.0225 + 0.0625 - 2 \times 0.3 \times 0.0375}.
+    $$
+
+    $$
+    w_1 = \frac{0.0625 - 0.01125}{0.085 - 0.0225} = \frac{0.05125}{0.0625} = 0.82, \quad w_2 = 0.18.
+    $$
+
+    The minimum-variance portfolio allocates $82\%$ to the less volatile asset.
+
+---
+
+**Exercise 3.**
+Explain the concept of the Sharpe ratio and how the Capital Market Line (CML) relates to the efficient frontier.
+
+??? success "Solution to Exercise 3"
+    The Sharpe ratio is $\text{SR} = (\mu_p - r_f)/\sigma_p$, measuring excess return per unit of risk. The CML is the line from the risk-free rate $r_f$ tangent to the efficient frontier. The tangency portfolio maximizes the Sharpe ratio and is the optimal risky portfolio. Any point on the CML represents a combination of the risk-free asset and the tangency portfolio, offering the best risk-return trade-off achievable.
+
+---
+
+**Exercise 4.**
+Describe two practical challenges when implementing mean-variance optimization with real market data.
+
+??? success "Solution to Exercise 4"
+
+    1. **Estimation error**: Expected returns are notoriously difficult to estimate. Small errors in $\boldsymbol{\mu}$ lead to dramatically different optimal weights, often producing extreme long/short positions. This "error maximization" property makes unconstrained mean-variance portfolios unreliable. Robust methods (shrinkage estimators, Black-Litterman) mitigate this.
+    2. **Non-stationarity**: The covariance matrix $\Sigma$ changes over time. Using a historical estimate may not reflect future correlations (correlations spike during crises). Solutions include using exponentially weighted estimates, DCC-GARCH models, or factor-based covariance matrices.

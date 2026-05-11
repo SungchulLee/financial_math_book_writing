@@ -228,6 +228,7 @@ $$
 
 
 **Interpretation**: 
+
 - Positive gamma → Use maximum volatility (worst case)
 - Negative gamma → Use minimum volatility (worst case)
 
@@ -282,12 +283,14 @@ $$
 with correlation $\rho = \mathbb{E}[dW_t^S dW_t^V]$.
 
 **Greeks**:
+
 - $\Delta = \frac{\partial V}{\partial S}$
 - $\Gamma = \frac{\partial^2 V}{\partial S^2}$
 - $\mathcal{V} = \frac{\partial V}{\partial v}$ (vega)
 - $\mathcal{V}_{\Gamma} = \frac{\partial^2 V}{\partial v^2}$ (volga/vomma)
 
 **Hedging Instruments**: 
+
 - Stock (for delta)
 - Options at strike $K_1$ (for gamma)
 - Options at strike $K_2$ (for vega)
@@ -327,6 +330,7 @@ $$
 measures interaction between price and volatility changes.
 
 **Hedging**: Cannot fully hedge cross-gamma with stock and single-maturity options alone. Requires:
+
 - Multiple option maturities
 - Exotic options sensitive to correlation
 
@@ -350,6 +354,7 @@ $$
 where $\Pi_T$ is the hedged portfolio value.
 
 **Solution Approach**:
+
 1. Discretize uncertainty set: $\{\sigma_1, \ldots, \sigma_n\}$
 2. Solve for each scenario
 3. Choose strategy that performs best in worst scenario
@@ -371,6 +376,7 @@ where $\mathcal{U}$ is the uncertainty set.
 **Viscosity Solution**: The value function is characterized as the unique viscosity solution to this PDE.
 
 **Numerical Methods**: 
+
 - Finite differences with supremum at each grid point
 - Semi-Lagrangian schemes
 - Policy iteration
@@ -528,6 +534,7 @@ $$
 **Challenge**: Cross-gammas $\Gamma_{ij}$ for $i \neq j$ are sensitive to correlation.
 
 **Hedging Strategy**:
+
 1. Delta-hedge each component
 2. Gamma-hedge using options on individual assets
 3. Accept residual cross-gamma risk or hedge using basket options if available
@@ -550,6 +557,7 @@ and hedge for this scenario.
 
 
 **Grid**: Discretize $(S, t)$ space:
+
 - Space: $S \in \{S_{\min}, S_{\min} + \Delta S, \ldots, S_{\max}\}$
 - Time: $t \in \{0, \Delta t, 2\Delta t, \ldots, T\}$
 
@@ -579,6 +587,7 @@ $$
 
 
 **Algorithm**:
+
 1. For each grid point $(S_i, t_n)$
 2. Compute $\Gamma_i^n = \frac{V_{i+1}^n - 2V_i^n + V_{i-1}^n}{(\Delta S)^2}$
 3. Choose $\sigma^* = \overline{\sigma}$ if $\Gamma_i^n > 0$, else $\sigma^* = \underline{\sigma}$
@@ -643,6 +652,7 @@ $$
 
 
 **Real-Time Display**:
+
 - Current spot price $S_t$
 - Portfolio delta: $\Delta_{\text{portfolio}} = \sum_i \Delta_i n_i$
 - Portfolio gamma: $\Gamma_{\text{portfolio}} = \sum_i \Gamma_i n_i$
@@ -651,6 +661,7 @@ $$
 - Deviation metrics: $|\Delta_{\text{portfolio}} - \Delta_{\text{target}}|$, $|\Gamma_{\text{portfolio}} - \Gamma_{\text{target}}|$
 
 **Alert Thresholds**: 
+
 - **Yellow**: Deviation exceeds 10% of target
 - **Red**: Deviation exceeds 25% of target
 
@@ -692,12 +703,14 @@ $$
 
 
 **Scenarios**: Test portfolio performance under extreme scenarios:
+
 1. **Large price move**: $S_t \to S_t \pm 10\%$
 2. **Vol spike**: $\sigma \to \sigma + 20\%$
 3. **Combined**: Simultaneous price drop and vol spike
 4. **Flash crash**: $S_t \to S_t - 20\%$ instantaneously
 
 **Metrics**:
+
 - Change in portfolio value: $\Delta V$
 - Change in delta: $\Delta \Delta$
 - Change in gamma: $\Delta \Gamma$
@@ -712,20 +725,24 @@ $$
 
 
 **Setup**:
+
 - $S_0 = 100$, $K = 100$, $T = 1$ month, $r = 5\%$
 - Volatility uncertainty: $\sigma \in [15\%, 25\%]$
 
 **Classical Hedge** (assume $\sigma = 20\%$):
+
 - Delta: $\Delta = 0.52$
 - Gamma: $\Gamma = 0.040$
 
 **Robust Hedge**:
+
 1. Compute robust value $V(S_0, 0)$ using HJB with $\sigma \in [15\%, 25\%]$
 2. Robust delta and gamma:
    - If $\Gamma > 0$: Use $\sigma = 25\%$ for worst-case
    - Robust $\Delta = 0.53$, $\Gamma = 0.042$
 
 **Hedging Portfolio**:
+
 - Short 0.53 shares (delta-neutral)
 - Long options to offset gamma if available, or accept gamma exposure
 
@@ -735,17 +752,20 @@ $$
 
 
 **Position**:
+
 - Short 1 call at strike $K = 100$
 - Short 1 put at strike $K = 100$
 - Initial spot: $S_0 = 100$
 
 **Greeks**:
+
 - Delta: $\Delta_{\text{call}} - \Delta_{\text{put}} = 0.52 - (-0.48) = 1.00 \approx 0$ (near ATM)
 - Gamma: $\Gamma_{\text{call}} + \Gamma_{\text{put}} = 0.040 + 0.040 = 0.080$ (negative, since we're short)
 
 **Gamma Risk**: Large negative gamma → profits if $S$ stays near $K$, losses if $S$ moves significantly.
 
 **Hedging**:
+
 1. **Delta-neutral**: Hold 0 shares initially
 2. **Gamma-hedging**: 
    - **Option 1**: Long ATM options to neutralize gamma (expensive)
@@ -760,11 +780,13 @@ $$
 **Product**: Down-and-out call, $K = 100$, barrier $H = 90$, $T = 3$ months.
 
 **Greeks Near Barrier**:
+
 - Delta discontinuous at $S = H$
 - Gamma spikes as $S \to H$
 - Vega also large near barrier
 
 **Hedging Strategy**:
+
 1. **Away from barrier** ($S > 95$): Standard delta-gamma hedge
 2. **Near barrier** ($90 < S < 95$):
    - Increase gamma hedge (more options)
@@ -785,10 +807,12 @@ $$
 **Implied Volatility Surface**: $\sigma(K, T)$ varies with strike and maturity.
 
 **Sticky Delta vs. Sticky Strike**: Models for how smile evolves as $S$ changes:
+
 - **Sticky delta**: $\sigma$ depends on $\Delta$, not absolute $K$
 - **Sticky strike**: $\sigma$ remains at fixed strike $K$
 
 **Hedging Implications**:
+
 - Under sticky strike: Standard delta-gamma hedge is adequate
 - Under sticky delta: Need to adjust for smile movement as $S$ changes
 
@@ -838,6 +862,7 @@ where $J_t$ is a jump process.
 **Gamma Hedging Failure**: Gamma hedging protects against continuous moves, not jumps.
 
 **Jump Protection**: 
+
 - Long OTM puts (downside jump protection)
 - Long OTM calls (upside jump protection)
 - Cost: Premium for tail options
@@ -993,11 +1018,13 @@ Aim for CBR < 1 (benefits exceed costs).
 **Position**: Long/short various calls and puts on S&P 500 across strikes and maturities.
 
 **Challenges**:
+
 - Need to maintain delta-gamma neutrality across entire book
 - Manage vega exposure to volatility changes
 - Transaction costs for frequent rebalancing
 
 **Strategy**:
+
 1. **Aggregate Greeks**: Sum delta, gamma, vega across all positions
 2. **Delta-Gamma Neutral**: Use S&P futures for delta, ATM options for gamma
 3. **Vega Hedging**: Use VIX futures or variance swaps
@@ -1005,6 +1032,7 @@ Aim for CBR < 1 (benefits exceed costs).
 5. **Rebalancing**: Intraday for delta (< 1% threshold), daily for gamma (< 5% threshold)
 
 **Results**: 
+
 - Hedging error RMSE: 0.5% of notional
 - Transaction costs: 0.2% of notional per month
 - Sharpe ratio of hedged book: 1.8
@@ -1017,17 +1045,20 @@ Aim for CBR < 1 (benefits exceed costs).
 **Complexity**: Path-dependent payoffs, multiple underlyings, correlation risk.
 
 **Hedging**:
+
 1. **Pathwise Hedging**: Use functional derivatives for exotic Greeks
 2. **Delta-Gamma Framework**: Extend to path-dependent state variables
 3. **Correlation Hedging**: Use quanto options and multi-asset options
 4. **Robust Optimization**: Assume worst-case volatility and correlation scenarios
 
 **Risk Management**:
+
 - Daily stress tests under extreme scenarios
 - VaR limit: \$5M at 95% confidence
 - CVaR limit: \$10M at 99% confidence
 
 **Performance**: 
+
 - P&L volatility reduced by 70% with hedging
 - Cost of hedging: 1% of notional per year
 
@@ -1037,10 +1068,12 @@ Aim for CBR < 1 (benefits exceed costs).
 **Strategy**: Long-short positions exploiting implied vs. realized volatility mispricing.
 
 **Core Position**:
+
 - Long straddles when implied vol < expected realized vol
 - Short straddles when implied vol > expected realized vol
 
 **Delta-Gamma Management**:
+
 1. **Delta-Neutral**: Maintain zero delta across portfolio
 2. **Gamma Exposure**: Intentionally long or short gamma depending on volatility view
 3. **Dynamic Hedging**: Rebalance delta frequently (every 15 minutes during market hours)
@@ -1049,6 +1082,7 @@ Aim for CBR < 1 (benefits exceed costs).
 **Robust Approach**: Use robust PDE to value positions assuming volatility in range informed by historical data and vol-of-vol estimates.
 
 **Results**:
+
 - Annualized return: 12%
 - Volatility: 8%
 - Sharpe ratio: 1.5
@@ -1074,18 +1108,21 @@ Aim for CBR < 1 (benefits exceed costs).
 
 
 **When to Gamma-Hedge**:
+
 - Short optionality (sold options)
 - Large price moves expected
 - Near barrier or strike boundaries
 - High gamma exposure relative to portfolio size
 
 **When Delta-Hedging Suffices**:
+
 - Long optionality (bought options)
 - Small moves expected
 - Transaction costs prohibitive
 - Far from strikes and barriers
 
 **Robustness Design**:
+
 - Estimate realistic volatility ranges from historical data and market implied vols
 - Use robust PDE for pricing and Greeks computation
 - Stress test under extreme scenarios
@@ -1104,6 +1141,7 @@ Aim for CBR < 1 (benefits exceed costs).
 
 
 Robust delta-gamma hedging continues to evolve with:
+
 - **Machine learning**: Learning optimal hedging policies from data
 - **High-frequency data**: Using tick-by-tick information for better gamma estimation
 - **Multi-asset frameworks**: Extending to portfolios with complex correlation structures
@@ -1136,7 +1174,7 @@ The robust delta-gamma framework provides a practical, theoretically sound appro
     Delta:
 
     $$
-    \Delta = \Phi(d_1) = \Phi(0.05) \approx 0.5199
+    \Delta = \mathcal{N}(d_1) = \Phi(0.05) \approx 0.5199
     $$
 
     Gamma:
@@ -1155,7 +1193,7 @@ The robust delta-gamma framework provides a practical, theoretically sound appro
 
     The exact option values:
 
-    - At $S = 100$: $C(100) = S_0[2\Phi(d_1) - 1] = 100 \times [2(0.5199) - 1] = 100 \times 0.0399 = 3.99$ (approximately, using ATM formula with $r=0$).
+    - At $S = 100$: $C(100) = S_0[2\mathcal{N}(d_1) - 1] = 100 \times [2(0.5199) - 1] = 100 \times 0.0399 = 3.99$ (approximately, using ATM formula with $r=0$).
     - At $S = 105$: Recompute $d_1 = \frac{\ln(105/100) + 0.005}{0.10} = \frac{0.04879 + 0.005}{0.10} = 0.5379$, so $C(105) \approx 105\Phi(0.5379) - 100\Phi(0.4379)$.
 
     Using $\Phi(0.5379) \approx 0.7047$ and $\Phi(0.4379) \approx 0.6693$:

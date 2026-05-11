@@ -169,6 +169,7 @@ $$
 $$
 
 !!! tip "Parameter Interpretation via Moments"
+
     - **$\rho < 0$**: Negative skewness (left-skewed returns). The more negative $\rho$, the stronger the skew.
     - **$\xi$ large**: Higher excess kurtosis (fatter tails). The vol-of-vol amplifies tail events.
     - **$\kappa$ large**: Faster mean reversion dampens both skewness and kurtosis for longer maturities.

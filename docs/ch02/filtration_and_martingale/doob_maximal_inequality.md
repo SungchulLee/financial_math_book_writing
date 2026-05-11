@@ -1,6 +1,6 @@
 # Doob's Maximal Inequality
 
-[Martingales](martingales.md) come with a remarkable global control: the running maximum $\sup_{s \le t} |M_s|$ is bounded, in $L^p$, by the terminal value $|M_t|$ — with an explicit and sharp constant. This is the canonical tool for turning pointwise bounds into uniform-in-time bounds.
+[Martingales](martingale.md) come with a remarkable global control: the running maximum $\sup_{s \le t} |M_s|$ is bounded, in $L^p$, by the terminal value $|M_t|$ — with an explicit and sharp constant. This is the canonical tool for turning pointwise bounds into uniform-in-time bounds.
 
 ---
 

@@ -31,6 +31,7 @@ for a known probability measure $P$.
 Knight (1921) argued that true uncertainty—as opposed to measurable risk—is the source of entrepreneurial profit. In competitive markets, pure risk can be priced through actuarial methods, but genuine uncertainty cannot be fully hedged or insured against.
 
 **Key Insight**: Economic agents often face situations where they have incomplete information about:
+
 - The correct probability model
 - Parameter values within a given model class
 - The model structure itself (specification uncertainty)
@@ -73,6 +74,7 @@ $$
 This is known as the **maxmin expected utility** representation (Gilboa-Schmeidler, 1989).
 
 **Interpretation**: The decision maker:
+
 1. Computes expected utility under each plausible probability measure in $\mathcal{P}$
 2. Evaluates the act by its worst-case expected utility
 3. Exhibits **ambiguity aversion** by focusing on the minimum
@@ -103,6 +105,7 @@ $$
 with $\theta > 0$ measuring the degree of ambiguity aversion.
 
 **Properties**:
+
 - When $\theta \to 0$: Approaches classical expected utility with measure $P_0$
 - When $\theta \to \infty$: Approaches maxmin over $\mathcal{P}$
 - Intermediate $\theta$: Balances expected utility and model misspecification concerns
@@ -116,20 +119,24 @@ with $\theta > 0$ measuring the degree of ambiguity aversion.
 Ellsberg (1961) demonstrated systematic violations of Savage's axioms through the following thought experiment.
 
 **Setup**: Two urns containing red and black balls:
+
 - **Urn 1**: Contains 50 red and 50 black balls (known composition)
 - **Urn 2**: Contains 100 balls of unknown composition (ambiguous)
 
 **Bet Structure**:
+
 - Bet A: Win \$100 if red is drawn from Urn 1
 - Bet B: Win \$100 if black is drawn from Urn 1
 - Bet C: Win \$100 if red is drawn from Urn 2
 - Bet D: Win \$100 if black is drawn from Urn 2
 
 **Typical Preferences**: Most people prefer:
+
 - Bet A over Bet C (prefer known risk over ambiguity)
 - Bet B over Bet D (prefer known risk over ambiguity)
 
 **Paradox**: Under Savage's framework with subjective probability $p$ for red in Urn 2:
+
 - Preferring A over C implies: $0.5 > p$
 - Preferring B over D implies: $0.5 > 1-p$, which means $p > 0.5$
 
@@ -289,6 +296,7 @@ $$
 where $P_{\text{avg}} = \int_{\mathcal{P}} P \, d\nu(P)$ for some averaging measure $\nu$.
 
 **Key Distinction**: 
+
 - Risk aversion is about the curvature of utility over outcomes
 - Ambiguity aversion is about preferences over probability measures
 
@@ -336,6 +344,7 @@ $$
 
 
 where:
+
 - $u_t$ is the control (decision variable)
 - $w_t$ represents model misspecification
 - $\theta$ measures robustness concerns
@@ -362,6 +371,7 @@ which is equivalent to exponential utility preferences over random costs.
 Gilboa and Schmeidler (1989) provided an axiomatic foundation for maxmin expected utility.
 
 **Axioms**:
+
 1. **Weak Order**: Preferences $\succeq$ are complete and transitive
 2. **Continuity**: Standard topological continuity
 3. **Monotonicity**: If $f(\omega) \geq g(\omega)$ for all $\omega$, then $f \succeq g$
@@ -411,6 +421,7 @@ $$
 where $c: \mathcal{M}(\Omega) \to [0, \infty]$ is a convex, grounded ($\inf_P c(P) = 0$) function.
 
 **Special Cases**:
+
 - $c(P) = 0$ if $P = P_0$, else $c(P) = \infty$: Savage's expected utility
 - $c(P) = 0$ if $P \in \mathcal{P}$, else $c(P) = \infty$: Gilboa-Schmeidler maxmin
 - $c(P) = \theta D_{\text{KL}}(P \| P_0)$: Multiplier preferences (robust control)
@@ -424,6 +435,7 @@ where $c: \mathcal{M}(\Omega) \to [0, \infty]$ is a convex, grounded ($\inf_P c(
 Several experimental and market-based approaches measure the degree of ambiguity aversion.
 
 **Experimental Design**: Compare choices between:
+
 - Known probability bets (risk)
 - Unknown probability bets (ambiguity)
 
@@ -437,6 +449,7 @@ $$
 
 
 **Empirical Findings**:
+
 - Most subjects exhibit $\pi > 0$ (ambiguity aversion)
 - Magnitude varies across individuals and contexts
 - Professional traders often show less ambiguity aversion
@@ -473,6 +486,7 @@ $$
 
 
 **Properties**:
+
 1. Non-negativity: $D_{\text{KL}}(P \| Q) \geq 0$ with equality iff $P = Q$
 2. Not symmetric: $D_{\text{KL}}(P \| Q) \neq D_{\text{KL}}(Q \| P)$ in general
 3. Convexity: $D_{\text{KL}}(\cdot \| Q)$ is convex
@@ -503,6 +517,7 @@ $$
 This shows entropic risk as a variational preference with KL penalty.
 
 **Properties**:
+
 - Coherent for $\beta > 0$
 - As $\beta \to 0$: Approaches $\mathbb{E}[X]$ (risk-neutral)
 - As $\beta \to \infty$: Approaches $\text{ess sup}(X)$ (worst-case)
@@ -548,11 +563,13 @@ $$
 
 
 where:
+
 - $u$ measures risk aversion
 - $\phi$ measures ambiguity aversion
 - $\mu$ is a second-order prior over $\mathcal{P}$
 
 **Interpretation**: 
+
 1. Compute expected utility $\mathbb{E}_P[u(f)]$ under each $P$
 2. Apply ambiguity aversion function $\phi$
 3. Take expectation over second-order beliefs $\mu$
@@ -565,6 +582,7 @@ where:
 Another generalization uses non-additive measures (capacities).
 
 **Capacity**: A function $\nu: \mathcal{F} \to [0,1]$ satisfying:
+
 1. $\nu(\emptyset) = 0$, $\nu(\Omega) = 1$
 2. $A \subseteq B \implies \nu(A) \leq \nu(B)$
 

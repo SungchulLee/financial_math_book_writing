@@ -262,3 +262,36 @@ if __name__ == "__main__":
 
     print("="*70)
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+For an American put at $S = 0$, explain why the boundary condition is $V(0, t) = K$ rather than $K e^{-r(T-t)}$. How does this differ from the European put boundary?
+
+??? success "Solution to Exercise 1"
+    At $S = 0$, the stock stays at zero (absorbed state under GBM). For the European put, the payoff $K$ is received only at maturity, so its present value is $V(0, t) = K e^{-r(T-t)}$. For the American put, immediate exercise gives payoff $K$ right now, which exceeds the continuation value $K e^{-r(T-t)}$ for $t < T$. Therefore $V(0, t) = K$ for the American put. This is precisely the early exercise effect at the extreme: it is always optimal to exercise an American put at $S = 0$.
+
+---
+
+**Exercise 2.**
+Compute the early exercise premium for $S_0 = 100$, $K = 100$, $T = 1$, $r = 0.05$, $\sigma = 0.2$, given European put $= \$5.5735$ and American put $= \$6.0842$. Express as a percentage.
+
+??? success "Solution to Exercise 2"
+    Premium $= 6.0842 - 5.5735 = \$0.5107$. As a percentage: $0.5107 / 5.5735 \times 100\% = 9.16\%$. The premium increases with lower stock prices, higher interest rates, and lower volatility.
+
+---
+
+**Exercise 3.**
+Explain why the log-space implicit method may show a higher early exercise premium than the original-space method, and why this indicates better accuracy.
+
+??? success "Solution to Exercise 3"
+    The log-space grid concentrates points near small $S$ values where the early exercise boundary lies for puts. Better resolution of the sharp transition from continuation to exercise captures the full premium. The original-space uniform grid has coarse resolution near $S = 0$, leading to underestimation. The log-space method is more accurate because it resolves the boundary condition $V(0, t) = K$ and the transition region more faithfully.
+
+---
+
+**Exercise 4.**
+Describe an algorithm to extract the optimal exercise boundary $S^*(t_j)$ from the implicit FDM solution matrix for an American put.
+
+??? success "Solution to Exercise 4"
+    For each time step $j$, scan from large to small $S$: $S^*(t_j) = \max\{S_i : V_{i,j} \leq K - S_i + \epsilon\}$ where $\epsilon$ is a small tolerance. The boundary is the highest stock price where the option value equals its intrinsic value. Plotting $S^*(t)$ versus $t$ shows the exercise boundary curve, which typically decreases from $K$ at maturity toward an asymptotic value as $t \to 0$.

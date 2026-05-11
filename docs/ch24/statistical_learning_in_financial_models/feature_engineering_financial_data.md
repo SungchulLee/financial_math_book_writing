@@ -29,6 +29,7 @@ Common transformations:
 This is the most common and most dangerous error in financial ML. All features must be **point-in-time**: computable using only information available at the time of the prediction.
 
 !!! danger "Common Sources of Look-Ahead Bias"
+
     - Using future data in normalization (e.g., standardizing by full-sample mean/variance)
     - Filling missing values with future observations
     - Using revised economic data rather than first-release data

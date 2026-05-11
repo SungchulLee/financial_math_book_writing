@@ -16,6 +16,7 @@ Adapted as a SELF-CONTAINED educational module for the
 
 Topics covered
 --------------
+
 1. Digital (binary) options: closed formula, Monte Carlo, PDE.
 2. Barrier options (Up-and-Out Call, Down-and-In Call):
    closed formula, Monte Carlo with Broadie–Glasserman–Kou correction, PDE.
@@ -606,3 +607,46 @@ def demo_all():
 if __name__ == "__main__":
     demo_all()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Define a digital (cash-or-nothing) call option. Write its payoff and the Black-Scholes pricing formula.
+
+??? success "Solution to Exercise 1"
+    A digital call pays a fixed amount (say \$1) if $S_T > K$ and nothing otherwise. Payoff: $\mathbf{1}_{S_T > K}$.
+
+    The BS price is $C_{\text{digital}} = e^{-rT}\mathcal{N}(d_2)$ where $d_2 = [\ln(S/K) + (r - \frac{1}{2}\sigma^2)T]/(\sigma\sqrt{T})$.
+
+    Note that $\mathcal{N}(d_2) = P^Q(S_T > K)$ is the risk-neutral probability of finishing ITM. The digital call price is simply the discounted probability of exercise.
+
+---
+
+**Exercise 2.**
+Explain the Broadie-Glasserman-Kou correction for Monte Carlo pricing of barrier options. Why is naive MC biased for barriers?
+
+??? success "Solution to Exercise 2"
+    Naive MC checks the barrier only at discrete monitoring dates $t_1, \ldots, t_M$. Between dates, the stock may cross the barrier and return without detection, leading to an upward bias for knock-out prices (barrier crossings are missed, so fewer paths are knocked out).
+
+    The BGK correction uses the conditional probability that Brownian motion crosses the barrier between two consecutive observations. For a down-and-out barrier $H$: $P(\min_{t \in [t_k, t_{k+1}]} S_t \le H \mid S_{t_k}, S_{t_{k+1}}) = xp(-2\ln(S_{t_k}/H)\ln(S_{t_{k+1}}/H)/(\sigma^2\Delta t))$. This probability is used to randomly knock out paths, correcting the bias.
+
+---
+
+**Exercise 3.**
+Asian options depend on the average price. Explain why there is no simple closed-form formula for arithmetic average Asian options.
+
+??? success "Solution to Exercise 3"
+    The arithmetic average $ar{S} = \frac{1}{n}\sum_{i=1}^n S_{t_i}$ is a sum of correlated log-normal random variables. Unlike a single log-normal, this sum does not have a known closed-form distribution. Therefore $E[\max(ar{S} - K, 0)]$ cannot be computed analytically.
+
+    The geometric average $ar{S}_G = (\prod S_{t_i})^{1/n}$, by contrast, is log-normal (a product of log-normals is log-normal), so it has a closed-form price. This is why the geometric average is often used as a control variate for arithmetic average Asian option pricing.
+
+---
+
+**Exercise 4.**
+The PDE approach for Asian options uses a coordinate transformation. Why is a direct 2D PDE approach computationally expensive, and how does the transformation help?
+
+??? success "Solution to Exercise 4"
+    The Asian option value depends on $(S_t, A_t, t)$ where $A_t = \int_0^t S_u\,du$ is the running average. This requires a 2D PDE in $(S, A)$, which is expensive ($O(N_S \times N_A \times N_t)$).
+
+    The coordinate transformation uses the ratio $y = A/S$ (or a similar dimensionless variable), reducing the problem to a 1D PDE in $y$. This is possible because the BS dynamics are scale-invariant, so the value function can be factored as $V(S, A, t) = S 

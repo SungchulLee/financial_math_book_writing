@@ -523,7 +523,7 @@ Show that $p(z)$ is decreasing in $z$ and increasing in $\rho$ (for fixed $z < 0
     \frac{\partial}{\partial z}\left(\frac{\Phi^{-1}(\text{PD}) - \sqrt{\rho}\, z}{\sqrt{1-\rho}}\right) = \frac{-\sqrt{\rho}}{\sqrt{1-\rho}} < 0
     $$
 
-    since $\rho \in (0,1)$. Therefore the argument is strictly decreasing in $z$, and since $\Phi$ is strictly increasing, $p(z)$ is strictly decreasing in $z$. $\blacksquare$
+    since $\rho \in (0,1)$. Therefore the argument is strictly decreasing in $z$, and since $\Phi$ is strictly increasing, $p(z)$ is strictly decreasing in $z$. $\square$
 
     **Interpretation:** When $z$ is large (favorable systematic environment), fewer obligors default. When $z$ is small or negative (adverse systematic shock), more obligors default.
 
@@ -569,7 +569,7 @@ Show that $p(z)$ is decreasing in $z$ and increasing in $\rho$ (for fixed $z < 0
 
     When $z < 0$, we have $-z > 0$, and since $d = \Phi^{-1}(\text{PD}) < 0$, we get $d\sqrt{\rho} < 0$. Thus the numerator is $d\sqrt{\rho} - z$, where $-z > 0$ and $d\sqrt{\rho} < 0$... actually we need to be more careful. We have $d\sqrt{\rho} - z$. Since $z < 0$, we have $-z > 0$, so $d\sqrt{\rho} - z = d\sqrt{\rho} + |z| > 0$ when $|z|$ is sufficiently large. In the regime of interest (stressed conditions where $z < 0$ and $|z|$ is large, i.e., the tail that matters for capital), the numerator is positive, so $\frac{\partial g}{\partial \rho} > 0$, meaning $p(z)$ is increasing in $\rho$.
 
-    More precisely, $\frac{\partial g}{\partial \rho} > 0$ whenever $z < d\sqrt{\rho}$. Since $d < 0$ and $z < 0$, this holds when $|z| > |d|\sqrt{\rho}$, which is the adverse tail relevant for capital ($z = \Phi^{-1}(0.001) \approx -3.09$, while $|d\sqrt{\rho}|$ is typically much smaller). $\blacksquare$
+    More precisely, $\frac{\partial g}{\partial \rho} > 0$ whenever $z < d\sqrt{\rho}$. Since $d < 0$ and $z < 0$, this holds when $|z| > |d|\sqrt{\rho}$, which is the adverse tail relevant for capital ($z = \Phi^{-1}(0.001) \approx -3.09$, while $|d\sqrt{\rho}|$ is typically much smaller). $\square$
 
     **Economic intuition:** Higher asset correlation $\rho$ means obligors are more exposed to the common systematic factor $Z$. When $Z$ takes an adverse value ($z < 0$), high correlation causes defaults to be more synchronized -- many firms default together. This creates a **fatter right tail** in the portfolio loss distribution: losses are typically small (in good times, few defaults), but when losses occur, they are catastrophic (in bad times, many defaults simultaneously).
 

@@ -77,7 +77,7 @@ X_t^\tau := X_{t \wedge \tau}.
 $$
 
 !!! tip "Stability theorem"
-    If $X$ is a [martingale](martingales.md) (sub/supermartingale), then so is $X^\tau$. Freezing a fair game at a non-anticipating time cannot introduce bias. This fact is the engine driving the [Optional Sampling Theorem](optional_sampling_theorem.md).
+    If $X$ is a [martingale](martingale.md) (sub/supermartingale), then so is $X^\tau$. Freezing a fair game at a non-anticipating time cannot introduce bias. This fact is the engine driving the [Optional Sampling Theorem](optional_sampling_theorem.md).
 
 ---
 

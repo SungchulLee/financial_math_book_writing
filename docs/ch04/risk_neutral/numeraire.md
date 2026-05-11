@@ -95,27 +95,16 @@ $$
 
 ## The T-Forward Measure
 
-### Definition
-
-The **$T$-forward measure** $\mathbb{Q}^T$ uses the zero-coupon bond $P(t,T)$ as numéraire.
-
-### Key Property
-
-Under $\mathbb{Q}^T$, the **forward price** $F(t,T) = S_t/P(t,T)$ is a martingale:
-
-$$
-F(t,T) = \mathbb{E}^{\mathbb{Q}^T}[S_T \mid \mathcal{F}_t]
-$$
-
-### Forward Pricing Formula
-
-For a European claim with payoff $\Phi(S_T)$:
+The most important special case: the **$T$-forward measure** $\mathbb{Q}^T$ uses the
+zero-coupon bond $P(t,T)$ as numéraire, making the forward price
+$F(t,T) = S_t/P(t,T)$ a martingale. This eliminates stochastic discounting:
 
 $$
 V_t = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}[\Phi(S_T) \mid \mathcal{F}_t]
 $$
 
-**No explicit discounting needed!** The bond price $P(t,T)$ handles it.
+See [The Forward Measure](forward_measure.md) for the full development, including
+dynamics under $\mathbb{Q}^T$, LIBOR forward rates, and caplet pricing.
 
 ---
 
@@ -143,7 +132,7 @@ If $F_t$ is log-normal under $\mathbb{Q}^T$ with volatility $\sigma_F$:
 
 $$
 \boxed{
-C_t = P(t,T)[F_t\Phi(d_1) - K\Phi(d_2)]
+C_t = P(t,T)[F_t\mathcal{N}(d_1) - K\mathcal{N}(d_2)]
 }
 $$
 
@@ -179,7 +168,7 @@ If the ratio is log-normal:
 
 $$
 \boxed{
-V_t = S_t^1\Phi(d_1) - S_t^2\Phi(d_2)
+V_t = S_t^1\mathcal{N}(d_1) - S_t^2\mathcal{N}(d_2)
 }
 $$
 
@@ -340,31 +329,31 @@ Under the stock measure $\mathbb{Q}^S$ (numeraire $N_t = S_t$), a European put o
 ---
 
 **Exercise 3.**
-For Black's formula, a call on a forward contract has price $C_t = P(t,T)[F_t\Phi(d_1) - K\Phi(d_2)]$. Verify that as $\sigma_F \to 0$, the formula reduces to $C_t = P(t,T)\max(F_t - K, 0)$. What is the interpretation of this limit?
+For Black's formula, a call on a forward contract has price $C_t = P(t,T)[F_t\mathcal{N}(d_1) - K\mathcal{N}(d_2)]$. Verify that as $\sigma_F \to 0$, the formula reduces to $C_t = P(t,T)\max(F_t - K, 0)$. What is the interpretation of this limit?
 
 ??? success "Solution to Exercise 3"
     As $\sigma_F \to 0$: $d_1 = [\ln(F_t/K) + \frac{1}{2}\sigma_F^2(T-t)]/(\sigma_F\sqrt{T-t})$.
 
-    **Case 1: $F_t > K$.** Then $\ln(F_t/K) > 0$. As $\sigma_F \to 0$, $d_1 \to +\infty$ and $d_2 \to +\infty$, so $\Phi(d_1) \to 1$ and $\Phi(d_2) \to 1$:
+    **Case 1: $F_t > K$.** Then $\ln(F_t/K) > 0$. As $\sigma_F \to 0$, $d_1 \to +\infty$ and $d_2 \to +\infty$, so $\mathcal{N}(d_1) \to 1$ and $\mathcal{N}(d_2) \to 1$:
 
     $$
     C_t \to P(t,T)(F_t - K) = P(t,T)\max(F_t - K, 0)
     $$
 
-    **Case 2: $F_t < K$.** Then $\ln(F_t/K) < 0$. As $\sigma_F \to 0$, $d_1 \to -\infty$ and $d_2 \to -\infty$, so $\Phi(d_1) \to 0$ and $\Phi(d_2) \to 0$:
+    **Case 2: $F_t < K$.** Then $\ln(F_t/K) < 0$. As $\sigma_F \to 0$, $d_1 \to -\infty$ and $d_2 \to -\infty$, so $\mathcal{N}(d_1) \to 0$ and $\mathcal{N}(d_2) \to 0$:
 
     $$
     C_t \to 0 = P(t,T)\max(F_t - K, 0)
     $$
 
-    **Case 3: $F_t = K$.** Then $d_1 = \frac{1}{2}\sigma_F\sqrt{T-t} \to 0$ and $\Phi(d_1) \to 1/2$, $\Phi(d_2) \to 1/2$, giving $C_t \to 0$.
+    **Case 3: $F_t = K$.** Then $d_1 = \frac{1}{2}\sigma_F\sqrt{T-t} \to 0$ and $\mathcal{N}(d_1) \to 1/2$, $\mathcal{N}(d_2) \to 1/2$, giving $C_t \to 0$.
 
     In all cases, $C_t \to P(t,T)\max(F_t - K, 0)$. The interpretation is that with zero volatility, the forward price is deterministic, so the option value is simply the discounted intrinsic value. There is no time value when there is no uncertainty.
 
 ---
 
 **Exercise 4.**
-In the exchange option (Margrabe's formula), the price is $V_t = S_t^1\Phi(d_1) - S_t^2\Phi(d_2)$. Explain why the risk-free rate $r$ does not appear. Compute $V_0$ for $S_0^1 = 100$, $S_0^2 = 95$, $\sigma_1 = 0.20$, $\sigma_2 = 0.25$, $\rho = 0.5$, and $T = 1$.
+In the exchange option (Margrabe's formula), the price is $V_t = S_t^1\mathcal{N}(d_1) - S_t^2\mathcal{N}(d_2)$. Explain why the risk-free rate $r$ does not appear. Compute $V_0$ for $S_0^1 = 100$, $S_0^2 = 95$, $\sigma_1 = 0.20$, $\sigma_2 = 0.25$, $\rho = 0.5$, and $T = 1$.
 
 ??? success "Solution to Exercise 4"
     The interest rate $r$ does not appear because the exchange option payoff $(S_T^1 - S_T^2)^+$ can be replicated by a portfolio that is long asset 1 and short asset 2. Both assets grow at the same risk-free rate $r$ under $\mathbb{Q}$, and this common growth cancels in the ratio $S_t^1/S_t^2$. Using $S^2$ as numéraire eliminates $r$ entirely.
@@ -436,7 +425,7 @@ The annuity numeraire is $A(t) = \sum_{i=1}^n \tau_i P(t, T_i)$. Under the swap 
     Since $S(t)$ is a $\mathbb{Q}^A$-martingale, this has the same structure as a call option on a martingale. If we assume $S(t)$ is **log-normal** under $\mathbb{Q}^A$ with volatility $\sigma_S$, then Black's formula applies directly:
 
     $$
-    V_t = A(t)[S(t)\Phi(d_1) - K\Phi(d_2)]
+    V_t = A(t)[S(t)\mathcal{N}(d_1) - K\mathcal{N}(d_2)]
     $$
 
     The key assumption is that the swap rate $S(t)$ follows a geometric Brownian motion (log-normal distribution) under $\mathbb{Q}^A$. This is the standard market model assumption for swaptions, analogous to assuming log-normality of the forward rate for caplets. In practice, implied volatility smiles indicate deviations from this assumption.
@@ -464,7 +453,7 @@ Consider a quanto option: a European call on a foreign stock $S_t^f$ with strike
     The **quanto adjustment** is the term $-\rho_{SX}\sigma_S\sigma_X$: under $\mathbb{Q}^d$, the foreign stock drifts at rate $r_f - \rho_{SX}\sigma_S\sigma_X$ instead of $r_f$. The pricing formula is then a modified Black-Scholes formula:
 
     $$
-    V_t = e^{-r_d(T-t)}[S_t^f e^{(r_f - \rho_{SX}\sigma_S\sigma_X)(T-t)}\Phi(d_1) - K\Phi(d_2)]
+    V_t = e^{-r_d(T-t)}[S_t^f e^{(r_f - \rho_{SX}\sigma_S\sigma_X)(T-t)}\mathcal{N}(d_1) - K\mathcal{N}(d_2)]
     $$
 
     where $d_1$ and $d_2$ use the adjusted drift. The quanto adjustment captures the correlation between the foreign asset and the exchange rate: if $\rho_{SX} > 0$, when the foreign stock rises, the domestic currency weakens, reducing the domestic-currency payoff, leading to a lower effective drift.

@@ -152,3 +152,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Verify that $E[N(t)] = \text{Var}(N(t)) = \lambda t$ for a Poisson process.
+
+??? success "Solution to Exercise 1"
+    $N(t) \sim \text{Poisson}(\lambda t)$. The Poisson distribution has equal mean and variance: $E[N(t)] = \lambda t$ and $\text{Var}(N(t)) = \lambda t$.
+
+---
+
+**Exercise 2.**
+Show that the compensated Poisson process $\tilde{N}(t) = N(t) - \lambda t$ is a martingale.
+
+??? success "Solution to Exercise 2"
+    $E[\tilde{N}(t) | \mathcal{F}_s] = E[N(t)|\mathcal{F}_s] - \lambda t = N(s) + \lambda(t-s) - \lambda t = N(s) - \lambda s = \tilde{N}(s)$.
+
+---
+
+**Exercise 3.**
+How does intensity $\lambda$ affect the visual appearance of sample paths?
+
+??? success "Solution to Exercise 3"
+    Small $\lambda$: few jumps, mostly flat. Medium $\lambda$: classic staircase. Large $\lambda$: many jumps, path appears nearly continuous (by CLT, approximately $\lambda t + \sqrt{\lambda t}Z$).
+
+---
+
+**Exercise 4.**
+Explain the memoryless property of inter-arrival times and its connection to the Poisson process.
+
+??? success "Solution to Exercise 4"
+    Inter-arrival times are $\text{Exponential}(\lambda)$ with the memoryless property: $P(\tau > s+t | \tau > s) = P(\tau > t)$. This means the time until the next jump does not depend on how long we have already waited, which is equivalent to the Poisson process having independent increments.

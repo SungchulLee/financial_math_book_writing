@@ -423,7 +423,7 @@ using Girsanov's theorem for the composite measure change $\mathbb{Q}^{f,T_{i+1}
 
     **Where correlation enters:** The correlation appears in Step 3 when projecting the Girsanov kernel (which is $\sigma_X$, the FX volatility vector) onto the direction of the foreign rate's Brownian motion $W_L$. The projection is $\rho_{L,X} \sigma_X$, giving the drift correction $-\rho_{L,X} \sigma_i^f \sigma_X$.
 
-    **Assumptions used:** (1) Lognormal dynamics for both $L_i^f$ and $X$. (2) Constant volatilities $\sigma_i^f$, $\sigma_X$ and constant correlation $\rho_{L,X}$. (3) Deterministic interest rates for the forward-measure changes (or that the additional drifts from stochastic rates cancel to leading order). $\blacksquare$
+    **Assumptions used:** (1) Lognormal dynamics for both $L_i^f$ and $X$. (2) Constant volatilities $\sigma_i^f$, $\sigma_X$ and constant correlation $\rho_{L,X}$. (3) Deterministic interest rates for the forward-measure changes (or that the additional drifts from stochastic rates cancel to leading order). $\square$
 
 ---
 
@@ -473,7 +473,7 @@ where only the foreign rate requires a quanto adjustment. Explain why the domest
     V_0 = P^d(0, T_{i+1}) \, \delta_i \left(L_i^{f,\text{quanto}}(0) - L_i^d(0)\right)
     $$
 
-    The fair spread (the fixed rate that makes $V_0 = 0$) is $L_i^{f,\text{quanto}}(0) - L_i^d(0)$. $\blacksquare$
+    The fair spread (the fixed rate that makes $V_0 = 0$) is $L_i^{f,\text{quanto}}(0) - L_i^d(0)$. $\square$
 
 ---
 
@@ -564,7 +564,7 @@ where only the foreign rate requires a quanto adjustment. Explain why the domest
 
     This confirms the quanto-adjusted forward rate formula.
 
-    **Why the volatility is unchanged:** The Girsanov theorem changes the drift of the Brownian motion but not its quadratic variation. Specifically, $W^{d,T_{i+1}}(t) = W^{f,T_{i+1}}(t) + \int_0^t \rho_{L,X}\sigma_X \, ds$ is still a Brownian motion under $\mathbb{Q}^{d,T_{i+1}}$ (by Girsanov's theorem), so the diffusion coefficient $\sigma^f$ multiplying $dW$ is the same under both measures. The quanto adjustment affects only the mean of $\ln L_i^f(T_i)$, not its variance. $\blacksquare$
+    **Why the volatility is unchanged:** The Girsanov theorem changes the drift of the Brownian motion but not its quadratic variation. Specifically, $W^{d,T_{i+1}}(t) = W^{f,T_{i+1}}(t) + \int_0^t \rho_{L,X}\sigma_X \, ds$ is still a Brownian motion under $\mathbb{Q}^{d,T_{i+1}}$ (by Girsanov's theorem), so the diffusion coefficient $\sigma^f$ multiplying $dW$ is the same under both measures. The quanto adjustment affects only the mean of $\ln L_i^f(T_i)$, not its variance. $\square$
 
 ---
 

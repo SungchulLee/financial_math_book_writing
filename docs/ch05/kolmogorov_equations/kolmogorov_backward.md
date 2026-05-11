@@ -3,6 +3,7 @@
 The **Kolmogorov backward equation** describes how expected values of functions of a diffusion process depend on the initial condition. It is the PDE satisfied by $u(t,x) = \mathbb{E}_x[g(X_t)]$, with the generator acting on the **initial point**.
 
 !!! tip "Related Content"
+
     - [Kolmogorov Forward Equation](kolmogorov_forward.md) — the dual equation for densities
     - [Forward–Backward Duality](forward_backward_duality.md) — the adjoint relationship
     - [Feynman–Kac Formula](../feynman_kac/feynman_kac_formula.md) — extension with discounting
@@ -74,6 +75,7 @@ Here $v(t, x) = \mathbb{E}[g(X_T) \mid X_t = x]$.
 **They are the same equation**: If $u$ solves Form 1, then $v(t,x) = u(T-t, x)$ solves Form 2.
 
 !!! info "Which Form to Use?"
+
     - **Form 1**: Natural for transition densities, heat equation perspective, physics
     - **Form 2**: Natural for finance (option pricing), optimal control, dynamic programming
     
@@ -219,6 +221,7 @@ $$\int f(x) (\mathcal{L}g)(x)\,dx = \int (\mathcal{L}^* f)(x) g(x)\,dx$$
 (plus boundary terms)
 
 !!! info "Physical Interpretation"
+
     - **Backward**: "From which starting points do we reach a given target?" (Value function perspective)
     - **Forward**: "Where does the probability mass flow over time?" (Distribution perspective)
 

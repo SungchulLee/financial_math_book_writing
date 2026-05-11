@@ -66,6 +66,7 @@ The solution can also be written as:
 $$r_t = e^{-\alpha t}r_0 + (1 - e^{-\alpha t})\theta + \sigma\int_0^t e^{-\alpha(t-s)}dW_s$$
 
 This form shows that $r_t$ is a weighted average of:
+
 1. The initial rate $r_0$ (decaying exponentially)
 2. The long-run mean $\theta$ (approaching with weight $1 - e^{-\alpha t}$)
 3. Accumulated random shocks weighted by their exponential decay
@@ -148,6 +149,7 @@ The long-run volatility $\sqrt{\frac{\sigma^2}{2\alpha}}$ depends on two competi
 **Higher mean reversion $\alpha$**: Decreases long-run variance (shocks are damped faster)
 
 The ratio $\frac{\sigma^2}{2\alpha}$ balances these effects. For example:
+
 - If we double $\sigma$ (more turbulent), variance quadruples
 - If we double $\alpha$ (stronger mean reversion), variance halves
 
@@ -181,16 +183,19 @@ Sample paths of Vasicek rates typically exhibit:
 ### Effect of Parameters on Paths
 
 **Increasing $\alpha$ (faster mean reversion)**:
+
 - Paths cluster more tightly around $\theta$
 - Faster return to mean after shocks
 - Less variation from equilibrium
 
 **Increasing $\sigma$ (higher volatility)**:
+
 - More dramatic excursions from $\theta$
 - Greater amplitude of fluctuations
 - Wider band of typical values
 
 **Changing $\theta$ (different equilibrium)**:
+
 - Shifts the entire path up or down
 - Mean-reversion target changes
 - Doesn't affect volatility structure
@@ -210,6 +215,7 @@ $$m(t-s) = e^{-\alpha(t-s)}r_s + (1 - e^{-\alpha(t-s)})\theta$$
 $$\sigma^2(t-s) = \frac{\sigma^2}{2\alpha}(1 - e^{-2\alpha(t-s)})$$
 
 This transition density is essential for:
+
 - Computing likelihood functions for parameter estimation
 - Filtering and state estimation
 - Computing conditional probabilities in option pricing
@@ -235,6 +241,7 @@ A 95% confidence interval: $[0.0357 - 1.96(0.0048), 0.0357 + 1.96(0.0048)] = [0.
 ### Risk Management
 
 The stationary variance $\frac{\sigma^2}{2\alpha}$ provides a measure of long-run interest rate risk. Portfolio managers use this to set:
+
 - Duration targets
 - Hedge ratios
 - Value-at-risk (VaR) limits

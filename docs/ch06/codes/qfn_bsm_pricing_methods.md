@@ -313,3 +313,56 @@ if __name__ == "__main__":
     print(f"Call price: {call_bn:.3f}")
     print(f"Put price:  {put_bn:.3f}")
 ```
+
+## Exercises
+
+**Exercise 1.**
+The code implements three pricing approaches: closed-form, Monte Carlo, and binomial tree. For a European call with standard parameters, which method gives the most precise answer and why?
+
+??? success "Solution to Exercise 1"
+    The **closed-form** formula gives the most precise answer because it evaluates the exact analytical solution using the normal CDF. The only error is from floating-point arithmetic (about $10^{-15}$).
+
+    Monte Carlo has $O(1/\sqrt{N})$ statistical error. Binomial tree has $O(1/M)$ discretization error. Both require many iterations to approach the precision of the closed form. For European options where the formula exists, there is no reason to use approximate methods.
+
+---
+
+**Exercise 2.**
+The binomial tree uses Cox-Ross-Rubinstein parameters. Derive $u = e^{\sigma\sqrt{\Delta t}}$, $d = e^{-\sigma\sqrt{\Delta t}}$, and the risk-neutral probability $q$.
+
+??? success "Solution to Exercise 2"
+    CRR parameters are chosen so the binomial distribution of $\ln(S_T/S_0)$ matches the first two moments of GBM:
+
+    - Mean: $q\ln u + (1-q)\ln d = (r - \frac{1}{2}\sigma^2)\Delta t$
+    - Variance: $q(1-q)(\ln u - \ln d)^2 = \sigma^2\Delta t$
+
+    Setting $u = e^{\sigma\sqrt{\Delta t}}$ and $d = 1/u = e^{-\sigma\sqrt{\Delta t}}$ gives $\ln u - \ln d = 2\sigma\sqrt{\Delta t}$. The risk-neutral probability is
+
+    $$
+    q = \frac{e^{r\Delta t} - d}{u - d}
+    $$
+
+---
+
+**Exercise 3.**
+Show that MC and binomial prices satisfy put-call parity to within their numerical tolerances.
+
+??? success "Solution to Exercise 3"
+    For MC: $\hat{C}_{\text{MC}} - \hat{P}_{\text{MC}} \approx S_0 - Ke^{-rT}$ with error bounded by the sum of the two standard errors.
+
+    For binomial: $C_{\text{bin}} - P_{\text{bin}} = S_0 - Ke^{-rT}$ exactly (up to machine precision), because both prices are computed on the same tree using the same risk-neutral probability. The discounting and backward induction are consistent, so parity holds at every node.
+
+    This provides a useful internal consistency check for any pricing implementation.
+
+---
+
+**Exercise 4.**
+The code is based on Shreve's *Stochastic Calculus for Finance II*. Explain the theoretical foundation: how does the binomial model in discrete time converge to the continuous-time BS model?
+
+??? success "Solution to Exercise 4"
+    Shreve shows that as $\Delta t \to 0$, the CRR binomial model converges to GBM:
+
+    1. The rescaled log-returns $\ln(S_{(n+1)\Delta t}/S_{n\Delta t})$ are i.i.d. with mean $(r - \frac{1}{2}\sigma^2)\Delta t$ and variance $\sigma^2\Delta t$.
+    2. By the Central Limit Theorem, $\ln(S_T/S_0) = \sum_{k=1}^{M} \ln(S_{k\Delta t}/S_{(k-1)\Delta t})$ converges in distribution to $\mathcal{N}((r - \frac{1}{2}\sigma^2)T, \sigma^2 T)$.
+    3. The discounted binomial price converges to $e^{-rT}E^Q[\text{payoff}(S_T)]$, the BS price.
+
+    This convergence is the rigorous justification for using binomial trees as approximations to the BS model.

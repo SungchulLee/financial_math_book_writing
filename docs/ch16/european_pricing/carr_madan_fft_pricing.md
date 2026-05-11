@@ -103,11 +103,13 @@ where $V(x) = \max(Se^x - K, 0)$ for a call option.
 ## Advantages and Limitations
 
 **Advantages:**
+
 - Extremely fast once FFT is computed (multiple strikes in parallel)
 - Works for any model with known characteristic function
 - Automatically handles Greeks via re-evaluation on shifted grids
 
 **Limitations:**
+
 - FFT requires equidistant grid (adaptive grids not directly applicable)
 - Boundary effects may require large $u_{\max}$
 - Accuracy sensitive to grid design choices

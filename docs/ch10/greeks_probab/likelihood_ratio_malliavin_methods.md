@@ -89,6 +89,7 @@ LR estimators often have higher variance than pathwise estimators:
 For diffusions driven by Brownian motion, Malliavin calculus provides a systematic framework for LR-type formulas.
 
 **Key objects:**
+
 - **Malliavin derivative** $D_s X_T$: sensitivity of $X_T$ to perturbations of $W_s$
 - **Skorokhod integral** $\delta(\cdot)$: adjoint of $D$
 - **Malliavin covariance** $\langle DX_T, DX_T \rangle_{L^2[0,T]}$

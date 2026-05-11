@@ -5,7 +5,7 @@ Risk-neutral pricing tells us *how* to compute prices: take discounted expectati
 !!! info "Prerequisites"
     This section assumes familiarity with:
 
-    - [Risk-Neutral Valuation Principle](../finance/risk_neutral_valuation_principle.md)
+    - [Risk-Neutral Valuation Principle](../risk_neutral/risk_neutral_valuation_principle.md)
     - [Market Price of Risk](../risk_neutral/market_price_of_risk.md)
     - [Girsanov's Theorem](../girsanov/girsanov_theorem.md)
 

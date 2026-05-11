@@ -3,6 +3,7 @@
 The COS method was originally developed for equity option pricing, but its characteristic-function-based framework extends naturally to interest rate derivatives. When the short rate or forward rate follows an affine process, the bond price is an exponential-affine function of the state variable, and its characteristic function is available in closed form. This enables COS-based pricing of bond options, caps, floors, and swaptions---instruments where closed-form solutions are often unavailable or cumbersome. This section develops the COS pricing framework for interest rate models, focusing on the Vasicek and CIR models for bond options and the extension to swaption pricing.
 
 !!! info "Prerequisites"
+
     - [COS Pricing Formula](../cos_method/cos_pricing_formula.md) (the COS framework)
     - Short rate models: Vasicek, CIR (affine structure, bond pricing formula)
     - Interest rate derivatives: bond options, caps/floors, swaptions

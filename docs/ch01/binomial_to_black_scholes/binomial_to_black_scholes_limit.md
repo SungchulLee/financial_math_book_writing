@@ -7,7 +7,8 @@ The **binomial option pricing model** provides an intuitive discrete-time framew
 This section rigorously establishes the convergence of the binomial model to the Black–Scholes framework, connecting the discrete random walk to geometric Brownian motion via the **functional central limit theorem** (Donsker's theorem).
 
 !!! info "Prerequisites"
-    - [Binomial Model](binomial_model.md) and [Risk-Neutral Pricing](risk_neutral_measure.md)
+
+    - [Binomial Model](../binomial_model/binomial_model.md) and [Risk-Neutral Pricing](../binomial_model/risk_neutral_measure.md)
     - [Donsker's Theorem](../../ch02/simple_random_walk/donsker_theorem.md)
     - [Itô's Lemma](../../ch03/ito_lemma/ito_lemma.md)
     - Central Limit Theorem (basic probability)
@@ -95,29 +96,7 @@ $$
 
 ### Risk-Neutral Probability
 
-Under the risk-neutral measure, the discounted stock price is a martingale:
-
-$$
-S_i = e^{-r\Delta t} \mathbb{E}^{\mathbb{Q}}[S_{i+1} | S_i]
-$$
-
-This requires:
-
-$$
-S_i = e^{-r\Delta t}(q \cdot u S_i + (1-q) \cdot d S_i)
-$$
-
-Simplifying:
-
-$$
-e^{r\Delta t} = qu + (1-q)d
-$$
-
-Solving for $q$:
-
-$$
-\boxed{q = \frac{e^{r\Delta t} - d}{u - d}}
-$$
+Recall the [risk-neutral probability](../binomial_model/binomial_model.md) $q = (e^{r\Delta t} - d)/(u - d)$ derived from the martingale condition $e^{r\Delta t} = qu + (1-q)d$.
 
 ### Taylor Expansion of q
 
@@ -672,7 +651,7 @@ So the sum effectively runs from $k = \lceil k^* \rceil$ to $n$.
 The continuous limit is the **Black–Scholes formula**:
 
 $$
-C_{BS} = S_0 \Phi(d_1) - Ke^{-rT}\Phi(d_2)
+C_{BS} = S_0 \mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
 $$
 
 where $\Phi$ is the standard normal CDF and:
@@ -734,7 +713,7 @@ $$
 For a European call, this is the **Black–Scholes delta**:
 
 $$
-\Delta = \frac{\partial C}{\partial S} = \Phi(d_1)
+\Delta = \frac{\partial C}{\partial S} = \mathcal{N}(d_1)
 $$
 
 !!! success "Hedging Convergence"
@@ -825,6 +804,7 @@ All converge to Black–Scholes but with different convergence rates and oscilla
 ## Key Takeaways
 
 !!! abstract "Summary"
+
     1. **Parameter matching**: $u = e^{\sigma\sqrt{\Delta t}}$, $d = 1/u$ ensures variance $\sigma^2\Delta t$ per step
     
     2. **CLT convergence**: The scaled random walk $\sum X_i$ converges to Brownian motion

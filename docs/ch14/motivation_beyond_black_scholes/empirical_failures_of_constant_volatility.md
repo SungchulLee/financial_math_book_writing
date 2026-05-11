@@ -175,6 +175,7 @@ The distributional failures translate directly into option pricing anomalies:
 #### Systematic Mispricing of OTM Options
 
 Under Black–Scholes with constant $\sigma$:
+
 - OTM puts are underpriced (true distribution has heavier left tail)
 - OTM calls may be overpriced or underpriced depending on the asset
 
@@ -197,6 +198,7 @@ $$
 $$
 
 with known, stable $\sigma$. When volatility is stochastic:
+
 - Delta itself becomes random
 - Hedging P&L has non-zero variance even with continuous rebalancing
 - Volatility exposure (vega risk) cannot be hedged by the underlying alone
@@ -284,11 +286,13 @@ The excess kurtosis demonstrates that returns are **not normal**: the distributi
 When examining returns in the extreme tails (beyond $\pm 3\sigma$ from the mean), empirical frequencies vastly exceed normal distribution predictions.
 
 **Fat right tail** (large positive returns):
+
 - Empirical observation: significant density in returns $r > 3\sigma$
 - Normal prediction: negligible probability (0.27% per day)
 - Gap: An order of magnitude difference in extreme positive moves
 
 **Fat left tail** (large negative returns):
+
 - Empirical observation: pronounced density in returns $r < -3\sigma$
 - Normal prediction: exponentially small probability
 - Gap: The left tail is even fatter than the right, reflecting downside risk concentration

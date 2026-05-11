@@ -5,10 +5,25 @@ The **Black-Scholes formula**, derived independently by Fischer Black, Myron Sch
 
 This section presents the formula, its underlying assumptions, and the meaning of its components.
 
+!!! info "Roadmap: Six Perspectives on the Black-Scholes Formula"
+    The same closed-form result $C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$ admits six different mathematical viewpoints. Each row below names a perspective, its central object, the equation that captures it, what it expresses about the option, and the sibling section in which it is developed. The remaining files in this section — [Put-call parity](put_call_parity.md), [Asymptotic behavior](asymptotic_behavior.md), and [Computational examples](computational_examples.md) — exploit these perspectives to derive constraints, limiting cases, and numerical implementation respectively.
+
+    | Perspective | Central object | Main equation | Interpretation | Where developed |
+    |---|---|---|---|---|
+    | Replication | Self-financing portfolio | hedge equation $dV = \Delta\, dS + r(V - \Delta S)\, dt$ | eliminate risk by dynamic trading | [Girsanov derivation](girsanov_derivation.md) |
+    | PDE | price function $V(S, t)$ | Black-Scholes PDE | local dynamics of $V$ | [Girsanov derivation](girsanov_derivation.md) |
+    | Probability | risk-neutral expectation $\mathbb{E}^{\mathbb{Q}}[\,\cdot\,]$ | Feynman-Kac formula | discounted expected payoff | [Probabilistic interpretation](probabilistic_interpretation.md) |
+    | Measure change | Radon-Nikodym derivative | Girsanov's theorem | drift transformation $\mathbb{P} \to \mathbb{Q} \to \mathbb{Q}^S$ | [Girsanov derivation](girsanov_derivation.md), [Probabilistic interpretation](probabilistic_interpretation.md) |
+    | Geometry | convex payoff $(S_T - K)^+$ | $\Gamma > 0$ | optionality (Jensen's inequality) | [Properties and bounds](properties_and_bounds.md) |
+    | Strike-space | strike second derivative $\partial^2 C / \partial K^2$ | Breeden-Litzenberger | implied risk-neutral density | [Digital option pricing](digital_option_pricing.md) |
+
+    These are six coordinate systems on a single underlying object. The recurrence of $(d_1, d_2)$ across rows is the algebraic shadow of that unity: the same pair of numbers controls the exercise probability under $\mathbb{Q}$, the delta under $\mathbb{Q}^S$, the asymptotic limits, the strike derivative, and the Greeks.
+
 ---
 
 ## Model Setup and Assumptions
 
+*Section goal: the geometric-Brownian-motion dynamics and the seven assumptions under which the formula is valid.*
 
 ### 1. **Asset Price Dynamics**
 
@@ -20,6 +35,7 @@ dS_t = rS_t dt + \sigma S_t dW_t
 $$
 
 where:
+
 - $r$ = risk-free interest rate (continuously compounded, constant)
 - $\sigma$ = volatility (constant)
 - $W_t$ = standard Brownian motion under $\mathbb{Q}$
@@ -52,98 +68,77 @@ $$
 ### 3. **Contract Specifications**
 
 
-- $S_0$ = current asset price (at time $t=0$)
+- $S$ (or $S_0$) = current asset price
 - $K$ = strike price (exercise price)
 - $T$ = time to maturity (in years)
-- $\tau = T - t$ = time remaining (for pricing at time $t$)
+
+We price at time $0$ throughout, so $T$ plays the dual role of *maturity date* and *time remaining*. When discussing time evolution we use $T \to 0$ instead of $t \to T$.
 
 ---
 
 ## The Black-Scholes Formulas
 
+*Section goal: the call and put pricing formulas, stated as a theorem with the rigour caveat.*
 
 ### 1. **European Call Option**
 
 
 !!! note "Theorem (Black-Scholes Formula)"
-    Under assumptions 1–7 above, the unique arbitrage-free price of a European call option at time $t$ is:
+    Under assumptions 1–7 above — together with the standard admissibility conditions on trading strategies and a Brownian filtration — the market is complete, the equivalent martingale measure $\mathbb{Q}$ is unique, and the unique arbitrage-free time-$0$ prices of European call and put options with strike $K$ and maturity $T$ are:
 
-    $$
-    C(S,t) = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)
-    $$
+    $$\begin{array}{llrrr}
+    C &=& S\mathcal{N}(d_1) &-& Ke^{-rT}\mathcal{N}(d_2)\\
+    P &=& Ke^{-rT}\mathcal{N}(-d_2) &-& S\mathcal{N}(-d_1)
+    \end{array}$$
 
     where
 
     $$
-    d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}, \qquad d_2 = d_1 - \sigma\sqrt{T-t}
+    d_1 
+    = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \qquad 
+    d_2 
+    = \frac{\ln(S/K) + (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+    = d_1 - \sigma\sqrt{T}
     $$
 
-    and the corresponding European put price is:
+    A fully rigorous proof requires the stochastic-calculus machinery (Itô's formula, Girsanov's theorem, martingale representation, admissibility) developed in later chapters; here we record the result and analyze its structure.
 
-    $$
-    P(S,t) = Ke^{-r(T-t)}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)
-    $$
+
 
 **Notation**: $\mathcal{N}(x)$ denotes the **cumulative distribution function** of the standard normal distribution:
 
 $$
-\mathcal{N}(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{-\frac{z^2}{2}} dz = \mathbb{P}(Z \leq x) \quad \text{where } Z \sim \mathcal{N}(0,1)
-$$
-
-**Explicit form of $d_2$**:
-
-$$
-d_2 = \frac{\ln(S/K) + (r - \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}
-$$
-
-**Alternative form** using $\mathcal{N}(-x) = 1 - \mathcal{N}(x)$:
-
-$$
-P(S,t) = Ke^{-r(T-t)}[1 - \mathcal{N}(d_2)] - S[1 - \mathcal{N}(d_1)]
+\mathcal{N}(x) = \mathbb{P}(Z \leq x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{-\frac{z^2}{2}} dz  \quad \text{where } Z \sim \mathcal{N}(0,1)
 $$
 
 ---
 
 ## Component Analysis
 
+*Section goal: decomposition and interpretation of the parameters $d_1$ and $d_2$.*
 
 ### 1. **The d_1 Parameter**
 
 
 $$
-d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}
+d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
 $$
 
 **Structure**:
-- **Numerator**: Log-moneyness $\ln(S/K)$ plus drift-adjusted growth $(r + \frac{1}{2}\sigma^2)(T-t)$
-- **Denominator**: Volatility-adjusted time $\sigma\sqrt{T-t}$
 
-**Interpretation**: Measures how many standard deviations the expected log-price is above the strike (in standardized units).
+- **Numerator**: Log-moneyness $\ln(S/K)$ plus drift-adjusted growth $(r + \frac{1}{2}\sigma^2)T$
+- **Denominator**: Volatility-adjusted time $\sigma\sqrt{T}$
 
-**Components**:
-1. $\ln(S/K)$: Current log-moneyness
-   - $> 0$ if $S > K$ (in-the-money)
-   - $= 0$ if $S = K$ (at-the-money)
-   - $< 0$ if $S < K$ (out-of-the-money)
-
-2. $(r + \frac{1}{2}\sigma^2)(T-t)$: Expected growth under risk-neutral measure
-   - $r(T-t)$: Risk-free growth
-   - $\frac{1}{2}\sigma^2(T-t)$: Volatility adjustment (Itô correction)
-
-3. $\sigma\sqrt{T-t}$: Total uncertainty (volatility × $\sqrt{\text{time}}$)
+**Probabilistic interpretation (summary)**: $\mathcal{N}(d_2) = \mathbb{Q}(S_T > K)$ is the risk-neutral exercise probability, and $\mathcal{N}(d_1) = \mathbb{Q}^S(S_T > K)$ is the same exercise probability under the stock-numéraire measure. The relation $d_1 = d_2 + \sigma\sqrt{T}$ encodes the Girsanov drift shift between the two measures. See [probabilistic interpretation](probabilistic_interpretation.md) for the full derivation, including the conditional-expectation decomposition of the two-term formula and the connection to delta hedging.
 
 ### 2. **The d_2 Parameter**
 
 
 $$
-d_2 = d_1 - \sigma\sqrt{T-t}
+d_2 = d_1 - \sigma\sqrt{T}
 $$
 
-**Relationship to $d_1$**: 
-- $d_2$ is always less than $d_1$ by exactly the "volatility-time product"
-- As volatility or time increases, the gap $d_1 - d_2$ widens
-
-**Interpretation**: Related to the risk-neutral probability of exercise (explained in next section).
+The gap $d_1 - d_2 = \sigma\sqrt{T}$ widens with volatility and time.
 
 ### 3. **Key Identity**
 
@@ -151,78 +146,42 @@ $$
 The normal density values at $d_1$ and $d_2$ satisfy a fundamental relation used throughout the Greeks derivations:
 
 $$
-S\,\phi(d_1) = Ke^{-r(T-t)}\phi(d_2)
+S\,\phi(d_1) = Ke^{-rT}\phi(d_2)
 $$
 
-where $\phi(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$ is the standard normal density. This follows from $d_1^2 - d_2^2 = 2\left[\ln(S/K) + r(T-t)\right]$.
+where $\phi(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$ is the standard normal density. This follows from $d_1^2 - d_2^2 = 2\left[\ln(S/K) + rT\right]$.
 
 ### 4. **The Normal CDF N(·)**
 
 
 **Properties**:
+
 - $\mathcal{N}(0) = 0.5$ (median)
 - $\mathcal{N}(x) \to 1$ as $x \to \infty$
 - $\mathcal{N}(x) \to 0$ as $x \to -\infty$
 - $\mathcal{N}(-x) = 1 - \mathcal{N}(x)$ (symmetry)
 
-**Computational note**: $\mathcal{N}(x)$ has no closed-form expression but is efficiently computed using polynomial approximations or built-in functions in numerical software.
-
-**Standard values**:
-| $x$ | $\mathcal{N}(x)$ |
-|-----|------------------|
-| -3  | 0.0013 |
-| -2  | 0.0228 |
-| -1  | 0.1587 |
-| 0   | 0.5000 |
-| 1   | 0.8413 |
-| 2   | 0.9772 |
-| 3   | 0.9987 |
+**Computational note**: $\mathcal{N}(x)$ has no closed form in elementary functions, but it is exactly expressible through the error function via $\mathcal{N}(x) = \tfrac{1}{2}\!\left[1 + \mathrm{erf}\!\left(x/\sqrt{2}\right)\right]$, and is efficiently computed using polynomial approximations or built-in functions (e.g., `scipy.stats.norm.cdf`).
 
 ---
 
 ## Formula Structure
 
+*Section goal: what the two-term form $S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$ encodes.*
 
-### 1. **Call Option Decomposition**
-
-
-$$
-C = \underbrace{S\mathcal{N}(d_1)}_{\text{Stock term}} - \underbrace{Ke^{-r(T-t)}\mathcal{N}(d_2)}_{\text{Strike term}}
-$$
-
-**Interpretation**:
-- **Stock term** $S\mathcal{N}(d_1)$: Expected present value of receiving the stock if exercised
-- **Strike term** $Ke^{-r(T-t)}\mathcal{N}(d_2)$: Expected present value of paying the strike if exercised
-
-The call value is the difference: value received minus value paid.
-
-### 2. **Put Option Decomposition**
-
+Both formulas decompose into a **stock term** and a **strike term**:
 
 $$
-P = \underbrace{Ke^{-r(T-t)}\mathcal{N}(-d_2)}_{\text{Strike term}} - \underbrace{S\mathcal{N}(-d_1)}_{\text{Stock term}}
+C = \underbrace{S\mathcal{N}(d_1)}_{\text{stock term}} - \underbrace{Ke^{-rT}\mathcal{N}(d_2)}_{\text{strike term}}, \qquad P = \underbrace{Ke^{-rT}\mathcal{N}(-d_2)}_{\text{strike term}} - \underbrace{S\mathcal{N}(-d_1)}_{\text{stock term}}
 $$
 
-**Interpretation**:
-- **Strike term** $Ke^{-r(T-t)}\mathcal{N}(-d_2)$: Expected present value of receiving the strike if exercised
-- **Stock term** $S\mathcal{N}(-d_1)$: Expected present value of giving up the stock if exercised
-
-The put value is the difference: value received minus value given up.
-
-### 3. **Symmetry**
-
-
-Notice the structural symmetry:
-- Call uses $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$
-- Put uses $\mathcal{N}(-d_1)$ and $\mathcal{N}(-d_2)$
-- Both involve the same $d_1$ and $d_2$ parameters
-
-This symmetry reflects the underlying **put-call parity** relationship.
+The two terms are the discounted $\mathbb{Q}$-expected payments received and paid conditional on exercise; the put expression mirrors the call via $\mathcal{N}(-x) = 1 - \mathcal{N}(x)$. Full pricing-by-conditional-expectation derivation is in [probabilistic interpretation](probabilistic_interpretation.md). The shared $d_1, d_2$ structure of both formulas reflects the underlying **put-call parity** relation derived in [put-call parity](put_call_parity.md).
 
 ---
 
 ## Moneyness Classification
 
+*Section goal: naming conventions for ITM, ATM, and OTM and their probabilistic meanings.*
 
 ### 1. **Definitions**
 
@@ -230,14 +189,17 @@ This symmetry reflects the underlying **put-call parity** relationship.
 For a call option with strike $K$:
 
 - **In-the-money (ITM)**: $S > K$ 
+
   - Intrinsic value = $S - K > 0$
   - Would have positive payoff if exercised immediately
 
 - **At-the-money (ATM)**: $S \approx K$
+
   - Intrinsic value $\approx 0$
   - Most sensitive to volatility changes
 
 - **Out-of-the-money (OTM)**: $S < K$
+
   - Intrinsic value = $0$
   - Pure time value
 
@@ -258,51 +220,23 @@ For a put: ITM when $S < K$, OTM when $S > K$.
 
 ## Special Cases
 
+*Section goal: limiting behaviour the formula reduces to in degenerate parameter regimes.*
 
-### 1. **At-the-Money Forward (ATMF)**
+Three special configurations are referenced repeatedly throughout the chapter. Each is derived rigorously in [asymptotic behavior](asymptotic_behavior.md); we record only the formulas here.
 
+| Case | Condition | Call price |
+|---|---|---|
+| **ATM forward (ATMF)** | $S = Ke^{-rT}$ | $d_1 = \tfrac{\sigma\sqrt{T}}{2}$, $\;d_2 = -\tfrac{\sigma\sqrt{T}}{2}$; symmetric around $\mathcal{N}(0) = 0.5$ |
+| **At maturity** | $T = 0$ | $C \to (S-K)^+$, $\;P \to (K-S)^+$ (recovers the terminal payoff) |
+| **Zero volatility** | $\sigma \to 0$ | $C \to (S - Ke^{-rT})^+$ (forward value, no uncertainty premium) |
 
-When $S = Ke^{-r(T-t)}$ (current price equals discounted strike):
-
-$$
-d_1 = \frac{\frac{1}{2}\sigma^2(T-t)}{\sigma\sqrt{T-t}} = \frac{\sigma\sqrt{T-t}}{2}
-$$
-
-$$
-d_2 = -\frac{\sigma\sqrt{T-t}}{2}
-$$
-
-The call and put have **symmetric probabilities** around $\mathcal{N}(0) = 0.5$.
-
-### 2. **At Maturity** (T - t = 0)
-
-
-As $t \to T$:
-- If $S > K$: $d_1, d_2 \to +\infty$, so $C \to S - K$, $P \to 0$
-- If $S < K$: $d_1, d_2 \to -\infty$, so $C \to 0$, $P \to K - S$
-- If $S = K$: $d_1, d_2$ undefined, but limits give $C \to 0$, $P \to 0$
-
-This recovers the **terminal payoff**: $C(S,T) = (S-K)^+$, $P(S,T) = (K-S)^+$.
-
-### 3. **Zero Volatility** (σ → 0)
-
-
-The formulas reduce to the **intrinsic value discounted at the risk-free rate**:
-
-$$
-C = \max(S - Ke^{-r(T-t)}, 0)
-$$
-
-$$
-P = \max(Ke^{-r(T-t)} - S, 0)
-$$
-
-This is the **forward value** with no uncertainty premium.
+The ATMF case is the natural reference point for delta hedging and the $0.4\,S\sigma\sqrt{T}$ approximation; the at-maturity case verifies the formula's terminal boundary condition; the zero-volatility case isolates the deterministic ("forward") component of the price.
 
 ---
 
 ## Comparison with Binomial Model
 
+*Section goal: how the discrete binomial price converges to Black-Scholes as $\Delta t \to 0$.*
 
 The Black-Scholes formula is the **continuous-time limit** of the binomial model:
 
@@ -324,6 +258,7 @@ $$
 
 ## The Black-Scholes PDE
 
+*Section goal: the partial differential equation the price function $V(S, t)$ must satisfy.*
 
 ### 1. **PDE Formulation**
 
@@ -379,22 +314,23 @@ These trivial solutions confirm that the PDE correctly describes basic traded as
 ### 3. **Connection to Option Pricing**
 
 
-The Black-Scholes call and put formulas are **non-trivial solutions** to this PDE with the appropriate terminal conditions. Section 2.4 will derive the formula by solving this PDE using various analytical techniques.
+The Black-Scholes call and put formulas are **non-trivial solutions** to this PDE with the appropriate terminal conditions, derived in subsequent sections by solving the PDE through several analytical techniques.
 
 ---
 
 ## Why This Formula?
 
+*Section goal: four equivalent derivations of the same result (PDE, replication, expectation, martingale).*
 
-The Black-Scholes formula can be derived via multiple methods (covered in subsequent sections):
+The Black-Scholes formula can be derived via several mutually consistent methods:
 
-1. **PDE approach** (Section 2.4): Solve the Black-Scholes partial differential equation (introduced in Section 8 above)
+1. **PDE approach**: Solve the Black-Scholes partial differential equation introduced above
 
-2. **Risk-neutral expectation** (Section 2.5): Compute $e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+]$ using various analytical methods
+2. **Risk-neutral expectation**: Compute $e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+]$ directly
 
-3. **Replication** (Section 2.4): Construct a self-financing portfolio that replicates the option payoff
+3. **Replication**: Construct a self-financing portfolio that replicates the option payoff
 
-4. **Martingale theory** (Section 2.2): Apply Girsanov's theorem and martingale pricing
+4. **Martingale theory**: Apply Girsanov's theorem and martingale pricing
 
 !!! note "Equivalence of Perspectives"
     The PDE, risk-neutral expectation, and replication approaches are **mathematically equivalent**: each leads to the same Black-Scholes formula. The PDE characterizes local dynamics, the expectation gives a global probabilistic view, and replication reveals the hedging strategy. All three are unified by the no-arbitrage principle.
@@ -406,19 +342,20 @@ The Black-Scholes formula can be derived via multiple methods (covered in subseq
 
 The Black-Scholes formula for European options:
 
-**Call**: $C = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)$
+**Call**: $C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$
 
-**Put**: $P = Ke^{-r(T-t)}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)$
+**Put**: $P = Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)$
 
 where
 
 $$
-d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}
+d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}
 $$
 
 **Key features**:
+
 - Closed-form solution (no numerical iteration needed)
-- Depends on five observable inputs: $S$, $K$, $T-t$, $r$, $\sigma$
+- Depends on five observable inputs: $S$, $K$, $T$, $r$, $\sigma$
 - $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$ have probabilistic interpretations
 - Decomposes into "stock term" and "strike term"
 - Satisfies put-call parity, boundary conditions, and no-arbitrage constraints
@@ -510,37 +447,37 @@ The formula's elegance and practical utility have made it ubiquitous in financia
     Both bounds are satisfied.
 
 ---
-**Exercise 3.** Starting from the Black-Scholes call formula $C = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)$, derive the put formula
+**Exercise 3.** Starting from the Black-Scholes call formula $C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$, derive the put formula
 
 $$
-P = Ke^{-r(T-t)}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)
+P = Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)
 $$
 
-using put-call parity $C - P = S - Ke^{-r(T-t)}$ and the identity $\mathcal{N}(-x) = 1 - \mathcal{N}(x)$.
+using put-call parity $C - P = S - Ke^{-rT}$ and the identity $\mathcal{N}(-x) = 1 - \mathcal{N}(x)$.
 
 ??? success "Solution to Exercise 3"
     Starting from put-call parity:
 
     $$
-    C - P = S - Ke^{-r(T-t)}
+    C - P = S - Ke^{-rT}
     $$
 
     Solving for $P$:
 
     $$
-    P = C - S + Ke^{-r(T-t)}
+    P = C - S + Ke^{-rT}
     $$
 
     Substituting the Black-Scholes call formula:
 
     $$
-    P = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2) - S + Ke^{-r(T-t)}
+    P = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) - S + Ke^{-rT}
     $$
 
     Rearranging:
 
     $$
-    P = -S[1 - \mathcal{N}(d_1)] + Ke^{-r(T-t)}[1 - \mathcal{N}(d_2)]
+    P = -S[1 - \mathcal{N}(d_1)] + Ke^{-rT}[1 - \mathcal{N}(d_2)]
     $$
 
     Using the identity $\mathcal{N}(-x) = 1 - \mathcal{N}(x)$:
@@ -552,62 +489,62 @@ using put-call parity $C - P = S - Ke^{-r(T-t)}$ and the identity $\mathcal{N}(-
     Therefore:
 
     $$
-    P = Ke^{-r(T-t)}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)
+    P = Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)
     $$
 
     This is exactly the Black-Scholes put formula.
 
 ---
-**Exercise 4.** Consider the at-the-money forward case where $S = Ke^{-r(T-t)}$. Show that in this case $d_1 = \frac{\sigma\sqrt{T-t}}{2}$ and $d_2 = -\frac{\sigma\sqrt{T-t}}{2}$. Derive an approximate formula for the ATM forward call price when $\sigma\sqrt{T-t}$ is small, using the Taylor expansion $\mathcal{N}(x) \approx \frac{1}{2} + \frac{x}{\sqrt{2\pi}}$ for small $x$.
+**Exercise 4.** Consider the at-the-money forward case where $S = Ke^{-rT}$. Show that in this case $d_1 = \frac{\sigma\sqrt{T}}{2}$ and $d_2 = -\frac{\sigma\sqrt{T}}{2}$. Derive an approximate formula for the ATM forward call price when $\sigma\sqrt{T}$ is small, using the Taylor expansion $\mathcal{N}(x) \approx \frac{1}{2} + \frac{x}{\sqrt{2\pi}}$ for small $x$.
 
 ??? success "Solution to Exercise 4"
-    When $S = Ke^{-r(T-t)}$, we have $\ln(S/K) = -r(T-t)$.
+    When $S = Ke^{-rT}$, we have $\ln(S/K) = -rT$.
 
     $$
-    d_1 = \frac{-r(T-t) + (r + \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}} = \frac{\frac{1}{2}\sigma^2(T-t)}{\sigma\sqrt{T-t}} = \frac{\sigma\sqrt{T-t}}{2}
+    d_1 = \frac{-rT + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}} = \frac{\frac{1}{2}\sigma^2T}{\sigma\sqrt{T}} = \frac{\sigma\sqrt{T}}{2}
     $$
 
     $$
-    d_2 = d_1 - \sigma\sqrt{T-t} = \frac{\sigma\sqrt{T-t}}{2} - \sigma\sqrt{T-t} = -\frac{\sigma\sqrt{T-t}}{2}
+    d_2 = d_1 - \sigma\sqrt{T} = \frac{\sigma\sqrt{T}}{2} - \sigma\sqrt{T} = -\frac{\sigma\sqrt{T}}{2}
     $$
 
-    Let $\epsilon = \frac{\sigma\sqrt{T-t}}{2}$, which is small when $\sigma\sqrt{T-t}$ is small. Using $\mathcal{N}(x) \approx \frac{1}{2} + \frac{x}{\sqrt{2\pi}}$:
+    Let $\epsilon = \frac{\sigma\sqrt{T}}{2}$, which is small when $\sigma\sqrt{T}$ is small. Using $\mathcal{N}(x) \approx \frac{1}{2} + \frac{x}{\sqrt{2\pi}}$:
 
     $$
-    C = S\mathcal{N}(\epsilon) - Ke^{-r(T-t)}\mathcal{N}(-\epsilon)
+    C = S\mathcal{N}(\epsilon) - Ke^{-rT}\mathcal{N}(-\epsilon)
     $$
 
-    Since $S = Ke^{-r(T-t)}$, denote this common value by $F$:
+    Since $S = Ke^{-rT}$, denote this common value by $F$:
 
     $$
     C = F\left(\frac{1}{2} + \frac{\epsilon}{\sqrt{2\pi}}\right) - F\left(\frac{1}{2} - \frac{\epsilon}{\sqrt{2\pi}}\right) = \frac{2F\epsilon}{\sqrt{2\pi}}
     $$
 
-    Substituting back $\epsilon = \frac{\sigma\sqrt{T-t}}{2}$ and $F = Ke^{-r(T-t)}$:
+    Substituting back $\epsilon = \frac{\sigma\sqrt{T}}{2}$ and $F = Ke^{-rT}$:
 
     $$
-    C_{\text{ATMF}} \approx \frac{Ke^{-r(T-t)} \sigma\sqrt{T-t}}{\sqrt{2\pi}} \approx 0.3989 \cdot Ke^{-r(T-t)} \cdot \sigma\sqrt{T-t}
+    C_{\text{ATMF}} \approx \frac{Ke^{-rT} \sigma\sqrt{T}}{\sqrt{2\pi}} \approx 0.3989 \cdot Ke^{-rT} \cdot \sigma\sqrt{T}
     $$
 
 ---
-**Exercise 5.** Show that the Black-Scholes formula recovers the correct terminal payoff. That is, prove that as $t \to T$:
+**Exercise 5.** Show that the Black-Scholes formula recovers the correct terminal payoff. That is, prove that as $T \to 0$ (time-to-maturity vanishing):
 
 $$
-C(S, t) \to (S - K)^+ \quad \text{and} \quad P(S, t) \to (K - S)^+
+C \to (S - K)^+ \quad \text{and} \quad P \to (K - S)^+
 $$
 
 by analyzing the limits of $d_1$ and $d_2$ separately for the cases $S > K$, $S < K$, and $S = K$.
 
 ??? success "Solution to Exercise 5"
-    Let $\tau = T - t \to 0$.
+    As $T \to 0$:
 
     **Case 1: $S > K$**
 
     $$
-    d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}
+    d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
     $$
 
-    Since $\ln(S/K) > 0$ is fixed and $\sigma\sqrt{\tau} \to 0$, we get $d_1 \to +\infty$. Similarly $d_2 \to +\infty$.
+    Since $\ln(S/K) > 0$ is fixed and $\sigma\sqrt{T} \to 0$, we get $d_1 \to +\infty$. Similarly $d_2 \to +\infty$.
 
     $$
     C \to S \cdot 1 - K \cdot e^0 \cdot 1 = S - K = (S-K)^+
@@ -632,7 +569,7 @@ by analyzing the limits of $d_1$ and $d_2$ separately for the cases $S > K$, $S 
     **Case 3: $S = K$**
 
     $$
-    d_1 = \frac{(r + \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}} = \frac{(r + \frac{1}{2}\sigma^2)\sqrt{\tau}}{\sigma} \to 0
+    d_1 = \frac{(r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}} = \frac{(r + \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma} \to 0
     $$
 
     Similarly $d_2 \to 0$. So $\mathcal{N}(d_1), \mathcal{N}(d_2) \to \frac{1}{2}$.
@@ -645,7 +582,7 @@ by analyzing the limits of $d_1$ and $d_2$ separately for the cases $S > K$, $S 
     P \to K \cdot \frac{1}{2} - K \cdot \frac{1}{2} = 0 = (K-S)^+
     $$
 
-    In all three cases, $C(S,t) \to (S-K)^+$ and $P(S,t) \to (K-S)^+$ as $t \to T$.
+    In all three cases, $C \to (S-K)^+$ and $P \to (K-S)^+$ as $T \to 0$.
 
 ---
 **Exercise 6.** Verify that $V(S, t) = S$ (holding the stock) and $V(S, t) = e^{rt}$ (the risk-free bond) both satisfy the Black-Scholes PDE
@@ -684,31 +621,31 @@ by computing each partial derivative and substituting.
     Both trivial solutions satisfy the Black-Scholes PDE.
 
 ---
-**Exercise 7.** In the zero-volatility limit $\sigma \to 0$, explain why the call price reduces to $C = \max(S - Ke^{-r(T-t)}, 0)$. What happens to $d_1$ and $d_2$ in this limit when $S > Ke^{-r(T-t)}$? When $S < Ke^{-r(T-t)}$? Relate your answer to the deterministic evolution of the stock price when $\sigma = 0$.
+**Exercise 7.** In the zero-volatility limit $\sigma \to 0$, explain why the call price reduces to $C = \max(S - Ke^{-rT}, 0)$. What happens to $d_1$ and $d_2$ in this limit when $S > Ke^{-rT}$? When $S < Ke^{-rT}$? Relate your answer to the deterministic evolution of the stock price when $\sigma = 0$.
 
 ??? success "Solution to Exercise 7"
-    When $\sigma = 0$, the stock evolves deterministically: $S_T = Se^{r(T-t)}$. There is no randomness, so the option payoff is known with certainty.
+    When $\sigma = 0$, the stock evolves deterministically: $S_T = Se^{rT}$. There is no randomness, so the option payoff is known with certainty.
 
-    **When $S > Ke^{-r(T-t)}$**, equivalently $Se^{r(T-t)} > K$:
-
-    $$
-    d_1 = \frac{\ln(S/K) + r(T-t)}{\sigma\sqrt{T-t}} + \frac{\sigma\sqrt{T-t}}{2}
-    $$
-
-    The numerator $\ln(S/K) + r(T-t) = \ln(Se^{r(T-t)}/K) > 0$ since $Se^{r(T-t)} > K$. Dividing by $\sigma\sqrt{T-t} \to 0^+$ gives $d_1 \to +\infty$. Similarly $d_2 \to +\infty$.
+    **When $S > Ke^{-rT}$**, equivalently $Se^{rT} > K$:
 
     $$
-    C \to S \cdot 1 - Ke^{-r(T-t)} \cdot 1 = S - Ke^{-r(T-t)}
+    d_1 = \frac{\ln(S/K) + rT}{\sigma\sqrt{T}} + \frac{\sigma\sqrt{T}}{2}
     $$
 
-    **When $S < Ke^{-r(T-t)}$**, equivalently $Se^{r(T-t)} < K$:
-
-    The numerator $\ln(Se^{r(T-t)}/K) < 0$, so dividing by $\sigma\sqrt{T-t} \to 0^+$ gives $d_1 \to -\infty$ and $d_2 \to -\infty$.
+    The numerator $\ln(S/K) + rT = \ln(Se^{rT}/K) > 0$ since $Se^{rT} > K$. Dividing by $\sigma\sqrt{T} \to 0^+$ gives $d_1 \to +\infty$. Similarly $d_2 \to +\infty$.
 
     $$
-    C \to S \cdot 0 - Ke^{-r(T-t)} \cdot 0 = 0
+    C \to S \cdot 1 - Ke^{-rT} \cdot 1 = S - Ke^{-rT}
     $$
 
-    Combining: $C \to \max(S - Ke^{-r(T-t)}, 0)$.
+    **When $S < Ke^{-rT}$**, equivalently $Se^{rT} < K$:
 
-    This makes sense because with $\sigma = 0$, the stock grows deterministically at rate $r$, reaching $Se^{r(T-t)}$ at maturity. The call payoff is $(Se^{r(T-t)} - K)^+ = (S - Ke^{-r(T-t)})^+ \cdot e^{r(T-t)}$, and discounting back gives $\max(S - Ke^{-r(T-t)}, 0)$. Without randomness, there is no option premium beyond the forward intrinsic value.
+    The numerator $\ln(Se^{rT}/K) < 0$, so dividing by $\sigma\sqrt{T} \to 0^+$ gives $d_1 \to -\infty$ and $d_2 \to -\infty$.
+
+    $$
+    C \to S \cdot 0 - Ke^{-rT} \cdot 0 = 0
+    $$
+
+    Combining: $C \to \max(S - Ke^{-rT}, 0)$.
+
+    This makes sense because with $\sigma = 0$, the stock grows deterministically at rate $r$, reaching $Se^{rT}$ at maturity. The call payoff is $(Se^{rT} - K)^+ = (S - Ke^{-rT})^+ \cdot e^{rT}$, and discounting back gives $\max(S - Ke^{-rT}, 0)$. Without randomness, there is no option premium beyond the forward intrinsic value.

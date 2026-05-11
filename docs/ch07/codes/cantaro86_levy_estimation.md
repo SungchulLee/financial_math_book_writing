@@ -852,3 +852,55 @@ if __name__ == "__main__":
     print("  Done.")
     print("=" * 70)
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Describe the two-stage estimation pipeline for Levy process parameters. Why is Method of Moments (MoM) used as a warm start for MLE?
+
+??? success "Solution to Exercise 1"
+    **Stage 1 (MoM)**: Match theoretical moments (mean, variance, skewness, kurtosis) to sample moments. For VG/NIG processes with parameters $(\sigma, \theta, \kappa)$, first-order Taylor approximation decouples the equations, yielding closed-form estimators.
+
+    **Stage 2 (MLE)**: Maximize the log-likelihood $\ell(\theta) = \sum \ln f(x_i; \theta)$ starting from the MoM estimates.
+
+    MoM provides a fast, robust initial guess close to the MLE. Without warm starting, the MLE optimizer might converge to a local maximum or diverge.
+
+---
+
+**Exercise 2.**
+Write the first four moments of the Variance Gamma process in terms of $\sigma$, $\theta$, $\kappa$.
+
+??? success "Solution to Exercise 2"
+    For a VG process over period $\Delta t$:
+
+    $$
+    E[X] = \theta\Delta t, \quad \mathrm{Var}(X) = (\sigma^2 + \theta^2\kappa)\Delta t
+    $$
+
+    The skewness is proportional to $\theta\kappa$ and the excess kurtosis is proportional to $\kappa$. The VG process can produce arbitrary skewness (via $\theta$) and excess kurtosis (via $\kappa$), unlike Brownian motion which has zero skewness and zero excess kurtosis.
+
+---
+
+**Exercise 3.**
+Compare the VG and NIG processes. What are their subordinators and tail behavior?
+
+??? success "Solution to Exercise 3"
+    | Feature | Variance Gamma | Normal Inverse Gaussian |
+    |---------|---------------|------------------------|
+    | Subordinator | Gamma process | Inverse Gaussian process |
+    | Construction | $X_t = \theta G(t) + \sigma W(G(t))$ | $X_t = \theta IG(t) + \sigma W(IG(t))$ |
+    | Tail behavior | Semi-heavy (exponential decay) | Semi-heavy (slightly heavier than VG) |
+    | Path activity | Finite variation, infinite activity | Infinite variation, infinite activity |
+
+    NIG generally provides better fits to financial data due to slightly heavier tails and infinite variation.
+
+---
+
+**Exercise 4.**
+Why is MLE preferred over MoM for final parameter estimates? When can MoM be sufficient?
+
+??? success "Solution to Exercise 4"
+    MLE is preferred because it is asymptotically efficient, uses all information in the data, and provides standard errors via the Fisher information matrix.
+
+    MoM is sufficient when: (1) sample size is small, (2) the likelihood is unavailable or expensive, (3) a quick approximate estimate is needed, or (4) the model has few parameters well-determined by moments.

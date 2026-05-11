@@ -16,6 +16,7 @@ Adapted as a SELF-CONTAINED educational module for the
 
 Topics covered
 --------------
+
 1. Kalman filter for tracking the hidden OU state from noisy
    observations: Y_k = X_k + eps_k.
 2. MLE calibration of Kalman filter parameters (alpha, beta,
@@ -763,3 +764,36 @@ def demo_all():
 if __name__ == "__main__":
     demo_all()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+The Kalman filter estimates the OU state $X_t$ from noisy observations $Y_t = X_t + \epsilon_t$. Write the prediction and update equations.
+
+??? success "Solution to Exercise 1"
+    Prediction: $\hat{X}_{t|t-1} = \theta + (\hat{X}_{t-1|t-1} - \theta)e^{-\kappa\Delta t}$, $P_{t|t-1} = e^{-2\kappa\Delta t}P_{t-1|t-1} + \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\Delta t})$. Update: $K_t = P_{t|t-1}/(P_{t|t-1} + R)$ (Kalman gain, $R$ = observation noise variance), $\hat{X}_{t|t} = \hat{X}_{t|t-1} + K_t(Y_t - \hat{X}_{t|t-1})$, $P_{t|t} = (1 - K_t)P_{t|t-1}$.
+
+---
+
+**Exercise 2.**
+The first exit time $\tau = \inf\{t : X_t \notin (a, b)\}$ is important for barrier options. For the OU process starting at $X_0 = \theta$, explain why the expected exit time increases with $\kappa$.
+
+??? success "Solution to Exercise 2"
+    Higher $\kappa$ means stronger mean reversion: the process is pulled more forcefully toward $\theta$, making it harder to reach the boundaries $a$ or $b$. The expected exit time scales roughly as $\exp(c\kappa(b-\theta)^2/\sigma^2)$ for the upper boundary, growing exponentially with $\kappa$. Physically, mean reversion acts as a "restoring force" that confines the process.
+
+---
+
+**Exercise 3.**
+Explain why the Kalman filter is optimal (minimum variance) for linear Gaussian state-space models like the OU process.
+
+??? success "Solution to Exercise 3"
+    The OU process is linear ($X_{t+1}$ is a linear function of $X_t$ plus Gaussian noise) and the observation model is linear ($Y_t = X_t + \epsilon_t$). For linear Gaussian systems, the conditional distribution $X_t | Y_{1:t}$ is Gaussian, and the Kalman filter computes its exact mean and variance. No other estimator achieves lower mean-squared error.
+
+---
+
+**Exercise 4.**
+For volatility tracking, the OU process models $\ln\sigma_t$. If $\kappa = 5$ (fast reversion), $\theta = \ln(0.2)$, $\sigma_{\text{OU}} = 0.5$, compute the half-life and the 95% confidence interval for $\sigma_t$ in steady state.
+
+??? success "Solution to Exercise 4"
+    Half-life $= \ln(2)/5 = 0.139$ years $\approx 35$ trading days. Stationary variance of $\ln\sigma$: $\sigma_{\text{OU}}^2/(2\kappa) = 0.25/10 = 0.025$, std $= 0.158$. The 95% CI for $\ln\sigma$: $[\theta - 1.96(0.158), \theta + 1.96(0.158)] = [-1.920, -1.300]$. Exponentiating: $\sigma \in [0.147, 0.272]$, a reasonable range around the long-run level of $0.2$.

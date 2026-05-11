@@ -343,3 +343,77 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The convexity correction formula for a forward LIBOR rate $L(T_1, T_1, T_2)$ involves computing $\mathbb{E}[L/M(T_1)]$ under the risk-neutral measure. Explain why this differs from the simple forward rate $L(0, T_1, T_2)$.
+
+??? success "Solution to Exercise 1"
+    The forward LIBOR rate is defined as
+
+    $$
+    L(0, T_1, T_2) = \frac{1}{T_2 - T_1}\left(\frac{P(0,T_1)}{P(0,T_2)} - 1\right).
+    $$
+
+    The expectation $\mathbb{E}[L(T_1)/M(T_1)]$ involves a product of two correlated random variables: the LIBOR rate and the discount factor $1/M(T_1)$. By Jensen's inequality, for a convex function:
+
+    $$
+    \mathbb{E}\!\left[\frac{L}{M(T_1)}\right] \neq \frac{\mathbb{E}[L]}{\mathbb{E}[M(T_1)]}.
+    $$
+
+    The convexity correction accounts for the covariance between $L$ and $1/M$, which arises from the stochastic nature of interest rates.
+
+---
+
+**Exercise 2.**
+The code computes the Hull-White ZCB as $P(t_1, t_2) = e^{A(t_1,t_2) + B(t_1,t_2)\,r(t_1)}$. Show that $B(t_1, t_2) = (e^{-\lambda(t_2 - t_1)} - 1)/\lambda$ is always negative for $\lambda > 0$ and $t_2 > t_1$.
+
+??? success "Solution to Exercise 2"
+    Since $\lambda > 0$ and $t_2 - t_1 > 0$, the exponent $-\lambda(t_2 - t_1) < 0$, so $e^{-\lambda(t_2 - t_1)} < 1$. Therefore
+
+    $$
+    B(t_1, t_2) = \frac{e^{-\lambda(t_2 - t_1)} - 1}{\lambda} = \frac{\text{(negative)}}{\text{(positive)}} < 0.
+    $$
+
+    This is economically intuitive: a higher short rate $r(t_1)$ leads to a lower bond price $P(t_1, t_2)$, and since $B < 0$, the term $B \cdot r$ decreases as $r$ increases, reducing $P = \exp(A + Br)$.
+
+---
+
+**Exercise 3.**
+For $\sigma = 0.2$, $T_1 = 4$, $T_2 = 8$, and forward rate $L_0 = 10.7\%$, compute the convexity correction using the formula $\text{CC}(\sigma) = P(0,T_2)\bigl[(L_0 + (T_2 - T_1)L_0^2\,e^{\sigma^2 T_1})\bigr] - L_0$.
+
+??? success "Solution to Exercise 2"
+    First compute the components:
+
+    $$
+    (T_2 - T_1)L_0^2 = 4 \times 0.107^2 = 4 \times 0.01145 = 0.04580.
+    $$
+
+    $$
+    e^{\sigma^2 T_1} = e^{0.04 \times 4} = e^{0.16} \approx 1.1735.
+    $$
+
+    With $P(0,T_2) = e^{-0.1 \times 8} = e^{-0.8} \approx 0.4493$:
+
+    $$
+    \text{CC} = 0.4493 \times (0.107 + 0.04580 \times 1.1735) - 0.107 = 0.4493 \times (0.107 + 0.05375) - 0.107.
+    $$
+
+    $$
+    \text{CC} = 0.4493 \times 0.16075 - 0.107 = 0.07223 - 0.107 = -0.03477.
+    $$
+
+---
+
+**Exercise 4.**
+Explain why the convexity correction is positive and increasing in the volatility $\sigma$.
+
+??? success "Solution to Exercise 4"
+    The convexity correction arises because the payoff $L(T_1, T_1, T_2)$ is a convex function of the underlying bond price $P(T_1, T_2)$: $L = \frac{1}{\tau}(1/P - 1)$ is convex in $P$. By Jensen's inequality:
+
+    $$
+    \mathbb{E}[L] \geq L(\mathbb{E}[P]).
+    $$
+
+    Higher volatility increases the spread of $P$, amplifying the Jensen's inequality effect and making the convexity correction larger. The correction scales as $\sigma^2$ because it depends on the variance of the log-bond-price, which is proportional to $\sigma^2 T_1$. At $\sigma = 0$ (deterministic rates), there is no convexity effect and the correction vanishes.

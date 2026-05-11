@@ -3,6 +3,7 @@
 Calibrating the Hull-White model requires two distinct steps: fitting the time-dependent drift $\theta(t)$ to the market yield curve (exact by construction), and then fitting the constant parameters $\sigma$ and $\lambda$ to derivative prices (caps, swaptions, or both). This guide describes the calibration pipeline implemented in the companion `calibration_pipeline.py`, explaining how the steps are sequenced, what objective functions are used, and how to assess the quality of the calibrated model.
 
 !!! info "Prerequisites"
+
     - [Hull-White Model Class Guide](hull_white_model_class.md) (model class and $\theta$ computation)
     - [Bond and Derivative Pricing Classes Guide](bond_derivative_pricing_classes.md) (caplet and swaption formulas)
     - [Named Functions Implementation Guide](named_functions_implementation.md) ($A$, $B$, $\theta$ numerical details)

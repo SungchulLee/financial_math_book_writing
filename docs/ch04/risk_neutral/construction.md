@@ -1,11 +1,9 @@
 # Construction of the Risk-Neutral Measure
 
-The risk-neutral measure is a probability measure under which discounted asset prices
-are martingales. Its existence is the mathematical expression of the absence of arbitrage.
-
-The goal of this construction is to **eliminate risk premia from asset dynamics** so that
-pricing reduces to computing expectations: no-arbitrage prices are conditional expectations
-of discounted payoffs under the new measure.
+This page carries out **Level 1** of the
+[FTAP Ladder](martingale_and_no_arbitrage.md#summary-three-levels-of-no-arbitrage-and-pricing):
+construct a probability measure under which discounted asset prices are driftless —
+that is, martingales.
 
 !!! abstract "Construction roadmap"
 
@@ -54,13 +52,13 @@ a martingale under $\mathbb{P}$.
 
 ## Measure Change
 
-Define the process
+Define the [market price of risk](market_price_of_risk.md)
 
 $$
 \theta_t := \frac{\mu_t - r_t}{\sigma_t}
 $$
 
-and the stochastic exponential
+and the [stochastic exponential](../martingale/stochastic_exponential.md)
 
 $$
 Z_t = \exp\!\left(
@@ -69,8 +67,9 @@ Z_t = \exp\!\left(
 \right)
 $$
 
-For $Z_t$ to be a true martingale (not merely a local martingale), the **Novikov condition**
-must hold:
+To ensure $Z_t$ defines a valid probability measure, it must be a true martingale.
+A sufficient condition is the
+[Novikov condition](../martingale/novikov_kazamaki_conditions.md):
 
 $$
 \mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(\frac{1}{2}\int_0^T \theta_s^2\,ds\right)\right] < \infty
@@ -86,13 +85,6 @@ $$
 
 ## Risk-Neutral Dynamics
 
-!!! note "Invariance principle"
-
-    A change of measure does **not** change the sample paths of the process, nor does it
-    change the volatility. It only changes the **probability weights** assigned to those
-    paths. The same set of outcomes is possible under both $\mathbb{P}$ and
-    $\mathbb{Q}$; only their likelihoods differ.
-
 By Girsanov’s theorem, the process
 
 $$
@@ -107,13 +99,7 @@ $$
 d\tilde{S}_t = \sigma_t \tilde{S}_t\,dW_t^{\mathbb{Q}}
 $$
 
-Since the drift term has vanished, the semimartingale decomposition of $\tilde{S}_t$ under
-$\mathbb{Q}$ contains no finite-variation (predictable) part beyond the initial value.
-A continuous process with this property is a local martingale. Since $\tilde{S}_t$ is a
-stochastic exponential driven by a Brownian motion with bounded (or suitably integrable)
-coefficients, it satisfies standard integrability conditions ensuring that the local
-martingale is a true martingale:
-$\mathbb{E}^{\mathbb{Q}}[\tilde{S}_t \mid \mathcal{F}_s] = \tilde{S}_s$ for $s \le t$.
+The drift vanishes, so the discounted price is a $\mathbb{Q}$-martingale.
 
 ---
 
@@ -121,30 +107,6 @@ $\mathbb{E}^{\mathbb{Q}}[\tilde{S}_t \mid \mathcal{F}_s] = \tilde{S}_s$ for $s \
 
 A **risk-neutral measure** is a probability measure $\mathbb{Q}$ equivalent to
 $\mathbb{P}$ under which all discounted traded asset prices are martingales.
-
-Its existence ensures arbitrage-free pricing. This is the constructive direction of the
-**First Fundamental Theorem of Asset Pricing**: the existence of an equivalent martingale
-measure is equivalent to the absence of arbitrage, and its uniqueness is equivalent to
-market completeness. This result tells us that pricing is not a separate theory: it is a
-direct consequence of no-arbitrage.
-
----
-
-## Economic Interpretation
-
-Economically, the measure change from $\mathbb{P}$ to $\mathbb{Q}$ absorbs risk premia
-into the probability weighting. Under $\mathbb{P}$, risky assets earn $\mu > r$ to
-compensate investors for bearing uncertainty. Under $\mathbb{Q}$, every asset earns the
-risk-free rate in expectation, because the excess return has been removed by tilting
-probabilities: adverse outcomes receive higher weight, favorable outcomes receive lower
-weight. The resulting pricing rule
-
-$$
-V_t = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r_s\,ds}\,\Phi_T \;\middle|\; \mathcal{F}_t\right]
-$$
-
-encodes both the physical likelihood of outcomes and the market’s risk adjustment in a
-single expectation.
 
 ---
 

@@ -3,6 +3,7 @@
 Calibrating the Heston model to a full implied volatility surface is the central practical task of this chapter. The previous sections developed the ingredients --- the objective function, the differential evolution optimizer, and the parameter stability analysis --- and this section assembles them into a complete calibration workflow. We walk through the end-to-end process on a realistic equity implied volatility surface, demonstrate the typical fit quality achievable by the five-parameter Heston model, and perform a residual analysis that reveals the model's systematic limitations.
 
 !!! info "Prerequisites"
+
     - [Objective Function Design](objective_function_design.md) (vega-weighted loss)
     - [Differential Evolution](differential_evolution.md) (global optimization)
     - [Joint Calibration Across Maturities](joint_calibration_across_maturities.md) (multi-maturity fitting)
@@ -208,6 +209,7 @@ Each extension reduces the IVRMSE at the cost of more parameters and longer cali
 ## Practical Recommendations
 
 !!! tip "Calibration Best Practices"
+
     1. **Start with vega-weighted objective**: It provides the best balance between fit quality and computational cost.
     2. **Use hybrid DE + local**: DE escapes local minima; local search achieves full precision.
     3. **Warm-start from yesterday**: Include previous parameters in the DE population.

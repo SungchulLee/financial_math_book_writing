@@ -186,3 +186,43 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The Hull-White ZCB price formula is $P(t_1, t_2) = e^{A(t_1,t_2) + B(t_1,t_2)\,r(t_1)}$. Show that $P(0, T) = P_{\text{market}}(0, T)$ when $r(0) = f(0, 0)$.
+
+??? success "Solution to Exercise 1"
+    At $t_1 = 0$, the $A$ and $B$ coefficients are calibrated such that $e^{A(0,T) + B(0,T)\,r(0)} = P_{\text{market}}(0,T)$. This is ensured by the choice of $\theta(t)$:
+
+    $$
+    \theta(t) = \frac{1}{\lambda}\frac{\partial f(0,t)}{\partial t} + f(0,t) + \frac{\eta^2}{2\lambda^2}(1 - e^{-2\lambda t}).
+    $$
+
+    By construction, the model's zero-coupon bond prices at time $0$ match the market exactly. The coefficients $A$ and $B$ are derived from the Ricatti equations of the affine term structure model and incorporate $\theta(t)$ through numerical integration.
+
+---
+
+**Exercise 2.**
+The Monte Carlo ZCB price estimate is $\hat{P}(0,T) = \frac{1}{N}\sum_{i=1}^N 1/M_i(T)$ where $M_i(T)$ is the money market account on path $i$. Explain the statistical interpretation and expected accuracy.
+
+??? success "Solution to Exercise 2"
+    This estimator follows from the risk-neutral pricing formula $P(0,T) = \mathbb{E}^{\mathbb{Q}}[1/M(T)]$. By the law of large numbers, $\hat{P} \to P(0,T)$ as $N \to \infty$. The standard error is $\text{SE} = \text{std}(1/M(T))/\sqrt{N}$. With $N = 25{,}000$ paths and typical interest rate parameters, the relative error is usually below $0.5\%$, providing a good match to the analytical market curve.
+
+---
+
+**Exercise 3.**
+If the Monte Carlo estimate for $P(0, 20)$ is $0.1360$ while the market value is $P(0, 20) = e^{-0.1 \times 20} = 0.1353$, compute the relative error and suggest how to reduce it.
+
+??? success "Solution to Exercise 3"
+    The relative error is $(0.1360 - 0.1353)/0.1353 = 0.0052 = 0.52\%$.
+
+    To reduce this error: (1) increase the number of paths (doubling paths halves the standard error); (2) use antithetic variates (simulate both $Z$ and $-Z$ paths); (3) use the analytical ZCB price as a control variate, since its expectation is known exactly; (4) apply moment matching (normalize Brownian increments as the code does).
+
+---
+
+**Exercise 4.**
+The coefficient $B(t_1, t_2) = (e^{-\lambda(t_2 - t_1)} - 1)/\lambda$ is always negative. Explain the economic meaning of this sign.
+
+??? success "Solution to Exercise 4"
+    Since $B < 0$, the bond price $P = e^{A + Br}$ is a decreasing function of $r$: higher short rates imply lower bond prices. This is the fundamental inverse relationship between rates and bond prices. The magnitude $|B|$ represents the duration-like sensitivity of the bond to the short rate. As $\lambda \to 0$ (no mean reversion), $|B| \to t_2 - t_1$ (full maturity effect). As $\lambda$ increases, $|B|$ decreases because mean reversion limits the impact of current rate changes on long-term rates.

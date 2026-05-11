@@ -39,6 +39,7 @@ $$
 $$
 
 where:
+
 - $a_0 \in \mathbb{R}^n$ and $a_1 \in \mathbb{R}^{n \times n}$ are constant matrices for the drift
 - $c_0 \in \mathbb{R}^{n \times n}$ and $c_1 \in \mathbb{R}^{n \times n}$ define the volatility structure
 - $r_0 \in \mathbb{R}$ and $r_1 \in \mathbb{R}^n$ define the short rate
@@ -58,6 +59,7 @@ $$
 $$
 
 where:
+
 - $\tau = T - t$ is the time to maturity
 - $A(\tau, \mathbf{u})$ and $\mathbf{B}(\tau, \mathbf{u})$ are determined by **Riccati equations**
 - **Terminal conditions**: $A(0, \mathbf{u}) = 0$ and $\mathbf{B}(0, \mathbf{u}) = \mathbf{u}$
@@ -107,6 +109,7 @@ Once the Riccati equations are solved, bond prices have a closed-form exponentia
 ### 2. Solvability
 
 The Riccati equations can often be solved:
+
 - **Analytically** for certain specifications (e.g., Vasicek, Hull-White)
 - **Semi-analytically** for others
 - **Numerically** for complex models
@@ -114,6 +117,7 @@ The Riccati equations can often be solved:
 ### 3. Characteristic Function Availability
 
 The explicit affine form of the characteristic function enables:
+
 - Fourier inversion to compute option prices
 - Fast computation of bond prices and yields
 - Closed-form or semi-analytical derivatives
@@ -121,6 +125,7 @@ The explicit affine form of the characteristic function enables:
 ### 4. State Space Flexibility
 
 Affine models can incorporate:
+
 - Multiple factors (multidimensional $\mathbf{X}_t$)
 - Regime switching
 - Jumps (in extended formulations)
@@ -138,6 +143,7 @@ Dynamics:
 $$dr_t = \kappa(\theta - r_t)dt + \sigma dW_t$$
 
 Affine parameters:
+
 - $a_0 = \kappa\theta$, $a_1 = -\kappa$
 - $c_0 = \sigma^2$, $c_1 = 0$
 - $r_0 = 0$, $r_1 = 1$
@@ -171,6 +177,7 @@ The stock price $S_t$ itself is **not** affine (see the detailed example in the 
 ## Summary
 
 An affine process is defined by linearity of:
+
 - Drift in the state variable
 - Diffusion matrix in the state variable
 - Short rate in the state variable

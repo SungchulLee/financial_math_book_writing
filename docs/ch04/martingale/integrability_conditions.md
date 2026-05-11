@@ -44,7 +44,7 @@ The converse also holds: $M$ is a UI martingale if and only if $\{M_\tau : \tau 
     The family $\{M_\tau : \tau \leq T\}$ indexed over **all stopping times** is strictly larger than $\{M_t : t \leq T\}$ indexed over **fixed times** only. A local martingale can look well-behaved at deterministic times while hiding mass explosions at random stopping times. The upgrade theorem requires the stronger condition — controlling all stopped versions, not just the fixed-time snapshots. In practice this distinction rarely matters, because the sufficient criteria below automatically imply UI of the full family $\{M_\tau\}$.
 
 !!! note "Connection to convergence"
-    Uniform integrability is equivalent to $L^1$ convergence: a martingale $(M_t)_{t \geq 0}$ is UI if and only if $M_t \to M_\infty$ in $L^1$ (not just almost surely). See [Martingale Convergence](../../ch02/filtration_and_martingales/martingale_convergence.md).
+    Uniform integrability is equivalent to $L^1$ convergence: a martingale $(M_t)_{t \geq 0}$ is UI if and only if $M_t \to M_\infty$ in $L^1$ (not just almost surely). See [Martingale Convergence](../../ch02/filtration_and_martingale/martingale_convergence.md).
 
 ---
 

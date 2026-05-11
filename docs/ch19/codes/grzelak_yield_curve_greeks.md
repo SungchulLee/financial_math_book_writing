@@ -393,3 +393,44 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+Yield curve Greeks measure the sensitivity of a derivative's price to changes in the swap rates used to construct the curve. Describe how the Delta for each swap rate is computed via finite differences.
+
+??? success "Solution to Exercise 1"
+    For each swap rate $k_i$ in the yield curve construction:
+
+    1. Bump $k_i$ by a small amount $\delta k = 0.01\%$ (1 basis point).
+    2. Rebuild the yield curve using Newton-Raphson with the bumped rate.
+    3. Reprice the target swap using the new curve: $V_{\text{up}} = V(k_i + \delta k)$.
+    4. Compute the Delta: $\Delta_i = (V_{\text{up}} - V_{\text{base}})/\delta k$.
+
+    This is repeated for each of the $n$ swap rates, producing a vector of sensitivities showing how the target swap's value changes when each underlying instrument moves.
+
+---
+
+**Exercise 2.**
+If the Deltas of a payer swap with respect to the 8 swap rates are $\Delta = [0.2, 0.5, 1.3, -0.1, 0.8, 2.1, -0.3, 0.05]$, which swap rate has the largest impact on the derivative's price?
+
+??? success "Solution to Exercise 2"
+    The swap rate with the largest absolute Delta is the 6th rate (10-year maturity) with $|\Delta_6| = 2.1$. A 1 basis point move in the 10-year swap rate changes the derivative price by $2.1$ units. The negative Deltas at positions 4 and 7 indicate that increases in those rates actually decrease the derivative's value, suggesting offsetting sensitivities at those maturities.
+
+---
+
+**Exercise 3.**
+Explain why the interpolation method (linear vs. cubic) affects the computed Greeks and how to choose an appropriate method.
+
+??? success "Solution to Exercise 3"
+    The interpolation method determines how a bump in one swap rate propagates to neighboring maturities. With linear interpolation, a bump at maturity $T_k$ only affects the curve segment between $T_{k-1}$ and $T_{k+1}$, producing localized Greeks. With cubic interpolation, the bump propagates further due to the global smoothness constraints, potentially affecting discount factors at distant maturities.
+
+    Choose cubic interpolation when smooth forward rates are needed (for realistic hedging and risk decomposition). Choose linear interpolation when localized sensitivities are desired and forward rate smoothness is less important. In practice, cubic is preferred for production risk systems because it avoids spurious hedging artifacts from forward rate discontinuities.
+
+---
+
+**Exercise 4.**
+The code builds 8 swap instruments at maturities from 1 to 30 years. If a new instrument at 15 years is added, how does this affect the yield curve construction and the dimension of the Jacobian matrix?
+
+??? success "Solution to Exercise 4"
+    Adding a 15-year instrument increases the number of spine points from 8 to 9. The Jacobian matrix grows from $8 \times 8$ to $9 \times 9$. The yield curve has one more degree of freedom, allowing it to fit an additional market observable. The Newton-Raphson system now solves 9 equations (swap values equal zero) in 9 unknowns (spine point rates). The interpolated curve between the 10-year and 20-year points becomes more constrained, potentially improving the accuracy of prices for instruments with maturities near 15 years.

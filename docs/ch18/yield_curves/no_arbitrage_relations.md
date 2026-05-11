@@ -7,6 +7,7 @@ No-arbitrage principles link discount factors, zero rates, and forward rates. Th
 ## The Fundamental No-Arbitrage Principle
 
 An **arbitrage opportunity** is a trading strategy that:
+
 1. Requires no initial investment
 2. Has no possibility of loss
 3. Has positive probability of profit
@@ -22,11 +23,13 @@ In well-functioning markets, arbitrage opportunities cannot persist. This princi
 Consider two strategies for obtaining 1 unit of currency at time $T_2$:
 
 **Strategy A (Direct):**
+
 - At time 0: Buy a $T_2$ zero-coupon bond
 - Cost: $P(0, T_2)$
 - Payoff at $T_2$: 1
 
 **Strategy B (Synthetic):**
+
 - At time 0: Buy $1/P(T_1, T_2)$ units of a $T_1$ zero-coupon bond
 - This costs: $P(0, T_1) / P(T_1, T_2)$
 - At time $T_1$: Receive $1/P(T_1, T_2)$ and invest at the prevailing rate
@@ -69,6 +72,7 @@ T_1 < T_2 \implies P(0, T_1) \geq P(0, T_2)
 $$
 
 **Proof:** If $P(0, T_1) < P(0, T_2)$:
+
 - Buy the $T_1$ bond (cost $P(0, T_1)$)
 - Sell the $T_2$ bond (receive $P(0, T_2)$)
 - Net cash: $P(0, T_2) - P(0, T_1) > 0$
@@ -85,6 +89,7 @@ P(0, T) > 0 \quad \text{for all } T
 $$
 
 A non-positive discount factor would imply:
+
 - Receiving money today for a future obligation (if $P < 0$)
 - Getting a free bond (if $P = 0$)
 
@@ -142,6 +147,7 @@ B_0 = \sum_{i=1}^n c_i \cdot P(0, T_i)
 $$
 
 This is a direct consequence of:
+
 1. **Value additivity:** Portfolio value = sum of component values
 2. **No arbitrage:** Each cashflow is discounted at its appropriate rate
 
@@ -194,6 +200,7 @@ $$
 where $\lambda = (T_3 - T_2)/(T_3 - T_1)$.
 
 Violation implies arbitrage via a butterfly trade:
+
 - Long $\lambda$ units of $T_1$ bond
 - Long $(1-\lambda)$ units of $T_3$ bond  
 - Short 1 unit of $T_2$ bond
@@ -290,7 +297,7 @@ When constructing a yield curve, verify:
 
     **Result:** The trader pockets $P(t, T_2) - P(t, T_1) > 0$ at inception, has no further obligations (the $T_2$-bond liability is covered), and may have additional surplus from the reinvestment. This is a riskless profit from zero net investment — an arbitrage.
 
-    Therefore, no-arbitrage requires $P(t, T_1) \geq P(t, T_2)$ whenever $T_1 \leq T_2$. $\blacksquare$
+    Therefore, no-arbitrage requires $P(t, T_1) \geq P(t, T_2)$ whenever $T_1 \leq T_2$. $\square$
 
 ---
 

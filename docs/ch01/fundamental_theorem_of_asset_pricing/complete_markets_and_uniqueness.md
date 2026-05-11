@@ -336,7 +336,7 @@ which lies within the interval $(1, 15/7) \approx (1, 2.143)$ computed earlier -
 ## Connection to Continuous Time
 
 
-In the Black--Scholes model, the stock follows $dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$ with one source of randomness ($W_t$) and one risky asset. By Girsanov's theorem, there is a unique equivalent local martingale measure under which $dS_t = r S_t \, dt + \sigma S_t \, dW^{\mathbb{Q}}_t$. Uniqueness of the EMM confirms that the Black--Scholes market is complete, and the famous Black--Scholes formula gives the unique no-arbitrage price of any European contingent claim. See [Numeraire and Change of Measure](numeraire_and_change_of_measure.md) for the full treatment of measure changes via the Radon--Nikodym derivative and Girsanov's theorem.
+In the Black--Scholes model, the stock follows $dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$ with one source of randomness ($W_t$) and one risky asset. By Girsanov's theorem, there is a unique equivalent local martingale measure under which $dS_t = r S_t \, dt + \sigma S_t \, dW^{\mathbb{Q}}_t$. Uniqueness of the EMM confirms that the Black--Scholes market is complete, and the famous Black--Scholes formula gives the unique no-arbitrage price of any European contingent claim. See [Numeraire and Change of Measure](../numeraire_and_change_of_measure/numeraire_and_change_of_measure.md) for the full treatment of measure changes via the Radon--Nikodym derivative and Girsanov's theorem.
 
 When a model has more sources of randomness than traded assets -- for instance, stochastic volatility models with two Brownian motions but only one stock -- the EMM is no longer unique and the market is incomplete. The extra source of risk cannot be hedged, and option prices depend on additional modeling choices beyond no-arbitrage.
 
@@ -359,7 +359,7 @@ The Second Fundamental Theorem of Asset Pricing provides a complete characteriza
 
 5. **Adding assets can restore completeness**: introducing new traded instruments increases the rank of the payoff matrix, potentially eliminating the pricing ambiguity.
 
-Together with the [First FTAP](fundamental_theorem_of_asset_pricing.md), these results form the theoretical backbone of derivative pricing. The next page, [Numeraire and Change of Measure](numeraire_and_change_of_measure.md), develops the machinery of measure changes that makes these results computationally tractable.
+Together with the [First FTAP](fundamental_theorem_of_asset_pricing.md), these results form the theoretical backbone of derivative pricing. The next page, [Numeraire and Change of Measure](../numeraire_and_change_of_measure/numeraire_and_change_of_measure.md), develops the machinery of measure changes that makes these results computationally tractable.
 
 
 ## References

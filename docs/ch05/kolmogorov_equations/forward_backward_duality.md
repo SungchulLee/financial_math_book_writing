@@ -3,6 +3,7 @@
 The Kolmogorov forward and backward equations are **adjoint** to each other. This duality is not merely a mathematical curiosity—it reflects two fundamentally different ways of looking at the same diffusion process and has deep implications for computation, interpretation, and applications.
 
 !!! tip "Related Content"
+
     - [Kolmogorov Forward Equation](kolmogorov_forward.md) — density evolution
     - [Kolmogorov Backward Equation](kolmogorov_backward.md) — expected values
     - [Infinitesimal Generator](../../ch03/infinitesimal_generator/infinitesimal_generator.md) — the operator $\mathcal{L}$

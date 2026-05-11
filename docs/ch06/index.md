@@ -88,7 +88,7 @@ $$C \to S - Ke^{-rT}$$
 
 and deep OTM calls become worthless. Digital option pricing 
 
-$$D_0 = e^{-rT}\Phi(d_2)$$ 
+$$D_0 = e^{-rT}\mathcal{N}(d_2)$$ 
 
 illustrates the framework applied to discontinuous payoffs.
 

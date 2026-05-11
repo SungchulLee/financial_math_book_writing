@@ -7,6 +7,7 @@
 **Confidence sets for models** provide a rigorous statistical framework for quantifying uncertainty about model parameters and specifications. Rather than relying on point estimates, confidence sets characterize the range of parameter values or models that are statistically consistent with observed data.
 
 In quantitative finance, confidence sets are essential for:
+
 1. **Robust pricing**: Determining price bounds consistent with market data
 2. **Risk management**: Quantifying parameter uncertainty in VaR calculations
 3. **Model validation**: Testing whether calibrated models are statistically consistent
@@ -80,6 +81,7 @@ This is an ellipsoid centered at the MLE.
 
 
 **Percentile Bootstrap**:
+
 1. Resample $X_1^*, \ldots, X_n^*$ from empirical distribution
 2. Compute $\hat{\theta}^*$ from bootstrap sample
 3. Repeat $B$ times
@@ -152,6 +154,7 @@ $$
 **Superior Set**: $\mathcal{M}^* = \{M_i: \mathbb{E}[L_{i,t}] \leq \mathbb{E}[L_{j,t}] \text{ for some } j\}$
 
 **MCS Algorithm** (Hansen, Lunde, Nason, 2011):
+
 1. Start with all models: $\hat{\mathcal{M}} = \{M_1, \ldots, M_m\}$
 2. Test equal predictive ability: $H_0: \mathbb{E}[d_{ij,t}] = 0$ for all $i, j \in \hat{\mathcal{M}}$
 3. If $H_0$ rejected, eliminate worst model
@@ -248,6 +251,7 @@ $$
 **Calibration Data**: Zero-coupon bond prices or cap/floor prices
 
 **Confidence Set Construction**:
+
 1. Estimate $\hat{\theta}$ by minimizing pricing errors
 2. Compute Hessian of objective at $\hat{\theta}$
 3. Invert Hessian to get covariance estimate
@@ -261,6 +265,7 @@ $$
 **Challenge**: Asset value not directly observed
 
 **Approach**: 
+
 - Calibrate to equity price and implied volatility
 - Propagate uncertainty through the structural model
 - Confidence set for default probability
@@ -296,6 +301,7 @@ $$
 
 
 **Algorithm**:
+
 1. Draw $\theta^{(1)}, \ldots, \theta^{(B)}$ from confidence region or posterior
 2. Compute $y^{(b)} = g(\theta^{(b)})$ for each draw
 3. Confidence interval from quantiles of $\{y^{(b)}\}$
@@ -636,7 +642,7 @@ For $S_0 = K = 100$, $T = 1$, $r = 0$, $\sigma_0 = 0.20$, and $s = 0.02$, comput
     The Black-Scholes call price:
 
     $$
-    C = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2) = 100[\Phi(0.10) - \Phi(-0.10)]
+    C = S_0 \mathcal{N}(d_1) - K e^{-rT} \mathcal{N}(d_2) = 100[\Phi(0.10) - \Phi(-0.10)]
     $$
 
     $$

@@ -3,6 +3,7 @@
 The Hull-White model (1990) is the most widely used short-rate model in practice for pricing interest rate derivatives. Its central innovation over the earlier Vasicek model is the introduction of a time-dependent drift function $\theta(t)$ that allows the model to exactly match the initial term structure of interest rates observed in the market. The model retains the analytical tractability of the Ornstein-Uhlenbeck process while gaining the flexibility needed for consistent derivative pricing. This section defines the model, interprets its parameters, and establishes the fundamental properties of mean reversion.
 
 !!! info "Prerequisites"
+
     - Stochastic calculus: Ito processes, stochastic differential equations
     - Ornstein-Uhlenbeck process and its properties (Chapter 15)
     - Term structure basics: zero-coupon bonds, yield curves, forward rates

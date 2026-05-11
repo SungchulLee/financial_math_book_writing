@@ -163,6 +163,7 @@ $$
 ### Implications for Gaussian Models
 
 In factor models $R = B F + \varepsilon$ with $F \sim \mathcal{N}(0, I_k)$:
+
 - Factor realizations concentrate on a sphere
 - Extreme joint movements of many factors are exponentially rare
 - Tail risk estimation requires extrapolation beyond observed data
@@ -176,10 +177,12 @@ In factor models $R = B F + \varepsilon$ with $F \sim \mathcal{N}(0, I_k)$:
 With $n$ assets and $k$ factors, the factor loading matrix $B \in \mathbb{R}^{n \times k}$ has $nk$ parameters.
 
 **Modern asset pricing:**
+
 - $n \approx 5000$ stocks
 - $k \approx 5-10$ traditional factors, or $k \approx 100+$ characteristics
 
 Even with 50 years of monthly data ($T = 600$):
+
 - Parameters to estimate: $nk = 500,000$ (for $k = 100$)
 - Observations: $nT = 3,000,000$
 - Parameters per observation: $nk/(nT) = k/T \approx 0.17$
@@ -195,6 +198,7 @@ Calibrating a local volatility surface $\sigma(S, t)$ on a $50 \times 50$ grid r
 ### Portfolio Optimization
 
 The mean-variance problem requires estimating:
+
 - $n$ expected returns
 - $n(n+1)/2$ covariance parameters
 
@@ -217,6 +221,7 @@ $$
 where $v_j$ are eigenvectors of $\text{Cov}(X)$.
 
 In finance, the first few principal components of returns explain substantial variance:
+
 - PC1 (market): ~30-50% of variance
 - PC1-PC5: ~60-70% of variance
 
@@ -347,6 +352,7 @@ $$
 $$
 
 the sample eigenvalues exhibit a phase transition:
+
 - $\lambda_i > 1 + \sqrt{\gamma}$: Eigenvalue separates from bulk, estimable
 - $\lambda_i \leq 1 + \sqrt{\gamma}$: Eigenvalue absorbed into noise, undetectable
 

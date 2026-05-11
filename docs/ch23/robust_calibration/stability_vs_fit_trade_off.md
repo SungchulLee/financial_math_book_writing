@@ -7,6 +7,7 @@
 The **stability vs fit trade-off** is a fundamental tension in model calibration: models that fit current market data extremely well often exhibit unstable parameters that change dramatically with small data perturbations or over short time intervals. This instability can lead to erratic hedging behavior, excessive transaction costs, and poor out-of-sample performance.
 
 Understanding and managing this trade-off is crucial for:
+
 1. **Practical hedging**: Stable parameters lead to stable hedge ratios
 2. **Risk management**: Unstable calibrations create unreliable risk estimates
 3. **Model governance**: Regulators expect stable, interpretable models
@@ -27,6 +28,7 @@ $$
 **Problem**: Small changes in $\{C_i^{\text{market}}\}$ can cause large changes in $\hat{\theta}$.
 
 **Ill-Conditioning**: The optimization landscape may have:
+
 - Flat regions (parameters poorly identified)
 - Near-singular Hessian
 - Multiple local minima
@@ -84,6 +86,7 @@ where $\theta_0$ is a prior or reference parameter.
 **Effect**: Shrinks parameters toward $\theta_0$, reducing sensitivity to noise.
 
 **Bias-Variance Trade-Off**:
+
 - $\lambda = 0$: Unbiased but high variance
 - $\lambda \to \infty$: Low variance but biased toward $\theta_0$
 
@@ -129,6 +132,7 @@ $$
 
 
 **Procedure**:
+
 1. Divide calibration instruments into $K$ folds
 2. For each fold $k$:
    - Calibrate on remaining $K-1$ folds
@@ -141,6 +145,7 @@ $$
 
 
 **Rolling Window**:
+
 1. Calibrate on data up to time $t$
 2. Evaluate prediction at time $t+1$
 3. Roll forward and repeat
@@ -173,6 +178,7 @@ where $k$ is number of effective parameters.
 
 
 **Objectives**:
+
 1. $f_1(\theta)$: Calibration error (minimize)
 2. $f_2(\theta)$: Parameter instability (minimize)
 
@@ -253,6 +259,7 @@ where $\theta_{\text{prior}}$ is historical average and $\Sigma$ is parameter co
 
 
 **Two-Stage**:
+
 1. Calibrate slow-moving parameters (e.g., mean reversion) on long history
 2. Calibrate fast-moving parameters (e.g., current vol) daily
 
@@ -302,6 +309,7 @@ $$
 
 
 **Visualizations**:
+
 - Time series of parameters
 - Calibration error vs stability scatter
 - Parameter correlation matrix
@@ -348,6 +356,7 @@ $$
 
 
 **Finding**: Regularized calibrations often produce:
+
 - Similar or better hedging performance
 - Lower transaction costs
 - More interpretable parameter dynamics

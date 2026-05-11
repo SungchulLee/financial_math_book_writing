@@ -230,3 +230,36 @@ if __name__ == "__main__":
     # stock price is reduced by the amount of the payment. These observations lead
     # to a recursive algorithm for determining the price.
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+State the optimal stopping problem for an American put. What is the smooth pasting condition?
+
+??? success "Solution to Exercise 1"
+    $V(S,t) = \sup_{\tau} E^Q[e^{-r(\tau-t)}(K - S_\tau)^+ | S_t = S]$. At the exercise boundary $S^*(t)$: $V(S^*,t) = K - S^*$ (value matching) and $V_S(S^*,t) = -1$ (smooth pasting). Smooth pasting ensures the value function transitions smoothly from the continuation to the exercise region.
+
+---
+
+**Exercise 2.**
+Derive the value and optimal boundary for the perpetual American put.
+
+??? success "Solution to Exercise 2"
+    The ODE $\frac{1}{2}\sigma^2 S^2 V'' + rSV' - rV = 0$ has solution $V = AS^\alpha$ with $\alpha < 0$. Smooth pasting gives $S^* = \frac{\alpha}{\alpha-1}K$ and $V(S) = (K - S^*)(S/S^*)^\alpha$.
+
+---
+
+**Exercise 3.**
+Why does an American call on a non-dividend-paying stock equal the European call?
+
+??? success "Solution to Exercise 3"
+    Early exercise means paying $K$ now to receive $S$. But $C \ge S - Ke^{-r(T-t)} > S - K$ for $r > 0$, so the continuation value always exceeds the exercise value. Therefore early exercise is never optimal and $C_A = C_E$.
+
+---
+
+**Exercise 4.**
+Explain the low bias of the LSM estimator and how to mitigate it.
+
+??? success "Solution to Exercise 4"
+    LSM finds a suboptimal exercise strategy (limited by the regression basis), yielding a price $\le$ the true American price. Mitigation: use rich basis functions, separate regression and pricing path sets, or combine with an upper-bound estimator for a confidence interval.

@@ -5,6 +5,11 @@ Option prices satisfy fundamental mathematical properties that follow from no-ar
 
 This section rigorously establishes these properties for European options under the Black-Scholes framework.
 
+!!! info "Where this fits"
+    - **Roadmap row(s):** Geometry (convexity / gamma) and the monotonicity of the formula in each parameter.
+    - **Builds on:** [The Black-Scholes formula](bs_formula_statement.md) (the closed form being differentiated) and [Girsanov derivation](girsanov_derivation.md) (the PDE underlying the Greeks).
+    - **Feeds into:** [Asymptotic behavior](asymptotic_behavior.md) (limit signs respect the monotonicity below) and [Computational examples](computational_examples.md) (numerical Greeks).
+
 !!! note "Proposition (No-Arbitrage Properties of European Options)"
     For European options on a non-dividend-paying stock, the Black-Scholes prices satisfy:
 
@@ -16,8 +21,36 @@ This section rigorously establishes these properties for European options under 
 
 ---
 
+!!! note "Lemma (Density-Strike Identity)"
+    For all $S, K, T > 0$, $r \in \mathbb{R}$, and $\sigma > 0$, the Black-Scholes parameters $d_1$ and $d_2 = d_1 - \sigma\sqrt{T}$ satisfy
+
+    $$
+    S\,\phi(d_1) = K e^{-rT}\,\phi(d_2)
+    $$
+
+    where $\phi(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}$ is the standard normal density.
+
+    **Proof.** From the definitions, $d_1 - d_2 = \sigma\sqrt{T}$ and $d_1 + d_2 = \frac{2\ln(S/K) + 2rT}{\sigma\sqrt{T}}$, so
+
+    $$
+    d_1^2 - d_2^2 = (d_1 + d_2)(d_1 - d_2) = 2\ln(S/K) + 2rT
+    $$
+
+    Therefore
+
+    $$
+    \frac{\phi(d_1)}{\phi(d_2)} = \exp\!\left(\tfrac{1}{2}(d_2^2 - d_1^2)\right) = \exp\!\left(-\ln(S/K) - rT\right) = \frac{K}{S}\,e^{-rT}
+    $$
+
+    Cross-multiplying yields the stated identity. $\square$
+
+    **Where it appears.** This identity is the algebraic engine behind several Black-Scholes Greek formulas. It causes the cross-terms in the differentiations $\partial C/\partial S$ (Monotonicity in Stock Price, below) and $\partial C/\partial K$ (Monotonicity in Strike, below) to cancel, yielding the clean expressions $\partial C/\partial S = \mathcal{N}(d_1)$ and $\partial C/\partial K = -e^{-rT}\mathcal{N}(d_2)$. The same cancellation simplifies the gamma, vega, and theta derivations.
+
+---
+
 ## Fundamental Bounds
 
+*Section goal: the lower and upper price bounds enforced by no-arbitrage.*
 
 ### 1. **Call Option Bounds**
 
@@ -25,7 +58,7 @@ This section rigorously establishes these properties for European options under 
 For a European call option on a non-dividend-paying stock:
 
 $$
-\boxed{\max(S - Ke^{-r(T-t)}, 0) \leq C(S,t) \leq S}
+\boxed{\max(S - Ke^{-rT}, 0) \leq C \leq S}
 $$
 
 **Lower bound**: The call cannot be worth less than its discounted intrinsic value (otherwise arbitrage exists)
@@ -35,7 +68,7 @@ $$
 **Tighter lower bound**: 
 
 $$
-C(S,t) \geq \max(S - Ke^{-r(T-t)}, 0)
+C \geq \max(S - Ke^{-rT}, 0)
 $$
 
 This is the **no-arbitrage lower bound**.
@@ -46,7 +79,7 @@ This is the **no-arbitrage lower bound**.
 For a European put:
 
 $$
-\boxed{\max(Ke^{-r(T-t)} - S, 0) \leq P(S,t) \leq Ke^{-r(T-t)}}
+\boxed{\max(Ke^{-rT} - S, 0) \leq P \leq Ke^{-rT}}
 $$
 
 **Lower bound**: Put worth at least discounted intrinsic value
@@ -56,12 +89,15 @@ $$
 ### 3. **Verification for Black-Scholes**
 
 
-Since $\mathcal{N}(d_1), \mathcal{N}(d_2) \in [0,1]$, the upper bound follows immediately: $C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) \leq S \cdot 1 - Ke^{-rT} \cdot 0 = S$. The lower bound $C \geq (S - Ke^{-rT})^+$ can be verified by noting that deep ITM ($d_1, d_2 \to +\infty$) gives $C \to S - Ke^{-rT}$, and convexity in $S$ (proved below) ensures $C$ never dips below this value. ✓
+Since $\mathcal{N}(d_1), \mathcal{N}(d_2) \in [0,1]$, the upper bound follows immediately: $C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) \leq S \cdot 1 - Ke^{-rT} \cdot 0 = S$. ✓
+
+For the lower bound $C \geq (S - Ke^{-rT})^+$, use **direct no-arbitrage**. Compare "long 1 call + cash $Ke^{-rT}$" (cost $C + Ke^{-rT}$, terminal value $\max(S_T - K, 0) + K = \max(S_T, K)$) with "long 1 share" (cost $S$, terminal value $S_T$). The first dominates pathwise: $\max(S_T, K) \geq S_T$, so $C + Ke^{-rT} \geq S$; combined with $C \geq 0$ this yields $C \geq (S - Ke^{-rT})^+$. The bound holds in *any* arbitrage-free model. ✓
 
 ---
 
 ## Monotonicity in Stock Price
 
+*Section goal: $\partial C/\partial S = \mathcal{N}(d_1) > 0$ and the put analogue, derived via the Density-Strike Identity Lemma.*
 
 ### 1. **Call Options**
 
@@ -86,7 +122,7 @@ $$
 
 After substitution and using $\mathcal{N}'(d_1) = \frac{1}{\sqrt{2\pi}}e^{-d_1^2/2}$:
 
-The cross-terms cancel because $S\mathcal{N}'(d_1)\frac{\partial d_1}{\partial S} = Ke^{-rT}\mathcal{N}'(d_2)\frac{\partial d_2}{\partial S}$, which follows from the identity $S\phi(d_1) = Ke^{-rT}\phi(d_2)$. This leaves:
+The cross-terms cancel because $S\mathcal{N}'(d_1)\frac{\partial d_1}{\partial S} = Ke^{-rT}\mathcal{N}'(d_2)\frac{\partial d_2}{\partial S}$, which is precisely the Density-Strike Identity (Lemma above). This leaves:
 
 $$
 \frac{\partial C}{\partial S} = \mathcal{N}(d_1)
@@ -125,6 +161,7 @@ Since $\mathcal{N}(d_1) < 1$, we have $\frac{\partial P}{\partial S} < 0$. ✓
 
 ## Monotonicity in Time
 
+*Section goal: how $\Theta < 0$ encodes time decay, with the calendar-vs-maturity-time distinction.*
 
 ### 1. **Time Decay (Theta)**
 
@@ -132,52 +169,43 @@ Since $\mathcal{N}(d_1) < 1$, we have $\frac{\partial P}{\partial S} < 0$. ✓
 For European calls on non-dividend-paying stocks:
 
 $$
-\frac{\partial C}{\partial t} = -\Theta < 0
+\Theta_{\text{call}} := \frac{\partial C}{\partial t} = -\frac{S\mathcal{N}'(d_1)\sigma}{2\sqrt{T}} - rKe^{-rT}\mathcal{N}(d_2)
 $$
 
-**Interpretation**: Call price **decreases** as time passes (all else equal), a phenomenon called **time decay**.
+Here $\Theta$ is the derivative with respect to **calendar time**, related to time-to-maturity by $\Theta = -\partial C/\partial T$ (calendar time advancing equals $T$ shrinking).
 
-**Theta formula**:
+**Interpretation**: With $r > 0$, both terms are strictly positive, so $\Theta_{\text{call}} < 0$ — the call price decreases as calendar time passes. This is **time decay**.
 
-$$
-\Theta_{\text{call}} = -\frac{S\mathcal{N}'(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\mathcal{N}(d_2)
-$$
-
-Since both terms are negative, $\Theta < 0$ (time decay).
-
-**Exception**: Deep ITM European calls can have slightly positive theta near expiration due to interest earned on deferred strike payment.
+**Exception**: For dividend-paying stocks (or European puts), deep-ITM theta can be positive when interest on the deferred strike dominates. For non-dividend calls with $r > 0$, $\Theta < 0$ everywhere.
 
 ### 2. **Increasing with Time to Maturity**
 
+
+For a European call on a non-dividend-paying stock with $r \geq 0$:
 
 $$
 \boxed{\frac{\partial C}{\partial T} > 0}
 $$
 
+(equivalently, $-\Theta_{\text{call}} > 0$ — the same sign convention, written in time-to-maturity instead of calendar time).
+
 **Interpretation**: Longer-dated options are more valuable (more time for favorable price movement).
 
-**Proof**: Options with more time have:
+**Caveats.** Monotonicity can fail outside the standing assumptions: with continuous dividends $q > r$, deep-ITM European calls can lose value with longer $T$ (dividends accrue to the stock holder, not the option holder); with sufficiently negative $r$, discounting flips the calendar-spread inequality. No-dividends and $r \geq 0$ guarantee $\partial C/\partial T > 0$ unconditionally.
 
-1. Greater probability of finishing ITM
-2. Higher optionality value
-3. More uncertainty (higher variance $\sigma^2 T$)
-
-From the formula, as $T$ increases, $d_1$ and $d_2$ shift, and the net effect is positive:
-
-$$
-C(S, T_2) > C(S, T_1) \quad \text{for } T_2 > T_1
-$$
+**Proof sketch**: For $T_2 > T_1$, a longer-dated call dominates the shorter-dated call by a calendar-spread no-arbitrage argument (Section "Calendar Spread Inequality" below); under non-negative rates and no dividends, the dominating portfolio has non-negative cost, so $C(S, T_2) \geq C(S, T_1)$.
 
 ---
 
 ## Monotonicity in Volatility
 
+*Section goal: vega $\nu > 0$ and why both calls and puts gain value from higher $\sigma$.*
 
 ### 1. **Vega (Volatility Sensitivity)**
 
 
 $$
-\boxed{\frac{\partial C}{\partial \sigma} = S\sqrt{T-t}\,\mathcal{N}'(d_1) > 0}
+\boxed{\frac{\partial C}{\partial \sigma} = S\sqrt{T}\,\mathcal{N}'(d_1) > 0}
 $$
 
 **Interpretation**: Call (and put) prices are **strictly increasing** in volatility.
@@ -202,22 +230,24 @@ This follows from put-call parity (volatility affects both equally).
 
 ## Monotonicity in Strike
 
+*Section goal: $\partial C/\partial K < 0$ via the same density identity, and the put analogue.*
 
 ### 1. **Call Options**
 
 
 $$
-\boxed{\frac{\partial C}{\partial K} = -e^{-r(T-t)}\mathcal{N}(d_2) < 0}
+\boxed{\frac{\partial C}{\partial K} = -e^{-rT}\mathcal{N}(d_2) < 0}
 $$
 
 **Interpretation**: Call price is **strictly decreasing** in strike.
 
 **Proof**: Higher strike means:
+
 - Lower intrinsic value
 - Lower probability of exercise
 - Less favorable payoff structure
 
-Differentiating the Black-Scholes formula and using the identity $S\phi(d_1) = Ke^{-rT}\phi(d_2)$ to cancel cross-terms:
+Differentiating the Black-Scholes formula, the cross-terms cancel by the Density-Strike Identity (Lemma above):
 
 $$
 \frac{\partial C}{\partial K} = -e^{-rT}\mathcal{N}(d_2) < 0
@@ -227,7 +257,7 @@ $$
 
 
 $$
-\boxed{\frac{\partial P}{\partial K} = e^{-r(T-t)}\mathcal{N}(-d_2) > 0}
+\boxed{\frac{\partial P}{\partial K} = e^{-rT}\mathcal{N}(-d_2) > 0}
 $$
 
 **Interpretation**: Put price is **strictly increasing** in strike (higher strike = more valuable right to sell).
@@ -236,12 +266,13 @@ $$
 
 ## Convexity in Stock Price
 
+*Section goal: $\Gamma > 0$ as the curvature of the price function in the underlying.*
 
 ### 1. **Second Derivative (Gamma)**
 
 
 $$
-\boxed{\Gamma = \frac{\partial^2 C}{\partial S^2} = \frac{\mathcal{N}'(d_1)}{S\sigma\sqrt{T-t}} > 0}
+\boxed{\Gamma = \frac{\partial^2 C}{\partial S^2} = \frac{\mathcal{N}'(d_1)}{S\sigma\sqrt{T}} > 0}
 $$
 
 **Interpretation**: Option value is **convex** in stock price.
@@ -283,6 +314,7 @@ This convexity property is fundamental to option hedging and risk management.
 
 ## Convexity in Strike (Butterfly Spread)
 
+*Section goal: $\partial^2 C/\partial K^2 > 0$ from a no-arbitrage butterfly argument.*
 
 ### 1. **Butterfly Constraint**
 
@@ -296,6 +328,7 @@ $$
 **Interpretation**: Call prices are **convex** (downward) in strike.
 
 **Proof**: Consider a **butterfly spread**:
+
 - Buy 1 call at $K_1$
 - Sell 2 calls at $K_2$
 - Buy 1 call at $K_3$
@@ -343,6 +376,7 @@ Strict convexity holds. ✓
 
 ## Calendar Spread Inequality
 
+*Section goal: the constraint $C(S, T_1) \leq C(S, T_2)$ and its no-arbitrage proof.*
 
 ### 1. **Time Spread Constraint**
 
@@ -390,6 +424,7 @@ For European options on non-dividend-paying stocks:
 
 ## Practical Implications
 
+*Section goal: using these bounds to detect arbitrage in market quotes.*
 
 ### 1. **Arbitrage Detection**
 
@@ -428,6 +463,7 @@ These must be consistent for any valid pricing model.
 
 ## Comparison: American vs. European
 
+*Section goal: when the early-exercise premium vanishes (calls on non-dividend stocks) and when it does not (puts).*
 
 For American options on non-dividend-paying stocks:
 
@@ -640,26 +676,26 @@ by constructing a butterfly spread portfolio and arguing that its payoff is non-
     There is no arbitrage opportunity. The butterfly spread (buy $C(90)$, sell $2 \times C(100)$, buy $C(110)$) costs $15.20 - 2(9.50) + 5.80 = 2.00 > 0$, which is consistent with its non-negative payoff. If the condition had been violated (say $C(100) = 11.00 > 10.50$), one would sell the butterfly (sell $C(90)$, buy $2 \times C(100)$, sell $C(110)$) to collect a positive upfront cash flow with a non-positive future liability.
 
 ---
-**Exercise 6.** Explain why an American call on a non-dividend-paying stock is never exercised early. Use the lower bound $C \geq S - Ke^{-r(T-t)} > S - K$ (for $r > 0$ and $T - t > 0$) to argue that the option is always worth more alive than dead.
+**Exercise 6.** Explain why an American call on a non-dividend-paying stock is never exercised early. Use the lower bound $C \geq S - Ke^{-rT} > S - K$ (for $r > 0$ and $T > 0$) to argue that the option is always worth more alive than dead.
 
 ??? success "Solution to Exercise 6"
     For a European call on a non-dividend-paying stock, the no-arbitrage lower bound is:
 
     $$
-    C \geq \max(S - Ke^{-r(T-t)}, 0) \geq S - Ke^{-r(T-t)}
+    C \geq \max(S - Ke^{-rT}, 0) \geq S - Ke^{-rT}
     $$
 
-    When $r > 0$ and $T - t > 0$: $e^{-r(T-t)} < 1$, so $Ke^{-r(T-t)} < K$, which gives:
+    When $r > 0$ and $T > 0$: $e^{-rT} < 1$, so $Ke^{-rT} < K$, which gives:
 
     $$
-    C \geq S - Ke^{-r(T-t)} > S - K
+    C \geq S - Ke^{-rT} > S - K
     $$
 
-    If the American call were exercised early, the holder would receive $S - K$ (the intrinsic value). But the option is worth at least $S - Ke^{-r(T-t)} > S - K$, so exercising destroys value equal to at least $K(1 - e^{-r(T-t)}) > 0$.
+    If the American call were exercised early, the holder would receive $S - K$ (the intrinsic value). But the option is worth at least $S - Ke^{-rT} > S - K$, so exercising destroys value equal to at least $K(1 - e^{-rT}) > 0$.
 
     This excess value has two components:
 
-    1. **Time value of money**: By not exercising, the holder defers paying $K$, earning interest $K(1 - e^{-r(T-t)})$ on the deferred payment.
+    1. **Time value of money**: By not exercising, the holder defers paying $K$, earning interest $K(1 - e^{-rT})$ on the deferred payment.
     2. **Insurance value**: The option protects against the stock falling below $K$; early exercise forfeits this downside protection.
 
     Since the option alive is always worth more than the exercise value $S - K$, early exercise is never optimal for an American call on a non-dividend-paying stock.
@@ -668,7 +704,7 @@ by constructing a butterfly spread portfolio and arguing that its payoff is non-
 **Exercise 7.** The Black-Scholes theta for a call is
 
 $$
-\Theta = -\frac{S\mathcal{N}'(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\mathcal{N}(d_2)
+\Theta = -\frac{S\mathcal{N}'(d_1)\sigma}{2\sqrt{T}} - rKe^{-rT}\mathcal{N}(d_2)
 $$
 
 Show that both terms are negative, so $\Theta < 0$ in general. Under what limiting conditions (deep ITM, near expiration) might the interest rate term dominate the volatility term? Can theta ever be positive for a European call on a non-dividend-paying stock?
@@ -677,17 +713,17 @@ Show that both terms are negative, so $\Theta < 0$ in general. Under what limiti
     The theta formula is:
 
     $$
-    \Theta = -\underbrace{\frac{S\mathcal{N}'(d_1)\sigma}{2\sqrt{T-t}}}_{\text{Term 1}} - \underbrace{rKe^{-r(T-t)}\mathcal{N}(d_2)}_{\text{Term 2}}
+    \Theta = -\underbrace{\frac{S\mathcal{N}'(d_1)\sigma}{2\sqrt{T}}}_{\text{Term 1}} - \underbrace{rKe^{-rT}\mathcal{N}(d_2)}_{\text{Term 2}}
     $$
 
-    **Term 1**: $S > 0$, $\mathcal{N}'(d_1) = \phi(d_1) > 0$, $\sigma > 0$, $\sqrt{T-t} > 0$, so Term 1 is strictly positive, making $-\text{Term 1} < 0$.
+    **Term 1**: $S > 0$, $\mathcal{N}'(d_1) = \phi(d_1) > 0$, $\sigma > 0$, $\sqrt{T} > 0$, so Term 1 is strictly positive, making $-\text{Term 1} < 0$.
 
-    **Term 2**: $r > 0$, $K > 0$, $e^{-r(T-t)} > 0$, $\mathcal{N}(d_2) > 0$, so Term 2 is strictly positive, making $-\text{Term 2} < 0$.
+    **Term 2**: $r > 0$, $K > 0$, $e^{-rT} > 0$, $\mathcal{N}(d_2) > 0$, so Term 2 is strictly positive, making $-\text{Term 2} < 0$.
 
     Both terms are negative, so $\Theta < 0$ in general when $r > 0$.
 
-    **When the interest rate term dominates**: For deep ITM calls ($S \gg K$), $d_1 \to +\infty$, so $\mathcal{N}'(d_1) = \phi(d_1) \to 0$ (the volatility term vanishes since the normal density decays rapidly). Meanwhile $\mathcal{N}(d_2) \to 1$, so Term 2 $\to rKe^{-r(T-t)}$, which remains bounded and positive. In this regime, theta is dominated by the interest rate term.
+    **When the interest rate term dominates**: For deep ITM calls ($S \gg K$), $d_1 \to +\infty$, so $\mathcal{N}'(d_1) = \phi(d_1) \to 0$ (the volatility term vanishes since the normal density decays rapidly). Meanwhile $\mathcal{N}(d_2) \to 1$, so Term 2 $\to rKe^{-rT}$, which remains bounded and positive. In this regime, theta is dominated by the interest rate term.
 
-    **Can theta be positive?** For a European call on a non-dividend-paying stock with $r > 0$, theta is always negative (both terms have the same sign). However, if we consider the edge case $r = 0$, Term 2 vanishes and $\Theta = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} < 0$ still.
+    **Can theta be positive?** For a European call on a non-dividend-paying stock with $r > 0$, theta is always negative (both terms have the same sign). However, if we consider the edge case $r = 0$, Term 2 vanishes and $\Theta = -\frac{S\phi(d_1)\sigma}{2\sqrt{T}} < 0$ still.
 
     In practice, theta can become very slightly positive for deep ITM European calls on dividend-paying stocks (or for European puts), but for calls on non-dividend-paying stocks, $\Theta \leq 0$ always holds (with equality only in degenerate limits).

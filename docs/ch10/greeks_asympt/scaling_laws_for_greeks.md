@@ -52,6 +52,7 @@ Greeks can be understood through dimensional analysis. Let $[X]$ denote the dime
 | $\sigma$ (volatility) | $T^{-1/2}$ |
 
 Then:
+
 - $\Delta = \partial V/\partial S$ is dimensionless
 - $\Gamma = \partial^2 V/\partial S^2$ has dimension $\$^{-1}$
 - $\Theta = \partial V/\partial t$ has dimension $\$/T$
@@ -128,6 +129,7 @@ For $\tau \to \infty$:
 **Call price:** $C \to S$ (assuming no dividends)
 
 **Greeks:**
+
 - $\Delta \to 1$
 - $\Gamma \to 0$ as $\tau^{-1/2}$
 - $\nu \to S\sqrt{\tau}N'(d_1) \sim S\sqrt{\tau}/\sqrt{2\pi}$ grows without bound

@@ -45,6 +45,7 @@ $$
 $$
 
 This means:
+
 - To double the spatial scale, quadruple the time
 - Diffusion is **slower than linear transport**
 - The "diffusion length" grows as $\sqrt{t}$
@@ -53,19 +54,7 @@ This means:
 
 ## Connection to Brownian Motion
 
-Brownian motion satisfies the identical scaling property:
-
-$$
-\boxed{
-(B_t)_{t \geq 0} \overset{d}{=} \left(\frac{1}{\lambda}B_{\lambda^2 t}\right)_{t \geq 0}
-}
-$$
-
-**Proof**: Both sides are Gaussian processes with:
-- Mean zero
-- Covariance $\mathbb{E}[B_s B_t] = \min(s,t)$
-
-The scaling of Brownian motion explains why the heat equation governs the evolution of Brownian distributions.
+Brownian motion satisfies the identical scaling $(B_t) \overset{d}{=} (\lambda^{-1} B_{\lambda^2 t})$, which is why the same parabolic scaling governs both the heat equation and the diffusion of Brownian distributions. See [Heat Equation and Brownian Motion](heat_equation_and_brownian_motion.md).
 
 ---
 
@@ -121,6 +110,7 @@ The scaling relation distinguishes diffusion from transport:
 | Diffusion | $u_t = \frac{1}{2}u_{xx}$ | $x \sim \sqrt{t}$ | Heat, particles |
 
 **Physical implication**:
+
 - Transport: Information travels at constant speed $c$
 - Diffusion: Spread grows as $\sqrt{t}$, slower over long times
 
@@ -137,6 +127,7 @@ $$
 $$
 
 **Applications**:
+
 - Heat conduction: How far does heat spread in time $t$?
 - Finance: How much can a stock price move in time $t$?
 - Biology: How far do molecules diffuse?
@@ -202,6 +193,7 @@ where $M = \int f(x)\,dx$ is the total mass.
 The variable $\eta = x/\sqrt{t}$ is called the **similarity variable**.
 
 In terms of $\eta$:
+
 - The heat kernel is $G(t,x) = \frac{1}{\sqrt{2\pi t}}e^{-\eta^2/2}$
 - Self-similar solutions depend only on $\eta$
 - Long-time asymptotics are controlled by behavior near $\eta = 0$

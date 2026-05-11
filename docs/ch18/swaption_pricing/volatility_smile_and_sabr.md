@@ -73,6 +73,7 @@ dW_t^1 dW_t^2 &= \rho dt
 $$
 
 where:
+
 - $S_t$: forward swap rate
 - $\sigma_t$: stochastic volatility
 - $\beta$: elasticity parameter
@@ -193,6 +194,7 @@ These build on the same principles introduced here.
 **Exercise 2.** In the SABR model, identify which parameters primarily control the **skew** (asymmetry) and which control the **curvature** (smile convexity) of the implied volatility surface. Briefly explain the role of each.
 
 ??? success "Solution"
+
     - **$\rho$ (correlation)** is the primary driver of **skew**. When $\rho < 0$, a drop in the
       forward rate tends to coincide with a rise in volatility, making out-of-the-money puts
       more expensive and tilting the smile to the left (negative skew). Conversely, $\rho > 0$

@@ -6,6 +6,7 @@ Spectral risk measures generalize Value-at-Risk (VaR) and Expected Shortfall (ES
 
 **Coherent Risk Measures**
 A risk measure $\rho: \mathcal{L} \to \mathbb{R}$ is coherent if it satisfies:
+
 1. **Monotonicity**: $X \leq Y$ ⟹ $\rho(X) \leq \rho(Y)$
 2. **Subadditivity**: $\rho(X + Y) \leq \rho(X) + \rho(Y)$ (diversification benefit)
 3. **Positive homogeneity**: $\rho(\lambda X) = \lambda \rho(X)$ for $\lambda > 0$ (scaling)
@@ -19,12 +20,14 @@ A spectral risk measure applies weight function $\phi(\alpha)$ across quantiles:
 $$\rho_\phi(X) = \int_0^1 \phi(\alpha) q_\alpha(X) d\alpha$$
 
 where $q_\alpha(X) = \text{VaR}_\alpha(X)$ is the $\alpha$-quantile, and:
+
 - $\phi(\alpha) \geq 0$ (non-negative weights)
 - $\int_0^1 \phi(\alpha) d\alpha = 1$ (weights sum to 1)
 - $\phi$ non-decreasing in $\alpha$ (higher weight on worse outcomes)
 
 **Intuition**
 The weight function $\phi(\alpha)$ encodes:
+
 - How much emphasis to place on each tail region
 - Risk aversion profile: flat $\phi$ = uniform weight, increasing $\phi$ = conservative
 - $\phi(\alpha) = \delta(\alpha - \alpha_0)$: reduces to $\text{VaR}_{\alpha_0}$
@@ -48,11 +51,13 @@ where the maximum is over distributions consistent with marginal constraints. Th
 
 **Parametric Approaches**
 For common distributions, spectral measures have closed forms:
+
 - **Normal distribution**: $\rho_\phi(X) = \mu + \sigma \int_0^1 \phi(\alpha) \Phi^{-1}(\alpha) d\alpha$
 - **Student-t**: leads to heavier tail weighting
 - **Mixture distributions**: captures multi-modal risk (e.g., normal + jumps)
 
 **Advantages Over Standard Measures**
+
 1. **Flexibility**: adjust risk aversion without changing measure type
 2. **Theoretical soundness**: coherence axioms satisfied
 3. **Tail sensitivity**: directly incorporates tail behavior through weights
@@ -61,12 +66,14 @@ For common distributions, spectral measures have closed forms:
 
 **Practical Implementation**
 Computing spectral risk measures:
+
 1. Estimate quantile function $q_\alpha$ from data or model
 2. Choose weight function $\phi$ reflecting risk preferences
 3. Numerically integrate: $\rho_\phi(X) = \int_0^1 \phi(\alpha) q_\alpha(X) d\alpha$
 4. Validate through backtesting and stress testing
 
 **Limitations**
+
 - Weight function choice not uniquely determined by data
 - Requires stable quantile estimation (challenging in tails)
 - Computational cost vs. VaR (which is just a single quantile)
@@ -74,6 +81,7 @@ Computing spectral risk measures:
 
 !!! note "Risk Management Practice"
     Spectral measures provide:
+
     - Theoretically principled risk aggregation
     - Flexibility to match institutional risk tolerance
     - Framework for incorporating expert judgment

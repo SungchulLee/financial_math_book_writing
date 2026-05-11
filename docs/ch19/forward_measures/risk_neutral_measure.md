@@ -49,6 +49,7 @@ This formula applies to bonds, options, and general derivatives.
 
 
 The risk-neutral measure:
+
 - absorbs risk premia into the drift,
 - leaves diffusion terms unchanged,
 - simplifies pricing to expectation of discounted cashflows.
@@ -61,6 +62,7 @@ It is not the physical (real-world) probability measure.
 
 
 In interest-rate models:
+
 - the short rate $r_t$ determines discounting,
 - $\mathbb{Q}$-dynamics are calibrated to prices,
 - physical dynamics are relevant for risk management, not pricing.

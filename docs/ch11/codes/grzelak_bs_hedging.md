@@ -296,3 +296,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+In the BS hedging simulation, the delta is recomputed at each time step. Explain why the hedge ratio changes even if the stock price does not move.
+
+??? success "Solution to Exercise 1"
+    Delta depends on time to maturity: $\Delta = N(d_1)$ where $d_1$ involves $\sqrt{T - t}$ in the denominator. As time passes ($t$ increases), $T - t$ decreases, causing $d_1$ to change. For ITM options, delta increases toward 1; for OTM options, it decreases toward 0. Even without stock movement, the passage of time changes the hedge ratio.
+
+---
+
+**Exercise 2.**
+The P&L histogram shows a narrow distribution centered at zero. What would happen to this distribution if the hedging frequency were reduced from 1000 to 50 steps?
+
+??? success "Solution to Exercise 2"
+    The P&L variance scales as $O(1/N)$ where $N$ is the number of rebalancing steps. Reducing from 1000 to 50 increases variance by factor $1000/50 = 20$, so std increases by $\sqrt{20} \approx 4.5$. The histogram would be much wider, with more extreme outcomes. Some paths would show significant losses, demonstrating the cost of infrequent hedging.
+
+---
+
+**Exercise 3.**
+For the path $S_0 = 1$, $K = 0.95$ (ITM call), explain why the initial delta is above 0.5 and how it evolves along a typical path.
+
+??? success "Solution to Exercise 3"
+    With $S_0/K = 1/0.95 = 1.053$ (ITM), $d_1 > 0$, so $\Delta = N(d_1) > 0.5$. Along a typical path where $S$ stays near $S_0$: as $T - t$ decreases, $d_1 \to +\infty$ for ITM options, so $\Delta \to 1$. If the stock drops below $K$, delta decreases. The delta path mirrors the "probability of finishing ITM" which resolves to 0 or 1 at expiry.
+
+---
+
+**Exercise 4.**
+The final settlement step is $\text{PnL}_T = \text{PnL}_{T^-} - \max(S_T - K, 0) + \Delta_T \cdot S_T$. Explain each term.
+
+??? success "Solution to Exercise 4"
+    $\text{PnL}_{T^-}$: accumulated cash from hedging activities. $-\max(S_T - K, 0)$: option payoff the hedger must pay (they sold the call). $+\Delta_T \cdot S_T$: proceeds from liquidating the stock hedge position ($\Delta_T$ shares at price $S_T$). If hedging were perfect, $\Delta_T \cdot S_T$ would exactly offset the payoff when ITM and the cash balance would be zero, giving PnL $= 0$.

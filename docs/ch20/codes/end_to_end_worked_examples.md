@@ -3,6 +3,7 @@
 This guide walks through complete pricing and calibration workflows using the Hull-White implementation classes developed in the preceding guides. Each example starts from market data, calibrates the model, prices a derivative, and validates the result. The companion `end_to_end_worked_examples.py` contains the executable code for all examples. The goal is to connect the theoretical formulas to concrete numerical output, so every intermediate quantity is displayed.
 
 !!! info "Prerequisites"
+
     - [Hull-White Model Class Guide](hull_white_model_class.md)
     - [Named Functions Implementation Guide](named_functions_implementation.md)
     - [Bond and Derivative Pricing Classes Guide](bond_derivative_pricing_classes.md)

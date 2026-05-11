@@ -281,3 +281,53 @@ if __name__ == "__main__":
     original_style_exact_match()
     demonstrate_heat_kernel_theory()
 ```
+
+## Exercises
+
+**Exercise 1.**
+Write the heat kernel (fundamental solution) $G(x, \xi, t)$ for the 1D heat equation and explain its physical interpretation as a response to a point source.
+
+??? success "Solution to Exercise 1"
+    The heat kernel is
+
+    $$
+    G(x, \xi, t) = \frac{1}{\sqrt{4\pi D t}}\exp\!\Bigl(-\frac{(x - \xi)^2}{4Dt}\Bigr)
+    $$
+
+    Physically, if a unit amount of heat is concentrated at position $\xi$ at time $t = 0$ (a Dirac delta initial condition $u(x,0) = \delta(x - \xi)$), then $G(x, \xi, t)$ gives the temperature at position $x$ at time $t$. The heat spreads symmetrically around $\xi$ with a Gaussian profile whose width grows as $\sqrt{4Dt}$.
+
+---
+
+**Exercise 2.**
+Show that the general solution to the heat equation with initial condition $f(x)$ can be written as a convolution $u(x,t) = \int G(x, \xi, t)\,f(\xi)\,d\xi$.
+
+??? success "Solution to Exercise 2"
+    By superposition, if $G(x,\xi,t)$ solves $u_t = Du_{xx}$ with $u(x,0) = \delta(x-\xi)$, then for a general $f$:
+
+    $$
+    u(x,t) = \int_{-\infty}^{\infty} G(x,\xi,t)\,f(\xi)\,d\xi
+    $$
+
+    solves $u_t = Du_{xx}$ with $u(x,0) = f(x)$, because: (1) each $G(\cdot,\xi,t)f(\xi)\,d\xi$ satisfies the PDE, (2) the integral (superposition) also satisfies the PDE by linearity, and (3) as $t \to 0^+$, $G(x,\xi,t) \to \delta(x-\xi)$, so $u(x,0) = \int \delta(x-\xi)f(\xi)\,d\xi = f(x)$.
+
+---
+
+**Exercise 3.**
+Compare the heat kernel method to the eigenfunction expansion method for a step function initial condition. Which gives a smoother approximation at early times?
+
+??? success "Solution to Exercise 3"
+    The heat kernel method gives a smoother approximation because the convolution with the Gaussian kernel inherently smooths the initial condition. Even for $t$ very small, the Gaussian width $\sqrt{4Dt}$ provides some smoothing.
+
+    The eigenfunction expansion, by contrast, suffers from the Gibbs phenomenon when truncated at $N$ modes. Near discontinuities, it produces oscillations of about 9% of the jump height that persist regardless of $N$. At early times when the true solution is barely smoothed, the eigenfunction method may show more artifacts.
+
+    However, both methods converge to the same solution. The heat kernel method is better for rough initial data, while the eigenfunction method is more efficient for smooth data where few modes suffice.
+
+---
+
+**Exercise 4.**
+If the domain is extended by a factor of 3 (from $[0, L]$ to $[-3L, 3L]$), how does this affect the accuracy of the heat kernel method? What determines the optimal extension factor?
+
+??? success "Solution to Exercise 4"
+    Domain extension improves accuracy by reducing the influence of the integration boundaries. The heat kernel $G(x,\xi,t)$ decays as $\exp(-(x-\xi)^2/(4Dt))$. For $x \in [0,L]$ and $\xi$ far outside this range (say $|\xi| > 3L$), the kernel is negligibly small when $3L \gg \sqrt{4DT}$.
+
+    The optimal extension factor ensures that $L_{\text{ext}} \gg \sqrt{4DT}$. For $D = 0.01$ and $T = 0.1$, $\sqrt{4DT} = \sqrt{0.004} \approx 0.063$, so an extension to $[-3, 3]$ (factor of 3) provides ample margin. Increasing the extension factor improves accuracy but increases computation cost.

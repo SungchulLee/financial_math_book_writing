@@ -28,6 +28,7 @@ Theory:
 The Lewis formula expresses a European call price as:
 
 C(K) = S0 - sqrt(S0 * K) * exp(-r * T) / pi
+
                * integral_0^inf  Re[ exp(-i*k*u) * cf(u - i/2)
                                       / (u^2 + 1/4) ] du
 
@@ -458,3 +459,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+The Lewis formula prices a European call as $C(K) = S_0 - \frac{\sqrt{S_0 K}e^{-rT}}{\pi}\int_0^\infty \text{Re}\bigl[\frac{e^{-iku}\varphi(u-i/2)}{u^2+1/4}\bigr]du$. Explain why the integrand decays as $O(1/u^2)$ for large $u$.
+
+??? success "Solution to Exercise 1"
+    The kernel $1/(u^2 + 1/4)$ provides $O(1/u^2)$ decay. The characteristic function $\varphi(u - i/2)$ is bounded (for well-behaved models, $|\varphi(u - i/2)| \leq C$ as $u \to \infty$). Therefore the integrand behaves as $O(1/u^2)$, ensuring absolute convergence. This is a key advantage of the Lewis formula over the Q1/Q2 decomposition, whose integrands decay only as $O(1/u)$.
+
+---
+
+**Exercise 2.**
+The FFT requires $N = 2^{15}$ grid points and upper limit $B = 500$. Compute the grid spacing $dx = B/N$ and the log-strike spacing $dk = 2\pi/B$. How many effective strikes can be priced simultaneously?
+
+??? success "Solution to Exercise 2"
+    $dx = 500/32768 \approx 0.01526$. $dk = 2\pi/500 \approx 0.01257$. The log-strike range is $[-Ndk/2, Ndk/2] = [-205.9, 205.9]$, corresponding to strikes from $S_0 e^{-205.9}$ to $S_0 e^{205.9}$. In practice, only strikes within a reasonable range (say $\pm 2$ in log-moneyness) are useful, giving about $4/dk \approx 318$ effective strikes per FFT call.
+
+---
+
+**Exercise 3.**
+Simpson quadrature weights follow the pattern $1, 4, 2, 4, 2, \ldots, 4, 1$ scaled by $dx/3$. Explain why Simpson weights improve accuracy compared to the trapezoidal rule for the Lewis integral.
+
+??? success "Solution to Exercise 3"
+    Simpson rule integrates quadratic polynomials exactly (order 4 error $O(dx^4)$), versus the trapezoidal rule which integrates only linear polynomials (order 2 error $O(dx^2)$). For smooth integrands like the Lewis kernel, this gives two extra orders of accuracy per grid point. With $dx \approx 0.015$, Simpson error is $\approx dx^4 \approx 5 \times 10^{-8}$, versus trapezoidal error $\approx dx^2 \approx 2 \times 10^{-4}$.
+
+---
+
+**Exercise 4.**
+The implied volatility extraction $\text{IV\_from\_Lewis}$ finds $\sigma$ such that the Lewis integral for the model CF equals that for the BS CF. Explain why this is equivalent to matching option prices and why the flat IV smile under GBM validates the implementation.
+
+??? success "Solution to Exercise 4"
+    Two CFs yield the same Lewis integral if and only if they produce the same call price (the Lewis formula is a bijection from CF to price). Finding $\sigma$ that equates the integrals is therefore equivalent to finding the BS implied volatility. Under GBM, the model CF is itself a BS CF with the true $\sigma$, so the extracted IV should be constant across strikes (flat smile). Any deviation from flat indicates numerical error, making this an effective validation test.

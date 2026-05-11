@@ -3,6 +3,7 @@
 This guide describes the design and usage of the Black-Karasinski (BK) trinomial tree implementation in the companion `python_implementation.py` module. The BK model is non-affine and has no closed-form bond or option prices, so a trinomial tree is the standard pricing engine. The code constructs the tree in log-rate space $x = \ln r$, calibrates the time-dependent drift $\theta(t)$ to the market yield curve by forward induction, and prices derivatives by backward induction. Each method is mapped to its mathematical formula from the preceding theory sections.
 
 !!! info "Prerequisites"
+
     - [Log-Normal Short Rate SDE](log_normal_short_rate_sde.md) (BK dynamics: $d(\ln r) = [\theta(t) - a\ln r]\,dt + \sigma\,dW$)
     - [Trinomial Tree Implementation](trinomial_tree_implementation.md) (tree construction theory)
     - [No Closed-Form Bond Prices](no_closed_form_bond_prices.md) (why numerical methods are required)

@@ -9,6 +9,7 @@
 
 
 Reflexivity posits that:
+
 - beliefs influence actions,
 - actions influence prices,
 - prices reinforce beliefs.
@@ -21,6 +22,7 @@ Markets are thus self-referential systems.
 
 
 In reflexive markets:
+
 - equilibrium may not exist or be stable,
 - expectations can be self-fulfilling,
 - feedback dominates fundamentals.
@@ -33,6 +35,7 @@ This contrasts with rational expectations models.
 
 
 Reflexivity can be modeled via:
+
 - feedback control systems,
 - agent-based models,
 - learning and belief-updating frameworks.
@@ -45,6 +48,7 @@ These models emphasize dynamics over equilibrium.
 
 
 Reflexivity explains:
+
 - bubbles and crashes,
 - persistent mispricings,
 - sudden market reversals.

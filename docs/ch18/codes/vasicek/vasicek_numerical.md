@@ -220,3 +220,71 @@ class VasicekRiskMetrics:
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+The Vasicek transition density is Gaussian. Given $a = 0.15$, $b = 0.05$, $\sigma = 0.02$, $r_{\text{current}} = 0.03$, and $\Delta t = 1$, compute the conditional mean and variance of $r(t + 1) \mid r(t) = 0.03$.
+
+??? success "Solution to Exercise 1"
+    The conditional mean is
+
+    $$
+    \mu = b + (r_{\text{current}} - b)e^{-a\Delta t} = 0.05 + (0.03 - 0.05)e^{-0.15} = 0.05 - 0.02 \times 0.8607 = 0.03279.
+    $$
+
+    The conditional variance is
+
+    $$
+    v^2 = \frac{\sigma^2}{2a}(1 - e^{-2a\Delta t}) = \frac{0.0004}{0.3}(1 - e^{-0.3}) = 0.001333 \times 0.2592 = 0.000346.
+    $$
+
+    The standard deviation is $\sqrt{0.000346} \approx 0.0186$.
+
+---
+
+**Exercise 2.**
+Explain how the Vasicek duration $D = B(T) = (1 - e^{-aT})/a$ differs from the Macaulay duration of a zero-coupon bond, which equals $T$.
+
+??? success "Solution to Exercise 2"
+    The Macaulay duration of a zero-coupon bond is simply its maturity $T$, representing the weighted average time of cash flows. The Vasicek duration $B(T) = (1 - e^{-aT})/a$ is the model-specific sensitivity of the bond price to changes in the short rate:
+
+    $$
+    D_{\text{Vasicek}} = -\frac{1}{P}\frac{\partial P}{\partial r} = B(T).
+    $$
+
+    For small $a$ (weak mean reversion), $B(T) \approx T$, recovering Macaulay duration. For large $a$, $B(T) \to 1/a$, which is bounded. This saturation reflects that under strong mean reversion, rate shocks are transient, so long-dated bonds are less sensitive to the current short rate than Macaulay duration would suggest.
+
+---
+
+**Exercise 3.**
+The Vasicek convexity for a zero-coupon bond is $C = B(T)^2$. If $a = 0.1$ and $T = 10$, compute the convexity and interpret it.
+
+??? success "Solution to Exercise 3"
+    First compute $B(10) = (1 - e^{-1})/0.1 = (1 - 0.3679)/0.1 = 6.321$. Then
+
+    $$
+    C = B(10)^2 = 6.321^2 = 39.95.
+    $$
+
+    Convexity measures the curvature of the price-yield relationship. A positive convexity of $39.95$ means that the bond price gains more from a rate decrease than it loses from an equal rate increase. For a 1-basis-point rate change, the convexity adjustment to the duration approximation is $\frac{1}{2} \times 39.95 \times (0.0001)^2 \approx 2 \times 10^{-7}$, which is negligible for small shifts but becomes important for large rate moves.
+
+---
+
+**Exercise 4.**
+The OLS calibration for Vasicek uses the discrete regression $r_{t+1} = \alpha + \beta r_t + \varepsilon_t$. Show how $\alpha$ and $\beta$ relate to the continuous-time parameters $a$ and $b$.
+
+??? success "Solution to Exercise 4"
+    The exact discrete-time transition of the Vasicek model is
+
+    $$
+    r_{t+1} = b(1 - e^{-a\Delta t}) + e^{-a\Delta t}\,r_t + \varepsilon_t,
+    $$
+
+    where $\varepsilon_t \sim \mathcal{N}(0, \sigma^2(1 - e^{-2a\Delta t})/(2a))$. Comparing with $r_{t+1} = \alpha + \beta\,r_t + \varepsilon_t$:
+
+    $$
+    \beta = e^{-a\Delta t}, \qquad \alpha = b(1 - \beta).
+    $$
+
+    Inverting: $a = -\ln(\beta)/\Delta t$ and $b = \alpha/(1 - \beta)$. The volatility is recovered from the residual variance: $\sigma = \hat{\sigma}_\varepsilon \sqrt{2a/(1 - \beta^2)}$.

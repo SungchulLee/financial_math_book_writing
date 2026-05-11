@@ -16,6 +16,7 @@ $$
 
 
 where:
+
 - $X_t$ is a state vector (often including the short rate),
 - $A$ and $B$ are deterministic functions.
 
@@ -27,6 +28,7 @@ In the one-factor case, $X_t=r_t$.
 
 
 Affine models lead to:
+
 - exponential-affine characteristic functions,
 - Riccati-type ODEs for $A$ and $B$,
 - closed-form bond prices and efficient option pricing in many cases.
@@ -50,6 +52,7 @@ These models are widely used for curve and swaption pricing (often with shifts).
 
 
 A common practical extension is **time-dependent drift** (e.g., Hull–White):
+
 - preserves affine structure,
 - fits today’s yield curve exactly,
 - retains analytical tractability.

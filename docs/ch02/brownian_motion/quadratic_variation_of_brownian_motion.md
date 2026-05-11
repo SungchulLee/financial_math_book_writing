@@ -234,6 +234,7 @@ The standard deviation decays as $T\sqrt{2/n}$, consistent with our variance bou
 ## Summary
 
 !!! abstract "Key Results"
+
     - For smooth functions, quadratic variation is **zero**. For Brownian motion, $[B]_T = T$.
     - The convergence $[B]_T^{(\Pi_n)} \xrightarrow{L^2} T$ follows from independence of increments and the identity $\mathrm{Var}(X^2) = 2\sigma^4$ for zero-mean Gaussian $X \sim \mathcal{N}(0,\sigma^2)$.
     - The shorthand $dB_t^2 = dt$ encodes this result and is the engine of Itô's formula.

@@ -411,3 +411,36 @@ if __name__ == "__main__":
     print(f"  Gamma:                {greeks['gamma']:.6f}")
     print(f"  Vega:                 {greeks['vega']:.4f}")
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Write the explicit finite difference scheme for the BS PDE applied to an American call. What is the stability condition?
+
+??? success "Solution to Exercise 1"
+    $V_i^j = a_i V_{i-1}^{j+1} + b_i V_i^{j+1} + c_i V_{i+1}^{j+1}$ followed by $V_i^j = \max(V_i^j, S_i - K)$ (early exercise). The stability condition requires $b_i \ge 0$: $\Delta t \le 1/(\sigma^2 i_{\max}^2 + r)$. For large $S_{\max}$, this becomes very restrictive.
+
+---
+
+**Exercise 2.**
+Why is the explicit scheme rarely used for production option pricing?
+
+??? success "Solution to Exercise 2"
+    The stability condition $\Delta t = O(\Delta S^2)$ requires an enormous number of time steps for fine spatial grids. With $N_S = 200$, you might need $N_t = 100{,}000+$. Implicit or CN schemes allow $\Delta t = O(\Delta S)$ or larger, requiring far fewer steps.
+
+---
+
+**Exercise 3.**
+For a non-dividend-paying American call, what does the explicit scheme produce compared to the European call?
+
+??? success "Solution to Exercise 3"
+    The same result: since early exercise is never optimal for a non-dividend American call, the early exercise constraint $V \ge S - K$ is never binding. The explicit scheme produces the European call price. This serves as a verification test.
+
+---
+
+**Exercise 4.**
+How would you add discrete dividends to the explicit scheme for an American call?
+
+??? success "Solution to Exercise 4"
+    At each ex-dividend date $t_d$ with dividend amount $D$: adjust the stock price grid by replacing $S_i$ with $S_i - D$ (or $S_i(1 - q)$ for proportional dividends). This creates a discontinuity in the option value that must be handled by interpolation onto the new grid. With dividends, early exercise of the American call may become optimal just before the ex-date.

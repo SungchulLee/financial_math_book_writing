@@ -15,6 +15,7 @@ $$
 $$
 
 where:
+
 - $V_t$ is the firm's asset value process
 - $B_t$ is the default barrier (possibly time-varying)
 - Convention: $\inf \emptyset = \infty$ (no default if barrier is never reached)
@@ -22,6 +23,7 @@ where:
 ### Economic Interpretation
 
 Default occurs when:
+
 - Firm value falls to a critical level
 - Covenant violations are triggered
 - The firm becomes insolvent
@@ -182,6 +184,7 @@ This is the **inverse Gaussian density** (shifted).
 ### Zero-Coupon Bond with Recovery
 
 Consider a defaultable zero-coupon bond paying:
+
 - Face value $D$ at maturity $T$ if no default
 - Recovery $R \cdot B$ at default time $\tau$ if default occurs before $T$
 
@@ -218,6 +221,7 @@ First-passage models generate non-trivial short-term spreads (unlike Merton), be
 ### Short-Maturity Behavior
 
 As $T \to 0$:
+
 - Merton model: $s(T) \to 0$ if $V_0 > D$
 - First-passage model: $s(T) \to s_0 > 0$ (positive short-term spread)
 
@@ -226,6 +230,7 @@ This is because there is always instantaneous default risk when the barrier can 
 ### Long-Maturity Behavior
 
 As $T \to \infty$:
+
 - If $\mu > 0$: Asset drifts away from barrier, spreads decrease
 - If $\mu < 0$: Default becomes certain, spreads increase
 - If $\mu = 0$: Spreads converge to a finite limit
@@ -233,6 +238,7 @@ As $T \to \infty$:
 ### Hump-Shaped Spread Curves
 
 First-passage models can generate **hump-shaped** credit spread curves, which are empirically observed:
+
 - Short maturities: Positive spread due to immediate default risk
 - Medium maturities: Peak spread as default probability accumulates
 - Long maturities: Spread may decrease if firm is likely to survive
@@ -293,6 +299,7 @@ Jumps allow for sudden default, partially addressing short-term spread issues.
 ### Unobservable Barrier
 
 The default barrier $B$ is not directly observable and must be:
+
 - Estimated from historical defaults
 - Calibrated to CDS spreads or bond prices
 - Derived from optimal default theory (endogenous barrier)
@@ -300,6 +307,7 @@ The default barrier $B$ is not directly observable and must be:
 ### Multiple Parameters
 
 The model has parameters $(V_0, \sigma, B)$, but only equity and some credit instruments are observed. Identification requires:
+
 - Joint calibration to equity and credit markets
 - Constraints from economic theory (e.g., limited liability)
 - Historical default data
@@ -307,6 +315,7 @@ The model has parameters $(V_0, \sigma, B)$, but only equity and some credit ins
 ### Sensitivity to Barrier Level
 
 Small changes in $B$ can produce large changes in:
+
 - Short-term default probabilities
 - Credit spreads
 - Hedge ratios
@@ -318,6 +327,7 @@ This sensitivity is a source of model risk.
 ## Numerical Example
 
 **Parameters:**
+
 - Asset value: $V_0 = 100$
 - Default barrier: $B = 60$
 - Risk-free rate: $r = 5\%$

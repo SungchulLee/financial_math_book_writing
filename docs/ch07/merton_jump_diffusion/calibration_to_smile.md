@@ -188,6 +188,7 @@ The four parameters are not fully identifiable from ATM options alone:
 - $\lambda$ and $\sigma_J$ are partially interchangeable: more frequent small jumps can mimic fewer large jumps
 
 !!! warning "Common Calibration Pitfalls"
+
     1. **Fitting ATM only**: Produces many equivalent parameter sets. Always include OTM strikes.
     2. **Ignoring maturity structure**: Calibrating to a single maturity leaves the $1/\sqrt{T}$ decay unconstrained.
     3. **Negative $\sigma^2$**: Can occur if the optimizer pushes all variance into the jump component. Use $\sigma > 0$ as a hard constraint.

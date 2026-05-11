@@ -7,6 +7,7 @@ When pricing American options via finite difference methods, the early-exercise 
 This section focuses on penalty methods and their integration with standard finite difference schemes (explicit, implicit, Crank–Nicolson), as well as the **Projected Successive Over-Relaxation (PSOR)** algorithm for solving the resulting linear complementarity problem.
 
 !!! info "Prerequisites"
+
     - [Finite Difference Methods](../../ch08/fdm/finite_difference_methods.md) (FDM basics)
     - [Free Boundary Problems](../../ch08/american_options/free_boundary_problems_american_options.md) (variational inequality)
     - [American Options Implementation](../../ch08/american_options/american_options_early_exercise_implementation.md) (projection approach)
@@ -221,6 +222,7 @@ def american_put_penalty(S_max, K, T, r, sigma, M, N, lam=1e7):
 ### When to Use Each
 
 !!! tip "Method Selection Guide"
+
     - **Projection**: Quick prototyping, educational implementations
     - **PSOR**: Production-quality pricing where accuracy matters
     - **Penalty**: When integrating with existing PDE solvers; good for nonlinear extensions

@@ -3,6 +3,7 @@
 The COS method (Fang and Oosterlee, 2008) combines the cosine expansion of the risk-neutral density with analytic integration against the payoff to produce a remarkably efficient pricing formula. The key idea is that European option prices are expectations of the form $e^{-rT}\mathbb{E}[\Phi(X_T)]$, where $\Phi$ is the payoff function and $X_T$ is the log-price. Expanding the density in a cosine series and integrating term-by-term against $\Phi$ converts the expectation into a finite sum involving two sets of coefficients: density coefficients $F_k$ (computed from the characteristic function) and payoff coefficients $V_k$ (computed analytically). This section derives the COS pricing formula, computes $V_k$ for standard payoffs, and demonstrates the method with numerical examples.
 
 !!! info "Prerequisites"
+
     - [Cosine Coefficients via CF](cosine_coefficients_via_cf.md) (the density coefficients $F_k$)
     - [Truncation to Finite Domain](truncation_to_finite_domain.md) (choice of $[a, b]$)
     - [Cosine Expansion on $[0, \pi]$](../fourier_series/cosine_expansion.md) (cosine series properties)

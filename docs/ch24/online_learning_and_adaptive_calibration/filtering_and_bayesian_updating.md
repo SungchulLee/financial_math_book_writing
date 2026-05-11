@@ -40,6 +40,7 @@ This recursion underlies all filtering methods.
 
 
 Common filters include:
+
 - Kalman filter (linear-Gaussian),
 - Extended and Unscented Kalman filters,
 - Particle filters for nonlinear/non-Gaussian models.
@@ -52,6 +53,7 @@ Choice depends on model complexity and accuracy needs.
 
 
 Filtering is widely used for:
+
 - stochastic volatility estimation,
 - latent factor models,
 - regime-switching detection.

@@ -5,6 +5,7 @@
 This section collects advanced topics and deeper mathematical insights related to exotic option pricing. These include **barrier smoothing** corrections for discrete simulation, **analytical approximations** for Asian options, **reflected Brownian motion** theory underlying lookback pricing, and the **Longstaff–Schwartz method** for early-exercise exotics. Each topic connects the practical pricing algorithms of previous sections to their theoretical foundations.
 
 !!! info "Prerequisites"
+
     - [Pricing with Binomial Trees](pricing_binomial_trees.md) (tree-based exotic pricing)
     - [Pricing with Monte Carlo](pricing_monte_carlo.md) (simulation-based exotic pricing)
     - [Barrier Options](barrier_options.md), [Asian Options](asian_options.md), [Lookback Options](lookback_options.md) (payoff definitions)

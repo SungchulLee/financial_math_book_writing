@@ -127,3 +127,62 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+For a bullet mortgage with notional \$1,000,000, annual rate $5\%$, term 30 years, and CPR $= 1\%$, compute the interest payment and installment in year 1.
+
+??? success "Solution to Exercise 1"
+    In a bullet mortgage, the notional repayment is zero until the final period. In year 1:
+
+    - Interest payment: $I_1 = r \times N_0 = 0.05 \times 1{,}000{,}000 = \$50{,}000$
+    - Notional quote: $Q_1 = 0$ (bullet structure)
+    - Prepayment: $P_1 = \text{CPR} \times (N_0 - Q_1) = 0.01 \times 1{,}000{,}000 = \$10{,}000$
+    - Installment: $C_1 = I_1 + Q_1 + P_1 = 50{,}000 + 0 + 10{,}000 = \$60{,}000$
+
+---
+
+**Exercise 2.**
+Compare the total interest paid over the life of a bullet mortgage versus an annuity mortgage (both with \$1,000,000 notional, $5\%$ rate, 30 years, and zero prepayment).
+
+??? success "Solution to Exercise 2"
+    For the bullet mortgage with no prepayment, the full notional is outstanding for all 30 years:
+
+    $$
+    \text{Total interest (bullet)} = r \times N_0 \times n = 0.05 \times 1{,}000{,}000 \times 30 = \$1{,}500{,}000.
+    $$
+
+    For the annuity mortgage, the annual installment is $C \approx \$65{,}051$ (from the annuity formula). Total payments: $65{,}051 \times 30 = \$1{,}951{,}530$. Total interest: $1{,}951{,}530 - 1{,}000{,}000 = \$951{,}530$.
+
+    The bullet mortgage costs $\$1{,}500{,}000$ in interest versus $\$951{,}530$ for the annuity, because the annuity amortizes the principal over time, reducing the interest base.
+
+---
+
+**Exercise 3.**
+In a bullet mortgage with CPR $= 1\%$, what is the remaining notional after 10 years (assuming no scheduled amortization)?
+
+??? success "Solution to Exercise 3"
+    With only prepayment reducing the notional each year, the remaining notional after $k$ years is approximately
+
+    $$
+    N_k \approx N_0 \times (1 - \text{CPR})^k = 1{,}000{,}000 \times (0.99)^{10}.
+    $$
+
+    Computing: $(0.99)^{10} = 0.9044$, so $N_{10} \approx \$904{,}382$.
+
+    After 10 years, about $9.6\%$ of the original notional has been prepaid.
+
+---
+
+**Exercise 4.**
+Explain why the final period of a bullet mortgage is treated differently in the code, and what happens to the installment at maturity.
+
+??? success "Solution to Exercise 4"
+    In the final period (year 30), the entire remaining notional must be repaid. The code sets $Q_n = N_{n-1}$ (the full outstanding balance), while in all prior periods $Q_t = 0$. The final installment is therefore
+
+    $$
+    C_n = I_n + Q_n = r \times N_{n-1} + N_{n-1} = N_{n-1}(1 + r).
+    $$
+
+    This creates a large final payment ("balloon payment"), which is the defining feature of a bullet mortgage. Without prepayments, $N_{29} = \$1{,}000{,}000$, so the final installment is $1{,}000{,}000 \times 1.05 = \$1{,}050{,}000$. This concentration of principal repayment at maturity creates significant refinancing risk.

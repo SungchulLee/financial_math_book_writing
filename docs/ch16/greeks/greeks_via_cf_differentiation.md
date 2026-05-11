@@ -74,7 +74,7 @@ $$
 In practice, a cleaner approach is to directly differentiate the combined call price integral.
 
 !!! note "Delta as a Probability"
-    For the Gil-Pelaez decomposition, the delta of a European call simplifies to $\Delta = e^{-qT} P_1$, where $P_1$ is the exercise probability under the stock-numeraire measure. This mirrors the Black-Scholes result $\Delta = e^{-qT}\Phi(d_1)$.
+    For the Gil-Pelaez decomposition, the delta of a European call simplifies to $\Delta = e^{-qT} P_1$, where $P_1$ is the exercise probability under the stock-numeraire measure. This mirrors the Black-Scholes result $\Delta = e^{-qT}\mathcal{N}(d_1)$.
 
 ---
 
@@ -356,7 +356,7 @@ All Greeks can be computed in a single pass over the quadrature nodes. If you ne
 Compare the CF-differentiation delta with the Black-Scholes delta $N(d_1)$ for an ATM call with $K = S_0 = 100$, $T = 0.5$, $v_0 = 0.04$, $\rho = -0.7$. The Heston delta accounts for the correlation between stock and variance moves. Explain qualitatively why negative $\rho$ makes the Heston delta slightly different from the BS delta.
 
 ??? success "Solution to Exercise 5"
-    In Black-Scholes, the ATM call delta is $\Delta_{\text{BS}} = e^{-qT}\Phi(d_1)$ where:
+    In Black-Scholes, the ATM call delta is $\Delta_{\text{BS}} = e^{-qT}\mathcal{N}(d_1)$ where:
 
     $$
     d_1 = \frac{(r - q + \tfrac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
@@ -382,7 +382,7 @@ Compare the CF-differentiation delta with the Black-Scholes delta $N(d_1)$ for a
 
     This asymmetry produces a **negatively skewed** distribution of $\ln S_T$ under the Heston model, compared to the symmetric (Gaussian) distribution under Black-Scholes. For an ATM call:
 
-    - The negative skew means the risk-neutral probability of finishing ITM ($P_2$) is slightly different from $\Phi(d_2)$.
+    - The negative skew means the risk-neutral probability of finishing ITM ($P_2$) is slightly different from $\mathcal{N}(d_2)$.
     - More importantly, the stock-measure probability $P_1$ (which weights outcomes by the stock price) is affected by the skew. The leverage effect creates a subtle conditional dependence: given that the option finishes ITM, the expected stock price differs from the Black-Scholes prediction.
 
     The net result is that negative $\rho$ slightly increases the ATM Heston delta relative to Black-Scholes. Intuitively, the leverage-induced left skew makes the option "more sensitive" to the current stock price because downside moves are amplified by rising variance, so the hedge ratio must be slightly larger to compensate for this asymmetric risk.

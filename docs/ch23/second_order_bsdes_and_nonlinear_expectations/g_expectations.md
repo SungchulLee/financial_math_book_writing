@@ -29,6 +29,7 @@ $$
 
 
 **Properties**:
+
 1. **Linearity**: $E[a\xi + b\eta] = aE[\xi] + bE[\eta]$
 2. **Monotonicity**: $\xi \geq \eta \implies E[\xi] \geq E[\eta]$
 3. **Constant preserving**: $E[c] = c$ for constants $c$
@@ -65,6 +66,7 @@ $$
 
 
 where:
+
 - $\xi$: Terminal condition (random variable, $\mathcal{F}_T$-measurable)
 - $g: [0,T] \times \mathbb{R} \times \mathbb{R}^d \to \mathbb{R}$: Generator (driver)
 - $W_t$: $d$-dimensional Brownian motion
@@ -84,6 +86,7 @@ $$
 
 
 **Theorem** (Pardoux-Peng, 1990): Suppose:
+
 1. $g$ is uniformly Lipschitz in $(y, z)$
 2. $\mathbb{E}\left[\int_0^T |g(t, 0, 0)|^2 dt\right] < \infty$
 3. $\mathbb{E}[|\xi|^2] < \infty$
@@ -133,6 +136,7 @@ $$
 
 
 **Interpretation**: 
+
 - Generalizes conditional expectation
 - Depends on entire path through generator $g$
 - Nonlinear in general
@@ -367,6 +371,7 @@ $$
 
 
 where:
+
 - $\mathcal{Q}$: Set of "admissible" probability measures
 - $\mathcal{Q}^c$: Complement set
 
@@ -412,6 +417,7 @@ where $Z_t$ comes from the BSDE solution.
 **Non-Additive Measure**: For certain generators, g-expectations correspond to integration with respect to Choquet capacities.
 
 **Capacity**: A set function $\nu: \mathcal{F} \to [0, 1]$ with:
+
 1. $\nu(\emptyset) = 0$, $\nu(\Omega) = 1$
 2. Monotonicity: $A \subseteq B \implies \nu(A) \leq \nu(B)$
 
@@ -653,6 +659,7 @@ $$
 
 
 **Algorithm**:
+
 1. Simulate $M$ paths of Brownian motion: $\{W^{(m)}_t\}_{m=1}^M$
 2. At each time $t_i$, estimate conditional expectations using regression
 3. Backward iterate to compute $Y_0$
@@ -690,6 +697,7 @@ $$
 
 
 **Advantages**: 
+
 - Handles high-dimensional problems
 - Avoids curse of dimensionality
 - Scales well with complexity
@@ -710,6 +718,7 @@ $$
 
 
 with:
+
 1. $Y_t \geq S_t$ (obstacle constraint)
 2. $K_t$ is increasing, continuous, $K_0 = 0$
 3. $\int_0^T (Y_t - S_t) \, dK_t = 0$ (Skorokhod condition)
@@ -780,6 +789,7 @@ $$
 **Existence**: Proven under specific conditions (Kobylanski, 2000).
 
 **Application**: 
+
 - Exponential utility maximization
 - Risk-sensitive control
 - Large deviations
@@ -917,16 +927,19 @@ for some constant $C$ depending on $T$ and Lipschitz constants.
 
 
 **For Pricing**:
+
 - Robust pricing under model uncertainty
 - Utility-based valuation
 - Credit valuation adjustments
 
 **For Risk Management**:
+
 - Dynamic coherent risk measures
 - Stress testing frameworks
 - Regulatory capital calculations
 
 **For Portfolio Optimization**:
+
 - Ambiguity-averse portfolio selection
 - Robust optimal control
 - Mean-field game equilibria
@@ -935,12 +948,14 @@ for some constant $C$ depending on $T$ and Lipschitz constants.
 
 
 g-Expectations unify:
+
 - **Stochastic Analysis**: BSDEs and martingale theory
 - **PDE Theory**: Viscosity solutions and Hamilton-Jacobi equations
 - **Optimization**: Stochastic control and minimax problems
 - **Finance**: Pricing, hedging, and risk management
 
 The theory continues to evolve with extensions to:
+
 - Mean-field limits
 - Infinite-dimensional settings
 - Non-Markovian frameworks

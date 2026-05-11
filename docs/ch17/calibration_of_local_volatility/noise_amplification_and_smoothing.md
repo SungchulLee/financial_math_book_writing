@@ -25,6 +25,7 @@ $$
 
 
 The division by $h^2$ means:
+
 - as you refine the grid (smaller $h$),
 - noise $\varepsilon$ is magnified like $1/h^2$.
 
@@ -69,6 +70,7 @@ Useful constraints include:
 - **calendar monotonicity:** call price should not decrease with maturity (under standard assumptions).
 
 In practice:
+
 - remove violations before smoothing,
 - fit a constrained surface,
 - or adjust bid/ask bands until constraints are satisfied.
@@ -89,6 +91,7 @@ $$
 because $w$ behaves more linearly across $T$ and facilitates calendar-arbitrage checks.
 
 One can:
+
 - fit $w(k,T)$ smoothly in both directions,
 - compute model-consistent prices from the fitted $w$,
 - then apply Dupire.

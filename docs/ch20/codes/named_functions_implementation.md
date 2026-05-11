@@ -3,6 +3,7 @@
 The Hull-White model's analytical tractability rests on a small set of named functions --- $B(\tau)$, $A(\tau)$, $\theta(t)$, $\psi(t)$, $\sigma_r^2(t)$ --- that appear in bond pricing, simulation, and derivative pricing. This guide explains how the companion Python module `named_functions_implementation.py` translates each formula into code, discusses numerical choices (differentiation, integration, grid resolution), and maps every method to its mathematical definition in the [Named Functions](../named_functions/named_functions_definition.md) reference page.
 
 !!! info "Prerequisites"
+
     - [Named Functions Definition](../named_functions/named_functions_definition.md) (mathematical formulas)
     - [Hull-White Model Class Guide](hull_white_model_class.md) (class architecture)
     - [Short Rate Solution](../short_rate/short_rate_solution.md) (OU solution for $r_t$)

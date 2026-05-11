@@ -39,6 +39,7 @@ $$
 is the unique solution to the bond pricing PDE with terminal condition $u(T,r)=1$.
 
 Thus:
+
 - expectation formulation and PDE formulation are equivalent,
 - the choice is one of perspective and convenience.
 
@@ -48,6 +49,7 @@ Thus:
 
 
 For affine short-rate models:
+
 - the integral $\int_t^T r_s ds$ is Gaussian (Vasicek) or non-central chi-square (CIR),
 - expectations can be computed analytically,
 - results coincide with exponential-affine formulas.
@@ -58,6 +60,7 @@ For affine short-rate models:
 
 
 The Feynman–Kac form enables:
+
 - Monte Carlo pricing of bonds,
 - simulation-based pricing of IR derivatives,
 - easy extension to path-dependent payoffs.

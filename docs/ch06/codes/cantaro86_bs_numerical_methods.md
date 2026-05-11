@@ -19,6 +19,7 @@ stand-alone with only NumPy, SciPy, and Matplotlib.
 
 Topics covered
 --------------
+
 1. Black-Scholes closed formula (call and put).
 2. Put-call parity verification.
 3. Numerical integration of the log-normal density.
@@ -373,3 +374,57 @@ if __name__ == "__main__":
     plot_lognormal_density(S0, K, T, r, sigma)
     plot_price_vs_volatility(S0, K, T, r, "call")
 ```
+
+## Exercises
+
+**Exercise 1.**
+The code covers seven numerical topics. List them and explain which provides the most insight into the BS model's assumptions.
+
+??? success "Solution to Exercise 1"
+
+    1. Black-Scholes closed formula (call and put)
+    2. Put-call parity verification
+    3. Numerical integration of the log-normal density
+    4. Change-of-measure pricing (stock vs money-market numeraire)
+    5. Monte Carlo pricing with standard error
+    6. Binomial tree implementation
+    7. Price as a function of volatility
+
+    Topic 4 (change of measure) provides the most insight because it reveals how the same option price can be computed using different numeraires. The stock numeraire gives $\mathcal{N}(d_1)$ while the money-market numeraire gives $\mathcal{N}(d_2)$, showing that $d_1$ and $d_2$ arise naturally from different probability measures rather than being arbitrary constructions.
+
+---
+
+**Exercise 2.**
+Explain how numerical integration of the log-normal density gives the BS price. Write the integral explicitly.
+
+??? success "Solution to Exercise 2"
+    The call price is $C = e^{-rT}\int_0^\infty \max(s - K, 0)\,p(s)\,ds$ where $p(s)$ is the risk-neutral log-normal density:
+
+    $$
+    p(s) = \frac{1}{s\sigma\sqrt{2\pi T}}\exp\!\Bigl(-\frac{(\ln s - \ln S_0 - (r - \frac{1}{2}\sigma^2)T)^2}{2\sigma^2 T}\Bigr)
+    $$
+
+    The integral reduces to $C = e^{-rT}\int_K^\infty (s - K)\,p(s)\,ds$, which can be evaluated numerically using quadrature. This confirms the BS formula without relying on PDE theory.
+
+---
+
+**Exercise 3.**
+Describe the optimized binomial tree implementation. How does the $O(N)$-space trick work?
+
+??? success "Solution to Exercise 3"
+    Instead of storing the full tree ($O(N^2)$ space), only one column (the current time step's values) is stored ($O(N)$ space). Working backward from expiration:
+
+    1. Initialize the final column: $V_j = \max(S_0 u^j d^{N-j} - K, 0)$ for $j = 0, \ldots, N$.
+    2. At each time step $n = N-1, \ldots, 0$: update in place: $V_j = e^{-r\Delta t}[qV_{j+1} + (1-q)V_j]$ for $j = 0, \ldots, n$.
+
+    This overwrites values that are no longer needed, reducing memory from $O(N^2)$ to $O(N)$.
+
+---
+
+**Exercise 4.**
+The code plots BS price versus volatility. What are the limits $C(\sigma \to 0)$ and $C(\sigma \to \infty)$?
+
+??? success "Solution to Exercise 4"
+    As $\sigma \to 0$: $d_1 \to +\infty$ if $S > Ke^{-rT}$ (ITM) and $d_1 \to -\infty$ if $S < Ke^{-rT}$ (OTM). So $C \to \max(S - Ke^{-rT}, 0)$, the discounted intrinsic value.
+
+    As $\sigma \to \infty$: $d_1 \to +\infty$ (since the $\frac{1}{2}\sigma^2 T$ term dominates), so $\mathcal{N}(d_1) \to 1$. Meanwhile $d_2 \to -\infty$, so $\mathcal{N}(d_2) \to 0$. Therefore $C \to S$ -- the call is worth the entire stock because infinite volatility guarantees the option will finish deep ITM.

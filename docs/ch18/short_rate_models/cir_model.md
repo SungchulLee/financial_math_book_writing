@@ -15,6 +15,7 @@ dr_t = \kappa(\theta - r_t) \, dt + \sigma \sqrt{r_t} \, dW_t^{\mathbb{Q}}
 $$
 
 where:
+
 - $\kappa > 0$: mean-reversion speed
 - $\theta > 0$: long-run mean level
 - $\sigma > 0$: volatility parameter
@@ -70,6 +71,7 @@ r_t \mid r_s \sim \frac{c}{2} \chi^2\left(\nu, \lambda\right)
 $$
 
 where:
+
 - $c = \frac{4\kappa}{\sigma^2(1 - e^{-\kappa(t-s)})}$
 - $\nu = \frac{4\kappa\theta}{\sigma^2}$ (degrees of freedom)
 - $\lambda = c \cdot r_s e^{-\kappa(t-s)}$ (non-centrality parameter)
@@ -146,6 +148,7 @@ $$
 $$
 
 Using ansatz $P = A(\tau) e^{-B(\tau)r}$ leads to:
+
 - Riccati ODE for $B(\tau)$: $B' = 1 - \kappa B - \frac{1}{2}\sigma^2 B^2$
 - Linear ODE for $\log A$: $(\log A)' = \kappa\theta B$
 

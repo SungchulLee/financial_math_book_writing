@@ -22,8 +22,15 @@ $$
 \theta_t := \frac{\mu_t - r_t}{\sigma_t}
 $$
 
-In a single-factor setting, $\theta_t$ coincides with the **instantaneous Sharpe ratio**:
-excess expected return per unit of standard deviation.
+The quantity $\theta_t$ plays a dual role:
+
+- **Sharpe ratio**: in a single-factor setting, $\theta_t$ is the instantaneous excess
+  return per unit of standard deviation.
+- **Girsanov kernel**: $\theta_t$ is the drift shift that defines the measure change
+  $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \int_0^t \theta_s\,ds$.
+
+This duality — economic content and mathematical mechanism encoded in the same
+quantity — is the key to risk-neutral pricing.
 
 ---
 
@@ -32,37 +39,8 @@ excess expected return per unit of standard deviation.
 - Large $\theta_t$: high compensation required for bearing risk.
 - Small $\theta_t$: low risk premium.
 
-### How probabilities are tilted
-
-The Radon–Nikodym derivative
-$Z_T = \exp(-\int_0^T\!\theta_s\,dW_s^{\mathbb{P}} - \tfrac{1}{2}\int_0^T\!\theta_s^2\,ds)$
-re-weights paths: when $\theta > 0$, paths with negative Brownian increments (adverse
-for the stock) receive higher weight under $\mathbb{Q}$, while paths with positive
-increments (favorable returns) receive lower weight. In this way, the risk-neutral
-measure **overweights bad states and underweights good states**, removing the risk
-premium from expected returns.
-
-### Geometric view
-
-Geometrically, the Girsanov change $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \int_0^t \theta_s\,ds$
-shifts the center of the Brownian distribution by $\theta$ per unit time.
-Equivalently, it tilts the drift of the log-price from $\mu - \tfrac{1}{2}\sigma^2$ to
-$r - \tfrac{1}{2}\sigma^2$, shifting the distribution of paths rather than individual realizations.
-
----
-
-## Role in Measure Change
-
-The drift adjustment in Girsanov’s theorem is precisely $\theta_t$:
-
-$$
-W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \int_0^t \theta_s\,ds
-$$
-
-Thus:
-
-- $\theta_t$ removes excess drift,
-- volatility remains unchanged.
+When $\theta > 0$, the [measure change](construction.md) overweights adverse paths
+and underweights favorable ones, removing the risk premium from expected returns.
 
 ---
 
@@ -77,22 +55,6 @@ $$
 $$
 
 where $\Sigma_t$ is the volatility matrix.
-
----
-
-## Connection to the Stochastic Discount Factor
-
-In equilibrium asset pricing, the **stochastic discount factor** (SDF, or pricing
-kernel) $M_t$ satisfies $\mathbb{E}^{\mathbb{P}}[M_T \Phi_T \mid \mathcal{F}_t] = V_t$.
-The Radon–Nikodym derivative $Z_T = d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T}$ is
-proportional to $M_T / B_T^{-1}$: switching from SDF pricing under $\mathbb{P}$ to
-expectation pricing under $\mathbb{Q}$ is achieved by absorbing the SDF into the
-probability measure. The market price of risk $\theta$ therefore encodes the same
-information as the SDF, expressed as a Girsanov drift adjustment rather than a
-multiplicative kernel. In other words, the SDF discounts payoffs directly under
-$\mathbb{P}$, while the change of measure incorporates this discounting into
-probabilities under $\mathbb{Q}$. These are two equivalent ways of encoding the same
-pricing rule.
 
 ---
 
@@ -210,29 +172,9 @@ Suppose $\theta_t$ is time-varying with $\theta_t = a + b\sin(2\pi t)$ where $a 
 ---
 
 **Exercise 6.**
-A market has two stocks both driven by the same Brownian motion: $dS_t^i = \mu_i S_t^i\,dt + \sigma_i S_t^i\,dW_t$ for $i = 1, 2$. Show that no-arbitrage requires $(\mu_1 - r)/\sigma_1 = (\mu_2 - r)/\sigma_2$. What happens if this equality is violated?
-
-??? success "Solution to Exercise 6"
-    Both stocks are driven by the same Brownian motion, so $dS_t^i = \mu_i S_t^i\,dt + \sigma_i S_t^i\,dW_t$ for $i = 1,2$. For a risk-neutral measure to exist, a single $\theta$ must satisfy
-
-    $$
-    \mu_1 - r = \sigma_1\theta, \qquad \mu_2 - r = \sigma_2\theta
-    $$
-
-    Dividing: $\theta = (\mu_1 - r)/\sigma_1 = (\mu_2 - r)/\sigma_2$, which gives
-
-    $$
-    \frac{\mu_1 - r}{\sigma_1} = \frac{\mu_2 - r}{\sigma_2}
-    $$
-
-    If this equality is violated, no risk-neutral measure exists, and by the first fundamental theorem of asset pricing, arbitrage exists. Concretely, suppose $(\mu_1 - r)/\sigma_1 > (\mu_2 - r)/\sigma_2$. Construct a portfolio that is long $1/(\sigma_1 S_t^1)$ shares of asset 1 and short $1/(\sigma_2 S_t^2)$ shares of asset 2. The Brownian motion terms cancel, producing a risk-free portfolio with return exceeding $r$ — an arbitrage.
-
----
-
-**Exercise 7.**
 In an interest rate model, the market price of risk is specified exogenously as $\theta_t = \lambda r_t / \sigma$ (proportional to the short rate). Write the risk-neutral dynamics of the short rate and explain how $\theta_t$ modifies the physical drift. Why can't $\theta_t$ be determined from traded asset prices alone in this setting?
 
-??? success "Solution to Exercise 7"
+??? success "Solution to Exercise 6"
     Suppose the short rate follows $dr_t = \alpha(r_t)\,dt + \sigma\,dW_t^{\mathbb{P}}$ under $\mathbb{P}$, with market price of risk $\theta_t = \lambda r_t / \sigma$. The Girsanov change gives $dW_t^{\mathbb{P}} = dW_t^{\mathbb{Q}} - \theta_t\,dt$, so
 
     $$

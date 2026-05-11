@@ -223,3 +223,36 @@ if __name__ == "__main__":
     print(f"✅ European options: Numerical should match analytical closely")
     print("="*70)
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Write the CN finite difference equations for the BS PDE pricing a European call. What are the boundary conditions?
+
+??? success "Solution to Exercise 1"
+    The CN scheme: $(I - \frac{\Delta t}{2}L)\mathbf{V}^j = (I + \frac{\Delta t}{2}L)\mathbf{V}^{j+1}$ where $L$ is the tridiagonal BS spatial operator. Boundary conditions: $V(0,t) = 0$, $V(S_{\max}, t) = S_{\max} - Ke^{-r(T-t)}$, $V(S,T) = \max(S-K, 0)$.
+
+---
+
+**Exercise 2.**
+Compare the CN European call price with the BS formula. What error magnitude do you expect with $N_S = 100$ and $N_t = 1000$?
+
+??? success "Solution to Exercise 2"
+    With $\Delta S \approx 2$ and $\Delta t = 10^{-3}$, the CN error is $O(\Delta S^2 + \Delta t^2) \approx O(4 + 10^{-6}) \approx O(10^{-3})$ to $O(10^{-4})$ at the ATM point. Typical errors are $10^{-3}$ to $10^{-4}$ in absolute terms.
+
+---
+
+**Exercise 3.**
+Why might you use a PDE solver instead of the analytical BS formula for a European call?
+
+??? success "Solution to Exercise 3"
+    Reasons: (1) testing the PDE solver against the known formula before applying it to American or exotic options, (2) computing Greeks on the same grid (delta, gamma as finite differences), (3) extending to non-constant parameters ($\sigma(S,t)$, $r(t)$), (4) understanding the numerical behavior of the scheme.
+
+---
+
+**Exercise 4.**
+How do you extract the option Greeks (delta, gamma) from the CN solution grid?
+
+??? success "Solution to Exercise 4"
+    Delta: $\Delta \approx (V_{i+1} - V_{i-1})/(2\Delta S)$ (central difference). Gamma: $\Gamma \approx (V_{i+1} - 2V_i + V_{i-1})/\Delta S^2$ (second central difference). These finite difference Greeks converge to the true Greeks as the grid refines. The CN scheme produces smooth solutions, so the discrete Greeks are well-behaved.

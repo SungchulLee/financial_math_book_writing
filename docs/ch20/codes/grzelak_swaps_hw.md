@@ -226,3 +226,55 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+A payer interest rate swap has value $V = P(0, T_0) - P(0, T_n) - K\sum_{i=1}^n \tau_i P(0, T_i)$. If the yield curve is flat at $4\%$ and the swap has quarterly payments over 5 years with $K = 4\%$, show that $V \approx 0$.
+
+??? success "Solution to Exercise 1"
+    With a flat curve at $4\%$: $P(0,T) = e^{-0.04T}$, $P(0,0) = 1$, $P(0,5) = e^{-0.2} = 0.8187$. The annuity is $\sum_{i=1}^{20} 0.25 \times e^{-0.04 \times 0.25i}$.
+
+    The par swap rate for this annuity equals $K_{\text{par}} = (1 - P(0,5))/A$ where $A = \sum \tau_i P(0,T_i)$. If $K = K_{\text{par}} = 4\%$ (approximately, for a flat curve), then $V = 0$ by definition of the par rate. The small discrepancy between $4\%$ simple and $4\%$ continuous compounding may produce a residual on the order of basis points.
+
+---
+
+**Exercise 2.**
+Under the Hull-White model, the swap rate at time $t$ is stochastic. Express $S(t) = (P(t, T_0) - P(t, T_n))/\sum \tau_i P(t, T_i)$ and explain its distribution.
+
+??? success "Solution to Exercise 2"
+    Each $P(t, T_i) = e^{A(t,T_i) + B(t,T_i)\,r(t)}$ is an exponential-affine function of $r(t)$, which is Gaussian. The swap rate $S(t)$ is a ratio of sums of exponentials:
+
+    $$
+    S(t) = \frac{e^{A_0 + B_0 r} - e^{A_n + B_n r}}{\sum_i \tau_i e^{A_i + B_i r}}.
+    $$
+
+    This is not Gaussian -- it is a nonlinear function of the Gaussian variable $r(t)$. For moderate rate volatility, $S(t)$ is approximately Gaussian (first-order expansion), but for large $\eta$ or long maturities, the nonlinearity becomes important and produces skew in the swap rate distribution.
+
+---
+
+**Exercise 3.**
+Compute the 5-year par swap rate for the discount factors $P(0,1) = 0.97$, $P(0,2) = 0.94$, $P(0,3) = 0.91$, $P(0,4) = 0.88$, $P(0,5) = 0.85$ with annual payments.
+
+??? success "Solution to Exercise 3"
+    The annuity is $A = 1 \times (0.97 + 0.94 + 0.91 + 0.88 + 0.85) = 4.55$. The par rate is:
+
+    $$
+    K = \frac{P(0,0) - P(0,5)}{A} = \frac{1 - 0.85}{4.55} = \frac{0.15}{4.55} = 0.03297 = 3.30\%.
+    $$
+
+---
+
+**Exercise 4.**
+Explain how the Hull-White model is used to compute the DV01 (dollar value of a basis point) of a swap.
+
+??? success "Solution to Exercise 4"
+    The DV01 measures the change in swap value for a 1 basis point parallel shift in the yield curve. Under Hull-White:
+
+    1. Price the swap at the current curve: $V_0$.
+    2. Shift the entire initial yield curve up by 1 bp: $P_{\text{new}}(0,T) = P(0,T)\,e^{-0.0001 T}$.
+    3. Recalibrate $\theta(t)$ to the shifted curve.
+    4. Reprice the swap: $V_{\text{up}}$.
+    5. $\text{DV01} = V_{\text{up}} - V_0$.
+
+    This captures both the direct discounting effect and the model-implied change in expected future rates. For a par swap, the DV01 is approximately equal to the annuity value $A$, scaled by the notional and 1 bp.

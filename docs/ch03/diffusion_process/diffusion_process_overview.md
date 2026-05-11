@@ -16,8 +16,9 @@ be an $m$-dimensional Brownian motion adapted to $(\mathcal{F}_t)$.
     $$
     \mathrm{d}X_t^{i}
     = b^{i}(t, X_t)\,\mathrm{d}t
+
     + \sigma^{i\alpha}(t, X_t)\,\mathrm{d}W_t^{\alpha},
-    \qquad i = 1, \dots, d,\quad \alpha = 1, \dots, m,
+    \qquad i = 1, \dots, d,\quad \alpha = 1, \dots, m
     $$
 
     where:
@@ -32,9 +33,19 @@ The differential form is symbolic. The **mathematically precise definition** is 
 $$
 X_t^{i}
 = X_0^{i}
+
 + \int_0^t b^{i}(s, X_s)\,\mathrm{d}s
 + \int_0^t \sigma^{i\alpha}(s, X_s)\,\mathrm{d}W_s^{\alpha}
 $$
+
+!!! note "Three equivalent views of a diffusion"
+    The same object can be understood through three lenses:
+
+    1. **SDE** (pathwise): $\mathrm{d}X_t = b\,\mathrm{d}t + \sigma\,\mathrm{d}W_t$
+    2. **Generator** (analytic): $\mathcal{L} = b \cdot \nabla + \frac{1}{2}a : \nabla^2$
+    3. **Martingale problem** (law): $f(X_t) - \int_0^t \mathcal{L}f\,\mathrm{d}s$ is a martingale
+
+    This page is the master definition; later pages (invariant measures, time reversal, large deviations) build on these objects without redefining them.
 
 ---
 
@@ -47,7 +58,8 @@ Every Itô diffusion is a **semimartingale**: it decomposes as
 $$
 X_t^{i}
 = \underbrace{X_0^{i} + \int_0^t b^{i}(s, X_s)\,\mathrm{d}s}_{\text{finite variation (drift)}}
-+ \underbrace{\int_0^t \sigma^{i\alpha}(s, X_s)\,\mathrm{d}W_s^{\alpha}}_{\text{local martingale (noise)}}.
+
++ \underbrace{\int_0^t \sigma^{i\alpha}(s, X_s)\,\mathrm{d}W_s^{\alpha}}_{\text{local martingale (noise)}}
 $$
 
 Paths $t \mapsto X_t(\omega)$ are **continuous almost surely**, since both integrals produce continuous processes.
@@ -75,6 +87,7 @@ For $f \in C^{1,2}([0,\infty)\times\mathbb{R}^d)$ (once differentiable in $t$, t
 $$
 (\mathcal{L}f)(t, x)
 = b^{i}(t, x)\,\frac{\partial f}{\partial x_i}(x)
+
 + \frac{1}{2}\,a^{ij}(t, x)\,\frac{\partial^2 f}{\partial x_i \partial x_j}(x)
 $$
 
@@ -165,6 +178,7 @@ $$
 $$
 \mathrm{d}f(t, X_t)
 = \frac{\partial f}{\partial t}\,\mathrm{d}t
+
 + \frac{\partial f}{\partial x_i}\,\mathrm{d}X_t^i
 + \frac{1}{2}\,\frac{\partial^2 f}{\partial x_i \partial x_j}\,\mathrm{d}\langle X^i, X^j \rangle_t
 $$
@@ -174,8 +188,10 @@ Substituting $\mathrm{d}X_t^i = b^i\,\mathrm{d}t + \sigma^{i\alpha}\,\mathrm{d}W
 $$
 \mathrm{d}f(t, X_t)
 = \underbrace{\left(\frac{\partial f}{\partial t} + b^i\frac{\partial f}{\partial x_i} + \frac{1}{2}a^{ij}\frac{\partial^2 f}{\partial x_i\partial x_j}\right)}_{= \,\partial_t f \,+\, \mathcal{L}f}\mathrm{d}t
+
 + \frac{\partial f}{\partial x_i}\,\sigma^{i\alpha}\,\mathrm{d}W_t^{\alpha}
 = \left(\frac{\partial f}{\partial t} + \mathcal{L}f\right)\mathrm{d}t
+
 + \frac{\partial f}{\partial x_i}\,\sigma^{i\alpha}\,\mathrm{d}W_t^{\alpha}
 $$
 
@@ -187,7 +203,7 @@ The stochastic integral term is a local martingale; the remaining term is finite
 
 - A diffusion is a continuous-path Markov semimartingale whose quadratic covariation is $\mathrm{d}\langle X^i, X^j\rangle_t = a^{ij}(t, X_t)\,\mathrm{d}t$.
 - The drift $b$ and diffusion matrix $\sigma$ fully specify the dynamics; $a = \sigma\sigma^\top$ is the effective covariance.
-- The generator $\mathcal{L}$ encodes the infinitesimal mean behaviour and connects SDEs to PDEs (Kolmogorov equations).
+- The generator $\mathcal{L}$ is the central object: it determines local behaviour, martingale structure, invariant measures, and PDEs. A diffusion can be understood in three equivalent ways: (1) pathwise via the SDE, (2) analytically via the generator $\mathcal{L}$, (3) probabilistically via the [martingale problem](martingale_problem_stroock_varadhan.md).
 - The SDE defines the process pathwise; the martingale problem defines it in law via $\mathcal{L}$ alone.
 
 ---

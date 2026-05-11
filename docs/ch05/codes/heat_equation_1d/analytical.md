@@ -221,3 +221,67 @@ def validate_against_analytical(numerical_solution: np.ndarray, x: np.ndarray,
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+For the eigenfunction expansion of the 1D heat equation with Dirichlet boundary conditions on $[0, L]$, derive the formula for the Fourier coefficient $A_n$ when the initial condition is $f(x) = \sin(m\pi x / L)$ for a positive integer $m$.
+
+??? success "Solution to Exercise 1"
+    The Fourier coefficients are $A_n = \frac{2}{L}\int_0^L f(x)\sin\!\bigl(\frac{n\pi x}{L}\bigr)dx$. With $f(x) = \sin(m\pi x/L)$:
+
+    $$
+    A_n = \frac{2}{L}\int_0^L \sin\!\bigl(\tfrac{m\pi x}{L}\bigr)\sin\!\bigl(\tfrac{n\pi x}{L}\bigr)dx
+    $$
+
+    By orthogonality of sine functions, this integral equals $L/2$ if $n = m$ and $0$ otherwise. Therefore $A_n = \delta_{nm}$ (Kronecker delta), and the exact solution is $u(x,t) = \sin(m\pi x/L)\,e^{-D(m\pi/L)^2 t}$.
+
+---
+
+**Exercise 2.**
+Write the heat kernel (Green's function) for the 1D heat equation on $\mathbb{R}$ and show that it integrates to 1 for any $t > 0$.
+
+??? success "Solution to Exercise 2"
+    The heat kernel is
+
+    $$
+    G(x,\xi,t) = \frac{1}{\sqrt{4\pi D t}}\exp\!\Bigl(-\frac{(x-\xi)^2}{4Dt}\Bigr)
+    $$
+
+    Integrating over all $\xi$:
+
+    $$
+    \int_{-\infty}^{\infty} G(x,\xi,t)\,d\xi = \frac{1}{\sqrt{4\pi Dt}}\int_{-\infty}^{\infty} e^{-(x-\xi)^2/(4Dt)}\,d\xi
+    $$
+
+    Substituting $u = (x - \xi)/\sqrt{4Dt}$, $d\xi = -\sqrt{4Dt}\,du$, gives $\int_{-\infty}^{\infty} e^{-u^2}\,du / \sqrt{\pi} = 1$. This confirms that the heat kernel is a probability density in $\xi$ and conserves total mass.
+
+---
+
+**Exercise 3.**
+Explain why the FFT-based spectral method assumes periodic boundary conditions. What artifact can arise when solving a heat equation with Dirichlet conditions using FFT without domain extension?
+
+??? success "Solution to Exercise 3"
+    The discrete Fourier transform treats the input data as one period of a periodic function. If the initial condition does not satisfy periodic boundary conditions (e.g., $f(0) \ne f(L)$), the FFT implicitly creates discontinuities at the domain boundaries. These discontinuities produce Gibbs phenomena -- spurious oscillations near the boundaries that contaminate the solution.
+
+    Domain extension mitigates this by padding the domain with zeros (or mirror images) so that the effective function is smooth and approximately periodic over the extended interval. This pushes the boundary artifacts far from the physical domain.
+
+---
+
+**Exercise 4.**
+Given a numerical solution $u_h$ and an analytical solution $u$ on a grid with spacing $\Delta x$, define the $L^2$ error and the $L^\infty$ error. If the $L^2$ error scales as $O(\Delta x^p)$, what is $p$ called?
+
+??? success "Solution to Exercise 4"
+    The $L^2$ error is
+
+    $$
+    \|u_h - u\|_{L^2} = \sqrt{\int_0^L (u_h(x) - u(x))^2\,dx} \approx \sqrt{\Delta x \sum_i (u_{h,i} - u_i)^2}
+    $$
+
+    The $L^\infty$ error is
+
+    $$
+    \|u_h - u\|_{L^\infty} = \max_i |u_{h,i} - u_i|
+    $$
+
+    The exponent $p$ is called the **order of convergence** (or convergence rate) of the numerical method. For example, second-order methods such as Crank-Nicolson have $p = 2$ in space, meaning the error is halved when $\Delta x$ is reduced by a factor of $\sqrt{2}$.

@@ -224,3 +224,36 @@ if __name__ == "__main__":
     print(f"✅ Monte Carlo provides independent verification")
     print("="*70)
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Write the Crank-Nicolson scheme for the Black-Scholes PDE applied to an American call. How is the early exercise constraint enforced?
+
+??? success "Solution to Exercise 1"
+    The CN scheme solves $A\mathbf{V}^j = B\mathbf{V}^{j+1}$ at each time step (backward in time). For an American call, after solving the linear system, enforce $V_i^j = \max(V_i^j, S_i - K)$ at every grid point. This projection ensures the option value never falls below the intrinsic value.
+
+---
+
+**Exercise 2.**
+For a non-dividend-paying stock, is early exercise of an American call ever optimal? How does this affect the CN solver?
+
+??? success "Solution to Exercise 2"
+    No, early exercise is never optimal for a non-dividend-paying American call. The call value always exceeds $S - K$ because $C \ge S - Ke^{-r(T-t)} > S - K$ for $r > 0$. The CN solver produces the European call price; the early exercise constraint is never binding.
+
+---
+
+**Exercise 3.**
+Describe the boundary conditions used for the American call in the finite difference grid.
+
+??? success "Solution to Exercise 3"
+    At $S = 0$: $V(0,t) = 0$ (worthless). At $S = S_{\max}$: $V(S_{\max}, t) = S_{\max} - Ke^{-r(T-t)}$ (deep ITM approximation). At $t = T$: $V(S,T) = \max(S - K, 0)$ (payoff). These Dirichlet conditions close the system.
+
+---
+
+**Exercise 4.**
+How does the Crank-Nicolson scheme handle the non-smooth payoff at $S = K$? What artifact can arise?
+
+??? success "Solution to Exercise 4"
+    The payoff $\max(S-K, 0)$ has a kink at $S = K$. CN can produce spurious oscillations near this kink due to its second-order accuracy attempting to resolve a non-smooth function. Rannacher time stepping (using 2--4 fully implicit steps at the start) smooths these oscillations before switching to CN for the remaining steps.

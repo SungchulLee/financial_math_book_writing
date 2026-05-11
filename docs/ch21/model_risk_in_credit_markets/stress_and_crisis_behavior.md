@@ -9,6 +9,7 @@ Credit models calibrated in normal markets often fail during **stress and crisis
 
 
 During crises:
+
 - default intensities jump,
 - correlations spike,
 - liquidity evaporates.
@@ -21,6 +22,7 @@ Static models cannot capture these regime shifts.
 
 
 Common failure modes include:
+
 - extrapolation beyond calibration data,
 - frozen liquidity invalidating market prices,
 - violated independence assumptions.
@@ -33,6 +35,7 @@ Models appear stable until stress occurs.
 
 
 Robust credit risk management relies on:
+
 - scenario analysis,
 - extreme but plausible stresses,
 - reverse stress testing.
@@ -45,6 +48,7 @@ Stress tests complement, not replace, models.
 
 
 Historical crises show:
+
 - tail risk dominates averages,
 - diversification benefits vanish,
 - conservative assumptions outperform complex models.

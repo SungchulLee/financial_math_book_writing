@@ -9,6 +9,7 @@ Intensity-based models provide tractable pricing formulas for defaultable claims
 
 
 Assume:
+
 - default intensity $\lambda_t$,
 - recovery scheme specified,
 - immersion and progressive enlargement hold.
@@ -40,6 +41,7 @@ Default risk acts like an additional discount rate.
 
 
 With recovery of face value or market value, pricing involves:
+
 - integrals over default times,
 - survival probabilities,
 - expected recovery payments.
@@ -52,6 +54,7 @@ Closed forms exist for simple intensity models.
 
 
 The same framework prices:
+
 - credit default swaps (premium vs protection legs),
 - risky bonds and loans,
 - credit-linked notes.

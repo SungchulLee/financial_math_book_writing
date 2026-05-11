@@ -11,6 +11,7 @@ A **swaption** is an option to enter into an interest rate swap at a future date
 A **payer swaption** gives the holder the right (but not obligation) to enter into a **payer swap** (pay fixed, receive floating) at a future date.
 
 **Specification:**
+
 - **Expiry:** $T_0$ (option maturity)
 - **Underlying swap:** Start at $T_0$, payments at $T_1, \ldots, T_n$
 - **Strike:** $K$ (fixed rate)
@@ -55,6 +56,7 @@ The forward swap has zero value when $K$ equals the forward swap rate $S_0$.
 ### Swaption Naming
 
 "$m \times n$" swaption means:
+
 - $m$ years to expiry
 - $n$ years swap tenor
 
@@ -229,20 +231,24 @@ $$
 ### Market Data
 
 Standard quotes include:
+
 - ATM swaption volatilities (expiry × tenor grid)
 - Sometimes smile data (multiple strikes)
 
 ### Calibration Approaches
 
 **For Black's model:**
+
 - Direct use of market vols
 - Interpolation/extrapolation for missing points
 
 **For short-rate models (Hull-White):**
+
 - Fit $\kappa$ and $\sigma$ (or $\sigma(t)$) to swaption grid
 - Often done jointly with caps
 
 **For multi-factor models:**
+
 - More parameters allow better smile fit
 - Risk of overfitting
 
@@ -311,6 +317,7 @@ where $A_{\text{ref}}$ is computed using a reference curve (often ISDA methodolo
 ### Difference
 
 Cash and physical settlement can produce different values due to:
+
 - Annuity computation differences
 - Exercise timing
 - Basis risk
@@ -326,6 +333,7 @@ A **Bermudan swaption** allows exercise on multiple dates (e.g., each reset date
 ### Valuation
 
 Bermudan swaptions require numerical methods:
+
 - **Trees:** Backward induction with early exercise check
 - **Monte Carlo:** American/Bermudan methods (Longstaff-Schwartz)
 - **PDE:** With multiple exercise boundaries
@@ -379,6 +387,7 @@ The early exercise premium is typically 5-20 bps on implied vol for typical stru
 ### Arbitrage Bounds
 
 Swaptions and caps are connected via correlation:
+
 - Perfect correlation: swaption vol ≈ cap vol
 - Imperfect correlation: swaption vol < cap vol
 

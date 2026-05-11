@@ -3,6 +3,7 @@
 Interest rate caps are the primary liquid instruments used to calibrate Black-Karasinski (BK) model volatility. A cap is a portfolio of caplets, each of which is a call option on a forward rate for a single accrual period. Market convention quotes caps in terms of implied (Black) volatilities, and calibrating the BK model means finding the mean-reversion speed $a$ and log-rate volatility $\sigma$ (or a time-dependent $\sigma(t)$) so that model-implied cap prices match market prices. Because the BK model has no closed-form caplet formula, calibration relies on the trinomial tree: the tree is built, $\theta(t)$ is calibrated to the yield curve, and caplets are priced by backward induction, all inside the optimizer's objective function evaluation.
 
 !!! info "Prerequisites"
+
     - [Log-Normal Short Rate SDE](log_normal_short_rate_sde.md) (BK dynamics)
     - [Trinomial Tree Implementation](trinomial_tree_implementation.md) (tree construction and calibration of $\theta(t)$)
     - [No Closed-Form Bond Prices](no_closed_form_bond_prices.md) (numerical pricing necessity)
@@ -91,7 +92,7 @@ $$
 Market convention quotes caplet prices in terms of Black's formula. Given a caplet price $V_{\text{cplt}}$, the Black implied volatility $\sigma^{\text{Black}}$ satisfies:
 
 $$
-V_{\text{cplt}} = \delta_i\,P(0, T_{i+1})\left[F_i\,\Phi(d_1) - K\,\Phi(d_2)\right]
+V_{\text{cplt}} = \delta_i\,P(0, T_{i+1})\left[F_i\,\mathcal{N}(d_1) - K\,\mathcal{N}(d_2)\right]
 $$
 
 where $F_i = L(0, T_i, T_{i+1})$ is the forward LIBOR rate, and
@@ -251,10 +252,10 @@ The calibrated BK model can then be used to price caps at non-standard strikes, 
     Substituting into Black's formula with $\delta_i = 0.25$, $P(0, T_{i+1}) = 0.9560$, $F_i = K = 0.045$, $T_i = 2$:
 
     $$
-    V_{\text{cplt}} = \delta_i P(0, T_{i+1}) \cdot F_i \left[\Phi(d_1) - \Phi(d_2)\right]
+    V_{\text{cplt}} = \delta_i P(0, T_{i+1}) \cdot F_i \left[\mathcal{N}(d_1) - \mathcal{N}(d_2)\right]
     $$
 
-    Since $d_2 = -d_1$ for ATM, we have $\Phi(d_1) - \Phi(d_2) = \Phi(d_1) - \Phi(-d_1) = 2\Phi(d_1) - 1$. The equation to solve is
+    Since $d_2 = -d_1$ for ATM, we have $\mathcal{N}(d_1) - \mathcal{N}(d_2) = \mathcal{N}(d_1) - \mathcal{N}(-d_1) = 2\mathcal{N}(d_1) - 1$. The equation to solve is
 
     $$
     0.00215 = 0.25 \times 0.9560 \times 0.045 \times \left[2\Phi\!\left(\tfrac{1}{2}\sigma^{\text{Black}}\sqrt{2}\right) - 1\right]

@@ -3,6 +3,7 @@
 Density recovery---reconstructing the probability density function from the characteristic function using the COS method---serves both as a validation tool and as a diagnostic for understanding the risk-neutral distributions implied by different financial models. This section presents detailed density recovery examples for the normal, log-normal, and Heston distributions, comparing the COS reconstruction against known densities and quantifying the accuracy as a function of the number of terms $N$.
 
 !!! info "Prerequisites"
+
     - [COS Pricing Formula](cos_pricing_formula.md) (the COS framework)
     - [Error Analysis and Convergence](error_analysis_and_convergence.md) (convergence rates)
     - [From Characteristic Function to Density](characteristic_function_to_density.md) (inversion methods)
@@ -161,6 +162,7 @@ Density recovery can reveal implementation errors or parameter issues. The follo
 **Slow convergence.** If the error does not decrease exponentially with $N$, the density may have a non-smooth feature (kink, discontinuity) or the characteristic function may decay slowly along the real axis.
 
 !!! tip "Diagnostic Checklist"
+
     1. Verify $\hat{f}_N(x) \geq 0$ for all evaluation points
     2. Verify $\int_a^b \hat{f}_N(x)\,dx \approx 1$ (e.g., using the trapezoidal rule)
     3. Compare $\hat{f}_{N}$ and $\hat{f}_{2N}$: the difference should decrease exponentially

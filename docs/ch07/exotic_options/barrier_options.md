@@ -7,6 +7,7 @@
 Barrier options are among the most widely traded exotic derivatives in OTC markets, particularly in foreign exchange and structured equity products.
 
 !!! info "Prerequisites"
+
     - [Black–Scholes Formula](../../ch06/black_scholes_formula/bs_formula_statement.md) (vanilla option pricing)
     - [Exotic Options Overview](exotic_options_overview.md) (classification and motivation)
     - [Reflection Principle](../../ch02/brownian_motion/reflection_principle.md) (hitting probabilities for Brownian motion)

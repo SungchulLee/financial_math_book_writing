@@ -3,6 +3,7 @@
 The Hull-White model is often called the "extended Vasicek model" because it generalizes the classical Vasicek model (1977) by replacing the constant drift parameter with a time-dependent function $\theta(t)$. This extension is not merely cosmetic: the time-dependent drift enables exact calibration to the observed term structure, which the original Vasicek model cannot achieve. Understanding the precise relationship between the two models clarifies when the simpler Vasicek model suffices and why the Hull-White extension is essential for derivative pricing in practice.
 
 !!! info "Prerequisites"
+
     - Hull-White SDE and mean reversion (previous section)
     - Vasicek model: SDE, solution, bond pricing formula (Chapter 18)
     - Term structure of interest rates: zero-coupon bond prices, forward rates

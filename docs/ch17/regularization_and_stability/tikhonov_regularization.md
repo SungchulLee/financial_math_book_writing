@@ -29,17 +29,20 @@ The Tikhonov-regularized problem is
 $$
 \min_{\theta \in \Theta} \;
 \frac12\|F(\theta) - y\|_W^2
+
 + \frac{\lambda}{2}\|L(\theta - \theta_0)\|^2
 $$
 
 
 
 Components:
+
 - $\lambda > 0$: regularization strength,
 - $L$: regularization operator (often identity),
 - $\theta_0$: reference or prior parameter vector.
 
 Special cases:
+
 - **Zero-order Tikhonov:** $L = I$, penalizes large parameter magnitudes.
 - **Shifted Tikhonov:** pulls parameters toward a prior guess $\theta_0$.
 
@@ -58,6 +61,7 @@ $$
 
 
 Key consequences:
+
 - the matrix becomes invertible even if $A^\top W A$ is singular,
 - small singular values are damped,
 - variance is reduced at the cost of bias.

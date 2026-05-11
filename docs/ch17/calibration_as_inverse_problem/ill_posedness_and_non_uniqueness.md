@@ -86,6 +86,7 @@ Adding parameters can reduce in-sample error without improving explanatory power
 
 
 Constraints (positivity, Feller condition, no-arbitrage filters) can create multiple local minima:
+
 - one “good fit” region near the boundary,
 - another interior region with slightly worse fit but better stability.
 

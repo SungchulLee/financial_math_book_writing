@@ -239,3 +239,83 @@ if __name__ == "__main__":
     print(f"  Absolute Error: {results['put']['absolute_error']:.6f}")
     print(f"  Relative Error: {results['put']['relative_error']:.2%}")
 ```
+
+## Exercises
+
+**Exercise 1.**
+Consider the Black-Scholes call formula with parameters $S_0 = 100$, $K = 100$, $T = 1$, $r = 0.05$, and $\sigma = 0.20$. Compute $d_1$ and $d_2$ by hand and verify that the analytical call price is approximately $\$10.45$.
+
+??? success "Solution to Exercise 1"
+    We have
+
+    $$
+    d_1 = \frac{\ln(S_0/K) + (r + \tfrac{1}{2}\sigma^2)T}{\sigma\sqrt{T}} = \frac{0 + (0.05 + 0.02)\cdot 1}{0.20} = 0.35
+    $$
+
+    $$
+    d_2 = d_1 - \sigma\sqrt{T} = 0.35 - 0.20 = 0.15
+    $$
+
+    From standard normal tables, $\Phi(0.35) \approx 0.6368$ and $\Phi(0.15) \approx 0.5596$. Therefore
+
+    $$
+    C = 100 \cdot 0.6368 - 100 \cdot e^{-0.05} \cdot 0.5596 \approx 63.68 - 53.24 = 10.44
+    $$
+
+    which matches the expected value of approximately $\$10.45$.
+
+---
+
+**Exercise 2.**
+Explain the Feynman-Kac theorem in the context of the Black-Scholes PDE. Specifically, write down the PDE, identify the infinitesimal generator $\mathcal{L}$, the discount factor $c(x,t)$, and the terminal condition $g(X_T)$ for a European call option.
+
+??? success "Solution to Exercise 2"
+    The Black-Scholes PDE is
+
+    $$
+    \frac{\partial V}{\partial t} + r S \frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
+    $$
+
+    with terminal condition $V(S,T) = \max(S - K, 0)$.
+
+    The infinitesimal generator under the risk-neutral measure is
+
+    $$
+    \mathcal{L} = r S \frac{\partial}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2}{\partial S^2}
+    $$
+
+    The discount factor is $c(S,t) = r$ (the risk-free rate), so the discounting term is $e^{-r(T-t)}$. The terminal payoff is $g(S_T) = \max(S_T - K, 0)$.
+
+    By the Feynman-Kac theorem, the solution is $V(S,t) = E^Q[e^{-r(T-t)} g(S_T) \mid S_t = S]$, which is the risk-neutral pricing formula.
+
+---
+
+**Exercise 3.**
+A Monte Carlo simulation with $N = 100{,}000$ paths produces a call price estimate of $\hat{C} = 10.50$ with a standard error of $\mathrm{SE} = 0.05$. Construct a 95% confidence interval for the true price. How many paths would be needed to reduce the standard error to $0.01$?
+
+??? success "Solution to Exercise 3"
+    The 95% confidence interval is $\hat{C} \pm 1.96 \cdot \mathrm{SE} = 10.50 \pm 0.098$, giving the interval $[10.40, 10.60]$.
+
+    Since $\mathrm{SE} = \hat{\sigma} / \sqrt{N}$ where $\hat{\sigma}$ is the sample standard deviation, we have $\hat{\sigma} = 0.05 \cdot \sqrt{100{,}000} \approx 15.81$.
+
+    To achieve $\mathrm{SE} = 0.01$, we need
+
+    $$
+    N = \left(\frac{\hat{\sigma}}{0.01}\right)^2 = \left(\frac{15.81}{0.01}\right)^2 = 2{,}500{,}000
+    $$
+
+    So approximately 2.5 million paths are required.
+
+---
+
+**Exercise 4.**
+Verify put-call parity using both the analytical Black-Scholes formulas and Monte Carlo estimates. With $S_0 = 100$, $K = 100$, $T = 1$, $r = 0.05$, and $\sigma = 0.20$, show that $C - P = S_0 - K e^{-rT}$.
+
+??? success "Solution to Exercise 4"
+    Put-call parity states $C - P = S_0 - K e^{-rT}$.
+
+    The right-hand side is $100 - 100 e^{-0.05} = 100 - 95.12 = 4.88$.
+
+    From the Black-Scholes formulas, $C \approx 10.45$ and $P \approx 5.57$, so $C - P = 10.45 - 5.57 = 4.88$, which matches exactly.
+
+    For Monte Carlo estimates, the difference $\hat{C}_{\mathrm{MC}} - \hat{P}_{\mathrm{MC}}$ should converge to $4.88$ as the number of paths increases. Any deviation is due to sampling error and decreases at rate $O(1/\sqrt{N})$.

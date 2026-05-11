@@ -153,6 +153,7 @@ $$
 This form reveals that the posterior is the equilibrium $\pi$ plus a correction proportional to the deviation of views from equilibrium, weighted by relative confidence.
 
 !!! tip "Interpretation of the Posterior"
+
     - When $\Omega \to 0$ (perfect confidence in views): $\hat{\mu}_{\text{BL}} \to$ views dominate
     - When $\Omega \to \infty$ (no confidence in views): $\hat{\mu}_{\text{BL}} \to \pi$ (equilibrium)
     - When $\tau \to 0$ (tight prior): $\hat{\mu}_{\text{BL}} \to \pi$
@@ -468,7 +469,7 @@ Both approaches address the same problem---sensitivity of mean-variance optimiza
     \text{Var}(\hat{\mu}_{\text{GLS}}) = (X^\top V^{-1} X)^{-1} = \big[(\tau \Sigma)^{-1} + P^\top \Omega^{-1} P\big]^{-1} = \hat{\Sigma}_{\text{BL}}
     $$
 
-    which is exactly the Black-Litterman posterior covariance. This establishes the complete equivalence: the Bayesian posterior under Gaussian conjugate priors is identical to the frequentist GLS estimator in the Theil mixed estimation framework. $\blacksquare$
+    which is exactly the Black-Litterman posterior covariance. This establishes the complete equivalence: the Bayesian posterior under Gaussian conjugate priors is identical to the frequentist GLS estimator in the Theil mixed estimation framework. $\square$
 
 ---
 

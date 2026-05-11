@@ -111,6 +111,7 @@ The partial derivatives $f_t = \partial f/\partial t$ and $f_b = \partial f/\par
 
 $$
 f(t,b) \approx f(t_0,b_0)
+
 + f_t(t_0,b_0)(t-t_0)
 + f_b(t_0,b_0)(b-b_0)
 $$

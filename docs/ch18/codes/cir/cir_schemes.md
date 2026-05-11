@@ -150,3 +150,67 @@ if __name__ == "__main__":
     
         return SCHEME_REGISTRY[scheme]
 ```
+
+## Exercises
+
+**Exercise 1.**
+Write the Euler-Maruyama update step for the CIR model and explain why the absorption fix $r_{i+1} = \max(r_{i+1}, 0)$ is needed.
+
+??? success "Solution to Exercise 1"
+    The Euler-Maruyama step is
+
+    $$
+    r_{i+1} = r_i + \kappa(\theta - r_i)\,\Delta t + \sigma\sqrt{r_i}\,\Delta W_i.
+    $$
+
+    Even though the continuous CIR process remains non-negative under the Feller condition, the discrete approximation can produce negative values. When $r_i$ is small and $\Delta W_i$ is a large negative draw, the diffusion term $\sigma\sqrt{r_i}\,\Delta W_i$ can dominate and push $r_{i+1}$ below zero. The absorption fix applies $r_{i+1} = \max(r_{i+1}, 0)$, which reflects the path at zero, ensuring the square root $\sqrt{r_{i+1}}$ remains well-defined at the next step.
+
+---
+
+**Exercise 2.**
+The Milstein correction for the CIR model adds the term $\frac{1}{4}\sigma^2(\Delta W_i^2 - \Delta t)$ to the Euler-Maruyama step. Derive this correction starting from the general Milstein formula.
+
+??? success "Solution to Exercise 2"
+    The general Milstein scheme for an SDE $dX = a(X)\,dt + b(X)\,dW$ adds the correction
+
+    $$
+    \frac{1}{2}\,b(X)\,b'(X)\,(\Delta W^2 - \Delta t).
+    $$
+
+    For the CIR model, $b(r) = \sigma\sqrt{r}$, so
+
+    $$
+    b'(r) = \frac{\sigma}{2\sqrt{r}}.
+    $$
+
+    The correction term becomes
+
+    $$
+    \frac{1}{2}\,\sigma\sqrt{r}\,\cdot\,\frac{\sigma}{2\sqrt{r}}\,(\Delta W^2 - \Delta t) = \frac{\sigma^2}{4}\,(\Delta W^2 - \Delta t).
+    $$
+
+    This is independent of $r$, making implementation straightforward. It improves the strong convergence order from $O(\sqrt{\Delta t})$ (Euler) to $O(\Delta t)$ (Milstein).
+
+---
+
+**Exercise 3.**
+Compare the truncated Euler scheme to the standard Euler-Maruyama scheme. Under what conditions does the truncated scheme offer a significant advantage?
+
+??? success "Solution to Exercise 3"
+    In the standard Euler-Maruyama scheme, the drift term uses the actual (possibly negative) rate: $\kappa(\theta - r_i)\,\Delta t$. In the truncated Euler scheme, the diffusion coefficient uses $\sqrt{\max(r_i, 0)}$ while the drift still uses the original $r_i$, and the final output is truncated: $r_{i+1} = \max(r_{i+1}, 0)$.
+
+    The truncated scheme offers a significant advantage when the Feller condition is violated or nearly violated ($2\kappa\theta < \sigma^2$), because rates frequently approach zero. In this regime, the standard scheme may produce many negative values before truncation, leading to biased statistics. The truncated scheme handles the boundary more carefully, reducing bias near zero while maintaining mean-reversion behavior through the untruncated drift.
+
+---
+
+**Exercise 4.**
+The scheme registry maps `CIRScheme.EXACT` to a function that currently falls back to Milstein. Describe what a true exact scheme implementation would require and why it is more computationally expensive.
+
+??? success "Solution to Exercise 4"
+    A true exact scheme exploits the fact that the CIR transition distribution is known: $c \cdot r(t + \Delta t) \mid r(t)$ follows a non-central chi-squared distribution $\chi'^2(2q + 2, \lambda)$, where
+
+    $$
+    c = \frac{2\kappa}{\sigma^2(1 - e^{-\kappa\Delta t})}, \quad q = \frac{2\kappa\theta}{\sigma^2} - 1, \quad \lambda = c\,r(t)\,e^{-\kappa\Delta t}.
+    $$
+
+    At each step, one samples from this distribution and rescales: $r(t + \Delta t) = \chi'^2 / c$. This eliminates discretization error entirely but is more expensive because sampling from a non-central chi-squared distribution requires either Poisson mixing (sample a Poisson variate, then a chi-squared) or rejection methods, both of which are slower than sampling a single Gaussian for Euler-Maruyama.

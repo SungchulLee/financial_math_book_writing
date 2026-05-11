@@ -106,7 +106,7 @@ $$
 
 where:
 
-- $C_{\text{BS}}(S, K, T) = S\,\Phi(d_1) - Ke^{-rT}\,\Phi(d_2)$ is the standard Black–Scholes call price
+- $C_{\text{BS}}(S, K, T) = S\,\mathcal{N}(d_1) - Ke^{-rT}\,\mathcal{N}(d_2)$ is the standard Black–Scholes call price
 - $\lambda = \dfrac{r}{\sigma^2} + \dfrac{1}{2}$
 - $H$ is the barrier level with $H > S_0$ and $H > K$
 

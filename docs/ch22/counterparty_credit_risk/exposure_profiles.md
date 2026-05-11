@@ -13,6 +13,7 @@ E_t = \max(V_t, 0) = V_t^+
 $$
 
 **Interpretation:** 
+
 - If $V_t > 0$: We are owed money; default causes loss
 - If $V_t < 0$: We owe money; default causes no direct loss (ignoring replacement cost)
 
@@ -31,6 +32,7 @@ $$
 where the expectation is typically under the risk-neutral measure $\mathbb{Q}$.
 
 **Properties:**
+
 - EE is deterministic (a function of time only)
 - EE depends on portfolio composition and market dynamics
 - EE is always non-negative
@@ -88,6 +90,7 @@ Typically $\alpha = 0.95$ or $0.99$.
 **Interpretation:** With probability $\alpha$, exposure at time $t$ will not exceed $\text{PFE}_\alpha(t)$.
 
 **Relation to EE:**
+
 - EE measures average exposure
 - PFE measures tail exposure
 - $\text{PFE}_\alpha(t) \ge \text{EE}(t)$ always
@@ -101,6 +104,7 @@ Different products have characteristic exposure profiles:
 ### Interest Rate Swap
 
 **Receiver swap (receive fixed, pay floating):**
+
 - Exposure peaks mid-life
 - "Hump-shaped" profile
 - Pull-to-par effect near maturity
@@ -167,6 +171,7 @@ $$
 $$
 
 Netting is most valuable when trades have:
+
 - Opposite signs (long and short)
 - Different maturities
 - Low correlation of values
@@ -186,6 +191,7 @@ where $C_t$ is the collateral held.
 ### Margin Period of Risk (MPOR)
 
 Collateral is not instantaneously available. The **MPOR** is the time to:
+
 - Call for additional margin
 - Receive and process collateral
 - Close out the position if counterparty defaults
@@ -209,6 +215,7 @@ $$
 $$
 
 where:
+
 - LGD = Loss Given Default (typically 60%)
 - $\lambda(t)$ = default intensity (hazard rate)
 - $r(t)$ = risk-free rate
@@ -256,6 +263,7 @@ $$
 $$
 
 Peak exposure is used for:
+
 - Credit limit setting
 - Counterparty approval
 - Stress testing

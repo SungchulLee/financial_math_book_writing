@@ -71,10 +71,12 @@ This form has constant coefficients in the second-order $x$ terms, simplifying n
 ### In Asset Price (S)
 
 **As $S \to 0$:**
+
 - Call: $V \to 0$
 - Put: $V \to Ke^{-r(T-t)}$
 
 **As $S \to \infty$:**
+
 - Call: $V \sim Se^{-q(T-t)} - Ke^{-r(T-t)}$
 - Put: $V \to 0$
 
@@ -96,6 +98,7 @@ $$
 **As $v \to \infty$:**
 
 Option value becomes approximately linear in $\sqrt{v}$. Common choices:
+
 - Neumann: $\frac{\partial V}{\partial v} = 0$
 - Linear extrapolation
 - Far boundary placed sufficiently far
@@ -231,6 +234,7 @@ can simplify the PDE by reducing the mixed derivative coefficient.
 ### Non-Uniform Grids
 
 Concentrate grid points where $V$ varies most:
+
 - Near the strike ($S \approx K$)
 - Near $v = 0$ (boundary layer)
 - Near $v = v_0$ (current variance)

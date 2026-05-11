@@ -10,6 +10,7 @@ Changing probability measures in the presence of default requires special care b
 
 Let $\mathbb{Q}$ and $\mathbb{P}$ be equivalent measures on the enlarged filtration $(\mathcal{G}_t)$.
 The Radon–Nikodym derivative must account for:
+
 - diffusion risks,
 - jump-to-default risk.
 
@@ -36,6 +37,7 @@ This parallels drift changes in diffusion models.
 
 For pricing, discounted asset prices must remain martingales under the chosen measure.
 This imposes consistency conditions linking:
+
 - compensators,
 - measure changes,
 - recovery assumptions.
@@ -46,6 +48,7 @@ This imposes consistency conditions linking:
 
 
 Measure changes with default are crucial for:
+
 - linking historical default models to pricing models,
 - joint equity–credit modeling,
 - stress testing and scenario analysis.

@@ -30,12 +30,14 @@ The drift correction relates spot and terminal measure drifts:
 $$\mu_k^N(t) = \mu_k^{\text{spot}}(t) + \sigma_k(t) \sum_{j=k+1}^{N} \frac{\delta_j \sigma_j(t) \rho_{k,j}}{1 + \delta_j L_j(t)}$$
 
 Key features:
+
 - Correction term is positive (martingale property enforced)
 - Depends on instantaneous correlation $\rho_{k,j}$ between rate curves
 - Involves future rates for indices $j > k$ in terminal measure
 
 **Intuition**
 The drift correction arises because:
+
 1. Zero-coupon bond price depends on all future rates
 2. When changing numeraire to $P(t, T_N)$, relative pricing changes
 3. Girsanov theorem ensures the SDE coefficient structure remains proportional to $\sigma_k$
@@ -43,6 +45,7 @@ The drift correction arises because:
 
 **Practical Implementation**
 LMM calibration proceeds in terminal measure:
+
 1. Specify volatility structure $\sigma_k(t)$ (typically piecewise constant or deterministic)
 2. Specify correlation matrix $\rho_{i,j}$ for all rate pairs
 3. Drift is automatically computed from formula
@@ -51,6 +54,7 @@ LMM calibration proceeds in terminal measure:
 
 **Efficient Calibration**
 Terminal measure enables efficient calibration:
+
 - Caplets/floorlets prices depend on individual rate volatilities $\sigma_k$
 - Swaptions prices depend on rate correlation structure
 - Two-stage calibration: fit volatilities to caps, correlations to swaptions
@@ -65,6 +69,7 @@ Swap measure drift is different from terminal measure, optimized for swaption pr
 
 !!! note "Practical Insights"
     Terminal measure provides:
+
     - Computational efficiency through direct calibration
     - Intuitive interpretation: numeraire is final cash received
     - Stability in long-dated simulations

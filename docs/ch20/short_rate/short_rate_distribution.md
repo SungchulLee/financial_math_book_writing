@@ -3,6 +3,7 @@
 The Hull-White model produces a Gaussian short rate, meaning the conditional distribution of $r_T$ given $r_t$ is fully characterized by its mean and variance. This Gaussian property is both the model's greatest strength (enabling closed-form pricing) and its most discussed limitation (allowing negative rates). This section derives the complete distributional characterization, including the transition density, moment generating function, characteristic function, and the probability of negative rates.
 
 !!! info "Prerequisites"
+
     - Hull-White SDE and explicit solution (this chapter)
     - Ito isometry for stochastic integrals
     - Gaussian random variables: density, MGF, characteristic function

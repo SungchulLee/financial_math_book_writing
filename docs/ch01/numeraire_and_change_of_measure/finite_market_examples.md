@@ -1,7 +1,7 @@
 # Finite Market Examples
 
 
-The abstract machinery of the [Fundamental Theorem of Asset Pricing](fundamental_theorem_of_asset_pricing.md) comes alive in small, explicitly solvable markets. Working through concrete numerical models builds the intuition that no amount of general theory can provide: one sees exactly how the payoff matrix encodes market structure, how solving a linear system yields the risk-neutral measure, and how the rank of that matrix determines completeness.
+The abstract machinery of the [Fundamental Theorem of Asset Pricing](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md) comes alive in small, explicitly solvable markets. Working through concrete numerical models builds the intuition that no amount of general theory can provide: one sees exactly how the payoff matrix encodes market structure, how solving a linear system yields the risk-neutral measure, and how the rank of that matrix determines completeness.
 
 This page presents four progressively richer finite-state models. Each example sets up the payoff matrix $X$, solves for the equivalent martingale measure(s) $\mathbb{Q}$, and interprets the results through the lens of the First and Second FTAP.
 
@@ -29,7 +29,7 @@ The four examples illustrate different structural possibilities for a one-period
 
 ## Common Setup
 
-We work in a one-period model ($t \in \{0, 1\}$) with finite state space $\Omega = \{\omega_1, \ldots, \omega_n\}$ and physical probabilities $\mathbb{P}(\omega_i) = p_i > 0$. Following the notation of the [FTAP proof](fundamental_theorem_of_asset_pricing.md), the numéraire $S^0$ is normalized so that $S^0_0 = S^0_1 = 1$ (equivalently, all prices are pre-discounted). There are $d$ risky assets with time-0 prices $S^j_0$ and random time-1 payoffs $S^j_1(\omega_i)$.
+We work in a one-period model ($t \in \{0, 1\}$) with finite state space $\Omega = \{\omega_1, \ldots, \omega_n\}$ and physical probabilities $\mathbb{P}(\omega_i) = p_i > 0$. Following the notation of the [FTAP proof](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md), the numéraire $S^0$ is normalized so that $S^0_0 = S^0_1 = 1$ (equivalently, all prices are pre-discounted). There are $d$ risky assets with time-0 prices $S^j_0$ and random time-1 payoffs $S^j_1(\omega_i)$.
 
 The $n \times d$ **payoff matrix** of discounted excess returns is
 
@@ -43,7 +43,7 @@ $$
 X^T q = 0
 $$
 
-By the [First FTAP](fundamental_theorem_of_asset_pricing.md), the market is arbitrage-free if and only if such a $q$ exists. By the [Second FTAP](fundamental_theorem_of_asset_pricing.md), the market is complete if and only if the EMM is unique.
+By the [First FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md), the market is arbitrage-free if and only if such a $q$ exists. By the [Second FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md), the market is complete if and only if the EMM is unique.
 
 
 ## Example 1: Two-State Market (Complete)
@@ -175,7 +175,7 @@ $$
 \mathcal{Q} = \left\{\left(q_1,\; 1 - \frac{5}{2}\, q_1,\; \frac{3}{2}\, q_1\right) : 0 < q_1 < \frac{2}{5}\right\}
 $$
 
-There are infinitely many EMMs, so the market is **incomplete** by the [Second FTAP](fundamental_theorem_of_asset_pricing.md).
+There are infinitely many EMMs, so the market is **incomplete** by the [Second FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md).
 
 !!! note "Dimensional explanation"
     We have $n = 3$ states and $d = 1$ risky asset. The kernel of $X^T$ has dimension $n - \operatorname{rank}(X) = 3 - 1 = 2$. Intersecting this two-dimensional subspace with the affine hyperplane $\{q : \sum q_i = 1\}$ gives a one-dimensional family (a line segment inside the simplex). Completeness would require $\operatorname{rank}(X) = n - 1 = 2$, but we only have $d = 1 < n - 1 = 2$ risky assets, so the market is generically incomplete.
@@ -313,7 +313,7 @@ $$
 This confirms the risk-neutral price.
 
 !!! tip "Interpretation"
-    With $n = 3$ states and $d = 2$ risky assets, we have $d = n - 1$, and the payoff matrix has full column rank $\operatorname{rank}(X) = 2 = n - 1$. The kernel of $X^T$ is one-dimensional, so after normalizing to the simplex, the EMM is unique. This is the generic condition for completeness in finite markets, as discussed in [Complete Markets and Uniqueness](complete_markets_and_uniqueness.md).
+    With $n = 3$ states and $d = 2$ risky assets, we have $d = n - 1$, and the payoff matrix has full column rank $\operatorname{rank}(X) = 2 = n - 1$. The kernel of $X^T$ is one-dimensional, so after normalizing to the simplex, the EMM is unique. This is the generic condition for completeness in finite markets, as discussed in [Complete Markets and Uniqueness](../fundamental_theorem_of_asset_pricing/complete_markets_and_uniqueness.md).
 
 
 ## Example 4: Arbitrage Detection
@@ -359,11 +359,11 @@ $$
 
 This forces $q_1 = 0$, which violates the strict positivity requirement $q_i > 0$. No EMM exists.
 
-By the [First FTAP](fundamental_theorem_of_asset_pricing.md), the market admits an arbitrage opportunity.
+By the [First FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md), the market admits an arbitrage opportunity.
 
 ### Finding the Arbitrage Portfolio
 
-Since no EMM exists, the [Separating Hyperplane Theorem](separating_hyperplane_theorem.md) guarantees a separating direction. We seek a portfolio $\theta = (\theta^1, \theta^2) \in \mathbb{R}^2$ such that $X\theta \geq 0$ with at least one strict inequality.
+Since no EMM exists, the [Separating Hyperplane Theorem](../fundamental_theorem_of_asset_pricing/separating_hyperplane_theorem.md) guarantees a separating direction. We seek a portfolio $\theta = (\theta^1, \theta^2) \in \mathbb{R}^2$ such that $X\theta \geq 0$ with at least one strict inequality.
 
 Compute $X\theta$:
 
@@ -445,9 +445,9 @@ The examples on this page demonstrate several core principles:
 
 3. **Incomplete markets produce price intervals, not unique prices.** When multiple EMMs exist, each assigns a different price to non-replicable claims. The supremum and infimum over all EMMs give the super-replication and sub-replication prices.
 
-4. **Arbitrage manifests as the impossibility of positive state prices.** If no strictly positive probability vector satisfies $X^T q = 0$, the [Separating Hyperplane Theorem](separating_hyperplane_theorem.md) constructively produces the arbitrage portfolio as the separating direction.
+4. **Arbitrage manifests as the impossibility of positive state prices.** If no strictly positive probability vector satisfies $X^T q = 0$, the [Separating Hyperplane Theorem](../fundamental_theorem_of_asset_pricing/separating_hyperplane_theorem.md) constructively produces the arbitrage portfolio as the separating direction.
 
-These finite-dimensional results carry over to continuous-time models in a natural way, with the linear algebra replaced by functional analysis. The [FTAP page](fundamental_theorem_of_asset_pricing.md) discusses this extension under the heading of NFLVR and the Delbaen--Schachermayer theorem.
+These finite-dimensional results carry over to continuous-time models in a natural way, with the linear algebra replaced by functional analysis. The [FTAP page](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md) discusses this extension under the heading of NFLVR and the Delbaen--Schachermayer theorem.
 
 ---
 

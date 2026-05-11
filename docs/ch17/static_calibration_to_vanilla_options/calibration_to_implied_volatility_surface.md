@@ -139,7 +139,7 @@ This is usually posed as a weighted optimization problem (see next sections).
     where $C^{\text{BS}}$ denotes the Black--Scholes call price formula:
 
     $$
-    C^{\text{BS}} = S_0 e^{-qT} \Phi(d_1) - K e^{-rT} \Phi(d_2)
+    C^{\text{BS}} = S_0 e^{-qT} \mathcal{N}(d_1) - K e^{-rT} \mathcal{N}(d_2)
     $$
 
     with $d_1 = \frac{\ln(S_0/K) + (r - q + \sigma^2/2)T}{\sigma\sqrt{T}}$ and $d_2 = d_1 - \sigma\sqrt{T}$.
@@ -286,7 +286,7 @@ This is usually posed as a weighted optimization problem (see next sections).
 
     In log-moneyness space, the wings extend to $k \to \pm\infty$, and interpolation/extrapolation in the wings can be poorly constrained by sparse data. A polynomial or spline in $k$ may oscillate or diverge for large $|k|$.
 
-    In delta space, the wings are compressed into the regions near $\Delta = 0$ and $\Delta = 1$. This compression can improve interpolation stability in the wings because the coordinate transformation effectively "stretches" the well-observed near-ATM region and "compresses" the poorly observed wings. However, delta is itself a function of implied volatility (since $\Delta = \Phi(d_1)$ involves $\sigma$), creating a circular dependence: to parameterize in delta, one needs the volatility, but the volatility is what one is trying to determine. This is typically handled iteratively or by using a "sticky delta" convention.
+    In delta space, the wings are compressed into the regions near $\Delta = 0$ and $\Delta = 1$. This compression can improve interpolation stability in the wings because the coordinate transformation effectively "stretches" the well-observed near-ATM region and "compresses" the poorly observed wings. However, delta is itself a function of implied volatility (since $\Delta = \mathcal{N}(d_1)$ involves $\sigma$), creating a circular dependence: to parameterize in delta, one needs the volatility, but the volatility is what one is trying to determine. This is typically handled iteratively or by using a "sticky delta" convention.
 
     For equity markets, log-moneyness is preferred because listed strikes are fixed and the delta parameterization adds unnecessary complexity. For FX markets, delta is preferred because it aligns with market conventions and naturally handles the fact that FX option strikes are quoted relative to delta rather than absolute levels.
 

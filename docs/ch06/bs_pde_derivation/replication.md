@@ -1,10 +1,10 @@
-# Black–Scholes PDE via Delta Hedging (Rigorous Version)
+# Black–Scholes PDE via Self-Financing Replication
 
 This derivation removes the physical drift $\mu$ by **self-financing replication**: the martingale representation theorem enforces $\alpha_t = V_S$, and the self-financing condition does the rest. Where the [heuristic delta hedge](delta_hedging.md) freezes $\Delta$ over each infinitesimal interval and appeals to an informal rebalancing argument, this version constructs a genuinely self-financing strategy whose value process satisfies $dV_t = \alpha_t\,dS_t + \beta_t\,dB_t$ with no external cash flows.
 
 This section presents a **fully rigorous derivation** of the Black–Scholes partial differential equation using the framework of **self-financing trading strategies**, following the level of mathematical precision found in Shreve (2004) and Björk (2009).
 
-We explicitly distinguish between informal heuristic arguments and the **stochastic calculus formulation**, and we formalize the notion of replication. This replication argument yields the same PDE obtained via [risk-neutral valuation](change_of_numeraire.md) and [equilibrium (SDF) pricing](equilibrium.md)—the three approaches are equivalent, but differ in method and emphasis.
+We explicitly distinguish between informal heuristic arguments and the **stochastic calculus formulation**, and we formalize the notion of replication. This replication argument yields the same PDE obtained via [delta hedging](delta_hedging.md), [risk-neutral pricing](risk_neutral_measure.md), [change of numéraire](change_of_numeraire.md), and [equilibrium (SDF) pricing](equilibrium.md)—the five approaches are equivalent, but differ in method and emphasis. The replicating strategy $(\alpha_t, \beta_t)$ constructed here is the central object: it appears informally as $\Delta$ in delta hedging, reappears under the martingale lens in risk-neutral pricing, and is implicit (via the change-of-numéraire theorem) in the stock-numéraire derivation.
 
 ---
 
@@ -236,7 +236,7 @@ The Black–Scholes PDE **characterizes exactly those price processes that admit
 
 * The PDE is a **backward parabolic equation**.
 * The solution is unique under suitable growth conditions.
-* By Feynman–Kac, the solution admits a probabilistic representation under the risk-neutral measure: $V(t,S) = e^{-r(T-t)}\,\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]$. Equivalently, the replication argument implies that the discounted price process $e^{-rt}V(t,S_t)$ is a martingale under $\mathbb{Q}$. This connects the PDE formulation to the [change-of-numéraire](change_of_numeraire.md) and [equilibrium](equilibrium.md) derivations, where the same martingale property is the starting point rather than the conclusion.
+* By Feynman–Kac, the solution admits a probabilistic representation under the risk-neutral measure: $V(t,S) = e^{-r(T-t)}\,\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]$. Equivalently, the replication argument implies that the discounted price process $e^{-rt}V(t,S_t)$ is a martingale under $\mathbb{Q}$. The same self-financing strategy $(\alpha_t, \beta_t)$ derived here reappears in [risk-neutral pricing](risk_neutral_measure.md), where the discounted wealth $\widetilde{V}_t = e^{-rt}V_t$ satisfies $d\widetilde{V}_t = \alpha_t\,d\widetilde{S}_t$ — the martingale property is the conclusion of the replication argument and the starting point of the risk-neutral derivation. The same identification holds for the [change-of-numéraire](change_of_numeraire.md) and [equilibrium](equilibrium.md) derivations: in each case the strategy is the same; only the lens through which it is characterized changes.
 
 ---
 

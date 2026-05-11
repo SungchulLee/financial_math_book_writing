@@ -64,6 +64,7 @@ No mood effects, fatigue, or recency bias.
 **Definition**: Excessive certainty in own predictions.
 
 **Manifestation**: 
+
 - Underestimate forecast uncertainty
 - Overweight own analysis vs. market prices
 - Insufficient diversification
@@ -124,18 +125,22 @@ $$
 
 
 **Level 1 - Full Automation**: Model executes without human involvement.
+
 - Use for: High-frequency, standardized decisions
 - Example: Market-making spread adjustments
 
 **Level 2 - Human-in-the-Loop**: Model recommends, human approves.
+
 - Use for: Material decisions with moderate complexity
 - Example: Daily rebalancing of large portfolio
 
 **Level 3 - Human-on-the-Loop**: Model executes, human monitors.
+
 - Use for: Time-sensitive decisions requiring rapid execution
 - Example: Algorithm trading with human oversight
 
 **Level 4 - Model-Assisted**: Human decides, model provides input.
+
 - Use for: Novel or complex situations
 - Example: Strategic asset allocation review
 
@@ -143,12 +148,14 @@ $$
 
 
 **Conditions for Override**:
+
 1. Model output clearly inconsistent with known facts
 2. Unusual market conditions not in model training data
 3. Material soft information not captured by model
 4. Model malfunction or data error suspected
 
 **Documentation Requirements**:
+
 - Reason for override
 - Expected vs. model-recommended action
 - Post-hoc review of override decision
@@ -157,11 +164,13 @@ $$
 
 
 **Automated Alerts**: Trigger when:
+
 - Model outputs exceed historical ranges
 - Key assumptions violated
 - Performance degrades significantly
 
 **Escalation Path**:
+
 1. Alert to model user
 2. Escalate to risk management
 3. Escalate to senior management
@@ -216,6 +225,7 @@ $$
 **Situation**: Model signals aggressive short position; portfolio manager has concerns.
 
 **Process**:
+
 1. PM documents concerns (market structure change, new regulation)
 2. Risk committee reviews
 3. Decision: Reduce position size, monitor closely
@@ -230,6 +240,7 @@ $$
 **Situation**: Algorithm generating excessive orders, moving market.
 
 **Response**:
+
 1. Automated circuit breaker triggers
 2. Human operator notified
 3. Manual review identifies bug
@@ -243,6 +254,7 @@ $$
 **Situation**: 2008 financial crisis; standard models failing.
 
 **Adaptation**:
+
 1. Suspended automated rebalancing
 2. Senior management direct involvement
 3. Scenario analysis replaced VaR

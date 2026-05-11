@@ -22,8 +22,8 @@ E --> F[Numéraire Change]
 | [FTAP](#statement-of-the-theorem) (this page) | Core theorem | no-arbitrage ↔ equivalent martingale measure |
 | [Separating Hyperplane](separating_hyperplane_theorem.md) | Proof tool | geometric separation produces a pricing functional |
 | [Complete Markets and Uniqueness](complete_markets_and_uniqueness.md) | Second FTAP | uniqueness of EMM ↔ replicability |
-| [Finite Market Examples](finite_market_examples.md) | Concrete intuition | complete, incomplete, and arbitrage cases |
-| [Numéraire and Change of Measure](numeraire_and_change_of_measure.md) | Extension | pricing is invariant under choice of numéraire |
+| [Finite Market Examples](../numeraire_and_change_of_measure/finite_market_examples.md) | Concrete intuition | complete, incomplete, and arbitrage cases |
+| [Numéraire and Change of Measure](../numeraire_and_change_of_measure/numeraire_and_change_of_measure.md) | Extension | pricing is invariant under choice of numéraire |
 
 This chapter is the bridge between the earlier discrete pricing chapters and the later continuous-time theory: it formalizes no-arbitrage as the organizing principle, identifies when martingale measures exist and are unique, and prepares the move to change of measure and continuous-time stochastic calculus.
 
@@ -36,7 +36,7 @@ Consider a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ with a filtrati
 **Asset price process.**
 We have $d+1$ assets with price processes $S^0_t, S^1_t, \ldots, S^d_t$:
 
-- $S^0_t$: the **numéraire**, a strictly positive traded asset used as the unit of account. The most common choice is the money market account $S^0_t = e^{rt}$, but any strictly positive traded asset is valid (see [Numéraire and Change of Measure](numeraire_and_change_of_measure.md) for a full treatment).
+- $S^0_t$: the **numéraire**, a strictly positive traded asset used as the unit of account. The most common choice is the money market account $S^0_t = e^{rt}$, but any strictly positive traded asset is valid (see [Numéraire and Change of Measure](../numeraire_and_change_of_measure/numeraire_and_change_of_measure.md) for a full treatment).
 
 - $S^i_t$ for $i = 1, \ldots, d$: **risky assets**.
 

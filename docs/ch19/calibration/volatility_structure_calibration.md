@@ -9,6 +9,7 @@ Beyond fitting today’s curve, interest-rate models must specify and calibrate 
 
 
 Depending on the model, calibration targets include:
+
 - short-rate volatility parameters,
 - forward-rate volatilities (HJM),
 - cap/floor and swaption implied volatilities.
@@ -21,6 +22,7 @@ The volatility structure determines smile, skew, and term-structure dynamics.
 
 
 Common calibration instruments are:
+
 - caplets and floorlets,
 - caps/floors across maturities,
 - swaptions across expiries and tenors.
@@ -45,6 +47,7 @@ Model choice strongly affects calibration quality.
 
 Volatility calibration is an inverse problem and often ill-posed.
 Stability is improved by:
+
 - smoothness penalties across maturity,
 - parsimonious parametrizations,
 - restricting factor dimensionality.
@@ -202,6 +205,7 @@ as a closed-form expression in $(a,b,c,d)$. Verify that for $b = 0$ and $c = 0$ 
     $$
 
     $$
+
     + 2da\frac{1-e^{-cT_i}}{c} + 2db\frac{1-(1+cT_i)e^{-cT_i}}{c^2} + d^2 T_i\Biggr]
     $$
 

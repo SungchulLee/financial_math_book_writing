@@ -313,3 +313,51 @@ if __name__ == "__main__":
         print(f"Error occurred: {e}")
         print("Please check your heat_equation_1d package installation.")
 ```
+
+## Exercises
+
+**Exercise 1.**
+In the FFT spectral method, the heat equation becomes $\hat{u}_t = -4\pi^2 D k^2 \hat{u}$ in frequency domain. Solve this ODE and explain why high-frequency components decay faster.
+
+??? success "Solution to Exercise 1"
+    The ODE $\hat{u}_t = -4\pi^2 D k^2 \hat{u}$ has solution
+
+    $$
+    \hat{u}(k, t) = \hat{u}(k, 0)\,e^{-4\pi^2 D k^2 t}
+    $$
+
+    The decay rate is $4\pi^2 D k^2$, which grows quadratically with frequency $k$. High-frequency components (large $|k|$) decay exponentially faster than low-frequency components. This is why the heat equation smooths out sharp features (high-frequency content) while preserving the overall shape (low-frequency content). After time $t$, frequencies above $k_c \approx 1/\sqrt{4\pi^2 D t}$ are effectively damped to zero.
+
+---
+
+**Exercise 2.**
+Explain why the FFT-based method uses an extended domain ($L_{\text{ext}} = 3L$) rather than the physical domain $[0, L]$ alone.
+
+??? success "Solution to Exercise 2"
+    The FFT assumes periodicity: the signal repeats outside the computational domain. If the initial condition is nonzero at the boundaries (or if the physical problem has Dirichlet conditions $u = 0$), the periodic extension creates artificial discontinuities at the boundaries. These discontinuities generate spurious high-frequency content (spectral leakage) that corrupts the solution.
+
+    Extending the domain to $[-3L, 3L]$ with zero padding ensures that the periodic copies are far from the physical region $[0, L]$. The solution on $[0, L]$ is then obtained by interpolation, free from boundary contamination.
+
+---
+
+**Exercise 3.**
+Why is the FFT size chosen as a power of 2 (e.g., $N_{\text{ext}} = 2^{\lceil\log_2(5N_x)\rceil}$)? What is the computational complexity of the FFT?
+
+??? success "Solution to Exercise 3"
+    The Cooley-Tukey FFT algorithm achieves $O(N \log N)$ complexity when $N$ is a power of 2, by recursively decomposing the DFT into smaller DFTs. For non-power-of-2 sizes, the algorithm is less efficient or falls back to $O(N^2)$.
+
+    For the extended domain with $5N_x$ points, rounding up to the next power of 2 ensures optimal FFT performance. For example, with $N_x = 100$, we need $5 \times 100 = 500$ points, and the next power of 2 is $512 = 2^9$.
+
+---
+
+**Exercise 4.**
+The code compares three analytical methods: eigenfunction expansion, heat kernel, and FFT spectral. Under what conditions would you expect the FFT method to outperform the eigenfunction expansion?
+
+??? success "Solution to Exercise 4"
+    The FFT method outperforms eigenfunction expansion when:
+
+    1. **Smooth initial conditions**: FFT spectral methods achieve spectral (exponential) convergence for smooth functions, while eigenfunction expansion convergence depends on the decay of Fourier coefficients.
+    2. **Non-standard domains**: FFT naturally handles periodic or extended domains, while eigenfunction expansion requires specific boundary conditions (Dirichlet) and known eigenfunctions.
+    3. **Computational efficiency**: For $N$ modes, eigenfunction expansion costs $O(N \cdot N_x)$ while FFT costs $O(N_x \log N_x)$, making FFT faster when many modes are needed.
+
+    Conversely, eigenfunction expansion is better for discontinuous initial conditions (where FFT suffers from Gibbs phenomena on the extended domain) and when only a few dominant modes are needed.

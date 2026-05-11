@@ -170,3 +170,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+The COS method truncates the integration domain to $[a, b]$ with $a = -L\sqrt{\tau}$ and $b = L\sqrt{\tau}$. For $\tau = 0.1$ and $L = 10$, compute $a$ and $b$. Why does the domain scale with $\sqrt{\tau}$?
+
+??? success "Solution to Exercise 1"
+    $a = -10\sqrt{0.1} = -3.162$ and $b = 10\sqrt{0.1} = 3.162$. The domain scales with $\sqrt{\tau}$ because the log-return $\ln(S_T/S_0)$ has standard deviation proportional to $\sigma\sqrt{\tau}$ under GBM. Setting $L = 10$ captures about 10 standard deviations, ensuring the density tail contribution is negligible ($< 10^{-23}$ for normal).
+
+---
+
+**Exercise 2.**
+The COS method uses $N$ cosine expansion terms. For GBM with $\sigma = 0.25$, $\tau = 0.1$, if $N = 128$ gives error $2 \times 10^{-8}$, estimate the error for $N = 64$.
+
+??? success "Solution to Exercise 2"
+    The COS method has exponential convergence for smooth densities: error $\sim C \cdot e^{-\alpha N}$ for some $\alpha > 0$. Halving $N$ from 128 to 64 roughly squares the error (since $e^{-\alpha \cdot 64} = (e^{-\alpha \cdot 128})^{1/2}$). So the error at $N = 64$ is approximately $\sqrt{2 \times 10^{-8}} \approx 1.4 \times 10^{-4}$.
+
+---
+
+**Exercise 3.**
+The Chi and Psi coefficients in the COS method involve integrals of $e^x\cos(k\pi(x-a)/(b-a))$ and $\cos(k\pi(x-a)/(b-a))$ respectively. Explain their roles in pricing calls versus puts.
+
+??? success "Solution to Exercise 3"
+    The Chi coefficients capture the exponential part of the payoff ($e^x = S/K$ after log transformation), while Psi coefficients capture the indicator function (whether the option is in the money). For calls, the payoff coefficients are $H_k = \frac{2}{b-a}(\text{Chi}_k - \text{Psi}_k)$ integrated over $[0, b]$ (ITM region). For puts, $H_k = \frac{2}{b-a}(-\text{Chi}_k + \text{Psi}_k)$ over $[a, 0]$. The sign difference reflects call payoff $(e^x - 1)^+$ versus put payoff $(1 - e^x)^+$.
+
+---
+
+**Exercise 4.**
+Compare the COS method timing with Black-Scholes closed-form for $N = 128$ expansion terms and 5 strikes. Why is the COS method competitive despite requiring a summation?
+
+??? success "Solution to Exercise 4"
+    The COS method computes $N$ CF evaluations (vectorized) and one matrix-vector product, giving $O(N \times |\text{strikes}|)$ operations. For $N = 128$ and 5 strikes, this is 640 operations. Black-Scholes requires computing $d_1, d_2, N(d_1), N(d_2)$ per strike (about 20 operations each, total 100). The COS method is slightly slower for few strikes but extends to any model with a known CF, unlike the BS formula. For exotic payoffs or non-GBM models, COS is the only viable Fourier approach.

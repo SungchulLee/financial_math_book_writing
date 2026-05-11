@@ -267,3 +267,51 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+State the relationship between caplet and floorlet prices under the Hull-White model (caplet-floorlet parity).
+
+??? success "Solution to Exercise 1"
+    Caplet-floorlet parity is:
+
+    $$
+    \text{Caplet}(K) - \text{Floorlet}(K) = P(0, T_2)\bigl[F_L - K\bigr]\tau,
+    $$
+
+    where $F_L = \frac{1}{\tau}\left(\frac{P(0,T_1)}{P(0,T_2)} - 1\right)$ is the forward LIBOR rate. This is a model-independent result following from the linearity of the payoff. At the money forward ($K = F_L$), caplet and floorlet prices are equal.
+
+---
+
+**Exercise 2.**
+For an at-the-money-forward floorlet with $T_1 = 3$, $T_2 = 3.25$, $P(0, T_1) = 0.86$, $P(0, T_2) = 0.85$, compute the forward rate and the strike.
+
+??? success "Solution to Exercise 2"
+    $$
+    F_L = \frac{1}{0.25}\left(\frac{0.86}{0.85} - 1\right) = 4 \times (1.01176 - 1) = 4 \times 0.01176 = 0.04706 = 4.71\%.
+    $$
+
+    The ATM-forward strike is $K = 4.71\%$.
+
+---
+
+**Exercise 3.**
+A floor consists of floorlets at each payment date. If floorlet prices for a 3-year quarterly floor are each approximately \$500 (12 floorlets), what is the total floor price?
+
+??? success "Solution to Exercise 3"
+    The total floor price is the sum of all floorlet prices:
+
+    $$
+    \text{Floor} = \sum_{i=1}^{12} \text{Floorlet}_i \approx 12 \times 500 = \$6{,}000.
+    $$
+
+    In practice, floorlet prices vary with maturity (longer-dated floorlets are generally more expensive due to higher bond volatility), so this equal-price assumption is a simplification.
+
+---
+
+**Exercise 4.**
+Explain why floors become more valuable in a low interest rate environment and how this relates to the Hull-White model's ability to generate negative rates.
+
+??? success "Solution to Exercise 4"
+    A floor pays $\max(K - L, 0)$ when the floating rate $L$ falls below the strike $K$. In a low-rate environment, the probability of $L < K$ is higher, increasing the expected payoff and hence the floor price. The Hull-White model (being Gaussian) naturally allows negative rates, which means deep-in-the-money floors have substantial value. This is realistic for markets that have experienced negative rates (EUR, JPY, CHF). The CIR model, by contrast, cannot generate negative rates, making it unsuitable for pricing floors in negative rate environments.

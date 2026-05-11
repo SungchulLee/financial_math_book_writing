@@ -48,12 +48,14 @@ $$\frac{df}{f} = \left[\frac{f_t + \alpha(\theta - r_t)f_r + \frac{1}{2}\sigma^2
 $$:= \mu(t, r_t, T)dt + \nu(t, r_t, T)dW_t$$
 
 where:
+
 - **Drift**: $\mu(t, r_t, T) = \frac{f_t + \alpha(\theta - r_t)f_r + \frac{1}{2}\sigma^2 f_{rr}}{f}$
 - **Volatility**: $\nu(t, r_t, T) = \frac{\sigma f_r}{f}$
 
 ### Step 2: Construct a Risk-Free Portfolio
 
 Consider a portfolio consisting of:
+
 - Short position (issue): one $T_1$-maturity bond with value $U_1$
 - Long position (buy): one $T_2$-maturity bond with value $U_2$
 - Net portfolio value: $U = U_2 - U_1$
@@ -187,6 +189,7 @@ $$A(t,T) = \exp\left[\frac{(B(t,T) - (T-t))(a^2b - \sigma^2/2)}{\alpha^2} - \fra
 Here $a = \alpha$ and $b = \theta - \lambda_t/\alpha$ (incorporating the market price of risk adjustment).
 
 **Key properties**:
+
 - When rates are low, $B(t,T)$ is large, making the exponential more sensitive to rate changes
 - As $T \to t$, both $B(t,T) \to 0$ and $A(t,T) \to 1$, giving $P(t,t) = 1$ (correctness at maturity)
 - The $A(t,T)$ factor accounts for the convexity and term structure curvature

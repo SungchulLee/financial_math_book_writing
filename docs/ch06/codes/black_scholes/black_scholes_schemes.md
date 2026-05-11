@@ -346,3 +346,65 @@ def cn_log_scheme(model, option_type='put', Smin=1e-3, Smax=500, NX=100, NT=100,
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+For the explicit scheme in stock-price space, derive the finite difference coefficients $a_i$, $b_i$, $c_i$ at grid point $S_i = i\Delta S$.
+
+??? success "Solution to Exercise 1"
+    Discretizing $V_{SS} \approx (V_{i+1} - 2V_i + V_{i-1})/\Delta S^2$ and $V_S \approx (V_{i+1} - V_{i-1})/(2\Delta S)$:
+
+    $$
+    a_i = \frac{\Delta t}{2}\left(\frac{\sigma^2 S_i^2}{\Delta S^2} - \frac{rS_i}{\Delta S}\right) = \frac{\Delta t}{2}(\sigma^2 i^2 - ri)
+    $$
+
+    $$
+    b_i = 1 - \Delta t\left(\frac{\sigma^2 S_i^2}{\Delta S^2} + r\right) = 1 - \Delta t(\sigma^2 i^2 + r)
+    $$
+
+    $$
+    c_i = \frac{\Delta t}{2}\left(\frac{\sigma^2 S_i^2}{\Delta S^2} + \frac{rS_i}{\Delta S}\right) = \frac{\Delta t}{2}(\sigma^2 i^2 + ri)
+    $$
+
+    Note that $a_i + b_i + c_i = 1$, confirming the scheme conserves probability.
+
+---
+
+**Exercise 2.**
+Write the implicit scheme in matrix form $A\mathbf{V}^j = \mathbf{V}^{j+1}$ and explain why the matrix $A$ is tridiagonal.
+
+??? success "Solution to Exercise 2"
+    The implicit scheme evaluates spatial derivatives at time $t_j$ (the unknown time level):
+
+    $$
+    -\alpha_i V_{i-1}^j + (1 + \beta_i)V_i^j - \gamma_i V_{i+1}^j = V_i^{j+1}
+    $$
+
+    In matrix form, $A$ is tridiagonal with sub-diagonal $-\alpha_i$, diagonal $1 + \beta_i$, and super-diagonal $-\gamma_i$. The tridiagonal structure arises because the second-order centered difference stencil involves only three grid points ($i-1, i, i+1$). This allows efficient $O(N)$ solution via the Thomas algorithm.
+
+---
+
+**Exercise 3.**
+The Crank-Nicolson scheme averages explicit and implicit. Write the system $A\mathbf{V}^j = B\mathbf{V}^{j+1}$ and explain why it is second-order in time.
+
+??? success "Solution to Exercise 3"
+    CN averages: $V_i^j - V_i^{j+1} = \frac{\Delta t}{2}[\mathcal{L}V^j + \mathcal{L}V^{j+1}]$ where $\mathcal{L}$ is the spatial operator. This gives
+
+    $$
+    (I - \tfrac{\Delta t}{2}\mathcal{L})\mathbf{V}^j = (I + \tfrac{\Delta t}{2}\mathcal{L})\mathbf{V}^{j+1}
+    $$
+
+    Both $A = I - \frac{\Delta t}{2}\mathcal{L}$ and $B = I + \frac{\Delta t}{2}\mathcal{L}$ are tridiagonal. The scheme is second-order because it is equivalent to the trapezoidal rule in time, whose local truncation error is $O(\Delta t^3)$, giving a global error of $O(\Delta t^2)$.
+
+---
+
+**Exercise 4.**
+Explain the difference between `setup_log_grid` and a uniform stock-price grid. For $S \in [0, 200]$ with $N = 100$, compare the resolution near $S = 100$ (ATM) for both grids.
+
+??? success "Solution to Exercise 4"
+    Uniform stock-price grid: $\Delta S = 200/99 \approx 2.02$. Near $S = 100$, the resolution is $\Delta S \approx 2.02$.
+
+    Log-price grid: $x = \ln S$, so $x \in [\ln(S_{\min}), \ln(200)]$. With $S_{\min} = 1$: $\Delta x = (\ln 200 - 0)/99 \approx 0.0535$. Near $S = 100$: $\Delta S \approx S \cdot \Delta x = 100 \times 0.0535 = 5.35$.
+
+    The log grid has coarser resolution at ATM in absolute terms, but provides uniform *relative* resolution ($\Delta S/S = \Delta x$ is constant). This is important because option prices vary on a relative scale (e.g., a 1% move in a \$100 stock is as significant as a 1% move in a \$50 stock). For practical pricing, the log grid with more points concentrated near ATM via non-uniform spacing is optimal.

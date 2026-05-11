@@ -92,6 +92,7 @@ $$
 where only the traded risk is adjusted.
 
 **Properties**:
+
 - Minimal entropy distance from $\mathbb{P}$
 - Preserves "unhedgeable" risk distribution
 - Popular in stochastic volatility models

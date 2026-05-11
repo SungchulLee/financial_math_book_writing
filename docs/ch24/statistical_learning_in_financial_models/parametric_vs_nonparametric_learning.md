@@ -175,6 +175,7 @@ $$
 This **minimax optimal rate** reveals the curse of dimensionality: as dimension $d$ increases, convergence slows dramatically.
 
 **Example.** For twice-differentiable functions ($\beta = 2$):
+
 - $d = 1$: Rate is $n^{-4/5}$
 - $d = 5$: Rate is $n^{-4/9}$  
 - $d = 10$: Rate is $n^{-2/7}$
@@ -274,6 +275,7 @@ $$
 from observed prices, without specifying dynamics.
 
 **Trade-offs:**
+
 - Parametric: Ensures no-arbitrage (if model is arbitrage-free), extrapolates consistently, but may misspecify dynamics
 - Nonparametric: Flexible fit to observed prices, but may violate no-arbitrage, poor extrapolation
 

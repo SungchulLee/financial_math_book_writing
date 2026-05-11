@@ -6,17 +6,20 @@ Quantitative models drive decision-making in modern finance, but models occasion
 
 **Long-Term Capital Management (1998)**
 LTCM operated a "market-neutral" convergence trading strategy using sophisticated mathematical models:
+
 - **Model logic**: historical spreads reliably mean-revert; pairs trading hedges directional risk
 - **Capital**: \$5 billion with 25:1 leverage on a \$125 billion portfolio
 - **Trigger**: Russian default (August 1998) caused emerging market flight to quality
 
 **Failure mechanisms**:
+
 1. **Correlation breakdown**: portfolio positions that should be uncorrelated moved together
 2. **Leverage amplification**: 25:1 leverage turned small losses into existential threat
 3. **Liquidity misjudgment**: "liquid" positions became illiquid; bid-ask spreads exploded
 4. **Model regime change**: 1998 was unlike historical data; models trained on normal times
 
 **Lessons**:
+
 - Leverage magnifies model error
 - Correlation assumptions fail during stress
 - Liquidity assumptions are behavioral, not technological
@@ -24,18 +27,21 @@ LTCM operated a "market-neutral" convergence trading strategy using sophisticate
 
 **Barings Bank (1995)**
 Rogue trader Nick Leeson used unauthorized derivatives to mask trading losses:
+
 - **Mechanism**: Leeson had control of both trading and back-office, circumventing controls
 - **Strategy**: short straddles (sold volatility) on Nikkei, betting on low volatility
 - **Trigger**: January 1995 Kobe earthquake; Nikkei fell sharply
 - **Losses**: \$1.3 billion, more than Barings' equity; bank collapsed
 
 **Failure mechanisms**:
+
 1. **Operational risk**: single person controlled both execution and settlement
 2. **Risk measurement failure**: losses hidden through accounting manipulation
 3. **Segregation of duties**: not enforced despite risk management theory
 4. **Escalation**: trader doubled down (sunk cost fallacy) rather than admitting loss
 
 **Lessons**:
+
 - Quantitative models are only valid if operational controls work
 - Segregation of duties and three-line defense essential
 - Risk infrastructure must catch losses early
@@ -43,12 +49,14 @@ Rogue trader Nick Leeson used unauthorized derivatives to mask trading losses:
 
 **London Whale Trading Loss (2012)**
 JP Morgan's Chief Investment Office (CIO) took large credit-hedging positions:
+
 - **Notional exposure**: \$100 billion in credit derivatives
 - **Strategy**: intended as hedge but became speculative position
 - **Trigger**: market volatility increased; position moved against the bank
 - **Losses**: \$6 billion (officially), possibly \$9 billion including unwinding costs
 
 **Failure mechanisms**:
+
 1. **Model misuse**: Value-at-Risk model used positions outside scope (correlations unstable)
 2. **Portfolio complexity**: internal models couldn't capture risks in complex synthetic indices
 3. **Risk measurement errors**: models underestimated tail risk by factor of 2-3x
@@ -59,6 +67,7 @@ JP Morgan's Chief Investment Office (CIO) took large credit-hedging positions:
 $$\text{VaR}_{\text{model}} = f(\text{volatility}, \text{correlation}) \text{ but correlation unstable in stress}$$
 
 **Lessons**:
+
 - Even sophisticated large banks fail to measure model risk
 - Back-office infrastructure critical to detecting unusual positions
 - Multi-risk-type positions need stress testing across scenarios
@@ -88,12 +97,14 @@ The financial crisis involved multiple simultaneous model failures:
    - Systemic risk ignored
 
 **Failure mechanisms**:
+
 - **Model calibration to normal times**: parameters estimated 1990-2007, excluded prior crises
 - **Regulatory arbitrage**: models exploited to minimize capital (Basel II)
 - **Incentive misalignment**: originators had no loss exposure; buyers had misaligned info
 - **Procyclicality**: low VaR in good times encouraged risk-taking; high VaR in bad times forced deleveraging
 
 **Systemic lessons**:
+
 - Models trained on limited data (normal times only) fail in crises
 - Interconnectedness and systemic risk not captured in individual firm models
 - Regulatory arbitrage incentivizes model exploits
@@ -138,6 +149,7 @@ The financial crisis involved multiple simultaneous model failures:
 
 !!! warning "Enduring Model Risk"
     Despite improvements, model risk remains:
+
     - New products and strategies exploit old model gaps
     - Regulatory models can become targets for arbitrage
     - Behavioral factors (herd behavior, fear) amplify mathematical models

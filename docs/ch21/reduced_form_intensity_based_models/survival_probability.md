@@ -312,6 +312,7 @@ where $\mathcal{L}$ is the infinitesimal generator of the intensity process.
 ## Worked Example: CIR Intensity
 
 **Parameters:**
+
 - Current intensity: $\lambda_0 = 2\%$
 - Mean-reversion speed: $\kappa = 0.5$
 - Long-run mean: $\theta = 3\%$
@@ -354,6 +355,7 @@ $$
 ### Extrapolation Beyond Observable Maturities
 
 When CDS quotes are unavailable for long maturities:
+
 - Assume constant intensity beyond last observed maturity
 - Use parametric models fitted to available data
 - Consider regulatory guidance (e.g., ultimate forward rate analogy)
@@ -361,6 +363,7 @@ When CDS quotes are unavailable for long maturities:
 ### Interpolation Between Nodes
 
 For maturities between CDS quotes:
+
 - Linear interpolation of hazard rates (simple, may be discontinuous)
 - Spline interpolation of survival probabilities (smoother)
 - Nelson-Siegel style parametric forms
@@ -368,6 +371,7 @@ For maturities between CDS quotes:
 ### Negative Implied Hazard Rates
 
 If bond prices imply $S(t,T_2) > S(t,T_1)$ for $T_2 > T_1$:
+
 - Indicates arbitrage or data error
 - May reflect liquidity premiums
 - Requires adjustment or investigation

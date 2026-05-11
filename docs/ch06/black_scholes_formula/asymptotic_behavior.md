@@ -1,9 +1,12 @@
 # Asymptotic Behavior of the Black-Scholes Formula
 
 
-The Black-Scholes formula exhibits well-defined **limiting behavior** as parameters approach extreme values. Understanding these limits provides intuition for how options behave in different market conditions and serves as a check for numerical implementations.
+The Black-Scholes formula exhibits well-defined **limiting behavior** as parameters approach extreme values. These limits give intuition for option behavior across market regimes and serve as sanity checks for numerical implementations.
 
-This section systematically analyzes the asymptotic behavior of option prices.
+!!! info "Where this fits"
+    - **Roadmap row(s):** All six perspectives examined through limits in $S, K, T, \sigma, r$.
+    - **Builds on:** [The Black-Scholes formula](bs_formula_statement.md) (the component analysis of $d_1, d_2$) and [Properties and bounds](properties_and_bounds.md) (monotonicity establishes the signs of the limits).
+    - **Feeds into:** [Computational examples](computational_examples.md) (numerical-stability fixes near $T \to 0$ and extreme $d_1, d_2$).
 
 !!! note "Unifying Principle"
     Every limit in this section reduces to the same mechanism: determining the sign and rate at which $d_1$ and $d_2$ diverge to $\pm\infty$. Since $C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$ and the Gaussian CDF satisfies $\mathcal{N}(x) \to 1$ as $x \to +\infty$ and $\mathcal{N}(x) \to 0$ as $x \to -\infty$, all asymptotics follow from the **tail behavior of the standard normal distribution**.
@@ -12,6 +15,7 @@ This section systematically analyzes the asymptotic behavior of option prices.
 
 ## Limits in Stock Price
 
+*Section goal: what happens to call and put prices as the spot drifts to $0$ and to $\infty$.*
 
 ### 1. **As S → ∞ (Deep In-the-Money Call)**
 
@@ -44,13 +48,7 @@ $$
 
 **Interpretation**: Deep ITM call behaves like **forward contract** with guaranteed exercise. The option value equals the stock price minus the present value of the strike.
 
-**Put price** (via put-call parity):
-
-$$
-P = C - S + Ke^{-rT} \to 0
-$$
-
-Deep OTM put becomes worthless.
+**Put price** (via put-call parity): $P = C - S + Ke^{-rT} \to 0$ — the deep OTM put is worthless.
 
 ---
 
@@ -63,6 +61,7 @@ Now $d_1, d_2 \to -\infty$, so $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 0$ and $C
 
 ## Limits in Time to Maturity
 
+*Section goal: option value at the expiry boundary ($T \to 0$) and in the long-dated limit ($T \to \infty$).*
 
 ### 1. **As T → 0 (Approaching Expiration)**
 
@@ -93,23 +92,25 @@ $$
 
 **Case 3: $S = K$ (ATM call)**
 
-This requires careful analysis. As $T \to 0$ with $S = K$:
+Both $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$ tend to $\tfrac{1}{2}$, and $S\,\mathcal{N}(d_1) - Ke^{-rT}\,\mathcal{N}(d_2)$ becomes a $\tfrac{K}{2} - \tfrac{K}{2}$ near-cancellation. To see the limit cleanly, substitute the Taylor expansion $\mathcal{N}(\epsilon) = \tfrac{1}{2} + \frac{\epsilon}{\sqrt{2\pi}} + O(\epsilon^3)$ with $\epsilon_i = d_i$. With $S = K$:
 
 $$
-d_1 = \frac{(r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}} = \frac{(r + \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma} \to 0
+d_1 = \frac{(r + \tfrac{1}{2}\sigma^2)\sqrt{T}}{\sigma}, \qquad d_2 = \frac{(r - \tfrac{1}{2}\sigma^2)\sqrt{T}}{\sigma}, \qquad d_1 - d_2 = \sigma\sqrt{T}
 $$
 
-$$
-d_2 = \frac{(r - \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma} \to 0
-$$
+The call price becomes
 
 $$
-\mathcal{N}(d_1), \mathcal{N}(d_2) \to \mathcal{N}(0) = 0.5
+C = K\!\left[\mathcal{N}(d_1) - e^{-rT}\mathcal{N}(d_2)\right] = K\!\left[\tfrac{1}{2}(1 - e^{-rT}) + \tfrac{1}{\sqrt{2\pi}}\!\left(d_1 - e^{-rT}d_2\right) + O(T^{3/2})\right]
 $$
 
+Each bracketed term is $O(T^{1/2})$ as $T \to 0$ — the first via $1 - e^{-rT} = rT + O(T^2)$, the second via $d_i = O(\sqrt{T})$ — so
+
 $$
-C \to K \cdot 0.5 - K \cdot 1 \cdot 0.5 = 0
+C = O(\sqrt{T}) \;\to\; 0 \;=\; (S - K)^+
 $$
+
+The leading $K\sigma\sqrt{T}/\sqrt{2\pi}$ term is exactly the ATM approximation derived later in this section.
 
 **Summary**: As expiration approaches:
 
@@ -126,32 +127,29 @@ This recovers the **terminal payoff condition**.
 
 **Assumption**: $r > 0$ throughout this subsection. The case $r = 0$ is qualitatively different (see Exercise 5).
 
-Since $d_1 = \frac{\ln(S/K)}{\sigma\sqrt{T}} + \frac{(r + \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma}$ and the second term dominates when $r > 0$, we have $d_1 \to +\infty$ and similarly $d_2 \to +\infty$.
-
-**Call price**:
+Decompose
 
 $$
-\begin{aligned}
-C &= S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) \\
-&\to S \cdot 1 - K \cdot 0 \cdot 1 \\
-&= S
-\end{aligned}
+d_1 = \frac{\ln(S/K)}{\sigma\sqrt{T}} + \frac{(r + \tfrac{1}{2}\sigma^2)\sqrt{T}}{\sigma}, \qquad d_2 = d_1 - \sigma\sqrt{T}
 $$
 
-**Interpretation**: With infinite time, the call becomes equivalent to owning the stock. Formally, $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 1$ so the risk-neutral probability of finishing ITM approaches $1$, while the discounted strike $Ke^{-rT} \to 0$.
+The first term decays as $T^{-1/2}$, the second grows as $T^{1/2}$ with positive coefficient (since $r + \tfrac{1}{2}\sigma^2 > 0$); the second term dominates strictly. So $d_1, d_2 \to +\infty$ at rate $\sqrt{T}$, and $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 1$.
 
-**Put price**:
+**Call price**: Both terms in $C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$ converge: $S\mathcal{N}(d_1) \to S$ and the strike term *vanishes by exponential decay* — $Ke^{-rT} \to 0$ exponentially while $\mathcal{N}(d_2)$ is bounded. Therefore
 
 $$
-P \to Ke^{-rT} - S \cdot 0 \to 0
+C \to S
 $$
 
-Long-dated puts become worthless: the risk-neutral probability $\mathcal{N}(-d_2) \to 0$ as $T \to \infty$ (when $r > 0$).
+The discounted strike's exponential decay always dominates any sub-exponential factor in $\mathcal{N}(d_2)$, which is why this limit is unconditional in $\sigma$ (given $r > 0$).
+
+**Put price**: $P = C - S + Ke^{-rT} \to S - S + 0 = 0$.
 
 ---
 
 ## Limits in Volatility
 
+*Section goal: behaviour as $\sigma \to 0$ (deterministic stock) and $\sigma \to \infty$ (extreme uncertainty).*
 
 ### 1. **As σ → 0 (Zero Volatility)**
 
@@ -172,7 +170,7 @@ $$
 
 **Case 2: $S_0 < Ke^{-rT}$** (Forward price below strike)
 
-Now $d_1, d_2 \to -\infty$ so $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 0$. The stock finishes below $K$ with probability approaching $1$:
+Now $d_1, d_2 \to -\infty$, so $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 0$ and
 
 $$
 C \to 0
@@ -203,36 +201,19 @@ $$
 ### 2. **As σ → ∞ (Infinite Volatility)**
 
 
-**Behavior of $d_1$ and $d_2$**:
+**Behavior of $d_1$ and $d_2$**: Decompose
 
 $$
-d_1 = \frac{\ln(S/K)}{\sigma\sqrt{T}} + \frac{(r + \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma}
+d_1 = \frac{\ln(S/K) + rT}{\sigma\sqrt{T}} + \frac{\sigma\sqrt{T}}{2}, \qquad d_2 = \frac{\ln(S/K) + rT}{\sigma\sqrt{T}} - \frac{\sigma\sqrt{T}}{2}
 $$
 
-As $\sigma \to \infty$:
-
-- First term: $\frac{\ln(S/K)}{\sigma\sqrt{T}} \to 0$
-- Second term: $\frac{(r + \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma} = \frac{r\sqrt{T}}{\sigma} + \frac{\sigma\sqrt{T}}{2} \to +\infty$
-
-Therefore $d_1 \to +\infty$ and $\mathcal{N}(d_1) \to 1$.
-
-For $d_2$:
+The first piece decays as $\sigma^{-1}$, the $\pm\sigma\sqrt{T}/2$ pieces grow linearly in $\sigma$. So linear growth dominates inverse decay, with opposite signs:
 
 $$
-d_2 = d_1 - \sigma\sqrt{T} \to +\infty - \infty
+d_1 = +\frac{\sigma\sqrt{T}}{2} + O(\sigma^{-1}) \to +\infty, \qquad d_2 = -\frac{\sigma\sqrt{T}}{2} + O(\sigma^{-1}) \to -\infty
 $$
 
-This is indeterminate. More carefully:
-
-$$
-d_2 = \frac{\ln(S/K)}{\sigma\sqrt{T}} + \frac{r\sqrt{T}}{\sigma} - \frac{\sigma\sqrt{T}}{2}
-$$
-
-As $\sigma \to \infty$, the last term dominates:
-
-$$
-d_2 \to -\infty, \quad \mathcal{N}(d_2) \to 0
-$$
+Therefore $\mathcal{N}(d_1) \to 1$ and $\mathcal{N}(d_2) \to 0$. (The "indeterminate $\infty - \infty$" form for $d_2 = d_1 - \sigma\sqrt{T}$ resolves as soon as one writes both $d_1$ and $d_2$ in terms of the same dominant scale $\sigma\sqrt{T}$ — they have opposite limits, not a cancellation.)
 
 **Call price**:
 
@@ -240,13 +221,9 @@ $$
 C \to S \cdot 1 - Ke^{-rT} \cdot 0 = S
 $$
 
-**Interpretation**: With infinite volatility, $\mathcal{N}(d_1) \to 1$ while $\mathcal{N}(d_2) \to 0$, so the call approaches the full stock price.
+**Interpretation**: $\mathcal{N}(d_1) \to 1$ and $\mathcal{N}(d_2) \to 0$, so as in the deep-ITM case the call approaches the full stock price.
 
-**Put price**: From put-call parity:
-
-$$
-P = C - S + Ke^{-rT} \to S - S + Ke^{-rT} = Ke^{-rT}
-$$
+**Put price**: Put-call parity gives $P = C - S + Ke^{-rT} \to Ke^{-rT}$.
 
 **Summary**:
 
@@ -258,6 +235,7 @@ $$
 
 ## Limits in Interest Rate
 
+*Section goal: how prices respond as $r \to 0$ and as $r \to \infty$.*
 
 ### 1. **As r → 0 (Zero Interest Rate)**
 
@@ -289,29 +267,31 @@ $$
 ### 2. **As r → ∞ (Infinite Interest Rate)**
 
 
-As $r \to \infty$, $d_1, d_2 \to +\infty$ (driven by the $r\sqrt{T}/\sigma$ term) and $e^{-rT} \to 0$. Therefore $C \to S$ and $P \to 0$: the discounted strike vanishes, so the call is worth the full stock price.
+As $r \to \infty$, $d_1, d_2 \to +\infty$ (driven by the $r\sqrt{T}/\sigma$ term) and $e^{-rT} \to 0$. The discounted strike vanishes (cf. $T \to \infty$), giving $C \to S$ and $P \to 0$.
 
 ---
 
 ## Limits in Strike Price
 
+*Section goal: limits as $K \to 0$ (call $\to S$) and $K \to \infty$ (call $\to 0$).*
 
 ### 1. **As K → 0 (Zero Strike)**
 
 
-As $K \to 0$, $d_1, d_2 \to +\infty$, so $C \to S$ and $P \to 0$. A call with zero strike is equivalent to owning the stock.
+As $K \to 0$, $d_1, d_2 \to +\infty$, so $C \to S$ and $P \to 0$ — a zero-strike call is equivalent to owning the stock.
 
 ### 2. **As K → ∞ (Infinite Strike)**
 
 
-As $K \to \infty$, $d_1, d_2 \to -\infty$, so $C \to 0$ (no chance of exceeding the strike) and $P \to Ke^{-rT} - S \to +\infty$, bounded above by $Ke^{-rT}$.
+As $K \to \infty$, $d_1, d_2 \to -\infty$, so $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 0$ and $C \to 0$ (no chance of exceeding the strike). The put price obeys $P = Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)$ with $\mathcal{N}(-d_1), \mathcal{N}(-d_2) \to 1$, so $P \sim Ke^{-rT} - S \to +\infty$. The general upper bound $P \leq Ke^{-rT}$ remains valid — both sides diverge at the same rate, so $P/(Ke^{-rT}) \to 1$, i.e., the put approaches its theoretical maximum value relative to the discounted strike.
 
 ---
 
 ## ATM Approximation for Small Time
 
+*Section goal: the clean short-time expansion $C_{\text{ATM}} \approx 0.4\, S\sigma\sqrt{T}$ and its derivation.*
 
-For at-the-money options ($S \approx K$) with small $T$, there's a useful approximation.
+For at-the-money options ($S \approx K$) with small $T$, a useful closed-form approximation emerges.
 
 ### 1. **ATM Call Formula**
 
@@ -364,6 +344,7 @@ $$
 
 ## Practical Implications
 
+*Section goal: how the limits inform numerical implementation and trader intuition.*
 
 ### 1. **Sanity Checks**
 
@@ -567,13 +548,19 @@ for small $T$. Compute the percentage error of this approximation relative to th
 
     The first term $S\mathcal{N}(d_1) \to 0$.
 
-    For the second term, $e^{-rT} \to +\infty$ as $r \to -\infty$, but $\mathcal{N}(d_2) \to 0$. We need to evaluate $Ke^{-rT}\mathcal{N}(d_2)$ more carefully. Using the asymptotic $\mathcal{N}(x) \sim \frac{\phi(x)}{|x|}$ for $x \to -\infty$ and substituting $d_2 \approx \frac{rT}{\sigma\sqrt{T}} = \frac{r\sqrt{T}}{\sigma}$:
+    The second term $Ke^{-rT}\mathcal{N}(d_2)$ is the contest of interest: $e^{-rT} \to +\infty$ as $r \to -\infty$, but $\mathcal{N}(d_2) \to 0$. To resolve it, set $\rho = -r > 0$ so $\rho \to +\infty$. To leading order $d_2 \approx -\rho\sqrt{T}/\sigma$. Apply Mills' ratio: for $x \to -\infty$,
 
     $$
-    Ke^{-rT}\mathcal{N}(d_2) \sim Ke^{-rT} \cdot \frac{1}{|d_2|\sqrt{2\pi}} \exp\left(-\frac{d_2^2}{2}\right) \sim Ke^{-rT} \cdot \frac{\sigma}{|r|\sqrt{T}\sqrt{2\pi}} \exp\left(-\frac{r^2 T}{2\sigma^2}\right)
+    \mathcal{N}(x) \sim \frac{\phi(x)}{|x|} = \frac{1}{|x|\sqrt{2\pi}}\,\exp\!\left(-\frac{x^2}{2}\right)
     $$
 
-    Since $e^{-rT} = e^{|r|T}$ grows only exponentially while $e^{-r^2 T/(2\sigma^2)}$ decays as a Gaussian in $r$, the product goes to $0$ as $r \to -\infty$.
+    so the second term has the form (constant)$\cdot \rho^{-1}\cdot \exp\!\left(\rho T - \rho^2 T/(2\sigma^2)\right)$ up to a polynomial-in-$\rho$ prefactor. The exponent
+
+    $$
+    \rho T - \frac{\rho^2 T}{2\sigma^2} = -\frac{T}{2\sigma^2}\bigl(\rho - \sigma^2\bigr)^2 + \frac{\sigma^2 T}{2}
+    $$
+
+    is a downward parabola in $\rho$: it goes to $-\infty$ as $\rho \to \infty$. So the *quadratic* Gaussian decay strictly beats the *linear* exponential growth, and $Ke^{-rT}\mathcal{N}(d_2) \to 0$.
 
     Therefore:
 

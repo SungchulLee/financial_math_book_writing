@@ -139,7 +139,7 @@ $$
 M_t := \mathbb{E}[X \mid \mathcal{F}_t]
 $$
 
-is the **Doob martingale**: the best prediction of $X$ using information up to $t$. The tower property is exactly the martingale property for $M$: for $s \le t$, $\mathbb{E}[M_t \mid \mathcal{F}_s] = \mathbb{E}[\mathbb{E}[X \mid \mathcal{F}_t] \mid \mathcal{F}_s] = \mathbb{E}[X \mid \mathcal{F}_s] = M_s$. This observation is the entry point to the next section, [Martingales](martingales.md).
+is the **Doob martingale**: the best prediction of $X$ using information up to $t$. The tower property is exactly the martingale property for $M$: for $s \le t$, $\mathbb{E}[M_t \mid \mathcal{F}_s] = \mathbb{E}[\mathbb{E}[X \mid \mathcal{F}_t] \mid \mathcal{F}_s] = \mathbb{E}[X \mid \mathcal{F}_s] = M_s$. This observation is the entry point to the next section, [Martingales](martingale.md).
 
 ---
 

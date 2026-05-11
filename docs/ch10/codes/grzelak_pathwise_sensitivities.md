@@ -385,3 +385,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+The pathwise delta estimator is $\hat{\Delta} = e^{-rT}\mathbb{E}[\frac{S_T}{S_0}\mathbf{1}_{S_T > K}]$. Derive this from the payoff $\max(S_T - K, 0)$ by differentiating under the expectation sign.
+
+??? success "Solution to Exercise 1"
+    $\Delta = \frac{\partial}{\partial S_0}\mathbb{E}[e^{-rT}\max(S_T - K, 0)]$. For GBM, $S_T = S_0 e^{(r-\sigma^2/2)T + \sigma\sqrt{T}Z}$, so $\frac{\partial S_T}{\partial S_0} = S_T / S_0$. By the chain rule: $\frac{\partial}{\partial S_0}\max(S_T - K, 0) = \frac{S_T}{S_0}\mathbf{1}_{S_T > K}$. Taking expectations: $\Delta = e^{-rT}\mathbb{E}[S_T/S_0 \cdot \mathbf{1}_{S_T > K}]$.
+
+---
+
+**Exercise 2.**
+The pathwise vega estimator involves $\frac{\partial S_T}{\partial \sigma}$. For GBM, derive this derivative.
+
+??? success "Solution to Exercise 2"
+    $S_T = S_0\exp((r - \sigma^2/2)T + \sigma\sqrt{T}Z)$. Differentiating: $\frac{\partial S_T}{\partial \sigma} = S_T(-\sigma T + \sqrt{T}Z) = \frac{S_T}{\sigma}(\ln(S_T/S_0) - (r + \sigma^2/2)T)$. This gives the pathwise vega as $e^{-rT}\mathbb{E}[\frac{\partial S_T}{\partial \sigma}\mathbf{1}_{S_T > K}]$.
+
+---
+
+**Exercise 3.**
+The convergence plot shows delta estimates stabilizing around 500--1000 paths. Explain why pathwise estimators converge faster than finite-difference estimators.
+
+??? success "Solution to Exercise 3"
+    Pathwise estimators use the exact derivative of the payoff, avoiding the bias-variance tradeoff of finite differences. Finite-difference delta: $\hat{\Delta} = (V(S_0 + h) - V(S_0 - h))/(2h)$ has bias $O(h^2)$ and variance $O(1/(nh^2))$, requiring careful choice of $h$. Pathwise estimators are unbiased and have variance $O(1/n)$ regardless of any perturbation parameter, giving cleaner convergence.
+
+---
+
+**Exercise 4.**
+The pathwise method requires the payoff to be differentiable almost everywhere. For which exotic options does this method fail, and what alternative is available?
+
+??? success "Solution to Exercise 4"
+    The pathwise method fails for digital options ($\mathbf{1}_{S_T > K}$), whose payoff has a discontinuity where the derivative is a Dirac delta. It also fails for barrier options where the payoff depends discontinuously on whether the barrier was breached. The alternative is the likelihood ratio (score function) method, which differentiates the density rather than the payoff: $\Delta = \mathbb{E}[e^{-rT}\text{payoff} \cdot \frac{\partial}{\partial S_0}\ln f(S_T)]$. This works for any payoff but typically has higher variance.

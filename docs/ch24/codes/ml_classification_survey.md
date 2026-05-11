@@ -232,3 +232,58 @@ if __name__ == '__main__':
     demo_preprocessing()
     demo_train_test()
 ```
+
+## Exercises
+
+**Exercise 1.**
+List four common classification algorithms used in finance and briefly describe each.
+
+??? success "Solution to Exercise 1"
+
+    1. **Logistic regression**: Models the log-odds of the positive class as a linear function of features. Simple, interpretable, and provides probability estimates. Commonly used for credit scoring.
+    2. **Random forest**: An ensemble of decision trees, each trained on a bootstrap sample with random feature subsets. Handles nonlinearities and interactions. Used for fraud detection and default prediction.
+    3. **Support vector machine (SVM)**: Finds the maximum-margin hyperplane separating classes. Effective in high-dimensional spaces. Used for stock movement prediction.
+    4. **Gradient boosted trees (XGBoost/LightGBM)**: Sequential ensemble where each tree corrects the errors of the previous ones. State-of-the-art performance on tabular data. Widely used in credit risk and algorithmic trading.
+
+---
+
+**Exercise 2.**
+For a binary classifier predicting loan default, the confusion matrix shows: TP = 80, FP = 20, FN = 30, TN = 870. Compute precision, recall, and F1 score.
+
+??? success "Solution to Exercise 2"
+    $$
+    \text{Precision} = \frac{TP}{TP + FP} = \frac{80}{100} = 80\%.
+    $$
+
+    $$
+    \text{Recall} = \frac{TP}{TP + FN} = \frac{80}{110} = 72.7\%.
+    $$
+
+    $$
+    F_1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}} = 2 \times \frac{0.80 \times 0.727}{0.80 + 0.727} = 2 \times \frac{0.5818}{1.527} = 0.762 = 76.2\%.
+    $$
+
+---
+
+**Exercise 3.**
+Explain why accuracy is a poor metric for imbalanced datasets (e.g., $2\%$ default rate) and suggest a better metric.
+
+??? success "Solution to Exercise 3"
+    With a $2\%$ default rate, a naive classifier that predicts "no default" for every loan achieves $98\%$ accuracy. This is misleading because the classifier completely fails to identify any defaults (recall $= 0\%$). Better metrics include:
+
+    - **AUC-ROC**: Measures the classifier's ability to discriminate between classes across all thresholds. A random classifier has AUC $= 0.5$; a perfect one has AUC $= 1.0$.
+    - **F1 score**: Balances precision and recall, penalizing classifiers that sacrifice one for the other.
+    - **Precision-recall AUC**: More informative than ROC-AUC for highly imbalanced datasets.
+    - **Expected cost**: Weights errors by their financial impact (missing a default is typically more costly than a false alarm).
+
+---
+
+**Exercise 4.**
+Describe the bias-variance trade-off in the context of a credit risk classification model and how cross-validation helps manage it.
+
+??? success "Solution to Exercise 4"
+
+    - **High bias (underfitting)**: A simple model (logistic regression with few features) may miss important patterns, predicting poorly on both training and test data.
+    - **High variance (overfitting)**: A complex model (deep neural network) may fit training data noise, performing well on training but poorly on new data.
+
+    Cross-validation (e.g., $k$-fold) helps by: (1) providing an unbiased estimate of out-of-sample performance; (2) enabling model selection (choose the complexity level that minimizes cross-validation error); (3) detecting overfitting (large gap between training and CV performance). Time-series cross-validation (walk-forward) is essential for financial data to avoid look-ahead bias.

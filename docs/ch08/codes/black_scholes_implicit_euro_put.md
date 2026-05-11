@@ -279,3 +279,42 @@ if __name__ == "__main__":
 
     print("="*70)
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Show that the European put boundary condition $V(0, t) = K e^{-r(T-t)}$ satisfies the Black-Scholes PDE at $S = 0$.
+
+??? success "Solution to Exercise 1"
+    At $S = 0$: $\partial V / \partial t = rK e^{-r(T-t)}$, $\partial V / \partial S = 0$, $\partial^2 V / \partial S^2 = 0$. Substituting into the PDE: $rKe^{-r(T-t)} + 0 + 0 - rKe^{-r(T-t)} = 0$. The PDE is satisfied identically.
+
+---
+
+**Exercise 2.**
+Explain why the error pattern differs between original-space and log-space methods for the European put. Where is the log-space advantage most pronounced?
+
+??? success "Solution to Exercise 2"
+    Original space shows larger errors at low $S$ values ($S = 40$) because the uniform grid provides poor resolution where the put value changes rapidly. Log-space distributes errors more evenly by concentrating points near small $S$ values via the transformation $x = \ln S$. The advantage is most pronounced near $S = 0$ where the put approaches $Ke^{-rT}$.
+
+---
+
+**Exercise 3.**
+For $K = 100$, $r = 0.05$, $T = 1$, the put limiting value at $S = 0$ is $Ke^{-rT}$. Compute this value and explain why puts require finer grids near $S = 0$ compared to calls.
+
+??? success "Solution to Exercise 3"
+    $Ke^{-rT} = 100e^{-0.05} = \$95.12$. The put gradient near $S = 0$ is approximately $-1$ with large gamma. For calls near $S = 0$, the value is essentially zero. The steep put value surface means a grid with $\Delta S = 3$ has only about 3 points in the critical $S \in [0, 10]$ region, causing significant interpolation errors.
+
+---
+
+**Exercise 4.**
+Given put prices at grid points $\{V(96) = 9.95, V(99) = 8.11, V(102) = 6.47\}$, use quadratic interpolation to estimate $V(100)$.
+
+??? success "Solution to Exercise 4"
+    Using Lagrange interpolation with nodes at $96, 99, 102$:
+
+    $$
+    V(100) = 9.95 \cdot \frac{(1)(-2)}{(-3)(-6)} + 8.11 \cdot \frac{(4)(-2)}{(3)(-3)} + 6.47 \cdot \frac{(4)(1)}{(6)(3)} \approx 7.54
+    $$
+
+    This is much closer to the analytical value than the nearest-point estimate $V(99) = 8.11$.

@@ -7,6 +7,7 @@
 **Model uncertainty in asset allocation** addresses the fundamental challenge that investors must choose among competing models of asset returns, each with different implications for optimal portfolio construction. Unlike parameter uncertainty within a fixed model, model uncertainty involves ambiguity about the correct structural specification of return dynamics.
 
 This uncertainty manifests in several ways:
+
 1. **Factor model selection**: Which factors explain returns?
 2. **Distributional assumptions**: Normal vs. fat-tailed distributions
 3. **Time series structure**: I.i.d. vs. predictable returns
@@ -174,6 +175,7 @@ $$
 
 
 **Conservative Allocation**: Model uncertainty typically:
+
 - Increases perceived uncertainty about returns
 - Shrinks optimal positions toward safer assets
 - Reduces leverage
@@ -246,12 +248,14 @@ where $\phi$ is a concave ambiguity transformation and $\mu$ is a second-order p
 
 
 **Model Candidates**:
+
 - Historical average returns
 - CAPM equilibrium returns
 - Black-Litterman with views
 - Regime-switching models
 
 **BMA Implementation**:
+
 1. Estimate each model on historical data
 2. Compute posterior model probabilities
 3. Generate BMA predictive returns
@@ -263,11 +267,13 @@ where $\phi$ is a concave ambiguity transformation and $\mu$ is a second-order p
 **Key Question**: Are stock returns predictable?
 
 **Model Comparison**:
+
 - $M_0$: Unpredictable (random walk)
 - $M_1$: Predictable by dividend yield
 - $M_2$: Predictable by term spread
 
 **Finding** (Avramov, 2002): Model uncertainty about predictability significantly affects optimal portfolios:
+
 - Investors uncertain about predictability hold more conservative portfolios
 - Effect is larger than parameter uncertainty within models
 
@@ -302,6 +308,7 @@ $$
 with Markov switching for $S_t$.
 
 **Model Uncertainty**: Uncertainty about:
+
 - Number of regimes
 - Transition probabilities
 - State-dependent parameters
@@ -330,6 +337,7 @@ where $\Omega_k$ is the state space under model $M_k$.
 
 
 **Example**: Consider two assets:
+
 - Asset A: Well-understood risk (stock index)
 - Asset B: Novel asset with ambiguous risk (new asset class)
 
@@ -343,6 +351,7 @@ where $\Omega_k$ is the state space under model $M_k$.
 **Challenge**: With model learning, preferences may be time-inconsistent.
 
 **Resolution**:
+
 1. **Bayesian updating**: Consistent by construction
 2. **Rectangular ambiguity**: Maintains dynamic consistency for robust preferences
 3. **Sophisticated agents**: Anticipate future preference changes
@@ -354,6 +363,7 @@ where $\Omega_k$ is the state space under model $M_k$.
 
 
 **Algorithm** (Model-Space MCMC):
+
 1. Initialize model $M^{(0)}$ and parameters $\theta^{(0)}$
 2. For $i = 1, \ldots, N$:
    - Propose model move: $M' \sim q(M' | M^{(i-1)})$
@@ -366,6 +376,7 @@ where $\Omega_k$ is the state space under model $M_k$.
 
 
 **Scenario-Based**:
+
 1. Generate scenarios under each model
 2. Assign probabilities based on posterior model weights
 3. Solve:
@@ -394,6 +405,7 @@ with appropriate importance weights.
 
 
 **Finding** (Uppal-Zaffaroni, 2013): Portfolios that account for model uncertainty:
+
 - Lower turnover
 - Better Sharpe ratios out-of-sample
 - More robust to regime changes
@@ -402,6 +414,7 @@ with appropriate importance weights.
 
 
 **Model Uncertainty**: Hedge fund returns exhibit:
+
 - Non-normality
 - Regime dependence
 - Time-varying factor exposures

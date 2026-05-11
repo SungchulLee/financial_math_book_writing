@@ -77,6 +77,7 @@ $$
 $$
 
 where:
+
 - $\beta_1$ = market beta
 - $\beta_2$ = liquidity beta
 - $\lambda_{\text{mkt}}$ = market risk premium
@@ -97,6 +98,7 @@ where:
 ### Flight to Liquidity
 
 During stress:
+
 - Investors flee to liquid assets (Treasuries, cash)
 - Illiquid assets suffer disproportionate price declines
 - Liquidity premia spike
@@ -120,15 +122,18 @@ During stress:
 ### Corporate Bonds
 
 **Longstaff, Mithal, Neis (2005):**
+
 - Non-default component (largely liquidity): 50-100 bps for investment grade
 
 **Dick-Nielsen, Feldhütter, Lando (2012):**
+
 - Liquidity component: 20-50% of total spread
 - Higher during crisis periods
 
 ### Treasury Securities
 
 **On-the-run vs Off-the-run:**
+
 - On-the-run: Most liquid
 - Off-the-run: 5-30 bps yield premium
 

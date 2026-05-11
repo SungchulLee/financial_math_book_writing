@@ -5,6 +5,7 @@
 
 
 The **wings** of the implied volatility smile refer to the behavior of $\sigma_{\text{IV}}(K, T)$ as the strike $K$ moves far from the current spot $S_0$ or forward $F$. Understanding wing asymptotics is crucial for:
+
 - Ensuring arbitrage-free extrapolation beyond traded strikes
 - Characterizing tail risk and extreme events
 - Constraining the moments of the risk-neutral distribution
@@ -138,6 +139,7 @@ $$
 for some $\alpha > 1$ (to ensure normalization).
 
 **Implications:**
+
 - Finite $p$-th moment: $\mathbb{E}[S_T^p] < \infty$ iff $p < \alpha - 1$
 - Maximum finite moment: $m_+ = \alpha - 1$
 
@@ -178,6 +180,7 @@ $$
 
 
 **Implications:**
+
 - All moments are finite: $\mathbb{E}[S_T^p] < \infty$ for all $p$
 - Lee's formula: $p_+ = +\infty$
 
@@ -348,6 +351,7 @@ $$
 **Interpretation:** Left tail is heavier (fatter) than right tail, reflecting crash risk.
 
 **Example:**  
+
 - $p_- = 1.5$ → Inverse cubic tail ($\alpha_- = 2.5$)
 - $p_+ = 2.0$ → Quadratic tail (finite variance)
 
@@ -455,6 +459,7 @@ $$
 
 
 Violations indicate:
+
 - Mispriced options
 - Model over-fitting
 - Extrapolation error
@@ -468,6 +473,7 @@ Violations indicate:
 
 
 **S&P 500 typical values:**
+
 - $p_- \approx 1.0$ to $1.5$ (fat left tail, crash risk)
 - $p_+ \approx 2.0$ to $2.5$ (thin right tail)
 
@@ -477,6 +483,7 @@ Violations indicate:
 
 
 **Major currency pairs (EUR/USD, USD/JPY):**
+
 - $p_- \approx 2.0$
 - $p_+ \approx 2.0$
 
@@ -486,10 +493,12 @@ Violations indicate:
 
 
 **Crude oil:**
+
 - $p_- \approx 1.5$ (supply disruption)
 - $p_+ \approx 1.8$ (demand collapse)
 
 **Natural gas:**
+
 - Highly asymmetric depending on season and storage levels
 
 ## Wing Approximations in Practice
@@ -547,6 +556,7 @@ $$
 
 
 This allows for:
+
 - Leading linear term (controls moment)
 - Logarithmic correction (finer tail structure)
 
@@ -643,7 +653,7 @@ Deep OTM call delta:
 
 
 $$
-\Delta_{\text{call}} = e^{-qT} \Phi(d_1) \to 0 \quad \text{as } K \to \infty
+\Delta_{\text{call}} = e^{-qT} \mathcal{N}(d_1) \to 0 \quad \text{as } K \to \infty
 $$
 
 
@@ -652,7 +662,7 @@ Deep OTM put delta:
 
 
 $$
-\Delta_{\text{put}} = -e^{-qT} \Phi(-d_1) \to -e^{-qT} \quad \text{as } K \to 0
+\Delta_{\text{put}} = -e^{-qT} \mathcal{N}(-d_1) \to -e^{-qT} \quad \text{as } K \to 0
 $$
 
 
@@ -670,6 +680,7 @@ Computing $\sigma_{\text{IV}}$ for deep OTM options:
 **Challenge:** Option price $C(K) \approx 10^{-6}$ or smaller → numerical precision issues
 
 **Solution:**
+
 - Use higher-precision arithmetic
 - Work in log-space: compute $\log C$ directly
 - Extrapolate from traded strikes using wing asymptotics
@@ -888,7 +899,7 @@ Explain why this integral diverges if the implied volatility wings are flat (con
     For large $K$, the Black-Scholes call price with constant IV $\sigma_\infty$ behaves as:
 
     $$
-    C(K) \approx S_0 \Phi(d_1) - K e^{-rT}\Phi(d_2) \sim S_0 \frac{\phi(d_1)}{|d_1|}
+    C(K) \approx S_0 \mathcal{N}(d_1) - K e^{-rT}\mathcal{N}(d_2) \sim S_0 \frac{\phi(d_1)}{|d_1|}
     $$
 
     where $d_1 = \frac{-\ln(K/F) + \sigma_\infty^2 T/2}{\sigma_\infty \sqrt{T}}$. For large $K$, $d_1 \to -\infty$ and:
@@ -924,7 +935,7 @@ Explain why this integral diverges if the implied volatility wings are flat (con
     P_{\text{BS}}(K, T, \sigma) \geq K e^{-rT} p_0
     $$
 
-    For small $K$, the Black-Scholes put price is approximately $K e^{-rT}\Phi(-d_2)$ where $d_2 = \frac{\ln(S_0/K) + (r - \sigma^2/2)T}{\sigma\sqrt{T}}$. As $K \to 0$, $d_2 \to +\infty$ and $\Phi(-d_2) \to 0$ for any finite $\sigma$. To keep $\Phi(-d_2) \geq p_0 > 0$, we need $d_2$ to remain bounded, which requires $\sigma \to \infty$ to absorb the growing $\ln(S_0/K)$ term. Therefore $\sigma_{\text{IV}}(K, T) \to \infty$ as $K \to 0$.
+    For small $K$, the Black-Scholes put price is approximately $K e^{-rT}\mathcal{N}(-d_2)$ where $d_2 = \frac{\ln(S_0/K) + (r - \sigma^2/2)T}{\sigma\sqrt{T}}$. As $K \to 0$, $d_2 \to +\infty$ and $\mathcal{N}(-d_2) \to 0$ for any finite $\sigma$. To keep $\mathcal{N}(-d_2) \geq p_0 > 0$, we need $d_2$ to remain bounded, which requires $\sigma \to \infty$ to absorb the growing $\ln(S_0/K)$ term. Therefore $\sigma_{\text{IV}}(K, T) \to \infty$ as $K \to 0$.
 
     **(c) Realistic asset classes:** An absorbing barrier at zero is realistic for:
 

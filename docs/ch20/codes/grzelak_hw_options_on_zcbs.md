@@ -199,3 +199,57 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+A European call option on a zero-coupon bond under Hull-White has the closed-form price $C = P(0, T_B)\,\mathcal{N}(d_1) - K\,P(0, T_{\text{opt}})\,\mathcal{N}(d_2)$. Identify $d_1$, $d_2$, and the bond price volatility $\sigma_P$.
+
+??? success "Solution to Exercise 1"
+    $$
+    d_1 = \frac{\ln\bigl(\frac{P(0,T_B)}{K\,P(0,T_{\text{opt}})}\bigr) + \frac{1}{2}\sigma_P^2}{\sigma_P}, \qquad d_2 = d_1 - \sigma_P,
+    $$
+
+    where
+
+    $$
+    \sigma_P = \frac{\eta}{\lambda}(1 - e^{-\lambda(T_B - T_{\text{opt}})})\sqrt{\frac{1 - e^{-2\lambda T_{\text{opt}}}}{2\lambda}}.
+    $$
+
+    Here $T_{\text{opt}}$ is the option expiry and $T_B$ is the bond maturity.
+
+---
+
+**Exercise 2.**
+Compute the price of a 2-year European put on a 5-year ZCB with $K = 0.85$, $P(0,2) = 0.90$, $P(0,5) = 0.78$, and $\sigma_P = 0.04$.
+
+??? success "Solution to Exercise 2"
+    Using put-call parity: $P_{\text{put}} = C - P(0,5) + K \cdot P(0,2)$.
+
+    First compute the call: $d_1 = \frac{\ln(0.78/(0.85 \times 0.90)) + 0.5 \times 0.0016}{0.04} = \frac{\ln(0.78/0.765) + 0.0008}{0.04} = \frac{0.01942 + 0.0008}{0.04} = 0.507$.
+
+    $d_2 = 0.507 - 0.04 = 0.467$. $C = 0.78 \times \Phi(0.507) - 0.85 \times 0.90 \times \Phi(0.467) = 0.78 \times 0.694 - 0.765 \times 0.680 = 0.5413 - 0.5202 = 0.0211$.
+
+    $P_{\text{put}} = 0.0211 - 0.78 + 0.85 \times 0.90 = 0.0211 - 0.78 + 0.765 = 0.0061$.
+
+---
+
+**Exercise 3.**
+Explain why bond options are the building blocks for pricing caps, floors, and swaptions in the Hull-White framework.
+
+??? success "Solution to Exercise 3"
+    In the Hull-White model, LIBOR rates are functions of bond prices: $L(T_1, T_2) = (1/P(T_1, T_2) - 1)/\tau$. Therefore:
+
+    - A caplet $\max(L - K, 0)$ is equivalent to a put on $P(T_1, T_2)$ (high LIBOR means low bond price).
+    - A floorlet $\max(K - L, 0)$ is equivalent to a call on $P(T_1, T_2)$.
+    - A swaption $\max(S - K, 0) \times A$ involves a portfolio of bonds, and Jamshidian's trick (see the related code) decomposes it into a portfolio of bond options.
+
+    Since Hull-White provides closed-form ZCB option prices, all these products can be priced analytically.
+
+---
+
+**Exercise 4.**
+How does increasing the mean reversion $\lambda$ affect the price of a long-dated bond option (e.g., 10-year option on a 20-year bond)?
+
+??? success "Solution to Exercise 4"
+    Increasing $\lambda$ reduces $\sigma_P$ because the bond price volatility formula contains $\frac{1}{\lambda}(1 - e^{-\lambda\tau})$, which decreases with $\lambda$. The term $\sqrt{(1 - e^{-2\lambda T})/2\lambda}$ also saturates more quickly. The net effect is a lower bond option price, because stronger mean reversion reduces uncertainty about future rates, making future bond prices less volatile. For very large $\lambda$, the option price approaches the intrinsic value (the deterministic limit).

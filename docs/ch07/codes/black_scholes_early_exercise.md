@@ -10,6 +10,7 @@ a full binomial tree and identifying nodes where immediate exercise
 dominates the continuation value.
 
 Includes:
+
   - Full-tree computation of the exercise boundary
   - Boundary visualization for varying parameters (r, sigma, K)
   - Boundary behavior near maturity
@@ -318,3 +319,49 @@ if __name__ == "__main__":
     plt.show()
     print("\nFigure saved: early_exercise_boundary_comprehensive.png")
 ```
+
+## Exercises
+
+**Exercise 1.**
+Define the early-exercise boundary $S^*(t)$ for an American put. How does it behave as $t \to T$?
+
+??? success "Solution to Exercise 1"
+    The early-exercise boundary $S^*(t)$ is the critical stock price below which immediate exercise is optimal at time $t$. For $S_t < S^*(t)$, the holder should exercise; for $S_t > S^*(t)$, the holder should continue.
+
+    As $t \to T$: $S^*(T) = K$ (at expiration, exercise when ITM). For $t < T$: $S^*(t) < K$ because the time value of the option provides some incentive to wait.
+
+    As $t \to 0$ (far from expiry): $S^*(0)$ approaches a finite limit that depends on $r$, $\sigma$, and $K$. For large $r$, $S^*(0)$ is closer to $K$ because the interest benefit of early exercise is stronger.
+
+---
+
+**Exercise 2.**
+How does increasing the risk-free rate $r$ affect the early-exercise boundary? Explain intuitively.
+
+??? success "Solution to Exercise 2"
+    Increasing $r$ raises the early-exercise boundary $S^*(t)$ (makes early exercise more likely at higher stock prices). Intuitively: exercising an American put yields $K$ immediately, which can be invested at rate $r$. Higher $r$ makes the interest earned on $K$ more attractive relative to the option's time value, so the holder exercises sooner (at a higher $S$).
+
+    In the limit $r \to \infty$, $S^*(t) \to K$ for all $t$: exercise immediately whenever ITM.
+
+---
+
+**Exercise 3.**
+The code builds a full binomial tree to identify exercise nodes. What is the computational cost, and why is the full tree needed (unlike pricing)?
+
+??? success "Solution to Exercise 3"
+    The full tree requires $O(M^2)$ computation and $O(M^2)$ memory (storing values at all $M(M+1)/2$ nodes). This is more expensive than the $O(M)$-space pricing algorithm.
+
+    The full tree is needed because the exercise boundary $S^*(t_n)$ is the lowest stock price at time step $n$ where the holder exercises. To find this, we need to know the exercise decision at every node, which requires storing the option value at every node for comparison with the intrinsic value.
+
+---
+
+**Exercise 4.**
+Compare the exercise boundary for different volatilities. Does higher volatility make early exercise more or less likely?
+
+??? success "Solution to Exercise 4"
+    Higher volatility $\sigma$ lowers the early-exercise boundary $S^*(t)$ (makes early exercise less likely). This is because:
+
+    1. Higher $\sigma$ increases the option's time value (more potential for favorable moves).
+    2. The value of waiting increases with uncertainty.
+    3. The insurance value of the put (protection against further drops) is greater when $\sigma$ is large.
+
+    In the limit $\sigma \to \infty$, the American put behaves like the European put (never exercise early) because the time value dominates.

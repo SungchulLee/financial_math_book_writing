@@ -9,6 +9,7 @@ When many agents adapt their strategies using similar learning rules, **learning
 
 
 Learning algorithms:
+
 - update based on past performance,
 - respond to observed market patterns,
 - often share similar objectives.
@@ -21,6 +22,7 @@ Collective adaptation can destabilize markets.
 
 
 Learning-induced effects include:
+
 - crowded trades,
 - self-reinforcing trends,
 - sudden regime shifts.
@@ -33,6 +35,7 @@ Small signals can be amplified through learning feedback.
 
 
 Examples include:
+
 - volatility targeting strategies,
 - trend-following algorithms,
 - risk-parity portfolio adjustments.
@@ -45,6 +48,7 @@ These strategies can synchronize behavior.
 
 
 Learning-induced instability implies:
+
 - non-linear risk amplification,
 - failure of diversification,
 - need for macroprudential oversight.

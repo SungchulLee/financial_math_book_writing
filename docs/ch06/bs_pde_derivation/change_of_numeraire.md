@@ -5,7 +5,7 @@ This derivation removes the physical drift $\mu$ by **unit normalization**: expr
 
 The Black–Scholes PDE can be derived without any delta-hedging or replication argument. Instead, one chooses the **stock as numéraire**, constructs the associated martingale measure via Girsanov's theorem, and imposes the condition that the normalized option price is a martingale. The PDE then emerges from setting the drift of this martingale to zero.
 
-This derivation is conceptually distinct from the classical approaches (self-financing replication, risk-neutral pricing with the money market numéraire) and demonstrates the power of the [change-of-numéraire framework](../../ch01/fundamental_theorem_of_asset_pricing/numeraire_and_change_of_measure.md). The fact that a different numéraire and a different measure yield the same PDE is a concrete manifestation of pricing invariance.
+This derivation views the same pricing problem through a different lens than [self-financing replication](replication.md) or [risk-neutral pricing](risk_neutral_measure.md) under the money-market numéraire: rather than constructing the replicating strategy $(\alpha_t, \beta_t)$ explicitly or working under $\mathbb{Q}$, it changes the unit of account and reads the pricing equation off a martingale condition under $\mathbb{Q}^S$. The fact that a different numéraire and a different measure yield the same PDE is a concrete manifestation of pricing invariance — the underlying object is the unique no-arbitrage price; the [change-of-numéraire framework](../../ch01/numeraire_and_change_of_measure/numeraire_and_change_of_measure.md) supplies one more coordinate system on it.
 
 
 ## Setup
@@ -27,7 +27,7 @@ We take the **stock** $S_t$ as numéraire. This is valid because $S_t$ is strict
 
 ### Radon–Nikodym Derivative
 
-By the [change-of-numéraire theorem](../../ch01/fundamental_theorem_of_asset_pricing/numeraire_and_change_of_measure.md), the density process from $\mathbb{Q}$ to $\mathbb{Q}^S$ is
+By the [change-of-numéraire theorem](../../ch01/numeraire_and_change_of_measure/numeraire_and_change_of_measure.md), the density process from $\mathbb{Q}$ to $\mathbb{Q}^S$ is
 
 $$Z_t = \frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_t} = \frac{S_t / S_0}{B_t / B_0} = \frac{S_t e^{-rt}}{S_0}$$
 
@@ -211,7 +211,7 @@ The logical structure is:
 5. **Impose the martingale condition**: $u = V/S$ satisfies $\partial_t u + \mathcal{L}^S u = 0$.
 6. **Transform back to $V$**: the $\sigma^2$ terms cancel, yielding the Black–Scholes PDE.
 
-This derivation differs from the replication approach in *method*: it begins with measure theory (Girsanov's theorem, Radon–Nikodym derivatives) rather than self-financing portfolios, and obtains the PDE from a martingale condition rather than a hedging argument. Both approaches ultimately rest on the same theoretical foundations: **no-arbitrage** guarantees the existence of an equivalent martingale measure, and **completeness** (which in Black–Scholes is equivalent to the ability to replicate) guarantees its uniqueness and hence the uniqueness of the price. The fact that both approaches yield the same equation reflects this deep connection, established by the [FTAP](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md).
+This derivation differs from the [replication approach](replication.md) in *method*: it begins with measure theory (Girsanov's theorem, Radon–Nikodym derivatives) rather than self-financing portfolios, and obtains the PDE from a martingale condition rather than a hedging argument. The replicating strategy $(\alpha_t, \beta_t)$ never appears explicitly here, but it is implicit in the background — completeness, which guarantees uniqueness of the pricing measure, is precisely the existence of such a strategy. Both approaches ultimately rest on the same theoretical foundations: **no-arbitrage** guarantees the existence of an equivalent martingale measure, and **completeness** (which in Black–Scholes is equivalent to the ability to replicate) guarantees its uniqueness and hence the uniqueness of the price. The fact that both approaches yield the same equation reflects this deep connection, established by the [FTAP](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md).
 
 
 ## References

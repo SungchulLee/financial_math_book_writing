@@ -61,7 +61,17 @@ $$
 M(t) = \exp\!\left(-\int_0^t b(s)\,ds\right)
 $$
 
-By the Itô product rule, $d(M(t)X_t) = M(t)\,dX_t + X_t\,dM(t)$. Since $M(t)$ is a deterministic function of finite variation, no quadratic covariation term appears, and the computation reduces to
+By the Itô product rule, $d(M(t)X_t) = M(t)\,dX_t + X_t\,dM(t)$. Since $M(t)$ is a deterministic function of finite variation, no quadratic covariation term appears. Substituting $dX_t = [a(t) + b(t)X_t]\,dt + c(t)\,dW_t$:
+
+$$
+d(MX) = Ma(t)\,dt + Mb(t)X_t\,dt + Mc(t)\,dW_t + X_t\,dM
+$$
+
+$$
+= Ma(t)\,dt + Mc(t)\,dW_t + X_t\bigl(dM + b(t)M\,dt\bigr)
+$$
+
+Choosing $M$ so that $dM + b(t)M\,dt = 0$, i.e. $M(t) = \exp\!\left(-\int_0^t b(s)\,ds\right)$, the $X_t$-term vanishes:
 
 $$
 d(M(t)X_t) = M(t)a(t)\,dt + M(t)c(t)\,dW_t
@@ -72,6 +82,7 @@ Integrating and solving for $X_t$:
 $$
 X_t = e^{\int_0^t b(u)\,du}\left[
 X_0
+
 + \int_0^t e^{-\int_0^s b(u)\,du}a(s)\,ds
 + \int_0^t e^{-\int_0^s b(u)\,du}c(s)\,dW_s
 \right]
@@ -166,7 +177,11 @@ $$
 Substituting $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ and using $(dS_t)^2 = \sigma^2 S_t^2\,dt$:
 
 $$
-d(\log S_t) = \mu\,dt + \sigma\,dW_t - \frac{\sigma^2}{2}\,dt = \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
+d(\log S_t) = \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) - \frac{1}{2}\frac{1}{S_t^2}(\sigma^2 S_t^2\,dt)
+$$
+
+$$
+= \mu\,dt + \sigma\,dW_t - \frac{\sigma^2}{2}\,dt = \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
 $$
 
 This is Brownian motion with drift.
@@ -212,10 +227,14 @@ $$
 dr_t + a\,r_t\,dt = a\theta\,dt + \sigma\,dW_t
 $$
 
-Multiply by the integrating factor $e^{at}$. Since $e^{at}$ is a deterministic function with finite variation, the Itô product rule gives $d(e^{at}r_t) = ae^{at}r_t\,dt + e^{at}dr_t$ with no extra quadratic covariation term:
+Multiply by the integrating factor $e^{at}$. Since $e^{at}$ is a deterministic function with finite variation, the Itô product rule gives $d(e^{at}r_t) = ae^{at}r_t\,dt + e^{at}dr_t$ with no extra quadratic covariation term. Substituting $dr_t = a(\theta - r_t)\,dt + \sigma\,dW_t$:
 
 $$
-d(e^{at}r_t) = a\theta\,e^{at}\,dt + \sigma\,e^{at}\,dW_t
+d(e^{at}r_t) = ae^{at}r_t\,dt + e^{at}[a(\theta - r_t)\,dt + \sigma\,dW_t]
+$$
+
+$$
+= a\theta\,e^{at}\,dt + \sigma\,e^{at}\,dW_t
 $$
 
 ### Solution
@@ -377,7 +396,11 @@ Write down the distribution of $X_t$.
     X_t = X_0 + \int_0^t (3s^2 + 1)\,ds + \int_0^t e^{-s}\,dW_s = 2 + (t^3 + t) + \int_0^t e^{-s}\,dW_s
     $$
 
-    The stochastic integral $\int_0^t e^{-s}\,dW_s$ is a Gaussian random variable with mean zero and variance $\int_0^t e^{-2s}\,ds = \frac{1}{2}(1 - e^{-2t})$ by Ito isometry.
+    The stochastic integral $\int_0^t e^{-s}\,dW_s$ is a Gaussian random variable with mean zero and variance, by Itô isometry,
+
+    $$
+    \int_0^t e^{-2s}\,ds = \frac{1}{2}(1 - e^{-2t})
+    $$
 
     Therefore:
 
@@ -396,9 +419,9 @@ $$
 by applying Itô's lemma to $Y_t = \ln V_t$. Show all steps of the transformation, including the Itô correction term.
 
 ??? success "Solution to Exercise 2"
-    Let $Y_t = \ln V_t$. We apply Ito's lemma with $f(V) = \ln V$, so $f'(V) = 1/V$ and $f''(V) = -1/V^2$.
+    Let $Y_t = \ln V_t$. We apply Itô's lemma with $f(V) = \ln V$, so $f'(V) = 1/V$ and $f''(V) = -1/V^2$.
 
-    **Step 1.** Write Ito's lemma:
+    **Step 1.** Write Itô's lemma:
 
     $$
     dY_t = \frac{1}{V_t}\,dV_t + \frac{1}{2}\!\left(-\frac{1}{V_t^2}\right)(dV_t)^2
@@ -410,7 +433,7 @@ by applying Itô's lemma to $Y_t = \ln V_t$. Show all steps of the transformatio
     \frac{1}{V_t}\,dV_t = r\,dt + \sigma\,dW_t
     $$
 
-    **Step 3.** Compute $(dV_t)^2 = (\sigma V_t)^2\,dt = \sigma^2 V_t^2\,dt$ (using $(dW_t)^2 = dt$ and dropping higher-order terms):
+    **Step 3.** Compute $(dV_t)^2 = \sigma^2 V_t^2\,dt$ (using $(dW_t)^2 = dt$ and dropping higher-order terms):
 
     $$
     \frac{1}{2}\!\left(-\frac{1}{V_t^2}\right)\sigma^2 V_t^2\,dt = -\frac{\sigma^2}{2}\,dt
@@ -434,64 +457,191 @@ by applying Itô's lemma to $Y_t = \ln V_t$. Show all steps of the transformatio
     V_t = V_0 \exp\!\left[\left(r - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
     $$
 
-    The Ito correction term $-\sigma^2/2$ arises from the second derivative $f''(V) = -1/V^2$ combined with the quadratic variation $(dV_t)^2 = \sigma^2 V_t^2\,dt$.
+    The Itô correction term $-\sigma^2/2$ arises from the second derivative $f''(V) = -1/V^2$ combined with the quadratic variation $(dV_t)^2 = \sigma^2 V_t^2\,dt$.
 
 ---
 
-**Exercise 3.** Consider the linear SDE
+**Exercise 3.** Consider the multiplicative-noise SDE
 
 $$
-dX_t = (2 - 3X_t)\,dt + 4\,dW_t, \qquad X_0 = 0
+dX_t = 2X_t\,dt + 3X_t\,dW_t, \qquad X_0 = x_0 > 0
 $$
 
-(a) Identify the mean-reversion speed $a$, long-term mean $\theta$, and volatility $\sigma$.
+(a) Apply Itô's lemma to $Y_t = \ln X_t$.
 
-(b) Solve using the integrating factor method. Write the integrating factor explicitly.
+(b) Solve explicitly for $X_t$.
 
-(c) Compute $\mathbb{E}[X_t]$ and $\operatorname{Var}[X_t]$.
+(c) Find the distribution of $\ln X_t$.
 
 ??? success "Solution to Exercise 3"
-    The SDE $dX_t = (2 - 3X_t)\,dt + 4\,dW_t$ is an Ornstein-Uhlenbeck process.
-
-    **(a)** Rewrite the drift as $a(\theta - X_t) = 3(\frac{2}{3} - X_t)$, so:
-
-    - Mean-reversion speed: $a = 3$
-    - Long-term mean: $\theta = 2/3$
-    - Volatility: $\sigma = 4$
-
-    **(b)** The integrating factor is $M(t) = e^{3t}$. Define $Y_t = e^{3t}X_t$. By the Ito product rule (no quadratic covariation since $e^{3t}$ is deterministic):
+    Let $Y_t = \ln X_t$. Since $f(x) = \ln x$, we have
 
     $$
-    dY_t = 3e^{3t}X_t\,dt + e^{3t}\,dX_t = 3e^{3t}X_t\,dt + e^{3t}[(2 - 3X_t)\,dt + 4\,dW_t]
+    f'(x) = \frac{1}{x}, \qquad f''(x) = -\frac{1}{x^2}
     $$
 
-    $$
-    = 2e^{3t}\,dt + 4e^{3t}\,dW_t
-    $$
-
-    Integrating: $Y_t = Y_0 + \int_0^t 2e^{3s}\,ds + \int_0^t 4e^{3s}\,dW_s = 0 + \frac{2}{3}(e^{3t} - 1) + 4\int_0^t e^{3s}\,dW_s$
-
-    Dividing by $e^{3t}$:
+    By Itô's lemma,
 
     $$
-    X_t = \frac{2}{3}(1 - e^{-3t}) + 4\int_0^t e^{-3(t-s)}\,dW_s
+    dY_t = \frac{1}{X_t}\,dX_t + \frac{1}{2}\left(-\frac{1}{X_t^2}\right)(dX_t)^2
     $$
 
-    **(c)** The expectation is (the stochastic integral has zero mean):
+    Substitute $dX_t = 2X_t\,dt + 3X_t\,dW_t$:
 
     $$
-    \mathbb{E}[X_t] = \frac{2}{3}(1 - e^{-3t})
+    \frac{1}{X_t}\,dX_t = 2\,dt + 3\,dW_t
     $$
 
-    The variance is computed via Ito isometry:
+    Also,
 
     $$
-    \operatorname{Var}[X_t] = 16 \int_0^t e^{-6(t-s)}\,ds = 16 \cdot \frac{1 - e^{-6t}}{6} = \frac{8}{3}(1 - e^{-6t})
+    (dX_t)^2 = (3X_t\,dW_t)^2 = 9X_t^2\,dt
+    $$
+
+    so the second-order Itô correction term is
+
+    $$
+    \frac{1}{2}\left(-\frac{1}{X_t^2}\right)9X_t^2\,dt = -\frac{9}{2}\,dt
+    $$
+
+    Therefore,
+
+    $$
+    dY_t = \left(2 - \frac{9}{2}\right)dt + 3\,dW_t
+    = -\frac{5}{2}\,dt + 3\,dW_t
+    $$
+
+    Integrating from $0$ to $t$,
+
+    $$
+    Y_t = \ln x_0 - \frac{5}{2}t + 3W_t
+    $$
+
+    Hence,
+
+    $$
+    X_t = x_0 \exp\!\left(-\frac{5}{2}t + 3W_t\right)
+    $$
+
+    Since $Y_t = \ln X_t$ is an affine function of Brownian motion, it is normally distributed:
+
+    $$
+    \ln X_t \sim \mathcal{N}\!\left(\ln x_0 - \frac{5}{2}t,\; 9t\right)
     $$
 
 ---
 
-**Exercise 4.** Consider the SDE with state-dependent diffusion
+**Exercise 4.** Solve the linear SDE
+
+$$
+dX_t = (1+t - 2X_t)\,dt + e^t\,dW_t, \qquad X_0 = 1
+$$
+
+(a) Write down the integrating factor.
+
+(b) Derive an explicit formula for $X_t$.
+
+(c) Compute $\mathbb{E}[X_t]$.
+
+??? success "Solution to Exercise 4"
+    We are given
+
+    $$
+    dX_t = (1+t - 2X_t)\,dt + e^t\,dW_t
+    $$
+
+    This is a linear SDE of the form
+
+    $$
+    dX_t = [a(t) + b(t)X_t]\,dt + c(t)\,dW_t
+    $$
+
+    with
+
+    $$
+    a(t) = 1+t, \qquad b(t) = -2, \qquad c(t) = e^t
+    $$
+
+    **(a) Integrating factor**
+
+    We look for an integrating factor $M(t)$ depending only on time. This ensures that $M$ is deterministic, so the Itô product rule has no quadratic covariation term:
+
+    $$
+    d(M_t X_t) = M_t\,dX_t + X_t\,dM_t
+    $$
+
+    Substituting $dX_t = (1+t-2X_t)\,dt + e^t\,dW_t$ and grouping:
+
+    $$
+    d(M_t X_t) = M_t(1+t)\,dt + M_t e^t\,dW_t + X_t\bigl(dM_t - 2M_t\,dt\bigr)
+    $$
+
+    We choose $M$ so that the coefficient of $X_t$ vanishes, i.e. $dM_t = 2M_t\,dt$. This gives $M(t) = e^{2t}$.
+
+    **(b) Explicit solution**
+
+    With $M(t) = e^{2t}$ the $X_t$-term is gone, so
+
+    $$
+    d(e^{2t}X_t) = e^{2t}(1+t)\,dt + e^{2t}e^t\,dW_t
+    = e^{2t}(1+t)\,dt + e^{3t}\,dW_t
+    $$
+
+    Integrating from $0$ to $t$,
+
+    $$
+    e^{2t}X_t = X_0 + \int_0^t e^{2s}(1+s)\,ds + \int_0^t e^{3s}\,dW_s
+    $$
+
+    Since $X_0 = 1$,
+
+    $$
+    e^{2t}X_t = 1 + \int_0^t e^{2s}(1+s)\,ds + \int_0^t e^{3s}\,dW_s
+    $$
+
+    Now compute the deterministic integral:
+
+    $$
+    \int e^{2s}(1+s)\,ds = \frac{e^{2s}}{4}(1+2s)
+    $$
+
+    so
+
+    $$
+    \int_0^t e^{2s}(1+s)\,ds
+    = \frac{e^{2t}}{4}(1+2t) - \frac{1}{4}
+    $$
+
+    Therefore,
+
+    $$
+    e^{2t}X_t
+    = 1 + \frac{e^{2t}}{4}(1+2t) - \frac{1}{4} + \int_0^t e^{3s}\,dW_s
+    $$
+
+    $$
+    = \frac{3}{4} + \frac{e^{2t}}{4}(1+2t) + \int_0^t e^{3s}\,dW_s
+    $$
+
+    Dividing by $e^{2t}$,
+
+    $$
+    X_t
+    = \frac{3}{4}e^{-2t} + \frac{1+2t}{4} + e^{-2t}\int_0^t e^{3s}\,dW_s
+    $$
+
+    **(c) Expectation**
+
+    The stochastic integral has mean zero, so
+
+    $$
+    \mathbb{E}[X_t]
+    = \frac{3}{4}e^{-2t} + \frac{1+2t}{4}
+    $$
+
+---
+
+**Exercise 5.** Consider the SDE with state-dependent diffusion
 
 $$
 dX_t = \mu X_t\,dt + \sigma X_t^\beta\,dW_t, \qquad \beta \neq 1
@@ -501,7 +651,7 @@ $$
 
 (b) Apply Itô's lemma to $Y_t = h(X_t)$ and verify that the diffusion coefficient of $Y_t$ is constant.
 
-??? success "Solution to Exercise 4"
+??? success "Solution to Exercise 5"
     **(a)** The Lamperti transform requires $h'(x) = 1/\sigma(x) = 1/(\sigma x^\beta)$. Integrating:
 
     $$
@@ -512,16 +662,29 @@ $$
 
     **(b)** Let $Y_t = h(X_t) = \frac{X_t^{1-\beta}}{\sigma(1-\beta)}$. We have $h'(x) = \frac{x^{-\beta}}{\sigma}$ and $h''(x) = \frac{-\beta x^{-\beta-1}}{\sigma}$.
 
-    By Ito's lemma:
+    By Itô's lemma:
 
     $$
     dY_t = h'(X_t)\,dX_t + \frac{1}{2}h''(X_t)\sigma^2 X_t^{2\beta}\,dt
     $$
 
+    Substituting $dX_t = \mu X_t\,dt + \sigma X_t^\beta\,dW_t$:
+
+    $$\begin{array}{lll}
+    dY_t
+    &=&\displaystyle h'(X_t)\mu X_t\,dt
+
+    + h'(X_t)\sigma X_t^\beta\,dW_t
+    + \frac{1}{2}h''(X_t)\sigma^2 X_t^{2\beta}\,dt\\
+    &=&\displaystyle \left( h'(X_t)\mu X_t + \frac{1}{2}h''(X_t)\sigma^2 X_t^{2\beta}\right)\,dt
+
+    + h'(X_t)\sigma X_t^\beta\,dW_t
+    \end{array}$$
+
     The diffusion coefficient of $Y_t$ is:
 
     $$
-    h'(X_t) \cdot \sigma X_t^\beta = \frac{X_t^{-\beta}}{\sigma} \cdot \sigma X_t^\beta = 1
+    h'(X_t)\cdot \sigma X_t^\beta = \frac{X_t^{-\beta}}{\sigma}\cdot \sigma X_t^\beta = 1
     $$
 
     This confirms that the diffusion coefficient of $Y_t$ is the constant $1$, independent of $X_t$.
@@ -529,136 +692,137 @@ $$
     The drift of $Y_t$ is:
 
     $$
-    h'(X_t)\mu X_t + \frac{1}{2}h''(X_t)\sigma^2 X_t^{2\beta} = \frac{\mu X_t^{1-\beta}}{\sigma} - \frac{\beta \sigma X_t^{\beta-1}}{2}
+    h'(X_t)\mu X_t + \frac{1}{2}h''(X_t)\sigma^2 X_t^{2\beta}
+    = \frac{\mu X_t^{1-\beta}}{\sigma} - \frac{\beta \sigma X_t^{\beta-1}}{2}
     $$
 
-    which in terms of $Y_t$ becomes a (generally nonlinear) function of $Y_t$, but the diffusion is constant as required.
+    which in terms of $Y_t$ becomes a generally nonlinear function of $Y_t$, but the diffusion is constant as required.
 
 ---
 
-**Exercise 5.** Solve the Vasicek model
+**Exercise 6.** Consider the SDE
 
 $$
-dr_t = 0.5(0.04 - r_t)\,dt + 0.01\,dW_t, \qquad r_0 = 0.03
+dX_t = X_t^2\,dt + X_t^2\,dW_t
 $$
 
-(a) Write the explicit solution for $r_t$.
-
-(b) Find the stationary distribution.
-
-(c) Compute $\mathbb{E}[r_1]$ and $\operatorname{Var}[r_1]$.
-
-??? success "Solution to Exercise 5"
-    The Vasicek model $dr_t = 0.5(0.04 - r_t)\,dt + 0.01\,dW_t$ has $a = 0.5$, $\theta = 0.04$, $\sigma = 0.01$, $r_0 = 0.03$.
-
-    **(a)** The explicit solution is:
-
-    $$
-    r_t = 0.03\,e^{-0.5t} + 0.04(1 - e^{-0.5t}) + 0.01\int_0^t e^{-0.5(t-s)}\,dW_s
-    $$
-
-    **(b)** The stationary distribution is $r_\infty \sim \mathcal{N}\!\left(\theta, \frac{\sigma^2}{2a}\right)$:
-
-    $$
-    r_\infty \sim \mathcal{N}\!\left(0.04,\; \frac{0.0001}{1.0}\right) = \mathcal{N}(0.04,\; 0.0001)
-    $$
-
-    The stationary standard deviation is $\sqrt{0.0001} = 0.01 = 1\%$.
-
-    **(c)** At $t = 1$:
-
-    $$
-    \mathbb{E}[r_1] = 0.03\,e^{-0.5} + 0.04(1 - e^{-0.5}) = 0.03 \times 0.6065 + 0.04 \times 0.3935 \approx 0.03394
-    $$
-
-    $$
-    \operatorname{Var}[r_1] = \frac{0.0001}{1.0}(1 - e^{-1.0}) = 0.0001 \times 0.6321 \approx 6.321 \times 10^{-5}
-    $$
-
----
-
-**Exercise 6.** Consider the SDE $dX_t = X_t^2\,dt + X_t^2\,dW_t$. Attempt to apply each of the four standard techniques (direct integration, log transform, integrating factor, Lamperti transform). Explain why none of them reduces this equation to a standard solvable form.
+Attempt to apply each of the four standard techniques (direct integration, log transform, integrating factor, Lamperti transform). Explain why none of them reduces this equation to a standard solvable form.
 
 ??? success "Solution to Exercise 6"
     We attempt each standard technique on $dX_t = X_t^2\,dt + X_t^2\,dW_t$:
 
     **Direct integration:** This requires coefficients that depend only on time, not on $X_t$. Here both $b(X_t) = X_t^2$ and $\sigma(X_t) = X_t^2$ are nonlinear functions of the state. Direct integration does not apply.
 
-    **Log transform:** Set $Y_t = \log X_t$. By Ito's lemma:
+    **Log transform:** Set $Y_t = \log X_t$. By Itô's lemma:
 
     $$
     dY_t = \left(X_t - \frac{X_t^2}{2}\right)dt + X_t\,dW_t
     $$
 
-    The coefficients still depend on $X_t = e^{Y_t}$ in a nonlinear way ($e^{Y_t}$ and $e^{2Y_t}$ terms), so the equation is not simplified to a standard solvable form.
+    The coefficients still depend on $X_t = e^{Y_t}$ in a nonlinear way, so the equation is not simplified to a standard solvable form.
 
-    **Integrating factor:** The integrating factor method applies to **linear** SDEs where the drift is affine in $X_t$. Here the drift $X_t^2$ is quadratic, so the method does not apply.
+    **Integrating factor:** The integrating factor method applies to linear SDEs where the drift is affine in $X_t$. Here the drift $X_t^2$ is quadratic, so the method does not apply.
 
-    **Lamperti transform:** Set $h'(x) = 1/x^2$, giving $h(x) = -1/x$ and $Y_t = -1/X_t$. By Ito's lemma with $h'(x) = 1/x^2$ and $h''(x) = -2/x^3$:
+    **Lamperti transform:** Set $h'(x) = 1/x^2$, giving $h(x) = -1/x$ and $Y_t = -1/X_t$. By Itô's lemma with $h'(x) = 1/x^2$ and $h''(x) = -2/x^3$:
+
+    $$\begin{array}{lll}
+    dY_t 
+    &=&\displaystyle \frac{1}{X_t^2}(X_t^2\,dt + X_t^2\,dW_t)
+
+    + \frac{1}{2}\!\left(-\frac{2}{X_t^3}\right)X_t^4\,dt\\
+    &=&\displaystyle (1 - X_t)\,dt + dW_t
+    \end{array}$$
+
+    Since $X_t = -1/Y_t$, we get
 
     $$
-    dY_t = \frac{1}{X_t^2}(X_t^2\,dt + X_t^2\,dW_t) + \frac{1}{2}\!\left(-\frac{2}{X_t^3}\right)X_t^4\,dt
+    dY_t = \left(1 + \frac{1}{Y_t}\right)dt + dW_t
     $$
 
-    $$
-    = (1 - X_t)\,dt + dW_t
-    $$
-
-    Since $X_t = -1/Y_t$, we get $dY_t = (1 + 1/Y_t)\,dt + dW_t$. The diffusion is now constant, but the drift contains the nonlinear term $1/Y_t$, which does not correspond to any standard solvable form.
+    The diffusion is now constant, but the drift contains the nonlinear term $1/Y_t$, which does not correspond to a standard solvable form.
 
     None of the four techniques reduces this SDE to a known explicitly solvable equation. Numerical methods or PDE approaches would be needed.
 
 ---
 
-**Exercise 7.** Verify that the solution to the time-varying linear SDE
+**Exercise 7.** Consider the time-varying linear SDE
 
 $$
-dX_t = [-a(t)X_t + b(t)]\,dt + c(t)\,dW_t
+dX_t = [-a(t)X_t + b(t)]\,dt + c(t)\,dW_t.
 $$
 
-is given by
+(a) Find an integrating factor $M(t)$ depending only on time such that $d(M(t)X_t)$ contains no term proportional to $X_t$.
 
-$$
-X_t = \Phi(t)\!\left[X_0 + \int_0^t \Phi(s)^{-1} b(s)\,ds + \int_0^t \Phi(s)^{-1} c(s)\,dW_s\right]
-$$
-
-where $\Phi(t) = \exp\!\left(-\int_0^t a(u)\,du\right)$. Apply Itô's product rule to $\Phi(t)^{-1} X_t$ to derive the result.
+(b) Use this integrating factor to solve the SDE explicitly.
 
 ??? success "Solution to Exercise 7"
-    Define $Z_t = \Phi(t)^{-1} X_t$ where $\Phi(t)^{-1} = \exp\!\left(\int_0^t a(u)\,du\right)$.
-
-    Since $\Phi(t)^{-1}$ is a deterministic function of finite variation, we apply the Ito product rule with no quadratic covariation term:
+    We seek an integrating factor $M(t)$ depending only on time. This is important because then $M$ is deterministic and of finite variation, so the Itô product rule is simple:
 
     $$
-    dZ_t = d(\Phi(t)^{-1}) \cdot X_t + \Phi(t)^{-1}\,dX_t
+    d(M(t)X_t) = M(t)\,dX_t + X_t\,dM(t)
     $$
 
-    We have $d(\Phi(t)^{-1}) = a(t)\Phi(t)^{-1}\,dt$, so:
+    with no quadratic covariation term.
+
+    Substituting $dX_t = [-a(t)X_t + b(t)]\,dt + c(t)\,dW_t$:
 
     $$
-    dZ_t = a(t)\Phi(t)^{-1}X_t\,dt + \Phi(t)^{-1}[-a(t)X_t + b(t)]\,dt + \Phi(t)^{-1}c(t)\,dW_t
+    d(MX)
+    = M[-a(t)X_t + b(t)]\,dt + Mc(t)\,dW_t + X_t\,dM
     $$
 
-    $$
-    = a(t)\Phi(t)^{-1}X_t\,dt - a(t)\Phi(t)^{-1}X_t\,dt + \Phi(t)^{-1}b(t)\,dt + \Phi(t)^{-1}c(t)\,dW_t
-    $$
-
-    The terms involving $a(t)X_t$ cancel, leaving:
+    Rearranging,
 
     $$
-    dZ_t = \Phi(t)^{-1}b(t)\,dt + \Phi(t)^{-1}c(t)\,dW_t
+    d(MX)
+    = Mb(t)\,dt + Mc(t)\,dW_t + X_t\bigl(dM - a(t)M\,dt\bigr)
     $$
 
-    Integrating from $0$ to $t$ (noting $Z_0 = \Phi(0)^{-1}X_0 = X_0$):
+    We choose $M$ so that the coefficient of $X_t$ vanishes:
 
     $$
-    Z_t = X_0 + \int_0^t \Phi(s)^{-1}b(s)\,ds + \int_0^t \Phi(s)^{-1}c(s)\,dW_s
+    dM = a(t)M\,dt
     $$
 
-    Multiplying both sides by $\Phi(t)$:
+    Hence $M$ must solve the ODE $dM/dt = a(t)M(t)$, so
 
     $$
-    X_t = \Phi(t)\!\left[X_0 + \int_0^t \Phi(s)^{-1}b(s)\,ds + \int_0^t \Phi(s)^{-1}c(s)\,dW_s\right]
+    M(t) = \exp\!\left(\int_0^t a(u)\,du\right).
     $$
 
-    This confirms the stated solution.
+    With this choice,
+
+    $$
+    d(M(t)X_t) = M(t)b(t)\,dt + M(t)c(t)\,dW_t
+    $$
+
+    Integrating from $0$ to $t$ and noting $M(0) = 1$:
+
+    $$
+    M(t)X_t = X_0 + \int_0^t M(s)b(s)\,ds + \int_0^t M(s)c(s)\,dW_s
+    $$
+
+    Therefore,
+
+    $$
+    X_t
+    = M(t)^{-1}\left[
+    X_0 + \int_0^t M(s)b(s)\,ds + \int_0^t M(s)c(s)\,dW_s
+    \right]
+    $$
+
+    that is,
+
+    $$
+    X_t
+    =
+    \exp\!\left(-\int_0^t a(u)\,du\right)
+    \left[
+    X_0
+
+    + \int_0^t \exp\!\left(\int_0^s a(u)\,du\right)b(s)\,ds
+    + \int_0^t \exp\!\left(\int_0^s a(u)\,du\right)c(s)\,dW_s
+    \right].
+    $$
+
+    This is the explicit solution.

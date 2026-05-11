@@ -177,45 +177,7 @@ $$
 
 ## Application 1: Black–Scholes Option Pricing
 
-### Setup
-
-Under the risk-neutral measure $\mathbb{Q}$, the stock price follows:
-
-$$
-dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
-$$
-
-where $r$ is the risk-free rate.
-
-### European Call Option
-
-The call option with strike $K$ and maturity $T$ has payoff $g(S) = (S - K)^+$.
-
-**By Feynman–Kac**, the price $V(t, S)$ satisfies:
-
-$$
-\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
-$$
-
-with $V(T, S) = (S - K)^+$.
-
-**Probabilistic representation**:
-
-$$
-V(t, S) = e^{-r(T-t)} \mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ \mid S_t = S]
-$$
-
-**Explicit solution (Black–Scholes formula)**:
-
-$$
-V(t, S) = S\,\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)
-$$
-
-where:
-
-$$
-d_1 = \frac{\log(S/K) + (r + \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}
-$$
+For $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$ with payoff $g(S_T) = (S_T - K)^+$, Feynman–Kac gives the Black–Scholes PDE $\partial_t V + rS\partial_S V + \tfrac{1}{2}\sigma^2 S^2 \partial_{SS} V - rV = 0$ with the probabilistic representation $V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ \mid S_t = S]$. Full derivation, closed-form solution, and exotic options are in [Feynman–Kac Option Pricing](feynman_kac_option_pricing.md).
 
 ---
 
@@ -432,49 +394,7 @@ $$
 
 ### Examples: Diffusion Equations
 
-**Example 1: Pure Diffusion (No Drift, No Discounting)**
-
-$$
-\frac{\partial u}{\partial t} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} = 0, \quad u(T, x) = x^2
-$$
-
-**Stochastic process:** $dX = \sigma dB_t$
-
-$$
-X_T = X_t + \sigma(B_T - B_t)
-$$
-
-**Solution by Feynman-Kac:**
-
-$$
-\begin{aligned}
-u(t, X_t) &= \mathbb{E}[X_T^2 | X_t] \\
-&= \mathbb{E}[(X_t + \sigma(B_T - B_t))^2] \\
-&= X_t^2 + \sigma^2(T - t)
-\end{aligned}
-$$
-
-**Example 2: Diffusion with Drift**
-
-$$
-\frac{\partial u}{\partial t} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} + \mu\frac{\partial u}{\partial x} = 0, \quad u(T, x) = x^2
-$$
-
-**Stochastic process:** $dX = \mu dt + \sigma dB_t$
-
-$$
-X_T = X_t + \mu(T - t) + \sigma(B_T - B_t)
-$$
-
-**Solution:**
-
-$$
-\begin{aligned}
-u(t, X_t) &= \mathbb{E}[X_T^2] \\
-&= \mathbb{E}[(X_t + \mu(T-t) + \sigma(B_T - B_t))^2] \\
-&= (X_t + \mu(T-t))^2 + \sigma^2(T-t)
-\end{aligned}
-$$
+Worked heat-equation examples (pure diffusion and drifted diffusion with terminal condition $u(T,x) = x^2$) are in [Feynman–Kac Applications](feynman_kac_applications.md).
 
 ### Key Insight
 

@@ -182,3 +182,69 @@ def calculate_model_metrics(result: CIRResult) -> Dict[str, float]:
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+A CIR simulation produces an empirical final rate mean of $0.0485$ while the theoretical mean is $0.0500$. With a validation tolerance of $5\%$, does this test pass? Compute the relative error.
+
+??? success "Solution to Exercise 1"
+    The relative error is
+
+    $$
+    \varepsilon_{\text{rel}} = \frac{|0.0485 - 0.0500|}{0.0500} = \frac{0.0015}{0.0500} = 0.03 = 3\%.
+    $$
+
+    Since $3\% < 5\%$ (the tolerance), the mean validation test passes.
+
+---
+
+**Exercise 2.**
+Explain the method-of-moments approach used in `estimate_parameters_from_data` to estimate the CIR volatility $\sigma$ from historical rate data. What assumption is being made?
+
+??? success "Solution to Exercise 2"
+    The method uses the relationship between the long-run variance of the CIR process and its parameters. In the stationary distribution, the variance is
+
+    $$
+    \text{Var}(r_\infty) = \frac{\sigma^2 \theta}{2\kappa}.
+    $$
+
+    The code estimates $\theta \approx \bar{r}$ (the sample mean) and then solves
+
+    $$
+    \hat{\sigma} = \sqrt{\frac{2\,\text{Var}(r)}{\bar{r}}},
+    $$
+
+    where $\text{Var}(r)$ is the sample variance. This assumes the data is from the stationary distribution, meaning the time series is long enough that transient effects from the initial condition $r_0$ have dissipated.
+
+---
+
+**Exercise 3.**
+The `validate_non_negativity` method returns a `ValidationResult`. If a simulation with `absorption_fix=False` and Euler-Maruyama produces a minimum rate of $-0.002$, describe the `ValidationResult` fields.
+
+??? success "Solution to Exercise 3"
+    The fields would be:
+
+    - `test_name`: `"Non-negativity"`
+    - `passed`: `False` (since $-0.002 < 0$)
+    - `empirical_value`: $-0.002$ (the minimum rate observed)
+    - `theoretical_value`: $0.0$ (the theoretical lower bound)
+    - `relative_error`: $0.002$ (the absolute value of the minimum rate)
+    - `tolerance`: $0.0$ (any negative rate constitutes a failure)
+    - `message`: `"Min rate: -0.002000 (FAIL)"`
+
+    This indicates the simulation violated the theoretical non-negativity property, likely because the Feller condition was violated or the Euler-Maruyama discretization produced overshoots.
+
+---
+
+**Exercise 4.**
+The `calculate_model_metrics` function computes `absorption_frequency` as the percentage of zero rates. If paths have shape $(1000, 500)$ and 250 entries equal zero, compute this metric. What does a high absorption frequency indicate about the model parameters?
+
+??? success "Solution to Exercise 4"
+    The total number of entries is $1000 \times 500 = 500{,}000$. The absorption frequency is
+
+    $$
+    \text{absorption frequency} = \frac{250}{500{,}000} \times 100 = 0.05\%.
+    $$
+
+    A high absorption frequency indicates that the Feller condition is violated or nearly violated ($2\kappa\theta < \sigma^2$ or close), meaning the process frequently touches zero. This suggests that either $\sigma$ is too large relative to $\kappa\theta$, or the absorption fix is actively clamping negative values to zero. It may warrant parameter adjustment or switching to a more appropriate scheme (e.g., exact simulation).

@@ -21,6 +21,7 @@ u(0,x) = f(x)
 $$
 
 Here $u(t,x)$ represents:
+
 - **Physics**: Temperature at position $x$ and time $t$
 - **Probability**: Density of particles diffusing from initial distribution $f$
 - **Finance**: Value function for certain derivative contracts
@@ -29,18 +30,7 @@ Here $u(t,x)$ represents:
 
 ## Why the Factor 1/2?
 
-The coefficient $\frac{1}{2}$ is chosen to align with **standard Brownian motion**, whose variance satisfies:
-
-$$
-\text{Var}(B_t) = \mathbb{E}[B_t^2] = t
-$$
-
-With this normalization:
-- The heat kernel equals the density of $B_t$
-- The generator of Brownian motion is $\mathcal{L} = \frac{1}{2}\frac{\partial^2}{\partial x^2}$
-- Feynman-Kac formulas take their simplest form
-
-**Alternative convention**: Physics texts often write $u_t = \kappa u_{xx}$ where $\kappa$ is the thermal diffusivity. Setting $\kappa = \frac{1}{2}$ gives our normalization.
+The coefficient $\frac{1}{2}$ aligns with standard Brownian motion ($\text{Var}(B_t) = t$), making the heat kernel equal the Brownian density and the generator $\mathcal{L} = \frac{1}{2}\partial_{xx}$. Physics texts often use $u_t = \kappa u_{xx}$ instead; setting $\kappa = \frac{1}{2}$ gives our normalization.
 
 ---
 
@@ -166,16 +156,7 @@ $$
 
 ## Connection to Brownian Motion
 
-The heat equation is the **analytical counterpart** of Brownian motion:
-
-| Probabilistic | Analytical |
-|---------------|------------|
-| $B_t \sim N(0,t)$ | $G(t,x) = \frac{1}{\sqrt{2\pi t}}e^{-x^2/2t}$ |
-| $\mathbb{E}[f(B_t)]$ | $u(t,0) = \int f(x)G(t,x)\,dx$ |
-| Generator $\mathcal{L} = \frac{1}{2}\frac{d^2}{dx^2}$ | Heat operator $\partial_t - \frac{1}{2}\partial_{xx}$ |
-| Martingale $f(B_t) - \int_0^t \mathcal{L}f(B_s)\,ds$ | $u_t = \frac{1}{2}u_{xx}$ |
-
-This connection, formalized by the **Feynman-Kac theorem**, is the foundation for probabilistic methods in PDE theory.
+The heat equation is the analytical counterpart of Brownian motion: solutions can be written as expectations over Brownian paths, formalized by the **Feynman-Kac theorem**. See [Heat Equation and Brownian Motion](heat_equation_and_brownian_motion.md) for the full generator/martingale/density correspondence.
 
 ---
 
@@ -197,6 +178,7 @@ u_t = \frac{1}{2}u_{xx} \quad \longleftrightarrow \quad \text{Brownian motion}
 $$
 
 The heat equation describes:
+
 - Diffusion of heat, particles, or probability
 - Smoothing of initial irregularities
 - Conservation of total mass
@@ -219,6 +201,7 @@ f(x, t+\tau) = \int_{-\infty}^{\infty} f(x-\Delta, t) \phi(\Delta) d\Delta
 $$
 
 **Taylor expansion:**
+
 - Time: $f(x, t+\tau) = f(x, t) + \frac{\partial f}{\partial t}\tau$
 - Position: $f(x-\Delta, t) = f(x, t) - \frac{\partial f}{\partial x}\Delta + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\Delta^2$
 
@@ -242,50 +225,9 @@ $$
 
 **Physical interpretation:** If neighboring regions have more particles on average, particles diffuse in to increase the local density. Conversely, if neighbors are depleted, the region loses particles.
 
-### Fundamental Solution via Similarity Method
+### Fundamental Solution
 
-The heat equation admits a self-similar solution. Under the transformation:
-- $z = e^a x$
-- $s = e^b t$
-- $v(z, s) = e^c u(e^a x, e^b t)$
-
-For the heat equation to remain invariant, we need $b = 2a$.
-
-**Similarity solution ansatz:**
-
-$$
-u(x, t) = t^{c/b} f\left(\frac{x}{\sqrt{t}}\right)
-$$
-
-where $\xi = \frac{x}{\sqrt{t}}$ is the similarity variable.
-
-**Substituting into the heat equation** with $c/b = -1/2$:
-
-$$
-\kappa f''(\xi) + \frac{1}{2}\xi f'(\xi) + \frac{1}{2}f(\xi) = 0
-$$
-
-This simplifies to:
-
-$$
-\frac{df}{f} = -\frac{1}{2\kappa}\xi d\xi \quad \Rightarrow \quad f(\xi) = e^{-\xi^2/(4\kappa)}
-$$
-
-**Fundamental solution (Green's function):**
-
-$$
-\boxed{
-G(x, t; x_0) = \frac{1}{\sqrt{4\pi\kappa t}} \exp\left(-\frac{(x-x_0)^2}{4\kappa t}\right)
-}
-$$
-
-**General solution by superposition:**
-
-$$
-u(x, t) = \int_{-\infty}^{\infty} u(x_0, 0) \cdot G(x, t; x_0) dx_0
-$$
-
-The fundamental solution is the Gaussian kernel - the transition density of diffusion processes. This connects the PDE theory to probability: the solution represents how an initial distribution $u(x, 0)$ spreads according to Brownian motion.
+The heat equation admits a Gaussian fundamental solution (Green's function); see [Fundamental Solution](fundamental_solution.md) for the Fourier derivation and verification, and [Scaling and Invariance](scaling_and_invariance.md) for the self-similarity derivation. The general solution is the convolution $u(x,t) = \int u(x_0,0)\,G(x,t;x_0)\,dx_0$ — superposing point sources weighted by the initial data.
 
 ---
 

@@ -258,3 +258,58 @@ if __name__ == '__main__':
     plt.tight_layout()
     plt.show()
 ```
+
+## Exercises
+
+**Exercise 1.**
+In Bayesian linear regression, the posterior distribution of the coefficients $\boldsymbol{\beta}$ is computed from the prior and likelihood. If the prior is $\boldsymbol{\beta} \sim \mathcal{N}(\mathbf{0}, \tau^2 I)$ and the likelihood is $\mathbf{y} \mid \boldsymbol{\beta} \sim \mathcal{N}(X\boldsymbol{\beta}, \sigma^2 I)$, write the posterior mean and covariance.
+
+??? success "Solution to Exercise 1"
+    The posterior is $\boldsymbol{\beta} \mid \mathbf{y} \sim \mathcal{N}(\boldsymbol{\mu}_{\text{post}}, \Sigma_{\text{post}})$ where:
+
+    $$
+    \Sigma_{\text{post}} = \left(\frac{1}{\sigma^2}X^TX + \frac{1}{\tau^2}I\right)^{-1},
+    $$
+
+    $$
+    \boldsymbol{\mu}_{\text{post}} = \Sigma_{\text{post}} \cdot \frac{1}{\sigma^2}X^T\mathbf{y}.
+    $$
+
+    The posterior mean is a shrinkage estimator: it pulls the OLS estimate toward zero (the prior mean), with the degree of shrinkage controlled by $\tau^2/\sigma^2$. Small $\tau^2$ (tight prior) means more shrinkage; large $\tau^2$ (diffuse prior) means the posterior approaches OLS.
+
+---
+
+**Exercise 2.**
+Explain the advantage of Bayesian regression over OLS for financial return prediction, particularly when the number of predictors is large relative to the sample size.
+
+??? success "Solution to Exercise 2"
+    When the number of predictors $p$ is large relative to the sample size $n$, OLS overfits: it fits noise in the training data, producing poor out-of-sample predictions. Bayesian regression with a shrinkage prior (e.g., ridge or LASSO-type) regularizes the estimates, reducing overfitting. Specifically:
+
+    1. The prior acts as a regularizer, preventing extreme coefficient estimates.
+    2. The posterior provides uncertainty quantification (credible intervals) for each coefficient.
+    3. Model comparison via marginal likelihood (Bayes factor) automatically penalizes model complexity.
+    4. Predictive distributions incorporate parameter uncertainty, giving more realistic confidence intervals for forecasts.
+
+---
+
+**Exercise 3.**
+In a Bayesian factor model for stock returns with 3 factors, the posterior predictive distribution for tomorrow's return is $r_{t+1} \sim \mathcal{N}(\hat{\mu}, \hat{\sigma}^2)$. If $\hat{\mu} = 0.05\%$ and $\hat{\sigma} = 1.2\%$, compute the probability that the return exceeds $2\%$.
+
+??? success "Solution to Exercise 3"
+    $$
+    \mathbb{P}(r_{t+1} > 2\%) = 1 - \Phi\!\left(\frac{0.02 - 0.0005}{0.012}\right) = 1 - \Phi(1.625) \approx 1 - 0.9479 = 0.0521 \approx 5.2\%.
+    $$
+
+---
+
+**Exercise 4.**
+Describe how the Bayesian approach handles model uncertainty (which factors to include) through Bayesian model averaging (BMA).
+
+??? success "Solution to Exercise 4"
+    BMA considers all possible models (subsets of factors) simultaneously. Each model $M_k$ has a posterior probability $p(M_k \mid \mathbf{y}) \propto p(\mathbf{y} \mid M_k)\,p(M_k)$, where $p(\mathbf{y} \mid M_k)$ is the marginal likelihood. The final prediction averages over all models:
+
+    $$
+    p(r_{t+1} \mid \mathbf{y}) = \sum_k p(r_{t+1} \mid M_k, \mathbf{y})\,p(M_k \mid \mathbf{y}).
+    $$
+
+    This automatically handles model uncertainty: models with better fit and appropriate complexity receive higher weight. It avoids the "all-or-nothing" decision of selecting a single model and produces more robust forecasts.

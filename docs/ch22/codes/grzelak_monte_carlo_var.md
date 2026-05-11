@@ -599,3 +599,47 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+Monte Carlo VaR simulates the portfolio value distribution at a future horizon. Describe the three main steps.
+
+??? success "Solution to Exercise 1"
+
+    1. **Model calibration**: Estimate the parameters of the risk factor model (e.g., Hull-White for rates) from market data.
+    2. **Simulation**: Generate $N$ scenarios of all risk factors at the VaR horizon (e.g., 10 days). For each scenario, reprice the entire portfolio to obtain $N$ portfolio values $V_1, \ldots, V_N$.
+    3. **VaR computation**: Sort the P&L values $\Delta V_i = V_i - V_0$. The $\alpha$-VaR is the $(1-\alpha)N$-th smallest P&L. For $\alpha = 99\%$ and $N = 10{,}000$: VaR is the 100th worst loss.
+
+---
+
+**Exercise 2.**
+Under the Hull-White model, rate scenarios are simulated for VaR. Why might the real-world measure be more appropriate than the risk-neutral measure for VaR?
+
+??? success "Solution to Exercise 2"
+    VaR measures the actual risk of loss over a holding period, which depends on real-world probabilities, not risk-neutral ones. The risk-neutral measure is designed for pricing (where the drift is adjusted to preclude arbitrage) and may assign different probabilities to scenarios than those expected to occur in reality. For VaR, one should use the physical measure with historically estimated drifts and volatilities, so the VaR reflects the true likelihood of adverse scenarios.
+
+---
+
+**Exercise 3.**
+If Monte Carlo VaR with 10,000 paths gives a $99\%$ VaR estimate of \$2.5M with a standard error of \$150,000, construct a $95\%$ confidence interval for the true VaR.
+
+??? success "Solution to Exercise 3"
+    The $95\%$ confidence interval is $\text{VaR} \pm 1.96 \times \text{SE} = 2{,}500{,}000 \pm 1.96 \times 150{,}000 = 2{,}500{,}000 \pm 294{,}000$.
+
+    The interval is $[\$2{,}206{,}000, \$2{,}794{,}000]$. The relative uncertainty is $294{,}000/2{,}500{,}000 \approx 12\%$, which is high. To reduce the SE to \$50,000 (2% relative), one would need $10{,}000 \times (150/50)^2 = 90{,}000$ paths.
+
+---
+
+**Exercise 4.**
+Compare Monte Carlo VaR to historical VaR in terms of flexibility, computational cost, and model risk.
+
+??? success "Solution to Exercise 4"
+    | Feature | Monte Carlo VaR | Historical VaR |
+    |---|---|---|
+    | Flexibility | Handles any model, any instrument | Limited to historically observed scenarios |
+    | Fat tails | Depends on model choice | Naturally captured |
+    | Computational cost | High ($N$ full portfolio revaluations) | Low (sort historical returns) |
+    | Model risk | High (depends on model assumptions) | Low (model-free) |
+    | Forward-looking | Can incorporate views/forecasts | Purely backward-looking |
+    | New instruments | Can price any instrument | Requires proxy mapping |

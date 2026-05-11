@@ -20,8 +20,8 @@ This question underlies every page in this section:
 * [Local Martingales](local_martingale.md) — the raw, uncontrolled object
 * [Stochastic Exponential](stochastic_exponential.md) — the transformation enabling control
 * [Novikov and Kazamaki Conditions](novikov_kazamaki_conditions.md) — technical guarantees that control is valid
-* [Martingales and No-Arbitrage](../finance/martingale_and_no_arbitrage.md) — the economic requirement demanding control
-* [Risk-Neutral Valuation](../finance/risk_neutral_valuation_principle.md) — the payoff of achieving control
+* [Martingales and No-Arbitrage](../risk_neutral/martingale_and_no_arbitrage.md) — the economic requirement demanding control
+* [Risk-Neutral Valuation](../risk_neutral/risk_neutral_valuation_principle.md) — the payoff of achieving control
 * [Martingale Representation Theorem](martingale_representation_theorem.md) — full control (completeness and hedging)
 
 ---

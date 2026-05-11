@@ -373,6 +373,7 @@ The complete moment structure of Brownian motion is:
 **Looking ahead:**
 
 These moment formulas will be used in:
+
 - **Itô's formula** (Section 3.3): Computing $\mathbb{E}[f(W_T)]$ for nonlinear $f$
 - **Feynman–Kac formula** (Section 5.5): Solving PDEs via expectations
 - **Monte Carlo methods**: Variance reduction and moment matching

@@ -9,6 +9,7 @@
 The robust approach explicitly incorporates **parameter uncertainty** into the optimization problem, seeking portfolios that perform well across a range of plausible parameter values rather than optimizing for a single point estimate.
 
 Key developments include:
+
 1. **Goldfarb-Iyengar (2003)**: SOCP reformulation for ellipsoidal uncertainty
 2. **Ben-Tal-Nemirovski**: Conic optimization for robust problems
 3. **Black-Litterman (1992)**: Bayesian shrinkage as implicit robustness
@@ -23,6 +24,7 @@ Key developments include:
 **Setup**: $n$ assets with random returns $R = (R_1, \ldots, R_n)^\top$.
 
 **Parameters**:
+
 - $\mu = \mathbb{E}[R]$: Expected returns
 - $\Sigma = \text{Cov}(R)$: Covariance matrix
 
@@ -340,6 +342,7 @@ $$
 
 
 **Connection**: Black-Litterman shrinks extreme views toward market equilibrium:
+
 - High confidence views ($\Omega$ small): Posterior close to views
 - Low confidence ($\Omega$ large): Posterior close to equilibrium
 
@@ -352,6 +355,7 @@ $$
 
 
 **Resampling Procedure**:
+
 1. Generate $B$ bootstrap samples of returns
 2. Estimate $(\hat{\mu}^{(b)}, \hat{\Sigma}^{(b)})$ for each sample
 3. Compute efficient frontier portfolio $w^{(b)}$ for each
@@ -418,6 +422,7 @@ $$
 
 
 **Dimensionality Reduction**: With $k \ll n$ factors:
+
 - $n(n+1)/2$ covariance parameters reduced to $nk + k(k+1)/2 + n$
 - More stable estimation
 - Implicit regularization
@@ -459,6 +464,7 @@ $$
 
 
 **Rolling Horizon**: At each $t$:
+
 1. Solve robust problem over horizon $[t, t+H]$
 2. Implement $w_t^*$
 3. Roll forward and repeat
@@ -479,6 +485,7 @@ $$
 
 
 **Observation**: Robust portfolios exhibit lower turnover:
+
 - Estimation errors that would cause rebalancing are absorbed by uncertainty sets
 - Transaction cost savings can be substantial
 
@@ -486,6 +493,7 @@ $$
 
 
 **Recommendations**:
+
 1. Use factor models for covariance estimation
 2. Shrink expected returns toward equilibrium or zero
 3. Impose position limits and sector constraints

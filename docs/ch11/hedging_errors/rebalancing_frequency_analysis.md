@@ -91,6 +91,7 @@ $$
 *where $c_\Gamma = \sqrt{\frac{1}{2}\int_0^T \mathbb{E}[\Gamma(t,S_t)^2 S_t^4 \sigma^4]\,dt}$ is a constant depending on the option characteristics.*
 
 !!! info "Interpretation"
+
     - Doubling the rebalancing frequency reduces hedging error standard deviation by a factor of $\sqrt{2} \approx 1.41$.
     - To halve the hedging error, you need four times as many rebalancing dates.
     - This $\sqrt{N}$ convergence is a consequence of the central limit theorem applied to the sum of per-step errors.
@@ -211,6 +212,7 @@ $$
 $$
 
 !!! tip "Practical Interpretation"
+
     - **Liquid markets** (small $\kappa$, small $b$): Rebalance frequently ($N^*$ is large).
     - **Illiquid markets** (large $\kappa$, large $b$): Rebalance less often.
     - **High gamma** (large $a$): More frequent rebalancing is warranted.

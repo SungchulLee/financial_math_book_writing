@@ -233,3 +233,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+The Heston characteristic function involves complex exponentials of Riccati solutions. Explain why the Schoutens (2004) formulation is numerically preferred over the original Heston (1993) form.
+
+??? success "Solution to Exercise 1"
+    The original Heston CF contains $\exp(d \cdot t)$ terms where $d$ is complex with potentially large positive real part for large $u$ or $t$. This causes numerical overflow. The Schoutens formulation rearranges to use $\exp(-d \cdot t)$, which decays rather than grows. Both are algebraically equivalent but the Schoutens form avoids branch-cut discontinuities in the complex logarithm.
+
+---
+
+**Exercise 2.**
+For the COS method applied to Heston, the truncation interval $[a, b]$ must account for the fat-tailed Heston distribution. How should $L$ be adjusted compared to the GBM case?
+
+??? success "Solution to Exercise 2"
+    Heston log-returns have excess kurtosis from stochastic volatility, requiring wider truncation: $a = c_1 - L\sqrt{c_2 + \sqrt{c_4}}$, $b = c_1 + L\sqrt{c_2 + \sqrt{c_4}}$ where $c_1, c_2, c_4$ are the first, second, and fourth cumulants of the Heston distribution. Using $L = 12$ (vs $L = 10$ for GBM) accounts for the heavier tails.
+
+---
+
+**Exercise 3.**
+The COS method requires $N$ evaluations of the Heston CF. If each evaluation takes $O(1)$ time and $N = 128$, estimate the speedup over Monte Carlo with $10^5$ paths.
+
+??? success "Solution to Exercise 3"
+    COS: $128$ CF evaluations plus matrix operations $\approx 10^3$ floating-point operations. MC: $10^5$ paths $\times$ 252 time steps $\times$ 10 operations/step $\approx 2.5 \times 10^8$ operations. Speedup: $\approx 2.5 \times 10^5$, or about 5 orders of magnitude. COS takes microseconds; MC takes seconds.
+
+---
+
+**Exercise 4.**
+The COS method prices options for multiple strikes simultaneously. If you need prices at 100 strikes, compare the cost of COS versus 100 separate BS formula evaluations.
+
+??? success "Solution to Exercise 4"
+    COS: $N$ CF evaluations ($\sim 128$) plus one matrix multiply $N \times K$ where $K = 100$ strikes: $\sim 12{,}800$ operations. BS formula: 100 strikes $\times 20$ operations each $= 2{,}000$ operations. COS is about $6\times$ slower than BS for a single model, but COS works for *any* model with a known CF (Heston, VG, NIG, etc.) while BS is limited to lognormal. For non-GBM models, COS is the only viable analytical approach.

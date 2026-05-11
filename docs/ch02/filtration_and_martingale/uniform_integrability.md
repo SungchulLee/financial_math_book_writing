@@ -44,12 +44,14 @@ A second useful test is **de la Vallée Poussin**: if there is a convex $\Phi$ w
 ## UI Examples
 
 !!! example "UI families"
+
     - **Dominated**: if $|X_\alpha| \le Y$ for some $Y \in L^1$, then $\mathbb{E}[|X_\alpha|\mathbf{1}_{\{|X_\alpha|>K\}}] \le \mathbb{E}[Y\mathbf{1}_{\{Y>K\}}] \to 0$.
     - **$L^p$-bounded with $p > 1$**: $\mathbb{E}[|X_\alpha|\mathbf{1}_{\{|X_\alpha|>K\}}] \le K^{-(p-1)}\mathbb{E}|X_\alpha|^p \to 0$.
     - **Conditional expectations of a single $L^1$ variable**: $\{\mathbb{E}[Y\mid \mathcal{G}]: \mathcal{G} \subseteq \mathcal{F}\}$ is UI. Indeed $\mathbb{E}|\mathbb{E}[Y\mid\mathcal{G}]| \le \mathbb{E}|Y|$, and for $A \in \mathcal{F}$ with $\mathbb{P}(A)<\delta$, $\mathbb{E}[\mathbb{E}[|Y|\mid\mathcal{G}]\mathbf{1}_A] = \mathbb{E}[|Y|\mathbf{1}_A] < \varepsilon$ (as in equi-absolute continuity for $|Y|$). This is the decisive example: every UI martingale arises this way.
     - **Finite collection** in $L^1$.
 
 !!! warning "Non-examples"
+
     - $\{n\mathbf{1}_{[0,1/n]}\}$ (mass escape).
     - The exponential martingale $\{e^{\theta W_t - \theta^2 t/2}\}$ for $\theta \ne 0$: $\mathbb{E}[Z_t] = 1$ but $Z_t \to 0$ a.s., contradicting UI via Vitali.
 

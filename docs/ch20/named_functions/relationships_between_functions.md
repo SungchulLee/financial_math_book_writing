@@ -3,6 +3,7 @@
 The Hull-White model involves a collection of named functions -- $B(\tau)$, $A(t,T)$, $\theta(t)$, $\psi(t)$, $\alpha(t)$, $\sigma_r^2(t)$, and $V(t,T)$ -- that appear in different contexts (bond pricing, option pricing, simulation, calibration). These functions are not independent: they are connected by a web of algebraic and differential relationships that reflect the internal consistency of the model. Understanding these relationships is essential for verifying implementations, simplifying derivations, and recognizing when different-looking formulas are in fact equivalent. This section catalogs the key relationships and proves the most important ones.
 
 !!! info "Prerequisites"
+
     - Named functions definition (sibling section)
     - Derivation via Riccati equations (sibling section)
     - Hull-White SDE, solution, and conditional distribution

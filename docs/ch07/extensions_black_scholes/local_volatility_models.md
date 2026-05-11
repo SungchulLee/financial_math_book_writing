@@ -9,6 +9,7 @@ Local volatility models replace the constant volatility $\sigma$ of Black-Schole
 ### The Smile Problem
 
 Black-Scholes with constant $\sigma$ produces a **flat** implied volatility surface. Market data shows:
+
 - **Volatility smile**: IV varies with strike
 - **Term structure**: IV varies with maturity
 - **Skew**: Asymmetric smile (especially in equity markets)
@@ -87,6 +88,7 @@ $$
 From observed $(T_i, K_j, \sigma_{\text{imp},ij})$, construct a smooth surface $\sigma_{\text{imp}}(T, K)$.
 
 **Methods**:
+
 - Spline interpolation
 - SVI (Stochastic Volatility Inspired) parameterization
 - SABR-based interpolation

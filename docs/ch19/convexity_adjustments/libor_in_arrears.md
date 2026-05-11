@@ -357,7 +357,7 @@ by computing $\mathbb{E}^{\mathbb{Q}^{T_{i+1}}}[L_i(T_i)^2]$ explicitly under lo
     \mathbb{E}^{\mathbb{Q}^{T_i}}[L_i(T_i)] = \frac{L_i(0) + \delta_i \, L_i(0)^2 \, e^{\sigma_i^2 T_i}}{1 + \delta_i L_i(0)} = \frac{L_i(0)\bigl(1 + \delta_i L_i(0) \, e^{\sigma_i^2 T_i}\bigr)}{1 + \delta_i L_i(0)}
     $$
 
-    This is the exact formula. $\blacksquare$
+    This is the exact formula. $\square$
 
 ---
 
@@ -387,7 +387,7 @@ by computing $\mathbb{E}^{\mathbb{Q}^{T_{i+1}}}[L_i(T_i)^2]$ explicitly under lo
     \mathbb{E}^{\mathbb{Q}^{T_i}}[L_i(T_i)] > \frac{L_i(0)(1+\delta_i L_i(0))}{1+\delta_i L_i(0)} = L_i(0)
     $$
 
-    No explicit measure-change calculation is needed; the convexity of $f$ and the martingale property suffice. $\blacksquare$
+    No explicit measure-change calculation is needed; the convexity of $f$ and the martingale property suffice. $\square$
 
 ---
 

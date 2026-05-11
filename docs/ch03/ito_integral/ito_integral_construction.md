@@ -145,6 +145,7 @@ $$
 $$
 \left(\int_0^t H_s \, dB_s\right)^2
 = \sum_{i} H_i^2 (\Delta B_i)^2
+
 + 2 \sum_{i < j} H_i H_j \Delta B_i \Delta B_j
 $$
 

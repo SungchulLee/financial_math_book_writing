@@ -116,7 +116,7 @@ where $\partial C / \partial \sigma$ is the Black-Scholes vega and $\partial C /
 
 To enforce arbitrage-free conditions, the spline must satisfy additional constraints:
 
-**Monotonicity in price:** Since $\partial C / \partial K = -e^{-rT}\Phi(d_2)$, we need $-1 \leq e^{rT}\partial C/\partial K \leq 0$. This does not directly constrain the IV spline but can be checked after converting to prices.
+**Monotonicity in price:** Since $\partial C / \partial K = -e^{-rT}\mathcal{N}(d_2)$, we need $-1 \leq e^{rT}\partial C/\partial K \leq 0$. This does not directly constrain the IV spline but can be checked after converting to prices.
 
 **Convexity in price:** $\partial^2 C / \partial K^2 \geq 0$ translates to a nonlinear constraint on the IV spline. A sufficient condition is that the IV smile not be too concave:
 

@@ -224,6 +224,7 @@ $$
 
 
 **Interpretation:**
+
 - Leading term: $\sqrt{v_0}$ (current spot variance)
 - First-order correction: Depends on mean reversion and vol-of-vol
 
@@ -255,6 +256,7 @@ $$
 
 
 **Key features:**
+
 - Linear skew in $y$: coefficient is $\frac{\rho \xi}{4}$
 - Skew is **instantaneous** (order $T^0$)
 - Determined entirely by correlation $\rho$ and vol-of-vol $\xi$
@@ -306,6 +308,7 @@ $$
 **Leading behavior:** The "backbone" $(FK)^{-\frac{1-\beta}{2}}$ controls the base smile shape.
 
 **First-order correction:** The bracket $[\cdots]T$ includes:
+
 - Volatility convexity term
 - Correlation-skew term
 - Pure vol-of-vol term
@@ -343,7 +346,7 @@ $$
 ### 2. Connection to Implied Volatility
 
 
-Taking logarithms and using $C \approx S_0 \Phi(d_1) \approx S_0 e^{-d_1^2/2}$ for deep OTM:
+Taking logarithms and using $C \approx S_0 \mathcal{N}(d_1) \approx S_0 e^{-d_1^2/2}$ for deep OTM:
 
 
 $$
@@ -433,6 +436,7 @@ for small $T_{\text{short}}$ (e.g., 1 week).
 
 
 Short-dated smile constraints:
+
 - **ATM level:** Determines $\sqrt{v_0}$ (Heston) or $\alpha$ (SABR)
 - **Skew:** Determines $\rho$ (correlation)
 - **Curvature:** Determines $\xi$ or $\nu$ (vol-of-vol)
@@ -445,6 +449,7 @@ Short-dated smile constraints:
 For barrier options, Asian options with short monitoring periods:
 
 **Use asymptotic formulas** rather than full numerical PDE/Monte Carlo:
+
 - Faster computation
 - Analytical Greeks
 - Robust to discretization errors
@@ -458,6 +463,7 @@ For barrier options, Asian options with short monitoring periods:
 
 
 **Parameters:**
+
 - $v_0 = 0.04$ ($\sigma_0 = 20\%$)
 - $\kappa = 2.0$
 - $\theta = 0.04$
@@ -478,6 +484,7 @@ For barrier options, Asian options with short monitoring periods:
 
 
 **Parameters:**
+
 - $F = 100$ (ATM forward)
 - $\alpha = 0.20$
 - $\beta = 0.5$

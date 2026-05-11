@@ -9,6 +9,7 @@ A fundamental requirement of any interest-rate model is the **exact fit of the i
 
 
 The market provides quotes for liquid instruments such as:
+
 - deposits and short-term rates,
 - futures and FRAs,
 - OIS and IRS swaps.
@@ -46,6 +47,7 @@ Exact fit is essential for pricing curve-sensitive products.
 
 
 Failure to match the initial curve leads to:
+
 - immediate arbitrage,
 - systematic mispricing of swaps and FRAs,
 - unstable hedging behavior.
@@ -369,7 +371,7 @@ For a 10-year Bermudan swaption priced under a short-rate model calibrated to ea
 **Exercise 7.** Suppose the initial discount curve is perturbed by a parallel shift of $+10$ basis points in all zero rates. For a portfolio consisting of a 5-year receiver swap (notional \$100 million, fixed rate 3.50%, semiannual) priced using the original curve, estimate the change in portfolio value using the first-order approximation
 
 $$
-\Delta V \approx -\text{DV01} \times \Delta r,
+\Delta V \approx -\text{DV01} \times \Delta r
 $$
 
 where DV01 is the dollar value of one basis point. Explain why exact curve fitting is critical for obtaining an accurate DV01 estimate.

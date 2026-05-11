@@ -16,6 +16,7 @@ Adapted as a SELF-CONTAINED educational module for the
 
 Topics covered
 --------------
+
 1. Merton jump-diffusion process:
    - Simulation, closed-form density, histogram, Q-Q plot.
    - Maximum likelihood estimation (MLE).
@@ -520,3 +521,67 @@ if __name__ == "__main__":
     demo_nig()
     demo_ig_first_passage()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Describe the Merton jump-diffusion model. Write the SDE and identify the three components: diffusion, jump timing, and jump size.
+
+??? success "Solution to Exercise 1"
+    The Merton model SDE is
+
+    $$
+    \frac{dS_t}{S_t} = (r - \lambdaar{k})\,dt + \sigma\,dW_t + (e^{J} - 1)\,dN_t
+    $$
+
+    where $J \sim \mathcal{N}(\mu_J, \sigma_J^2)$ and $N_t$ is a Poisson process with intensity $\lambda$.
+
+    - **Diffusion**: $\sigma\,dW_t$ (continuous random fluctuations)
+    - **Jump timing**: $dN_t$ (Poisson arrivals with rate $\lambda$)
+    - **Jump size**: $e^J - 1$ (log-normal jumps with mean $\mu_J$ and volatility $\sigma_J$)
+    - **Compensator**: $-\lambdaar{k}\,dt$ where $ar{k} = e^{\mu_J + \sigma_J^2/2} - 1$ ensures the drift is risk-neutral.
+
+---
+
+**Exercise 2.**
+Explain how the VG process is simulated via Gamma subordination. Why is this called a time-changed Brownian motion?
+
+??? success "Solution to Exercise 2"
+    The VG process is $X_t = \theta G(t) + \sigma W(G(t))$ where $G(t)$ is a Gamma process.
+
+    Simulation steps:
+
+    1. Generate $\Delta G \sim \text{Gamma}(\Delta t / \kappa, \kappa)$ (the random time increment).
+    2. Generate $Z \sim \mathcal{N}(0, 1)$.
+    3. Compute $\Delta X = \theta\,\Delta G + \sigma\sqrt{\Delta G}\,Z$.
+
+    This is called time-changed Brownian motion because $W(G(t))$ evaluates Brownian motion at a random "business time" $G(t)$ instead of calendar time $t$. Periods of high activity ($\Delta G$ large) correspond to volatile markets; quiet periods ($\Delta G$ small) correspond to calm markets.
+
+---
+
+**Exercise 3.**
+What is the Inverse Gaussian distribution used in the NIG model? Write its PDF and explain the first-passage-time interpretation.
+
+??? success "Solution to Exercise 3"
+    The IG distribution $IG(\delta, \gamma)$ has PDF
+
+    $$
+    f(x) = \frac{\delta}{\sqrt{2\pi x^3}}xp\!\Bigl(-\frac{(\delta - \gamma x)^2}{2x}\Bigr), \quad x > 0
+    $$
+
+    The first-passage-time interpretation: if $B_t$ is Brownian motion with drift $\gamma$, then the first time $B_t$ reaches level $\delta$ has distribution $IG(\delta, \gamma)$. This means the IG subordinator measures "how long it takes for cumulative activity to reach a given level," providing a natural model for random business time.
+
+---
+
+**Exercise 4.**
+The code generates Q-Q plots for each process. Explain what Q-Q plots reveal about the model fit and how to interpret departures from the diagonal.
+
+??? success "Solution to Exercise 4"
+    A Q-Q plot compares the quantiles of the simulated data against the theoretical distribution. Points on the diagonal indicate a perfect fit.
+
+    - **Departure in tails (S-shape)**: The data has heavier tails than the theoretical distribution. Common for financial returns plotted against Normal quantiles.
+    - **Departure in center**: Indicates a location or scale mismatch.
+    - **Systematic curvature**: Indicates skewness mismatch.
+
+    For Levy process fits: the Q-Q plot against the model density (VG or NIG) should be close to the diagonal, while the Q-Q plot against Normal will show heavy tails, demonstrating the improvement of the Levy model over GBM.

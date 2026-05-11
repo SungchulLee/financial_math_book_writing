@@ -3,6 +3,7 @@
 The previous section established that every $L^2$ function on a finite interval has a Fourier series and that the partial sums converge in the $L^2$ norm (Parseval's theorem). But $L^2$ convergence is an averaged statement---it says nothing about whether $S_N f(x_0)$ converges to $f(x_0)$ at a specific point $x_0$. For numerical methods like the COS pricing formula, we need to understand precisely how fast the partial sums approach $f$, and what happens near discontinuities where the convergence breaks down. This section develops the convergence theory of Fourier series: pointwise convergence under Dirichlet conditions, uniform convergence for smooth functions, the rate of coefficient decay as a function of regularity, and the Gibbs phenomenon at jump discontinuities.
 
 !!! info "Prerequisites"
+
     - [Fourier Series on Finite Intervals](fourier_series_finite_intervals.md) (definition and Parseval's theorem)
     - Real analysis: uniform convergence, bounded variation, piecewise smoothness
 

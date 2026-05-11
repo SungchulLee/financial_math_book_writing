@@ -1,6 +1,6 @@
 # Brownian Motion Martingales
 
-Brownian motion is the concrete testing ground for everything developed so far — [Martingales](martingales.md), [Martingale Convergence](martingale_convergence.md), [Uniform Integrability](uniform_integrability.md), and the Doob-Meyer structure. The abstract theory becomes calculable here: $W_t$ itself is a martingale, simple polynomial corrections produce more, and a single exponential object generates them all.
+Brownian motion is the concrete testing ground for everything developed so far — [Martingales](martingale.md), [Martingale Convergence](martingale_convergence.md), [Uniform Integrability](uniform_integrability.md), and the Doob-Meyer structure. The abstract theory becomes calculable here: $W_t$ itself is a martingale, simple polynomial corrections produce more, and a single exponential object generates them all.
 
 Throughout, $(W_t)_{t\ge 0}$ is a standard Brownian motion on $(\Omega, \mathcal{F}, (\mathcal{F}_t), \mathbb{P})$ with the usual conditions.
 

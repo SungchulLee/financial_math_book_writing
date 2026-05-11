@@ -522,3 +522,57 @@ class BlackScholes:
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+The `BlackScholes` wrapper unifies formula, Greeks, Monte Carlo, numerical PDE, and implied volatility into one interface. Describe the design pattern used and its advantages.
+
+??? success "Solution to Exercise 1"
+    The wrapper uses the **Facade pattern**: it provides a simplified, unified interface to a complex subsystem of classes. Internally, it delegates to `BlackScholesFormula`, `BlackScholesGreeks`, `BlackScholesMonteCarlo`, `BlackScholesNumericalSolver`, and `BlackScholesImpliedVol`.
+
+    Advantages: (1) Users interact with one class instead of five. (2) Method names are consistent and discoverable. (3) Cross-method comparisons (e.g., analytical vs MC vs PDE) are easy. (4) Parameter passing is centralized -- no risk of inconsistent parameters across methods.
+
+---
+
+**Exercise 2.**
+Write a code snippet using the `BlackScholes` wrapper that prices a European call using all three methods (formula, MC, PDE) and compares the results.
+
+??? success "Solution to Exercise 2"
+    ```python
+    bs = BlackScholes(S0=100, K=100, T=1, r=0.05, sigma=0.2)
+    c_formula, _ = bs.price()
+    c_mc, _ = bs.monte_carlo_price(num_paths=100000, seed=42)
+    S_grid, V_grid = bs.numerical_price(method="cn")
+    # Interpolate PDE result at S0
+    import numpy as np
+    c_pde = np.interp(100, S_grid, V_grid[:, 0])
+    print(f"Formula: {c_formula:.4f}")
+    print(f"MC:      {c_mc:.4f}")
+    print(f"PDE:     {c_pde:.4f}")
+    ```
+
+    All three should agree to within their respective numerical tolerances.
+
+---
+
+**Exercise 3.**
+Explain why the wrapper maintains backward compatibility by supporting both "enhanced" and "legacy" MC modes. When would a user choose the legacy mode?
+
+??? success "Solution to Exercise 3"
+    Backward compatibility ensures that existing code continues to work after upgrading. The legacy mode reproduces the original MC implementation (without variance reduction), which is useful for:
+
+    1. **Education**: Understanding basic MC before learning variance reduction.
+    2. **Debugging**: Isolating whether a discrepancy comes from variance reduction or the base MC implementation.
+    3. **Benchmarking**: Quantifying the variance reduction ratio by comparing enhanced vs legacy.
+    4. **Reproducibility**: Matching results from earlier versions of the code for published work.
+
+---
+
+**Exercise 4.**
+The wrapper includes `plot_paths_and_histogram` for GBM visualization. Describe what this plot shows and how it connects the SDE dynamics to the option pricing framework.
+
+??? success "Solution to Exercise 4"
+    The plot shows: (left) sample GBM paths $S_t$ for $t \in [0, T]$, and (right) a histogram of terminal values $S_T$ overlaid with the log-normal density.
+
+    This connects SDE dynamics to pricing because: the option price is the discounted expected payoff $e^{-rT}E[\max(S_T - K, 0)]$, which is an integral over the terminal distribution. The histogram approximates this distribution from simulated paths, and the theoretical log-normal density confirms the simulation is correct. The strike $K$ can be marked on the histogram to visualize which paths contribute to the payoff (those with $S_T > K$).

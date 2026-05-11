@@ -15,6 +15,7 @@ dr_t = \kappa(\theta - r_t) \, dt + \sigma \, dW_t^{\mathbb{Q}}
 $$
 
 where:
+
 - $\kappa > 0$: **mean-reversion speed** (rate of pull toward $\theta$)
 - $\theta$: **long-run mean level** (equilibrium rate)
 - $\sigma > 0$: **volatility** (instantaneous standard deviation)
@@ -107,6 +108,7 @@ $$
 ### Mean Reversion
 
 The drift $\kappa(\theta - r_t)$:
+
 - Pulls $r_t$ **toward** $\theta$ when $r_t \neq \theta$
 - Pull strength is proportional to deviation $|r_t - \theta|$
 - Half-life of mean reversion: $t_{1/2} = \frac{\ln 2}{\kappa}$
@@ -116,6 +118,7 @@ The drift $\kappa(\theta - r_t)$:
 ### Gaussianity
 
 The short rate $r_t$ is normally distributed at all times. This implies:
+
 - **Negative rates are possible:** $\mathbb{P}(r_t < 0) > 0$
 - **Simple closed-form results:** Gaussian integrals are tractable
 - **Limited smile/skew:** Cannot capture observed volatility patterns

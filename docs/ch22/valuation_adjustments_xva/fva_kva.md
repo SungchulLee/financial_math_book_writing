@@ -9,6 +9,7 @@ Beyond credit risk, derivative valuation must account for **funding costs**, **c
 ### Motivation
 
 Classical derivative pricing assumes:
+
 - Borrowing and lending at the risk-free rate
 - No funding constraints
 - Perfect market access
@@ -70,6 +71,7 @@ $$
 $$
 
 where:
+
 - $h$ = hurdle rate (cost of capital, typically 8-15%)
 - $K(t)$ = regulatory capital requirement at time $t$
 - $S_B(t)$ = bank's survival probability (capital only needed if bank survives)
@@ -78,6 +80,7 @@ where:
 ### Capital Requirement
 
 For CCR, capital typically includes:
+
 - **Default risk capital:** Based on EAD and counterparty credit quality
 - **CVA capital:** Capital for CVA variability
 - **Market risk capital:** If derivatives are in trading book
@@ -123,10 +126,12 @@ where $\text{IM}(t)$ is the initial margin requirement at time $t$.
 ### Initial Margin Calculation
 
 **ISDA SIMM (Standard Initial Margin Model):**
+
 - Risk-sensitive margin based on sensitivities
 - Aggregates across risk classes with diversification
 
 **Regulatory IM:**
+
 - Schedule-based or grid approaches
 - Less risk-sensitive but simpler
 
@@ -143,6 +148,7 @@ where $\text{IM}(t)$ is the initial margin requirement at time $t$.
 ### Double Counting Concerns
 
 **DVA and FVA overlap:**
+
 - DVA reflects benefit from own default
 - FVA funding benefit also reduces when bank defaults
 - Must avoid counting the same effect twice
@@ -152,6 +158,7 @@ where $\text{IM}(t)$ is the initial margin requirement at time $t$.
 ### Hierarchy
 
 Common ordering by materiality:
+
 1. **CVA:** Usually largest for uncollateralized trades
 2. **FVA:** Significant for funding-intensive positions
 3. **MVA:** Growing importance post-IM rules
@@ -198,6 +205,7 @@ V_t = \text{Payoff}_T + \int_t^T g(s, V_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
 $$
 
 where the driver $g$ incorporates:
+
 - Credit risk (CVA/DVA)
 - Funding costs (FVA)
 - Collateral effects
@@ -221,6 +229,7 @@ $$
 ### Centralized XVA Management
 
 Modern banks typically have a dedicated **XVA desk** that:
+
 - Calculates XVA for all trades
 - Manages XVA hedging
 - Charges/credits business units
@@ -243,6 +252,7 @@ XVA desk then owns and manages the XVA risk.
 ### Model Dependence
 
 XVA calculations require:
+
 - Exposure simulation models
 - Credit spread curves
 - Funding curves
@@ -273,6 +283,7 @@ Each introduces model risk.
 **Trade:** 10-year uncollateralized interest rate swap, \$100M notional
 
 **Inputs:**
+
 - EE profile: peaks at \$8M (year 5)
 - NEE profile: peaks at \$7M
 - Counterparty spread: 150 bps, LGD: 60%

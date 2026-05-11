@@ -3,6 +3,7 @@
 The **maximum principle** provides one route to uniqueness for the heat equation. Energy methods offer a complementary approach that is often more flexible: define an integral quantity (the "energy") that measures how far a solution is from zero, and show this energy can only **decrease** over time. If the energy starts at zero, it must remain zero -- proving the solution is identically zero and hence unique.
 
 !!! tip "Related Content"
+
     - [Maximum Principle](maximum_principle.md) -- the other main uniqueness tool
     - [Fundamental Solution](fundamental_solution.md) -- the heat kernel
     - [Heat Equation and Brownian Motion](heat_equation_and_brownian_motion.md) -- probabilistic interpretation

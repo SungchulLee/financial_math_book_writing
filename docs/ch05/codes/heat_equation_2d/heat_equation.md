@@ -281,3 +281,57 @@ if __name__ == "__main__":
     u_final = solve_crank_nicolson(u_init, params.coeff, params.Nt)
     plot_solution(params.x, u_init, u_final, "crank_nicolson")
 ```
+
+## Exercises
+
+**Exercise 1.**
+The `HeatEquation1D` class (reused for 2D in this module) provides `solve`, `compare_all_methods`, and `validate_solution`. Explain why the same class structure works for both 1D and 2D problems.
+
+??? success "Solution to Exercise 1"
+    The class acts as a thin wrapper around pure functions for grid creation, initial conditions, solvers, and plotting. By importing from the appropriate submodule (1D or 2D), the same interface supports both dimensions. The key abstraction is that `u_initial` is just an array (1D vector or 2D matrix), and the solver functions operate on these arrays regardless of dimension.
+
+    This design follows the principle of separation of concerns: the class manages state (parameters, current solution) while pure functions handle the actual computation.
+
+---
+
+**Exercise 2.**
+Write the 2D heat equation PDE and discretize it using centered differences in space and forward Euler in time.
+
+??? success "Solution to Exercise 2"
+    The 2D heat equation is $\frac{\partial u}{\partial t} = D\left(\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2}\right)$. The Forward Euler discretization is
+
+    $$
+    u_{i,j}^{n+1} = u_{i,j}^n + r_x(u_{i+1,j}^n - 2u_{i,j}^n + u_{i-1,j}^n) + r_y(u_{i,j+1}^n - 2u_{i,j}^n + u_{i,j-1}^n)
+    $$
+
+    where $r_x = D\Delta t/\Delta x^2$ and $r_y = D\Delta t/\Delta y^2$. This uses the 5-point stencil for the Laplacian.
+
+---
+
+**Exercise 3.**
+The `solve_heat_equation` convenience function returns a dictionary. What advantage does returning the solver object (as part of the dictionary) provide over returning only the final solution?
+
+??? success "Solution to Exercise 3"
+    Returning the solver object allows the user to perform further analysis without re-creating the problem setup:
+
+    - Call `solver.validate_solution()` to compare with analytical solutions
+    - Call `solver.plot()` with different options
+    - Call `solver.compare_all_methods()` to benchmark
+    - Access `solver.u_initial` for comparison
+    - Call `solver.reset()` to start over with a different method
+
+    Without the solver object, any follow-up analysis would require re-specifying all parameters and re-computing the initial condition.
+
+---
+
+**Exercise 4.**
+For a square domain with equal grid spacing ($\Delta x = \Delta y$), the 2D heat equation simplifies. Write the update stencil and the single stability parameter in this case.
+
+??? success "Solution to Exercise 4"
+    When $\Delta x = \Delta y = h$, both $r_x = r_y = r = D\Delta t/h^2$, and the update becomes
+
+    $$
+    u_{i,j}^{n+1} = u_{i,j}^n + r(u_{i+1,j}^n + u_{i-1,j}^n + u_{i,j+1}^n + u_{i,j-1}^n - 4u_{i,j}^n)
+    $$
+
+    The single stability parameter is $r = D\Delta t/h^2$, and the Forward Euler stability condition simplifies to $2r \le 1/2$, i.e., $r \le 1/4$. This is more restrictive than the 1D condition ($r \le 1/2$) because diffusion occurs in two directions simultaneously.

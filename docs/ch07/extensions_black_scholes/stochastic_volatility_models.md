@@ -37,6 +37,7 @@ d\langle W^{(1)}, W^{(2)}\rangle_t &= \rho\,dt
 $$
 
 where:
+
 - $v_t$ is the **instantaneous variance** (or volatility squared)
 - $\alpha(t, v)$ is the variance drift
 - $\beta(t, v)$ is the **vol-of-vol** (volatility of volatility)
@@ -45,6 +46,7 @@ where:
 #### The Leverage Effect
 
 When $\rho < 0$:
+
 - Stock falls → volatility rises
 - Creates negative skew in the smile
 - Observed empirically: $\rho \approx -0.7$ for equity indices
@@ -65,6 +67,7 @@ dv_t &= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
 $$
 
 **Parameters**:
+
 - $\kappa > 0$: Speed of mean reversion
 - $\theta > 0$: Long-term variance level
 - $\xi > 0$: Vol-of-vol

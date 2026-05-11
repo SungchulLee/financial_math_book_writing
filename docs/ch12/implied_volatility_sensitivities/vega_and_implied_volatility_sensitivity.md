@@ -48,6 +48,7 @@ $$
 
 
 **Key properties:**
+
 - **Positive for all options:** Both calls and puts have $\mathcal{V} > 0$
 - **Symmetric in $d_1$:** Since $\phi(-x) = \phi(x)$, vega depends on $|d_1|$
 - **Maximum at ATM:** Vega is largest when $d_1 \approx 0$ (at-the-money forward)
@@ -141,6 +142,7 @@ $$
 
 
 Short-dated options have small vega because:
+
 - Little time for volatility to affect the outcome
 - Price is dominated by intrinsic value (deep ITM/OTM)
 
@@ -212,6 +214,7 @@ $$
 
 
 **Sign and interpretation:**
+
 - **ATM ($d_2 \approx -\sigma\sqrt{T}/2 < 0$):** Vanna > 0 for calls
 - **OTM call ($d_2 < 0$):** Vanna > 0
 - **ITM call ($d_2 > 0$):** Vanna < 0
@@ -243,6 +246,7 @@ $$
 
 
 **Sign and interpretation:**
+
 - **ATM ($d_1 \approx \sigma\sqrt{T}/2$, $d_2 \approx -\sigma\sqrt{T}/2$):** $d_1 d_2 < 0$, so Volga < 0
 - **OTM/ITM (large $|d_1|$):** Volga > 0 (both $d_1, d_2$ same sign)
 
@@ -382,6 +386,7 @@ $$
 
 
 Multiple "vegas" exist:
+
 - **Spot vol vega:** $\partial P / \partial v_0$ (sensitivity to initial variance)
 - **Long-run vol vega:** $\partial P / \partial \theta$ (sensitivity to mean variance)
 - **Vol-of-vol vega:** $\partial P / \partial \xi$
@@ -396,6 +401,7 @@ Each captures different aspects of volatility risk.
 **Model vega:** Sensitivity computed from the model's pricing function.
 
 **Discrepancy:** When a model is calibrated to the market, these may differ:
+
 - Market-quoted vega: Changes implied vol, holds model parameters fixed
 - Model vega: Changes model parameters consistently with the new implied vol
 
@@ -410,6 +416,7 @@ Each captures different aspects of volatility risk.
 A portfolio of options across multiple strikes and maturities has vega exposure distributed across the volatility surface. A single "total vega" number is insufficient for risk management.
 
 **Vega bucketing** decomposes total vega by:
+
 - **Maturity buckets:** 1M, 3M, 6M, 1Y, 2Y, etc.
 - **Strike buckets:** OTM puts, ATM, OTM calls
 - **Combined:** A grid of (strike, maturity) buckets
@@ -439,14 +446,17 @@ $$
 
 
 **Hedging implications:**
+
 - To hedge $\mathcal{V}(T_1)$ exposure, trade options expiring around $T_1$
 - Different maturities hedge different parts of the term structure
 
 **Example:** A portfolio is:
+
 - Long $\mathcal{V} = \$100K$ in 1-month options
 - Short $\mathcal{V} = \$50K$ in 1-year options
 
 The portfolio is net long $\$50K$ vega, but:
+
 - Benefits if short-dated vol rises
 - Loses if long-dated vol rises
 - A term structure steepening (short up, long down) produces mixed P&L
@@ -462,11 +472,13 @@ $$
 
 
 **Typical buckets:**
+
 - 25-delta puts
 - ATM
 - 25-delta calls
 
 **Hedging implications:**
+
 - To hedge skew exposure, trade risk reversals (long OTM put, short OTM call)
 - To hedge smile curvature, trade butterflies
 
@@ -477,6 +489,7 @@ $$
 
 
 **Parameters:**
+
 - $S_0 = 100$, $K = 100$, $r = 5\%$, $q = 0$
 - $\sigma = 20\%$, $T = 0.25$ years
 
@@ -550,6 +563,7 @@ $$
 **Objective:** Neutralize vega exposure using a liquid hedging instrument.
 
 **Approach:**
+
 1. Compute portfolio vega: $\mathcal{V}_{\text{portfolio}}$
 2. Select hedging instrument with vega $\mathcal{V}_{\text{hedge}}$
 3. Trade $n = -\mathcal{V}_{\text{portfolio}} / \mathcal{V}_{\text{hedge}}$ units
@@ -650,6 +664,7 @@ $$
 
 
 This **leverage effect** means:
+
 - Vanna > 0 portfolios benefit when spot falls and vol rises
 - Vanna < 0 portfolios suffer in this scenario
 

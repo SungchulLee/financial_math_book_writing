@@ -9,6 +9,7 @@ simulation. The payoff depends on the average price of the underlying over the
 option's life: Payoff = max(S_avg - K, 0).
 
 Mathematical Framework:
+
     - GBM path simulation:
         S_{t+dt} = S_t * exp((r - 0.5*sigma^2)*dt + sigma*sqrt(dt)*Z)
     - Arithmetic average: S_avg = (1/n) * sum(S_{t_i})
@@ -17,6 +18,7 @@ Mathematical Framework:
 Also prices a lookback call by replacing the average with the path maximum.
 
 References:
+
     - Glasserman (2003). Monte Carlo Methods in Financial Engineering.
 
 ---
@@ -258,3 +260,36 @@ if __name__ == "__main__":
 
     print("\nPlots saved to exotic_options_monte_carlo.png")
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Write the payoff for an arithmetic average Asian call. How does averaging reduce volatility compared to a European call?
+
+??? success "Solution to Exercise 1"
+    Payoff: $\max(\bar{S} - K, 0)$ where $\bar{S} = \frac{1}{n}\sum_{i=1}^n S_{t_i}$. Averaging reduces volatility because $\text{Var}(\bar{S}) < \text{Var}(S_T)$ due to diversification across time. The variance reduction ratio is typically 0.3--0.5, making Asian options cheaper than European options.
+
+---
+
+**Exercise 2.**
+Why is there no simple closed-form formula for arithmetic average Asian options under GBM?
+
+??? success "Solution to Exercise 2"
+    The arithmetic average $\bar{S} = \frac{1}{n}\sum S_{t_i}$ is a sum of correlated log-normal random variables. This sum does not have a known closed-form distribution (unlike the geometric average, which is log-normal). Therefore $E[\max(\bar{S} - K, 0)]$ requires numerical evaluation.
+
+---
+
+**Exercise 3.**
+The code also prices a lookback call. Compare the lookback payoff with the Asian payoff and explain which is more expensive.
+
+??? success "Solution to Exercise 3"
+    Lookback: $\max(\max_t S_t - K, 0)$. Since $\max_t S_t \ge \bar{S}$, the lookback payoff dominates the Asian payoff path by path. Therefore the lookback option is always more expensive. The ordering is: lookback $\ge$ European $\ge$ Asian.
+
+---
+
+**Exercise 4.**
+How does the number of monitoring dates $n$ affect the Asian option price?
+
+??? success "Solution to Exercise 4"
+    As $n$ increases, $\bar{S}$ approaches the continuous average $\frac{1}{T}\int_0^T S_t\,dt$ and its variance decreases. The option price decreases monotonically with $n$. For $n \ge 50$, the discrete and continuous prices are very close.

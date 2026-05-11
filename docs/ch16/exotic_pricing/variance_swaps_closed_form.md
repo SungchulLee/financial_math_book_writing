@@ -7,6 +7,7 @@ A **variance swap** is a forward contract on realized variance. The buyer pays a
 The Heston model provides one of the cleanest settings for variance swap pricing because the expected integrated variance $\mathbb{E}^{\mathbb{Q}}\!\left[\frac{1}{T}\int_0^T v_t \, dt\right]$ can be computed **in closed form** directly from the CIR dynamics of the variance process. No Fourier inversion or numerical integration is required --- the result follows from a simple ODE. This section derives the fair variance strike, discusses the connection to the replication formula via log contracts, and addresses the correction needed when monitoring is discrete rather than continuous.
 
 !!! info "Prerequisites"
+
     - [Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md) (the bivariate SDE)
     - [CIR Variance Process Solution](../variance_dynamics/cir_variance_process_solution.md) (moments of $v_t$)
     - [Mean Reversion and Long-Run Variance](../variance_dynamics/mean_reversion_and_long_run.md) (properties of $v_t$)
@@ -276,6 +277,7 @@ The fair strike depends on only three Heston parameters: $v_0$, $\kappa$, and $\
 | Parameter dependence | $v_0, \kappa, \theta$ only (not $\xi, \rho$) |
 
 !!! abstract "Key Takeaways"
+
     1. **Closed-form pricing**: The Heston fair variance strike has an explicit formula involving only $v_0$, $\kappa$, $\theta$, and $T$. No Fourier inversion is needed.
 
     2. **Term structure**: The fair strike interpolates between $v_0$ (short maturity) and $\theta$ (long maturity), with the mean-reversion speed $\kappa$ controlling the interpolation rate.

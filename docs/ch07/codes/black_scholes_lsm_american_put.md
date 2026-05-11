@@ -10,6 +10,7 @@ American put options via regression-based estimation of the
 continuation value.
 
 Includes:
+
   - LSM pricing with polynomial basis functions
   - Comparison with binomial tree benchmark
   - Convergence analysis (paths, time steps, basis degree)
@@ -309,3 +310,54 @@ if __name__ == "__main__":
         diff = p - price_bin
         print(f"{name:<30} | {p:>8.4f} | {diff:>+12.4f}")
 ```
+
+## Exercises
+
+**Exercise 1.**
+Describe the Longstaff-Schwartz algorithm. What role does the regression step play in estimating the continuation value?
+
+??? success "Solution to Exercise 1"
+    The LSM algorithm prices American options via backward induction on simulated paths:
+
+    1. Simulate $N$ paths of $S_t$ forward in time.
+    2. At the final time, compute payoffs.
+    3. Working backward at each exercise date $t_k$: for in-the-money paths, regress discounted future cash flows onto basis functions of $S_{t_k}$ to estimate the continuation value.
+    4. Exercise at $t_k$ if the exercise value exceeds the estimated continuation value.
+
+    The regression replaces the conditional expectation $E[\text{future payoff} \mid S_{t_k}]$ with a parametric approximation. This is tractable even in high dimensions, unlike grid-based methods.
+
+---
+
+**Exercise 2.**
+Common basis functions are $\{1, S, S^2\}$. How does the choice of basis functions affect the price estimate? Is LSM biased?
+
+??? success "Solution to Exercise 2"
+    More basis functions (e.g., adding $S^3$, Laguerre polynomials) improve the approximation of the continuation value, potentially finding a better exercise strategy and a higher price.
+
+    LSM produces a **low-biased** estimate: it finds a suboptimal exercise strategy (constrained by the basis), which always gives a price $\le$ the true American price. The bias decreases as the basis set is enriched. With $\{1, S, S^2\}$, the bias is typically very small for standard American puts (0.01--0.1%).
+
+---
+
+**Exercise 3.**
+Compare LSM with the binomial tree for pricing an American put. What are the advantages of each?
+
+??? success "Solution to Exercise 3"
+    | Feature | LSM | Binomial Tree |
+    |---------|-----|---------------|
+    | Dimensions | Multi-asset capable | Limited to 1--2 assets |
+    | Convergence | $O(1/\sqrt{N})$ (MC rate) | $O(1/M)$ |
+    | Memory | $O(N \times M)$ for paths | $O(M)$ for pricing |
+    | Flexibility | Any SDE dynamics | CRR/JR models |
+    | Greeks | Pathwise or finite-diff | Direct from tree |
+
+    Binomial tree is better for 1D American options (faster, more accurate). LSM is essential for multi-asset or complex-dynamics problems where tree methods are impractical.
+
+---
+
+**Exercise 4.**
+The code shows an exercise region visualization. Describe what this plot shows and how it relates to the exercise boundary.
+
+??? success "Solution to Exercise 4"
+    The plot shows simulated paths colored by their exercise decision: paths that exercise early at time $t_k$ are marked at the corresponding $(t_k, S_{t_k})$ point. The boundary between exercise and continuation regions approximates $S^*(t)$.
+
+    The scatter plot of exercise points reveals the stochastic exercise boundary: it is not a smooth curve but a band of points due to regression error and finite path sampling. As the number of paths increases, the exercise region sharpens toward the true boundary. The visualization confirms that early exercise occurs predominantly for low stock prices and near expiration.

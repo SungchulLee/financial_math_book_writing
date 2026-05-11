@@ -9,9 +9,11 @@ In **adversarial environments**, data-generating processes may react strategical
 
 
 Traditional learning assumes:
+
 - i.i.d. or stationary data.
 
 Adversarial learning assumes:
+
 - worst-case or adaptive opponents,
 - no probabilistic structure.
 
@@ -23,6 +25,7 @@ This provides strong performance guarantees.
 
 
 Algorithms are designed to minimize regret:
+
 - Hedge / multiplicative weights,
 - online gradient descent,
 - mirror descent.
@@ -35,6 +38,7 @@ They perform well against any adversarial sequence.
 
 
 Markets can behave adversarially:
+
 - crowding effects,
 - feedback from strategies,
 - strategic counterparties.
@@ -47,6 +51,7 @@ Adversarial models capture these phenomena.
 
 
 Adversarial guarantees are:
+
 - pessimistic,
 - often overly conservative,
 - data-inefficient in benign environments.

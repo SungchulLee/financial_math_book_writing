@@ -622,3 +622,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Compare the Euler scheme and the Almost Exact Scheme (AES) for the Heston model. What is the key improvement in AES?
+
+??? success "Solution to Exercise 1"
+    The AES treats the variance process exactly (using the CIR non-central $\chi^2$ distribution) and only discretizes the stock price using the Euler scheme with the exact variance as input. This eliminates the variance discretization error entirely, leaving only the stock price discretization error. The Euler scheme discretizes both processes, accumulating errors from both.
+
+---
+
+**Exercise 2.**
+For the Heston stock price, the log-Euler scheme is $\ln S_{t+1} = \ln S_t + (r - v_t/2)\Delta t + \sqrt{v_t}\Delta W_1$. Explain why this is preferable to the standard Euler $S_{t+1} = S_t + rS_t\Delta t + \sqrt{v_t}S_t\Delta W_1$.
+
+??? success "Solution to Exercise 2"
+    The log-Euler preserves positivity of $S$ automatically (exponential of any real number is positive). Standard Euler can produce $S < 0$ for large negative $\Delta W$, especially with high volatility. Log-Euler also has smaller discretization error because the log-price process has more slowly varying coefficients.
+
+---
+
+**Exercise 3.**
+The Quadratic-Exponential (QE) scheme for the CIR variance process is an alternative to exact simulation. Describe its key idea.
+
+??? success "Solution to Exercise 3"
+    The QE scheme approximates the conditional CIR distribution by matching its first two moments. When the ratio $\psi = s^2/m^2$ (variance-to-mean-squared) is small, it uses a quadratic Gaussian approximation. When $\psi$ is large (near zero boundary), it uses an exponential approximation. This avoids the computational cost of non-central $\chi^2$ sampling while maintaining accuracy.
+
+---
+
+**Exercise 4.**
+For pricing European options under Heston, compare: (a) Euler MC, (b) AES MC, (c) COS method with Heston CF. Which is most efficient?
+
+??? success "Solution to Exercise 4"
+    (c) COS method is by far the most efficient for Europeans: it directly evaluates the option price from the Heston CF in $O(N)$ operations ($N \approx 64$--128 terms), taking milliseconds. (b) AES MC requires thousands of paths and time steps, taking seconds. (a) Euler MC is similar cost to AES but less accurate. For exotics (barriers, lookbacks), MC is necessary since the COS method handles only European payoffs.

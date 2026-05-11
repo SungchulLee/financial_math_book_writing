@@ -423,7 +423,7 @@ The $T$-forward measure $\mathbb{Q}^T$ simplifies derivative pricing by replacin
     We want to write this in Vasicek form $\kappa(\theta - r_t)\,dt + \sigma\,dW_t^{\mathbb{Q}}$, so:
 
     $$
-    \kappa = \kappa^{\mathbb{P}} + \lambda, \qquad \kappa\theta = \kappa^{\mathbb{P}}\theta^{\mathbb{P}} - \sigma\lambda + \lambda\theta^{\mathbb{P}} ..
+    \kappa = \kappa^{\mathbb{P}} + \lambda, \qquad \kappa\theta = \kappa^{\mathbb{P}}\theta^{\mathbb{P}} - \sigma\lambda + \lambda\theta^{\mathbb{P}}
     $$
 
     Wait---let us be more careful. Rewriting the drift:

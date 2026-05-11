@@ -72,6 +72,7 @@ $$
 ### Properties of Cox Construction
 
 Under this construction:
+
 - $\tau$ is a totally inaccessible $(\mathcal{G}_t)$-stopping time (surprise default)
 - The intensity interpretation is exact: $\lambda_t$ is the hazard rate
 - Immersion (H-hypothesis) holds automatically
@@ -136,6 +137,7 @@ This relationship allows estimation of intensity from survival data.
 ### Why Stochastic Intensity?
 
 Constant or deterministic intensity is too restrictive:
+
 - Credit quality evolves randomly over time
 - Market conditions affect default probability
 - Spread volatility requires stochastic intensity
@@ -165,6 +167,7 @@ d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma \, dW_t
 $$
 
 Properties:
+
 - Mean-reverting to long-run level $\theta$
 - Gaussian—can become negative (problematic)
 - Analytically tractable
@@ -176,6 +179,7 @@ d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma\sqrt{\lambda_t} \, dW_t
 $$
 
 Properties:
+
 - Mean-reverting
 - Non-negative if $2\kappa\theta \ge \sigma^2$ (Feller condition)
 - Affine structure enables closed-form bond prices
@@ -188,6 +192,7 @@ d\ln\lambda_t = \kappa(\theta - \ln\lambda_t) \, dt + \sigma \, dW_t
 $$
 
 Properties:
+
 - Strictly positive intensity
 - Mean-reverting in log-space
 - Heavier tails than CIR
@@ -201,6 +206,7 @@ $$
 where $N_t$ is a Poisson process and $J$ is jump size.
 
 Properties:
+
 - Captures sudden credit deterioration
 - More realistic for crisis scenarios
 - Complicates pricing
@@ -250,6 +256,7 @@ where $T_{k-1} < T \le T_k$.
 ### Intensity Filtration
 
 The intensity $\lambda_t$ is $\mathcal{F}_t$-measurable, where $\mathcal{F}_t$ contains:
+
 - Interest rate information
 - Equity prices (if intensity depends on equity)
 - Macroeconomic indicators
@@ -260,6 +267,7 @@ Crucially, $\mathcal{F}_t$ does **not** contain information about the specific t
 ### Surprise Default
 
 In reduced-form models with intensity, default is always a surprise:
+
 - $\tau$ is totally inaccessible (no announcing sequence)
 - Even with complete market information, exact default time is unknown
 - Default "arrives" at an unexpected moment
@@ -269,6 +277,7 @@ This contrasts with structural models where default becomes predictable as firm 
 ### Immersion
 
 Under the Cox construction, immersion holds automatically:
+
 - $\mathcal{F}$-martingales remain $\mathcal{G}$-martingales
 - Market dynamics are unchanged by default revelation
 - Clean separation of market and credit risk
@@ -302,6 +311,7 @@ $$
 ## Numerical Example
 
 **Setup:**
+
 - Piecewise-constant intensity: $\lambda_1 = 100$ bp (year 0-1), $\lambda_2 = 150$ bp (year 1-3)
 - Compute survival probabilities
 
@@ -326,6 +336,7 @@ S(0,3) = e^{-0.01 \times 1 - 0.015 \times 2} = e^{-0.04} = 0.9608
 $$
 
 **Default probabilities:**
+
 - 1-year: $1.00\%$
 - 2-year: $2.47\%$
 - 3-year: $3.92\%$

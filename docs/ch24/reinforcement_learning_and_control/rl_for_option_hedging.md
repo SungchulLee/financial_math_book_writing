@@ -244,7 +244,7 @@ where $\bar{S}_k$ is the running average and $S_k^{\max}$ the running maximum. T
 
 ## Exercises
 
-**Exercise 1.** Consider delta hedging a European call with $S_0 = 100$, $K = 100$, $T = 1/12$ (one month), $\sigma = 0.20$, $r = 0$, with weekly rebalancing ($N = 4$). (a) Compute the Black-Scholes delta $\Delta_0 = \Phi(d_1)$ at $t = 0$. (b) After one week, $S_1 = 103$. Compute $\Delta_1$ and the rebalancing trade $|\Delta_1 - \Delta_0| \cdot S_1$. With proportional transaction cost $\kappa = 0.001$, compute the cost. (c) After all 4 weeks with price path $S = (100, 103, 101, 105, 108)$, compute the total hedging P&L: $\sum_{k=0}^3 \Delta_k(S_{k+1} - S_k) - (S_4 - K)^+$. Is the hedge perfect?
+**Exercise 1.** Consider delta hedging a European call with $S_0 = 100$, $K = 100$, $T = 1/12$ (one month), $\sigma = 0.20$, $r = 0$, with weekly rebalancing ($N = 4$). (a) Compute the Black-Scholes delta $\Delta_0 = \mathcal{N}(d_1)$ at $t = 0$. (b) After one week, $S_1 = 103$. Compute $\Delta_1$ and the rebalancing trade $|\Delta_1 - \Delta_0| \cdot S_1$. With proportional transaction cost $\kappa = 0.001$, compute the cost. (c) After all 4 weeks with price path $S = (100, 103, 101, 105, 108)$, compute the total hedging P&L: $\sum_{k=0}^3 \Delta_k(S_{k+1} - S_k) - (S_4 - K)^+$. Is the hedge perfect?
 
 ??? success "Solution to Exercise 1"
     **(a) Black-Scholes delta at $t = 0$.**
@@ -256,7 +256,7 @@ where $\bar{S}_k$ is the running average and $S_k^{\max}$ the running maximum. T
     $$
 
     $$
-    \Delta_0 = \Phi(d_1) = \Phi(0.02887) \approx 0.5115
+    \Delta_0 = \mathcal{N}(d_1) = \Phi(0.02887) \approx 0.5115
     $$
 
     The at-the-money call has a delta slightly above 0.5.

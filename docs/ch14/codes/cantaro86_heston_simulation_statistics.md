@@ -16,6 +16,7 @@ Adapted as a SELF-CONTAINED educational module for the
 
 Topics covered
 --------------
+
 1. Generating correlated Normal random variables (explicit formula
    and Cholesky decomposition).
 2. Heston process path simulation using log-variables (Euler-Maruyama).
@@ -421,3 +422,36 @@ def demo_all():
 if __name__ == "__main__":
     demo_all()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+The Heston model couples stock price and variance: $dS = \mu S\,dt + \sqrt{v}S\,dW_1$, $dv = \kappa(\theta - v)\,dt + \sigma_v\sqrt{v}\,dW_2$. State the Feller condition and explain its significance.
+
+??? success "Solution to Exercise 1"
+    The Feller condition is $2\kappa\theta > \sigma_v^2$. When satisfied, the variance process $v(t)$ never reaches zero (it is strictly positive). When violated, $v(t)$ can touch zero, requiring special numerical treatment (reflection or absorption). Financially, the Feller condition ensures that volatility remains positive, which is necessary for well-defined option prices.
+
+---
+
+**Exercise 2.**
+Explain the role of the correlation parameter $\rho$ in the Heston model. What does $\rho < 0$ imply for the skew of the implied volatility surface?
+
+??? success "Solution to Exercise 2"
+    $\rho < 0$ means stock declines are correlated with volatility increases (leverage effect). This creates negative skewness in the log-return distribution: large negative returns are more likely than large positive returns. On the IV surface, $\rho < 0$ produces a downward-sloping skew (higher IV for lower strikes), matching the empirically observed pattern for equity indices.
+
+---
+
+**Exercise 3.**
+The Euler scheme uses reflection ($v_{t+1} = |v_{t+1}|$) to keep variance non-negative. Explain why this is needed and what alternatives exist.
+
+??? success "Solution to Exercise 3"
+    The Euler discretization can produce negative $v$ values because the discrete step $v + \kappa(\theta - v)\Delta t + \sigma_v\sqrt{v}\Delta W$ can be negative when $\sigma_v\sqrt{v}|\Delta W|$ is large. Reflection ($|v|$) is simple but biased. Alternatives: (1) full truncation ($\max(v, 0)$); (2) log-Euler scheme ($Y = \ln v$); (3) Quadratic-Exponential (QE) scheme; (4) exact simulation using the non-central chi-squared distribution.
+
+---
+
+**Exercise 4.**
+The Variance Gamma process uses gamma subordination: $X(t) = \theta G(t) + \sigma W(G(t))$ where $G$ is a gamma process. Explain the roles of $\theta$ and $\sigma$.
+
+??? success "Solution to Exercise 4"
+    $\sigma$ controls the overall volatility level of the VG process (the "diffusion" component). $\theta$ controls the skewness: $\theta < 0$ creates a left-skewed distribution (more frequent negative jumps), while $\theta > 0$ gives right skew. Together, they determine the shape of the return distribution, with $\kappa$ controlling the kurtosis via the variance of the gamma time change.

@@ -71,6 +71,7 @@ where $r_t$ is the return and $\sigma_t$ is volatility.
 | Commodities | Mixed | Schwartz |
 
 **Key observations:**
+
 - The leverage effect is strongest for equity indices
 - Individual stocks show weaker but still negative correlation
 - FX markets exhibit near-zero correlation
@@ -85,6 +86,7 @@ $$
 $$
 
 Empirically:
+
 - Strongest at daily/weekly frequencies: $\rho \approx -0.7$
 - Weakens at monthly frequencies: $\rho \approx -0.4$
 - Near zero at annual frequencies
@@ -124,6 +126,7 @@ $$
 **Mechanism:** Investors react more strongly to losses than gains, causing panic selling during downturns that amplifies volatility.
 
 **Evidence:**
+
 - Volume spikes more during sell-offs
 - VIX responds asymmetrically to returns
 - Options markets show demand imbalance for puts
@@ -143,6 +146,7 @@ This view connects the leverage effect to macroeconomic fundamentals rather than
 The correlation $\rho$ is the primary determinant of **implied volatility skew**.
 
 **Intuition:** When $\rho < 0$:
+
 - Price falls → Volatility rises → Further price decline more likely
 - Price rises → Volatility falls → Further price rise less explosive
 
@@ -165,6 +169,7 @@ $$
 $$
 
 This shows:
+
 - $\text{Skew} \propto \rho$: correlation directly controls skew sign and magnitude
 - $\text{Skew} \propto \xi$: higher vol-of-vol amplifies skew
 - $\text{Skew} \propto 1/\sigma_{\text{ATM}}$: skew is more pronounced in low-vol environments
@@ -180,6 +185,7 @@ This shows:
 **Quantitative example (Heston):**
 
 For $\sigma_{\text{ATM}} = 20\%$, $\xi = 30\%$:
+
 - $\rho = -0.7$ → Skew $\approx -5.25\%$ per unit log-moneyness
 - $\rho = 0$ → Skew $= 0$
 - $\rho = +0.3$ → Skew $\approx +2.25\%$ per unit log-moneyness
@@ -237,6 +243,7 @@ $$
 $$
 
 During crises:
+
 - Correlation may become more negative
 - Volatility and returns become more tightly coupled
 - Flight-to-quality effects amplify the relationship
@@ -264,6 +271,7 @@ $$
 $$
 
 When $\rho < 0$:
+
 - Long OTM puts have positive vanna
 - A price drop increases implied vol, which increases delta magnitude
 - This amplifies hedging requirements during sell-offs

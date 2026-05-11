@@ -93,6 +93,7 @@ $$
 ### Simplified Form
 
 Using the relationships:
+
 - $y_T = -r$, $w_T = \sigma_{\text{imp}}^2$
 - $y_K = K^{-1}$, $w_K = 0$
 - $y_{KK} = -K^{-2}$, $w_{KK} = 0$
@@ -127,6 +128,7 @@ The transformation from implied to local volatility reveals several important po
 The key insight is that the call option price function $C(K, T)$ contains all information about the local volatility surface. Once market prices are observed across strikes and maturities, the Dupire formula uniquely determines the local volatility at each point $(K, T)$ in the strike-maturity space.
 
 This establishes a one-to-one correspondence between:
+
 - Observable call option prices $\{C(K, T) : K > 0, T > 0\}$
 - Local volatility surface $\{\sigma(K, T) : K > 0, T > 0\}$
 
@@ -137,6 +139,7 @@ This establishes a one-to-one correspondence between:
 This section presented the fundamental connection between implied volatility and local volatility. The Black-Scholes framework provides a parametric description of option prices, while the Dupire formula offers a non-parametric extraction of local volatility directly from observed market prices. The change of variables from strike-maturity to log-moneyness-variance coordinates reveals the elegant structure of this relationship and facilitates practical computation of local volatility surfaces from market data.
 
 The ability to extract local volatility surfaces is crucial for:
+
 - Pricing exotic derivatives consistently with market option prices
 - Understanding the dynamics implied by the market
 - Risk management and sensitivity analysis

@@ -27,6 +27,7 @@ where $E_\tau$ is exposure at default time $\tau$.
 Arises from the **specific nature of the transaction** with the counterparty.
 
 **Examples:**
+
 - **Equity derivatives on counterparty's stock:** Put options on a bank's own equity—if the bank's stock falls, the bank is more likely to default AND the put is more valuable (higher exposure)
 - **Credit protection sold by related entity:** CDS protection on a sovereign sold by a bank heavily exposed to that sovereign
 - **Commodity trades with producers:** Derivatives with an oil company that worsen as oil prices fall
@@ -38,6 +39,7 @@ Arises from the **specific nature of the transaction** with the counterparty.
 Arises from **correlation between market factors and credit quality** not specific to the transaction.
 
 **Examples:**
+
 - **FX derivatives with EM counterparty:** Currency depreciation often coincides with sovereign/corporate stress
 - **Interest rate derivatives during crisis:** Rate movements correlate with credit spreads
 - **Equity derivatives in systemic crisis:** Market-wide equity decline correlates with increased default rates
@@ -57,6 +59,7 @@ $$
 $$
 
 where:
+
 - $\text{EE}(t) = \mathbb{E}[E_t]$ is computed independently of default
 - $PD(t) = \mathbb{Q}(\tau \le t)$ is the cumulative default probability
 
@@ -106,6 +109,7 @@ $$
 where $\rho$ captures the correlation structure.
 
 **Implementation:**
+
 - Copula models for dependence
 - Stochastic intensity models with correlated factors
 - Structural models linking asset value to default
@@ -119,6 +123,7 @@ $$
 $$
 
 If $X_t$ also drives exposure:
+
 - Positive $\beta$ with positive exposure sensitivity → WWR
 - Negative $\beta$ with positive exposure sensitivity → RWR
 
@@ -141,6 +146,7 @@ $$
 where $w$ is the WWR multiplier.
 
 **Calibration:** Estimate $w$ from:
+
 - Historical data on exposure-default correlation
 - Stress scenarios
 - Expert judgment
@@ -154,11 +160,13 @@ where $w$ is the WWR multiplier.
 Regulators require explicit WWR consideration:
 
 **Specific WWR:**
+
 - Transactions with SWWR must be identified
 - May require separate treatment or exclusion from netting
 - Conservative exposure assumptions
 
 **General WWR:**
+
 - Correlation between exposure and default must be assessed
 - Stress testing required
 - Capital add-ons may apply
@@ -180,6 +188,7 @@ where $\alpha_{\text{WWR}}$ is a supervisory add-on (e.g., 40%).
 ### Example 1: Put Option on Counterparty Stock
 
 **Setup:**
+
 - Bank A sells a put option on Bank B's stock to Bank B
 - If Bank B's stock falls, put becomes ITM
 - Bank B's default probability increases when stock falls
@@ -191,6 +200,7 @@ E_t = \max(K - S_t^B, 0)
 $$
 
 As $S_t^B \downarrow$:
+
 - Exposure $E_t \uparrow$
 - Default probability $PD_t \uparrow$
 
@@ -199,6 +209,7 @@ As $S_t^B \downarrow$:
 ### Example 2: FX Forward with EM Corporate
 
 **Setup:**
+
 - Trade: Receive USD, pay BRL forward
 - Counterparty: Brazilian corporate
 - Risk: BRL depreciation
@@ -210,6 +221,7 @@ V_t = N \cdot (F_t - K) \cdot D(t,T)
 $$
 
 If BRL depreciates (USD/BRL increases):
+
 - Forward value increases (exposure rises)
 - Brazilian corporate likely under stress (credit deteriorates)
 
@@ -218,10 +230,12 @@ If BRL depreciates (USD/BRL increases):
 ### Example 3: CDS Protection from Correlated Entity
 
 **Setup:**
+
 - Buy CDS protection on Reference Entity A from Counterparty B
 - A and B are in the same sector/region
 
 **Analysis:**
+
 - If A defaults, CDS has high value (exposure to B is high)
 - B's credit likely impaired if A defaults (sector stress)
 
@@ -240,6 +254,7 @@ $$
 $$
 
 **Typical ranges:**
+
 - Low WWR: 1.0-1.2×
 - Moderate WWR: 1.2-1.5×
 - High WWR (SWWR): 1.5-3.0× or higher
@@ -299,6 +314,7 @@ Plot to understand WWR sensitivity.
 ### Stress Testing Alternative
 
 Use stressed scenarios to assess WWR impact:
+
 - Simulate counterparty default under stress
 - Compute exposure under same stress
 - Compare to base case

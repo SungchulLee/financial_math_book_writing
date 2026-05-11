@@ -3,6 +3,7 @@
 While the COS method prices a single option at a given strike with exponential convergence, many practical applications---particularly model calibration---require option prices across a dense grid of strikes simultaneously. The Carr--Madan (1999) method addresses this by expressing the option price as a Fourier transform that can be evaluated at all grid points in a single FFT pass, with total cost $O(N\log N)$ instead of $O(N)$ per strike. The method introduces a damping parameter $\alpha$ that ensures integrability of the modified call transform, and the FFT produces prices at $N$ log-strike values simultaneously. This section derives the Carr--Madan formula, discusses the choice of damping parameter, and explains the FFT discretization.
 
 !!! info "Prerequisites"
+
     - [From Characteristic Function to Density](../cos_method/characteristic_function_to_density.md) (Fourier inversion)
     - [Fourier Series of Probability Densities](../fourier_series/fourier_series_of_densities.md) (CF as Fourier transform)
     - Numerical methods: discrete Fourier transform, FFT algorithm

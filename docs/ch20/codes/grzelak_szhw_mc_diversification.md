@@ -225,3 +225,50 @@ if __name__ == "__main__":
     
     mainCalculation()
 ```
+
+## Exercises
+
+**Exercise 1.**
+Diversification in Monte Carlo refers to using multiple variance reduction techniques simultaneously. Name three common variance reduction techniques applicable to the SZHW model.
+
+??? success "Solution to Exercise 1"
+
+    1. **Antithetic variates**: For each path with increments $Z$, simulate a twin path with $-Z$. This reduces variance for symmetric payoffs and costs no extra random number generation.
+    2. **Control variates**: Use the Black-Scholes price (with average volatility) as a control. The known analytical price helps correct the MC estimate: $\hat{V} = V_{\text{MC}} - \beta(V_{\text{BS,MC}} - V_{\text{BS,exact}})$.
+    3. **Moment matching**: Normalize Brownian increments to have exact mean zero and unit variance at each step, eliminating first-moment sampling error.
+
+---
+
+**Exercise 2.**
+If plain Monte Carlo has a standard error of $\$500$ with 10,000 paths, and antithetic variates reduce the variance by a factor of 3, what is the new standard error?
+
+??? success "Solution to Exercise 2"
+    The standard error with antithetic variates is $\text{SE}_{\text{AV}} = \text{SE}/\sqrt{3} = 500/\sqrt{3} \approx \$289$. Note that antithetic variates also double the number of effective paths (each pair produces two estimates), so the total improvement factor is approximately $\sqrt{6}$, giving $\text{SE} \approx 500/\sqrt{6} \approx \$204$.
+
+---
+
+**Exercise 3.**
+Explain why control variates are particularly effective for the SZHW model when pricing European options.
+
+??? success "Solution to Exercise 3"
+    The SZHW model reduces to Black-Scholes when $\xi = 0$ (no stochastic volatility) and $\eta = 0$ (no stochastic rates). The Black-Scholes price is known analytically, and the MC estimate of the BS price is highly correlated with the SZHW MC estimate (since both use the same Brownian paths). The control variate estimator $\hat{V} = V_{\text{SZHW,MC}} - \beta(V_{\text{BS,MC}} - V_{\text{BS,exact}})$ removes most of the common variance, leaving only the variance due to stochastic volatility and rate effects. This can reduce variance by a factor of 10 or more.
+
+---
+
+**Exercise 4.**
+Compute the number of paths needed to achieve a relative error of $1\%$ with standard error $\sigma_{\text{path}} = \$2{,}000$ and option price $V = \$50{,}000$.
+
+??? success "Solution to Exercise 4"
+    The target standard error is $0.01 \times 50{,}000 = \$500$. The number of paths needed is:
+
+    $$
+    N = \left(\frac{\sigma_{\text{path}}}{\text{SE}_{\text{target}}}\right)^2 = \left(\frac{2{,}000}{500}\right)^2 = 16.
+    $$
+
+    Only 16 paths would suffice if $\sigma_{\text{path}} = \$2{,}000$ is per-path. However, $\sigma_{\text{path}}$ is the standard deviation across paths, so $\text{SE} = \sigma_{\text{path}}/\sqrt{N}$:
+
+    $$
+    N = \left(\frac{2{,}000}{500}\right)^2 = 16.
+    $$
+
+    This is unusually low, suggesting $\sigma_{\text{path}}$ is already quite small (perhaps due to variance reduction). In practice, with raw MC, $\sigma_{\text{path}}$ might be $\$20{,}000$, requiring $N = (20{,}000/500)^2 = 1{,}600$ paths.

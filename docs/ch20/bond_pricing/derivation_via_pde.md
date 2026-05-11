@@ -3,6 +3,7 @@
 The expectation-based derivation of the Hull-White bond price exploits the Gaussian structure of the short rate integral. An independent route to the same formula starts from the Feynman-Kac theorem, which converts the pricing problem into a partial differential equation. Substituting an exponential-affine ansatz reduces the PDE to a system of ordinary differential equations -- a linear ODE for $B(\tau)$ and a quadrature for $A(t,T)$ -- that can be solved explicitly. This section carries out the PDE derivation from start to finish, filling in every algebraic step.
 
 !!! info "Prerequisites"
+
     - Hull-White SDE: $dr(t) = [\theta(t) - ar(t)]\,dt + \sigma\,dW^{\mathbb{Q}}(t)$
     - Feynman-Kac theorem connecting conditional expectations to PDEs
     - Bond price formula from the expectation derivation (sibling section) for cross-verification

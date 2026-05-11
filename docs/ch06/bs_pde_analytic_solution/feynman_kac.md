@@ -57,6 +57,7 @@ $$
 This represents **accumulated discounted cash flows** between $t$ and $T$.
 
 **3. For option pricing**:
+
 - $f \equiv 0$ (no intermediate cash flows for European options)
 - $r$ is constant (risk-free rate)
 - $\Phi(X_T)$ is the option payoff at maturity
@@ -84,6 +85,7 @@ dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}
 $$
 
 where:
+
 - $r$ = constant risk-free rate
 - $\sigma$ = constant volatility
 - $W_t^{\mathbb{Q}}$ = Brownian motion under $\mathbb{Q}$
@@ -104,6 +106,7 @@ V(S,T) = \Phi(S)
 $$
 
 where $\Phi(S)$ is the option payoff:
+
 - European call: $\Phi(S) = (S-K)^+$
 - European put: $\Phi(S) = (K-S)^+$
 
@@ -228,6 +231,7 @@ $$
 
 
 For the Black-Scholes case with constant $r$:
+
 - $X_t = S_t$
 - $\mu(S_t, t) = rS_t$
 - $\sigma(S_t, t) = \sigma S_t$
@@ -240,6 +244,7 @@ V(S,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]
 $$
 
 with terminal conditions:
+
 - European call: $\Phi(S) = (S-K)^+$
 - European put: $\Phi(S) = (K-S)^+$
 
@@ -363,6 +368,7 @@ We need to evaluate two integrals.
 
 
 Since $\ln S_T \sim \mathcal{N}(m, v^2)$ where:
+
 - $m = \ln S + (r - \frac{\sigma^2}{2})\tau$
 - $v = \sigma\sqrt{\tau}$
 
@@ -479,6 +485,7 @@ I_1 = e^{m + \frac{v^2}{2}} \cdot \mathcal{N}\left(\frac{(m+v^2) - \ln K}{v}\rig
 $$
 
 Simplify the exponent. Recall:
+
 - $m = \ln S + (r - \frac{\sigma^2}{2})\tau$
 - $v^2 = \sigma^2\tau$
 
@@ -658,6 +665,7 @@ C = S \cdot \mathbb{Q}^S(S_T > K) - Ke^{-r\tau} \cdot \mathbb{Q}(S_T > K)
 $$
 
 **Interpretation**:
+
 - First term: Expected value of stock received upon exercise (under stock measure)
 - Second term: Expected present value of strike paid upon exercise (under risk-neutral measure)
 
@@ -678,6 +686,7 @@ $$
 $$
 
 **"Backward"** because:
+
 - We start from terminal condition $V(S,T) = \Phi(S)$ at time $T$
 - We solve backward in time to find $V(S,t)$ for $t < T$
 - The PDE describes how the option value evolves as we move backward from maturity
@@ -692,6 +701,7 @@ $$
 $$
 
 **"Forward"** because:
+
 - Given initial distribution at time $t$
 - We evolve forward in time to find distribution at time $T$
 - The PDE describes how the probability distribution evolves forward
@@ -706,6 +716,7 @@ V(S,t) = e^{-r\tau}\int_0^{\infty}\Phi(S_T)p(S_T, T \mid S, t)dS_T
 $$
 
 **Key insight**:
+
 - The backward equation (PDE for $V$) describes the evolution of functionals
 - The forward equation (PDE for $p$) describes the evolution of densities
 - They are **dual** to each other through the Feynman-Kac representation
@@ -728,10 +739,12 @@ Under the risk-neutral measure, $d(e^{-rt}S_t) = e^{-rt}\sigma S_t\,dW_t^{\mathb
 The Feynman-Kac formula is the **mathematical manifestation of no-arbitrage pricing**:
 
 **Fundamental Theorem of Asset Pricing**:
+
 - **No arbitrage** $\Longleftrightarrow$ Existence of equivalent martingale measure $\mathbb{Q}$
 - **Completeness** + No arbitrage $\Longleftrightarrow$ **Unique** martingale measure
 
 The risk-neutral measure $\mathbb{Q}$ is the unique measure under which:
+
 1. Discounted asset prices are martingales
 2. All derivatives can be priced consistently
 
@@ -781,6 +794,7 @@ S_T = S_t\exp\left[\int_t^T\left(r(s)-q(s)-\frac{\sigma^2(s)}{2}\right)ds + \int
 $$
 
 The log-return is normally distributed with:
+
 - Mean: $\int_t^T(r(s) - q(s) - \frac{\sigma^2(s)}{2})ds$
 - Variance: $\int_t^T\sigma^2(s)ds$
 
@@ -798,6 +812,7 @@ $$
 where $\mathbf{S}_T = (S_1^T, \ldots, S_n^T)$ follows a **multivariate log-normal distribution** with correlation matrix $\rho$.
 
 **Example payoffs**:
+
 - Basket call: $\Phi = (\sum_{i=1}^n w_i S_i^T - K)^+$
 - Exchange option: $\Phi = (S_1^T - S_2^T)^+$
 - Spread option: $\Phi = (S_1^T - S_2^T - K)^+$
@@ -843,6 +858,7 @@ d_1 = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}, \quad d
 $$
 
 **Interpretation**:
+
 - $\mathcal{N}(d_2)$ = Risk-neutral probability of exercise
 - $\mathcal{N}(d_1)$ = Delta = Stock-measure probability of exercise
 

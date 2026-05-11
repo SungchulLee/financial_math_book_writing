@@ -15,12 +15,14 @@ The **superhedging price** is the minimum initial capital required to construct 
 
 
 **Filtered Probability Space**: Consider $(\Omega, \mathcal{F}, \{\mathcal{F}_t\}_{t \in [0,T]}, \mathbb{P})$ where:
+
 - $\Omega$ is the sample space
 - $\mathcal{F}$ is the $\sigma$-algebra of events
 - $\{\mathcal{F}_t\}$ is a filtration representing information flow
 - $\mathbb{P}$ is the physical probability measure
 
 **Traded Assets**: 
+
 - Riskless asset (numéraire): $S_t^0 = e^{rt}$
 - $d$ risky assets: $S_t = (S_t^1, \ldots, S_t^d)$
 
@@ -66,6 +68,7 @@ $$
 
 
 **Definition**: A trading strategy $\theta$ is **admissible** if:
+
 1. It is self-financing
 2. It is predictable with respect to $\{\mathcal{F}_t\}$
 3. It satisfies a lower bound: $V_t^{\theta} \geq -M$ for some constant $M$ (no unbounded borrowing)
@@ -101,6 +104,7 @@ $$
 
 
 **Interpretation**: 
+
 - $\pi^{\text{sup}}(\xi)$ is the minimum amount a seller needs to hedge the obligation to deliver $\xi$ at time $T$
 - Any price above $\pi^{\text{sup}}(\xi)$ allows the seller to lock in arbitrage profit
 - Any price below $\pi^{\text{sup}}(\xi)$ exposes the seller to unbounded loss
@@ -127,6 +131,7 @@ $$
 
 
 **Interpretation**:
+
 - $\pi^{\text{sub}}(\xi)$ is the maximum amount a buyer can guarantee from selling a portfolio that is dominated by $\xi$
 - Any price below $\pi^{\text{sub}}(\xi)$ allows the buyer to lock in arbitrage profit
 
@@ -143,6 +148,7 @@ $$
 
 
 **Proof**: Suppose $\pi^{\text{sub}}(\xi) > \pi^{\text{sup}}(\xi)$. Then:
+
 - Sell the sub-replicating portfolio for $\pi^{\text{sub}}(\xi)$
 - Buy the superhedging portfolio for $\pi^{\text{sup}}(\xi)$
 - Initial profit: $\pi^{\text{sub}}(\xi) - \pi^{\text{sup}}(\xi) > 0$
@@ -169,6 +175,7 @@ and this common value is the unique arbitrage-free price.
 
 
 **Equivalent Martingale Measure** (EMM): A probability measure $\mathbb{Q}$ on $(\Omega, \mathcal{F}_T)$ is an EMM if:
+
 1. $\mathbb{Q} \sim \mathbb{P}$ (equivalent to the physical measure)
 2. The discounted price process $\tilde{S}_t$ is a $\mathbb{Q}$-martingale:
 
@@ -195,6 +202,7 @@ $$
 **Second Fundamental Theorem**: The market is complete if and only if $\mathcal{M}$ is a singleton (unique EMM).
 
 **Implications**:
+
 - Existence of EMM $\Leftrightarrow$ No arbitrage
 - Uniqueness of EMM $\Leftrightarrow$ Market completeness
 
@@ -214,6 +222,7 @@ $$
 
 
 **Interpretation**: 
+
 - The minimum cost to superhedge equals the maximum expected discounted payoff over all martingale measures
 - This transforms a dynamic programming problem (finding optimal trading strategy) into a static optimization problem (maximizing over measures)
 
@@ -309,6 +318,7 @@ $$
 
 
 **Model**: Single-period binomial tree:
+
 - $S_0 = 100$
 - $S_1 = 120$ (up) or $S_1 = 90$ (down)
 - $r = 0$
@@ -397,6 +407,7 @@ $$
 **Challenge**: Barrier options are strongly path-dependent; hedging requires continuous monitoring.
 
 **Superhedging Strategy**: 
+
 - Hold a replicating portfolio for a vanilla call
 - At time $\tau = \inf\{t: S_t \geq H\}$, liquidate and invest in bonds
 
@@ -596,6 +607,7 @@ $$
 
 
 **Comparison**: 
+
 - Superhedging: Model-free, robust, but often conservative
 - Utility-based: Incorporates preferences, but model-dependent
 
@@ -778,6 +790,7 @@ where $\tau$ is the default time.
 **Power Swing Options**: Allow buyer to exercise multiple times, subject to constraints.
 
 **Superhedging**: Complex due to:
+
 - Limited tradability of electricity
 - High volatility
 - Storage constraints
@@ -792,6 +805,7 @@ where $\tau$ is the default time.
 
 
 Define the set of martingale measures $\mathcal{M}$:
+
 - Identify sources of uncertainty (volatility, correlation, jumps, etc.)
 - Specify ranges or sets for uncertain parameters
 
@@ -799,6 +813,7 @@ Define the set of martingale measures $\mathcal{M}$:
 
 
 Discretize state space and time:
+
 - Choose grid points for asset prices
 - Select time steps for rebalancing
 - Ensure sufficient granularity for accurate approximation
@@ -807,6 +822,7 @@ Discretize state space and time:
 
 
 Solve the optimization problem:
+
 - Formulate as LP, QP, or SDP depending on structure
 - Use specialized solvers (CPLEX, Gurobi, MOSEK)
 - Verify convergence and numerical stability
@@ -815,6 +831,7 @@ Solve the optimization problem:
 
 
 Check results against:
+
 - Known analytical solutions (when available)
 - Monte Carlo simulations
 - Market prices (for calibration and reality check)
@@ -823,6 +840,7 @@ Check results against:
 
 
 Extract optimal hedging strategy from dual solution:
+
 - Identify portfolio weights $\theta_t$
 - Implement dynamic hedging algorithm
 - Monitor and rebalance periodically
@@ -857,16 +875,19 @@ Extract optimal hedging strategy from dual solution:
 
 
 **For Pricing**:
+
 - Superhedging gives upper bound on fair price
 - Sub-replication gives lower bound
 - Actual trading price typically lies in between
 
 **For Hedging**:
+
 - Superhedging strategy provides complete protection
 - May be expensive for exotic derivatives
 - Trade-off between hedging cost and residual risk
 
 **For Risk Management**:
+
 - Worst-case scenarios correspond to extremal measures in $\mathcal{M}$
 - Robust pricing quantifies model risk
 - Sensitivity analysis identifies key model parameters
@@ -875,6 +896,7 @@ Extract optimal hedging strategy from dual solution:
 
 
 Superhedging duality bridges:
+
 - Dynamic portfolio optimization (primal problem)
 - Static measure optimization (dual problem)
 - Functional analysis (Hahn-Banach theorem, separation)
@@ -1041,7 +1063,7 @@ That is, show that the superhedging price functional is positive homogeneous and
     **Black-Scholes call prices.** With $S_0 = K = 100$, $T = 1$, $r = 0$:
 
     $$
-    C_{\text{BS}}(\sigma) = S_0\Phi(d_1) - K\Phi(d_2)
+    C_{\text{BS}}(\sigma) = S_0\mathcal{N}(d_1) - K\mathcal{N}(d_2)
     $$
 
     where $d_1 = \sigma/2$ and $d_2 = -\sigma/2$ (since $\log(S_0/K) = 0$ and $r = 0$).

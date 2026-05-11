@@ -261,3 +261,36 @@ if __name__ == "__main__":
 
     print("="*70)
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Explain why an American call on a non-dividend-paying stock ($q = 0$) should have zero early exercise premium. Under what dividend yield $q$ does early exercise become optimal?
+
+??? success "Solution to Exercise 1"
+    For $q = 0$, the call value satisfies $C \geq S - K e^{-r(T-t)} > S - K$ (intrinsic value), so the option is always worth more alive. Early exercise forfeits the time value of the strike payment and downside insurance. When $q > 0$, holding the option means forgoing dividends. Early exercise becomes optimal roughly when the dividend yield exceeds the risk-free rate, $q > r$, or more precisely when the present value of lost dividends exceeds the remaining time value.
+
+---
+
+**Exercise 2.**
+In the implicit FDM with early exercise, the projection $V_{i,j} = \max(V_{i,j}^{\text{implicit}}, \text{payoff}(S_i))$ is applied after solving the linear system. Explain why this preserves the tridiagonal structure.
+
+??? success "Solution to Exercise 2"
+    The projection is applied element-wise *after* solving $A\mathbf{V}^j = \mathbf{b}^j$. The tridiagonal system is solved first without modification, then each entry is compared to the intrinsic value. This two-step approach (solve then project) preserves the matrix structure. The free boundary $S^*(t_j)$ emerges as the stock price where the projection first activates.
+
+---
+
+**Exercise 3.**
+Compare unconditional stability (implicit) versus conditional stability (explicit). With $M = 100$, $N = 100$, $T = 1$, which method gives valid results?
+
+??? success "Solution to Exercise 3"
+    With $M = 100$, $S_{\max} = 300$, $\sigma = 0.2$: the CFL condition requires $\Delta t \leq 0.0025$, meaning $N \geq 400$ for the explicit method. With $N = 100$, the explicit method violates stability and produces oscillatory solutions. The implicit method is unconditionally stable and gives a valid (though coarser) approximation with $\Delta t = 0.01$. Only the implicit method produces meaningful results here.
+
+---
+
+**Exercise 4.**
+The Thomas algorithm solves a tridiagonal system in $O(M)$ operations. What is the total complexity of the implicit FDM with $N$ time steps and $M$ spatial points? Compare with Crank-Nicolson.
+
+??? success "Solution to Exercise 4"
+    Total complexity: $O(N \times M)$ for both implicit and Crank-Nicolson, since each time step requires one $O(M)$ tridiagonal solve plus $O(M)$ projection. The difference is accuracy: implicit is $O(\Delta t)$ in time while Crank-Nicolson is $O((\Delta t)^2)$. Both are $O((\Delta S)^2)$ in space. Crank-Nicolson achieves higher accuracy for the same cost, though it may produce oscillations near the American exercise boundary.

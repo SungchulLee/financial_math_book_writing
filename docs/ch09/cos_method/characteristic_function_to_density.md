@@ -3,6 +3,7 @@
 Many financial models---including the Heston stochastic volatility model, variance gamma, and CGMY processes---provide the characteristic function of the log-price in closed form, but the density itself has no elementary expression. To price options, validate model behavior, or visualize the risk-neutral distribution, we need to invert the characteristic function back to the density. This section develops three approaches to this inversion: the classical Fourier inversion integral, the Gil--Pelaez formula for distribution functions, and the COS-method-based cosine series reconstruction. Each approach has distinct advantages depending on whether the goal is density recovery, distribution function computation, or option pricing.
 
 !!! info "Prerequisites"
+
     - [Fourier Series of Probability Densities](../fourier_series/fourier_series_of_densities.md) (CF as Fourier transform of density)
     - [Cosine Expansion on $[0, \pi]$](../fourier_series/cosine_expansion.md) (cosine series)
     - Complex analysis: contour integration (for Gil--Pelaez)

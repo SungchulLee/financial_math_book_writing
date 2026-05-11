@@ -18,6 +18,7 @@ $$
 where $\mathcal{R}$ measures deviation from desired structure.
 
 This approach:
+
 - improves numerical stability,
 - allows controlled violations when data strongly suggest them.
 
@@ -41,6 +42,7 @@ $$
 
 
 These penalize:
+
 - large gradients (first differences),
 - curvature/roughness (second differences).
 
@@ -71,6 +73,7 @@ Regularization can enforce economically motivated shapes:
 - **positivity** (variance, intensities).
 
 These are often implemented as:
+
 - inequality constraints with slack variables,
 - barrier or penalty terms.
 

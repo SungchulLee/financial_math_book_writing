@@ -15,6 +15,7 @@ where the drift mu must satisfy the no-arbitrage condition:
     mu(t, T) = sum_j sigma_j(t, T) * integral_t^T sigma_j(t, s) ds
 
 Key features:
+
 - Multi-factor specification with independent Brownian motions
 - No-arbitrage condition enforced via drift specification
 - Forward rate curve evolution
@@ -479,3 +480,57 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The HJM no-arbitrage drift condition requires $\mu(t,T) = \sum_j \sigma_j(t,T)\int_t^T \sigma_j(t,s)\,ds$. For a single-factor model with $\sigma(t,T) = \sigma_0\,e^{-\lambda(T-t)}$, derive the drift explicitly.
+
+??? success "Solution to Exercise 1"
+    The integral is
+
+    $$
+    \int_t^T \sigma_0\,e^{-\lambda(s-t)}\,ds = \sigma_0\,\frac{1 - e^{-\lambda(T-t)}}{\lambda}.
+    $$
+
+    The drift is
+
+    $$
+    \mu(t,T) = \sigma_0\,e^{-\lambda(T-t)} \times \sigma_0\,\frac{1 - e^{-\lambda(T-t)}}{\lambda} = \frac{\sigma_0^2}{\lambda}\,e^{-\lambda(T-t)}(1 - e^{-\lambda(T-t)}).
+    $$
+
+    This drift ensures the HJM model is arbitrage-free. Note that it depends on the maturity $T$ through the factor $e^{-\lambda(T-t)}$, showing that different maturities have different drift rates.
+
+---
+
+**Exercise 2.**
+In a two-factor HJM model with volatility functions $\sigma_1(t,T) = \sigma_1$ and $\sigma_2(t,T) = \sigma_2(T-t)$, describe the types of yield curve movements each factor captures.
+
+??? success "Solution to Exercise 2"
+
+    - Factor 1 ($\sigma_1$ constant): Generates parallel shifts of the forward rate curve. All maturities move by the same amount, capturing the "level" component of yield curve dynamics.
+    - Factor 2 ($\sigma_2(T-t)$ proportional to time to maturity): Generates tilting (steepening/flattening) of the curve. Long-maturity forwards move more than short-maturity forwards, capturing the "slope" component.
+
+    Together, these two factors explain the majority of observed yield curve variability (typically $85-95\%$ according to principal component analysis of historical data).
+
+---
+
+**Exercise 3.**
+Explain why the HJM framework models the entire forward rate curve simultaneously, and what advantage this has over short-rate models like Vasicek or CIR.
+
+??? success "Solution to Exercise 3"
+    Short-rate models specify only the dynamics of $r(t)$ and derive the term structure from the short rate. The resulting yield curve shape is constrained by the model's parametric form. The HJM framework directly specifies $df(t,T)$ for all maturities $T$, giving much greater flexibility to match observed yield curve dynamics and volatility term structures.
+
+    The advantage is that HJM can reproduce any volatility structure $\sigma(t,T)$ observed in the market, while short-rate models are limited to specific functional forms. The disadvantage is that HJM models are generally non-Markovian (unless special volatility structures are chosen, like the exponential form that recovers Hull-White).
+
+---
+
+**Exercise 4.**
+The bond price in the HJM framework is $P(t,T) = \exp\!\left(-\int_t^T f(t,u)\,du\right)$. If the forward curve at time $t$ is flat at $f(t,T) = 5\%$ for all $T$, compute $P(t, t+5)$.
+
+??? success "Solution to Exercise 4"
+    $$
+    P(t, t+5) = \exp\!\left(-\int_t^{t+5} 0.05\,du\right) = \exp(-0.05 \times 5) = e^{-0.25} \approx 0.7788.
+    $$
+
+    A flat forward curve corresponds to a flat yield curve, and the bond price is simply $e^{-r\tau}$ as in the simple discounting formula.

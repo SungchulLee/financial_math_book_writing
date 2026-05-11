@@ -34,6 +34,7 @@ By standard arbitrage arguments, $P(t,T,r)$ satisfies
 
 $$
 \partial_t P
+
 + \mu^{\mathbb{Q}}(t,r)\,\partial_r P
 + \tfrac12 \sigma(t,r)^2\,\partial_{rr}P
 - rP = 0
@@ -69,6 +70,7 @@ Correct boundary treatment is crucial for numerical stability.
 
 
 For affine models (Vasicek, CIR):
+
 - the PDE admits closed-form solutions,
 - solutions take exponential-affine form,
 - coefficients satisfy ODEs.
@@ -81,6 +83,7 @@ For more general models, numerical PDE methods are required.
 
 
 Common schemes include:
+
 - finite differences (implicit, Crank–Nicolson),
 - alternating-direction implicit (ADI) methods,
 - grid truncation and stabilization techniques.
@@ -297,6 +300,7 @@ Derive the ODEs and their terminal conditions.
     $$
 
     $$
+
     + \frac{1}{2}\left[\mu_j\frac{P_{j+1}^{n+1} - P_{j-1}^{n+1}}{2\Delta r} + \frac{\sigma^2}{2}\frac{P_{j+1}^{n+1} - 2P_j^{n+1} + P_{j-1}^{n+1}}{(\Delta r)^2} - r_j P_j^{n+1}\right]
     $$
 

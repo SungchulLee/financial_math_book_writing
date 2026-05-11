@@ -9,6 +9,7 @@ CDS spreads encode market-implied default risk and can be mapped to **hazard rat
 
 
 Intuitively:
+
 - higher CDS spreads imply higher default intensity,
 - spreads compensate for expected default losses.
 
@@ -43,6 +44,7 @@ This equation is inverted to infer $\lambda$ from market spreads.
 
 
 In practice:
+
 - CDS spreads across maturities are given,
 - piecewise-constant hazard rates are assumed,
 - hazard rates are bootstrapped sequentially.

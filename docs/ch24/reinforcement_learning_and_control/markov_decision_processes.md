@@ -9,6 +9,7 @@ Reinforcement learning is built on the framework of **Markov Decision Processes 
 
 
 An MDP consists of:
+
 - a state space $\mathcal{S}$,
 - an action space $\mathcal{A}$,
 - transition probabilities $P(s' \mid s,a)$,
@@ -54,6 +55,7 @@ This recursion underlies dynamic programming and RL algorithms.
 
 
 In finance:
+
 - states represent market and portfolio conditions,
 - actions represent trading or control decisions,
 - rewards represent profits, utilities, or risk-adjusted returns.

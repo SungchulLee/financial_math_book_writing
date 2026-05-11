@@ -181,3 +181,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Write the log-price increment for one Merton time step. Identify drift, diffusion, and jump components.
+
+??? success "Solution to Exercise 1"
+    $\ln S_{t+\Delta t} = \ln S_t + (r - \frac{1}{2}\sigma^2 - \lambda\bar{k})\Delta t + \sigma\sqrt{\Delta t}Z + \sum_{i=1}^n J_i$ where $n \sim \text{Poisson}(\lambda\Delta t)$ and $J_i \sim \mathcal{N}(\mu_J, \sigma_J^2)$.
+
+---
+
+**Exercise 2.**
+Why is exact simulation possible for the Merton model?
+
+??? success "Solution to Exercise 2"
+    The diffusion and jump components are independent, the diffusion is exactly GBM (log-normal), and jumps form a compound Poisson process with known distribution. Each can be sampled exactly without discretization.
+
+---
+
+**Exercise 3.**
+How do Merton paths visually differ from pure GBM paths?
+
+??? success "Solution to Exercise 3"
+    Merton paths show sudden vertical gaps (jumps) superimposed on smooth GBM fluctuations. The distribution has fatter tails and possibly skewness (if $\mu_J \ne 0$). GBM paths are continuous with no gaps.
+
+---
+
+**Exercise 4.**
+What is the compensator $\lambda\bar{k}$ and why is it needed?
+
+??? success "Solution to Exercise 4"
+    $\bar{k} = e^{\mu_J + \sigma_J^2/2} - 1$ is the expected relative jump size. Including $-\lambda\bar{k}$ in the drift ensures $e^{-rt}S_t$ is a martingale under the risk-neutral measure, preventing arbitrage from the expected jump return.

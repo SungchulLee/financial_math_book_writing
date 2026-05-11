@@ -45,11 +45,13 @@ $$
 ### Interpretation
 
 **If Feller holds ($\nu \geq 1$):**
+
 - The boundary $V = 0$ is **unattainable**
 - $V_t > 0$ for all $t > 0$ (almost surely)
 - The process never touches zero
 
 **If Feller fails ($\nu < 1$):**
+
 - The boundary $V = 0$ is **attainable**
 - $V_t$ can reach zero in finite time
 - After reaching zero, the process immediately reflects back
@@ -59,6 +61,7 @@ $$
 Near $V = 0$, the drift $\kappa\theta$ pushes the process away from zero, while the diffusion $\xi\sqrt{V}$ can push it toward zero.
 
 The **speed measure** comparison:
+
 - Drift contribution: $\kappa\theta$
 - Diffusion contribution: $\frac{1}{2}\xi^2$
 
@@ -142,6 +145,7 @@ V_{t+\Delta} = V_t + \kappa(\theta - V_t^+)\Delta + \xi\sqrt{V_t^+}\sqrt{\Delta}
 $$
 
 **Properties:**
+
 - Simple to implement
 - Introduces positive bias (variance is inflated)
 - Bias is $O(\Delta)$
@@ -151,6 +155,7 @@ $$
 If $V_{t+\Delta} < 0$, set $V_{t+\Delta} = |V_{t+\Delta}|$:
 
 **Properties:**
+
 - Preserves variance distribution approximately
 - Can introduce spurious oscillations
 - Better than truncation for some metrics
@@ -178,6 +183,7 @@ $$
 where $\Psi$ is a mixture of point mass at 0 and exponential.
 
 **Properties:**
+
 - Near-exact distribution matching
 - Robust under Feller violation
 - Industry standard
@@ -191,10 +197,12 @@ V_{t+\Delta} = \frac{\xi^2(1-e^{-\kappa\Delta})}{4\kappa}\chi'^2_{d,\lambda}
 $$
 
 where:
+
 - $d = \frac{4\kappa\theta}{\xi^2}$ (degrees of freedom)
 - $\lambda = \frac{4\kappa e^{-\kappa\Delta}}{\xi^2(1-e^{-\kappa\Delta})}V_t$ (non-centrality)
 
 **Properties:**
+
 - Exact in distribution
 - Computationally expensive (non-central chi-squared sampling)
 - Useful for benchmarking

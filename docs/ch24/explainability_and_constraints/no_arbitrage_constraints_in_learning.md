@@ -9,6 +9,7 @@ Learning-based financial models must respect **no-arbitrage constraints** to ens
 
 
 Unconstrained learning may produce:
+
 - negative option prices,
 - arbitrage opportunities,
 - violations of monotonicity or convexity.
@@ -21,6 +22,7 @@ Such outputs are unacceptable in pricing applications.
 
 
 Common constraints include:
+
 - monotonicity in strike and maturity,
 - convexity of option prices,
 - absence of calendar and butterfly arbitrage.
@@ -33,6 +35,7 @@ These constraints encode fundamental financial laws.
 
 
 Approaches include:
+
 - constrained optimization,
 - penalty and regularization terms,
 - architecture design (e.g., monotone networks).
@@ -45,6 +48,7 @@ Constraints improve robustness and generalization.
 
 
 Imposing constraints:
+
 - reduces hypothesis space,
 - may slightly reduce in-sample fit,
 - greatly improves out-of-sample stability.

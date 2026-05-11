@@ -118,6 +118,7 @@ V_t = \mathbf{1}_{\{\tau > t\}} \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T 
 $$
 
 The default indicator $\mathbf{1}_{\{\tau > t\}}$ factors out cleanly because:
+
 - The expectation over market factors uses $\mathcal{F}_t$-conditioning (immersion)
 - Default risk enters only through the intensity adjustment $\lambda_s$
 
@@ -156,6 +157,7 @@ Default signals that firm value was low, which correlates with low equity values
 ### Information-Based Models
 
 When default conveys information about underlying economic states:
+
 - Credit events may signal broader market stress
 - Contagion effects create information spillovers
 - Regime switches may be partially revealed by defaults
@@ -171,6 +173,7 @@ M_t = \tilde{M}_t + \int_0^{t \wedge \tau} \frac{d\langle M, G \rangle_s}{G_{s-}
 $$
 
 where $\tilde{M}$ is a $\mathcal{G}$-martingale and the integral term is the **drift correction** due to filtration enlargement. This additional term:
+
 - Complicates pricing formulas
 - Couples default risk with market dynamics
 - Requires explicit modeling of the covariance $\langle M, G \rangle$
@@ -190,6 +193,7 @@ Immersion holds if any of the following are satisfied:
 ### Necessary Conditions
 
 If immersion holds, then:
+
 - $\mathcal{F}$-Brownian motions remain $\mathcal{G}$-Brownian motions
 - $\mathcal{F}$-Poisson processes remain $\mathcal{G}$-Poisson processes (with same intensity)
 - Predictable representations are preserved
@@ -203,6 +207,7 @@ A related but weaker condition is the **avoiding property** (or avoidance of $\m
 > $\tau$ avoids $\mathcal{F}$-stopping times if $\mathbb{P}(\tau = S) = 0$ for all $\mathcal{F}$-stopping times $S$.
 
 Under the density hypothesis:
+
 - Avoidance is weaker than immersion
 - Avoidance ensures $\tau$ is totally inaccessible
 - Immersion implies avoidance but not conversely
@@ -225,11 +230,13 @@ Choose models based on the economic context:
 ### Hedging Under Immersion
 
 When immersion holds:
+
 - Delta hedging with market instruments is straightforward
 - Credit risk is hedged via CDS or default-contingent strategies
 - No cross-hedging between market and credit risks is needed
 
 When immersion fails:
+
 - Market hedges must account for default correlation
 - Hedging errors arise from ignoring drift corrections
 - Model risk increases substantially
@@ -298,7 +305,7 @@ When immersion fails:
     \mathbb{E}[M_T \mid \mathcal{G}_t] = \mathbb{E}[M_T \mid \mathcal{F}_t] = M_t
     $$
 
-    This confirms the immersion property on the pre-default event. A similar (simpler) argument applies on $\{\tau \le t\}$, where the exact value of $\tau$ is known but is still a function of $E$ and the $\mathcal{F}$-adapted path of $\Lambda$, so independence again ensures that $M_T$'s conditional expectation is unaffected. $\blacksquare$
+    This confirms the immersion property on the pre-default event. A similar (simpler) argument applies on $\{\tau \le t\}$, where the exact value of $\tau$ is known but is still a function of $E$ and the $\mathcal{F}$-adapted path of $\Lambda$, so independence again ensures that $M_T$'s conditional expectation is unaffected. $\square$
 
 ---
 
@@ -336,7 +343,7 @@ When immersion fails:
 
     Thus $\mathbb{E}[M_T \mid \mathcal{G}_t] = 0 \ne M_t$ on $\{\tau \le t\}$, and immersion fails.
 
-    The deeper reason is that in structural models, $\tau$ is predictable (an $\mathcal{F}$-stopping time), so the default event is not a "surprise" — it is determined by market factors, creating an inextricable link between default and market information. $\blacksquare$
+    The deeper reason is that in structural models, $\tau$ is predictable (an $\mathcal{F}$-stopping time), so the default event is not a "surprise" — it is determined by market factors, creating an inextricable link between default and market information. $\square$
 
 ---
 
@@ -408,7 +415,7 @@ where $S(t,T) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T \lambda_s\,ds} \mid \mathca
 
     yielding the desired formula $P^d(t,T) = \mathbf{1}_{\{\tau > t\}} \cdot P(t,T) \cdot S(t,T)$.
 
-    **Where immersion was used:** In Step 3, replacing $\mathbb{E}[\cdot \mid \mathcal{G}_t]$ with $\mathbb{E}[\cdot \mid \mathcal{F}_t]$ for quantities that are $\mathcal{F}_\infty$-measurable. Without immersion, the default indicator would not factor out cleanly, and a drift correction linking market and credit risk would appear. $\blacksquare$
+    **Where immersion was used:** In Step 3, replacing $\mathbb{E}[\cdot \mid \mathcal{G}_t]$ with $\mathbb{E}[\cdot \mid \mathcal{F}_t]$ for quantities that are $\mathcal{F}_\infty$-measurable. Without immersion, the default indicator would not factor out cleanly, and a drift correction linking market and credit risk would appear. $\square$
 
 ---
 
@@ -466,7 +473,7 @@ Explain the economic meaning of the drift correction term $\int_0^{t \wedge \tau
     \int_0^{t \wedge \tau} \frac{d\langle M, G\rangle_s}{G_{s-}} = 0
     $$
 
-    and therefore $M_t = \tilde{M}_t$, confirming that $M$ remains a $\mathcal{G}$-martingale. This is precisely the immersion property. $\blacksquare$
+    and therefore $M_t = \tilde{M}_t$, confirming that $M$ remains a $\mathcal{G}$-martingale. This is precisely the immersion property. $\square$
 
 ---
 
@@ -517,7 +524,7 @@ Explain the economic meaning of the drift correction term $\int_0^{t \wedge \tau
 
     This violates the core requirement of immersion that default information should not help predict future values of market processes.
 
-    In terms of the mathematical criterion, immersion requires $\mathbb{E}[X \mid \mathcal{G}_t] = \mathbb{E}[X \mid \mathcal{F}_t]$ for all $\mathcal{F}_\infty$-measurable $X$, which fails here because the default event is informative about the regime state. $\blacksquare$
+    In terms of the mathematical criterion, immersion requires $\mathbb{E}[X \mid \mathcal{G}_t] = \mathbb{E}[X \mid \mathcal{F}_t]$ for all $\mathcal{F}_\infty$-measurable $X$, which fails here because the default event is informative about the regime state. $\square$
 
 ---
 
@@ -571,4 +578,4 @@ Explain the economic meaning of the drift correction term $\int_0^{t \wedge \tau
 
     with $\lambda_u = h(Y_u)$ for some function $h$, and $\tau$ is constructed so that conditionally on the path of $Y$, the default time is independent of all other $\mathcal{F}$-adapted processes (interest rates, equity, etc.). This conditional independence structure ensures that knowing whether $\tau$ has occurred does not update beliefs about $\mathcal{F}_\infty$-measurable quantities beyond the information already in $\mathcal{F}_t$.
 
-    This encompasses models broader than the strict Cox construction — for instance, models where $\tau$'s conditional law given $\mathcal{F}_t$ evolves as a martingale but $\tau$ is not necessarily constructed via a single exponential trigger. $\blacksquare$
+    This encompasses models broader than the strict Cox construction — for instance, models where $\tau$'s conditional law given $\mathcal{F}_t$ evolves as a martingale but $\tau$ is not necessarily constructed via a single exponential trigger. $\square$

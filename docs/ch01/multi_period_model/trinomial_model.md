@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The [binomial model](binomial_model.md) restricts the stock price to two possible outcomes at each time step: up or down. While this yields a clean, complete market in which every contingent claim can be uniquely replicated, real markets offer a richer set of possibilities. The **trinomial model** generalizes the binomial framework by allowing **three** possible price movements per period: up, middle, and down.
+The [binomial model](../binomial_model/binomial_model.md) restricts the stock price to two possible outcomes at each time step: up or down. While this yields a clean, complete market in which every contingent claim can be uniquely replicated, real markets offer a richer set of possibilities. The **trinomial model** generalizes the binomial framework by allowing **three** possible price movements per period: up, middle, and down.
 
 This seemingly minor extension has a profound structural consequence. With three possible states but only two traded assets (stock and bond), the payoff space of the market is two-dimensional while the state space is three-dimensional. As a result, **not every contingent claim can be replicated**, and the market becomes **incomplete**. The risk-neutral measure is no longer unique---there is an entire *family* of equivalent martingale measures, each producing a different arbitrage-free price for the same derivative.
 
@@ -12,9 +12,10 @@ The trinomial model thus serves a dual pedagogical purpose:
 - **Conceptual**: it provides the simplest concrete example of market incompleteness, motivating the [Second Fundamental Theorem of Asset Pricing](../fundamental_theorem_of_asset_pricing/complete_markets_and_uniqueness.md)
 
 !!! info "Prerequisites"
-    - [Binomial Model](binomial_model.md): one-period setup, no-arbitrage condition, risk-neutral probability
-    - [Replicating Portfolio](replicating_portfolio.md): portfolio construction and the notion of replication
-    - [Risk-Neutral Measure](risk_neutral_measure.md): the measure $\mathbb{Q}$ and expectation pricing
+
+    - [Binomial Model](../binomial_model/binomial_model.md): one-period setup, no-arbitrage condition, risk-neutral probability
+    - [Replicating Portfolio](../binomial_model/replicating_portfolio.md): portfolio construction and the notion of replication
+    - [Risk-Neutral Measure](../binomial_model/risk_neutral_measure.md): the measure $\mathbb{Q}$ and expectation pricing
 
 !!! abstract "Learning Objectives"
     By the end of this section, you will be able to:
@@ -84,13 +85,7 @@ An **arbitrage** is a portfolio with $V_0 \leq 0$, $V_{\Delta t} \geq 0$ in all 
 
 ### Derivation
 
-The same logic as in the [binomial model](binomial_model.md) applies, but now the extreme states are $u$ and $d$.
-
-**If $e^{r \Delta t} \geq u$:** short the stock, invest in the bank. Since $u > m > d$, the payoff $S_0 e^{r \Delta t} - S_{\Delta t}$ is non-negative in all three states and strictly positive in the middle and down states. This is an arbitrage.
-
-**If $e^{r \Delta t} \leq d$:** buy the stock, borrow from the bank. The payoff $S_{\Delta t} - S_0 e^{r \Delta t}$ is non-negative in all three states and strictly positive in the middle and up states. This is an arbitrage.
-
-**Conversely**, if $d < e^{r \Delta t} < u$, one can show that no portfolio $(\Delta, \beta)$ with $V_0 \leq 0$ achieves $V_{\Delta t} \geq 0$ in all three states with strict inequality somewhere (this follows from the First FTAP, or can be verified directly by solving the resulting linear system).
+By the same argument as in the [binomial model](../binomial_model/binomial_model.md) — short the stock if $e^{r\Delta t} \ge u$, go long if $e^{r\Delta t} \le d$ — arbitrage exists unless the risk-free return lies strictly between the extreme stock returns. The middle factor $m$ does not appear: only the extremes matter.
 
 !!! success "No-Arbitrage Condition (Trinomial Model)"
     The one-period trinomial market is arbitrage-free if and only if:
@@ -171,7 +166,7 @@ The constraints $q_u > 0$, $q_m > 0$, $q_d = \lambda > 0$ restrict $\lambda$ to 
 !!! success "Family of Risk-Neutral Measures"
     Under the no-arbitrage condition $d < e^{r \Delta t} < u$, the set of risk-neutral measures for the trinomial model is a **one-parameter family** $\{(q_u(\lambda), q_m(\lambda), q_d(\lambda)) : \lambda \in (\lambda_{\min}, \lambda_{\max})\}$, where each member satisfies the martingale condition and strict positivity.
 
-    In contrast, the [binomial model](binomial_model.md) has a **unique** risk-neutral measure $q = (e^{r\Delta t} - d)/(u - d)$.
+    In contrast, the [binomial model](../binomial_model/binomial_model.md) has a **unique** risk-neutral measure $q = (e^{r\Delta t} - d)/(u - d)$.
 
 ### Geometric Interpretation
 
@@ -294,7 +289,7 @@ Compared to the Cox-Ross-Rubinstein binomial tree:
 - **Three branches per node** produce a more refined lattice, often giving **faster convergence** to the continuous-time (Black-Scholes) price
 - The lattice naturally **recombines**: an up-then-down path, a middle-then-middle path, and a down-then-up path can all reach the same node
 - The extra degree of freedom allows **better moment matching** and more flexibility in fitting dividend yields or time-varying parameters
-- Trinomial trees are especially natural for **interest rate models** (e.g., the Hull-White trinomial tree in [Chapter 20](../../ch20/codes/hull_white_trinomial_tree.py))
+- Trinomial trees are especially natural for **interest rate models** (e.g., the Hull-White trinomial tree in [Chapter 20](../../ch20/codes/hull_white_trinomial_tree.md))
 
 ---
 
@@ -420,6 +415,7 @@ The wide interval $(4.88, \, 11.95)$ reflects the fundamental pricing ambiguity 
 | Derivative pricing | Unique price | Price interval |
 
 !!! abstract "Key Takeaways"
+
     1. The trinomial model extends the binomial framework by adding a **middle state** $m$ with $d < m < u$, yielding three possible stock outcomes per period.
 
     2. The **no-arbitrage condition** $d < e^{r\Delta t} < u$ is identical in form to the binomial case---only the extreme factors matter.
@@ -438,7 +434,7 @@ The wide interval $(4.88, \, 11.95)$ reflects the fundamental pricing ambiguity 
 
 | Section | Topic |
 |---------|-------|
-| [Binomial to Black-Scholes](binomial_to_black_scholes_limit.md) | Continuous-time limit of the binomial tree |
+| [Binomial to Black-Scholes](../binomial_to_black_scholes/binomial_to_black_scholes_limit.md) | Continuous-time limit of the binomial tree |
 | [Complete Markets and Uniqueness](../fundamental_theorem_of_asset_pricing/complete_markets_and_uniqueness.md) | Second FTAP: uniqueness of $\mathbb{Q}$ and completeness |
 
 ---

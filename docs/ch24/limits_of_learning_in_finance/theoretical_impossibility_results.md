@@ -9,6 +9,7 @@ Beyond practical challenges, there are **theoretical limits** to what learning a
 
 
 No-free-lunch theorems state that:
+
 - averaged over all data-generating processes,
 - no learning algorithm outperforms others.
 
@@ -20,6 +21,7 @@ Assumptions drive performance, not algorithms alone.
 
 
 Under strong forms of market efficiency:
+
 - predictable excess returns cannot persist,
 - learning algorithms cannot systematically outperform.
 
@@ -31,6 +33,7 @@ Any discovered pattern may vanish once exploited.
 
 
 In adaptive markets:
+
 - strategies change the environment,
 - learning induces feedback effects,
 - convergence guarantees may fail.
@@ -43,6 +46,7 @@ This limits long-term learnability.
 
 
 Impossibility results imply:
+
 - performance guarantees are fragile,
 - humility is required in model claims,
 - robustness matters more than optimality.

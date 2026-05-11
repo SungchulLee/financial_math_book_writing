@@ -219,6 +219,7 @@ generates an extra drift term. This is the subject of Section 2.2.
     Section 2.2 via Itô's lemma, is
 
     $$S_t = S_0 \exp\!\left[\left(\mu - \tfrac{\sigma^2}{2}\right)t
+
     + \sigma W_t\right]$$
     The $-\frac{\sigma^2}{2}$ correction comes from the second-order term
     $(dW_t)^2 = dt \neq 0$ that is absent in ordinary calculus. It is not a

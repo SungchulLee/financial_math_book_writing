@@ -134,7 +134,7 @@ $$
 In the market convention, caplets are quoted using Black's formula with an implied volatility $\sigma_k^{\text{Black}}$:
 
 $$
-\text{Caplet}_k^{\text{Black}}(t_0) = N\tau_k\,P(t_0, T_k)\!\left[l_k(t_0)\,\Phi(d_1) - K\,\Phi(d_2)\right]
+\text{Caplet}_k^{\text{Black}}(t_0) = N\tau_k\,P(t_0, T_k)\!\left[l_k(t_0)\,\mathcal{N}(d_1) - K\,\mathcal{N}(d_2)\right]
 $$
 
 where

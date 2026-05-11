@@ -30,6 +30,7 @@ $$
 $$
 
 Equity is a **leveraged long position** in firm value. When $V$ increases:
+
 - Equity value rises
 - Default probability falls
 - Credit spreads tighten
@@ -83,17 +84,20 @@ Since equity prices embed information about $V$ and $\sigma_V$, spreads can be i
 ### Directional Relationship
 
 **When equity prices fall:**
+
 - Firm value $V$ decreases
 - Leverage $D/V$ increases  
 - Default probability rises
 - Credit spreads widen
 
 **When equity volatility rises:**
+
 - Higher probability of extreme outcomes
 - Increased chance of hitting default barrier
 - Credit spreads widen
 
 These relationships are:
+
 - Negative between equity price and credit spread
 - Positive between equity volatility and credit spread
 
@@ -118,6 +122,7 @@ DD \approx \frac{\ln(E + D) - \ln(D) + (\mu - \sigma_V^2/2)T}{\sigma_V\sqrt{T}}
 $$
 
 **KMV/Moody's Analytics approach:**
+
 1. Estimate $V$ and $\sigma_V$ from equity data
 2. Compute DD
 3. Map DD to expected default frequency (EDF) using historical data
@@ -139,6 +144,7 @@ where $R$ is recovery rate and $\lambda$ is an implied intensity.
 ### Equity-Credit Correlation
 
 Empirical studies find:
+
 - Strong negative correlation between equity returns and CDS spread changes
 - Correlation strengthens during market stress
 - Lead-lag relationships vary by market conditions
@@ -148,6 +154,7 @@ Typical correlations: $\rho(dE/E, ds) \approx -0.3$ to $-0.6$
 ### Information Flow
 
 Research on price discovery shows:
+
 - CDS and equity markets both incorporate information
 - No consistent leader—depends on firm and time period
 - Credit markets may lead for distressed firms
@@ -156,10 +163,12 @@ Research on price discovery shows:
 ### Credit Spread Puzzle
 
 **The puzzle:** Structural models significantly underpredict observed credit spreads, especially for:
+
 - Short maturities
 - Investment-grade debt
 
 **Possible explanations:**
+
 1. Liquidity premiums in corporate bonds
 2. Tax effects
 3. Jump risk not captured by diffusion models
@@ -177,6 +186,7 @@ Huang and Huang (2012) estimate that credit risk explains only 20-30% of investm
 The equity-credit link enables arbitrage strategies:
 
 **Capital Structure Arbitrage:**
+
 - If CDS spreads are "too wide" relative to equity-implied spreads:
   - Sell CDS protection (receive spread)
   - Short equity (hedge firm value exposure)
@@ -185,6 +195,7 @@ The equity-credit link enables arbitrage strategies:
   - Go long equity
 
 **Implementation challenges:**
+
 - Transaction costs
 - Model uncertainty
 - Liquidity differences
@@ -193,6 +204,7 @@ The equity-credit link enables arbitrage strategies:
 ### Credit Spread Forecasting
 
 Equity information predicts credit spreads:
+
 1. Estimate firm value and volatility from equity
 2. Compute model-implied spread
 3. Compare to market spread
@@ -203,6 +215,7 @@ Equity information predicts credit spreads:
 ### Risk Management
 
 Integrated equity-credit models for:
+
 - Portfolio VaR including both asset classes
 - Stress testing across capital structure
 - Counterparty credit risk (CVA with equity correlation)
@@ -232,6 +245,7 @@ This is typically 20-50% of observed spreads.
 ### Residual Spread
 
 The residual (observed minus model-implied) reflects:
+
 - Compensation for bearing systematic credit risk
 - Illiquidity costs
 - Model misspecification
@@ -249,6 +263,7 @@ To calibrate structural models consistently:
 3. **CDS/bond constraint:** $s^{\text{model}} \approx s^{\text{market}}$
 
 With 3 equations and 3 unknowns ($V_0$, $\sigma_V$, and possibly barrier $B$), the system may be:
+
 - Over-determined (no exact solution)
 - Perfectly determined (unique solution)
 - Under-determined (need additional constraints)
@@ -256,6 +271,7 @@ With 3 equations and 3 unknowns ($V_0$, $\sigma_V$, and possibly barrier $B$), t
 ### Typical Findings
 
 Joint calibration often reveals:
+
 - Asset volatility $\sigma_V$ lower than equity volatility $\sigma_E$
 - Implied barriers significantly above naive debt value
 - Residual model errors for short-term spreads
@@ -267,6 +283,7 @@ Joint calibration often reveals:
 ### Data Requirements
 
 Equity-credit analysis requires:
+
 - Equity prices (liquid, continuous)
 - Equity option implied volatilities (for $\sigma_E$)
 - CDS spreads or corporate bond prices
@@ -296,6 +313,7 @@ Equity-credit analysis requires:
 ### Combining Structural and Reduced-Form
 
 Modern approaches blend:
+
 - **Structural intuition:** Equity-credit link, economic drivers
 - **Reduced-form tractability:** Intensity-based pricing, easy calibration
 
@@ -310,6 +328,7 @@ This captures structural intuition in reduced-form framework.
 ### Credit-Equity Hybrid Derivatives
 
 Products like:
+
 - Equity default swaps
 - Convertible bonds
 - Contingent convertibles (CoCos)

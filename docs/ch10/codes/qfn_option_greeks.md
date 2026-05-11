@@ -293,3 +293,36 @@ if __name__ == "__main__":
     print(f"Call Rho: {call_rho:.3f}")
     print(f"Put Rho: {put_rho:.3f}")
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Delta can be interpreted as the probability of finishing ITM (approximately). For $S_0 = K = 100$, $T = 1$, $r = 0.04$, $\sigma = 0.2$, compute call delta and explain why it exceeds the true risk-neutral probability $N(d_2)$.
+
+??? success "Solution to Exercise 1"
+    $d_1 = (0 + 0.06)/0.2 = 0.3$. Delta $= N(0.3) = 0.6179$. The risk-neutral probability is $N(d_2) = N(0.1) = 0.5398$. Delta exceeds $N(d_2)$ because delta is the probability under the stock-price measure, which tilts the distribution upward. The relationship is $\Delta = e^{qT}N(d_1)$ vs $\Pr(S_T > K) = N(d_2)$, and $d_1 > d_2$ always.
+
+---
+
+**Exercise 2.**
+Compute vega for the same parameters. If implied volatility increases from 20% to 22%, estimate the change in call price.
+
+??? success "Solution to Exercise 2"
+    Vega $= S_0\sqrt{T} \cdot n(d_1) / 100 = 100 \cdot 1 \cdot 0.3814 / 100 = 0.3814$ per 1% vol change. For a 2% increase: $\Delta C \approx 2 \times 0.3814 = \$0.763$. Note that vega is typically quoted per 1% (not per 100%) volatility change, so this is the dollar change in the option price.
+
+---
+
+**Exercise 3.**
+Rho for a call is $\rho_C = KTe^{-rT}N(d_2)/100$. Explain why rho is relatively small for short-dated options.
+
+??? success "Solution to Exercise 3"
+    Rho is proportional to $T$: $\rho_C = KTe^{-rT}N(d_2)/100$. For $T = 0.25$ (3 months): $\rho_C = 100(0.25)(0.99)(0.54)/100 = 0.134$. For $T = 5$ years: $\rho_C = 100(5)(0.82)(0.54)/100 = 2.21$. The factor $T$ makes rho negligible for short-dated options because a small change in $r$ affects the discounting by only $rT$, which is tiny for small $T$.
+
+---
+
+**Exercise 4.**
+The gamma-theta relationship implies $\Theta + \frac{1}{2}\sigma^2 S^2 \Gamma \approx rV$ for delta-neutral portfolios. Verify this numerically for the given parameters.
+
+??? success "Solution to Exercise 4"
+    $\Gamma = n(d_1)/(S\sigma\sqrt{T}) = 0.3814/(100 \times 0.2) = 0.01907$. $\frac{1}{2}\sigma^2 S^2 \Gamma = 0.5(0.04)(10000)(0.01907) = 3.814$. $\Theta_{\text{call}} \approx -Sn(d_1)\sigma/(2\sqrt{T}) - rKe^{-rT}N(d_2) = -3.814 - 0.04(96.08)(0.54) = -3.814 - 2.075 = -5.889$. $rV = 0.04 \times 10.45 = 0.418$. Check: $-5.889 + 3.814 + r \cdot S \cdot \Delta = -5.889 + 3.814 + 0.04(100)(0.618) = -5.889 + 3.814 + 2.472 = 0.397 \approx 0.418$. Close (rounding).

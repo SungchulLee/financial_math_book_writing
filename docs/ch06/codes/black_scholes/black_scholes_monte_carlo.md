@@ -364,3 +364,57 @@ class BlackScholesMonteCarlo(BlackScholesBase):
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+Write the risk-neutral GBM dynamics used for Monte Carlo pricing. How is the exact solution (log-normal) used to simulate terminal stock prices?
+
+??? success "Solution to Exercise 1"
+    Under the risk-neutral measure: $dS_t = (r - q)S_t\,dt + \sigma S_t\,dW_t^Q$. The exact solution is
+
+    $$
+    S_T = S_0 \exp\!\Bigl((r - q - \tfrac{1}{2}\sigma^2)T + \sigma\sqrt{T}\,Z\Bigr), \quad Z \sim \mathcal{N}(0,1)
+    $$
+
+    For MC pricing, generate $N$ draws of $Z_i \sim \mathcal{N}(0,1)$, compute $S_T^{(i)}$, and estimate the call price as $\hat{C} = e^{-rT}\frac{1}{N}\sum_{i=1}^N \max(S_T^{(i)} - K, 0)$.
+
+---
+
+**Exercise 2.**
+Explain the antithetic variates technique. If $Z$ produces payoff $\phi_1$ and $-Z$ produces payoff $\phi_2$, show that $\mathrm{Var}(\bar{\phi}_{\text{anti}}) \le \mathrm{Var}(\bar{\phi})$.
+
+??? success "Solution to Exercise 2"
+    The antithetic estimator is $\bar{\phi}_{\text{anti}} = \frac{1}{2}(\phi_1 + \phi_2)$. Its variance is
+
+    $$
+    \mathrm{Var}(\bar{\phi}_{\text{anti}}) = \frac{1}{4}[\mathrm{Var}(\phi_1) + \mathrm{Var}(\phi_2) + 2\mathrm{Cov}(\phi_1, \phi_2)]
+    $$
+
+    Since $\phi_1$ and $\phi_2$ use the same $Z$ (and $-Z$), they are negatively correlated for monotone payoffs: $\mathrm{Cov}(\phi_1, \phi_2) < 0$. Therefore $\mathrm{Var}(\bar{\phi}_{\text{anti}}) < \frac{1}{2}\mathrm{Var}(\phi_1) = \mathrm{Var}(\bar{\phi})$ for $N/2$ pairs, giving the same cost but lower variance.
+
+---
+
+**Exercise 3.**
+The MC standard error is $\mathrm{SE} = \hat{\sigma}_{\text{payoff}} / \sqrt{N}$. If the estimated price is $\$10.42$ with SE $= 0.05$, how many paths are needed for SE $= 0.01$?
+
+??? success "Solution to Exercise 3"
+    From $\mathrm{SE} = \hat{\sigma}/\sqrt{N}$, we have $\hat{\sigma} = 0.05\sqrt{N}$. With the current $N$:
+
+    For SE $= 0.01$: $N_{\text{new}} = (\hat{\sigma}/0.01)^2 = (0.05\sqrt{N}/0.01)^2 = 25N$.
+
+    If the original used $N = 10{,}000$ paths, we need $N_{\text{new}} = 250{,}000$. The MC convergence rate $O(1/\sqrt{N})$ means reducing SE by a factor of 5 requires 25 times as many paths.
+
+---
+
+**Exercise 4.**
+Compare the "enhanced" mode (variance reduction) with the "legacy" mode (plain MC). Under what conditions is the variance reduction most effective?
+
+??? success "Solution to Exercise 4"
+    Variance reduction is most effective when:
+
+    1. **Antithetic variates**: The payoff is monotone in the underlying (as for calls/puts), maximizing the negative correlation. Less effective for path-dependent options with non-monotone payoffs.
+    2. **Control variates**: When a correlated instrument with a known price exists (e.g., using the European call as a control for a barrier option). Effectiveness is proportional to $\rho^2$ between the target and control payoffs.
+    3. **ATM options**: Variance is highest for ATM options (large payoff uncertainty), so the absolute variance reduction is greatest there.
+
+    For deep ITM/OTM options, the payoff variance is already small, so variance reduction provides less absolute benefit (though the relative improvement may still be significant).

@@ -281,10 +281,12 @@ For Heston, cumulants can be computed from CF derivatives.
 ### Integration Truncation
 
 For Carr–Madan:
+
 - Truncate at $u_{\max}$ where $|\hat{c}(u)| < \epsilon$
 - Typically $u_{\max} \in [100, 500]$
 
 For COS:
+
 - Choose domain $[a, b]$ to capture 99.99% of density
 - $N = 64$–$256$ terms usually suffice
 
@@ -306,6 +308,7 @@ For COS:
 ### Validation
 
 Always validate against:
+
 - Black–Scholes (set $\xi = 0$)
 - Monte Carlo (independent method)
 - Put-call parity
@@ -475,7 +478,7 @@ Show that for the Black-Scholes CF $\varphi(u) = \exp(iu[(r-q-\sigma^2/2)T] - \s
     This is a known Fourier integral of a Gaussian times a Lorentzian, whose evaluation via residue calculus or completion of the square yields terms involving the normal CDF $\Phi$. After accounting for the prefactors $S_0 e^{-qT}$ and $\sqrt{S_0 K}\,e^{-(r+q)T/2}$, the result is
 
     $$
-    C(K) = S_0 e^{-qT}\Phi(d_1) - Ke^{-rT}\Phi(d_2)
+    C(K) = S_0 e^{-qT}\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
     $$
 
     with $d_{1,2} = \frac{\log(S_0/K) + (r - q \pm \sigma^2/2)T}{\sigma\sqrt{T}}$, which is the standard Black-Scholes formula. This confirms that the Lewis formula reduces correctly in the GBM case.

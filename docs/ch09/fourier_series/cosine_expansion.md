@@ -3,6 +3,7 @@
 The full Fourier series uses both sine and cosine terms, but for probability densities on a bounded interval, a pure cosine expansion offers significant advantages. The sine coefficients vanish for even functions, and the cosine series avoids the boundary discontinuities that arise when a function on $[a, b]$ is periodically extended. Since probability densities are non-negative and typically smooth in the interior of their support, the cosine expansion converges faster and more uniformly than the full Fourier series. This property is the mathematical reason behind the COS method's choice of cosine basis functions rather than the full trigonometric system.
 
 !!! info "Prerequisites"
+
     - [Fourier Series on Finite Intervals](fourier_series_finite_intervals.md) (definition and coefficients)
     - [Convergence of Fourier Series](convergence_of_fourier_series.md) (smoothness and decay rates)
 

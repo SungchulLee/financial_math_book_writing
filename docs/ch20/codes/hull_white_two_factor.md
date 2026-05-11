@@ -15,6 +15,7 @@ The SDE is:
 where r(t) = f(0,t) + x(t) + y(t), and dW1 and dW2 are correlated with correlation rho.
 
 Key features:
+
 - Two independent mean-reverting factors with correlation
 - Cholesky decomposition for correlated Brownian motions
 - More flexible term structure modeling than one-factor model
@@ -592,3 +593,51 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+Write the SDEs for the two-factor Hull-White model and explain the role of each factor.
+
+??? success "Solution to Exercise 1"
+    $$
+    dr(t) = [\theta(t) + u(t) - \lambda_1 r(t)]\,dt + \eta_1\,dW_1(t),
+    $$
+
+    $$
+    du(t) = -\lambda_2\,u(t)\,dt + \eta_2\,dW_2(t),
+    $$
+
+    with $dW_1 \cdot dW_2 = \rho\,dt$. Factor $r(t)$ is the short rate with mean reversion speed $\lambda_1$. Factor $u(t)$ is a latent mean-reverting process that perturbs the long-run target of $r$. Together, they allow the model to capture both level shifts (driven by $r$) and slope changes (driven by $u$) in the yield curve.
+
+---
+
+**Exercise 2.**
+Compute the variance of the short rate $r(T)$ in the 2F model in terms of $\eta_1, \eta_2, \lambda_1, \lambda_2, \rho$.
+
+??? success "Solution to Exercise 2"
+    $$
+    \text{Var}[r(T)] = \frac{\eta_1^2}{2\lambda_1}(1 - e^{-2\lambda_1 T}) + \frac{\eta_2^2}{(\lambda_1 + \lambda_2)^2}\left[\frac{1 - e^{-2\lambda_2 T}}{2\lambda_2} + \frac{2(e^{-(\lambda_1+\lambda_2)T} - 1)}{\lambda_1 + \lambda_2}\right] + \text{cross terms involving } \rho.
+    $$
+
+    The exact expression is lengthy, but the key insight is that the variance has contributions from both factors and their correlation, making it richer than the 1F model.
+
+---
+
+**Exercise 3.**
+If $\lambda_1 = 0.05$ and $\lambda_2 = 0.5$, describe how each factor contributes to yield curve dynamics over a 10-year horizon.
+
+??? success "Solution to Exercise 3"
+
+    - Factor $r$ ($\lambda_1 = 0.05$): Half-life $= 14$ years. This slow factor dominates long-term movements and explains most of the variance in long-dated yields.
+    - Factor $u$ ($\lambda_2 = 0.5$): Half-life $= 1.4$ years. This fast factor captures short-term deviations that decay quickly, mainly affecting the short end of the curve.
+
+    Over 10 years, factor $u$ has essentially mean-reverted to zero multiple times, while factor $r$ has barely moved toward its long-run mean. The 2F model thus captures the empirical observation that short-end yields are more volatile (due to $u$) while long-end yields are driven by persistent level shifts (due to $r$).
+
+---
+
+**Exercise 4.**
+Why is the 2F Hull-White model more suitable than the 1F model for pricing Bermudan swaptions?
+
+??? success "Solution to Exercise 4"
+    Bermudan swaptions depend on the entire yield curve at each exercise date, not just the short rate. The 1F model constrains the yield curve to move in one dimension (all rates are perfectly correlated), which limits the possible curve shapes at exercise dates. The 2F model allows imperfect correlation between different maturities, producing more realistic exercise boundaries. Empirically, Bermudan swaption prices are sensitive to decorrelation effects (the ability of short and long rates to move independently), which only 2F+ models can capture. The 2F model typically prices Bermudan swaptions 2-5% higher than 1F due to this decorrelation premium.

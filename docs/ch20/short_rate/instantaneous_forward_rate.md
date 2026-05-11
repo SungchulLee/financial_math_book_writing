@@ -3,6 +3,7 @@
 The instantaneous forward rate $f(t,T)$ under the Hull-White model describes the entire yield curve at any future time $t$ as a function of the short rate $r_t$ and the initial term structure. Since the Hull-White model is a one-factor model, the forward rate at all maturities is determined by a single state variable $r_t$, yielding an explicit formula. This section derives the forward rate dynamics, establishes the closed-form expression for $f(t,T)$, and connects these results to the HJM framework and bond pricing.
 
 !!! info "Prerequisites"
+
     - Hull-White SDE and explicit solution (this chapter)
     - Affine bond price formula: $P(t,T) = e^{A(t,T) + B(t,T) r_t}$
     - HJM volatility and drift condition (this chapter)

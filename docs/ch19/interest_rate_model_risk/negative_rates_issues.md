@@ -16,11 +16,13 @@ models and how these issues are addressed in practice.
 
 Negative nominal interest rates have been observed in multiple markets,
 including:
+
 - EUR, CHF, and JPY government bond yields,
 - short-term money market rates,
 - overnight indexed swap (OIS) curves.
 
 Therefore, any realistic interest rate model must either:
+
 - accommodate negative rates explicitly, or
 - remain well-defined when rates approach or cross zero.
 
@@ -33,6 +35,7 @@ Many classical interest rate and derivative pricing models rely on **implicit
 positivity assumptions**, even when not stated explicitly.
 
 Examples include:
+
 - lognormal dynamics,
 - pricing formulas derived under strictly positive rates,
 - volatility specifications proportional to the level of the rate.
@@ -46,12 +49,14 @@ or numerical inconsistencies.
 
 
 Lognormal models, such as:
+
 - Black’s formula,
 - lognormal LIBOR Market Models (LMM),
 
 assume that rates or forward rates remain strictly positive.
 
 Under negative rates:
+
 - logarithms become undefined,
 - volatility scaling becomes meaningless,
 - calibration may fail or become unstable.
@@ -64,11 +69,13 @@ This does not indicate market failure, but rather **model misspecification**.
 
 
 Negative rates can introduce practical difficulties, including:
+
 - instability in numerical schemes,
 - poor calibration performance near zero,
 - sensitivity to small shifts in rates.
 
 These effects are particularly pronounced for:
+
 - long-dated instruments,
 - low-volatility environments,
 - multi-curve frameworks.
@@ -100,6 +107,7 @@ consistency with market conventions.
 Negative rates should be viewed as a **stress test for model assumptions**.
 
 They reveal:
+
 - hidden structural constraints,
 - sensitivity to distributional choices,
 - limitations of extrapolating models beyond their design domain.
@@ -114,6 +122,7 @@ but to **understand which assumptions fail when they occur**.
 
 Negative interest rates do not invalidate financial theory. Instead, they
 highlight the importance of:
+
 - explicit modeling assumptions,
 - robustness across regimes,
 - flexibility in model selection.

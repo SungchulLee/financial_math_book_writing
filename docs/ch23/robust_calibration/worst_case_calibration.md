@@ -7,6 +7,7 @@
 **Worst-case calibration** addresses the challenge of model calibration when the goal is robustness rather than pure fit. Instead of finding parameters that best match observed prices under a single criterion, worst-case calibration identifies parameters that ensure acceptable performance under the most adverse conditions within a plausible set.
 
 This approach is motivated by:
+
 1. **Risk management**: Stress testing requires worst-case scenarios
 2. **Regulatory requirements**: Capital calculations must be conservative
 3. **Model uncertainty**: Multiple parameter sets may fit data equally well
@@ -73,6 +74,7 @@ $$
 $$
 
 **Choosing $\epsilon$**: 
+
 - Statistical: Based on confidence level for calibration error
 - Practical: Based on bid-ask spreads of calibration instruments
 
@@ -280,6 +282,7 @@ $$
 $$
 
 **Algorithm**: Alternating optimization
+
 1. Fix $\Delta$, solve inner max over $\theta$
 2. Fix $\theta$, solve outer min over $\Delta$
 3. Iterate until convergence
@@ -299,6 +302,7 @@ where $q$ is a polynomial bound verified by SOS (sum-of-squares) decomposition.
 
 
 **Approach**:
+
 1. Sample $\theta^{(1)}, \ldots, \theta^{(N)}$ from boundary of $\Theta_{\epsilon}$
 2. Evaluate objective at each scenario
 3. Take worst-case over scenarios
@@ -329,6 +333,7 @@ $$
 **Basel Requirements**: Use conservative model parameters for capital calculation.
 
 **Implementation**:
+
 1. Calibrate model to market data
 2. Construct uncertainty set $\Theta_{\epsilon}$
 3. Compute worst-case VaR or ES over $\Theta_{\epsilon}$

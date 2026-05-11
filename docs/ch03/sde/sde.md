@@ -181,18 +181,9 @@ Recognizing the structure of an SDE is the **first step in solving it**.
 
 ---
 
-## 4. What It Means to Solve an SDE
+## 4. What Comes Next
 
-Unlike ordinary differential equations, an SDE does not produce a single deterministic trajectory. Instead, it generates a **random family of paths**, each corresponding to a different realization of the Brownian motion $W_t$. Studying an SDE therefore involves analyzing both individual sample paths and the probability distributions they generate.
-
-Solving an SDE means obtaining either
-
-- an **explicit pathwise representation** of the process (a formula expressing $X_t$ in terms of $W_t$, $t$, and $X_0$), or
-- an **exact characterization of its distribution** (the law, transition density, or moments of $X_t$)
-
-Most SDEs **do not admit closed-form solutions**. When analytical solutions exist, they typically rely on transformations (log transform, integrating factor, Lamperti transform) that simplify the equation. When they do not exist, we turn to numerical simulation.
-
-The key analytical tool is **Itô's lemma**, which replaces the ordinary chain rule in stochastic calculus. The extra second-derivative term — known as the Itô correction — is what distinguishes stochastic calculus from ordinary calculus.
+The SDE formalism raises a fundamental question: what does it mean to **solve** such an equation? Unlike an ODE, where the answer is a single deterministic function, an SDE generates a random family of paths — so "solving" it can mean several different things. The next section develops this question and the techniques that follow from it.
 
 ---
 

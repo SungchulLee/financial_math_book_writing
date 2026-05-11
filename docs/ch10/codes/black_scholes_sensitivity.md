@@ -87,3 +87,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Plot (conceptually) the call price as a function of volatility $\sigma \in [0.1, 0.4]$ for an ATM option. Is the relationship linear, convex, or concave?
+
+??? success "Solution to Exercise 1"
+    The call price increases with $\sigma$ (positive vega). The relationship is approximately linear for small $\sigma$ changes but slightly concave for large ranges. This is because vega itself decreases as $\sigma$ increases (the second derivative of price with respect to $\sigma$, called "volga" or "vomma", can be negative for certain parameters). For ATM options, the price-vol curve is nearly linear over typical ranges.
+
+---
+
+**Exercise 2.**
+For $S_0 = 100$, $K = 105$, $T = 0.25$, $r = 0.05$, $\sigma = 0.2$, $q = 0.02$, compute the call price sensitivity to a 1% increase in volatility (from 20% to 21%).
+
+??? success "Solution to Exercise 2"
+    Vega $\approx S_0 e^{-qT} \sqrt{T} \cdot n(d_1) = 99.5 \times 0.5 \times n(-0.363) = 49.75 \times 0.374 = \$18.60$ per 100% vol change, or $\$0.186$ per 1% change. So the call price increases by approximately $\$0.19$ when $\sigma$ goes from 20% to 21%.
+
+---
+
+**Exercise 3.**
+Explain why the call price is convex in the underlying price $S$ (i.e., gamma is positive) and the financial implication for delta hedging.
+
+??? success "Solution to Exercise 3"
+    Convexity ($\Gamma > 0$) means the call price curve lies above its tangent line at any point. For delta hedging: the hedge (short $\Delta$ shares) is linear, while the option payoff is convex. When $S$ moves, the option gains more (or loses less) than the linear hedge predicts. This "convexity advantage" is paid for through time decay (theta). Large moves benefit long-gamma positions; small moves benefit short-gamma positions.
+
+---
+
+**Exercise 4.**
+Compare the sensitivity of call and put prices to the risk-free rate $r$. Which has positive rho and which has negative rho? Explain the economic intuition.
+
+??? success "Solution to Exercise 4"
+    Call rho is positive: $\rho_C = KTe^{-rT}N(d_2) > 0$. Put rho is negative: $\rho_P = -KTe^{-rT}N(-d_2) < 0$. Intuition: A call is a substitute for buying stock. Higher $r$ makes the deferred payment $Ke^{-rT}$ cheaper, increasing call value. A put substitutes for shorting stock. Higher $r$ makes the deferred receipt less valuable, decreasing put value.

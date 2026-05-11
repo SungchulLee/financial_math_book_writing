@@ -365,7 +365,7 @@ $$
 
     The martingale part vanishes entirely because $G_t$ is deterministic — there is no randomness and hence no innovation. The compensator $A_t = 1 - e^{-\lambda t}$ captures the entire deterministic decline in survival probability.
 
-    Note that $dA_t = \lambda e^{-\lambda t} dt = \lambda G_t \, dt$, confirming the general formula $\alpha_t = \lambda_t G_t$ with $\alpha_t = \lambda e^{-\lambda t}$, and the intensity is $\lambda_t = \alpha_t / G_t = \lambda$. $\blacksquare$
+    Note that $dA_t = \lambda e^{-\lambda t} dt = \lambda G_t \, dt$, confirming the general formula $\alpha_t = \lambda_t G_t$ with $\alpha_t = \lambda e^{-\lambda t}$, and the intensity is $\lambda_t = \alpha_t / G_t = \lambda$. $\square$
 
 ---
 
@@ -404,7 +404,7 @@ $$
     \mathbb{E}[G_t \mid \mathcal{F}_s] = \mathbb{P}(\tau > t \mid \mathcal{F}_s) \le \mathbb{P}(\tau > s \mid \mathcal{F}_s) = G_s
     $$
 
-    This is the supermartingale inequality. The inclusion $\{\tau > t\} \subseteq \{\tau > s\}$ is used in Step 2 to establish the pointwise inequality between indicator functions, which then yields the inequality between conditional expectations via monotonicity. $\blacksquare$
+    This is the supermartingale inequality. The inclusion $\{\tau > t\} \subseteq \{\tau > s\}$ is used in Step 2 to establish the pointwise inequality between indicator functions, which then yields the inequality between conditional expectations via monotonicity. $\square$
 
 ---
 
@@ -473,7 +473,7 @@ Identify the compensator $dA_t = \lambda_t G_t\,dt$ and verify that the intensit
     m_t = G_t - G_0 + A_t = e^{-\Lambda_t} - 1 + \int_0^t \lambda_s e^{-\Lambda_s} \, ds
     $$
 
-    This is an $\mathcal{F}_t$-martingale that captures the stochastic fluctuations in survival probability driven by the random intensity $\lambda_t$. Its increments reflect the "surprise" component of credit quality changes. $\blacksquare$
+    This is an $\mathcal{F}_t$-martingale that captures the stochastic fluctuations in survival probability driven by the random intensity $\lambda_t$. Its increments reflect the "surprise" component of credit quality changes. $\square$
 
 ---
 
@@ -561,7 +561,7 @@ derive the price of a zero-coupon defaultable bond with zero recovery, constant 
 
     **Interpretation:** The defaultable zero-coupon bond price is the same as a default-free zero-coupon bond discounted at rate $r + \lambda$ instead of $r$. The credit spread is exactly $\lambda$, the default intensity. This is the fundamental result of reduced-form credit models: the credit spread for a zero-recovery bond equals the risk-neutral default intensity.
 
-    The factor $G_T / G_t = e^{-\lambda(T-t)}$ represents the conditional probability of surviving from $t$ to $T$, which acts as an additional discount factor on top of the risk-free discounting $e^{-r(T-t)}$. $\blacksquare$
+    The factor $G_T / G_t = e^{-\lambda(T-t)}$ represents the conditional probability of surviving from $t$ to $T$, which acts as an additional discount factor on top of the risk-free discounting $e^{-r(T-t)}$. $\square$
 
 ---
 
@@ -627,4 +627,4 @@ derive the price of a zero-coupon defaultable bond with zero recovery, constant 
     \mathbb{E}[\xi_1 \xi_2 \mid \mathcal{F}_t] = \xi_1 \xi_2 = G_t^{(1)} G_t^{(2)}
     $$
 
-    This confirms that under conditional independence (given $\mathcal{F}_\infty$) and the Cox framework, the joint survival probability factors into the product of individual Azema supermartingales. This is the foundation for multi-name credit models and basket credit derivatives. $\blacksquare$
+    This confirms that under conditional independence (given $\mathcal{F}_\infty$) and the Cox framework, the joint survival probability factors into the product of individual Azema supermartingales. This is the foundation for multi-name credit models and basket credit derivatives. $\square$

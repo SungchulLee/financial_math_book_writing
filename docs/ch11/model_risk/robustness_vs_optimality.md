@@ -9,10 +9,12 @@ Optimal strategies are model-dependent; robust strategies trade some optimality 
 
 
 In Black–Scholes:
+
 - **Optimal hedge**: Delta = $N(d_1)$
 - **Optimal price**: Unique, given by the BS formula
 
 In reality:
+
 - Model parameters ($\sigma$, $r$, etc.) are uncertain
 - Model structure (diffusion, jump, stochastic vol?) is uncertain
 - The "optimal" strategy depends on the assumed model
@@ -25,12 +27,14 @@ In reality:
 
 
 **1. Optimal but fragile:**
+
 - Calibrate a specific model
 - Compute "optimal" Greeks and hedge ratios
 - Performance is excellent if model is correct
 - Performance can be disastrous if model is wrong
 
 **2. Robust but suboptimal:**
+
 - Consider a class of possible models
 - Choose strategy that performs well across the class
 - May not be optimal for any single model
@@ -146,6 +150,7 @@ $$
 where $\alpha$ is a regulatory multiplier.
 
 **Practical computation:**
+
 1. Define model uncertainty set
 2. Compute price bounds
 3. Reserve capital for the range
@@ -162,6 +167,7 @@ $$
 $$
 
 This reflects:
+
 - Uncertainty in implied volatility surface
 - Model choice ambiguity
 - Calibration error

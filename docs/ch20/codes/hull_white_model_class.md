@@ -389,7 +389,7 @@ The `HullWhite` class implements the complete one-factor Hull-White model comput
     The call price:
 
     $$
-    C = P(0,5)\,\Phi(d_1) - K\,P(0,2)\,\Phi(d_2) = 0.86071 \times \Phi(-0.15746) - 0.92 \times 0.94176 \times \Phi(-0.19497)
+    C = P(0,5)\,\mathcal{N}(d_1) - K\,P(0,2)\,\mathcal{N}(d_2) = 0.86071 \times \Phi(-0.15746) - 0.92 \times 0.94176 \times \Phi(-0.19497)
     $$
 
     $$

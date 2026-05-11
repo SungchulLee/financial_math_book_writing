@@ -57,7 +57,7 @@ $$
 where $\phi$ is the standard normal density. Substituting $z = (r - m^T)/v$:
 
 $$
-C(t) = P(t,T)\!\left[A(S-T)\,e^{-B(S-T)\,m^T + \frac{1}{2}B(S-T)^2 v^2}\,\Phi(d_1) - K\,\Phi(d_2)\right]
+C(t) = P(t,T)\!\left[A(S-T)\,e^{-B(S-T)\,m^T + \frac{1}{2}B(S-T)^2 v^2}\,\mathcal{N}(d_1) - K\,\mathcal{N}(d_2)\right]
 $$
 
 where $\Phi$ is the standard normal CDF. The key step uses the identity $\int_{-\infty}^a e^{-\beta z}\phi(z)\,dz = e^{\beta^2/2}\Phi(a + \beta)$.
@@ -65,7 +65,7 @@ where $\Phi$ is the standard normal CDF. The key step uses the identity $\int_{-
 Recognizing that $A(S-T)\,e^{-B(S-T)\,m^T + \frac{1}{2}B(S-T)^2 v^2}$ can be related to the forward bond price, the formula simplifies to
 
 $$
-\boxed{C(t) = P(t,S)\,\Phi(d_1) - K\,P(t,T)\,\Phi(d_2)}
+\boxed{C(t) = P(t,S)\,\mathcal{N}(d_1) - K\,P(t,T)\,\mathcal{N}(d_2)}
 $$
 
 where
@@ -85,7 +85,7 @@ $$
 The European put on the same ZCB is
 
 $$
-\boxed{P_{\text{put}}(t) = K\,P(t,T)\,\Phi(-d_2) - P(t,S)\,\Phi(-d_1)}
+\boxed{P_{\text{put}}(t) = K\,P(t,T)\,\mathcal{N}(-d_2) - P(t,S)\,\mathcal{N}(-d_1)}
 $$
 
 **Verification.** Call minus put gives $P(t,S) - K\,P(t,T)$, which is the forward value of the bond minus the discounted strike---the correct put-call parity for bond options. $\square$
@@ -455,7 +455,7 @@ The Vasicek model delivers closed-form European bond option prices through two k
     **Step 4: Call price.**
 
     $$
-    C(0) = P(0,10)\,\Phi(d_1) - K\,P(0,2)\,\Phi(d_2)
+    C(0) = P(0,10)\,\mathcal{N}(d_1) - K\,P(0,2)\,\mathcal{N}(d_2)
     $$
 
     $$

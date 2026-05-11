@@ -3,6 +3,7 @@
 The **Kolmogorov forward equation**, also known as the **Fokker–Planck equation**, describes the time evolution of the probability density of a diffusion process. While the backward equation acts on initial conditions $(x_0, t_0)$, the forward equation acts on the current state $(x, t)$—tracking how probability mass spreads over time.
 
 !!! tip "Related Content"
+
     - [Kolmogorov Backward Equation](kolmogorov_backward.md) — the dual equation for expectations
     - [Forward–Backward Duality](forward_backward_duality.md) — the adjoint relationship
     - [Heat Equation](../heat_equation/heat_equation_overview.md) — Fokker–Planck for Brownian motion
@@ -238,58 +239,9 @@ $$
 p(x, t \mid x_0, t_0) = \frac{1}{\sqrt{2\pi (t - t_0)}}\exp\left(-\frac{(x - x_0)^2}{2(t - t_0)}\right)
 $$
 
-#### Example 2: Brownian Motion with Drift
-
-For $dX_t = \mu\,dt + \sigma\,dW_t$:
-
-$$
-\frac{\partial p}{\partial t} = -\mu\frac{\partial p}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2 p}{\partial x^2}
-$$
-
-**Solution**:
-
-$$
-p(x, t \mid x_0, t_0) = \frac{1}{\sigma\sqrt{2\pi (t-t_0)}}\exp\left(-\frac{(x - x_0 - \mu(t-t_0))^2}{2\sigma^2 (t-t_0)}\right)
-$$
-
-#### Example 3: Ornstein–Uhlenbeck Process
-
-For $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$ (mean-reverting to zero):
-
-$$
-\frac{\partial p}{\partial t} = \kappa\frac{\partial}{\partial x}(x \cdot p) + \frac{\sigma^2}{2}\frac{\partial^2 p}{\partial x^2}
-$$
-
-**Transient solution** (starting from $X_{t_0} = x_0$):
-
-$$
-p(x, t \mid x_0, t_0) = \frac{1}{\sqrt{2\pi v(\tau)}}\exp\left(-\frac{(x - m(\tau))^2}{2v(\tau)}\right)
-$$
-
-where $\tau = t - t_0$ and:
-
-- Mean: $m(\tau) = x_0 e^{-\kappa \tau}$
-- Variance: $v(\tau) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa \tau})$
-
-**Stationary solution** (as $\tau \to \infty$):
-
-$$
-p_\infty(x) = \sqrt{\frac{\kappa}{\pi\sigma^2}}\exp\left(-\frac{\kappa x^2}{\sigma^2}\right)
-$$
-
-#### Example 4: Geometric Brownian Motion
-
-For $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ on $S > 0$:
-
-$$
-\frac{\partial p}{\partial t} = -\frac{\partial}{\partial S}(\mu S \cdot p) + \frac{\sigma^2}{2}\frac{\partial^2}{\partial S^2}(S^2 \cdot p)
-$$
-
-**Solution** (log-normal density):
-
-$$
-p(S, t \mid S_0, t_0) = \frac{1}{S\sigma\sqrt{2\pi (t-t_0)}}\exp\left(-\frac{(\log S - \log S_0 - (\mu - \sigma^2/2)(t-t_0))^2}{2\sigma^2 (t-t_0)}\right)
-$$
+For explicit transition densities of BM with drift, OU, GBM, and CIR,
+see [Transition Densities for Standard SDEs](transition_densities_standard_sdes.md).
+The following table records only their forward equations.
 
 #### Summary Table
 

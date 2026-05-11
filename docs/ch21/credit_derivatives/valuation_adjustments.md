@@ -9,6 +9,7 @@ Credit derivatives pricing in practice requires **valuation adjustments** that g
 
 
 Classical pricing assumes:
+
 - default-free counterparties,
 - frictionless funding,
 - perfect collateralization.
@@ -36,6 +37,7 @@ It reduces the value of a derivative due to counterparty credit risk.
 
 
 Common adjustments include:
+
 - **DVA:** own default risk,
 - **FVA:** funding costs,
 - **MVA:** margin valuation adjustment.
@@ -48,6 +50,7 @@ Together, these are known as **XVA**.
 
 
 For CDS:
+
 - counterparty risk affects premium valuation,
 - collateral agreements mitigate but do not eliminate XVA,
 - standardized CDS reduce some complexity.

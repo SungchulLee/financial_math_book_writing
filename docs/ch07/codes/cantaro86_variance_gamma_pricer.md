@@ -23,6 +23,7 @@ X_VG(t) = theta * G(t) + sigma * W(G(t))
 where G(t) ~ Gamma(t/kappa, kappa) is the subordinator.
 
 This file is self-contained and implements:
+
     1. VG characteristic function (cf_VG)
     2. Fourier inversion probabilities Q1, Q2
     3. VG probability density function (VG_pdf)
@@ -691,3 +692,61 @@ if __name__ == "__main__":
     plt.show()
     print("  Plot saved to vg_density_vs_normal.png")
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Write the Variance Gamma characteristic function and explain how it differs from the Black-Scholes (GBM) characteristic function.
+
+??? success "Solution to Exercise 1"
+    VG characteristic function:
+
+    $$
+    arphi_{\text{VG}}(u) = \left(1 - iu\theta\kappa + \frac{1}{2}u^2\sigma^2\kappa
+ight)^{-t/\kappa}
+    $$
+
+    BS/GBM characteristic function: $arphi_{\text{BS}}(u) = xp(iu\mu t - \frac{1}{2}u^2\sigma^2 t)$.
+
+    Key differences: (1) VG uses a power-law decay in $u$ versus exponential decay for BS, producing heavier tails. (2) VG has three parameters ($\sigma, \theta, \kappa$) allowing independent control of volatility, skewness, and kurtosis. (3) BS has only two effective parameters ($\mu, \sigma$) and always produces zero skewness and zero excess kurtosis.
+
+---
+
+**Exercise 2.**
+The VG process has finite variation. What does this mean physically, and how does it contrast with Brownian motion (infinite variation)?
+
+??? success "Solution to Exercise 2"
+    A process has **finite variation** if the total absolute change $\sum |X_{t_{i+1}} - X_{t_i}|$ converges to a finite limit as the partition is refined. The VG process has finite variation because it can be decomposed as the difference of two increasing (Gamma) processes.
+
+    **Brownian motion** has infinite variation: the total absolute change diverges as the partition refines. This means a Brownian path oscillates infinitely fast, accumulating infinite total movement.
+
+    Financially: finite variation means the stock price makes discrete jumps (possibly infinitely many small ones) but the total jump size is bounded. This is arguably more realistic than Brownian motion for short time intervals.
+
+---
+
+**Exercise 3.**
+The FFT-Lewis pricing method evaluates option prices for a grid of strikes simultaneously. Explain the computational advantage.
+
+??? success "Solution to Exercise 3"
+    The Lewis (2001) formula expresses the option price as a Fourier integral: $C(K) = \frac{S}{2} - \frac{\sqrt{K}e^{-rT}}{\pi}\int_0^\infty \text{Re}[\ldots]\,du$.
+
+    For a single strike, this requires $O(N)$ quadrature evaluations. For $M$ strikes, direct computation costs $O(NM)$.
+
+    The FFT approach reformulates this as a discrete Fourier transform over a log-strike grid, computing all $M$ prices in $O(M\log M)$. With $M = 2^{12} = 4096$ strikes, this is about 300x faster than direct evaluation. This is essential for calibration, where thousands of prices must be computed per optimization iteration.
+
+---
+
+**Exercise 4.**
+Compare the Carr-Madan-Chang closed-form pricing with the FFT approach. When would you use each?
+
+??? success "Solution to Exercise 4"
+    The CMC formula is a series expansion involving incomplete gamma functions:
+
+    $$
+    C = S\sum_{n=0}^{\infty} w_n[\Phi(d_{1,n}) - 1] + Ke^{-rT}\sum_{n=0}^{\infty} w_n\Phi(-d_{2,n})
+    $$
+
+    Use CMC when: pricing a single option (no FFT setup overhead), or when the series converges rapidly (low $\kappa$).
+
+    Use FFT when: pricing many options across a strike grid (calibration), or when the series converges slowly (high $\kappa$, many jumps). The FFT approach is more general and works for any model with a known characteristic function.

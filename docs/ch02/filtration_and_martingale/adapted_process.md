@@ -63,6 +63,7 @@ for all stopping times $S \le T$. In particular, $\mathcal{O}$ contains $[\![0, 
 **Example**: Any càdlàg adapted process is optional (by definition of $\mathcal{O}$).
 
 **Example (optional but not predictable)**: Let $(N_t)$ be a Poisson process and let $\tau_1$ be its first jump time. Define $X_t = \mathbf{1}_{\{t \ge \tau_1\}}$. This process:
+
 - Is càdlàg (right-continuous with a single jump)
 - Is adapted (at time $t$, we know whether the jump has occurred)
 - Is optional (càdlàg adapted)
@@ -185,6 +186,7 @@ Progressive measurability ensures that:
 - Localization arguments (using stopping times to control integrability) work correctly.
 
 **Optional and predictable projections**: For any bounded measurable process $Y$:
+
 - There exists a unique optional process ${}^o Y$ (the *optional projection*) such that ${}^o Y_\tau = \mathbb{E}[Y_\tau \mid \mathcal{F}_\tau]$ for all stopping times $\tau$.
 - There exists a unique predictable process ${}^p Y$ (the *predictable projection*) such that ${}^p Y_\tau = \mathbb{E}[Y_\tau \mid \mathcal{F}_{\tau-}]$ for all predictable stopping times $\tau$.
 
@@ -354,6 +356,7 @@ Let $(X_n)_{n \ge 1}$ be i.i.d. coin flips with $X_n \in \{+1, -1\}$, $S_n = X_1
 (c) Is the process $Y_n = X_n = S_n - S_{n-1}$ (for $n \ge 1$) predictable? Justify.
 
 (d) Define $\tau = \min\{n \ge 1 : S_n = 2\}$ (first hitting time of level 2). Classify the process $Z_n = \mathbf{1}_{\{n \ge \tau\}}$:
+
 - Is it adapted?
 - Is it predictable?
 - Justify each answer.

@@ -2,18 +2,9 @@
 
 ## Concept Definition
 
-The **martingale problem** is an alternative formulation of diffusion processes that defines the process entirely through its generator, without reference to a specific Brownian motion or probability space. This approach is essential for proving uniqueness in law and for studying diffusions with irregular coefficients.
+We now reinterpret the diffusion defined in the [overview](diffusion_process_overview.md) through its [generator](diffusion_process_overview.md#infinitesimal-generator) $\mathcal{L}$ alone. The **martingale problem** is the intrinsic definition of a diffusion: it characterises the law of the process via $\mathcal{L}$, without reference to a specific Brownian motion or probability space. This viewpoint is essential for proving uniqueness in law, studying diffusions with irregular coefficients, and establishing the [strong Markov property](strong_markov_property.md).
 
-Let $b : \mathbb{R}^d \to \mathbb{R}^d$ and $a : \mathbb{R}^d \to \mathbb{R}^{d \times d}$ be measurable, with $a(x)$ symmetric and non-negative definite for all $x$. Define the second-order differential operator
-
-$$
-(\mathcal{L}f)(x)
-= b^{i}(x)\,\frac{\partial f}{\partial x_i}(x)
-+ \frac{1}{2}\,a^{ij}(x)\,\frac{\partial^2 f}{\partial x_i \partial x_j}(x),
-\qquad f \in C_c^\infty(\mathbb{R}^d)
-$$
-
-(Einstein summation is in force; $i, j$ run from $1$ to $d$.)
+Given the coefficients $b$ and $a = \sigma\sigma^\top$ (with $a(x)$ symmetric non-negative definite) that define the generator $\mathcal{L} = b \cdot \nabla + \frac{1}{2}a : \nabla^2$:
 
 !!! info "Definition: Solution to the Martingale Problem"
     Fix an initial law $\mu$ on $\mathbb{R}^d$. A probability measure $\mathbb{P}$ on the path space $C([0,\infty); \mathbb{R}^d)$ **solves the martingale problem for $(\mathcal{L}, \mu)$** if:
@@ -74,7 +65,7 @@ Well-posedness of the martingale problem is **equivalent to uniqueness in law** 
 
     $$
     \xi^\top a(x)\,\xi \ge \lambda\,|\xi|^2
-    \qquad \text{for all } x, \xi \in \mathbb{R}^d.
+    \qquad \text{for all } x, \xi \in \mathbb{R}^d
     $$
 
     Then for every initial point $x_0 \in \mathbb{R}^d$, the martingale problem for $(\mathcal{L}, \delta_{x_0})$ has a **unique solution**. Moreover, the solution is a strong Markov process with continuous paths.
@@ -99,6 +90,7 @@ Taking $f(x) = x^i x^j$ in the martingale problem (this function is not in $C_c^
 $$
 M_t^{x^i x^j}
 = X_t^i X_t^j - X_0^i X_0^j
+
 - \int_0^t \left(b^i(X_s) X_s^j + b^j(X_s) X_s^i + a^{ij}(X_s)\right)\mathrm{d}s
 $$
 
@@ -117,6 +109,7 @@ We sketch the derivation of $M_t^f$ as a martingale from the SDE.
 $$
 f(X_t)
 = f(X_0)
+
 + \int_0^t \frac{\partial f}{\partial x_i}(X_s)\,\mathrm{d}X_s^i
 + \frac{1}{2}\int_0^t \frac{\partial^2 f}{\partial x_i \partial x_j}(X_s)\,\mathrm{d}\langle X^i, X^j\rangle_s
 $$

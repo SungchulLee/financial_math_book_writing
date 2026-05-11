@@ -609,3 +609,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+How does the Bates model extend the Heston model? Write the system of SDEs.
+
+??? success "Solution to Exercise 1"
+    Bates adds Merton-type jumps to Heston: $dS_t/S_t = (r - \lambda\bar{k})dt + \sqrt{v_t}dW_t^S + (e^J - 1)dN_t$ and $dv_t = \kappa(\bar{v} - v_t)dt + \sigma_v\sqrt{v_t}dW_t^v$ with $\text{Corr}(dW^S, dW^v) = \rho$. The jumps $J \sim \mathcal{N}(\mu_J, \sigma_J^2)$ arrive at Poisson rate $\lambda$.
+
+---
+
+**Exercise 2.**
+How does jump intensity $\lambda$ affect the short-maturity implied volatility smile?
+
+??? success "Solution to Exercise 2"
+    Higher $\lambda$ makes the smile more pronounced at short maturities because jumps dominate the diffusion component when $T$ is small. The smile widens and becomes more U-shaped. At long maturities, stochastic volatility dominates and the effect of $\lambda$ diminishes.
+
+---
+
+**Exercise 3.**
+Why is the COS method preferred over MC for computing the Bates implied volatility surface?
+
+??? success "Solution to Exercise 3"
+    COS computes prices in $O(N)$ per strike (typically $N = 128$) with no statistical noise. For a grid of 100 strikes and 10 maturities, COS is approximately 1000x faster than MC and produces smooth prices suitable for calibration.
+
+---
+
+**Exercise 4.**
+Why do short-maturity options show more jump sensitivity than long-maturity options?
+
+??? success "Solution to Exercise 4"
+    For short $T$, the diffusion variance $\sigma^2 T$ is small while fixed-size jumps remain significant. The jump risk dominates tails. For long $T$, diffusion accumulates and stochastic volatility mean-reverts, diluting the relative jump contribution.

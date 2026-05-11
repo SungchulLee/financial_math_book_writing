@@ -20,6 +20,7 @@ A typical quote might be:
 > "5Y × 10Y payer swaption: 20% vol"
 
 This means:
+
 - option expires in 5 years
 - underlying is a 10-year swap starting in 5 years
 - Black implied volatility is 20%
@@ -35,6 +36,7 @@ V^{\text{mkt}} = N A(t)\, \text{Black}\bigl(S(t), K, \sigma, T_m - t\bigr)
 $$
 
 where:
+
 - $S(t)$ is the forward swap rate
 - $A(t)$ is the annuity
 

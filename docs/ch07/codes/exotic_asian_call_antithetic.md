@@ -10,12 +10,14 @@ with random draws {Z_k} with its mirror path using {-Z_k}, and averages the
 two payoffs. This negative correlation between paired payoffs reduces variance.
 
 Mathematical Framework:
+
     - Original path:    S_path1 using increments +sigma*sqrt(dt)*Z
     - Antithetic path:  S_path2 using increments -sigma*sqrt(dt)*Z
     - Combined payoff:  Phi_anti = 0.5 * [Phi(path1) + Phi(path2)]
     - Variance reduction: Var(Phi_anti) < Var(Phi) when Cov(Phi1, Phi2) < 0
 
 References:
+
     - Glasserman (2003). Monte Carlo Methods in Financial Engineering, Ch. 4.
 
 ---
@@ -225,3 +227,36 @@ if __name__ == "__main__":
 
     print("\nPlot saved to asian_call_antithetic.png")
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Explain how antithetic variates reduce variance for Asian call pricing. What property of the payoff function is exploited?
+
+??? success "Solution to Exercise 1"
+    For each path with increments $\{Z_k\}$, generate a mirror path with $\{-Z_k\}$. The arithmetic average $\bar{S}$ of the original path is negatively correlated with the average of the mirror path. The combined estimator $\hat{\phi} = \frac{1}{2}[\phi_{\text{orig}} + \phi_{\text{anti}}]$ has lower variance because $\text{Cov}(\phi_1, \phi_2) < 0$ when the payoff is monotone in the average.
+
+---
+
+**Exercise 2.**
+If antithetic variates reduce the variance by a factor of 3, how many plain MC paths would match the precision of 10,000 antithetic pairs?
+
+??? success "Solution to Exercise 2"
+    With 10,000 antithetic pairs (20,000 payoff evaluations) and VRR = 3, the effective plain-MC equivalent is $20{,}000 \times 3 = 60{,}000$ paths. So 60,000 plain MC paths match the precision.
+
+---
+
+**Exercise 3.**
+Can antithetic variates increase variance? Under what conditions might this happen?
+
+??? success "Solution to Exercise 3"
+    Yes, if $\text{Cov}(\phi_1, \phi_2) > 0$, variance increases. This can happen for non-monotone payoffs such as butterfly spreads where both the original and antithetic paths may produce high payoffs simultaneously. In practice this is rare for standard options.
+
+---
+
+**Exercise 4.**
+Describe how to compute the running arithmetic average efficiently during path simulation without storing all intermediate prices.
+
+??? success "Solution to Exercise 4"
+    Maintain a running sum $A_n = \sum_{k=1}^n S_{t_k}$. At each step: $A_{n+1} = A_n + S_{t_{n+1}}$. The average is $\bar{S} = A_n / n$ at the end. This requires $O(1)$ memory instead of $O(n)$.

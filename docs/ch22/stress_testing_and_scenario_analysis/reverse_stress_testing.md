@@ -64,6 +64,7 @@ L^{\text{required}} = L^* - \text{Current Buffer}
 $$
 
 For a bank with \$10B capital buffer:
+
 - Failure threshold: Capital < 0
 - Required loss: \$10B
 
@@ -80,6 +81,7 @@ This is typically a large set—characterize its structure.
 ### Step 4: Assess Plausibility
 
 For identified scenarios, evaluate:
+
 - Historical precedent
 - Economic coherence
 - Causal narrative
@@ -164,6 +166,7 @@ The boundary $\partial \mathcal{F}$ represents **minimal failure scenarios**—t
 ### Diverse Scenarios
 
 Generate multiple scenarios along the boundary:
+
 - Different economic narratives
 - Different factor combinations
 - Different time horizons
@@ -181,24 +184,28 @@ This provides a richer picture of vulnerabilities.
 
 ### Failure Threshold
 CET1 ratio < 4.5% (regulatory minimum)
+
 - Required capital: \$4.5B (assuming 4.5% of \$100B RWA)
 - Failure loss: \$15B − \$4.5B = **\$10.5B**
 
 ### Reverse Stress Analysis
 
 **Scenario 1: Credit Losses**
+
 - Corporate defaults: 8% default rate, 60% LGD
 - Consumer defaults: 12% default rate, 80% LGD
 - Mortgage losses: 5% default rate, 50% LGD
 - Combined credit loss: \$10B+
 
 **Scenario 2: Market + Credit**
+
 - Equity trading loss: \$2B
 - Rates trading loss: \$1.5B
 - Credit spread widening: \$3B
 - Loan impairments: \$5B
 
 **Scenario 3: Liquidity Crisis**
+
 - Funding costs spike
 - Fire sale losses on assets
 - Operational strain
@@ -224,6 +231,7 @@ CET1 ratio < 4.5% (regulatory minimum)
 ### Documentation Requirements
 
 For each failure scenario:
+
 - Economic narrative
 - Factor specifications
 - Impact calculations
@@ -234,6 +242,7 @@ For each failure scenario:
 ### Action Planning
 
 For identified vulnerabilities:
+
 - Early warning indicators
 - Contingency actions
 - Recovery options

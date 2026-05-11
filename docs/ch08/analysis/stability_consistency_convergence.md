@@ -37,6 +37,7 @@ where $u$ is the exact solution.
 ### Order of Consistency
 
 If LTE $= O((\Delta\tau)^p + (\Delta S)^q)$, the scheme is:
+
 - $p$-th order in time
 - $q$-th order in space
 
@@ -147,6 +148,7 @@ the scheme has convergence rate $(p, q)$.
 **Theorem**: For a well-posed linear initial value problem and a consistent finite difference scheme, **stability is equivalent to convergence**.
 
 **Proof sketch**:
+
 1. Let $e^n = u^n - u(\tau_n)$ be the global error
 2. Error evolution: $e^{n+1} = Be^n + \text{LTE}$
 3. By induction: $e^n = B^n e^0 + \sum_{k=0}^{n-1} B^{n-1-k}\text{LTE}_k$

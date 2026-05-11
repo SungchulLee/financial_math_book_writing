@@ -477,3 +477,56 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+In a single-curve framework, the discount curve and the forward curve are identical. Explain why the multi-curve framework emerged after the 2008 financial crisis and what its key feature is.
+
+??? success "Solution to Exercise 1"
+    Before 2008, OIS and LIBOR rates were nearly identical, so a single curve was used for both discounting and forward rate projection. After the crisis, the OIS-LIBOR spread (basis) widened significantly (from near zero to over 300 bps at peak), reflecting credit risk in LIBOR. The multi-curve framework uses separate curves:
+
+    - **Discount curve**: Built from OIS instruments (reflecting the risk-free rate for collateralized derivatives).
+    - **Forward curves**: Built from LIBOR-based instruments (swaps, FRAs) at each tenor (3M, 6M, etc.).
+
+    The key feature is that forward rates are projected from the LIBOR curve but cash flows are discounted using the OIS curve, leading to different curves for different purposes.
+
+---
+
+**Exercise 2.**
+The Newton-Raphson solver finds rates $r_i$ such that all par swap values are zero. Write the convergence criterion and explain why a Jacobian matrix is needed.
+
+??? success "Solution to Exercise 2"
+    The convergence criterion is $\|\mathbf{r}^{(k+1)} - \mathbf{r}^{(k)}\| < \text{tol}$, where the update is
+
+    $$
+    \mathbf{r}^{(k+1)} = \mathbf{r}^{(k)} - J^{-1}\,\mathbf{f}(\mathbf{r}^{(k)}),
+    $$
+
+    and $\mathbf{f}(\mathbf{r})$ is the vector of swap values. The Jacobian $J_{ij} = \partial f_i / \partial r_j$ is needed because the system is multivariate: each swap price depends on all rate spine points (through the interpolated yield curve). A change in $r_j$ at maturity $T_j$ affects the discount factors at all maturities, impacting all swap prices. The Jacobian captures these cross-dependencies and enables simultaneous solution.
+
+---
+
+**Exercise 3.**
+If the discount curve gives $P_d(0,5) = 0.98$ and the forward curve gives $P_f(0,5) = 0.975$, compute the 5-year basis spread.
+
+??? success "Solution to Exercise 3"
+    The zero rates are $y_d = -\ln(0.98)/5 = 0.00404$ and $y_f = -\ln(0.975)/5 = 0.00507$. The basis spread is
+
+    $$
+    \text{basis} = y_f - y_d = 0.00507 - 0.00404 = 0.00103 = 10.3 \text{ bps}.
+    $$
+
+    The forward curve lies above the discount curve, reflecting the credit premium embedded in LIBOR relative to OIS.
+
+---
+
+**Exercise 4.**
+Compare linear interpolation and cubic interpolation for yield curve construction. What are the trade-offs in terms of smoothness and accuracy?
+
+??? success "Solution to Exercise 4"
+
+    - **Linear interpolation**: Simple, stable, and always produces monotonic segments between nodes. However, the interpolated curve has discontinuous first derivatives at nodes, leading to jumpy forward rates (the forward rate curve shows "saw-tooth" patterns).
+    - **Cubic interpolation**: Produces smooth curves with continuous first and second derivatives, yielding well-behaved forward rates. However, it can overshoot between nodes (producing negative forward rates or discount factors greater than 1) and is more sensitive to the placement of nodes.
+
+    For risk management (Greeks computation), smooth curves are preferred to avoid artificial hedging artifacts. For simple pricing, linear interpolation is often sufficient and more robust.

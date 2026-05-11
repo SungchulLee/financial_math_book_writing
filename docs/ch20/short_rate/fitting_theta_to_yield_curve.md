@@ -3,6 +3,7 @@
 The defining practical advantage of the Hull-White model over the Vasicek model is the ability to exactly reproduce the market-observed term structure of interest rates. This is achieved by choosing the drift function $\theta(t)$ so that the model bond prices at time zero match the market bond prices for all maturities. The resulting formula for $\theta(t)$ is explicit and involves only the initial forward rate curve and its derivative. This section derives the formula, proves the exact fit property, discusses numerical implementation, and illustrates with examples.
 
 !!! info "Prerequisites"
+
     - Hull-White SDE and explicit solution (this chapter)
     - Short rate distribution: conditional mean and variance
     - Affine bond price formula: $P(t,T) = e^{A(t,T) + B(t,T) r_t}$
@@ -200,6 +201,7 @@ $$
 $$
 
 !!! warning "Numerical Pitfalls"
+
     - **Noisy forward curves:** Raw bootstrap of $f(0,t)$ from bond/swap data can be jagged, making $f'(0,t)$ unstable. Smoothing (splines, parametric models) is essential.
     - **Small $a$ limit:** As $a \to 0$, the convexity term $\frac{\sigma^2}{2a}(1-e^{-2at}) \to \sigma^2 t$, which is well-defined. However, the $af(0,t)$ term vanishes, reducing $\theta$ to $f'(0,t) + \sigma^2 t$ (the Ho-Lee drift).
     - **Negative $\theta(t)$:** If the forward curve is steeply inverted ($f'(0,t) \ll 0$), $\theta(t)$ can become negative, which is mathematically valid but means the instantaneous target $\theta(t)/a$ is negative.

@@ -3,6 +3,7 @@
 While the Hull-White model has closed-form prices for vanilla European derivatives, path-dependent products (Bermudan swaptions, callable bonds, range accruals) and products requiring early exercise require numerical engines. This guide describes the two main numerical pricing engines in the companion `tree_and_monte_carlo_engines.py`: a Hull-White trinomial tree and a Monte Carlo simulator. Each engine builds on the `HullWhite` model class and its named functions.
 
 !!! info "Prerequisites"
+
     - [Hull-White Model Class Guide](hull_white_model_class.md) (model parameters and named functions)
     - [Short Rate Solution](../short_rate/short_rate_solution.md) (OU process solution for exact simulation)
     - [Bond and Derivative Pricing Classes Guide](bond_derivative_pricing_classes.md) (closed-form benchmarks)

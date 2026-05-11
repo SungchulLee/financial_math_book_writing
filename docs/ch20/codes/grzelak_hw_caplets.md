@@ -295,3 +295,59 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+A caplet under the Hull-White model pays $\tau\,\max(L(T_1, T_2) - K, 0)$ at $T_2$. Express the caplet as a put option on a zero-coupon bond.
+
+??? success "Solution to Exercise 1"
+    The LIBOR rate is $L = (1/P(T_1,T_2) - 1)/\tau$. The caplet payoff at $T_2$ is $\tau\,\max(L - K, 0) = \max(1 - (1+K\tau)P(T_1,T_2), 0)/(1+K\tau) \times (1+K\tau)$.
+
+    This simplifies to: the caplet at $T_2$ is equivalent to $(1 + K\tau)$ put options on the ZCB $P(T_1, T_2)$ with strike $\bar{K} = 1/(1 + K\tau)$, evaluated at time $T_1$:
+
+    $$
+    \text{Caplet} = (1 + K\tau)\,\text{ZBP}(T_1, T_2, \bar{K}),
+    $$
+
+    where ZBP is the zero-coupon bond put price.
+
+---
+
+**Exercise 2.**
+The Hull-White caplet formula uses the bond price volatility $\sigma_P = \eta\,|B(T_1, T_2)|\sqrt{\frac{1 - e^{-2\lambda T_1}}{2\lambda}}$. Compute this for $\lambda = 0.05$, $\eta = 0.01$, $T_1 = 2$, $T_2 = 2.25$.
+
+??? success "Solution to Exercise 2"
+    First: $B(T_1, T_2) = (e^{-0.05 \times 0.25} - 1)/0.05 = (0.9876 - 1)/0.05 = -0.2484$. So $|B| = 0.2484$.
+
+    $$
+    \sigma_P = 0.01 \times 0.2484 \times \sqrt{\frac{1 - e^{-0.2}}{0.1}} = 0.002484 \times \sqrt{\frac{0.1813}{0.1}} = 0.002484 \times \sqrt{1.813} = 0.002484 \times 1.347 = 0.003346.
+    $$
+
+---
+
+**Exercise 3.**
+Using the bond option approach, price a caplet with $K = 5\%$, $T_1 = 2$, $T_2 = 2.25$, $P(0,T_1) = 0.9048$, $P(0,T_2) = 0.8935$, and $\sigma_P = 0.003346$.
+
+??? success "Solution to Exercise 3"
+    The ZCB put strike is $\bar{K} = 1/(1 + 0.05 \times 0.25) = 1/1.0125 = 0.98765$. The forward bond price is $F = P(0,T_2)/P(0,T_1) = 0.8935/0.9048 = 0.98752$.
+
+    $$
+    d_1 = \frac{\ln(F/\bar{K}) + 0.5\sigma_P^2}{\sigma_P} = \frac{\ln(0.98752/0.98765) + 0.5 \times 0.003346^2}{0.003346}.
+    $$
+
+    Since $\ln(0.98752/0.98765) \approx -0.000132$ and $0.5 \times 0.003346^2 \approx 0.0000056$:
+
+    $$
+    d_1 \approx \frac{-0.000126}{0.003346} \approx -0.0377, \quad d_2 \approx -0.0377 - 0.003346 \approx -0.0410.
+    $$
+
+    The caplet price is $1.0125 \times P(0,T_1)[\bar{K}\,\mathcal{N}(-d_2) - F\,\mathcal{N}(-d_1)]$.
+
+---
+
+**Exercise 4.**
+Explain why a cap (sum of caplets) under Hull-White cannot be priced by a single Black formula with flat volatility, unlike in the LMM.
+
+??? success "Solution to Exercise 4"
+    In the LMM, each forward rate has its own volatility parameter, and the Black formula applies directly to each caplet. The flat cap volatility is just a convenient quoting convention. In the Hull-White model, the short rate drives all forward rates simultaneously, and the bond price volatility $\sigma_P$ depends on the specific maturity pair $(T_1, T_2)$. Each caplet has a different $\sigma_P$ because $B(T_1, T_2)$ and the term $(1 - e^{-2\lambda T_1})$ vary. There is no single volatility that, when applied to all caplets, reproduces the individual prices -- the term structure of caplet volatilities is an output of the model, not an input.

@@ -216,3 +216,53 @@ def calculate_model_metrics(result: VasicekResult) -> Dict[str, float]:
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+A Vasicek simulation produces an empirical variance of $0.00180$ while the theoretical variance is $0.00173$. Compute the relative error and determine whether the variance validation test passes with $5\%$ tolerance.
+
+??? success "Solution to Exercise 1"
+    The relative error is
+
+    $$
+    \varepsilon = \frac{|0.00180 - 0.00173|}{0.00173} = \frac{0.00007}{0.00173} \approx 0.0405 = 4.05\%.
+    $$
+
+    Since $4.05\% < 5\%$, the variance validation test passes.
+
+---
+
+**Exercise 2.**
+The Gaussianity validation uses the Shapiro-Wilk test. Explain why the test is applied to a subsample of at most 5000 observations, and what the null hypothesis is.
+
+??? success "Solution to Exercise 2"
+    The Shapiro-Wilk test has a null hypothesis $H_0$: the sample comes from a normal distribution. For very large samples, even tiny deviations from normality lead to rejection (the test becomes too powerful), so the code caps the sample at 5000 to avoid spurious rejections due to Monte Carlo sampling noise rather than genuine non-normality. The threshold $p > 0.01$ is deliberately loose to accommodate the finite-sample approximations inherent in Monte Carlo. Since the Vasicek process is theoretically Gaussian, this test validates that the simulation correctly reproduces the distributional property.
+
+---
+
+**Exercise 3.**
+The OLS calibration estimates $a$ from $\hat{a} = -\ln(\hat{\beta})/\Delta t$. If the autocorrelation between consecutive daily rates is $\hat{\rho} = 0.998$ and $\Delta t = 1/252$, estimate $a$.
+
+??? success "Solution to Exercise 3"
+    Since $\hat{\beta} \approx \hat{\rho} = 0.998$:
+
+    $$
+    \hat{a} = \frac{-\ln(0.998)}{1/252} = \frac{0.002002}{0.003968} \approx 0.5045.
+    $$
+
+    The estimated mean reversion speed is approximately $0.50$, implying a half-life of $\ln(2)/0.50 \approx 1.39$ years.
+
+---
+
+**Exercise 4.**
+The `calculate_model_metrics` function computes `convergence_to_b` as $|\bar{r}_T - b|$. If $\bar{r}_T = 0.047$ and $b = 0.05$, compute this metric. How would you expect it to behave as $T \to \infty$ and $N \to \infty$?
+
+??? success "Solution to Exercise 4"
+    The convergence metric is
+
+    $$
+    |\bar{r}_T - b| = |0.047 - 0.05| = 0.003.
+    $$
+
+    As $T \to \infty$, $\mathbb{E}[r(T)] \to b$, so the theoretical mean approaches $b$. As the number of paths $N \to \infty$, the sample mean $\bar{r}_T$ converges to $\mathbb{E}[r(T)]$ by the law of large numbers. Therefore, for large $T$ and $N$, this metric converges to zero: $|\bar{r}_T - b| \to 0$. The rate of convergence in $N$ is $O(1/\sqrt{N})$ and in $T$ is $O(e^{-aT})$.

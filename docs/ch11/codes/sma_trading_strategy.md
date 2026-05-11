@@ -210,3 +210,36 @@ if __name__ == '__main__':
     plt.tight_layout()
     plt.show()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+In a dual-SMA crossover strategy, you go long when $\text{SMA}_{\text{short}} > \text{SMA}_{\text{long}}$. Explain the signal logic and the lag inherent in moving averages.
+
+??? success "Solution to Exercise 1"
+    The crossover identifies trend changes: when the short SMA crosses above the long SMA, recent prices are rising faster than the longer-term average, signaling an uptrend (buy). The reverse signals a downtrend (sell/short). The lag arises because SMAs use past prices: a $k$-day SMA responds to a price change with an average delay of $k/2$ days. The strategy enters trends late and exits late.
+
+---
+
+**Exercise 2.**
+For SMA windows $(42, 252)$, the strategy enters a position about $42/2 = 21$ days after a trend begins. Estimate the fraction of a typical trend captured if trends last 6 months on average.
+
+??? success "Solution to Exercise 2"
+    A 6-month trend $\approx 126$ trading days. Entry lag $\approx 21$ days, exit lag $\approx 21$ days (when the reversal SMA crossover occurs). Fraction captured $\approx (126 - 42) / 126 \approx 67\%$. The longer SMA (252) causes additional lag in confirming reversals, further reducing captured returns. In trending markets, this still captures most of the move; in choppy markets, the lag causes whipsaw losses.
+
+---
+
+**Exercise 3.**
+The grid search tests all combinations of short SMA $\in [20, 60]$ and long SMA $\in [180, 280]$. With step sizes of 4 and 10, how many combinations are tested?
+
+??? success "Solution to Exercise 3"
+    Short SMA values: $(60 - 20)/4 + 1 = 11$. Long SMA values: $(280 - 180)/10 + 1 = 11$. Total combinations: $11 \times 11 = 121$. Each combination requires a full backtest, so the grid search evaluates 121 strategy variants.
+
+---
+
+**Exercise 4.**
+The random walk test regresses price on its lags. Under the random walk hypothesis, explain what the lag coefficients should be and why this matters for SMA strategies.
+
+??? success "Solution to Exercise 4"
+    Under a random walk, $P_t = P_{t-1} + \epsilon_t$, so the coefficient on lag 1 should be close to 1 and all other lag coefficients should be near 0. If the random walk holds, SMA crossovers are based on noise and the strategy has zero expected profit (before costs). Significant lag coefficients beyond lag 1 would indicate serial correlation, which SMA strategies could exploit.

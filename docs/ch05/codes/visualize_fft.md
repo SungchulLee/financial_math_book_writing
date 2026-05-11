@@ -83,3 +83,45 @@ if __name__ == "__main__":
     plt.tight_layout()
     plt.show()
 ```
+
+## Exercises
+
+**Exercise 1.**
+A signal is composed of two sinusoids at frequencies 50 Hz and 120 Hz with amplitudes 1 and 0.5. Write the mathematical expression for this signal and compute its FFT analytically.
+
+??? success "Solution to Exercise 1"
+    The signal is $x(t) = \sin(2\pi \cdot 50\,t) + 0.5\sin(2\pi \cdot 120\,t)$.
+
+    The FFT of a sinusoid $\sin(2\pi f_0 t)$ produces peaks at $\pm f_0$ with magnitude $N/2$ (where $N$ is the number of samples). After normalization by $N$, the magnitude spectrum shows peaks of height $1/2$ at $\pm 50$ Hz and $0.25$ at $\pm 120$ Hz.
+
+    The negative frequencies are a consequence of the real-valued signal: by Euler's formula, $\sin(\omega t) = (e^{i\omega t} - e^{-i\omega t})/(2i)$, producing symmetric positive and negative frequency components.
+
+---
+
+**Exercise 2.**
+Explain the Nyquist theorem. With a sampling frequency of $f_s = 1000$ Hz, what is the maximum frequency that can be represented without aliasing?
+
+??? success "Solution to Exercise 2"
+    The Nyquist theorem states that a signal can be perfectly reconstructed from its samples if the sampling rate $f_s$ exceeds twice the highest frequency component: $f_s > 2f_{\max}$.
+
+    The Nyquist frequency is $f_N = f_s / 2 = 500$ Hz. Any frequency component above 500 Hz would be aliased -- it would appear as a spurious lower-frequency component in the sampled signal. In this example, both signal frequencies (50 Hz and 120 Hz) are well below 500 Hz, so no aliasing occurs.
+
+---
+
+**Exercise 3.**
+The code verifies that `np.allclose(signal, signal_reconstructed.real)` is `True`. Explain why IFFT perfectly reconstructs the original signal.
+
+??? success "Solution to Exercise 3"
+    The DFT and IDFT are exact inverses: $\text{IDFT}(\text{DFT}(x)) = x$ up to floating-point precision. This is because the DFT represents the signal as a sum of complex exponentials, and the IDFT reconstructs the signal from these coefficients.
+
+    Mathematically: $X_k = \sum_{n=0}^{N-1} x_n e^{-2\pi i kn/N}$ and $x_n = \frac{1}{N}\sum_{k=0}^{N-1} X_k e^{2\pi i kn/N}$. The orthogonality of complex exponentials ensures exact inversion. The `np.allclose` check confirms that numerical round-off errors are negligible (typically on the order of $10^{-15}$).
+
+---
+
+**Exercise 4.**
+Why does the magnitude spectrum show both positive and negative frequencies? How do you interpret the negative frequency components for a real-valued signal?
+
+??? success "Solution to Exercise 4"
+    The DFT produces coefficients for frequencies $f_k = k \cdot f_s / N$ for $k = 0, 1, \ldots, N-1$. Frequencies $k > N/2$ correspond to negative frequencies (by the periodicity of the DFT, $f_k = f_k - f_s$ for $k > N/2$).
+
+    For a real-valued signal, the DFT satisfies the conjugate symmetry property: $X_{N-k} = X_k^*$. This means positive and negative frequency components have equal magnitudes. The physical content is fully captured by the positive frequencies; the negative frequencies are redundant but necessary for the inverse transform to produce a real-valued result.

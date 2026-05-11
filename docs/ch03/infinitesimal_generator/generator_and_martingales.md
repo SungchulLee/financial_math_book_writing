@@ -1,6 +1,14 @@
 # Generator and Martingales
 
-The infinitesimal generator $\mathcal{L}$ and martingales are deeply connected. This page develops the **Dynkin martingale** and the characterization of **harmonic functions**.
+Starting from the
+[fundamental decomposition](infinitesimal_generator.md#the-fundamental-decomposition)
+
+$$
+f(X_t) = f(X_0) + \int_0^t (\mathcal{L}f)(X_s)\,ds + M_t
+$$
+
+this page studies the remaining term $M_t$ — the noise left after the drift is
+removed — and the special case $\mathcal{L}f = 0$ of **harmonic functions**.
 
 ---
 
@@ -23,15 +31,12 @@ $$
 
 ## Why It's a Martingale
 
-From Itô's lemma:
-
-$$f(X_t) = f(X_0) + \int_0^t (\mathcal{L}f)(X_s)\,ds + \int_0^t f'(X_s)\sigma(X_s)\,dW_s$$
-
-Rearranging:
+From the [Itô expansion](infinitesimal_generator.md#generator-of-a-diffusion-process)
+of $f(X_t)$, rearranging gives:
 
 $$M_t = \int_0^t f'(X_s)\sigma(X_s)\,dW_s$$
 
-The Itô integral is a (local) martingale, so $M_t$ is a (local) martingale. $\square$
+This is an Itô integral, hence a (local) martingale. $\square$
 
 !!! info "Interpretation"
 
@@ -83,6 +88,10 @@ Dynkin's formula uses $\mathbb{E}[M_\tau] = 0$, which requires optional stopping
 ---
 
 ## Harmonic Functions
+
+Harmonic functions correspond to eliminating the drift term in the fundamental
+decomposition entirely: if $\mathcal{L}f = 0$, then $f(X_t) = f(X_0) + M_t$ — pure
+noise.
 
 !!! abstract "Definition"
     A function $f$ is **$\mathcal{L}$-harmonic** if:
@@ -432,3 +441,68 @@ For each, state what the harmonic property implies about $f(W_t^1, W_t^2)$ where
     - Technically, $C_c^\infty$ is a core for the generator of any non-degenerate diffusion, meaning the closure of $\mathcal{L}|_{C_c^\infty}$ equals the full generator. Testing the martingale property on a core suffices to determine the process.
 
     **(b)** Intuitively, the generator $\mathcal{L}$ encodes both the drift $\mu(x)$ and the diffusion coefficient $a(x) = \sigma\sigma^\top(x)$ at every point $x$. The martingale condition $\mathbb{E}[M_t^f \mid \mathcal{F}_s] = M_s^f$ for all smooth $f$ forces the conditional mean and conditional variance of infinitesimal increments to match $\mu$ and $a$ respectively. Under non-degeneracy ($a(x)$ is positive definite), the second-order terms in $\mathcal{L}$ uniquely determine the diffusion matrix, and the first-order terms uniquely determine the drift. Since the law of a Markov process is determined by its infinitesimal transition rates (equivalently, by $\mu$ and $a$), uniqueness follows. This is the Stroock-Varadhan uniqueness theorem: non-degenerate $a(x)$ with suitable regularity guarantees that the martingale problem has a unique solution.
+
+---
+
+**Exercise 8.**
+Let $X_t$ solve $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$ and let $f \in C^2$. Show that if $\mathcal{L}f = 0$, where $\mathcal{L} = \mu(x)\partial_x + \frac{1}{2}\sigma^2(x)\partial_{xx}$ is the infinitesimal generator, then $f(X_t)$ is a local martingale.
+
+??? success "Solution to Exercise 8"
+    Apply Itô's formula to $f(X_t)$:
+
+    $$
+    df(X_t) = f'(X_t)\,dX_t + \frac{1}{2}f''(X_t)\,(dX_t)^2
+    $$
+
+    Since $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$ and $(dX_t)^2 = \sigma^2(X_t)\,dt$:
+
+    $$
+    df(X_t)
+    = \left[\mu(X_t)f'(X_t) + \frac{1}{2}\sigma^2(X_t)f''(X_t)\right]dt + f'(X_t)\sigma(X_t)\,dW_t
+    $$
+
+    That is,
+
+    $$
+    df(X_t) = \mathcal{L}f(X_t)\,dt + f'(X_t)\sigma(X_t)\,dW_t.
+    $$
+
+    If $\mathcal{L}f = 0$, the drift term vanishes, leaving
+
+    $$
+    f(X_t) = f(X_0) + \int_0^t f'(X_s)\sigma(X_s)\,dW_s,
+    $$
+
+    which is an Itô integral plus a constant. Hence $f(X_t)$ is a local martingale.
+
+    **Interpretation.** The condition $\mathcal{L}f = 0$ means $f$ is harmonic for the diffusion. Harmonic functions kill the drift, leaving only noise — and pure noise gives a local martingale.
+
+---
+
+**Exercise 9.**
+For the 3D Bessel process reciprocal $M_t = 1/R_t$ starting from $R_0 = r_0 > 0$, verify the Itô computation: apply Itô's formula to $f(r) = 1/r$ and the SDE $dR_t = (1/R_t)\,dt + dW_t$ to obtain $dM_t = -M_t^2\,dW_t$. Explain why the absence of a $dt$ term confirms $M_t$ is a local martingale, and why the drift terms from $f'$ and $f''$ cancel exactly.
+
+??? success "Solution to Exercise 9"
+    Let $f(r) = 1/r$, so $f'(r) = -1/r^2$ and $f''(r) = 2/r^3$. By Itô's formula applied to $M_t = f(R_t)$:
+
+    $$
+    dM_t = f'(R_t)\,dR_t + \frac{1}{2}f''(R_t)\,(dR_t)^2
+    $$
+
+    With $dR_t = \frac{1}{R_t}\,dt + dW_t$, we have $(dR_t)^2 = dt$ (since $(dW_t)^2 = dt$ and all other terms vanish). Substituting:
+
+    $$
+    dM_t = -\frac{1}{R_t^2}\left(\frac{1}{R_t}\,dt + dW_t\right) + \frac{1}{2}\cdot\frac{2}{R_t^3}\,dt
+    $$
+
+    $$
+    = -\frac{1}{R_t^3}\,dt - \frac{1}{R_t^2}\,dW_t + \frac{1}{R_t^3}\,dt
+    $$
+
+    $$
+    = -\frac{1}{R_t^2}\,dW_t = -M_t^2\,dW_t
+    $$
+
+    The drift terms cancel exactly: $f'(R_t) \cdot \mu(R_t) + \frac{1}{2}f''(R_t) \cdot 1 = -R_t^{-3} + R_t^{-3} = 0$. This happens because $f(r) = 1/r$ is a **harmonic function** for the 3D Bessel generator $\mathcal{L} = \frac{1}{r}\frac{\partial}{\partial r} + \frac{1}{2}\frac{\partial^2}{\partial r^2}$, i.e., $\mathcal{L}f = 0$.
+
+    The absence of a $dt$ term means $M_t$ is a pure stochastic integral $M_t = M_0 + \int_0^t (-M_s^2)\,dW_s$, which is by definition a local martingale. The drift cancellation is not coincidental — it reflects the deep connection between harmonic functions and martingales via the generator criterion.

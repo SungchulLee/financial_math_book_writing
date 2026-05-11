@@ -34,16 +34,19 @@ $$
 
 
 *Proof of lower bound.* Construct the portfolio:
+
 - Long 1 call option
 - Short $e^{-qT}$ units of stock (to account for dividends)
 - Long $K e^{-rT}$ units of cash bond
 
 At maturity $T$:
+
 - Stock position: $-S_T e^{-qT} \cdot e^{qT} = -S_T$
 - Bond position: $K e^{-rT} \cdot e^{rT} = K$
 - Call payoff: $\max(S_T - K, 0)$
 
 Total value:
+
 - If $S_T > K$: $(S_T - K) - S_T + K = 0$
 - If $S_T \leq K$: $0 - S_T + K = K - S_T \geq 0$
 
@@ -59,10 +62,12 @@ $$
 If $C < S e^{-qT} - K e^{-rT}$, portfolio has negative initial cost and non-negative terminal value—arbitrage. □
 
 *Proof of upper bound.* Consider the strategy:
+
 - Short 1 call option
 - Long $e^{-qT}$ units of stock
 
 At maturity:
+
 - Stock value: $S_T$
 - Call obligation: $-\max(S_T - K, 0)$
 
@@ -86,6 +91,7 @@ $$
 where $C_{\text{intrinsic}} = \max(S e^{-qT} - K e^{-rT}, 0)$.
 
 Any price outside this interval either:
+
 1. Admits arbitrage (economically infeasible)
 2. Corresponds to $\sigma_{\text{IV}} \in \{0, \infty\}$ (boundary cases)
 
@@ -162,6 +168,7 @@ If $C(K_1) < C(K_2)$, buy call at $K_1$, sell call at $K_2$—guaranteed non-neg
 Monotonicity of call prices in strike does **not** imply monotonicity of implied volatility in strike.
 
 The volatility smile/skew empirically exhibits:
+
 - $\sigma_{\text{IV}}(K)$ often decreasing for $K < K_{\text{ATM}}$ (skew)
 - $\sigma_{\text{IV}}(K)$ often increasing for $K > K_{\text{ATM}}$ (smile)
 
@@ -183,6 +190,7 @@ $$
 for any $K_1 < K_2 < K_3$ with $\lambda = \frac{K_3 - K_2}{K_3 - K_1}$.
 
 *Proof.* Consider the butterfly spread:
+
 - Long 1 call at $K_1$
 - Short $\frac{K_3 - K_1}{K_2 - K_1}$ calls at $K_2$
 - Long $\frac{K_2 - K_1}{K_3 - K_1}$ calls at $K_3$
@@ -479,10 +487,12 @@ To construct an arbitrage-free surface from discrete data:
 **Method 1:** Fit parametric form (e.g., SVI) with arbitrage constraints built in
 
 **Method 2:** Use convex interpolation schemes:
+
 - Piecewise linear in total variance $w(y, T)$
 - Ensure $w_T \geq 0$ and $w_{yy} \geq 0$ (sufficient conditions)
 
 **Method 3:** Project onto arbitrage-free space:
+
 - Minimize distance to observed prices
 - Subject to Gatheral/Durrleman constraints
 
@@ -496,6 +506,7 @@ Beyond second-order convexity, market data suggests:
 
 **Empirical Observation:**  
 The fourth derivative $\partial^4 C / \partial K^4$ is typically small and changes sign, indicating that:
+
 - Butterfly spreads are concave in strike spacing (approximate quadratic behavior)
 - Risk-neutral density has bounded derivatives
 
@@ -567,6 +578,7 @@ $$
 
 
 These conditions ensure:
+
 1. Existence of a valid probability measure (risk-neutral density $\geq 0$, integrates to 1)
 2. No static arbitrage via butterfly or calendar spreads
 3. Finite moments for the underlying distribution

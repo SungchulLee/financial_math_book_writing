@@ -9,10 +9,12 @@ In modern financial markets, prices are not purely exogenous processes. **Endoge
 
 
 Traditional models assume:
+
 - prices driven by external information,
 - agents as price takers.
 
 In reality:
+
 - large trades move prices,
 - strategies interact through markets,
 - feedback loops emerge.
@@ -23,6 +25,7 @@ In reality:
 
 
 Trading generates:
+
 - temporary impact through order-book pressure,
 - permanent impact through information revelation.
 
@@ -34,6 +37,7 @@ As a result, price dynamics depend on market participants’ actions.
 
 
 Endogenous dynamics imply:
+
 - violations of martingale assumptions,
 - strategy-dependent returns,
 - path dependence of prices.
@@ -46,6 +50,7 @@ Models must incorporate impact and feedback.
 
 
 Endogeneity matters for:
+
 - optimal execution,
 - high-frequency trading,
 - systemic risk analysis.

@@ -6,6 +6,7 @@ The **infinitesimal generator** is the fundamental object that characterizes a M
     This page focuses on **diffusion processes** — continuous Markov processes driven by Brownian motion. The generator takes the form of a second-order differential operator. For **jump processes** (Lévy processes, compound Poisson), the generator includes an integral term and becomes an integro-differential operator.
 
 !!! tip "Related Pages"
+
     - [Dynkin's Formula](dynkin_formula.md) — integral form of the generator
     - [Generator and Martingales](generator_and_martingales.md) — martingale characterization
     - [Fokker–Planck Equation](../../ch05/kolmogorov_equations/kolmogorov_forward.md) — the adjoint generator and density evolution
@@ -15,7 +16,9 @@ The **infinitesimal generator** is the fundamental object that characterizes a M
 
 ## Motivation
 
-Consider a diffusion process $X_t$ and a smooth function $f$. We want to understand how $\mathbb{E}[f(X_t) \mid X_{t_0} = x_0]$ changes with time. The **key question** is the instantaneous rate of change:
+For deterministic ODEs, the derivative $f'$ tells us how $f$ changes along a trajectory.
+For random paths, we need a replacement: the **generator** $\mathcal{L}$ captures how
+$\mathbb{E}[f(X_t) \mid X_{t_0} = x_0]$ changes with time. The key question is:
 
 $$
 \lim_{h \downarrow 0} \frac{\mathbb{E}[f(X_{t_0+h}) \mid X_{t_0} = x_0] - f(x_0)}{h} = \, ?
@@ -253,20 +256,38 @@ Under mild regularity conditions, the generator **uniquely determines** the law 
 
 ---
 
-## The Generator and Martingales
+## The Fundamental Decomposition
 
-!!! abstract "Theorem (Dynkin's Martingale)"
-    For $f \in C^2$ with appropriate integrability, the process
+This identity is the **central structural result** of the chapter. The next two
+sections interpret its components — the martingale term and its expectation.
 
-    $$M_t^f := f(X_t) - f(X_{t_0}) - \int_{t_0}^t (\mathcal{L}_s f)(X_s)\,ds$$
+For any smooth $f$ and diffusion $X_t$:
 
-    is a martingale.
+$$
+\boxed{
+f(X_t) = f(X_0) + \int_0^t (\mathcal{L}f)(X_s)\,ds + M_t
+}
+$$
 
-**Proof**: By Itô's lemma, $M_t^f = \int_{t_0}^t f'(X_s)\sigma(X_s,s)\,dW_s$, which is a martingale under the integrability condition. $\square$
+where $M_t$ is a martingale. This single identity drives everything that follows:
 
-A function $f$ is **$\mathcal{L}$-harmonic** if $\mathcal{L}f = 0$, which implies $f(X_t)$ is a local martingale.
+```mermaid
+flowchart TD
+    A["Itô formula (paths)"] --> B["Remove noise (expectation)"]
+    B --> C["Dynkin formula"]
+    C --> D["Generator"]
+    A --> E["Remove drift"]
+    E --> F["Martingale"]
+```
 
-See [Generator and Martingales](generator_and_martingales.md) for the full development.
+- **Generator** $\mathcal{L}$ captures the systematic drift
+- [**Dynkin's formula**](dynkin_formula.md) takes expectations (martingale vanishes)
+- The [**Dynkin martingale**](generator_and_martingales.md) $M_t$ captures the remaining noise
+- [**Harmonic functions**](generator_and_martingales.md#harmonic-functions) ($\mathcal{L}f = 0$) are those where the drift vanishes entirely
+
+The generator tells us how functions evolve locally. Dynkin integrates this to compute
+expectations. The martingale captures the remaining randomness. Together, they reduce
+stochastic analysis to deterministic structure.
 
 ---
 
@@ -312,8 +333,6 @@ $$
     **Multi-D Generator**: $\mathcal{L}_t f = \sum_i \mu^i \partial_i f + \frac{1}{2}\sum_{i,j} a^{ij} \partial_i \partial_j f$
 
     **Adjoint**: $\mathcal{L}^*_t f = -\partial_x[\mu f] + \frac{1}{2}\partial_x^2[\sigma^2 f]$
-
-    **Dynkin's Martingale**: $M_t = f(X_t) - f(X_0) - \int_0^t (\mathcal{L}_s f)(X_s) \, ds$
 
     **Kolmogorov Backward**: $\partial_{t_0} u + \mathcal{L}_{t_0} u = 0$
 

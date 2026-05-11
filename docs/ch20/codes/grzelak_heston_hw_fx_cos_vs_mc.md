@@ -367,3 +367,59 @@ def mainCalculation():
 if __name__ == "__main__":
     mainCalculation()
 ```
+
+## Exercises
+
+**Exercise 1.**
+In the Heston-Hull-White FX model, the exchange rate dynamics include both domestic and foreign interest rates. Write the risk-neutral SDE for the exchange rate $X(t)$.
+
+??? success "Solution to Exercise 1"
+    Under the domestic risk-neutral measure:
+
+    $$
+    dX(t) = (r_d(t) - r_f(t))\,X(t)\,dt + \sqrt{v(t)}\,X(t)\,dW_X(t),
+    $$
+
+    where $r_d(t)$ and $r_f(t)$ are domestic and foreign short rates (each following Hull-White dynamics), and $v(t)$ follows Heston dynamics. The drift $(r_d - r_f)$ reflects the interest rate differential (covered interest rate parity in the risk-neutral world).
+
+---
+
+**Exercise 2.**
+Explain why FX options with long maturities are particularly sensitive to the choice of interest rate model.
+
+??? success "Solution to Exercise 2"
+    FX option pricing involves discounting in the domestic currency and depends on the interest rate differential $r_d - r_f$. For long maturities:
+
+    1. The cumulative uncertainty in both $r_d$ and $r_f$ becomes significant.
+    2. The correlation between the exchange rate and interest rates affects the distribution of the log-exchange rate.
+    3. The convexity adjustment from the quanto-like structure (discounting in one currency, payoff in another) grows with maturity.
+
+    A deterministic rate assumption would ignore these effects, leading to mispricing of long-dated FX forwards and options, especially cross-currency swaptions and power reverse dual currency notes.
+
+---
+
+**Exercise 3.**
+The COS method for FX options requires the characteristic function of the log-exchange rate. How does the presence of two Hull-White processes (domestic and foreign rates) affect the characteristic function?
+
+??? success "Solution to Exercise 3"
+    The log-exchange rate $\ln X(T)$ depends on $\int_0^T (r_d(s) - r_f(s))\,ds$, which involves both Hull-White processes. The characteristic function factorizes as:
+
+    $$
+    \phi(u) = \phi_{\text{Heston}}(u) \times \phi_{\text{HW,d}}(u) \times \phi_{\text{HW,f}}(u) \times \phi_{\text{cross}}(u),
+    $$
+
+    where $\phi_{\text{cross}}$ captures the correlation effects between the exchange rate and interest rates. Each Hull-White component contributes a Gaussian term (exponential of a quadratic in $u$), while the Heston component contributes the standard Heston characteristic function. The full expression is more complex but still available in semi-closed form.
+
+---
+
+**Exercise 4.**
+If Monte Carlo simulation of the Heston-HW-FX model requires $10^5$ paths and each path has 4 correlated factors, estimate the number of random numbers needed for a simulation with 250 time steps.
+
+??? success "Solution to Exercise 4"
+    Each time step requires 4 independent standard normal random numbers (for the 4 factors: $X$, $v$, $r_d$, $r_f$), which are then correlated via Cholesky decomposition. The total number of random numbers is
+
+    $$
+    N_{\text{random}} = 10^5 \times 250 \times 4 = 10^8 = 100{,}000{,}000.
+    $$
+
+    This is 100 million random numbers, highlighting the computational intensity of multi-factor Monte Carlo. Quasi-random sequences (Sobol, Halton) can improve convergence but require careful implementation for high-dimensional problems.

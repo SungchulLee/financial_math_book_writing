@@ -42,6 +42,7 @@ $$
 $$
 
 Near ATM at expiry:
+
 - $\Gamma \sim \tau^{-1/2}$ (large)
 - $V \sim \sigma\sqrt{\tau}$ (small)
 

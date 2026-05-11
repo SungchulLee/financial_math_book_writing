@@ -38,17 +38,20 @@ $$
 $$
 
 where:
+
 - $1 - R$ is the **loss given default** (LGD)
 - $N$ is the notional amount
 
 ### Settlement Mechanisms
 
 **Physical settlement:**
+
 - Buyer delivers defaulted bonds with face value $N$
 - Seller pays buyer $N$
 - Net effect: buyer receives $N - \text{Bond Value} \approx (1-R) \times N$
 
 **Cash settlement:**
+
 - Determined by auction process (ISDA Credit Event Auction)
 - Recovery rate established by dealer bids
 - Seller pays buyer $(1-R) \times N$ directly
@@ -70,6 +73,7 @@ $$
 where $\Delta_i = t_i - t_{i-1}$ is the accrual fraction (typically act/360).
 
 Payments continue until:
+
 - Maturity $T$ (if no default), or
 - Default time $\tau$ (if default occurs)
 
@@ -110,6 +114,7 @@ $$
 $$
 
 where:
+
 - $D(0,t) = \mathbb{E}[e^{-\int_0^t r_u du}]$ is the risk-free discount factor
 - $S(0,t) = e^{-\int_0^t \lambda_u du}$ is the survival probability
 - $\lambda_t$ is the default intensity
@@ -217,6 +222,7 @@ $$
 $$
 
 If spreads widen:
+
 - Protection buyer gains (insurance is more valuable)
 - Protection seller loses
 
@@ -259,6 +265,7 @@ Standard credit events triggering CDS:
 ### Deliverable Obligations
 
 For physical settlement, delivered bonds must be:
+
 - Senior pari passu with reference obligation
 - Same currency (or specified currencies)
 - Maturity within limits
@@ -268,6 +275,7 @@ For physical settlement, delivered bonds must be:
 ## Numerical Example
 
 **Setup:**
+
 - Notional: $N = 10$ million
 - Maturity: $T = 5$ years
 - Recovery: $R = 40\%$

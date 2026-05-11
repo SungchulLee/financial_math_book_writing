@@ -28,6 +28,7 @@ dS_t = rS_t dt + \sigma S_t dW_t
 $$
 
 where:
+
 - $r$ is the constant risk-free rate
 - $\sigma$ is the volatility
 - $W_t$ is a standard Brownian motion
@@ -266,6 +267,7 @@ This is the standard Black-Scholes result.
 ### When Direct Pricing Suffices
 
 For simple European options on $S_T$:
+
 - The log-normal distribution is known analytically
 - Black-Scholes formula gives closed-form prices
 - No need to invoke the full affine machinery
@@ -273,6 +275,7 @@ For simple European options on $S_T$:
 ### When Affine Framework Shines
 
 For complex derivatives (American options, barrier options, etc.):
+
 - The characteristic function approach becomes indispensable
 - Fourier methods enable fast numerical pricing
 - Multi-factor extensions become tractable

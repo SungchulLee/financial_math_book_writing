@@ -5,6 +5,7 @@
 Barrier Option Pricing via the Joint Law of (W_t, M_t)
 
 This script prices up-and-out call options using three methods:
+
 1. Closed-form via the image method (reflection principle)
 2. Numerical integration of the joint density f_{M_T, W_T}
 3. Monte Carlo simulation with barrier monitoring
@@ -578,3 +579,36 @@ if __name__ == "__main__":
 
     print("\n  Done.")
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Write the joint density of the running maximum $M_T$ and terminal value $W_T$ of standard Brownian motion.
+
+??? success "Solution to Exercise 1"
+    For $m \ge 0$ and $w \le m$: $f_{M_T, W_T}(m, w) = \frac{2(2m - w)}{T\sqrt{2\pi T}}\exp\!\bigl(-\frac{(2m-w)^2}{2T}\bigr)$. This is derived from the reflection principle.
+
+---
+
+**Exercise 2.**
+Explain the image (reflection) method for pricing up-and-out barrier options.
+
+??? success "Solution to Exercise 2"
+    The reflection principle maps paths crossing barrier $H$ to reflected paths starting at $H^2/S_0$. The up-and-out price is the vanilla price minus the reflected-path contribution, weighted by the factor $(S_0/H)^{2(r/\sigma^2 - 1/2)}$.
+
+---
+
+**Exercise 3.**
+Compare the three pricing methods in the code: closed-form, numerical integration, and Monte Carlo.
+
+??? success "Solution to Exercise 3"
+    Closed-form is exact (fastest, most accurate). Numerical integration of the joint density achieves $10^{-10}$ accuracy with adaptive quadrature. Monte Carlo has $O(1/\sqrt{N})$ error and is the least accurate but most flexible (works for non-standard barriers).
+
+---
+
+**Exercise 4.**
+Give an example of an option whose pricing requires the joint distribution of both $\max_t S_t$ and $S_T$.
+
+??? success "Solution to Exercise 4"
+    A partial lookback call pays $\max(S_T - \alpha\max_t S_t, 0)$, combining the terminal price with the running maximum. A bonus certificate paying $\max(S_T, B)$ if $\min_t S_t > H$ also depends on both extremes. These require the full joint distribution.

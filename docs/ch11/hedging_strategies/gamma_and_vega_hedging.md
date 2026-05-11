@@ -107,6 +107,7 @@ Solve for $n_1, n_2$, then re-delta-hedge with shares.
 **Example.** Existing portfolio: $\Gamma = +4$, $\nu = +200$.
 
 Available instruments:
+
 - Option A: $\Gamma_A = 0.05$, $\nu_A = 3.0$
 - Option B: $\Gamma_B = 0.02$, $\nu_B = 5.0$
 

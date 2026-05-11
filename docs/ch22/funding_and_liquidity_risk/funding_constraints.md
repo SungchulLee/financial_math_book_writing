@@ -9,21 +9,25 @@
 ### Sources of Constraints
 
 **1. Unsecured Funding Limits**
+
 - Banks have finite capacity to issue unsecured debt
 - Credit quality affects borrowing costs
 - Market conditions affect availability
 
 **2. Collateral Requirements**
+
 - Variation margin for derivatives
 - Initial margin (post-crisis regulations)
 - Repo haircuts
 
 **3. Balance Sheet Limits**
+
 - Leverage ratio constraints
 - Risk-weighted asset limits
 - Internal risk limits
 
 **4. Regulatory Requirements**
+
 - Liquidity Coverage Ratio (LCR)
 - Net Stable Funding Ratio (NSFR)
 - Large exposure limits
@@ -41,6 +45,7 @@ s_F(t) = r_B(t) - r(t)
 $$
 
 where:
+
 - $r_B(t)$ = bank's borrowing rate
 - $r(t)$ = risk-free rate (OIS)
 
@@ -118,6 +123,7 @@ $$
 $$
 
 High funding costs make leveraged strategies expensive:
+
 - Basis trades
 - Carry trades
 - Arbitrage strategies
@@ -147,6 +153,7 @@ $$
 $$
 
 **Effect on funding:**
+
 - Reduces counterparty credit risk
 - Increases funding/liquidity needs
 - Procyclical: Margin calls increase during stress
@@ -160,6 +167,7 @@ $$
 $$
 
 **Effect:**
+
 - Significant funding drag on trades
 - Creates MVA (Margin Valuation Adjustment)
 - Incentive to reduce bilateral exposures
@@ -167,6 +175,7 @@ $$
 ### Margin Period of Risk (MPOR)
 
 Time between last margin call and closeout:
+
 - Typically 10 days bilateral, 5 days cleared
 - Exposure during MPOR still exists
 
@@ -183,6 +192,7 @@ $$
 ### Impact on Derivatives
 
 Derivatives affect LCR through:
+
 - Collateral outflows (margin calls under stress)
 - Contractual outflows (option exercises, etc.)
 - Contingent funding commitments
@@ -218,6 +228,7 @@ $$
 $$
 
 Derivatives contribute to exposure via:
+
 - Current exposure
 - Potential future exposure (PFE add-on)
 - Cash collateral
@@ -239,6 +250,7 @@ Derivative RWA depends on counterparty credit quality and exposure.
 ### Margin Procyclicality
 
 During stress:
+
 1. Market moves cause losses
 2. Margin calls increase
 3. Liquidity demand spikes
@@ -250,6 +262,7 @@ During stress:
 ### Funding Spread Procyclicality
 
 Bank funding spreads widen during stress:
+
 - Just when funding is most needed
 - Amplifies balance sheet pressure
 - Can force deleveraging

@@ -9,6 +9,7 @@ Structural credit risk models view default as an economic event driven by the fi
 ### The Firm's Balance Sheet
 
 Consider a firm with:
+
 - **Assets:** Total value $V_t$ at time $t$
 - **Liabilities:** A single zero-coupon debt with face value $D$ maturing at time $T$
 - **Equity:** Residual claim after debt repayment
@@ -28,6 +29,7 @@ $$
 $$
 
 At maturity:
+
 - If $V_T \ge D$: Debt holders receive $D$, equity holders receive $V_T - D$
 - If $V_T < D$: Debt holders receive $V_T$, equity holders receive $0$
 
@@ -44,6 +46,7 @@ dV_t = (r - q)V_t \, dt + \sigma_V V_t \, dW_t^{\mathbb{Q}}
 $$
 
 where:
+
 - $r$: risk-free interest rate
 - $q$: continuous dividend (payout) rate to equity holders
 - $\sigma_V$: asset volatility
@@ -176,6 +179,7 @@ s(L, \sigma_V, T) = -\frac{1}{T} \ln\left[N(d_2) + \frac{1}{L} N(-d_1)\right]
 $$
 
 Key properties:
+
 - $s \to 0$ as $L \to 0$ (low leverage)
 - $s \to \infty$ as $L \to 1$ from below (high leverage approaching default)
 - $s$ increases in $\sigma_V$ (higher asset volatility increases default risk)
@@ -218,6 +222,7 @@ For $V_0 > D$, spreads vanish too quickly. Empirically, even high-quality bonds 
 ### Default Only at Maturity
 
 Default can only occur at time $T$, not before. This ignores:
+
 - Covenant violations
 - Cash flow crises
 - Strategic default
@@ -226,6 +231,7 @@ Default can only occur at time $T$, not before. This ignores:
 ### Unobservable Asset Value
 
 $V_0$ and $\sigma_V$ are not directly observable. They must be inferred from:
+
 - Equity prices and volatility
 - Balance sheet data
 - Calibration procedures
@@ -233,6 +239,7 @@ $V_0$ and $\sigma_V$ are not directly observable. They must be inferred from:
 ### Constant Volatility and Interest Rates
 
 The model assumes constant $\sigma_V$ and $r$, while in reality:
+
 - Asset volatility is stochastic and may jump
 - Interest rates vary over time
 - Correlation between rates and firm value matters
@@ -271,6 +278,7 @@ This is a system of two nonlinear equations in two unknowns $(V_0, \sigma_V)$.
 ## Numerical Example
 
 **Parameters:**
+
 - Asset value: $V_0 = 100$
 - Face value of debt: $D = 80$
 - Risk-free rate: $r = 5\%$

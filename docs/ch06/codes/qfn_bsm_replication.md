@@ -13,6 +13,7 @@ demonstrate that all integrable claims can be replicated by a self-financing
 portfolio of stock and bond.
 
 The code implements:
+
   - Delta (hedge ratio) and bond holding calculations for European options
   - Simulation of realised price paths under GBM
   - Discrete-time delta hedging along a realised path
@@ -510,3 +511,55 @@ if __name__ == "__main__":
 
     print(f"Terminal hedging error: {df['hedge_portfolio_value'].iloc[-1] - payoff_T:.3f}")
 ```
+
+## Exercises
+
+**Exercise 1.**
+Describe the replication argument for Black-Scholes pricing. What is a self-financing portfolio, and why does it yield the option price?
+
+??? success "Solution to Exercise 1"
+    A self-financing portfolio requires no external cash flows after initiation: all rebalancing is funded by selling/buying within the portfolio. The replication portfolio holds $\Delta_t$ shares of stock and $B_t$ bonds at time $t$.
+
+    The BS argument: (1) construct a portfolio that matches the option payoff at $T$ for all $S_T$, (2) show this portfolio is self-financing, (3) by no-arbitrage, the option price equals the initial portfolio value $V_0 = \Delta_0 S_0 + B_0$.
+
+    The hedge ratio $\Delta_t = \Phi(d_1(S_t, t))$ ensures the portfolio tracks the option value continuously. The bond holding $B_t = V_t - \Delta_t S_t$ is determined by self-financing.
+
+---
+
+**Exercise 2.**
+In discrete-time delta hedging, what causes the hedging error? How does it depend on the rebalancing frequency?
+
+??? success "Solution to Exercise 2"
+    The hedging error arises because delta is recalculated and the portfolio is rebalanced only at discrete times, while the stock price moves continuously. Between rebalancing dates, the portfolio delta is stale.
+
+    The hedging error per step is approximately $\frac{1}{2}\Gamma(\Delta S)^2 - \frac{1}{2}\sigma^2 S^2 \Delta t$, which is the difference between the realized and expected gamma P&L.
+
+    The total hedging error decreases as $O(\sqrt{\Delta t})$: with $M$ rebalancing steps, the standard deviation of the hedging error is $O(1/\sqrt{M})$. This means daily hedging ($M = 252$) gives about 3 times less error than monthly hedging ($M = 12$).
+
+---
+
+**Exercise 3.**
+The code simulates two scenarios: the call expires in the money (ITM) and out of the money (OTM). Describe the hedge portfolio behavior in each case.
+
+??? success "Solution to Exercise 3"
+    **ITM expiration**: As $S_T > K$, $\Delta \to 1$ near expiry. The hedger holds nearly one full share and a large negative bond position (borrowed to buy the share). At expiry, the portfolio value converges to $S_T - K > 0$, matching the call payoff.
+
+    **OTM expiration**: As $S_T < K$, $\Delta \to 0$ near expiry. The hedger holds almost no stock and a small bond position. At expiry, the portfolio value converges to approximately 0, matching the zero payoff.
+
+    In both cases, the hedging error is the deviation of the portfolio value from the exact option payoff.
+
+---
+
+**Exercise 4.**
+The Cameron-Martin-Girsanov theorem is used to change from the physical measure to the risk-neutral measure. State the theorem for GBM and identify the market price of risk.
+
+??? success "Solution to Exercise 4"
+    Under $\mathbb{P}$: $dS/S = \mu\,dt + \sigma\,dW^{\mathbb{P}}$. Define the market price of risk $\lambda = (\mu - r)/\sigma$ and the Radon-Nikodym derivative
+
+    $$
+    \frac{d\mathbb{Q}}{d\mathbb{P}} = \exp\!\Bigl(-\lambda W_T^{\mathbb{P}} - \frac{1}{2}\lambda^2 T\Bigr)
+    $$
+
+    By Girsanov's theorem, $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \lambda t$ is a Brownian motion under $\mathbb{Q}$, and $dS/S = r\,dt + \sigma\,dW^{\mathbb{Q}}$.
+
+    The market price of risk $\lambda$ quantifies the excess return per unit of volatility that investors demand for bearing risk. Under $\mathbb{Q}$, this risk premium is absorbed into the change of measure.

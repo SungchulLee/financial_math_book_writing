@@ -52,6 +52,7 @@ is a $(\mathcal{G}_t, \mathbb{Q})$-martingale.
 The compensator $A_t$ represents the **cumulative expected default** up to time $t$. It "compensates" for the jump in $H_t$ to create a martingale.
 
 Intuitively:
+
 - $H_t$ is what actually happens (default or not)
 - $A_t$ is what was expected to happen
 - $M_t = H_t - A_t$ is the surprise (unpredictable) component
@@ -115,6 +116,7 @@ $$
 ### Jump Martingale
 
 The martingale $M_t$ is a **purely discontinuous** (jump) martingale:
+
 - It is constant between jumps
 - It has a single jump of size $1 - \int_0^{\tau} \lambda_s ds$ at time $\tau$
 - No continuous martingale component
@@ -174,6 +176,7 @@ This formula **converts a random stopping time expectation to a deterministic in
 ### General Defaultable Claim
 
 Consider a claim paying:
+
 - $C(T)$ at maturity $T$ if no default
 - $R(\tau)$ at default time $\tau$ if $\tau \le T$
 
@@ -215,6 +218,7 @@ arises naturally from the **intensity hypothesis**: the conditional default prob
 ### Immersion Preserved
 
 When immersion holds:
+
 - $\mathcal{F}$-martingales remain $\mathcal{G}$-martingales
 - No additional compensator terms for market processes
 - Clean separation of default and market risks
@@ -273,6 +277,7 @@ The first integral is $\phi_\tau \mathbf{1}_{\{\tau \le t\}}$ (value at default,
 ### Martingale Property
 
 If $\phi_t$ is suitably bounded, then $\int_0^t \phi_s dM_s$ is a martingale. This enables:
+
 - Construction of hedging strategies
 - Derivation of pricing PDEs
 - Characterization of replicating portfolios
@@ -291,6 +296,7 @@ The martingale $M_t$ represents **default surprise risk**—the unpredictable co
 ### Incomplete Markets
 
 Credit markets are typically **incomplete**:
+
 - Default jump cannot be perfectly replicated
 - Multiple equivalent martingale measures exist
 - Prices depend on risk preferences

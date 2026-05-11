@@ -25,7 +25,7 @@ where the Black-Scholes price is given explicitly by:
 
 
 $$
-C_{\text{BS}}(S, K, T, r, \sigma) = S \Phi(d_1) - K e^{-rT} \Phi(d_2)
+C_{\text{BS}}(S, K, T, r, \sigma) = S \mathcal{N}(d_1) - K e^{-rT} \mathcal{N}(d_2)
 $$
 
 
@@ -79,14 +79,16 @@ $$
 
 
 *Proof.* For the lower limit, as $\sigma \to 0^+$:
-- If $S > Ke^{-rT}$: $d_1, d_2 \to +\infty$, so $\Phi(d_1), \Phi(d_2) \to 1$
-- If $S < Ke^{-rT}$: $d_1, d_2 \to -\infty$, so $\Phi(d_1), \Phi(d_2) \to 0$
+
+- If $S > Ke^{-rT}$: $d_1, d_2 \to +\infty$, so $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 1$
+- If $S < Ke^{-rT}$: $d_1, d_2 \to -\infty$, so $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 0$
 - If $S = Ke^{-rT}$: continuous limit gives zero
 
 For the upper limit, as $\sigma \to \infty$:
+
 - $d_1 \to +\infty$ (dominated by $\sigma^2 T / (2\sigma\sqrt{T}) = \sigma\sqrt{T}/2$)
 - $d_2 = d_1 - \sigma\sqrt{T} \to -\infty$
-- Thus $\Phi(d_1) \to 1$ and $\Phi(d_2) \to 0$, giving $C_{\text{BS}} \to S$ □
+- Thus $\mathcal{N}(d_1) \to 1$ and $\mathcal{N}(d_2) \to 0$, giving $C_{\text{BS}} \to S$ □
 
 ### 3. Domain and Codomain Characterization
 
@@ -153,6 +155,7 @@ $$
 
 
 *Proof.* This follows immediately from:
+
 1. **Monotonicity** (Proposition 4.1.1): $\partial C_{\text{BS}}/\partial \sigma > 0$ ensures injectivity
 2. **Range characterization** (Proposition 4.1.2): The image of $(0, \infty)$ under $\mathcal{C}$ is precisely $(C_{\text{intrinsic}}, S)$, ensuring surjectivity onto the admissible price domain
 3. **Continuity**: $C_{\text{BS}}$ is continuous in $\sigma$, so by the Intermediate Value Theorem, the inverse exists
@@ -216,6 +219,7 @@ This perspective reveals implied volatility as a **coordinate transformation**: 
 
 **Normalization across strikes and maturities:**  
 Option prices vary wildly with $(S, K, T)$ parameters, making comparison difficult. Implied volatility provides a normalized measure that:
+
 - Factors out the intrinsic value
 - Accounts for time to maturity
 - Enables comparison across different strikes
@@ -244,6 +248,7 @@ This leads to the empirical phenomenon of **volatility smile**: if the market tr
 
 
 From this perspective:
+
 - **Price** $C_{\text{market}}$ is the primitive observable
 - **Implied volatility** $\sigma_{\text{IV}}$ is a derived coordinate
 - The **volatility surface** $\sigma_{\text{IV}}(K, T)$ encodes all information in option prices through the lens of Black-Scholes
@@ -315,6 +320,7 @@ $$
 
 
 Standard methods include:
+
 - **Newton-Raphson:** Fast quadratic convergence using vega as the Jacobian
 - **Brent's method:** Combines bisection, secant, and inverse quadratic interpolation; robust without requiring derivatives
 - **Bisection:** Simple and robust but slower (linear convergence)
@@ -367,6 +373,7 @@ $$
 
 
 Brent's method is often preferred in production systems because it:
+
 - Does not require derivative (vega) evaluation
 - Guarantees convergence within a bracketing interval $[\sigma_{\text{lo}}, \sigma_{\text{hi}}]$
 - Achieves superlinear convergence in practice
@@ -399,6 +406,7 @@ $$
 
 
 This transformation:
+
 - Is **well-defined** via monotonicity and continuity of Black-Scholes pricing
 - Provides a **normalized quoting convention** independent of intrinsic value
 - Enables **model-free analysis** of option markets through the volatility surface
@@ -431,7 +439,7 @@ The existence of the implied volatility smile—variation of $\sigma_{\text{IV}}
 
 ---
 
-**Exercise 2.** Starting from the Black-Scholes formula $C_{\text{BS}} = S\Phi(d_1) - Ke^{-rT}\Phi(d_2)$, verify analytically that $\lim_{\sigma \to \infty} C_{\text{BS}} = S$ by showing $d_1 \to +\infty$ and $d_2 \to -\infty$. Which term in $d_1$ dominates as $\sigma \to \infty$?
+**Exercise 2.** Starting from the Black-Scholes formula $C_{\text{BS}} = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$, verify analytically that $\lim_{\sigma \to \infty} C_{\text{BS}} = S$ by showing $d_1 \to +\infty$ and $d_2 \to -\infty$. Which term in $d_1$ dominates as $\sigma \to \infty$?
 
 ??? success "Solution to Exercise 2"
     Starting from the Black-Scholes formula, examine $d_1$ and $d_2$ as $\sigma \to \infty$:
@@ -453,7 +461,7 @@ The existence of the implied volatility smile—variation of $\sigma_{\text{IV}}
     Taking the limits of the CDF values:
 
     $$
-    \Phi(d_1) \to \Phi(+\infty) = 1, \qquad \Phi(d_2) \to \Phi(-\infty) = 0
+    \mathcal{N}(d_1) \to \Phi(+\infty) = 1, \qquad \mathcal{N}(d_2) \to \Phi(-\infty) = 0
     $$
 
     Substituting into Black-Scholes:
@@ -462,7 +470,7 @@ The existence of the implied volatility smile—variation of $\sigma_{\text{IV}}
     \lim_{\sigma \to \infty} C_{\text{BS}} = S \cdot 1 - K e^{-rT} \cdot 0 = S
     $$
 
-    Economically, at infinite volatility the probability that $S_T > K$ approaches 1 (via $\Phi(d_2) \to 0$ for the exercise probability seems contradictory, but the effect is that the expected value of $S_T$ conditional on the option being ITM grows without bound). The option becomes equivalent to holding the stock.
+    Economically, at infinite volatility the probability that $S_T > K$ approaches 1 (via $\mathcal{N}(d_2) \to 0$ for the exercise probability seems contradictory, but the effect is that the expected value of $S_T$ conditional on the option being ITM grows without bound). The option becomes equivalent to holding the stock.
 
 ---
 

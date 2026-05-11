@@ -6,7 +6,7 @@ Itô's lemma is the **stochastic analogue of the chain rule** — the fundamenta
 
 !!! tip "Key idea at a glance"
 
-    In ordinary calculus, only first-order terms survive in the chain rule because $(\Delta x)^2$ is negligible. For Brownian motion, $(\Delta B_t)^2 \sim \Delta t$ is **not negligible**, so a second-derivative correction term appears. This **Itô correction** distinguishes stochastic calculus from classical calculus.
+    Itô's lemma adds a correction term $\frac{1}{2}f_{xx}\,dt$ to the classical chain rule. This **Itô correction** arises because $(dB_t)^2 = dt$ — see [Quadratic Taylor Expansion](taylor_expansion_quadratic.md) for the scaling argument and [From Taylor to Itô](from_taylor_to_ito.md) for the mechanical derivation.
 
 !!! info "How this page fits"
 
@@ -62,6 +62,7 @@ $$
 
 $$
 f(t, B_t) = f(0, B_0)
+
 + \int_0^t \left(\frac{\partial f}{\partial s}(s, B_s) + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}(s, B_s)\right)ds
 + \int_0^t \frac{\partial f}{\partial x}(s, B_s)\,dB_s \quad \square
 $$
@@ -102,12 +103,13 @@ df(t, X_t) = \left(\frac{\partial f}{\partial t} + \mu_t\frac{\partial f}{\parti
 }
 $$
 
-The key step is applying the quadratic variation rule $(dX_t)^2 = \sigma_t^2\,dt$ to the second-order Taylor term. All cross terms involving $dt\,dB_t$ and $(dt)^2$ vanish by the multiplication table (see [From Taylor to Itô](from_taylor_to_ito.md) for the full derivation and [Itô Rules](ito_rules.md) for the complete table including cross-process terms).
+The key step is $(dX_t)^2 = \sigma_t^2\,dt$ from the multiplication table (see [From Taylor to Itô](from_taylor_to_ito.md) for the derivation).
 
 **Integral form:**
 
 $$
 f(t, X_t) = f(0, X_0)
+
 + \int_0^t \left(\frac{\partial f}{\partial s}(s, X_s) + \mu_s\frac{\partial f}{\partial x}(s, X_s) + \frac{1}{2}\sigma_s^2\frac{\partial^2 f}{\partial x^2}(s, X_s)\right)ds
 + \int_0^t \sigma_s\frac{\partial f}{\partial x}(s, X_s)\,dB_s \quad \square
 $$
@@ -276,7 +278,7 @@ For a full set of worked examples — including $e^{B_t}$, geometric Brownian mo
 
 ---
 
-**Exercise 6.** Using the step-by-step application procedure from Section 4, apply Itô's lemma to $f(t, x) = x\,e^{-rt}$ where $dX_t = r X_t\,dt + \sigma X_t\,dB_t$. Show that the $dt$ coefficient vanishes, and conclude that $X_t e^{-rt}$ is a local martingale. Under what conditions is it a true martingale?
+**Exercise 6.** Using the step-by-step application procedure from 4, apply Itô's lemma to $f(t, x) = x\,e^{-rt}$ where $dX_t = r X_t\,dt + \sigma X_t\,dB_t$. Show that the $dt$ coefficient vanishes, and conclude that $X_t e^{-rt}$ is a local martingale. Under what conditions is it a true martingale?
 
 ??? success "Solution to Exercise 6"
     For $f(t, x) = xe^{-rt}$ with $dX_t = rX_t\,dt + \sigma X_t\,dB_t$:

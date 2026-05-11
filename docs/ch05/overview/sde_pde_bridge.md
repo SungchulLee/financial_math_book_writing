@@ -268,13 +268,11 @@ This is a deep fact: the same object satisfies two different PDEs in different v
 
 ### Finance: Option Pricing
 
-The Black–Scholes PDE:
+The Black–Scholes PDE is exactly the Feynman–Kac equation for geometric Brownian motion with constant discounting:
 
 $$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} = rV$$
 
-is exactly the Feynman–Kac equation for geometric Brownian motion with constant discounting.
-
-**Key insight**: Pricing = solving a PDE = computing an expectation under the risk-neutral measure.
+**Key insight**: Pricing = solving a PDE = computing an expectation under the risk-neutral measure. See [Why PDEs in Finance](why_pdes_in_finance.md) for the financial interpretation, derivation via hedging, and numerical methods.
 
 ### Physics: Heat Conduction and Diffusion
 

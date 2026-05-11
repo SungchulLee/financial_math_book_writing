@@ -22,6 +22,7 @@ Extreme scenarios often **exceed historical extremes** in severity or combine fe
 ### Severe but Plausible
 
 The scenario must be:
+
 - **Severe enough** to reveal vulnerabilities
 - **Plausible enough** to be taken seriously by management
 - **Economically coherent** (not arbitrary factor combinations)
@@ -43,6 +44,7 @@ Use economic models or historical analogs to ensure consistency.
 ### Tailored to Portfolio
 
 Scenarios should target the portfolio's specific vulnerabilities:
+
 - Concentration risks
 - Nonlinear exposures (options near barriers)
 - Liquidity mismatches
@@ -72,16 +74,19 @@ Replay specific historical episodes:
 Construct scenarios not directly observed historically:
 
 **Geopolitical:**
+
 - Major conflict escalation
 - Sovereign default of G7 economy
 - Trade war escalation
 
 **Financial:**
+
 - CCP failure
 - Cyberattack on payment systems
 - Simultaneous failure of multiple banks
 
 **Economic:**
+
 - Stagflation (high inflation + recession)
 - Deflation spiral
 - Currency crisis in reserve currency
@@ -91,10 +96,12 @@ Construct scenarios not directly observed historically:
 Scenarios prescribed by supervisors:
 
 **Fed CCAR/DFAST Severely Adverse:**
+
 - Typically includes recession, equity decline, credit spread widening
 - Specifies paths for dozens of macro variables
 
 **EBA Adverse Scenario:**
+
 - EU-wide common scenario
 - Multi-year horizon with specified GDP, unemployment, etc.
 
@@ -154,6 +161,7 @@ A critical feature of extreme scenarios is **correlation breakdown**:
 ### Empirical Evidence
 
 During crises:
+
 - Equity correlations increase (diversification fails)
 - Equity-bond correlations may flip sign
 - Credit spreads correlate with equity declines
@@ -232,6 +240,7 @@ Extreme scenarios reveal nonlinearities masked in normal conditions:
 First-round effects: Direct P&L impact of factor moves.
 
 Second-round effects (often more severe):
+
 - **Fire sales:** Forced selling depresses prices further
 - **Margin spirals:** Losses trigger margin calls, requiring more selling
 - **Funding withdrawal:** Counterparties reduce credit lines
@@ -294,6 +303,7 @@ Second-round effects (often more severe):
 ### Documentation
 
 Each scenario should document:
+
 - Economic narrative
 - Factor specifications
 - Historical analogies
@@ -535,7 +545,7 @@ Show that if $\boldsymbol{\rho}^{\text{normal}}$ is a valid correlation matrix w
     \rho_{ii}^{\text{stress}} = \alpha \cdot 1 + (1 - \alpha) \cdot 1 = 1
     $$
 
-    So $\boldsymbol{\rho}^{\text{stress}}$ has ones on the diagonal. $\blacksquare$
+    So $\boldsymbol{\rho}^{\text{stress}}$ has ones on the diagonal. $\square$
 
     **Part 2: Compute $\boldsymbol{\rho}^{\text{stress}}$ with $\alpha = 0.3$.**
 

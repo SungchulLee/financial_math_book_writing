@@ -9,6 +9,7 @@ Credit risk calibration suffers from **identifiability problems**, especially wh
 
 
 A central identifiability issue is:
+
 - higher hazard rate + higher recovery
 - vs lower hazard rate + lower recovery.
 
@@ -20,6 +21,7 @@ Both can fit the same CDS spreads.
 
 
 Challenges include:
+
 - sparse maturity coverage,
 - illiquidity in stressed markets,
 - noisy quotes.
@@ -32,6 +34,7 @@ This limits the information content of calibration targets.
 
 
 Poor identifiability leads to:
+
 - unstable parameter estimates,
 - sensitivity to small quote changes,
 - misleading economic interpretation.
@@ -44,6 +47,7 @@ These are intrinsic inverse-problem features.
 
 
 Stability is improved by:
+
 - fixing recovery rates,
 - restricting parameter dynamics,
 - smoothing hazard rate curves,

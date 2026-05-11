@@ -88,6 +88,7 @@ A **calendar spread** involves buying a long-dated option and selling a short-da
 - **Net theta** can be positive: you earn the differential time decay.
 
 The trade profits when:
+
 - The underlying stays near the strike (both options are ATM).
 - The short-dated option expires worthless, and the long-dated option retains value.
 - Implied volatility increases (benefits the long leg more).

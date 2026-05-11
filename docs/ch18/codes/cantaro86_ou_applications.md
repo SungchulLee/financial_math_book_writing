@@ -9,6 +9,7 @@ Based on cantaro86's notebook:
     from the Financial-Models-Numerical-Methods repository.
 
 Covers:
+
     1. OU process exact simulation and moment verification
     2. OLS parameter estimation from a single path
     3. MLE parameter estimation (closed-form, van den Berg)
@@ -565,3 +566,42 @@ if __name__ == "__main__":
     # 6. Trading strategy
     demo_trading_strategy()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+The Ornstein-Uhlenbeck process $dX = \kappa(\theta - X)\,dt + \sigma\,dW$ has constant volatility. Solve for $\mathbb{E}[X_t]$ and $\text{Var}(X_t)$ given $X_0$.
+
+??? success "Solution to Exercise 1"
+    $\mathbb{E}[X_t] = \theta + (X_0 - \theta)e^{-\kappa t}$ (exponential convergence to $\theta$). $\text{Var}(X_t) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})$ (approaches $\sigma^2/(2\kappa)$ as $t \to \infty$). The stationary distribution is $N(\theta, \sigma^2/(2\kappa))$.
+
+---
+
+**Exercise 2.**
+OU processes are used to model interest rates (Vasicek), volatility mean reversion, and pairs trading spreads. Explain the common feature that makes OU suitable for all three.
+
+??? success "Solution to Exercise 2"
+    All three exhibit mean reversion: interest rates revert to equilibrium levels, volatility reverts to long-run averages, and pairs trading spreads revert to historical relationships. The OU process captures this through the linear drift $\kappa(\theta - X)$, which pushes the process toward $\theta$ with speed $\kappa$.
+
+---
+
+**Exercise 3.**
+For a pairs trading strategy, the spread $X_t = \ln(S_1/S_2)$ follows an OU process. If $X_t$ is 2 standard deviations above $\theta$, explain the trading signal.
+
+??? success "Solution to Exercise 3"
+    When $X_t > \theta + 2\sigma/\sqrt{2\kappa}$, the spread is unusually wide and mean reversion predicts it will decrease. Trade: sell $S_1$ and buy $S_2$ (short the spread). The expected profit comes from $X_t$ reverting toward $\theta$. Stop-loss at 3 std devs protects against regime changes where mean reversion fails.
+
+---
+
+**Exercise 4.**
+The OU process has Gaussian transition density. Write the log-likelihood for $n$ observations $\{X_{t_1}, \ldots, X_{t_n}\}$ at equally spaced times $\Delta t$.
+
+??? success "Solution to Exercise 4"
+    $X_{t_{i+1}} | X_{t_i} \sim N(\theta + (X_{t_i} - \theta)e^{-\kappa\Delta t}, \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\Delta t}))$. The log-likelihood is:
+
+    $$
+    \ell = -\frac{n-1}{2}\ln(2\pi v) - \frac{1}{2v}\sum_{i=1}^{n-1}(X_{t_{i+1}} - \mu_i)^2
+    $$
+
+    where $\mu_i = \theta + (X_{t_i} - \theta)e^{-\kappa\Delta t}$ and $v = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\Delta t})$.

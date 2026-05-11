@@ -7,6 +7,7 @@ An **American option** is a derivative contract that grants the holder the right
 The early-exercise feature has profound consequences for pricing: the holder faces an **optimal stopping problem** at every point in time, and the additional flexibility guarantees that an American option is worth **at least as much** as its European counterpart.
 
 !!! info "Prerequisites"
+
     - [Binomial Model](../../ch01/binomial_model/binomial_model.md) (discrete-time pricing)
     - [Black–Scholes Model](../../ch06/black_scholes_model/introduction.md) (continuous-time framework)
     - [Free Boundary Problems](../../ch08/american_options/free_boundary_problems_american_options.md) (variational inequality formulation)
@@ -173,7 +174,7 @@ $$
     $$
 
     $$
-    C = S_0 \Phi(d_1) - Ke^{-rT}\Phi(d_2) = 100 \cdot \Phi(0.5302) - 95e^{-0.05}\Phi(0.2802)
+    C = S_0 \mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) = 100 \cdot \Phi(0.5302) - 95e^{-0.05}\Phi(0.2802)
     $$
 
     Computing: $\Phi(0.5302) \approx 0.7020$, $\Phi(0.2802) \approx 0.6103$, and $95e^{-0.05} \approx 90.367$:

@@ -10,6 +10,7 @@ Stochastic volatility models distinguish between **risk-neutral** and **physical
 
 Option prices identify parameters under the risk-neutral measure $\mathbb{Q}$.
 These parameters reflect:
+
 - investor risk preferences,
 - compensation for unhedgeable volatility risk.
 
@@ -22,6 +23,7 @@ They should not be confused with historical estimates.
 
 Historical time-series analysis estimates parameters under the physical measure $\mathbb{P}$.
 Empirically:
+
 - realized volatility is lower than option-implied variance,
 - volatility shocks earn negative premia.
 
@@ -44,6 +46,7 @@ Calibration should be measure-consistent.
 
 
 Advanced frameworks introduce:
+
 - explicit VRP processes,
 - joint estimation using options and realized variance,
 - Bayesian separation of measures.

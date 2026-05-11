@@ -3,6 +3,7 @@
 A probability density $f(x)$ and its characteristic function $\phi(u) = \mathbb{E}[e^{iuX}]$ are Fourier duals: each determines the other uniquely. The previous sections developed the Fourier cosine series on a finite interval $[a, b]$ and showed that smooth functions have rapidly decaying coefficients. This section combines these ideas by showing that the cosine coefficients of a density can be expressed directly in terms of the characteristic function. This relationship is the bridge between the analytic world (where characteristic functions are known in closed form for many financial models) and the computational world (where densities and option prices must be evaluated numerically).
 
 !!! info "Prerequisites"
+
     - [Fourier Series on Finite Intervals](fourier_series_finite_intervals.md) (Fourier coefficients)
     - [Cosine Expansion on $[0, \pi]$](cosine_expansion.md) (cosine series on $[a, b]$)
     - Probability: characteristic functions, moment-generating functions

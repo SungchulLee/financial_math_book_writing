@@ -3,6 +3,7 @@
 The COS method rests on a single remarkable identity: the Fourier cosine coefficients of a probability density on $[a, b]$ can be computed from the characteristic function without ever evaluating or integrating the density itself. This section derives this identity rigorously, quantifies the approximation error, and shows how it transforms the problem of density expansion from numerical integration into simple function evaluation. The result is the computational engine of the entire COS pricing framework.
 
 !!! info "Prerequisites"
+
     - [Fourier Series of Probability Densities](../fourier_series/fourier_series_of_densities.md) (CF and cosine coefficients)
     - [Cosine Expansion on $[0, \pi]$](../fourier_series/cosine_expansion.md) (cosine series on $[a,b]$)
     - [From Characteristic Function to Density](characteristic_function_to_density.md) (inversion methods)

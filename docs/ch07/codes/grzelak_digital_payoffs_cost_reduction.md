@@ -226,3 +226,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+What is the MC challenge specific to digital option pricing?
+
+??? success "Solution to Exercise 1"
+    The digital payoff $\mathbf{1}_{S_T > K}$ is binary, so the MC estimator is a sample proportion with variance $p(1-p)/N$. This converges slowly and Greeks (delta) involve differentiating a step function, producing a Dirac delta that is impossible to estimate from samples.
+
+---
+
+**Exercise 2.**
+Describe an up-and-out digital call and its pricing challenges.
+
+??? success "Solution to Exercise 2"
+    It pays \$1 if $S_T > K$ and $\max_t S_t < H$. Pricing requires monitoring the barrier along the path and evaluating a binary payoff. Both the barrier and digital features create discontinuities that challenge MC convergence.
+
+---
+
+**Exercise 3.**
+Why is exact GBM simulation preferred over Euler for digital and barrier options?
+
+??? success "Solution to Exercise 3"
+    Exact GBM simulation has no discretization bias and preserves positivity. For barriers, it enables the Brownian bridge correction for inter-step barrier crossings, which is not available for Euler paths.
+
+---
+
+**Exercise 4.**
+Compare the payoff variance of a digital call versus a vanilla call at the same strike.
+
+??? success "Solution to Exercise 4"
+    Digital variance: $p(1-p) \le 0.25$ (bounded). Vanilla variance can be much larger for high-volatility stocks. Surprisingly, digital options may have lower payoff variance, but the discontinuous payoff makes variance reduction techniques less effective.

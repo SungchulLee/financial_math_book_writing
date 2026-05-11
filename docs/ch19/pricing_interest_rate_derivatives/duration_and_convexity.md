@@ -43,6 +43,7 @@ D_{\text{Mac}} = \frac{\sum_{i=1}^{n} t_i \cdot PV(c_i)}{\sum_{i=1}^{n} PV(c_i)}
 $$
 
 where:
+
 - $c_i$: cashflow at time $t_i$
 - $y$: continuously compounded yield
 - $P$: bond price
@@ -167,6 +168,7 @@ $$
 ### Convexity Effect
 
 Since $C > 0$ for standard bonds:
+
 - When yields rise, price falls **less** than duration predicts
 - When yields fall, price rises **more** than duration predicts
 
@@ -342,6 +344,7 @@ $$
 ### Applications
 
 Effective duration is essential for:
+
 - Mortgage-backed securities (prepayment optionality)
 - Callable bonds
 - Structured products
@@ -361,6 +364,7 @@ $$
 ### Duration Targeting
 
 Active managers express views via duration:
+
 - **Long duration:** Expect rates to fall
 - **Short duration:** Expect rates to rise
 
@@ -380,6 +384,7 @@ Same duration, different convexity profiles.
 ### Non-Parallel Shifts
 
 Duration assumes parallel curve moves. Real curves:
+
 - Steepen/flatten
 - Butterfly (concave/convex)
 - Twist

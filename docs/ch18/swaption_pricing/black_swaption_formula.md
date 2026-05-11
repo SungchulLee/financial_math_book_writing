@@ -88,7 +88,7 @@ $$
 This is exactly the same expectation that appears in the Black formula for an option on a forward price. Therefore,
 
 $$
-\mathbb{E}^{\mathbb{Q}^A}\!\left[(S_{m,n}(T_m) - K)^+ \mid \mathcal{F}_t\right] = S_{m,n}(t)\Phi(d_1) - K\Phi(d_2)
+\mathbb{E}^{\mathbb{Q}^A}\!\left[(S_{m,n}(T_m) - K)^+ \mid \mathcal{F}_t\right] = S_{m,n}(t)\mathcal{N}(d_1) - K\mathcal{N}(d_2)
 $$
 
 where
@@ -102,7 +102,7 @@ and $\Phi$ is the standard normal cumulative distribution function.
 Substituting back into the annuity-measure pricing formula gives the **Black payer swaption formula**:
 
 $$
-\boxed{V^{\text{pay}}(t) = N A_{m,n}(t)\left[S_{m,n}(t)\Phi(d_1) - K\Phi(d_2)\right]}
+\boxed{V^{\text{pay}}(t) = N A_{m,n}(t)\left[S_{m,n}(t)\mathcal{N}(d_1) - K\mathcal{N}(d_2)\right]}
 $$
 
 ---
@@ -112,7 +112,7 @@ $$
 By the same argument, the receiver swaption value is
 
 $$
-\boxed{V^{\text{rec}}(t) = N A_{m,n}(t)\left[K\Phi(-d_2) - S_{m,n}(t)\Phi(-d_1)\right]}
+\boxed{V^{\text{rec}}(t) = N A_{m,n}(t)\left[K\mathcal{N}(-d_2) - S_{m,n}(t)\mathcal{N}(-d_1)\right]}
 $$
 
 This is the put-version of the same Black formula.
@@ -199,7 +199,7 @@ which is exactly the value of the underlying payer swap. This is the swaption an
 ??? success "Solution to Exercise 2"
 
     $$
-    V^{\text{rec}} = N A_{m,n}(0)[K\Phi(-d_2) - S_{m,n}(0)\Phi(-d_1)]
+    V^{\text{rec}} = N A_{m,n}(0)[K\mathcal{N}(-d_2) - S_{m,n}(0)\mathcal{N}(-d_1)]
     $$
 
     With $\Phi(-0.6708) = 1 - 0.7488 = 0.2512$ and $\Phi(-0.8708) = 1 - 0.8081 = 0.1919$:

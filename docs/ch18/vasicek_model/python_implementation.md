@@ -15,7 +15,7 @@ The implementation is organized as a single class `VasicekModel` with the follow
 | `bond_price_volatility(T, t)` | $\sigma_P = B(\tau)\,\sigma$ | Bond return volatility |
 | `yield_curve(r0, maturities)` | $R(0,T) = -\ln P(0,T)/T$ | Spot rate curve |
 | `simulate_paths(r0, T, ...)` | Euler discretization | Rate path simulation |
-| `bond_option_price(K, T_opt, T_bond, r0)` | ZCB option via $\Phi(d_1), \Phi(d_2)$ | European bond option |
+| `bond_option_price(K, T_opt, T_bond, r0)` | ZCB option via $\mathcal{N}(d_1), \mathcal{N}(d_2)$ | European bond option |
 | `calibrate_to_bond_prices(mats, prices, r0)` | Least-squares optimization | Parameter calibration |
 
 ---
@@ -108,7 +108,7 @@ where `dB = np.random.normal(0, np.sqrt(dt), num_paths)`.
 The `bond_option_price` method implements the ZCB option formula via Jamshidian's approach. The implementation finds the critical rate $r^*$ numerically using Brent's method (`scipy.optimize.brentq`), then evaluates the Black-Scholes-type formula:
 
 $$
-C = P(0,S)\,\Phi(d_1) - K\,P(0,T)\,\Phi(d_2)
+C = P(0,S)\,\mathcal{N}(d_1) - K\,P(0,T)\,\mathcal{N}(d_2)
 $$
 
 where $d_1$ and $d_2$ depend on the bond option volatility $\sigma_P = B(S-T)\,v$ with $v = \sigma\sqrt{(1 - e^{-2\kappa T})/(2\kappa)}$.
@@ -311,7 +311,7 @@ The Python implementation translates each Vasicek formula into a corresponding m
     **Call price:**
 
     $$
-    C = P(0,5)\,\Phi(d_1) - K\,P(0,2)\,\Phi(d_2) = 0.8008 \times \Phi(0.7934) - 0.85 \times 0.9187 \times \Phi(0.7614)
+    C = P(0,5)\,\mathcal{N}(d_1) - K\,P(0,2)\,\mathcal{N}(d_2) = 0.8008 \times \Phi(0.7934) - 0.85 \times 0.9187 \times \Phi(0.7614)
     $$
 
     $$

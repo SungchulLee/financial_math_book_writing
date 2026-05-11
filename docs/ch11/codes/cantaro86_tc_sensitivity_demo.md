@@ -16,6 +16,7 @@ Adapted as a SELF-CONTAINED educational module for the
 
 Topics covered
 --------------
+
 1. Payoff modification under transaction costs (buy-side cost distortion).
 2. Writer vs buyer indifference prices across spot prices.
 3. Computational complexity of the DPZ binomial tree algorithm.
@@ -547,3 +548,36 @@ def demo_all():
 if __name__ == "__main__":
     demo_all()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+With proportional buy cost $\lambda = 0.01$, the call exercise threshold shifts from $K$ to $K/(1+\lambda)$. For $K = 15$, compute the new threshold and explain the economic intuition.
+
+??? success "Solution to Exercise 1"
+    New threshold: $K/(1+\lambda) = 15/1.01 = 14.851$. Exercise occurs when $(1+\lambda)S > K$, i.e., $S > K/(1+\lambda) = 14.851$. Intuition: the buyer must pay $(1+\lambda)S$ to acquire the stock (including transaction cost), so exercise is only profitable when this cost exceeds $K$. The threshold shifts left, making exercise slightly easier.
+
+---
+
+**Exercise 2.**
+Explain why the writer price exceeds the BS price while the buyer price is below it when transaction costs are present.
+
+??? success "Solution to Exercise 2"
+    The writer demands compensation for hedging costs (which reduce their expected utility), so they charge more than BS. The buyer accounts for imperfect replication when valuing the option, so they pay less than BS. The BS price assumes costless continuous hedging; with costs, perfect replication is impossible, creating a bid-ask spread around the BS price.
+
+---
+
+**Exercise 3.**
+The drift $\mu$ matters for option pricing under transaction costs, unlike in Black-Scholes. Explain why.
+
+??? success "Solution to Exercise 3"
+    In BS, continuous hedging eliminates all drift dependence. With transaction costs, hedging is discrete and imperfect, so the physical drift $\mu$ affects the expected P&L of the hedging strategy. Higher $\mu$ means the stock is more likely to appreciate, affecting the writer and buyer indifference prices differently through their utility-based optimization.
+
+---
+
+**Exercise 4.**
+Higher risk aversion $\gamma$ widens the bid-ask spread. Explain this using the exponential utility $U(W) = -e^{-\gamma W}$.
+
+??? success "Solution to Exercise 4"
+    Higher $\gamma$ means greater curvature of the utility function, so the agent is more sensitive to wealth fluctuations from imperfect hedging. The writer demands a higher price to compensate for the utility cost of residual risk. The buyer offers less because the potential gains are worth less in utility terms. Both effects widen the spread. As $\gamma \to 0$ (risk neutrality), both prices converge to the BS price.

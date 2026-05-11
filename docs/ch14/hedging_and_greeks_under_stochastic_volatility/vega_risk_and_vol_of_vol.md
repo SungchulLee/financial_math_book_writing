@@ -17,6 +17,7 @@ $$
 
 
 In stochastic volatility models, volatility itself is random, so vega represents sensitivity to:
+
 - the current variance level,
 - the volatility state variable,
 - the implied volatility surface.
@@ -31,6 +32,7 @@ Thus, vega is model- and state-dependent.
 The parameter (or process) controlling volatility fluctuations—often denoted $\xi$—introduces **second-order volatility risk**.
 
 Consequences:
+
 - option prices depend on uncertainty of future volatility,
 - convexity in volatility matters,
 - products sensitive to smile curvature are especially exposed.
@@ -43,6 +45,7 @@ This risk cannot be hedged by delta or vega alone.
 
 
 Common higher-order sensitivities include:
+
 - **Volga (vomma):** sensitivity of vega to volatility,
 - **Vanna:** cross-sensitivity between spot and volatility,
 - sensitivities to variance process parameters.

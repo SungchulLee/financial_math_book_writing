@@ -159,3 +159,36 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+To generate two correlated Brownian motions $W_1, W_2$ with $\text{Corr}(W_1, W_2) = \rho$, write the construction using independent normals $Z_1, Z_2$.
+
+??? success "Solution to Exercise 1"
+    $W_1 = Z_1$ and $W_2 = \rho Z_1 + \sqrt{1 - \rho^2} Z_2$. Then $\mathbb{E}[W_2] = 0$, $\text{Var}(W_2) = \rho^2 + 1 - \rho^2 = 1$, and $\text{Cov}(W_1, W_2) = \rho$. The increments scale: $\Delta W_1 = \sqrt{\Delta t} Z_1$, $\Delta W_2 = \sqrt{\Delta t}(\rho Z_1 + \sqrt{1-\rho^2}Z_2)$.
+
+---
+
+**Exercise 2.**
+For $\rho = -0.9$, describe qualitatively how the two Brownian motion paths relate visually.
+
+??? success "Solution to Exercise 2"
+    With $\rho = -0.9$, the paths move in nearly opposite directions: when $W_1$ increases, $W_2$ almost always decreases, and vice versa. The paths appear as "mirror images" with some noise. This models the leverage effect: stock price up ($W_1$ up) correlates with volatility down ($W_2$ down).
+
+---
+
+**Exercise 3.**
+Verify that the Cholesky decomposition of $\Sigma = \begin{pmatrix}1 & \rho\\\rho & 1\end{pmatrix}$ gives $L = \begin{pmatrix}1 & 0\\\rho & \sqrt{1-\rho^2}\end{pmatrix}$, and that $LL^T = \Sigma$.
+
+??? success "Solution to Exercise 3"
+    $LL^T = \begin{pmatrix}1 & 0\\\rho & \sqrt{1-\rho^2}\end{pmatrix}\begin{pmatrix}1 & \rho\\0 & \sqrt{1-\rho^2}\end{pmatrix} = \begin{pmatrix}1 & \rho\\\rho & \rho^2 + 1 - \rho^2\end{pmatrix} = \begin{pmatrix}1 & \rho\\\rho & 1\end{pmatrix} = \Sigma$. This confirms $L$ is the lower-triangular Cholesky factor, and $Y = LZ$ produces correlated normals from independent $Z$.
+
+---
+
+**Exercise 4.**
+For a 3-factor model with correlation matrix $\Sigma_{3\times3}$, explain how the Cholesky decomposition generalizes.
+
+??? success "Solution to Exercise 4"
+    For $\Sigma \in \mathbb{R}^{3\times3}$ (symmetric positive definite), the Cholesky factorization gives $\Sigma = LL^T$ where $L$ is lower triangular. Given independent $Z = (Z_1, Z_2, Z_3)^T$, the correlated vector is $Y = LZ$. The algorithm computes $L_{ij} = (\Sigma_{ij} - \sum_{k=1}^{j-1}L_{ik}L_{jk})/L_{jj}$ with $L_{jj} = \sqrt{\Sigma_{jj} - \sum_{k=1}^{j-1}L_{jk}^2}$. This generalizes to any dimension and is the standard method for generating correlated multi-factor models.

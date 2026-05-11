@@ -816,3 +816,59 @@ if __name__ == "__main__":
 
     print("\nDone.  Plots saved to cantaro86_merton_pricer_demo.png")
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+The Merton model prices options using five methods. List them and explain which exploits the characteristic function.
+
+??? success "Solution to Exercise 1"
+
+    1. **Closed-form series**: $C = \sum_{n=0}^{\infty} \frac{e^{-\lambda T}(\lambda T)^n}{n!} C_{\text{BS}}(\sigma_n, r_n)$ -- weighted sum of BS prices.
+    2. **Fourier inversion** (Gil-Pelaez): uses the characteristic function $arphi(u)$ to compute probabilities $Q_1, Q_2$.
+    3. **FFT pricing** (Lewis formula): evaluates $arphi$ on a frequency grid and uses FFT for the inverse transform.
+    4. **Monte Carlo**: simulates Poisson jumps plus diffusion.
+    5. **PIDE solver**: implicit FD for diffusion plus convolution for jumps.
+
+    Methods 2 and 3 exploit the characteristic function, which has a simple closed form for Merton: $arphi(u) = xp(iu\mu_X - \frac{1}{2}u^2\sigma^2 + \lambda(e^{iu\mu_J - u^2\sigma_J^2/2} - 1))$.
+
+---
+
+**Exercise 2.**
+Write the Merton closed-form series. Why does it converge, and how many terms are typically needed?
+
+??? success "Solution to Exercise 2"
+    $$
+    C = \sum_{n=0}^{\infty} \frac{e^{-\lambda^{\prime} T}(\lambda^{\prime} T)^n}{n!}\,C_{\text{BS}}(S_0, K, T, r_n, \sigma_n)
+    $$
+
+    where $\lambda^{\prime} = \lambda(1 + ar{k})$, $r_n = r - \lambdaar{k} + n\ln(1+ar{k})/T$, $\sigma_n^2 = \sigma^2 + n\sigma_J^2/T$.
+
+    The Poisson weights $e^{-\lambda^{\prime} T}(\lambda^{\prime} T)^n/n!$ decay factorially, ensuring rapid convergence. For typical parameters ($\lambda T \le 10$), 20--30 terms give machine precision.
+
+---
+
+**Exercise 3.**
+The PIDE solver handles jumps via convolution. Explain the integral term in the Merton PIDE and how it is discretized.
+
+??? success "Solution to Exercise 3"
+    The Merton PIDE is
+
+    $$
+    V_t + \frac{1}{2}\sigma^2 S^2 V_{SS} + (r - \lambdaar{k})SV_S - rV + \lambda\int_{-\infty}^{\infty}[V(Se^y) - V(S)]k(y)\,dy = 0
+    $$
+
+    where $k(y) = \frac{1}{\sigma_J\sqrt{2\pi}}xp(-(y-\mu_J)^2/(2\sigma_J^2))$ is the jump size density.
+
+    Discretization: the integral becomes a sum $\sum_j [V(S_i e^{y_j}) - V(S_i)] k(y_j)\Delta y$, which is a discrete convolution. This can be computed efficiently using FFT: $O(N\log N)$ instead of $O(N^2)$.
+
+---
+
+**Exercise 4.**
+The implied volatility smile from the Merton model is computed via the Lewis integral. Explain why jump-diffusion models produce a volatility smile.
+
+??? success "Solution to Exercise 4"
+    Jumps add fat tails to the return distribution: the probability of extreme moves is higher than under pure GBM. The BS model, when calibrated to match these tail probabilities, requires higher implied volatilities for OTM options (both puts and calls), producing the smile shape.
+
+    Specifically: OTM puts need higher $\sigma_{\text{imp}}$ to match the higher probability of large downward moves (negative jumps). OTM calls need higher $\sigma_{\text{imp}}$ for large upward moves. ATM options are less affected because their prices depend mainly on the diffusion component. The resulting $\sigma_{\text{imp}}(K)$ curve is U-shaped (smile) or downward-sloping (skew) depending on the jump size distribution.

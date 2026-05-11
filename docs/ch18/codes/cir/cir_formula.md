@@ -151,3 +151,79 @@ class CIRBondPricer:
 if __name__ == "__main__":
     pass
 ```
+
+## Exercises
+
+**Exercise 1.**
+Using the CIR analytical mean formula, compute $\mathbb{E}[r(5)]$ given $r_0 = 0.03$, $\theta = 0.06$, and $\kappa = 0.2$.
+
+??? success "Solution to Exercise 1"
+    The analytical mean of the CIR process at time $t$ is
+
+    $$
+    \mathbb{E}[r(t)] = \theta + (r_0 - \theta)\,e^{-\kappa t}.
+    $$
+
+    Substituting the given values with $t = 5$:
+
+    $$
+    \mathbb{E}[r(5)] = 0.06 + (0.03 - 0.06)\,e^{-0.2 \times 5} = 0.06 - 0.03\,e^{-1}.
+    $$
+
+    Since $e^{-1} \approx 0.3679$:
+
+    $$
+    \mathbb{E}[r(5)] \approx 0.06 - 0.03 \times 0.3679 = 0.06 - 0.01104 = 0.04896.
+    $$
+
+---
+
+**Exercise 2.**
+Derive the formula for $B(t,T)$ in the CIR zero-coupon bond pricing formula $P(r,t,T) = A(t,T)\,e^{-B(t,T)\,r}$. Write the expression in terms of $\kappa$, $\sigma$, and $\tau = T - t$.
+
+??? success "Solution to Exercise 2"
+    Define the auxiliary quantity $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$. The $B$ coefficient for the CIR bond pricing formula is
+
+    $$
+    B(\tau) = \frac{2\bigl(e^{\gamma \tau} - 1\bigr)}{(\gamma + \kappa)(e^{\gamma \tau} - 1) + 2\gamma},
+    $$
+
+    where $\tau = T - t$ is the time to maturity. As $\tau \to 0$, $B(\tau) \to 0$ and $P \to 1$, consistent with a maturing bond. As $\tau \to \infty$, $B(\tau) \to 2 / (\gamma + \kappa)$, reflecting the long-term sensitivity of bond prices to the short rate.
+
+---
+
+**Exercise 3.**
+Consider CIR parameters $r_0 = 0.04$, $\theta = 0.05$, $\kappa = 0.15$, $\sigma = 0.04$. Compute the yield to maturity for a 10-year zero-coupon bond, given $P(r_0, 0, 10) = 0.6703$.
+
+??? success "Solution to Exercise 3"
+    The yield to maturity is defined as
+
+    $$
+    y(0, T) = -\frac{\ln P(r_0, 0, T)}{T}.
+    $$
+
+    Substituting $P = 0.6703$ and $T = 10$:
+
+    $$
+    y(0, 10) = -\frac{\ln(0.6703)}{10} = -\frac{-0.3996}{10} = 0.03996 \approx 4.00\%.
+    $$
+
+---
+
+**Exercise 4.**
+Explain how the forward rate $f(0, t_1, t_2)$ is computed from two CIR bond prices $P(r_0, 0, t_1)$ and $P(r_0, 0, t_2)$. If $P(r_0, 0, 2) = 0.9200$ and $P(r_0, 0, 5) = 0.8100$, compute $f(0, 2, 5)$.
+
+??? success "Solution to Exercise 4"
+    The forward rate between times $t_1$ and $t_2$ is
+
+    $$
+    f(0, t_1, t_2) = \frac{\ln P(r_0, 0, t_1) - \ln P(r_0, 0, t_2)}{t_2 - t_1}.
+    $$
+
+    Substituting the given values:
+
+    $$
+    f(0, 2, 5) = \frac{\ln(0.9200) - \ln(0.8100)}{5 - 2} = \frac{-0.08338 - (-0.21072)}{3} = \frac{0.12734}{3} \approx 0.04245.
+    $$
+
+    The forward rate is approximately $4.24\%$.

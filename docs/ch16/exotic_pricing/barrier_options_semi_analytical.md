@@ -7,6 +7,7 @@ A barrier option is a path-dependent derivative whose payoff depends on whether 
 Despite this, the affine structure of the Heston model still permits **semi-analytical** methods. The characteristic function can be combined with Fourier inversion to price continuously monitored barrier options, while **Monte Carlo** methods handle the general case including discrete monitoring. This section develops both approaches and compares their accuracy and computational cost.
 
 !!! info "Prerequisites"
+
     - [Closed-Form Characteristic Function](../heston_cf/closed_form_characteristic_function.md) (the Heston CF)
     - [Semi-Closed-Form Fourier Inversion](../european_pricing/semi_closed_form_fourier_inversion.md) (Gil-Pelaez framework)
     - [Quadratic-Exponential Scheme](../monte_carlo/quadratic_exponential_scheme.md) (MC simulation under Heston)
@@ -234,6 +235,7 @@ Standard variance reduction techniques are particularly valuable for barrier opt
 | MC (2000 steps, $10^6$ paths, uncorrected) | \$5.98 | \$0.02 | 8.3s |
 
 !!! example "Observations"
+
     1. The semi-analytical and COS methods agree to within \$0.01, confirming the accuracy of both Fourier approaches.
     2. Uncorrected MC with 500 steps overestimates the knock-out price by \$0.32 (5.5%) due to missed barrier crossings between monitoring dates.
     3. The Broadie--Glasserman--Kou continuity correction reduces the MC bias to \$0.02, comparable to the statistical error.
@@ -256,6 +258,7 @@ Compared to a Black--Scholes model with the same ATM volatility ($\sigma = 0.20$
 | COS for barriers | Restrict cosine expansion to $[b, c]$ domain with absorbing boundary |
 
 !!! abstract "Key Takeaways"
+
     1. **No closed form**: Unlike Black--Scholes, barrier options under Heston have no closed-form solution due to the failure of the reflection principle.
 
     2. **Semi-analytical via Fourier**: The affine structure of Heston allows pricing through the characteristic function of the killed (survived) process, computed via Fourier inversion or the COS method.

@@ -152,7 +152,7 @@ Near expiry, theta is large and changes rapidly. This creates challenges:
 At $t = 0$ (long before expiry), from the Black-Scholes formula:
 
 $$
-\Theta_{\text{call}} = -\frac{\sigma S \phi(d_1)}{2\sqrt{T}} - rKe^{-rT}\Phi(d_2)
+\Theta_{\text{call}} = -\frac{\sigma S \phi(d_1)}{2\sqrt{T}} - rKe^{-rT}\mathcal{N}(d_2)
 $$
 
 where $\phi$ is the standard normal density and $\Phi$ is the cumulative normal distribution. Both terms are negative, so $\Theta_{\text{call}} < 0$.
@@ -160,7 +160,7 @@ where $\phi$ is the standard normal density and $\Phi$ is the cumulative normal 
 ### European Put
 
 $$
-\Theta_{\text{put}} = -\frac{\sigma S \phi(d_1)}{2\sqrt{T}} + rKe^{-rT}\Phi(-d_2)
+\Theta_{\text{put}} = -\frac{\sigma S \phi(d_1)}{2\sqrt{T}} + rKe^{-rT}\mathcal{N}(-d_2)
 $$
 
 For deep in-the-money puts, the second term can dominate, making $\Theta_{\text{put}} > 0$: a deep ITM put can actually gain value with time passage because the present value of the exercise proceeds increases.
@@ -381,20 +381,20 @@ The PDE-based approach is generally superior because it avoids time-differencing
 
 ---
 
-**Exercise 5.** A deep in-the-money European put can have positive theta ($\Theta > 0$). Using the put theta formula $\Theta_{\text{put}} = -\frac{\sigma S\phi(d_1)}{2\sqrt{T}} + rKe^{-rT}\Phi(-d_2)$, explain the economic intuition: why does a deep ITM put gain value as time passes?
+**Exercise 5.** A deep in-the-money European put can have positive theta ($\Theta > 0$). Using the put theta formula $\Theta_{\text{put}} = -\frac{\sigma S\phi(d_1)}{2\sqrt{T}} + rKe^{-rT}\mathcal{N}(-d_2)$, explain the economic intuition: why does a deep ITM put gain value as time passes?
 
 ??? success "Solution to Exercise 5"
     The put theta formula is:
 
     $$
-    \Theta_{\text{put}} = -\frac{\sigma S\phi(d_1)}{2\sqrt{T}} + rKe^{-rT}\Phi(-d_2)
+    \Theta_{\text{put}} = -\frac{\sigma S\phi(d_1)}{2\sqrt{T}} + rKe^{-rT}\mathcal{N}(-d_2)
     $$
 
     The first term, $-\frac{\sigma S\phi(d_1)}{2\sqrt{T}}$, is always negative and represents the "time value decay" common to all options: as time passes, the optionality (the value of being able to choose whether to exercise) decreases.
 
-    The second term, $rKe^{-rT}\Phi(-d_2)$, is always positive for a put. It represents the **interest rate benefit**: a put holder will receive $K$ at exercise. The present value of this payment, $Ke^{-rT}$, increases as $T$ decreases (i.e., as time passes), because the discounting period shrinks.
+    The second term, $rKe^{-rT}\mathcal{N}(-d_2)$, is always positive for a put. It represents the **interest rate benefit**: a put holder will receive $K$ at exercise. The present value of this payment, $Ke^{-rT}$, increases as $T$ decreases (i.e., as time passes), because the discounting period shrinks.
 
-    For a deep in-the-money put ($S \ll K$), exercise is nearly certain, so $\Phi(-d_2) \approx 1$ and the positive term becomes $rKe^{-rT}$, which can be large. Meanwhile, $\phi(d_1)$ is small (since $d_1 \ll 0$), making the negative term negligible. The net effect is $\Theta_{\text{put}} > 0$.
+    For a deep in-the-money put ($S \ll K$), exercise is nearly certain, so $\mathcal{N}(-d_2) \approx 1$ and the positive term becomes $rKe^{-rT}$, which can be large. Meanwhile, $\phi(d_1)$ is small (since $d_1 \ll 0$), making the negative term negligible. The net effect is $\Theta_{\text{put}} > 0$.
 
     **Economic intuition:** A deep ITM put is essentially a forward contract to sell the stock at price $K$. The present value of receiving $K$ at expiry is $Ke^{-rT}$, which grows as $T$ shrinks. The holder benefits from the passage of time because the guaranteed payout of $K$ is closer and thus worth more in present value terms. The optionality (ability to not exercise) is nearly worthless for a deep ITM option, so the time-decay effect is negligible.
 

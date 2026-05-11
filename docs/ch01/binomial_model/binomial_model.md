@@ -1,5 +1,7 @@
 # Binomial Asset Pricing Model
 
+> **All pricing methods in this chapter — [replication](replicating_portfolio.md), [delta hedging](delta_hedging.md), and [risk-neutral expectation](risk_neutral_measure.md) — are equivalent consequences of the no-arbitrage principle.**
+
 ## Introduction
 
 The **binomial asset pricing model**, developed by **Cox, Ross, and Rubinstein (1979)**, provides a discrete-time framework for modeling stock price evolution and pricing derivative securities. At each time step, the stock price can move to one of two possible values—**up** or **down**—by predetermined factors.
@@ -24,8 +26,9 @@ More fundamentally, the binomial model reveals the structure underlying modern a
 We proceed deliberately in this discrete framework to understand arbitrage-free pricing *before* passing to continuous time.
 
 !!! info "Prerequisites"
+
     - Basic probability (expectation, conditional expectation)
-    - [Martingales](../../ch02/filtration_and_martingales/martingales.md) (discrete-time definition)
+    - [Martingales](../../ch02/filtration_and_martingale/martingale.md) (discrete-time definition)
     - Familiarity with present value and compounding
 
 !!! abstract "Learning Objectives"
@@ -134,6 +137,7 @@ $$
 </figure>
 
 !!! example "Common Examples"
+
     - **European call option**: $H = (S_{\Delta t} - K)^+ = \max(S_{\Delta t} - K, 0)$
     - **European put option**: $H = (K - S_{\Delta t})^+$
     - **Digital call option**: $H = \mathbf{1}_{\{S_{\Delta t} > K\}}$
@@ -345,7 +349,7 @@ $$
     \mathbb{E}^{\mathbb{Q}}[\tilde{S}_{\Delta t} \mid \mathcal{F}_0] = \tilde{S}_0
     $$
     
-    This is the discrete-time analog of the continuous-time result. See [Martingales](../../ch02/filtration_and_martingales/martingales.md) for the general definition.
+    This is the discrete-time analog of the continuous-time result. See [Martingales](../../ch02/filtration_and_martingale/martingale.md) for the general definition.
 
 This martingale property is the key to pricing contingent claims: if discounted asset prices are martingales under $\mathbb{Q}$, then by no-arbitrage, discounted derivative prices must also be martingales. This leads to the **risk-neutral pricing formula**:
 
@@ -367,6 +371,7 @@ The derivation of this formula via replication is the subject of the [next secti
 | Discounted price | $\tilde{S}_t = e^{-rt} S_t$ is a $\mathbb{Q}$-martingale |
 
 !!! abstract "Key Takeaways"
+
     1. The **no-arbitrage condition** $d < e^{r \Delta t} < u$ ensures the risk-free return lies between the worst and best stock returns.
     
     2. No-arbitrage is equivalent to the existence of a **risk-neutral probability** $q \in (0,1)$.
@@ -386,10 +391,10 @@ This introductory section established the one-period framework. The subsequent s
 | [Replicating Portfolio](replicating_portfolio.md) | Replication with stock-bond and state prices |
 | [Delta Hedging](delta_hedging.md) | Pricing via risk elimination |
 | [Risk-Neutral Measure](risk_neutral_measure.md) | The measure $\mathbb{Q}$ and expectation pricing |
-| [Multi-Period Model](multi_period_binomial_model.md) | Trees, backward induction, dynamic hedging |
-| [American Options on Trees](american_options_on_trees.md) | Early exercise and optimal stopping |
-| [Trinomial Model](trinomial_model.md) | Incomplete markets and non-unique pricing |
-| [Binomial to Black–Scholes](binomial_to_black_scholes_limit.md) | The continuous-time limit |
+| [Multi-Period Model](../multi_period_model/multi_period_binomial_model.md) | Trees, backward induction, dynamic hedging |
+| [American Options on Trees](../multi_period_model/american_options_on_trees.md) | Early exercise and optimal stopping |
+| [Trinomial Model](../multi_period_model/trinomial_model.md) | Incomplete markets and non-unique pricing |
+| [Binomial to Black–Scholes](../binomial_to_black_scholes/binomial_to_black_scholes_limit.md) | The continuous-time limit |
 
 ---
 

@@ -3,6 +3,7 @@
 The three Fourier pricing methods developed in this chapter---COS, Carr--Madan FFT, and Lewis integration---all exploit the characteristic function to compute European option prices, but they differ fundamentally in their mathematical approach, computational cost, accuracy profile, and ease of implementation. Choosing the right method depends on whether the goal is pricing a single option, pricing across a strike grid, calibrating a model, computing Greeks, or recovering the risk-neutral density. This section provides a systematic comparison across all relevant dimensions, supported by numerical benchmarks.
 
 !!! info "Prerequisites"
+
     - [COS Pricing Formula](../cos_method/cos_pricing_formula.md)
     - [Carr--Madan FFT Method](carr_madan_fft.md)
     - [Lewis Integration Formula](lewis_integration_formula.md)

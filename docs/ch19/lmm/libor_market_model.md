@@ -21,6 +21,7 @@ The LMM takes a different approach:
 > **Model directly what the market quotes: forward LIBOR rates.**
 
 This provides:
+
 - Natural calibration to caplets (each forward rate has its own volatility)
 - Direct connection to Black's formula
 - Market-consistent pricing of vanilla derivatives
@@ -76,6 +77,7 @@ $$
 $$
 
 where:
+
 - $\sigma_i(t)$ is the **instantaneous volatility** of forward rate $L_i$
 - $W_i^{T_n}$ are correlated Brownian motions under $\mathbb{Q}^{T_n}$
 
@@ -265,6 +267,7 @@ Since each caplet depends on a single forward rate:
 ### Calibration to Swaptions
 
 Joint calibration to caps and swaptions determines:
+
 - Individual forward rate volatilities $\sigma_i$
 - Correlation structure $\rho_{ij}$
 
@@ -321,6 +324,7 @@ Most flexible for calibration but introduces many parameters.
 ### Volatility Term Structure
 
 Typical features observed in markets:
+
 - **Humped shape:** Volatility peaks at intermediate maturities (2-5 years)
 - **Decay:** Long-dated rates have lower volatility
 - **Near-expiry effect:** Volatility may increase as reset approaches
@@ -376,6 +380,7 @@ dV(t) = \kappa(\theta - V(t)) \, dt + \xi V(t)^\gamma \, dW_V(t)
 $$
 
 This captures:
+
 - Volatility smile/skew
 - Time-varying implied volatility
 
@@ -404,6 +409,7 @@ The shift parameter $s$ allows negative rates and generates skew.
 ### LIBOR Discontinuation
 
 LIBOR (London Interbank Offered Rate) has been largely discontinued:
+
 - USD LIBOR: Ceased June 2023 (most tenors)
 - Other currencies: Earlier transitions
 
@@ -423,6 +429,7 @@ where $r_k$ are daily compounded rates.
 - **SOFR:** Backward-looking, known at period end
 
 This changes:
+
 - Timing of rate fixing
 - Convexity adjustments
 - Hedging strategies
@@ -434,11 +441,13 @@ This changes:
 ### Dimensionality
 
 For a 30-year tenor with quarterly resets:
+
 - 120 forward rates
 - 120 volatilities
 - 7,140 correlations (120 × 119 / 2)
 
 **Dimension reduction** is essential:
+
 - Factor models (2-3 principal components)
 - Parametric correlation
 - Time-homogeneous volatility

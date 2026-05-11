@@ -9,6 +9,7 @@ The standard Heston model, built on the CIR process (a Markovian diffusion with 
 This section provides an overview of the rough Heston framework, its mathematical foundations, key results, and implications for option pricing and calibration.
 
 !!! info "Prerequisites"
+
     - [Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md) (standard Heston)
     - [Riccati ODE System](../heston_cf/riccati_ode_system.md) (standard Riccati)
     - [Affine Structure and Riccati](../model_definition/affine_structure_and_riccati.md) (affine framework)
@@ -240,6 +241,7 @@ where $N_u$ is the number of quadrature points for Fourier inversion and $N$ is 
 (Skew measured as $\partial\sigma_{\text{imp}} / \partial\ln K$ at ATM, in percentage per unit log-moneyness.)
 
 !!! example "Observations"
+
     1. The rough Heston ATM skew at 1 week ($-8.5$) is **three times steeper** than standard Heston ($-2.8$), matching the empirically observed steep short-maturity equity skew.
     2. At 1--2 year maturities, the two models produce similar skews ($-2.3$ vs $-1.8$), as the long-term behavior is governed by mean reversion in both cases.
     3. The rough Heston skew increases rapidly as $T \to 0$, consistent with the $T^{H-1/2}$ power law. Standard Heston skew is approximately constant for short maturities.
@@ -257,6 +259,7 @@ where $N_u$ is the number of quadrature points for Fourier inversion and $N$ is 
 | ATM skew scaling | $T^{H-1/2}$ (diverges for $H < 1/2$) |
 
 !!! abstract "Key Takeaways"
+
     1. **Empirical roughness**: Realized volatility has Hurst parameter $H \approx 0.1$, ruling out Markovian diffusion models like standard Heston ($H = 0.5$).
 
     2. **Fractional kernel**: The rough Heston model replaces the CIR SDE with a Volterra integral driven by the singular kernel $K_H(t) = t^{H-1/2}/\Gamma(H+1/2)$.

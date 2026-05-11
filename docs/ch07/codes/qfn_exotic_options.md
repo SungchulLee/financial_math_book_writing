@@ -244,3 +244,36 @@ if __name__ == "__main__":
     print(f"\nThe price of the Fixed Strike Asian Call option by Monte Carlo simulation is: {mc_asian_fixed:.3f}")
     print(f"  standard error: {mc_asian_fixed_std_err:.3f}")
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Rank barrier, lookback, and Asian options by their sensitivity to monitoring frequency.
+
+??? success "Solution to Exercise 1"
+    Barrier options are most sensitive (crossings can be missed between dates). Lookback options are moderately sensitive (path extremum can be missed). Asian options are least sensitive (averages are smooth). Barrier options need 252+ daily steps; Asian options often suffice with 50.
+
+---
+
+**Exercise 2.**
+Derive the in-out parity for barrier options.
+
+??? success "Solution to Exercise 2"
+    Long DI + long DO always pays the vanilla payoff: if the barrier is hit, DI activates; if not, DO survives. By no-arbitrage: $C_{\text{DI}} + C_{\text{DO}} = C_{\text{vanilla}}$.
+
+---
+
+**Exercise 3.**
+Why is a lookback put always in the money?
+
+??? success "Solution to Exercise 3"
+    Payoff $= \max_t S_t - S_T \ge 0$ because the max exceeds the terminal value almost surely. The stock almost surely fluctuates and does not end at its all-time high.
+
+---
+
+**Exercise 4.**
+How does the reflection principle connect to barrier option pricing?
+
+??? success "Solution to Exercise 4"
+    Paths crossing barrier $H$ are mapped to reflected paths starting at $H^2/S_0$ via the reflection principle. The barrier price equals the vanilla price minus the reflected-path contribution, yielding exact closed-form formulas.

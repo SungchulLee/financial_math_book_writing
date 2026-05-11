@@ -20,11 +20,13 @@ $$
 
 
 Under this assumption:
+
 - The smile shape remains constant
 - Only maturity decreases as time passes
 - No dependence on spot movements or volatility shocks
 
 **Implications:**
+
 - Delta hedging uses Black-Scholes delta
 - Vega hedging is straightforward
 - P&L attribution is simple
@@ -35,6 +37,7 @@ Under this assumption:
 
 
 A **dynamic smile** evolves with:
+
 - **Spot movements:** Smile shifts, steepens, or flattens when spot moves
 - **Volatility regime shifts:** Overall level changes with market conditions
 - **Term structure evolution:** Different maturities respond differently
@@ -143,6 +146,7 @@ $$
 
 
 The "smile effects" capture:
+
 - Changes in skew
 - Changes in curvature
 - Non-parallel volatility moves
@@ -208,6 +212,7 @@ $$
 
 
 **Key property:** The local vol model produces **sticky strike** behavior:
+
 - IV at each strike is fixed
 - When spot moves, the option "visits" different parts of the local vol surface
 - No smile-related P&L at fixed strike
@@ -245,6 +250,7 @@ $$
 The spot-vol correlation $\rho$ generates skew, and vol-of-vol $\xi$ affects its magnitude.
 
 **Smile dynamics:**
+
 - When $v_t$ increases, the entire smile shifts up
 - When $S_t$ decreases (with $\rho < 0$), $v_t$ tends to increase, steepening the skew
 - This creates **leverage-like dynamics**
@@ -264,11 +270,13 @@ $$
 
 
 **Backbone parameter $\beta$:**
+
 - $\beta = 1$: Lognormal dynamics, sticky strike behavior
 - $\beta = 0$: Normal dynamics, sticky delta behavior
 - $0 < \beta < 1$: Intermediate
 
 **SABR smile dynamics:**
+
 - The parameter $\alpha_t$ (ATM vol) evolves stochastically
 - Skew is controlled by $\rho$ and $\nu$
 - The model can match both smile shape and basic dynamics
@@ -291,6 +299,7 @@ $$
 
 
 **Key insight:** By specifying how forward variances evolve, Bergomi's model can match:
+
 - Realistic smile dynamics
 - Forward smile behavior
 - Term structure of skew
@@ -388,6 +397,7 @@ $$
 
 
 A portfolio of exotic options has exposures to:
+
 - Spot ($\Delta$)
 - Gamma ($\Gamma$)
 - ATM volatility ($\mathcal{V}_{\text{ATM}}$)
@@ -447,6 +457,7 @@ $$
 **Portfolio:** Long 1-year ATM call, short 6-month 25-delta put
 
 **Market data:**
+
 - $S_0 = 100$, $r = 5\%$, $q = 0$
 - ATM vol (1Y): 22%
 - ATM vol (6M): 20%
@@ -498,11 +509,13 @@ $$
 **Objective:** Neutralize delta, ATM vega, and skew exposure.
 
 **Instruments:**
+
 - Underlying (hedge delta)
 - 6M ATM straddle (hedge ATM vega)
 - 6M 25D risk reversal (hedge skew)
 
 **Solution:** (simplified)
+
 - Short 72 shares of underlying
 - Short some ATM straddles to reduce ATM vega
 - Long 25D risk reversal to offset short 25D put exposure
@@ -514,11 +527,13 @@ $$
 
 
 A model is **dynamically consistent** if:
+
 - Calibrated to today's surface
 - Evolved forward under the model
 - The resulting surface matches future recalibration
 
 **Violation:** Most models exhibit dynamic inconsistency:
+
 - Local vol: Forward smile flattens unrealistically
 - Stochastic vol: Better but not perfect
 - Market-implied: Not a model, just interpolation
@@ -527,11 +542,13 @@ A model is **dynamically consistent** if:
 
 
 **If the model is dynamically inconsistent:**
+
 - Today's hedge ratios may be wrong for tomorrow's market
 - Recalibration introduces P&L noise
 - Hedging effectiveness degrades over time
 
 **Mitigation:**
+
 - Use models with better dynamic properties
 - Hedge with robust instruments (variance swaps)
 - Frequent recalibration and hedge adjustment
@@ -559,17 +576,20 @@ Comparing model-implied forward smiles to historical smile behavior is a key mod
 
 
 **Equity indices (SPX, EURO STOXX):**
+
 - Negative spot-vol correlation: $\rho \approx -0.7$
 - Skew steepens after down moves
 - Vol spikes decay within days to weeks
 - Term structure inverts during stress
 
 **FX markets:**
+
 - Spot-vol correlation varies by pair
 - EUR/USD: near zero correlation
 - EM pairs: often positive correlation
 
 **Individual stocks:**
+
 - More idiosyncratic behavior
 - Earnings-driven dynamics
 - Jump risk dominates

@@ -35,6 +35,7 @@ $$
 
 
 Under the risk-neutral measure $\mathbb{Q}$:
+
 - The relative price $S_t/B_t = e^{-rt}S_t$ is a martingale
 - This gives the standard BS dynamics: $dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$
 
@@ -306,6 +307,7 @@ This is the **Black-Scholes formula**, derived via stock numeraire.
 Consider an option on foreign exchange rate $X_t$ (domestic per foreign).
 
 **Two numeraires**:
+
 - Domestic money market: $B_t^d = e^{r_d t}$
 - Foreign money market: $B_t^f = e^{r_f t}$
 
@@ -389,11 +391,13 @@ This is the **Garman-Kohlhagen formula** for FX options.
 In the context of solving the Black-Scholes PDE, change of numeraire is:
 
 **Not a PDE technique** (like Fourier or separation of variables), but rather a **probabilistic reinterpretation** that:
+
 - Avoids solving PDEs entirely
 - Uses martingale representation instead
 - Provides intuition for why certain probabilities appear in formulas
 
 **Relation to Feynman-Kac**: Both express PDE solutions as expectations, but:
+
 - Feynman-Kac uses the **original measure** and discounting
 - Numeraire change uses **different measures** without explicit discounting
 

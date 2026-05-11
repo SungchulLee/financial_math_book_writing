@@ -9,6 +9,7 @@
 
 
 Overfitting occurs when a model:
+
 - fits noise rather than signal,
 - performs well in-sample,
 - fails out-of-sample.
@@ -21,6 +22,7 @@ Limited data and heavy noise exacerbate the problem.
 
 
 Financial research often involves:
+
 - testing many strategies,
 - selecting the best-performing ones,
 - ignoring failed experiments.
@@ -33,6 +35,7 @@ This leads to false discoveries.
 
 
 False discoveries result in:
+
 - spurious trading strategies,
 - inflated backtest performance,
 - real-world losses when deployed.
@@ -45,6 +48,7 @@ They undermine confidence in models.
 
 
 Common defenses include:
+
 - out-of-sample validation,
 - cross-validation adapted to time series,
 - statistical corrections for multiple testing,

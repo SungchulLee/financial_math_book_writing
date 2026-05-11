@@ -9,10 +9,12 @@ Stochastic volatility parameters influence the **entire implied volatility surfa
 
 
 Single-maturity calibration can:
+
 - fit the smile locally,
 - but produce inconsistent parameters across maturities.
 
 Joint calibration enforces:
+
 - parameter consistency,
 - coherent term-structure behavior,
 - improved identifiability.
@@ -28,12 +30,14 @@ $$
 \mathcal{L}(\theta)
 = \frac12\sum_{i,j} w_{ij}
 \big(\sigma^{\text{model}}_{\text{impl}}(k_i,T_j;\theta)
+
 - \sigma^{\text{mkt}}_{\text{impl}}(k_i,T_j)\big)^2
 $$
 
 
 
 Key design choices:
+
 - maturity balancing (avoid one tenor dominating),
 - liquidity-based weights,
 - exclusion of unreliable wings.
@@ -66,6 +70,7 @@ Joint calibration ensures these effects are reconciled globally.
 
 
 After calibration, validate by:
+
 - checking per-maturity residual patterns,
 - ensuring smooth parameter evolution over time,
 - testing sensitivity to weight changes.

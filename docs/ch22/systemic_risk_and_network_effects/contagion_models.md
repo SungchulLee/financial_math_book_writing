@@ -9,6 +9,7 @@
 ### Credit Contagion
 
 Direct exposure losses:
+
 - Bank A owes Bank B
 - Bank A defaults
 - Bank B suffers losses, may default
@@ -17,6 +18,7 @@ Direct exposure losses:
 ### Price Contagion (Fire Sales)
 
 Asset price externalities:
+
 - Institution A forced to sell assets
 - Prices drop
 - Institution B's portfolio loses value
@@ -26,6 +28,7 @@ Asset price externalities:
 ### Information Contagion
 
 Confidence and learning effects:
+
 - Bank A's failure signals problems
 - Investors reassess similar banks
 - Funding withdrawn from "similar" institutions
@@ -34,6 +37,7 @@ Confidence and learning effects:
 ### Funding Contagion
 
 Liquidity withdrawal:
+
 - Money market stress
 - Funding lines cut
 - Institutions unable to roll debt
@@ -115,10 +119,12 @@ The multiplier captures fire sale externalities.
 ### Gai-Kapadia Model
 
 Random network of interbank exposures:
+
 - Average degree: number of connections
 - Concentration: distribution of exposure sizes
 
 **Key finding:** Trade-off between:
+
 - **Resilience:** More connections share losses
 - **Fragility:** More connections spread contagion
 
@@ -137,6 +143,7 @@ where $\bar{d}$ = average degree and $p_{\text{default}}$ = probability a connec
 ### Phase Transitions
 
 As connectivity increases:
+
 - **Low connectivity:** Isolated failures
 - **Intermediate:** Maximum contagion risk
 - **High connectivity:** Shock absorption
@@ -148,6 +155,7 @@ As connectivity increases:
 ### Correlation Breakdown
 
 During crises:
+
 - Correlations increase ("all assets down together")
 - Diversification benefits disappear
 - Risk models underestimate losses
@@ -155,6 +163,7 @@ During crises:
 ### Flight to Quality
 
 Investors simultaneously:
+
 - Sell risky assets
 - Buy safe assets (Treasuries, cash)
 - Amplifies price dislocations
@@ -162,6 +171,7 @@ Investors simultaneously:
 ### Volatility Contagion
 
 **Volatility clustering across markets:**
+
 - High volatility in one market
 - Spreads to related markets
 - Increases margin requirements globally
@@ -173,6 +183,7 @@ Investors simultaneously:
 ### Time Evolution
 
 Static models miss dynamics:
+
 - Speed of contagion
 - Intervention opportunities
 - Recovery processes
@@ -188,6 +199,7 @@ where $I$ = infected (distressed), $S$ = susceptible, $\beta$ = transmission rat
 ### Tipping Points
 
 System may have:
+
 - **Stable equilibrium:** Small shocks absorbed
 - **Tipping point:** Beyond threshold, cascade accelerates
 - **Hysteresis:** Recovery path differs from crisis path
@@ -199,6 +211,7 @@ System may have:
 ### Event Study Approach
 
 During crisis:
+
 1. Identify shock event
 2. Measure price changes across institutions
 3. Control for common factors
@@ -217,6 +230,7 @@ Significant $\beta$ suggests contagion channel.
 ### Network Inference
 
 Infer network from:
+
 - Balance sheet data
 - CDS spread co-movements
 - Equity return correlations
@@ -234,6 +248,7 @@ Infer network from:
 ### Lender of Last Resort
 
 Central bank provides liquidity:
+
 - Prevents funding contagion
 - Stops fire sale spirals
 - **Moral hazard concerns**
@@ -241,6 +256,7 @@ Central bank provides liquidity:
 ### Capital Requirements
 
 Higher capital buffers:
+
 - Absorb losses before default
 - Reduce probability of cascade
 - Cost: lower leverage, lower ROE

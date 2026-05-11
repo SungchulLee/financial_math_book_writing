@@ -7,6 +7,7 @@ In the Black--Scholes world, a delta-hedged portfolio's profit and loss decompos
 This section derives the full P&L decomposition for a delta-hedged option in the Heston model, identifies each contributing term, and explains the sources of **unexplained P&L** that arise in practice.
 
 !!! info "Prerequisites"
+
     - [Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md) (the bivariate SDE system)
     - [Greeks via Characteristic Function Differentiation](greeks_via_cf_differentiation.md) (delta, gamma, vega definitions)
     - [Vega Surface and Vol-of-Vol](vega_surface_and_vol_of_vol.md) (variance sensitivities)
@@ -346,6 +347,7 @@ The **delta-hedged P&L** (removing the delta component) is approximately $+\$0.0
 | Unexplained P&L sources | Discrete rehedging, higher-order terms, model misspecification, $\rho$ instability, vol-of-vol |
 
 !!! abstract "Key Takeaways"
+
     1. **Two-factor Ito expansion**: Under Heston, the P&L decomposes into six terms --- theta, delta, gamma, vega, vanna, and volga --- compared to three under Black--Scholes.
 
     2. **Vega dominates for long-dated options**: The $\mathcal{V} \, dv_t$ term can be the largest contributor to delta-hedged P&L when variance moves are large relative to gamma gains.

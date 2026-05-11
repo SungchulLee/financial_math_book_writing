@@ -231,6 +231,7 @@ $$
 $$
 
 !!! info "Interpretation of the SDF"
+
     - $m_s$ reflects the **marginal rate of substitution** between consumption today and consumption in state $s$.
     - In equilibrium models (e.g., CCAPM), $m_s = \beta \frac{u'(C_1(\omega_s))}{u'(C_0)}$, where $\beta$ is the time discount factor and $u$ is the utility function.
     - The SDF is high in "bad" states (low consumption) and low in "good" states (high consumption).

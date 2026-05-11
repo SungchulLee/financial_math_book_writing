@@ -13,6 +13,7 @@ Y_t = X + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
 $$
 
 where:
+
 - $X \in L^2(\mathcal{F}_T)$ is the **terminal condition** (e.g., a loss at maturity)
 - $g: [0,T] \times \mathbb{R} \times \mathbb{R}^d \to \mathbb{R}$ is the **driver** (or generator)
 - $(Y_t)_{t \in [0,T]}$ is the **solution process** (adapted)
@@ -34,6 +35,7 @@ $$
 The solution $Y_t$ represents the **dynamic risk assessment** of the terminal loss $X$ at time $t$.
 
 **Why this works:**
+
 - $Y_T = X$: At maturity, risk equals the realized loss
 - $Y_t$ for $t < T$: Risk assessment given information $\mathcal{F}_t$
 - The BSDE propagates risk backward through time
@@ -144,6 +146,7 @@ $$
 This is the **conditional entropic risk measure** with risk aversion parameter $\gamma$.
 
 **Properties:**
+
 - Convex but not positively homogeneous
 - More sensitive to tail losses than conditional expectation
 - Connects to exponential utility maximization
@@ -203,6 +206,7 @@ $$
 $$
 
 where:
+
 - $\mathcal{Q}$ is a set of equivalent probability measures
 - $\alpha_t(\mathbb{Q})$ is a penalty function related to the driver $g$
 
@@ -219,6 +223,7 @@ $$
 $$
 
 the theory becomes more delicate:
+
 - Solutions may not exist for all terminal conditions
 - Uniqueness may fail
 - Special techniques (BMO martingales) are required
@@ -238,6 +243,7 @@ $$
 where $Z_s \in \mathbb{R}^d$ and $W$ is $d$-dimensional.
 
 The driver can incorporate:
+
 - Correlation structure between risk factors
 - Factor-specific risk aversion
 - Cross-hedging effects

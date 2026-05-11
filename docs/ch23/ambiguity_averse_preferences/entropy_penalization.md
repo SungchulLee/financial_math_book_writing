@@ -7,6 +7,7 @@
 **Entropy penalization** provides an elegant framework for decision-making under model uncertainty that balances concern for model misspecification against the cost of considering extreme alternative models. Rather than using a hard constraint on the set of plausible probability measures (as in max-min expected utility), entropy penalization uses a **soft penalty** based on the relative entropy (Kullback-Leibler divergence) between alternative and reference models.
 
 This approach, developed extensively by Hansen and Sargent in their work on **robust control** and **robustness**, has become foundational for:
+
 1. **Asset pricing**: Explaining risk premia through model uncertainty
 2. **Monetary policy**: Designing robust policy rules
 3. **Risk management**: Quantifying model risk
@@ -105,6 +106,7 @@ V(f) = \min_{P \ll P_0} \left\{ \mathbb{E}_P[u(f)] + \theta D_{\text{KL}}(P \| P
 $$
 
 where:
+
 - $P_0$: Reference (baseline) probability measure
 - $\theta > 0$: Robustness parameter (penalty strength)
 - $u$: Utility function
@@ -241,6 +243,7 @@ x_{t+1} = A x_t + B u_t + C w_t
 $$
 
 **Interpretation**: 
+
 - Controller minimizes cost
 - Nature (worst-case model) maximizes cost subject to entropy penalty
 - $\theta$ controls robustness: smaller $\theta$ = more robust
@@ -255,6 +258,7 @@ P = Q + \beta A^\top \left(P - P C (C^\top P C - \theta^{-1} I)^{-1} C^\top P\ri
 $$
 
 $$
+
 - \beta A^\top P B (R + \beta B^\top P B)^{-1} B^\top P A
 $$
 
@@ -344,6 +348,7 @@ $$
 $$
 
 **Difference**: 
+
 - CVaR uses density ratio constraint
 - Entropic risk uses entropy constraint
 - Entropic risk is smooth; CVaR has kinks
@@ -531,6 +536,7 @@ $$
 $$
 
 **Algorithm**:
+
 1. Sample $\omega_1, \ldots, \omega_N$ from $P_0$
 2. Compute weights $w_i = e^{-u(f(\omega_i))/\theta}$
 3. Estimate: $\hat{\mathbb{E}}_{P^*}[g] = \sum_i w_i g(\omega_i) / \sum_i w_i$
@@ -580,6 +586,7 @@ recovering multiplier preferences.
 **General Form**: $V(f) = \min_P \{\mathbb{E}_P[u(f)] + c(P)\}$
 
 **Special Cases**:
+
 - $c(P) = \theta D_{\text{KL}}(P \| P_0)$: Multiplier preferences
 - $c(P) = I_{\mathcal{P}}(P)$ (indicator): Max-min
 - $c(P) = \theta D_{\phi}(P \| P_0)$ ($\phi$-divergence): Generalized robustness
@@ -612,6 +619,7 @@ $$
 subject to entropy constraints on $P$.
 
 **Evidence**: Robust portfolios exhibit:
+
 - Lower turnover
 - Better out-of-sample performance
 - More stable weights
@@ -729,7 +737,7 @@ Entropy penalization provides an elegant and tractable framework for robust deci
     D_{\text{KL}} = -\log r + \frac{r^2 + \delta^2}{2} - \frac{1}{2} = -\log r + \frac{r^2 - 1}{2} + \frac{\delta^2}{2}
     $$
 
-    The function $g(r) = -\log r + \frac{r^2 - 1}{2}$ satisfies $g'(r) = -1/r + r = (r^2-1)/r$, so $g$ has a unique minimum at $r = 1$ with $g(1) = 0$, and $g(r) > 0$ for $r \neq 1$. Since $\delta^2 \geq 0$, we need both $g(r) = 0$ (i.e., $r = 1$, so $\sigma_1 = \sigma_2$) and $\delta = 0$ (i.e., $\mu_1 = \mu_2$). $\blacksquare$
+    The function $g(r) = -\log r + \frac{r^2 - 1}{2}$ satisfies $g'(r) = -1/r + r = (r^2-1)/r$, so $g$ has a unique minimum at $r = 1$ with $g(1) = 0$, and $g(r) > 0$ for $r \neq 1$. Since $\delta^2 \geq 0$, we need both $g(r) = 0$ (i.e., $r = 1$, so $\sigma_1 = \sigma_2$) and $\delta = 0$ (i.e., $\mu_1 = \mu_2$). $\square$
 
 ---
 
@@ -768,7 +776,7 @@ with $u(x) = x$ (linear utility) and $f \sim N(\mu, \sigma^2)$ under $P_0$. Comp
 
     - When $\theta$ is large (weak robustness concern), the penalty is small and $V(f) \approx \mu$.
     - When $\theta$ is small (strong robustness concern), the penalty is large, reflecting the decision-maker's fear that the true distribution could place more weight on low outcomes.
-    - The correction has the same form as a mean-variance objective with risk aversion coefficient $1/(2\theta)$, consistent with the connection between multiplier preferences and exponential utility with risk aversion $1/\theta$. $\blacksquare$
+    - The correction has the same form as a mean-variance objective with risk aversion coefficient $1/(2\theta)$, consistent with the connection between multiplier preferences and exponential utility with risk aversion $1/\theta$. $\square$
 
 ---
 
@@ -825,7 +833,7 @@ Hint: use the exponentially tilted measure $dP^*/dQ = e^{\theta X}/\mathbb{E}_Q[
     \theta \mathbb{E}_{P^*}[X] - D_{\text{KL}}(P^* \| Q) = \log \mathbb{E}_Q[e^{\theta X}]
     $$
 
-    Since $P^*$ achieves the upper bound, the supremum equals $\log \mathbb{E}_Q[e^{\theta X}]$. $\blacksquare$
+    Since $P^*$ achieves the upper bound, the supremum equals $\log \mathbb{E}_Q[e^{\theta X}]$. $\square$
 
 ---
 
@@ -872,7 +880,7 @@ Suppose there are $n = 2$ assets with $\mu = (0.08, 0.12)^\top$, $\Sigma = \begi
 
     - **Leverage**: The standard portfolio invests 95.24% in risky assets; the robust portfolio invests only 57.14%. Robustness reduces leverage by 40%.
     - **Diversification**: Both portfolios have the same relative weights between assets (the ratio $w_1/w_2 = 1.5$ is identical), because the robustness correction scales both positions uniformly. The robust portfolio does not change the diversification profile; it simply shrinks all positions proportionally.
-    - **Interpretation**: The entropy budget $\eta$ introduces an effective additional risk aversion $\kappa(\eta) = 2$, making the investor behave as if they had $\lambda_{\text{eff}} = 5$ instead of $\lambda = 3$. $\blacksquare$
+    - **Interpretation**: The entropy budget $\eta$ introduces an effective additional risk aversion $\kappa(\eta) = 2$, making the investor behave as if they had $\lambda_{\text{eff}} = 5$ instead of $\lambda = 3$. $\square$
 
 ---
 
@@ -923,7 +931,7 @@ for all $\lambda \in [0,1]$. Then give an explicit counterexample showing that p
 
     But $\alpha \rho_1(X) = 2 \times \frac{1}{2} = 1 \neq 2$.
 
-    Indeed, for general $\alpha$: $\rho_1(\alpha X) = \alpha^2/2$ while $\alpha \rho_1(X) = \alpha/2$. These are equal only when $\alpha = 1$ (or $\alpha = 0$). The entropic risk measure scales quadratically in $\alpha$ rather than linearly, confirming that positive homogeneity fails. $\blacksquare$
+    Indeed, for general $\alpha$: $\rho_1(\alpha X) = \alpha^2/2$ while $\alpha \rho_1(X) = \alpha/2$. These are equal only when $\alpha = 1$ (or $\alpha = 0$). The entropic risk measure scales quadratically in $\alpha$ rather than linearly, confirming that positive homogeneity fails. $\square$
 
 ---
 
@@ -1000,7 +1008,7 @@ For the one-dimensional case with $dX_t = (aX_t + bu_t)dt + \sigma dW_t$, runnin
     \dot{\alpha}(t) = \frac{\alpha^2 b^2}{r} - 2a\alpha - q
     $$
 
-    The robustness parameter $\theta$ adds the term $\frac{2\sigma^2\alpha^2}{\theta}$ to the quadratic coefficient. This makes the coefficient of $\alpha^2$ larger: $\frac{b^2}{r} + \frac{2\sigma^2}{\theta} > \frac{b^2}{r}$, which drives $\alpha(t)$ to a larger steady-state value. A larger $\alpha$ means the value function assigns greater cost to deviations from zero, leading to more aggressive (conservative) control. As $\theta \to \infty$, the additional term vanishes and we recover the standard LQR. As $\theta \to 0^+$, the robustness correction dominates, reflecting extreme concern about model misspecification. $\blacksquare$
+    The robustness parameter $\theta$ adds the term $\frac{2\sigma^2\alpha^2}{\theta}$ to the quadratic coefficient. This makes the coefficient of $\alpha^2$ larger: $\frac{b^2}{r} + \frac{2\sigma^2}{\theta} > \frac{b^2}{r}$, which drives $\alpha(t)$ to a larger steady-state value. A larger $\alpha$ means the value function assigns greater cost to deviations from zero, leading to more aggressive (conservative) control. As $\theta \to \infty$, the additional term vanishes and we recover the standard LQR. As $\theta \to 0^+$, the robustness correction dominates, reflecting extreme concern about model misspecification. $\square$
 
 ---
 
@@ -1097,4 +1105,4 @@ Suppose losses follow an exponential distribution with rate $\lambda = 0.01$ und
 
     For $\theta = 50 < 100$, the MGF diverges, meaning the worst-case expected loss is infinite under the multiplier formulation. This makes financial sense: with $\theta = 50$, the entropy penalty is weak enough that the adversary can tilt the distribution toward extremely heavy tails, making the expected loss unbounded. The insurer must choose $\theta > 100$ (i.e., a sufficiently strong penalty) for the problem to be well-posed with exponential losses.
 
-    **Comparison with the actuarially fair premium:** At any finite well-posed $\theta > 100$, the robust premium exceeds 100, reflecting the loading for model uncertainty. The markup $-\theta\log(1 - 1/(\lambda\theta)) - 100$ decreases as $\theta$ increases (less robustness concern), approaching zero as $\theta \to \infty$. $\blacksquare$
+    **Comparison with the actuarially fair premium:** At any finite well-posed $\theta > 100$, the robust premium exceeds 100, reflecting the loading for model uncertainty. The markup $-\theta\log(1 - 1/(\lambda\theta)) - 100$ decreases as $\theta$ increases (less robustness concern), approaching zero as $\theta \to \infty$. $\square$

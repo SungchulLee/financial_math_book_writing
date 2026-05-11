@@ -9,6 +9,7 @@ Reinforcement learning is closely related to **stochastic control**, a classical
 
 
 Stochastic control problems involve:
+
 - controlled stochastic dynamics,
 - an objective functional,
 - optimization over admissible controls.
@@ -37,6 +38,7 @@ This is the continuous-time analogue of Bellman equations.
 
 
 Reinforcement learning can be viewed as:
+
 - approximating value functions,
 - solving control problems without known dynamics,
 - replacing model-based control with data-driven learning.
@@ -47,6 +49,7 @@ Reinforcement learning can be viewed as:
 
 
 Connections appear in:
+
 - optimal trading and execution,
 - portfolio optimization,
 - market making and hedging.

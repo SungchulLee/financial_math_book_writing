@@ -7,6 +7,7 @@ An **Asian option** has a payoff that depends on the average price of the underl
 The stochastic volatility in Heston adds an important dimension: the averaging effect interacts with the time-varying variance, so periods of high volatility contribute disproportionately to the average. This section develops Monte Carlo pricing methods for arithmetic and geometric average Asian options under Heston, with emphasis on variance reduction techniques that exploit the structure of the averaging payoff.
 
 !!! info "Prerequisites"
+
     - [Quadratic-Exponential Scheme](../monte_carlo/quadratic_exponential_scheme.md) (QE discretization for Heston)
     - [Variance Reduction Techniques](../monte_carlo/variance_reduction_techniques.md) (antithetic, control variates)
     - [Closed-Form Characteristic Function](../heston_cf/closed_form_characteristic_function.md) (Heston CF)
@@ -201,6 +202,7 @@ where $\Delta t$ is the sub-step size. With $n_{\text{sub}} = 1$ (no sub-steps),
 | Combined (anti + CV) | \$4.88 | \$0.006 | 56x | $10^5$ |
 
 !!! example "Observations"
+
     1. The Asian call price (\$4.88) is substantially lower than the corresponding vanilla European call (\$6.42) because the averaging reduces the effective volatility of the payoff.
     2. The geometric control variate reduces variance by a factor of 25, cutting the standard error from \$0.045 to \$0.009.
     3. Combining antithetic variates with the control variate achieves a 56x variance reduction, equivalent to running crude MC with $5.6 \times 10^6$ paths instead of $10^5$.
@@ -219,6 +221,7 @@ where $\Delta t$ is the sub-step size. With $n_{\text{sub}} = 1$ (no sub-steps),
 | MC convergence | $\mathcal{O}(N^{-1/2})$ independent of dimension |
 
 !!! abstract "Key Takeaways"
+
     1. **Monte Carlo is the primary method**: Under Heston, arithmetic average Asian options have no closed-form or semi-analytical solution. Monte Carlo with the QE scheme is the standard approach.
 
     2. **Geometric control variate is highly effective**: The high correlation between arithmetic and geometric averages provides variance reduction factors of 10x--50x, dramatically reducing computational cost.

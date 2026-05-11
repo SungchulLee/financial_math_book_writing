@@ -21,6 +21,9 @@ markdown_extensions:
 extra_javascript:
     - javascripts/mathjax.js
     - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    # Load Mermaid AFTER everything
+    - https://unpkg.com/mermaid@11/dist/mermaid.min.js
+    - javascripts/mermaid-init.js
 
 extra_css:
   - stylesheets/extra.css
@@ -53,8 +56,8 @@ nav:
                 - Separating Hyperplane Theorem: ch01/fundamental_theorem_of_asset_pricing/separating_hyperplane_theorem.md
                 - Complete Markets and Uniqueness: ch01/fundamental_theorem_of_asset_pricing/complete_markets_and_uniqueness.md
             - 1.6 Numéraire and Change of Measure:
-                - Numéraire and Change of Measure: ch01/fundamental_theorem_of_asset_pricing/numeraire_and_change_of_measure.md
-                - Finite Market Examples: ch01/fundamental_theorem_of_asset_pricing/finite_market_examples.md
+                - Numéraire and Change of Measure: ch01/numeraire_and_change_of_measure/numeraire_and_change_of_measure.md
+                - Finite Market Examples: ch01/numeraire_and_change_of_measure/finite_market_examples.md
 
         - 2 Brownian Motion:
             - Chapter Overview: ch02/index.md

@@ -1,6 +1,13 @@
 # Digital Option Pricing via Girsanov's Theorem
 
+!!! info "Where this fits"
+    - **Roadmap row(s):** Strike-space; also Probability through $\mathcal{N}(d_2)$.
+    - **Builds on:** [The Black-Scholes formula](bs_formula_statement.md) (the call price differentiated in $K$) and [Properties and bounds](properties_and_bounds.md) (strike monotonicity).
+    - **Feeds into:** [Computational examples](computational_examples.md) — Figure 3 visualises the implied-density extraction discussed here.
+
 ## Payoff Structure
+
+*Section goal: specifying the cash-or-nothing payoff and how it differs from the standard call.*
 
 A **digital (cash-or-nothing) call option** pays a fixed amount $1$ if the underlying asset exceeds the strike price $K$ at maturity $T$:
 
@@ -14,62 +21,17 @@ Unlike a standard European call, which pays the excess $(S_T - K)^+$, the digita
 
 ## Risk-Neutral Pricing
 
+*Section goal: pricing the digital under the risk-neutral measure $\mathbb{Q}$.*
+
 Under the risk-neutral measure $\mathbb{Q}$, the price of any derivative is the discounted expected payoff:
 
 $$
 D_0 := \mathbb{E}^{\mathbb{Q}}\left[ e^{-rT} \mathbf{1}_{\{S_T > K\}} \right]
-= e^{-rT} \mathbb{Q}(S_T > K)
+= e^{-rT}\, \mathbb{Q}(S_T > K)
+= e^{-rT}\, \mathcal{N}(d_2)
 $$
 
-### Distribution of S_T under Q
-
-By Girsanov's theorem, the stock price dynamics under $\mathbb{Q}$ are:
-
-$$
-dS_t = r S_t \, dt + \sigma S_t \, d\tilde{W}_t
-$$
-
-where $\tilde{W}_t$ is a $\mathbb{Q}$-Brownian motion. Solving this SDE via Itô's lemma:
-
-$$
-S_T = S_0 \exp\left[\left(r - \tfrac{1}{2}\sigma^2\right)T + \sigma \tilde{W}_T\right]
-$$
-
-Therefore:
-
-$$
-\log S_T \sim \mathcal{N}\left(\log S_0 + \left(r - \tfrac{1}{2}\sigma^2\right)T, \; \sigma^2 T\right)
-$$
-
-### Computing Q(S_T > K)
-
-$$
-\mathbb{Q}(S_T > K) = \mathbb{Q}(\log S_T > \log K)
-$$
-
-Standardizing:
-
-$$
-\mathbb{Q}\left(\frac{\log S_T - \left[\log S_0 + (r - \frac{1}{2}\sigma^2)T\right]}{\sigma\sqrt{T}} > \frac{\log K - \left[\log S_0 + (r - \frac{1}{2}\sigma^2)T\right]}{\sigma\sqrt{T}}\right)
-$$
-
-$$
-= \mathbb{Q}\left(Z > -d_2\right) = \Phi(d_2)
-$$
-
-where $Z \sim \mathcal{N}(0,1)$ and:
-
-$$
-d_2 = \frac{\log(S_0 / K) + \left(r - \frac{1}{2}\sigma^2\right)T}{\sigma\sqrt{T}}
-$$
-
----
-
-## Final Result
-
-$$
-\boxed{D_0 = e^{-rT}\,\Phi(d_2)}
-$$
+The probabilistic interpretation of $\mathcal{N}(d_2)$ as the risk-neutral exercise probability is developed in [Probabilistic Interpretation](probabilistic_interpretation.md); we use only the resulting formula here.
 
 This is the fair price of a digital call option paying $1$ at maturity $T$ if $S_T > K$.
 
@@ -77,24 +39,27 @@ This is the fair price of a digital call option paying $1$ at maturity $T$ if $S
 
 ## Connection to Black–Scholes Formula
 
+*Section goal: the strike-derivative identity $D_0 = -\partial C/\partial K$ and the Breeden-Litzenberger bridge to implied densities.*
+
 The Black–Scholes formula for a European call can be written as:
 
 $$
-C_0 = S_0\,\Phi(d_1) - K e^{-rT}\,\Phi(d_2)
+C_0 = S_0\,\mathcal{N}(d_1) - K e^{-rT}\,\mathcal{N}(d_2)
 $$
 
-The second term $K e^{-rT}\,\Phi(d_2)$ is exactly $K$ times the digital call price. This reveals an important decomposition:
+The second term $K e^{-rT}\,\mathcal{N}(d_2)$ is exactly $K$ times the digital call price. The digital is the cleanest concrete object that pins down what $\mathcal{N}(d_2)$ *means*: the time-$0$ value of receiving $\$1$ if and only if $S_T > K$. (The full measure-theoretic interpretation of $\mathcal{N}(d_2) = \mathbb{Q}(S_T > K)$ and $\mathcal{N}(d_1) = \mathbb{Q}^S(S_T > K)$ is developed in [probabilistic interpretation](probabilistic_interpretation.md); here we use only that $\mathcal{N}(d_2)$ is the discounted exercise probability.)
 
-- $\Phi(d_2) = \mathbb{Q}(S_T > K)$: the **risk-neutral probability** that the call finishes in the money.
-- $\Phi(d_1) = \mathbb{Q}^S(S_T > K)$: the probability under the **stock numéraire measure**.
-
-The digital call price thus appears naturally as a component of the standard Black–Scholes formula. Equivalently, the digital call price is the negative derivative of the standard call price with respect to the strike:
+Equivalently, the digital call price is the negative derivative of the standard call price with respect to the strike:
 
 $$
 D_0 = -\frac{\partial C_0}{\partial K}
 $$
 
-This reveals that the digital call captures the **density of the call price with respect to strike**. Differentiating once more gives the **Breeden-Litzenberger result**: the risk-neutral density of $S_T$ can be extracted from observed call prices via
+This reveals that the digital call captures the **density of the call price with respect to strike**.
+
+The next step is conceptually larger than it looks: differentiating once more in $K$ does not just give another Greek—it inverts the very integral that produced $C_0$ in the first place, recovering the risk-neutral density itself from prices alone. This matters because liquid markets quote calls across a near-continuum of strikes, so the second strike-derivative is something one can actually estimate from market data, turning a snapshot of the volatility surface into an implied distribution. The non-obviousness lies in this reversal: pricing integrates the payoff against an unknown density, yet differentiating the resulting price function in the strike undoes that integration and exposes the density. Carried out at each maturity, this construction yields one implied risk-neutral density per maturity slice of the volatility surface—the **Breeden-Litzenberger** identity that follows.
+
+Differentiating once more gives the **Breeden-Litzenberger result**: the risk-neutral density of $S_T$ can be extracted from observed call prices via
 
 $$
 f^{\mathbb{Q}}(K) = e^{rT}\frac{\partial^2 C_0}{\partial K^2}
@@ -106,10 +71,12 @@ This is one of the deepest connections between option markets and probability th
 
 ## Digital Put Option
 
+*Section goal: pricing the cash-or-nothing put.*
+
 By symmetry, a digital put paying $1$ if $S_T < K$ has price:
 
 $$
-D_0^{\text{put}} = e^{-rT}\,\Phi(-d_2) = e^{-rT}\left[1 - \Phi(d_2)\right]
+D_0^{\text{put}} = e^{-rT}\,\mathcal{N}(-d_2) = e^{-rT}\left[1 - \mathcal{N}(d_2)\right]
 $$
 
 The sum of digital call and digital put prices equals the price of a zero-coupon bond:
@@ -122,6 +89,8 @@ $$
 
 ## Hedging Considerations
 
+*Section goal: why digitals are pathological to hedge and how traders use call spreads as approximations.*
+
 The delta of a digital call is:
 
 $$
@@ -130,6 +99,16 @@ $$
 
 where $\phi$ is the standard normal density. Near expiry ($T \to 0$) and near the strike ($S_0 \approx K$), this delta becomes extremely large, making digital options **notoriously difficult to hedge** in practice. This discontinuity in the payoff creates significant gamma risk near maturity.
 
+### Call-Spread Approximation
+
+A practical way to reason about (and bound the cost of hedging) a digital is to **approximate it by a tight call spread**. Buy one call at $K - \tfrac{\epsilon}{2}$ and sell one call at $K + \tfrac{\epsilon}{2}$, then divide the position by $\epsilon$:
+
+$$
+D_0 \;\approx\; \frac{C(K - \tfrac{\epsilon}{2}) - C(K + \tfrac{\epsilon}{2})}{\epsilon} \;\xrightarrow{\;\epsilon \to 0\;}\; -\frac{\partial C_0}{\partial K} = e^{-rT}\mathcal{N}(d_2)
+$$
+
+The intermediate ratio is the discrete version of $-\partial C_0/\partial K$; the limit recovers the digital exactly. The pre-limit *call spread* is itself a tradable, well-behaved instrument: bounded gamma, linear payoff, replicable from vanilla calls. Practitioners therefore quote a digital as the limit of call spreads of decreasing width and *hedge* it with a call spread of finite width, accepting basis risk in the strike interval $(K - \tfrac{\epsilon}{2}, K + \tfrac{\epsilon}{2})$ in exchange for stable Greeks. This is the standard market resolution of the unhedgeable digital. (Exercise 6 works through the convergence; Exercise 7 quantifies how the digital delta diverges as $T \to 0$.)
+
 ---
 
 ## Exercises
@@ -137,22 +116,22 @@ where $\phi$ is the standard normal density. Near expiry ($T \to 0$) and near th
 **Exercise 1.** Derive the price of a digital call option that pays an amount $Q$ (instead of $1$) at maturity if $S_T > K$. Express the result in terms of $d_2$ and verify that your formula reduces to the standard result when $Q = 1$.
 
 ??? success "Solution to Exercise 1"
-    The digital call paying $1$ at maturity has price $D_0 = e^{-rT}\Phi(d_2)$. By linearity of expectation, a digital call paying $Q$ has price:
+    The digital call paying $1$ at maturity has price $D_0 = e^{-rT}\mathcal{N}(d_2)$. By linearity of expectation, a digital call paying $Q$ has price:
 
     $$
-    D_0^{(Q)} = Q \cdot e^{-rT}\Phi(d_2)
+    D_0^{(Q)} = Q \cdot e^{-rT}\mathcal{N}(d_2)
     $$
 
     This follows because the payoff is $Q \cdot \mathbf{1}_{\{S_T > K\}}$, so:
 
     $$
-    D_0^{(Q)} = e^{-rT}\mathbb{E}^{\mathbb{Q}}[Q \cdot \mathbf{1}_{\{S_T > K\}}] = Q \cdot e^{-rT}\mathbb{Q}(S_T > K) = Q \cdot e^{-rT}\Phi(d_2)
+    D_0^{(Q)} = e^{-rT}\mathbb{E}^{\mathbb{Q}}[Q \cdot \mathbf{1}_{\{S_T > K\}}] = Q \cdot e^{-rT}\mathbb{Q}(S_T > K) = Q \cdot e^{-rT}\mathcal{N}(d_2)
     $$
 
-    When $Q = 1$: $D_0^{(1)} = e^{-rT}\Phi(d_2)$, which is the standard result. ✓
+    When $Q = 1$: $D_0^{(1)} = e^{-rT}\mathcal{N}(d_2)$, which is the standard result. ✓
 
 ---
-**Exercise 2.** Show that the digital call price $D_0 = e^{-rT}\Phi(d_2)$ can be recovered by differentiating the Black-Scholes call price with respect to the strike:
+**Exercise 2.** Show that the digital call price $D_0 = e^{-rT}\mathcal{N}(d_2)$ can be recovered by differentiating the Black-Scholes call price with respect to the strike:
 
 $$
 D_0 = -\frac{\partial C_0}{\partial K}
@@ -161,22 +140,22 @@ $$
 Carry out the differentiation explicitly, using the relationship $\frac{\partial d_1}{\partial K} = \frac{\partial d_2}{\partial K} = -\frac{1}{K \sigma \sqrt{T}}$ and the identity $S_0 \phi(d_1) = K e^{-rT} \phi(d_2)$.
 
 ??? success "Solution to Exercise 2"
-    The Black-Scholes call price is $C_0 = S_0\Phi(d_1) - Ke^{-rT}\Phi(d_2)$.
+    The Black-Scholes call price is $C_0 = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$.
 
     Differentiating with respect to $K$:
 
     $$
-    \frac{\partial C_0}{\partial K} = S_0 \phi(d_1)\frac{\partial d_1}{\partial K} - e^{-rT}\Phi(d_2) - Ke^{-rT}\phi(d_2)\frac{\partial d_2}{\partial K}
+    \frac{\partial C_0}{\partial K} = S_0 \phi(d_1)\frac{\partial d_1}{\partial K} - e^{-rT}\mathcal{N}(d_2) - Ke^{-rT}\phi(d_2)\frac{\partial d_2}{\partial K}
     $$
 
     Using $\frac{\partial d_1}{\partial K} = \frac{\partial d_2}{\partial K} = -\frac{1}{K\sigma\sqrt{T}}$:
 
     $$
-    \frac{\partial C_0}{\partial K} = -\frac{S_0\phi(d_1)}{K\sigma\sqrt{T}} - e^{-rT}\Phi(d_2) + \frac{Ke^{-rT}\phi(d_2)}{K\sigma\sqrt{T}}
+    \frac{\partial C_0}{\partial K} = -\frac{S_0\phi(d_1)}{K\sigma\sqrt{T}} - e^{-rT}\mathcal{N}(d_2) + \frac{Ke^{-rT}\phi(d_2)}{K\sigma\sqrt{T}}
     $$
 
     $$
-    = -e^{-rT}\Phi(d_2) + \frac{1}{\sigma\sqrt{T}}\left[-S_0\phi(d_1)/K + e^{-rT}\phi(d_2)\right]
+    = -e^{-rT}\mathcal{N}(d_2) + \frac{1}{\sigma\sqrt{T}}\left[-S_0\phi(d_1)/K + e^{-rT}\phi(d_2)\right]
     $$
 
     Now we use the identity $S_0\phi(d_1) = Ke^{-rT}\phi(d_2)$. This identity follows from:
@@ -190,28 +169,28 @@ Carry out the differentiation explicitly, using the relationship $\frac{\partial
     With this identity, $S_0\phi(d_1)/K = e^{-rT}\phi(d_2)$, so the bracketed term vanishes:
 
     $$
-    \frac{\partial C_0}{\partial K} = -e^{-rT}\Phi(d_2)
+    \frac{\partial C_0}{\partial K} = -e^{-rT}\mathcal{N}(d_2)
     $$
 
     Therefore:
 
     $$
-    D_0 = e^{-rT}\Phi(d_2) = -\frac{\partial C_0}{\partial K}
+    D_0 = e^{-rT}\mathcal{N}(d_2) = -\frac{\partial C_0}{\partial K}
     $$
 
 ---
 **Exercise 3.** A digital call and a digital put on the same underlying with the same strike and maturity have prices $D_0^{\text{call}}$ and $D_0^{\text{put}}$. Prove that their sum equals $e^{-rT}$. What is the financial interpretation of this identity?
 
 ??? success "Solution to Exercise 3"
-    The digital call price is $D_0^{\text{call}} = e^{-rT}\Phi(d_2)$ and the digital put price is $D_0^{\text{put}} = e^{-rT}\Phi(-d_2)$.
+    The digital call price is $D_0^{\text{call}} = e^{-rT}\mathcal{N}(d_2)$ and the digital put price is $D_0^{\text{put}} = e^{-rT}\mathcal{N}(-d_2)$.
 
     Their sum:
 
     $$
-    D_0^{\text{call}} + D_0^{\text{put}} = e^{-rT}\Phi(d_2) + e^{-rT}\Phi(-d_2) = e^{-rT}[\Phi(d_2) + \Phi(-d_2)]
+    D_0^{\text{call}} + D_0^{\text{put}} = e^{-rT}\mathcal{N}(d_2) + e^{-rT}\mathcal{N}(-d_2) = e^{-rT}[\mathcal{N}(d_2) + \mathcal{N}(-d_2)]
     $$
 
-    Using the symmetry property $\Phi(x) + \Phi(-x) = 1$:
+    Using the symmetry property $\mathcal{N}(x) + \mathcal{N}(-x) = 1$:
 
     $$
     D_0^{\text{call}} + D_0^{\text{put}} = e^{-rT} \cdot 1 = e^{-rT}
@@ -229,50 +208,40 @@ $$
 At what value of $S_0$ (in terms of $K$, $r$, $\sigma$, $T$) does the digital call gamma equal zero?
 
 ??? success "Solution to Exercise 4"
-    The digital call delta is:
+    Start from the digital call delta:
 
     $$
-    \Delta_{\text{digital}} = \frac{\partial D_0}{\partial S_0} = e^{-rT}\frac{\phi(d_2)}{S_0\sigma\sqrt{T}}
+    \Delta = \frac{\partial D_0}{\partial S_0} = \frac{e^{-rT}\,\phi(d_2)}{S_0\,\sigma\sqrt{T}}
     $$
 
-    Differentiating again with respect to $S_0$:
+    Take logs to make the differentiation cleaner:
 
     $$
-    \Gamma_{\text{digital}} = \frac{\partial \Delta_{\text{digital}}}{\partial S_0} = e^{-rT}\frac{\partial}{\partial S_0}\left[\frac{\phi(d_2)}{S_0\sigma\sqrt{T}}\right]
+    \ln \Delta = -rT + \ln\phi(d_2) - \ln S_0 - \ln(\sigma\sqrt{T})
     $$
 
-    Using the product rule with $\frac{\partial d_2}{\partial S_0} = \frac{1}{S_0\sigma\sqrt{T}}$ and $\phi'(x) = -x\phi(x)$:
+    Differentiating with respect to $S_0$ and using $\frac{\partial d_2}{\partial S_0} = \frac{1}{S_0\sigma\sqrt{T}}$ together with $\frac{d}{dx}\ln\phi(x) = -x$:
 
     $$
-    \frac{\partial}{\partial S_0}\left[\frac{\phi(d_2)}{S_0\sigma\sqrt{T}}\right] = \frac{1}{S_0\sigma\sqrt{T}}\left[\phi'(d_2)\frac{1}{S_0\sigma\sqrt{T}}\right] - \frac{\phi(d_2)}{S_0^2\sigma\sqrt{T}}
+    \frac{1}{\Delta}\,\frac{\partial \Delta}{\partial S_0} = -d_2 \cdot \frac{1}{S_0\sigma\sqrt{T}} - \frac{1}{S_0} = -\frac{1}{S_0}\!\left(\frac{d_2}{\sigma\sqrt{T}} + 1\right) = -\frac{d_2 + \sigma\sqrt{T}}{S_0\,\sigma\sqrt{T}} = -\frac{d_1}{S_0\,\sigma\sqrt{T}}
     $$
 
-    $$
-    = \frac{-d_2\phi(d_2)}{S_0^2\sigma^2 T} - \frac{\phi(d_2)}{S_0^2\sigma\sqrt{T}}
-    $$
-
-    Factoring out $\frac{\phi(d_2)}{S_0^2\sigma\sqrt{T}}$... after careful algebra:
+    where the last equality uses $d_1 = d_2 + \sigma\sqrt{T}$. Therefore:
 
     $$
-    \Gamma_{\text{digital}} = -e^{-rT}\frac{\phi(d_2)\,d_1}{S_0^2\sigma^2 T}
+    \Gamma_{\text{digital}} = \Delta \cdot \left(-\frac{d_1}{S_0\,\sigma\sqrt{T}}\right) = -\,e^{-rT}\,\frac{\phi(d_2)\,d_1}{S_0^{\,2}\,\sigma^{2}\,T}
     $$
 
-    This uses the relation $d_2/(S_0\sigma\sqrt{T}) + 1/(S_0) = d_1/(S_0\sigma\sqrt{T}) \cdot \sigma\sqrt{T}/S_0$... more directly, one can show the result by noting that $d_2 + \frac{1}{\sigma\sqrt{T}} \cdot \sigma\sqrt{T} = d_2 + 1$ leads to $d_1$ appearing via $d_1 = d_2 + \sigma\sqrt{T}$ and the chain rule.
-
-    **Gamma equals zero** when $d_1 = 0$, which occurs when:
+    **Gamma equals zero** when $d_1 = 0$, i.e., when $\ln(S_0/K) + (r + \tfrac{1}{2}\sigma^2)T = 0$, equivalently:
 
     $$
-    \ln(S_0/K) + \left(r + \frac{1}{2}\sigma^2\right)T = 0
+    S_0 = K\exp\!\left[-\left(r + \tfrac{1}{2}\sigma^2\right)T\right]
     $$
 
-    $$
-    S_0 = K\exp\left[-\left(r + \frac{1}{2}\sigma^2\right)T\right]
-    $$
-
-    At this stock price, the digital call delta reaches its maximum (or minimum), and the gamma changes sign.
+    At this stock price, the digital call delta achieves its maximum, and gamma changes sign. For $S_0$ below this level, $\Gamma > 0$ (delta increasing in $S_0$); above it, $\Gamma < 0$ (delta decreasing).
 
 ---
-**Exercise 5.** Consider a **double digital option** (also called a digital range option) that pays $1$ at maturity if $K_1 < S_T < K_2$ for $K_1 < K_2$. Express the price of this option in terms of the standard normal CDF $\Phi$. Compute its price when $S_0 = 100$, $K_1 = 95$, $K_2 = 105$, $r = 5\%$, $\sigma = 20\%$, and $T = 0.5$.
+**Exercise 5.** Consider a **double digital option** (also called a digital range option) that pays $1$ at maturity if $K_1 < S_T < K_2$ for $K_1 < K_2$. Express the price of this option in terms of the standard normal CDF $\mathcal{N}$. Compute its price when $S_0 = 100$, $K_1 = 95$, $K_2 = 105$, $r = 5\%$, $\sigma = 20\%$, and $T = 0.5$.
 
 ??? success "Solution to Exercise 5"
     The double digital pays $1$ if $K_1 < S_T < K_2$. This can be decomposed as:
@@ -284,7 +253,7 @@ At what value of $S_0$ (in terms of $K$, $r$, $\sigma$, $T$) does the digital ca
     (a digital call at $K_1$ minus a digital call at $K_2$). Therefore:
 
     $$
-    D_0^{\text{range}} = e^{-rT}[\Phi(d_2(K_1)) - \Phi(d_2(K_2))]
+    D_0^{\text{range}} = e^{-rT}[\mathcal{N}(d_2(K_1)) - \mathcal{N}(d_2(K_2))]
     $$
 
     where $d_2(K) = \frac{\ln(S_0/K) + (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}$.
@@ -304,7 +273,7 @@ At what value of $S_0$ (in terms of $K$, $r$, $\sigma$, $T$) does the digital ca
     $$
 
     $$
-    \Phi(0.4688) = 0.6804, \quad \Phi(-0.2390) = 0.4055
+    \mathcal{N}(0.4688) = 0.6804, \quad \mathcal{N}(-0.2390) = 0.4055
     $$
 
     $$

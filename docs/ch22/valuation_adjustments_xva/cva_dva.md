@@ -15,6 +15,7 @@ $$
 $$
 
 where:
+
 - $\tau$ = counterparty default time
 - $\text{LGD}$ = Loss Given Default (typically 60%)
 - $D(\tau)$ = discount factor to default time
@@ -34,6 +35,7 @@ $$
 $$
 
 where:
+
 - $\text{EE}(t) = \mathbb{E}^{\mathbb{Q}}[V_t^+]$ = Expected Exposure
 - $PD(t) = \mathbb{Q}(\tau \le t)$ = cumulative default probability
 - $D(0,t)$ = discount factor
@@ -97,6 +99,7 @@ $$
 $$
 
 where:
+
 - $\tau_B$ = bank's own default time
 - $\text{LGD}_B$ = bank's Loss Given Default
 - $E_t^- = V_t^- = \max(-V_t, 0)$ = negative exposure (what bank owes)
@@ -120,11 +123,13 @@ where $\text{NEE}(t) = \mathbb{E}[V_t^-]$ is the Negative Expected Exposure.
 DVA is economically controversial:
 
 **Arguments for DVA:**
+
 - Symmetric treatment of default risk
 - Required by accounting standards (IFRS 13, ASC 820)
 - Reflects true market price of derivatives
 
 **Arguments against DVA:**
+
 - Counterintuitive: profit increases as credit worsens
 - Cannot be hedged (can't sell protection on yourself)
 - "Gains" cannot be monetized
@@ -181,6 +186,7 @@ with $\text{EE}(t)$ computed analytically (e.g., for single swap).
 ### 2. Monte Carlo Simulation
 
 **Algorithm:**
+
 1. Simulate $M$ paths of market factors
 2. For each path and time point, compute portfolio value $V_t^{(m)}$
 3. Compute exposure $E_t^{(m)} = V_t^{(m)+}$
@@ -218,6 +224,7 @@ These are **contingent credit sensitivities**—market Greeks conditional on def
 ### Credit Hedge
 
 Buy CDS protection on counterparty:
+
 - Notional based on expected exposure
 - Roll protection as exposure profile evolves
 - Imperfect hedge due to exposure uncertainty
@@ -225,6 +232,7 @@ Buy CDS protection on counterparty:
 ### Market Hedge
 
 Hedge market sensitivities of CVA:
+
 - Delta hedge the underlying exposure
 - Vega hedge if volatility affects exposure
 - Creates a "CVA desk" function
@@ -257,6 +265,7 @@ Hedge market sensitivities of CVA:
 ## Example Calculation
 
 **Setup:**
+
 - 5-year interest rate swap, notional \$100M
 - Counterparty credit spread: 200 bps
 - LGD: 60%

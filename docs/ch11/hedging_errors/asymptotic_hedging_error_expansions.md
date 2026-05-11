@@ -128,6 +128,7 @@ P\&L = \underbrace{\Theta \cdot \Delta t}_{\text{time decay}} + \underbrace{\fra
 $$
 
 The residual should be small if:
+
 1. Rebalancing is frequent ($\Delta t$ small)
 2. Model is accurate ($\varepsilon$ small)
 3. No jumps occur

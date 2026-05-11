@@ -59,6 +59,7 @@ This implicitly favors stronger regularization than pure in-sample metrics.
 
 
 Guiding principles:
+
 - start with strong regularization,
 - relax only when justified by stable, liquid data,
 - prefer bias you understand to variance you cannot hedge.

@@ -7,6 +7,7 @@ The Black–Scholes formula provides a closed-form solution for European options
 This section explains precisely why the analytical framework breaks down and how the problem transforms from a standard PDE to a **free-boundary PDE** (variational inequality).
 
 !!! info "Prerequisites"
+
     - [Black–Scholes PDE](../../ch06/bs_pde_derivation/delta_hedging.md) (derivation and structure)
     - [Terminal and Boundary Conditions](../../ch06/bs_pde_structure/terminal_and_boundary_conditions.md) (PDE boundary conditions)
     - [American Option Definition](american_option_definition.md) (optimal stopping formulation)

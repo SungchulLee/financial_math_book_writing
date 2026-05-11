@@ -202,3 +202,53 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The compounding rate over a period $[T_1, T_2]$ in the Hull-White model is $R(T_1, T_2) = -\ln P(T_1, T_2)/(T_2 - T_1)$. Explain how this relates to the short rate $r(t)$.
+
+??? success "Solution to Exercise 1"
+    The zero-coupon bond price in the Hull-White model is $P(T_1, T_2) = e^{A(T_1,T_2) + B(T_1,T_2)\,r(T_1)}$. The compounding rate is:
+
+    $$
+    R(T_1, T_2) = \frac{-A(T_1,T_2) - B(T_1,T_2)\,r(T_1)}{T_2 - T_1}.
+    $$
+
+    This is an affine function of $r(T_1)$, so $R$ inherits the Gaussian distribution of $r(T_1)$. As $T_2 \to T_1$, the compounding rate approaches the instantaneous short rate $r(T_1)$. For longer periods, the coefficients $A$ and $B$ capture the term structure effects (mean reversion and volatility).
+
+---
+
+**Exercise 2.**
+If $\lambda = 0.05$ and $\eta = 0.01$, compute the long-run standard deviation of the short rate and the stationary distribution.
+
+??? success "Solution to Exercise 2"
+    The stationary variance is $\sigma_\infty^2 = \eta^2/(2\lambda) = 0.0001/0.1 = 0.001$. The stationary standard deviation is $\sigma_\infty = \sqrt{0.001} \approx 0.0316 = 3.16\%$.
+
+    The stationary distribution is $r \sim \mathcal{N}(\theta_\infty, \sigma_\infty^2)$, where $\theta_\infty$ is the long-run mean determined by the initial yield curve. A $3.16\%$ standard deviation means rates typically fluctuate within about $\pm 6\%$ of the long-run mean (two standard deviations).
+
+---
+
+**Exercise 3.**
+For a flat initial yield curve at $5\%$, what is $\theta(t)$ in the Hull-White model, and how do paths behave?
+
+??? success "Solution to Exercise 3"
+    For a flat curve, $f(0,t) = 5\%$ for all $t$ and $\partial f/\partial t = 0$. The theta function becomes:
+
+    $$
+    \theta(t) = f(0,t) + \frac{\eta^2}{2\lambda^2}(1 - e^{-2\lambda t}) = 0.05 + \frac{\eta^2}{2\lambda^2}(1 - e^{-2\lambda t}).
+    $$
+
+    For small $\eta$, $\theta(t) \approx 0.05$, so paths mean-revert to approximately $5\%$. The correction term $\eta^2/(2\lambda^2)$ represents a convexity adjustment that slightly lifts $\theta$ above the forward rate.
+
+---
+
+**Exercise 4.**
+Explain the difference between a continuously compounded rate and a simply compounded (LIBOR-style) rate in the context of Hull-White simulation.
+
+??? success "Solution to Exercise 4"
+    The continuously compounded rate $R_c$ satisfies $P(T_1, T_2) = e^{-R_c(T_2 - T_1)}$, so $R_c = -\ln P/(T_2 - T_1)$.
+
+    The simply compounded rate $L$ satisfies $P(T_1, T_2) = 1/(1 + L \cdot (T_2 - T_1))$, so $L = (1/P - 1)/(T_2 - T_1)$.
+
+    The relationship is $L = (e^{R_c \tau} - 1)/\tau$ where $\tau = T_2 - T_1$. For short periods ($\tau \to 0$), $L \approx R_c$. For longer periods, $L > R_c$ due to the convexity of the exponential function. In Hull-White simulation, one typically simulates the short rate $r(t)$, computes bond prices $P(t,T)$ using the analytical formula, and then converts to the desired compounding convention.

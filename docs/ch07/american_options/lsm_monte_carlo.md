@@ -7,6 +7,7 @@ The **Least-Squares Monte Carlo (LSM)** method, introduced by **Longstaff and Sc
 The key insight is that the optimal exercise decision at each time step requires only the **conditional expectation** of the continuation value, which can be approximated by **least-squares regression** on the simulated paths.
 
 !!! info "Prerequisites"
+
     - [American Option Definition](american_option_definition.md) (optimal stopping formulation)
     - [Early Exercise](early_exercise.md) (when exercise is optimal)
     - [Monte Carlo Pricing](../../ch06/black_scholes_formula/computational_examples.md) (basic simulation methods)

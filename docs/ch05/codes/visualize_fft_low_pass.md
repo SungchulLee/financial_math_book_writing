@@ -85,3 +85,59 @@ if __name__ == "__main__":
     plt.tight_layout()
     plt.show()
 ```
+
+## Exercises
+
+**Exercise 1.**
+The low-pass filter used is $H(f) = \exp(-4\pi^2 f^2 \cdot \alpha)$ with $\alpha = 10^{-5}$. Explain why this is called a Gaussian low-pass filter and what determines the cutoff frequency.
+
+??? success "Solution to Exercise 1"
+    The filter $H(f) = \exp(-4\pi^2 \alpha f^2)$ is a Gaussian function of frequency $f$. It attenuates high frequencies more than low frequencies because $|H(f)|$ decreases with $|f|$.
+
+    The effective cutoff frequency $f_c$ is where the filter magnitude drops to $e^{-1} \approx 0.37$: $4\pi^2 \alpha f_c^2 = 1$, giving $f_c = 1/(2\pi\sqrt{\alpha})$. For $\alpha = 10^{-5}$: $f_c = 1/(2\pi \cdot 0.00316) \approx 50.3$ Hz. This means the 50 Hz component is barely attenuated while the 120 Hz component is significantly reduced.
+
+---
+
+**Exercise 2.**
+After applying the low-pass filter, the reconstruction no longer matches the original signal. Compute the expected attenuation of the 120 Hz component with $\alpha = 10^{-5}$.
+
+??? success "Solution to Exercise 2"
+    The attenuation at 120 Hz is
+
+    $$
+    H(120) = \exp(-4\pi^2 \cdot 10^{-5} \cdot 120^2) = \exp(-4\pi^2 \cdot 0.144) \approx \exp(-5.685) \approx 0.0034
+    $$
+
+    So the 120 Hz component is reduced to about 0.34% of its original amplitude -- essentially removed.
+
+    For comparison, at 50 Hz: $H(50) = \exp(-4\pi^2 \cdot 10^{-5} \cdot 2500) = \exp(-0.987) \approx 0.373$. The 50 Hz component is attenuated to about 37%.
+
+---
+
+**Exercise 3.**
+Explain the connection between this Gaussian low-pass filter and the heat equation. What role does the parameter $\alpha$ play?
+
+??? success "Solution to Exercise 3"
+    The Gaussian filter $\exp(-4\pi^2 D k^2 t)$ is exactly the frequency-domain response of the heat equation $u_t = Du_{xx}$. Here $\alpha$ plays the role of $Dt$ (diffusivity times time).
+
+    Applying the filter to a signal is equivalent to evolving it under the heat equation for time $t = \alpha/D$. Larger $\alpha$ means more diffusion (stronger smoothing). This connection explains why the heat equation is a natural model for smoothing and denoising: it exponentially damps high-frequency components while preserving low-frequency structure.
+
+---
+
+**Exercise 4.**
+Design a band-pass filter (using the FFT) that passes only frequencies between 100 Hz and 150 Hz. Write the filter function $H(f)$.
+
+??? success "Solution to Exercise 4"
+    A sharp band-pass filter is
+
+    $$
+    H(f) = \begin{cases} 1 & \text{if } 100 \le |f| \le 150 \\ 0 & \text{otherwise} \end{cases}
+    $$
+
+    A smoother version using Gaussians:
+
+    $$
+    H(f) = \exp\!\Bigl(-\frac{(|f| - 125)^2}{2 \cdot 25^2}\Bigr)
+    $$
+
+    This is centered at 125 Hz with bandwidth controlled by the denominator. In code: `H = np.exp(-((np.abs(frequencies) - 125)**2) / (2 * 25**2))`. Applying this filter to the test signal would retain only the 120 Hz component and suppress the 50 Hz component.

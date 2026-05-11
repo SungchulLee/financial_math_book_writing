@@ -23,6 +23,7 @@ has two built-in amplifiers:
 2. **Division by curvature**: if $\partial_{KK}C$ is small, errors explode.
 
 The curvature is typically smallest in:
+
 - far wings (deep OTM),
 - regions with sparse data,
 - maturities with wide bid/ask spreads.
@@ -44,6 +45,7 @@ Thus extrapolation is unavoidable, and instability often concentrates near:
 - extreme strikes where extrapolation dominates.
 
 Common mitigation:
+
 - enforce reasonable asymptotic wing behavior (e.g., SVI-inspired),
 - freeze or damp local vol outside liquid regions.
 
@@ -56,6 +58,7 @@ As $T\to 0$, option prices become very sensitive to microstructure, discrete div
 Even a small mismatch in forward/dividend handling can distort $\partial_T C$ significantly.
 
 Practitioner rules of thumb:
+
 - exclude ultra-short maturities from the Dupire inversion,
 - treat dividend modeling carefully (forward curve consistency),
 - apply stronger smoothing in time near $T=0$.
@@ -72,6 +75,7 @@ Even with a smooth fitted surface, numerical differentiation choices matter:
 - interpolation grid spacing.
 
 Stability improves when:
+
 - derivatives are computed analytically from the fitted functional form (e.g., splines/SVI),
 - differentiation is done in well-scaled coordinates (log-moneyness),
 - the grid avoids extreme clustering where finite differences become tiny.
@@ -85,6 +89,7 @@ A common practical approach is to compute a “raw” local vol estimate and the
 
 $$
 \min_{\sigma_{\text{loc}}} \; \|\text{Price}(\sigma_{\text{loc}}) - C^{\text{mkt}}\|^2
+
 + \lambda\,\mathcal{R}(\sigma_{\text{loc}})
 $$
 

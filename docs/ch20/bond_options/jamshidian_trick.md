@@ -140,6 +140,7 @@ Jamshidian's trick applies whenever the following conditions hold:
 3. **European exercise**: The option is exercised at a single date.
 
 !!! warning "When the Trick Fails"
+
     - **Multi-factor models** (e.g., two-factor Hull-White): Bond prices at different maturities may not be monotone in the same variable. The trick does not apply.
     - **American/Bermudan options**: Multiple exercise dates require dynamic programming, not a single threshold decomposition.
     - **Path-dependent payoffs**: The trick requires the payoff to depend only on $r(T_m)$, not on the path of $r$.

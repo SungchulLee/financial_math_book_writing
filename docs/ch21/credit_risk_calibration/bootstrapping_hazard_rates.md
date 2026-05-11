@@ -59,14 +59,17 @@ This recursive structure enables sequential bootstrapping.
 ### Step-by-Step Procedure
 
 **Step 0: Initialize**
+
 - Set $S(0, 0) = 1$
 - Input: CDS spreads $(s_1, \ldots, s_n)$, maturities $(T_1, \ldots, T_n)$, recovery $R$, discount curve $D$
 
 **Step 1: Bootstrap $\lambda_1$**
+
 - Solve for $\lambda_1$ such that CDS with spread $s_1$ and maturity $T_1$ prices to zero
 - This involves only $\lambda_1$ since $T_1$ is the first maturity
 
 **Step $i$ ($i = 2, \ldots, n$): Bootstrap $\lambda_i$**
+
 - Given $\lambda_1, \ldots, \lambda_{i-1}$ (hence $S(0, T_{i-1})$ is known)
 - Solve for $\lambda_i$ such that CDS with spread $s_i$ and maturity $T_i$ prices to zero
 
@@ -125,6 +128,7 @@ f(\lambda_i) = s_i \times \text{RPV01}(T_i; \lambda_1, \ldots, \lambda_i) - (1-R
 $$
 
 Methods:
+
 - **Bisection:** Robust but slow
 - **Newton-Raphson:** Fast with good initial guess
 - **Brent's method:** Combines reliability and speed
@@ -266,6 +270,7 @@ A change from $R = 40\%$ to $R = 30\%$ increases implied hazard rates by $\frac{
 If spreads are inverted (short-term > long-term) significantly, bootstrapping may produce negative $\lambda_i$, which is economically impossible.
 
 **Solutions:**
+
 - Constrain $\lambda_i \ge 0$ and accept pricing errors
 - Use global optimization instead of sequential bootstrap
 - Question data quality
@@ -273,6 +278,7 @@ If spreads are inverted (short-term > long-term) significantly, bootstrapping ma
 ### Extrapolation Beyond Last Maturity
 
 For $T > T_n$, common approaches:
+
 - Assume constant intensity: $\lambda(t) = \lambda_n$ for $t > T_n$
 - Gradual decay toward long-run average
 - Regulatory-specified ultimate hazard rates
@@ -509,7 +515,7 @@ show that under a single-period CDS with maturity $T_1$ and continuous premium p
     \lambda_1 = \frac{s_1}{1-R}
     $$
 
-    This holds **exactly** and is **independent of the risk-free rate $r$**. The key insight is that with continuous premium payment and constant intensity, both the premium and protection legs share the identical integral factor, so $r$ drops out of the ratio. This is why $\lambda \approx s/(1-R)$ is such a good approximation even for multi-period CDS---it becomes exact in the single-period continuous case. $\blacksquare$
+    This holds **exactly** and is **independent of the risk-free rate $r$**. The key insight is that with continuous premium payment and constant intensity, both the premium and protection legs share the identical integral factor, so $r$ drops out of the ratio. This is why $\lambda \approx s/(1-R)$ is such a good approximation even for multi-period CDS---it becomes exact in the single-period continuous case. $\square$
 
 ---
 

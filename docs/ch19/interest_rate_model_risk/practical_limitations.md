@@ -9,9 +9,11 @@ Even well-designed interest-rate models face **practical limitations** when depl
 
 
 Models calibrated to:
+
 - liquid vanilla instruments
 
 are often used to price:
+
 - illiquid or exotic products.
 
 Extrapolation beyond calibration data introduces uncertainty.
@@ -22,6 +24,7 @@ Extrapolation beyond calibration data introduces uncertainty.
 
 
 Results depend on:
+
 - interpolation and smoothing methods,
 - numerical solvers and discretization,
 - day-count and market conventions.
@@ -34,6 +37,7 @@ These choices can dominate theoretical differences between models.
 
 
 Even with perfect calibration:
+
 - hedging instruments may be illiquid,
 - dynamic re-hedging assumptions fail,
 - transaction costs and slippage matter.
@@ -46,6 +50,7 @@ Model-implied hedges are idealizations.
 
 
 Effective model risk management requires:
+
 - validation across scenarios,
 - stress testing and benchmarking,
 - conservative usage and reserves.

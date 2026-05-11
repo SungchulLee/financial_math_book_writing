@@ -148,3 +148,50 @@ if __name__ == "__main__":
         
             return max(0.0, min(100.0, score))
 ```
+
+## Exercises
+
+**Exercise 1.**
+Using the `create_vasicek_model` factory function with all defaults, what are the model parameters? Compute the long-run mean and standard deviation of the short rate.
+
+??? success "Solution to Exercise 1"
+    The defaults are $r_0 = 0.03$, $b = 0.05$, $a = 0.1$, $\sigma = 0.03$, and `maturity_time = 10.0`. The long-run (stationary) distribution is $r_\infty \sim \mathcal{N}(b, \sigma^2/(2a))$:
+
+    - Mean: $b = 0.05$
+    - Variance: $\sigma^2/(2a) = 0.0009/0.2 = 0.0045$
+    - Standard deviation: $\sqrt{0.0045} \approx 0.0671$
+
+    In the long run, rates fluctuate around $5\%$ with a standard deviation of about $6.7\%$ (in absolute terms), meaning rates between $-1.7\%$ and $11.7\%$ cover roughly one standard deviation on each side.
+
+---
+
+**Exercise 2.**
+Write a `quick_simulation` call to compare Vasicek and CIR under identical parameters $r_0 = 0.04$, long-term mean $= 0.06$, mean reversion $= 0.2$, $\sigma = 0.03$, with 5000 paths. What key difference would you observe?
+
+??? success "Solution to Exercise 2"
+    ```python
+    vasicek_result = quick_simulation(num_paths=5000, r0=0.04, b=0.06, a=0.2, sigma=0.03)
+    ```
+
+    For CIR, the analogous call uses `theta=0.06`, `kappa=0.2`. The key difference: the Vasicek simulation will have `has_negative_rates = True` (since rates are Gaussian), while the CIR simulation will have `has_negative_rates = False` (the Feller parameter is $2 \times 0.2 \times 0.06 / 0.03^2 \approx 26.7$, strongly satisfying the condition). The final rate distributions will also differ: Gaussian for Vasicek, chi-squared-based for CIR.
+
+---
+
+**Exercise 3.**
+The `VasicekAnalyzer._calculate_quality_score` method does not penalize negative rates, unlike the CIR analyzer. Explain this design choice.
+
+??? success "Solution to Exercise 3"
+    Negative rates are a fundamental mathematical property of the Vasicek model (Gaussian short rate), not a simulation artifact. Penalizing them would give misleadingly low quality scores for correctly implemented simulations. In contrast, the CIR model's theoretical process is non-negative, so negative rates in a CIR simulation indicate discretization error or parameter misconfiguration, justifying a quality penalty. The Vasicek analyzer only deducts points for validation failures (mean, variance, Gaussianity mismatches), which represent genuine simulation errors.
+
+---
+
+**Exercise 4.**
+Describe the full workflow of `comprehensive_analysis`: what data does it collect, what tests does it run, and how does it aggregate the results into an overall assessment?
+
+??? success "Solution to Exercise 4"
+    The workflow is:
+
+    1. **Data collection**: Extracts `model_parameters` (from `to_dict()`), `simulation_statistics` (from `get_statistics()`), and `theoretical_benchmarks` (analytical mean, variance, std at final time, plus $b$ and $r_0$).
+    2. **Validation**: Runs `full_validation` which tests (a) mean accuracy, (b) variance accuracy, and (c) Gaussianity (Shapiro-Wilk). Each produces a `ValidationResult` with pass/fail and relative error.
+    3. **Metrics**: Computes `model_metrics` including Sharpe ratio, path volatility, convergence to $b$, negative rate percentage, and autocorrelation.
+    4. **Aggregation**: The `overall_assessment` combines (a) whether all validation tests passed, (b) whether negative rates are present (informational, not penalized), and (c) a quality score starting at 100, reduced by $20 \times \varepsilon$ for each failed validation test with relative error $\varepsilon$.

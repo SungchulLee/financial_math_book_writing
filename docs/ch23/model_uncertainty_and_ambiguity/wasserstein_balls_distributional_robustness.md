@@ -341,6 +341,7 @@ This identifies how much the distribution must change to trigger a crisis-level 
 
 
 **Theorem** (Interchangeability): Under the following conditions:
+
 - $\mathcal{X}$ is compact and convex
 - $\ell(x, \xi)$ is convex in $x$ and upper semicontinuous in $\xi$
 - $\varepsilon > 0$

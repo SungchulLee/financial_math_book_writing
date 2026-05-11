@@ -34,6 +34,7 @@ In modern markets with negative rates, discount factors remain positive but may 
 The discount factor $P(0,T)$ answers the question: "How much would a rational investor pay today for a guaranteed payment of 1 unit at time $T$?"
 
 This value reflects:
+
 - Time preference (preferring consumption today over future)
 - Opportunity cost (alternative investment returns)
 - Inflation expectations (erosion of purchasing power)
@@ -168,6 +169,7 @@ P(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s \, ds} \,\bigg|\, \mathca
 $$
 
 This fundamental relationship:
+
 - Links observable bond prices to the stochastic short rate
 - Forms the basis of short-rate modeling (Section 10.2)
 - Reduces to $P(0,T) = e^{-\int_0^T r(s)ds}$ when rates are deterministic

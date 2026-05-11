@@ -9,6 +9,7 @@ Model-free bounds represent a fundamental approach to derivative pricing that do
 The theory of model-free bounds addresses the question: **What can we say about derivative prices using only no-arbitrage and observed option prices, without specifying a stochastic process?**
 
 This approach is particularly valuable because:
+
 1. It provides rigorous bounds that must hold regardless of the true underlying model
 2. It identifies which information is truly necessary for pricing
 3. It reveals when the market provides sufficient constraints to pin down unique prices
@@ -21,11 +22,13 @@ This approach is particularly valuable because:
 
 
 **Traded Assets**: Consider a frictionless market with:
+
 - A riskless asset (bond) with price $B_t = e^{rt}$
 - A risky asset (stock) with price process $S_t$
 - European options with various strikes and maturities
 
 **No-Arbitrage Assumption**: There exists no trading strategy that:
+
 1. Requires no initial investment
 2. Has non-negative payoff with probability 1
 3. Has positive payoff with positive probability
@@ -43,6 +46,7 @@ $$
 
 
 **Given Information**:
+
 - Current stock price $S_0$
 - Risk-free rate $r$
 - Maturity $T$
@@ -68,11 +72,13 @@ $$
 
 
 **Proof**: Consider the portfolio:
+
 - Long one call with strike $K$
 - Short one stock
 - Long $Ke^{-rT}$ in bonds
 
 At maturity:
+
 - If $S_T > K$: Portfolio value = $(S_T - K) - S_T + K = 0$
 - If $S_T \leq K$: Portfolio value = $0 - S_T + K \geq 0$
 
@@ -132,10 +138,12 @@ $$
 
 
 **Proof**: Consider two portfolios:
+
 - Portfolio A: One call + $Ke^{-rT}$ in bonds
 - Portfolio B: One put + One stock
 
 At maturity $T$:
+
 - If $S_T > K$: Portfolio A = $(S_T - K) + K = S_T$, Portfolio B = $0 + S_T = S_T$
 - If $S_T \leq K$: Portfolio A = $0 + K = K$, Portfolio B = $(K - S_T) + S_T = K$
 
@@ -159,6 +167,7 @@ $$
 for all $K_1 < K_2$ and $\lambda \in [0, 1]$.
 
 **Proof**: For any $K_1 < K_2 < K_3$ with $K_2 = \alpha K_1 + (1-\alpha) K_3$, consider the butterfly spread:
+
 - Long 1 call at $K_1$
 - Long 1 call at $K_3$
 - Short $\frac{K_3 - K_1}{K_2 - K_1} = \frac{1}{\alpha}$ calls at $K_2$
@@ -209,6 +218,7 @@ $$
 
 
 **Proof**: 
+
 - Lower bound: From monotonicity
 - Upper bound: The maximum payoff of a call spread is $K_2 - K_1$, so its present value is at most $e^{-rT}(K_2 - K_1)$
 
@@ -225,6 +235,7 @@ $$
 
 
 **Proof**: 
+
 - Upper bound: Monotonicity (decreasing function)
 - Lower bound: From call spread bound, taking limits:
 
@@ -310,6 +321,7 @@ $$
 
 
 **Implications**:
+
 1. Convexity of $C(K)$ ensures $q(K) \geq 0$ (probability density)
 2. The integral $\int_0^{\infty} q(K) \, dK = 1$ (normalization)
 3. The forward price:
@@ -335,6 +347,7 @@ $$
 **Interpolation**: Use splines or other smooth interpolation methods to obtain a continuous function $C(K)$, then differentiate numerically.
 
 **Regularization**: In practice, raw market prices may violate no-arbitrage constraints due to:
+
 - Bid-ask spreads
 - Discrete strikes
 - Market microstructure noise
@@ -391,6 +404,7 @@ $$
 
 
 **Interpretation**: 
+
 - Any derivative can be priced using puts below the forward and calls above the forward
 - The weights are given by the second derivative of the payoff function
 - This is a **static replication strategy**
@@ -566,6 +580,7 @@ $$
 
 
 **Interpretation**: 
+
 - The minimum cost to super-replicate equals the maximum expected discounted payoff over all martingale measures
 - This provides a dual characterization of derivative prices
 - Strong duality holds in frictionless markets
@@ -721,6 +736,7 @@ $$
 
 
 subject to:
+
 1. $q(S) \geq 0$ for all $S$
 2. $\int_0^{\infty} q(S) \, dS = e^{-rT}$
 3. $\int_0^{\infty} S q(S) \, dS = S_0$
@@ -882,6 +898,7 @@ $$
 **Variables**: Moments $\mu_k = \mathbb{E}_{\mathbb{Q}}[S_T^k]$ for $k = 0, 1, 2, \ldots, K$.
 
 **Constraints**:
+
 1. Moment sequence corresponds to a valid probability measure (positive semi-definiteness)
 2. Martingale constraint: $\mu_1 = S_0 e^{rT}$
 3. Option pricing constraints from Breeden-Litzenberger
@@ -947,6 +964,7 @@ where $\lambda$ is chosen to match constraints.
 **Width of Bounds**: For many exotic derivatives, model-free bounds are **wide** – the interval $[\underline{V}, \overline{V}]$ can be large.
 
 **Information Insufficiency**: Vanilla option prices alone may not provide tight bounds for:
+
 - Strongly path-dependent options (e.g., lookbacks, barriers)
 - Multi-asset derivatives
 - Options sensitive to volatility dynamics
@@ -1034,14 +1052,17 @@ subject to marginal constraints.
 
 
 **For Traders**:
+
 - Model-free bounds provide arbitrage-free price ranges
 - Observed market prices outside these bounds indicate arbitrage opportunities (after transaction costs)
 
 **For Risk Managers**:
+
 - Robust bounds quantify model uncertainty
 - Worst-case scenarios guide capital allocation
 
 **For Researchers**:
+
 - Model-free results identify which features are truly necessary for pricing
 - Gaps between model-free bounds and model-specific prices reveal model-dependent risk premiums
 

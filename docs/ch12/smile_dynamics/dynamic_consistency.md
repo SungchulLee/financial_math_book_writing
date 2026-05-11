@@ -52,6 +52,7 @@ $$
 **Status:** Dynamically consistent but unrealistic.
 
 Under Black-Scholes:
+
 - Volatility is constant: $\sigma(t) = \sigma_0$
 - The forward smile is flat
 - Evolving forward gives the same flat smile
@@ -93,15 +94,18 @@ For local vol, this can be several vol points for long-dated options.
 **Status:** Better but still imperfect.
 
 **Heston model:**
+
 - Forward smile has persistent skew (due to $\rho$)
 - Level evolves with $v_t$
 - But specific shape may not match recalibrated surface
 
 **Improvement over local vol:**
+
 - Forward skew persists
 - Term structure evolves more realistically
 
 **Remaining issues:**
+
 - Smile wings may not match
 - Vol-of-vol may need adjustment
 - Parameter stability over time
@@ -112,10 +116,12 @@ For local vol, this can be several vol points for long-dated options.
 **Status:** Partially consistent.
 
 SABR with stochastic $\alpha_t$:
+
 - ATM level evolves stochastically
 - Skew determined by $\rho$, $\nu$
 
 **Consistency depends on:**
+
 - Whether $\alpha_t$ dynamics match implied vol dynamics
 - Parameter stability ($\rho$, $\nu$, $\beta$)
 
@@ -133,12 +139,14 @@ $$
 
 
 Depends critically on forward smile. Dynamically inconsistent models give:
+
 - Local vol: Underprices cliquets (forward smile too flat)
 - Wrong volatility for future periods
 
 **Autocallables:**
 
 Path-dependent barriers interact with forward smile dynamics. Inconsistent models miscalculate:
+
 - Probability of early knockout
 - Value of continuation
 
@@ -148,12 +156,14 @@ Path-dependent barriers interact with forward smile dynamics. Inconsistent model
 **Delta hedging:**
 
 If the model predicts wrong forward smile dynamics:
+
 - Delta hedge ratio is incorrect
 - Systematic hedging P&L leakage
 
 **Vega hedging:**
 
 Forward vega exposure depends on forward smile:
+
 - Inconsistent models give wrong forward vega
 - Term structure hedges fail
 
@@ -179,6 +189,7 @@ $$
 This is "model P&L" unrelated to market moves.
 
 **Example:** A long-dated exotic may show:
+
 - Market unchanged
 - Recalibration changes parameters
 - Book shows P&L from parameter change
@@ -190,10 +201,12 @@ This is "model P&L" unrelated to market moves.
 
 
 **Perfect static fit:**
+
 - Local vol matches today's smile exactly
 - But forward smile dynamics are unrealistic
 
 **Realistic dynamics:**
+
 - Stochastic vol has better dynamics
 - But may not fit today's smile perfectly
 
@@ -205,6 +218,7 @@ This is "model P&L" unrelated to market moves.
 **Additional state variables:**
 
 Adding factors improves dynamics:
+
 - Two-factor stochastic vol
 - Stochastic vol-of-vol
 - Regime switching
@@ -313,6 +327,7 @@ $$
 
 
 The forward smile must satisfy:
+
 - Calendar spread constraint: forward variance > 0
 - Butterfly constraint: forward density > 0
 - Consistency with spot smile

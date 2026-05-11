@@ -3,6 +3,7 @@
 The Hull-White model is fully characterized within the HJM framework by the choice of forward rate volatility $\sigma_f(t,T) = \sigma e^{-a(T-t)}$. This single specification, combined with the HJM no-arbitrage drift condition, determines the drift of forward rates, the volatility of bond prices, and the covariance structure of the entire yield curve. This section examines the volatility structure in detail, derives its consequences for bond price dynamics, and establishes the variance and covariance formulas that are essential for option pricing.
 
 !!! info "Prerequisites"
+
     - HJM framework and drift condition (Chapter 19)
     - Derivation of Hull-White from HJM (previous section)
     - Bond price dynamics under the risk-neutral measure

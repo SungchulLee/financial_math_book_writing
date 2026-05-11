@@ -24,6 +24,7 @@ Under a measure change, both the compensator and intensity may change.
 
 
 Girsanov’s theorem states that, under suitable integrability conditions:
+
 - the compensated jump process remains a martingale,
 - the intensity transforms multiplicatively or additively.
 
@@ -35,6 +36,7 @@ This generalizes the drift adjustment in diffusion models.
 
 
 In credit models:
+
 - the likelihood of default paths is reweighted,
 - jump intensities reflect risk premia,
 - pricing formulas remain tractable.
@@ -47,6 +49,7 @@ This formalism justifies using different intensities under $\mathbb{P}$ and $\ma
 
 
 Many models include:
+
 - diffusive market factors,
 - jump-to-default components.
 

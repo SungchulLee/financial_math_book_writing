@@ -12,6 +12,7 @@ the maximum. This maximum condition is the key extension beyond European
 pricing.
 
 Includes:
+
   - Array-based binomial pricing (efficient O(N) space)
   - Convergence analysis across step counts
   - Comparison with European put (Black-Scholes formula)
@@ -256,3 +257,59 @@ if __name__ == "__main__":
     plt.show()
     print("Figure saved: american_put_binomial_sensitivity.png")
 ```
+
+## Exercises
+
+**Exercise 1.**
+Explain the early exercise condition for an American put at a binomial tree node. Why might early exercise be optimal for puts but not for calls (on non-dividend stocks)?
+
+??? success "Solution to Exercise 1"
+    At each node, the holder compares: **exercise value** $\max(K - S, 0)$ versus **continuation value** $e^{-r\Delta t}[q V_u + (1-q)V_d]$. Early exercise is optimal when the exercise value exceeds the continuation value.
+
+    For puts: when $S$ is very low, the exercise value $K - S$ is large and the stock cannot go below 0, so the upside of waiting is limited. Meanwhile, continuing means receiving $K - S$ later, which is worth less due to discounting. The interest earned on $K$ (received upon exercise) can exceed the option's time value.
+
+    For calls on non-dividend stocks: $S - K$ increases as $S$ rises, and there is no upper bound. Waiting always preserves optionality and avoids paying $K$ early (which loses interest). Therefore early exercise is never optimal.
+
+---
+
+**Exercise 2.**
+With $S_0 = 100$, $K = 100$, $T = 1$, $r = 0.05$, $\sigma = 0.20$, compute the CRR parameters $u$, $d$, and $q$ for $M = 4$ steps.
+
+??? success "Solution to Exercise 2"
+    $\Delta t = 1/4 = 0.25$.
+
+    $$
+    u = e^{\sigma\sqrt{\Delta t}} = e^{0.20\sqrt{0.25}} = e^{0.10} \approx 1.10517
+    $$
+
+    $$
+    d = 1/u \approx 0.90484
+    $$
+
+    $$
+    q = \frac{e^{r\Delta t} - d}{u - d} = \frac{e^{0.0125} - 0.90484}{1.10517 - 0.90484} = \frac{1.01258 - 0.90484}{0.20033} = \frac{0.10774}{0.20033} \approx 0.5379
+    $$
+
+---
+
+**Exercise 3.**
+The code uses an $O(N)$-space array-based method instead of storing the full tree. Describe this optimization and its memory savings for $M = 1000$ steps.
+
+??? success "Solution to Exercise 3"
+    Instead of a 2D array of size $M \times (M+1)$ storing all node values, only a 1D array of size $M+1$ is maintained. At each backward step, values are updated in-place from left to right.
+
+    Memory for full tree: $1000 \times 1001 \times 8 \approx 8$ MB. Memory for array method: $1001 \times 8 \approx 8$ KB. The savings factor is approximately 1000x.
+
+    The trade-off is that intermediate node values (needed for Greeks or exercise boundary computation) are lost. For just the option price at $t = 0$, the array method is sufficient.
+
+---
+
+**Exercise 4.**
+Richardson extrapolation combines prices from $M$ and $M+1$ steps. Explain why this accelerates convergence from $O(1/M)$ to $O(1/M^2)$.
+
+??? success "Solution to Exercise 4"
+    The binomial price has an asymptotic expansion $V_M = V_{\text{exact}} + c_1/M + c_2/M^2 + \ldots$ where the $O(1/M)$ term oscillates between even and odd $M$.
+
+    The Richardson extrapolation $V_R = 2V_{2M} - V_M$ eliminates the $O(1/M)$ term because the leading error has opposite signs for $M$ and $2M$. More precisely: $V_R = V_{\text{exact}} + O(1/M^2)$.
+
+    For the simpler "average of consecutive" approach: $\bar{V} = (V_M + V_{M+1})/2$ also reduces the oscillation, giving approximately $O(1/M^2)$ convergence. This is simpler and nearly as effective.

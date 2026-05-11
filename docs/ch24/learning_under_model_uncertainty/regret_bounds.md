@@ -13,6 +13,7 @@ For a sequence of losses $\ell_t$,
 $$
 \text{Regret}_T
 = \sum_{t=1}^T \ell_t(a_t)
+
 - \min_{a} \sum_{t=1}^T \ell_t(a)
 $$
 
@@ -26,6 +27,7 @@ Low regret means the algorithm learns effectively.
 
 
 Common notions include:
+
 - static regret (vs best fixed action),
 - dynamic regret (vs time-varying benchmark),
 - policy regret (in control settings).
@@ -38,6 +40,7 @@ Each reflects different learning goals.
 
 
 Typical guarantees are:
+
 - $O(\sqrt{T})$ regret for convex losses,
 - logarithmic regret for strongly convex problems.
 
@@ -49,6 +52,7 @@ Bounds are often worst-case.
 
 
 In finance:
+
 - regret corresponds to opportunity cost,
 - low regret ensures competitive long-run performance,
 - regret bounds provide model-free guarantees.

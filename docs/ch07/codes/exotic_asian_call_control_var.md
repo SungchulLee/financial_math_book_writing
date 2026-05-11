@@ -9,6 +9,7 @@ an arithmetic average Asian call. The European call (with known Black-Scholes
 price) serves as the control variate, correcting systematic Monte Carlo errors.
 
 Mathematical Framework:
+
     - Control variate estimator:
         V_asian_adj = V_asian_MC + (C_BS - C_MC)
     - The correction (C_BS - C_MC) removes the systematic error shared
@@ -19,6 +20,7 @@ Also demonstrates using the geometric average Asian option as a superior
 control variate (higher correlation with the arithmetic average).
 
 References:
+
     - Glasserman (2003). Monte Carlo Methods in Financial Engineering, Ch. 4.
     - Kemna, Vorst (1990). A pricing method for options based upon average values.
 
@@ -311,3 +313,36 @@ if __name__ == "__main__":
 
     print("\nPlot saved to asian_call_control_variate.png")
 ```
+
+
+## Exercises
+
+**Exercise 1.**
+Explain the control variate technique for Asian option pricing. Why is the European call a natural control variate?
+
+??? success "Solution to Exercise 1"
+    The estimator is $\hat{V}_{\text{adj}} = \hat{V}_{\text{Asian}} + (C_{\text{BS}} - \hat{C}_{\text{MC}})$. The European call is natural because its exact price is known (BS formula) and it is highly correlated with the Asian payoff (both increase with $S_T$).
+
+---
+
+**Exercise 2.**
+Why is the geometric average Asian option an even better control variate than the European call?
+
+??? success "Solution to Exercise 2"
+    The geometric average is log-normal with a known closed-form price, and its correlation with the arithmetic average is typically 0.99+, compared to about 0.90 for the European call. Since $\text{VRR} \approx 1/(1 - \rho^2)$, higher correlation gives much greater variance reduction.
+
+---
+
+**Exercise 3.**
+Derive the optimal control variate coefficient $c^*$ and the resulting variance reduction formula.
+
+??? success "Solution to Exercise 3"
+    The optimal coefficient is $c^* = \text{Cov}(\text{target}, \text{control})/\text{Var}(\text{control})$. The resulting variance is $\text{Var}(\hat{V}) = \text{Var}(\text{target})(1 - \rho^2)$, giving $\text{VRR} = 1/(1 - \rho^2)$.
+
+---
+
+**Exercise 4.**
+Can multiple control variates be combined? Describe how to use both the European call and geometric Asian as controls simultaneously.
+
+??? success "Solution to Exercise 4"
+    Use $\hat{V} = \hat{V}_{\text{target}} - \mathbf{c}^T(\hat{\mathbf{V}}_{\text{control}} - \mathbf{V}_{\text{control}})$ where $\mathbf{c}^* = \Sigma_{\text{cc}}^{-1}\Sigma_{\text{ct}}$. The combined VRR can exceed either individual control, though the marginal gain of adding the European call on top of the geometric Asian is typically small.

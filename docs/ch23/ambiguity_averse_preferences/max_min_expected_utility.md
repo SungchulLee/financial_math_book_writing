@@ -7,6 +7,7 @@
 **Max-min expected utility (MEU)** provides the foundational framework for rational decision-making under Knightian uncertainty, where decision-makers face ambiguity about the true probability distribution governing outcomes. Unlike classical expected utility theory, which assumes a unique subjective probability, MEU allows for a **set of priors** and evaluates acts by their worst-case expected utility.
 
 This framework, axiomatized by Gilboa and Schmeidler (1989), has profound implications for:
+
 1. **Portfolio selection**: Understanding why investors hold undiversified portfolios or avoid certain asset classes
 2. **Asset pricing**: Explaining puzzles like the equity premium and home bias
 3. **Risk management**: Justifying conservative positions under model uncertainty
@@ -27,6 +28,7 @@ The mathematical foundations connect decision theory, functional analysis, and c
 **Lotteries**: A lottery $p = (p_1, \ldots, p_m)$ assigns probabilities to outcomes $x_1, \ldots, x_m$.
 
 **VNM Axioms**: Preferences $\succeq$ over lotteries satisfy:
+
 1. **Completeness**: For all $p, q$: either $p \succeq q$ or $q \succeq p$
 2. **Transitivity**: $p \succeq q$ and $q \succeq r$ implies $p \succeq r$
 3. **Continuity**: If $p \succ q \succ r$, there exist $\alpha, \beta \in (0,1)$ such that $\alpha p + (1-\alpha) r \succ q \succ \beta p + (1-\beta) r$
@@ -50,6 +52,7 @@ The utility function $u$ is unique up to positive affine transformation.
 If $f(\omega) = g(\omega)$ for $\omega \in E$ and $f \succeq g$ when $f(\omega) = h(\omega)$ for $\omega \notin E$, then $f \succeq g$ when $f(\omega) = h'(\omega)$ for $\omega \notin E$.
 
 **Representation Theorem** (Savage): Under the Savage axioms, there exist:
+
 - A unique probability measure $P$ on $\Omega$
 - A utility function $u: X \to \mathbb{R}$ (unique up to positive affine transformation)
 
@@ -73,6 +76,7 @@ $$
 **Urn II**: Contains 100 balls, some red and some black, but exact composition unknown
 
 **Gambles**:
+
 - $f_1$: Win \$100 if red drawn from Urn I
 - $f_2$: Win \$100 if black drawn from Urn I  
 - $f_3$: Win \$100 if red drawn from Urn II
@@ -165,6 +169,7 @@ $$
 
 
 **Theorem** (Gilboa–Schmeidler, 1989): Preferences $\succeq$ on $\mathcal{F}$ satisfy Axioms 1-6 if and only if there exist:
+
 - A non-empty, closed, convex set of probability measures $\mathcal{P}$ on $(\Omega, \Sigma)$
 - A non-constant affine utility function $u: X \to \mathbb{R}$
 
@@ -175,17 +180,20 @@ f \succeq g \iff \min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)] \geq \min_{P \in \m
 $$
 
 Moreover:
+
 - $u$ is unique up to positive affine transformation
 - $\mathcal{P}$ is unique
 
 **Proof Sketch**:
 
 *Necessity*: Verify that the max-min representation satisfies all axioms.
+
 - Monotonicity and continuity follow from properties of expectations
 - C-Independence holds because constant acts have the same expectation under all $P \in \mathcal{P}$
 - Uncertainty aversion follows from the convexity of $\mathcal{P}$ and the minimum operator
 
 *Sufficiency*: The proof uses separation arguments in functional analysis.
+
 1. Define a functional $I: B(\Omega) \to \mathbb{R}$ representing preferences over simple acts
 2. Show $I$ is monotone, constant-additive, and positively homogeneous
 3. Apply a representation theorem for such functionals (Schmeidler, 1989)
@@ -240,6 +248,7 @@ $$
 
 
 **Capacity**: A set function $\nu: \Sigma \to [0,1]$ satisfying:
+
 1. $\nu(\emptyset) = 0$, $\nu(\Omega) = 1$
 2. $A \subseteq B \implies \nu(A) \leq \nu(B)$
 
@@ -345,12 +354,14 @@ where the ambiguity premium compensates investors for bearing uncertainty about 
 **Observation**: Investors hold disproportionately large shares of domestic assets relative to mean-variance optimization.
 
 **MEU Explanation**: Investors may have:
+
 - Precise beliefs about domestic asset returns (small $\mathcal{P}$)
 - Ambiguous beliefs about foreign asset returns (large $\mathcal{P}$)
 
 Under MEU, the worst-case expected return for foreign assets is lower, reducing optimal foreign holdings.
 
 **Empirical Support**: Home bias is more pronounced for:
+
 - Assets in unfamiliar markets
 - Periods of heightened uncertainty
 - Investors with less financial sophistication
@@ -420,11 +431,13 @@ V(f) = \int_{\mathcal{P}} \phi\left(\mathbb{E}_P[u(f)]\right) d\mu(P)
 $$
 
 where:
+
 - $u$: Utility function (risk attitude)
 - $\phi$: Ambiguity attitude function
 - $\mu$: Second-order probability over $\mathcal{P}$
 
 **Interpretation**:
+
 1. Compute expected utility $\mathbb{E}_P[u(f)]$ for each $P \in \mathcal{P}$
 2. Apply ambiguity transformation $\phi$
 3. Average over second-order beliefs $\mu$
@@ -432,6 +445,7 @@ where:
 **Ambiguity Aversion**: $\phi$ concave $\Leftrightarrow$ ambiguity aversion
 
 **Advantages over MEU**:
+
 - Separates likelihood beliefs ($\mu$) from ambiguity attitudes ($\phi$)
 - Allows for smooth preferences (no kinks)
 - More tractable for dynamic optimization
@@ -448,6 +462,7 @@ $$
 where $c: \mathcal{M}_1(\Omega) \to [0, \infty]$ is a convex, lower semicontinuous cost function with $\inf_P c(P) = 0$.
 
 **Special Cases**:
+
 - **MEU**: $c(P) = 0$ if $P \in \mathcal{P}$, else $c(P) = \infty$
 - **Multiplier Preferences**: $c(P) = \theta D_{\text{KL}}(P \| P_0)$
 
@@ -484,6 +499,7 @@ where $\mathcal{P}_t(\omega)$ is a family of conditional distributions.
 **Theorem** (Epstein-Schneider): MEU preferences are dynamically consistent if and only if the set of priors $\mathcal{P}$ is rectangular.
 
 **Implication**: For dynamic applications, one must either:
+
 1. Restrict to rectangular prior sets
 2. Accept time inconsistency and model sophisticated agents
 3. Use alternative preference models (e.g., smooth ambiguity)
@@ -546,6 +562,7 @@ The robust portfolio problem can be reformulated as an SDP using Schur complemen
 
 
 **Monte Carlo**: 
+
 1. Sample $P^1, \ldots, P^N$ from a distribution over $\mathcal{P}$
 2. Approximate $\min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)] \approx \min_{k=1,\ldots,N} \mathbb{E}_{P^k}[u(f)]$
 3. Increase $N$ for tighter approximation
@@ -561,6 +578,7 @@ The robust portfolio problem can be reformulated as an SDP using Schur complemen
 **Ellsberg-Type Experiments**: Consistent finding of ambiguity aversion across demographics.
 
 **Domain Dependence**: 
+
 - Gains domain: Ambiguity aversion (prefer known probabilities)
 - Losses domain: Ambiguity seeking (prefer unknown probabilities)
 
@@ -570,14 +588,17 @@ The robust portfolio problem can be reformulated as an SDP using Schur complemen
 
 
 **Portfolio Holdings**: 
+
 - Investors underweight ambiguous assets (emerging markets, new technologies)
 - Ambiguity aversion correlates with demographic characteristics (age, education)
 
 **Insurance Markets**: 
+
 - Demand for catastrophe insurance exceeds actuarially fair prices
 - Consistent with ambiguity aversion about rare events
 
 **Corporate Finance**: 
+
 - Managers exhibit ambiguity aversion in capital budgeting
 - Preference for projects with well-understood risks
 
@@ -675,7 +696,7 @@ Max-min expected utility provides the theoretical foundation for understanding d
     V(f_1) = V(f_2) = 50 > 30 = V(f_3) = V(f_4)
     $$
 
-    Therefore $f_1 \sim f_2 \succ f_3 \sim f_4$, which is exactly the Ellsberg-type behavior. The known-probability gambles are preferred because the worst-case evaluation penalizes the ambiguous gambles: the MEU agent evaluates Urn II gambles using the most pessimistic prior, which assigns only 30% probability to the winning color. $\blacksquare$
+    Therefore $f_1 \sim f_2 \succ f_3 \sim f_4$, which is exactly the Ellsberg-type behavior. The known-probability gambles are preferred because the worst-case evaluation penalizes the ambiguous gambles: the MEU agent evaluates Urn II gambles using the most pessimistic prior, which assigns only 30% probability to the winning color. $\square$
 
 ---
 
@@ -708,7 +729,7 @@ Compare this with the standard expected utility $\mathbb{E}_{P_0}[u(f)]$.
 
     **Comparison:** The standard expected utility is $5.8$, while the MEU value is $4.24$, a reduction of $5.8 - 4.24 = 1.56$.
 
-    The $\varepsilon$-contamination model reduces the value by placing weight $\varepsilon = 0.2$ on the worst possible outcome $u = -2$ rather than distributing that weight according to $P_0$. This captures the decision-maker's concern that the reference model $P_0$ might be wrong, with a 20% "contamination" from an adversarial distribution that concentrates all mass on the worst state $\omega_3$. $\blacksquare$
+    The $\varepsilon$-contamination model reduces the value by placing weight $\varepsilon = 0.2$ on the worst possible outcome $u = -2$ rather than distributing that weight according to $P_0$. This captures the decision-maker's concern that the reference model $P_0$ might be wrong, with a 20% "contamination" from an adversarial distribution that concentrates all mass on the worst state $\omega_3$. $\square$
 
 ---
 
@@ -783,7 +804,7 @@ $$
     = \max_w\left\{w^\top\hat{\mu} - \kappa\sqrt{w^\top\Sigma w} - \frac{\lambda}{2}w^\top\Sigma w\right\}
     $$
 
-    This is the desired result. The robust portfolio problem adds a penalty proportional to the portfolio's standard deviation (scaled by $\kappa$) on top of the usual variance penalty. This additional term is non-differentiable at $w = 0$, which can cause the robust optimizer to choose $w^* = 0$ (no investment) when the ambiguity is large relative to expected returns. $\blacksquare$
+    This is the desired result. The robust portfolio problem adds a penalty proportional to the portfolio's standard deviation (scaled by $\kappa$) on top of the usual variance penalty. This additional term is non-differentiable at $w = 0$, which can cause the robust optimizer to choose $w^* = 0$ (no investment) when the ambiguity is large relative to expected returns. $\square$
 
 ---
 
@@ -828,7 +849,7 @@ $$
     = \alpha V(f) + (1-\alpha)V(g) = \alpha v + (1-\alpha)v = v = V(f)
     $$
 
-    Therefore $V(\alpha f + (1-\alpha)g) \geq V(f)$. Hedging (mixing) between two equally valued acts is weakly preferred, because the minimum of a convex combination is at least the convex combination of the individual minima --- the worst-case prior for the mixture may differ from the individual worst-case priors, and the mixture forces a compromise that cannot be worse. $\blacksquare$
+    Therefore $V(\alpha f + (1-\alpha)g) \geq V(f)$. Hedging (mixing) between two equally valued acts is weakly preferred, because the minimum of a convex combination is at least the convex combination of the individual minima --- the worst-case prior for the mixture may differ from the individual worst-case priors, and the mixture forces a compromise that cannot be worse. $\square$
 
 ---
 
@@ -893,7 +914,7 @@ $$
 
     Unconditionally, $P_2$ is worst-case. But conditional on $A^c$: $\mathbb{E}_{P_1}[u(g)|A^c] = \frac{2}{3}(8) + \frac{1}{3}(3) = 19/3 \approx 6.33$ and $\mathbb{E}_{P_2}[u(g)|A^c] = \frac{2}{7}(8) + \frac{5}{7}(3) = 31/7 \approx 4.43$. The conditional worst case is still $P_2$.
 
-    Time inconsistency arises in general because the prior $\mathcal{P} = \{P_1, P_2\}$ is **not rectangular**: the worst-case prior can switch between $P_1$ and $P_2$ depending on the event observed and the act evaluated. A dynamically consistent MEU agent requires a rectangular prior set, where conditional priors can be freely mixed across events. With only two priors, rectangularity demands a specific product structure that is not guaranteed. $\blacksquare$
+    Time inconsistency arises in general because the prior $\mathcal{P} = \{P_1, P_2\}$ is **not rectangular**: the worst-case prior can switch between $P_1$ and $P_2$ depending on the event observed and the act evaluated. A dynamically consistent MEU agent requires a rectangular prior set, where conditional priors can be freely mixed across events. With only two priors, rectangularity demands a specific product structure that is not guaranteed. $\square$
 
 ---
 
@@ -1006,7 +1027,7 @@ $$
     \min_{P \in \text{core}(\nu)} \mathbb{E}_P[u(f)] = 3(0.4) + 1(0.4) + 5(0.2) = 1.2 + 0.4 + 1.0 = 2.6
     $$
 
-    This equals the Choquet integral value of 2.6, confirming that for a convex capacity, the Choquet integral equals the minimum expected utility over the core. $\blacksquare$
+    This equals the Choquet integral value of 2.6, confirming that for a convex capacity, the Choquet integral equals the minimum expected utility over the core. $\square$
 
 ---
 
@@ -1016,7 +1037,7 @@ $$
     **Black-Scholes formula:** For a European call with spot $S_0$, strike $K$, maturity $T$, risk-free rate $r$, and volatility $\sigma$:
 
     $$
-    C = S_0 \Phi(d_1) - K e^{-rT}\Phi(d_2)
+    C = S_0 \mathcal{N}(d_1) - K e^{-rT}\mathcal{N}(d_2)
     $$
 
     where $d_1 = \frac{\log(S_0/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}}$ and $d_2 = d_1 - \sigma\sqrt{T}$.
@@ -1080,4 +1101,4 @@ $$
 
     The buyer, who bears the risk of overpaying, evaluates the option at the highest possible volatility (the most expensive scenario). The seller, who bears the risk of selling too cheaply, evaluates at the lowest volatility. No trade occurs at a single price because buyer and seller use different worst-case models.
 
-    This MEU-based bid-ask spread provides a structural explanation for observed option bid-ask spreads beyond transaction costs: part of the spread compensates market makers for ambiguity about the true volatility dynamics. $\blacksquare$
+    This MEU-based bid-ask spread provides a structural explanation for observed option bid-ask spreads beyond transaction costs: part of the spread compensates market makers for ambiguity about the true volatility dynamics. $\square$

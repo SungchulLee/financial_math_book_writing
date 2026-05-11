@@ -27,22 +27,12 @@ From the product rule two further identities follow directly:
 
 ## 2. Why the Classical Product Rule Gains an Extra Term
 
-In classical calculus, $dX\,dY = 0$ because increments scale like $O(dt)$, making
-cross terms second-order and negligible. For Itô processes driven by Brownian motion,
-$dX_t$ contains a $dW_t$ component with $dW_t = O(\sqrt{dt})$, so
-
-$$
-dW_t \cdot dW_t = dt \neq 0
-$$
-
-Products of stochastic differentials therefore contribute at first order and cannot
-be dropped.
+Because $(dW_t)^2 = dt \neq 0$ (see [Quadratic Taylor Expansion](taylor_expansion_quadratic.md) for the scaling argument), products of stochastic differentials contribute at first order and cannot be dropped.
 
 | | Classical calculus | Stochastic calculus |
 |---|---|---|
 | Product rule | $d(XY) = X\,dY + Y\,dX$ | $d(XY) = X\,dY + Y\,dX + d[X,Y]$ |
 | Cross term | $dX\,dY = 0$ | $d[X,Y]_t$ survives |
-| Reason | $dX = O(dt)$ | $dX_t$ has a $dW_t$ component: $O(\sqrt{dt})$ |
 
 ---
 
@@ -60,6 +50,7 @@ the multiplication table $(dW_t)^2 = dt$, $dt\,dW_t = 0$, $(dt)^2 = 0$:
 $$
 dX_t\,dY_t
 = \underbrace{a_t c_t (dt)^2}_{=\,0}
+
 + \underbrace{a_t e_t\,dt\,dW_t}_{=\,0}
 + \underbrace{b_t c_t\,dW_t\,dt}_{=\,0}
 + \underbrace{b_t e_t\,(dW_t)^2}_{=\,b_t e_t\,dt}
@@ -82,6 +73,7 @@ Collecting $dt$ and $dW_t$ terms:
 $$
 d(X_t Y_t)
 = (X_t c_t + Y_t a_t + b_t e_t)\,dt
+
 + (X_t e_t + Y_t b_t)\,dW_t
 $$
 
@@ -109,6 +101,7 @@ $$
 \boxed{
 \int_0^t X_s\,dY_s
 = X_t Y_t - X_0 Y_0
+
 - \int_0^t Y_s\,dX_s
 - [X,Y]_t
 }
@@ -147,6 +140,7 @@ $$
 d\!\left(\frac{X_t}{Y_t}\right)
 =
 \frac{dX_t}{Y_t}
+
 - \frac{X_t\,dY_t}{Y_t^2}
 - \frac{b_t e_t}{Y_t^2}\,dt
 + \frac{X_t e_t^2}{Y_t^3}\,dt
@@ -170,6 +164,7 @@ Applying the integration by parts formula with $X_s = s$, $Y_s = W_s$:
 $$
 \int_0^t s\,dW_s
 = \underbrace{tW_t}_{X_t Y_t}
+
 - \underbrace{0}_{X_0 Y_0\,=\,0}
 - \int_0^t W_s\,ds
 - \underbrace{0}_{[X,Y]_t}

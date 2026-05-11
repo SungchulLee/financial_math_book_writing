@@ -19,6 +19,7 @@ Consider an option with strike $K$ and maturity $T$. At time $t$, with spot pric
 **Question:** When the spot moves from $S_t$ to $S_t + \Delta S$, how does the implied volatility change?
 
 Three quantities characterize the answer:
+
 1. The **new** implied volatility at strike $K$: $\sigma_{\text{IV}}(K, T, S_t + \Delta S)$
 2. The **new** implied volatility at the new ATM forward
 3. The relationship between strike-space and delta-space
@@ -80,11 +81,13 @@ $$
 
 
 Under sticky strike:
+
 - The smile "stays in place" in $(K, \sigma)$ space
 - The forward price $F = S e^{(r-q)T}$ shifts with spot
 - The ATM point moves along the existing smile curve
 
 **Example:** If spot moves from $S = 100$ to $S = 102$:
+
 - The strike $K = 100$ (was ATM) now has the same IV as before
 - The new ATM forward ($K \approx 102$) picks up the IV from the old OTM call region
 
@@ -113,7 +116,7 @@ since strike is held constant.
 The Black-Scholes delta is:
 
 $$
-\Delta_{\text{BS}} = e^{-qT} \Phi(d_1)
+\Delta_{\text{BS}} = e^{-qT} \mathcal{N}(d_1)
 $$
 
 
@@ -146,6 +149,7 @@ $$
 
 
 The implied volatility surface is determined by the local volatility function via the Dupire equation. When spot moves:
+
 - The local volatility function $\sigma_{\text{loc}}(S, t)$ is fixed
 - The implied volatility at each strike remains unchanged
 - This is precisely sticky strike behavior
@@ -176,11 +180,13 @@ $$
 
 
 Under sticky delta:
+
 - The smile "shifts" with spot in $(K, \sigma)$ space
 - A fixed-delta point (e.g., 25-delta put) always has the same IV
 - The strike corresponding to that delta changes with spot
 
 **Example:** If spot moves from $S = 100$ to $S = 102$:
+
 - The 25-delta put strike shifts from ~$K_1$ to ~$K_2$
 - Both $K_1$ (at old spot) and $K_2$ (at new spot) have the same IV
 - In strike space, the entire smile has "shifted right"
@@ -299,6 +305,7 @@ $$
 
 
 **Parameters:**
+
 - $S_0 = 100$, $K = 100$ (ATM), $T = 0.25$, $r = 5\%$, $q = 0$
 - $\sigma_{\text{ATM}} = 20\%$
 - Skew: $\frac{\partial \sigma}{\partial k} = -20\%$ per unit log-moneyness
@@ -306,7 +313,7 @@ $$
 **Black-Scholes delta:**
 
 $$
-\Delta_{\text{BS}} = \Phi(d_1) = \Phi(0.175) \approx 0.569
+\Delta_{\text{BS}} = \mathcal{N}(d_1) = \Phi(0.175) \approx 0.569
 $$
 
 
@@ -350,6 +357,7 @@ $$
 This gives a **positive** adjustment, making $\Delta_{\text{sticky-delta}} > \Delta_{\text{BS}}$.
 
 **Correction:** The relationship depends on how skew is defined and whether we're looking at OTM puts or calls. For a negatively skewed smile where OTM puts have higher IV:
+
 - Spot up → fixed strike becomes more OTM put-like → IV increases
 - This is **not** sticky delta behavior
 
@@ -492,11 +500,13 @@ where $\Delta\sigma_K$ is the change in IV at the fixed strike $K$.
 Empirical studies of equity index options (S&P 500, EURO STOXX) show:
 
 **Short-term behavior:**
+
 - Closer to sticky strike than sticky delta
 - IV at fixed strikes relatively stable over short horizons
 - Skew steepens after large down moves
 
 **Medium-term behavior:**
+
 - Neither assumption holds perfectly
 - Spot-vol correlation (leverage effect) dominates
 - Smile dynamics are asymmetric: faster reaction to down moves
@@ -514,6 +524,7 @@ Empirical SSR for SPX is typically 0.3-0.6, indicating behavior between sticky s
 
 
 **Short-term:** Closer to sticky delta
+
 - Market makers quote at fixed delta levels
 - IV at 25-delta put/call relatively stable
 
@@ -525,6 +536,7 @@ Empirical SSR for SPX is typically 0.3-0.6, indicating behavior between sticky s
 
 
 **Idiosyncratic behavior:**
+
 - More noise, less clear pattern
 - Event-driven (earnings, M&A) dominates
 - Sector effects matter
@@ -538,6 +550,7 @@ Empirical SSR for SPX is typically 0.3-0.6, indicating behavior between sticky s
 
 
 Local volatility models produce **sticky strike** behavior by construction:
+
 - The local vol surface $\sigma_{\text{loc}}(S, t)$ is fixed
 - When spot moves, the path through local vol space changes
 - But implied volatility at each strike is determined by the same integral
@@ -548,11 +561,13 @@ Local volatility models produce **sticky strike** behavior by construction:
 
 
 Stochastic volatility models (Heston, SABR) produce dynamics between sticky strike and sticky delta:
+
 - The spot-vol correlation ($\rho$) controls the leverage effect
 - Negative $\rho$ (typical for equities) produces skew that steepens when spot falls
 - This is neither pure sticky strike nor pure sticky delta
 
 **SABR:** The SABR model with backbone parameter $\beta$ interpolates:
+
 - $\beta = 1$: Normal SABR, sticky strike-like
 - $\beta = 0$: Lognormal SABR, sticky delta-like
 
@@ -567,6 +582,7 @@ $$
 
 
 The resulting smile dynamics are:
+
 - More realistic than local vol
 - Capture term structure of skew
 - Can match empirical SSR observations
@@ -594,6 +610,7 @@ $$
 
 
 The coefficient $\beta$ estimates the spot-vol sensitivity:
+
 - $\beta = 0$: Sticky strike
 - $\beta = -\text{skew}$: Sticky moneyness
 - Intermediate: Empirical dynamics

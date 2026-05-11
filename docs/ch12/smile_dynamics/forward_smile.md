@@ -148,6 +148,7 @@ This contradicts empirical evidence of persistent forward skew.
 
 
 The Heston model produces:
+
 - **Persistent skew:** Forward skew remains non-zero due to spot-vol correlation
 - **Level depends on $\mathbb{E}[v_{T_1}]$:** Expected future variance determines ATM level
 
@@ -162,6 +163,7 @@ $$
 
 
 The forward smile in SABR depends on the backbone parameter $\beta$:
+
 - $\beta = 1$: Forward smile similar to spot smile
 - $\beta = 0$: Forward smile flattens faster
 
@@ -195,6 +197,7 @@ Cliquet prices are highly sensitive to the forward smile:
 
 
 Forward smiles matter for:
+
 - Cliquets and autocallables
 - Long-dated exotics
 - Forward-starting variance swaps
@@ -203,6 +206,7 @@ Forward smiles matter for:
 
 
 The forward smile is a powerful **model discriminator**:
+
 - Compare model-implied forward smile to market-implied (from cliquets)
 - Local vol fails this test
 - Stochastic vol performs better

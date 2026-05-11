@@ -150,6 +150,7 @@ In reality, option prices are observed on a discrete grid and may contain noise.
 
 **Proposition 4.2.1** (Regularity of Call Price Surface)  
 If the underlying asset price has a continuous risk-neutral density $q(S)$, then the call price function $C(K, T)$ is:
+
 - $C^0$ continuous everywhere
 - $C^1$ differentiable everywhere
 - $C^2$ twice differentiable almost everywhere
@@ -200,6 +201,7 @@ $$
 
 
 A digital option can be replicated using a **butterfly spread**:
+
 - Long 1 call at $K - \Delta K$
 - Short 2 calls at $K$
 - Long 1 call at $K + \Delta K$
@@ -329,6 +331,7 @@ $$
 
 
 This is the **no-butterfly-arbitrage condition**. Violation indicates:
+
 - Mispriced options
 - Bid-ask spread effects
 - Model-free arbitrage opportunity
@@ -364,6 +367,7 @@ $$
 
 
 Using boundary conditions:
+
 - $\frac{\partial C}{\partial K}\big|_{K \to 0} = 0$ (deep ITM call has delta 1)
 - $\frac{\partial C}{\partial K}\big|_{K \to \infty} = -e^{-rT}$ (OTM call worthless)
 
@@ -424,6 +428,7 @@ This integral of option prices across all strikes provides a volatility estimate
 
 
 Compare the empirical density $q_{\text{market}}(K)$ extracted from option prices to model-implied densities:
+
 - **Black-Scholes:** $q_{\text{BS}}$ is lognormal
 - **Local volatility:** $q_{\text{LV}}$ from Dupire equation
 - **Stochastic volatility:** $q_{\text{SV}}$ from Heston, SABR, etc.
@@ -489,7 +494,7 @@ $$
 
 
 $$
-\frac{\partial C_{\text{BS}}}{\partial K} = -e^{-rT} \Phi(d_2)
+\frac{\partial C_{\text{BS}}}{\partial K} = -e^{-rT} \mathcal{N}(d_2)
 $$
 
 
@@ -566,6 +571,7 @@ Real markets have limited strike coverage, especially in the wings. Extrapolatio
 
 
 Using mid-prices can lead to inconsistencies. Best practice:
+
 - Use bid prices for sold options (butterfly short legs)
 - Use ask prices for bought options (butterfly long legs)
 - Result: Conservative density estimate
@@ -574,6 +580,7 @@ Using mid-prices can lead to inconsistencies. Best practice:
 
 
 If $\partial^2 C / \partial K^2 < 0$ at some strike, the extracted "density" is negative—indicating arbitrage or measurement error. Solutions:
+
 - Regularization (smooth to enforce convexity)
 - Projection onto arbitrage-free space
 - Discard suspect data points
@@ -582,6 +589,7 @@ If $\partial^2 C / \partial K^2 < 0$ at some strike, the extracted "density" is 
 
 
 Breeden-Litzenberger requires knowledge of $C(K)$ for all $K \in [0, \infty)$. In practice:
+
 - Lower tail: $K \to 0$ may have no traded options
 - Upper tail: $K \to \infty$ requires extrapolation
 
@@ -607,6 +615,7 @@ provides a **model-free** method to extract the risk-neutral probability density
 - **Complete information:** Full distribution recovered from option surface
 
 Applications include:
+
 - Risk-neutral moment calculation
 - Model validation and comparison
 - Density forecasting and tail risk assessment
@@ -718,7 +727,7 @@ The formula forms the foundation for model-free results in option pricing, estab
     For a distribution that is approximately symmetric around the forward (in particular, the lognormal distribution with small $\sigma\sqrt{T}$), we have $\mathbb{P}^{\mathbb{Q}}(S_T \leq F) \approx 0.5$. More precisely, in the Black-Scholes model:
 
     $$
-    Q(F) = \Phi(d_2)\big|_{K=F} = \Phi\left(\frac{\sigma\sqrt{T}}{2}\right)
+    Q(F) = \mathcal{N}(d_2)\big|_{K=F} = \Phi\left(\frac{\sigma\sqrt{T}}{2}\right)
     $$
 
     Wait — correcting: $d_2 = \frac{\ln(F/K) + (-\sigma^2/2)T}{\sigma\sqrt{T}}$. At $K = F$, $\ln(F/F) = 0$, so $d_2 = -\frac{\sigma\sqrt{T}}{2}$. Thus:

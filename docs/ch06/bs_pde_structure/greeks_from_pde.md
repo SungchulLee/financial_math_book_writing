@@ -78,9 +78,9 @@ $$
 
 ### Black-Scholes Formulas
 
-**Call**: $\Delta_C = \Phi(d_1)$
+**Call**: $\Delta_C = \mathcal{N}(d_1)$
 
-**Put**: $\Delta_P = \Phi(d_1) - 1 = -\Phi(-d_1)$
+**Put**: $\Delta_P = \mathcal{N}(d_1) - 1 = -\mathcal{N}(-d_1)$
 
 where $d_1 = \frac{\log(S/K) + (r + \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}$
 
@@ -123,6 +123,7 @@ where $\phi$ is the standard normal PDF.
 ### Gamma and Hedging
 
 Gamma measures the **instability of the hedge**:
+
 - High gamma: Frequent rebalancing needed
 - Low gamma: Stable hedge
 
@@ -147,13 +148,13 @@ $$
 **Call**:
 
 $$
-\Theta_C = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\Phi(d_2)
+\Theta_C = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\mathcal{N}(d_2)
 $$
 
 **Put**:
 
 $$
-\Theta_P = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} + rKe^{-r(T-t)}\Phi(-d_2)
+\Theta_P = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} + rKe^{-r(T-t)}\mathcal{N}(-d_2)
 $$
 
 ### Properties
@@ -207,6 +208,7 @@ Same for calls and puts (put-call parity).
 ### Vega and Implied Volatility
 
 Vega is essential for:
+
 - Converting between price and implied volatility
 - Volatility trading strategies
 - Model risk assessment
@@ -225,9 +227,9 @@ Like vega, rho measures sensitivity to a PDE parameter rather than an independen
 
 ### Black-Scholes Formulas
 
-**Call**: $\rho_C = K(T-t)e^{-r(T-t)}\Phi(d_2)$
+**Call**: $\rho_C = K(T-t)e^{-r(T-t)}\mathcal{N}(d_2)$
 
-**Put**: $\rho_P = -K(T-t)e^{-r(T-t)}\Phi(-d_2)$
+**Put**: $\rho_P = -K(T-t)e^{-r(T-t)}\mathcal{N}(-d_2)$
 
 ### Properties
 
@@ -278,6 +280,7 @@ $$
 ### Delta-Gamma Hedging
 
 To hedge both delta and gamma:
+
 1. Add a second option to zero gamma
 2. Adjust stock position to zero delta
 
@@ -355,15 +358,15 @@ $$
     d_2 = d_1 - \sigma\sqrt{T-t} = 0.2475 - 0.1414 \approx 0.1061
     $$
 
-    Using standard normal tables: $\Phi(d_1) \approx 0.5977$, $\Phi(d_2) \approx 0.5423$, $\phi(d_1) \approx 0.3873$.
+    Using standard normal tables: $\mathcal{N}(d_1) \approx 0.5977$, $\mathcal{N}(d_2) \approx 0.5423$, $\phi(d_1) \approx 0.3873$.
 
     **Call price**:
 
     $$
-    C = S\Phi(d_1) - Ke^{-rT}\Phi(d_2) = 100(0.5977) - 100e^{-0.025}(0.5423) \approx 59.77 - 52.89 = 6.88
+    C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) = 100(0.5977) - 100e^{-0.025}(0.5423) \approx 59.77 - 52.89 = 6.88
     $$
 
-    **Delta**: $\Delta = \Phi(d_1) \approx 0.5977$
+    **Delta**: $\Delta = \mathcal{N}(d_1) \approx 0.5977$
 
     **Gamma**:
 
@@ -374,7 +377,7 @@ $$
     **Theta**:
 
     $$
-    \Theta = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\Phi(d_2) = -\frac{100 \times 0.3873 \times 0.20}{2 \times 0.7071} - 0.05 \times 100 \times 0.9753 \times 0.5423
+    \Theta = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\mathcal{N}(d_2) = -\frac{100 \times 0.3873 \times 0.20}{2 \times 0.7071} - 0.05 \times 100 \times 0.9753 \times 0.5423
     $$
 
     $$
@@ -383,7 +386,7 @@ $$
 
     **Vega**: $\mathcal{V} = S\sqrt{T-t}\,\phi(d_1) = 100 \times 0.7071 \times 0.3873 \approx 27.39$
 
-    **Rho**: $\rho = K(T-t)e^{-r(T-t)}\Phi(d_2) = 100 \times 0.5 \times 0.9753 \times 0.5423 \approx 26.44$
+    **Rho**: $\rho = K(T-t)e^{-r(T-t)}\mathcal{N}(d_2) = 100 \times 0.5 \times 0.9753 \times 0.5423 \approx 26.44$
 
     **Verification** of the PDE relationship:
 

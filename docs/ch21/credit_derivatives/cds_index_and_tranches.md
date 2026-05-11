@@ -731,4 +731,4 @@ Starting from the definition $L_T^{[a,d]} = \frac{(L_T - a)^+ - (L_T - d)^+}{d -
     \sum_{j=1}^{J} (d_j - a_j) \, \text{ETL}^{[a_j, d_j]}(T) = \mathbb{E}[L_T]
     $$
 
-    This is the **index-tranche arbitrage constraint**: the notional-weighted sum of tranche expected losses must equal the total expected portfolio loss. This constraint ensures that tranche prices are consistent with the index spread, and any violation indicates an arbitrage opportunity or model misspecification. $\blacksquare$
+    This is the **index-tranche arbitrage constraint**: the notional-weighted sum of tranche expected losses must equal the total expected portfolio loss. This constraint ensures that tranche prices are consistent with the index spread, and any violation indicates an arbitrage opportunity or model misspecification. $\square$

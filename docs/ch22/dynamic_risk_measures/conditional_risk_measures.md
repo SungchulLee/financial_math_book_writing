@@ -9,6 +9,7 @@
 Static risk measures $\rho(X)$ assess risk unconditionally, assuming no prior information.
 
 In practice:
+
 - Risk is reassessed as new information arrives
 - Market conditions evolve, affecting risk profiles
 - Portfolio positions change dynamically
@@ -41,6 +42,7 @@ $$
 such that $\rho_t(X)$ is $\mathcal{F}_t$-measurable for each $X$.
 
 **Interpretation:** 
+
 - $\rho_t(X)(\omega)$ is the risk of terminal loss $X$ as assessed at time $t$ in state $\omega$
 - Different realizations of $\mathcal{F}_t$ lead to different risk assessments
 
@@ -192,6 +194,7 @@ When $\mathcal{F}_0$ is trivial, $\rho_0(X)$ is a constant (a real number), reco
 A **dynamic risk measure** is a family $(\rho_t)_{t \in [0,T]}$ of conditional risk measures.
 
 Key requirements:
+
 1. Each $\rho_t$ should be conditionally coherent (or convex)
 2. The family should satisfy **time-consistency** (see [Time-Consistency](time_consistency.md))
 
@@ -233,6 +236,7 @@ $$
 $$
 
 Properties:
+
 - If $\rho_t$ is monotone: $X \le 0 \Rightarrow X \in \mathcal{A}_t$
 - If $\rho_t$ is convex: $\mathcal{A}_t$ is convex
 - If $\rho_t$ is coherent: $\mathcal{A}_t$ is a convex cone

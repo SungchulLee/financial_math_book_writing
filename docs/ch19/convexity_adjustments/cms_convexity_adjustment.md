@@ -346,7 +346,7 @@ for all $S_0 > 0$, $n \geq 2$, and $\delta > 0$.
     u \sum_{k=0}^{n-1} u^k = \sum_{k=0}^{n-1} u^{k+1} = u + u^2 + \cdots + u^n > \underbrace{1 + 1 + \cdots + 1}_{n} = n
     $$
 
-    The strict inequality holds since $u > 1$ and $n \geq 2$. Therefore $h(S_0) > 0$, which implies the CMS convexity adjustment $\sigma_S^2 T_f S_0 h(S_0) > 0$. $\blacksquare$
+    The strict inequality holds since $u > 1$ and $n \geq 2$. Therefore $h(S_0) > 0$, which implies the CMS convexity adjustment $\sigma_S^2 T_f S_0 h(S_0) > 0$. $\square$
 
 ---
 
@@ -416,7 +416,7 @@ derive the expression $\mathbb{E}^{\mathbb{Q}^{T_p}}[S(T_f)] = \frac{A(0)}{P(0, 
 
     2. The **numéraire change** between $\mathbb{Q}^A$ and $\mathbb{Q}^{T_p}$ uses the Radon--Nikodym derivative $dQ^{T_p}/dQ^A = (P(T_f,T_p)/P(0,T_p)) \cdot (A(0)/A(T_f))$.
 
-    3. The function $G(S) = P(T_f, T_p)/A(T_f)$ is assumed to depend on $S(T_f)$ alone (the **annuity mapping** assumption), which holds exactly under a one-factor model or under the parallel-shift approximation. $\blacksquare$
+    3. The function $G(S) = P(T_f, T_p)/A(T_f)$ is assumed to depend on $S(T_f)$ alone (the **annuity mapping** assumption), which holds exactly under a one-factor model or under the parallel-shift approximation. $\square$
 
 ---
 

@@ -9,6 +9,7 @@
 
 
 Financial environments are characterized by:
+
 - model misspecification,
 - non-stationarity,
 - limited and noisy data.
@@ -37,6 +38,7 @@ This guards against worst-case scenarios.
 
 
 Robust learning is applied to:
+
 - portfolio allocation under uncertainty,
 - hedging with ambiguous dynamics,
 - risk-sensitive control.
@@ -49,6 +51,7 @@ It aligns naturally with regulatory and risk-management objectives.
 
 
 Robustness typically:
+
 - reduces sensitivity to estimation error,
 - sacrifices some performance in benign regimes,
 - improves tail behavior.
