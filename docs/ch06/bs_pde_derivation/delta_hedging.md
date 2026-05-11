@@ -47,7 +47,7 @@ Over an infinitesimal interval $[t, t + dt]$, hold $\Delta$ **fixed** (it will b
 
 $$d\Pi = -dV + \Delta\, dS$$
 
-This implicitly assumes that any cash required to rebalance the hedge is borrowed or lent at the risk-free rate $r$. The precise relationship between this "freeze-and-rebalance" construction and the self-financing formulation is discussed in the section [On Self-Financing and Rebalancing](#on-self-financing-and-rebalancing) below.
+This implicitly assumes that any cash required to rebalance the hedge is borrowed or lent at the risk-free rate $r$. The precise relationship between this "freeze-and-rebalance" construction and the self-financing formulation is discussed in the admonition near the end of this page (and made fully rigorous in [self-financing replication](replication.md)).
 
 Substituting the expressions for $dV$ and $dS$:
 

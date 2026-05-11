@@ -32,7 +32,7 @@ where $B_t = e^{\int_0^t r_s\,ds}$ is the money market account and $\mathbb{Q}$ 
 
 ### 1. Bond-Deflated Prices are Martingales
 
-By the [numéraire theorem](numeraire.md#the-fundamental-theorem-for-numéraires),
+By the [numéraire theorem](numeraire.md#the-fundamental-theorem-for-numeraires),
 $S_t / P(t,T)$ is a $\mathbb{Q}^T$-martingale for any traded asset $S_t$.
 
 ### 2. Forward Prices are Martingales

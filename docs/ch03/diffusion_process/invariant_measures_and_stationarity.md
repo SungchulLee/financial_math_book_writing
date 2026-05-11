@@ -57,7 +57,7 @@ $$
 \qquad \text{for all } f \in \mathrm{Dom}(\mathcal{L})
 $$
 
-Equivalently, $\mathcal{L}^* \pi = 0$ in the distributional sense. The proof of this equivalence is given [below](#proof--derivation).
+Equivalently, $\mathcal{L}^* \pi = 0$ in the distributional sense. The proof of this equivalence is given [below](#proof-derivation).
 
 ### Stationary Fokker–Planck Equation
 

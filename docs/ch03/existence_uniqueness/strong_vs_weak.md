@@ -130,7 +130,7 @@ exists, then a strong solution exists and it is unique in law.
 
 ### Example 1: Lipschitz Coefficients (Strong Solution)
 
-For $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$ with globally Lipschitz coefficients, the [Lipschitz conditions](lipschitz_conditions.md) guarantee a unique strong solution via [Picard iteration](picard_iteration.md). Uniqueness in law follows from pathwise uniqueness by [Yamada–Watanabe](#the-yamada–watanabe-theorem).
+For $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$ with globally Lipschitz coefficients, the [Lipschitz conditions](lipschitz_conditions.md) guarantee a unique strong solution via [Picard iteration](picard_iteration.md). Uniqueness in law follows from pathwise uniqueness by [Yamada–Watanabe](#the-yamadawatanabe-theorem).
 
 ### Example 2: Tanaka's SDE (Weak but Not Strong)
 

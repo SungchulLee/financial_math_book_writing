@@ -331,7 +331,7 @@ A local martingale $M$ is a true martingale if any of the following holds:
 - **Finite expected quadratic variation** (BDG inequality) → see [Integrability Conditions](integrability_conditions.md)
 - **Novikov's condition** or **Kazamaki's condition** (for stochastic exponentials) → see [Novikov and Kazamaki Conditions](novikov_kazamaki_conditions.md)
 
-All conditions ultimately ensure [uniform integrability](../../ch02/filtration_and_martingale/martingale_convergence.md#uniform-integrability), which prevents mass from escaping to infinity.
+All conditions ultimately ensure [uniform integrability](../../ch02/filtration_and_martingale/uniform_integrability.md), which prevents mass from escaping to infinity.
 
 ---
 
