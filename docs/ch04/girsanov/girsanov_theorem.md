@@ -89,14 +89,6 @@ $$
 
 is a **standard Brownian motion**.
 
-**Equivalently:** The original Brownian motion $W_t$ can be written as
-
-$$
-W_t = \widetilde{W}_t - \int_0^t \theta_s\,ds
-$$
-
-under $\mathbb{Q}$.
-
 ---
 
 ## Interpretation: How the Drift Term Changes

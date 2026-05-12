@@ -120,35 +120,37 @@ where $\mathcal{N}(\cdot)$ is the standard normal cumulative distribution functi
 
 ### Derivation Sketch
 
-From risk-neutral pricing:
+Split the discounted call payoff into a stock-receipt term and a strike-payment term:
 
 $$
-\begin{aligned}
-C_0 &= e^{-rT} \mathbb{E}^{\mathbb{Q}}[(S_T - K)^+] \\
-&= e^{-rT} \int_K^\infty (s - K)\, f_{S_T}^{\mathbb{Q}}(s)\, ds \\
-&= S_0 \mathcal{N}(d_1) - K e^{-rT} \mathcal{N}(d_2)
-\end{aligned}
+C_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}\!\left[(S_T - K)^+\right] = \underbrace{e^{-rT}\mathbb{E}^{\mathbb{Q}}\!\left[S_T\,\mathbf{1}_{\{S_T > K\}}\right]}_{\text{stock term}} - \underbrace{Ke^{-rT}\,\mathbb{Q}(S_T > K)}_{\text{strike term}}
 $$
 
-Substitute $S_T = S_0 e^{(r - \sigma^2/2)T + \sigma\sqrt{T}\, Z}$ with $Z \sim N(0,1)$; the condition $S_T > K$ becomes $Z > -d_2$, and the integrand splits as:
+The strike term is immediate from the lognormal distribution of $S_T$ under $\mathbb{Q}$:
 
 $$
-e^{-rT} S_0 \int_{-d_2}^{\infty} e^{(r - \frac{1}{2}\sigma^2)T + \sigma\sqrt{T}z}\, \frac{1}{\sqrt{2\pi}} e^{-z^2/2}\, dz - K e^{-rT} \int_{-d_2}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-z^2/2}\, dz
+Ke^{-rT}\,\mathbb{Q}(S_T > K) = Ke^{-rT}\,\mathcal{N}(d_2)
 $$
 
-The second integral is $\mathcal{N}(d_2)$. In the first, $e^{-rT}\,e^{rT} = 1$ leaves $S_0\int_{-d_2}^{\infty}\frac{1}{\sqrt{2\pi}}\exp\!\left(-\tfrac{1}{2}\sigma^2 T + \sigma\sqrt{T}\,z - \tfrac{z^2}{2}\right) dz$. Completing the square:
+For the stock term, change numéraire from the money-market account to the stock itself. Define the **stock numéraire measure** $\mathbb{Q}^S$ by
 
 $$
-\boxed{-\frac{1}{2}\sigma^2 T + \sigma\sqrt{T}\,z - \frac{z^2}{2} = -\frac{1}{2}(z - \sigma\sqrt{T})^2}
+\frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{e^{-rT}S_T}{S_0}
 $$
 
-The substitution $u = z - \sigma\sqrt{T}$ shifts the lower limit to $-d_2 - \sigma\sqrt{T} = -d_1$:
+(the discounted terminal stock value, normalised so that $\mathbb{E}^{\mathbb{Q}}[d\mathbb{Q}^S/d\mathbb{Q}] = 1$ by the martingale property of the discounted stock). Pulling this weight into the expectation,
 
 $$
-S_0\int_{-d_1}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-u^2/2}\, du = S_0\,\mathbb{P}(Z > -d_1) = S_0\,\mathcal{N}(d_1)
+e^{-rT}\mathbb{E}^{\mathbb{Q}}\!\left[S_T\,\mathbf{1}_{\{S_T > K\}}\right] = S_0\,\mathbb{E}^{\mathbb{Q}^S}\!\left[\mathbf{1}_{\{S_T > K\}}\right] = S_0\,\mathbb{Q}^S(S_T > K) = S_0\,\mathcal{N}(d_1)
 $$
 
-by symmetry of $\mathcal{N}$, completing the derivation.
+The final identity $\mathbb{Q}^S(S_T > K) = \mathcal{N}(d_1)$ holds because Girsanov shifts the stock drift from $r$ to $r + \sigma^2$ under $\mathbb{Q}^S$, which replaces $d_2 = \frac{\log(S_0/K) + (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}$ by $d_1 = \frac{\log(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}$ in the standardisation (the full drift-shift calculation is in [Probabilistic interpretation](probabilistic_interpretation.md)). Combining,
+
+$$
+C_0 = S_0\,\mathcal{N}(d_1) - Ke^{-rT}\,\mathcal{N}(d_2)
+$$
+
+Each term pairs with its natural measure: $\mathcal{N}(d_2)$ is the exercise probability under the money-market numéraire $\mathbb{Q}$, and $\mathcal{N}(d_1)$ is the exercise probability under the stock numéraire $\mathbb{Q}^S$. Forcing both integrals to stay under $\mathbb{Q}$ also works — it just routes through a Gaussian-integral completing-the-square computation that produces $\mathcal{N}(d_1)$ algebraically rather than measure-theoretically; that route is carried out in Exercise 8.
 
 ---
 
@@ -541,3 +543,67 @@ $$
     If $\theta_t$ grows too fast (e.g., if $\theta_t$ itself depends on $W_t$ in a way that makes $\int_0^T \theta_t^2\, dt$ have heavy tails), this expectation can diverge.
 
     **What goes wrong**: If the Novikov condition fails, the exponential martingale $Z_t = \exp(-\int_0^t \theta_s\, dW_s - \frac{1}{2}\int_0^t \theta_s^2\, ds)$ may fail to be a true martingale (it could be only a supermartingale with $\mathbb{E}[Z_T] < 1$). In this case, $\mathbb{Q}$ defined by $d\mathbb{Q}/d\mathbb{P} = Z_T$ would not be a valid probability measure (it would not integrate to $1$). The Girsanov change of drift would be invalid, and the resulting "risk-neutral" pricing could produce incorrect option prices or even allow arbitrage in the model. This is a genuine concern in stochastic volatility models where the market price of volatility risk can be unbounded.
+
+---
+**Exercise 8.** Derive the Black–Scholes call price by direct Gaussian integration under $\mathbb{Q}$ alone (no change of numéraire). Substitute $S_T = S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma\sqrt{T}\,Z}$ with $Z \sim \mathcal{N}(0,1)$ under $\mathbb{Q}$, show that $\{S_T > K\} = \{Z > -d_2\}$, split the resulting integral into a stock piece and a strike piece, and obtain the $\mathcal{N}(d_1)$ factor by completing the square in the exponent. Compare with the stock-numéraire derivation in the body: both must give the same answer.
+
+??? success "Solution to Exercise 8"
+    Under $\mathbb{Q}$, write $\tilde{W}_T = \sqrt{T}\,Z$ with $Z \sim \mathcal{N}(0,1)$, so
+
+    $$
+    S_T = S_0\,e^{(r - \frac{1}{2}\sigma^2)T + \sigma\sqrt{T}\,Z}
+    $$
+
+    The exercise condition $S_T > K$ is equivalent to
+
+    $$
+    Z > \frac{\log(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}} = -d_2
+    $$
+
+    Therefore
+
+    $$
+    C_0 = e^{-rT}\int_{-d_2}^{\infty}\!\left(S_0\,e^{(r - \frac{1}{2}\sigma^2)T + \sigma\sqrt{T}\,z} - K\right)\frac{1}{\sqrt{2\pi}}e^{-z^2/2}\,dz
+    $$
+
+    Split into a stock integral $A$ and a strike integral $B$:
+
+    $$
+    A = e^{-rT}S_0\int_{-d_2}^{\infty} e^{(r - \frac{1}{2}\sigma^2)T + \sigma\sqrt{T}\,z}\,\frac{1}{\sqrt{2\pi}}e^{-z^2/2}\,dz
+    $$
+
+    $$
+    B = Ke^{-rT}\int_{-d_2}^{\infty}\frac{1}{\sqrt{2\pi}}e^{-z^2/2}\,dz
+    $$
+
+    The strike integral is the standard normal tail probability $\mathbb{P}(Z > -d_2) = \mathcal{N}(d_2)$:
+
+    $$
+    B = Ke^{-rT}\,\mathcal{N}(d_2)
+    $$
+
+    In the stock integral, the prefactor $e^{-rT}\cdot e^{rT} = 1$ cancels, leaving
+
+    $$
+    A = S_0\int_{-d_2}^{\infty}\frac{1}{\sqrt{2\pi}}\exp\!\left(-\tfrac{1}{2}\sigma^2 T + \sigma\sqrt{T}\,z - \tfrac{1}{2}z^2\right)dz
+    $$
+
+    Complete the square in the exponent:
+
+    $$
+    -\tfrac{1}{2}\sigma^2 T + \sigma\sqrt{T}\,z - \tfrac{1}{2}z^2 = -\tfrac{1}{2}(z - \sigma\sqrt{T})^2
+    $$
+
+    Substitute $u = z - \sigma\sqrt{T}$, $du = dz$. The lower limit shifts to $-d_2 - \sigma\sqrt{T} = -d_1$:
+
+    $$
+    A = S_0\int_{-d_1}^{\infty}\frac{1}{\sqrt{2\pi}}e^{-u^2/2}\,du = S_0\,\mathcal{N}(d_1)
+    $$
+
+    Combining,
+
+    $$
+    C_0 = A - B = S_0\,\mathcal{N}(d_1) - Ke^{-rT}\,\mathcal{N}(d_2)
+    $$
+
+    **Comparison with the body derivation**: the stock-numéraire route produces $\mathcal{N}(d_1)$ as the probability $\mathbb{Q}^S(S_T > K)$ — a *measure-theoretic* statement. The route above produces the same $\mathcal{N}(d_1)$ as the result of completing the square in a Gaussian integral — an *algebraic* statement. The two routes are not just numerically equal: the completing-the-square step $-\tfrac{1}{2}(z - \sigma\sqrt{T})^2$ is exactly the Radon–Nikodym density $d\mathbb{Q}^S/d\mathbb{Q} = \exp(\sigma\tilde{W}_T - \tfrac{1}{2}\sigma^2 T)$ multiplied against the $\mathbb{Q}$-density, which is why the integration variable shifts by $\sigma\sqrt{T}$. The numéraire change makes structurally explicit what the integral computes by mechanical substitution.

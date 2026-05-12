@@ -153,7 +153,23 @@ $$
 where $\tilde{W}_T \sim \mathcal{N}(0, T)$ under $\mathbb{Q}^S$. Following the same standardization as for $d_2$:
 
 $$
-\mathbb{Q}^S(S_T > K) = \mathcal{N}\left(\frac{\log(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}\right) = \mathcal{N}(d_1)
+\begin{aligned}
+S_T > K
+&\iff S_0 e^{(r + \frac{1}{2}\sigma^2)T + \sigma\tilde{W}_T} > K \\[2mm]
+&\iff \sigma\tilde{W}_T > \log(K/S_0) - \left(r + \frac{1}{2}\sigma^2\right)T \\[2mm]
+&\iff \frac{\tilde{W}_T}{\sqrt{T}} > \frac{\log(K/S_0) - \left(r + \frac{1}{2}\sigma^2\right)T}{\sigma\sqrt{T}}
+\end{aligned}
+$$
+
+Since $Z = \tilde{W}_T/\sqrt{T} \sim \mathcal{N}(0,1)$ under $\mathbb{Q}^S$:
+
+$$
+\begin{aligned}
+\mathbb{Q}^S(S_T > K)
+&= \mathbb{Q}^S\!\left(Z > \frac{\log(K/S_0) - \left(r + \frac{1}{2}\sigma^2\right)T}{\sigma\sqrt{T}}\right) \\[2mm]
+&= \mathbb{Q}^S\!\left(Z < - \frac{\log(K/S_0) - \left(r + \frac{1}{2}\sigma^2\right)T}{\sigma\sqrt{T}}\right) \\[2mm]
+&= \mathcal{N}(d_1)
+\end{aligned}
 $$
 
 ### 3. **Alternative Interpretation: Delta**

@@ -55,6 +55,14 @@ $$
 D_0 = -\frac{\partial C_0}{\partial K}
 $$
 
+At first glance this identity looks suspicious: $d_1$ and $d_2$ both depend on $K$, so differentiating $C_0 = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$ in $K$ should produce extra terms from $\partial d_1/\partial K$ and $\partial d_2/\partial K$ via the chain rule. Those terms *do* appear, but they cancel exactly because of the Black–Scholes density identity
+
+$$
+S_0\,\phi(d_1) = Ke^{-rT}\,\phi(d_2)
+$$
+
+which forces $S_0\phi(d_1)\,\partial_K d_1$ and $Ke^{-rT}\phi(d_2)\,\partial_K d_2$ to coincide (since $\partial_K d_1 = \partial_K d_2 = -1/(K\sigma\sqrt{T})$). What survives is the single explicit-$K$ term $-e^{-rT}\mathcal{N}(d_2)$, giving the clean identity above. The cancellation is one of the structural elegances of the Black–Scholes formula; Exercise 2 carries out the differentiation in detail.
+
 This reveals that the digital call captures the **density of the call price with respect to strike**.
 
 The next step is conceptually larger than it looks: differentiating once more in $K$ does not just give another Greek—it inverts the very integral that produced $C_0$ in the first place, recovering the risk-neutral density itself from prices alone. This matters because liquid markets quote calls across a near-continuum of strikes, so the second strike-derivative is something one can actually estimate from market data, turning a snapshot of the volatility surface into an implied distribution. The non-obviousness lies in this reversal: pricing integrates the payoff against an unknown density, yet differentiating the resulting price function in the strike undoes that integration and exposes the density. Carried out at each maturity, this construction yields one implied risk-neutral density per maturity slice of the volatility surface—the **Breeden-Litzenberger** identity that follows.
@@ -64,6 +72,26 @@ Differentiating once more gives the **Breeden-Litzenberger result**: the risk-ne
 $$
 f^{\mathbb{Q}}(K) = e^{rT}\frac{\partial^2 C_0}{\partial K^2}
 $$
+
+**Why this works.** Start from the risk-neutral pricing integral
+
+$$
+C_0(K) = e^{-rT}\int_K^{\infty} (s - K)\,f^{\mathbb{Q}}_{S_T}(s)\,ds
+$$
+
+and differentiate twice in $K$ using Leibniz's rule. For the first derivative, the boundary term $(s - K)\big|_{s=K} = 0$, so the lower-limit contribution vanishes and only the integrand derivative survives:
+
+$$
+\frac{\partial C_0}{\partial K} = -e^{-rT}\int_K^{\infty} f^{\mathbb{Q}}_{S_T}(s)\,ds = -e^{-rT}\,\mathbb{Q}(S_T > K)
+$$
+
+This is the *model-free* version of the earlier identity $D_0 = -\partial C_0/\partial K$: it holds for any underlying with a density, not just lognormal — the Black–Scholes cancellation $S_0\phi(d_1) = Ke^{-rT}\phi(d_2)$ shown above is a special case. Differentiating once more, Leibniz on the tail integral now produces a nonzero boundary contribution at the lower limit:
+
+$$
+\frac{\partial^2 C_0}{\partial K^2} = -e^{-rT}\,\frac{\partial}{\partial K}\int_K^{\infty} f^{\mathbb{Q}}_{S_T}(s)\,ds = e^{-rT}\,f^{\mathbb{Q}}_{S_T}(K)
+$$
+
+Rearranging gives the formula above. The structure is now transparent: $C_0(K)$ is a *double* integral of the density (an integral of the survival function, itself an integral of $f$, weighted by the payoff ramp), so two strike-derivatives strip away both integrations and expose the density directly.
 
 This is one of the deepest connections between option markets and probability theory—it shows that a complete set of call prices implicitly encodes the entire risk-neutral distribution.
 
